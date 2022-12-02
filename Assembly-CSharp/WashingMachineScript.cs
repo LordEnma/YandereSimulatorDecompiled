@@ -1,177 +1,220 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: WashingMachineScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class WashingMachineScript : MonoBehaviour
 {
-  public GameObject CleanUniform;
-  public GameObject Colliders;
-  public GameObject Panel;
-  public AudioSource MyAudio;
-  public AudioClip OpenSFX;
-  public AudioClip ShutSFX;
-  public AudioClip WashSFX;
-  public PromptScript Prompt;
-  public Transform Tumbler;
-  public Transform Door;
-  public UILabel TimeLabel;
-  public UISprite Circle;
-  public float AnimationTimer;
-  public float WashTimer;
-  public float Rotation;
-  public float Speed;
-  public bool Washing;
-  public bool Open;
-  public PickUpScript[] ClothingList;
-  public int ClothingInMachine;
+	public GameObject CleanUniform;
 
-  private void Start() => this.Panel.SetActive(false);
+	public GameObject Colliders;
 
-  private void Update()
-  {
-    if (!this.Washing)
-    {
-      if ((Object) this.Prompt != (Object) null && (Object) this.Prompt.Yandere != (Object) null)
-        this.Prompt.HideButton[3] = (!((Object) this.Prompt.Yandere.PickUp != (Object) null) || !this.Prompt.Yandere.PickUp.Clothing || !this.Prompt.Yandere.PickUp.Evidence) && (!((Object) this.Prompt.Yandere.PickUp != (Object) null) || !this.Prompt.Yandere.PickUp.Clothing || !this.Prompt.Yandere.PickUp.RedPaint);
-    }
-    else
-    {
-      this.Tumbler.Rotate(0.0f, 0.0f, 360f * Time.deltaTime, Space.Self);
-      this.WashTimer -= Time.deltaTime;
-      this.Circle.fillAmount = (float) (1.0 - (double) this.WashTimer / 60.0);
-      double num = (double) Mathf.CeilToInt(this.WashTimer * 60f);
-      this.TimeLabel.text = string.Format("{0:00}:{1:00}", (object) Mathf.Floor((float) (num / 60.0)), (object) (float) Mathf.RoundToInt((float) (num % 60.0)));
-      if ((double) this.WashTimer <= 0.0)
-      {
-        for (int index = 0; index < this.ClothingList.Length; ++index)
-        {
-          if ((Object) this.ClothingList[index] != (Object) null)
-          {
-            if (this.ClothingList[index].gameObject.name == "Raincoat" || this.ClothingList[index].gameObject.name == "SilkGloves")
-            {
-              this.ClothingList[index].transform.position = this.transform.position + new Vector3(0.0f, 0.6f, -0.66666f);
-              this.ClothingList[index].transform.localScale = new Vector3(1f, 1f, 1f);
-              this.ClothingList[index].Evidence = false;
-              this.ClothingList[index].gameObject.GetComponent<GloveScript>().Blood.enabled = false;
-              if (this.ClothingList[index].gameObject.name == "Raincoat")
-                this.Prompt.Yandere.CoatBloodiness = 0.0f;
-              else
-                this.Prompt.Yandere.GloveAttacher.newRenderer.material.mainTexture = this.Prompt.Yandere.GloveTexture;
-              OutlineScript component = this.ClothingList[index].GetComponent<OutlineScript>();
-              if ((Object) component != (Object) null)
-                component.color = new Color(0.0f, 1f, 1f, 1f);
-            }
-            else if (this.ClothingList[index].gameObject.name == "Mask")
-            {
-              this.ClothingList[index].transform.position = this.transform.position + new Vector3(0.0f, 0.6f, -0.66666f);
-              this.ClothingList[index].transform.localScale = new Vector3(1f, 1f, 1f);
-              this.ClothingList[index].Evidence = false;
-              this.ClothingList[index].gameObject.GetComponent<MaskScript>().Blood.enabled = false;
-            }
-            else
-            {
-              if (this.ClothingList[index].RedPaint)
-              {
-                --this.Prompt.Yandere.Police.RedPaintClothing;
-                this.ClothingList[index].RedPaint = false;
-              }
-              FoldedUniformScript component = this.ClothingList[index].GetComponent<FoldedUniformScript>();
-              Debug.Log((object) ("FoldedUniform is: " + ((object) component)?.ToString()));
-              if ((Object) component != (Object) null && component.Type == 2 || (Object) component != (Object) null && component.Type == 3 || (Object) component != (Object) null && component.ClubAttire)
-              {
-                Debug.Log((object) "The player put something into the washing machine that was not a regular school uniform.");
-                this.ClothingList[index].transform.position = this.transform.position + new Vector3(0.0f, 0.6f, -0.66666f);
-                this.ClothingList[index].transform.localScale = new Vector3(1f, 1f, 1f);
-                this.ClothingList[index].Evidence = false;
-                component.CleanUp();
-              }
-              else
-              {
-                Object.Instantiate<GameObject>(this.CleanUniform, this.transform.position + new Vector3(0.0f, 0.6f, -0.66666f), Quaternion.identity);
-                Object.Destroy((Object) this.ClothingList[index].gameObject);
-              }
-              component.gameObject.GetComponent<PickUpScript>().OriginalColor = new Color(0.0f, 1f, 1f, 1f);
-              foreach (OutlineScript outlineScript in component.gameObject.GetComponent<PickUpScript>().Outline)
-                outlineScript.color = new Color(0.0f, 1f, 1f, 1f);
-            }
-            --this.Prompt.Yandere.Police.BloodyClothing;
-            this.ClothingList[index] = (PickUpScript) null;
-          }
-        }
-        this.Prompt.Yandere.StudentManager.OriginalUniforms += this.ClothingInMachine;
-        this.ClothingInMachine = 0;
-        this.Colliders.SetActive(false);
-        this.Panel.SetActive(false);
-        this.Washing = false;
-        this.MyAudio.clip = this.OpenSFX;
-        this.MyAudio.loop = false;
-        this.MyAudio.Play();
-      }
-    }
-    if ((double) this.Prompt.Circle[3].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[3].fillAmount = 1f;
-      this.ClothingList[this.ClothingInMachine] = this.Prompt.Yandere.PickUp;
-      this.Prompt.Yandere.EmptyHands();
-      if (this.ClothingList[this.ClothingInMachine].gameObject.name == "Raincoat")
-      {
-        this.ClothingList[this.ClothingInMachine].transform.position = this.transform.position + new Vector3(0.0f, 0.475f, 0.11f);
-        this.ClothingList[this.ClothingInMachine].transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-      }
-      else
-        this.ClothingList[this.ClothingInMachine].transform.position = this.transform.position + new Vector3(0.0f, 0.6f, 0.1f);
-      this.ClothingList[this.ClothingInMachine].MyRigidbody.isKinematic = false;
-      this.ClothingList[this.ClothingInMachine].MyRigidbody.useGravity = true;
-      this.ClothingList[this.ClothingInMachine].KeepGravity = true;
-      ++this.ClothingInMachine;
-      this.Colliders.SetActive(true);
-      this.AnimationTimer = 2f;
-      this.Speed = 0.0f;
-      this.Open = true;
-      this.Prompt.HideButton[0] = false;
-      this.MyAudio.clip = this.OpenSFX;
-      this.MyAudio.loop = false;
-      this.MyAudio.Play();
-    }
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      if ((double) this.AnimationTimer <= 0.0)
-      {
-        this.Prompt.HideButton[0] = true;
-        this.Prompt.HideButton[3] = true;
-        this.Panel.SetActive(true);
-        this.WashTimer = 60f;
-        this.Washing = true;
-        this.MyAudio.clip = this.WashSFX;
-        this.MyAudio.loop = true;
-        this.MyAudio.Play();
-      }
-    }
-    if ((double) this.AnimationTimer <= 0.0)
-      return;
-    this.AnimationTimer -= Time.deltaTime;
-    if ((double) this.AnimationTimer < 1.0)
-      this.Open = false;
-    if (this.Open)
-    {
-      this.Rotation = Mathf.Lerp(this.Rotation, 125f, Time.deltaTime * 10f);
-    }
-    else
-    {
-      this.Speed += Time.deltaTime * 360f;
-      this.Rotation = Mathf.MoveTowards(this.Rotation, 0.0f, Time.deltaTime * this.Speed);
-      if ((double) this.Rotation == 0.0 && (Object) this.MyAudio.clip != (Object) this.ShutSFX)
-      {
-        this.MyAudio.clip = this.ShutSFX;
-        this.MyAudio.loop = false;
-        this.MyAudio.Play();
-      }
-    }
-    this.Door.transform.localEulerAngles = new Vector3(0.0f, this.Rotation, 0.0f);
-  }
+	public GameObject Panel;
+
+	public AudioSource MyAudio;
+
+	public AudioClip OpenSFX;
+
+	public AudioClip ShutSFX;
+
+	public AudioClip WashSFX;
+
+	public PromptScript Prompt;
+
+	public Transform Tumbler;
+
+	public Transform Door;
+
+	public UILabel TimeLabel;
+
+	public UISprite Circle;
+
+	public float AnimationTimer;
+
+	public float WashTimer;
+
+	public float Rotation;
+
+	public float Speed;
+
+	public bool Washing;
+
+	public bool Open;
+
+	public PickUpScript[] ClothingList;
+
+	public int ClothingInMachine;
+
+	private void Start()
+	{
+		Panel.SetActive(false);
+	}
+
+	private void Update()
+	{
+		if (!Washing)
+		{
+			if (Prompt != null && Prompt.Yandere != null)
+			{
+				if ((Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.Clothing && Prompt.Yandere.PickUp.Evidence) || (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.Clothing && Prompt.Yandere.PickUp.RedPaint))
+				{
+					Prompt.HideButton[3] = false;
+				}
+				else
+				{
+					Prompt.HideButton[3] = true;
+				}
+			}
+		}
+		else
+		{
+			Tumbler.Rotate(0f, 0f, 360f * Time.deltaTime, Space.Self);
+			WashTimer -= Time.deltaTime;
+			Circle.fillAmount = 1f - WashTimer / 60f;
+			float num = Mathf.CeilToInt(WashTimer * 60f);
+			float num2 = Mathf.Floor(num / 60f);
+			float num3 = Mathf.RoundToInt(num % 60f);
+			TimeLabel.text = string.Format("{0:00}:{1:00}", num2, num3);
+			if (WashTimer <= 0f)
+			{
+				for (int i = 0; i < ClothingList.Length; i++)
+				{
+					if (!(ClothingList[i] != null))
+					{
+						continue;
+					}
+					if (ClothingList[i].gameObject.name == "Raincoat" || ClothingList[i].gameObject.name == "SilkGloves")
+					{
+						ClothingList[i].transform.position = base.transform.position + new Vector3(0f, 0.6f, -0.66666f);
+						ClothingList[i].transform.localScale = new Vector3(1f, 1f, 1f);
+						ClothingList[i].Evidence = false;
+						ClothingList[i].gameObject.GetComponent<GloveScript>().Blood.enabled = false;
+						if (ClothingList[i].gameObject.name == "Raincoat")
+						{
+							Prompt.Yandere.CoatBloodiness = 0f;
+						}
+						else
+						{
+							Prompt.Yandere.GloveAttacher.newRenderer.material.mainTexture = Prompt.Yandere.GloveTexture;
+						}
+						OutlineScript component = ClothingList[i].GetComponent<OutlineScript>();
+						if (component != null)
+						{
+							component.color = new Color(0f, 1f, 1f, 1f);
+						}
+					}
+					else if (ClothingList[i].gameObject.name == "Mask")
+					{
+						ClothingList[i].transform.position = base.transform.position + new Vector3(0f, 0.6f, -0.66666f);
+						ClothingList[i].transform.localScale = new Vector3(1f, 1f, 1f);
+						ClothingList[i].Evidence = false;
+						ClothingList[i].gameObject.GetComponent<MaskScript>().Blood.enabled = false;
+					}
+					else
+					{
+						if (ClothingList[i].RedPaint)
+						{
+							Prompt.Yandere.Police.RedPaintClothing--;
+							ClothingList[i].RedPaint = false;
+						}
+						FoldedUniformScript component2 = ClothingList[i].GetComponent<FoldedUniformScript>();
+						Debug.Log("FoldedUniform is: " + (((object)component2 != null) ? component2.ToString() : null));
+						if ((component2 != null && component2.Type == 2) || (component2 != null && component2.Type == 3) || (component2 != null && component2.ClubAttire))
+						{
+							Debug.Log("The player put something into the washing machine that was not a regular school uniform.");
+							ClothingList[i].transform.position = base.transform.position + new Vector3(0f, 0.6f, -0.66666f);
+							ClothingList[i].transform.localScale = new Vector3(1f, 1f, 1f);
+							ClothingList[i].Evidence = false;
+							component2.CleanUp();
+						}
+						else
+						{
+							Object.Instantiate(CleanUniform, base.transform.position + new Vector3(0f, 0.6f, -0.66666f), Quaternion.identity);
+							Object.Destroy(ClothingList[i].gameObject);
+						}
+						component2.gameObject.GetComponent<PickUpScript>().OriginalColor = new Color(0f, 1f, 1f, 1f);
+						OutlineScript[] outline = component2.gameObject.GetComponent<PickUpScript>().Outline;
+						for (int j = 0; j < outline.Length; j++)
+						{
+							outline[j].color = new Color(0f, 1f, 1f, 1f);
+						}
+					}
+					Prompt.Yandere.Police.BloodyClothing--;
+					ClothingList[i] = null;
+				}
+				Prompt.Yandere.StudentManager.OriginalUniforms += ClothingInMachine;
+				ClothingInMachine = 0;
+				Colliders.SetActive(false);
+				Panel.SetActive(false);
+				Washing = false;
+				MyAudio.clip = OpenSFX;
+				MyAudio.loop = false;
+				MyAudio.Play();
+			}
+		}
+		if (Prompt.Circle[3].fillAmount == 0f)
+		{
+			Prompt.Circle[3].fillAmount = 1f;
+			ClothingList[ClothingInMachine] = Prompt.Yandere.PickUp;
+			Prompt.Yandere.EmptyHands();
+			if (ClothingList[ClothingInMachine].gameObject.name == "Raincoat")
+			{
+				ClothingList[ClothingInMachine].transform.position = base.transform.position + new Vector3(0f, 0.475f, 0.11f);
+				ClothingList[ClothingInMachine].transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+			}
+			else
+			{
+				ClothingList[ClothingInMachine].transform.position = base.transform.position + new Vector3(0f, 0.6f, 0.1f);
+			}
+			ClothingList[ClothingInMachine].MyRigidbody.isKinematic = false;
+			ClothingList[ClothingInMachine].MyRigidbody.useGravity = true;
+			ClothingList[ClothingInMachine].KeepGravity = true;
+			ClothingInMachine++;
+			Colliders.SetActive(true);
+			AnimationTimer = 2f;
+			Speed = 0f;
+			Open = true;
+			Prompt.HideButton[0] = false;
+			MyAudio.clip = OpenSFX;
+			MyAudio.loop = false;
+			MyAudio.Play();
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			if (AnimationTimer <= 0f)
+			{
+				Prompt.HideButton[0] = true;
+				Prompt.HideButton[3] = true;
+				Panel.SetActive(true);
+				WashTimer = 60f;
+				Washing = true;
+				MyAudio.clip = WashSFX;
+				MyAudio.loop = true;
+				MyAudio.Play();
+			}
+		}
+		if (!(AnimationTimer > 0f))
+		{
+			return;
+		}
+		AnimationTimer -= Time.deltaTime;
+		if (AnimationTimer < 1f)
+		{
+			Open = false;
+		}
+		if (Open)
+		{
+			Rotation = Mathf.Lerp(Rotation, 125f, Time.deltaTime * 10f);
+		}
+		else
+		{
+			Speed += Time.deltaTime * 360f;
+			Rotation = Mathf.MoveTowards(Rotation, 0f, Time.deltaTime * Speed);
+			if (Rotation == 0f && MyAudio.clip != ShutSFX)
+			{
+				MyAudio.clip = ShutSFX;
+				MyAudio.loop = false;
+				MyAudio.Play();
+			}
+		}
+		Door.transform.localEulerAngles = new Vector3(0f, Rotation, 0f);
+	}
 }

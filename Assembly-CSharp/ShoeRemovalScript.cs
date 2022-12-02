@@ -1,394 +1,458 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ShoeRemovalScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ShoeRemovalScript : MonoBehaviour
 {
-  public StudentScript Student;
-  public Vector3 RightShoePosition;
-  public Vector3 LeftShoePosition;
-  public Transform RightCurrentShoe;
-  public Transform LeftCurrentShoe;
-  public Transform RightCasualShoe;
-  public Transform LeftCasualShoe;
-  public Transform RightSchoolShoe;
-  public Transform LeftSchoolShoe;
-  public Transform RightNewShoe;
-  public Transform LeftNewShoe;
-  public Transform RightFoot;
-  public Transform LeftFoot;
-  public Transform RightHand;
-  public Transform LeftHand;
-  public Transform ShoeParent;
-  public Transform Locker;
-  public GameObject NewPairOfShoes;
-  public GameObject Character;
-  public string[] LockerAnims;
-  public Texture OutdoorShoes;
-  public Texture IndoorShoes;
-  public Texture TargetShoes;
-  public Texture Socks;
-  public Renderer MyRenderer;
-  public bool RemovingCasual = true;
-  public bool Male;
-  public int Height;
-  public int Phase = 1;
-  public float X;
-  public float Y;
-  public float Z;
-  public string RemoveCasualAnim = string.Empty;
-  public string RemoveSchoolAnim = string.Empty;
-  public string RemovalAnim = string.Empty;
+	public StudentScript Student;
 
-  public void Start()
-  {
-    if (!((Object) this.Locker == (Object) null))
-      return;
-    this.GetHeight(this.Student.StudentID);
-    this.Locker = this.Student.StudentManager.Lockers.List[this.Student.StudentID];
-    GameObject gameObject = Object.Instantiate<GameObject>(this.NewPairOfShoes, this.transform.position, Quaternion.identity);
-    gameObject.transform.parent = this.Locker;
-    gameObject.transform.localEulerAngles = new Vector3(0.0f, -180f, 0.0f);
-    gameObject.transform.localPosition = new Vector3(0.0f, (float) (0.30000001192092896 * (double) this.Height - 0.28999999165534973), this.Male ? 0.04f : 0.05f);
-    this.LeftSchoolShoe = gameObject.transform.GetChild(0);
-    this.RightSchoolShoe = gameObject.transform.GetChild(1);
-    this.RemovalAnim = this.RemoveCasualAnim;
-    this.RightCurrentShoe = this.RightCasualShoe;
-    this.LeftCurrentShoe = this.LeftCasualShoe;
-    this.RightNewShoe = this.RightSchoolShoe;
-    this.LeftNewShoe = this.LeftSchoolShoe;
-    this.ShoeParent = gameObject.transform;
-    this.TargetShoes = this.IndoorShoes;
-    this.RightShoePosition = this.RightCurrentShoe.localPosition;
-    this.LeftShoePosition = this.LeftCurrentShoe.localPosition;
-    this.RightCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
-    this.LeftCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
-    this.OutdoorShoes = this.Student.Cosmetic.CasualTexture;
-    this.IndoorShoes = this.Student.Cosmetic.UniformTexture;
-    this.Socks = this.Student.Cosmetic.SocksTexture;
-    this.TargetShoes = this.IndoorShoes;
-  }
+	public Vector3 RightShoePosition;
 
-  public void StartChangingShoes()
-  {
-    if (this.Student.AoT)
-      return;
-    this.RightCasualShoe.gameObject.SetActive(true);
-    this.LeftCasualShoe.gameObject.SetActive(true);
-    if (!this.Male)
-    {
-      this.MyRenderer.materials[0].mainTexture = this.Socks;
-      this.MyRenderer.materials[1].mainTexture = this.Socks;
-    }
-    else
-      this.MyRenderer.materials[this.Student.Cosmetic.UniformID].mainTexture = this.Socks;
-    int num = (Object) this.Student.Follower != (Object) null ? 1 : 0;
-  }
+	public Vector3 LeftShoePosition;
 
-  private void Update()
-  {
-    if (!this.Student.DiscCheck && !this.Student.Dying && !this.Student.InEvent && !this.Student.Alarmed && !this.Student.Splashed && !this.Student.TurnOffRadio)
-    {
-      if ((Object) this.Student.Destinations[this.Student.Phase] == (Object) null)
-        ++this.Student.Phase;
-      if ((Object) this.Student.CurrentDestination == (Object) null)
-      {
-        this.Student.CurrentDestination = this.Student.Destinations[this.Student.Phase];
-        this.Student.Pathfinding.target = this.Student.CurrentDestination;
-      }
-      this.Student.MoveTowardsTarget(this.Student.CurrentDestination.position);
-      this.transform.rotation = Quaternion.Slerp(this.transform.rotation, this.Student.CurrentDestination.rotation, 10f * Time.deltaTime);
-      this.Student.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-      this.Student.CharacterAnimation.CrossFade(this.RemovalAnim);
-      if (this.Phase == 1)
-      {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 0.83333301544189453)
-          return;
-        int num = (Object) this.Student.Follower != (Object) null ? 1 : 0;
-        if (this.Student.StudentID == this.Student.StudentManager.RivalID && !this.Student.StudentManager.MissionMode && !GameGlobals.AlphabetMode && !GameGlobals.AlphabetMode)
-        {
-          if (GameGlobals.Eighties)
-            this.Student.StudentManager.UpdateExteriorEightiesStudents();
-          else if (DateGlobals.Week == 1)
-            this.Student.StudentManager.UpdateExteriorStudents();
-        }
-        this.ShoeParent.parent = this.LeftHand;
-        ++this.Phase;
-      }
-      else if (this.Phase == 2)
-      {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 1.8333330154418945)
-          return;
-        this.ShoeParent.parent = this.Locker;
-        this.X = this.ShoeParent.localEulerAngles.x;
-        this.Y = this.ShoeParent.localEulerAngles.y;
-        this.Z = this.ShoeParent.localEulerAngles.z;
-        ++this.Phase;
-      }
-      else if (this.Phase == 3)
-      {
-        this.X = Mathf.MoveTowards(this.X, 0.0f, Time.deltaTime * 360f);
-        this.Y = Mathf.MoveTowards(this.Y, 186.878f, Time.deltaTime * 360f);
-        this.Z = Mathf.MoveTowards(this.Z, 0.0f, Time.deltaTime * 360f);
-        this.ShoeParent.localEulerAngles = new Vector3(this.X, this.Y, this.Z);
-        this.ShoeParent.localPosition = Vector3.MoveTowards(this.ShoeParent.localPosition, new Vector3(0.272f, 0.0f, 0.552f), Time.deltaTime);
-        if ((double) this.ShoeParent.localPosition.y != 0.0)
-          return;
-        this.ShoeParent.localPosition = new Vector3(0.272f, 0.0f, 0.552f);
-        this.ShoeParent.localEulerAngles = new Vector3(0.0f, 186.878f, 0.0f);
-        ++this.Phase;
-      }
-      else if (this.Phase == 4)
-      {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 3.5)
-          return;
-        this.RightCurrentShoe.parent = (Transform) null;
-        this.RightCurrentShoe.position = new Vector3(this.RightCurrentShoe.position.x, 0.05f, this.RightCurrentShoe.position.z);
-        this.RightCurrentShoe.localEulerAngles = new Vector3(0.0f, this.RightCurrentShoe.localEulerAngles.y, 0.0f);
-        ++this.Phase;
-      }
-      else if (this.Phase == 5)
-      {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 4.0)
-          return;
-        this.LeftCurrentShoe.parent = (Transform) null;
-        this.LeftCurrentShoe.position = new Vector3(this.LeftCurrentShoe.position.x, 0.05f, this.LeftCurrentShoe.position.z);
-        this.LeftCurrentShoe.localEulerAngles = new Vector3(0.0f, this.LeftCurrentShoe.localEulerAngles.y, 0.0f);
-        ++this.Phase;
-      }
-      else if (this.Phase == 6)
-      {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 5.5)
-          return;
-        this.LeftNewShoe.parent = this.LeftFoot;
-        this.LeftNewShoe.localPosition = this.LeftShoePosition;
-        this.LeftNewShoe.localEulerAngles = Vector3.zero;
-        ++this.Phase;
-      }
-      else if (this.Phase == 7)
-      {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 6.6666598320007324)
-          return;
-        if (!this.Student.AoT)
-        {
-          if (!this.Male)
-          {
-            this.MyRenderer.materials[0].mainTexture = this.TargetShoes;
-            this.MyRenderer.materials[1].mainTexture = this.TargetShoes;
-          }
-          else
-            this.MyRenderer.materials[this.Student.Cosmetic.UniformID].mainTexture = this.TargetShoes;
-        }
-        this.RightNewShoe.parent = this.RightFoot;
-        this.RightNewShoe.localPosition = this.RightShoePosition;
-        this.RightNewShoe.localEulerAngles = Vector3.zero;
-        this.RightNewShoe.gameObject.SetActive(false);
-        this.LeftNewShoe.gameObject.SetActive(false);
-        ++this.Phase;
-      }
-      else if (this.Phase == 8)
-      {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 7.6666660308837891)
-          return;
-        this.ShoeParent.transform.position = (this.RightCurrentShoe.position - this.LeftCurrentShoe.position) * 0.5f;
-        this.RightCurrentShoe.parent = this.ShoeParent;
-        this.LeftCurrentShoe.parent = this.ShoeParent;
-        this.ShoeParent.parent = this.RightHand;
-        ++this.Phase;
-      }
-      else if (this.Phase == 9)
-      {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 8.5)
-          return;
-        this.ShoeParent.parent = this.Locker;
-        this.ShoeParent.localPosition = new Vector3(0.0f, (float) (((Object) this.TargetShoes == (Object) this.IndoorShoes ? -0.14000000059604645 : -0.28999999165534973) + 0.30000001192092896 * (double) this.Height), -0.01f);
-        this.ShoeParent.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
-        this.RightCurrentShoe.localPosition = new Vector3(0.041f, 0.04271515f, 0.0f);
-        this.LeftCurrentShoe.localPosition = new Vector3(-0.041f, 0.04271515f, 0.0f);
-        this.RightCurrentShoe.localEulerAngles = Vector3.zero;
-        this.LeftCurrentShoe.localEulerAngles = Vector3.zero;
-        ++this.Phase;
-      }
-      else
-      {
-        if (this.Phase != 10 || (double) this.Student.CharacterAnimation[this.RemovalAnim].time < (double) this.Student.CharacterAnimation[this.RemovalAnim].length)
-          return;
-        this.Student.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-        this.Student.ChangingShoes = false;
-        this.Student.Routine = true;
-        this.enabled = false;
-        int num = (Object) this.Student.Follower != (Object) null ? 1 : 0;
-        if (!this.Student.Indoors)
-        {
-          if (this.Student.Persona == PersonaType.PhoneAddict || this.Student.Sleuthing)
-          {
-            this.Student.SmartPhone.SetActive(true);
-            if (!this.Student.Sleuthing)
-              this.Student.WalkAnim = this.Student.PhoneAnims[1];
-          }
-          this.Student.Indoors = true;
-          this.Student.CanTalk = true;
-        }
-        else
-        {
-          if ((Object) this.Student.Destinations[this.Student.Phase + 1] != (Object) null)
-          {
-            this.Student.CurrentDestination = this.Student.Destinations[this.Student.Phase + 1];
-            this.Student.Pathfinding.target = this.Student.Destinations[this.Student.Phase + 1];
-          }
-          else
-          {
-            this.Student.CurrentDestination = this.Student.StudentManager.Hangouts.List[0];
-            this.Student.Pathfinding.target = this.Student.StudentManager.Hangouts.List[0];
-          }
-          this.Student.CanTalk = false;
-          this.Student.Leaving = true;
-          ++this.Student.Phase;
-          this.enabled = false;
-          ++this.Phase;
-        }
-      }
-    }
-    else
-    {
-      this.PutOnShoes();
-      this.Student.Routine = false;
-    }
-  }
+	public Transform RightCurrentShoe;
 
-  private void LateUpdate()
-  {
-    if (this.Phase >= 7)
-      return;
-    this.RightFoot.localScale = new Vector3(0.9f, 1f, 0.9f);
-    this.LeftFoot.localScale = new Vector3(0.9f, 1f, 0.9f);
-  }
+	public Transform LeftCurrentShoe;
 
-  public void PutOnShoes()
-  {
-    this.CloseLocker();
-    if ((Object) this.ShoeParent == (Object) null)
-      this.Start();
-    this.ShoeParent.parent = this.LeftHand;
-    this.ShoeParent.parent = this.Locker;
-    this.ShoeParent.localPosition = new Vector3(0.272f, 0.0f, 0.552f);
-    this.ShoeParent.localEulerAngles = new Vector3(0.0f, 186.878f, 0.0f);
-    this.RightCurrentShoe.parent = (Transform) null;
-    this.RightCurrentShoe.position = new Vector3(this.RightCurrentShoe.position.x, 0.05f, this.RightCurrentShoe.position.z);
-    this.RightCurrentShoe.localEulerAngles = new Vector3(0.0f, this.RightCurrentShoe.localEulerAngles.y, 0.0f);
-    this.LeftCurrentShoe.parent = (Transform) null;
-    this.LeftCurrentShoe.position = new Vector3(this.LeftCurrentShoe.position.x, 0.05f, this.LeftCurrentShoe.position.z);
-    this.LeftCurrentShoe.localEulerAngles = new Vector3(0.0f, this.LeftCurrentShoe.localEulerAngles.y, 0.0f);
-    this.LeftNewShoe.parent = this.LeftFoot;
-    this.LeftNewShoe.localPosition = this.LeftShoePosition;
-    this.LeftNewShoe.localEulerAngles = Vector3.zero;
-    if (!this.Student.AoT && (Object) this.TargetShoes != (Object) null)
-    {
-      if (!this.Male)
-      {
-        this.MyRenderer.materials[0].mainTexture = this.TargetShoes;
-        this.MyRenderer.materials[1].mainTexture = this.TargetShoes;
-      }
-      else
-        this.MyRenderer.materials[this.Student.Cosmetic.UniformID].mainTexture = this.TargetShoes;
-    }
-    this.RightNewShoe.parent = this.RightFoot;
-    this.RightNewShoe.localPosition = this.RightShoePosition;
-    this.RightNewShoe.localEulerAngles = Vector3.zero;
-    this.RightNewShoe.gameObject.SetActive(false);
-    this.LeftNewShoe.gameObject.SetActive(false);
-    this.ShoeParent.transform.position = (this.RightCurrentShoe.position - this.LeftCurrentShoe.position) * 0.5f;
-    this.RightCurrentShoe.parent = this.ShoeParent;
-    this.LeftCurrentShoe.parent = this.ShoeParent;
-    this.ShoeParent.parent = this.RightHand;
-    this.ShoeParent.parent = this.Locker;
-    this.ShoeParent.localPosition = new Vector3(0.0f, (float) (((Object) this.TargetShoes == (Object) this.IndoorShoes ? -0.14000000059604645 : -0.28999999165534973) + 0.30000001192092896 * (double) this.Height), -0.01f);
-    this.ShoeParent.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
-    this.RightCurrentShoe.localPosition = new Vector3(0.041f, 0.04271515f, 0.0f);
-    this.LeftCurrentShoe.localPosition = new Vector3(-0.041f, 0.04271515f, 0.0f);
-    this.RightCurrentShoe.localEulerAngles = Vector3.zero;
-    this.LeftCurrentShoe.localEulerAngles = Vector3.zero;
-    this.Student.Indoors = true;
-    this.Student.CanTalk = true;
-    this.enabled = false;
-    this.Student.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-    this.Student.StopPairing();
-    if (this.Student.StudentID != this.Student.StudentManager.RivalID || this.Student.StudentManager.MissionMode || GameGlobals.AlphabetMode)
-      return;
-    Debug.Log((object) "A rival character just put her shoes on.");
-    if (GameGlobals.Eighties)
-    {
-      Debug.Log((object) "It's the 80s, so...");
-      this.Student.StudentManager.UpdateExteriorEightiesStudents();
-    }
-    else
-    {
-      if (DateGlobals.Week != 1)
-        return;
-      this.Student.StudentManager.UpdateExteriorStudents();
-    }
-  }
+	public Transform RightCasualShoe;
 
-  public void CloseLocker()
-  {
-  }
+	public Transform LeftCasualShoe;
 
-  public void UpdateShoes()
-  {
-    this.Student.Indoors = true;
-    if (this.Student.AoT)
-      return;
-    if (!this.Male)
-    {
-      this.MyRenderer.materials[0].mainTexture = this.IndoorShoes;
-      this.MyRenderer.materials[1].mainTexture = this.IndoorShoes;
-    }
-    else
-      this.MyRenderer.materials[this.Student.Cosmetic.UniformID].mainTexture = this.IndoorShoes;
-  }
+	public Transform RightSchoolShoe;
 
-  public void LeavingSchool()
-  {
-    if ((Object) this.Locker == (Object) null)
-      this.Start();
-    this.Student.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-    this.OutdoorShoes = this.Student.Cosmetic.CasualTexture;
-    this.IndoorShoes = this.Student.Cosmetic.UniformTexture;
-    this.Socks = this.Student.Cosmetic.SocksTexture;
-    this.RemovalAnim = this.RemoveSchoolAnim;
-    if (!this.Student.AoT)
-    {
-      if (!this.Male)
-      {
-        this.MyRenderer.materials[0].mainTexture = this.Socks;
-        this.MyRenderer.materials[1].mainTexture = this.Socks;
-      }
-      else
-        this.MyRenderer.materials[this.Student.Cosmetic.UniformID].mainTexture = this.Socks;
-    }
-    this.Student.CharacterAnimation.CrossFade(this.RemovalAnim);
-    this.RightNewShoe.gameObject.SetActive(true);
-    this.LeftNewShoe.gameObject.SetActive(true);
-    this.RightCurrentShoe = this.RightSchoolShoe;
-    this.LeftCurrentShoe = this.LeftSchoolShoe;
-    this.RightNewShoe = this.RightCasualShoe;
-    this.LeftNewShoe = this.LeftCasualShoe;
-    this.TargetShoes = this.OutdoorShoes;
-    this.Phase = 1;
-    this.RightFoot.localScale = new Vector3(0.9f, 1f, 0.9f);
-    this.LeftFoot.localScale = new Vector3(0.9f, 1f, 0.9f);
-    this.RightCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
-    this.LeftCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
-  }
+	public Transform LeftSchoolShoe;
 
-  private void GetHeight(int StudentID)
-  {
-    this.Height = 5;
-    this.RemoveCasualAnim += "5_00";
-    this.RemoveSchoolAnim += "5_01";
-  }
+	public Transform RightNewShoe;
+
+	public Transform LeftNewShoe;
+
+	public Transform RightFoot;
+
+	public Transform LeftFoot;
+
+	public Transform RightHand;
+
+	public Transform LeftHand;
+
+	public Transform ShoeParent;
+
+	public Transform Locker;
+
+	public GameObject NewPairOfShoes;
+
+	public GameObject Character;
+
+	public string[] LockerAnims;
+
+	public Texture OutdoorShoes;
+
+	public Texture IndoorShoes;
+
+	public Texture TargetShoes;
+
+	public Texture Socks;
+
+	public Renderer MyRenderer;
+
+	public bool RemovingCasual = true;
+
+	public bool Male;
+
+	public int Height;
+
+	public int Phase = 1;
+
+	public float X;
+
+	public float Y;
+
+	public float Z;
+
+	public string RemoveCasualAnim = string.Empty;
+
+	public string RemoveSchoolAnim = string.Empty;
+
+	public string RemovalAnim = string.Empty;
+
+	public void Start()
+	{
+		if (Locker == null)
+		{
+			GetHeight(Student.StudentID);
+			Locker = Student.StudentManager.Lockers.List[Student.StudentID];
+			GameObject gameObject = Object.Instantiate(NewPairOfShoes, base.transform.position, Quaternion.identity);
+			gameObject.transform.parent = Locker;
+			gameObject.transform.localEulerAngles = new Vector3(0f, -180f, 0f);
+			gameObject.transform.localPosition = new Vector3(0f, -0.29f + 0.3f * (float)Height, Male ? 0.04f : 0.05f);
+			LeftSchoolShoe = gameObject.transform.GetChild(0);
+			RightSchoolShoe = gameObject.transform.GetChild(1);
+			RemovalAnim = RemoveCasualAnim;
+			RightCurrentShoe = RightCasualShoe;
+			LeftCurrentShoe = LeftCasualShoe;
+			RightNewShoe = RightSchoolShoe;
+			LeftNewShoe = LeftSchoolShoe;
+			ShoeParent = gameObject.transform;
+			TargetShoes = IndoorShoes;
+			RightShoePosition = RightCurrentShoe.localPosition;
+			LeftShoePosition = LeftCurrentShoe.localPosition;
+			RightCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
+			LeftCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
+			OutdoorShoes = Student.Cosmetic.CasualTexture;
+			IndoorShoes = Student.Cosmetic.UniformTexture;
+			Socks = Student.Cosmetic.SocksTexture;
+			TargetShoes = IndoorShoes;
+		}
+	}
+
+	public void StartChangingShoes()
+	{
+		if (!Student.AoT)
+		{
+			RightCasualShoe.gameObject.SetActive(true);
+			LeftCasualShoe.gameObject.SetActive(true);
+			if (!Male)
+			{
+				MyRenderer.materials[0].mainTexture = Socks;
+				MyRenderer.materials[1].mainTexture = Socks;
+			}
+			else
+			{
+				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
+			}
+			bool flag = Student.Follower != null;
+		}
+	}
+
+	private void Update()
+	{
+		if (!Student.DiscCheck && !Student.Dying && !Student.InEvent && !Student.Alarmed && !Student.Splashed && !Student.TurnOffRadio)
+		{
+			if (Student.Destinations[Student.Phase] == null)
+			{
+				Student.Phase++;
+			}
+			if (Student.CurrentDestination == null)
+			{
+				Student.CurrentDestination = Student.Destinations[Student.Phase];
+				Student.Pathfinding.target = Student.CurrentDestination;
+			}
+			Student.MoveTowardsTarget(Student.CurrentDestination.position);
+			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, Student.CurrentDestination.rotation, 10f * Time.deltaTime);
+			Student.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+			Student.CharacterAnimation.CrossFade(RemovalAnim);
+			if (Phase == 1)
+			{
+				if (!(Student.CharacterAnimation[RemovalAnim].time >= 0.833333f))
+				{
+					return;
+				}
+				bool flag = Student.Follower != null;
+				if (Student.StudentID == Student.StudentManager.RivalID && !Student.StudentManager.MissionMode && !GameGlobals.AlphabetMode && !GameGlobals.AlphabetMode)
+				{
+					if (GameGlobals.Eighties)
+					{
+						Student.StudentManager.UpdateExteriorEightiesStudents();
+					}
+					else if (DateGlobals.Week == 1)
+					{
+						Student.StudentManager.UpdateExteriorStudents();
+					}
+				}
+				ShoeParent.parent = LeftHand;
+				Phase++;
+			}
+			else if (Phase == 2)
+			{
+				if (Student.CharacterAnimation[RemovalAnim].time >= 1.833333f)
+				{
+					ShoeParent.parent = Locker;
+					X = ShoeParent.localEulerAngles.x;
+					Y = ShoeParent.localEulerAngles.y;
+					Z = ShoeParent.localEulerAngles.z;
+					Phase++;
+				}
+			}
+			else if (Phase == 3)
+			{
+				X = Mathf.MoveTowards(X, 0f, Time.deltaTime * 360f);
+				Y = Mathf.MoveTowards(Y, 186.878f, Time.deltaTime * 360f);
+				Z = Mathf.MoveTowards(Z, 0f, Time.deltaTime * 360f);
+				ShoeParent.localEulerAngles = new Vector3(X, Y, Z);
+				ShoeParent.localPosition = Vector3.MoveTowards(ShoeParent.localPosition, new Vector3(0.272f, 0f, 0.552f), Time.deltaTime);
+				if (ShoeParent.localPosition.y == 0f)
+				{
+					ShoeParent.localPosition = new Vector3(0.272f, 0f, 0.552f);
+					ShoeParent.localEulerAngles = new Vector3(0f, 186.878f, 0f);
+					Phase++;
+				}
+			}
+			else if (Phase == 4)
+			{
+				if (Student.CharacterAnimation[RemovalAnim].time >= 3.5f)
+				{
+					RightCurrentShoe.parent = null;
+					RightCurrentShoe.position = new Vector3(RightCurrentShoe.position.x, 0.05f, RightCurrentShoe.position.z);
+					RightCurrentShoe.localEulerAngles = new Vector3(0f, RightCurrentShoe.localEulerAngles.y, 0f);
+					Phase++;
+				}
+			}
+			else if (Phase == 5)
+			{
+				if (Student.CharacterAnimation[RemovalAnim].time >= 4f)
+				{
+					LeftCurrentShoe.parent = null;
+					LeftCurrentShoe.position = new Vector3(LeftCurrentShoe.position.x, 0.05f, LeftCurrentShoe.position.z);
+					LeftCurrentShoe.localEulerAngles = new Vector3(0f, LeftCurrentShoe.localEulerAngles.y, 0f);
+					Phase++;
+				}
+			}
+			else if (Phase == 6)
+			{
+				if (Student.CharacterAnimation[RemovalAnim].time >= 5.5f)
+				{
+					LeftNewShoe.parent = LeftFoot;
+					LeftNewShoe.localPosition = LeftShoePosition;
+					LeftNewShoe.localEulerAngles = Vector3.zero;
+					Phase++;
+				}
+			}
+			else if (Phase == 7)
+			{
+				if (!(Student.CharacterAnimation[RemovalAnim].time >= 6.66666f))
+				{
+					return;
+				}
+				if (!Student.AoT)
+				{
+					if (!Male)
+					{
+						MyRenderer.materials[0].mainTexture = TargetShoes;
+						MyRenderer.materials[1].mainTexture = TargetShoes;
+					}
+					else
+					{
+						MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = TargetShoes;
+					}
+				}
+				RightNewShoe.parent = RightFoot;
+				RightNewShoe.localPosition = RightShoePosition;
+				RightNewShoe.localEulerAngles = Vector3.zero;
+				RightNewShoe.gameObject.SetActive(false);
+				LeftNewShoe.gameObject.SetActive(false);
+				Phase++;
+			}
+			else if (Phase == 8)
+			{
+				if (Student.CharacterAnimation[RemovalAnim].time >= 7.666666f)
+				{
+					ShoeParent.transform.position = (RightCurrentShoe.position - LeftCurrentShoe.position) * 0.5f;
+					RightCurrentShoe.parent = ShoeParent;
+					LeftCurrentShoe.parent = ShoeParent;
+					ShoeParent.parent = RightHand;
+					Phase++;
+				}
+			}
+			else if (Phase == 9)
+			{
+				if (Student.CharacterAnimation[RemovalAnim].time >= 8.5f)
+				{
+					ShoeParent.parent = Locker;
+					ShoeParent.localPosition = new Vector3(0f, ((TargetShoes == IndoorShoes) ? (-0.14f) : (-0.29f)) + 0.3f * (float)Height, -0.01f);
+					ShoeParent.localEulerAngles = new Vector3(0f, 180f, 0f);
+					RightCurrentShoe.localPosition = new Vector3(0.041f, 0.04271515f, 0f);
+					LeftCurrentShoe.localPosition = new Vector3(-0.041f, 0.04271515f, 0f);
+					RightCurrentShoe.localEulerAngles = Vector3.zero;
+					LeftCurrentShoe.localEulerAngles = Vector3.zero;
+					Phase++;
+				}
+			}
+			else
+			{
+				if (Phase != 10 || !(Student.CharacterAnimation[RemovalAnim].time >= Student.CharacterAnimation[RemovalAnim].length))
+				{
+					return;
+				}
+				Student.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+				Student.ChangingShoes = false;
+				Student.Routine = true;
+				base.enabled = false;
+				bool flag2 = Student.Follower != null;
+				if (!Student.Indoors)
+				{
+					if (Student.Persona == PersonaType.PhoneAddict || Student.Sleuthing)
+					{
+						Student.SmartPhone.SetActive(true);
+						if (!Student.Sleuthing)
+						{
+							Student.WalkAnim = Student.PhoneAnims[1];
+						}
+					}
+					Student.Indoors = true;
+					Student.CanTalk = true;
+					return;
+				}
+				if (Student.Destinations[Student.Phase + 1] != null)
+				{
+					Student.CurrentDestination = Student.Destinations[Student.Phase + 1];
+					Student.Pathfinding.target = Student.Destinations[Student.Phase + 1];
+				}
+				else
+				{
+					Student.CurrentDestination = Student.StudentManager.Hangouts.List[0];
+					Student.Pathfinding.target = Student.StudentManager.Hangouts.List[0];
+				}
+				Student.CanTalk = false;
+				Student.Leaving = true;
+				Student.Phase++;
+				base.enabled = false;
+				Phase++;
+			}
+		}
+		else
+		{
+			PutOnShoes();
+			Student.Routine = false;
+		}
+	}
+
+	private void LateUpdate()
+	{
+		if (Phase < 7)
+		{
+			RightFoot.localScale = new Vector3(0.9f, 1f, 0.9f);
+			LeftFoot.localScale = new Vector3(0.9f, 1f, 0.9f);
+		}
+	}
+
+	public void PutOnShoes()
+	{
+		CloseLocker();
+		if (ShoeParent == null)
+		{
+			Start();
+		}
+		ShoeParent.parent = LeftHand;
+		ShoeParent.parent = Locker;
+		ShoeParent.localPosition = new Vector3(0.272f, 0f, 0.552f);
+		ShoeParent.localEulerAngles = new Vector3(0f, 186.878f, 0f);
+		RightCurrentShoe.parent = null;
+		RightCurrentShoe.position = new Vector3(RightCurrentShoe.position.x, 0.05f, RightCurrentShoe.position.z);
+		RightCurrentShoe.localEulerAngles = new Vector3(0f, RightCurrentShoe.localEulerAngles.y, 0f);
+		LeftCurrentShoe.parent = null;
+		LeftCurrentShoe.position = new Vector3(LeftCurrentShoe.position.x, 0.05f, LeftCurrentShoe.position.z);
+		LeftCurrentShoe.localEulerAngles = new Vector3(0f, LeftCurrentShoe.localEulerAngles.y, 0f);
+		LeftNewShoe.parent = LeftFoot;
+		LeftNewShoe.localPosition = LeftShoePosition;
+		LeftNewShoe.localEulerAngles = Vector3.zero;
+		if (!Student.AoT && TargetShoes != null)
+		{
+			if (!Male)
+			{
+				MyRenderer.materials[0].mainTexture = TargetShoes;
+				MyRenderer.materials[1].mainTexture = TargetShoes;
+			}
+			else
+			{
+				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = TargetShoes;
+			}
+		}
+		RightNewShoe.parent = RightFoot;
+		RightNewShoe.localPosition = RightShoePosition;
+		RightNewShoe.localEulerAngles = Vector3.zero;
+		RightNewShoe.gameObject.SetActive(false);
+		LeftNewShoe.gameObject.SetActive(false);
+		ShoeParent.transform.position = (RightCurrentShoe.position - LeftCurrentShoe.position) * 0.5f;
+		RightCurrentShoe.parent = ShoeParent;
+		LeftCurrentShoe.parent = ShoeParent;
+		ShoeParent.parent = RightHand;
+		ShoeParent.parent = Locker;
+		ShoeParent.localPosition = new Vector3(0f, ((TargetShoes == IndoorShoes) ? (-0.14f) : (-0.29f)) + 0.3f * (float)Height, -0.01f);
+		ShoeParent.localEulerAngles = new Vector3(0f, 180f, 0f);
+		RightCurrentShoe.localPosition = new Vector3(0.041f, 0.04271515f, 0f);
+		LeftCurrentShoe.localPosition = new Vector3(-0.041f, 0.04271515f, 0f);
+		RightCurrentShoe.localEulerAngles = Vector3.zero;
+		LeftCurrentShoe.localEulerAngles = Vector3.zero;
+		Student.Indoors = true;
+		Student.CanTalk = true;
+		base.enabled = false;
+		Student.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+		Student.StopPairing();
+		if (Student.StudentID == Student.StudentManager.RivalID && !Student.StudentManager.MissionMode && !GameGlobals.AlphabetMode)
+		{
+			Debug.Log("A rival character just put her shoes on.");
+			if (GameGlobals.Eighties)
+			{
+				Debug.Log("It's the 80s, so...");
+				Student.StudentManager.UpdateExteriorEightiesStudents();
+			}
+			else if (DateGlobals.Week == 1)
+			{
+				Student.StudentManager.UpdateExteriorStudents();
+			}
+		}
+	}
+
+	public void CloseLocker()
+	{
+	}
+
+	public void UpdateShoes()
+	{
+		Student.Indoors = true;
+		if (!Student.AoT)
+		{
+			if (!Male)
+			{
+				MyRenderer.materials[0].mainTexture = IndoorShoes;
+				MyRenderer.materials[1].mainTexture = IndoorShoes;
+			}
+			else
+			{
+				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = IndoorShoes;
+			}
+		}
+	}
+
+	public void LeavingSchool()
+	{
+		if (Locker == null)
+		{
+			Start();
+		}
+		Student.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+		OutdoorShoes = Student.Cosmetic.CasualTexture;
+		IndoorShoes = Student.Cosmetic.UniformTexture;
+		Socks = Student.Cosmetic.SocksTexture;
+		RemovalAnim = RemoveSchoolAnim;
+		if (!Student.AoT)
+		{
+			if (!Male)
+			{
+				MyRenderer.materials[0].mainTexture = Socks;
+				MyRenderer.materials[1].mainTexture = Socks;
+			}
+			else
+			{
+				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
+			}
+		}
+		Student.CharacterAnimation.CrossFade(RemovalAnim);
+		RightNewShoe.gameObject.SetActive(true);
+		LeftNewShoe.gameObject.SetActive(true);
+		RightCurrentShoe = RightSchoolShoe;
+		LeftCurrentShoe = LeftSchoolShoe;
+		RightNewShoe = RightCasualShoe;
+		LeftNewShoe = LeftCasualShoe;
+		TargetShoes = OutdoorShoes;
+		Phase = 1;
+		RightFoot.localScale = new Vector3(0.9f, 1f, 0.9f);
+		LeftFoot.localScale = new Vector3(0.9f, 1f, 0.9f);
+		RightCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
+		LeftCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
+	}
+
+	private void GetHeight(int StudentID)
+	{
+		Height = 5;
+		RemoveCasualAnim += "5_00";
+		RemoveSchoolAnim += "5_01";
+	}
 }

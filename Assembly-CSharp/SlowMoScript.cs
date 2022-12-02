@@ -1,32 +1,40 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SlowMoScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SlowMoScript : MonoBehaviour
 {
-  public bool Spinning;
-  public float Speed;
+	public bool Spinning;
 
-  private void Update()
-  {
-    if (Input.GetKeyDown("s"))
-      this.Spinning = !this.Spinning;
-    if (Input.GetKeyDown("a"))
-      Time.timeScale = 0.1f;
-    if (Input.GetKeyDown("-"))
-      --Time.timeScale;
-    if (Input.GetKeyDown("="))
-      ++Time.timeScale;
-    if (Input.GetKeyDown("z"))
-      this.Speed += Time.deltaTime;
-    if ((double) this.Speed > 0.0)
-      this.transform.position += new Vector3(Time.deltaTime * 0.1f, 0.0f, Time.deltaTime * 0.1f);
-    if (!this.Spinning)
-      return;
-    this.transform.parent.transform.localEulerAngles += new Vector3(0.0f, Time.deltaTime * 36f, 0.0f);
-  }
+	public float Speed;
+
+	private void Update()
+	{
+		if (Input.GetKeyDown("s"))
+		{
+			Spinning = !Spinning;
+		}
+		if (Input.GetKeyDown("a"))
+		{
+			Time.timeScale = 0.1f;
+		}
+		if (Input.GetKeyDown("-"))
+		{
+			Time.timeScale -= 1f;
+		}
+		if (Input.GetKeyDown("="))
+		{
+			Time.timeScale += 1f;
+		}
+		if (Input.GetKeyDown("z"))
+		{
+			Speed += Time.deltaTime;
+		}
+		if (Speed > 0f)
+		{
+			base.transform.position += new Vector3(Time.deltaTime * 0.1f, 0f, Time.deltaTime * 0.1f);
+		}
+		if (Spinning)
+		{
+			base.transform.parent.transform.localEulerAngles += new Vector3(0f, Time.deltaTime * 36f, 0f);
+		}
+	}
 }

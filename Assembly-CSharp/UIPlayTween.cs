@@ -1,251 +1,300 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIPlayTween
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
-using AnimationOrTween;
+using System;
 using System.Collections.Generic;
+using AnimationOrTween;
 using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/Play Tween")]
 public class UIPlayTween : MonoBehaviour
 {
-  public static UIPlayTween current;
-  public GameObject tweenTarget;
-  public int tweenGroup;
-  public AnimationOrTween.Trigger trigger;
-  public AnimationOrTween.Direction playDirection = AnimationOrTween.Direction.Forward;
-  public bool resetOnPlay;
-  public bool resetIfDisabled;
-  public EnableCondition ifDisabledOnPlay;
-  public DisableCondition disableWhenFinished;
-  public bool includeChildren;
-  public List<EventDelegate> onFinished = new List<EventDelegate>();
-  [HideInInspector]
-  [SerializeField]
-  private GameObject eventReceiver;
-  [HideInInspector]
-  [SerializeField]
-  private string callWhenFinished;
-  private UITweener[] mTweens;
-  private bool mStarted;
-  private int mActive;
-  private bool mActivated;
+	public static UIPlayTween current;
 
-  private void Awake()
-  {
-    if (!((Object) this.eventReceiver != (Object) null) || !EventDelegate.IsValid(this.onFinished))
-      return;
-    this.eventReceiver = (GameObject) null;
-    this.callWhenFinished = (string) null;
-  }
+	public GameObject tweenTarget;
 
-  private void Start()
-  {
-    this.mStarted = true;
-    if (!((Object) this.tweenTarget == (Object) null))
-      return;
-    this.tweenTarget = this.gameObject;
-  }
+	public int tweenGroup;
 
-  private void OnEnable()
-  {
-    if (this.mStarted)
-      this.OnHover(UICamera.IsHighlighted(this.gameObject));
-    if (UICamera.currentTouch != null)
-    {
-      if (this.trigger == AnimationOrTween.Trigger.OnPress || this.trigger == AnimationOrTween.Trigger.OnPressTrue)
-        this.mActivated = (Object) UICamera.currentTouch.pressed == (Object) this.gameObject;
-      if (this.trigger == AnimationOrTween.Trigger.OnHover || this.trigger == AnimationOrTween.Trigger.OnHoverTrue)
-        this.mActivated = (Object) UICamera.currentTouch.current == (Object) this.gameObject;
-    }
-    UIToggle component = this.GetComponent<UIToggle>();
-    if (!((Object) component != (Object) null))
-      return;
-    EventDelegate.Add(component.onChange, new EventDelegate.Callback(this.OnToggle));
-  }
+	public Trigger trigger;
 
-  private void OnDisable()
-  {
-    UIToggle component = this.GetComponent<UIToggle>();
-    if (!((Object) component != (Object) null))
-      return;
-    EventDelegate.Remove(component.onChange, new EventDelegate.Callback(this.OnToggle));
-  }
+	public AnimationOrTween.Direction playDirection = AnimationOrTween.Direction.Forward;
 
-  private void OnDragOver()
-  {
-    if (this.trigger != AnimationOrTween.Trigger.OnHover)
-      return;
-    this.OnHover(true);
-  }
+	public bool resetOnPlay;
 
-  private void OnHover(bool isOver)
-  {
-    if (!this.enabled || this.trigger != AnimationOrTween.Trigger.OnHover && !(this.trigger == AnimationOrTween.Trigger.OnHoverTrue & isOver) && (this.trigger != AnimationOrTween.Trigger.OnHoverFalse || isOver) || isOver == this.mActivated)
-      return;
-    if (!isOver && (Object) UICamera.hoveredObject != (Object) null && UICamera.hoveredObject.transform.IsChildOf(this.transform))
-    {
-      UICamera.onHover += new UICamera.BoolDelegate(this.CustomHoverListener);
-      isOver = true;
-      if (this.mActivated)
-        return;
-    }
-    this.mActivated = isOver && this.trigger == AnimationOrTween.Trigger.OnHover;
-    this.Play(isOver);
-  }
+	public bool resetIfDisabled;
 
-  private void CustomHoverListener(GameObject go, bool isOver)
-  {
-    if (!(bool) (Object) this)
-      return;
-    GameObject gameObject = this.gameObject;
-    if ((!(bool) (Object) gameObject || !(bool) (Object) go ? 0 : ((Object) go == (Object) gameObject ? 1 : (go.transform.IsChildOf(this.transform) ? 1 : 0))) != 0)
-      return;
-    this.OnHover(false);
-    UICamera.onHover -= new UICamera.BoolDelegate(this.CustomHoverListener);
-  }
+	public EnableCondition ifDisabledOnPlay;
 
-  private void OnDragOut()
-  {
-    if (!this.enabled || !this.mActivated)
-      return;
-    this.mActivated = false;
-    this.Play(false);
-  }
+	public DisableCondition disableWhenFinished;
 
-  private void OnPress(bool isPressed)
-  {
-    if (!this.enabled || this.trigger != AnimationOrTween.Trigger.OnPress && !(this.trigger == AnimationOrTween.Trigger.OnPressTrue & isPressed) && (this.trigger != AnimationOrTween.Trigger.OnPressFalse || isPressed))
-      return;
-    this.mActivated = isPressed && this.trigger == AnimationOrTween.Trigger.OnPress;
-    this.Play(isPressed);
-  }
+	public bool includeChildren;
 
-  private void OnClick()
-  {
-    if (!this.enabled || this.trigger != AnimationOrTween.Trigger.OnClick)
-      return;
-    this.Play(true);
-  }
+	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
-  private void OnDoubleClick()
-  {
-    if (!this.enabled || this.trigger != AnimationOrTween.Trigger.OnDoubleClick)
-      return;
-    this.Play(true);
-  }
+	[HideInInspector]
+	[SerializeField]
+	private GameObject eventReceiver;
 
-  private void OnSelect(bool isSelected)
-  {
-    if (!this.enabled || this.trigger != AnimationOrTween.Trigger.OnSelect && !(this.trigger == AnimationOrTween.Trigger.OnSelectTrue & isSelected) && (this.trigger != AnimationOrTween.Trigger.OnSelectFalse || isSelected))
-      return;
-    this.mActivated = isSelected && this.trigger == AnimationOrTween.Trigger.OnSelect;
-    this.Play(isSelected);
-  }
+	[HideInInspector]
+	[SerializeField]
+	private string callWhenFinished;
 
-  private void OnToggle()
-  {
-    if (!this.enabled || (Object) UIToggle.current == (Object) null || this.trigger != AnimationOrTween.Trigger.OnActivate && (this.trigger != AnimationOrTween.Trigger.OnActivateTrue || !UIToggle.current.value) && (this.trigger != AnimationOrTween.Trigger.OnActivateFalse || UIToggle.current.value))
-      return;
-    this.Play(UIToggle.current.value);
-  }
+	private UITweener[] mTweens;
 
-  private void Update()
-  {
-    if (this.disableWhenFinished == DisableCondition.DoNotDisable || this.mTweens == null)
-      return;
-    bool flag1 = true;
-    bool flag2 = true;
-    int index = 0;
-    for (int length = this.mTweens.Length; index < length; ++index)
-    {
-      UITweener mTween = this.mTweens[index];
-      if (mTween.tweenGroup == this.tweenGroup)
-      {
-        if (mTween.enabled)
-        {
-          flag1 = false;
-          break;
-        }
-        if (mTween.direction != (AnimationOrTween.Direction) this.disableWhenFinished)
-          flag2 = false;
-      }
-    }
-    if (!flag1)
-      return;
-    if (flag2)
-      NGUITools.SetActive(this.tweenTarget, false);
-    this.mTweens = (UITweener[]) null;
-  }
+	private bool mStarted;
 
-  public void Play() => this.Play(true);
+	private int mActive;
 
-  public void Play(bool forward)
-  {
-    this.mActive = 0;
-    GameObject go = (Object) this.tweenTarget == (Object) null ? this.gameObject : this.tweenTarget;
-    if (!NGUITools.GetActive(go))
-    {
-      if (this.ifDisabledOnPlay != EnableCondition.EnableThenPlay)
-        return;
-      NGUITools.SetActive(go, true);
-    }
-    this.mTweens = this.includeChildren ? go.GetComponentsInChildren<UITweener>() : go.GetComponents<UITweener>();
-    if (this.mTweens.Length == 0)
-    {
-      if (this.disableWhenFinished == DisableCondition.DoNotDisable)
-        return;
-      NGUITools.SetActive(this.tweenTarget, false);
-    }
-    else
-    {
-      bool flag = false;
-      if (this.playDirection == AnimationOrTween.Direction.Reverse)
-        forward = !forward;
-      int index = 0;
-      for (int length = this.mTweens.Length; index < length; ++index)
-      {
-        UITweener mTween = this.mTweens[index];
-        if (mTween.tweenGroup == this.tweenGroup)
-        {
-          if (!flag && !NGUITools.GetActive(go))
-          {
-            flag = true;
-            NGUITools.SetActive(go, true);
-          }
-          ++this.mActive;
-          if (this.playDirection == AnimationOrTween.Direction.Toggle)
-          {
-            EventDelegate.Add(mTween.onFinished, new EventDelegate.Callback(this.OnFinished), true);
-            mTween.Toggle();
-          }
-          else
-          {
-            if (this.resetOnPlay || this.resetIfDisabled && !mTween.enabled)
-            {
-              mTween.Play(forward);
-              mTween.ResetToBeginning();
-            }
-            EventDelegate.Add(mTween.onFinished, new EventDelegate.Callback(this.OnFinished), true);
-            mTween.Play(forward);
-          }
-        }
-      }
-    }
-  }
+	private bool mActivated;
 
-  private void OnFinished()
-  {
-    if (--this.mActive != 0 || !((Object) UIPlayTween.current == (Object) null))
-      return;
-    UIPlayTween.current = this;
-    EventDelegate.Execute(this.onFinished);
-    if ((Object) this.eventReceiver != (Object) null && !string.IsNullOrEmpty(this.callWhenFinished))
-      this.eventReceiver.SendMessage(this.callWhenFinished, SendMessageOptions.DontRequireReceiver);
-    this.eventReceiver = (GameObject) null;
-    UIPlayTween.current = (UIPlayTween) null;
-  }
+	private void Awake()
+	{
+		if (eventReceiver != null && EventDelegate.IsValid(onFinished))
+		{
+			eventReceiver = null;
+			callWhenFinished = null;
+		}
+	}
+
+	private void Start()
+	{
+		mStarted = true;
+		if (tweenTarget == null)
+		{
+			tweenTarget = base.gameObject;
+		}
+	}
+
+	private void OnEnable()
+	{
+		if (mStarted)
+		{
+			OnHover(UICamera.IsHighlighted(base.gameObject));
+		}
+		if (UICamera.currentTouch != null)
+		{
+			if (trigger == Trigger.OnPress || trigger == Trigger.OnPressTrue)
+			{
+				mActivated = UICamera.currentTouch.pressed == base.gameObject;
+			}
+			if (trigger == Trigger.OnHover || trigger == Trigger.OnHoverTrue)
+			{
+				mActivated = UICamera.currentTouch.current == base.gameObject;
+			}
+		}
+		UIToggle component = GetComponent<UIToggle>();
+		if (component != null)
+		{
+			EventDelegate.Add(component.onChange, OnToggle);
+		}
+	}
+
+	private void OnDisable()
+	{
+		UIToggle component = GetComponent<UIToggle>();
+		if (component != null)
+		{
+			EventDelegate.Remove(component.onChange, OnToggle);
+		}
+	}
+
+	private void OnDragOver()
+	{
+		if (trigger == Trigger.OnHover)
+		{
+			OnHover(true);
+		}
+	}
+
+	private void OnHover(bool isOver)
+	{
+		if (!base.enabled || (trigger != Trigger.OnHover && !(trigger == Trigger.OnHoverTrue && isOver) && (trigger != Trigger.OnHoverFalse || isOver)) || isOver == mActivated)
+		{
+			return;
+		}
+		if (!isOver && UICamera.hoveredObject != null && UICamera.hoveredObject.transform.IsChildOf(base.transform))
+		{
+			UICamera.onHover = (UICamera.BoolDelegate)Delegate.Combine(UICamera.onHover, new UICamera.BoolDelegate(CustomHoverListener));
+			isOver = true;
+			if (mActivated)
+			{
+				return;
+			}
+		}
+		mActivated = isOver && trigger == Trigger.OnHover;
+		Play(isOver);
+	}
+
+	private void CustomHoverListener(GameObject go, bool isOver)
+	{
+		if ((bool)this)
+		{
+			GameObject gameObject = base.gameObject;
+			if (!gameObject || !go || (!(go == gameObject) && !go.transform.IsChildOf(base.transform)))
+			{
+				OnHover(false);
+				UICamera.onHover = (UICamera.BoolDelegate)Delegate.Remove(UICamera.onHover, new UICamera.BoolDelegate(CustomHoverListener));
+			}
+		}
+	}
+
+	private void OnDragOut()
+	{
+		if (base.enabled && mActivated)
+		{
+			mActivated = false;
+			Play(false);
+		}
+	}
+
+	private void OnPress(bool isPressed)
+	{
+		if (base.enabled && (trigger == Trigger.OnPress || (trigger == Trigger.OnPressTrue && isPressed) || (trigger == Trigger.OnPressFalse && !isPressed)))
+		{
+			mActivated = isPressed && trigger == Trigger.OnPress;
+			Play(isPressed);
+		}
+	}
+
+	private void OnClick()
+	{
+		if (base.enabled && trigger == Trigger.OnClick)
+		{
+			Play(true);
+		}
+	}
+
+	private void OnDoubleClick()
+	{
+		if (base.enabled && trigger == Trigger.OnDoubleClick)
+		{
+			Play(true);
+		}
+	}
+
+	private void OnSelect(bool isSelected)
+	{
+		if (base.enabled && (trigger == Trigger.OnSelect || (trigger == Trigger.OnSelectTrue && isSelected) || (trigger == Trigger.OnSelectFalse && !isSelected)))
+		{
+			mActivated = isSelected && trigger == Trigger.OnSelect;
+			Play(isSelected);
+		}
+	}
+
+	private void OnToggle()
+	{
+		if (base.enabled && !(UIToggle.current == null) && (trigger == Trigger.OnActivate || (trigger == Trigger.OnActivateTrue && UIToggle.current.value) || (trigger == Trigger.OnActivateFalse && !UIToggle.current.value)))
+		{
+			Play(UIToggle.current.value);
+		}
+	}
+
+	private void Update()
+	{
+		if (disableWhenFinished == DisableCondition.DoNotDisable || mTweens == null)
+		{
+			return;
+		}
+		bool flag = true;
+		bool flag2 = true;
+		int i = 0;
+		for (int num = mTweens.Length; i < num; i++)
+		{
+			UITweener uITweener = mTweens[i];
+			if (uITweener.tweenGroup == tweenGroup)
+			{
+				if (uITweener.enabled)
+				{
+					flag = false;
+					break;
+				}
+				if (uITweener.direction != (AnimationOrTween.Direction)disableWhenFinished)
+				{
+					flag2 = false;
+				}
+			}
+		}
+		if (flag)
+		{
+			if (flag2)
+			{
+				NGUITools.SetActive(tweenTarget, false);
+			}
+			mTweens = null;
+		}
+	}
+
+	public void Play()
+	{
+		Play(true);
+	}
+
+	public void Play(bool forward)
+	{
+		mActive = 0;
+		GameObject gameObject = ((tweenTarget == null) ? base.gameObject : tweenTarget);
+		if (!NGUITools.GetActive(gameObject))
+		{
+			if (ifDisabledOnPlay != EnableCondition.EnableThenPlay)
+			{
+				return;
+			}
+			NGUITools.SetActive(gameObject, true);
+		}
+		mTweens = (includeChildren ? gameObject.GetComponentsInChildren<UITweener>() : gameObject.GetComponents<UITweener>());
+		if (mTweens.Length == 0)
+		{
+			if (disableWhenFinished != 0)
+			{
+				NGUITools.SetActive(tweenTarget, false);
+			}
+			return;
+		}
+		bool flag = false;
+		if (playDirection == AnimationOrTween.Direction.Reverse)
+		{
+			forward = !forward;
+		}
+		int i = 0;
+		for (int num = mTweens.Length; i < num; i++)
+		{
+			UITweener uITweener = mTweens[i];
+			if (uITweener.tweenGroup != tweenGroup)
+			{
+				continue;
+			}
+			if (!flag && !NGUITools.GetActive(gameObject))
+			{
+				flag = true;
+				NGUITools.SetActive(gameObject, true);
+			}
+			mActive++;
+			if (playDirection == AnimationOrTween.Direction.Toggle)
+			{
+				EventDelegate.Add(uITweener.onFinished, OnFinished, true);
+				uITweener.Toggle();
+				continue;
+			}
+			if (resetOnPlay || (resetIfDisabled && !uITweener.enabled))
+			{
+				uITweener.Play(forward);
+				uITweener.ResetToBeginning();
+			}
+			EventDelegate.Add(uITweener.onFinished, OnFinished, true);
+			uITweener.Play(forward);
+		}
+	}
+
+	private void OnFinished()
+	{
+		if (--mActive == 0 && current == null)
+		{
+			current = this;
+			EventDelegate.Execute(onFinished);
+			if (eventReceiver != null && !string.IsNullOrEmpty(callWhenFinished))
+			{
+				eventReceiver.SendMessage(callWhenFinished, SendMessageOptions.DontRequireReceiver);
+			}
+			eventReceiver = null;
+			current = null;
+		}
+	}
 }

@@ -1,50 +1,58 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIToggledComponents
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-[RequireComponent(typeof (UIToggle))]
+[RequireComponent(typeof(UIToggle))]
 [AddComponentMenu("NGUI/Interaction/Toggled Components")]
 public class UIToggledComponents : MonoBehaviour
 {
-  public List<MonoBehaviour> activate;
-  public List<MonoBehaviour> deactivate;
-  [HideInInspector]
-  [SerializeField]
-  private MonoBehaviour target;
-  [HideInInspector]
-  [SerializeField]
-  private bool inverse;
+	public List<MonoBehaviour> activate;
 
-  private void Awake()
-  {
-    if ((Object) this.target != (Object) null)
-    {
-      if (this.activate.Count == 0 && this.deactivate.Count == 0)
-      {
-        if (this.inverse)
-          this.deactivate.Add(this.target);
-        else
-          this.activate.Add(this.target);
-      }
-      else
-        this.target = (MonoBehaviour) null;
-    }
-    EventDelegate.Add(this.GetComponent<UIToggle>().onChange, new EventDelegate.Callback(this.Toggle));
-  }
+	public List<MonoBehaviour> deactivate;
 
-  public void Toggle()
-  {
-    if (!this.enabled)
-      return;
-    for (int index = 0; index < this.activate.Count; ++index)
-      this.activate[index].enabled = UIToggle.current.value;
-    for (int index = 0; index < this.deactivate.Count; ++index)
-      this.deactivate[index].enabled = !UIToggle.current.value;
-  }
+	[HideInInspector]
+	[SerializeField]
+	private MonoBehaviour target;
+
+	[HideInInspector]
+	[SerializeField]
+	private bool inverse;
+
+	private void Awake()
+	{
+		if (target != null)
+		{
+			if (activate.Count == 0 && deactivate.Count == 0)
+			{
+				if (inverse)
+				{
+					deactivate.Add(target);
+				}
+				else
+				{
+					activate.Add(target);
+				}
+			}
+			else
+			{
+				target = null;
+			}
+		}
+		EventDelegate.Add(GetComponent<UIToggle>().onChange, Toggle);
+	}
+
+	public void Toggle()
+	{
+		if (base.enabled)
+		{
+			for (int i = 0; i < activate.Count; i++)
+			{
+				activate[i].enabled = UIToggle.current.value;
+			}
+			for (int j = 0; j < deactivate.Count; j++)
+			{
+				deactivate[j].enabled = !UIToggle.current.value;
+			}
+		}
+	}
 }

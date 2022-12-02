@@ -1,76 +1,80 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.MenuButton
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  [RequireComponent(typeof (SpriteRenderer))]
-  public class MenuButton : MonoBehaviour
-  {
-    public MenuButton.ButtonType buttonType;
-    public SceneObject targetScene;
-    [HideInInspector]
-    public int index;
-    [HideInInspector]
-    public Menu menu;
-    [HideInInspector]
-    public SpriteRenderer spriteRenderer;
+	[RequireComponent(typeof(SpriteRenderer))]
+	public class MenuButton : MonoBehaviour
+	{
+		public enum ButtonType
+		{
+			Start = 0,
+			Controls = 1,
+			Credits = 2,
+			Exit = 3,
+			Easy = 4,
+			Medium = 5,
+			Hard = 6
+		}
 
-    public void Init() => this.spriteRenderer = this.GetComponent<SpriteRenderer>();
+		public ButtonType buttonType;
 
-    private void OnMouseEnter() => this.menu.SetActiveMenuButton(this.index);
+		public SceneObject targetScene;
 
-    public void DoClick()
-    {
-      switch (this.buttonType)
-      {
-        case MenuButton.ButtonType.Start:
-          this.menu.flipBook.FlipToPage(2);
-          break;
-        case MenuButton.ButtonType.Controls:
-          this.menu.flipBook.FlipToPage(3);
-          break;
-        case MenuButton.ButtonType.Credits:
-          this.menu.flipBook.FlipToPage(4);
-          break;
-        case MenuButton.ButtonType.Exit:
-          this.menu.StopInputs();
-          GameController.GoToExitScene();
-          break;
-        case MenuButton.ButtonType.Easy:
-          this.menu.StopInputs();
-          GameController.Instance.activeDifficultyVariables = GameController.Instance.easyVariables;
-          GameController.Instance.LoadScene(this.targetScene);
-          SFXController.PlaySound(SFXController.Sounds.MenuConfirm);
-          break;
-        case MenuButton.ButtonType.Medium:
-          this.menu.StopInputs();
-          GameController.Instance.activeDifficultyVariables = GameController.Instance.mediumVariables;
-          GameController.Instance.LoadScene(this.targetScene);
-          SFXController.PlaySound(SFXController.Sounds.MenuConfirm);
-          break;
-        case MenuButton.ButtonType.Hard:
-          this.menu.StopInputs();
-          GameController.Instance.activeDifficultyVariables = GameController.Instance.hardVariables;
-          GameController.Instance.LoadScene(this.targetScene);
-          SFXController.PlaySound(SFXController.Sounds.MenuConfirm);
-          break;
-      }
-    }
+		[HideInInspector]
+		public int index;
 
-    public enum ButtonType
-    {
-      Start,
-      Controls,
-      Credits,
-      Exit,
-      Easy,
-      Medium,
-      Hard,
-    }
-  }
+		[HideInInspector]
+		public Menu menu;
+
+		[HideInInspector]
+		public SpriteRenderer spriteRenderer;
+
+		public void Init()
+		{
+			spriteRenderer = GetComponent<SpriteRenderer>();
+		}
+
+		private void OnMouseEnter()
+		{
+			menu.SetActiveMenuButton(index);
+		}
+
+		public void DoClick()
+		{
+			switch (buttonType)
+			{
+			case ButtonType.Start:
+				menu.flipBook.FlipToPage(2);
+				break;
+			case ButtonType.Controls:
+				menu.flipBook.FlipToPage(3);
+				break;
+			case ButtonType.Credits:
+				menu.flipBook.FlipToPage(4);
+				break;
+			case ButtonType.Exit:
+				menu.StopInputs();
+				GameController.GoToExitScene();
+				break;
+			case ButtonType.Easy:
+				menu.StopInputs();
+				GameController.Instance.activeDifficultyVariables = GameController.Instance.easyVariables;
+				GameController.Instance.LoadScene(targetScene);
+				SFXController.PlaySound(SFXController.Sounds.MenuConfirm);
+				break;
+			case ButtonType.Medium:
+				menu.StopInputs();
+				GameController.Instance.activeDifficultyVariables = GameController.Instance.mediumVariables;
+				GameController.Instance.LoadScene(targetScene);
+				SFXController.PlaySound(SFXController.Sounds.MenuConfirm);
+				break;
+			case ButtonType.Hard:
+				menu.StopInputs();
+				GameController.Instance.activeDifficultyVariables = GameController.Instance.hardVariables;
+				GameController.Instance.LoadScene(targetScene);
+				SFXController.PlaySound(SFXController.Sounds.MenuConfirm);
+				break;
+			}
+		}
+	}
 }

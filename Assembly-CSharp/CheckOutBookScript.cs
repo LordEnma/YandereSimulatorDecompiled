@@ -1,64 +1,59 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CheckOutBookScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class CheckOutBookScript : MonoBehaviour
 {
-  public PromptScript Prompt;
-  public int ID;
+	public PromptScript Prompt;
 
-  private void Start()
-  {
-    if (!GameGlobals.Eighties)
-    {
-      if (this.ID != 1)
-        return;
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.transform.parent.gameObject.SetActive(false);
-    }
-    else
-    {
-      if (this.ID != 0)
-        return;
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.enabled = false;
-    }
-  }
+	public int ID;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    if (this.ID == 0)
-    {
-      this.Prompt.Yandere.Inventory.Book = true;
-    }
-    else
-    {
-      this.Prompt.Yandere.NotificationManager.CustomText = "Finished homework assignment!";
-      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      this.Prompt.Yandere.Inventory.FinishedHomework = true;
-    }
-    this.UpdatePrompt();
-  }
+	private void Start()
+	{
+		if (!GameGlobals.Eighties)
+		{
+			if (ID == 1)
+			{
+				Prompt.Hide();
+				Prompt.enabled = false;
+				base.transform.parent.gameObject.SetActive(false);
+			}
+		}
+		else if (ID == 0)
+		{
+			Prompt.Hide();
+			Prompt.enabled = false;
+			base.enabled = false;
+		}
+	}
 
-  public void UpdatePrompt()
-  {
-    if (this.ID == 0 && this.Prompt.Yandere.Inventory.Book || this.ID == 1 && this.Prompt.Yandere.Inventory.FinishedHomework)
-    {
-      this.Prompt.enabled = false;
-      this.Prompt.Hide();
-    }
-    else
-    {
-      this.Prompt.enabled = true;
-      this.Prompt.Hide();
-    }
-  }
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			if (ID == 0)
+			{
+				Prompt.Yandere.Inventory.Book = true;
+			}
+			else
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Finished homework assignment!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Prompt.Yandere.Inventory.FinishedHomework = true;
+			}
+			UpdatePrompt();
+		}
+	}
+
+	public void UpdatePrompt()
+	{
+		if ((ID == 0 && Prompt.Yandere.Inventory.Book) || (ID == 1 && Prompt.Yandere.Inventory.FinishedHomework))
+		{
+			Prompt.enabled = false;
+			Prompt.Hide();
+		}
+		else
+		{
+			Prompt.enabled = true;
+			Prompt.Hide();
+		}
+	}
 }

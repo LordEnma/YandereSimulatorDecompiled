@@ -1,98 +1,111 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SpringPanel
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof (UIPanel))]
+[RequireComponent(typeof(UIPanel))]
 [AddComponentMenu("NGUI/Internal/Spring Panel")]
 public class SpringPanel : MonoBehaviour
 {
-  public static SpringPanel current;
-  public Vector3 target = Vector3.zero;
-  public float strength = 10f;
-  public SpringPanel.OnFinished onFinished;
-  [NonSerialized]
-  private UIPanel mPanel;
-  [NonSerialized]
-  private Transform mTrans;
-  [NonSerialized]
-  private UIScrollView mDrag;
-  [NonSerialized]
-  private float mDelta;
+	public delegate void OnFinished();
 
-  private void Start()
-  {
-    this.mPanel = this.GetComponent<UIPanel>();
-    this.mDrag = this.GetComponent<UIScrollView>();
-    this.mTrans = this.transform;
-  }
+	public static SpringPanel current;
 
-  private void Update() => this.AdvanceTowardsPosition();
+	public Vector3 target = Vector3.zero;
 
-  protected virtual void AdvanceTowardsPosition()
-  {
-    this.mDelta += RealTime.deltaTime;
-    bool flag = false;
-    Vector3 localPosition = this.mTrans.localPosition;
-    Vector3 vector3_1 = NGUIMath.SpringLerp(localPosition, this.target, this.strength, this.mDelta);
-    if ((double) (localPosition - this.target).sqrMagnitude < 0.0099999997764825821)
-    {
-      vector3_1 = this.target;
-      this.enabled = false;
-      flag = true;
-      this.mDelta = 0.0f;
-    }
-    else
-    {
-      vector3_1.x = Mathf.Round(vector3_1.x);
-      vector3_1.y = Mathf.Round(vector3_1.y);
-      vector3_1.z = Mathf.Round(vector3_1.z);
-      if ((double) (vector3_1 - localPosition).sqrMagnitude < 0.0099999997764825821)
-        return;
-      this.mDelta = 0.0f;
-    }
-    this.mTrans.localPosition = vector3_1;
-    Vector3 vector3_2 = vector3_1 - localPosition;
-    Vector2 clipOffset = this.mPanel.clipOffset;
-    clipOffset.x -= vector3_2.x;
-    clipOffset.y -= vector3_2.y;
-    this.mPanel.clipOffset = clipOffset;
-    if ((UnityEngine.Object) this.mDrag != (UnityEngine.Object) null)
-      this.mDrag.UpdateScrollbars(false);
-    if (!flag || this.onFinished == null)
-      return;
-    SpringPanel.current = this;
-    this.onFinished();
-    SpringPanel.current = (SpringPanel) null;
-  }
+	public float strength = 10f;
 
-  public static SpringPanel Begin(GameObject go, Vector3 pos, float strength)
-  {
-    SpringPanel springPanel = go.GetComponent<SpringPanel>();
-    if ((UnityEngine.Object) springPanel == (UnityEngine.Object) null)
-      springPanel = go.AddComponent<SpringPanel>();
-    springPanel.target = pos;
-    springPanel.strength = strength;
-    springPanel.onFinished = (SpringPanel.OnFinished) null;
-    springPanel.enabled = true;
-    return springPanel;
-  }
+	public OnFinished onFinished;
 
-  public static SpringPanel Stop(GameObject go)
-  {
-    SpringPanel component = go.GetComponent<SpringPanel>();
-    if ((UnityEngine.Object) component != (UnityEngine.Object) null && component.enabled)
-    {
-      if (component.onFinished != null)
-        component.onFinished();
-      component.enabled = false;
-    }
-    return component;
-  }
+	[NonSerialized]
+	private UIPanel mPanel;
 
-  public delegate void OnFinished();
+	[NonSerialized]
+	private Transform mTrans;
+
+	[NonSerialized]
+	private UIScrollView mDrag;
+
+	[NonSerialized]
+	private float mDelta;
+
+	private void Start()
+	{
+		mPanel = GetComponent<UIPanel>();
+		mDrag = GetComponent<UIScrollView>();
+		mTrans = base.transform;
+	}
+
+	private void Update()
+	{
+		AdvanceTowardsPosition();
+	}
+
+	protected virtual void AdvanceTowardsPosition()
+	{
+		mDelta += RealTime.deltaTime;
+		bool flag = false;
+		Vector3 localPosition = mTrans.localPosition;
+		Vector3 vector = NGUIMath.SpringLerp(localPosition, target, strength, mDelta);
+		if ((localPosition - target).sqrMagnitude < 0.01f)
+		{
+			vector = target;
+			base.enabled = false;
+			flag = true;
+			mDelta = 0f;
+		}
+		else
+		{
+			vector.x = Mathf.Round(vector.x);
+			vector.y = Mathf.Round(vector.y);
+			vector.z = Mathf.Round(vector.z);
+			if ((vector - localPosition).sqrMagnitude < 0.01f)
+			{
+				return;
+			}
+			mDelta = 0f;
+		}
+		mTrans.localPosition = vector;
+		Vector3 vector2 = vector - localPosition;
+		Vector2 clipOffset = mPanel.clipOffset;
+		clipOffset.x -= vector2.x;
+		clipOffset.y -= vector2.y;
+		mPanel.clipOffset = clipOffset;
+		if (mDrag != null)
+		{
+			mDrag.UpdateScrollbars(false);
+		}
+		if (flag && onFinished != null)
+		{
+			current = this;
+			onFinished();
+			current = null;
+		}
+	}
+
+	public static SpringPanel Begin(GameObject go, Vector3 pos, float strength)
+	{
+		SpringPanel springPanel = go.GetComponent<SpringPanel>();
+		if (springPanel == null)
+		{
+			springPanel = go.AddComponent<SpringPanel>();
+		}
+		springPanel.target = pos;
+		springPanel.strength = strength;
+		springPanel.onFinished = null;
+		springPanel.enabled = true;
+		return springPanel;
+	}
+
+	public static SpringPanel Stop(GameObject go)
+	{
+		SpringPanel component = go.GetComponent<SpringPanel>();
+		if (component != null && component.enabled)
+		{
+			if (component.onFinished != null)
+			{
+				component.onFinished();
+			}
+			component.enabled = false;
+		}
+		return component;
+	}
 }

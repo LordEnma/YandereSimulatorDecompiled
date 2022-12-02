@@ -1,28 +1,22 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: NotificationType
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public enum NotificationType
 {
-  Bloody,
-  Body,
-  Insane,
-  Armed,
-  Lewd,
-  Intrude,
-  Late,
-  Info,
-  Topic,
-  Opinion,
-  Complete,
-  Exfiltrate,
-  Evidence,
-  ClassSoon,
-  ClassNow,
-  Eavesdropping,
-  Persona,
-  Clothing,
-  Custom,
+	Bloody = 0,
+	Body = 1,
+	Insane = 2,
+	Armed = 3,
+	Lewd = 4,
+	Intrude = 5,
+	Late = 6,
+	Info = 7,
+	Topic = 8,
+	Opinion = 9,
+	Complete = 10,
+	Exfiltrate = 11,
+	Evidence = 12,
+	ClassSoon = 13,
+	ClassNow = 14,
+	Eavesdropping = 15,
+	Persona = 16,
+	Clothing = 17,
+	Custom = 18
 }

@@ -1,923 +1,1140 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DatingMinigameScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DatingMinigameScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public InputManagerScript InputManager;
-  public LoveManagerScript LoveManager;
-  public PromptBarScript PromptBar;
-  public YandereScript Yandere;
-  public StudentScript Suitor;
-  public StudentScript Rival;
-  public PromptScript Prompt;
-  public JsonScript JSON;
-  public Transform AffectionSet;
-  public Transform OptionSet;
-  public GameObject HeartbeatCamera;
-  public GameObject SeductionIcon;
-  public GameObject PantyIcon;
-  public Transform TopicHighlight;
-  public Transform ComplimentSet;
-  public Transform AffectionBar;
-  public Transform Highlight;
-  public Transform GiveGift;
-  public Transform PeekSpot;
-  public Transform[] Options;
-  public Transform ShowOff;
-  public Transform Topics;
-  public Texture X;
-  public UISprite[] OpinionIcons;
-  public UISprite[] TopicIcons;
-  public UITexture[] MultiplierIcons;
-  public UILabel[] ComplimentLabels;
-  public UISprite[] ComplimentBGs;
-  public UILabel MultiplierLabel;
-  public UILabel SeductionLabel;
-  public UILabel TopicNameLabel;
-  public UILabel DialogueLabel;
-  public UIPanel DatingSimHUD;
-  public UILabel WisdomLabel;
-  public UIPanel Panel;
-  public UITexture[] GiftIcons;
-  public UISprite[] TraitBGs;
-  public UISprite[] GiftBGs;
-  public UILabel[] Labels;
-  public string[] OpinionSpriteNames;
-  public string[] Compliments;
-  public string[] TopicNames;
-  public string[] GiveGifts;
-  public string[] Greetings;
-  public string[] Farewells;
-  public string[] Negatives;
-  public string[] Positives;
-  public string[] ShowOffs;
-  public bool[] ComplimentsGiven;
-  public bool[] TopicsDiscussed;
-  public bool[] GiftsPurchased;
-  public bool[] GiftsGiven;
-  public bool SuitorAndRivalTalking;
-  public bool GiftStatusNeedsSaving;
-  public bool DataNeedsSaving;
-  public bool SelectingTopic;
-  public bool AffectionGrow;
-  public bool Complimenting;
-  public bool Initialized;
-  public bool Matchmaking;
-  public bool GivingGift;
-  public bool ShowingOff;
-  public bool Eighties;
-  public bool Negative;
-  public bool SlideOut;
-  public bool Testing;
-  public float HighlightTarget;
-  public float Affection;
-  public float Rotation;
-  public float Speed;
-  public float Timer;
-  public int ComplimentSelected = 1;
-  public int TraitSelected = 1;
-  public int TopicSelected = 1;
-  public int GiftSelected = 1;
-  public int Selected = 1;
-  public int AffectionLevel;
-  public int Multiplier;
-  public int Opinion;
-  public int Phase = 1;
-  public int WisdomTraitDemonstrated;
-  public int WisdomTrait;
-  public int CourageTraitDemonstrated;
-  public int CourageTrait;
-  public int StrengthTraitDemonstrated;
-  public int StrengthTrait;
-  public int[] TraitDemonstrated;
-  public int[] Trait;
-  public int GiftColumn = 1;
-  public int GiftRow = 1;
-  public int Column = 1;
-  public int Row = 1;
-  public int Side = 1;
-  public int Line = 1;
-  public string CurrentAnim = string.Empty;
-  public Color OriginalColor;
-  public Camera MainCamera;
+	public StudentManagerScript StudentManager;
 
-  public void Start()
-  {
-    if (this.Initialized)
-      return;
-    this.MainCamera = Camera.main;
-    this.Affection = DatingGlobals.Affection;
-    this.AffectionBar.localScale = new Vector3(this.Affection / 100f, this.AffectionBar.localScale.y, this.AffectionBar.localScale.z);
-    this.CalculateAffection();
-    this.OriginalColor = this.ComplimentBGs[1].color;
-    this.ComplimentSet.localScale = Vector3.zero;
-    this.GiveGift.localScale = Vector3.zero;
-    this.ShowOff.localScale = Vector3.zero;
-    this.Topics.localScale = Vector3.zero;
-    this.DatingSimHUD.gameObject.SetActive(false);
-    this.DatingSimHUD.alpha = 0.0f;
-    for (int topicID = 1; topicID < 26; ++topicID)
-    {
-      if (DatingGlobals.GetTopicDiscussed(topicID))
-      {
-        this.TopicsDiscussed[topicID] = true;
-        UISprite topicIcon = this.TopicIcons[topicID];
-        topicIcon.color = new Color(topicIcon.color.r, topicIcon.color.g, topicIcon.color.b, 0.5f);
-      }
-    }
-    for (int complimentID = 1; complimentID < 11; ++complimentID)
-    {
-      if (DatingGlobals.GetComplimentGiven(complimentID))
-      {
-        this.ComplimentsGiven[complimentID] = true;
-        UILabel complimentLabel = this.ComplimentLabels[complimentID];
-        complimentLabel.color = new Color(complimentLabel.color.r, complimentLabel.color.g, complimentLabel.color.b, 0.5f);
-      }
-    }
-    this.UpdateComplimentHighlight();
-    this.UpdateTraitHighlight();
-    this.UpdateGiftHighlight();
-    this.Eighties = GameGlobals.Eighties;
-    this.CourageTrait = DatingGlobals.GetSuitorTrait(1);
-    this.CourageTraitDemonstrated = DatingGlobals.GetTraitDemonstrated(1);
-    this.WisdomTrait = DatingGlobals.GetSuitorTrait(2);
-    this.WisdomTraitDemonstrated = DatingGlobals.GetTraitDemonstrated(2);
-    this.StrengthTrait = DatingGlobals.GetSuitorTrait(3);
-    this.StrengthTraitDemonstrated = DatingGlobals.GetTraitDemonstrated(3);
-    this.TraitDemonstrated[1] = this.CourageTraitDemonstrated;
-    this.TraitDemonstrated[2] = this.WisdomTraitDemonstrated;
-    this.TraitDemonstrated[3] = this.StrengthTraitDemonstrated;
-    this.Trait[1] = this.CourageTrait;
-    this.Trait[2] = this.WisdomTrait;
-    this.Trait[3] = this.StrengthTrait;
-    this.Initialized = true;
-  }
+	public InputManagerScript InputManager;
 
-  private void CalculateAffection()
-  {
-    if ((double) this.Affection > 100.0)
-      this.Affection = 100f;
-    if ((double) this.Affection == 0.0)
-      this.AffectionLevel = 0;
-    else if ((double) this.Affection < 25.0)
-      this.AffectionLevel = 1;
-    else if ((double) this.Affection < 50.0)
-      this.AffectionLevel = 2;
-    else if ((double) this.Affection < 75.0)
-      this.AffectionLevel = 3;
-    else if ((double) this.Affection < 100.0)
-      this.AffectionLevel = 4;
-    else
-      this.AffectionLevel = 5;
-  }
+	public LoveManagerScript LoveManager;
 
-  private void Update()
-  {
-    if (this.Testing)
-      this.Prompt.enabled = true;
-    else if (this.LoveManager.RivalWaiting)
-    {
-      if ((Object) this.Rival == (Object) null)
-      {
-        this.Suitor = this.StudentManager.Students[this.LoveManager.SuitorID];
-        this.Rival = this.StudentManager.Students[this.LoveManager.RivalID];
-      }
-      if ((double) this.Rival.MeetTimer > 0.0 && (double) this.Suitor.MeetTimer > 0.0)
-      {
-        if (!this.Eighties)
-          this.Prompt.enabled = true;
-        else if (!this.SuitorAndRivalTalking)
-        {
-          Debug.Log((object) "DatingMinigameScript is now setting SuitorAndRivalTalking to ''true''.");
-          this.Suitor.CurrentDestination = this.Rival.transform;
-          this.Suitor.Pathfinding.target = this.Rival.transform;
-          this.Suitor.DistractionTarget = this.Rival;
-          this.Suitor.TargetDistance = 1f;
-          this.Suitor.DistractTimer = 10f;
-          this.Suitor.Distracting = true;
-          this.Suitor.Routine = false;
-          this.Suitor.Pathfinding.canSearch = true;
-          this.Suitor.Pathfinding.canMove = true;
-          this.Rival.Pathfinding.canSearch = false;
-          this.Rival.Pathfinding.canMove = false;
-          this.Suitor.Meeting = false;
-          this.Rival.Meeting = false;
-          this.Rival.Routine = false;
-          this.Suitor.MeetTimer = 0.0f;
-          this.Rival.MeetTimer = 0.0f;
-          this.SuitorAndRivalTalking = true;
-        }
-      }
-    }
-    else if (this.Prompt.enabled)
-    {
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-    }
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      if (!this.Yandere.Chased && this.Yandere.Chasers == 0 && !this.Rival.Hunted)
-      {
-        this.Yandere.CameraEffects.UpdateDOF(1f);
-        this.Suitor.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-        this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-        this.Suitor.CharacterAnimation.enabled = true;
-        this.Rival.CharacterAnimation.enabled = true;
-        this.Suitor.enabled = false;
-        this.Rival.enabled = false;
-        this.Rival.CharacterAnimation["f02_smile_00"].layer = 1;
-        this.Rival.CharacterAnimation.Play("f02_smile_00");
-        this.Rival.CharacterAnimation["f02_smile_00"].weight = 0.0f;
-        this.StudentManager.Clock.StopTime = true;
-        this.Yandere.RPGCamera.enabled = false;
-        this.HeartbeatCamera.SetActive(false);
-        this.Yandere.Headset.SetActive(true);
-        this.Yandere.CanMove = false;
-        this.Yandere.EmptyHands();
-        if (this.Yandere.YandereVision)
-        {
-          this.Yandere.ResetYandereEffects();
-          this.Yandere.YandereVision = false;
-        }
-        this.Yandere.transform.position = this.PeekSpot.position;
-        this.Yandere.transform.eulerAngles = this.PeekSpot.eulerAngles;
-        this.Yandere.CharacterAnimation.Play("f02_treePeeking_00");
-        this.MainCamera.transform.position = new Vector3(48f, 3f, -44f);
-        this.MainCamera.transform.eulerAngles = new Vector3(15f, 90f, 0.0f);
-        this.WisdomLabel.text = "Wisdom: " + this.WisdomTrait.ToString();
-        this.GiftIcons[1].enabled = CollectibleGlobals.GetGiftPurchased(6);
-        this.GiftIcons[2].enabled = CollectibleGlobals.GetGiftPurchased(7);
-        this.GiftIcons[3].enabled = CollectibleGlobals.GetGiftPurchased(8);
-        this.GiftIcons[4].enabled = CollectibleGlobals.GetGiftPurchased(9);
-        this.GiftsPurchased[1] = CollectibleGlobals.GetGiftPurchased(6);
-        this.GiftsPurchased[2] = CollectibleGlobals.GetGiftPurchased(7);
-        this.GiftsPurchased[3] = CollectibleGlobals.GetGiftPurchased(8);
-        this.GiftsPurchased[4] = CollectibleGlobals.GetGiftPurchased(9);
-        this.GiftsGiven[1] = CollectibleGlobals.GetGiftGiven(1);
-        this.GiftsGiven[2] = CollectibleGlobals.GetGiftGiven(2);
-        this.GiftsGiven[3] = CollectibleGlobals.GetGiftGiven(3);
-        this.GiftsGiven[4] = CollectibleGlobals.GetGiftGiven(4);
-        this.Matchmaking = true;
-        this.UpdateTopics();
-        Time.timeScale = 1f;
-      }
-    }
-    if (!this.Matchmaking)
-      return;
-    if (this.CurrentAnim != string.Empty && (double) this.Rival.CharacterAnimation[this.CurrentAnim].time >= (double) this.Rival.CharacterAnimation[this.CurrentAnim].length)
-      this.Rival.CharacterAnimation.Play(this.Rival.IdleAnim);
-    if (this.Phase == 1)
-    {
-      this.Panel.alpha = Mathf.MoveTowards(this.Panel.alpha, 0.0f, Time.deltaTime);
-      this.Timer += Time.deltaTime;
-      this.MainCamera.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(54f, 1.25f, -45.25f), this.Timer * 0.02f);
-      this.MainCamera.transform.eulerAngles = Vector3.Lerp(this.MainCamera.transform.eulerAngles, new Vector3(0.0f, 45f, 0.0f), this.Timer * 0.02f);
-      if ((double) this.Timer > 5.0)
-      {
-        this.Yandere.CameraEffects.UpdateDOF(0.6f);
-        this.Suitor.CharacterAnimation.Play("insertEarpiece_00");
-        this.Suitor.CharacterAnimation["insertEarpiece_00"].time = 0.0f;
-        this.Suitor.CharacterAnimation.Play("insertEarpiece_00");
-        this.Suitor.Earpiece.SetActive(true);
-        this.MainCamera.transform.position = new Vector3(45.5f, 1.25f, -44.5f);
-        this.MainCamera.transform.eulerAngles = new Vector3(0.0f, -45f, 0.0f);
-        this.Rotation = -45f;
-        this.Timer = 0.0f;
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 2)
-    {
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 4.0)
-      {
-        this.Suitor.Earpiece.transform.parent = this.Suitor.Head;
-        this.Suitor.Earpiece.transform.localPosition = new Vector3(0.0f, -1.12f, 1.14f);
-        this.Suitor.Earpiece.transform.localEulerAngles = new Vector3(45f, -180f, 0.0f);
-        this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, new Vector3(45.11f, 1.375f, -44f), (float) (((double) this.Timer - 4.0) * 0.019999999552965164));
-        this.Rotation = Mathf.Lerp(this.Rotation, 90f, (float) (((double) this.Timer - 4.0) * 0.019999999552965164));
-        this.MainCamera.transform.eulerAngles = new Vector3(this.MainCamera.transform.eulerAngles.x, this.Rotation, this.MainCamera.transform.eulerAngles.z);
-        if ((double) this.Rotation > 89.9000015258789)
-        {
-          this.Yandere.CameraEffects.UpdateDOF(0.75f);
-          this.Rival.CharacterAnimation["f02_turnAround_00"].time = 0.0f;
-          this.Rival.CharacterAnimation.CrossFade("f02_turnAround_00");
-          this.AffectionBar.localScale = new Vector3(this.Affection / 100f, this.AffectionBar.localScale.y, this.AffectionBar.localScale.z);
-          this.DialogueLabel.text = this.Greetings[this.AffectionLevel];
-          this.CalculateMultiplier();
-          this.DatingSimHUD.gameObject.SetActive(true);
-          this.Timer = 0.0f;
-          ++this.Phase;
-        }
-      }
-    }
-    else if (this.Phase == 3)
-    {
-      this.DatingSimHUD.alpha = Mathf.MoveTowards(this.DatingSimHUD.alpha, 1f, Time.deltaTime);
-      if ((double) this.Rival.CharacterAnimation["f02_turnAround_00"].time >= (double) this.Rival.CharacterAnimation["f02_turnAround_00"].length)
-      {
-        this.Rival.transform.eulerAngles = new Vector3(this.Rival.transform.eulerAngles.x, -90f, this.Rival.transform.eulerAngles.z);
-        this.Rival.CharacterAnimation.Play("f02_turnAround_00");
-        this.Rival.CharacterAnimation["f02_turnAround_00"].time = 0.0f;
-        this.Rival.CharacterAnimation["f02_turnAround_00"].speed = 0.0f;
-        this.Rival.CharacterAnimation.Play("f02_turnAround_00");
-        this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
-        Time.timeScale = 1f;
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Label[0].text = "Confirm";
-        this.PromptBar.Label[1].text = "Back";
-        this.PromptBar.Label[4].text = "Select";
-        this.PromptBar.UpdateButtons();
-        this.PromptBar.Show = true;
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 4)
-    {
-      if (this.AffectionGrow)
-      {
-        this.Affection = Mathf.MoveTowards(this.Affection, 100f, Time.deltaTime * 10f);
-        this.CalculateAffection();
-      }
-      this.Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", this.Affection * 0.01f);
-      this.Rival.CharacterAnimation["f02_smile_00"].weight = this.Affection * 0.01f;
-      this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, Mathf.Lerp(this.Highlight.localPosition.y, this.HighlightTarget, Time.deltaTime * 10f), this.Highlight.localPosition.z);
-      for (int index = 1; index < this.Options.Length; ++index)
-      {
-        Transform option = this.Options[index];
-        option.localPosition = new Vector3(Mathf.Lerp(option.localPosition.x, index == this.Selected ? 750f : 800f, Time.deltaTime * 10f), option.localPosition.y, option.localPosition.z);
-      }
-      this.AffectionBar.localScale = new Vector3(Mathf.Lerp(this.AffectionBar.localScale.x, this.Affection / 100f, Time.deltaTime * 10f), this.AffectionBar.localScale.y, this.AffectionBar.localScale.z);
-      if (!this.SelectingTopic && !this.Complimenting && !this.ShowingOff && !this.GivingGift)
-      {
-        this.Topics.localScale = Vector3.Lerp(this.Topics.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.ComplimentSet.localScale = Vector3.Lerp(this.ComplimentSet.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.ShowOff.localScale = Vector3.Lerp(this.ShowOff.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.GiveGift.localScale = Vector3.Lerp(this.GiveGift.localScale, Vector3.zero, Time.deltaTime * 10f);
-        if (this.InputManager.TappedUp)
-        {
-          --this.Selected;
-          this.UpdateHighlight();
-        }
-        if (this.InputManager.TappedDown)
-        {
-          ++this.Selected;
-          this.UpdateHighlight();
-        }
-        if (Input.GetButtonDown("A") && (double) this.Labels[this.Selected].color.a == 1.0)
-        {
-          if (this.Selected == 1)
-          {
-            this.SelectingTopic = true;
-            this.Negative = true;
-          }
-          else if (this.Selected == 2)
-          {
-            this.SelectingTopic = true;
-            this.Negative = false;
-          }
-          else if (this.Selected == 3)
-            this.Complimenting = true;
-          else if (this.Selected == 4)
-            this.ShowingOff = true;
-          else if (this.Selected == 5)
-            this.GivingGift = true;
-          else if (this.Selected == 6)
-          {
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[0].text = "Confirm";
-            this.PromptBar.UpdateButtons();
-            this.CalculateAffection();
-            this.DialogueLabel.text = this.Farewells[this.AffectionLevel];
-            ++this.Phase;
-          }
-        }
-      }
-      else if (this.SelectingTopic)
-      {
-        this.Topics.localScale = Vector3.Lerp(this.Topics.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        if (this.InputManager.TappedUp)
-        {
-          --this.Row;
-          this.UpdateTopicHighlight();
-        }
-        else if (this.InputManager.TappedDown)
-        {
-          ++this.Row;
-          this.UpdateTopicHighlight();
-        }
-        if (this.InputManager.TappedLeft)
-        {
-          --this.Column;
-          this.UpdateTopicHighlight();
-        }
-        else if (this.InputManager.TappedRight)
-        {
-          ++this.Column;
-          this.UpdateTopicHighlight();
-        }
-        if (Input.GetButtonDown("A") && (double) this.TopicIcons[this.TopicSelected].color.a == 1.0)
-        {
-          this.SelectingTopic = false;
-          UISprite topicIcon = this.TopicIcons[this.TopicSelected];
-          topicIcon.color = new Color(topicIcon.color.r, topicIcon.color.g, topicIcon.color.b, 0.5f);
-          this.TopicsDiscussed[this.TopicSelected] = true;
-          this.DetermineOpinion();
-          if (!this.Yandere.StudentManager.GetTopicLearnedByStudent(this.Opinion, this.LoveManager.RivalID))
-            this.Yandere.StudentManager.SetTopicLearnedByStudent(this.Opinion, this.LoveManager.RivalID, true);
-          if (this.Negative)
-          {
-            UILabel label = this.Labels[1];
-            label.color = new Color(label.color.r, label.color.g, label.color.b, 0.5f);
-            if (this.Opinion == 2)
-            {
-              this.DialogueLabel.text = "Hey! Just so you know, I take offense to that...";
-              this.Rival.CharacterAnimation.CrossFade("f02_refuse_00");
-              this.CurrentAnim = "f02_refuse_00";
-              --this.Affection;
-              this.CalculateAffection();
-            }
-            else if (this.Opinion == 1)
-            {
-              this.DialogueLabel.text = this.Negatives[this.AffectionLevel];
-              this.Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
-              this.CurrentAnim = "f02_lookdown_00";
-              this.Affection += (float) this.Multiplier;
-              this.CalculateAffection();
-            }
-            else if (this.Opinion == 0)
-              this.DialogueLabel.text = "Um...okay.";
-          }
-          else
-          {
-            UILabel label = this.Labels[2];
-            label.color = new Color(label.color.r, label.color.g, label.color.b, 0.5f);
-            if (this.Opinion == 2)
-            {
-              this.DialogueLabel.text = this.Positives[this.AffectionLevel];
-              this.Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
-              this.CurrentAnim = "f02_lookdown_00";
-              this.Affection += (float) this.Multiplier;
-              this.CalculateAffection();
-            }
-            else if (this.Opinion == 1)
-            {
-              this.DialogueLabel.text = "To be honest with you, I strongly disagree...";
-              this.Rival.CharacterAnimation.CrossFade("f02_refuse_00");
-              this.CurrentAnim = "f02_refuse_00";
-              --this.Affection;
-              this.CalculateAffection();
-            }
-            else if (this.Opinion == 0)
-              this.DialogueLabel.text = "Um...all right.";
-          }
-          if ((double) this.Affection > 100.0)
-            this.Affection = 100f;
-          else if ((double) this.Affection < 0.0)
-            this.Affection = 0.0f;
-        }
-        if (Input.GetButtonDown("B"))
-          this.SelectingTopic = false;
-      }
-      else if (this.Complimenting)
-      {
-        this.ComplimentSet.localScale = Vector3.Lerp(this.ComplimentSet.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        if (this.InputManager.TappedUp)
-        {
-          --this.Line;
-          this.UpdateComplimentHighlight();
-        }
-        else if (this.InputManager.TappedDown)
-        {
-          ++this.Line;
-          this.UpdateComplimentHighlight();
-        }
-        if (this.InputManager.TappedLeft)
-        {
-          --this.Side;
-          this.UpdateComplimentHighlight();
-        }
-        else if (this.InputManager.TappedRight)
-        {
-          ++this.Side;
-          this.UpdateComplimentHighlight();
-        }
-        if (Input.GetButtonDown("A") && (double) this.ComplimentLabels[this.ComplimentSelected].color.a == 1.0)
-        {
-          UILabel label = this.Labels[3];
-          label.color = new Color(label.color.r, label.color.g, label.color.b, 0.5f);
-          this.Complimenting = false;
-          this.DialogueLabel.text = this.Compliments[this.ComplimentSelected];
-          this.ComplimentsGiven[this.ComplimentSelected] = true;
-          if (this.ComplimentSelected == 1 || this.ComplimentSelected == 4 || this.ComplimentSelected == 5 || this.ComplimentSelected == 8 || this.ComplimentSelected == 9)
-          {
-            this.Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
-            this.CurrentAnim = "f02_lookdown_00";
-            this.Affection += (float) this.Multiplier;
-            this.CalculateAffection();
-          }
-          else
-          {
-            this.Rival.CharacterAnimation.CrossFade("f02_refuse_00");
-            this.CurrentAnim = "f02_refuse_00";
-            --this.Affection;
-            this.CalculateAffection();
-          }
-          if ((double) this.Affection > 100.0)
-            this.Affection = 100f;
-          else if ((double) this.Affection < 0.0)
-            this.Affection = 0.0f;
-        }
-        if (Input.GetButtonDown("B"))
-          this.Complimenting = false;
-      }
-      else if (this.ShowingOff)
-      {
-        this.ShowOff.localScale = Vector3.Lerp(this.ShowOff.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        if (this.InputManager.TappedUp)
-        {
-          --this.TraitSelected;
-          this.UpdateTraitHighlight();
-        }
-        else if (this.InputManager.TappedDown)
-        {
-          ++this.TraitSelected;
-          this.UpdateTraitHighlight();
-        }
-        if (Input.GetButtonDown("A"))
-        {
-          UILabel label = this.Labels[4];
-          label.color = new Color(label.color.r, label.color.g, label.color.b, 0.5f);
-          this.ShowingOff = false;
-          if (this.TraitSelected == 2)
-          {
-            Debug.Log((object) ("Wisdom trait is " + this.WisdomTrait.ToString() + ". Wisdom Demonstrated is " + this.WisdomTraitDemonstrated.ToString() + "."));
-            if (this.WisdomTrait > this.WisdomTraitDemonstrated)
-            {
-              ++this.WisdomTraitDemonstrated;
-              this.DialogueLabel.text = this.ShowOffs[this.AffectionLevel];
-              this.Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
-              this.CurrentAnim = "f02_lookdown_00";
-              this.Affection += (float) this.Multiplier;
-              this.CalculateAffection();
-            }
-            else if (this.WisdomTrait == 0)
-              this.DialogueLabel.text = "Uh...that doesn't sound correct...";
-            else if (this.WisdomTrait == this.WisdomTraitDemonstrated)
-              this.DialogueLabel.text = "Uh...you already told me about that...";
-          }
-          else
-            this.DialogueLabel.text = "Um...well...that sort of thing doesn't really matter to me...";
-          if ((double) this.Affection > 100.0)
-            this.Affection = 100f;
-          else if ((double) this.Affection < 0.0)
-            this.Affection = 0.0f;
-        }
-        if (Input.GetButtonDown("B"))
-          this.ShowingOff = false;
-      }
-      else if (this.GivingGift)
-      {
-        this.GiveGift.localScale = Vector3.Lerp(this.GiveGift.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        if (this.InputManager.TappedUp)
-        {
-          --this.GiftRow;
-          this.UpdateGiftHighlight();
-        }
-        else if (this.InputManager.TappedDown)
-        {
-          ++this.GiftRow;
-          this.UpdateGiftHighlight();
-        }
-        if (this.InputManager.TappedLeft)
-        {
-          --this.GiftColumn;
-          this.UpdateGiftHighlight();
-        }
-        else if (this.InputManager.TappedRight)
-        {
-          ++this.GiftColumn;
-          this.UpdateGiftHighlight();
-        }
-        if (Input.GetButtonDown("A"))
-        {
-          if (this.GiftIcons[this.GiftSelected].enabled)
-          {
-            this.GiftStatusNeedsSaving = true;
-            this.GiftsPurchased[this.GiftSelected] = false;
-            this.GiftsGiven[this.GiftSelected] = true;
-            this.Rival.Cosmetic.CatGifts[this.GiftSelected].SetActive(true);
-            UILabel label = this.Labels[5];
-            label.color = new Color(label.color.r, label.color.g, label.color.b, 0.5f);
-            this.GivingGift = false;
-            this.DialogueLabel.text = this.GiveGifts[this.GiftSelected];
-            this.Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
-            this.CurrentAnim = "f02_lookdown_00";
-            this.Affection += (float) this.Multiplier;
-            this.CalculateAffection();
-          }
-          if ((double) this.Affection > 100.0)
-            this.Affection = 100f;
-          else if ((double) this.Affection < 0.0)
-            this.Affection = 0.0f;
-        }
-        if (Input.GetButtonDown("B"))
-          this.GivingGift = false;
-      }
-    }
-    else if (this.Phase == 5)
-    {
-      this.Speed += Time.deltaTime * 100f;
-      this.AffectionSet.localPosition = new Vector3(this.AffectionSet.localPosition.x, this.AffectionSet.localPosition.y + this.Speed, this.AffectionSet.localPosition.z);
-      this.OptionSet.localPosition = new Vector3(this.OptionSet.localPosition.x + this.Speed, this.OptionSet.localPosition.y, this.OptionSet.localPosition.z);
-      if ((double) this.Speed > 100.0 && Input.GetButtonDown("A"))
-        ++this.Phase;
-    }
-    else if (this.Phase == 6)
-    {
-      this.DatingSimHUD.alpha = Mathf.MoveTowards(this.DatingSimHUD.alpha, 0.0f, Time.deltaTime);
-      if ((double) this.DatingSimHUD.alpha == 0.0)
-      {
-        this.DatingSimHUD.gameObject.SetActive(false);
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 7)
-    {
-      if ((double) this.Panel.alpha == 0.0)
-      {
-        Debug.Log((object) "The rival and suitor are now being released from the dating minigame.");
-        this.Yandere.CameraEffects.UpdateDOF(2f);
-        this.Suitor.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-        this.LoveManager.RivalWaiting = false;
-        this.LoveManager.Courted = true;
-        this.Suitor.enabled = true;
-        this.Rival.enabled = true;
-        this.Suitor.CurrentDestination = this.Suitor.Destinations[this.Suitor.Phase];
-        this.Suitor.Pathfinding.target = this.Suitor.Destinations[this.Suitor.Phase];
-        this.Suitor.Prompt.Label[0].text = "     Talk";
-        this.Suitor.Pathfinding.canSearch = true;
-        this.Suitor.Pathfinding.canMove = true;
-        this.Suitor.Pushable = false;
-        this.Suitor.Meeting = false;
-        this.Suitor.Routine = true;
-        this.Suitor.MeetTimer = 0.0f;
-        this.Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 0.0f);
-        this.Rival.CurrentDestination = this.Rival.Destinations[this.Rival.Phase];
-        this.Rival.Pathfinding.target = this.Rival.Destinations[this.Rival.Phase];
-        this.Rival.CharacterAnimation["f02_smile_00"].weight = 0.0f;
-        this.Rival.Prompt.Label[0].text = "     Talk";
-        this.Rival.Pathfinding.canSearch = true;
-        this.Rival.Pathfinding.canMove = true;
-        this.Rival.DistanceToDestination = 100f;
-        this.Rival.Pushable = false;
-        this.Rival.Meeting = false;
-        this.Rival.Routine = true;
-        this.Rival.MeetTimer = 0.0f;
-        this.StudentManager.Clock.StopTime = false;
-        this.Yandere.RPGCamera.enabled = true;
-        this.Suitor.Earpiece.SetActive(false);
-        this.HeartbeatCamera.SetActive(true);
-        this.Yandere.Headset.SetActive(false);
-        if (this.AffectionLevel == 5)
-          this.LoveManager.ConfessToSuitor = true;
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Show = false;
-        if ((Object) this.StudentManager.Students[10] != (Object) null && (Object) this.StudentManager.Students[10].FollowTarget != (Object) null)
-        {
-          this.StudentManager.Students[10].CurrentDestination = this.StudentManager.Students[10].FollowTarget.transform;
-          this.StudentManager.Students[10].Pathfinding.target = this.StudentManager.Students[10].FollowTarget.transform;
-        }
-        this.DataNeedsSaving = true;
-      }
-      else if ((double) this.Panel.alpha == 1.0)
-      {
-        this.Matchmaking = false;
-        this.Yandere.CanMove = true;
-        this.gameObject.SetActive(false);
-      }
-      this.Panel.alpha = Mathf.MoveTowards(this.Panel.alpha, 1f, Time.deltaTime);
-    }
-    if (this.Yandere.NoDebug)
-      return;
-    if (Input.GetKeyDown(KeyCode.Space))
-    {
-      this.Yandere.CharacterAnimation["f02_treePeeking_00"].time = 0.0f;
-      this.Yandere.CharacterAnimation.Play("f02_treePeeking_00");
-      this.MainCamera.transform.position = new Vector3(48f, 3f, -44f);
-      this.MainCamera.transform.eulerAngles = new Vector3(15f, 90f, 0.0f);
-      this.Rival.transform.eulerAngles = new Vector3(this.Rival.transform.eulerAngles.x, 90f, this.Rival.transform.eulerAngles.z);
-      this.Rival.CharacterAnimation.Play(this.Rival.IdleAnim);
-      this.Rival.CharacterAnimation["f02_turnAround_00"].speed = 1f;
-      DatingGlobals.SetComplimentGiven(1, false);
-      DatingGlobals.SetComplimentGiven(4, false);
-      DatingGlobals.SetComplimentGiven(5, false);
-      DatingGlobals.SetComplimentGiven(8, false);
-      DatingGlobals.SetComplimentGiven(9, false);
-      DatingGlobals.SetTraitDemonstrated(2, 0);
-      DatingGlobals.AffectionLevel = 0.0f;
-      DatingGlobals.Affection = 0.0f;
-      this.AffectionBar.localScale = new Vector3(0.0f, this.AffectionBar.localScale.y, this.AffectionBar.localScale.z);
-      this.AffectionLevel = 0;
-      this.Affection = 0.0f;
-      for (int index = 1; index < 6; ++index)
-      {
-        UILabel label = this.Labels[index];
-        label.color = new Color(label.color.r, label.color.g, label.color.b, 1f);
-      }
-      this.Phase = 1;
-      this.Timer = 0.0f;
-      for (int topicID = 1; topicID < 26; ++topicID)
-      {
-        DatingGlobals.SetTopicDiscussed(topicID, false);
-        UISprite topicIcon = this.TopicIcons[topicID];
-        topicIcon.color = new Color(topicIcon.color.r, topicIcon.color.g, topicIcon.color.b, 1f);
-      }
-      this.UpdateTopics();
-    }
-    if (Input.GetKeyDown("="))
-      ++Time.timeScale;
-    if (!Input.GetKeyDown(KeyCode.LeftControl))
-      return;
-    this.Affection += 10f;
-    this.CalculateAffection();
-    this.DialogueLabel.text = this.Greetings[this.AffectionLevel];
-  }
+	public PromptBarScript PromptBar;
 
-  private void LateUpdate()
-  {
-    int phase = this.Phase;
-  }
+	public YandereScript Yandere;
 
-  private void CalculateMultiplier()
-  {
-    this.Multiplier = 5;
-    if (!this.Suitor.Cosmetic.MaleHair[55].activeInHierarchy)
-    {
-      this.MultiplierIcons[1].mainTexture = this.X;
-      --this.Multiplier;
-    }
-    if (!this.Suitor.Cosmetic.MaleAccessories[17].activeInHierarchy)
-    {
-      this.MultiplierIcons[2].mainTexture = this.X;
-      --this.Multiplier;
-    }
-    if (!this.Suitor.Cosmetic.Eyewear[6].activeInHierarchy)
-    {
-      this.MultiplierIcons[3].mainTexture = this.X;
-      --this.Multiplier;
-    }
-    if (this.Suitor.Cosmetic.SkinColor != 6)
-    {
-      this.MultiplierIcons[4].mainTexture = this.X;
-      --this.Multiplier;
-    }
-    if (PlayerGlobals.PantiesEquipped == 2)
-    {
-      this.PantyIcon.SetActive(true);
-      ++this.Multiplier;
-    }
-    else
-      this.PantyIcon.SetActive(false);
-    if (this.Yandere.Class.Seduction + this.Yandere.Class.SeductionBonus > 0)
-    {
-      this.SeductionLabel.text = (this.Yandere.Class.Seduction + this.Yandere.Class.SeductionBonus).ToString();
-      this.Multiplier += this.Yandere.Class.Seduction + this.Yandere.Class.SeductionBonus;
-      this.SeductionIcon.SetActive(true);
-    }
-    else
-      this.SeductionIcon.SetActive(false);
-    this.Multiplier += this.Yandere.Class.PsychologyGrade + this.Yandere.Class.PsychologyBonus;
-    this.MultiplierLabel.text = "Multiplier: " + this.Multiplier.ToString() + "x";
-  }
+	public StudentScript Suitor;
 
-  private void UpdateHighlight()
-  {
-    if (this.Selected < 1)
-      this.Selected = 6;
-    else if (this.Selected > 6)
-      this.Selected = 1;
-    this.HighlightTarget = (float) (450.0 - 100.0 * (double) this.Selected);
-  }
+	public StudentScript Rival;
 
-  private void UpdateTopicHighlight()
-  {
-    if (this.Row < 1)
-      this.Row = 5;
-    else if (this.Row > 5)
-      this.Row = 1;
-    if (this.Column < 1)
-      this.Column = 5;
-    else if (this.Column > 5)
-      this.Column = 1;
-    this.TopicHighlight.localPosition = new Vector3((float) (125 * this.Column - 375), (float) (375 - 125 * this.Row), this.TopicHighlight.localPosition.z);
-    this.TopicSelected = (this.Row - 1) * 5 + this.Column;
-    this.TopicNameLabel.text = ConversationGlobals.GetTopicDiscovered(this.TopicSelected) ? this.TopicNames[this.TopicSelected] : "??????????";
-  }
+	public PromptScript Prompt;
 
-  private void DetermineOpinion() => this.Opinion = this.JSON.Topics[this.LoveManager.RivalID].Topics[this.TopicSelected];
+	public JsonScript JSON;
 
-  private void UpdateTopics()
-  {
-    for (int topicID = 1; topicID < this.TopicIcons.Length; ++topicID)
-    {
-      UISprite topicIcon = this.TopicIcons[topicID];
-      if (!ConversationGlobals.GetTopicDiscovered(topicID))
-      {
-        topicIcon.spriteName = 0.ToString();
-        topicIcon.color = new Color(topicIcon.color.r, topicIcon.color.g, topicIcon.color.b, 0.5f);
-      }
-      else
-        topicIcon.spriteName = topicID.ToString();
-    }
-    for (int Topic = 1; Topic <= 25; ++Topic)
-    {
-      UISprite opinionIcon = this.OpinionIcons[Topic];
-      if (!this.StudentManager.GetTopicLearnedByStudent(Topic, this.LoveManager.RivalID))
-      {
-        opinionIcon.spriteName = "Unknown";
-      }
-      else
-      {
-        int[] topics = this.JSON.Topics[this.LoveManager.RivalID].Topics;
-        opinionIcon.spriteName = this.OpinionSpriteNames[topics[Topic]];
-      }
-    }
-  }
+	public Transform AffectionSet;
 
-  private void UpdateComplimentHighlight()
-  {
-    for (int index = 1; index < this.TopicIcons.Length; ++index)
-      this.ComplimentBGs[this.ComplimentSelected].color = this.OriginalColor;
-    if (this.Line < 1)
-      this.Line = 5;
-    else if (this.Line > 5)
-      this.Line = 1;
-    if (this.Side < 1)
-      this.Side = 2;
-    else if (this.Side > 2)
-      this.Side = 1;
-    this.ComplimentSelected = (this.Line - 1) * 2 + this.Side;
-    this.ComplimentBGs[this.ComplimentSelected].color = Color.white;
-  }
+	public Transform OptionSet;
 
-  private void UpdateTraitHighlight()
-  {
-    if (this.TraitSelected < 1)
-      this.TraitSelected = 3;
-    else if (this.TraitSelected > 3)
-      this.TraitSelected = 1;
-    for (int index = 1; index < this.TraitBGs.Length; ++index)
-      this.TraitBGs[index].color = this.OriginalColor;
-    this.TraitBGs[this.TraitSelected].color = Color.white;
-  }
+	public GameObject HeartbeatCamera;
 
-  private void UpdateGiftHighlight()
-  {
-    for (int index = 1; index < this.GiftBGs.Length; ++index)
-      this.GiftBGs[index].color = this.OriginalColor;
-    if (this.GiftRow < 1)
-      this.GiftRow = 2;
-    else if (this.GiftRow > 2)
-      this.GiftRow = 1;
-    if (this.GiftColumn < 1)
-      this.GiftColumn = 2;
-    else if (this.GiftColumn > 2)
-      this.GiftColumn = 1;
-    this.GiftSelected = (this.GiftRow - 1) * 2 + this.GiftColumn;
-    this.GiftBGs[this.GiftSelected].color = Color.white;
-  }
+	public GameObject SeductionIcon;
 
-  public void SaveTopicsAndCompliments()
-  {
-    Debug.Log((object) "Saving Dating Minigame data.");
-    for (int topicID = 1; topicID < 26; ++topicID)
-      DatingGlobals.SetTopicDiscussed(topicID, this.TopicsDiscussed[topicID]);
-    for (int complimentID = 1; complimentID < 11; ++complimentID)
-      DatingGlobals.SetComplimentGiven(complimentID, this.ComplimentsGiven[complimentID]);
-    DatingGlobals.SetTraitDemonstrated(1, this.CourageTraitDemonstrated);
-    DatingGlobals.SetTraitDemonstrated(2, this.WisdomTraitDemonstrated);
-    DatingGlobals.SetTraitDemonstrated(3, this.StrengthTraitDemonstrated);
-    DatingGlobals.SetSuitorTrait(1, this.CourageTrait);
-    DatingGlobals.SetSuitorTrait(2, this.WisdomTrait);
-    DatingGlobals.SetSuitorTrait(3, this.StrengthTrait);
-    DatingGlobals.Affection = this.Affection;
-  }
+	public GameObject PantyIcon;
 
-  public void SaveGiftStatus()
-  {
-    Debug.Log((object) "Saving Dating Minigame gift status.");
-    for (int giftID = 1; giftID < 5; ++giftID)
-    {
-      CollectibleGlobals.SetGiftPurchased(giftID + 5, this.GiftsPurchased[giftID]);
-      CollectibleGlobals.SetGiftGiven(giftID, this.GiftsGiven[giftID]);
-    }
-  }
+	public Transform TopicHighlight;
+
+	public Transform ComplimentSet;
+
+	public Transform AffectionBar;
+
+	public Transform Highlight;
+
+	public Transform GiveGift;
+
+	public Transform PeekSpot;
+
+	public Transform[] Options;
+
+	public Transform ShowOff;
+
+	public Transform Topics;
+
+	public Texture X;
+
+	public UISprite[] OpinionIcons;
+
+	public UISprite[] TopicIcons;
+
+	public UITexture[] MultiplierIcons;
+
+	public UILabel[] ComplimentLabels;
+
+	public UISprite[] ComplimentBGs;
+
+	public UILabel MultiplierLabel;
+
+	public UILabel SeductionLabel;
+
+	public UILabel TopicNameLabel;
+
+	public UILabel DialogueLabel;
+
+	public UIPanel DatingSimHUD;
+
+	public UILabel WisdomLabel;
+
+	public UIPanel Panel;
+
+	public UITexture[] GiftIcons;
+
+	public UISprite[] TraitBGs;
+
+	public UISprite[] GiftBGs;
+
+	public UILabel[] Labels;
+
+	public string[] OpinionSpriteNames;
+
+	public string[] Compliments;
+
+	public string[] TopicNames;
+
+	public string[] GiveGifts;
+
+	public string[] Greetings;
+
+	public string[] Farewells;
+
+	public string[] Negatives;
+
+	public string[] Positives;
+
+	public string[] ShowOffs;
+
+	public bool[] ComplimentsGiven;
+
+	public bool[] TopicsDiscussed;
+
+	public bool[] GiftsPurchased;
+
+	public bool[] GiftsGiven;
+
+	public bool SuitorAndRivalTalking;
+
+	public bool GiftStatusNeedsSaving;
+
+	public bool DataNeedsSaving;
+
+	public bool SelectingTopic;
+
+	public bool AffectionGrow;
+
+	public bool Complimenting;
+
+	public bool Initialized;
+
+	public bool Matchmaking;
+
+	public bool GivingGift;
+
+	public bool ShowingOff;
+
+	public bool Eighties;
+
+	public bool Negative;
+
+	public bool SlideOut;
+
+	public bool Testing;
+
+	public float HighlightTarget;
+
+	public float Affection;
+
+	public float Rotation;
+
+	public float Speed;
+
+	public float Timer;
+
+	public int ComplimentSelected = 1;
+
+	public int TraitSelected = 1;
+
+	public int TopicSelected = 1;
+
+	public int GiftSelected = 1;
+
+	public int Selected = 1;
+
+	public int AffectionLevel;
+
+	public int Multiplier;
+
+	public int Opinion;
+
+	public int Phase = 1;
+
+	public int WisdomTraitDemonstrated;
+
+	public int WisdomTrait;
+
+	public int CourageTraitDemonstrated;
+
+	public int CourageTrait;
+
+	public int StrengthTraitDemonstrated;
+
+	public int StrengthTrait;
+
+	public int[] TraitDemonstrated;
+
+	public int[] Trait;
+
+	public int GiftColumn = 1;
+
+	public int GiftRow = 1;
+
+	public int Column = 1;
+
+	public int Row = 1;
+
+	public int Side = 1;
+
+	public int Line = 1;
+
+	public string CurrentAnim = string.Empty;
+
+	public Color OriginalColor;
+
+	public Camera MainCamera;
+
+	public void Start()
+	{
+		if (Initialized)
+		{
+			return;
+		}
+		MainCamera = Camera.main;
+		Affection = DatingGlobals.Affection;
+		AffectionBar.localScale = new Vector3(Affection / 100f, AffectionBar.localScale.y, AffectionBar.localScale.z);
+		CalculateAffection();
+		OriginalColor = ComplimentBGs[1].color;
+		ComplimentSet.localScale = Vector3.zero;
+		GiveGift.localScale = Vector3.zero;
+		ShowOff.localScale = Vector3.zero;
+		Topics.localScale = Vector3.zero;
+		DatingSimHUD.gameObject.SetActive(false);
+		DatingSimHUD.alpha = 0f;
+		for (int i = 1; i < 26; i++)
+		{
+			if (DatingGlobals.GetTopicDiscussed(i))
+			{
+				TopicsDiscussed[i] = true;
+				UISprite uISprite = TopicIcons[i];
+				uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0.5f);
+			}
+		}
+		for (int j = 1; j < 11; j++)
+		{
+			if (DatingGlobals.GetComplimentGiven(j))
+			{
+				ComplimentsGiven[j] = true;
+				UILabel uILabel = ComplimentLabels[j];
+				uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
+			}
+		}
+		UpdateComplimentHighlight();
+		UpdateTraitHighlight();
+		UpdateGiftHighlight();
+		Eighties = GameGlobals.Eighties;
+		CourageTrait = DatingGlobals.GetSuitorTrait(1);
+		CourageTraitDemonstrated = DatingGlobals.GetTraitDemonstrated(1);
+		WisdomTrait = DatingGlobals.GetSuitorTrait(2);
+		WisdomTraitDemonstrated = DatingGlobals.GetTraitDemonstrated(2);
+		StrengthTrait = DatingGlobals.GetSuitorTrait(3);
+		StrengthTraitDemonstrated = DatingGlobals.GetTraitDemonstrated(3);
+		TraitDemonstrated[1] = CourageTraitDemonstrated;
+		TraitDemonstrated[2] = WisdomTraitDemonstrated;
+		TraitDemonstrated[3] = StrengthTraitDemonstrated;
+		Trait[1] = CourageTrait;
+		Trait[2] = WisdomTrait;
+		Trait[3] = StrengthTrait;
+		Initialized = true;
+	}
+
+	private void CalculateAffection()
+	{
+		if (Affection > 100f)
+		{
+			Affection = 100f;
+		}
+		if (Affection == 0f)
+		{
+			AffectionLevel = 0;
+		}
+		else if (Affection < 25f)
+		{
+			AffectionLevel = 1;
+		}
+		else if (Affection < 50f)
+		{
+			AffectionLevel = 2;
+		}
+		else if (Affection < 75f)
+		{
+			AffectionLevel = 3;
+		}
+		else if (Affection < 100f)
+		{
+			AffectionLevel = 4;
+		}
+		else
+		{
+			AffectionLevel = 5;
+		}
+	}
+
+	private void Update()
+	{
+		if (Testing)
+		{
+			Prompt.enabled = true;
+		}
+		else if (LoveManager.RivalWaiting)
+		{
+			if (Rival == null)
+			{
+				Suitor = StudentManager.Students[LoveManager.SuitorID];
+				Rival = StudentManager.Students[LoveManager.RivalID];
+			}
+			if (Rival.MeetTimer > 0f && Suitor.MeetTimer > 0f)
+			{
+				if (!Eighties)
+				{
+					Prompt.enabled = true;
+				}
+				else if (!SuitorAndRivalTalking)
+				{
+					Debug.Log("DatingMinigameScript is now setting SuitorAndRivalTalking to ''true''.");
+					Suitor.CurrentDestination = Rival.transform;
+					Suitor.Pathfinding.target = Rival.transform;
+					Suitor.DistractionTarget = Rival;
+					Suitor.TargetDistance = 1f;
+					Suitor.DistractTimer = 10f;
+					Suitor.Distracting = true;
+					Suitor.Routine = false;
+					Suitor.Pathfinding.canSearch = true;
+					Suitor.Pathfinding.canMove = true;
+					Rival.Pathfinding.canSearch = false;
+					Rival.Pathfinding.canMove = false;
+					Suitor.Meeting = false;
+					Rival.Meeting = false;
+					Rival.Routine = false;
+					Suitor.MeetTimer = 0f;
+					Rival.MeetTimer = 0f;
+					SuitorAndRivalTalking = true;
+				}
+			}
+		}
+		else if (Prompt.enabled)
+		{
+			Prompt.Hide();
+			Prompt.enabled = false;
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			if (!Yandere.Chased && Yandere.Chasers == 0 && !Rival.Hunted)
+			{
+				Yandere.CameraEffects.UpdateDOF(1f);
+				Suitor.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+				Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+				Suitor.CharacterAnimation.enabled = true;
+				Rival.CharacterAnimation.enabled = true;
+				Suitor.enabled = false;
+				Rival.enabled = false;
+				Rival.CharacterAnimation["f02_smile_00"].layer = 1;
+				Rival.CharacterAnimation.Play("f02_smile_00");
+				Rival.CharacterAnimation["f02_smile_00"].weight = 0f;
+				StudentManager.Clock.StopTime = true;
+				Yandere.RPGCamera.enabled = false;
+				HeartbeatCamera.SetActive(false);
+				Yandere.Headset.SetActive(true);
+				Yandere.CanMove = false;
+				Yandere.EmptyHands();
+				if (Yandere.YandereVision)
+				{
+					Yandere.ResetYandereEffects();
+					Yandere.YandereVision = false;
+				}
+				Yandere.transform.position = PeekSpot.position;
+				Yandere.transform.eulerAngles = PeekSpot.eulerAngles;
+				Yandere.CharacterAnimation.Play("f02_treePeeking_00");
+				MainCamera.transform.position = new Vector3(48f, 3f, -44f);
+				MainCamera.transform.eulerAngles = new Vector3(15f, 90f, 0f);
+				WisdomLabel.text = "Wisdom: " + WisdomTrait;
+				GiftIcons[1].enabled = CollectibleGlobals.GetGiftPurchased(6);
+				GiftIcons[2].enabled = CollectibleGlobals.GetGiftPurchased(7);
+				GiftIcons[3].enabled = CollectibleGlobals.GetGiftPurchased(8);
+				GiftIcons[4].enabled = CollectibleGlobals.GetGiftPurchased(9);
+				GiftsPurchased[1] = CollectibleGlobals.GetGiftPurchased(6);
+				GiftsPurchased[2] = CollectibleGlobals.GetGiftPurchased(7);
+				GiftsPurchased[3] = CollectibleGlobals.GetGiftPurchased(8);
+				GiftsPurchased[4] = CollectibleGlobals.GetGiftPurchased(9);
+				GiftsGiven[1] = CollectibleGlobals.GetGiftGiven(1);
+				GiftsGiven[2] = CollectibleGlobals.GetGiftGiven(2);
+				GiftsGiven[3] = CollectibleGlobals.GetGiftGiven(3);
+				GiftsGiven[4] = CollectibleGlobals.GetGiftGiven(4);
+				Matchmaking = true;
+				UpdateTopics();
+				Time.timeScale = 1f;
+			}
+		}
+		if (!Matchmaking)
+		{
+			return;
+		}
+		if (CurrentAnim != string.Empty && Rival.CharacterAnimation[CurrentAnim].time >= Rival.CharacterAnimation[CurrentAnim].length)
+		{
+			Rival.CharacterAnimation.Play(Rival.IdleAnim);
+		}
+		if (Phase == 1)
+		{
+			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 0f, Time.deltaTime);
+			Timer += Time.deltaTime;
+			MainCamera.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(54f, 1.25f, -45.25f), Timer * 0.02f);
+			MainCamera.transform.eulerAngles = Vector3.Lerp(MainCamera.transform.eulerAngles, new Vector3(0f, 45f, 0f), Timer * 0.02f);
+			if (Timer > 5f)
+			{
+				Yandere.CameraEffects.UpdateDOF(0.6f);
+				Suitor.CharacterAnimation.Play("insertEarpiece_00");
+				Suitor.CharacterAnimation["insertEarpiece_00"].time = 0f;
+				Suitor.CharacterAnimation.Play("insertEarpiece_00");
+				Suitor.Earpiece.SetActive(true);
+				MainCamera.transform.position = new Vector3(45.5f, 1.25f, -44.5f);
+				MainCamera.transform.eulerAngles = new Vector3(0f, -45f, 0f);
+				Rotation = -45f;
+				Timer = 0f;
+				Phase++;
+			}
+		}
+		else if (Phase == 2)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 4f)
+			{
+				Suitor.Earpiece.transform.parent = Suitor.Head;
+				Suitor.Earpiece.transform.localPosition = new Vector3(0f, -1.12f, 1.14f);
+				Suitor.Earpiece.transform.localEulerAngles = new Vector3(45f, -180f, 0f);
+				MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, new Vector3(45.11f, 1.375f, -44f), (Timer - 4f) * 0.02f);
+				Rotation = Mathf.Lerp(Rotation, 90f, (Timer - 4f) * 0.02f);
+				MainCamera.transform.eulerAngles = new Vector3(MainCamera.transform.eulerAngles.x, Rotation, MainCamera.transform.eulerAngles.z);
+				if (Rotation > 89.9f)
+				{
+					Yandere.CameraEffects.UpdateDOF(0.75f);
+					Rival.CharacterAnimation["f02_turnAround_00"].time = 0f;
+					Rival.CharacterAnimation.CrossFade("f02_turnAround_00");
+					AffectionBar.localScale = new Vector3(Affection / 100f, AffectionBar.localScale.y, AffectionBar.localScale.z);
+					DialogueLabel.text = Greetings[AffectionLevel];
+					CalculateMultiplier();
+					DatingSimHUD.gameObject.SetActive(true);
+					Timer = 0f;
+					Phase++;
+				}
+			}
+		}
+		else if (Phase == 3)
+		{
+			DatingSimHUD.alpha = Mathf.MoveTowards(DatingSimHUD.alpha, 1f, Time.deltaTime);
+			if (Rival.CharacterAnimation["f02_turnAround_00"].time >= Rival.CharacterAnimation["f02_turnAround_00"].length)
+			{
+				Rival.transform.eulerAngles = new Vector3(Rival.transform.eulerAngles.x, -90f, Rival.transform.eulerAngles.z);
+				Rival.CharacterAnimation.Play("f02_turnAround_00");
+				Rival.CharacterAnimation["f02_turnAround_00"].time = 0f;
+				Rival.CharacterAnimation["f02_turnAround_00"].speed = 0f;
+				Rival.CharacterAnimation.Play("f02_turnAround_00");
+				Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
+				Time.timeScale = 1f;
+				PromptBar.ClearButtons();
+				PromptBar.Label[0].text = "Confirm";
+				PromptBar.Label[1].text = "Back";
+				PromptBar.Label[4].text = "Select";
+				PromptBar.UpdateButtons();
+				PromptBar.Show = true;
+				Phase++;
+			}
+		}
+		else if (Phase == 4)
+		{
+			if (AffectionGrow)
+			{
+				Affection = Mathf.MoveTowards(Affection, 100f, Time.deltaTime * 10f);
+				CalculateAffection();
+			}
+			Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", Affection * 0.01f);
+			Rival.CharacterAnimation["f02_smile_00"].weight = Affection * 0.01f;
+			Highlight.localPosition = new Vector3(Highlight.localPosition.x, Mathf.Lerp(Highlight.localPosition.y, HighlightTarget, Time.deltaTime * 10f), Highlight.localPosition.z);
+			for (int i = 1; i < Options.Length; i++)
+			{
+				Transform transform = Options[i];
+				transform.localPosition = new Vector3(Mathf.Lerp(transform.localPosition.x, (i == Selected) ? 750f : 800f, Time.deltaTime * 10f), transform.localPosition.y, transform.localPosition.z);
+			}
+			AffectionBar.localScale = new Vector3(Mathf.Lerp(AffectionBar.localScale.x, Affection / 100f, Time.deltaTime * 10f), AffectionBar.localScale.y, AffectionBar.localScale.z);
+			if (!SelectingTopic && !Complimenting && !ShowingOff && !GivingGift)
+			{
+				Topics.localScale = Vector3.Lerp(Topics.localScale, Vector3.zero, Time.deltaTime * 10f);
+				ComplimentSet.localScale = Vector3.Lerp(ComplimentSet.localScale, Vector3.zero, Time.deltaTime * 10f);
+				ShowOff.localScale = Vector3.Lerp(ShowOff.localScale, Vector3.zero, Time.deltaTime * 10f);
+				GiveGift.localScale = Vector3.Lerp(GiveGift.localScale, Vector3.zero, Time.deltaTime * 10f);
+				if (InputManager.TappedUp)
+				{
+					Selected--;
+					UpdateHighlight();
+				}
+				if (InputManager.TappedDown)
+				{
+					Selected++;
+					UpdateHighlight();
+				}
+				if (Input.GetButtonDown("A") && Labels[Selected].color.a == 1f)
+				{
+					if (Selected == 1)
+					{
+						SelectingTopic = true;
+						Negative = true;
+					}
+					else if (Selected == 2)
+					{
+						SelectingTopic = true;
+						Negative = false;
+					}
+					else if (Selected == 3)
+					{
+						Complimenting = true;
+					}
+					else if (Selected == 4)
+					{
+						ShowingOff = true;
+					}
+					else if (Selected == 5)
+					{
+						GivingGift = true;
+					}
+					else if (Selected == 6)
+					{
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = "Confirm";
+						PromptBar.UpdateButtons();
+						CalculateAffection();
+						DialogueLabel.text = Farewells[AffectionLevel];
+						Phase++;
+					}
+				}
+			}
+			else if (SelectingTopic)
+			{
+				Topics.localScale = Vector3.Lerp(Topics.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				if (InputManager.TappedUp)
+				{
+					Row--;
+					UpdateTopicHighlight();
+				}
+				else if (InputManager.TappedDown)
+				{
+					Row++;
+					UpdateTopicHighlight();
+				}
+				if (InputManager.TappedLeft)
+				{
+					Column--;
+					UpdateTopicHighlight();
+				}
+				else if (InputManager.TappedRight)
+				{
+					Column++;
+					UpdateTopicHighlight();
+				}
+				if (Input.GetButtonDown("A") && TopicIcons[TopicSelected].color.a == 1f)
+				{
+					SelectingTopic = false;
+					UISprite uISprite = TopicIcons[TopicSelected];
+					uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0.5f);
+					TopicsDiscussed[TopicSelected] = true;
+					DetermineOpinion();
+					if (!Yandere.StudentManager.GetTopicLearnedByStudent(Opinion, LoveManager.RivalID))
+					{
+						Yandere.StudentManager.SetTopicLearnedByStudent(Opinion, LoveManager.RivalID, true);
+					}
+					if (Negative)
+					{
+						UILabel uILabel = Labels[1];
+						uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
+						if (Opinion == 2)
+						{
+							DialogueLabel.text = "Hey! Just so you know, I take offense to that...";
+							Rival.CharacterAnimation.CrossFade("f02_refuse_00");
+							CurrentAnim = "f02_refuse_00";
+							Affection -= 1f;
+							CalculateAffection();
+						}
+						else if (Opinion == 1)
+						{
+							DialogueLabel.text = Negatives[AffectionLevel];
+							Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
+							CurrentAnim = "f02_lookdown_00";
+							Affection += Multiplier;
+							CalculateAffection();
+						}
+						else if (Opinion == 0)
+						{
+							DialogueLabel.text = "Um...okay.";
+						}
+					}
+					else
+					{
+						UILabel uILabel2 = Labels[2];
+						uILabel2.color = new Color(uILabel2.color.r, uILabel2.color.g, uILabel2.color.b, 0.5f);
+						if (Opinion == 2)
+						{
+							DialogueLabel.text = Positives[AffectionLevel];
+							Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
+							CurrentAnim = "f02_lookdown_00";
+							Affection += Multiplier;
+							CalculateAffection();
+						}
+						else if (Opinion == 1)
+						{
+							DialogueLabel.text = "To be honest with you, I strongly disagree...";
+							Rival.CharacterAnimation.CrossFade("f02_refuse_00");
+							CurrentAnim = "f02_refuse_00";
+							Affection -= 1f;
+							CalculateAffection();
+						}
+						else if (Opinion == 0)
+						{
+							DialogueLabel.text = "Um...all right.";
+						}
+					}
+					if (Affection > 100f)
+					{
+						Affection = 100f;
+					}
+					else if (Affection < 0f)
+					{
+						Affection = 0f;
+					}
+				}
+				if (Input.GetButtonDown("B"))
+				{
+					SelectingTopic = false;
+				}
+			}
+			else if (Complimenting)
+			{
+				ComplimentSet.localScale = Vector3.Lerp(ComplimentSet.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				if (InputManager.TappedUp)
+				{
+					Line--;
+					UpdateComplimentHighlight();
+				}
+				else if (InputManager.TappedDown)
+				{
+					Line++;
+					UpdateComplimentHighlight();
+				}
+				if (InputManager.TappedLeft)
+				{
+					Side--;
+					UpdateComplimentHighlight();
+				}
+				else if (InputManager.TappedRight)
+				{
+					Side++;
+					UpdateComplimentHighlight();
+				}
+				if (Input.GetButtonDown("A") && ComplimentLabels[ComplimentSelected].color.a == 1f)
+				{
+					UILabel uILabel3 = Labels[3];
+					uILabel3.color = new Color(uILabel3.color.r, uILabel3.color.g, uILabel3.color.b, 0.5f);
+					Complimenting = false;
+					DialogueLabel.text = Compliments[ComplimentSelected];
+					ComplimentsGiven[ComplimentSelected] = true;
+					if (ComplimentSelected == 1 || ComplimentSelected == 4 || ComplimentSelected == 5 || ComplimentSelected == 8 || ComplimentSelected == 9)
+					{
+						Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
+						CurrentAnim = "f02_lookdown_00";
+						Affection += Multiplier;
+						CalculateAffection();
+					}
+					else
+					{
+						Rival.CharacterAnimation.CrossFade("f02_refuse_00");
+						CurrentAnim = "f02_refuse_00";
+						Affection -= 1f;
+						CalculateAffection();
+					}
+					if (Affection > 100f)
+					{
+						Affection = 100f;
+					}
+					else if (Affection < 0f)
+					{
+						Affection = 0f;
+					}
+				}
+				if (Input.GetButtonDown("B"))
+				{
+					Complimenting = false;
+				}
+			}
+			else if (ShowingOff)
+			{
+				ShowOff.localScale = Vector3.Lerp(ShowOff.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				if (InputManager.TappedUp)
+				{
+					TraitSelected--;
+					UpdateTraitHighlight();
+				}
+				else if (InputManager.TappedDown)
+				{
+					TraitSelected++;
+					UpdateTraitHighlight();
+				}
+				if (Input.GetButtonDown("A"))
+				{
+					UILabel uILabel4 = Labels[4];
+					uILabel4.color = new Color(uILabel4.color.r, uILabel4.color.g, uILabel4.color.b, 0.5f);
+					ShowingOff = false;
+					if (TraitSelected == 2)
+					{
+						Debug.Log("Wisdom trait is " + WisdomTrait + ". Wisdom Demonstrated is " + WisdomTraitDemonstrated + ".");
+						if (WisdomTrait > WisdomTraitDemonstrated)
+						{
+							WisdomTraitDemonstrated++;
+							DialogueLabel.text = ShowOffs[AffectionLevel];
+							Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
+							CurrentAnim = "f02_lookdown_00";
+							Affection += Multiplier;
+							CalculateAffection();
+						}
+						else if (WisdomTrait == 0)
+						{
+							DialogueLabel.text = "Uh...that doesn't sound correct...";
+						}
+						else if (WisdomTrait == WisdomTraitDemonstrated)
+						{
+							DialogueLabel.text = "Uh...you already told me about that...";
+						}
+					}
+					else
+					{
+						DialogueLabel.text = "Um...well...that sort of thing doesn't really matter to me...";
+					}
+					if (Affection > 100f)
+					{
+						Affection = 100f;
+					}
+					else if (Affection < 0f)
+					{
+						Affection = 0f;
+					}
+				}
+				if (Input.GetButtonDown("B"))
+				{
+					ShowingOff = false;
+				}
+			}
+			else if (GivingGift)
+			{
+				GiveGift.localScale = Vector3.Lerp(GiveGift.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				if (InputManager.TappedUp)
+				{
+					GiftRow--;
+					UpdateGiftHighlight();
+				}
+				else if (InputManager.TappedDown)
+				{
+					GiftRow++;
+					UpdateGiftHighlight();
+				}
+				if (InputManager.TappedLeft)
+				{
+					GiftColumn--;
+					UpdateGiftHighlight();
+				}
+				else if (InputManager.TappedRight)
+				{
+					GiftColumn++;
+					UpdateGiftHighlight();
+				}
+				if (Input.GetButtonDown("A"))
+				{
+					if (GiftIcons[GiftSelected].enabled)
+					{
+						GiftStatusNeedsSaving = true;
+						GiftsPurchased[GiftSelected] = false;
+						GiftsGiven[GiftSelected] = true;
+						Rival.Cosmetic.CatGifts[GiftSelected].SetActive(true);
+						UILabel uILabel5 = Labels[5];
+						uILabel5.color = new Color(uILabel5.color.r, uILabel5.color.g, uILabel5.color.b, 0.5f);
+						GivingGift = false;
+						DialogueLabel.text = GiveGifts[GiftSelected];
+						Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
+						CurrentAnim = "f02_lookdown_00";
+						Affection += Multiplier;
+						CalculateAffection();
+					}
+					if (Affection > 100f)
+					{
+						Affection = 100f;
+					}
+					else if (Affection < 0f)
+					{
+						Affection = 0f;
+					}
+				}
+				if (Input.GetButtonDown("B"))
+				{
+					GivingGift = false;
+				}
+			}
+		}
+		else if (Phase == 5)
+		{
+			Speed += Time.deltaTime * 100f;
+			AffectionSet.localPosition = new Vector3(AffectionSet.localPosition.x, AffectionSet.localPosition.y + Speed, AffectionSet.localPosition.z);
+			OptionSet.localPosition = new Vector3(OptionSet.localPosition.x + Speed, OptionSet.localPosition.y, OptionSet.localPosition.z);
+			if (Speed > 100f && Input.GetButtonDown("A"))
+			{
+				Phase++;
+			}
+		}
+		else if (Phase == 6)
+		{
+			DatingSimHUD.alpha = Mathf.MoveTowards(DatingSimHUD.alpha, 0f, Time.deltaTime);
+			if (DatingSimHUD.alpha == 0f)
+			{
+				DatingSimHUD.gameObject.SetActive(false);
+				Phase++;
+			}
+		}
+		else if (Phase == 7)
+		{
+			if (Panel.alpha == 0f)
+			{
+				Debug.Log("The rival and suitor are now being released from the dating minigame.");
+				Yandere.CameraEffects.UpdateDOF(2f);
+				Suitor.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+				LoveManager.RivalWaiting = false;
+				LoveManager.Courted = true;
+				Suitor.enabled = true;
+				Rival.enabled = true;
+				Suitor.CurrentDestination = Suitor.Destinations[Suitor.Phase];
+				Suitor.Pathfinding.target = Suitor.Destinations[Suitor.Phase];
+				Suitor.Prompt.Label[0].text = "     Talk";
+				Suitor.Pathfinding.canSearch = true;
+				Suitor.Pathfinding.canMove = true;
+				Suitor.Pushable = false;
+				Suitor.Meeting = false;
+				Suitor.Routine = true;
+				Suitor.MeetTimer = 0f;
+				Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 0f);
+				Rival.CurrentDestination = Rival.Destinations[Rival.Phase];
+				Rival.Pathfinding.target = Rival.Destinations[Rival.Phase];
+				Rival.CharacterAnimation["f02_smile_00"].weight = 0f;
+				Rival.Prompt.Label[0].text = "     Talk";
+				Rival.Pathfinding.canSearch = true;
+				Rival.Pathfinding.canMove = true;
+				Rival.DistanceToDestination = 100f;
+				Rival.Pushable = false;
+				Rival.Meeting = false;
+				Rival.Routine = true;
+				Rival.MeetTimer = 0f;
+				StudentManager.Clock.StopTime = false;
+				Yandere.RPGCamera.enabled = true;
+				Suitor.Earpiece.SetActive(false);
+				HeartbeatCamera.SetActive(true);
+				Yandere.Headset.SetActive(false);
+				if (AffectionLevel == 5)
+				{
+					LoveManager.ConfessToSuitor = true;
+				}
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
+				if (StudentManager.Students[10] != null && StudentManager.Students[10].FollowTarget != null)
+				{
+					StudentManager.Students[10].CurrentDestination = StudentManager.Students[10].FollowTarget.transform;
+					StudentManager.Students[10].Pathfinding.target = StudentManager.Students[10].FollowTarget.transform;
+				}
+				DataNeedsSaving = true;
+			}
+			else if (Panel.alpha == 1f)
+			{
+				Matchmaking = false;
+				Yandere.CanMove = true;
+				base.gameObject.SetActive(false);
+			}
+			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 1f, Time.deltaTime);
+		}
+		if (Yandere.NoDebug)
+		{
+			return;
+		}
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Yandere.CharacterAnimation["f02_treePeeking_00"].time = 0f;
+			Yandere.CharacterAnimation.Play("f02_treePeeking_00");
+			MainCamera.transform.position = new Vector3(48f, 3f, -44f);
+			MainCamera.transform.eulerAngles = new Vector3(15f, 90f, 0f);
+			Rival.transform.eulerAngles = new Vector3(Rival.transform.eulerAngles.x, 90f, Rival.transform.eulerAngles.z);
+			Rival.CharacterAnimation.Play(Rival.IdleAnim);
+			Rival.CharacterAnimation["f02_turnAround_00"].speed = 1f;
+			DatingGlobals.SetComplimentGiven(1, false);
+			DatingGlobals.SetComplimentGiven(4, false);
+			DatingGlobals.SetComplimentGiven(5, false);
+			DatingGlobals.SetComplimentGiven(8, false);
+			DatingGlobals.SetComplimentGiven(9, false);
+			DatingGlobals.SetTraitDemonstrated(2, 0);
+			DatingGlobals.AffectionLevel = 0f;
+			DatingGlobals.Affection = 0f;
+			AffectionBar.localScale = new Vector3(0f, AffectionBar.localScale.y, AffectionBar.localScale.z);
+			AffectionLevel = 0;
+			Affection = 0f;
+			for (int j = 1; j < 6; j++)
+			{
+				UILabel uILabel6 = Labels[j];
+				uILabel6.color = new Color(uILabel6.color.r, uILabel6.color.g, uILabel6.color.b, 1f);
+			}
+			Phase = 1;
+			Timer = 0f;
+			for (int k = 1; k < 26; k++)
+			{
+				DatingGlobals.SetTopicDiscussed(k, false);
+				UISprite uISprite2 = TopicIcons[k];
+				uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 1f);
+			}
+			UpdateTopics();
+		}
+		if (Input.GetKeyDown("="))
+		{
+			Time.timeScale += 1f;
+		}
+		if (Input.GetKeyDown(KeyCode.LeftControl))
+		{
+			Affection += 10f;
+			CalculateAffection();
+			DialogueLabel.text = Greetings[AffectionLevel];
+		}
+	}
+
+	private void LateUpdate()
+	{
+		int phase = Phase;
+		int num = 4;
+	}
+
+	private void CalculateMultiplier()
+	{
+		Multiplier = 5;
+		if (!Suitor.Cosmetic.MaleHair[55].activeInHierarchy)
+		{
+			MultiplierIcons[1].mainTexture = X;
+			Multiplier--;
+		}
+		if (!Suitor.Cosmetic.MaleAccessories[17].activeInHierarchy)
+		{
+			MultiplierIcons[2].mainTexture = X;
+			Multiplier--;
+		}
+		if (!Suitor.Cosmetic.Eyewear[6].activeInHierarchy)
+		{
+			MultiplierIcons[3].mainTexture = X;
+			Multiplier--;
+		}
+		if (Suitor.Cosmetic.SkinColor != 6)
+		{
+			MultiplierIcons[4].mainTexture = X;
+			Multiplier--;
+		}
+		if (PlayerGlobals.PantiesEquipped == 2)
+		{
+			PantyIcon.SetActive(true);
+			Multiplier++;
+		}
+		else
+		{
+			PantyIcon.SetActive(false);
+		}
+		if (Yandere.Class.Seduction + Yandere.Class.SeductionBonus > 0)
+		{
+			SeductionLabel.text = (Yandere.Class.Seduction + Yandere.Class.SeductionBonus).ToString();
+			Multiplier += Yandere.Class.Seduction + Yandere.Class.SeductionBonus;
+			SeductionIcon.SetActive(true);
+		}
+		else
+		{
+			SeductionIcon.SetActive(false);
+		}
+		Multiplier += Yandere.Class.PsychologyGrade + Yandere.Class.PsychologyBonus;
+		MultiplierLabel.text = "Multiplier: " + Multiplier + "x";
+	}
+
+	private void UpdateHighlight()
+	{
+		if (Selected < 1)
+		{
+			Selected = 6;
+		}
+		else if (Selected > 6)
+		{
+			Selected = 1;
+		}
+		HighlightTarget = 450f - 100f * (float)Selected;
+	}
+
+	private void UpdateTopicHighlight()
+	{
+		if (Row < 1)
+		{
+			Row = 5;
+		}
+		else if (Row > 5)
+		{
+			Row = 1;
+		}
+		if (Column < 1)
+		{
+			Column = 5;
+		}
+		else if (Column > 5)
+		{
+			Column = 1;
+		}
+		TopicHighlight.localPosition = new Vector3(-375 + 125 * Column, 375 - 125 * Row, TopicHighlight.localPosition.z);
+		TopicSelected = (Row - 1) * 5 + Column;
+		TopicNameLabel.text = (ConversationGlobals.GetTopicDiscovered(TopicSelected) ? TopicNames[TopicSelected] : "??????????");
+	}
+
+	private void DetermineOpinion()
+	{
+		int[] topics = JSON.Topics[LoveManager.RivalID].Topics;
+		Opinion = topics[TopicSelected];
+	}
+
+	private void UpdateTopics()
+	{
+		for (int i = 1; i < TopicIcons.Length; i++)
+		{
+			UISprite uISprite = TopicIcons[i];
+			if (!ConversationGlobals.GetTopicDiscovered(i))
+			{
+				uISprite.spriteName = 0.ToString();
+				uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0.5f);
+			}
+			else
+			{
+				uISprite.spriteName = i.ToString();
+			}
+		}
+		for (int j = 1; j <= 25; j++)
+		{
+			UISprite uISprite2 = OpinionIcons[j];
+			if (!StudentManager.GetTopicLearnedByStudent(j, LoveManager.RivalID))
+			{
+				uISprite2.spriteName = "Unknown";
+				continue;
+			}
+			int[] topics = JSON.Topics[LoveManager.RivalID].Topics;
+			uISprite2.spriteName = OpinionSpriteNames[topics[j]];
+		}
+	}
+
+	private void UpdateComplimentHighlight()
+	{
+		for (int i = 1; i < TopicIcons.Length; i++)
+		{
+			ComplimentBGs[ComplimentSelected].color = OriginalColor;
+		}
+		if (Line < 1)
+		{
+			Line = 5;
+		}
+		else if (Line > 5)
+		{
+			Line = 1;
+		}
+		if (Side < 1)
+		{
+			Side = 2;
+		}
+		else if (Side > 2)
+		{
+			Side = 1;
+		}
+		ComplimentSelected = (Line - 1) * 2 + Side;
+		ComplimentBGs[ComplimentSelected].color = Color.white;
+	}
+
+	private void UpdateTraitHighlight()
+	{
+		if (TraitSelected < 1)
+		{
+			TraitSelected = 3;
+		}
+		else if (TraitSelected > 3)
+		{
+			TraitSelected = 1;
+		}
+		for (int i = 1; i < TraitBGs.Length; i++)
+		{
+			TraitBGs[i].color = OriginalColor;
+		}
+		TraitBGs[TraitSelected].color = Color.white;
+	}
+
+	private void UpdateGiftHighlight()
+	{
+		for (int i = 1; i < GiftBGs.Length; i++)
+		{
+			GiftBGs[i].color = OriginalColor;
+		}
+		if (GiftRow < 1)
+		{
+			GiftRow = 2;
+		}
+		else if (GiftRow > 2)
+		{
+			GiftRow = 1;
+		}
+		if (GiftColumn < 1)
+		{
+			GiftColumn = 2;
+		}
+		else if (GiftColumn > 2)
+		{
+			GiftColumn = 1;
+		}
+		GiftSelected = (GiftRow - 1) * 2 + GiftColumn;
+		GiftBGs[GiftSelected].color = Color.white;
+	}
+
+	public void SaveTopicsAndCompliments()
+	{
+		Debug.Log("Saving Dating Minigame data.");
+		for (int i = 1; i < 26; i++)
+		{
+			DatingGlobals.SetTopicDiscussed(i, TopicsDiscussed[i]);
+		}
+		for (int j = 1; j < 11; j++)
+		{
+			DatingGlobals.SetComplimentGiven(j, ComplimentsGiven[j]);
+		}
+		DatingGlobals.SetTraitDemonstrated(1, CourageTraitDemonstrated);
+		DatingGlobals.SetTraitDemonstrated(2, WisdomTraitDemonstrated);
+		DatingGlobals.SetTraitDemonstrated(3, StrengthTraitDemonstrated);
+		DatingGlobals.SetSuitorTrait(1, CourageTrait);
+		DatingGlobals.SetSuitorTrait(2, WisdomTrait);
+		DatingGlobals.SetSuitorTrait(3, StrengthTrait);
+		DatingGlobals.Affection = Affection;
+	}
+
+	public void SaveGiftStatus()
+	{
+		Debug.Log("Saving Dating Minigame gift status.");
+		for (int i = 1; i < 5; i++)
+		{
+			CollectibleGlobals.SetGiftPurchased(i + 5, GiftsPurchased[i]);
+			CollectibleGlobals.SetGiftGiven(i, GiftsGiven[i]);
+		}
+	}
 }

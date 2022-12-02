@@ -1,56 +1,62 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PlayerLook
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-  [SerializeField]
-  private string mouseXInputName;
-  [SerializeField]
-  private string mouseYInputName;
-  [SerializeField]
-  private float mouseSensitivity;
-  [SerializeField]
-  private Transform playerBody;
-  private float xAxisClamp;
+	[SerializeField]
+	private string mouseXInputName;
 
-  private void Awake()
-  {
-    this.LockCursor();
-    this.xAxisClamp = 0.0f;
-  }
+	[SerializeField]
+	private string mouseYInputName;
 
-  private void LockCursor() => Cursor.lockState = CursorLockMode.Locked;
+	[SerializeField]
+	private float mouseSensitivity;
 
-  private void Update() => this.CameraRotation();
+	[SerializeField]
+	private Transform playerBody;
 
-  private void CameraRotation()
-  {
-    float num1 = Input.GetAxis(this.mouseXInputName) * this.mouseSensitivity * Time.deltaTime;
-    float num2 = Input.GetAxis(this.mouseYInputName) * this.mouseSensitivity * Time.deltaTime;
-    this.xAxisClamp += num2;
-    if ((double) this.xAxisClamp > 90.0)
-    {
-      this.xAxisClamp = 90f;
-      num2 = 0.0f;
-      this.ClampXAxisRotationToValue(270f);
-    }
-    else if ((double) this.xAxisClamp < -90.0)
-    {
-      this.xAxisClamp = -90f;
-      num2 = 0.0f;
-      this.ClampXAxisRotationToValue(90f);
-    }
-    this.transform.Rotate(Vector3.left * num2);
-    this.playerBody.Rotate(Vector3.up * num1);
-  }
+	private float xAxisClamp;
 
-  private void ClampXAxisRotationToValue(float value) => this.transform.eulerAngles = this.transform.eulerAngles with
-  {
-    x = value
-  };
+	private void Awake()
+	{
+		LockCursor();
+		xAxisClamp = 0f;
+	}
+
+	private void LockCursor()
+	{
+		Cursor.lockState = CursorLockMode.Locked;
+	}
+
+	private void Update()
+	{
+		CameraRotation();
+	}
+
+	private void CameraRotation()
+	{
+		float num = Input.GetAxis(mouseXInputName) * mouseSensitivity * Time.deltaTime;
+		float num2 = Input.GetAxis(mouseYInputName) * mouseSensitivity * Time.deltaTime;
+		xAxisClamp += num2;
+		if (xAxisClamp > 90f)
+		{
+			xAxisClamp = 90f;
+			num2 = 0f;
+			ClampXAxisRotationToValue(270f);
+		}
+		else if (xAxisClamp < -90f)
+		{
+			xAxisClamp = -90f;
+			num2 = 0f;
+			ClampXAxisRotationToValue(90f);
+		}
+		base.transform.Rotate(Vector3.left * num2);
+		playerBody.Rotate(Vector3.up * num);
+	}
+
+	private void ClampXAxisRotationToValue(float value)
+	{
+		Vector3 eulerAngles = base.transform.eulerAngles;
+		eulerAngles.x = value;
+		base.transform.eulerAngles = eulerAngles;
+	}
 }

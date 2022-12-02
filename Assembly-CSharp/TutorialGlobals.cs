@@ -1,165 +1,291 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TutorialGlobals
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public static class TutorialGlobals
 {
-  private const string Str_IgnoreDistraction = "IgnoreDistraction";
-  private const string Str_IgnoreClothing = "IgnoreClothing";
-  private const string Str_IgnoreCouncil = "IgnoreCouncil";
-  private const string Str_IgnoreTeacher = "IgnoreTeacher";
-  private const string Str_IgnorePersona = "IgnorePersona";
-  private const string Str_IgnoreLocker = "IgnoreLocker";
-  private const string Str_IgnorePolice = "IgnorePolice";
-  private const string Str_IgnoreSanity = "IgnoreSanity";
-  private const string Str_IgnoreSenpai = "IgnoreSenpai";
-  private const string Str_IgnoreVision = "IgnoreVision";
-  private const string Str_IgnoreWeapon = "IgnoreWeapon";
-  private const string Str_IgnoreBlood = "IgnoreBlood";
-  private const string Str_IgnoreClass = "IgnoreClass";
-  private const string Str_IgnoreMoney = "IgnoreMoney";
-  private const string Str_IgnorePhoto = "IgnorePhoto";
-  private const string Str_IgnoreClub = "IgnoreClub";
-  private const string Str_IgnoreInfo = "IgnoreInfo";
-  private const string Str_IgnorePool = "IgnorePool";
-  private const string Str_IgnoreRep = "IgnoreClass";
+	private const string Str_IgnoreDistraction = "IgnoreDistraction";
 
-  public static bool IgnoreDistraction
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreDistraction");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreDistraction", value);
-  }
+	private const string Str_IgnoreClothing = "IgnoreClothing";
 
-  public static bool IgnoreClothing
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClothing");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClothing", value);
-  }
+	private const string Str_IgnoreCouncil = "IgnoreCouncil";
 
-  public static bool IgnoreCouncil
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreCouncil");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreCouncil", value);
-  }
+	private const string Str_IgnoreTeacher = "IgnoreTeacher";
 
-  public static bool IgnoreTeacher
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreTeacher");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreTeacher", value);
-  }
+	private const string Str_IgnorePersona = "IgnorePersona";
 
-  public static bool IgnorePersona
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePersona");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePersona", value);
-  }
+	private const string Str_IgnoreLocker = "IgnoreLocker";
 
-  public static bool IgnoreLocker
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreLocker");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreLocker", value);
-  }
+	private const string Str_IgnorePolice = "IgnorePolice";
 
-  public static bool IgnorePolice
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePolice");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePolice", value);
-  }
+	private const string Str_IgnoreSanity = "IgnoreSanity";
 
-  public static bool IgnoreSanity
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreSanity");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreSanity", value);
-  }
+	private const string Str_IgnoreSenpai = "IgnoreSenpai";
 
-  public static bool IgnoreSenpai
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreSenpai");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreSenpai", value);
-  }
+	private const string Str_IgnoreVision = "IgnoreVision";
 
-  public static bool IgnoreVision
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreVision");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreVision", value);
-  }
+	private const string Str_IgnoreWeapon = "IgnoreWeapon";
 
-  public static bool IgnoreWeapon
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreWeapon");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreWeapon", value);
-  }
+	private const string Str_IgnoreBlood = "IgnoreBlood";
 
-  public static bool IgnoreBlood
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreBlood");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreBlood", value);
-  }
+	private const string Str_IgnoreClass = "IgnoreClass";
 
-  public static bool IgnoreClass
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClass");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClass", value);
-  }
+	private const string Str_IgnoreMoney = "IgnoreMoney";
 
-  public static bool IgnoreMoney
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreMoney");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreMoney", value);
-  }
+	private const string Str_IgnorePhoto = "IgnorePhoto";
 
-  public static bool IgnorePhoto
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePhoto");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePhoto", value);
-  }
+	private const string Str_IgnoreClub = "IgnoreClub";
 
-  public static bool IgnoreClub
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClub");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClub", value);
-  }
+	private const string Str_IgnoreInfo = "IgnoreInfo";
 
-  public static bool IgnoreInfo
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreInfo");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreInfo", value);
-  }
+	private const string Str_IgnorePool = "IgnorePool";
 
-  public static bool IgnorePool
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePool");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePool", value);
-  }
+	private const string Str_IgnoreRep = "IgnoreClass";
 
-  public static bool IgnoreRep
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClass");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClass", value);
-  }
+	public static bool IgnoreDistraction
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreDistraction");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreDistraction", value);
+		}
+	}
 
-  public static void DeleteAll()
-  {
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreDistraction");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClothing");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreCouncil");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreTeacher");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePersona");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreLocker");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePolice");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreSanity");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreSenpai");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreVision");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreWeapon");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreBlood");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClass");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreMoney");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePhoto");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClub");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreInfo");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePool");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClass");
-  }
+	public static bool IgnoreClothing
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreClothing");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreClothing", value);
+		}
+	}
+
+	public static bool IgnoreCouncil
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreCouncil");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreCouncil", value);
+		}
+	}
+
+	public static bool IgnoreTeacher
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreTeacher");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreTeacher", value);
+		}
+	}
+
+	public static bool IgnorePersona
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnorePersona");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnorePersona", value);
+		}
+	}
+
+	public static bool IgnoreLocker
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreLocker");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreLocker", value);
+		}
+	}
+
+	public static bool IgnorePolice
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnorePolice");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnorePolice", value);
+		}
+	}
+
+	public static bool IgnoreSanity
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreSanity");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreSanity", value);
+		}
+	}
+
+	public static bool IgnoreSenpai
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreSenpai");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreSenpai", value);
+		}
+	}
+
+	public static bool IgnoreVision
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreVision");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreVision", value);
+		}
+	}
+
+	public static bool IgnoreWeapon
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreWeapon");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreWeapon", value);
+		}
+	}
+
+	public static bool IgnoreBlood
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreBlood");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreBlood", value);
+		}
+	}
+
+	public static bool IgnoreClass
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreClass");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreClass", value);
+		}
+	}
+
+	public static bool IgnoreMoney
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreMoney");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreMoney", value);
+		}
+	}
+
+	public static bool IgnorePhoto
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnorePhoto");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnorePhoto", value);
+		}
+	}
+
+	public static bool IgnoreClub
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreClub");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreClub", value);
+		}
+	}
+
+	public static bool IgnoreInfo
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreInfo");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreInfo", value);
+		}
+	}
+
+	public static bool IgnorePool
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnorePool");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnorePool", value);
+		}
+	}
+
+	public static bool IgnoreRep
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_IgnoreClass");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_IgnoreClass", value);
+		}
+	}
+
+	public static void DeleteAll()
+	{
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreDistraction");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreClothing");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreCouncil");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreTeacher");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnorePersona");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreLocker");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnorePolice");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreSanity");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreSenpai");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreVision");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreWeapon");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreBlood");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreClass");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreMoney");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnorePhoto");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreClub");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreInfo");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnorePool");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_IgnoreClass");
+	}
 }

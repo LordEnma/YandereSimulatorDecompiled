@@ -1,57 +1,54 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: InventoryMenuScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class InventoryMenuScript : MonoBehaviour
 {
-  public PauseScreenScript PauseScreen;
-  public InventoryScript Inventory;
-  public UILabel[] Labels;
+	public PauseScreenScript PauseScreen;
 
-  public void UpdateLabels()
-  {
-    this.Labels[0].alpha = !this.Inventory.ModifiedUniform ? 0.75f : 1f;
-    this.Labels[1].alpha = !this.Inventory.DirectionalMic ? 0.75f : 1f;
-    this.Labels[2].alpha = !this.Inventory.DuplicateSheet ? 0.75f : 1f;
-    this.Labels[3].alpha = !this.Inventory.AnswerSheet ? 0.75f : 1f;
-    this.Labels[4].alpha = !this.Inventory.MaskingTape ? 0.75f : 1f;
-    this.Labels[5].alpha = !this.Inventory.RivalPhone ? 0.75f : 1f;
-    this.Labels[6].alpha = !this.Inventory.LockPick ? 0.75f : 1f;
-    this.Labels[7].alpha = !this.Inventory.Headset ? 0.75f : 1f;
-    this.Labels[8].alpha = !this.Inventory.FakeID ? 0.75f : 1f;
-    this.Labels[9].alpha = !this.Inventory.IDCard ? 0.75f : 1f;
-    this.Labels[10].alpha = !this.Inventory.Book ? 0.75f : 1f;
-    this.Labels[11].alpha = 0.0f;
-    this.Labels[12].alpha = 1f;
-    this.Labels[12].text = "Lethal Poisons: " + this.Inventory.LethalPoisons.ToString();
-    this.Labels[13].alpha = 1f;
-    this.Labels[13].text = "Emetic Poisons: " + this.Inventory.EmeticPoisons.ToString();
-    this.Labels[14].alpha = 1f;
-    this.Labels[14].text = "Headache Poisons: " + this.Inventory.HeadachePoisons.ToString();
-    this.Labels[15].alpha = 1f;
-    this.Labels[15].text = "Sedatives: " + this.Inventory.SedativePoisons.ToString();
-    this.Labels[16].alpha = 0.0f;
-    this.Labels[17].alpha = 0.0f;
-    this.Labels[18].alpha = !this.Inventory.Cigs ? 0.75f : 1f;
-    this.Labels[19].alpha = !this.Inventory.Ring ? 0.75f : 1f;
-    this.Labels[20].alpha = !this.Inventory.Sake ? 0.75f : 1f;
-    this.Labels[21].alpha = !this.Inventory.Soda ? 0.75f : 1f;
-    this.Labels[22].alpha = !this.Inventory.Bra ? 0.75f : 1f;
-    this.Labels[23].alpha = !this.Inventory.CabinetKey ? 0.75f : 1f;
-    this.Labels[24].alpha = !this.Inventory.CaseKey ? 0.75f : 1f;
-    this.Labels[25].alpha = !this.Inventory.SafeKey ? 0.75f : 1f;
-    this.Labels[26].alpha = !this.Inventory.ShedKey ? 0.75f : 1f;
-  }
+	public InventoryScript Inventory;
 
-  private void Update()
-  {
-    if (!Input.GetButtonDown("B"))
-      return;
-    this.PauseScreen.MainMenu.SetActive(true);
-    this.gameObject.SetActive(false);
-  }
+	public UILabel[] Labels;
+
+	public void UpdateLabels()
+	{
+		Labels[0].alpha = ((!Inventory.ModifiedUniform) ? 0.75f : 1f);
+		Labels[1].alpha = ((!Inventory.DirectionalMic) ? 0.75f : 1f);
+		Labels[2].alpha = ((!Inventory.DuplicateSheet) ? 0.75f : 1f);
+		Labels[3].alpha = ((!Inventory.AnswerSheet) ? 0.75f : 1f);
+		Labels[4].alpha = ((!Inventory.MaskingTape) ? 0.75f : 1f);
+		Labels[5].alpha = ((!Inventory.RivalPhone) ? 0.75f : 1f);
+		Labels[6].alpha = ((!Inventory.LockPick) ? 0.75f : 1f);
+		Labels[7].alpha = ((!Inventory.Headset) ? 0.75f : 1f);
+		Labels[8].alpha = ((!Inventory.FakeID) ? 0.75f : 1f);
+		Labels[9].alpha = ((!Inventory.IDCard) ? 0.75f : 1f);
+		Labels[10].alpha = ((!Inventory.Book) ? 0.75f : 1f);
+		Labels[11].alpha = 0f;
+		Labels[12].alpha = 1f;
+		Labels[12].text = "Lethal Poisons: " + Inventory.LethalPoisons;
+		Labels[13].alpha = 1f;
+		Labels[13].text = "Emetic Poisons: " + Inventory.EmeticPoisons;
+		Labels[14].alpha = 1f;
+		Labels[14].text = "Headache Poisons: " + Inventory.HeadachePoisons;
+		Labels[15].alpha = 1f;
+		Labels[15].text = "Sedatives: " + Inventory.SedativePoisons;
+		Labels[16].alpha = 0f;
+		Labels[17].alpha = 0f;
+		Labels[18].alpha = ((!Inventory.Cigs) ? 0.75f : 1f);
+		Labels[19].alpha = ((!Inventory.Ring) ? 0.75f : 1f);
+		Labels[20].alpha = ((!Inventory.Sake) ? 0.75f : 1f);
+		Labels[21].alpha = ((!Inventory.Soda) ? 0.75f : 1f);
+		Labels[22].alpha = ((!Inventory.Bra) ? 0.75f : 1f);
+		Labels[23].alpha = ((!Inventory.CabinetKey) ? 0.75f : 1f);
+		Labels[24].alpha = ((!Inventory.CaseKey) ? 0.75f : 1f);
+		Labels[25].alpha = ((!Inventory.SafeKey) ? 0.75f : 1f);
+		Labels[26].alpha = ((!Inventory.ShedKey) ? 0.75f : 1f);
+	}
+
+	private void Update()
+	{
+		if (Input.GetButtonDown("B"))
+		{
+			PauseScreen.MainMenu.SetActive(true);
+			base.gameObject.SetActive(false);
+		}
+	}
 }

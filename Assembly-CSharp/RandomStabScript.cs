@@ -1,30 +1,26 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RandomStabScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RandomStabScript : MonoBehaviour
 {
-  public AudioClip[] Stabs;
-  public AudioClip Bite;
-  public bool Biting;
+	public AudioClip[] Stabs;
 
-  private void Start()
-  {
-    AudioSource component = this.GetComponent<AudioSource>();
-    if (!this.Biting)
-    {
-      component.clip = this.Stabs[Random.Range(0, this.Stabs.Length)];
-      component.Play();
-    }
-    else
-    {
-      component.clip = this.Bite;
-      component.pitch = Random.Range(0.5f, 1f);
-      component.Play();
-    }
-  }
+	public AudioClip Bite;
+
+	public bool Biting;
+
+	private void Start()
+	{
+		AudioSource component = GetComponent<AudioSource>();
+		if (!Biting)
+		{
+			component.clip = Stabs[Random.Range(0, Stabs.Length)];
+			component.Play();
+		}
+		else
+		{
+			component.clip = Bite;
+			component.pitch = Random.Range(0.5f, 1f);
+			component.Play();
+		}
+	}
 }

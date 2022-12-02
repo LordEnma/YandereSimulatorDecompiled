@@ -1,37 +1,40 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BounceScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class BounceScript : MonoBehaviour
 {
-  public float StartingMotion;
-  public float DecliningSpeed;
-  public float Motion;
-  public float PositionX;
-  public float Speed;
-  public Transform MyCamera;
-  public bool Go;
+	public float StartingMotion;
 
-  private void Start()
-  {
-    this.StartingMotion += Random.Range(-1f / 1000f, 1f / 1000f);
-    this.DecliningSpeed += Random.Range(-1f / 1000f, 1f / 1000f);
-  }
+	public float DecliningSpeed;
 
-  private void Update()
-  {
-    this.transform.position += new Vector3(0.0f, this.Motion, 0.0f);
-    this.Motion -= Time.deltaTime * this.DecliningSpeed;
-    if ((double) this.transform.position.y < 0.5)
-      this.Motion = this.StartingMotion;
-    if (!((Object) this.MyCamera != (Object) null) || !this.Go)
-      return;
-    this.Speed += Time.deltaTime;
-    this.PositionX = Mathf.Lerp(this.PositionX, -0.999f, Time.deltaTime * this.Speed);
-    this.MyCamera.position = new Vector3(this.PositionX, 1f, -10f);
-  }
+	public float Motion;
+
+	public float PositionX;
+
+	public float Speed;
+
+	public Transform MyCamera;
+
+	public bool Go;
+
+	private void Start()
+	{
+		StartingMotion += Random.Range(-0.001f, 0.001f);
+		DecliningSpeed += Random.Range(-0.001f, 0.001f);
+	}
+
+	private void Update()
+	{
+		base.transform.position += new Vector3(0f, Motion, 0f);
+		Motion -= Time.deltaTime * DecliningSpeed;
+		if (base.transform.position.y < 0.5f)
+		{
+			Motion = StartingMotion;
+		}
+		if (MyCamera != null && Go)
+		{
+			Speed += Time.deltaTime;
+			PositionX = Mathf.Lerp(PositionX, -0.999f, Time.deltaTime * Speed);
+			MyCamera.position = new Vector3(PositionX, 1f, -10f);
+		}
+	}
 }

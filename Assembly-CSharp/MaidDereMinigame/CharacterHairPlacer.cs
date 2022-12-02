@@ -1,45 +1,45 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.CharacterHairPlacer
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
-using System;
 using System.Globalization;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  public class CharacterHairPlacer : MonoBehaviour
-  {
-    public Sprite[] hairSprites;
-    [HideInInspector]
-    public SpriteRenderer hairInstance;
+	public class CharacterHairPlacer : MonoBehaviour
+	{
+		public Sprite[] hairSprites;
 
-    private void Awake()
-    {
-      int index = UnityEngine.Random.Range(0, this.hairSprites.Length);
-      this.hairInstance = new GameObject("Hair", new System.Type[1]
-      {
-        typeof (SpriteRenderer)
-      }).GetComponent<SpriteRenderer>();
-      Transform transform = this.hairInstance.transform;
-      transform.parent = this.transform;
-      transform.localPosition = new Vector3(0.0f, 0.0f, -0.1f);
-      this.hairInstance.sprite = this.hairSprites[index];
-    }
+		[HideInInspector]
+		public SpriteRenderer hairInstance;
 
-    public void WalkPose(float height) => this.hairInstance.transform.localPosition = new Vector3(0.0f, height, this.hairInstance.transform.localPosition.z);
+		private void Awake()
+		{
+			int num = Random.Range(0, hairSprites.Length);
+			hairInstance = new GameObject("Hair", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+			Transform obj = hairInstance.transform;
+			obj.parent = base.transform;
+			obj.localPosition = new Vector3(0f, 0f, -0.1f);
+			hairInstance.sprite = hairSprites[num];
+		}
 
-    public void HairPose(string point)
-    {
-      string[] strArray = point.Split(',');
-      float result1;
-      float result2;
-      if (float.TryParse(strArray[0], NumberStyles.Float, (IFormatProvider) NumberFormatInfo.InvariantInfo, out result1) & float.TryParse(strArray[1], NumberStyles.Float, (IFormatProvider) NumberFormatInfo.InvariantInfo, out result2))
-        this.hairInstance.transform.localPosition = new Vector3(this.hairInstance.flipX ? -result1 : result1, result2, this.hairInstance.transform.localPosition.z);
-      else
-        Debug.Log((object) "There was an error while parsing the hair position in CharacterHairPlacer");
-    }
-  }
+		public void WalkPose(float height)
+		{
+			hairInstance.transform.localPosition = new Vector3(0f, height, hairInstance.transform.localPosition.z);
+		}
+
+		public void HairPose(string point)
+		{
+			string[] array = point.Split(',');
+			float result;
+			bool flag = float.TryParse(array[0], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out result);
+			float result2;
+			bool flag2 = float.TryParse(array[1], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out result2);
+			if (flag && flag2)
+			{
+				hairInstance.transform.localPosition = new Vector3(hairInstance.flipX ? (0f - result) : result, result2, hairInstance.transform.localPosition.z);
+			}
+			else
+			{
+				Debug.Log("There was an error while parsing the hair position in CharacterHairPlacer");
+			}
+		}
+	}
 }

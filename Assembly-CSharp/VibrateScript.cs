@@ -1,16 +1,16 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: VibrateScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class VibrateScript : MonoBehaviour
 {
-  public Vector3 Origin;
+	public Vector3 Origin;
 
-  private void Start() => this.Origin = this.transform.localPosition;
+	private void Start()
+	{
+		Origin = base.transform.localPosition;
+	}
 
-  private void Update() => this.transform.localPosition = new Vector3(this.Origin.x + Random.Range(-5f, 5f), this.Origin.y + Random.Range(-5f, 5f), this.transform.localPosition.z);
+	private void Update()
+	{
+		base.transform.localPosition = new Vector3(Origin.x + Random.Range(-5f, 5f), Origin.y + Random.Range(-5f, 5f), base.transform.localPosition.z);
+	}
 }

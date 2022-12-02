@@ -1,39 +1,46 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.Timer
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
+using System;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  public class Timer : Meter
-  {
-    private GameStarter starter;
-    private float gameTime;
-    private bool isPaused;
+	public class Timer : Meter
+	{
+		private GameStarter starter;
 
-    private void Awake()
-    {
-      this.gameTime = GameController.Instance.activeDifficultyVariables.gameTime;
-      this.starter = Object.FindObjectOfType<GameStarter>();
-      this.isPaused = true;
-    }
+		private float gameTime;
 
-    private void OnEnable() => GameController.PauseGame += new BoolParameterEvent(this.SetPause);
+		private bool isPaused;
 
-    private void OnDisable() => GameController.PauseGame -= new BoolParameterEvent(this.SetPause);
+		private void Awake()
+		{
+			gameTime = GameController.Instance.activeDifficultyVariables.gameTime;
+			starter = UnityEngine.Object.FindObjectOfType<GameStarter>();
+			isPaused = true;
+		}
 
-    public void SetPause(bool toPause) => this.isPaused = toPause;
+		private void OnEnable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(SetPause));
+		}
 
-    private void Update()
-    {
-      if (this.isPaused)
-        return;
-      this.gameTime -= Time.deltaTime;
-      this.SetFill(this.gameTime / GameController.Instance.activeDifficultyVariables.gameTime);
-      this.starter.SetGameTime(this.gameTime);
-    }
-  }
+		private void OnDisable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(SetPause));
+		}
+
+		public void SetPause(bool toPause)
+		{
+			isPaused = toPause;
+		}
+
+		private void Update()
+		{
+			if (!isPaused)
+			{
+				gameTime -= Time.deltaTime;
+				SetFill(gameTime / GameController.Instance.activeDifficultyVariables.gameTime);
+				starter.SetGameTime(gameTime);
+			}
+		}
+	}
 }

@@ -1,103 +1,115 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityStandardAssets.CrossPlatformInput.Joystick
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
-  public class Joystick : 
-    MonoBehaviour,
-    IPointerDownHandler,
-    IEventSystemHandler,
-    IPointerUpHandler,
-    IDragHandler
-  {
-    public int MovementRange = 100;
-    public Joystick.AxisOption axesToUse;
-    public string horizontalAxisName = "Horizontal";
-    public string verticalAxisName = "Vertical";
-    private Vector3 m_StartPos;
-    private bool m_UseX;
-    private bool m_UseY;
-    private CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis;
-    private CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis;
+	public class Joystick : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IPointerUpHandler, IDragHandler
+	{
+		public enum AxisOption
+		{
+			Both = 0,
+			OnlyHorizontal = 1,
+			OnlyVertical = 2
+		}
 
-    private void OnEnable() => this.CreateVirtualAxes();
+		public int MovementRange = 100;
 
-    private void Start() => this.m_StartPos = this.transform.position;
+		public AxisOption axesToUse;
 
-    private void UpdateVirtualAxes(Vector3 value)
-    {
-      Vector3 vector3_1 = this.m_StartPos - value;
-      vector3_1.y = -vector3_1.y;
-      Vector3 vector3_2 = vector3_1 / (float) this.MovementRange;
-      if (this.m_UseX)
-        this.m_HorizontalVirtualAxis.Update(-vector3_2.x);
-      if (!this.m_UseY)
-        return;
-      this.m_VerticalVirtualAxis.Update(vector3_2.y);
-    }
+		public string horizontalAxisName = "Horizontal";
 
-    private void CreateVirtualAxes()
-    {
-      this.m_UseX = this.axesToUse == Joystick.AxisOption.Both || this.axesToUse == Joystick.AxisOption.OnlyHorizontal;
-      this.m_UseY = this.axesToUse == Joystick.AxisOption.Both || this.axesToUse == Joystick.AxisOption.OnlyVertical;
-      if (this.m_UseX)
-      {
-        this.m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(this.horizontalAxisName);
-        CrossPlatformInputManager.RegisterVirtualAxis(this.m_HorizontalVirtualAxis);
-      }
-      if (!this.m_UseY)
-        return;
-      this.m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(this.verticalAxisName);
-      CrossPlatformInputManager.RegisterVirtualAxis(this.m_VerticalVirtualAxis);
-    }
+		public string verticalAxisName = "Vertical";
 
-    public void OnDrag(PointerEventData data)
-    {
-      Vector3 zero = Vector3.zero;
-      if (this.m_UseX)
-      {
-        int num = Mathf.Clamp((int) ((double) data.position.x - (double) this.m_StartPos.x), -this.MovementRange, this.MovementRange);
-        zero.x = (float) num;
-      }
-      if (this.m_UseY)
-      {
-        int num = Mathf.Clamp((int) ((double) data.position.y - (double) this.m_StartPos.y), -this.MovementRange, this.MovementRange);
-        zero.y = (float) num;
-      }
-      this.transform.position = new Vector3(this.m_StartPos.x + zero.x, this.m_StartPos.y + zero.y, this.m_StartPos.z + zero.z);
-      this.UpdateVirtualAxes(this.transform.position);
-    }
+		private Vector3 m_StartPos;
 
-    public void OnPointerUp(PointerEventData data)
-    {
-      this.transform.position = this.m_StartPos;
-      this.UpdateVirtualAxes(this.m_StartPos);
-    }
+		private bool m_UseX;
 
-    public void OnPointerDown(PointerEventData data)
-    {
-    }
+		private bool m_UseY;
 
-    private void OnDisable()
-    {
-      if (this.m_UseX)
-        this.m_HorizontalVirtualAxis.Remove();
-      if (!this.m_UseY)
-        return;
-      this.m_VerticalVirtualAxis.Remove();
-    }
+		private CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis;
 
-    public enum AxisOption
-    {
-      Both,
-      OnlyHorizontal,
-      OnlyVertical,
-    }
-  }
+		private CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis;
+
+		private void OnEnable()
+		{
+			CreateVirtualAxes();
+		}
+
+		private void Start()
+		{
+			m_StartPos = base.transform.position;
+		}
+
+		private void UpdateVirtualAxes(Vector3 value)
+		{
+			Vector3 vector = m_StartPos - value;
+			vector.y = 0f - vector.y;
+			vector /= (float)MovementRange;
+			if (m_UseX)
+			{
+				m_HorizontalVirtualAxis.Update(0f - vector.x);
+			}
+			if (m_UseY)
+			{
+				m_VerticalVirtualAxis.Update(vector.y);
+			}
+		}
+
+		private void CreateVirtualAxes()
+		{
+			m_UseX = axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal;
+			m_UseY = axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical;
+			if (m_UseX)
+			{
+				m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
+				CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
+			}
+			if (m_UseY)
+			{
+				m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
+				CrossPlatformInputManager.RegisterVirtualAxis(m_VerticalVirtualAxis);
+			}
+		}
+
+		public void OnDrag(PointerEventData data)
+		{
+			Vector3 zero = Vector3.zero;
+			if (m_UseX)
+			{
+				int value = (int)(data.position.x - m_StartPos.x);
+				value = Mathf.Clamp(value, -MovementRange, MovementRange);
+				zero.x = value;
+			}
+			if (m_UseY)
+			{
+				int value2 = (int)(data.position.y - m_StartPos.y);
+				value2 = Mathf.Clamp(value2, -MovementRange, MovementRange);
+				zero.y = value2;
+			}
+			base.transform.position = new Vector3(m_StartPos.x + zero.x, m_StartPos.y + zero.y, m_StartPos.z + zero.z);
+			UpdateVirtualAxes(base.transform.position);
+		}
+
+		public void OnPointerUp(PointerEventData data)
+		{
+			base.transform.position = m_StartPos;
+			UpdateVirtualAxes(m_StartPos);
+		}
+
+		public void OnPointerDown(PointerEventData data)
+		{
+		}
+
+		private void OnDisable()
+		{
+			if (m_UseX)
+			{
+				m_HorizontalVirtualAxis.Remove();
+			}
+			if (m_UseY)
+			{
+				m_VerticalVirtualAxis.Remove();
+			}
+		}
+	}
 }

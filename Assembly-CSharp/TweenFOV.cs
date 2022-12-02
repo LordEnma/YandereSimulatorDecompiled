@@ -1,67 +1,92 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TweenFOV
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof (Camera))]
+[RequireComponent(typeof(Camera))]
 [AddComponentMenu("NGUI/Tween/Tween Field of View")]
 public class TweenFOV : UITweener
 {
-  public float from = 45f;
-  public float to = 45f;
-  private Camera mCam;
+	public float from = 45f;
 
-  public Camera cachedCamera
-  {
-    get
-    {
-      if ((UnityEngine.Object) this.mCam == (UnityEngine.Object) null)
-        this.mCam = this.GetComponent<Camera>();
-      return this.mCam;
-    }
-  }
+	public float to = 45f;
 
-  [Obsolete("Use 'value' instead")]
-  public float fov
-  {
-    get => this.value;
-    set => this.value = value;
-  }
+	private Camera mCam;
 
-  public float value
-  {
-    get => this.cachedCamera.fieldOfView;
-    set => this.cachedCamera.fieldOfView = value;
-  }
+	public Camera cachedCamera
+	{
+		get
+		{
+			if (mCam == null)
+			{
+				mCam = GetComponent<Camera>();
+			}
+			return mCam;
+		}
+	}
 
-  protected override void OnUpdate(float factor, bool isFinished) => this.value = (float) ((double) this.from * (1.0 - (double) factor) + (double) this.to * (double) factor);
+	[Obsolete("Use 'value' instead")]
+	public float fov
+	{
+		get
+		{
+			return value;
+		}
+		set
+		{
+			this.value = value;
+		}
+	}
 
-  public static TweenFOV Begin(GameObject go, float duration, float to)
-  {
-    TweenFOV tweenFov = UITweener.Begin<TweenFOV>(go, duration);
-    tweenFov.from = tweenFov.value;
-    tweenFov.to = to;
-    if ((double) duration <= 0.0)
-    {
-      tweenFov.Sample(1f, true);
-      tweenFov.enabled = false;
-    }
-    return tweenFov;
-  }
+	public float value
+	{
+		get
+		{
+			return cachedCamera.fieldOfView;
+		}
+		set
+		{
+			cachedCamera.fieldOfView = value;
+		}
+	}
 
-  [ContextMenu("Set 'From' to current value")]
-  public override void SetStartToCurrentValue() => this.from = this.value;
+	protected override void OnUpdate(float factor, bool isFinished)
+	{
+		value = from * (1f - factor) + to * factor;
+	}
 
-  [ContextMenu("Set 'To' to current value")]
-  public override void SetEndToCurrentValue() => this.to = this.value;
+	public static TweenFOV Begin(GameObject go, float duration, float to)
+	{
+		TweenFOV tweenFOV = UITweener.Begin<TweenFOV>(go, duration);
+		tweenFOV.from = tweenFOV.value;
+		tweenFOV.to = to;
+		if (duration <= 0f)
+		{
+			tweenFOV.Sample(1f, true);
+			tweenFOV.enabled = false;
+		}
+		return tweenFOV;
+	}
 
-  [ContextMenu("Assume value of 'From'")]
-  private void SetCurrentValueToStart() => this.value = this.from;
+	[ContextMenu("Set 'From' to current value")]
+	public override void SetStartToCurrentValue()
+	{
+		from = value;
+	}
 
-  [ContextMenu("Assume value of 'To'")]
-  private void SetCurrentValueToEnd() => this.value = this.to;
+	[ContextMenu("Set 'To' to current value")]
+	public override void SetEndToCurrentValue()
+	{
+		to = value;
+	}
+
+	[ContextMenu("Assume value of 'From'")]
+	private void SetCurrentValueToStart()
+	{
+		value = from;
+	}
+
+	[ContextMenu("Assume value of 'To'")]
+	private void SetCurrentValueToEnd()
+	{
+		value = to;
+	}
 }

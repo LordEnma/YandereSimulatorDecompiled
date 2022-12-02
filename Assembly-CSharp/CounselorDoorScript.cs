@@ -1,93 +1,100 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CounselorDoorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class CounselorDoorScript : MonoBehaviour
 {
-  public CounselorScript Counselor;
-  public PromptScript Prompt;
-  public UISprite Darkness;
-  public bool FadeOut;
-  public bool FadeIn;
-  public bool Exit;
+	public CounselorScript Counselor;
 
-  private void Start()
-  {
-  }
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      bool flag = false;
-      for (int index = 1; index < this.Counselor.StudentManager.Students.Length; ++index)
-      {
-        StudentScript student = this.Counselor.StudentManager.Students[index];
-        if ((Object) student != (Object) null && student.Hunting)
-        {
-          this.Prompt.Yandere.NotificationManager.CustomText = "A murder is taking place!";
-          this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-          flag = true;
-        }
-      }
-      if (!flag && !this.Prompt.Yandere.Chased && this.Prompt.Yandere.Chasers == 0 && !this.FadeIn && (double) this.Prompt.Yandere.Bloodiness == 0.0 && (double) this.Prompt.Yandere.Sanity > 66.666656494140625 && !this.Prompt.Yandere.Carrying && !this.Prompt.Yandere.Dragging)
-      {
-        if (!this.Counselor.Busy)
-        {
-          this.Prompt.Yandere.CharacterAnimation.CrossFade(this.Prompt.Yandere.IdleAnim);
-          this.Prompt.Yandere.Police.Darkness.enabled = true;
-          this.Prompt.Yandere.CanMove = false;
-          this.FadeOut = true;
-        }
-        else
-        {
-          this.Counselor.CounselorSubtitle.text = this.Counselor.CounselorBusyText;
-          this.Counselor.MyAudio.clip = this.Counselor.CounselorBusyClip;
-          this.Counselor.MyAudio.Play();
-        }
-      }
-    }
-    if (this.FadeOut)
-    {
-      this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a > 0.89999997615814209)
-      {
-        this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-        if (!this.Exit)
-        {
-          this.Prompt.Yandere.CharacterAnimation.Play("f02_sit_00");
-          this.Prompt.Yandere.transform.position = new Vector3(-27.51f, 0.0f, 12f);
-          this.Prompt.Yandere.transform.localEulerAngles = new Vector3(0.0f, -90f, 0.0f);
-          this.Counselor.Talk();
-          this.FadeOut = false;
-          this.FadeIn = true;
-        }
-        else
-        {
-          if (this.Counselor.Yandere.VtuberID > 0)
-            this.Counselor.Yandere.VtuberFace();
-          else if (this.Counselor.Eighties)
-            this.Counselor.Yandere.RestoreGentleEyes();
-          this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 2f);
-          Debug.Log((object) "Darkness.color.a just became 2.");
-          this.Counselor.Quit();
-          this.FadeOut = false;
-          this.FadeIn = true;
-          this.Exit = false;
-        }
-      }
-    }
-    if (!this.FadeIn)
-      return;
-    this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-    if ((double) this.Darkness.color.a >= 0.10000000149011612)
-      return;
-    this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-    this.FadeIn = false;
-  }
+	public UISprite Darkness;
+
+	public bool FadeOut;
+
+	public bool FadeIn;
+
+	public bool Exit;
+
+	private void Start()
+	{
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			bool flag = false;
+			for (int i = 1; i < Counselor.StudentManager.Students.Length; i++)
+			{
+				StudentScript studentScript = Counselor.StudentManager.Students[i];
+				if (studentScript != null && studentScript.Hunting)
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "A murder is taking place!";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					flag = true;
+				}
+			}
+			if (!flag && !Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0 && !FadeIn && Prompt.Yandere.Bloodiness == 0f && Prompt.Yandere.Sanity > 66.66666f && !Prompt.Yandere.Carrying && !Prompt.Yandere.Dragging)
+			{
+				if (!Counselor.Busy)
+				{
+					Prompt.Yandere.CharacterAnimation.CrossFade(Prompt.Yandere.IdleAnim);
+					Prompt.Yandere.Police.Darkness.enabled = true;
+					Prompt.Yandere.CanMove = false;
+					FadeOut = true;
+				}
+				else
+				{
+					Counselor.CounselorSubtitle.text = Counselor.CounselorBusyText;
+					Counselor.MyAudio.clip = Counselor.CounselorBusyClip;
+					Counselor.MyAudio.Play();
+				}
+			}
+		}
+		if (FadeOut)
+		{
+			float a = Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime);
+			Darkness.color = new Color(0f, 0f, 0f, a);
+			if (Darkness.color.a > 0.9f)
+			{
+				Darkness.color = new Color(0f, 0f, 0f, 1f);
+				if (!Exit)
+				{
+					Prompt.Yandere.CharacterAnimation.Play("f02_sit_00");
+					Prompt.Yandere.transform.position = new Vector3(-27.51f, 0f, 12f);
+					Prompt.Yandere.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
+					Counselor.Talk();
+					FadeOut = false;
+					FadeIn = true;
+				}
+				else
+				{
+					if (Counselor.Yandere.VtuberID > 0)
+					{
+						Counselor.Yandere.VtuberFace();
+					}
+					else if (Counselor.Eighties)
+					{
+						Counselor.Yandere.RestoreGentleEyes();
+					}
+					Darkness.color = new Color(0f, 0f, 0f, 2f);
+					Debug.Log("Darkness.color.a just became 2.");
+					Counselor.Quit();
+					FadeOut = false;
+					FadeIn = true;
+					Exit = false;
+				}
+			}
+		}
+		if (FadeIn)
+		{
+			float a2 = Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime);
+			Darkness.color = new Color(0f, 0f, 0f, a2);
+			if (Darkness.color.a < 0.1f)
+			{
+				Darkness.color = new Color(0f, 0f, 0f, 0f);
+				FadeIn = false;
+			}
+		}
+	}
 }

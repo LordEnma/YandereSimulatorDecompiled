@@ -1,116 +1,137 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityStandardAssets.Vehicles.Car.CarAudio
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-  [RequireComponent(typeof (CarController))]
-  public class CarAudio : MonoBehaviour
-  {
-    public CarAudio.EngineAudioOptions engineSoundStyle = CarAudio.EngineAudioOptions.FourChannel;
-    public AudioClip lowAccelClip;
-    public AudioClip lowDecelClip;
-    public AudioClip highAccelClip;
-    public AudioClip highDecelClip;
-    public float pitchMultiplier = 1f;
-    public float lowPitchMin = 1f;
-    public float lowPitchMax = 6f;
-    public float highPitchMultiplier = 0.25f;
-    public float maxRolloffDistance = 500f;
-    public float dopplerLevel = 1f;
-    public bool useDoppler = true;
-    private AudioSource m_LowAccel;
-    private AudioSource m_LowDecel;
-    private AudioSource m_HighAccel;
-    private AudioSource m_HighDecel;
-    private bool m_StartedSound;
-    private CarController m_CarController;
+	[RequireComponent(typeof(CarController))]
+	public class CarAudio : MonoBehaviour
+	{
+		public enum EngineAudioOptions
+		{
+			Simple = 0,
+			FourChannel = 1
+		}
 
-    private void StartSound()
-    {
-      this.m_CarController = this.GetComponent<CarController>();
-      this.m_HighAccel = this.SetUpEngineAudioSource(this.highAccelClip);
-      if (this.engineSoundStyle == CarAudio.EngineAudioOptions.FourChannel)
-      {
-        this.m_LowAccel = this.SetUpEngineAudioSource(this.lowAccelClip);
-        this.m_LowDecel = this.SetUpEngineAudioSource(this.lowDecelClip);
-        this.m_HighDecel = this.SetUpEngineAudioSource(this.highDecelClip);
-      }
-      this.m_StartedSound = true;
-    }
+		public EngineAudioOptions engineSoundStyle = EngineAudioOptions.FourChannel;
 
-    private void StopSound()
-    {
-      foreach (Object component in this.GetComponents<AudioSource>())
-        Object.Destroy(component);
-      this.m_StartedSound = false;
-    }
+		public AudioClip lowAccelClip;
 
-    private void Update()
-    {
-      float sqrMagnitude = (Camera.main.transform.position - this.transform.position).sqrMagnitude;
-      if (this.m_StartedSound && (double) sqrMagnitude > (double) this.maxRolloffDistance * (double) this.maxRolloffDistance)
-        this.StopSound();
-      if (!this.m_StartedSound && (double) sqrMagnitude < (double) this.maxRolloffDistance * (double) this.maxRolloffDistance)
-        this.StartSound();
-      if (!this.m_StartedSound)
-        return;
-      float num1 = Mathf.Min(this.lowPitchMax, CarAudio.ULerp(this.lowPitchMin, this.lowPitchMax, this.m_CarController.Revs));
-      if (this.engineSoundStyle == CarAudio.EngineAudioOptions.Simple)
-      {
-        this.m_HighAccel.pitch = num1 * this.pitchMultiplier * this.highPitchMultiplier;
-        this.m_HighAccel.dopplerLevel = this.useDoppler ? this.dopplerLevel : 0.0f;
-        this.m_HighAccel.volume = 1f;
-      }
-      else
-      {
-        this.m_LowAccel.pitch = num1 * this.pitchMultiplier;
-        this.m_LowDecel.pitch = num1 * this.pitchMultiplier;
-        this.m_HighAccel.pitch = num1 * this.highPitchMultiplier * this.pitchMultiplier;
-        this.m_HighDecel.pitch = num1 * this.highPitchMultiplier * this.pitchMultiplier;
-        float num2 = Mathf.Abs(this.m_CarController.AccelInput);
-        float num3 = 1f - num2;
-        float num4 = Mathf.InverseLerp(0.2f, 0.8f, this.m_CarController.Revs);
-        float num5 = 1f - num4;
-        float num6 = (float) (1.0 - (1.0 - (double) num4) * (1.0 - (double) num4));
-        float num7 = (float) (1.0 - (1.0 - (double) num5) * (1.0 - (double) num5));
-        float num8 = (float) (1.0 - (1.0 - (double) num2) * (1.0 - (double) num2));
-        float num9 = (float) (1.0 - (1.0 - (double) num3) * (1.0 - (double) num3));
-        this.m_LowAccel.volume = num7 * num8;
-        this.m_LowDecel.volume = num7 * num9;
-        this.m_HighAccel.volume = num6 * num8;
-        this.m_HighDecel.volume = num6 * num9;
-        this.m_HighAccel.dopplerLevel = this.useDoppler ? this.dopplerLevel : 0.0f;
-        this.m_LowAccel.dopplerLevel = this.useDoppler ? this.dopplerLevel : 0.0f;
-        this.m_HighDecel.dopplerLevel = this.useDoppler ? this.dopplerLevel : 0.0f;
-        this.m_LowDecel.dopplerLevel = this.useDoppler ? this.dopplerLevel : 0.0f;
-      }
-    }
+		public AudioClip lowDecelClip;
 
-    private AudioSource SetUpEngineAudioSource(AudioClip clip)
-    {
-      AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
-      audioSource.clip = clip;
-      audioSource.volume = 0.0f;
-      audioSource.loop = true;
-      audioSource.time = Random.Range(0.0f, clip.length);
-      audioSource.Play();
-      audioSource.minDistance = 5f;
-      audioSource.maxDistance = this.maxRolloffDistance;
-      audioSource.dopplerLevel = 0.0f;
-      return audioSource;
-    }
+		public AudioClip highAccelClip;
 
-    private static float ULerp(float from, float to, float value) => (float) ((1.0 - (double) value) * (double) from + (double) value * (double) to);
+		public AudioClip highDecelClip;
 
-    public enum EngineAudioOptions
-    {
-      Simple,
-      FourChannel,
-    }
-  }
+		public float pitchMultiplier = 1f;
+
+		public float lowPitchMin = 1f;
+
+		public float lowPitchMax = 6f;
+
+		public float highPitchMultiplier = 0.25f;
+
+		public float maxRolloffDistance = 500f;
+
+		public float dopplerLevel = 1f;
+
+		public bool useDoppler = true;
+
+		private AudioSource m_LowAccel;
+
+		private AudioSource m_LowDecel;
+
+		private AudioSource m_HighAccel;
+
+		private AudioSource m_HighDecel;
+
+		private bool m_StartedSound;
+
+		private CarController m_CarController;
+
+		private void StartSound()
+		{
+			m_CarController = GetComponent<CarController>();
+			m_HighAccel = SetUpEngineAudioSource(highAccelClip);
+			if (engineSoundStyle == EngineAudioOptions.FourChannel)
+			{
+				m_LowAccel = SetUpEngineAudioSource(lowAccelClip);
+				m_LowDecel = SetUpEngineAudioSource(lowDecelClip);
+				m_HighDecel = SetUpEngineAudioSource(highDecelClip);
+			}
+			m_StartedSound = true;
+		}
+
+		private void StopSound()
+		{
+			AudioSource[] components = GetComponents<AudioSource>();
+			for (int i = 0; i < components.Length; i++)
+			{
+				Object.Destroy(components[i]);
+			}
+			m_StartedSound = false;
+		}
+
+		private void Update()
+		{
+			float sqrMagnitude = (Camera.main.transform.position - base.transform.position).sqrMagnitude;
+			if (m_StartedSound && sqrMagnitude > maxRolloffDistance * maxRolloffDistance)
+			{
+				StopSound();
+			}
+			if (!m_StartedSound && sqrMagnitude < maxRolloffDistance * maxRolloffDistance)
+			{
+				StartSound();
+			}
+			if (m_StartedSound)
+			{
+				float b = ULerp(lowPitchMin, lowPitchMax, m_CarController.Revs);
+				b = Mathf.Min(lowPitchMax, b);
+				if (engineSoundStyle == EngineAudioOptions.Simple)
+				{
+					m_HighAccel.pitch = b * pitchMultiplier * highPitchMultiplier;
+					m_HighAccel.dopplerLevel = (useDoppler ? dopplerLevel : 0f);
+					m_HighAccel.volume = 1f;
+					return;
+				}
+				m_LowAccel.pitch = b * pitchMultiplier;
+				m_LowDecel.pitch = b * pitchMultiplier;
+				m_HighAccel.pitch = b * highPitchMultiplier * pitchMultiplier;
+				m_HighDecel.pitch = b * highPitchMultiplier * pitchMultiplier;
+				float num = Mathf.Abs(m_CarController.AccelInput);
+				float num2 = 1f - num;
+				float num3 = Mathf.InverseLerp(0.2f, 0.8f, m_CarController.Revs);
+				float num4 = 1f - num3;
+				num3 = 1f - (1f - num3) * (1f - num3);
+				num4 = 1f - (1f - num4) * (1f - num4);
+				num = 1f - (1f - num) * (1f - num);
+				num2 = 1f - (1f - num2) * (1f - num2);
+				m_LowAccel.volume = num4 * num;
+				m_LowDecel.volume = num4 * num2;
+				m_HighAccel.volume = num3 * num;
+				m_HighDecel.volume = num3 * num2;
+				m_HighAccel.dopplerLevel = (useDoppler ? dopplerLevel : 0f);
+				m_LowAccel.dopplerLevel = (useDoppler ? dopplerLevel : 0f);
+				m_HighDecel.dopplerLevel = (useDoppler ? dopplerLevel : 0f);
+				m_LowDecel.dopplerLevel = (useDoppler ? dopplerLevel : 0f);
+			}
+		}
+
+		private AudioSource SetUpEngineAudioSource(AudioClip clip)
+		{
+			AudioSource audioSource = base.gameObject.AddComponent<AudioSource>();
+			audioSource.clip = clip;
+			audioSource.volume = 0f;
+			audioSource.loop = true;
+			audioSource.time = Random.Range(0f, clip.length);
+			audioSource.Play();
+			audioSource.minDistance = 5f;
+			audioSource.maxDistance = maxRolloffDistance;
+			audioSource.dopplerLevel = 0f;
+			return audioSource;
+		}
+
+		private static float ULerp(float from, float to, float value)
+		{
+			return (1f - value) * from + value * to;
+		}
+	}
 }

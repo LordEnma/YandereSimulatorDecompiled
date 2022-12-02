@@ -1,91 +1,106 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIButtonOffset
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Interaction/Button Offset")]
 public class UIButtonOffset : MonoBehaviour
 {
-  public Transform tweenTarget;
-  public Vector3 hover = Vector3.zero;
-  public Vector3 pressed = new Vector3(2f, -2f);
-  public float duration = 0.2f;
-  [NonSerialized]
-  private Vector3 mPos;
-  [NonSerialized]
-  private bool mStarted;
-  [NonSerialized]
-  private bool mPressed;
+	public Transform tweenTarget;
 
-  private void Start()
-  {
-    if (this.mStarted)
-      return;
-    this.mStarted = true;
-    if ((UnityEngine.Object) this.tweenTarget == (UnityEngine.Object) null)
-      this.tweenTarget = this.transform;
-    this.mPos = this.tweenTarget.localPosition;
-  }
+	public Vector3 hover = Vector3.zero;
 
-  private void OnEnable()
-  {
-    if (!this.mStarted)
-      return;
-    this.OnHover(UICamera.IsHighlighted(this.gameObject));
-  }
+	public Vector3 pressed = new Vector3(2f, -2f);
 
-  private void OnDisable()
-  {
-    if (!this.mStarted || !((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null))
-      return;
-    TweenPosition component = this.tweenTarget.GetComponent<TweenPosition>();
-    if (!((UnityEngine.Object) component != (UnityEngine.Object) null))
-      return;
-    component.value = this.mPos;
-    component.enabled = false;
-  }
+	public float duration = 0.2f;
 
-  private void OnPress(bool isPressed)
-  {
-    this.mPressed = isPressed;
-    if (!this.enabled)
-      return;
-    if (!this.mStarted)
-      this.Start();
-    TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, isPressed ? this.mPos + this.pressed : (UICamera.IsHighlighted(this.gameObject) ? this.mPos + this.hover : this.mPos)).method = UITweener.Method.EaseInOut;
-  }
+	[NonSerialized]
+	private Vector3 mPos;
 
-  private void OnHover(bool isOver)
-  {
-    if (!this.enabled)
-      return;
-    if (!this.mStarted)
-      this.Start();
-    TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, isOver ? this.mPos + this.hover : this.mPos).method = UITweener.Method.EaseInOut;
-  }
+	[NonSerialized]
+	private bool mStarted;
 
-  private void OnDragOver()
-  {
-    if (!this.mPressed)
-      return;
-    TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, this.mPos + this.hover).method = UITweener.Method.EaseInOut;
-  }
+	[NonSerialized]
+	private bool mPressed;
 
-  private void OnDragOut()
-  {
-    if (!this.mPressed)
-      return;
-    TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, this.mPos).method = UITweener.Method.EaseInOut;
-  }
+	private void Start()
+	{
+		if (!mStarted)
+		{
+			mStarted = true;
+			if (tweenTarget == null)
+			{
+				tweenTarget = base.transform;
+			}
+			mPos = tweenTarget.localPosition;
+		}
+	}
 
-  private void OnSelect(bool isSelected)
-  {
-    if (!this.enabled || isSelected && UICamera.currentScheme != UICamera.ControlScheme.Controller)
-      return;
-    this.OnHover(isSelected);
-  }
+	private void OnEnable()
+	{
+		if (mStarted)
+		{
+			OnHover(UICamera.IsHighlighted(base.gameObject));
+		}
+	}
+
+	private void OnDisable()
+	{
+		if (mStarted && tweenTarget != null)
+		{
+			TweenPosition component = tweenTarget.GetComponent<TweenPosition>();
+			if (component != null)
+			{
+				component.value = mPos;
+				component.enabled = false;
+			}
+		}
+	}
+
+	private void OnPress(bool isPressed)
+	{
+		mPressed = isPressed;
+		if (base.enabled)
+		{
+			if (!mStarted)
+			{
+				Start();
+			}
+			TweenPosition.Begin(tweenTarget.gameObject, duration, isPressed ? (mPos + pressed) : (UICamera.IsHighlighted(base.gameObject) ? (mPos + hover) : mPos)).method = UITweener.Method.EaseInOut;
+		}
+	}
+
+	private void OnHover(bool isOver)
+	{
+		if (base.enabled)
+		{
+			if (!mStarted)
+			{
+				Start();
+			}
+			TweenPosition.Begin(tweenTarget.gameObject, duration, isOver ? (mPos + hover) : mPos).method = UITweener.Method.EaseInOut;
+		}
+	}
+
+	private void OnDragOver()
+	{
+		if (mPressed)
+		{
+			TweenPosition.Begin(tweenTarget.gameObject, duration, mPos + hover).method = UITweener.Method.EaseInOut;
+		}
+	}
+
+	private void OnDragOut()
+	{
+		if (mPressed)
+		{
+			TweenPosition.Begin(tweenTarget.gameObject, duration, mPos).method = UITweener.Method.EaseInOut;
+		}
+	}
+
+	private void OnSelect(bool isSelected)
+	{
+		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
+		{
+			OnHover(isSelected);
+		}
+	}
 }

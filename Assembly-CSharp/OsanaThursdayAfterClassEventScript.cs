@@ -1,314 +1,367 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: OsanaThursdayAfterClassEventScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public PhoneMinigameScript PhoneMinigame;
-  public JukeboxScript Jukebox;
-  public UILabel EventSubtitle;
-  public YandereScript Yandere;
-  public ClockScript Clock;
-  public StudentScript Friend;
-  public StudentScript Rival;
-  public Transform FriendLocation;
-  public Transform Location;
-  public AudioClip[] SpeechClip;
-  public string[] SpeechText;
-  public string[] EventAnim;
-  public GameObject AlarmDisc;
-  public GameObject VoiceClip;
-  public float FriendWarningTimer;
-  public float ReturnTimer;
-  public float Distance;
-  public float Scale;
-  public float Timer;
-  public DayOfWeek EventDay;
-  public int FriendID = 10;
-  public int RivalID = 11;
-  public int Phase;
-  public int Frame;
-  public bool ReturningFromSave;
-  public bool FriendWarned;
-  public bool Sabotaged;
-  public Vector3 OriginalPosition;
-  public Vector3 OriginalRotation;
+	public StudentManagerScript StudentManager;
 
-  private void Start()
-  {
-    this.EventSubtitle.transform.localScale = Vector3.zero;
-    if (DateGlobals.Weekday == this.EventDay && GameGlobals.RivalEliminationID <= 0)
-      return;
-    this.enabled = false;
-  }
+	public PhoneMinigameScript PhoneMinigame;
 
-  private void Update()
-  {
-    if (this.Phase == 0)
-    {
-      if (this.Frame > 0 && (UnityEngine.Object) this.StudentManager.Students[this.RivalID] != (UnityEngine.Object) null)
-      {
-        if ((UnityEngine.Object) this.Rival == (UnityEngine.Object) null)
-          this.Rival = this.StudentManager.Students[this.RivalID];
-        if ((UnityEngine.Object) this.StudentManager.Students[this.FriendID] != (UnityEngine.Object) null && !PlayerGlobals.RaibaruLoner)
-          this.Friend = this.StudentManager.Students[this.FriendID];
-        if ((double) this.Clock.HourTime > 16.010000228881836 && this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless && !this.Rival.EndSearch && !this.Rival.Meeting)
-          this.BeginEvent();
-      }
-      ++this.Frame;
-    }
-    else
-    {
-      if (this.Phase == 1)
-      {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-          this.Yandere.transform.position = this.Location.position + new Vector3(2f, 0.0f, 2f);
-          this.Rival.transform.position = this.Location.position + new Vector3(1f, 0.0f, 1f);
-        }
-        if ((double) this.Rival.DistanceToDestination < 0.5)
-        {
-          AudioClipPlayer.Play(this.SpeechClip[1], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.Rival.CharacterAnimation.CrossFade(this.EventAnim[1]);
-          this.Rival.Pathfinding.canSearch = false;
-          this.Rival.Pathfinding.canMove = false;
-          this.Rival.Obstacle.enabled = true;
-          ++this.Phase;
-          if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
-          {
-            ScheduleBlock scheduleBlock = this.Friend.ScheduleBlocks[7];
-            scheduleBlock.destination = "Sketch";
-            scheduleBlock.action = "Sketch";
-            this.Friend.GetDestinations();
-            this.Friend.SketchPosition = this.FriendLocation;
-            this.Friend.CurrentDestination = this.Friend.SketchPosition;
-            this.Friend.Pathfinding.target = this.Friend.SketchPosition;
-            this.Friend.Restless = true;
-          }
-        }
-      }
-      else if (this.Phase == 2)
-      {
-        this.Rival.transform.position = Vector3.Lerp(this.Rival.transform.position, this.Rival.CurrentDestination.position, 10f * Time.deltaTime);
-        this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
-        if ((double) this.Rival.CharacterAnimation[this.EventAnim[1]].time >= 3.2)
-        {
-          this.EventSubtitle.text = this.SpeechText[1];
-          this.Timer = 0.0f;
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 3)
-      {
-        if ((double) this.Rival.CharacterAnimation[this.EventAnim[1]].time >= 6.0)
-        {
-          this.Rival.SmartPhoneScreen.enabled = true;
-          this.Rival.SmartPhone.SetActive(true);
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 4)
-      {
-        if ((double) this.Rival.CharacterAnimation[this.EventAnim[1]].time >= 13.33333)
-        {
-          this.OriginalPosition = this.Rival.SmartPhone.transform.localPosition;
-          this.OriginalRotation = this.Rival.SmartPhone.transform.localEulerAngles;
-          this.Rival.SmartPhone.transform.parent = (Transform) null;
-          this.Rival.SmartPhone.transform.position = new Vector3(0.5f, 12.5042f, -29.365f);
-          this.Rival.SmartPhone.transform.eulerAngles = new Vector3(0.0f, 180f, 180f);
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 5)
-      {
-        if ((double) this.Rival.CharacterAnimation[this.EventAnim[1]].time >= (double) this.Rival.CharacterAnimation[this.EventAnim[1]].length)
-        {
-          this.Rival.CharacterAnimation.Play(this.EventAnim[2]);
-          this.PhoneMinigame.Prompt.enabled = true;
-          this.Rival.Ragdoll.Zs.SetActive(true);
-          this.EventSubtitle.text = "";
-          this.Rival.Distracted = true;
-          ++this.Phase;
-          this.StudentManager.UpdateMe(this.RivalID);
-        }
-      }
-      else if (this.Phase == 6)
-      {
-        if (!this.Sabotaged && !this.PhoneMinigame.Tampering)
-        {
-          if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null && !this.FriendWarned)
-          {
-            if ((double) this.FriendWarningTimer == 0.0)
-            {
-              if ((double) Vector3.Distance(this.Yandere.transform.position, this.Friend.transform.position) < 5.0)
-              {
-                AudioClipPlayer.Play(this.SpeechClip[3], this.Friend.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-                this.EventSubtitle.text = this.SpeechText[3];
-                this.FriendWarningTimer += Time.deltaTime;
-              }
-            }
-            else
-            {
-              this.FriendWarningTimer += Time.deltaTime;
-              if ((double) this.FriendWarningTimer > 5.0)
-                this.FriendWarned = true;
-            }
-          }
-          if ((double) this.Clock.HourTime > 17.2)
-          {
-            AudioClipPlayer.Play(this.SpeechClip[2], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-            this.Rival.CharacterAnimation.CrossFade(this.EventAnim[3]);
-            this.Rival.Ragdoll.Zs.SetActive(false);
-            this.Rival.Hurry = true;
-            ++this.Phase;
-            this.PhoneMinigame.Prompt.enabled = false;
-            this.PhoneMinigame.Prompt.Hide();
-          }
-        }
-      }
-      else if (this.Phase == 7)
-      {
-        if ((double) this.Rival.CharacterAnimation[this.EventAnim[3]].time >= 2.5)
-        {
-          this.Rival.SmartPhone.transform.parent = this.Rival.ItemParent;
-          this.Rival.SmartPhone.transform.localPosition = this.OriginalPosition;
-          this.Rival.SmartPhone.transform.localEulerAngles = this.OriginalRotation;
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 8)
-      {
-        if ((double) this.Rival.CharacterAnimation[this.EventAnim[3]].time >= 3.5)
-        {
-          this.Rival.SmartPhone.SetActive(false);
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 9)
-      {
-        if ((double) this.Rival.CharacterAnimation[this.EventAnim[3]].time >= 4.65)
-        {
-          this.EventSubtitle.text = this.SpeechText[2];
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 10 && (double) this.Rival.CharacterAnimation[this.EventAnim[3]].time >= (double) this.Rival.CharacterAnimation[this.EventAnim[3]].length)
-        this.EndEvent();
-      if (this.Rival.Alarmed || this.Rival.Splashed || this.Rival.Dodging || this.Rival.DiscCheck || this.Rival.Dying || this.Rival.GoAway)
-        this.EndEvent();
-      if (!this.Sabotaged)
-      {
-        this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
-        if ((double) this.Distance - 4.0 < 15.0)
-        {
-          this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
-          if ((double) this.Scale < 0.0)
-            this.Scale = 0.0f;
-          if ((double) this.Scale > 1.0)
-            this.Scale = 1f;
-          this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
-          this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-          if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-            this.VoiceClip.GetComponent<AudioSource>().volume = this.Scale;
-        }
-        else
-        {
-          this.EventSubtitle.transform.localScale = Vector3.zero;
-          if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-            this.VoiceClip.GetComponent<AudioSource>().volume = 0.0f;
-        }
-        if ((UnityEngine.Object) this.VoiceClip == (UnityEngine.Object) null)
-          this.EventSubtitle.text = string.Empty;
-      }
-    }
-    if (!this.ReturningFromSave)
-      return;
-    this.ReturnTimer += Time.deltaTime;
-    if ((double) this.ReturnTimer <= 1.0)
-      return;
-    this.ReturnFromSave();
-  }
+	public JukeboxScript Jukebox;
 
-  public void EndEvent()
-  {
-    Debug.Log((object) "Osana's Thursday after class event has ended.");
-    if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-      UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    if (!this.Rival.Alarmed && !this.Rival.Attacked && !this.Rival.Hunted)
-    {
-      this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
-      this.Rival.DistanceToDestination = 100f;
-      this.Rival.Pathfinding.canSearch = true;
-      this.Rival.Pathfinding.canMove = true;
-      this.Rival.Routine = true;
-    }
-    this.Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-    this.Rival.SmartPhoneScreen.enabled = false;
-    this.Rival.Ragdoll.Zs.SetActive(false);
-    this.Rival.Obstacle.enabled = false;
-    this.Rival.Prompt.enabled = true;
-    this.Rival.Distracted = false;
-    this.Rival.InEvent = false;
-    this.Rival.Private = false;
-    this.Rival.SmartPhone.transform.parent = this.Rival.ItemParent;
-    this.Rival.SmartPhone.transform.localPosition = this.OriginalPosition;
-    this.Rival.SmartPhone.transform.localEulerAngles = this.OriginalRotation;
-    if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
-    {
-      ScheduleBlock scheduleBlock = this.Friend.ScheduleBlocks[7];
-      scheduleBlock.destination = "Follow";
-      scheduleBlock.action = "Follow";
-      this.Friend.GetDestinations();
-      if (!this.Friend.ReturningMisplacedWeapon)
-      {
-        this.Friend.CurrentDestination = this.Friend.FollowTarget.transform;
-        this.Friend.Pathfinding.target = this.Friend.FollowTarget.transform;
-        this.Friend.EmptyHands();
-      }
-      this.Friend.Restless = false;
-    }
-    this.PhoneMinigame.Prompt.enabled = false;
-    this.PhoneMinigame.Prompt.Hide();
-    if (!this.StudentManager.Stop)
-      this.StudentManager.UpdateStudents();
-    this.Jukebox.Dip = 1f;
-    this.EventSubtitle.text = string.Empty;
-    this.enabled = false;
-    if (!this.Rival.GoAway)
-      return;
-    this.Rival.Subtitle.CustomText = "Ugh, seriously?! Guess I'm not taking a nap after all...";
-    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-  }
+	public UILabel EventSubtitle;
 
-  public void ReturnFromSave()
-  {
-    this.ReturningFromSave = false;
-    this.BeginEvent();
-  }
+	public YandereScript Yandere;
 
-  public void BeginEvent()
-  {
-    Debug.Log((object) "Osana's Thursday after class event has begun.");
-    this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-    this.Rival.CharacterAnimation.Play(this.Rival.WalkAnim);
-    this.Rival.Pathfinding.target = this.Location;
-    this.Rival.CurrentDestination = this.Location;
-    this.Rival.Pathfinding.canSearch = true;
-    this.Rival.Pathfinding.canMove = true;
-    this.Rival.Routine = false;
-    this.Rival.InEvent = true;
-    this.Rival.Drownable = false;
-    this.Rival.StudentManager.UpdateMe(this.Rival.StudentID);
-    this.Rival.Scrubber.SetActive(false);
-    this.Rival.Eraser.SetActive(false);
-    this.Yandere.PauseScreen.Hint.Show = true;
-    this.Yandere.PauseScreen.Hint.QuickID = 19;
-    this.Phase = 1;
-  }
+	public ClockScript Clock;
+
+	public StudentScript Friend;
+
+	public StudentScript Rival;
+
+	public Transform FriendLocation;
+
+	public Transform Location;
+
+	public AudioClip[] SpeechClip;
+
+	public string[] SpeechText;
+
+	public string[] EventAnim;
+
+	public GameObject AlarmDisc;
+
+	public GameObject VoiceClip;
+
+	public float FriendWarningTimer;
+
+	public float ReturnTimer;
+
+	public float Distance;
+
+	public float Scale;
+
+	public float Timer;
+
+	public DayOfWeek EventDay;
+
+	public int FriendID = 10;
+
+	public int RivalID = 11;
+
+	public int Phase;
+
+	public int Frame;
+
+	public bool ReturningFromSave;
+
+	public bool FriendWarned;
+
+	public bool Sabotaged;
+
+	public Vector3 OriginalPosition;
+
+	public Vector3 OriginalRotation;
+
+	private void Start()
+	{
+		EventSubtitle.transform.localScale = Vector3.zero;
+		if (DateGlobals.Weekday != EventDay || GameGlobals.RivalEliminationID > 0)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (Phase == 0)
+		{
+			if (Frame > 0 && StudentManager.Students[RivalID] != null)
+			{
+				if (Rival == null)
+				{
+					Rival = StudentManager.Students[RivalID];
+				}
+				if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner)
+				{
+					Friend = StudentManager.Students[FriendID];
+				}
+				if (Clock.HourTime > 16.01f && Rival.enabled && !Rival.InEvent && !Rival.Phoneless && !Rival.EndSearch && !Rival.Meeting)
+				{
+					BeginEvent();
+				}
+			}
+			Frame++;
+		}
+		else
+		{
+			if (Phase == 1)
+			{
+				if (Input.GetKeyDown(KeyCode.Space))
+				{
+					Yandere.transform.position = Location.position + new Vector3(2f, 0f, 2f);
+					Rival.transform.position = Location.position + new Vector3(1f, 0f, 1f);
+				}
+				if (Rival.DistanceToDestination < 0.5f)
+				{
+					AudioClipPlayer.Play(SpeechClip[1], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+					Rival.CharacterAnimation.CrossFade(EventAnim[1]);
+					Rival.Pathfinding.canSearch = false;
+					Rival.Pathfinding.canMove = false;
+					Rival.Obstacle.enabled = true;
+					Phase++;
+					if (Friend != null)
+					{
+						ScheduleBlock obj = Friend.ScheduleBlocks[7];
+						obj.destination = "Sketch";
+						obj.action = "Sketch";
+						Friend.GetDestinations();
+						Friend.SketchPosition = FriendLocation;
+						Friend.CurrentDestination = Friend.SketchPosition;
+						Friend.Pathfinding.target = Friend.SketchPosition;
+						Friend.Restless = true;
+					}
+				}
+			}
+			else if (Phase == 2)
+			{
+				Rival.transform.position = Vector3.Lerp(Rival.transform.position, Rival.CurrentDestination.position, 10f * Time.deltaTime);
+				Rival.transform.rotation = Quaternion.Slerp(Rival.transform.rotation, Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
+				if ((double)Rival.CharacterAnimation[EventAnim[1]].time >= 3.2)
+				{
+					EventSubtitle.text = SpeechText[1];
+					Timer = 0f;
+					Phase++;
+				}
+			}
+			else if (Phase == 3)
+			{
+				if (Rival.CharacterAnimation[EventAnim[1]].time >= 6f)
+				{
+					Rival.SmartPhoneScreen.enabled = true;
+					Rival.SmartPhone.SetActive(true);
+					Phase++;
+				}
+			}
+			else if (Phase == 4)
+			{
+				if ((double)Rival.CharacterAnimation[EventAnim[1]].time >= 13.33333)
+				{
+					OriginalPosition = Rival.SmartPhone.transform.localPosition;
+					OriginalRotation = Rival.SmartPhone.transform.localEulerAngles;
+					Rival.SmartPhone.transform.parent = null;
+					Rival.SmartPhone.transform.position = new Vector3(0.5f, 12.5042f, -29.365f);
+					Rival.SmartPhone.transform.eulerAngles = new Vector3(0f, 180f, 180f);
+					Phase++;
+				}
+			}
+			else if (Phase == 5)
+			{
+				if (Rival.CharacterAnimation[EventAnim[1]].time >= Rival.CharacterAnimation[EventAnim[1]].length)
+				{
+					Rival.CharacterAnimation.Play(EventAnim[2]);
+					PhoneMinigame.Prompt.enabled = true;
+					Rival.Ragdoll.Zs.SetActive(true);
+					EventSubtitle.text = "";
+					Rival.Distracted = true;
+					Phase++;
+					StudentManager.UpdateMe(RivalID);
+				}
+			}
+			else if (Phase == 6)
+			{
+				if (!Sabotaged && !PhoneMinigame.Tampering)
+				{
+					if (Friend != null && !FriendWarned)
+					{
+						if (FriendWarningTimer == 0f)
+						{
+							if (Vector3.Distance(Yandere.transform.position, Friend.transform.position) < 5f)
+							{
+								AudioClipPlayer.Play(SpeechClip[3], Friend.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+								EventSubtitle.text = SpeechText[3];
+								FriendWarningTimer += Time.deltaTime;
+							}
+						}
+						else
+						{
+							FriendWarningTimer += Time.deltaTime;
+							if (FriendWarningTimer > 5f)
+							{
+								FriendWarned = true;
+							}
+						}
+					}
+					if ((double)Clock.HourTime > 17.2)
+					{
+						AudioClipPlayer.Play(SpeechClip[2], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+						Rival.CharacterAnimation.CrossFade(EventAnim[3]);
+						Rival.Ragdoll.Zs.SetActive(false);
+						Rival.Hurry = true;
+						Phase++;
+						PhoneMinigame.Prompt.enabled = false;
+						PhoneMinigame.Prompt.Hide();
+					}
+				}
+			}
+			else if (Phase == 7)
+			{
+				if ((double)Rival.CharacterAnimation[EventAnim[3]].time >= 2.5)
+				{
+					Rival.SmartPhone.transform.parent = Rival.ItemParent;
+					Rival.SmartPhone.transform.localPosition = OriginalPosition;
+					Rival.SmartPhone.transform.localEulerAngles = OriginalRotation;
+					Phase++;
+				}
+			}
+			else if (Phase == 8)
+			{
+				if ((double)Rival.CharacterAnimation[EventAnim[3]].time >= 3.5)
+				{
+					Rival.SmartPhone.SetActive(false);
+					Phase++;
+				}
+			}
+			else if (Phase == 9)
+			{
+				if ((double)Rival.CharacterAnimation[EventAnim[3]].time >= 4.65)
+				{
+					EventSubtitle.text = SpeechText[2];
+					Phase++;
+				}
+			}
+			else if (Phase == 10 && Rival.CharacterAnimation[EventAnim[3]].time >= Rival.CharacterAnimation[EventAnim[3]].length)
+			{
+				EndEvent();
+			}
+			if (Rival.Alarmed || Rival.Splashed || Rival.Dodging || Rival.DiscCheck || Rival.Dying || Rival.GoAway)
+			{
+				EndEvent();
+			}
+			if (!Sabotaged)
+			{
+				Distance = Vector3.Distance(Yandere.transform.position, Rival.transform.position);
+				if (Distance - 4f < 15f)
+				{
+					Scale = Mathf.Abs(1f - (Distance - 4f) / 15f);
+					if (Scale < 0f)
+					{
+						Scale = 0f;
+					}
+					if (Scale > 1f)
+					{
+						Scale = 1f;
+					}
+					Jukebox.Dip = 1f - 0.5f * Scale;
+					EventSubtitle.transform.localScale = new Vector3(Scale, Scale, Scale);
+					if (VoiceClip != null)
+					{
+						VoiceClip.GetComponent<AudioSource>().volume = Scale;
+					}
+				}
+				else
+				{
+					EventSubtitle.transform.localScale = Vector3.zero;
+					if (VoiceClip != null)
+					{
+						VoiceClip.GetComponent<AudioSource>().volume = 0f;
+					}
+				}
+				if (VoiceClip == null)
+				{
+					EventSubtitle.text = string.Empty;
+				}
+			}
+		}
+		if (ReturningFromSave)
+		{
+			ReturnTimer += Time.deltaTime;
+			if (ReturnTimer > 1f)
+			{
+				ReturnFromSave();
+			}
+		}
+	}
+
+	public void EndEvent()
+	{
+		Debug.Log("Osana's Thursday after class event has ended.");
+		if (VoiceClip != null)
+		{
+			UnityEngine.Object.Destroy(VoiceClip);
+		}
+		if (!Rival.Alarmed && !Rival.Attacked && !Rival.Hunted)
+		{
+			Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
+			Rival.DistanceToDestination = 100f;
+			Rival.Pathfinding.canSearch = true;
+			Rival.Pathfinding.canMove = true;
+			Rival.Routine = true;
+		}
+		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+		Rival.SmartPhoneScreen.enabled = false;
+		Rival.Ragdoll.Zs.SetActive(false);
+		Rival.Obstacle.enabled = false;
+		Rival.Prompt.enabled = true;
+		Rival.Distracted = false;
+		Rival.InEvent = false;
+		Rival.Private = false;
+		Rival.SmartPhone.transform.parent = Rival.ItemParent;
+		Rival.SmartPhone.transform.localPosition = OriginalPosition;
+		Rival.SmartPhone.transform.localEulerAngles = OriginalRotation;
+		if (Friend != null)
+		{
+			ScheduleBlock obj = Friend.ScheduleBlocks[7];
+			obj.destination = "Follow";
+			obj.action = "Follow";
+			Friend.GetDestinations();
+			if (!Friend.ReturningMisplacedWeapon)
+			{
+				Friend.CurrentDestination = Friend.FollowTarget.transform;
+				Friend.Pathfinding.target = Friend.FollowTarget.transform;
+				Friend.EmptyHands();
+			}
+			Friend.Restless = false;
+		}
+		PhoneMinigame.Prompt.enabled = false;
+		PhoneMinigame.Prompt.Hide();
+		if (!StudentManager.Stop)
+		{
+			StudentManager.UpdateStudents();
+		}
+		Jukebox.Dip = 1f;
+		EventSubtitle.text = string.Empty;
+		base.enabled = false;
+		if (Rival.GoAway)
+		{
+			Rival.Subtitle.CustomText = "Ugh, seriously?! Guess I'm not taking a nap after all...";
+			Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+		}
+	}
+
+	public void ReturnFromSave()
+	{
+		ReturningFromSave = false;
+		BeginEvent();
+	}
+
+	public void BeginEvent()
+	{
+		Debug.Log("Osana's Thursday after class event has begun.");
+		Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+		Rival.CharacterAnimation.Play(Rival.WalkAnim);
+		Rival.Pathfinding.target = Location;
+		Rival.CurrentDestination = Location;
+		Rival.Pathfinding.canSearch = true;
+		Rival.Pathfinding.canMove = true;
+		Rival.Routine = false;
+		Rival.InEvent = true;
+		Rival.Drownable = false;
+		Rival.StudentManager.UpdateMe(Rival.StudentID);
+		Rival.Scrubber.SetActive(false);
+		Rival.Eraser.SetActive(false);
+		Yandere.PauseScreen.Hint.Show = true;
+		Yandere.PauseScreen.Hint.QuickID = 19;
+		Phase = 1;
+	}
 }

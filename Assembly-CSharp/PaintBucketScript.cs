@@ -1,40 +1,36 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PaintBucketScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PaintBucketScript : MonoBehaviour
 {
-  public PromptScript Prompt;
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    this.Prompt.Circle[0].fillAmount = 1f;
-    if (this.Prompt.Yandere.StudentManager.OriginalUniforms + this.Prompt.Yandere.StudentManager.NewUniforms > 1)
-    {
-      if ((double) this.Prompt.Yandere.Bloodiness != 0.0)
-        return;
-      ++this.Prompt.Yandere.Police.RedPaintClothing;
-      this.Prompt.Yandere.Bloodiness += 100f;
-      this.Prompt.Yandere.RedPaint = true;
-      if (!((Object) this.Prompt.Yandere.Gloves != (Object) null))
-        return;
-      this.Prompt.Yandere.Gloves.PickUp.RedPaint = true;
-      this.Prompt.Yandere.Gloves.Blood.enabled = true;
-    }
-    else
-    {
-      if (this.Prompt.Yandere.ClothingWarning)
-        return;
-      this.Prompt.Yandere.NotificationManager.CustomText = "Can't do that; no spare clothing";
-      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      this.Prompt.Yandere.StudentManager.TutorialWindow.ShowClothingMessage = true;
-      this.Prompt.Yandere.ClothingWarning = true;
-    }
-  }
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount != 0f)
+		{
+			return;
+		}
+		Prompt.Circle[0].fillAmount = 1f;
+		if (Prompt.Yandere.StudentManager.OriginalUniforms + Prompt.Yandere.StudentManager.NewUniforms > 1)
+		{
+			if (Prompt.Yandere.Bloodiness == 0f)
+			{
+				Prompt.Yandere.Police.RedPaintClothing++;
+				Prompt.Yandere.Bloodiness += 100f;
+				Prompt.Yandere.RedPaint = true;
+				if (Prompt.Yandere.Gloves != null)
+				{
+					Prompt.Yandere.Gloves.PickUp.RedPaint = true;
+					Prompt.Yandere.Gloves.Blood.enabled = true;
+				}
+			}
+		}
+		else if (!Prompt.Yandere.ClothingWarning)
+		{
+			Prompt.Yandere.NotificationManager.CustomText = "Can't do that; no spare clothing";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Prompt.Yandere.StudentManager.TutorialWindow.ShowClothingMessage = true;
+			Prompt.Yandere.ClothingWarning = true;
+		}
+	}
 }

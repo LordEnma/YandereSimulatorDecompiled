@@ -1,98 +1,107 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityStandardAssets.Cameras.FreeLookCam
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Cameras
 {
-  public class FreeLookCam : PivotBasedCameraRig
-  {
-    [SerializeField]
-    private float m_MoveSpeed = 1f;
-    [Range(0.0f, 10f)]
-    [SerializeField]
-    private float m_TurnSpeed = 1.5f;
-    [SerializeField]
-    private float m_TurnSmoothing;
-    [SerializeField]
-    private float m_TiltMax = 75f;
-    [SerializeField]
-    private float m_TiltMin = 45f;
-    [SerializeField]
-    private bool m_LockCursor;
-    [SerializeField]
-    private bool m_VerticalAutoReturn;
-    private float m_LookAngle;
-    private float m_TiltAngle;
-    private const float k_LookDistance = 100f;
-    private Vector3 m_PivotEulers;
-    private Quaternion m_PivotTargetRot;
-    private Quaternion m_TransformTargetRot;
+	public class FreeLookCam : PivotBasedCameraRig
+	{
+		[SerializeField]
+		private float m_MoveSpeed = 1f;
 
-    protected override void Awake()
-    {
-      base.Awake();
-      Cursor.lockState = this.m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
-      Cursor.visible = !this.m_LockCursor;
-      this.m_PivotEulers = this.m_Pivot.rotation.eulerAngles;
-      this.m_PivotTargetRot = this.m_Pivot.transform.localRotation;
-      this.m_TransformTargetRot = this.transform.localRotation;
-    }
+		[Range(0f, 10f)]
+		[SerializeField]
+		private float m_TurnSpeed = 1.5f;
 
-    protected void Update()
-    {
-      this.HandleRotationMovement();
-      if (!this.m_LockCursor || !Input.GetMouseButtonUp(0))
-        return;
-      Cursor.lockState = this.m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
-      Cursor.visible = !this.m_LockCursor;
-    }
+		[SerializeField]
+		private float m_TurnSmoothing;
 
-    private void OnDisable()
-    {
-      Cursor.lockState = CursorLockMode.None;
-      Cursor.visible = true;
-    }
+		[SerializeField]
+		private float m_TiltMax = 75f;
 
-    protected override void FollowTarget(float deltaTime)
-    {
-      if ((Object) this.m_Target == (Object) null)
-        return;
-      this.transform.position = Vector3.Lerp(this.transform.position, this.m_Target.position, deltaTime * this.m_MoveSpeed);
-    }
+		[SerializeField]
+		private float m_TiltMin = 45f;
 
-    private void HandleRotationMovement()
-    {
-      if ((double) Time.timeScale < 1.4012984643248171E-45)
-        return;
-      float axis1 = CrossPlatformInputManager.GetAxis("Mouse X");
-      float axis2 = CrossPlatformInputManager.GetAxis("Mouse Y");
-      this.m_LookAngle += axis1 * this.m_TurnSpeed;
-      this.m_TransformTargetRot = Quaternion.Euler(0.0f, this.m_LookAngle, 0.0f);
-      if (this.m_VerticalAutoReturn)
-      {
-        this.m_TiltAngle = (double) axis2 > 0.0 ? Mathf.Lerp(0.0f, -this.m_TiltMin, axis2) : Mathf.Lerp(0.0f, this.m_TiltMax, -axis2);
-      }
-      else
-      {
-        this.m_TiltAngle -= axis2 * this.m_TurnSpeed;
-        this.m_TiltAngle = Mathf.Clamp(this.m_TiltAngle, -this.m_TiltMin, this.m_TiltMax);
-      }
-      this.m_PivotTargetRot = Quaternion.Euler(this.m_TiltAngle, this.m_PivotEulers.y, this.m_PivotEulers.z);
-      if ((double) this.m_TurnSmoothing > 0.0)
-      {
-        this.m_Pivot.localRotation = Quaternion.Slerp(this.m_Pivot.localRotation, this.m_PivotTargetRot, this.m_TurnSmoothing * Time.deltaTime);
-        this.transform.localRotation = Quaternion.Slerp(this.transform.localRotation, this.m_TransformTargetRot, this.m_TurnSmoothing * Time.deltaTime);
-      }
-      else
-      {
-        this.m_Pivot.localRotation = this.m_PivotTargetRot;
-        this.transform.localRotation = this.m_TransformTargetRot;
-      }
-    }
-  }
+		[SerializeField]
+		private bool m_LockCursor;
+
+		[SerializeField]
+		private bool m_VerticalAutoReturn;
+
+		private float m_LookAngle;
+
+		private float m_TiltAngle;
+
+		private const float k_LookDistance = 100f;
+
+		private Vector3 m_PivotEulers;
+
+		private Quaternion m_PivotTargetRot;
+
+		private Quaternion m_TransformTargetRot;
+
+		protected override void Awake()
+		{
+			base.Awake();
+			Cursor.lockState = (m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None);
+			Cursor.visible = !m_LockCursor;
+			m_PivotEulers = m_Pivot.rotation.eulerAngles;
+			m_PivotTargetRot = m_Pivot.transform.localRotation;
+			m_TransformTargetRot = base.transform.localRotation;
+		}
+
+		protected void Update()
+		{
+			HandleRotationMovement();
+			if (m_LockCursor && Input.GetMouseButtonUp(0))
+			{
+				Cursor.lockState = (m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None);
+				Cursor.visible = !m_LockCursor;
+			}
+		}
+
+		private void OnDisable()
+		{
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+
+		protected override void FollowTarget(float deltaTime)
+		{
+			if (!(m_Target == null))
+			{
+				base.transform.position = Vector3.Lerp(base.transform.position, m_Target.position, deltaTime * m_MoveSpeed);
+			}
+		}
+
+		private void HandleRotationMovement()
+		{
+			if (!(Time.timeScale < float.Epsilon))
+			{
+				float axis = CrossPlatformInputManager.GetAxis("Mouse X");
+				float axis2 = CrossPlatformInputManager.GetAxis("Mouse Y");
+				m_LookAngle += axis * m_TurnSpeed;
+				m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
+				if (m_VerticalAutoReturn)
+				{
+					m_TiltAngle = ((axis2 > 0f) ? Mathf.Lerp(0f, 0f - m_TiltMin, axis2) : Mathf.Lerp(0f, m_TiltMax, 0f - axis2));
+				}
+				else
+				{
+					m_TiltAngle -= axis2 * m_TurnSpeed;
+					m_TiltAngle = Mathf.Clamp(m_TiltAngle, 0f - m_TiltMin, m_TiltMax);
+				}
+				m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y, m_PivotEulers.z);
+				if (m_TurnSmoothing > 0f)
+				{
+					m_Pivot.localRotation = Quaternion.Slerp(m_Pivot.localRotation, m_PivotTargetRot, m_TurnSmoothing * Time.deltaTime);
+					base.transform.localRotation = Quaternion.Slerp(base.transform.localRotation, m_TransformTargetRot, m_TurnSmoothing * Time.deltaTime);
+				}
+				else
+				{
+					m_Pivot.localRotation = m_PivotTargetRot;
+					base.transform.localRotation = m_TransformTargetRot;
+				}
+			}
+		}
+	}
 }

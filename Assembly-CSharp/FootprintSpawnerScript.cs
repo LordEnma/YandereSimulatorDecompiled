@@ -1,142 +1,146 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FootprintSpawnerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FootprintSpawnerScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public GameObject BloodyFootprint;
-  public AudioClip[] WalkFootsteps;
-  public AudioClip[] RunFootsteps;
-  public AudioClip[] WalkBareFootsteps;
-  public AudioClip[] RunBareFootsteps;
-  public AudioSource MyAudio;
-  public Transform BloodParent;
-  public Collider MyCollider;
-  public Collider GardenArea;
-  public Collider PoolStairs;
-  public Collider TreeArea;
-  public Collider NEStairs;
-  public Collider NWStairs;
-  public Collider SEStairs;
-  public Collider SWStairs;
-  public bool Debugging;
-  public bool CanSpawn;
-  public bool FootUp;
-  public float DownThreshold;
-  public float UpThreshold;
-  public float Height;
-  public int Bloodiness;
-  public int Collisions;
-  public int StudentBloodID;
+	public YandereScript Yandere;
 
-  private void Start()
-  {
-    if ((Object) this.MyAudio == (Object) null)
-      this.MyAudio = this.GetComponent<AudioSource>();
-    this.GardenArea = this.Yandere.StudentManager.GardenArea;
-    this.PoolStairs = this.Yandere.StudentManager.PoolStairs;
-    this.TreeArea = this.Yandere.StudentManager.TreeArea;
-    this.NEStairs = this.Yandere.StudentManager.NEStairs;
-    this.NWStairs = this.Yandere.StudentManager.NWStairs;
-    this.SEStairs = this.Yandere.StudentManager.SEStairs;
-    this.SWStairs = this.Yandere.StudentManager.SWStairs;
-  }
+	public GameObject BloodyFootprint;
 
-  private void Update()
-  {
-    if (!this.FootUp)
-    {
-      if ((double) this.transform.position.y <= (double) this.Yandere.transform.position.y + (double) this.UpThreshold)
-        return;
-      this.FootUp = true;
-    }
-    else
-    {
-      if ((double) this.transform.position.y >= (double) this.Yandere.transform.position.y + (double) this.DownThreshold)
-        return;
-      if (this.Yandere.Stance.Current != StanceType.Crouching && this.Yandere.Stance.Current != StanceType.Crawling && this.Yandere.CanMove && !this.Yandere.NearSenpai && this.FootUp)
-      {
-        if (this.Yandere.Schoolwear == 0 || this.Yandere.Schoolwear == 2 || this.Yandere.ClubAttire && this.Yandere.Club == ClubType.MartialArts)
-        {
-          if (this.Yandere.Running)
-          {
-            this.MyAudio.clip = this.RunBareFootsteps[Random.Range(0, this.RunBareFootsteps.Length)];
-            this.MyAudio.volume = 0.3f;
-          }
-          else
-          {
-            this.MyAudio.clip = this.WalkBareFootsteps[Random.Range(0, this.WalkBareFootsteps.Length)];
-            this.MyAudio.volume = 0.2f;
-          }
-        }
-        else if (this.Yandere.Running)
-        {
-          this.MyAudio.clip = this.RunFootsteps[Random.Range(0, this.RunFootsteps.Length)];
-          this.MyAudio.volume = 0.15f;
-        }
-        else
-        {
-          this.MyAudio.clip = this.WalkFootsteps[Random.Range(0, this.WalkFootsteps.Length)];
-          this.MyAudio.volume = 0.1f;
-        }
-        this.MyAudio.Play();
-      }
-      this.FootUp = false;
-      if (this.Bloodiness <= 0)
-        return;
-      Bounds bounds = this.GardenArea.bounds;
-      int num;
-      if (!bounds.Contains(this.transform.position))
-      {
-        bounds = this.PoolStairs.bounds;
-        if (!bounds.Contains(this.transform.position))
-        {
-          bounds = this.TreeArea.bounds;
-          if (!bounds.Contains(this.transform.position))
-          {
-            bounds = this.NEStairs.bounds;
-            if (!bounds.Contains(this.transform.position))
-            {
-              bounds = this.NWStairs.bounds;
-              if (!bounds.Contains(this.transform.position))
-              {
-                bounds = this.SEStairs.bounds;
-                if (!bounds.Contains(this.transform.position))
-                {
-                  bounds = this.SWStairs.bounds;
-                  num = !bounds.Contains(this.transform.position) ? 1 : 0;
-                  goto label_22;
-                }
-              }
-            }
-          }
-        }
-      }
-      num = 0;
-label_22:
-      this.CanSpawn = num != 0;
-      if (!this.CanSpawn)
-        return;
-      if ((double) this.transform.position.y > -1.0 && (double) this.transform.position.y < 1.0)
-        this.Height = 0.0f;
-      else if ((double) this.transform.position.y > 3.0 && (double) this.transform.position.y < 5.0)
-        this.Height = 4f;
-      else if ((double) this.transform.position.y > 7.0 && (double) this.transform.position.y < 9.0)
-        this.Height = 8f;
-      else if ((double) this.transform.position.y > 11.0 && (double) this.transform.position.y < 13.0)
-        this.Height = 12f;
-      GameObject gameObject = Object.Instantiate<GameObject>(this.BloodyFootprint, new Vector3(this.transform.position.x, this.Height + 0.012f, this.transform.position.z), Quaternion.identity);
-      gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, this.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
-      FootprintScript component = gameObject.transform.GetChild(0).GetComponent<FootprintScript>();
-      gameObject.transform.parent = this.BloodParent;
-      component.Yandere = this.Yandere;
-      component.StudentBloodID = this.StudentBloodID;
-      --this.Bloodiness;
-    }
-  }
+	public AudioClip[] WalkFootsteps;
+
+	public AudioClip[] RunFootsteps;
+
+	public AudioClip[] WalkBareFootsteps;
+
+	public AudioClip[] RunBareFootsteps;
+
+	public AudioSource MyAudio;
+
+	public Transform BloodParent;
+
+	public Collider MyCollider;
+
+	public Collider GardenArea;
+
+	public Collider PoolStairs;
+
+	public Collider TreeArea;
+
+	public Collider NEStairs;
+
+	public Collider NWStairs;
+
+	public Collider SEStairs;
+
+	public Collider SWStairs;
+
+	public bool Debugging;
+
+	public bool CanSpawn;
+
+	public bool FootUp;
+
+	public float DownThreshold;
+
+	public float UpThreshold;
+
+	public float Height;
+
+	public int Bloodiness;
+
+	public int Collisions;
+
+	public int StudentBloodID;
+
+	private void Start()
+	{
+		if (MyAudio == null)
+		{
+			MyAudio = GetComponent<AudioSource>();
+		}
+		GardenArea = Yandere.StudentManager.GardenArea;
+		PoolStairs = Yandere.StudentManager.PoolStairs;
+		TreeArea = Yandere.StudentManager.TreeArea;
+		NEStairs = Yandere.StudentManager.NEStairs;
+		NWStairs = Yandere.StudentManager.NWStairs;
+		SEStairs = Yandere.StudentManager.SEStairs;
+		SWStairs = Yandere.StudentManager.SWStairs;
+	}
+
+	private void Update()
+	{
+		if (!FootUp)
+		{
+			if (base.transform.position.y > Yandere.transform.position.y + UpThreshold)
+			{
+				FootUp = true;
+			}
+		}
+		else
+		{
+			if (!(base.transform.position.y < Yandere.transform.position.y + DownThreshold))
+			{
+				return;
+			}
+			if (Yandere.Stance.Current != StanceType.Crouching && Yandere.Stance.Current != StanceType.Crawling && Yandere.CanMove && !Yandere.NearSenpai && FootUp)
+			{
+				if (Yandere.Schoolwear == 0 || Yandere.Schoolwear == 2 || (Yandere.ClubAttire && Yandere.Club == ClubType.MartialArts))
+				{
+					if (Yandere.Running)
+					{
+						MyAudio.clip = RunBareFootsteps[Random.Range(0, RunBareFootsteps.Length)];
+						MyAudio.volume = 0.3f;
+					}
+					else
+					{
+						MyAudio.clip = WalkBareFootsteps[Random.Range(0, WalkBareFootsteps.Length)];
+						MyAudio.volume = 0.2f;
+					}
+				}
+				else if (Yandere.Running)
+				{
+					MyAudio.clip = RunFootsteps[Random.Range(0, RunFootsteps.Length)];
+					MyAudio.volume = 0.15f;
+				}
+				else
+				{
+					MyAudio.clip = WalkFootsteps[Random.Range(0, WalkFootsteps.Length)];
+					MyAudio.volume = 0.1f;
+				}
+				MyAudio.Play();
+			}
+			FootUp = false;
+			if (Bloodiness <= 0)
+			{
+				return;
+			}
+			CanSpawn = !GardenArea.bounds.Contains(base.transform.position) && !PoolStairs.bounds.Contains(base.transform.position) && !TreeArea.bounds.Contains(base.transform.position) && !NEStairs.bounds.Contains(base.transform.position) && !NWStairs.bounds.Contains(base.transform.position) && !SEStairs.bounds.Contains(base.transform.position) && !SWStairs.bounds.Contains(base.transform.position);
+			if (CanSpawn)
+			{
+				if (base.transform.position.y > -1f && base.transform.position.y < 1f)
+				{
+					Height = 0f;
+				}
+				else if (base.transform.position.y > 3f && base.transform.position.y < 5f)
+				{
+					Height = 4f;
+				}
+				else if (base.transform.position.y > 7f && base.transform.position.y < 9f)
+				{
+					Height = 8f;
+				}
+				else if (base.transform.position.y > 11f && base.transform.position.y < 13f)
+				{
+					Height = 12f;
+				}
+				GameObject gameObject = Object.Instantiate(BloodyFootprint, new Vector3(base.transform.position.x, Height + 0.012f, base.transform.position.z), Quaternion.identity);
+				gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, base.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
+				FootprintScript component = gameObject.transform.GetChild(0).GetComponent<FootprintScript>();
+				gameObject.transform.parent = BloodParent;
+				component.Yandere = Yandere;
+				component.StudentBloodID = StudentBloodID;
+				Bloodiness--;
+			}
+		}
+	}
 }

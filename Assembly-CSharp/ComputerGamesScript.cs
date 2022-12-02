@@ -1,283 +1,374 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ComputerGamesScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ComputerGamesScript : MonoBehaviour
 {
-  public PromptScript[] ComputerGames;
-  public Collider[] Chairs;
-  public StudentManagerScript StudentManager;
-  public InputManagerScript InputManager;
-  public PromptBarScript PromptBar;
-  public YandereScript Yandere;
-  public PoliceScript Police;
-  public PoisonScript Poison;
-  public Quaternion targetRotation;
-  public Transform GameWindow;
-  public Transform MainCamera;
-  public Transform Highlight;
-  public bool ShowWindow;
-  public bool Gaming;
-  public float Timer;
-  public int Subject = 1;
-  public int GameID;
-  public int ID = 1;
-  public Color OriginalColor;
-  public string[] Descriptions;
-  public UITexture MyTexture;
-  public Texture[] Textures;
-  public UILabel DescLabel;
+	public PromptScript[] ComputerGames;
 
-  private void Start()
-  {
-    this.GameWindow.gameObject.SetActive(false);
-    this.UpdateHighlight();
-    this.DeactivateAllBenefits();
-    this.OriginalColor = this.Yandere.PowerUp.color;
-    if (ClubGlobals.Club == ClubType.Gaming)
-      this.EnableGames();
-    else
-      this.DisableGames();
-  }
+	public Collider[] Chairs;
 
-  private void Update()
-  {
-    if (this.ShowWindow)
-    {
-      this.GameWindow.localScale = Vector3.Lerp(this.GameWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-      if (this.InputManager.TappedUp)
-      {
-        --this.Subject;
-        this.UpdateHighlight();
-      }
-      else if (this.InputManager.TappedDown)
-      {
-        ++this.Subject;
-        this.UpdateHighlight();
-      }
-      if (Input.GetButtonDown("A"))
-      {
-        this.ShowWindow = false;
-        this.PlayGames();
-        this.PromptBar.ClearButtons();
-        this.PromptBar.UpdateButtons();
-        this.PromptBar.Show = false;
-      }
-      if (Input.GetButtonDown("B"))
-      {
-        this.Yandere.CanMove = true;
-        this.ShowWindow = false;
-        this.PromptBar.ClearButtons();
-        this.PromptBar.UpdateButtons();
-        this.PromptBar.Show = false;
-      }
-    }
-    else if ((double) this.GameWindow.localScale.x > 0.10000000149011612)
-    {
-      this.GameWindow.localScale = Vector3.Lerp(this.GameWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
-    }
-    else
-    {
-      this.GameWindow.localScale = Vector3.zero;
-      this.GameWindow.gameObject.SetActive(false);
-    }
-    if (this.Gaming)
-    {
-      this.targetRotation = Quaternion.LookRotation(new Vector3(this.ComputerGames[this.GameID].transform.position.x, this.Yandere.transform.position.y, this.ComputerGames[this.GameID].transform.position.z) - this.Yandere.transform.position);
-      this.Yandere.transform.rotation = Quaternion.Slerp(this.Yandere.transform.rotation, this.targetRotation, Time.deltaTime * 10f);
-      this.Yandere.MoveTowardsTarget(new Vector3(24.32233f, 4f, 12.58998f));
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 5.0)
-      {
-        this.Yandere.PowerUp.transform.parent.gameObject.SetActive(true);
-        this.Yandere.MyController.radius = 0.2f;
-        this.Yandere.CanMove = true;
-        this.Yandere.EmptyHands();
-        this.Gaming = false;
-        this.ActivateBenefit();
-      }
-    }
-    else if ((double) this.Timer < 5.0)
-    {
-      for (this.ID = 1; this.ID < this.ComputerGames.Length; ++this.ID)
-      {
-        PromptScript computerGame = this.ComputerGames[this.ID];
-        if ((double) computerGame.Circle[0].fillAmount == 0.0)
-        {
-          computerGame.Circle[0].fillAmount = 1f;
-          if (!this.Yandere.Chased && this.Yandere.Chasers == 0)
-          {
-            this.GameID = this.ID;
-            if (this.ID == 1)
-            {
-              this.PromptBar.ClearButtons();
-              this.PromptBar.Label[0].text = "Confirm";
-              this.PromptBar.Label[1].text = "Back";
-              this.PromptBar.Label[4].text = "Select";
-              this.PromptBar.UpdateButtons();
-              this.PromptBar.Show = true;
-              this.Yandere.Character.GetComponent<Animation>().Play(this.Yandere.IdleAnim);
-              this.Yandere.CanMove = false;
-              this.GameWindow.gameObject.SetActive(true);
-              this.ShowWindow = true;
-            }
-            else
-              this.PlayGames();
-          }
-        }
-      }
-    }
-    if (!this.Yandere.PowerUp.gameObject.activeInHierarchy)
-      return;
-    this.Timer += Time.deltaTime;
-    this.Yandere.PowerUp.transform.localPosition = new Vector3(this.Yandere.PowerUp.transform.localPosition.x, this.Yandere.PowerUp.transform.localPosition.y + Time.deltaTime, this.Yandere.PowerUp.transform.localPosition.z);
-    this.Yandere.PowerUp.transform.LookAt(this.MainCamera.position);
-    this.Yandere.PowerUp.transform.localEulerAngles = new Vector3(this.Yandere.PowerUp.transform.localEulerAngles.x, this.Yandere.PowerUp.transform.localEulerAngles.y + 180f, this.Yandere.PowerUp.transform.localEulerAngles.z);
-    if (this.Yandere.PowerUp.color != new Color(1f, 1f, 1f, 1f))
-      this.Yandere.PowerUp.color = this.OriginalColor;
-    else
-      this.Yandere.PowerUp.color = new Color(1f, 1f, 1f, 1f);
-    if ((double) this.Timer <= 6.0)
-      return;
-    this.Yandere.PowerUp.transform.parent.gameObject.SetActive(false);
-    this.gameObject.SetActive(false);
-  }
+	public StudentManagerScript StudentManager;
 
-  public void EnableGames()
-  {
-    for (int index = 1; index < this.ComputerGames.Length; ++index)
-      this.ComputerGames[index].enabled = true;
-    this.gameObject.SetActive(true);
-  }
+	public InputManagerScript InputManager;
 
-  private void PlayGames()
-  {
-    this.Yandere.Character.GetComponent<Animation>().CrossFade("f02_playingGames_00");
-    this.Yandere.MyController.radius = 0.1f;
-    this.Yandere.CanMove = false;
-    this.Gaming = true;
-    this.DisableGames();
-    this.UpdateImage();
-  }
+	public PromptBarScript PromptBar;
 
-  private void UpdateImage() => this.MyTexture.mainTexture = this.Textures[this.Subject];
+	public YandereScript Yandere;
 
-  public void DisableGames()
-  {
-    for (int index = 1; index < this.ComputerGames.Length; ++index)
-    {
-      this.ComputerGames[index].enabled = false;
-      this.ComputerGames[index].Hide();
-    }
-    if (this.Gaming)
-      return;
-    this.gameObject.SetActive(false);
-  }
+	public PoliceScript Police;
 
-  private void EnableChairs()
-  {
-    for (int index = 1; index < this.Chairs.Length; ++index)
-      this.Chairs[index].enabled = true;
-    this.gameObject.SetActive(true);
-  }
+	public PoisonScript Poison;
 
-  private void DisableChairs()
-  {
-    for (int index = 1; index < this.Chairs.Length; ++index)
-      this.Chairs[index].enabled = false;
-  }
+	public Quaternion targetRotation;
 
-  private void ActivateBenefit()
-  {
-    if (this.Subject == 1)
-      this.Yandere.Class.BiologyBonus = 1;
-    else if (this.Subject == 2)
-      this.Yandere.Class.ChemistryBonus = 1;
-    else if (this.Subject == 3)
-      this.Yandere.Class.LanguageBonus = 1;
-    else if (this.Subject == 4)
-      this.Yandere.Class.PsychologyBonus = 1;
-    else if (this.Subject == 5)
-      this.Yandere.Class.PhysicalBonus = 1;
-    else if (this.Subject == 6)
-      this.Yandere.Class.SeductionBonus = 1;
-    else if (this.Subject == 7)
-      this.Yandere.Class.NumbnessBonus = 1;
-    else if (this.Subject == 8)
-      this.Yandere.Class.SocialBonus = 1;
-    else if (this.Subject == 9)
-      this.Yandere.Class.StealthBonus = 1;
-    else if (this.Subject == 10)
-      this.Yandere.Class.SpeedBonus = 1;
-    else if (this.Subject == 11)
-      this.Yandere.Class.EnlightenmentBonus = 1;
-    if ((Object) this.Poison != (Object) null)
-      this.Poison.Start();
-    this.StudentManager.UpdatePerception();
-    this.Yandere.UpdateNumbness();
-    this.Police.UpdateCorpses();
-  }
+	public Transform GameWindow;
 
-  private void DeactivateBenefit()
-  {
-    if (this.Subject == 1)
-      this.Yandere.Class.BiologyBonus = 0;
-    else if (this.Subject == 2)
-      this.Yandere.Class.ChemistryBonus = 0;
-    else if (this.Subject == 3)
-      this.Yandere.Class.LanguageBonus = 0;
-    else if (this.Subject == 4)
-      this.Yandere.Class.PsychologyBonus = 0;
-    else if (this.Subject == 5)
-      this.Yandere.Class.PhysicalBonus = 0;
-    else if (this.Subject == 6)
-      this.Yandere.Class.SeductionBonus = 0;
-    else if (this.Subject == 7)
-      this.Yandere.Class.NumbnessBonus = 0;
-    else if (this.Subject == 8)
-      this.Yandere.Class.SocialBonus = 0;
-    else if (this.Subject == 9)
-      this.Yandere.Class.StealthBonus = 0;
-    else if (this.Subject == 10)
-      this.Yandere.Class.SpeedBonus = 0;
-    else if (this.Subject == 11)
-      this.Yandere.Class.EnlightenmentBonus = 0;
-    if ((Object) this.Poison != (Object) null)
-      this.Poison.Start();
-    this.StudentManager.UpdatePerception();
-    this.Yandere.UpdateNumbness();
-    this.Police.UpdateCorpses();
-  }
+	public Transform MainCamera;
 
-  public void DeactivateAllBenefits()
-  {
-    this.Yandere.Class.BiologyBonus = 0;
-    this.Yandere.Class.ChemistryBonus = 0;
-    this.Yandere.Class.LanguageBonus = 0;
-    this.Yandere.Class.PsychologyBonus = 0;
-    this.Yandere.Class.PhysicalBonus = 0;
-    this.Yandere.Class.SeductionBonus = 0;
-    this.Yandere.Class.NumbnessBonus = 0;
-    this.Yandere.Class.SocialBonus = 0;
-    this.Yandere.Class.StealthBonus = 0;
-    this.Yandere.Class.SpeedBonus = 0;
-    this.Yandere.Class.EnlightenmentBonus = 0;
-    if (!((Object) this.Poison != (Object) null))
-      return;
-    this.Poison.Start();
-  }
+	public Transform Highlight;
 
-  private void UpdateHighlight()
-  {
-    if (this.Subject < 1)
-      this.Subject = 11;
-    else if (this.Subject > 11)
-      this.Subject = 1;
-    this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (250.0 - (double) this.Subject * 50.0), this.Highlight.localPosition.z);
-    this.DescLabel.text = this.Descriptions[this.Subject];
-  }
+	public bool ShowWindow;
+
+	public bool Gaming;
+
+	public float Timer;
+
+	public int Subject = 1;
+
+	public int GameID;
+
+	public int ID = 1;
+
+	public Color OriginalColor;
+
+	public string[] Descriptions;
+
+	public UITexture MyTexture;
+
+	public Texture[] Textures;
+
+	public UILabel DescLabel;
+
+	private void Start()
+	{
+		GameWindow.gameObject.SetActive(false);
+		UpdateHighlight();
+		DeactivateAllBenefits();
+		OriginalColor = Yandere.PowerUp.color;
+		if (ClubGlobals.Club == ClubType.Gaming)
+		{
+			EnableGames();
+		}
+		else
+		{
+			DisableGames();
+		}
+	}
+
+	private void Update()
+	{
+		if (ShowWindow)
+		{
+			GameWindow.localScale = Vector3.Lerp(GameWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			if (InputManager.TappedUp)
+			{
+				Subject--;
+				UpdateHighlight();
+			}
+			else if (InputManager.TappedDown)
+			{
+				Subject++;
+				UpdateHighlight();
+			}
+			if (Input.GetButtonDown("A"))
+			{
+				ShowWindow = false;
+				PlayGames();
+				PromptBar.ClearButtons();
+				PromptBar.UpdateButtons();
+				PromptBar.Show = false;
+			}
+			if (Input.GetButtonDown("B"))
+			{
+				Yandere.CanMove = true;
+				ShowWindow = false;
+				PromptBar.ClearButtons();
+				PromptBar.UpdateButtons();
+				PromptBar.Show = false;
+			}
+		}
+		else if (GameWindow.localScale.x > 0.1f)
+		{
+			GameWindow.localScale = Vector3.Lerp(GameWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
+		}
+		else
+		{
+			GameWindow.localScale = Vector3.zero;
+			GameWindow.gameObject.SetActive(false);
+		}
+		if (Gaming)
+		{
+			targetRotation = Quaternion.LookRotation(new Vector3(ComputerGames[GameID].transform.position.x, Yandere.transform.position.y, ComputerGames[GameID].transform.position.z) - Yandere.transform.position);
+			Yandere.transform.rotation = Quaternion.Slerp(Yandere.transform.rotation, targetRotation, Time.deltaTime * 10f);
+			Yandere.MoveTowardsTarget(new Vector3(24.32233f, 4f, 12.58998f));
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
+			{
+				Yandere.PowerUp.transform.parent.gameObject.SetActive(true);
+				Yandere.MyController.radius = 0.2f;
+				Yandere.CanMove = true;
+				Yandere.EmptyHands();
+				Gaming = false;
+				ActivateBenefit();
+			}
+		}
+		else if (Timer < 5f)
+		{
+			for (ID = 1; ID < ComputerGames.Length; ID++)
+			{
+				PromptScript promptScript = ComputerGames[ID];
+				if (promptScript.Circle[0].fillAmount == 0f)
+				{
+					promptScript.Circle[0].fillAmount = 1f;
+					if (!Yandere.Chased && Yandere.Chasers == 0)
+					{
+						GameID = ID;
+						if (ID == 1)
+						{
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Confirm";
+							PromptBar.Label[1].text = "Back";
+							PromptBar.Label[4].text = "Select";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+							Yandere.Character.GetComponent<Animation>().Play(Yandere.IdleAnim);
+							Yandere.CanMove = false;
+							GameWindow.gameObject.SetActive(true);
+							ShowWindow = true;
+						}
+						else
+						{
+							PlayGames();
+						}
+					}
+				}
+			}
+		}
+		if (Yandere.PowerUp.gameObject.activeInHierarchy)
+		{
+			Timer += Time.deltaTime;
+			Yandere.PowerUp.transform.localPosition = new Vector3(Yandere.PowerUp.transform.localPosition.x, Yandere.PowerUp.transform.localPosition.y + Time.deltaTime, Yandere.PowerUp.transform.localPosition.z);
+			Yandere.PowerUp.transform.LookAt(MainCamera.position);
+			Yandere.PowerUp.transform.localEulerAngles = new Vector3(Yandere.PowerUp.transform.localEulerAngles.x, Yandere.PowerUp.transform.localEulerAngles.y + 180f, Yandere.PowerUp.transform.localEulerAngles.z);
+			if (Yandere.PowerUp.color != new Color(1f, 1f, 1f, 1f))
+			{
+				Yandere.PowerUp.color = OriginalColor;
+			}
+			else
+			{
+				Yandere.PowerUp.color = new Color(1f, 1f, 1f, 1f);
+			}
+			if (Timer > 6f)
+			{
+				Yandere.PowerUp.transform.parent.gameObject.SetActive(false);
+				base.gameObject.SetActive(false);
+			}
+		}
+	}
+
+	public void EnableGames()
+	{
+		for (int i = 1; i < ComputerGames.Length; i++)
+		{
+			ComputerGames[i].enabled = true;
+		}
+		base.gameObject.SetActive(true);
+	}
+
+	private void PlayGames()
+	{
+		Yandere.Character.GetComponent<Animation>().CrossFade("f02_playingGames_00");
+		Yandere.MyController.radius = 0.1f;
+		Yandere.CanMove = false;
+		Gaming = true;
+		DisableGames();
+		UpdateImage();
+	}
+
+	private void UpdateImage()
+	{
+		MyTexture.mainTexture = Textures[Subject];
+	}
+
+	public void DisableGames()
+	{
+		for (int i = 1; i < ComputerGames.Length; i++)
+		{
+			ComputerGames[i].enabled = false;
+			ComputerGames[i].Hide();
+		}
+		if (!Gaming)
+		{
+			base.gameObject.SetActive(false);
+		}
+	}
+
+	private void EnableChairs()
+	{
+		for (int i = 1; i < Chairs.Length; i++)
+		{
+			Chairs[i].enabled = true;
+		}
+		base.gameObject.SetActive(true);
+	}
+
+	private void DisableChairs()
+	{
+		for (int i = 1; i < Chairs.Length; i++)
+		{
+			Chairs[i].enabled = false;
+		}
+	}
+
+	private void ActivateBenefit()
+	{
+		if (Subject == 1)
+		{
+			Yandere.Class.BiologyBonus = 1;
+		}
+		else if (Subject == 2)
+		{
+			Yandere.Class.ChemistryBonus = 1;
+		}
+		else if (Subject == 3)
+		{
+			Yandere.Class.LanguageBonus = 1;
+		}
+		else if (Subject == 4)
+		{
+			Yandere.Class.PsychologyBonus = 1;
+		}
+		else if (Subject == 5)
+		{
+			Yandere.Class.PhysicalBonus = 1;
+		}
+		else if (Subject == 6)
+		{
+			Yandere.Class.SeductionBonus = 1;
+		}
+		else if (Subject == 7)
+		{
+			Yandere.Class.NumbnessBonus = 1;
+		}
+		else if (Subject == 8)
+		{
+			Yandere.Class.SocialBonus = 1;
+		}
+		else if (Subject == 9)
+		{
+			Yandere.Class.StealthBonus = 1;
+		}
+		else if (Subject == 10)
+		{
+			Yandere.Class.SpeedBonus = 1;
+		}
+		else if (Subject == 11)
+		{
+			Yandere.Class.EnlightenmentBonus = 1;
+		}
+		if (Poison != null)
+		{
+			Poison.Start();
+		}
+		StudentManager.UpdatePerception();
+		Yandere.UpdateNumbness();
+		Police.UpdateCorpses();
+	}
+
+	private void DeactivateBenefit()
+	{
+		if (Subject == 1)
+		{
+			Yandere.Class.BiologyBonus = 0;
+		}
+		else if (Subject == 2)
+		{
+			Yandere.Class.ChemistryBonus = 0;
+		}
+		else if (Subject == 3)
+		{
+			Yandere.Class.LanguageBonus = 0;
+		}
+		else if (Subject == 4)
+		{
+			Yandere.Class.PsychologyBonus = 0;
+		}
+		else if (Subject == 5)
+		{
+			Yandere.Class.PhysicalBonus = 0;
+		}
+		else if (Subject == 6)
+		{
+			Yandere.Class.SeductionBonus = 0;
+		}
+		else if (Subject == 7)
+		{
+			Yandere.Class.NumbnessBonus = 0;
+		}
+		else if (Subject == 8)
+		{
+			Yandere.Class.SocialBonus = 0;
+		}
+		else if (Subject == 9)
+		{
+			Yandere.Class.StealthBonus = 0;
+		}
+		else if (Subject == 10)
+		{
+			Yandere.Class.SpeedBonus = 0;
+		}
+		else if (Subject == 11)
+		{
+			Yandere.Class.EnlightenmentBonus = 0;
+		}
+		if (Poison != null)
+		{
+			Poison.Start();
+		}
+		StudentManager.UpdatePerception();
+		Yandere.UpdateNumbness();
+		Police.UpdateCorpses();
+	}
+
+	public void DeactivateAllBenefits()
+	{
+		Yandere.Class.BiologyBonus = 0;
+		Yandere.Class.ChemistryBonus = 0;
+		Yandere.Class.LanguageBonus = 0;
+		Yandere.Class.PsychologyBonus = 0;
+		Yandere.Class.PhysicalBonus = 0;
+		Yandere.Class.SeductionBonus = 0;
+		Yandere.Class.NumbnessBonus = 0;
+		Yandere.Class.SocialBonus = 0;
+		Yandere.Class.StealthBonus = 0;
+		Yandere.Class.SpeedBonus = 0;
+		Yandere.Class.EnlightenmentBonus = 0;
+		if (Poison != null)
+		{
+			Poison.Start();
+		}
+	}
+
+	private void UpdateHighlight()
+	{
+		if (Subject < 1)
+		{
+			Subject = 11;
+		}
+		else if (Subject > 11)
+		{
+			Subject = 1;
+		}
+		Highlight.localPosition = new Vector3(Highlight.localPosition.x, 250f - (float)Subject * 50f, Highlight.localPosition.z);
+		DescLabel.text = Descriptions[Subject];
+	}
 }

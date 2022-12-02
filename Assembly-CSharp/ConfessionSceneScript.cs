@@ -1,240 +1,271 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ConfessionSceneScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ConfessionSceneScript : MonoBehaviour
 {
-  public Transform[] CameraDestinations;
-  public StudentManagerScript StudentManager;
-  public LoveManagerScript LoveManager;
-  public PromptBarScript PromptBar;
-  public JukeboxScript Jukebox;
-  public YandereScript Yandere;
-  public ClockScript Clock;
-  public Bloom BloomEffect;
-  public StudentScript Suitor;
-  public StudentScript Rival;
-  public ParticleSystem MythBlossoms;
-  public GameObject HeartBeatCamera;
-  public GameObject ConfessionBG;
-  public Transform MainCamera;
-  public Transform RivalSpot;
-  public Transform KissSpot;
-  public string[] Text;
-  public GameObject[] Letters;
-  public UISprite Darkness;
-  public UILabel Label;
-  public UIPanel Panel;
-  public AudioSource MyAudio;
-  public AudioSource Jingle;
-  public AudioClip EightiesConfessionMusic;
-  public bool MoveSuitor;
-  public bool ShowLabel;
-  public bool Kissing;
-  public int TextPhase = 1;
-  public int LetterID = 1;
-  public int Phase = 1;
-  public float LetterTimer = 0.1f;
-  public float Speed;
-  public float Timer;
+	public Transform[] CameraDestinations;
 
-  private void Start()
-  {
-    if (this.Clock.TimeSkip)
-      this.Clock.EndTimeSkip();
-    Time.timeScale = 1f;
-    if (!this.StudentManager.Eighties)
-      return;
-    this.MyAudio.clip = this.EightiesConfessionMusic;
-  }
+	public StudentManagerScript StudentManager;
 
-  private void Update()
-  {
-    if (this.Phase == 1)
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      this.Panel.alpha = Mathf.MoveTowards(this.Panel.alpha, 0.0f, Time.deltaTime);
-      this.Jukebox.Volume = Mathf.MoveTowards(this.Jukebox.Volume, 0.0f, Time.deltaTime);
-      if ((double) this.Darkness.color.a == 1.0)
-      {
-        this.Timer += Time.deltaTime;
-        if ((double) this.Timer > 1.0)
-        {
-          this.Yandere.CameraEffects.UpdateBloom(1f);
-          this.Yandere.CameraEffects.UpdateThreshold(1f);
-          this.Yandere.CameraEffects.UpdateBloomKnee(1f);
-          this.Yandere.CameraEffects.UpdateBloomRadius(7f);
-          this.Suitor = this.StudentManager.Students[this.LoveManager.SuitorID];
-          this.Rival = this.StudentManager.Students[this.LoveManager.RivalID];
-          this.Rival.transform.position = this.RivalSpot.position;
-          this.Rival.transform.eulerAngles = this.RivalSpot.eulerAngles;
-          this.Suitor.Cosmetic.MyRenderer.materials[this.Suitor.Cosmetic.FaceID].SetFloat("_BlendAmount", 1f);
-          this.Suitor.transform.eulerAngles = this.StudentManager.SuitorConfessionSpot.eulerAngles;
-          this.Suitor.transform.position = this.StudentManager.SuitorConfessionSpot.position;
-          this.Suitor.CharacterAnimation.Play(this.Suitor.IdleAnim);
-          this.Suitor.EmptyHands();
-          this.MythBlossoms.emission.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
-          this.HeartBeatCamera.SetActive(false);
-          this.GetComponent<AudioSource>().Play();
-          this.MainCamera.position = this.CameraDestinations[1].position;
-          this.MainCamera.eulerAngles = this.CameraDestinations[1].eulerAngles;
-          this.Timer = 0.0f;
-          ++this.Phase;
-        }
-      }
-    }
-    else if (this.Phase == 2)
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-      if ((double) this.Darkness.color.a == 0.0)
-      {
-        if (!this.ShowLabel)
-        {
-          this.Label.color = new Color(this.Label.color.r, this.Label.color.g, this.Label.color.b, Mathf.MoveTowards(this.Label.color.a, 0.0f, Time.deltaTime));
-          if ((double) this.Label.color.a == 0.0)
-          {
-            if (this.TextPhase < 5)
-            {
-              this.MainCamera.position = this.CameraDestinations[this.TextPhase].position;
-              this.MainCamera.eulerAngles = this.CameraDestinations[this.TextPhase].eulerAngles;
-              if (this.TextPhase == 4 && !this.Kissing)
-              {
-                ParticleSystem.EmissionModule emission1 = this.Suitor.Hearts.emission with
-                {
-                  enabled = true,
-                  rateOverTime = (ParticleSystem.MinMaxCurve) 10f
-                };
-                this.Suitor.Hearts.Play();
-                ParticleSystem.EmissionModule emission2 = this.Rival.Hearts.emission with
-                {
-                  enabled = true,
-                  rateOverTime = (ParticleSystem.MinMaxCurve) 10f
-                };
-                this.Rival.Hearts.Play();
-                this.Suitor.Character.transform.localScale = new Vector3(1f, 1f, 1f);
-                this.Suitor.CharacterAnimation.Play("kiss_00");
-                this.Suitor.transform.position = this.KissSpot.position;
-                this.Rival.CharacterAnimation[this.Rival.ShyAnim].weight = 0.0f;
-                this.Rival.CharacterAnimation.Play("f02_kiss_00");
-                this.Kissing = true;
-              }
-              this.Label.text = this.Text[this.TextPhase];
-              this.ShowLabel = true;
-            }
-            else
-            {
-              this.Jingle.Play();
-              ++this.Phase;
-            }
-          }
-        }
-        else
-        {
-          this.Label.color = new Color(this.Label.color.r, this.Label.color.g, this.Label.color.b, Mathf.MoveTowards(this.Label.color.a, 1f, Time.deltaTime));
-          if ((double) this.Label.color.a == 1.0)
-          {
-            if (!this.PromptBar.Show)
-            {
-              this.PromptBar.ClearButtons();
-              this.PromptBar.Label[0].text = "Continue";
-              this.PromptBar.UpdateButtons();
-              this.PromptBar.Show = true;
-            }
-            if (Input.GetButtonDown("A"))
-            {
-              ++this.TextPhase;
-              this.ShowLabel = false;
-            }
-          }
-        }
-      }
-    }
-    else if (this.Phase == 3)
-    {
-      this.LetterTimer += Time.deltaTime;
-      if ((double) this.LetterTimer > 0.10000000149011612 && this.LetterID < this.Letters.Length)
-      {
-        this.Letters[this.LetterID].SetActive(true);
-        this.LetterTimer = 0.0f;
-        ++this.LetterID;
-      }
-      if ((double) this.LetterTimer > 5.0)
-        ++this.Phase;
-    }
-    else if (this.Phase == 4)
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a == 1.0)
-      {
-        this.Timer += Time.deltaTime;
-        if ((double) this.Timer > 1.0)
-        {
-          DatingGlobals.SuitorProgress = 2;
-          this.StudentManager.RivalEliminated = true;
-          this.Yandere.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Matchmade;
-          this.Suitor.Character.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
-          this.PromptBar.ClearButtons();
-          this.PromptBar.UpdateButtons();
-          this.PromptBar.Show = false;
-          this.ConfessionBG.SetActive(false);
-          this.Yandere.FixCamera();
-          ++this.Phase;
-        }
-      }
-    }
-    else
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-      this.Panel.alpha = Mathf.MoveTowards(this.Panel.alpha, 1f, Time.deltaTime);
-      if ((double) this.Darkness.color.a == 0.0)
-      {
-        this.StudentManager.ComeBack();
-        this.Suitor.enabled = false;
-        this.Suitor.Prompt.enabled = false;
-        this.Suitor.Pathfinding.canMove = false;
-        this.Suitor.Pathfinding.canSearch = false;
-        this.Rival.enabled = false;
-        this.Rival.Prompt.enabled = false;
-        this.Rival.Pathfinding.canMove = false;
-        this.Rival.Pathfinding.canSearch = false;
-        this.Yandere.RPGCamera.enabled = true;
-        this.Yandere.CanMove = true;
-        this.HeartBeatCamera.SetActive(true);
-        this.MythBlossoms.emission.rateOverTime = (ParticleSystem.MinMaxCurve) 20f;
-        this.Clock.Police.gameObject.SetActive(true);
-        this.Clock.StopTime = false;
-        this.enabled = false;
-        this.Suitor.PartnerID = this.LoveManager.RivalID;
-        this.Rival.PartnerID = this.LoveManager.SuitorID;
-        this.Suitor.CharacterAnimation.CrossFade("holdHandsLoop_00");
-        this.Rival.CharacterAnimation.CrossFade("f02_holdHandsLoop_00");
-      }
-    }
-    if (this.Kissing)
-    {
-      if ((double) this.Suitor.CharacterAnimation["kiss_00"].time >= (double) this.Suitor.CharacterAnimation["kiss_00"].length * 0.66666001081466675)
-        this.Suitor.Character.transform.localScale = Vector3.Lerp(this.Suitor.Character.transform.localScale, new Vector3(0.94f, 0.94f, 0.94f), Time.deltaTime);
-      if ((double) this.Suitor.CharacterAnimation["kiss_00"].time < (double) this.Suitor.CharacterAnimation["kiss_00"].length)
-        return;
-      this.Rival.CharacterAnimation.CrossFade("f02_introHoldHands_00");
-      this.Suitor.CharacterAnimation.CrossFade("introHoldHands_00");
-      this.Kissing = false;
-      this.MoveSuitor = true;
-    }
-    else
-    {
-      if (!((Object) this.Suitor != (Object) null))
-        return;
-      this.Suitor.gameObject.SetActive(true);
-      this.Suitor.Character.transform.localScale = Vector3.Lerp(this.Suitor.Character.transform.localScale, new Vector3(0.94f, 0.94f, 0.94f), Time.deltaTime);
-      if (!this.MoveSuitor)
-        return;
-      this.Speed += Time.deltaTime;
-      this.Suitor.Character.transform.position = Vector3.Lerp(this.Suitor.Character.transform.position, new Vector3(0.0f, 6.6f, 119.2f), Time.deltaTime * this.Speed);
-    }
-  }
+	public LoveManagerScript LoveManager;
+
+	public PromptBarScript PromptBar;
+
+	public JukeboxScript Jukebox;
+
+	public YandereScript Yandere;
+
+	public ClockScript Clock;
+
+	public Bloom BloomEffect;
+
+	public StudentScript Suitor;
+
+	public StudentScript Rival;
+
+	public ParticleSystem MythBlossoms;
+
+	public GameObject HeartBeatCamera;
+
+	public GameObject ConfessionBG;
+
+	public Transform MainCamera;
+
+	public Transform RivalSpot;
+
+	public Transform KissSpot;
+
+	public string[] Text;
+
+	public GameObject[] Letters;
+
+	public UISprite Darkness;
+
+	public UILabel Label;
+
+	public UIPanel Panel;
+
+	public AudioSource MyAudio;
+
+	public AudioSource Jingle;
+
+	public AudioClip EightiesConfessionMusic;
+
+	public bool MoveSuitor;
+
+	public bool ShowLabel;
+
+	public bool Kissing;
+
+	public int TextPhase = 1;
+
+	public int LetterID = 1;
+
+	public int Phase = 1;
+
+	public float LetterTimer = 0.1f;
+
+	public float Speed;
+
+	public float Timer;
+
+	private void Start()
+	{
+		if (Clock.TimeSkip)
+		{
+			Clock.EndTimeSkip();
+		}
+		Time.timeScale = 1f;
+		if (StudentManager.Eighties)
+		{
+			MyAudio.clip = EightiesConfessionMusic;
+		}
+	}
+
+	private void Update()
+	{
+		if (Phase == 1)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 0f, Time.deltaTime);
+			Jukebox.Volume = Mathf.MoveTowards(Jukebox.Volume, 0f, Time.deltaTime);
+			if (Darkness.color.a == 1f)
+			{
+				Timer += Time.deltaTime;
+				if (Timer > 1f)
+				{
+					Yandere.CameraEffects.UpdateBloom(1f);
+					Yandere.CameraEffects.UpdateThreshold(1f);
+					Yandere.CameraEffects.UpdateBloomKnee(1f);
+					Yandere.CameraEffects.UpdateBloomRadius(7f);
+					Suitor = StudentManager.Students[LoveManager.SuitorID];
+					Rival = StudentManager.Students[LoveManager.RivalID];
+					Rival.transform.position = RivalSpot.position;
+					Rival.transform.eulerAngles = RivalSpot.eulerAngles;
+					Suitor.Cosmetic.MyRenderer.materials[Suitor.Cosmetic.FaceID].SetFloat("_BlendAmount", 1f);
+					Suitor.transform.eulerAngles = StudentManager.SuitorConfessionSpot.eulerAngles;
+					Suitor.transform.position = StudentManager.SuitorConfessionSpot.position;
+					Suitor.CharacterAnimation.Play(Suitor.IdleAnim);
+					Suitor.EmptyHands();
+					ParticleSystem.EmissionModule emission = MythBlossoms.emission;
+					emission.rateOverTime = 100f;
+					HeartBeatCamera.SetActive(false);
+					GetComponent<AudioSource>().Play();
+					MainCamera.position = CameraDestinations[1].position;
+					MainCamera.eulerAngles = CameraDestinations[1].eulerAngles;
+					Timer = 0f;
+					Phase++;
+				}
+			}
+		}
+		else if (Phase == 2)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
+			if (Darkness.color.a == 0f)
+			{
+				if (!ShowLabel)
+				{
+					Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, Mathf.MoveTowards(Label.color.a, 0f, Time.deltaTime));
+					if (Label.color.a == 0f)
+					{
+						if (TextPhase < 5)
+						{
+							MainCamera.position = CameraDestinations[TextPhase].position;
+							MainCamera.eulerAngles = CameraDestinations[TextPhase].eulerAngles;
+							if (TextPhase == 4 && !Kissing)
+							{
+								ParticleSystem.EmissionModule emission2 = Suitor.Hearts.emission;
+								emission2.enabled = true;
+								emission2.rateOverTime = 10f;
+								Suitor.Hearts.Play();
+								ParticleSystem.EmissionModule emission3 = Rival.Hearts.emission;
+								emission3.enabled = true;
+								emission3.rateOverTime = 10f;
+								Rival.Hearts.Play();
+								Suitor.Character.transform.localScale = new Vector3(1f, 1f, 1f);
+								Suitor.CharacterAnimation.Play("kiss_00");
+								Suitor.transform.position = KissSpot.position;
+								Rival.CharacterAnimation[Rival.ShyAnim].weight = 0f;
+								Rival.CharacterAnimation.Play("f02_kiss_00");
+								Kissing = true;
+							}
+							Label.text = Text[TextPhase];
+							ShowLabel = true;
+						}
+						else
+						{
+							Jingle.Play();
+							Phase++;
+						}
+					}
+				}
+				else
+				{
+					Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, Mathf.MoveTowards(Label.color.a, 1f, Time.deltaTime));
+					if (Label.color.a == 1f)
+					{
+						if (!PromptBar.Show)
+						{
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Continue";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+						}
+						if (Input.GetButtonDown("A"))
+						{
+							TextPhase++;
+							ShowLabel = false;
+						}
+					}
+				}
+			}
+		}
+		else if (Phase == 3)
+		{
+			LetterTimer += Time.deltaTime;
+			if (LetterTimer > 0.1f && LetterID < Letters.Length)
+			{
+				Letters[LetterID].SetActive(true);
+				LetterTimer = 0f;
+				LetterID++;
+			}
+			if (LetterTimer > 5f)
+			{
+				Phase++;
+			}
+		}
+		else if (Phase == 4)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+			if (Darkness.color.a == 1f)
+			{
+				Timer += Time.deltaTime;
+				if (Timer > 1f)
+				{
+					DatingGlobals.SuitorProgress = 2;
+					StudentManager.RivalEliminated = true;
+					Yandere.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Matchmade;
+					Suitor.Character.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
+					PromptBar.ClearButtons();
+					PromptBar.UpdateButtons();
+					PromptBar.Show = false;
+					ConfessionBG.SetActive(false);
+					Yandere.FixCamera();
+					Phase++;
+				}
+			}
+		}
+		else
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
+			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 1f, Time.deltaTime);
+			if (Darkness.color.a == 0f)
+			{
+				StudentManager.ComeBack();
+				Suitor.enabled = false;
+				Suitor.Prompt.enabled = false;
+				Suitor.Pathfinding.canMove = false;
+				Suitor.Pathfinding.canSearch = false;
+				Rival.enabled = false;
+				Rival.Prompt.enabled = false;
+				Rival.Pathfinding.canMove = false;
+				Rival.Pathfinding.canSearch = false;
+				Yandere.RPGCamera.enabled = true;
+				Yandere.CanMove = true;
+				HeartBeatCamera.SetActive(true);
+				ParticleSystem.EmissionModule emission4 = MythBlossoms.emission;
+				emission4.rateOverTime = 20f;
+				Clock.Police.gameObject.SetActive(true);
+				Clock.StopTime = false;
+				base.enabled = false;
+				Suitor.PartnerID = LoveManager.RivalID;
+				Rival.PartnerID = LoveManager.SuitorID;
+				Suitor.CharacterAnimation.CrossFade("holdHandsLoop_00");
+				Rival.CharacterAnimation.CrossFade("f02_holdHandsLoop_00");
+			}
+		}
+		if (Kissing)
+		{
+			if (Suitor.CharacterAnimation["kiss_00"].time >= Suitor.CharacterAnimation["kiss_00"].length * 0.66666f)
+			{
+				Suitor.Character.transform.localScale = Vector3.Lerp(Suitor.Character.transform.localScale, new Vector3(0.94f, 0.94f, 0.94f), Time.deltaTime);
+			}
+			if (Suitor.CharacterAnimation["kiss_00"].time >= Suitor.CharacterAnimation["kiss_00"].length)
+			{
+				Rival.CharacterAnimation.CrossFade("f02_introHoldHands_00");
+				Suitor.CharacterAnimation.CrossFade("introHoldHands_00");
+				Kissing = false;
+				MoveSuitor = true;
+			}
+		}
+		else if (Suitor != null)
+		{
+			Suitor.gameObject.SetActive(true);
+			Suitor.Character.transform.localScale = Vector3.Lerp(Suitor.Character.transform.localScale, new Vector3(0.94f, 0.94f, 0.94f), Time.deltaTime);
+			if (MoveSuitor)
+			{
+				Speed += Time.deltaTime;
+				Suitor.Character.transform.position = Vector3.Lerp(Suitor.Character.transform.position, new Vector3(0f, 6.6f, 119.2f), Time.deltaTime * Speed);
+			}
+		}
+	}
 }

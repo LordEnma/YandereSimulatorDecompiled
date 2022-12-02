@@ -1,338 +1,413 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RivalMorningEventManagerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class RivalMorningEventManagerScript : MonoBehaviour
 {
-  public OsanaMorningFriendEventScript OsanaLoseFriendEvent;
-  public StudentManagerScript StudentManager;
-  public JukeboxScript Jukebox;
-  public UILabel EventSubtitle;
-  public YandereScript Yandere;
-  public ClockScript Clock;
-  public SpyScript Spy;
-  public StudentScript Friend;
-  public StudentScript Senpai;
-  public StudentScript Rival;
-  public Transform[] Location;
-  public Transform Epicenter;
-  public AudioClip SpeechClip;
-  public string[] SpeechText;
-  public float[] SpeechTime;
-  public GameObject AlarmDisc;
-  public GameObject VoiceClip;
-  public AudioSource VoiceClipSource;
-  public bool NaturalEnd;
-  public bool Listening;
-  public bool HintGiven;
-  public bool Transfer;
-  public bool End;
-  public float TransferTime;
-  public float Distance;
-  public float Scale;
-  public float Timer;
-  public DayOfWeek EventDay;
-  public int SpeechPhase = 1;
-  public int FriendID = 6;
-  public int RivalID = 11;
-  public int Phase;
-  public int Frame;
-  public string Weekday = string.Empty;
-  public float AnimationTime;
+	public OsanaMorningFriendEventScript OsanaLoseFriendEvent;
 
-  private void Start()
-  {
-    this.EventSubtitle.transform.localScale = Vector3.zero;
-    this.Spy.Prompt.enabled = true;
-    if (DateGlobals.Weekday == DayOfWeek.Sunday)
-      DateGlobals.Weekday = DayOfWeek.Monday;
-    if (DateGlobals.Weekday != this.EventDay || HomeGlobals.LateForSchool || this.StudentManager.YandereLate || DatingGlobals.SuitorProgress == 2 || StudentGlobals.MemorialStudents > 0 || GameGlobals.RivalEliminationID > 0 || StudentGlobals.StudentSlave == this.RivalID || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week > 1 || GameGlobals.Eighties || this.StudentManager.RecordingVideo)
-    {
-      this.Spy.Prompt.enabled = false;
-      this.enabled = false;
-    }
-    if (!this.enabled || (double) StudentGlobals.GetStudentReputation(10) > -33.333328247070313)
-      return;
-    this.OsanaLoseFriendEvent.OtherEvent = this;
-  }
+	public StudentManagerScript StudentManager;
 
-  private void Update()
-  {
-    if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-    {
-      if ((UnityEngine.Object) this.VoiceClipSource == (UnityEngine.Object) null)
-        this.VoiceClipSource = this.VoiceClip.GetComponent<AudioSource>();
-      else
-        this.VoiceClipSource.pitch = Time.timeScale;
-    }
-    if (this.Phase == 0)
-    {
-      if (this.Frame > 0 && (UnityEngine.Object) this.StudentManager.Students[this.RivalID] != (UnityEngine.Object) null && this.StudentManager.Students[1].gameObject.activeInHierarchy && (UnityEngine.Object) this.StudentManager.Students[this.RivalID] != (UnityEngine.Object) null)
-      {
-        Debug.Log((object) "Osana's morning Senpai interaction event is now taking place.");
-        if ((UnityEngine.Object) this.StudentManager.Students[this.FriendID] != (UnityEngine.Object) null && !PlayerGlobals.RaibaruLoner && StudentGlobals.StudentSlave != this.FriendID)
-        {
-          this.Friend = this.StudentManager.Students[this.FriendID];
-          if (this.Friend.Investigating)
-            this.Friend.StopInvestigating();
-          if ((double) StudentGlobals.GetStudentReputation(10) > -33.333328247070313)
-          {
-            this.Friend.CharacterAnimation.Play("f02_cornerPeek_00");
-            this.Friend.Cheer.enabled = true;
-          }
-          else
-            this.Friend.CharacterAnimation.Play(this.Friend.BulliedIdleAnim);
-          this.Friend.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-          this.Friend.transform.position = this.Location[3].position;
-          this.Friend.transform.eulerAngles = this.Location[3].eulerAngles;
-          this.Friend.Pathfinding.canSearch = false;
-          this.Friend.Pathfinding.canMove = false;
-          this.Friend.IgnoringPettyActions = true;
-          this.Friend.ImmuneToLaughter = true;
-          this.Friend.VisionDistance = 20f;
-          this.Friend.Routine = false;
-          this.Friend.InEvent = true;
-          this.Friend.Spawned = true;
-        }
-        this.Senpai = this.StudentManager.Students[1];
-        this.Rival = this.StudentManager.Students[this.RivalID];
-        this.Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-        this.Senpai.CharacterAnimation.Play(this.Senpai.IdleAnim);
-        this.Senpai.transform.position = this.Location[1].position;
-        this.Senpai.transform.eulerAngles = this.Location[1].eulerAngles;
-        this.Senpai.Pathfinding.canSearch = false;
-        this.Senpai.Pathfinding.canMove = false;
-        this.Senpai.Routine = false;
-        this.Senpai.InEvent = true;
-        this.Senpai.Spawned = true;
-        this.Senpai.Prompt.Hide();
-        this.Senpai.Prompt.enabled = false;
-        if (this.Rival.Investigating)
-          this.Rival.StopInvestigating();
-        this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-        this.Rival.CharacterAnimation.Play(this.Rival.IdleAnim);
-        this.Rival.transform.position = this.Location[2].position;
-        this.Rival.transform.eulerAngles = this.Location[2].eulerAngles;
-        this.Rival.Pathfinding.canSearch = false;
-        this.Rival.Pathfinding.canMove = false;
-        this.Rival.Routine = false;
-        this.Rival.InEvent = true;
-        this.Rival.Spawned = true;
-        this.Rival.Private = true;
-        this.Rival.Prompt.Hide();
-        this.Rival.Prompt.enabled = false;
-        this.Spy.Prompt.enabled = true;
-        ++this.Phase;
-        if (this.EventDay == DayOfWeek.Tuesday)
-          this.StudentManager.Students[1].EventBook.SetActive(true);
-      }
-      ++this.Frame;
-    }
-    else if (this.Phase == 1)
-    {
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 1.0)
-      {
-        AudioClipPlayer.Play(this.SpeechClip, this.Epicenter.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-        this.Rival.CharacterAnimation.CrossFade("f02_" + this.Weekday + "_1");
-        this.Senpai.CharacterAnimation.CrossFade(this.Weekday + "_1");
-        this.Timer = 0.0f;
-        ++this.Phase;
-      }
-    }
-    else
-    {
-      if ((double) this.AnimationTime > 0.0)
-      {
-        Debug.Log((object) "Attempting to restore animation.");
-        this.Rival.CharacterAnimation.Play("f02_" + this.Weekday + "_1");
-        this.Senpai.CharacterAnimation.Play(this.Weekday + "_1");
-        this.Rival.CharacterAnimation["f02_" + this.Weekday + "_1"].time = this.AnimationTime;
-        this.Senpai.CharacterAnimation[this.Weekday + "_1"].time = this.AnimationTime;
-        if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
-        {
-          this.VoiceClipSource.time = this.AnimationTime;
-          this.AnimationTime = 0.0f;
-        }
-        else
-          AudioClipPlayer.Play(this.SpeechClip, this.Epicenter.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-      }
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 1.0 && !this.HintGiven)
-      {
-        this.Yandere.PauseScreen.Hint.Show = true;
-        this.Yandere.PauseScreen.Hint.QuickID = 1;
-        this.HintGiven = true;
-      }
-      if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
-        this.VoiceClipSource.pitch = Time.timeScale;
-      if (this.SpeechPhase < this.SpeechTime.Length)
-      {
-        if ((double) this.Timer > (double) this.SpeechTime[this.SpeechPhase])
-        {
-          if ((double) Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position) < 11.0)
-            this.EventSubtitle.text = this.SpeechText[this.SpeechPhase];
-          ++this.SpeechPhase;
-        }
-      }
-      else
-      {
-        if ((UnityEngine.Object) this.Senpai == (UnityEngine.Object) null)
-          this.Senpai = this.StudentManager.Students[1];
-        if ((double) this.Senpai.CharacterAnimation[this.Weekday + "_1"].time >= (double) this.Senpai.CharacterAnimation[this.Weekday + "_1"].length)
-        {
-          Debug.Log((object) "This rival morning event ended naturally because the animation finished playing.");
-          this.NaturalEnd = true;
-          this.EndEvent();
-        }
-      }
-      if (this.Transfer && (double) this.Rival.CharacterAnimation["f02_" + this.Weekday + "_1"].time > (double) this.TransferTime)
-      {
-        this.Senpai.EventBook.SetActive(false);
-        this.Rival.EventBook.SetActive(true);
-        this.Transfer = false;
-      }
-      if (this.Clock.Period > 1)
-      {
-        Debug.Log((object) "The event ended because the school period has advanced.");
-        this.EndEvent();
-      }
-      if ((UnityEngine.Object) this.Rival != (UnityEngine.Object) null && (this.Senpai.Alarmed || this.Rival.Alarmed || (UnityEngine.Object) this.Friend != (UnityEngine.Object) null && this.Friend.DramaticReaction))
-      {
-        Debug.Log((object) "The event ended naturally because a character was alarmed.");
-        GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.AlarmDisc, this.Rival.transform.position + Vector3.up, Quaternion.identity);
-        gameObject.GetComponent<AlarmDiscScript>().NoScream = true;
-        gameObject.transform.localScale = new Vector3(150f, 1f, 150f);
-        gameObject.GetComponent<AlarmDiscScript>().FocusOnYandere = true;
-        this.EndEvent();
-      }
-      if (!this.Yandere.NoDebug && Input.GetKeyDown(KeyCode.LeftControl))
-        this.EndEvent();
-      if ((double) this.Yandere.transform.position.z < -50.0)
-      {
-        this.Listening = true;
-        this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position);
-        if (this.enabled)
-        {
-          if ((double) this.Distance - 4.0 < 15.0)
-          {
-            this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
-            if ((double) this.Scale < 0.0)
-              this.Scale = 0.0f;
-            if ((double) this.Scale > 1.0)
-              this.Scale = 1f;
-            if (this.enabled)
-              this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
-            this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-            if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
-              this.VoiceClipSource.volume = this.Scale;
-            this.Yandere.Eavesdropping = (double) this.Distance < 3.0;
-          }
-          else
-          {
-            if ((double) this.Distance - 4.0 < 16.0)
-              this.EventSubtitle.transform.localScale = Vector3.zero;
-            if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
-              this.VoiceClipSource.volume = 0.0f;
-          }
-        }
-      }
-      else if (this.Listening)
-      {
-        this.EventSubtitle.transform.localScale = Vector3.zero;
-        this.Listening = false;
-      }
-    }
-    if (!this.End)
-      return;
-    Debug.Log((object) "The event ended naturally because the ''End'' variable was set to ''true''.");
-    this.EndEvent();
-  }
+	public JukeboxScript Jukebox;
 
-  public void EndEvent()
-  {
-    Debug.Log((object) "Osana's morning ''Talk with Senpai'' event has ended.");
-    if (this.Phase <= 0 || !this.Rival.Alive)
-      return;
-    if (this.EventDay == DayOfWeek.Tuesday)
-    {
-      ScheduleBlock scheduleBlock1 = this.Senpai.ScheduleBlocks[2];
-      scheduleBlock1.destination = "Patrol";
-      scheduleBlock1.action = "Patrol";
-      ScheduleBlock scheduleBlock2 = this.Senpai.ScheduleBlocks[7];
-      scheduleBlock2.destination = "Patrol";
-      scheduleBlock2.action = "Patrol";
-      this.Senpai.GetDestinations();
-    }
-    if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-      UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    if (!this.Senpai.Alarmed)
-    {
-      this.Senpai.Pathfinding.canSearch = true;
-      this.Senpai.Pathfinding.canMove = true;
-      this.Senpai.Routine = true;
-    }
-    this.Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-    this.Senpai.EventBook.SetActive(false);
-    this.Senpai.InEvent = false;
-    this.Senpai.Private = false;
-    if (!this.Rival.Alarmed)
-    {
-      this.Rival.Pathfinding.canSearch = true;
-      this.Rival.Pathfinding.canMove = true;
-      this.Rival.Routine = true;
-    }
-    this.Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-    this.Rival.EventBook.SetActive(false);
-    this.Rival.Prompt.enabled = true;
-    this.Rival.InEvent = false;
-    this.Rival.Private = false;
-    if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
-    {
-      if (!this.Friend.Alarmed && !this.Friend.DramaticReaction)
-      {
-        this.Friend.Pathfinding.canSearch = true;
-        this.Friend.Pathfinding.canMove = true;
-        this.Friend.Routine = true;
-      }
-      if (this.NaturalEnd)
-      {
-        this.Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-        this.Friend.Prompt.enabled = true;
-        this.Friend.InEvent = false;
-        this.Friend.Private = false;
-      }
-      else
-      {
-        this.Friend.Pathfinding.target = this.Location[3];
-        this.Friend.CurrentDestination = this.Location[3];
-      }
-      this.Friend.Cheer.enabled = false;
-      this.Friend.ImmuneToLaughter = false;
-      this.Friend.IgnoringPettyActions = false;
-    }
-    if (!this.StudentManager.Stop)
-      this.StudentManager.UpdateStudents();
-    this.Spy.Prompt.Hide();
-    this.Spy.Prompt.enabled = false;
-    if (this.Spy.Phase > 0)
-      this.Spy.End();
-    this.Yandere.Eavesdropping = false;
-    this.EventSubtitle.text = string.Empty;
-    this.enabled = false;
-    this.Jukebox.Dip = 1f;
-  }
+	public UILabel EventSubtitle;
 
-  public void SaveAnimationTime()
-  {
-    if (this.Phase <= 1 || !this.enabled)
-      return;
-    this.AnimationTime = this.Rival.CharacterAnimation["f02_" + this.Weekday + "_1"].time;
-    Debug.Log((object) ("AnimationTime was: " + this.AnimationTime.ToString()));
-  }
+	public YandereScript Yandere;
+
+	public ClockScript Clock;
+
+	public SpyScript Spy;
+
+	public StudentScript Friend;
+
+	public StudentScript Senpai;
+
+	public StudentScript Rival;
+
+	public Transform[] Location;
+
+	public Transform Epicenter;
+
+	public AudioClip SpeechClip;
+
+	public string[] SpeechText;
+
+	public float[] SpeechTime;
+
+	public GameObject AlarmDisc;
+
+	public GameObject VoiceClip;
+
+	public AudioSource VoiceClipSource;
+
+	public bool NaturalEnd;
+
+	public bool Listening;
+
+	public bool HintGiven;
+
+	public bool Transfer;
+
+	public bool End;
+
+	public float TransferTime;
+
+	public float Distance;
+
+	public float Scale;
+
+	public float Timer;
+
+	public DayOfWeek EventDay;
+
+	public int SpeechPhase = 1;
+
+	public int FriendID = 6;
+
+	public int RivalID = 11;
+
+	public int Phase;
+
+	public int Frame;
+
+	public string Weekday = string.Empty;
+
+	public float AnimationTime;
+
+	private void Start()
+	{
+		EventSubtitle.transform.localScale = Vector3.zero;
+		Spy.Prompt.enabled = true;
+		if (DateGlobals.Weekday == DayOfWeek.Sunday)
+		{
+			DateGlobals.Weekday = DayOfWeek.Monday;
+		}
+		if (DateGlobals.Weekday != EventDay || HomeGlobals.LateForSchool || StudentManager.YandereLate || DatingGlobals.SuitorProgress == 2 || StudentGlobals.MemorialStudents > 0 || GameGlobals.RivalEliminationID > 0 || StudentGlobals.StudentSlave == RivalID || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week > 1 || GameGlobals.Eighties || StudentManager.RecordingVideo)
+		{
+			Spy.Prompt.enabled = false;
+			base.enabled = false;
+		}
+		if (base.enabled && (float)StudentGlobals.GetStudentReputation(10) <= -33.33333f)
+		{
+			OsanaLoseFriendEvent.OtherEvent = this;
+		}
+	}
+
+	private void Update()
+	{
+		if (VoiceClip != null)
+		{
+			if (VoiceClipSource == null)
+			{
+				VoiceClipSource = VoiceClip.GetComponent<AudioSource>();
+			}
+			else
+			{
+				VoiceClipSource.pitch = Time.timeScale;
+			}
+		}
+		if (Phase == 0)
+		{
+			if (Frame > 0 && StudentManager.Students[RivalID] != null && StudentManager.Students[1].gameObject.activeInHierarchy && StudentManager.Students[RivalID] != null)
+			{
+				Debug.Log("Osana's morning Senpai interaction event is now taking place.");
+				if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner && StudentGlobals.StudentSlave != FriendID)
+				{
+					Friend = StudentManager.Students[FriendID];
+					if (Friend.Investigating)
+					{
+						Friend.StopInvestigating();
+					}
+					if ((float)StudentGlobals.GetStudentReputation(10) > -33.33333f)
+					{
+						Friend.CharacterAnimation.Play("f02_cornerPeek_00");
+						Friend.Cheer.enabled = true;
+					}
+					else
+					{
+						Friend.CharacterAnimation.Play(Friend.BulliedIdleAnim);
+					}
+					Friend.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+					Friend.transform.position = Location[3].position;
+					Friend.transform.eulerAngles = Location[3].eulerAngles;
+					Friend.Pathfinding.canSearch = false;
+					Friend.Pathfinding.canMove = false;
+					Friend.IgnoringPettyActions = true;
+					Friend.ImmuneToLaughter = true;
+					Friend.VisionDistance = 20f;
+					Friend.Routine = false;
+					Friend.InEvent = true;
+					Friend.Spawned = true;
+				}
+				Senpai = StudentManager.Students[1];
+				Rival = StudentManager.Students[RivalID];
+				Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+				Senpai.CharacterAnimation.Play(Senpai.IdleAnim);
+				Senpai.transform.position = Location[1].position;
+				Senpai.transform.eulerAngles = Location[1].eulerAngles;
+				Senpai.Pathfinding.canSearch = false;
+				Senpai.Pathfinding.canMove = false;
+				Senpai.Routine = false;
+				Senpai.InEvent = true;
+				Senpai.Spawned = true;
+				Senpai.Prompt.Hide();
+				Senpai.Prompt.enabled = false;
+				if (Rival.Investigating)
+				{
+					Rival.StopInvestigating();
+				}
+				Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+				Rival.CharacterAnimation.Play(Rival.IdleAnim);
+				Rival.transform.position = Location[2].position;
+				Rival.transform.eulerAngles = Location[2].eulerAngles;
+				Rival.Pathfinding.canSearch = false;
+				Rival.Pathfinding.canMove = false;
+				Rival.Routine = false;
+				Rival.InEvent = true;
+				Rival.Spawned = true;
+				Rival.Private = true;
+				Rival.Prompt.Hide();
+				Rival.Prompt.enabled = false;
+				Spy.Prompt.enabled = true;
+				Phase++;
+				if (EventDay == DayOfWeek.Tuesday)
+				{
+					StudentManager.Students[1].EventBook.SetActive(true);
+				}
+			}
+			Frame++;
+		}
+		else if (Phase == 1)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 1f)
+			{
+				AudioClipPlayer.Play(SpeechClip, Epicenter.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				Rival.CharacterAnimation.CrossFade("f02_" + Weekday + "_1");
+				Senpai.CharacterAnimation.CrossFade(Weekday + "_1");
+				Timer = 0f;
+				Phase++;
+			}
+		}
+		else
+		{
+			if (AnimationTime > 0f)
+			{
+				Debug.Log("Attempting to restore animation.");
+				Rival.CharacterAnimation.Play("f02_" + Weekday + "_1");
+				Senpai.CharacterAnimation.Play(Weekday + "_1");
+				Rival.CharacterAnimation["f02_" + Weekday + "_1"].time = AnimationTime;
+				Senpai.CharacterAnimation[Weekday + "_1"].time = AnimationTime;
+				if (VoiceClipSource != null)
+				{
+					VoiceClipSource.time = AnimationTime;
+					AnimationTime = 0f;
+				}
+				else
+				{
+					AudioClipPlayer.Play(SpeechClip, Epicenter.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				}
+			}
+			Timer += Time.deltaTime;
+			if (Timer > 1f && !HintGiven)
+			{
+				Yandere.PauseScreen.Hint.Show = true;
+				Yandere.PauseScreen.Hint.QuickID = 1;
+				HintGiven = true;
+			}
+			if (VoiceClipSource != null)
+			{
+				VoiceClipSource.pitch = Time.timeScale;
+			}
+			if (SpeechPhase < SpeechTime.Length)
+			{
+				if (Timer > SpeechTime[SpeechPhase])
+				{
+					if (Vector3.Distance(Yandere.transform.position, Epicenter.position) < 11f)
+					{
+						EventSubtitle.text = SpeechText[SpeechPhase];
+					}
+					SpeechPhase++;
+				}
+			}
+			else
+			{
+				if (Senpai == null)
+				{
+					Senpai = StudentManager.Students[1];
+				}
+				if (Senpai.CharacterAnimation[Weekday + "_1"].time >= Senpai.CharacterAnimation[Weekday + "_1"].length)
+				{
+					Debug.Log("This rival morning event ended naturally because the animation finished playing.");
+					NaturalEnd = true;
+					EndEvent();
+				}
+			}
+			if (Transfer && Rival.CharacterAnimation["f02_" + Weekday + "_1"].time > TransferTime)
+			{
+				Senpai.EventBook.SetActive(false);
+				Rival.EventBook.SetActive(true);
+				Transfer = false;
+			}
+			if (Clock.Period > 1)
+			{
+				Debug.Log("The event ended because the school period has advanced.");
+				EndEvent();
+			}
+			if (Rival != null && (Senpai.Alarmed || Rival.Alarmed || (Friend != null && Friend.DramaticReaction)))
+			{
+				Debug.Log("The event ended naturally because a character was alarmed.");
+				GameObject obj = UnityEngine.Object.Instantiate(AlarmDisc, Rival.transform.position + Vector3.up, Quaternion.identity);
+				obj.GetComponent<AlarmDiscScript>().NoScream = true;
+				obj.transform.localScale = new Vector3(150f, 1f, 150f);
+				obj.GetComponent<AlarmDiscScript>().FocusOnYandere = true;
+				EndEvent();
+			}
+			if (!Yandere.NoDebug && Input.GetKeyDown(KeyCode.LeftControl))
+			{
+				EndEvent();
+			}
+			if (Yandere.transform.position.z < -50f)
+			{
+				Listening = true;
+				Distance = Vector3.Distance(Yandere.transform.position, Epicenter.position);
+				if (base.enabled)
+				{
+					if (Distance - 4f < 15f)
+					{
+						Scale = Mathf.Abs(1f - (Distance - 4f) / 15f);
+						if (Scale < 0f)
+						{
+							Scale = 0f;
+						}
+						if (Scale > 1f)
+						{
+							Scale = 1f;
+						}
+						if (base.enabled)
+						{
+							Jukebox.Dip = 1f - 0.5f * Scale;
+						}
+						EventSubtitle.transform.localScale = new Vector3(Scale, Scale, Scale);
+						if (VoiceClipSource != null)
+						{
+							VoiceClipSource.volume = Scale;
+						}
+						Yandere.Eavesdropping = Distance < 3f;
+					}
+					else
+					{
+						if (Distance - 4f < 16f)
+						{
+							EventSubtitle.transform.localScale = Vector3.zero;
+						}
+						if (VoiceClipSource != null)
+						{
+							VoiceClipSource.volume = 0f;
+						}
+					}
+				}
+			}
+			else if (Listening)
+			{
+				EventSubtitle.transform.localScale = Vector3.zero;
+				Listening = false;
+			}
+		}
+		if (End)
+		{
+			Debug.Log("The event ended naturally because the ''End'' variable was set to ''true''.");
+			EndEvent();
+		}
+	}
+
+	public void EndEvent()
+	{
+		Debug.Log("Osana's morning ''Talk with Senpai'' event has ended.");
+		if (Phase <= 0 || !Rival.Alive)
+		{
+			return;
+		}
+		if (EventDay == DayOfWeek.Tuesday)
+		{
+			ScheduleBlock obj = Senpai.ScheduleBlocks[2];
+			obj.destination = "Patrol";
+			obj.action = "Patrol";
+			ScheduleBlock obj2 = Senpai.ScheduleBlocks[7];
+			obj2.destination = "Patrol";
+			obj2.action = "Patrol";
+			Senpai.GetDestinations();
+		}
+		if (VoiceClip != null)
+		{
+			UnityEngine.Object.Destroy(VoiceClip);
+		}
+		if (!Senpai.Alarmed)
+		{
+			Senpai.Pathfinding.canSearch = true;
+			Senpai.Pathfinding.canMove = true;
+			Senpai.Routine = true;
+		}
+		Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+		Senpai.EventBook.SetActive(false);
+		Senpai.InEvent = false;
+		Senpai.Private = false;
+		if (!Rival.Alarmed)
+		{
+			Rival.Pathfinding.canSearch = true;
+			Rival.Pathfinding.canMove = true;
+			Rival.Routine = true;
+		}
+		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+		Rival.EventBook.SetActive(false);
+		Rival.Prompt.enabled = true;
+		Rival.InEvent = false;
+		Rival.Private = false;
+		if (Friend != null)
+		{
+			if (!Friend.Alarmed && !Friend.DramaticReaction)
+			{
+				Friend.Pathfinding.canSearch = true;
+				Friend.Pathfinding.canMove = true;
+				Friend.Routine = true;
+			}
+			if (NaturalEnd)
+			{
+				Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+				Friend.Prompt.enabled = true;
+				Friend.InEvent = false;
+				Friend.Private = false;
+			}
+			else
+			{
+				Friend.Pathfinding.target = Location[3];
+				Friend.CurrentDestination = Location[3];
+			}
+			Friend.Cheer.enabled = false;
+			Friend.ImmuneToLaughter = false;
+			Friend.IgnoringPettyActions = false;
+		}
+		if (!StudentManager.Stop)
+		{
+			StudentManager.UpdateStudents();
+		}
+		Spy.Prompt.Hide();
+		Spy.Prompt.enabled = false;
+		if (Spy.Phase > 0)
+		{
+			Spy.End();
+		}
+		Yandere.Eavesdropping = false;
+		EventSubtitle.text = string.Empty;
+		base.enabled = false;
+		Jukebox.Dip = 1f;
+	}
+
+	public void SaveAnimationTime()
+	{
+		if (Phase > 1 && base.enabled)
+		{
+			AnimationTime = Rival.CharacterAnimation["f02_" + Weekday + "_1"].time;
+			Debug.Log("AnimationTime was: " + AnimationTime);
+		}
+	}
 }

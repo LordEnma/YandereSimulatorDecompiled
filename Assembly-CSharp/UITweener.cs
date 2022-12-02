@@ -1,338 +1,427 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UITweener
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
+using AnimationOrTween;
 using UnityEngine;
 
 public abstract class UITweener : MonoBehaviour
 {
-  public static UITweener current;
-  [HideInInspector]
-  public UITweener.Method method;
-  [HideInInspector]
-  public UITweener.Style style;
-  [HideInInspector]
-  public AnimationCurve animationCurve = new AnimationCurve(new Keyframe[2]
-  {
-    new Keyframe(0.0f, 0.0f, 0.0f, 1f),
-    new Keyframe(1f, 1f, 1f, 0.0f)
-  });
-  [HideInInspector]
-  public bool ignoreTimeScale = true;
-  [HideInInspector]
-  public float delay;
-  [HideInInspector]
-  public float duration = 1f;
-  [HideInInspector]
-  public bool steeperCurves;
-  [HideInInspector]
-  public int tweenGroup;
-  [Tooltip("By default, Update() will be used for tweening. Setting this to 'true' will make the tween happen in FixedUpdate() insted.")]
-  public bool useFixedUpdate;
-  [HideInInspector]
-  public List<EventDelegate> onFinished = new List<EventDelegate>();
-  [HideInInspector]
-  public GameObject eventReceiver;
-  [HideInInspector]
-  public string callWhenFinished;
-  [NonSerialized]
-  public float timeScale = 1f;
-  private bool mStarted;
-  private float mStartTime;
-  private float mDuration;
-  private float mAmountPerDelta = 1000f;
-  private float mFactor;
-  private List<EventDelegate> mTemp;
+	[DoNotObfuscateNGUI]
+	public enum Method
+	{
+		Linear = 0,
+		EaseIn = 1,
+		EaseOut = 2,
+		EaseInOut = 3,
+		BounceIn = 4,
+		BounceOut = 5
+	}
 
-  public float amountPerDelta
-  {
-    get
-    {
-      if ((double) this.duration == 0.0)
-        return 1000f;
-      if ((double) this.mDuration != (double) this.duration)
-      {
-        this.mDuration = this.duration;
-        this.mAmountPerDelta = Mathf.Abs(1f / this.duration) * Mathf.Sign(this.mAmountPerDelta);
-      }
-      return this.mAmountPerDelta;
-    }
-  }
+	[DoNotObfuscateNGUI]
+	public enum Style
+	{
+		Once = 0,
+		Loop = 1,
+		PingPong = 2
+	}
 
-  public float tweenFactor
-  {
-    get => this.mFactor;
-    set => this.mFactor = Mathf.Clamp01(value);
-  }
+	public static UITweener current;
 
-  public AnimationOrTween.Direction direction => (double) this.amountPerDelta >= 0.0 ? AnimationOrTween.Direction.Forward : AnimationOrTween.Direction.Reverse;
+	[HideInInspector]
+	public Method method;
 
-  private void Reset()
-  {
-    if (this.mStarted)
-      return;
-    this.SetStartToCurrentValue();
-    this.SetEndToCurrentValue();
-  }
+	[HideInInspector]
+	public Style style;
 
-  protected virtual void Start() => this.DoUpdate();
+	[HideInInspector]
+	public AnimationCurve animationCurve = new AnimationCurve(new Keyframe(0f, 0f, 0f, 1f), new Keyframe(1f, 1f, 1f, 0f));
 
-  protected void Update()
-  {
-    if (this.useFixedUpdate)
-      return;
-    this.DoUpdate();
-  }
+	[HideInInspector]
+	public bool ignoreTimeScale = true;
 
-  protected void FixedUpdate()
-  {
-    if (!this.useFixedUpdate)
-      return;
-    this.DoUpdate();
-  }
+	[HideInInspector]
+	public float delay;
 
-  protected void DoUpdate()
-  {
-    float num1 = !this.ignoreTimeScale || this.useFixedUpdate ? Time.deltaTime : Time.unscaledDeltaTime;
-    float num2 = !this.ignoreTimeScale || this.useFixedUpdate ? Time.time : Time.unscaledTime;
-    if (!this.mStarted)
-    {
-      num1 = 0.0f;
-      this.mStarted = true;
-      this.mStartTime = num2 + this.delay;
-    }
-    if ((double) num2 < (double) this.mStartTime)
-      return;
-    this.mFactor += (double) this.duration == 0.0 ? 1f : this.amountPerDelta * num1 * this.timeScale;
-    if (this.style == UITweener.Style.Loop)
-    {
-      if ((double) this.mFactor > 1.0)
-        this.mFactor -= Mathf.Floor(this.mFactor);
-    }
-    else if (this.style == UITweener.Style.PingPong)
-    {
-      if ((double) this.mFactor > 1.0)
-      {
-        this.mFactor = (float) (1.0 - ((double) this.mFactor - (double) Mathf.Floor(this.mFactor)));
-        this.mAmountPerDelta = -this.mAmountPerDelta;
-      }
-      else if ((double) this.mFactor < 0.0)
-      {
-        this.mFactor = -this.mFactor;
-        this.mFactor -= Mathf.Floor(this.mFactor);
-        this.mAmountPerDelta = -this.mAmountPerDelta;
-      }
-    }
-    if (this.style == UITweener.Style.Once && ((double) this.duration == 0.0 || (double) this.mFactor > 1.0 || (double) this.mFactor < 0.0))
-    {
-      this.mFactor = Mathf.Clamp01(this.mFactor);
-      this.Sample(this.mFactor, true);
-      this.enabled = false;
-      if (!((UnityEngine.Object) UITweener.current != (UnityEngine.Object) this))
-        return;
-      UITweener current = UITweener.current;
-      UITweener.current = this;
-      if (this.onFinished != null)
-      {
-        this.mTemp = this.onFinished;
-        this.onFinished = new List<EventDelegate>();
-        EventDelegate.Execute(this.mTemp);
-        for (int index = 0; index < this.mTemp.Count; ++index)
-        {
-          EventDelegate ev = this.mTemp[index];
-          if (ev != null && !ev.oneShot)
-            EventDelegate.Add(this.onFinished, ev, ev.oneShot);
-        }
-        this.mTemp = (List<EventDelegate>) null;
-      }
-      if ((UnityEngine.Object) this.eventReceiver != (UnityEngine.Object) null && !string.IsNullOrEmpty(this.callWhenFinished))
-        this.eventReceiver.SendMessage(this.callWhenFinished, (object) this, SendMessageOptions.DontRequireReceiver);
-      UITweener.current = current;
-    }
-    else
-      this.Sample(this.mFactor, false);
-  }
+	[HideInInspector]
+	public float duration = 1f;
 
-  public void SetOnFinished(EventDelegate.Callback del) => EventDelegate.Set(this.onFinished, del);
+	[HideInInspector]
+	public bool steeperCurves;
 
-  public void SetOnFinished(EventDelegate del) => EventDelegate.Set(this.onFinished, del);
+	[HideInInspector]
+	public int tweenGroup;
 
-  public void AddOnFinished(EventDelegate.Callback del) => EventDelegate.Add(this.onFinished, del);
+	[Tooltip("By default, Update() will be used for tweening. Setting this to 'true' will make the tween happen in FixedUpdate() insted.")]
+	public bool useFixedUpdate;
 
-  public void AddOnFinished(EventDelegate del) => EventDelegate.Add(this.onFinished, del);
+	[HideInInspector]
+	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
-  public void RemoveOnFinished(EventDelegate del)
-  {
-    if (this.onFinished != null)
-      this.onFinished.Remove(del);
-    if (this.mTemp == null)
-      return;
-    this.mTemp.Remove(del);
-  }
+	[HideInInspector]
+	public GameObject eventReceiver;
 
-  private void OnDisable() => this.mStarted = false;
+	[HideInInspector]
+	public string callWhenFinished;
 
-  public void Finish()
-  {
-    if (!this.enabled)
-      return;
-    this.Sample((double) this.mAmountPerDelta > 0.0 ? 1f : 0.0f, true);
-    this.enabled = false;
-  }
+	[NonSerialized]
+	public float timeScale = 1f;
 
-  public void Sample(float factor, bool isFinished)
-  {
-    float num1 = Mathf.Clamp01(factor);
-    if (this.method == UITweener.Method.EaseIn)
-    {
-      num1 = 1f - Mathf.Sin((float) (1.5707963705062866 * (1.0 - (double) num1)));
-      if (this.steeperCurves)
-        num1 *= num1;
-    }
-    else if (this.method == UITweener.Method.EaseOut)
-    {
-      num1 = Mathf.Sin(1.57079637f * num1);
-      if (this.steeperCurves)
-      {
-        float num2 = 1f - num1;
-        num1 = (float) (1.0 - (double) num2 * (double) num2);
-      }
-    }
-    else if (this.method == UITweener.Method.EaseInOut)
-    {
-      num1 -= Mathf.Sin(num1 * 6.28318548f) / 6.28318548f;
-      if (this.steeperCurves)
-      {
-        float f = (float) ((double) num1 * 2.0 - 1.0);
-        double num3 = (double) Mathf.Sign(f);
-        float num4 = 1f - Mathf.Abs(f);
-        double num5 = 1.0 - (double) num4 * (double) num4;
-        num1 = (float) (num3 * num5 * 0.5 + 0.5);
-      }
-    }
-    else if (this.method == UITweener.Method.BounceIn)
-      num1 = this.BounceLogic(num1);
-    else if (this.method == UITweener.Method.BounceOut)
-      num1 = 1f - this.BounceLogic(1f - num1);
-    this.OnUpdate(this.animationCurve != null ? this.animationCurve.Evaluate(num1) : num1, isFinished);
-  }
+	private bool mStarted;
 
-  private float BounceLogic(float val)
-  {
-    val = (double) val >= 0.36363598704338074 ? ((double) val >= 0.72727197408676147 ? ((double) val >= 0.909089982509613 ? (float) (121.0 / 16.0 * (double) (val -= 0.9545454f) * (double) val + 63.0 / 64.0) : (float) (121.0 / 16.0 * (double) (val -= 0.818181f) * (double) val + 15.0 / 16.0)) : (float) (121.0 / 16.0 * (double) (val -= 0.545454f) * (double) val + 0.75)) : 7.5685f * val * val;
-    return val;
-  }
+	private float mStartTime;
 
-  [Obsolete("Use PlayForward() instead")]
-  public void Play() => this.Play(true);
+	private float mDuration;
 
-  public void PlayForward() => this.Play(true);
+	private float mAmountPerDelta = 1000f;
 
-  public void PlayReverse() => this.Play(false);
+	private float mFactor;
 
-  public virtual void Play(bool forward)
-  {
-    this.mAmountPerDelta = Mathf.Abs(this.amountPerDelta);
-    if (!forward)
-      this.mAmountPerDelta = -this.mAmountPerDelta;
-    if (!this.enabled)
-    {
-      this.enabled = true;
-      this.mStarted = false;
-    }
-    this.DoUpdate();
-  }
+	private List<EventDelegate> mTemp;
 
-  public void ResetToBeginning()
-  {
-    this.mStarted = false;
-    this.mFactor = (double) this.amountPerDelta < 0.0 ? 1f : 0.0f;
-    this.Sample(this.mFactor, false);
-  }
+	public float amountPerDelta
+	{
+		get
+		{
+			if (duration == 0f)
+			{
+				return 1000f;
+			}
+			if (mDuration != duration)
+			{
+				mDuration = duration;
+				mAmountPerDelta = Mathf.Abs(1f / duration) * Mathf.Sign(mAmountPerDelta);
+			}
+			return mAmountPerDelta;
+		}
+	}
 
-  public void Toggle()
-  {
-    this.mAmountPerDelta = (double) this.mFactor <= 0.0 ? Mathf.Abs(this.amountPerDelta) : -this.amountPerDelta;
-    this.enabled = true;
-  }
+	public float tweenFactor
+	{
+		get
+		{
+			return mFactor;
+		}
+		set
+		{
+			mFactor = Mathf.Clamp01(value);
+		}
+	}
 
-  protected abstract void OnUpdate(float factor, bool isFinished);
+	public AnimationOrTween.Direction direction
+	{
+		get
+		{
+			if (!(amountPerDelta < 0f))
+			{
+				return AnimationOrTween.Direction.Forward;
+			}
+			return AnimationOrTween.Direction.Reverse;
+		}
+	}
 
-  public static T Begin<T>(GameObject go, float duration, float delay = 0.0f) where T : UITweener
-  {
-    T obj = go.GetComponent<T>();
-    if ((UnityEngine.Object) obj != (UnityEngine.Object) null && obj.tweenGroup != 0)
-    {
-      obj = default (T);
-      T[] components = go.GetComponents<T>();
-      int index = 0;
-      for (int length = components.Length; index < length; ++index)
-      {
-        obj = components[index];
-        if (!((UnityEngine.Object) obj != (UnityEngine.Object) null) || obj.tweenGroup != 0)
-          obj = default (T);
-        else
-          break;
-      }
-    }
-    if ((UnityEngine.Object) obj == (UnityEngine.Object) null)
-    {
-      obj = go.AddComponent<T>();
-      if ((UnityEngine.Object) obj == (UnityEngine.Object) null)
-      {
-        Debug.LogError((object) ("Unable to add " + typeof (T)?.ToString() + " to " + NGUITools.GetHierarchy(go)), (UnityEngine.Object) go);
-        return default (T);
-      }
-    }
-    obj.mStarted = false;
-    obj.mFactor = 0.0f;
-    obj.duration = duration;
-    obj.mDuration = duration;
-    obj.delay = delay;
-    obj.mAmountPerDelta = (double) duration > 0.0 ? Mathf.Abs(1f / duration) : 1000f;
-    obj.style = UITweener.Style.Once;
-    obj.animationCurve = new AnimationCurve(new Keyframe[2]
-    {
-      new Keyframe(0.0f, 0.0f, 0.0f, 1f),
-      new Keyframe(1f, 1f, 1f, 0.0f)
-    });
-    obj.eventReceiver = (GameObject) null;
-    obj.callWhenFinished = (string) null;
-    obj.onFinished.Clear();
-    if (obj.mTemp != null)
-      obj.mTemp.Clear();
-    obj.enabled = true;
-    return obj;
-  }
+	private void Reset()
+	{
+		if (!mStarted)
+		{
+			SetStartToCurrentValue();
+			SetEndToCurrentValue();
+		}
+	}
 
-  public virtual void SetStartToCurrentValue()
-  {
-  }
+	protected virtual void Start()
+	{
+		DoUpdate();
+	}
 
-  public virtual void SetEndToCurrentValue()
-  {
-  }
+	protected void Update()
+	{
+		if (!useFixedUpdate)
+		{
+			DoUpdate();
+		}
+	}
 
-  [DoNotObfuscateNGUI]
-  public enum Method
-  {
-    Linear,
-    EaseIn,
-    EaseOut,
-    EaseInOut,
-    BounceIn,
-    BounceOut,
-  }
+	protected void FixedUpdate()
+	{
+		if (useFixedUpdate)
+		{
+			DoUpdate();
+		}
+	}
 
-  [DoNotObfuscateNGUI]
-  public enum Style
-  {
-    Once,
-    Loop,
-    PingPong,
-  }
+	protected void DoUpdate()
+	{
+		float num = ((ignoreTimeScale && !useFixedUpdate) ? Time.unscaledDeltaTime : Time.deltaTime);
+		float num2 = ((ignoreTimeScale && !useFixedUpdate) ? Time.unscaledTime : Time.time);
+		if (!mStarted)
+		{
+			num = 0f;
+			mStarted = true;
+			mStartTime = num2 + delay;
+		}
+		if (num2 < mStartTime)
+		{
+			return;
+		}
+		mFactor += ((duration == 0f) ? 1f : (amountPerDelta * num * timeScale));
+		if (style == Style.Loop)
+		{
+			if (mFactor > 1f)
+			{
+				mFactor -= Mathf.Floor(mFactor);
+			}
+		}
+		else if (style == Style.PingPong)
+		{
+			if (mFactor > 1f)
+			{
+				mFactor = 1f - (mFactor - Mathf.Floor(mFactor));
+				mAmountPerDelta = 0f - mAmountPerDelta;
+			}
+			else if (mFactor < 0f)
+			{
+				mFactor = 0f - mFactor;
+				mFactor -= Mathf.Floor(mFactor);
+				mAmountPerDelta = 0f - mAmountPerDelta;
+			}
+		}
+		if (style == Style.Once && (duration == 0f || mFactor > 1f || mFactor < 0f))
+		{
+			mFactor = Mathf.Clamp01(mFactor);
+			Sample(mFactor, true);
+			base.enabled = false;
+			if (!(current != this))
+			{
+				return;
+			}
+			UITweener uITweener = current;
+			current = this;
+			if (onFinished != null)
+			{
+				mTemp = onFinished;
+				onFinished = new List<EventDelegate>();
+				EventDelegate.Execute(mTemp);
+				for (int i = 0; i < mTemp.Count; i++)
+				{
+					EventDelegate eventDelegate = mTemp[i];
+					if (eventDelegate != null && !eventDelegate.oneShot)
+					{
+						EventDelegate.Add(onFinished, eventDelegate, eventDelegate.oneShot);
+					}
+				}
+				mTemp = null;
+			}
+			if (eventReceiver != null && !string.IsNullOrEmpty(callWhenFinished))
+			{
+				eventReceiver.SendMessage(callWhenFinished, this, SendMessageOptions.DontRequireReceiver);
+			}
+			current = uITweener;
+		}
+		else
+		{
+			Sample(mFactor, false);
+		}
+	}
+
+	public void SetOnFinished(EventDelegate.Callback del)
+	{
+		EventDelegate.Set(onFinished, del);
+	}
+
+	public void SetOnFinished(EventDelegate del)
+	{
+		EventDelegate.Set(onFinished, del);
+	}
+
+	public void AddOnFinished(EventDelegate.Callback del)
+	{
+		EventDelegate.Add(onFinished, del);
+	}
+
+	public void AddOnFinished(EventDelegate del)
+	{
+		EventDelegate.Add(onFinished, del);
+	}
+
+	public void RemoveOnFinished(EventDelegate del)
+	{
+		if (onFinished != null)
+		{
+			onFinished.Remove(del);
+		}
+		if (mTemp != null)
+		{
+			mTemp.Remove(del);
+		}
+	}
+
+	private void OnDisable()
+	{
+		mStarted = false;
+	}
+
+	public void Finish()
+	{
+		if (base.enabled)
+		{
+			Sample((mAmountPerDelta > 0f) ? 1f : 0f, true);
+			base.enabled = false;
+		}
+	}
+
+	public void Sample(float factor, bool isFinished)
+	{
+		float num = Mathf.Clamp01(factor);
+		if (method == Method.EaseIn)
+		{
+			num = 1f - Mathf.Sin((float)Math.PI / 2f * (1f - num));
+			if (steeperCurves)
+			{
+				num *= num;
+			}
+		}
+		else if (method == Method.EaseOut)
+		{
+			num = Mathf.Sin((float)Math.PI / 2f * num);
+			if (steeperCurves)
+			{
+				num = 1f - num;
+				num = 1f - num * num;
+			}
+		}
+		else if (method == Method.EaseInOut)
+		{
+			num -= Mathf.Sin(num * ((float)Math.PI * 2f)) / ((float)Math.PI * 2f);
+			if (steeperCurves)
+			{
+				num = num * 2f - 1f;
+				float num2 = Mathf.Sign(num);
+				num = 1f - Mathf.Abs(num);
+				num = 1f - num * num;
+				num = num2 * num * 0.5f + 0.5f;
+			}
+		}
+		else if (method == Method.BounceIn)
+		{
+			num = BounceLogic(num);
+		}
+		else if (method == Method.BounceOut)
+		{
+			num = 1f - BounceLogic(1f - num);
+		}
+		OnUpdate((animationCurve != null) ? animationCurve.Evaluate(num) : num, isFinished);
+	}
+
+	private float BounceLogic(float val)
+	{
+		val = ((val < 0.363636f) ? (7.5685f * val * val) : ((val < 0.727272f) ? (7.5625f * (val -= 0.545454f) * val + 0.75f) : ((!(val < 0.90909f)) ? (7.5625f * (val -= 0.9545454f) * val + 63f / 64f) : (7.5625f * (val -= 0.818181f) * val + 0.9375f))));
+		return val;
+	}
+
+	[Obsolete("Use PlayForward() instead")]
+	public void Play()
+	{
+		Play(true);
+	}
+
+	public void PlayForward()
+	{
+		Play(true);
+	}
+
+	public void PlayReverse()
+	{
+		Play(false);
+	}
+
+	public virtual void Play(bool forward)
+	{
+		mAmountPerDelta = Mathf.Abs(amountPerDelta);
+		if (!forward)
+		{
+			mAmountPerDelta = 0f - mAmountPerDelta;
+		}
+		if (!base.enabled)
+		{
+			base.enabled = true;
+			mStarted = false;
+		}
+		DoUpdate();
+	}
+
+	public void ResetToBeginning()
+	{
+		mStarted = false;
+		mFactor = ((amountPerDelta < 0f) ? 1f : 0f);
+		Sample(mFactor, false);
+	}
+
+	public void Toggle()
+	{
+		if (mFactor > 0f)
+		{
+			mAmountPerDelta = 0f - amountPerDelta;
+		}
+		else
+		{
+			mAmountPerDelta = Mathf.Abs(amountPerDelta);
+		}
+		base.enabled = true;
+	}
+
+	protected abstract void OnUpdate(float factor, bool isFinished);
+
+	public static T Begin<T>(GameObject go, float duration, float delay = 0f) where T : UITweener
+	{
+		T val = go.GetComponent<T>();
+		if ((UnityEngine.Object)val != (UnityEngine.Object)null && val.tweenGroup != 0)
+		{
+			val = null;
+			T[] components = go.GetComponents<T>();
+			int i = 0;
+			for (int num = components.Length; i < num; i++)
+			{
+				val = components[i];
+				if ((UnityEngine.Object)val != (UnityEngine.Object)null && val.tweenGroup == 0)
+				{
+					break;
+				}
+				val = null;
+			}
+		}
+		if ((UnityEngine.Object)val == (UnityEngine.Object)null)
+		{
+			val = go.AddComponent<T>();
+			if ((UnityEngine.Object)val == (UnityEngine.Object)null)
+			{
+				Type typeFromHandle = typeof(T);
+				Debug.LogError("Unable to add " + (((object)typeFromHandle != null) ? typeFromHandle.ToString() : null) + " to " + NGUITools.GetHierarchy(go), go);
+				return null;
+			}
+		}
+		val.mStarted = false;
+		val.mFactor = 0f;
+		val.duration = duration;
+		val.mDuration = duration;
+		val.delay = delay;
+		val.mAmountPerDelta = ((duration > 0f) ? Mathf.Abs(1f / duration) : 1000f);
+		val.style = Style.Once;
+		val.animationCurve = new AnimationCurve(new Keyframe(0f, 0f, 0f, 1f), new Keyframe(1f, 1f, 1f, 0f));
+		val.eventReceiver = null;
+		val.callWhenFinished = null;
+		val.onFinished.Clear();
+		if (val.mTemp != null)
+		{
+			val.mTemp.Clear();
+		}
+		val.enabled = true;
+		return val;
+	}
+
+	public virtual void SetStartToCurrentValue()
+	{
+	}
+
+	public virtual void SetEndToCurrentValue()
+	{
+	}
 }

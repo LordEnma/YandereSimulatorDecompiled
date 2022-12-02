@@ -1,80 +1,130 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BMSymbol
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [Serializable]
 public class BMSymbol
 {
-  public string sequence;
-  public string spriteName;
-  private UISpriteData mSprite;
-  private bool mIsValid;
-  private int mLength;
-  private int mOffsetX;
-  private int mOffsetY;
-  private int mWidth;
-  private int mHeight;
-  private int mAdvance;
-  private Rect mUV;
+	public string sequence;
 
-  public int length
-  {
-    get
-    {
-      if (this.mLength == 0)
-        this.mLength = this.sequence.Length;
-      return this.mLength;
-    }
-  }
+	public string spriteName;
 
-  public int offsetX => this.mOffsetX;
+	private UISpriteData mSprite;
 
-  public int offsetY => this.mOffsetY;
+	private bool mIsValid;
 
-  public int width => this.mWidth;
+	private int mLength;
 
-  public int height => this.mHeight;
+	private int mOffsetX;
 
-  public int advance => this.mAdvance;
+	private int mOffsetY;
 
-  public Rect uvRect => this.mUV;
+	private int mWidth;
 
-  public void MarkAsChanged() => this.mIsValid = false;
+	private int mHeight;
 
-  public bool Validate(INGUIAtlas atlas)
-  {
-    if (atlas == null)
-      return false;
-    if (!this.mIsValid)
-    {
-      if (string.IsNullOrEmpty(this.spriteName))
-        return false;
-      this.mSprite = atlas.GetSprite(this.spriteName);
-      Texture texture = atlas.texture;
-      if (this.mSprite != null)
-      {
-        if ((UnityEngine.Object) texture == (UnityEngine.Object) null)
-        {
-          this.mSprite = (UISpriteData) null;
-        }
-        else
-        {
-          this.mUV = new Rect((float) this.mSprite.x, (float) this.mSprite.y, (float) this.mSprite.width, (float) this.mSprite.height);
-          this.mUV = NGUIMath.ConvertToTexCoords(this.mUV, texture.width, texture.height);
-          this.mOffsetX = this.mSprite.paddingLeft;
-          this.mOffsetY = this.mSprite.paddingTop;
-          this.mWidth = this.mSprite.width;
-          this.mHeight = this.mSprite.height;
-          this.mAdvance = this.mSprite.width + (this.mSprite.paddingLeft + this.mSprite.paddingRight);
-          this.mIsValid = true;
-        }
-      }
-    }
-    return this.mSprite != null;
-  }
+	private int mAdvance;
+
+	private Rect mUV;
+
+	public int length
+	{
+		get
+		{
+			if (mLength == 0)
+			{
+				mLength = sequence.Length;
+			}
+			return mLength;
+		}
+	}
+
+	public int offsetX
+	{
+		get
+		{
+			return mOffsetX;
+		}
+	}
+
+	public int offsetY
+	{
+		get
+		{
+			return mOffsetY;
+		}
+	}
+
+	public int width
+	{
+		get
+		{
+			return mWidth;
+		}
+	}
+
+	public int height
+	{
+		get
+		{
+			return mHeight;
+		}
+	}
+
+	public int advance
+	{
+		get
+		{
+			return mAdvance;
+		}
+	}
+
+	public Rect uvRect
+	{
+		get
+		{
+			return mUV;
+		}
+	}
+
+	public void MarkAsChanged()
+	{
+		mIsValid = false;
+	}
+
+	public bool Validate(INGUIAtlas atlas)
+	{
+		if (atlas == null)
+		{
+			return false;
+		}
+		if (!mIsValid)
+		{
+			if (string.IsNullOrEmpty(spriteName))
+			{
+				return false;
+			}
+			Texture texture = null;
+			mSprite = atlas.GetSprite(spriteName);
+			texture = atlas.texture;
+			if (mSprite != null)
+			{
+				if (texture == null)
+				{
+					mSprite = null;
+				}
+				else
+				{
+					mUV = new Rect(mSprite.x, mSprite.y, mSprite.width, mSprite.height);
+					mUV = NGUIMath.ConvertToTexCoords(mUV, texture.width, texture.height);
+					mOffsetX = mSprite.paddingLeft;
+					mOffsetY = mSprite.paddingTop;
+					mWidth = mSprite.width;
+					mHeight = mSprite.height;
+					mAdvance = mSprite.width + (mSprite.paddingLeft + mSprite.paddingRight);
+					mIsValid = true;
+				}
+			}
+		}
+		return mSprite != null;
+	}
 }

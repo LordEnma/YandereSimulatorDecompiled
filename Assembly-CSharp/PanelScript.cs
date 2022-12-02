@@ -1,27 +1,55 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PanelScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PanelScript : MonoBehaviour
 {
-  public UILabel BuildingLabel;
-  public DoorBoxScript DoorBox;
-  public Transform Player;
-  public string Floor = string.Empty;
-  public float PracticeBuildingZ;
-  public float StairsZ;
-  public float Floor1Height;
-  public float Floor2Height;
-  public float Floor3Height;
+	public UILabel BuildingLabel;
 
-  private void Update()
-  {
-    this.Floor = (double) this.Player.position.z > (double) this.StairsZ || (double) this.Player.position.z < -(double) this.StairsZ ? "Stairs" : ((double) this.Player.position.y >= (double) this.Floor1Height ? ((double) this.Player.position.y <= (double) this.Floor1Height || (double) this.Player.position.y >= (double) this.Floor2Height ? ((double) this.Player.position.y <= (double) this.Floor2Height || (double) this.Player.position.y >= (double) this.Floor3Height ? "Rooftop" : "Third Floor") : "Second Floor") : "First Floor");
-    this.BuildingLabel.text = (double) this.Player.position.z >= (double) this.PracticeBuildingZ ? "Classroom Building, " + this.Floor : "Practice Building, " + this.Floor;
-    this.DoorBox.Show = false;
-  }
+	public DoorBoxScript DoorBox;
+
+	public Transform Player;
+
+	public string Floor = string.Empty;
+
+	public float PracticeBuildingZ;
+
+	public float StairsZ;
+
+	public float Floor1Height;
+
+	public float Floor2Height;
+
+	public float Floor3Height;
+
+	private void Update()
+	{
+		if (Player.position.z > StairsZ || Player.position.z < 0f - StairsZ)
+		{
+			Floor = "Stairs";
+		}
+		else if (Player.position.y < Floor1Height)
+		{
+			Floor = "First Floor";
+		}
+		else if (Player.position.y > Floor1Height && Player.position.y < Floor2Height)
+		{
+			Floor = "Second Floor";
+		}
+		else if (Player.position.y > Floor2Height && Player.position.y < Floor3Height)
+		{
+			Floor = "Third Floor";
+		}
+		else
+		{
+			Floor = "Rooftop";
+		}
+		if (Player.position.z < PracticeBuildingZ)
+		{
+			BuildingLabel.text = "Practice Building, " + Floor;
+		}
+		else
+		{
+			BuildingLabel.text = "Classroom Building, " + Floor;
+		}
+		DoorBox.Show = false;
+	}
 }

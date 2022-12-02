@@ -1,49 +1,46 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PantyDetectorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PantyDetectorScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public StudentScript Student;
-  public int Frame;
+	public YandereScript Yandere;
 
-  private void Update()
-  {
-    if (this.Frame == 1)
-    {
-      this.Yandere.StudentManager.UpdatePanties(false);
-      Object.Destroy((Object) this.gameObject);
-    }
-    ++this.Frame;
-  }
+	public StudentScript Student;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (!((Object) this.Student == (Object) null) || !(other.gameObject.name == "Panties"))
-      return;
-    this.Student = other.gameObject.transform.root.gameObject.GetComponent<StudentScript>();
-    this.Yandere.ResetYandereEffects();
-    this.Yandere.Shutter.PhotoDescLabel.text = "Photo of: " + this.Student.Name + "'s Panties";
-    this.Yandere.Shutter.PhotoIcons.SetActive(true);
-    this.Yandere.Shutter.PantiesX.SetActive(false);
-    this.Yandere.Shutter.InfoX.SetActive(true);
-    this.Yandere.Shutter.Student = this.Student;
-    Time.timeScale = 0.0f;
-    this.Yandere.Shutter.Panel.SetActive(true);
-    this.Yandere.Shutter.MainMenu.SetActive(false);
-    this.Yandere.PauseScreen.Show = true;
-    this.Yandere.PauseScreen.Panel.enabled = true;
-    this.Yandere.PromptBar.ClearButtons();
-    this.Yandere.PromptBar.Label[1].text = "Exit";
-    this.Yandere.PromptBar.UpdateButtons();
-    this.Yandere.PromptBar.Show = true;
-    this.Yandere.PauseScreen.Sideways = false;
-    this.Yandere.Shutter.TextMessages.gameObject.SetActive(true);
-    this.Yandere.Shutter.SpawnMessage();
-  }
+	public int Frame;
+
+	private void Update()
+	{
+		if (Frame == 1)
+		{
+			Yandere.StudentManager.UpdatePanties(false);
+			Object.Destroy(base.gameObject);
+		}
+		Frame++;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (Student == null && other.gameObject.name == "Panties")
+		{
+			Student = other.gameObject.transform.root.gameObject.GetComponent<StudentScript>();
+			Yandere.ResetYandereEffects();
+			Yandere.Shutter.PhotoDescLabel.text = "Photo of: " + Student.Name + "'s Panties";
+			Yandere.Shutter.PhotoIcons.SetActive(true);
+			Yandere.Shutter.PantiesX.SetActive(false);
+			Yandere.Shutter.InfoX.SetActive(true);
+			Yandere.Shutter.Student = Student;
+			Time.timeScale = 0f;
+			Yandere.Shutter.Panel.SetActive(true);
+			Yandere.Shutter.MainMenu.SetActive(false);
+			Yandere.PauseScreen.Show = true;
+			Yandere.PauseScreen.Panel.enabled = true;
+			Yandere.PromptBar.ClearButtons();
+			Yandere.PromptBar.Label[1].text = "Exit";
+			Yandere.PromptBar.UpdateButtons();
+			Yandere.PromptBar.Show = true;
+			Yandere.PauseScreen.Sideways = false;
+			Yandere.Shutter.TextMessages.gameObject.SetActive(true);
+			Yandere.Shutter.SpawnMessage();
+		}
+	}
 }

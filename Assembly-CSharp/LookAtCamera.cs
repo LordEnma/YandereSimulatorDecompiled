@@ -1,21 +1,20 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: LookAtCamera
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
-  public Camera cameraToLookAt;
+	public Camera cameraToLookAt;
 
-  private void Start()
-  {
-    if (!((Object) this.cameraToLookAt == (Object) null))
-      return;
-    this.cameraToLookAt = Camera.main;
-  }
+	private void Start()
+	{
+		if (cameraToLookAt == null)
+		{
+			cameraToLookAt = Camera.main;
+		}
+	}
 
-  private void Update() => this.transform.LookAt(this.cameraToLookAt.transform.position - new Vector3(0.0f, this.cameraToLookAt.transform.position.y - this.transform.position.y, 0.0f));
+	private void Update()
+	{
+		Vector3 vector = new Vector3(0f, cameraToLookAt.transform.position.y - base.transform.position.y, 0f);
+		base.transform.LookAt(cameraToLookAt.transform.position - vector);
+	}
 }

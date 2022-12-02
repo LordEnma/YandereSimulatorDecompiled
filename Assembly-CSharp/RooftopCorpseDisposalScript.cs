@@ -1,57 +1,57 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RooftopCorpseDisposalScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RooftopCorpseDisposalScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public Collider MyCollider;
-  public Transform DropSpot;
+	public YandereScript Yandere;
 
-  private void Start()
-  {
-    if (!SchoolGlobals.RoofFence)
-      return;
-    Object.Destroy((Object) this.gameObject);
-  }
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if (this.MyCollider.bounds.Contains(this.Yandere.transform.position))
-    {
-      if ((Object) this.Yandere.Ragdoll != (Object) null)
-      {
-        if (this.Yandere.Dropping)
-          return;
-        this.Prompt.enabled = true;
-        this.Prompt.transform.position = new Vector3(this.Yandere.transform.position.x, this.Yandere.transform.position.y + 1.66666f, this.Yandere.transform.position.z);
-        if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-          return;
-        this.DropSpot.position = new Vector3(this.DropSpot.position.x, this.DropSpot.position.y, this.Yandere.transform.position.z);
-        this.Yandere.CharacterAnimation.CrossFade(this.Yandere.Carrying ? "f02_carryIdleA_00" : "f02_dragIdle_00");
-        this.Yandere.DropSpot = this.DropSpot;
-        this.Yandere.Dropping = true;
-        this.Yandere.CanMove = false;
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-        this.Yandere.Ragdoll.GetComponent<RagdollScript>().BloodPoolSpawner.Falling = true;
-        this.Yandere.Ragdoll.GetComponent<RagdollScript>().DroppedFromRooftop = true;
-      }
-      else
-      {
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-      }
-    }
-    else
-    {
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-    }
-  }
+	public Collider MyCollider;
+
+	public Transform DropSpot;
+
+	private void Start()
+	{
+		if (SchoolGlobals.RoofFence)
+		{
+			Object.Destroy(base.gameObject);
+		}
+	}
+
+	private void Update()
+	{
+		if (MyCollider.bounds.Contains(Yandere.transform.position))
+		{
+			if (Yandere.Ragdoll != null)
+			{
+				if (!Yandere.Dropping)
+				{
+					Prompt.enabled = true;
+					Prompt.transform.position = new Vector3(Yandere.transform.position.x, Yandere.transform.position.y + 1.66666f, Yandere.transform.position.z);
+					if (Prompt.Circle[0].fillAmount == 0f)
+					{
+						DropSpot.position = new Vector3(DropSpot.position.x, DropSpot.position.y, Yandere.transform.position.z);
+						Yandere.CharacterAnimation.CrossFade(Yandere.Carrying ? "f02_carryIdleA_00" : "f02_dragIdle_00");
+						Yandere.DropSpot = DropSpot;
+						Yandere.Dropping = true;
+						Yandere.CanMove = false;
+						Prompt.Hide();
+						Prompt.enabled = false;
+						Yandere.Ragdoll.GetComponent<RagdollScript>().BloodPoolSpawner.Falling = true;
+						Yandere.Ragdoll.GetComponent<RagdollScript>().DroppedFromRooftop = true;
+					}
+				}
+			}
+			else
+			{
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
+		}
+		else
+		{
+			Prompt.Hide();
+			Prompt.enabled = false;
+		}
+	}
 }

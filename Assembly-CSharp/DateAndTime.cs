@@ -1,66 +1,84 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DateAndTime
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [Serializable]
 public class DateAndTime
 {
-  [SerializeField]
-  private int week;
-  [SerializeField]
-  private DayOfWeek weekday;
-  [SerializeField]
-  private Clock clock;
+	[SerializeField]
+	private int week;
 
-  public DateAndTime(int week, DayOfWeek weekday, Clock clock)
-  {
-    this.week = week;
-    this.weekday = weekday;
-    this.clock = clock;
-  }
+	[SerializeField]
+	private DayOfWeek weekday;
 
-  public int Week => this.week;
+	[SerializeField]
+	private Clock clock;
 
-  public DayOfWeek Weekday => this.weekday;
+	public int Week
+	{
+		get
+		{
+			return week;
+		}
+	}
 
-  public Clock Clock => this.clock;
+	public DayOfWeek Weekday
+	{
+		get
+		{
+			return weekday;
+		}
+	}
 
-  public int TotalSeconds
-  {
-    get
-    {
-      int num1 = this.week * 604800;
-      int num2 = (int) this.weekday * 86400;
-      int totalSeconds = this.clock.TotalSeconds;
-      int num3 = num2;
-      return num1 + num3 + totalSeconds;
-    }
-  }
+	public Clock Clock
+	{
+		get
+		{
+			return clock;
+		}
+	}
 
-  public void IncrementWeek() => ++this.week;
+	public int TotalSeconds
+	{
+		get
+		{
+			int num = week * 604800;
+			int num2 = (int)weekday * 86400;
+			int totalSeconds = clock.TotalSeconds;
+			return num + num2 + totalSeconds;
+		}
+	}
 
-  public void IncrementWeekday()
-  {
-    int num = (int) (this.weekday + 1);
-    if (num == 7)
-    {
-      this.IncrementWeek();
-      num = 0;
-    }
-    this.weekday = (DayOfWeek) num;
-  }
+	public DateAndTime(int week, DayOfWeek weekday, Clock clock)
+	{
+		this.week = week;
+		this.weekday = weekday;
+		this.clock = clock;
+	}
 
-  public void Tick(float dt)
-  {
-    int hours24 = this.clock.Hours24;
-    this.clock.Tick(dt);
-    if (this.clock.Hours24 >= hours24)
-      return;
-    this.IncrementWeekday();
-  }
+	public void IncrementWeek()
+	{
+		week++;
+	}
+
+	public void IncrementWeekday()
+	{
+		int num = (int)weekday;
+		num++;
+		if (num == 7)
+		{
+			IncrementWeek();
+			num = 0;
+		}
+		weekday = (DayOfWeek)num;
+	}
+
+	public void Tick(float dt)
+	{
+		int hours = clock.Hours24;
+		clock.Tick(dt);
+		if (clock.Hours24 < hours)
+		{
+			IncrementWeekday();
+		}
+	}
 }

@@ -1,168 +1,219 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DayNightController
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DayNightController : MonoBehaviour
 {
-  public float dayCycleLength;
-  public float currentCycleTime;
-  public DayNightController.DayPhase currentPhase;
-  public float hoursPerDay;
-  public float dawnTimeOffset;
-  public int worldTimeHour;
-  public Color fullLight;
-  public Color fullDark;
-  public Material dawnDuskSkybox;
-  public Color dawnDuskFog;
-  public Material daySkybox;
-  public Color dayFog;
-  public Material nightSkybox;
-  public Color nightFog;
-  private float dawnTime;
-  private float dayTime;
-  private float duskTime;
-  private float nightTime;
-  private float quarterDay;
-  private float lightIntensity;
+	public enum DayPhase
+	{
+		Night = 0,
+		Dawn = 1,
+		Day = 2,
+		Dusk = 3
+	}
 
-  private void Initialize()
-  {
-    this.quarterDay = this.dayCycleLength * 0.25f;
-    this.dawnTime = 0.0f;
-    this.dayTime = this.dawnTime + this.quarterDay;
-    this.duskTime = this.dayTime + this.quarterDay;
-    this.nightTime = this.duskTime + this.quarterDay;
-    Light component = this.GetComponent<Light>();
-    if (!((Object) component != (Object) null))
-      return;
-    this.lightIntensity = component.intensity;
-  }
+	public float dayCycleLength;
 
-  private void Reset()
-  {
-    this.dayCycleLength = 120f;
-    this.hoursPerDay = 24f;
-    this.dawnTimeOffset = 3f;
-    this.fullDark = new Color(0.1254902f, 0.109803922f, 0.180392161f);
-    this.fullLight = new Color(0.992156863f, 0.972549f, 0.8745098f);
-    this.dawnDuskFog = new Color(0.521568656f, 0.4862745f, 0.4f);
-    this.dayFog = new Color(0.7058824f, 0.8156863f, 0.819607854f);
-    this.nightFog = new Color(0.0470588244f, 0.05882353f, 0.356862754f);
-    foreach (Skybox skybox in Resources.FindObjectsOfTypeAll<Skybox>())
-    {
-      if (skybox.name == "DawnDusk Skybox")
-        this.dawnDuskSkybox = skybox.material;
-      else if (skybox.name == "StarryNight Skybox")
-        this.nightSkybox = skybox.material;
-      else if (skybox.name == "Sunny2 Skybox")
-        this.daySkybox = skybox.material;
-    }
-  }
+	public float currentCycleTime;
 
-  private void Start() => this.Initialize();
+	public DayPhase currentPhase;
 
-  private void Update()
-  {
-    if ((double) this.currentCycleTime > (double) this.nightTime && this.currentPhase == DayNightController.DayPhase.Dusk)
-      this.SetNight();
-    else if ((double) this.currentCycleTime > (double) this.duskTime && this.currentPhase == DayNightController.DayPhase.Day)
-      this.SetDusk();
-    else if ((double) this.currentCycleTime > (double) this.dayTime && this.currentPhase == DayNightController.DayPhase.Dawn)
-      this.SetDay();
-    else if ((double) this.currentCycleTime > (double) this.dawnTime && (double) this.currentCycleTime < (double) this.dayTime && this.currentPhase == DayNightController.DayPhase.Night)
-      this.SetDawn();
-    this.UpdateWorldTime();
-    this.UpdateDaylight();
-    this.UpdateFog();
-    this.currentCycleTime += Time.deltaTime;
-    this.currentCycleTime %= this.dayCycleLength;
-  }
+	public float hoursPerDay;
 
-  public void SetDawn()
-  {
-    RenderSettings.skybox = this.dawnDuskSkybox;
-    Light component = this.GetComponent<Light>();
-    if ((Object) component != (Object) null)
-      component.enabled = true;
-    this.currentPhase = DayNightController.DayPhase.Dawn;
-  }
+	public float dawnTimeOffset;
 
-  public void SetDay()
-  {
-    RenderSettings.skybox = this.daySkybox;
-    RenderSettings.ambientLight = this.fullLight;
-    Light component = this.GetComponent<Light>();
-    if ((Object) component != (Object) null)
-      component.intensity = this.lightIntensity;
-    this.currentPhase = DayNightController.DayPhase.Day;
-  }
+	public int worldTimeHour;
 
-  public void SetDusk()
-  {
-    RenderSettings.skybox = this.dawnDuskSkybox;
-    this.currentPhase = DayNightController.DayPhase.Dusk;
-  }
+	public Color fullLight;
 
-  public void SetNight()
-  {
-    RenderSettings.skybox = this.nightSkybox;
-    RenderSettings.ambientLight = this.fullDark;
-    Light component = this.GetComponent<Light>();
-    if ((Object) component != (Object) null)
-      component.enabled = false;
-    this.currentPhase = DayNightController.DayPhase.Night;
-  }
+	public Color fullDark;
 
-  private void UpdateDaylight()
-  {
-    if (this.currentPhase == DayNightController.DayPhase.Dawn)
-    {
-      float num = this.currentCycleTime - this.dawnTime;
-      RenderSettings.ambientLight = Color.Lerp(this.fullDark, this.fullLight, num / this.quarterDay);
-      Light component = this.GetComponent<Light>();
-      if ((Object) component != (Object) null)
-        component.intensity = this.lightIntensity * (num / this.quarterDay);
-    }
-    else if (this.currentPhase == DayNightController.DayPhase.Dusk)
-    {
-      float num = this.currentCycleTime - this.duskTime;
-      RenderSettings.ambientLight = Color.Lerp(this.fullLight, this.fullDark, num / this.quarterDay);
-      Light component = this.GetComponent<Light>();
-      if ((Object) component != (Object) null)
-        component.intensity = this.lightIntensity * ((this.quarterDay - num) / this.quarterDay);
-    }
-    this.transform.Rotate(Vector3.up * (float) ((double) Time.deltaTime / (double) this.dayCycleLength * 360.0), Space.Self);
-  }
+	public Material dawnDuskSkybox;
 
-  private void UpdateFog()
-  {
-    if (this.currentPhase == DayNightController.DayPhase.Dawn)
-      RenderSettings.fogColor = Color.Lerp(this.dawnDuskFog, this.dayFog, (this.currentCycleTime - this.dawnTime) / this.quarterDay);
-    else if (this.currentPhase == DayNightController.DayPhase.Day)
-      RenderSettings.fogColor = Color.Lerp(this.dayFog, this.dawnDuskFog, (this.currentCycleTime - this.dayTime) / this.quarterDay);
-    else if (this.currentPhase == DayNightController.DayPhase.Dusk)
-    {
-      RenderSettings.fogColor = Color.Lerp(this.dawnDuskFog, this.nightFog, (this.currentCycleTime - this.duskTime) / this.quarterDay);
-    }
-    else
-    {
-      if (this.currentPhase != DayNightController.DayPhase.Night)
-        return;
-      RenderSettings.fogColor = Color.Lerp(this.nightFog, this.dawnDuskFog, (this.currentCycleTime - this.nightTime) / this.quarterDay);
-    }
-  }
+	public Color dawnDuskFog;
 
-  private void UpdateWorldTime() => this.worldTimeHour = (int) (((double) Mathf.Ceil(this.currentCycleTime / this.dayCycleLength * this.hoursPerDay) + (double) this.dawnTimeOffset) % (double) this.hoursPerDay) + 1;
+	public Material daySkybox;
 
-  public enum DayPhase
-  {
-    Night,
-    Dawn,
-    Day,
-    Dusk,
-  }
+	public Color dayFog;
+
+	public Material nightSkybox;
+
+	public Color nightFog;
+
+	private float dawnTime;
+
+	private float dayTime;
+
+	private float duskTime;
+
+	private float nightTime;
+
+	private float quarterDay;
+
+	private float lightIntensity;
+
+	private void Initialize()
+	{
+		quarterDay = dayCycleLength * 0.25f;
+		dawnTime = 0f;
+		dayTime = dawnTime + quarterDay;
+		duskTime = dayTime + quarterDay;
+		nightTime = duskTime + quarterDay;
+		Light component = GetComponent<Light>();
+		if (component != null)
+		{
+			lightIntensity = component.intensity;
+		}
+	}
+
+	private void Reset()
+	{
+		dayCycleLength = 120f;
+		hoursPerDay = 24f;
+		dawnTimeOffset = 3f;
+		fullDark = new Color(0.1254902f, 0.10980392f, 0.18039216f);
+		fullLight = new Color(0.99215686f, 0.972549f, 0.8745098f);
+		dawnDuskFog = new Color(0.52156866f, 0.4862745f, 0.4f);
+		dayFog = new Color(0.7058824f, 0.8156863f, 0.81960785f);
+		nightFog = new Color(4f / 85f, 1f / 17f, 0.35686275f);
+		Skybox[] array = Resources.FindObjectsOfTypeAll<Skybox>();
+		foreach (Skybox skybox in array)
+		{
+			if (skybox.name == "DawnDusk Skybox")
+			{
+				dawnDuskSkybox = skybox.material;
+			}
+			else if (skybox.name == "StarryNight Skybox")
+			{
+				nightSkybox = skybox.material;
+			}
+			else if (skybox.name == "Sunny2 Skybox")
+			{
+				daySkybox = skybox.material;
+			}
+		}
+	}
+
+	private void Start()
+	{
+		Initialize();
+	}
+
+	private void Update()
+	{
+		if (currentCycleTime > nightTime && currentPhase == DayPhase.Dusk)
+		{
+			SetNight();
+		}
+		else if (currentCycleTime > duskTime && currentPhase == DayPhase.Day)
+		{
+			SetDusk();
+		}
+		else if (currentCycleTime > dayTime && currentPhase == DayPhase.Dawn)
+		{
+			SetDay();
+		}
+		else if (currentCycleTime > dawnTime && currentCycleTime < dayTime && currentPhase == DayPhase.Night)
+		{
+			SetDawn();
+		}
+		UpdateWorldTime();
+		UpdateDaylight();
+		UpdateFog();
+		currentCycleTime += Time.deltaTime;
+		currentCycleTime %= dayCycleLength;
+	}
+
+	public void SetDawn()
+	{
+		RenderSettings.skybox = dawnDuskSkybox;
+		Light component = GetComponent<Light>();
+		if (component != null)
+		{
+			component.enabled = true;
+		}
+		currentPhase = DayPhase.Dawn;
+	}
+
+	public void SetDay()
+	{
+		RenderSettings.skybox = daySkybox;
+		RenderSettings.ambientLight = fullLight;
+		Light component = GetComponent<Light>();
+		if (component != null)
+		{
+			component.intensity = lightIntensity;
+		}
+		currentPhase = DayPhase.Day;
+	}
+
+	public void SetDusk()
+	{
+		RenderSettings.skybox = dawnDuskSkybox;
+		currentPhase = DayPhase.Dusk;
+	}
+
+	public void SetNight()
+	{
+		RenderSettings.skybox = nightSkybox;
+		RenderSettings.ambientLight = fullDark;
+		Light component = GetComponent<Light>();
+		if (component != null)
+		{
+			component.enabled = false;
+		}
+		currentPhase = DayPhase.Night;
+	}
+
+	private void UpdateDaylight()
+	{
+		if (currentPhase == DayPhase.Dawn)
+		{
+			float num = currentCycleTime - dawnTime;
+			RenderSettings.ambientLight = Color.Lerp(fullDark, fullLight, num / quarterDay);
+			Light component = GetComponent<Light>();
+			if (component != null)
+			{
+				component.intensity = lightIntensity * (num / quarterDay);
+			}
+		}
+		else if (currentPhase == DayPhase.Dusk)
+		{
+			float num2 = currentCycleTime - duskTime;
+			RenderSettings.ambientLight = Color.Lerp(fullLight, fullDark, num2 / quarterDay);
+			Light component2 = GetComponent<Light>();
+			if (component2 != null)
+			{
+				component2.intensity = lightIntensity * ((quarterDay - num2) / quarterDay);
+			}
+		}
+		base.transform.Rotate(Vector3.up * (Time.deltaTime / dayCycleLength * 360f), Space.Self);
+	}
+
+	private void UpdateFog()
+	{
+		if (currentPhase == DayPhase.Dawn)
+		{
+			float num = currentCycleTime - dawnTime;
+			RenderSettings.fogColor = Color.Lerp(dawnDuskFog, dayFog, num / quarterDay);
+		}
+		else if (currentPhase == DayPhase.Day)
+		{
+			float num2 = currentCycleTime - dayTime;
+			RenderSettings.fogColor = Color.Lerp(dayFog, dawnDuskFog, num2 / quarterDay);
+		}
+		else if (currentPhase == DayPhase.Dusk)
+		{
+			float num3 = currentCycleTime - duskTime;
+			RenderSettings.fogColor = Color.Lerp(dawnDuskFog, nightFog, num3 / quarterDay);
+		}
+		else if (currentPhase == DayPhase.Night)
+		{
+			float num4 = currentCycleTime - nightTime;
+			RenderSettings.fogColor = Color.Lerp(nightFog, dawnDuskFog, num4 / quarterDay);
+		}
+	}
+
+	private void UpdateWorldTime()
+	{
+		worldTimeHour = (int)((Mathf.Ceil(currentCycleTime / dayCycleLength * hoursPerDay) + dawnTimeOffset) % hoursPerDay) + 1;
+	}
 }

@@ -1,218 +1,260 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: StudentEditorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using UnityEngine;
 
 public class StudentEditorScript : MonoBehaviour
 {
-  [SerializeField]
-  private UIPanel mainPanel;
-  [SerializeField]
-  private UIPanel studentPanel;
-  [SerializeField]
-  private UILabel bodyLabel;
-  [SerializeField]
-  private Transform listLabelsOrigin;
-  [SerializeField]
-  private UILabel studentLabelTemplate;
-  [SerializeField]
-  private PromptBarScript promptBar;
-  private StudentEditorScript.StudentData[] students;
-  private int studentIndex;
-  private InputManagerScript inputManager;
+	private class StudentAttendanceInfo
+	{
+		public int classNumber;
 
-  private void Awake()
-  {
-    Dictionary<string, object>[] dictionaryArray = EditorManagerScript.DeserializeJson("Students.json");
-    this.students = new StudentEditorScript.StudentData[dictionaryArray.Length];
-    for (int index = 0; index < this.students.Length; ++index)
-      this.students[index] = StudentEditorScript.StudentData.Deserialize(dictionaryArray[index]);
-    Array.Sort<StudentEditorScript.StudentData>(this.students, (Comparison<StudentEditorScript.StudentData>) ((a, b) => a.id - b.id));
-    for (int index = 0; index < this.students.Length; ++index)
-    {
-      StudentEditorScript.StudentData student = this.students[index];
-      UILabel uiLabel = UnityEngine.Object.Instantiate<UILabel>(this.studentLabelTemplate, this.listLabelsOrigin);
-      uiLabel.text = "(" + student.id.ToString() + ") " + student.name;
-      Transform transform = uiLabel.transform;
-      transform.localPosition = new Vector3(transform.localPosition.x + (float) (uiLabel.width / 2), transform.localPosition.y - (float) (index * uiLabel.height), transform.localPosition.z);
-      uiLabel.gameObject.SetActive(true);
-    }
-    this.studentIndex = 0;
-    this.bodyLabel.text = StudentEditorScript.GetStudentText(this.students[this.studentIndex]);
-    this.inputManager = UnityEngine.Object.FindObjectOfType<InputManagerScript>();
-  }
+		public int seatNumber;
 
-  private void OnEnable()
-  {
-    this.promptBar.Label[0].text = string.Empty;
-    this.promptBar.Label[1].text = "Back";
-    this.promptBar.UpdateButtons();
-  }
+		public int club;
 
-  private static ScheduleBlock[] DeserializeScheduleBlocks(
-    Dictionary<string, object> dict)
-  {
-    string[] strArray1 = TFUtils.LoadString(dict, "ScheduleTime").Split('_');
-    string[] strArray2 = TFUtils.LoadString(dict, "ScheduleDestination").Split('_');
-    string[] strArray3 = TFUtils.LoadString(dict, "ScheduleAction").Split('_');
-    ScheduleBlock[] scheduleBlockArray = new ScheduleBlock[strArray1.Length];
-    for (int index = 0; index < scheduleBlockArray.Length; ++index)
-      scheduleBlockArray[index] = new ScheduleBlock(float.Parse(strArray1[index]), strArray2[index], strArray3[index]);
-    return scheduleBlockArray;
-  }
+		public static StudentAttendanceInfo Deserialize(Dictionary<string, object> dict)
+		{
+			return new StudentAttendanceInfo
+			{
+				classNumber = TFUtils.LoadInt(dict, "Class"),
+				seatNumber = TFUtils.LoadInt(dict, "Seat"),
+				club = TFUtils.LoadInt(dict, "Club")
+			};
+		}
+	}
 
-  private static string GetStudentText(StudentEditorScript.StudentData data)
-  {
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.Append(data.name + " (" + data.id.ToString() + "):\n");
-    stringBuilder.Append("- Gender: " + (data.isMale ? "Male" : "Female") + "\n");
-    stringBuilder.Append("- Class: " + data.attendanceInfo.classNumber.ToString() + "\n");
-    stringBuilder.Append("- Seat: " + data.attendanceInfo.seatNumber.ToString() + "\n");
-    stringBuilder.Append("- Club: " + data.attendanceInfo.club.ToString() + "\n");
-    stringBuilder.Append("- Persona: " + data.personality.persona.ToString() + "\n");
-    stringBuilder.Append("- Crush: " + data.personality.crush.ToString() + "\n");
-    stringBuilder.Append("- Breast size: " + data.cosmetics.breastSize.ToString() + "\n");
-    stringBuilder.Append("- Strength: " + data.stats.strength.ToString() + "\n");
-    stringBuilder.Append("- Hairstyle: " + data.cosmetics.hairstyle + "\n");
-    stringBuilder.Append("- Color: " + data.cosmetics.color + "\n");
-    stringBuilder.Append("- Eyes: " + data.cosmetics.eyes + "\n");
-    stringBuilder.Append("- Stockings: " + data.cosmetics.stockings + "\n");
-    stringBuilder.Append("- Accessory: " + data.cosmetics.accessory + "\n");
-    stringBuilder.Append("- Schedule blocks: ");
-    foreach (ScheduleBlock scheduleBlock in data.scheduleBlocks)
-      stringBuilder.Append("[" + scheduleBlock.time.ToString() + ", " + scheduleBlock.destination + ", " + scheduleBlock.action + "]");
-    stringBuilder.Append("\n");
-    stringBuilder.Append("- Info: \"" + data.info + "\"\n");
-    return stringBuilder.ToString();
-  }
+	private class StudentPersonality
+	{
+		public PersonaType persona;
 
-  private void HandleInput()
-  {
-    if (Input.GetButtonDown("B"))
-    {
-      this.mainPanel.gameObject.SetActive(true);
-      this.studentPanel.gameObject.SetActive(false);
-    }
-    int num1 = 0;
-    int num2 = this.students.Length - 1;
-    int num3 = this.inputManager.TappedUp ? 1 : 0;
-    bool tappedDown = this.inputManager.TappedDown;
-    if (num3 != 0)
-      this.studentIndex = this.studentIndex > num1 ? this.studentIndex - 1 : num2;
-    else if (tappedDown)
-      this.studentIndex = this.studentIndex < num2 ? this.studentIndex + 1 : num1;
-    if ((num3 | (tappedDown ? 1 : 0)) == 0)
-      return;
-    this.bodyLabel.text = StudentEditorScript.GetStudentText(this.students[this.studentIndex]);
-  }
+		public int crush;
 
-  private void Update() => this.HandleInput();
+		public static StudentPersonality Deserialize(Dictionary<string, object> dict)
+		{
+			return new StudentPersonality
+			{
+				persona = (PersonaType)TFUtils.LoadInt(dict, "Persona"),
+				crush = TFUtils.LoadInt(dict, "Crush")
+			};
+		}
+	}
 
-  private class StudentAttendanceInfo
-  {
-    public int classNumber;
-    public int seatNumber;
-    public int club;
+	private class StudentStats
+	{
+		public int strength;
 
-    public static StudentEditorScript.StudentAttendanceInfo Deserialize(
-      Dictionary<string, object> dict)
-    {
-      return new StudentEditorScript.StudentAttendanceInfo()
-      {
-        classNumber = TFUtils.LoadInt(dict, "Class"),
-        seatNumber = TFUtils.LoadInt(dict, "Seat"),
-        club = TFUtils.LoadInt(dict, "Club")
-      };
-    }
-  }
+		public static StudentStats Deserialize(Dictionary<string, object> dict)
+		{
+			return new StudentStats
+			{
+				strength = TFUtils.LoadInt(dict, "Strength")
+			};
+		}
+	}
 
-  private class StudentPersonality
-  {
-    public PersonaType persona;
-    public int crush;
+	private class StudentCosmetics
+	{
+		public float breastSize;
 
-    public static StudentEditorScript.StudentPersonality Deserialize(
-      Dictionary<string, object> dict)
-    {
-      return new StudentEditorScript.StudentPersonality()
-      {
-        persona = (PersonaType) TFUtils.LoadInt(dict, "Persona"),
-        crush = TFUtils.LoadInt(dict, "Crush")
-      };
-    }
-  }
+		public string hairstyle;
 
-  private class StudentStats
-  {
-    public int strength;
+		public string color;
 
-    public static StudentEditorScript.StudentStats Deserialize(
-      Dictionary<string, object> dict)
-    {
-      return new StudentEditorScript.StudentStats()
-      {
-        strength = TFUtils.LoadInt(dict, "Strength")
-      };
-    }
-  }
+		public string eyes;
 
-  private class StudentCosmetics
-  {
-    public float breastSize;
-    public string hairstyle;
-    public string color;
-    public string eyes;
-    public string stockings;
-    public string accessory;
+		public string stockings;
 
-    public static StudentEditorScript.StudentCosmetics Deserialize(
-      Dictionary<string, object> dict)
-    {
-      return new StudentEditorScript.StudentCosmetics()
-      {
-        breastSize = TFUtils.LoadFloat(dict, "BreastSize"),
-        hairstyle = TFUtils.LoadString(dict, "Hairstyle"),
-        color = TFUtils.LoadString(dict, "Color"),
-        eyes = TFUtils.LoadString(dict, "Eyes"),
-        stockings = TFUtils.LoadString(dict, "Stockings"),
-        accessory = TFUtils.LoadString(dict, "Accessory")
-      };
-    }
-  }
+		public string accessory;
 
-  private class StudentData
-  {
-    public int id;
-    public string name;
-    public bool isMale;
-    public StudentEditorScript.StudentAttendanceInfo attendanceInfo;
-    public StudentEditorScript.StudentPersonality personality;
-    public StudentEditorScript.StudentStats stats;
-    public StudentEditorScript.StudentCosmetics cosmetics;
-    public ScheduleBlock[] scheduleBlocks;
-    public string info;
+		public static StudentCosmetics Deserialize(Dictionary<string, object> dict)
+		{
+			return new StudentCosmetics
+			{
+				breastSize = TFUtils.LoadFloat(dict, "BreastSize"),
+				hairstyle = TFUtils.LoadString(dict, "Hairstyle"),
+				color = TFUtils.LoadString(dict, "Color"),
+				eyes = TFUtils.LoadString(dict, "Eyes"),
+				stockings = TFUtils.LoadString(dict, "Stockings"),
+				accessory = TFUtils.LoadString(dict, "Accessory")
+			};
+		}
+	}
 
-    public static StudentEditorScript.StudentData Deserialize(
-      Dictionary<string, object> dict)
-    {
-      return new StudentEditorScript.StudentData()
-      {
-        id = TFUtils.LoadInt(dict, "ID"),
-        name = TFUtils.LoadString(dict, "Name"),
-        isMale = TFUtils.LoadInt(dict, "Gender") == 1,
-        attendanceInfo = StudentEditorScript.StudentAttendanceInfo.Deserialize(dict),
-        personality = StudentEditorScript.StudentPersonality.Deserialize(dict),
-        stats = StudentEditorScript.StudentStats.Deserialize(dict),
-        cosmetics = StudentEditorScript.StudentCosmetics.Deserialize(dict),
-        scheduleBlocks = StudentEditorScript.DeserializeScheduleBlocks(dict),
-        info = TFUtils.LoadString(dict, "Info")
-      };
-    }
-  }
+	private class StudentData
+	{
+		public int id;
+
+		public string name;
+
+		public bool isMale;
+
+		public StudentAttendanceInfo attendanceInfo;
+
+		public StudentPersonality personality;
+
+		public StudentStats stats;
+
+		public StudentCosmetics cosmetics;
+
+		public ScheduleBlock[] scheduleBlocks;
+
+		public string info;
+
+		public static StudentData Deserialize(Dictionary<string, object> dict)
+		{
+			return new StudentData
+			{
+				id = TFUtils.LoadInt(dict, "ID"),
+				name = TFUtils.LoadString(dict, "Name"),
+				isMale = (TFUtils.LoadInt(dict, "Gender") == 1),
+				attendanceInfo = StudentAttendanceInfo.Deserialize(dict),
+				personality = StudentPersonality.Deserialize(dict),
+				stats = StudentStats.Deserialize(dict),
+				cosmetics = StudentCosmetics.Deserialize(dict),
+				scheduleBlocks = DeserializeScheduleBlocks(dict),
+				info = TFUtils.LoadString(dict, "Info")
+			};
+		}
+	}
+
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
+	{
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
+
+		public static Comparison<StudentData> _003C_003E9__14_0;
+
+		internal int _003CAwake_003Eb__14_0(StudentData a, StudentData b)
+		{
+			return a.id - b.id;
+		}
+	}
+
+	[SerializeField]
+	private UIPanel mainPanel;
+
+	[SerializeField]
+	private UIPanel studentPanel;
+
+	[SerializeField]
+	private UILabel bodyLabel;
+
+	[SerializeField]
+	private Transform listLabelsOrigin;
+
+	[SerializeField]
+	private UILabel studentLabelTemplate;
+
+	[SerializeField]
+	private PromptBarScript promptBar;
+
+	private StudentData[] students;
+
+	private int studentIndex;
+
+	private InputManagerScript inputManager;
+
+	private void Awake()
+	{
+		Dictionary<string, object>[] array = EditorManagerScript.DeserializeJson("Students.json");
+		students = new StudentData[array.Length];
+		for (int i = 0; i < students.Length; i++)
+		{
+			students[i] = StudentData.Deserialize(array[i]);
+		}
+		Array.Sort(students, _003C_003Ec._003C_003E9__14_0 ?? (_003C_003Ec._003C_003E9__14_0 = _003C_003Ec._003C_003E9._003CAwake_003Eb__14_0));
+		for (int j = 0; j < students.Length; j++)
+		{
+			StudentData studentData = students[j];
+			UILabel uILabel = UnityEngine.Object.Instantiate(studentLabelTemplate, listLabelsOrigin);
+			uILabel.text = "(" + studentData.id + ") " + studentData.name;
+			Transform transform = uILabel.transform;
+			transform.localPosition = new Vector3(transform.localPosition.x + (float)(uILabel.width / 2), transform.localPosition.y - (float)(j * uILabel.height), transform.localPosition.z);
+			uILabel.gameObject.SetActive(true);
+		}
+		studentIndex = 0;
+		bodyLabel.text = GetStudentText(students[studentIndex]);
+		inputManager = UnityEngine.Object.FindObjectOfType<InputManagerScript>();
+	}
+
+	private void OnEnable()
+	{
+		promptBar.Label[0].text = string.Empty;
+		promptBar.Label[1].text = "Back";
+		promptBar.UpdateButtons();
+	}
+
+	private static ScheduleBlock[] DeserializeScheduleBlocks(Dictionary<string, object> dict)
+	{
+		string[] array = TFUtils.LoadString(dict, "ScheduleTime").Split('_');
+		string[] array2 = TFUtils.LoadString(dict, "ScheduleDestination").Split('_');
+		string[] array3 = TFUtils.LoadString(dict, "ScheduleAction").Split('_');
+		ScheduleBlock[] array4 = new ScheduleBlock[array.Length];
+		for (int i = 0; i < array4.Length; i++)
+		{
+			array4[i] = new ScheduleBlock(float.Parse(array[i]), array2[i], array3[i]);
+		}
+		return array4;
+	}
+
+	private static string GetStudentText(StudentData data)
+	{
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.Append(data.name + " (" + data.id + "):\n");
+		stringBuilder.Append("- Gender: " + (data.isMale ? "Male" : "Female") + "\n");
+		stringBuilder.Append("- Class: " + data.attendanceInfo.classNumber + "\n");
+		stringBuilder.Append("- Seat: " + data.attendanceInfo.seatNumber + "\n");
+		stringBuilder.Append("- Club: " + data.attendanceInfo.club + "\n");
+		stringBuilder.Append("- Persona: " + data.personality.persona.ToString() + "\n");
+		stringBuilder.Append("- Crush: " + data.personality.crush + "\n");
+		stringBuilder.Append("- Breast size: " + data.cosmetics.breastSize + "\n");
+		stringBuilder.Append("- Strength: " + data.stats.strength + "\n");
+		stringBuilder.Append("- Hairstyle: " + data.cosmetics.hairstyle + "\n");
+		stringBuilder.Append("- Color: " + data.cosmetics.color + "\n");
+		stringBuilder.Append("- Eyes: " + data.cosmetics.eyes + "\n");
+		stringBuilder.Append("- Stockings: " + data.cosmetics.stockings + "\n");
+		stringBuilder.Append("- Accessory: " + data.cosmetics.accessory + "\n");
+		stringBuilder.Append("- Schedule blocks: ");
+		ScheduleBlock[] scheduleBlocks = data.scheduleBlocks;
+		foreach (ScheduleBlock scheduleBlock in scheduleBlocks)
+		{
+			stringBuilder.Append("[" + scheduleBlock.time + ", " + scheduleBlock.destination + ", " + scheduleBlock.action + "]");
+		}
+		stringBuilder.Append("\n");
+		stringBuilder.Append("- Info: \"" + data.info + "\"\n");
+		return stringBuilder.ToString();
+	}
+
+	private void HandleInput()
+	{
+		if (Input.GetButtonDown("B"))
+		{
+			mainPanel.gameObject.SetActive(true);
+			studentPanel.gameObject.SetActive(false);
+		}
+		int num = 0;
+		int num2 = students.Length - 1;
+		bool tappedUp = inputManager.TappedUp;
+		bool tappedDown = inputManager.TappedDown;
+		if (tappedUp)
+		{
+			studentIndex = ((studentIndex > num) ? (studentIndex - 1) : num2);
+		}
+		else if (tappedDown)
+		{
+			studentIndex = ((studentIndex < num2) ? (studentIndex + 1) : num);
+		}
+		if (tappedUp || tappedDown)
+		{
+			bodyLabel.text = GetStudentText(students[studentIndex]);
+		}
+	}
+
+	private void Update()
+	{
+		HandleInput();
+	}
 }

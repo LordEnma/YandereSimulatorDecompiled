@@ -1,124 +1,179 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ThanksForPlayingScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ThanksForPlayingScript : MonoBehaviour
 {
-  public CameraEffectsScript CameraEffects;
-  public ParticleSystem[] Hearts;
-  public UIPanel ThankYouPanel;
-  public UIPanel FinalGamePanel;
-  public UIPanel RivalPanel;
-  public UIPanel QualityPanel;
-  public UIPanel WeaponsPanel;
-  public UIPanel StoryPanel;
-  public UIPanel MorePanel;
-  public UIPanel CrowdfundPanel;
-  public UIPanel SkipPanel;
-  public AudioSource Jukebox;
-  public Transform Yandere;
-  public UISprite SkipCircle;
-  public UISprite Darkness;
-  public Animation YandereKun;
-  public Animation Ryoba;
-  public bool FadeOut;
-  public float Alpha;
+	public CameraEffectsScript CameraEffects;
 
-  private void Start()
-  {
-    this.Ryoba["f02_faceCouncilGrace_00"].layer = 1;
-    this.Ryoba.Play("f02_faceCouncilGrace_00");
-    this.YandereKun["AltYanKunFace"].layer = 1;
-    this.YandereKun.Play("AltYanKunFace");
-    this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    this.SkipPanel.alpha = 0.0f;
-    this.Alpha = 1f;
-    this.CameraEffects.UpdateDOF(2f);
-    this.CameraEffects.UpdateBloom(1f);
-    this.CameraEffects.UpdateBloomKnee(0.5f);
-    this.CameraEffects.UpdateBloomRadius(4f);
-  }
+	public ParticleSystem[] Hearts;
 
-  private void Update()
-  {
-    if (!this.FadeOut)
-    {
-      this.Alpha = Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.5f);
-      this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
-      if ((double) this.Alpha == 0.0)
-        this.SkipPanel.alpha += Time.deltaTime;
-    }
-    else
-    {
-      this.Alpha = Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.5f);
-      this.Darkness.color = new Color(1f, 1f, 1f, this.Alpha);
-      this.Jukebox.volume -= Time.deltaTime * 0.5f;
-      if ((double) this.Alpha == 1.0)
-        SceneManager.LoadScene("NewTitleScene");
-    }
-    if ((double) this.SkipPanel.alpha == 1.0)
-    {
-      if (Input.GetButton("X"))
-      {
-        this.SkipCircle.fillAmount -= Time.deltaTime;
-        if ((double) this.SkipCircle.fillAmount == 0.0)
-          this.FadeOut = true;
-      }
-      else
-        this.SkipCircle.fillAmount = 1f;
-    }
-    if (Input.GetKeyDown("=") && (double) Time.timeScale < 10.0)
-      ++Time.timeScale;
-    if (Input.GetKeyDown("-") && (double) Time.timeScale > 1.0)
-      --Time.timeScale;
-    if ((double) this.Yandere.position.z > 1.0 && (double) this.Yandere.position.z < 10.0)
-      this.ThankYouPanel.alpha = Mathf.MoveTowards(this.ThankYouPanel.alpha, 1f, Time.deltaTime * 0.5f);
-    else
-      this.ThankYouPanel.alpha = Mathf.MoveTowards(this.ThankYouPanel.alpha, 0.0f, Time.deltaTime * 0.5f);
-    if ((double) this.Yandere.position.z > 20.0 && (double) this.Yandere.position.z < 120.0)
-      this.FinalGamePanel.alpha = Mathf.MoveTowards(this.FinalGamePanel.alpha, 1f, Time.deltaTime * 0.5f);
-    else
-      this.FinalGamePanel.alpha = Mathf.MoveTowards(this.FinalGamePanel.alpha, 0.0f, Time.deltaTime * 0.5f);
-    if ((double) this.Yandere.position.z > 30.0 && (double) this.Yandere.position.z < 40.0)
-      this.RivalPanel.alpha = Mathf.MoveTowards(this.RivalPanel.alpha, 1f, Time.deltaTime * 0.5f);
-    else
-      this.RivalPanel.alpha = Mathf.MoveTowards(this.RivalPanel.alpha, 0.0f, Time.deltaTime * 0.5f);
-    if ((double) this.Yandere.position.z > 50.0 && (double) this.Yandere.position.z < 60.0)
-      this.QualityPanel.alpha = Mathf.MoveTowards(this.QualityPanel.alpha, 1f, Time.deltaTime * 0.5f);
-    else
-      this.QualityPanel.alpha = Mathf.MoveTowards(this.QualityPanel.alpha, 0.0f, Time.deltaTime * 0.5f);
-    if ((double) this.Yandere.position.z > 70.0 && (double) this.Yandere.position.z < 80.0)
-      this.WeaponsPanel.alpha = Mathf.MoveTowards(this.WeaponsPanel.alpha, 1f, Time.deltaTime * 0.5f);
-    else
-      this.WeaponsPanel.alpha = Mathf.MoveTowards(this.WeaponsPanel.alpha, 0.0f, Time.deltaTime * 0.5f);
-    if ((double) this.Yandere.position.z > 90.0 && (double) this.Yandere.position.z < 100.0)
-      this.StoryPanel.alpha = Mathf.MoveTowards(this.StoryPanel.alpha, 1f, Time.deltaTime * 0.5f);
-    else
-      this.StoryPanel.alpha = Mathf.MoveTowards(this.StoryPanel.alpha, 0.0f, Time.deltaTime * 0.5f);
-    if ((double) this.Yandere.position.z > 110.0 && (double) this.Yandere.position.z < 120.0)
-      this.MorePanel.alpha = Mathf.MoveTowards(this.MorePanel.alpha, 1f, Time.deltaTime * 0.5f);
-    else
-      this.MorePanel.alpha = Mathf.MoveTowards(this.MorePanel.alpha, 0.0f, Time.deltaTime * 0.5f);
-    if ((double) this.Yandere.position.z > 130.0 && (double) this.Yandere.position.z < 140.0)
-    {
-      this.CrowdfundPanel.alpha = Mathf.MoveTowards(this.CrowdfundPanel.alpha, 1f, Time.deltaTime * 0.5f);
-      if (Input.GetButtonDown("A"))
-        this.FadeOut = true;
-      if (this.Hearts[1].isPlaying)
-        return;
-      this.Hearts[1].Play();
-      this.Hearts[2].Play();
-    }
-    else
-    {
-      this.CrowdfundPanel.alpha = Mathf.MoveTowards(this.CrowdfundPanel.alpha, 0.0f, Time.deltaTime * 0.5f);
-      this.Hearts[1].Stop();
-      this.Hearts[2].Stop();
-    }
-  }
+	public UIPanel ThankYouPanel;
+
+	public UIPanel FinalGamePanel;
+
+	public UIPanel RivalPanel;
+
+	public UIPanel QualityPanel;
+
+	public UIPanel WeaponsPanel;
+
+	public UIPanel StoryPanel;
+
+	public UIPanel MorePanel;
+
+	public UIPanel CrowdfundPanel;
+
+	public UIPanel SkipPanel;
+
+	public AudioSource Jukebox;
+
+	public Transform Yandere;
+
+	public UISprite SkipCircle;
+
+	public UISprite Darkness;
+
+	public Animation YandereKun;
+
+	public Animation Ryoba;
+
+	public bool FadeOut;
+
+	public float Alpha;
+
+	private void Start()
+	{
+		Ryoba["f02_faceCouncilGrace_00"].layer = 1;
+		Ryoba.Play("f02_faceCouncilGrace_00");
+		YandereKun["AltYanKunFace"].layer = 1;
+		YandereKun.Play("AltYanKunFace");
+		Darkness.color = new Color(0f, 0f, 0f, 1f);
+		SkipPanel.alpha = 0f;
+		Alpha = 1f;
+		CameraEffects.UpdateDOF(2f);
+		CameraEffects.UpdateBloom(1f);
+		CameraEffects.UpdateBloomKnee(0.5f);
+		CameraEffects.UpdateBloomRadius(4f);
+	}
+
+	private void Update()
+	{
+		if (!FadeOut)
+		{
+			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.5f);
+			Darkness.color = new Color(0f, 0f, 0f, Alpha);
+			if (Alpha == 0f)
+			{
+				SkipPanel.alpha += Time.deltaTime;
+			}
+		}
+		else
+		{
+			Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * 0.5f);
+			Darkness.color = new Color(1f, 1f, 1f, Alpha);
+			Jukebox.volume -= Time.deltaTime * 0.5f;
+			if (Alpha == 1f)
+			{
+				SceneManager.LoadScene("NewTitleScene");
+			}
+		}
+		if (SkipPanel.alpha == 1f)
+		{
+			if (Input.GetButton("X"))
+			{
+				SkipCircle.fillAmount -= Time.deltaTime;
+				if (SkipCircle.fillAmount == 0f)
+				{
+					FadeOut = true;
+				}
+			}
+			else
+			{
+				SkipCircle.fillAmount = 1f;
+			}
+		}
+		if (Input.GetKeyDown("=") && Time.timeScale < 10f)
+		{
+			Time.timeScale += 1f;
+		}
+		if (Input.GetKeyDown("-") && Time.timeScale > 1f)
+		{
+			Time.timeScale -= 1f;
+		}
+		if (Yandere.position.z > 1f && Yandere.position.z < 10f)
+		{
+			ThankYouPanel.alpha = Mathf.MoveTowards(ThankYouPanel.alpha, 1f, Time.deltaTime * 0.5f);
+		}
+		else
+		{
+			ThankYouPanel.alpha = Mathf.MoveTowards(ThankYouPanel.alpha, 0f, Time.deltaTime * 0.5f);
+		}
+		if (Yandere.position.z > 20f && Yandere.position.z < 120f)
+		{
+			FinalGamePanel.alpha = Mathf.MoveTowards(FinalGamePanel.alpha, 1f, Time.deltaTime * 0.5f);
+		}
+		else
+		{
+			FinalGamePanel.alpha = Mathf.MoveTowards(FinalGamePanel.alpha, 0f, Time.deltaTime * 0.5f);
+		}
+		if (Yandere.position.z > 30f && Yandere.position.z < 40f)
+		{
+			RivalPanel.alpha = Mathf.MoveTowards(RivalPanel.alpha, 1f, Time.deltaTime * 0.5f);
+		}
+		else
+		{
+			RivalPanel.alpha = Mathf.MoveTowards(RivalPanel.alpha, 0f, Time.deltaTime * 0.5f);
+		}
+		if (Yandere.position.z > 50f && Yandere.position.z < 60f)
+		{
+			QualityPanel.alpha = Mathf.MoveTowards(QualityPanel.alpha, 1f, Time.deltaTime * 0.5f);
+		}
+		else
+		{
+			QualityPanel.alpha = Mathf.MoveTowards(QualityPanel.alpha, 0f, Time.deltaTime * 0.5f);
+		}
+		if (Yandere.position.z > 70f && Yandere.position.z < 80f)
+		{
+			WeaponsPanel.alpha = Mathf.MoveTowards(WeaponsPanel.alpha, 1f, Time.deltaTime * 0.5f);
+		}
+		else
+		{
+			WeaponsPanel.alpha = Mathf.MoveTowards(WeaponsPanel.alpha, 0f, Time.deltaTime * 0.5f);
+		}
+		if (Yandere.position.z > 90f && Yandere.position.z < 100f)
+		{
+			StoryPanel.alpha = Mathf.MoveTowards(StoryPanel.alpha, 1f, Time.deltaTime * 0.5f);
+		}
+		else
+		{
+			StoryPanel.alpha = Mathf.MoveTowards(StoryPanel.alpha, 0f, Time.deltaTime * 0.5f);
+		}
+		if (Yandere.position.z > 110f && Yandere.position.z < 120f)
+		{
+			MorePanel.alpha = Mathf.MoveTowards(MorePanel.alpha, 1f, Time.deltaTime * 0.5f);
+		}
+		else
+		{
+			MorePanel.alpha = Mathf.MoveTowards(MorePanel.alpha, 0f, Time.deltaTime * 0.5f);
+		}
+		if (Yandere.position.z > 130f && Yandere.position.z < 140f)
+		{
+			CrowdfundPanel.alpha = Mathf.MoveTowards(CrowdfundPanel.alpha, 1f, Time.deltaTime * 0.5f);
+			if (Input.GetButtonDown("A"))
+			{
+				FadeOut = true;
+			}
+			if (!Hearts[1].isPlaying)
+			{
+				Hearts[1].Play();
+				Hearts[2].Play();
+			}
+		}
+		else
+		{
+			CrowdfundPanel.alpha = Mathf.MoveTowards(CrowdfundPanel.alpha, 0f, Time.deltaTime * 0.5f);
+			Hearts[1].Stop();
+			Hearts[2].Stop();
+		}
+	}
 }

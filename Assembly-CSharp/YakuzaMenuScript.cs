@@ -1,1010 +1,1211 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: YakuzaMenuScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class YakuzaMenuScript : MonoBehaviour
 {
-  public InputManagerScript InputManager;
-  public StalkerYandereScript Yandere;
-  public HomeClockScript HomeClock;
-  public PromptBarScript PromptBar;
-  public UISprite AssassinationMenu;
-  public UISprite ContrabandMenu;
-  public UISprite KidnappingMenu;
-  public UISprite ServicesMenu;
-  public AudioClip[] DialogueClip;
-  public string[] DialogueText;
-  public AudioSource Dialogue;
-  public AudioSource Jukebox;
-  public UIPanel TimeDayPanel;
-  public UIPanel Panel;
-  public UILabel ButtonPrompt;
-  public UILabel MoneyLabel;
-  public Renderer Background;
-  public Renderer[] Scales;
-  public Transform Yakuza;
-  public UILabel Subtitle;
-  public int RivalsToDisable;
-  public int CutscenePhase = 1;
-  public int Menu = 1;
-  public float Alpha;
-  public float Speed;
-  public bool Cutscene;
-  public bool Fail;
-  public bool Show;
-  public UILabel[] BulletLabel;
-  public UITexture[] Bullet;
-  public AudioClip BulletSFX;
-  public int Selected = 1;
-  public int Limit = 4;
-  public GameObject ConfirmationWindow;
-  public GameObject ResultWindow;
-  public Transform CrosshairGraphic;
-  public Transform Crosshair;
-  public UITexture[] RivalPortraits;
-  public UILabel[] RivalNameLabels;
-  public UILabel ConfirmationLabel;
-  public UILabel ResultLabel;
-  public Vector3 TargetPosition;
-  public Vector3 WobblePosition;
-  public Texture BlankPortrait;
-  public string[] RivalNames;
-  public int TargetSelected = 1;
-  public int Column = 1;
-  public int Row = 1;
-  public int[] Costs;
-  public GameObject ItemConfirmationWindow;
-  public UILabel ItemConfirmationLabel;
-  public int ItemSelected = 1;
-  public int ItemLimit = 5;
-  public UILabel[] PriceLabel;
-  public UISprite[] PriceBG;
-  public UILabel[] ItemLabel;
-  public UISprite[] ItemBG;
-  public string[] ItemName;
-  public int[] OriginalItemPrice;
-  public int[] ItemPrice;
-  public GameObject RansomConfirmationWindow;
-  public UILabel RansomConfirmationLabel;
-  public UITexture[] RansomPortrait;
-  public UILabel PrisonerLabel;
-  public int[] KidnapTargets;
-  public int[] PrisonerList;
-  public int[] Ransom;
-  public int Prisoners;
-  public int Payout;
-  public AudioClip[] Greeting;
-  public AudioClip AssassinationPurchase;
-  public AudioClip OpenAssassinationMenu;
-  public AudioClip ContrabandPurchase;
-  public AudioClip OpenContrabandMenu;
-  public AudioClip Confirmation;
-  public AudioClip BackOut;
-  public AudioClip Exit;
-  public int[] RansomIDs;
+	public InputManagerScript InputManager;
 
-  private void Start()
-  {
-    this.UpdateMoneyLabel();
-    this.RansomConfirmationWindow.SetActive(false);
-    this.ConfirmationWindow.SetActive(false);
-    this.ResultWindow.SetActive(false);
-    this.AssassinationMenu.alpha = 0.0f;
-    this.ContrabandMenu.alpha = 0.0f;
-    this.KidnappingMenu.alpha = 0.0f;
-    this.ServicesMenu.alpha = 1f;
-    this.UpdateRansomPortraits();
-    this.UpdateCrosshair();
-    this.UpdateBullet();
-    this.UpdateItem();
-    int index1 = 1;
-    WWW www1 = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_1.png");
-    for (; index1 < 11; ++index1)
-    {
-      WWW www2 = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + (index1 + 10).ToString() + ".png");
-      this.RivalPortraits[index1].mainTexture = (Texture) www2.texture;
-      if (StudentGlobals.GetStudentDead(10 + index1) || StudentGlobals.GetStudentKidnapped(10 + index1) || StudentGlobals.GetStudentArrested(10 + index1))
-        this.RivalPortraits[index1].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-      this.RivalNameLabels[index1].text = this.RivalNames[index1];
-      this.RivalPortraits[index1].transform.parent.localEulerAngles = new Vector3(0.0f, 0.0f, Random.Range(-5f, 5f));
-    }
-    this.RansomPortrait[30].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_30.png").texture;
-    this.RansomPortrait[35].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_35.png").texture;
-    this.RansomPortrait[40].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_40.png").texture;
-    this.RansomPortrait[45].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_45.png").texture;
-    this.RansomPortrait[50].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_50.png").texture;
-    this.RansomPortrait[55].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_55.png").texture;
-    this.RansomPortrait[60].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_60.png").texture;
-    this.RansomPortrait[65].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_65.png").texture;
-    this.RansomPortrait[70].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_70.png").texture;
-    this.RansomPortrait[75].mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_75.png").texture;
-    for (int index2 = DateGlobals.Week + 1; index2 < 11; ++index2)
-    {
-      this.RivalPortraits[index2].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-      this.RivalPortraits[index2].mainTexture = this.BlankPortrait;
-      this.RivalNameLabels[index2].text = "?????";
-    }
-    this.Panel.alpha = 0.0f;
-    this.Alpha = 0.0f;
-    for (int index3 = 1; index3 < this.Scales.Length; ++index3)
-      this.Scales[index3].material.color = new Color(1f, 0.0f, 0.0f, this.Alpha);
-    this.Background.material.color = new Color(1f, 0.0f, 0.0f, 0.0f);
-    if (GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night || StudentGlobals.GetStudentDead(79))
-    {
-      this.gameObject.SetActive(false);
-      this.ButtonPrompt.alpha = 0.0f;
-      if (StudentGlobals.GetStudentDead(79))
-        this.Yakuza.gameObject.SetActive(false);
-    }
-    this.CountPrisoners();
-    this.PrisonerLabel.text = this.Prisoners != 0 ? (this.Prisoners != 1 ? "Some of these girls are currently in your basement." : "One of these girls is currently in your basement.") : "Come back after kidnapping one of these girls.";
-    this.OriginalItemPrice[3] += DateGlobals.Week * 100;
-    this.OriginalItemPrice[5] += DateGlobals.Week * 100;
-    this.ItemPrice[3] += DateGlobals.Week * 100;
-    this.ItemPrice[5] += DateGlobals.Week * 100;
-  }
+	public StalkerYandereScript Yandere;
 
-  private void Update()
-  {
-    if (this.Show)
-    {
-      this.Panel.alpha = Mathf.MoveTowards(this.Panel.alpha, 1f, Time.deltaTime);
-      this.Alpha = Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime);
-      for (int index = 1; index < this.Scales.Length; ++index)
-        this.Scales[index].material.color = new Color(1f, 0.0f, 0.0f, this.Alpha);
-      this.Background.material.color = new Color(1f, 0.0f, 0.0f, this.Alpha * 0.25f);
-      if (this.Menu == 1)
-      {
-        this.ServicesMenu.alpha = Mathf.MoveTowards(this.ServicesMenu.alpha, 1f, Time.deltaTime * 10f);
-        this.ContrabandMenu.alpha = Mathf.MoveTowards(this.ContrabandMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        this.KidnappingMenu.alpha = Mathf.MoveTowards(this.KidnappingMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        this.AssassinationMenu.alpha = Mathf.MoveTowards(this.AssassinationMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        if ((double) this.ServicesMenu.alpha == 1.0)
-        {
-          if (this.InputManager.TappedDown)
-          {
-            ++this.Selected;
-            this.UpdateBullet();
-          }
-          else if (this.InputManager.TappedUp)
-          {
-            --this.Selected;
-            this.UpdateBullet();
-          }
-          if (Input.GetButtonDown("A"))
-          {
-            if (this.Selected == 1)
-            {
-              if (!GameGlobals.IntroducedAbduction)
-              {
-                GameGlobals.IntroducedAbduction = true;
-                GameGlobals.YakuzaPhase = 6;
-                this.CutscenePhase = 24;
-                this.StartCutscene();
-                this.Show = false;
-              }
-              else
-              {
-                AudioSource.PlayClipAtPoint(this.OpenAssassinationMenu, this.Yandere.MainCamera.transform.position);
-                this.PromptBar.ClearButtons();
-                this.PromptBar.Label[0].text = "Abduct";
-                this.PromptBar.Label[1].text = "Back";
-                this.PromptBar.Label[4].text = "Change Selection";
-                this.PromptBar.Label[5].text = "Change Selection";
-                this.PromptBar.UpdateButtons();
-                this.Menu = 2;
-              }
-            }
-            else if (this.Selected == 2)
-            {
-              AudioSource.PlayClipAtPoint(this.OpenContrabandMenu, this.Yandere.MainCamera.transform.position);
-              this.PromptBar.ClearButtons();
-              this.PromptBar.Label[0].text = "Purchase";
-              this.PromptBar.Label[1].text = "Back";
-              this.PromptBar.Label[5].text = "Change Selection";
-              this.PromptBar.UpdateButtons();
-              this.Menu = 3;
-              this.UpdateItem();
-            }
-            else if (this.Selected == 3)
-            {
-              if (!GameGlobals.IntroducedRansom)
-              {
-                GameGlobals.IntroducedRansom = true;
-                GameGlobals.YakuzaPhase = 8;
-                this.CutscenePhase = 33;
-                this.StartCutscene();
-                this.Show = false;
-              }
-              else
-              {
-                this.PromptBar.ClearButtons();
-                if (this.Prisoners > 0)
-                  this.PromptBar.Label[0].text = "Sell";
-                this.PromptBar.Label[1].text = "Back";
-                this.PromptBar.UpdateButtons();
-                this.Menu = 4;
-              }
-            }
-            else if (this.Selected == 4)
-            {
-              AudioSource.PlayClipAtPoint(this.Exit, this.Yandere.MainCamera.transform.position);
-              this.Quit();
-            }
-          }
-          else if (Input.GetButtonDown("B"))
-          {
-            AudioSource.PlayClipAtPoint(this.Exit, this.Yandere.MainCamera.transform.position);
-            this.Quit();
-          }
-        }
-      }
-      else if (this.Menu == 2)
-      {
-        this.ServicesMenu.alpha = Mathf.MoveTowards(this.ServicesMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        this.ContrabandMenu.alpha = Mathf.MoveTowards(this.ContrabandMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        this.KidnappingMenu.alpha = Mathf.MoveTowards(this.KidnappingMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        this.AssassinationMenu.alpha = Mathf.MoveTowards(this.AssassinationMenu.alpha, 1f, Time.deltaTime * 10f);
-        if ((double) this.AssassinationMenu.alpha == 1.0)
-        {
-          if (!this.ConfirmationWindow.activeInHierarchy && !this.ResultWindow.activeInHierarchy)
-          {
-            if (this.InputManager.TappedDown || this.InputManager.TappedUp)
-            {
-              ++this.Row;
-              this.UpdateCrosshair();
-            }
-            if (this.InputManager.TappedRight)
-            {
-              ++this.Column;
-              this.UpdateCrosshair();
-            }
-            else if (this.InputManager.TappedLeft)
-            {
-              --this.Column;
-              this.UpdateCrosshair();
-            }
-            if (Input.GetButtonDown("A"))
-            {
-              if (this.RivalPortraits[this.TargetSelected].color == new Color(1f, 1f, 1f, 1f))
-              {
-                AudioSource.PlayClipAtPoint(this.Confirmation, this.Yandere.MainCamera.transform.position);
-                this.ConfirmationWindow.SetActive(true);
-                this.ConfirmationLabel.text = "Do you want " + this.RivalNames[this.TargetSelected] + " to disappear forever? It will cost $" + this.Costs[this.TargetSelected].ToString() + ".";
-                this.PromptBar.Show = false;
-              }
-            }
-            else if (Input.GetButtonDown("B"))
-            {
-              this.PromptBar.ClearButtons();
-              this.PromptBar.Label[0].text = "Confirm";
-              this.PromptBar.Label[1].text = "Exit";
-              this.PromptBar.Label[4].text = "Change Selection";
-              this.PromptBar.UpdateButtons();
-              this.PromptBar.Show = true;
-              GameGlobals.YakuzaPhase = 100;
-              this.Menu = 1;
-            }
-          }
-          else if (this.ConfirmationWindow.activeInHierarchy)
-          {
-            if (Input.GetButtonDown("A"))
-            {
-              if ((double) PlayerGlobals.Money > (double) this.Costs[this.TargetSelected])
-              {
-                AudioSource.PlayClipAtPoint(this.AssassinationPurchase, this.Yandere.MainCamera.transform.position);
-                StudentGlobals.SetStudentKidnapped(this.TargetSelected + 10, true);
-                StudentGlobals.SetStudentMissing(this.TargetSelected + 10, true);
-                StudentGlobals.SetStudentKidnapped(this.TargetSelected + 10, true);
-                StudentGlobals.SetStudentMissing(this.TargetSelected + 10, true);
-                if (this.TargetSelected == DateGlobals.Week)
-                {
-                  GameGlobals.RivalEliminationID = 11;
-                  GameGlobals.SpecificEliminationID = 12;
-                }
-                this.ResultLabel.text = "This girl will be abducted before school tomorrow.";
-                this.RivalPortraits[this.TargetSelected].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                PlayerGlobals.Money -= (float) this.Costs[this.TargetSelected];
-                this.UpdateMoneyLabel();
-                GameGlobals.AbductionTarget = this.TargetSelected + 10;
-                GameGlobals.ShowAbduction = true;
-              }
-              else
-              {
-                this.ResultLabel.text = "You don't have enough money to pay for her abduction!";
-                this.Fail = true;
-              }
-              this.ConfirmationWindow.SetActive(false);
-              this.ResultWindow.SetActive(true);
-            }
-            else if (Input.GetButtonDown("B"))
-            {
-              AudioSource.PlayClipAtPoint(this.BackOut, this.Yandere.MainCamera.transform.position);
-              this.PromptBar.ClearButtons();
-              this.PromptBar.Label[0].text = "Confirm";
-              this.PromptBar.Label[1].text = "Exit";
-              this.PromptBar.Label[4].text = "Change Selection";
-              this.PromptBar.UpdateButtons();
-              this.PromptBar.Show = true;
-              this.ConfirmationWindow.SetActive(false);
-            }
-          }
-          else if (Input.GetButtonDown("A"))
-          {
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[0].text = "Confirm";
-            this.PromptBar.Label[1].text = "Exit";
-            this.PromptBar.Label[4].text = "Change Selection";
-            this.PromptBar.UpdateButtons();
-            this.PromptBar.Show = true;
-            this.ResultWindow.SetActive(false);
-            if (!this.Fail && GameGlobals.YakuzaPhase == 6)
-            {
-              GameGlobals.YakuzaPhase = 7;
-              this.CutscenePhase = 28;
-              this.StartCutscene();
-              this.Show = false;
-            }
-            this.Fail = false;
-          }
-        }
-      }
-      else if (this.Menu == 3)
-      {
-        this.ServicesMenu.alpha = Mathf.MoveTowards(this.ServicesMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        this.ContrabandMenu.alpha = Mathf.MoveTowards(this.ContrabandMenu.alpha, 1f, Time.deltaTime * 10f);
-        this.KidnappingMenu.alpha = Mathf.MoveTowards(this.KidnappingMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        this.AssassinationMenu.alpha = Mathf.MoveTowards(this.AssassinationMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        if ((double) this.ContrabandMenu.alpha == 1.0)
-        {
-          if (!this.ItemConfirmationWindow.activeInHierarchy)
-          {
-            if (this.InputManager.TappedDown)
-            {
-              ++this.ItemSelected;
-              this.UpdateItem();
-            }
-            else if (this.InputManager.TappedUp)
-            {
-              --this.ItemSelected;
-              this.UpdateItem();
-            }
-            if (Input.GetButtonDown("A"))
-            {
-              if (GameGlobals.YakuzaPhase < 4)
-              {
-                if (this.ItemSelected == 1)
-                  PlayerGlobals.BoughtLockpick = true;
-                else if (this.ItemSelected == 2)
-                  PlayerGlobals.FakeID = true;
-                else if (this.ItemSelected == 3)
-                  PlayerGlobals.BoughtNarcotics = true;
-                else if (this.ItemSelected == 4)
-                  PlayerGlobals.BoughtPoison = true;
-                else if (this.ItemSelected == 5)
-                  PlayerGlobals.BoughtExplosive = true;
-                GameGlobals.YakuzaPhase = 4;
-                this.CutscenePhase = 12;
-                this.StartCutscene();
-                this.Show = false;
-              }
-              else if ((double) this.ItemBG[this.ItemSelected].alpha == 1.0)
-              {
-                AudioSource.PlayClipAtPoint(this.Confirmation, this.Yandere.MainCamera.transform.position);
-                this.ItemConfirmationLabel.text = "Would you like to purchase " + this.ItemName[this.ItemSelected] + " for $" + this.ItemPrice[this.ItemSelected].ToString() + "?";
-                this.ItemConfirmationWindow.SetActive(true);
-                this.PromptBar.Show = false;
-              }
-            }
-            else if (Input.GetButtonDown("B"))
-            {
-              if (GameGlobals.YakuzaPhase < 4)
-              {
-                GameGlobals.YakuzaPhase = 2;
-                this.CutscenePhase = 8;
-                this.StartCutscene();
-                this.Show = false;
-              }
-              else
-              {
-                this.PromptBar.ClearButtons();
-                this.PromptBar.Label[0].text = "Confirm";
-                this.PromptBar.Label[1].text = "Exit";
-                this.PromptBar.Label[4].text = "Change Selection";
-                this.PromptBar.UpdateButtons();
-                this.PromptBar.Show = true;
-                this.Menu = 1;
-              }
-            }
-          }
-          else if (Input.GetButtonDown("A"))
-          {
-            AudioSource.PlayClipAtPoint(this.ContrabandPurchase, this.Yandere.MainCamera.transform.position);
-            if (this.ItemSelected == 1)
-              PlayerGlobals.BoughtLockpick = true;
-            else if (this.ItemSelected == 2)
-              PlayerGlobals.FakeID = true;
-            else if (this.ItemSelected == 3)
-              PlayerGlobals.BoughtNarcotics = true;
-            else if (this.ItemSelected == 4)
-              PlayerGlobals.BoughtPoison = true;
-            else if (this.ItemSelected == 5)
-              PlayerGlobals.BoughtExplosive = true;
-            PlayerGlobals.Money -= (float) this.ItemPrice[this.ItemSelected];
-            this.UpdateMoneyLabel();
-            this.UpdateItem();
-            this.ItemConfirmationWindow.SetActive(false);
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[0].text = "Purchase";
-            this.PromptBar.Label[1].text = "Back";
-            this.PromptBar.Label[5].text = "Change Selection";
-            this.PromptBar.UpdateButtons();
-            this.PromptBar.Show = true;
-          }
-          else if (Input.GetButtonDown("B"))
-          {
-            AudioSource.PlayClipAtPoint(this.BackOut, this.Yandere.MainCamera.transform.position);
-            this.ItemConfirmationWindow.SetActive(false);
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[0].text = "Purchase";
-            this.PromptBar.Label[1].text = "Back";
-            this.PromptBar.Label[5].text = "Change Selection";
-            this.PromptBar.UpdateButtons();
-            this.PromptBar.Show = true;
-          }
-        }
-      }
-      else if (this.Menu == 4)
-      {
-        this.ServicesMenu.alpha = Mathf.MoveTowards(this.ServicesMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        this.ContrabandMenu.alpha = Mathf.MoveTowards(this.ContrabandMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        this.KidnappingMenu.alpha = Mathf.MoveTowards(this.KidnappingMenu.alpha, 1f, Time.deltaTime * 10f);
-        this.AssassinationMenu.alpha = Mathf.MoveTowards(this.AssassinationMenu.alpha, 0.0f, Time.deltaTime * 10f);
-        if ((double) this.KidnappingMenu.alpha == 1.0)
-        {
-          if (!this.RansomConfirmationWindow.activeInHierarchy)
-          {
-            if (Input.GetButtonDown("A"))
-            {
-              if (this.Prisoners > 0)
-              {
-                this.RansomConfirmationWindow.SetActive(true);
-                this.RansomConfirmationLabel.text = this.Prisoners != 1 ? "Give some kidnapped prisoners to the yakuza in exchange for $" + this.Payout.ToString() + "?" : "Give a kidnapped prisoner to the yakuza in exchange for $" + this.Payout.ToString() + "?";
-                this.PromptBar.Show = false;
-              }
-            }
-            else if (Input.GetButtonDown("B"))
-            {
-              this.PromptBar.ClearButtons();
-              this.PromptBar.Label[0].text = "Confirm";
-              this.PromptBar.Label[1].text = "Exit";
-              this.PromptBar.Label[4].text = "Change Selection";
-              this.PromptBar.UpdateButtons();
-              this.PromptBar.Show = true;
-              this.Menu = 1;
-            }
-          }
-          else if (Input.GetButtonDown("A"))
-          {
-            AudioSource.PlayClipAtPoint(this.ContrabandPurchase, this.Yandere.MainCamera.transform.position);
-            for (; this.Prisoners > 0; --this.Prisoners)
-            {
-              StudentGlobals.SetStudentKidnapped(this.PrisonerList[this.Prisoners], false);
-              StudentGlobals.SetStudentMissing(this.PrisonerList[this.Prisoners], false);
-              StudentGlobals.SetStudentRansomed(this.PrisonerList[this.Prisoners], true);
-              StudentGlobals.SetStudentBroken(this.PrisonerList[this.Prisoners], true);
-            }
-            PlayerGlobals.Money += (float) this.Payout;
-            this.UpdateMoneyLabel();
-            if ((double) PlayerGlobals.Money > 1000.0)
-            {
-              if (!GameGlobals.Debug)
-                PlayerPrefs.SetInt("RichGirl", 1);
-              if (!GameGlobals.Debug)
-                PlayerPrefs.SetInt("a", 1);
-            }
-            this.DeprisonStudents();
-            this.CountPrisoners();
-            this.UpdateRansomPortraits();
-            this.RansomConfirmationWindow.SetActive(false);
-            this.PrisonerLabel.text = "Come back after kidnapping one of these girls.";
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[1].text = "Back";
-            this.PromptBar.UpdateButtons();
-            this.PromptBar.Show = true;
-          }
-          else if (Input.GetButtonDown("B"))
-          {
-            AudioSource.PlayClipAtPoint(this.BackOut, this.Yandere.MainCamera.transform.position);
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[0].text = "Sell";
-            this.PromptBar.Label[1].text = "Back";
-            this.PromptBar.UpdateButtons();
-            this.PromptBar.Show = true;
-            this.RansomConfirmationWindow.SetActive(false);
-          }
-        }
-      }
-      this.BulletLabel[this.Selected].transform.parent.localScale = Vector3.Lerp(this.BulletLabel[this.Selected].transform.parent.localScale, new Vector3(1.05f, 1.05f, 1.05f), Time.deltaTime * 10f);
-      for (int index = 1; index < this.Bullet.Length; ++index)
-      {
-        if (index != this.Selected)
-          this.BulletLabel[index].transform.parent.localScale = Vector3.Lerp(this.BulletLabel[index].transform.parent.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-      }
-      this.Crosshair.localPosition = Vector3.Lerp(this.Crosshair.localPosition, this.TargetPosition, Time.deltaTime * 10f);
-      if (this.CrosshairGraphic.localPosition != this.WobblePosition)
-      {
-        this.CrosshairGraphic.localPosition = Vector3.MoveTowards(this.CrosshairGraphic.localPosition, this.WobblePosition, Time.deltaTime * 50f);
-        if (!(this.CrosshairGraphic.localPosition == this.WobblePosition))
-          return;
-        this.WobblePosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0.0f);
-      }
-      else
-        this.WobblePosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0.0f);
-    }
-    else
-    {
-      this.Jukebox.volume = this.Cutscene ? Mathf.MoveTowards(this.Jukebox.volume, 0.1f, Time.deltaTime) : Mathf.MoveTowards(this.Jukebox.volume, 0.0f, Time.deltaTime);
-      this.Panel.alpha = Mathf.MoveTowards(this.Panel.alpha, 0.0f, Time.deltaTime);
-      this.Alpha = Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime);
-      for (int index = 1; index < this.Scales.Length; ++index)
-        this.Scales[index].material.color = new Color(1f, 0.0f, 0.0f, this.Alpha);
-      this.Background.material.color = new Color(1f, 0.0f, 0.0f, this.Alpha * 0.25f);
-      if (!this.Cutscene)
-      {
-        if ((double) Vector3.Distance(this.Yandere.transform.position, this.Yakuza.position) < 2.0)
-        {
-          this.ButtonPrompt.alpha = Mathf.MoveTowards(this.ButtonPrompt.alpha, 1f, Time.deltaTime * 2f);
-          if (!Input.GetButtonDown("A") || (double) this.Alpha != 0.0)
-            return;
-          switch (GameGlobals.YakuzaPhase)
-          {
-            case 1:
-              this.CutscenePhase = 1;
-              this.StartCutscene();
-              break;
-            case 3:
-              this.CutscenePhase = 10;
-              this.StartCutscene();
-              break;
-            case 5:
-              this.CutscenePhase = 16;
-              this.StartCutscene();
-              break;
-            default:
-              AudioSource.PlayClipAtPoint(this.Greeting[Random.Range(1, 4)], this.Yandere.MainCamera.transform.position);
-              this.PromptBar.ClearButtons();
-              this.PromptBar.Label[0].text = "Confirm";
-              this.PromptBar.Label[1].text = "Exit";
-              this.PromptBar.Label[4].text = "Change Selection";
-              this.PromptBar.UpdateButtons();
-              this.PromptBar.Show = true;
-              this.Yandere.MyAnimation.CrossFade(this.Yandere.IdleAnim);
-              this.Yandere.RPGCamera.enabled = false;
-              this.Yandere.CanMove = false;
-              this.Jukebox.volume = 1f;
-              this.Jukebox.Play();
-              this.TimeDayPanel.alpha = 0.0f;
-              this.Show = true;
-              break;
-          }
-        }
-        else
-          this.ButtonPrompt.alpha = Mathf.MoveTowards(this.ButtonPrompt.alpha, 0.0f, Time.deltaTime * 2f);
-      }
-      else
-      {
-        if (!this.Jukebox.isPlaying)
-          this.Jukebox.Play();
-        this.Speed += Time.deltaTime;
-        this.Yandere.MainCamera.transform.position = Vector3.Lerp(this.Yandere.MainCamera.transform.position, new Vector3(-2.25f, 1.5f, -5.5f), (float) ((double) Time.deltaTime * (double) this.Speed * 0.0099999997764825821));
-        if (this.Dialogue.isPlaying && !Input.GetButtonDown("A"))
-          return;
-        ++this.CutscenePhase;
-        switch (GameGlobals.YakuzaPhase)
-        {
-          case 1:
-            if (this.CutscenePhase < 8)
-            {
-              this.Dialogue.clip = this.DialogueClip[this.CutscenePhase];
-              this.Dialogue.Play();
-              this.Subtitle.text = this.DialogueText[this.CutscenePhase];
-              break;
-            }
-            this.SummonContrabandMenu();
-            break;
-          case 2:
-            if (this.CutscenePhase < 10)
-            {
-              this.Dialogue.clip = this.DialogueClip[this.CutscenePhase];
-              this.Dialogue.Play();
-              this.Subtitle.text = this.DialogueText[this.CutscenePhase];
-              break;
-            }
-            GameGlobals.YakuzaPhase = 3;
-            this.Quit();
-            break;
-          case 3:
-            if (this.CutscenePhase < 12)
-            {
-              this.Dialogue.clip = this.DialogueClip[this.CutscenePhase];
-              this.Dialogue.Play();
-              this.Subtitle.text = this.DialogueText[this.CutscenePhase];
-              break;
-            }
-            this.SummonContrabandMenu();
-            break;
-          case 4:
-            if (this.CutscenePhase < 16)
-            {
-              this.Dialogue.clip = this.DialogueClip[this.CutscenePhase];
-              this.Dialogue.Play();
-              this.Subtitle.text = this.DialogueText[this.CutscenePhase];
-              break;
-            }
-            GameGlobals.YakuzaPhase = 5;
-            this.Quit();
-            break;
-          case 5:
-            if (this.CutscenePhase < 24)
-            {
-              this.Dialogue.clip = this.DialogueClip[this.CutscenePhase];
-              this.Dialogue.Play();
-              this.Subtitle.text = this.DialogueText[this.CutscenePhase];
-              break;
-            }
-            GameGlobals.YakuzaPhase = 100;
-            this.SummonServicesMenu();
-            break;
-          case 6:
-            if (this.CutscenePhase < 28)
-            {
-              this.Dialogue.clip = this.DialogueClip[this.CutscenePhase];
-              this.Dialogue.Play();
-              this.Subtitle.text = this.DialogueText[this.CutscenePhase];
-              break;
-            }
-            this.SummonAssassinationMenu();
-            break;
-          case 7:
-            if (this.CutscenePhase < 33)
-            {
-              this.Dialogue.clip = this.DialogueClip[this.CutscenePhase];
-              this.Dialogue.Play();
-              this.Subtitle.text = this.DialogueText[this.CutscenePhase];
-              break;
-            }
-            GameGlobals.YakuzaPhase = 100;
-            this.Quit();
-            break;
-          case 8:
-            if (this.CutscenePhase < 41)
-            {
-              this.Dialogue.clip = this.DialogueClip[this.CutscenePhase];
-              this.Dialogue.Play();
-              this.Subtitle.text = this.DialogueText[this.CutscenePhase];
-              break;
-            }
-            GameGlobals.YakuzaPhase = 100;
-            this.SummonKidnappingMenu();
-            break;
-        }
-      }
-    }
-  }
+	public HomeClockScript HomeClock;
 
-  private void UpdateBullet()
-  {
-    if (this.Selected > this.Limit)
-      this.Selected = 1;
-    else if (this.Selected < 1)
-      this.Selected = this.Limit;
-    for (int index = 1; index < this.Bullet.Length; ++index)
-    {
-      this.BulletLabel[index].color = new Color(1f, 1f, 1f, 1f);
-      this.Bullet[index].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    }
-    this.BulletLabel[this.Selected].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    this.Bullet[this.Selected].color = new Color(1f, 1f, 1f, 1f);
-    if (!this.Show)
-      return;
-    AudioSource.PlayClipAtPoint(this.BulletSFX, Camera.main.transform.position);
-  }
+	public PromptBarScript PromptBar;
 
-  private void UpdateCrosshair()
-  {
-    if (this.Row > 2)
-      this.Row = 1;
-    else if (this.Row < 1)
-      this.Row = 2;
-    if (this.Column > 5)
-      this.Column = 1;
-    else if (this.Column < 1)
-      this.Column = 5;
-    this.TargetPosition = new Vector3((float) (500 * this.Column - 1500), (float) (340 - (this.Row - 1) * 600), 0.0f);
-    this.TargetSelected = this.Column + (this.Row - 1) * 5;
-  }
+	public UISprite AssassinationMenu;
 
-  private void UpdateItem()
-  {
-    if (this.ItemSelected > this.ItemLimit)
-      this.ItemSelected = 1;
-    else if (this.ItemSelected < 1)
-      this.ItemSelected = this.ItemLimit;
-    for (int index = 1; index < this.ItemBG.Length; ++index)
-    {
-      this.ItemLabel[index].color = new Color(1f, 1f, 1f, 1f);
-      this.ItemBG[index].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-      this.PriceLabel[index].color = new Color(1f, 1f, 1f, 1f);
-      this.PriceBG[index].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    }
-    this.ItemLabel[this.ItemSelected].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    this.ItemBG[this.ItemSelected].color = new Color(1f, 1f, 1f, 1f);
-    this.PriceLabel[this.ItemSelected].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    this.PriceBG[this.ItemSelected].color = new Color(1f, 1f, 1f, 1f);
-    if (PlayerGlobals.BoughtLockpick)
-    {
-      this.ItemLabel[1].alpha = 0.5f;
-      this.ItemBG[1].alpha = 0.5f;
-      this.PriceLabel[1].alpha = 0.5f;
-      this.PriceBG[1].alpha = 0.5f;
-    }
-    if (PlayerGlobals.FakeID)
-    {
-      this.ItemLabel[2].alpha = 0.5f;
-      this.ItemBG[2].alpha = 0.5f;
-      this.PriceLabel[2].alpha = 0.5f;
-      this.PriceBG[2].alpha = 0.5f;
-    }
-    if (PlayerGlobals.BoughtNarcotics)
-    {
-      this.ItemLabel[3].alpha = 0.5f;
-      this.ItemBG[3].alpha = 0.5f;
-      this.PriceLabel[3].alpha = 0.5f;
-      this.PriceBG[3].alpha = 0.5f;
-    }
-    if (PlayerGlobals.BoughtPoison)
-    {
-      this.ItemLabel[4].alpha = 0.5f;
-      this.ItemBG[4].alpha = 0.5f;
-      this.PriceLabel[4].alpha = 0.5f;
-      this.PriceBG[4].alpha = 0.5f;
-    }
-    if (PlayerGlobals.BoughtExplosive)
-    {
-      this.ItemLabel[5].alpha = 0.5f;
-      this.ItemBG[5].alpha = 0.5f;
-      this.PriceLabel[5].alpha = 0.5f;
-      this.PriceBG[5].alpha = 0.5f;
-    }
-    for (int index = 1; index < this.ItemBG.Length; ++index)
-    {
-      if (GameGlobals.YakuzaPhase < 4)
-      {
-        this.ItemPrice[index] = 0;
-        this.PriceLabel[index].text = "FREE";
-      }
-      else
-      {
-        this.ItemPrice[index] = this.OriginalItemPrice[index];
-        this.PriceLabel[index].text = "$" + this.ItemPrice[index].ToString();
-      }
-      if ((double) PlayerGlobals.Money < (double) this.ItemPrice[index])
-      {
-        this.ItemLabel[index].alpha = 0.5f;
-        this.ItemBG[index].alpha = 0.5f;
-        this.PriceLabel[index].alpha = 0.5f;
-        this.PriceBG[index].alpha = 0.5f;
-      }
-    }
-  }
+	public UISprite ContrabandMenu;
 
-  private void UpdateRansomPortraits()
-  {
-    for (int index = 1; index < this.RansomIDs.Length; ++index)
-    {
-      if (StudentGlobals.GetStudentRansomed(this.RansomIDs[index]))
-        this.RansomPortrait[this.RansomIDs[index]].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-    }
-  }
+	public UISprite KidnappingMenu;
 
-  private void Quit()
-  {
-    this.Yandere.RPGCamera.enabled = true;
-    this.Yandere.CanMove = true;
-    this.TimeDayPanel.alpha = 1f;
-    this.Subtitle.text = "";
-    this.Cutscene = false;
-    this.Show = false;
-    this.Menu = 1;
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Show = false;
-    this.HomeClock.UpdateMoneyLabel();
-  }
+	public UISprite ServicesMenu;
 
-  private void StartCutscene()
-  {
-    this.Yandere.MyAnimation.CrossFade(this.Yandere.IdleAnim);
-    this.Yandere.RPGCamera.enabled = false;
-    this.Yandere.CanMove = false;
-    this.Yandere.MainCamera.transform.position = new Vector3(-2.25f, 0.1f, -5.5f);
-    this.Yandere.MainCamera.transform.eulerAngles = new Vector3(0.0f, 30f, 0.0f);
-    this.Yandere.transform.position = new Vector3(-2f, 0.0f, -4f);
-    this.Yandere.transform.eulerAngles = new Vector3(0.0f, 150f, 0.0f);
-    this.ButtonPrompt.alpha = 0.0f;
-    this.TimeDayPanel.alpha = 0.0f;
-    this.Dialogue.clip = this.DialogueClip[this.CutscenePhase];
-    this.Dialogue.Play();
-    this.Subtitle.text = this.DialogueText[this.CutscenePhase];
-    this.Cutscene = true;
-    this.Speed = 0.0f;
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Show = false;
-    if (GameGlobals.Debug)
-      return;
-    PlayerPrefs.SetInt("Yakuza", 1);
-    PlayerPrefs.SetInt("a", 1);
-  }
+	public AudioClip[] DialogueClip;
 
-  private void SummonContrabandMenu()
-  {
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Label[0].text = "Purchase";
-    this.PromptBar.Label[1].text = "Back";
-    this.PromptBar.Label[5].text = "Change Selection";
-    this.PromptBar.UpdateButtons();
-    this.PromptBar.Show = true;
-    this.MoneyLabel.transform.parent.gameObject.SetActive(false);
-    this.ContrabandMenu.alpha = 1f;
-    this.ServicesMenu.alpha = 0.0f;
-    this.Jukebox.volume = 1f;
-    this.Jukebox.Play();
-    this.Subtitle.text = "";
-    this.Cutscene = false;
-    this.Show = true;
-    this.Menu = 3;
-  }
+	public string[] DialogueText;
 
-  private void SummonAssassinationMenu()
-  {
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Label[0].text = "Abduct";
-    this.PromptBar.Label[1].text = "Back";
-    this.PromptBar.Label[4].text = "Change Selection";
-    this.PromptBar.Label[5].text = "Change Selection";
-    this.PromptBar.UpdateButtons();
-    this.PromptBar.Show = true;
-    this.MoneyLabel.transform.parent.gameObject.SetActive(true);
-    this.AssassinationMenu.alpha = 1f;
-    this.ServicesMenu.alpha = 0.0f;
-    this.Jukebox.volume = 1f;
-    this.Jukebox.Play();
-    this.Subtitle.text = "";
-    this.Cutscene = false;
-    this.Show = true;
-    this.Menu = 2;
-  }
+	public AudioSource Dialogue;
 
-  private void SummonServicesMenu()
-  {
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Label[0].text = "Confirm";
-    this.PromptBar.Label[1].text = "Exit";
-    this.PromptBar.Label[4].text = "Change Selection";
-    this.PromptBar.UpdateButtons();
-    this.PromptBar.Show = true;
-    this.MoneyLabel.transform.parent.gameObject.SetActive(true);
-    this.AssassinationMenu.alpha = 0.0f;
-    this.ServicesMenu.alpha = 1f;
-    this.Jukebox.volume = 1f;
-    this.Jukebox.Play();
-    this.Subtitle.text = "";
-    this.Cutscene = false;
-    this.Show = true;
-    this.Menu = 1;
-  }
+	public AudioSource Jukebox;
 
-  private void SummonKidnappingMenu()
-  {
-    this.PromptBar.ClearButtons();
-    if (this.Prisoners > 0)
-      this.PromptBar.Label[0].text = "Sell";
-    this.PromptBar.Label[1].text = "Back";
-    this.PromptBar.UpdateButtons();
-    this.PromptBar.Show = true;
-    this.MoneyLabel.transform.parent.gameObject.SetActive(true);
-    this.AssassinationMenu.alpha = 0.0f;
-    this.ServicesMenu.alpha = 1f;
-    this.Jukebox.volume = 1f;
-    this.Jukebox.Play();
-    this.Subtitle.text = "";
-    this.Cutscene = false;
-    this.Show = true;
-    this.Menu = 4;
-  }
+	public UIPanel TimeDayPanel;
 
-  private void UpdateMoneyLabel() => this.MoneyLabel.text = "$" + PlayerGlobals.Money.ToString("F2");
+	public UIPanel Panel;
 
-  private void CountPrisoners()
-  {
-    if (StudentGlobals.Prisoners == 0)
-    {
-      this.Prisoners = 0;
-    }
-    else
-    {
-      for (int index = 1; index < 11; ++index)
-      {
-        if (StudentGlobals.Prisoner1 == this.KidnapTargets[index] || StudentGlobals.Prisoner2 == this.KidnapTargets[index] || StudentGlobals.Prisoner3 == this.KidnapTargets[index] || StudentGlobals.Prisoner4 == this.KidnapTargets[index] || StudentGlobals.Prisoner5 == this.KidnapTargets[index] || StudentGlobals.Prisoner6 == this.KidnapTargets[index] || StudentGlobals.Prisoner7 == this.KidnapTargets[index] || StudentGlobals.Prisoner8 == this.KidnapTargets[index] || StudentGlobals.Prisoner9 == this.KidnapTargets[index] || StudentGlobals.Prisoner10 == this.KidnapTargets[index])
-        {
-          if (StudentGlobals.GetStudentHealth(this.KidnapTargets[index]) > 0)
-          {
-            this.Payout += this.Ransom[this.KidnapTargets[index]];
-            ++this.Prisoners;
-            Debug.Log((object) ("We have counted " + this.Prisoners.ToString() + " prisoners."));
-            this.PrisonerList[this.Prisoners] = this.KidnapTargets[index];
-          }
-          else
-            Debug.Log((object) "One of the Yakuza's desired girls is a prisoner in our basement, but she's dead.");
-        }
-      }
-    }
-  }
+	public UILabel ButtonPrompt;
 
-  private void DeprisonStudents()
-  {
-    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner1))
-    {
-      StudentGlobals.Prisoner1 = 0;
-      --StudentGlobals.Prisoners;
-    }
-    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner2))
-    {
-      StudentGlobals.Prisoner2 = 0;
-      --StudentGlobals.Prisoners;
-    }
-    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner3))
-    {
-      StudentGlobals.Prisoner3 = 0;
-      --StudentGlobals.Prisoners;
-    }
-    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner4))
-    {
-      StudentGlobals.Prisoner4 = 0;
-      --StudentGlobals.Prisoners;
-    }
-    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner5))
-    {
-      StudentGlobals.Prisoner5 = 0;
-      --StudentGlobals.Prisoners;
-    }
-    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner6))
-    {
-      StudentGlobals.Prisoner6 = 0;
-      --StudentGlobals.Prisoners;
-    }
-    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner7))
-    {
-      StudentGlobals.Prisoner7 = 0;
-      --StudentGlobals.Prisoners;
-    }
-    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner8))
-    {
-      StudentGlobals.Prisoner8 = 0;
-      --StudentGlobals.Prisoners;
-    }
-    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner9))
-    {
-      StudentGlobals.Prisoner9 = 0;
-      --StudentGlobals.Prisoners;
-    }
-    if (!StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner10))
-      return;
-    StudentGlobals.Prisoner10 = 0;
-    --StudentGlobals.Prisoners;
-  }
+	public UILabel MoneyLabel;
+
+	public Renderer Background;
+
+	public Renderer[] Scales;
+
+	public Transform Yakuza;
+
+	public UILabel Subtitle;
+
+	public int RivalsToDisable;
+
+	public int CutscenePhase = 1;
+
+	public int Menu = 1;
+
+	public float Alpha;
+
+	public float Speed;
+
+	public bool Cutscene;
+
+	public bool Fail;
+
+	public bool Show;
+
+	public UILabel[] BulletLabel;
+
+	public UITexture[] Bullet;
+
+	public AudioClip BulletSFX;
+
+	public int Selected = 1;
+
+	public int Limit = 4;
+
+	public GameObject ConfirmationWindow;
+
+	public GameObject ResultWindow;
+
+	public Transform CrosshairGraphic;
+
+	public Transform Crosshair;
+
+	public UITexture[] RivalPortraits;
+
+	public UILabel[] RivalNameLabels;
+
+	public UILabel ConfirmationLabel;
+
+	public UILabel ResultLabel;
+
+	public Vector3 TargetPosition;
+
+	public Vector3 WobblePosition;
+
+	public Texture BlankPortrait;
+
+	public string[] RivalNames;
+
+	public int TargetSelected = 1;
+
+	public int Column = 1;
+
+	public int Row = 1;
+
+	public int[] Costs;
+
+	public GameObject ItemConfirmationWindow;
+
+	public UILabel ItemConfirmationLabel;
+
+	public int ItemSelected = 1;
+
+	public int ItemLimit = 5;
+
+	public UILabel[] PriceLabel;
+
+	public UISprite[] PriceBG;
+
+	public UILabel[] ItemLabel;
+
+	public UISprite[] ItemBG;
+
+	public string[] ItemName;
+
+	public int[] OriginalItemPrice;
+
+	public int[] ItemPrice;
+
+	public GameObject RansomConfirmationWindow;
+
+	public UILabel RansomConfirmationLabel;
+
+	public UITexture[] RansomPortrait;
+
+	public UILabel PrisonerLabel;
+
+	public int[] KidnapTargets;
+
+	public int[] PrisonerList;
+
+	public int[] Ransom;
+
+	public int Prisoners;
+
+	public int Payout;
+
+	public AudioClip[] Greeting;
+
+	public AudioClip AssassinationPurchase;
+
+	public AudioClip OpenAssassinationMenu;
+
+	public AudioClip ContrabandPurchase;
+
+	public AudioClip OpenContrabandMenu;
+
+	public AudioClip Confirmation;
+
+	public AudioClip BackOut;
+
+	public AudioClip Exit;
+
+	public int[] RansomIDs;
+
+	private void Start()
+	{
+		UpdateMoneyLabel();
+		RansomConfirmationWindow.SetActive(false);
+		ConfirmationWindow.SetActive(false);
+		ResultWindow.SetActive(false);
+		AssassinationMenu.alpha = 0f;
+		ContrabandMenu.alpha = 0f;
+		KidnappingMenu.alpha = 0f;
+		ServicesMenu.alpha = 1f;
+		UpdateRansomPortraits();
+		UpdateCrosshair();
+		UpdateBullet();
+		UpdateItem();
+		int i = 1;
+		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_1.png");
+		for (; i < 11; i++)
+		{
+			wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + (i + 10) + ".png");
+			RivalPortraits[i].mainTexture = wWW.texture;
+			if (StudentGlobals.GetStudentDead(10 + i) || StudentGlobals.GetStudentKidnapped(10 + i) || StudentGlobals.GetStudentArrested(10 + i))
+			{
+				RivalPortraits[i].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			}
+			RivalNameLabels[i].text = RivalNames[i];
+			RivalPortraits[i].transform.parent.localEulerAngles = new Vector3(0f, 0f, Random.Range(-5f, 5f));
+		}
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_30.png");
+		RansomPortrait[30].mainTexture = wWW.texture;
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_35.png");
+		RansomPortrait[35].mainTexture = wWW.texture;
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_40.png");
+		RansomPortrait[40].mainTexture = wWW.texture;
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_45.png");
+		RansomPortrait[45].mainTexture = wWW.texture;
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_50.png");
+		RansomPortrait[50].mainTexture = wWW.texture;
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_55.png");
+		RansomPortrait[55].mainTexture = wWW.texture;
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_60.png");
+		RansomPortrait[60].mainTexture = wWW.texture;
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_65.png");
+		RansomPortrait[65].mainTexture = wWW.texture;
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_70.png");
+		RansomPortrait[70].mainTexture = wWW.texture;
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_75.png");
+		RansomPortrait[75].mainTexture = wWW.texture;
+		for (i = DateGlobals.Week + 1; i < 11; i++)
+		{
+			RivalPortraits[i].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			RivalPortraits[i].mainTexture = BlankPortrait;
+			RivalNameLabels[i].text = "?????";
+		}
+		Panel.alpha = 0f;
+		Alpha = 0f;
+		for (int j = 1; j < Scales.Length; j++)
+		{
+			Scales[j].material.color = new Color(1f, 0f, 0f, Alpha);
+		}
+		Background.material.color = new Color(1f, 0f, 0f, 0f);
+		if (GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night || StudentGlobals.GetStudentDead(79))
+		{
+			base.gameObject.SetActive(false);
+			ButtonPrompt.alpha = 0f;
+			if (StudentGlobals.GetStudentDead(79))
+			{
+				Yakuza.gameObject.SetActive(false);
+			}
+		}
+		CountPrisoners();
+		if (Prisoners == 0)
+		{
+			PrisonerLabel.text = "Come back after kidnapping one of these girls.";
+		}
+		else if (Prisoners == 1)
+		{
+			PrisonerLabel.text = "One of these girls is currently in your basement.";
+		}
+		else
+		{
+			PrisonerLabel.text = "Some of these girls are currently in your basement.";
+		}
+		OriginalItemPrice[3] += DateGlobals.Week * 100;
+		OriginalItemPrice[5] += DateGlobals.Week * 100;
+		ItemPrice[3] += DateGlobals.Week * 100;
+		ItemPrice[5] += DateGlobals.Week * 100;
+	}
+
+	private void Update()
+	{
+		if (Show)
+		{
+			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 1f, Time.deltaTime);
+			Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime);
+			for (int i = 1; i < Scales.Length; i++)
+			{
+				Scales[i].material.color = new Color(1f, 0f, 0f, Alpha);
+			}
+			Background.material.color = new Color(1f, 0f, 0f, Alpha * 0.25f);
+			if (Menu == 1)
+			{
+				ServicesMenu.alpha = Mathf.MoveTowards(ServicesMenu.alpha, 1f, Time.deltaTime * 10f);
+				ContrabandMenu.alpha = Mathf.MoveTowards(ContrabandMenu.alpha, 0f, Time.deltaTime * 10f);
+				KidnappingMenu.alpha = Mathf.MoveTowards(KidnappingMenu.alpha, 0f, Time.deltaTime * 10f);
+				AssassinationMenu.alpha = Mathf.MoveTowards(AssassinationMenu.alpha, 0f, Time.deltaTime * 10f);
+				if (ServicesMenu.alpha == 1f)
+				{
+					if (InputManager.TappedDown)
+					{
+						Selected++;
+						UpdateBullet();
+					}
+					else if (InputManager.TappedUp)
+					{
+						Selected--;
+						UpdateBullet();
+					}
+					if (Input.GetButtonDown("A"))
+					{
+						if (Selected == 1)
+						{
+							if (!GameGlobals.IntroducedAbduction)
+							{
+								GameGlobals.IntroducedAbduction = true;
+								GameGlobals.YakuzaPhase = 6;
+								CutscenePhase = 24;
+								StartCutscene();
+								Show = false;
+							}
+							else
+							{
+								AudioSource.PlayClipAtPoint(OpenAssassinationMenu, Yandere.MainCamera.transform.position);
+								PromptBar.ClearButtons();
+								PromptBar.Label[0].text = "Abduct";
+								PromptBar.Label[1].text = "Back";
+								PromptBar.Label[4].text = "Change Selection";
+								PromptBar.Label[5].text = "Change Selection";
+								PromptBar.UpdateButtons();
+								Menu = 2;
+							}
+						}
+						else if (Selected == 2)
+						{
+							AudioSource.PlayClipAtPoint(OpenContrabandMenu, Yandere.MainCamera.transform.position);
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Purchase";
+							PromptBar.Label[1].text = "Back";
+							PromptBar.Label[5].text = "Change Selection";
+							PromptBar.UpdateButtons();
+							Menu = 3;
+							UpdateItem();
+						}
+						else if (Selected == 3)
+						{
+							if (!GameGlobals.IntroducedRansom)
+							{
+								GameGlobals.IntroducedRansom = true;
+								GameGlobals.YakuzaPhase = 8;
+								CutscenePhase = 33;
+								StartCutscene();
+								Show = false;
+							}
+							else
+							{
+								PromptBar.ClearButtons();
+								if (Prisoners > 0)
+								{
+									PromptBar.Label[0].text = "Sell";
+								}
+								PromptBar.Label[1].text = "Back";
+								PromptBar.UpdateButtons();
+								Menu = 4;
+							}
+						}
+						else if (Selected == 4)
+						{
+							AudioSource.PlayClipAtPoint(Exit, Yandere.MainCamera.transform.position);
+							Quit();
+						}
+					}
+					else if (Input.GetButtonDown("B"))
+					{
+						AudioSource.PlayClipAtPoint(Exit, Yandere.MainCamera.transform.position);
+						Quit();
+					}
+				}
+			}
+			else if (Menu == 2)
+			{
+				ServicesMenu.alpha = Mathf.MoveTowards(ServicesMenu.alpha, 0f, Time.deltaTime * 10f);
+				ContrabandMenu.alpha = Mathf.MoveTowards(ContrabandMenu.alpha, 0f, Time.deltaTime * 10f);
+				KidnappingMenu.alpha = Mathf.MoveTowards(KidnappingMenu.alpha, 0f, Time.deltaTime * 10f);
+				AssassinationMenu.alpha = Mathf.MoveTowards(AssassinationMenu.alpha, 1f, Time.deltaTime * 10f);
+				if (AssassinationMenu.alpha == 1f)
+				{
+					if (!ConfirmationWindow.activeInHierarchy && !ResultWindow.activeInHierarchy)
+					{
+						if (InputManager.TappedDown || InputManager.TappedUp)
+						{
+							Row++;
+							UpdateCrosshair();
+						}
+						if (InputManager.TappedRight)
+						{
+							Column++;
+							UpdateCrosshair();
+						}
+						else if (InputManager.TappedLeft)
+						{
+							Column--;
+							UpdateCrosshair();
+						}
+						if (Input.GetButtonDown("A"))
+						{
+							if (RivalPortraits[TargetSelected].color == new Color(1f, 1f, 1f, 1f))
+							{
+								AudioSource.PlayClipAtPoint(Confirmation, Yandere.MainCamera.transform.position);
+								ConfirmationWindow.SetActive(true);
+								ConfirmationLabel.text = "Do you want " + RivalNames[TargetSelected] + " to disappear forever? It will cost $" + Costs[TargetSelected] + ".";
+								PromptBar.Show = false;
+							}
+						}
+						else if (Input.GetButtonDown("B"))
+						{
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Confirm";
+							PromptBar.Label[1].text = "Exit";
+							PromptBar.Label[4].text = "Change Selection";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+							GameGlobals.YakuzaPhase = 100;
+							Menu = 1;
+						}
+					}
+					else if (ConfirmationWindow.activeInHierarchy)
+					{
+						if (Input.GetButtonDown("A"))
+						{
+							if (PlayerGlobals.Money > (float)Costs[TargetSelected])
+							{
+								AudioSource.PlayClipAtPoint(AssassinationPurchase, Yandere.MainCamera.transform.position);
+								StudentGlobals.SetStudentKidnapped(TargetSelected + 10, true);
+								StudentGlobals.SetStudentMissing(TargetSelected + 10, true);
+								StudentGlobals.SetStudentKidnapped(TargetSelected + 10, true);
+								StudentGlobals.SetStudentMissing(TargetSelected + 10, true);
+								if (TargetSelected == DateGlobals.Week)
+								{
+									GameGlobals.RivalEliminationID = 11;
+									GameGlobals.SpecificEliminationID = 12;
+								}
+								ResultLabel.text = "This girl will be abducted before school tomorrow.";
+								RivalPortraits[TargetSelected].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+								PlayerGlobals.Money -= Costs[TargetSelected];
+								UpdateMoneyLabel();
+								GameGlobals.AbductionTarget = TargetSelected + 10;
+								GameGlobals.ShowAbduction = true;
+							}
+							else
+							{
+								ResultLabel.text = "You don't have enough money to pay for her abduction!";
+								Fail = true;
+							}
+							ConfirmationWindow.SetActive(false);
+							ResultWindow.SetActive(true);
+						}
+						else if (Input.GetButtonDown("B"))
+						{
+							AudioSource.PlayClipAtPoint(BackOut, Yandere.MainCamera.transform.position);
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Confirm";
+							PromptBar.Label[1].text = "Exit";
+							PromptBar.Label[4].text = "Change Selection";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+							ConfirmationWindow.SetActive(false);
+						}
+					}
+					else if (Input.GetButtonDown("A"))
+					{
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = "Confirm";
+						PromptBar.Label[1].text = "Exit";
+						PromptBar.Label[4].text = "Change Selection";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+						ResultWindow.SetActive(false);
+						if (!Fail && GameGlobals.YakuzaPhase == 6)
+						{
+							GameGlobals.YakuzaPhase = 7;
+							CutscenePhase = 28;
+							StartCutscene();
+							Show = false;
+						}
+						Fail = false;
+					}
+				}
+			}
+			else if (Menu == 3)
+			{
+				ServicesMenu.alpha = Mathf.MoveTowards(ServicesMenu.alpha, 0f, Time.deltaTime * 10f);
+				ContrabandMenu.alpha = Mathf.MoveTowards(ContrabandMenu.alpha, 1f, Time.deltaTime * 10f);
+				KidnappingMenu.alpha = Mathf.MoveTowards(KidnappingMenu.alpha, 0f, Time.deltaTime * 10f);
+				AssassinationMenu.alpha = Mathf.MoveTowards(AssassinationMenu.alpha, 0f, Time.deltaTime * 10f);
+				if (ContrabandMenu.alpha == 1f)
+				{
+					if (!ItemConfirmationWindow.activeInHierarchy)
+					{
+						if (InputManager.TappedDown)
+						{
+							ItemSelected++;
+							UpdateItem();
+						}
+						else if (InputManager.TappedUp)
+						{
+							ItemSelected--;
+							UpdateItem();
+						}
+						if (Input.GetButtonDown("A"))
+						{
+							if (GameGlobals.YakuzaPhase < 4)
+							{
+								if (ItemSelected == 1)
+								{
+									PlayerGlobals.BoughtLockpick = true;
+								}
+								else if (ItemSelected == 2)
+								{
+									PlayerGlobals.FakeID = true;
+								}
+								else if (ItemSelected == 3)
+								{
+									PlayerGlobals.BoughtNarcotics = true;
+								}
+								else if (ItemSelected == 4)
+								{
+									PlayerGlobals.BoughtPoison = true;
+								}
+								else if (ItemSelected == 5)
+								{
+									PlayerGlobals.BoughtExplosive = true;
+								}
+								GameGlobals.YakuzaPhase = 4;
+								CutscenePhase = 12;
+								StartCutscene();
+								Show = false;
+							}
+							else if (ItemBG[ItemSelected].alpha == 1f)
+							{
+								AudioSource.PlayClipAtPoint(Confirmation, Yandere.MainCamera.transform.position);
+								ItemConfirmationLabel.text = "Would you like to purchase " + ItemName[ItemSelected] + " for $" + ItemPrice[ItemSelected] + "?";
+								ItemConfirmationWindow.SetActive(true);
+								PromptBar.Show = false;
+							}
+						}
+						else if (Input.GetButtonDown("B"))
+						{
+							if (GameGlobals.YakuzaPhase < 4)
+							{
+								GameGlobals.YakuzaPhase = 2;
+								CutscenePhase = 8;
+								StartCutscene();
+								Show = false;
+							}
+							else
+							{
+								PromptBar.ClearButtons();
+								PromptBar.Label[0].text = "Confirm";
+								PromptBar.Label[1].text = "Exit";
+								PromptBar.Label[4].text = "Change Selection";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+								Menu = 1;
+							}
+						}
+					}
+					else if (Input.GetButtonDown("A"))
+					{
+						AudioSource.PlayClipAtPoint(ContrabandPurchase, Yandere.MainCamera.transform.position);
+						if (ItemSelected == 1)
+						{
+							PlayerGlobals.BoughtLockpick = true;
+						}
+						else if (ItemSelected == 2)
+						{
+							PlayerGlobals.FakeID = true;
+						}
+						else if (ItemSelected == 3)
+						{
+							PlayerGlobals.BoughtNarcotics = true;
+						}
+						else if (ItemSelected == 4)
+						{
+							PlayerGlobals.BoughtPoison = true;
+						}
+						else if (ItemSelected == 5)
+						{
+							PlayerGlobals.BoughtExplosive = true;
+						}
+						PlayerGlobals.Money -= ItemPrice[ItemSelected];
+						UpdateMoneyLabel();
+						UpdateItem();
+						ItemConfirmationWindow.SetActive(false);
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = "Purchase";
+						PromptBar.Label[1].text = "Back";
+						PromptBar.Label[5].text = "Change Selection";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+					}
+					else if (Input.GetButtonDown("B"))
+					{
+						AudioSource.PlayClipAtPoint(BackOut, Yandere.MainCamera.transform.position);
+						ItemConfirmationWindow.SetActive(false);
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = "Purchase";
+						PromptBar.Label[1].text = "Back";
+						PromptBar.Label[5].text = "Change Selection";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+					}
+				}
+			}
+			else if (Menu == 4)
+			{
+				ServicesMenu.alpha = Mathf.MoveTowards(ServicesMenu.alpha, 0f, Time.deltaTime * 10f);
+				ContrabandMenu.alpha = Mathf.MoveTowards(ContrabandMenu.alpha, 0f, Time.deltaTime * 10f);
+				KidnappingMenu.alpha = Mathf.MoveTowards(KidnappingMenu.alpha, 1f, Time.deltaTime * 10f);
+				AssassinationMenu.alpha = Mathf.MoveTowards(AssassinationMenu.alpha, 0f, Time.deltaTime * 10f);
+				if (KidnappingMenu.alpha == 1f)
+				{
+					if (!RansomConfirmationWindow.activeInHierarchy)
+					{
+						if (Input.GetButtonDown("A"))
+						{
+							if (Prisoners > 0)
+							{
+								RansomConfirmationWindow.SetActive(true);
+								if (Prisoners == 1)
+								{
+									RansomConfirmationLabel.text = "Give a kidnapped prisoner to the yakuza in exchange for $" + Payout + "?";
+								}
+								else
+								{
+									RansomConfirmationLabel.text = "Give some kidnapped prisoners to the yakuza in exchange for $" + Payout + "?";
+								}
+								PromptBar.Show = false;
+							}
+						}
+						else if (Input.GetButtonDown("B"))
+						{
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Confirm";
+							PromptBar.Label[1].text = "Exit";
+							PromptBar.Label[4].text = "Change Selection";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+							Menu = 1;
+						}
+					}
+					else if (Input.GetButtonDown("A"))
+					{
+						AudioSource.PlayClipAtPoint(ContrabandPurchase, Yandere.MainCamera.transform.position);
+						while (Prisoners > 0)
+						{
+							StudentGlobals.SetStudentKidnapped(PrisonerList[Prisoners], false);
+							StudentGlobals.SetStudentMissing(PrisonerList[Prisoners], false);
+							StudentGlobals.SetStudentRansomed(PrisonerList[Prisoners], true);
+							StudentGlobals.SetStudentBroken(PrisonerList[Prisoners], true);
+							Prisoners--;
+						}
+						PlayerGlobals.Money += Payout;
+						UpdateMoneyLabel();
+						if (PlayerGlobals.Money > 1000f)
+						{
+							if (!GameGlobals.Debug)
+							{
+								PlayerPrefs.SetInt("RichGirl", 1);
+							}
+							if (!GameGlobals.Debug)
+							{
+								PlayerPrefs.SetInt("a", 1);
+							}
+						}
+						DeprisonStudents();
+						CountPrisoners();
+						UpdateRansomPortraits();
+						RansomConfirmationWindow.SetActive(false);
+						PrisonerLabel.text = "Come back after kidnapping one of these girls.";
+						PromptBar.ClearButtons();
+						PromptBar.Label[1].text = "Back";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+					}
+					else if (Input.GetButtonDown("B"))
+					{
+						AudioSource.PlayClipAtPoint(BackOut, Yandere.MainCamera.transform.position);
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = "Sell";
+						PromptBar.Label[1].text = "Back";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+						RansomConfirmationWindow.SetActive(false);
+					}
+				}
+			}
+			BulletLabel[Selected].transform.parent.localScale = Vector3.Lerp(BulletLabel[Selected].transform.parent.localScale, new Vector3(1.05f, 1.05f, 1.05f), Time.deltaTime * 10f);
+			for (int j = 1; j < Bullet.Length; j++)
+			{
+				if (j != Selected)
+				{
+					BulletLabel[j].transform.parent.localScale = Vector3.Lerp(BulletLabel[j].transform.parent.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+			}
+			Crosshair.localPosition = Vector3.Lerp(Crosshair.localPosition, TargetPosition, Time.deltaTime * 10f);
+			if (CrosshairGraphic.localPosition != WobblePosition)
+			{
+				CrosshairGraphic.localPosition = Vector3.MoveTowards(CrosshairGraphic.localPosition, WobblePosition, Time.deltaTime * 50f);
+				if (CrosshairGraphic.localPosition == WobblePosition)
+				{
+					WobblePosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0f);
+				}
+			}
+			else
+			{
+				WobblePosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0f);
+			}
+			return;
+		}
+		if (!Cutscene)
+		{
+			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 0f, Time.deltaTime);
+		}
+		else
+		{
+			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 0.1f, Time.deltaTime);
+		}
+		Panel.alpha = Mathf.MoveTowards(Panel.alpha, 0f, Time.deltaTime);
+		Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime);
+		for (int k = 1; k < Scales.Length; k++)
+		{
+			Scales[k].material.color = new Color(1f, 0f, 0f, Alpha);
+		}
+		Background.material.color = new Color(1f, 0f, 0f, Alpha * 0.25f);
+		if (!Cutscene)
+		{
+			if (Vector3.Distance(Yandere.transform.position, Yakuza.position) < 2f)
+			{
+				ButtonPrompt.alpha = Mathf.MoveTowards(ButtonPrompt.alpha, 1f, Time.deltaTime * 2f);
+				if (Input.GetButtonDown("A") && Alpha == 0f)
+				{
+					if (GameGlobals.YakuzaPhase == 1)
+					{
+						CutscenePhase = 1;
+						StartCutscene();
+						return;
+					}
+					if (GameGlobals.YakuzaPhase == 3)
+					{
+						CutscenePhase = 10;
+						StartCutscene();
+						return;
+					}
+					if (GameGlobals.YakuzaPhase == 5)
+					{
+						CutscenePhase = 16;
+						StartCutscene();
+						return;
+					}
+					int num = 0;
+					num = Random.Range(1, 4);
+					AudioSource.PlayClipAtPoint(Greeting[num], Yandere.MainCamera.transform.position);
+					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = "Confirm";
+					PromptBar.Label[1].text = "Exit";
+					PromptBar.Label[4].text = "Change Selection";
+					PromptBar.UpdateButtons();
+					PromptBar.Show = true;
+					Yandere.MyAnimation.CrossFade(Yandere.IdleAnim);
+					Yandere.RPGCamera.enabled = false;
+					Yandere.CanMove = false;
+					Jukebox.volume = 1f;
+					Jukebox.Play();
+					TimeDayPanel.alpha = 0f;
+					Show = true;
+				}
+			}
+			else
+			{
+				ButtonPrompt.alpha = Mathf.MoveTowards(ButtonPrompt.alpha, 0f, Time.deltaTime * 2f);
+			}
+			return;
+		}
+		if (!Jukebox.isPlaying)
+		{
+			Jukebox.Play();
+		}
+		Speed += Time.deltaTime;
+		Yandere.MainCamera.transform.position = Vector3.Lerp(Yandere.MainCamera.transform.position, new Vector3(-2.25f, 1.5f, -5.5f), Time.deltaTime * Speed * 0.01f);
+		if (Dialogue.isPlaying && !Input.GetButtonDown("A"))
+		{
+			return;
+		}
+		CutscenePhase++;
+		if (GameGlobals.YakuzaPhase == 1)
+		{
+			if (CutscenePhase < 8)
+			{
+				Dialogue.clip = DialogueClip[CutscenePhase];
+				Dialogue.Play();
+				Subtitle.text = DialogueText[CutscenePhase];
+			}
+			else
+			{
+				SummonContrabandMenu();
+			}
+		}
+		else if (GameGlobals.YakuzaPhase == 2)
+		{
+			if (CutscenePhase < 10)
+			{
+				Dialogue.clip = DialogueClip[CutscenePhase];
+				Dialogue.Play();
+				Subtitle.text = DialogueText[CutscenePhase];
+			}
+			else
+			{
+				GameGlobals.YakuzaPhase = 3;
+				Quit();
+			}
+		}
+		else if (GameGlobals.YakuzaPhase == 3)
+		{
+			if (CutscenePhase < 12)
+			{
+				Dialogue.clip = DialogueClip[CutscenePhase];
+				Dialogue.Play();
+				Subtitle.text = DialogueText[CutscenePhase];
+			}
+			else
+			{
+				SummonContrabandMenu();
+			}
+		}
+		else if (GameGlobals.YakuzaPhase == 4)
+		{
+			if (CutscenePhase < 16)
+			{
+				Dialogue.clip = DialogueClip[CutscenePhase];
+				Dialogue.Play();
+				Subtitle.text = DialogueText[CutscenePhase];
+			}
+			else
+			{
+				GameGlobals.YakuzaPhase = 5;
+				Quit();
+			}
+		}
+		else if (GameGlobals.YakuzaPhase == 5)
+		{
+			if (CutscenePhase < 24)
+			{
+				Dialogue.clip = DialogueClip[CutscenePhase];
+				Dialogue.Play();
+				Subtitle.text = DialogueText[CutscenePhase];
+			}
+			else
+			{
+				GameGlobals.YakuzaPhase = 100;
+				SummonServicesMenu();
+			}
+		}
+		else if (GameGlobals.YakuzaPhase == 6)
+		{
+			if (CutscenePhase < 28)
+			{
+				Dialogue.clip = DialogueClip[CutscenePhase];
+				Dialogue.Play();
+				Subtitle.text = DialogueText[CutscenePhase];
+			}
+			else
+			{
+				SummonAssassinationMenu();
+			}
+		}
+		else if (GameGlobals.YakuzaPhase == 7)
+		{
+			if (CutscenePhase < 33)
+			{
+				Dialogue.clip = DialogueClip[CutscenePhase];
+				Dialogue.Play();
+				Subtitle.text = DialogueText[CutscenePhase];
+			}
+			else
+			{
+				GameGlobals.YakuzaPhase = 100;
+				Quit();
+			}
+		}
+		else if (GameGlobals.YakuzaPhase == 8)
+		{
+			if (CutscenePhase < 41)
+			{
+				Dialogue.clip = DialogueClip[CutscenePhase];
+				Dialogue.Play();
+				Subtitle.text = DialogueText[CutscenePhase];
+			}
+			else
+			{
+				GameGlobals.YakuzaPhase = 100;
+				SummonKidnappingMenu();
+			}
+		}
+	}
+
+	private void UpdateBullet()
+	{
+		if (Selected > Limit)
+		{
+			Selected = 1;
+		}
+		else if (Selected < 1)
+		{
+			Selected = Limit;
+		}
+		for (int i = 1; i < Bullet.Length; i++)
+		{
+			BulletLabel[i].color = new Color(1f, 1f, 1f, 1f);
+			Bullet[i].color = new Color(0f, 0f, 0f, 1f);
+		}
+		BulletLabel[Selected].color = new Color(0f, 0f, 0f, 1f);
+		Bullet[Selected].color = new Color(1f, 1f, 1f, 1f);
+		if (Show)
+		{
+			AudioSource.PlayClipAtPoint(BulletSFX, Camera.main.transform.position);
+		}
+	}
+
+	private void UpdateCrosshair()
+	{
+		if (Row > 2)
+		{
+			Row = 1;
+		}
+		else if (Row < 1)
+		{
+			Row = 2;
+		}
+		if (Column > 5)
+		{
+			Column = 1;
+		}
+		else if (Column < 1)
+		{
+			Column = 5;
+		}
+		TargetPosition = new Vector3(-1500 + 500 * Column, 340 - (Row - 1) * 600, 0f);
+		TargetSelected = Column + (Row - 1) * 5;
+	}
+
+	private void UpdateItem()
+	{
+		if (ItemSelected > ItemLimit)
+		{
+			ItemSelected = 1;
+		}
+		else if (ItemSelected < 1)
+		{
+			ItemSelected = ItemLimit;
+		}
+		for (int i = 1; i < ItemBG.Length; i++)
+		{
+			ItemLabel[i].color = new Color(1f, 1f, 1f, 1f);
+			ItemBG[i].color = new Color(0f, 0f, 0f, 1f);
+			PriceLabel[i].color = new Color(1f, 1f, 1f, 1f);
+			PriceBG[i].color = new Color(0f, 0f, 0f, 1f);
+		}
+		ItemLabel[ItemSelected].color = new Color(0f, 0f, 0f, 1f);
+		ItemBG[ItemSelected].color = new Color(1f, 1f, 1f, 1f);
+		PriceLabel[ItemSelected].color = new Color(0f, 0f, 0f, 1f);
+		PriceBG[ItemSelected].color = new Color(1f, 1f, 1f, 1f);
+		if (PlayerGlobals.BoughtLockpick)
+		{
+			ItemLabel[1].alpha = 0.5f;
+			ItemBG[1].alpha = 0.5f;
+			PriceLabel[1].alpha = 0.5f;
+			PriceBG[1].alpha = 0.5f;
+		}
+		if (PlayerGlobals.FakeID)
+		{
+			ItemLabel[2].alpha = 0.5f;
+			ItemBG[2].alpha = 0.5f;
+			PriceLabel[2].alpha = 0.5f;
+			PriceBG[2].alpha = 0.5f;
+		}
+		if (PlayerGlobals.BoughtNarcotics)
+		{
+			ItemLabel[3].alpha = 0.5f;
+			ItemBG[3].alpha = 0.5f;
+			PriceLabel[3].alpha = 0.5f;
+			PriceBG[3].alpha = 0.5f;
+		}
+		if (PlayerGlobals.BoughtPoison)
+		{
+			ItemLabel[4].alpha = 0.5f;
+			ItemBG[4].alpha = 0.5f;
+			PriceLabel[4].alpha = 0.5f;
+			PriceBG[4].alpha = 0.5f;
+		}
+		if (PlayerGlobals.BoughtExplosive)
+		{
+			ItemLabel[5].alpha = 0.5f;
+			ItemBG[5].alpha = 0.5f;
+			PriceLabel[5].alpha = 0.5f;
+			PriceBG[5].alpha = 0.5f;
+		}
+		for (int i = 1; i < ItemBG.Length; i++)
+		{
+			if (GameGlobals.YakuzaPhase < 4)
+			{
+				ItemPrice[i] = 0;
+				PriceLabel[i].text = "FREE";
+			}
+			else
+			{
+				ItemPrice[i] = OriginalItemPrice[i];
+				PriceLabel[i].text = "$" + ItemPrice[i];
+			}
+			if (PlayerGlobals.Money < (float)ItemPrice[i])
+			{
+				ItemLabel[i].alpha = 0.5f;
+				ItemBG[i].alpha = 0.5f;
+				PriceLabel[i].alpha = 0.5f;
+				PriceBG[i].alpha = 0.5f;
+			}
+		}
+	}
+
+	private void UpdateRansomPortraits()
+	{
+		for (int i = 1; i < RansomIDs.Length; i++)
+		{
+			if (StudentGlobals.GetStudentRansomed(RansomIDs[i]))
+			{
+				RansomPortrait[RansomIDs[i]].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			}
+		}
+	}
+
+	private void Quit()
+	{
+		Yandere.RPGCamera.enabled = true;
+		Yandere.CanMove = true;
+		TimeDayPanel.alpha = 1f;
+		Subtitle.text = "";
+		Cutscene = false;
+		Show = false;
+		Menu = 1;
+		PromptBar.ClearButtons();
+		PromptBar.Show = false;
+		HomeClock.UpdateMoneyLabel();
+	}
+
+	private void StartCutscene()
+	{
+		Yandere.MyAnimation.CrossFade(Yandere.IdleAnim);
+		Yandere.RPGCamera.enabled = false;
+		Yandere.CanMove = false;
+		Yandere.MainCamera.transform.position = new Vector3(-2.25f, 0.1f, -5.5f);
+		Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, 30f, 0f);
+		Yandere.transform.position = new Vector3(-2f, 0f, -4f);
+		Yandere.transform.eulerAngles = new Vector3(0f, 150f, 0f);
+		ButtonPrompt.alpha = 0f;
+		TimeDayPanel.alpha = 0f;
+		Dialogue.clip = DialogueClip[CutscenePhase];
+		Dialogue.Play();
+		Subtitle.text = DialogueText[CutscenePhase];
+		Cutscene = true;
+		Speed = 0f;
+		PromptBar.ClearButtons();
+		PromptBar.Show = false;
+		if (!GameGlobals.Debug)
+		{
+			PlayerPrefs.SetInt("Yakuza", 1);
+			PlayerPrefs.SetInt("a", 1);
+		}
+	}
+
+	private void SummonContrabandMenu()
+	{
+		PromptBar.ClearButtons();
+		PromptBar.Label[0].text = "Purchase";
+		PromptBar.Label[1].text = "Back";
+		PromptBar.Label[5].text = "Change Selection";
+		PromptBar.UpdateButtons();
+		PromptBar.Show = true;
+		MoneyLabel.transform.parent.gameObject.SetActive(false);
+		ContrabandMenu.alpha = 1f;
+		ServicesMenu.alpha = 0f;
+		Jukebox.volume = 1f;
+		Jukebox.Play();
+		Subtitle.text = "";
+		Cutscene = false;
+		Show = true;
+		Menu = 3;
+	}
+
+	private void SummonAssassinationMenu()
+	{
+		PromptBar.ClearButtons();
+		PromptBar.Label[0].text = "Abduct";
+		PromptBar.Label[1].text = "Back";
+		PromptBar.Label[4].text = "Change Selection";
+		PromptBar.Label[5].text = "Change Selection";
+		PromptBar.UpdateButtons();
+		PromptBar.Show = true;
+		MoneyLabel.transform.parent.gameObject.SetActive(true);
+		AssassinationMenu.alpha = 1f;
+		ServicesMenu.alpha = 0f;
+		Jukebox.volume = 1f;
+		Jukebox.Play();
+		Subtitle.text = "";
+		Cutscene = false;
+		Show = true;
+		Menu = 2;
+	}
+
+	private void SummonServicesMenu()
+	{
+		PromptBar.ClearButtons();
+		PromptBar.Label[0].text = "Confirm";
+		PromptBar.Label[1].text = "Exit";
+		PromptBar.Label[4].text = "Change Selection";
+		PromptBar.UpdateButtons();
+		PromptBar.Show = true;
+		MoneyLabel.transform.parent.gameObject.SetActive(true);
+		AssassinationMenu.alpha = 0f;
+		ServicesMenu.alpha = 1f;
+		Jukebox.volume = 1f;
+		Jukebox.Play();
+		Subtitle.text = "";
+		Cutscene = false;
+		Show = true;
+		Menu = 1;
+	}
+
+	private void SummonKidnappingMenu()
+	{
+		PromptBar.ClearButtons();
+		if (Prisoners > 0)
+		{
+			PromptBar.Label[0].text = "Sell";
+		}
+		PromptBar.Label[1].text = "Back";
+		PromptBar.UpdateButtons();
+		PromptBar.Show = true;
+		MoneyLabel.transform.parent.gameObject.SetActive(true);
+		AssassinationMenu.alpha = 0f;
+		ServicesMenu.alpha = 1f;
+		Jukebox.volume = 1f;
+		Jukebox.Play();
+		Subtitle.text = "";
+		Cutscene = false;
+		Show = true;
+		Menu = 4;
+	}
+
+	private void UpdateMoneyLabel()
+	{
+		MoneyLabel.text = "$" + PlayerGlobals.Money.ToString("F2");
+	}
+
+	private void CountPrisoners()
+	{
+		if (StudentGlobals.Prisoners == 0)
+		{
+			Prisoners = 0;
+			return;
+		}
+		for (int i = 1; i < 11; i++)
+		{
+			if (StudentGlobals.Prisoner1 == KidnapTargets[i] || StudentGlobals.Prisoner2 == KidnapTargets[i] || StudentGlobals.Prisoner3 == KidnapTargets[i] || StudentGlobals.Prisoner4 == KidnapTargets[i] || StudentGlobals.Prisoner5 == KidnapTargets[i] || StudentGlobals.Prisoner6 == KidnapTargets[i] || StudentGlobals.Prisoner7 == KidnapTargets[i] || StudentGlobals.Prisoner8 == KidnapTargets[i] || StudentGlobals.Prisoner9 == KidnapTargets[i] || StudentGlobals.Prisoner10 == KidnapTargets[i])
+			{
+				if (StudentGlobals.GetStudentHealth(KidnapTargets[i]) > 0)
+				{
+					Payout += Ransom[KidnapTargets[i]];
+					Prisoners++;
+					Debug.Log("We have counted " + Prisoners + " prisoners.");
+					PrisonerList[Prisoners] = KidnapTargets[i];
+				}
+				else
+				{
+					Debug.Log("One of the Yakuza's desired girls is a prisoner in our basement, but she's dead.");
+				}
+			}
+		}
+	}
+
+	private void DeprisonStudents()
+	{
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner1))
+		{
+			StudentGlobals.Prisoner1 = 0;
+			StudentGlobals.Prisoners--;
+		}
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner2))
+		{
+			StudentGlobals.Prisoner2 = 0;
+			StudentGlobals.Prisoners--;
+		}
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner3))
+		{
+			StudentGlobals.Prisoner3 = 0;
+			StudentGlobals.Prisoners--;
+		}
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner4))
+		{
+			StudentGlobals.Prisoner4 = 0;
+			StudentGlobals.Prisoners--;
+		}
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner5))
+		{
+			StudentGlobals.Prisoner5 = 0;
+			StudentGlobals.Prisoners--;
+		}
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner6))
+		{
+			StudentGlobals.Prisoner6 = 0;
+			StudentGlobals.Prisoners--;
+		}
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner7))
+		{
+			StudentGlobals.Prisoner7 = 0;
+			StudentGlobals.Prisoners--;
+		}
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner8))
+		{
+			StudentGlobals.Prisoner8 = 0;
+			StudentGlobals.Prisoners--;
+		}
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner9))
+		{
+			StudentGlobals.Prisoner9 = 0;
+			StudentGlobals.Prisoners--;
+		}
+		if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner10))
+		{
+			StudentGlobals.Prisoner10 = 0;
+			StudentGlobals.Prisoners--;
+		}
+	}
 }

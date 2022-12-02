@@ -1,58 +1,61 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FountainScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FountainScript : MonoBehaviour
 {
-  public ParticleSystem Splashes;
-  public UILabel EventSubtitle;
-  public Collider[] Colliders;
-  public bool Drowning;
-  public AudioSource SpraySFX;
-  public AudioSource DropsSFX;
-  public float StartTimer;
-  public float Timer;
+	public ParticleSystem Splashes;
 
-  private void Start()
-  {
-    this.SpraySFX.volume = 0.1f;
-    this.DropsSFX.volume = 0.1f;
-  }
+	public UILabel EventSubtitle;
 
-  private void Update()
-  {
-    if ((double) this.StartTimer < 1.0)
-    {
-      this.StartTimer += Time.deltaTime;
-      if ((double) this.StartTimer > 1.0)
-      {
-        this.SpraySFX.gameObject.SetActive(true);
-        this.DropsSFX.gameObject.SetActive(true);
-      }
-    }
-    if (!this.Drowning)
-      return;
-    if ((double) this.Timer == 0.0 && (double) this.EventSubtitle.transform.localScale.x < 1.0)
-    {
-      this.EventSubtitle.transform.localScale = new Vector3(1f, 1f, 1f);
-      this.EventSubtitle.text = "Hey, what are you -";
-      this.GetComponent<AudioSource>().Play();
-    }
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer > 3.0 && (double) this.EventSubtitle.transform.localScale.x > 0.0)
-    {
-      this.EventSubtitle.transform.localScale = Vector3.zero;
-      this.EventSubtitle.text = string.Empty;
-      this.Splashes.Play();
-    }
-    if ((double) this.Timer <= 9.0)
-      return;
-    this.Drowning = false;
-    this.Splashes.Stop();
-    this.Timer = 0.0f;
-  }
+	public Collider[] Colliders;
+
+	public bool Drowning;
+
+	public AudioSource SpraySFX;
+
+	public AudioSource DropsSFX;
+
+	public float StartTimer;
+
+	public float Timer;
+
+	private void Start()
+	{
+		SpraySFX.volume = 0.1f;
+		DropsSFX.volume = 0.1f;
+	}
+
+	private void Update()
+	{
+		if (StartTimer < 1f)
+		{
+			StartTimer += Time.deltaTime;
+			if (StartTimer > 1f)
+			{
+				SpraySFX.gameObject.SetActive(true);
+				DropsSFX.gameObject.SetActive(true);
+			}
+		}
+		if (Drowning)
+		{
+			if (Timer == 0f && EventSubtitle.transform.localScale.x < 1f)
+			{
+				EventSubtitle.transform.localScale = new Vector3(1f, 1f, 1f);
+				EventSubtitle.text = "Hey, what are you -";
+				GetComponent<AudioSource>().Play();
+			}
+			Timer += Time.deltaTime;
+			if (Timer > 3f && EventSubtitle.transform.localScale.x > 0f)
+			{
+				EventSubtitle.transform.localScale = Vector3.zero;
+				EventSubtitle.text = string.Empty;
+				Splashes.Play();
+			}
+			if (Timer > 9f)
+			{
+				Drowning = false;
+				Splashes.Stop();
+				Timer = 0f;
+			}
+		}
+	}
 }

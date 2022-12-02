@@ -1,44 +1,43 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MusicCreditScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MusicCreditScript : MonoBehaviour
 {
-  public UILabel SongLabel;
-  public UILabel BandLabel;
-  public UISprite Sprite;
-  public bool Slide;
-  public float Timer;
+	public UILabel SongLabel;
 
-  private void Start()
-  {
-    this.transform.localPosition = new Vector3(400f, this.transform.localPosition.y, this.transform.localPosition.z);
-    this.Sprite.enabled = false;
-  }
+	public UILabel BandLabel;
 
-  private void Update()
-  {
-    if (!this.Slide)
-      return;
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer < 5.0)
-    {
-      this.transform.localPosition = new Vector3(Mathf.Lerp(this.transform.localPosition.x, 0.0f, Time.deltaTime * 10f), this.transform.localPosition.y, this.transform.localPosition.z);
-    }
-    else
-    {
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x + Time.deltaTime, this.transform.localPosition.y, this.transform.localPosition.z);
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x + Mathf.Abs(this.transform.localPosition.x * 0.01f) * (Time.deltaTime * 1000f), this.transform.localPosition.y, this.transform.localPosition.z);
-      if ((double) this.transform.localPosition.x <= 400.0)
-        return;
-      this.transform.localPosition = new Vector3(400f, this.transform.localPosition.y, this.transform.localPosition.z);
-      this.Sprite.enabled = false;
-      this.Slide = false;
-      this.Timer = 0.0f;
-    }
-  }
+	public UISprite Sprite;
+
+	public bool Slide;
+
+	public float Timer;
+
+	private void Start()
+	{
+		base.transform.localPosition = new Vector3(400f, base.transform.localPosition.y, base.transform.localPosition.z);
+		Sprite.enabled = false;
+	}
+
+	private void Update()
+	{
+		if (!Slide)
+		{
+			return;
+		}
+		Timer += Time.deltaTime;
+		if (Timer < 5f)
+		{
+			base.transform.localPosition = new Vector3(Mathf.Lerp(base.transform.localPosition.x, 0f, Time.deltaTime * 10f), base.transform.localPosition.y, base.transform.localPosition.z);
+			return;
+		}
+		base.transform.localPosition = new Vector3(base.transform.localPosition.x + Time.deltaTime, base.transform.localPosition.y, base.transform.localPosition.z);
+		base.transform.localPosition = new Vector3(base.transform.localPosition.x + Mathf.Abs(base.transform.localPosition.x * 0.01f) * (Time.deltaTime * 1000f), base.transform.localPosition.y, base.transform.localPosition.z);
+		if (base.transform.localPosition.x > 400f)
+		{
+			base.transform.localPosition = new Vector3(400f, base.transform.localPosition.y, base.transform.localPosition.z);
+			Sprite.enabled = false;
+			Slide = false;
+			Timer = 0f;
+		}
+	}
 }

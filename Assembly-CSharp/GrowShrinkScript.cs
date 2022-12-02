@@ -1,77 +1,84 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: GrowShrinkScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class GrowShrinkScript : MonoBehaviour
 {
-  public float FallSpeed;
-  public float Threshold = 1f;
-  public float Slowdown = 0.5f;
-  public float Strength = 1f;
-  public float Target = 1f;
-  public float Scale;
-  public float Speed = 5f;
-  public float Timer;
-  public bool Shrink;
-  public Vector3 OriginalPosition;
+	public float FallSpeed;
 
-  private void Start()
-  {
-    this.OriginalPosition = this.transform.localPosition;
-    this.transform.localScale = Vector3.zero;
-  }
+	public float Threshold = 1f;
 
-  private void Update()
-  {
-    this.Timer += Time.deltaTime * 2f;
-    this.Scale += (float) ((double) Time.deltaTime * ((double) this.Strength * (double) this.Speed) * 2.0);
-    if (!this.Shrink)
-    {
-      this.Strength += (float) ((double) Time.deltaTime * (double) this.Speed * 2.0);
-      if ((double) this.Strength > (double) this.Threshold)
-        this.Strength = this.Threshold;
-      if ((double) this.Scale > (double) this.Target)
-      {
-        this.Threshold *= this.Slowdown;
-        this.Shrink = true;
-      }
-    }
-    else
-    {
-      this.Strength -= (float) ((double) Time.deltaTime * (double) this.Speed * 2.0);
-      float num = this.Threshold * -1f;
-      if ((double) this.Strength < (double) num)
-        this.Strength = num;
-      if ((double) this.Scale < (double) this.Target)
-      {
-        this.Threshold *= this.Slowdown;
-        this.Shrink = false;
-      }
-    }
-    if ((double) this.Timer > 3.3333299160003662)
-    {
-      this.FallSpeed += (float) ((double) Time.deltaTime * 10.0 * 2.0);
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y - (float) ((double) this.FallSpeed * (double) this.FallSpeed * 2.0), this.transform.localPosition.z);
-    }
-    this.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-  }
+	public float Slowdown = 0.5f;
 
-  public void Return()
-  {
-    this.transform.localPosition = this.OriginalPosition;
-    this.transform.localScale = Vector3.zero;
-    this.FallSpeed = 0.0f;
-    this.Threshold = 1f;
-    this.Slowdown = 0.5f;
-    this.Strength = 1f;
-    this.Target = 1f;
-    this.Scale = 0.0f;
-    this.Speed = 5f;
-    this.Timer = 0.0f;
-    this.gameObject.SetActive(false);
-  }
+	public float Strength = 1f;
+
+	public float Target = 1f;
+
+	public float Scale;
+
+	public float Speed = 5f;
+
+	public float Timer;
+
+	public bool Shrink;
+
+	public Vector3 OriginalPosition;
+
+	private void Start()
+	{
+		OriginalPosition = base.transform.localPosition;
+		base.transform.localScale = Vector3.zero;
+	}
+
+	private void Update()
+	{
+		Timer += Time.deltaTime * 2f;
+		Scale += Time.deltaTime * (Strength * Speed) * 2f;
+		if (!Shrink)
+		{
+			Strength += Time.deltaTime * Speed * 2f;
+			if (Strength > Threshold)
+			{
+				Strength = Threshold;
+			}
+			if (Scale > Target)
+			{
+				Threshold *= Slowdown;
+				Shrink = true;
+			}
+		}
+		else
+		{
+			Strength -= Time.deltaTime * Speed * 2f;
+			float num = Threshold * -1f;
+			if (Strength < num)
+			{
+				Strength = num;
+			}
+			if (Scale < Target)
+			{
+				Threshold *= Slowdown;
+				Shrink = false;
+			}
+		}
+		if (Timer > 3.33333f)
+		{
+			FallSpeed += Time.deltaTime * 10f * 2f;
+			base.transform.localPosition = new Vector3(base.transform.localPosition.x, base.transform.localPosition.y - FallSpeed * FallSpeed * 2f, base.transform.localPosition.z);
+		}
+		base.transform.localScale = new Vector3(Scale, Scale, Scale);
+	}
+
+	public void Return()
+	{
+		base.transform.localPosition = OriginalPosition;
+		base.transform.localScale = Vector3.zero;
+		FallSpeed = 0f;
+		Threshold = 1f;
+		Slowdown = 0.5f;
+		Strength = 1f;
+		Target = 1f;
+		Scale = 0f;
+		Speed = 5f;
+		Timer = 0f;
+		base.gameObject.SetActive(false);
+	}
 }

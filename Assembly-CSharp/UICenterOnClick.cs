@@ -1,35 +1,32 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UICenterOnClick
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Interaction/Center Scroll View on Click")]
 public class UICenterOnClick : MonoBehaviour
 {
-  private void OnClick()
-  {
-    UICenterOnChild inParents1 = NGUITools.FindInParents<UICenterOnChild>(this.gameObject);
-    UIPanel inParents2 = NGUITools.FindInParents<UIPanel>(this.gameObject);
-    if ((Object) inParents1 != (Object) null)
-    {
-      if (!inParents1.enabled)
-        return;
-      inParents1.CenterOn(this.transform);
-    }
-    else
-    {
-      if (!((Object) inParents2 != (Object) null) || inParents2.clipping == UIDrawCall.Clipping.None)
-        return;
-      UIScrollView component = inParents2.GetComponent<UIScrollView>();
-      Vector3 pos = -inParents2.cachedTransform.InverseTransformPoint(this.transform.position);
-      if (!component.canMoveHorizontally)
-        pos.x = inParents2.cachedTransform.localPosition.x;
-      if (!component.canMoveVertically)
-        pos.y = inParents2.cachedTransform.localPosition.y;
-      SpringPanel.Begin(inParents2.cachedGameObject, pos, 6f);
-    }
-  }
+	private void OnClick()
+	{
+		UICenterOnChild uICenterOnChild = NGUITools.FindInParents<UICenterOnChild>(base.gameObject);
+		UIPanel uIPanel = NGUITools.FindInParents<UIPanel>(base.gameObject);
+		if (uICenterOnChild != null)
+		{
+			if (uICenterOnChild.enabled)
+			{
+				uICenterOnChild.CenterOn(base.transform);
+			}
+		}
+		else if (uIPanel != null && uIPanel.clipping != 0)
+		{
+			UIScrollView component = uIPanel.GetComponent<UIScrollView>();
+			Vector3 pos = -uIPanel.cachedTransform.InverseTransformPoint(base.transform.position);
+			if (!component.canMoveHorizontally)
+			{
+				pos.x = uIPanel.cachedTransform.localPosition.x;
+			}
+			if (!component.canMoveVertically)
+			{
+				pos.y = uIPanel.cachedTransform.localPosition.y;
+			}
+			SpringPanel.Begin(uIPanel.cachedGameObject, pos, 6f);
+		}
+	}
 }

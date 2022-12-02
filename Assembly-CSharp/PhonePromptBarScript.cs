@@ -1,37 +1,37 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PhonePromptBarScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PhonePromptBarScript : MonoBehaviour
 {
-  public UIPanel Panel;
-  public bool Show;
-  public UILabel Label;
+	public UIPanel Panel;
 
-  private void Start()
-  {
-    this.transform.localPosition = new Vector3(this.transform.localPosition.x, 630f, this.transform.localPosition.z);
-    this.Panel.enabled = false;
-  }
+	public bool Show;
 
-  private void Update()
-  {
-    float t = Time.unscaledDeltaTime * 10f;
-    if (!this.Show)
-    {
-      if (!this.Panel.enabled)
-        return;
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.Lerp(this.transform.localPosition.y, 631f, t), this.transform.localPosition.z);
-      if ((double) this.transform.localPosition.y >= 630.0)
-        return;
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x, 631f, this.transform.localPosition.z);
-      this.Panel.enabled = false;
-    }
-    else
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.Lerp(this.transform.localPosition.y, 530f, t), this.transform.localPosition.z);
-  }
+	public UILabel Label;
+
+	private void Start()
+	{
+		base.transform.localPosition = new Vector3(base.transform.localPosition.x, 630f, base.transform.localPosition.z);
+		Panel.enabled = false;
+	}
+
+	private void Update()
+	{
+		float t = Time.unscaledDeltaTime * 10f;
+		if (!Show)
+		{
+			if (Panel.enabled)
+			{
+				base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.Lerp(base.transform.localPosition.y, 631f, t), base.transform.localPosition.z);
+				if (base.transform.localPosition.y < 630f)
+				{
+					base.transform.localPosition = new Vector3(base.transform.localPosition.x, 631f, base.transform.localPosition.z);
+					Panel.enabled = false;
+				}
+			}
+		}
+		else
+		{
+			base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.Lerp(base.transform.localPosition.y, 530f, t), base.transform.localPosition.z);
+		}
+	}
 }

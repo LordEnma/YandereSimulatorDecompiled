@@ -1,55 +1,63 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityEngine.PostProcessing.GrainComponent
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 namespace UnityEngine.PostProcessing
 {
-  public sealed class GrainComponent : PostProcessingComponentRenderTexture<GrainModel>
-  {
-    private RenderTexture m_GrainLookupRT;
+	public sealed class GrainComponent : PostProcessingComponentRenderTexture<GrainModel>
+	{
+		private static class Uniforms
+		{
+			internal static readonly int _Grain_Params1 = Shader.PropertyToID("_Grain_Params1");
 
-    public override bool active => this.model.enabled && (double) this.model.settings.intensity > 0.0 && SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBHalf) && !this.context.interrupted;
+			internal static readonly int _Grain_Params2 = Shader.PropertyToID("_Grain_Params2");
 
-    public override void OnDisable()
-    {
-      GraphicsUtils.Destroy((Object) this.m_GrainLookupRT);
-      this.m_GrainLookupRT = (RenderTexture) null;
-    }
+			internal static readonly int _GrainTex = Shader.PropertyToID("_GrainTex");
 
-    public override void Prepare(Material uberMaterial)
-    {
-      GrainModel.Settings settings = this.model.settings;
-      uberMaterial.EnableKeyword("GRAIN");
-      float realtimeSinceStartup = Time.realtimeSinceStartup;
-      float z = Random.value;
-      float w = Random.value;
-      if ((Object) this.m_GrainLookupRT == (Object) null || !this.m_GrainLookupRT.IsCreated())
-      {
-        GraphicsUtils.Destroy((Object) this.m_GrainLookupRT);
-        RenderTexture renderTexture = new RenderTexture(192, 192, 0, RenderTextureFormat.ARGBHalf);
-        renderTexture.filterMode = FilterMode.Bilinear;
-        renderTexture.wrapMode = TextureWrapMode.Repeat;
-        renderTexture.anisoLevel = 0;
-        renderTexture.name = "Grain Lookup Texture";
-        this.m_GrainLookupRT = renderTexture;
-        this.m_GrainLookupRT.Create();
-      }
-      Material mat = this.context.materialFactory.Get("Hidden/Post FX/Grain Generator");
-      mat.SetFloat(GrainComponent.Uniforms._Phase, realtimeSinceStartup / 20f);
-      Graphics.Blit((Texture) null, this.m_GrainLookupRT, mat, settings.colored ? 1 : 0);
-      uberMaterial.SetTexture(GrainComponent.Uniforms._GrainTex, (Texture) this.m_GrainLookupRT);
-      uberMaterial.SetVector(GrainComponent.Uniforms._Grain_Params1, (Vector4) new Vector2(settings.luminanceContribution, settings.intensity * 20f));
-      uberMaterial.SetVector(GrainComponent.Uniforms._Grain_Params2, new Vector4((float) this.context.width / (float) this.m_GrainLookupRT.width / settings.size, (float) this.context.height / (float) this.m_GrainLookupRT.height / settings.size, z, w));
-    }
+			internal static readonly int _Phase = Shader.PropertyToID("_Phase");
+		}
 
-    private static class Uniforms
-    {
-      internal static readonly int _Grain_Params1 = Shader.PropertyToID(nameof (_Grain_Params1));
-      internal static readonly int _Grain_Params2 = Shader.PropertyToID(nameof (_Grain_Params2));
-      internal static readonly int _GrainTex = Shader.PropertyToID(nameof (_GrainTex));
-      internal static readonly int _Phase = Shader.PropertyToID(nameof (_Phase));
-    }
-  }
+		private RenderTexture m_GrainLookupRT;
+
+		public override bool active
+		{
+			get
+			{
+				if (base.model.enabled && base.model.settings.intensity > 0f && SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBHalf))
+				{
+					return !context.interrupted;
+				}
+				return false;
+			}
+		}
+
+		public override void OnDisable()
+		{
+			GraphicsUtils.Destroy(m_GrainLookupRT);
+			m_GrainLookupRT = null;
+		}
+
+		public override void Prepare(Material uberMaterial)
+		{
+			GrainModel.Settings settings = base.model.settings;
+			uberMaterial.EnableKeyword("GRAIN");
+			float realtimeSinceStartup = Time.realtimeSinceStartup;
+			float value = Random.value;
+			float value2 = Random.value;
+			if (m_GrainLookupRT == null || !m_GrainLookupRT.IsCreated())
+			{
+				GraphicsUtils.Destroy(m_GrainLookupRT);
+				m_GrainLookupRT = new RenderTexture(192, 192, 0, RenderTextureFormat.ARGBHalf)
+				{
+					filterMode = FilterMode.Bilinear,
+					wrapMode = TextureWrapMode.Repeat,
+					anisoLevel = 0,
+					name = "Grain Lookup Texture"
+				};
+				m_GrainLookupRT.Create();
+			}
+			Material material = context.materialFactory.Get("Hidden/Post FX/Grain Generator");
+			material.SetFloat(Uniforms._Phase, realtimeSinceStartup / 20f);
+			Graphics.Blit(null, m_GrainLookupRT, material, settings.colored ? 1 : 0);
+			uberMaterial.SetTexture(Uniforms._GrainTex, m_GrainLookupRT);
+			uberMaterial.SetVector(Uniforms._Grain_Params1, new Vector2(settings.luminanceContribution, settings.intensity * 20f));
+			uberMaterial.SetVector(Uniforms._Grain_Params2, new Vector4((float)context.width / (float)m_GrainLookupRT.width / settings.size, (float)context.height / (float)m_GrainLookupRT.height / settings.size, value, value2));
+		}
+	}
 }

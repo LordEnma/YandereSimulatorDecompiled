@@ -1,40 +1,38 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DownloadTexture
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-[RequireComponent(typeof (UITexture))]
+[RequireComponent(typeof(UITexture))]
 public class DownloadTexture : MonoBehaviour
 {
-  public string url = "http://www.yourwebsite.com/logo.png";
-  public bool pixelPerfect = true;
-  private Texture2D mTex;
+	public string url = "http://www.yourwebsite.com/logo.png";
 
-  private IEnumerator Start()
-  {
-    DownloadTexture downloadTexture = this;
-    UnityWebRequest www = UnityWebRequest.Get(downloadTexture.url);
-    yield return (object) www.SendWebRequest();
-    downloadTexture.mTex = DownloadHandlerTexture.GetContent(www);
-    if ((Object) downloadTexture.mTex != (Object) null)
-    {
-      UITexture component = downloadTexture.GetComponent<UITexture>();
-      component.mainTexture = (Texture) downloadTexture.mTex;
-      if (downloadTexture.pixelPerfect)
-        component.MakePixelPerfect();
-    }
-    www.Dispose();
-  }
+	public bool pixelPerfect = true;
 
-  private void OnDestroy()
-  {
-    if (!((Object) this.mTex != (Object) null))
-      return;
-    Object.Destroy((Object) this.mTex);
-  }
+	private Texture2D mTex;
+
+	private IEnumerator Start()
+	{
+		UnityWebRequest www = UnityWebRequest.Get(url);
+		yield return www.SendWebRequest();
+		mTex = DownloadHandlerTexture.GetContent(www);
+		if (mTex != null)
+		{
+			UITexture component = GetComponent<UITexture>();
+			component.mainTexture = mTex;
+			if (pixelPerfect)
+			{
+				component.MakePixelPerfect();
+			}
+		}
+		www.Dispose();
+	}
+
+	private void OnDestroy()
+	{
+		if (mTex != null)
+		{
+			Object.Destroy(mTex);
+		}
+	}
 }

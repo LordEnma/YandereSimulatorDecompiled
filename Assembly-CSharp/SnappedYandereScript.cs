@@ -1,627 +1,746 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SnappedYandereScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SnappedYandereScript : MonoBehaviour
 {
-  public CharacterController MyController;
-  public CameraFilterPack_FX_Glitch1 Glitch1;
-  public CameraFilterPack_FX_Glitch2 Glitch2;
-  public CameraFilterPack_FX_Glitch3 Glitch3;
-  public CameraFilterPack_Glitch_Mozaic Glitch4;
-  public CameraFilterPack_NewGlitch1 Glitch5;
-  public CameraFilterPack_NewGlitch2 Glitch6;
-  public CameraFilterPack_NewGlitch3 Glitch7;
-  public CameraFilterPack_NewGlitch4 Glitch8;
-  public CameraFilterPack_NewGlitch5 Glitch9;
-  public CameraFilterPack_NewGlitch6 Glitch10;
-  public CameraFilterPack_NewGlitch7 Glitch11;
-  public CameraFilterPack_TV_CompressionFX CompressionFX;
-  public CameraFilterPack_TV_Distorted Distorted;
-  public CameraFilterPack_Blur_Tilt_Shift TiltShift;
-  public CameraFilterPack_Blur_Tilt_Shift_V TiltShiftV;
-  public CameraFilterPack_Noise_TV Static;
-  public StudentManagerScript StudentManager;
-  public SnapStudentScript TargetStudent;
-  public InputDeviceScript InputDevice;
-  public GameObject StabBloodEffect;
-  public GameObject BloodEffect;
-  public GameObject NewDoIt;
-  public WeaponScript Knife;
-  public AudioListener MyListener;
-  public Transform SnapAttackPivot;
-  public Transform FinalSnapPOV;
-  public Transform SuicidePOV;
-  public Transform RightFoot;
-  public Transform RightHand;
-  public Transform LeftHand;
-  public Transform Spine;
-  public AudioSource StaticNoise;
-  public AudioSource AttackAudio;
-  public AudioSource SnapStatic;
-  public AudioSource SnapVoice;
-  public AudioSource Jukebox;
-  public AudioSource MyAudio;
-  public AudioSource Rumble;
-  public AudioClip EndSNAP;
-  public UILabel SNAPLabel;
-  public Camera MainCamera;
-  public Animation MyAnim;
-  public AudioClip Buzz;
-  public AudioClip[] Whispers;
-  public AudioClip[] FemaleDeathScreams;
-  public AudioClip[] MaleDeathScreams;
-  public AudioClip[] AttackSFX;
-  public GameObject DoIt;
-  public UISprite SuicideSprite;
-  public UILabel SuicidePrompt;
-  public bool KillingSenpai;
-  public bool Attacking;
-  public bool CanMove;
-  public bool SpeedUp;
-  public bool Whisper;
-  public bool Armed;
-  public string IdleAnim;
-  public string WalkAnim;
-  public float ImpatienceLimit;
-  public float GlitchTimeLimit;
-  public float WhisperTimer;
-  public float AttackTimer;
-  public float GlitchTimer;
-  public float ImpatienceTimer;
-  public float ListenTimer;
-  public float HurryTimer;
-  public float AnimSpeed;
-  public float Target;
-  public float Speed;
-  public int BloodSpawned;
-  public int AttackPhase;
-  public int Teleports;
-  public int AttackID;
-  public int VoiceID;
-  public int Attacks;
-  public int Taps;
-  public string[] AttackAnims;
-  public WeaponScript[] Weapons;
-  public bool[] AttacksUsed;
+	public CharacterController MyController;
 
-  private void Start()
-  {
-    this.MyAnim[this.AttackAnims[1]].speed = 1.5f;
-    this.MyAnim[this.AttackAnims[2]].speed = 1.5f;
-    this.MyAnim[this.AttackAnims[3]].speed = 1.5f;
-    this.MyAnim[this.AttackAnims[4]].speed = 1.5f;
-    this.MyAnim[this.AttackAnims[5]].speed = 1.5f;
-    if (ClubGlobals.GetClubClosed(ClubType.Cooking))
-    {
-      this.Weapons[0] = (WeaponScript) null;
-      this.Weapons[5] = (WeaponScript) null;
-    }
-    if (ClubGlobals.GetClubClosed(ClubType.Art))
-      this.Weapons[3] = (WeaponScript) null;
-    if (!ClubGlobals.GetClubClosed(ClubType.Occult))
-      return;
-    this.Weapons[6] = (WeaponScript) null;
-  }
+	public CameraFilterPack_FX_Glitch1 Glitch1;
 
-  private void Update()
-  {
-    Cursor.lockState = CursorLockMode.Locked;
-    Cursor.visible = false;
-    if (Input.GetKeyDown("=") && (double) Time.timeScale < 10.0)
-      ++Time.timeScale;
-    if (Input.GetKeyDown("-") && (double) Time.timeScale > 1.0)
-      --Time.timeScale;
-    if (this.Glitch1.enabled)
-    {
-      if (this.Attacking)
-        this.GlitchTimer += Time.deltaTime * this.MyAnim[this.AttackAnims[this.AttackID]].speed;
-      else
-        this.GlitchTimer += Time.deltaTime;
-      if ((double) this.GlitchTimer > (double) this.GlitchTimeLimit)
-      {
-        this.SetGlitches(false);
-        if ((Object) this.MyAudio.clip != (Object) this.EndSNAP)
-          this.MyAudio.Stop();
-        if (this.Attacking)
-        {
-          this.SnapAttackPivot.position = this.TargetStudent.Student.Head.position;
-          this.SnapAttackPivot.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-          this.MainCamera.transform.parent = this.SnapAttackPivot;
-          this.MainCamera.transform.localPosition = new Vector3(0.0f, 0.0f, -1f);
-          this.MainCamera.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-          this.SnapAttackPivot.localEulerAngles = new Vector3(Random.Range(-45f, 45f), Random.Range(0.0f, 360f), 0.0f);
-          while ((double) this.MainCamera.transform.position.y < (double) this.transform.position.y + 0.10000000149011612)
-            this.SnapAttackPivot.localEulerAngles = new Vector3(Random.Range(-45f, 45f), Random.Range(0.0f, 360f), 0.0f);
-          this.MyAnim[this.AttackAnims[this.AttackID]].time = 0.0f;
-          this.MyAnim.Play(this.AttackAnims[this.AttackID]);
-          this.MyAnim[this.AttackAnims[this.AttackID]].time = 0.0f;
-          this.MyAnim[this.AttackAnims[this.AttackID]].speed += 0.1f;
-          this.TargetStudent.MyAnim[this.TargetStudent.AttackAnims[this.AttackID]].time = 0.0f;
-          this.TargetStudent.MyAnim.Play(this.TargetStudent.AttackAnims[this.AttackID]);
-          this.TargetStudent.MyAnim[this.TargetStudent.AttackAnims[this.AttackID]].time = 0.0f;
-          this.TargetStudent.MyAnim[this.TargetStudent.AttackAnims[this.AttackID]].speed = this.MyAnim[this.AttackAnims[this.AttackID]].speed;
-          if (this.TargetStudent.Student.Male)
-          {
-            this.MyAudio.clip = this.MaleDeathScreams[Random.Range(0, this.MaleDeathScreams.Length)];
-            this.MyAudio.pitch = 1f;
-            this.MyAudio.Play();
-          }
-          else
-          {
-            this.MyAudio.clip = this.FemaleDeathScreams[Random.Range(0, this.FemaleDeathScreams.Length)];
-            this.MyAudio.pitch = 1f;
-            this.MyAudio.Play();
-          }
-          this.AttackAudio.clip = this.AttackSFX[this.AttackID];
-          this.AttackAudio.pitch = this.MyAnim[this.AttackAnims[this.AttackID]].speed;
-          this.AttackAudio.Play();
-        }
-      }
-    }
-    if (!this.Armed)
-    {
-      foreach (WeaponScript weapon in this.Weapons)
-      {
-        if ((Object) weapon != (Object) null && weapon.gameObject.activeInHierarchy && (double) Vector3.Distance(this.transform.position, weapon.transform.position) < 1.5)
-        {
-          weapon.Prompt.Circle[3].fillAmount = 0.0f;
-          this.SNAPLabel.text = "Kill him.";
-          this.StaticNoise.volume = 0.0f;
-          this.Static.Fade = 0.0f;
-          this.HurryTimer = 0.0f;
-          this.Knife = weapon;
-          this.Armed = true;
-        }
-      }
-    }
-    else
-      this.Knife.gameObject.SetActive(true);
-    if (this.CanMove)
-    {
-      this.SNAPLabel.alpha = Mathf.MoveTowards(this.SNAPLabel.alpha, 1f, Time.deltaTime * 0.2f);
-      this.HurryTimer += Time.deltaTime;
-      if ((double) this.HurryTimer > 40.0 || (double) this.transform.position.y < -0.10000000149011612 || this.StudentManager.MaleLockerRoomArea.bounds.Contains(this.transform.position))
-      {
-        this.Teleport();
-        this.HurryTimer = 0.0f;
-        this.Static.Fade = 0.0f;
-        this.StaticNoise.volume = 0.0f;
-      }
-      else if ((double) this.HurryTimer > 30.0)
-      {
-        this.StaticNoise.volume += Time.deltaTime * 0.1f;
-        this.Static.Fade += Time.deltaTime * 0.1f;
-      }
-      this.UpdateMovement();
-    }
-    else if (this.Attacking)
-    {
-      this.SNAPLabel.alpha = 0.0f;
-      if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].speed == 0.0)
-        this.MyAnim[this.AttackAnims[this.AttackID]].speed = 1f;
-      if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time >= (double) this.MyAnim[this.AttackAnims[this.AttackID]].length)
-      {
-        if (this.Attacks < 5)
-        {
-          this.ChooseAttack();
-        }
-        else
-        {
-          this.MainCamera.transform.parent = this.transform;
-          this.MainCamera.transform.localPosition = new Vector3(0.25f, 1.546664f, -0.5473595f);
-          this.MainCamera.transform.localEulerAngles = new Vector3(15f, 0.0f, 0.0f);
-          this.SetGlitches(true);
-          this.GlitchTimeLimit = 0.5f;
-          this.TargetStudent.Student.BecomeRagdoll();
-          this.AttacksUsed[1] = false;
-          this.AttacksUsed[2] = false;
-          this.AttacksUsed[3] = false;
-          this.AttacksUsed[4] = false;
-          this.AttacksUsed[5] = false;
-          this.Attacking = false;
-          this.CanMove = true;
-          this.Attacks = 0;
-        }
-      }
-      else if (!this.Glitch1.enabled && this.BloodSpawned < 2)
-      {
-        if (this.AttackID == 1)
-        {
-          if (this.BloodSpawned == 0)
-          {
-            if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time > 0.25)
-            {
-              Object.Instantiate<GameObject>(this.BloodEffect, this.RightHand.position, Quaternion.identity);
-              this.MyAudio.Stop();
-              ++this.BloodSpawned;
-            }
-          }
-          else if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time > 1.0)
-          {
-            Object.Instantiate<GameObject>(this.BloodEffect, this.LeftHand.position, Quaternion.identity);
-            ++this.BloodSpawned;
-          }
-        }
-        else if (this.AttackID == 2)
-        {
-          if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time > 1.0)
-          {
-            Object.Instantiate<GameObject>(this.BloodEffect, this.RightHand.position, Quaternion.identity);
-            this.BloodSpawned += 2;
-            this.MyAudio.Stop();
-          }
-        }
-        else if (this.AttackID == 3)
-        {
-          if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time > 0.5)
-          {
-            Object.Instantiate<GameObject>(this.BloodEffect, this.RightHand.position, Quaternion.identity);
-            this.BloodSpawned += 2;
-            this.MyAudio.Stop();
-          }
-        }
-        else if (this.AttackID == 4)
-        {
-          if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time > 0.5)
-            this.MyAudio.Stop();
-        }
-        else if (this.AttackID == 5)
-        {
-          if (this.BloodSpawned == 0)
-          {
-            if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time > 0.25)
-            {
-              Object.Instantiate<GameObject>(this.BloodEffect, this.RightFoot.position, Quaternion.identity);
-              this.MyAudio.Stop();
-              ++this.BloodSpawned;
-            }
-          }
-          else if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time > 0.89999997615814209)
-          {
-            Object.Instantiate<GameObject>(this.BloodEffect, this.RightFoot.position, Quaternion.identity);
-            ++this.BloodSpawned;
-          }
-        }
-      }
-    }
-    else if (this.KillingSenpai)
-    {
-      this.CompressionFX.Parasite = Mathf.MoveTowards(this.CompressionFX.Parasite, 0.0f, Time.deltaTime);
-      this.Distorted.Distortion = Mathf.MoveTowards(this.Distorted.Distortion, 0.0f, Time.deltaTime);
-      this.StaticNoise.volume -= Time.deltaTime * 0.5f;
-      this.Static.Fade = Mathf.MoveTowards(this.Static.Fade, 0.0f, Time.deltaTime * 0.5f);
-      this.Jukebox.volume -= Time.deltaTime * 0.5f;
-      this.SnapStatic.volume -= (float) ((double) Time.deltaTime * 0.5 * 0.20000000298023224);
-      this.SNAPLabel.alpha = Mathf.MoveTowards(this.SNAPLabel.alpha, 0.0f, Time.deltaTime * 0.5f);
-      this.SnapVoice.volume -= Time.deltaTime;
-      this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(this.TargetStudent.transform.position - this.transform.position), Time.deltaTime);
-      this.transform.position = Vector3.MoveTowards(this.transform.position, this.TargetStudent.transform.position + this.TargetStudent.transform.forward * 1f, Time.deltaTime);
-      this.Speed += Time.deltaTime;
-      if (this.AttackPhase < 3)
-      {
-        this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, this.FinalSnapPOV.position, (float) ((double) Time.deltaTime * (double) this.Speed * 0.33333000540733337));
-        this.MainCamera.transform.rotation = Quaternion.Slerp(this.MainCamera.transform.rotation, this.FinalSnapPOV.rotation, (float) ((double) Time.deltaTime * (double) this.Speed * 0.33333000540733337));
-      }
-      else
-      {
-        this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, this.SuicidePOV.position, (float) ((double) Time.deltaTime * (double) this.Speed * 0.10000000149011612));
-        this.MainCamera.transform.rotation = Quaternion.Slerp(this.MainCamera.transform.rotation, this.SuicidePOV.rotation, (float) ((double) Time.deltaTime * (double) this.Speed * 0.10000000149011612));
-        if (this.Whisper)
-        {
-          this.Rumble.volume = Mathf.MoveTowards(this.Rumble.volume, 0.5f, Time.deltaTime * 0.05f);
-          this.WhisperTimer += Time.deltaTime;
-          if ((double) this.WhisperTimer > 0.5)
-          {
-            this.WhisperTimer = 0.0f;
-            AudioSource.PlayClipAtPoint(this.Whispers[Random.Range(1, this.Whispers.Length)], this.MainCamera.transform.position + new Vector3((float) (11.0 - 10.0 * (double) this.Rumble.volume * 2.0), (float) (11.0 - 10.0 * (double) this.Rumble.volume * 2.0), (float) (11.0 - 10.0 * (double) this.Rumble.volume * 2.0)));
-            this.NewDoIt = Object.Instantiate<GameObject>(this.DoIt, this.SNAPLabel.parent.transform.position, Quaternion.identity);
-            this.NewDoIt.transform.parent = this.SNAPLabel.parent.transform;
-            this.NewDoIt.transform.localScale = new Vector3(1f, 1f, 1f);
-            this.NewDoIt.transform.localPosition = new Vector3(Random.Range(-700f, 700f), Random.Range(-450f, 450f), 0.0f);
-            this.NewDoIt.transform.localEulerAngles = new Vector3(Random.Range(-15f, 15f), Random.Range(-15f, 15f), Random.Range(-15f, 15f));
-          }
-        }
-      }
-      if (this.AttackPhase == 0)
-      {
-        if ((double) this.MyAnim["f02_snapKill_00"].time > (double) this.MyAnim["f02_snapKill_00"].length * 0.20000000298023224)
-        {
-          Object.Instantiate<GameObject>(this.BloodEffect, this.Knife.transform.position, Quaternion.identity);
-          ++this.AttackPhase;
-        }
-      }
-      else if (this.AttackPhase == 1)
-      {
-        if ((double) this.MyAnim["f02_snapKill_00"].time > (double) this.MyAnim["f02_snapKill_00"].length * 0.36000001430511475)
-        {
-          Object.Instantiate<GameObject>(this.BloodEffect, this.Knife.transform.position, Quaternion.identity);
-          ++this.AttackPhase;
-        }
-      }
-      else if (this.AttackPhase == 2)
-      {
-        if ((double) this.MyAnim["f02_snapKill_00"].time > 13.0)
-        {
-          this.MyAnim["f02_stareAtKnife_00"].layer = 100;
-          this.MyAnim.Play("f02_stareAtKnife_00");
-          this.MyAnim["f02_stareAtKnife_00"].weight = 0.0f;
-          this.Whisper = true;
-          this.Rumble.Play();
-          this.Speed = 0.0f;
-          ++this.AttackPhase;
-        }
-      }
-      else if (this.AttackPhase == 3)
-      {
-        this.Knife.transform.localEulerAngles = Vector3.Lerp(this.Knife.transform.localEulerAngles, new Vector3(0.0f, 0.0f, 0.0f), Time.deltaTime * this.Speed);
-        this.MyAnim["f02_stareAtKnife_00"].weight = Mathf.Lerp(this.MyAnim["f02_stareAtKnife_00"].weight, 1f, Time.deltaTime * this.Speed);
-        if ((double) this.MyAnim["f02_stareAtKnife_00"].weight > 0.99900001287460327)
-        {
-          this.SuicidePrompt.alpha += Time.deltaTime;
-          this.ImpatienceTimer += Time.deltaTime;
-          if (Input.GetButtonDown("X") || (double) this.ImpatienceTimer > (double) this.ImpatienceLimit)
-          {
-            this.MyAnim["f02_suicide_00"].layer = 101;
-            this.MyAnim.Play("f02_suicide_00");
-            this.MyAnim["f02_suicide_00"].weight = 0.0f;
-            this.MyAnim["f02_suicide_00"].time = 2f;
-            this.MyAnim["f02_suicide_00"].speed = 0.0f;
-            ++this.AttackPhase;
-            if ((double) this.ImpatienceTimer > (double) this.ImpatienceLimit)
-            {
-              this.ImpatienceLimit = 2f;
-              this.ImpatienceTimer = 0.0f;
-            }
-            ++this.Taps;
-          }
-        }
-      }
-      else if (this.AttackPhase == 4)
-      {
-        this.SuicidePrompt.alpha += Time.deltaTime;
-        this.ImpatienceTimer += Time.deltaTime;
-        if (Input.GetButtonDown("X") || (double) this.ImpatienceTimer > (double) this.ImpatienceLimit)
-        {
-          this.Target += 0.1f;
-          this.SpeedUp = true;
-          if ((double) this.ImpatienceTimer > (double) this.ImpatienceLimit)
-          {
-            this.ImpatienceLimit = 2f;
-            this.ImpatienceTimer = 0.0f;
-          }
-          ++this.Taps;
-        }
-        if (this.SpeedUp)
-        {
-          this.AnimSpeed += Time.deltaTime;
-          if ((double) this.AnimSpeed > 1.0)
-            this.SpeedUp = false;
-        }
-        else
-          this.AnimSpeed = Mathf.MoveTowards(this.AnimSpeed, 0.0f, Time.deltaTime);
-        this.MyAnim["f02_suicide_00"].weight = Mathf.Lerp(this.MyAnim["f02_suicide_00"].weight, this.Target, this.AnimSpeed * Time.deltaTime);
-        if ((double) this.MyAnim["f02_suicide_00"].weight >= 1.0)
-        {
-          this.SpeedUp = false;
-          this.AnimSpeed = 0.0f;
-          this.Target = 2f;
-          ++this.AttackPhase;
-        }
-      }
-      else if (this.AttackPhase == 5)
-      {
-        this.ImpatienceTimer += Time.deltaTime;
-        if (Input.GetButtonDown("X") || (double) this.ImpatienceTimer > (double) this.ImpatienceLimit)
-        {
-          this.Target += 0.1f;
-          this.SpeedUp = true;
-          if ((double) this.ImpatienceTimer > (double) this.ImpatienceLimit)
-          {
-            this.ImpatienceLimit = 2f;
-            this.ImpatienceTimer = 0.0f;
-          }
-          ++this.Taps;
-        }
-        if (this.SpeedUp)
-        {
-          this.AnimSpeed += Time.deltaTime;
-          if ((double) this.AnimSpeed > 1.0)
-            this.SpeedUp = false;
-        }
-        else
-          this.AnimSpeed = Mathf.MoveTowards(this.AnimSpeed, 0.0f, Time.deltaTime);
-        this.MyAnim["f02_suicide_00"].time = Mathf.Lerp(this.MyAnim["f02_suicide_00"].time, this.Target, this.AnimSpeed * Time.deltaTime);
-        if ((double) this.MyAnim["f02_suicide_00"].time >= 3.6666600704193115)
-        {
-          this.MyAnim["f02_suicide_00"].speed = 1f;
-          this.SuicidePrompt.alpha = 0.0f;
-          this.Rumble.volume = 0.0f;
-          Object.Destroy((Object) this.NewDoIt);
-          this.Whisper = false;
-          ++this.AttackPhase;
-        }
-      }
-      else if (this.AttackPhase == 6)
-      {
-        if ((double) this.MyAnim["f02_suicide_00"].time >= (double) this.MyAnim["f02_suicide_00"].length * 0.35499998927116394)
-        {
-          Object.Instantiate<GameObject>(this.StabBloodEffect, this.Knife.transform.position, Quaternion.identity);
-          ++this.AttackPhase;
-        }
-      }
-      else if ((double) this.MyAnim["f02_suicide_00"].time >= (double) this.MyAnim["f02_suicide_00"].length * 0.47499999403953552)
-      {
-        this.MyListener.enabled = false;
-        this.MainCamera.transform.parent = (Transform) null;
-        this.MainCamera.transform.position = new Vector3(0.0f, 2025f, -11f);
-        this.MainCamera.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-        if ((double) this.MyAnim["f02_suicide_00"].time >= (double) this.MyAnim["f02_suicide_00"].length)
-        {
-          if (!GameGlobals.Debug)
-          {
-            PlayerPrefs.SetInt("SNAP", 1);
-            PlayerPrefs.SetInt("a", 1);
-          }
-          SceneManager.LoadScene("LoadingScene");
-        }
-      }
-    }
-    if (this.InputDevice.Type == InputDeviceType.MouseAndKeyboard)
-    {
-      this.SuicidePrompt.text = "F";
-      this.SuicideSprite.enabled = false;
-    }
-    else
-    {
-      this.SuicidePrompt.text = "";
-      this.SuicideSprite.enabled = true;
-    }
-    if ((double) this.ListenTimer <= 0.0)
-      return;
-    this.ListenTimer = Mathf.MoveTowards(this.ListenTimer, 0.0f, Time.deltaTime);
-  }
+	public CameraFilterPack_FX_Glitch2 Glitch2;
 
-  private void UpdateMovement()
-  {
-    int num1 = (int) this.MyController.Move(Physics.gravity * Time.deltaTime);
-    float axis1 = Input.GetAxis("Vertical");
-    float axis2 = Input.GetAxis("Horizontal");
-    Vector3 vector3_1 = this.transform.TransformDirection(Vector3.forward) with
-    {
-      y = 0.0f
-    };
-    vector3_1 = vector3_1.normalized;
-    Vector3 vector3_2 = new Vector3(vector3_1.z, 0.0f, -vector3_1.x);
-    Vector3 vector3_3 = axis2 * vector3_2 + axis1 * vector3_1;
-    if ((double) Mathf.Abs(axis1) > 0.5 || (double) Mathf.Abs(axis2) > 0.5)
-    {
-      this.MyAnim[this.WalkAnim].speed = Mathf.Abs(axis1) + Mathf.Abs(axis2);
-      if ((double) this.MyAnim[this.WalkAnim].speed > 1.0)
-        this.MyAnim[this.WalkAnim].speed = 1f;
-      this.MyAnim.CrossFade(this.WalkAnim);
-      int num2 = (int) this.MyController.Move(vector3_3 * Time.deltaTime);
-    }
-    else
-      this.MyAnim.CrossFade(this.IdleAnim);
-    float num3 = Input.GetAxis("Mouse X") * (float) OptionGlobals.Sensitivity;
-    if ((double) num3 != 0.0)
-      this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, this.transform.eulerAngles.y + num3 * 36f * Time.deltaTime, this.transform.eulerAngles.z);
-    if (!Input.GetButtonDown("LB"))
-      return;
-    int num4 = (int) this.MyController.Move(vector3_3 * 4f);
-    this.SetGlitches(true);
-    this.GlitchTimeLimit = 0.1f;
-  }
+	public CameraFilterPack_FX_Glitch3 Glitch3;
 
-  private void MoveTowardsTarget(Vector3 target)
-  {
-    int num = (int) this.MyController.Move((target - this.transform.position) * (Time.deltaTime * 10f));
-  }
+	public CameraFilterPack_Glitch_Mozaic Glitch4;
 
-  private void RotateTowardsTarget(Quaternion target) => this.transform.rotation = Quaternion.Slerp(this.transform.rotation, target, Time.deltaTime * 10f);
+	public CameraFilterPack_NewGlitch1 Glitch5;
 
-  private void SetGlitches(bool State)
-  {
-    this.GlitchTimer = 0.0f;
-    this.Glitch1.enabled = State;
-    this.Glitch2.enabled = State;
-    this.Glitch4.enabled = State;
-    this.Glitch5.enabled = State;
-    this.Glitch6.enabled = State;
-    this.Glitch7.enabled = State;
-    this.Glitch10.enabled = State;
-    this.Glitch11.enabled = State;
-    if (!State)
-      return;
-    this.MyAudio.clip = this.Buzz;
-    this.MyAudio.volume = 0.5f;
-    this.MyAudio.pitch = Random.Range(0.5f, 2f);
-    this.MyAudio.Play();
-  }
+	public CameraFilterPack_NewGlitch2 Glitch6;
 
-  public void ChooseAttack()
-  {
-    this.BloodSpawned = 0;
-    this.SetGlitches(true);
-    this.GlitchTimeLimit = 0.5f;
-    this.AttackID = Random.Range(1, 6);
-    while (this.AttacksUsed[this.AttackID])
-      this.AttackID = Random.Range(1, 6);
-    this.AttacksUsed[this.AttackID] = true;
-    ++this.Attacks;
-    if (this.AttackID == 1)
-    {
-      this.TargetStudent.transform.position = this.transform.position + this.transform.forward * 0.0001f;
-      this.TargetStudent.transform.LookAt(this.transform.position);
-    }
-    else if (this.AttackID == 2)
-    {
-      this.TargetStudent.transform.position = this.transform.position + this.transform.forward * 0.5f;
-      this.TargetStudent.transform.LookAt(this.transform.position);
-    }
-    else if (this.AttackID == 3)
-    {
-      this.TargetStudent.transform.position = this.transform.position + this.transform.forward * 0.3f;
-      this.TargetStudent.transform.LookAt(this.transform.position);
-    }
-    else if (this.AttackID == 4)
-    {
-      this.TargetStudent.transform.position = this.transform.position + this.transform.forward * 0.3f;
-      this.TargetStudent.transform.rotation = this.transform.rotation;
-    }
-    else if (this.AttackID == 5)
-    {
-      this.TargetStudent.transform.position = this.transform.position + this.transform.forward * 0.66666f;
-      this.TargetStudent.transform.rotation = this.transform.rotation;
-    }
-    Physics.SyncTransforms();
-    this.MyAnim.Play(this.AttackAnims[this.AttackID]);
-    this.MyAnim[this.AttackAnims[this.AttackID]].time = 0.0f;
-    this.TargetStudent.MyAnim.Play(this.TargetStudent.AttackAnims[this.AttackID]);
-    this.TargetStudent.MyAnim[this.TargetStudent.AttackAnims[this.AttackID]].time = 0.0f;
-  }
+	public CameraFilterPack_NewGlitch3 Glitch7;
 
-  public void Teleport()
-  {
-    if (!this.Armed)
-    {
-      bool flag = false;
-      while (!flag)
-      {
-        foreach (WeaponScript weapon in this.Weapons)
-        {
-          if ((Object) weapon != (Object) null)
-          {
-            this.SetGlitches(true);
-            this.GlitchTimeLimit = 1f;
-            this.transform.position = weapon.transform.position;
-            flag = true;
-          }
-        }
-      }
-    }
-    else
-    {
-      ++this.Teleports;
-      this.SetGlitches(true);
-      this.GlitchTimeLimit = 1f;
-      if (this.Teleports == 1)
-      {
-        this.transform.position = this.StudentManager.Students[1].transform.position + this.StudentManager.Students[1].transform.forward * 2f;
-        this.transform.LookAt(this.StudentManager.Students[1].transform.position);
-      }
-      else
-      {
-        this.transform.position = this.StudentManager.Students[1].transform.position + this.StudentManager.Students[1].transform.forward * 0.9f;
-        this.transform.LookAt(this.StudentManager.Students[1].transform.position);
-      }
-    }
-    Physics.SyncTransforms();
-  }
+	public CameraFilterPack_NewGlitch4 Glitch8;
+
+	public CameraFilterPack_NewGlitch5 Glitch9;
+
+	public CameraFilterPack_NewGlitch6 Glitch10;
+
+	public CameraFilterPack_NewGlitch7 Glitch11;
+
+	public CameraFilterPack_TV_CompressionFX CompressionFX;
+
+	public CameraFilterPack_TV_Distorted Distorted;
+
+	public CameraFilterPack_Blur_Tilt_Shift TiltShift;
+
+	public CameraFilterPack_Blur_Tilt_Shift_V TiltShiftV;
+
+	public CameraFilterPack_Noise_TV Static;
+
+	public StudentManagerScript StudentManager;
+
+	public SnapStudentScript TargetStudent;
+
+	public InputDeviceScript InputDevice;
+
+	public GameObject StabBloodEffect;
+
+	public GameObject BloodEffect;
+
+	public GameObject NewDoIt;
+
+	public WeaponScript Knife;
+
+	public AudioListener MyListener;
+
+	public Transform SnapAttackPivot;
+
+	public Transform FinalSnapPOV;
+
+	public Transform SuicidePOV;
+
+	public Transform RightFoot;
+
+	public Transform RightHand;
+
+	public Transform LeftHand;
+
+	public Transform Spine;
+
+	public AudioSource StaticNoise;
+
+	public AudioSource AttackAudio;
+
+	public AudioSource SnapStatic;
+
+	public AudioSource SnapVoice;
+
+	public AudioSource Jukebox;
+
+	public AudioSource MyAudio;
+
+	public AudioSource Rumble;
+
+	public AudioClip EndSNAP;
+
+	public UILabel SNAPLabel;
+
+	public Camera MainCamera;
+
+	public Animation MyAnim;
+
+	public AudioClip Buzz;
+
+	public AudioClip[] Whispers;
+
+	public AudioClip[] FemaleDeathScreams;
+
+	public AudioClip[] MaleDeathScreams;
+
+	public AudioClip[] AttackSFX;
+
+	public GameObject DoIt;
+
+	public UISprite SuicideSprite;
+
+	public UILabel SuicidePrompt;
+
+	public bool KillingSenpai;
+
+	public bool Attacking;
+
+	public bool CanMove;
+
+	public bool SpeedUp;
+
+	public bool Whisper;
+
+	public bool Armed;
+
+	public string IdleAnim;
+
+	public string WalkAnim;
+
+	public float ImpatienceLimit;
+
+	public float GlitchTimeLimit;
+
+	public float WhisperTimer;
+
+	public float AttackTimer;
+
+	public float GlitchTimer;
+
+	public float ImpatienceTimer;
+
+	public float ListenTimer;
+
+	public float HurryTimer;
+
+	public float AnimSpeed;
+
+	public float Target;
+
+	public float Speed;
+
+	public int BloodSpawned;
+
+	public int AttackPhase;
+
+	public int Teleports;
+
+	public int AttackID;
+
+	public int VoiceID;
+
+	public int Attacks;
+
+	public int Taps;
+
+	public string[] AttackAnims;
+
+	public WeaponScript[] Weapons;
+
+	public bool[] AttacksUsed;
+
+	private void Start()
+	{
+		MyAnim[AttackAnims[1]].speed = 1.5f;
+		MyAnim[AttackAnims[2]].speed = 1.5f;
+		MyAnim[AttackAnims[3]].speed = 1.5f;
+		MyAnim[AttackAnims[4]].speed = 1.5f;
+		MyAnim[AttackAnims[5]].speed = 1.5f;
+		if (ClubGlobals.GetClubClosed(ClubType.Cooking))
+		{
+			Weapons[0] = null;
+			Weapons[5] = null;
+		}
+		if (ClubGlobals.GetClubClosed(ClubType.Art))
+		{
+			Weapons[3] = null;
+		}
+		if (ClubGlobals.GetClubClosed(ClubType.Occult))
+		{
+			Weapons[6] = null;
+		}
+	}
+
+	private void Update()
+	{
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		if (Input.GetKeyDown("=") && Time.timeScale < 10f)
+		{
+			Time.timeScale += 1f;
+		}
+		if (Input.GetKeyDown("-") && Time.timeScale > 1f)
+		{
+			Time.timeScale -= 1f;
+		}
+		if (Glitch1.enabled)
+		{
+			if (Attacking)
+			{
+				GlitchTimer += Time.deltaTime * MyAnim[AttackAnims[AttackID]].speed;
+			}
+			else
+			{
+				GlitchTimer += Time.deltaTime;
+			}
+			if (GlitchTimer > GlitchTimeLimit)
+			{
+				SetGlitches(false);
+				if (MyAudio.clip != EndSNAP)
+				{
+					MyAudio.Stop();
+				}
+				if (Attacking)
+				{
+					SnapAttackPivot.position = TargetStudent.Student.Head.position;
+					SnapAttackPivot.localEulerAngles = new Vector3(0f, 0f, 0f);
+					MainCamera.transform.parent = SnapAttackPivot;
+					MainCamera.transform.localPosition = new Vector3(0f, 0f, -1f);
+					MainCamera.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+					SnapAttackPivot.localEulerAngles = new Vector3(Random.Range(-45f, 45f), Random.Range(0f, 360f), 0f);
+					while (MainCamera.transform.position.y < base.transform.position.y + 0.1f)
+					{
+						SnapAttackPivot.localEulerAngles = new Vector3(Random.Range(-45f, 45f), Random.Range(0f, 360f), 0f);
+					}
+					MyAnim[AttackAnims[AttackID]].time = 0f;
+					MyAnim.Play(AttackAnims[AttackID]);
+					MyAnim[AttackAnims[AttackID]].time = 0f;
+					MyAnim[AttackAnims[AttackID]].speed += 0.1f;
+					TargetStudent.MyAnim[TargetStudent.AttackAnims[AttackID]].time = 0f;
+					TargetStudent.MyAnim.Play(TargetStudent.AttackAnims[AttackID]);
+					TargetStudent.MyAnim[TargetStudent.AttackAnims[AttackID]].time = 0f;
+					TargetStudent.MyAnim[TargetStudent.AttackAnims[AttackID]].speed = MyAnim[AttackAnims[AttackID]].speed;
+					if (TargetStudent.Student.Male)
+					{
+						MyAudio.clip = MaleDeathScreams[Random.Range(0, MaleDeathScreams.Length)];
+						MyAudio.pitch = 1f;
+						MyAudio.Play();
+					}
+					else
+					{
+						MyAudio.clip = FemaleDeathScreams[Random.Range(0, FemaleDeathScreams.Length)];
+						MyAudio.pitch = 1f;
+						MyAudio.Play();
+					}
+					AttackAudio.clip = AttackSFX[AttackID];
+					AttackAudio.pitch = MyAnim[AttackAnims[AttackID]].speed;
+					AttackAudio.Play();
+				}
+			}
+		}
+		if (!Armed)
+		{
+			WeaponScript[] weapons = Weapons;
+			foreach (WeaponScript weaponScript in weapons)
+			{
+				if (weaponScript != null && weaponScript.gameObject.activeInHierarchy && Vector3.Distance(base.transform.position, weaponScript.transform.position) < 1.5f)
+				{
+					weaponScript.Prompt.Circle[3].fillAmount = 0f;
+					SNAPLabel.text = "Kill him.";
+					StaticNoise.volume = 0f;
+					Static.Fade = 0f;
+					HurryTimer = 0f;
+					Knife = weaponScript;
+					Armed = true;
+				}
+			}
+		}
+		else
+		{
+			Knife.gameObject.SetActive(true);
+		}
+		if (CanMove)
+		{
+			SNAPLabel.alpha = Mathf.MoveTowards(SNAPLabel.alpha, 1f, Time.deltaTime * 0.2f);
+			HurryTimer += Time.deltaTime;
+			if (HurryTimer > 40f || base.transform.position.y < -0.1f || StudentManager.MaleLockerRoomArea.bounds.Contains(base.transform.position))
+			{
+				Teleport();
+				HurryTimer = 0f;
+				Static.Fade = 0f;
+				StaticNoise.volume = 0f;
+			}
+			else if (HurryTimer > 30f)
+			{
+				StaticNoise.volume += Time.deltaTime * 0.1f;
+				Static.Fade += Time.deltaTime * 0.1f;
+			}
+			UpdateMovement();
+		}
+		else if (Attacking)
+		{
+			SNAPLabel.alpha = 0f;
+			if (MyAnim[AttackAnims[AttackID]].speed == 0f)
+			{
+				MyAnim[AttackAnims[AttackID]].speed = 1f;
+			}
+			if (MyAnim[AttackAnims[AttackID]].time >= MyAnim[AttackAnims[AttackID]].length)
+			{
+				if (Attacks < 5)
+				{
+					ChooseAttack();
+				}
+				else
+				{
+					MainCamera.transform.parent = base.transform;
+					MainCamera.transform.localPosition = new Vector3(0.25f, 1.546664f, -0.5473595f);
+					MainCamera.transform.localEulerAngles = new Vector3(15f, 0f, 0f);
+					SetGlitches(true);
+					GlitchTimeLimit = 0.5f;
+					TargetStudent.Student.BecomeRagdoll();
+					AttacksUsed[1] = false;
+					AttacksUsed[2] = false;
+					AttacksUsed[3] = false;
+					AttacksUsed[4] = false;
+					AttacksUsed[5] = false;
+					Attacking = false;
+					CanMove = true;
+					Attacks = 0;
+				}
+			}
+			else if (!Glitch1.enabled && BloodSpawned < 2)
+			{
+				if (AttackID == 1)
+				{
+					if (BloodSpawned == 0)
+					{
+						if (MyAnim[AttackAnims[AttackID]].time > 0.25f)
+						{
+							Object.Instantiate(BloodEffect, RightHand.position, Quaternion.identity);
+							MyAudio.Stop();
+							BloodSpawned++;
+						}
+					}
+					else if (MyAnim[AttackAnims[AttackID]].time > 1f)
+					{
+						Object.Instantiate(BloodEffect, LeftHand.position, Quaternion.identity);
+						BloodSpawned++;
+					}
+				}
+				else if (AttackID == 2)
+				{
+					if (MyAnim[AttackAnims[AttackID]].time > 1f)
+					{
+						Object.Instantiate(BloodEffect, RightHand.position, Quaternion.identity);
+						BloodSpawned += 2;
+						MyAudio.Stop();
+					}
+				}
+				else if (AttackID == 3)
+				{
+					if (MyAnim[AttackAnims[AttackID]].time > 0.5f)
+					{
+						Object.Instantiate(BloodEffect, RightHand.position, Quaternion.identity);
+						BloodSpawned += 2;
+						MyAudio.Stop();
+					}
+				}
+				else if (AttackID == 4)
+				{
+					if (MyAnim[AttackAnims[AttackID]].time > 0.5f)
+					{
+						MyAudio.Stop();
+					}
+				}
+				else if (AttackID == 5)
+				{
+					if (BloodSpawned == 0)
+					{
+						if (MyAnim[AttackAnims[AttackID]].time > 0.25f)
+						{
+							Object.Instantiate(BloodEffect, RightFoot.position, Quaternion.identity);
+							MyAudio.Stop();
+							BloodSpawned++;
+						}
+					}
+					else if (MyAnim[AttackAnims[AttackID]].time > 0.9f)
+					{
+						Object.Instantiate(BloodEffect, RightFoot.position, Quaternion.identity);
+						BloodSpawned++;
+					}
+				}
+			}
+		}
+		else if (KillingSenpai)
+		{
+			CompressionFX.Parasite = Mathf.MoveTowards(CompressionFX.Parasite, 0f, Time.deltaTime);
+			Distorted.Distortion = Mathf.MoveTowards(Distorted.Distortion, 0f, Time.deltaTime);
+			StaticNoise.volume -= Time.deltaTime * 0.5f;
+			Static.Fade = Mathf.MoveTowards(Static.Fade, 0f, Time.deltaTime * 0.5f);
+			Jukebox.volume -= Time.deltaTime * 0.5f;
+			SnapStatic.volume -= Time.deltaTime * 0.5f * 0.2f;
+			SNAPLabel.alpha = Mathf.MoveTowards(SNAPLabel.alpha, 0f, Time.deltaTime * 0.5f);
+			SnapVoice.volume -= Time.deltaTime;
+			Quaternion b = Quaternion.LookRotation(TargetStudent.transform.position - base.transform.position);
+			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, b, Time.deltaTime);
+			base.transform.position = Vector3.MoveTowards(base.transform.position, TargetStudent.transform.position + TargetStudent.transform.forward * 1f, Time.deltaTime);
+			Speed += Time.deltaTime;
+			if (AttackPhase < 3)
+			{
+				MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, FinalSnapPOV.position, Time.deltaTime * Speed * 0.33333f);
+				MainCamera.transform.rotation = Quaternion.Slerp(MainCamera.transform.rotation, FinalSnapPOV.rotation, Time.deltaTime * Speed * 0.33333f);
+			}
+			else
+			{
+				MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, SuicidePOV.position, Time.deltaTime * Speed * 0.1f);
+				MainCamera.transform.rotation = Quaternion.Slerp(MainCamera.transform.rotation, SuicidePOV.rotation, Time.deltaTime * Speed * 0.1f);
+				if (Whisper)
+				{
+					Rumble.volume = Mathf.MoveTowards(Rumble.volume, 0.5f, Time.deltaTime * 0.05f);
+					WhisperTimer += Time.deltaTime;
+					if (WhisperTimer > 0.5f)
+					{
+						WhisperTimer = 0f;
+						int num = Random.Range(1, Whispers.Length);
+						AudioSource.PlayClipAtPoint(Whispers[num], MainCamera.transform.position + new Vector3(11f - 10f * Rumble.volume * 2f, 11f - 10f * Rumble.volume * 2f, 11f - 10f * Rumble.volume * 2f));
+						NewDoIt = Object.Instantiate(DoIt, SNAPLabel.parent.transform.position, Quaternion.identity);
+						NewDoIt.transform.parent = SNAPLabel.parent.transform;
+						NewDoIt.transform.localScale = new Vector3(1f, 1f, 1f);
+						NewDoIt.transform.localPosition = new Vector3(Random.Range(-700f, 700f), Random.Range(-450f, 450f), 0f);
+						NewDoIt.transform.localEulerAngles = new Vector3(Random.Range(-15f, 15f), Random.Range(-15f, 15f), Random.Range(-15f, 15f));
+					}
+				}
+			}
+			if (AttackPhase == 0)
+			{
+				if (MyAnim["f02_snapKill_00"].time > MyAnim["f02_snapKill_00"].length * 0.2f)
+				{
+					Object.Instantiate(BloodEffect, Knife.transform.position, Quaternion.identity);
+					AttackPhase++;
+				}
+			}
+			else if (AttackPhase == 1)
+			{
+				if (MyAnim["f02_snapKill_00"].time > MyAnim["f02_snapKill_00"].length * 0.36f)
+				{
+					Object.Instantiate(BloodEffect, Knife.transform.position, Quaternion.identity);
+					AttackPhase++;
+				}
+			}
+			else if (AttackPhase == 2)
+			{
+				if (MyAnim["f02_snapKill_00"].time > 13f)
+				{
+					MyAnim["f02_stareAtKnife_00"].layer = 100;
+					MyAnim.Play("f02_stareAtKnife_00");
+					MyAnim["f02_stareAtKnife_00"].weight = 0f;
+					Whisper = true;
+					Rumble.Play();
+					Speed = 0f;
+					AttackPhase++;
+				}
+			}
+			else if (AttackPhase == 3)
+			{
+				Knife.transform.localEulerAngles = Vector3.Lerp(Knife.transform.localEulerAngles, new Vector3(0f, 0f, 0f), Time.deltaTime * Speed);
+				MyAnim["f02_stareAtKnife_00"].weight = Mathf.Lerp(MyAnim["f02_stareAtKnife_00"].weight, 1f, Time.deltaTime * Speed);
+				if (MyAnim["f02_stareAtKnife_00"].weight > 0.999f)
+				{
+					SuicidePrompt.alpha += Time.deltaTime;
+					ImpatienceTimer += Time.deltaTime;
+					if (Input.GetButtonDown("X") || ImpatienceTimer > ImpatienceLimit)
+					{
+						MyAnim["f02_suicide_00"].layer = 101;
+						MyAnim.Play("f02_suicide_00");
+						MyAnim["f02_suicide_00"].weight = 0f;
+						MyAnim["f02_suicide_00"].time = 2f;
+						MyAnim["f02_suicide_00"].speed = 0f;
+						AttackPhase++;
+						if (ImpatienceTimer > ImpatienceLimit)
+						{
+							ImpatienceLimit = 2f;
+							ImpatienceTimer = 0f;
+						}
+						Taps++;
+					}
+				}
+			}
+			else if (AttackPhase == 4)
+			{
+				SuicidePrompt.alpha += Time.deltaTime;
+				ImpatienceTimer += Time.deltaTime;
+				if (Input.GetButtonDown("X") || ImpatienceTimer > ImpatienceLimit)
+				{
+					Target += 0.1f;
+					SpeedUp = true;
+					if (ImpatienceTimer > ImpatienceLimit)
+					{
+						ImpatienceLimit = 2f;
+						ImpatienceTimer = 0f;
+					}
+					Taps++;
+				}
+				if (SpeedUp)
+				{
+					AnimSpeed += Time.deltaTime;
+					if (AnimSpeed > 1f)
+					{
+						SpeedUp = false;
+					}
+				}
+				else
+				{
+					AnimSpeed = Mathf.MoveTowards(AnimSpeed, 0f, Time.deltaTime);
+				}
+				MyAnim["f02_suicide_00"].weight = Mathf.Lerp(MyAnim["f02_suicide_00"].weight, Target, AnimSpeed * Time.deltaTime);
+				if (MyAnim["f02_suicide_00"].weight >= 1f)
+				{
+					SpeedUp = false;
+					AnimSpeed = 0f;
+					Target = 2f;
+					AttackPhase++;
+				}
+			}
+			else if (AttackPhase == 5)
+			{
+				ImpatienceTimer += Time.deltaTime;
+				if (Input.GetButtonDown("X") || ImpatienceTimer > ImpatienceLimit)
+				{
+					Target += 0.1f;
+					SpeedUp = true;
+					if (ImpatienceTimer > ImpatienceLimit)
+					{
+						ImpatienceLimit = 2f;
+						ImpatienceTimer = 0f;
+					}
+					Taps++;
+				}
+				if (SpeedUp)
+				{
+					AnimSpeed += Time.deltaTime;
+					if (AnimSpeed > 1f)
+					{
+						SpeedUp = false;
+					}
+				}
+				else
+				{
+					AnimSpeed = Mathf.MoveTowards(AnimSpeed, 0f, Time.deltaTime);
+				}
+				MyAnim["f02_suicide_00"].time = Mathf.Lerp(MyAnim["f02_suicide_00"].time, Target, AnimSpeed * Time.deltaTime);
+				if (MyAnim["f02_suicide_00"].time >= 3.66666f)
+				{
+					MyAnim["f02_suicide_00"].speed = 1f;
+					SuicidePrompt.alpha = 0f;
+					Rumble.volume = 0f;
+					Object.Destroy(NewDoIt);
+					Whisper = false;
+					AttackPhase++;
+				}
+			}
+			else if (AttackPhase == 6)
+			{
+				if (MyAnim["f02_suicide_00"].time >= MyAnim["f02_suicide_00"].length * 0.355f)
+				{
+					Object.Instantiate(StabBloodEffect, Knife.transform.position, Quaternion.identity);
+					AttackPhase++;
+				}
+			}
+			else if (MyAnim["f02_suicide_00"].time >= MyAnim["f02_suicide_00"].length * 0.475f)
+			{
+				MyListener.enabled = false;
+				MainCamera.transform.parent = null;
+				MainCamera.transform.position = new Vector3(0f, 2025f, -11f);
+				MainCamera.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+				if (MyAnim["f02_suicide_00"].time >= MyAnim["f02_suicide_00"].length)
+				{
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("SNAP", 1);
+						PlayerPrefs.SetInt("a", 1);
+					}
+					SceneManager.LoadScene("LoadingScene");
+				}
+			}
+		}
+		if (InputDevice.Type == InputDeviceType.MouseAndKeyboard)
+		{
+			SuicidePrompt.text = "F";
+			SuicideSprite.enabled = false;
+		}
+		else
+		{
+			SuicidePrompt.text = "";
+			SuicideSprite.enabled = true;
+		}
+		if (ListenTimer > 0f)
+		{
+			ListenTimer = Mathf.MoveTowards(ListenTimer, 0f, Time.deltaTime);
+		}
+	}
+
+	private void UpdateMovement()
+	{
+		MyController.Move(Physics.gravity * Time.deltaTime);
+		float axis = Input.GetAxis("Vertical");
+		float axis2 = Input.GetAxis("Horizontal");
+		Vector3 vector = base.transform.TransformDirection(Vector3.forward);
+		vector.y = 0f;
+		vector = vector.normalized;
+		Vector3 vector2 = new Vector3(vector.z, 0f, 0f - vector.x);
+		Vector3 vector3 = axis2 * vector2 + axis * vector;
+		if (Mathf.Abs(axis) > 0.5f || Mathf.Abs(axis2) > 0.5f)
+		{
+			MyAnim[WalkAnim].speed = Mathf.Abs(axis) + Mathf.Abs(axis2);
+			if (MyAnim[WalkAnim].speed > 1f)
+			{
+				MyAnim[WalkAnim].speed = 1f;
+			}
+			MyAnim.CrossFade(WalkAnim);
+			MyController.Move(vector3 * Time.deltaTime);
+		}
+		else
+		{
+			MyAnim.CrossFade(IdleAnim);
+		}
+		float num = Input.GetAxis("Mouse X") * (float)OptionGlobals.Sensitivity;
+		if (num != 0f)
+		{
+			base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, base.transform.eulerAngles.y + num * 36f * Time.deltaTime, base.transform.eulerAngles.z);
+		}
+		if (Input.GetButtonDown("LB"))
+		{
+			MyController.Move(vector3 * 4f);
+			SetGlitches(true);
+			GlitchTimeLimit = 0.1f;
+		}
+	}
+
+	private void MoveTowardsTarget(Vector3 target)
+	{
+		Vector3 vector = target - base.transform.position;
+		MyController.Move(vector * (Time.deltaTime * 10f));
+	}
+
+	private void RotateTowardsTarget(Quaternion target)
+	{
+		base.transform.rotation = Quaternion.Slerp(base.transform.rotation, target, Time.deltaTime * 10f);
+	}
+
+	private void SetGlitches(bool State)
+	{
+		GlitchTimer = 0f;
+		Glitch1.enabled = State;
+		Glitch2.enabled = State;
+		Glitch4.enabled = State;
+		Glitch5.enabled = State;
+		Glitch6.enabled = State;
+		Glitch7.enabled = State;
+		Glitch10.enabled = State;
+		Glitch11.enabled = State;
+		if (State)
+		{
+			MyAudio.clip = Buzz;
+			MyAudio.volume = 0.5f;
+			MyAudio.pitch = Random.Range(0.5f, 2f);
+			MyAudio.Play();
+		}
+	}
+
+	public void ChooseAttack()
+	{
+		BloodSpawned = 0;
+		SetGlitches(true);
+		GlitchTimeLimit = 0.5f;
+		AttackID = Random.Range(1, 6);
+		while (AttacksUsed[AttackID])
+		{
+			AttackID = Random.Range(1, 6);
+		}
+		AttacksUsed[AttackID] = true;
+		Attacks++;
+		if (AttackID == 1)
+		{
+			TargetStudent.transform.position = base.transform.position + base.transform.forward * 0.0001f;
+			TargetStudent.transform.LookAt(base.transform.position);
+		}
+		else if (AttackID == 2)
+		{
+			TargetStudent.transform.position = base.transform.position + base.transform.forward * 0.5f;
+			TargetStudent.transform.LookAt(base.transform.position);
+		}
+		else if (AttackID == 3)
+		{
+			TargetStudent.transform.position = base.transform.position + base.transform.forward * 0.3f;
+			TargetStudent.transform.LookAt(base.transform.position);
+		}
+		else if (AttackID == 4)
+		{
+			TargetStudent.transform.position = base.transform.position + base.transform.forward * 0.3f;
+			TargetStudent.transform.rotation = base.transform.rotation;
+		}
+		else if (AttackID == 5)
+		{
+			TargetStudent.transform.position = base.transform.position + base.transform.forward * 0.66666f;
+			TargetStudent.transform.rotation = base.transform.rotation;
+		}
+		Physics.SyncTransforms();
+		MyAnim.Play(AttackAnims[AttackID]);
+		MyAnim[AttackAnims[AttackID]].time = 0f;
+		TargetStudent.MyAnim.Play(TargetStudent.AttackAnims[AttackID]);
+		TargetStudent.MyAnim[TargetStudent.AttackAnims[AttackID]].time = 0f;
+	}
+
+	public void Teleport()
+	{
+		if (!Armed)
+		{
+			bool flag = false;
+			while (!flag)
+			{
+				WeaponScript[] weapons = Weapons;
+				foreach (WeaponScript weaponScript in weapons)
+				{
+					if (weaponScript != null)
+					{
+						SetGlitches(true);
+						GlitchTimeLimit = 1f;
+						base.transform.position = weaponScript.transform.position;
+						flag = true;
+					}
+				}
+			}
+		}
+		else
+		{
+			Teleports++;
+			SetGlitches(true);
+			GlitchTimeLimit = 1f;
+			if (Teleports == 1)
+			{
+				base.transform.position = StudentManager.Students[1].transform.position + StudentManager.Students[1].transform.forward * 2f;
+				base.transform.LookAt(StudentManager.Students[1].transform.position);
+			}
+			else
+			{
+				base.transform.position = StudentManager.Students[1].transform.position + StudentManager.Students[1].transform.forward * 0.9f;
+				base.transform.LookAt(StudentManager.Students[1].transform.position);
+			}
+		}
+		Physics.SyncTransforms();
+	}
 }

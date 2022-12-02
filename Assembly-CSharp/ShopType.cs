@@ -1,19 +1,13 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ShopType
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public enum ShopType
 {
-  Nonfunctional,
-  Hardware,
-  Manga,
-  Maid,
-  Salon,
-  Gift,
-  Convenience,
-  Games,
-  Electronics,
-  Lingerie,
+	Nonfunctional = 0,
+	Hardware = 1,
+	Manga = 2,
+	Maid = 3,
+	Salon = 4,
+	Gift = 5,
+	Convenience = 6,
+	Games = 7,
+	Electronics = 8,
+	Lingerie = 9
 }

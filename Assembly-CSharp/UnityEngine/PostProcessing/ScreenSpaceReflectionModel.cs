@@ -1,122 +1,142 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityEngine.PostProcessing.ScreenSpaceReflectionModel
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 
 namespace UnityEngine.PostProcessing
 {
-  [Serializable]
-  public class ScreenSpaceReflectionModel : PostProcessingModel
-  {
-    [SerializeField]
-    private ScreenSpaceReflectionModel.Settings m_Settings = ScreenSpaceReflectionModel.Settings.defaultSettings;
+	[Serializable]
+	public class ScreenSpaceReflectionModel : PostProcessingModel
+	{
+		public enum SSRResolution
+		{
+			High = 0,
+			Low = 2
+		}
 
-    public ScreenSpaceReflectionModel.Settings settings
-    {
-      get => this.m_Settings;
-      set => this.m_Settings = value;
-    }
+		public enum SSRReflectionBlendType
+		{
+			PhysicallyBased = 0,
+			Additive = 1
+		}
 
-    public override void Reset() => this.m_Settings = ScreenSpaceReflectionModel.Settings.defaultSettings;
+		[Serializable]
+		public struct IntensitySettings
+		{
+			[Tooltip("Nonphysical multiplier for the SSR reflections. 1.0 is physically based.")]
+			[Range(0f, 2f)]
+			public float reflectionMultiplier;
 
-    public enum SSRResolution
-    {
-      High = 0,
-      Low = 2,
-    }
+			[Tooltip("How far away from the maxDistance to begin fading SSR.")]
+			[Range(0f, 1000f)]
+			public float fadeDistance;
 
-    public enum SSRReflectionBlendType
-    {
-      PhysicallyBased,
-      Additive,
-    }
+			[Tooltip("Amplify Fresnel fade out. Increase if floor reflections look good close to the surface and bad farther 'under' the floor.")]
+			[Range(0f, 1f)]
+			public float fresnelFade;
 
-    [Serializable]
-    public struct IntensitySettings
-    {
-      [Tooltip("Nonphysical multiplier for the SSR reflections. 1.0 is physically based.")]
-      [Range(0.0f, 2f)]
-      public float reflectionMultiplier;
-      [Tooltip("How far away from the maxDistance to begin fading SSR.")]
-      [Range(0.0f, 1000f)]
-      public float fadeDistance;
-      [Tooltip("Amplify Fresnel fade out. Increase if floor reflections look good close to the surface and bad farther 'under' the floor.")]
-      [Range(0.0f, 1f)]
-      public float fresnelFade;
-      [Tooltip("Higher values correspond to a faster Fresnel fade as the reflection changes from the grazing angle.")]
-      [Range(0.1f, 10f)]
-      public float fresnelFadePower;
-    }
+			[Tooltip("Higher values correspond to a faster Fresnel fade as the reflection changes from the grazing angle.")]
+			[Range(0.1f, 10f)]
+			public float fresnelFadePower;
+		}
 
-    [Serializable]
-    public struct ReflectionSettings
-    {
-      [Tooltip("How the reflections are blended into the render.")]
-      public ScreenSpaceReflectionModel.SSRReflectionBlendType blendType;
-      [Tooltip("Half resolution SSRR is much faster, but less accurate.")]
-      public ScreenSpaceReflectionModel.SSRResolution reflectionQuality;
-      [Tooltip("Maximum reflection distance in world units.")]
-      [Range(0.1f, 300f)]
-      public float maxDistance;
-      [Tooltip("Max raytracing length.")]
-      [Range(16f, 1024f)]
-      public int iterationCount;
-      [Tooltip("Log base 2 of ray tracing coarse step size. Higher traces farther, lower gives better quality silhouettes.")]
-      [Range(1f, 16f)]
-      public int stepSize;
-      [Tooltip("Typical thickness of columns, walls, furniture, and other objects that reflection rays might pass behind.")]
-      [Range(0.01f, 10f)]
-      public float widthModifier;
-      [Tooltip("Blurriness of reflections.")]
-      [Range(0.1f, 8f)]
-      public float reflectionBlur;
-      [Tooltip("Disable for a performance gain in scenes where most glossy objects are horizontal, like floors, water, and tables. Leave on for scenes with glossy vertical objects.")]
-      public bool reflectBackfaces;
-    }
+		[Serializable]
+		public struct ReflectionSettings
+		{
+			[Tooltip("How the reflections are blended into the render.")]
+			public SSRReflectionBlendType blendType;
 
-    [Serializable]
-    public struct ScreenEdgeMask
-    {
-      [Tooltip("Higher = fade out SSRR near the edge of the screen so that reflections don't pop under camera motion.")]
-      [Range(0.0f, 1f)]
-      public float intensity;
-    }
+			[Tooltip("Half resolution SSRR is much faster, but less accurate.")]
+			public SSRResolution reflectionQuality;
 
-    [Serializable]
-    public struct Settings
-    {
-      public ScreenSpaceReflectionModel.ReflectionSettings reflection;
-      public ScreenSpaceReflectionModel.IntensitySettings intensity;
-      public ScreenSpaceReflectionModel.ScreenEdgeMask screenEdgeMask;
+			[Tooltip("Maximum reflection distance in world units.")]
+			[Range(0.1f, 300f)]
+			public float maxDistance;
 
-      public static ScreenSpaceReflectionModel.Settings defaultSettings => new ScreenSpaceReflectionModel.Settings()
-      {
-        reflection = new ScreenSpaceReflectionModel.ReflectionSettings()
-        {
-          blendType = ScreenSpaceReflectionModel.SSRReflectionBlendType.PhysicallyBased,
-          reflectionQuality = ScreenSpaceReflectionModel.SSRResolution.Low,
-          maxDistance = 100f,
-          iterationCount = 256,
-          stepSize = 3,
-          widthModifier = 0.5f,
-          reflectionBlur = 1f,
-          reflectBackfaces = false
-        },
-        intensity = new ScreenSpaceReflectionModel.IntensitySettings()
-        {
-          reflectionMultiplier = 1f,
-          fadeDistance = 100f,
-          fresnelFade = 1f,
-          fresnelFadePower = 1f
-        },
-        screenEdgeMask = new ScreenSpaceReflectionModel.ScreenEdgeMask()
-        {
-          intensity = 0.03f
-        }
-      };
-    }
-  }
+			[Tooltip("Max raytracing length.")]
+			[Range(16f, 1024f)]
+			public int iterationCount;
+
+			[Tooltip("Log base 2 of ray tracing coarse step size. Higher traces farther, lower gives better quality silhouettes.")]
+			[Range(1f, 16f)]
+			public int stepSize;
+
+			[Tooltip("Typical thickness of columns, walls, furniture, and other objects that reflection rays might pass behind.")]
+			[Range(0.01f, 10f)]
+			public float widthModifier;
+
+			[Tooltip("Blurriness of reflections.")]
+			[Range(0.1f, 8f)]
+			public float reflectionBlur;
+
+			[Tooltip("Disable for a performance gain in scenes where most glossy objects are horizontal, like floors, water, and tables. Leave on for scenes with glossy vertical objects.")]
+			public bool reflectBackfaces;
+		}
+
+		[Serializable]
+		public struct ScreenEdgeMask
+		{
+			[Tooltip("Higher = fade out SSRR near the edge of the screen so that reflections don't pop under camera motion.")]
+			[Range(0f, 1f)]
+			public float intensity;
+		}
+
+		[Serializable]
+		public struct Settings
+		{
+			public ReflectionSettings reflection;
+
+			public IntensitySettings intensity;
+
+			public ScreenEdgeMask screenEdgeMask;
+
+			public static Settings defaultSettings
+			{
+				get
+				{
+					Settings result = default(Settings);
+					result.reflection = new ReflectionSettings
+					{
+						blendType = SSRReflectionBlendType.PhysicallyBased,
+						reflectionQuality = SSRResolution.Low,
+						maxDistance = 100f,
+						iterationCount = 256,
+						stepSize = 3,
+						widthModifier = 0.5f,
+						reflectionBlur = 1f,
+						reflectBackfaces = false
+					};
+					result.intensity = new IntensitySettings
+					{
+						reflectionMultiplier = 1f,
+						fadeDistance = 100f,
+						fresnelFade = 1f,
+						fresnelFadePower = 1f
+					};
+					result.screenEdgeMask = new ScreenEdgeMask
+					{
+						intensity = 0.03f
+					};
+					return result;
+				}
+			}
+		}
+
+		[SerializeField]
+		private Settings m_Settings = Settings.defaultSettings;
+
+		public Settings settings
+		{
+			get
+			{
+				return m_Settings;
+			}
+			set
+			{
+				m_Settings = value;
+			}
+		}
+
+		public override void Reset()
+		{
+			m_Settings = Settings.defaultSettings;
+		}
+	}
 }

@@ -1,55 +1,57 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BoneScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class BoneScript : MonoBehaviour
 {
-  public AudioSource MyAudio;
-  public float Height;
-  public float Origin;
-  public bool Drop;
+	public AudioSource MyAudio;
 
-  private void Start()
-  {
-    this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, Random.Range(0.0f, 360f), this.transform.eulerAngles.z);
-    this.Origin = this.transform.position.y;
-    this.MyAudio.pitch = Random.Range(0.9f, 1.1f);
-  }
+	public float Height;
 
-  private void Update()
-  {
-    if (!this.Drop)
-    {
-      if ((double) this.transform.position.y < (double) this.Origin + 2.0 - 9.9999997473787516E-05)
-        this.transform.position = new Vector3(this.transform.position.x, Mathf.Lerp(this.transform.position.y, this.Origin + 2f, Time.deltaTime * 10f), this.transform.position.z);
-      else
-        this.Drop = true;
-    }
-    else
-    {
-      this.Height -= Time.deltaTime;
-      this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + this.Height, this.transform.position.z);
-      if ((double) this.transform.position.y >= (double) this.Origin - 2.1549999713897705)
-        return;
-      Object.Destroy((Object) this.gameObject);
-    }
-  }
+	public float Origin;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (other.gameObject.layer != 9)
-      return;
-    StudentScript component = other.gameObject.GetComponent<StudentScript>();
-    if (!((Object) component != (Object) null))
-      return;
-    component.DeathType = DeathType.EasterEgg;
-    component.BecomeRagdoll();
-    Rigidbody allRigidbody = component.Ragdoll.AllRigidbodies[0];
-    allRigidbody.isKinematic = false;
-    allRigidbody.AddForce(this.transform.up);
-  }
+	public bool Drop;
+
+	private void Start()
+	{
+		base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, Random.Range(0f, 360f), base.transform.eulerAngles.z);
+		Origin = base.transform.position.y;
+		MyAudio.pitch = Random.Range(0.9f, 1.1f);
+	}
+
+	private void Update()
+	{
+		if (!Drop)
+		{
+			if (base.transform.position.y < Origin + 2f - 0.0001f)
+			{
+				base.transform.position = new Vector3(base.transform.position.x, Mathf.Lerp(base.transform.position.y, Origin + 2f, Time.deltaTime * 10f), base.transform.position.z);
+			}
+			else
+			{
+				Drop = true;
+			}
+			return;
+		}
+		Height -= Time.deltaTime;
+		base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + Height, base.transform.position.z);
+		if (base.transform.position.y < Origin - 2.155f)
+		{
+			Object.Destroy(base.gameObject);
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer == 9)
+		{
+			StudentScript component = other.gameObject.GetComponent<StudentScript>();
+			if (component != null)
+			{
+				component.DeathType = DeathType.EasterEgg;
+				component.BecomeRagdoll();
+				Rigidbody obj = component.Ragdoll.AllRigidbodies[0];
+				obj.isKinematic = false;
+				obj.AddForce(base.transform.up);
+			}
+		}
+	}
 }

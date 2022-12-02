@@ -1,248 +1,312 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: OsanaClubEventScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class OsanaClubEventScript : MonoBehaviour
 {
-  public EventManagerScript RooftopConversation;
-  public StudentManagerScript StudentManager;
-  public UILabel EventSubtitle;
-  public YandereScript Yandere;
-  public JukeboxScript Jukebox;
-  public ClockScript Clock;
-  public StudentScript[] EventStudent;
-  public Transform[] EventLocation;
-  public AudioClip[] EventClip;
-  public string[] EventSpeech;
-  public string[] EventAnim;
-  public int[] EventSpeaker;
-  public int[] ClubIDs;
-  public GameObject VoiceClip;
-  public AudioSource VoiceClipSource;
-  public bool ReachedTheEnd;
-  public bool EventOn;
-  public bool Spoken;
-  public int EventPhase;
-  public float Timer;
-  public float Scale;
-  public int[] StudentID;
-  public DayOfWeek EventDay;
+	public EventManagerScript RooftopConversation;
 
-  private void Start()
-  {
-    if (DateGlobals.Weekday == this.EventDay && !GameGlobals.AlphabetMode && !MissionModeGlobals.MissionMode && !GameGlobals.Eighties)
-      return;
-    this.enabled = false;
-  }
+	public StudentManagerScript StudentManager;
 
-  private void Update()
-  {
-    if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-    {
-      if ((UnityEngine.Object) this.VoiceClipSource == (UnityEngine.Object) null)
-        this.VoiceClipSource = this.VoiceClip.GetComponent<AudioSource>();
-      else
-        this.VoiceClipSource.pitch = Time.timeScale;
-    }
-    if (!this.EventOn)
-    {
-      for (int index = 1; index < 3; ++index)
-      {
-        if ((UnityEngine.Object) this.EventStudent[index] == (UnityEngine.Object) null)
-          this.EventStudent[index] = this.StudentManager.Students[this.StudentID[index]];
-        else if (!this.EventStudent[index].Alive || this.EventStudent[index].Slave)
-          this.enabled = false;
-      }
-      if (!((UnityEngine.Object) this.EventStudent[1] != (UnityEngine.Object) null) || !((UnityEngine.Object) this.EventStudent[2] != (UnityEngine.Object) null) || !this.EventStudent[1].enabled || !this.EventStudent[1].Pathfinding.canMove || !this.EventStudent[2].Pathfinding.canMove || !this.EventStudent[1].Routine || this.EventStudent[1].Wet)
-        return;
-      Debug.Log((object) "Osana's club event has begun.");
-      this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].WalkAnim);
-      this.EventStudent[1].CurrentDestination = this.EventLocation[1];
-      this.EventStudent[1].Pathfinding.target = this.EventLocation[1];
-      this.EventStudent[1].TargetDistance = 0.5f;
-      this.EventStudent[1].Private = false;
-      this.EventStudent[1].InEvent = true;
-      this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].WalkAnim);
-      this.EventStudent[2].CurrentDestination = this.EventLocation[2];
-      this.EventStudent[2].Pathfinding.target = this.EventLocation[2];
-      this.EventStudent[2].TargetDistance = 1f;
-      this.EventStudent[2].Private = false;
-      this.EventStudent[2].InEvent = true;
-      this.Yandere.PauseScreen.Hint.Show = true;
-      this.Yandere.PauseScreen.Hint.QuickID = 16;
-      this.EventOn = true;
-    }
-    else
-    {
-      float num = Vector3.Distance(this.Yandere.transform.position, (this.EventStudent[1].transform.position - this.EventStudent[2].transform.position) * 0.5f + this.EventStudent[2].transform.position);
-      this.Yandere.Eavesdropping = this.EventPhase > 1 && this.EventPhase < 7 && (double) num < 3.0;
-      if ((double) this.Clock.HourTime > 13.5 || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].Splashed || this.EventStudent[1].Dodging || this.EventStudent[1].GoAway || this.Clock.Police.EndOfDay.gameObject.activeInHierarchy)
-      {
-        this.EndEvent();
-      }
-      else
-      {
-        for (int index = 1; index < 3; ++index)
-        {
-          if (!this.EventStudent[index].Pathfinding.canMove && !this.EventStudent[index].Private)
-          {
-            this.EventStudent[index].CharacterAnimation.CrossFade(this.EventStudent[index].IdleAnim);
-            this.EventStudent[index].Private = true;
-            this.StudentManager.UpdateStudents();
-          }
-        }
-        if (!this.EventStudent[1].Pathfinding.canMove && !this.EventStudent[2].Pathfinding.canMove)
-        {
-          if (!this.Spoken)
-          {
-            this.EventStudent[this.EventSpeaker[1]].CharacterAnimation.CrossFade(this.EventStudent[1].IdleAnim);
-            this.EventStudent[this.EventSpeaker[2]].CharacterAnimation.CrossFade(this.EventStudent[2].IdleAnim);
-            this.EventStudent[this.EventSpeaker[this.EventPhase]].PickRandomAnim();
-            this.EventStudent[this.EventSpeaker[this.EventPhase]].CharacterAnimation.CrossFade(this.EventStudent[this.EventSpeaker[this.EventPhase]].RandomAnim);
-            AudioClipPlayer.Play(this.EventClip[this.EventPhase], this.EventStudent[this.EventSpeaker[this.EventPhase]].transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-            this.Spoken = true;
-            if (this.EventSpeaker[this.EventPhase] != 1 || this.EventPhase <= 7 || this.EventPhase >= 33 || this.EventPhase == 24 || (double) num >= 10.0)
-              return;
-            if (this.EventPhase == 30)
-            {
-              Debug.Log((object) "Current EventPhase is: 30 and Osana is talking about the delinquents.");
-              this.Yandere.NotificationManager.TopicName = "Violence";
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-              this.StudentManager.SetTopicLearnedByStudent(this.ClubIDs[this.EventPhase], 11, true);
-            }
-            else
-            {
-              Debug.Log((object) ("Current EventPhase is: " + this.EventPhase.ToString() + " and ClubID is: " + this.ClubIDs[this.EventPhase].ToString()));
-              this.Yandere.NotificationManager.TopicName = this.Yandere.NotificationManager.ClubNames[this.ClubIDs[this.EventPhase]];
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-              this.StudentManager.SetTopicLearnedByStudent(this.ClubIDs[this.EventPhase], 11, true);
-            }
-          }
-          else
-          {
-            int index = this.EventSpeaker[this.EventPhase];
-            if (index == 1)
-              this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].IdleAnim);
-            else
-              this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[2].IdleAnim);
-            if ((double) this.EventStudent[index].CharacterAnimation[this.EventStudent[index].RandomAnim].time >= (double) this.EventStudent[index].CharacterAnimation[this.EventStudent[index].RandomAnim].length)
-            {
-              this.EventStudent[index].PickRandomAnim();
-              this.EventStudent[index].CharacterAnimation.CrossFade(this.EventStudent[index].RandomAnim);
-            }
-            this.Timer += Time.deltaTime;
-            if ((double) this.Yandere.transform.position.y > (double) this.EventStudent[1].transform.position.y - 1.0 && (double) this.Yandere.transform.position.y < (double) this.EventStudent[1].transform.position.y + 1.0)
-            {
-              if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
-                this.VoiceClipSource.volume = 1f;
-              if ((double) num < 11.0)
-              {
-                if ((double) num < 10.0)
-                {
-                  this.EventSubtitle.text = (double) this.Timer <= (double) this.EventClip[this.EventPhase].length ? this.EventSpeech[this.EventPhase] : string.Empty;
-                  this.Scale = Mathf.Abs((float) (((double) num - 10.0) * 0.20000000298023224));
-                  if ((double) this.Scale < 0.0)
-                    this.Scale = 0.0f;
-                  if ((double) this.Scale > 1.0)
-                    this.Scale = 1f;
-                  this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
-                  this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-                }
-                else
-                {
-                  this.EventSubtitle.transform.localScale = Vector3.zero;
-                  this.EventSubtitle.text = string.Empty;
-                }
-              }
-            }
-            else if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
-              this.VoiceClipSource.volume = 0.0f;
-            if ((double) this.Timer <= (double) this.EventClip[this.EventPhase].length + 0.5)
-              return;
-            this.Spoken = false;
-            ++this.EventPhase;
-            this.Timer = 0.0f;
-            if (this.EventPhase == 4)
-              this.RooftopConversation.CanHappen = true;
-            if (this.EventPhase == this.EventSpeech.Length)
-            {
-              this.EndEvent();
-            }
-            else
-            {
-              if (this.EventPhase <= 6)
-                return;
-              this.EventStudent[1].CurrentDestination = this.EventLocation[this.EventPhase];
-              this.EventStudent[1].Pathfinding.target = this.EventLocation[this.EventPhase];
-              this.EventStudent[2].CurrentDestination = this.EventStudent[1].FollowTargetDestination;
-              this.EventStudent[2].Pathfinding.target = this.EventStudent[1].FollowTargetDestination;
-            }
-          }
-        }
-        else
-        {
-          if (!this.EventStudent[1].Pathfinding.canMove)
-            this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].IdleAnim);
-          else
-            this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].WalkAnim);
-          if (!this.EventStudent[2].Pathfinding.canMove)
-          {
-            this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].IdleAnim);
-            if (this.EventPhase != 1)
-              return;
-            this.SettleFriend();
-          }
-          else if ((double) this.EventStudent[2].Pathfinding.speed == 1.0)
-            this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].WalkAnim);
-          else
-            this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].RunAnim);
-        }
-      }
-    }
-  }
+	public UILabel EventSubtitle;
 
-  private void SettleFriend() => this.EventStudent[2].MoveTowardsTarget(this.EventStudent[2].Pathfinding.target.position);
+	public YandereScript Yandere;
 
-  public void EndEvent()
-  {
-    Debug.Log((object) "Ending Osana's club event.");
-    if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-      UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    for (int index = 1; index < 3; ++index)
-    {
-      if ((UnityEngine.Object) this.EventStudent[index] != (UnityEngine.Object) null)
-      {
-        this.EventStudent[index].CurrentDestination = this.EventStudent[index].Destinations[this.EventStudent[index].Phase];
-        this.EventStudent[index].Pathfinding.target = this.EventStudent[index].Destinations[this.EventStudent[index].Phase];
-        this.EventStudent[index].InEvent = false;
-        this.EventStudent[index].Private = false;
-      }
-    }
-    this.CheckForRooftopConvo();
-    if (!this.StudentManager.Stop)
-      this.StudentManager.UpdateStudents();
-    this.Yandere.Eavesdropping = false;
-    this.Jukebox.Dip = 1f;
-    this.EventSubtitle.text = string.Empty;
-    this.ReachedTheEnd = true;
-    if (this.EventStudent[1].GoAway)
-    {
-      this.EventStudent[1].Subtitle.CustomText = "Ugh, seriously?! Guess we'll just talk about it later...";
-      this.EventStudent[1].Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-    }
-    this.enabled = false;
-  }
+	public JukeboxScript Jukebox;
 
-  public void CheckForRooftopConvo()
-  {
-    if (!((UnityEngine.Object) this.StudentManager.Students[10] != (UnityEngine.Object) null) || !((UnityEngine.Object) this.StudentManager.Students[11] != (UnityEngine.Object) null) || !this.StudentManager.Students[11].Alive || this.StudentManager.Students[10].CurrentAction != StudentActionType.Follow)
-      return;
-    Debug.Log((object) "Osana's rooftop conversation with Raibaru can happen.");
-    this.RooftopConversation.CanHappen = true;
-  }
+	public ClockScript Clock;
+
+	public StudentScript[] EventStudent;
+
+	public Transform[] EventLocation;
+
+	public AudioClip[] EventClip;
+
+	public string[] EventSpeech;
+
+	public string[] EventAnim;
+
+	public int[] EventSpeaker;
+
+	public int[] ClubIDs;
+
+	public GameObject VoiceClip;
+
+	public AudioSource VoiceClipSource;
+
+	public bool ReachedTheEnd;
+
+	public bool EventOn;
+
+	public bool Spoken;
+
+	public int EventPhase;
+
+	public float Timer;
+
+	public float Scale;
+
+	public int[] StudentID;
+
+	public DayOfWeek EventDay;
+
+	private void Start()
+	{
+		if (DateGlobals.Weekday != EventDay || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || GameGlobals.Eighties)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (VoiceClip != null)
+		{
+			if (VoiceClipSource == null)
+			{
+				VoiceClipSource = VoiceClip.GetComponent<AudioSource>();
+			}
+			else
+			{
+				VoiceClipSource.pitch = Time.timeScale;
+			}
+		}
+		if (!EventOn)
+		{
+			for (int i = 1; i < 3; i++)
+			{
+				if (EventStudent[i] == null)
+				{
+					EventStudent[i] = StudentManager.Students[StudentID[i]];
+				}
+				else if (!EventStudent[i].Alive || EventStudent[i].Slave)
+				{
+					base.enabled = false;
+				}
+			}
+			if (EventStudent[1] != null && EventStudent[2] != null && EventStudent[1].enabled && EventStudent[1].Pathfinding.canMove && EventStudent[2].Pathfinding.canMove && EventStudent[1].Routine && !EventStudent[1].Wet)
+			{
+				Debug.Log("Osana's club event has begun.");
+				EventStudent[1].CharacterAnimation.CrossFade(EventStudent[1].WalkAnim);
+				EventStudent[1].CurrentDestination = EventLocation[1];
+				EventStudent[1].Pathfinding.target = EventLocation[1];
+				EventStudent[1].TargetDistance = 0.5f;
+				EventStudent[1].Private = false;
+				EventStudent[1].InEvent = true;
+				EventStudent[2].CharacterAnimation.CrossFade(EventStudent[2].WalkAnim);
+				EventStudent[2].CurrentDestination = EventLocation[2];
+				EventStudent[2].Pathfinding.target = EventLocation[2];
+				EventStudent[2].TargetDistance = 1f;
+				EventStudent[2].Private = false;
+				EventStudent[2].InEvent = true;
+				Yandere.PauseScreen.Hint.Show = true;
+				Yandere.PauseScreen.Hint.QuickID = 16;
+				EventOn = true;
+			}
+			return;
+		}
+		Vector3 b = (EventStudent[1].transform.position - EventStudent[2].transform.position) * 0.5f + EventStudent[2].transform.position;
+		float num = Vector3.Distance(Yandere.transform.position, b);
+		if (EventPhase > 1 && EventPhase < 7)
+		{
+			Yandere.Eavesdropping = num < 3f;
+		}
+		else
+		{
+			Yandere.Eavesdropping = false;
+		}
+		if (Clock.HourTime > 13.5f || EventStudent[1].WitnessedCorpse || EventStudent[2].WitnessedCorpse || EventStudent[1].Alarmed || EventStudent[2].Alarmed || EventStudent[1].Dying || EventStudent[2].Dying || EventStudent[1].Splashed || EventStudent[1].Dodging || EventStudent[1].GoAway || Clock.Police.EndOfDay.gameObject.activeInHierarchy)
+		{
+			EndEvent();
+			return;
+		}
+		for (int j = 1; j < 3; j++)
+		{
+			if (!EventStudent[j].Pathfinding.canMove && !EventStudent[j].Private)
+			{
+				EventStudent[j].CharacterAnimation.CrossFade(EventStudent[j].IdleAnim);
+				EventStudent[j].Private = true;
+				StudentManager.UpdateStudents();
+			}
+		}
+		if (!EventStudent[1].Pathfinding.canMove && !EventStudent[2].Pathfinding.canMove)
+		{
+			if (!Spoken)
+			{
+				EventStudent[EventSpeaker[1]].CharacterAnimation.CrossFade(EventStudent[1].IdleAnim);
+				EventStudent[EventSpeaker[2]].CharacterAnimation.CrossFade(EventStudent[2].IdleAnim);
+				EventStudent[EventSpeaker[EventPhase]].PickRandomAnim();
+				EventStudent[EventSpeaker[EventPhase]].CharacterAnimation.CrossFade(EventStudent[EventSpeaker[EventPhase]].RandomAnim);
+				AudioClipPlayer.Play(EventClip[EventPhase], EventStudent[EventSpeaker[EventPhase]].transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				Spoken = true;
+				if (EventSpeaker[EventPhase] == 1 && EventPhase > 7 && EventPhase < 33 && EventPhase != 24 && num < 10f)
+				{
+					if (EventPhase == 30)
+					{
+						Debug.Log("Current EventPhase is: 30 and Osana is talking about the delinquents.");
+						Yandere.NotificationManager.TopicName = "Violence";
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
+						StudentManager.SetTopicLearnedByStudent(ClubIDs[EventPhase], 11, true);
+					}
+					else
+					{
+						Debug.Log("Current EventPhase is: " + EventPhase + " and ClubID is: " + ClubIDs[EventPhase]);
+						Yandere.NotificationManager.TopicName = Yandere.NotificationManager.ClubNames[ClubIDs[EventPhase]];
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
+						StudentManager.SetTopicLearnedByStudent(ClubIDs[EventPhase], 11, true);
+					}
+				}
+				return;
+			}
+			int num2 = EventSpeaker[EventPhase];
+			if (num2 == 1)
+			{
+				EventStudent[2].CharacterAnimation.CrossFade(EventStudent[2].IdleAnim);
+			}
+			else
+			{
+				EventStudent[1].CharacterAnimation.CrossFade(EventStudent[2].IdleAnim);
+			}
+			if (EventStudent[num2].CharacterAnimation[EventStudent[num2].RandomAnim].time >= EventStudent[num2].CharacterAnimation[EventStudent[num2].RandomAnim].length)
+			{
+				EventStudent[num2].PickRandomAnim();
+				EventStudent[num2].CharacterAnimation.CrossFade(EventStudent[num2].RandomAnim);
+			}
+			Timer += Time.deltaTime;
+			if (Yandere.transform.position.y > EventStudent[1].transform.position.y - 1f && Yandere.transform.position.y < EventStudent[1].transform.position.y + 1f)
+			{
+				if (VoiceClipSource != null)
+				{
+					VoiceClipSource.volume = 1f;
+				}
+				if (num < 11f)
+				{
+					if (num < 10f)
+					{
+						if (Timer > EventClip[EventPhase].length)
+						{
+							EventSubtitle.text = string.Empty;
+						}
+						else
+						{
+							EventSubtitle.text = EventSpeech[EventPhase];
+						}
+						Scale = Mathf.Abs((num - 10f) * 0.2f);
+						if (Scale < 0f)
+						{
+							Scale = 0f;
+						}
+						if (Scale > 1f)
+						{
+							Scale = 1f;
+						}
+						Jukebox.Dip = 1f - 0.5f * Scale;
+						EventSubtitle.transform.localScale = new Vector3(Scale, Scale, Scale);
+					}
+					else
+					{
+						EventSubtitle.transform.localScale = Vector3.zero;
+						EventSubtitle.text = string.Empty;
+					}
+				}
+			}
+			else if (VoiceClipSource != null)
+			{
+				VoiceClipSource.volume = 0f;
+			}
+			if (Timer > EventClip[EventPhase].length + 0.5f)
+			{
+				Spoken = false;
+				EventPhase++;
+				Timer = 0f;
+				if (EventPhase == 4)
+				{
+					RooftopConversation.CanHappen = true;
+				}
+				if (EventPhase == EventSpeech.Length)
+				{
+					EndEvent();
+				}
+				else if (EventPhase > 6)
+				{
+					EventStudent[1].CurrentDestination = EventLocation[EventPhase];
+					EventStudent[1].Pathfinding.target = EventLocation[EventPhase];
+					EventStudent[2].CurrentDestination = EventStudent[1].FollowTargetDestination;
+					EventStudent[2].Pathfinding.target = EventStudent[1].FollowTargetDestination;
+				}
+			}
+			return;
+		}
+		if (!EventStudent[1].Pathfinding.canMove)
+		{
+			EventStudent[1].CharacterAnimation.CrossFade(EventStudent[1].IdleAnim);
+		}
+		else
+		{
+			EventStudent[1].CharacterAnimation.CrossFade(EventStudent[1].WalkAnim);
+		}
+		if (!EventStudent[2].Pathfinding.canMove)
+		{
+			EventStudent[2].CharacterAnimation.CrossFade(EventStudent[2].IdleAnim);
+			if (EventPhase == 1)
+			{
+				SettleFriend();
+			}
+		}
+		else if (EventStudent[2].Pathfinding.speed == 1f)
+		{
+			EventStudent[2].CharacterAnimation.CrossFade(EventStudent[2].WalkAnim);
+		}
+		else
+		{
+			EventStudent[2].CharacterAnimation.CrossFade(EventStudent[2].RunAnim);
+		}
+	}
+
+	private void SettleFriend()
+	{
+		EventStudent[2].MoveTowardsTarget(EventStudent[2].Pathfinding.target.position);
+	}
+
+	public void EndEvent()
+	{
+		Debug.Log("Ending Osana's club event.");
+		if (VoiceClip != null)
+		{
+			UnityEngine.Object.Destroy(VoiceClip);
+		}
+		for (int i = 1; i < 3; i++)
+		{
+			if (EventStudent[i] != null)
+			{
+				EventStudent[i].CurrentDestination = EventStudent[i].Destinations[EventStudent[i].Phase];
+				EventStudent[i].Pathfinding.target = EventStudent[i].Destinations[EventStudent[i].Phase];
+				EventStudent[i].InEvent = false;
+				EventStudent[i].Private = false;
+			}
+		}
+		CheckForRooftopConvo();
+		if (!StudentManager.Stop)
+		{
+			StudentManager.UpdateStudents();
+		}
+		Yandere.Eavesdropping = false;
+		Jukebox.Dip = 1f;
+		EventSubtitle.text = string.Empty;
+		ReachedTheEnd = true;
+		if (EventStudent[1].GoAway)
+		{
+			EventStudent[1].Subtitle.CustomText = "Ugh, seriously?! Guess we'll just talk about it later...";
+			EventStudent[1].Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+		}
+		base.enabled = false;
+	}
+
+	public void CheckForRooftopConvo()
+	{
+		if (StudentManager.Students[10] != null && StudentManager.Students[11] != null && StudentManager.Students[11].Alive && StudentManager.Students[10].CurrentAction == StudentActionType.Follow)
+		{
+			Debug.Log("Osana's rooftop conversation with Raibaru can happen.");
+			RooftopConversation.CanHappen = true;
+		}
+	}
 }

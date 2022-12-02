@@ -1,158 +1,189 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: StruggleBarScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class StruggleBarScript : MonoBehaviour
 {
-  public ShoulderCameraScript ShoulderCamera;
-  public PromptSwapScript ButtonPrompt;
-  public UISprite[] ButtonPrompts;
-  public YandereScript Yandere;
-  public StudentScript Student;
-  public Transform Spikes;
-  public string CurrentButton = string.Empty;
-  public bool Struggling;
-  public bool Invincible;
-  public float AttackTimer;
-  public float ButtonTimer;
-  public float Intensity;
-  public float Strength = 1f;
-  public float Struggle;
-  public float Victory;
-  public int ButtonID;
+	public ShoulderCameraScript ShoulderCamera;
 
-  private void Start()
-  {
-    Debug.Log((object) "StruggleBar fired Start()");
-    this.transform.localScale = Vector3.zero;
-    this.ChooseButton();
-  }
+	public PromptSwapScript ButtonPrompt;
 
-  private void Update()
-  {
-    if (this.Struggling)
-    {
-      this.Intensity = Mathf.MoveTowards(this.Intensity, 1f, Time.deltaTime);
-      this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-      this.Spikes.localEulerAngles = new Vector3(this.Spikes.localEulerAngles.x, this.Spikes.localEulerAngles.y, this.Spikes.localEulerAngles.z - Time.deltaTime * 360f);
-      this.Victory -= Time.deltaTime * 5f * this.Strength;
-      if (this.Yandere.Club == ClubType.MartialArts)
-        this.Victory = 100f;
-      if (Input.GetButtonDown(this.CurrentButton))
-      {
-        if (this.Invincible)
-          this.Victory += 100f;
-        this.Victory += Time.deltaTime * (float) (500.0 + (double) (this.Yandere.Class.PhysicalGrade + this.Yandere.Class.PhysicalBonus) * 150.0);
-      }
-      if ((double) this.Victory >= 100.0)
-        this.Victory = 100f;
-      if ((double) this.Victory <= -100.0)
-        this.Victory = -100f;
-      UISprite buttonPrompt = this.ButtonPrompts[this.ButtonID];
-      buttonPrompt.transform.localPosition = new Vector3(Mathf.Lerp(buttonPrompt.transform.localPosition.x, this.Victory * 6.5f, Time.deltaTime * 10f), buttonPrompt.transform.localPosition.y, buttonPrompt.transform.localPosition.z);
-      this.Spikes.localPosition = new Vector3(buttonPrompt.transform.localPosition.x, this.Spikes.localPosition.y, this.Spikes.localPosition.z);
-      if ((double) this.Victory == 100.0)
-      {
-        Debug.Log((object) ("Yandere-chan just won a struggle against " + this.Student.Name + "."));
-        this.Yandere.Won = true;
-        this.Student.Lost = true;
-        this.Struggling = false;
-        this.Victory = 0.0f;
-        if (this.Yandere.Chasers <= 0 || !((Object) this.Yandere.Pursuer != (Object) null) || !((Object) this.Yandere.Pursuer == (Object) this.Student))
-          return;
-        --this.Yandere.Chasers;
-      }
-      else if ((double) this.Victory == -100.0)
-      {
-        if (this.Invincible)
-          return;
-        this.HeroWins();
-      }
-      else
-      {
-        this.ButtonTimer += Time.deltaTime;
-        if ((double) this.ButtonTimer < 2.0)
-          return;
-        this.ChooseButton();
-        this.ButtonTimer = 0.0f;
-        this.Intensity = 0.0f;
-      }
-    }
-    else if ((double) this.transform.localScale.x > 0.10000000149011612)
-    {
-      this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
-    }
-    else
-    {
-      this.transform.localScale = Vector3.zero;
-      if (!this.Yandere.AttackManager.Censor)
-      {
-        this.gameObject.SetActive(false);
-      }
-      else
-      {
-        if ((double) this.AttackTimer == 0.0)
-        {
-          this.Yandere.Blur.enabled = true;
-          this.Yandere.Blur.Size = 1f;
-        }
-        this.AttackTimer += Time.deltaTime;
-        if ((double) this.AttackTimer < 2.5)
-        {
-          this.Yandere.Blur.Size = Mathf.MoveTowards(this.Yandere.Blur.Size, 16f, Time.deltaTime * 10f);
-        }
-        else
-        {
-          this.Yandere.Blur.Size = Mathf.Lerp(this.Yandere.Blur.Size, 1f, Time.deltaTime * 32f);
-          if ((double) this.AttackTimer < 3.0)
-            return;
-          this.gameObject.SetActive(false);
-          this.Yandere.Blur.enabled = false;
-          this.Yandere.Blur.Size = 1f;
-          this.AttackTimer = 0.0f;
-        }
-      }
-    }
-  }
+	public UISprite[] ButtonPrompts;
 
-  public void HeroWins()
-  {
-    Debug.Log((object) "StruggleBar fired HeroWins()");
-    if (this.Yandere.enabled && this.Yandere.Armed)
-      this.Yandere.EquippedWeapon.Drop();
-    this.Yandere.Lost = true;
-    if ((Object) this.Student != (Object) null)
-      this.Student.Won = true;
-    this.Struggling = false;
-    this.Victory = 0.0f;
-    if (!this.Yandere.StudentManager.enabled)
-      return;
-    this.Yandere.StudentManager.StopMoving();
-  }
+	public YandereScript Yandere;
 
-  private void ChooseButton()
-  {
-    Debug.Log((object) "StruggleBar fired ChooseButton()");
-    int buttonId = this.ButtonID;
-    for (int index = 1; index < 5; ++index)
-    {
-      this.ButtonPrompts[index].enabled = false;
-      this.ButtonPrompts[index].transform.localPosition = this.ButtonPrompts[buttonId].transform.localPosition;
-    }
-    while (this.ButtonID == buttonId)
-      this.ButtonID = Random.Range(1, 5);
-    if (this.ButtonID == 1)
-      this.CurrentButton = "A";
-    else if (this.ButtonID == 2)
-      this.CurrentButton = "B";
-    else if (this.ButtonID == 3)
-      this.CurrentButton = "X";
-    else if (this.ButtonID == 4)
-      this.CurrentButton = "Y";
-    this.ButtonPrompts[this.ButtonID].enabled = true;
-  }
+	public StudentScript Student;
+
+	public Transform Spikes;
+
+	public string CurrentButton = string.Empty;
+
+	public bool Struggling;
+
+	public bool Invincible;
+
+	public float AttackTimer;
+
+	public float ButtonTimer;
+
+	public float Intensity;
+
+	public float Strength = 1f;
+
+	public float Struggle;
+
+	public float Victory;
+
+	public int ButtonID;
+
+	private void Start()
+	{
+		Debug.Log("StruggleBar fired Start()");
+		base.transform.localScale = Vector3.zero;
+		ChooseButton();
+	}
+
+	private void Update()
+	{
+		if (Struggling)
+		{
+			Intensity = Mathf.MoveTowards(Intensity, 1f, Time.deltaTime);
+			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			Spikes.localEulerAngles = new Vector3(Spikes.localEulerAngles.x, Spikes.localEulerAngles.y, Spikes.localEulerAngles.z - Time.deltaTime * 360f);
+			Victory -= Time.deltaTime * 5f * Strength;
+			if (Yandere.Club == ClubType.MartialArts)
+			{
+				Victory = 100f;
+			}
+			if (Input.GetButtonDown(CurrentButton))
+			{
+				if (Invincible)
+				{
+					Victory += 100f;
+				}
+				Victory += Time.deltaTime * (500f + (float)(Yandere.Class.PhysicalGrade + Yandere.Class.PhysicalBonus) * 150f);
+			}
+			if (Victory >= 100f)
+			{
+				Victory = 100f;
+			}
+			if (Victory <= -100f)
+			{
+				Victory = -100f;
+			}
+			UISprite uISprite = ButtonPrompts[ButtonID];
+			uISprite.transform.localPosition = new Vector3(Mathf.Lerp(uISprite.transform.localPosition.x, Victory * 6.5f, Time.deltaTime * 10f), uISprite.transform.localPosition.y, uISprite.transform.localPosition.z);
+			Spikes.localPosition = new Vector3(uISprite.transform.localPosition.x, Spikes.localPosition.y, Spikes.localPosition.z);
+			if (Victory == 100f)
+			{
+				Debug.Log("Yandere-chan just won a struggle against " + Student.Name + ".");
+				Yandere.Won = true;
+				Student.Lost = true;
+				Struggling = false;
+				Victory = 0f;
+				if (Yandere.Chasers > 0 && Yandere.Pursuer != null && Yandere.Pursuer == Student)
+				{
+					Yandere.Chasers--;
+				}
+			}
+			else if (Victory == -100f)
+			{
+				if (!Invincible)
+				{
+					HeroWins();
+				}
+			}
+			else
+			{
+				ButtonTimer += Time.deltaTime;
+				if (ButtonTimer >= 2f)
+				{
+					ChooseButton();
+					ButtonTimer = 0f;
+					Intensity = 0f;
+				}
+			}
+			return;
+		}
+		if (base.transform.localScale.x > 0.1f)
+		{
+			base.transform.localScale = Vector3.Lerp(base.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
+			return;
+		}
+		base.transform.localScale = Vector3.zero;
+		if (!Yandere.AttackManager.Censor)
+		{
+			base.gameObject.SetActive(false);
+			return;
+		}
+		if (AttackTimer == 0f)
+		{
+			Yandere.Blur.enabled = true;
+			Yandere.Blur.Size = 1f;
+		}
+		AttackTimer += Time.deltaTime;
+		if (AttackTimer < 2.5f)
+		{
+			Yandere.Blur.Size = Mathf.MoveTowards(Yandere.Blur.Size, 16f, Time.deltaTime * 10f);
+			return;
+		}
+		Yandere.Blur.Size = Mathf.Lerp(Yandere.Blur.Size, 1f, Time.deltaTime * 32f);
+		if (AttackTimer >= 3f)
+		{
+			base.gameObject.SetActive(false);
+			Yandere.Blur.enabled = false;
+			Yandere.Blur.Size = 1f;
+			AttackTimer = 0f;
+		}
+	}
+
+	public void HeroWins()
+	{
+		Debug.Log("StruggleBar fired HeroWins()");
+		if (Yandere.enabled && Yandere.Armed)
+		{
+			Yandere.EquippedWeapon.Drop();
+		}
+		Yandere.Lost = true;
+		if (Student != null)
+		{
+			Student.Won = true;
+		}
+		Struggling = false;
+		Victory = 0f;
+		if (Yandere.StudentManager.enabled)
+		{
+			Yandere.StudentManager.StopMoving();
+		}
+	}
+
+	private void ChooseButton()
+	{
+		Debug.Log("StruggleBar fired ChooseButton()");
+		int buttonID = ButtonID;
+		for (int i = 1; i < 5; i++)
+		{
+			ButtonPrompts[i].enabled = false;
+			ButtonPrompts[i].transform.localPosition = ButtonPrompts[buttonID].transform.localPosition;
+		}
+		while (ButtonID == buttonID)
+		{
+			ButtonID = Random.Range(1, 5);
+		}
+		if (ButtonID == 1)
+		{
+			CurrentButton = "A";
+		}
+		else if (ButtonID == 2)
+		{
+			CurrentButton = "B";
+		}
+		else if (ButtonID == 3)
+		{
+			CurrentButton = "X";
+		}
+		else if (ButtonID == 4)
+		{
+			CurrentButton = "Y";
+		}
+		ButtonPrompts[ButtonID].enabled = true;
+	}
 }

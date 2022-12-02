@@ -1,130 +1,154 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CameraFilterPack_Lut_Simple
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("Camera Filter Pack/Lut/Simple")]
 public class CameraFilterPack_Lut_Simple : MonoBehaviour
 {
-  public Shader SCShader;
-  private float TimeX = 1f;
-  private Material SCMaterial;
-  public Texture2D LutTexture;
-  private Texture3D converted3DLut;
-  private string MemoPath;
+	public Shader SCShader;
 
-  private Material material
-  {
-    get
-    {
-      if ((Object) this.SCMaterial == (Object) null)
-      {
-        this.SCMaterial = new Material(this.SCShader);
-        this.SCMaterial.hideFlags = HideFlags.HideAndDontSave;
-      }
-      return this.SCMaterial;
-    }
-  }
+	private float TimeX = 1f;
 
-  private void Start()
-  {
-    this.SCShader = Shader.Find("CameraFilterPack/Lut_Simple");
-    if (SystemInfo.supportsImageEffects)
-      return;
-    this.enabled = false;
-  }
+	private Material SCMaterial;
 
-  public void SetIdentityLut()
-  {
-    int num1 = 16;
-    Color[] colors = new Color[num1 * num1 * num1];
-    float num2 = (float) (1.0 / (1.0 * (double) num1 - 1.0));
-    for (int index1 = 0; index1 < num1; ++index1)
-    {
-      for (int index2 = 0; index2 < num1; ++index2)
-      {
-        for (int index3 = 0; index3 < num1; ++index3)
-          colors[index1 + index2 * num1 + index3 * num1 * num1] = new Color((float) index1 * 1f * num2, (float) index2 * 1f * num2, (float) index3 * 1f * num2, 1f);
-      }
-    }
-    if ((bool) (Object) this.converted3DLut)
-      Object.DestroyImmediate((Object) this.converted3DLut);
-    this.converted3DLut = new Texture3D(num1, num1, num1, TextureFormat.ARGB32, false);
-    this.converted3DLut.SetPixels(colors);
-    this.converted3DLut.Apply();
-  }
+	public Texture2D LutTexture;
 
-  public bool ValidDimensions(Texture2D tex2d) => (bool) (Object) tex2d && tex2d.height == Mathf.FloorToInt(Mathf.Sqrt((float) tex2d.width));
+	private Texture3D converted3DLut;
 
-  public void Convert(Texture2D temp2DTex)
-  {
-    if ((bool) (Object) temp2DTex)
-    {
-      int num1 = temp2DTex.width * temp2DTex.height;
-      int height = temp2DTex.height;
-      if (!this.ValidDimensions(temp2DTex))
-      {
-        Debug.LogWarning((object) ("The given 2D texture " + temp2DTex.name + " cannot be used as a 3D LUT."));
-      }
-      else
-      {
-        Color[] pixels = temp2DTex.GetPixels();
-        Color[] colors = new Color[pixels.Length];
-        for (int index1 = 0; index1 < height; ++index1)
-        {
-          for (int index2 = 0; index2 < height; ++index2)
-          {
-            for (int index3 = 0; index3 < height; ++index3)
-            {
-              int num2 = height - index2 - 1;
-              colors[index1 + index2 * height + index3 * height * height] = pixels[index3 * height + index1 + num2 * height * height];
-            }
-          }
-        }
-        if ((bool) (Object) this.converted3DLut)
-          Object.DestroyImmediate((Object) this.converted3DLut);
-        this.converted3DLut = new Texture3D(height, height, height, TextureFormat.ARGB32, false);
-        this.converted3DLut.SetPixels(colors);
-        this.converted3DLut.Apply();
-      }
-    }
-    else
-      this.SetIdentityLut();
-  }
+	private string MemoPath;
 
-  private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
-  {
-    if ((Object) this.SCShader != (Object) null || !SystemInfo.supports3DTextures)
-    {
-      this.TimeX += Time.deltaTime;
-      if ((double) this.TimeX > 100.0)
-        this.TimeX = 0.0f;
-      if ((Object) this.converted3DLut == (Object) null)
-        this.Convert(this.LutTexture);
-      this.converted3DLut.wrapMode = TextureWrapMode.Clamp;
-      this.material.SetTexture("_LutTex", (Texture) this.converted3DLut);
-      Graphics.Blit((Texture) sourceTexture, destTexture, this.material, QualitySettings.activeColorSpace == ColorSpace.Linear ? 1 : 0);
-    }
-    else
-      Graphics.Blit((Texture) sourceTexture, destTexture);
-  }
+	private Material material
+	{
+		get
+		{
+			if (SCMaterial == null)
+			{
+				SCMaterial = new Material(SCShader);
+				SCMaterial.hideFlags = HideFlags.HideAndDontSave;
+			}
+			return SCMaterial;
+		}
+	}
 
-  private void OnValidate()
-  {
-  }
+	private void Start()
+	{
+		SCShader = Shader.Find("CameraFilterPack/Lut_Simple");
+		if (!SystemInfo.supportsImageEffects)
+		{
+			base.enabled = false;
+		}
+	}
 
-  private void Update()
-  {
-  }
+	public void SetIdentityLut()
+	{
+		int num = 16;
+		Color[] array = new Color[num * num * num];
+		float num2 = 1f / (1f * (float)num - 1f);
+		for (int i = 0; i < num; i++)
+		{
+			for (int j = 0; j < num; j++)
+			{
+				for (int k = 0; k < num; k++)
+				{
+					array[i + j * num + k * num * num] = new Color((float)i * 1f * num2, (float)j * 1f * num2, (float)k * 1f * num2, 1f);
+				}
+			}
+		}
+		if ((bool)converted3DLut)
+		{
+			Object.DestroyImmediate(converted3DLut);
+		}
+		converted3DLut = new Texture3D(num, num, num, TextureFormat.ARGB32, false);
+		converted3DLut.SetPixels(array);
+		converted3DLut.Apply();
+	}
 
-  private void OnDisable()
-  {
-    if (!(bool) (Object) this.SCMaterial)
-      return;
-    Object.DestroyImmediate((Object) this.SCMaterial);
-  }
+	public bool ValidDimensions(Texture2D tex2d)
+	{
+		if (!tex2d)
+		{
+			return false;
+		}
+		if (tex2d.height != Mathf.FloorToInt(Mathf.Sqrt(tex2d.width)))
+		{
+			return false;
+		}
+		return true;
+	}
+
+	public void Convert(Texture2D temp2DTex)
+	{
+		if ((bool)temp2DTex)
+		{
+			int num = temp2DTex.width * temp2DTex.height;
+			num = temp2DTex.height;
+			if (!ValidDimensions(temp2DTex))
+			{
+				Debug.LogWarning("The given 2D texture " + temp2DTex.name + " cannot be used as a 3D LUT.");
+				return;
+			}
+			Color[] pixels = temp2DTex.GetPixels();
+			Color[] array = new Color[pixels.Length];
+			for (int i = 0; i < num; i++)
+			{
+				for (int j = 0; j < num; j++)
+				{
+					for (int k = 0; k < num; k++)
+					{
+						int num2 = num - j - 1;
+						array[i + j * num + k * num * num] = pixels[k * num + i + num2 * num * num];
+					}
+				}
+			}
+			if ((bool)converted3DLut)
+			{
+				Object.DestroyImmediate(converted3DLut);
+			}
+			converted3DLut = new Texture3D(num, num, num, TextureFormat.ARGB32, false);
+			converted3DLut.SetPixels(array);
+			converted3DLut.Apply();
+		}
+		else
+		{
+			SetIdentityLut();
+		}
+	}
+
+	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
+	{
+		if (SCShader != null || !SystemInfo.supports3DTextures)
+		{
+			TimeX += Time.deltaTime;
+			if (TimeX > 100f)
+			{
+				TimeX = 0f;
+			}
+			if (converted3DLut == null)
+			{
+				Convert(LutTexture);
+			}
+			converted3DLut.wrapMode = TextureWrapMode.Clamp;
+			material.SetTexture("_LutTex", converted3DLut);
+			Graphics.Blit(sourceTexture, destTexture, material, (QualitySettings.activeColorSpace == ColorSpace.Linear) ? 1 : 0);
+		}
+		else
+		{
+			Graphics.Blit(sourceTexture, destTexture);
+		}
+	}
+
+	private void OnValidate()
+	{
+	}
+
+	private void Update()
+	{
+	}
+
+	private void OnDisable()
+	{
+		if ((bool)SCMaterial)
+		{
+			Object.DestroyImmediate(SCMaterial);
+		}
+	}
 }

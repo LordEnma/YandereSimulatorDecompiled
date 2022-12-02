@@ -1,64 +1,70 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RetroAesthetics.Demos.MenuScripts
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RetroAesthetics.Demos
 {
-  public class MenuScripts : MonoBehaviour
-  {
-    public SceneField loadingScene;
-    public SceneField levelScene;
-    public bool fadeInMenu = true;
-    public bool fadeOutMenu = true;
-    private RetroCameraEffect _cameraEffect;
-    private AsyncOperation _loadingSceneAsync;
+	public class MenuScripts : MonoBehaviour
+	{
+		public SceneField loadingScene;
 
-    private void Start()
-    {
-      if (!this.fadeInMenu)
-        return;
-      this._cameraEffect = UnityEngine.Object.FindObjectOfType<RetroCameraEffect>();
-      if (!((UnityEngine.Object) this._cameraEffect != (UnityEngine.Object) null))
-        return;
-      this._cameraEffect.FadeIn();
-    }
+		public SceneField levelScene;
 
-    public virtual void StartLevel()
-    {
-      if (this.levelScene != null)
-      {
-        if ((UnityEngine.Object) this._cameraEffect != (UnityEngine.Object) null)
-        {
-          if (this.loadingScene != null)
-          {
-            this._loadingSceneAsync = SceneManager.LoadSceneAsync((string) this.loadingScene);
-            if (this._loadingSceneAsync == null)
-            {
-              Debug.LogWarning((object) string.Format("Please add scene `{0}` to the built scenes in the Build Settings.", (object) this.loadingScene.SceneName));
-              return;
-            }
-            this._loadingSceneAsync.allowSceneActivation = false;
-          }
-          this._cameraEffect.FadeOut(0.5f, new Action(this.LoadNextScene));
-        }
-        else
-          this.LoadNextScene();
-      }
-      else
-        Debug.LogWarning((object) "Level scene is not set.");
-    }
+		public bool fadeInMenu = true;
 
-    private void LoadNextScene()
-    {
-      if (this._loadingSceneAsync != null)
-        this._loadingSceneAsync.allowSceneActivation = true;
-      SceneManager.LoadSceneAsync((string) this.levelScene);
-    }
-  }
+		public bool fadeOutMenu = true;
+
+		private RetroCameraEffect _cameraEffect;
+
+		private AsyncOperation _loadingSceneAsync;
+
+		private void Start()
+		{
+			if (fadeInMenu)
+			{
+				_cameraEffect = Object.FindObjectOfType<RetroCameraEffect>();
+				if (_cameraEffect != null)
+				{
+					_cameraEffect.FadeIn();
+				}
+			}
+		}
+
+		public virtual void StartLevel()
+		{
+			if (levelScene != null)
+			{
+				if (_cameraEffect != null)
+				{
+					if (loadingScene != null)
+					{
+						_loadingSceneAsync = SceneManager.LoadSceneAsync(loadingScene);
+						if (_loadingSceneAsync == null)
+						{
+							Debug.LogWarning(string.Format("Please add scene `{0}` to the built scenes in the Build Settings.", loadingScene.SceneName));
+							return;
+						}
+						_loadingSceneAsync.allowSceneActivation = false;
+					}
+					_cameraEffect.FadeOut(0.5f, LoadNextScene);
+				}
+				else
+				{
+					LoadNextScene();
+				}
+			}
+			else
+			{
+				Debug.LogWarning("Level scene is not set.");
+			}
+		}
+
+		private void LoadNextScene()
+		{
+			if (_loadingSceneAsync != null)
+			{
+				_loadingSceneAsync.allowSceneActivation = true;
+			}
+			SceneManager.LoadSceneAsync(levelScene);
+		}
+	}
 }

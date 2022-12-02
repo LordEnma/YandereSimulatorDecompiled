@@ -1,42 +1,55 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: GrandfatherScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class GrandfatherScript : MonoBehaviour
 {
-  public ClockScript Clock;
-  public Transform MinuteHand;
-  public Transform HourHand;
-  public Transform Pendulum;
-  public float Rotation;
-  public float Force;
-  public float Speed;
-  public bool Flip;
+	public ClockScript Clock;
 
-  private void Update()
-  {
-    if (!this.Flip)
-    {
-      if ((double) this.Force < 0.1)
-        this.Force += Time.deltaTime * 0.1f * this.Speed;
-    }
-    else if ((double) this.Force > -0.1)
-      this.Force -= Time.deltaTime * 0.1f * this.Speed;
-    this.Rotation += this.Force;
-    if ((double) this.Rotation > 1.0)
-      this.Flip = true;
-    else if ((double) this.Rotation < -1.0)
-      this.Flip = false;
-    if ((double) this.Rotation > 5.0)
-      this.Rotation = 5f;
-    else if ((double) this.Rotation < -5.0)
-      this.Rotation = -5f;
-    this.Pendulum.localEulerAngles = new Vector3(0.0f, 0.0f, this.Rotation);
-    this.MinuteHand.localEulerAngles = new Vector3(this.MinuteHand.localEulerAngles.x, this.MinuteHand.localEulerAngles.y, this.Clock.Minute * 6f);
-    this.HourHand.localEulerAngles = new Vector3(this.HourHand.localEulerAngles.x, this.HourHand.localEulerAngles.y, this.Clock.Hour * 30f);
-  }
+	public Transform MinuteHand;
+
+	public Transform HourHand;
+
+	public Transform Pendulum;
+
+	public float Rotation;
+
+	public float Force;
+
+	public float Speed;
+
+	public bool Flip;
+
+	private void Update()
+	{
+		if (!Flip)
+		{
+			if ((double)Force < 0.1)
+			{
+				Force += Time.deltaTime * 0.1f * Speed;
+			}
+		}
+		else if ((double)Force > -0.1)
+		{
+			Force -= Time.deltaTime * 0.1f * Speed;
+		}
+		Rotation += Force;
+		if (Rotation > 1f)
+		{
+			Flip = true;
+		}
+		else if (Rotation < -1f)
+		{
+			Flip = false;
+		}
+		if (Rotation > 5f)
+		{
+			Rotation = 5f;
+		}
+		else if (Rotation < -5f)
+		{
+			Rotation = -5f;
+		}
+		Pendulum.localEulerAngles = new Vector3(0f, 0f, Rotation);
+		MinuteHand.localEulerAngles = new Vector3(MinuteHand.localEulerAngles.x, MinuteHand.localEulerAngles.y, Clock.Minute * 6f);
+		HourHand.localEulerAngles = new Vector3(HourHand.localEulerAngles.x, HourHand.localEulerAngles.y, Clock.Hour * 30f);
+	}
 }

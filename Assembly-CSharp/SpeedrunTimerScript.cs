@@ -1,34 +1,41 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SpeedrunTimerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SpeedrunTimerScript : MonoBehaviour
 {
-  public PoliceScript Police;
-  public UILabel Label;
-  public float Timer;
+	public PoliceScript Police;
 
-  private void Start() => this.Label.enabled = false;
+	public UILabel Label;
 
-  private void Update()
-  {
-    if (this.Police.FadeOut)
-      return;
-    this.Timer += Time.unscaledDeltaTime;
-    if (this.Label.enabled)
-      this.Label.text = this.FormatTime(this.Timer) ?? "";
-    if (!Input.GetKeyDown(KeyCode.Delete))
-      return;
-    this.Label.enabled = !this.Label.enabled;
-  }
+	public float Timer;
 
-  private string FormatTime(float time)
-  {
-    int num = (int) time;
-    return string.Format("{0:00}:{1:00}:{2:000}", (object) (num / 60), (object) (num % 60), (object) (time * 1000f % 1000f));
-  }
+	private void Start()
+	{
+		Label.enabled = false;
+	}
+
+	private void Update()
+	{
+		if (!Police.FadeOut)
+		{
+			Timer += Time.unscaledDeltaTime;
+			if (Label.enabled)
+			{
+				Label.text = FormatTime(Timer) ?? "";
+			}
+			if (Input.GetKeyDown(KeyCode.Delete))
+			{
+				Label.enabled = !Label.enabled;
+			}
+		}
+	}
+
+	private string FormatTime(float time)
+	{
+		int num = (int)time;
+		int num2 = num / 60;
+		int num3 = num % 60;
+		float num4 = time * 1000f;
+		num4 %= 1000f;
+		return string.Format("{0:00}:{1:00}:{2:000}", num2, num3, num4);
+	}
 }

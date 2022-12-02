@@ -1,82 +1,99 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MiyukiEnemyScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MiyukiEnemyScript : MonoBehaviour
 {
-  public float Float;
-  public float Limit;
-  public float Speed;
-  public bool Dead;
-  public bool Down;
-  public GameObject DeathEffect;
-  public GameObject HitEffect;
-  public GameObject Enemy;
-  public Transform[] SpawnPoints;
-  public float RespawnTimer;
-  public float Health;
-  public int ID;
+	public float Float;
 
-  private void Start()
-  {
-    this.transform.position = this.SpawnPoints[this.ID].position;
-    this.transform.rotation = this.SpawnPoints[this.ID].rotation;
-  }
+	public float Limit;
 
-  private void Update()
-  {
-    if (this.Enemy.activeInHierarchy)
-    {
-      if (!this.Down)
-      {
-        this.Float += Time.deltaTime * this.Speed;
-        if ((double) this.Float > (double) this.Limit)
-          this.Down = true;
-      }
-      else
-      {
-        this.Float -= Time.deltaTime * this.Speed;
-        if ((double) this.Float < -1.0 * (double) this.Limit)
-          this.Down = false;
-      }
-      this.Enemy.transform.position += new Vector3(0.0f, this.Float * Time.deltaTime, 0.0f);
-      if ((double) this.Enemy.transform.position.y > (double) this.SpawnPoints[this.ID].position.y + 1.5)
-        this.Enemy.transform.position = new Vector3(this.Enemy.transform.position.x, this.SpawnPoints[this.ID].position.y + 1.5f, this.Enemy.transform.position.z);
-      if ((double) this.Enemy.transform.position.y >= (double) this.SpawnPoints[this.ID].position.y + 0.5)
-        return;
-      this.Enemy.transform.position = new Vector3(this.Enemy.transform.position.x, this.SpawnPoints[this.ID].position.y + 0.5f, this.Enemy.transform.position.z);
-    }
-    else
-    {
-      this.RespawnTimer += Time.deltaTime;
-      if ((double) this.RespawnTimer <= 5.0)
-        return;
-      this.transform.position = this.SpawnPoints[this.ID].position;
-      this.transform.rotation = this.SpawnPoints[this.ID].rotation;
-      this.Enemy.SetActive(true);
-      this.RespawnTimer = 0.0f;
-    }
-  }
+	public float Speed;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (!this.Enemy.activeInHierarchy || !(other.gameObject.tag == "missile"))
-      return;
-    Object.Instantiate<GameObject>(this.HitEffect, other.transform.position, Quaternion.identity);
-    Object.Destroy((Object) other.gameObject);
-    --this.Health;
-    if ((double) this.Health != 0.0)
-      return;
-    Object.Instantiate<GameObject>(this.DeathEffect, other.transform.position, Quaternion.identity);
-    this.Enemy.SetActive(false);
-    this.Health = 50f;
-    ++this.ID;
-    if (this.ID < this.SpawnPoints.Length)
-      return;
-    this.ID = 0;
-  }
+	public bool Dead;
+
+	public bool Down;
+
+	public GameObject DeathEffect;
+
+	public GameObject HitEffect;
+
+	public GameObject Enemy;
+
+	public Transform[] SpawnPoints;
+
+	public float RespawnTimer;
+
+	public float Health;
+
+	public int ID;
+
+	private void Start()
+	{
+		base.transform.position = SpawnPoints[ID].position;
+		base.transform.rotation = SpawnPoints[ID].rotation;
+	}
+
+	private void Update()
+	{
+		if (Enemy.activeInHierarchy)
+		{
+			if (!Down)
+			{
+				Float += Time.deltaTime * Speed;
+				if (Float > Limit)
+				{
+					Down = true;
+				}
+			}
+			else
+			{
+				Float -= Time.deltaTime * Speed;
+				if (Float < -1f * Limit)
+				{
+					Down = false;
+				}
+			}
+			Enemy.transform.position += new Vector3(0f, Float * Time.deltaTime, 0f);
+			if (Enemy.transform.position.y > SpawnPoints[ID].position.y + 1.5f)
+			{
+				Enemy.transform.position = new Vector3(Enemy.transform.position.x, SpawnPoints[ID].position.y + 1.5f, Enemy.transform.position.z);
+			}
+			if (Enemy.transform.position.y < SpawnPoints[ID].position.y + 0.5f)
+			{
+				Enemy.transform.position = new Vector3(Enemy.transform.position.x, SpawnPoints[ID].position.y + 0.5f, Enemy.transform.position.z);
+			}
+		}
+		else
+		{
+			RespawnTimer += Time.deltaTime;
+			if (RespawnTimer > 5f)
+			{
+				base.transform.position = SpawnPoints[ID].position;
+				base.transform.rotation = SpawnPoints[ID].rotation;
+				Enemy.SetActive(true);
+				RespawnTimer = 0f;
+			}
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (!Enemy.activeInHierarchy || !(other.gameObject.tag == "missile"))
+		{
+			return;
+		}
+		Object.Instantiate(HitEffect, other.transform.position, Quaternion.identity);
+		Object.Destroy(other.gameObject);
+		Health -= 1f;
+		if (Health == 0f)
+		{
+			Object.Instantiate(DeathEffect, other.transform.position, Quaternion.identity);
+			Enemy.SetActive(false);
+			Health = 50f;
+			ID++;
+			if (ID >= SpawnPoints.Length)
+			{
+				ID = 0;
+			}
+		}
+	}
 }

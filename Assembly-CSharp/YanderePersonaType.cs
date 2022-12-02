@@ -1,22 +1,16 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: YanderePersonaType
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public enum YanderePersonaType
 {
-  Default,
-  Chill,
-  Confident,
-  Elegant,
-  Girly,
-  Graceful,
-  Haughty,
-  Lively,
-  Scholarly,
-  Shy,
-  Tough,
-  Aggressive,
-  Grunt,
+	Default = 0,
+	Chill = 1,
+	Confident = 2,
+	Elegant = 3,
+	Girly = 4,
+	Graceful = 5,
+	Haughty = 6,
+	Lively = 7,
+	Scholarly = 8,
+	Shy = 9,
+	Tough = 10,
+	Aggressive = 11,
+	Grunt = 12
 }

@@ -1,39 +1,37 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: NapeScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class NapeScript : MonoBehaviour
 {
-  public StudentScript MyStudent;
-  public GameObject BloodEffect;
-  public string Prefix;
-  public Collider Nape;
+	public StudentScript MyStudent;
 
-  private void Start()
-  {
-    this.Nape.enabled = true;
-    Rigidbody rigidbody = this.gameObject.AddComponent<Rigidbody>();
-    rigidbody.useGravity = false;
-    rigidbody.isKinematic = true;
-  }
+	public GameObject BloodEffect;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (!(other.gameObject.name == "0"))
-      return;
-    this.MyStudent.CharacterAnimation[this.Prefix + "down_22"].speed = 0.1f;
-    this.MyStudent.CharacterAnimation.CrossFade(this.Prefix + "down_22", 1f);
-    this.MyStudent.Pathfinding.canSearch = false;
-    this.MyStudent.Pathfinding.canMove = false;
-    this.MyStudent.Routine = false;
-    this.MyStudent.DeathType = DeathType.Weapon;
-    this.MyStudent.Yandere.Bloodiness += 20f;
-    this.BloodEffect.SetActive(true);
-    this.Nape.enabled = false;
-    this.enabled = false;
-  }
+	public string Prefix;
+
+	public Collider Nape;
+
+	private void Start()
+	{
+		Nape.enabled = true;
+		Rigidbody rigidbody = base.gameObject.AddComponent<Rigidbody>();
+		rigidbody.useGravity = false;
+		rigidbody.isKinematic = true;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.name == "0")
+		{
+			MyStudent.CharacterAnimation[Prefix + "down_22"].speed = 0.1f;
+			MyStudent.CharacterAnimation.CrossFade(Prefix + "down_22", 1f);
+			MyStudent.Pathfinding.canSearch = false;
+			MyStudent.Pathfinding.canMove = false;
+			MyStudent.Routine = false;
+			MyStudent.DeathType = DeathType.Weapon;
+			MyStudent.Yandere.Bloodiness += 20f;
+			BloodEffect.SetActive(true);
+			Nape.enabled = false;
+			base.enabled = false;
+		}
+	}
 }

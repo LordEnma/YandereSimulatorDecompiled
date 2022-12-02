@@ -1,67 +1,80 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DebugEnablerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DebugEnablerScript : MonoBehaviour
 {
-  public GameObject StandWeapons;
-  public GameObject VoidGoddess;
-  public GameObject MurderKit;
-  public GameObject Memes;
-  public GameObject Keys;
-  public DebugMenuScript DebugMenu;
-  public YandereScript Yandere;
-  public SkullScript Skull;
-  public PrayScript Turtle;
-  public DoorScript MemeClosetDoor;
-  public PromptScript Prompt;
-  public bool Editor;
-  public int Spaces;
+	public GameObject StandWeapons;
 
-  private void Start()
-  {
-    int num = this.Editor ? 1 : 0;
-    this.StandWeapons.SetActive(false);
-    this.Keys.SetActive(false);
-    if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || !GameGlobals.Eighties && DateGlobals.Week == 2)
-    {
-      if (GameGlobals.Debug || this.Editor)
-        this.gameObject.SetActive(false);
-      else
-        Object.Destroy((Object) this.gameObject);
-    }
-    if (!GameGlobals.Debug && !this.Editor)
-      return;
-    this.Editor = true;
-    this.EnableDebug();
-  }
+	public GameObject VoidGoddess;
 
-  public void EnableDebug()
-  {
-    this.Yandere.NotificationManager.CustomText = "Debug Commands Enabled!";
-    this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-    Debug.Log((object) "Enabling the use of debug commands.");
-    this.Yandere.Inventory.PantyShots = 100;
-    this.Yandere.NoDebug = false;
-    this.Yandere.EggBypass = 10;
-    this.Yandere.Egg = false;
-    this.StandWeapons.SetActive(true);
-    this.VoidGoddess.SetActive(true);
-    this.MurderKit.SetActive(true);
-    this.Memes.SetActive(true);
-    if (!GameGlobals.Eighties)
-      this.Keys.SetActive(true);
-    this.DebugMenu.MissionMode = false;
-    this.DebugMenu.NoDebug = false;
-    this.Yandere.NoDebug = false;
-    this.Turtle.enabled = true;
-    this.MemeClosetDoor.Locked = false;
-    this.gameObject.SetActive(false);
-    this.Skull.Prompt.enabled = true;
-    this.Skull.enabled = true;
-  }
+	public GameObject MurderKit;
+
+	public GameObject Memes;
+
+	public GameObject Keys;
+
+	public DebugMenuScript DebugMenu;
+
+	public YandereScript Yandere;
+
+	public SkullScript Skull;
+
+	public PrayScript Turtle;
+
+	public DoorScript MemeClosetDoor;
+
+	public PromptScript Prompt;
+
+	public bool Editor;
+
+	public int Spaces;
+
+	private void Start()
+	{
+		bool editor = Editor;
+		StandWeapons.SetActive(false);
+		Keys.SetActive(false);
+		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || (!GameGlobals.Eighties && DateGlobals.Week == 2))
+		{
+			if (GameGlobals.Debug || Editor)
+			{
+				base.gameObject.SetActive(false);
+			}
+			else
+			{
+				Object.Destroy(base.gameObject);
+			}
+		}
+		if (GameGlobals.Debug || Editor)
+		{
+			Editor = true;
+			EnableDebug();
+		}
+	}
+
+	public void EnableDebug()
+	{
+		Yandere.NotificationManager.CustomText = "Debug Commands Enabled!";
+		Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+		Debug.Log("Enabling the use of debug commands.");
+		Yandere.Inventory.PantyShots = 100;
+		Yandere.NoDebug = false;
+		Yandere.EggBypass = 10;
+		Yandere.Egg = false;
+		StandWeapons.SetActive(true);
+		VoidGoddess.SetActive(true);
+		MurderKit.SetActive(true);
+		Memes.SetActive(true);
+		if (!GameGlobals.Eighties)
+		{
+			Keys.SetActive(true);
+		}
+		DebugMenu.MissionMode = false;
+		DebugMenu.NoDebug = false;
+		Yandere.NoDebug = false;
+		Turtle.enabled = true;
+		MemeClosetDoor.Locked = false;
+		base.gameObject.SetActive(false);
+		Skull.Prompt.enabled = true;
+		Skull.enabled = true;
+	}
 }

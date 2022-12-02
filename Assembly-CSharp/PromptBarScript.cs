@@ -1,66 +1,78 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PromptBarScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PromptBarScript : MonoBehaviour
 {
-  public UISprite[] Button;
-  public UILabel[] Label;
-  public UILabel[] ButtonLabel;
-  public UIPanel Panel;
-  public bool Show;
-  public int ID;
+	public UISprite[] Button;
 
-  private void Awake()
-  {
-    this.transform.localPosition = new Vector3(this.transform.localPosition.x, -627f, this.transform.localPosition.z);
-    for (this.ID = 0; this.ID < this.Label.Length; ++this.ID)
-      this.Label[this.ID].text = string.Empty;
-  }
+	public UILabel[] Label;
 
-  private void Start() => this.UpdateButtons();
+	public UILabel[] ButtonLabel;
 
-  private void Update()
-  {
-    float t = Time.unscaledDeltaTime * 10f;
-    if (!this.Show)
-    {
-      if (!this.Panel.enabled)
-        return;
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.Lerp(this.transform.localPosition.y, -628f, t), this.transform.localPosition.z);
-      if ((double) this.transform.localPosition.y >= -627.0)
-        return;
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x, -628f, this.transform.localPosition.z);
-      if (!((Object) this.Panel != (Object) null))
-        return;
-      this.Panel.enabled = false;
-    }
-    else
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.Lerp(this.transform.localPosition.y, -528.5f, t), this.transform.localPosition.z);
-  }
+	public UIPanel Panel;
 
-  public void UpdateButtons()
-  {
-    if ((Object) this.Panel != (Object) null)
-      this.Panel.enabled = true;
-    for (this.ID = 0; this.ID < this.Label.Length; ++this.ID)
-    {
-      this.Button[this.ID].enabled = this.Label[this.ID].text.Length > 0;
-      this.ButtonLabel[this.ID].enabled = this.Label[this.ID].text.Length > 0;
-    }
-  }
+	public bool Show;
 
-  public void ClearButtons()
-  {
-    for (this.ID = 0; this.ID < this.Label.Length; ++this.ID)
-    {
-      this.ButtonLabel[this.ID].enabled = false;
-      this.Label[this.ID].text = string.Empty;
-      this.Button[this.ID].enabled = false;
-    }
-  }
+	public int ID;
+
+	private void Awake()
+	{
+		base.transform.localPosition = new Vector3(base.transform.localPosition.x, -627f, base.transform.localPosition.z);
+		for (ID = 0; ID < Label.Length; ID++)
+		{
+			Label[ID].text = string.Empty;
+		}
+	}
+
+	private void Start()
+	{
+		UpdateButtons();
+	}
+
+	private void Update()
+	{
+		float t = Time.unscaledDeltaTime * 10f;
+		if (!Show)
+		{
+			if (!Panel.enabled)
+			{
+				return;
+			}
+			base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.Lerp(base.transform.localPosition.y, -628f, t), base.transform.localPosition.z);
+			if (base.transform.localPosition.y < -627f)
+			{
+				base.transform.localPosition = new Vector3(base.transform.localPosition.x, -628f, base.transform.localPosition.z);
+				if (Panel != null)
+				{
+					Panel.enabled = false;
+				}
+			}
+		}
+		else
+		{
+			base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.Lerp(base.transform.localPosition.y, -528.5f, t), base.transform.localPosition.z);
+		}
+	}
+
+	public void UpdateButtons()
+	{
+		if (Panel != null)
+		{
+			Panel.enabled = true;
+		}
+		for (ID = 0; ID < Label.Length; ID++)
+		{
+			Button[ID].enabled = Label[ID].text.Length > 0;
+			ButtonLabel[ID].enabled = Label[ID].text.Length > 0;
+		}
+	}
+
+	public void ClearButtons()
+	{
+		for (ID = 0; ID < Label.Length; ID++)
+		{
+			ButtonLabel[ID].enabled = false;
+			Label[ID].text = string.Empty;
+			Button[ID].enabled = false;
+		}
+	}
 }

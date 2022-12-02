@@ -1,109 +1,127 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SinkScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SinkScript : MonoBehaviour
 {
-  public ParticleSystem WaterStream;
-  public Transform WashPosition;
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public bool WashingDisabled;
+	public ParticleSystem WaterStream;
 
-  private void Start()
-  {
-    this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
-    if (!GameGlobals.EightiesTutorial)
-      return;
-    this.WashingDisabled = true;
-  }
+	public Transform WashPosition;
 
-  private void Update()
-  {
-    if ((Object) this.Yandere.PickUp != (Object) null)
-    {
-      this.Prompt.HideButton[0] = false;
-      this.Prompt.HideButton[1] = true;
-      if ((Object) this.Yandere.PickUp.Bucket != (Object) null)
-      {
-        if (this.Yandere.PickUp.Bucket.Dumbbells == 0)
-        {
-          this.Prompt.enabled = true;
-          this.Prompt.Label[0].text = this.Yandere.PickUp.Bucket.Full ? "     Empty Bucket" : "     Fill Bucket";
-        }
-        else if (this.Prompt.enabled)
-        {
-          this.Prompt.Hide();
-          this.Prompt.enabled = false;
-        }
-      }
-      else if ((Object) this.Yandere.PickUp.BloodCleaner != (Object) null)
-      {
-        if ((double) this.Yandere.PickUp.BloodCleaner.Blood > 0.0)
-        {
-          this.Prompt.Label[0].text = "     Empty Robot";
-          this.Prompt.enabled = true;
-        }
-        else
-        {
-          this.Prompt.Hide();
-          this.Prompt.enabled = false;
-        }
-      }
-      else if (this.Prompt.enabled)
-      {
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-      }
-    }
-    else if (!this.WashingDisabled && this.Prompt.Yandere.Armed && this.Prompt.Yandere.EquippedWeapon.Blood.enabled)
-    {
-      if (this.Prompt.HideButton[1])
-      {
-        this.Prompt.Label[1].text = "     Wash Weapon";
-        this.Prompt.HideButton[0] = true;
-        this.Prompt.HideButton[1] = false;
-        this.Prompt.enabled = true;
-      }
-    }
-    else
-    {
-      this.Prompt.HideButton[0] = true;
-      this.Prompt.HideButton[1] = true;
-      if (this.Prompt.enabled)
-      {
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-      }
-    }
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      if ((Object) this.Yandere.PickUp.Bucket != (Object) null)
-      {
-        if (!this.Yandere.PickUp.Bucket.Full)
-          this.Yandere.PickUp.Bucket.Fill();
-        else
-          this.Yandere.PickUp.Bucket.Empty();
-        this.Prompt.Label[0].text = this.Yandere.PickUp.Bucket.Full ? "     Empty Bucket" : "     Fill Bucket";
-      }
-      else if ((Object) this.Yandere.PickUp.BloodCleaner != (Object) null)
-      {
-        this.Yandere.PickUp.BloodCleaner.Blood = 0.0f;
-        this.Yandere.PickUp.BloodCleaner.Lens.SetActive(false);
-      }
-      this.Prompt.Circle[0].fillAmount = 1f;
-    }
-    if ((double) this.Prompt.Circle[1].fillAmount != 0.0)
-      return;
-    this.Prompt.Circle[1].fillAmount = 1f;
-    this.Prompt.Yandere.CharacterAnimation.CrossFade("f02_cleaningWeapon_00");
-    this.Prompt.Yandere.Target = this.WashPosition;
-    this.Prompt.Yandere.CleaningWeapon = true;
-    this.Prompt.Yandere.CanMove = false;
-    this.WaterStream.Play();
-  }
+	public YandereScript Yandere;
+
+	public PromptScript Prompt;
+
+	public bool WashingDisabled;
+
+	private void Start()
+	{
+		Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+		if (GameGlobals.EightiesTutorial)
+		{
+			WashingDisabled = true;
+		}
+	}
+
+	private void Update()
+	{
+		if (Yandere.PickUp != null)
+		{
+			Prompt.HideButton[0] = false;
+			Prompt.HideButton[1] = true;
+			if (Yandere.PickUp.Bucket != null)
+			{
+				if (Yandere.PickUp.Bucket.Dumbbells == 0)
+				{
+					Prompt.enabled = true;
+					if (!Yandere.PickUp.Bucket.Full)
+					{
+						Prompt.Label[0].text = "     Fill Bucket";
+					}
+					else
+					{
+						Prompt.Label[0].text = "     Empty Bucket";
+					}
+				}
+				else if (Prompt.enabled)
+				{
+					Prompt.Hide();
+					Prompt.enabled = false;
+				}
+			}
+			else if (Yandere.PickUp.BloodCleaner != null)
+			{
+				if (Yandere.PickUp.BloodCleaner.Blood > 0f)
+				{
+					Prompt.Label[0].text = "     Empty Robot";
+					Prompt.enabled = true;
+				}
+				else
+				{
+					Prompt.Hide();
+					Prompt.enabled = false;
+				}
+			}
+			else if (Prompt.enabled)
+			{
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
+		}
+		else if (!WashingDisabled && Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.Blood.enabled)
+		{
+			if (Prompt.HideButton[1])
+			{
+				Prompt.Label[1].text = "     Wash Weapon";
+				Prompt.HideButton[0] = true;
+				Prompt.HideButton[1] = false;
+				Prompt.enabled = true;
+			}
+		}
+		else
+		{
+			Prompt.HideButton[0] = true;
+			Prompt.HideButton[1] = true;
+			if (Prompt.enabled)
+			{
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			if (Yandere.PickUp.Bucket != null)
+			{
+				if (!Yandere.PickUp.Bucket.Full)
+				{
+					Yandere.PickUp.Bucket.Fill();
+				}
+				else
+				{
+					Yandere.PickUp.Bucket.Empty();
+				}
+				if (!Yandere.PickUp.Bucket.Full)
+				{
+					Prompt.Label[0].text = "     Fill Bucket";
+				}
+				else
+				{
+					Prompt.Label[0].text = "     Empty Bucket";
+				}
+			}
+			else if (Yandere.PickUp.BloodCleaner != null)
+			{
+				Yandere.PickUp.BloodCleaner.Blood = 0f;
+				Yandere.PickUp.BloodCleaner.Lens.SetActive(false);
+			}
+			Prompt.Circle[0].fillAmount = 1f;
+		}
+		if (Prompt.Circle[1].fillAmount == 0f)
+		{
+			Prompt.Circle[1].fillAmount = 1f;
+			Prompt.Yandere.CharacterAnimation.CrossFade("f02_cleaningWeapon_00");
+			Prompt.Yandere.Target = WashPosition;
+			Prompt.Yandere.CleaningWeapon = true;
+			Prompt.Yandere.CanMove = false;
+			WaterStream.Play();
+		}
+	}
 }

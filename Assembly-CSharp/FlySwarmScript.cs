@@ -1,32 +1,33 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FlySwarmScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FlySwarmScript : MonoBehaviour
 {
-  public GameObject[] FlyParent;
-  public Transform AllParents;
+	public GameObject[] FlyParent;
 
-  private void Start()
-  {
-    for (int index = 1; index < this.FlyParent.Length; ++index)
-      this.FlyParent[index].transform.localEulerAngles = new Vector3(Random.Range(0.0f, 360f), Random.Range(0.0f, 360f), Random.Range(0.0f, 360f));
-    this.GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
-  }
+	public Transform AllParents;
 
-  private void Update()
-  {
-    this.AllParents.Rotate(Time.deltaTime * 360f, Time.deltaTime * 360f, Time.deltaTime * 360f, Space.Self);
-    for (int index = 1; index < this.FlyParent.Length; ++index)
-    {
-      if (index < 6)
-        this.FlyParent[index].transform.Rotate(0.0f, Time.deltaTime * 360f, 0.0f, Space.Self);
-      else
-        this.FlyParent[index].transform.Rotate(0.0f, Time.deltaTime * 360f, 0.0f, Space.Self);
-    }
-  }
+	private void Start()
+	{
+		for (int i = 1; i < FlyParent.Length; i++)
+		{
+			FlyParent[i].transform.localEulerAngles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+		}
+		GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
+	}
+
+	private void Update()
+	{
+		AllParents.Rotate(Time.deltaTime * 360f, Time.deltaTime * 360f, Time.deltaTime * 360f, Space.Self);
+		for (int i = 1; i < FlyParent.Length; i++)
+		{
+			if (i < 6)
+			{
+				FlyParent[i].transform.Rotate(0f, Time.deltaTime * 360f, 0f, Space.Self);
+			}
+			else
+			{
+				FlyParent[i].transform.Rotate(0f, Time.deltaTime * 360f, 0f, Space.Self);
+			}
+		}
+	}
 }

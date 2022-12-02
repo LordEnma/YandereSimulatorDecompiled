@@ -1,69 +1,63 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: INGUIFont
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using UnityEngine;
 
 public interface INGUIFont
 {
-  BMFont bmFont { get; set; }
+	BMFont bmFont { get; set; }
 
-  int texWidth { get; set; }
+	int texWidth { get; set; }
 
-  int texHeight { get; set; }
+	int texHeight { get; set; }
 
-  bool hasSymbols { get; }
+	bool hasSymbols { get; }
 
-  List<BMSymbol> symbols { get; set; }
+	List<BMSymbol> symbols { get; set; }
 
-  INGUIAtlas atlas { get; set; }
+	INGUIAtlas atlas { get; set; }
 
-  UISpriteData GetSprite(string spriteName);
+	Material material { get; set; }
 
-  Material material { get; set; }
+	bool premultipliedAlphaShader { get; }
 
-  bool premultipliedAlphaShader { get; }
+	bool packedFontShader { get; }
 
-  bool packedFontShader { get; }
+	Texture2D texture { get; }
 
-  Texture2D texture { get; }
+	Rect uvRect { get; set; }
 
-  Rect uvRect { get; set; }
+	string spriteName { get; set; }
 
-  string spriteName { get; set; }
+	bool isValid { get; }
 
-  bool isValid { get; }
+	int defaultSize { get; set; }
 
-  int defaultSize { get; set; }
+	UISpriteData sprite { get; }
 
-  UISpriteData sprite { get; }
+	INGUIFont replacement { get; set; }
 
-  INGUIFont replacement { get; set; }
+	INGUIFont finalFont { get; }
 
-  INGUIFont finalFont { get; }
+	bool isDynamic { get; }
 
-  bool isDynamic { get; }
+	Font dynamicFont { get; set; }
 
-  Font dynamicFont { get; set; }
+	FontStyle dynamicFontStyle { get; set; }
 
-  FontStyle dynamicFontStyle { get; set; }
+	UISpriteData GetSprite(string spriteName);
 
-  bool References(INGUIFont font);
+	bool References(INGUIFont font);
 
-  void MarkAsChanged();
+	void MarkAsChanged();
 
-  void UpdateUVRect();
+	void UpdateUVRect();
 
-  BMSymbol MatchSymbol(string text, int offset, int textLength);
+	BMSymbol MatchSymbol(string text, int offset, int textLength);
 
-  void AddSymbol(string sequence, string spriteName);
+	void AddSymbol(string sequence, string spriteName);
 
-  void RemoveSymbol(string sequence);
+	void RemoveSymbol(string sequence);
 
-  void RenameSymbol(string before, string after);
+	void RenameSymbol(string before, string after);
 
-  bool UsesSprite(string s);
+	bool UsesSprite(string s);
 }

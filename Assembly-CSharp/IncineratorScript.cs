@@ -1,316 +1,397 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: IncineratorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class IncineratorScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public ClockScript Clock;
-  public AudioClip IncineratorActivate;
-  public AudioClip IncineratorClose;
-  public AudioClip IncineratorOpen;
-  public AudioSource FlameSound;
-  public AudioSource MyAudio;
-  public ParticleSystem Flames;
-  public ParticleSystem Smoke;
-  public Transform DumpPoint;
-  public Transform RightDoor;
-  public Transform LeftDoor;
-  public GameObject OutOfOrderSign;
-  public GameObject Panel;
-  public UILabel TimeLabel;
-  public UISprite Circle;
-  public bool YandereHoldingEvidence;
-  public bool ActivateAfterClosing;
-  public bool CannotIncinerate;
-  public bool Animate;
-  public bool Ready;
-  public bool Open;
-  public int ClothingWithRedPaint;
-  public int DestroyedEvidence;
-  public int BloodyClothing;
-  public int BloodyWeapons;
-  public int HiddenCorpses;
-  public int MurderWeapons;
-  public int BodyParts;
-  public int Corpses;
-  public int Victims;
-  public int Limbs;
-  public int ID;
-  public float OpenTimer;
-  public float Timer;
-  public int[] EvidenceList;
-  public int[] CorpseList;
-  public int[] VictimList;
-  public int[] LimbList;
-  public int[] ConfirmedDead;
+	public YandereScript Yandere;
 
-  private void Start()
-  {
-    this.Panel.SetActive(false);
-    this.Prompt.enabled = true;
-    if (!GameGlobals.Eighties && DateGlobals.Week == 2)
-    {
-      this.OutOfOrderSign.SetActive(true);
-      this.Prompt.enabled = false;
-      this.Prompt.Hide();
-      this.enabled = false;
-    }
-    this.MyAudio = this.GetComponent<AudioSource>();
-  }
+	public PromptScript Prompt;
 
-  public void ReturnFromSave() => this.Yandere.Police.Corpses += this.Corpses;
+	public ClockScript Clock;
 
-  private void Update()
-  {
-    if (this.Animate)
-    {
-      if (this.Open)
-      {
-        if ((double) this.RightDoor.transform.localEulerAngles.y == 0.0)
-        {
-          this.MyAudio.clip = this.IncineratorOpen;
-          this.MyAudio.Play();
-        }
-        this.RightDoor.transform.localEulerAngles = new Vector3(this.RightDoor.transform.localEulerAngles.x, Mathf.Lerp(this.RightDoor.transform.localEulerAngles.y, 135f, Time.deltaTime * 5f), this.RightDoor.transform.localEulerAngles.z);
-        this.LeftDoor.transform.localEulerAngles = new Vector3(this.LeftDoor.transform.localEulerAngles.x, Mathf.Lerp(this.LeftDoor.transform.localEulerAngles.y, 135f, Time.deltaTime * 5f), this.LeftDoor.transform.localEulerAngles.z);
-        if ((double) this.RightDoor.transform.localEulerAngles.y > 134.0)
-          this.RightDoor.transform.localEulerAngles = new Vector3(this.RightDoor.transform.localEulerAngles.x, 135f, this.RightDoor.transform.localEulerAngles.z);
-      }
-      else
-      {
-        this.RightDoor.transform.localEulerAngles = new Vector3(this.RightDoor.transform.localEulerAngles.x, Mathf.MoveTowards(this.RightDoor.transform.localEulerAngles.y, 0.0f, Time.deltaTime * 360f), this.RightDoor.transform.localEulerAngles.z);
-        this.LeftDoor.transform.localEulerAngles = new Vector3(this.LeftDoor.transform.localEulerAngles.x, Mathf.MoveTowards(this.LeftDoor.transform.localEulerAngles.y, 0.0f, Time.deltaTime * 360f), this.LeftDoor.transform.localEulerAngles.z);
-        if ((double) this.RightDoor.transform.localEulerAngles.y < 1.0)
-        {
-          this.MyAudio.clip = this.IncineratorClose;
-          this.MyAudio.Play();
-          this.Animate = false;
-          this.RightDoor.transform.localEulerAngles = new Vector3(this.RightDoor.transform.localEulerAngles.x, 0.0f, this.RightDoor.transform.localEulerAngles.z);
-          this.LeftDoor.transform.localEulerAngles = new Vector3(this.LeftDoor.transform.localEulerAngles.x, 0.0f, this.LeftDoor.transform.localEulerAngles.z);
-        }
-      }
-    }
-    if ((double) this.OpenTimer > 0.0)
-    {
-      this.OpenTimer -= Time.deltaTime;
-      if ((double) this.OpenTimer <= 1.0)
-        this.Open = false;
-      if ((double) this.OpenTimer <= 0.0)
-        this.Prompt.enabled = true;
-    }
-    else if (!this.Smoke.isPlaying)
-    {
-      this.YandereHoldingEvidence = (Object) this.Yandere.Ragdoll != (Object) null;
-      if (!this.YandereHoldingEvidence)
-        this.YandereHoldingEvidence = (Object) this.Yandere.PickUp != (Object) null && (this.Yandere.PickUp.Evidence || this.Yandere.PickUp.Garbage);
-      if (!this.YandereHoldingEvidence)
-      {
-        if ((Object) this.Yandere.EquippedWeapon != (Object) null)
-        {
-          if (this.Yandere.EquippedWeapon.Bloody || this.Yandere.EquippedWeapon.MurderWeapon)
-            this.YandereHoldingEvidence = true;
-        }
-        else
-          this.YandereHoldingEvidence = false;
-      }
-      if (!this.YandereHoldingEvidence)
-      {
-        if (!this.Prompt.HideButton[3])
-          this.Prompt.HideButton[3] = true;
-      }
-      else if (this.Prompt.HideButton[3])
-        this.Prompt.HideButton[3] = false;
-      if ((this.Yandere.Chased || this.Yandere.Chasers > 0 || !this.YandereHoldingEvidence) && !this.Prompt.HideButton[3])
-        this.Prompt.HideButton[3] = true;
-      if (this.Ready)
-      {
-        if (!this.Smoke.isPlaying)
-        {
-          if (this.CannotIncinerate)
-            this.Prompt.HideButton[0] = true;
-          if (!this.CannotIncinerate && this.Prompt.HideButton[0])
-            this.Prompt.HideButton[0] = false;
-        }
-        else if (!this.Prompt.HideButton[0])
-          this.Prompt.HideButton[0] = true;
-      }
-    }
-    if ((double) this.Prompt.Circle[3].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[3].fillAmount = 1f;
-      Time.timeScale = 1f;
-      if ((Object) this.Yandere.Ragdoll != (Object) null)
-      {
-        if (this.Yandere.Dragging)
-        {
-          this.Yandere.NotificationManager.CustomText = "Must be carrying, not dragging.";
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        }
-        else
-        {
-          RagdollScript component = this.Yandere.Ragdoll.GetComponent<RagdollScript>();
-          this.Yandere.CharacterAnimation.CrossFade(this.Yandere.Carrying ? "f02_carryIdleA_00" : "f02_dragIdle_00");
-          this.Yandere.Incinerator = this;
-          this.Yandere.YandereVision = false;
-          this.Yandere.CanMove = false;
-          this.Yandere.Dumping = true;
-          this.Prompt.Hide();
-          this.Prompt.enabled = false;
-          ++this.Victims;
-          this.VictimList[this.Victims] = component.StudentID;
-          this.Open = true;
-        }
-      }
-      if ((Object) this.Yandere.PickUp != (Object) null)
-      {
-        Debug.Log((object) ("The " + this.Yandere.PickUp.gameObject.name + " that Yandere-chan was carrying is now being dumped into the incinerator."));
-        if ((Object) this.Yandere.PickUp.BodyPart != (Object) null)
-        {
-          ++this.Limbs;
-          this.LimbList[this.Limbs] = this.Yandere.PickUp.GetComponent<BodyPartScript>().StudentID;
-        }
-        this.Yandere.PickUp.Incinerator = this;
-        this.Yandere.PickUp.Dumped = true;
-        this.Yandere.PickUp.Drop();
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-        this.OpenTimer = 2f;
-        this.Ready = true;
-        this.Open = true;
-      }
-      WeaponScript equippedWeapon = this.Yandere.EquippedWeapon;
-      if ((Object) equippedWeapon != (Object) null)
-      {
-        ++this.DestroyedEvidence;
-        this.EvidenceList[this.DestroyedEvidence] = equippedWeapon.WeaponID;
-        equippedWeapon.InsideIncinerator = true;
-        equippedWeapon.Incinerator = this;
-        equippedWeapon.Dumped = true;
-        equippedWeapon.Drop();
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-        this.OpenTimer = 2f;
-        this.Ready = true;
-        this.Open = true;
-      }
-      this.Animate = true;
-    }
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      int num = 0;
-      for (this.ID = 1; this.ID < this.Limbs + 1; ++this.ID)
-      {
-        if (this.LimbList[this.ID] == this.Yandere.StudentManager.RivalID)
-        {
-          ++num;
-          if (num == 6)
-          {
-            this.Yandere.StudentManager.Police.EndOfDay.RivalDismemberedAndIncinerated = true;
-            Debug.Log((object) "The player dismembered and incinerated Osana.");
-          }
-        }
-      }
-      this.Prompt.Circle[0].fillAmount = 1f;
-      this.Panel.SetActive(true);
-      this.Timer = 60f;
-      this.MyAudio.clip = this.IncineratorActivate;
-      this.MyAudio.Play();
-      this.Flames.Play();
-      this.Smoke.Play();
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      Debug.Log((object) ("Incinerating " + this.BloodyClothing.ToString() + " bloody clothing."));
-      Debug.Log((object) ("Incinerating " + this.BloodyWeapons.ToString() + " bloody weapons."));
-      Debug.Log((object) ("Incinerating " + this.MurderWeapons.ToString() + " murder weapons."));
-      this.Yandere.Police.IncineratedWeapons += this.BloodyWeapons;
-      this.Yandere.Police.BloodyClothing -= this.BloodyClothing;
-      this.Yandere.Police.MurderWeapons -= this.MurderWeapons;
-      this.Yandere.Police.BloodyWeapons -= this.BloodyWeapons;
-      this.Yandere.Police.HiddenCorpses -= this.HiddenCorpses;
-      this.Yandere.Police.BodyParts -= this.BodyParts;
-      this.Yandere.Police.Corpses -= this.Corpses;
-      this.Yandere.Police.RedPaintClothing -= this.ClothingWithRedPaint;
-      if (this.Yandere.Police.SuicideScene && this.Yandere.Police.Corpses == 1)
-        this.Yandere.Police.MurderScene = false;
-      if (this.Yandere.Police.Corpses == 0)
-        this.Yandere.Police.MurderScene = false;
-      this.BloodyClothing = 0;
-      this.HiddenCorpses = 0;
-      this.MurderWeapons = 0;
-      this.BodyParts = 0;
-      this.Corpses = 0;
-      for (this.ID = 0; this.ID < 101; ++this.ID)
-      {
-        if ((Object) this.Yandere.StudentManager.Students[this.CorpseList[this.ID]] != (Object) null)
-        {
-          this.Yandere.StudentManager.Students[this.CorpseList[this.ID]].Ragdoll.Disposed = true;
-          this.ConfirmedDead[this.ID] = this.CorpseList[this.ID];
-          if (this.Yandere.StudentManager.Students[this.CorpseList[this.ID]].Ragdoll.Drowned)
-            --this.Yandere.Police.DrownVictims;
-        }
-      }
-      if ((Object) this.Yandere.StudentManager.Students[this.Yandere.StudentManager.RivalID] != (Object) null && this.Yandere.StudentManager.Students[this.Yandere.StudentManager.RivalID].Ragdoll.Disposed)
-      {
-        Debug.Log((object) "Just incinerated the current rival's corpse. Setting EndOfDay.RivalEliminationMethod to ''Vanished''.");
-        this.Yandere.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Vanished;
-      }
-      this.Yandere.StudentManager.UpdateStudents();
-      this.Yandere.WeaponManager.IncinerateWeapons();
-    }
-    if (this.Smoke.isPlaying)
-    {
-      this.Timer -= Time.deltaTime * (this.Clock.TimeSpeed / 60f);
-      this.FlameSound.volume += Time.deltaTime;
-      this.Circle.fillAmount = (float) (1.0 - (double) this.Timer / 60.0);
-      if ((double) this.Timer <= 0.0)
-      {
-        this.Prompt.HideButton[0] = true;
-        this.Prompt.enabled = true;
-        this.Panel.SetActive(false);
-        this.Ready = false;
-        this.Flames.Stop();
-        this.Smoke.Stop();
-      }
-    }
-    else
-      this.FlameSound.volume -= Time.deltaTime;
-    if (!this.Panel.activeInHierarchy)
-      return;
-    double num1 = (double) Mathf.CeilToInt(this.Timer * 60f);
-    this.TimeLabel.text = string.Format("{0:00}:{1:00}", (object) Mathf.Floor((float) (num1 / 60.0)), (object) (float) Mathf.RoundToInt((float) (num1 % 60.0)));
-  }
+	public AudioClip IncineratorActivate;
 
-  public void SetVictimsMissing()
-  {
-    foreach (int studentID in this.ConfirmedDead)
-    {
-      if (studentID > 0)
-      {
-        Debug.Log((object) ("Student #" + studentID.ToString() + " was incinerated and is now considered ''missing'."));
-        StudentGlobals.SetStudentMissing(studentID, true);
-      }
-    }
-  }
+	public AudioClip IncineratorClose;
 
-  public void DumpGarbageBag(PickUpScript PickUp)
-  {
-    Debug.Log((object) "A garbage bag was dumped into the incinerator!");
-    ++this.Limbs;
-    this.LimbList[this.Limbs] = PickUp.GetComponent<BodyPartScript>().StudentID;
-    PickUp.Incinerator = this;
-    PickUp.Dumped = true;
-    PickUp.Drop();
-    this.Prompt.Hide();
-    this.Prompt.enabled = false;
-    this.OpenTimer = 2f;
-    this.Animate = true;
-    this.Ready = true;
-    this.Open = true;
-  }
+	public AudioClip IncineratorOpen;
+
+	public AudioSource FlameSound;
+
+	public AudioSource MyAudio;
+
+	public ParticleSystem Flames;
+
+	public ParticleSystem Smoke;
+
+	public Transform DumpPoint;
+
+	public Transform RightDoor;
+
+	public Transform LeftDoor;
+
+	public GameObject OutOfOrderSign;
+
+	public GameObject Panel;
+
+	public UILabel TimeLabel;
+
+	public UISprite Circle;
+
+	public bool YandereHoldingEvidence;
+
+	public bool ActivateAfterClosing;
+
+	public bool CannotIncinerate;
+
+	public bool Animate;
+
+	public bool Ready;
+
+	public bool Open;
+
+	public int ClothingWithRedPaint;
+
+	public int DestroyedEvidence;
+
+	public int BloodyClothing;
+
+	public int BloodyWeapons;
+
+	public int HiddenCorpses;
+
+	public int MurderWeapons;
+
+	public int BodyParts;
+
+	public int Corpses;
+
+	public int Victims;
+
+	public int Limbs;
+
+	public int ID;
+
+	public float OpenTimer;
+
+	public float Timer;
+
+	public int[] EvidenceList;
+
+	public int[] CorpseList;
+
+	public int[] VictimList;
+
+	public int[] LimbList;
+
+	public int[] ConfirmedDead;
+
+	private void Start()
+	{
+		Panel.SetActive(false);
+		Prompt.enabled = true;
+		if (!GameGlobals.Eighties && DateGlobals.Week == 2)
+		{
+			OutOfOrderSign.SetActive(true);
+			Prompt.enabled = false;
+			Prompt.Hide();
+			base.enabled = false;
+		}
+		MyAudio = GetComponent<AudioSource>();
+	}
+
+	public void ReturnFromSave()
+	{
+		Yandere.Police.Corpses += Corpses;
+	}
+
+	private void Update()
+	{
+		if (Animate)
+		{
+			if (Open)
+			{
+				if (RightDoor.transform.localEulerAngles.y == 0f)
+				{
+					MyAudio.clip = IncineratorOpen;
+					MyAudio.Play();
+				}
+				RightDoor.transform.localEulerAngles = new Vector3(RightDoor.transform.localEulerAngles.x, Mathf.Lerp(RightDoor.transform.localEulerAngles.y, 135f, Time.deltaTime * 5f), RightDoor.transform.localEulerAngles.z);
+				LeftDoor.transform.localEulerAngles = new Vector3(LeftDoor.transform.localEulerAngles.x, Mathf.Lerp(LeftDoor.transform.localEulerAngles.y, 135f, Time.deltaTime * 5f), LeftDoor.transform.localEulerAngles.z);
+				if (RightDoor.transform.localEulerAngles.y > 134f)
+				{
+					RightDoor.transform.localEulerAngles = new Vector3(RightDoor.transform.localEulerAngles.x, 135f, RightDoor.transform.localEulerAngles.z);
+				}
+			}
+			else
+			{
+				RightDoor.transform.localEulerAngles = new Vector3(RightDoor.transform.localEulerAngles.x, Mathf.MoveTowards(RightDoor.transform.localEulerAngles.y, 0f, Time.deltaTime * 360f), RightDoor.transform.localEulerAngles.z);
+				LeftDoor.transform.localEulerAngles = new Vector3(LeftDoor.transform.localEulerAngles.x, Mathf.MoveTowards(LeftDoor.transform.localEulerAngles.y, 0f, Time.deltaTime * 360f), LeftDoor.transform.localEulerAngles.z);
+				if (RightDoor.transform.localEulerAngles.y < 1f)
+				{
+					MyAudio.clip = IncineratorClose;
+					MyAudio.Play();
+					Animate = false;
+					RightDoor.transform.localEulerAngles = new Vector3(RightDoor.transform.localEulerAngles.x, 0f, RightDoor.transform.localEulerAngles.z);
+					LeftDoor.transform.localEulerAngles = new Vector3(LeftDoor.transform.localEulerAngles.x, 0f, LeftDoor.transform.localEulerAngles.z);
+				}
+			}
+		}
+		if (OpenTimer > 0f)
+		{
+			OpenTimer -= Time.deltaTime;
+			if (OpenTimer <= 1f)
+			{
+				Open = false;
+			}
+			if (OpenTimer <= 0f)
+			{
+				Prompt.enabled = true;
+			}
+		}
+		else if (!Smoke.isPlaying)
+		{
+			YandereHoldingEvidence = Yandere.Ragdoll != null;
+			if (!YandereHoldingEvidence)
+			{
+				if (Yandere.PickUp != null)
+				{
+					YandereHoldingEvidence = Yandere.PickUp.Evidence || Yandere.PickUp.Garbage;
+				}
+				else
+				{
+					YandereHoldingEvidence = false;
+				}
+			}
+			if (!YandereHoldingEvidence)
+			{
+				if (Yandere.EquippedWeapon != null)
+				{
+					if (Yandere.EquippedWeapon.Bloody || Yandere.EquippedWeapon.MurderWeapon)
+					{
+						YandereHoldingEvidence = true;
+					}
+				}
+				else
+				{
+					YandereHoldingEvidence = false;
+				}
+			}
+			if (!YandereHoldingEvidence)
+			{
+				if (!Prompt.HideButton[3])
+				{
+					Prompt.HideButton[3] = true;
+				}
+			}
+			else if (Prompt.HideButton[3])
+			{
+				Prompt.HideButton[3] = false;
+			}
+			if ((Yandere.Chased || Yandere.Chasers > 0 || !YandereHoldingEvidence) && !Prompt.HideButton[3])
+			{
+				Prompt.HideButton[3] = true;
+			}
+			if (Ready)
+			{
+				if (!Smoke.isPlaying)
+				{
+					if (CannotIncinerate)
+					{
+						Prompt.HideButton[0] = true;
+					}
+					if (!CannotIncinerate && Prompt.HideButton[0])
+					{
+						Prompt.HideButton[0] = false;
+					}
+				}
+				else if (!Prompt.HideButton[0])
+				{
+					Prompt.HideButton[0] = true;
+				}
+			}
+		}
+		if (Prompt.Circle[3].fillAmount == 0f)
+		{
+			Prompt.Circle[3].fillAmount = 1f;
+			Time.timeScale = 1f;
+			if (Yandere.Ragdoll != null)
+			{
+				if (Yandere.Dragging)
+				{
+					Yandere.NotificationManager.CustomText = "Must be carrying, not dragging.";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				else
+				{
+					RagdollScript component = Yandere.Ragdoll.GetComponent<RagdollScript>();
+					Yandere.CharacterAnimation.CrossFade(Yandere.Carrying ? "f02_carryIdleA_00" : "f02_dragIdle_00");
+					Yandere.Incinerator = this;
+					Yandere.YandereVision = false;
+					Yandere.CanMove = false;
+					Yandere.Dumping = true;
+					Prompt.Hide();
+					Prompt.enabled = false;
+					Victims++;
+					VictimList[Victims] = component.StudentID;
+					Open = true;
+				}
+			}
+			if (Yandere.PickUp != null)
+			{
+				Debug.Log("The " + Yandere.PickUp.gameObject.name + " that Yandere-chan was carrying is now being dumped into the incinerator.");
+				if (Yandere.PickUp.BodyPart != null)
+				{
+					Limbs++;
+					LimbList[Limbs] = Yandere.PickUp.GetComponent<BodyPartScript>().StudentID;
+				}
+				Yandere.PickUp.Incinerator = this;
+				Yandere.PickUp.Dumped = true;
+				Yandere.PickUp.Drop();
+				Prompt.Hide();
+				Prompt.enabled = false;
+				OpenTimer = 2f;
+				Ready = true;
+				Open = true;
+			}
+			WeaponScript equippedWeapon = Yandere.EquippedWeapon;
+			if (equippedWeapon != null)
+			{
+				DestroyedEvidence++;
+				EvidenceList[DestroyedEvidence] = equippedWeapon.WeaponID;
+				equippedWeapon.InsideIncinerator = true;
+				equippedWeapon.Incinerator = this;
+				equippedWeapon.Dumped = true;
+				equippedWeapon.Drop();
+				Prompt.Hide();
+				Prompt.enabled = false;
+				OpenTimer = 2f;
+				Ready = true;
+				Open = true;
+			}
+			Animate = true;
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			int num = 0;
+			for (ID = 1; ID < Limbs + 1; ID++)
+			{
+				if (LimbList[ID] == Yandere.StudentManager.RivalID)
+				{
+					num++;
+					if (num == 6)
+					{
+						Yandere.StudentManager.Police.EndOfDay.RivalDismemberedAndIncinerated = true;
+						Debug.Log("The player dismembered and incinerated Osana.");
+					}
+				}
+			}
+			Prompt.Circle[0].fillAmount = 1f;
+			Panel.SetActive(true);
+			Timer = 60f;
+			MyAudio.clip = IncineratorActivate;
+			MyAudio.Play();
+			Flames.Play();
+			Smoke.Play();
+			Prompt.Hide();
+			Prompt.enabled = false;
+			Debug.Log("Incinerating " + BloodyClothing + " bloody clothing.");
+			Debug.Log("Incinerating " + BloodyWeapons + " bloody weapons.");
+			Debug.Log("Incinerating " + MurderWeapons + " murder weapons.");
+			Yandere.Police.IncineratedWeapons += BloodyWeapons;
+			Yandere.Police.BloodyClothing -= BloodyClothing;
+			Yandere.Police.MurderWeapons -= MurderWeapons;
+			Yandere.Police.BloodyWeapons -= BloodyWeapons;
+			Yandere.Police.HiddenCorpses -= HiddenCorpses;
+			Yandere.Police.BodyParts -= BodyParts;
+			Yandere.Police.Corpses -= Corpses;
+			Yandere.Police.RedPaintClothing -= ClothingWithRedPaint;
+			if (Yandere.Police.SuicideScene && Yandere.Police.Corpses == 1)
+			{
+				Yandere.Police.MurderScene = false;
+			}
+			if (Yandere.Police.Corpses == 0)
+			{
+				Yandere.Police.MurderScene = false;
+			}
+			BloodyClothing = 0;
+			HiddenCorpses = 0;
+			MurderWeapons = 0;
+			BodyParts = 0;
+			Corpses = 0;
+			for (ID = 0; ID < 101; ID++)
+			{
+				if (Yandere.StudentManager.Students[CorpseList[ID]] != null)
+				{
+					Yandere.StudentManager.Students[CorpseList[ID]].Ragdoll.Disposed = true;
+					ConfirmedDead[ID] = CorpseList[ID];
+					if (Yandere.StudentManager.Students[CorpseList[ID]].Ragdoll.Drowned)
+					{
+						Yandere.Police.DrownVictims--;
+					}
+				}
+			}
+			if (Yandere.StudentManager.Students[Yandere.StudentManager.RivalID] != null && Yandere.StudentManager.Students[Yandere.StudentManager.RivalID].Ragdoll.Disposed)
+			{
+				Debug.Log("Just incinerated the current rival's corpse. Setting EndOfDay.RivalEliminationMethod to ''Vanished''.");
+				Yandere.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Vanished;
+			}
+			Yandere.StudentManager.UpdateStudents();
+			Yandere.WeaponManager.IncinerateWeapons();
+		}
+		if (Smoke.isPlaying)
+		{
+			Timer -= Time.deltaTime * (Clock.TimeSpeed / 60f);
+			FlameSound.volume += Time.deltaTime;
+			Circle.fillAmount = 1f - Timer / 60f;
+			if (Timer <= 0f)
+			{
+				Prompt.HideButton[0] = true;
+				Prompt.enabled = true;
+				Panel.SetActive(false);
+				Ready = false;
+				Flames.Stop();
+				Smoke.Stop();
+			}
+		}
+		else
+		{
+			FlameSound.volume -= Time.deltaTime;
+		}
+		if (Panel.activeInHierarchy)
+		{
+			float num2 = Mathf.CeilToInt(Timer * 60f);
+			float num3 = Mathf.Floor(num2 / 60f);
+			float num4 = Mathf.RoundToInt(num2 % 60f);
+			TimeLabel.text = string.Format("{0:00}:{1:00}", num3, num4);
+		}
+	}
+
+	public void SetVictimsMissing()
+	{
+		int[] confirmedDead = ConfirmedDead;
+		for (int i = 0; i < confirmedDead.Length; i++)
+		{
+			int num = confirmedDead[i];
+			if (num > 0)
+			{
+				Debug.Log("Student #" + num + " was incinerated and is now considered ''missing'.");
+				StudentGlobals.SetStudentMissing(num, true);
+			}
+		}
+	}
+
+	public void DumpGarbageBag(PickUpScript PickUp)
+	{
+		Debug.Log("A garbage bag was dumped into the incinerator!");
+		Limbs++;
+		LimbList[Limbs] = PickUp.GetComponent<BodyPartScript>().StudentID;
+		PickUp.Incinerator = this;
+		PickUp.Dumped = true;
+		PickUp.Drop();
+		Prompt.Hide();
+		Prompt.enabled = false;
+		OpenTimer = 2f;
+		Animate = true;
+		Ready = true;
+		Open = true;
+	}
 }

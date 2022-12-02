@@ -1,74 +1,63 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.Malee.ReorderableAttribute
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 namespace MaidDereMinigame.Malee
 {
-  public class ReorderableAttribute : PropertyAttribute
-  {
-    public bool add;
-    public bool remove;
-    public bool draggable;
-    public bool singleLine;
-    public bool paginate;
-    public bool sortable;
-    public int pageSize;
-    public string elementNameProperty;
-    public string elementNameOverride;
-    public string elementIconPath;
+	public class ReorderableAttribute : PropertyAttribute
+	{
+		public bool add;
 
-    public ReorderableAttribute()
-      : this((string) null)
-    {
-    }
+		public bool remove;
 
-    public ReorderableAttribute(string elementNameProperty)
-      : this(true, true, true, elementNameProperty, (string) null, (string) null)
-    {
-    }
+		public bool draggable;
 
-    public ReorderableAttribute(string elementNameProperty, string elementIconPath)
-      : this(true, true, true, elementNameProperty, (string) null, elementIconPath)
-    {
-    }
+		public bool singleLine;
 
-    public ReorderableAttribute(
-      string elementNameProperty,
-      string elementNameOverride,
-      string elementIconPath)
-      : this(true, true, true, elementNameProperty, elementNameOverride, elementIconPath)
-    {
-    }
+		public bool paginate;
 
-    public ReorderableAttribute(
-      bool add,
-      bool remove,
-      bool draggable,
-      string elementNameProperty = null,
-      string elementIconPath = null)
-      : this(add, remove, draggable, elementNameProperty, (string) null, elementIconPath)
-    {
-    }
+		public bool sortable;
 
-    public ReorderableAttribute(
-      bool add,
-      bool remove,
-      bool draggable,
-      string elementNameProperty = null,
-      string elementNameOverride = null,
-      string elementIconPath = null)
-    {
-      this.add = add;
-      this.remove = remove;
-      this.draggable = draggable;
-      this.sortable = true;
-      this.elementNameProperty = elementNameProperty;
-      this.elementNameOverride = elementNameOverride;
-      this.elementIconPath = elementIconPath;
-    }
-  }
+		public int pageSize;
+
+		public string elementNameProperty;
+
+		public string elementNameOverride;
+
+		public string elementIconPath;
+
+		public ReorderableAttribute()
+			: this(null)
+		{
+		}
+
+		public ReorderableAttribute(string elementNameProperty)
+			: this(true, true, true, elementNameProperty)
+		{
+		}
+
+		public ReorderableAttribute(string elementNameProperty, string elementIconPath)
+			: this(true, true, true, elementNameProperty, null, elementIconPath)
+		{
+		}
+
+		public ReorderableAttribute(string elementNameProperty, string elementNameOverride, string elementIconPath)
+			: this(true, true, true, elementNameProperty, elementNameOverride, elementIconPath)
+		{
+		}
+
+		public ReorderableAttribute(bool add, bool remove, bool draggable, string elementNameProperty = null, string elementIconPath = null)
+			: this(add, remove, draggable, elementNameProperty, null, elementIconPath)
+		{
+		}
+
+		public ReorderableAttribute(bool add, bool remove, bool draggable, string elementNameProperty = null, string elementNameOverride = null, string elementIconPath = null)
+		{
+			this.add = add;
+			this.remove = remove;
+			this.draggable = draggable;
+			sortable = true;
+			this.elementNameProperty = elementNameProperty;
+			this.elementNameOverride = elementNameOverride;
+			this.elementIconPath = elementIconPath;
+		}
+	}
 }

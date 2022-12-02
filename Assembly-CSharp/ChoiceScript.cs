@@ -1,58 +1,61 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ChoiceScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ChoiceScript : MonoBehaviour
 {
-  public InputManagerScript InputManager;
-  public PromptBarScript PromptBar;
-  public Transform Highlight;
-  public UISprite Darkness;
-  public int Selected;
-  public int Phase;
+	public InputManagerScript InputManager;
 
-  private void Start() => this.Darkness.color = new Color(1f, 1f, 1f, 1f);
+	public PromptBarScript PromptBar;
 
-  private void Update()
-  {
-    this.Highlight.transform.localPosition = Vector3.Lerp(this.Highlight.transform.localPosition, new Vector3((float) (720 * this.Selected - 360), this.Highlight.transform.localPosition.y, this.Highlight.transform.localPosition.z), Time.deltaTime * 10f);
-    if (this.Phase == 0)
-    {
-      this.Darkness.color = new Color(1f, 1f, 1f, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime * 2f));
-      if ((double) this.Darkness.color.a != 0.0)
-        return;
-      ++this.Phase;
-    }
-    else if (this.Phase == 1)
-    {
-      if (this.InputManager.TappedLeft)
-      {
-        this.Darkness.color = new Color(1f, 1f, 1f, 0.0f);
-        this.Selected = 0;
-      }
-      else if (this.InputManager.TappedRight)
-      {
-        this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-        this.Selected = 1;
-      }
-      if (!Input.GetButtonDown("A"))
-        return;
-      ++this.Phase;
-    }
-    else
-    {
-      if (this.Phase != 2)
-        return;
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime * 2f));
-      if ((double) this.Darkness.color.a != 1.0)
-        return;
-      GameGlobals.LoveSick = this.Selected == 1;
-      SceneManager.LoadScene("NewTitleScene");
-    }
-  }
+	public Transform Highlight;
+
+	public UISprite Darkness;
+
+	public int Selected;
+
+	public int Phase;
+
+	private void Start()
+	{
+		Darkness.color = new Color(1f, 1f, 1f, 1f);
+	}
+
+	private void Update()
+	{
+		Highlight.transform.localPosition = Vector3.Lerp(Highlight.transform.localPosition, new Vector3(-360 + 720 * Selected, Highlight.transform.localPosition.y, Highlight.transform.localPosition.z), Time.deltaTime * 10f);
+		if (Phase == 0)
+		{
+			Darkness.color = new Color(1f, 1f, 1f, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime * 2f));
+			if (Darkness.color.a == 0f)
+			{
+				Phase++;
+			}
+		}
+		else if (Phase == 1)
+		{
+			if (InputManager.TappedLeft)
+			{
+				Darkness.color = new Color(1f, 1f, 1f, 0f);
+				Selected = 0;
+			}
+			else if (InputManager.TappedRight)
+			{
+				Darkness.color = new Color(0f, 0f, 0f, 0f);
+				Selected = 1;
+			}
+			if (Input.GetButtonDown("A"))
+			{
+				Phase++;
+			}
+		}
+		else if (Phase == 2)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime * 2f));
+			if (Darkness.color.a == 1f)
+			{
+				GameGlobals.LoveSick = Selected == 1;
+				SceneManager.LoadScene("NewTitleScene");
+			}
+		}
+	}
 }

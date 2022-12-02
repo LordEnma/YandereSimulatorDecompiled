@@ -1,68 +1,68 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: StolenPhoneSpotScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class StolenPhoneSpotScript : MonoBehaviour
 {
-  public RivalPhoneScript RivalPhone;
-  public PromptScript Prompt;
-  public Transform PhoneSpot;
+	public RivalPhoneScript RivalPhone;
 
-  private void Update()
-  {
-    if (this.Prompt.Yandere.Inventory.RivalPhone)
-    {
-      this.Prompt.enabled = true;
-      if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-        return;
-      this.Prompt.Circle[0].fillAmount = 1f;
-      if ((Object) this.Prompt.Yandere.StudentManager.Students[this.RivalPhone.StudentID] != (Object) null && this.Prompt.Yandere.StudentManager.Students[this.RivalPhone.StudentID].Phoneless)
-      {
-        this.Prompt.Circle[0].fillAmount = 1f;
-        this.Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
-        if (!this.Prompt.Yandere.StudentManager.YandereVisible)
-        {
-          if (this.RivalPhone.StudentID == this.Prompt.Yandere.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(1) == 6)
-          {
-            SchemeGlobals.SetSchemeStage(1, 7);
-            this.Prompt.Yandere.PauseScreen.Schemes.UpdateInstructions();
-          }
-          this.Prompt.Yandere.SmartphoneRenderer.material.mainTexture = this.Prompt.Yandere.YanderePhoneTexture;
-          this.Prompt.Yandere.Inventory.RivalPhone = false;
-          this.Prompt.Yandere.RivalPhone = false;
-          this.RivalPhone.StolenPhoneDropoff.Prompt.enabled = false;
-          this.RivalPhone.StolenPhoneDropoff.Prompt.Hide();
-          this.RivalPhone.transform.parent = (Transform) null;
-          if ((Object) this.PhoneSpot == (Object) null)
-            this.RivalPhone.transform.position = this.transform.position;
-          else
-            this.RivalPhone.transform.position = this.PhoneSpot.position;
-          this.RivalPhone.transform.eulerAngles = this.transform.eulerAngles;
-          this.RivalPhone.gameObject.SetActive(true);
-          this.gameObject.SetActive(false);
-        }
-        else
-        {
-          this.Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
-          this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        }
-      }
-      else
-      {
-        this.Prompt.Yandere.NotificationManager.CustomText = "Wait a few more moments first...";
-        this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-    }
-    else
-    {
-      if (!this.Prompt.enabled)
-        return;
-      this.Prompt.enabled = false;
-      this.Prompt.Hide();
-    }
-  }
+	public PromptScript Prompt;
+
+	public Transform PhoneSpot;
+
+	private void Update()
+	{
+		if (Prompt.Yandere.Inventory.RivalPhone)
+		{
+			Prompt.enabled = true;
+			if (Prompt.Circle[0].fillAmount != 0f)
+			{
+				return;
+			}
+			Prompt.Circle[0].fillAmount = 1f;
+			if (Prompt.Yandere.StudentManager.Students[RivalPhone.StudentID] != null && Prompt.Yandere.StudentManager.Students[RivalPhone.StudentID].Phoneless)
+			{
+				Prompt.Circle[0].fillAmount = 1f;
+				Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+				if (!Prompt.Yandere.StudentManager.YandereVisible)
+				{
+					if (RivalPhone.StudentID == Prompt.Yandere.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(1) == 6)
+					{
+						SchemeGlobals.SetSchemeStage(1, 7);
+						Prompt.Yandere.PauseScreen.Schemes.UpdateInstructions();
+					}
+					Prompt.Yandere.SmartphoneRenderer.material.mainTexture = Prompt.Yandere.YanderePhoneTexture;
+					Prompt.Yandere.Inventory.RivalPhone = false;
+					Prompt.Yandere.RivalPhone = false;
+					RivalPhone.StolenPhoneDropoff.Prompt.enabled = false;
+					RivalPhone.StolenPhoneDropoff.Prompt.Hide();
+					RivalPhone.transform.parent = null;
+					if (PhoneSpot == null)
+					{
+						RivalPhone.transform.position = base.transform.position;
+					}
+					else
+					{
+						RivalPhone.transform.position = PhoneSpot.position;
+					}
+					RivalPhone.transform.eulerAngles = base.transform.eulerAngles;
+					RivalPhone.gameObject.SetActive(true);
+					base.gameObject.SetActive(false);
+				}
+				else
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			else
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Wait a few more moments first...";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+		}
+		else if (Prompt.enabled)
+		{
+			Prompt.enabled = false;
+			Prompt.Hide();
+		}
+	}
 }

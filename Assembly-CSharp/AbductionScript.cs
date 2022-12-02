@@ -1,75 +1,94 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AbductionScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class AbductionScript : MonoBehaviour
 {
-  public SkinnedMeshRenderer Renderer;
-  public Texture[] RivalStockings;
-  public AudioSource MyAudio;
-  public UISprite Darkness;
-  public Camera MainCamera;
-  public float StartTimer;
-  public float Timer;
-  public bool PlayedAudio;
-  public int Phase;
-  public Animation Anim1;
-  public Animator Anim2;
-  public PostProcessingProfile Profile;
+	public SkinnedMeshRenderer Renderer;
 
-  private void Start()
-  {
-    if ((double) SchoolGlobals.SchoolAtmosphere > 0.5)
-      this.Darkness.color = new Color(1f, 1f, 1f, 1f);
-    else
-      this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    this.UpdateDOF(1f);
-    if (GameGlobals.AbductionTarget <= 0)
-      return;
-    this.Renderer.material.SetTexture("_OverlayTex", this.RivalStockings[GameGlobals.AbductionTarget - 10]);
-  }
+	public Texture[] RivalStockings;
 
-  private void Update()
-  {
-    this.StartTimer += Time.deltaTime;
-    if ((double) this.StartTimer <= 1.0)
-      return;
-    if ((double) this.StartTimer > 2.5 && !this.MyAudio.isPlaying && !this.PlayedAudio)
-    {
-      this.PlayedAudio = true;
-      this.MyAudio.Play();
-    }
-    if (this.Phase == 0)
-    {
-      this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime * 0.33333f);
-      if ((double) this.Darkness.alpha != 0.0)
-        return;
-      this.Anim1.Play();
-      this.Anim2.enabled = true;
-      ++this.Phase;
-    }
-    else
-    {
-      if ((double) this.Anim1["Scene"].time < (double) this.Anim1["Scene"].length)
-        return;
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer <= 2.0)
-        return;
-      this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 1f, Time.deltaTime * 0.33333f);
-      if ((double) this.Darkness.alpha != 1.0)
-        return;
-      SceneManager.LoadScene("LoadingScene");
-    }
-  }
+	public AudioSource MyAudio;
 
-  private void UpdateDOF(float Focus) => this.Profile.depthOfField.settings = this.Profile.depthOfField.settings with
-  {
-    focusDistance = Focus
-  };
+	public UISprite Darkness;
+
+	public Camera MainCamera;
+
+	public float StartTimer;
+
+	public float Timer;
+
+	public bool PlayedAudio;
+
+	public int Phase;
+
+	public Animation Anim1;
+
+	public Animator Anim2;
+
+	public PostProcessingProfile Profile;
+
+	private void Start()
+	{
+		if (SchoolGlobals.SchoolAtmosphere > 0.5f)
+		{
+			Darkness.color = new Color(1f, 1f, 1f, 1f);
+		}
+		else
+		{
+			Darkness.color = new Color(0f, 0f, 0f, 1f);
+		}
+		UpdateDOF(1f);
+		if (GameGlobals.AbductionTarget > 0)
+		{
+			Renderer.material.SetTexture("_OverlayTex", RivalStockings[GameGlobals.AbductionTarget - 10]);
+		}
+	}
+
+	private void Update()
+	{
+		StartTimer += Time.deltaTime;
+		if (!(StartTimer > 1f))
+		{
+			return;
+		}
+		if ((double)StartTimer > 2.5 && !MyAudio.isPlaying && !PlayedAudio)
+		{
+			PlayedAudio = true;
+			MyAudio.Play();
+		}
+		if (Phase == 0)
+		{
+			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime * 0.33333f);
+			if (Darkness.alpha == 0f)
+			{
+				Anim1.Play();
+				Anim2.enabled = true;
+				Phase++;
+			}
+		}
+		else
+		{
+			if (!(Anim1["Scene"].time >= Anim1["Scene"].length))
+			{
+				return;
+			}
+			Timer += Time.deltaTime;
+			if (Timer > 2f)
+			{
+				Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime * 0.33333f);
+				if (Darkness.alpha == 1f)
+				{
+					SceneManager.LoadScene("LoadingScene");
+				}
+			}
+		}
+	}
+
+	private void UpdateDOF(float Focus)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		settings.focusDistance = Focus;
+		Profile.depthOfField.settings = settings;
+	}
 }

@@ -1,36 +1,37 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MissingPosterManagerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MissingPosterManagerScript : MonoBehaviour
 {
-  public GameObject MissingPoster;
-  public int RandomID;
-  public int ID;
+	public GameObject MissingPoster;
 
-  private void Start()
-  {
-    for (; this.ID < 101; ++this.ID)
-    {
-      if (StudentGlobals.GetStudentMissing(this.ID))
-      {
-        GameObject gameObject = Object.Instantiate<GameObject>(this.MissingPoster, this.transform.position, Quaternion.identity);
-        gameObject.transform.parent = this.transform;
-        gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-        gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f, Random.Range(-15f, 15f));
-        WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + this.ID.ToString() + ".png");
-        gameObject.GetComponent<MissingPosterScript>().MyRenderer.material.mainTexture = (Texture) www.texture;
-        this.RandomID = Random.Range(1, 3);
-        gameObject.transform.localPosition = new Vector3((float) (this.ID * 500) - 16300f, Random.Range(1300f, 2000f), 0.0f);
-        if ((double) gameObject.transform.localPosition.x > -3700.0)
-          gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x + 7300f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
-        if ((double) gameObject.transform.localPosition.x > 15800.0)
-          Object.Destroy((Object) gameObject);
-      }
-    }
-  }
+	public int RandomID;
+
+	public int ID;
+
+	private void Start()
+	{
+		while (ID < 101)
+		{
+			if (StudentGlobals.GetStudentMissing(ID))
+			{
+				GameObject gameObject = Object.Instantiate(MissingPoster, base.transform.position, Quaternion.identity);
+				gameObject.transform.parent = base.transform;
+				gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+				gameObject.transform.eulerAngles = new Vector3(0f, 0f, Random.Range(-15f, 15f));
+				WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + ID + ".png");
+				gameObject.GetComponent<MissingPosterScript>().MyRenderer.material.mainTexture = wWW.texture;
+				RandomID = Random.Range(1, 3);
+				gameObject.transform.localPosition = new Vector3(-16300f + (float)(ID * 500), Random.Range(1300f, 2000f), 0f);
+				if (gameObject.transform.localPosition.x > -3700f)
+				{
+					gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x + 7300f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
+				}
+				if (gameObject.transform.localPosition.x > 15800f)
+				{
+					Object.Destroy(gameObject);
+				}
+			}
+			ID++;
+		}
+	}
 }

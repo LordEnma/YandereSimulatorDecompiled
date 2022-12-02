@@ -1,45 +1,38 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: StopAnimationScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class StopAnimationScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public Transform Yandere;
-  private Animation Anim;
+	public StudentManagerScript StudentManager;
 
-  private void Start()
-  {
-    this.StudentManager = GameObject.Find("StudentManager").GetComponent<StudentManagerScript>();
-    this.Anim = this.GetComponent<Animation>();
-  }
+	public Transform Yandere;
 
-  private void Update()
-  {
-    if (this.StudentManager.DisableFarAnims)
-    {
-      if ((double) Vector3.Distance(this.Yandere.position, this.transform.position) > 15.0)
-      {
-        if (!this.Anim.enabled)
-          return;
-        this.Anim.enabled = false;
-      }
-      else
-      {
-        if (this.Anim.enabled)
-          return;
-        this.Anim.enabled = true;
-      }
-    }
-    else
-    {
-      if (this.Anim.enabled)
-        return;
-      this.Anim.enabled = true;
-    }
-  }
+	private Animation Anim;
+
+	private void Start()
+	{
+		StudentManager = GameObject.Find("StudentManager").GetComponent<StudentManagerScript>();
+		Anim = GetComponent<Animation>();
+	}
+
+	private void Update()
+	{
+		if (StudentManager.DisableFarAnims)
+		{
+			if (Vector3.Distance(Yandere.position, base.transform.position) > 15f)
+			{
+				if (Anim.enabled)
+				{
+					Anim.enabled = false;
+				}
+			}
+			else if (!Anim.enabled)
+			{
+				Anim.enabled = true;
+			}
+		}
+		else if (!Anim.enabled)
+		{
+			Anim.enabled = true;
+		}
+	}
 }

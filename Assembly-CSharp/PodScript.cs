@@ -1,34 +1,38 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PodScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PodScript : MonoBehaviour
 {
-  public GameObject Projectile;
-  public Transform SpawnPoint;
-  public Transform PodTarget;
-  public Transform AimTarget;
-  public float FireRate;
-  public float Timer;
+	public GameObject Projectile;
 
-  private void Start() => this.Timer = 1f;
+	public Transform SpawnPoint;
 
-  private void LateUpdate()
-  {
-    this.PodTarget.transform.parent.eulerAngles = new Vector3(0.0f, this.AimTarget.parent.eulerAngles.y, 0.0f);
-    this.transform.position = Vector3.Lerp(this.transform.position, this.PodTarget.position, Time.deltaTime * 100f);
-    this.transform.rotation = this.AimTarget.parent.rotation;
-    this.transform.eulerAngles += new Vector3(-15f, 7.5f, 0.0f);
-    if (!Input.GetButton("RB"))
-      return;
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer <= (double) this.FireRate)
-      return;
-    Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position, this.transform.rotation);
-    this.Timer = 0.0f;
-  }
+	public Transform PodTarget;
+
+	public Transform AimTarget;
+
+	public float FireRate;
+
+	public float Timer;
+
+	private void Start()
+	{
+		Timer = 1f;
+	}
+
+	private void LateUpdate()
+	{
+		PodTarget.transform.parent.eulerAngles = new Vector3(0f, AimTarget.parent.eulerAngles.y, 0f);
+		base.transform.position = Vector3.Lerp(base.transform.position, PodTarget.position, Time.deltaTime * 100f);
+		base.transform.rotation = AimTarget.parent.rotation;
+		base.transform.eulerAngles += new Vector3(-15f, 7.5f, 0f);
+		if (Input.GetButton("RB"))
+		{
+			Timer += Time.deltaTime;
+			if (Timer > FireRate)
+			{
+				Object.Instantiate(Projectile, SpawnPoint.position, base.transform.rotation);
+				Timer = 0f;
+			}
+		}
+	}
 }

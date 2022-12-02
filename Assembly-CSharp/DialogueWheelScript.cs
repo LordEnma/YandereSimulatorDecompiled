@@ -1,996 +1,1189 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DialogueWheelScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DialogueWheelScript : MonoBehaviour
 {
-  public AppearanceWindowScript AppearanceWindow;
-  public PracticeWindowScript PracticeWindow;
-  public TopicInterfaceScript TopicInterface;
-  public AdviceWindowScript AdviceWindow;
-  public ClubManagerScript ClubManager;
-  public LoveManagerScript LoveManager;
-  public PauseScreenScript PauseScreen;
-  public TaskManagerScript TaskManager;
-  public ClubWindowScript ClubWindow;
-  public NoteLockerScript NoteLocker;
-  public ReputationScript Reputation;
-  public TaskWindowScript TaskWindow;
-  public PromptBarScript PromptBar;
-  public JukeboxScript Jukebox;
-  public YandereScript Yandere;
-  public ClockScript Clock;
-  public UIPanel Panel;
-  public GameObject SwitchTopicsWindow;
-  public GameObject TaskDialogueWindow;
-  public GameObject ClubLeaderWindow;
-  public GameObject DatingMinigame;
-  public GameObject LockerWindow;
-  public Transform Interaction;
-  public Transform Favors;
-  public Transform Club;
-  public Transform Love;
-  public UISprite TaskIcon;
-  public UISprite Impatience;
-  public UILabel CenterLabel;
-  public UISprite[] Segment;
-  public UISprite[] Shadow;
-  public string[] Text;
-  public UISprite[] FavorSegment;
-  public UISprite[] FavorShadow;
-  public UISprite[] ClubSegment;
-  public UISprite[] ClubShadow;
-  public UISprite[] LoveSegment;
-  public UISprite[] LoveShadow;
-  public string[] FavorText;
-  public string[] ClubText;
-  public string[] LoveText;
-  public int Selected;
-  public int Victim;
-  public bool AskingFavor;
-  public bool Matchmaking;
-  public bool ClubLeader;
-  public bool Pestered;
-  public bool Show;
-  public Vector3 PreviousPosition;
-  public Vector2 MouseDelta;
-  public Color OriginalColor;
+	public AppearanceWindowScript AppearanceWindow;
 
-  private void Start()
-  {
-    this.Interaction.localScale = new Vector3(1f, 1f, 1f);
-    this.Favors.localScale = Vector3.zero;
-    this.Club.localScale = Vector3.zero;
-    this.Love.localScale = Vector3.zero;
-    this.transform.localScale = Vector3.zero;
-    this.OriginalColor = this.CenterLabel.color;
-    if (!GameGlobals.Eighties)
-      this.LoveText[4] = "(Not Available)";
-    else
-      this.LoveText[4] = "Advice";
-  }
+	public PracticeWindowScript PracticeWindow;
 
-  private void Update()
-  {
-    if (!this.Show)
-    {
-      if ((double) this.transform.localScale.x > 0.10000000149011612)
-        this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
-      else if (this.Panel.enabled)
-      {
-        this.transform.localScale = Vector3.zero;
-        this.Panel.enabled = false;
-      }
-    }
-    else
-    {
-      if (this.Yandere.PauseScreen.Show)
-        this.Yandere.PauseScreen.ExitPhone();
-      if (this.ClubLeader)
-      {
-        this.Interaction.localScale = Vector3.Lerp(this.Interaction.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.Favors.localScale = Vector3.Lerp(this.Favors.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.Club.localScale = Vector3.Lerp(this.Club.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        this.Love.localScale = Vector3.Lerp(this.Love.localScale, Vector3.zero, Time.deltaTime * 10f);
-      }
-      else if (this.AskingFavor)
-      {
-        this.Interaction.localScale = Vector3.Lerp(this.Interaction.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.Favors.localScale = Vector3.Lerp(this.Favors.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        this.Club.localScale = Vector3.Lerp(this.Club.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.Love.localScale = Vector3.Lerp(this.Love.localScale, Vector3.zero, Time.deltaTime * 10f);
-      }
-      else if (this.Matchmaking)
-      {
-        this.Interaction.localScale = Vector3.Lerp(this.Interaction.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.Favors.localScale = Vector3.Lerp(this.Favors.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.Club.localScale = Vector3.Lerp(this.Club.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.Love.localScale = Vector3.Lerp(this.Love.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-      }
-      else
-      {
-        this.Interaction.localScale = Vector3.Lerp(this.Interaction.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        this.Favors.localScale = Vector3.Lerp(this.Favors.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.Club.localScale = Vector3.Lerp(this.Club.localScale, Vector3.zero, Time.deltaTime * 10f);
-        this.Love.localScale = Vector3.Lerp(this.Love.localScale, Vector3.zero, Time.deltaTime * 10f);
-      }
-      this.MouseDelta.x += Input.GetAxis("Mouse X");
-      this.MouseDelta.y += Input.GetAxis("Mouse Y");
-      if ((double) this.MouseDelta.x > 11.0)
-        this.MouseDelta.x = 11f;
-      else if ((double) this.MouseDelta.x < -11.0)
-        this.MouseDelta.x = -11f;
-      if ((double) this.MouseDelta.y > 11.0)
-        this.MouseDelta.y = 11f;
-      else if ((double) this.MouseDelta.y < -11.0)
-        this.MouseDelta.y = -11f;
-      this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-      if (!this.AskingFavor && !this.Matchmaking)
-      {
-        if ((double) Input.GetAxis("Vertical") < 0.5 && (double) Input.GetAxis("Vertical") > -0.5 && (double) Input.GetAxis("Horizontal") < 0.5 && (double) Input.GetAxis("Horizontal") > -0.5)
-          this.Selected = 0;
-        if ((double) Input.GetAxis("Vertical") > 0.5 && (double) Input.GetAxis("Horizontal") < 0.5 && (double) Input.GetAxis("Horizontal") > -0.5 || (double) this.MouseDelta.y > 10.0 && (double) this.MouseDelta.x < 10.0 && (double) this.MouseDelta.x > -10.0)
-          this.Selected = 1;
-        if ((double) Input.GetAxis("Vertical") > 0.0 && (double) Input.GetAxis("Horizontal") > 0.5 || (double) this.MouseDelta.y > 0.0 && (double) this.MouseDelta.x > 10.0)
-          this.Selected = 2;
-        if ((double) Input.GetAxis("Vertical") < 0.0 && (double) Input.GetAxis("Horizontal") > 0.5 || (double) this.MouseDelta.y < 0.0 && (double) this.MouseDelta.x > 10.0)
-          this.Selected = 3;
-        if ((double) Input.GetAxis("Vertical") < -0.5 && (double) Input.GetAxis("Horizontal") < 0.5 && (double) Input.GetAxis("Horizontal") > -0.5 || (double) this.MouseDelta.y < -10.0 && (double) this.MouseDelta.x < 10.0 && (double) this.MouseDelta.x > -10.0)
-          this.Selected = 4;
-        if ((double) Input.GetAxis("Vertical") < 0.0 && (double) Input.GetAxis("Horizontal") < -0.5 || (double) this.MouseDelta.y < 0.0 && (double) this.MouseDelta.x < -10.0)
-          this.Selected = 5;
-        if ((double) Input.GetAxis("Vertical") > 0.0 && (double) Input.GetAxis("Horizontal") < -0.5 || (double) this.MouseDelta.y > 0.0 && (double) this.MouseDelta.x < -10.0)
-          this.Selected = 6;
-        this.CenterLabel.text = this.Text[this.Selected];
-        this.CenterLabel.color = this.OriginalColor;
-        if (!this.ClubLeader)
-        {
-          if (this.Selected == 5)
-          {
-            if (this.Yandere.TargetStudent.Friend)
-              this.CenterLabel.text = "Love";
-          }
-          else if (this.Selected == 6 && this.Yandere.Club == ClubType.Delinquent)
-          {
-            this.CenterLabel.text = "Intimidate";
-            this.CenterLabel.color = new Color(1f, 0.0f, 0.0f, 1f);
-          }
-        }
-        else
-          this.CenterLabel.text = this.ClubText[this.Selected];
-      }
-      else
-      {
-        if ((double) Input.GetAxis("Vertical") < 0.5 && (double) Input.GetAxis("Vertical") > -0.5 && (double) Input.GetAxis("Horizontal") < 0.5 && (double) Input.GetAxis("Horizontal") > -0.5)
-          this.Selected = 0;
-        if ((double) Input.GetAxis("Vertical") > 0.5 && (double) Input.GetAxis("Horizontal") < 0.5 && (double) Input.GetAxis("Horizontal") > -0.5 || (double) this.MouseDelta.y > 10.0 && (double) this.MouseDelta.x < 10.0 && (double) this.MouseDelta.x > -10.0)
-          this.Selected = 1;
-        if ((double) Input.GetAxis("Vertical") < 0.5 && (double) Input.GetAxis("Vertical") > -0.5 && (double) Input.GetAxis("Horizontal") > 0.5 || (double) this.MouseDelta.y < 10.0 && (double) this.MouseDelta.y > -10.0 && (double) this.MouseDelta.x > 10.0)
-          this.Selected = 2;
-        if ((double) Input.GetAxis("Vertical") < -0.5 && (double) Input.GetAxis("Horizontal") < 0.5 && (double) Input.GetAxis("Horizontal") > -0.5 || (double) this.MouseDelta.y < -10.0 && (double) this.MouseDelta.x < 10.0 && (double) this.MouseDelta.x > -10.0)
-          this.Selected = 3;
-        if ((double) Input.GetAxis("Vertical") < 0.5 && (double) Input.GetAxis("Vertical") > -0.5 && (double) Input.GetAxis("Horizontal") < -0.5 || (double) this.MouseDelta.y < 10.0 && (double) this.MouseDelta.y > -10.0 && (double) this.MouseDelta.x < -10.0)
-          this.Selected = 4;
-        if (this.Selected < this.FavorText.Length)
-          this.CenterLabel.text = this.AskingFavor ? this.FavorText[this.Selected] : this.LoveText[this.Selected];
-      }
-      if (!this.ClubLeader)
-      {
-        for (int index = 1; index < 7; ++index)
-        {
-          Transform transform = this.Segment[index].transform;
-          transform.localScale = Vector3.Lerp(transform.localScale, this.Selected == index ? new Vector3(1.3f, 1.3f, 1f) : new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        }
-      }
-      else
-      {
-        for (int index = 1; index < 7; ++index)
-        {
-          Transform transform = this.ClubSegment[index].transform;
-          transform.localScale = Vector3.Lerp(transform.localScale, this.Selected == index ? new Vector3(1.3f, 1.3f, 1f) : new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        }
-      }
-      if (!this.Matchmaking)
-      {
-        for (int index = 1; index < 5; ++index)
-        {
-          Transform transform = this.FavorSegment[index].transform;
-          transform.localScale = Vector3.Lerp(transform.localScale, this.Selected == index ? new Vector3(1.3f, 1.3f, 1f) : new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        }
-      }
-      else
-      {
-        for (int index = 1; index < 5; ++index)
-        {
-          Transform transform = this.LoveSegment[index].transform;
-          transform.localScale = Vector3.Lerp(transform.localScale, this.Selected == index ? new Vector3(1.3f, 1.3f, 1f) : new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        }
-      }
-      if (Input.GetButtonDown("A"))
-      {
-        if (this.ClubLeader)
-        {
-          if (this.Selected != 0 && (double) this.ClubShadow[this.Selected].color.a == 0.0)
-          {
-            int num = 0;
-            if (this.Yandere.TargetStudent.Sleuthing && this.Yandere.TargetStudent.Club == ClubType.Photography)
-              num = 5;
-            if (this.Selected == 1)
-            {
-              this.Impatience.fillAmount = 0.0f;
-              this.Yandere.TargetStudent.Interaction = StudentInteractionType.ClubInfo;
-              this.Yandere.TargetStudent.TalkTimer = 100f;
-              this.Yandere.TargetStudent.ClubPhase = 1;
-              this.Show = false;
-            }
-            else if (this.Selected == 2)
-            {
-              this.Impatience.fillAmount = 0.0f;
-              this.Yandere.TargetStudent.Interaction = StudentInteractionType.ClubJoin;
-              this.Yandere.TargetStudent.TalkTimer = 100f;
-              this.Show = false;
-              this.ClubManager.CheckGrudge(this.Yandere.TargetStudent.Club);
-              this.Yandere.TargetStudent.ClubPhase = !this.ClubManager.QuitClub[(int) this.Yandere.TargetStudent.Club] ? (this.Yandere.Club == ClubType.None ? (!this.ClubManager.ClubGrudge ? 1 : 6) : 5) : 4;
-            }
-            else if (this.Selected == 3)
-            {
-              this.Impatience.fillAmount = 0.0f;
-              this.Yandere.TargetStudent.Interaction = StudentInteractionType.ClubQuit;
-              this.Yandere.TargetStudent.TalkTimer = 100f;
-              this.Yandere.TargetStudent.ClubPhase = 1;
-              this.Show = false;
-            }
-            else if (this.Selected == 4)
-            {
-              this.Impatience.fillAmount = 0.0f;
-              this.Yandere.TargetStudent.Interaction = StudentInteractionType.ClubBye;
-              this.Yandere.TargetStudent.TalkTimer = this.Yandere.Subtitle.ClubFarewellClips[(int) (this.Yandere.TargetStudent.Club + num)].length;
-              this.Show = false;
-              Debug.Log((object) "This club leader exchange is over.");
-            }
-            else if (this.Selected == 5)
-            {
-              this.Impatience.fillAmount = 0.0f;
-              this.Yandere.TargetStudent.Interaction = StudentInteractionType.ClubActivity;
-              this.Yandere.TargetStudent.TalkTimer = 100f;
-              this.Yandere.TargetStudent.ClubPhase = (double) this.Clock.HourTime >= 17.0 ? ((double) this.Clock.HourTime <= 17.5 ? 1 : 5) : 4;
-              this.Show = false;
-            }
-            else if (this.Selected == 6)
-            {
-              this.Impatience.fillAmount = 0.0f;
-              this.Yandere.TargetStudent.Interaction = StudentInteractionType.ClubPractice;
-              this.Yandere.TargetStudent.TalkTimer = 100f;
-              this.Yandere.TargetStudent.ClubPhase = 1;
-              this.Show = false;
-            }
-          }
-        }
-        else if (this.AskingFavor)
-        {
-          if (this.Selected != 0)
-          {
-            if (this.Selected < this.FavorShadow.Length && (Object) this.FavorShadow[this.Selected] != (Object) null && (double) this.FavorShadow[this.Selected].color.a == 0.0)
-            {
-              if (this.Selected == 1)
-              {
-                this.Impatience.fillAmount = 0.0f;
-                this.Yandere.Interaction = YandereInteractionType.FollowMe;
-                this.Yandere.TalkTimer = 3f;
-                this.Show = false;
-              }
-              else if (this.Selected == 2)
-              {
-                this.Impatience.fillAmount = 0.0f;
-                this.Yandere.Interaction = YandereInteractionType.GoAway;
-                this.Yandere.TalkTimer = 3f;
-                this.Show = false;
-              }
-              else if (this.Selected == 4)
-              {
-                this.PauseScreen.StudentInfoMenu.Distracting = true;
-                this.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
-                this.PauseScreen.StudentInfoMenu.Column = 0;
-                this.PauseScreen.StudentInfoMenu.Row = 0;
-                this.PauseScreen.StudentInfoMenu.UpdateHighlight();
-                this.StartCoroutine(this.PauseScreen.StudentInfoMenu.UpdatePortraits());
-                this.PauseScreen.MainMenu.SetActive(false);
-                this.PauseScreen.Panel.enabled = true;
-                this.PauseScreen.Sideways = true;
-                this.PauseScreen.Show = true;
-                Time.timeScale = 0.0001f;
-                this.PromptBar.ClearButtons();
-                this.PromptBar.Label[1].text = "Cancel";
-                this.PromptBar.UpdateButtons();
-                this.PromptBar.Show = true;
-                this.Impatience.fillAmount = 0.0f;
-                this.Yandere.Interaction = YandereInteractionType.DistractThem;
-                this.Yandere.TalkTimer = 3f;
-                this.Show = false;
-              }
-            }
-            if (this.Selected == 3)
-              this.AskingFavor = false;
-          }
-        }
-        else if (this.Matchmaking)
-        {
-          if (this.Selected != 0)
-          {
-            if (this.Selected < this.LoveShadow.Length && (Object) this.LoveShadow[this.Selected] != (Object) null && (double) this.LoveShadow[this.Selected].color.a == 0.0)
-            {
-              if (this.Selected == 1)
-              {
-                this.PromptBar.ClearButtons();
-                this.PromptBar.Label[0].text = "Select";
-                this.PromptBar.Label[4].text = "Change";
-                this.PromptBar.UpdateButtons();
-                this.PromptBar.Show = true;
-                this.AppearanceWindow.gameObject.SetActive(true);
-                this.AppearanceWindow.Show = true;
-                this.Show = false;
-              }
-              else if (this.Selected == 2)
-              {
-                this.Impatience.fillAmount = 0.0f;
-                this.Yandere.Interaction = YandereInteractionType.Court;
-                this.Yandere.TalkTimer = 5f;
-                this.Show = false;
-              }
-              else if (this.Selected == 4)
-              {
-                this.PromptBar.ClearButtons();
-                this.PromptBar.Label[1].text = "Exit";
-                this.PromptBar.Label[4].text = "Change";
-                this.PromptBar.Label[5].text = "Change";
-                this.PromptBar.UpdateButtons();
-                this.PromptBar.Show = true;
-                this.AdviceWindow.UpdateText();
-                this.AdviceWindow.gameObject.SetActive(true);
-                Time.timeScale = 0.0001f;
-                this.transform.localScale = Vector3.zero;
-                this.Yandere.Subtitle.Label.text = "";
-                this.Impatience.fillAmount = 0.0f;
-                this.Show = false;
-              }
-            }
-            if (this.Selected == 3)
-              this.Matchmaking = false;
-          }
-        }
-        else if (this.Selected != 0 && (double) this.Shadow[this.Selected].color.a == 0.0)
-        {
-          if (this.Selected == 1)
-          {
-            this.Impatience.fillAmount = 0.0f;
-            this.Yandere.Interaction = YandereInteractionType.Apologizing;
-            this.Yandere.TalkTimer = 10f;
-            this.Show = false;
-          }
-          else if (this.Selected == 2)
-          {
-            Time.timeScale = 0.0001f;
-            this.TopicInterface.Socializing = true;
-            this.TopicInterface.StudentID = this.Yandere.TargetStudent.StudentID;
-            this.TopicInterface.Student = this.Yandere.TargetStudent;
-            this.TopicInterface.UpdateOpinions();
-            this.TopicInterface.UpdateTopicHighlight();
-            this.TopicInterface.gameObject.SetActive(true);
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[0].text = "Speak";
-            this.PromptBar.Label[1].text = "Back";
-            this.PromptBar.Label[2].text = "Positive/Negative";
-            this.PromptBar.UpdateButtons();
-            this.PromptBar.Show = true;
-            this.transform.localScale = Vector3.zero;
-            this.Impatience.fillAmount = 0.0f;
-            this.Show = false;
-          }
-          else if (this.Selected == 3)
-          {
-            this.PauseScreen.StudentInfoMenu.Gossiping = true;
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[0].text = string.Empty;
-            this.PromptBar.Label[1].text = "Cancel";
-            this.PromptBar.UpdateButtons();
-            this.PromptBar.Show = true;
-            this.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
-            this.PauseScreen.StudentInfoMenu.UpdateHighlight();
-            this.StartCoroutine(this.PauseScreen.StudentInfoMenu.UpdatePortraits());
-            this.PauseScreen.MainMenu.SetActive(false);
-            this.PauseScreen.Panel.enabled = true;
-            this.PauseScreen.Sideways = true;
-            this.PauseScreen.Show = true;
-            Time.timeScale = 0.0001f;
-            this.Yandere.Subtitle.Label.text = "";
-            this.transform.localScale = Vector3.zero;
-            this.Impatience.fillAmount = 0.0f;
-            this.Show = false;
-          }
-          else if (this.Selected == 4)
-          {
-            this.Impatience.fillAmount = 0.0f;
-            this.Yandere.Interaction = YandereInteractionType.Bye;
-            this.Yandere.TalkTimer = 2f;
-            this.Show = false;
-          }
-          else if (this.Selected == 5)
-          {
-            if (!this.Yandere.TargetStudent.Friend)
-            {
-              this.CheckTaskCompletion();
-              this.Show = false;
-              if (this.Yandere.TargetStudent.TaskPhase == 0)
-              {
-                bool flag = true;
-                if (!this.Yandere.StudentManager.Eighties && this.Yandere.TargetStudent.StudentID == 36 && this.Clock.Period > 1)
-                {
-                  this.Yandere.NotificationManager.CustomText = "Task only available in morning";
-                  this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-                  flag = false;
-                  this.Show = true;
-                }
-                if (flag)
-                {
-                  this.Impatience.fillAmount = 0.0f;
-                  this.Yandere.TargetStudent.Interaction = StudentInteractionType.GivingTask;
-                  this.Yandere.TargetStudent.TalkTimer = 100f;
-                  this.Yandere.TargetStudent.TaskPhase = 1;
-                }
-              }
-              else
-              {
-                this.Impatience.fillAmount = 0.0f;
-                this.Yandere.TargetStudent.Interaction = StudentInteractionType.GivingTask;
-                this.Yandere.TargetStudent.TalkTimer = 100f;
-              }
-            }
-            else if (this.Yandere.LoveManager.SuitorProgress == 0)
-            {
-              this.PauseScreen.StudentInfoMenu.MatchMaking = true;
-              this.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
-              this.PauseScreen.StudentInfoMenu.Column = 0;
-              this.PauseScreen.StudentInfoMenu.Row = 0;
-              this.PauseScreen.StudentInfoMenu.UpdateHighlight();
-              this.StartCoroutine(this.PauseScreen.StudentInfoMenu.UpdatePortraits());
-              this.PauseScreen.MainMenu.SetActive(false);
-              this.PauseScreen.Panel.enabled = true;
-              this.PauseScreen.Sideways = true;
-              this.PauseScreen.Show = true;
-              Time.timeScale = 0.0001f;
-              this.PromptBar.ClearButtons();
-              this.PromptBar.Label[0].text = "View Info";
-              this.PromptBar.Label[1].text = "Cancel";
-              this.PromptBar.UpdateButtons();
-              this.PromptBar.Show = true;
-              this.Impatience.fillAmount = 0.0f;
-              this.Yandere.Interaction = YandereInteractionType.NamingCrush;
-              this.Yandere.TalkTimer = 3f;
-              this.Show = false;
-            }
-            else
-              this.Matchmaking = true;
-          }
-          else if (this.Selected == 6)
-            this.AskingFavor = true;
-        }
-      }
-      else if (Input.GetButtonDown("X"))
-      {
-        if (this.TaskDialogueWindow.activeInHierarchy)
-        {
-          this.Impatience.fillAmount = 0.0f;
-          this.Yandere.Interaction = YandereInteractionType.TaskInquiry;
-          this.Yandere.TalkTimer = 3f;
-          this.Show = false;
-        }
-        else if (this.SwitchTopicsWindow.activeInHierarchy)
-        {
-          this.ClubLeader = !this.ClubLeader;
-          if (!this.ClubLeader)
-            this.RestoreMusic();
-          this.HideShadows();
-        }
-      }
-      else if (Input.GetButtonDown("B") && this.LockerWindow.activeInHierarchy)
-      {
-        this.Impatience.fillAmount = 0.0f;
-        this.Yandere.Interaction = YandereInteractionType.SendingToLocker;
-        this.Yandere.TalkTimer = 5f;
-        this.Show = false;
-        if (this.Yandere.TargetStudent.StudentID == 11 && SchemeGlobals.GetSchemeStage(6) == 6)
-        {
-          SchemeGlobals.SetSchemeStage(6, 7);
-          this.Yandere.PauseScreen.Schemes.UpdateInstructions();
-        }
-      }
-    }
-    this.PreviousPosition = Input.mousePosition;
-  }
+	public TopicInterfaceScript TopicInterface;
 
-  public void HideShadows()
-  {
-    this.Jukebox.Dip = 0.5f;
-    int num1 = this.ClubLeader ? 1 : 0;
-    this.TaskDialogueWindow.SetActive(false);
-    this.ClubLeaderWindow.SetActive(false);
-    this.LockerWindow.SetActive(false);
-    if (this.ClubLeader && !this.Yandere.TargetStudent.Talk.Fake)
-      this.SwitchTopicsWindow.SetActive(true);
-    else
-      this.SwitchTopicsWindow.SetActive(false);
-    if (this.Yandere.TargetStudent.Armband.activeInHierarchy && !this.ClubLeader && this.Yandere.TargetStudent.Club != ClubType.Council)
-      this.ClubLeaderWindow.SetActive(true);
-    if (this.Yandere.TargetStudent.Indoors && this.NoteLocker.NoteLeft && (Object) this.NoteLocker.Student == (Object) this.Yandere.TargetStudent)
-      this.LockerWindow.SetActive(true);
-    if (this.Yandere.TargetStudent.Club == ClubType.Bully && this.TaskManager.TaskStatus[36] == 1)
-      this.TaskDialogueWindow.SetActive(true);
-    if (!this.Yandere.StudentManager.Eighties && this.Yandere.TargetStudent.StudentID == 10 && this.TaskManager.TaskStatus[46] == 1 && this.Clock.Period != 3)
-    {
-      int period = this.Clock.Period;
-    }
-    this.TaskIcon.spriteName = this.Yandere.TargetStudent.Friend ? "Heart" : "Task";
-    this.Impatience.fillAmount = 0.0f;
-    for (int index = 1; index < 7; ++index)
-    {
-      UISprite uiSprite = this.Shadow[index];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.0f);
-    }
-    for (int index = 1; index < 5; ++index)
-    {
-      UISprite uiSprite = this.FavorShadow[index];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.0f);
-    }
-    for (int index = 1; index < 7; ++index)
-    {
-      UISprite uiSprite = this.ClubShadow[index];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.0f);
-    }
-    for (int index = 1; index < 5; ++index)
-    {
-      UISprite uiSprite = this.LoveShadow[index];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.0f);
-    }
-    if (!this.Yandere.TargetStudent.Witness || this.Yandere.TargetStudent.Forgave || this.Yandere.TargetStudent.Club == ClubType.Council)
-    {
-      UISprite uiSprite = this.Shadow[1];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if (this.Yandere.TargetStudent.Complimented || this.Yandere.TargetStudent.Club == ClubType.Council)
-    {
-      UISprite uiSprite = this.Shadow[2];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if (this.Yandere.TargetStudent.Gossiped || this.Yandere.TargetStudent.Club == ClubType.Council)
-    {
-      UISprite uiSprite = this.Shadow[3];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if ((double) this.Yandere.Bloodiness > 0.0 || (double) this.Yandere.Sanity < 33.333328247070313 || this.Yandere.TargetStudent.Club == ClubType.Council)
-    {
-      UISprite uiSprite1 = this.Shadow[3];
-      uiSprite1.color = new Color(uiSprite1.color.r, uiSprite1.color.g, uiSprite1.color.b, 0.75f);
-      this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-      UISprite uiSprite2 = this.Shadow[6];
-      uiSprite2.color = new Color(uiSprite2.color.r, uiSprite2.color.g, uiSprite2.color.b, 0.75f);
-    }
-    else if ((double) this.Reputation.Reputation < -33.333328247070313)
-    {
-      UISprite uiSprite = this.Shadow[3];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if (!this.Yandere.TargetStudent.Indoors || this.Yandere.TargetStudent.Club == ClubType.Council)
-      this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-    else if (!this.Yandere.TargetStudent.Friend)
-    {
-      bool flag = false;
-      if (this.Yandere.StudentManager.Eighties)
-      {
-        if (this.Yandere.TargetStudent.StudentID != 79)
-          flag = true;
-        this.HideTaskButtonIfNecessary();
-        if (flag && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] == 1 && this.Yandere.Inventory.FinishedHomework)
-        {
-          Debug.Log((object) "The player has finished another student's homework, and can turn in a task right now.");
-          this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-        }
-      }
-      else
-      {
-        if (this.Yandere.TargetStudent.StudentID != 8 && this.Yandere.TargetStudent.StudentID != 11 && this.Yandere.TargetStudent.StudentID != 25 && this.Yandere.TargetStudent.StudentID != 28 && this.Yandere.TargetStudent.StudentID != 30 && this.Yandere.TargetStudent.StudentID != 36 && this.Yandere.TargetStudent.StudentID != 37 && this.Yandere.TargetStudent.StudentID != 38 && this.Yandere.TargetStudent.StudentID != 52 && this.Yandere.TargetStudent.StudentID != 76 && this.Yandere.TargetStudent.StudentID != 77 && this.Yandere.TargetStudent.StudentID != 78 && this.Yandere.TargetStudent.StudentID != 79 && this.Yandere.TargetStudent.StudentID != 80 && this.Yandere.TargetStudent.StudentID != 81)
-          flag = true;
-        if (this.Yandere.TargetStudent.StudentID == 6)
-        {
-          Debug.Log((object) "Speaking to Osana's suitor.");
-          flag = false;
-        }
-        if (this.Yandere.TargetStudent.StudentID == 1 || this.Yandere.TargetStudent.StudentID == 10)
-        {
-          this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-        }
-        else
-        {
-          this.HideTaskButtonIfNecessary();
-          if (this.Yandere.TargetStudent.StudentID == 6)
-          {
-            if ((Object) this.Yandere.StudentManager.Students[11] == (Object) null)
-            {
-              Debug.Log((object) "Osana's dead; hiding suitor's Task button.");
-              this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-            }
-            else
-            {
-              Debug.Log((object) ("The status of Task #6 is:" + this.TaskManager.TaskStatus[6].ToString()));
-              if (this.TaskManager.TaskStatus[6] == 1 && this.Yandere.Inventory.Headset)
-              {
-                this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                Debug.Log((object) "Player has a headset.");
-              }
-            }
-          }
-          else if (this.Yandere.TargetStudent.StudentID == 36)
-          {
-            if (this.TaskManager.TaskStatus[36] == 0 && (StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentDead(82) || StudentGlobals.GetStudentDead(83) || StudentGlobals.GetStudentDead(84) || StudentGlobals.GetStudentDead(85)))
-              this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-          }
-          else if (this.Yandere.TargetStudent.StudentID == 46 && this.Clock.Period == 3 || this.Yandere.TargetStudent.StudentID == 46 && this.Clock.Period == 5)
-          {
-            Debug.Log((object) "Hiding Budo's Task button.");
-            this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-          }
-          else if (this.Yandere.TargetStudent.StudentID == 81)
-          {
-            if (this.TaskManager.TaskStatus[81] == 0 && StudentGlobals.GetStudentDead(5))
-              this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-          }
-          else if (this.Yandere.TargetStudent.StudentID == 76)
-          {
-            if (this.TaskManager.TaskStatus[76] == 1 && (double) this.Yandere.Inventory.Money >= 100.0)
-            {
-              this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-              Debug.Log((object) "Player has over $100.");
-            }
-          }
-          else if (this.Yandere.TargetStudent.StudentID == 77)
-          {
-            if (this.TaskManager.TaskStatus[77] == 1 && ((Object) this.Yandere.Weapon[1] != (Object) null && this.Yandere.Weapon[1].WeaponID == 1 && !this.Yandere.Weapon[1].Bloody || (Object) this.Yandere.Weapon[1] != (Object) null && this.Yandere.Weapon[1].WeaponID == 8 && !this.Yandere.Weapon[1].Bloody || (Object) this.Yandere.Weapon[2] != (Object) null && this.Yandere.Weapon[2].WeaponID == 1 && !this.Yandere.Weapon[2].Bloody || (Object) this.Yandere.Weapon[2] != (Object) null && this.Yandere.Weapon[2].WeaponID == 8 && !this.Yandere.Weapon[2].Bloody))
-            {
-              this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-              Debug.Log((object) "Player has a knife.");
-            }
-          }
-          else if (this.Yandere.TargetStudent.StudentID == 78)
-          {
-            if (this.TaskManager.TaskStatus[78] == 1 && this.Yandere.Inventory.Sake)
-            {
-              this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-              Debug.Log((object) "Player has sake.");
-            }
-          }
-          else if (this.Yandere.TargetStudent.StudentID == 79)
-          {
-            if (this.TaskManager.TaskStatus[79] == 1 && this.Yandere.Inventory.Cigs)
-            {
-              this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-              Debug.Log((object) "Player has ciggies.");
-            }
-          }
-          else if (this.Yandere.TargetStudent.StudentID == 80 && this.TaskManager.TaskStatus[80] == 1 && (this.Yandere.Inventory.AnswerSheet || this.Yandere.Inventory.DuplicateSheet))
-          {
-            this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Debug.Log((object) "Player has the answer sheet.");
-          }
-        }
-        if (flag && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] == 1 && this.Yandere.Inventory.Book)
-        {
-          this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-          Debug.Log((object) "The player has a library book.");
-        }
-      }
-    }
-    else if (this.Yandere.TargetStudent.StudentID != this.LoveManager.RivalID && this.Yandere.TargetStudent.StudentID != this.LoveManager.SuitorID)
-      this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-    else if (!this.Yandere.TargetStudent.Male && this.LoveManager.SuitorProgress == 0)
-      this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-    if (!this.Yandere.TargetStudent.Indoors || this.Yandere.TargetStudent.Club == ClubType.Council)
-    {
-      UISprite uiSprite = this.Shadow[6];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    else
-    {
-      if (!this.Yandere.TargetStudent.Friend)
-        this.Shadow[6].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-      if (this.Yandere.TargetStudent.Male && this.Yandere.Class.Seduction + this.Yandere.Class.SeductionBonus > 3 || this.Yandere.Class.Seduction + this.Yandere.Class.SeductionBonus > 4 || this.Yandere.Club == ClubType.Delinquent)
-        this.Shadow[6].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-      if (this.Yandere.TargetStudent.Club == ClubType.Delinquent)
-        this.Shadow[6].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-      int currentAction = (int) this.Yandere.TargetStudent.CurrentAction;
-    }
-    if (this.Yandere.Club == this.Yandere.TargetStudent.Club)
-    {
-      UISprite uiSprite3 = this.ClubShadow[1];
-      uiSprite3.color = new Color(uiSprite3.color.r, uiSprite3.color.g, uiSprite3.color.b, 0.75f);
-      UISprite uiSprite4 = this.ClubShadow[2];
-      uiSprite4.color = new Color(uiSprite4.color.r, uiSprite4.color.g, uiSprite4.color.b, 0.75f);
-    }
-    if (this.Yandere.ClubAttire || (Object) this.Yandere.Mask != (Object) null || (Object) this.Yandere.Gloves != (Object) null || (Object) this.Yandere.Container != (Object) null && this.Yandere.Container.CelloCase)
-    {
-      UISprite uiSprite = this.ClubShadow[3];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if (this.Yandere.Club != this.Yandere.TargetStudent.Club)
-    {
-      UISprite uiSprite5 = this.ClubShadow[2];
-      uiSprite5.color = new Color(uiSprite5.color.r, uiSprite5.color.g, uiSprite5.color.b, 0.0f);
-      UISprite uiSprite6 = this.ClubShadow[3];
-      uiSprite6.color = new Color(uiSprite6.color.r, uiSprite6.color.g, uiSprite6.color.b, 0.75f);
-      this.ClubShadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-    }
-    if (this.Yandere.StudentManager.MurderTakingPlace)
-      this.ClubShadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-    if (this.Yandere.TargetStudent.StudentID != 46 && this.Yandere.TargetStudent.StudentID != 51 && this.Yandere.TargetStudent.StudentID != 76 || this.Yandere.Police.Show || this.Clock.Period == 3 || this.Clock.Period == 5)
-    {
-      UISprite uiSprite = this.ClubShadow[6];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if (this.Yandere.TargetStudent.StudentID == 51 || this.Yandere.TargetStudent.StudentID == 76)
-    {
-      int num2 = 4;
-      if (this.Yandere.TargetStudent.StudentID == 51 && (this.Yandere.Club != ClubType.LightMusic || this.PracticeWindow.PlayedRhythmMinigame))
-        num2 = 0;
-      for (int index = this.Yandere.TargetStudent.StudentID + 1; index < this.Yandere.TargetStudent.StudentID + 5; ++index)
-      {
-        if ((Object) this.Yandere.StudentManager.Students[index] == (Object) null)
-          --num2;
-        else if (!this.Yandere.StudentManager.Students[index].gameObject.activeInHierarchy || this.Yandere.StudentManager.Students[index].Investigating || this.Yandere.StudentManager.Students[index].Distracting || this.Yandere.StudentManager.Students[index].Distracted || this.Yandere.StudentManager.Students[index].SentHome || this.Yandere.StudentManager.Students[index].Tranquil || this.Yandere.StudentManager.Students[index].GoAway || !this.Yandere.StudentManager.Students[index].Routine || !this.Yandere.StudentManager.Students[index].Alive)
-          --num2;
-      }
-      if (num2 < 4)
-      {
-        UISprite uiSprite = this.ClubShadow[6];
-        uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-      }
-    }
-    if (this.Yandere.Followers > 0)
-    {
-      Debug.Log((object) "Can't do task because of follower.");
-      UISprite uiSprite = this.FavorShadow[1];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if ((double) this.Yandere.TargetStudent.DistanceToDestination > 2.0)
-    {
-      UISprite uiSprite = this.FavorShadow[2];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if (!this.Yandere.TargetStudent.Male)
-    {
-      UISprite uiSprite = this.LoveShadow[1];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if ((Object) this.DatingMinigame == (Object) null || this.Yandere.TargetStudent.Male && !this.LoveManager.RivalWaiting || this.LoveManager.Courted)
-    {
-      UISprite uiSprite = this.LoveShadow[2];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if (!this.Yandere.StudentManager.Eighties || this.Yandere.TargetStudent.StudentID != this.Yandere.StudentManager.SuitorID)
-    {
-      UISprite uiSprite = this.LoveShadow[4];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-    if (!this.Yandere.StudentManager.TutorialActive)
-      return;
-    for (int index = 2; index < 7; ++index)
-    {
-      UISprite uiSprite = this.Shadow[index];
-      uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
-    }
-  }
+	public AdviceWindowScript AdviceWindow;
 
-  private void CheckTaskCompletion()
-  {
-    bool flag = false;
-    if (this.Yandere.StudentManager.Eighties)
-    {
-      if (this.Yandere.TargetStudent.StudentID != 79)
-        flag = true;
-    }
-    else
-    {
-      if (this.Yandere.TargetStudent.StudentID == 6 && this.TaskManager.TaskStatus[6] == 1)
-      {
-        if (this.Yandere.Inventory.Headset)
-        {
-          this.Yandere.TargetStudent.TaskPhase = 5;
-          this.Yandere.LoveManager.SuitorProgress = 1;
-          DatingGlobals.SuitorProgress = 1;
-        }
-      }
-      else if (this.Yandere.TargetStudent.StudentID == 36 && this.TaskManager.TaskStatus[36] == 1)
-      {
-        this.Yandere.TargetStudent.UpdateAppearance = true;
-        ScheduleBlock scheduleBlock = this.Yandere.TargetStudent.ScheduleBlocks[this.Yandere.TargetStudent.Phase];
-        scheduleBlock.destination = "LockerRoom";
-        scheduleBlock.action = "UpdateAppearance";
-        this.Yandere.TargetStudent.GetDestinations();
-        this.Yandere.TargetStudent.TaskPhase = 5;
-      }
-      else if (this.Yandere.TargetStudent.StudentID == 11 && this.TaskManager.TaskStatus[11] == 2)
-      {
-        Debug.Log((object) "Setting Osana's phone charm active.");
-        this.Yandere.TargetStudent.Cosmetic.PhoneCharms[11].SetActive(true);
-      }
-      else if (this.Yandere.TargetStudent.StudentID == 76 && this.TaskManager.TaskStatus[76] == 1)
-      {
-        this.Yandere.TargetStudent.RespectEarned = true;
-        this.Yandere.TargetStudent.TaskPhase = 5;
-        this.Yandere.Inventory.Money -= 100f;
-        this.Yandere.Inventory.UpdateMoney();
-      }
-      else if (this.Yandere.TargetStudent.StudentID == 77 && this.TaskManager.TaskStatus[77] == 1)
-      {
-        this.Yandere.TargetStudent.RespectEarned = true;
-        this.Yandere.TargetStudent.TaskPhase = 5;
-        WeaponScript weaponScript;
-        if ((Object) this.Yandere.Weapon[1] != (Object) null && this.Yandere.Weapon[1].WeaponID == 1 || (Object) this.Yandere.Weapon[1] != (Object) null && this.Yandere.Weapon[1].WeaponID == 8)
-        {
-          weaponScript = this.Yandere.Weapon[1];
-          this.Yandere.Weapon[1] = (WeaponScript) null;
-        }
-        else
-        {
-          weaponScript = this.Yandere.Weapon[2];
-          this.Yandere.Weapon[2] = (WeaponScript) null;
-        }
-        weaponScript.Drop();
-        weaponScript.FingerprintID = 77;
-        weaponScript.gameObject.SetActive(false);
-        this.Yandere.WeaponManager.UpdateLabels();
-        this.Yandere.WeaponMenu.UpdateSprites();
-      }
-      else if (this.Yandere.TargetStudent.StudentID == 78 && this.TaskManager.TaskStatus[78] == 1)
-      {
-        this.Yandere.TargetStudent.RespectEarned = true;
-        this.Yandere.TargetStudent.TaskPhase = 5;
-        this.Yandere.Inventory.Sake = false;
-      }
-      else if (this.Yandere.TargetStudent.StudentID == 79 && this.TaskManager.TaskStatus[79] == 1)
-      {
-        this.Yandere.TargetStudent.RespectEarned = true;
-        this.Yandere.TargetStudent.TaskPhase = 5;
-        this.Yandere.Inventory.Cigs = false;
-      }
-      else if (this.Yandere.TargetStudent.StudentID == 80 && this.TaskManager.TaskStatus[80] == 1)
-      {
-        this.Yandere.TargetStudent.RespectEarned = true;
-        this.Yandere.TargetStudent.TaskPhase = 5;
-        this.Yandere.Inventory.AnswerSheet = false;
-      }
-      if (this.Yandere.TargetStudent.StudentID != 8 && this.Yandere.TargetStudent.StudentID != 11 && this.Yandere.TargetStudent.StudentID != 25 && this.Yandere.TargetStudent.StudentID != 28 && this.Yandere.TargetStudent.StudentID != 30 && this.Yandere.TargetStudent.StudentID != 36 && this.Yandere.TargetStudent.StudentID != 37 && this.Yandere.TargetStudent.StudentID != 38 && this.Yandere.TargetStudent.StudentID != 47 && this.Yandere.TargetStudent.StudentID != 48 && this.Yandere.TargetStudent.StudentID != 49 && this.Yandere.TargetStudent.StudentID != 50 && this.Yandere.TargetStudent.StudentID != 52 && this.Yandere.TargetStudent.StudentID != 76 && this.Yandere.TargetStudent.StudentID != 77 && this.Yandere.TargetStudent.StudentID != 78 && this.Yandere.TargetStudent.StudentID != 79 && this.Yandere.TargetStudent.StudentID != 80 && this.Yandere.TargetStudent.StudentID != 81)
-        flag = true;
-    }
-    if (flag && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] == 1 && (!this.Yandere.StudentManager.Eighties && this.Yandere.Inventory.Book || this.Yandere.StudentManager.Eighties && this.Yandere.Inventory.FinishedHomework))
-      this.Yandere.TargetStudent.TaskPhase = 5;
-    if (this.Yandere.Club == ClubType.Delinquent)
-      this.Text[6] = "Intimidate";
-    else
-      this.Text[6] = "Ask Favor";
-  }
+	public ClubManagerScript ClubManager;
 
-  public void End()
-  {
-    if ((Object) this.Yandere.TargetStudent != (Object) null)
-    {
-      if (this.Yandere.TargetStudent.Pestered >= 10)
-        this.Yandere.TargetStudent.Ignoring = true;
-      if (!this.Pestered)
-        this.Yandere.Subtitle.Label.text = string.Empty;
-      this.Yandere.TargetStudent.Interaction = StudentInteractionType.Idle;
-      this.Yandere.TargetStudent.WaitTimer = 1f;
-      if (this.Yandere.TargetStudent.enabled)
-      {
-        this.Yandere.TargetStudent.CurrentDestination = this.Yandere.TargetStudent.Destinations[this.Yandere.TargetStudent.Phase];
-        this.Yandere.TargetStudent.Pathfinding.target = this.Yandere.TargetStudent.Destinations[this.Yandere.TargetStudent.Phase];
-        if (this.Yandere.TargetStudent.Actions[this.Yandere.TargetStudent.Phase] == StudentActionType.Clean)
-          this.Yandere.TargetStudent.EquipCleaningItems();
-        else if (this.Yandere.TargetStudent.Actions[this.Yandere.TargetStudent.Phase] == StudentActionType.Patrol || this.Yandere.TargetStudent.Actions[this.Yandere.TargetStudent.Phase] == StudentActionType.ClubAction && this.Yandere.TargetStudent.Club == ClubType.Gardening)
-        {
-          this.Yandere.TargetStudent.CurrentDestination = this.Yandere.TargetStudent.StudentManager.Patrols.List[this.Yandere.TargetStudent.StudentID].GetChild(this.Yandere.TargetStudent.PatrolID);
-          this.Yandere.TargetStudent.Pathfinding.target = this.Yandere.TargetStudent.CurrentDestination;
-        }
-        else if (this.Yandere.TargetStudent.Actions[this.Yandere.TargetStudent.Phase] == StudentActionType.Sleuth)
-        {
-          this.Yandere.TargetStudent.CurrentDestination = this.Yandere.TargetStudent.SleuthTarget;
-          this.Yandere.TargetStudent.Pathfinding.target = this.Yandere.TargetStudent.SleuthTarget;
-        }
-        else if (this.Yandere.TargetStudent.Actions[this.Yandere.TargetStudent.Phase] == StudentActionType.Sunbathe && this.Yandere.TargetStudent.SunbathePhase > 1)
-        {
-          this.Yandere.TargetStudent.CurrentDestination = this.Yandere.StudentManager.SunbatheSpots[this.Yandere.TargetStudent.StudentID];
-          this.Yandere.TargetStudent.Pathfinding.target = this.Yandere.StudentManager.SunbatheSpots[this.Yandere.TargetStudent.StudentID];
-        }
-      }
-      if (this.Yandere.TargetStudent.Persona == PersonaType.PhoneAddict)
-      {
-        bool flag = false;
-        if (this.Yandere.TargetStudent.CurrentAction == StudentActionType.Sunbathe && this.Yandere.TargetStudent.SunbathePhase > 2)
-          flag = true;
-        if (!this.Yandere.TargetStudent.Scrubber.activeInHierarchy && !flag && !this.Yandere.TargetStudent.Phoneless)
-        {
-          this.Yandere.TargetStudent.SmartPhone.SetActive(true);
-          this.Yandere.TargetStudent.WalkAnim = this.Yandere.TargetStudent.PhoneAnims[1];
-        }
-        else
-          this.Yandere.TargetStudent.SmartPhone.SetActive(false);
-      }
-      if (this.Yandere.TargetStudent.LostTeacherTrust)
-      {
-        this.Yandere.TargetStudent.WalkAnim = this.Yandere.TargetStudent.BulliedWalkAnim;
-        this.Yandere.TargetStudent.SmartPhone.SetActive(false);
-      }
-      if (this.Yandere.TargetStudent.EatingSnack)
-      {
-        this.Yandere.TargetStudent.Scrubber.SetActive(false);
-        this.Yandere.TargetStudent.Eraser.SetActive(false);
-      }
-      if (this.Yandere.TargetStudent.SentToLocker)
-      {
-        this.Yandere.TargetStudent.CurrentDestination = this.Yandere.TargetStudent.MyLocker;
-        this.Yandere.TargetStudent.Pathfinding.target = this.Yandere.TargetStudent.MyLocker;
-      }
-      if (this.Yandere.TargetStudent.StudentID == 10 && (Object) this.Yandere.TargetStudent.FollowTarget != (Object) null && this.Yandere.TargetStudent.FollowTarget.FocusOnYandere)
-      {
-        if ((Object) this.Yandere.TargetStudent.FollowTarget.Hunter == (Object) null)
-        {
-          Debug.Log((object) "Osana was stopped, but she should continue walking now.");
-          this.Yandere.TargetStudent.FollowTarget.Pathfinding.canSearch = true;
-          this.Yandere.TargetStudent.FollowTarget.Pathfinding.canMove = true;
-          this.Yandere.TargetStudent.FollowTarget.Routine = true;
-        }
-        this.Yandere.TargetStudent.FollowTarget.FocusOnYandere = false;
-      }
-      if ((Object) this.Yandere.TargetStudent != (Object) null && (Object) this.Yandere.TargetStudent.Talk != (Object) null)
-      {
-        this.Yandere.TargetStudent.Talk.NegativeResponse = false;
-        this.Yandere.ShoulderCamera.OverShoulder = false;
-        this.Yandere.TargetStudent.DiscCheck = false;
-        this.Yandere.TargetStudent.Waiting = true;
-        this.Yandere.TargetStudent = (StudentScript) null;
-      }
-    }
-    this.Yandere.Interaction = YandereInteractionType.Idle;
-    this.Yandere.CameraEffects.UpdateDOF(2f);
-    this.Yandere.StudentManager.VolumeUp();
-    this.RestoreMusic();
-    this.Jukebox.Dip = 1f;
-    this.AppearanceWindow.gameObject.SetActive(false);
-    this.AppearanceWindow.Show = false;
-    this.AskingFavor = false;
-    this.Matchmaking = false;
-    this.ClubLeader = false;
-    this.Pestered = false;
-    this.Show = false;
-    this.PromptBar.ClearButtons();
-    this.PromptBar.UpdateButtons();
-    this.PromptBar.Show = false;
-  }
+	public LoveManagerScript LoveManager;
 
-  public void RestoreMusic() => this.Jukebox.ClubTheme.Stop();
+	public PauseScreenScript PauseScreen;
 
-  public void HideTaskButtonIfNecessary()
-  {
-    this.TaskManager.UpdateTaskStatus();
-    if (this.Yandere.TargetStudent.TaskPhase > 0 && this.Yandere.TargetStudent.TaskPhase < 5 || this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] > 0 && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] < 5 && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] != 2 || this.Yandere.TargetStudent.TaskPhase == 100)
-    {
-      Debug.Log((object) "Hiding task button.");
-      this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-    }
-    if (this.Yandere.TargetStudent.TaskPhase != 5)
-      return;
-    Debug.Log((object) "Task Phase is 5. Unhiding task button.");
-    this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-  }
+	public TaskManagerScript TaskManager;
+
+	public ClubWindowScript ClubWindow;
+
+	public NoteLockerScript NoteLocker;
+
+	public ReputationScript Reputation;
+
+	public TaskWindowScript TaskWindow;
+
+	public PromptBarScript PromptBar;
+
+	public JukeboxScript Jukebox;
+
+	public YandereScript Yandere;
+
+	public ClockScript Clock;
+
+	public UIPanel Panel;
+
+	public GameObject SwitchTopicsWindow;
+
+	public GameObject TaskDialogueWindow;
+
+	public GameObject ClubLeaderWindow;
+
+	public GameObject DatingMinigame;
+
+	public GameObject LockerWindow;
+
+	public Transform Interaction;
+
+	public Transform Favors;
+
+	public Transform Club;
+
+	public Transform Love;
+
+	public UISprite TaskIcon;
+
+	public UISprite Impatience;
+
+	public UILabel CenterLabel;
+
+	public UISprite[] Segment;
+
+	public UISprite[] Shadow;
+
+	public string[] Text;
+
+	public UISprite[] FavorSegment;
+
+	public UISprite[] FavorShadow;
+
+	public UISprite[] ClubSegment;
+
+	public UISprite[] ClubShadow;
+
+	public UISprite[] LoveSegment;
+
+	public UISprite[] LoveShadow;
+
+	public string[] FavorText;
+
+	public string[] ClubText;
+
+	public string[] LoveText;
+
+	public int Selected;
+
+	public int Victim;
+
+	public bool AskingFavor;
+
+	public bool Matchmaking;
+
+	public bool ClubLeader;
+
+	public bool Pestered;
+
+	public bool Show;
+
+	public Vector3 PreviousPosition;
+
+	public Vector2 MouseDelta;
+
+	public Color OriginalColor;
+
+	private void Start()
+	{
+		Interaction.localScale = new Vector3(1f, 1f, 1f);
+		Favors.localScale = Vector3.zero;
+		Club.localScale = Vector3.zero;
+		Love.localScale = Vector3.zero;
+		base.transform.localScale = Vector3.zero;
+		OriginalColor = CenterLabel.color;
+		if (!GameGlobals.Eighties)
+		{
+			LoveText[4] = "(Not Available)";
+		}
+		else
+		{
+			LoveText[4] = "Advice";
+		}
+	}
+
+	private void Update()
+	{
+		if (!Show)
+		{
+			if (base.transform.localScale.x > 0.1f)
+			{
+				base.transform.localScale = Vector3.Lerp(base.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
+			}
+			else if (Panel.enabled)
+			{
+				base.transform.localScale = Vector3.zero;
+				Panel.enabled = false;
+			}
+		}
+		else
+		{
+			if (Yandere.PauseScreen.Show)
+			{
+				Yandere.PauseScreen.ExitPhone();
+			}
+			if (ClubLeader)
+			{
+				Interaction.localScale = Vector3.Lerp(Interaction.localScale, Vector3.zero, Time.deltaTime * 10f);
+				Favors.localScale = Vector3.Lerp(Favors.localScale, Vector3.zero, Time.deltaTime * 10f);
+				Club.localScale = Vector3.Lerp(Club.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				Love.localScale = Vector3.Lerp(Love.localScale, Vector3.zero, Time.deltaTime * 10f);
+			}
+			else if (AskingFavor)
+			{
+				Interaction.localScale = Vector3.Lerp(Interaction.localScale, Vector3.zero, Time.deltaTime * 10f);
+				Favors.localScale = Vector3.Lerp(Favors.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				Club.localScale = Vector3.Lerp(Club.localScale, Vector3.zero, Time.deltaTime * 10f);
+				Love.localScale = Vector3.Lerp(Love.localScale, Vector3.zero, Time.deltaTime * 10f);
+			}
+			else if (Matchmaking)
+			{
+				Interaction.localScale = Vector3.Lerp(Interaction.localScale, Vector3.zero, Time.deltaTime * 10f);
+				Favors.localScale = Vector3.Lerp(Favors.localScale, Vector3.zero, Time.deltaTime * 10f);
+				Club.localScale = Vector3.Lerp(Club.localScale, Vector3.zero, Time.deltaTime * 10f);
+				Love.localScale = Vector3.Lerp(Love.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			}
+			else
+			{
+				Interaction.localScale = Vector3.Lerp(Interaction.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				Favors.localScale = Vector3.Lerp(Favors.localScale, Vector3.zero, Time.deltaTime * 10f);
+				Club.localScale = Vector3.Lerp(Club.localScale, Vector3.zero, Time.deltaTime * 10f);
+				Love.localScale = Vector3.Lerp(Love.localScale, Vector3.zero, Time.deltaTime * 10f);
+			}
+			MouseDelta.x += Input.GetAxis("Mouse X");
+			MouseDelta.y += Input.GetAxis("Mouse Y");
+			if (MouseDelta.x > 11f)
+			{
+				MouseDelta.x = 11f;
+			}
+			else if (MouseDelta.x < -11f)
+			{
+				MouseDelta.x = -11f;
+			}
+			if (MouseDelta.y > 11f)
+			{
+				MouseDelta.y = 11f;
+			}
+			else if (MouseDelta.y < -11f)
+			{
+				MouseDelta.y = -11f;
+			}
+			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			if (!AskingFavor && !Matchmaking)
+			{
+				if (Input.GetAxis("Vertical") < 0.5f && Input.GetAxis("Vertical") > -0.5f && Input.GetAxis("Horizontal") < 0.5f && Input.GetAxis("Horizontal") > -0.5f)
+				{
+					Selected = 0;
+				}
+				if ((Input.GetAxis("Vertical") > 0.5f && Input.GetAxis("Horizontal") < 0.5f && Input.GetAxis("Horizontal") > -0.5f) || (MouseDelta.y > 10f && MouseDelta.x < 10f && MouseDelta.x > -10f))
+				{
+					Selected = 1;
+				}
+				if ((Input.GetAxis("Vertical") > 0f && Input.GetAxis("Horizontal") > 0.5f) || (MouseDelta.y > 0f && MouseDelta.x > 10f))
+				{
+					Selected = 2;
+				}
+				if ((Input.GetAxis("Vertical") < 0f && Input.GetAxis("Horizontal") > 0.5f) || (MouseDelta.y < 0f && MouseDelta.x > 10f))
+				{
+					Selected = 3;
+				}
+				if ((Input.GetAxis("Vertical") < -0.5f && Input.GetAxis("Horizontal") < 0.5f && Input.GetAxis("Horizontal") > -0.5f) || (MouseDelta.y < -10f && MouseDelta.x < 10f && MouseDelta.x > -10f))
+				{
+					Selected = 4;
+				}
+				if ((Input.GetAxis("Vertical") < 0f && Input.GetAxis("Horizontal") < -0.5f) || (MouseDelta.y < 0f && MouseDelta.x < -10f))
+				{
+					Selected = 5;
+				}
+				if ((Input.GetAxis("Vertical") > 0f && Input.GetAxis("Horizontal") < -0.5f) || (MouseDelta.y > 0f && MouseDelta.x < -10f))
+				{
+					Selected = 6;
+				}
+				CenterLabel.text = Text[Selected];
+				CenterLabel.color = OriginalColor;
+				if (!ClubLeader)
+				{
+					if (Selected == 5)
+					{
+						if (Yandere.TargetStudent.Friend)
+						{
+							CenterLabel.text = "Love";
+						}
+					}
+					else if (Selected == 6 && Yandere.Club == ClubType.Delinquent)
+					{
+						CenterLabel.text = "Intimidate";
+						CenterLabel.color = new Color(1f, 0f, 0f, 1f);
+					}
+				}
+				else
+				{
+					CenterLabel.text = ClubText[Selected];
+				}
+			}
+			else
+			{
+				if (Input.GetAxis("Vertical") < 0.5f && Input.GetAxis("Vertical") > -0.5f && Input.GetAxis("Horizontal") < 0.5f && Input.GetAxis("Horizontal") > -0.5f)
+				{
+					Selected = 0;
+				}
+				if ((Input.GetAxis("Vertical") > 0.5f && Input.GetAxis("Horizontal") < 0.5f && Input.GetAxis("Horizontal") > -0.5f) || (MouseDelta.y > 10f && MouseDelta.x < 10f && MouseDelta.x > -10f))
+				{
+					Selected = 1;
+				}
+				if ((Input.GetAxis("Vertical") < 0.5f && Input.GetAxis("Vertical") > -0.5f && Input.GetAxis("Horizontal") > 0.5f) || (MouseDelta.y < 10f && MouseDelta.y > -10f && MouseDelta.x > 10f))
+				{
+					Selected = 2;
+				}
+				if ((Input.GetAxis("Vertical") < -0.5f && Input.GetAxis("Horizontal") < 0.5f && Input.GetAxis("Horizontal") > -0.5f) || (MouseDelta.y < -10f && MouseDelta.x < 10f && MouseDelta.x > -10f))
+				{
+					Selected = 3;
+				}
+				if ((Input.GetAxis("Vertical") < 0.5f && Input.GetAxis("Vertical") > -0.5f && Input.GetAxis("Horizontal") < -0.5f) || (MouseDelta.y < 10f && MouseDelta.y > -10f && MouseDelta.x < -10f))
+				{
+					Selected = 4;
+				}
+				if (Selected < FavorText.Length)
+				{
+					CenterLabel.text = (AskingFavor ? FavorText[Selected] : LoveText[Selected]);
+				}
+			}
+			if (!ClubLeader)
+			{
+				for (int i = 1; i < 7; i++)
+				{
+					Transform obj = Segment[i].transform;
+					obj.localScale = Vector3.Lerp(obj.localScale, (Selected == i) ? new Vector3(1.3f, 1.3f, 1f) : new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+			}
+			else
+			{
+				for (int j = 1; j < 7; j++)
+				{
+					Transform obj2 = ClubSegment[j].transform;
+					obj2.localScale = Vector3.Lerp(obj2.localScale, (Selected == j) ? new Vector3(1.3f, 1.3f, 1f) : new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+			}
+			if (!Matchmaking)
+			{
+				for (int k = 1; k < 5; k++)
+				{
+					Transform obj3 = FavorSegment[k].transform;
+					obj3.localScale = Vector3.Lerp(obj3.localScale, (Selected == k) ? new Vector3(1.3f, 1.3f, 1f) : new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+			}
+			else
+			{
+				for (int l = 1; l < 5; l++)
+				{
+					Transform obj4 = LoveSegment[l].transform;
+					obj4.localScale = Vector3.Lerp(obj4.localScale, (Selected == l) ? new Vector3(1.3f, 1.3f, 1f) : new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+			}
+			if (Input.GetButtonDown("A"))
+			{
+				if (ClubLeader)
+				{
+					if (Selected != 0 && ClubShadow[Selected].color.a == 0f)
+					{
+						int num = 0;
+						if (Yandere.TargetStudent.Sleuthing && Yandere.TargetStudent.Club == ClubType.Photography)
+						{
+							num = 5;
+						}
+						if (Selected == 1)
+						{
+							Impatience.fillAmount = 0f;
+							Yandere.TargetStudent.Interaction = StudentInteractionType.ClubInfo;
+							Yandere.TargetStudent.TalkTimer = 100f;
+							Yandere.TargetStudent.ClubPhase = 1;
+							Show = false;
+						}
+						else if (Selected == 2)
+						{
+							Impatience.fillAmount = 0f;
+							Yandere.TargetStudent.Interaction = StudentInteractionType.ClubJoin;
+							Yandere.TargetStudent.TalkTimer = 100f;
+							Show = false;
+							ClubManager.CheckGrudge(Yandere.TargetStudent.Club);
+							if (ClubManager.QuitClub[(int)Yandere.TargetStudent.Club])
+							{
+								Yandere.TargetStudent.ClubPhase = 4;
+							}
+							else if (Yandere.Club != 0)
+							{
+								Yandere.TargetStudent.ClubPhase = 5;
+							}
+							else if (ClubManager.ClubGrudge)
+							{
+								Yandere.TargetStudent.ClubPhase = 6;
+							}
+							else
+							{
+								Yandere.TargetStudent.ClubPhase = 1;
+							}
+						}
+						else if (Selected == 3)
+						{
+							Impatience.fillAmount = 0f;
+							Yandere.TargetStudent.Interaction = StudentInteractionType.ClubQuit;
+							Yandere.TargetStudent.TalkTimer = 100f;
+							Yandere.TargetStudent.ClubPhase = 1;
+							Show = false;
+						}
+						else if (Selected == 4)
+						{
+							Impatience.fillAmount = 0f;
+							Yandere.TargetStudent.Interaction = StudentInteractionType.ClubBye;
+							Yandere.TargetStudent.TalkTimer = Yandere.Subtitle.ClubFarewellClips[(int)(Yandere.TargetStudent.Club + num)].length;
+							Show = false;
+							Debug.Log("This club leader exchange is over.");
+						}
+						else if (Selected == 5)
+						{
+							Impatience.fillAmount = 0f;
+							Yandere.TargetStudent.Interaction = StudentInteractionType.ClubActivity;
+							Yandere.TargetStudent.TalkTimer = 100f;
+							if (Clock.HourTime < 17f)
+							{
+								Yandere.TargetStudent.ClubPhase = 4;
+							}
+							else if (Clock.HourTime > 17.5f)
+							{
+								Yandere.TargetStudent.ClubPhase = 5;
+							}
+							else
+							{
+								Yandere.TargetStudent.ClubPhase = 1;
+							}
+							Show = false;
+						}
+						else if (Selected == 6)
+						{
+							Impatience.fillAmount = 0f;
+							Yandere.TargetStudent.Interaction = StudentInteractionType.ClubPractice;
+							Yandere.TargetStudent.TalkTimer = 100f;
+							Yandere.TargetStudent.ClubPhase = 1;
+							Show = false;
+						}
+					}
+				}
+				else if (AskingFavor)
+				{
+					if (Selected != 0)
+					{
+						if (Selected < FavorShadow.Length && FavorShadow[Selected] != null && FavorShadow[Selected].color.a == 0f)
+						{
+							if (Selected == 1)
+							{
+								Impatience.fillAmount = 0f;
+								Yandere.Interaction = YandereInteractionType.FollowMe;
+								Yandere.TalkTimer = 3f;
+								Show = false;
+							}
+							else if (Selected == 2)
+							{
+								Impatience.fillAmount = 0f;
+								Yandere.Interaction = YandereInteractionType.GoAway;
+								Yandere.TalkTimer = 3f;
+								Show = false;
+							}
+							else if (Selected == 4)
+							{
+								PauseScreen.StudentInfoMenu.Distracting = true;
+								PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+								PauseScreen.StudentInfoMenu.Column = 0;
+								PauseScreen.StudentInfoMenu.Row = 0;
+								PauseScreen.StudentInfoMenu.UpdateHighlight();
+								StartCoroutine(PauseScreen.StudentInfoMenu.UpdatePortraits());
+								PauseScreen.MainMenu.SetActive(false);
+								PauseScreen.Panel.enabled = true;
+								PauseScreen.Sideways = true;
+								PauseScreen.Show = true;
+								Time.timeScale = 0.0001f;
+								PromptBar.ClearButtons();
+								PromptBar.Label[1].text = "Cancel";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+								Impatience.fillAmount = 0f;
+								Yandere.Interaction = YandereInteractionType.DistractThem;
+								Yandere.TalkTimer = 3f;
+								Show = false;
+							}
+						}
+						if (Selected == 3)
+						{
+							AskingFavor = false;
+						}
+					}
+				}
+				else if (Matchmaking)
+				{
+					if (Selected != 0)
+					{
+						if (Selected < LoveShadow.Length && LoveShadow[Selected] != null && LoveShadow[Selected].color.a == 0f)
+						{
+							if (Selected == 1)
+							{
+								PromptBar.ClearButtons();
+								PromptBar.Label[0].text = "Select";
+								PromptBar.Label[4].text = "Change";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+								AppearanceWindow.gameObject.SetActive(true);
+								AppearanceWindow.Show = true;
+								Show = false;
+							}
+							else if (Selected == 2)
+							{
+								Impatience.fillAmount = 0f;
+								Yandere.Interaction = YandereInteractionType.Court;
+								Yandere.TalkTimer = 5f;
+								Show = false;
+							}
+							else if (Selected == 4)
+							{
+								PromptBar.ClearButtons();
+								PromptBar.Label[1].text = "Exit";
+								PromptBar.Label[4].text = "Change";
+								PromptBar.Label[5].text = "Change";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+								AdviceWindow.UpdateText();
+								AdviceWindow.gameObject.SetActive(true);
+								Time.timeScale = 0.0001f;
+								base.transform.localScale = Vector3.zero;
+								Yandere.Subtitle.Label.text = "";
+								Impatience.fillAmount = 0f;
+								Show = false;
+							}
+						}
+						if (Selected == 3)
+						{
+							Matchmaking = false;
+						}
+					}
+				}
+				else if (Selected != 0 && Shadow[Selected].color.a == 0f)
+				{
+					if (Selected == 1)
+					{
+						Impatience.fillAmount = 0f;
+						Yandere.Interaction = YandereInteractionType.Apologizing;
+						Yandere.TalkTimer = 10f;
+						Show = false;
+					}
+					else if (Selected == 2)
+					{
+						Time.timeScale = 0.0001f;
+						TopicInterface.Socializing = true;
+						TopicInterface.StudentID = Yandere.TargetStudent.StudentID;
+						TopicInterface.Student = Yandere.TargetStudent;
+						TopicInterface.UpdateOpinions();
+						TopicInterface.UpdateTopicHighlight();
+						TopicInterface.gameObject.SetActive(true);
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = "Speak";
+						PromptBar.Label[1].text = "Back";
+						PromptBar.Label[2].text = "Positive/Negative";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+						base.transform.localScale = Vector3.zero;
+						Impatience.fillAmount = 0f;
+						Show = false;
+					}
+					else if (Selected == 3)
+					{
+						PauseScreen.StudentInfoMenu.Gossiping = true;
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = string.Empty;
+						PromptBar.Label[1].text = "Cancel";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+						PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+						PauseScreen.StudentInfoMenu.UpdateHighlight();
+						StartCoroutine(PauseScreen.StudentInfoMenu.UpdatePortraits());
+						PauseScreen.MainMenu.SetActive(false);
+						PauseScreen.Panel.enabled = true;
+						PauseScreen.Sideways = true;
+						PauseScreen.Show = true;
+						Time.timeScale = 0.0001f;
+						Yandere.Subtitle.Label.text = "";
+						base.transform.localScale = Vector3.zero;
+						Impatience.fillAmount = 0f;
+						Show = false;
+					}
+					else if (Selected == 4)
+					{
+						Impatience.fillAmount = 0f;
+						Yandere.Interaction = YandereInteractionType.Bye;
+						Yandere.TalkTimer = 2f;
+						Show = false;
+					}
+					else if (Selected == 5)
+					{
+						if (!Yandere.TargetStudent.Friend)
+						{
+							CheckTaskCompletion();
+							Show = false;
+							if (Yandere.TargetStudent.TaskPhase == 0)
+							{
+								bool flag = true;
+								if (!Yandere.StudentManager.Eighties && Yandere.TargetStudent.StudentID == 36 && Clock.Period > 1)
+								{
+									Yandere.NotificationManager.CustomText = "Task only available in morning";
+									Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+									flag = false;
+									Show = true;
+								}
+								if (flag)
+								{
+									Impatience.fillAmount = 0f;
+									Yandere.TargetStudent.Interaction = StudentInteractionType.GivingTask;
+									Yandere.TargetStudent.TalkTimer = 100f;
+									Yandere.TargetStudent.TaskPhase = 1;
+								}
+							}
+							else
+							{
+								Impatience.fillAmount = 0f;
+								Yandere.TargetStudent.Interaction = StudentInteractionType.GivingTask;
+								Yandere.TargetStudent.TalkTimer = 100f;
+							}
+						}
+						else if (Yandere.LoveManager.SuitorProgress == 0)
+						{
+							PauseScreen.StudentInfoMenu.MatchMaking = true;
+							PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+							PauseScreen.StudentInfoMenu.Column = 0;
+							PauseScreen.StudentInfoMenu.Row = 0;
+							PauseScreen.StudentInfoMenu.UpdateHighlight();
+							StartCoroutine(PauseScreen.StudentInfoMenu.UpdatePortraits());
+							PauseScreen.MainMenu.SetActive(false);
+							PauseScreen.Panel.enabled = true;
+							PauseScreen.Sideways = true;
+							PauseScreen.Show = true;
+							Time.timeScale = 0.0001f;
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "View Info";
+							PromptBar.Label[1].text = "Cancel";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+							Impatience.fillAmount = 0f;
+							Yandere.Interaction = YandereInteractionType.NamingCrush;
+							Yandere.TalkTimer = 3f;
+							Show = false;
+						}
+						else
+						{
+							Matchmaking = true;
+						}
+					}
+					else if (Selected == 6)
+					{
+						AskingFavor = true;
+					}
+				}
+			}
+			else if (Input.GetButtonDown("X"))
+			{
+				if (TaskDialogueWindow.activeInHierarchy)
+				{
+					Impatience.fillAmount = 0f;
+					Yandere.Interaction = YandereInteractionType.TaskInquiry;
+					Yandere.TalkTimer = 3f;
+					Show = false;
+				}
+				else if (SwitchTopicsWindow.activeInHierarchy)
+				{
+					ClubLeader = !ClubLeader;
+					if (!ClubLeader)
+					{
+						RestoreMusic();
+					}
+					HideShadows();
+				}
+			}
+			else if (Input.GetButtonDown("B") && LockerWindow.activeInHierarchy)
+			{
+				Impatience.fillAmount = 0f;
+				Yandere.Interaction = YandereInteractionType.SendingToLocker;
+				Yandere.TalkTimer = 5f;
+				Show = false;
+				if (Yandere.TargetStudent.StudentID == 11 && SchemeGlobals.GetSchemeStage(6) == 6)
+				{
+					SchemeGlobals.SetSchemeStage(6, 7);
+					Yandere.PauseScreen.Schemes.UpdateInstructions();
+				}
+			}
+		}
+		PreviousPosition = Input.mousePosition;
+	}
+
+	public void HideShadows()
+	{
+		Jukebox.Dip = 0.5f;
+		bool clubLeader = ClubLeader;
+		TaskDialogueWindow.SetActive(false);
+		ClubLeaderWindow.SetActive(false);
+		LockerWindow.SetActive(false);
+		if (ClubLeader && !Yandere.TargetStudent.Talk.Fake)
+		{
+			SwitchTopicsWindow.SetActive(true);
+		}
+		else
+		{
+			SwitchTopicsWindow.SetActive(false);
+		}
+		if (Yandere.TargetStudent.Armband.activeInHierarchy && !ClubLeader && Yandere.TargetStudent.Club != ClubType.Council)
+		{
+			ClubLeaderWindow.SetActive(true);
+		}
+		if (Yandere.TargetStudent.Indoors && NoteLocker.NoteLeft && NoteLocker.Student == Yandere.TargetStudent)
+		{
+			LockerWindow.SetActive(true);
+		}
+		if (Yandere.TargetStudent.Club == ClubType.Bully && TaskManager.TaskStatus[36] == 1)
+		{
+			TaskDialogueWindow.SetActive(true);
+		}
+		if (!Yandere.StudentManager.Eighties && Yandere.TargetStudent.StudentID == 10 && TaskManager.TaskStatus[46] == 1 && Clock.Period != 3)
+		{
+			int period = Clock.Period;
+			int num2 = 5;
+		}
+		TaskIcon.spriteName = (Yandere.TargetStudent.Friend ? "Heart" : "Task");
+		Impatience.fillAmount = 0f;
+		for (int i = 1; i < 7; i++)
+		{
+			UISprite uISprite = Shadow[i];
+			uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0f);
+		}
+		for (int j = 1; j < 5; j++)
+		{
+			UISprite uISprite2 = FavorShadow[j];
+			uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 0f);
+		}
+		for (int k = 1; k < 7; k++)
+		{
+			UISprite uISprite3 = ClubShadow[k];
+			uISprite3.color = new Color(uISprite3.color.r, uISprite3.color.g, uISprite3.color.b, 0f);
+		}
+		for (int l = 1; l < 5; l++)
+		{
+			UISprite uISprite4 = LoveShadow[l];
+			uISprite4.color = new Color(uISprite4.color.r, uISprite4.color.g, uISprite4.color.b, 0f);
+		}
+		if (!Yandere.TargetStudent.Witness || Yandere.TargetStudent.Forgave || Yandere.TargetStudent.Club == ClubType.Council)
+		{
+			UISprite uISprite5 = Shadow[1];
+			uISprite5.color = new Color(uISprite5.color.r, uISprite5.color.g, uISprite5.color.b, 0.75f);
+		}
+		if (Yandere.TargetStudent.Complimented || Yandere.TargetStudent.Club == ClubType.Council)
+		{
+			UISprite uISprite6 = Shadow[2];
+			uISprite6.color = new Color(uISprite6.color.r, uISprite6.color.g, uISprite6.color.b, 0.75f);
+		}
+		if (Yandere.TargetStudent.Gossiped || Yandere.TargetStudent.Club == ClubType.Council)
+		{
+			UISprite uISprite7 = Shadow[3];
+			uISprite7.color = new Color(uISprite7.color.r, uISprite7.color.g, uISprite7.color.b, 0.75f);
+		}
+		if (Yandere.Bloodiness > 0f || Yandere.Sanity < 33.33333f || Yandere.TargetStudent.Club == ClubType.Council)
+		{
+			UISprite uISprite8 = Shadow[3];
+			uISprite8.color = new Color(uISprite8.color.r, uISprite8.color.g, uISprite8.color.b, 0.75f);
+			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+			UISprite uISprite9 = Shadow[6];
+			uISprite9.color = new Color(uISprite9.color.r, uISprite9.color.g, uISprite9.color.b, 0.75f);
+		}
+		else if (Reputation.Reputation < -33.33333f)
+		{
+			UISprite uISprite10 = Shadow[3];
+			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.75f);
+		}
+		if (!Yandere.TargetStudent.Indoors || Yandere.TargetStudent.Club == ClubType.Council)
+		{
+			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+		}
+		else if (!Yandere.TargetStudent.Friend)
+		{
+			bool flag = false;
+			if (Yandere.StudentManager.Eighties)
+			{
+				if (Yandere.TargetStudent.StudentID != 79)
+				{
+					flag = true;
+				}
+				HideTaskButtonIfNecessary();
+				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.FinishedHomework)
+				{
+					Debug.Log("The player has finished another student's homework, and can turn in a task right now.");
+					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
+				}
+			}
+			else
+			{
+				if (Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
+				{
+					flag = true;
+				}
+				if (Yandere.TargetStudent.StudentID == 6)
+				{
+					Debug.Log("Speaking to Osana's suitor.");
+					flag = false;
+				}
+				if (Yandere.TargetStudent.StudentID == 1 || Yandere.TargetStudent.StudentID == 10)
+				{
+					Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+				}
+				else
+				{
+					HideTaskButtonIfNecessary();
+					if (Yandere.TargetStudent.StudentID == 6)
+					{
+						if (Yandere.StudentManager.Students[11] == null)
+						{
+							Debug.Log("Osana's dead; hiding suitor's Task button.");
+							Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+						}
+						else
+						{
+							Debug.Log("The status of Task #6 is:" + TaskManager.TaskStatus[6]);
+							if (TaskManager.TaskStatus[6] == 1 && Yandere.Inventory.Headset)
+							{
+								Shadow[5].color = new Color(0f, 0f, 0f, 0f);
+								Debug.Log("Player has a headset.");
+							}
+						}
+					}
+					else if (Yandere.TargetStudent.StudentID == 36)
+					{
+						if (TaskManager.TaskStatus[36] == 0 && (StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentDead(82) || StudentGlobals.GetStudentDead(83) || StudentGlobals.GetStudentDead(84) || StudentGlobals.GetStudentDead(85)))
+						{
+							Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+						}
+					}
+					else if ((Yandere.TargetStudent.StudentID == 46 && Clock.Period == 3) || (Yandere.TargetStudent.StudentID == 46 && Clock.Period == 5))
+					{
+						Debug.Log("Hiding Budo's Task button.");
+						Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+					}
+					else if (Yandere.TargetStudent.StudentID == 81)
+					{
+						if (TaskManager.TaskStatus[81] == 0 && StudentGlobals.GetStudentDead(5))
+						{
+							Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+						}
+					}
+					else if (Yandere.TargetStudent.StudentID == 76)
+					{
+						if (TaskManager.TaskStatus[76] == 1 && Yandere.Inventory.Money >= 100f)
+						{
+							Shadow[5].color = new Color(0f, 0f, 0f, 0f);
+							Debug.Log("Player has over $100.");
+						}
+					}
+					else if (Yandere.TargetStudent.StudentID == 77)
+					{
+						if (TaskManager.TaskStatus[77] == 1 && ((Yandere.Weapon[1] != null && Yandere.Weapon[1].WeaponID == 1 && !Yandere.Weapon[1].Bloody) || (Yandere.Weapon[1] != null && Yandere.Weapon[1].WeaponID == 8 && !Yandere.Weapon[1].Bloody) || (Yandere.Weapon[2] != null && Yandere.Weapon[2].WeaponID == 1 && !Yandere.Weapon[2].Bloody) || (Yandere.Weapon[2] != null && Yandere.Weapon[2].WeaponID == 8 && !Yandere.Weapon[2].Bloody)))
+						{
+							Shadow[5].color = new Color(0f, 0f, 0f, 0f);
+							Debug.Log("Player has a knife.");
+						}
+					}
+					else if (Yandere.TargetStudent.StudentID == 78)
+					{
+						if (TaskManager.TaskStatus[78] == 1 && Yandere.Inventory.Sake)
+						{
+							Shadow[5].color = new Color(0f, 0f, 0f, 0f);
+							Debug.Log("Player has sake.");
+						}
+					}
+					else if (Yandere.TargetStudent.StudentID == 79)
+					{
+						if (TaskManager.TaskStatus[79] == 1 && Yandere.Inventory.Cigs)
+						{
+							Shadow[5].color = new Color(0f, 0f, 0f, 0f);
+							Debug.Log("Player has ciggies.");
+						}
+					}
+					else if (Yandere.TargetStudent.StudentID == 80 && TaskManager.TaskStatus[80] == 1 && (Yandere.Inventory.AnswerSheet || Yandere.Inventory.DuplicateSheet))
+					{
+						Shadow[5].color = new Color(0f, 0f, 0f, 0f);
+						Debug.Log("Player has the answer sheet.");
+					}
+				}
+				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.Book)
+				{
+					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
+					Debug.Log("The player has a library book.");
+				}
+			}
+		}
+		else if (Yandere.TargetStudent.StudentID != LoveManager.RivalID && Yandere.TargetStudent.StudentID != LoveManager.SuitorID)
+		{
+			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+		}
+		else if (!Yandere.TargetStudent.Male && LoveManager.SuitorProgress == 0)
+		{
+			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+		}
+		if (!Yandere.TargetStudent.Indoors || Yandere.TargetStudent.Club == ClubType.Council)
+		{
+			UISprite uISprite11 = Shadow[6];
+			uISprite11.color = new Color(uISprite11.color.r, uISprite11.color.g, uISprite11.color.b, 0.75f);
+		}
+		else
+		{
+			if (!Yandere.TargetStudent.Friend)
+			{
+				Shadow[6].color = new Color(0f, 0f, 0f, 0.75f);
+			}
+			if ((Yandere.TargetStudent.Male && Yandere.Class.Seduction + Yandere.Class.SeductionBonus > 3) || Yandere.Class.Seduction + Yandere.Class.SeductionBonus > 4 || Yandere.Club == ClubType.Delinquent)
+			{
+				Shadow[6].color = new Color(0f, 0f, 0f, 0f);
+			}
+			if (Yandere.TargetStudent.Club == ClubType.Delinquent)
+			{
+				Shadow[6].color = new Color(0f, 0f, 0f, 0.75f);
+			}
+			StudentActionType currentAction = Yandere.TargetStudent.CurrentAction;
+			int num3 = 30;
+		}
+		if (Yandere.Club == Yandere.TargetStudent.Club)
+		{
+			UISprite uISprite12 = ClubShadow[1];
+			uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 0.75f);
+			UISprite uISprite13 = ClubShadow[2];
+			uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 0.75f);
+		}
+		if (Yandere.ClubAttire || Yandere.Mask != null || Yandere.Gloves != null || (Yandere.Container != null && Yandere.Container.CelloCase))
+		{
+			UISprite uISprite14 = ClubShadow[3];
+			uISprite14.color = new Color(uISprite14.color.r, uISprite14.color.g, uISprite14.color.b, 0.75f);
+		}
+		if (Yandere.Club != Yandere.TargetStudent.Club)
+		{
+			UISprite uISprite15 = ClubShadow[2];
+			uISprite15.color = new Color(uISprite15.color.r, uISprite15.color.g, uISprite15.color.b, 0f);
+			UISprite uISprite16 = ClubShadow[3];
+			uISprite16.color = new Color(uISprite16.color.r, uISprite16.color.g, uISprite16.color.b, 0.75f);
+			ClubShadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+		}
+		if (Yandere.StudentManager.MurderTakingPlace)
+		{
+			ClubShadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+		}
+		if ((Yandere.TargetStudent.StudentID != 46 && Yandere.TargetStudent.StudentID != 51 && Yandere.TargetStudent.StudentID != 76) || Yandere.Police.Show || Clock.Period == 3 || Clock.Period == 5)
+		{
+			UISprite uISprite17 = ClubShadow[6];
+			uISprite17.color = new Color(uISprite17.color.r, uISprite17.color.g, uISprite17.color.b, 0.75f);
+		}
+		if (Yandere.TargetStudent.StudentID == 51 || Yandere.TargetStudent.StudentID == 76)
+		{
+			int num = 4;
+			if (Yandere.TargetStudent.StudentID == 51 && (Yandere.Club != ClubType.LightMusic || PracticeWindow.PlayedRhythmMinigame))
+			{
+				num = 0;
+			}
+			for (int m = Yandere.TargetStudent.StudentID + 1; m < Yandere.TargetStudent.StudentID + 5; m++)
+			{
+				if (Yandere.StudentManager.Students[m] == null)
+				{
+					num--;
+				}
+				else if (!Yandere.StudentManager.Students[m].gameObject.activeInHierarchy || Yandere.StudentManager.Students[m].Investigating || Yandere.StudentManager.Students[m].Distracting || Yandere.StudentManager.Students[m].Distracted || Yandere.StudentManager.Students[m].SentHome || Yandere.StudentManager.Students[m].Tranquil || Yandere.StudentManager.Students[m].GoAway || !Yandere.StudentManager.Students[m].Routine || !Yandere.StudentManager.Students[m].Alive)
+				{
+					num--;
+				}
+			}
+			if (num < 4)
+			{
+				UISprite uISprite18 = ClubShadow[6];
+				uISprite18.color = new Color(uISprite18.color.r, uISprite18.color.g, uISprite18.color.b, 0.75f);
+			}
+		}
+		if (Yandere.Followers > 0)
+		{
+			Debug.Log("Can't do task because of follower.");
+			UISprite uISprite19 = FavorShadow[1];
+			uISprite19.color = new Color(uISprite19.color.r, uISprite19.color.g, uISprite19.color.b, 0.75f);
+		}
+		if (Yandere.TargetStudent.DistanceToDestination > 2f)
+		{
+			UISprite uISprite20 = FavorShadow[2];
+			uISprite20.color = new Color(uISprite20.color.r, uISprite20.color.g, uISprite20.color.b, 0.75f);
+		}
+		if (!Yandere.TargetStudent.Male)
+		{
+			UISprite uISprite21 = LoveShadow[1];
+			uISprite21.color = new Color(uISprite21.color.r, uISprite21.color.g, uISprite21.color.b, 0.75f);
+		}
+		if (DatingMinigame == null || (Yandere.TargetStudent.Male && !LoveManager.RivalWaiting) || LoveManager.Courted)
+		{
+			UISprite uISprite22 = LoveShadow[2];
+			uISprite22.color = new Color(uISprite22.color.r, uISprite22.color.g, uISprite22.color.b, 0.75f);
+		}
+		if (!Yandere.StudentManager.Eighties || Yandere.TargetStudent.StudentID != Yandere.StudentManager.SuitorID)
+		{
+			UISprite uISprite23 = LoveShadow[4];
+			uISprite23.color = new Color(uISprite23.color.r, uISprite23.color.g, uISprite23.color.b, 0.75f);
+		}
+		if (Yandere.StudentManager.TutorialActive)
+		{
+			for (int n = 2; n < 7; n++)
+			{
+				UISprite uISprite24 = Shadow[n];
+				uISprite24.color = new Color(uISprite24.color.r, uISprite24.color.g, uISprite24.color.b, 0.75f);
+			}
+		}
+	}
+
+	private void CheckTaskCompletion()
+	{
+		bool flag = false;
+		if (Yandere.StudentManager.Eighties)
+		{
+			if (Yandere.TargetStudent.StudentID != 79)
+			{
+				flag = true;
+			}
+		}
+		else
+		{
+			if (Yandere.TargetStudent.StudentID == 6 && TaskManager.TaskStatus[6] == 1)
+			{
+				if (Yandere.Inventory.Headset)
+				{
+					Yandere.TargetStudent.TaskPhase = 5;
+					Yandere.LoveManager.SuitorProgress = 1;
+					DatingGlobals.SuitorProgress = 1;
+				}
+			}
+			else if (Yandere.TargetStudent.StudentID == 36 && TaskManager.TaskStatus[36] == 1)
+			{
+				Yandere.TargetStudent.UpdateAppearance = true;
+				ScheduleBlock obj = Yandere.TargetStudent.ScheduleBlocks[Yandere.TargetStudent.Phase];
+				obj.destination = "LockerRoom";
+				obj.action = "UpdateAppearance";
+				Yandere.TargetStudent.GetDestinations();
+				Yandere.TargetStudent.TaskPhase = 5;
+			}
+			else if (Yandere.TargetStudent.StudentID == 11 && TaskManager.TaskStatus[11] == 2)
+			{
+				Debug.Log("Setting Osana's phone charm active.");
+				Yandere.TargetStudent.Cosmetic.PhoneCharms[11].SetActive(true);
+			}
+			else if (Yandere.TargetStudent.StudentID == 76 && TaskManager.TaskStatus[76] == 1)
+			{
+				Yandere.TargetStudent.RespectEarned = true;
+				Yandere.TargetStudent.TaskPhase = 5;
+				Yandere.Inventory.Money -= 100f;
+				Yandere.Inventory.UpdateMoney();
+			}
+			else if (Yandere.TargetStudent.StudentID == 77 && TaskManager.TaskStatus[77] == 1)
+			{
+				Yandere.TargetStudent.RespectEarned = true;
+				Yandere.TargetStudent.TaskPhase = 5;
+				WeaponScript weaponScript;
+				if ((Yandere.Weapon[1] != null && Yandere.Weapon[1].WeaponID == 1) || (Yandere.Weapon[1] != null && Yandere.Weapon[1].WeaponID == 8))
+				{
+					weaponScript = Yandere.Weapon[1];
+					Yandere.Weapon[1] = null;
+				}
+				else
+				{
+					weaponScript = Yandere.Weapon[2];
+					Yandere.Weapon[2] = null;
+				}
+				weaponScript.Drop();
+				weaponScript.FingerprintID = 77;
+				weaponScript.gameObject.SetActive(false);
+				Yandere.WeaponManager.UpdateLabels();
+				Yandere.WeaponMenu.UpdateSprites();
+			}
+			else if (Yandere.TargetStudent.StudentID == 78 && TaskManager.TaskStatus[78] == 1)
+			{
+				Yandere.TargetStudent.RespectEarned = true;
+				Yandere.TargetStudent.TaskPhase = 5;
+				Yandere.Inventory.Sake = false;
+			}
+			else if (Yandere.TargetStudent.StudentID == 79 && TaskManager.TaskStatus[79] == 1)
+			{
+				Yandere.TargetStudent.RespectEarned = true;
+				Yandere.TargetStudent.TaskPhase = 5;
+				Yandere.Inventory.Cigs = false;
+			}
+			else if (Yandere.TargetStudent.StudentID == 80 && TaskManager.TaskStatus[80] == 1)
+			{
+				Yandere.TargetStudent.RespectEarned = true;
+				Yandere.TargetStudent.TaskPhase = 5;
+				Yandere.Inventory.AnswerSheet = false;
+			}
+			if (Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 47 && Yandere.TargetStudent.StudentID != 48 && Yandere.TargetStudent.StudentID != 49 && Yandere.TargetStudent.StudentID != 50 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
+			{
+				flag = true;
+			}
+		}
+		if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && ((!Yandere.StudentManager.Eighties && Yandere.Inventory.Book) || (Yandere.StudentManager.Eighties && Yandere.Inventory.FinishedHomework)))
+		{
+			Yandere.TargetStudent.TaskPhase = 5;
+		}
+		if (Yandere.Club == ClubType.Delinquent)
+		{
+			Text[6] = "Intimidate";
+		}
+		else
+		{
+			Text[6] = "Ask Favor";
+		}
+	}
+
+	public void End()
+	{
+		if (Yandere.TargetStudent != null)
+		{
+			if (Yandere.TargetStudent.Pestered >= 10)
+			{
+				Yandere.TargetStudent.Ignoring = true;
+			}
+			if (!Pestered)
+			{
+				Yandere.Subtitle.Label.text = string.Empty;
+			}
+			Yandere.TargetStudent.Interaction = StudentInteractionType.Idle;
+			Yandere.TargetStudent.WaitTimer = 1f;
+			if (Yandere.TargetStudent.enabled)
+			{
+				Yandere.TargetStudent.CurrentDestination = Yandere.TargetStudent.Destinations[Yandere.TargetStudent.Phase];
+				Yandere.TargetStudent.Pathfinding.target = Yandere.TargetStudent.Destinations[Yandere.TargetStudent.Phase];
+				if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.Clean)
+				{
+					Yandere.TargetStudent.EquipCleaningItems();
+				}
+				else if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.Patrol || (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.ClubAction && Yandere.TargetStudent.Club == ClubType.Gardening))
+				{
+					Yandere.TargetStudent.CurrentDestination = Yandere.TargetStudent.StudentManager.Patrols.List[Yandere.TargetStudent.StudentID].GetChild(Yandere.TargetStudent.PatrolID);
+					Yandere.TargetStudent.Pathfinding.target = Yandere.TargetStudent.CurrentDestination;
+				}
+				else if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.Sleuth)
+				{
+					Yandere.TargetStudent.CurrentDestination = Yandere.TargetStudent.SleuthTarget;
+					Yandere.TargetStudent.Pathfinding.target = Yandere.TargetStudent.SleuthTarget;
+				}
+				else if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.Sunbathe && Yandere.TargetStudent.SunbathePhase > 1)
+				{
+					Yandere.TargetStudent.CurrentDestination = Yandere.StudentManager.SunbatheSpots[Yandere.TargetStudent.StudentID];
+					Yandere.TargetStudent.Pathfinding.target = Yandere.StudentManager.SunbatheSpots[Yandere.TargetStudent.StudentID];
+				}
+			}
+			if (Yandere.TargetStudent.Persona == PersonaType.PhoneAddict)
+			{
+				bool flag = false;
+				if (Yandere.TargetStudent.CurrentAction == StudentActionType.Sunbathe && Yandere.TargetStudent.SunbathePhase > 2)
+				{
+					flag = true;
+				}
+				if (!Yandere.TargetStudent.Scrubber.activeInHierarchy && !flag && !Yandere.TargetStudent.Phoneless)
+				{
+					Yandere.TargetStudent.SmartPhone.SetActive(true);
+					Yandere.TargetStudent.WalkAnim = Yandere.TargetStudent.PhoneAnims[1];
+				}
+				else
+				{
+					Yandere.TargetStudent.SmartPhone.SetActive(false);
+				}
+			}
+			if (Yandere.TargetStudent.LostTeacherTrust)
+			{
+				Yandere.TargetStudent.WalkAnim = Yandere.TargetStudent.BulliedWalkAnim;
+				Yandere.TargetStudent.SmartPhone.SetActive(false);
+			}
+			if (Yandere.TargetStudent.EatingSnack)
+			{
+				Yandere.TargetStudent.Scrubber.SetActive(false);
+				Yandere.TargetStudent.Eraser.SetActive(false);
+			}
+			if (Yandere.TargetStudent.SentToLocker)
+			{
+				Yandere.TargetStudent.CurrentDestination = Yandere.TargetStudent.MyLocker;
+				Yandere.TargetStudent.Pathfinding.target = Yandere.TargetStudent.MyLocker;
+			}
+			if (Yandere.TargetStudent.StudentID == 10 && Yandere.TargetStudent.FollowTarget != null && Yandere.TargetStudent.FollowTarget.FocusOnYandere)
+			{
+				if (Yandere.TargetStudent.FollowTarget.Hunter == null)
+				{
+					Debug.Log("Osana was stopped, but she should continue walking now.");
+					Yandere.TargetStudent.FollowTarget.Pathfinding.canSearch = true;
+					Yandere.TargetStudent.FollowTarget.Pathfinding.canMove = true;
+					Yandere.TargetStudent.FollowTarget.Routine = true;
+				}
+				Yandere.TargetStudent.FollowTarget.FocusOnYandere = false;
+			}
+			if (Yandere.TargetStudent != null && Yandere.TargetStudent.Talk != null)
+			{
+				Yandere.TargetStudent.Talk.NegativeResponse = false;
+				Yandere.ShoulderCamera.OverShoulder = false;
+				Yandere.TargetStudent.DiscCheck = false;
+				Yandere.TargetStudent.Waiting = true;
+				Yandere.TargetStudent = null;
+			}
+		}
+		Yandere.Interaction = YandereInteractionType.Idle;
+		Yandere.CameraEffects.UpdateDOF(2f);
+		Yandere.StudentManager.VolumeUp();
+		RestoreMusic();
+		Jukebox.Dip = 1f;
+		AppearanceWindow.gameObject.SetActive(false);
+		AppearanceWindow.Show = false;
+		AskingFavor = false;
+		Matchmaking = false;
+		ClubLeader = false;
+		Pestered = false;
+		Show = false;
+		PromptBar.ClearButtons();
+		PromptBar.UpdateButtons();
+		PromptBar.Show = false;
+	}
+
+	public void RestoreMusic()
+	{
+		Jukebox.ClubTheme.Stop();
+	}
+
+	public void HideTaskButtonIfNecessary()
+	{
+		TaskManager.UpdateTaskStatus();
+		if ((Yandere.TargetStudent.TaskPhase > 0 && Yandere.TargetStudent.TaskPhase < 5) || (TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] > 0 && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] < 5 && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] != 2) || Yandere.TargetStudent.TaskPhase == 100)
+		{
+			Debug.Log("Hiding task button.");
+			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+		}
+		if (Yandere.TargetStudent.TaskPhase == 5)
+		{
+			Debug.Log("Task Phase is 5. Unhiding task button.");
+			Shadow[5].color = new Color(0f, 0f, 0f, 0f);
+		}
+	}
 }

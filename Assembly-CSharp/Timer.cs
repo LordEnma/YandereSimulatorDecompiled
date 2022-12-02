@@ -1,37 +1,65 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Timer
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [Serializable]
 public class Timer
 {
-  [SerializeField]
-  private float currentSeconds;
-  [SerializeField]
-  private float targetSeconds;
+	[SerializeField]
+	private float currentSeconds;
 
-  public Timer(float targetSeconds)
-  {
-    this.currentSeconds = 0.0f;
-    this.targetSeconds = targetSeconds;
-  }
+	[SerializeField]
+	private float targetSeconds;
 
-  public float CurrentSeconds => this.currentSeconds;
+	public float CurrentSeconds
+	{
+		get
+		{
+			return currentSeconds;
+		}
+	}
 
-  public float TargetSeconds => this.targetSeconds;
+	public float TargetSeconds
+	{
+		get
+		{
+			return targetSeconds;
+		}
+	}
 
-  public bool IsDone => (double) this.currentSeconds >= (double) this.targetSeconds;
+	public bool IsDone
+	{
+		get
+		{
+			return currentSeconds >= targetSeconds;
+		}
+	}
 
-  public float Progress => Mathf.Clamp01(this.currentSeconds / this.targetSeconds);
+	public float Progress
+	{
+		get
+		{
+			return Mathf.Clamp01(currentSeconds / targetSeconds);
+		}
+	}
 
-  public void Reset() => this.currentSeconds = 0.0f;
+	public Timer(float targetSeconds)
+	{
+		currentSeconds = 0f;
+		this.targetSeconds = targetSeconds;
+	}
 
-  public void SubtractTarget() => this.currentSeconds -= this.targetSeconds;
+	public void Reset()
+	{
+		currentSeconds = 0f;
+	}
 
-  public void Tick(float dt) => this.currentSeconds += dt;
+	public void SubtractTarget()
+	{
+		currentSeconds -= targetSeconds;
+	}
+
+	public void Tick(float dt)
+	{
+		currentSeconds += dt;
+	}
 }

@@ -1,21 +1,17 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: OpenURLOnClick
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class OpenURLOnClick : MonoBehaviour
 {
-  private void OnClick()
-  {
-    UILabel component = this.GetComponent<UILabel>();
-    if (!((Object) component != (Object) null))
-      return;
-    string urlAtPosition = component.GetUrlAtPosition(UICamera.lastWorldPosition);
-    if (string.IsNullOrEmpty(urlAtPosition))
-      return;
-    Application.OpenURL(urlAtPosition);
-  }
+	private void OnClick()
+	{
+		UILabel component = GetComponent<UILabel>();
+		if (component != null)
+		{
+			string urlAtPosition = component.GetUrlAtPosition(UICamera.lastWorldPosition);
+			if (!string.IsNullOrEmpty(urlAtPosition))
+			{
+				Application.OpenURL(urlAtPosition);
+			}
+		}
+	}
 }

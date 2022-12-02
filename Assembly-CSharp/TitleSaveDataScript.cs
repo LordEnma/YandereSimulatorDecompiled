@@ -1,67 +1,102 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TitleSaveDataScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class TitleSaveDataScript : MonoBehaviour
 {
-  public TitleSaveFilesScript TitleSaveFiles;
-  public GameObject EmptyFile;
-  public GameObject Data;
-  public Texture[] Bloods;
-  public UITexture Blood;
-  public UILabel Kills;
-  public UILabel Mood;
-  public UILabel Alerts;
-  public UILabel Week;
-  public UILabel Day;
-  public UILabel Rival;
-  public UILabel Rep;
-  public UILabel Club;
-  public UILabel Friends;
-  public bool Eighties;
-  public int ID;
+	public TitleSaveFilesScript TitleSaveFiles;
 
-  public void Start()
-  {
-    this.Eighties = GameGlobals.Eighties;
-    if (PlayerPrefs.GetInt("ProfileCreated_" + this.ID.ToString()) > 0)
-    {
-      int profile = GameGlobals.Profile;
-      GameGlobals.Profile = this.ID;
-      this.EmptyFile.SetActive(false);
-      this.Data.SetActive(true);
-      this.Kills.text = "Kills: " + PlayerGlobals.Kills.ToString();
-      this.Mood.text = "Mood: " + Mathf.RoundToInt(SchoolGlobals.SchoolAtmosphere * 100f).ToString();
-      this.Alerts.text = "Alerts: " + PlayerGlobals.Alerts.ToString();
-      this.Week.text = "Week: " + DateGlobals.Week.ToString();
-      this.Day.text = "Day: " + DateGlobals.Weekday.ToString();
-      this.Rival.text = DateGlobals.Week >= 11 ? "Rival: ?????" : (!this.Eighties ? "Rival: " + this.TitleSaveFiles.NewTitleScreen.RivalNames[DateGlobals.Week] : "Rival: " + this.TitleSaveFiles.NewTitleScreen.EightiesRivalNames[DateGlobals.Week]);
-      this.Rep.text = "Rep: " + PlayerGlobals.Reputation.ToString();
-      this.Club.text = "Club: " + ClubGlobals.Club.ToString();
-      this.Friends.text = "Friends: " + PlayerGlobals.Friends.ToString();
-      if (PlayerGlobals.Kills == 0)
-        this.Blood.mainTexture = (Texture) null;
-      else if (PlayerGlobals.Kills > 0)
-        this.Blood.mainTexture = this.Bloods[1];
-      else if (PlayerGlobals.Kills > 5)
-        this.Blood.mainTexture = this.Bloods[2];
-      else if (PlayerGlobals.Kills > 10)
-        this.Blood.mainTexture = this.Bloods[3];
-      else if (PlayerGlobals.Kills > 15)
-        this.Blood.mainTexture = this.Bloods[4];
-      else if (PlayerGlobals.Kills > 20)
-        this.Blood.mainTexture = this.Bloods[5];
-      GameGlobals.Profile = profile;
-    }
-    else
-    {
-      this.EmptyFile.SetActive(true);
-      this.Data.SetActive(false);
-      this.Blood.enabled = false;
-    }
-  }
+	public GameObject EmptyFile;
+
+	public GameObject Data;
+
+	public Texture[] Bloods;
+
+	public UITexture Blood;
+
+	public UILabel Kills;
+
+	public UILabel Mood;
+
+	public UILabel Alerts;
+
+	public UILabel Week;
+
+	public UILabel Day;
+
+	public UILabel Rival;
+
+	public UILabel Rep;
+
+	public UILabel Club;
+
+	public UILabel Friends;
+
+	public bool Eighties;
+
+	public int ID;
+
+	public void Start()
+	{
+		Eighties = GameGlobals.Eighties;
+		if (PlayerPrefs.GetInt("ProfileCreated_" + ID) > 0)
+		{
+			int profile = GameGlobals.Profile;
+			GameGlobals.Profile = ID;
+			EmptyFile.SetActive(false);
+			Data.SetActive(true);
+			Kills.text = "Kills: " + PlayerGlobals.Kills;
+			Mood.text = "Mood: " + Mathf.RoundToInt(SchoolGlobals.SchoolAtmosphere * 100f);
+			Alerts.text = "Alerts: " + PlayerGlobals.Alerts;
+			Week.text = "Week: " + DateGlobals.Week;
+			Day.text = "Day: " + DateGlobals.Weekday;
+			if (DateGlobals.Week < 11)
+			{
+				if (Eighties)
+				{
+					Rival.text = "Rival: " + TitleSaveFiles.NewTitleScreen.EightiesRivalNames[DateGlobals.Week];
+				}
+				else
+				{
+					Rival.text = "Rival: " + TitleSaveFiles.NewTitleScreen.RivalNames[DateGlobals.Week];
+				}
+			}
+			else
+			{
+				Rival.text = "Rival: ?????";
+			}
+			Rep.text = "Rep: " + PlayerGlobals.Reputation;
+			Club.text = "Club: " + ClubGlobals.Club;
+			Friends.text = "Friends: " + PlayerGlobals.Friends;
+			if (PlayerGlobals.Kills == 0)
+			{
+				Blood.mainTexture = null;
+			}
+			else if (PlayerGlobals.Kills > 0)
+			{
+				Blood.mainTexture = Bloods[1];
+			}
+			else if (PlayerGlobals.Kills > 5)
+			{
+				Blood.mainTexture = Bloods[2];
+			}
+			else if (PlayerGlobals.Kills > 10)
+			{
+				Blood.mainTexture = Bloods[3];
+			}
+			else if (PlayerGlobals.Kills > 15)
+			{
+				Blood.mainTexture = Bloods[4];
+			}
+			else if (PlayerGlobals.Kills > 20)
+			{
+				Blood.mainTexture = Bloods[5];
+			}
+			GameGlobals.Profile = profile;
+		}
+		else
+		{
+			EmptyFile.SetActive(true);
+			Data.SetActive(false);
+			Blood.enabled = false;
+		}
+	}
 }

@@ -1,1693 +1,2025 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CounselorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using XInputDotNetPure;
 
 public class CounselorScript : MonoBehaviour
 {
-  public CutsceneManagerScript CutsceneManager;
-  public StudentManagerScript StudentManager;
-  public CounselorDoorScript CounselorDoor;
-  public InputManagerScript InputManager;
-  public PromptBarScript PromptBar;
-  public EndOfDayScript EndOfDay;
-  public SubtitleScript Subtitle;
-  public SchemesScript Schemes;
-  public StudentScript Student;
-  public YandereScript Yandere;
-  public Animation MyAnimation;
-  public AudioSource MyAudio;
-  public PromptScript Prompt;
-  public GameObject DelinquentRadio;
-  public AudioClip[] EightiesCounselorLectureClips;
-  public AudioClip[] EightiesCounselorReportClips;
-  public AudioClip[] CounselorGreetingClips;
-  public AudioClip[] CounselorLectureClips;
-  public AudioClip[] CounselorReportClips;
-  public AudioClip[] EightiesRivalClips;
-  public AudioClip[] RivalClips;
-  public AudioClip CounselorFarewellClip;
-  public readonly string CounselorFarewellText = "Don't misbehave.";
-  public AudioClip CounselorBusyClip;
-  public readonly string CounselorBusyText = "I'm sorry, I've got my hands full for the rest of today. I won't be available until tomorrow.";
-  public bool MustReturnStolenRing;
-  public string RivalName;
-  private string[] CounselorGreetingText = new string[3]
-  {
-    "",
-    "What can I help you with?",
-    "Can I help you?"
-  };
-  private string[] CounselorLectureText = new string[9]
-  {
-    "",
-    "May I see your phone for a moment? ...what is THIS?! Would you care to explain why something like this is on your phone?",
-    "May I take a look inside your bag? ...this doesn't belong to you, does it?! What are you doing with someone else's property?",
-    "I need to take a look in your bag. ...cigarettes?! You have absolutely no excuse to be carrying something like this around!",
-    "It has come to my attention that you've been vandalizing the school's property. What, exactly, do you have to say for yourself?",
-    "Obviously, we need to have a long talk about the kind of behavior that will not tolerated at this school!",
-    "(This line of text doesn't show up outside of the Eighties.)",
-    "That's it! I've given you enough second chances. You have repeatedly broken school rules and ignored every warning that I have given you. You have left me with no choice but to permanently expel you!",
-    "(This line of text doesn't show up outside of the Eighties.)"
-  };
-  private string[] EightiesCounselorLectureText = new string[9]
-  {
-    "",
-    "May I see your bag for a moment? ...what is THIS?! Would you care to explain why you brought something like this to school?!",
-    "Whatever you do in the privacy of your own home is none of my business. But there is NO reason for you to bring something like THIS to school!",
-    "I need to take a look in your bag. ...cigarettes?! You have absolutely no excuse to be carrying something like this around!",
-    "May I take a look inside your bag? ...this doesn't belong to you, does it?! What are you doing with someone else's property?",
-    "It's absolutely appalling that you honestly believed you were going to get away with cheating! And at THIS institution, of all places!",
-    "I can't believe you actually brought illegal narcotics to school with you! How did you even get ahold of something like this?!",
-    "That's it! I've given you enough second chances. You have repeatedly broken school rules and ignored every warning that I have given you. You have left me with no choice but to permanently expel you!",
-    "Enough! I have no choice but to inform the police immediately. Explain yourself to them, not me."
-  };
-  private string[] CounselorReportText = new string[7]
-  {
-    "",
-    "That's a very serious accusation. I hope you're not lying to me. Hopefully, it's just a misunderstanding. I'll investigate the matter.",
-    "Is that true? I'd hate to think we have a thief here at school. Don't worry - I'll get to the bottom of this.",
-    "That's a clear violation of school rules, not to mention completely illegal. If what you're saying is true, she will face serious consequences. I'll confront her about this.",
-    "Thank you for bringing this to my attention! I'll have to have a word with her later today...",
-    "That's a bold claim. Are you certain? I'll investigate the matter. If she is cheating, I'll catch her in the act.",
-    "(This line of text doesn't show up outside of the Eighties.)"
-  };
-  private string[] EightiesCounselorReportText = new string[7]
-  {
-    "",
-    "That's a very serious accusation. I hope you're not lying to me. Hopefully, it's just a misunderstanding. I'll investigate the matter.",
-    "Thank you for bringing this to my attention! I'll have to have a word with her later today...",
-    "That's a clear violation of school rules, not to mention completely illegal. If what you're saying is true, she will face serious consequences. I'll confront her about this.",
-    "Is that true? I'd hate to think we have a thief here at school. Don't worry - I'll get to the bottom of this.",
-    "That's a bold claim. Are you certain? I'll investigate the matter. If she is cheating, I'll catch her in the act.",
-    "...are you serious? Illegal narcotics?! If this is true, she'll be expelled immediately, and the police WILL be informed."
-  };
-  private string[] LectureIntro = new string[8]
-  {
-    "",
-    "The guidance counselor enters your rival's classroom and says that she needs to speak with her...",
-    "The guidance counselor enters your rival's classroom and says that she needs to speak with her...",
-    "The guidance counselor enters your rival's classroom and says that she needs to speak with her...",
-    "The guidance counselor enters your rival's classroom and says that she needs to speak with her...",
-    "The guidance counselor enters your rival's classroom and says that she needs to speak with her...",
-    "The guidance counselor enters your rival's classroom and says that she needs to speak with her...",
-    "The guidance counselor enters your rival's classroom and says that she needs to speak with her..."
-  };
-  private string[] RivalText = new string[9]
-  {
-    "",
-    "What?! I've never taken any pictures like that! How did this get on my phone?!",
-    "No! I'm not the one who did this! I would never steal from anyone!",
-    "Huh? I don't smoke! I don't know why something like this was in my bag!",
-    "W-wait, I can explain! It's not what you think!",
-    "I'm telling the truth! I didn't steal the answer sheet! I don't know why it was in my desk!",
-    "(This line of text doesn't show up outside of the Eighties.)",
-    "No...! P-please! Don't do this!",
-    "(This line of text doesn't show up outside of the Eighties.)"
-  };
-  private string[] EightiesRivalText = new string[9]
-  {
-    "",
-    "What?! I don't drink! How did this something like this get in my bag?!",
-    "No! I've never even seen these things before! I swear!",
-    "Huh? I don't smoke! I don't know why something like this was in my bag!",
-    "No! I'm not the one who did this! I would never steal from anyone!",
-    "I'm telling the truth! I didn't steal the answer sheet! I don't know why it was in my bag!",
-    "Wait! I'm being framed! You've got to believe me!",
-    "No...! P-please! Don't do this!",
-    "No! Please! Don't call the police! I'm begging you!"
-  };
-  public UILabel[] Labels;
-  public Transform CounselorWindow;
-  public Transform NarcoticsWindow;
-  public Transform Highlight;
-  public Transform Chibi;
-  public SkinnedMeshRenderer Face;
-  public UILabel CounselorSubtitle;
-  public UISprite EndOfDayDarkness;
-  public UILabel LectureSubtitle;
-  public UISprite ExpelProgress;
-  public UILabel LectureLabel;
-  public bool ShowWindow;
-  public bool Lecturing;
-  public bool Eighties;
-  public bool Busy;
-  public int Selected = 1;
-  public int LecturePhase = 1;
-  public int LectureID = 5;
-  public float ExpelTimer;
-  public float ChinTimer;
-  public float TalkTimer = 1f;
-  public float Timer;
-  public UITexture ChibiTexture;
-  public Texture[] EightiesRivalHeads;
-  public Texture[] RivalHeads;
-  public int SadMouthID = 1;
-  public int MadBrowID = 5;
-  public int SadBrowID = 6;
-  public int AngryEyesID = 9;
-  public int MouthOpenID = 2;
-  public int RivalExpelProgress;
-  public int CounselorPunishments;
-  public int CounselorVisits;
-  public int CounselorTape;
-  public int BloodVisits;
-  public int InsanityVisits;
-  public int LewdVisits;
-  public int TheftVisits;
-  public int TrespassVisits;
-  public int WeaponVisits;
-  public int BloodBlameUsed;
-  public int InsanityBlameUsed;
-  public int LewdBlameUsed;
-  public int TheftBlameUsed;
-  public int TrespassBlameUsed;
-  public int WeaponBlameUsed;
-  public int ApologiesUsed;
-  public int WeaponsBanned;
-  public int DelinquentPunishments;
-  public bool ReportedAlcohol;
-  public bool ReportedCondoms;
-  public bool ReportedCigarettes;
-  public bool ReportedTheft;
-  public bool ReportedCheating;
-  public bool ReportedNarcotics;
-  public Vector3 LookAtTarget;
-  public bool LookAtPlayer;
-  public Transform Default;
-  public Transform Head;
-  public bool Angry;
-  public bool Stern;
-  public bool Sad;
-  public float MouthTarget;
-  public float MouthTimer;
-  public float TimerLimit;
-  public float MouthOpen;
-  public float TalkSpeed;
-  public float BS_SadMouth;
-  public float BS_MadBrow;
-  public float BS_SadBrow;
-  public float BS_AngryEyes;
-  public DetectClickScript[] CounselorOption;
-  public CabinetDoorScript InfirmaryCabinetDoor;
-  public InputDeviceScript InputDevice;
-  public StudentWitnessType Crime;
-  public UITexture GenkaChibi;
-  public CameraShake Shake;
-  public Texture HappyChibi;
-  public Texture AnnoyedChibi;
-  public Texture MadChibi;
-  public GameObject CounselorOptions;
-  public GameObject CounselorBar;
-  public GameObject Reticle;
-  public GameObject Laptop;
-  public GameObject RedPen;
-  public Transform CameraTarget;
-  public int InterrogationPhase;
-  public int Patience;
-  public int CrimeID;
-  public int Answer;
-  public bool MustExpelDelinquents;
-  public bool ExpelledDelinquents;
-  public bool SilentTreatment;
-  public bool Interrogating;
-  public bool SentHome;
-  public bool Expelled;
-  public bool Slammed;
-  public AudioSource Rumble;
-  public AudioClip EightiesCountdown;
-  public AudioClip Countdown;
-  public AudioClip Choice;
-  public AudioClip Slam;
-  public RiggedAccessoryAttacher EightiesAttacher;
-  public GameObject[] EightiesMesh;
-  public GameObject[] OriginalMesh;
-  public GameObject EightiesPaper;
-  public Transform PelvisRoot;
-  public bool UpdatedFace;
-  public AudioClip[] GreetingClips;
-  public string[] Greetings;
-  public AudioClip[] BloodLectureClips;
-  public string[] BloodLectures;
-  public AudioClip[] InsanityLectureClips;
-  public string[] InsanityLectures;
-  public AudioClip[] LewdLectureClips;
-  public string[] LewdLectures;
-  public AudioClip[] TheftLectureClips;
-  public string[] TheftLectures;
-  public AudioClip[] TrespassLectureClips;
-  public string[] TrespassLectures;
-  public AudioClip[] WeaponLectureClips;
-  public string[] WeaponLectures;
-  public AudioClip[] SilentClips;
-  public string[] Silents;
-  public AudioClip[] SuspensionClips;
-  public string[] Suspensions;
-  public AudioClip[] AcceptExcuseClips;
-  public string[] AcceptExcuses;
-  public AudioClip[] RejectExcuseClips;
-  public string[] RejectExcuses;
-  public AudioClip[] RejectLieClips;
-  public string[] RejectLies;
-  public AudioClip[] AcceptBlameClips;
-  public string[] AcceptBlames;
-  public AudioClip[] RejectApologyClips;
-  public string[] RejectApologies;
-  public AudioClip[] RejectBlameClips;
-  public string[] RejectBlames;
-  public AudioClip[] RejectFlirtClips;
-  public string[] RejectFlirts;
-  public AudioClip[] BadClosingClips;
-  public string[] BadClosings;
-  public AudioClip[] BlameClosingClips;
-  public string[] BlameClosings;
-  public AudioClip[] FreeToLeaveClips;
-  public string[] FreeToLeaves;
-  public AudioClip AcceptApologyClip;
-  public string AcceptApology;
-  public AudioClip RejectThreatClip;
-  public string RejectThreat;
-  public AudioClip ExpelDelinquentsClip;
-  public string ExpelDelinquents;
-  public AudioClip DelinquentsDeadClip;
-  public string DelinquentsDead;
-  public AudioClip DelinquentsExpelledClip;
-  public string DelinquentsExpelled;
-  public AudioClip DelinquentsGoneClip;
-  public string DelinquentsGone;
-  public AudioClip[] ExcuseClips;
-  public string[] Excuses;
-  public AudioClip[] LieClips;
-  public string[] Lies;
-  public AudioClip[] DelinquentClips;
-  public string[] Delinquents;
-  public AudioClip ApologyClip;
-  public string Apology;
-  public AudioClip FlirtClip;
-  public string Flirt;
-  public AudioClip ThreatenClip;
-  public string Threaten;
-  public AudioClip Silence;
-  public float VibrationTimer;
-  public bool VibrationCheck;
-  public UILabel RIVAL;
-  public UILabel EXPELLED;
-  public int BloodExcuseUsed;
-  public int InsanityExcuseUsed;
-  public int LewdExcuseUsed;
-  public int TheftExcuseUsed;
-  public int TrespassExcuseUsed;
-  public int WeaponExcuseUsed;
-  public AudioClip LongestSilence;
-  public AudioClip LongSilence;
+	public CutsceneManagerScript CutsceneManager;
 
-  private void Start()
-  {
-    this.CounselorPunishments = CounselorGlobals.CounselorPunishments;
-    this.CounselorVisits = CounselorGlobals.CounselorVisits;
-    this.CounselorTape = CounselorGlobals.CounselorTape;
-    this.BloodVisits = CounselorGlobals.BloodVisits;
-    this.InsanityVisits = CounselorGlobals.InsanityVisits;
-    this.LewdVisits = CounselorGlobals.LewdVisits;
-    this.TheftVisits = CounselorGlobals.TheftVisits;
-    this.TrespassVisits = CounselorGlobals.TrespassVisits;
-    this.WeaponVisits = CounselorGlobals.WeaponVisits;
-    this.BloodBlameUsed = CounselorGlobals.BloodBlameUsed;
-    this.InsanityBlameUsed = CounselorGlobals.InsanityBlameUsed;
-    this.LewdBlameUsed = CounselorGlobals.LewdBlameUsed;
-    this.TheftBlameUsed = CounselorGlobals.TheftBlameUsed;
-    this.TrespassBlameUsed = CounselorGlobals.TrespassBlameUsed;
-    this.WeaponBlameUsed = CounselorGlobals.WeaponBlameUsed;
-    this.ApologiesUsed = CounselorGlobals.ApologiesUsed;
-    this.WeaponsBanned = CounselorGlobals.WeaponsBanned;
-    this.DelinquentPunishments = CounselorGlobals.DelinquentPunishments;
-    this.CounselorWindow.localScale = Vector3.zero;
-    this.CounselorWindow.gameObject.SetActive(false);
-    this.CounselorOptions.SetActive(false);
-    this.CounselorBar.SetActive(false);
-    this.Reticle.SetActive(false);
-    this.RivalExpelProgress = StudentGlobals.ExpelProgress;
-    int week = DateGlobals.Week;
-    if (week > 10)
-    {
-      this.gameObject.SetActive(false);
-    }
-    else
-    {
-      this.ExpelProgress.color = new Color(this.ExpelProgress.color.r, this.ExpelProgress.color.g, this.ExpelProgress.color.b, 0.0f);
-      this.Chibi.localPosition = new Vector3(this.Chibi.localPosition.x, (float) (250.0 + (double) this.RivalExpelProgress * -90.0), this.Chibi.localPosition.z);
-      this.LoadExcusesUsed();
-      if (!GameGlobals.Eighties)
-        return;
-      this.Eighties = true;
-      this.MyAnimation.Play("f02_deskWritePingPong_00");
-      this.Laptop.SetActive(false);
-      this.EightiesPaper.SetActive(true);
-      this.EightiesAttacher.gameObject.SetActive(true);
-      this.OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().enabled = false;
-      this.OriginalMesh[2].SetActive(false);
-      this.OriginalMesh[3].SetActive(false);
-      this.EightiesMesh[1].SetActive(true);
-      this.Countdown = this.EightiesCountdown;
-      this.Labels[1].text = "Report Alcohol";
-      this.Labels[2].text = "Report Condoms";
-      this.Labels[3].text = "Report Cigarettes";
-      this.Labels[4].text = "Report Theft";
-      this.Labels[5].text = "Report Cheating";
-      this.Labels[6].text = "Report Narcotics";
-      this.CounselorReportText = this.EightiesCounselorReportText;
-      this.CounselorReportClips = this.EightiesCounselorReportClips;
-      this.CounselorLectureText = this.EightiesCounselorLectureText;
-      this.CounselorLectureClips = this.EightiesCounselorLectureClips;
-      this.RivalText = this.EightiesRivalText;
-      this.RivalClips = this.EightiesRivalClips;
-      this.ChibiTexture.mainTexture = this.EightiesRivalHeads[week];
-      this.ReportedAlcohol = CounselorGlobals.ReportedAlcohol;
-      this.ReportedCigarettes = CounselorGlobals.ReportedCigarettes;
-      this.ReportedCondoms = CounselorGlobals.ReportedCondoms;
-      this.ReportedTheft = CounselorGlobals.ReportedTheft;
-      this.ReportedCheating = CounselorGlobals.ReportedCheating;
-      this.SadMouthID = 4;
-      this.MadBrowID = 5;
-      this.SadBrowID = 3;
-      this.AngryEyesID = 2;
-      this.MouthOpenID = 9;
-      this.transform.position += new Vector3(0.0f, -0.1f, 0.0f);
-      this.RedPen.SetActive(true);
-      this.LewdLectureClips[0] = this.LongSilence;
-      this.LewdLectureClips[1] = this.LongSilence;
-      this.LewdLectures[0] = "You've been caught aiming a camera at a student's unmentionables. Start talking.";
-      this.LewdLectures[1] = "Once again, you're here because you stuck a camera up someone's skirt. Oh, I can't wait to hear your excuse this time.";
-    }
-  }
+	public StudentManagerScript StudentManager;
 
-  private void Update()
-  {
-    if (this.LookAtPlayer)
-    {
-      if ((double) this.TalkTimer < 1.0)
-      {
-        this.TalkTimer = Mathf.MoveTowards(this.TalkTimer, 1f, Time.deltaTime);
-        if ((double) this.TalkTimer == 1.0)
-        {
-          int index = Random.Range(1, 3);
-          this.CounselorSubtitle.text = this.CounselorGreetingText[index];
-          this.MyAudio.clip = this.CounselorGreetingClips[index];
-          this.MyAudio.Play();
-        }
-      }
-      if (this.InputManager.TappedUp)
-      {
-        --this.Selected;
-        if (!this.Eighties && this.Selected == 6)
-          this.Selected = 5;
-        this.UpdateHighlight();
-      }
-      if (this.InputManager.TappedDown)
-      {
-        ++this.Selected;
-        if (!this.Eighties && this.Selected == 6)
-          this.Selected = 7;
-        this.UpdateHighlight();
-      }
-      if (this.ShowWindow)
-      {
-        if ((double) this.CounselorDoor.Darkness.color.a == 0.0 && Input.GetButtonDown("A"))
-        {
-          if (this.Selected == 7)
-          {
-            if (!this.CounselorDoor.Exit)
-            {
-              this.CounselorSubtitle.text = this.CounselorFarewellText;
-              this.MyAudio.clip = this.CounselorFarewellClip;
-              this.MyAudio.Play();
-              this.CounselorDoor.FadeOut = true;
-              this.CounselorDoor.FadeIn = false;
-              this.CounselorDoor.Exit = true;
-            }
-          }
-          else if ((double) this.Labels[this.Selected].color.a == 1.0)
-          {
-            if (!this.Eighties)
-            {
-              if (this.Selected == 1)
-              {
-                SchemeGlobals.SetSchemeStage(1, 9);
-                this.Schemes.UpdateInstructions();
-              }
-              else if (this.Selected == 2)
-              {
-                SchemeGlobals.SetSchemeStage(2, 7);
-                this.Schemes.UpdateInstructions();
-              }
-              else if (this.Selected == 3)
-              {
-                SchemeGlobals.SetSchemeStage(3, 5);
-                this.Schemes.UpdateInstructions();
-              }
-              else if (this.Selected == 4)
-              {
-                SchemeGlobals.SetSchemeStage(4, 8);
-                this.Schemes.UpdateInstructions();
-              }
-              else if (this.Selected == 5)
-              {
-                SchemeGlobals.SetSchemeStage(5, 10);
-                this.Schemes.UpdateInstructions();
-              }
-            }
-            else if (this.Selected == 1)
-              this.ReportedAlcohol = true;
-            else if (this.Selected == 2)
-              this.ReportedCondoms = true;
-            else if (this.Selected == 3)
-              this.ReportedCigarettes = true;
-            else if (this.Selected == 4)
-              this.ReportedTheft = true;
-            else if (this.Selected == 5)
-              this.ReportedCheating = true;
-            else if (this.Selected == 6)
-              this.ReportedNarcotics = true;
-            this.CounselorSubtitle.text = this.CounselorReportText[this.Selected];
-            this.MyAudio.clip = this.CounselorReportClips[this.Selected];
-            this.MyAudio.Play();
-            this.ShowWindow = false;
-            this.Angry = true;
-            this.CutsceneManager.Scheme = this.Selected;
-            this.LectureID = this.Selected;
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Show = false;
-            this.Busy = true;
-          }
-        }
-      }
-      else if (!this.Interrogating)
-      {
-        if (Input.GetButtonDown("A"))
-          this.MyAudio.Stop();
-        if (!this.MyAudio.isPlaying)
-        {
-          this.Timer += Time.deltaTime;
-          if ((double) this.Timer > 0.5)
-          {
-            this.CounselorDoor.FadeOut = true;
-            this.CounselorDoor.Exit = true;
-            this.LookAtPlayer = false;
-            this.UpdateList();
-          }
-        }
-      }
-    }
-    if (this.ShowWindow)
-      this.CounselorWindow.localScale = Vector3.Lerp(this.CounselorWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-    else if ((double) this.CounselorWindow.localScale.x > 0.10000000149011612)
-      this.CounselorWindow.localScale = Vector3.Lerp(this.CounselorWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
-    else if (this.CounselorWindow.gameObject.activeInHierarchy)
-    {
-      this.CounselorWindow.localScale = Vector3.zero;
-      this.CounselorWindow.gameObject.SetActive(false);
-    }
-    if (this.Lecturing)
-    {
-      this.Chibi.localPosition = new Vector3(this.Chibi.localPosition.x, Mathf.Lerp(this.Chibi.localPosition.y, (float) (250.0 + (double) this.RivalExpelProgress * -90.0), Time.deltaTime * 3f), this.Chibi.localPosition.z);
-      if (this.LecturePhase == 1)
-      {
-        this.LectureLabel.text = this.LectureIntro[this.LectureID];
-        this.EndOfDayDarkness.color = new Color(this.EndOfDayDarkness.color.r, this.EndOfDayDarkness.color.g, this.EndOfDayDarkness.color.b, Mathf.MoveTowards(this.EndOfDayDarkness.color.a, 0.0f, Time.deltaTime));
-        if ((double) this.EndOfDayDarkness.color.a == 0.0)
-        {
-          this.PromptBar.ClearButtons();
-          this.PromptBar.Label[0].text = "Continue";
-          this.PromptBar.UpdateButtons();
-          this.PromptBar.Show = true;
-          if (Input.GetButtonDown("A"))
-          {
-            ++this.LecturePhase;
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Show = false;
-          }
-        }
-      }
-      else if (this.LecturePhase == 2)
-      {
-        this.LectureLabel.color = new Color(this.LectureLabel.color.r, this.LectureLabel.color.g, this.LectureLabel.color.b, Mathf.MoveTowards(this.LectureLabel.color.a, 0.0f, Time.deltaTime));
-        if ((double) this.LectureLabel.color.a == 0.0)
-        {
-          this.EndOfDay.TextWindow.SetActive(false);
-          this.EndOfDay.EODCamera.GetComponent<AudioListener>().enabled = true;
-          this.LectureSubtitle.text = this.CounselorLectureText[this.LectureID];
-          this.MyAudio.clip = this.CounselorLectureClips[this.LectureID];
-          this.MyAudio.Play();
-          ++this.LecturePhase;
-        }
-      }
-      else if (this.LecturePhase == 3)
-      {
-        if (!this.MyAudio.isPlaying || Input.GetButtonDown("A"))
-        {
-          this.LectureSubtitle.text = this.RivalText[this.LectureID];
-          this.MyAudio.clip = this.RivalClips[this.LectureID];
-          this.MyAudio.Play();
-          ++this.LecturePhase;
-        }
-      }
-      else if (this.LecturePhase == 4)
-      {
-        if (!this.MyAudio.isPlaying || Input.GetButtonDown("A"))
-        {
-          this.LectureSubtitle.text = string.Empty;
-          if (this.RivalExpelProgress < 5)
-          {
-            ++this.LecturePhase;
-          }
-          else
-          {
-            this.LecturePhase = 7;
-            this.ExpelTimer = 0.0f;
-          }
-        }
-      }
-      else if (this.LecturePhase == 5)
-      {
-        this.ExpelProgress.color = new Color(this.ExpelProgress.color.r, this.ExpelProgress.color.g, this.ExpelProgress.color.b, Mathf.MoveTowards(this.ExpelProgress.color.a, 1f, Time.deltaTime));
-        this.ExpelTimer += Time.deltaTime;
-        if ((double) this.ExpelTimer > 2.0)
-        {
-          if (this.ReportedNarcotics)
-          {
-            this.EXPELLED.text = "ARRESTED";
-            this.RivalExpelProgress = 5;
-          }
-          else
-            ++this.RivalExpelProgress;
-          ++this.LecturePhase;
-          Debug.Log((object) ("RivalExpelProgress is now: " + this.RivalExpelProgress.ToString()));
-        }
-      }
-      else if (this.LecturePhase == 6)
-      {
-        this.ExpelTimer += Time.deltaTime;
-        if ((double) this.ExpelTimer > 4.0)
-          this.LecturePhase += 2;
-      }
-      else if (this.LecturePhase == 7)
-      {
-        this.ExpelTimer += Time.deltaTime;
-        if ((double) this.ExpelTimer > 1.0)
-          this.RIVAL.gameObject.SetActive(true);
-        if ((double) this.ExpelTimer > 3.0)
-          this.EXPELLED.gameObject.SetActive(true);
-        if ((double) this.ExpelTimer > 5.0)
-        {
-          this.RIVAL.color = new Color(this.RIVAL.color.r, this.RIVAL.color.g, this.RIVAL.color.b, this.RIVAL.color.a - Time.deltaTime);
-          this.EXPELLED.color = new Color(this.EXPELLED.color.r, this.EXPELLED.color.g, this.EXPELLED.color.b, this.EXPELLED.color.a - Time.deltaTime);
-        }
-        if ((double) this.ExpelTimer > 7.0)
-        {
-          this.RIVAL.gameObject.SetActive(false);
-          this.EXPELLED.gameObject.SetActive(false);
-          ++this.LecturePhase;
-        }
-      }
-      else if (this.LecturePhase == 8)
-      {
-        Debug.Log((object) "We are now in Lecture Phase 8. We're deciding whether to return to gameplay or expel the rival.");
-        this.ExpelProgress.color = new Color(this.ExpelProgress.color.r, this.ExpelProgress.color.g, this.ExpelProgress.color.b, Mathf.MoveTowards(this.ExpelProgress.color.a, 0.0f, Time.deltaTime));
-        this.ExpelTimer += Time.deltaTime;
-        if ((double) this.ExpelTimer > 6.0)
-        {
-          if (this.RivalExpelProgress == 5 && !StudentGlobals.GetStudentExpelled(this.StudentManager.RivalID) && this.EndOfDay.RivalEliminationMethod != RivalEliminationType.Expelled && this.EndOfDay.RivalEliminationMethod != RivalEliminationType.Arrested && this.StudentManager.Police.TranqCase.VictimID != this.StudentManager.RivalID || this.StudentManager.Students[this.StudentManager.RivalID].SentHome)
-          {
-            Debug.Log((object) "The guidence counselor is now choosing the words she will say when expelling the rival.");
-            this.EndOfDayDarkness.color = new Color(this.EndOfDayDarkness.color.r, this.EndOfDayDarkness.color.g, this.EndOfDayDarkness.color.b, 0.0f);
-            this.LectureLabel.color = new Color(this.LectureLabel.color.r, this.LectureLabel.color.g, this.LectureLabel.color.b, 0.0f);
-            this.LecturePhase = 2;
-            this.ExpelTimer = 0.0f;
-            if (this.ReportedNarcotics)
-            {
-              this.LectureID = 8;
-              this.EndOfDay.RivalEliminationMethod = RivalEliminationType.Arrested;
-              this.StudentManager.RivalEliminated = true;
-            }
-            else
-            {
-              this.LectureID = 7;
-              this.EndOfDay.RivalEliminationMethod = RivalEliminationType.Expelled;
-              this.StudentManager.RivalEliminated = true;
-            }
-            if ((Object) this.StudentManager.Students[this.StudentManager.SuitorID] != (Object) null)
-            {
-              Debug.Log((object) "Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
-              this.StudentManager.Students[this.StudentManager.SuitorID].Curious = false;
-            }
-          }
-          else
-          {
-            Debug.Log((object) "The lecture is over. Now, the game decides where to go next.");
-            this.Yandere.Subtitle.gameObject.SetActive(true);
-            if (!this.EndOfDay.Police.Show)
-            {
-              this.Lecturing = false;
-              if (this.Yandere.StudentManager.Clock.Period > 4 || this.SentHome)
-              {
-                if (this.SentHome)
-                  Debug.Log((object) "We got here after being sent home.");
-                else
-                  Debug.Log((object) "We got here during Period 5 or 6. We must be at the end of the school day.");
-                ++this.EndOfDay.Phase;
-                this.EndOfDay.UpdateScene();
-              }
-              else
-              {
-                Debug.Log((object) "We got here prior to Period 5. We are leaving the lecture and returning to gameplay.");
-                this.StudentManager.Portal.gameObject.GetComponent<PortalScript>().Class.gameObject.SetActive(true);
-                this.StudentManager.Portal.gameObject.GetComponent<PortalScript>().ReturningFromLecture = true;
-                this.EndOfDay.gameObject.SetActive(false);
-                this.EndOfDay.Phase = 1;
-                ++this.CutsceneManager.Phase;
-                this.Yandere.PauseScreen.Schemes.SchemeManager.enabled = false;
-                this.Yandere.MainCamera.gameObject.SetActive(true);
-                this.Yandere.gameObject.SetActive(true);
-                this.SpawnDelinquents();
-                this.StudentManager.ComeBack();
-                this.StudentManager.Students[this.StudentManager.RivalID].IdleAnim = this.StudentManager.Students[this.StudentManager.RivalID].BulliedIdleAnim;
-                this.StudentManager.Students[this.StudentManager.RivalID].WalkAnim = this.StudentManager.Students[this.StudentManager.RivalID].BulliedWalkAnim;
-                if (this.Eighties)
-                {
-                  if (this.LectureID == 4)
-                  {
-                    if ((Object) this.StudentManager.Students[30] != (Object) null)
-                    {
-                      Debug.Log((object) "Attempting to update Himedere's routine...");
-                      this.StudentManager.Students[30].Cosmetic.EnableRings();
-                      this.StudentManager.Students[30].Depressed = false;
-                    }
-                  }
-                  else if (this.LectureID == 6)
-                  {
-                    Debug.Log((object) "Disabling the rival and her bag, since she was expelled.");
-                    this.StudentManager.Students[this.StudentManager.RivalID].gameObject.SetActive(false);
-                    if ((Object) this.StudentManager.Students[this.StudentManager.SuitorID] != (Object) null)
-                    {
-                      Debug.Log((object) "Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
-                      this.StudentManager.Students[this.StudentManager.SuitorID].Curious = false;
-                    }
-                  }
-                  if ((Object) this.StudentManager.Students[this.StudentManager.RivalID] != (Object) null && !this.StudentManager.Students[this.StudentManager.RivalID].gameObject.activeInHierarchy)
-                  {
-                    Debug.Log((object) "Disabling the rival's bag, since she was expelled.");
-                    this.StudentManager.GenericRivalBag.gameObject.SetActive(false);
-                  }
-                }
-                else if (this.LectureID == 2)
-                  this.MustReturnStolenRing = true;
-                else if (this.LectureID == 6 && this.StudentManager.RivalID == 11 && (Object) this.StudentManager.Students[10] != (Object) null)
-                {
-                  StudentScript student = this.StudentManager.Students[10];
-                  Debug.Log((object) "Osana is gone, so Raibaru's routine has to change.");
-                  ScheduleBlock scheduleBlock1 = student.ScheduleBlocks[4];
-                  scheduleBlock1.destination = "Mourn";
-                  scheduleBlock1.action = "Mourn";
-                  ScheduleBlock scheduleBlock2 = student.ScheduleBlocks[5];
-                  scheduleBlock2.destination = "Seat";
-                  scheduleBlock2.action = "Sit";
-                  ScheduleBlock scheduleBlock3 = student.ScheduleBlocks[6];
-                  scheduleBlock3.destination = "Locker";
-                  scheduleBlock3.action = "Shoes";
-                  ScheduleBlock scheduleBlock4 = student.ScheduleBlocks[7];
-                  scheduleBlock4.destination = "Exit";
-                  scheduleBlock4.action = "Exit";
-                  ScheduleBlock scheduleBlock5 = student.ScheduleBlocks[8];
-                  scheduleBlock5.destination = "Exit";
-                  scheduleBlock5.action = "Exit";
-                  ScheduleBlock scheduleBlock6 = student.ScheduleBlocks[9];
-                  scheduleBlock6.destination = "Exit";
-                  scheduleBlock6.action = "Exit";
-                  student.TargetDistance = 0.5f;
-                  student.IdleAnim = student.BulliedIdleAnim;
-                  student.WalkAnim = student.BulliedWalkAnim;
-                  student.OriginalIdleAnim = student.IdleAnim;
-                  student.Pathfinding.speed = 1f;
-                  student.GetDestinations();
-                }
-                this.LectureID = 0;
-              }
-            }
-            else
-            {
-              Debug.Log((object) "The police were present at school, so we're returning to the EndOfDay sequence now.");
-              ++this.EndOfDay.Phase;
-              this.EndOfDay.UpdateScene();
-            }
-          }
-        }
-      }
-    }
-    if (!this.MyAudio.isPlaying)
-      this.CounselorSubtitle.text = string.Empty;
-    if (!this.Interrogating)
-      return;
-    this.UpdateInterrogation();
-  }
+	public CounselorDoorScript CounselorDoor;
 
-  public void Talk()
-  {
-    this.MyAnimation.CrossFade("CounselorComputerAttention", 1f);
-    this.ChinTimer = 0.0f;
-    this.Yandere.TargetStudent = this.Student;
-    this.TalkTimer = 0.0f;
-    this.StudentManager.DisablePrompts();
-    this.CounselorWindow.gameObject.SetActive(true);
-    this.LookAtPlayer = true;
-    this.ShowWindow = true;
-    this.Yandere.ShoulderCamera.OverShoulder = true;
-    this.Yandere.WeaponMenu.KeyboardShow = false;
-    this.Yandere.WeaponMenu.Show = false;
-    this.Yandere.YandereVision = false;
-    this.Yandere.CanMove = false;
-    this.Yandere.Talking = true;
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Label[0].text = "Accept";
-    this.PromptBar.Label[4].text = "Choose";
-    this.PromptBar.UpdateButtons();
-    this.PromptBar.Show = true;
-    this.transform.position = new Vector3(-28.93333f, 0.0f, 12f);
-    this.RedPen.SetActive(false);
-    this.UpdateList();
-  }
+	public InputManagerScript InputManager;
 
-  private void UpdateList()
-  {
-    for (int index = 1; index < this.Labels.Length; ++index)
-    {
-      UILabel label = this.Labels[index];
-      label.color = new Color(label.color.r, label.color.g, label.color.b, 0.5f);
-    }
-    if (!((Object) this.StudentManager.Students[this.StudentManager.RivalID] != (Object) null))
-      return;
-    if (!this.Eighties)
-    {
-      if (SchemeGlobals.GetSchemeStage(1) == 8)
-      {
-        UILabel label = this.Labels[1];
-        label.color = new Color(label.color.r, label.color.g, label.color.b, 1f);
-      }
-      if (SchemeGlobals.GetSchemeStage(2) == 6)
-      {
-        UILabel label = this.Labels[2];
-        label.color = new Color(label.color.r, label.color.g, label.color.b, 1f);
-      }
-      if (SchemeGlobals.GetSchemeStage(3) == 4)
-      {
-        UILabel label = this.Labels[3];
-        label.color = new Color(label.color.r, label.color.g, label.color.b, 1f);
-      }
-      if (SchemeGlobals.GetSchemeStage(4) == 7)
-      {
-        UILabel label = this.Labels[4];
-        label.color = new Color(label.color.r, label.color.g, label.color.b, 1f);
-      }
-      if (SchemeGlobals.GetSchemeStage(5) != 9)
-        return;
-      UILabel label1 = this.Labels[5];
-      label1.color = new Color(label1.color.r, label1.color.g, label1.color.b, 1f);
-    }
-    else
-    {
-      if (this.ReportedAlcohol)
-        this.Labels[1].text = "Already Reported Alcohol";
-      if (this.ReportedCondoms)
-        this.Labels[2].text = "Already Reported Condoms";
-      if (this.ReportedCigarettes)
-        this.Labels[3].text = "Already Reported Cigarettes";
-      if (this.ReportedTheft)
-        this.Labels[4].text = "Already Reported Theft";
-      if (this.ReportedCheating)
-        this.Labels[5].text = "Already Reported Cheating";
-      if (this.StudentManager.RivalBookBag.Alcohol && !this.ReportedAlcohol)
-        this.Labels[1].alpha = 1f;
-      if (this.StudentManager.RivalBookBag.Condoms && !this.ReportedCondoms)
-        this.Labels[2].alpha = 1f;
-      if (this.StudentManager.RivalBookBag.Cigarettes && !this.ReportedCigarettes)
-        this.Labels[3].alpha = 1f;
-      if (this.StudentManager.RivalBookBag.StolenRing && !this.ReportedTheft)
-        this.Labels[4].alpha = 1f;
-      if (this.StudentManager.RivalBookBag.AnswerSheet && !this.ReportedCheating)
-        this.Labels[5].alpha = 1f;
-      if (!this.StudentManager.RivalBookBag.Narcotics)
-        return;
-      this.Labels[6].alpha = 1f;
-    }
-  }
+	public PromptBarScript PromptBar;
 
-  private void UpdateHighlight()
-  {
-    if (this.Selected < 1)
-      this.Selected = 7;
-    else if (this.Selected > 7)
-      this.Selected = 1;
-    if (this.Selected == 6)
-      this.NarcoticsWindow.gameObject.SetActive(true);
-    else
-      this.NarcoticsWindow.gameObject.SetActive(false);
-    this.Highlight.transform.localPosition = new Vector3(this.Highlight.transform.localPosition.x, (float) (200.0 - 50.0 * (double) this.Selected), this.Highlight.transform.localPosition.z);
-  }
+	public EndOfDayScript EndOfDay;
 
-  private void LateUpdate()
-  {
-    if ((double) Vector3.Distance(this.transform.position, this.Yandere.transform.position) >= 5.0)
-      return;
-    if (this.Angry)
-    {
-      this.BS_SadMouth = Mathf.Lerp(this.BS_SadMouth, 100f, Time.deltaTime * 10f);
-      this.BS_MadBrow = Mathf.Lerp(this.BS_MadBrow, 100f, Time.deltaTime * 10f);
-      this.BS_SadBrow = Mathf.Lerp(this.BS_SadBrow, 0.0f, Time.deltaTime * 10f);
-      this.BS_AngryEyes = Mathf.Lerp(this.BS_AngryEyes, 100f, Time.deltaTime * 10f);
-    }
-    else if (this.Stern)
-    {
-      this.BS_SadMouth = Mathf.Lerp(this.BS_SadMouth, 0.0f, Time.deltaTime * 10f);
-      this.BS_MadBrow = Mathf.Lerp(this.BS_MadBrow, 100f, Time.deltaTime * 10f);
-      this.BS_SadBrow = Mathf.Lerp(this.BS_SadBrow, 0.0f, Time.deltaTime * 10f);
-      this.BS_AngryEyes = Mathf.Lerp(this.BS_AngryEyes, 0.0f, Time.deltaTime * 10f);
-    }
-    else if (this.Sad)
-    {
-      this.BS_SadMouth = Mathf.Lerp(this.BS_SadMouth, 100f, Time.deltaTime * 10f);
-      this.BS_MadBrow = Mathf.Lerp(this.BS_MadBrow, 0.0f, Time.deltaTime * 10f);
-      this.BS_SadBrow = Mathf.Lerp(this.BS_SadBrow, 100f, Time.deltaTime * 10f);
-      this.BS_AngryEyes = Mathf.Lerp(this.BS_AngryEyes, 0.0f, Time.deltaTime * 10f);
-    }
-    else
-    {
-      this.BS_SadMouth = Mathf.Lerp(this.BS_SadMouth, 0.0f, Time.deltaTime * 10f);
-      this.BS_MadBrow = Mathf.Lerp(this.BS_MadBrow, 0.0f, Time.deltaTime * 10f);
-      this.BS_SadBrow = Mathf.Lerp(this.BS_SadBrow, 0.0f, Time.deltaTime * 10f);
-      this.BS_AngryEyes = Mathf.Lerp(this.BS_AngryEyes, 0.0f, Time.deltaTime * 10f);
-    }
-    if (this.EightiesAttacher.gameObject.activeInHierarchy && !this.UpdatedFace)
-    {
-      this.UpdatedFace = true;
-      this.Face = this.PelvisRoot.GetChild(1).GetComponent<SkinnedMeshRenderer>();
-    }
-    this.Face.SetBlendShapeWeight(this.SadMouthID, this.BS_SadMouth);
-    this.Face.SetBlendShapeWeight(this.MadBrowID, this.BS_MadBrow);
-    this.Face.SetBlendShapeWeight(this.SadBrowID, this.BS_SadBrow);
-    this.Face.SetBlendShapeWeight(this.AngryEyesID, this.BS_AngryEyes);
-    if (this.MyAudio.isPlaying)
-    {
-      if (this.InterrogationPhase != 6)
-      {
-        this.MouthTimer += Time.deltaTime;
-        if ((double) this.MouthTimer > (double) this.TimerLimit)
-        {
-          this.MouthTarget = Random.Range(0.0f, 100f);
-          this.MouthTimer = 0.0f;
-        }
-        this.MouthOpen = Mathf.Lerp(this.MouthOpen, this.MouthTarget, Time.deltaTime * this.TalkSpeed);
-      }
-      else
-        this.MouthOpen = Mathf.Lerp(this.MouthOpen, 0.0f, Time.deltaTime * this.TalkSpeed);
-    }
-    else
-      this.MouthOpen = Mathf.Lerp(this.MouthOpen, 0.0f, Time.deltaTime * this.TalkSpeed);
-    this.Face.SetBlendShapeWeight(this.MouthOpenID, this.MouthOpen);
-    this.LookAtTarget = Vector3.Lerp(this.LookAtTarget, this.LookAtPlayer ? this.Yandere.Head.position : this.Default.position, Time.deltaTime * 2f);
-    this.Head.LookAt(this.LookAtTarget);
-  }
+	public SubtitleScript Subtitle;
 
-  public void Quit()
-  {
-    Debug.Log((object) "CounselorScript has called the Quit() function.");
-    int num = this.Yandere.ShoulderCamera.Noticed ? 1 : 0;
-    this.CounselorSubtitle.text = "";
-    if ((Object) this.StudentManager.Students[1] != (Object) null)
-      this.Yandere.Senpai = this.StudentManager.Students[1].transform;
-    this.Yandere.PauseScreen.Hint.MyPanel.alpha = 1f;
-    this.Yandere.DetectionPanel.alpha = 1f;
-    this.Yandere.RPGCamera.mouseSpeed = 8f;
-    this.Yandere.HUD.alpha = 1f;
-    this.Yandere.SuspiciousActionTimer = 0.0f;
-    this.Yandere.WeaponTimer = 0.0f;
-    this.Yandere.TheftTimer = 0.0f;
-    this.Yandere.HeartRate.gameObject.SetActive(true);
-    this.Yandere.Subtitle.gameObject.SetActive(true);
-    this.Yandere.CannotRecover = false;
-    this.Yandere.Noticed = false;
-    this.Yandere.Talking = true;
-    this.Yandere.ShoulderCamera.GoingToCounselor = false;
-    this.Yandere.ShoulderCamera.HUD.SetActive(true);
-    this.Yandere.ShoulderCamera.Noticed = false;
-    this.Yandere.ShoulderCamera.enabled = true;
-    this.Yandere.TargetStudent = this.Student;
-    if (!this.Yandere.Jukebox.FullSanity.isPlaying)
-    {
-      this.Yandere.Jukebox.FullSanity.volume = 0.0f;
-      this.Yandere.Jukebox.HalfSanity.volume = 0.0f;
-      this.Yandere.Jukebox.NoSanity.volume = 0.0f;
-      this.Yandere.Jukebox.FullSanity.Play();
-      this.Yandere.Jukebox.HalfSanity.Play();
-      this.Yandere.Jukebox.NoSanity.Play();
-    }
-    this.Yandere.transform.position = new Vector3(-21.5f, 0.0f, 8f);
-    this.Yandere.transform.eulerAngles = new Vector3(0.0f, 90f, 0.0f);
-    this.Yandere.ShoulderCamera.OverShoulder = false;
-    this.CounselorBar.SetActive(false);
-    this.StudentManager.EnablePrompts();
-    if (!this.EightiesAttacher.gameObject.activeInHierarchy)
-    {
-      this.Laptop.SetActive(true);
-    }
-    else
-    {
-      this.MyAnimation.CrossFade("f02_deskWritePingPong_00");
-      this.transform.position += new Vector3(0.0f, -0.1f, 0.0f);
-      this.RedPen.SetActive(true);
-    }
-    this.LookAtPlayer = false;
-    this.ShowWindow = false;
-    this.TalkTimer = 1f;
-    this.Patience = 0;
-    this.Stern = false;
-    this.Angry = false;
-    this.Sad = false;
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Show = false;
-    if (!this.StudentManager.TutorialActive)
-      this.StudentManager.ComeBack();
-    this.StudentManager.GracePeriod(10f);
-    if (num != 0)
-      this.StudentManager.Reputation.UpdateRep();
-    this.Yandere.CameraEffects.UpdateDOF(2f);
-    Physics.SyncTransforms();
-  }
+	public SchemesScript Schemes;
 
-  private void UpdateInterrogation()
-  {
-    if (this.VibrationCheck)
-    {
-      this.VibrationTimer = Mathf.MoveTowards(this.VibrationTimer, 0.0f, Time.deltaTime);
-      if ((double) this.VibrationTimer == 0.0)
-      {
-        GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
-        this.VibrationCheck = false;
-      }
-    }
-    this.Timer += Time.deltaTime;
-    if (Input.GetButtonDown("A") && this.InterrogationPhase != 4)
-      this.Timer += 20f;
-    if (this.InterrogationPhase == 0)
-    {
-      if ((double) this.Timer > 1.0 || Input.GetButtonDown("A"))
-      {
-        Debug.Log((object) ("Previous Punishments: " + this.CounselorPunishments.ToString()));
-        this.Patience -= this.CounselorPunishments;
-        if (this.Patience < -6)
-          this.Patience = -6;
-        this.GenkaChibi.transform.localPosition = new Vector3(0.0f, (float) (90 * this.Patience), 0.0f);
-        this.Yandere.MainCamera.transform.eulerAngles = this.CameraTarget.eulerAngles;
-        this.Yandere.MainCamera.transform.position = this.CameraTarget.position;
-        this.Yandere.MainCamera.transform.Translate(Vector3.forward * -1f);
-        if (this.CounselorVisits < 3)
-          ++this.CounselorVisits;
-        if (this.CounselorTape == 0)
-        {
-          this.CounselorOption[4].Label.color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
-        }
-        else
-        {
-          this.CounselorOption[4].Label.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-          this.CounselorOption[4].Label.text = "Blame Delinquents";
-        }
-        if ((Object) this.Yandere.Subtitle.CurrentClip != (Object) null)
-          Object.Destroy((Object) this.Yandere.Subtitle.CurrentClip);
-        this.Yandere.CameraEffects.UpdateDOF(1.1f);
-        this.GenkaChibi.mainTexture = this.AnnoyedChibi;
-        this.CounselorBar.SetActive(true);
-        this.Subtitle.Label.text = "";
-        ++this.InterrogationPhase;
-        Time.timeScale = 1f;
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 1)
-    {
-      UISprite darkness = this.Yandere.Police.Darkness;
-      darkness.color = darkness.color - new Color(0.0f, 0.0f, 0.0f, Time.deltaTime);
-      this.Yandere.MainCamera.transform.position = Vector3.Lerp(this.Yandere.MainCamera.transform.position, this.CameraTarget.position, (float) ((double) this.Timer * (double) Time.deltaTime * 0.5));
-      if ((double) this.Timer > 5.0 || Input.GetButtonDown("A"))
-      {
-        this.Yandere.MainCamera.transform.position = this.CameraTarget.position;
-        this.MyAudio.clip = this.GreetingClips[this.CounselorVisits];
-        this.CounselorSubtitle.text = this.Greetings[this.CounselorVisits];
-        this.Yandere.Police.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-        ++this.InterrogationPhase;
-        this.MyAudio.Play();
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 2)
-    {
-      if (Input.GetButtonDown("A"))
-        this.MyAudio.Stop();
-      if ((double) this.Timer > (double) this.MyAudio.clip.length + 0.5)
-      {
-        if (this.Crime == StudentWitnessType.Blood || this.Crime == StudentWitnessType.BloodAndInsanity)
-        {
-          this.MyAudio.clip = this.BloodLectureClips[this.BloodVisits];
-          this.CounselorSubtitle.text = this.BloodLectures[this.BloodVisits];
-          if (this.BloodVisits < 2)
-            ++this.BloodVisits;
-          this.CrimeID = 1;
-        }
-        else if (this.Crime == StudentWitnessType.Insanity || this.Crime == StudentWitnessType.CleaningItem || this.Crime == StudentWitnessType.HoldingBloodyClothing || this.Crime == StudentWitnessType.Poisoning || this.Crime == StudentWitnessType.Stalking)
-        {
-          this.MyAudio.clip = this.InsanityLectureClips[this.InsanityVisits];
-          this.CounselorSubtitle.text = this.InsanityLectures[this.InsanityVisits];
-          if (this.InsanityVisits < 2)
-            ++this.InsanityVisits;
-          this.CrimeID = 2;
-        }
-        else if (this.Crime == StudentWitnessType.Lewd)
-        {
-          this.MyAudio.clip = this.LewdLectureClips[this.LewdVisits];
-          this.CounselorSubtitle.text = this.LewdLectures[this.LewdVisits];
-          if (this.LewdVisits < 2)
-            ++this.LewdVisits;
-          this.CrimeID = 3;
-        }
-        else if (this.Crime == StudentWitnessType.Theft || this.Crime == StudentWitnessType.Pickpocketing)
-        {
-          this.MyAudio.clip = this.TheftLectureClips[this.TheftVisits];
-          this.CounselorSubtitle.text = this.TheftLectures[this.TheftVisits];
-          if (this.TheftVisits < 2)
-            ++this.TheftVisits;
-          this.CrimeID = 4;
-        }
-        else if (this.Crime == StudentWitnessType.Trespassing)
-        {
-          this.MyAudio.clip = this.TrespassLectureClips[this.TrespassVisits];
-          this.CounselorSubtitle.text = this.TrespassLectures[this.TrespassVisits];
-          if (this.TrespassVisits < 2)
-            ++this.TrespassVisits;
-          this.CrimeID = 5;
-        }
-        else if (this.Crime == StudentWitnessType.Weapon || this.Crime == StudentWitnessType.WeaponAndBlood || this.Crime == StudentWitnessType.WeaponAndInsanity || this.Crime == StudentWitnessType.WeaponAndBloodAndInsanity)
-        {
-          this.MyAudio.clip = this.WeaponLectureClips[this.WeaponVisits];
-          this.CounselorSubtitle.text = this.WeaponLectures[this.WeaponVisits];
-          if (this.WeaponVisits < 2)
-            ++this.WeaponVisits;
-          this.CrimeID = 6;
-        }
-        ++this.InterrogationPhase;
-        this.MyAudio.Play();
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 3)
-    {
-      if (Input.GetButtonDown("A"))
-        this.MyAudio.Stop();
-      if ((double) this.Timer > (double) this.MyAudio.clip.length + 0.5)
-      {
-        for (int index = 1; index < 7; ++index)
-        {
-          this.CounselorOption[index].transform.localPosition = this.CounselorOption[index].OriginalPosition;
-          this.CounselorOption[index].Sprite.color = this.CounselorOption[index].OriginalColor;
-          this.CounselorOption[index].transform.localScale = new Vector3(0.9f, 0.9f, 1f);
-          this.CounselorOption[index].gameObject.SetActive(true);
-          this.CounselorOption[index].Clicked = false;
-        }
-        this.Yandere.CharacterAnimation["f02_countdown_00"].speed = 1f;
-        this.Yandere.CharacterAnimation.Play("f02_countdown_00");
-        this.Yandere.transform.position = new Vector3(-27.818f, 0.0f, 12f);
-        this.Yandere.transform.eulerAngles = new Vector3(0.0f, -90f, 0.0f);
-        this.Yandere.MainCamera.transform.position = new Vector3(-28f, 1.1f, 12f);
-        this.Yandere.MainCamera.transform.eulerAngles = new Vector3(0.0f, 90f, 0.0f);
-        this.Reticle.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        this.CounselorOptions.SetActive(true);
-        this.CounselorBar.SetActive(false);
-        this.CounselorSubtitle.text = "";
-        this.MyAudio.clip = this.Countdown;
-        this.MyAudio.Play();
-        this.PromptBar.Label[0].text = "Accept";
-        this.PromptBar.Label[4].text = "Choose";
-        this.PromptBar.Label[5].text = "Choose";
-        this.PromptBar.UpdateButtons();
-        this.PromptBar.Show = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        this.Yandere.CameraEffects.UpdateDOF(0.4f);
-        ++this.InterrogationPhase;
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 4)
-    {
-      this.Yandere.MainCamera.transform.Translate(Vector3.forward * Time.deltaTime * 0.01f);
-      this.CounselorOptions.transform.localEulerAngles += new Vector3(0.0f, 0.0f, Time.deltaTime * -36f);
-      if (this.InputDevice.Type == InputDeviceType.Gamepad)
-      {
-        this.Reticle.SetActive(true);
-        Cursor.visible = false;
-        this.Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 20f, Input.GetAxis("Vertical") * 20f, 0.0f);
-        if ((double) this.Reticle.transform.localPosition.x > 975.0)
-          this.Reticle.transform.localPosition = new Vector3(975f, this.Reticle.transform.localPosition.y, this.Reticle.transform.localPosition.z);
-        if ((double) this.Reticle.transform.localPosition.x < -975.0)
-          this.Reticle.transform.localPosition = new Vector3(-975f, this.Reticle.transform.localPosition.y, this.Reticle.transform.localPosition.z);
-        if ((double) this.Reticle.transform.localPosition.y > 525.0)
-          this.Reticle.transform.localPosition = new Vector3(this.Reticle.transform.localPosition.x, 525f, this.Reticle.transform.localPosition.z);
-        if ((double) this.Reticle.transform.localPosition.y < -525.0)
-          this.Reticle.transform.localPosition = new Vector3(this.Reticle.transform.localPosition.x, -525f, this.Reticle.transform.localPosition.z);
-      }
-      else
-      {
-        this.Reticle.SetActive(true);
-        Cursor.visible = true;
-        this.Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 20f, Input.GetAxis("Vertical") * 20f, 0.0f);
-      }
-      for (int index1 = 1; index1 < 7; ++index1)
-      {
-        this.CounselorOption[index1].transform.eulerAngles = new Vector3(this.CounselorOption[index1].transform.eulerAngles.x, this.CounselorOption[index1].transform.eulerAngles.y, 0.0f);
-        if (this.CounselorOption[index1].Clicked || this.CounselorOption[index1].Sprite.color != this.CounselorOption[index1].OriginalColor && Input.GetButtonDown("A"))
-        {
-          for (int index2 = 1; index2 < 7; ++index2)
-          {
-            if (index2 != index1)
-              this.CounselorOption[index2].gameObject.SetActive(false);
-          }
-          this.Yandere.CharacterAnimation["f02_countdown_00"].time = 10f;
-          this.MyAudio.clip = this.Choice;
-          this.MyAudio.pitch = 1f;
-          this.MyAudio.Play();
-          Cursor.lockState = CursorLockMode.Locked;
-          Cursor.visible = false;
-          this.Reticle.SetActive(false);
-          ++this.InterrogationPhase;
-          this.Answer = index1;
-          this.Timer = 0.0f;
-          this.PromptBar.ClearButtons();
-        }
-      }
-      if ((double) this.Timer > 10.0)
-      {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        this.Reticle.SetActive(false);
-        this.SilentTreatment = true;
-        ++this.InterrogationPhase;
-        this.Timer = 0.0f;
-        this.PromptBar.ClearButtons();
-      }
-    }
-    else if (this.InterrogationPhase == 5)
-    {
-      int index = 1;
-      if (this.SilentTreatment)
-      {
-        this.CounselorOptions.transform.localScale += new Vector3(Time.deltaTime * 2f, Time.deltaTime * 2f, Time.deltaTime * 2f);
-        for (; index < 7; ++index)
-          this.CounselorOption[index].transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
-      }
-      if ((double) this.Timer > 3.0 || Input.GetButtonDown("A"))
-      {
-        this.CounselorOptions.transform.localScale = new Vector3(1f, 1f, 1f);
-        this.CounselorOptions.SetActive(false);
-        this.CounselorBar.SetActive(true);
-        this.Yandere.CameraEffects.UpdateDOF(1.1f);
-        this.Yandere.transform.position = new Vector3(-27.51f, 0.0f, 12f);
-        this.Yandere.MainCamera.transform.position = this.CameraTarget.position;
-        this.Yandere.MainCamera.transform.eulerAngles = this.CameraTarget.eulerAngles;
-        if (this.SilentTreatment)
-        {
-          this.MyAudio.clip = this.Silence;
-          this.CounselorSubtitle.text = "...";
-        }
-        else if (this.Answer == 1)
-        {
-          this.MyAudio.clip = this.ExcuseClips[this.CrimeID];
-          this.CounselorSubtitle.text = this.Excuses[this.CrimeID];
-          if (this.CrimeID == 1)
-            ++this.BloodExcuseUsed;
-          else if (this.CrimeID == 2)
-            ++this.InsanityExcuseUsed;
-          else if (this.CrimeID == 3)
-            ++this.LewdExcuseUsed;
-          else if (this.CrimeID == 4)
-            ++this.TheftExcuseUsed;
-          else if (this.CrimeID == 5)
-            ++this.TrespassExcuseUsed;
-          else if (this.CrimeID == 6)
-            ++this.WeaponExcuseUsed;
-        }
-        else if (this.Answer == 2)
-        {
-          this.MyAudio.clip = this.ApologyClip;
-          this.CounselorSubtitle.text = this.Apology;
-          ++this.ApologiesUsed;
-        }
-        else if (this.Answer == 3)
-        {
-          this.MyAudio.clip = this.LieClips[this.CrimeID];
-          this.CounselorSubtitle.text = this.Lies[this.CrimeID];
-        }
-        else if (this.Answer == 4)
-        {
-          this.MyAudio.clip = this.DelinquentClips[this.CrimeID];
-          this.CounselorSubtitle.text = this.Delinquents[this.CrimeID];
-        }
-        else if (this.Answer == 5)
-        {
-          this.MyAudio.clip = this.FlirtClip;
-          this.CounselorSubtitle.text = this.Flirt;
-        }
-        else if (this.Answer == 6)
-        {
-          this.MyAudio.clip = this.ThreatenClip;
-          this.CounselorSubtitle.text = this.Threaten;
-        }
-        this.Yandere.CharacterAnimation.Play("f02_sit_00");
-        ++this.InterrogationPhase;
-        this.MyAudio.Play();
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 6)
-    {
-      if (this.Answer == 6)
-      {
-        this.Yandere.Sanity = Mathf.MoveTowards(this.Yandere.Sanity, 0.0f, Time.deltaTime * 7.5f);
-        this.Rumble.volume += Time.deltaTime * 0.075f;
-      }
-      if ((double) this.Timer > (double) this.MyAudio.clip.length + 0.5 || Input.GetButtonDown("A"))
-      {
-        if (this.SilentTreatment)
-        {
-          int index = Random.Range(0, 3);
-          this.MyAudio.clip = this.SilentClips[index];
-          this.CounselorSubtitle.text = this.Silents[index];
-          --this.Patience;
-        }
-        else if (this.Answer == 1)
-        {
-          if (this.CrimeID == 1)
-            Debug.Log((object) "The player's crime is Bloodiness.");
-          else if (this.CrimeID == 2)
-            Debug.Log((object) "The player's crime is Insanity.");
-          else if (this.CrimeID == 3)
-            Debug.Log((object) "The player's crime is Lewdness.");
-          else if (this.CrimeID == 4)
-            Debug.Log((object) "The player's crime is Theft.");
-          else if (this.CrimeID == 5)
-            Debug.Log((object) "The player's crime is Trespassing.");
-          else if (this.CrimeID == 6)
-            Debug.Log((object) "The player's crime is Weaponry.");
-          Debug.Log((object) "The player has chosen to use an exuse.");
-          bool flag = false;
-          if (this.CrimeID == 1 && this.BloodExcuseUsed > 1 || this.CrimeID == 2 && this.InsanityExcuseUsed > 1 || this.CrimeID == 3 && this.LewdExcuseUsed > 1 || this.CrimeID == 4 && this.TheftExcuseUsed > 1 || this.CrimeID == 5 && this.TrespassExcuseUsed > 1 || this.CrimeID == 6 && this.WeaponExcuseUsed > 1)
-          {
-            Debug.Log((object) "Yandere-chan has already used this excuse before.");
-            flag = true;
-          }
-          if (!flag)
-          {
-            Debug.Log((object) "Yandere-chan's excuse is not invalid!");
-            this.MyAudio.clip = this.AcceptExcuseClips[this.CrimeID];
-            this.CounselorSubtitle.text = this.AcceptExcuses[this.CrimeID];
-            this.MyAnimation.CrossFade("CounselorRelief", 1f);
-            this.Stern = false;
-            this.Patience = 1;
-          }
-          else
-          {
-            Debug.Log((object) "Yandere-chan's excuse has been deemed invalid.");
-            int index = Random.Range(0, 3);
-            this.MyAudio.clip = this.RejectExcuseClips[index];
-            this.CounselorSubtitle.text = this.RejectExcuses[index];
-            this.MyAnimation.CrossFade("CounselorAnnoyed");
-            this.Angry = true;
-            --this.Patience;
-          }
-        }
-        else if (this.Answer == 2)
-        {
-          if (this.ApologiesUsed == 1)
-          {
-            this.MyAudio.clip = this.AcceptApologyClip;
-            this.CounselorSubtitle.text = this.AcceptApology;
-            this.MyAnimation.CrossFade("CounselorRelief", 1f);
-            this.Stern = false;
-            this.Patience = 1;
-          }
-          else
-          {
-            int index = Random.Range(0, 3);
-            this.MyAudio.clip = this.RejectApologyClips[index];
-            this.CounselorSubtitle.text = this.RejectApologies[index];
-            this.MyAnimation.CrossFade("CounselorAnnoyed");
-            --this.Patience;
-          }
-        }
-        else if (this.Answer == 3)
-        {
-          int index = Random.Range(0, 5);
-          this.MyAudio.clip = this.RejectLieClips[index];
-          this.CounselorSubtitle.text = this.RejectLies[index];
-          this.MyAnimation.CrossFade("CounselorAnnoyed");
-          this.Angry = true;
-          --this.Patience;
-        }
-        else if (this.Answer == 4)
-        {
-          bool flag1 = false;
-          bool flag2 = false;
-          bool flag3 = false;
-          int num = 5;
-          if (StudentGlobals.GetStudentDead(76) && StudentGlobals.GetStudentDead(77) && StudentGlobals.GetStudentDead(78) && StudentGlobals.GetStudentDead(79) && StudentGlobals.GetStudentDead(80))
-            flag3 = true;
-          else if (StudentGlobals.GetStudentExpelled(76) && StudentGlobals.GetStudentExpelled(77) && StudentGlobals.GetStudentExpelled(78) && StudentGlobals.GetStudentExpelled(79) && StudentGlobals.GetStudentExpelled(80))
-          {
-            flag2 = true;
-          }
-          else
-          {
-            if ((Object) this.StudentManager.Students[76] == (Object) null)
-              --num;
-            else if (!this.StudentManager.Students[76].gameObject.activeInHierarchy)
-              --num;
-            if ((Object) this.StudentManager.Students[77] == (Object) null)
-              --num;
-            else if (!this.StudentManager.Students[77].gameObject.activeInHierarchy)
-              --num;
-            if ((Object) this.StudentManager.Students[78] == (Object) null)
-              --num;
-            else if (!this.StudentManager.Students[78].gameObject.activeInHierarchy)
-              --num;
-            if ((Object) this.StudentManager.Students[79] == (Object) null)
-              --num;
-            else if (!this.StudentManager.Students[79].gameObject.activeInHierarchy)
-              --num;
-            if ((Object) this.StudentManager.Students[80] == (Object) null)
-              --num;
-            else if (!this.StudentManager.Students[80].gameObject.activeInHierarchy)
-              --num;
-            if (num == 0)
-              flag1 = true;
-          }
-          bool flag4 = false;
-          if (this.CrimeID == 1 && this.BloodBlameUsed > 1 || this.CrimeID == 2 && this.InsanityBlameUsed > 1 || this.CrimeID == 3 && this.LewdBlameUsed > 1 || this.CrimeID == 4 && this.TheftBlameUsed > 1 || this.CrimeID == 5 && this.TrespassBlameUsed > 1 || this.CrimeID == 6 && this.WeaponBlameUsed > 1)
-            flag4 = true;
-          if (flag3)
-          {
-            this.MyAudio.clip = this.DelinquentsDeadClip;
-            this.CounselorSubtitle.text = this.DelinquentsDead;
-            this.MyAnimation.CrossFade("CounselorAnnoyed");
-            this.Angry = true;
-            --this.Patience;
-          }
-          else if (flag2)
-          {
-            this.MyAudio.clip = this.DelinquentsExpelledClip;
-            this.CounselorSubtitle.text = this.DelinquentsExpelled;
-            this.MyAnimation.CrossFade("CounselorAnnoyed");
-            --this.Patience;
-          }
-          else if (flag1)
-          {
-            this.MyAudio.clip = this.DelinquentsGoneClip;
-            this.CounselorSubtitle.text = this.DelinquentsGone;
-            this.MyAnimation.CrossFade("CounselorAnnoyed");
-            --this.Patience;
-          }
-          else if (!flag4)
-          {
-            if (this.CrimeID == 1)
-            {
-              Debug.Log((object) "Banning weapons.");
-              ++this.WeaponsBanned;
-            }
-            this.MyAudio.clip = this.AcceptBlameClips[this.CrimeID];
-            this.CounselorSubtitle.text = this.AcceptBlames[this.CrimeID];
-            this.MyAnimation.CrossFade("CounselorSad", 1f);
-            this.Stern = false;
-            this.Sad = true;
-            this.Patience = 1;
-            ++this.DelinquentPunishments;
-            if (this.CrimeID == 1)
-              ++this.BloodBlameUsed;
-            else if (this.CrimeID == 2)
-              ++this.InsanityBlameUsed;
-            else if (this.CrimeID == 3)
-              ++this.LewdBlameUsed;
-            else if (this.CrimeID == 4)
-              ++this.TheftBlameUsed;
-            else if (this.CrimeID == 5)
-              ++this.TrespassBlameUsed;
-            else if (this.CrimeID == 6)
-              ++this.WeaponBlameUsed;
-            if (this.DelinquentPunishments > 5)
-              this.MustExpelDelinquents = true;
-          }
-          else
-          {
-            int index = Random.Range(0, 3);
-            this.MyAudio.clip = this.RejectBlameClips[index];
-            this.CounselorSubtitle.text = this.RejectBlames[index];
-            this.MyAnimation.CrossFade("CounselorAnnoyed");
-            --this.Patience;
-          }
-        }
-        else if (this.Answer == 5)
-        {
-          int index = Random.Range(0, 3);
-          this.MyAudio.clip = this.RejectFlirtClips[index];
-          this.CounselorSubtitle.text = this.RejectFlirts[index];
-          this.MyAnimation.CrossFade("CounselorAnnoyed");
-          this.Angry = true;
-          --this.Patience;
-        }
-        else if (this.Answer == 6)
-        {
-          this.MyAudio.clip = this.RejectThreatClip;
-          this.CounselorSubtitle.text = this.RejectThreat;
-          this.MyAnimation.CrossFade("CounselorAnnoyed");
-          this.InterrogationPhase += 2;
-          this.Patience = -6;
-          this.Angry = true;
-        }
-        if (this.Patience < -6)
-          this.Patience = -6;
-        if (this.Patience == 1)
-          this.GenkaChibi.mainTexture = this.HappyChibi;
-        else if (this.Patience == -6)
-          this.GenkaChibi.mainTexture = this.MadChibi;
-        else
-          this.GenkaChibi.mainTexture = this.AnnoyedChibi;
-        ++this.InterrogationPhase;
-        this.MyAudio.Play();
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 7)
-    {
-      if ((double) this.Timer > (double) this.MyAudio.clip.length + 0.5 || Input.GetButtonDown("A"))
-      {
-        if (this.Patience < 0)
-        {
-          int index = Random.Range(0, 3);
-          this.MyAudio.clip = this.BadClosingClips[index];
-          this.CounselorSubtitle.text = this.BadClosings[index];
-          this.MyAnimation.CrossFade("CounselorArmsCrossed", 1f);
-          this.InterrogationPhase += 2;
-        }
-        else
-        {
-          if (this.MustExpelDelinquents)
-          {
-            this.MyAudio.clip = this.ExpelDelinquentsClip;
-            this.CounselorSubtitle.text = this.ExpelDelinquents;
-            this.MustExpelDelinquents = false;
-            this.StudentManager.Students[76].gameObject.SetActive(false);
-            this.StudentManager.Students[77].gameObject.SetActive(false);
-            this.StudentManager.Students[78].gameObject.SetActive(false);
-            this.StudentManager.Students[79].gameObject.SetActive(false);
-            this.StudentManager.Students[80].gameObject.SetActive(false);
-            this.ExpelledDelinquents = true;
-            this.DelinquentRadio.SetActive(false);
-          }
-          else if (this.Answer == 4)
-          {
-            this.MyAudio.clip = this.BlameClosingClips[this.CrimeID];
-            this.CounselorSubtitle.text = this.BlameClosings[this.CrimeID];
-          }
-          else
-          {
-            int index = Random.Range(0, 3);
-            this.MyAudio.clip = this.FreeToLeaveClips[index];
-            this.CounselorSubtitle.text = this.FreeToLeaves[index];
-            this.MyAnimation.CrossFade("CounselorArmsCrossed", 1f);
-            this.Stern = true;
-          }
-          ++this.InterrogationPhase;
-        }
-        this.MyAudio.Play();
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 8)
-    {
-      if ((double) this.Timer > (double) this.MyAudio.clip.length + 0.5 || Input.GetButtonDown("A"))
-      {
-        this.CounselorDoor.FadeOut = true;
-        this.CounselorDoor.Exit = true;
-        this.Interrogating = false;
-        this.InterrogationPhase = 0;
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 9)
-    {
-      if ((double) this.Timer > (double) this.MyAudio.clip.length + 0.5 || Input.GetButtonDown("A"))
-      {
-        this.MyAnimation.Play("CounselorSlamDesk");
-        ++this.InterrogationPhase;
-        this.MyAudio.Stop();
-        this.Stern = false;
-        this.Angry = true;
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 10)
-    {
-      if ((double) this.Timer > 0.5)
-      {
-        if (!this.Slammed)
-        {
-          GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
-          this.VibrationCheck = true;
-          this.VibrationTimer = 0.2f;
-          AudioSource.PlayClipAtPoint(this.Slam, this.transform.position);
-          this.Shake.shakeAmount = 0.1f;
-          this.Shake.enabled = true;
-          this.Shake.shake = 0.5f;
-          this.Slammed = true;
-        }
-        this.Shake.shakeAmount = Mathf.Lerp(this.Shake.shakeAmount, 0.0f, Time.deltaTime);
-      }
-      this.Shake.shakeAmount = Mathf.Lerp(this.Shake.shakeAmount, 0.0f, Time.deltaTime * 10f);
-      if ((double) this.Timer > 1.5 || Input.GetButtonDown("A"))
-      {
-        this.MyAudio.clip = this.SuspensionClips[Mathf.Abs(this.Patience)];
-        this.CounselorSubtitle.text = this.Suspensions[Mathf.Abs(this.Patience)];
-        this.MyAnimation.Play("CounselorSlamIdle");
-        this.Shake.enabled = false;
-        ++this.InterrogationPhase;
-        this.SentHome = true;
-        this.MyAudio.Play();
-        this.Timer = 0.0f;
-      }
-    }
-    else if (this.InterrogationPhase == 11 && ((double) this.Timer > (double) this.MyAudio.clip.length + 0.5 || Input.GetButtonDown("A")) && !this.Yandere.Police.FadeOut)
-    {
-      ++this.CounselorPunishments;
-      this.Yandere.Police.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-      this.Yandere.Police.SuspensionLength = Mathf.Abs(this.Patience);
-      this.Yandere.Police.Darkness.enabled = true;
-      this.Yandere.Police.ClubActivity = false;
-      this.Yandere.Police.Suspended = true;
-      this.Yandere.Police.FadeOut = true;
-      this.Yandere.Police.HiddenCorpses = 0;
-      if (this.Yandere.Police.Corpses > 0)
-        this.Yandere.ShoulderCamera.GoingToCounselor = true;
-      this.Yandere.ShoulderCamera.HUD.SetActive(true);
-      ++this.InterrogationPhase;
-      if (this.Patience == -6)
-        this.Expelled = true;
-      this.Timer = 0.0f;
-      this.Yandere.Senpai = this.StudentManager.Students[1].transform;
-      this.StudentManager.Reputation.PendingRep -= 10f;
-      this.StudentManager.Reputation.UpdateRep();
-    }
-    if (this.InterrogationPhase <= 6)
-      return;
-    this.Yandere.Sanity = Mathf.Lerp(this.Yandere.Sanity, 100f, Time.deltaTime);
-    this.Rumble.volume = Mathf.Lerp(this.Rumble.volume, 0.0f, Time.deltaTime);
-    this.GenkaChibi.transform.localPosition = Vector3.Lerp(this.GenkaChibi.transform.localPosition, new Vector3(0.0f, (float) (90 * this.Patience), 0.0f), Time.deltaTime * 10f);
-  }
+	public StudentScript Student;
 
-  public void SaveExcusesUsed()
-  {
-    CounselorGlobals.BloodExcuseUsed = this.BloodExcuseUsed;
-    CounselorGlobals.InsanityExcuseUsed = this.InsanityExcuseUsed;
-    CounselorGlobals.LewdExcuseUsed = this.LewdExcuseUsed;
-    CounselorGlobals.TheftExcuseUsed = this.TheftExcuseUsed;
-    CounselorGlobals.TrespassExcuseUsed = this.TrespassExcuseUsed;
-    CounselorGlobals.WeaponExcuseUsed = this.WeaponExcuseUsed;
-  }
+	public YandereScript Yandere;
 
-  public void LoadExcusesUsed()
-  {
-    this.BloodExcuseUsed = CounselorGlobals.BloodExcuseUsed;
-    this.InsanityExcuseUsed = CounselorGlobals.InsanityExcuseUsed;
-    this.LewdExcuseUsed = CounselorGlobals.LewdExcuseUsed;
-    this.TheftExcuseUsed = CounselorGlobals.TheftExcuseUsed;
-    this.TrespassExcuseUsed = CounselorGlobals.TrespassExcuseUsed;
-    this.WeaponExcuseUsed = CounselorGlobals.WeaponExcuseUsed;
-  }
+	public Animation MyAnimation;
 
-  public void SaveCounselorData()
-  {
-    CounselorGlobals.CounselorPunishments = this.CounselorPunishments;
-    CounselorGlobals.CounselorVisits = this.CounselorVisits;
-    CounselorGlobals.CounselorTape = this.CounselorTape;
-    CounselorGlobals.BloodVisits = this.BloodVisits;
-    CounselorGlobals.InsanityVisits = this.InsanityVisits;
-    CounselorGlobals.LewdVisits = this.LewdVisits;
-    CounselorGlobals.TheftVisits = this.TheftVisits;
-    CounselorGlobals.TrespassVisits = this.TrespassVisits;
-    CounselorGlobals.WeaponVisits = this.WeaponVisits;
-    CounselorGlobals.BloodBlameUsed = this.BloodBlameUsed;
-    CounselorGlobals.InsanityBlameUsed = this.InsanityBlameUsed;
-    CounselorGlobals.LewdBlameUsed = this.LewdBlameUsed;
-    CounselorGlobals.TheftBlameUsed = this.TheftBlameUsed;
-    CounselorGlobals.TrespassBlameUsed = this.TrespassBlameUsed;
-    CounselorGlobals.WeaponBlameUsed = this.WeaponBlameUsed;
-    CounselorGlobals.ApologiesUsed = this.ApologiesUsed;
-    CounselorGlobals.WeaponsBanned = this.WeaponsBanned;
-    CounselorGlobals.DelinquentPunishments = this.DelinquentPunishments;
-  }
+	public AudioSource MyAudio;
 
-  public void ExpelStudents()
-  {
-    if (!this.ExpelledDelinquents)
-      return;
-    StudentGlobals.SetStudentExpelled(76, true);
-    StudentGlobals.SetStudentExpelled(77, true);
-    StudentGlobals.SetStudentExpelled(78, true);
-    StudentGlobals.SetStudentExpelled(79, true);
-    StudentGlobals.SetStudentExpelled(80, true);
-  }
+	public PromptScript Prompt;
 
-  public void SilenceClips(AudioClip[] ClipArray)
-  {
-    for (int index = 0; index < 11; ++index)
-    {
-      if (index < ClipArray.Length)
-        ClipArray[index] = this.LongestSilence;
-    }
-  }
+	public GameObject DelinquentRadio;
 
-  public void SpawnDelinquents()
-  {
-    for (int index = 1; index < 6; ++index)
-    {
-      if ((Object) this.StudentManager.Students[75 + index] != (Object) null)
-        this.StudentManager.Students[75 + index].Spawned = true;
-    }
-  }
+	public AudioClip[] EightiesCounselorLectureClips;
+
+	public AudioClip[] EightiesCounselorReportClips;
+
+	public AudioClip[] CounselorGreetingClips;
+
+	public AudioClip[] CounselorLectureClips;
+
+	public AudioClip[] CounselorReportClips;
+
+	public AudioClip[] EightiesRivalClips;
+
+	public AudioClip[] RivalClips;
+
+	public AudioClip CounselorFarewellClip;
+
+	public readonly string CounselorFarewellText = "Don't misbehave.";
+
+	public AudioClip CounselorBusyClip;
+
+	public readonly string CounselorBusyText = "I'm sorry, I've got my hands full for the rest of today. I won't be available until tomorrow.";
+
+	public bool MustReturnStolenRing;
+
+	public string RivalName;
+
+	private string[] CounselorGreetingText = new string[3] { "", "What can I help you with?", "Can I help you?" };
+
+	private string[] CounselorLectureText = new string[9] { "", "May I see your phone for a moment? ...what is THIS?! Would you care to explain why something like this is on your phone?", "May I take a look inside your bag? ...this doesn't belong to you, does it?! What are you doing with someone else's property?", "I need to take a look in your bag. ...cigarettes?! You have absolutely no excuse to be carrying something like this around!", "It has come to my attention that you've been vandalizing the school's property. What, exactly, do you have to say for yourself?", "Obviously, we need to have a long talk about the kind of behavior that will not tolerated at this school!", "(This line of text doesn't show up outside of the Eighties.)", "That's it! I've given you enough second chances. You have repeatedly broken school rules and ignored every warning that I have given you. You have left me with no choice but to permanently expel you!", "(This line of text doesn't show up outside of the Eighties.)" };
+
+	private string[] EightiesCounselorLectureText = new string[9] { "", "May I see your bag for a moment? ...what is THIS?! Would you care to explain why you brought something like this to school?!", "Whatever you do in the privacy of your own home is none of my business. But there is NO reason for you to bring something like THIS to school!", "I need to take a look in your bag. ...cigarettes?! You have absolutely no excuse to be carrying something like this around!", "May I take a look inside your bag? ...this doesn't belong to you, does it?! What are you doing with someone else's property?", "It's absolutely appalling that you honestly believed you were going to get away with cheating! And at THIS institution, of all places!", "I can't believe you actually brought illegal narcotics to school with you! How did you even get ahold of something like this?!", "That's it! I've given you enough second chances. You have repeatedly broken school rules and ignored every warning that I have given you. You have left me with no choice but to permanently expel you!", "Enough! I have no choice but to inform the police immediately. Explain yourself to them, not me." };
+
+	private string[] CounselorReportText = new string[7] { "", "That's a very serious accusation. I hope you're not lying to me. Hopefully, it's just a misunderstanding. I'll investigate the matter.", "Is that true? I'd hate to think we have a thief here at school. Don't worry - I'll get to the bottom of this.", "That's a clear violation of school rules, not to mention completely illegal. If what you're saying is true, she will face serious consequences. I'll confront her about this.", "Thank you for bringing this to my attention! I'll have to have a word with her later today...", "That's a bold claim. Are you certain? I'll investigate the matter. If she is cheating, I'll catch her in the act.", "(This line of text doesn't show up outside of the Eighties.)" };
+
+	private string[] EightiesCounselorReportText = new string[7] { "", "That's a very serious accusation. I hope you're not lying to me. Hopefully, it's just a misunderstanding. I'll investigate the matter.", "Thank you for bringing this to my attention! I'll have to have a word with her later today...", "That's a clear violation of school rules, not to mention completely illegal. If what you're saying is true, she will face serious consequences. I'll confront her about this.", "Is that true? I'd hate to think we have a thief here at school. Don't worry - I'll get to the bottom of this.", "That's a bold claim. Are you certain? I'll investigate the matter. If she is cheating, I'll catch her in the act.", "...are you serious? Illegal narcotics?! If this is true, she'll be expelled immediately, and the police WILL be informed." };
+
+	private string[] LectureIntro = new string[8] { "", "The guidance counselor enters your rival's classroom and says that she needs to speak with her...", "The guidance counselor enters your rival's classroom and says that she needs to speak with her...", "The guidance counselor enters your rival's classroom and says that she needs to speak with her...", "The guidance counselor enters your rival's classroom and says that she needs to speak with her...", "The guidance counselor enters your rival's classroom and says that she needs to speak with her...", "The guidance counselor enters your rival's classroom and says that she needs to speak with her...", "The guidance counselor enters your rival's classroom and says that she needs to speak with her..." };
+
+	private string[] RivalText = new string[9] { "", "What?! I've never taken any pictures like that! How did this get on my phone?!", "No! I'm not the one who did this! I would never steal from anyone!", "Huh? I don't smoke! I don't know why something like this was in my bag!", "W-wait, I can explain! It's not what you think!", "I'm telling the truth! I didn't steal the answer sheet! I don't know why it was in my desk!", "(This line of text doesn't show up outside of the Eighties.)", "No...! P-please! Don't do this!", "(This line of text doesn't show up outside of the Eighties.)" };
+
+	private string[] EightiesRivalText = new string[9] { "", "What?! I don't drink! How did this something like this get in my bag?!", "No! I've never even seen these things before! I swear!", "Huh? I don't smoke! I don't know why something like this was in my bag!", "No! I'm not the one who did this! I would never steal from anyone!", "I'm telling the truth! I didn't steal the answer sheet! I don't know why it was in my bag!", "Wait! I'm being framed! You've got to believe me!", "No...! P-please! Don't do this!", "No! Please! Don't call the police! I'm begging you!" };
+
+	public UILabel[] Labels;
+
+	public Transform CounselorWindow;
+
+	public Transform NarcoticsWindow;
+
+	public Transform Highlight;
+
+	public Transform Chibi;
+
+	public SkinnedMeshRenderer Face;
+
+	public UILabel CounselorSubtitle;
+
+	public UISprite EndOfDayDarkness;
+
+	public UILabel LectureSubtitle;
+
+	public UISprite ExpelProgress;
+
+	public UILabel LectureLabel;
+
+	public bool ShowWindow;
+
+	public bool Lecturing;
+
+	public bool Eighties;
+
+	public bool Busy;
+
+	public int Selected = 1;
+
+	public int LecturePhase = 1;
+
+	public int LectureID = 5;
+
+	public float ExpelTimer;
+
+	public float ChinTimer;
+
+	public float TalkTimer = 1f;
+
+	public float Timer;
+
+	public UITexture ChibiTexture;
+
+	public Texture[] EightiesRivalHeads;
+
+	public Texture[] RivalHeads;
+
+	public int SadMouthID = 1;
+
+	public int MadBrowID = 5;
+
+	public int SadBrowID = 6;
+
+	public int AngryEyesID = 9;
+
+	public int MouthOpenID = 2;
+
+	public int RivalExpelProgress;
+
+	public int CounselorPunishments;
+
+	public int CounselorVisits;
+
+	public int CounselorTape;
+
+	public int BloodVisits;
+
+	public int InsanityVisits;
+
+	public int LewdVisits;
+
+	public int TheftVisits;
+
+	public int TrespassVisits;
+
+	public int WeaponVisits;
+
+	public int BloodBlameUsed;
+
+	public int InsanityBlameUsed;
+
+	public int LewdBlameUsed;
+
+	public int TheftBlameUsed;
+
+	public int TrespassBlameUsed;
+
+	public int WeaponBlameUsed;
+
+	public int ApologiesUsed;
+
+	public int WeaponsBanned;
+
+	public int DelinquentPunishments;
+
+	public bool ReportedAlcohol;
+
+	public bool ReportedCondoms;
+
+	public bool ReportedCigarettes;
+
+	public bool ReportedTheft;
+
+	public bool ReportedCheating;
+
+	public bool ReportedNarcotics;
+
+	public Vector3 LookAtTarget;
+
+	public bool LookAtPlayer;
+
+	public Transform Default;
+
+	public Transform Head;
+
+	public bool Angry;
+
+	public bool Stern;
+
+	public bool Sad;
+
+	public float MouthTarget;
+
+	public float MouthTimer;
+
+	public float TimerLimit;
+
+	public float MouthOpen;
+
+	public float TalkSpeed;
+
+	public float BS_SadMouth;
+
+	public float BS_MadBrow;
+
+	public float BS_SadBrow;
+
+	public float BS_AngryEyes;
+
+	public DetectClickScript[] CounselorOption;
+
+	public CabinetDoorScript InfirmaryCabinetDoor;
+
+	public InputDeviceScript InputDevice;
+
+	public StudentWitnessType Crime;
+
+	public UITexture GenkaChibi;
+
+	public CameraShake Shake;
+
+	public Texture HappyChibi;
+
+	public Texture AnnoyedChibi;
+
+	public Texture MadChibi;
+
+	public GameObject CounselorOptions;
+
+	public GameObject CounselorBar;
+
+	public GameObject Reticle;
+
+	public GameObject Laptop;
+
+	public GameObject RedPen;
+
+	public Transform CameraTarget;
+
+	public int InterrogationPhase;
+
+	public int Patience;
+
+	public int CrimeID;
+
+	public int Answer;
+
+	public bool MustExpelDelinquents;
+
+	public bool ExpelledDelinquents;
+
+	public bool SilentTreatment;
+
+	public bool Interrogating;
+
+	public bool SentHome;
+
+	public bool Expelled;
+
+	public bool Slammed;
+
+	public AudioSource Rumble;
+
+	public AudioClip EightiesCountdown;
+
+	public AudioClip Countdown;
+
+	public AudioClip Choice;
+
+	public AudioClip Slam;
+
+	public RiggedAccessoryAttacher EightiesAttacher;
+
+	public GameObject[] EightiesMesh;
+
+	public GameObject[] OriginalMesh;
+
+	public GameObject EightiesPaper;
+
+	public Transform PelvisRoot;
+
+	public bool UpdatedFace;
+
+	public AudioClip[] GreetingClips;
+
+	public string[] Greetings;
+
+	public AudioClip[] BloodLectureClips;
+
+	public string[] BloodLectures;
+
+	public AudioClip[] InsanityLectureClips;
+
+	public string[] InsanityLectures;
+
+	public AudioClip[] LewdLectureClips;
+
+	public string[] LewdLectures;
+
+	public AudioClip[] TheftLectureClips;
+
+	public string[] TheftLectures;
+
+	public AudioClip[] TrespassLectureClips;
+
+	public string[] TrespassLectures;
+
+	public AudioClip[] WeaponLectureClips;
+
+	public string[] WeaponLectures;
+
+	public AudioClip[] SilentClips;
+
+	public string[] Silents;
+
+	public AudioClip[] SuspensionClips;
+
+	public string[] Suspensions;
+
+	public AudioClip[] AcceptExcuseClips;
+
+	public string[] AcceptExcuses;
+
+	public AudioClip[] RejectExcuseClips;
+
+	public string[] RejectExcuses;
+
+	public AudioClip[] RejectLieClips;
+
+	public string[] RejectLies;
+
+	public AudioClip[] AcceptBlameClips;
+
+	public string[] AcceptBlames;
+
+	public AudioClip[] RejectApologyClips;
+
+	public string[] RejectApologies;
+
+	public AudioClip[] RejectBlameClips;
+
+	public string[] RejectBlames;
+
+	public AudioClip[] RejectFlirtClips;
+
+	public string[] RejectFlirts;
+
+	public AudioClip[] BadClosingClips;
+
+	public string[] BadClosings;
+
+	public AudioClip[] BlameClosingClips;
+
+	public string[] BlameClosings;
+
+	public AudioClip[] FreeToLeaveClips;
+
+	public string[] FreeToLeaves;
+
+	public AudioClip AcceptApologyClip;
+
+	public string AcceptApology;
+
+	public AudioClip RejectThreatClip;
+
+	public string RejectThreat;
+
+	public AudioClip ExpelDelinquentsClip;
+
+	public string ExpelDelinquents;
+
+	public AudioClip DelinquentsDeadClip;
+
+	public string DelinquentsDead;
+
+	public AudioClip DelinquentsExpelledClip;
+
+	public string DelinquentsExpelled;
+
+	public AudioClip DelinquentsGoneClip;
+
+	public string DelinquentsGone;
+
+	public AudioClip[] ExcuseClips;
+
+	public string[] Excuses;
+
+	public AudioClip[] LieClips;
+
+	public string[] Lies;
+
+	public AudioClip[] DelinquentClips;
+
+	public string[] Delinquents;
+
+	public AudioClip ApologyClip;
+
+	public string Apology;
+
+	public AudioClip FlirtClip;
+
+	public string Flirt;
+
+	public AudioClip ThreatenClip;
+
+	public string Threaten;
+
+	public AudioClip Silence;
+
+	public float VibrationTimer;
+
+	public bool VibrationCheck;
+
+	public UILabel RIVAL;
+
+	public UILabel EXPELLED;
+
+	public int BloodExcuseUsed;
+
+	public int InsanityExcuseUsed;
+
+	public int LewdExcuseUsed;
+
+	public int TheftExcuseUsed;
+
+	public int TrespassExcuseUsed;
+
+	public int WeaponExcuseUsed;
+
+	public AudioClip LongestSilence;
+
+	public AudioClip LongSilence;
+
+	private void Start()
+	{
+		CounselorPunishments = CounselorGlobals.CounselorPunishments;
+		CounselorVisits = CounselorGlobals.CounselorVisits;
+		CounselorTape = CounselorGlobals.CounselorTape;
+		BloodVisits = CounselorGlobals.BloodVisits;
+		InsanityVisits = CounselorGlobals.InsanityVisits;
+		LewdVisits = CounselorGlobals.LewdVisits;
+		TheftVisits = CounselorGlobals.TheftVisits;
+		TrespassVisits = CounselorGlobals.TrespassVisits;
+		WeaponVisits = CounselorGlobals.WeaponVisits;
+		BloodBlameUsed = CounselorGlobals.BloodBlameUsed;
+		InsanityBlameUsed = CounselorGlobals.InsanityBlameUsed;
+		LewdBlameUsed = CounselorGlobals.LewdBlameUsed;
+		TheftBlameUsed = CounselorGlobals.TheftBlameUsed;
+		TrespassBlameUsed = CounselorGlobals.TrespassBlameUsed;
+		WeaponBlameUsed = CounselorGlobals.WeaponBlameUsed;
+		ApologiesUsed = CounselorGlobals.ApologiesUsed;
+		WeaponsBanned = CounselorGlobals.WeaponsBanned;
+		DelinquentPunishments = CounselorGlobals.DelinquentPunishments;
+		CounselorWindow.localScale = Vector3.zero;
+		CounselorWindow.gameObject.SetActive(false);
+		CounselorOptions.SetActive(false);
+		CounselorBar.SetActive(false);
+		Reticle.SetActive(false);
+		RivalExpelProgress = StudentGlobals.ExpelProgress;
+		int week = DateGlobals.Week;
+		if (week > 10)
+		{
+			base.gameObject.SetActive(false);
+			return;
+		}
+		ExpelProgress.color = new Color(ExpelProgress.color.r, ExpelProgress.color.g, ExpelProgress.color.b, 0f);
+		Chibi.localPosition = new Vector3(Chibi.localPosition.x, 250f + (float)RivalExpelProgress * -90f, Chibi.localPosition.z);
+		LoadExcusesUsed();
+		if (GameGlobals.Eighties)
+		{
+			Eighties = true;
+			MyAnimation.Play("f02_deskWritePingPong_00");
+			Laptop.SetActive(false);
+			EightiesPaper.SetActive(true);
+			EightiesAttacher.gameObject.SetActive(true);
+			OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().enabled = false;
+			OriginalMesh[2].SetActive(false);
+			OriginalMesh[3].SetActive(false);
+			EightiesMesh[1].SetActive(true);
+			Countdown = EightiesCountdown;
+			Labels[1].text = "Report Alcohol";
+			Labels[2].text = "Report Condoms";
+			Labels[3].text = "Report Cigarettes";
+			Labels[4].text = "Report Theft";
+			Labels[5].text = "Report Cheating";
+			Labels[6].text = "Report Narcotics";
+			CounselorReportText = EightiesCounselorReportText;
+			CounselorReportClips = EightiesCounselorReportClips;
+			CounselorLectureText = EightiesCounselorLectureText;
+			CounselorLectureClips = EightiesCounselorLectureClips;
+			RivalText = EightiesRivalText;
+			RivalClips = EightiesRivalClips;
+			ChibiTexture.mainTexture = EightiesRivalHeads[week];
+			ReportedAlcohol = CounselorGlobals.ReportedAlcohol;
+			ReportedCigarettes = CounselorGlobals.ReportedCigarettes;
+			ReportedCondoms = CounselorGlobals.ReportedCondoms;
+			ReportedTheft = CounselorGlobals.ReportedTheft;
+			ReportedCheating = CounselorGlobals.ReportedCheating;
+			SadMouthID = 4;
+			MadBrowID = 5;
+			SadBrowID = 3;
+			AngryEyesID = 2;
+			MouthOpenID = 9;
+			base.transform.position += new Vector3(0f, -0.1f, 0f);
+			RedPen.SetActive(true);
+			LewdLectureClips[0] = LongSilence;
+			LewdLectureClips[1] = LongSilence;
+			LewdLectures[0] = "You've been caught aiming a camera at a student's unmentionables. Start talking.";
+			LewdLectures[1] = "Once again, you're here because you stuck a camera up someone's skirt. Oh, I can't wait to hear your excuse this time.";
+		}
+	}
+
+	private void Update()
+	{
+		if (LookAtPlayer)
+		{
+			if (TalkTimer < 1f)
+			{
+				TalkTimer = Mathf.MoveTowards(TalkTimer, 1f, Time.deltaTime);
+				if (TalkTimer == 1f)
+				{
+					int num = Random.Range(1, 3);
+					CounselorSubtitle.text = CounselorGreetingText[num];
+					MyAudio.clip = CounselorGreetingClips[num];
+					MyAudio.Play();
+				}
+			}
+			if (InputManager.TappedUp)
+			{
+				Selected--;
+				if (!Eighties && Selected == 6)
+				{
+					Selected = 5;
+				}
+				UpdateHighlight();
+			}
+			if (InputManager.TappedDown)
+			{
+				Selected++;
+				if (!Eighties && Selected == 6)
+				{
+					Selected = 7;
+				}
+				UpdateHighlight();
+			}
+			if (ShowWindow)
+			{
+				if (CounselorDoor.Darkness.color.a == 0f && Input.GetButtonDown("A"))
+				{
+					if (Selected == 7)
+					{
+						if (!CounselorDoor.Exit)
+						{
+							CounselorSubtitle.text = CounselorFarewellText;
+							MyAudio.clip = CounselorFarewellClip;
+							MyAudio.Play();
+							CounselorDoor.FadeOut = true;
+							CounselorDoor.FadeIn = false;
+							CounselorDoor.Exit = true;
+						}
+					}
+					else if (Labels[Selected].color.a == 1f)
+					{
+						if (!Eighties)
+						{
+							if (Selected == 1)
+							{
+								SchemeGlobals.SetSchemeStage(1, 9);
+								Schemes.UpdateInstructions();
+							}
+							else if (Selected == 2)
+							{
+								SchemeGlobals.SetSchemeStage(2, 7);
+								Schemes.UpdateInstructions();
+							}
+							else if (Selected == 3)
+							{
+								SchemeGlobals.SetSchemeStage(3, 5);
+								Schemes.UpdateInstructions();
+							}
+							else if (Selected == 4)
+							{
+								SchemeGlobals.SetSchemeStage(4, 8);
+								Schemes.UpdateInstructions();
+							}
+							else if (Selected == 5)
+							{
+								SchemeGlobals.SetSchemeStage(5, 10);
+								Schemes.UpdateInstructions();
+							}
+						}
+						else if (Selected == 1)
+						{
+							ReportedAlcohol = true;
+						}
+						else if (Selected == 2)
+						{
+							ReportedCondoms = true;
+						}
+						else if (Selected == 3)
+						{
+							ReportedCigarettes = true;
+						}
+						else if (Selected == 4)
+						{
+							ReportedTheft = true;
+						}
+						else if (Selected == 5)
+						{
+							ReportedCheating = true;
+						}
+						else if (Selected == 6)
+						{
+							ReportedNarcotics = true;
+						}
+						CounselorSubtitle.text = CounselorReportText[Selected];
+						MyAudio.clip = CounselorReportClips[Selected];
+						MyAudio.Play();
+						ShowWindow = false;
+						Angry = true;
+						CutsceneManager.Scheme = Selected;
+						LectureID = Selected;
+						PromptBar.ClearButtons();
+						PromptBar.Show = false;
+						Busy = true;
+					}
+				}
+			}
+			else if (!Interrogating)
+			{
+				if (Input.GetButtonDown("A"))
+				{
+					MyAudio.Stop();
+				}
+				if (!MyAudio.isPlaying)
+				{
+					Timer += Time.deltaTime;
+					if (Timer > 0.5f)
+					{
+						CounselorDoor.FadeOut = true;
+						CounselorDoor.Exit = true;
+						LookAtPlayer = false;
+						UpdateList();
+					}
+				}
+			}
+		}
+		if (ShowWindow)
+		{
+			CounselorWindow.localScale = Vector3.Lerp(CounselorWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+		}
+		else if (CounselorWindow.localScale.x > 0.1f)
+		{
+			CounselorWindow.localScale = Vector3.Lerp(CounselorWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
+		}
+		else if (CounselorWindow.gameObject.activeInHierarchy)
+		{
+			CounselorWindow.localScale = Vector3.zero;
+			CounselorWindow.gameObject.SetActive(false);
+		}
+		if (Lecturing)
+		{
+			Chibi.localPosition = new Vector3(Chibi.localPosition.x, Mathf.Lerp(Chibi.localPosition.y, 250f + (float)RivalExpelProgress * -90f, Time.deltaTime * 3f), Chibi.localPosition.z);
+			if (LecturePhase == 1)
+			{
+				LectureLabel.text = LectureIntro[LectureID];
+				EndOfDayDarkness.color = new Color(EndOfDayDarkness.color.r, EndOfDayDarkness.color.g, EndOfDayDarkness.color.b, Mathf.MoveTowards(EndOfDayDarkness.color.a, 0f, Time.deltaTime));
+				if (EndOfDayDarkness.color.a == 0f)
+				{
+					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = "Continue";
+					PromptBar.UpdateButtons();
+					PromptBar.Show = true;
+					if (Input.GetButtonDown("A"))
+					{
+						LecturePhase++;
+						PromptBar.ClearButtons();
+						PromptBar.Show = false;
+					}
+				}
+			}
+			else if (LecturePhase == 2)
+			{
+				LectureLabel.color = new Color(LectureLabel.color.r, LectureLabel.color.g, LectureLabel.color.b, Mathf.MoveTowards(LectureLabel.color.a, 0f, Time.deltaTime));
+				if (LectureLabel.color.a == 0f)
+				{
+					EndOfDay.TextWindow.SetActive(false);
+					EndOfDay.EODCamera.GetComponent<AudioListener>().enabled = true;
+					LectureSubtitle.text = CounselorLectureText[LectureID];
+					MyAudio.clip = CounselorLectureClips[LectureID];
+					MyAudio.Play();
+					LecturePhase++;
+				}
+			}
+			else if (LecturePhase == 3)
+			{
+				if (!MyAudio.isPlaying || Input.GetButtonDown("A"))
+				{
+					LectureSubtitle.text = RivalText[LectureID];
+					MyAudio.clip = RivalClips[LectureID];
+					MyAudio.Play();
+					LecturePhase++;
+				}
+			}
+			else if (LecturePhase == 4)
+			{
+				if (!MyAudio.isPlaying || Input.GetButtonDown("A"))
+				{
+					LectureSubtitle.text = string.Empty;
+					if (RivalExpelProgress < 5)
+					{
+						LecturePhase++;
+					}
+					else
+					{
+						LecturePhase = 7;
+						ExpelTimer = 0f;
+					}
+				}
+			}
+			else if (LecturePhase == 5)
+			{
+				ExpelProgress.color = new Color(ExpelProgress.color.r, ExpelProgress.color.g, ExpelProgress.color.b, Mathf.MoveTowards(ExpelProgress.color.a, 1f, Time.deltaTime));
+				ExpelTimer += Time.deltaTime;
+				if (ExpelTimer > 2f)
+				{
+					if (ReportedNarcotics)
+					{
+						EXPELLED.text = "ARRESTED";
+						RivalExpelProgress = 5;
+					}
+					else
+					{
+						RivalExpelProgress++;
+					}
+					LecturePhase++;
+					Debug.Log("RivalExpelProgress is now: " + RivalExpelProgress);
+				}
+			}
+			else if (LecturePhase == 6)
+			{
+				ExpelTimer += Time.deltaTime;
+				if (ExpelTimer > 4f)
+				{
+					LecturePhase += 2;
+				}
+			}
+			else if (LecturePhase == 7)
+			{
+				ExpelTimer += Time.deltaTime;
+				if (ExpelTimer > 1f)
+				{
+					RIVAL.gameObject.SetActive(true);
+				}
+				if (ExpelTimer > 3f)
+				{
+					EXPELLED.gameObject.SetActive(true);
+				}
+				if (ExpelTimer > 5f)
+				{
+					RIVAL.color = new Color(RIVAL.color.r, RIVAL.color.g, RIVAL.color.b, RIVAL.color.a - Time.deltaTime);
+					EXPELLED.color = new Color(EXPELLED.color.r, EXPELLED.color.g, EXPELLED.color.b, EXPELLED.color.a - Time.deltaTime);
+				}
+				if (ExpelTimer > 7f)
+				{
+					RIVAL.gameObject.SetActive(false);
+					EXPELLED.gameObject.SetActive(false);
+					LecturePhase++;
+				}
+			}
+			else if (LecturePhase == 8)
+			{
+				Debug.Log("We are now in Lecture Phase 8. We're deciding whether to return to gameplay or expel the rival.");
+				ExpelProgress.color = new Color(ExpelProgress.color.r, ExpelProgress.color.g, ExpelProgress.color.b, Mathf.MoveTowards(ExpelProgress.color.a, 0f, Time.deltaTime));
+				ExpelTimer += Time.deltaTime;
+				if (ExpelTimer > 6f)
+				{
+					if ((RivalExpelProgress == 5 && !StudentGlobals.GetStudentExpelled(StudentManager.RivalID) && EndOfDay.RivalEliminationMethod != RivalEliminationType.Expelled && EndOfDay.RivalEliminationMethod != RivalEliminationType.Arrested && StudentManager.Police.TranqCase.VictimID != StudentManager.RivalID) || StudentManager.Students[StudentManager.RivalID].SentHome)
+					{
+						Debug.Log("The guidence counselor is now choosing the words she will say when expelling the rival.");
+						EndOfDayDarkness.color = new Color(EndOfDayDarkness.color.r, EndOfDayDarkness.color.g, EndOfDayDarkness.color.b, 0f);
+						LectureLabel.color = new Color(LectureLabel.color.r, LectureLabel.color.g, LectureLabel.color.b, 0f);
+						LecturePhase = 2;
+						ExpelTimer = 0f;
+						if (ReportedNarcotics)
+						{
+							LectureID = 8;
+							EndOfDay.RivalEliminationMethod = RivalEliminationType.Arrested;
+							StudentManager.RivalEliminated = true;
+						}
+						else
+						{
+							LectureID = 7;
+							EndOfDay.RivalEliminationMethod = RivalEliminationType.Expelled;
+							StudentManager.RivalEliminated = true;
+						}
+						if (StudentManager.Students[StudentManager.SuitorID] != null)
+						{
+							Debug.Log("Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
+							StudentManager.Students[StudentManager.SuitorID].Curious = false;
+						}
+					}
+					else
+					{
+						Debug.Log("The lecture is over. Now, the game decides where to go next.");
+						Yandere.Subtitle.gameObject.SetActive(true);
+						if (!EndOfDay.Police.Show)
+						{
+							Lecturing = false;
+							if (Yandere.StudentManager.Clock.Period > 4 || SentHome)
+							{
+								if (SentHome)
+								{
+									Debug.Log("We got here after being sent home.");
+								}
+								else
+								{
+									Debug.Log("We got here during Period 5 or 6. We must be at the end of the school day.");
+								}
+								EndOfDay.Phase++;
+								EndOfDay.UpdateScene();
+							}
+							else
+							{
+								Debug.Log("We got here prior to Period 5. We are leaving the lecture and returning to gameplay.");
+								StudentManager.Portal.gameObject.GetComponent<PortalScript>().Class.gameObject.SetActive(true);
+								StudentManager.Portal.gameObject.GetComponent<PortalScript>().ReturningFromLecture = true;
+								EndOfDay.gameObject.SetActive(false);
+								EndOfDay.Phase = 1;
+								CutsceneManager.Phase++;
+								Yandere.PauseScreen.Schemes.SchemeManager.enabled = false;
+								Yandere.MainCamera.gameObject.SetActive(true);
+								Yandere.gameObject.SetActive(true);
+								SpawnDelinquents();
+								StudentManager.ComeBack();
+								StudentManager.Students[StudentManager.RivalID].IdleAnim = StudentManager.Students[StudentManager.RivalID].BulliedIdleAnim;
+								StudentManager.Students[StudentManager.RivalID].WalkAnim = StudentManager.Students[StudentManager.RivalID].BulliedWalkAnim;
+								if (Eighties)
+								{
+									if (LectureID == 4)
+									{
+										if (StudentManager.Students[30] != null)
+										{
+											Debug.Log("Attempting to update Himedere's routine...");
+											StudentManager.Students[30].Cosmetic.EnableRings();
+											StudentManager.Students[30].Depressed = false;
+										}
+									}
+									else if (LectureID == 6)
+									{
+										Debug.Log("Disabling the rival and her bag, since she was expelled.");
+										StudentManager.Students[StudentManager.RivalID].gameObject.SetActive(false);
+										if (StudentManager.Students[StudentManager.SuitorID] != null)
+										{
+											Debug.Log("Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
+											StudentManager.Students[StudentManager.SuitorID].Curious = false;
+										}
+									}
+									if (StudentManager.Students[StudentManager.RivalID] != null && !StudentManager.Students[StudentManager.RivalID].gameObject.activeInHierarchy)
+									{
+										Debug.Log("Disabling the rival's bag, since she was expelled.");
+										StudentManager.GenericRivalBag.gameObject.SetActive(false);
+									}
+								}
+								else if (LectureID == 2)
+								{
+									MustReturnStolenRing = true;
+								}
+								else if (LectureID == 6 && StudentManager.RivalID == 11 && StudentManager.Students[10] != null)
+								{
+									StudentScript obj = StudentManager.Students[10];
+									Debug.Log("Osana is gone, so Raibaru's routine has to change.");
+									ScheduleBlock obj2 = obj.ScheduleBlocks[4];
+									obj2.destination = "Mourn";
+									obj2.action = "Mourn";
+									ScheduleBlock obj3 = obj.ScheduleBlocks[5];
+									obj3.destination = "Seat";
+									obj3.action = "Sit";
+									ScheduleBlock obj4 = obj.ScheduleBlocks[6];
+									obj4.destination = "Locker";
+									obj4.action = "Shoes";
+									ScheduleBlock obj5 = obj.ScheduleBlocks[7];
+									obj5.destination = "Exit";
+									obj5.action = "Exit";
+									ScheduleBlock obj6 = obj.ScheduleBlocks[8];
+									obj6.destination = "Exit";
+									obj6.action = "Exit";
+									ScheduleBlock obj7 = obj.ScheduleBlocks[9];
+									obj7.destination = "Exit";
+									obj7.action = "Exit";
+									obj.TargetDistance = 0.5f;
+									obj.IdleAnim = obj.BulliedIdleAnim;
+									obj.WalkAnim = obj.BulliedWalkAnim;
+									obj.OriginalIdleAnim = obj.IdleAnim;
+									obj.Pathfinding.speed = 1f;
+									obj.GetDestinations();
+								}
+								LectureID = 0;
+							}
+						}
+						else
+						{
+							Debug.Log("The police were present at school, so we're returning to the EndOfDay sequence now.");
+							EndOfDay.Phase++;
+							EndOfDay.UpdateScene();
+						}
+					}
+				}
+			}
+		}
+		if (!MyAudio.isPlaying)
+		{
+			CounselorSubtitle.text = string.Empty;
+		}
+		if (Interrogating)
+		{
+			UpdateInterrogation();
+		}
+	}
+
+	public void Talk()
+	{
+		MyAnimation.CrossFade("CounselorComputerAttention", 1f);
+		ChinTimer = 0f;
+		Yandere.TargetStudent = Student;
+		TalkTimer = 0f;
+		StudentManager.DisablePrompts();
+		CounselorWindow.gameObject.SetActive(true);
+		LookAtPlayer = true;
+		ShowWindow = true;
+		Yandere.ShoulderCamera.OverShoulder = true;
+		Yandere.WeaponMenu.KeyboardShow = false;
+		Yandere.WeaponMenu.Show = false;
+		Yandere.YandereVision = false;
+		Yandere.CanMove = false;
+		Yandere.Talking = true;
+		PromptBar.ClearButtons();
+		PromptBar.Label[0].text = "Accept";
+		PromptBar.Label[4].text = "Choose";
+		PromptBar.UpdateButtons();
+		PromptBar.Show = true;
+		base.transform.position = new Vector3(-28.93333f, 0f, 12f);
+		RedPen.SetActive(false);
+		UpdateList();
+	}
+
+	private void UpdateList()
+	{
+		for (int i = 1; i < Labels.Length; i++)
+		{
+			UILabel uILabel = Labels[i];
+			uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
+		}
+		if (!(StudentManager.Students[StudentManager.RivalID] != null))
+		{
+			return;
+		}
+		if (!Eighties)
+		{
+			if (SchemeGlobals.GetSchemeStage(1) == 8)
+			{
+				UILabel uILabel2 = Labels[1];
+				uILabel2.color = new Color(uILabel2.color.r, uILabel2.color.g, uILabel2.color.b, 1f);
+			}
+			if (SchemeGlobals.GetSchemeStage(2) == 6)
+			{
+				UILabel uILabel3 = Labels[2];
+				uILabel3.color = new Color(uILabel3.color.r, uILabel3.color.g, uILabel3.color.b, 1f);
+			}
+			if (SchemeGlobals.GetSchemeStage(3) == 4)
+			{
+				UILabel uILabel4 = Labels[3];
+				uILabel4.color = new Color(uILabel4.color.r, uILabel4.color.g, uILabel4.color.b, 1f);
+			}
+			if (SchemeGlobals.GetSchemeStage(4) == 7)
+			{
+				UILabel uILabel5 = Labels[4];
+				uILabel5.color = new Color(uILabel5.color.r, uILabel5.color.g, uILabel5.color.b, 1f);
+			}
+			if (SchemeGlobals.GetSchemeStage(5) == 9)
+			{
+				UILabel uILabel6 = Labels[5];
+				uILabel6.color = new Color(uILabel6.color.r, uILabel6.color.g, uILabel6.color.b, 1f);
+			}
+			return;
+		}
+		if (ReportedAlcohol)
+		{
+			Labels[1].text = "Already Reported Alcohol";
+		}
+		if (ReportedCondoms)
+		{
+			Labels[2].text = "Already Reported Condoms";
+		}
+		if (ReportedCigarettes)
+		{
+			Labels[3].text = "Already Reported Cigarettes";
+		}
+		if (ReportedTheft)
+		{
+			Labels[4].text = "Already Reported Theft";
+		}
+		if (ReportedCheating)
+		{
+			Labels[5].text = "Already Reported Cheating";
+		}
+		if (StudentManager.RivalBookBag.Alcohol && !ReportedAlcohol)
+		{
+			Labels[1].alpha = 1f;
+		}
+		if (StudentManager.RivalBookBag.Condoms && !ReportedCondoms)
+		{
+			Labels[2].alpha = 1f;
+		}
+		if (StudentManager.RivalBookBag.Cigarettes && !ReportedCigarettes)
+		{
+			Labels[3].alpha = 1f;
+		}
+		if (StudentManager.RivalBookBag.StolenRing && !ReportedTheft)
+		{
+			Labels[4].alpha = 1f;
+		}
+		if (StudentManager.RivalBookBag.AnswerSheet && !ReportedCheating)
+		{
+			Labels[5].alpha = 1f;
+		}
+		if (StudentManager.RivalBookBag.Narcotics)
+		{
+			Labels[6].alpha = 1f;
+		}
+	}
+
+	private void UpdateHighlight()
+	{
+		if (Selected < 1)
+		{
+			Selected = 7;
+		}
+		else if (Selected > 7)
+		{
+			Selected = 1;
+		}
+		if (Selected == 6)
+		{
+			NarcoticsWindow.gameObject.SetActive(true);
+		}
+		else
+		{
+			NarcoticsWindow.gameObject.SetActive(false);
+		}
+		Highlight.transform.localPosition = new Vector3(Highlight.transform.localPosition.x, 200f - 50f * (float)Selected, Highlight.transform.localPosition.z);
+	}
+
+	private void LateUpdate()
+	{
+		if (!(Vector3.Distance(base.transform.position, Yandere.transform.position) < 5f))
+		{
+			return;
+		}
+		if (Angry)
+		{
+			BS_SadMouth = Mathf.Lerp(BS_SadMouth, 100f, Time.deltaTime * 10f);
+			BS_MadBrow = Mathf.Lerp(BS_MadBrow, 100f, Time.deltaTime * 10f);
+			BS_SadBrow = Mathf.Lerp(BS_SadBrow, 0f, Time.deltaTime * 10f);
+			BS_AngryEyes = Mathf.Lerp(BS_AngryEyes, 100f, Time.deltaTime * 10f);
+		}
+		else if (Stern)
+		{
+			BS_SadMouth = Mathf.Lerp(BS_SadMouth, 0f, Time.deltaTime * 10f);
+			BS_MadBrow = Mathf.Lerp(BS_MadBrow, 100f, Time.deltaTime * 10f);
+			BS_SadBrow = Mathf.Lerp(BS_SadBrow, 0f, Time.deltaTime * 10f);
+			BS_AngryEyes = Mathf.Lerp(BS_AngryEyes, 0f, Time.deltaTime * 10f);
+		}
+		else if (Sad)
+		{
+			BS_SadMouth = Mathf.Lerp(BS_SadMouth, 100f, Time.deltaTime * 10f);
+			BS_MadBrow = Mathf.Lerp(BS_MadBrow, 0f, Time.deltaTime * 10f);
+			BS_SadBrow = Mathf.Lerp(BS_SadBrow, 100f, Time.deltaTime * 10f);
+			BS_AngryEyes = Mathf.Lerp(BS_AngryEyes, 0f, Time.deltaTime * 10f);
+		}
+		else
+		{
+			BS_SadMouth = Mathf.Lerp(BS_SadMouth, 0f, Time.deltaTime * 10f);
+			BS_MadBrow = Mathf.Lerp(BS_MadBrow, 0f, Time.deltaTime * 10f);
+			BS_SadBrow = Mathf.Lerp(BS_SadBrow, 0f, Time.deltaTime * 10f);
+			BS_AngryEyes = Mathf.Lerp(BS_AngryEyes, 0f, Time.deltaTime * 10f);
+		}
+		if (EightiesAttacher.gameObject.activeInHierarchy && !UpdatedFace)
+		{
+			UpdatedFace = true;
+			Face = PelvisRoot.GetChild(1).GetComponent<SkinnedMeshRenderer>();
+		}
+		Face.SetBlendShapeWeight(SadMouthID, BS_SadMouth);
+		Face.SetBlendShapeWeight(MadBrowID, BS_MadBrow);
+		Face.SetBlendShapeWeight(SadBrowID, BS_SadBrow);
+		Face.SetBlendShapeWeight(AngryEyesID, BS_AngryEyes);
+		if (MyAudio.isPlaying)
+		{
+			if (InterrogationPhase != 6)
+			{
+				MouthTimer += Time.deltaTime;
+				if (MouthTimer > TimerLimit)
+				{
+					MouthTarget = Random.Range(0f, 100f);
+					MouthTimer = 0f;
+				}
+				MouthOpen = Mathf.Lerp(MouthOpen, MouthTarget, Time.deltaTime * TalkSpeed);
+			}
+			else
+			{
+				MouthOpen = Mathf.Lerp(MouthOpen, 0f, Time.deltaTime * TalkSpeed);
+			}
+		}
+		else
+		{
+			MouthOpen = Mathf.Lerp(MouthOpen, 0f, Time.deltaTime * TalkSpeed);
+		}
+		Face.SetBlendShapeWeight(MouthOpenID, MouthOpen);
+		LookAtTarget = Vector3.Lerp(LookAtTarget, LookAtPlayer ? Yandere.Head.position : Default.position, Time.deltaTime * 2f);
+		Head.LookAt(LookAtTarget);
+	}
+
+	public void Quit()
+	{
+		Debug.Log("CounselorScript has called the Quit() function.");
+		bool noticed = Yandere.ShoulderCamera.Noticed;
+		CounselorSubtitle.text = "";
+		if (StudentManager.Students[1] != null)
+		{
+			Yandere.Senpai = StudentManager.Students[1].transform;
+		}
+		Yandere.PauseScreen.Hint.MyPanel.alpha = 1f;
+		Yandere.DetectionPanel.alpha = 1f;
+		Yandere.RPGCamera.mouseSpeed = 8f;
+		Yandere.HUD.alpha = 1f;
+		Yandere.SuspiciousActionTimer = 0f;
+		Yandere.WeaponTimer = 0f;
+		Yandere.TheftTimer = 0f;
+		Yandere.HeartRate.gameObject.SetActive(true);
+		Yandere.Subtitle.gameObject.SetActive(true);
+		Yandere.CannotRecover = false;
+		Yandere.Noticed = false;
+		Yandere.Talking = true;
+		Yandere.ShoulderCamera.GoingToCounselor = false;
+		Yandere.ShoulderCamera.HUD.SetActive(true);
+		Yandere.ShoulderCamera.Noticed = false;
+		Yandere.ShoulderCamera.enabled = true;
+		Yandere.TargetStudent = Student;
+		if (!Yandere.Jukebox.FullSanity.isPlaying)
+		{
+			Yandere.Jukebox.FullSanity.volume = 0f;
+			Yandere.Jukebox.HalfSanity.volume = 0f;
+			Yandere.Jukebox.NoSanity.volume = 0f;
+			Yandere.Jukebox.FullSanity.Play();
+			Yandere.Jukebox.HalfSanity.Play();
+			Yandere.Jukebox.NoSanity.Play();
+		}
+		Yandere.transform.position = new Vector3(-21.5f, 0f, 8f);
+		Yandere.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+		Yandere.ShoulderCamera.OverShoulder = false;
+		CounselorBar.SetActive(false);
+		StudentManager.EnablePrompts();
+		if (!EightiesAttacher.gameObject.activeInHierarchy)
+		{
+			Laptop.SetActive(true);
+		}
+		else
+		{
+			MyAnimation.CrossFade("f02_deskWritePingPong_00");
+			base.transform.position += new Vector3(0f, -0.1f, 0f);
+			RedPen.SetActive(true);
+		}
+		LookAtPlayer = false;
+		ShowWindow = false;
+		TalkTimer = 1f;
+		Patience = 0;
+		Stern = false;
+		Angry = false;
+		Sad = false;
+		PromptBar.ClearButtons();
+		PromptBar.Show = false;
+		if (!StudentManager.TutorialActive)
+		{
+			StudentManager.ComeBack();
+		}
+		StudentManager.GracePeriod(10f);
+		if (noticed)
+		{
+			StudentManager.Reputation.UpdateRep();
+		}
+		Yandere.CameraEffects.UpdateDOF(2f);
+		Physics.SyncTransforms();
+	}
+
+	private void UpdateInterrogation()
+	{
+		if (VibrationCheck)
+		{
+			VibrationTimer = Mathf.MoveTowards(VibrationTimer, 0f, Time.deltaTime);
+			if (VibrationTimer == 0f)
+			{
+				GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
+				VibrationCheck = false;
+			}
+		}
+		Timer += Time.deltaTime;
+		if (Input.GetButtonDown("A") && InterrogationPhase != 4)
+		{
+			Timer += 20f;
+		}
+		if (InterrogationPhase == 0)
+		{
+			if (Timer > 1f || Input.GetButtonDown("A"))
+			{
+				Debug.Log("Previous Punishments: " + CounselorPunishments);
+				Patience -= CounselorPunishments;
+				if (Patience < -6)
+				{
+					Patience = -6;
+				}
+				GenkaChibi.transform.localPosition = new Vector3(0f, 90 * Patience, 0f);
+				Yandere.MainCamera.transform.eulerAngles = CameraTarget.eulerAngles;
+				Yandere.MainCamera.transform.position = CameraTarget.position;
+				Yandere.MainCamera.transform.Translate(Vector3.forward * -1f);
+				if (CounselorVisits < 3)
+				{
+					CounselorVisits++;
+				}
+				if (CounselorTape == 0)
+				{
+					CounselorOption[4].Label.color = new Color(0f, 0f, 0f, 0.5f);
+				}
+				else
+				{
+					CounselorOption[4].Label.color = new Color(0f, 0f, 0f, 1f);
+					CounselorOption[4].Label.text = "Blame Delinquents";
+				}
+				if (Yandere.Subtitle.CurrentClip != null)
+				{
+					Object.Destroy(Yandere.Subtitle.CurrentClip);
+				}
+				Yandere.CameraEffects.UpdateDOF(1.1f);
+				GenkaChibi.mainTexture = AnnoyedChibi;
+				CounselorBar.SetActive(true);
+				Subtitle.Label.text = "";
+				InterrogationPhase++;
+				Time.timeScale = 1f;
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 1)
+		{
+			Yandere.Police.Darkness.color -= new Color(0f, 0f, 0f, Time.deltaTime);
+			Yandere.MainCamera.transform.position = Vector3.Lerp(Yandere.MainCamera.transform.position, CameraTarget.position, Timer * Time.deltaTime * 0.5f);
+			if (Timer > 5f || Input.GetButtonDown("A"))
+			{
+				Yandere.MainCamera.transform.position = CameraTarget.position;
+				MyAudio.clip = GreetingClips[CounselorVisits];
+				CounselorSubtitle.text = Greetings[CounselorVisits];
+				Yandere.Police.Darkness.color = new Color(0f, 0f, 0f, 0f);
+				InterrogationPhase++;
+				MyAudio.Play();
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 2)
+		{
+			if (Input.GetButtonDown("A"))
+			{
+				MyAudio.Stop();
+			}
+			if (Timer > MyAudio.clip.length + 0.5f)
+			{
+				if (Crime == StudentWitnessType.Blood || Crime == StudentWitnessType.BloodAndInsanity)
+				{
+					MyAudio.clip = BloodLectureClips[BloodVisits];
+					CounselorSubtitle.text = BloodLectures[BloodVisits];
+					if (BloodVisits < 2)
+					{
+						BloodVisits++;
+					}
+					CrimeID = 1;
+				}
+				else if (Crime == StudentWitnessType.Insanity || Crime == StudentWitnessType.CleaningItem || Crime == StudentWitnessType.HoldingBloodyClothing || Crime == StudentWitnessType.Poisoning || Crime == StudentWitnessType.Stalking)
+				{
+					MyAudio.clip = InsanityLectureClips[InsanityVisits];
+					CounselorSubtitle.text = InsanityLectures[InsanityVisits];
+					if (InsanityVisits < 2)
+					{
+						InsanityVisits++;
+					}
+					CrimeID = 2;
+				}
+				else if (Crime == StudentWitnessType.Lewd)
+				{
+					MyAudio.clip = LewdLectureClips[LewdVisits];
+					CounselorSubtitle.text = LewdLectures[LewdVisits];
+					if (LewdVisits < 2)
+					{
+						LewdVisits++;
+					}
+					CrimeID = 3;
+				}
+				else if (Crime == StudentWitnessType.Theft || Crime == StudentWitnessType.Pickpocketing)
+				{
+					MyAudio.clip = TheftLectureClips[TheftVisits];
+					CounselorSubtitle.text = TheftLectures[TheftVisits];
+					if (TheftVisits < 2)
+					{
+						TheftVisits++;
+					}
+					CrimeID = 4;
+				}
+				else if (Crime == StudentWitnessType.Trespassing)
+				{
+					MyAudio.clip = TrespassLectureClips[TrespassVisits];
+					CounselorSubtitle.text = TrespassLectures[TrespassVisits];
+					if (TrespassVisits < 2)
+					{
+						TrespassVisits++;
+					}
+					CrimeID = 5;
+				}
+				else if (Crime == StudentWitnessType.Weapon || Crime == StudentWitnessType.WeaponAndBlood || Crime == StudentWitnessType.WeaponAndInsanity || Crime == StudentWitnessType.WeaponAndBloodAndInsanity)
+				{
+					MyAudio.clip = WeaponLectureClips[WeaponVisits];
+					CounselorSubtitle.text = WeaponLectures[WeaponVisits];
+					if (WeaponVisits < 2)
+					{
+						WeaponVisits++;
+					}
+					CrimeID = 6;
+				}
+				InterrogationPhase++;
+				MyAudio.Play();
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 3)
+		{
+			if (Input.GetButtonDown("A"))
+			{
+				MyAudio.Stop();
+			}
+			if (Timer > MyAudio.clip.length + 0.5f)
+			{
+				for (int i = 1; i < 7; i++)
+				{
+					CounselorOption[i].transform.localPosition = CounselorOption[i].OriginalPosition;
+					CounselorOption[i].Sprite.color = CounselorOption[i].OriginalColor;
+					CounselorOption[i].transform.localScale = new Vector3(0.9f, 0.9f, 1f);
+					CounselorOption[i].gameObject.SetActive(true);
+					CounselorOption[i].Clicked = false;
+				}
+				Yandere.CharacterAnimation["f02_countdown_00"].speed = 1f;
+				Yandere.CharacterAnimation.Play("f02_countdown_00");
+				Yandere.transform.position = new Vector3(-27.818f, 0f, 12f);
+				Yandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+				Yandere.MainCamera.transform.position = new Vector3(-28f, 1.1f, 12f);
+				Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+				Reticle.transform.localPosition = new Vector3(0f, 0f, 0f);
+				CounselorOptions.SetActive(true);
+				CounselorBar.SetActive(false);
+				CounselorSubtitle.text = "";
+				MyAudio.clip = Countdown;
+				MyAudio.Play();
+				PromptBar.Label[0].text = "Accept";
+				PromptBar.Label[4].text = "Choose";
+				PromptBar.Label[5].text = "Choose";
+				PromptBar.UpdateButtons();
+				PromptBar.Show = true;
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+				Yandere.CameraEffects.UpdateDOF(0.4f);
+				InterrogationPhase++;
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 4)
+		{
+			Yandere.MainCamera.transform.Translate(Vector3.forward * Time.deltaTime * 0.01f);
+			CounselorOptions.transform.localEulerAngles += new Vector3(0f, 0f, Time.deltaTime * -36f);
+			if (InputDevice.Type == InputDeviceType.Gamepad)
+			{
+				Reticle.SetActive(true);
+				Cursor.visible = false;
+				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 20f, Input.GetAxis("Vertical") * 20f, 0f);
+				if (Reticle.transform.localPosition.x > 975f)
+				{
+					Reticle.transform.localPosition = new Vector3(975f, Reticle.transform.localPosition.y, Reticle.transform.localPosition.z);
+				}
+				if (Reticle.transform.localPosition.x < -975f)
+				{
+					Reticle.transform.localPosition = new Vector3(-975f, Reticle.transform.localPosition.y, Reticle.transform.localPosition.z);
+				}
+				if (Reticle.transform.localPosition.y > 525f)
+				{
+					Reticle.transform.localPosition = new Vector3(Reticle.transform.localPosition.x, 525f, Reticle.transform.localPosition.z);
+				}
+				if (Reticle.transform.localPosition.y < -525f)
+				{
+					Reticle.transform.localPosition = new Vector3(Reticle.transform.localPosition.x, -525f, Reticle.transform.localPosition.z);
+				}
+			}
+			else
+			{
+				Reticle.SetActive(true);
+				Cursor.visible = true;
+				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 20f, Input.GetAxis("Vertical") * 20f, 0f);
+			}
+			for (int j = 1; j < 7; j++)
+			{
+				CounselorOption[j].transform.eulerAngles = new Vector3(CounselorOption[j].transform.eulerAngles.x, CounselorOption[j].transform.eulerAngles.y, 0f);
+				if (!CounselorOption[j].Clicked && (!(CounselorOption[j].Sprite.color != CounselorOption[j].OriginalColor) || !Input.GetButtonDown("A")))
+				{
+					continue;
+				}
+				for (int k = 1; k < 7; k++)
+				{
+					if (k != j)
+					{
+						CounselorOption[k].gameObject.SetActive(false);
+					}
+				}
+				Yandere.CharacterAnimation["f02_countdown_00"].time = 10f;
+				MyAudio.clip = Choice;
+				MyAudio.pitch = 1f;
+				MyAudio.Play();
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+				Reticle.SetActive(false);
+				InterrogationPhase++;
+				Answer = j;
+				Timer = 0f;
+				PromptBar.ClearButtons();
+			}
+			if (Timer > 10f)
+			{
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+				Reticle.SetActive(false);
+				SilentTreatment = true;
+				InterrogationPhase++;
+				Timer = 0f;
+				PromptBar.ClearButtons();
+			}
+		}
+		else if (InterrogationPhase == 5)
+		{
+			int l = 1;
+			if (SilentTreatment)
+			{
+				CounselorOptions.transform.localScale += new Vector3(Time.deltaTime * 2f, Time.deltaTime * 2f, Time.deltaTime * 2f);
+				for (; l < 7; l++)
+				{
+					CounselorOption[l].transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
+				}
+			}
+			if (Timer > 3f || Input.GetButtonDown("A"))
+			{
+				CounselorOptions.transform.localScale = new Vector3(1f, 1f, 1f);
+				CounselorOptions.SetActive(false);
+				CounselorBar.SetActive(true);
+				Yandere.CameraEffects.UpdateDOF(1.1f);
+				Yandere.transform.position = new Vector3(-27.51f, 0f, 12f);
+				Yandere.MainCamera.transform.position = CameraTarget.position;
+				Yandere.MainCamera.transform.eulerAngles = CameraTarget.eulerAngles;
+				if (SilentTreatment)
+				{
+					MyAudio.clip = Silence;
+					CounselorSubtitle.text = "...";
+				}
+				else if (Answer == 1)
+				{
+					MyAudio.clip = ExcuseClips[CrimeID];
+					CounselorSubtitle.text = Excuses[CrimeID];
+					if (CrimeID == 1)
+					{
+						BloodExcuseUsed++;
+					}
+					else if (CrimeID == 2)
+					{
+						InsanityExcuseUsed++;
+					}
+					else if (CrimeID == 3)
+					{
+						LewdExcuseUsed++;
+					}
+					else if (CrimeID == 4)
+					{
+						TheftExcuseUsed++;
+					}
+					else if (CrimeID == 5)
+					{
+						TrespassExcuseUsed++;
+					}
+					else if (CrimeID == 6)
+					{
+						WeaponExcuseUsed++;
+					}
+				}
+				else if (Answer == 2)
+				{
+					MyAudio.clip = ApologyClip;
+					CounselorSubtitle.text = Apology;
+					ApologiesUsed++;
+				}
+				else if (Answer == 3)
+				{
+					MyAudio.clip = LieClips[CrimeID];
+					CounselorSubtitle.text = Lies[CrimeID];
+				}
+				else if (Answer == 4)
+				{
+					MyAudio.clip = DelinquentClips[CrimeID];
+					CounselorSubtitle.text = Delinquents[CrimeID];
+				}
+				else if (Answer == 5)
+				{
+					MyAudio.clip = FlirtClip;
+					CounselorSubtitle.text = Flirt;
+				}
+				else if (Answer == 6)
+				{
+					MyAudio.clip = ThreatenClip;
+					CounselorSubtitle.text = Threaten;
+				}
+				Yandere.CharacterAnimation.Play("f02_sit_00");
+				InterrogationPhase++;
+				MyAudio.Play();
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 6)
+		{
+			if (Answer == 6)
+			{
+				Yandere.Sanity = Mathf.MoveTowards(Yandere.Sanity, 0f, Time.deltaTime * 7.5f);
+				Rumble.volume += Time.deltaTime * 0.075f;
+			}
+			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A"))
+			{
+				if (SilentTreatment)
+				{
+					int num = Random.Range(0, 3);
+					MyAudio.clip = SilentClips[num];
+					CounselorSubtitle.text = Silents[num];
+					Patience--;
+				}
+				else if (Answer == 1)
+				{
+					if (CrimeID == 1)
+					{
+						Debug.Log("The player's crime is Bloodiness.");
+					}
+					else if (CrimeID == 2)
+					{
+						Debug.Log("The player's crime is Insanity.");
+					}
+					else if (CrimeID == 3)
+					{
+						Debug.Log("The player's crime is Lewdness.");
+					}
+					else if (CrimeID == 4)
+					{
+						Debug.Log("The player's crime is Theft.");
+					}
+					else if (CrimeID == 5)
+					{
+						Debug.Log("The player's crime is Trespassing.");
+					}
+					else if (CrimeID == 6)
+					{
+						Debug.Log("The player's crime is Weaponry.");
+					}
+					Debug.Log("The player has chosen to use an exuse.");
+					bool flag = false;
+					if ((CrimeID == 1 && BloodExcuseUsed > 1) || (CrimeID == 2 && InsanityExcuseUsed > 1) || (CrimeID == 3 && LewdExcuseUsed > 1) || (CrimeID == 4 && TheftExcuseUsed > 1) || (CrimeID == 5 && TrespassExcuseUsed > 1) || (CrimeID == 6 && WeaponExcuseUsed > 1))
+					{
+						Debug.Log("Yandere-chan has already used this excuse before.");
+						flag = true;
+					}
+					if (!flag)
+					{
+						Debug.Log("Yandere-chan's excuse is not invalid!");
+						MyAudio.clip = AcceptExcuseClips[CrimeID];
+						CounselorSubtitle.text = AcceptExcuses[CrimeID];
+						MyAnimation.CrossFade("CounselorRelief", 1f);
+						Stern = false;
+						Patience = 1;
+					}
+					else
+					{
+						Debug.Log("Yandere-chan's excuse has been deemed invalid.");
+						int num2 = Random.Range(0, 3);
+						MyAudio.clip = RejectExcuseClips[num2];
+						CounselorSubtitle.text = RejectExcuses[num2];
+						MyAnimation.CrossFade("CounselorAnnoyed");
+						Angry = true;
+						Patience--;
+					}
+				}
+				else if (Answer == 2)
+				{
+					if (ApologiesUsed == 1)
+					{
+						MyAudio.clip = AcceptApologyClip;
+						CounselorSubtitle.text = AcceptApology;
+						MyAnimation.CrossFade("CounselorRelief", 1f);
+						Stern = false;
+						Patience = 1;
+					}
+					else
+					{
+						int num3 = Random.Range(0, 3);
+						MyAudio.clip = RejectApologyClips[num3];
+						CounselorSubtitle.text = RejectApologies[num3];
+						MyAnimation.CrossFade("CounselorAnnoyed");
+						Patience--;
+					}
+				}
+				else if (Answer == 3)
+				{
+					int num4 = Random.Range(0, 5);
+					MyAudio.clip = RejectLieClips[num4];
+					CounselorSubtitle.text = RejectLies[num4];
+					MyAnimation.CrossFade("CounselorAnnoyed");
+					Angry = true;
+					Patience--;
+				}
+				else if (Answer == 4)
+				{
+					bool flag2 = false;
+					bool flag3 = false;
+					bool flag4 = false;
+					int num5 = 5;
+					if (StudentGlobals.GetStudentDead(76) && StudentGlobals.GetStudentDead(77) && StudentGlobals.GetStudentDead(78) && StudentGlobals.GetStudentDead(79) && StudentGlobals.GetStudentDead(80))
+					{
+						flag4 = true;
+					}
+					else if (StudentGlobals.GetStudentExpelled(76) && StudentGlobals.GetStudentExpelled(77) && StudentGlobals.GetStudentExpelled(78) && StudentGlobals.GetStudentExpelled(79) && StudentGlobals.GetStudentExpelled(80))
+					{
+						flag3 = true;
+					}
+					else
+					{
+						if (StudentManager.Students[76] == null)
+						{
+							num5--;
+						}
+						else if (!StudentManager.Students[76].gameObject.activeInHierarchy)
+						{
+							num5--;
+						}
+						if (StudentManager.Students[77] == null)
+						{
+							num5--;
+						}
+						else if (!StudentManager.Students[77].gameObject.activeInHierarchy)
+						{
+							num5--;
+						}
+						if (StudentManager.Students[78] == null)
+						{
+							num5--;
+						}
+						else if (!StudentManager.Students[78].gameObject.activeInHierarchy)
+						{
+							num5--;
+						}
+						if (StudentManager.Students[79] == null)
+						{
+							num5--;
+						}
+						else if (!StudentManager.Students[79].gameObject.activeInHierarchy)
+						{
+							num5--;
+						}
+						if (StudentManager.Students[80] == null)
+						{
+							num5--;
+						}
+						else if (!StudentManager.Students[80].gameObject.activeInHierarchy)
+						{
+							num5--;
+						}
+						if (num5 == 0)
+						{
+							flag2 = true;
+						}
+					}
+					bool flag5 = false;
+					if ((CrimeID == 1 && BloodBlameUsed > 1) || (CrimeID == 2 && InsanityBlameUsed > 1) || (CrimeID == 3 && LewdBlameUsed > 1) || (CrimeID == 4 && TheftBlameUsed > 1) || (CrimeID == 5 && TrespassBlameUsed > 1) || (CrimeID == 6 && WeaponBlameUsed > 1))
+					{
+						flag5 = true;
+					}
+					if (flag4)
+					{
+						MyAudio.clip = DelinquentsDeadClip;
+						CounselorSubtitle.text = DelinquentsDead;
+						MyAnimation.CrossFade("CounselorAnnoyed");
+						Angry = true;
+						Patience--;
+					}
+					else if (flag3)
+					{
+						MyAudio.clip = DelinquentsExpelledClip;
+						CounselorSubtitle.text = DelinquentsExpelled;
+						MyAnimation.CrossFade("CounselorAnnoyed");
+						Patience--;
+					}
+					else if (flag2)
+					{
+						MyAudio.clip = DelinquentsGoneClip;
+						CounselorSubtitle.text = DelinquentsGone;
+						MyAnimation.CrossFade("CounselorAnnoyed");
+						Patience--;
+					}
+					else if (!flag5)
+					{
+						if (CrimeID == 1)
+						{
+							Debug.Log("Banning weapons.");
+							WeaponsBanned++;
+						}
+						MyAudio.clip = AcceptBlameClips[CrimeID];
+						CounselorSubtitle.text = AcceptBlames[CrimeID];
+						MyAnimation.CrossFade("CounselorSad", 1f);
+						Stern = false;
+						Sad = true;
+						Patience = 1;
+						DelinquentPunishments++;
+						if (CrimeID == 1)
+						{
+							BloodBlameUsed++;
+						}
+						else if (CrimeID == 2)
+						{
+							InsanityBlameUsed++;
+						}
+						else if (CrimeID == 3)
+						{
+							LewdBlameUsed++;
+						}
+						else if (CrimeID == 4)
+						{
+							TheftBlameUsed++;
+						}
+						else if (CrimeID == 5)
+						{
+							TrespassBlameUsed++;
+						}
+						else if (CrimeID == 6)
+						{
+							WeaponBlameUsed++;
+						}
+						if (DelinquentPunishments > 5)
+						{
+							MustExpelDelinquents = true;
+						}
+					}
+					else
+					{
+						int num6 = Random.Range(0, 3);
+						MyAudio.clip = RejectBlameClips[num6];
+						CounselorSubtitle.text = RejectBlames[num6];
+						MyAnimation.CrossFade("CounselorAnnoyed");
+						Patience--;
+					}
+				}
+				else if (Answer == 5)
+				{
+					int num7 = Random.Range(0, 3);
+					MyAudio.clip = RejectFlirtClips[num7];
+					CounselorSubtitle.text = RejectFlirts[num7];
+					MyAnimation.CrossFade("CounselorAnnoyed");
+					Angry = true;
+					Patience--;
+				}
+				else if (Answer == 6)
+				{
+					MyAudio.clip = RejectThreatClip;
+					CounselorSubtitle.text = RejectThreat;
+					MyAnimation.CrossFade("CounselorAnnoyed");
+					InterrogationPhase += 2;
+					Patience = -6;
+					Angry = true;
+				}
+				if (Patience < -6)
+				{
+					Patience = -6;
+				}
+				if (Patience == 1)
+				{
+					GenkaChibi.mainTexture = HappyChibi;
+				}
+				else if (Patience == -6)
+				{
+					GenkaChibi.mainTexture = MadChibi;
+				}
+				else
+				{
+					GenkaChibi.mainTexture = AnnoyedChibi;
+				}
+				InterrogationPhase++;
+				MyAudio.Play();
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 7)
+		{
+			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A"))
+			{
+				if (Patience < 0)
+				{
+					int num8 = Random.Range(0, 3);
+					MyAudio.clip = BadClosingClips[num8];
+					CounselorSubtitle.text = BadClosings[num8];
+					MyAnimation.CrossFade("CounselorArmsCrossed", 1f);
+					InterrogationPhase += 2;
+				}
+				else
+				{
+					if (MustExpelDelinquents)
+					{
+						MyAudio.clip = ExpelDelinquentsClip;
+						CounselorSubtitle.text = ExpelDelinquents;
+						MustExpelDelinquents = false;
+						StudentManager.Students[76].gameObject.SetActive(false);
+						StudentManager.Students[77].gameObject.SetActive(false);
+						StudentManager.Students[78].gameObject.SetActive(false);
+						StudentManager.Students[79].gameObject.SetActive(false);
+						StudentManager.Students[80].gameObject.SetActive(false);
+						ExpelledDelinquents = true;
+						DelinquentRadio.SetActive(false);
+					}
+					else if (Answer == 4)
+					{
+						MyAudio.clip = BlameClosingClips[CrimeID];
+						CounselorSubtitle.text = BlameClosings[CrimeID];
+					}
+					else
+					{
+						int num9 = Random.Range(0, 3);
+						MyAudio.clip = FreeToLeaveClips[num9];
+						CounselorSubtitle.text = FreeToLeaves[num9];
+						MyAnimation.CrossFade("CounselorArmsCrossed", 1f);
+						Stern = true;
+					}
+					InterrogationPhase++;
+				}
+				MyAudio.Play();
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 8)
+		{
+			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A"))
+			{
+				CounselorDoor.FadeOut = true;
+				CounselorDoor.Exit = true;
+				Interrogating = false;
+				InterrogationPhase = 0;
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 9)
+		{
+			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A"))
+			{
+				MyAnimation.Play("CounselorSlamDesk");
+				InterrogationPhase++;
+				MyAudio.Stop();
+				Stern = false;
+				Angry = true;
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 10)
+		{
+			if (Timer > 0.5f)
+			{
+				if (!Slammed)
+				{
+					GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
+					VibrationCheck = true;
+					VibrationTimer = 0.2f;
+					AudioSource.PlayClipAtPoint(Slam, base.transform.position);
+					Shake.shakeAmount = 0.1f;
+					Shake.enabled = true;
+					Shake.shake = 0.5f;
+					Slammed = true;
+				}
+				Shake.shakeAmount = Mathf.Lerp(Shake.shakeAmount, 0f, Time.deltaTime);
+			}
+			Shake.shakeAmount = Mathf.Lerp(Shake.shakeAmount, 0f, Time.deltaTime * 10f);
+			if (Timer > 1.5f || Input.GetButtonDown("A"))
+			{
+				MyAudio.clip = SuspensionClips[Mathf.Abs(Patience)];
+				CounselorSubtitle.text = Suspensions[Mathf.Abs(Patience)];
+				MyAnimation.Play("CounselorSlamIdle");
+				Shake.enabled = false;
+				InterrogationPhase++;
+				SentHome = true;
+				MyAudio.Play();
+				Timer = 0f;
+			}
+		}
+		else if (InterrogationPhase == 11 && (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A")) && !Yandere.Police.FadeOut)
+		{
+			CounselorPunishments++;
+			Yandere.Police.Darkness.color = new Color(0f, 0f, 0f, 0f);
+			Yandere.Police.SuspensionLength = Mathf.Abs(Patience);
+			Yandere.Police.Darkness.enabled = true;
+			Yandere.Police.ClubActivity = false;
+			Yandere.Police.Suspended = true;
+			Yandere.Police.FadeOut = true;
+			Yandere.Police.HiddenCorpses = 0;
+			if (Yandere.Police.Corpses > 0)
+			{
+				Yandere.ShoulderCamera.GoingToCounselor = true;
+			}
+			Yandere.ShoulderCamera.HUD.SetActive(true);
+			InterrogationPhase++;
+			if (Patience == -6)
+			{
+				Expelled = true;
+			}
+			Timer = 0f;
+			Yandere.Senpai = StudentManager.Students[1].transform;
+			StudentManager.Reputation.PendingRep -= 10f;
+			StudentManager.Reputation.UpdateRep();
+		}
+		if (InterrogationPhase > 6)
+		{
+			Yandere.Sanity = Mathf.Lerp(Yandere.Sanity, 100f, Time.deltaTime);
+			Rumble.volume = Mathf.Lerp(Rumble.volume, 0f, Time.deltaTime);
+			GenkaChibi.transform.localPosition = Vector3.Lerp(GenkaChibi.transform.localPosition, new Vector3(0f, 90 * Patience, 0f), Time.deltaTime * 10f);
+		}
+	}
+
+	public void SaveExcusesUsed()
+	{
+		CounselorGlobals.BloodExcuseUsed = BloodExcuseUsed;
+		CounselorGlobals.InsanityExcuseUsed = InsanityExcuseUsed;
+		CounselorGlobals.LewdExcuseUsed = LewdExcuseUsed;
+		CounselorGlobals.TheftExcuseUsed = TheftExcuseUsed;
+		CounselorGlobals.TrespassExcuseUsed = TrespassExcuseUsed;
+		CounselorGlobals.WeaponExcuseUsed = WeaponExcuseUsed;
+	}
+
+	public void LoadExcusesUsed()
+	{
+		BloodExcuseUsed = CounselorGlobals.BloodExcuseUsed;
+		InsanityExcuseUsed = CounselorGlobals.InsanityExcuseUsed;
+		LewdExcuseUsed = CounselorGlobals.LewdExcuseUsed;
+		TheftExcuseUsed = CounselorGlobals.TheftExcuseUsed;
+		TrespassExcuseUsed = CounselorGlobals.TrespassExcuseUsed;
+		WeaponExcuseUsed = CounselorGlobals.WeaponExcuseUsed;
+	}
+
+	public void SaveCounselorData()
+	{
+		CounselorGlobals.CounselorPunishments = CounselorPunishments;
+		CounselorGlobals.CounselorVisits = CounselorVisits;
+		CounselorGlobals.CounselorTape = CounselorTape;
+		CounselorGlobals.BloodVisits = BloodVisits;
+		CounselorGlobals.InsanityVisits = InsanityVisits;
+		CounselorGlobals.LewdVisits = LewdVisits;
+		CounselorGlobals.TheftVisits = TheftVisits;
+		CounselorGlobals.TrespassVisits = TrespassVisits;
+		CounselorGlobals.WeaponVisits = WeaponVisits;
+		CounselorGlobals.BloodBlameUsed = BloodBlameUsed;
+		CounselorGlobals.InsanityBlameUsed = InsanityBlameUsed;
+		CounselorGlobals.LewdBlameUsed = LewdBlameUsed;
+		CounselorGlobals.TheftBlameUsed = TheftBlameUsed;
+		CounselorGlobals.TrespassBlameUsed = TrespassBlameUsed;
+		CounselorGlobals.WeaponBlameUsed = WeaponBlameUsed;
+		CounselorGlobals.ApologiesUsed = ApologiesUsed;
+		CounselorGlobals.WeaponsBanned = WeaponsBanned;
+		CounselorGlobals.DelinquentPunishments = DelinquentPunishments;
+	}
+
+	public void ExpelStudents()
+	{
+		if (ExpelledDelinquents)
+		{
+			StudentGlobals.SetStudentExpelled(76, true);
+			StudentGlobals.SetStudentExpelled(77, true);
+			StudentGlobals.SetStudentExpelled(78, true);
+			StudentGlobals.SetStudentExpelled(79, true);
+			StudentGlobals.SetStudentExpelled(80, true);
+		}
+	}
+
+	public void SilenceClips(AudioClip[] ClipArray)
+	{
+		for (int i = 0; i < 11; i++)
+		{
+			if (i < ClipArray.Length)
+			{
+				ClipArray[i] = LongestSilence;
+			}
+		}
+	}
+
+	public void SpawnDelinquents()
+	{
+		for (int i = 1; i < 6; i++)
+		{
+			if (StudentManager.Students[75 + i] != null)
+			{
+				StudentManager.Students[75 + i].Spawned = true;
+			}
+		}
+	}
 }

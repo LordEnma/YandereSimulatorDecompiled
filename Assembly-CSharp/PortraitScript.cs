@@ -1,70 +1,75 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PortraitScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PortraitScript : MonoBehaviour
 {
-  public GameObject[] StudentObject;
-  public Renderer Renderer1;
-  public Renderer Renderer2;
-  public Renderer Renderer3;
-  public Texture[] HairSet1;
-  public Texture[] HairSet2;
-  public Texture[] HairSet3;
-  public int Selected;
-  public int CurrentHair;
+	public GameObject[] StudentObject;
 
-  private void Start()
-  {
-    this.StudentObject[1].SetActive(false);
-    this.StudentObject[2].SetActive(false);
-    this.Selected = 1;
-    this.UpdateHair();
-  }
+	public Renderer Renderer1;
 
-  private void Update()
-  {
-    if (Input.GetKeyDown(KeyCode.Alpha1))
-    {
-      this.StudentObject[0].SetActive(true);
-      this.StudentObject[1].SetActive(false);
-      this.StudentObject[2].SetActive(false);
-      this.Selected = 1;
-    }
-    else if (Input.GetKeyDown(KeyCode.Alpha2))
-    {
-      this.StudentObject[0].SetActive(false);
-      this.StudentObject[1].SetActive(true);
-      this.StudentObject[2].SetActive(false);
-      this.Selected = 2;
-    }
-    else if (Input.GetKeyDown(KeyCode.Alpha3))
-    {
-      this.StudentObject[0].SetActive(false);
-      this.StudentObject[1].SetActive(false);
-      this.StudentObject[2].SetActive(true);
-      this.Selected = 3;
-    }
-    if (!Input.GetKeyDown(KeyCode.Space))
-      return;
-    ++this.CurrentHair;
-    if (this.CurrentHair > this.HairSet1.Length - 1)
-      this.CurrentHair = 0;
-    this.UpdateHair();
-  }
+	public Renderer Renderer2;
 
-  private void UpdateHair()
-  {
-    Texture texture = this.HairSet2[this.CurrentHair];
-    this.Renderer1.materials[0].mainTexture = texture;
-    this.Renderer1.materials[3].mainTexture = texture;
-    this.Renderer2.materials[2].mainTexture = texture;
-    this.Renderer2.materials[3].mainTexture = texture;
-    this.Renderer3.materials[0].mainTexture = texture;
-    this.Renderer3.materials[1].mainTexture = texture;
-  }
+	public Renderer Renderer3;
+
+	public Texture[] HairSet1;
+
+	public Texture[] HairSet2;
+
+	public Texture[] HairSet3;
+
+	public int Selected;
+
+	public int CurrentHair;
+
+	private void Start()
+	{
+		StudentObject[1].SetActive(false);
+		StudentObject[2].SetActive(false);
+		Selected = 1;
+		UpdateHair();
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			StudentObject[0].SetActive(true);
+			StudentObject[1].SetActive(false);
+			StudentObject[2].SetActive(false);
+			Selected = 1;
+		}
+		else if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			StudentObject[0].SetActive(false);
+			StudentObject[1].SetActive(true);
+			StudentObject[2].SetActive(false);
+			Selected = 2;
+		}
+		else if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			StudentObject[0].SetActive(false);
+			StudentObject[1].SetActive(false);
+			StudentObject[2].SetActive(true);
+			Selected = 3;
+		}
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			CurrentHair++;
+			if (CurrentHair > HairSet1.Length - 1)
+			{
+				CurrentHair = 0;
+			}
+			UpdateHair();
+		}
+	}
+
+	private void UpdateHair()
+	{
+		Texture mainTexture = HairSet2[CurrentHair];
+		Renderer1.materials[0].mainTexture = mainTexture;
+		Renderer1.materials[3].mainTexture = mainTexture;
+		Renderer2.materials[2].mainTexture = mainTexture;
+		Renderer2.materials[3].mainTexture = mainTexture;
+		Renderer3.materials[0].mainTexture = mainTexture;
+		Renderer3.materials[1].mainTexture = mainTexture;
+	}
 }

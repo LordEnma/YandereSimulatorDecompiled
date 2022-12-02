@@ -1,56 +1,54 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SabotageVendingMachineScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class SabotageVendingMachineScript : MonoBehaviour
 {
-  public VendingMachineScript VendingMachine;
-  public GameObject SabotageSparks;
-  public YandereScript Yandere;
-  public PromptScript Prompt;
+	public VendingMachineScript VendingMachine;
 
-  private void Start()
-  {
-    this.Prompt.enabled = false;
-    this.Prompt.Hide();
-  }
+	public GameObject SabotageSparks;
 
-  private void Update()
-  {
-    if (this.Yandere.Armed)
-    {
-      if (this.Yandere.EquippedWeapon.WeaponID != 6)
-        return;
-      this.Prompt.enabled = true;
-      if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-        return;
-      if (SchemeGlobals.GetSchemeStage(4) == 2)
-      {
-        SchemeGlobals.SetSchemeStage(4, 3);
-        this.Yandere.PauseScreen.Schemes.UpdateInstructions();
-      }
-      if ((UnityEngine.Object) this.Yandere.StudentManager.Students[11] != (UnityEngine.Object) null && DateGlobals.Weekday == DayOfWeek.Thursday)
-      {
-        this.Yandere.StudentManager.Students[11].Hungry = true;
-        this.Yandere.StudentManager.Students[11].Fed = false;
-      }
-      UnityEngine.Object.Instantiate<GameObject>(this.SabotageSparks, new Vector3(-2.5f, 5.3605f, -32.982f), Quaternion.identity);
-      this.VendingMachine.Sabotaged = true;
-      this.Prompt.enabled = false;
-      this.Prompt.Hide();
-      this.enabled = false;
-    }
-    else
-    {
-      if (!this.Prompt.enabled)
-        return;
-      this.Prompt.enabled = false;
-      this.Prompt.Hide();
-    }
-  }
+	public YandereScript Yandere;
+
+	public PromptScript Prompt;
+
+	private void Start()
+	{
+		Prompt.enabled = false;
+		Prompt.Hide();
+	}
+
+	private void Update()
+	{
+		if (Yandere.Armed)
+		{
+			if (Yandere.EquippedWeapon.WeaponID != 6)
+			{
+				return;
+			}
+			Prompt.enabled = true;
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				if (SchemeGlobals.GetSchemeStage(4) == 2)
+				{
+					SchemeGlobals.SetSchemeStage(4, 3);
+					Yandere.PauseScreen.Schemes.UpdateInstructions();
+				}
+				if (Yandere.StudentManager.Students[11] != null && DateGlobals.Weekday == DayOfWeek.Thursday)
+				{
+					Yandere.StudentManager.Students[11].Hungry = true;
+					Yandere.StudentManager.Students[11].Fed = false;
+				}
+				UnityEngine.Object.Instantiate(SabotageSparks, new Vector3(-2.5f, 5.3605f, -32.982f), Quaternion.identity);
+				VendingMachine.Sabotaged = true;
+				Prompt.enabled = false;
+				Prompt.Hide();
+				base.enabled = false;
+			}
+		}
+		else if (Prompt.enabled)
+		{
+			Prompt.enabled = false;
+			Prompt.Hide();
+		}
+	}
 }

@@ -1,38 +1,41 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RoseSpawnerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RoseSpawnerScript : MonoBehaviour
 {
-  public Transform DramaGirl;
-  public Transform Target;
-  public GameObject Rose;
-  public float Timer;
-  public float ForwardForce;
-  public float UpwardForce;
+	public Transform DramaGirl;
 
-  private void Start() => this.SpawnRose();
+	public Transform Target;
 
-  private void Update()
-  {
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer <= 0.10000000149011612)
-      return;
-    this.SpawnRose();
-  }
+	public GameObject Rose;
 
-  private void SpawnRose()
-  {
-    GameObject gameObject = Object.Instantiate<GameObject>(this.Rose, this.transform.position, Quaternion.identity);
-    gameObject.GetComponent<Rigidbody>().AddForce(this.transform.forward * this.ForwardForce);
-    gameObject.GetComponent<Rigidbody>().AddForce(this.transform.up * this.UpwardForce);
-    gameObject.transform.localEulerAngles = new Vector3(Random.Range(0.0f, 360f), Random.Range(0.0f, 360f), Random.Range(0.0f, 360f));
-    this.transform.localPosition = new Vector3(Random.Range(-5f, 5f), this.transform.localPosition.y, this.transform.localPosition.z);
-    this.transform.LookAt(this.DramaGirl);
-    this.Timer = 0.0f;
-  }
+	public float Timer;
+
+	public float ForwardForce;
+
+	public float UpwardForce;
+
+	private void Start()
+	{
+		SpawnRose();
+	}
+
+	private void Update()
+	{
+		Timer += Time.deltaTime;
+		if (Timer > 0.1f)
+		{
+			SpawnRose();
+		}
+	}
+
+	private void SpawnRose()
+	{
+		GameObject obj = Object.Instantiate(Rose, base.transform.position, Quaternion.identity);
+		obj.GetComponent<Rigidbody>().AddForce(base.transform.forward * ForwardForce);
+		obj.GetComponent<Rigidbody>().AddForce(base.transform.up * UpwardForce);
+		obj.transform.localEulerAngles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+		base.transform.localPosition = new Vector3(Random.Range(-5f, 5f), base.transform.localPosition.y, base.transform.localPosition.z);
+		base.transform.LookAt(DramaGirl);
+		Timer = 0f;
+	}
 }

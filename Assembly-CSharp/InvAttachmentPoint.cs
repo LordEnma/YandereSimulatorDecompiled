@@ -1,36 +1,34 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: InvAttachmentPoint
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Examples/Item Attachment Point")]
 public class InvAttachmentPoint : MonoBehaviour
 {
-  public InvBaseItem.Slot slot;
-  private GameObject mPrefab;
-  private GameObject mChild;
+	public InvBaseItem.Slot slot;
 
-  public GameObject Attach(GameObject prefab)
-  {
-    if ((Object) this.mPrefab != (Object) prefab)
-    {
-      this.mPrefab = prefab;
-      if ((Object) this.mChild != (Object) null)
-        Object.Destroy((Object) this.mChild);
-      if ((Object) this.mPrefab != (Object) null)
-      {
-        Transform transform1 = this.transform;
-        this.mChild = Object.Instantiate<GameObject>(this.mPrefab, transform1.position, transform1.rotation);
-        Transform transform2 = this.mChild.transform;
-        transform2.parent = transform1;
-        transform2.localPosition = Vector3.zero;
-        transform2.localRotation = Quaternion.identity;
-        transform2.localScale = Vector3.one;
-      }
-    }
-    return this.mChild;
-  }
+	private GameObject mPrefab;
+
+	private GameObject mChild;
+
+	public GameObject Attach(GameObject prefab)
+	{
+		if (mPrefab != prefab)
+		{
+			mPrefab = prefab;
+			if (mChild != null)
+			{
+				Object.Destroy(mChild);
+			}
+			if (mPrefab != null)
+			{
+				Transform transform = base.transform;
+				mChild = Object.Instantiate(mPrefab, transform.position, transform.rotation);
+				Transform obj = mChild.transform;
+				obj.parent = transform;
+				obj.localPosition = Vector3.zero;
+				obj.localRotation = Quaternion.identity;
+				obj.localScale = Vector3.one;
+			}
+		}
+		return mChild;
+	}
 }

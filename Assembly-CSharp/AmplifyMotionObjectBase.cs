@@ -1,204 +1,255 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AmplifyMotionObjectBase
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
-using AmplifyMotion;
 using System;
 using System.Collections.Generic;
+using AmplifyMotion;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 [AddComponentMenu("")]
 public class AmplifyMotionObjectBase : MonoBehaviour
 {
-  internal static bool ApplyToChildren = true;
-  [SerializeField]
-  private bool m_applyToChildren = AmplifyMotionObjectBase.ApplyToChildren;
-  private ObjectType m_type;
-  private Dictionary<Camera, MotionState> m_states = new Dictionary<Camera, MotionState>();
-  private bool m_fixedStep;
-  private int m_objectId;
-  private Vector3 m_lastPosition = Vector3.zero;
-  private int m_resetAtFrame = -1;
+	public enum MinMaxCurveState
+	{
+		Scalar = 0,
+		Curve = 1,
+		TwoCurves = 2,
+		TwoScalars = 3
+	}
 
-  internal bool FixedStep => this.m_fixedStep;
+	internal static bool ApplyToChildren = true;
 
-  internal int ObjectId => this.m_objectId;
+	[SerializeField]
+	private bool m_applyToChildren = ApplyToChildren;
 
-  public ObjectType Type => this.m_type;
+	private ObjectType m_type;
 
-  internal void RegisterCamera(AmplifyMotionCamera camera)
-  {
-    Camera component = camera.GetComponent<Camera>();
-    if ((component.cullingMask & 1 << this.gameObject.layer) == 0 || this.m_states.ContainsKey(component))
-      return;
-    MotionState motionState;
-    switch (this.m_type)
-    {
-      case ObjectType.Solid:
-        motionState = (MotionState) new SolidState(camera, this);
-        break;
-      case ObjectType.Skinned:
-        motionState = (MotionState) new SkinnedState(camera, this);
-        break;
-      case ObjectType.Cloth:
-        motionState = (MotionState) new ClothState(camera, this);
-        break;
-      case ObjectType.Particle:
-        motionState = (MotionState) new ParticleState(camera, this);
-        break;
-      default:
-        throw new Exception("[AmplifyMotion] Invalid object type.");
-    }
-    camera.RegisterObject(this);
-    this.m_states.Add(component, motionState);
-  }
+	private Dictionary<Camera, MotionState> m_states = new Dictionary<Camera, MotionState>();
 
-  internal void UnregisterCamera(AmplifyMotionCamera camera)
-  {
-    Camera component = camera.GetComponent<Camera>();
-    MotionState motionState;
-    if (!this.m_states.TryGetValue(component, out motionState))
-      return;
-    camera.UnregisterObject(this);
-    if (this.m_states.TryGetValue(component, out motionState))
-      motionState.Shutdown();
-    this.m_states.Remove(component);
-  }
+	private bool m_fixedStep;
 
-  private bool InitializeType()
-  {
-    Renderer component = this.GetComponent<Renderer>();
-    if (AmplifyMotionEffectBase.CanRegister(this.gameObject, false))
-    {
-      if ((UnityEngine.Object) this.GetComponent<ParticleSystem>() != (UnityEngine.Object) null)
-      {
-        this.m_type = ObjectType.Particle;
-        AmplifyMotionEffectBase.RegisterObject(this);
-      }
-      else if ((UnityEngine.Object) component != (UnityEngine.Object) null)
-      {
-        if (((object) component).GetType() == typeof (MeshRenderer))
-          this.m_type = ObjectType.Solid;
-        else if (((object) component).GetType() == typeof (SkinnedMeshRenderer))
-          this.m_type = !((UnityEngine.Object) this.GetComponent<Cloth>() != (UnityEngine.Object) null) ? ObjectType.Skinned : ObjectType.Cloth;
-        AmplifyMotionEffectBase.RegisterObject(this);
-      }
-    }
-    return (UnityEngine.Object) component != (UnityEngine.Object) null;
-  }
+	private int m_objectId;
 
-  private void OnEnable()
-  {
-    bool flag = this.InitializeType();
-    if (flag)
-    {
-      if (this.m_type == ObjectType.Cloth)
-        this.m_fixedStep = false;
-      else if (this.m_type == ObjectType.Solid)
-      {
-        Rigidbody component = this.GetComponent<Rigidbody>();
-        if ((UnityEngine.Object) component != (UnityEngine.Object) null && component.interpolation == RigidbodyInterpolation.None && !component.isKinematic)
-          this.m_fixedStep = true;
-      }
-    }
-    if (this.m_applyToChildren)
-    {
-      foreach (Component component in this.gameObject.transform)
-        AmplifyMotionEffectBase.RegisterRecursivelyS(component.gameObject);
-    }
-    if (flag)
-      return;
-    this.enabled = false;
-  }
+	private Vector3 m_lastPosition = Vector3.zero;
 
-  private void OnDisable() => AmplifyMotionEffectBase.UnregisterObject(this);
+	private int m_resetAtFrame = -1;
 
-  private void TryInitializeStates()
-  {
-    Dictionary<Camera, MotionState>.Enumerator enumerator = this.m_states.GetEnumerator();
-    while (enumerator.MoveNext())
-    {
-      MotionState motionState = enumerator.Current.Value;
-      if (motionState.Owner.Initialized && !motionState.Error && !motionState.Initialized)
-        motionState.Initialize();
-    }
-  }
+	internal bool FixedStep
+	{
+		get
+		{
+			return m_fixedStep;
+		}
+	}
 
-  private void Start()
-  {
-    if ((UnityEngine.Object) AmplifyMotionEffectBase.Instance != (UnityEngine.Object) null)
-      this.TryInitializeStates();
-    this.m_lastPosition = this.transform.position;
-  }
+	internal int ObjectId
+	{
+		get
+		{
+			return m_objectId;
+		}
+	}
 
-  private void Update()
-  {
-    if (!((UnityEngine.Object) AmplifyMotionEffectBase.Instance != (UnityEngine.Object) null))
-      return;
-    this.TryInitializeStates();
-  }
+	public ObjectType Type
+	{
+		get
+		{
+			return m_type;
+		}
+	}
 
-  private static void RecursiveResetMotionAtFrame(
-    Transform transform,
-    AmplifyMotionObjectBase obj,
-    int frame)
-  {
-    if ((UnityEngine.Object) obj != (UnityEngine.Object) null)
-      obj.m_resetAtFrame = frame;
-    foreach (Transform transform1 in transform)
-      AmplifyMotionObjectBase.RecursiveResetMotionAtFrame(transform1, transform1.GetComponent<AmplifyMotionObjectBase>(), frame);
-  }
+	internal void RegisterCamera(AmplifyMotionCamera camera)
+	{
+		Camera component = camera.GetComponent<Camera>();
+		if ((component.cullingMask & (1 << base.gameObject.layer)) != 0 && !m_states.ContainsKey(component))
+		{
+			MotionState motionState = null;
+			switch (m_type)
+			{
+			case ObjectType.Solid:
+				motionState = new SolidState(camera, this);
+				break;
+			case ObjectType.Skinned:
+				motionState = new SkinnedState(camera, this);
+				break;
+			case ObjectType.Cloth:
+				motionState = new ClothState(camera, this);
+				break;
+			case ObjectType.Particle:
+				motionState = new ParticleState(camera, this);
+				break;
+			default:
+				throw new Exception("[AmplifyMotion] Invalid object type.");
+			}
+			camera.RegisterObject(this);
+			m_states.Add(component, motionState);
+		}
+	}
 
-  public void ResetMotionNow() => AmplifyMotionObjectBase.RecursiveResetMotionAtFrame(this.transform, this, Time.frameCount);
+	internal void UnregisterCamera(AmplifyMotionCamera camera)
+	{
+		Camera component = camera.GetComponent<Camera>();
+		MotionState value;
+		if (m_states.TryGetValue(component, out value))
+		{
+			camera.UnregisterObject(this);
+			if (m_states.TryGetValue(component, out value))
+			{
+				value.Shutdown();
+			}
+			m_states.Remove(component);
+		}
+	}
 
-  public void ResetMotionAtFrame(int frame) => AmplifyMotionObjectBase.RecursiveResetMotionAtFrame(this.transform, this, frame);
+	private bool InitializeType()
+	{
+		Renderer component = GetComponent<Renderer>();
+		if (AmplifyMotionEffectBase.CanRegister(base.gameObject, false))
+		{
+			if (GetComponent<ParticleSystem>() != null)
+			{
+				m_type = ObjectType.Particle;
+				AmplifyMotionEffectBase.RegisterObject(this);
+			}
+			else if (component != null)
+			{
+				if (component.GetType() == typeof(MeshRenderer))
+				{
+					m_type = ObjectType.Solid;
+				}
+				else if (component.GetType() == typeof(SkinnedMeshRenderer))
+				{
+					if (GetComponent<Cloth>() != null)
+					{
+						m_type = ObjectType.Cloth;
+					}
+					else
+					{
+						m_type = ObjectType.Skinned;
+					}
+				}
+				AmplifyMotionEffectBase.RegisterObject(this);
+			}
+		}
+		return component != null;
+	}
 
-  private void CheckTeleportReset(AmplifyMotionEffectBase inst)
-  {
-    if ((double) Vector3.SqrMagnitude(this.transform.position - this.m_lastPosition) <= (double) inst.MinResetDeltaDistSqr)
-      return;
-    AmplifyMotionObjectBase.RecursiveResetMotionAtFrame(this.transform, this, Time.frameCount + inst.ResetFrameDelay);
-  }
+	private void OnEnable()
+	{
+		bool flag = InitializeType();
+		if (flag)
+		{
+			if (m_type == ObjectType.Cloth)
+			{
+				m_fixedStep = false;
+			}
+			else if (m_type == ObjectType.Solid)
+			{
+				Rigidbody component = GetComponent<Rigidbody>();
+				if (component != null && component.interpolation == RigidbodyInterpolation.None && !component.isKinematic)
+				{
+					m_fixedStep = true;
+				}
+			}
+		}
+		if (m_applyToChildren)
+		{
+			foreach (Transform item in base.gameObject.transform)
+			{
+				AmplifyMotionEffectBase.RegisterRecursivelyS(item.gameObject);
+			}
+		}
+		if (!flag)
+		{
+			base.enabled = false;
+		}
+	}
 
-  internal void OnUpdateTransform(
-    AmplifyMotionEffectBase inst,
-    Camera camera,
-    CommandBuffer updateCB,
-    bool starting)
-  {
-    MotionState motionState;
-    if (this.m_states.TryGetValue(camera, out motionState) && !motionState.Error)
-    {
-      this.CheckTeleportReset(inst);
-      bool flag = this.m_resetAtFrame > 0 && Time.frameCount >= this.m_resetAtFrame;
-      motionState.UpdateTransform(updateCB, starting | flag);
-    }
-    this.m_lastPosition = this.transform.position;
-  }
+	private void OnDisable()
+	{
+		AmplifyMotionEffectBase.UnregisterObject(this);
+	}
 
-  internal void OnRenderVectors(
-    Camera camera,
-    CommandBuffer renderCB,
-    float scale,
-    AmplifyMotion.Quality quality)
-  {
-    MotionState motionState;
-    if (!this.m_states.TryGetValue(camera, out motionState) || motionState.Error)
-      return;
-    motionState.RenderVectors(camera, renderCB, scale, quality);
-    if (this.m_resetAtFrame <= 0 || Time.frameCount < this.m_resetAtFrame)
-      return;
-    this.m_resetAtFrame = -1;
-  }
+	private void TryInitializeStates()
+	{
+		Dictionary<Camera, MotionState>.Enumerator enumerator = m_states.GetEnumerator();
+		while (enumerator.MoveNext())
+		{
+			MotionState value = enumerator.Current.Value;
+			if (value.Owner.Initialized && !value.Error && !value.Initialized)
+			{
+				value.Initialize();
+			}
+		}
+	}
 
-  public enum MinMaxCurveState
-  {
-    Scalar,
-    Curve,
-    TwoCurves,
-    TwoScalars,
-  }
+	private void Start()
+	{
+		if (AmplifyMotionEffectBase.Instance != null)
+		{
+			TryInitializeStates();
+		}
+		m_lastPosition = base.transform.position;
+	}
+
+	private void Update()
+	{
+		if (AmplifyMotionEffectBase.Instance != null)
+		{
+			TryInitializeStates();
+		}
+	}
+
+	private static void RecursiveResetMotionAtFrame(Transform transform, AmplifyMotionObjectBase obj, int frame)
+	{
+		if (obj != null)
+		{
+			obj.m_resetAtFrame = frame;
+		}
+		foreach (Transform item in transform)
+		{
+			RecursiveResetMotionAtFrame(item, item.GetComponent<AmplifyMotionObjectBase>(), frame);
+		}
+	}
+
+	public void ResetMotionNow()
+	{
+		RecursiveResetMotionAtFrame(base.transform, this, Time.frameCount);
+	}
+
+	public void ResetMotionAtFrame(int frame)
+	{
+		RecursiveResetMotionAtFrame(base.transform, this, frame);
+	}
+
+	private void CheckTeleportReset(AmplifyMotionEffectBase inst)
+	{
+		if (Vector3.SqrMagnitude(base.transform.position - m_lastPosition) > inst.MinResetDeltaDistSqr)
+		{
+			RecursiveResetMotionAtFrame(base.transform, this, Time.frameCount + inst.ResetFrameDelay);
+		}
+	}
+
+	internal void OnUpdateTransform(AmplifyMotionEffectBase inst, Camera camera, CommandBuffer updateCB, bool starting)
+	{
+		MotionState value;
+		if (m_states.TryGetValue(camera, out value) && !value.Error)
+		{
+			CheckTeleportReset(inst);
+			bool flag = m_resetAtFrame > 0 && Time.frameCount >= m_resetAtFrame;
+			value.UpdateTransform(updateCB, starting || flag);
+		}
+		m_lastPosition = base.transform.position;
+	}
+
+	internal void OnRenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
+	{
+		MotionState value;
+		if (m_states.TryGetValue(camera, out value) && !value.Error)
+		{
+			value.RenderVectors(camera, renderCB, scale, quality);
+			if (m_resetAtFrame > 0 && Time.frameCount >= m_resetAtFrame)
+			{
+				m_resetAtFrame = -1;
+			}
+		}
+	}
 }

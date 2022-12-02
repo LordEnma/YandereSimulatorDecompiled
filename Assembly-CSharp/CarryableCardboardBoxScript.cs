@@ -1,71 +1,74 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CarryableCardboardBoxScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class CarryableCardboardBoxScript : MonoBehaviour
 {
-  public WeaponScript MyCutter;
-  public PickUpScript PickUp;
-  public PromptScript Prompt;
-  public MeshFilter MyRenderer;
-  public Mesh ClosedMesh;
-  public bool Closed;
+	public WeaponScript MyCutter;
 
-  private void Update()
-  {
-    if (!this.Closed)
-    {
-      if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-        return;
-      this.Prompt.Label[0].text = "     Insert Box Cutter";
-      this.MyRenderer.mesh = this.ClosedMesh;
-      this.Prompt.HideButton[0] = true;
-      this.Closed = true;
-    }
-    else if ((Object) this.MyCutter == (Object) null)
-    {
-      this.Prompt.HideButton[0] = true;
-      if (this.Prompt.Yandere.Armed)
-      {
-        if (this.Prompt.Yandere.EquippedWeapon.WeaponID == 5 && !this.Prompt.Yandere.EquippedWeapon.Blood.enabled)
-        {
-          this.Prompt.HideButton[0] = false;
-          if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-            return;
-          this.MyCutter = this.Prompt.Yandere.EquippedWeapon;
-          Physics.IgnoreCollision(this.GetComponent<Collider>(), this.MyCutter.MyCollider);
-          this.Prompt.Yandere.DropTimer[this.Prompt.Yandere.Equipped] = 0.5f;
-          this.Prompt.Yandere.DropWeapon(this.Prompt.Yandere.Equipped);
-          this.MyCutter.MyRigidbody.useGravity = false;
-          this.MyCutter.MyRigidbody.isKinematic = true;
-          this.MyCutter.MyCollider.isTrigger = true;
-          this.MyCutter.transform.parent = this.transform;
-          this.MyCutter.transform.localPosition = new Vector3(0.0f, 0.24f, 0.0f);
-          this.MyCutter.transform.localEulerAngles = new Vector3(90f, 0.0f, 0.0f);
-          this.MyCutter.Prompt.Hide();
-          this.MyCutter.Prompt.enabled = false;
-          this.MyCutter.enabled = false;
-          this.MyCutter.gameObject.SetActive(true);
-          this.Prompt.HideButton[0] = true;
-          this.Prompt.HideButton[3] = false;
-          this.PickUp.StuckBoxCutter = this.MyCutter;
-          this.PickUp.enabled = true;
-        }
-        else
-          this.Prompt.HideButton[0] = true;
-      }
-      else
-        this.Prompt.HideButton[0] = true;
-    }
-    else
-    {
-      if (!((Object) this.MyCutter.transform.parent != (Object) this.transform))
-        return;
-      this.MyCutter = (WeaponScript) null;
-    }
-  }
+	public PickUpScript PickUp;
+
+	public PromptScript Prompt;
+
+	public MeshFilter MyRenderer;
+
+	public Mesh ClosedMesh;
+
+	public bool Closed;
+
+	private void Update()
+	{
+		if (!Closed)
+		{
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				Prompt.Label[0].text = "     Insert Box Cutter";
+				MyRenderer.mesh = ClosedMesh;
+				Prompt.HideButton[0] = true;
+				Closed = true;
+			}
+		}
+		else if (MyCutter == null)
+		{
+			Prompt.HideButton[0] = true;
+			if (Prompt.Yandere.Armed)
+			{
+				if (Prompt.Yandere.EquippedWeapon.WeaponID == 5 && !Prompt.Yandere.EquippedWeapon.Blood.enabled)
+				{
+					Prompt.HideButton[0] = false;
+					if (Prompt.Circle[0].fillAmount == 0f)
+					{
+						MyCutter = Prompt.Yandere.EquippedWeapon;
+						Physics.IgnoreCollision(GetComponent<Collider>(), MyCutter.MyCollider);
+						Prompt.Yandere.DropTimer[Prompt.Yandere.Equipped] = 0.5f;
+						Prompt.Yandere.DropWeapon(Prompt.Yandere.Equipped);
+						MyCutter.MyRigidbody.useGravity = false;
+						MyCutter.MyRigidbody.isKinematic = true;
+						MyCutter.MyCollider.isTrigger = true;
+						MyCutter.transform.parent = base.transform;
+						MyCutter.transform.localPosition = new Vector3(0f, 0.24f, 0f);
+						MyCutter.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
+						MyCutter.Prompt.Hide();
+						MyCutter.Prompt.enabled = false;
+						MyCutter.enabled = false;
+						MyCutter.gameObject.SetActive(true);
+						Prompt.HideButton[0] = true;
+						Prompt.HideButton[3] = false;
+						PickUp.StuckBoxCutter = MyCutter;
+						PickUp.enabled = true;
+					}
+				}
+				else
+				{
+					Prompt.HideButton[0] = true;
+				}
+			}
+			else
+			{
+				Prompt.HideButton[0] = true;
+			}
+		}
+		else if (MyCutter.transform.parent != base.transform)
+		{
+			MyCutter = null;
+		}
+	}
 }

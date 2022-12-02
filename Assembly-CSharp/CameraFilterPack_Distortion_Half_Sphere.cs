@@ -1,75 +1,81 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CameraFilterPack_Distortion_Half_Sphere
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("Camera Filter Pack/Distortion/Half_Sphere")]
 public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 {
-  public Shader SCShader;
-  private float TimeX = 1f;
-  [Range(1f, 6f)]
-  private Material SCMaterial;
-  public float SphereSize = 2.5f;
-  [Range(-1f, 1f)]
-  public float SpherePositionX;
-  [Range(-1f, 1f)]
-  public float SpherePositionY;
-  [Range(1f, 10f)]
-  public float Strength = 5f;
+	public Shader SCShader;
 
-  private Material material
-  {
-    get
-    {
-      if ((Object) this.SCMaterial == (Object) null)
-      {
-        this.SCMaterial = new Material(this.SCShader);
-        this.SCMaterial.hideFlags = HideFlags.HideAndDontSave;
-      }
-      return this.SCMaterial;
-    }
-  }
+	private float TimeX = 1f;
 
-  private void Start()
-  {
-    this.SCShader = Shader.Find("CameraFilterPack/Distortion_Half_Sphere");
-    if (SystemInfo.supportsImageEffects)
-      return;
-    this.enabled = false;
-  }
+	[Range(1f, 6f)]
+	private Material SCMaterial;
 
-  private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
-  {
-    if ((Object) this.SCShader != (Object) null)
-    {
-      this.TimeX += Time.deltaTime;
-      if ((double) this.TimeX > 100.0)
-        this.TimeX = 0.0f;
-      this.material.SetFloat("_TimeX", this.TimeX);
-      this.material.SetFloat("_SphereSize", this.SphereSize);
-      this.material.SetFloat("_SpherePositionX", this.SpherePositionX);
-      this.material.SetFloat("_SpherePositionY", this.SpherePositionY);
-      this.material.SetFloat("_Strength", this.Strength);
-      this.material.SetVector("_ScreenResolution", (Vector4) new Vector2((float) Screen.width, (float) Screen.height));
-      Graphics.Blit((Texture) sourceTexture, destTexture, this.material);
-    }
-    else
-      Graphics.Blit((Texture) sourceTexture, destTexture);
-  }
+	public float SphereSize = 2.5f;
 
-  private void Update()
-  {
-  }
+	[Range(-1f, 1f)]
+	public float SpherePositionX;
 
-  private void OnDisable()
-  {
-    if (!(bool) (Object) this.SCMaterial)
-      return;
-    Object.DestroyImmediate((Object) this.SCMaterial);
-  }
+	[Range(-1f, 1f)]
+	public float SpherePositionY;
+
+	[Range(1f, 10f)]
+	public float Strength = 5f;
+
+	private Material material
+	{
+		get
+		{
+			if (SCMaterial == null)
+			{
+				SCMaterial = new Material(SCShader);
+				SCMaterial.hideFlags = HideFlags.HideAndDontSave;
+			}
+			return SCMaterial;
+		}
+	}
+
+	private void Start()
+	{
+		SCShader = Shader.Find("CameraFilterPack/Distortion_Half_Sphere");
+		if (!SystemInfo.supportsImageEffects)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
+	{
+		if (SCShader != null)
+		{
+			TimeX += Time.deltaTime;
+			if (TimeX > 100f)
+			{
+				TimeX = 0f;
+			}
+			material.SetFloat("_TimeX", TimeX);
+			material.SetFloat("_SphereSize", SphereSize);
+			material.SetFloat("_SpherePositionX", SpherePositionX);
+			material.SetFloat("_SpherePositionY", SpherePositionY);
+			material.SetFloat("_Strength", Strength);
+			material.SetVector("_ScreenResolution", new Vector2(Screen.width, Screen.height));
+			Graphics.Blit(sourceTexture, destTexture, material);
+		}
+		else
+		{
+			Graphics.Blit(sourceTexture, destTexture);
+		}
+	}
+
+	private void Update()
+	{
+	}
+
+	private void OnDisable()
+	{
+		if ((bool)SCMaterial)
+		{
+			Object.DestroyImmediate(SCMaterial);
+		}
+	}
 }

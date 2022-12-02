@@ -1,46 +1,62 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityEngine.PostProcessing.DitheringComponent
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 namespace UnityEngine.PostProcessing
 {
-  public sealed class DitheringComponent : PostProcessingComponentRenderTexture<DitheringModel>
-  {
-    private Texture2D[] noiseTextures;
-    private int textureIndex;
-    private const int k_TextureCount = 64;
+	public sealed class DitheringComponent : PostProcessingComponentRenderTexture<DitheringModel>
+	{
+		private static class Uniforms
+		{
+			internal static readonly int _DitheringTex = Shader.PropertyToID("_DitheringTex");
 
-    public override bool active => this.model.enabled && !this.context.interrupted;
+			internal static readonly int _DitheringCoords = Shader.PropertyToID("_DitheringCoords");
+		}
 
-    public override void OnDisable() => this.noiseTextures = (Texture2D[]) null;
+		private Texture2D[] noiseTextures;
 
-    private void LoadNoiseTextures()
-    {
-      this.noiseTextures = new Texture2D[64];
-      for (int index = 0; index < 64; ++index)
-        this.noiseTextures[index] = Resources.Load<Texture2D>("Bluenoise64/LDR_LLL1_" + index.ToString());
-    }
+		private int textureIndex;
 
-    public override void Prepare(Material uberMaterial)
-    {
-      if (++this.textureIndex >= 64)
-        this.textureIndex = 0;
-      float z = Random.value;
-      float w = Random.value;
-      if (this.noiseTextures == null)
-        this.LoadNoiseTextures();
-      Texture2D noiseTexture = this.noiseTextures[this.textureIndex];
-      uberMaterial.EnableKeyword("DITHERING");
-      uberMaterial.SetTexture(DitheringComponent.Uniforms._DitheringTex, (Texture) noiseTexture);
-      uberMaterial.SetVector(DitheringComponent.Uniforms._DitheringCoords, new Vector4((float) this.context.width / (float) noiseTexture.width, (float) this.context.height / (float) noiseTexture.height, z, w));
-    }
+		private const int k_TextureCount = 64;
 
-    private static class Uniforms
-    {
-      internal static readonly int _DitheringTex = Shader.PropertyToID(nameof (_DitheringTex));
-      internal static readonly int _DitheringCoords = Shader.PropertyToID(nameof (_DitheringCoords));
-    }
-  }
+		public override bool active
+		{
+			get
+			{
+				if (base.model.enabled)
+				{
+					return !context.interrupted;
+				}
+				return false;
+			}
+		}
+
+		public override void OnDisable()
+		{
+			noiseTextures = null;
+		}
+
+		private void LoadNoiseTextures()
+		{
+			noiseTextures = new Texture2D[64];
+			for (int i = 0; i < 64; i++)
+			{
+				noiseTextures[i] = Resources.Load<Texture2D>("Bluenoise64/LDR_LLL1_" + i);
+			}
+		}
+
+		public override void Prepare(Material uberMaterial)
+		{
+			if (++textureIndex >= 64)
+			{
+				textureIndex = 0;
+			}
+			float value = Random.value;
+			float value2 = Random.value;
+			if (noiseTextures == null)
+			{
+				LoadNoiseTextures();
+			}
+			Texture2D texture2D = noiseTextures[textureIndex];
+			uberMaterial.EnableKeyword("DITHERING");
+			uberMaterial.SetTexture(Uniforms._DitheringTex, texture2D);
+			uberMaterial.SetVector(Uniforms._DitheringCoords, new Vector4((float)context.width / (float)texture2D.width, (float)context.height / (float)texture2D.height, value, value2));
+		}
+	}
 }

@@ -1,80 +1,89 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MirrorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MirrorScript : MonoBehaviour
 {
-  public PromptScript Prompt;
-  public string[] Personas;
-  public string[] Idles;
-  public string[] Walks;
-  public bool Started;
-  public int Limit;
+	public PromptScript Prompt;
 
-  private void Start()
-  {
-    this.Started = true;
-    this.Limit = this.Idles.Length - 1;
-    if (this.Prompt.Yandere.Club == ClubType.Delinquent)
-    {
-      this.Prompt.Yandere.PersonaID = 10;
-      if (this.Prompt.Yandere.Persona != YanderePersonaType.Tough)
-        this.UpdatePersona();
-    }
-    if (!GameGlobals.Eighties)
-      return;
-    this.Idles[0] = "f02_ryobaIdle_00";
-    this.Walks[0] = "f02_ryobaWalk_00";
-  }
+	public string[] Personas;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      if (this.Prompt.Yandere.Health > 0)
-      {
-        this.Prompt.Circle[0].fillAmount = 1f;
-        ++this.Prompt.Yandere.PersonaID;
-        if (this.Prompt.Yandere.PersonaID == this.Limit)
-          this.Prompt.Yandere.PersonaID = 0;
-        this.UpdatePersona();
-      }
-    }
-    else if ((double) this.Prompt.Circle[1].fillAmount == 0.0 && this.Prompt.Yandere.Health > 0)
-    {
-      this.Prompt.Circle[1].fillAmount = 1f;
-      --this.Prompt.Yandere.PersonaID;
-      if (this.Prompt.Yandere.PersonaID < 0)
-        this.Prompt.Yandere.PersonaID = this.Limit - 1;
-      this.UpdatePersona();
-    }
-    if (!this.Prompt.InSight)
-      return;
-    this.Prompt.Yandere.StudentManager.TutorialWindow.ShowPersonaMessage = true;
-  }
+	public string[] Idles;
 
-  public void UpdatePersona()
-  {
-    if (!this.Started)
-      this.Start();
-    int personaId = this.Prompt.Yandere.PersonaID;
-    if (!this.Prompt.Yandere.Carrying)
-    {
-      if (!this.Prompt.Yandere.Resting)
-      {
-        this.Prompt.Yandere.NotificationManager.PersonaName = this.Personas[personaId];
-        this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Persona);
-      }
-      this.Prompt.Yandere.IdleAnim = this.Idles[personaId];
-      this.Prompt.Yandere.WalkAnim = this.Walks[personaId];
-      this.Prompt.Yandere.UpdatePersona(personaId);
-    }
-    this.Prompt.Yandere.OriginalIdleAnim = this.Idles[personaId];
-    this.Prompt.Yandere.OriginalWalkAnim = this.Walks[personaId];
-    this.Prompt.Yandere.StudentManager.UpdatePerception();
-  }
+	public string[] Walks;
+
+	public bool Started;
+
+	public int Limit;
+
+	private void Start()
+	{
+		Started = true;
+		Limit = Idles.Length - 1;
+		if (Prompt.Yandere.Club == ClubType.Delinquent)
+		{
+			Prompt.Yandere.PersonaID = 10;
+			if (Prompt.Yandere.Persona != YanderePersonaType.Tough)
+			{
+				UpdatePersona();
+			}
+		}
+		if (GameGlobals.Eighties)
+		{
+			Idles[0] = "f02_ryobaIdle_00";
+			Walks[0] = "f02_ryobaWalk_00";
+		}
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			if (Prompt.Yandere.Health > 0)
+			{
+				Prompt.Circle[0].fillAmount = 1f;
+				Prompt.Yandere.PersonaID++;
+				if (Prompt.Yandere.PersonaID == Limit)
+				{
+					Prompt.Yandere.PersonaID = 0;
+				}
+				UpdatePersona();
+			}
+		}
+		else if (Prompt.Circle[1].fillAmount == 0f && Prompt.Yandere.Health > 0)
+		{
+			Prompt.Circle[1].fillAmount = 1f;
+			Prompt.Yandere.PersonaID--;
+			if (Prompt.Yandere.PersonaID < 0)
+			{
+				Prompt.Yandere.PersonaID = Limit - 1;
+			}
+			UpdatePersona();
+		}
+		if (Prompt.InSight)
+		{
+			Prompt.Yandere.StudentManager.TutorialWindow.ShowPersonaMessage = true;
+		}
+	}
+
+	public void UpdatePersona()
+	{
+		if (!Started)
+		{
+			Start();
+		}
+		int personaID = Prompt.Yandere.PersonaID;
+		if (!Prompt.Yandere.Carrying)
+		{
+			if (!Prompt.Yandere.Resting)
+			{
+				Prompt.Yandere.NotificationManager.PersonaName = Personas[personaID];
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Persona);
+			}
+			Prompt.Yandere.IdleAnim = Idles[personaID];
+			Prompt.Yandere.WalkAnim = Walks[personaID];
+			Prompt.Yandere.UpdatePersona(personaID);
+		}
+		Prompt.Yandere.OriginalIdleAnim = Idles[personaID];
+		Prompt.Yandere.OriginalWalkAnim = Walks[personaID];
+		Prompt.Yandere.StudentManager.UpdatePerception();
+	}
 }

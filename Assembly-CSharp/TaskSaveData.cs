@@ -1,50 +1,65 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TaskSaveData
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 
 [Serializable]
 public class TaskSaveData
 {
-  public IntHashSet guitarPhoto = new IntHashSet();
-  public IntHashSet kittenPhoto = new IntHashSet();
-  public IntHashSet horudaPhoto = new IntHashSet();
-  public IntAndIntDictionary taskStatus = new IntAndIntDictionary();
+	public IntHashSet guitarPhoto = new IntHashSet();
 
-  public static TaskSaveData ReadFromGlobals()
-  {
-    TaskSaveData taskSaveData = new TaskSaveData();
-    foreach (int photoID in TaskGlobals.KeysOfGuitarPhoto())
-    {
-      if (TaskGlobals.GetGuitarPhoto(photoID))
-        taskSaveData.guitarPhoto.Add(photoID);
-    }
-    foreach (int photoID in TaskGlobals.KeysOfKittenPhoto())
-    {
-      if (TaskGlobals.GetKittenPhoto(photoID))
-        taskSaveData.kittenPhoto.Add(photoID);
-    }
-    foreach (int photoID in TaskGlobals.KeysOfHorudaPhoto())
-    {
-      if (TaskGlobals.GetHorudaPhoto(photoID))
-        taskSaveData.horudaPhoto.Add(photoID);
-    }
-    foreach (int keysOfTaskStatu in TaskGlobals.KeysOfTaskStatus())
-      taskSaveData.taskStatus.Add(keysOfTaskStatu, TaskGlobals.GetTaskStatus(keysOfTaskStatu));
-    return taskSaveData;
-  }
+	public IntHashSet kittenPhoto = new IntHashSet();
 
-  public static void WriteToGlobals(TaskSaveData data)
-  {
-    foreach (int photoID in (HashSet<int>) data.kittenPhoto)
-      TaskGlobals.SetKittenPhoto(photoID, true);
-    foreach (int photoID in (HashSet<int>) data.guitarPhoto)
-      TaskGlobals.SetGuitarPhoto(photoID, true);
-    foreach (KeyValuePair<int, int> taskStatu in (Dictionary<int, int>) data.taskStatus)
-      TaskGlobals.SetTaskStatus(taskStatu.Key, taskStatu.Value);
-  }
+	public IntHashSet horudaPhoto = new IntHashSet();
+
+	public IntAndIntDictionary taskStatus = new IntAndIntDictionary();
+
+	public static TaskSaveData ReadFromGlobals()
+	{
+		TaskSaveData taskSaveData = new TaskSaveData();
+		int[] array = TaskGlobals.KeysOfGuitarPhoto();
+		foreach (int num in array)
+		{
+			if (TaskGlobals.GetGuitarPhoto(num))
+			{
+				taskSaveData.guitarPhoto.Add(num);
+			}
+		}
+		array = TaskGlobals.KeysOfKittenPhoto();
+		foreach (int num2 in array)
+		{
+			if (TaskGlobals.GetKittenPhoto(num2))
+			{
+				taskSaveData.kittenPhoto.Add(num2);
+			}
+		}
+		array = TaskGlobals.KeysOfHorudaPhoto();
+		foreach (int num3 in array)
+		{
+			if (TaskGlobals.GetHorudaPhoto(num3))
+			{
+				taskSaveData.horudaPhoto.Add(num3);
+			}
+		}
+		array = TaskGlobals.KeysOfTaskStatus();
+		foreach (int num4 in array)
+		{
+			taskSaveData.taskStatus.Add(num4, TaskGlobals.GetTaskStatus(num4));
+		}
+		return taskSaveData;
+	}
+
+	public static void WriteToGlobals(TaskSaveData data)
+	{
+		foreach (int item in data.kittenPhoto)
+		{
+			TaskGlobals.SetKittenPhoto(item, true);
+		}
+		foreach (int item2 in data.guitarPhoto)
+		{
+			TaskGlobals.SetGuitarPhoto(item2, true);
+		}
+		foreach (KeyValuePair<int, int> item3 in data.taskStatus)
+		{
+			TaskGlobals.SetTaskStatus(item3.Key, item3.Value);
+		}
+	}
 }

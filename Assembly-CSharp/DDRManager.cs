@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DDRManager
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,309 +5,356 @@ using UnityEngine.Video;
 
 public class DDRManager : MonoBehaviour
 {
-  public GameState GameState;
-  public YandereScript Yandere;
-  public Transform FinishLocation;
-  public Renderer OriginalRenderer;
-  public AudioListener YandereListener;
-  public GameObject OverlayCanvas;
-  public GameObject GameUI;
-  [Header("General")]
-  public DDRLevel LoadedLevel;
-  [SerializeField]
-  private DDRLevel[] levels;
-  [SerializeField]
-  private InputManagerScript inputManager;
-  [SerializeField]
-  private DDRMinigame ddrMinigame;
-  [SerializeField]
-  private AudioSource audioSource;
-  [SerializeField]
-  private Transform standPoint;
-  [SerializeField]
-  private float transitionSpeed = 2f;
-  [Header("Camera")]
-  [SerializeField]
-  private Transform minigameCamera;
-  [SerializeField]
-  private Transform startPoint;
-  [SerializeField]
-  private Transform screenPoint;
-  [SerializeField]
-  private Transform watchPoint;
-  [Header("Animation")]
-  [SerializeField]
-  private Animation machineScreenAnimation;
-  [SerializeField]
-  private Animation yandereAnim;
-  [Header("UI")]
-  [SerializeField]
-  private Image fadeImage;
-  [SerializeField]
-  private RawImage[] overlayImages;
-  [SerializeField]
-  private VideoPlayer backgroundVideo;
-  [SerializeField]
-  private Transform levelSelect;
-  [SerializeField]
-  private GameObject endScreen;
-  [SerializeField]
-  private GameObject defeatScreen;
-  [SerializeField]
-  private Text continueText;
-  [SerializeField]
-  private ColorCorrectionCurves gameplayColorCorrection;
-  private Transform target;
-  private bool booted;
-  public bool DebugMode;
-  public bool CheckingForEnd;
+	public GameState GameState;
 
-  private void Start()
-  {
-    this.minigameCamera.position = this.startPoint.position;
-    if (!this.DebugMode)
-      return;
-    this.BeginMinigame();
-  }
+	public YandereScript Yandere;
 
-  public void Update()
-  {
-    this.minigameCamera.position = Vector3.Slerp(this.minigameCamera.position, this.target.position, this.transitionSpeed * Time.deltaTime);
-    this.minigameCamera.rotation = Quaternion.Slerp(this.minigameCamera.rotation, this.target.rotation, this.transitionSpeed * Time.deltaTime);
-    if ((Object) this.target == (Object) null)
-      return;
-    Vector3 position = this.standPoint.position;
-    if ((Object) this.LoadedLevel != (Object) null)
-    {
-      this.ddrMinigame.UpdateGame(this.audioSource.time);
-      this.GameState.Health -= Time.deltaTime;
-      this.GameState.Health = Mathf.Clamp(this.GameState.Health, 0.0f, 100f);
-      if (this.inputManager.TappedLeft)
-      {
-        this.yandereAnim["f02_danceLeft_00"].time = 0.0f;
-        this.yandereAnim.Play("f02_danceLeft_00");
-      }
-      else if (this.inputManager.TappedDown)
-      {
-        this.yandereAnim["f02_danceDown_00"].time = 0.0f;
-        this.yandereAnim.Play("f02_danceDown_00");
-      }
-      if (this.inputManager.TappedRight)
-      {
-        this.yandereAnim["f02_danceRight_00"].time = 0.0f;
-        this.yandereAnim.Play("f02_danceRight_00");
-      }
-      else if (this.inputManager.TappedUp)
-      {
-        this.yandereAnim["f02_danceUp_00"].time = 0.0f;
-        this.yandereAnim.Play("f02_danceUp_00");
-      }
-    }
-    this.yandereAnim.transform.position = Vector3.Lerp(this.yandereAnim.transform.position, position, 10f * Time.deltaTime);
-    if (this.CheckingForEnd && !this.audioSource.isPlaying)
-    {
-      this.OverlayCanvas.SetActive(false);
-      this.GameUI.SetActive(false);
-      this.CheckingForEnd = false;
-      Debug.Log((object) "End() was called because song ended.");
-      this.StartCoroutine(this.End());
-    }
-    if ((double) this.GameState.Health > 0.0 || (double) this.audioSource.pitch >= 0.0099999997764825821)
-      return;
-    this.OverlayCanvas.SetActive(false);
-    this.GameUI.SetActive(false);
-    if (!this.audioSource.isPlaying)
-      return;
-    Debug.Log((object) "End() was called because we ran out of health.");
-    this.StartCoroutine(this.End());
-  }
+	public Transform FinishLocation;
 
-  public void BeginMinigame()
-  {
-    Debug.Log((object) "BeginMinigame() was called.");
-    this.yandereAnim["f02_danceMachineIdle_00"].layer = 0;
-    this.yandereAnim["f02_danceRight_00"].layer = 1;
-    this.yandereAnim["f02_danceLeft_00"].layer = 2;
-    this.yandereAnim["f02_danceUp_00"].layer = 1;
-    this.yandereAnim["f02_danceDown_00"].layer = 2;
-    this.yandereAnim["f02_danceMachineIdle_00"].weight = 1f;
-    this.yandereAnim["f02_danceRight_00"].weight = 1f;
-    this.yandereAnim["f02_danceLeft_00"].weight = 1f;
-    this.yandereAnim["f02_danceUp_00"].weight = 1f;
-    this.yandereAnim["f02_danceDown_00"].weight = 1f;
-    this.OverlayCanvas.SetActive(true);
-    this.GameUI.SetActive(true);
-    this.ddrMinigame.LoadLevelSelect(this.levels);
-    this.StartCoroutine(this.minigameFlow());
-    this.YandereListener.enabled = false;
-  }
+	public Renderer OriginalRenderer;
 
-  public void BootOut()
-  {
-    this.minigameCamera.position = this.startPoint.position;
-    this.StartCoroutine(this.fade(true, (MaskableGraphic) this.fadeImage, 5f));
-    this.target = this.startPoint;
-    this.ddrMinigame.UnloadLevelSelect();
-    this.ReturnToNormalGameplay();
-  }
+	public AudioListener YandereListener;
 
-  private IEnumerator minigameFlow()
-  {
-    DDRManager ddrManager = this;
-    ddrManager.levelSelect.gameObject.SetActive(true);
-    ddrManager.defeatScreen.gameObject.SetActive(false);
-    ddrManager.endScreen.gameObject.SetActive(false);
-    ddrManager.audioSource.pitch = 1f;
-    ddrManager.target = ddrManager.screenPoint;
-    if (!ddrManager.booted)
-    {
-      yield return (object) new WaitForSecondsRealtime(0.2f);
-      ddrManager.StartCoroutine(ddrManager.fade(false, (MaskableGraphic) ddrManager.fadeImage));
-      while ((double) ddrManager.fadeImage.color.a > 0.40000000596046448)
-        yield return (object) null;
-      ddrManager.machineScreenAnimation.Play();
-      ddrManager.booted = true;
-    }
-    yield return (object) new WaitForEndOfFrame();
-    while ((double) Input.GetAxis("A") != 0.0)
-      yield return (object) null;
-    while ((Object) ddrManager.LoadedLevel == (Object) null)
-    {
-      ddrManager.ddrMinigame.UpdateLevelSelect();
-      yield return (object) null;
-    }
-    ddrManager.ddrMinigame.LoadLevel(ddrManager.LoadedLevel);
-    ddrManager.GameState = new GameState();
-    yield return (object) new WaitForSecondsRealtime(0.2f);
-    ddrManager.transitionSpeed *= 2f;
-    ddrManager.target = ddrManager.watchPoint;
-    ddrManager.backgroundVideo.Play();
-    ddrManager.backgroundVideo.playbackSpeed = 0.0f;
-    ddrManager.StartCoroutine(ddrManager.fadeGameUI(true));
-    ddrManager.backgroundVideo.playbackSpeed = 1f;
-    ddrManager.audioSource.clip = ddrManager.LoadedLevel.Song;
-    ddrManager.audioSource.time = 0.0f;
-    ddrManager.audioSource.Play();
-    ddrManager.CheckingForEnd = true;
-    while ((double) ddrManager.audioSource.time < (double) ddrManager.audioSource.clip.length)
-    {
-      if ((double) ddrManager.GameState.Health <= 0.0)
-      {
-        ddrManager.GameState.FinishStatus = DDRFinishStatus.Failed;
-        while ((double) ddrManager.audioSource.pitch > 0.0)
-        {
-          ddrManager.audioSource.pitch = Mathf.MoveTowards(ddrManager.audioSource.pitch, 0.0f, 0.2f * Time.deltaTime);
-          if ((double) ddrManager.audioSource.pitch == 0.0)
-          {
-            Debug.Log((object) "Pitch reached zero.");
-            ddrManager.audioSource.time = ddrManager.audioSource.clip.length;
-            ddrManager.OverlayCanvas.SetActive(false);
-            ddrManager.GameUI.SetActive(false);
-          }
-          yield return (object) null;
-        }
-        break;
-      }
-      yield return (object) null;
-    }
-  }
+	public GameObject OverlayCanvas;
 
-  private IEnumerator End()
-  {
-    DDRManager ddrManager = this;
-    ddrManager.audioSource.Stop();
-    ddrManager.levelSelect.gameObject.SetActive(false);
-    ddrManager.StopCoroutine(ddrManager.fadeGameUI(true));
-    ddrManager.StartCoroutine(ddrManager.fadeGameUI(false));
-    if (ddrManager.GameState.FinishStatus == DDRFinishStatus.Complete)
-    {
-      ddrManager.endScreen.gameObject.SetActive(true);
-      ddrManager.ddrMinigame.UpdateEndcard(ddrManager.GameState);
-      if ((Object) ddrManager.LoadedLevel != (Object) ddrManager.levels[4] && !GameGlobals.Debug)
-      {
-        PlayerPrefs.SetInt("Dance", 1);
-        PlayerPrefs.SetInt("a", 1);
-      }
-    }
-    else
-      ddrManager.defeatScreen.SetActive(true);
-    ddrManager.target = ddrManager.screenPoint;
-    ddrManager.LoadedLevel = (DDRLevel) null;
-    ddrManager.ddrMinigame.UnloadLevelSelect();
-    yield return (object) new WaitForSecondsRealtime(2f);
-    ddrManager.StartCoroutine(ddrManager.fade(true, (MaskableGraphic) ddrManager.continueText));
-    while (!Input.anyKeyDown || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
-      yield return (object) null;
-    ddrManager.ddrMinigame.Unload();
-    ddrManager.onLevelFinish(ddrManager.GameState.FinishStatus);
-  }
+	public GameObject GameUI;
 
-  private IEnumerator fadeGameUI(bool fadein)
-  {
-    float destination = fadein ? 1f : 0.0f;
-    float amount = fadein ? 0.0f : 1f;
-    while ((double) amount != (double) destination)
-    {
-      amount = Mathf.Lerp(amount, destination, 10f * Time.deltaTime);
-      foreach (RawImage overlayImage in this.overlayImages)
-      {
-        Color color = overlayImage.color with
-        {
-          a = amount
-        };
-        overlayImage.color = color;
-      }
-      yield return (object) null;
-    }
-  }
+	[Header("General")]
+	public DDRLevel LoadedLevel;
 
-  private IEnumerator fade(bool fadein, MaskableGraphic graphic, float speed = 1f)
-  {
-    float destination = fadein ? 1f : 0.0f;
-    float amount = fadein ? 0.0f : 1f;
-    while ((double) amount != (double) destination)
-    {
-      amount = Mathf.Lerp(amount, destination, speed * Time.deltaTime);
-      Color color = graphic.color with { a = amount };
-      graphic.color = color;
-      yield return (object) null;
-    }
-  }
+	[SerializeField]
+	private DDRLevel[] levels;
 
-  private void onLevelFinish(DDRFinishStatus status) => this.BootOut();
+	[SerializeField]
+	private InputManagerScript inputManager;
 
-  public void ReturnToNormalGameplay()
-  {
-    for (int index = 0; index < 4; ++index)
-    {
-      foreach (Transform transform in (Transform) this.ddrMinigame.uiTracks[index])
-      {
-        if (transform.gameObject.name != "TrackSymbol")
-          Object.Destroy((Object) transform.gameObject);
-      }
-    }
-    Debug.Log((object) "ReturnToNormalGameplay() was called.");
-    this.yandereAnim["f02_danceMachineIdle_00"].weight = 0.0f;
-    this.yandereAnim["f02_danceRight_00"].weight = 0.0f;
-    this.yandereAnim["f02_danceLeft_00"].weight = 0.0f;
-    this.yandereAnim["f02_danceUp_00"].weight = 0.0f;
-    this.yandereAnim["f02_danceDown_00"].weight = 0.0f;
-    this.Yandere.transform.position = this.FinishLocation.position;
-    this.Yandere.transform.rotation = this.FinishLocation.rotation;
-    this.Yandere.StudentManager.Clock.StopTime = false;
-    this.Yandere.MyController.enabled = true;
-    this.Yandere.StudentManager.ComeBack();
-    this.Yandere.CanMove = true;
-    this.Yandere.enabled = true;
-    this.Yandere.HeartCamera.enabled = true;
-    this.Yandere.HUD.enabled = true;
-    this.Yandere.HUD.transform.parent.gameObject.SetActive(true);
-    this.Yandere.MainCamera.gameObject.SetActive(true);
-    this.Yandere.Jukebox.Volume = this.Yandere.Jukebox.LastVolume;
-    this.OriginalRenderer.enabled = true;
-    Physics.SyncTransforms();
-    this.transform.parent.gameObject.SetActive(false);
-    this.YandereListener.enabled = true;
-    this.continueText.color = new Color(1f, 1f, 1f, 0.0f);
-  }
+	[SerializeField]
+	private DDRMinigame ddrMinigame;
+
+	[SerializeField]
+	private AudioSource audioSource;
+
+	[SerializeField]
+	private Transform standPoint;
+
+	[SerializeField]
+	private float transitionSpeed = 2f;
+
+	[Header("Camera")]
+	[SerializeField]
+	private Transform minigameCamera;
+
+	[SerializeField]
+	private Transform startPoint;
+
+	[SerializeField]
+	private Transform screenPoint;
+
+	[SerializeField]
+	private Transform watchPoint;
+
+	[Header("Animation")]
+	[SerializeField]
+	private Animation machineScreenAnimation;
+
+	[SerializeField]
+	private Animation yandereAnim;
+
+	[Header("UI")]
+	[SerializeField]
+	private Image fadeImage;
+
+	[SerializeField]
+	private RawImage[] overlayImages;
+
+	[SerializeField]
+	private VideoPlayer backgroundVideo;
+
+	[SerializeField]
+	private Transform levelSelect;
+
+	[SerializeField]
+	private GameObject endScreen;
+
+	[SerializeField]
+	private GameObject defeatScreen;
+
+	[SerializeField]
+	private Text continueText;
+
+	[SerializeField]
+	private ColorCorrectionCurves gameplayColorCorrection;
+
+	private Transform target;
+
+	private bool booted;
+
+	public bool DebugMode;
+
+	public bool CheckingForEnd;
+
+	private void Start()
+	{
+		minigameCamera.position = startPoint.position;
+		if (DebugMode)
+		{
+			BeginMinigame();
+		}
+	}
+
+	public void Update()
+	{
+		minigameCamera.position = Vector3.Slerp(minigameCamera.position, target.position, transitionSpeed * Time.deltaTime);
+		minigameCamera.rotation = Quaternion.Slerp(minigameCamera.rotation, target.rotation, transitionSpeed * Time.deltaTime);
+		if (target == null)
+		{
+			return;
+		}
+		Vector3 position = standPoint.position;
+		if (LoadedLevel != null)
+		{
+			ddrMinigame.UpdateGame(audioSource.time);
+			GameState.Health -= Time.deltaTime;
+			GameState.Health = Mathf.Clamp(GameState.Health, 0f, 100f);
+			if (inputManager.TappedLeft)
+			{
+				yandereAnim["f02_danceLeft_00"].time = 0f;
+				yandereAnim.Play("f02_danceLeft_00");
+			}
+			else if (inputManager.TappedDown)
+			{
+				yandereAnim["f02_danceDown_00"].time = 0f;
+				yandereAnim.Play("f02_danceDown_00");
+			}
+			if (inputManager.TappedRight)
+			{
+				yandereAnim["f02_danceRight_00"].time = 0f;
+				yandereAnim.Play("f02_danceRight_00");
+			}
+			else if (inputManager.TappedUp)
+			{
+				yandereAnim["f02_danceUp_00"].time = 0f;
+				yandereAnim.Play("f02_danceUp_00");
+			}
+		}
+		yandereAnim.transform.position = Vector3.Lerp(yandereAnim.transform.position, position, 10f * Time.deltaTime);
+		if (CheckingForEnd && !audioSource.isPlaying)
+		{
+			OverlayCanvas.SetActive(false);
+			GameUI.SetActive(false);
+			CheckingForEnd = false;
+			Debug.Log("End() was called because song ended.");
+			StartCoroutine(End());
+		}
+		if (GameState.Health <= 0f && audioSource.pitch < 0.01f)
+		{
+			OverlayCanvas.SetActive(false);
+			GameUI.SetActive(false);
+			if (audioSource.isPlaying)
+			{
+				Debug.Log("End() was called because we ran out of health.");
+				StartCoroutine(End());
+			}
+		}
+	}
+
+	public void BeginMinigame()
+	{
+		Debug.Log("BeginMinigame() was called.");
+		yandereAnim["f02_danceMachineIdle_00"].layer = 0;
+		yandereAnim["f02_danceRight_00"].layer = 1;
+		yandereAnim["f02_danceLeft_00"].layer = 2;
+		yandereAnim["f02_danceUp_00"].layer = 1;
+		yandereAnim["f02_danceDown_00"].layer = 2;
+		yandereAnim["f02_danceMachineIdle_00"].weight = 1f;
+		yandereAnim["f02_danceRight_00"].weight = 1f;
+		yandereAnim["f02_danceLeft_00"].weight = 1f;
+		yandereAnim["f02_danceUp_00"].weight = 1f;
+		yandereAnim["f02_danceDown_00"].weight = 1f;
+		OverlayCanvas.SetActive(true);
+		GameUI.SetActive(true);
+		ddrMinigame.LoadLevelSelect(levels);
+		StartCoroutine(minigameFlow());
+		YandereListener.enabled = false;
+	}
+
+	public void BootOut()
+	{
+		minigameCamera.position = startPoint.position;
+		StartCoroutine(fade(true, fadeImage, 5f));
+		target = startPoint;
+		ddrMinigame.UnloadLevelSelect();
+		ReturnToNormalGameplay();
+	}
+
+	private IEnumerator minigameFlow()
+	{
+		levelSelect.gameObject.SetActive(true);
+		defeatScreen.gameObject.SetActive(false);
+		endScreen.gameObject.SetActive(false);
+		audioSource.pitch = 1f;
+		target = screenPoint;
+		if (!booted)
+		{
+			yield return new WaitForSecondsRealtime(0.2f);
+			StartCoroutine(fade(false, fadeImage));
+			while (fadeImage.color.a > 0.4f)
+			{
+				yield return null;
+			}
+			machineScreenAnimation.Play();
+			booted = true;
+		}
+		yield return new WaitForEndOfFrame();
+		while (Input.GetAxis("A") != 0f)
+		{
+			yield return null;
+		}
+		while (LoadedLevel == null)
+		{
+			ddrMinigame.UpdateLevelSelect();
+			yield return null;
+		}
+		ddrMinigame.LoadLevel(LoadedLevel);
+		GameState = new GameState();
+		yield return new WaitForSecondsRealtime(0.2f);
+		transitionSpeed *= 2f;
+		target = watchPoint;
+		backgroundVideo.Play();
+		backgroundVideo.playbackSpeed = 0f;
+		StartCoroutine(fadeGameUI(true));
+		backgroundVideo.playbackSpeed = 1f;
+		audioSource.clip = LoadedLevel.Song;
+		audioSource.time = 0f;
+		audioSource.Play();
+		CheckingForEnd = true;
+		while (audioSource.time < audioSource.clip.length)
+		{
+			if (GameState.Health <= 0f)
+			{
+				GameState.FinishStatus = DDRFinishStatus.Failed;
+				while (audioSource.pitch > 0f)
+				{
+					audioSource.pitch = Mathf.MoveTowards(audioSource.pitch, 0f, 0.2f * Time.deltaTime);
+					if (audioSource.pitch == 0f)
+					{
+						Debug.Log("Pitch reached zero.");
+						audioSource.time = audioSource.clip.length;
+						OverlayCanvas.SetActive(false);
+						GameUI.SetActive(false);
+					}
+					yield return null;
+				}
+				break;
+			}
+			yield return null;
+		}
+	}
+
+	private IEnumerator End()
+	{
+		audioSource.Stop();
+		levelSelect.gameObject.SetActive(false);
+		StopCoroutine(fadeGameUI(true));
+		StartCoroutine(fadeGameUI(false));
+		if (GameState.FinishStatus == DDRFinishStatus.Complete)
+		{
+			endScreen.gameObject.SetActive(true);
+			ddrMinigame.UpdateEndcard(GameState);
+			if (LoadedLevel != levels[4] && !GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Dance", 1);
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else
+		{
+			defeatScreen.SetActive(true);
+		}
+		target = screenPoint;
+		LoadedLevel = null;
+		ddrMinigame.UnloadLevelSelect();
+		yield return new WaitForSecondsRealtime(2f);
+		StartCoroutine(fade(true, continueText));
+		while (!Input.anyKeyDown || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
+		{
+			yield return null;
+		}
+		ddrMinigame.Unload();
+		onLevelFinish(GameState.FinishStatus);
+	}
+
+	private IEnumerator fadeGameUI(bool fadein)
+	{
+		float destination = (fadein ? 1 : 0);
+		float amount = ((!fadein) ? 1 : 0);
+		while (amount != destination)
+		{
+			amount = Mathf.Lerp(amount, destination, 10f * Time.deltaTime);
+			RawImage[] array = overlayImages;
+			foreach (RawImage obj in array)
+			{
+				Color color = obj.color;
+				color.a = amount;
+				obj.color = color;
+			}
+			yield return null;
+		}
+	}
+
+	private IEnumerator fade(bool fadein, MaskableGraphic graphic, float speed = 1f)
+	{
+		float destination = (fadein ? 1 : 0);
+		float amount = ((!fadein) ? 1 : 0);
+		while (amount != destination)
+		{
+			amount = Mathf.Lerp(amount, destination, speed * Time.deltaTime);
+			Color color = graphic.color;
+			color.a = amount;
+			graphic.color = color;
+			yield return null;
+		}
+	}
+
+	private void onLevelFinish(DDRFinishStatus status)
+	{
+		BootOut();
+	}
+
+	public void ReturnToNormalGameplay()
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			foreach (Transform item in ddrMinigame.uiTracks[i])
+			{
+				if (item.gameObject.name != "TrackSymbol")
+				{
+					Object.Destroy(item.gameObject);
+				}
+			}
+		}
+		Debug.Log("ReturnToNormalGameplay() was called.");
+		yandereAnim["f02_danceMachineIdle_00"].weight = 0f;
+		yandereAnim["f02_danceRight_00"].weight = 0f;
+		yandereAnim["f02_danceLeft_00"].weight = 0f;
+		yandereAnim["f02_danceUp_00"].weight = 0f;
+		yandereAnim["f02_danceDown_00"].weight = 0f;
+		Yandere.transform.position = FinishLocation.position;
+		Yandere.transform.rotation = FinishLocation.rotation;
+		Yandere.StudentManager.Clock.StopTime = false;
+		Yandere.MyController.enabled = true;
+		Yandere.StudentManager.ComeBack();
+		Yandere.CanMove = true;
+		Yandere.enabled = true;
+		Yandere.HeartCamera.enabled = true;
+		Yandere.HUD.enabled = true;
+		Yandere.HUD.transform.parent.gameObject.SetActive(true);
+		Yandere.MainCamera.gameObject.SetActive(true);
+		Yandere.Jukebox.Volume = Yandere.Jukebox.LastVolume;
+		OriginalRenderer.enabled = true;
+		Physics.SyncTransforms();
+		base.transform.parent.gameObject.SetActive(false);
+		YandereListener.enabled = true;
+		continueText.color = new Color(1f, 1f, 1f, 0f);
+	}
 }

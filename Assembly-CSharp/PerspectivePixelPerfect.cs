@@ -1,25 +1,22 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PerspectivePixelPerfect
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class PerspectivePixelPerfect : MonoBehaviour
 {
-  [Tooltip("Bias is a value above 0 that determines how far offset the object will be from the near clip, in percent (near to far clip)")]
-  public float bias = 1f / 1000f;
+	[Tooltip("Bias is a value above 0 that determines how far offset the object will be from the near clip, in percent (near to far clip)")]
+	public float bias = 0.001f;
 
-  [ContextMenu("Execute")]
-  private void Start()
-  {
-    Transform transform = this.transform;
-    Camera main = Camera.main;
-    float z = Mathf.Lerp(main.nearClipPlane, main.farClipPlane, this.bias);
-    float num = Mathf.Tan((float) (Math.PI / 180.0 * (double) main.fieldOfView * 0.5)) * z;
-    transform.localPosition = new Vector3(0.0f, 0.0f, z);
-    transform.localScale = new Vector3(num, num, 1f);
-  }
+	[ContextMenu("Execute")]
+	private void Start()
+	{
+		Transform obj = base.transform;
+		Camera main = Camera.main;
+		float nearClipPlane = main.nearClipPlane;
+		float farClipPlane = main.farClipPlane;
+		float num = Mathf.Lerp(nearClipPlane, farClipPlane, bias);
+		float fieldOfView = main.fieldOfView;
+		float num2 = Mathf.Tan((float)Math.PI / 180f * fieldOfView * 0.5f) * num;
+		obj.localPosition = new Vector3(0f, 0f, num);
+		obj.localScale = new Vector3(num2, num2, 1f);
+	}
 }

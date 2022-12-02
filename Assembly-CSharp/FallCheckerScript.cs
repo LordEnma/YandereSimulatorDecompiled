@@ -1,52 +1,52 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FallCheckerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FallCheckerScript : MonoBehaviour
 {
-  public DumpsterLidScript Dumpster;
-  public RagdollScript Ragdoll;
-  public Collider MyCollider;
+	public DumpsterLidScript Dumpster;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (!((Object) this.Ragdoll == (Object) null) || other.gameObject.layer != 11)
-      return;
-    this.Ragdoll = other.transform.root.gameObject.GetComponent<RagdollScript>();
-    this.Ragdoll.Prompt.Hide();
-    this.Ragdoll.Prompt.enabled = false;
-    this.Ragdoll.Prompt.MyCollider.enabled = false;
-    this.Ragdoll.BloodPoolSpawner.enabled = false;
-    this.Ragdoll.HideCollider = this.MyCollider;
-    if (!this.Ragdoll.Concealed)
-      ++this.Ragdoll.Police.HiddenCorpses;
-    this.Ragdoll.Hidden = true;
-    this.Dumpster.Corpse = this.Ragdoll.gameObject;
-    this.Dumpster.Victim = this.Ragdoll.Student;
-  }
+	public RagdollScript Ragdoll;
 
-  private void Update()
-  {
-    if (!((Object) this.Ragdoll != (Object) null))
-      return;
-    if ((double) this.Ragdoll.Prompt.transform.localPosition.y > -10.5)
-    {
-      this.Ragdoll.Prompt.transform.localEulerAngles = new Vector3(-90f, 90f, 0.0f);
-      this.Ragdoll.AllColliders[2].transform.localEulerAngles = Vector3.zero;
-      this.Ragdoll.AllColliders[7].transform.localEulerAngles = new Vector3(0.0f, 0.0f, -80f);
-      this.Ragdoll.Prompt.transform.position = new Vector3(this.Dumpster.transform.position.x, this.Ragdoll.Prompt.transform.position.y, this.Dumpster.transform.position.z);
-    }
-    else
-    {
-      Debug.Log((object) "A student who was shoved from the school rooftop just landed in a dumpster.");
-      Object.Instantiate<GameObject>(this.Ragdoll.Student.AlarmDisc, this.Dumpster.SlideLocation.position + new Vector3(0.0f, 1f, 0.0f), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
-      this.GetComponent<AudioSource>().Play();
-      this.Dumpster.Slide = true;
-      this.Ragdoll = (RagdollScript) null;
-    }
-  }
+	public Collider MyCollider;
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (Ragdoll == null && other.gameObject.layer == 11)
+		{
+			Ragdoll = other.transform.root.gameObject.GetComponent<RagdollScript>();
+			Ragdoll.Prompt.Hide();
+			Ragdoll.Prompt.enabled = false;
+			Ragdoll.Prompt.MyCollider.enabled = false;
+			Ragdoll.BloodPoolSpawner.enabled = false;
+			Ragdoll.HideCollider = MyCollider;
+			if (!Ragdoll.Concealed)
+			{
+				Ragdoll.Police.HiddenCorpses++;
+			}
+			Ragdoll.Hidden = true;
+			Dumpster.Corpse = Ragdoll.gameObject;
+			Dumpster.Victim = Ragdoll.Student;
+		}
+	}
+
+	private void Update()
+	{
+		if (Ragdoll != null)
+		{
+			if (Ragdoll.Prompt.transform.localPosition.y > -10.5f)
+			{
+				Ragdoll.Prompt.transform.localEulerAngles = new Vector3(-90f, 90f, 0f);
+				Ragdoll.AllColliders[2].transform.localEulerAngles = Vector3.zero;
+				Ragdoll.AllColliders[7].transform.localEulerAngles = new Vector3(0f, 0f, -80f);
+				Ragdoll.Prompt.transform.position = new Vector3(Dumpster.transform.position.x, Ragdoll.Prompt.transform.position.y, Dumpster.transform.position.z);
+			}
+			else
+			{
+				Debug.Log("A student who was shoved from the school rooftop just landed in a dumpster.");
+				Object.Instantiate(Ragdoll.Student.AlarmDisc, Dumpster.SlideLocation.position + new Vector3(0f, 1f, 0f), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
+				GetComponent<AudioSource>().Play();
+				Dumpster.Slide = true;
+				Ragdoll = null;
+			}
+		}
+	}
 }

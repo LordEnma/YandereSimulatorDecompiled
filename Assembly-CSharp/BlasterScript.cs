@@ -1,40 +1,39 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BlasterScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class BlasterScript : MonoBehaviour
 {
-  public Transform Skull;
-  public Renderer Eyes;
-  public Transform Beam;
-  public float Size;
+	public Transform Skull;
 
-  private void Start()
-  {
-    this.Skull.localScale = Vector3.zero;
-    this.Beam.localScale = Vector3.zero;
-  }
+	public Renderer Eyes;
 
-  private void Update()
-  {
-    AnimationState animationState = this.GetComponent<Animation>()["Blast"];
-    if ((double) animationState.time > 1.0)
-    {
-      this.Beam.localScale = Vector3.Lerp(this.Beam.localScale, new Vector3(15f, 1f, 1f), Time.deltaTime * 10f);
-      this.Eyes.material.color = new Color(1f, 0.0f, 0.0f, 1f);
-    }
-    if ((double) animationState.time < (double) animationState.length)
-      return;
-    Object.Destroy((Object) this.gameObject);
-  }
+	public Transform Beam;
 
-  private void LateUpdate()
-  {
-    this.Size = (double) this.GetComponent<Animation>()["Blast"].time < 1.5 ? Mathf.Lerp(this.Size, 2f, Time.deltaTime * 5f) : Mathf.Lerp(this.Size, 0.0f, Time.deltaTime * 10f);
-    this.Skull.localScale = new Vector3(this.Size, this.Size, this.Size);
-  }
+	public float Size;
+
+	private void Start()
+	{
+		Skull.localScale = Vector3.zero;
+		Beam.localScale = Vector3.zero;
+	}
+
+	private void Update()
+	{
+		AnimationState animationState = GetComponent<Animation>()["Blast"];
+		if (animationState.time > 1f)
+		{
+			Beam.localScale = Vector3.Lerp(Beam.localScale, new Vector3(15f, 1f, 1f), Time.deltaTime * 10f);
+			Eyes.material.color = new Color(1f, 0f, 0f, 1f);
+		}
+		if (animationState.time >= animationState.length)
+		{
+			Object.Destroy(base.gameObject);
+		}
+	}
+
+	private void LateUpdate()
+	{
+		AnimationState animationState = GetComponent<Animation>()["Blast"];
+		Size = ((animationState.time < 1.5f) ? Mathf.Lerp(Size, 2f, Time.deltaTime * 5f) : Mathf.Lerp(Size, 0f, Time.deltaTime * 10f));
+		Skull.localScale = new Vector3(Size, Size, Size);
+	}
 }

@@ -1,55 +1,57 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AnswerSheetScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class AnswerSheetScript : MonoBehaviour
 {
-  public SchemesScript Schemes;
-  public DoorGapScript DoorGap;
-  public PromptScript Prompt;
-  public ClockScript Clock;
-  public Mesh OriginalMesh;
-  public MeshFilter MyMesh;
-  public int Phase = 1;
+	public SchemesScript Schemes;
 
-  private void Start()
-  {
-    this.OriginalMesh = this.MyMesh.mesh;
-    if (DateGlobals.Weekday == DayOfWeek.Friday)
-      return;
-    this.Prompt.Hide();
-    this.Prompt.enabled = false;
-  }
+	public DoorGapScript DoorGap;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    if (this.Phase == 1)
-    {
-      SchemeGlobals.SetSchemeStage(5, 5);
-      this.Schemes.UpdateInstructions();
-      this.Prompt.Yandere.Inventory.AnswerSheet = true;
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.DoorGap.Prompt.enabled = true;
-      this.MyMesh.mesh = (Mesh) null;
-      ++this.Phase;
-    }
-    else
-    {
-      SchemeGlobals.SetSchemeStage(5, 8);
-      this.Schemes.UpdateInstructions();
-      this.Prompt.Yandere.Inventory.AnswerSheet = false;
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.MyMesh.mesh = this.OriginalMesh;
-      ++this.Phase;
-    }
-  }
+	public PromptScript Prompt;
+
+	public ClockScript Clock;
+
+	public Mesh OriginalMesh;
+
+	public MeshFilter MyMesh;
+
+	public int Phase = 1;
+
+	private void Start()
+	{
+		OriginalMesh = MyMesh.mesh;
+		if (DateGlobals.Weekday != DayOfWeek.Friday)
+		{
+			Prompt.Hide();
+			Prompt.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			if (Phase == 1)
+			{
+				SchemeGlobals.SetSchemeStage(5, 5);
+				Schemes.UpdateInstructions();
+				Prompt.Yandere.Inventory.AnswerSheet = true;
+				Prompt.Hide();
+				Prompt.enabled = false;
+				DoorGap.Prompt.enabled = true;
+				MyMesh.mesh = null;
+				Phase++;
+			}
+			else
+			{
+				SchemeGlobals.SetSchemeStage(5, 8);
+				Schemes.UpdateInstructions();
+				Prompt.Yandere.Inventory.AnswerSheet = false;
+				Prompt.Hide();
+				Prompt.enabled = false;
+				MyMesh.mesh = OriginalMesh;
+				Phase++;
+			}
+		}
+	}
 }

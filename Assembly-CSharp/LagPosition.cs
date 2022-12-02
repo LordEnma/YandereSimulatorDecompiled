@@ -1,54 +1,64 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: LagPosition
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class LagPosition : MonoBehaviour
 {
-  public Vector3 speed = new Vector3(10f, 10f, 10f);
-  public bool ignoreTimeScale;
-  private Transform mTrans;
-  private Vector3 mRelative;
-  private Vector3 mAbsolute;
-  private bool mStarted;
+	public Vector3 speed = new Vector3(10f, 10f, 10f);
 
-  public void OnRepositionEnd() => this.Interpolate(1000f);
+	public bool ignoreTimeScale;
 
-  private void Interpolate(float delta)
-  {
-    Transform parent = this.mTrans.parent;
-    if (!((Object) parent != (Object) null))
-      return;
-    Vector3 vector3 = parent.position + parent.rotation * this.mRelative;
-    this.mAbsolute.x = Mathf.Lerp(this.mAbsolute.x, vector3.x, Mathf.Clamp01(delta * this.speed.x));
-    this.mAbsolute.y = Mathf.Lerp(this.mAbsolute.y, vector3.y, Mathf.Clamp01(delta * this.speed.y));
-    this.mAbsolute.z = Mathf.Lerp(this.mAbsolute.z, vector3.z, Mathf.Clamp01(delta * this.speed.z));
-    this.mTrans.position = this.mAbsolute;
-  }
+	private Transform mTrans;
 
-  private void Awake() => this.mTrans = this.transform;
+	private Vector3 mRelative;
 
-  private void OnEnable()
-  {
-    if (!this.mStarted)
-      return;
-    this.ResetPosition();
-  }
+	private Vector3 mAbsolute;
 
-  private void Start()
-  {
-    this.mStarted = true;
-    this.ResetPosition();
-  }
+	private bool mStarted;
 
-  public void ResetPosition()
-  {
-    this.mAbsolute = this.mTrans.position;
-    this.mRelative = this.mTrans.localPosition;
-  }
+	public void OnRepositionEnd()
+	{
+		Interpolate(1000f);
+	}
 
-  private void Update() => this.Interpolate(this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);
+	private void Interpolate(float delta)
+	{
+		Transform parent = mTrans.parent;
+		if (parent != null)
+		{
+			Vector3 vector = parent.position + parent.rotation * mRelative;
+			mAbsolute.x = Mathf.Lerp(mAbsolute.x, vector.x, Mathf.Clamp01(delta * speed.x));
+			mAbsolute.y = Mathf.Lerp(mAbsolute.y, vector.y, Mathf.Clamp01(delta * speed.y));
+			mAbsolute.z = Mathf.Lerp(mAbsolute.z, vector.z, Mathf.Clamp01(delta * speed.z));
+			mTrans.position = mAbsolute;
+		}
+	}
+
+	private void Awake()
+	{
+		mTrans = base.transform;
+	}
+
+	private void OnEnable()
+	{
+		if (mStarted)
+		{
+			ResetPosition();
+		}
+	}
+
+	private void Start()
+	{
+		mStarted = true;
+		ResetPosition();
+	}
+
+	public void ResetPosition()
+	{
+		mAbsolute = mTrans.position;
+		mRelative = mTrans.localPosition;
+	}
+
+	private void Update()
+	{
+		Interpolate(ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);
+	}
 }

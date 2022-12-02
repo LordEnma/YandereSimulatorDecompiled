@@ -1,78 +1,92 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ConsoleLogScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ConsoleLogScript : MonoBehaviour
 {
-  public DebugEnablerScript debug;
-  private string myLog = "Debug Console Output:";
-  private bool doShow;
-  private bool Long;
-  public int kChars = 700;
-  private int enters;
-  private int id;
-  public string[] code;
+	public DebugEnablerScript debug;
 
-  private void Start() => this.kChars = 2100;
+	private string myLog = "Debug Console Output:";
 
-  private void OnEnable() => Application.logMessageReceived += new Application.LogCallback(this.Log);
+	private bool doShow;
 
-  private void OnDisable() => Application.logMessageReceived -= new Application.LogCallback(this.Log);
+	private bool Long;
 
-  private void Update()
-  {
-    if (Input.GetKeyDown(KeyCode.KeypadEnter))
-    {
-      ++this.enters;
-      if (this.enters == 10)
-      {
-        this.doShow = true;
-        this.Long = false;
-      }
-      else if (this.enters == 11)
-      {
-        this.doShow = true;
-        this.Long = true;
-      }
-      else if (this.enters == 12)
-      {
-        this.doShow = false;
-        this.enters = 9;
-      }
-    }
-    if (this.id >= this.code.Length || !Input.GetKeyDown(this.code[this.id]))
-      return;
-    ++this.id;
-    if (this.id != this.code.Length || !((Object) this.debug.gameObject != (Object) null))
-      return;
-    this.debug.EnableDebug();
-  }
+	public int kChars = 700;
 
-  public void Log(string logString, string stackTrace, LogType type)
-  {
-    this.myLog = this.myLog + "\n" + logString;
-    if (this.myLog.Length <= this.kChars)
-      return;
-    this.myLog = this.myLog.Substring(this.myLog.Length - this.kChars);
-  }
+	private int enters;
 
-  private void OnGUI()
-  {
-    if (!this.doShow)
-      return;
-    if (this.Long)
-    {
-      GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3((float) Screen.width / 1280f, (float) Screen.height / 720f, 1f));
-      GUI.TextArea(new Rect(0.0f, 0.0f, 426.6624f, (float) Screen.height), this.myLog);
-    }
-    else
-    {
-      GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3((float) Screen.width / 1280f, (float) Screen.height / 720f, 1f));
-      GUI.TextArea(new Rect(0.0f, 479.9952f, 426.6624f, 239.9976f), this.myLog);
-    }
-  }
+	private int id;
+
+	public string[] code;
+
+	private void Start()
+	{
+		kChars = 2100;
+	}
+
+	private void OnEnable()
+	{
+		Application.logMessageReceived += Log;
+	}
+
+	private void OnDisable()
+	{
+		Application.logMessageReceived -= Log;
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+		{
+			enters++;
+			if (enters == 10)
+			{
+				doShow = true;
+				Long = false;
+			}
+			else if (enters == 11)
+			{
+				doShow = true;
+				Long = true;
+			}
+			else if (enters == 12)
+			{
+				doShow = false;
+				enters = 9;
+			}
+		}
+		if (id < code.Length && Input.GetKeyDown(code[id]))
+		{
+			id++;
+			if (id == code.Length && debug.gameObject != null)
+			{
+				debug.EnableDebug();
+			}
+		}
+	}
+
+	public void Log(string logString, string stackTrace, LogType type)
+	{
+		myLog = myLog + "\n" + logString;
+		if (myLog.Length > kChars)
+		{
+			myLog = myLog.Substring(myLog.Length - kChars);
+		}
+	}
+
+	private void OnGUI()
+	{
+		if (doShow)
+		{
+			if (Long)
+			{
+				GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3((float)Screen.width / 1280f, (float)Screen.height / 720f, 1f));
+				GUI.TextArea(new Rect(0f, 0f, 426.6624f, Screen.height), myLog);
+			}
+			else
+			{
+				GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3((float)Screen.width / 1280f, (float)Screen.height / 720f, 1f));
+				GUI.TextArea(new Rect(0f, 479.9952f, 426.6624f, 239.9976f), myLog);
+			}
+		}
+	}
 }

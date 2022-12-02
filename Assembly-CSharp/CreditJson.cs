@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CreditJson
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,26 +6,47 @@ using UnityEngine;
 [Serializable]
 public class CreditJson : JsonData
 {
-  [SerializeField]
-  private string name;
-  [SerializeField]
-  private int size;
+	[SerializeField]
+	private string name;
 
-  public static string FilePath => Path.Combine(JsonData.FolderPath, "Credits.json");
+	[SerializeField]
+	private int size;
 
-  public static CreditJson[] LoadFromJson(string path)
-  {
-    List<CreditJson> creditJsonList = new List<CreditJson>();
-    foreach (Dictionary<string, object> dictionary in JsonData.Deserialize(path))
-      creditJsonList.Add(new CreditJson()
-      {
-        name = TFUtils.LoadString(dictionary, "Name"),
-        size = TFUtils.LoadInt(dictionary, "Size")
-      });
-    return creditJsonList.ToArray();
-  }
+	public static string FilePath
+	{
+		get
+		{
+			return Path.Combine(JsonData.FolderPath, "Credits.json");
+		}
+	}
 
-  public string Name => this.name;
+	public string Name
+	{
+		get
+		{
+			return name;
+		}
+	}
 
-  public int Size => this.size;
+	public int Size
+	{
+		get
+		{
+			return size;
+		}
+	}
+
+	public static CreditJson[] LoadFromJson(string path)
+	{
+		List<CreditJson> list = new List<CreditJson>();
+		Dictionary<string, object>[] array = JsonData.Deserialize(path);
+		foreach (Dictionary<string, object> dictionary in array)
+		{
+			CreditJson creditJson = new CreditJson();
+			creditJson.name = TFUtils.LoadString(dictionary, "Name");
+			creditJson.size = TFUtils.LoadInt(dictionary, "Size");
+			list.Add(creditJson);
+		}
+		return list.ToArray();
+	}
 }

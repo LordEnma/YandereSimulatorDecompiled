@@ -1,139 +1,141 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DoorGapScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DoorGapScript : MonoBehaviour
 {
-  public RummageSpotScript RummageSpot;
-  public SchemesScript Schemes;
-  public PromptScript Prompt;
-  public Transform[] Papers;
-  public bool[] PhoneHacked;
-  public bool StolenPhoneDropoff;
-  public float Timer;
-  public int Phase = 1;
+	public RummageSpotScript RummageSpot;
 
-  private void Start() => this.Papers[1].gameObject.SetActive(false);
+	public SchemesScript Schemes;
 
-  private void Update()
-  {
-    if (!this.StolenPhoneDropoff)
-    {
-      if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-      {
-        if (this.Phase == 1)
-        {
-          this.Prompt.Hide();
-          this.Prompt.enabled = false;
-          this.Prompt.Yandere.Inventory.AnswerSheet = false;
-          this.Papers[1].gameObject.SetActive(true);
-          SchemeGlobals.SetSchemeStage(5, 6);
-          this.Schemes.UpdateInstructions();
-          this.GetComponent<AudioSource>().Play();
-        }
-        else
-        {
-          this.Prompt.Hide();
-          this.Prompt.enabled = false;
-          this.Prompt.Yandere.Inventory.AnswerSheet = true;
-          this.Prompt.Yandere.Inventory.DuplicateSheet = true;
-          this.Papers[2].gameObject.SetActive(false);
-          this.RummageSpot.Prompt.Label[0].text = "     Return Answer Sheet";
-          this.RummageSpot.Prompt.enabled = true;
-          SchemeGlobals.SetSchemeStage(5, 7);
-          this.Schemes.UpdateInstructions();
-        }
-        ++this.Phase;
-      }
-      if (this.Phase != 2)
-        return;
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 4.0)
-      {
-        this.Prompt.Label[0].text = "     Pick Up Sheets";
-        this.Prompt.enabled = true;
-        this.Phase = 2;
-      }
-      else if ((double) this.Timer > 3.0)
-      {
-        Transform paper = this.Papers[2];
-        paper.localPosition = new Vector3(paper.localPosition.x, paper.localPosition.y, Mathf.Lerp(paper.localPosition.z, -0.166f, Time.deltaTime * 10f));
-      }
-      else
-      {
-        if ((double) this.Timer <= 1.0)
-          return;
-        Transform paper = this.Papers[1];
-        paper.localPosition = new Vector3(paper.localPosition.x, paper.localPosition.y, Mathf.Lerp(paper.localPosition.z, 0.166f, Time.deltaTime * 10f));
-      }
-    }
-    else
-    {
-      if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-      {
-        this.Prompt.Circle[0].fillAmount = 1f;
-        if (this.Phase == 1)
-        {
-          if (StudentGlobals.GetStudentPhoneStolen(this.Prompt.Yandere.StudentManager.CommunalLocker.RivalPhone.StudentID))
-          {
-            this.Prompt.Yandere.NotificationManager.CustomText = "Info-chan doesn't need this phone";
-            this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-          }
-          else
-          {
-            this.Prompt.Hide();
-            this.Prompt.enabled = false;
-            this.Prompt.Yandere.Inventory.RivalPhone = false;
-            this.Prompt.Yandere.RivalPhone = false;
-            this.PhoneHacked[this.Prompt.Yandere.StudentManager.CommunalLocker.RivalPhone.StudentID] = true;
-            this.Prompt.Yandere.Inventory.PantyShots += 20;
-            this.Prompt.Yandere.NotificationManager.CustomText = "+20 Info Points! You have " + this.Prompt.Yandere.Inventory.PantyShots.ToString() + " in total";
-            this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-            this.Papers[1].gameObject.SetActive(true);
-            this.GetComponent<AudioSource>().Play();
-            ++this.Phase;
-          }
-        }
-        else if (this.Phase == 2)
-        {
-          this.Prompt.Yandere.Inventory.RivalPhone = true;
-          this.Papers[1].gameObject.SetActive(false);
-          this.Prompt.Hide();
-          this.Prompt.enabled = false;
-          ++this.Phase;
-        }
-      }
-      if (this.Phase != 2)
-        return;
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 4.0)
-      {
-        this.Prompt.Label[0].text = "     Pick Up Phone";
-        this.Prompt.enabled = true;
-      }
-      else if ((double) this.Timer > 3.0)
-      {
-        this.Papers[1].localPosition = new Vector3(this.Papers[1].localPosition.x, this.Papers[1].localPosition.y, Mathf.Lerp(this.Papers[1].localPosition.z, -0.166f, Time.deltaTime * 10f));
-      }
-      else
-      {
-        if ((double) this.Timer <= 1.0)
-          return;
-        this.Papers[1].localPosition = new Vector3(this.Papers[1].localPosition.x, this.Papers[1].localPosition.y, Mathf.Lerp(this.Papers[1].localPosition.z, 0.166f, Time.deltaTime * 10f));
-      }
-    }
-  }
+	public PromptScript Prompt;
 
-  public void SetPhonesHacked()
-  {
-    for (int studentID = 1; studentID < 101; ++studentID)
-    {
-      if (this.PhoneHacked[studentID])
-        StudentGlobals.SetStudentPhoneStolen(studentID, true);
-    }
-  }
+	public Transform[] Papers;
+
+	public bool[] PhoneHacked;
+
+	public bool StolenPhoneDropoff;
+
+	public float Timer;
+
+	public int Phase = 1;
+
+	private void Start()
+	{
+		Papers[1].gameObject.SetActive(false);
+	}
+
+	private void Update()
+	{
+		if (!StolenPhoneDropoff)
+		{
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				if (Phase == 1)
+				{
+					Prompt.Hide();
+					Prompt.enabled = false;
+					Prompt.Yandere.Inventory.AnswerSheet = false;
+					Papers[1].gameObject.SetActive(true);
+					SchemeGlobals.SetSchemeStage(5, 6);
+					Schemes.UpdateInstructions();
+					GetComponent<AudioSource>().Play();
+				}
+				else
+				{
+					Prompt.Hide();
+					Prompt.enabled = false;
+					Prompt.Yandere.Inventory.AnswerSheet = true;
+					Prompt.Yandere.Inventory.DuplicateSheet = true;
+					Papers[2].gameObject.SetActive(false);
+					RummageSpot.Prompt.Label[0].text = "     Return Answer Sheet";
+					RummageSpot.Prompt.enabled = true;
+					SchemeGlobals.SetSchemeStage(5, 7);
+					Schemes.UpdateInstructions();
+				}
+				Phase++;
+			}
+			if (Phase == 2)
+			{
+				Timer += Time.deltaTime;
+				if (Timer > 4f)
+				{
+					Prompt.Label[0].text = "     Pick Up Sheets";
+					Prompt.enabled = true;
+					Phase = 2;
+				}
+				else if (Timer > 3f)
+				{
+					Transform transform = Papers[2];
+					transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, Mathf.Lerp(transform.localPosition.z, -0.166f, Time.deltaTime * 10f));
+				}
+				else if (Timer > 1f)
+				{
+					Transform transform2 = Papers[1];
+					transform2.localPosition = new Vector3(transform2.localPosition.x, transform2.localPosition.y, Mathf.Lerp(transform2.localPosition.z, 0.166f, Time.deltaTime * 10f));
+				}
+			}
+			return;
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			if (Phase == 1)
+			{
+				if (StudentGlobals.GetStudentPhoneStolen(Prompt.Yandere.StudentManager.CommunalLocker.RivalPhone.StudentID))
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "Info-chan doesn't need this phone";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				else
+				{
+					Prompt.Hide();
+					Prompt.enabled = false;
+					Prompt.Yandere.Inventory.RivalPhone = false;
+					Prompt.Yandere.RivalPhone = false;
+					PhoneHacked[Prompt.Yandere.StudentManager.CommunalLocker.RivalPhone.StudentID] = true;
+					Prompt.Yandere.Inventory.PantyShots += 20;
+					Prompt.Yandere.NotificationManager.CustomText = "+20 Info Points! You have " + Prompt.Yandere.Inventory.PantyShots + " in total";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Papers[1].gameObject.SetActive(true);
+					GetComponent<AudioSource>().Play();
+					Phase++;
+				}
+			}
+			else if (Phase == 2)
+			{
+				Prompt.Yandere.Inventory.RivalPhone = true;
+				Papers[1].gameObject.SetActive(false);
+				Prompt.Hide();
+				Prompt.enabled = false;
+				Phase++;
+			}
+		}
+		if (Phase == 2)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 4f)
+			{
+				Prompt.Label[0].text = "     Pick Up Phone";
+				Prompt.enabled = true;
+			}
+			else if (Timer > 3f)
+			{
+				Papers[1].localPosition = new Vector3(Papers[1].localPosition.x, Papers[1].localPosition.y, Mathf.Lerp(Papers[1].localPosition.z, -0.166f, Time.deltaTime * 10f));
+			}
+			else if (Timer > 1f)
+			{
+				Papers[1].localPosition = new Vector3(Papers[1].localPosition.x, Papers[1].localPosition.y, Mathf.Lerp(Papers[1].localPosition.z, 0.166f, Time.deltaTime * 10f));
+			}
+		}
+	}
+
+	public void SetPhonesHacked()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			if (PhoneHacked[i])
+			{
+				StudentGlobals.SetStudentPhoneStolen(i, true);
+			}
+		}
+	}
 }

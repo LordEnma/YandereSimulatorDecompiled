@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: EndOfDayScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,2282 +6,2928 @@ using UnityEngine.SceneManagement;
 
 public class EndOfDayScript : MonoBehaviour
 {
-  public RemovableItemManagerScript RemovableItemManager;
-  public SecuritySystemScript SecuritySystem;
-  public StudentManagerScript StudentManager;
-  public WeaponManagerScript WeaponManager;
-  public ClubManagerScript ClubManager;
-  public HeartbrokenScript Heartbroken;
-  public IncineratorScript Incinerator;
-  public LoveManagerScript LoveManager;
-  public RummageSpotScript RummageSpot;
-  public VoidGoddessScript VoidGoddess;
-  public WoodChipperScript WoodChipper;
-  public ReputationScript Reputation;
-  public DumpsterLidScript Dumpster;
-  public CounselorScript Counselor;
-  public WeaponScript MurderWeapon;
-  public TranqCaseScript TranqCase;
-  public AudioListener MyListener;
-  public YandereScript Yandere;
-  public RagdollScript Corpse;
-  public StudentScript Senpai;
-  public StudentScript Patsy;
-  public PoliceScript Police;
-  public Transform EODCamera;
-  public StudentScript Rival;
-  public ClassScript Class;
-  public ClockScript Clock;
-  public JsonScript JSON;
-  public GardenHoleScript[] GardenHoles;
-  public StudentScript[] WitnessList;
-  public Animation[] CopAnimation;
-  public GameObject MainCamera;
-  public UISprite EndOfDayDarkness;
-  public UILabel Label;
-  public bool RivalDismemberedAndIncinerated;
-  public bool RivalBuried;
-  public bool CurrentMurderWeaponKilledRival;
-  public bool GrudgeConversationHappened;
-  public bool LearnedAboutPhotographer;
-  public bool InvolvementNotSuspected;
-  public bool ExplosiveDeviceUsed;
-  public bool PreviouslyActivated;
-  public bool LearnedOsanaInfo1;
-  public bool LearnedOsanaInfo2;
-  public bool GoToSuicideScene;
-  public bool RivalArrested;
-  public bool PoliceArrived;
-  public bool RaibaruLoner;
-  public bool StopMourning;
-  public bool HeardMegami;
-  public bool ClubClosed;
-  public bool ClubKicked;
-  public bool ErectFence;
-  public bool PoolEvent;
-  public bool GameOver;
-  public bool Darken;
-  public float DistanceToMoveForward;
-  public int ClothingWithRedPaint;
-  public int ShrineItemsCollected;
-  public int WeaponWitnessed;
-  public int BloodWitnessed;
-  public int FragileTarget;
-  public int EyeWitnesses;
-  public int NewFriends;
-  public int ClubLimit;
-  public int DeadPerps;
-  public int Arrests;
-  public int Corpses;
-  public int Victims;
-  public int Weapons;
-  public int Phase = 1;
-  public int MatchmakingGifts;
-  public int SenpaiGifts;
-  public int ArticleID;
-  public int WeaponID;
-  public int ArrestID;
-  public int ClubID;
-  public int ID;
-  public string[] ClubNames;
-  public int[] VictimArray;
-  public ClubType[] ClubArray;
-  private SaveFile saveFile;
-  public GameObject TextWindow;
-  public GameObject Cops;
-  public GameObject SearchingCop;
-  public GameObject MurderScene;
-  public GameObject ShruggingCops;
-  public GameObject TabletCop;
-  public GameObject SecuritySystemScene;
-  public GameObject OpenTranqCase;
-  public GameObject ClosedTranqCase;
-  public GameObject GaudyRing;
-  public GameObject AnswerSheet;
-  public GameObject Fence;
-  public GameObject SCP;
-  public GameObject Headmaster;
-  public GameObject ArrestingCops;
-  public GameObject Mask;
-  public GameObject EyeWitnessScene;
-  public GameObject ScaredCops;
-  public GameObject EightiesGaudyRing;
-  public StudentScript KidnappedVictim;
-  public Renderer TabletPortrait;
-  public Transform CardboardBox;
-  public RivalEliminationType RivalEliminationMethod;
-  public Vector3 YandereInitialPosition;
-  public Quaternion YandereInitialRotation;
-  public bool[] StudentsToArrest;
-  public string Protagonist = "Ayano";
-  public string RivalName = "";
-  public string[] EightiesRivalNames;
-  public string[] RivalNames;
-  public AudioClip EightiesBGM;
-  public string[] VtuberNames;
-  public bool WeaponsChecked;
+	public RemovableItemManagerScript RemovableItemManager;
 
-  public void Start()
-  {
-    Debug.Log((object) "The End-of-Day GameObject has just fired its Start() function.");
-    this.VoidGoddess.Start();
-    GameGlobals.PoliceYesterday = false;
-    this.YandereInitialPosition = this.Yandere.transform.position;
-    this.YandereInitialRotation = this.Yandere.transform.rotation;
-    if (GameGlobals.SenpaiMourning)
-      this.StopMourning = true;
-    this.Yandere.MainCamera.gameObject.SetActive(false);
-    this.EndOfDayDarkness.color = new Color(this.EndOfDayDarkness.color.r, this.EndOfDayDarkness.color.g, this.EndOfDayDarkness.color.b, 1f);
-    this.PreviouslyActivated = true;
-    this.GetComponent<AudioSource>().volume = 0.0f;
-    this.Clock.enabled = false;
-    this.Clock.MainLight.color = new Color(1f, 1f, 1f, 1f);
-    RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f, 1f);
-    RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f));
-    this.UpdateScene();
-    this.CopAnimation[5]["idleShort_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
-    this.CopAnimation[6]["idleShort_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
-    this.CopAnimation[7]["idleShort_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
-    Time.timeScale = 1f;
-    for (int index = 1; index < 6; ++index)
-    {
-      this.Yandere.CharacterAnimation[this.Yandere.CreepyIdles[index]].weight = 0.0f;
-      this.Yandere.CharacterAnimation[this.Yandere.CreepyWalks[index]].weight = 0.0f;
-    }
-    for (int index = 1; index < this.StudentManager.AllBuckets.Length; ++index)
-    {
-      if ((UnityEngine.Object) this.StudentManager.AllBuckets[index] != (UnityEngine.Object) null && (double) this.StudentManager.AllBuckets[index].Bloodiness > 50.0)
-        this.StudentManager.AllBuckets[index].transform.parent = this.Police.BloodParent;
-    }
-    this.ClothingWithRedPaint += this.Incinerator.ClothingWithRedPaint;
-    foreach (Component component1 in this.Police.BloodParent)
-    {
-      PickUpScript component2 = component1.gameObject.GetComponent<PickUpScript>();
-      if ((UnityEngine.Object) component2 != (UnityEngine.Object) null && component2.RedPaint)
-        ++this.ClothingWithRedPaint;
-    }
-    int num = 0;
-    if (this.Police.Corpses > 1)
-    {
-      foreach (RagdollScript corpse in this.Police.CorpseList)
-      {
-        if ((UnityEngine.Object) corpse != (UnityEngine.Object) null && (corpse.MurderSuicide || corpse.Student.MurderedByStudent))
-          ++num;
-      }
-    }
-    if (num > 1)
-      this.Police.MurderSuicideScene = true;
-    this.ClubLimit = this.ClubArray.Length;
-    if (!GameGlobals.Eighties)
-    {
-      --this.ClubLimit;
-    }
-    else
-    {
-      this.GetComponent<AudioSource>().clip = this.EightiesBGM;
-      this.GetComponent<AudioSource>().Play();
-    }
-    if (!this.Counselor.Lecturing)
-    {
-      this.EODCamera.localPosition = new Vector3(1f, 1.8f, -2.5f);
-      this.EODCamera.localEulerAngles = new Vector3(22.5f, -22.5f, 0.0f);
-      this.TextWindow.SetActive(true);
-    }
-    if (this.Yandere.VtuberID > 0)
-      this.Protagonist = this.VtuberNames[this.Yandere.VtuberID];
-    if (!this.Yandere.RedPaint)
-      return;
-    ++this.ClothingWithRedPaint;
-  }
+	public SecuritySystemScript SecuritySystem;
 
-  private void Update()
-  {
-    this.Yandere.UpdateSlouch();
-    if (Input.GetKeyDown("space"))
-    {
-      this.EndOfDayDarkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-      this.Darken = true;
-    }
-    if ((double) this.EndOfDayDarkness.color.a < 1.0 / 1000.0 && Input.GetButtonDown("A"))
-      this.Darken = true;
-    if (this.Darken)
-    {
-      this.EndOfDayDarkness.color = new Color(this.EndOfDayDarkness.color.r, this.EndOfDayDarkness.color.g, this.EndOfDayDarkness.color.b, Mathf.MoveTowards(this.EndOfDayDarkness.color.a, 1f, Time.deltaTime * 2f));
-      if ((double) this.EndOfDayDarkness.color.a > 0.99900001287460327)
-      {
-        if ((UnityEngine.Object) this.Senpai == (UnityEngine.Object) null && (UnityEngine.Object) this.StudentManager.Students[1] != (UnityEngine.Object) null)
-        {
-          this.Senpai = this.StudentManager.Students[1];
-          this.Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-          this.Senpai.CharacterAnimation.enabled = true;
-        }
-        if ((UnityEngine.Object) this.Senpai != (UnityEngine.Object) null)
-          this.Senpai.gameObject.SetActive(false);
-        if ((UnityEngine.Object) this.Rival == (UnityEngine.Object) null && (UnityEngine.Object) this.StudentManager.Students[this.StudentManager.RivalID] != (UnityEngine.Object) null)
-        {
-          this.Rival = this.StudentManager.Students[this.StudentManager.RivalID];
-          this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-          this.Rival.CharacterAnimation.enabled = true;
-        }
-        if ((UnityEngine.Object) this.Rival != (UnityEngine.Object) null)
-          this.Rival.gameObject.SetActive(false);
-        this.Yandere.transform.parent = (Transform) null;
-        this.Yandere.transform.position = new Vector3(0.0f, 0.0f, -75f);
-        this.Yandere.gameObject.SetActive(true);
-        this.EODCamera.localPosition = new Vector3(1f, 1.8f, -2.5f);
-        this.EODCamera.localEulerAngles = new Vector3(22.5f, -22.5f, 0.0f);
-        if ((UnityEngine.Object) this.KidnappedVictim != (UnityEngine.Object) null)
-          this.KidnappedVictim.gameObject.SetActive(false);
-        if ((UnityEngine.Object) this.StudentManager.Students[this.StudentManager.SuitorID] != (UnityEngine.Object) null)
-          this.StudentManager.Students[this.StudentManager.SuitorID].gameObject.SetActive(false);
-        this.CardboardBox.parent = (Transform) null;
-        this.Yandere.LifeNotePen.SetActive(false);
-        this.SearchingCop.SetActive(false);
-        this.MurderScene.SetActive(false);
-        this.Cops.SetActive(false);
-        this.TabletCop.SetActive(false);
-        this.ShruggingCops.SetActive(false);
-        this.SecuritySystemScene.SetActive(false);
-        this.OpenTranqCase.SetActive(false);
-        this.ClosedTranqCase.SetActive(false);
-        this.GaudyRing.SetActive(false);
-        this.AnswerSheet.SetActive(false);
-        this.Fence.SetActive(false);
-        this.SCP.SetActive(false);
-        this.Headmaster.SetActive(false);
-        this.ArrestingCops.SetActive(false);
-        this.Mask.SetActive(false);
-        this.EyeWitnessScene.SetActive(false);
-        this.ScaredCops.SetActive(false);
-        this.EightiesGaudyRing.SetActive(false);
-        this.Yandere.LookAt.enabled = false;
-        if ((UnityEngine.Object) this.WitnessList[1] != (UnityEngine.Object) null)
-          this.WitnessList[1].gameObject.SetActive(false);
-        if ((UnityEngine.Object) this.WitnessList[2] != (UnityEngine.Object) null)
-          this.WitnessList[2].gameObject.SetActive(false);
-        if ((UnityEngine.Object) this.WitnessList[3] != (UnityEngine.Object) null)
-          this.WitnessList[3].gameObject.SetActive(false);
-        if ((UnityEngine.Object) this.WitnessList[4] != (UnityEngine.Object) null)
-          this.WitnessList[4].gameObject.SetActive(false);
-        if ((UnityEngine.Object) this.WitnessList[5] != (UnityEngine.Object) null)
-          this.WitnessList[5].gameObject.SetActive(false);
-        if ((UnityEngine.Object) this.Patsy != (UnityEngine.Object) null)
-          this.Patsy.gameObject.SetActive(false);
-        if (!this.GameOver)
-        {
-          this.Darken = false;
-          this.UpdateScene();
-        }
-        else
-        {
-          this.Heartbroken.transform.parent.transform.parent = (Transform) null;
-          this.Heartbroken.transform.parent.gameObject.SetActive(true);
-          this.Heartbroken.Cursor.HeartbrokenCamera.depth = 6f;
-          if (this.Police.Deaths + PlayerGlobals.Kills > 50)
-          {
-            this.Heartbroken.Noticed = true;
-          }
-          else
-          {
-            this.Heartbroken.Noticed = false;
-            this.Heartbroken.Arrested = true;
-          }
-          this.MainCamera.SetActive(false);
-          this.gameObject.SetActive(false);
-          this.Yandere.MyListener.enabled = true;
-          Time.timeScale = 1f;
-        }
-        if (this.RivalName == "")
-        {
-          if (this.StudentManager.Eighties)
-          {
-            this.Protagonist = "Ryoba";
-            this.RivalName = this.EightiesRivalNames[DateGlobals.Week];
-          }
-          else
-            this.RivalName = this.RivalNames[DateGlobals.Week];
-        }
-        if (this.Yandere.VtuberID > 0)
-          this.Protagonist = this.VtuberNames[this.Yandere.VtuberID];
-      }
-    }
-    else
-      this.EndOfDayDarkness.color = new Color(this.EndOfDayDarkness.color.r, this.EndOfDayDarkness.color.g, this.EndOfDayDarkness.color.b, Mathf.MoveTowards(this.EndOfDayDarkness.color.a, 0.0f, Time.deltaTime * 2f));
-    AudioSource component = this.GetComponent<AudioSource>();
-    component.volume = Mathf.MoveTowards(component.volume, 1f, Time.deltaTime * 2f);
-    if ((UnityEngine.Object) this.WitnessList[2] != (UnityEngine.Object) null)
-      this.WitnessList[2].CharacterAnimation.Play(this.WitnessList[2].IdleAnim);
-    if ((UnityEngine.Object) this.WitnessList[3] != (UnityEngine.Object) null)
-      this.WitnessList[3].CharacterAnimation.Play(this.WitnessList[3].IdleAnim);
-    if ((UnityEngine.Object) this.WitnessList[4] != (UnityEngine.Object) null)
-      this.WitnessList[4].CharacterAnimation.Play(this.WitnessList[4].IdleAnim);
-    if ((UnityEngine.Object) this.WitnessList[5] != (UnityEngine.Object) null)
-      this.WitnessList[5].CharacterAnimation.Play(this.WitnessList[5].IdleAnim);
-    if (this.Phase != 17)
-      return;
-    this.EODCamera.position = this.ClubManager.ClubVantages[this.ClubID].position;
-    this.EODCamera.eulerAngles = this.ClubManager.ClubVantages[this.ClubID].eulerAngles;
-    this.EODCamera.Translate(Vector3.forward * 0.0f, Space.Self);
-  }
+	public StudentManagerScript StudentManager;
 
-  public void UpdateScene()
-  {
-    this.Label.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    if (this.Phase != 14)
-    {
-      for (int index = 0; index < this.Yandere.Weapon.Length; ++index)
-      {
-        if ((UnityEngine.Object) this.Yandere.Weapon[index] != (UnityEngine.Object) null && this.Yandere.Weapon[index].Bloody)
-          this.Yandere.Weapon[index].Drop();
-      }
-      if (!this.WeaponsChecked)
-      {
-        Debug.Log((object) "We're counting the number of bloody weapons at school right now...");
-        this.WeaponManager.CheckWeapons();
-        this.WeaponsChecked = true;
-        Debug.Log((object) (this.WeaponManager.MurderWeapons.ToString() + " bloody weapons were found."));
-      }
-      for (this.ID = 0; this.ID < this.WeaponManager.Weapons.Length; ++this.ID)
-      {
-        if ((UnityEngine.Object) this.WeaponManager.Weapons[this.ID] != (UnityEngine.Object) null)
-          this.WeaponManager.Weapons[this.ID].gameObject.SetActive(false);
-      }
-    }
-    if (Input.GetKeyDown(KeyCode.Backspace))
-      this.Finish();
-    if (this.Phase == 1)
-    {
-      Time.timeScale = 1f;
-      this.CopAnimation[1]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
-      this.CopAnimation[2]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
-      this.CopAnimation[3]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
-      this.Counselor.LectureID = 0;
-      this.Cops.SetActive(true);
-      bool flag = false;
-      if (this.Yandere.Egg && !flag)
-      {
-        this.Label.text = "The police arrive at school.";
-        this.Phase = 999;
-      }
-      else if (this.Police.PoisonScene)
-      {
-        this.Label.text = "The police and the paramedics arrive at school.";
-        this.Phase = 103;
-      }
-      else if (this.Police.DrownVictims == 1)
-      {
-        this.Label.text = "The police arrive at school.";
-        this.Phase = 104;
-      }
-      else if (this.Police.ElectroScene)
-      {
-        this.Label.text = "The police arrive at school.";
-        this.Phase = 105;
-      }
-      else if (this.Police.MurderSuicideScene)
-      {
-        this.Label.text = "The police arrive at school, and discover what appears to be the scene of a murder-suicide.";
-        ++this.Phase;
-      }
-      else
-      {
-        this.Label.text = "The police arrive at school.";
-        if (this.Police.SuicideScene)
-          this.Phase = 102;
-        else
-          ++this.Phase;
-      }
-    }
-    else if (this.Phase == 2)
-    {
-      if (this.Police.Corpses == 0)
-      {
-        Debug.Log((object) "Zero corpses were present at school.");
-        if (!this.Police.PoisonScene && !this.Police.SuicideScene)
-        {
-          if (this.Police.LimbParent.childCount > 0 || this.Police.GarbageParent.childCount > 0)
-          {
-            this.Label.text = this.Police.LimbParent.childCount + this.Police.GarbageParent.childCount != 1 ? "The police find multiple severed body parts at school." : "The police find a severed body part at school.";
-            this.MurderScene.SetActive(true);
-          }
-          else
-          {
-            this.SearchingCop.SetActive(true);
-            this.Label.text = this.Police.BloodParent.childCount - this.ClothingWithRedPaint <= 0 ? (this.ClothingWithRedPaint != 0 ? "The police find clothing that is stained with red paint, but are unable to locate any actual blood stains, and cannot locate any corpses, either." : "The police are unable to locate any corpses on school grounds.") : "The police find mysterious blood stains, but are unable to locate any corpses on school grounds.";
-          }
-          ++this.Phase;
-        }
-        else
-        {
-          this.SearchingCop.SetActive(true);
-          this.Label.text = "The police are unable to locate any other corpses on school grounds.";
-          ++this.Phase;
-        }
-      }
-      else
-      {
-        Debug.Log((object) "Corpses were present at school.");
-        this.MurderScene.SetActive(true);
-        List<string> stringList = new List<string>();
-        foreach (RagdollScript corpse in this.Police.CorpseList)
-        {
-          if ((UnityEngine.Object) corpse != (UnityEngine.Object) null && !corpse.Disposed)
-          {
-            if (corpse.Student.StudentID == this.StudentManager.RivalID)
-            {
-              Debug.Log((object) "The rival died, and now the game is determining exactly how she died.");
-              this.RivalEliminationMethod = RivalEliminationType.Murdered;
-              if (corpse.Student.Electrified || corpse.Student.Electrocuted || corpse.Student.DeathType == DeathType.Burning || corpse.Student.DeathType == DeathType.Weight || corpse.Student.DeathType == DeathType.Drowning || corpse.Student.DeathType == DeathType.Poison || corpse.Student.DeathType == DeathType.Explosion)
-                this.RivalEliminationMethod = RivalEliminationType.Accident;
-              if (corpse.Student.DeathType == DeathType.Burning)
-              {
-                GameGlobals.SpecificEliminationID = 5;
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("Burn", 1);
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("a", 1);
-              }
-              else if (corpse.Student.DeathType == DeathType.Electrocution)
-              {
-                Debug.Log((object) "The game should now be informing the Content Checklist that the player has performed an electrocution.");
-                GameGlobals.SpecificEliminationID = 8;
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("Electrocute", 1);
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("a", 1);
-              }
-              else if (corpse.Student.DeathType == DeathType.Weight)
-              {
-                GameGlobals.SpecificEliminationID = 6;
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("Crush", 1);
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("a", 1);
-              }
-              else if (corpse.Student.DeathType == DeathType.Drowning)
-              {
-                Debug.Log((object) "The rival drowned.");
-                if (this.PoolEvent)
-                {
-                  Debug.Log((object) "The player eliminated the rival during a pool event.");
-                  GameGlobals.SpecificEliminationID = 16;
-                  if (!GameGlobals.Debug)
-                    PlayerPrefs.SetInt("Pool", 1);
-                  if (!GameGlobals.Debug)
-                    PlayerPrefs.SetInt("a", 1);
-                }
-                else
-                {
-                  Debug.Log((object) "The player did not eliminate the rival during a pool event.");
-                  GameGlobals.SpecificEliminationID = 7;
-                  if (!GameGlobals.Debug)
-                    PlayerPrefs.SetInt("Drown", 1);
-                  if (!GameGlobals.Debug)
-                    PlayerPrefs.SetInt("a", 1);
-                }
-              }
-              else if (corpse.Decapitated)
-              {
-                GameGlobals.SpecificEliminationID = 10;
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("Fan", 1);
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("a", 1);
-              }
-              else if (corpse.Student.DeathType == DeathType.Poison)
-              {
-                GameGlobals.SpecificEliminationID = 15;
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("Poison", 1);
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("a", 1);
-              }
-              else if (corpse.Student.DeathType == DeathType.Falling)
-              {
-                GameGlobals.SpecificEliminationID = 17;
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("Push", 1);
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("a", 1);
-              }
-              else if (corpse.Student.Hunted)
-              {
-                GameGlobals.SpecificEliminationID = 14;
-                if (!GameGlobals.Debug)
-                {
-                  if (corpse.Student.MurderedByFragile)
-                  {
-                    if (!GameGlobals.Debug)
-                      PlayerPrefs.SetInt("DrivenToMurder", 1);
-                    if (!GameGlobals.Debug)
-                      PlayerPrefs.SetInt("a", 1);
-                  }
-                  else
-                  {
-                    if (!GameGlobals.Debug)
-                      PlayerPrefs.SetInt("MurderSuicide", 1);
-                    if (!GameGlobals.Debug)
-                      PlayerPrefs.SetInt("a", 1);
-                  }
-                }
-                Debug.Log((object) "The game knows that the rival died as part of a murder-suicide.");
-              }
-              else if (corpse.Student.DeathType == DeathType.Weapon)
-              {
-                Debug.Log((object) "The game believes that the rival died from a ''Weapon''.");
-                GameGlobals.SpecificEliminationID = 1;
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("Attack", 1);
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("a", 1);
-              }
-              else if (corpse.Student.DeathType == DeathType.Explosion)
-              {
-                Debug.Log((object) "The game knows that the rival died from an explosion.");
-                GameGlobals.SpecificEliminationID = 20;
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("Attack", 1);
-                if (!GameGlobals.Debug)
-                  PlayerPrefs.SetInt("a", 1);
-              }
-              else
-                Debug.Log((object) "We know that the rival died, but we didn't get any noteworthy information about her death...");
-            }
-            else if (corpse.Student.StudentID > 10 && corpse.Student.StudentID < DateGlobals.Week + 10)
-            {
-              Debug.Log((object) "A previous rival's corpse has been discovered.");
-              this.SetFormerRivalDeath(corpse.Student.StudentID - 10, corpse.Student);
-            }
-            this.VictimArray[this.Corpses] = corpse.Student.StudentID;
-            stringList.Add(corpse.Student.Name);
-            ++this.Corpses;
-          }
-        }
-        stringList.Sort();
-        string str = "The police discover the corpse" + (stringList.Count == 1 ? string.Empty : "s") + " of ";
-        if (stringList.Count == 1)
-          this.Label.text = str + stringList[0] + ".";
-        else if (stringList.Count == 2)
-          this.Label.text = str + stringList[0] + " and " + stringList[1] + ".";
-        else if (stringList.Count < 6)
-        {
-          this.Label.text = "The police discover multiple corpses on school grounds.";
-          StringBuilder stringBuilder = new StringBuilder();
-          for (int index = 0; index < stringList.Count - 1; ++index)
-            stringBuilder.Append(stringList[index] + ", ");
-          stringBuilder.Append("and " + stringList[stringList.Count - 1] + ".");
-          this.Label.text = str + stringBuilder.ToString();
-        }
-        else
-          this.Label.text = "The police discover more than five corpses on school grounds.";
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 3)
-    {
-      if (this.WeaponManager.MurderWeapons == 0)
-      {
-        this.ShruggingCops.SetActive(true);
-        if (this.Weapons == 0)
-        {
-          this.Label.text = "The police are unable to locate any murder weapons.";
-          this.Phase += 2;
-        }
-        else
-        {
-          this.Phase += 2;
-          this.UpdateScene();
-        }
-      }
-      else
-      {
-        this.MurderWeapon = (WeaponScript) null;
-        for (this.ID = 0; this.ID < this.WeaponManager.Weapons.Length; ++this.ID)
-        {
-          if ((UnityEngine.Object) this.MurderWeapon == (UnityEngine.Object) null)
-          {
-            WeaponScript weapon = this.WeaponManager.Weapons[this.ID];
-            if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && !weapon.Disposed && weapon.Blood.enabled)
-            {
-              if (!weapon.AlreadyExamined)
-              {
-                --this.WeaponManager.MurderWeapons;
-                weapon.gameObject.SetActive(true);
-                weapon.AlreadyExamined = true;
-                this.MurderWeapon = weapon;
-                this.WeaponID = this.ID;
-              }
-              else
-                weapon.gameObject.SetActive(false);
-            }
-          }
-        }
-        List<string> stringList = new List<string>();
-        this.CurrentMurderWeaponKilledRival = false;
-        for (this.ID = 0; this.ID < this.MurderWeapon.Victims.Length; ++this.ID)
-        {
-          if (this.MurderWeapon.Victims[this.ID])
-          {
-            stringList.Add(this.JSON.Students[this.ID].Name);
-            if (this.MurderWeapon.Victims[this.StudentManager.RivalID])
-              this.CurrentMurderWeaponKilledRival = true;
-          }
-        }
-        stringList.Sort();
-        this.Victims = stringList.Count;
-        string name = this.MurderWeapon.Name;
-        string str = "The police discover " + (name[name.Length - 1] != 's' ? "a " + name.ToLower() + " that is" : name.ToLower() + " that are") + " stained with the blood of ";
-        if (stringList.Count == 1)
-          this.Label.text = str + stringList[0] + ".";
-        else if (stringList.Count == 2)
-        {
-          this.Label.text = str + stringList[0] + " and " + stringList[1] + ".";
-        }
-        else
-        {
-          StringBuilder stringBuilder = new StringBuilder();
-          for (int index = 0; index < stringList.Count - 1; ++index)
-            stringBuilder.Append(stringList[index] + ", ");
-          stringBuilder.Append("and " + stringList[stringList.Count - 1] + ".");
-          this.Label.text = str + stringBuilder.ToString();
-        }
-        ++this.Weapons;
-        ++this.Phase;
-        this.MurderWeapon.transform.parent = this.transform;
-        this.MurderWeapon.transform.localPosition = new Vector3(0.6f, 1.4f, -1.5f);
-        this.MurderWeapon.transform.localEulerAngles = new Vector3(-45f, 90f, -90f);
-        this.MurderWeapon.MyRigidbody.useGravity = false;
-        this.MurderWeapon.Rotate = true;
-      }
-    }
-    else if (this.Phase == 4)
-    {
-      if (this.MurderWeapon.FingerprintID == 0)
-      {
-        this.ShruggingCops.SetActive(true);
-        this.Label.text = "The police find no fingerprints on the weapon.";
-        this.Phase = 3;
-      }
-      else if (this.MurderWeapon.FingerprintID == 100)
-      {
-        this.TeleportYandere();
-        this.Yandere.CharacterAnimation.Play("f02_disappointed_00");
-        if (this.Yandere.StudentManager.Eighties)
-          this.Yandere.LoseGentleEyes();
-        this.Label.text = "The police find " + this.Protagonist + "'s fingerprints on the weapon.";
-        this.Phase = 100;
-      }
-      else
-      {
-        int fingerprintId = this.WeaponManager.Weapons[this.WeaponID].FingerprintID;
-        this.TabletCop.SetActive(true);
-        this.CopAnimation[4]["scienceTablet_00"].speed = 0.0f;
-        this.TabletPortrait.material.mainTexture = this.VoidGoddess.Portraits[fingerprintId].mainTexture;
-        this.Label.text = "The police find the fingerprints of " + this.JSON.Students[fingerprintId].Name + " on the weapon.";
-        this.Phase = 101;
-      }
-    }
-    else if (this.Phase == 5)
-    {
-      if (this.Police.PhotoEvidence > 0)
-      {
-        this.TeleportYandere();
-        this.Yandere.CharacterAnimation.Play("f02_disappointed_00");
-        if (this.Yandere.StudentManager.Eighties)
-          this.Yandere.LoseGentleEyes();
-        this.ShruggingCops.SetActive(false);
-        this.Label.text = "The police find a smartphone with photographic evidence of " + this.Protagonist + " committing a crime.";
-        this.Phase = 100;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 6)
-    {
-      if (SchoolGlobals.HighSecurity)
-      {
-        this.SecuritySystemScene.SetActive(true);
-        if (!this.SecuritySystem.Evidence)
-        {
-          this.Label.text = "The police investigate the security camera recordings, but cannot find anything incriminating in the footage.";
-          ++this.Phase;
-        }
-        else if (!this.SecuritySystem.Masked)
-        {
-          this.Label.text = "The police investigate the security camera recordings, and find incriminating footage of " + this.Protagonist + ".";
-          this.Phase = 100;
-        }
-        else
-        {
-          this.Label.text = "The police investigate the security camera recordings, and find footage of a suspicious masked person.";
-          this.Police.MaskReported = true;
-          ++this.Phase;
-        }
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 7)
-    {
-      for (this.ID = 1; this.ID < this.StudentManager.Students.Length; ++this.ID)
-      {
-        if ((UnityEngine.Object) this.StudentManager.Students[this.ID] != (UnityEngine.Object) null && this.StudentManager.Students[this.ID].WitnessedMurder && this.StudentManager.Students[this.ID].Alive && this.StudentManager.Students[this.ID].Persona != PersonaType.Coward && this.StudentManager.Students[this.ID].Persona != PersonaType.Spiteful && this.StudentManager.Students[this.ID].Persona != PersonaType.Evil && this.StudentManager.Students[this.ID].Club != ClubType.Delinquent && !this.StudentManager.Students[this.ID].SawMask)
-        {
-          ++this.EyeWitnesses;
-          this.WitnessList[this.EyeWitnesses] = this.StudentManager.Students[this.ID];
-        }
-      }
-      if (this.EyeWitnesses > 0)
-      {
-        this.DisableThings(this.WitnessList[1]);
-        this.DisableThings(this.WitnessList[2]);
-        this.DisableThings(this.WitnessList[3]);
-        this.DisableThings(this.WitnessList[4]);
-        this.DisableThings(this.WitnessList[5]);
-        this.WitnessList[1].transform.localPosition = Vector3.zero;
-        if ((UnityEngine.Object) this.WitnessList[2] != (UnityEngine.Object) null)
-          this.WitnessList[2].transform.localPosition = new Vector3(-1f, 0.0f, -0.5f);
-        if ((UnityEngine.Object) this.WitnessList[3] != (UnityEngine.Object) null)
-          this.WitnessList[3].transform.localPosition = new Vector3(1f, 0.0f, -0.5f);
-        if ((UnityEngine.Object) this.WitnessList[4] != (UnityEngine.Object) null)
-          this.WitnessList[4].transform.localPosition = new Vector3(-2f, 0.0f, -1f);
-        if ((UnityEngine.Object) this.WitnessList[5] != (UnityEngine.Object) null)
-          this.WitnessList[5].transform.localPosition = new Vector3(1.5f, 0.0f, -1f);
-        if (this.WitnessList[1].Male)
-          this.WitnessList[1].CharacterAnimation.Play("carefreeTalk_02");
-        else
-          this.WitnessList[1].CharacterAnimation.Play("f02_carefreeTalk_02");
-        this.EyeWitnessScene.SetActive(true);
-        if (this.EyeWitnesses == 1)
-        {
-          this.Label.text = "One student accuses " + this.Protagonist + " of murder, but nobody else can corroborate that students' claims, so the police are unable to develop reasonable justification to arrest " + this.Protagonist + ".";
-          ++this.Phase;
-        }
-        else if (this.EyeWitnesses < 5)
-        {
-          this.Label.text = "Several students accuse " + this.Protagonist + " of murder, but there are not enough witnesses to provide the police with reasonable justification to arrest her.";
-          ++this.Phase;
-        }
-        else
-        {
-          this.Label.text = "Numerous students accuse " + this.Protagonist + " of murder, providing the police with enough justification to arrest her.";
-          this.Phase = 100;
-        }
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 8)
-    {
-      this.ShruggingCops.SetActive(false);
-      if ((double) this.Yandere.Sanity > 33.333328247070313)
-      {
-        if ((double) this.Yandere.Bloodiness > 0.0 && !this.Yandere.RedPaint || this.Yandere.Gloved && this.Yandere.Gloves.Blood.enabled)
-        {
-          if (this.Arrests == 0)
-          {
-            this.TeleportYandere();
-            this.Yandere.CharacterAnimation.Play("f02_disappointed_00");
-            if (this.Yandere.StudentManager.Eighties)
-              this.Yandere.LoseGentleEyes();
-            this.Label.text = "The police notice that " + this.Protagonist + "'s clothing is bloody. They confirm that the blood is not hers. " + this.Protagonist + " is unable to convince the police that she did not commit murder.";
-            this.Phase = 100;
-          }
-          else
-          {
-            this.TeleportYandere();
-            this.Yandere.CharacterAnimation["YandereConfessionRejected"].time = 4f;
-            this.Yandere.CharacterAnimation.Play("YandereConfessionRejected");
-            this.Label.text = "The police notice that " + this.Protagonist + "'s clothing is bloody. They confirm that the blood is not hers. " + this.Protagonist + " is able to convince the police that she was splashed with blood while witnessing a murder.";
-            if (!this.TranqCase.Occupied)
-              this.Phase += 2;
-            else
-              ++this.Phase;
-          }
-        }
-        else if (this.Police.BloodyClothing - this.ClothingWithRedPaint > 0)
-        {
-          this.TeleportYandere();
-          this.Yandere.CharacterAnimation.Play("f02_disappointed_00");
-          if (this.Yandere.StudentManager.Eighties)
-            this.Yandere.LoseGentleEyes();
-          this.Label.text = "The police find bloody clothing that has traces of " + this.Protagonist + "'s DNA. " + this.Protagonist + " is unable to convince the police that she did not commit murder.";
-          this.Phase = 100;
-        }
-        else
-        {
-          this.TeleportYandere();
-          this.Yandere.CharacterAnimation["YandereConfessionRejected"].time = 4f;
-          this.Yandere.CharacterAnimation.Play("YandereConfessionRejected");
-          this.Label.text = "The police question all students in the school, including " + this.Protagonist + ". The police are unable to link " + this.Protagonist + " to any crimes.";
-          if (!this.TranqCase.Occupied)
-            this.Phase += 2;
-          else if (this.TranqCase.VictimID == this.ArrestID)
-            this.Phase += 2;
-          else
-            ++this.Phase;
-          if (!this.Yandere.StudentManager.Eighties)
-            return;
-          this.Yandere.LoseGentleEyes();
-        }
-      }
-      else
-      {
-        this.TeleportYandere();
-        this.Yandere.CharacterAnimation.Play("f02_disappointed_00");
-        if (this.Yandere.StudentManager.Eighties)
-          this.Yandere.LoseGentleEyes();
-        if ((double) this.Yandere.Bloodiness == 0.0)
-        {
-          this.Label.text = "The police question " + this.Protagonist + ", who exhibits extremely unusual behavior. The police decide to investigate " + this.Protagonist + " further, and eventually learn of her crimes.";
-          this.Phase = 100;
-        }
-        else
-        {
-          this.Label.text = "The police notice that " + this.Protagonist + " is covered in blood and exhibiting extremely unusual behavior. The police decide to investigate " + this.Protagonist + " further, and eventually learn of her crimes.";
-          this.Phase = 100;
-        }
-      }
-    }
-    else if (this.Phase == 9)
-    {
-      this.KidnappedVictim = this.StudentManager.Students[this.TranqCase.VictimID];
-      this.KidnappedVictim.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-      this.KidnappedVictim.CharacterAnimation.enabled = true;
-      this.KidnappedVictim.gameObject.SetActive(true);
-      this.KidnappedVictim.Ragdoll.Zs.SetActive(false);
-      this.KidnappedVictim.transform.parent = this.transform;
-      this.KidnappedVictim.transform.localPosition = new Vector3(0.0f, 0.145f, 0.0f);
-      this.KidnappedVictim.transform.localEulerAngles = new Vector3(0.0f, 90f, 0.0f);
-      this.KidnappedVictim.CharacterAnimation.Play("f02_sit_06");
-      this.KidnappedVictim.WhiteQuestionMark.SetActive(true);
-      this.KidnappedVictim.Cosmetic.FemaleHair[this.KidnappedVictim.Cosmetic.Hairstyle].SetActive(true);
-      this.OpenTranqCase.SetActive(true);
-      this.Label.text = "The police discover " + this.JSON.Students[this.TranqCase.VictimID].Name + " inside of a musical instrument case. However, she is unable to recall how she got inside of the case. The police are unable to determine what happened.";
-      StudentGlobals.SetStudentKidnapped(this.TranqCase.VictimID, false);
-      StudentGlobals.SetStudentMissing(this.TranqCase.VictimID, false);
-      if (this.TranqCase.VictimID == this.StudentManager.RivalID)
-        this.StudentManager.RivalEliminated = false;
-      this.TranqCase.VictimClubType = ClubType.None;
-      this.TranqCase.VictimID = 0;
-      this.TranqCase.Occupied = false;
-      ++this.Phase;
-    }
-    else if (this.Phase == 10)
-    {
-      if (this.Police.MaskReported)
-      {
-        this.Mask.SetActive(true);
-        GameGlobals.MasksBanned = true;
-        this.Label.text = !this.SecuritySystem.Masked ? "Witnesses state that the killer was wearing a mask. As a result, the police are unable to gather meaningful information about the murderer. To prevent this from ever happening again, the Headmaster decides to ban all masks from the school from this day forward." : "In security camera footage, the killer was wearing a mask. As a result, the police are unable to gather meaningful information about the murderer. To prevent this from ever happening again, the Headmaster decides to ban all masks from the school from this day forward.";
-        this.Police.MaskReported = false;
-        ++this.Phase;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 11)
-    {
-      this.Cops.transform.eulerAngles = new Vector3(0.0f, 180f, 0.0f);
-      this.Cops.SetActive(true);
-      this.Label.text = this.Arrests != 0 ? (this.Arrests != 1 ? "The police believe that they have arrested the perpetrators of the crimes. The police investigation ends, and students are free to leave." : "The police believe that they have arrested the perpetrator of the crime. The police investigation ends, and students are free to leave.") : (this.DeadPerps != 0 ? (!this.Police.MurderSuicideScene ? "The police believe that they know the identity of the killer, but they cannot locate the suspect at school. The police leave to search for the person that they believe is the killer. The police investigation ends, and students are free to leave." : "The police conclude that a murder-suicide took place, but are unable to take any further action. The police investigation ends, and students are free to leave.") : "The police do not have enough evidence to perform an arrest. The police investigation ends, and students are free to leave.");
-      if (this.StudentManager.RivalEliminated || this.RivalEliminationMethod != RivalEliminationType.None)
-        ++this.Phase;
-      else if (DateGlobals.Weekday == DayOfWeek.Friday)
-        this.Phase = 24;
-      else
-        this.Phase += 2;
-    }
-    else if (this.Phase == 12)
-    {
-      this.Senpai.enabled = false;
-      this.Senpai.transform.parent = this.transform;
-      this.Senpai.gameObject.SetActive(true);
-      this.Senpai.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Senpai.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Senpai.EmptyHands();
-      Physics.SyncTransforms();
-      string str = "";
-      if (this.Yandere.Egg && this.RivalEliminationMethod == RivalEliminationType.None)
-        this.RivalEliminationMethod = RivalEliminationType.Murdered;
-      if (this.RivalEliminationMethod == RivalEliminationType.None)
-        this.Label.text = "Your Senpai feels a growing sense of concern that the school may not be safe.";
-      else if (this.RivalEliminationMethod == RivalEliminationType.Murdered || this.RivalEliminationMethod == RivalEliminationType.MurderedWitnessed || this.RivalEliminationMethod == RivalEliminationType.Accident || this.RivalEliminationMethod == RivalEliminationType.SuicideFake)
-      {
-        if (!this.StudentManager.Eighties)
-        {
-          this.Senpai.CharacterAnimation.Play("kneelCry_00");
-          if (DateGlobals.Weekday != DayOfWeek.Friday)
-          {
-            str = "Senpai will stay home from school for one day to mourn her death.";
-            GameGlobals.SenpaiMourning = true;
-          }
-          this.Label.text = "Senpai is absolutely devastated by the death of his childhood friend. His mental stability has been greatly affected." + str;
-        }
-        else
-        {
-          this.Senpai.CharacterAnimation.Play(this.Senpai.BulliedIdleAnim);
-          this.Label.text = "Senpai is deeply saddened by the death of his friend.";
-        }
-      }
-      else
-      {
-        this.Senpai.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
-        if (this.RivalEliminationMethod == RivalEliminationType.Arrested)
-        {
-          this.Senpai.CharacterAnimation["refuse_02"].speed = 0.5f;
-          this.Senpai.CharacterAnimation.Play("refuse_02");
-          this.Label.text = "Senpai is disgusted to learn that " + this.RivalName + " would actually commit murder. He is deeply disappointed in her.";
-        }
-        else if (this.RivalEliminationMethod == RivalEliminationType.Befriended || this.RivalEliminationMethod == RivalEliminationType.Matchmade)
-        {
-          this.Senpai.CharacterAnimation.Play(this.Senpai.BulliedIdleAnim);
-          this.Label.text = "Senpai notices that " + this.RivalName + " is distancing herself from him. He feels a little sad about it, but he accepts it.";
-        }
-        else if (this.RivalEliminationMethod == RivalEliminationType.Expelled)
-        {
-          this.Senpai.CharacterAnimation.Play("surprisedPose_00");
-          this.Label.text = "Senpai is shocked to learn that " + this.RivalName + " has been expelled. He is deeply disappointed in her.";
-        }
-        else if (this.RivalEliminationMethod == RivalEliminationType.Ruined)
-        {
-          this.Senpai.CharacterAnimation["refuse_02"].speed = 0.5f;
-          this.Senpai.CharacterAnimation.Play("refuse_02");
-          this.Label.text = "Senpai is disturbed by the rumors circulating about " + this.RivalName + ". He is deeply disappointed in her.";
-        }
-        else if (this.RivalEliminationMethod == RivalEliminationType.Rejected)
-        {
-          this.Senpai.CharacterAnimation.Play(this.Senpai.BulliedIdleAnim);
-          this.Label.text = "Senpai feels guilty for turning down " + this.RivalName + "'s feelings, but also he knows that he cannot take back what has been said.";
-        }
-        else if (this.RivalEliminationMethod == RivalEliminationType.Vanished)
-        {
-          this.Senpai.CharacterAnimation.Play(this.Senpai.BulliedIdleAnim);
-          this.Label.text = "Senpai is concerned about the sudden disappearance of " + this.RivalName + ". His mental stability has been slightly affected.";
-        }
-      }
-      ++this.Phase;
-    }
-    else if (this.Phase == 13)
-    {
-      this.Senpai.enabled = false;
-      this.Senpai.transform.parent = this.transform;
-      this.Senpai.gameObject.SetActive(true);
-      this.Senpai.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Senpai.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
-      this.Senpai.Character.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Senpai.Character.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Senpai.EmptyHands();
-      if (this.StudentManager.RivalEliminated)
-        this.Senpai.CharacterAnimation.Play(this.Senpai.BulliedWalkAnim);
-      else
-        this.Senpai.CharacterAnimation.Play(this.Senpai.WalkAnim);
-      this.Yandere.LookAt.enabled = true;
-      this.Yandere.MyController.enabled = false;
-      this.Yandere.transform.parent = this.transform;
-      this.Yandere.transform.localPosition = new Vector3(2.5f, 0.0f, 2.5f);
-      this.Yandere.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
-      this.Yandere.gameObject.SetActive(true);
-      this.Yandere.CharacterAnimation.Play(this.Yandere.WalkAnim);
-      this.Label.text = this.Protagonist + " stalks Senpai until he has returned home, and then returns to her own home.";
-      if (GameGlobals.SenpaiMourning)
-      {
-        this.Senpai.gameObject.SetActive(false);
-        this.Yandere.LookAt.enabled = false;
-        this.Yandere.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        this.Yandere.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
-        this.Label.text = this.Protagonist + " returns home, thinking of Senpai every step of the way.";
-      }
-      Physics.SyncTransforms();
-      ++this.Phase;
-    }
-    else if (this.Phase == 14)
-    {
-      Debug.Log((object) "We're currently in the End-of-Day sequence, checking to see if the Counselor has to lecture anyone.");
-      if (!StudentGlobals.GetStudentDying(this.StudentManager.RivalID) && !StudentGlobals.GetStudentDead(this.StudentManager.RivalID) && !StudentGlobals.GetStudentArrested(this.StudentManager.RivalID))
-      {
-        Debug.Log((object) "The current rival is not dying, dead, or arrested.");
-        if (this.Counselor.LectureID > 0)
-        {
-          this.Yandere.gameObject.SetActive(false);
-          for (int DisableID = 1; DisableID < 100; ++DisableID)
-            this.StudentManager.DisableStudent(DisableID);
-          this.EODCamera.position = new Vector3(-18.5f, 1f, 6.5f);
-          this.EODCamera.eulerAngles = new Vector3(0.0f, -45f, 0.0f);
-          this.EODCamera.Translate(this.EODCamera.transform.forward * 0.3f);
-          this.Counselor.Lecturing = true;
-          this.enabled = false;
-          Debug.Log((object) "The counselor is going to lecture somebody! Exiting End-of-Day sequence.");
-        }
-        else
-        {
-          ++this.Phase;
-          this.UpdateScene();
-        }
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 15)
-    {
-      this.EODCamera.localPosition = new Vector3(1f, 1.8f, -2.5f);
-      this.EODCamera.localEulerAngles = new Vector3(22.5f, -22.5f, 0.0f);
-      this.TextWindow.SetActive(true);
-      if (this.Counselor.MustReturnStolenRing)
-      {
-        if (!this.StudentManager.Eighties)
-          this.GaudyRing.SetActive(true);
-        else
-          this.EightiesGaudyRing.SetActive(true);
-        if (!this.StudentManager.Eighties)
-        {
-          this.Label.text = "The guidance counselor returns Sakyu's stolen ring to her. Sakyu decides to stop bringing the ring to school.";
-          GameGlobals.RingStolen = true;
-        }
-        else
-          this.Label.text = "The guidance counselor returns Himeko's stolen ring to her. Having her ring stolen does not affect Himeko's decision to wear expensive jewelry at school every day.";
-        this.Counselor.MustReturnStolenRing = false;
-      }
-      else if (SchemeGlobals.GetSchemeStage(2) == 3)
-      {
-        this.GaudyRing.SetActive(true);
-        this.Label.text = StudentGlobals.GetStudentDying(this.StudentManager.RivalID) || StudentGlobals.GetStudentDead(this.StudentManager.RivalID) || StudentGlobals.GetStudentArrested(this.StudentManager.RivalID) ? "Sakyu Basu will never recover her stolen ring." : this.RivalName + " discovers a ring inside of her book bag. She returns the ring to its owner.";
-        SchemeGlobals.SetSchemeStage(2, 100);
-        GameGlobals.RingStolen = true;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 16)
-    {
-      if (this.Police.Deaths + PlayerGlobals.Kills > 50)
-      {
-        this.EODCamera.position = new Vector3(-6f, 0.15f, -49f);
-        this.EODCamera.eulerAngles = new Vector3(-22.5f, 22.5f, 0.0f);
-        this.Label.text = "More than half of the school's population is dead. For the safety of the remaining students, the headmaster of Akademi makes the decision to shut down the school. Senpai enrolls in a school far away. " + this.Protagonist + " will not be able to follow him, and another girl will steal his heart. " + this.Protagonist + " has permanently lost her chance to be with Senpai.";
-        this.Heartbroken.NoSnap = true;
-        this.GameOver = true;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 17)
-    {
-      this.ClubLimit = this.ClubArray.Length;
-      if (!GameGlobals.Eighties)
-        --this.ClubLimit;
-      this.ClubClosed = false;
-      this.ClubKicked = false;
-      this.DistanceToMoveForward = 1.2f;
-      if (this.ClubID < this.ClubLimit)
-      {
-        if (this.StudentManager.Eighties && this.ClubID == 11)
-          ++this.ClubID;
-        if (!ClubGlobals.GetClubClosed(this.ClubArray[this.ClubID]))
-        {
-          this.ClubManager.CheckClub(this.ClubArray[this.ClubID]);
-          if (this.ClubManager.ClubMembers < 5)
-          {
-            this.EODCamera.position = this.ClubManager.ClubVantages[this.ClubID].position;
-            this.EODCamera.eulerAngles = this.ClubManager.ClubVantages[this.ClubID].eulerAngles;
-            this.EODCamera.Translate(Vector3.forward * this.DistanceToMoveForward, Space.Self);
-            ClubGlobals.SetClubClosed(this.ClubArray[this.ClubID], true);
-            this.Label.text = this.ClubID == 11 ? (this.ClubManager.ClubMembers <= 0 ? "The Gaming Club no longer exists." : "The Gaming Club makes the decision to disband.") : "The " + this.ClubNames[this.ClubID].ToString() + " no longer has enough members to remain operational. The school forces the club to disband.";
-            this.ClubClosed = true;
-            if (this.Yandere.Club == this.ClubArray[this.ClubID])
-              this.Yandere.Club = ClubType.None;
-          }
-          if (this.ClubManager.LeaderMissing)
-          {
-            this.EODCamera.position = this.ClubManager.ClubVantages[this.ClubID].position;
-            this.EODCamera.eulerAngles = this.ClubManager.ClubVantages[this.ClubID].eulerAngles;
-            this.EODCamera.Translate(Vector3.forward * this.DistanceToMoveForward, Space.Self);
-            ClubGlobals.SetClubClosed(this.ClubArray[this.ClubID], true);
-            this.Label.text = "The leader of the " + this.ClubNames[this.ClubID].ToString() + " has gone missing. The " + this.ClubNames[this.ClubID].ToString() + " cannot operate without its leader. The club disbands.";
-            this.ClubClosed = true;
-            if (this.Yandere.Club == this.ClubArray[this.ClubID])
-              this.Yandere.Club = ClubType.None;
-          }
-          else if (this.ClubManager.LeaderDead)
-          {
-            this.EODCamera.position = this.ClubManager.ClubVantages[this.ClubID].position;
-            this.EODCamera.eulerAngles = this.ClubManager.ClubVantages[this.ClubID].eulerAngles;
-            this.EODCamera.Translate(Vector3.forward * this.DistanceToMoveForward, Space.Self);
-            ClubGlobals.SetClubClosed(this.ClubArray[this.ClubID], true);
-            this.Label.text = "The leader of the " + this.ClubNames[this.ClubID].ToString() + " is gone. The " + this.ClubNames[this.ClubID].ToString() + " cannot operate without its leader. The club disbands.";
-            this.ClubClosed = true;
-            if (this.Yandere.Club == this.ClubArray[this.ClubID])
-              this.Yandere.Club = ClubType.None;
-          }
-          else if (this.ClubManager.LeaderAshamed)
-          {
-            this.EODCamera.position = this.ClubManager.ClubVantages[this.ClubID].position;
-            this.EODCamera.eulerAngles = this.ClubManager.ClubVantages[this.ClubID].eulerAngles;
-            this.EODCamera.Translate(Vector3.forward * this.DistanceToMoveForward, Space.Self);
-            ClubGlobals.SetClubClosed(this.ClubArray[this.ClubID], true);
-            this.Label.text = "The leader of the " + this.ClubNames[this.ClubID].ToString() + " has unexpectedly disbanded the club without explanation.";
-            this.ClubClosed = true;
-            this.ClubManager.LeaderAshamed = false;
-            if (this.Yandere.Club == this.ClubArray[this.ClubID])
-              this.Yandere.Club = ClubType.None;
-          }
-        }
-        if (!ClubGlobals.GetClubClosed(this.ClubArray[this.ClubID]) && !ClubGlobals.GetClubKicked(this.ClubArray[this.ClubID]) && this.Yandere.Club == this.ClubArray[this.ClubID])
-        {
-          Debug.Log((object) ("Checking to see if anyone in Club #" + this.ClubID.ToString() + " has a grudge on Ayano."));
-          this.ClubManager.CheckGrudge(this.ClubArray[this.ClubID]);
-          if (this.ClubManager.LeaderGrudge)
-          {
-            this.EODCamera.position = this.ClubManager.ClubVantages[this.ClubID].position;
-            this.EODCamera.eulerAngles = this.ClubManager.ClubVantages[this.ClubID].eulerAngles;
-            this.EODCamera.Translate(Vector3.forward * this.DistanceToMoveForward, Space.Self);
-            this.Label.text = this.Protagonist + " receives a message from the president of the " + this.ClubNames[this.ClubID].ToString() + ". " + this.Protagonist + " is no longer a member of the " + this.ClubNames[this.ClubID].ToString() + ", and is not welcome in the " + this.ClubNames[this.ClubID].ToString() + " room.";
-            ClubGlobals.SetClubKicked(this.ClubArray[this.ClubID], true);
-            this.Yandere.Club = ClubType.None;
-            this.ClubKicked = true;
-          }
-          else if (this.ClubManager.ClubGrudge)
-          {
-            Debug.Log((object) "Yeah, someone does.");
-            this.EODCamera.position = this.ClubManager.ClubVantages[this.ClubID].position;
-            this.EODCamera.eulerAngles = this.ClubManager.ClubVantages[this.ClubID].eulerAngles;
-            this.EODCamera.Translate(Vector3.forward * this.DistanceToMoveForward, Space.Self);
-            this.Label.text = this.Protagonist + " receives a message from the president of the " + this.ClubNames[this.ClubID].ToString() + ". There is someone in the " + this.ClubNames[this.ClubID].ToString() + " who hates and fears " + this.Protagonist + ". " + this.Protagonist + " is no longer a member of the " + this.ClubNames[this.ClubID].ToString() + ", and is not welcome in the " + this.ClubNames[this.ClubID].ToString() + " room.";
-            ClubGlobals.SetClubKicked(this.ClubArray[this.ClubID], true);
-            this.Yandere.Club = ClubType.None;
-            this.ClubKicked = true;
-          }
-        }
-        if (!this.ClubClosed && !this.ClubKicked)
-        {
-          ++this.ClubID;
-          this.UpdateScene();
-        }
-        this.ClubManager.LeaderAshamed = false;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 18)
-    {
-      if (this.TranqCase.Occupied)
-      {
-        this.ClosedTranqCase.SetActive(true);
-        this.Label.color = new Color(this.Label.color.r, this.Label.color.g, this.Label.color.b, 1f);
-        if (this.StudentManager.Eighties)
-          this.Protagonist = "Ryoba";
-        this.Label.text = this.Protagonist + " waits until midnight, sneaks into school, and returns to the musical instrument case that contains her unconscious victim. She pushes the case back to her house and ties the victim to a chair in her basement.";
-        if (this.TranqCase.VictimID == this.StudentManager.RivalID)
-        {
-          this.RivalEliminationMethod = RivalEliminationType.Vanished;
-          GameGlobals.SpecificEliminationID = 12;
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("Kidnap", 1);
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("a", 1);
-        }
-        ++this.Phase;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 19)
-    {
-      if (this.ErectFence)
-      {
-        this.Fence.SetActive(true);
-        this.Label.text = "To prevent any other students from falling off of the school rooftop, the school erects a fence around the roof.";
-        SchoolGlobals.RoofFence = true;
-        this.ErectFence = false;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 20)
-    {
-      if (!SchoolGlobals.HighSecurity && this.Police.CouncilDeath)
-      {
-        if (!this.StudentManager.Eighties)
-        {
-          this.SCP.SetActive(true);
-          this.Label.text = "The student council president has ordered the implementation of heightened security precautions. Security cameras and metal detectors are now present at school.";
-        }
-        else
-        {
-          this.Headmaster.SetActive(true);
-          this.Label.text = "The headmaster has ordered the implementation of heightened security precautions. Security cameras and metal detectors are now present at school.";
-        }
-        this.Police.CouncilDeath = false;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 21)
-    {
-      this.Rival = this.StudentManager.Students[this.StudentManager.RivalID];
-      if (this.ArticleID == 2)
-      {
-        this.StudentManager.StudentReps[this.StudentManager.RivalID] -= (float) (20.0 * (1.0 + (double) this.Class.LanguageGrade * 0.20000000298023224));
-        StudentGlobals.SetStudentReputation(this.StudentManager.RivalID, Mathf.RoundToInt(this.StudentManager.StudentReps[this.StudentManager.RivalID]));
-      }
-      if ((UnityEngine.Object) this.Rival != (UnityEngine.Object) null && this.Rival.Alive && (double) this.StudentManager.StudentReps[this.StudentManager.RivalID] <= -100.0)
-      {
-        Debug.Log((object) "The rival is not null, the rival is alive, and the rival's reputation is below -100.");
-        this.Rival.gameObject.SetActive(true);
-        this.Rival.transform.parent = this.transform;
-        this.Rival.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        this.Rival.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-        this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-        this.Rival.CharacterAnimation.Play(this.Rival.BulliedWalkAnim);
-        this.Rival.CharacterAnimation.enabled = true;
-        this.RivalName = !this.StudentManager.Eighties ? this.RivalNames[DateGlobals.Week] : this.EightiesRivalNames[DateGlobals.Week];
-        this.Label.text = this.RivalName + " cannot endure the bullying and harassment that she is being subjected to due to her damaged reputation. She chooses to withdraw from Akademi and never return.";
-        this.RivalEliminationMethod = RivalEliminationType.Ruined;
-        this.StudentManager.RivalEliminated = true;
-        GameGlobals.SpecificEliminationID = 4;
-        if ((double) this.StudentManager.StudentReps[this.StudentManager.RivalID] <= -150.0)
-        {
-          this.Label.text = this.RivalName + " is absolutely devastated by the unbearable bullying and harassment that she is being subjected to. She silently returns to her home, planning something drastic...";
-          this.Rival.CharacterAnimation.Play(this.Rival.BulliedIdleAnim);
-          this.RivalEliminationMethod = RivalEliminationType.SuicideBully;
-          this.GoToSuicideScene = true;
-          this.StudentManager.Students[this.StudentManager.RivalID].Hearts.Stop();
-          GameGlobals.SpecificEliminationID = 19;
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("Suicide", 1);
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("a", 1);
-        }
-        else
-        {
-          Debug.Log((object) "Informing the Content Checklist.");
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("Bully", 1);
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("a", 1);
-        }
-        ++this.Phase;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 22)
-    {
-      Debug.Log((object) "The End-of-Day sequence is now checking whether or not we need to boot the player out of a club.");
-      Debug.Log((object) ("Yandere.Club is: " + this.Yandere.Club.ToString()));
-      Debug.Log((object) ("DateGlobals.Weekday is: " + DateGlobals.Weekday.ToString()));
-      Debug.Log((object) ("ClubManager.ActivitiesAttended is: " + this.ClubManager.ActivitiesAttended.ToString()));
-      if (this.Yandere.Club != ClubType.None && DateGlobals.Weekday == DayOfWeek.Friday && this.ClubManager.ActivitiesAttended == 0)
-      {
-        this.TeleportYandere();
-        this.Yandere.CharacterAnimation.Play("f02_disappointed_00");
-        if (this.Yandere.StudentManager.Eighties)
-          this.Yandere.LoseGentleEyes();
-        if (this.StudentManager.Eighties)
-          this.Protagonist = "Ryoba";
-        this.Label.text = this.Protagonist + " did not participate in any activities with her club this week. She has been kicked out of the club.";
-        ClubGlobals.SetClubKicked(this.Yandere.Club, true);
-        ClubGlobals.Club = ClubType.None;
-        this.Yandere.Club = ClubType.None;
-      }
-      else
-      {
-        ++this.Phase;
-        this.UpdateScene();
-      }
-    }
-    else if (this.Phase == 23)
-      this.Finish();
-    else if (this.Phase == 24)
-    {
-      if (this.LoveManager.ConfessToSuitor && this.StudentManager.Students[this.StudentManager.SuitorID].Alive)
-      {
-        StudentScript student = this.StudentManager.Students[this.StudentManager.SuitorID];
-        student.enabled = false;
-        student.Pathfinding.enabled = false;
-        student.transform.parent = this.transform;
-        student.gameObject.SetActive(true);
-        student.transform.localPosition = new Vector3(-0.4f, 0.0f, 0.0f);
-        student.transform.localEulerAngles = new Vector3(0.0f, 90f, 0.0f);
-        student.EmptyHands();
-        student.MyController.enabled = false;
-        student.CharacterAnimation.enabled = true;
-        student.CharacterAnimation.Play("holdHandsLoop_00");
-        student.Hearts.emission.enabled = true;
-        student.Hearts.Play();
-        this.Rival.enabled = false;
-        this.Rival.Pathfinding.enabled = false;
-        this.Rival.transform.parent = this.transform;
-        this.Rival.gameObject.SetActive(true);
-        this.Rival.transform.localPosition = new Vector3(0.4f, 0.0f, 0.0f);
-        this.Rival.transform.localEulerAngles = new Vector3(0.0f, -90f, 0.0f);
-        this.Rival.EmptyHands();
-        this.Rival.MyController.enabled = false;
-        this.Rival.CharacterAnimation.enabled = true;
-        this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
-        this.Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
-        this.Rival.CharacterAnimation.Play("f02_holdHandsLoop_00");
-        this.Rival.Hearts.emission.enabled = true;
-        this.Rival.Hearts.Play();
-        this.RivalEliminationMethod = RivalEliminationType.Matchmade;
-        this.Label.text = "After the police investigation ends, " + this.RivalName + " confesses to a boy that she has fallen in love with. She will no longer attempt to pursue a relationship with " + this.Protagonist + "'s Senpai.";
-        this.Phase = 12;
-      }
-      else
-      {
-        this.Senpai.enabled = false;
-        this.Senpai.Pathfinding.enabled = false;
-        this.Senpai.transform.parent = this.transform;
-        this.Senpai.gameObject.SetActive(true);
-        this.Senpai.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        this.Senpai.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-        this.Senpai.EmptyHands();
-        this.Senpai.MyController.enabled = false;
-        this.Senpai.CharacterAnimation.enabled = true;
-        this.Senpai.CharacterAnimation.CrossFade(this.Senpai.IdleAnim);
-        this.Rival.enabled = false;
-        this.Rival.Pathfinding.enabled = false;
-        this.Rival.transform.parent = this.transform;
-        this.Rival.gameObject.SetActive(true);
-        this.Rival.transform.localPosition = new Vector3(0.0f, 0.0f, 1f);
-        this.Rival.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
-        this.Rival.EmptyHands();
-        this.Rival.MyController.enabled = false;
-        this.Rival.CharacterAnimation.enabled = true;
-        this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
-        this.Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
-        this.Rival.CharacterAnimation.Play("f02_shy_00");
-        this.Label.text = "After the police investigation ends, " + this.RivalName + " asks Senpai to speak with her under the cherry tree behind the school.";
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 25)
-    {
-      for (int DisableID = 1; DisableID < 100; ++DisableID)
-        this.StudentManager.DisableStudent(DisableID);
-      this.LoveManager.Suitor = this.Senpai;
-      this.LoveManager.Rival = this.Rival;
-      this.LoveManager.Rival.CharacterAnimation["f02_shy_00"].weight = 0.0f;
-      this.LoveManager.Suitor.gameObject.SetActive(true);
-      this.LoveManager.Rival.gameObject.SetActive(true);
-      this.Yandere.gameObject.SetActive(true);
-      this.Yandere.MyListener.enabled = true;
-      this.LoveManager.Suitor.transform.parent = (Transform) null;
-      this.LoveManager.Rival.transform.parent = (Transform) null;
-      this.Yandere.gameObject.transform.parent = (Transform) null;
-      this.LoveManager.BeginConfession();
-      this.Clock.NightLighting();
-      this.Clock.enabled = false;
-      this.gameObject.SetActive(false);
-    }
-    else if (this.Phase == 100)
-    {
-      this.Yandere.MyController.enabled = false;
-      this.Yandere.transform.parent = this.transform;
-      this.Yandere.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Yandere.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Yandere.gameObject.SetActive(true);
-      this.Yandere.CharacterAnimation.Play("f02_handcuffs_00");
-      this.Yandere.Handcuffs.SetActive(true);
-      this.ArrestingCops.SetActive(true);
-      Physics.SyncTransforms();
-      this.Label.text = this.Protagonist + " is arrested by the police. She will never have Senpai.";
-      this.GameOver = true;
-      this.Heartbroken.Arrested = true;
-      this.Heartbroken.NoSnap = true;
-    }
-    else if (this.Phase == 101)
-    {
-      int fingerprintId = this.WeaponManager.Weapons[this.WeaponID].FingerprintID;
-      StudentScript student = this.StudentManager.Students[fingerprintId];
-      if (student.Alive)
-      {
-        this.Patsy = this.StudentManager.Students[fingerprintId];
-        this.Patsy.gameObject.SetActive(true);
-        this.Patsy.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-        this.Patsy.CharacterAnimation.enabled = true;
-        if ((UnityEngine.Object) this.Patsy.WeaponBag != (UnityEngine.Object) null)
-          this.Patsy.WeaponBag.SetActive(false);
-        this.Patsy.EmptyHands();
-        this.Patsy.SpeechLines.Stop();
-        this.Patsy.Handcuffs.SetActive(true);
-        this.Patsy.gameObject.SetActive(true);
-        this.Patsy.Ragdoll.Zs.SetActive(false);
-        this.Patsy.SmartPhone.SetActive(false);
-        this.Patsy.MyController.enabled = false;
-        this.Patsy.transform.parent = this.transform;
-        this.Patsy.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        this.Patsy.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-        this.Patsy.ShoeRemoval.enabled = false;
-        if (this.StudentManager.Students[fingerprintId].Male)
-          this.StudentManager.Students[fingerprintId].CharacterAnimation.Play("handcuffs_00");
-        else
-          this.StudentManager.Students[fingerprintId].CharacterAnimation.Play("f02_handcuffs_00");
-        this.ArrestingCops.SetActive(true);
-        if (!student.Tranquil)
-        {
-          this.Label.text = this.JSON.Students[fingerprintId].Name + " is arrested by the police.";
-          this.StudentsToArrest[fingerprintId] = true;
-          ++this.Arrests;
-        }
-        else
-        {
-          this.Label.text = this.JSON.Students[fingerprintId].Name + " is found asleep inside of a musical instrument case. The police assume that she hid herself inside of the box after committing murder, and arrest her.";
-          this.StudentsToArrest[fingerprintId] = true;
-          this.ArrestID = fingerprintId;
-          this.TranqCase.Occupied = false;
-          ++this.Arrests;
-        }
-        if (this.Patsy.StudentID == this.StudentManager.RivalID)
-        {
-          this.StudentManager.RivalEliminated = true;
-          this.RivalArrested = true;
-        }
-      }
-      else
-      {
-        this.ShruggingCops.SetActive(true);
-        if (student.Ragdoll.Disposed)
-        {
-          this.Label.text = this.JSON.Students[fingerprintId].Name + " is missing. The police cannot perform an arrest.";
-          ++this.DeadPerps;
-        }
-        else
-        {
-          bool flag = false;
-          for (this.ID = 0; this.ID < this.VictimArray.Length; ++this.ID)
-          {
-            if (this.VictimArray[this.ID] == fingerprintId && !student.MurderSuicide)
-              flag = true;
-          }
-          if (!flag)
-          {
-            this.Label.text = this.JSON.Students[fingerprintId].Name + " is dead. The police cannot perform an arrest.";
-            ++this.DeadPerps;
-          }
-          else
-            this.Label.text = this.JSON.Students[fingerprintId].Name + "'s fingerprints are on the same weapon that killed them. The police cannot solve this mystery.";
-        }
-      }
-      if (this.CurrentMurderWeaponKilledRival)
-      {
-        Debug.Log((object) "The police believe that they know who killed the rival. ''Details'' for this rival should be set to ''14'' - ''Ryoba's involvement not suspected.''");
-        this.InvolvementNotSuspected = true;
-      }
-      this.Phase = 3;
-    }
-    else if (this.Phase == 102)
-    {
-      int num = (bool) (UnityEngine.Object) this.StudentManager.Students[this.Police.SuicideID] ? 1 : 0;
-      if (!this.StudentManager.Students[this.Police.SuicideID].Ragdoll.Disposed)
-      {
-        this.MurderScene.SetActive(true);
-        this.Label.text = !this.Police.SuicideNote ? "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police treat the incident as a murder case, and search the school for any other victims." : "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police find a suicide note, and conclude that the deceased student probably took their own life. However, they still search the school for clues and evidence.";
-        if (this.Police.SuicideID == this.StudentManager.RivalID)
-          this.RivalEliminationMethod = RivalEliminationType.SuicideFake;
-        this.ErectFence = true;
-      }
-      else
-      {
-        this.ShruggingCops.SetActive(true);
-        this.Label.text = "The police attempt to determine whether or not a student fell to their death from the school rooftop. The police are unable to reach a conclusion.";
-      }
-      for (this.ID = 0; this.ID < this.Police.CorpseList.Length; ++this.ID)
-      {
-        RagdollScript corpse = this.Police.CorpseList[this.ID];
-        if ((UnityEngine.Object) corpse != (UnityEngine.Object) null && corpse.Suicide)
-        {
-          ++this.Police.SuicideVictims;
-          if (this.Police.Corpses > 0)
-            --this.Police.Corpses;
-        }
-      }
-      this.Phase = 2;
-    }
-    else if (this.Phase == 103)
-    {
-      this.MurderScene.SetActive(true);
-      this.Label.text = "The paramedics attempt to resuscitate the poisoned student, but they are unable to revive her. The police treat the incident as a murder case, and search the school for any other victims.";
-      for (this.ID = 0; this.ID < this.Police.CorpseList.Length; ++this.ID)
-      {
-        RagdollScript corpse = this.Police.CorpseList[this.ID];
-        if ((UnityEngine.Object) corpse != (UnityEngine.Object) null && corpse.Poisoned)
-        {
-          if (this.Police.Corpses > 0)
-            --this.Police.Corpses;
-        }
-      }
-      if (this.Corpse.StudentID == this.StudentManager.RivalID)
-      {
-        GameGlobals.SpecificEliminationID = 15;
-        if (!GameGlobals.Debug)
-          PlayerPrefs.SetInt("Poison", 1);
-        if (!GameGlobals.Debug)
-          PlayerPrefs.SetInt("a", 1);
-      }
-      this.Phase = 2;
-    }
-    else if (this.Phase == 104)
-    {
-      this.MurderScene.SetActive(true);
-      this.Label.text = "The police determine that " + this.Police.DrownedStudentName + " died from drowning. The police treat the death as a possible murder, and search the school for any other victims.";
-      for (this.ID = 0; this.ID < this.Police.CorpseList.Length; ++this.ID)
-      {
-        RagdollScript corpse = this.Police.CorpseList[this.ID];
-        if ((UnityEngine.Object) corpse != (UnityEngine.Object) null)
-        {
-          if (corpse.Student.StudentID == this.StudentManager.RivalID)
-          {
-            Debug.Log((object) "The player drowned the rival.");
-            if (this.RivalEliminationMethod == RivalEliminationType.None)
-              this.RivalEliminationMethod = RivalEliminationType.Murdered;
-            GameGlobals.SpecificEliminationID = 7;
-            if (!GameGlobals.Debug)
-              PlayerPrefs.SetInt("Drown", 1);
-            if (!GameGlobals.Debug)
-              PlayerPrefs.SetInt("a", 1);
-          }
-          if (corpse.Drowned)
-          {
-            if (this.Police.Corpses > 0)
-              --this.Police.Corpses;
-          }
-        }
-      }
-      this.Phase = 2;
-    }
-    else if (this.Phase == 105)
-    {
-      this.MurderScene.SetActive(true);
-      this.Label.text = "The police determine that " + this.Police.ElectrocutedStudentName + " died from being electrocuted. The police treat the death as a possible murder, and search the school for any other victims.";
-      for (this.ID = 0; this.ID < this.Police.CorpseList.Length; ++this.ID)
-      {
-        RagdollScript corpse = this.Police.CorpseList[this.ID];
-        if ((UnityEngine.Object) corpse != (UnityEngine.Object) null && corpse.Electrocuted)
-        {
-          if (corpse.Student.StudentID == this.StudentManager.RivalID)
-          {
-            Debug.Log((object) "The game should now be informing the Content Checklist that the player has performed an electrocution.");
-            if (!GameGlobals.Debug)
-              PlayerPrefs.SetInt("Electrocute", 1);
-            if (!GameGlobals.Debug)
-              PlayerPrefs.SetInt("a", 1);
-          }
-          if (this.Police.Corpses > 0)
-            --this.Police.Corpses;
-        }
-      }
-      this.Phase = 2;
-    }
-    else
-    {
-      if (this.Phase != 999)
-        return;
-      this.ScaredCops.SetActive(true);
-      this.Yandere.MyController.enabled = false;
-      this.Yandere.transform.parent = this.transform;
-      this.Yandere.transform.localPosition = new Vector3(0.0f, 0.0f, -1f);
-      this.Yandere.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Yandere.gameObject.SetActive(true);
-      Physics.SyncTransforms();
-      this.Label.text = "The police witness actual evidence of the supernatural, are absolutely horrified, and run for their lives.";
-      if (this.StudentManager.RivalEliminated)
-        this.Phase = 12;
-      else
-        this.Phase = 13;
-    }
-  }
+	public WeaponManagerScript WeaponManager;
 
-  private void TeleportYandere()
-  {
-    this.Yandere.MyController.enabled = false;
-    this.Yandere.transform.parent = this.transform;
-    this.Yandere.transform.localPosition = new Vector3(0.75f, 0.33333f, -1.9f);
-    this.Yandere.transform.localEulerAngles = new Vector3(-22.5f, 157.5f, 0.0f);
-    this.Yandere.gameObject.SetActive(true);
-    Physics.SyncTransforms();
-  }
+	public ClubManagerScript ClubManager;
 
-  private void Finish()
-  {
-    Debug.Log((object) "We have reached the end of the End-of-Day sequence.");
-    if (this.RivalArrested)
-      this.RivalEliminationMethod = RivalEliminationType.Arrested;
-    if (this.RivalEliminationMethod == RivalEliminationType.Murdered)
-    {
-      Debug.Log((object) "The rival was attacked with a weapon.");
-      GameGlobals.RivalEliminationID = 1;
-      GameGlobals.NonlethalElimination = false;
-      if (this.StudentManager.Students[1].SenpaiWitnessingRivalDie)
-        GameGlobals.RivalEliminationID = 2;
-      if (this.InvolvementNotSuspected)
-      {
-        Debug.Log((object) "The police found someone's fingerprints on the murder weapon, so Ryoba is not a suspect.");
-        GameGlobals.RivalEliminationID = 14;
-      }
-    }
-    else if (this.RivalEliminationMethod == RivalEliminationType.Arrested)
-    {
-      Debug.Log((object) "The rival was arrested.");
-      GameGlobals.RivalEliminationID = 3;
-      GameGlobals.NonlethalElimination = true;
-      GameGlobals.SpecificEliminationID = 11;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Frame", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-      StudentGlobals.SetStudentArrested(this.StudentManager.RivalID, true);
-    }
-    else if (this.RivalEliminationMethod == RivalEliminationType.Expelled)
-    {
-      Debug.Log((object) "The rival was expelled.");
-      StudentGlobals.SetStudentExpelled(this.StudentManager.RivalID, true);
-      GameGlobals.RivalEliminationID = 5;
-      GameGlobals.NonlethalElimination = true;
-      GameGlobals.SpecificEliminationID = 9;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Expel", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-    }
-    else if (this.RivalEliminationMethod == RivalEliminationType.Matchmade)
-    {
-      Debug.Log((object) "The rival was matchmade.");
-      GameGlobals.RivalEliminationID = 6;
-      GameGlobals.NonlethalElimination = true;
-      GameGlobals.SpecificEliminationID = 13;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Matchmake", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-    }
-    else if (this.RivalEliminationMethod == RivalEliminationType.Rejected)
-    {
-      Debug.Log((object) "The rival was rejected by Senpai.");
-      GameGlobals.RivalEliminationID = 7;
-      GameGlobals.NonlethalElimination = true;
-      GameGlobals.SpecificEliminationID = 18;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Reject", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-    }
-    else if (this.RivalEliminationMethod == RivalEliminationType.Ruined)
-    {
-      Debug.Log((object) "The rival's reputation has been ruined.");
-      GameGlobals.RivalEliminationID = 8;
-      GameGlobals.NonlethalElimination = true;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Bully", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-    }
-    else if (this.RivalEliminationMethod == RivalEliminationType.SuicideBully)
-    {
-      Debug.Log((object) "The rival was bullied into suicide.");
-      GameGlobals.RivalEliminationID = 9;
-      GameGlobals.NonlethalElimination = false;
-    }
-    else if (this.RivalEliminationMethod == RivalEliminationType.SuicideFake)
-    {
-      Debug.Log((object) "The rival was pushed off the school rooftop, and the player made her death look like an accident.");
-      GameGlobals.RivalEliminationID = 10;
-      GameGlobals.NonlethalElimination = false;
-      GameGlobals.SpecificEliminationID = 17;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Push", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-    }
-    else if (this.RivalEliminationMethod == RivalEliminationType.Vanished || this.RivalDismemberedAndIncinerated || this.RivalBuried)
-    {
-      Debug.Log((object) "The rival ''mysteriously disappeared''.");
-      GameGlobals.RivalEliminationID = 11;
-      GameGlobals.NonlethalElimination = false;
-      this.CheckForNatureOfDeath();
-      if (this.TranqCase.VictimID == this.StudentManager.RivalID)
-        GameGlobals.NonlethalElimination = true;
-    }
-    else if (this.RivalEliminationMethod == RivalEliminationType.Accident)
-    {
-      Debug.Log((object) "The rival was killed in a ''mysterious accident''.");
-      GameGlobals.RivalEliminationID = 12;
-      GameGlobals.NonlethalElimination = false;
-    }
-    if (GameGlobals.RivalEliminationID == 0 && (UnityEngine.Object) this.StudentManager.Students[this.StudentManager.RivalID] != (UnityEngine.Object) null && !this.StudentManager.Students[this.StudentManager.RivalID].Alive)
-    {
-      Debug.Log((object) "RivalEliminationID was 0, but the rival is dead. Bug?");
-      if (this.StudentManager.Students[this.StudentManager.RivalID].Ragdoll.Hidden || !this.PoliceArrived)
-      {
-        Debug.Log((object) "The rival ''mysteriously disappeared''.");
-        GameGlobals.RivalEliminationID = 11;
-        GameGlobals.NonlethalElimination = false;
-      }
-      this.CheckForNatureOfDeath();
-    }
-    PlayerGlobals.Reputation = this.Reputation.Reputation;
-    ClubGlobals.Club = this.Yandere.Club;
-    StudentGlobals.MemorialStudents = 0;
-    HomeGlobals.Night = true;
-    this.Police.KillStudents();
-    DateGlobals.PassDays = !this.Police.Suspended ? 1 : this.Police.SuspensionLength;
-    if ((UnityEngine.Object) this.StudentManager.Students[StudentGlobals.StudentSlave] != (UnityEngine.Object) null)
-    {
-      Debug.Log((object) "A mind-broken slave came to school today.");
-      if (this.StudentManager.Students[StudentGlobals.StudentSlave].Ragdoll.enabled || !this.StudentManager.Students[StudentGlobals.StudentSlave].Alive)
-      {
-        Debug.Log((object) "That slave died. Reducing the number of slaves by one, and removing them from the prisoner array.");
-        StudentGlobals.StudentSlave = 0;
-        --StudentGlobals.Prisoners;
-        switch (StudentGlobals.PrisonerChosen)
-        {
-          case 1:
-            StudentGlobals.Prisoner1 = 0;
-            break;
-          case 2:
-            StudentGlobals.Prisoner2 = 0;
-            break;
-          case 3:
-            StudentGlobals.Prisoner3 = 0;
-            break;
-          case 4:
-            StudentGlobals.Prisoner4 = 0;
-            break;
-          case 5:
-            StudentGlobals.Prisoner5 = 0;
-            break;
-          case 6:
-            StudentGlobals.Prisoner6 = 0;
-            break;
-          case 7:
-            StudentGlobals.Prisoner7 = 0;
-            break;
-          case 8:
-            StudentGlobals.Prisoner8 = 0;
-            break;
-          case 9:
-            StudentGlobals.Prisoner9 = 0;
-            break;
-          case 10:
-            StudentGlobals.Prisoner10 = 0;
-            break;
-        }
-      }
-    }
-    for (int elimID = 1; elimID < 11; ++elimID)
-    {
-      if (this.StudentManager.RivalKilledSelf[elimID])
-      {
-        GameGlobals.SetRivalEliminations(elimID, 10);
-        GameGlobals.SetSpecificEliminations(elimID, 19);
-      }
-    }
-    bool flag = DateGlobals.Weekday != DayOfWeek.Friday && this.StudentManager.SabotageProgress > this.StudentManager.InitialSabotageProgress;
-    if (!this.TranqCase.Occupied)
-    {
-      if (this.GoToSuicideScene)
-        SceneManager.LoadScene("SuicideScene");
-      else if (flag)
-        SceneManager.LoadScene("RivalRejectionProgressScene");
-      else if (!this.StudentManager.Eighties && DateGlobals.Week > 1)
-        SceneManager.LoadScene("WeekLimitScene");
-      else
-        SceneManager.LoadScene("HomeScene");
-    }
-    else
-    {
-      Debug.Log((object) "Subtracting 10% school atmosphere because someone went missing today.");
-      SchoolGlobals.SchoolAtmosphere -= 0.1f;
-      ++StudentGlobals.Prisoners;
-      switch (StudentGlobals.Prisoners)
-      {
-        case 1:
-          StudentGlobals.Prisoner1 = this.TranqCase.VictimID;
-          break;
-        case 2:
-          StudentGlobals.Prisoner2 = this.TranqCase.VictimID;
-          break;
-        case 3:
-          StudentGlobals.Prisoner3 = this.TranqCase.VictimID;
-          break;
-        case 4:
-          StudentGlobals.Prisoner4 = this.TranqCase.VictimID;
-          break;
-        case 5:
-          StudentGlobals.Prisoner5 = this.TranqCase.VictimID;
-          break;
-        case 6:
-          StudentGlobals.Prisoner6 = this.TranqCase.VictimID;
-          break;
-        case 7:
-          StudentGlobals.Prisoner7 = this.TranqCase.VictimID;
-          break;
-        case 8:
-          StudentGlobals.Prisoner8 = this.TranqCase.VictimID;
-          break;
-        case 9:
-          StudentGlobals.Prisoner9 = this.TranqCase.VictimID;
-          break;
-        case 10:
-          StudentGlobals.Prisoner10 = this.TranqCase.VictimID;
-          break;
-      }
-      StudentGlobals.SetStudentKidnapped(this.TranqCase.VictimID, true);
-      StudentGlobals.SetStudentHealth(this.TranqCase.VictimID, 100);
-      StudentGlobals.SetStudentSanity(this.TranqCase.VictimID, 100);
-      if (flag)
-      {
-        GameGlobals.JustKidnapped = true;
-        SceneManager.LoadScene("RivalRejectionProgressScene");
-      }
-      else
-        SceneManager.LoadScene("CalendarScene");
-    }
-    if (this.Dumpster.StudentToGoMissing > 0)
-      this.Dumpster.SetVictimMissing();
-    for (this.ID = 0; this.ID < this.GardenHoles.Length; ++this.ID)
-      this.GardenHoles[this.ID].EndOfDayCheck();
-    for (this.ID = 1; this.ID < this.Yandere.Inventory.ShrineCollectibles.Length; ++this.ID)
-    {
-      if (this.Yandere.Inventory.ShrineCollectibles[this.ID])
-        PlayerGlobals.SetShrineCollectible(this.ID, true);
-    }
-    this.Incinerator.SetVictimsMissing();
-    this.WoodChipper.SetVictimsMissing();
-    if (this.FragileTarget > 0)
-    {
-      StudentGlobals.FragileTarget = this.FragileTarget;
-      StudentGlobals.FragileSlave = 5;
-    }
-    if (this.StudentManager.ReactedToGameLeader)
-      SchoolGlobals.ReactedToGameLeader = true;
-    if (TaskGlobals.GetTaskStatus(46) == 1)
-      TaskGlobals.SetTaskStatus(46, 0);
-    if ((UnityEngine.Object) this.StudentManager.Students[46] != (UnityEngine.Object) null && this.StudentManager.Students[46].TaskPhase == 5)
-    {
-      TaskGlobals.SetTaskStatus(46, 3);
-      PlayerGlobals.SetStudentFriend(46, true);
-      ++this.NewFriends;
-    }
-    if (this.NewFriends > 0)
-      PlayerGlobals.Friends += this.NewFriends;
-    if (this.Yandere.Alerts > 0)
-      PlayerGlobals.Alerts += this.Yandere.Alerts;
-    if (this.Arrests > 0)
-    {
-      Debug.Log((object) "Increasing Atmosphere by 10% because a culprit was arrested.");
-      SchoolGlobals.SchoolAtmosphere += (float) this.Arrests * 0.1f;
-    }
-    if (this.Counselor.ExpelledDelinquents)
-    {
-      SchoolGlobals.SchoolAtmosphere += 0.25f;
-      if (ClubGlobals.Club == ClubType.Delinquent)
-        ClubGlobals.Club = ClubType.None;
-    }
-    if (this.Yandere.Inventory.FakeID)
-      PlayerGlobals.FakeID = true;
-    if (this.RaibaruLoner)
-      PlayerGlobals.RaibaruLoner = true;
-    if (this.StopMourning)
-      GameGlobals.SenpaiMourning = false;
-    if (this.StudentManager.EmbarassingSecret)
-    {
-      SchemeGlobals.SetServicePurchased(4, true);
-      SchemeGlobals.EmbarassingSecret = true;
-    }
-    EventGlobals.LearnedAboutPhotographer = this.LearnedAboutPhotographer;
-    EventGlobals.OsanaEvent1 = this.LearnedOsanaInfo1;
-    EventGlobals.OsanaEvent2 = this.LearnedOsanaInfo2;
-    CollectibleGlobals.MatchmakingGifts = this.MatchmakingGifts;
-    CollectibleGlobals.SenpaiGifts = this.SenpaiGifts;
-    PlayerGlobals.PantyShots = this.Yandere.Inventory.PantyShots;
-    PlayerGlobals.Money = this.Yandere.Inventory.Money;
-    ClassGlobals.Biology = this.Class.Biology;
-    ClassGlobals.Chemistry = this.Class.Chemistry;
-    ClassGlobals.Language = this.Class.Language;
-    ClassGlobals.Physical = this.Class.Physical;
-    ClassGlobals.Psychology = this.Class.Psychology;
-    ClassGlobals.BiologyGrade = this.Class.BiologyGrade;
-    ClassGlobals.ChemistryGrade = this.Class.ChemistryGrade;
-    ClassGlobals.LanguageGrade = this.Class.LanguageGrade;
-    ClassGlobals.PhysicalGrade = this.Class.PhysicalGrade;
-    ClassGlobals.PsychologyGrade = this.Class.PsychologyGrade;
-    PlayerGlobals.Headset = this.Yandere.Inventory.Headset;
-    PlayerGlobals.DirectionalMic = this.Yandere.Inventory.DirectionalMic;
-    this.WeaponManager.TrackDumpedWeapons();
-    this.StudentManager.CommunalLocker.RivalPhone.StolenPhoneDropoff.SetPhonesHacked();
-    this.Yandere.PauseScreen.FavorMenu.ServicesMenu.SaveServicesPurchased();
-    this.StudentManager.LoveManager.SaveSuitorInstructions();
-    this.StudentManager.TaskManager.SaveTaskStatuses();
-    this.StudentManager.SaveCollectibles();
-    this.StudentManager.SavePhotographs();
-    this.StudentManager.SavePantyshots();
-    this.StudentManager.SaveReps();
-    if (this.StudentManager.DatingMinigame.DataNeedsSaving)
-      this.StudentManager.DatingMinigame.SaveTopicsAndCompliments();
-    if (this.StudentManager.DatingMinigame.GiftStatusNeedsSaving)
-      this.StudentManager.DatingMinigame.SaveGiftStatus();
-    if (this.StudentManager.DialogueWheel.AdviceWindow.DataNeedsSaving)
-      this.StudentManager.DialogueWheel.AdviceWindow.SaveTopicsAndCompliments();
-    if (this.StudentManager.DialogueWheel.AdviceWindow.GiftDataNeedsSaving)
-      this.StudentManager.DialogueWheel.AdviceWindow.SaveGiftStatus();
-    if (SchemeGlobals.GetSchemeStage(6) == 8)
-    {
-      SchemeGlobals.SetSchemeStage(6, 9);
-      this.Yandere.PauseScreen.Schemes.UpdateInstructions();
-    }
-    this.Yandere.CameraEffects.UpdateBloom(1f);
-    this.Yandere.CameraEffects.UpdateBloomKnee(0.5f);
-    this.Yandere.CameraEffects.UpdateBloomRadius(4f);
-    DatingGlobals.RivalSabotaged = this.StudentManager.SabotageProgress;
-    PlayerGlobals.PersonaID = this.Yandere.PersonaID;
-    PlayerGlobals.CorpsesDiscovered += this.Police.Corpses;
-    ClassGlobals.BonusStudyPoints = this.Class.StudyPoints + this.Class.BonusPoints;
-    HomeGlobals.LateForSchool = false;
-    PlayerGlobals.ShrineItems += this.ShrineItemsCollected;
-    this.Counselor.SaveExcusesUsed();
-    this.Counselor.ExpelStudents();
-    this.Counselor.SaveCounselorData();
-    StudentGlobals.ExpelProgress = this.Counselor.RivalExpelProgress;
-    CounselorGlobals.ReportedAlcohol = this.Counselor.ReportedAlcohol;
-    CounselorGlobals.ReportedCigarettes = this.Counselor.ReportedCigarettes;
-    CounselorGlobals.ReportedCondoms = this.Counselor.ReportedCondoms;
-    CounselorGlobals.ReportedTheft = this.Counselor.ReportedTheft;
-    CounselorGlobals.ReportedCheating = this.Counselor.ReportedCheating;
-    for (int ID = 1; ID < this.WeaponManager.BroughtWeapons.Length; ++ID)
-    {
-      if ((UnityEngine.Object) this.WeaponManager.BroughtWeapons[ID] == (UnityEngine.Object) null)
-        PlayerGlobals.SetCannotBringItem(ID, true);
-    }
-    if (this.Yandere.Inventory.ArrivedWithRatPoison && this.Yandere.Inventory.EmeticPoisons == 0)
-      PlayerGlobals.SetCannotBringItem(4, true);
-    if (this.Yandere.Inventory.ArrivedWithSake && !this.Yandere.Inventory.Sake)
-      PlayerGlobals.SetCannotBringItem(5, true);
-    if (this.Yandere.Inventory.ArrivedWithCigs && !this.Yandere.Inventory.Cigs)
-      PlayerGlobals.SetCannotBringItem(6, true);
-    if (this.Yandere.Inventory.ArrivedWithCondoms && !this.Yandere.Inventory.Condoms)
-      PlayerGlobals.SetCannotBringItem(7, true);
-    if (this.Yandere.Inventory.ArrivedWithSedative && this.Yandere.Inventory.SedativePoisons == 0)
-    {
-      PlayerGlobals.SetCannotBringItem(9, true);
-      PlayerGlobals.BoughtSedative = false;
-    }
-    if (this.Yandere.Inventory.ArrivedWithPoison && this.Yandere.Inventory.LethalPoisons == 0)
-    {
-      Debug.Log((object) "The player arrived with lethal poison. The player doesn't have lethal poison anymore.");
-      PlayerGlobals.SetCannotBringItem(11, true);
-      PlayerGlobals.BoughtPoison = false;
-    }
-    if (this.Yandere.Inventory.LethalPoisons > 0)
-    {
-      Debug.Log((object) "The player is bringing some poison home from school.");
-      PlayerGlobals.BoughtPoison = true;
-    }
-    if (this.Yandere.Inventory.SedativePoisons > 0)
-      PlayerGlobals.BoughtSedative = true;
-    if (this.Yandere.Inventory.LockPick)
-      PlayerGlobals.BoughtLockpick = true;
-    if (this.Counselor.ReportedNarcotics || this.Yandere.Inventory.ArrivedWithNarcotics && !this.Yandere.Inventory.Narcotics)
-      PlayerGlobals.BoughtNarcotics = false;
-    if (this.ExplosiveDeviceUsed)
-      PlayerGlobals.BoughtExplosive = false;
-    if (this.Yandere.Inventory.Cigs)
-      PlayerGlobals.SetCannotBringItem(6, false);
-    if (this.Yandere.Inventory.Sake)
-      PlayerGlobals.SetCannotBringItem(5, false);
-    if (this.Yandere.Inventory.EmeticPoisons > 0)
-      PlayerGlobals.SetCannotBringItem(4, false);
-    if (this.Yandere.Inventory.SedativePoisons > 0)
-    {
-      PlayerGlobals.BoughtSedative = true;
-      PlayerGlobals.SetCannotBringItem(9, false);
-    }
-    if (this.ArticleID == 1)
-      PlayerGlobals.Reputation += (float) (20.0 * (1.0 + (double) ClassGlobals.LanguageGrade * 0.20000000298023224));
-    else if (this.ArticleID == 3)
-      SchoolGlobals.SchoolAtmosphere += (float) (20.0 * (1.0 + (double) ClassGlobals.LanguageGrade * 0.20000000298023224));
-    if (this.HeardMegami)
-      SchoolGlobals.SCP = true;
-    PlayerGlobals.BloodWitnessed += this.BloodWitnessed;
-    PlayerGlobals.WeaponWitnessed += this.WeaponWitnessed;
-    this.ClubManager.UpdateQuitClubs();
-    this.ClubManager.UpdateKickedClubs();
-    StudentGlobals.UpdateRivalReputation = false;
-    ClubGlobals.ActivitiesAttended = this.ClubManager.ActivitiesAttended;
-    this.UpdatePreviousRivalFriendships();
-    this.ArrestStudents();
-    this.SaveTopicsLearned();
-    this.RemovableItemManager.RemoveItems();
-    if (this.PoliceArrived)
-    {
-      GameGlobals.PoliceYesterday = true;
-      ++PlayerGlobals.PoliceVisits;
-    }
-    if (this.GrudgeConversationHappened)
-      GameGlobals.GrudgeConversationHappened = true;
-    this.Yandere.PauseScreen.PhotoGallery.SavePhotosTaken();
-    this.Yandere.CameraEffects.UpdateVignette(0.0f);
-  }
+	public HeartbrokenScript Heartbroken;
 
-  private void DisableThings(StudentScript TargetStudent)
-  {
-    if (!((UnityEngine.Object) TargetStudent != (UnityEngine.Object) null))
-      return;
-    TargetStudent.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-    TargetStudent.CharacterAnimation.enabled = true;
-    TargetStudent.CharacterAnimation.Play(TargetStudent.IdleAnim);
-    TargetStudent.EmptyHands();
-    TargetStudent.SpeechLines.Stop();
-    TargetStudent.Ragdoll.Zs.SetActive(false);
-    TargetStudent.SmartPhone.SetActive(false);
-    TargetStudent.MyController.enabled = false;
-    TargetStudent.ShoeRemoval.enabled = false;
-    TargetStudent.enabled = false;
-    TargetStudent.gameObject.SetActive(true);
-    TargetStudent.transform.parent = this.transform;
-    TargetStudent.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-  }
+	public IncineratorScript Incinerator;
 
-  private void CheckForNatureOfDeath()
-  {
-    if (!((UnityEngine.Object) this.StudentManager.Students[this.StudentManager.RivalID] != (UnityEngine.Object) null))
-      return;
-    RagdollScript ragdoll = this.StudentManager.Students[this.StudentManager.RivalID].Ragdoll;
-    if (ragdoll.Student.DeathType == DeathType.Burning)
-    {
-      GameGlobals.SpecificEliminationID = 5;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Burn", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-      Debug.Log((object) "The game knows that she was burned, though.");
-    }
-    else if (ragdoll.Student.DeathType == DeathType.Electrocution)
-    {
-      GameGlobals.SpecificEliminationID = 8;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Electrocute", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-      Debug.Log((object) "The game knows that she was electrocuted, though.");
-      Debug.Log((object) "The game should now be informing the Content Checklist that the player has performed an electrocution.");
-    }
-    else if (ragdoll.Student.DeathType == DeathType.Weight)
-    {
-      GameGlobals.SpecificEliminationID = 6;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Crush", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-      Debug.Log((object) "The game knows that she was crushed, though.");
-    }
-    else if (ragdoll.Student.DeathType == DeathType.Drowning)
-    {
-      if (this.PoolEvent)
-      {
-        Debug.Log((object) "The player eliminated the rival during a pool event.");
-        GameGlobals.SpecificEliminationID = 16;
-        if (!GameGlobals.Debug)
-          PlayerPrefs.SetInt("Pool", 1);
-        if (GameGlobals.Debug)
-          return;
-        PlayerPrefs.SetInt("a", 1);
-      }
-      else
-      {
-        Debug.Log((object) "The game knows that she drowned, though.");
-        GameGlobals.SpecificEliminationID = 7;
-        if (!GameGlobals.Debug)
-          PlayerPrefs.SetInt("Drown", 1);
-        if (GameGlobals.Debug)
-          return;
-        PlayerPrefs.SetInt("a", 1);
-      }
-    }
-    else if (ragdoll.Decapitated)
-    {
-      GameGlobals.SpecificEliminationID = 10;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Fan", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-      Debug.Log((object) "The game knows that she was decapitated, though.");
-    }
-    else if (ragdoll.Student.DeathType == DeathType.Poison)
-    {
-      GameGlobals.SpecificEliminationID = 15;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Poison", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-      Debug.Log((object) "The game knows that she was poisoned, though.");
-    }
-    else if (ragdoll.Student.DeathType == DeathType.Falling)
-    {
-      GameGlobals.SpecificEliminationID = 17;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Push", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-      Debug.Log((object) "The game knows that she was pushed, though.");
-    }
-    else if (ragdoll.Student.Hunted)
-    {
-      GameGlobals.SpecificEliminationID = 14;
-      if (!GameGlobals.Debug)
-      {
-        if (ragdoll.Student.MurderedByFragile)
-        {
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("DrivenToMurder", 1);
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("a", 1);
-        }
-        else
-        {
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("MurderSuicide", 1);
-          if (!GameGlobals.Debug)
-            PlayerPrefs.SetInt("a", 1);
-        }
-      }
-      Debug.Log((object) "The game knows that the rival died as part of a murder-suicide, though.");
-    }
-    else if (ragdoll.Student.DeathType == DeathType.Weapon)
-    {
-      GameGlobals.SpecificEliminationID = 1;
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("Attack", 1);
-      if (!GameGlobals.Debug)
-        PlayerPrefs.SetInt("a", 1);
-      Debug.Log((object) "The game knows that she was attacked, though.");
-    }
-    else
-    {
-      if (ragdoll.Student.DeathType != DeathType.Explosion)
-        return;
-      GameGlobals.SpecificEliminationID = 20;
-      Debug.Log((object) "The game knows that she was blown up, though.");
-    }
-  }
+	public LoveManagerScript LoveManager;
 
-  public void SetFormerRivalDeath(int RivalID, StudentScript Rival)
-  {
-    Debug.Log((object) ("The elimination information for Rival #" + RivalID.ToString() + " is now being updated."));
-    if (Rival.DeathType == DeathType.Burning)
-      GameGlobals.SetSpecificEliminations(RivalID, 5);
-    else if (Rival.DeathType == DeathType.Electrocution)
-      GameGlobals.SetSpecificEliminations(RivalID, 8);
-    else if (Rival.DeathType == DeathType.Weight)
-      GameGlobals.SetSpecificEliminations(RivalID, 6);
-    else if (Rival.DeathType == DeathType.Drowning)
-    {
-      if (this.PoolEvent)
-        GameGlobals.SetSpecificEliminations(RivalID, 16);
-      else
-        GameGlobals.SetSpecificEliminations(RivalID, 7);
-    }
-    else if (Rival.Ragdoll.Decapitated)
-      GameGlobals.SetSpecificEliminations(RivalID, 10);
-    else if (Rival.DeathType == DeathType.Poison)
-      GameGlobals.SetSpecificEliminations(RivalID, 15);
-    else if (Rival.DeathType == DeathType.Falling)
-      GameGlobals.SetSpecificEliminations(RivalID, 17);
-    else if (Rival.Hunted)
-    {
-      Debug.Log((object) "Was killed by a mind-broken slave.");
-      GameGlobals.SetSpecificEliminations(RivalID, 14);
-    }
-    else if (Rival.DeathType == DeathType.Weapon)
-    {
-      Debug.Log((object) "Was killed by a weapon.");
-      GameGlobals.SetSpecificEliminations(RivalID, 1);
-    }
-    else
-      Debug.Log((object) "Specific method of death wasn't listed in the chain.");
-    if (this.PoliceArrived)
-      Debug.Log((object) "The police arrived.");
-    else
-      Debug.Log((object) "The police didn't arrived.");
-    GameGlobals.SetRivalEliminations(RivalID, 14);
-  }
+	public RummageSpotScript RummageSpot;
 
-  private void UpdatePreviousRivalFriendships()
-  {
-    if (GameGlobals.SpecificEliminationID == 2)
-    {
-      Debug.Log((object) "This week's rival was befriended.");
-      if ((UnityEngine.Object) this.StudentManager.Students[this.StudentManager.RivalID] != (UnityEngine.Object) null && this.StudentManager.Students[this.StudentManager.RivalID].Grudge || StudentGlobals.GetStudentGrudge(this.StudentManager.RivalID))
-      {
-        Debug.Log((object) "However, she witnessed the player commit murder! Not friends anymore!");
-        GameGlobals.RivalEliminationID = 7;
-      }
-    }
-    for (int elimID = 1; elimID < DateGlobals.Week; ++elimID)
-    {
-      if (GameGlobals.GetSpecificEliminations(elimID) == 2)
-      {
-        Debug.Log((object) ("Rival #" + elimID.ToString() + " was befriended."));
-        if ((UnityEngine.Object) this.StudentManager.Students[this.StudentManager.RivalID + 10] != (UnityEngine.Object) null && this.StudentManager.Students[this.StudentManager.RivalID + 10].Grudge || StudentGlobals.GetStudentGrudge(elimID + 10))
-        {
-          Debug.Log((object) "However, she witnessed the player commit murder! Not friends anymore!");
-          GameGlobals.SetRivalEliminations(elimID, 7);
-        }
-      }
-    }
-  }
+	public VoidGoddessScript VoidGoddess;
 
-  public void ArrestStudents()
-  {
-    for (int studentID = 1; studentID < 101; ++studentID)
-    {
-      if (this.StudentsToArrest[studentID])
-        StudentGlobals.SetStudentArrested(studentID, true);
-    }
-  }
+	public WoodChipperScript WoodChipper;
 
-  public void SaveTopicsLearned()
-  {
-    for (int index1 = 1; index1 < 101; ++index1)
-    {
-      for (int index2 = 1; index2 < 26; ++index2)
-        ConversationGlobals.SetTopicLearnedByStudent(index2, index1, this.StudentManager.GetTopicLearnedByStudent(index2, index1));
-    }
-  }
+	public ReputationScript Reputation;
+
+	public DumpsterLidScript Dumpster;
+
+	public CounselorScript Counselor;
+
+	public WeaponScript MurderWeapon;
+
+	public TranqCaseScript TranqCase;
+
+	public AudioListener MyListener;
+
+	public YandereScript Yandere;
+
+	public RagdollScript Corpse;
+
+	public StudentScript Senpai;
+
+	public StudentScript Patsy;
+
+	public PoliceScript Police;
+
+	public Transform EODCamera;
+
+	public StudentScript Rival;
+
+	public ClassScript Class;
+
+	public ClockScript Clock;
+
+	public JsonScript JSON;
+
+	public GardenHoleScript[] GardenHoles;
+
+	public StudentScript[] WitnessList;
+
+	public Animation[] CopAnimation;
+
+	public GameObject MainCamera;
+
+	public UISprite EndOfDayDarkness;
+
+	public UILabel Label;
+
+	public bool RivalDismemberedAndIncinerated;
+
+	public bool RivalBuried;
+
+	public bool CurrentMurderWeaponKilledRival;
+
+	public bool GrudgeConversationHappened;
+
+	public bool LearnedAboutPhotographer;
+
+	public bool InvolvementNotSuspected;
+
+	public bool ExplosiveDeviceUsed;
+
+	public bool PreviouslyActivated;
+
+	public bool LearnedOsanaInfo1;
+
+	public bool LearnedOsanaInfo2;
+
+	public bool GoToSuicideScene;
+
+	public bool RivalArrested;
+
+	public bool PoliceArrived;
+
+	public bool RaibaruLoner;
+
+	public bool StopMourning;
+
+	public bool HeardMegami;
+
+	public bool ClubClosed;
+
+	public bool ClubKicked;
+
+	public bool ErectFence;
+
+	public bool PoolEvent;
+
+	public bool GameOver;
+
+	public bool Darken;
+
+	public float DistanceToMoveForward;
+
+	public int ClothingWithRedPaint;
+
+	public int ShrineItemsCollected;
+
+	public int WeaponWitnessed;
+
+	public int BloodWitnessed;
+
+	public int FragileTarget;
+
+	public int EyeWitnesses;
+
+	public int NewFriends;
+
+	public int ClubLimit;
+
+	public int DeadPerps;
+
+	public int Arrests;
+
+	public int Corpses;
+
+	public int Victims;
+
+	public int Weapons;
+
+	public int Phase = 1;
+
+	public int MatchmakingGifts;
+
+	public int SenpaiGifts;
+
+	public int ArticleID;
+
+	public int WeaponID;
+
+	public int ArrestID;
+
+	public int ClubID;
+
+	public int ID;
+
+	public string[] ClubNames;
+
+	public int[] VictimArray;
+
+	public ClubType[] ClubArray;
+
+	private SaveFile saveFile;
+
+	public GameObject TextWindow;
+
+	public GameObject Cops;
+
+	public GameObject SearchingCop;
+
+	public GameObject MurderScene;
+
+	public GameObject ShruggingCops;
+
+	public GameObject TabletCop;
+
+	public GameObject SecuritySystemScene;
+
+	public GameObject OpenTranqCase;
+
+	public GameObject ClosedTranqCase;
+
+	public GameObject GaudyRing;
+
+	public GameObject AnswerSheet;
+
+	public GameObject Fence;
+
+	public GameObject SCP;
+
+	public GameObject Headmaster;
+
+	public GameObject ArrestingCops;
+
+	public GameObject Mask;
+
+	public GameObject EyeWitnessScene;
+
+	public GameObject ScaredCops;
+
+	public GameObject EightiesGaudyRing;
+
+	public StudentScript KidnappedVictim;
+
+	public Renderer TabletPortrait;
+
+	public Transform CardboardBox;
+
+	public RivalEliminationType RivalEliminationMethod;
+
+	public Vector3 YandereInitialPosition;
+
+	public Quaternion YandereInitialRotation;
+
+	public bool[] StudentsToArrest;
+
+	public string Protagonist = "Ayano";
+
+	public string RivalName = "";
+
+	public string[] EightiesRivalNames;
+
+	public string[] RivalNames;
+
+	public AudioClip EightiesBGM;
+
+	public string[] VtuberNames;
+
+	public bool WeaponsChecked;
+
+	public void Start()
+	{
+		Debug.Log("The End-of-Day GameObject has just fired its Start() function.");
+		VoidGoddess.Start();
+		GameGlobals.PoliceYesterday = false;
+		YandereInitialPosition = Yandere.transform.position;
+		YandereInitialRotation = Yandere.transform.rotation;
+		if (GameGlobals.SenpaiMourning)
+		{
+			StopMourning = true;
+		}
+		Yandere.MainCamera.gameObject.SetActive(false);
+		EndOfDayDarkness.color = new Color(EndOfDayDarkness.color.r, EndOfDayDarkness.color.g, EndOfDayDarkness.color.b, 1f);
+		PreviouslyActivated = true;
+		GetComponent<AudioSource>().volume = 0f;
+		Clock.enabled = false;
+		Clock.MainLight.color = new Color(1f, 1f, 1f, 1f);
+		RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f, 1f);
+		RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f));
+		UpdateScene();
+		CopAnimation[5]["idleShort_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
+		CopAnimation[6]["idleShort_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
+		CopAnimation[7]["idleShort_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
+		Time.timeScale = 1f;
+		for (int i = 1; i < 6; i++)
+		{
+			Yandere.CharacterAnimation[Yandere.CreepyIdles[i]].weight = 0f;
+			Yandere.CharacterAnimation[Yandere.CreepyWalks[i]].weight = 0f;
+		}
+		for (int j = 1; j < StudentManager.AllBuckets.Length; j++)
+		{
+			if (StudentManager.AllBuckets[j] != null && StudentManager.AllBuckets[j].Bloodiness > 50f)
+			{
+				StudentManager.AllBuckets[j].transform.parent = Police.BloodParent;
+			}
+		}
+		ClothingWithRedPaint += Incinerator.ClothingWithRedPaint;
+		foreach (Transform item in Police.BloodParent)
+		{
+			PickUpScript component = item.gameObject.GetComponent<PickUpScript>();
+			if (component != null && component.RedPaint)
+			{
+				ClothingWithRedPaint++;
+			}
+		}
+		int num = 0;
+		if (Police.Corpses > 1)
+		{
+			RagdollScript[] corpseList = Police.CorpseList;
+			foreach (RagdollScript ragdollScript in corpseList)
+			{
+				if (ragdollScript != null && (ragdollScript.MurderSuicide || ragdollScript.Student.MurderedByStudent))
+				{
+					num++;
+				}
+			}
+		}
+		if (num > 1)
+		{
+			Police.MurderSuicideScene = true;
+		}
+		ClubLimit = ClubArray.Length;
+		if (!GameGlobals.Eighties)
+		{
+			ClubLimit--;
+		}
+		else
+		{
+			GetComponent<AudioSource>().clip = EightiesBGM;
+			GetComponent<AudioSource>().Play();
+		}
+		if (!Counselor.Lecturing)
+		{
+			EODCamera.localPosition = new Vector3(1f, 1.8f, -2.5f);
+			EODCamera.localEulerAngles = new Vector3(22.5f, -22.5f, 0f);
+			TextWindow.SetActive(true);
+		}
+		if (Yandere.VtuberID > 0)
+		{
+			Protagonist = VtuberNames[Yandere.VtuberID];
+		}
+		if (Yandere.RedPaint)
+		{
+			ClothingWithRedPaint++;
+		}
+	}
+
+	private void Update()
+	{
+		Yandere.UpdateSlouch();
+		if (Input.GetKeyDown("space"))
+		{
+			EndOfDayDarkness.color = new Color(0f, 0f, 0f, 1f);
+			Darken = true;
+		}
+		if (EndOfDayDarkness.color.a < 0.001f && Input.GetButtonDown("A"))
+		{
+			Darken = true;
+		}
+		if (Darken)
+		{
+			EndOfDayDarkness.color = new Color(EndOfDayDarkness.color.r, EndOfDayDarkness.color.g, EndOfDayDarkness.color.b, Mathf.MoveTowards(EndOfDayDarkness.color.a, 1f, Time.deltaTime * 2f));
+			if (EndOfDayDarkness.color.a > 0.999f)
+			{
+				if (Senpai == null && StudentManager.Students[1] != null)
+				{
+					Senpai = StudentManager.Students[1];
+					Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+					Senpai.CharacterAnimation.enabled = true;
+				}
+				if (Senpai != null)
+				{
+					Senpai.gameObject.SetActive(false);
+				}
+				if (Rival == null && StudentManager.Students[StudentManager.RivalID] != null)
+				{
+					Rival = StudentManager.Students[StudentManager.RivalID];
+					Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+					Rival.CharacterAnimation.enabled = true;
+				}
+				if (Rival != null)
+				{
+					Rival.gameObject.SetActive(false);
+				}
+				Yandere.transform.parent = null;
+				Yandere.transform.position = new Vector3(0f, 0f, -75f);
+				Yandere.gameObject.SetActive(true);
+				EODCamera.localPosition = new Vector3(1f, 1.8f, -2.5f);
+				EODCamera.localEulerAngles = new Vector3(22.5f, -22.5f, 0f);
+				if (KidnappedVictim != null)
+				{
+					KidnappedVictim.gameObject.SetActive(false);
+				}
+				if (StudentManager.Students[StudentManager.SuitorID] != null)
+				{
+					StudentManager.Students[StudentManager.SuitorID].gameObject.SetActive(false);
+				}
+				CardboardBox.parent = null;
+				Yandere.LifeNotePen.SetActive(false);
+				SearchingCop.SetActive(false);
+				MurderScene.SetActive(false);
+				Cops.SetActive(false);
+				TabletCop.SetActive(false);
+				ShruggingCops.SetActive(false);
+				SecuritySystemScene.SetActive(false);
+				OpenTranqCase.SetActive(false);
+				ClosedTranqCase.SetActive(false);
+				GaudyRing.SetActive(false);
+				AnswerSheet.SetActive(false);
+				Fence.SetActive(false);
+				SCP.SetActive(false);
+				Headmaster.SetActive(false);
+				ArrestingCops.SetActive(false);
+				Mask.SetActive(false);
+				EyeWitnessScene.SetActive(false);
+				ScaredCops.SetActive(false);
+				EightiesGaudyRing.SetActive(false);
+				Yandere.LookAt.enabled = false;
+				if (WitnessList[1] != null)
+				{
+					WitnessList[1].gameObject.SetActive(false);
+				}
+				if (WitnessList[2] != null)
+				{
+					WitnessList[2].gameObject.SetActive(false);
+				}
+				if (WitnessList[3] != null)
+				{
+					WitnessList[3].gameObject.SetActive(false);
+				}
+				if (WitnessList[4] != null)
+				{
+					WitnessList[4].gameObject.SetActive(false);
+				}
+				if (WitnessList[5] != null)
+				{
+					WitnessList[5].gameObject.SetActive(false);
+				}
+				if (Patsy != null)
+				{
+					Patsy.gameObject.SetActive(false);
+				}
+				if (!GameOver)
+				{
+					Darken = false;
+					UpdateScene();
+				}
+				else
+				{
+					Heartbroken.transform.parent.transform.parent = null;
+					Heartbroken.transform.parent.gameObject.SetActive(true);
+					Heartbroken.Cursor.HeartbrokenCamera.depth = 6f;
+					if (Police.Deaths + PlayerGlobals.Kills > 50)
+					{
+						Heartbroken.Noticed = true;
+					}
+					else
+					{
+						Heartbroken.Noticed = false;
+						Heartbroken.Arrested = true;
+					}
+					MainCamera.SetActive(false);
+					base.gameObject.SetActive(false);
+					Yandere.MyListener.enabled = true;
+					Time.timeScale = 1f;
+				}
+				if (RivalName == "")
+				{
+					if (StudentManager.Eighties)
+					{
+						Protagonist = "Ryoba";
+						RivalName = EightiesRivalNames[DateGlobals.Week];
+					}
+					else
+					{
+						RivalName = RivalNames[DateGlobals.Week];
+					}
+				}
+				if (Yandere.VtuberID > 0)
+				{
+					Protagonist = VtuberNames[Yandere.VtuberID];
+				}
+			}
+		}
+		else
+		{
+			EndOfDayDarkness.color = new Color(EndOfDayDarkness.color.r, EndOfDayDarkness.color.g, EndOfDayDarkness.color.b, Mathf.MoveTowards(EndOfDayDarkness.color.a, 0f, Time.deltaTime * 2f));
+		}
+		AudioSource component = GetComponent<AudioSource>();
+		component.volume = Mathf.MoveTowards(component.volume, 1f, Time.deltaTime * 2f);
+		if (WitnessList[2] != null)
+		{
+			WitnessList[2].CharacterAnimation.Play(WitnessList[2].IdleAnim);
+		}
+		if (WitnessList[3] != null)
+		{
+			WitnessList[3].CharacterAnimation.Play(WitnessList[3].IdleAnim);
+		}
+		if (WitnessList[4] != null)
+		{
+			WitnessList[4].CharacterAnimation.Play(WitnessList[4].IdleAnim);
+		}
+		if (WitnessList[5] != null)
+		{
+			WitnessList[5].CharacterAnimation.Play(WitnessList[5].IdleAnim);
+		}
+		if (Phase == 17)
+		{
+			EODCamera.position = ClubManager.ClubVantages[ClubID].position;
+			EODCamera.eulerAngles = ClubManager.ClubVantages[ClubID].eulerAngles;
+			EODCamera.Translate(Vector3.forward * 0f, Space.Self);
+		}
+	}
+
+	public void UpdateScene()
+	{
+		Label.color = new Color(0f, 0f, 0f, 1f);
+		if (Phase != 14)
+		{
+			for (int i = 0; i < Yandere.Weapon.Length; i++)
+			{
+				if (Yandere.Weapon[i] != null && Yandere.Weapon[i].Bloody)
+				{
+					Yandere.Weapon[i].Drop();
+				}
+			}
+			if (!WeaponsChecked)
+			{
+				Debug.Log("We're counting the number of bloody weapons at school right now...");
+				WeaponManager.CheckWeapons();
+				WeaponsChecked = true;
+				Debug.Log(WeaponManager.MurderWeapons + " bloody weapons were found.");
+			}
+			for (ID = 0; ID < WeaponManager.Weapons.Length; ID++)
+			{
+				if (WeaponManager.Weapons[ID] != null)
+				{
+					WeaponManager.Weapons[ID].gameObject.SetActive(false);
+				}
+			}
+		}
+		if (Input.GetKeyDown(KeyCode.Backspace))
+		{
+			Finish();
+		}
+		if (Phase == 1)
+		{
+			Time.timeScale = 1f;
+			CopAnimation[1]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
+			CopAnimation[2]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
+			CopAnimation[3]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
+			Counselor.LectureID = 0;
+			Cops.SetActive(true);
+			bool flag = false;
+			if (Yandere.Egg && !flag)
+			{
+				Label.text = "The police arrive at school.";
+				Phase = 999;
+				return;
+			}
+			if (Police.PoisonScene)
+			{
+				Label.text = "The police and the paramedics arrive at school.";
+				Phase = 103;
+				return;
+			}
+			if (Police.DrownVictims == 1)
+			{
+				Label.text = "The police arrive at school.";
+				Phase = 104;
+				return;
+			}
+			if (Police.ElectroScene)
+			{
+				Label.text = "The police arrive at school.";
+				Phase = 105;
+				return;
+			}
+			if (Police.MurderSuicideScene)
+			{
+				Label.text = "The police arrive at school, and discover what appears to be the scene of a murder-suicide.";
+				Phase++;
+				return;
+			}
+			Label.text = "The police arrive at school.";
+			if (Police.SuicideScene)
+			{
+				Phase = 102;
+			}
+			else
+			{
+				Phase++;
+			}
+		}
+		else if (Phase == 2)
+		{
+			if (Police.Corpses == 0)
+			{
+				Debug.Log("Zero corpses were present at school.");
+				if (!Police.PoisonScene && !Police.SuicideScene)
+				{
+					if (Police.LimbParent.childCount > 0 || Police.GarbageParent.childCount > 0)
+					{
+						if (Police.LimbParent.childCount + Police.GarbageParent.childCount == 1)
+						{
+							Label.text = "The police find a severed body part at school.";
+						}
+						else
+						{
+							Label.text = "The police find multiple severed body parts at school.";
+						}
+						MurderScene.SetActive(true);
+					}
+					else
+					{
+						SearchingCop.SetActive(true);
+						if (Police.BloodParent.childCount - ClothingWithRedPaint > 0)
+						{
+							Label.text = "The police find mysterious blood stains, but are unable to locate any corpses on school grounds.";
+						}
+						else if (ClothingWithRedPaint == 0)
+						{
+							Label.text = "The police are unable to locate any corpses on school grounds.";
+						}
+						else
+						{
+							Label.text = "The police find clothing that is stained with red paint, but are unable to locate any actual blood stains, and cannot locate any corpses, either.";
+						}
+					}
+					Phase++;
+				}
+				else
+				{
+					SearchingCop.SetActive(true);
+					Label.text = "The police are unable to locate any other corpses on school grounds.";
+					Phase++;
+				}
+				return;
+			}
+			Debug.Log("Corpses were present at school.");
+			MurderScene.SetActive(true);
+			List<string> list = new List<string>();
+			RagdollScript[] corpseList = Police.CorpseList;
+			foreach (RagdollScript ragdollScript in corpseList)
+			{
+				if (!(ragdollScript != null) || ragdollScript.Disposed)
+				{
+					continue;
+				}
+				if (ragdollScript.Student.StudentID == StudentManager.RivalID)
+				{
+					Debug.Log("The rival died, and now the game is determining exactly how she died.");
+					RivalEliminationMethod = RivalEliminationType.Murdered;
+					if (ragdollScript.Student.Electrified || ragdollScript.Student.Electrocuted || ragdollScript.Student.DeathType == DeathType.Burning || ragdollScript.Student.DeathType == DeathType.Weight || ragdollScript.Student.DeathType == DeathType.Drowning || ragdollScript.Student.DeathType == DeathType.Poison || ragdollScript.Student.DeathType == DeathType.Explosion)
+					{
+						RivalEliminationMethod = RivalEliminationType.Accident;
+					}
+					if (ragdollScript.Student.DeathType == DeathType.Burning)
+					{
+						GameGlobals.SpecificEliminationID = 5;
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Burn", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					else if (ragdollScript.Student.DeathType == DeathType.Electrocution)
+					{
+						Debug.Log("The game should now be informing the Content Checklist that the player has performed an electrocution.");
+						GameGlobals.SpecificEliminationID = 8;
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Electrocute", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					else if (ragdollScript.Student.DeathType == DeathType.Weight)
+					{
+						GameGlobals.SpecificEliminationID = 6;
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Crush", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					else if (ragdollScript.Student.DeathType == DeathType.Drowning)
+					{
+						Debug.Log("The rival drowned.");
+						if (PoolEvent)
+						{
+							Debug.Log("The player eliminated the rival during a pool event.");
+							GameGlobals.SpecificEliminationID = 16;
+							if (!GameGlobals.Debug)
+							{
+								PlayerPrefs.SetInt("Pool", 1);
+							}
+							if (!GameGlobals.Debug)
+							{
+								PlayerPrefs.SetInt("a", 1);
+							}
+						}
+						else
+						{
+							Debug.Log("The player did not eliminate the rival during a pool event.");
+							GameGlobals.SpecificEliminationID = 7;
+							if (!GameGlobals.Debug)
+							{
+								PlayerPrefs.SetInt("Drown", 1);
+							}
+							if (!GameGlobals.Debug)
+							{
+								PlayerPrefs.SetInt("a", 1);
+							}
+						}
+					}
+					else if (ragdollScript.Decapitated)
+					{
+						GameGlobals.SpecificEliminationID = 10;
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Fan", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					else if (ragdollScript.Student.DeathType == DeathType.Poison)
+					{
+						GameGlobals.SpecificEliminationID = 15;
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Poison", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					else if (ragdollScript.Student.DeathType == DeathType.Falling)
+					{
+						GameGlobals.SpecificEliminationID = 17;
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Push", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					else if (ragdollScript.Student.Hunted)
+					{
+						GameGlobals.SpecificEliminationID = 14;
+						if (!GameGlobals.Debug)
+						{
+							if (ragdollScript.Student.MurderedByFragile)
+							{
+								if (!GameGlobals.Debug)
+								{
+									PlayerPrefs.SetInt("DrivenToMurder", 1);
+								}
+								if (!GameGlobals.Debug)
+								{
+									PlayerPrefs.SetInt("a", 1);
+								}
+							}
+							else
+							{
+								if (!GameGlobals.Debug)
+								{
+									PlayerPrefs.SetInt("MurderSuicide", 1);
+								}
+								if (!GameGlobals.Debug)
+								{
+									PlayerPrefs.SetInt("a", 1);
+								}
+							}
+						}
+						Debug.Log("The game knows that the rival died as part of a murder-suicide.");
+					}
+					else if (ragdollScript.Student.DeathType == DeathType.Weapon)
+					{
+						Debug.Log("The game believes that the rival died from a ''Weapon''.");
+						GameGlobals.SpecificEliminationID = 1;
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Attack", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					else if (ragdollScript.Student.DeathType == DeathType.Explosion)
+					{
+						Debug.Log("The game knows that the rival died from an explosion.");
+						GameGlobals.SpecificEliminationID = 20;
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Attack", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					else
+					{
+						Debug.Log("We know that the rival died, but we didn't get any noteworthy information about her death...");
+					}
+				}
+				else if (ragdollScript.Student.StudentID > 10 && ragdollScript.Student.StudentID < DateGlobals.Week + 10)
+				{
+					Debug.Log("A previous rival's corpse has been discovered.");
+					SetFormerRivalDeath(ragdollScript.Student.StudentID - 10, ragdollScript.Student);
+				}
+				VictimArray[Corpses] = ragdollScript.Student.StudentID;
+				list.Add(ragdollScript.Student.Name);
+				Corpses++;
+			}
+			list.Sort();
+			string text = "The police discover the corpse" + ((list.Count == 1) ? string.Empty : "s") + " of ";
+			if (list.Count == 1)
+			{
+				Label.text = text + list[0] + ".";
+			}
+			else if (list.Count == 2)
+			{
+				Label.text = text + list[0] + " and " + list[1] + ".";
+			}
+			else if (list.Count < 6)
+			{
+				Label.text = "The police discover multiple corpses on school grounds.";
+				StringBuilder stringBuilder = new StringBuilder();
+				for (int k = 0; k < list.Count - 1; k++)
+				{
+					stringBuilder.Append(list[k] + ", ");
+				}
+				stringBuilder.Append("and " + list[list.Count - 1] + ".");
+				Label.text = text + stringBuilder.ToString();
+			}
+			else
+			{
+				Label.text = "The police discover more than five corpses on school grounds.";
+			}
+			Phase++;
+		}
+		else if (Phase == 3)
+		{
+			if (WeaponManager.MurderWeapons == 0)
+			{
+				ShruggingCops.SetActive(true);
+				if (Weapons == 0)
+				{
+					Label.text = "The police are unable to locate any murder weapons.";
+					Phase += 2;
+				}
+				else
+				{
+					Phase += 2;
+					UpdateScene();
+				}
+				return;
+			}
+			MurderWeapon = null;
+			for (ID = 0; ID < WeaponManager.Weapons.Length; ID++)
+			{
+				if (MurderWeapon == null)
+				{
+					WeaponScript weaponScript = WeaponManager.Weapons[ID];
+					if (weaponScript != null && !weaponScript.Disposed && weaponScript.Blood.enabled)
+					{
+						if (!weaponScript.AlreadyExamined)
+						{
+							WeaponManager.MurderWeapons--;
+							weaponScript.gameObject.SetActive(true);
+							weaponScript.AlreadyExamined = true;
+							MurderWeapon = weaponScript;
+							WeaponID = ID;
+						}
+						else
+						{
+							weaponScript.gameObject.SetActive(false);
+						}
+					}
+				}
+			}
+			List<string> list2 = new List<string>();
+			CurrentMurderWeaponKilledRival = false;
+			for (ID = 0; ID < MurderWeapon.Victims.Length; ID++)
+			{
+				if (MurderWeapon.Victims[ID])
+				{
+					list2.Add(JSON.Students[ID].Name);
+					if (MurderWeapon.Victims[StudentManager.RivalID])
+					{
+						CurrentMurderWeaponKilledRival = true;
+					}
+				}
+			}
+			list2.Sort();
+			Victims = list2.Count;
+			string text2 = MurderWeapon.Name;
+			string text3 = ((text2[text2.Length - 1] != 's') ? ("a " + text2.ToLower() + " that is") : (text2.ToLower() + " that are"));
+			string text4 = "The police discover " + text3 + " stained with the blood of ";
+			if (list2.Count == 1)
+			{
+				Label.text = text4 + list2[0] + ".";
+			}
+			else if (list2.Count == 2)
+			{
+				Label.text = text4 + list2[0] + " and " + list2[1] + ".";
+			}
+			else
+			{
+				StringBuilder stringBuilder2 = new StringBuilder();
+				for (int l = 0; l < list2.Count - 1; l++)
+				{
+					stringBuilder2.Append(list2[l] + ", ");
+				}
+				stringBuilder2.Append("and " + list2[list2.Count - 1] + ".");
+				Label.text = text4 + stringBuilder2.ToString();
+			}
+			Weapons++;
+			Phase++;
+			MurderWeapon.transform.parent = base.transform;
+			MurderWeapon.transform.localPosition = new Vector3(0.6f, 1.4f, -1.5f);
+			MurderWeapon.transform.localEulerAngles = new Vector3(-45f, 90f, -90f);
+			MurderWeapon.MyRigidbody.useGravity = false;
+			MurderWeapon.Rotate = true;
+		}
+		else if (Phase == 4)
+		{
+			if (MurderWeapon.FingerprintID == 0)
+			{
+				ShruggingCops.SetActive(true);
+				Label.text = "The police find no fingerprints on the weapon.";
+				Phase = 3;
+			}
+			else if (MurderWeapon.FingerprintID == 100)
+			{
+				TeleportYandere();
+				Yandere.CharacterAnimation.Play("f02_disappointed_00");
+				if (Yandere.StudentManager.Eighties)
+				{
+					Yandere.LoseGentleEyes();
+				}
+				Label.text = "The police find " + Protagonist + "'s fingerprints on the weapon.";
+				Phase = 100;
+			}
+			else
+			{
+				int fingerprintID = WeaponManager.Weapons[WeaponID].FingerprintID;
+				TabletCop.SetActive(true);
+				CopAnimation[4]["scienceTablet_00"].speed = 0f;
+				TabletPortrait.material.mainTexture = VoidGoddess.Portraits[fingerprintID].mainTexture;
+				Label.text = "The police find the fingerprints of " + JSON.Students[fingerprintID].Name + " on the weapon.";
+				Phase = 101;
+			}
+		}
+		else if (Phase == 5)
+		{
+			if (Police.PhotoEvidence > 0)
+			{
+				TeleportYandere();
+				Yandere.CharacterAnimation.Play("f02_disappointed_00");
+				if (Yandere.StudentManager.Eighties)
+				{
+					Yandere.LoseGentleEyes();
+				}
+				ShruggingCops.SetActive(false);
+				Label.text = "The police find a smartphone with photographic evidence of " + Protagonist + " committing a crime.";
+				Phase = 100;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 6)
+		{
+			if (SchoolGlobals.HighSecurity)
+			{
+				SecuritySystemScene.SetActive(true);
+				if (!SecuritySystem.Evidence)
+				{
+					Label.text = "The police investigate the security camera recordings, but cannot find anything incriminating in the footage.";
+					Phase++;
+				}
+				else if (!SecuritySystem.Masked)
+				{
+					Label.text = "The police investigate the security camera recordings, and find incriminating footage of " + Protagonist + ".";
+					Phase = 100;
+				}
+				else
+				{
+					Label.text = "The police investigate the security camera recordings, and find footage of a suspicious masked person.";
+					Police.MaskReported = true;
+					Phase++;
+				}
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 7)
+		{
+			for (ID = 1; ID < StudentManager.Students.Length; ID++)
+			{
+				if (StudentManager.Students[ID] != null && StudentManager.Students[ID].WitnessedMurder && StudentManager.Students[ID].Alive && StudentManager.Students[ID].Persona != PersonaType.Coward && StudentManager.Students[ID].Persona != PersonaType.Spiteful && StudentManager.Students[ID].Persona != PersonaType.Evil && StudentManager.Students[ID].Club != ClubType.Delinquent && !StudentManager.Students[ID].SawMask)
+				{
+					EyeWitnesses++;
+					WitnessList[EyeWitnesses] = StudentManager.Students[ID];
+				}
+			}
+			if (EyeWitnesses > 0)
+			{
+				DisableThings(WitnessList[1]);
+				DisableThings(WitnessList[2]);
+				DisableThings(WitnessList[3]);
+				DisableThings(WitnessList[4]);
+				DisableThings(WitnessList[5]);
+				WitnessList[1].transform.localPosition = Vector3.zero;
+				if (WitnessList[2] != null)
+				{
+					WitnessList[2].transform.localPosition = new Vector3(-1f, 0f, -0.5f);
+				}
+				if (WitnessList[3] != null)
+				{
+					WitnessList[3].transform.localPosition = new Vector3(1f, 0f, -0.5f);
+				}
+				if (WitnessList[4] != null)
+				{
+					WitnessList[4].transform.localPosition = new Vector3(-2f, 0f, -1f);
+				}
+				if (WitnessList[5] != null)
+				{
+					WitnessList[5].transform.localPosition = new Vector3(1.5f, 0f, -1f);
+				}
+				if (WitnessList[1].Male)
+				{
+					WitnessList[1].CharacterAnimation.Play("carefreeTalk_02");
+				}
+				else
+				{
+					WitnessList[1].CharacterAnimation.Play("f02_carefreeTalk_02");
+				}
+				EyeWitnessScene.SetActive(true);
+				if (EyeWitnesses == 1)
+				{
+					Label.text = "One student accuses " + Protagonist + " of murder, but nobody else can corroborate that students' claims, so the police are unable to develop reasonable justification to arrest " + Protagonist + ".";
+					Phase++;
+				}
+				else if (EyeWitnesses < 5)
+				{
+					Label.text = "Several students accuse " + Protagonist + " of murder, but there are not enough witnesses to provide the police with reasonable justification to arrest her.";
+					Phase++;
+				}
+				else
+				{
+					Label.text = "Numerous students accuse " + Protagonist + " of murder, providing the police with enough justification to arrest her.";
+					Phase = 100;
+				}
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 8)
+		{
+			ShruggingCops.SetActive(false);
+			if (Yandere.Sanity > 33.33333f)
+			{
+				if ((Yandere.Bloodiness > 0f && !Yandere.RedPaint) || (Yandere.Gloved && Yandere.Gloves.Blood.enabled))
+				{
+					if (Arrests == 0)
+					{
+						TeleportYandere();
+						Yandere.CharacterAnimation.Play("f02_disappointed_00");
+						if (Yandere.StudentManager.Eighties)
+						{
+							Yandere.LoseGentleEyes();
+						}
+						Label.text = "The police notice that " + Protagonist + "'s clothing is bloody. They confirm that the blood is not hers. " + Protagonist + " is unable to convince the police that she did not commit murder.";
+						Phase = 100;
+					}
+					else
+					{
+						TeleportYandere();
+						Yandere.CharacterAnimation["YandereConfessionRejected"].time = 4f;
+						Yandere.CharacterAnimation.Play("YandereConfessionRejected");
+						Label.text = "The police notice that " + Protagonist + "'s clothing is bloody. They confirm that the blood is not hers. " + Protagonist + " is able to convince the police that she was splashed with blood while witnessing a murder.";
+						if (!TranqCase.Occupied)
+						{
+							Phase += 2;
+						}
+						else
+						{
+							Phase++;
+						}
+					}
+				}
+				else if (Police.BloodyClothing - ClothingWithRedPaint > 0)
+				{
+					TeleportYandere();
+					Yandere.CharacterAnimation.Play("f02_disappointed_00");
+					if (Yandere.StudentManager.Eighties)
+					{
+						Yandere.LoseGentleEyes();
+					}
+					Label.text = "The police find bloody clothing that has traces of " + Protagonist + "'s DNA. " + Protagonist + " is unable to convince the police that she did not commit murder.";
+					Phase = 100;
+				}
+				else
+				{
+					TeleportYandere();
+					Yandere.CharacterAnimation["YandereConfessionRejected"].time = 4f;
+					Yandere.CharacterAnimation.Play("YandereConfessionRejected");
+					Label.text = "The police question all students in the school, including " + Protagonist + ". The police are unable to link " + Protagonist + " to any crimes.";
+					if (!TranqCase.Occupied)
+					{
+						Phase += 2;
+					}
+					else if (TranqCase.VictimID == ArrestID)
+					{
+						Phase += 2;
+					}
+					else
+					{
+						Phase++;
+					}
+					if (Yandere.StudentManager.Eighties)
+					{
+						Yandere.LoseGentleEyes();
+					}
+				}
+			}
+			else
+			{
+				TeleportYandere();
+				Yandere.CharacterAnimation.Play("f02_disappointed_00");
+				if (Yandere.StudentManager.Eighties)
+				{
+					Yandere.LoseGentleEyes();
+				}
+				if (Yandere.Bloodiness == 0f)
+				{
+					Label.text = "The police question " + Protagonist + ", who exhibits extremely unusual behavior. The police decide to investigate " + Protagonist + " further, and eventually learn of her crimes.";
+					Phase = 100;
+				}
+				else
+				{
+					Label.text = "The police notice that " + Protagonist + " is covered in blood and exhibiting extremely unusual behavior. The police decide to investigate " + Protagonist + " further, and eventually learn of her crimes.";
+					Phase = 100;
+				}
+			}
+		}
+		else if (Phase == 9)
+		{
+			KidnappedVictim = StudentManager.Students[TranqCase.VictimID];
+			KidnappedVictim.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+			KidnappedVictim.CharacterAnimation.enabled = true;
+			KidnappedVictim.gameObject.SetActive(true);
+			KidnappedVictim.Ragdoll.Zs.SetActive(false);
+			KidnappedVictim.transform.parent = base.transform;
+			KidnappedVictim.transform.localPosition = new Vector3(0f, 0.145f, 0f);
+			KidnappedVictim.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
+			KidnappedVictim.CharacterAnimation.Play("f02_sit_06");
+			KidnappedVictim.WhiteQuestionMark.SetActive(true);
+			KidnappedVictim.Cosmetic.FemaleHair[KidnappedVictim.Cosmetic.Hairstyle].SetActive(true);
+			OpenTranqCase.SetActive(true);
+			Label.text = "The police discover " + JSON.Students[TranqCase.VictimID].Name + " inside of a musical instrument case. However, she is unable to recall how she got inside of the case. The police are unable to determine what happened.";
+			StudentGlobals.SetStudentKidnapped(TranqCase.VictimID, false);
+			StudentGlobals.SetStudentMissing(TranqCase.VictimID, false);
+			if (TranqCase.VictimID == StudentManager.RivalID)
+			{
+				StudentManager.RivalEliminated = false;
+			}
+			TranqCase.VictimClubType = ClubType.None;
+			TranqCase.VictimID = 0;
+			TranqCase.Occupied = false;
+			Phase++;
+		}
+		else if (Phase == 10)
+		{
+			if (Police.MaskReported)
+			{
+				Mask.SetActive(true);
+				GameGlobals.MasksBanned = true;
+				if (SecuritySystem.Masked)
+				{
+					Label.text = "In security camera footage, the killer was wearing a mask. As a result, the police are unable to gather meaningful information about the murderer. To prevent this from ever happening again, the Headmaster decides to ban all masks from the school from this day forward.";
+				}
+				else
+				{
+					Label.text = "Witnesses state that the killer was wearing a mask. As a result, the police are unable to gather meaningful information about the murderer. To prevent this from ever happening again, the Headmaster decides to ban all masks from the school from this day forward.";
+				}
+				Police.MaskReported = false;
+				Phase++;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 11)
+		{
+			Cops.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+			Cops.SetActive(true);
+			if (Arrests == 0)
+			{
+				if (DeadPerps == 0)
+				{
+					Label.text = "The police do not have enough evidence to perform an arrest. The police investigation ends, and students are free to leave.";
+				}
+				else if (Police.MurderSuicideScene)
+				{
+					Label.text = "The police conclude that a murder-suicide took place, but are unable to take any further action. The police investigation ends, and students are free to leave.";
+				}
+				else
+				{
+					Label.text = "The police believe that they know the identity of the killer, but they cannot locate the suspect at school. The police leave to search for the person that they believe is the killer. The police investigation ends, and students are free to leave.";
+				}
+			}
+			else if (Arrests == 1)
+			{
+				Label.text = "The police believe that they have arrested the perpetrator of the crime. The police investigation ends, and students are free to leave.";
+			}
+			else
+			{
+				Label.text = "The police believe that they have arrested the perpetrators of the crimes. The police investigation ends, and students are free to leave.";
+			}
+			if (StudentManager.RivalEliminated || RivalEliminationMethod != 0)
+			{
+				Phase++;
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Friday)
+			{
+				Phase = 24;
+			}
+			else
+			{
+				Phase += 2;
+			}
+		}
+		else if (Phase == 12)
+		{
+			Senpai.enabled = false;
+			Senpai.transform.parent = base.transform;
+			Senpai.gameObject.SetActive(true);
+			Senpai.transform.localPosition = new Vector3(0f, 0f, 0f);
+			Senpai.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+			Senpai.EmptyHands();
+			Physics.SyncTransforms();
+			string text5 = "";
+			if (Yandere.Egg && RivalEliminationMethod == RivalEliminationType.None)
+			{
+				RivalEliminationMethod = RivalEliminationType.Murdered;
+			}
+			if (RivalEliminationMethod == RivalEliminationType.None)
+			{
+				Label.text = "Your Senpai feels a growing sense of concern that the school may not be safe.";
+			}
+			else if (RivalEliminationMethod == RivalEliminationType.Murdered || RivalEliminationMethod == RivalEliminationType.MurderedWitnessed || RivalEliminationMethod == RivalEliminationType.Accident || RivalEliminationMethod == RivalEliminationType.SuicideFake)
+			{
+				if (!StudentManager.Eighties)
+				{
+					Senpai.CharacterAnimation.Play("kneelCry_00");
+					if (DateGlobals.Weekday != DayOfWeek.Friday)
+					{
+						text5 = "Senpai will stay home from school for one day to mourn her death.";
+						GameGlobals.SenpaiMourning = true;
+					}
+					Label.text = "Senpai is absolutely devastated by the death of his childhood friend. His mental stability has been greatly affected." + text5;
+				}
+				else
+				{
+					Senpai.CharacterAnimation.Play(Senpai.BulliedIdleAnim);
+					Label.text = "Senpai is deeply saddened by the death of his friend.";
+				}
+			}
+			else
+			{
+				Senpai.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+				if (RivalEliminationMethod == RivalEliminationType.Arrested)
+				{
+					Senpai.CharacterAnimation["refuse_02"].speed = 0.5f;
+					Senpai.CharacterAnimation.Play("refuse_02");
+					Label.text = "Senpai is disgusted to learn that " + RivalName + " would actually commit murder. He is deeply disappointed in her.";
+				}
+				else if (RivalEliminationMethod == RivalEliminationType.Befriended || RivalEliminationMethod == RivalEliminationType.Matchmade)
+				{
+					Senpai.CharacterAnimation.Play(Senpai.BulliedIdleAnim);
+					Label.text = "Senpai notices that " + RivalName + " is distancing herself from him. He feels a little sad about it, but he accepts it.";
+				}
+				else if (RivalEliminationMethod == RivalEliminationType.Expelled)
+				{
+					Senpai.CharacterAnimation.Play("surprisedPose_00");
+					Label.text = "Senpai is shocked to learn that " + RivalName + " has been expelled. He is deeply disappointed in her.";
+				}
+				else if (RivalEliminationMethod == RivalEliminationType.Ruined)
+				{
+					Senpai.CharacterAnimation["refuse_02"].speed = 0.5f;
+					Senpai.CharacterAnimation.Play("refuse_02");
+					Label.text = "Senpai is disturbed by the rumors circulating about " + RivalName + ". He is deeply disappointed in her.";
+				}
+				else if (RivalEliminationMethod == RivalEliminationType.Rejected)
+				{
+					Senpai.CharacterAnimation.Play(Senpai.BulliedIdleAnim);
+					Label.text = "Senpai feels guilty for turning down " + RivalName + "'s feelings, but also he knows that he cannot take back what has been said.";
+				}
+				else if (RivalEliminationMethod == RivalEliminationType.Vanished)
+				{
+					Senpai.CharacterAnimation.Play(Senpai.BulliedIdleAnim);
+					Label.text = "Senpai is concerned about the sudden disappearance of " + RivalName + ". His mental stability has been slightly affected.";
+				}
+			}
+			Phase++;
+		}
+		else if (Phase == 13)
+		{
+			Senpai.enabled = false;
+			Senpai.transform.parent = base.transform;
+			Senpai.gameObject.SetActive(true);
+			Senpai.transform.localPosition = new Vector3(0f, 0f, 0f);
+			Senpai.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+			Senpai.Character.transform.localPosition = new Vector3(0f, 0f, 0f);
+			Senpai.Character.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+			Senpai.EmptyHands();
+			if (StudentManager.RivalEliminated)
+			{
+				Senpai.CharacterAnimation.Play(Senpai.BulliedWalkAnim);
+			}
+			else
+			{
+				Senpai.CharacterAnimation.Play(Senpai.WalkAnim);
+			}
+			Yandere.LookAt.enabled = true;
+			Yandere.MyController.enabled = false;
+			Yandere.transform.parent = base.transform;
+			Yandere.transform.localPosition = new Vector3(2.5f, 0f, 2.5f);
+			Yandere.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+			Yandere.gameObject.SetActive(true);
+			Yandere.CharacterAnimation.Play(Yandere.WalkAnim);
+			Label.text = Protagonist + " stalks Senpai until he has returned home, and then returns to her own home.";
+			if (GameGlobals.SenpaiMourning)
+			{
+				Senpai.gameObject.SetActive(false);
+				Yandere.LookAt.enabled = false;
+				Yandere.transform.localPosition = new Vector3(0f, 0f, 0f);
+				Yandere.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+				Label.text = Protagonist + " returns home, thinking of Senpai every step of the way.";
+			}
+			Physics.SyncTransforms();
+			Phase++;
+		}
+		else if (Phase == 14)
+		{
+			Debug.Log("We're currently in the End-of-Day sequence, checking to see if the Counselor has to lecture anyone.");
+			if (!StudentGlobals.GetStudentDying(StudentManager.RivalID) && !StudentGlobals.GetStudentDead(StudentManager.RivalID) && !StudentGlobals.GetStudentArrested(StudentManager.RivalID))
+			{
+				Debug.Log("The current rival is not dying, dead, or arrested.");
+				if (Counselor.LectureID > 0)
+				{
+					Yandere.gameObject.SetActive(false);
+					for (int m = 1; m < 100; m++)
+					{
+						StudentManager.DisableStudent(m);
+					}
+					EODCamera.position = new Vector3(-18.5f, 1f, 6.5f);
+					EODCamera.eulerAngles = new Vector3(0f, -45f, 0f);
+					EODCamera.Translate(EODCamera.transform.forward * 0.3f);
+					Counselor.Lecturing = true;
+					base.enabled = false;
+					Debug.Log("The counselor is going to lecture somebody! Exiting End-of-Day sequence.");
+				}
+				else
+				{
+					Phase++;
+					UpdateScene();
+				}
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 15)
+		{
+			EODCamera.localPosition = new Vector3(1f, 1.8f, -2.5f);
+			EODCamera.localEulerAngles = new Vector3(22.5f, -22.5f, 0f);
+			TextWindow.SetActive(true);
+			if (Counselor.MustReturnStolenRing)
+			{
+				if (!StudentManager.Eighties)
+				{
+					GaudyRing.SetActive(true);
+				}
+				else
+				{
+					EightiesGaudyRing.SetActive(true);
+				}
+				if (!StudentManager.Eighties)
+				{
+					Label.text = "The guidance counselor returns Sakyu's stolen ring to her. Sakyu decides to stop bringing the ring to school.";
+					GameGlobals.RingStolen = true;
+				}
+				else
+				{
+					Label.text = "The guidance counselor returns Himeko's stolen ring to her. Having her ring stolen does not affect Himeko's decision to wear expensive jewelry at school every day.";
+				}
+				Counselor.MustReturnStolenRing = false;
+			}
+			else if (SchemeGlobals.GetSchemeStage(2) == 3)
+			{
+				GaudyRing.SetActive(true);
+				if (!StudentGlobals.GetStudentDying(StudentManager.RivalID) && !StudentGlobals.GetStudentDead(StudentManager.RivalID) && !StudentGlobals.GetStudentArrested(StudentManager.RivalID))
+				{
+					Label.text = RivalName + " discovers a ring inside of her book bag. She returns the ring to its owner.";
+				}
+				else
+				{
+					Label.text = "Sakyu Basu will never recover her stolen ring.";
+				}
+				SchemeGlobals.SetSchemeStage(2, 100);
+				GameGlobals.RingStolen = true;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 16)
+		{
+			if (Police.Deaths + PlayerGlobals.Kills > 50)
+			{
+				EODCamera.position = new Vector3(-6f, 0.15f, -49f);
+				EODCamera.eulerAngles = new Vector3(-22.5f, 22.5f, 0f);
+				Label.text = "More than half of the school's population is dead. For the safety of the remaining students, the headmaster of Akademi makes the decision to shut down the school. Senpai enrolls in a school far away. " + Protagonist + " will not be able to follow him, and another girl will steal his heart. " + Protagonist + " has permanently lost her chance to be with Senpai.";
+				Heartbroken.NoSnap = true;
+				GameOver = true;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 17)
+		{
+			ClubLimit = ClubArray.Length;
+			if (!GameGlobals.Eighties)
+			{
+				ClubLimit--;
+			}
+			ClubClosed = false;
+			ClubKicked = false;
+			DistanceToMoveForward = 1.2f;
+			if (ClubID < ClubLimit)
+			{
+				if (StudentManager.Eighties && ClubID == 11)
+				{
+					ClubID++;
+				}
+				if (!ClubGlobals.GetClubClosed(ClubArray[ClubID]))
+				{
+					ClubManager.CheckClub(ClubArray[ClubID]);
+					if (ClubManager.ClubMembers < 5)
+					{
+						EODCamera.position = ClubManager.ClubVantages[ClubID].position;
+						EODCamera.eulerAngles = ClubManager.ClubVantages[ClubID].eulerAngles;
+						EODCamera.Translate(Vector3.forward * DistanceToMoveForward, Space.Self);
+						ClubGlobals.SetClubClosed(ClubArray[ClubID], true);
+						if (ClubID != 11)
+						{
+							Label.text = "The " + ClubNames[ClubID].ToString() + " no longer has enough members to remain operational. The school forces the club to disband.";
+						}
+						else if (ClubManager.ClubMembers > 0)
+						{
+							Label.text = "The Gaming Club makes the decision to disband.";
+						}
+						else
+						{
+							Label.text = "The Gaming Club no longer exists.";
+						}
+						ClubClosed = true;
+						if (Yandere.Club == ClubArray[ClubID])
+						{
+							Yandere.Club = ClubType.None;
+						}
+					}
+					if (ClubManager.LeaderMissing)
+					{
+						EODCamera.position = ClubManager.ClubVantages[ClubID].position;
+						EODCamera.eulerAngles = ClubManager.ClubVantages[ClubID].eulerAngles;
+						EODCamera.Translate(Vector3.forward * DistanceToMoveForward, Space.Self);
+						ClubGlobals.SetClubClosed(ClubArray[ClubID], true);
+						Label.text = "The leader of the " + ClubNames[ClubID].ToString() + " has gone missing. The " + ClubNames[ClubID].ToString() + " cannot operate without its leader. The club disbands.";
+						ClubClosed = true;
+						if (Yandere.Club == ClubArray[ClubID])
+						{
+							Yandere.Club = ClubType.None;
+						}
+					}
+					else if (ClubManager.LeaderDead)
+					{
+						EODCamera.position = ClubManager.ClubVantages[ClubID].position;
+						EODCamera.eulerAngles = ClubManager.ClubVantages[ClubID].eulerAngles;
+						EODCamera.Translate(Vector3.forward * DistanceToMoveForward, Space.Self);
+						ClubGlobals.SetClubClosed(ClubArray[ClubID], true);
+						Label.text = "The leader of the " + ClubNames[ClubID].ToString() + " is gone. The " + ClubNames[ClubID].ToString() + " cannot operate without its leader. The club disbands.";
+						ClubClosed = true;
+						if (Yandere.Club == ClubArray[ClubID])
+						{
+							Yandere.Club = ClubType.None;
+						}
+					}
+					else if (ClubManager.LeaderAshamed)
+					{
+						EODCamera.position = ClubManager.ClubVantages[ClubID].position;
+						EODCamera.eulerAngles = ClubManager.ClubVantages[ClubID].eulerAngles;
+						EODCamera.Translate(Vector3.forward * DistanceToMoveForward, Space.Self);
+						ClubGlobals.SetClubClosed(ClubArray[ClubID], true);
+						Label.text = "The leader of the " + ClubNames[ClubID].ToString() + " has unexpectedly disbanded the club without explanation.";
+						ClubClosed = true;
+						ClubManager.LeaderAshamed = false;
+						if (Yandere.Club == ClubArray[ClubID])
+						{
+							Yandere.Club = ClubType.None;
+						}
+					}
+				}
+				if (!ClubGlobals.GetClubClosed(ClubArray[ClubID]) && !ClubGlobals.GetClubKicked(ClubArray[ClubID]) && Yandere.Club == ClubArray[ClubID])
+				{
+					Debug.Log("Checking to see if anyone in Club #" + ClubID + " has a grudge on Ayano.");
+					ClubManager.CheckGrudge(ClubArray[ClubID]);
+					if (ClubManager.LeaderGrudge)
+					{
+						EODCamera.position = ClubManager.ClubVantages[ClubID].position;
+						EODCamera.eulerAngles = ClubManager.ClubVantages[ClubID].eulerAngles;
+						EODCamera.Translate(Vector3.forward * DistanceToMoveForward, Space.Self);
+						Label.text = Protagonist + " receives a message from the president of the " + ClubNames[ClubID].ToString() + ". " + Protagonist + " is no longer a member of the " + ClubNames[ClubID].ToString() + ", and is not welcome in the " + ClubNames[ClubID].ToString() + " room.";
+						ClubGlobals.SetClubKicked(ClubArray[ClubID], true);
+						Yandere.Club = ClubType.None;
+						ClubKicked = true;
+					}
+					else if (ClubManager.ClubGrudge)
+					{
+						Debug.Log("Yeah, someone does.");
+						EODCamera.position = ClubManager.ClubVantages[ClubID].position;
+						EODCamera.eulerAngles = ClubManager.ClubVantages[ClubID].eulerAngles;
+						EODCamera.Translate(Vector3.forward * DistanceToMoveForward, Space.Self);
+						Label.text = Protagonist + " receives a message from the president of the " + ClubNames[ClubID].ToString() + ". There is someone in the " + ClubNames[ClubID].ToString() + " who hates and fears " + Protagonist + ". " + Protagonist + " is no longer a member of the " + ClubNames[ClubID].ToString() + ", and is not welcome in the " + ClubNames[ClubID].ToString() + " room.";
+						ClubGlobals.SetClubKicked(ClubArray[ClubID], true);
+						Yandere.Club = ClubType.None;
+						ClubKicked = true;
+					}
+				}
+				if (!ClubClosed && !ClubKicked)
+				{
+					ClubID++;
+					UpdateScene();
+				}
+				ClubManager.LeaderAshamed = false;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 18)
+		{
+			if (TranqCase.Occupied)
+			{
+				ClosedTranqCase.SetActive(true);
+				Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, 1f);
+				if (StudentManager.Eighties)
+				{
+					Protagonist = "Ryoba";
+				}
+				Label.text = Protagonist + " waits until midnight, sneaks into school, and returns to the musical instrument case that contains her unconscious victim. She pushes the case back to her house and ties the victim to a chair in her basement.";
+				if (TranqCase.VictimID == StudentManager.RivalID)
+				{
+					RivalEliminationMethod = RivalEliminationType.Vanished;
+					GameGlobals.SpecificEliminationID = 12;
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("Kidnap", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
+				}
+				Phase++;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 19)
+		{
+			if (ErectFence)
+			{
+				Fence.SetActive(true);
+				Label.text = "To prevent any other students from falling off of the school rooftop, the school erects a fence around the roof.";
+				SchoolGlobals.RoofFence = true;
+				ErectFence = false;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 20)
+		{
+			if (!SchoolGlobals.HighSecurity && Police.CouncilDeath)
+			{
+				if (!StudentManager.Eighties)
+				{
+					SCP.SetActive(true);
+					Label.text = "The student council president has ordered the implementation of heightened security precautions. Security cameras and metal detectors are now present at school.";
+				}
+				else
+				{
+					Headmaster.SetActive(true);
+					Label.text = "The headmaster has ordered the implementation of heightened security precautions. Security cameras and metal detectors are now present at school.";
+				}
+				Police.CouncilDeath = false;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 21)
+		{
+			Rival = StudentManager.Students[StudentManager.RivalID];
+			if (ArticleID == 2)
+			{
+				StudentManager.StudentReps[StudentManager.RivalID] -= 20f * (1f + (float)Class.LanguageGrade * 0.2f);
+				StudentGlobals.SetStudentReputation(StudentManager.RivalID, Mathf.RoundToInt(StudentManager.StudentReps[StudentManager.RivalID]));
+			}
+			if (Rival != null && Rival.Alive && StudentManager.StudentReps[StudentManager.RivalID] <= -100f)
+			{
+				Debug.Log("The rival is not null, the rival is alive, and the rival's reputation is below -100.");
+				Rival.gameObject.SetActive(true);
+				Rival.transform.parent = base.transform;
+				Rival.transform.localPosition = new Vector3(0f, 0f, 0f);
+				Rival.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+				Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+				Rival.CharacterAnimation.Play(Rival.BulliedWalkAnim);
+				Rival.CharacterAnimation.enabled = true;
+				if (StudentManager.Eighties)
+				{
+					RivalName = EightiesRivalNames[DateGlobals.Week];
+				}
+				else
+				{
+					RivalName = RivalNames[DateGlobals.Week];
+				}
+				Label.text = RivalName + " cannot endure the bullying and harassment that she is being subjected to due to her damaged reputation. She chooses to withdraw from Akademi and never return.";
+				RivalEliminationMethod = RivalEliminationType.Ruined;
+				StudentManager.RivalEliminated = true;
+				GameGlobals.SpecificEliminationID = 4;
+				if (StudentManager.StudentReps[StudentManager.RivalID] <= -150f)
+				{
+					Label.text = RivalName + " is absolutely devastated by the unbearable bullying and harassment that she is being subjected to. She silently returns to her home, planning something drastic...";
+					Rival.CharacterAnimation.Play(Rival.BulliedIdleAnim);
+					RivalEliminationMethod = RivalEliminationType.SuicideBully;
+					GoToSuicideScene = true;
+					StudentManager.Students[StudentManager.RivalID].Hearts.Stop();
+					GameGlobals.SpecificEliminationID = 19;
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("Suicide", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
+				}
+				else
+				{
+					Debug.Log("Informing the Content Checklist.");
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("Bully", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
+				}
+				Phase++;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 22)
+		{
+			Debug.Log("The End-of-Day sequence is now checking whether or not we need to boot the player out of a club.");
+			Debug.Log("Yandere.Club is: " + Yandere.Club);
+			Debug.Log("DateGlobals.Weekday is: " + DateGlobals.Weekday);
+			Debug.Log("ClubManager.ActivitiesAttended is: " + ClubManager.ActivitiesAttended);
+			if (Yandere.Club != 0 && DateGlobals.Weekday == DayOfWeek.Friday && ClubManager.ActivitiesAttended == 0)
+			{
+				TeleportYandere();
+				Yandere.CharacterAnimation.Play("f02_disappointed_00");
+				if (Yandere.StudentManager.Eighties)
+				{
+					Yandere.LoseGentleEyes();
+				}
+				if (StudentManager.Eighties)
+				{
+					Protagonist = "Ryoba";
+				}
+				Label.text = Protagonist + " did not participate in any activities with her club this week. She has been kicked out of the club.";
+				ClubGlobals.SetClubKicked(Yandere.Club, true);
+				ClubGlobals.Club = ClubType.None;
+				Yandere.Club = ClubType.None;
+			}
+			else
+			{
+				Phase++;
+				UpdateScene();
+			}
+		}
+		else if (Phase == 23)
+		{
+			Finish();
+		}
+		else if (Phase == 24)
+		{
+			if (LoveManager.ConfessToSuitor && StudentManager.Students[StudentManager.SuitorID].Alive)
+			{
+				StudentScript obj = StudentManager.Students[StudentManager.SuitorID];
+				obj.enabled = false;
+				obj.Pathfinding.enabled = false;
+				obj.transform.parent = base.transform;
+				obj.gameObject.SetActive(true);
+				obj.transform.localPosition = new Vector3(-0.4f, 0f, 0f);
+				obj.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
+				obj.EmptyHands();
+				obj.MyController.enabled = false;
+				obj.CharacterAnimation.enabled = true;
+				obj.CharacterAnimation.Play("holdHandsLoop_00");
+				ParticleSystem.EmissionModule emission = obj.Hearts.emission;
+				emission.enabled = true;
+				obj.Hearts.Play();
+				Rival.enabled = false;
+				Rival.Pathfinding.enabled = false;
+				Rival.transform.parent = base.transform;
+				Rival.gameObject.SetActive(true);
+				Rival.transform.localPosition = new Vector3(0.4f, 0f, 0f);
+				Rival.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
+				Rival.EmptyHands();
+				Rival.MyController.enabled = false;
+				Rival.CharacterAnimation.enabled = true;
+				Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
+				Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
+				Rival.CharacterAnimation.Play("f02_holdHandsLoop_00");
+				emission = Rival.Hearts.emission;
+				emission.enabled = true;
+				Rival.Hearts.Play();
+				RivalEliminationMethod = RivalEliminationType.Matchmade;
+				Label.text = "After the police investigation ends, " + RivalName + " confesses to a boy that she has fallen in love with. She will no longer attempt to pursue a relationship with " + Protagonist + "'s Senpai.";
+				Phase = 12;
+			}
+			else
+			{
+				Senpai.enabled = false;
+				Senpai.Pathfinding.enabled = false;
+				Senpai.transform.parent = base.transform;
+				Senpai.gameObject.SetActive(true);
+				Senpai.transform.localPosition = new Vector3(0f, 0f, 0f);
+				Senpai.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+				Senpai.EmptyHands();
+				Senpai.MyController.enabled = false;
+				Senpai.CharacterAnimation.enabled = true;
+				Senpai.CharacterAnimation.CrossFade(Senpai.IdleAnim);
+				Rival.enabled = false;
+				Rival.Pathfinding.enabled = false;
+				Rival.transform.parent = base.transform;
+				Rival.gameObject.SetActive(true);
+				Rival.transform.localPosition = new Vector3(0f, 0f, 1f);
+				Rival.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+				Rival.EmptyHands();
+				Rival.MyController.enabled = false;
+				Rival.CharacterAnimation.enabled = true;
+				Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
+				Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
+				Rival.CharacterAnimation.Play("f02_shy_00");
+				Label.text = "After the police investigation ends, " + RivalName + " asks Senpai to speak with her under the cherry tree behind the school.";
+				Phase++;
+			}
+		}
+		else if (Phase == 25)
+		{
+			for (int n = 1; n < 100; n++)
+			{
+				StudentManager.DisableStudent(n);
+			}
+			LoveManager.Suitor = Senpai;
+			LoveManager.Rival = Rival;
+			LoveManager.Rival.CharacterAnimation["f02_shy_00"].weight = 0f;
+			LoveManager.Suitor.gameObject.SetActive(true);
+			LoveManager.Rival.gameObject.SetActive(true);
+			Yandere.gameObject.SetActive(true);
+			Yandere.MyListener.enabled = true;
+			LoveManager.Suitor.transform.parent = null;
+			LoveManager.Rival.transform.parent = null;
+			Yandere.gameObject.transform.parent = null;
+			LoveManager.BeginConfession();
+			Clock.NightLighting();
+			Clock.enabled = false;
+			base.gameObject.SetActive(false);
+		}
+		else if (Phase == 100)
+		{
+			Yandere.MyController.enabled = false;
+			Yandere.transform.parent = base.transform;
+			Yandere.transform.localPosition = new Vector3(0f, 0f, 0f);
+			Yandere.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+			Yandere.gameObject.SetActive(true);
+			Yandere.CharacterAnimation.Play("f02_handcuffs_00");
+			Yandere.Handcuffs.SetActive(true);
+			ArrestingCops.SetActive(true);
+			Physics.SyncTransforms();
+			Label.text = Protagonist + " is arrested by the police. She will never have Senpai.";
+			GameOver = true;
+			Heartbroken.Arrested = true;
+			Heartbroken.NoSnap = true;
+		}
+		else if (Phase == 101)
+		{
+			int fingerprintID2 = WeaponManager.Weapons[WeaponID].FingerprintID;
+			StudentScript studentScript = StudentManager.Students[fingerprintID2];
+			if (studentScript.Alive)
+			{
+				Patsy = StudentManager.Students[fingerprintID2];
+				Patsy.gameObject.SetActive(true);
+				Patsy.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+				Patsy.CharacterAnimation.enabled = true;
+				if (Patsy.WeaponBag != null)
+				{
+					Patsy.WeaponBag.SetActive(false);
+				}
+				Patsy.EmptyHands();
+				Patsy.SpeechLines.Stop();
+				Patsy.Handcuffs.SetActive(true);
+				Patsy.gameObject.SetActive(true);
+				Patsy.Ragdoll.Zs.SetActive(false);
+				Patsy.SmartPhone.SetActive(false);
+				Patsy.MyController.enabled = false;
+				Patsy.transform.parent = base.transform;
+				Patsy.transform.localPosition = new Vector3(0f, 0f, 0f);
+				Patsy.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+				Patsy.ShoeRemoval.enabled = false;
+				if (StudentManager.Students[fingerprintID2].Male)
+				{
+					StudentManager.Students[fingerprintID2].CharacterAnimation.Play("handcuffs_00");
+				}
+				else
+				{
+					StudentManager.Students[fingerprintID2].CharacterAnimation.Play("f02_handcuffs_00");
+				}
+				ArrestingCops.SetActive(true);
+				if (!studentScript.Tranquil)
+				{
+					Label.text = JSON.Students[fingerprintID2].Name + " is arrested by the police.";
+					StudentsToArrest[fingerprintID2] = true;
+					Arrests++;
+				}
+				else
+				{
+					Label.text = JSON.Students[fingerprintID2].Name + " is found asleep inside of a musical instrument case. The police assume that she hid herself inside of the box after committing murder, and arrest her.";
+					StudentsToArrest[fingerprintID2] = true;
+					ArrestID = fingerprintID2;
+					TranqCase.Occupied = false;
+					Arrests++;
+				}
+				if (Patsy.StudentID == StudentManager.RivalID)
+				{
+					StudentManager.RivalEliminated = true;
+					RivalArrested = true;
+				}
+			}
+			else
+			{
+				ShruggingCops.SetActive(true);
+				if (studentScript.Ragdoll.Disposed)
+				{
+					Label.text = JSON.Students[fingerprintID2].Name + " is missing. The police cannot perform an arrest.";
+					DeadPerps++;
+				}
+				else
+				{
+					bool flag2 = false;
+					for (ID = 0; ID < VictimArray.Length; ID++)
+					{
+						if (VictimArray[ID] == fingerprintID2 && !studentScript.MurderSuicide)
+						{
+							flag2 = true;
+						}
+					}
+					if (!flag2)
+					{
+						Label.text = JSON.Students[fingerprintID2].Name + " is dead. The police cannot perform an arrest.";
+						DeadPerps++;
+					}
+					else
+					{
+						Label.text = JSON.Students[fingerprintID2].Name + "'s fingerprints are on the same weapon that killed them. The police cannot solve this mystery.";
+					}
+				}
+			}
+			if (CurrentMurderWeaponKilledRival)
+			{
+				Debug.Log("The police believe that they know who killed the rival. ''Details'' for this rival should be set to ''14'' - ''Ryoba's involvement not suspected.''");
+				InvolvementNotSuspected = true;
+			}
+			Phase = 3;
+		}
+		else if (Phase == 102)
+		{
+			bool flag3 = (bool)StudentManager.Students[Police.SuicideID];
+			if (!StudentManager.Students[Police.SuicideID].Ragdoll.Disposed)
+			{
+				MurderScene.SetActive(true);
+				if (Police.SuicideNote)
+				{
+					Label.text = "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police find a suicide note, and conclude that the deceased student probably took their own life. However, they still search the school for clues and evidence.";
+				}
+				else
+				{
+					Label.text = "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police treat the incident as a murder case, and search the school for any other victims.";
+				}
+				if (Police.SuicideID == StudentManager.RivalID)
+				{
+					RivalEliminationMethod = RivalEliminationType.SuicideFake;
+				}
+				ErectFence = true;
+			}
+			else
+			{
+				ShruggingCops.SetActive(true);
+				Label.text = "The police attempt to determine whether or not a student fell to their death from the school rooftop. The police are unable to reach a conclusion.";
+			}
+			for (ID = 0; ID < Police.CorpseList.Length; ID++)
+			{
+				RagdollScript ragdollScript2 = Police.CorpseList[ID];
+				if (ragdollScript2 != null && ragdollScript2.Suicide)
+				{
+					Police.SuicideVictims++;
+					ragdollScript2 = null;
+					if (Police.Corpses > 0)
+					{
+						Police.Corpses--;
+					}
+				}
+			}
+			Phase = 2;
+		}
+		else if (Phase == 103)
+		{
+			MurderScene.SetActive(true);
+			Label.text = "The paramedics attempt to resuscitate the poisoned student, but they are unable to revive her. The police treat the incident as a murder case, and search the school for any other victims.";
+			for (ID = 0; ID < Police.CorpseList.Length; ID++)
+			{
+				RagdollScript ragdollScript3 = Police.CorpseList[ID];
+				if (ragdollScript3 != null && ragdollScript3.Poisoned)
+				{
+					ragdollScript3 = null;
+					if (Police.Corpses > 0)
+					{
+						Police.Corpses--;
+					}
+				}
+			}
+			if (Corpse.StudentID == StudentManager.RivalID)
+			{
+				GameGlobals.SpecificEliminationID = 15;
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Poison", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
+			}
+			Phase = 2;
+		}
+		else if (Phase == 104)
+		{
+			MurderScene.SetActive(true);
+			Label.text = "The police determine that " + Police.DrownedStudentName + " died from drowning. The police treat the death as a possible murder, and search the school for any other victims.";
+			for (ID = 0; ID < Police.CorpseList.Length; ID++)
+			{
+				RagdollScript ragdollScript4 = Police.CorpseList[ID];
+				if (ragdollScript4 != null)
+				{
+					if (ragdollScript4.Student.StudentID == StudentManager.RivalID)
+					{
+						Debug.Log("The player drowned the rival.");
+						if (RivalEliminationMethod == RivalEliminationType.None)
+						{
+							RivalEliminationMethod = RivalEliminationType.Murdered;
+						}
+						GameGlobals.SpecificEliminationID = 7;
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Drown", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					if (ragdollScript4.Drowned)
+					{
+						ragdollScript4 = null;
+						if (Police.Corpses > 0)
+						{
+							Police.Corpses--;
+						}
+					}
+				}
+			}
+			Phase = 2;
+		}
+		else if (Phase == 105)
+		{
+			MurderScene.SetActive(true);
+			Label.text = "The police determine that " + Police.ElectrocutedStudentName + " died from being electrocuted. The police treat the death as a possible murder, and search the school for any other victims.";
+			for (ID = 0; ID < Police.CorpseList.Length; ID++)
+			{
+				RagdollScript ragdollScript5 = Police.CorpseList[ID];
+				if (ragdollScript5 != null && ragdollScript5.Electrocuted)
+				{
+					if (ragdollScript5.Student.StudentID == StudentManager.RivalID)
+					{
+						Debug.Log("The game should now be informing the Content Checklist that the player has performed an electrocution.");
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("Electrocute", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+					if (Police.Corpses > 0)
+					{
+						Police.Corpses--;
+					}
+				}
+			}
+			Phase = 2;
+		}
+		else if (Phase == 999)
+		{
+			ScaredCops.SetActive(true);
+			Yandere.MyController.enabled = false;
+			Yandere.transform.parent = base.transform;
+			Yandere.transform.localPosition = new Vector3(0f, 0f, -1f);
+			Yandere.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+			Yandere.gameObject.SetActive(true);
+			Physics.SyncTransforms();
+			Label.text = "The police witness actual evidence of the supernatural, are absolutely horrified, and run for their lives.";
+			if (StudentManager.RivalEliminated)
+			{
+				Phase = 12;
+			}
+			else
+			{
+				Phase = 13;
+			}
+		}
+	}
+
+	private void TeleportYandere()
+	{
+		Yandere.MyController.enabled = false;
+		Yandere.transform.parent = base.transform;
+		Yandere.transform.localPosition = new Vector3(0.75f, 0.33333f, -1.9f);
+		Yandere.transform.localEulerAngles = new Vector3(-22.5f, 157.5f, 0f);
+		Yandere.gameObject.SetActive(true);
+		Physics.SyncTransforms();
+	}
+
+	private void Finish()
+	{
+		Debug.Log("We have reached the end of the End-of-Day sequence.");
+		if (RivalArrested)
+		{
+			RivalEliminationMethod = RivalEliminationType.Arrested;
+		}
+		if (RivalEliminationMethod == RivalEliminationType.Murdered)
+		{
+			Debug.Log("The rival was attacked with a weapon.");
+			GameGlobals.RivalEliminationID = 1;
+			GameGlobals.NonlethalElimination = false;
+			if (StudentManager.Students[1].SenpaiWitnessingRivalDie)
+			{
+				GameGlobals.RivalEliminationID = 2;
+			}
+			if (InvolvementNotSuspected)
+			{
+				Debug.Log("The police found someone's fingerprints on the murder weapon, so Ryoba is not a suspect.");
+				GameGlobals.RivalEliminationID = 14;
+			}
+		}
+		else if (RivalEliminationMethod == RivalEliminationType.Arrested)
+		{
+			Debug.Log("The rival was arrested.");
+			GameGlobals.RivalEliminationID = 3;
+			GameGlobals.NonlethalElimination = true;
+			GameGlobals.SpecificEliminationID = 11;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Frame", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+			StudentGlobals.SetStudentArrested(StudentManager.RivalID, true);
+		}
+		else if (RivalEliminationMethod == RivalEliminationType.Expelled)
+		{
+			Debug.Log("The rival was expelled.");
+			StudentGlobals.SetStudentExpelled(StudentManager.RivalID, true);
+			GameGlobals.RivalEliminationID = 5;
+			GameGlobals.NonlethalElimination = true;
+			GameGlobals.SpecificEliminationID = 9;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Expel", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (RivalEliminationMethod == RivalEliminationType.Matchmade)
+		{
+			Debug.Log("The rival was matchmade.");
+			GameGlobals.RivalEliminationID = 6;
+			GameGlobals.NonlethalElimination = true;
+			GameGlobals.SpecificEliminationID = 13;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Matchmake", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (RivalEliminationMethod == RivalEliminationType.Rejected)
+		{
+			Debug.Log("The rival was rejected by Senpai.");
+			GameGlobals.RivalEliminationID = 7;
+			GameGlobals.NonlethalElimination = true;
+			GameGlobals.SpecificEliminationID = 18;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Reject", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (RivalEliminationMethod == RivalEliminationType.Ruined)
+		{
+			Debug.Log("The rival's reputation has been ruined.");
+			GameGlobals.RivalEliminationID = 8;
+			GameGlobals.NonlethalElimination = true;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Bully", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (RivalEliminationMethod == RivalEliminationType.SuicideBully)
+		{
+			Debug.Log("The rival was bullied into suicide.");
+			GameGlobals.RivalEliminationID = 9;
+			GameGlobals.NonlethalElimination = false;
+		}
+		else if (RivalEliminationMethod == RivalEliminationType.SuicideFake)
+		{
+			Debug.Log("The rival was pushed off the school rooftop, and the player made her death look like an accident.");
+			GameGlobals.RivalEliminationID = 10;
+			GameGlobals.NonlethalElimination = false;
+			GameGlobals.SpecificEliminationID = 17;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Push", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (RivalEliminationMethod == RivalEliminationType.Vanished || RivalDismemberedAndIncinerated || RivalBuried)
+		{
+			Debug.Log("The rival ''mysteriously disappeared''.");
+			GameGlobals.RivalEliminationID = 11;
+			GameGlobals.NonlethalElimination = false;
+			CheckForNatureOfDeath();
+			if (TranqCase.VictimID == StudentManager.RivalID)
+			{
+				GameGlobals.NonlethalElimination = true;
+			}
+		}
+		else if (RivalEliminationMethod == RivalEliminationType.Accident)
+		{
+			Debug.Log("The rival was killed in a ''mysterious accident''.");
+			GameGlobals.RivalEliminationID = 12;
+			GameGlobals.NonlethalElimination = false;
+		}
+		if (GameGlobals.RivalEliminationID == 0 && StudentManager.Students[StudentManager.RivalID] != null && !StudentManager.Students[StudentManager.RivalID].Alive)
+		{
+			Debug.Log("RivalEliminationID was 0, but the rival is dead. Bug?");
+			if (StudentManager.Students[StudentManager.RivalID].Ragdoll.Hidden || !PoliceArrived)
+			{
+				Debug.Log("The rival ''mysteriously disappeared''.");
+				GameGlobals.RivalEliminationID = 11;
+				GameGlobals.NonlethalElimination = false;
+			}
+			CheckForNatureOfDeath();
+		}
+		PlayerGlobals.Reputation = Reputation.Reputation;
+		ClubGlobals.Club = Yandere.Club;
+		StudentGlobals.MemorialStudents = 0;
+		HomeGlobals.Night = true;
+		Police.KillStudents();
+		if (Police.Suspended)
+		{
+			DateGlobals.PassDays = Police.SuspensionLength;
+		}
+		else
+		{
+			DateGlobals.PassDays = 1;
+		}
+		if (StudentManager.Students[StudentGlobals.StudentSlave] != null)
+		{
+			Debug.Log("A mind-broken slave came to school today.");
+			if (StudentManager.Students[StudentGlobals.StudentSlave].Ragdoll.enabled || !StudentManager.Students[StudentGlobals.StudentSlave].Alive)
+			{
+				Debug.Log("That slave died. Reducing the number of slaves by one, and removing them from the prisoner array.");
+				StudentGlobals.StudentSlave = 0;
+				StudentGlobals.Prisoners--;
+				if (StudentGlobals.PrisonerChosen == 1)
+				{
+					StudentGlobals.Prisoner1 = 0;
+				}
+				else if (StudentGlobals.PrisonerChosen == 2)
+				{
+					StudentGlobals.Prisoner2 = 0;
+				}
+				else if (StudentGlobals.PrisonerChosen == 3)
+				{
+					StudentGlobals.Prisoner3 = 0;
+				}
+				else if (StudentGlobals.PrisonerChosen == 4)
+				{
+					StudentGlobals.Prisoner4 = 0;
+				}
+				else if (StudentGlobals.PrisonerChosen == 5)
+				{
+					StudentGlobals.Prisoner5 = 0;
+				}
+				else if (StudentGlobals.PrisonerChosen == 6)
+				{
+					StudentGlobals.Prisoner6 = 0;
+				}
+				else if (StudentGlobals.PrisonerChosen == 7)
+				{
+					StudentGlobals.Prisoner7 = 0;
+				}
+				else if (StudentGlobals.PrisonerChosen == 8)
+				{
+					StudentGlobals.Prisoner8 = 0;
+				}
+				else if (StudentGlobals.PrisonerChosen == 9)
+				{
+					StudentGlobals.Prisoner9 = 0;
+				}
+				else if (StudentGlobals.PrisonerChosen == 10)
+				{
+					StudentGlobals.Prisoner10 = 0;
+				}
+			}
+		}
+		for (int i = 1; i < 11; i++)
+		{
+			if (StudentManager.RivalKilledSelf[i])
+			{
+				GameGlobals.SetRivalEliminations(i, 10);
+				GameGlobals.SetSpecificEliminations(i, 19);
+			}
+		}
+		bool flag = DateGlobals.Weekday != DayOfWeek.Friday && StudentManager.SabotageProgress > StudentManager.InitialSabotageProgress;
+		if (!TranqCase.Occupied)
+		{
+			if (GoToSuicideScene)
+			{
+				SceneManager.LoadScene("SuicideScene");
+			}
+			else if (flag)
+			{
+				SceneManager.LoadScene("RivalRejectionProgressScene");
+			}
+			else if (!StudentManager.Eighties && DateGlobals.Week > 1)
+			{
+				SceneManager.LoadScene("WeekLimitScene");
+			}
+			else
+			{
+				SceneManager.LoadScene("HomeScene");
+			}
+		}
+		else
+		{
+			Debug.Log("Subtracting 10% school atmosphere because someone went missing today.");
+			SchoolGlobals.SchoolAtmosphere -= 0.1f;
+			StudentGlobals.Prisoners++;
+			if (StudentGlobals.Prisoners == 1)
+			{
+				StudentGlobals.Prisoner1 = TranqCase.VictimID;
+			}
+			else if (StudentGlobals.Prisoners == 2)
+			{
+				StudentGlobals.Prisoner2 = TranqCase.VictimID;
+			}
+			else if (StudentGlobals.Prisoners == 3)
+			{
+				StudentGlobals.Prisoner3 = TranqCase.VictimID;
+			}
+			else if (StudentGlobals.Prisoners == 4)
+			{
+				StudentGlobals.Prisoner4 = TranqCase.VictimID;
+			}
+			else if (StudentGlobals.Prisoners == 5)
+			{
+				StudentGlobals.Prisoner5 = TranqCase.VictimID;
+			}
+			else if (StudentGlobals.Prisoners == 6)
+			{
+				StudentGlobals.Prisoner6 = TranqCase.VictimID;
+			}
+			else if (StudentGlobals.Prisoners == 7)
+			{
+				StudentGlobals.Prisoner7 = TranqCase.VictimID;
+			}
+			else if (StudentGlobals.Prisoners == 8)
+			{
+				StudentGlobals.Prisoner8 = TranqCase.VictimID;
+			}
+			else if (StudentGlobals.Prisoners == 9)
+			{
+				StudentGlobals.Prisoner9 = TranqCase.VictimID;
+			}
+			else if (StudentGlobals.Prisoners == 10)
+			{
+				StudentGlobals.Prisoner10 = TranqCase.VictimID;
+			}
+			StudentGlobals.SetStudentKidnapped(TranqCase.VictimID, true);
+			StudentGlobals.SetStudentHealth(TranqCase.VictimID, 100);
+			StudentGlobals.SetStudentSanity(TranqCase.VictimID, 100);
+			if (flag)
+			{
+				GameGlobals.JustKidnapped = true;
+				SceneManager.LoadScene("RivalRejectionProgressScene");
+			}
+			else
+			{
+				SceneManager.LoadScene("CalendarScene");
+			}
+		}
+		if (Dumpster.StudentToGoMissing > 0)
+		{
+			Dumpster.SetVictimMissing();
+		}
+		for (ID = 0; ID < GardenHoles.Length; ID++)
+		{
+			GardenHoles[ID].EndOfDayCheck();
+		}
+		for (ID = 1; ID < Yandere.Inventory.ShrineCollectibles.Length; ID++)
+		{
+			if (Yandere.Inventory.ShrineCollectibles[ID])
+			{
+				PlayerGlobals.SetShrineCollectible(ID, true);
+			}
+		}
+		Incinerator.SetVictimsMissing();
+		WoodChipper.SetVictimsMissing();
+		if (FragileTarget > 0)
+		{
+			StudentGlobals.FragileTarget = FragileTarget;
+			StudentGlobals.FragileSlave = 5;
+		}
+		if (StudentManager.ReactedToGameLeader)
+		{
+			SchoolGlobals.ReactedToGameLeader = true;
+		}
+		if (TaskGlobals.GetTaskStatus(46) == 1)
+		{
+			TaskGlobals.SetTaskStatus(46, 0);
+		}
+		if (StudentManager.Students[46] != null && StudentManager.Students[46].TaskPhase == 5)
+		{
+			TaskGlobals.SetTaskStatus(46, 3);
+			PlayerGlobals.SetStudentFriend(46, true);
+			NewFriends++;
+		}
+		if (NewFriends > 0)
+		{
+			PlayerGlobals.Friends += NewFriends;
+		}
+		if (Yandere.Alerts > 0)
+		{
+			PlayerGlobals.Alerts += Yandere.Alerts;
+		}
+		if (Arrests > 0)
+		{
+			Debug.Log("Increasing Atmosphere by 10% because a culprit was arrested.");
+			SchoolGlobals.SchoolAtmosphere += (float)Arrests * 0.1f;
+		}
+		if (Counselor.ExpelledDelinquents)
+		{
+			SchoolGlobals.SchoolAtmosphere += 0.25f;
+			if (ClubGlobals.Club == ClubType.Delinquent)
+			{
+				ClubGlobals.Club = ClubType.None;
+			}
+		}
+		if (Yandere.Inventory.FakeID)
+		{
+			PlayerGlobals.FakeID = true;
+		}
+		if (RaibaruLoner)
+		{
+			PlayerGlobals.RaibaruLoner = true;
+		}
+		if (StopMourning)
+		{
+			GameGlobals.SenpaiMourning = false;
+		}
+		if (StudentManager.EmbarassingSecret)
+		{
+			SchemeGlobals.SetServicePurchased(4, true);
+			SchemeGlobals.EmbarassingSecret = true;
+		}
+		EventGlobals.LearnedAboutPhotographer = LearnedAboutPhotographer;
+		EventGlobals.OsanaEvent1 = LearnedOsanaInfo1;
+		EventGlobals.OsanaEvent2 = LearnedOsanaInfo2;
+		CollectibleGlobals.MatchmakingGifts = MatchmakingGifts;
+		CollectibleGlobals.SenpaiGifts = SenpaiGifts;
+		PlayerGlobals.PantyShots = Yandere.Inventory.PantyShots;
+		PlayerGlobals.Money = Yandere.Inventory.Money;
+		ClassGlobals.Biology = Class.Biology;
+		ClassGlobals.Chemistry = Class.Chemistry;
+		ClassGlobals.Language = Class.Language;
+		ClassGlobals.Physical = Class.Physical;
+		ClassGlobals.Psychology = Class.Psychology;
+		ClassGlobals.BiologyGrade = Class.BiologyGrade;
+		ClassGlobals.ChemistryGrade = Class.ChemistryGrade;
+		ClassGlobals.LanguageGrade = Class.LanguageGrade;
+		ClassGlobals.PhysicalGrade = Class.PhysicalGrade;
+		ClassGlobals.PsychologyGrade = Class.PsychologyGrade;
+		PlayerGlobals.Headset = Yandere.Inventory.Headset;
+		PlayerGlobals.DirectionalMic = Yandere.Inventory.DirectionalMic;
+		WeaponManager.TrackDumpedWeapons();
+		StudentManager.CommunalLocker.RivalPhone.StolenPhoneDropoff.SetPhonesHacked();
+		Yandere.PauseScreen.FavorMenu.ServicesMenu.SaveServicesPurchased();
+		StudentManager.LoveManager.SaveSuitorInstructions();
+		StudentManager.TaskManager.SaveTaskStatuses();
+		StudentManager.SaveCollectibles();
+		StudentManager.SavePhotographs();
+		StudentManager.SavePantyshots();
+		StudentManager.SaveReps();
+		if (StudentManager.DatingMinigame.DataNeedsSaving)
+		{
+			StudentManager.DatingMinigame.SaveTopicsAndCompliments();
+		}
+		if (StudentManager.DatingMinigame.GiftStatusNeedsSaving)
+		{
+			StudentManager.DatingMinigame.SaveGiftStatus();
+		}
+		if (StudentManager.DialogueWheel.AdviceWindow.DataNeedsSaving)
+		{
+			StudentManager.DialogueWheel.AdviceWindow.SaveTopicsAndCompliments();
+		}
+		if (StudentManager.DialogueWheel.AdviceWindow.GiftDataNeedsSaving)
+		{
+			StudentManager.DialogueWheel.AdviceWindow.SaveGiftStatus();
+		}
+		if (SchemeGlobals.GetSchemeStage(6) == 8)
+		{
+			SchemeGlobals.SetSchemeStage(6, 9);
+			Yandere.PauseScreen.Schemes.UpdateInstructions();
+		}
+		Yandere.CameraEffects.UpdateBloom(1f);
+		Yandere.CameraEffects.UpdateBloomKnee(0.5f);
+		Yandere.CameraEffects.UpdateBloomRadius(4f);
+		DatingGlobals.RivalSabotaged = StudentManager.SabotageProgress;
+		PlayerGlobals.PersonaID = Yandere.PersonaID;
+		PlayerGlobals.CorpsesDiscovered += Police.Corpses;
+		ClassGlobals.BonusStudyPoints = Class.StudyPoints + Class.BonusPoints;
+		HomeGlobals.LateForSchool = false;
+		PlayerGlobals.ShrineItems += ShrineItemsCollected;
+		Counselor.SaveExcusesUsed();
+		Counselor.ExpelStudents();
+		Counselor.SaveCounselorData();
+		StudentGlobals.ExpelProgress = Counselor.RivalExpelProgress;
+		CounselorGlobals.ReportedAlcohol = Counselor.ReportedAlcohol;
+		CounselorGlobals.ReportedCigarettes = Counselor.ReportedCigarettes;
+		CounselorGlobals.ReportedCondoms = Counselor.ReportedCondoms;
+		CounselorGlobals.ReportedTheft = Counselor.ReportedTheft;
+		CounselorGlobals.ReportedCheating = Counselor.ReportedCheating;
+		for (int j = 1; j < WeaponManager.BroughtWeapons.Length; j++)
+		{
+			if (WeaponManager.BroughtWeapons[j] == null)
+			{
+				PlayerGlobals.SetCannotBringItem(j, true);
+			}
+		}
+		if (Yandere.Inventory.ArrivedWithRatPoison && Yandere.Inventory.EmeticPoisons == 0)
+		{
+			PlayerGlobals.SetCannotBringItem(4, true);
+		}
+		if (Yandere.Inventory.ArrivedWithSake && !Yandere.Inventory.Sake)
+		{
+			PlayerGlobals.SetCannotBringItem(5, true);
+		}
+		if (Yandere.Inventory.ArrivedWithCigs && !Yandere.Inventory.Cigs)
+		{
+			PlayerGlobals.SetCannotBringItem(6, true);
+		}
+		if (Yandere.Inventory.ArrivedWithCondoms && !Yandere.Inventory.Condoms)
+		{
+			PlayerGlobals.SetCannotBringItem(7, true);
+		}
+		if (Yandere.Inventory.ArrivedWithSedative && Yandere.Inventory.SedativePoisons == 0)
+		{
+			PlayerGlobals.SetCannotBringItem(9, true);
+			PlayerGlobals.BoughtSedative = false;
+		}
+		if (Yandere.Inventory.ArrivedWithPoison && Yandere.Inventory.LethalPoisons == 0)
+		{
+			Debug.Log("The player arrived with lethal poison. The player doesn't have lethal poison anymore.");
+			PlayerGlobals.SetCannotBringItem(11, true);
+			PlayerGlobals.BoughtPoison = false;
+		}
+		if (Yandere.Inventory.LethalPoisons > 0)
+		{
+			Debug.Log("The player is bringing some poison home from school.");
+			PlayerGlobals.BoughtPoison = true;
+		}
+		if (Yandere.Inventory.SedativePoisons > 0)
+		{
+			PlayerGlobals.BoughtSedative = true;
+		}
+		if (Yandere.Inventory.LockPick)
+		{
+			PlayerGlobals.BoughtLockpick = true;
+		}
+		if (Counselor.ReportedNarcotics || (Yandere.Inventory.ArrivedWithNarcotics && !Yandere.Inventory.Narcotics))
+		{
+			PlayerGlobals.BoughtNarcotics = false;
+		}
+		if (ExplosiveDeviceUsed)
+		{
+			PlayerGlobals.BoughtExplosive = false;
+		}
+		if (Yandere.Inventory.Cigs)
+		{
+			PlayerGlobals.SetCannotBringItem(6, false);
+		}
+		if (Yandere.Inventory.Sake)
+		{
+			PlayerGlobals.SetCannotBringItem(5, false);
+		}
+		if (Yandere.Inventory.EmeticPoisons > 0)
+		{
+			PlayerGlobals.SetCannotBringItem(4, false);
+		}
+		if (Yandere.Inventory.SedativePoisons > 0)
+		{
+			PlayerGlobals.BoughtSedative = true;
+			PlayerGlobals.SetCannotBringItem(9, false);
+		}
+		if (ArticleID == 1)
+		{
+			PlayerGlobals.Reputation += 20f * (1f + (float)ClassGlobals.LanguageGrade * 0.2f);
+		}
+		else if (ArticleID == 3)
+		{
+			SchoolGlobals.SchoolAtmosphere += 20f * (1f + (float)ClassGlobals.LanguageGrade * 0.2f);
+		}
+		if (HeardMegami)
+		{
+			SchoolGlobals.SCP = true;
+		}
+		PlayerGlobals.BloodWitnessed += BloodWitnessed;
+		PlayerGlobals.WeaponWitnessed += WeaponWitnessed;
+		ClubManager.UpdateQuitClubs();
+		ClubManager.UpdateKickedClubs();
+		StudentGlobals.UpdateRivalReputation = false;
+		ClubGlobals.ActivitiesAttended = ClubManager.ActivitiesAttended;
+		UpdatePreviousRivalFriendships();
+		ArrestStudents();
+		SaveTopicsLearned();
+		RemovableItemManager.RemoveItems();
+		if (PoliceArrived)
+		{
+			GameGlobals.PoliceYesterday = true;
+			PlayerGlobals.PoliceVisits++;
+		}
+		if (GrudgeConversationHappened)
+		{
+			GameGlobals.GrudgeConversationHappened = true;
+		}
+		Yandere.PauseScreen.PhotoGallery.SavePhotosTaken();
+		Yandere.CameraEffects.UpdateVignette(0f);
+	}
+
+	private void DisableThings(StudentScript TargetStudent)
+	{
+		if (TargetStudent != null)
+		{
+			TargetStudent.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+			TargetStudent.CharacterAnimation.enabled = true;
+			TargetStudent.CharacterAnimation.Play(TargetStudent.IdleAnim);
+			TargetStudent.EmptyHands();
+			TargetStudent.SpeechLines.Stop();
+			TargetStudent.Ragdoll.Zs.SetActive(false);
+			TargetStudent.SmartPhone.SetActive(false);
+			TargetStudent.MyController.enabled = false;
+			TargetStudent.ShoeRemoval.enabled = false;
+			TargetStudent.enabled = false;
+			TargetStudent.gameObject.SetActive(true);
+			TargetStudent.transform.parent = base.transform;
+			TargetStudent.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+		}
+	}
+
+	private void CheckForNatureOfDeath()
+	{
+		if (!(StudentManager.Students[StudentManager.RivalID] != null))
+		{
+			return;
+		}
+		RagdollScript ragdoll = StudentManager.Students[StudentManager.RivalID].Ragdoll;
+		if (ragdoll.Student.DeathType == DeathType.Burning)
+		{
+			GameGlobals.SpecificEliminationID = 5;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Burn", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+			Debug.Log("The game knows that she was burned, though.");
+		}
+		else if (ragdoll.Student.DeathType == DeathType.Electrocution)
+		{
+			GameGlobals.SpecificEliminationID = 8;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Electrocute", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+			Debug.Log("The game knows that she was electrocuted, though.");
+			Debug.Log("The game should now be informing the Content Checklist that the player has performed an electrocution.");
+		}
+		else if (ragdoll.Student.DeathType == DeathType.Weight)
+		{
+			GameGlobals.SpecificEliminationID = 6;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Crush", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+			Debug.Log("The game knows that she was crushed, though.");
+		}
+		else if (ragdoll.Student.DeathType == DeathType.Drowning)
+		{
+			if (PoolEvent)
+			{
+				Debug.Log("The player eliminated the rival during a pool event.");
+				GameGlobals.SpecificEliminationID = 16;
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Pool", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
+			}
+			else
+			{
+				Debug.Log("The game knows that she drowned, though.");
+				GameGlobals.SpecificEliminationID = 7;
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Drown", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
+			}
+		}
+		else if (ragdoll.Decapitated)
+		{
+			GameGlobals.SpecificEliminationID = 10;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Fan", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+			Debug.Log("The game knows that she was decapitated, though.");
+		}
+		else if (ragdoll.Student.DeathType == DeathType.Poison)
+		{
+			GameGlobals.SpecificEliminationID = 15;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Poison", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+			Debug.Log("The game knows that she was poisoned, though.");
+		}
+		else if (ragdoll.Student.DeathType == DeathType.Falling)
+		{
+			GameGlobals.SpecificEliminationID = 17;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Push", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+			Debug.Log("The game knows that she was pushed, though.");
+		}
+		else if (ragdoll.Student.Hunted)
+		{
+			GameGlobals.SpecificEliminationID = 14;
+			if (!GameGlobals.Debug)
+			{
+				if (ragdoll.Student.MurderedByFragile)
+				{
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("DrivenToMurder", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
+				}
+				else
+				{
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("MurderSuicide", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
+				}
+			}
+			Debug.Log("The game knows that the rival died as part of a murder-suicide, though.");
+		}
+		else if (ragdoll.Student.DeathType == DeathType.Weapon)
+		{
+			GameGlobals.SpecificEliminationID = 1;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Attack", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+			Debug.Log("The game knows that she was attacked, though.");
+		}
+		else if (ragdoll.Student.DeathType == DeathType.Explosion)
+		{
+			GameGlobals.SpecificEliminationID = 20;
+			Debug.Log("The game knows that she was blown up, though.");
+		}
+	}
+
+	public void SetFormerRivalDeath(int RivalID, StudentScript Rival)
+	{
+		Debug.Log("The elimination information for Rival #" + RivalID + " is now being updated.");
+		if (Rival.DeathType == DeathType.Burning)
+		{
+			GameGlobals.SetSpecificEliminations(RivalID, 5);
+		}
+		else if (Rival.DeathType == DeathType.Electrocution)
+		{
+			GameGlobals.SetSpecificEliminations(RivalID, 8);
+		}
+		else if (Rival.DeathType == DeathType.Weight)
+		{
+			GameGlobals.SetSpecificEliminations(RivalID, 6);
+		}
+		else if (Rival.DeathType == DeathType.Drowning)
+		{
+			if (PoolEvent)
+			{
+				GameGlobals.SetSpecificEliminations(RivalID, 16);
+			}
+			else
+			{
+				GameGlobals.SetSpecificEliminations(RivalID, 7);
+			}
+		}
+		else if (Rival.Ragdoll.Decapitated)
+		{
+			GameGlobals.SetSpecificEliminations(RivalID, 10);
+		}
+		else if (Rival.DeathType == DeathType.Poison)
+		{
+			GameGlobals.SetSpecificEliminations(RivalID, 15);
+		}
+		else if (Rival.DeathType == DeathType.Falling)
+		{
+			GameGlobals.SetSpecificEliminations(RivalID, 17);
+		}
+		else if (Rival.Hunted)
+		{
+			Debug.Log("Was killed by a mind-broken slave.");
+			GameGlobals.SetSpecificEliminations(RivalID, 14);
+		}
+		else if (Rival.DeathType == DeathType.Weapon)
+		{
+			Debug.Log("Was killed by a weapon.");
+			GameGlobals.SetSpecificEliminations(RivalID, 1);
+		}
+		else
+		{
+			Debug.Log("Specific method of death wasn't listed in the chain.");
+		}
+		if (PoliceArrived)
+		{
+			Debug.Log("The police arrived.");
+		}
+		else
+		{
+			Debug.Log("The police didn't arrived.");
+		}
+		GameGlobals.SetRivalEliminations(RivalID, 14);
+	}
+
+	private void UpdatePreviousRivalFriendships()
+	{
+		if (GameGlobals.SpecificEliminationID == 2)
+		{
+			Debug.Log("This week's rival was befriended.");
+			if ((StudentManager.Students[StudentManager.RivalID] != null && StudentManager.Students[StudentManager.RivalID].Grudge) || StudentGlobals.GetStudentGrudge(StudentManager.RivalID))
+			{
+				Debug.Log("However, she witnessed the player commit murder! Not friends anymore!");
+				GameGlobals.RivalEliminationID = 7;
+			}
+		}
+		for (int i = 1; i < DateGlobals.Week; i++)
+		{
+			if (GameGlobals.GetSpecificEliminations(i) == 2)
+			{
+				Debug.Log("Rival #" + i + " was befriended.");
+				if ((StudentManager.Students[StudentManager.RivalID + 10] != null && StudentManager.Students[StudentManager.RivalID + 10].Grudge) || StudentGlobals.GetStudentGrudge(i + 10))
+				{
+					Debug.Log("However, she witnessed the player commit murder! Not friends anymore!");
+					GameGlobals.SetRivalEliminations(i, 7);
+				}
+			}
+		}
+	}
+
+	public void ArrestStudents()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			if (StudentsToArrest[i])
+			{
+				StudentGlobals.SetStudentArrested(i, true);
+			}
+		}
+	}
+
+	public void SaveTopicsLearned()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			for (int j = 1; j < 26; j++)
+			{
+				ConversationGlobals.SetTopicLearnedByStudent(j, i, StudentManager.GetTopicLearnedByStudent(j, i));
+			}
+		}
+	}
 }

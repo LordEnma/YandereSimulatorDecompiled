@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: NGUIFont
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,631 +5,828 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class NGUIFont : ScriptableObject, INGUIFont
 {
-  [HideInInspector]
-  [SerializeField]
-  private Material mMat;
-  [HideInInspector]
-  [SerializeField]
-  private Rect mUVRect = new Rect(0.0f, 0.0f, 1f, 1f);
-  [HideInInspector]
-  [SerializeField]
-  private BMFont mFont = new BMFont();
-  [HideInInspector]
-  [SerializeField]
-  private UnityEngine.Object mAtlas;
-  [HideInInspector]
-  [SerializeField]
-  private UnityEngine.Object mReplacement;
-  [HideInInspector]
-  [SerializeField]
-  private List<BMSymbol> mSymbols = new List<BMSymbol>();
-  [HideInInspector]
-  [SerializeField]
-  private Font mDynamicFont;
-  [HideInInspector]
-  [SerializeField]
-  private int mDynamicFontSize = 16;
-  [HideInInspector]
-  [SerializeField]
-  private FontStyle mDynamicFontStyle;
-  [NonSerialized]
-  private UISpriteData mSprite;
-  [NonSerialized]
-  private int mPMA = -1;
-  [NonSerialized]
-  private int mPacked = -1;
+	[HideInInspector]
+	[SerializeField]
+	private Material mMat;
 
-  public BMFont bmFont
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      return replacement == null ? this.mFont : replacement.bmFont;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        replacement.bmFont = value;
-      else
-        this.mFont = value;
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	private Rect mUVRect = new Rect(0f, 0f, 1f, 1f);
 
-  public int texWidth
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.texWidth;
-      return this.mFont == null ? 1 : this.mFont.texWidth;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-      {
-        replacement.texWidth = value;
-      }
-      else
-      {
-        if (this.mFont == null)
-          return;
-        this.mFont.texWidth = value;
-      }
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	private BMFont mFont = new BMFont();
 
-  public int texHeight
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.texHeight;
-      return this.mFont == null ? 1 : this.mFont.texHeight;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-      {
-        replacement.texHeight = value;
-      }
-      else
-      {
-        if (this.mFont == null)
-          return;
-        this.mFont.texHeight = value;
-      }
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	private UnityEngine.Object mAtlas;
 
-  public bool hasSymbols
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.hasSymbols;
-      return this.mSymbols != null && this.mSymbols.Count != 0;
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	private UnityEngine.Object mReplacement;
 
-  public List<BMSymbol> symbols
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      return replacement == null ? this.mSymbols : replacement.symbols;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        replacement.symbols = value;
-      else
-        this.mSymbols = value;
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	private List<BMSymbol> mSymbols = new List<BMSymbol>();
 
-  public INGUIAtlas atlas
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      return replacement != null ? replacement.atlas : this.mAtlas as INGUIAtlas;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-      {
-        replacement.atlas = value;
-      }
-      else
-      {
-        if (this.mAtlas as INGUIAtlas == value)
-          return;
-        this.mPMA = -1;
-        this.mAtlas = value as UnityEngine.Object;
-        if (value != null)
-        {
-          this.mMat = value.spriteMaterial;
-          if (this.sprite != null)
-            this.mUVRect = this.uvRect;
-        }
-        else
-        {
-          this.mAtlas = (UnityEngine.Object) null;
-          this.mMat = (Material) null;
-        }
-        this.MarkAsChanged();
-      }
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	private Font mDynamicFont;
 
-  public UISpriteData GetSprite(string spriteName) => this.atlas?.GetSprite(spriteName);
+	[HideInInspector]
+	[SerializeField]
+	private int mDynamicFontSize = 16;
 
-  public Material material
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.material;
-      if (this.mAtlas is INGUIAtlas mAtlas)
-        return mAtlas.spriteMaterial;
-      if ((UnityEngine.Object) this.mMat != (UnityEngine.Object) null)
-      {
-        if ((UnityEngine.Object) this.mDynamicFont != (UnityEngine.Object) null && (UnityEngine.Object) this.mMat != (UnityEngine.Object) this.mDynamicFont.material)
-          this.mMat.mainTexture = this.mDynamicFont.material.mainTexture;
-        return this.mMat;
-      }
-      return (UnityEngine.Object) this.mDynamicFont != (UnityEngine.Object) null ? this.mDynamicFont.material : (Material) null;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-      {
-        replacement.material = value;
-      }
-      else
-      {
-        if (!((UnityEngine.Object) this.mMat != (UnityEngine.Object) value))
-          return;
-        this.mPMA = -1;
-        this.mMat = value;
-        this.MarkAsChanged();
-      }
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	private FontStyle mDynamicFontStyle;
 
-  [Obsolete("Use premultipliedAlphaShader instead")]
-  public bool premultipliedAlpha => this.premultipliedAlphaShader;
+	[NonSerialized]
+	private UISpriteData mSprite;
 
-  public bool premultipliedAlphaShader
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.premultipliedAlphaShader;
-      if (this.mAtlas is INGUIAtlas mAtlas)
-        return mAtlas.premultipliedAlpha;
-      if (this.mPMA == -1)
-      {
-        Material material = this.material;
-        this.mPMA = !((UnityEngine.Object) material != (UnityEngine.Object) null) || !((UnityEngine.Object) material.shader != (UnityEngine.Object) null) || !material.shader.name.Contains("Premultiplied") ? 0 : 1;
-      }
-      return this.mPMA == 1;
-    }
-  }
+	[NonSerialized]
+	private int mPMA = -1;
 
-  public bool packedFontShader
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.packedFontShader;
-      if (this.mAtlas != (UnityEngine.Object) null)
-        return false;
-      if (this.mPacked == -1)
-      {
-        Material material = this.material;
-        this.mPacked = !((UnityEngine.Object) material != (UnityEngine.Object) null) || !((UnityEngine.Object) material.shader != (UnityEngine.Object) null) || !material.shader.name.Contains("Packed") ? 0 : 1;
-      }
-      return this.mPacked == 1;
-    }
-  }
+	[NonSerialized]
+	private int mPacked = -1;
 
-  public Texture2D texture
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.texture;
-      Material material = this.material;
-      return !((UnityEngine.Object) material != (UnityEngine.Object) null) ? (Texture2D) null : material.mainTexture as Texture2D;
-    }
-  }
+	public BMFont bmFont
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont == null)
+			{
+				return mFont;
+			}
+			return iNGUIFont.bmFont;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.bmFont = value;
+			}
+			else
+			{
+				mFont = value;
+			}
+		}
+	}
 
-  public Rect uvRect
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.uvRect;
-      return !(this.mAtlas != (UnityEngine.Object) null) || this.sprite == null ? new Rect(0.0f, 0.0f, 1f, 1f) : this.mUVRect;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-      {
-        replacement.uvRect = value;
-      }
-      else
-      {
-        if (this.sprite != null || !(this.mUVRect != value))
-          return;
-        this.mUVRect = value;
-        this.MarkAsChanged();
-      }
-    }
-  }
+	public int texWidth
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont == null)
+			{
+				if (mFont == null)
+				{
+					return 1;
+				}
+				return mFont.texWidth;
+			}
+			return iNGUIFont.texWidth;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.texWidth = value;
+			}
+			else if (mFont != null)
+			{
+				mFont.texWidth = value;
+			}
+		}
+	}
 
-  public string spriteName
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      return replacement == null ? this.mFont.spriteName : replacement.spriteName;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-      {
-        replacement.spriteName = value;
-      }
-      else
-      {
-        if (!(this.mFont.spriteName != value))
-          return;
-        this.mFont.spriteName = value;
-        this.MarkAsChanged();
-      }
-    }
-  }
+	public int texHeight
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont == null)
+			{
+				if (mFont == null)
+				{
+					return 1;
+				}
+				return mFont.texHeight;
+			}
+			return iNGUIFont.texHeight;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.texHeight = value;
+			}
+			else if (mFont != null)
+			{
+				mFont.texHeight = value;
+			}
+		}
+	}
 
-  public bool isValid => (UnityEngine.Object) this.mDynamicFont != (UnityEngine.Object) null || this.mFont.isValid;
+	public bool hasSymbols
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont == null)
+			{
+				if (mSymbols != null)
+				{
+					return mSymbols.Count != 0;
+				}
+				return false;
+			}
+			return iNGUIFont.hasSymbols;
+		}
+	}
 
-  [Obsolete("Use defaultSize instead")]
-  public int size
-  {
-    get => this.defaultSize;
-    set => this.defaultSize = value;
-  }
+	public List<BMSymbol> symbols
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont == null)
+			{
+				return mSymbols;
+			}
+			return iNGUIFont.symbols;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.symbols = value;
+			}
+			else
+			{
+				mSymbols = value;
+			}
+		}
+	}
 
-  public int defaultSize
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.defaultSize;
-      return this.isDynamic || this.mFont == null ? this.mDynamicFontSize : this.mFont.charSize;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        replacement.defaultSize = value;
-      else
-        this.mDynamicFontSize = value;
-    }
-  }
+	public INGUIAtlas atlas
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				return iNGUIFont.atlas;
+			}
+			return mAtlas as INGUIAtlas;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.atlas = value;
+			}
+			else
+			{
+				if (mAtlas as INGUIAtlas == value)
+				{
+					return;
+				}
+				mPMA = -1;
+				mAtlas = value as UnityEngine.Object;
+				if (value != null)
+				{
+					mMat = value.spriteMaterial;
+					if (sprite != null)
+					{
+						mUVRect = uvRect;
+					}
+				}
+				else
+				{
+					mAtlas = null;
+					mMat = null;
+				}
+				MarkAsChanged();
+			}
+		}
+	}
 
-  public UISpriteData sprite
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-        return replacement.sprite;
-      INGUIAtlas mAtlas = this.mAtlas as INGUIAtlas;
-      if (this.mSprite == null && mAtlas != null && this.mFont != null && !string.IsNullOrEmpty(this.mFont.spriteName))
-      {
-        this.mSprite = mAtlas.GetSprite(this.mFont.spriteName);
-        if (this.mSprite == null)
-          this.mSprite = mAtlas.GetSprite(this.name);
-        if (this.mSprite == null)
-          this.mFont.spriteName = (string) null;
-        else
-          this.UpdateUVRect();
-        int index = 0;
-        for (int count = this.mSymbols.Count; index < count; ++index)
-          this.symbols[index].MarkAsChanged();
-      }
-      return this.mSprite;
-    }
-  }
+	public Material material
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				return iNGUIFont.material;
+			}
+			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
+			if (iNGUIAtlas != null)
+			{
+				return iNGUIAtlas.spriteMaterial;
+			}
+			if (mMat != null)
+			{
+				if (mDynamicFont != null && mMat != mDynamicFont.material)
+				{
+					mMat.mainTexture = mDynamicFont.material.mainTexture;
+				}
+				return mMat;
+			}
+			if (mDynamicFont != null)
+			{
+				return mDynamicFont.material;
+			}
+			return null;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.material = value;
+			}
+			else if (mMat != value)
+			{
+				mPMA = -1;
+				mMat = value;
+				MarkAsChanged();
+			}
+		}
+	}
 
-  public INGUIFont replacement
-  {
-    get => this.mReplacement == (UnityEngine.Object) null ? (INGUIFont) null : this.mReplacement as INGUIFont;
-    set
-    {
-      INGUIFont nguiFont = value;
-      if (nguiFont == this)
-        nguiFont = (INGUIFont) null;
-      if (this.mReplacement as INGUIFont == nguiFont)
-        return;
-      if (nguiFont != null && nguiFont.replacement == this)
-        nguiFont.replacement = (INGUIFont) null;
-      if (this.mReplacement != (UnityEngine.Object) null)
-        this.MarkAsChanged();
-      this.mReplacement = nguiFont as UnityEngine.Object;
-      if (nguiFont != null)
-      {
-        this.mPMA = -1;
-        this.mMat = (Material) null;
-        this.mFont = (BMFont) null;
-        this.mDynamicFont = (Font) null;
-      }
-      this.MarkAsChanged();
-    }
-  }
+	[Obsolete("Use premultipliedAlphaShader instead")]
+	public bool premultipliedAlpha
+	{
+		get
+		{
+			return premultipliedAlphaShader;
+		}
+	}
 
-  public INGUIFont finalFont
-  {
-    get
-    {
-      INGUIFont finalFont = (INGUIFont) this;
-      for (int index = 0; index < 10; ++index)
-      {
-        INGUIFont replacement = finalFont.replacement;
-        if (replacement != null)
-          finalFont = replacement;
-      }
-      return finalFont;
-    }
-  }
+	public bool premultipliedAlphaShader
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				return iNGUIFont.premultipliedAlphaShader;
+			}
+			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
+			if (iNGUIAtlas != null)
+			{
+				return iNGUIAtlas.premultipliedAlpha;
+			}
+			if (mPMA == -1)
+			{
+				Material material = this.material;
+				mPMA = ((material != null && material.shader != null && material.shader.name.Contains("Premultiplied")) ? 1 : 0);
+			}
+			return mPMA == 1;
+		}
+	}
 
-  public bool isDynamic
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      return replacement == null ? (UnityEngine.Object) this.mDynamicFont != (UnityEngine.Object) null : replacement.isDynamic;
-    }
-  }
+	public bool packedFontShader
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				return iNGUIFont.packedFontShader;
+			}
+			if (mAtlas != null)
+			{
+				return false;
+			}
+			if (mPacked == -1)
+			{
+				Material material = this.material;
+				mPacked = ((material != null && material.shader != null && material.shader.name.Contains("Packed")) ? 1 : 0);
+			}
+			return mPacked == 1;
+		}
+	}
 
-  public Font dynamicFont
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      return replacement == null ? this.mDynamicFont : replacement.dynamicFont;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-      {
-        replacement.dynamicFont = value;
-      }
-      else
-      {
-        if (!((UnityEngine.Object) this.mDynamicFont != (UnityEngine.Object) value))
-          return;
-        if ((UnityEngine.Object) this.mDynamicFont != (UnityEngine.Object) null)
-          this.material = (Material) null;
-        this.mDynamicFont = value;
-        this.MarkAsChanged();
-      }
-    }
-  }
+	public Texture2D texture
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				return iNGUIFont.texture;
+			}
+			Material material = this.material;
+			if (!(material != null))
+			{
+				return null;
+			}
+			return material.mainTexture as Texture2D;
+		}
+	}
 
-  public FontStyle dynamicFontStyle
-  {
-    get
-    {
-      INGUIFont replacement = this.replacement;
-      return replacement == null ? this.mDynamicFontStyle : replacement.dynamicFontStyle;
-    }
-    set
-    {
-      INGUIFont replacement = this.replacement;
-      if (replacement != null)
-      {
-        replacement.dynamicFontStyle = value;
-      }
-      else
-      {
-        if (this.mDynamicFontStyle == value)
-          return;
-        this.mDynamicFontStyle = value;
-        this.MarkAsChanged();
-      }
-    }
-  }
+	public Rect uvRect
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				return iNGUIFont.uvRect;
+			}
+			if (!(mAtlas != null) || sprite == null)
+			{
+				return new Rect(0f, 0f, 1f, 1f);
+			}
+			return mUVRect;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.uvRect = value;
+			}
+			else if (sprite == null && mUVRect != value)
+			{
+				mUVRect = value;
+				MarkAsChanged();
+			}
+		}
+	}
 
-  private void Trim()
-  {
-    Texture texture = (Texture) null;
-    if (this.mAtlas is INGUIAtlas mAtlas)
-      texture = mAtlas.texture;
-    if (!((UnityEngine.Object) texture != (UnityEngine.Object) null) || this.mSprite == null)
-      return;
-    Rect pixels = NGUIMath.ConvertToPixels(this.mUVRect, this.texture.width, this.texture.height, true);
-    Rect rect = new Rect((float) this.mSprite.x, (float) this.mSprite.y, (float) this.mSprite.width, (float) this.mSprite.height);
-    this.mFont.Trim(Mathf.RoundToInt(rect.xMin - pixels.xMin), Mathf.RoundToInt(rect.yMin - pixels.yMin), Mathf.RoundToInt(rect.xMax - pixels.xMin), Mathf.RoundToInt(rect.yMax - pixels.yMin));
-  }
+	public string spriteName
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont == null)
+			{
+				return mFont.spriteName;
+			}
+			return iNGUIFont.spriteName;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.spriteName = value;
+			}
+			else if (mFont.spriteName != value)
+			{
+				mFont.spriteName = value;
+				MarkAsChanged();
+			}
+		}
+	}
 
-  public bool References(INGUIFont font)
-  {
-    if (font == null)
-      return false;
-    if (font == this)
-      return true;
-    INGUIFont replacement = this.replacement;
-    return replacement != null && replacement.References(font);
-  }
+	public bool isValid
+	{
+		get
+		{
+			if (!(mDynamicFont != null))
+			{
+				return mFont.isValid;
+			}
+			return true;
+		}
+	}
 
-  public void MarkAsChanged()
-  {
-    this.replacement?.MarkAsChanged();
-    this.mSprite = (UISpriteData) null;
-    UILabel[] active = NGUITools.FindActive<UILabel>();
-    int index1 = 0;
-    for (int length = active.Length; index1 < length; ++index1)
-    {
-      UILabel uiLabel = active[index1];
-      if (uiLabel.enabled && NGUITools.GetActive(uiLabel.gameObject) && NGUITools.CheckIfRelated((INGUIFont) this, uiLabel.bitmapFont))
-      {
-        INGUIFont bitmapFont = uiLabel.bitmapFont;
-        uiLabel.bitmapFont = (INGUIFont) null;
-        uiLabel.bitmapFont = bitmapFont;
-      }
-    }
-    int index2 = 0;
-    for (int count = this.symbols.Count; index2 < count; ++index2)
-      this.symbols[index2].MarkAsChanged();
-  }
+	[Obsolete("Use defaultSize instead")]
+	public int size
+	{
+		get
+		{
+			return defaultSize;
+		}
+		set
+		{
+			defaultSize = value;
+		}
+	}
 
-  public void UpdateUVRect()
-  {
-    if (this.mAtlas == (UnityEngine.Object) null)
-      return;
-    Texture texture = (Texture) null;
-    if (this.mAtlas is INGUIAtlas mAtlas)
-      texture = mAtlas.texture;
-    if (!((UnityEngine.Object) texture != (UnityEngine.Object) null))
-      return;
-    this.mUVRect = new Rect((float) (this.mSprite.x - this.mSprite.paddingLeft), (float) (this.mSprite.y - this.mSprite.paddingTop), (float) (this.mSprite.width + this.mSprite.paddingLeft + this.mSprite.paddingRight), (float) (this.mSprite.height + this.mSprite.paddingTop + this.mSprite.paddingBottom));
-    this.mUVRect = NGUIMath.ConvertToTexCoords(this.mUVRect, texture.width, texture.height);
-    if (!this.mSprite.hasPadding)
-      return;
-    this.Trim();
-  }
+	public int defaultSize
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				return iNGUIFont.defaultSize;
+			}
+			if (isDynamic || mFont == null)
+			{
+				return mDynamicFontSize;
+			}
+			return mFont.charSize;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.defaultSize = value;
+			}
+			else
+			{
+				mDynamicFontSize = value;
+			}
+		}
+	}
 
-  private BMSymbol GetSymbol(string sequence, bool createIfMissing)
-  {
-    List<BMSymbol> symbols = this.symbols;
-    int index = 0;
-    for (int count = symbols.Count; index < count; ++index)
-    {
-      BMSymbol symbol = symbols[index];
-      if (symbol.sequence == sequence)
-        return symbol;
-    }
-    if (!createIfMissing)
-      return (BMSymbol) null;
-    BMSymbol symbol1 = new BMSymbol();
-    symbol1.sequence = sequence;
-    symbols.Add(symbol1);
-    return symbol1;
-  }
+	public UISpriteData sprite
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				return iNGUIFont.sprite;
+			}
+			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
+			if (mSprite == null && iNGUIAtlas != null && mFont != null && !string.IsNullOrEmpty(mFont.spriteName))
+			{
+				mSprite = iNGUIAtlas.GetSprite(mFont.spriteName);
+				if (mSprite == null)
+				{
+					mSprite = iNGUIAtlas.GetSprite(base.name);
+				}
+				if (mSprite == null)
+				{
+					mFont.spriteName = null;
+				}
+				else
+				{
+					UpdateUVRect();
+				}
+				int i = 0;
+				for (int count = mSymbols.Count; i < count; i++)
+				{
+					symbols[i].MarkAsChanged();
+				}
+			}
+			return mSprite;
+		}
+	}
 
-  public BMSymbol MatchSymbol(string text, int offset, int textLength)
-  {
-    INGUIFont replacement = this.replacement;
-    if (replacement != null)
-      return replacement.MatchSymbol(text, offset, textLength);
-    int count = this.mSymbols.Count;
-    if (count == 0)
-      return (BMSymbol) null;
-    textLength -= offset;
-    for (int index1 = 0; index1 < count; ++index1)
-    {
-      BMSymbol mSymbol = this.mSymbols[index1];
-      int length = mSymbol.length;
-      if (length != 0 && textLength >= length)
-      {
-        bool flag = true;
-        for (int index2 = 0; index2 < length; ++index2)
-        {
-          if ((int) text[offset + index2] != (int) mSymbol.sequence[index2])
-          {
-            flag = false;
-            break;
-          }
-        }
-        if (flag && mSymbol.Validate(this.atlas))
-          return mSymbol;
-      }
-    }
-    return (BMSymbol) null;
-  }
+	public INGUIFont replacement
+	{
+		get
+		{
+			if (mReplacement == null)
+			{
+				return null;
+			}
+			return mReplacement as INGUIFont;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = value;
+			if (iNGUIFont == this)
+			{
+				iNGUIFont = null;
+			}
+			if (mReplacement as INGUIFont != iNGUIFont)
+			{
+				if (iNGUIFont != null && iNGUIFont.replacement == this)
+				{
+					iNGUIFont.replacement = null;
+				}
+				if (mReplacement != null)
+				{
+					MarkAsChanged();
+				}
+				mReplacement = iNGUIFont as UnityEngine.Object;
+				if (iNGUIFont != null)
+				{
+					mPMA = -1;
+					mMat = null;
+					mFont = null;
+					mDynamicFont = null;
+				}
+				MarkAsChanged();
+			}
+		}
+	}
 
-  public void AddSymbol(string sequence, string spriteName)
-  {
-    INGUIFont replacement = this.replacement;
-    if (replacement != null)
-    {
-      replacement.AddSymbol(sequence, spriteName);
-    }
-    else
-    {
-      this.GetSymbol(sequence, true).spriteName = spriteName;
-      this.MarkAsChanged();
-    }
-  }
+	public INGUIFont finalFont
+	{
+		get
+		{
+			INGUIFont iNGUIFont = this;
+			for (int i = 0; i < 10; i++)
+			{
+				INGUIFont iNGUIFont2 = iNGUIFont.replacement;
+				if (iNGUIFont2 != null)
+				{
+					iNGUIFont = iNGUIFont2;
+				}
+			}
+			return iNGUIFont;
+		}
+	}
 
-  public void RemoveSymbol(string sequence)
-  {
-    INGUIFont replacement = this.replacement;
-    if (replacement != null)
-    {
-      replacement.RemoveSymbol(sequence);
-    }
-    else
-    {
-      BMSymbol symbol = this.GetSymbol(sequence, false);
-      if (symbol != null)
-        this.symbols.Remove(symbol);
-      this.MarkAsChanged();
-    }
-  }
+	public bool isDynamic
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont == null)
+			{
+				return mDynamicFont != null;
+			}
+			return iNGUIFont.isDynamic;
+		}
+	}
 
-  public void RenameSymbol(string before, string after)
-  {
-    INGUIFont replacement = this.replacement;
-    if (replacement != null)
-    {
-      replacement.RenameSymbol(before, after);
-    }
-    else
-    {
-      BMSymbol symbol = this.GetSymbol(before, false);
-      if (symbol != null)
-        symbol.sequence = after;
-      this.MarkAsChanged();
-    }
-  }
+	public Font dynamicFont
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont == null)
+			{
+				return mDynamicFont;
+			}
+			return iNGUIFont.dynamicFont;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.dynamicFont = value;
+			}
+			else if (mDynamicFont != value)
+			{
+				if (mDynamicFont != null)
+				{
+					material = null;
+				}
+				mDynamicFont = value;
+				MarkAsChanged();
+			}
+		}
+	}
 
-  public bool UsesSprite(string s)
-  {
-    if (!string.IsNullOrEmpty(s))
-    {
-      if (s.Equals(this.spriteName))
-        return true;
-      List<BMSymbol> symbols = this.symbols;
-      int index = 0;
-      for (int count = symbols.Count; index < count; ++index)
-      {
-        BMSymbol bmSymbol = symbols[index];
-        if (s.Equals(bmSymbol.spriteName))
-          return true;
-      }
-    }
-    return false;
-  }
+	public FontStyle dynamicFontStyle
+	{
+		get
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont == null)
+			{
+				return mDynamicFontStyle;
+			}
+			return iNGUIFont.dynamicFontStyle;
+		}
+		set
+		{
+			INGUIFont iNGUIFont = replacement;
+			if (iNGUIFont != null)
+			{
+				iNGUIFont.dynamicFontStyle = value;
+			}
+			else if (mDynamicFontStyle != value)
+			{
+				mDynamicFontStyle = value;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	public UISpriteData GetSprite(string spriteName)
+	{
+		INGUIAtlas iNGUIAtlas = atlas;
+		if (iNGUIAtlas != null)
+		{
+			return iNGUIAtlas.GetSprite(spriteName);
+		}
+		return null;
+	}
+
+	private void Trim()
+	{
+		Texture texture = null;
+		INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
+		if (iNGUIAtlas != null)
+		{
+			texture = iNGUIAtlas.texture;
+		}
+		if (texture != null && mSprite != null)
+		{
+			Rect rect = NGUIMath.ConvertToPixels(mUVRect, this.texture.width, this.texture.height, true);
+			Rect rect2 = new Rect(mSprite.x, mSprite.y, mSprite.width, mSprite.height);
+			int xMin = Mathf.RoundToInt(rect2.xMin - rect.xMin);
+			int yMin = Mathf.RoundToInt(rect2.yMin - rect.yMin);
+			int xMax = Mathf.RoundToInt(rect2.xMax - rect.xMin);
+			int yMax = Mathf.RoundToInt(rect2.yMax - rect.yMin);
+			mFont.Trim(xMin, yMin, xMax, yMax);
+		}
+	}
+
+	public bool References(INGUIFont font)
+	{
+		if (font == null)
+		{
+			return false;
+		}
+		if (font == this)
+		{
+			return true;
+		}
+		INGUIFont iNGUIFont = replacement;
+		if (iNGUIFont == null)
+		{
+			return false;
+		}
+		return iNGUIFont.References(font);
+	}
+
+	public void MarkAsChanged()
+	{
+		INGUIFont iNGUIFont = replacement;
+		if (iNGUIFont != null)
+		{
+			iNGUIFont.MarkAsChanged();
+		}
+		mSprite = null;
+		UILabel[] array = NGUITools.FindActive<UILabel>();
+		int i = 0;
+		for (int num = array.Length; i < num; i++)
+		{
+			UILabel uILabel = array[i];
+			if (uILabel.enabled && NGUITools.GetActive(uILabel.gameObject) && NGUITools.CheckIfRelated(this, uILabel.bitmapFont))
+			{
+				INGUIFont bitmapFont = uILabel.bitmapFont;
+				uILabel.bitmapFont = null;
+				uILabel.bitmapFont = bitmapFont;
+			}
+		}
+		int j = 0;
+		for (int count = symbols.Count; j < count; j++)
+		{
+			symbols[j].MarkAsChanged();
+		}
+	}
+
+	public void UpdateUVRect()
+	{
+		if (mAtlas == null)
+		{
+			return;
+		}
+		Texture texture = null;
+		INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
+		if (iNGUIAtlas != null)
+		{
+			texture = iNGUIAtlas.texture;
+		}
+		if (texture != null)
+		{
+			mUVRect = new Rect(mSprite.x - mSprite.paddingLeft, mSprite.y - mSprite.paddingTop, mSprite.width + mSprite.paddingLeft + mSprite.paddingRight, mSprite.height + mSprite.paddingTop + mSprite.paddingBottom);
+			mUVRect = NGUIMath.ConvertToTexCoords(mUVRect, texture.width, texture.height);
+			if (mSprite.hasPadding)
+			{
+				Trim();
+			}
+		}
+	}
+
+	private BMSymbol GetSymbol(string sequence, bool createIfMissing)
+	{
+		List<BMSymbol> list = symbols;
+		int i = 0;
+		for (int count = list.Count; i < count; i++)
+		{
+			BMSymbol bMSymbol = list[i];
+			if (bMSymbol.sequence == sequence)
+			{
+				return bMSymbol;
+			}
+		}
+		if (createIfMissing)
+		{
+			BMSymbol bMSymbol2 = new BMSymbol();
+			bMSymbol2.sequence = sequence;
+			list.Add(bMSymbol2);
+			return bMSymbol2;
+		}
+		return null;
+	}
+
+	public BMSymbol MatchSymbol(string text, int offset, int textLength)
+	{
+		INGUIFont iNGUIFont = replacement;
+		if (iNGUIFont != null)
+		{
+			return iNGUIFont.MatchSymbol(text, offset, textLength);
+		}
+		int count = mSymbols.Count;
+		if (count == 0)
+		{
+			return null;
+		}
+		textLength -= offset;
+		for (int i = 0; i < count; i++)
+		{
+			BMSymbol bMSymbol = mSymbols[i];
+			int length = bMSymbol.length;
+			if (length == 0 || textLength < length)
+			{
+				continue;
+			}
+			bool flag = true;
+			for (int j = 0; j < length; j++)
+			{
+				if (text[offset + j] != bMSymbol.sequence[j])
+				{
+					flag = false;
+					break;
+				}
+			}
+			if (flag && bMSymbol.Validate(atlas))
+			{
+				return bMSymbol;
+			}
+		}
+		return null;
+	}
+
+	public void AddSymbol(string sequence, string spriteName)
+	{
+		INGUIFont iNGUIFont = replacement;
+		if (iNGUIFont != null)
+		{
+			iNGUIFont.AddSymbol(sequence, spriteName);
+			return;
+		}
+		GetSymbol(sequence, true).spriteName = spriteName;
+		MarkAsChanged();
+	}
+
+	public void RemoveSymbol(string sequence)
+	{
+		INGUIFont iNGUIFont = replacement;
+		if (iNGUIFont != null)
+		{
+			iNGUIFont.RemoveSymbol(sequence);
+			return;
+		}
+		BMSymbol symbol = GetSymbol(sequence, false);
+		if (symbol != null)
+		{
+			symbols.Remove(symbol);
+		}
+		MarkAsChanged();
+	}
+
+	public void RenameSymbol(string before, string after)
+	{
+		INGUIFont iNGUIFont = replacement;
+		if (iNGUIFont != null)
+		{
+			iNGUIFont.RenameSymbol(before, after);
+			return;
+		}
+		BMSymbol symbol = GetSymbol(before, false);
+		if (symbol != null)
+		{
+			symbol.sequence = after;
+		}
+		MarkAsChanged();
+	}
+
+	public bool UsesSprite(string s)
+	{
+		if (!string.IsNullOrEmpty(s))
+		{
+			if (s.Equals(spriteName))
+			{
+				return true;
+			}
+			List<BMSymbol> list = symbols;
+			int i = 0;
+			for (int count = list.Count; i < count; i++)
+			{
+				BMSymbol bMSymbol = list[i];
+				if (s.Equals(bMSymbol.spriteName))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }

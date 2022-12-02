@@ -1,113 +1,183 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SchoolGlobals
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public static class SchoolGlobals
 {
-  private const string Str_DemonActive = "DemonActive_";
-  private const string Str_GardenGraveOccupied = "GardenGraveOccupied_";
-  private const string Str_KidnapVictim = "KidnapVictim";
-  private const string Str_Population = "Population";
-  private const string Str_RoofFence = "RoofFence";
-  private const string Str_SchoolAtmosphere = "SchoolAtmosphere";
-  private const string Str_SchoolAtmosphereSet = "SchoolAtmosphereSet";
-  private const string Str_PreviousSchoolAtmosphere = "PreviousSchoolAtmosphere";
-  private const string Str_ReactedToGameLeader = "ReactedToGameLeader";
-  private const string Str_SCP = "SCP";
-  private const string Str_HighSecurity = "HighSecurity";
+	private const string Str_DemonActive = "DemonActive_";
 
-  public static bool GetDemonActive(int demonID) => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_" + demonID.ToString());
+	private const string Str_GardenGraveOccupied = "GardenGraveOccupied_";
 
-  public static void SetDemonActive(int demonID, bool value)
-  {
-    string id = demonID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_", id);
-    GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_" + id, value);
-  }
+	private const string Str_KidnapVictim = "KidnapVictim";
 
-  public static int[] KeysOfDemonActive() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_");
+	private const string Str_Population = "Population";
 
-  public static bool GetGardenGraveOccupied(int graveID) => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_" + graveID.ToString());
+	private const string Str_RoofFence = "RoofFence";
 
-  public static void SetGardenGraveOccupied(int graveID, bool value)
-  {
-    string id = graveID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_", id);
-    GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_" + id, value);
-  }
+	private const string Str_SchoolAtmosphere = "SchoolAtmosphere";
 
-  public static int[] KeysOfGardenGraveOccupied() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_");
+	private const string Str_SchoolAtmosphereSet = "SchoolAtmosphereSet";
 
-  public static int KidnapVictim
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_KidnapVictim");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_KidnapVictim", value);
-  }
+	private const string Str_PreviousSchoolAtmosphere = "PreviousSchoolAtmosphere";
 
-  public static int Population
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Population");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Population", value);
-  }
+	private const string Str_ReactedToGameLeader = "ReactedToGameLeader";
 
-  public static bool RoofFence
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_RoofFence");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_RoofFence", value);
-  }
+	private const string Str_SCP = "SCP";
 
-  public static float PreviousSchoolAtmosphere
-  {
-    get => PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile.ToString() + "_PreviousSchoolAtmosphere");
-    set => PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_PreviousSchoolAtmosphere", value);
-  }
+	private const string Str_HighSecurity = "HighSecurity";
 
-  public static float SchoolAtmosphere
-  {
-    get => PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile.ToString() + "_SchoolAtmosphere");
-    set => PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_SchoolAtmosphere", value);
-  }
+	public static int KidnapVictim
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_KidnapVictim");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_KidnapVictim", value);
+		}
+	}
 
-  public static bool SchoolAtmosphereSet
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchoolAtmosphereSet");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchoolAtmosphereSet", value);
-  }
+	public static int Population
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_Population");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_Population", value);
+		}
+	}
 
-  public static bool ReactedToGameLeader
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReactedToGameLeader");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReactedToGameLeader", value);
-  }
+	public static bool RoofFence
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_RoofFence");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_RoofFence", value);
+		}
+	}
 
-  public static bool HighSecurity
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_HighSecurity");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_HighSecurity", value);
-  }
+	public static float PreviousSchoolAtmosphere
+	{
+		get
+		{
+			return PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile + "_PreviousSchoolAtmosphere");
+		}
+		set
+		{
+			PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile + "_PreviousSchoolAtmosphere", value);
+		}
+	}
 
-  public static bool SCP
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SCP");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SCP", value);
-  }
+	public static float SchoolAtmosphere
+	{
+		get
+		{
+			return PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile + "_SchoolAtmosphere");
+		}
+		set
+		{
+			PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile + "_SchoolAtmosphere", value);
+		}
+	}
 
-  public static void DeleteAll()
-  {
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_", SchoolGlobals.KeysOfDemonActive());
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_", SchoolGlobals.KeysOfGardenGraveOccupied());
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_KidnapVictim");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Population");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_RoofFence");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SchoolAtmosphere");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SchoolAtmosphereSet");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_PreviousSchoolAtmosphere");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ReactedToGameLeader");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_HighSecurity");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SCP");
-  }
+	public static bool SchoolAtmosphereSet
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_SchoolAtmosphereSet");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_SchoolAtmosphereSet", value);
+		}
+	}
+
+	public static bool ReactedToGameLeader
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_ReactedToGameLeader");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_ReactedToGameLeader", value);
+		}
+	}
+
+	public static bool HighSecurity
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_HighSecurity");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_HighSecurity", value);
+		}
+	}
+
+	public static bool SCP
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_SCP");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_SCP", value);
+		}
+	}
+
+	public static bool GetDemonActive(int demonID)
+	{
+		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_DemonActive_" + demonID);
+	}
+
+	public static void SetDemonActive(int demonID, bool value)
+	{
+		string text = demonID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_DemonActive_", text);
+		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_DemonActive_" + text, value);
+	}
+
+	public static int[] KeysOfDemonActive()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_DemonActive_");
+	}
+
+	public static bool GetGardenGraveOccupied(int graveID)
+	{
+		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_GardenGraveOccupied_" + graveID);
+	}
+
+	public static void SetGardenGraveOccupied(int graveID, bool value)
+	{
+		string text = graveID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_GardenGraveOccupied_", text);
+		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_GardenGraveOccupied_" + text, value);
+	}
+
+	public static int[] KeysOfGardenGraveOccupied()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_GardenGraveOccupied_");
+	}
+
+	public static void DeleteAll()
+	{
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_DemonActive_", KeysOfDemonActive());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_GardenGraveOccupied_", KeysOfGardenGraveOccupied());
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_KidnapVictim");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_Population");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_RoofFence");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SchoolAtmosphere");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SchoolAtmosphereSet");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_PreviousSchoolAtmosphere");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_ReactedToGameLeader");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_HighSecurity");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SCP");
+	}
 }

@@ -1,74 +1,81 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DokiScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DokiScript : MonoBehaviour
 {
-  public YandereShoeLockerScript ShoeLocker;
-  public MusicCreditScript Credits;
-  public YandereScript Yandere;
-  public PromptScript OtherPrompt;
-  public PromptScript Prompt;
-  public GameObject TransformEffect;
-  public Texture DokiTexture;
-  public Texture[] DokiSocks;
-  public Texture[] DokiHair;
-  public string[] DokiName;
-  public int ID;
+	public YandereShoeLockerScript ShoeLocker;
 
-  private void Update()
-  {
-    if (!this.Yandere.Egg)
-    {
-      if ((double) this.OtherPrompt.Circle[0].fillAmount == 0.0)
-      {
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-        this.enabled = false;
-      }
-      if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-        return;
-      this.Yandere.PantyAttacher.newRenderer.enabled = false;
-      this.Prompt.Circle[0].fillAmount = 1f;
-      Object.Instantiate<GameObject>(this.TransformEffect, this.Yandere.Hips.position, Quaternion.identity);
-      this.Yandere.MyRenderer.sharedMesh = this.Yandere.Uniforms[4];
-      this.Yandere.MyRenderer.materials[0].mainTexture = this.DokiTexture;
-      this.Yandere.MyRenderer.materials[1].mainTexture = this.DokiTexture;
-      ++this.ID;
-      if (this.ID > 4)
-        this.ID = 1;
-      this.Credits.SongLabel.text = this.DokiName[this.ID] + " from Doki Doki Literature Club";
-      this.Credits.BandLabel.text = "by Team Salvato";
-      this.Credits.Sprite.enabled = true;
-      this.Credits.Slide = true;
-      this.Credits.Timer = 0.0f;
-      if (this.ID == 1)
-      {
-        this.Yandere.MyRenderer.materials[0].SetTexture("_OverlayTex", this.DokiSocks[0]);
-        this.Yandere.MyRenderer.materials[1].SetTexture("_OverlayTex", this.DokiSocks[0]);
-      }
-      else
-      {
-        this.Yandere.MyRenderer.materials[0].SetTexture("_OverlayTex", this.DokiSocks[1]);
-        this.Yandere.MyRenderer.materials[1].SetTexture("_OverlayTex", this.DokiSocks[1]);
-      }
-      Debug.Log((object) "Activating shadows on Yandere-chan.");
-      this.Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
-      this.Yandere.MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
-      this.Yandere.MyRenderer.materials[2].mainTexture = this.DokiHair[this.ID];
-      this.Yandere.Hairstyle = 136 + this.ID;
-      this.Yandere.UpdateHair();
-      this.ShoeLocker.enabled = false;
-    }
-    else
-    {
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.enabled = false;
-    }
-  }
+	public MusicCreditScript Credits;
+
+	public YandereScript Yandere;
+
+	public PromptScript OtherPrompt;
+
+	public PromptScript Prompt;
+
+	public GameObject TransformEffect;
+
+	public Texture DokiTexture;
+
+	public Texture[] DokiSocks;
+
+	public Texture[] DokiHair;
+
+	public string[] DokiName;
+
+	public int ID;
+
+	private void Update()
+	{
+		if (!Yandere.Egg)
+		{
+			if (OtherPrompt.Circle[0].fillAmount == 0f)
+			{
+				Prompt.Hide();
+				Prompt.enabled = false;
+				base.enabled = false;
+			}
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				Yandere.PantyAttacher.newRenderer.enabled = false;
+				Prompt.Circle[0].fillAmount = 1f;
+				Object.Instantiate(TransformEffect, Yandere.Hips.position, Quaternion.identity);
+				Yandere.MyRenderer.sharedMesh = Yandere.Uniforms[4];
+				Yandere.MyRenderer.materials[0].mainTexture = DokiTexture;
+				Yandere.MyRenderer.materials[1].mainTexture = DokiTexture;
+				ID++;
+				if (ID > 4)
+				{
+					ID = 1;
+				}
+				Credits.SongLabel.text = DokiName[ID] + " from Doki Doki Literature Club";
+				Credits.BandLabel.text = "by Team Salvato";
+				Credits.Sprite.enabled = true;
+				Credits.Slide = true;
+				Credits.Timer = 0f;
+				if (ID == 1)
+				{
+					Yandere.MyRenderer.materials[0].SetTexture("_OverlayTex", DokiSocks[0]);
+					Yandere.MyRenderer.materials[1].SetTexture("_OverlayTex", DokiSocks[0]);
+				}
+				else
+				{
+					Yandere.MyRenderer.materials[0].SetTexture("_OverlayTex", DokiSocks[1]);
+					Yandere.MyRenderer.materials[1].SetTexture("_OverlayTex", DokiSocks[1]);
+				}
+				Debug.Log("Activating shadows on Yandere-chan.");
+				Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
+				Yandere.MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
+				Yandere.MyRenderer.materials[2].mainTexture = DokiHair[ID];
+				Yandere.Hairstyle = 136 + ID;
+				Yandere.UpdateHair();
+				ShoeLocker.enabled = false;
+			}
+		}
+		else
+		{
+			Prompt.Hide();
+			Prompt.enabled = false;
+			base.enabled = false;
+		}
+	}
 }

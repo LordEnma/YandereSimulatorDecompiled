@@ -1,15 +1,9 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DDRRating
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public enum DDRRating
 {
-  Perfect,
-  Great,
-  Good,
-  Ok,
-  Miss,
-  Early,
+	Perfect = 0,
+	Great = 1,
+	Good = 2,
+	Ok = 3,
+	Miss = 4,
+	Early = 5
 }

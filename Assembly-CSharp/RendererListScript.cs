@@ -1,34 +1,33 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RendererListScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RendererListScript : MonoBehaviour
 {
-  public Renderer[] Renderers;
+	public Renderer[] Renderers;
 
-  private void Start()
-  {
-    Transform[] componentsInChildren = this.gameObject.GetComponentsInChildren<Transform>();
-    int index = 0;
-    foreach (Transform transform in componentsInChildren)
-    {
-      if ((Object) transform.gameObject.GetComponent<Renderer>() != (Object) null)
-      {
-        this.Renderers[index] = transform.gameObject.GetComponent<Renderer>();
-        ++index;
-      }
-    }
-  }
+	private void Start()
+	{
+		Transform[] componentsInChildren = base.gameObject.GetComponentsInChildren<Transform>();
+		int num = 0;
+		Transform[] array = componentsInChildren;
+		foreach (Transform transform in array)
+		{
+			if (transform.gameObject.GetComponent<Renderer>() != null)
+			{
+				Renderers[num] = transform.gameObject.GetComponent<Renderer>();
+				num++;
+			}
+		}
+	}
 
-  private void Update()
-  {
-    if (!Input.GetKeyDown(KeyCode.LeftControl))
-      return;
-    foreach (Renderer renderer in this.Renderers)
-      renderer.enabled = !renderer.enabled;
-  }
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.LeftControl))
+		{
+			Renderer[] renderers = Renderers;
+			foreach (Renderer obj in renderers)
+			{
+				obj.enabled = !obj.enabled;
+			}
+		}
+	}
 }

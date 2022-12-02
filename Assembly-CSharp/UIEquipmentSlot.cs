@@ -1,18 +1,30 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIEquipmentSlot
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Examples/UI Equipment Slot")]
 public class UIEquipmentSlot : UIItemSlot
 {
-  public InvEquipment equipment;
-  public InvBaseItem.Slot slot;
+	public InvEquipment equipment;
 
-  protected override InvGameItem observedItem => !((Object) this.equipment != (Object) null) ? (InvGameItem) null : this.equipment.GetItem(this.slot);
+	public InvBaseItem.Slot slot;
 
-  protected override InvGameItem Replace(InvGameItem item) => !((Object) this.equipment != (Object) null) ? item : this.equipment.Replace(this.slot, item);
+	protected override InvGameItem observedItem
+	{
+		get
+		{
+			if (!(equipment != null))
+			{
+				return null;
+			}
+			return equipment.GetItem(slot);
+		}
+	}
+
+	protected override InvGameItem Replace(InvGameItem item)
+	{
+		if (!(equipment != null))
+		{
+			return item;
+		}
+		return equipment.Replace(slot, item);
+	}
 }

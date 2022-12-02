@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AmplifyMotion.WorkerThreadPool
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -11,134 +5,160 @@ using UnityEngine;
 
 namespace AmplifyMotion
 {
-  internal class WorkerThreadPool
-  {
-    private const int ThreadStateQueueCapacity = 1024;
-    internal Queue<MotionState>[] m_threadStateQueues;
-    internal object[] m_threadStateQueueLocks;
-    private int m_threadPoolSize;
-    private ManualResetEvent m_threadPoolTerminateSignal;
-    private AutoResetEvent[] m_threadPoolContinueSignals;
-    private Thread[] m_threadPool;
-    private bool m_threadPoolFallback;
-    internal object m_threadPoolLock;
-    internal int m_threadPoolIndex;
+	internal class WorkerThreadPool
+	{
+		private const int ThreadStateQueueCapacity = 1024;
 
-    internal void InitializeAsyncUpdateThreads(int threadCount, bool systemThreadPool)
-    {
-      if (systemThreadPool)
-      {
-        this.m_threadPoolFallback = true;
-      }
-      else
-      {
-        try
-        {
-          this.m_threadPoolSize = threadCount;
-          this.m_threadStateQueues = new Queue<MotionState>[this.m_threadPoolSize];
-          this.m_threadStateQueueLocks = new object[this.m_threadPoolSize];
-          this.m_threadPool = new Thread[this.m_threadPoolSize];
-          this.m_threadPoolTerminateSignal = new ManualResetEvent(false);
-          this.m_threadPoolContinueSignals = new AutoResetEvent[this.m_threadPoolSize];
-          this.m_threadPoolLock = new object();
-          this.m_threadPoolIndex = 0;
-          for (int index = 0; index < this.m_threadPoolSize; ++index)
-          {
-            this.m_threadStateQueues[index] = new Queue<MotionState>(1024);
-            this.m_threadStateQueueLocks[index] = new object();
-            this.m_threadPoolContinueSignals[index] = new AutoResetEvent(false);
-            this.m_threadPool[index] = new Thread(new ParameterizedThreadStart(WorkerThreadPool.AsyncUpdateThread));
-            this.m_threadPool[index].Start((object) new KeyValuePair<object, int>((object) this, index));
-          }
-        }
-        catch (Exception ex)
-        {
-          Debug.LogWarning((object) ("[AmplifyMotion] Non-critical error while initializing WorkerThreads. Falling back to using System.Threading.ThreadPool().\n" + ex.Message));
-          this.m_threadPoolFallback = true;
-        }
-      }
-    }
+		internal Queue<MotionState>[] m_threadStateQueues;
 
-    internal void FinalizeAsyncUpdateThreads()
-    {
-      if (this.m_threadPoolFallback)
-        return;
-      this.m_threadPoolTerminateSignal.Set();
-      for (int index = 0; index < this.m_threadPoolSize; ++index)
-      {
-        if (this.m_threadPool[index].IsAlive)
-        {
-          this.m_threadPoolContinueSignals[index].Set();
-          this.m_threadPool[index].Join();
-          this.m_threadPool[index] = (Thread) null;
-        }
-        lock (this.m_threadStateQueueLocks[index])
-        {
-          while (this.m_threadStateQueues[index].Count > 0)
-            this.m_threadStateQueues[index].Dequeue().AsyncUpdate();
-        }
-      }
-      this.m_threadStateQueues = (Queue<MotionState>[]) null;
-      this.m_threadStateQueueLocks = (object[]) null;
-      this.m_threadPoolSize = 0;
-      this.m_threadPool = (Thread[]) null;
-      this.m_threadPoolTerminateSignal = (ManualResetEvent) null;
-      this.m_threadPoolContinueSignals = (AutoResetEvent[]) null;
-      this.m_threadPoolLock = (object) null;
-      this.m_threadPoolIndex = 0;
-    }
+		internal object[] m_threadStateQueueLocks;
 
-    internal void EnqueueAsyncUpdate(MotionState state)
-    {
-      if (!this.m_threadPoolFallback)
-      {
-        lock (this.m_threadStateQueueLocks[this.m_threadPoolIndex])
-          this.m_threadStateQueues[this.m_threadPoolIndex].Enqueue(state);
-        this.m_threadPoolContinueSignals[this.m_threadPoolIndex].Set();
-        ++this.m_threadPoolIndex;
-        if (this.m_threadPoolIndex < this.m_threadPoolSize)
-          return;
-        this.m_threadPoolIndex = 0;
-      }
-      else
-        ThreadPool.QueueUserWorkItem(new WaitCallback(WorkerThreadPool.AsyncUpdateCallback), (object) state);
-    }
+		private int m_threadPoolSize;
 
-    private static void AsyncUpdateCallback(object obj) => ((MotionState) obj).AsyncUpdate();
+		private ManualResetEvent m_threadPoolTerminateSignal;
 
-    private static void AsyncUpdateThread(object obj)
-    {
-      KeyValuePair<object, int> keyValuePair = (KeyValuePair<object, int>) obj;
-      WorkerThreadPool key = (WorkerThreadPool) keyValuePair.Key;
-      int index = keyValuePair.Value;
-label_1:
-      while (true)
-      {
-        try
-        {
-          key.m_threadPoolContinueSignals[index].WaitOne();
-          if (key.m_threadPoolTerminateSignal.WaitOne(0))
-            break;
-          while (true)
-          {
-            MotionState motionState = (MotionState) null;
-            lock (key.m_threadStateQueueLocks[index])
-            {
-              if (key.m_threadStateQueues[index].Count > 0)
-                motionState = key.m_threadStateQueues[index].Dequeue();
-            }
-            if (motionState != null)
-              motionState.AsyncUpdate();
-            else
-              goto label_1;
-          }
-        }
-        catch (Exception ex)
-        {
-          if (ex.GetType() != typeof (ThreadAbortException))
-            Debug.LogWarning((object) ex);
-        }
-      }
-    }
-  }
+		private AutoResetEvent[] m_threadPoolContinueSignals;
+
+		private Thread[] m_threadPool;
+
+		private bool m_threadPoolFallback;
+
+		internal object m_threadPoolLock;
+
+		internal int m_threadPoolIndex;
+
+		internal void InitializeAsyncUpdateThreads(int threadCount, bool systemThreadPool)
+		{
+			if (systemThreadPool)
+			{
+				m_threadPoolFallback = true;
+				return;
+			}
+			try
+			{
+				m_threadPoolSize = threadCount;
+				m_threadStateQueues = new Queue<MotionState>[m_threadPoolSize];
+				m_threadStateQueueLocks = new object[m_threadPoolSize];
+				m_threadPool = new Thread[m_threadPoolSize];
+				m_threadPoolTerminateSignal = new ManualResetEvent(false);
+				m_threadPoolContinueSignals = new AutoResetEvent[m_threadPoolSize];
+				m_threadPoolLock = new object();
+				m_threadPoolIndex = 0;
+				for (int i = 0; i < m_threadPoolSize; i++)
+				{
+					m_threadStateQueues[i] = new Queue<MotionState>(1024);
+					m_threadStateQueueLocks[i] = new object();
+					m_threadPoolContinueSignals[i] = new AutoResetEvent(false);
+					m_threadPool[i] = new Thread(AsyncUpdateThread);
+					m_threadPool[i].Start(new KeyValuePair<object, int>(this, i));
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.LogWarning("[AmplifyMotion] Non-critical error while initializing WorkerThreads. Falling back to using System.Threading.ThreadPool().\n" + ex.Message);
+				m_threadPoolFallback = true;
+			}
+		}
+
+		internal void FinalizeAsyncUpdateThreads()
+		{
+			if (m_threadPoolFallback)
+			{
+				return;
+			}
+			m_threadPoolTerminateSignal.Set();
+			for (int i = 0; i < m_threadPoolSize; i++)
+			{
+				if (m_threadPool[i].IsAlive)
+				{
+					m_threadPoolContinueSignals[i].Set();
+					m_threadPool[i].Join();
+					m_threadPool[i] = null;
+				}
+				lock (m_threadStateQueueLocks[i])
+				{
+					while (m_threadStateQueues[i].Count > 0)
+					{
+						m_threadStateQueues[i].Dequeue().AsyncUpdate();
+					}
+				}
+			}
+			m_threadStateQueues = null;
+			m_threadStateQueueLocks = null;
+			m_threadPoolSize = 0;
+			m_threadPool = null;
+			m_threadPoolTerminateSignal = null;
+			m_threadPoolContinueSignals = null;
+			m_threadPoolLock = null;
+			m_threadPoolIndex = 0;
+		}
+
+		internal void EnqueueAsyncUpdate(MotionState state)
+		{
+			if (!m_threadPoolFallback)
+			{
+				lock (m_threadStateQueueLocks[m_threadPoolIndex])
+				{
+					m_threadStateQueues[m_threadPoolIndex].Enqueue(state);
+				}
+				m_threadPoolContinueSignals[m_threadPoolIndex].Set();
+				m_threadPoolIndex++;
+				if (m_threadPoolIndex >= m_threadPoolSize)
+				{
+					m_threadPoolIndex = 0;
+				}
+			}
+			else
+			{
+				ThreadPool.QueueUserWorkItem(AsyncUpdateCallback, state);
+			}
+		}
+
+		private static void AsyncUpdateCallback(object obj)
+		{
+			((MotionState)obj).AsyncUpdate();
+		}
+
+		private static void AsyncUpdateThread(object obj)
+		{
+			KeyValuePair<object, int> keyValuePair = (KeyValuePair<object, int>)obj;
+			WorkerThreadPool workerThreadPool = (WorkerThreadPool)keyValuePair.Key;
+			int value = keyValuePair.Value;
+			while (true)
+			{
+				try
+				{
+					workerThreadPool.m_threadPoolContinueSignals[value].WaitOne();
+					if (workerThreadPool.m_threadPoolTerminateSignal.WaitOne(0))
+					{
+						break;
+					}
+					while (true)
+					{
+						MotionState motionState = null;
+						lock (workerThreadPool.m_threadStateQueueLocks[value])
+						{
+							if (workerThreadPool.m_threadStateQueues[value].Count > 0)
+							{
+								motionState = workerThreadPool.m_threadStateQueues[value].Dequeue();
+							}
+						}
+						if (motionState != null)
+						{
+							motionState.AsyncUpdate();
+							continue;
+						}
+						break;
+					}
+				}
+				catch (Exception ex)
+				{
+					if (ex.GetType() != typeof(ThreadAbortException))
+					{
+						Debug.LogWarning(ex);
+					}
+				}
+			}
+		}
+	}
 }

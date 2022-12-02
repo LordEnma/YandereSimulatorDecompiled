@@ -1,73 +1,77 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RivalPhoneScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RivalPhoneScript : MonoBehaviour
 {
-  public DoorGapScript StolenPhoneDropoff;
-  public Renderer MyRenderer;
-  public PromptScript Prompt;
-  public bool LewdPhotos;
-  public bool Stolen;
-  public int StudentID;
-  public Vector3 OriginalPosition;
-  public Quaternion OriginalRotation;
-  public Transform OriginalParent;
+	public DoorGapScript StolenPhoneDropoff;
 
-  private void Start()
-  {
-    this.OriginalParent = this.transform.parent;
-    this.OriginalPosition = this.transform.localPosition;
-    this.OriginalRotation = this.transform.localRotation;
-    this.gameObject.SetActive(false);
-    this.Prompt.Hide();
-  }
+	public Renderer MyRenderer;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    this.Prompt.Circle[0].fillAmount = 1f;
-    this.Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
-    if (!this.Prompt.Yandere.StudentManager.YandereVisible)
-    {
-      if (this.StudentID == this.Prompt.Yandere.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(1) == 4)
-      {
-        SchemeGlobals.SetSchemeStage(1, 5);
-        this.Prompt.Yandere.PauseScreen.Schemes.UpdateInstructions();
-      }
-      this.Prompt.Yandere.RivalPhoneTexture = this.MyRenderer.material.mainTexture;
-      this.Prompt.Yandere.Inventory.RivalPhone = true;
-      this.Prompt.Yandere.Inventory.RivalPhoneID = this.StudentID;
-      this.Prompt.enabled = false;
-      this.enabled = false;
-      this.StolenPhoneDropoff.Prompt.enabled = true;
-      this.StolenPhoneDropoff.Phase = 1;
-      this.StolenPhoneDropoff.Timer = 0.0f;
-      this.StolenPhoneDropoff.Prompt.Label[0].text = "     Provide Stolen Phone";
-      this.gameObject.SetActive(false);
-      this.Stolen = true;
-    }
-    else
-    {
-      this.Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
-      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-    }
-  }
+	public PromptScript Prompt;
 
-  public void ReturnToOrigin()
-  {
-    this.transform.parent = this.OriginalParent;
-    this.transform.localPosition = this.OriginalPosition;
-    this.transform.localRotation = this.OriginalRotation;
-    this.gameObject.SetActive(false);
-    this.Prompt.enabled = true;
-    this.LewdPhotos = false;
-    this.Stolen = false;
-    this.enabled = true;
-  }
+	public bool LewdPhotos;
+
+	public bool Stolen;
+
+	public int StudentID;
+
+	public Vector3 OriginalPosition;
+
+	public Quaternion OriginalRotation;
+
+	public Transform OriginalParent;
+
+	private void Start()
+	{
+		OriginalParent = base.transform.parent;
+		OriginalPosition = base.transform.localPosition;
+		OriginalRotation = base.transform.localRotation;
+		base.gameObject.SetActive(false);
+		Prompt.Hide();
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount != 0f)
+		{
+			return;
+		}
+		Prompt.Circle[0].fillAmount = 1f;
+		Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+		if (!Prompt.Yandere.StudentManager.YandereVisible)
+		{
+			if (StudentID == Prompt.Yandere.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(1) == 4)
+			{
+				SchemeGlobals.SetSchemeStage(1, 5);
+				Prompt.Yandere.PauseScreen.Schemes.UpdateInstructions();
+			}
+			Prompt.Yandere.RivalPhoneTexture = MyRenderer.material.mainTexture;
+			Prompt.Yandere.Inventory.RivalPhone = true;
+			Prompt.Yandere.Inventory.RivalPhoneID = StudentID;
+			Prompt.enabled = false;
+			base.enabled = false;
+			StolenPhoneDropoff.Prompt.enabled = true;
+			StolenPhoneDropoff.Phase = 1;
+			StolenPhoneDropoff.Timer = 0f;
+			StolenPhoneDropoff.Prompt.Label[0].text = "     Provide Stolen Phone";
+			base.gameObject.SetActive(false);
+			Stolen = true;
+		}
+		else
+		{
+			Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+		}
+	}
+
+	public void ReturnToOrigin()
+	{
+		base.transform.parent = OriginalParent;
+		base.transform.localPosition = OriginalPosition;
+		base.transform.localRotation = OriginalRotation;
+		base.gameObject.SetActive(false);
+		Prompt.enabled = true;
+		LewdPhotos = false;
+		Stolen = false;
+		base.enabled = true;
+	}
 }

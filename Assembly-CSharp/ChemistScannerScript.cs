@@ -1,70 +1,83 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ChemistScannerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ChemistScannerScript : MonoBehaviour
 {
-  public StudentScript Student;
-  public Renderer MyRenderer;
-  public Texture AlarmedEyes;
-  public Texture DeadEyes;
-  public Texture SadEyes;
-  public Texture[] Textures;
-  public float Timer;
-  public int PreviousID;
-  public int ID;
+	public StudentScript Student;
 
-  private void Update()
-  {
-    if ((Object) this.Student.Ragdoll != (Object) null && this.Student.Ragdoll.enabled)
-    {
-      this.MyRenderer.materials[1].mainTexture = this.DeadEyes;
-      this.enabled = false;
-    }
-    else if (this.Student.Dying)
-    {
-      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.AlarmedEyes))
-        return;
-      this.MyRenderer.materials[1].mainTexture = this.AlarmedEyes;
-    }
-    else if (this.Student.Emetic || this.Student.Lethal || this.Student.Tranquil || this.Student.Headache)
-    {
-      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.Textures[6]))
-        return;
-      this.MyRenderer.materials[1].mainTexture = this.Textures[6];
-    }
-    else if (this.Student.Grudge)
-    {
-      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.Textures[1]))
-        return;
-      this.MyRenderer.materials[1].mainTexture = this.Textures[1];
-    }
-    else if (this.Student.LostTeacherTrust)
-    {
-      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.SadEyes))
-        return;
-      this.MyRenderer.materials[1].mainTexture = this.SadEyes;
-    }
-    else if (this.Student.WitnessedMurder || this.Student.WitnessedCorpse)
-    {
-      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.AlarmedEyes))
-        return;
-      this.MyRenderer.materials[1].mainTexture = this.AlarmedEyes;
-    }
-    else
-    {
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer <= 2.0)
-        return;
-      while (this.ID == this.PreviousID)
-        this.ID = Random.Range(0, this.Textures.Length);
-      this.MyRenderer.materials[1].mainTexture = this.Textures[this.ID];
-      this.PreviousID = this.ID;
-      this.Timer = 0.0f;
-    }
-  }
+	public Renderer MyRenderer;
+
+	public Texture AlarmedEyes;
+
+	public Texture DeadEyes;
+
+	public Texture SadEyes;
+
+	public Texture[] Textures;
+
+	public float Timer;
+
+	public int PreviousID;
+
+	public int ID;
+
+	private void Update()
+	{
+		if (Student.Ragdoll != null && Student.Ragdoll.enabled)
+		{
+			MyRenderer.materials[1].mainTexture = DeadEyes;
+			base.enabled = false;
+			return;
+		}
+		if (Student.Dying)
+		{
+			if (MyRenderer.materials[1].mainTexture != AlarmedEyes)
+			{
+				MyRenderer.materials[1].mainTexture = AlarmedEyes;
+			}
+			return;
+		}
+		if (Student.Emetic || Student.Lethal || Student.Tranquil || Student.Headache)
+		{
+			if (MyRenderer.materials[1].mainTexture != Textures[6])
+			{
+				MyRenderer.materials[1].mainTexture = Textures[6];
+			}
+			return;
+		}
+		if (Student.Grudge)
+		{
+			if (MyRenderer.materials[1].mainTexture != Textures[1])
+			{
+				MyRenderer.materials[1].mainTexture = Textures[1];
+			}
+			return;
+		}
+		if (Student.LostTeacherTrust)
+		{
+			if (MyRenderer.materials[1].mainTexture != SadEyes)
+			{
+				MyRenderer.materials[1].mainTexture = SadEyes;
+			}
+			return;
+		}
+		if (Student.WitnessedMurder || Student.WitnessedCorpse)
+		{
+			if (MyRenderer.materials[1].mainTexture != AlarmedEyes)
+			{
+				MyRenderer.materials[1].mainTexture = AlarmedEyes;
+			}
+			return;
+		}
+		Timer += Time.deltaTime;
+		if (Timer > 2f)
+		{
+			while (ID == PreviousID)
+			{
+				ID = Random.Range(0, Textures.Length);
+			}
+			MyRenderer.materials[1].mainTexture = Textures[ID];
+			PreviousID = ID;
+			Timer = 0f;
+		}
+	}
 }

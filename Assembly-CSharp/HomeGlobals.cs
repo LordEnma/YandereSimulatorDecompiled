@@ -1,45 +1,66 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HomeGlobals
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public static class HomeGlobals
 {
-  private const string Str_LateForSchool = "LateForSchool";
-  private const string Str_Night = "Night";
-  private const string Str_StartInBasement = "StartInBasement";
-  private const string Str_MiyukiDefeated = "MiyukiDefeated";
+	private const string Str_LateForSchool = "LateForSchool";
 
-  public static bool LateForSchool
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_LateForSchool");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_LateForSchool", value);
-  }
+	private const string Str_Night = "Night";
 
-  public static bool Night
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_Night");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_Night", value);
-  }
+	private const string Str_StartInBasement = "StartInBasement";
 
-  public static bool StartInBasement
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StartInBasement");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StartInBasement", value);
-  }
+	private const string Str_MiyukiDefeated = "MiyukiDefeated";
 
-  public static bool MiyukiDefeated
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_MiyukiDefeated");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_MiyukiDefeated", value);
-  }
+	public static bool LateForSchool
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_LateForSchool");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_LateForSchool", value);
+		}
+	}
 
-  public static void DeleteAll()
-  {
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LateForSchool");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Night");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_StartInBasement");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MiyukiDefeated");
-  }
+	public static bool Night
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_Night");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_Night", value);
+		}
+	}
+
+	public static bool StartInBasement
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_StartInBasement");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_StartInBasement", value);
+		}
+	}
+
+	public static bool MiyukiDefeated
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_MiyukiDefeated");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_MiyukiDefeated", value);
+		}
+	}
+
+	public static void DeleteAll()
+	{
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_LateForSchool");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_Night");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_StartInBasement");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_MiyukiDefeated");
+	}
 }

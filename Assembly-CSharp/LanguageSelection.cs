@@ -1,44 +1,65 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: LanguageSelection
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
+using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-[RequireComponent(typeof (UIPopupList))]
+[RequireComponent(typeof(UIPopupList))]
 [AddComponentMenu("NGUI/Interaction/Language Selection")]
 public class LanguageSelection : MonoBehaviour
 {
-  private UIPopupList mList;
-  private bool mStarted;
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
+	{
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-  private void Awake() => this.mList = this.GetComponent<UIPopupList>();
+		public static EventDelegate.Callback _003C_003E9__3_0;
 
-  private void Start()
-  {
-    this.mStarted = true;
-    this.Refresh();
-    EventDelegate.Add(this.mList.onChange, (EventDelegate.Callback) (() => Localization.language = UIPopupList.current.value));
-  }
+		internal void _003CStart_003Eb__3_0()
+		{
+			Localization.language = UIPopupList.current.value;
+		}
+	}
 
-  private void OnEnable()
-  {
-    if (!this.mStarted)
-      return;
-    this.Refresh();
-  }
+	private UIPopupList mList;
 
-  public void Refresh()
-  {
-    if (!((Object) this.mList != (Object) null) || Localization.knownLanguages == null)
-      return;
-    this.mList.Clear();
-    int index = 0;
-    for (int length = Localization.knownLanguages.Length; index < length; ++index)
-      this.mList.items.Add(Localization.knownLanguages[index]);
-    this.mList.value = Localization.language;
-  }
+	private bool mStarted;
 
-  private void OnLocalize() => this.Refresh();
+	private void Awake()
+	{
+		mList = GetComponent<UIPopupList>();
+	}
+
+	private void Start()
+	{
+		mStarted = true;
+		Refresh();
+		EventDelegate.Add(mList.onChange, _003C_003Ec._003C_003E9__3_0 ?? (_003C_003Ec._003C_003E9__3_0 = _003C_003Ec._003C_003E9._003CStart_003Eb__3_0));
+	}
+
+	private void OnEnable()
+	{
+		if (mStarted)
+		{
+			Refresh();
+		}
+	}
+
+	public void Refresh()
+	{
+		if (mList != null && Localization.knownLanguages != null)
+		{
+			mList.Clear();
+			int i = 0;
+			for (int num = Localization.knownLanguages.Length; i < num; i++)
+			{
+				mList.items.Add(Localization.knownLanguages[i]);
+			}
+			mList.value = Localization.language;
+		}
+	}
+
+	private void OnLocalize()
+	{
+		Refresh();
+	}
 }

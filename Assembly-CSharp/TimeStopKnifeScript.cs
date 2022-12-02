@@ -1,51 +1,63 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TimeStopKnifeScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class TimeStopKnifeScript : MonoBehaviour
 {
-  public GameObject FemaleScream;
-  public GameObject MaleScream;
-  public bool Unfreeze;
-  public float Speed = 0.1f;
-  private float Timer;
+	public GameObject FemaleScream;
 
-  private void Start() => this.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+	public GameObject MaleScream;
 
-  private void Update()
-  {
-    if (!this.Unfreeze)
-    {
-      this.Speed = Mathf.MoveTowards(this.Speed, 0.0f, Time.deltaTime);
-      if ((double) this.transform.localScale.x < 0.99000000953674316)
-        this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-    }
-    else
-    {
-      this.Speed = 10f;
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 5.0)
-        Object.Destroy((Object) this.gameObject);
-    }
-    this.transform.Translate(Vector3.forward * this.Speed * Time.deltaTime, Space.Self);
-  }
+	public bool Unfreeze;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (!this.Unfreeze || other.gameObject.layer != 9)
-      return;
-    StudentScript component = other.gameObject.GetComponent<StudentScript>();
-    if (!((Object) component != (Object) null) || component.StudentID <= 1)
-      return;
-    if (component.Male)
-      Object.Instantiate<GameObject>(this.MaleScream, this.transform.position, Quaternion.identity);
-    else
-      Object.Instantiate<GameObject>(this.FemaleScream, this.transform.position, Quaternion.identity);
-    component.DeathType = DeathType.EasterEgg;
-    component.BecomeRagdoll();
-  }
+	public float Speed = 0.1f;
+
+	private float Timer;
+
+	private void Start()
+	{
+		base.transform.localScale = new Vector3(0f, 0f, 0f);
+	}
+
+	private void Update()
+	{
+		if (!Unfreeze)
+		{
+			Speed = Mathf.MoveTowards(Speed, 0f, Time.deltaTime);
+			if (base.transform.localScale.x < 0.99f)
+			{
+				base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			}
+		}
+		else
+		{
+			Speed = 10f;
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
+			{
+				Object.Destroy(base.gameObject);
+			}
+		}
+		base.transform.Translate(Vector3.forward * Speed * Time.deltaTime, Space.Self);
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (!Unfreeze || other.gameObject.layer != 9)
+		{
+			return;
+		}
+		StudentScript component = other.gameObject.GetComponent<StudentScript>();
+		if (component != null && component.StudentID > 1)
+		{
+			if (component.Male)
+			{
+				Object.Instantiate(MaleScream, base.transform.position, Quaternion.identity);
+			}
+			else
+			{
+				Object.Instantiate(FemaleScream, base.transform.position, Quaternion.identity);
+			}
+			component.DeathType = DeathType.EasterEgg;
+			component.BecomeRagdoll();
+		}
+	}
 }

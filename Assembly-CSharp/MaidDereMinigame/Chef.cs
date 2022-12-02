@@ -1,103 +1,129 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.Chef
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
+using System;
 using MaidDereMinigame.Malee;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  [RequireComponent(typeof (Animator))]
-  public class Chef : MonoBehaviour
-  {
-    private static Chef instance;
-    [Reorderable]
-    public Foods cookQueue;
-    public FoodMenu foodMenu;
-    public Meter cookMeter;
-    public float cookTime = 3f;
-    private Chef.ChefState state;
-    private Food currentPlate;
-    private Animator animator;
-    private float timeToFinishDish;
-    private bool isPaused;
+	[RequireComponent(typeof(Animator))]
+	public class Chef : MonoBehaviour
+	{
+		public enum ChefState
+		{
+			Queueing = 0,
+			Cooking = 1,
+			Delivering = 2
+		}
 
-    public static Chef Instance
-    {
-      get
-      {
-        if ((Object) Chef.instance == (Object) null)
-          Chef.instance = Object.FindObjectOfType<Chef>();
-        return Chef.instance;
-      }
-    }
+		private static Chef instance;
 
-    private void Awake()
-    {
-      this.cookQueue = new Foods();
-      this.animator = this.GetComponent<Animator>();
-      this.cookMeter.gameObject.SetActive(false);
-      this.isPaused = true;
-    }
+		[Reorderable]
+		public Foods cookQueue;
 
-    private void OnEnable() => GameController.PauseGame += new BoolParameterEvent(this.Pause);
+		public FoodMenu foodMenu;
 
-    private void OnDisable() => GameController.PauseGame -= new BoolParameterEvent(this.Pause);
+		public Meter cookMeter;
 
-    public void Pause(bool toPause)
-    {
-      this.isPaused = toPause;
-      this.animator.speed = this.isPaused ? 0.0f : 1f;
-    }
+		public float cookTime = 3f;
 
-    public static void AddToQueue(Food foodItem) => Chef.Instance.cookQueue.Add(foodItem);
+		private ChefState state;
 
-    public static Food GrabFromQueue()
-    {
-      Food cook = Chef.Instance.cookQueue[0];
-      Chef.Instance.cookQueue.RemoveAt(0);
-      return cook;
-    }
+		private Food currentPlate;
 
-    private void Update()
-    {
-      if (this.isPaused)
-        return;
-      switch (this.state)
-      {
-        case Chef.ChefState.Queueing:
-          if (this.cookQueue.Count <= 0)
-            break;
-          this.currentPlate = Chef.GrabFromQueue();
-          this.timeToFinishDish = this.currentPlate.cookTimeMultiplier * this.cookTime;
-          this.state = Chef.ChefState.Cooking;
-          this.cookMeter.gameObject.SetActive(true);
-          break;
-        case Chef.ChefState.Cooking:
-          if ((double) this.timeToFinishDish <= 0.0)
-          {
-            this.state = Chef.ChefState.Delivering;
-            this.animator.SetTrigger("PlateCooked");
-            this.cookMeter.gameObject.SetActive(false);
-            break;
-          }
-          this.timeToFinishDish -= Time.deltaTime;
-          this.cookMeter.SetFill((float) (1.0 - (double) this.timeToFinishDish / ((double) this.currentPlate.cookTimeMultiplier * (double) this.cookTime)));
-          break;
-      }
-    }
+		private Animator animator;
 
-    public void Deliver() => Object.FindObjectOfType<ServingCounter>().AddPlate(this.currentPlate);
+		private float timeToFinishDish;
 
-    public void Queue() => this.state = Chef.ChefState.Queueing;
+		private bool isPaused;
 
-    public enum ChefState
-    {
-      Queueing,
-      Cooking,
-      Delivering,
-    }
-  }
+		public static Chef Instance
+		{
+			get
+			{
+				if (instance == null)
+				{
+					instance = UnityEngine.Object.FindObjectOfType<Chef>();
+				}
+				return instance;
+			}
+		}
+
+		private void Awake()
+		{
+			cookQueue = new Foods();
+			animator = GetComponent<Animator>();
+			cookMeter.gameObject.SetActive(false);
+			isPaused = true;
+		}
+
+		private void OnEnable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
+
+		private void OnDisable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
+
+		public void Pause(bool toPause)
+		{
+			isPaused = toPause;
+			animator.speed = ((!isPaused) ? 1 : 0);
+		}
+
+		public static void AddToQueue(Food foodItem)
+		{
+			Instance.cookQueue.Add(foodItem);
+		}
+
+		public static Food GrabFromQueue()
+		{
+			Food result = Instance.cookQueue[0];
+			Instance.cookQueue.RemoveAt(0);
+			return result;
+		}
+
+		private void Update()
+		{
+			if (isPaused)
+			{
+				return;
+			}
+			switch (state)
+			{
+			case ChefState.Queueing:
+				if (cookQueue.Count > 0)
+				{
+					currentPlate = GrabFromQueue();
+					timeToFinishDish = currentPlate.cookTimeMultiplier * cookTime;
+					state = ChefState.Cooking;
+					cookMeter.gameObject.SetActive(true);
+				}
+				break;
+			case ChefState.Cooking:
+				if (timeToFinishDish <= 0f)
+				{
+					state = ChefState.Delivering;
+					animator.SetTrigger("PlateCooked");
+					cookMeter.gameObject.SetActive(false);
+				}
+				else
+				{
+					timeToFinishDish -= Time.deltaTime;
+					cookMeter.SetFill(1f - timeToFinishDish / (currentPlate.cookTimeMultiplier * cookTime));
+				}
+				break;
+			}
+		}
+
+		public void Deliver()
+		{
+			UnityEngine.Object.FindObjectOfType<ServingCounter>().AddPlate(currentPlate);
+		}
+
+		public void Queue()
+		{
+			state = ChefState.Queueing;
+		}
+	}
 }

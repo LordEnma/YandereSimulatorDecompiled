@@ -1,42 +1,43 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.FlipBookPage
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  public class FlipBookPage : MonoBehaviour
-  {
-    [HideInInspector]
-    public Animator animator;
-    [HideInInspector]
-    public SpriteRenderer spriteRenderer;
-    public GameObject objectToActivate;
+	public class FlipBookPage : MonoBehaviour
+	{
+		[HideInInspector]
+		public Animator animator;
 
-    private void Awake()
-    {
-      this.animator = this.GetComponent<Animator>();
-      this.spriteRenderer = this.GetComponent<SpriteRenderer>();
-    }
+		[HideInInspector]
+		public SpriteRenderer spriteRenderer;
 
-    public void Transition(bool toOpen)
-    {
-      this.animator.SetTrigger(toOpen ? "OpenPage" : "ClosePage");
-      if (!((Object) this.objectToActivate != (Object) null))
-        return;
-      this.objectToActivate.SetActive(false);
-    }
+		public GameObject objectToActivate;
 
-    public void SwitchSort() => this.spriteRenderer.sortingOrder = 10 - this.spriteRenderer.sortingOrder;
+		private void Awake()
+		{
+			animator = GetComponent<Animator>();
+			spriteRenderer = GetComponent<SpriteRenderer>();
+		}
 
-    public void ObjectActive(bool toActive = true)
-    {
-      if (!((Object) this.objectToActivate != (Object) null))
-        return;
-      this.objectToActivate.SetActive(toActive);
-    }
-  }
+		public void Transition(bool toOpen)
+		{
+			animator.SetTrigger(toOpen ? "OpenPage" : "ClosePage");
+			if (objectToActivate != null)
+			{
+				objectToActivate.SetActive(false);
+			}
+		}
+
+		public void SwitchSort()
+		{
+			spriteRenderer.sortingOrder = 10 - spriteRenderer.sortingOrder;
+		}
+
+		public void ObjectActive(bool toActive = true)
+		{
+			if (objectToActivate != null)
+			{
+				objectToActivate.SetActive(toActive);
+			}
+		}
+	}
 }

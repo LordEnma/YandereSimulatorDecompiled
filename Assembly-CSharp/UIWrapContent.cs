@@ -1,232 +1,278 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIWrapContent
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Interaction/Wrap Content")]
 public class UIWrapContent : MonoBehaviour
 {
-  public int itemSize = 100;
-  public bool cullContent = true;
-  public int minIndex;
-  public int maxIndex;
-  public bool hideInactive;
-  public UIWrapContent.OnInitializeItem onInitializeItem;
-  protected Transform mTrans;
-  protected UIPanel mPanel;
-  protected UIScrollView mScroll;
-  protected bool mHorizontal;
-  protected bool mFirstTime = true;
-  protected List<Transform> mChildren = new List<Transform>();
+	public delegate void OnInitializeItem(GameObject go, int wrapIndex, int realIndex);
 
-  protected virtual void Start()
-  {
-    this.SortBasedOnScrollMovement();
-    this.WrapContent();
-    if ((UnityEngine.Object) this.mScroll != (UnityEngine.Object) null)
-      this.mScroll.GetComponent<UIPanel>().onClipMove = new UIPanel.OnClippingMoved(this.OnMove);
-    this.mFirstTime = false;
-  }
+	public int itemSize = 100;
 
-  protected virtual void OnMove(UIPanel panel) => this.WrapContent();
+	public bool cullContent = true;
 
-  [ContextMenu("Sort Based on Scroll Movement")]
-  public virtual void SortBasedOnScrollMovement()
-  {
-    if (!this.CacheScrollView())
-      return;
-    this.mChildren.Clear();
-    for (int index = 0; index < this.mTrans.childCount; ++index)
-    {
-      Transform child = this.mTrans.GetChild(index);
-      if (!this.hideInactive || child.gameObject.activeInHierarchy)
-        this.mChildren.Add(child);
-    }
-    if (this.mHorizontal)
-      this.mChildren.Sort(new Comparison<Transform>(UIGrid.SortHorizontal));
-    else
-      this.mChildren.Sort(new Comparison<Transform>(UIGrid.SortVertical));
-    this.ResetChildPositions();
-  }
+	public int minIndex;
 
-  [ContextMenu("Sort Alphabetically")]
-  public virtual void SortAlphabetically()
-  {
-    if (!this.CacheScrollView())
-      return;
-    this.mChildren.Clear();
-    for (int index = 0; index < this.mTrans.childCount; ++index)
-    {
-      Transform child = this.mTrans.GetChild(index);
-      if (!this.hideInactive || child.gameObject.activeInHierarchy)
-        this.mChildren.Add(child);
-    }
-    this.mChildren.Sort(new Comparison<Transform>(UIGrid.SortByName));
-    this.ResetChildPositions();
-  }
+	public int maxIndex;
 
-  protected bool CacheScrollView()
-  {
-    this.mTrans = this.transform;
-    this.mPanel = NGUITools.FindInParents<UIPanel>(this.gameObject);
-    this.mScroll = this.mPanel.GetComponent<UIScrollView>();
-    if ((UnityEngine.Object) this.mScroll == (UnityEngine.Object) null)
-      return false;
-    if (this.mScroll.movement == UIScrollView.Movement.Horizontal)
-    {
-      this.mHorizontal = true;
-    }
-    else
-    {
-      if (this.mScroll.movement != UIScrollView.Movement.Vertical)
-        return false;
-      this.mHorizontal = false;
-    }
-    return true;
-  }
+	public bool hideInactive;
 
-  protected virtual void ResetChildPositions()
-  {
-    int index = 0;
-    for (int count = this.mChildren.Count; index < count; ++index)
-    {
-      Transform mChild = this.mChildren[index];
-      mChild.localPosition = this.mHorizontal ? new Vector3((float) (index * this.itemSize), 0.0f, 0.0f) : new Vector3(0.0f, (float) (-index * this.itemSize), 0.0f);
-      this.UpdateItem(mChild, index);
-    }
-  }
+	public OnInitializeItem onInitializeItem;
 
-  public virtual void WrapContent()
-  {
-    float num1 = (float) (this.itemSize * this.mChildren.Count) * 0.5f;
-    Vector3[] worldCorners = this.mPanel.worldCorners;
-    for (int index = 0; index < 4; ++index)
-    {
-      Vector3 vector3 = this.mTrans.InverseTransformPoint(worldCorners[index]);
-      worldCorners[index] = vector3;
-    }
-    Vector3 vector3_1 = Vector3.Lerp(worldCorners[0], worldCorners[2], 0.5f);
-    bool flag = true;
-    float num2 = num1 * 2f;
-    if (this.mHorizontal)
-    {
-      float num3 = worldCorners[0].x - (float) this.itemSize;
-      float num4 = worldCorners[2].x + (float) this.itemSize;
-      int index = 0;
-      for (int count = this.mChildren.Count; index < count; ++index)
-      {
-        Transform mChild = this.mChildren[index];
-        float num5 = mChild.localPosition.x - vector3_1.x;
-        if ((double) num5 < -(double) num1)
-        {
-          Vector3 localPosition = mChild.localPosition;
-          localPosition.x += num2;
-          num5 = localPosition.x - vector3_1.x;
-          int num6 = Mathf.RoundToInt(localPosition.x / (float) this.itemSize);
-          if (this.minIndex == this.maxIndex || this.minIndex <= num6 && num6 <= this.maxIndex)
-          {
-            mChild.localPosition = localPosition;
-            this.UpdateItem(mChild, index);
-          }
-          else
-            flag = false;
-        }
-        else if ((double) num5 > (double) num1)
-        {
-          Vector3 localPosition = mChild.localPosition;
-          localPosition.x -= num2;
-          num5 = localPosition.x - vector3_1.x;
-          int num7 = Mathf.RoundToInt(localPosition.x / (float) this.itemSize);
-          if (this.minIndex == this.maxIndex || this.minIndex <= num7 && num7 <= this.maxIndex)
-          {
-            mChild.localPosition = localPosition;
-            this.UpdateItem(mChild, index);
-          }
-          else
-            flag = false;
-        }
-        else if (this.mFirstTime)
-          this.UpdateItem(mChild, index);
-        if (this.cullContent)
-        {
-          float num8 = num5 + (this.mPanel.clipOffset.x - this.mTrans.localPosition.x);
-          if (!UICamera.IsPressed(mChild.gameObject))
-            NGUITools.SetActive(mChild.gameObject, (double) num8 > (double) num3 && (double) num8 < (double) num4, false);
-        }
-      }
-    }
-    else
-    {
-      float num9 = worldCorners[0].y - (float) this.itemSize;
-      float num10 = worldCorners[2].y + (float) this.itemSize;
-      int index = 0;
-      for (int count = this.mChildren.Count; index < count; ++index)
-      {
-        Transform mChild = this.mChildren[index];
-        float num11 = mChild.localPosition.y - vector3_1.y;
-        if ((double) num11 < -(double) num1)
-        {
-          Vector3 localPosition = mChild.localPosition;
-          localPosition.y += num2;
-          num11 = localPosition.y - vector3_1.y;
-          int num12 = Mathf.RoundToInt(localPosition.y / (float) this.itemSize);
-          if (this.minIndex == this.maxIndex || this.minIndex <= num12 && num12 <= this.maxIndex)
-          {
-            mChild.localPosition = localPosition;
-            this.UpdateItem(mChild, index);
-          }
-          else
-            flag = false;
-        }
-        else if ((double) num11 > (double) num1)
-        {
-          Vector3 localPosition = mChild.localPosition;
-          localPosition.y -= num2;
-          num11 = localPosition.y - vector3_1.y;
-          int num13 = Mathf.RoundToInt(localPosition.y / (float) this.itemSize);
-          if (this.minIndex == this.maxIndex || this.minIndex <= num13 && num13 <= this.maxIndex)
-          {
-            mChild.localPosition = localPosition;
-            this.UpdateItem(mChild, index);
-          }
-          else
-            flag = false;
-        }
-        else if (this.mFirstTime)
-          this.UpdateItem(mChild, index);
-        if (this.cullContent)
-        {
-          float num14 = num11 + (this.mPanel.clipOffset.y - this.mTrans.localPosition.y);
-          if (!UICamera.IsPressed(mChild.gameObject))
-            NGUITools.SetActive(mChild.gameObject, (double) num14 > (double) num9 && (double) num14 < (double) num10, false);
-        }
-      }
-    }
-    this.mScroll.restrictWithinPanel = !flag;
-    this.mScroll.InvalidateBounds();
-  }
+	protected Transform mTrans;
 
-  private void OnValidate()
-  {
-    if (this.maxIndex < this.minIndex)
-      this.maxIndex = this.minIndex;
-    if (this.minIndex <= this.maxIndex)
-      return;
-    this.maxIndex = this.minIndex;
-  }
+	protected UIPanel mPanel;
 
-  protected virtual void UpdateItem(Transform item, int index)
-  {
-    if (this.onInitializeItem == null)
-      return;
-    int realIndex = this.mScroll.movement == UIScrollView.Movement.Vertical ? Mathf.RoundToInt(item.localPosition.y / (float) this.itemSize) : Mathf.RoundToInt(item.localPosition.x / (float) this.itemSize);
-    this.onInitializeItem(item.gameObject, index, realIndex);
-  }
+	protected UIScrollView mScroll;
 
-  public delegate void OnInitializeItem(GameObject go, int wrapIndex, int realIndex);
+	protected bool mHorizontal;
+
+	protected bool mFirstTime = true;
+
+	protected List<Transform> mChildren = new List<Transform>();
+
+	protected virtual void Start()
+	{
+		SortBasedOnScrollMovement();
+		WrapContent();
+		if (mScroll != null)
+		{
+			mScroll.GetComponent<UIPanel>().onClipMove = OnMove;
+		}
+		mFirstTime = false;
+	}
+
+	protected virtual void OnMove(UIPanel panel)
+	{
+		WrapContent();
+	}
+
+	[ContextMenu("Sort Based on Scroll Movement")]
+	public virtual void SortBasedOnScrollMovement()
+	{
+		if (!CacheScrollView())
+		{
+			return;
+		}
+		mChildren.Clear();
+		for (int i = 0; i < mTrans.childCount; i++)
+		{
+			Transform child = mTrans.GetChild(i);
+			if (!hideInactive || child.gameObject.activeInHierarchy)
+			{
+				mChildren.Add(child);
+			}
+		}
+		if (mHorizontal)
+		{
+			mChildren.Sort(UIGrid.SortHorizontal);
+		}
+		else
+		{
+			mChildren.Sort(UIGrid.SortVertical);
+		}
+		ResetChildPositions();
+	}
+
+	[ContextMenu("Sort Alphabetically")]
+	public virtual void SortAlphabetically()
+	{
+		if (!CacheScrollView())
+		{
+			return;
+		}
+		mChildren.Clear();
+		for (int i = 0; i < mTrans.childCount; i++)
+		{
+			Transform child = mTrans.GetChild(i);
+			if (!hideInactive || child.gameObject.activeInHierarchy)
+			{
+				mChildren.Add(child);
+			}
+		}
+		mChildren.Sort(UIGrid.SortByName);
+		ResetChildPositions();
+	}
+
+	protected bool CacheScrollView()
+	{
+		mTrans = base.transform;
+		mPanel = NGUITools.FindInParents<UIPanel>(base.gameObject);
+		mScroll = mPanel.GetComponent<UIScrollView>();
+		if (mScroll == null)
+		{
+			return false;
+		}
+		if (mScroll.movement == UIScrollView.Movement.Horizontal)
+		{
+			mHorizontal = true;
+		}
+		else
+		{
+			if (mScroll.movement != UIScrollView.Movement.Vertical)
+			{
+				return false;
+			}
+			mHorizontal = false;
+		}
+		return true;
+	}
+
+	protected virtual void ResetChildPositions()
+	{
+		int i = 0;
+		for (int count = mChildren.Count; i < count; i++)
+		{
+			Transform transform = mChildren[i];
+			transform.localPosition = (mHorizontal ? new Vector3(i * itemSize, 0f, 0f) : new Vector3(0f, -i * itemSize, 0f));
+			UpdateItem(transform, i);
+		}
+	}
+
+	public virtual void WrapContent()
+	{
+		float num = (float)(itemSize * mChildren.Count) * 0.5f;
+		Vector3[] worldCorners = mPanel.worldCorners;
+		for (int i = 0; i < 4; i++)
+		{
+			Vector3 position = worldCorners[i];
+			position = mTrans.InverseTransformPoint(position);
+			worldCorners[i] = position;
+		}
+		Vector3 vector = Vector3.Lerp(worldCorners[0], worldCorners[2], 0.5f);
+		bool flag = true;
+		float num2 = num * 2f;
+		if (mHorizontal)
+		{
+			float num3 = worldCorners[0].x - (float)itemSize;
+			float num4 = worldCorners[2].x + (float)itemSize;
+			int j = 0;
+			for (int count = mChildren.Count; j < count; j++)
+			{
+				Transform transform = mChildren[j];
+				float num5 = transform.localPosition.x - vector.x;
+				if (num5 < 0f - num)
+				{
+					Vector3 localPosition = transform.localPosition;
+					localPosition.x += num2;
+					num5 = localPosition.x - vector.x;
+					int num6 = Mathf.RoundToInt(localPosition.x / (float)itemSize);
+					if (minIndex == maxIndex || (minIndex <= num6 && num6 <= maxIndex))
+					{
+						transform.localPosition = localPosition;
+						UpdateItem(transform, j);
+					}
+					else
+					{
+						flag = false;
+					}
+				}
+				else if (num5 > num)
+				{
+					Vector3 localPosition2 = transform.localPosition;
+					localPosition2.x -= num2;
+					num5 = localPosition2.x - vector.x;
+					int num7 = Mathf.RoundToInt(localPosition2.x / (float)itemSize);
+					if (minIndex == maxIndex || (minIndex <= num7 && num7 <= maxIndex))
+					{
+						transform.localPosition = localPosition2;
+						UpdateItem(transform, j);
+					}
+					else
+					{
+						flag = false;
+					}
+				}
+				else if (mFirstTime)
+				{
+					UpdateItem(transform, j);
+				}
+				if (cullContent)
+				{
+					num5 += mPanel.clipOffset.x - mTrans.localPosition.x;
+					if (!UICamera.IsPressed(transform.gameObject))
+					{
+						NGUITools.SetActive(transform.gameObject, num5 > num3 && num5 < num4, false);
+					}
+				}
+			}
+		}
+		else
+		{
+			float num8 = worldCorners[0].y - (float)itemSize;
+			float num9 = worldCorners[2].y + (float)itemSize;
+			int k = 0;
+			for (int count2 = mChildren.Count; k < count2; k++)
+			{
+				Transform transform2 = mChildren[k];
+				float num10 = transform2.localPosition.y - vector.y;
+				if (num10 < 0f - num)
+				{
+					Vector3 localPosition3 = transform2.localPosition;
+					localPosition3.y += num2;
+					num10 = localPosition3.y - vector.y;
+					int num11 = Mathf.RoundToInt(localPosition3.y / (float)itemSize);
+					if (minIndex == maxIndex || (minIndex <= num11 && num11 <= maxIndex))
+					{
+						transform2.localPosition = localPosition3;
+						UpdateItem(transform2, k);
+					}
+					else
+					{
+						flag = false;
+					}
+				}
+				else if (num10 > num)
+				{
+					Vector3 localPosition4 = transform2.localPosition;
+					localPosition4.y -= num2;
+					num10 = localPosition4.y - vector.y;
+					int num12 = Mathf.RoundToInt(localPosition4.y / (float)itemSize);
+					if (minIndex == maxIndex || (minIndex <= num12 && num12 <= maxIndex))
+					{
+						transform2.localPosition = localPosition4;
+						UpdateItem(transform2, k);
+					}
+					else
+					{
+						flag = false;
+					}
+				}
+				else if (mFirstTime)
+				{
+					UpdateItem(transform2, k);
+				}
+				if (cullContent)
+				{
+					num10 += mPanel.clipOffset.y - mTrans.localPosition.y;
+					if (!UICamera.IsPressed(transform2.gameObject))
+					{
+						NGUITools.SetActive(transform2.gameObject, num10 > num8 && num10 < num9, false);
+					}
+				}
+			}
+		}
+		mScroll.restrictWithinPanel = !flag;
+		mScroll.InvalidateBounds();
+	}
+
+	private void OnValidate()
+	{
+		if (maxIndex < minIndex)
+		{
+			maxIndex = minIndex;
+		}
+		if (minIndex > maxIndex)
+		{
+			maxIndex = minIndex;
+		}
+	}
+
+	protected virtual void UpdateItem(Transform item, int index)
+	{
+		if (onInitializeItem != null)
+		{
+			int realIndex = ((mScroll.movement == UIScrollView.Movement.Vertical) ? Mathf.RoundToInt(item.localPosition.y / (float)itemSize) : Mathf.RoundToInt(item.localPosition.x / (float)itemSize));
+			onInitializeItem(item.gameObject, index, realIndex);
+		}
+	}
 }

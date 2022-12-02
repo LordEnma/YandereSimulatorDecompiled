@@ -1,106 +1,130 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UI2DSpriteAnimation
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class UI2DSpriteAnimation : MonoBehaviour
 {
-  public int frameIndex;
-  [SerializeField]
-  protected int framerate = 20;
-  public bool ignoreTimeScale = true;
-  public bool loop = true;
-  public UnityEngine.Sprite[] frames;
-  private SpriteRenderer mUnitySprite;
-  private UI2DSprite mNguiSprite;
-  private float mUpdate;
+	public int frameIndex;
 
-  public bool isPlaying => this.enabled;
+	[SerializeField]
+	protected int framerate = 20;
 
-  public int framesPerSecond
-  {
-    get => this.framerate;
-    set => this.framerate = value;
-  }
+	public bool ignoreTimeScale = true;
 
-  public void Play()
-  {
-    if (this.frames == null || this.frames.Length == 0)
-      return;
-    if (!this.enabled && !this.loop)
-    {
-      int num = this.framerate > 0 ? this.frameIndex + 1 : this.frameIndex - 1;
-      if (num < 0 || num >= this.frames.Length)
-        this.frameIndex = this.framerate < 0 ? this.frames.Length - 1 : 0;
-    }
-    this.enabled = true;
-    this.UpdateSprite();
-  }
+	public bool loop = true;
 
-  public void Pause() => this.enabled = false;
+	public Sprite[] frames;
 
-  public void ResetToBeginning()
-  {
-    this.frameIndex = this.framerate < 0 ? this.frames.Length - 1 : 0;
-    this.UpdateSprite();
-  }
+	private SpriteRenderer mUnitySprite;
 
-  private void Start() => this.Play();
+	private UI2DSprite mNguiSprite;
 
-  private void Update()
-  {
-    if (this.frames == null || this.frames.Length == 0)
-    {
-      this.enabled = false;
-    }
-    else
-    {
-      if (this.framerate == 0)
-        return;
-      float num = this.ignoreTimeScale ? RealTime.time : Time.time;
-      if ((double) this.mUpdate >= (double) num)
-        return;
-      this.mUpdate = num;
-      int val = this.framerate > 0 ? this.frameIndex + 1 : this.frameIndex - 1;
-      if (!this.loop && (val < 0 || val >= this.frames.Length))
-      {
-        this.enabled = false;
-      }
-      else
-      {
-        this.frameIndex = NGUIMath.RepeatIndex(val, this.frames.Length);
-        this.UpdateSprite();
-      }
-    }
-  }
+	private float mUpdate;
 
-  private void UpdateSprite()
-  {
-    if ((Object) this.mUnitySprite == (Object) null && (Object) this.mNguiSprite == (Object) null)
-    {
-      this.mUnitySprite = this.GetComponent<SpriteRenderer>();
-      this.mNguiSprite = this.GetComponent<UI2DSprite>();
-      if ((Object) this.mUnitySprite == (Object) null && (Object) this.mNguiSprite == (Object) null)
-      {
-        this.enabled = false;
-        return;
-      }
-    }
-    float num = this.ignoreTimeScale ? RealTime.time : Time.time;
-    if (this.framerate != 0)
-      this.mUpdate = num + Mathf.Abs(1f / (float) this.framerate);
-    if ((Object) this.mUnitySprite != (Object) null)
-    {
-      this.mUnitySprite.sprite = this.frames[this.frameIndex];
-    }
-    else
-    {
-      if (!((Object) this.mNguiSprite != (Object) null))
-        return;
-      this.mNguiSprite.nextSprite = this.frames[this.frameIndex];
-    }
-  }
+	public bool isPlaying
+	{
+		get
+		{
+			return base.enabled;
+		}
+	}
+
+	public int framesPerSecond
+	{
+		get
+		{
+			return framerate;
+		}
+		set
+		{
+			framerate = value;
+		}
+	}
+
+	public void Play()
+	{
+		if (frames == null || frames.Length == 0)
+		{
+			return;
+		}
+		if (!base.enabled && !loop)
+		{
+			int num = ((framerate > 0) ? (frameIndex + 1) : (frameIndex - 1));
+			if (num < 0 || num >= frames.Length)
+			{
+				frameIndex = ((framerate < 0) ? (frames.Length - 1) : 0);
+			}
+		}
+		base.enabled = true;
+		UpdateSprite();
+	}
+
+	public void Pause()
+	{
+		base.enabled = false;
+	}
+
+	public void ResetToBeginning()
+	{
+		frameIndex = ((framerate < 0) ? (frames.Length - 1) : 0);
+		UpdateSprite();
+	}
+
+	private void Start()
+	{
+		Play();
+	}
+
+	private void Update()
+	{
+		if (frames == null || frames.Length == 0)
+		{
+			base.enabled = false;
+		}
+		else
+		{
+			if (framerate == 0)
+			{
+				return;
+			}
+			float num = (ignoreTimeScale ? RealTime.time : Time.time);
+			if (mUpdate < num)
+			{
+				mUpdate = num;
+				int num2 = ((framerate > 0) ? (frameIndex + 1) : (frameIndex - 1));
+				if (!loop && (num2 < 0 || num2 >= frames.Length))
+				{
+					base.enabled = false;
+					return;
+				}
+				frameIndex = NGUIMath.RepeatIndex(num2, frames.Length);
+				UpdateSprite();
+			}
+		}
+	}
+
+	private void UpdateSprite()
+	{
+		if (mUnitySprite == null && mNguiSprite == null)
+		{
+			mUnitySprite = GetComponent<SpriteRenderer>();
+			mNguiSprite = GetComponent<UI2DSprite>();
+			if (mUnitySprite == null && mNguiSprite == null)
+			{
+				base.enabled = false;
+				return;
+			}
+		}
+		float num = (ignoreTimeScale ? RealTime.time : Time.time);
+		if (framerate != 0)
+		{
+			mUpdate = num + Mathf.Abs(1f / (float)framerate);
+		}
+		if (mUnitySprite != null)
+		{
+			mUnitySprite.sprite = frames[frameIndex];
+		}
+		else if (mNguiSprite != null)
+		{
+			mNguiSprite.nextSprite = frames[frameIndex];
+		}
+	}
 }

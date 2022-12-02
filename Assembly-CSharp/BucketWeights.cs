@@ -1,29 +1,50 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BucketWeights
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [Serializable]
 public class BucketWeights : BucketContents
 {
-  [SerializeField]
-  private int count;
+	[SerializeField]
+	private int count;
 
-  public int Count
-  {
-    get => this.count;
-    set => this.count = value < 0 ? 0 : value;
-  }
+	public int Count
+	{
+		get
+		{
+			return count;
+		}
+		set
+		{
+			count = ((value >= 0) ? value : 0);
+		}
+	}
 
-  public override BucketContentsType Type => BucketContentsType.Weights;
+	public override BucketContentsType Type
+	{
+		get
+		{
+			return BucketContentsType.Weights;
+		}
+	}
 
-  public override bool IsCleaningAgent => false;
+	public override bool IsCleaningAgent
+	{
+		get
+		{
+			return false;
+		}
+	}
 
-  public override bool IsFlammable => false;
+	public override bool IsFlammable
+	{
+		get
+		{
+			return false;
+		}
+	}
 
-  public override bool CanBeLifted(int strength) => strength > 0;
+	public override bool CanBeLifted(int strength)
+	{
+		return strength > 0;
+	}
 }

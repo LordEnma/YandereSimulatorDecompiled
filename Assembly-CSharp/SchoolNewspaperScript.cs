@@ -1,64 +1,72 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SchoolNewspaperScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SchoolNewspaperScript : MonoBehaviour
 {
-  public PromptBarScript PromptBar;
-  public PromptScript Prompt;
-  public UILabel NewspaperLabel;
-  public GameObject[] NewspaperPages;
-  public GameObject ClubPosters;
-  public GameObject Newspaper;
-  public string[] Article;
-  public int GameplayDay;
-  public bool Show;
+	public PromptBarScript PromptBar;
 
-  private void Start()
-  {
-    if (GameGlobals.Eighties)
-    {
-      this.ClubPosters.SetActive(false);
-      if (!ClubGlobals.GetClubClosed(ClubType.Newspaper))
-        return;
-      this.NewspaperPages[1].SetActive(false);
-      this.NewspaperPages[2].SetActive(false);
-      this.NewspaperPages[3].SetActive(false);
-      this.Prompt.enabled = false;
-      this.Prompt.Hide();
-    }
-    else
-      this.gameObject.SetActive(false);
-  }
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Yandere.RPGCamera.ZeroEverything();
-      this.Prompt.Circle[0].fillAmount = 1f;
-      this.PromptBar.ClearButtons();
-      this.PromptBar.Label[1].text = "Back";
-      this.PromptBar.UpdateButtons();
-      this.PromptBar.Show = true;
-      this.Newspaper.SetActive(true);
-      this.GameplayDay = (int) ((DateGlobals.Week - 1) * 5 + DateGlobals.Weekday);
-      this.NewspaperLabel.text = this.Article[this.GameplayDay];
-      this.NewspaperLabel.text = this.NewspaperLabel.text.Replace('@', '\n');
-      if (this.NewspaperLabel.text == "")
-        this.NewspaperLabel.text = "Whoops! Sorry, this article is coming in a future update.";
-      Time.timeScale = 0.0001f;
-      this.Show = true;
-    }
-    if (!this.Show || !Input.GetButtonDown("B"))
-      return;
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Show = false;
-    this.Newspaper.SetActive(false);
-    Time.timeScale = 1f;
-  }
+	public UILabel NewspaperLabel;
+
+	public GameObject[] NewspaperPages;
+
+	public GameObject ClubPosters;
+
+	public GameObject Newspaper;
+
+	public string[] Article;
+
+	public int GameplayDay;
+
+	public bool Show;
+
+	private void Start()
+	{
+		if (GameGlobals.Eighties)
+		{
+			ClubPosters.SetActive(false);
+			if (ClubGlobals.GetClubClosed(ClubType.Newspaper))
+			{
+				NewspaperPages[1].SetActive(false);
+				NewspaperPages[2].SetActive(false);
+				NewspaperPages[3].SetActive(false);
+				Prompt.enabled = false;
+				Prompt.Hide();
+			}
+		}
+		else
+		{
+			base.gameObject.SetActive(false);
+		}
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Yandere.RPGCamera.ZeroEverything();
+			Prompt.Circle[0].fillAmount = 1f;
+			PromptBar.ClearButtons();
+			PromptBar.Label[1].text = "Back";
+			PromptBar.UpdateButtons();
+			PromptBar.Show = true;
+			Newspaper.SetActive(true);
+			GameplayDay = (int)((DateGlobals.Week - 1) * 5 + DateGlobals.Weekday);
+			NewspaperLabel.text = Article[GameplayDay];
+			NewspaperLabel.text = NewspaperLabel.text.Replace('@', '\n');
+			if (NewspaperLabel.text == "")
+			{
+				NewspaperLabel.text = "Whoops! Sorry, this article is coming in a future update.";
+			}
+			Time.timeScale = 0.0001f;
+			Show = true;
+		}
+		if (Show && Input.GetButtonDown("B"))
+		{
+			PromptBar.ClearButtons();
+			PromptBar.Show = false;
+			Newspaper.SetActive(false);
+			Time.timeScale = 1f;
+		}
+	}
 }

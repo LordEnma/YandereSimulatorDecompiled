@@ -1,264 +1,292 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AmplifyMotion.ParticleState
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace AmplifyMotion
 {
-  internal class ParticleState : MotionState
-  {
-    public ParticleSystem m_particleSystem;
-    public ParticleSystemRenderer m_renderer;
-    private Mesh m_mesh;
-    private ParticleSystem.RotationOverLifetimeModule rotationOverLifetime;
-    private ParticleSystem.RotationBySpeedModule rotationBySpeed;
-    private ParticleSystem.Particle[] m_particles;
-    private Dictionary<uint, ParticleState.Particle> m_particleDict;
-    private List<uint> m_listToRemove;
-    private Stack<ParticleState.Particle> m_particleStack;
-    private int m_capacity;
-    private MotionState.MaterialDesc[] m_sharedMaterials;
-    private bool m_moved;
-    private bool m_wasVisible;
-    private static HashSet<AmplifyMotionObjectBase> m_uniqueWarnings = new HashSet<AmplifyMotionObjectBase>();
+	internal class ParticleState : MotionState
+	{
+		protected class Particle
+		{
+			public int refCount;
 
-    public ParticleState(AmplifyMotionCamera owner, AmplifyMotionObjectBase obj)
-      : base(owner, obj)
-    {
-      this.m_particleSystem = this.m_obj.GetComponent<ParticleSystem>();
-      this.m_renderer = this.m_particleSystem.GetComponent<ParticleSystemRenderer>();
-      this.rotationOverLifetime = this.m_particleSystem.rotationOverLifetime;
-      this.rotationBySpeed = this.m_particleSystem.rotationBySpeed;
-    }
+			public Matrix3x4 prevLocalToWorld;
 
-    private void IssueError(string message)
-    {
-      if (!ParticleState.m_uniqueWarnings.Contains(this.m_obj))
-      {
-        Debug.LogWarning((object) message);
-        ParticleState.m_uniqueWarnings.Add(this.m_obj);
-      }
-      this.m_error = true;
-    }
+			public Matrix3x4 currLocalToWorld;
+		}
 
-    private Mesh CreateBillboardMesh()
-    {
-      int[] numArray = new int[6]{ 0, 1, 2, 2, 3, 0 };
-      Vector3[] vector3Array = new Vector3[4]
-      {
-        new Vector3(-0.5f, -0.5f, 0.0f),
-        new Vector3(0.5f, -0.5f, 0.0f),
-        new Vector3(0.5f, 0.5f, 0.0f),
-        new Vector3(-0.5f, 0.5f, 0.0f)
-      };
-      Vector2[] vector2Array = new Vector2[4]
-      {
-        new Vector2(0.0f, 0.0f),
-        new Vector2(1f, 0.0f),
-        new Vector2(1f, 1f),
-        new Vector2(0.0f, 1f)
-      };
-      return new Mesh()
-      {
-        vertices = vector3Array,
-        uv = vector2Array,
-        triangles = numArray
-      };
-    }
+		public ParticleSystem m_particleSystem;
 
-    private Mesh CreateStretchedBillboardMesh()
-    {
-      int[] numArray = new int[6]{ 0, 1, 2, 2, 3, 0 };
-      Vector3[] vector3Array = new Vector3[4]
-      {
-        new Vector3(0.0f, -0.5f, -1f),
-        new Vector3(0.0f, -0.5f, 0.0f),
-        new Vector3(0.0f, 0.5f, 0.0f),
-        new Vector3(0.0f, 0.5f, -1f)
-      };
-      Vector2[] vector2Array = new Vector2[4]
-      {
-        new Vector2(1f, 1f),
-        new Vector2(0.0f, 1f),
-        new Vector2(0.0f, 0.0f),
-        new Vector2(1f, 0.0f)
-      };
-      return new Mesh()
-      {
-        vertices = vector3Array,
-        uv = vector2Array,
-        triangles = numArray
-      };
-    }
+		public ParticleSystemRenderer m_renderer;
 
-    internal override void Initialize()
-    {
-      if ((Object) this.m_renderer == (Object) null)
-      {
-        this.IssueError("[AmplifyMotion] Missing/Invalid Particle Renderer in object " + this.m_obj.name + ". Skipping.");
-      }
-      else
-      {
-        base.Initialize();
-        this.m_mesh = this.m_renderer.renderMode != ParticleSystemRenderMode.Mesh ? (this.m_renderer.renderMode != ParticleSystemRenderMode.Stretch ? this.CreateBillboardMesh() : this.CreateStretchedBillboardMesh()) : this.m_renderer.mesh;
-        this.m_sharedMaterials = this.ProcessSharedMaterials(this.m_renderer.sharedMaterials);
-        this.m_capacity = this.m_particleSystem.main.maxParticles;
-        this.m_particleDict = new Dictionary<uint, ParticleState.Particle>(this.m_capacity);
-        this.m_particles = new ParticleSystem.Particle[this.m_capacity];
-        this.m_listToRemove = new List<uint>(this.m_capacity);
-        this.m_particleStack = new Stack<ParticleState.Particle>(this.m_capacity);
-        for (int index = 0; index < this.m_capacity; ++index)
-          this.m_particleStack.Push(new ParticleState.Particle());
-        this.m_wasVisible = false;
-      }
-    }
+		private Mesh m_mesh;
 
-    private void RemoveDeadParticles()
-    {
-      this.m_listToRemove.Clear();
-      Dictionary<uint, ParticleState.Particle>.Enumerator enumerator = this.m_particleDict.GetEnumerator();
-      while (enumerator.MoveNext())
-      {
-        KeyValuePair<uint, ParticleState.Particle> current = enumerator.Current;
-        if (current.Value.refCount <= 0)
-        {
-          this.m_particleStack.Push(current.Value);
-          if (!this.m_listToRemove.Contains(current.Key))
-            this.m_listToRemove.Add(current.Key);
-        }
-        else
-          current.Value.refCount = 0;
-      }
-      for (int index = 0; index < this.m_listToRemove.Count; ++index)
-        this.m_particleDict.Remove(this.m_listToRemove[index]);
-    }
+		private ParticleSystem.RotationOverLifetimeModule rotationOverLifetime;
 
-    internal override void UpdateTransform(CommandBuffer updateCB, bool starting)
-    {
-      int maxParticles = this.m_particleSystem.main.maxParticles;
-      if (!this.m_initialized || this.m_capacity != maxParticles)
-      {
-        this.Initialize();
-      }
-      else
-      {
-        KeyValuePair<uint, ParticleState.Particle> current;
-        if (!starting && this.m_wasVisible)
-        {
-          Dictionary<uint, ParticleState.Particle>.Enumerator enumerator = this.m_particleDict.GetEnumerator();
-          while (enumerator.MoveNext())
-          {
-            current = enumerator.Current;
-            ParticleState.Particle particle = current.Value;
-            particle.prevLocalToWorld = particle.currLocalToWorld;
-          }
-        }
-        this.m_moved = true;
-        int particles = this.m_particleSystem.GetParticles(this.m_particles);
-        Matrix4x4 matrix4x4_1 = Matrix4x4.TRS(this.m_transform.position, this.m_transform.rotation, Vector3.one);
-        bool flag1 = this.rotationOverLifetime.enabled && this.rotationOverLifetime.separateAxes || this.rotationBySpeed.enabled && this.rotationBySpeed.separateAxes;
-        for (int index = 0; index < particles; ++index)
-        {
-          uint randomSeed = this.m_particles[index].randomSeed;
-          bool flag2 = false;
-          ParticleState.Particle particle;
-          if (!this.m_particleDict.TryGetValue(randomSeed, out particle) && this.m_particleStack.Count > 0)
-          {
-            this.m_particleDict[randomSeed] = particle = this.m_particleStack.Pop();
-            flag2 = true;
-          }
-          if (particle != null)
-          {
-            float currentSize = this.m_particles[index].GetCurrentSize(this.m_particleSystem);
-            Vector3 s = new Vector3(currentSize, currentSize, currentSize);
-            ParticleSystem.MainModule main;
-            Matrix4x4 matrix4x4_2;
-            if (this.m_renderer.renderMode == ParticleSystemRenderMode.Mesh)
-            {
-              Quaternion q = !flag1 ? Quaternion.AngleAxis(this.m_particles[index].rotation, this.m_particles[index].axisOfRotation) : Quaternion.Euler(this.m_particles[index].rotation3D);
-              Matrix4x4 matrix4x4_3 = Matrix4x4.TRS(this.m_particles[index].position, q, s);
-              main = this.m_particleSystem.main;
-              matrix4x4_2 = main.simulationSpace != ParticleSystemSimulationSpace.World ? matrix4x4_1 * matrix4x4_3 : matrix4x4_3;
-            }
-            else if (this.m_renderer.renderMode == ParticleSystemRenderMode.Billboard)
-            {
-              main = this.m_particleSystem.main;
-              if (main.simulationSpace == ParticleSystemSimulationSpace.Local)
-                this.m_particles[index].position = matrix4x4_1.MultiplyPoint(this.m_particles[index].position);
-              Quaternion quaternion = !flag1 ? Quaternion.AngleAxis(this.m_particles[index].rotation, Vector3.back) : Quaternion.Euler(-this.m_particles[index].rotation3D.x, -this.m_particles[index].rotation3D.y, this.m_particles[index].rotation3D.z);
-              matrix4x4_2 = Matrix4x4.TRS(this.m_particles[index].position, this.m_owner.Transform.rotation * quaternion, s);
-            }
-            else
-              matrix4x4_2 = Matrix4x4.identity;
-            particle.refCount = 1;
-            particle.currLocalToWorld = (MotionState.Matrix3x4) matrix4x4_2;
-            if (flag2)
-              particle.prevLocalToWorld = particle.currLocalToWorld;
-          }
-        }
-        if (starting || !this.m_wasVisible)
-        {
-          Dictionary<uint, ParticleState.Particle>.Enumerator enumerator = this.m_particleDict.GetEnumerator();
-          while (enumerator.MoveNext())
-          {
-            current = enumerator.Current;
-            ParticleState.Particle particle = current.Value;
-            particle.prevLocalToWorld = particle.currLocalToWorld;
-          }
-        }
-        this.RemoveDeadParticles();
-        this.m_wasVisible = this.m_renderer.isVisible;
-      }
-    }
+		private ParticleSystem.RotationBySpeedModule rotationBySpeed;
 
-    internal override void RenderVectors(
-      Camera camera,
-      CommandBuffer renderCB,
-      float scale,
-      Quality quality)
-    {
-      if (!this.m_initialized || this.m_error || !this.m_renderer.isVisible)
-        return;
-      bool flag = ((int) this.m_owner.Instance.CullingMask & 1 << this.m_obj.gameObject.layer) != 0;
-      if (flag && (!flag || !this.m_moved))
-        return;
-      int num1 = flag ? this.m_owner.Instance.GenerateObjectId(this.m_obj.gameObject) : (int) byte.MaxValue;
-      renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float) num1 * 0.003921569f);
-      renderCB.SetGlobalFloat("_AM_MOTION_SCALE", flag ? scale : 0.0f);
-      int num2 = quality == Quality.Mobile ? 0 : 2;
-      for (int submeshIndex = 0; submeshIndex < this.m_sharedMaterials.Length; ++submeshIndex)
-      {
-        MotionState.MaterialDesc sharedMaterial = this.m_sharedMaterials[submeshIndex];
-        int shaderPass = num2 + (sharedMaterial.coverage ? 1 : 0);
-        if (sharedMaterial.coverage)
-        {
-          Texture mainTexture = sharedMaterial.material.mainTexture;
-          if ((Object) mainTexture != (Object) null)
-            sharedMaterial.propertyBlock.SetTexture("_MainTex", mainTexture);
-          if (sharedMaterial.cutoff)
-            sharedMaterial.propertyBlock.SetFloat("_Cutoff", sharedMaterial.material.GetFloat("_Cutoff"));
-        }
-        Dictionary<uint, ParticleState.Particle>.Enumerator enumerator = this.m_particleDict.GetEnumerator();
-        while (enumerator.MoveNext())
-        {
-          KeyValuePair<uint, ParticleState.Particle> current = enumerator.Current;
-          Matrix4x4 matrix4x4 = this.m_owner.PrevViewProjMatrixRT * (Matrix4x4) current.Value.prevLocalToWorld;
-          renderCB.SetGlobalMatrix("_AM_MATRIX_PREV_MVP", matrix4x4);
-          renderCB.DrawMesh(this.m_mesh, (Matrix4x4) current.Value.currLocalToWorld, this.m_owner.Instance.SolidVectorsMaterial, submeshIndex, shaderPass, sharedMaterial.propertyBlock);
-        }
-      }
-    }
+		private ParticleSystem.Particle[] m_particles;
 
-    protected class Particle
-    {
-      public int refCount;
-      public MotionState.Matrix3x4 prevLocalToWorld;
-      public MotionState.Matrix3x4 currLocalToWorld;
-    }
-  }
+		private Dictionary<uint, Particle> m_particleDict;
+
+		private List<uint> m_listToRemove;
+
+		private Stack<Particle> m_particleStack;
+
+		private int m_capacity;
+
+		private MaterialDesc[] m_sharedMaterials;
+
+		private bool m_moved;
+
+		private bool m_wasVisible;
+
+		private static HashSet<AmplifyMotionObjectBase> m_uniqueWarnings = new HashSet<AmplifyMotionObjectBase>();
+
+		public ParticleState(AmplifyMotionCamera owner, AmplifyMotionObjectBase obj)
+			: base(owner, obj)
+		{
+			m_particleSystem = m_obj.GetComponent<ParticleSystem>();
+			m_renderer = m_particleSystem.GetComponent<ParticleSystemRenderer>();
+			rotationOverLifetime = m_particleSystem.rotationOverLifetime;
+			rotationBySpeed = m_particleSystem.rotationBySpeed;
+		}
+
+		private void IssueError(string message)
+		{
+			if (!m_uniqueWarnings.Contains(m_obj))
+			{
+				Debug.LogWarning(message);
+				m_uniqueWarnings.Add(m_obj);
+			}
+			m_error = true;
+		}
+
+		private Mesh CreateBillboardMesh()
+		{
+			int[] triangles = new int[6] { 0, 1, 2, 2, 3, 0 };
+			Vector3[] vertices = new Vector3[4]
+			{
+				new Vector3(-0.5f, -0.5f, 0f),
+				new Vector3(0.5f, -0.5f, 0f),
+				new Vector3(0.5f, 0.5f, 0f),
+				new Vector3(-0.5f, 0.5f, 0f)
+			};
+			Vector2[] uv = new Vector2[4]
+			{
+				new Vector2(0f, 0f),
+				new Vector2(1f, 0f),
+				new Vector2(1f, 1f),
+				new Vector2(0f, 1f)
+			};
+			return new Mesh
+			{
+				vertices = vertices,
+				uv = uv,
+				triangles = triangles
+			};
+		}
+
+		private Mesh CreateStretchedBillboardMesh()
+		{
+			int[] triangles = new int[6] { 0, 1, 2, 2, 3, 0 };
+			Vector3[] vertices = new Vector3[4]
+			{
+				new Vector3(0f, -0.5f, -1f),
+				new Vector3(0f, -0.5f, 0f),
+				new Vector3(0f, 0.5f, 0f),
+				new Vector3(0f, 0.5f, -1f)
+			};
+			Vector2[] uv = new Vector2[4]
+			{
+				new Vector2(1f, 1f),
+				new Vector2(0f, 1f),
+				new Vector2(0f, 0f),
+				new Vector2(1f, 0f)
+			};
+			return new Mesh
+			{
+				vertices = vertices,
+				uv = uv,
+				triangles = triangles
+			};
+		}
+
+		internal override void Initialize()
+		{
+			if (m_renderer == null)
+			{
+				IssueError("[AmplifyMotion] Missing/Invalid Particle Renderer in object " + m_obj.name + ". Skipping.");
+				return;
+			}
+			base.Initialize();
+			if (m_renderer.renderMode == ParticleSystemRenderMode.Mesh)
+			{
+				m_mesh = m_renderer.mesh;
+			}
+			else if (m_renderer.renderMode == ParticleSystemRenderMode.Stretch)
+			{
+				m_mesh = CreateStretchedBillboardMesh();
+			}
+			else
+			{
+				m_mesh = CreateBillboardMesh();
+			}
+			m_sharedMaterials = ProcessSharedMaterials(m_renderer.sharedMaterials);
+			m_capacity = m_particleSystem.main.maxParticles;
+			m_particleDict = new Dictionary<uint, Particle>(m_capacity);
+			m_particles = new ParticleSystem.Particle[m_capacity];
+			m_listToRemove = new List<uint>(m_capacity);
+			m_particleStack = new Stack<Particle>(m_capacity);
+			for (int i = 0; i < m_capacity; i++)
+			{
+				m_particleStack.Push(new Particle());
+			}
+			m_wasVisible = false;
+		}
+
+		private void RemoveDeadParticles()
+		{
+			m_listToRemove.Clear();
+			Dictionary<uint, Particle>.Enumerator enumerator = m_particleDict.GetEnumerator();
+			while (enumerator.MoveNext())
+			{
+				KeyValuePair<uint, Particle> current = enumerator.Current;
+				if (current.Value.refCount <= 0)
+				{
+					m_particleStack.Push(current.Value);
+					if (!m_listToRemove.Contains(current.Key))
+					{
+						m_listToRemove.Add(current.Key);
+					}
+				}
+				else
+				{
+					current.Value.refCount = 0;
+				}
+			}
+			for (int i = 0; i < m_listToRemove.Count; i++)
+			{
+				m_particleDict.Remove(m_listToRemove[i]);
+			}
+		}
+
+		internal override void UpdateTransform(CommandBuffer updateCB, bool starting)
+		{
+			int maxParticles = m_particleSystem.main.maxParticles;
+			if (!m_initialized || m_capacity != maxParticles)
+			{
+				Initialize();
+				return;
+			}
+			if (!starting && m_wasVisible)
+			{
+				Dictionary<uint, Particle>.Enumerator enumerator = m_particleDict.GetEnumerator();
+				while (enumerator.MoveNext())
+				{
+					Particle value = enumerator.Current.Value;
+					value.prevLocalToWorld = value.currLocalToWorld;
+				}
+			}
+			m_moved = true;
+			int particles = m_particleSystem.GetParticles(m_particles);
+			Matrix4x4 matrix4x = Matrix4x4.TRS(m_transform.position, m_transform.rotation, Vector3.one);
+			bool flag = (rotationOverLifetime.enabled && rotationOverLifetime.separateAxes) || (rotationBySpeed.enabled && rotationBySpeed.separateAxes);
+			for (int i = 0; i < particles; i++)
+			{
+				uint randomSeed = m_particles[i].randomSeed;
+				bool flag2 = false;
+				Particle value2;
+				if (!m_particleDict.TryGetValue(randomSeed, out value2) && m_particleStack.Count > 0)
+				{
+					value2 = (m_particleDict[randomSeed] = m_particleStack.Pop());
+					flag2 = true;
+				}
+				if (value2 == null)
+				{
+					continue;
+				}
+				float currentSize = m_particles[i].GetCurrentSize(m_particleSystem);
+				Vector3 s = new Vector3(currentSize, currentSize, currentSize);
+				Matrix4x4 matrix4x3;
+				if (m_renderer.renderMode == ParticleSystemRenderMode.Mesh)
+				{
+					Matrix4x4 matrix4x2 = Matrix4x4.TRS(q: (!flag) ? Quaternion.AngleAxis(m_particles[i].rotation, m_particles[i].axisOfRotation) : Quaternion.Euler(m_particles[i].rotation3D), pos: m_particles[i].position, s: s);
+					matrix4x3 = ((m_particleSystem.main.simulationSpace != ParticleSystemSimulationSpace.World) ? (matrix4x * matrix4x2) : matrix4x2);
+				}
+				else if (m_renderer.renderMode == ParticleSystemRenderMode.Billboard)
+				{
+					if (m_particleSystem.main.simulationSpace == ParticleSystemSimulationSpace.Local)
+					{
+						m_particles[i].position = matrix4x.MultiplyPoint(m_particles[i].position);
+					}
+					Quaternion quaternion = ((!flag) ? Quaternion.AngleAxis(m_particles[i].rotation, Vector3.back) : Quaternion.Euler(0f - m_particles[i].rotation3D.x, 0f - m_particles[i].rotation3D.y, m_particles[i].rotation3D.z));
+					matrix4x3 = Matrix4x4.TRS(m_particles[i].position, m_owner.Transform.rotation * quaternion, s);
+				}
+				else
+				{
+					matrix4x3 = Matrix4x4.identity;
+				}
+				value2.refCount = 1;
+				value2.currLocalToWorld = matrix4x3;
+				if (flag2)
+				{
+					value2.prevLocalToWorld = value2.currLocalToWorld;
+				}
+			}
+			if (starting || !m_wasVisible)
+			{
+				Dictionary<uint, Particle>.Enumerator enumerator2 = m_particleDict.GetEnumerator();
+				while (enumerator2.MoveNext())
+				{
+					Particle value3 = enumerator2.Current.Value;
+					value3.prevLocalToWorld = value3.currLocalToWorld;
+				}
+			}
+			RemoveDeadParticles();
+			m_wasVisible = m_renderer.isVisible;
+		}
+
+		internal override void RenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
+		{
+			if (!m_initialized || m_error || !m_renderer.isVisible)
+			{
+				return;
+			}
+			bool flag = ((int)m_owner.Instance.CullingMask & (1 << m_obj.gameObject.layer)) != 0;
+			if (flag && (!flag || !m_moved))
+			{
+				return;
+			}
+			int num = (flag ? m_owner.Instance.GenerateObjectId(m_obj.gameObject) : 255);
+			renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float)num * 0.003921569f);
+			renderCB.SetGlobalFloat("_AM_MOTION_SCALE", flag ? scale : 0f);
+			int num2 = ((quality != 0) ? 2 : 0);
+			for (int i = 0; i < m_sharedMaterials.Length; i++)
+			{
+				MaterialDesc materialDesc = m_sharedMaterials[i];
+				int shaderPass = num2 + (materialDesc.coverage ? 1 : 0);
+				if (materialDesc.coverage)
+				{
+					Texture mainTexture = materialDesc.material.mainTexture;
+					if (mainTexture != null)
+					{
+						materialDesc.propertyBlock.SetTexture("_MainTex", mainTexture);
+					}
+					if (materialDesc.cutoff)
+					{
+						materialDesc.propertyBlock.SetFloat("_Cutoff", materialDesc.material.GetFloat("_Cutoff"));
+					}
+				}
+				Dictionary<uint, Particle>.Enumerator enumerator = m_particleDict.GetEnumerator();
+				while (enumerator.MoveNext())
+				{
+					KeyValuePair<uint, Particle> current = enumerator.Current;
+					Matrix4x4 value = m_owner.PrevViewProjMatrixRT * (Matrix4x4)current.Value.prevLocalToWorld;
+					renderCB.SetGlobalMatrix("_AM_MATRIX_PREV_MVP", value);
+					renderCB.DrawMesh(m_mesh, current.Value.currLocalToWorld, m_owner.Instance.SolidVectorsMaterial, i, shaderPass, materialDesc.propertyBlock);
+				}
+			}
+		}
+	}
 }

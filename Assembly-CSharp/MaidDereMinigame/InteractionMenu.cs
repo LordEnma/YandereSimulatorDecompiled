@@ -1,76 +1,92 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.InteractionMenu
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  public class InteractionMenu : MonoBehaviour
-  {
-    private static InteractionMenu instance;
-    public GameObject interactObject;
-    public GameObject backObject;
-    public GameObject moveObject;
-    public SpriteRenderer[] aButtons;
-    public SpriteRenderer[] aButtonSprites;
-    public SpriteRenderer[] backButtons;
-    public SpriteRenderer[] moveButtons;
+	public class InteractionMenu : MonoBehaviour
+	{
+		public enum AButtonText
+		{
+			ChoosePlate = 0,
+			GrabPlate = 1,
+			KitchenMenu = 2,
+			PlaceOrder = 3,
+			TakeOrder = 4,
+			TossPlate = 5,
+			GiveFood = 6,
+			None = 7
+		}
 
-    public static InteractionMenu Instance
-    {
-      get
-      {
-        if ((Object) InteractionMenu.instance == (Object) null)
-          InteractionMenu.instance = Object.FindObjectOfType<InteractionMenu>();
-        return InteractionMenu.instance;
-      }
-    }
+		private static InteractionMenu instance;
 
-    private void Awake()
-    {
-      InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
-      InteractionMenu.SetBButton(false);
-      InteractionMenu.SetADButton(true);
-    }
+		public GameObject interactObject;
 
-    public static void SetAButton(InteractionMenu.AButtonText text)
-    {
-      for (int index = 0; index < InteractionMenu.Instance.aButtonSprites.Length; ++index)
-      {
-        if ((InteractionMenu.AButtonText) index == text)
-          InteractionMenu.Instance.aButtonSprites[index].gameObject.SetActive(true);
-        else
-          InteractionMenu.Instance.aButtonSprites[index].gameObject.SetActive(false);
-      }
-      foreach (Component aButton in InteractionMenu.Instance.aButtons)
-        aButton.gameObject.SetActive(text != InteractionMenu.AButtonText.None);
-    }
+		public GameObject backObject;
 
-    public static void SetBButton(bool on)
-    {
-      foreach (Component backButton in InteractionMenu.Instance.backButtons)
-        backButton.gameObject.SetActive(on);
-    }
+		public GameObject moveObject;
 
-    public static void SetADButton(bool on)
-    {
-      foreach (Component moveButton in InteractionMenu.Instance.moveButtons)
-        moveButton.gameObject.SetActive(on);
-    }
+		public SpriteRenderer[] aButtons;
 
-    public enum AButtonText
-    {
-      ChoosePlate,
-      GrabPlate,
-      KitchenMenu,
-      PlaceOrder,
-      TakeOrder,
-      TossPlate,
-      GiveFood,
-      None,
-    }
-  }
+		public SpriteRenderer[] aButtonSprites;
+
+		public SpriteRenderer[] backButtons;
+
+		public SpriteRenderer[] moveButtons;
+
+		public static InteractionMenu Instance
+		{
+			get
+			{
+				if (instance == null)
+				{
+					instance = Object.FindObjectOfType<InteractionMenu>();
+				}
+				return instance;
+			}
+		}
+
+		private void Awake()
+		{
+			SetAButton(AButtonText.None);
+			SetBButton(false);
+			SetADButton(true);
+		}
+
+		public static void SetAButton(AButtonText text)
+		{
+			for (int i = 0; i < Instance.aButtonSprites.Length; i++)
+			{
+				if (i == (int)text)
+				{
+					Instance.aButtonSprites[i].gameObject.SetActive(true);
+				}
+				else
+				{
+					Instance.aButtonSprites[i].gameObject.SetActive(false);
+				}
+			}
+			SpriteRenderer[] array = Instance.aButtons;
+			for (int j = 0; j < array.Length; j++)
+			{
+				array[j].gameObject.SetActive(text != AButtonText.None);
+			}
+		}
+
+		public static void SetBButton(bool on)
+		{
+			SpriteRenderer[] array = Instance.backButtons;
+			for (int i = 0; i < array.Length; i++)
+			{
+				array[i].gameObject.SetActive(on);
+			}
+		}
+
+		public static void SetADButton(bool on)
+		{
+			SpriteRenderer[] array = Instance.moveButtons;
+			for (int i = 0; i < array.Length; i++)
+			{
+				array[i].gameObject.SetActive(on);
+			}
+		}
+	}
 }

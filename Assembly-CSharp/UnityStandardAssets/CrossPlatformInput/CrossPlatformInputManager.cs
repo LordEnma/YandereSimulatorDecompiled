@@ -1,167 +1,277 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput.PlatformSpecific;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
-  public static class CrossPlatformInputManager
-  {
-    private static VirtualInput activeInput;
-    private static VirtualInput s_TouchInput = (VirtualInput) new MobileInput();
-    private static VirtualInput s_HardwareInput = (VirtualInput) new StandaloneInput();
+	public static class CrossPlatformInputManager
+	{
+		public enum ActiveInputMethod
+		{
+			Hardware = 0,
+			Touch = 1
+		}
 
-    static CrossPlatformInputManager() => CrossPlatformInputManager.activeInput = CrossPlatformInputManager.s_HardwareInput;
+		public class VirtualAxis
+		{
+			private float m_Value;
 
-    public static void SwitchActiveInputMethod(
-      CrossPlatformInputManager.ActiveInputMethod activeInputMethod)
-    {
-      if (activeInputMethod != CrossPlatformInputManager.ActiveInputMethod.Hardware)
-      {
-        if (activeInputMethod != CrossPlatformInputManager.ActiveInputMethod.Touch)
-          return;
-        CrossPlatformInputManager.activeInput = CrossPlatformInputManager.s_TouchInput;
-      }
-      else
-        CrossPlatformInputManager.activeInput = CrossPlatformInputManager.s_HardwareInput;
-    }
+			public string name { get; private set; }
 
-    public static bool AxisExists(string name) => CrossPlatformInputManager.activeInput.AxisExists(name);
+			public bool matchWithInputManager { get; private set; }
 
-    public static bool ButtonExists(string name) => CrossPlatformInputManager.activeInput.ButtonExists(name);
+			public float GetValue
+			{
+				get
+				{
+					return m_Value;
+				}
+			}
 
-    public static void RegisterVirtualAxis(CrossPlatformInputManager.VirtualAxis axis) => CrossPlatformInputManager.activeInput.RegisterVirtualAxis(axis);
+			public float GetValueRaw
+			{
+				get
+				{
+					return m_Value;
+				}
+			}
 
-    public static void RegisterVirtualButton(CrossPlatformInputManager.VirtualButton button) => CrossPlatformInputManager.activeInput.RegisterVirtualButton(button);
+			public VirtualAxis(string name)
+				: this(name, true)
+			{
+			}
 
-    public static void UnRegisterVirtualAxis(string name)
-    {
-      if (name == null)
-        throw new ArgumentNullException(nameof (name));
-      CrossPlatformInputManager.activeInput.UnRegisterVirtualAxis(name);
-    }
+			public VirtualAxis(string name, bool matchToInputSettings)
+			{
+				this.name = name;
+				matchWithInputManager = matchToInputSettings;
+			}
 
-    public static void UnRegisterVirtualButton(string name) => CrossPlatformInputManager.activeInput.UnRegisterVirtualButton(name);
+			public void Remove()
+			{
+				UnRegisterVirtualAxis(name);
+			}
 
-    public static CrossPlatformInputManager.VirtualAxis VirtualAxisReference(
-      string name)
-    {
-      return CrossPlatformInputManager.activeInput.VirtualAxisReference(name);
-    }
+			public void Update(float value)
+			{
+				m_Value = value;
+			}
+		}
 
-    public static float GetAxis(string name) => CrossPlatformInputManager.GetAxis(name, false);
+		public class VirtualButton
+		{
+			private int m_LastPressedFrame = -5;
 
-    public static float GetAxisRaw(string name) => CrossPlatformInputManager.GetAxis(name, true);
+			private int m_ReleasedFrame = -5;
 
-    private static float GetAxis(string name, bool raw) => CrossPlatformInputManager.activeInput.GetAxis(name, raw);
+			private bool m_Pressed;
 
-    public static bool GetButton(string name) => CrossPlatformInputManager.activeInput.GetButton(name);
+			public string name { get; private set; }
 
-    public static bool GetButtonDown(string name) => CrossPlatformInputManager.activeInput.GetButtonDown(name);
+			public bool matchWithInputManager { get; private set; }
 
-    public static bool GetButtonUp(string name) => CrossPlatformInputManager.activeInput.GetButtonUp(name);
+			public bool GetButton
+			{
+				get
+				{
+					return m_Pressed;
+				}
+			}
 
-    public static void SetButtonDown(string name) => CrossPlatformInputManager.activeInput.SetButtonDown(name);
+			public bool GetButtonDown
+			{
+				get
+				{
+					return m_LastPressedFrame - Time.frameCount == -1;
+				}
+			}
 
-    public static void SetButtonUp(string name) => CrossPlatformInputManager.activeInput.SetButtonUp(name);
+			public bool GetButtonUp
+			{
+				get
+				{
+					return m_ReleasedFrame == Time.frameCount - 1;
+				}
+			}
 
-    public static void SetAxisPositive(string name) => CrossPlatformInputManager.activeInput.SetAxisPositive(name);
+			public VirtualButton(string name)
+				: this(name, true)
+			{
+			}
 
-    public static void SetAxisNegative(string name) => CrossPlatformInputManager.activeInput.SetAxisNegative(name);
+			public VirtualButton(string name, bool matchToInputSettings)
+			{
+				this.name = name;
+				matchWithInputManager = matchToInputSettings;
+			}
 
-    public static void SetAxisZero(string name) => CrossPlatformInputManager.activeInput.SetAxisZero(name);
+			public void Pressed()
+			{
+				if (!m_Pressed)
+				{
+					m_Pressed = true;
+					m_LastPressedFrame = Time.frameCount;
+				}
+			}
 
-    public static void SetAxis(string name, float value) => CrossPlatformInputManager.activeInput.SetAxis(name, value);
+			public void Released()
+			{
+				m_Pressed = false;
+				m_ReleasedFrame = Time.frameCount;
+			}
 
-    public static Vector3 mousePosition => CrossPlatformInputManager.activeInput.MousePosition();
+			public void Remove()
+			{
+				UnRegisterVirtualButton(name);
+			}
+		}
 
-    public static void SetVirtualMousePositionX(float f) => CrossPlatformInputManager.activeInput.SetVirtualMousePositionX(f);
+		private static VirtualInput activeInput;
 
-    public static void SetVirtualMousePositionY(float f) => CrossPlatformInputManager.activeInput.SetVirtualMousePositionY(f);
+		private static VirtualInput s_TouchInput;
 
-    public static void SetVirtualMousePositionZ(float f) => CrossPlatformInputManager.activeInput.SetVirtualMousePositionZ(f);
+		private static VirtualInput s_HardwareInput;
 
-    public enum ActiveInputMethod
-    {
-      Hardware,
-      Touch,
-    }
+		public static Vector3 mousePosition
+		{
+			get
+			{
+				return activeInput.MousePosition();
+			}
+		}
 
-    public class VirtualAxis
-    {
-      private float m_Value;
+		static CrossPlatformInputManager()
+		{
+			s_TouchInput = new MobileInput();
+			s_HardwareInput = new StandaloneInput();
+			activeInput = s_HardwareInput;
+		}
 
-      public string name { get; private set; }
+		public static void SwitchActiveInputMethod(ActiveInputMethod activeInputMethod)
+		{
+			switch (activeInputMethod)
+			{
+			case ActiveInputMethod.Hardware:
+				activeInput = s_HardwareInput;
+				break;
+			case ActiveInputMethod.Touch:
+				activeInput = s_TouchInput;
+				break;
+			}
+		}
 
-      public bool matchWithInputManager { get; private set; }
+		public static bool AxisExists(string name)
+		{
+			return activeInput.AxisExists(name);
+		}
 
-      public VirtualAxis(string name)
-        : this(name, true)
-      {
-      }
+		public static bool ButtonExists(string name)
+		{
+			return activeInput.ButtonExists(name);
+		}
 
-      public VirtualAxis(string name, bool matchToInputSettings)
-      {
-        this.name = name;
-        this.matchWithInputManager = matchToInputSettings;
-      }
+		public static void RegisterVirtualAxis(VirtualAxis axis)
+		{
+			activeInput.RegisterVirtualAxis(axis);
+		}
 
-      public void Remove() => CrossPlatformInputManager.UnRegisterVirtualAxis(this.name);
+		public static void RegisterVirtualButton(VirtualButton button)
+		{
+			activeInput.RegisterVirtualButton(button);
+		}
 
-      public void Update(float value) => this.m_Value = value;
+		public static void UnRegisterVirtualAxis(string name)
+		{
+			if (name == null)
+			{
+				throw new ArgumentNullException("name");
+			}
+			activeInput.UnRegisterVirtualAxis(name);
+		}
 
-      public float GetValue => this.m_Value;
+		public static void UnRegisterVirtualButton(string name)
+		{
+			activeInput.UnRegisterVirtualButton(name);
+		}
 
-      public float GetValueRaw => this.m_Value;
-    }
+		public static VirtualAxis VirtualAxisReference(string name)
+		{
+			return activeInput.VirtualAxisReference(name);
+		}
 
-    public class VirtualButton
-    {
-      private int m_LastPressedFrame = -5;
-      private int m_ReleasedFrame = -5;
-      private bool m_Pressed;
+		public static float GetAxis(string name)
+		{
+			return GetAxis(name, false);
+		}
 
-      public string name { get; private set; }
+		public static float GetAxisRaw(string name)
+		{
+			return GetAxis(name, true);
+		}
 
-      public bool matchWithInputManager { get; private set; }
+		private static float GetAxis(string name, bool raw)
+		{
+			return activeInput.GetAxis(name, raw);
+		}
 
-      public VirtualButton(string name)
-        : this(name, true)
-      {
-      }
+		public static bool GetButton(string name)
+		{
+			return activeInput.GetButton(name);
+		}
 
-      public VirtualButton(string name, bool matchToInputSettings)
-      {
-        this.name = name;
-        this.matchWithInputManager = matchToInputSettings;
-      }
+		public static bool GetButtonDown(string name)
+		{
+			return activeInput.GetButtonDown(name);
+		}
 
-      public void Pressed()
-      {
-        if (this.m_Pressed)
-          return;
-        this.m_Pressed = true;
-        this.m_LastPressedFrame = Time.frameCount;
-      }
+		public static bool GetButtonUp(string name)
+		{
+			return activeInput.GetButtonUp(name);
+		}
 
-      public void Released()
-      {
-        this.m_Pressed = false;
-        this.m_ReleasedFrame = Time.frameCount;
-      }
+		public static void SetButtonDown(string name)
+		{
+			activeInput.SetButtonDown(name);
+		}
 
-      public void Remove() => CrossPlatformInputManager.UnRegisterVirtualButton(this.name);
+		public static void SetButtonUp(string name)
+		{
+			activeInput.SetButtonUp(name);
+		}
 
-      public bool GetButton => this.m_Pressed;
+		public static void SetAxisPositive(string name)
+		{
+			activeInput.SetAxisPositive(name);
+		}
 
-      public bool GetButtonDown => this.m_LastPressedFrame - Time.frameCount == -1;
+		public static void SetAxisNegative(string name)
+		{
+			activeInput.SetAxisNegative(name);
+		}
 
-      public bool GetButtonUp => this.m_ReleasedFrame == Time.frameCount - 1;
-    }
-  }
+		public static void SetAxisZero(string name)
+		{
+			activeInput.SetAxisZero(name);
+		}
+
+		public static void SetAxis(string name, float value)
+		{
+			activeInput.SetAxis(name, value);
+		}
+
+		public static void SetVirtualMousePositionX(float f)
+		{
+			activeInput.SetVirtualMousePositionX(f);
+		}
+
+		public static void SetVirtualMousePositionY(float f)
+		{
+			activeInput.SetVirtualMousePositionY(f);
+		}
+
+		public static void SetVirtualMousePositionZ(float f)
+		{
+			activeInput.SetVirtualMousePositionZ(f);
+		}
+	}
 }

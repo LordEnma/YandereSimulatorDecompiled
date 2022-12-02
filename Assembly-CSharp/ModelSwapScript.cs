@@ -1,42 +1,42 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ModelSwapScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections;
 using UnityEngine;
 
 public class ModelSwapScript : MonoBehaviour
 {
-  public Transform PelvisRoot;
-  public GameObject Attachment;
+	public Transform PelvisRoot;
 
-  public void Update() => Input.GetKeyDown("z");
+	public GameObject Attachment;
 
-  public void Attach(GameObject Attachment, bool Inactives) => this.StartCoroutine(this.Attach_Threat(this.PelvisRoot, Attachment, Inactives));
+	public void Update()
+	{
+		Input.GetKeyDown("z");
+	}
 
-  public IEnumerator Attach_Threat(
-    Transform PelvisRoot,
-    GameObject Attachment,
-    bool Inactives)
-  {
-    Attachment.transform.SetParent(PelvisRoot);
-    PelvisRoot.localEulerAngles = Vector3.zero;
-    PelvisRoot.localPosition = Vector3.zero;
-    Transform[] componentsInChildren = PelvisRoot.GetComponentsInChildren<Transform>(Inactives);
-    foreach (Transform componentsInChild in Attachment.GetComponentsInChildren<Transform>(Inactives))
-    {
-      foreach (Transform p in componentsInChildren)
-      {
-        if (componentsInChild.name == p.name)
-        {
-          componentsInChild.SetParent(p);
-          componentsInChild.localEulerAngles = Vector3.zero;
-          componentsInChild.localPosition = Vector3.zero;
-        }
-      }
-    }
-    yield return (object) null;
-  }
+	public void Attach(GameObject Attachment, bool Inactives)
+	{
+		StartCoroutine(Attach_Threat(PelvisRoot, Attachment, Inactives));
+	}
+
+	public IEnumerator Attach_Threat(Transform PelvisRoot, GameObject Attachment, bool Inactives)
+	{
+		Attachment.transform.SetParent(PelvisRoot);
+		PelvisRoot.localEulerAngles = Vector3.zero;
+		PelvisRoot.localPosition = Vector3.zero;
+		Transform[] componentsInChildren = PelvisRoot.GetComponentsInChildren<Transform>(Inactives);
+		Transform[] componentsInChildren2 = Attachment.GetComponentsInChildren<Transform>(Inactives);
+		foreach (Transform transform in componentsInChildren2)
+		{
+			Transform[] array = componentsInChildren;
+			foreach (Transform transform2 in array)
+			{
+				if (transform.name == transform2.name)
+				{
+					transform.SetParent(transform2);
+					transform.localEulerAngles = Vector3.zero;
+					transform.localPosition = Vector3.zero;
+				}
+			}
+		}
+		yield return null;
+	}
 }

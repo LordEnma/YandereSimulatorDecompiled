@@ -1,92 +1,104 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PromoCameraScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PromoCameraScript : MonoBehaviour
 {
-  public PortraitChanScript PromoCharacter;
-  public Vector3[] StartPositions;
-  public Vector3[] StartRotations;
-  public Renderer PromoBlack;
-  public Renderer Noose;
-  public Renderer Rope;
-  public Camera MyCamera;
-  public Transform Drills;
-  public float Timer;
-  public int ID;
+	public PortraitChanScript PromoCharacter;
 
-  private void Start()
-  {
-    this.transform.eulerAngles = this.StartRotations[this.ID];
-    this.transform.position = this.StartPositions[this.ID];
-    this.PromoCharacter.gameObject.SetActive(false);
-    this.PromoBlack.material.color = new Color(this.PromoBlack.material.color.r, this.PromoBlack.material.color.g, this.PromoBlack.material.color.b, 0.0f);
-    this.Noose.material.color = new Color(this.Noose.material.color.r, this.Noose.material.color.g, this.Noose.material.color.b, 0.0f);
-    this.Rope.material.color = new Color(this.Rope.material.color.r, this.Rope.material.color.g, this.Rope.material.color.b, 0.0f);
-  }
+	public Vector3[] StartPositions;
 
-  private void Update()
-  {
-    if (Input.GetKeyDown(KeyCode.Space) && this.ID < 3)
-    {
-      ++this.ID;
-      this.UpdatePosition();
-    }
-    if (this.ID == 0)
-      this.transform.Translate(Vector3.back * (Time.deltaTime * 0.01f));
-    else if (this.ID == 1)
-      this.transform.Translate(Vector3.back * (Time.deltaTime * 0.01f));
-    else if (this.ID == 2)
-    {
-      this.transform.Translate(Vector3.forward * (Time.deltaTime * 0.01f));
-      this.PromoCharacter.gameObject.SetActive(true);
-    }
-    else if (this.ID == 1 || this.ID == 3)
-      this.transform.Translate(Vector3.back * (Time.deltaTime * 0.1f));
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer > 20.0)
-    {
-      this.Noose.material.color = new Color(this.Noose.material.color.r, this.Noose.material.color.g, this.Noose.material.color.b, this.Noose.material.color.a + Time.deltaTime * 0.2f);
-      this.Rope.material.color = new Color(this.Rope.material.color.r, this.Rope.material.color.g, this.Rope.material.color.b, this.Rope.material.color.a + Time.deltaTime * 0.2f);
-    }
-    else if ((double) this.Timer > 15.0)
-      this.PromoBlack.material.color = new Color(this.PromoBlack.material.color.r, this.PromoBlack.material.color.g, this.PromoBlack.material.color.b, this.PromoBlack.material.color.a + Time.deltaTime * 0.2f);
-    if ((double) this.Timer > 10.0)
-    {
-      this.Drills.LookAt(this.Drills.position - Vector3.right);
-      if (this.ID != 2)
-        return;
-      this.ID = 3;
-      this.UpdatePosition();
-    }
-    else
-    {
-      if ((double) this.Timer <= 5.0)
-        return;
-      this.PromoCharacter.EyeShrink += Time.deltaTime * 0.1f;
-      if (this.ID != 1)
-        return;
-      this.ID = 2;
-      this.UpdatePosition();
-    }
-  }
+	public Vector3[] StartRotations;
 
-  private void UpdatePosition()
-  {
-    this.transform.position = this.StartPositions[this.ID];
-    this.transform.eulerAngles = this.StartRotations[this.ID];
-    if (this.ID == 2)
-    {
-      this.MyCamera.farClipPlane = 3f;
-      this.Timer = 5f;
-    }
-    if (this.ID != 3)
-      return;
-    this.MyCamera.farClipPlane = 5f;
-    this.Timer = 10f;
-  }
+	public Renderer PromoBlack;
+
+	public Renderer Noose;
+
+	public Renderer Rope;
+
+	public Camera MyCamera;
+
+	public Transform Drills;
+
+	public float Timer;
+
+	public int ID;
+
+	private void Start()
+	{
+		base.transform.eulerAngles = StartRotations[ID];
+		base.transform.position = StartPositions[ID];
+		PromoCharacter.gameObject.SetActive(false);
+		PromoBlack.material.color = new Color(PromoBlack.material.color.r, PromoBlack.material.color.g, PromoBlack.material.color.b, 0f);
+		Noose.material.color = new Color(Noose.material.color.r, Noose.material.color.g, Noose.material.color.b, 0f);
+		Rope.material.color = new Color(Rope.material.color.r, Rope.material.color.g, Rope.material.color.b, 0f);
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space) && ID < 3)
+		{
+			ID++;
+			UpdatePosition();
+		}
+		if (ID == 0)
+		{
+			base.transform.Translate(Vector3.back * (Time.deltaTime * 0.01f));
+		}
+		else if (ID == 1)
+		{
+			base.transform.Translate(Vector3.back * (Time.deltaTime * 0.01f));
+		}
+		else if (ID == 2)
+		{
+			base.transform.Translate(Vector3.forward * (Time.deltaTime * 0.01f));
+			PromoCharacter.gameObject.SetActive(true);
+		}
+		else if (ID == 1 || ID == 3)
+		{
+			base.transform.Translate(Vector3.back * (Time.deltaTime * 0.1f));
+		}
+		Timer += Time.deltaTime;
+		if (Timer > 20f)
+		{
+			Noose.material.color = new Color(Noose.material.color.r, Noose.material.color.g, Noose.material.color.b, Noose.material.color.a + Time.deltaTime * 0.2f);
+			Rope.material.color = new Color(Rope.material.color.r, Rope.material.color.g, Rope.material.color.b, Rope.material.color.a + Time.deltaTime * 0.2f);
+		}
+		else if (Timer > 15f)
+		{
+			PromoBlack.material.color = new Color(PromoBlack.material.color.r, PromoBlack.material.color.g, PromoBlack.material.color.b, PromoBlack.material.color.a + Time.deltaTime * 0.2f);
+		}
+		if (Timer > 10f)
+		{
+			Drills.LookAt(Drills.position - Vector3.right);
+			if (ID == 2)
+			{
+				ID = 3;
+				UpdatePosition();
+			}
+		}
+		else if (Timer > 5f)
+		{
+			PromoCharacter.EyeShrink += Time.deltaTime * 0.1f;
+			if (ID == 1)
+			{
+				ID = 2;
+				UpdatePosition();
+			}
+		}
+	}
+
+	private void UpdatePosition()
+	{
+		base.transform.position = StartPositions[ID];
+		base.transform.eulerAngles = StartRotations[ID];
+		if (ID == 2)
+		{
+			MyCamera.farClipPlane = 3f;
+			Timer = 5f;
+		}
+		if (ID == 3)
+		{
+			MyCamera.farClipPlane = 5f;
+			Timer = 10f;
+		}
+	}
 }

@@ -1,47 +1,46 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SaveLoadScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.IO;
 using UnityEngine;
 
 public class SaveLoadScript : MonoBehaviour
 {
-  public StudentScript Student;
-  public string SerializedData;
-  public string SaveFilePath;
-  public int SaveProfile;
-  public int SaveSlot;
+	public StudentScript Student;
 
-  private void DetermineFilePath()
-  {
-    this.SaveProfile = GameGlobals.Profile;
-    this.SaveSlot = PlayerPrefs.GetInt("SaveSlot");
-    this.SaveFilePath = Application.streamingAssetsPath + "/SaveData/Profile_" + this.SaveProfile.ToString() + "/Slot_" + this.SaveSlot.ToString() + "/Student_" + this.Student.StudentID.ToString() + "_Data.txt";
-  }
+	public string SerializedData;
 
-  public void SaveData()
-  {
-    this.DetermineFilePath();
-    this.SerializedData = JsonUtility.ToJson((object) this.Student);
-    File.WriteAllText(this.SaveFilePath, this.SerializedData);
-    PlayerPrefs.SetFloat("Profile_" + this.SaveProfile.ToString() + "_Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_posX", this.transform.position.x);
-    PlayerPrefs.SetFloat("Profile_" + this.SaveProfile.ToString() + "_Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_posY", this.transform.position.y);
-    PlayerPrefs.SetFloat("Profile_" + this.SaveProfile.ToString() + "_Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_posZ", this.transform.position.z);
-    PlayerPrefs.SetFloat("Profile_" + this.SaveProfile.ToString() + "_Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_rotX", this.transform.eulerAngles.x);
-    PlayerPrefs.SetFloat("Profile_" + this.SaveProfile.ToString() + "_Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_rotY", this.transform.eulerAngles.y);
-    PlayerPrefs.SetFloat("Profile_" + this.SaveProfile.ToString() + "_Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_rotZ", this.transform.eulerAngles.z);
-  }
+	public string SaveFilePath;
 
-  public void LoadData()
-  {
-    this.DetermineFilePath();
-    if (!File.Exists(this.SaveFilePath))
-      return;
-    this.transform.position = new Vector3(PlayerPrefs.GetFloat("Profile_" + this.SaveProfile.ToString() + "_Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_posX"), PlayerPrefs.GetFloat("Profile_" + this.SaveProfile.ToString() + "_Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_posY"), PlayerPrefs.GetFloat("Profile_" + this.SaveProfile.ToString() + "_Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_posZ"));
-    this.transform.eulerAngles = new Vector3(PlayerPrefs.GetFloat("Profile_" + this.SaveProfile.ToString() + "Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_rotX"), PlayerPrefs.GetFloat("Profile_" + this.SaveProfile.ToString() + "Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_rotY"), PlayerPrefs.GetFloat("Profile_" + this.SaveProfile.ToString() + "Slot_" + this.SaveSlot.ToString() + "Student_" + this.Student.StudentID.ToString() + "_rotZ"));
-    JsonUtility.FromJsonOverwrite(File.ReadAllText(this.SaveFilePath), (object) this.Student);
-  }
+	public int SaveProfile;
+
+	public int SaveSlot;
+
+	private void DetermineFilePath()
+	{
+		SaveProfile = GameGlobals.Profile;
+		SaveSlot = PlayerPrefs.GetInt("SaveSlot");
+		SaveFilePath = Application.streamingAssetsPath + "/SaveData/Profile_" + SaveProfile + "/Slot_" + SaveSlot + "/Student_" + Student.StudentID + "_Data.txt";
+	}
+
+	public void SaveData()
+	{
+		DetermineFilePath();
+		SerializedData = JsonUtility.ToJson(Student);
+		File.WriteAllText(SaveFilePath, SerializedData);
+		PlayerPrefs.SetFloat("Profile_" + SaveProfile + "_Slot_" + SaveSlot + "Student_" + Student.StudentID + "_posX", base.transform.position.x);
+		PlayerPrefs.SetFloat("Profile_" + SaveProfile + "_Slot_" + SaveSlot + "Student_" + Student.StudentID + "_posY", base.transform.position.y);
+		PlayerPrefs.SetFloat("Profile_" + SaveProfile + "_Slot_" + SaveSlot + "Student_" + Student.StudentID + "_posZ", base.transform.position.z);
+		PlayerPrefs.SetFloat("Profile_" + SaveProfile + "_Slot_" + SaveSlot + "Student_" + Student.StudentID + "_rotX", base.transform.eulerAngles.x);
+		PlayerPrefs.SetFloat("Profile_" + SaveProfile + "_Slot_" + SaveSlot + "Student_" + Student.StudentID + "_rotY", base.transform.eulerAngles.y);
+		PlayerPrefs.SetFloat("Profile_" + SaveProfile + "_Slot_" + SaveSlot + "Student_" + Student.StudentID + "_rotZ", base.transform.eulerAngles.z);
+	}
+
+	public void LoadData()
+	{
+		DetermineFilePath();
+		if (File.Exists(SaveFilePath))
+		{
+			base.transform.position = new Vector3(PlayerPrefs.GetFloat("Profile_" + SaveProfile + "_Slot_" + SaveSlot + "Student_" + Student.StudentID + "_posX"), PlayerPrefs.GetFloat("Profile_" + SaveProfile + "_Slot_" + SaveSlot + "Student_" + Student.StudentID + "_posY"), PlayerPrefs.GetFloat("Profile_" + SaveProfile + "_Slot_" + SaveSlot + "Student_" + Student.StudentID + "_posZ"));
+			base.transform.eulerAngles = new Vector3(PlayerPrefs.GetFloat("Profile_" + SaveProfile + "Slot_" + SaveSlot + "Student_" + Student.StudentID + "_rotX"), PlayerPrefs.GetFloat("Profile_" + SaveProfile + "Slot_" + SaveSlot + "Student_" + Student.StudentID + "_rotY"), PlayerPrefs.GetFloat("Profile_" + SaveProfile + "Slot_" + SaveSlot + "Student_" + Student.StudentID + "_rotZ"));
+			JsonUtility.FromJsonOverwrite(File.ReadAllText(SaveFilePath), Student);
+		}
+	}
 }

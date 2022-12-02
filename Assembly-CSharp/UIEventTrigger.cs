@@ -1,138 +1,173 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIEventTrigger
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Interaction/Event Trigger")]
 public class UIEventTrigger : MonoBehaviour
 {
-  public static UIEventTrigger current;
-  public List<EventDelegate> onHoverOver = new List<EventDelegate>();
-  public List<EventDelegate> onHoverOut = new List<EventDelegate>();
-  public List<EventDelegate> onPress = new List<EventDelegate>();
-  public List<EventDelegate> onRelease = new List<EventDelegate>();
-  public List<EventDelegate> onSelect = new List<EventDelegate>();
-  public List<EventDelegate> onDeselect = new List<EventDelegate>();
-  public List<EventDelegate> onClick = new List<EventDelegate>();
-  public List<EventDelegate> onDoubleClick = new List<EventDelegate>();
-  public List<EventDelegate> onDragStart = new List<EventDelegate>();
-  public List<EventDelegate> onDragEnd = new List<EventDelegate>();
-  public List<EventDelegate> onDragOver = new List<EventDelegate>();
-  public List<EventDelegate> onDragOut = new List<EventDelegate>();
-  public List<EventDelegate> onDrag = new List<EventDelegate>();
+	public static UIEventTrigger current;
 
-  public bool isColliderEnabled
-  {
-    get
-    {
-      Collider component1 = this.GetComponent<Collider>();
-      if ((Object) component1 != (Object) null)
-        return component1.enabled;
-      Collider2D component2 = this.GetComponent<Collider2D>();
-      return (Object) component2 != (Object) null && component2.enabled;
-    }
-  }
+	public List<EventDelegate> onHoverOver = new List<EventDelegate>();
 
-  private void OnHover(bool isOver)
-  {
-    if ((Object) UIEventTrigger.current != (Object) null || !this.isColliderEnabled)
-      return;
-    UIEventTrigger.current = this;
-    if (isOver)
-      EventDelegate.Execute(this.onHoverOver);
-    else
-      EventDelegate.Execute(this.onHoverOut);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onHoverOut = new List<EventDelegate>();
 
-  private void OnPress(bool pressed)
-  {
-    if ((Object) UIEventTrigger.current != (Object) null || !this.isColliderEnabled)
-      return;
-    UIEventTrigger.current = this;
-    if (pressed)
-      EventDelegate.Execute(this.onPress);
-    else
-      EventDelegate.Execute(this.onRelease);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onPress = new List<EventDelegate>();
 
-  private void OnSelect(bool selected)
-  {
-    if ((Object) UIEventTrigger.current != (Object) null || !this.isColliderEnabled)
-      return;
-    UIEventTrigger.current = this;
-    if (selected)
-      EventDelegate.Execute(this.onSelect);
-    else
-      EventDelegate.Execute(this.onDeselect);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onRelease = new List<EventDelegate>();
 
-  private void OnClick()
-  {
-    if ((Object) UIEventTrigger.current != (Object) null || !this.isColliderEnabled)
-      return;
-    UIEventTrigger.current = this;
-    EventDelegate.Execute(this.onClick);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onSelect = new List<EventDelegate>();
 
-  private void OnDoubleClick()
-  {
-    if ((Object) UIEventTrigger.current != (Object) null || !this.isColliderEnabled)
-      return;
-    UIEventTrigger.current = this;
-    EventDelegate.Execute(this.onDoubleClick);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onDeselect = new List<EventDelegate>();
 
-  private void OnDragStart()
-  {
-    if ((Object) UIEventTrigger.current != (Object) null)
-      return;
-    UIEventTrigger.current = this;
-    EventDelegate.Execute(this.onDragStart);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onClick = new List<EventDelegate>();
 
-  private void OnDragEnd()
-  {
-    if ((Object) UIEventTrigger.current != (Object) null)
-      return;
-    UIEventTrigger.current = this;
-    EventDelegate.Execute(this.onDragEnd);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onDoubleClick = new List<EventDelegate>();
 
-  private void OnDragOver(GameObject go)
-  {
-    if ((Object) UIEventTrigger.current != (Object) null || !this.isColliderEnabled)
-      return;
-    UIEventTrigger.current = this;
-    EventDelegate.Execute(this.onDragOver);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onDragStart = new List<EventDelegate>();
 
-  private void OnDragOut(GameObject go)
-  {
-    if ((Object) UIEventTrigger.current != (Object) null || !this.isColliderEnabled)
-      return;
-    UIEventTrigger.current = this;
-    EventDelegate.Execute(this.onDragOut);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onDragEnd = new List<EventDelegate>();
 
-  private void OnDrag(Vector2 delta)
-  {
-    if ((Object) UIEventTrigger.current != (Object) null)
-      return;
-    UIEventTrigger.current = this;
-    EventDelegate.Execute(this.onDrag);
-    UIEventTrigger.current = (UIEventTrigger) null;
-  }
+	public List<EventDelegate> onDragOver = new List<EventDelegate>();
+
+	public List<EventDelegate> onDragOut = new List<EventDelegate>();
+
+	public List<EventDelegate> onDrag = new List<EventDelegate>();
+
+	public bool isColliderEnabled
+	{
+		get
+		{
+			Collider component = GetComponent<Collider>();
+			if (component != null)
+			{
+				return component.enabled;
+			}
+			Collider2D component2 = GetComponent<Collider2D>();
+			if (component2 != null)
+			{
+				return component2.enabled;
+			}
+			return false;
+		}
+	}
+
+	private void OnHover(bool isOver)
+	{
+		if (!(current != null) && isColliderEnabled)
+		{
+			current = this;
+			if (isOver)
+			{
+				EventDelegate.Execute(onHoverOver);
+			}
+			else
+			{
+				EventDelegate.Execute(onHoverOut);
+			}
+			current = null;
+		}
+	}
+
+	private void OnPress(bool pressed)
+	{
+		if (!(current != null) && isColliderEnabled)
+		{
+			current = this;
+			if (pressed)
+			{
+				EventDelegate.Execute(onPress);
+			}
+			else
+			{
+				EventDelegate.Execute(onRelease);
+			}
+			current = null;
+		}
+	}
+
+	private void OnSelect(bool selected)
+	{
+		if (!(current != null) && isColliderEnabled)
+		{
+			current = this;
+			if (selected)
+			{
+				EventDelegate.Execute(onSelect);
+			}
+			else
+			{
+				EventDelegate.Execute(onDeselect);
+			}
+			current = null;
+		}
+	}
+
+	private void OnClick()
+	{
+		if (!(current != null) && isColliderEnabled)
+		{
+			current = this;
+			EventDelegate.Execute(onClick);
+			current = null;
+		}
+	}
+
+	private void OnDoubleClick()
+	{
+		if (!(current != null) && isColliderEnabled)
+		{
+			current = this;
+			EventDelegate.Execute(onDoubleClick);
+			current = null;
+		}
+	}
+
+	private void OnDragStart()
+	{
+		if (!(current != null))
+		{
+			current = this;
+			EventDelegate.Execute(onDragStart);
+			current = null;
+		}
+	}
+
+	private void OnDragEnd()
+	{
+		if (!(current != null))
+		{
+			current = this;
+			EventDelegate.Execute(onDragEnd);
+			current = null;
+		}
+	}
+
+	private void OnDragOver(GameObject go)
+	{
+		if (!(current != null) && isColliderEnabled)
+		{
+			current = this;
+			EventDelegate.Execute(onDragOver);
+			current = null;
+		}
+	}
+
+	private void OnDragOut(GameObject go)
+	{
+		if (!(current != null) && isColliderEnabled)
+		{
+			current = this;
+			EventDelegate.Execute(onDragOut);
+			current = null;
+		}
+	}
+
+	private void OnDrag(Vector2 delta)
+	{
+		if (!(current != null))
+		{
+			current = this;
+			EventDelegate.Execute(onDrag);
+			current = null;
+		}
+	}
 }

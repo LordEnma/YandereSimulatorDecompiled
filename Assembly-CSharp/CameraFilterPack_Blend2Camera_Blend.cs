@@ -1,93 +1,103 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CameraFilterPack_Blend2Camera_Blend
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("Camera Filter Pack/Blend 2 Camera/Blend")]
 public class CameraFilterPack_Blend2Camera_Blend : MonoBehaviour
 {
-  private string ShaderName = "CameraFilterPack/Blend2Camera_Blend";
-  public Shader SCShader;
-  public Camera Camera2;
-  private float TimeX = 1f;
-  private Material SCMaterial;
-  [Range(0.0f, 1f)]
-  public float BlendFX = 0.5f;
-  private RenderTexture Camera2tex;
+	private string ShaderName = "CameraFilterPack/Blend2Camera_Blend";
 
-  private Material material
-  {
-    get
-    {
-      if ((Object) this.SCMaterial == (Object) null)
-      {
-        this.SCMaterial = new Material(this.SCShader);
-        this.SCMaterial.hideFlags = HideFlags.HideAndDontSave;
-      }
-      return this.SCMaterial;
-    }
-  }
+	public Shader SCShader;
 
-  private void Start()
-  {
-    if ((Object) this.Camera2 != (Object) null)
-    {
-      this.Camera2tex = new RenderTexture(Screen.width, Screen.height, 24);
-      this.Camera2.targetTexture = this.Camera2tex;
-    }
-    this.SCShader = Shader.Find(this.ShaderName);
-    if (SystemInfo.supportsImageEffects)
-      return;
-    this.enabled = false;
-  }
+	public Camera Camera2;
 
-  private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
-  {
-    if ((Object) this.SCShader != (Object) null)
-    {
-      this.TimeX += Time.deltaTime;
-      if ((double) this.TimeX > 100.0)
-        this.TimeX = 0.0f;
-      this.material.SetTexture("_MainTex2", (Texture) this.Camera2tex);
-      this.material.SetFloat("_TimeX", this.TimeX);
-      this.material.SetFloat("_Value", this.BlendFX);
-      this.material.SetVector("_ScreenResolution", new Vector4((float) sourceTexture.width, (float) sourceTexture.height, 0.0f, 0.0f));
-      Graphics.Blit((Texture) sourceTexture, destTexture, this.material);
-    }
-    else
-      Graphics.Blit((Texture) sourceTexture, destTexture);
-  }
+	private float TimeX = 1f;
 
-  private void OnValidate()
-  {
-    if (!((Object) this.Camera2 != (Object) null))
-      return;
-    this.Camera2tex = new RenderTexture(Screen.width, Screen.height, 24);
-    this.Camera2.targetTexture = this.Camera2tex;
-  }
+	private Material SCMaterial;
 
-  private void Update()
-  {
-  }
+	[Range(0f, 1f)]
+	public float BlendFX = 0.5f;
 
-  private void OnEnable()
-  {
-    if (!((Object) this.Camera2 != (Object) null))
-      return;
-    this.Camera2tex = new RenderTexture(Screen.width, Screen.height, 24);
-    this.Camera2.targetTexture = this.Camera2tex;
-  }
+	private RenderTexture Camera2tex;
 
-  private void OnDisable()
-  {
-    if ((Object) this.Camera2 != (Object) null)
-      this.Camera2.targetTexture = (RenderTexture) null;
-    if (!(bool) (Object) this.SCMaterial)
-      return;
-    Object.DestroyImmediate((Object) this.SCMaterial);
-  }
+	private Material material
+	{
+		get
+		{
+			if (SCMaterial == null)
+			{
+				SCMaterial = new Material(SCShader);
+				SCMaterial.hideFlags = HideFlags.HideAndDontSave;
+			}
+			return SCMaterial;
+		}
+	}
+
+	private void Start()
+	{
+		if (Camera2 != null)
+		{
+			Camera2tex = new RenderTexture(Screen.width, Screen.height, 24);
+			Camera2.targetTexture = Camera2tex;
+		}
+		SCShader = Shader.Find(ShaderName);
+		if (!SystemInfo.supportsImageEffects)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
+	{
+		if (SCShader != null)
+		{
+			TimeX += Time.deltaTime;
+			if (TimeX > 100f)
+			{
+				TimeX = 0f;
+			}
+			material.SetTexture("_MainTex2", Camera2tex);
+			material.SetFloat("_TimeX", TimeX);
+			material.SetFloat("_Value", BlendFX);
+			material.SetVector("_ScreenResolution", new Vector4(sourceTexture.width, sourceTexture.height, 0f, 0f));
+			Graphics.Blit(sourceTexture, destTexture, material);
+		}
+		else
+		{
+			Graphics.Blit(sourceTexture, destTexture);
+		}
+	}
+
+	private void OnValidate()
+	{
+		if (Camera2 != null)
+		{
+			Camera2tex = new RenderTexture(Screen.width, Screen.height, 24);
+			Camera2.targetTexture = Camera2tex;
+		}
+	}
+
+	private void Update()
+	{
+	}
+
+	private void OnEnable()
+	{
+		if (Camera2 != null)
+		{
+			Camera2tex = new RenderTexture(Screen.width, Screen.height, 24);
+			Camera2.targetTexture = Camera2tex;
+		}
+	}
+
+	private void OnDisable()
+	{
+		if (Camera2 != null)
+		{
+			Camera2.targetTexture = null;
+		}
+		if ((bool)SCMaterial)
+		{
+			Object.DestroyImmediate(SCMaterial);
+		}
+	}
 }

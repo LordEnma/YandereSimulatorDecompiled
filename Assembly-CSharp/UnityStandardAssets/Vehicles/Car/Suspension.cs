@@ -1,25 +1,24 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityStandardAssets.Vehicles.Car.Suspension
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-  public class Suspension : MonoBehaviour
-  {
-    public GameObject wheel;
-    private Vector3 m_TargetOriginalPosition;
-    private Vector3 m_Origin;
+	public class Suspension : MonoBehaviour
+	{
+		public GameObject wheel;
 
-    private void Start()
-    {
-      this.m_TargetOriginalPosition = this.wheel.transform.localPosition;
-      this.m_Origin = this.transform.localPosition;
-    }
+		private Vector3 m_TargetOriginalPosition;
 
-    private void Update() => this.transform.localPosition = this.m_Origin + (this.wheel.transform.localPosition - this.m_TargetOriginalPosition);
-  }
+		private Vector3 m_Origin;
+
+		private void Start()
+		{
+			m_TargetOriginalPosition = wheel.transform.localPosition;
+			m_Origin = base.transform.localPosition;
+		}
+
+		private void Update()
+		{
+			base.transform.localPosition = m_Origin + (wheel.transform.localPosition - m_TargetOriginalPosition);
+		}
+	}
 }

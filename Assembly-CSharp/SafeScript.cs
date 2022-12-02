@@ -1,79 +1,80 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SafeScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SafeScript : MonoBehaviour
 {
-  public MissionModeScript MissionMode;
-  public PromptScript ContentsPrompt;
-  public PromptScript SafePrompt;
-  public PromptScript KeyPrompt;
-  public Transform Door;
-  public GameObject Key;
-  public float Rotation;
-  public bool Open;
+	public MissionModeScript MissionMode;
 
-  private void Start()
-  {
-    this.ContentsPrompt.MyCollider.enabled = false;
-    this.SafePrompt.enabled = false;
-  }
+	public PromptScript ContentsPrompt;
 
-  private void Update()
-  {
-    if (this.Key.activeInHierarchy && (double) this.KeyPrompt.Circle[0].fillAmount == 0.0)
-    {
-      this.KeyPrompt.Yandere.Inventory.SafeKey = true;
-      this.SafePrompt.HideButton[0] = false;
-      this.SafePrompt.enabled = true;
-      this.Key.SetActive(false);
-    }
-    if ((double) this.SafePrompt.Circle[0].fillAmount == 0.0)
-    {
-      this.KeyPrompt.Yandere.Inventory.SafeKey = false;
-      this.ContentsPrompt.MyCollider.enabled = true;
-      this.Open = true;
-      this.SafePrompt.Hide();
-      this.SafePrompt.enabled = false;
-    }
-    if ((double) this.ContentsPrompt.Circle[0].fillAmount == 0.0)
-    {
-      this.MissionMode.DocumentsStolen = true;
-      this.enabled = false;
-      this.ContentsPrompt.Hide();
-      this.ContentsPrompt.enabled = false;
-      this.ContentsPrompt.gameObject.SetActive(false);
-    }
-    if (this.Open)
-    {
-      this.Rotation = Mathf.Lerp(this.Rotation, 0.0f, Time.deltaTime * 10f);
-      this.Door.localEulerAngles = new Vector3(this.Door.localEulerAngles.x, this.Rotation, this.Door.localEulerAngles.z);
-      if ((double) this.Rotation >= 1.0)
-        return;
-      this.Open = false;
-    }
-    else if (this.SafePrompt.Yandere.Inventory.LockPick)
-    {
-      this.SafePrompt.HideButton[2] = false;
-      this.SafePrompt.enabled = true;
-      if ((double) this.SafePrompt.Circle[2].fillAmount != 0.0)
-        return;
-      this.KeyPrompt.Hide();
-      this.KeyPrompt.enabled = false;
-      this.SafePrompt.Yandere.Inventory.LockPick = false;
-      this.SafePrompt.HideButton[2] = true;
-      this.ContentsPrompt.MyCollider.enabled = true;
-      this.Open = true;
-    }
-    else
-    {
-      if (this.SafePrompt.HideButton[2])
-        return;
-      this.SafePrompt.HideButton[2] = true;
-    }
-  }
+	public PromptScript SafePrompt;
+
+	public PromptScript KeyPrompt;
+
+	public Transform Door;
+
+	public GameObject Key;
+
+	public float Rotation;
+
+	public bool Open;
+
+	private void Start()
+	{
+		ContentsPrompt.MyCollider.enabled = false;
+		SafePrompt.enabled = false;
+	}
+
+	private void Update()
+	{
+		if (Key.activeInHierarchy && KeyPrompt.Circle[0].fillAmount == 0f)
+		{
+			KeyPrompt.Yandere.Inventory.SafeKey = true;
+			SafePrompt.HideButton[0] = false;
+			SafePrompt.enabled = true;
+			Key.SetActive(false);
+		}
+		if (SafePrompt.Circle[0].fillAmount == 0f)
+		{
+			KeyPrompt.Yandere.Inventory.SafeKey = false;
+			ContentsPrompt.MyCollider.enabled = true;
+			Open = true;
+			SafePrompt.Hide();
+			SafePrompt.enabled = false;
+		}
+		if (ContentsPrompt.Circle[0].fillAmount == 0f)
+		{
+			MissionMode.DocumentsStolen = true;
+			base.enabled = false;
+			ContentsPrompt.Hide();
+			ContentsPrompt.enabled = false;
+			ContentsPrompt.gameObject.SetActive(false);
+		}
+		if (Open)
+		{
+			Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 10f);
+			Door.localEulerAngles = new Vector3(Door.localEulerAngles.x, Rotation, Door.localEulerAngles.z);
+			if (Rotation < 1f)
+			{
+				Open = false;
+			}
+		}
+		else if (SafePrompt.Yandere.Inventory.LockPick)
+		{
+			SafePrompt.HideButton[2] = false;
+			SafePrompt.enabled = true;
+			if (SafePrompt.Circle[2].fillAmount == 0f)
+			{
+				KeyPrompt.Hide();
+				KeyPrompt.enabled = false;
+				SafePrompt.Yandere.Inventory.LockPick = false;
+				SafePrompt.HideButton[2] = true;
+				ContentsPrompt.MyCollider.enabled = true;
+				Open = true;
+			}
+		}
+		else if (!SafePrompt.HideButton[2])
+		{
+			SafePrompt.HideButton[2] = true;
+		}
+	}
 }

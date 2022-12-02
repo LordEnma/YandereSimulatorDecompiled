@@ -1,137 +1,161 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIItemSlot
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class UIItemSlot : MonoBehaviour
 {
-  public UISprite icon;
-  public UIWidget background;
-  public UILabel label;
-  public AudioClip grabSound;
-  public AudioClip placeSound;
-  public AudioClip errorSound;
-  private InvGameItem mItem;
-  private string mText = "";
-  private static InvGameItem mDraggedItem;
+	public UISprite icon;
 
-  protected abstract InvGameItem observedItem { get; }
+	public UIWidget background;
 
-  protected abstract InvGameItem Replace(InvGameItem item);
+	public UILabel label;
 
-  private void OnTooltip(bool show)
-  {
-    InvGameItem invGameItem = show ? this.mItem : (InvGameItem) null;
-    if (invGameItem != null)
-    {
-      InvBaseItem baseItem = invGameItem.baseItem;
-      if (baseItem != null)
-      {
-        string text = "[" + NGUIText.EncodeColor(invGameItem.color) + "]" + invGameItem.name + "[-]\n" + "[AFAFAF]Level " + invGameItem.itemLevel.ToString() + " " + baseItem.slot.ToString();
-        List<InvStat> stats = invGameItem.CalculateStats();
-        int index = 0;
-        for (int count = stats.Count; index < count; ++index)
-        {
-          InvStat invStat = stats[index];
-          if (invStat.amount != 0)
-          {
-            string str = invStat.amount >= 0 ? text + "\n[00FF00]+" + invStat.amount.ToString() : text + "\n[FF0000]" + invStat.amount.ToString();
-            if (invStat.modifier == InvStat.Modifier.Percent)
-              str += "%";
-            text = str + " " + invStat.id.ToString() + "[-]";
-          }
-        }
-        if (!string.IsNullOrEmpty(baseItem.description))
-          text = text + "\n[FF9900]" + baseItem.description;
-        UITooltip.Show(text);
-        return;
-      }
-    }
-    UITooltip.Hide();
-  }
+	public AudioClip grabSound;
 
-  private void OnClick()
-  {
-    if (UIItemSlot.mDraggedItem != null)
-    {
-      this.OnDrop((GameObject) null);
-    }
-    else
-    {
-      if (this.mItem == null)
-        return;
-      UIItemSlot.mDraggedItem = this.Replace((InvGameItem) null);
-      if (UIItemSlot.mDraggedItem != null)
-        NGUITools.PlaySound(this.grabSound);
-      this.UpdateCursor();
-    }
-  }
+	public AudioClip placeSound;
 
-  private void OnDrag(Vector2 delta)
-  {
-    if (UIItemSlot.mDraggedItem != null || this.mItem == null)
-      return;
-    UICamera.currentTouch.clickNotification = UICamera.ClickNotification.BasedOnDelta;
-    UIItemSlot.mDraggedItem = this.Replace((InvGameItem) null);
-    NGUITools.PlaySound(this.grabSound);
-    this.UpdateCursor();
-  }
+	public AudioClip errorSound;
 
-  private void OnDrop(GameObject go)
-  {
-    InvGameItem invGameItem = this.Replace(UIItemSlot.mDraggedItem);
-    if (UIItemSlot.mDraggedItem == invGameItem)
-      NGUITools.PlaySound(this.errorSound);
-    else if (invGameItem != null)
-      NGUITools.PlaySound(this.grabSound);
-    else
-      NGUITools.PlaySound(this.placeSound);
-    UIItemSlot.mDraggedItem = invGameItem;
-    this.UpdateCursor();
-  }
+	private InvGameItem mItem;
 
-  private void UpdateCursor()
-  {
-    if (UIItemSlot.mDraggedItem != null && UIItemSlot.mDraggedItem.baseItem != null)
-      UICursor.Set(UIItemSlot.mDraggedItem.baseItem.iconAtlas as INGUIAtlas, UIItemSlot.mDraggedItem.baseItem.iconName);
-    else
-      UICursor.Clear();
-  }
+	private string mText = "";
 
-  private void Update()
-  {
-    InvGameItem observedItem = this.observedItem;
-    if (this.mItem == observedItem)
-      return;
-    this.mItem = observedItem;
-    InvBaseItem baseItem = observedItem?.baseItem;
-    if ((Object) this.label != (Object) null)
-    {
-      string name = observedItem?.name;
-      if (string.IsNullOrEmpty(this.mText))
-        this.mText = this.label.text;
-      this.label.text = name ?? this.mText;
-    }
-    if ((Object) this.icon != (Object) null)
-    {
-      if (baseItem == null || baseItem.iconAtlas == (Object) null)
-      {
-        this.icon.enabled = false;
-      }
-      else
-      {
-        this.icon.atlas = baseItem.iconAtlas as INGUIAtlas;
-        this.icon.spriteName = baseItem.iconName;
-        this.icon.enabled = true;
-        this.icon.MakePixelPerfect();
-      }
-    }
-    if (!((Object) this.background != (Object) null))
-      return;
-    this.background.color = observedItem != null ? observedItem.color : Color.white;
-  }
+	private static InvGameItem mDraggedItem;
+
+	protected abstract InvGameItem observedItem { get; }
+
+	protected abstract InvGameItem Replace(InvGameItem item);
+
+	private void OnTooltip(bool show)
+	{
+		InvGameItem invGameItem = (show ? mItem : null);
+		if (invGameItem != null)
+		{
+			InvBaseItem baseItem = invGameItem.baseItem;
+			if (baseItem != null)
+			{
+				string text = "[" + NGUIText.EncodeColor(invGameItem.color) + "]" + invGameItem.name + "[-]\n";
+				text = text + "[AFAFAF]Level " + invGameItem.itemLevel + " " + baseItem.slot;
+				List<InvStat> list = invGameItem.CalculateStats();
+				int i = 0;
+				for (int count = list.Count; i < count; i++)
+				{
+					InvStat invStat = list[i];
+					if (invStat.amount != 0)
+					{
+						text = ((invStat.amount >= 0) ? (text + "\n[00FF00]+" + invStat.amount) : (text + "\n[FF0000]" + invStat.amount));
+						if (invStat.modifier == InvStat.Modifier.Percent)
+						{
+							text += "%";
+						}
+						text = text + " " + invStat.id;
+						text += "[-]";
+					}
+				}
+				if (!string.IsNullOrEmpty(baseItem.description))
+				{
+					text = text + "\n[FF9900]" + baseItem.description;
+				}
+				UITooltip.Show(text);
+				return;
+			}
+		}
+		UITooltip.Hide();
+	}
+
+	private void OnClick()
+	{
+		if (mDraggedItem != null)
+		{
+			OnDrop(null);
+		}
+		else if (mItem != null)
+		{
+			mDraggedItem = Replace(null);
+			if (mDraggedItem != null)
+			{
+				NGUITools.PlaySound(grabSound);
+			}
+			UpdateCursor();
+		}
+	}
+
+	private void OnDrag(Vector2 delta)
+	{
+		if (mDraggedItem == null && mItem != null)
+		{
+			UICamera.currentTouch.clickNotification = UICamera.ClickNotification.BasedOnDelta;
+			mDraggedItem = Replace(null);
+			NGUITools.PlaySound(grabSound);
+			UpdateCursor();
+		}
+	}
+
+	private void OnDrop(GameObject go)
+	{
+		InvGameItem invGameItem = Replace(mDraggedItem);
+		if (mDraggedItem == invGameItem)
+		{
+			NGUITools.PlaySound(errorSound);
+		}
+		else if (invGameItem != null)
+		{
+			NGUITools.PlaySound(grabSound);
+		}
+		else
+		{
+			NGUITools.PlaySound(placeSound);
+		}
+		mDraggedItem = invGameItem;
+		UpdateCursor();
+	}
+
+	private void UpdateCursor()
+	{
+		if (mDraggedItem != null && mDraggedItem.baseItem != null)
+		{
+			UICursor.Set(mDraggedItem.baseItem.iconAtlas as INGUIAtlas, mDraggedItem.baseItem.iconName);
+		}
+		else
+		{
+			UICursor.Clear();
+		}
+	}
+
+	private void Update()
+	{
+		InvGameItem invGameItem = observedItem;
+		if (mItem == invGameItem)
+		{
+			return;
+		}
+		mItem = invGameItem;
+		InvBaseItem invBaseItem = ((invGameItem != null) ? invGameItem.baseItem : null);
+		if (label != null)
+		{
+			string text = ((invGameItem != null) ? invGameItem.name : null);
+			if (string.IsNullOrEmpty(mText))
+			{
+				mText = label.text;
+			}
+			label.text = ((text != null) ? text : mText);
+		}
+		if (icon != null)
+		{
+			if (invBaseItem == null || invBaseItem.iconAtlas == null)
+			{
+				icon.enabled = false;
+			}
+			else
+			{
+				icon.atlas = invBaseItem.iconAtlas as INGUIAtlas;
+				icon.spriteName = invBaseItem.iconName;
+				icon.enabled = true;
+				icon.MakePixelPerfect();
+			}
+		}
+		if (background != null)
+		{
+			background.color = ((invGameItem != null) ? invGameItem.color : Color.white);
+		}
+	}
 }

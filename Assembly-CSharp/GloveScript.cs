@@ -1,56 +1,58 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: GloveScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class GloveScript : MonoBehaviour
 {
-  public PromptScript Prompt;
-  public PickUpScript PickUp;
-  public Collider MyCollider;
-  public Projector Blood;
-  public bool Raincoat;
-  public int GloveID;
+	public PromptScript Prompt;
 
-  private void Start()
-  {
-    Physics.IgnoreCollision(GameObject.Find("YandereChan").GetComponent<YandereScript>().GetComponent<Collider>(), this.MyCollider);
-    if ((double) this.transform.position.y <= 1000.0)
-      return;
-    this.transform.position = new Vector3(12f, 0.0f, 28f);
-  }
+	public PickUpScript PickUp;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      if (this.Prompt.Yandere.Invisible)
-      {
-        this.Prompt.Yandere.NotificationManager.CustomText = "Can't wear this while invisible!";
-        this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-      else if (this.Prompt.Yandere.WearingRaincoat || this.Prompt.Yandere.Gloved)
-      {
-        this.Prompt.Yandere.NotificationManager.CustomText = "Can't combine clothing!";
-        this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-      else
-      {
-        this.transform.parent = this.Prompt.Yandere.transform;
-        this.transform.localPosition = new Vector3(0.0f, 1f, 0.25f);
-        if (this.Raincoat)
-          this.Prompt.Yandere.WearingRaincoat = true;
-        this.Prompt.Yandere.StudentManager.GloveID = this.GloveID;
-        Debug.Log((object) ("The StudentManager was just informed that GloveID should be: " + this.GloveID.ToString()));
-        this.Prompt.Yandere.Gloves = this;
-        this.Prompt.Yandere.WearGloves();
-        this.gameObject.SetActive(false);
-      }
-    }
-    this.Prompt.HideButton[0] = this.Prompt.Yandere.Schoolwear != 1 || this.Prompt.Yandere.ClubAttire;
-  }
+	public Collider MyCollider;
+
+	public Projector Blood;
+
+	public bool Raincoat;
+
+	public int GloveID;
+
+	private void Start()
+	{
+		Physics.IgnoreCollision(GameObject.Find("YandereChan").GetComponent<YandereScript>().GetComponent<Collider>(), MyCollider);
+		if (base.transform.position.y > 1000f)
+		{
+			base.transform.position = new Vector3(12f, 0f, 28f);
+		}
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			if (Prompt.Yandere.Invisible)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Can't wear this while invisible!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else if (Prompt.Yandere.WearingRaincoat || Prompt.Yandere.Gloved)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Can't combine clothing!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else
+			{
+				base.transform.parent = Prompt.Yandere.transform;
+				base.transform.localPosition = new Vector3(0f, 1f, 0.25f);
+				if (Raincoat)
+				{
+					Prompt.Yandere.WearingRaincoat = true;
+				}
+				Prompt.Yandere.StudentManager.GloveID = GloveID;
+				Debug.Log("The StudentManager was just informed that GloveID should be: " + GloveID);
+				Prompt.Yandere.Gloves = this;
+				Prompt.Yandere.WearGloves();
+				base.gameObject.SetActive(false);
+			}
+		}
+		Prompt.HideButton[0] = Prompt.Yandere.Schoolwear != 1 || Prompt.Yandere.ClubAttire;
+	}
 }

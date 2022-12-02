@@ -1,247 +1,443 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CounselorGlobals
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public static class CounselorGlobals
 {
-  private const string Str_DelinquentPunishments = "DelinquentPunishments";
-  private const string Str_CounselorPunishments = "CounselorPunishments";
-  private const string Str_CounselorVisits = "CounselorVisits";
-  private const string Str_CounselorTape = "CounselorTape";
-  private const string Str_ApologiesUsed = "ApologiesUsed";
-  private const string Str_WeaponsBanned = "WeaponsBanned";
-  private const string Str_BloodVisits = "BloodVisits";
-  private const string Str_InsanityVisits = "InsanityVisits";
-  private const string Str_LewdVisits = "LewdVisits";
-  private const string Str_TheftVisits = "TheftVisits";
-  private const string Str_TrespassVisits = "TrespassVisits";
-  private const string Str_WeaponVisits = "WeaponVisits";
-  private const string Str_BloodExcuseUsed = "BloodExcuseUsed";
-  private const string Str_InsanityExcuseUsed = "InsanityExcuseUsed";
-  private const string Str_LewdExcuseUsed = "LewdExcuseUsed";
-  private const string Str_TheftExcuseUsed = "TheftExcuseUsed";
-  private const string Str_TrespassExcuseUsed = "TrespassExcuseUsed";
-  private const string Str_WeaponExcuseUsed = "WeaponExcuseUsed";
-  private const string Str_BloodBlameUsed = "BloodBlameUsed";
-  private const string Str_InsanityBlameUsed = "InsanityBlameUsed";
-  private const string Str_LewdBlameUsed = "LewdBlameUsed";
-  private const string Str_TheftBlameUsed = "TheftBlameUsed";
-  private const string Str_TrespassBlameUsed = "TrespassBlameUsed";
-  private const string Str_WeaponBlameUsed = "WeaponBlameUsed";
-  private const string Str_ReportedAlcohol = "ReportedAlcohol";
-  private const string Str_ReportedCigarettes = "ReportedCigarettes";
-  private const string Str_ReportedCondoms = "ReportedCondoms";
-  private const string Str_ReportedTheft = "ReportedTheft";
-  private const string Str_ReportedCheating = "ReportedCheating";
+	private const string Str_DelinquentPunishments = "DelinquentPunishments";
 
-  public static int DelinquentPunishments
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_DelinquentPunishments");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_DelinquentPunishments", value);
-  }
+	private const string Str_CounselorPunishments = "CounselorPunishments";
 
-  public static int CounselorPunishments
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_CounselorPunishments");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CounselorPunishments", value);
-  }
+	private const string Str_CounselorVisits = "CounselorVisits";
 
-  public static int CounselorVisits
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_CounselorVisits");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CounselorVisits", value);
-  }
+	private const string Str_CounselorTape = "CounselorTape";
 
-  public static int CounselorTape
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_CounselorTape");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CounselorTape", value);
-  }
+	private const string Str_ApologiesUsed = "ApologiesUsed";
 
-  public static int ApologiesUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_ApologiesUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_ApologiesUsed", value);
-  }
+	private const string Str_WeaponsBanned = "WeaponsBanned";
 
-  public static int WeaponsBanned
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_WeaponsBanned");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_WeaponsBanned", value);
-  }
+	private const string Str_BloodVisits = "BloodVisits";
 
-  public static int BloodVisits
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_BloodVisits");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_BloodVisits", value);
-  }
+	private const string Str_InsanityVisits = "InsanityVisits";
 
-  public static int InsanityVisits
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_InsanityVisits");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_InsanityVisits", value);
-  }
+	private const string Str_LewdVisits = "LewdVisits";
 
-  public static int LewdVisits
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_LewdVisits");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_LewdVisits", value);
-  }
+	private const string Str_TheftVisits = "TheftVisits";
 
-  public static int TheftVisits
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_TheftVisits");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_TheftVisits", value);
-  }
+	private const string Str_TrespassVisits = "TrespassVisits";
 
-  public static int TrespassVisits
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_TrespassVisits");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_TrespassVisits", value);
-  }
+	private const string Str_WeaponVisits = "WeaponVisits";
 
-  public static int WeaponVisits
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_WeaponVisits");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_WeaponVisits", value);
-  }
+	private const string Str_BloodExcuseUsed = "BloodExcuseUsed";
 
-  public static int BloodExcuseUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_BloodExcuseUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_BloodExcuseUsed", value);
-  }
+	private const string Str_InsanityExcuseUsed = "InsanityExcuseUsed";
 
-  public static int InsanityExcuseUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_InsanityExcuseUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_InsanityExcuseUsed", value);
-  }
+	private const string Str_LewdExcuseUsed = "LewdExcuseUsed";
 
-  public static int LewdExcuseUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_LewdExcuseUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_LewdExcuseUsed", value);
-  }
+	private const string Str_TheftExcuseUsed = "TheftExcuseUsed";
 
-  public static int TheftExcuseUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_TheftExcuseUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_TheftExcuseUsed", value);
-  }
+	private const string Str_TrespassExcuseUsed = "TrespassExcuseUsed";
 
-  public static int TrespassExcuseUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_TrespassExcuseUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_TrespassExcuseUsed", value);
-  }
+	private const string Str_WeaponExcuseUsed = "WeaponExcuseUsed";
 
-  public static int WeaponExcuseUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_WeaponExcuseUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_WeaponExcuseUsed", value);
-  }
+	private const string Str_BloodBlameUsed = "BloodBlameUsed";
 
-  public static int BloodBlameUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_BloodBlameUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_BloodBlameUsed", value);
-  }
+	private const string Str_InsanityBlameUsed = "InsanityBlameUsed";
 
-  public static int InsanityBlameUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_InsanityBlameUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_InsanityBlameUsed", value);
-  }
+	private const string Str_LewdBlameUsed = "LewdBlameUsed";
 
-  public static int LewdBlameUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_LewdBlameUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_LewdBlameUsed", value);
-  }
+	private const string Str_TheftBlameUsed = "TheftBlameUsed";
 
-  public static int TheftBlameUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_TheftBlameUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_TheftBlameUsed", value);
-  }
+	private const string Str_TrespassBlameUsed = "TrespassBlameUsed";
 
-  public static int TrespassBlameUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_TrespassBlameUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_TrespassBlameUsed", value);
-  }
+	private const string Str_WeaponBlameUsed = "WeaponBlameUsed";
 
-  public static int WeaponBlameUsed
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_WeaponBlameUsed");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_WeaponBlameUsed", value);
-  }
+	private const string Str_ReportedAlcohol = "ReportedAlcohol";
 
-  public static bool ReportedAlcohol
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedAlcohol");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedAlcohol", value);
-  }
+	private const string Str_ReportedCigarettes = "ReportedCigarettes";
 
-  public static bool ReportedCigarettes
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCigarettes");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCigarettes", value);
-  }
+	private const string Str_ReportedCondoms = "ReportedCondoms";
 
-  public static bool ReportedCondoms
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCondoms");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCondoms", value);
-  }
+	private const string Str_ReportedTheft = "ReportedTheft";
 
-  public static bool ReportedTheft
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedTheft");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedTheft", value);
-  }
+	private const string Str_ReportedCheating = "ReportedCheating";
 
-  public static bool ReportedCheating
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCheating");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCheating", value);
-  }
+	public static int DelinquentPunishments
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_DelinquentPunishments");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_DelinquentPunishments", value);
+		}
+	}
 
-  public static void DeleteAll()
-  {
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_DelinquentPunishments");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CounselorPunishments");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CounselorVisits");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CounselorTape");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ApologiesUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_WeaponsBanned");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BloodVisits");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_InsanityVisits");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LewdVisits");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_TheftVisits");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_TrespassVisits");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_WeaponVisits");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BloodExcuseUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_InsanityExcuseUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LewdExcuseUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_TheftExcuseUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_TrespassExcuseUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_WeaponExcuseUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BloodBlameUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_InsanityBlameUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LewdBlameUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_TheftBlameUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_TrespassBlameUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_WeaponBlameUsed");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ReportedAlcohol");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCigarettes");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCondoms");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ReportedTheft");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCheating");
-  }
+	public static int CounselorPunishments
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CounselorPunishments");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CounselorPunishments", value);
+		}
+	}
+
+	public static int CounselorVisits
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CounselorVisits");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CounselorVisits", value);
+		}
+	}
+
+	public static int CounselorTape
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CounselorTape");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CounselorTape", value);
+		}
+	}
+
+	public static int ApologiesUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_ApologiesUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_ApologiesUsed", value);
+		}
+	}
+
+	public static int WeaponsBanned
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_WeaponsBanned");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_WeaponsBanned", value);
+		}
+	}
+
+	public static int BloodVisits
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_BloodVisits");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_BloodVisits", value);
+		}
+	}
+
+	public static int InsanityVisits
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_InsanityVisits");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_InsanityVisits", value);
+		}
+	}
+
+	public static int LewdVisits
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_LewdVisits");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_LewdVisits", value);
+		}
+	}
+
+	public static int TheftVisits
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_TheftVisits");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_TheftVisits", value);
+		}
+	}
+
+	public static int TrespassVisits
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_TrespassVisits");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_TrespassVisits", value);
+		}
+	}
+
+	public static int WeaponVisits
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_WeaponVisits");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_WeaponVisits", value);
+		}
+	}
+
+	public static int BloodExcuseUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_BloodExcuseUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_BloodExcuseUsed", value);
+		}
+	}
+
+	public static int InsanityExcuseUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_InsanityExcuseUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_InsanityExcuseUsed", value);
+		}
+	}
+
+	public static int LewdExcuseUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_LewdExcuseUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_LewdExcuseUsed", value);
+		}
+	}
+
+	public static int TheftExcuseUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_TheftExcuseUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_TheftExcuseUsed", value);
+		}
+	}
+
+	public static int TrespassExcuseUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_TrespassExcuseUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_TrespassExcuseUsed", value);
+		}
+	}
+
+	public static int WeaponExcuseUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_WeaponExcuseUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_WeaponExcuseUsed", value);
+		}
+	}
+
+	public static int BloodBlameUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_BloodBlameUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_BloodBlameUsed", value);
+		}
+	}
+
+	public static int InsanityBlameUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_InsanityBlameUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_InsanityBlameUsed", value);
+		}
+	}
+
+	public static int LewdBlameUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_LewdBlameUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_LewdBlameUsed", value);
+		}
+	}
+
+	public static int TheftBlameUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_TheftBlameUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_TheftBlameUsed", value);
+		}
+	}
+
+	public static int TrespassBlameUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_TrespassBlameUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_TrespassBlameUsed", value);
+		}
+	}
+
+	public static int WeaponBlameUsed
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_WeaponBlameUsed");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_WeaponBlameUsed", value);
+		}
+	}
+
+	public static bool ReportedAlcohol
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_ReportedAlcohol");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_ReportedAlcohol", value);
+		}
+	}
+
+	public static bool ReportedCigarettes
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_ReportedCigarettes");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_ReportedCigarettes", value);
+		}
+	}
+
+	public static bool ReportedCondoms
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_ReportedCondoms");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_ReportedCondoms", value);
+		}
+	}
+
+	public static bool ReportedTheft
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_ReportedTheft");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_ReportedTheft", value);
+		}
+	}
+
+	public static bool ReportedCheating
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_ReportedCheating");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_ReportedCheating", value);
+		}
+	}
+
+	public static void DeleteAll()
+	{
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_DelinquentPunishments");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CounselorPunishments");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CounselorVisits");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CounselorTape");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_ApologiesUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_WeaponsBanned");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_BloodVisits");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_InsanityVisits");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_LewdVisits");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_TheftVisits");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_TrespassVisits");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_WeaponVisits");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_BloodExcuseUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_InsanityExcuseUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_LewdExcuseUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_TheftExcuseUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_TrespassExcuseUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_WeaponExcuseUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_BloodBlameUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_InsanityBlameUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_LewdBlameUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_TheftBlameUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_TrespassBlameUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_WeaponBlameUsed");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_ReportedAlcohol");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_ReportedCigarettes");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_ReportedCondoms");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_ReportedTheft");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_ReportedCheating");
+	}
 }

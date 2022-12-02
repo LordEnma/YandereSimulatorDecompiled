@@ -1,50 +1,49 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AnimTestScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class AnimTestScript : MonoBehaviour
 {
-  public Animation CharacterA;
-  public Animation CharacterB;
-  public int ID;
+	public Animation CharacterA;
 
-  private void Start() => Time.timeScale = 1f;
+	public Animation CharacterB;
 
-  private void Update()
-  {
-    if (Input.GetKeyDown("space"))
-    {
-      ++this.ID;
-      if (this.ID > 4)
-        this.ID = 1;
-    }
-    if (this.ID == 1)
-    {
-      this.CharacterB.transform.eulerAngles = new Vector3(0.0f, -90f, 0.0f);
-      this.CharacterA.Play("f02_weightHighSanityA_00");
-      this.CharacterB.Play("f02_weightHighSanityB_00");
-    }
-    else if (this.ID == 2)
-    {
-      this.CharacterA.Play("f02_weightMedSanityA_00");
-      this.CharacterB.Play("f02_weightMedSanityB_00");
-    }
-    else if (this.ID == 3)
-    {
-      this.CharacterA.Play("f02_weightLowSanityA_00");
-      this.CharacterB.Play("f02_weightLowSanityB_00");
-    }
-    else
-    {
-      if (this.ID != 4)
-        return;
-      this.CharacterB.transform.eulerAngles = new Vector3(0.0f, 90f, 0.0f);
-      this.CharacterA.Play("f02_weightStealthA_00");
-      this.CharacterB.Play("f02_weightStealthB_00");
-    }
-  }
+	public int ID;
+
+	private void Start()
+	{
+		Time.timeScale = 1f;
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown("space"))
+		{
+			ID++;
+			if (ID > 4)
+			{
+				ID = 1;
+			}
+		}
+		if (ID == 1)
+		{
+			CharacterB.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+			CharacterA.Play("f02_weightHighSanityA_00");
+			CharacterB.Play("f02_weightHighSanityB_00");
+		}
+		else if (ID == 2)
+		{
+			CharacterA.Play("f02_weightMedSanityA_00");
+			CharacterB.Play("f02_weightMedSanityB_00");
+		}
+		else if (ID == 3)
+		{
+			CharacterA.Play("f02_weightLowSanityA_00");
+			CharacterB.Play("f02_weightLowSanityB_00");
+		}
+		else if (ID == 4)
+		{
+			CharacterB.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+			CharacterA.Play("f02_weightStealthA_00");
+			CharacterB.Play("f02_weightStealthB_00");
+		}
+	}
 }

@@ -1,57 +1,72 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.CustomerSpawner
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
+using System;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  public class CustomerSpawner : MonoBehaviour
-  {
-    public GameObject[] customerPrefabs;
-    private float spawnRate = 10f;
-    private float spawnVariance = 5f;
-    private float timeTillSpawn;
-    private int spawnedCustomers;
-    private bool isPaused;
+	public class CustomerSpawner : MonoBehaviour
+	{
+		public GameObject[] customerPrefabs;
 
-    private void Start()
-    {
-      this.spawnRate = GameController.Instance.activeDifficultyVariables.customerSpawnRate;
-      this.spawnVariance = GameController.Instance.activeDifficultyVariables.customerSpawnVariance;
-      this.isPaused = true;
-    }
+		private float spawnRate = 10f;
 
-    private void OnEnable() => GameController.PauseGame += new BoolParameterEvent(this.Pause);
+		private float spawnVariance = 5f;
 
-    private void OnDisable() => GameController.PauseGame -= new BoolParameterEvent(this.Pause);
+		private float timeTillSpawn;
 
-    public void Pause(bool toPause) => this.isPaused = toPause;
+		private int spawnedCustomers;
 
-    private void Update()
-    {
-      if (this.isPaused)
-        return;
-      if ((double) this.timeTillSpawn <= 0.0)
-      {
-        this.timeTillSpawn = this.spawnRate + Random.Range(-this.spawnVariance, this.spawnVariance);
-        this.SpawnCustomer();
-      }
-      else
-        this.timeTillSpawn -= Time.deltaTime;
-    }
+		private bool isPaused;
 
-    private void SpawnCustomer()
-    {
-      GameObject gameObject = Object.Instantiate<GameObject>(this.customerPrefabs[Random.Range(0, this.customerPrefabs.Length)]);
-      gameObject.transform.position = this.transform.position;
-      AIController component = gameObject.GetComponent<AIController>();
-      component.Init();
-      component.leaveTarget = this.transform;
-    }
+		private void Start()
+		{
+			spawnRate = GameController.Instance.activeDifficultyVariables.customerSpawnRate;
+			spawnVariance = GameController.Instance.activeDifficultyVariables.customerSpawnVariance;
+			isPaused = true;
+		}
 
-    public void OpenDoor() => this.transform.parent.GetComponent<Animator>().SetTrigger("DoorOpen");
-  }
+		private void OnEnable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
+
+		private void OnDisable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
+
+		public void Pause(bool toPause)
+		{
+			isPaused = toPause;
+		}
+
+		private void Update()
+		{
+			if (!isPaused)
+			{
+				if (timeTillSpawn <= 0f)
+				{
+					timeTillSpawn = spawnRate + UnityEngine.Random.Range(0f - spawnVariance, spawnVariance);
+					SpawnCustomer();
+				}
+				else
+				{
+					timeTillSpawn -= Time.deltaTime;
+				}
+			}
+		}
+
+		private void SpawnCustomer()
+		{
+			GameObject obj = UnityEngine.Object.Instantiate(customerPrefabs[UnityEngine.Random.Range(0, customerPrefabs.Length)]);
+			obj.transform.position = base.transform.position;
+			AIController component = obj.GetComponent<AIController>();
+			component.Init();
+			component.leaveTarget = base.transform;
+		}
+
+		public void OpenDoor()
+		{
+			base.transform.parent.GetComponent<Animator>().SetTrigger("DoorOpen");
+		}
+	}
 }

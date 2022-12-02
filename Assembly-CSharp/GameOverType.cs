@@ -1,17 +1,11 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: GameOverType
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public enum GameOverType
 {
-  None,
-  Blood,
-  Insanity,
-  Lewd,
-  Murder,
-  Stalking,
-  Violence,
-  Weapon,
+	None = 0,
+	Blood = 1,
+	Insanity = 2,
+	Lewd = 3,
+	Murder = 4,
+	Stalking = 5,
+	Violence = 6,
+	Weapon = 7
 }

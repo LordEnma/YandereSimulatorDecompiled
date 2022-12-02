@@ -1,206 +1,233 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SuitorBoostScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SuitorBoostScript : MonoBehaviour
 {
-  public LoveManagerScript LoveManager;
-  public PromptBarScript PromptBar;
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public UISprite Darkness;
-  public UILabel Label;
-  public Transform YandereSitSpot;
-  public Transform SuitorSitSpot;
-  public Transform YandereChair;
-  public Transform SuitorChair;
-  public Transform YandereSpot;
-  public Transform SuitorSpot;
-  public Transform LookTarget;
-  public Transform TextBox;
-  public Transform BoostSpot;
-  public bool TaughtSuitor;
-  public bool TimeSkipping;
-  public bool Boosting;
-  public bool FadeOut;
-  public float Timer;
-  public string BoostText;
-  public int TraitID = 2;
-  public int Phase = 1;
+	public LoveManagerScript LoveManager;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      if (!this.Yandere.Chased && this.Yandere.Chasers == 0)
-      {
-        if (!this.TaughtSuitor)
-        {
-          if (this.Yandere.Followers > 0 && this.Yandere.Follower.StudentID == this.LoveManager.SuitorID && (double) this.Yandere.Follower.DistanceToPlayer < 2.0)
-          {
-            this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
-            this.Yandere.RPGCamera.enabled = false;
-            this.Yandere.CanMove = false;
-            this.Yandere.Follower.CharacterAnimation.CrossFade(this.Yandere.Follower.IdleAnim);
-            this.Yandere.Follower.Pathfinding.canSearch = false;
-            this.Yandere.Follower.Pathfinding.canMove = false;
-            this.Yandere.Follower.enabled = false;
-            this.Darkness.enabled = true;
-            this.Boosting = true;
-            this.FadeOut = true;
-            this.Label.text = this.BoostText;
-          }
-          else
-          {
-            this.Yandere.NotificationManager.CustomText = "your rival and bring him here.";
-            this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-            this.Yandere.NotificationManager.CustomText = "Find a boy who has a crush on";
-            this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-          }
-        }
-        else
-        {
-          this.Yandere.NotificationManager.CustomText = "Can't! You already did that today!";
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        }
-      }
-      else
-      {
-        this.Yandere.NotificationManager.CustomText = "Can't! You're being chased!";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-    }
-    if (!this.Boosting)
-      return;
-    if (this.FadeOut)
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a <= 0.99900001287460327)
-        return;
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer <= 1.0)
-        return;
-      if (this.Phase == 1)
-      {
-        this.Yandere.MainCamera.transform.position = this.BoostSpot.position;
-        this.Yandere.MainCamera.transform.eulerAngles = this.BoostSpot.eulerAngles;
-        this.Yandere.Follower.Character.transform.localScale = new Vector3(1f, 1f, 1f);
-        if (this.TraitID == 1)
-        {
-          this.Yandere.Follower.CharacterAnimation.Play("paranoidIdle_00");
-          this.Yandere.transform.position = this.YandereSpot.position;
-          this.Yandere.transform.eulerAngles = this.YandereSpot.eulerAngles;
-          this.Yandere.Follower.transform.position = this.SuitorSpot.position;
-          this.Yandere.Follower.transform.eulerAngles = this.SuitorSpot.eulerAngles;
-        }
-        else if (this.TraitID == 2)
-        {
-          this.YandereChair.transform.localPosition = new Vector3(this.YandereChair.transform.localPosition.x, this.YandereChair.transform.localPosition.y, -0.6f);
-          this.SuitorChair.transform.localPosition = new Vector3(this.SuitorChair.transform.localPosition.x, this.SuitorChair.transform.localPosition.y, -0.6f);
-          this.Yandere.CharacterAnimation.Play("f02_sit_01");
-          this.Yandere.Follower.CharacterAnimation.Play("sit_01");
-          this.Yandere.transform.eulerAngles = Vector3.zero;
-          this.Yandere.Follower.transform.eulerAngles = Vector3.zero;
-          this.Yandere.transform.position = this.YandereSitSpot.position;
-          this.Yandere.Follower.transform.position = this.SuitorSitSpot.position;
-        }
-        else if (this.TraitID == 3)
-        {
-          this.Yandere.Follower.CharacterAnimation.Play("stretch_00_loop");
-          this.Yandere.transform.position = this.YandereSpot.position;
-          this.Yandere.transform.eulerAngles = this.YandereSpot.eulerAngles;
-          this.Yandere.Follower.transform.position = this.SuitorSpot.position;
-          this.Yandere.Follower.transform.eulerAngles = this.SuitorSpot.eulerAngles;
-        }
-      }
-      else
-      {
-        this.Yandere.FixCamera();
-        this.Yandere.Follower.Character.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
-        if (this.TraitID == 2)
-        {
-          this.YandereChair.transform.localPosition = new Vector3(this.YandereChair.transform.localPosition.x, this.YandereChair.transform.localPosition.y, -0.333333343f);
-          this.SuitorChair.transform.localPosition = new Vector3(this.SuitorChair.transform.localPosition.x, this.SuitorChair.transform.localPosition.y, -0.333333343f);
-        }
-        this.Yandere.CharacterAnimation.Play(this.Yandere.IdleAnim);
-        this.Yandere.Follower.CharacterAnimation.Play(this.Yandere.Follower.IdleAnim);
-        this.Yandere.transform.position = this.YandereSpot.position;
-        this.Yandere.Follower.transform.position = this.SuitorSpot.position;
-      }
-      this.PromptBar.ClearButtons();
-      this.FadeOut = false;
-      ++this.Phase;
-    }
-    else
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-      if ((double) this.Darkness.color.a >= 1.0 / 1000.0)
-        return;
-      if (this.Phase == 2)
-      {
-        this.TextBox.gameObject.SetActive(true);
-        this.TextBox.localScale = Vector3.Lerp(this.TextBox.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        if ((double) this.TextBox.localScale.x <= 0.89999997615814209)
-          return;
-        if (!this.PromptBar.Show)
-        {
-          this.PromptBar.ClearButtons();
-          this.PromptBar.Label[0].text = "Continue";
-          this.PromptBar.UpdateButtons();
-          this.PromptBar.Show = true;
-        }
-        if (!Input.GetButtonDown("A"))
-          return;
-        this.PromptBar.Show = false;
-        ++this.Phase;
-      }
-      else if (this.Phase == 3)
-      {
-        if ((double) this.TextBox.localScale.x > 0.10000000149011612)
-        {
-          this.TextBox.localScale = Vector3.Lerp(this.TextBox.localScale, Vector3.zero, Time.deltaTime * 10f);
-        }
-        else
-        {
-          this.TextBox.gameObject.SetActive(false);
-          this.FadeOut = true;
-          ++this.Phase;
-        }
-      }
-      else
-      {
-        if (this.Phase != 5)
-          return;
-        this.Yandere.StudentManager.DatingMinigame.DataNeedsSaving = true;
-        ++this.Yandere.StudentManager.DatingMinigame.Trait[this.TraitID];
-        if (this.TraitID == 1)
-          ++this.Yandere.StudentManager.DatingMinigame.CourageTrait;
-        else if (this.TraitID == 2)
-          ++this.Yandere.StudentManager.DatingMinigame.WisdomTrait;
-        else if (this.TraitID == 3)
-          ++this.Yandere.StudentManager.DatingMinigame.StrengthTrait;
-        this.Yandere.RPGCamera.enabled = true;
-        this.Darkness.enabled = false;
-        this.Yandere.CanMove = true;
-        this.Boosting = false;
-        this.Yandere.Follower.Pathfinding.canSearch = true;
-        this.Yandere.Follower.Pathfinding.canMove = true;
-        this.Yandere.Follower.enabled = true;
-        this.TaughtSuitor = true;
-      }
-    }
-  }
+	public PromptBarScript PromptBar;
 
-  private void LateUpdate()
-  {
-    if (this.TraitID != 2 || !this.Boosting || this.Phase <= 1 || this.Phase >= 5)
-      return;
-    this.Yandere.Head.LookAt(this.LookTarget);
-    this.Yandere.Follower.Head.LookAt(this.LookTarget);
-  }
+	public YandereScript Yandere;
+
+	public PromptScript Prompt;
+
+	public UISprite Darkness;
+
+	public UILabel Label;
+
+	public Transform YandereSitSpot;
+
+	public Transform SuitorSitSpot;
+
+	public Transform YandereChair;
+
+	public Transform SuitorChair;
+
+	public Transform YandereSpot;
+
+	public Transform SuitorSpot;
+
+	public Transform LookTarget;
+
+	public Transform TextBox;
+
+	public Transform BoostSpot;
+
+	public bool TaughtSuitor;
+
+	public bool TimeSkipping;
+
+	public bool Boosting;
+
+	public bool FadeOut;
+
+	public float Timer;
+
+	public string BoostText;
+
+	public int TraitID = 2;
+
+	public int Phase = 1;
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			if (!Yandere.Chased && Yandere.Chasers == 0)
+			{
+				if (!TaughtSuitor)
+				{
+					if (Yandere.Followers > 0 && Yandere.Follower.StudentID == LoveManager.SuitorID && Yandere.Follower.DistanceToPlayer < 2f)
+					{
+						Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+						Yandere.RPGCamera.enabled = false;
+						Yandere.CanMove = false;
+						Yandere.Follower.CharacterAnimation.CrossFade(Yandere.Follower.IdleAnim);
+						Yandere.Follower.Pathfinding.canSearch = false;
+						Yandere.Follower.Pathfinding.canMove = false;
+						Yandere.Follower.enabled = false;
+						Darkness.enabled = true;
+						Boosting = true;
+						FadeOut = true;
+						Label.text = BoostText;
+					}
+					else
+					{
+						Yandere.NotificationManager.CustomText = "your rival and bring him here.";
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						Yandere.NotificationManager.CustomText = "Find a boy who has a crush on";
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					}
+				}
+				else
+				{
+					Yandere.NotificationManager.CustomText = "Can't! You already did that today!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			else
+			{
+				Yandere.NotificationManager.CustomText = "Can't! You're being chased!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+		}
+		if (!Boosting)
+		{
+			return;
+		}
+		if (FadeOut)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+			if (!(Darkness.color.a > 0.999f))
+			{
+				return;
+			}
+			Timer += Time.deltaTime;
+			if (!(Timer > 1f))
+			{
+				return;
+			}
+			if (Phase == 1)
+			{
+				Yandere.MainCamera.transform.position = BoostSpot.position;
+				Yandere.MainCamera.transform.eulerAngles = BoostSpot.eulerAngles;
+				Yandere.Follower.Character.transform.localScale = new Vector3(1f, 1f, 1f);
+				if (TraitID == 1)
+				{
+					Yandere.Follower.CharacterAnimation.Play("paranoidIdle_00");
+					Yandere.transform.position = YandereSpot.position;
+					Yandere.transform.eulerAngles = YandereSpot.eulerAngles;
+					Yandere.Follower.transform.position = SuitorSpot.position;
+					Yandere.Follower.transform.eulerAngles = SuitorSpot.eulerAngles;
+				}
+				else if (TraitID == 2)
+				{
+					YandereChair.transform.localPosition = new Vector3(YandereChair.transform.localPosition.x, YandereChair.transform.localPosition.y, -0.6f);
+					SuitorChair.transform.localPosition = new Vector3(SuitorChair.transform.localPosition.x, SuitorChair.transform.localPosition.y, -0.6f);
+					Yandere.CharacterAnimation.Play("f02_sit_01");
+					Yandere.Follower.CharacterAnimation.Play("sit_01");
+					Yandere.transform.eulerAngles = Vector3.zero;
+					Yandere.Follower.transform.eulerAngles = Vector3.zero;
+					Yandere.transform.position = YandereSitSpot.position;
+					Yandere.Follower.transform.position = SuitorSitSpot.position;
+				}
+				else if (TraitID == 3)
+				{
+					Yandere.Follower.CharacterAnimation.Play("stretch_00_loop");
+					Yandere.transform.position = YandereSpot.position;
+					Yandere.transform.eulerAngles = YandereSpot.eulerAngles;
+					Yandere.Follower.transform.position = SuitorSpot.position;
+					Yandere.Follower.transform.eulerAngles = SuitorSpot.eulerAngles;
+				}
+			}
+			else
+			{
+				Yandere.FixCamera();
+				Yandere.Follower.Character.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
+				if (TraitID == 2)
+				{
+					YandereChair.transform.localPosition = new Vector3(YandereChair.transform.localPosition.x, YandereChair.transform.localPosition.y, -1f / 3f);
+					SuitorChair.transform.localPosition = new Vector3(SuitorChair.transform.localPosition.x, SuitorChair.transform.localPosition.y, -1f / 3f);
+				}
+				Yandere.CharacterAnimation.Play(Yandere.IdleAnim);
+				Yandere.Follower.CharacterAnimation.Play(Yandere.Follower.IdleAnim);
+				Yandere.transform.position = YandereSpot.position;
+				Yandere.Follower.transform.position = SuitorSpot.position;
+			}
+			PromptBar.ClearButtons();
+			FadeOut = false;
+			Phase++;
+			return;
+		}
+		Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
+		if (!(Darkness.color.a < 0.001f))
+		{
+			return;
+		}
+		if (Phase == 2)
+		{
+			TextBox.gameObject.SetActive(true);
+			TextBox.localScale = Vector3.Lerp(TextBox.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			if (TextBox.localScale.x > 0.9f)
+			{
+				if (!PromptBar.Show)
+				{
+					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = "Continue";
+					PromptBar.UpdateButtons();
+					PromptBar.Show = true;
+				}
+				if (Input.GetButtonDown("A"))
+				{
+					PromptBar.Show = false;
+					Phase++;
+				}
+			}
+		}
+		else if (Phase == 3)
+		{
+			if (TextBox.localScale.x > 0.1f)
+			{
+				TextBox.localScale = Vector3.Lerp(TextBox.localScale, Vector3.zero, Time.deltaTime * 10f);
+				return;
+			}
+			TextBox.gameObject.SetActive(false);
+			FadeOut = true;
+			Phase++;
+		}
+		else if (Phase == 5)
+		{
+			Yandere.StudentManager.DatingMinigame.DataNeedsSaving = true;
+			Yandere.StudentManager.DatingMinigame.Trait[TraitID]++;
+			if (TraitID == 1)
+			{
+				Yandere.StudentManager.DatingMinigame.CourageTrait++;
+			}
+			else if (TraitID == 2)
+			{
+				Yandere.StudentManager.DatingMinigame.WisdomTrait++;
+			}
+			else if (TraitID == 3)
+			{
+				Yandere.StudentManager.DatingMinigame.StrengthTrait++;
+			}
+			Yandere.RPGCamera.enabled = true;
+			Darkness.enabled = false;
+			Yandere.CanMove = true;
+			Boosting = false;
+			Yandere.Follower.Pathfinding.canSearch = true;
+			Yandere.Follower.Pathfinding.canMove = true;
+			Yandere.Follower.enabled = true;
+			TaughtSuitor = true;
+		}
+	}
+
+	private void LateUpdate()
+	{
+		if (TraitID == 2 && Boosting && Phase > 1 && Phase < 5)
+		{
+			Yandere.Head.LookAt(LookTarget);
+			Yandere.Follower.Head.LookAt(LookTarget);
+		}
+	}
 }

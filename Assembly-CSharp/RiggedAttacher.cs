@@ -1,35 +1,35 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RiggedAttacher
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RiggedAttacher : MonoBehaviour
 {
-  public Transform BasePelvisRoot;
-  public Transform AttachmentPelvisRoot;
+	public Transform BasePelvisRoot;
 
-  private void Start() => this.Attaching(this.BasePelvisRoot, this.AttachmentPelvisRoot);
+	public Transform AttachmentPelvisRoot;
 
-  private void Attaching(Transform Base, Transform Attachment)
-  {
-    Attachment.transform.SetParent(Base);
-    Base.localEulerAngles = Vector3.zero;
-    Base.localPosition = Vector3.zero;
-    Transform[] componentsInChildren = Base.GetComponentsInChildren<Transform>();
-    foreach (Transform componentsInChild in Attachment.GetComponentsInChildren<Transform>())
-    {
-      foreach (Transform p in componentsInChildren)
-      {
-        if (componentsInChild.name == p.name)
-        {
-          componentsInChild.SetParent(p);
-          componentsInChild.localEulerAngles = Vector3.zero;
-          componentsInChild.localPosition = Vector3.zero;
-        }
-      }
-    }
-  }
+	private void Start()
+	{
+		Attaching(BasePelvisRoot, AttachmentPelvisRoot);
+	}
+
+	private void Attaching(Transform Base, Transform Attachment)
+	{
+		Attachment.transform.SetParent(Base);
+		Base.localEulerAngles = Vector3.zero;
+		Base.localPosition = Vector3.zero;
+		Transform[] componentsInChildren = Base.GetComponentsInChildren<Transform>();
+		Transform[] componentsInChildren2 = Attachment.GetComponentsInChildren<Transform>();
+		foreach (Transform transform in componentsInChildren2)
+		{
+			Transform[] array = componentsInChildren;
+			foreach (Transform transform2 in array)
+			{
+				if (transform.name == transform2.name)
+				{
+					transform.SetParent(transform2);
+					transform.localEulerAngles = Vector3.zero;
+					transform.localPosition = Vector3.zero;
+				}
+			}
+		}
+	}
 }

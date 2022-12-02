@@ -1,104 +1,153 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SchemeGlobals
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public static class SchemeGlobals
 {
-  private const string Str_CurrentScheme = "CurrentScheme";
-  private const string Str_EmbarassingSecret = "EmbarassingSecret";
-  private const string Str_HelpingKokona = "HelpingKokona";
-  private const string Str_SchemePreviousStage = "SchemePreviousStage_";
-  private const string Str_SchemeStage = "SchemeStage_";
-  private const string Str_SchemeStatus = "SchemeStatus_";
-  private const string Str_SchemeUnlocked = "SchemeUnlocked_";
-  private const string Str_ServicePurchased = "ServicePurchased_";
+	private const string Str_CurrentScheme = "CurrentScheme";
 
-  public static int CurrentScheme
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_CurrentScheme");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CurrentScheme", value);
-  }
+	private const string Str_EmbarassingSecret = "EmbarassingSecret";
 
-  public static bool EmbarassingSecret
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_EmbarassingSecret");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_EmbarassingSecret", value);
-  }
+	private const string Str_HelpingKokona = "HelpingKokona";
 
-  public static bool HelpingKokona
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_HelpingKokona");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_HelpingKokona", value);
-  }
+	private const string Str_SchemePreviousStage = "SchemePreviousStage_";
 
-  public static int GetSchemePreviousStage(int schemeID) => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SchemePreviousStage_" + schemeID.ToString());
+	private const string Str_SchemeStage = "SchemeStage_";
 
-  public static void SetSchemePreviousStage(int schemeID, int value)
-  {
-    string id = schemeID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_SchemePreviousStage_", id);
-    PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SchemePreviousStage_" + id, value);
-  }
+	private const string Str_SchemeStatus = "SchemeStatus_";
 
-  public static int[] KeysOfSchemePreviousStage() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SchemePreviousStage_");
+	private const string Str_SchemeUnlocked = "SchemeUnlocked_";
 
-  public static int GetSchemeStage(int schemeID) => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStage_" + schemeID.ToString());
+	private const string Str_ServicePurchased = "ServicePurchased_";
 
-  public static void SetSchemeStage(int schemeID, int value)
-  {
-    string id = schemeID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStage_", id);
-    PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStage_" + id, value);
-  }
+	public static int CurrentScheme
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CurrentScheme");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CurrentScheme", value);
+		}
+	}
 
-  public static int[] KeysOfSchemeStage() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStage_");
+	public static bool EmbarassingSecret
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_EmbarassingSecret");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_EmbarassingSecret", value);
+		}
+	}
 
-  public static bool GetSchemeStatus(int schemeID) => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStatus_" + schemeID.ToString());
+	public static bool HelpingKokona
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_HelpingKokona");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_HelpingKokona", value);
+		}
+	}
 
-  public static void SetSchemeStatus(int schemeID, bool value)
-  {
-    string id = schemeID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStatus_", id);
-    GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStatus_" + id, value);
-  }
+	public static int GetSchemePreviousStage(int schemeID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_SchemePreviousStage_" + schemeID);
+	}
 
-  public static int[] KeysOfSchemeStatus() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStatus_");
+	public static void SetSchemePreviousStage(int schemeID, int value)
+	{
+		string text = schemeID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_SchemePreviousStage_", text);
+		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_SchemePreviousStage_" + text, value);
+	}
 
-  public static bool GetSchemeUnlocked(int schemeID) => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchemeUnlocked_" + schemeID.ToString());
+	public static int[] KeysOfSchemePreviousStage()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_SchemePreviousStage_");
+	}
 
-  public static void SetSchemeUnlocked(int schemeID, bool value)
-  {
-    string id = schemeID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_SchemeUnlocked_", id);
-    GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchemeUnlocked_" + id, value);
-  }
+	public static int GetSchemeStage(int schemeID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_SchemeStage_" + schemeID);
+	}
 
-  public static int[] KeysOfSchemeUnlocked() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SchemeUnlocked_");
+	public static void SetSchemeStage(int schemeID, int value)
+	{
+		string text = schemeID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_SchemeStage_", text);
+		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_SchemeStage_" + text, value);
+	}
 
-  public static bool GetServicePurchased(int serviceID) => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ServicePurchased_" + serviceID.ToString());
+	public static int[] KeysOfSchemeStage()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_SchemeStage_");
+	}
 
-  public static void SetServicePurchased(int serviceID, bool value)
-  {
-    string id = serviceID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_ServicePurchased_", id);
-    GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ServicePurchased_" + id, value);
-  }
+	public static bool GetSchemeStatus(int schemeID)
+	{
+		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_SchemeStatus_" + schemeID);
+	}
 
-  public static int[] KeysOfServicePurchased() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_ServicePurchased_");
+	public static void SetSchemeStatus(int schemeID, bool value)
+	{
+		string text = schemeID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_SchemeStatus_", text);
+		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_SchemeStatus_" + text, value);
+	}
 
-  public static void DeleteAll()
-  {
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CurrentScheme");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_EmbarassingSecret");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_HelpingKokona");
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_SchemePreviousStage_", SchemeGlobals.KeysOfSchemePreviousStage());
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStage_", SchemeGlobals.KeysOfSchemeStage());
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStatus_", SchemeGlobals.KeysOfSchemeStatus());
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_SchemeUnlocked_", SchemeGlobals.KeysOfSchemeUnlocked());
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_ServicePurchased_", SchemeGlobals.KeysOfServicePurchased());
-  }
+	public static int[] KeysOfSchemeStatus()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_SchemeStatus_");
+	}
+
+	public static bool GetSchemeUnlocked(int schemeID)
+	{
+		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_SchemeUnlocked_" + schemeID);
+	}
+
+	public static void SetSchemeUnlocked(int schemeID, bool value)
+	{
+		string text = schemeID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_SchemeUnlocked_", text);
+		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_SchemeUnlocked_" + text, value);
+	}
+
+	public static int[] KeysOfSchemeUnlocked()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_SchemeUnlocked_");
+	}
+
+	public static bool GetServicePurchased(int serviceID)
+	{
+		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_ServicePurchased_" + serviceID);
+	}
+
+	public static void SetServicePurchased(int serviceID, bool value)
+	{
+		string text = serviceID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_ServicePurchased_", text);
+		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_ServicePurchased_" + text, value);
+	}
+
+	public static int[] KeysOfServicePurchased()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_ServicePurchased_");
+	}
+
+	public static void DeleteAll()
+	{
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CurrentScheme");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_EmbarassingSecret");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_HelpingKokona");
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_SchemePreviousStage_", KeysOfSchemePreviousStage());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_SchemeStage_", KeysOfSchemeStage());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_SchemeStatus_", KeysOfSchemeStatus());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_SchemeUnlocked_", KeysOfSchemeUnlocked());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_ServicePurchased_", KeysOfServicePurchased());
+	}
 }

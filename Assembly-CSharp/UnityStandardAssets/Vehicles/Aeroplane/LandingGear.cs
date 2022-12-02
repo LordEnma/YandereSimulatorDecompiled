@@ -1,42 +1,45 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityStandardAssets.Vehicles.Aeroplane.LandingGear
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Aeroplane
 {
-  public class LandingGear : MonoBehaviour
-  {
-    public float raiseAtAltitude = 40f;
-    public float lowerAtAltitude = 40f;
-    private LandingGear.GearState m_State = LandingGear.GearState.Lowered;
-    private Animator m_Animator;
-    private Rigidbody m_Rigidbody;
-    private AeroplaneController m_Plane;
+	public class LandingGear : MonoBehaviour
+	{
+		private enum GearState
+		{
+			Raised = -1,
+			Lowered = 1
+		}
 
-    private void Start()
-    {
-      this.m_Plane = this.GetComponent<AeroplaneController>();
-      this.m_Animator = this.GetComponent<Animator>();
-      this.m_Rigidbody = this.GetComponent<Rigidbody>();
-    }
+		public float raiseAtAltitude = 40f;
 
-    private void Update()
-    {
-      if (this.m_State == LandingGear.GearState.Lowered && (double) this.m_Plane.Altitude > (double) this.raiseAtAltitude && (double) this.m_Rigidbody.velocity.y > 0.0)
-        this.m_State = LandingGear.GearState.Raised;
-      if (this.m_State == LandingGear.GearState.Raised && (double) this.m_Plane.Altitude < (double) this.lowerAtAltitude && (double) this.m_Rigidbody.velocity.y < 0.0)
-        this.m_State = LandingGear.GearState.Lowered;
-      this.m_Animator.SetInteger("GearState", (int) this.m_State);
-    }
+		public float lowerAtAltitude = 40f;
 
-    private enum GearState
-    {
-      Raised = -1, // 0xFFFFFFFF
-      Lowered = 1,
-    }
-  }
+		private GearState m_State = GearState.Lowered;
+
+		private Animator m_Animator;
+
+		private Rigidbody m_Rigidbody;
+
+		private AeroplaneController m_Plane;
+
+		private void Start()
+		{
+			m_Plane = GetComponent<AeroplaneController>();
+			m_Animator = GetComponent<Animator>();
+			m_Rigidbody = GetComponent<Rigidbody>();
+		}
+
+		private void Update()
+		{
+			if (m_State == GearState.Lowered && m_Plane.Altitude > raiseAtAltitude && m_Rigidbody.velocity.y > 0f)
+			{
+				m_State = GearState.Raised;
+			}
+			if (m_State == GearState.Raised && m_Plane.Altitude < lowerAtAltitude && m_Rigidbody.velocity.y < 0f)
+			{
+				m_State = GearState.Lowered;
+			}
+			m_Animator.SetInteger("GearState", (int)m_State);
+		}
+	}
 }

@@ -1,149 +1,212 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CameraFilterPack_TV_BrokenGlass2
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("Camera Filter Pack/TV/Broken Glass2")]
 public class CameraFilterPack_TV_BrokenGlass2 : MonoBehaviour
 {
-  public Shader SCShader;
-  private float TimeX = 1f;
-  [Range(0.0f, 1f)]
-  public float Bullet_1;
-  [Range(0.0f, 1f)]
-  public float Bullet_2;
-  [Range(0.0f, 1f)]
-  public float Bullet_3;
-  [Range(0.0f, 1f)]
-  public float Bullet_4 = 1f;
-  [Range(0.0f, 1f)]
-  public float Bullet_5;
-  [Range(0.0f, 1f)]
-  public float Bullet_6;
-  [Range(0.0f, 1f)]
-  public float Bullet_7;
-  [Range(0.0f, 1f)]
-  public float Bullet_8;
-  [Range(0.0f, 1f)]
-  public float Bullet_9;
-  [Range(0.0f, 1f)]
-  public float Bullet_10;
-  [Range(0.0f, 1f)]
-  public float Bullet_11;
-  [Range(0.0f, 1f)]
-  public float Bullet_12;
-  private Material SCMaterial;
-  private Texture2D Texture2;
+	public Shader SCShader;
 
-  private Material material
-  {
-    get
-    {
-      if ((Object) this.SCMaterial == (Object) null)
-      {
-        this.SCMaterial = new Material(this.SCShader);
-        this.SCMaterial.hideFlags = HideFlags.HideAndDontSave;
-      }
-      return this.SCMaterial;
-    }
-  }
+	private float TimeX = 1f;
 
-  private void Start()
-  {
-    this.Texture2 = Resources.Load("CameraFilterPack_TV_BrokenGlass_2") as Texture2D;
-    this.SCShader = Shader.Find("CameraFilterPack/TV_BrokenGlass2");
-    if (SystemInfo.supportsImageEffects)
-      return;
-    this.enabled = false;
-  }
+	[Range(0f, 1f)]
+	public float Bullet_1;
 
-  private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
-  {
-    if ((Object) this.SCShader != (Object) null)
-    {
-      this.TimeX += Time.deltaTime;
-      if ((double) this.TimeX > 100.0)
-        this.TimeX = 0.0f;
-      this.material.SetFloat("_TimeX", this.TimeX);
-      if ((double) this.Bullet_1 < 0.0)
-        this.Bullet_1 = 0.0f;
-      if ((double) this.Bullet_2 < 0.0)
-        this.Bullet_2 = 0.0f;
-      if ((double) this.Bullet_3 < 0.0)
-        this.Bullet_3 = 0.0f;
-      if ((double) this.Bullet_4 < 0.0)
-        this.Bullet_4 = 0.0f;
-      if ((double) this.Bullet_5 < 0.0)
-        this.Bullet_5 = 0.0f;
-      if ((double) this.Bullet_6 < 0.0)
-        this.Bullet_6 = 0.0f;
-      if ((double) this.Bullet_7 < 0.0)
-        this.Bullet_7 = 0.0f;
-      if ((double) this.Bullet_8 < 0.0)
-        this.Bullet_8 = 0.0f;
-      if ((double) this.Bullet_9 < 0.0)
-        this.Bullet_9 = 0.0f;
-      if ((double) this.Bullet_10 < 0.0)
-        this.Bullet_10 = 0.0f;
-      if ((double) this.Bullet_11 < 0.0)
-        this.Bullet_11 = 0.0f;
-      if ((double) this.Bullet_12 < 0.0)
-        this.Bullet_12 = 0.0f;
-      if ((double) this.Bullet_1 > 1.0)
-        this.Bullet_1 = 1f;
-      if ((double) this.Bullet_2 > 1.0)
-        this.Bullet_2 = 1f;
-      if ((double) this.Bullet_3 > 1.0)
-        this.Bullet_3 = 1f;
-      if ((double) this.Bullet_4 > 1.0)
-        this.Bullet_4 = 1f;
-      if ((double) this.Bullet_5 > 1.0)
-        this.Bullet_5 = 1f;
-      if ((double) this.Bullet_6 > 1.0)
-        this.Bullet_6 = 1f;
-      if ((double) this.Bullet_7 > 1.0)
-        this.Bullet_7 = 1f;
-      if ((double) this.Bullet_8 > 1.0)
-        this.Bullet_8 = 1f;
-      if ((double) this.Bullet_9 > 1.0)
-        this.Bullet_9 = 1f;
-      if ((double) this.Bullet_10 > 1.0)
-        this.Bullet_10 = 1f;
-      if ((double) this.Bullet_11 > 1.0)
-        this.Bullet_11 = 1f;
-      if ((double) this.Bullet_12 > 1.0)
-        this.Bullet_12 = 1f;
-      this.material.SetFloat("_Bullet_1", this.Bullet_1);
-      this.material.SetFloat("_Bullet_2", this.Bullet_2);
-      this.material.SetFloat("_Bullet_3", this.Bullet_3);
-      this.material.SetFloat("_Bullet_4", this.Bullet_4);
-      this.material.SetFloat("_Bullet_5", this.Bullet_5);
-      this.material.SetFloat("_Bullet_6", this.Bullet_6);
-      this.material.SetFloat("_Bullet_7", this.Bullet_7);
-      this.material.SetFloat("_Bullet_8", this.Bullet_8);
-      this.material.SetFloat("_Bullet_9", this.Bullet_9);
-      this.material.SetFloat("_Bullet_10", this.Bullet_10);
-      this.material.SetFloat("_Bullet_11", this.Bullet_11);
-      this.material.SetFloat("_Bullet_12", this.Bullet_12);
-      this.material.SetTexture("_MainTex2", (Texture) this.Texture2);
-      Graphics.Blit((Texture) sourceTexture, destTexture, this.material);
-    }
-    else
-      Graphics.Blit((Texture) sourceTexture, destTexture);
-  }
+	[Range(0f, 1f)]
+	public float Bullet_2;
 
-  private void Update()
-  {
-  }
+	[Range(0f, 1f)]
+	public float Bullet_3;
 
-  private void OnDisable()
-  {
-    if (!(bool) (Object) this.SCMaterial)
-      return;
-    Object.DestroyImmediate((Object) this.SCMaterial);
-  }
+	[Range(0f, 1f)]
+	public float Bullet_4 = 1f;
+
+	[Range(0f, 1f)]
+	public float Bullet_5;
+
+	[Range(0f, 1f)]
+	public float Bullet_6;
+
+	[Range(0f, 1f)]
+	public float Bullet_7;
+
+	[Range(0f, 1f)]
+	public float Bullet_8;
+
+	[Range(0f, 1f)]
+	public float Bullet_9;
+
+	[Range(0f, 1f)]
+	public float Bullet_10;
+
+	[Range(0f, 1f)]
+	public float Bullet_11;
+
+	[Range(0f, 1f)]
+	public float Bullet_12;
+
+	private Material SCMaterial;
+
+	private Texture2D Texture2;
+
+	private Material material
+	{
+		get
+		{
+			if (SCMaterial == null)
+			{
+				SCMaterial = new Material(SCShader);
+				SCMaterial.hideFlags = HideFlags.HideAndDontSave;
+			}
+			return SCMaterial;
+		}
+	}
+
+	private void Start()
+	{
+		Texture2 = Resources.Load("CameraFilterPack_TV_BrokenGlass_2") as Texture2D;
+		SCShader = Shader.Find("CameraFilterPack/TV_BrokenGlass2");
+		if (!SystemInfo.supportsImageEffects)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
+	{
+		if (SCShader != null)
+		{
+			TimeX += Time.deltaTime;
+			if (TimeX > 100f)
+			{
+				TimeX = 0f;
+			}
+			material.SetFloat("_TimeX", TimeX);
+			if (Bullet_1 < 0f)
+			{
+				Bullet_1 = 0f;
+			}
+			if (Bullet_2 < 0f)
+			{
+				Bullet_2 = 0f;
+			}
+			if (Bullet_3 < 0f)
+			{
+				Bullet_3 = 0f;
+			}
+			if (Bullet_4 < 0f)
+			{
+				Bullet_4 = 0f;
+			}
+			if (Bullet_5 < 0f)
+			{
+				Bullet_5 = 0f;
+			}
+			if (Bullet_6 < 0f)
+			{
+				Bullet_6 = 0f;
+			}
+			if (Bullet_7 < 0f)
+			{
+				Bullet_7 = 0f;
+			}
+			if (Bullet_8 < 0f)
+			{
+				Bullet_8 = 0f;
+			}
+			if (Bullet_9 < 0f)
+			{
+				Bullet_9 = 0f;
+			}
+			if (Bullet_10 < 0f)
+			{
+				Bullet_10 = 0f;
+			}
+			if (Bullet_11 < 0f)
+			{
+				Bullet_11 = 0f;
+			}
+			if (Bullet_12 < 0f)
+			{
+				Bullet_12 = 0f;
+			}
+			if (Bullet_1 > 1f)
+			{
+				Bullet_1 = 1f;
+			}
+			if (Bullet_2 > 1f)
+			{
+				Bullet_2 = 1f;
+			}
+			if (Bullet_3 > 1f)
+			{
+				Bullet_3 = 1f;
+			}
+			if (Bullet_4 > 1f)
+			{
+				Bullet_4 = 1f;
+			}
+			if (Bullet_5 > 1f)
+			{
+				Bullet_5 = 1f;
+			}
+			if (Bullet_6 > 1f)
+			{
+				Bullet_6 = 1f;
+			}
+			if (Bullet_7 > 1f)
+			{
+				Bullet_7 = 1f;
+			}
+			if (Bullet_8 > 1f)
+			{
+				Bullet_8 = 1f;
+			}
+			if (Bullet_9 > 1f)
+			{
+				Bullet_9 = 1f;
+			}
+			if (Bullet_10 > 1f)
+			{
+				Bullet_10 = 1f;
+			}
+			if (Bullet_11 > 1f)
+			{
+				Bullet_11 = 1f;
+			}
+			if (Bullet_12 > 1f)
+			{
+				Bullet_12 = 1f;
+			}
+			material.SetFloat("_Bullet_1", Bullet_1);
+			material.SetFloat("_Bullet_2", Bullet_2);
+			material.SetFloat("_Bullet_3", Bullet_3);
+			material.SetFloat("_Bullet_4", Bullet_4);
+			material.SetFloat("_Bullet_5", Bullet_5);
+			material.SetFloat("_Bullet_6", Bullet_6);
+			material.SetFloat("_Bullet_7", Bullet_7);
+			material.SetFloat("_Bullet_8", Bullet_8);
+			material.SetFloat("_Bullet_9", Bullet_9);
+			material.SetFloat("_Bullet_10", Bullet_10);
+			material.SetFloat("_Bullet_11", Bullet_11);
+			material.SetFloat("_Bullet_12", Bullet_12);
+			material.SetTexture("_MainTex2", Texture2);
+			Graphics.Blit(sourceTexture, destTexture, material);
+		}
+		else
+		{
+			Graphics.Blit(sourceTexture, destTexture);
+		}
+	}
+
+	private void Update()
+	{
+	}
+
+	private void OnDisable()
+	{
+		if ((bool)SCMaterial)
+		{
+			Object.DestroyImmediate(SCMaterial);
+		}
+	}
 }

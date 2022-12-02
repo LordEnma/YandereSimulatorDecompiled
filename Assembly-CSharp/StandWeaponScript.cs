@@ -1,40 +1,37 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: StandWeaponScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class StandWeaponScript : MonoBehaviour
 {
-  public PromptScript Prompt;
-  public StandScript Stand;
-  public float RotationSpeed;
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if (this.Prompt.enabled)
-    {
-      if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-        return;
-      this.MoveToStand();
-    }
-    else
-    {
-      this.transform.Rotate(Vector3.forward * (Time.deltaTime * this.RotationSpeed));
-      this.transform.Rotate(Vector3.right * (Time.deltaTime * this.RotationSpeed));
-      this.transform.Rotate(Vector3.up * (Time.deltaTime * this.RotationSpeed));
-    }
-  }
+	public StandScript Stand;
 
-  private void MoveToStand()
-  {
-    this.Prompt.Hide();
-    this.Prompt.enabled = false;
-    this.Prompt.MyCollider.enabled = false;
-    ++this.Stand.Weapons;
-    this.transform.parent = this.Stand.Hands[this.Stand.Weapons];
-    this.transform.localPosition = new Vector3(-0.277f, 0.0f, 0.0f);
-  }
+	public float RotationSpeed;
+
+	private void Update()
+	{
+		if (Prompt.enabled)
+		{
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				MoveToStand();
+			}
+		}
+		else
+		{
+			base.transform.Rotate(Vector3.forward * (Time.deltaTime * RotationSpeed));
+			base.transform.Rotate(Vector3.right * (Time.deltaTime * RotationSpeed));
+			base.transform.Rotate(Vector3.up * (Time.deltaTime * RotationSpeed));
+		}
+	}
+
+	private void MoveToStand()
+	{
+		Prompt.Hide();
+		Prompt.enabled = false;
+		Prompt.MyCollider.enabled = false;
+		Stand.Weapons++;
+		base.transform.parent = Stand.Hands[Stand.Weapons];
+		base.transform.localPosition = new Vector3(-0.277f, 0f, 0f);
+	}
 }

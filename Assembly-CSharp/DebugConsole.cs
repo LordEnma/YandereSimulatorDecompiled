@@ -1,79 +1,76 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DebugConsole
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DebugConsole : MonoBehaviour
 {
-  private List<DebugMessage> logs = new List<DebugMessage>();
-  private Texture2D BackgroundTex;
+	private List<DebugMessage> logs = new List<DebugMessage>();
 
-  private void OnEnable() => Application.logMessageReceived += new Application.LogCallback(this.captureLog);
+	private Texture2D BackgroundTex;
 
-  private void OnDisable() => Application.logMessageReceived += new Application.LogCallback(this.captureLog);
+	private void OnEnable()
+	{
+		Application.logMessageReceived += captureLog;
+	}
 
-  private void Start()
-  {
-    this.BackgroundTex = Texture2D.blackTexture;
-    Texture2D backgroundTex = this.BackgroundTex;
-    for (int x = 0; x < backgroundTex.width; ++x)
-    {
-      for (int y = 0; y < backgroundTex.height; ++y)
-      {
-        Color pixel = backgroundTex.GetPixel(x, y) with
-        {
-          a = 0.5f
-        };
-        backgroundTex.SetPixel(x, y, pixel);
-      }
-    }
-    backgroundTex.Apply();
-    this.BackgroundTex = backgroundTex;
-  }
+	private void OnDisable()
+	{
+		Application.logMessageReceived += captureLog;
+	}
 
-  private void captureLog(string condition, string stackTrace, LogType type)
-  {
-    this.logs.Add(new DebugMessage()
-    {
-      messageType = type,
-      content = condition
-    });
-    if (this.logs.Count <= 30)
-      return;
-    this.logs.RemoveAt(0);
-  }
+	private void Start()
+	{
+		BackgroundTex = Texture2D.blackTexture;
+		Texture2D backgroundTex = BackgroundTex;
+		for (int i = 0; i < backgroundTex.width; i++)
+		{
+			for (int j = 0; j < backgroundTex.height; j++)
+			{
+				Color pixel = backgroundTex.GetPixel(i, j);
+				pixel.a = 0.5f;
+				backgroundTex.SetPixel(i, j, pixel);
+			}
+		}
+		backgroundTex.Apply();
+		BackgroundTex = backgroundTex;
+	}
 
-  private void OnGUI()
-  {
-    GUI.Label(new Rect(10f, 0.0f, (float) Screen.width / 3f, (float) (15 * this.logs.Count)), string.Empty, new GUIStyle()
-    {
-      normal = {
-        background = this.BackgroundTex
-      }
-    });
-    for (int index = 0; index < this.logs.Count; ++index)
-    {
-      GUIStyle style = new GUIStyle();
-      switch (this.logs[index].messageType)
-      {
-        case LogType.Error:
-          style.normal.textColor = Color.red;
-          break;
-        case LogType.Warning:
-          style.normal.textColor = Color.yellow;
-          break;
-        case LogType.Exception:
-          style.normal.textColor = Color.red;
-          break;
-        default:
-          style.normal.textColor = Color.white;
-          break;
-      }
-      GUI.Label(new Rect(10f, (float) (15 * index), (float) Screen.width / 3f, 25f), this.logs[index].content, style);
-    }
-  }
+	private void captureLog(string condition, string stackTrace, LogType type)
+	{
+		logs.Add(new DebugMessage
+		{
+			messageType = type,
+			content = condition
+		});
+		if (logs.Count > 30)
+		{
+			logs.RemoveAt(0);
+		}
+	}
+
+	private void OnGUI()
+	{
+		GUIStyle gUIStyle = new GUIStyle();
+		gUIStyle.normal.background = BackgroundTex;
+		GUI.Label(new Rect(10f, 0f, (float)Screen.width / 3f, 15 * logs.Count), string.Empty, gUIStyle);
+		for (int i = 0; i < logs.Count; i++)
+		{
+			GUIStyle gUIStyle2 = new GUIStyle();
+			switch (logs[i].messageType)
+			{
+			case LogType.Error:
+				gUIStyle2.normal.textColor = Color.red;
+				break;
+			case LogType.Exception:
+				gUIStyle2.normal.textColor = Color.red;
+				break;
+			case LogType.Warning:
+				gUIStyle2.normal.textColor = Color.yellow;
+				break;
+			default:
+				gUIStyle2.normal.textColor = Color.white;
+				break;
+			}
+			GUI.Label(new Rect(10f, 15 * i, (float)Screen.width / 3f, 25f), logs[i].content, gUIStyle2);
+		}
+	}
 }

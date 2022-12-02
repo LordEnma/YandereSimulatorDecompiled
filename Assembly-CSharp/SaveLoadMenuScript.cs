@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SaveLoadMenuScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections;
 using System.IO;
@@ -12,223 +6,254 @@ using UnityEngine.SceneManagement;
 
 public class SaveLoadMenuScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public InputManagerScript InputManager;
-  public PauseScreenScript PauseScreen;
-  public GameObject ConfirmWindow;
-  public GameObject WarningWindow;
-  public ClockScript Clock;
-  public Texture DefaultThumbnail;
-  public UILabel AreYouSureLabel;
-  public UILabel Header;
-  public UITexture[] Thumbnails;
-  public UILabel[] DataLabels;
-  public Transform Highlight;
-  public Camera UICamera;
-  public bool GrabScreenshot;
-  public bool Loading;
-  public bool Saving;
-  public int Profile;
-  public int Row = 1;
-  public int Column = 1;
-  public int Selected = 1;
+	public StudentManagerScript StudentManager;
 
-  public void Start()
-  {
-    if (GameGlobals.Profile == 0)
-      GameGlobals.Profile = 1;
-    this.Profile = GameGlobals.Profile;
-    this.WarningWindow.SetActive(true);
-    this.ConfirmWindow.SetActive(false);
-    this.StartCoroutine(this.GetThumbnails());
-  }
+	public InputManagerScript InputManager;
 
-  public void Update()
-  {
-    if (!this.ConfirmWindow.activeInHierarchy)
-    {
-      if (this.InputManager.TappedUp)
-      {
-        --this.Row;
-        this.UpdateHighlight();
-      }
-      else if (this.InputManager.TappedDown)
-      {
-        ++this.Row;
-        this.UpdateHighlight();
-      }
-      if (this.InputManager.TappedLeft)
-      {
-        --this.Column;
-        this.UpdateHighlight();
-      }
-      else if (this.InputManager.TappedRight)
-      {
-        ++this.Column;
-        this.UpdateHighlight();
-      }
-    }
-    if (this.GrabScreenshot)
-    {
-      if (GameGlobals.Profile == 0)
-      {
-        Debug.Log((object) "Grabbin' a screenshot!");
-        GameGlobals.Profile = 1;
-        this.Profile = 1;
-      }
-      this.PauseScreen.Yandere.Blur.enabled = true;
-      this.UICamera.enabled = true;
-      this.StudentManager.Save();
-      this.StartCoroutine(this.GetThumbnails());
-      switch (DateGlobals.Weekday)
-      {
-        case DayOfWeek.Monday:
-          PlayerPrefs.SetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday", 1);
-          break;
-        case DayOfWeek.Tuesday:
-          PlayerPrefs.SetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday", 2);
-          break;
-        case DayOfWeek.Wednesday:
-          PlayerPrefs.SetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday", 3);
-          break;
-        case DayOfWeek.Thursday:
-          PlayerPrefs.SetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday", 4);
-          break;
-        case DayOfWeek.Friday:
-          PlayerPrefs.SetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday", 5);
-          break;
-      }
-      this.GrabScreenshot = false;
-    }
-    if (this.WarningWindow.activeInHierarchy)
-    {
-      if (Input.GetButtonDown("A"))
-      {
-        this.WarningWindow.SetActive(false);
-      }
-      else
-      {
-        if (!Input.GetButtonDown("B"))
-          return;
-        this.PauseScreen.MainMenu.SetActive(true);
-        this.PauseScreen.Sideways = false;
-        this.PauseScreen.PressedB = true;
-        this.gameObject.SetActive(false);
-        this.PauseScreen.PromptBar.ClearButtons();
-        this.PauseScreen.PromptBar.Label[0].text = "Accept";
-        this.PauseScreen.PromptBar.Label[1].text = "Exit";
-        this.PauseScreen.PromptBar.Label[4].text = "Choose";
-        this.PauseScreen.PromptBar.UpdateButtons();
-        this.PauseScreen.PromptBar.Show = true;
-      }
-    }
-    else
-    {
-      if (Input.GetButtonDown("A"))
-      {
-        if (this.Loading)
-        {
-          if (this.DataLabels[this.Selected].text != "No Data")
-          {
-            if (!this.ConfirmWindow.activeInHierarchy)
-            {
-              this.AreYouSureLabel.text = "Are you sure you'd like to load?";
-              this.ConfirmWindow.SetActive(true);
-            }
-            else if (this.DataLabels[this.Selected].text != "No Data")
-            {
-              PlayerPrefs.SetInt("LoadingSave", 1);
-              PlayerPrefs.SetInt("SaveSlot", this.Selected);
-              YanSave.LoadPrefs("Profile_" + GameGlobals.Profile.ToString() + "_Slot_" + this.Selected.ToString());
-              SceneManager.LoadScene("LoadingScene");
-            }
-          }
-        }
-        else if (this.Saving)
-        {
-          if (!this.ConfirmWindow.activeInHierarchy)
-          {
-            this.AreYouSureLabel.text = "Are you sure you'd like to save?";
-            this.ConfirmWindow.SetActive(true);
-          }
-          else
-          {
-            this.ConfirmWindow.SetActive(false);
-            PlayerPrefs.SetInt("SaveSlot", this.Selected);
-            GameGlobals.MostRecentSlot = this.Selected;
-            PlayerPrefs.SetString("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_DateTime", DateTime.Now.ToString());
-            ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/SaveData/Profile_" + this.Profile.ToString() + "/Slot_" + this.Selected.ToString() + "_Thumbnail.png");
-            this.PauseScreen.Yandere.Blur.enabled = false;
-            this.UICamera.enabled = false;
-            this.GrabScreenshot = true;
-          }
-        }
-      }
-      if (Input.GetButtonDown("X"))
-      {
-        if (PlayerPrefs.GetString("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_DateTime") != "")
-        {
-          File.Delete(Application.streamingAssetsPath + "/SaveData/Profile_" + this.Profile.ToString() + "/Slot_" + this.Selected.ToString() + "_Thumbnail.png");
-          PlayerPrefs.SetString("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_DateTime", "");
-          this.Thumbnails[this.Selected].mainTexture = this.DefaultThumbnail;
-          this.DataLabels[this.Selected].text = "No Data";
-          if (this.Selected == GameGlobals.MostRecentSlot)
-            GameGlobals.MostRecentSlot = 0;
-        }
-      }
-      if (!Input.GetButtonDown("B"))
-        return;
-      if (this.ConfirmWindow.activeInHierarchy)
-      {
-        this.ConfirmWindow.SetActive(false);
-      }
-      else
-      {
-        this.PauseScreen.MainMenu.SetActive(true);
-        this.PauseScreen.Sideways = false;
-        this.PauseScreen.PressedB = true;
-        this.gameObject.SetActive(false);
-        this.PauseScreen.PromptBar.ClearButtons();
-        this.PauseScreen.PromptBar.Label[0].text = "Accept";
-        this.PauseScreen.PromptBar.Label[1].text = "Exit";
-        this.PauseScreen.PromptBar.Label[4].text = "Choose";
-        this.PauseScreen.PromptBar.UpdateButtons();
-        this.PauseScreen.PromptBar.Show = true;
-      }
-    }
-  }
+	public PauseScreenScript PauseScreen;
 
-  public IEnumerator GetThumbnails()
-  {
-    for (int ID = 1; ID < 11; ++ID)
-    {
-      if (PlayerPrefs.GetString("Profile_" + this.Profile.ToString() + "_Slot_" + ID.ToString() + "_DateTime") != "")
-      {
-        this.DataLabels[ID].text = PlayerPrefs.GetString("Profile_" + this.Profile.ToString() + "_Slot_" + ID.ToString() + "_DateTime");
-        WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/SaveData/Profile_" + this.Profile.ToString() + "/Slot_" + ID.ToString() + "_Thumbnail.png");
-        yield return (object) www;
-        if (www.error == null)
-          this.Thumbnails[ID].mainTexture = (Texture) www.texture;
-        else
-          Debug.Log((object) "Could not retrieve the thumbnail. Maybe it was deleted from Streaming Assets?");
-        www = (WWW) null;
-      }
-      else
-        this.DataLabels[ID].text = "No Data";
-    }
-  }
+	public GameObject ConfirmWindow;
 
-  public void UpdateHighlight()
-  {
-    if (this.Row < 1)
-      this.Row = 2;
-    else if (this.Row > 2)
-      this.Row = 1;
-    if (this.Column < 1)
-      this.Column = 5;
-    else if (this.Column > 5)
-      this.Column = 1;
-    this.Highlight.localPosition = new Vector3((float) (170 * this.Column - 510), (float) (313 - 226 * this.Row), this.Highlight.localPosition.z);
-    this.Selected = this.Column + (this.Row - 1) * 5;
-  }
+	public GameObject WarningWindow;
+
+	public ClockScript Clock;
+
+	public Texture DefaultThumbnail;
+
+	public UILabel AreYouSureLabel;
+
+	public UILabel Header;
+
+	public UITexture[] Thumbnails;
+
+	public UILabel[] DataLabels;
+
+	public Transform Highlight;
+
+	public Camera UICamera;
+
+	public bool GrabScreenshot;
+
+	public bool Loading;
+
+	public bool Saving;
+
+	public int Profile;
+
+	public int Row = 1;
+
+	public int Column = 1;
+
+	public int Selected = 1;
+
+	public void Start()
+	{
+		if (GameGlobals.Profile == 0)
+		{
+			GameGlobals.Profile = 1;
+		}
+		Profile = GameGlobals.Profile;
+		WarningWindow.SetActive(true);
+		ConfirmWindow.SetActive(false);
+		StartCoroutine(GetThumbnails());
+	}
+
+	public void Update()
+	{
+		if (!ConfirmWindow.activeInHierarchy)
+		{
+			if (InputManager.TappedUp)
+			{
+				Row--;
+				UpdateHighlight();
+			}
+			else if (InputManager.TappedDown)
+			{
+				Row++;
+				UpdateHighlight();
+			}
+			if (InputManager.TappedLeft)
+			{
+				Column--;
+				UpdateHighlight();
+			}
+			else if (InputManager.TappedRight)
+			{
+				Column++;
+				UpdateHighlight();
+			}
+		}
+		if (GrabScreenshot)
+		{
+			if (GameGlobals.Profile == 0)
+			{
+				Debug.Log("Grabbin' a screenshot!");
+				GameGlobals.Profile = 1;
+				Profile = 1;
+			}
+			PauseScreen.Yandere.Blur.enabled = true;
+			UICamera.enabled = true;
+			StudentManager.Save();
+			StartCoroutine(GetThumbnails());
+			if (DateGlobals.Weekday == DayOfWeek.Monday)
+			{
+				PlayerPrefs.SetInt("Profile_" + Profile + "_Slot_" + Selected + "_Weekday", 1);
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Tuesday)
+			{
+				PlayerPrefs.SetInt("Profile_" + Profile + "_Slot_" + Selected + "_Weekday", 2);
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Wednesday)
+			{
+				PlayerPrefs.SetInt("Profile_" + Profile + "_Slot_" + Selected + "_Weekday", 3);
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Thursday)
+			{
+				PlayerPrefs.SetInt("Profile_" + Profile + "_Slot_" + Selected + "_Weekday", 4);
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Friday)
+			{
+				PlayerPrefs.SetInt("Profile_" + Profile + "_Slot_" + Selected + "_Weekday", 5);
+			}
+			GrabScreenshot = false;
+		}
+		if (WarningWindow.activeInHierarchy)
+		{
+			if (Input.GetButtonDown("A"))
+			{
+				WarningWindow.SetActive(false);
+			}
+			else if (Input.GetButtonDown("B"))
+			{
+				PauseScreen.MainMenu.SetActive(true);
+				PauseScreen.Sideways = false;
+				PauseScreen.PressedB = true;
+				base.gameObject.SetActive(false);
+				PauseScreen.PromptBar.ClearButtons();
+				PauseScreen.PromptBar.Label[0].text = "Accept";
+				PauseScreen.PromptBar.Label[1].text = "Exit";
+				PauseScreen.PromptBar.Label[4].text = "Choose";
+				PauseScreen.PromptBar.UpdateButtons();
+				PauseScreen.PromptBar.Show = true;
+			}
+			return;
+		}
+		if (Input.GetButtonDown("A"))
+		{
+			if (Loading)
+			{
+				if (DataLabels[Selected].text != "No Data")
+				{
+					if (!ConfirmWindow.activeInHierarchy)
+					{
+						AreYouSureLabel.text = "Are you sure you'd like to load?";
+						ConfirmWindow.SetActive(true);
+					}
+					else if (DataLabels[Selected].text != "No Data")
+					{
+						PlayerPrefs.SetInt("LoadingSave", 1);
+						PlayerPrefs.SetInt("SaveSlot", Selected);
+						YanSave.LoadPrefs("Profile_" + GameGlobals.Profile + "_Slot_" + Selected);
+						SceneManager.LoadScene("LoadingScene");
+					}
+				}
+			}
+			else if (Saving)
+			{
+				if (!ConfirmWindow.activeInHierarchy)
+				{
+					AreYouSureLabel.text = "Are you sure you'd like to save?";
+					ConfirmWindow.SetActive(true);
+				}
+				else
+				{
+					ConfirmWindow.SetActive(false);
+					PlayerPrefs.SetInt("SaveSlot", Selected);
+					GameGlobals.MostRecentSlot = Selected;
+					PlayerPrefs.SetString("Profile_" + Profile + "_Slot_" + Selected + "_DateTime", DateTime.Now.ToString());
+					ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/SaveData/Profile_" + Profile + "/Slot_" + Selected + "_Thumbnail.png");
+					PauseScreen.Yandere.Blur.enabled = false;
+					UICamera.enabled = false;
+					GrabScreenshot = true;
+				}
+			}
+		}
+		if (Input.GetButtonDown("X") && PlayerPrefs.GetString("Profile_" + Profile + "_Slot_" + Selected + "_DateTime") != "")
+		{
+			File.Delete(Application.streamingAssetsPath + "/SaveData/Profile_" + Profile + "/Slot_" + Selected + "_Thumbnail.png");
+			PlayerPrefs.SetString("Profile_" + Profile + "_Slot_" + Selected + "_DateTime", "");
+			Thumbnails[Selected].mainTexture = DefaultThumbnail;
+			DataLabels[Selected].text = "No Data";
+			if (Selected == GameGlobals.MostRecentSlot)
+			{
+				GameGlobals.MostRecentSlot = 0;
+			}
+		}
+		if (Input.GetButtonDown("B"))
+		{
+			if (ConfirmWindow.activeInHierarchy)
+			{
+				ConfirmWindow.SetActive(false);
+				return;
+			}
+			PauseScreen.MainMenu.SetActive(true);
+			PauseScreen.Sideways = false;
+			PauseScreen.PressedB = true;
+			base.gameObject.SetActive(false);
+			PauseScreen.PromptBar.ClearButtons();
+			PauseScreen.PromptBar.Label[0].text = "Accept";
+			PauseScreen.PromptBar.Label[1].text = "Exit";
+			PauseScreen.PromptBar.Label[4].text = "Choose";
+			PauseScreen.PromptBar.UpdateButtons();
+			PauseScreen.PromptBar.Show = true;
+		}
+	}
+
+	public IEnumerator GetThumbnails()
+	{
+		for (int ID = 1; ID < 11; ID++)
+		{
+			if (PlayerPrefs.GetString("Profile_" + Profile + "_Slot_" + ID + "_DateTime") != "")
+			{
+				DataLabels[ID].text = PlayerPrefs.GetString("Profile_" + Profile + "_Slot_" + ID + "_DateTime");
+				string url = "file:///" + Application.streamingAssetsPath + "/SaveData/Profile_" + Profile + "/Slot_" + ID + "_Thumbnail.png";
+				WWW www = new WWW(url);
+				yield return www;
+				if (www.error == null)
+				{
+					Thumbnails[ID].mainTexture = www.texture;
+				}
+				else
+				{
+					Debug.Log("Could not retrieve the thumbnail. Maybe it was deleted from Streaming Assets?");
+				}
+			}
+			else
+			{
+				DataLabels[ID].text = "No Data";
+			}
+		}
+	}
+
+	public void UpdateHighlight()
+	{
+		if (Row < 1)
+		{
+			Row = 2;
+		}
+		else if (Row > 2)
+		{
+			Row = 1;
+		}
+		if (Column < 1)
+		{
+			Column = 5;
+		}
+		else if (Column > 5)
+		{
+			Column = 1;
+		}
+		Highlight.localPosition = new Vector3(-510 + 170 * Column, 313 - 226 * Row, Highlight.localPosition.z);
+		Selected = Column + (Row - 1) * 5;
+	}
 }

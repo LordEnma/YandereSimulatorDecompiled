@@ -1,24 +1,23 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ChangeTextureScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ChangeTextureScript : MonoBehaviour
 {
-  public Renderer MyRenderer;
-  public Texture[] Textures;
-  public int ID = 1;
+	public Renderer MyRenderer;
 
-  private void Update()
-  {
-    if (!Input.GetKeyDown(KeyCode.LeftAlt))
-      return;
-    ++this.ID;
-    if (this.ID == this.Textures.Length)
-      this.ID = 1;
-    this.MyRenderer.material.mainTexture = this.Textures[this.ID];
-  }
+	public Texture[] Textures;
+
+	public int ID = 1;
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.LeftAlt))
+		{
+			ID++;
+			if (ID == Textures.Length)
+			{
+				ID = 1;
+			}
+			MyRenderer.material.mainTexture = Textures[ID];
+		}
+	}
 }

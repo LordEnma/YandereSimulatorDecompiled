@@ -1,26 +1,29 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SpinWithMouse
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Examples/Spin With Mouse")]
 public class SpinWithMouse : MonoBehaviour
 {
-  public Transform target;
-  public float speed = 1f;
-  private Transform mTrans;
+	public Transform target;
 
-  private void Start() => this.mTrans = this.transform;
+	public float speed = 1f;
 
-  private void OnDrag(Vector2 delta)
-  {
-    UICamera.currentTouch.clickNotification = UICamera.ClickNotification.None;
-    if ((Object) this.target != (Object) null)
-      this.target.localRotation = Quaternion.Euler(0.0f, -0.5f * delta.x * this.speed, 0.0f) * this.target.localRotation;
-    else
-      this.mTrans.localRotation = Quaternion.Euler(0.0f, -0.5f * delta.x * this.speed, 0.0f) * this.mTrans.localRotation;
-  }
+	private Transform mTrans;
+
+	private void Start()
+	{
+		mTrans = base.transform;
+	}
+
+	private void OnDrag(Vector2 delta)
+	{
+		UICamera.currentTouch.clickNotification = UICamera.ClickNotification.None;
+		if (target != null)
+		{
+			target.localRotation = Quaternion.Euler(0f, -0.5f * delta.x * speed, 0f) * target.localRotation;
+		}
+		else
+		{
+			mTrans.localRotation = Quaternion.Euler(0f, -0.5f * delta.x * speed, 0f) * mTrans.localRotation;
+		}
+	}
 }

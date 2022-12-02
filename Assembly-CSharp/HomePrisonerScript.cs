@@ -1,504 +1,620 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HomePrisonerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HomePrisonerScript : MonoBehaviour
 {
-  public HomePrisonerChanScript EightiesPrisoner;
-  public PrisonerManagerScript PrisonerManager;
-  public InputManagerScript InputManager;
-  public HomePrisonerChanScript Prisoner;
-  public HomeYandereScript HomeYandere;
-  public HomeCameraScript HomeCamera;
-  public HomeWindowScript HomeWindow;
-  public HomeDarknessScript Darkness;
-  public UILabel[] OptionLabels;
-  public string[] Descriptions;
-  public string[] Notes;
-  public string[] Hours;
-  public int[] SanityNumbers;
-  public GameObject ConfirmationWindow;
-  public Transform TortureDestination;
-  public Transform TortureTarget;
-  public GameObject NowLoading;
-  public GameObject YesButton;
-  public Transform Highlight;
-  public AudioSource Jukebox;
-  public GameObject MyFlies;
-  public GameObject Flies;
-  public UILabel ConfirmationLabel;
-  public UILabel SanityLabel;
-  public UILabel DescLabel;
-  public UILabel Subtitle;
-  public UILabel NoLabel;
-  public bool PlayedAudio;
-  public bool ZoomIn;
-  public float Timer;
-  public int Sanity = 100;
-  public int ID = 1;
-  public AudioClip FirstTorture;
-  public AudioClip Under50Torture;
-  public AudioClip Over50Torture;
-  public AudioClip TortureHit;
-  public string[] FullSanityBanterText;
-  public string[] HighSanityBanterText;
-  public string[] LowSanityBanterText;
-  public string[] NoSanityBanterText;
-  public string[] BanterText;
-  public AudioClip[] FullSanityBanter;
-  public AudioClip[] HighSanityBanter;
-  public AudioClip[] LowSanityBanter;
-  public AudioClip[] NoSanityBanter;
-  public AudioClip[] Banter;
-  public float BanterTimer;
-  public bool Initialized;
-  public bool Bantering;
-  public int BanterID;
-  public string[] AnimName;
-  public int AnimID;
-  public UISprite HealthBar;
-  public UISprite HealthBot;
-  public UISprite HealthTop;
-  public UILabel HealthLabel;
-  public UILabel MealsLabel;
-  public float Health;
+	public HomePrisonerChanScript EightiesPrisoner;
 
-  public void Start()
-  {
-    if (this.PrisonerManager.StudentID > 0)
-    {
-      this.Sanity = StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID);
-      this.Health = (float) StudentGlobals.GetStudentHealth(this.PrisonerManager.StudentID);
-      Debug.Log((object) ("Prisoner #" + this.PrisonerManager.StudentID.ToString() + "'s Sanity is " + this.Sanity.ToString() + " and Health is " + this.Health.ToString()));
-      if ((double) this.Health > 0.0 && (double) this.Sanity < 100.0)
-        this.Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
-    }
-    this.HealthLabel.text = "Health: " + this.Health.ToString() + "%";
-    this.SanityLabel.text = "Sanity: " + this.Sanity.ToString() + "%";
-    this.MealsLabel.text = "Meals: " + PlayerGlobals.Meals.ToString();
-    this.Prisoner.Sanity = (float) this.Sanity;
-    this.Subtitle.text = string.Empty;
-    this.HealthBar.transform.localScale = new Vector3(1f, this.Health / 100f, 1f);
-    this.HealthBar.color = new Color((float) (1.0 - (double) this.Health / 100.0), this.Health / 100f, 0.0f);
-    this.HealthTop.color = new Color((float) (1.0 - (double) this.Health / 100.0), this.Health / 100f, 0.0f);
-    this.HealthBot.color = new Color((float) (1.0 - (double) this.Health / 100.0), this.Health / 100f, 0.0f);
-    this.HealthTop.transform.localPosition = new Vector3(0.0f, (float) ((double) this.Health / 100.0 * 400.0 - 200.0), 0.0f);
-    for (int index = 1; index < this.Descriptions.Length - 1; ++index)
-      this.Descriptions[index] = "If you torture your prisoner for " + this.Hours[index] + ", you will reduce her sanity by " + (this.SanityNumbers[index] + ClassGlobals.PsychologyGrade * 10).ToString() + "%, and " + this.Notes[index];
-    if ((double) this.Sanity == 100.0)
-    {
-      this.BanterText = this.FullSanityBanterText;
-      this.Banter = this.FullSanityBanter;
-    }
-    else if ((double) this.Sanity >= 50.0)
-    {
-      this.BanterText = this.HighSanityBanterText;
-      this.Banter = this.HighSanityBanter;
-    }
-    else if ((double) this.Sanity == 0.0)
-    {
-      this.BanterText = this.NoSanityBanterText;
-      this.Banter = this.NoSanityBanter;
-    }
-    else
-    {
-      this.BanterText = this.LowSanityBanterText;
-      this.Banter = this.LowSanityBanter;
-    }
-    this.OptionLabels[1].alpha = 1f;
-    this.OptionLabels[2].alpha = 1f;
-    this.OptionLabels[3].alpha = 1f;
-    this.OptionLabels[4].alpha = 1f;
-    this.OptionLabels[5].alpha = 1f;
-    if ((double) this.Health > 0.0)
-    {
-      if (!HomeGlobals.Night)
-      {
-        UILabel optionLabel1 = this.OptionLabels[2];
-        optionLabel1.color = new Color(optionLabel1.color.r, optionLabel1.color.g, optionLabel1.color.b, 0.5f);
-        if (HomeGlobals.LateForSchool)
-        {
-          UILabel optionLabel2 = this.OptionLabels[1];
-          optionLabel2.color = new Color(optionLabel2.color.r, optionLabel2.color.g, optionLabel2.color.b, 0.5f);
-        }
-        if (DateGlobals.Weekday == DayOfWeek.Friday)
-        {
-          UILabel optionLabel3 = this.OptionLabels[3];
-          optionLabel3.color = new Color(optionLabel3.color.r, optionLabel3.color.g, optionLabel3.color.b, 0.5f);
-          UILabel optionLabel4 = this.OptionLabels[4];
-          optionLabel4.color = new Color(optionLabel4.color.r, optionLabel4.color.g, optionLabel4.color.b, 0.5f);
-        }
-      }
-      else
-      {
-        UILabel optionLabel5 = this.OptionLabels[1];
-        optionLabel5.color = new Color(optionLabel5.color.r, optionLabel5.color.g, optionLabel5.color.b, 0.5f);
-        UILabel optionLabel6 = this.OptionLabels[3];
-        optionLabel6.color = new Color(optionLabel6.color.r, optionLabel6.color.g, optionLabel6.color.b, 0.5f);
-        UILabel optionLabel7 = this.OptionLabels[4];
-        optionLabel7.color = new Color(optionLabel7.color.r, optionLabel7.color.g, optionLabel7.color.b, 0.5f);
-      }
-      if (this.Sanity > 0)
-      {
-        this.OptionLabels[5].text = "?????";
-        UILabel optionLabel = this.OptionLabels[5];
-        optionLabel.color = new Color(optionLabel.color.r, optionLabel.color.g, optionLabel.color.b, 0.5f);
-      }
-      else
-      {
-        this.OptionLabels[5].text = "Bring to School";
-        UILabel optionLabel8 = this.OptionLabels[1];
-        optionLabel8.color = new Color(optionLabel8.color.r, optionLabel8.color.g, optionLabel8.color.b, 0.5f);
-        UILabel optionLabel9 = this.OptionLabels[2];
-        optionLabel9.color = new Color(optionLabel9.color.r, optionLabel9.color.g, optionLabel9.color.b, 0.5f);
-        UILabel optionLabel10 = this.OptionLabels[3];
-        optionLabel10.color = new Color(optionLabel10.color.r, optionLabel10.color.g, optionLabel10.color.b, 0.5f);
-        UILabel optionLabel11 = this.OptionLabels[4];
-        optionLabel11.color = new Color(optionLabel11.color.r, optionLabel11.color.g, optionLabel11.color.b, 0.5f);
-        UILabel optionLabel12 = this.OptionLabels[5];
-        optionLabel12.color = new Color(optionLabel12.color.r, optionLabel12.color.g, optionLabel12.color.b, 1f);
-        if (DateGlobals.Weekday == DayOfWeek.Sunday)
-          this.OptionLabels[5].alpha = 0.5f;
-        if (HomeGlobals.Night)
-          optionLabel12.color = new Color(optionLabel12.color.r, optionLabel12.color.g, optionLabel12.color.b, 0.5f);
-      }
-      if (DateGlobals.Weekday == DayOfWeek.Sunday)
-      {
-        UILabel optionLabel = this.OptionLabels[1];
-        optionLabel.color = new Color(optionLabel.color.r, optionLabel.color.g, optionLabel.color.b, 0.5f);
-      }
-    }
-    else
-    {
-      this.OptionLabels[1].alpha = 0.5f;
-      this.OptionLabels[2].alpha = 0.5f;
-      this.OptionLabels[3].alpha = 0.5f;
-      this.OptionLabels[4].alpha = 0.5f;
-      this.OptionLabels[5].alpha = 0.5f;
-      if (HomeGlobals.Night)
-        this.ConfirmationLabel.text = "Disposing of this corpse will take several hours. You will go to sleep after completing the task. Are you ready to dispose of the corpse now?";
-      else if (DateGlobals.Weekday == DayOfWeek.Friday && GameGlobals.RivalEliminationID == 0)
-      {
-        this.ConfirmationLabel.text = "You can't dispose of a corpse today. You need to go to school and eliminate your rival before she confesses to the boy you love.";
-        this.YesButton.SetActive(false);
-        this.NoLabel.text = "Back";
-      }
-    }
-    if (!this.Initialized)
-    {
-      this.Initialized = true;
-      this.UpdateDesc();
-    }
-    if (StudentGlobals.Prisoners == 0)
-      this.enabled = false;
-    this.Prisoner = this.EightiesPrisoner;
-  }
+	public PrisonerManagerScript PrisonerManager;
 
-  private void Update()
-  {
-    AudioSource component = this.GetComponent<AudioSource>();
-    if ((double) this.Health > 0.0)
-    {
-      if ((double) Vector3.Distance(this.HomeYandere.transform.position, this.Prisoner.transform.position) < 2.0 && this.HomeYandere.CanMove)
-      {
-        this.BanterTimer += Time.deltaTime;
-        if ((double) this.BanterTimer > 5.0 && !this.Bantering)
-        {
-          this.Bantering = true;
-          if (this.BanterID < this.Banter.Length - 1)
-          {
-            ++this.BanterID;
-            this.Subtitle.text = this.BanterText[this.BanterID];
-            component.clip = this.Banter[this.BanterID];
-            component.Play();
-          }
-        }
-      }
-      if (this.Bantering && !component.isPlaying)
-      {
-        this.Subtitle.text = string.Empty;
-        this.Bantering = false;
-        this.BanterTimer = 0.0f;
-      }
-    }
-    if (this.HomeYandere.CanMove || !((UnityEngine.Object) this.HomeCamera.Destination == (UnityEngine.Object) this.HomeCamera.Destinations[10]) && !((UnityEngine.Object) this.HomeCamera.Destination == (UnityEngine.Object) this.TortureDestination))
-      return;
-    if (this.InputManager.TappedDown)
-    {
-      ++this.ID;
-      if (this.ID > 5)
-        this.ID = 1;
-      this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (465.0 - (double) this.ID * 40.0), this.Highlight.localPosition.z);
-      this.UpdateDesc();
-    }
-    if (this.InputManager.TappedUp)
-    {
-      --this.ID;
-      if (this.ID < 1)
-        this.ID = 5;
-      this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (465.0 - (double) this.ID * 40.0), this.Highlight.localPosition.z);
-      this.UpdateDesc();
-    }
-    if (Input.GetKeyDown(KeyCode.Z))
-    {
-      this.Sanity = 0;
-      StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity);
-      this.SanityLabel.text = "Sanity: " + this.Sanity.ToString("f0") + "%";
-      this.Prisoner.UpdateSanity();
-    }
-    if (!this.ZoomIn)
-    {
-      if (this.ConfirmationWindow.activeInHierarchy)
-      {
-        if (this.YesButton.activeInHierarchy && Input.GetButtonDown("A"))
-        {
-          StudentGlobals.SetStudentDead(this.PrisonerManager.StudentID, true);
-          if (this.PrisonerManager.ChosenPrisoner == 1)
-            StudentGlobals.Prisoner1 = 0;
-          if (this.PrisonerManager.ChosenPrisoner == 2)
-            StudentGlobals.Prisoner2 = 0;
-          if (this.PrisonerManager.ChosenPrisoner == 3)
-            StudentGlobals.Prisoner3 = 0;
-          if (this.PrisonerManager.ChosenPrisoner == 4)
-            StudentGlobals.Prisoner4 = 0;
-          if (this.PrisonerManager.ChosenPrisoner == 5)
-            StudentGlobals.Prisoner5 = 0;
-          if (this.PrisonerManager.ChosenPrisoner == 6)
-            StudentGlobals.Prisoner6 = 0;
-          if (this.PrisonerManager.ChosenPrisoner == 7)
-            StudentGlobals.Prisoner7 = 0;
-          if (this.PrisonerManager.ChosenPrisoner == 8)
-            StudentGlobals.Prisoner8 = 0;
-          if (this.PrisonerManager.ChosenPrisoner == 9)
-            StudentGlobals.Prisoner9 = 0;
-          if (this.PrisonerManager.ChosenPrisoner == 10)
-            StudentGlobals.Prisoner10 = 0;
-          --StudentGlobals.Prisoners;
-          this.HomeCamera.HomeDarkness.Disposing = true;
-          this.HomeCamera.HomeDarkness.FadeOut = true;
-          this.gameObject.SetActive(false);
-        }
-        else
-        {
-          if (!Input.GetButtonDown("B"))
-            return;
-          this.ConfirmationWindow.SetActive(false);
-          this.HomeCamera.PromptBar.Show = true;
-          this.UpdateDesc();
-        }
-      }
-      else
-      {
-        if (Input.GetButtonDown("A") && (double) this.OptionLabels[this.ID].color.a == 1.0)
-        {
-          if ((double) this.Sanity > 0.0)
-          {
-            if ((double) this.Sanity == 100.0)
-              this.Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapTorture_01");
-            else if ((double) this.Sanity >= 50.0)
-            {
-              this.Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapTorture_02");
-            }
-            else
-            {
-              this.Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapSurrender_00");
-              this.TortureDestination.localPosition = new Vector3(this.TortureDestination.localPosition.x, 0.0f, 1f);
-              this.TortureTarget.localPosition = new Vector3(this.TortureTarget.localPosition.x, 1.1f, this.TortureTarget.localPosition.z);
-            }
-            this.HomeCamera.Destination = this.TortureDestination;
-            this.HomeCamera.Target = this.TortureTarget;
-            this.HomeCamera.Torturing = true;
-            this.Prisoner.Tortured = true;
-            this.Prisoner.RightEyeRotOrigin.x = -6f;
-            this.Prisoner.LeftEyeRotOrigin.x = 6f;
-            this.ZoomIn = true;
-            if (this.PrisonerManager.ChosenPrisoner > 1)
-              this.Darkness.Sprite.alpha = 1f;
-            this.HomeCamera.UpdateDOF(0.6f);
-          }
-          else
-            this.Darkness.FadeOut = true;
-          this.HomeWindow.Show = false;
-          this.HomeCamera.PromptBar.ClearButtons();
-          this.HomeCamera.PromptBar.Show = false;
-          this.Jukebox.volume -= 0.5f;
-        }
-        if (Input.GetButtonDown("B"))
-        {
-          this.HomeCamera.Destination = this.HomeCamera.Destinations[0];
-          this.HomeCamera.Target = this.HomeCamera.Targets[0];
-          this.HomeCamera.PromptBar.ClearButtons();
-          this.HomeCamera.PromptBar.Show = false;
-          this.HomeYandere.CanMove = true;
-          this.HomeYandere.gameObject.SetActive(true);
-          this.HomeWindow.Show = false;
-        }
-        if (Input.GetButtonDown("X") && PlayerGlobals.Meals > 0 && StudentGlobals.GetStudentHealth(this.PrisonerManager.StudentID) < 100)
-        {
-          StudentGlobals.SetStudentHealth(this.PrisonerManager.StudentID, StudentGlobals.GetStudentHealth(this.PrisonerManager.StudentID) + 10);
-          --PlayerGlobals.Meals;
-          this.Start();
-        }
-        if (!Input.GetButtonDown("Y") || (double) this.Health != 0.0)
-          return;
-        this.ConfirmationWindow.SetActive(true);
-        this.HomeCamera.PromptBar.Show = false;
-      }
-    }
-    else
-    {
-      this.TortureDestination.Translate(Vector3.forward * (Time.deltaTime * 0.02f));
-      this.Jukebox.volume -= Time.deltaTime * 0.05f;
-      this.Timer += Time.deltaTime;
-      if ((double) this.Sanity >= 50.0)
-      {
-        this.TortureDestination.localPosition = new Vector3(this.TortureDestination.localPosition.x, this.TortureDestination.localPosition.y + Time.deltaTime * 0.05f, this.TortureDestination.localPosition.z);
-        if ((double) this.Sanity == 100.0)
-        {
-          if ((double) this.Timer > 2.0 && !this.PlayedAudio)
-          {
-            component.clip = this.FirstTorture;
-            this.PlayedAudio = true;
-            component.Play();
-          }
-        }
-        else if ((double) this.Timer > 1.5 && !this.PlayedAudio)
-        {
-          component.clip = this.Over50Torture;
-          this.PlayedAudio = true;
-          component.Play();
-        }
-      }
-      else if ((double) this.Timer > 5.0 && !this.PlayedAudio)
-      {
-        component.clip = this.Under50Torture;
-        this.PlayedAudio = true;
-        component.Play();
-      }
-      if ((double) this.Timer > 10.0)
-      {
-        if ((double) this.Darkness.Sprite.color.a != 1.0)
-        {
-          this.Darkness.enabled = false;
-          this.Darkness.Sprite.color = new Color(this.Darkness.Sprite.color.r, this.Darkness.Sprite.color.g, this.Darkness.Sprite.color.b, 1f);
-          component.clip = this.TortureHit;
-          component.Play();
-        }
-      }
-      else if (this.PrisonerManager.ChosenPrisoner > 1)
-        this.Darkness.Sprite.alpha = 0.99999f;
-      if ((double) this.Timer <= 15.0)
-        return;
-      int num = StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID);
-      Debug.Log((object) ("StudentGlobals.GetStudentSanity was: " + num.ToString()));
-      StudentGlobals.PreviousSanity = StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID);
-      if (this.ID == 1)
-      {
-        Time.timeScale = 1f;
-        this.NowLoading.SetActive(true);
-        HomeGlobals.LateForSchool = true;
-        if (DateGlobals.Weekday == DayOfWeek.Saturday)
-        {
-          DateGlobals.PassDays = 1;
-          SceneManager.LoadScene("CalendarScene");
-        }
-        else
-          SceneManager.LoadScene("LoadingScene");
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 2 - ClassGlobals.PsychologyGrade * 10);
-      }
-      else if (this.ID == 2)
-      {
-        if (DateGlobals.PassDays < 1)
-          DateGlobals.PassDays = 1;
-        if (DateGlobals.Weekday == DayOfWeek.Sunday)
-          DateGlobals.ForceSkip = true;
-        SceneManager.LoadScene("CalendarScene");
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 8 - ClassGlobals.PsychologyGrade * 10);
-      }
-      else if (this.ID == 3)
-      {
-        HomeGlobals.Night = true;
-        SceneManager.LoadScene("HomeScene");
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 24 - ClassGlobals.PsychologyGrade * 10);
-        if (DateGlobals.Weekday != DayOfWeek.Sunday)
-          PlayerGlobals.Reputation -= 20f;
-      }
-      else if (this.ID == 4)
-      {
-        if (DateGlobals.PassDays < 1)
-          DateGlobals.PassDays = 1;
-        if (DateGlobals.Weekday == DayOfWeek.Sunday)
-          DateGlobals.ForceSkip = true;
-        else
-          PlayerGlobals.Reputation -= 20f;
-        SceneManager.LoadScene("CalendarScene");
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 36 - ClassGlobals.PsychologyGrade * 10);
-      }
-      if ((double) StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID) < 0.0)
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, 0);
-      StudentGlobals.PreviousPrisoner = this.PrisonerManager.StudentID;
-      num = StudentGlobals.PreviousPrisoner;
-      Debug.Log((object) ("And, StudentGlobals.PreviousPrisoner is: " + num.ToString()));
-      num = StudentGlobals.PreviousSanity;
-      Debug.Log((object) ("So, StudentGlobals.PreviousSanity is: " + num.ToString()));
-      num = StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID);
-      Debug.Log((object) ("And now, StudentGlobals.GetStudentSanity is: " + num.ToString()));
-    }
-  }
+	public InputManagerScript InputManager;
 
-  public void UpdateDesc()
-  {
-    this.Start();
-    this.HomeCamera.PromptBar.Label[0].text = "Accept";
-    this.DescLabel.text = this.Descriptions[this.ID];
-    if (!HomeGlobals.Night)
-    {
-      if (HomeGlobals.LateForSchool && this.ID == 1)
-      {
-        this.DescLabel.text = "This option is unavailable if you are late for school.";
-        this.HomeCamera.PromptBar.Label[0].text = string.Empty;
-      }
-      if (this.ID == 2)
-      {
-        this.DescLabel.text = "This option is unavailable in the daytime.";
-        this.HomeCamera.PromptBar.Label[0].text = string.Empty;
-      }
-      if (DateGlobals.Weekday == DayOfWeek.Friday && (this.ID == 3 || this.ID == 4))
-      {
-        this.DescLabel.text = "This option is unavailable on Friday.";
-        this.HomeCamera.PromptBar.Label[0].text = string.Empty;
-      }
-    }
-    else if (this.ID != 2)
-    {
-      this.DescLabel.text = "This option is unavailable at nighttime.";
-      this.HomeCamera.PromptBar.Label[0].text = string.Empty;
-    }
-    if (this.ID == 5)
-    {
-      if ((double) this.Sanity > 0.0)
-        this.DescLabel.text = "This option is unavailable until your prisoner's Sanity has reached zero.";
-      if (HomeGlobals.Night)
-      {
-        this.DescLabel.text = "This option is unavailable at nighttime.";
-        this.HomeCamera.PromptBar.Label[0].text = string.Empty;
-      }
-    }
-    if ((double) this.Health == 0.0)
-    {
-      this.DescLabel.text = "Your prisoner has died. You should dispose of the body.";
-      this.HomeCamera.PromptBar.Label[0].text = "";
-    }
-    if (StudentGlobals.GetStudentHealth(this.PrisonerManager.StudentID) == 0)
-      this.HomeCamera.PromptBar.Label[3].text = "Dispose";
-    else
-      this.HomeCamera.PromptBar.Label[2].text = PlayerGlobals.Meals <= 0 || StudentGlobals.GetStudentHealth(this.PrisonerManager.StudentID) <= 0 || StudentGlobals.GetStudentHealth(this.PrisonerManager.StudentID) >= 100 ? "" : "Feed Meal";
-    this.HomeCamera.PromptBar.UpdateButtons();
-  }
+	public HomePrisonerChanScript Prisoner;
+
+	public HomeYandereScript HomeYandere;
+
+	public HomeCameraScript HomeCamera;
+
+	public HomeWindowScript HomeWindow;
+
+	public HomeDarknessScript Darkness;
+
+	public UILabel[] OptionLabels;
+
+	public string[] Descriptions;
+
+	public string[] Notes;
+
+	public string[] Hours;
+
+	public int[] SanityNumbers;
+
+	public GameObject ConfirmationWindow;
+
+	public Transform TortureDestination;
+
+	public Transform TortureTarget;
+
+	public GameObject NowLoading;
+
+	public GameObject YesButton;
+
+	public Transform Highlight;
+
+	public AudioSource Jukebox;
+
+	public GameObject MyFlies;
+
+	public GameObject Flies;
+
+	public UILabel ConfirmationLabel;
+
+	public UILabel SanityLabel;
+
+	public UILabel DescLabel;
+
+	public UILabel Subtitle;
+
+	public UILabel NoLabel;
+
+	public bool PlayedAudio;
+
+	public bool ZoomIn;
+
+	public float Timer;
+
+	public int Sanity = 100;
+
+	public int ID = 1;
+
+	public AudioClip FirstTorture;
+
+	public AudioClip Under50Torture;
+
+	public AudioClip Over50Torture;
+
+	public AudioClip TortureHit;
+
+	public string[] FullSanityBanterText;
+
+	public string[] HighSanityBanterText;
+
+	public string[] LowSanityBanterText;
+
+	public string[] NoSanityBanterText;
+
+	public string[] BanterText;
+
+	public AudioClip[] FullSanityBanter;
+
+	public AudioClip[] HighSanityBanter;
+
+	public AudioClip[] LowSanityBanter;
+
+	public AudioClip[] NoSanityBanter;
+
+	public AudioClip[] Banter;
+
+	public float BanterTimer;
+
+	public bool Initialized;
+
+	public bool Bantering;
+
+	public int BanterID;
+
+	public string[] AnimName;
+
+	public int AnimID;
+
+	public UISprite HealthBar;
+
+	public UISprite HealthBot;
+
+	public UISprite HealthTop;
+
+	public UILabel HealthLabel;
+
+	public UILabel MealsLabel;
+
+	public float Health;
+
+	public void Start()
+	{
+		if (PrisonerManager.StudentID > 0)
+		{
+			Sanity = StudentGlobals.GetStudentSanity(PrisonerManager.StudentID);
+			Health = StudentGlobals.GetStudentHealth(PrisonerManager.StudentID);
+			Debug.Log("Prisoner #" + PrisonerManager.StudentID + "'s Sanity is " + Sanity + " and Health is " + Health);
+			if (Health > 0f && (float)Sanity < 100f)
+			{
+				Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
+			}
+		}
+		HealthLabel.text = "Health: " + Health + "%";
+		SanityLabel.text = "Sanity: " + Sanity + "%";
+		MealsLabel.text = "Meals: " + PlayerGlobals.Meals;
+		Prisoner.Sanity = Sanity;
+		Subtitle.text = string.Empty;
+		HealthBar.transform.localScale = new Vector3(1f, Health / 100f, 1f);
+		HealthBar.color = new Color(1f - Health / 100f, Health / 100f, 0f);
+		HealthTop.color = new Color(1f - Health / 100f, Health / 100f, 0f);
+		HealthBot.color = new Color(1f - Health / 100f, Health / 100f, 0f);
+		HealthTop.transform.localPosition = new Vector3(0f, -200f + Health / 100f * 400f, 0f);
+		for (int i = 1; i < Descriptions.Length - 1; i++)
+		{
+			Descriptions[i] = "If you torture your prisoner for " + Hours[i] + ", you will reduce her sanity by " + (SanityNumbers[i] + ClassGlobals.PsychologyGrade * 10) + "%, and " + Notes[i];
+		}
+		if ((float)Sanity == 100f)
+		{
+			BanterText = FullSanityBanterText;
+			Banter = FullSanityBanter;
+		}
+		else if ((float)Sanity >= 50f)
+		{
+			BanterText = HighSanityBanterText;
+			Banter = HighSanityBanter;
+		}
+		else if ((float)Sanity == 0f)
+		{
+			BanterText = NoSanityBanterText;
+			Banter = NoSanityBanter;
+		}
+		else
+		{
+			BanterText = LowSanityBanterText;
+			Banter = LowSanityBanter;
+		}
+		OptionLabels[1].alpha = 1f;
+		OptionLabels[2].alpha = 1f;
+		OptionLabels[3].alpha = 1f;
+		OptionLabels[4].alpha = 1f;
+		OptionLabels[5].alpha = 1f;
+		if (Health > 0f)
+		{
+			if (!HomeGlobals.Night)
+			{
+				UILabel uILabel = OptionLabels[2];
+				uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
+				if (HomeGlobals.LateForSchool)
+				{
+					UILabel uILabel2 = OptionLabels[1];
+					uILabel2.color = new Color(uILabel2.color.r, uILabel2.color.g, uILabel2.color.b, 0.5f);
+				}
+				if (DateGlobals.Weekday == DayOfWeek.Friday)
+				{
+					UILabel uILabel3 = OptionLabels[3];
+					uILabel3.color = new Color(uILabel3.color.r, uILabel3.color.g, uILabel3.color.b, 0.5f);
+					UILabel uILabel4 = OptionLabels[4];
+					uILabel4.color = new Color(uILabel4.color.r, uILabel4.color.g, uILabel4.color.b, 0.5f);
+				}
+			}
+			else
+			{
+				UILabel uILabel5 = OptionLabels[1];
+				uILabel5.color = new Color(uILabel5.color.r, uILabel5.color.g, uILabel5.color.b, 0.5f);
+				UILabel uILabel6 = OptionLabels[3];
+				uILabel6.color = new Color(uILabel6.color.r, uILabel6.color.g, uILabel6.color.b, 0.5f);
+				UILabel uILabel7 = OptionLabels[4];
+				uILabel7.color = new Color(uILabel7.color.r, uILabel7.color.g, uILabel7.color.b, 0.5f);
+			}
+			if (Sanity > 0)
+			{
+				OptionLabels[5].text = "?????";
+				UILabel uILabel8 = OptionLabels[5];
+				uILabel8.color = new Color(uILabel8.color.r, uILabel8.color.g, uILabel8.color.b, 0.5f);
+			}
+			else
+			{
+				OptionLabels[5].text = "Bring to School";
+				UILabel uILabel9 = OptionLabels[1];
+				uILabel9.color = new Color(uILabel9.color.r, uILabel9.color.g, uILabel9.color.b, 0.5f);
+				UILabel uILabel10 = OptionLabels[2];
+				uILabel10.color = new Color(uILabel10.color.r, uILabel10.color.g, uILabel10.color.b, 0.5f);
+				UILabel uILabel11 = OptionLabels[3];
+				uILabel11.color = new Color(uILabel11.color.r, uILabel11.color.g, uILabel11.color.b, 0.5f);
+				UILabel uILabel12 = OptionLabels[4];
+				uILabel12.color = new Color(uILabel12.color.r, uILabel12.color.g, uILabel12.color.b, 0.5f);
+				UILabel uILabel13 = OptionLabels[5];
+				uILabel13.color = new Color(uILabel13.color.r, uILabel13.color.g, uILabel13.color.b, 1f);
+				if (DateGlobals.Weekday == DayOfWeek.Sunday)
+				{
+					OptionLabels[5].alpha = 0.5f;
+				}
+				if (HomeGlobals.Night)
+				{
+					uILabel13.color = new Color(uILabel13.color.r, uILabel13.color.g, uILabel13.color.b, 0.5f);
+				}
+			}
+			if (DateGlobals.Weekday == DayOfWeek.Sunday)
+			{
+				UILabel uILabel14 = OptionLabels[1];
+				uILabel14.color = new Color(uILabel14.color.r, uILabel14.color.g, uILabel14.color.b, 0.5f);
+			}
+		}
+		else
+		{
+			OptionLabels[1].alpha = 0.5f;
+			OptionLabels[2].alpha = 0.5f;
+			OptionLabels[3].alpha = 0.5f;
+			OptionLabels[4].alpha = 0.5f;
+			OptionLabels[5].alpha = 0.5f;
+			if (HomeGlobals.Night)
+			{
+				ConfirmationLabel.text = "Disposing of this corpse will take several hours. You will go to sleep after completing the task. Are you ready to dispose of the corpse now?";
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Friday && GameGlobals.RivalEliminationID == 0)
+			{
+				ConfirmationLabel.text = "You can't dispose of a corpse today. You need to go to school and eliminate your rival before she confesses to the boy you love.";
+				YesButton.SetActive(false);
+				NoLabel.text = "Back";
+			}
+		}
+		if (!Initialized)
+		{
+			Initialized = true;
+			UpdateDesc();
+		}
+		if (StudentGlobals.Prisoners == 0)
+		{
+			base.enabled = false;
+		}
+		Prisoner = EightiesPrisoner;
+	}
+
+	private void Update()
+	{
+		AudioSource component = GetComponent<AudioSource>();
+		if (Health > 0f)
+		{
+			if (Vector3.Distance(HomeYandere.transform.position, Prisoner.transform.position) < 2f && HomeYandere.CanMove)
+			{
+				BanterTimer += Time.deltaTime;
+				if (BanterTimer > 5f && !Bantering)
+				{
+					Bantering = true;
+					if (BanterID < Banter.Length - 1)
+					{
+						BanterID++;
+						Subtitle.text = BanterText[BanterID];
+						component.clip = Banter[BanterID];
+						component.Play();
+					}
+				}
+			}
+			if (Bantering && !component.isPlaying)
+			{
+				Subtitle.text = string.Empty;
+				Bantering = false;
+				BanterTimer = 0f;
+			}
+		}
+		if (HomeYandere.CanMove || (!(HomeCamera.Destination == HomeCamera.Destinations[10]) && !(HomeCamera.Destination == TortureDestination)))
+		{
+			return;
+		}
+		if (InputManager.TappedDown)
+		{
+			ID++;
+			if (ID > 5)
+			{
+				ID = 1;
+			}
+			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 465f - (float)ID * 40f, Highlight.localPosition.z);
+			UpdateDesc();
+		}
+		if (InputManager.TappedUp)
+		{
+			ID--;
+			if (ID < 1)
+			{
+				ID = 5;
+			}
+			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 465f - (float)ID * 40f, Highlight.localPosition.z);
+			UpdateDesc();
+		}
+		if (Input.GetKeyDown(KeyCode.Z))
+		{
+			Sanity = 0;
+			StudentGlobals.SetStudentSanity(PrisonerManager.StudentID, Sanity);
+			SanityLabel.text = "Sanity: " + Sanity.ToString("f0") + "%";
+			Prisoner.UpdateSanity();
+		}
+		if (!ZoomIn)
+		{
+			if (ConfirmationWindow.activeInHierarchy)
+			{
+				if (YesButton.activeInHierarchy && Input.GetButtonDown("A"))
+				{
+					StudentGlobals.SetStudentDead(PrisonerManager.StudentID, true);
+					if (PrisonerManager.ChosenPrisoner == 1)
+					{
+						StudentGlobals.Prisoner1 = 0;
+					}
+					if (PrisonerManager.ChosenPrisoner == 2)
+					{
+						StudentGlobals.Prisoner2 = 0;
+					}
+					if (PrisonerManager.ChosenPrisoner == 3)
+					{
+						StudentGlobals.Prisoner3 = 0;
+					}
+					if (PrisonerManager.ChosenPrisoner == 4)
+					{
+						StudentGlobals.Prisoner4 = 0;
+					}
+					if (PrisonerManager.ChosenPrisoner == 5)
+					{
+						StudentGlobals.Prisoner5 = 0;
+					}
+					if (PrisonerManager.ChosenPrisoner == 6)
+					{
+						StudentGlobals.Prisoner6 = 0;
+					}
+					if (PrisonerManager.ChosenPrisoner == 7)
+					{
+						StudentGlobals.Prisoner7 = 0;
+					}
+					if (PrisonerManager.ChosenPrisoner == 8)
+					{
+						StudentGlobals.Prisoner8 = 0;
+					}
+					if (PrisonerManager.ChosenPrisoner == 9)
+					{
+						StudentGlobals.Prisoner9 = 0;
+					}
+					if (PrisonerManager.ChosenPrisoner == 10)
+					{
+						StudentGlobals.Prisoner10 = 0;
+					}
+					StudentGlobals.Prisoners--;
+					HomeCamera.HomeDarkness.Disposing = true;
+					HomeCamera.HomeDarkness.FadeOut = true;
+					base.gameObject.SetActive(false);
+				}
+				else if (Input.GetButtonDown("B"))
+				{
+					ConfirmationWindow.SetActive(false);
+					HomeCamera.PromptBar.Show = true;
+					UpdateDesc();
+				}
+				return;
+			}
+			if (Input.GetButtonDown("A") && OptionLabels[ID].color.a == 1f)
+			{
+				if ((float)Sanity > 0f)
+				{
+					if ((float)Sanity == 100f)
+					{
+						Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapTorture_01");
+					}
+					else if ((float)Sanity >= 50f)
+					{
+						Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapTorture_02");
+					}
+					else
+					{
+						Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapSurrender_00");
+						TortureDestination.localPosition = new Vector3(TortureDestination.localPosition.x, 0f, 1f);
+						TortureTarget.localPosition = new Vector3(TortureTarget.localPosition.x, 1.1f, TortureTarget.localPosition.z);
+					}
+					HomeCamera.Destination = TortureDestination;
+					HomeCamera.Target = TortureTarget;
+					HomeCamera.Torturing = true;
+					Prisoner.Tortured = true;
+					Prisoner.RightEyeRotOrigin.x = -6f;
+					Prisoner.LeftEyeRotOrigin.x = 6f;
+					ZoomIn = true;
+					if (PrisonerManager.ChosenPrisoner > 1)
+					{
+						Darkness.Sprite.alpha = 1f;
+					}
+					HomeCamera.UpdateDOF(0.6f);
+				}
+				else
+				{
+					Darkness.FadeOut = true;
+				}
+				HomeWindow.Show = false;
+				HomeCamera.PromptBar.ClearButtons();
+				HomeCamera.PromptBar.Show = false;
+				Jukebox.volume -= 0.5f;
+			}
+			if (Input.GetButtonDown("B"))
+			{
+				HomeCamera.Destination = HomeCamera.Destinations[0];
+				HomeCamera.Target = HomeCamera.Targets[0];
+				HomeCamera.PromptBar.ClearButtons();
+				HomeCamera.PromptBar.Show = false;
+				HomeYandere.CanMove = true;
+				HomeYandere.gameObject.SetActive(true);
+				HomeWindow.Show = false;
+			}
+			if (Input.GetButtonDown("X") && PlayerGlobals.Meals > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) < 100)
+			{
+				StudentGlobals.SetStudentHealth(PrisonerManager.StudentID, StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) + 10);
+				PlayerGlobals.Meals--;
+				Start();
+			}
+			if (Input.GetButtonDown("Y") && Health == 0f)
+			{
+				ConfirmationWindow.SetActive(true);
+				HomeCamera.PromptBar.Show = false;
+			}
+			return;
+		}
+		TortureDestination.Translate(Vector3.forward * (Time.deltaTime * 0.02f));
+		Jukebox.volume -= Time.deltaTime * 0.05f;
+		Timer += Time.deltaTime;
+		if ((float)Sanity >= 50f)
+		{
+			TortureDestination.localPosition = new Vector3(TortureDestination.localPosition.x, TortureDestination.localPosition.y + Time.deltaTime * 0.05f, TortureDestination.localPosition.z);
+			if ((float)Sanity == 100f)
+			{
+				if (Timer > 2f && !PlayedAudio)
+				{
+					component.clip = FirstTorture;
+					PlayedAudio = true;
+					component.Play();
+				}
+			}
+			else if (Timer > 1.5f && !PlayedAudio)
+			{
+				component.clip = Over50Torture;
+				PlayedAudio = true;
+				component.Play();
+			}
+		}
+		else if (Timer > 5f && !PlayedAudio)
+		{
+			component.clip = Under50Torture;
+			PlayedAudio = true;
+			component.Play();
+		}
+		if (Timer > 10f)
+		{
+			if (Darkness.Sprite.color.a != 1f)
+			{
+				Darkness.enabled = false;
+				Darkness.Sprite.color = new Color(Darkness.Sprite.color.r, Darkness.Sprite.color.g, Darkness.Sprite.color.b, 1f);
+				component.clip = TortureHit;
+				component.Play();
+			}
+		}
+		else if (PrisonerManager.ChosenPrisoner > 1)
+		{
+			Darkness.Sprite.alpha = 0.99999f;
+		}
+		if (!(Timer > 15f))
+		{
+			return;
+		}
+		Debug.Log("StudentGlobals.GetStudentSanity was: " + StudentGlobals.GetStudentSanity(PrisonerManager.StudentID));
+		StudentGlobals.PreviousSanity = StudentGlobals.GetStudentSanity(PrisonerManager.StudentID);
+		if (ID == 1)
+		{
+			Time.timeScale = 1f;
+			NowLoading.SetActive(true);
+			HomeGlobals.LateForSchool = true;
+			if (DateGlobals.Weekday == DayOfWeek.Saturday)
+			{
+				DateGlobals.PassDays = 1;
+				SceneManager.LoadScene("CalendarScene");
+			}
+			else
+			{
+				SceneManager.LoadScene("LoadingScene");
+			}
+			StudentGlobals.SetStudentSanity(PrisonerManager.StudentID, Sanity - 2 - ClassGlobals.PsychologyGrade * 10);
+		}
+		else if (ID == 2)
+		{
+			if (DateGlobals.PassDays < 1)
+			{
+				DateGlobals.PassDays = 1;
+			}
+			if (DateGlobals.Weekday == DayOfWeek.Sunday)
+			{
+				DateGlobals.ForceSkip = true;
+			}
+			SceneManager.LoadScene("CalendarScene");
+			StudentGlobals.SetStudentSanity(PrisonerManager.StudentID, Sanity - 8 - ClassGlobals.PsychologyGrade * 10);
+		}
+		else if (ID == 3)
+		{
+			HomeGlobals.Night = true;
+			SceneManager.LoadScene("HomeScene");
+			StudentGlobals.SetStudentSanity(PrisonerManager.StudentID, Sanity - 24 - ClassGlobals.PsychologyGrade * 10);
+			if (DateGlobals.Weekday != 0)
+			{
+				PlayerGlobals.Reputation -= 20f;
+			}
+		}
+		else if (ID == 4)
+		{
+			if (DateGlobals.PassDays < 1)
+			{
+				DateGlobals.PassDays = 1;
+			}
+			if (DateGlobals.Weekday == DayOfWeek.Sunday)
+			{
+				DateGlobals.ForceSkip = true;
+			}
+			else
+			{
+				PlayerGlobals.Reputation -= 20f;
+			}
+			SceneManager.LoadScene("CalendarScene");
+			StudentGlobals.SetStudentSanity(PrisonerManager.StudentID, Sanity - 36 - ClassGlobals.PsychologyGrade * 10);
+		}
+		if ((float)StudentGlobals.GetStudentSanity(PrisonerManager.StudentID) < 0f)
+		{
+			StudentGlobals.SetStudentSanity(PrisonerManager.StudentID, 0);
+		}
+		StudentGlobals.PreviousPrisoner = PrisonerManager.StudentID;
+		Debug.Log("And, StudentGlobals.PreviousPrisoner is: " + StudentGlobals.PreviousPrisoner);
+		Debug.Log("So, StudentGlobals.PreviousSanity is: " + StudentGlobals.PreviousSanity);
+		Debug.Log("And now, StudentGlobals.GetStudentSanity is: " + StudentGlobals.GetStudentSanity(PrisonerManager.StudentID));
+	}
+
+	public void UpdateDesc()
+	{
+		Start();
+		HomeCamera.PromptBar.Label[0].text = "Accept";
+		DescLabel.text = Descriptions[ID];
+		if (!HomeGlobals.Night)
+		{
+			if (HomeGlobals.LateForSchool && ID == 1)
+			{
+				DescLabel.text = "This option is unavailable if you are late for school.";
+				HomeCamera.PromptBar.Label[0].text = string.Empty;
+			}
+			if (ID == 2)
+			{
+				DescLabel.text = "This option is unavailable in the daytime.";
+				HomeCamera.PromptBar.Label[0].text = string.Empty;
+			}
+			if (DateGlobals.Weekday == DayOfWeek.Friday && (ID == 3 || ID == 4))
+			{
+				DescLabel.text = "This option is unavailable on Friday.";
+				HomeCamera.PromptBar.Label[0].text = string.Empty;
+			}
+		}
+		else if (ID != 2)
+		{
+			DescLabel.text = "This option is unavailable at nighttime.";
+			HomeCamera.PromptBar.Label[0].text = string.Empty;
+		}
+		if (ID == 5)
+		{
+			if ((float)Sanity > 0f)
+			{
+				DescLabel.text = "This option is unavailable until your prisoner's Sanity has reached zero.";
+			}
+			if (HomeGlobals.Night)
+			{
+				DescLabel.text = "This option is unavailable at nighttime.";
+				HomeCamera.PromptBar.Label[0].text = string.Empty;
+			}
+		}
+		if (Health == 0f)
+		{
+			DescLabel.text = "Your prisoner has died. You should dispose of the body.";
+			HomeCamera.PromptBar.Label[0].text = "";
+		}
+		if (StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) == 0)
+		{
+			HomeCamera.PromptBar.Label[3].text = "Dispose";
+		}
+		else if (PlayerGlobals.Meals > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) < 100)
+		{
+			HomeCamera.PromptBar.Label[2].text = "Feed Meal";
+		}
+		else
+		{
+			HomeCamera.PromptBar.Label[2].text = "";
+		}
+		HomeCamera.PromptBar.UpdateButtons();
+	}
 }

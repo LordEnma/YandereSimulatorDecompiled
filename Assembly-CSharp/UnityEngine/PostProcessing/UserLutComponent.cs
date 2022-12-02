@@ -1,40 +1,39 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityEngine.PostProcessing.UserLutComponent
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 namespace UnityEngine.PostProcessing
 {
-  public sealed class UserLutComponent : PostProcessingComponentRenderTexture<UserLutModel>
-  {
-    public override bool active
-    {
-      get
-      {
-        UserLutModel.Settings settings = this.model.settings;
-        return this.model.enabled && (Object) settings.lut != (Object) null && (double) settings.contribution > 0.0 && settings.lut.height == (int) Mathf.Sqrt((float) settings.lut.width) && !this.context.interrupted;
-      }
-    }
+	public sealed class UserLutComponent : PostProcessingComponentRenderTexture<UserLutModel>
+	{
+		private static class Uniforms
+		{
+			internal static readonly int _UserLut = Shader.PropertyToID("_UserLut");
 
-    public override void Prepare(Material uberMaterial)
-    {
-      UserLutModel.Settings settings = this.model.settings;
-      uberMaterial.EnableKeyword("USER_LUT");
-      uberMaterial.SetTexture(UserLutComponent.Uniforms._UserLut, (Texture) settings.lut);
-      uberMaterial.SetVector(UserLutComponent.Uniforms._UserLut_Params, new Vector4(1f / (float) settings.lut.width, 1f / (float) settings.lut.height, (float) settings.lut.height - 1f, settings.contribution));
-    }
+			internal static readonly int _UserLut_Params = Shader.PropertyToID("_UserLut_Params");
+		}
 
-    public void OnGUI()
-    {
-      UserLutModel.Settings settings = this.model.settings;
-      GUI.DrawTexture(new Rect((float) ((double) this.context.viewport.x * (double) Screen.width + 8.0), 8f, (float) settings.lut.width, (float) settings.lut.height), (Texture) settings.lut);
-    }
+		public override bool active
+		{
+			get
+			{
+				UserLutModel.Settings settings = base.model.settings;
+				if (base.model.enabled && settings.lut != null && settings.contribution > 0f && settings.lut.height == (int)Mathf.Sqrt(settings.lut.width))
+				{
+					return !context.interrupted;
+				}
+				return false;
+			}
+		}
 
-    private static class Uniforms
-    {
-      internal static readonly int _UserLut = Shader.PropertyToID(nameof (_UserLut));
-      internal static readonly int _UserLut_Params = Shader.PropertyToID(nameof (_UserLut_Params));
-    }
-  }
+		public override void Prepare(Material uberMaterial)
+		{
+			UserLutModel.Settings settings = base.model.settings;
+			uberMaterial.EnableKeyword("USER_LUT");
+			uberMaterial.SetTexture(Uniforms._UserLut, settings.lut);
+			uberMaterial.SetVector(Uniforms._UserLut_Params, new Vector4(1f / (float)settings.lut.width, 1f / (float)settings.lut.height, (float)settings.lut.height - 1f, settings.contribution));
+		}
+
+		public void OnGUI()
+		{
+			UserLutModel.Settings settings = base.model.settings;
+			GUI.DrawTexture(new Rect(context.viewport.x * (float)Screen.width + 8f, 8f, settings.lut.width, settings.lut.height), settings.lut);
+		}
+	}
 }

@@ -1,33 +1,29 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RandomAnimScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RandomAnimScript : MonoBehaviour
 {
-  public string[] AnimationNames;
-  public string CurrentAnim = string.Empty;
+	public string[] AnimationNames;
 
-  private void Start()
-  {
-    this.PickRandomAnim();
-    this.GetComponent<Animation>().CrossFade(this.CurrentAnim);
-  }
+	public string CurrentAnim = string.Empty;
 
-  private void Update()
-  {
-    AnimationState animationState = this.GetComponent<Animation>()[this.CurrentAnim];
-    if ((double) animationState.time < (double) animationState.length)
-      return;
-    this.PickRandomAnim();
-  }
+	private void Start()
+	{
+		PickRandomAnim();
+		GetComponent<Animation>().CrossFade(CurrentAnim);
+	}
 
-  private void PickRandomAnim()
-  {
-    this.CurrentAnim = this.AnimationNames[Random.Range(0, this.AnimationNames.Length)];
-    this.GetComponent<Animation>().CrossFade(this.CurrentAnim);
-  }
+	private void Update()
+	{
+		AnimationState animationState = GetComponent<Animation>()[CurrentAnim];
+		if (animationState.time >= animationState.length)
+		{
+			PickRandomAnim();
+		}
+	}
+
+	private void PickRandomAnim()
+	{
+		CurrentAnim = AnimationNames[Random.Range(0, AnimationNames.Length)];
+		GetComponent<Animation>().CrossFade(CurrentAnim);
+	}
 }

@@ -1,41 +1,37 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SponsorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SponsorScript : MonoBehaviour
 {
-  public GameObject[] Set;
-  public UISprite Darkness;
-  public float Timer;
-  public int ID;
+	public GameObject[] Set;
 
-  private void Start()
-  {
-    Time.timeScale = 1f;
-    this.Set[1].SetActive(true);
-    this.Set[2].SetActive(false);
-    this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, 1f);
-  }
+	public UISprite Darkness;
 
-  private void Update()
-  {
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer < 3.2000000476837158)
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-    }
-    else
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a <= 0.99000000953674316)
-        return;
-      this.Darkness.color = new Color(1f, 1f, 1f, 1f);
-      SceneManager.LoadScene("NewTitleScene");
-    }
-  }
+	public float Timer;
+
+	public int ID;
+
+	private void Start()
+	{
+		Time.timeScale = 1f;
+		Set[1].SetActive(true);
+		Set[2].SetActive(false);
+		Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 1f);
+	}
+
+	private void Update()
+	{
+		Timer += Time.deltaTime;
+		if (Timer < 3.2f)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
+			return;
+		}
+		Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+		if (Darkness.color.a > 0.99f)
+		{
+			Darkness.color = new Color(1f, 1f, 1f, 1f);
+			SceneManager.LoadScene("NewTitleScene");
+		}
+	}
 }

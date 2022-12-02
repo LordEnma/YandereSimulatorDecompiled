@@ -1,81 +1,91 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaskScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MaskScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public ClubManagerScript ClubManager;
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public PickUpScript PickUp;
-  public Projector Blood;
-  public Renderer MyRenderer;
-  public MeshFilter MyFilter;
-  public Texture[] Textures;
-  public Mesh[] Meshes;
-  public int ID;
+	public StudentManagerScript StudentManager;
 
-  private void Start()
-  {
-    if (GameGlobals.MasksBanned)
-    {
-      this.gameObject.SetActive(false);
-    }
-    else
-    {
-      this.MyFilter.mesh = this.Meshes[this.ID];
-      this.MyRenderer.material.mainTexture = this.Textures[this.ID];
-    }
-    this.enabled = false;
-  }
+	public ClubManagerScript ClubManager;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    this.Prompt.Circle[0].fillAmount = 1f;
-    this.StudentManager.CanAnyoneSeeYandere();
-    if (!this.StudentManager.YandereVisible && !this.Yandere.Chased && this.Yandere.Chasers == 0)
-    {
-      Rigidbody component = this.GetComponent<Rigidbody>();
-      component.useGravity = false;
-      component.isKinematic = true;
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.Prompt.MyCollider.enabled = false;
-      this.transform.parent = this.Yandere.Head;
-      if (this.ID == 1)
-        this.transform.localPosition = new Vector3(0.0f, 0.06f, 0.14f);
-      else
-        this.transform.localPosition = new Vector3(0.0f, 0.033333f, 0.14f);
-      this.transform.localEulerAngles = Vector3.zero;
-      this.Yandere.Mask = this;
-      this.ClubManager.UpdateMasks();
-      this.StudentManager.UpdateStudents();
-    }
-    else
-    {
-      this.Yandere.NotificationManager.CustomText = "Can't remove mask in front of witnesses";
-      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-    }
-  }
+	public YandereScript Yandere;
 
-  public void Drop()
-  {
-    this.Prompt.MyCollider.isTrigger = false;
-    this.Prompt.MyCollider.enabled = true;
-    Rigidbody component = this.GetComponent<Rigidbody>();
-    component.useGravity = true;
-    component.isKinematic = false;
-    this.Prompt.enabled = true;
-    this.transform.parent = (Transform) null;
-    this.Yandere.Mask = (MaskScript) null;
-    this.ClubManager.UpdateMasks();
-    this.StudentManager.UpdateStudents();
-  }
+	public PromptScript Prompt;
+
+	public PickUpScript PickUp;
+
+	public Projector Blood;
+
+	public Renderer MyRenderer;
+
+	public MeshFilter MyFilter;
+
+	public Texture[] Textures;
+
+	public Mesh[] Meshes;
+
+	public int ID;
+
+	private void Start()
+	{
+		if (GameGlobals.MasksBanned)
+		{
+			base.gameObject.SetActive(false);
+		}
+		else
+		{
+			MyFilter.mesh = Meshes[ID];
+			MyRenderer.material.mainTexture = Textures[ID];
+		}
+		base.enabled = false;
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount != 0f)
+		{
+			return;
+		}
+		Prompt.Circle[0].fillAmount = 1f;
+		StudentManager.CanAnyoneSeeYandere();
+		if (!StudentManager.YandereVisible && !Yandere.Chased && Yandere.Chasers == 0)
+		{
+			Rigidbody component = GetComponent<Rigidbody>();
+			component.useGravity = false;
+			component.isKinematic = true;
+			Prompt.Hide();
+			Prompt.enabled = false;
+			Prompt.MyCollider.enabled = false;
+			base.transform.parent = Yandere.Head;
+			if (ID == 1)
+			{
+				base.transform.localPosition = new Vector3(0f, 0.06f, 0.14f);
+			}
+			else
+			{
+				base.transform.localPosition = new Vector3(0f, 0.033333f, 0.14f);
+			}
+			base.transform.localEulerAngles = Vector3.zero;
+			Yandere.Mask = this;
+			ClubManager.UpdateMasks();
+			StudentManager.UpdateStudents();
+		}
+		else
+		{
+			Yandere.NotificationManager.CustomText = "Can't remove mask in front of witnesses";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+		}
+	}
+
+	public void Drop()
+	{
+		Prompt.MyCollider.isTrigger = false;
+		Prompt.MyCollider.enabled = true;
+		Rigidbody component = GetComponent<Rigidbody>();
+		component.useGravity = true;
+		component.isKinematic = false;
+		Prompt.enabled = true;
+		base.transform.parent = null;
+		Yandere.Mask = null;
+		ClubManager.UpdateMasks();
+		StudentManager.UpdateStudents();
+	}
 }

@@ -1,30 +1,27 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CreditsLabelScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class CreditsLabelScript : MonoBehaviour
 {
-  public float RotationSpeed;
-  public float MovementSpeed;
-  public float Rotation;
+	public float RotationSpeed;
 
-  private void Start()
-  {
-    this.Rotation = -90f;
-    this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.Rotation, this.transform.localEulerAngles.z);
-  }
+	public float MovementSpeed;
 
-  private void Update()
-  {
-    this.Rotation += Time.deltaTime * this.RotationSpeed;
-    this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.Rotation, this.transform.localEulerAngles.z);
-    this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + Time.deltaTime * this.MovementSpeed, this.transform.localPosition.z);
-    if ((double) this.Rotation <= 90.0)
-      return;
-    Object.Destroy((Object) this.gameObject);
-  }
+	public float Rotation;
+
+	private void Start()
+	{
+		Rotation = -90f;
+		base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, Rotation, base.transform.localEulerAngles.z);
+	}
+
+	private void Update()
+	{
+		Rotation += Time.deltaTime * RotationSpeed;
+		base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, Rotation, base.transform.localEulerAngles.z);
+		base.transform.localPosition = new Vector3(base.transform.localPosition.x, base.transform.localPosition.y + Time.deltaTime * MovementSpeed, base.transform.localPosition.z);
+		if (Rotation > 90f)
+		{
+			Object.Destroy(base.gameObject);
+		}
+	}
 }

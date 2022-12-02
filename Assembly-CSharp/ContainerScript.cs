@@ -1,219 +1,248 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ContainerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ContainerScript : MonoBehaviour
 {
-  public TrashCanScript TrashCan;
-  public WeaponScript Weapon;
-  public PromptScript Prompt;
-  public Transform[] BodyPartPositions;
-  public Transform WeaponSpot;
-  public Transform Lid;
-  public Collider GardenArea;
-  public Collider NEStairs;
-  public Collider NWStairs;
-  public Collider SEStairs;
-  public Collider SWStairs;
-  public PickUpScript[] BodyParts;
-  public PickUpScript BodyPart;
-  public string SpriteName = string.Empty;
-  public bool CelloCase;
-  public bool CanDrop;
-  public bool Open;
-  public int Contents;
-  public int ID;
+	public TrashCanScript TrashCan;
 
-  public void Start()
-  {
-    this.GardenArea = GameObject.Find("GardenArea").GetComponent<Collider>();
-    this.NEStairs = GameObject.Find("NEStairs").GetComponent<Collider>();
-    this.NWStairs = GameObject.Find("NWStairs").GetComponent<Collider>();
-    this.SEStairs = GameObject.Find("SEStairs").GetComponent<Collider>();
-    this.SWStairs = GameObject.Find("SWStairs").GetComponent<Collider>();
-    Physics.IgnoreCollision(this.Prompt.Yandere.GetComponent<Collider>(), (Collider) this.gameObject.GetComponent<BoxCollider>());
-  }
+	public WeaponScript Weapon;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      this.Open = !this.Open;
-      this.UpdatePrompts();
-    }
-    if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[1].fillAmount = 1f;
-      if (this.Prompt.Yandere.Armed)
-      {
-        this.Weapon = this.Prompt.Yandere.EquippedWeapon;
-        this.Prompt.Yandere.EmptyHands();
-        this.Weapon.transform.parent = this.WeaponSpot;
-        this.Weapon.transform.localPosition = Vector3.zero;
-        this.Weapon.transform.localEulerAngles = Vector3.zero;
-        this.Weapon.gameObject.GetComponent<Rigidbody>().useGravity = false;
-        this.Weapon.MyCollider.isTrigger = true;
-        this.Weapon.Prompt.Hide();
-        this.Weapon.Prompt.enabled = false;
-      }
-      else
-      {
-        this.BodyPart = this.Prompt.Yandere.PickUp;
-        this.Prompt.Yandere.EmptyHands();
-        this.BodyPart.transform.parent = this.BodyPartPositions[this.BodyPart.GetComponent<BodyPartScript>().Type];
-        this.BodyPart.transform.localPosition = Vector3.zero;
-        this.BodyPart.transform.localEulerAngles = Vector3.zero;
-        this.BodyPart.gameObject.GetComponent<Rigidbody>().useGravity = false;
-        this.BodyPart.MyCollider.isTrigger = true;
-        this.BodyParts[this.BodyPart.GetComponent<BodyPartScript>().Type] = this.BodyPart;
-      }
-      ++this.Contents;
-      this.UpdatePrompts();
-    }
-    if ((double) this.Prompt.Circle[3].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[3].fillAmount = 1f;
-      if (!this.Open)
-      {
-        this.transform.parent = this.Prompt.Yandere.Backpack;
-        this.transform.localPosition = Vector3.zero;
-        this.transform.localEulerAngles = Vector3.zero;
-        if ((Object) this.Prompt.Yandere.Container != (Object) null)
-          this.Prompt.Yandere.Container.Drop();
-        this.Prompt.Yandere.Container = this;
-        this.Prompt.Yandere.WeaponMenu.UpdateSprites();
-        this.Prompt.MyCollider.enabled = false;
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-        Rigidbody component = this.GetComponent<Rigidbody>();
-        component.isKinematic = true;
-        component.useGravity = false;
-      }
-      else
-      {
-        if ((Object) this.Weapon != (Object) null)
-        {
-          this.Weapon.Prompt.Circle[3].fillAmount = -1f;
-          this.Weapon.Prompt.enabled = true;
-          this.Weapon = (WeaponScript) null;
-        }
-        else
-        {
-          this.BodyPart = (PickUpScript) null;
-          this.ID = 1;
-          while ((Object) this.BodyPart == (Object) null)
-          {
-            this.BodyPart = this.BodyParts[this.ID];
-            this.BodyParts[this.ID] = (PickUpScript) null;
-            ++this.ID;
-          }
-          this.BodyPart.Prompt.Circle[3].fillAmount = -1f;
-        }
-        --this.Contents;
-        this.UpdatePrompts();
-      }
-    }
-    this.Lid.localEulerAngles = new Vector3(this.Lid.localEulerAngles.x, this.Lid.localEulerAngles.y, Mathf.Lerp(this.Lid.localEulerAngles.z, this.Open ? 90f : 0.0f, Time.deltaTime * 10f));
-    if ((Object) this.Weapon != (Object) null)
-    {
-      this.Weapon.transform.localPosition = Vector3.zero;
-      this.Weapon.transform.localEulerAngles = Vector3.zero;
-    }
-    for (this.ID = 1; this.ID < this.BodyParts.Length; ++this.ID)
-    {
-      if ((Object) this.BodyParts[this.ID] != (Object) null)
-      {
-        this.BodyParts[this.ID].transform.localPosition = Vector3.zero;
-        this.BodyParts[this.ID].transform.localEulerAngles = Vector3.zero;
-      }
-    }
-  }
+	public PromptScript Prompt;
 
-  public void Drop()
-  {
-    Debug.Log((object) "A container was just dropped.");
-    this.transform.parent = (Transform) null;
-    if (this.enabled)
-    {
-      this.transform.position = this.Prompt.Yandere.ObstacleDetector.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
-      this.transform.eulerAngles = this.Prompt.Yandere.ObstacleDetector.transform.eulerAngles;
-    }
-    this.Prompt.Yandere.Container = (ContainerScript) null;
-    this.Prompt.MyCollider.enabled = true;
-    this.Prompt.enabled = true;
-    Rigidbody component = this.GetComponent<Rigidbody>();
-    component.isKinematic = false;
-    component.useGravity = true;
-    if (!((Object) this.TrashCan != (Object) null))
-      return;
-    this.TrashCan.Worn = false;
-  }
+	public Transform[] BodyPartPositions;
 
-  public void UpdatePrompts()
-  {
-    if ((Object) this.Weapon != (Object) null)
-      this.Weapon.MyCollider.enabled = this.Open;
-    for (this.ID = 0; this.ID < this.BodyParts.Length; ++this.ID)
-    {
-      if ((Object) this.BodyParts[this.ID] != (Object) null)
-        this.BodyParts[this.ID].MyCollider.enabled = this.Open;
-    }
-    if (this.Open)
-    {
-      this.Prompt.Label[0].text = "     Close";
-      if (this.Contents > 0)
-      {
-        this.Prompt.Label[3].text = "     Remove";
-        this.Prompt.HideButton[3] = false;
-      }
-      else
-        this.Prompt.HideButton[3] = true;
-      if (this.Prompt.Yandere.Armed)
-      {
-        if (!this.Prompt.Yandere.EquippedWeapon.Concealable)
-        {
-          if ((Object) this.Weapon == (Object) null)
-          {
-            this.Prompt.Label[1].text = "     Insert";
-            this.Prompt.HideButton[1] = false;
-          }
-          else
-            this.Prompt.HideButton[1] = true;
-        }
-        else
-          this.Prompt.HideButton[1] = true;
-      }
-      else if ((Object) this.Prompt.Yandere.PickUp != (Object) null)
-      {
-        if ((Object) this.Prompt.Yandere.PickUp.BodyPart != (Object) null)
-        {
-          if ((Object) this.BodyParts[this.Prompt.Yandere.PickUp.gameObject.GetComponent<BodyPartScript>().Type] == (Object) null)
-          {
-            this.Prompt.Label[1].text = "     Insert";
-            this.Prompt.HideButton[1] = false;
-          }
-          else
-            this.Prompt.HideButton[1] = true;
-        }
-        else
-          this.Prompt.HideButton[1] = true;
-      }
-      else
-        this.Prompt.HideButton[1] = true;
-    }
-    else
-    {
-      if (!((Object) this.Prompt.Label[0] != (Object) null))
-        return;
-      this.Prompt.Label[0].text = "     Open";
-      this.Prompt.HideButton[1] = true;
-      this.Prompt.Label[3].text = "     Wear";
-      this.Prompt.HideButton[3] = false;
-    }
-  }
+	public Transform WeaponSpot;
+
+	public Transform Lid;
+
+	public Collider GardenArea;
+
+	public Collider NEStairs;
+
+	public Collider NWStairs;
+
+	public Collider SEStairs;
+
+	public Collider SWStairs;
+
+	public PickUpScript[] BodyParts;
+
+	public PickUpScript BodyPart;
+
+	public string SpriteName = string.Empty;
+
+	public bool CelloCase;
+
+	public bool CanDrop;
+
+	public bool Open;
+
+	public int Contents;
+
+	public int ID;
+
+	public void Start()
+	{
+		GardenArea = GameObject.Find("GardenArea").GetComponent<Collider>();
+		NEStairs = GameObject.Find("NEStairs").GetComponent<Collider>();
+		NWStairs = GameObject.Find("NWStairs").GetComponent<Collider>();
+		SEStairs = GameObject.Find("SEStairs").GetComponent<Collider>();
+		SWStairs = GameObject.Find("SWStairs").GetComponent<Collider>();
+		Physics.IgnoreCollision(Prompt.Yandere.GetComponent<Collider>(), base.gameObject.GetComponent<BoxCollider>());
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			Open = !Open;
+			UpdatePrompts();
+		}
+		if (Prompt.Circle[1].fillAmount == 0f)
+		{
+			Prompt.Circle[1].fillAmount = 1f;
+			if (Prompt.Yandere.Armed)
+			{
+				Weapon = Prompt.Yandere.EquippedWeapon;
+				Prompt.Yandere.EmptyHands();
+				Weapon.transform.parent = WeaponSpot;
+				Weapon.transform.localPosition = Vector3.zero;
+				Weapon.transform.localEulerAngles = Vector3.zero;
+				Weapon.gameObject.GetComponent<Rigidbody>().useGravity = false;
+				Weapon.MyCollider.isTrigger = true;
+				Weapon.Prompt.Hide();
+				Weapon.Prompt.enabled = false;
+			}
+			else
+			{
+				BodyPart = Prompt.Yandere.PickUp;
+				Prompt.Yandere.EmptyHands();
+				BodyPart.transform.parent = BodyPartPositions[BodyPart.GetComponent<BodyPartScript>().Type];
+				BodyPart.transform.localPosition = Vector3.zero;
+				BodyPart.transform.localEulerAngles = Vector3.zero;
+				BodyPart.gameObject.GetComponent<Rigidbody>().useGravity = false;
+				BodyPart.MyCollider.isTrigger = true;
+				BodyParts[BodyPart.GetComponent<BodyPartScript>().Type] = BodyPart;
+			}
+			Contents++;
+			UpdatePrompts();
+		}
+		if (Prompt.Circle[3].fillAmount == 0f)
+		{
+			Prompt.Circle[3].fillAmount = 1f;
+			if (!Open)
+			{
+				base.transform.parent = Prompt.Yandere.Backpack;
+				base.transform.localPosition = Vector3.zero;
+				base.transform.localEulerAngles = Vector3.zero;
+				if (Prompt.Yandere.Container != null)
+				{
+					Prompt.Yandere.Container.Drop();
+				}
+				Prompt.Yandere.Container = this;
+				Prompt.Yandere.WeaponMenu.UpdateSprites();
+				Prompt.MyCollider.enabled = false;
+				Prompt.Hide();
+				Prompt.enabled = false;
+				Rigidbody component = GetComponent<Rigidbody>();
+				component.isKinematic = true;
+				component.useGravity = false;
+			}
+			else
+			{
+				if (Weapon != null)
+				{
+					Weapon.Prompt.Circle[3].fillAmount = -1f;
+					Weapon.Prompt.enabled = true;
+					Weapon = null;
+				}
+				else
+				{
+					BodyPart = null;
+					ID = 1;
+					while (BodyPart == null)
+					{
+						BodyPart = BodyParts[ID];
+						BodyParts[ID] = null;
+						ID++;
+					}
+					BodyPart.Prompt.Circle[3].fillAmount = -1f;
+				}
+				Contents--;
+				UpdatePrompts();
+			}
+		}
+		Lid.localEulerAngles = new Vector3(Lid.localEulerAngles.x, Lid.localEulerAngles.y, Mathf.Lerp(Lid.localEulerAngles.z, Open ? 90f : 0f, Time.deltaTime * 10f));
+		if (Weapon != null)
+		{
+			Weapon.transform.localPosition = Vector3.zero;
+			Weapon.transform.localEulerAngles = Vector3.zero;
+		}
+		for (ID = 1; ID < BodyParts.Length; ID++)
+		{
+			if (BodyParts[ID] != null)
+			{
+				BodyParts[ID].transform.localPosition = Vector3.zero;
+				BodyParts[ID].transform.localEulerAngles = Vector3.zero;
+			}
+		}
+	}
+
+	public void Drop()
+	{
+		Debug.Log("A container was just dropped.");
+		base.transform.parent = null;
+		if (base.enabled)
+		{
+			base.transform.position = Prompt.Yandere.ObstacleDetector.transform.position + new Vector3(0f, 0.5f, 0f);
+			base.transform.eulerAngles = Prompt.Yandere.ObstacleDetector.transform.eulerAngles;
+		}
+		Prompt.Yandere.Container = null;
+		Prompt.MyCollider.enabled = true;
+		Prompt.enabled = true;
+		Rigidbody component = GetComponent<Rigidbody>();
+		component.isKinematic = false;
+		component.useGravity = true;
+		if (TrashCan != null)
+		{
+			TrashCan.Worn = false;
+		}
+	}
+
+	public void UpdatePrompts()
+	{
+		if (Weapon != null)
+		{
+			Weapon.MyCollider.enabled = Open;
+		}
+		for (ID = 0; ID < BodyParts.Length; ID++)
+		{
+			if (BodyParts[ID] != null)
+			{
+				BodyParts[ID].MyCollider.enabled = Open;
+			}
+		}
+		if (Open)
+		{
+			Prompt.Label[0].text = "     Close";
+			if (Contents > 0)
+			{
+				Prompt.Label[3].text = "     Remove";
+				Prompt.HideButton[3] = false;
+			}
+			else
+			{
+				Prompt.HideButton[3] = true;
+			}
+			if (Prompt.Yandere.Armed)
+			{
+				if (!Prompt.Yandere.EquippedWeapon.Concealable)
+				{
+					if (Weapon == null)
+					{
+						Prompt.Label[1].text = "     Insert";
+						Prompt.HideButton[1] = false;
+					}
+					else
+					{
+						Prompt.HideButton[1] = true;
+					}
+				}
+				else
+				{
+					Prompt.HideButton[1] = true;
+				}
+			}
+			else if (Prompt.Yandere.PickUp != null)
+			{
+				if (Prompt.Yandere.PickUp.BodyPart != null)
+				{
+					if (BodyParts[Prompt.Yandere.PickUp.gameObject.GetComponent<BodyPartScript>().Type] == null)
+					{
+						Prompt.Label[1].text = "     Insert";
+						Prompt.HideButton[1] = false;
+					}
+					else
+					{
+						Prompt.HideButton[1] = true;
+					}
+				}
+				else
+				{
+					Prompt.HideButton[1] = true;
+				}
+			}
+			else
+			{
+				Prompt.HideButton[1] = true;
+			}
+		}
+		else if (Prompt.Label[0] != null)
+		{
+			Prompt.Label[0].text = "     Open";
+			Prompt.HideButton[1] = true;
+			Prompt.Label[3].text = "     Wear";
+			Prompt.HideButton[3] = false;
+		}
+	}
 }

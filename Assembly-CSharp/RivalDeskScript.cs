@@ -1,50 +1,53 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RivalDeskScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class RivalDeskScript : MonoBehaviour
 {
-  public SchemesScript Schemes;
-  public ClockScript Clock;
-  public PromptScript Prompt;
-  public bool Cheating;
+	public SchemesScript Schemes;
 
-  private void Start()
-  {
-    if (DateGlobals.Weekday == DayOfWeek.Friday)
-      return;
-    this.enabled = false;
-  }
+	public ClockScript Clock;
 
-  private void Update()
-  {
-    if (this.Prompt.Yandere.Inventory.AnswerSheet || !this.Prompt.Yandere.Inventory.DuplicateSheet)
-      return;
-    this.Prompt.enabled = true;
-    if ((double) this.Clock.HourTime > 13.0)
-    {
-      this.Prompt.HideButton[0] = false;
-      if ((double) this.Clock.HourTime > 13.5)
-      {
-        SchemeGlobals.SetSchemeStage(5, 100);
-        this.Schemes.UpdateInstructions();
-        this.Prompt.HideButton[0] = true;
-      }
-    }
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    if (DateGlobals.Weekday == DayOfWeek.Friday)
-      SchemeGlobals.SetSchemeStage(5, 9);
-    this.Schemes.UpdateInstructions();
-    this.Prompt.Yandere.Inventory.DuplicateSheet = false;
-    this.Prompt.Hide();
-    this.Prompt.enabled = false;
-    this.Cheating = true;
-    this.enabled = false;
-  }
+	public PromptScript Prompt;
+
+	public bool Cheating;
+
+	private void Start()
+	{
+		if (DateGlobals.Weekday != DayOfWeek.Friday)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (Prompt.Yandere.Inventory.AnswerSheet || !Prompt.Yandere.Inventory.DuplicateSheet)
+		{
+			return;
+		}
+		Prompt.enabled = true;
+		if (Clock.HourTime > 13f)
+		{
+			Prompt.HideButton[0] = false;
+			if (Clock.HourTime > 13.5f)
+			{
+				SchemeGlobals.SetSchemeStage(5, 100);
+				Schemes.UpdateInstructions();
+				Prompt.HideButton[0] = true;
+			}
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			if (DateGlobals.Weekday == DayOfWeek.Friday)
+			{
+				SchemeGlobals.SetSchemeStage(5, 9);
+			}
+			Schemes.UpdateInstructions();
+			Prompt.Yandere.Inventory.DuplicateSheet = false;
+			Prompt.Hide();
+			Prompt.enabled = false;
+			Cheating = true;
+			base.enabled = false;
+		}
+	}
 }

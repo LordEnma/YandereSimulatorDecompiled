@@ -1,49 +1,43 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: LowPolyStudentScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class LowPolyStudentScript : MonoBehaviour
 {
-  public StudentScript Student;
-  public Renderer TeacherMesh;
-  public Renderer MyMesh;
+	public StudentScript Student;
 
-  private void Start()
-  {
-    if (!((Object) this.Student.StudentManager == (Object) null) && !this.Student.Cosmetic.Kidnapped && this.Student.StudentID != 1)
-      return;
-    this.enabled = false;
-  }
+	public Renderer TeacherMesh;
 
-  private void Update()
-  {
-    if ((Object) this.Student.StudentManager != (Object) null && (double) this.Student.StudentManager.LowDetailThreshold > 0.0)
-    {
-      if ((double) this.Student.Prompt.DistanceSqr > (double) this.Student.StudentManager.LowDetailThreshold)
-      {
-        if (this.MyMesh.enabled)
-          return;
-        this.Student.MyRenderer.enabled = false;
-        this.MyMesh.enabled = true;
-      }
-      else
-      {
-        if (!this.MyMesh.enabled)
-          return;
-        this.Student.MyRenderer.enabled = true;
-        this.MyMesh.enabled = false;
-      }
-    }
-    else
-    {
-      if (!this.MyMesh.enabled)
-        return;
-      this.Student.MyRenderer.enabled = true;
-      this.MyMesh.enabled = false;
-    }
-  }
+	public Renderer MyMesh;
+
+	private void Start()
+	{
+		if (Student.StudentManager == null || Student.Cosmetic.Kidnapped || Student.StudentID == 1)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (Student.StudentManager != null && (float)Student.StudentManager.LowDetailThreshold > 0f)
+		{
+			if (Student.Prompt.DistanceSqr > (float)Student.StudentManager.LowDetailThreshold)
+			{
+				if (!MyMesh.enabled)
+				{
+					Student.MyRenderer.enabled = false;
+					MyMesh.enabled = true;
+				}
+			}
+			else if (MyMesh.enabled)
+			{
+				Student.MyRenderer.enabled = true;
+				MyMesh.enabled = false;
+			}
+		}
+		else if (MyMesh.enabled)
+		{
+			Student.MyRenderer.enabled = true;
+			MyMesh.enabled = false;
+		}
+	}
 }

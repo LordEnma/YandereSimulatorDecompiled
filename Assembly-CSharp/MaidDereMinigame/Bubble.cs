@@ -1,47 +1,58 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.Bubble
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
+using System;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  public class Bubble : MonoBehaviour
-  {
-    [HideInInspector]
-    public Food food;
-    public SpriteRenderer foodRenderer;
+	public class Bubble : MonoBehaviour
+	{
+		[HideInInspector]
+		public Food food;
 
-    private void Awake() => this.foodRenderer.sprite = (Sprite) null;
+		public SpriteRenderer foodRenderer;
 
-    private void OnEnable() => GameController.PauseGame += new BoolParameterEvent(this.Pause);
+		private void Awake()
+		{
+			foodRenderer.sprite = null;
+		}
 
-    private void OnDisable() => GameController.PauseGame -= new BoolParameterEvent(this.Pause);
+		private void OnEnable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
 
-    public void Pause(bool toPause)
-    {
-      if (toPause)
-      {
-        this.GetComponent<SpriteRenderer>().enabled = false;
-        this.foodRenderer.gameObject.SetActive(false);
-      }
-      else
-      {
-        this.GetComponent<SpriteRenderer>().enabled = true;
-        this.foodRenderer.gameObject.SetActive(true);
-      }
-    }
+		private void OnDisable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
 
-    public void BubbleReachedMax()
-    {
-      this.foodRenderer.gameObject.SetActive(true);
-      this.foodRenderer.sprite = this.food.largeSprite;
-    }
+		public void Pause(bool toPause)
+		{
+			if (toPause)
+			{
+				GetComponent<SpriteRenderer>().enabled = false;
+				foodRenderer.gameObject.SetActive(false);
+			}
+			else
+			{
+				GetComponent<SpriteRenderer>().enabled = true;
+				foodRenderer.gameObject.SetActive(true);
+			}
+		}
 
-    public void BubbleClosing() => this.foodRenderer.gameObject.SetActive(false);
+		public void BubbleReachedMax()
+		{
+			foodRenderer.gameObject.SetActive(true);
+			foodRenderer.sprite = food.largeSprite;
+		}
 
-    public void KillBubble() => Object.Destroy((Object) this.gameObject);
-  }
+		public void BubbleClosing()
+		{
+			foodRenderer.gameObject.SetActive(false);
+		}
+
+		public void KillBubble()
+		{
+			UnityEngine.Object.Destroy(base.gameObject);
+		}
+	}
 }

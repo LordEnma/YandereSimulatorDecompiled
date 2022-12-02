@@ -1,72 +1,77 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DemonPortalScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DemonPortalScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public JukeboxScript Jukebox;
-  public PromptScript Prompt;
-  public ClockScript Clock;
-  public AudioSource DemonRealmAudio;
-  public GameObject HeartbeatCamera;
-  public GameObject DarkAura;
-  public GameObject FPS;
-  public GameObject HUD;
-  public UISprite Darkness;
-  public float Timer;
+	public YandereScript Yandere;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Yandere.Character.GetComponent<Animation>().CrossFade(this.Yandere.IdleAnim);
-      this.Yandere.CanMove = false;
-      Object.Instantiate<GameObject>(this.DarkAura, this.Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
-      this.Timer += Time.deltaTime;
-    }
-    this.DemonRealmAudio.volume = Mathf.MoveTowards(this.DemonRealmAudio.volume, (double) this.Yandere.transform.position.y > 1000.0 ? 0.5f : 0.0f, Time.deltaTime * 0.1f);
-    if ((double) this.Timer <= 0.0)
-      return;
-    if ((double) this.Yandere.transform.position.y > 1000.0)
-    {
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 4.0)
-      {
-        this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-        if ((double) this.Darkness.color.a != 1.0)
-          return;
-        this.Yandere.transform.position = new Vector3(12f, 0.0f, 28f);
-        this.Yandere.Character.SetActive(true);
-        this.Yandere.SetAnimationLayers();
-        this.HeartbeatCamera.SetActive(true);
-        this.FPS.SetActive(true);
-        this.HUD.SetActive(true);
-      }
-      else
-      {
-        if ((double) this.Timer <= 1.0)
-          return;
-        this.Yandere.Character.SetActive(false);
-      }
-    }
-    else
-    {
-      this.Jukebox.Volume = Mathf.MoveTowards(this.Jukebox.Volume, 0.5f, Time.deltaTime * 0.5f);
-      if ((double) this.Jukebox.Volume != 0.5)
-        return;
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-      if ((double) this.Darkness.color.a != 0.0)
-        return;
-      this.transform.parent.gameObject.SetActive(false);
-      this.Darkness.enabled = false;
-      this.Yandere.CanMove = true;
-      this.Clock.StopTime = false;
-      this.Timer = 0.0f;
-    }
-  }
+	public JukeboxScript Jukebox;
+
+	public PromptScript Prompt;
+
+	public ClockScript Clock;
+
+	public AudioSource DemonRealmAudio;
+
+	public GameObject HeartbeatCamera;
+
+	public GameObject DarkAura;
+
+	public GameObject FPS;
+
+	public GameObject HUD;
+
+	public UISprite Darkness;
+
+	public float Timer;
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Yandere.Character.GetComponent<Animation>().CrossFade(Yandere.IdleAnim);
+			Yandere.CanMove = false;
+			Object.Instantiate(DarkAura, Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
+			Timer += Time.deltaTime;
+		}
+		DemonRealmAudio.volume = Mathf.MoveTowards(DemonRealmAudio.volume, (Yandere.transform.position.y > 1000f) ? 0.5f : 0f, Time.deltaTime * 0.1f);
+		if (!(Timer > 0f))
+		{
+			return;
+		}
+		if (Yandere.transform.position.y > 1000f)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 4f)
+			{
+				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+				if (Darkness.color.a == 1f)
+				{
+					Yandere.transform.position = new Vector3(12f, 0f, 28f);
+					Yandere.Character.SetActive(true);
+					Yandere.SetAnimationLayers();
+					HeartbeatCamera.SetActive(true);
+					FPS.SetActive(true);
+					HUD.SetActive(true);
+				}
+			}
+			else if (Timer > 1f)
+			{
+				Yandere.Character.SetActive(false);
+			}
+			return;
+		}
+		Jukebox.Volume = Mathf.MoveTowards(Jukebox.Volume, 0.5f, Time.deltaTime * 0.5f);
+		if (Jukebox.Volume == 0.5f)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
+			if (Darkness.color.a == 0f)
+			{
+				base.transform.parent.gameObject.SetActive(false);
+				Darkness.enabled = false;
+				Yandere.CanMove = true;
+				Clock.StopTime = false;
+				Timer = 0f;
+			}
+		}
+	}
 }

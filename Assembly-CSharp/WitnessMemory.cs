@@ -1,39 +1,48 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: WitnessMemory
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [Serializable]
 public class WitnessMemory
 {
-  [SerializeField]
-  private float[] memories;
-  [SerializeField]
-  private float memorySpan;
-  private const float LongMemorySpan = 28800f;
-  private const float MediumMemorySpan = 7200f;
-  private const float ShortMemorySpan = 1800f;
-  private const float VeryShortMemorySpan = 120f;
+	[SerializeField]
+	private float[] memories;
 
-  public WitnessMemory()
-  {
-    this.memories = new float[Enum.GetValues(typeof (WitnessMemoryType)).Length];
-    for (int index = 0; index < this.memories.Length; ++index)
-      this.memories[index] = float.PositiveInfinity;
-    this.memorySpan = 1800f;
-  }
+	[SerializeField]
+	private float memorySpan;
 
-  public bool Remembers(WitnessMemoryType type) => (double) this.memories[(int) type] < (double) this.memorySpan;
+	private const float LongMemorySpan = 28800f;
 
-  public void Refresh(WitnessMemoryType type) => this.memories[(int) type] = 0.0f;
+	private const float MediumMemorySpan = 7200f;
 
-  public void Tick(float dt)
-  {
-    for (int index = 0; index < this.memories.Length; ++index)
-      this.memories[index] += dt;
-  }
+	private const float ShortMemorySpan = 1800f;
+
+	private const float VeryShortMemorySpan = 120f;
+
+	public WitnessMemory()
+	{
+		memories = new float[Enum.GetValues(typeof(WitnessMemoryType)).Length];
+		for (int i = 0; i < memories.Length; i++)
+		{
+			memories[i] = float.PositiveInfinity;
+		}
+		memorySpan = 1800f;
+	}
+
+	public bool Remembers(WitnessMemoryType type)
+	{
+		return memories[(int)type] < memorySpan;
+	}
+
+	public void Refresh(WitnessMemoryType type)
+	{
+		memories[(int)type] = 0f;
+	}
+
+	public void Tick(float dt)
+	{
+		for (int i = 0; i < memories.Length; i++)
+		{
+			memories[i] += dt;
+		}
+	}
 }

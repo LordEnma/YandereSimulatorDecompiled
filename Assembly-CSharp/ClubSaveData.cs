@@ -1,50 +1,61 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ClubSaveData
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
-using System.Collections.Generic;
 
 [Serializable]
 public class ClubSaveData
 {
-  public ClubType club;
-  public ClubTypeHashSet clubClosed = new ClubTypeHashSet();
-  public ClubTypeHashSet clubKicked = new ClubTypeHashSet();
-  public ClubTypeHashSet quitClub = new ClubTypeHashSet();
+	public ClubType club;
 
-  public static ClubSaveData ReadFromGlobals()
-  {
-    ClubSaveData clubSaveData = new ClubSaveData();
-    clubSaveData.club = ClubGlobals.Club;
-    foreach (ClubType clubID in ClubGlobals.KeysOfClubClosed())
-    {
-      if (ClubGlobals.GetClubClosed(clubID))
-        clubSaveData.clubClosed.Add(clubID);
-    }
-    foreach (ClubType clubID in ClubGlobals.KeysOfClubKicked())
-    {
-      if (ClubGlobals.GetClubKicked(clubID))
-        clubSaveData.clubKicked.Add(clubID);
-    }
-    foreach (ClubType clubID in ClubGlobals.KeysOfQuitClub())
-    {
-      if (ClubGlobals.GetQuitClub(clubID))
-        clubSaveData.quitClub.Add(clubID);
-    }
-    return clubSaveData;
-  }
+	public ClubTypeHashSet clubClosed = new ClubTypeHashSet();
 
-  public static void WriteToGlobals(ClubSaveData data)
-  {
-    ClubGlobals.Club = data.club;
-    foreach (ClubType clubID in (HashSet<ClubType>) data.clubClosed)
-      ClubGlobals.SetClubClosed(clubID, true);
-    foreach (ClubType clubID in (HashSet<ClubType>) data.clubKicked)
-      ClubGlobals.SetClubKicked(clubID, true);
-    foreach (ClubType clubID in (HashSet<ClubType>) data.quitClub)
-      ClubGlobals.SetQuitClub(clubID, true);
-  }
+	public ClubTypeHashSet clubKicked = new ClubTypeHashSet();
+
+	public ClubTypeHashSet quitClub = new ClubTypeHashSet();
+
+	public static ClubSaveData ReadFromGlobals()
+	{
+		ClubSaveData clubSaveData = new ClubSaveData();
+		clubSaveData.club = ClubGlobals.Club;
+		ClubType[] array = ClubGlobals.KeysOfClubClosed();
+		foreach (ClubType clubType in array)
+		{
+			if (ClubGlobals.GetClubClosed(clubType))
+			{
+				clubSaveData.clubClosed.Add(clubType);
+			}
+		}
+		array = ClubGlobals.KeysOfClubKicked();
+		foreach (ClubType clubType2 in array)
+		{
+			if (ClubGlobals.GetClubKicked(clubType2))
+			{
+				clubSaveData.clubKicked.Add(clubType2);
+			}
+		}
+		array = ClubGlobals.KeysOfQuitClub();
+		foreach (ClubType clubType3 in array)
+		{
+			if (ClubGlobals.GetQuitClub(clubType3))
+			{
+				clubSaveData.quitClub.Add(clubType3);
+			}
+		}
+		return clubSaveData;
+	}
+
+	public static void WriteToGlobals(ClubSaveData data)
+	{
+		ClubGlobals.Club = data.club;
+		foreach (ClubType item in data.clubClosed)
+		{
+			ClubGlobals.SetClubClosed(item, true);
+		}
+		foreach (ClubType item2 in data.clubKicked)
+		{
+			ClubGlobals.SetClubKicked(item2, true);
+		}
+		foreach (ClubType item3 in data.quitClub)
+		{
+			ClubGlobals.SetQuitClub(item3, true);
+		}
+	}
 }

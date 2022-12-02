@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UISpriteCollection
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,529 +6,642 @@ using UnityEngine;
 [AddComponentMenu("NGUI/UI/Sprite Collection")]
 public class UISpriteCollection : UIBasicSprite
 {
-  [HideInInspector]
-  [SerializeField]
-  private UnityEngine.Object mAtlas;
-  [NonSerialized]
-  private Dictionary<object, UISpriteCollection.Sprite> mSprites = new Dictionary<object, UISpriteCollection.Sprite>();
-  [NonSerialized]
-  private UISpriteData mSprite;
-  public UISpriteCollection.OnHoverCB onHover;
-  public UISpriteCollection.OnPressCB onPress;
-  public UISpriteCollection.OnClickCB onClick;
-  public UISpriteCollection.OnDragCB onDrag;
-  public UISpriteCollection.OnTooltipCB onTooltip;
-  [NonSerialized]
-  private object mLastHover;
-  [NonSerialized]
-  private object mLastPress;
-  [NonSerialized]
-  private object mLastTooltip;
+	public struct Sprite
+	{
+		public UISpriteData sprite;
 
-  public override Texture mainTexture
-  {
-    get
-    {
-      Material material = (Material) null;
-      INGUIAtlas atlas = this.atlas;
-      if (atlas != null)
-        material = atlas.spriteMaterial;
-      return !((UnityEngine.Object) material != (UnityEngine.Object) null) ? (Texture) null : material.mainTexture;
-    }
-    set => base.mainTexture = value;
-  }
+		public Vector2 pos;
 
-  public override Material material
-  {
-    get
-    {
-      Material material = base.material;
-      if ((UnityEngine.Object) material != (UnityEngine.Object) null)
-        return material;
-      return this.atlas?.spriteMaterial;
-    }
-    set => base.material = value;
-  }
+		public float rot;
 
-  public INGUIAtlas atlas
-  {
-    get => this.mAtlas as INGUIAtlas;
-    set
-    {
-      if (this.mAtlas as INGUIAtlas == value)
-        return;
-      this.RemoveFromPanel();
-      this.mAtlas = value as UnityEngine.Object;
-      this.mSprites.Clear();
-      this.MarkAsChanged();
-    }
-  }
+		public float width;
 
-  public override float pixelSize
-  {
-    get
-    {
-      INGUIAtlas atlas = this.atlas;
-      return atlas != null ? atlas.pixelSize : 1f;
-    }
-  }
+		public float height;
 
-  public override bool premultipliedAlpha
-  {
-    get
-    {
-      INGUIAtlas atlas = this.atlas;
-      return atlas != null && atlas.premultipliedAlpha;
-    }
-  }
+		public Color32 color;
 
-  public override Vector4 border => this.mSprite == null ? base.border : new Vector4((float) this.mSprite.borderLeft, (float) this.mSprite.borderBottom, (float) this.mSprite.borderRight, (float) this.mSprite.borderTop);
+		public Vector2 pivot;
 
-  protected override Vector4 padding
-  {
-    get
-    {
-      Vector4 padding = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-      if (this.mSprite != null)
-      {
-        padding.x = (float) this.mSprite.paddingLeft;
-        padding.y = (float) this.mSprite.paddingBottom;
-        padding.z = (float) this.mSprite.paddingRight;
-        padding.w = (float) this.mSprite.paddingTop;
-      }
-      return padding;
-    }
-  }
+		public Type type;
 
-  public override void OnFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols)
-  {
-    Texture mainTexture = this.mainTexture;
-    if ((UnityEngine.Object) mainTexture == (UnityEngine.Object) null)
-      return;
-    int count1 = verts.Count;
-    Vector4 drawRegion = this.drawRegion;
-    foreach (KeyValuePair<object, UISpriteCollection.Sprite> mSprite in this.mSprites)
-    {
-      UISpriteCollection.Sprite sprite = mSprite.Value;
-      if (sprite.enabled)
-      {
-        this.mSprite = sprite.sprite;
-        if (this.mSprite != null)
-        {
-          Color c = (Color) sprite.color with
-          {
-            a = this.finalAlpha
-          };
-          if ((double) c.a != 0.0)
-          {
-            Rect rect1 = new Rect((float) this.mSprite.x, (float) this.mSprite.y, (float) this.mSprite.width, (float) this.mSprite.height);
-            Rect rect2 = new Rect((float) (this.mSprite.x + this.mSprite.borderLeft), (float) (this.mSprite.y + this.mSprite.borderTop), (float) (this.mSprite.width - this.mSprite.borderLeft - this.mSprite.borderRight), (float) (this.mSprite.height - this.mSprite.borderBottom - this.mSprite.borderTop));
-            this.mOuterUV = NGUIMath.ConvertToTexCoords(rect1, mainTexture.width, mainTexture.height);
-            this.mInnerUV = NGUIMath.ConvertToTexCoords(rect2, mainTexture.width, mainTexture.height);
-            this.mFlip = sprite.flip;
-            Vector4 drawingDimensions = sprite.GetDrawingDimensions(this.pixelSize);
-            Vector4 drawingUvs = this.drawingUVs;
-            if (this.premultipliedAlpha)
-              c = NGUITools.ApplyPMA(c);
-            int count2 = verts.Count;
-            switch (sprite.type)
-            {
-              case UIBasicSprite.Type.Simple:
-                this.SimpleFill(verts, uvs, cols, ref drawingDimensions, ref drawingUvs, ref c);
-                break;
-              case UIBasicSprite.Type.Sliced:
-                this.SlicedFill(verts, uvs, cols, ref drawingDimensions, ref drawingUvs, ref c);
-                break;
-              case UIBasicSprite.Type.Tiled:
-                this.TiledFill(verts, uvs, cols, ref drawingDimensions, ref c);
-                break;
-              case UIBasicSprite.Type.Filled:
-                this.FilledFill(verts, uvs, cols, ref drawingDimensions, ref drawingUvs, ref c);
-                break;
-              case UIBasicSprite.Type.Advanced:
-                this.AdvancedFill(verts, uvs, cols, ref drawingDimensions, ref drawingUvs, ref c);
-                break;
-            }
-            if ((double) sprite.rot != 0.0)
-            {
-              double f = (double) sprite.rot * (Math.PI / 180.0) * 0.5;
-              float num1 = Mathf.Sin((float) f);
-              double num2 = (double) Mathf.Cos((float) f);
-              float num3 = num1 * 2f;
-              float num4 = num1 * num3;
-              double num5 = (double) num3;
-              float num6 = (float) (num2 * num5);
-              int index = count2;
-              for (int count3 = verts.Count; index < count3; ++index)
-              {
-                Vector3 vector3 = verts[index];
-                vector3 = new Vector3((float) ((1.0 - (double) num4) * (double) vector3.x - (double) num6 * (double) vector3.y), (float) ((double) num6 * (double) vector3.x + (1.0 - (double) num4) * (double) vector3.y), vector3.z);
-                vector3.x += sprite.pos.x;
-                vector3.y += sprite.pos.y;
-                verts[index] = vector3;
-              }
-            }
-            else
-            {
-              int index = count2;
-              for (int count4 = verts.Count; index < count4; ++index)
-              {
-                Vector3 vert = verts[index];
-                vert.x += sprite.pos.x;
-                vert.y += sprite.pos.y;
-                verts[index] = vert;
-              }
-            }
-          }
-        }
-      }
-    }
-    this.mSprite = (UISpriteData) null;
-    if (this.onPostFill == null)
-      return;
-    this.onPostFill((UIWidget) this, count1, verts, uvs, cols);
-  }
+		public Flip flip;
 
-  public void Add(object obj, string spriteName, Vector2 pos, float width, float height) => this.AddSprite(obj, spriteName, pos, width, height, new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue), new Vector2(0.5f, 0.5f));
+		public bool enabled;
 
-  public void Add(
-    object obj,
-    string spriteName,
-    Vector2 pos,
-    float width,
-    float height,
-    Color32 color)
-  {
-    this.AddSprite(obj, spriteName, pos, width, height, color, new Vector2(0.5f, 0.5f));
-  }
+		public Vector4 GetDrawingDimensions(float pixelSize)
+		{
+			float num = (0f - pivot.x) * width;
+			float num2 = (0f - pivot.y) * height;
+			float num3 = num + width;
+			float num4 = num2 + height;
+			if (sprite != null && type != Type.Tiled)
+			{
+				int num5 = sprite.paddingLeft;
+				int num6 = sprite.paddingBottom;
+				int num7 = sprite.paddingRight;
+				int num8 = sprite.paddingTop;
+				if (type != 0 && pixelSize != 1f)
+				{
+					num5 = Mathf.RoundToInt(pixelSize * (float)num5);
+					num6 = Mathf.RoundToInt(pixelSize * (float)num6);
+					num7 = Mathf.RoundToInt(pixelSize * (float)num7);
+					num8 = Mathf.RoundToInt(pixelSize * (float)num8);
+				}
+				int num9 = sprite.width + num5 + num7;
+				int num10 = sprite.height + num6 + num8;
+				float num11 = 1f;
+				float num12 = 1f;
+				if (num9 > 0 && num10 > 0 && (type == Type.Simple || type == Type.Filled))
+				{
+					if (((uint)num9 & (true ? 1u : 0u)) != 0)
+					{
+						num7++;
+					}
+					if (((uint)num10 & (true ? 1u : 0u)) != 0)
+					{
+						num8++;
+					}
+					num11 = 1f / (float)num9 * width;
+					num12 = 1f / (float)num10 * height;
+				}
+				if (flip == Flip.Horizontally || flip == Flip.Both)
+				{
+					num += (float)num7 * num11;
+					num3 -= (float)num5 * num11;
+				}
+				else
+				{
+					num += (float)num5 * num11;
+					num3 -= (float)num7 * num11;
+				}
+				if (flip == Flip.Vertically || flip == Flip.Both)
+				{
+					num2 += (float)num8 * num12;
+					num4 -= (float)num6 * num12;
+				}
+				else
+				{
+					num2 += (float)num6 * num12;
+					num4 -= (float)num8 * num12;
+				}
+			}
+			return new Vector4(num, num2, num3, num4);
+		}
+	}
 
-  public void AddSprite(
-    object id,
-    string spriteName,
-    Vector2 pos,
-    float width,
-    float height,
-    Color32 color,
-    Vector2 pivot,
-    float rot = 0.0f,
-    UIBasicSprite.Type type = UIBasicSprite.Type.Simple,
-    UIBasicSprite.Flip flip = UIBasicSprite.Flip.Nothing,
-    bool enabled = true)
-  {
-    if (this.mAtlas == (UnityEngine.Object) null)
-    {
-      Debug.LogError((object) "Atlas must be assigned first");
-    }
-    else
-    {
-      UISpriteCollection.Sprite sprite = new UISpriteCollection.Sprite();
-      INGUIAtlas atlas = this.atlas;
-      if (atlas != null)
-        sprite.sprite = atlas.GetSprite(spriteName);
-      if (sprite.sprite == null)
-        return;
-      sprite.pos = pos;
-      sprite.rot = rot;
-      sprite.width = width;
-      sprite.height = height;
-      sprite.color = color;
-      sprite.pivot = pivot;
-      sprite.type = type;
-      sprite.flip = flip;
-      sprite.enabled = enabled;
-      this.mSprites[id] = sprite;
-      if (!enabled || this.mChanged)
-        return;
-      this.MarkAsChanged();
-    }
-  }
+	public delegate void OnHoverCB(object obj, bool isOver);
 
-  public UISpriteCollection.Sprite? GetSprite(object id)
-  {
-    UISpriteCollection.Sprite sprite;
-    return this.mSprites.TryGetValue(id, out sprite) ? new UISpriteCollection.Sprite?(sprite) : new UISpriteCollection.Sprite?();
-  }
+	public delegate void OnPressCB(object obj, bool isPressed);
 
-  public bool RemoveSprite(object id)
-  {
-    if (!this.mSprites.Remove(id))
-      return false;
-    if (!this.mChanged)
-      this.MarkAsChanged();
-    return true;
-  }
+	public delegate void OnClickCB(object obj);
 
-  public bool SetSprite(object id, UISpriteCollection.Sprite sp)
-  {
-    this.mSprites[id] = sp;
-    if (!this.mChanged)
-      this.MarkAsChanged();
-    return true;
-  }
+	public delegate void OnDragCB(object obj, Vector2 delta);
 
-  [ContextMenu("Clear")]
-  public void Clear()
-  {
-    if (this.mSprites.Count == 0)
-      return;
-    this.mSprites.Clear();
-    this.MarkAsChanged();
-  }
+	public delegate void OnTooltipCB(object obj, bool show);
 
-  public bool IsActive(object id)
-  {
-    UISpriteCollection.Sprite sprite;
-    return this.mSprites.TryGetValue(id, out sprite) && sprite.enabled;
-  }
+	[HideInInspector]
+	[SerializeField]
+	private UnityEngine.Object mAtlas;
 
-  public bool SetActive(object id, bool visible)
-  {
-    UISpriteCollection.Sprite sprite;
-    if (!this.mSprites.TryGetValue(id, out sprite))
-      return false;
-    if (sprite.enabled != visible)
-    {
-      sprite.enabled = visible;
-      this.mSprites[id] = sprite;
-      if (!this.mChanged)
-        this.MarkAsChanged();
-    }
-    return true;
-  }
+	[NonSerialized]
+	private Dictionary<object, Sprite> mSprites = new Dictionary<object, Sprite>();
 
-  public bool SetPosition(object id, Vector2 pos, bool visible = true)
-  {
-    UISpriteCollection.Sprite sprite;
-    if (!this.mSprites.TryGetValue(id, out sprite))
-      return false;
-    if (sprite.pos != pos)
-    {
-      sprite.pos = pos;
-      sprite.enabled = visible;
-      this.mSprites[id] = sprite;
-      if (!this.mChanged)
-        this.MarkAsChanged();
-    }
-    else if (sprite.enabled != visible)
-    {
-      sprite.enabled = visible;
-      this.mSprites[id] = sprite;
-      if (!this.mChanged)
-        this.MarkAsChanged();
-    }
-    return true;
-  }
+	[NonSerialized]
+	private UISpriteData mSprite;
 
-  private static Vector2 Rotate(Vector2 pos, float rot)
-  {
-    double f = (double) rot * (Math.PI / 180.0) * 0.5;
-    float num1 = Mathf.Sin((float) f);
-    double num2 = (double) Mathf.Cos((float) f);
-    float num3 = num1 * 2f;
-    float num4 = num1 * num3;
-    double num5 = (double) num3;
-    float num6 = (float) (num2 * num5);
-    return new Vector2((float) ((1.0 - (double) num4) * (double) pos.x - (double) num6 * (double) pos.y), (float) ((double) num6 * (double) pos.x + (1.0 - (double) num4) * (double) pos.y));
-  }
+	public OnHoverCB onHover;
 
-  public object GetCurrentSpriteID() => this.GetCurrentSpriteID(UICamera.lastWorldPosition);
+	public OnPressCB onPress;
 
-  public UISpriteCollection.Sprite? GetCurrentSprite() => this.GetCurrentSprite(UICamera.lastWorldPosition);
+	public OnClickCB onClick;
 
-  public object GetCurrentSpriteID(Vector3 worldPos)
-  {
-    Vector2 vector2 = (Vector2) this.mTrans.InverseTransformPoint(worldPos);
-    foreach (KeyValuePair<object, UISpriteCollection.Sprite> mSprite in this.mSprites)
-    {
-      UISpriteCollection.Sprite sprite = mSprite.Value;
-      Vector2 pos = vector2 - sprite.pos;
-      if ((double) sprite.rot != 0.0)
-        pos = UISpriteCollection.Rotate(pos, -sprite.rot);
-      Vector4 drawingDimensions = sprite.GetDrawingDimensions(this.pixelSize);
-      if ((double) pos.x >= (double) drawingDimensions.x && (double) pos.y >= (double) drawingDimensions.y && (double) pos.x <= (double) drawingDimensions.z && (double) pos.y <= (double) drawingDimensions.w)
-        return mSprite.Key;
-    }
-    return (object) null;
-  }
+	public OnDragCB onDrag;
 
-  public UISpriteCollection.Sprite? GetCurrentSprite(Vector3 worldPos)
-  {
-    Vector2 vector2 = (Vector2) this.mTrans.InverseTransformPoint(worldPos);
-    foreach (KeyValuePair<object, UISpriteCollection.Sprite> mSprite in this.mSprites)
-    {
-      UISpriteCollection.Sprite sprite = mSprite.Value;
-      Vector2 pos = vector2 - sprite.pos;
-      if ((double) sprite.rot != 0.0)
-        pos = UISpriteCollection.Rotate(pos, -sprite.rot);
-      Vector4 drawingDimensions = sprite.GetDrawingDimensions(this.pixelSize);
-      if ((double) pos.x >= (double) drawingDimensions.x && (double) pos.y >= (double) drawingDimensions.y && (double) pos.x <= (double) drawingDimensions.z && (double) pos.y <= (double) drawingDimensions.w)
-        return new UISpriteCollection.Sprite?(mSprite.Value);
-    }
-    return new UISpriteCollection.Sprite?();
-  }
+	public OnTooltipCB onTooltip;
 
-  protected void OnClick()
-  {
-    if (this.onClick == null)
-      return;
-    object currentSpriteId = this.GetCurrentSpriteID();
-    if (currentSpriteId == null)
-      return;
-    this.onClick(currentSpriteId);
-  }
+	[NonSerialized]
+	private object mLastHover;
 
-  protected void OnPress(bool isPressed)
-  {
-    if (this.onPress == null || isPressed && this.mLastPress != null)
-      return;
-    if (isPressed)
-    {
-      this.mLastPress = this.GetCurrentSpriteID();
-      if (this.mLastPress == null)
-        return;
-      this.onPress(this.mLastPress, true);
-    }
-    else
-    {
-      if (this.mLastPress == null)
-        return;
-      this.onPress(this.mLastPress, false);
-      this.mLastPress = (object) null;
-    }
-  }
+	[NonSerialized]
+	private object mLastPress;
 
-  protected void OnHover(bool isOver)
-  {
-    if (this.onHover == null)
-      return;
-    if (isOver)
-    {
-      UICamera.onMouseMove += new UICamera.MoveDelegate(this.OnMove);
-      this.OnMove(Vector2.zero);
-    }
-    else
-      UICamera.onMouseMove -= new UICamera.MoveDelegate(this.OnMove);
-  }
+	[NonSerialized]
+	private object mLastTooltip;
 
-  protected void OnMove(Vector2 delta)
-  {
-    if (!(bool) (UnityEngine.Object) this || this.onHover == null)
-      return;
-    object currentSpriteId = this.GetCurrentSpriteID();
-    if (this.mLastHover == currentSpriteId)
-      return;
-    if (this.mLastHover != null)
-      this.onHover(this.mLastHover, false);
-    this.mLastHover = currentSpriteId;
-    if (this.mLastHover == null)
-      return;
-    this.onHover(this.mLastHover, true);
-  }
+	public override Texture mainTexture
+	{
+		get
+		{
+			Material material = null;
+			INGUIAtlas iNGUIAtlas = atlas;
+			if (iNGUIAtlas != null)
+			{
+				material = iNGUIAtlas.spriteMaterial;
+			}
+			if (!(material != null))
+			{
+				return null;
+			}
+			return material.mainTexture;
+		}
+		set
+		{
+			base.mainTexture = value;
+		}
+	}
 
-  protected void OnDrag(Vector2 delta)
-  {
-    if (this.onDrag == null || this.mLastPress == null)
-      return;
-    this.onDrag(this.mLastPress, delta);
-  }
+	public override Material material
+	{
+		get
+		{
+			Material material = base.material;
+			if (material != null)
+			{
+				return material;
+			}
+			INGUIAtlas iNGUIAtlas = atlas;
+			if (iNGUIAtlas != null)
+			{
+				return iNGUIAtlas.spriteMaterial;
+			}
+			return null;
+		}
+		set
+		{
+			base.material = value;
+		}
+	}
 
-  protected void OnTooltip(bool show)
-  {
-    if (this.onTooltip == null)
-      return;
-    if (show)
-    {
-      if (this.mLastTooltip != null)
-        this.onTooltip(this.mLastTooltip, false);
-      this.mLastTooltip = this.GetCurrentSpriteID();
-      if (this.mLastTooltip == null)
-        return;
-      this.onTooltip(this.mLastTooltip, true);
-    }
-    else
-    {
-      this.onTooltip(this.mLastTooltip, false);
-      this.mLastTooltip = (object) null;
-    }
-  }
+	public INGUIAtlas atlas
+	{
+		get
+		{
+			return mAtlas as INGUIAtlas;
+		}
+		set
+		{
+			if (mAtlas as INGUIAtlas != value)
+			{
+				RemoveFromPanel();
+				mAtlas = value as UnityEngine.Object;
+				mSprites.Clear();
+				MarkAsChanged();
+			}
+		}
+	}
 
-  public struct Sprite
-  {
-    public UISpriteData sprite;
-    public Vector2 pos;
-    public float rot;
-    public float width;
-    public float height;
-    public Color32 color;
-    public Vector2 pivot;
-    public UIBasicSprite.Type type;
-    public UIBasicSprite.Flip flip;
-    public bool enabled;
+	public override float pixelSize
+	{
+		get
+		{
+			INGUIAtlas iNGUIAtlas = atlas;
+			if (iNGUIAtlas != null)
+			{
+				return iNGUIAtlas.pixelSize;
+			}
+			return 1f;
+		}
+	}
 
-    public Vector4 GetDrawingDimensions(float pixelSize)
-    {
-      float x = -this.pivot.x * this.width;
-      float y = -this.pivot.y * this.height;
-      float z = x + this.width;
-      float w = y + this.height;
-      if (this.sprite != null && this.type != UIBasicSprite.Type.Tiled)
-      {
-        int paddingLeft = this.sprite.paddingLeft;
-        int paddingBottom = this.sprite.paddingBottom;
-        int paddingRight = this.sprite.paddingRight;
-        int paddingTop = this.sprite.paddingTop;
-        if (this.type != UIBasicSprite.Type.Simple && (double) pixelSize != 1.0)
-        {
-          paddingLeft = Mathf.RoundToInt(pixelSize * (float) paddingLeft);
-          paddingBottom = Mathf.RoundToInt(pixelSize * (float) paddingBottom);
-          paddingRight = Mathf.RoundToInt(pixelSize * (float) paddingRight);
-          paddingTop = Mathf.RoundToInt(pixelSize * (float) paddingTop);
-        }
-        int num1 = this.sprite.width + paddingLeft + paddingRight;
-        int num2 = this.sprite.height + paddingBottom + paddingTop;
-        float num3 = 1f;
-        float num4 = 1f;
-        if (num1 > 0 && num2 > 0 && (this.type == UIBasicSprite.Type.Simple || this.type == UIBasicSprite.Type.Filled))
-        {
-          if ((num1 & 1) != 0)
-            ++paddingRight;
-          if ((num2 & 1) != 0)
-            ++paddingTop;
-          num3 = 1f / (float) num1 * this.width;
-          num4 = 1f / (float) num2 * this.height;
-        }
-        if (this.flip == UIBasicSprite.Flip.Horizontally || this.flip == UIBasicSprite.Flip.Both)
-        {
-          x += (float) paddingRight * num3;
-          z -= (float) paddingLeft * num3;
-        }
-        else
-        {
-          x += (float) paddingLeft * num3;
-          z -= (float) paddingRight * num3;
-        }
-        if (this.flip == UIBasicSprite.Flip.Vertically || this.flip == UIBasicSprite.Flip.Both)
-        {
-          y += (float) paddingTop * num4;
-          w -= (float) paddingBottom * num4;
-        }
-        else
-        {
-          y += (float) paddingBottom * num4;
-          w -= (float) paddingTop * num4;
-        }
-      }
-      return new Vector4(x, y, z, w);
-    }
-  }
+	public override bool premultipliedAlpha
+	{
+		get
+		{
+			INGUIAtlas iNGUIAtlas = atlas;
+			if (iNGUIAtlas != null)
+			{
+				return iNGUIAtlas.premultipliedAlpha;
+			}
+			return false;
+		}
+	}
 
-  public delegate void OnHoverCB(object obj, bool isOver);
+	public override Vector4 border
+	{
+		get
+		{
+			if (mSprite == null)
+			{
+				return base.border;
+			}
+			return new Vector4(mSprite.borderLeft, mSprite.borderBottom, mSprite.borderRight, mSprite.borderTop);
+		}
+	}
 
-  public delegate void OnPressCB(object obj, bool isPressed);
+	protected override Vector4 padding
+	{
+		get
+		{
+			Vector4 result = new Vector4(0f, 0f, 0f, 0f);
+			if (mSprite != null)
+			{
+				result.x = mSprite.paddingLeft;
+				result.y = mSprite.paddingBottom;
+				result.z = mSprite.paddingRight;
+				result.w = mSprite.paddingTop;
+			}
+			return result;
+		}
+	}
 
-  public delegate void OnClickCB(object obj);
+	public override void OnFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols)
+	{
+		Texture texture = mainTexture;
+		if (texture == null)
+		{
+			return;
+		}
+		int count = verts.Count;
+		Vector4 drawRegion2 = base.drawRegion;
+		foreach (KeyValuePair<object, Sprite> mSprite in mSprites)
+		{
+			Sprite value = mSprite.Value;
+			if (!value.enabled)
+			{
+				continue;
+			}
+			this.mSprite = value.sprite;
+			if (this.mSprite == null)
+			{
+				continue;
+			}
+			Color c = value.color;
+			c.a = finalAlpha;
+			if (c.a == 0f)
+			{
+				continue;
+			}
+			Rect rect = new Rect(this.mSprite.x, this.mSprite.y, this.mSprite.width, this.mSprite.height);
+			Rect rect2 = new Rect(this.mSprite.x + this.mSprite.borderLeft, this.mSprite.y + this.mSprite.borderTop, this.mSprite.width - this.mSprite.borderLeft - this.mSprite.borderRight, this.mSprite.height - this.mSprite.borderBottom - this.mSprite.borderTop);
+			mOuterUV = NGUIMath.ConvertToTexCoords(rect, texture.width, texture.height);
+			mInnerUV = NGUIMath.ConvertToTexCoords(rect2, texture.width, texture.height);
+			mFlip = value.flip;
+			Vector4 v = value.GetDrawingDimensions(pixelSize);
+			Vector4 u = base.drawingUVs;
+			if (premultipliedAlpha)
+			{
+				c = NGUITools.ApplyPMA(c);
+			}
+			int count2 = verts.Count;
+			switch (value.type)
+			{
+			case Type.Simple:
+				SimpleFill(verts, uvs, cols, ref v, ref u, ref c);
+				break;
+			case Type.Sliced:
+				SlicedFill(verts, uvs, cols, ref v, ref u, ref c);
+				break;
+			case Type.Filled:
+				FilledFill(verts, uvs, cols, ref v, ref u, ref c);
+				break;
+			case Type.Tiled:
+				TiledFill(verts, uvs, cols, ref v, ref c);
+				break;
+			case Type.Advanced:
+				AdvancedFill(verts, uvs, cols, ref v, ref u, ref c);
+				break;
+			}
+			if (value.rot != 0f)
+			{
+				float f = value.rot * ((float)Math.PI / 180f) * 0.5f;
+				float num = Mathf.Sin(f);
+				float num2 = Mathf.Cos(f);
+				float num3 = num * 2f;
+				float num4 = num * num3;
+				float num5 = num2 * num3;
+				int i = count2;
+				for (int count3 = verts.Count; i < count3; i++)
+				{
+					Vector3 vector = verts[i];
+					vector = new Vector3((1f - num4) * vector.x - num5 * vector.y, num5 * vector.x + (1f - num4) * vector.y, vector.z);
+					vector.x += value.pos.x;
+					vector.y += value.pos.y;
+					verts[i] = vector;
+				}
+			}
+			else
+			{
+				int j = count2;
+				for (int count4 = verts.Count; j < count4; j++)
+				{
+					Vector3 value2 = verts[j];
+					value2.x += value.pos.x;
+					value2.y += value.pos.y;
+					verts[j] = value2;
+				}
+			}
+		}
+		this.mSprite = null;
+		if (onPostFill != null)
+		{
+			onPostFill(this, count, verts, uvs, cols);
+		}
+	}
 
-  public delegate void OnDragCB(object obj, Vector2 delta);
+	public void Add(object obj, string spriteName, Vector2 pos, float width, float height)
+	{
+		AddSprite(obj, spriteName, pos, width, height, new Color32(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue), new Vector2(0.5f, 0.5f));
+	}
 
-  public delegate void OnTooltipCB(object obj, bool show);
+	public void Add(object obj, string spriteName, Vector2 pos, float width, float height, Color32 color)
+	{
+		AddSprite(obj, spriteName, pos, width, height, color, new Vector2(0.5f, 0.5f));
+	}
+
+	public void AddSprite(object id, string spriteName, Vector2 pos, float width, float height, Color32 color, Vector2 pivot, float rot = 0f, Type type = Type.Simple, Flip flip = Flip.Nothing, bool enabled = true)
+	{
+		if (mAtlas == null)
+		{
+			Debug.LogError("Atlas must be assigned first");
+			return;
+		}
+		Sprite value = default(Sprite);
+		INGUIAtlas iNGUIAtlas = atlas;
+		if (iNGUIAtlas != null)
+		{
+			value.sprite = iNGUIAtlas.GetSprite(spriteName);
+		}
+		if (value.sprite != null)
+		{
+			value.pos = pos;
+			value.rot = rot;
+			value.width = width;
+			value.height = height;
+			value.color = color;
+			value.pivot = pivot;
+			value.type = type;
+			value.flip = flip;
+			value.enabled = enabled;
+			mSprites[id] = value;
+			if (enabled && !mChanged)
+			{
+				MarkAsChanged();
+			}
+		}
+	}
+
+	public Sprite? GetSprite(object id)
+	{
+		Sprite value;
+		if (mSprites.TryGetValue(id, out value))
+		{
+			return value;
+		}
+		return null;
+	}
+
+	public bool RemoveSprite(object id)
+	{
+		if (mSprites.Remove(id))
+		{
+			if (!mChanged)
+			{
+				MarkAsChanged();
+			}
+			return true;
+		}
+		return false;
+	}
+
+	public bool SetSprite(object id, Sprite sp)
+	{
+		mSprites[id] = sp;
+		if (!mChanged)
+		{
+			MarkAsChanged();
+		}
+		return true;
+	}
+
+	[ContextMenu("Clear")]
+	public void Clear()
+	{
+		if (mSprites.Count != 0)
+		{
+			mSprites.Clear();
+			MarkAsChanged();
+		}
+	}
+
+	public bool IsActive(object id)
+	{
+		Sprite value;
+		if (mSprites.TryGetValue(id, out value))
+		{
+			return value.enabled;
+		}
+		return false;
+	}
+
+	public bool SetActive(object id, bool visible)
+	{
+		Sprite value;
+		if (mSprites.TryGetValue(id, out value))
+		{
+			if (value.enabled != visible)
+			{
+				value.enabled = visible;
+				mSprites[id] = value;
+				if (!mChanged)
+				{
+					MarkAsChanged();
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	public bool SetPosition(object id, Vector2 pos, bool visible = true)
+	{
+		Sprite value;
+		if (mSprites.TryGetValue(id, out value))
+		{
+			if (value.pos != pos)
+			{
+				value.pos = pos;
+				value.enabled = visible;
+				mSprites[id] = value;
+				if (!mChanged)
+				{
+					MarkAsChanged();
+				}
+			}
+			else if (value.enabled != visible)
+			{
+				value.enabled = visible;
+				mSprites[id] = value;
+				if (!mChanged)
+				{
+					MarkAsChanged();
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	private static Vector2 Rotate(Vector2 pos, float rot)
+	{
+		float f = rot * ((float)Math.PI / 180f) * 0.5f;
+		float num = Mathf.Sin(f);
+		float num2 = Mathf.Cos(f);
+		float num3 = num * 2f;
+		float num4 = num * num3;
+		float num5 = num2 * num3;
+		return new Vector2((1f - num4) * pos.x - num5 * pos.y, num5 * pos.x + (1f - num4) * pos.y);
+	}
+
+	public object GetCurrentSpriteID()
+	{
+		return GetCurrentSpriteID(UICamera.lastWorldPosition);
+	}
+
+	public Sprite? GetCurrentSprite()
+	{
+		return GetCurrentSprite(UICamera.lastWorldPosition);
+	}
+
+	public object GetCurrentSpriteID(Vector3 worldPos)
+	{
+		Vector2 vector = mTrans.InverseTransformPoint(worldPos);
+		foreach (KeyValuePair<object, Sprite> mSprite in mSprites)
+		{
+			Sprite value = mSprite.Value;
+			Vector2 pos = vector - value.pos;
+			if (value.rot != 0f)
+			{
+				pos = Rotate(pos, 0f - value.rot);
+			}
+			Vector4 vector2 = value.GetDrawingDimensions(pixelSize);
+			if (!(pos.x < vector2.x) && !(pos.y < vector2.y) && !(pos.x > vector2.z) && !(pos.y > vector2.w))
+			{
+				return mSprite.Key;
+			}
+		}
+		return null;
+	}
+
+	public Sprite? GetCurrentSprite(Vector3 worldPos)
+	{
+		Vector2 vector = mTrans.InverseTransformPoint(worldPos);
+		foreach (KeyValuePair<object, Sprite> mSprite in mSprites)
+		{
+			Sprite value = mSprite.Value;
+			Vector2 pos = vector - value.pos;
+			if (value.rot != 0f)
+			{
+				pos = Rotate(pos, 0f - value.rot);
+			}
+			Vector4 vector2 = value.GetDrawingDimensions(pixelSize);
+			if (!(pos.x < vector2.x) && !(pos.y < vector2.y) && !(pos.x > vector2.z) && !(pos.y > vector2.w))
+			{
+				return mSprite.Value;
+			}
+		}
+		return null;
+	}
+
+	protected void OnClick()
+	{
+		if (onClick != null)
+		{
+			object currentSpriteID = GetCurrentSpriteID();
+			if (currentSpriteID != null)
+			{
+				onClick(currentSpriteID);
+			}
+		}
+	}
+
+	protected void OnPress(bool isPressed)
+	{
+		if (onPress == null || (isPressed && mLastPress != null))
+		{
+			return;
+		}
+		if (isPressed)
+		{
+			mLastPress = GetCurrentSpriteID();
+			if (mLastPress != null)
+			{
+				onPress(mLastPress, true);
+			}
+		}
+		else if (mLastPress != null)
+		{
+			onPress(mLastPress, false);
+			mLastPress = null;
+		}
+	}
+
+	protected void OnHover(bool isOver)
+	{
+		if (onHover != null)
+		{
+			if (isOver)
+			{
+				UICamera.onMouseMove = (UICamera.MoveDelegate)Delegate.Combine(UICamera.onMouseMove, new UICamera.MoveDelegate(OnMove));
+				OnMove(Vector2.zero);
+			}
+			else
+			{
+				UICamera.onMouseMove = (UICamera.MoveDelegate)Delegate.Remove(UICamera.onMouseMove, new UICamera.MoveDelegate(OnMove));
+			}
+		}
+	}
+
+	protected void OnMove(Vector2 delta)
+	{
+		if (!this || onHover == null)
+		{
+			return;
+		}
+		object currentSpriteID = GetCurrentSpriteID();
+		if (mLastHover != currentSpriteID)
+		{
+			if (mLastHover != null)
+			{
+				onHover(mLastHover, false);
+			}
+			mLastHover = currentSpriteID;
+			if (mLastHover != null)
+			{
+				onHover(mLastHover, true);
+			}
+		}
+	}
+
+	protected void OnDrag(Vector2 delta)
+	{
+		if (onDrag != null && mLastPress != null)
+		{
+			onDrag(mLastPress, delta);
+		}
+	}
+
+	protected void OnTooltip(bool show)
+	{
+		if (onTooltip == null)
+		{
+			return;
+		}
+		if (show)
+		{
+			if (mLastTooltip != null)
+			{
+				onTooltip(mLastTooltip, false);
+			}
+			mLastTooltip = GetCurrentSpriteID();
+			if (mLastTooltip != null)
+			{
+				onTooltip(mLastTooltip, true);
+			}
+		}
+		else
+		{
+			onTooltip(mLastTooltip, false);
+			mLastTooltip = null;
+		}
+	}
 }

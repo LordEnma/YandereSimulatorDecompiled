@@ -1,112 +1,120 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DelinquentManagerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DelinquentManagerScript : MonoBehaviour
 {
-  public GameObject Delinquents;
-  public GameObject RapBeat;
-  public GameObject Panel;
-  public float[] NextTime;
-  public DelinquentScript Attacker;
-  public MirrorScript Mirror;
-  public UILabel TimeLabel;
-  public ClockScript Clock;
-  public UISprite Circle;
-  public float SpeechTimer;
-  public float TimerMax;
-  public float Timer;
-  public bool Aggro;
-  public int Phase = 1;
+	public GameObject Delinquents;
 
-  private void Start()
-  {
-    this.Delinquents.SetActive(false);
-    this.TimerMax = 15f;
-    this.Timer = 15f;
-    ++this.Phase;
-  }
+	public GameObject RapBeat;
 
-  private void Update()
-  {
-    this.SpeechTimer = Mathf.MoveTowards(this.SpeechTimer, 0.0f, Time.deltaTime);
-    if ((Object) this.Attacker != (Object) null && !this.Attacker.Attacking && this.Attacker.ExpressedSurprise && this.Attacker.Run && !this.Aggro)
-    {
-      AudioSource component = this.GetComponent<AudioSource>();
-      component.clip = this.Attacker.AggroClips[Random.Range(0, this.Attacker.AggroClips.Length)];
-      component.Play();
-      this.Aggro = true;
-    }
-    if (!this.Panel.activeInHierarchy || (double) this.Clock.HourTime <= (double) this.NextTime[this.Phase])
-      return;
-    if (this.Phase == 3 && (double) this.Clock.HourTime > 7.25)
-    {
-      this.TimerMax = 75f;
-      this.Timer = 75f;
-      ++this.Phase;
-    }
-    else if (this.Phase == 5 && (double) this.Clock.HourTime > 8.5)
-    {
-      this.TimerMax = 285f;
-      this.Timer = 285f;
-      ++this.Phase;
-    }
-    else if (this.Phase == 7 && (double) this.Clock.HourTime > 13.25)
-    {
-      this.TimerMax = 15f;
-      this.Timer = 15f;
-      ++this.Phase;
-    }
-    else if (this.Phase == 9 && (double) this.Clock.HourTime > 13.5)
-    {
-      this.TimerMax = 135f;
-      this.Timer = 135f;
-      ++this.Phase;
-    }
-    if ((Object) this.Attacker == (Object) null)
-      this.Timer -= Time.deltaTime * (this.Clock.TimeSpeed / 60f);
-    this.Circle.fillAmount = (float) (1.0 - (double) this.Timer / (double) this.TimerMax);
-    if ((double) this.Timer > 0.0)
-      return;
-    this.Delinquents.SetActive(!this.Delinquents.activeInHierarchy);
-    if (this.Phase < 8)
-    {
-      ++this.Phase;
-    }
-    else
-    {
-      this.Delinquents.SetActive(false);
-      this.Panel.SetActive(false);
-    }
-  }
+	public GameObject Panel;
 
-  public void CheckTime()
-  {
-    if ((double) this.Clock.HourTime < 13.0)
-    {
-      this.Delinquents.SetActive(false);
-      this.TimerMax = 15f;
-      this.Timer = 15f;
-      this.Phase = 6;
-    }
-    else
-    {
-      if ((double) this.Clock.HourTime >= 15.5)
-        return;
-      this.Delinquents.SetActive(false);
-      this.TimerMax = 15f;
-      this.Timer = 15f;
-      this.Phase = 8;
-    }
-  }
+	public float[] NextTime;
 
-  public void EasterEgg()
-  {
-    this.RapBeat.SetActive(true);
-    ++this.Mirror.Limit;
-  }
+	public DelinquentScript Attacker;
+
+	public MirrorScript Mirror;
+
+	public UILabel TimeLabel;
+
+	public ClockScript Clock;
+
+	public UISprite Circle;
+
+	public float SpeechTimer;
+
+	public float TimerMax;
+
+	public float Timer;
+
+	public bool Aggro;
+
+	public int Phase = 1;
+
+	private void Start()
+	{
+		Delinquents.SetActive(false);
+		TimerMax = 15f;
+		Timer = 15f;
+		Phase++;
+	}
+
+	private void Update()
+	{
+		SpeechTimer = Mathf.MoveTowards(SpeechTimer, 0f, Time.deltaTime);
+		if (Attacker != null && !Attacker.Attacking && Attacker.ExpressedSurprise && Attacker.Run && !Aggro)
+		{
+			AudioSource component = GetComponent<AudioSource>();
+			component.clip = Attacker.AggroClips[Random.Range(0, Attacker.AggroClips.Length)];
+			component.Play();
+			Aggro = true;
+		}
+		if (!Panel.activeInHierarchy || !(Clock.HourTime > NextTime[Phase]))
+		{
+			return;
+		}
+		if (Phase == 3 && Clock.HourTime > 7.25f)
+		{
+			TimerMax = 75f;
+			Timer = 75f;
+			Phase++;
+		}
+		else if (Phase == 5 && Clock.HourTime > 8.5f)
+		{
+			TimerMax = 285f;
+			Timer = 285f;
+			Phase++;
+		}
+		else if (Phase == 7 && Clock.HourTime > 13.25f)
+		{
+			TimerMax = 15f;
+			Timer = 15f;
+			Phase++;
+		}
+		else if (Phase == 9 && Clock.HourTime > 13.5f)
+		{
+			TimerMax = 135f;
+			Timer = 135f;
+			Phase++;
+		}
+		if (Attacker == null)
+		{
+			Timer -= Time.deltaTime * (Clock.TimeSpeed / 60f);
+		}
+		Circle.fillAmount = 1f - Timer / TimerMax;
+		if (Timer <= 0f)
+		{
+			Delinquents.SetActive(!Delinquents.activeInHierarchy);
+			if (Phase < 8)
+			{
+				Phase++;
+				return;
+			}
+			Delinquents.SetActive(false);
+			Panel.SetActive(false);
+		}
+	}
+
+	public void CheckTime()
+	{
+		if (Clock.HourTime < 13f)
+		{
+			Delinquents.SetActive(false);
+			TimerMax = 15f;
+			Timer = 15f;
+			Phase = 6;
+		}
+		else if (Clock.HourTime < 15.5f)
+		{
+			Delinquents.SetActive(false);
+			TimerMax = 15f;
+			Timer = 15f;
+			Phase = 8;
+		}
+	}
+
+	public void EasterEgg()
+	{
+		RapBeat.SetActive(true);
+		Mirror.Limit++;
+	}
 }

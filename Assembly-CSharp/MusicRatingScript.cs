@@ -1,35 +1,35 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MusicRatingScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MusicRatingScript : MonoBehaviour
 {
-  public Renderer MyRenderer;
-  public AudioSource SFX;
-  public float Speed;
-  public float Timer;
+	public Renderer MyRenderer;
 
-  private void Start()
-  {
-    if (!((Object) this.SFX != (Object) null))
-      return;
-    this.SFX.pitch = Random.Range(0.9f, 1.1f);
-  }
+	public AudioSource SFX;
 
-  private void Update()
-  {
-    this.transform.localPosition += new Vector3(0.0f, this.Speed * Time.deltaTime, 0.0f);
-    this.transform.localScale = Vector3.MoveTowards(this.transform.localScale, new Vector3(0.2f, 0.1f, 0.1f), Time.deltaTime);
-    this.Timer += Time.deltaTime * 5f;
-    if ((double) this.Timer <= 1.0)
-      return;
-    this.MyRenderer.material.color = new Color(1f, 1f, 1f, 2f - this.Timer);
-    if ((double) this.MyRenderer.material.color.a > 0.0)
-      return;
-    Object.Destroy((Object) this.gameObject);
-  }
+	public float Speed;
+
+	public float Timer;
+
+	private void Start()
+	{
+		if (SFX != null)
+		{
+			SFX.pitch = Random.Range(0.9f, 1.1f);
+		}
+	}
+
+	private void Update()
+	{
+		base.transform.localPosition += new Vector3(0f, Speed * Time.deltaTime, 0f);
+		base.transform.localScale = Vector3.MoveTowards(base.transform.localScale, new Vector3(0.2f, 0.1f, 0.1f), Time.deltaTime);
+		Timer += Time.deltaTime * 5f;
+		if (Timer > 1f)
+		{
+			MyRenderer.material.color = new Color(1f, 1f, 1f, 2f - Timer);
+			if (MyRenderer.material.color.a <= 0f)
+			{
+				Object.Destroy(base.gameObject);
+			}
+		}
+	}
 }

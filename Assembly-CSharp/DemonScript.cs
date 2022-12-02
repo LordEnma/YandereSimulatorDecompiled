@@ -1,117 +1,150 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DemonScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DemonScript : MonoBehaviour
 {
-  public SkinnedMeshRenderer Face;
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public UILabel DemonSubtitle;
-  public UISprite Darkness;
-  public UISprite Button;
-  public AudioClip MouthOpen;
-  public AudioClip MouthClose;
-  public AudioClip[] Clips;
-  public string[] Lines;
-  public bool Communing;
-  public bool Open;
-  public float Intensity = 1f;
-  public float Value;
-  public Color MyColor;
-  public int DemonID;
-  public int Phase = 1;
-  public int ID;
+	public SkinnedMeshRenderer Face;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Yandere.Character.GetComponent<Animation>().CrossFade(this.Yandere.IdleAnim);
-      this.Yandere.CanMove = false;
-      this.Communing = true;
-    }
-    if (this.DemonID == 1)
-    {
-      if ((double) Vector3.Distance(this.Yandere.transform.position, this.transform.position) < 2.5)
-      {
-        if (!this.Open)
-          AudioSource.PlayClipAtPoint(this.MouthOpen, this.transform.position);
-        this.Open = true;
-      }
-      else
-      {
-        if (this.Open)
-          AudioSource.PlayClipAtPoint(this.MouthClose, this.transform.position);
-        this.Open = false;
-      }
-      this.Value = !this.Open ? Mathf.Lerp(this.Value, 0.0f, Time.deltaTime * 10f) : Mathf.Lerp(this.Value, 100f, Time.deltaTime * 10f);
-      this.Face.SetBlendShapeWeight(0, this.Value);
-    }
-    if (!this.Communing)
-      return;
-    AudioSource component = this.GetComponent<AudioSource>();
-    if (this.Phase == 1)
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a != 1.0)
-        return;
-      this.DemonSubtitle.transform.localPosition = Vector3.zero;
-      this.DemonSubtitle.text = this.Lines[this.ID];
-      this.DemonSubtitle.color = this.MyColor;
-      this.DemonSubtitle.color = new Color(this.DemonSubtitle.color.r, this.DemonSubtitle.color.g, this.DemonSubtitle.color.b, 0.0f);
-      ++this.Phase;
-      if (!((Object) this.Clips[this.ID] != (Object) null))
-        return;
-      component.clip = this.Clips[this.ID];
-      component.Play();
-    }
-    else if (this.Phase == 2)
-    {
-      this.DemonSubtitle.transform.localPosition = new Vector3(Random.Range(-this.Intensity, this.Intensity), Random.Range(-this.Intensity, this.Intensity), Random.Range(-this.Intensity, this.Intensity));
-      this.DemonSubtitle.color = new Color(this.DemonSubtitle.color.r, this.DemonSubtitle.color.g, this.DemonSubtitle.color.b, Mathf.MoveTowards(this.DemonSubtitle.color.a, 1f, Time.deltaTime));
-      this.Button.color = new Color(this.Button.color.r, this.Button.color.g, this.Button.color.b, Mathf.MoveTowards(this.Button.color.a, 1f, Time.deltaTime));
-      if ((double) this.DemonSubtitle.color.a <= 0.89999997615814209 || !Input.GetButtonDown("A"))
-        return;
-      ++this.Phase;
-    }
-    else if (this.Phase == 3)
-    {
-      this.DemonSubtitle.transform.localPosition = new Vector3(Random.Range(-this.Intensity, this.Intensity), Random.Range(-this.Intensity, this.Intensity), Random.Range(-this.Intensity, this.Intensity));
-      this.DemonSubtitle.color = new Color(this.DemonSubtitle.color.r, this.DemonSubtitle.color.g, this.DemonSubtitle.color.b, Mathf.MoveTowards(this.DemonSubtitle.color.a, 0.0f, Time.deltaTime));
-      if ((double) this.DemonSubtitle.color.a != 0.0)
-        return;
-      ++this.ID;
-      if (this.ID < this.Lines.Length)
-      {
-        --this.Phase;
-        this.DemonSubtitle.text = this.Lines[this.ID];
-        if (!((Object) this.Clips[this.ID] != (Object) null))
-          return;
-        component.clip = this.Clips[this.ID];
-        component.Play();
-      }
-      else
-        ++this.Phase;
-    }
-    else
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-      this.Button.color = new Color(this.Button.color.r, this.Button.color.g, this.Button.color.b, Mathf.MoveTowards(this.Button.color.a, 0.0f, Time.deltaTime));
-      if ((double) this.Darkness.color.a != 0.0)
-        return;
-      this.Yandere.CanMove = true;
-      this.Communing = false;
-      this.Phase = 1;
-      this.ID = 0;
-      SchoolGlobals.SetDemonActive(this.DemonID, true);
-      StudentGlobals.FemaleUniform = 1;
-      StudentGlobals.MaleUniform = 1;
-      GameGlobals.Paranormal = true;
-    }
-  }
+	public YandereScript Yandere;
+
+	public PromptScript Prompt;
+
+	public UILabel DemonSubtitle;
+
+	public UISprite Darkness;
+
+	public UISprite Button;
+
+	public AudioClip MouthOpen;
+
+	public AudioClip MouthClose;
+
+	public AudioClip[] Clips;
+
+	public string[] Lines;
+
+	public bool Communing;
+
+	public bool Open;
+
+	public float Intensity = 1f;
+
+	public float Value;
+
+	public Color MyColor;
+
+	public int DemonID;
+
+	public int Phase = 1;
+
+	public int ID;
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Yandere.Character.GetComponent<Animation>().CrossFade(Yandere.IdleAnim);
+			Yandere.CanMove = false;
+			Communing = true;
+		}
+		if (DemonID == 1)
+		{
+			if ((double)Vector3.Distance(Yandere.transform.position, base.transform.position) < 2.5)
+			{
+				if (!Open)
+				{
+					AudioSource.PlayClipAtPoint(MouthOpen, base.transform.position);
+				}
+				Open = true;
+			}
+			else
+			{
+				if (Open)
+				{
+					AudioSource.PlayClipAtPoint(MouthClose, base.transform.position);
+				}
+				Open = false;
+			}
+			if (Open)
+			{
+				Value = Mathf.Lerp(Value, 100f, Time.deltaTime * 10f);
+			}
+			else
+			{
+				Value = Mathf.Lerp(Value, 0f, Time.deltaTime * 10f);
+			}
+			Face.SetBlendShapeWeight(0, Value);
+		}
+		if (!Communing)
+		{
+			return;
+		}
+		AudioSource component = GetComponent<AudioSource>();
+		if (Phase == 1)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+			if (Darkness.color.a == 1f)
+			{
+				DemonSubtitle.transform.localPosition = Vector3.zero;
+				DemonSubtitle.text = Lines[ID];
+				DemonSubtitle.color = MyColor;
+				DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, 0f);
+				Phase++;
+				if (Clips[ID] != null)
+				{
+					component.clip = Clips[ID];
+					component.Play();
+				}
+			}
+		}
+		else if (Phase == 2)
+		{
+			DemonSubtitle.transform.localPosition = new Vector3(Random.Range(0f - Intensity, Intensity), Random.Range(0f - Intensity, Intensity), Random.Range(0f - Intensity, Intensity));
+			DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, Mathf.MoveTowards(DemonSubtitle.color.a, 1f, Time.deltaTime));
+			Button.color = new Color(Button.color.r, Button.color.g, Button.color.b, Mathf.MoveTowards(Button.color.a, 1f, Time.deltaTime));
+			if (DemonSubtitle.color.a > 0.9f && Input.GetButtonDown("A"))
+			{
+				Phase++;
+			}
+		}
+		else if (Phase == 3)
+		{
+			DemonSubtitle.transform.localPosition = new Vector3(Random.Range(0f - Intensity, Intensity), Random.Range(0f - Intensity, Intensity), Random.Range(0f - Intensity, Intensity));
+			DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, Mathf.MoveTowards(DemonSubtitle.color.a, 0f, Time.deltaTime));
+			if (DemonSubtitle.color.a != 0f)
+			{
+				return;
+			}
+			ID++;
+			if (ID < Lines.Length)
+			{
+				Phase--;
+				DemonSubtitle.text = Lines[ID];
+				if (Clips[ID] != null)
+				{
+					component.clip = Clips[ID];
+					component.Play();
+				}
+			}
+			else
+			{
+				Phase++;
+			}
+		}
+		else
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
+			Button.color = new Color(Button.color.r, Button.color.g, Button.color.b, Mathf.MoveTowards(Button.color.a, 0f, Time.deltaTime));
+			if (Darkness.color.a == 0f)
+			{
+				Yandere.CanMove = true;
+				Communing = false;
+				Phase = 1;
+				ID = 0;
+				SchoolGlobals.SetDemonActive(DemonID, true);
+				StudentGlobals.FemaleUniform = 1;
+				StudentGlobals.MaleUniform = 1;
+				GameGlobals.Paranormal = true;
+			}
+		}
+	}
 }

@@ -1,367 +1,472 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SchemesScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class SchemesScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public SchemeManagerScript SchemeManager;
-  public InputManagerScript InputManager;
-  public InventoryScript Inventory;
-  public PromptBarScript PromptBar;
-  public GameObject NextStepInput;
-  public GameObject FavorMenu;
-  public Transform Highlight;
-  public Transform Arrow;
-  public UILabel SchemeInstructions;
-  public UITexture SchemeIcon;
-  public UILabel PantyCount;
-  public UILabel SchemeDesc;
-  public UILabel[] SchemeDeadlineLabels;
-  public UILabel[] SchemeCostLabels;
-  public UILabel[] SchemeNameLabels;
-  public UISprite[] Exclamations;
-  public Texture[] SchemeIcons;
-  public int[] SchemeCosts;
-  public Transform[] SchemeDestinations;
-  public string[] SchemeDeadlines;
-  public string[] SchemeSkills;
-  public string[] SchemeDescs;
-  public string[] SchemeNames;
-  [Multiline]
-  [SerializeField]
-  public string[] SchemeSteps;
-  public int ListPosition = 1;
-  public int Limit = 20;
-  public int ID = 1;
-  public string[] Steps;
-  public AudioClip InfoPurchase;
-  public AudioClip InfoAfford;
-  public Transform[] Scheme1Destinations;
-  public Transform[] Scheme2Destinations;
-  public Transform[] Scheme3Destinations;
-  public Transform[] Scheme4Destinations;
-  public Transform[] Scheme5Destinations;
-  public bool[] DisableScheme;
-  public float HeldDown;
-  public float HeldUp;
-  public GameObject HUDIcon;
-  public UILabel HUDInstructions;
+	public StudentManagerScript StudentManager;
 
-  private void Start()
-  {
-    for (int schemeID = 1; schemeID < this.SchemeNameLabels.Length; ++schemeID)
-    {
-      if (!SchemeGlobals.GetSchemeStatus(schemeID))
-      {
-        this.SchemeDeadlineLabels[schemeID].text = this.SchemeDeadlines[schemeID];
-        this.SchemeNameLabels[schemeID].text = this.SchemeNames[schemeID];
-      }
-    }
-    this.DisableScheme[1] = true;
-    this.DisableScheme[2] = true;
-    this.DisableScheme[3] = true;
-    this.DisableScheme[4] = true;
-    this.DisableScheme[5] = true;
-    this.DisableScheme[21] = true;
-    this.DisableScheme[22] = true;
-    this.DisableScheme[23] = true;
-    this.DisableScheme[24] = true;
-    this.DisableScheme[25] = true;
-    if (DateGlobals.Weekday == DayOfWeek.Monday)
-    {
-      this.DisableScheme[1] = false;
-      this.DisableScheme[21] = false;
-    }
-    if (DateGlobals.Weekday == DayOfWeek.Tuesday)
-    {
-      this.DisableScheme[2] = false;
-      this.DisableScheme[22] = false;
-      this.DisableScheme[27] = true;
-    }
-    if (DateGlobals.Weekday == DayOfWeek.Wednesday)
-    {
-      this.DisableScheme[3] = false;
-      this.DisableScheme[23] = false;
-    }
-    if (DateGlobals.Weekday == DayOfWeek.Thursday)
-    {
-      this.DisableScheme[4] = false;
-      this.DisableScheme[24] = false;
-    }
-    if (DateGlobals.Weekday == DayOfWeek.Friday)
-    {
-      this.DisableScheme[5] = false;
-      this.DisableScheme[25] = false;
-    }
-    if (DateGlobals.Weekday != DayOfWeek.Monday)
-      this.DisableScheme[6] = true;
-    if (DateGlobals.Weekday != DayOfWeek.Thursday)
-      this.DisableScheme[20] = true;
-    if ((UnityEngine.Object) this.NextStepInput != (UnityEngine.Object) null)
-      this.NextStepInput.SetActive(false);
-    this.UpdateSchemeInfo();
-    if (!this.StudentManager.MissionMode)
-      return;
-    this.SchemeInstructions.color = Color.white;
-    this.SchemeDesc.color = Color.white;
-  }
+	public SchemeManagerScript SchemeManager;
 
-  private void Update()
-  {
-    if (this.InputManager.DPadUp || this.InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
-      this.HeldUp += Time.unscaledDeltaTime;
-    else
-      this.HeldUp = 0.0f;
-    if (this.InputManager.DPadDown || this.InputManager.StickDown || Input.GetKey("s") || Input.GetKey("down"))
-      this.HeldDown += Time.unscaledDeltaTime;
-    else
-      this.HeldDown = 0.0f;
-    if (this.InputManager.TappedUp || (double) this.HeldUp > 0.5)
-    {
-      if ((double) this.HeldUp > 0.5)
-        this.HeldUp = 0.45f;
-      if (this.ID == 1)
-      {
-        --this.ListPosition;
-        if (this.ListPosition < 0)
-        {
-          this.ListPosition = this.Limit - 15;
-          this.ID = 15;
-        }
-      }
-      else
-        --this.ID;
-      this.UpdateSchemeInfo();
-    }
-    if (this.InputManager.TappedDown || (double) this.HeldDown > 0.5)
-    {
-      if ((double) this.HeldDown > 0.5)
-        this.HeldDown = 0.45f;
-      if (this.ID == 15)
-      {
-        ++this.ListPosition;
-        if (this.ID + this.ListPosition > this.Limit)
-        {
-          this.ListPosition = 0;
-          this.ID = 1;
-        }
-      }
-      else
-        ++this.ID;
-      this.UpdateSchemeInfo();
-    }
-    if (Input.GetButtonDown("A"))
-    {
-      AudioSource component = this.GetComponent<AudioSource>();
-      if (this.PromptBar.Label[0].text != string.Empty)
-      {
-        if ((double) this.SchemeNameLabels[this.ID].color.a == 1.0)
-        {
-          this.SchemeManager.enabled = true;
-          this.SchemeManager.CurrentScheme = this.ID + this.ListPosition;
-          if (this.ID == 5)
-            this.SchemeManager.ClockCheck = true;
-          if (!SchemeGlobals.GetSchemeUnlocked(this.ID + this.ListPosition))
-          {
-            if (this.Inventory.PantyShots >= this.SchemeCosts[this.ID + this.ListPosition])
-            {
-              this.Inventory.PantyShots -= this.SchemeCosts[this.ID + this.ListPosition];
-              SchemeGlobals.SetSchemeUnlocked(this.ID + this.ListPosition, true);
-              SchemeGlobals.CurrentScheme = this.ID + this.ListPosition;
-              if (SchemeGlobals.GetSchemeStage(this.ID + this.ListPosition) == 0)
-                SchemeGlobals.SetSchemeStage(this.ID + this.ListPosition, 1);
-              this.UpdateSchemeDestinations();
-              this.UpdateInstructions();
-              this.UpdateSchemeList();
-              this.UpdateSchemeInfo();
-              component.clip = this.InfoPurchase;
-              component.Play();
-            }
-          }
-          else
-          {
-            if (SchemeGlobals.CurrentScheme == this.ID + this.ListPosition)
-            {
-              SchemeGlobals.CurrentScheme = 0;
-              this.SchemeManager.CurrentScheme = 0;
-              this.SchemeManager.enabled = false;
-            }
-            else
-              SchemeGlobals.CurrentScheme = this.ID + this.ListPosition;
-            this.UpdateSchemeDestinations();
-            this.UpdateInstructions();
-            this.UpdateSchemeInfo();
-          }
-        }
-      }
-      else if (SchemeGlobals.GetSchemeStage(this.ID + this.ListPosition) != 100 && this.Inventory.PantyShots < this.SchemeCosts[this.ID + this.ListPosition])
-      {
-        component.clip = this.InfoAfford;
-        component.Play();
-      }
-    }
-    if (!Input.GetButtonDown("B"))
-      return;
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Label[0].text = "Accept";
-    this.PromptBar.Label[1].text = "Exit";
-    this.PromptBar.Label[5].text = "Choose";
-    this.PromptBar.UpdateButtons();
-    this.FavorMenu.SetActive(true);
-    this.gameObject.SetActive(false);
-  }
+	public InputManagerScript InputManager;
 
-  public void UpdateSchemeList()
-  {
-    for (int schemeID = 1; schemeID < this.SchemeNameLabels.Length; ++schemeID)
-    {
-      if (SchemeGlobals.GetSchemeStage(schemeID + this.ListPosition) == 100)
-      {
-        UILabel schemeNameLabel = this.SchemeNameLabels[schemeID];
-        schemeNameLabel.color = new Color(schemeNameLabel.color.r, schemeNameLabel.color.g, schemeNameLabel.color.b, 0.5f);
-        this.SchemeCostLabels[schemeID].text = string.Empty;
-      }
-      else
-      {
-        this.SchemeCostLabels[schemeID].text = !SchemeGlobals.GetSchemeUnlocked(schemeID) ? string.Empty : this.SchemeCosts[schemeID].ToString();
-        if (SchemeGlobals.GetSchemeStage(schemeID) > SchemeGlobals.GetSchemePreviousStage(schemeID))
-          SchemeGlobals.SetSchemePreviousStage(schemeID, SchemeGlobals.GetSchemeStage(schemeID));
-      }
-    }
-  }
+	public InventoryScript Inventory;
 
-  public void UpdateSchemeInfo()
-  {
-    if (SchemeGlobals.GetSchemeStage(this.ID + this.ListPosition) != 100)
-    {
-      if (!SchemeGlobals.GetSchemeUnlocked(this.ID + this.ListPosition))
-      {
-        this.Arrow.gameObject.SetActive(false);
-        if ((UnityEngine.Object) this.Inventory != (UnityEngine.Object) null)
-          this.PromptBar.Label[0].text = this.Inventory.PantyShots >= this.SchemeCosts[this.ID + this.ListPosition] ? "Purchase" : string.Empty;
-        this.PromptBar.UpdateButtons();
-      }
-      else if (SchemeGlobals.CurrentScheme == this.ID + this.ListPosition)
-      {
-        this.Arrow.gameObject.SetActive(true);
-        this.Arrow.localPosition = new Vector3(this.Arrow.localPosition.x, (float) (-10.0 - 21.0 * (double) SchemeGlobals.GetSchemeStage(this.ID + this.ListPosition)), this.Arrow.localPosition.z);
-        this.PromptBar.Label[0].text = "Stop Tracking";
-        this.PromptBar.UpdateButtons();
-      }
-      else
-      {
-        this.Arrow.gameObject.SetActive(false);
-        this.PromptBar.Label[0].text = "Start Tracking";
-        this.PromptBar.UpdateButtons();
-      }
-    }
-    else
-    {
-      this.PromptBar.Label[0].text = string.Empty;
-      this.PromptBar.UpdateButtons();
-    }
-    this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (200.0 - 25.0 * (double) this.ID), this.Highlight.localPosition.z);
-    for (int index = 1; index < this.SchemeNameLabels.Length; ++index)
-    {
-      this.SchemeNameLabels[index].text = this.SchemeNames[index + this.ListPosition];
-      this.SchemeCostLabels[index].text = this.SchemeCosts[index + this.ListPosition].ToString() ?? "";
-      this.SchemeDeadlineLabels[index].text = this.SchemeDeadlines[index + this.ListPosition];
-      if (this.DisableScheme[index + this.ListPosition])
-        this.SchemeNameLabels[index].color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
-      else
-        this.SchemeNameLabels[index].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-      if ((UnityEngine.Object) this.SchemeManager != (UnityEngine.Object) null)
-      {
-        if (this.SchemeManager.CurrentScheme == index + this.ListPosition)
-          this.Exclamations[index].enabled = true;
-        else
-          this.Exclamations[index].enabled = false;
-      }
-    }
-    this.SchemeIcon.mainTexture = this.SchemeIcons[this.ID + this.ListPosition];
-    this.SchemeDesc.text = this.SchemeDescs[this.ID + this.ListPosition];
-    this.SchemeInstructions.text = SchemeGlobals.GetSchemeStage(this.ID + this.ListPosition) != 100 ? (!SchemeGlobals.GetSchemeUnlocked(this.ID + this.ListPosition) ? "Skills Required:\n" + this.SchemeSkills[this.ID + this.ListPosition] : this.SchemeSteps[this.ID + this.ListPosition]) : "This scheme is no longer available.";
-    this.UpdatePantyCount();
-  }
+	public PromptBarScript PromptBar;
 
-  public void UpdatePantyCount()
-  {
-    if (!((UnityEngine.Object) this.Inventory != (UnityEngine.Object) null))
-      return;
-    this.PantyCount.text = this.Inventory.PantyShots.ToString();
-  }
+	public GameObject NextStepInput;
 
-  public void UpdateInstructions()
-  {
-    this.Steps = this.SchemeSteps[SchemeGlobals.CurrentScheme].Split('\n');
-    if (SchemeGlobals.CurrentScheme > 0)
-    {
-      if (SchemeGlobals.CurrentScheme == 4 && SchemeGlobals.GetSchemeStage(4) == 1 && ((UnityEngine.Object) this.StudentManager.Yandere.Weapon[1] != (UnityEngine.Object) null && this.StudentManager.Yandere.Weapon[1].WeaponID == 6 || (UnityEngine.Object) this.StudentManager.Yandere.Weapon[2] != (UnityEngine.Object) null && this.StudentManager.Yandere.Weapon[2].WeaponID == 6))
-        SchemeGlobals.SetSchemeStage(4, 2);
-      if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 100)
-      {
-        if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 1)
-          SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, this.Steps.Length);
-        else if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) > this.Steps.Length)
-          SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, 1);
-        this.HUDIcon.SetActive(true);
-        this.HUDInstructions.text = this.Steps[SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) - 1].ToString();
-      }
-      else
-      {
-        this.Arrow.gameObject.SetActive(false);
-        this.HUDIcon.gameObject.SetActive(false);
-        this.HUDInstructions.text = string.Empty;
-        this.SchemeManager.CurrentScheme = 0;
-      }
-    }
-    else
-    {
-      this.HUDIcon.SetActive(false);
-      this.HUDInstructions.text = string.Empty;
-    }
-    if (SchemeGlobals.CurrentScheme < 7)
-      this.NextStepInput.SetActive(false);
-    else
-      this.NextStepInput.SetActive(true);
-  }
+	public GameObject FavorMenu;
 
-  public void UpdateSchemeDestinations()
-  {
-    if ((UnityEngine.Object) this.StudentManager.Students[this.StudentManager.RivalID] != (UnityEngine.Object) null)
-    {
-      this.Scheme1Destinations[3] = this.StudentManager.Students[this.StudentManager.RivalID].transform;
-      this.Scheme1Destinations[7] = this.StudentManager.Students[this.StudentManager.RivalID].transform;
-      this.Scheme4Destinations[5] = this.StudentManager.Students[this.StudentManager.RivalID].transform;
-      this.Scheme4Destinations[6] = this.StudentManager.Students[this.StudentManager.RivalID].transform;
-    }
-    if ((UnityEngine.Object) this.StudentManager.Students[2] != (UnityEngine.Object) null)
-      this.Scheme2Destinations[3] = this.StudentManager.Students[2].transform;
-    if ((UnityEngine.Object) this.StudentManager.Students[97] != (UnityEngine.Object) null)
-      this.Scheme5Destinations[3] = this.StudentManager.Students[97].transform;
-    switch (SchemeGlobals.CurrentScheme)
-    {
-      case 1:
-        this.SchemeDestinations = this.Scheme1Destinations;
-        break;
-      case 2:
-        this.SchemeDestinations = this.Scheme2Destinations;
-        break;
-      case 3:
-        this.SchemeDestinations = this.Scheme3Destinations;
-        break;
-      case 4:
-        this.SchemeDestinations = this.Scheme4Destinations;
-        break;
-      case 5:
-        this.SchemeDestinations = this.Scheme5Destinations;
-        break;
-    }
-  }
+	public Transform Highlight;
+
+	public Transform Arrow;
+
+	public UILabel SchemeInstructions;
+
+	public UITexture SchemeIcon;
+
+	public UILabel PantyCount;
+
+	public UILabel SchemeDesc;
+
+	public UILabel[] SchemeDeadlineLabels;
+
+	public UILabel[] SchemeCostLabels;
+
+	public UILabel[] SchemeNameLabels;
+
+	public UISprite[] Exclamations;
+
+	public Texture[] SchemeIcons;
+
+	public int[] SchemeCosts;
+
+	public Transform[] SchemeDestinations;
+
+	public string[] SchemeDeadlines;
+
+	public string[] SchemeSkills;
+
+	public string[] SchemeDescs;
+
+	public string[] SchemeNames;
+
+	[Multiline]
+	[SerializeField]
+	public string[] SchemeSteps;
+
+	public int ListPosition = 1;
+
+	public int Limit = 20;
+
+	public int ID = 1;
+
+	public string[] Steps;
+
+	public AudioClip InfoPurchase;
+
+	public AudioClip InfoAfford;
+
+	public Transform[] Scheme1Destinations;
+
+	public Transform[] Scheme2Destinations;
+
+	public Transform[] Scheme3Destinations;
+
+	public Transform[] Scheme4Destinations;
+
+	public Transform[] Scheme5Destinations;
+
+	public bool[] DisableScheme;
+
+	public float HeldDown;
+
+	public float HeldUp;
+
+	public GameObject HUDIcon;
+
+	public UILabel HUDInstructions;
+
+	private void Start()
+	{
+		for (int i = 1; i < SchemeNameLabels.Length; i++)
+		{
+			if (!SchemeGlobals.GetSchemeStatus(i))
+			{
+				SchemeDeadlineLabels[i].text = SchemeDeadlines[i];
+				SchemeNameLabels[i].text = SchemeNames[i];
+			}
+		}
+		DisableScheme[1] = true;
+		DisableScheme[2] = true;
+		DisableScheme[3] = true;
+		DisableScheme[4] = true;
+		DisableScheme[5] = true;
+		DisableScheme[21] = true;
+		DisableScheme[22] = true;
+		DisableScheme[23] = true;
+		DisableScheme[24] = true;
+		DisableScheme[25] = true;
+		if (DateGlobals.Weekday == DayOfWeek.Monday)
+		{
+			DisableScheme[1] = false;
+			DisableScheme[21] = false;
+		}
+		if (DateGlobals.Weekday == DayOfWeek.Tuesday)
+		{
+			DisableScheme[2] = false;
+			DisableScheme[22] = false;
+			DisableScheme[27] = true;
+		}
+		if (DateGlobals.Weekday == DayOfWeek.Wednesday)
+		{
+			DisableScheme[3] = false;
+			DisableScheme[23] = false;
+		}
+		if (DateGlobals.Weekday == DayOfWeek.Thursday)
+		{
+			DisableScheme[4] = false;
+			DisableScheme[24] = false;
+		}
+		if (DateGlobals.Weekday == DayOfWeek.Friday)
+		{
+			DisableScheme[5] = false;
+			DisableScheme[25] = false;
+		}
+		if (DateGlobals.Weekday != DayOfWeek.Monday)
+		{
+			DisableScheme[6] = true;
+		}
+		if (DateGlobals.Weekday != DayOfWeek.Thursday)
+		{
+			DisableScheme[20] = true;
+		}
+		if (NextStepInput != null)
+		{
+			NextStepInput.SetActive(false);
+		}
+		UpdateSchemeInfo();
+		if (StudentManager.MissionMode)
+		{
+			SchemeInstructions.color = Color.white;
+			SchemeDesc.color = Color.white;
+		}
+	}
+
+	private void Update()
+	{
+		if (InputManager.DPadUp || InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
+		{
+			HeldUp += Time.unscaledDeltaTime;
+		}
+		else
+		{
+			HeldUp = 0f;
+		}
+		if (InputManager.DPadDown || InputManager.StickDown || Input.GetKey("s") || Input.GetKey("down"))
+		{
+			HeldDown += Time.unscaledDeltaTime;
+		}
+		else
+		{
+			HeldDown = 0f;
+		}
+		if (InputManager.TappedUp || HeldUp > 0.5f)
+		{
+			if (HeldUp > 0.5f)
+			{
+				HeldUp = 0.45f;
+			}
+			if (ID == 1)
+			{
+				ListPosition--;
+				if (ListPosition < 0)
+				{
+					ListPosition = Limit - 15;
+					ID = 15;
+				}
+			}
+			else
+			{
+				ID--;
+			}
+			UpdateSchemeInfo();
+		}
+		if (InputManager.TappedDown || HeldDown > 0.5f)
+		{
+			if (HeldDown > 0.5f)
+			{
+				HeldDown = 0.45f;
+			}
+			if (ID == 15)
+			{
+				ListPosition++;
+				if (ID + ListPosition > Limit)
+				{
+					ListPosition = 0;
+					ID = 1;
+				}
+			}
+			else
+			{
+				ID++;
+			}
+			UpdateSchemeInfo();
+		}
+		if (Input.GetButtonDown("A"))
+		{
+			AudioSource component = GetComponent<AudioSource>();
+			if (PromptBar.Label[0].text != string.Empty)
+			{
+				if (SchemeNameLabels[ID].color.a == 1f)
+				{
+					SchemeManager.enabled = true;
+					SchemeManager.CurrentScheme = ID + ListPosition;
+					if (ID == 5)
+					{
+						SchemeManager.ClockCheck = true;
+					}
+					if (!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition))
+					{
+						if (Inventory.PantyShots >= SchemeCosts[ID + ListPosition])
+						{
+							Inventory.PantyShots -= SchemeCosts[ID + ListPosition];
+							SchemeGlobals.SetSchemeUnlocked(ID + ListPosition, true);
+							SchemeGlobals.CurrentScheme = ID + ListPosition;
+							if (SchemeGlobals.GetSchemeStage(ID + ListPosition) == 0)
+							{
+								SchemeGlobals.SetSchemeStage(ID + ListPosition, 1);
+							}
+							UpdateSchemeDestinations();
+							UpdateInstructions();
+							UpdateSchemeList();
+							UpdateSchemeInfo();
+							component.clip = InfoPurchase;
+							component.Play();
+						}
+					}
+					else
+					{
+						if (SchemeGlobals.CurrentScheme == ID + ListPosition)
+						{
+							SchemeGlobals.CurrentScheme = 0;
+							SchemeManager.CurrentScheme = 0;
+							SchemeManager.enabled = false;
+						}
+						else
+						{
+							SchemeGlobals.CurrentScheme = ID + ListPosition;
+						}
+						UpdateSchemeDestinations();
+						UpdateInstructions();
+						UpdateSchemeInfo();
+					}
+				}
+			}
+			else if (SchemeGlobals.GetSchemeStage(ID + ListPosition) != 100 && Inventory.PantyShots < SchemeCosts[ID + ListPosition])
+			{
+				component.clip = InfoAfford;
+				component.Play();
+			}
+		}
+		if (Input.GetButtonDown("B"))
+		{
+			PromptBar.ClearButtons();
+			PromptBar.Label[0].text = "Accept";
+			PromptBar.Label[1].text = "Exit";
+			PromptBar.Label[5].text = "Choose";
+			PromptBar.UpdateButtons();
+			FavorMenu.SetActive(true);
+			base.gameObject.SetActive(false);
+		}
+	}
+
+	public void UpdateSchemeList()
+	{
+		for (int i = 1; i < SchemeNameLabels.Length; i++)
+		{
+			if (SchemeGlobals.GetSchemeStage(i + ListPosition) == 100)
+			{
+				UILabel uILabel = SchemeNameLabels[i];
+				uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
+				SchemeCostLabels[i].text = string.Empty;
+				continue;
+			}
+			if (SchemeGlobals.GetSchemeUnlocked(i))
+			{
+				SchemeCostLabels[i].text = SchemeCosts[i].ToString();
+			}
+			else
+			{
+				SchemeCostLabels[i].text = string.Empty;
+			}
+			if (SchemeGlobals.GetSchemeStage(i) > SchemeGlobals.GetSchemePreviousStage(i))
+			{
+				SchemeGlobals.SetSchemePreviousStage(i, SchemeGlobals.GetSchemeStage(i));
+			}
+		}
+	}
+
+	public void UpdateSchemeInfo()
+	{
+		if (SchemeGlobals.GetSchemeStage(ID + ListPosition) != 100)
+		{
+			if (!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition))
+			{
+				Arrow.gameObject.SetActive(false);
+				if (Inventory != null)
+				{
+					PromptBar.Label[0].text = ((Inventory.PantyShots >= SchemeCosts[ID + ListPosition]) ? "Purchase" : string.Empty);
+				}
+				PromptBar.UpdateButtons();
+			}
+			else if (SchemeGlobals.CurrentScheme == ID + ListPosition)
+			{
+				Arrow.gameObject.SetActive(true);
+				Arrow.localPosition = new Vector3(Arrow.localPosition.x, -10f - 21f * (float)SchemeGlobals.GetSchemeStage(ID + ListPosition), Arrow.localPosition.z);
+				PromptBar.Label[0].text = "Stop Tracking";
+				PromptBar.UpdateButtons();
+			}
+			else
+			{
+				Arrow.gameObject.SetActive(false);
+				PromptBar.Label[0].text = "Start Tracking";
+				PromptBar.UpdateButtons();
+			}
+		}
+		else
+		{
+			PromptBar.Label[0].text = string.Empty;
+			PromptBar.UpdateButtons();
+		}
+		Highlight.localPosition = new Vector3(Highlight.localPosition.x, 200f - 25f * (float)ID, Highlight.localPosition.z);
+		for (int i = 1; i < SchemeNameLabels.Length; i++)
+		{
+			SchemeNameLabels[i].text = SchemeNames[i + ListPosition];
+			SchemeCostLabels[i].text = SchemeCosts[i + ListPosition].ToString() ?? "";
+			SchemeDeadlineLabels[i].text = SchemeDeadlines[i + ListPosition];
+			if (DisableScheme[i + ListPosition])
+			{
+				SchemeNameLabels[i].color = new Color(0f, 0f, 0f, 0.5f);
+			}
+			else
+			{
+				SchemeNameLabels[i].color = new Color(0f, 0f, 0f, 1f);
+			}
+			if (SchemeManager != null)
+			{
+				if (SchemeManager.CurrentScheme == i + ListPosition)
+				{
+					Exclamations[i].enabled = true;
+				}
+				else
+				{
+					Exclamations[i].enabled = false;
+				}
+			}
+		}
+		SchemeIcon.mainTexture = SchemeIcons[ID + ListPosition];
+		SchemeDesc.text = SchemeDescs[ID + ListPosition];
+		if (SchemeGlobals.GetSchemeStage(ID + ListPosition) == 100)
+		{
+			SchemeInstructions.text = "This scheme is no longer available.";
+		}
+		else
+		{
+			SchemeInstructions.text = ((!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition)) ? ("Skills Required:\n" + SchemeSkills[ID + ListPosition]) : SchemeSteps[ID + ListPosition]);
+		}
+		UpdatePantyCount();
+	}
+
+	public void UpdatePantyCount()
+	{
+		if (Inventory != null)
+		{
+			PantyCount.text = Inventory.PantyShots.ToString();
+		}
+	}
+
+	public void UpdateInstructions()
+	{
+		Steps = SchemeSteps[SchemeGlobals.CurrentScheme].Split('\n');
+		if (SchemeGlobals.CurrentScheme > 0)
+		{
+			if (SchemeGlobals.CurrentScheme == 4 && SchemeGlobals.GetSchemeStage(4) == 1 && ((StudentManager.Yandere.Weapon[1] != null && StudentManager.Yandere.Weapon[1].WeaponID == 6) || (StudentManager.Yandere.Weapon[2] != null && StudentManager.Yandere.Weapon[2].WeaponID == 6)))
+			{
+				SchemeGlobals.SetSchemeStage(4, 2);
+			}
+			if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 100)
+			{
+				if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 1)
+				{
+					SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, Steps.Length);
+				}
+				else if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) > Steps.Length)
+				{
+					SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, 1);
+				}
+				HUDIcon.SetActive(true);
+				HUDInstructions.text = Steps[SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) - 1].ToString();
+			}
+			else
+			{
+				Arrow.gameObject.SetActive(false);
+				HUDIcon.gameObject.SetActive(false);
+				HUDInstructions.text = string.Empty;
+				SchemeManager.CurrentScheme = 0;
+			}
+		}
+		else
+		{
+			HUDIcon.SetActive(false);
+			HUDInstructions.text = string.Empty;
+		}
+		if (SchemeGlobals.CurrentScheme < 7)
+		{
+			NextStepInput.SetActive(false);
+		}
+		else
+		{
+			NextStepInput.SetActive(true);
+		}
+	}
+
+	public void UpdateSchemeDestinations()
+	{
+		if (StudentManager.Students[StudentManager.RivalID] != null)
+		{
+			Scheme1Destinations[3] = StudentManager.Students[StudentManager.RivalID].transform;
+			Scheme1Destinations[7] = StudentManager.Students[StudentManager.RivalID].transform;
+			Scheme4Destinations[5] = StudentManager.Students[StudentManager.RivalID].transform;
+			Scheme4Destinations[6] = StudentManager.Students[StudentManager.RivalID].transform;
+		}
+		if (StudentManager.Students[2] != null)
+		{
+			Scheme2Destinations[3] = StudentManager.Students[2].transform;
+		}
+		if (StudentManager.Students[97] != null)
+		{
+			Scheme5Destinations[3] = StudentManager.Students[97].transform;
+		}
+		if (SchemeGlobals.CurrentScheme == 1)
+		{
+			SchemeDestinations = Scheme1Destinations;
+		}
+		else if (SchemeGlobals.CurrentScheme == 2)
+		{
+			SchemeDestinations = Scheme2Destinations;
+		}
+		else if (SchemeGlobals.CurrentScheme == 3)
+		{
+			SchemeDestinations = Scheme3Destinations;
+		}
+		else if (SchemeGlobals.CurrentScheme == 4)
+		{
+			SchemeDestinations = Scheme4Destinations;
+		}
+		else if (SchemeGlobals.CurrentScheme == 5)
+		{
+			SchemeDestinations = Scheme5Destinations;
+		}
+	}
 }

@@ -1,84 +1,87 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.GameStarter
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  public class GameStarter : MonoBehaviour
-  {
-    public List<Sprite> numbers;
-    public SpriteRenderer whiteFadeOutPost;
-    public Sprite timeUp;
-    public TipPage tipPage;
-    private AudioSource audioSource;
-    private SpriteRenderer spriteRenderer;
-    private int timeToStart = 3;
+	public class GameStarter : MonoBehaviour
+	{
+		public List<Sprite> numbers;
 
-    private void Awake()
-    {
-      this.spriteRenderer = this.GetComponent<SpriteRenderer>();
-      this.audioSource = this.GetComponent<AudioSource>();
-      this.StartCoroutine(this.CountdownToStart());
-      GameController.Instance.tipPage = this.tipPage;
-      GameController.Instance.whiteFadeOutPost = this.whiteFadeOutPost;
-    }
+		public SpriteRenderer whiteFadeOutPost;
 
-    public void SetGameTime(float gameTime)
-    {
-      int index = Mathf.CeilToInt(gameTime);
-      if ((double) index == 10.0)
-        SFXController.PlaySound(SFXController.Sounds.ClockTick);
-      if ((double) gameTime > 3.0)
-        return;
-      switch (index)
-      {
-        case 1:
-        case 2:
-        case 3:
-          this.spriteRenderer.sprite = this.numbers[index];
-          break;
-        default:
-          this.EndGame();
-          break;
-      }
-    }
+		public Sprite timeUp;
 
-    public void EndGame()
-    {
-      this.StartCoroutine(this.EndGameRoutine());
-      SFXController.PlaySound(SFXController.Sounds.GameSuccess);
-    }
+		public TipPage tipPage;
 
-    private IEnumerator CountdownToStart()
-    {
-      yield return (object) new WaitForSeconds(GameController.Instance.activeDifficultyVariables.transitionTime);
-      SFXController.PlaySound(SFXController.Sounds.Countdown);
-      while (this.timeToStart > 0)
-      {
-        yield return (object) new WaitForSeconds(1f);
-        --this.timeToStart;
-        this.spriteRenderer.sprite = this.numbers[this.timeToStart];
-      }
-      yield return (object) new WaitForSeconds(1f);
-      GameController.SetPause(false);
-      this.spriteRenderer.sprite = (Sprite) null;
-    }
+		private AudioSource audioSource;
 
-    private IEnumerator EndGameRoutine()
-    {
-      GameController.SetPause(true);
-      this.spriteRenderer.sprite = this.timeUp;
-      yield return (object) new WaitForSeconds(1f);
-      Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
-      GameController.TimeUp();
-    }
+		private SpriteRenderer spriteRenderer;
 
-    public void SetAudioPitch(float value) => this.audioSource.pitch = value;
-  }
+		private int timeToStart = 3;
+
+		private void Awake()
+		{
+			spriteRenderer = GetComponent<SpriteRenderer>();
+			audioSource = GetComponent<AudioSource>();
+			StartCoroutine(CountdownToStart());
+			GameController.Instance.tipPage = tipPage;
+			GameController.Instance.whiteFadeOutPost = whiteFadeOutPost;
+		}
+
+		public void SetGameTime(float gameTime)
+		{
+			int num = Mathf.CeilToInt(gameTime);
+			if ((float)num == 10f)
+			{
+				SFXController.PlaySound(SFXController.Sounds.ClockTick);
+			}
+			if (!(gameTime > 3f))
+			{
+				if ((uint)(num - 1) <= 2u)
+				{
+					spriteRenderer.sprite = numbers[num];
+				}
+				else
+				{
+					EndGame();
+				}
+			}
+		}
+
+		public void EndGame()
+		{
+			StartCoroutine(EndGameRoutine());
+			SFXController.PlaySound(SFXController.Sounds.GameSuccess);
+		}
+
+		private IEnumerator CountdownToStart()
+		{
+			yield return new WaitForSeconds(GameController.Instance.activeDifficultyVariables.transitionTime);
+			SFXController.PlaySound(SFXController.Sounds.Countdown);
+			while (timeToStart > 0)
+			{
+				yield return new WaitForSeconds(1f);
+				timeToStart--;
+				spriteRenderer.sprite = numbers[timeToStart];
+			}
+			yield return new WaitForSeconds(1f);
+			GameController.SetPause(false);
+			spriteRenderer.sprite = null;
+		}
+
+		private IEnumerator EndGameRoutine()
+		{
+			GameController.SetPause(true);
+			spriteRenderer.sprite = timeUp;
+			yield return new WaitForSeconds(1f);
+			Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
+			GameController.TimeUp();
+		}
+
+		public void SetAudioPitch(float value)
+		{
+			audioSource.pitch = value;
+		}
+	}
 }

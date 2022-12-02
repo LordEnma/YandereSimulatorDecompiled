@@ -1,66 +1,60 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TypewriterScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class TypewriterScript : MonoBehaviour
 {
-  public PromptScript Prompt;
-  public GameObject Window;
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      this.Prompt.Yandere.RPGCamera.enabled = false;
-      this.Prompt.Yandere.CanMove = false;
-      Time.timeScale = 0.0001f;
-      this.Window.SetActive(true);
-    }
-    if (!this.Window.activeInHierarchy)
-      return;
-    if (Input.GetButtonDown("A"))
-    {
-      this.Prompt.Yandere.Police.EndOfDay.ArticleID = 1;
-      this.CloseWindow();
-      this.Disable();
-    }
-    else if (Input.GetButtonDown("X"))
-    {
-      this.Prompt.Yandere.Police.EndOfDay.ArticleID = 2;
-      this.CloseWindow();
-      this.Disable();
-    }
-    else if (Input.GetButtonDown("Y"))
-    {
-      this.Prompt.Yandere.Police.EndOfDay.ArticleID = 3;
-      this.CloseWindow();
-      this.Disable();
-    }
-    else
-    {
-      if (!Input.GetButtonDown("B"))
-        return;
-      this.CloseWindow();
-    }
-  }
+	public GameObject Window;
 
-  private void CloseWindow()
-  {
-    this.Prompt.Yandere.RPGCamera.enabled = true;
-    this.Prompt.Yandere.CanMove = true;
-    this.Window.SetActive(false);
-    Time.timeScale = 1f;
-  }
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			Prompt.Yandere.RPGCamera.enabled = false;
+			Prompt.Yandere.CanMove = false;
+			Time.timeScale = 0.0001f;
+			Window.SetActive(true);
+		}
+		if (Window.activeInHierarchy)
+		{
+			if (Input.GetButtonDown("A"))
+			{
+				Prompt.Yandere.Police.EndOfDay.ArticleID = 1;
+				CloseWindow();
+				Disable();
+			}
+			else if (Input.GetButtonDown("X"))
+			{
+				Prompt.Yandere.Police.EndOfDay.ArticleID = 2;
+				CloseWindow();
+				Disable();
+			}
+			else if (Input.GetButtonDown("Y"))
+			{
+				Prompt.Yandere.Police.EndOfDay.ArticleID = 3;
+				CloseWindow();
+				Disable();
+			}
+			else if (Input.GetButtonDown("B"))
+			{
+				CloseWindow();
+			}
+		}
+	}
 
-  private void Disable()
-  {
-    this.Prompt.enabled = false;
-    this.enabled = false;
-    this.Prompt.Hide();
-  }
+	private void CloseWindow()
+	{
+		Prompt.Yandere.RPGCamera.enabled = true;
+		Prompt.Yandere.CanMove = true;
+		Window.SetActive(false);
+		Time.timeScale = 1f;
+	}
+
+	private void Disable()
+	{
+		Prompt.enabled = false;
+		base.enabled = false;
+		Prompt.Hide();
+	}
 }

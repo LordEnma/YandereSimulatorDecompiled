@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Clock
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,146 +5,231 @@ using UnityEngine;
 [Serializable]
 public class Clock
 {
-  [SerializeField]
-  private int hours;
-  [SerializeField]
-  private int minutes;
-  [SerializeField]
-  private int seconds;
-  [SerializeField]
-  private float currentSecond;
-  private static readonly Dictionary<TimeOfDay, string> TimeOfDayStrings = new Dictionary<TimeOfDay, string>()
-  {
-    {
-      TimeOfDay.Midnight,
-      "Midnight"
-    },
-    {
-      TimeOfDay.EarlyMorning,
-      "Early Morning"
-    },
-    {
-      TimeOfDay.Morning,
-      "Morning"
-    },
-    {
-      TimeOfDay.LateMorning,
-      "Late Morning"
-    },
-    {
-      TimeOfDay.Noon,
-      "Noon"
-    },
-    {
-      TimeOfDay.Afternoon,
-      "Afternoon"
-    },
-    {
-      TimeOfDay.Evening,
-      "Evening"
-    },
-    {
-      TimeOfDay.Night,
-      "Night"
-    }
-  };
+	[SerializeField]
+	private int hours;
 
-  public Clock(int hours, int minutes, int seconds, float currentSecond)
-  {
-    this.hours = hours;
-    this.minutes = minutes;
-    this.seconds = seconds;
-    this.currentSecond = currentSecond;
-  }
+	[SerializeField]
+	private int minutes;
 
-  public Clock(int hours, int minutes, int seconds)
-    : this(hours, minutes, seconds, 0.0f)
-  {
-  }
+	[SerializeField]
+	private int seconds;
 
-  public Clock()
-    : this(0, 0, 0, 0.0f)
-  {
-  }
+	[SerializeField]
+	private float currentSecond;
 
-  public int Hours24 => this.hours;
+	private static readonly Dictionary<TimeOfDay, string> TimeOfDayStrings = new Dictionary<TimeOfDay, string>
+	{
+		{
+			TimeOfDay.Midnight,
+			"Midnight"
+		},
+		{
+			TimeOfDay.EarlyMorning,
+			"Early Morning"
+		},
+		{
+			TimeOfDay.Morning,
+			"Morning"
+		},
+		{
+			TimeOfDay.LateMorning,
+			"Late Morning"
+		},
+		{
+			TimeOfDay.Noon,
+			"Noon"
+		},
+		{
+			TimeOfDay.Afternoon,
+			"Afternoon"
+		},
+		{
+			TimeOfDay.Evening,
+			"Evening"
+		},
+		{
+			TimeOfDay.Night,
+			"Night"
+		}
+	};
 
-  public int Hours12
-  {
-    get
-    {
-      int num = this.hours % 12;
-      return num != 0 ? num : 12;
-    }
-  }
+	public int Hours24
+	{
+		get
+		{
+			return hours;
+		}
+	}
 
-  public int Minutes => this.minutes;
+	public int Hours12
+	{
+		get
+		{
+			int num = hours % 12;
+			if (num != 0)
+			{
+				return num;
+			}
+			return 12;
+		}
+	}
 
-  public int Seconds => this.seconds;
+	public int Minutes
+	{
+		get
+		{
+			return minutes;
+		}
+	}
 
-  public float CurrentSecond => this.currentSecond;
+	public int Seconds
+	{
+		get
+		{
+			return seconds;
+		}
+	}
 
-  public int TotalSeconds => this.hours * 3600 + this.minutes * 60 + this.seconds;
+	public float CurrentSecond
+	{
+		get
+		{
+			return currentSecond;
+		}
+	}
 
-  public float PreciseTotalSeconds => (float) this.TotalSeconds + this.currentSecond;
+	public int TotalSeconds
+	{
+		get
+		{
+			return hours * 3600 + minutes * 60 + seconds;
+		}
+	}
 
-  public bool IsAM => this.hours < 12;
+	public float PreciseTotalSeconds
+	{
+		get
+		{
+			return (float)TotalSeconds + currentSecond;
+		}
+	}
 
-  public TimeOfDay TimeOfDay
-  {
-    get
-    {
-      if (this.hours < 3)
-        return TimeOfDay.Midnight;
-      if (this.hours < 6)
-        return TimeOfDay.EarlyMorning;
-      if (this.hours < 9)
-        return TimeOfDay.Morning;
-      if (this.hours < 12)
-        return TimeOfDay.LateMorning;
-      if (this.hours < 15)
-        return TimeOfDay.Noon;
-      if (this.hours < 18)
-        return TimeOfDay.Afternoon;
-      return this.hours < 21 ? TimeOfDay.Evening : TimeOfDay.Night;
-    }
-  }
+	public bool IsAM
+	{
+		get
+		{
+			return hours < 12;
+		}
+	}
 
-  public string TimeOfDayString => Clock.TimeOfDayStrings[this.TimeOfDay];
+	public TimeOfDay TimeOfDay
+	{
+		get
+		{
+			if (hours < 3)
+			{
+				return TimeOfDay.Midnight;
+			}
+			if (hours < 6)
+			{
+				return TimeOfDay.EarlyMorning;
+			}
+			if (hours < 9)
+			{
+				return TimeOfDay.Morning;
+			}
+			if (hours < 12)
+			{
+				return TimeOfDay.LateMorning;
+			}
+			if (hours < 15)
+			{
+				return TimeOfDay.Noon;
+			}
+			if (hours < 18)
+			{
+				return TimeOfDay.Afternoon;
+			}
+			if (hours < 21)
+			{
+				return TimeOfDay.Evening;
+			}
+			return TimeOfDay.Night;
+		}
+	}
 
-  public bool IsBefore(Clock clock) => this.TotalSeconds < clock.TotalSeconds;
+	public string TimeOfDayString
+	{
+		get
+		{
+			return TimeOfDayStrings[TimeOfDay];
+		}
+	}
 
-  public bool IsAfter(Clock clock) => this.TotalSeconds > clock.TotalSeconds;
+	public Clock(int hours, int minutes, int seconds, float currentSecond)
+	{
+		this.hours = hours;
+		this.minutes = minutes;
+		this.seconds = seconds;
+		this.currentSecond = currentSecond;
+	}
 
-  public void IncrementHour()
-  {
-    ++this.hours;
-    if (this.hours != 24)
-      return;
-    this.hours = 0;
-  }
+	public Clock(int hours, int minutes, int seconds)
+		: this(hours, minutes, seconds, 0f)
+	{
+	}
 
-  public void IncrementMinute()
-  {
-    ++this.minutes;
-    if (this.minutes != 60)
-      return;
-    this.IncrementHour();
-    this.minutes = 0;
-  }
+	public Clock()
+		: this(0, 0, 0, 0f)
+	{
+	}
 
-  public void IncrementSecond()
-  {
-    ++this.seconds;
-    if (this.seconds != 60)
-      return;
-    this.IncrementMinute();
-    this.seconds = 0;
-  }
+	public bool IsBefore(Clock clock)
+	{
+		return TotalSeconds < clock.TotalSeconds;
+	}
 
-  public void Tick(float dt)
-  {
-    for (this.currentSecond += dt; (double) this.currentSecond >= 1.0; --this.currentSecond)
-      this.IncrementSecond();
-  }
+	public bool IsAfter(Clock clock)
+	{
+		return TotalSeconds > clock.TotalSeconds;
+	}
+
+	public void IncrementHour()
+	{
+		hours++;
+		if (hours == 24)
+		{
+			hours = 0;
+		}
+	}
+
+	public void IncrementMinute()
+	{
+		minutes++;
+		if (minutes == 60)
+		{
+			IncrementHour();
+			minutes = 0;
+		}
+	}
+
+	public void IncrementSecond()
+	{
+		seconds++;
+		if (seconds == 60)
+		{
+			IncrementMinute();
+			seconds = 0;
+		}
+	}
+
+	public void Tick(float dt)
+	{
+		currentSecond += dt;
+		while (currentSecond >= 1f)
+		{
+			IncrementSecond();
+			currentSecond -= 1f;
+		}
+	}
 }

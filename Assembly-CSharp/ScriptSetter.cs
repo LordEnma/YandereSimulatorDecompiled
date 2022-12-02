@@ -1,27 +1,33 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ScriptSetter
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
+using System;
 using System.Reflection;
 using UnityEngine;
 
 public class ScriptSetter : MonoBehaviour
 {
-  public StudentScript OldStudent;
-  public StudentScript NewStudent;
+	public StudentScript OldStudent;
 
-  private void Start()
-  {
-    foreach (Component component in this.GetComponents(typeof (Component)))
-    {
-      Debug.Log((object) ("name " + component.name + " type " + ((object) component).GetType()?.ToString() + " basetype " + ((object) component).GetType().BaseType?.ToString()));
-      foreach (FieldInfo field in ((object) component).GetType().GetFields())
-      {
-        object obj = (object) component;
-        Debug.Log((object) (field.Name + " value is: " + field.GetValue(obj)?.ToString()));
-      }
-    }
-  }
+	public StudentScript NewStudent;
+
+	private void Start()
+	{
+		Component[] components = GetComponents(typeof(Component));
+		foreach (Component component in components)
+		{
+			string[] obj = new string[6] { "name ", component.name, " type ", null, null, null };
+			Type type = component.GetType();
+			obj[3] = (((object)type != null) ? type.ToString() : null);
+			obj[4] = " basetype ";
+			Type baseType = component.GetType().BaseType;
+			obj[5] = (((object)baseType != null) ? baseType.ToString() : null);
+			Debug.Log(string.Concat(obj));
+			FieldInfo[] fields = component.GetType().GetFields();
+			foreach (FieldInfo fieldInfo in fields)
+			{
+				object obj2 = component;
+				string text = fieldInfo.Name;
+				object value = fieldInfo.GetValue(obj2);
+				Debug.Log(text + " value is: " + ((value != null) ? value.ToString() : null));
+			}
+		}
+	}
 }

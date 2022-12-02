@@ -1,52 +1,52 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RemovableItemManagerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class RemovableItemManagerScript : MonoBehaviour
 {
-  public RemovableItemScript[] RemovableItems;
+	public RemovableItemScript[] RemovableItems;
 
-  private void Start()
-  {
-    this.RemovableItems = UnityEngine.Object.FindObjectsOfType(typeof (RemovableItemScript)) as RemovableItemScript[];
-    bool flag = false;
-    if (DateGlobals.Weekday == DayOfWeek.Monday)
-      flag = true;
-    for (int itemID = 0; itemID < this.RemovableItems.Length; ++itemID)
-    {
-      if (GameGlobals.GetItemRemoved(itemID) == 1)
-      {
-        if (this.RemovableItems[itemID].ClubItem & flag)
-        {
-          Debug.Log((object) ("Item #" + itemID.ToString() + " (" + this.RemovableItems[itemID].gameObject.name + ") was used up by the player, but it has been replaced."));
-          GameGlobals.SetItemRemoved(itemID, 0);
-        }
-        else
-        {
-          Debug.Log((object) ("Item #" + itemID.ToString() + " (" + this.RemovableItems[itemID].gameObject.name + ") was used up by the player. It is now being removed."));
-          this.RemovableItems[itemID].gameObject.SetActive(false);
-        }
-      }
-    }
-  }
+	private void Start()
+	{
+		RemovableItems = UnityEngine.Object.FindObjectsOfType(typeof(RemovableItemScript)) as RemovableItemScript[];
+		bool flag = false;
+		if (DateGlobals.Weekday == DayOfWeek.Monday)
+		{
+			flag = true;
+		}
+		for (int i = 0; i < RemovableItems.Length; i++)
+		{
+			if (GameGlobals.GetItemRemoved(i) == 1)
+			{
+				if (RemovableItems[i].ClubItem && flag)
+				{
+					Debug.Log("Item #" + i + " (" + RemovableItems[i].gameObject.name + ") was used up by the player, but it has been replaced.");
+					GameGlobals.SetItemRemoved(i, 0);
+				}
+				else
+				{
+					Debug.Log("Item #" + i + " (" + RemovableItems[i].gameObject.name + ") was used up by the player. It is now being removed.");
+					RemovableItems[i].gameObject.SetActive(false);
+				}
+			}
+		}
+	}
 
-  public void RemoveItems()
-  {
-    for (int itemID = 0; itemID < this.RemovableItems.Length; ++itemID)
-    {
-      if ((UnityEngine.Object) this.RemovableItems[itemID] == (UnityEngine.Object) null || !this.RemovableItems[itemID].gameObject.activeInHierarchy)
-      {
-        if ((UnityEngine.Object) this.RemovableItems[itemID] == (UnityEngine.Object) null)
-          Debug.Log((object) ("Item #" + itemID.ToString() + " was used up by the player. It won't reappear at school unless it is replenishes."));
-        else
-          Debug.Log((object) ("Item #" + itemID.ToString() + " (" + this.RemovableItems[itemID].gameObject.name + ") was used up by the player. It won't reappear at school unless it is replenishes."));
-        GameGlobals.SetItemRemoved(itemID, 1);
-      }
-    }
-  }
+	public void RemoveItems()
+	{
+		for (int i = 0; i < RemovableItems.Length; i++)
+		{
+			if (RemovableItems[i] == null || !RemovableItems[i].gameObject.activeInHierarchy)
+			{
+				if (RemovableItems[i] == null)
+				{
+					Debug.Log("Item #" + i + " was used up by the player. It won't reappear at school unless it is replenishes.");
+				}
+				else
+				{
+					Debug.Log("Item #" + i + " (" + RemovableItems[i].gameObject.name + ") was used up by the player. It won't reappear at school unless it is replenishes.");
+				}
+				GameGlobals.SetItemRemoved(i, 1);
+			}
+		}
+	}
 }

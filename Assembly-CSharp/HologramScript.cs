@@ -1,20 +1,24 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HologramScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class HologramScript : MonoBehaviour
 {
-  public GameObject[] Holograms;
+	public GameObject[] Holograms;
 
-  public void UpdateHolograms()
-  {
-    foreach (GameObject hologram in this.Holograms)
-      hologram.SetActive(this.TrueFalse());
-  }
+	public void UpdateHolograms()
+	{
+		GameObject[] holograms = Holograms;
+		for (int i = 0; i < holograms.Length; i++)
+		{
+			holograms[i].SetActive(TrueFalse());
+		}
+	}
 
-  private bool TrueFalse() => (double) Random.value >= 0.5;
+	private bool TrueFalse()
+	{
+		if (Random.value >= 0.5f)
+		{
+			return true;
+		}
+		return false;
+	}
 }

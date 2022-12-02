@@ -1,129 +1,134 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FavorMenuScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FavorMenuScript : MonoBehaviour
 {
-  public TutorialWindowScript TutorialWindow;
-  public InputManagerScript InputManager;
-  public PauseScreenScript PauseScreen;
-  public ServicesScript ServicesMenu;
-  public SchemesScript SchemesMenu;
-  public DropsScript DropsMenu;
-  public PromptBarScript PromptBar;
-  public GameObject BountyMenu;
-  public GameObject Panel;
-  public Transform Highlight;
-  public UITexture Portrait;
-  public int ID = 1;
+	public TutorialWindowScript TutorialWindow;
 
-  private void Update()
-  {
-    if (!this.BountyMenu.activeInHierarchy)
-    {
-      if (this.InputManager.TappedRight)
-      {
-        ++this.ID;
-        this.UpdateHighlight();
-      }
-      else if (this.InputManager.TappedLeft)
-      {
-        --this.ID;
-        this.UpdateHighlight();
-      }
-      if (this.TutorialWindow.Hide || this.TutorialWindow.Show)
-        return;
-      if (Input.GetButtonDown("A"))
-      {
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Label[0].text = "Accept";
-        this.PromptBar.Label[1].text = "Exit";
-        this.PromptBar.Label[4].text = "Choose";
-        this.PromptBar.UpdateButtons();
-        if (this.ID == 1)
-        {
-          this.SchemesMenu.UpdatePantyCount();
-          this.SchemesMenu.UpdateSchemeList();
-          this.SchemesMenu.UpdateSchemeInfo();
-          this.SchemesMenu.gameObject.SetActive(true);
-          this.gameObject.SetActive(false);
-        }
-        else if (this.ID == 2)
-        {
-          this.ServicesMenu.UpdatePantyCount();
-          this.ServicesMenu.UpdateList();
-          this.ServicesMenu.UpdateDesc();
-          this.ServicesMenu.gameObject.SetActive(true);
-          this.gameObject.SetActive(false);
-        }
-        else if (this.ID == 3)
-        {
-          this.DropsMenu.UpdatePantyCount();
-          this.DropsMenu.UpdateList();
-          this.DropsMenu.UpdateDesc();
-          this.DropsMenu.gameObject.SetActive(true);
-          this.gameObject.SetActive(false);
-        }
-        else
-        {
-          if (this.ID != 4)
-            return;
-          this.PromptBar.ClearButtons();
-          this.PromptBar.Label[1].text = "Back";
-          this.PromptBar.UpdateButtons();
-          this.Panel.SetActive(false);
-          this.BountyMenu.SetActive(true);
-        }
-      }
-      else if (Input.GetButtonDown("X"))
-      {
-        this.TutorialWindow.TitleLabel.text = "Info Points";
-        this.TutorialWindow.TutorialLabel.text = this.TutorialWindow.PointsString;
-        this.TutorialWindow.TutorialLabel.text = this.TutorialWindow.TutorialLabel.text.Replace('@', '\n');
-        this.TutorialWindow.TutorialImage.mainTexture = this.TutorialWindow.InfoTexture;
-        this.TutorialWindow.ForcingTutorial = true;
-        this.TutorialWindow.enabled = true;
-        this.TutorialWindow.SummonWindow();
-      }
-      else
-      {
-        if (!Input.GetButtonDown("B"))
-          return;
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Label[0].text = "Accept";
-        this.PromptBar.Label[1].text = "Exit";
-        this.PromptBar.Label[4].text = "Choose";
-        this.PromptBar.UpdateButtons();
-        this.PauseScreen.MainMenu.SetActive(true);
-        this.PauseScreen.Sideways = false;
-        this.PauseScreen.PressedB = true;
-        this.gameObject.SetActive(false);
-      }
-    }
-    else
-    {
-      if (!Input.GetButtonDown("B"))
-        return;
-      this.PromptBar.ClearButtons();
-      this.PromptBar.Label[0].text = "Accept";
-      this.PromptBar.Label[1].text = "Exit";
-      this.PromptBar.Label[4].text = "Choose";
-      this.PromptBar.UpdateButtons();
-      this.Panel.SetActive(true);
-      this.BountyMenu.SetActive(false);
-    }
-  }
+	public InputManagerScript InputManager;
 
-  private void UpdateHighlight()
-  {
-    if (this.ID > 4)
-      this.ID = 1;
-    else if (this.ID < 1)
-      this.ID = 4;
-    this.Highlight.transform.localPosition = new Vector3((float) (200.0 * (double) this.ID - 500.0), this.Highlight.transform.localPosition.y, this.Highlight.transform.localPosition.z);
-  }
+	public PauseScreenScript PauseScreen;
+
+	public ServicesScript ServicesMenu;
+
+	public SchemesScript SchemesMenu;
+
+	public DropsScript DropsMenu;
+
+	public PromptBarScript PromptBar;
+
+	public GameObject BountyMenu;
+
+	public GameObject Panel;
+
+	public Transform Highlight;
+
+	public UITexture Portrait;
+
+	public int ID = 1;
+
+	private void Update()
+	{
+		if (!BountyMenu.activeInHierarchy)
+		{
+			if (InputManager.TappedRight)
+			{
+				ID++;
+				UpdateHighlight();
+			}
+			else if (InputManager.TappedLeft)
+			{
+				ID--;
+				UpdateHighlight();
+			}
+			if (TutorialWindow.Hide || TutorialWindow.Show)
+			{
+				return;
+			}
+			if (Input.GetButtonDown("A"))
+			{
+				PromptBar.ClearButtons();
+				PromptBar.Label[0].text = "Accept";
+				PromptBar.Label[1].text = "Exit";
+				PromptBar.Label[4].text = "Choose";
+				PromptBar.UpdateButtons();
+				if (ID == 1)
+				{
+					SchemesMenu.UpdatePantyCount();
+					SchemesMenu.UpdateSchemeList();
+					SchemesMenu.UpdateSchemeInfo();
+					SchemesMenu.gameObject.SetActive(true);
+					base.gameObject.SetActive(false);
+				}
+				else if (ID == 2)
+				{
+					ServicesMenu.UpdatePantyCount();
+					ServicesMenu.UpdateList();
+					ServicesMenu.UpdateDesc();
+					ServicesMenu.gameObject.SetActive(true);
+					base.gameObject.SetActive(false);
+				}
+				else if (ID == 3)
+				{
+					DropsMenu.UpdatePantyCount();
+					DropsMenu.UpdateList();
+					DropsMenu.UpdateDesc();
+					DropsMenu.gameObject.SetActive(true);
+					base.gameObject.SetActive(false);
+				}
+				else if (ID == 4)
+				{
+					PromptBar.ClearButtons();
+					PromptBar.Label[1].text = "Back";
+					PromptBar.UpdateButtons();
+					Panel.SetActive(false);
+					BountyMenu.SetActive(true);
+				}
+			}
+			else if (Input.GetButtonDown("X"))
+			{
+				TutorialWindow.TitleLabel.text = "Info Points";
+				TutorialWindow.TutorialLabel.text = TutorialWindow.PointsString;
+				TutorialWindow.TutorialLabel.text = TutorialWindow.TutorialLabel.text.Replace('@', '\n');
+				TutorialWindow.TutorialImage.mainTexture = TutorialWindow.InfoTexture;
+				TutorialWindow.ForcingTutorial = true;
+				TutorialWindow.enabled = true;
+				TutorialWindow.SummonWindow();
+			}
+			else if (Input.GetButtonDown("B"))
+			{
+				PromptBar.ClearButtons();
+				PromptBar.Label[0].text = "Accept";
+				PromptBar.Label[1].text = "Exit";
+				PromptBar.Label[4].text = "Choose";
+				PromptBar.UpdateButtons();
+				PauseScreen.MainMenu.SetActive(true);
+				PauseScreen.Sideways = false;
+				PauseScreen.PressedB = true;
+				base.gameObject.SetActive(false);
+			}
+		}
+		else if (Input.GetButtonDown("B"))
+		{
+			PromptBar.ClearButtons();
+			PromptBar.Label[0].text = "Accept";
+			PromptBar.Label[1].text = "Exit";
+			PromptBar.Label[4].text = "Choose";
+			PromptBar.UpdateButtons();
+			Panel.SetActive(true);
+			BountyMenu.SetActive(false);
+		}
+	}
+
+	private void UpdateHighlight()
+	{
+		if (ID > 4)
+		{
+			ID = 1;
+		}
+		else if (ID < 1)
+		{
+			ID = 4;
+		}
+		Highlight.transform.localPosition = new Vector3(-500f + 200f * (float)ID, Highlight.transform.localPosition.y, Highlight.transform.localPosition.z);
+	}
 }

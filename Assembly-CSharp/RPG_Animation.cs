@@ -1,189 +1,246 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RPG_Animation
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RPG_Animation : MonoBehaviour
 {
-  public static RPG_Animation instance;
-  public RPG_Animation.CharacterMoveDirection currentMoveDir;
-  public RPG_Animation.CharacterState currentState;
+	public enum CharacterMoveDirection
+	{
+		None = 0,
+		Forward = 1,
+		Backward = 2,
+		StrafeLeft = 3,
+		StrafeRight = 4,
+		StrafeForwardLeft = 5,
+		StrafeForwardRight = 6,
+		StrafeBackLeft = 7,
+		StrafeBackRight = 8
+	}
 
-  private void Awake() => RPG_Animation.instance = this;
+	public enum CharacterState
+	{
+		Idle = 0,
+		Walk = 1,
+		WalkBack = 2,
+		StrafeLeft = 3,
+		StrafeRight = 4,
+		Jump = 5
+	}
 
-  private void Update()
-  {
-    this.SetCurrentState();
-    this.StartAnimation();
-  }
+	public static RPG_Animation instance;
 
-  public void SetCurrentMoveDir(Vector3 playerDir)
-  {
-    bool flag1 = false;
-    bool flag2 = false;
-    bool flag3 = false;
-    bool flag4 = false;
-    if ((double) playerDir.z > 0.0)
-      flag1 = true;
-    if ((double) playerDir.z < 0.0)
-      flag2 = true;
-    if ((double) playerDir.x < 0.0)
-      flag3 = true;
-    if ((double) playerDir.x > 0.0)
-      flag4 = true;
-    if (flag1)
-    {
-      if (flag3)
-        this.currentMoveDir = RPG_Animation.CharacterMoveDirection.StrafeForwardLeft;
-      else if (flag4)
-        this.currentMoveDir = RPG_Animation.CharacterMoveDirection.StrafeForwardRight;
-      else
-        this.currentMoveDir = RPG_Animation.CharacterMoveDirection.Forward;
-    }
-    else if (flag2)
-    {
-      if (flag3)
-        this.currentMoveDir = RPG_Animation.CharacterMoveDirection.StrafeBackLeft;
-      else if (flag4)
-        this.currentMoveDir = RPG_Animation.CharacterMoveDirection.StrafeBackRight;
-      else
-        this.currentMoveDir = RPG_Animation.CharacterMoveDirection.Backward;
-    }
-    else if (flag3)
-      this.currentMoveDir = RPG_Animation.CharacterMoveDirection.StrafeLeft;
-    else if (flag4)
-      this.currentMoveDir = RPG_Animation.CharacterMoveDirection.StrafeRight;
-    else
-      this.currentMoveDir = RPG_Animation.CharacterMoveDirection.None;
-  }
+	public CharacterMoveDirection currentMoveDir;
 
-  public void SetCurrentState()
-  {
-    if (!RPG_Controller.instance.characterController.isGrounded)
-      return;
-    switch (this.currentMoveDir)
-    {
-      case RPG_Animation.CharacterMoveDirection.None:
-        this.currentState = RPG_Animation.CharacterState.Idle;
-        break;
-      case RPG_Animation.CharacterMoveDirection.Forward:
-        this.currentState = RPG_Animation.CharacterState.Walk;
-        break;
-      case RPG_Animation.CharacterMoveDirection.Backward:
-        this.currentState = RPG_Animation.CharacterState.WalkBack;
-        break;
-      case RPG_Animation.CharacterMoveDirection.StrafeLeft:
-        this.currentState = RPG_Animation.CharacterState.StrafeLeft;
-        break;
-      case RPG_Animation.CharacterMoveDirection.StrafeRight:
-        this.currentState = RPG_Animation.CharacterState.StrafeRight;
-        break;
-      case RPG_Animation.CharacterMoveDirection.StrafeForwardLeft:
-        this.currentState = RPG_Animation.CharacterState.Walk;
-        break;
-      case RPG_Animation.CharacterMoveDirection.StrafeForwardRight:
-        this.currentState = RPG_Animation.CharacterState.Walk;
-        break;
-      case RPG_Animation.CharacterMoveDirection.StrafeBackLeft:
-        this.currentState = RPG_Animation.CharacterState.WalkBack;
-        break;
-      case RPG_Animation.CharacterMoveDirection.StrafeBackRight:
-        this.currentState = RPG_Animation.CharacterState.WalkBack;
-        break;
-    }
-  }
+	public CharacterState currentState;
 
-  public void StartAnimation()
-  {
-    switch (this.currentState)
-    {
-      case RPG_Animation.CharacterState.Idle:
-        this.Idle();
-        break;
-      case RPG_Animation.CharacterState.Walk:
-        if (this.currentMoveDir == RPG_Animation.CharacterMoveDirection.StrafeForwardLeft)
-        {
-          this.StrafeForwardLeft();
-          break;
-        }
-        if (this.currentMoveDir == RPG_Animation.CharacterMoveDirection.StrafeForwardRight)
-        {
-          this.StrafeForwardRight();
-          break;
-        }
-        this.Walk();
-        break;
-      case RPG_Animation.CharacterState.WalkBack:
-        if (this.currentMoveDir == RPG_Animation.CharacterMoveDirection.StrafeBackLeft)
-        {
-          this.StrafeBackLeft();
-          break;
-        }
-        if (this.currentMoveDir == RPG_Animation.CharacterMoveDirection.StrafeBackRight)
-        {
-          this.StrafeBackRight();
-          break;
-        }
-        this.WalkBack();
-        break;
-      case RPG_Animation.CharacterState.StrafeLeft:
-        this.StrafeLeft();
-        break;
-      case RPG_Animation.CharacterState.StrafeRight:
-        this.StrafeRight();
-        break;
-    }
-  }
+	private void Awake()
+	{
+		instance = this;
+	}
 
-  private void Idle() => this.GetComponent<Animation>().CrossFade("idle");
+	private void Update()
+	{
+		SetCurrentState();
+		StartAnimation();
+	}
 
-  private void Walk() => this.GetComponent<Animation>().CrossFade("walk");
+	public void SetCurrentMoveDir(Vector3 playerDir)
+	{
+		bool flag = false;
+		bool flag2 = false;
+		bool flag3 = false;
+		bool flag4 = false;
+		if (playerDir.z > 0f)
+		{
+			flag = true;
+		}
+		if (playerDir.z < 0f)
+		{
+			flag2 = true;
+		}
+		if (playerDir.x < 0f)
+		{
+			flag3 = true;
+		}
+		if (playerDir.x > 0f)
+		{
+			flag4 = true;
+		}
+		if (flag)
+		{
+			if (flag3)
+			{
+				currentMoveDir = CharacterMoveDirection.StrafeForwardLeft;
+			}
+			else if (flag4)
+			{
+				currentMoveDir = CharacterMoveDirection.StrafeForwardRight;
+			}
+			else
+			{
+				currentMoveDir = CharacterMoveDirection.Forward;
+			}
+		}
+		else if (flag2)
+		{
+			if (flag3)
+			{
+				currentMoveDir = CharacterMoveDirection.StrafeBackLeft;
+			}
+			else if (flag4)
+			{
+				currentMoveDir = CharacterMoveDirection.StrafeBackRight;
+			}
+			else
+			{
+				currentMoveDir = CharacterMoveDirection.Backward;
+			}
+		}
+		else if (flag3)
+		{
+			currentMoveDir = CharacterMoveDirection.StrafeLeft;
+		}
+		else if (flag4)
+		{
+			currentMoveDir = CharacterMoveDirection.StrafeRight;
+		}
+		else
+		{
+			currentMoveDir = CharacterMoveDirection.None;
+		}
+	}
 
-  private void StrafeForwardLeft() => this.GetComponent<Animation>().CrossFade("strafeforwardleft");
+	public void SetCurrentState()
+	{
+		if (RPG_Controller.instance.characterController.isGrounded)
+		{
+			switch (currentMoveDir)
+			{
+			case CharacterMoveDirection.None:
+				currentState = CharacterState.Idle;
+				break;
+			case CharacterMoveDirection.Forward:
+				currentState = CharacterState.Walk;
+				break;
+			case CharacterMoveDirection.StrafeForwardLeft:
+				currentState = CharacterState.Walk;
+				break;
+			case CharacterMoveDirection.StrafeForwardRight:
+				currentState = CharacterState.Walk;
+				break;
+			case CharacterMoveDirection.Backward:
+				currentState = CharacterState.WalkBack;
+				break;
+			case CharacterMoveDirection.StrafeBackLeft:
+				currentState = CharacterState.WalkBack;
+				break;
+			case CharacterMoveDirection.StrafeBackRight:
+				currentState = CharacterState.WalkBack;
+				break;
+			case CharacterMoveDirection.StrafeLeft:
+				currentState = CharacterState.StrafeLeft;
+				break;
+			case CharacterMoveDirection.StrafeRight:
+				currentState = CharacterState.StrafeRight;
+				break;
+			}
+		}
+	}
 
-  private void StrafeForwardRight() => this.GetComponent<Animation>().CrossFade("strafeforwardright");
+	public void StartAnimation()
+	{
+		switch (currentState)
+		{
+		case CharacterState.Idle:
+			Idle();
+			break;
+		case CharacterState.Walk:
+			if (currentMoveDir == CharacterMoveDirection.StrafeForwardLeft)
+			{
+				StrafeForwardLeft();
+			}
+			else if (currentMoveDir == CharacterMoveDirection.StrafeForwardRight)
+			{
+				StrafeForwardRight();
+			}
+			else
+			{
+				Walk();
+			}
+			break;
+		case CharacterState.WalkBack:
+			if (currentMoveDir == CharacterMoveDirection.StrafeBackLeft)
+			{
+				StrafeBackLeft();
+			}
+			else if (currentMoveDir == CharacterMoveDirection.StrafeBackRight)
+			{
+				StrafeBackRight();
+			}
+			else
+			{
+				WalkBack();
+			}
+			break;
+		case CharacterState.StrafeLeft:
+			StrafeLeft();
+			break;
+		case CharacterState.StrafeRight:
+			StrafeRight();
+			break;
+		}
+	}
 
-  private void WalkBack() => this.GetComponent<Animation>().CrossFade("walkback");
+	private void Idle()
+	{
+		GetComponent<Animation>().CrossFade("idle");
+	}
 
-  private void StrafeBackLeft() => this.GetComponent<Animation>().CrossFade("strafebackleft");
+	private void Walk()
+	{
+		GetComponent<Animation>().CrossFade("walk");
+	}
 
-  private void StrafeBackRight() => this.GetComponent<Animation>().CrossFade("strafebackright");
+	private void StrafeForwardLeft()
+	{
+		GetComponent<Animation>().CrossFade("strafeforwardleft");
+	}
 
-  private void StrafeLeft() => this.GetComponent<Animation>().CrossFade("strafeleft");
+	private void StrafeForwardRight()
+	{
+		GetComponent<Animation>().CrossFade("strafeforwardright");
+	}
 
-  private void StrafeRight() => this.GetComponent<Animation>().CrossFade("straferight");
+	private void WalkBack()
+	{
+		GetComponent<Animation>().CrossFade("walkback");
+	}
 
-  public void Jump()
-  {
-    this.currentState = RPG_Animation.CharacterState.Jump;
-    if (this.GetComponent<Animation>().IsPlaying("jump"))
-      this.GetComponent<Animation>().Stop("jump");
-    this.GetComponent<Animation>().CrossFade("jump");
-  }
+	private void StrafeBackLeft()
+	{
+		GetComponent<Animation>().CrossFade("strafebackleft");
+	}
 
-  public enum CharacterMoveDirection
-  {
-    None,
-    Forward,
-    Backward,
-    StrafeLeft,
-    StrafeRight,
-    StrafeForwardLeft,
-    StrafeForwardRight,
-    StrafeBackLeft,
-    StrafeBackRight,
-  }
+	private void StrafeBackRight()
+	{
+		GetComponent<Animation>().CrossFade("strafebackright");
+	}
 
-  public enum CharacterState
-  {
-    Idle,
-    Walk,
-    WalkBack,
-    StrafeLeft,
-    StrafeRight,
-    Jump,
-  }
+	private void StrafeLeft()
+	{
+		GetComponent<Animation>().CrossFade("strafeleft");
+	}
+
+	private void StrafeRight()
+	{
+		GetComponent<Animation>().CrossFade("straferight");
+	}
+
+	public void Jump()
+	{
+		currentState = CharacterState.Jump;
+		if (GetComponent<Animation>().IsPlaying("jump"))
+		{
+			GetComponent<Animation>().Stop("jump");
+		}
+		GetComponent<Animation>().CrossFade("jump");
+	}
 }

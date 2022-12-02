@@ -1,25 +1,37 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: WeekEventTime
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [Serializable]
 public class WeekEventTime : IScheduledEventTime
 {
-  [SerializeField]
-  private int week;
+	[SerializeField]
+	private int week;
 
-  public WeekEventTime(int week) => this.week = week;
+	public ScheduledEventTimeType ScheduleType
+	{
+		get
+		{
+			return ScheduledEventTimeType.Week;
+		}
+	}
 
-  public ScheduledEventTimeType ScheduleType => ScheduledEventTimeType.Week;
+	public WeekEventTime(int week)
+	{
+		this.week = week;
+	}
 
-  public bool OccurringNow(DateAndTime currentTime) => currentTime.Week == this.week;
+	public bool OccurringNow(DateAndTime currentTime)
+	{
+		return currentTime.Week == week;
+	}
 
-  public bool OccursInTheFuture(DateAndTime currentTime) => currentTime.Week < this.week;
+	public bool OccursInTheFuture(DateAndTime currentTime)
+	{
+		return currentTime.Week < week;
+	}
 
-  public bool OccurredInThePast(DateAndTime currentTime) => currentTime.Week > this.week;
+	public bool OccurredInThePast(DateAndTime currentTime)
+	{
+		return currentTime.Week > week;
+	}
 }

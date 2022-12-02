@@ -1,29 +1,27 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: StringScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class StringScript : MonoBehaviour
 {
-  public Transform Origin;
-  public Transform Target;
-  public Transform String;
-  public int ArrayID;
+	public Transform Origin;
 
-  private void Start()
-  {
-    if (this.ArrayID != -1)
-      return;
-    this.Target.position = this.Origin.position;
-  }
+	public Transform Target;
 
-  private void Update()
-  {
-    this.String.position = this.Origin.position;
-    this.String.LookAt(this.Target);
-    this.String.localScale = new Vector3(this.String.localScale.x, this.String.localScale.y, Vector3.Distance(this.Origin.position, this.Target.position) * 0.5f);
-  }
+	public Transform String;
+
+	public int ArrayID;
+
+	private void Start()
+	{
+		if (ArrayID == -1)
+		{
+			Target.position = Origin.position;
+		}
+	}
+
+	private void Update()
+	{
+		String.position = Origin.position;
+		String.LookAt(Target);
+		String.localScale = new Vector3(String.localScale.x, String.localScale.y, Vector3.Distance(Origin.position, Target.position) * 0.5f);
+	}
 }

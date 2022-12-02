@@ -1,167 +1,211 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: OsanaFridayBeforeClassEvent1Script
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 {
-  public OsanaFridayBeforeClassEvent2Script OtherEvent;
-  public StudentManagerScript StudentManager;
-  public JukeboxScript Jukebox;
-  public UILabel EventSubtitle;
-  public YandereScript Yandere;
-  public ClockScript Clock;
-  public StudentScript Rival;
-  public Transform Location;
-  public AudioClip[] SpeechClip;
-  public string[] SpeechText;
-  public string EventAnim;
-  public GameObject AlarmDisc;
-  public GameObject VoiceClip;
-  public GameObject Yoogle;
-  public float Distance;
-  public float Scale;
-  public float Timer;
-  public DayOfWeek EventDay;
-  public int RivalID = 11;
-  public int Phase;
-  public int Frame;
-  public Vector3 OriginalPosition;
-  public Vector3 OriginalRotation;
+	public OsanaFridayBeforeClassEvent2Script OtherEvent;
 
-  private void Start()
-  {
-    this.EventSubtitle.transform.localScale = Vector3.zero;
-    if (DateGlobals.Weekday != this.EventDay || StudentGlobals.StudentSlave == this.RivalID || this.StudentManager.RivalEliminated || GameGlobals.Eighties)
-      this.enabled = false;
-    this.Yoogle.SetActive(false);
-  }
+	public StudentManagerScript StudentManager;
 
-  private void Update()
-  {
-    if (this.Phase == 0)
-    {
-      if (this.Frame > 0 && (UnityEngine.Object) this.StudentManager.Students[this.RivalID] != (UnityEngine.Object) null)
-      {
-        if ((UnityEngine.Object) this.Rival == (UnityEngine.Object) null)
-          this.Rival = this.StudentManager.Students[this.RivalID];
-        if (this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless && this.Rival.Indoors && !this.OtherEvent.enabled && !this.Rival.GoAway && !this.Rival.Meeting)
-        {
-          Debug.Log((object) "Osana's ''make playlist'' event has begun.");
-          this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-          this.Rival.CharacterAnimation.Play(this.Rival.WalkAnim);
-          this.Rival.Pathfinding.target = this.Location;
-          this.Rival.CurrentDestination = this.Location;
-          this.Rival.Pathfinding.canSearch = true;
-          this.Rival.Pathfinding.canMove = true;
-          this.Rival.Routine = false;
-          this.Rival.InEvent = true;
-          this.Yandere.PauseScreen.Hint.Show = true;
-          this.Yandere.PauseScreen.Hint.QuickID = 15;
-          ++this.Phase;
-        }
-      }
-      ++this.Frame;
-    }
-    else
-    {
-      if (this.Phase == 1)
-      {
-        if ((double) this.Rival.DistanceToDestination < 0.5)
-        {
-          AudioClipPlayer.Play(this.SpeechClip[1], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.EventSubtitle.text = this.SpeechText[1];
-          this.Rival.CharacterAnimation.CrossFade(this.EventAnim);
-          this.Rival.Pathfinding.canSearch = false;
-          this.Rival.Pathfinding.canMove = false;
-          this.Rival.Obstacle.enabled = true;
-          this.Rival.Distracted = true;
-          this.Yoogle.SetActive(true);
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 2)
-      {
-        if (!this.Rival.GoAway)
-          this.Rival.MoveTowardsTarget(this.Location.position);
-        if ((double) Quaternion.Angle(this.Rival.transform.rotation, this.Location.rotation) > 1.0)
-          this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Location.rotation, 10f * Time.deltaTime);
-        this.Timer += Time.deltaTime;
-        if (Input.GetKeyDown("space"))
-          this.Timer += 60f;
-        if ((double) this.Timer > 60.0)
-          this.EndEvent();
-      }
-      if (this.Rival.Alarmed || (double) this.Clock.HourTime > 8.0 || this.Rival.Splashed || this.Rival.Dodging || this.Rival.GoAway)
-        this.EndEvent();
-      this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
-      if ((double) this.Distance - 4.0 < 15.0)
-      {
-        this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
-        if ((double) this.Scale < 0.0)
-          this.Scale = 0.0f;
-        if ((double) this.Scale > 1.0)
-          this.Scale = 1f;
-        if (this.enabled)
-          this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
-        this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-        if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-          this.VoiceClip.GetComponent<AudioSource>().volume = this.Scale;
-      }
-      else
-      {
-        this.EventSubtitle.transform.localScale = Vector3.zero;
-        if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-          this.VoiceClip.GetComponent<AudioSource>().volume = 0.0f;
-      }
-      if (!((UnityEngine.Object) this.VoiceClip == (UnityEngine.Object) null))
-        return;
-      this.EventSubtitle.text = string.Empty;
-    }
-  }
+	public JukeboxScript Jukebox;
 
-  public void EndEvent()
-  {
-    Debug.Log((object) "Osana's Friday before class event has ended.");
-    if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-      UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    if ((UnityEngine.Object) this.Rival != (UnityEngine.Object) null)
-    {
-      if (this.Rival.enabled && !this.Rival.Alarmed && !this.Rival.Splashed)
-      {
-        this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
-        this.Rival.DistanceToDestination = 100f;
-        this.Rival.CurrentDestination = this.Rival.Destinations[this.Rival.Phase];
-        this.Rival.Pathfinding.target = this.Rival.Destinations[this.Rival.Phase];
-        this.Rival.Pathfinding.canSearch = true;
-        this.Rival.Pathfinding.canMove = true;
-        this.Rival.Routine = true;
-      }
-      this.Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-      this.Rival.SmartPhoneScreen.enabled = false;
-      this.Rival.Ragdoll.Zs.SetActive(false);
-      this.Rival.Obstacle.enabled = false;
-      this.Rival.Prompt.enabled = true;
-      this.Rival.Distracted = false;
-      this.Rival.InEvent = false;
-      this.Rival.Private = false;
-      this.Yoogle.SetActive(false);
-      this.Rival.SmartPhone.transform.parent = this.Rival.ItemParent;
-      this.Rival.SmartPhone.transform.localPosition = this.OriginalPosition;
-      this.Rival.SmartPhone.transform.localEulerAngles = this.OriginalRotation;
-    }
-    if (!this.StudentManager.Stop)
-      this.StudentManager.UpdateStudents();
-    this.Jukebox.Dip = 1f;
-    this.EventSubtitle.text = string.Empty;
-    this.enabled = false;
-    if (!this.Rival.GoAway)
-      return;
-    this.Rival.Subtitle.CustomText = "Ugh, seriously?! Guess I'll just do it later...";
-    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-  }
+	public UILabel EventSubtitle;
+
+	public YandereScript Yandere;
+
+	public ClockScript Clock;
+
+	public StudentScript Rival;
+
+	public Transform Location;
+
+	public AudioClip[] SpeechClip;
+
+	public string[] SpeechText;
+
+	public string EventAnim;
+
+	public GameObject AlarmDisc;
+
+	public GameObject VoiceClip;
+
+	public GameObject Yoogle;
+
+	public float Distance;
+
+	public float Scale;
+
+	public float Timer;
+
+	public DayOfWeek EventDay;
+
+	public int RivalID = 11;
+
+	public int Phase;
+
+	public int Frame;
+
+	public Vector3 OriginalPosition;
+
+	public Vector3 OriginalRotation;
+
+	private void Start()
+	{
+		EventSubtitle.transform.localScale = Vector3.zero;
+		if (DateGlobals.Weekday != EventDay || StudentGlobals.StudentSlave == RivalID || StudentManager.RivalEliminated || GameGlobals.Eighties)
+		{
+			base.enabled = false;
+		}
+		Yoogle.SetActive(false);
+	}
+
+	private void Update()
+	{
+		if (Phase == 0)
+		{
+			if (Frame > 0 && StudentManager.Students[RivalID] != null)
+			{
+				if (Rival == null)
+				{
+					Rival = StudentManager.Students[RivalID];
+				}
+				if (Rival.enabled && !Rival.InEvent && !Rival.Phoneless && Rival.Indoors && !OtherEvent.enabled && !Rival.GoAway && !Rival.Meeting)
+				{
+					Debug.Log("Osana's ''make playlist'' event has begun.");
+					Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+					Rival.CharacterAnimation.Play(Rival.WalkAnim);
+					Rival.Pathfinding.target = Location;
+					Rival.CurrentDestination = Location;
+					Rival.Pathfinding.canSearch = true;
+					Rival.Pathfinding.canMove = true;
+					Rival.Routine = false;
+					Rival.InEvent = true;
+					Yandere.PauseScreen.Hint.Show = true;
+					Yandere.PauseScreen.Hint.QuickID = 15;
+					Phase++;
+				}
+			}
+			Frame++;
+			return;
+		}
+		if (Phase == 1)
+		{
+			if (Rival.DistanceToDestination < 0.5f)
+			{
+				AudioClipPlayer.Play(SpeechClip[1], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				EventSubtitle.text = SpeechText[1];
+				Rival.CharacterAnimation.CrossFade(EventAnim);
+				Rival.Pathfinding.canSearch = false;
+				Rival.Pathfinding.canMove = false;
+				Rival.Obstacle.enabled = true;
+				Rival.Distracted = true;
+				Yoogle.SetActive(true);
+				Phase++;
+			}
+		}
+		else if (Phase == 2)
+		{
+			if (!Rival.GoAway)
+			{
+				Rival.MoveTowardsTarget(Location.position);
+			}
+			if (Quaternion.Angle(Rival.transform.rotation, Location.rotation) > 1f)
+			{
+				Rival.transform.rotation = Quaternion.Slerp(Rival.transform.rotation, Location.rotation, 10f * Time.deltaTime);
+			}
+			Timer += Time.deltaTime;
+			if (Input.GetKeyDown("space"))
+			{
+				Timer += 60f;
+			}
+			if (Timer > 60f)
+			{
+				EndEvent();
+			}
+		}
+		if (Rival.Alarmed || Clock.HourTime > 8f || Rival.Splashed || Rival.Dodging || Rival.GoAway)
+		{
+			EndEvent();
+		}
+		Distance = Vector3.Distance(Yandere.transform.position, Rival.transform.position);
+		if (Distance - 4f < 15f)
+		{
+			Scale = Mathf.Abs(1f - (Distance - 4f) / 15f);
+			if (Scale < 0f)
+			{
+				Scale = 0f;
+			}
+			if (Scale > 1f)
+			{
+				Scale = 1f;
+			}
+			if (base.enabled)
+			{
+				Jukebox.Dip = 1f - 0.5f * Scale;
+			}
+			EventSubtitle.transform.localScale = new Vector3(Scale, Scale, Scale);
+			if (VoiceClip != null)
+			{
+				VoiceClip.GetComponent<AudioSource>().volume = Scale;
+			}
+		}
+		else
+		{
+			EventSubtitle.transform.localScale = Vector3.zero;
+			if (VoiceClip != null)
+			{
+				VoiceClip.GetComponent<AudioSource>().volume = 0f;
+			}
+		}
+		if (VoiceClip == null)
+		{
+			EventSubtitle.text = string.Empty;
+		}
+	}
+
+	public void EndEvent()
+	{
+		Debug.Log("Osana's Friday before class event has ended.");
+		if (VoiceClip != null)
+		{
+			UnityEngine.Object.Destroy(VoiceClip);
+		}
+		if (Rival != null)
+		{
+			if (Rival.enabled && !Rival.Alarmed && !Rival.Splashed)
+			{
+				Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
+				Rival.DistanceToDestination = 100f;
+				Rival.CurrentDestination = Rival.Destinations[Rival.Phase];
+				Rival.Pathfinding.target = Rival.Destinations[Rival.Phase];
+				Rival.Pathfinding.canSearch = true;
+				Rival.Pathfinding.canMove = true;
+				Rival.Routine = true;
+			}
+			Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+			Rival.SmartPhoneScreen.enabled = false;
+			Rival.Ragdoll.Zs.SetActive(false);
+			Rival.Obstacle.enabled = false;
+			Rival.Prompt.enabled = true;
+			Rival.Distracted = false;
+			Rival.InEvent = false;
+			Rival.Private = false;
+			Yoogle.SetActive(false);
+			Rival.SmartPhone.transform.parent = Rival.ItemParent;
+			Rival.SmartPhone.transform.localPosition = OriginalPosition;
+			Rival.SmartPhone.transform.localEulerAngles = OriginalRotation;
+		}
+		if (!StudentManager.Stop)
+		{
+			StudentManager.UpdateStudents();
+		}
+		Jukebox.Dip = 1f;
+		EventSubtitle.text = string.Empty;
+		base.enabled = false;
+		if (Rival.GoAway)
+		{
+			Rival.Subtitle.CustomText = "Ugh, seriously?! Guess I'll just do it later...";
+			Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+		}
+	}
 }

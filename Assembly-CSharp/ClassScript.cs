@@ -1,651 +1,801 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ClassScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ClassScript : MonoBehaviour
 {
-  public CutsceneManagerScript CutsceneManager;
-  public InputManagerScript InputManager;
-  public PromptBarScript PromptBar;
-  public SchemesScript Schemes;
-  public PortalScript Portal;
-  public GameObject Poison;
-  public UILabel StudyPointsLabel;
-  public UILabel[] SubjectLabels;
-  public UILabel GradeUpDesc;
-  public UILabel GradeUpName;
-  public UILabel DescLabel;
-  public UISprite Darkness;
-  public Transform[] Subject1Bars;
-  public Transform[] Subject2Bars;
-  public Transform[] Subject3Bars;
-  public Transform[] Subject4Bars;
-  public Transform[] Subject5Bars;
-  public string[] Subject1GradeText;
-  public string[] Subject2GradeText;
-  public string[] Subject3GradeText;
-  public string[] Subject3GradeTextEighties;
-  public string[] Subject4GradeText;
-  public string[] Subject5GradeText;
-  public Transform WarningWindow;
-  public Transform GradeUpWindow;
-  public Transform Highlight;
-  public int[] SubjectTemp;
-  public int[] Subject;
-  public string[] Desc;
-  public int StartingPoints;
-  public int BonusPoints;
-  public int StudyPoints;
-  public int GradeUpSubject;
-  public int Selected;
-  public int Grade;
-  public bool ShowWarning;
-  public bool GradeUp;
-  public bool Show;
-  public int Biology;
-  public int Chemistry;
-  public int Language;
-  public int Physical;
-  public int Psychology;
-  public int BiologyGrade;
-  public int ChemistryGrade;
-  public int LanguageGrade;
-  public int PhysicalGrade;
-  public int PsychologyGrade;
-  public int BiologyBonus;
-  public int ChemistryBonus;
-  public int LanguageBonus;
-  public int PhysicalBonus;
-  public int PsychologyBonus;
-  public int Seduction;
-  public int Numbness;
-  public int Social;
-  public int Stealth;
-  public int Speed;
-  public int Enlightenment;
-  public int SpeedBonus;
-  public int SocialBonus;
-  public int StealthBonus;
-  public int SeductionBonus;
-  public int NumbnessBonus;
-  public int EnlightenmentBonus;
-  public float HoldRightTimer;
-  public float HoldLeftTimer;
-  public bool Initialized;
+	public CutsceneManagerScript CutsceneManager;
 
-  private void Start()
-  {
-    if ((Object) this.Portal == (Object) null || !this.Portal.StudentManager.ReturnedFromSave)
-      this.GetStats();
-    if (SceneManager.GetActiveScene().name != "SchoolScene")
-    {
-      this.enabled = false;
-    }
-    else
-    {
-      this.GradeUpWindow.localScale = Vector3.zero;
-      this.Subject[1] = this.Biology;
-      this.Subject[2] = this.Chemistry;
-      this.Subject[3] = this.Language;
-      this.Subject[4] = this.Physical;
-      this.Subject[5] = this.Psychology;
-      this.DescLabel.text = this.Desc[this.Selected];
-      this.UpdateSubjectLabels();
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, 1f);
-      this.UpdateBars();
-    }
-    if (!GameGlobals.Eighties)
-      return;
-    this.Subject3GradeText = this.Subject3GradeTextEighties;
-  }
+	public InputManagerScript InputManager;
 
-  public void GetStats()
-  {
-    if (!this.Initialized)
-    {
-      this.BonusPoints += ClassGlobals.BonusStudyPoints;
-      this.Initialized = true;
-    }
-    this.Biology = ClassGlobals.Biology;
-    this.Chemistry = ClassGlobals.Chemistry;
-    this.Language = ClassGlobals.Language;
-    this.Physical = ClassGlobals.Physical;
-    this.Psychology = ClassGlobals.Psychology;
-    this.BiologyGrade = ClassGlobals.BiologyGrade;
-    this.ChemistryGrade = ClassGlobals.ChemistryGrade;
-    this.LanguageGrade = ClassGlobals.LanguageGrade;
-    this.PhysicalGrade = ClassGlobals.PhysicalGrade;
-    this.PsychologyGrade = ClassGlobals.PsychologyGrade;
-    if (this.BiologyBonus == 0)
-      this.BiologyBonus = ClassGlobals.BiologyBonus;
-    if (this.ChemistryBonus == 0)
-      this.ChemistryBonus = ClassGlobals.ChemistryBonus;
-    if (this.LanguageBonus == 0)
-      this.LanguageBonus = ClassGlobals.LanguageBonus;
-    if (this.PhysicalBonus == 0)
-      this.PhysicalBonus = ClassGlobals.PhysicalBonus;
-    if (this.PsychologyBonus == 0)
-      this.PsychologyBonus = ClassGlobals.PsychologyBonus;
-    this.Seduction = PlayerGlobals.Seduction;
-    this.Numbness = PlayerGlobals.Numbness;
-    this.Enlightenment = PlayerGlobals.Enlightenment;
-    if (this.SpeedBonus == 0)
-      this.SpeedBonus = PlayerGlobals.SpeedBonus;
-    if (this.SocialBonus == 0)
-      this.SocialBonus = PlayerGlobals.SocialBonus;
-    if (this.StealthBonus == 0)
-      this.StealthBonus = PlayerGlobals.StealthBonus;
-    if (this.SeductionBonus == 0)
-      this.SeductionBonus = PlayerGlobals.SeductionBonus;
-    if (this.NumbnessBonus == 0)
-      this.NumbnessBonus = PlayerGlobals.NumbnessBonus;
-    if (this.EnlightenmentBonus != 0)
-      return;
-    this.EnlightenmentBonus = PlayerGlobals.EnlightenmentBonus;
-  }
+	public PromptBarScript PromptBar;
 
-  private void Update()
-  {
-    if (this.Show)
-    {
-      this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime);
-      if ((double) this.Darkness.alpha == 0.0)
-      {
-        if (!this.Portal.Yandere.NoDebug)
-        {
-          if (Input.GetKeyDown(KeyCode.Backslash))
-            this.GivePoints();
-          if (Input.GetKeyDown(KeyCode.P))
-            this.MaxPhysical();
-        }
-        if (!this.ShowWarning)
-        {
-          if (this.InputManager.TappedDown)
-          {
-            ++this.Selected;
-            if (this.Selected > 5)
-              this.Selected = 1;
-            this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (375.0 - 125.0 * (double) this.Selected), this.Highlight.localPosition.z);
-            this.DescLabel.text = this.Desc[this.Selected];
-            this.UpdateSubjectLabels();
-          }
-          if (this.InputManager.TappedUp)
-          {
-            --this.Selected;
-            if (this.Selected < 1)
-              this.Selected = 5;
-            this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (375.0 - 125.0 * (double) this.Selected), this.Highlight.localPosition.z);
-            this.DescLabel.text = this.Desc[this.Selected];
-            this.UpdateSubjectLabels();
-          }
-          if (this.InputManager.TappedRight)
-            this.AddStudyPoints();
-          if (this.InputManager.TappedLeft)
-            this.SubtractStudyPoints();
-          if ((double) Input.GetAxisRaw("DpadX") > 0.5 || (double) Input.GetAxisRaw("Horizontal") > 0.5)
-          {
-            this.HoldRightTimer += Time.deltaTime;
-            if ((double) this.HoldRightTimer > 0.5)
-              this.AddStudyPoints();
-          }
-          else
-            this.HoldRightTimer = 0.0f;
-          if ((double) Input.GetAxisRaw("DpadX") < -0.5 || (double) Input.GetAxisRaw("Horizontal") < -0.5)
-          {
-            this.HoldLeftTimer += Time.deltaTime;
-            if ((double) this.HoldLeftTimer > 0.5)
-              this.SubtractStudyPoints();
-          }
-          else
-            this.HoldLeftTimer = 0.0f;
-          if (Input.GetButtonDown("A"))
-          {
-            bool flag = true;
-            if (this.BiologyGrade == 5 && this.ChemistryGrade == 5 && this.LanguageGrade == 5 && this.PhysicalGrade == 5 && this.PsychologyGrade == 5)
-              flag = false;
-            if (this.StudyPoints == this.StartingPoints & flag)
-            {
-              this.ShowWarning = true;
-              this.PromptBar.ClearButtons();
-              this.PromptBar.Label[0].text = "Finish Class";
-              this.PromptBar.Label[1].text = "Allocate Points";
-              this.PromptBar.UpdateButtons();
-            }
-            else
-              this.ExitClass();
-          }
-        }
-        else if ((double) this.WarningWindow.localScale.x > 0.89999997615814209)
-        {
-          if (Input.GetButtonDown("A"))
-            this.ExitClass();
-          if (Input.GetButtonDown("B"))
-          {
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[0].text = "Finish Class";
-            this.PromptBar.Label[4].text = "Choose";
-            this.PromptBar.Label[5].text = "Allocate";
-            this.PromptBar.UpdateButtons();
-            this.PromptBar.Show = true;
-            this.ShowWarning = false;
-          }
-        }
-      }
-      if (this.ShowWarning)
-        this.WarningWindow.localScale = Vector3.Lerp(this.WarningWindow.localScale, Vector3.one, Time.deltaTime * 10f);
-      else
-        this.WarningWindow.localScale = Vector3.Lerp(this.WarningWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
-    }
-    else
-    {
-      this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 1f, Time.deltaTime);
-      if ((double) this.Darkness.color.a != 1.0)
-        return;
-      if (!this.GradeUp)
-      {
-        this.GradeUpWindow.localScale = (double) this.GradeUpWindow.localScale.x <= 0.10000000149011612 ? Vector3.zero : Vector3.Lerp(this.GradeUpWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
-        if ((double) this.GradeUpWindow.localScale.x >= 0.0099999997764825821)
-          return;
-        this.GradeUpWindow.localScale = Vector3.zero;
-        this.CheckForGradeUp();
-        if (this.GradeUp)
-          return;
-        if (this.ChemistryGrade > 0 && (Object) this.Poison != (Object) null)
-          this.Poison.SetActive(true);
-        StudentManagerScript studentManager = this.Portal.Yandere.StudentManager;
-        if (this.CutsceneManager.Scheme > 0 && (Object) studentManager.Students[studentManager.RivalID] != (Object) null && studentManager.Students[studentManager.RivalID].Alive && !studentManager.Students[studentManager.RivalID].Tranquil)
-        {
-          SchemeGlobals.SetSchemeStage(this.CutsceneManager.Scheme, 100);
-          this.PromptBar.ClearButtons();
-          this.PromptBar.Label[0].text = "Continue";
-          this.PromptBar.UpdateButtons();
-          this.CutsceneManager.gameObject.SetActive(true);
-          this.Schemes.UpdateInstructions();
-          this.gameObject.SetActive(false);
-        }
-        else
-        {
-          if (this.Portal.FadeOut)
-            return;
-          this.Portal.Yandere.PhysicalGrade = this.PhysicalGrade;
-          this.Portal.Yandere.CameraEffects.UpdateDOF(this.Portal.OriginalDOF);
-          this.Portal.ClassDarkness.alpha = 1f;
-          this.Portal.Transition = true;
-          this.Portal.FadeOut = false;
-          this.Portal.Proceed = true;
-          this.PromptBar.Show = false;
-          this.gameObject.SetActive(false);
-        }
-      }
-      else
-      {
-        if ((double) this.GradeUpWindow.localScale.x == 0.0)
-        {
-          if (this.GradeUpSubject == 1)
-          {
-            this.GradeUpName.text = "BIOLOGY RANK UP";
-            this.GradeUpDesc.text = this.Subject1GradeText[this.Grade];
-          }
-          else if (this.GradeUpSubject == 2)
-          {
-            this.GradeUpName.text = "CHEMISTRY RANK UP";
-            this.GradeUpDesc.text = this.Subject2GradeText[this.Grade];
-          }
-          else if (this.GradeUpSubject == 3)
-          {
-            this.GradeUpName.text = "LANGUAGE RANK UP";
-            this.GradeUpDesc.text = this.Subject3GradeText[this.Grade];
-          }
-          else if (this.GradeUpSubject == 4)
-          {
-            this.GradeUpName.text = "PHYSICAL RANK UP";
-            this.GradeUpDesc.text = this.Subject4GradeText[this.Grade];
-          }
-          else if (this.GradeUpSubject == 5)
-          {
-            this.GradeUpName.text = "PSYCHOLOGY RANK UP";
-            this.GradeUpDesc.text = this.Subject5GradeText[this.Grade];
-          }
-          this.GradeUpDesc.text = this.GradeUpDesc.text.Replace("\\n", "\n\n");
-          this.PromptBar.ClearButtons();
-          this.PromptBar.Label[0].text = "Continue";
-          this.PromptBar.UpdateButtons();
-          this.PromptBar.Show = true;
-        }
-        else if ((double) this.GradeUpWindow.localScale.x > 0.89999997615814209 && Input.GetButtonDown("A"))
-        {
-          this.PromptBar.ClearButtons();
-          this.GradeUp = false;
-        }
-        this.GradeUpWindow.localScale = Vector3.Lerp(this.GradeUpWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-      }
-    }
-  }
+	public SchemesScript Schemes;
 
-  private void UpdateSubjectLabels()
-  {
-    for (int index = 1; index < 6; ++index)
-      this.SubjectLabels[index].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    this.SubjectLabels[this.Selected].color = new Color(1f, 1f, 1f, 1f);
-  }
+	public PortalScript Portal;
 
-  public void UpdateLabel() => this.StudyPointsLabel.text = "STUDY POINTS: " + this.StudyPoints.ToString();
+	public GameObject Poison;
 
-  private void UpdateBars()
-  {
-    for (int index = 1; index < 6; ++index)
-    {
-      Transform subject1Bar = this.Subject1Bars[index];
-      if (this.Subject[1] + this.SubjectTemp[1] > (index - 1) * 20)
-      {
-        subject1Bar.localScale = new Vector3((float) -((double) ((index - 1) * 20 - (this.Subject[1] + this.SubjectTemp[1])) / 20.0), subject1Bar.localScale.y, subject1Bar.localScale.z);
-        if ((double) subject1Bar.localScale.x > 1.0)
-          subject1Bar.localScale = new Vector3(1f, subject1Bar.localScale.y, subject1Bar.localScale.z);
-      }
-      else
-        subject1Bar.localScale = new Vector3(0.0f, subject1Bar.localScale.y, subject1Bar.localScale.z);
-    }
-    for (int index = 1; index < 6; ++index)
-    {
-      Transform subject2Bar = this.Subject2Bars[index];
-      if (this.Subject[2] + this.SubjectTemp[2] > (index - 1) * 20)
-      {
-        subject2Bar.localScale = new Vector3((float) -((double) ((index - 1) * 20 - (this.Subject[2] + this.SubjectTemp[2])) / 20.0), subject2Bar.localScale.y, subject2Bar.localScale.z);
-        if ((double) subject2Bar.localScale.x > 1.0)
-          subject2Bar.localScale = new Vector3(1f, subject2Bar.localScale.y, subject2Bar.localScale.z);
-      }
-      else
-        subject2Bar.localScale = new Vector3(0.0f, subject2Bar.localScale.y, subject2Bar.localScale.z);
-    }
-    for (int index = 1; index < 6; ++index)
-    {
-      Transform subject3Bar = this.Subject3Bars[index];
-      if (this.Subject[3] + this.SubjectTemp[3] > (index - 1) * 20)
-      {
-        subject3Bar.localScale = new Vector3((float) -((double) ((index - 1) * 20 - (this.Subject[3] + this.SubjectTemp[3])) / 20.0), subject3Bar.localScale.y, subject3Bar.localScale.z);
-        if ((double) subject3Bar.localScale.x > 1.0)
-          subject3Bar.localScale = new Vector3(1f, subject3Bar.localScale.y, subject3Bar.localScale.z);
-      }
-      else
-        subject3Bar.localScale = new Vector3(0.0f, subject3Bar.localScale.y, subject3Bar.localScale.z);
-    }
-    for (int index = 1; index < 6; ++index)
-    {
-      Transform subject4Bar = this.Subject4Bars[index];
-      if (this.Subject[4] + this.SubjectTemp[4] > (index - 1) * 20)
-      {
-        subject4Bar.localScale = new Vector3((float) -((double) ((index - 1) * 20 - (this.Subject[4] + this.SubjectTemp[4])) / 20.0), subject4Bar.localScale.y, subject4Bar.localScale.z);
-        if ((double) subject4Bar.localScale.x > 1.0)
-          subject4Bar.localScale = new Vector3(1f, subject4Bar.localScale.y, subject4Bar.localScale.z);
-      }
-      else
-        subject4Bar.localScale = new Vector3(0.0f, subject4Bar.localScale.y, subject4Bar.localScale.z);
-    }
-    for (int index = 1; index < 6; ++index)
-    {
-      Transform subject5Bar = this.Subject5Bars[index];
-      if (this.Subject[5] + this.SubjectTemp[5] > (index - 1) * 20)
-      {
-        subject5Bar.localScale = new Vector3((float) -((double) ((index - 1) * 20 - (this.Subject[5] + this.SubjectTemp[5])) / 20.0), subject5Bar.localScale.y, subject5Bar.localScale.z);
-        if ((double) subject5Bar.localScale.x > 1.0)
-          subject5Bar.localScale = new Vector3(1f, subject5Bar.localScale.y, subject5Bar.localScale.z);
-      }
-      else
-        subject5Bar.localScale = new Vector3(0.0f, subject5Bar.localScale.y, subject5Bar.localScale.z);
-    }
-  }
+	public UILabel StudyPointsLabel;
 
-  private void CheckForGradeUp()
-  {
-    if (this.Biology >= 20 && this.BiologyGrade < 1)
-    {
-      this.BiologyGrade = 1;
-      this.GradeUpSubject = 1;
-      this.GradeUp = true;
-      this.Grade = 1;
-    }
-    else if (this.Biology >= 40 && this.BiologyGrade < 2)
-    {
-      this.BiologyGrade = 2;
-      this.GradeUpSubject = 1;
-      this.GradeUp = true;
-      this.Grade = 2;
-    }
-    else if (this.Biology >= 60 && this.BiologyGrade < 3)
-    {
-      this.BiologyGrade = 3;
-      this.GradeUpSubject = 1;
-      this.GradeUp = true;
-      this.Grade = 3;
-    }
-    else if (this.Biology >= 80 && this.BiologyGrade < 4)
-    {
-      this.BiologyGrade = 4;
-      this.GradeUpSubject = 1;
-      this.GradeUp = true;
-      this.Grade = 4;
-    }
-    else if (this.Biology >= 100 && this.BiologyGrade < 5)
-    {
-      this.BiologyGrade = 5;
-      this.GradeUpSubject = 1;
-      this.GradeUp = true;
-      this.Grade = 5;
-    }
-    else if (this.Chemistry >= 20 && this.ChemistryGrade < 1)
-    {
-      this.ChemistryGrade = 1;
-      this.GradeUpSubject = 2;
-      this.GradeUp = true;
-      this.Grade = 1;
-    }
-    else if (this.Chemistry >= 40 && this.ChemistryGrade < 2)
-    {
-      this.ChemistryGrade = 2;
-      this.GradeUpSubject = 2;
-      this.GradeUp = true;
-      this.Grade = 2;
-    }
-    else if (this.Chemistry >= 60 && this.ChemistryGrade < 3)
-    {
-      this.ChemistryGrade = 3;
-      this.GradeUpSubject = 2;
-      this.GradeUp = true;
-      this.Grade = 3;
-    }
-    else if (this.Chemistry >= 80 && this.ChemistryGrade < 4)
-    {
-      this.ChemistryGrade = 4;
-      this.GradeUpSubject = 2;
-      this.GradeUp = true;
-      this.Grade = 4;
-    }
-    else if (this.Chemistry >= 100 && this.ChemistryGrade < 5)
-    {
-      this.ChemistryGrade = 5;
-      this.GradeUpSubject = 2;
-      this.GradeUp = true;
-      this.Grade = 5;
-    }
-    else if (this.Language >= 20 && this.LanguageGrade < 1)
-    {
-      this.LanguageGrade = 1;
-      this.GradeUpSubject = 3;
-      this.GradeUp = true;
-      this.Grade = 1;
-    }
-    else if (this.Language >= 40 && this.LanguageGrade < 2)
-    {
-      this.LanguageGrade = 2;
-      this.GradeUpSubject = 3;
-      this.GradeUp = true;
-      this.Grade = 2;
-    }
-    else if (this.Language >= 60 && this.LanguageGrade < 3)
-    {
-      this.LanguageGrade = 3;
-      this.GradeUpSubject = 3;
-      this.GradeUp = true;
-      this.Grade = 3;
-    }
-    else if (this.Language >= 80 && this.LanguageGrade < 4)
-    {
-      this.LanguageGrade = 4;
-      this.GradeUpSubject = 3;
-      this.GradeUp = true;
-      this.Grade = 4;
-    }
-    else if (this.Language >= 100 && this.LanguageGrade < 5)
-    {
-      this.LanguageGrade = 5;
-      this.GradeUpSubject = 3;
-      this.GradeUp = true;
-      this.Grade = 5;
-    }
-    else if (this.Physical >= 20 && this.PhysicalGrade < 1)
-    {
-      this.PhysicalGrade = 1;
-      this.GradeUpSubject = 4;
-      this.GradeUp = true;
-      this.Grade = 1;
-    }
-    else if (this.Physical >= 40 && this.PhysicalGrade < 2)
-    {
-      this.PhysicalGrade = 2;
-      this.GradeUpSubject = 4;
-      this.GradeUp = true;
-      this.Grade = 2;
-    }
-    else if (this.Physical >= 60 && this.PhysicalGrade < 3)
-    {
-      this.PhysicalGrade = 3;
-      this.GradeUpSubject = 4;
-      this.GradeUp = true;
-      this.Grade = 3;
-    }
-    else if (this.Physical >= 80 && this.PhysicalGrade < 4)
-    {
-      this.PhysicalGrade = 4;
-      this.GradeUpSubject = 4;
-      this.GradeUp = true;
-      this.Grade = 4;
-    }
-    else if (this.Physical == 100 && this.PhysicalGrade < 5)
-    {
-      this.PhysicalGrade = 5;
-      this.GradeUpSubject = 4;
-      this.GradeUp = true;
-      this.Grade = 5;
-    }
-    else if (this.Psychology >= 20 && this.PsychologyGrade < 1)
-    {
-      this.PsychologyGrade = 1;
-      this.GradeUpSubject = 5;
-      this.GradeUp = true;
-      this.Grade = 1;
-    }
-    else if (this.Psychology >= 40 && this.PsychologyGrade < 2)
-    {
-      this.PsychologyGrade = 2;
-      this.GradeUpSubject = 5;
-      this.GradeUp = true;
-      this.Grade = 2;
-    }
-    else if (this.Psychology >= 60 && this.PsychologyGrade < 3)
-    {
-      this.PsychologyGrade = 3;
-      this.GradeUpSubject = 5;
-      this.GradeUp = true;
-      this.Grade = 3;
-    }
-    else if (this.Psychology >= 80 && this.PsychologyGrade < 4)
-    {
-      this.PsychologyGrade = 4;
-      this.GradeUpSubject = 5;
-      this.GradeUp = true;
-      this.Grade = 4;
-    }
-    else if (this.Psychology >= 100 && this.PsychologyGrade < 5)
-    {
-      this.PsychologyGrade = 5;
-      this.GradeUpSubject = 5;
-      this.GradeUp = true;
-      this.Grade = 5;
-    }
-    this.Portal.Yandere.UpdateNumbness();
-  }
+	public UILabel[] SubjectLabels;
 
-  private void GivePoints()
-  {
-    this.StudyPoints = 500;
-    this.BiologyGrade = 0;
-    this.ChemistryGrade = 0;
-    this.LanguageGrade = 0;
-    this.PhysicalGrade = 0;
-    this.PsychologyGrade = 0;
-    this.Biology = 19;
-    this.Chemistry = 19;
-    this.Language = 19;
-    this.Physical = 19;
-    this.Psychology = 19;
-    this.Subject[1] = this.Biology;
-    this.Subject[2] = this.Chemistry;
-    this.Subject[3] = this.Language;
-    this.Subject[4] = this.Physical;
-    this.Subject[5] = this.Psychology;
-    this.UpdateBars();
-  }
+	public UILabel GradeUpDesc;
 
-  private void MaxPhysical()
-  {
-    this.PhysicalGrade = 0;
-    this.Physical = 99;
-    this.Subject[4] = this.Physical;
-    this.UpdateBars();
-  }
+	public UILabel GradeUpName;
 
-  private void AddStudyPoints()
-  {
-    if (this.StudyPoints <= 0 || this.Subject[this.Selected] + this.SubjectTemp[this.Selected] >= 100)
-      return;
-    ++this.SubjectTemp[this.Selected];
-    --this.StudyPoints;
-    this.UpdateLabel();
-    this.UpdateBars();
-  }
+	public UILabel DescLabel;
 
-  private void SubtractStudyPoints()
-  {
-    if (this.SubjectTemp[this.Selected] <= 0)
-      return;
-    --this.SubjectTemp[this.Selected];
-    ++this.StudyPoints;
-    this.UpdateLabel();
-    this.UpdateBars();
-  }
+	public UISprite Darkness;
 
-  private void ExitClass()
-  {
-    this.WarningWindow.localScale = Vector3.zero;
-    this.ShowWarning = false;
-    this.Show = false;
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Show = false;
-    this.Biology = this.Subject[1] + this.SubjectTemp[1];
-    this.Chemistry = this.Subject[2] + this.SubjectTemp[2];
-    this.Language = this.Subject[3] + this.SubjectTemp[3];
-    this.Physical = this.Subject[4] + this.SubjectTemp[4];
-    this.Psychology = this.Subject[5] + this.SubjectTemp[5];
-    for (int index = 0; index < 6; ++index)
-    {
-      this.Subject[index] += this.SubjectTemp[index];
-      this.SubjectTemp[index] = 0;
-    }
-    this.CheckForGradeUp();
-  }
+	public Transform[] Subject1Bars;
+
+	public Transform[] Subject2Bars;
+
+	public Transform[] Subject3Bars;
+
+	public Transform[] Subject4Bars;
+
+	public Transform[] Subject5Bars;
+
+	public string[] Subject1GradeText;
+
+	public string[] Subject2GradeText;
+
+	public string[] Subject3GradeText;
+
+	public string[] Subject3GradeTextEighties;
+
+	public string[] Subject4GradeText;
+
+	public string[] Subject5GradeText;
+
+	public Transform WarningWindow;
+
+	public Transform GradeUpWindow;
+
+	public Transform Highlight;
+
+	public int[] SubjectTemp;
+
+	public int[] Subject;
+
+	public string[] Desc;
+
+	public int StartingPoints;
+
+	public int BonusPoints;
+
+	public int StudyPoints;
+
+	public int GradeUpSubject;
+
+	public int Selected;
+
+	public int Grade;
+
+	public bool ShowWarning;
+
+	public bool GradeUp;
+
+	public bool Show;
+
+	public int Biology;
+
+	public int Chemistry;
+
+	public int Language;
+
+	public int Physical;
+
+	public int Psychology;
+
+	public int BiologyGrade;
+
+	public int ChemistryGrade;
+
+	public int LanguageGrade;
+
+	public int PhysicalGrade;
+
+	public int PsychologyGrade;
+
+	public int BiologyBonus;
+
+	public int ChemistryBonus;
+
+	public int LanguageBonus;
+
+	public int PhysicalBonus;
+
+	public int PsychologyBonus;
+
+	public int Seduction;
+
+	public int Numbness;
+
+	public int Social;
+
+	public int Stealth;
+
+	public int Speed;
+
+	public int Enlightenment;
+
+	public int SpeedBonus;
+
+	public int SocialBonus;
+
+	public int StealthBonus;
+
+	public int SeductionBonus;
+
+	public int NumbnessBonus;
+
+	public int EnlightenmentBonus;
+
+	public float HoldRightTimer;
+
+	public float HoldLeftTimer;
+
+	public bool Initialized;
+
+	private void Start()
+	{
+		if (Portal == null || !Portal.StudentManager.ReturnedFromSave)
+		{
+			GetStats();
+		}
+		if (SceneManager.GetActiveScene().name != "SchoolScene")
+		{
+			base.enabled = false;
+		}
+		else
+		{
+			GradeUpWindow.localScale = Vector3.zero;
+			Subject[1] = Biology;
+			Subject[2] = Chemistry;
+			Subject[3] = Language;
+			Subject[4] = Physical;
+			Subject[5] = Psychology;
+			DescLabel.text = Desc[Selected];
+			UpdateSubjectLabels();
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 1f);
+			UpdateBars();
+		}
+		if (GameGlobals.Eighties)
+		{
+			Subject3GradeText = Subject3GradeTextEighties;
+		}
+	}
+
+	public void GetStats()
+	{
+		if (!Initialized)
+		{
+			BonusPoints += ClassGlobals.BonusStudyPoints;
+			Initialized = true;
+		}
+		Biology = ClassGlobals.Biology;
+		Chemistry = ClassGlobals.Chemistry;
+		Language = ClassGlobals.Language;
+		Physical = ClassGlobals.Physical;
+		Psychology = ClassGlobals.Psychology;
+		BiologyGrade = ClassGlobals.BiologyGrade;
+		ChemistryGrade = ClassGlobals.ChemistryGrade;
+		LanguageGrade = ClassGlobals.LanguageGrade;
+		PhysicalGrade = ClassGlobals.PhysicalGrade;
+		PsychologyGrade = ClassGlobals.PsychologyGrade;
+		if (BiologyBonus == 0)
+		{
+			BiologyBonus = ClassGlobals.BiologyBonus;
+		}
+		if (ChemistryBonus == 0)
+		{
+			ChemistryBonus = ClassGlobals.ChemistryBonus;
+		}
+		if (LanguageBonus == 0)
+		{
+			LanguageBonus = ClassGlobals.LanguageBonus;
+		}
+		if (PhysicalBonus == 0)
+		{
+			PhysicalBonus = ClassGlobals.PhysicalBonus;
+		}
+		if (PsychologyBonus == 0)
+		{
+			PsychologyBonus = ClassGlobals.PsychologyBonus;
+		}
+		Seduction = PlayerGlobals.Seduction;
+		Numbness = PlayerGlobals.Numbness;
+		Enlightenment = PlayerGlobals.Enlightenment;
+		if (SpeedBonus == 0)
+		{
+			SpeedBonus = PlayerGlobals.SpeedBonus;
+		}
+		if (SocialBonus == 0)
+		{
+			SocialBonus = PlayerGlobals.SocialBonus;
+		}
+		if (StealthBonus == 0)
+		{
+			StealthBonus = PlayerGlobals.StealthBonus;
+		}
+		if (SeductionBonus == 0)
+		{
+			SeductionBonus = PlayerGlobals.SeductionBonus;
+		}
+		if (NumbnessBonus == 0)
+		{
+			NumbnessBonus = PlayerGlobals.NumbnessBonus;
+		}
+		if (EnlightenmentBonus == 0)
+		{
+			EnlightenmentBonus = PlayerGlobals.EnlightenmentBonus;
+		}
+	}
+
+	private void Update()
+	{
+		if (Show)
+		{
+			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
+			if (Darkness.alpha == 0f)
+			{
+				if (!Portal.Yandere.NoDebug)
+				{
+					if (Input.GetKeyDown(KeyCode.Backslash))
+					{
+						GivePoints();
+					}
+					if (Input.GetKeyDown(KeyCode.P))
+					{
+						MaxPhysical();
+					}
+				}
+				if (!ShowWarning)
+				{
+					if (InputManager.TappedDown)
+					{
+						Selected++;
+						if (Selected > 5)
+						{
+							Selected = 1;
+						}
+						Highlight.localPosition = new Vector3(Highlight.localPosition.x, 375f - 125f * (float)Selected, Highlight.localPosition.z);
+						DescLabel.text = Desc[Selected];
+						UpdateSubjectLabels();
+					}
+					if (InputManager.TappedUp)
+					{
+						Selected--;
+						if (Selected < 1)
+						{
+							Selected = 5;
+						}
+						Highlight.localPosition = new Vector3(Highlight.localPosition.x, 375f - 125f * (float)Selected, Highlight.localPosition.z);
+						DescLabel.text = Desc[Selected];
+						UpdateSubjectLabels();
+					}
+					if (InputManager.TappedRight)
+					{
+						AddStudyPoints();
+					}
+					if (InputManager.TappedLeft)
+					{
+						SubtractStudyPoints();
+					}
+					if (Input.GetAxisRaw("DpadX") > 0.5f || Input.GetAxisRaw("Horizontal") > 0.5f)
+					{
+						HoldRightTimer += Time.deltaTime;
+						if (HoldRightTimer > 0.5f)
+						{
+							AddStudyPoints();
+						}
+					}
+					else
+					{
+						HoldRightTimer = 0f;
+					}
+					if (Input.GetAxisRaw("DpadX") < -0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+					{
+						HoldLeftTimer += Time.deltaTime;
+						if (HoldLeftTimer > 0.5f)
+						{
+							SubtractStudyPoints();
+						}
+					}
+					else
+					{
+						HoldLeftTimer = 0f;
+					}
+					if (Input.GetButtonDown("A"))
+					{
+						bool flag = true;
+						if (BiologyGrade == 5 && ChemistryGrade == 5 && LanguageGrade == 5 && PhysicalGrade == 5 && PsychologyGrade == 5)
+						{
+							flag = false;
+						}
+						if (StudyPoints == StartingPoints && flag)
+						{
+							ShowWarning = true;
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Finish Class";
+							PromptBar.Label[1].text = "Allocate Points";
+							PromptBar.UpdateButtons();
+						}
+						else
+						{
+							ExitClass();
+						}
+					}
+				}
+				else if (WarningWindow.localScale.x > 0.9f)
+				{
+					if (Input.GetButtonDown("A"))
+					{
+						ExitClass();
+					}
+					if (Input.GetButtonDown("B"))
+					{
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = "Finish Class";
+						PromptBar.Label[4].text = "Choose";
+						PromptBar.Label[5].text = "Allocate";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+						ShowWarning = false;
+					}
+				}
+			}
+			if (ShowWarning)
+			{
+				WarningWindow.localScale = Vector3.Lerp(WarningWindow.localScale, Vector3.one, Time.deltaTime * 10f);
+			}
+			else
+			{
+				WarningWindow.localScale = Vector3.Lerp(WarningWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
+			}
+			return;
+		}
+		Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
+		if (Darkness.color.a != 1f)
+		{
+			return;
+		}
+		if (!GradeUp)
+		{
+			if (GradeUpWindow.localScale.x > 0.1f)
+			{
+				GradeUpWindow.localScale = Vector3.Lerp(GradeUpWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
+			}
+			else
+			{
+				GradeUpWindow.localScale = Vector3.zero;
+			}
+			if (!(GradeUpWindow.localScale.x < 0.01f))
+			{
+				return;
+			}
+			GradeUpWindow.localScale = Vector3.zero;
+			CheckForGradeUp();
+			if (!GradeUp)
+			{
+				if (ChemistryGrade > 0 && Poison != null)
+				{
+					Poison.SetActive(true);
+				}
+				StudentManagerScript studentManager = Portal.Yandere.StudentManager;
+				if (CutsceneManager.Scheme > 0 && studentManager.Students[studentManager.RivalID] != null && studentManager.Students[studentManager.RivalID].Alive && !studentManager.Students[studentManager.RivalID].Tranquil)
+				{
+					SchemeGlobals.SetSchemeStage(CutsceneManager.Scheme, 100);
+					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = "Continue";
+					PromptBar.UpdateButtons();
+					CutsceneManager.gameObject.SetActive(true);
+					Schemes.UpdateInstructions();
+					base.gameObject.SetActive(false);
+				}
+				else if (!Portal.FadeOut)
+				{
+					Portal.Yandere.PhysicalGrade = PhysicalGrade;
+					Portal.Yandere.CameraEffects.UpdateDOF(Portal.OriginalDOF);
+					Portal.ClassDarkness.alpha = 1f;
+					Portal.Transition = true;
+					Portal.FadeOut = false;
+					Portal.Proceed = true;
+					PromptBar.Show = false;
+					base.gameObject.SetActive(false);
+				}
+			}
+			return;
+		}
+		if (GradeUpWindow.localScale.x == 0f)
+		{
+			if (GradeUpSubject == 1)
+			{
+				GradeUpName.text = "BIOLOGY RANK UP";
+				GradeUpDesc.text = Subject1GradeText[Grade];
+			}
+			else if (GradeUpSubject == 2)
+			{
+				GradeUpName.text = "CHEMISTRY RANK UP";
+				GradeUpDesc.text = Subject2GradeText[Grade];
+			}
+			else if (GradeUpSubject == 3)
+			{
+				GradeUpName.text = "LANGUAGE RANK UP";
+				GradeUpDesc.text = Subject3GradeText[Grade];
+			}
+			else if (GradeUpSubject == 4)
+			{
+				GradeUpName.text = "PHYSICAL RANK UP";
+				GradeUpDesc.text = Subject4GradeText[Grade];
+			}
+			else if (GradeUpSubject == 5)
+			{
+				GradeUpName.text = "PSYCHOLOGY RANK UP";
+				GradeUpDesc.text = Subject5GradeText[Grade];
+			}
+			GradeUpDesc.text = GradeUpDesc.text.Replace("\\n", "\n\n");
+			PromptBar.ClearButtons();
+			PromptBar.Label[0].text = "Continue";
+			PromptBar.UpdateButtons();
+			PromptBar.Show = true;
+		}
+		else if (GradeUpWindow.localScale.x > 0.9f && Input.GetButtonDown("A"))
+		{
+			PromptBar.ClearButtons();
+			GradeUp = false;
+		}
+		GradeUpWindow.localScale = Vector3.Lerp(GradeUpWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+	}
+
+	private void UpdateSubjectLabels()
+	{
+		for (int i = 1; i < 6; i++)
+		{
+			SubjectLabels[i].color = new Color(0f, 0f, 0f, 1f);
+		}
+		SubjectLabels[Selected].color = new Color(1f, 1f, 1f, 1f);
+	}
+
+	public void UpdateLabel()
+	{
+		StudyPointsLabel.text = "STUDY POINTS: " + StudyPoints;
+	}
+
+	private void UpdateBars()
+	{
+		for (int i = 1; i < 6; i++)
+		{
+			Transform transform = Subject1Bars[i];
+			if (Subject[1] + SubjectTemp[1] > (i - 1) * 20)
+			{
+				transform.localScale = new Vector3(0f - (float)((i - 1) * 20 - (Subject[1] + SubjectTemp[1])) / 20f, transform.localScale.y, transform.localScale.z);
+				if (transform.localScale.x > 1f)
+				{
+					transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
+				}
+			}
+			else
+			{
+				transform.localScale = new Vector3(0f, transform.localScale.y, transform.localScale.z);
+			}
+		}
+		for (int j = 1; j < 6; j++)
+		{
+			Transform transform2 = Subject2Bars[j];
+			if (Subject[2] + SubjectTemp[2] > (j - 1) * 20)
+			{
+				transform2.localScale = new Vector3(0f - (float)((j - 1) * 20 - (Subject[2] + SubjectTemp[2])) / 20f, transform2.localScale.y, transform2.localScale.z);
+				if (transform2.localScale.x > 1f)
+				{
+					transform2.localScale = new Vector3(1f, transform2.localScale.y, transform2.localScale.z);
+				}
+			}
+			else
+			{
+				transform2.localScale = new Vector3(0f, transform2.localScale.y, transform2.localScale.z);
+			}
+		}
+		for (int k = 1; k < 6; k++)
+		{
+			Transform transform3 = Subject3Bars[k];
+			if (Subject[3] + SubjectTemp[3] > (k - 1) * 20)
+			{
+				transform3.localScale = new Vector3(0f - (float)((k - 1) * 20 - (Subject[3] + SubjectTemp[3])) / 20f, transform3.localScale.y, transform3.localScale.z);
+				if (transform3.localScale.x > 1f)
+				{
+					transform3.localScale = new Vector3(1f, transform3.localScale.y, transform3.localScale.z);
+				}
+			}
+			else
+			{
+				transform3.localScale = new Vector3(0f, transform3.localScale.y, transform3.localScale.z);
+			}
+		}
+		for (int l = 1; l < 6; l++)
+		{
+			Transform transform4 = Subject4Bars[l];
+			if (Subject[4] + SubjectTemp[4] > (l - 1) * 20)
+			{
+				transform4.localScale = new Vector3(0f - (float)((l - 1) * 20 - (Subject[4] + SubjectTemp[4])) / 20f, transform4.localScale.y, transform4.localScale.z);
+				if (transform4.localScale.x > 1f)
+				{
+					transform4.localScale = new Vector3(1f, transform4.localScale.y, transform4.localScale.z);
+				}
+			}
+			else
+			{
+				transform4.localScale = new Vector3(0f, transform4.localScale.y, transform4.localScale.z);
+			}
+		}
+		for (int m = 1; m < 6; m++)
+		{
+			Transform transform5 = Subject5Bars[m];
+			if (Subject[5] + SubjectTemp[5] > (m - 1) * 20)
+			{
+				transform5.localScale = new Vector3(0f - (float)((m - 1) * 20 - (Subject[5] + SubjectTemp[5])) / 20f, transform5.localScale.y, transform5.localScale.z);
+				if (transform5.localScale.x > 1f)
+				{
+					transform5.localScale = new Vector3(1f, transform5.localScale.y, transform5.localScale.z);
+				}
+			}
+			else
+			{
+				transform5.localScale = new Vector3(0f, transform5.localScale.y, transform5.localScale.z);
+			}
+		}
+	}
+
+	private void CheckForGradeUp()
+	{
+		if (Biology >= 20 && BiologyGrade < 1)
+		{
+			BiologyGrade = 1;
+			GradeUpSubject = 1;
+			GradeUp = true;
+			Grade = 1;
+		}
+		else if (Biology >= 40 && BiologyGrade < 2)
+		{
+			BiologyGrade = 2;
+			GradeUpSubject = 1;
+			GradeUp = true;
+			Grade = 2;
+		}
+		else if (Biology >= 60 && BiologyGrade < 3)
+		{
+			BiologyGrade = 3;
+			GradeUpSubject = 1;
+			GradeUp = true;
+			Grade = 3;
+		}
+		else if (Biology >= 80 && BiologyGrade < 4)
+		{
+			BiologyGrade = 4;
+			GradeUpSubject = 1;
+			GradeUp = true;
+			Grade = 4;
+		}
+		else if (Biology >= 100 && BiologyGrade < 5)
+		{
+			BiologyGrade = 5;
+			GradeUpSubject = 1;
+			GradeUp = true;
+			Grade = 5;
+		}
+		else if (Chemistry >= 20 && ChemistryGrade < 1)
+		{
+			ChemistryGrade = 1;
+			GradeUpSubject = 2;
+			GradeUp = true;
+			Grade = 1;
+		}
+		else if (Chemistry >= 40 && ChemistryGrade < 2)
+		{
+			ChemistryGrade = 2;
+			GradeUpSubject = 2;
+			GradeUp = true;
+			Grade = 2;
+		}
+		else if (Chemistry >= 60 && ChemistryGrade < 3)
+		{
+			ChemistryGrade = 3;
+			GradeUpSubject = 2;
+			GradeUp = true;
+			Grade = 3;
+		}
+		else if (Chemistry >= 80 && ChemistryGrade < 4)
+		{
+			ChemistryGrade = 4;
+			GradeUpSubject = 2;
+			GradeUp = true;
+			Grade = 4;
+		}
+		else if (Chemistry >= 100 && ChemistryGrade < 5)
+		{
+			ChemistryGrade = 5;
+			GradeUpSubject = 2;
+			GradeUp = true;
+			Grade = 5;
+		}
+		else if (Language >= 20 && LanguageGrade < 1)
+		{
+			LanguageGrade = 1;
+			GradeUpSubject = 3;
+			GradeUp = true;
+			Grade = 1;
+		}
+		else if (Language >= 40 && LanguageGrade < 2)
+		{
+			LanguageGrade = 2;
+			GradeUpSubject = 3;
+			GradeUp = true;
+			Grade = 2;
+		}
+		else if (Language >= 60 && LanguageGrade < 3)
+		{
+			LanguageGrade = 3;
+			GradeUpSubject = 3;
+			GradeUp = true;
+			Grade = 3;
+		}
+		else if (Language >= 80 && LanguageGrade < 4)
+		{
+			LanguageGrade = 4;
+			GradeUpSubject = 3;
+			GradeUp = true;
+			Grade = 4;
+		}
+		else if (Language >= 100 && LanguageGrade < 5)
+		{
+			LanguageGrade = 5;
+			GradeUpSubject = 3;
+			GradeUp = true;
+			Grade = 5;
+		}
+		else if (Physical >= 20 && PhysicalGrade < 1)
+		{
+			PhysicalGrade = 1;
+			GradeUpSubject = 4;
+			GradeUp = true;
+			Grade = 1;
+		}
+		else if (Physical >= 40 && PhysicalGrade < 2)
+		{
+			PhysicalGrade = 2;
+			GradeUpSubject = 4;
+			GradeUp = true;
+			Grade = 2;
+		}
+		else if (Physical >= 60 && PhysicalGrade < 3)
+		{
+			PhysicalGrade = 3;
+			GradeUpSubject = 4;
+			GradeUp = true;
+			Grade = 3;
+		}
+		else if (Physical >= 80 && PhysicalGrade < 4)
+		{
+			PhysicalGrade = 4;
+			GradeUpSubject = 4;
+			GradeUp = true;
+			Grade = 4;
+		}
+		else if (Physical == 100 && PhysicalGrade < 5)
+		{
+			PhysicalGrade = 5;
+			GradeUpSubject = 4;
+			GradeUp = true;
+			Grade = 5;
+		}
+		else if (Psychology >= 20 && PsychologyGrade < 1)
+		{
+			PsychologyGrade = 1;
+			GradeUpSubject = 5;
+			GradeUp = true;
+			Grade = 1;
+		}
+		else if (Psychology >= 40 && PsychologyGrade < 2)
+		{
+			PsychologyGrade = 2;
+			GradeUpSubject = 5;
+			GradeUp = true;
+			Grade = 2;
+		}
+		else if (Psychology >= 60 && PsychologyGrade < 3)
+		{
+			PsychologyGrade = 3;
+			GradeUpSubject = 5;
+			GradeUp = true;
+			Grade = 3;
+		}
+		else if (Psychology >= 80 && PsychologyGrade < 4)
+		{
+			PsychologyGrade = 4;
+			GradeUpSubject = 5;
+			GradeUp = true;
+			Grade = 4;
+		}
+		else if (Psychology >= 100 && PsychologyGrade < 5)
+		{
+			PsychologyGrade = 5;
+			GradeUpSubject = 5;
+			GradeUp = true;
+			Grade = 5;
+		}
+		Portal.Yandere.UpdateNumbness();
+	}
+
+	private void GivePoints()
+	{
+		StudyPoints = 500;
+		BiologyGrade = 0;
+		ChemistryGrade = 0;
+		LanguageGrade = 0;
+		PhysicalGrade = 0;
+		PsychologyGrade = 0;
+		Biology = 19;
+		Chemistry = 19;
+		Language = 19;
+		Physical = 19;
+		Psychology = 19;
+		Subject[1] = Biology;
+		Subject[2] = Chemistry;
+		Subject[3] = Language;
+		Subject[4] = Physical;
+		Subject[5] = Psychology;
+		UpdateBars();
+	}
+
+	private void MaxPhysical()
+	{
+		PhysicalGrade = 0;
+		Physical = 99;
+		Subject[4] = Physical;
+		UpdateBars();
+	}
+
+	private void AddStudyPoints()
+	{
+		if (StudyPoints > 0 && Subject[Selected] + SubjectTemp[Selected] < 100)
+		{
+			SubjectTemp[Selected]++;
+			StudyPoints--;
+			UpdateLabel();
+			UpdateBars();
+		}
+	}
+
+	private void SubtractStudyPoints()
+	{
+		if (SubjectTemp[Selected] > 0)
+		{
+			SubjectTemp[Selected]--;
+			StudyPoints++;
+			UpdateLabel();
+			UpdateBars();
+		}
+	}
+
+	private void ExitClass()
+	{
+		WarningWindow.localScale = Vector3.zero;
+		ShowWarning = false;
+		Show = false;
+		PromptBar.ClearButtons();
+		PromptBar.Show = false;
+		Biology = Subject[1] + SubjectTemp[1];
+		Chemistry = Subject[2] + SubjectTemp[2];
+		Language = Subject[3] + SubjectTemp[3];
+		Physical = Subject[4] + SubjectTemp[4];
+		Psychology = Subject[5] + SubjectTemp[5];
+		for (int i = 0; i < 6; i++)
+		{
+			Subject[i] += SubjectTemp[i];
+			SubjectTemp[i] = 0;
+		}
+		CheckForGradeUp();
+	}
 }

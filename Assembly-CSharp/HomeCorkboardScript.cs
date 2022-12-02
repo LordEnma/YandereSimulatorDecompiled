@@ -1,47 +1,48 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HomeCorkboardScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class HomeCorkboardScript : MonoBehaviour
 {
-  public InputManagerScript InputManager;
-  public PhotoGalleryScript PhotoGallery;
-  public HomeYandereScript HomeYandere;
-  public HomeCameraScript HomeCamera;
-  public HomeWindowScript HomeWindow;
-  public bool Loaded;
+	public InputManagerScript InputManager;
 
-  private void Update()
-  {
-    if (this.HomeYandere.CanMove)
-      return;
-    if (!this.Loaded)
-    {
-      this.PhotoGallery.LoadingScreen.SetActive(false);
-      this.PhotoGallery.UpdateButtonPrompts();
-      this.PhotoGallery.enabled = true;
-      this.PhotoGallery.gameObject.SetActive(true);
-      this.Loaded = true;
-    }
-    if (this.PhotoGallery.Adjusting || this.PhotoGallery.Viewing || this.PhotoGallery.LoadingScreen.activeInHierarchy || !Input.GetButtonDown("B"))
-      return;
-    Cursor.lockState = CursorLockMode.None;
-    Cursor.visible = true;
-    this.HomeCamera.Destination = this.HomeCamera.Destinations[0];
-    this.HomeCamera.Target = this.HomeCamera.Targets[0];
-    this.HomeCamera.CorkboardLabel.SetActive(true);
-    this.PhotoGallery.PromptBar.Show = false;
-    this.PhotoGallery.enabled = false;
-    this.HomeYandere.CanMove = true;
-    this.HomeYandere.gameObject.SetActive(true);
-    this.HomeWindow.Show = false;
-    this.enabled = false;
-    this.Loaded = false;
-    this.PhotoGallery.SaveAllPhotographs();
-    this.PhotoGallery.SaveAllStrings();
-  }
+	public PhotoGalleryScript PhotoGallery;
+
+	public HomeYandereScript HomeYandere;
+
+	public HomeCameraScript HomeCamera;
+
+	public HomeWindowScript HomeWindow;
+
+	public bool Loaded;
+
+	private void Update()
+	{
+		if (!HomeYandere.CanMove)
+		{
+			if (!Loaded)
+			{
+				PhotoGallery.LoadingScreen.SetActive(false);
+				PhotoGallery.UpdateButtonPrompts();
+				PhotoGallery.enabled = true;
+				PhotoGallery.gameObject.SetActive(true);
+				Loaded = true;
+			}
+			if (!PhotoGallery.Adjusting && !PhotoGallery.Viewing && !PhotoGallery.LoadingScreen.activeInHierarchy && Input.GetButtonDown("B"))
+			{
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+				HomeCamera.Destination = HomeCamera.Destinations[0];
+				HomeCamera.Target = HomeCamera.Targets[0];
+				HomeCamera.CorkboardLabel.SetActive(true);
+				PhotoGallery.PromptBar.Show = false;
+				PhotoGallery.enabled = false;
+				HomeYandere.CanMove = true;
+				HomeYandere.gameObject.SetActive(true);
+				HomeWindow.Show = false;
+				base.enabled = false;
+				Loaded = false;
+				PhotoGallery.SaveAllPhotographs();
+				PhotoGallery.SaveAllStrings();
+			}
+		}
+	}
 }

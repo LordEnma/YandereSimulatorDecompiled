@@ -1,42 +1,48 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MatchScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MatchScript : MonoBehaviour
 {
-  public GameObject Distraction;
-  public GameObject GiggleDisc;
-  public GameObject GasCloud;
-  public GameObject Flash;
-  public AudioClip Bang;
-  public bool StinkBomb;
-  public bool Pebble;
+	public GameObject Distraction;
 
-  private void Update() => this.transform.Rotate(360f * Time.deltaTime, 360f * Time.deltaTime, 360f * Time.deltaTime);
+	public GameObject GiggleDisc;
 
-  private void OnCollisionEnter(Collision collision)
-  {
-    if (collision.gameObject.layer != 0 && collision.gameObject.layer != 8)
-      return;
-    if (this.StinkBomb)
-      Object.Instantiate<GameObject>(this.GasCloud, this.transform.position, Quaternion.identity);
-    else if (this.Pebble)
-    {
-      Object.Instantiate<GameObject>(this.Distraction, this.transform.position, Quaternion.identity);
-      AudioSource.PlayClipAtPoint(this.Bang, this.transform.position);
-    }
-    else
-    {
-      GameObject gameObject = Object.Instantiate<GameObject>(this.GiggleDisc, this.transform.position, Quaternion.identity);
-      gameObject.GetComponent<BoxCollider>().size = new Vector3(0.02f, 1f, 0.02f);
-      gameObject.GetComponent<GiggleScript>().BangSnap = true;
-      AudioSource.PlayClipAtPoint(this.Bang, this.transform.position);
-    }
-    Object.Instantiate<GameObject>(this.Flash, this.transform.position, Quaternion.identity);
-    Object.Destroy((Object) this.gameObject);
-  }
+	public GameObject GasCloud;
+
+	public GameObject Flash;
+
+	public AudioClip Bang;
+
+	public bool StinkBomb;
+
+	public bool Pebble;
+
+	private void Update()
+	{
+		base.transform.Rotate(360f * Time.deltaTime, 360f * Time.deltaTime, 360f * Time.deltaTime);
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.layer == 0 || collision.gameObject.layer == 8)
+		{
+			if (StinkBomb)
+			{
+				Object.Instantiate(GasCloud, base.transform.position, Quaternion.identity);
+			}
+			else if (Pebble)
+			{
+				Object.Instantiate(Distraction, base.transform.position, Quaternion.identity);
+				AudioSource.PlayClipAtPoint(Bang, base.transform.position);
+			}
+			else
+			{
+				GameObject obj = Object.Instantiate(GiggleDisc, base.transform.position, Quaternion.identity);
+				obj.GetComponent<BoxCollider>().size = new Vector3(0.02f, 1f, 0.02f);
+				obj.GetComponent<GiggleScript>().BangSnap = true;
+				AudioSource.PlayClipAtPoint(Bang, base.transform.position);
+			}
+			Object.Instantiate(Flash, base.transform.position, Quaternion.identity);
+			Object.Destroy(base.gameObject);
+		}
+	}
 }

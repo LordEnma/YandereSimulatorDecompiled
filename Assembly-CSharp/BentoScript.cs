@@ -1,93 +1,115 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BentoScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class BentoScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public YandereScript Yandere;
-  public Transform PoisonSpot;
-  public PromptScript Prompt;
-  public bool BeingPoisoned;
-  public int Poison;
-  public int ID;
+	public StudentManagerScript StudentManager;
 
-  private void Start()
-  {
-    if (!((Object) this.Prompt.Yandere != (Object) null))
-      return;
-    this.Yandere = this.Prompt.Yandere;
-  }
+	public YandereScript Yandere;
 
-  private void Update()
-  {
-    if ((Object) this.Yandere == (Object) null)
-    {
-      if (!((Object) this.Prompt.Yandere != (Object) null))
-        return;
-      this.Yandere = this.Prompt.Yandere;
-    }
-    else if (this.Yandere.Inventory.EmeticPoisons > 0 || this.Yandere.Inventory.LethalPoisons > 0)
-    {
-      this.Prompt.enabled = true;
-      this.Prompt.HideButton[0] = this.Yandere.Inventory.EmeticPoisons <= 0;
-      if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-      {
-        this.Prompt.Circle[0].fillAmount = 1f;
-        this.Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
-        if (!this.Prompt.Yandere.StudentManager.YandereVisible)
-        {
-          --this.Yandere.Inventory.EmeticPoisons;
-          this.Yandere.PoisonType = 1;
-          this.StudentManager.Students[this.ID].MyBento.Tampered = true;
-          this.StudentManager.Students[this.ID].MyBento.Emetic = true;
-          this.StudentManager.Students[this.ID].Emetic = true;
-          this.Yandere.CharacterAnimation.CrossFade("f02_poisoning_00");
-          this.Yandere.PoisonSpot = this.PoisonSpot;
-          this.Yandere.Poisoning = true;
-          this.Yandere.CanMove = false;
-          this.enabled = false;
-          this.Poison = 1;
-          if (this.ID != 1)
-            this.StudentManager.Students[this.ID].Emetic = true;
-          this.Prompt.Hide();
-          this.Prompt.enabled = false;
-          this.Prompt.Yandere.StudentManager.UpdateAllBentos();
-          this.BeingPoisoned = true;
-        }
-        else
-        {
-          this.Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
-          this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        }
-      }
-      if (this.ID != 11 && this.ID != 6)
-        return;
-      this.Prompt.HideButton[1] = this.Prompt.Yandere.Inventory.LethalPoisons <= 0;
-      if ((double) this.Prompt.Circle[1].fillAmount != 0.0)
-        return;
-      this.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Yandere.Numbness;
-      --this.Prompt.Yandere.Inventory.LethalPoisons;
-      this.Prompt.Yandere.CharacterAnimation.CrossFade("f02_poisoning_00");
-      this.StudentManager.Students[this.ID].MyBento.Tampered = true;
-      this.StudentManager.Students[this.ID].MyBento.Lethal = true;
-      this.StudentManager.Students[this.ID].Lethal = true;
-      this.Prompt.Yandere.PoisonSpot = this.PoisonSpot;
-      this.Prompt.Yandere.Poisoning = true;
-      this.Prompt.Yandere.CanMove = false;
-      this.Prompt.Yandere.PoisonType = 2;
-      this.enabled = false;
-      this.Poison = 2;
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.Prompt.Yandere.StudentManager.UpdateAllBentos();
-      this.BeingPoisoned = true;
-    }
-    else
-      this.Prompt.enabled = false;
-  }
+	public Transform PoisonSpot;
+
+	public PromptScript Prompt;
+
+	public bool BeingPoisoned;
+
+	public int Poison;
+
+	public int ID;
+
+	private void Start()
+	{
+		if (Prompt.Yandere != null)
+		{
+			Yandere = Prompt.Yandere;
+		}
+	}
+
+	private void Update()
+	{
+		if (Yandere == null)
+		{
+			if (Prompt.Yandere != null)
+			{
+				Yandere = Prompt.Yandere;
+			}
+		}
+		else if (Yandere.Inventory.EmeticPoisons > 0 || Yandere.Inventory.LethalPoisons > 0)
+		{
+			Prompt.enabled = true;
+			if (Yandere.Inventory.EmeticPoisons > 0)
+			{
+				Prompt.HideButton[0] = false;
+			}
+			else
+			{
+				Prompt.HideButton[0] = true;
+			}
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				Prompt.Circle[0].fillAmount = 1f;
+				Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+				if (!Prompt.Yandere.StudentManager.YandereVisible)
+				{
+					Yandere.Inventory.EmeticPoisons--;
+					Yandere.PoisonType = 1;
+					StudentManager.Students[ID].MyBento.Tampered = true;
+					StudentManager.Students[ID].MyBento.Emetic = true;
+					StudentManager.Students[ID].Emetic = true;
+					Yandere.CharacterAnimation.CrossFade("f02_poisoning_00");
+					Yandere.PoisonSpot = PoisonSpot;
+					Yandere.Poisoning = true;
+					Yandere.CanMove = false;
+					base.enabled = false;
+					Poison = 1;
+					if (ID != 1)
+					{
+						StudentManager.Students[ID].Emetic = true;
+					}
+					Prompt.Hide();
+					Prompt.enabled = false;
+					Prompt.Yandere.StudentManager.UpdateAllBentos();
+					BeingPoisoned = true;
+				}
+				else
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			if (ID == 11 || ID == 6)
+			{
+				if (Prompt.Yandere.Inventory.LethalPoisons > 0)
+				{
+					Prompt.HideButton[1] = false;
+				}
+				else
+				{
+					Prompt.HideButton[1] = true;
+				}
+				if (Prompt.Circle[1].fillAmount == 0f)
+				{
+					Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Yandere.Numbness;
+					Prompt.Yandere.Inventory.LethalPoisons--;
+					Prompt.Yandere.CharacterAnimation.CrossFade("f02_poisoning_00");
+					StudentManager.Students[ID].MyBento.Tampered = true;
+					StudentManager.Students[ID].MyBento.Lethal = true;
+					StudentManager.Students[ID].Lethal = true;
+					Prompt.Yandere.PoisonSpot = PoisonSpot;
+					Prompt.Yandere.Poisoning = true;
+					Prompt.Yandere.CanMove = false;
+					Prompt.Yandere.PoisonType = 2;
+					base.enabled = false;
+					Poison = 2;
+					Prompt.Hide();
+					Prompt.enabled = false;
+					Prompt.Yandere.StudentManager.UpdateAllBentos();
+					BeingPoisoned = true;
+				}
+			}
+		}
+		else
+		{
+			Prompt.enabled = false;
+		}
+	}
 }

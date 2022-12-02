@@ -1,62 +1,77 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TweenFill
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
-[RequireComponent(typeof (UIBasicSprite))]
+[RequireComponent(typeof(UIBasicSprite))]
 [AddComponentMenu("NGUI/Tween/Tween Fill")]
 public class TweenFill : UITweener
 {
-  [Range(0.0f, 1f)]
-  public float from = 1f;
-  [Range(0.0f, 1f)]
-  public float to = 1f;
-  private bool mCached;
-  private UIBasicSprite mSprite;
+	[Range(0f, 1f)]
+	public float from = 1f;
 
-  private void Cache()
-  {
-    this.mCached = true;
-    this.mSprite = (UIBasicSprite) this.GetComponent<UISprite>();
-  }
+	[Range(0f, 1f)]
+	public float to = 1f;
 
-  public float value
-  {
-    get
-    {
-      if (!this.mCached)
-        this.Cache();
-      return (Object) this.mSprite != (Object) null ? this.mSprite.fillAmount : 0.0f;
-    }
-    set
-    {
-      if (!this.mCached)
-        this.Cache();
-      if (!((Object) this.mSprite != (Object) null))
-        return;
-      this.mSprite.fillAmount = value;
-    }
-  }
+	private bool mCached;
 
-  protected override void OnUpdate(float factor, bool isFinished) => this.value = Mathf.Lerp(this.from, this.to, factor);
+	private UIBasicSprite mSprite;
 
-  public static TweenFill Begin(GameObject go, float duration, float fill)
-  {
-    TweenFill tweenFill = UITweener.Begin<TweenFill>(go, duration);
-    tweenFill.from = tweenFill.value;
-    tweenFill.to = fill;
-    if ((double) duration <= 0.0)
-    {
-      tweenFill.Sample(1f, true);
-      tweenFill.enabled = false;
-    }
-    return tweenFill;
-  }
+	public float value
+	{
+		get
+		{
+			if (!mCached)
+			{
+				Cache();
+			}
+			if (mSprite != null)
+			{
+				return mSprite.fillAmount;
+			}
+			return 0f;
+		}
+		set
+		{
+			if (!mCached)
+			{
+				Cache();
+			}
+			if (mSprite != null)
+			{
+				mSprite.fillAmount = value;
+			}
+		}
+	}
 
-  public override void SetStartToCurrentValue() => this.from = this.value;
+	private void Cache()
+	{
+		mCached = true;
+		mSprite = GetComponent<UISprite>();
+	}
 
-  public override void SetEndToCurrentValue() => this.to = this.value;
+	protected override void OnUpdate(float factor, bool isFinished)
+	{
+		value = Mathf.Lerp(from, to, factor);
+	}
+
+	public static TweenFill Begin(GameObject go, float duration, float fill)
+	{
+		TweenFill tweenFill = UITweener.Begin<TweenFill>(go, duration);
+		tweenFill.from = tweenFill.value;
+		tweenFill.to = fill;
+		if (duration <= 0f)
+		{
+			tweenFill.Sample(1f, true);
+			tweenFill.enabled = false;
+		}
+		return tweenFill;
+	}
+
+	public override void SetStartToCurrentValue()
+	{
+		from = value;
+	}
+
+	public override void SetEndToCurrentValue()
+	{
+		to = value;
+	}
 }

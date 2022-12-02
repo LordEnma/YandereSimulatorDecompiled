@@ -1,116 +1,132 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MusicNoteScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MusicNoteScript : MonoBehaviour
 {
-  public MusicMinigameScript MusicMinigame;
-  public InputManagerScript InputManager;
-  public GameObject Ripple;
-  public GameObject Perfect;
-  public GameObject Wrong;
-  public GameObject Early;
-  public GameObject Late;
-  public GameObject Miss;
-  public GameObject Rating;
-  public string XboxDirection;
-  public string Direction;
-  public string Tapped;
-  public bool GaveInput;
-  public bool Proceed;
-  public float Speed;
-  public int ID;
+	public MusicMinigameScript MusicMinigame;
 
-  private void Update()
-  {
-    this.transform.localPosition += new Vector3((float) ((double) this.Speed * (double) Time.deltaTime * -1.0), 0.0f, 0.0f);
-    if (!this.MusicMinigame.KeyDown)
-    {
-      this.GaveInput = false;
-      if (this.InputManager.TappedUp)
-      {
-        this.GaveInput = true;
-        this.Tapped = "up";
-      }
-      else if (this.InputManager.TappedDown)
-      {
-        this.GaveInput = true;
-        this.Tapped = "down";
-      }
-      else if (this.InputManager.TappedRight)
-      {
-        this.GaveInput = true;
-        this.Tapped = "right";
-      }
-      else if (this.InputManager.TappedLeft)
-      {
-        this.GaveInput = true;
-        this.Tapped = "left";
-      }
-      if (Input.GetKeyDown(this.Direction) || this.GaveInput && this.Tapped == this.Direction)
-      {
-        if (this.MusicMinigame.CurrentNote == this.ID)
-        {
-          if ((double) this.transform.localPosition.x > -0.60000002384185791 && (double) this.transform.localPosition.x < -0.40000000596046448)
-          {
-            this.Rating = Object.Instantiate<GameObject>(this.Perfect, this.transform.position, Quaternion.identity);
-            this.Proceed = true;
-            ++this.MusicMinigame.Health;
-            this.MusicMinigame.CringeTimer = 0.0f;
-            this.MusicMinigame.UpdateHealthBar();
-          }
-          else if ((double) this.transform.localPosition.x > -0.40000000596046448 && (double) this.transform.localPosition.x < -0.20000000298023224)
-          {
-            this.Rating = Object.Instantiate<GameObject>(this.Early, this.transform.position, Quaternion.identity);
-            this.MusicMinigame.CringeTimer = 0.0f;
-            this.Proceed = true;
-          }
-          else if ((double) this.transform.localPosition.x > -0.800000011920929 && (double) this.transform.localPosition.x < -0.40000000596046448)
-          {
-            this.Rating = Object.Instantiate<GameObject>(this.Late, this.transform.position, Quaternion.identity);
-            this.MusicMinigame.CringeTimer = 0.0f;
-            this.Proceed = true;
-          }
-        }
-      }
-      else if (Input.anyKeyDown && (double) this.transform.localPosition.x > -0.800000011920929 && (double) this.transform.localPosition.x < -0.20000000298023224 && !this.MusicMinigame.GameOver)
-      {
-        this.Rating = Object.Instantiate<GameObject>(this.Wrong, this.transform.position, Quaternion.identity);
-        this.Proceed = true;
-        this.MusicMinigame.Cringe();
-        if (!this.MusicMinigame.LockHealth)
-          this.MusicMinigame.Health -= 10f;
-        this.MusicMinigame.UpdateHealthBar();
-      }
-    }
-    if (this.Proceed)
-    {
-      GameObject gameObject = Object.Instantiate<GameObject>(this.Ripple, this.transform.position, Quaternion.identity);
-      gameObject.transform.parent = this.transform.parent;
-      gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-      this.Rating.transform.parent = this.transform.parent;
-      this.Rating.transform.localPosition = new Vector3(-0.5f, 0.25f, 0.0f);
-      this.Rating.transform.localScale = new Vector3(0.3f, 0.15f, 0.15f);
-      ++this.MusicMinigame.CurrentNote;
-      this.MusicMinigame.KeyDown = true;
-      Object.Destroy((Object) this.gameObject);
-    }
-    else if ((double) this.transform.localPosition.x < -0.64999997615814209 && this.MusicMinigame.CurrentNote == this.ID)
-      ++this.MusicMinigame.CurrentNote;
-    if ((double) this.transform.localPosition.x >= -0.93999999761581421 || this.MusicMinigame.GameOver)
-      return;
-    this.Rating = Object.Instantiate<GameObject>(this.Miss, this.transform.position, Quaternion.identity);
-    this.Rating.transform.parent = this.transform.parent;
-    this.Rating.transform.localPosition = new Vector3(-0.94f, 0.25f, 0.0f);
-    this.Rating.transform.localScale = new Vector3(0.3f, 0.15f, 0.15f);
-    Object.Destroy((Object) this.gameObject);
-    this.MusicMinigame.Cringe();
-    if (!this.MusicMinigame.LockHealth)
-      this.MusicMinigame.Health -= 10f;
-    this.MusicMinigame.UpdateHealthBar();
-  }
+	public InputManagerScript InputManager;
+
+	public GameObject Ripple;
+
+	public GameObject Perfect;
+
+	public GameObject Wrong;
+
+	public GameObject Early;
+
+	public GameObject Late;
+
+	public GameObject Miss;
+
+	public GameObject Rating;
+
+	public string XboxDirection;
+
+	public string Direction;
+
+	public string Tapped;
+
+	public bool GaveInput;
+
+	public bool Proceed;
+
+	public float Speed;
+
+	public int ID;
+
+	private void Update()
+	{
+		base.transform.localPosition += new Vector3(Speed * Time.deltaTime * -1f, 0f, 0f);
+		if (!MusicMinigame.KeyDown)
+		{
+			GaveInput = false;
+			if (InputManager.TappedUp)
+			{
+				GaveInput = true;
+				Tapped = "up";
+			}
+			else if (InputManager.TappedDown)
+			{
+				GaveInput = true;
+				Tapped = "down";
+			}
+			else if (InputManager.TappedRight)
+			{
+				GaveInput = true;
+				Tapped = "right";
+			}
+			else if (InputManager.TappedLeft)
+			{
+				GaveInput = true;
+				Tapped = "left";
+			}
+			if (Input.GetKeyDown(Direction) || (GaveInput && Tapped == Direction))
+			{
+				if (MusicMinigame.CurrentNote == ID)
+				{
+					if (base.transform.localPosition.x > -0.6f && base.transform.localPosition.x < -0.4f)
+					{
+						Rating = Object.Instantiate(Perfect, base.transform.position, Quaternion.identity);
+						Proceed = true;
+						MusicMinigame.Health += 1f;
+						MusicMinigame.CringeTimer = 0f;
+						MusicMinigame.UpdateHealthBar();
+					}
+					else if (base.transform.localPosition.x > -0.4f && base.transform.localPosition.x < -0.2f)
+					{
+						Rating = Object.Instantiate(Early, base.transform.position, Quaternion.identity);
+						MusicMinigame.CringeTimer = 0f;
+						Proceed = true;
+					}
+					else if (base.transform.localPosition.x > -0.8f && base.transform.localPosition.x < -0.4f)
+					{
+						Rating = Object.Instantiate(Late, base.transform.position, Quaternion.identity);
+						MusicMinigame.CringeTimer = 0f;
+						Proceed = true;
+					}
+				}
+			}
+			else if (Input.anyKeyDown && base.transform.localPosition.x > -0.8f && base.transform.localPosition.x < -0.2f && !MusicMinigame.GameOver)
+			{
+				Rating = Object.Instantiate(Wrong, base.transform.position, Quaternion.identity);
+				Proceed = true;
+				MusicMinigame.Cringe();
+				if (!MusicMinigame.LockHealth)
+				{
+					MusicMinigame.Health -= 10f;
+				}
+				MusicMinigame.UpdateHealthBar();
+			}
+		}
+		if (Proceed)
+		{
+			GameObject obj = Object.Instantiate(Ripple, base.transform.position, Quaternion.identity);
+			obj.transform.parent = base.transform.parent;
+			obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+			Rating.transform.parent = base.transform.parent;
+			Rating.transform.localPosition = new Vector3(-0.5f, 0.25f, 0f);
+			Rating.transform.localScale = new Vector3(0.3f, 0.15f, 0.15f);
+			MusicMinigame.CurrentNote++;
+			MusicMinigame.KeyDown = true;
+			Object.Destroy(base.gameObject);
+		}
+		else if (base.transform.localPosition.x < -0.65f && MusicMinigame.CurrentNote == ID)
+		{
+			MusicMinigame.CurrentNote++;
+		}
+		if (base.transform.localPosition.x < -0.94f && !MusicMinigame.GameOver)
+		{
+			Rating = Object.Instantiate(Miss, base.transform.position, Quaternion.identity);
+			Rating.transform.parent = base.transform.parent;
+			Rating.transform.localPosition = new Vector3(-0.94f, 0.25f, 0f);
+			Rating.transform.localScale = new Vector3(0.3f, 0.15f, 0.15f);
+			Object.Destroy(base.gameObject);
+			MusicMinigame.Cringe();
+			if (!MusicMinigame.LockHealth)
+			{
+				MusicMinigame.Health -= 10f;
+			}
+			MusicMinigame.UpdateHealthBar();
+		}
+	}
 }

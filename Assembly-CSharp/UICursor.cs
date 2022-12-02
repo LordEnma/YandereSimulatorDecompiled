@@ -1,80 +1,92 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UICursor
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
-[RequireComponent(typeof (UISprite))]
+[RequireComponent(typeof(UISprite))]
 [AddComponentMenu("NGUI/Examples/UI Cursor")]
 public class UICursor : MonoBehaviour
 {
-  public static UICursor instance;
-  public Camera uiCamera;
-  private Transform mTrans;
-  private UISprite mSprite;
-  private INGUIAtlas mAtlas;
-  private string mSpriteName;
+	public static UICursor instance;
 
-  private void Awake() => UICursor.instance = this;
+	public Camera uiCamera;
 
-  private void OnDestroy() => UICursor.instance = (UICursor) null;
+	private Transform mTrans;
 
-  private void Start()
-  {
-    this.mTrans = this.transform;
-    this.mSprite = this.GetComponentInChildren<UISprite>();
-    if ((Object) this.uiCamera == (Object) null)
-      this.uiCamera = NGUITools.FindCameraForLayer(this.gameObject.layer);
-    if (!((Object) this.mSprite != (Object) null))
-      return;
-    this.mAtlas = this.mSprite.atlas;
-    this.mSpriteName = this.mSprite.spriteName;
-    if (this.mSprite.depth >= 100)
-      return;
-    this.mSprite.depth = 100;
-  }
+	private UISprite mSprite;
 
-  private void Update()
-  {
-    Vector3 mousePosition = Input.mousePosition;
-    if ((Object) this.uiCamera != (Object) null)
-    {
-      mousePosition.x = Mathf.Clamp01(mousePosition.x / (float) Screen.width);
-      mousePosition.y = Mathf.Clamp01(mousePosition.y / (float) Screen.height);
-      this.mTrans.position = this.uiCamera.ViewportToWorldPoint(mousePosition);
-      if (!this.uiCamera.orthographic)
-        return;
-      Vector3 localPosition = this.mTrans.localPosition;
-      localPosition.x = Mathf.Round(localPosition.x);
-      localPosition.y = Mathf.Round(localPosition.y);
-      this.mTrans.localPosition = localPosition;
-    }
-    else
-    {
-      mousePosition.x -= (float) Screen.width * 0.5f;
-      mousePosition.y -= (float) Screen.height * 0.5f;
-      mousePosition.x = Mathf.Round(mousePosition.x);
-      mousePosition.y = Mathf.Round(mousePosition.y);
-      this.mTrans.localPosition = mousePosition;
-    }
-  }
+	private INGUIAtlas mAtlas;
 
-  public static void Clear()
-  {
-    if (!((Object) UICursor.instance != (Object) null) || !((Object) UICursor.instance.mSprite != (Object) null))
-      return;
-    UICursor.Set(UICursor.instance.mAtlas, UICursor.instance.mSpriteName);
-  }
+	private string mSpriteName;
 
-  public static void Set(INGUIAtlas atlas, string sprite)
-  {
-    if (!((Object) UICursor.instance != (Object) null) || !(bool) (Object) UICursor.instance.mSprite)
-      return;
-    UICursor.instance.mSprite.atlas = atlas;
-    UICursor.instance.mSprite.spriteName = sprite;
-    UICursor.instance.mSprite.MakePixelPerfect();
-    UICursor.instance.Update();
-  }
+	private void Awake()
+	{
+		instance = this;
+	}
+
+	private void OnDestroy()
+	{
+		instance = null;
+	}
+
+	private void Start()
+	{
+		mTrans = base.transform;
+		mSprite = GetComponentInChildren<UISprite>();
+		if (uiCamera == null)
+		{
+			uiCamera = NGUITools.FindCameraForLayer(base.gameObject.layer);
+		}
+		if (mSprite != null)
+		{
+			mAtlas = mSprite.atlas;
+			mSpriteName = mSprite.spriteName;
+			if (mSprite.depth < 100)
+			{
+				mSprite.depth = 100;
+			}
+		}
+	}
+
+	private void Update()
+	{
+		Vector3 mousePosition = Input.mousePosition;
+		if (uiCamera != null)
+		{
+			mousePosition.x = Mathf.Clamp01(mousePosition.x / (float)Screen.width);
+			mousePosition.y = Mathf.Clamp01(mousePosition.y / (float)Screen.height);
+			mTrans.position = uiCamera.ViewportToWorldPoint(mousePosition);
+			if (uiCamera.orthographic)
+			{
+				Vector3 localPosition = mTrans.localPosition;
+				localPosition.x = Mathf.Round(localPosition.x);
+				localPosition.y = Mathf.Round(localPosition.y);
+				mTrans.localPosition = localPosition;
+			}
+		}
+		else
+		{
+			mousePosition.x -= (float)Screen.width * 0.5f;
+			mousePosition.y -= (float)Screen.height * 0.5f;
+			mousePosition.x = Mathf.Round(mousePosition.x);
+			mousePosition.y = Mathf.Round(mousePosition.y);
+			mTrans.localPosition = mousePosition;
+		}
+	}
+
+	public static void Clear()
+	{
+		if (instance != null && instance.mSprite != null)
+		{
+			Set(instance.mAtlas, instance.mSpriteName);
+		}
+	}
+
+	public static void Set(INGUIAtlas atlas, string sprite)
+	{
+		if (instance != null && (bool)instance.mSprite)
+		{
+			instance.mSprite.atlas = atlas;
+			instance.mSprite.spriteName = sprite;
+			instance.mSprite.MakePixelPerfect();
+			instance.Update();
+		}
+	}
 }

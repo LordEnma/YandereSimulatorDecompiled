@@ -1,84 +1,88 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.SFXController
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using MaidDereMinigame.Malee;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  public class SFXController : MonoBehaviour
-  {
-    private static SFXController instance;
-    [Reorderable]
-    public SoundEmitters emitters;
+	public class SFXController : MonoBehaviour
+	{
+		public enum Sounds
+		{
+			Countdown = 0,
+			MenuBack = 1,
+			MenuConfirm = 2,
+			ClockTick = 3,
+			DoorBell = 4,
+			GameFail = 5,
+			GameSuccess = 6,
+			Plate = 7,
+			PageTurn = 8,
+			MenuSelect = 9,
+			MaleCustomerGreet = 10,
+			MaleCustomerThank = 11,
+			MaleCustomerLeave = 12,
+			FemaleCustomerGreet = 13,
+			FemaleCustomerThank = 14,
+			FemaleCustomerLeave = 15,
+			MenuOpen = 16
+		}
 
-    public static SFXController Instance
-    {
-      get
-      {
-        if ((Object) SFXController.instance == (Object) null)
-          SFXController.instance = Object.FindObjectOfType<SFXController>();
-        return SFXController.instance;
-      }
-    }
+		private static SFXController instance;
 
-    private void Awake()
-    {
-      if ((Object) SFXController.Instance != (Object) this)
-        Object.Destroy((Object) this.gameObject);
-      else
-        Object.DontDestroyOnLoad((Object) this.gameObject);
-    }
+		[Reorderable]
+		public SoundEmitters emitters;
 
-    public static void PlaySound(SFXController.Sounds sound)
-    {
-      SoundEmitter emitter = SFXController.Instance.GetEmitter(sound);
-      AudioSource source = emitter.GetSource();
-      if (source.isPlaying && !emitter.interupt)
-        return;
-      source.clip = SFXController.Instance.GetRandomClip(emitter);
-      source.Play();
-    }
+		public static SFXController Instance
+		{
+			get
+			{
+				if (instance == null)
+				{
+					instance = Object.FindObjectOfType<SFXController>();
+				}
+				return instance;
+			}
+		}
 
-    private SoundEmitter GetEmitter(SFXController.Sounds sound)
-    {
-      foreach (SoundEmitter emitter in (ReorderableArray<SoundEmitter>) this.emitters)
-      {
-        if (emitter.sound == sound)
-          return emitter;
-      }
-      Debug.Log((object) string.Format("There is no sound emitter created for {0}", (object) sound), (Object) this);
-      return (SoundEmitter) null;
-    }
+		private void Awake()
+		{
+			if (Instance != this)
+			{
+				Object.Destroy(base.gameObject);
+			}
+			else
+			{
+				Object.DontDestroyOnLoad(base.gameObject);
+			}
+		}
 
-    private AudioClip GetRandomClip(SoundEmitter emitter)
-    {
-      int index = Random.Range(0, emitter.clips.Count);
-      return emitter.clips[index];
-    }
+		public static void PlaySound(Sounds sound)
+		{
+			SoundEmitter emitter = Instance.GetEmitter(sound);
+			AudioSource source = emitter.GetSource();
+			if (!source.isPlaying || emitter.interupt)
+			{
+				source.clip = Instance.GetRandomClip(emitter);
+				source.Play();
+			}
+		}
 
-    public enum Sounds
-    {
-      Countdown,
-      MenuBack,
-      MenuConfirm,
-      ClockTick,
-      DoorBell,
-      GameFail,
-      GameSuccess,
-      Plate,
-      PageTurn,
-      MenuSelect,
-      MaleCustomerGreet,
-      MaleCustomerThank,
-      MaleCustomerLeave,
-      FemaleCustomerGreet,
-      FemaleCustomerThank,
-      FemaleCustomerLeave,
-      MenuOpen,
-    }
-  }
+		private SoundEmitter GetEmitter(Sounds sound)
+		{
+			foreach (SoundEmitter emitter in emitters)
+			{
+				if (emitter.sound == sound)
+				{
+					return emitter;
+				}
+			}
+			Debug.Log(string.Format("There is no sound emitter created for {0}", sound), this);
+			return null;
+		}
+
+		private AudioClip GetRandomClip(SoundEmitter emitter)
+		{
+			int index = Random.Range(0, emitter.clips.Count);
+			return emitter.clips[index];
+		}
+	}
 }

@@ -1,64 +1,65 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FindStudentLockerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FindStudentLockerScript : MonoBehaviour
 {
-  public TutorialWindowScript TutorialWindow;
-  public StudentScript TargetedStudent;
-  public PromptScript Prompt;
-  public int Phase = 1;
+	public TutorialWindowScript TutorialWindow;
 
-  private void Update()
-  {
-    if ((Object) this.TargetedStudent == (Object) null)
-    {
-      if ((double) this.Prompt.DistanceSqr < 5.0)
-        this.TutorialWindow.ShowLockerMessage = true;
-      if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-        return;
-      this.Prompt.Circle[0].fillAmount = 1f;
-      this.Prompt.Yandere.PauseScreen.StudentInfoMenu.FindingLocker = true;
-      this.Prompt.Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
-      this.Prompt.Yandere.PauseScreen.StudentInfoMenu.Column = 0;
-      this.Prompt.Yandere.PauseScreen.StudentInfoMenu.Row = 0;
-      this.Prompt.Yandere.PauseScreen.StudentInfoMenu.UpdateHighlight();
-      this.Prompt.StartCoroutine(this.Prompt.Yandere.PauseScreen.StudentInfoMenu.UpdatePortraits());
-      this.Prompt.Yandere.PauseScreen.MainMenu.SetActive(false);
-      this.Prompt.Yandere.PauseScreen.Panel.enabled = true;
-      this.Prompt.Yandere.PauseScreen.Sideways = true;
-      this.Prompt.Yandere.PauseScreen.Show = true;
-      Time.timeScale = 0.0001f;
-      this.Prompt.Yandere.PromptBar.ClearButtons();
-      this.Prompt.Yandere.PromptBar.Label[1].text = "Cancel";
-      this.Prompt.Yandere.PromptBar.UpdateButtons();
-      this.Prompt.Yandere.PromptBar.Show = true;
-    }
-    else if (!this.TargetedStudent.Alive || this.TargetedStudent.Alarmed)
-      this.RestorePrompt();
-    else if (this.Phase == 1)
-    {
-      if (!this.TargetedStudent.Meeting)
-        return;
-      ++this.Phase;
-    }
-    else
-    {
-      if (this.TargetedStudent.Meeting)
-        return;
-      this.RestorePrompt();
-    }
-  }
+	public StudentScript TargetedStudent;
 
-  private void RestorePrompt()
-  {
-    this.Prompt.Label[0].text = "     Find Student Locker";
-    this.TargetedStudent = (StudentScript) null;
-    this.Prompt.enabled = true;
-    this.Phase = 1;
-  }
+	public PromptScript Prompt;
+
+	public int Phase = 1;
+
+	private void Update()
+	{
+		if (TargetedStudent == null)
+		{
+			if (Prompt.DistanceSqr < 5f)
+			{
+				TutorialWindow.ShowLockerMessage = true;
+			}
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				Prompt.Circle[0].fillAmount = 1f;
+				Prompt.Yandere.PauseScreen.StudentInfoMenu.FindingLocker = true;
+				Prompt.Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+				Prompt.Yandere.PauseScreen.StudentInfoMenu.Column = 0;
+				Prompt.Yandere.PauseScreen.StudentInfoMenu.Row = 0;
+				Prompt.Yandere.PauseScreen.StudentInfoMenu.UpdateHighlight();
+				Prompt.StartCoroutine(Prompt.Yandere.PauseScreen.StudentInfoMenu.UpdatePortraits());
+				Prompt.Yandere.PauseScreen.MainMenu.SetActive(false);
+				Prompt.Yandere.PauseScreen.Panel.enabled = true;
+				Prompt.Yandere.PauseScreen.Sideways = true;
+				Prompt.Yandere.PauseScreen.Show = true;
+				Time.timeScale = 0.0001f;
+				Prompt.Yandere.PromptBar.ClearButtons();
+				Prompt.Yandere.PromptBar.Label[1].text = "Cancel";
+				Prompt.Yandere.PromptBar.UpdateButtons();
+				Prompt.Yandere.PromptBar.Show = true;
+			}
+		}
+		else if (!TargetedStudent.Alive || TargetedStudent.Alarmed)
+		{
+			RestorePrompt();
+		}
+		else if (Phase == 1)
+		{
+			if (TargetedStudent.Meeting)
+			{
+				Phase++;
+			}
+		}
+		else if (!TargetedStudent.Meeting)
+		{
+			RestorePrompt();
+		}
+	}
+
+	private void RestorePrompt()
+	{
+		Prompt.Label[0].text = "     Find Student Locker";
+		TargetedStudent = null;
+		Prompt.enabled = true;
+		Phase = 1;
+	}
 }

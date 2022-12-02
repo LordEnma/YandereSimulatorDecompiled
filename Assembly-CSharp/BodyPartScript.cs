@@ -1,38 +1,42 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BodyPartScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class BodyPartScript : MonoBehaviour
 {
-  public bool Sacrifice;
-  public int StudentID;
-  public int Type;
-  public GameObject GarbageBag;
-  public PromptScript Prompt;
-  public AudioClip WrapSFX;
+	public bool Sacrifice;
 
-  private void Update()
-  {
-    if (!((Object) this.Prompt != (Object) null))
-      return;
-    if ((Object) this.Prompt.Yandere.PickUp != (Object) null && this.Prompt.Yandere.PickUp.GarbageBagBox)
-    {
-      this.Prompt.HideButton[0] = false;
-      if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-        return;
-      GameObject gameObject = Object.Instantiate<GameObject>(this.GarbageBag, this.transform.position, Quaternion.identity);
-      gameObject.GetComponent<BodyPartScript>().StudentID = this.StudentID;
-      gameObject.transform.parent = this.Prompt.Yandere.Police.GarbageParent;
-      this.Prompt.Yandere.StudentManager.GarbageBagList[this.Prompt.Yandere.StudentManager.GarbageBags] = gameObject;
-      ++this.Prompt.Yandere.StudentManager.GarbageBags;
-      AudioSource.PlayClipAtPoint(this.WrapSFX, this.transform.position);
-      Object.Destroy((Object) this.gameObject);
-    }
-    else
-      this.Prompt.HideButton[0] = true;
-  }
+	public int StudentID;
+
+	public int Type;
+
+	public GameObject GarbageBag;
+
+	public PromptScript Prompt;
+
+	public AudioClip WrapSFX;
+
+	private void Update()
+	{
+		if (!(Prompt != null))
+		{
+			return;
+		}
+		if (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox)
+		{
+			Prompt.HideButton[0] = false;
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				GameObject gameObject = Object.Instantiate(GarbageBag, base.transform.position, Quaternion.identity);
+				gameObject.GetComponent<BodyPartScript>().StudentID = StudentID;
+				gameObject.transform.parent = Prompt.Yandere.Police.GarbageParent;
+				Prompt.Yandere.StudentManager.GarbageBagList[Prompt.Yandere.StudentManager.GarbageBags] = gameObject;
+				Prompt.Yandere.StudentManager.GarbageBags++;
+				AudioSource.PlayClipAtPoint(WrapSFX, base.transform.position);
+				Object.Destroy(base.gameObject);
+			}
+		}
+		else
+		{
+			Prompt.HideButton[0] = true;
+		}
+	}
 }

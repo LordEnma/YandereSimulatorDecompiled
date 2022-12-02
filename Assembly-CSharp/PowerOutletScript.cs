@@ -1,83 +1,104 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PowerOutletScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PowerOutletScript : MonoBehaviour
 {
-  public PromptScript Prompt;
-  public PowerSwitchScript PowerSwitch;
-  public GameObject PowerStrip;
-  public GameObject PluggedOutlet;
-  public GameObject SabotagedOutlet;
-  public bool Sabotaged;
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if ((Object) this.PowerStrip == (Object) null)
-    {
-      if ((Object) this.Prompt.Yandere.PickUp != (Object) null)
-      {
-        this.Prompt.HideButton[0] = !this.Prompt.Yandere.PickUp.Electronic;
-        if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-          return;
-        this.Prompt.Circle[0].fillAmount = 1f;
-        this.PowerStrip = this.Prompt.Yandere.PickUp.gameObject;
-        this.Prompt.Yandere.EmptyHands();
-        this.PowerStrip.transform.parent = this.transform;
-        this.PowerStrip.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        this.PowerStrip.SetActive(false);
-        this.PluggedOutlet.SetActive(true);
-        this.Prompt.Label[0].text = "     Unplug";
-      }
-      else
-        this.Prompt.HideButton[0] = true;
-    }
-    else
-    {
-      this.Prompt.HideButton[1] = !((Object) this.Prompt.Yandere.EquippedWeapon != (Object) null) || this.Prompt.Yandere.EquippedWeapon.WeaponID != 6;
-      if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-      {
-        this.Prompt.Circle[0].fillAmount = 1f;
-        this.PluggedOutlet.SetActive(false);
-        this.PowerStrip.transform.localPosition = new Vector3(0.074f, -0.01385f, 0.0295f);
-        this.PowerStrip.transform.localEulerAngles = new Vector3(0.0f, -99f, 0.0f);
-        this.PowerStrip.SetActive(true);
-        this.PowerStrip = (GameObject) null;
-        this.Prompt.HideButton[1] = true;
-        this.Prompt.Label[0].text = "     Plug In";
-      }
-      if ((double) this.Prompt.Circle[1].fillAmount != 0.0)
-        return;
-      this.Prompt.Circle[1].fillAmount = 1f;
-      if (this.PowerSwitch.On)
-      {
-        this.Prompt.Yandere.NotificationManager.CustomText = "Turn Lightswitch Off First!";
-        this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-      else
-      {
-        if (!this.Sabotaged)
-        {
-          this.Prompt.Yandere.SuspiciousActionTimer = 1f;
-          this.SabotagedOutlet.SetActive(true);
-          this.PluggedOutlet.SetActive(false);
-          this.Prompt.Label[1].text = "     Repair";
-          this.Prompt.HideButton[0] = true;
-        }
-        else
-        {
-          this.SabotagedOutlet.SetActive(false);
-          this.PluggedOutlet.SetActive(true);
-          this.Prompt.Label[1].text = "     Sabotage";
-          this.Prompt.HideButton[0] = false;
-        }
-        this.Sabotaged = !this.Sabotaged;
-        Debug.Log((object) ("''Sabotaged'' is now: " + this.Sabotaged.ToString()));
-      }
-    }
-  }
+	public PowerSwitchScript PowerSwitch;
+
+	public GameObject PowerStrip;
+
+	public GameObject PluggedOutlet;
+
+	public GameObject SabotagedOutlet;
+
+	public bool Sabotaged;
+
+	private void Update()
+	{
+		if (PowerStrip == null)
+		{
+			if (Prompt.Yandere.PickUp != null)
+			{
+				if (Prompt.Yandere.PickUp.Electronic)
+				{
+					Prompt.HideButton[0] = false;
+				}
+				else
+				{
+					Prompt.HideButton[0] = true;
+				}
+				if (Prompt.Circle[0].fillAmount == 0f)
+				{
+					Prompt.Circle[0].fillAmount = 1f;
+					PowerStrip = Prompt.Yandere.PickUp.gameObject;
+					Prompt.Yandere.EmptyHands();
+					PowerStrip.transform.parent = base.transform;
+					PowerStrip.transform.localPosition = new Vector3(0f, 0f, 0f);
+					PowerStrip.SetActive(false);
+					PluggedOutlet.SetActive(true);
+					Prompt.Label[0].text = "     Unplug";
+				}
+			}
+			else
+			{
+				Prompt.HideButton[0] = true;
+			}
+			return;
+		}
+		if (Prompt.Yandere.EquippedWeapon != null)
+		{
+			if (Prompt.Yandere.EquippedWeapon.WeaponID == 6)
+			{
+				Prompt.HideButton[1] = false;
+			}
+			else
+			{
+				Prompt.HideButton[1] = true;
+			}
+		}
+		else
+		{
+			Prompt.HideButton[1] = true;
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			PluggedOutlet.SetActive(false);
+			PowerStrip.transform.localPosition = new Vector3(0.074f, -0.01385f, 0.0295f);
+			PowerStrip.transform.localEulerAngles = new Vector3(0f, -99f, 0f);
+			PowerStrip.SetActive(true);
+			PowerStrip = null;
+			Prompt.HideButton[1] = true;
+			Prompt.Label[0].text = "     Plug In";
+		}
+		if (Prompt.Circle[1].fillAmount != 0f)
+		{
+			return;
+		}
+		Prompt.Circle[1].fillAmount = 1f;
+		if (PowerSwitch.On)
+		{
+			Prompt.Yandere.NotificationManager.CustomText = "Turn Lightswitch Off First!";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			return;
+		}
+		if (!Sabotaged)
+		{
+			Prompt.Yandere.SuspiciousActionTimer = 1f;
+			SabotagedOutlet.SetActive(true);
+			PluggedOutlet.SetActive(false);
+			Prompt.Label[1].text = "     Repair";
+			Prompt.HideButton[0] = true;
+		}
+		else
+		{
+			SabotagedOutlet.SetActive(false);
+			PluggedOutlet.SetActive(true);
+			Prompt.Label[1].text = "     Sabotage";
+			Prompt.HideButton[0] = false;
+		}
+		Sabotaged = !Sabotaged;
+		Debug.Log("''Sabotaged'' is now: " + Sabotaged);
+	}
 }

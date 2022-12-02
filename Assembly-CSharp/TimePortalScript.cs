@@ -1,34 +1,38 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TimePortalScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class TimePortalScript : MonoBehaviour
 {
-  public DelinquentScript[] Delinquent;
-  public GameObject BlackHole;
-  public float Timer;
-  public bool Suck;
-  public int ID;
+	public DelinquentScript[] Delinquent;
 
-  private void Update()
-  {
-    if (Input.GetKeyDown("space"))
-      this.Suck = true;
-    if (!this.Suck)
-      return;
-    Object.Instantiate<GameObject>(this.BlackHole, this.transform.position + new Vector3(0.0f, 1f, 0.0f), Quaternion.identity);
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer <= 1.1000000238418579)
-      return;
-    this.Delinquent[this.ID].Suck = true;
-    this.Timer = 1f;
-    ++this.ID;
-    if (this.ID <= 9)
-      return;
-    this.enabled = false;
-  }
+	public GameObject BlackHole;
+
+	public float Timer;
+
+	public bool Suck;
+
+	public int ID;
+
+	private void Update()
+	{
+		if (Input.GetKeyDown("space"))
+		{
+			Suck = true;
+		}
+		if (!Suck)
+		{
+			return;
+		}
+		Object.Instantiate(BlackHole, base.transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+		Timer += Time.deltaTime;
+		if (Timer > 1.1f)
+		{
+			Delinquent[ID].Suck = true;
+			Timer = 1f;
+			ID++;
+			if (ID > 9)
+			{
+				base.enabled = false;
+			}
+		}
+	}
 }

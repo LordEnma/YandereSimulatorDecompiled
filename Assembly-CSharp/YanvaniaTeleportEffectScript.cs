@@ -1,29 +1,28 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: YanvaniaTeleportEffectScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class YanvaniaTeleportEffectScript : MonoBehaviour
 {
-  public YanvaniaDraculaScript Dracula;
-  public Transform SecondBeamParent;
-  public Renderer SecondBeam;
-  public Renderer FirstBeam;
-  public bool InformedDracula;
-  public float Timer;
+	public YanvaniaDraculaScript Dracula;
 
-  private void Start()
-  {
-    this.FirstBeam.material.color = new Color(this.FirstBeam.material.color.r, this.FirstBeam.material.color.g, this.FirstBeam.material.color.b, 0.0f);
-    this.SecondBeam.material.color = new Color(this.SecondBeam.material.color.r, this.SecondBeam.material.color.g, this.SecondBeam.material.color.b, 0.0f);
-    this.FirstBeam.transform.localScale = new Vector3(0.0f, this.FirstBeam.transform.localScale.y, 0.0f);
-    this.SecondBeamParent.transform.localScale = new Vector3(this.SecondBeamParent.transform.localScale.x, 0.0f, this.SecondBeamParent.transform.localScale.z);
-  }
+	public Transform SecondBeamParent;
 
-  private void Update()
-  {
-  }
+	public Renderer SecondBeam;
+
+	public Renderer FirstBeam;
+
+	public bool InformedDracula;
+
+	public float Timer;
+
+	private void Start()
+	{
+		FirstBeam.material.color = new Color(FirstBeam.material.color.r, FirstBeam.material.color.g, FirstBeam.material.color.b, 0f);
+		SecondBeam.material.color = new Color(SecondBeam.material.color.r, SecondBeam.material.color.g, SecondBeam.material.color.b, 0f);
+		FirstBeam.transform.localScale = new Vector3(0f, FirstBeam.transform.localScale.y, 0f);
+		SecondBeamParent.transform.localScale = new Vector3(SecondBeamParent.transform.localScale.x, 0f, SecondBeamParent.transform.localScale.z);
+	}
+
+	private void Update()
+	{
+	}
 }

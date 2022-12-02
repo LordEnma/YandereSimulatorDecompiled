@@ -1,47 +1,54 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIViewport
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [ExecuteInEditMode]
-[RequireComponent(typeof (Camera))]
+[RequireComponent(typeof(Camera))]
 [AddComponentMenu("NGUI/UI/Viewport Camera")]
 public class UIViewport : MonoBehaviour
 {
-  public Camera sourceCamera;
-  public Transform topLeft;
-  public Transform bottomRight;
-  public float fullSize = 1f;
-  private Camera mCam;
+	public Camera sourceCamera;
 
-  private void Start()
-  {
-    this.mCam = this.GetComponent<Camera>();
-    if (!((Object) this.sourceCamera == (Object) null))
-      return;
-    this.sourceCamera = Camera.main;
-  }
+	public Transform topLeft;
 
-  private void LateUpdate()
-  {
-    if (!((Object) this.topLeft != (Object) null) || !((Object) this.bottomRight != (Object) null))
-      return;
-    if (this.topLeft.gameObject.activeInHierarchy)
-    {
-      Vector3 screenPoint1 = this.sourceCamera.WorldToScreenPoint(this.topLeft.position);
-      Vector3 screenPoint2 = this.sourceCamera.WorldToScreenPoint(this.bottomRight.position);
-      Rect rect = new Rect(screenPoint1.x / (float) Screen.width, screenPoint2.y / (float) Screen.height, (screenPoint2.x - screenPoint1.x) / (float) Screen.width, (screenPoint1.y - screenPoint2.y) / (float) Screen.height);
-      float num = this.fullSize * rect.height;
-      if (rect != this.mCam.rect)
-        this.mCam.rect = rect;
-      if ((double) this.mCam.orthographicSize != (double) num)
-        this.mCam.orthographicSize = num;
-      this.mCam.enabled = true;
-    }
-    else
-      this.mCam.enabled = false;
-  }
+	public Transform bottomRight;
+
+	public float fullSize = 1f;
+
+	private Camera mCam;
+
+	private void Start()
+	{
+		mCam = GetComponent<Camera>();
+		if (sourceCamera == null)
+		{
+			sourceCamera = Camera.main;
+		}
+	}
+
+	private void LateUpdate()
+	{
+		if (!(topLeft != null) || !(bottomRight != null))
+		{
+			return;
+		}
+		if (topLeft.gameObject.activeInHierarchy)
+		{
+			Vector3 vector = sourceCamera.WorldToScreenPoint(topLeft.position);
+			Vector3 vector2 = sourceCamera.WorldToScreenPoint(bottomRight.position);
+			Rect rect = new Rect(vector.x / (float)Screen.width, vector2.y / (float)Screen.height, (vector2.x - vector.x) / (float)Screen.width, (vector.y - vector2.y) / (float)Screen.height);
+			float num = fullSize * rect.height;
+			if (rect != mCam.rect)
+			{
+				mCam.rect = rect;
+			}
+			if (mCam.orthographicSize != num)
+			{
+				mCam.orthographicSize = num;
+			}
+			mCam.enabled = true;
+		}
+		else
+		{
+			mCam.enabled = false;
+		}
+	}
 }

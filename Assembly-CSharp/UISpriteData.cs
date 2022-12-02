@@ -1,78 +1,96 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UISpriteData
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 
 [Serializable]
 public class UISpriteData
 {
-  public string name = "Sprite";
-  public int x;
-  public int y;
-  public int width;
-  public int height;
-  public int borderLeft;
-  public int borderRight;
-  public int borderTop;
-  public int borderBottom;
-  public int paddingLeft;
-  public int paddingRight;
-  public int paddingTop;
-  public int paddingBottom;
+	public string name = "Sprite";
 
-  public bool hasBorder => (this.borderLeft | this.borderRight | this.borderTop | this.borderBottom) != 0;
+	public int x;
 
-  public bool hasPadding => (this.paddingLeft | this.paddingRight | this.paddingTop | this.paddingBottom) != 0;
+	public int y;
 
-  public void SetRect(int x, int y, int width, int height)
-  {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-  }
+	public int width;
 
-  public void SetPadding(int left, int bottom, int right, int top)
-  {
-    this.paddingLeft = left;
-    this.paddingBottom = bottom;
-    this.paddingRight = right;
-    this.paddingTop = top;
-  }
+	public int height;
 
-  public void SetBorder(int left, int bottom, int right, int top)
-  {
-    this.borderLeft = left;
-    this.borderBottom = bottom;
-    this.borderRight = right;
-    this.borderTop = top;
-  }
+	public int borderLeft;
 
-  public void CopyFrom(UISpriteData sd)
-  {
-    this.name = sd.name;
-    this.x = sd.x;
-    this.y = sd.y;
-    this.width = sd.width;
-    this.height = sd.height;
-    this.borderLeft = sd.borderLeft;
-    this.borderRight = sd.borderRight;
-    this.borderTop = sd.borderTop;
-    this.borderBottom = sd.borderBottom;
-    this.paddingLeft = sd.paddingLeft;
-    this.paddingRight = sd.paddingRight;
-    this.paddingTop = sd.paddingTop;
-    this.paddingBottom = sd.paddingBottom;
-  }
+	public int borderRight;
 
-  public void CopyBorderFrom(UISpriteData sd)
-  {
-    this.borderLeft = sd.borderLeft;
-    this.borderRight = sd.borderRight;
-    this.borderTop = sd.borderTop;
-    this.borderBottom = sd.borderBottom;
-  }
+	public int borderTop;
+
+	public int borderBottom;
+
+	public int paddingLeft;
+
+	public int paddingRight;
+
+	public int paddingTop;
+
+	public int paddingBottom;
+
+	public bool hasBorder
+	{
+		get
+		{
+			return (borderLeft | borderRight | borderTop | borderBottom) != 0;
+		}
+	}
+
+	public bool hasPadding
+	{
+		get
+		{
+			return (paddingLeft | paddingRight | paddingTop | paddingBottom) != 0;
+		}
+	}
+
+	public void SetRect(int x, int y, int width, int height)
+	{
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
+
+	public void SetPadding(int left, int bottom, int right, int top)
+	{
+		paddingLeft = left;
+		paddingBottom = bottom;
+		paddingRight = right;
+		paddingTop = top;
+	}
+
+	public void SetBorder(int left, int bottom, int right, int top)
+	{
+		borderLeft = left;
+		borderBottom = bottom;
+		borderRight = right;
+		borderTop = top;
+	}
+
+	public void CopyFrom(UISpriteData sd)
+	{
+		name = sd.name;
+		x = sd.x;
+		y = sd.y;
+		width = sd.width;
+		height = sd.height;
+		borderLeft = sd.borderLeft;
+		borderRight = sd.borderRight;
+		borderTop = sd.borderTop;
+		borderBottom = sd.borderBottom;
+		paddingLeft = sd.paddingLeft;
+		paddingRight = sd.paddingRight;
+		paddingTop = sd.paddingTop;
+		paddingBottom = sd.paddingBottom;
+	}
+
+	public void CopyBorderFrom(UISpriteData sd)
+	{
+		borderLeft = sd.borderLeft;
+		borderRight = sd.borderRight;
+		borderTop = sd.borderTop;
+		borderBottom = sd.borderBottom;
+	}
 }

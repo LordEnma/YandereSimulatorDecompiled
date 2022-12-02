@@ -1,275 +1,354 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FamilyVoiceScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FamilyVoiceScript : MonoBehaviour
 {
-  public StalkerPromptScript BreakerDoor;
-  public StalkerYandereScript Yandere;
-  public DetectionMarkerScript Marker;
-  public AudioClip GameOverSound;
-  public AudioClip GameOverLine;
-  public AudioClip CrunchSound;
-  public GameObject Heartbroken;
-  public GameObject Lights;
-  public Animation MyAnimation;
-  public Transform YandereHead;
-  public Transform Door;
-  public Transform Head;
-  public AudioSource Jukebox;
-  public AudioSource MyAudio;
-  public Renderer Darkness;
-  public UILabel Subtitle;
-  public AudioClip[] SpeechClip;
-  public AudioClip DoorOpen;
-  public AudioClip PowerOn;
-  public Transform[] Boundary;
-  public Transform[] Node;
-  public string[] SpeechText;
-  public float[] SpeechTime;
-  public string GameOverText;
-  public float MinimumDistance;
-  public float NoticeSpeed;
-  public float Distance;
-  public float FixTimer;
-  public float Alpha;
-  public float Scale;
-  public float Timer;
-  public float TargetRotation;
-  public float Rotation;
-  public int GameOverPhase;
-  public int CurrentNode;
-  public int SpeechPhase;
-  public int AnimPhase;
-  public bool Investigating;
-  public bool OpenFrontDoor;
-  public bool MultiClip;
-  public bool GameOver;
-  public bool Started;
-  public bool Return;
-  public bool ProximityGameOver;
+	public StalkerPromptScript BreakerDoor;
 
-  private void Start() => this.Subtitle.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+	public StalkerYandereScript Yandere;
 
-  private void Update()
-  {
-    if (!this.GameOver)
-    {
-      if (!this.Investigating)
-      {
-        if ((double) this.Yandere.transform.position.y > (double) this.transform.position.y - 1.0 && (double) this.Yandere.transform.position.y < (double) this.transform.position.y + 1.0)
-        {
-          this.Distance = Vector3.Distance(this.Yandere.transform.position, this.transform.position);
-          if ((double) this.Distance < (double) this.MinimumDistance)
-          {
-            if (!this.Started)
-            {
-              this.Subtitle.text = this.SpeechText[0];
-              this.MyAudio.Play();
-              this.Started = true;
-            }
-            else
-            {
-              this.MyAudio.pitch = Time.timeScale;
-              if (this.MultiClip)
-              {
-                if ((double) this.MyAnimation["fatherFixing_00"].time > (double) this.MyAnimation["fatherFixing_00"].length)
-                  this.MyAnimation["fatherFixing_00"].time -= this.MyAnimation["fatherFixing_00"].length;
-                if (this.AnimPhase == 0)
-                {
-                  if ((double) this.MyAnimation["fatherFixing_00"].time > 18.0 && (double) this.MyAnimation["fatherFixing_00"].time < 18.100000381469727)
-                  {
-                    this.Subtitle.text = this.SpeechText[this.SpeechPhase];
-                    this.MyAudio.clip = this.SpeechClip[this.SpeechPhase];
-                    this.MyAudio.Play();
-                    ++this.SpeechPhase;
-                    this.AnimPhase = 1;
-                  }
-                }
-                else if ((double) this.MyAnimation["fatherFixing_00"].time < 1.0)
-                {
-                  this.Subtitle.text = this.SpeechText[this.SpeechPhase];
-                  this.MyAudio.clip = this.SpeechClip[this.SpeechPhase];
-                  this.MyAudio.Play();
-                  ++this.SpeechPhase;
-                  this.AnimPhase = 0;
-                }
-              }
-              else if (this.SpeechPhase < this.SpeechTime.Length && (double) this.MyAudio.time > (double) this.SpeechTime[this.SpeechPhase])
-              {
-                this.Subtitle.text = this.SpeechText[this.SpeechPhase];
-                ++this.SpeechPhase;
-              }
-              this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 1.0) / ((double) this.MinimumDistance - 1.0)));
-              if ((double) this.Scale < 0.0)
-                this.Scale = 0.0f;
-              if ((double) this.Scale > 1.0)
-                this.Scale = 1f;
-              this.Jukebox.volume = (float) (1.0 - 0.89999997615814209 * (double) this.Scale);
-              this.Subtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-              this.MyAudio.volume = this.Scale;
-            }
-            for (int index = 0; index < this.Boundary.Length; ++index)
-            {
-              Transform transform = this.Boundary[index];
-              if ((Object) transform != (Object) null && (double) Vector3.Distance(this.Yandere.transform.position, transform.position) < 0.33333000540733337)
-              {
-                Debug.Log((object) ("Got a ''proximity'' game over from " + this.gameObject.name));
-                this.ProximityGameOver = true;
-                this.TransitionToGameOver();
-              }
-            }
-            this.LookForYandere();
-          }
-          else if ((double) this.Distance < (double) this.MinimumDistance + 1.0)
-          {
-            this.Jukebox.volume = 1f;
-            this.MyAudio.volume = 0.0f;
-            this.Subtitle.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
-          }
-        }
-        if (this.Node.Length == 0)
-          return;
-        this.transform.parent.rotation = Quaternion.Slerp(this.transform.parent.rotation, Quaternion.LookRotation(new Vector3(5.4f, 0.0f, -100f) - this.transform.parent.position), Time.deltaTime * 10f);
-      }
-      else
-      {
-        this.LookForYandere();
-        this.transform.parent.position = Vector3.MoveTowards(this.transform.parent.position, this.Node[this.CurrentNode].position, Time.deltaTime);
-        if ((double) this.FixTimer == 0.0 || (double) this.FixTimer == 5.0)
-          this.transform.parent.rotation = Quaternion.Slerp(this.transform.parent.rotation, Quaternion.LookRotation(this.Node[this.CurrentNode].position - this.transform.parent.position), Time.deltaTime * 10f);
-        if ((double) Vector3.Distance(this.transform.parent.position, this.Node[this.CurrentNode].position) < 0.10000000149011612)
-        {
-          if (this.CurrentNode == this.Node.Length - 1)
-            this.Return = true;
-          if (!this.Return)
-          {
-            ++this.CurrentNode;
-            if (this.CurrentNode == 3)
-            {
-              AudioSource.PlayClipAtPoint(this.DoorOpen, this.Door.transform.position);
-              this.OpenFrontDoor = true;
-            }
-          }
-          else if ((double) this.FixTimer == 5.0)
-          {
-            this.BreakerDoor.Label.text = "Open";
-            this.BreakerDoor.Open = false;
-            this.MyAnimation.CrossFade("walkConfident_00");
-            --this.CurrentNode;
-            if (this.CurrentNode == 1)
-            {
-              AudioSource.PlayClipAtPoint(this.DoorOpen, this.Door.transform.position);
-              this.OpenFrontDoor = false;
-            }
-            if (this.CurrentNode < 0)
-            {
-              this.MyAnimation.CrossFade("fatherFixing_00");
-              this.BreakerDoor.ServedPurpose = false;
-              this.Investigating = false;
-              this.Return = false;
-              this.CurrentNode = 1;
-              this.FixTimer = 0.0f;
-            }
-          }
-          else
-          {
-            this.FixTimer = Mathf.MoveTowards(this.FixTimer, 5f, Time.deltaTime);
-            if ((double) this.FixTimer >= 4.0 && !this.Lights.activeInHierarchy)
-            {
-              AudioSource.PlayClipAtPoint(this.PowerOn, Camera.main.transform.position);
-              this.Lights.SetActive(true);
-            }
-            this.MyAnimation.CrossFade("rummage_00");
-          }
-        }
-        this.Rotation = !this.OpenFrontDoor ? Mathf.Lerp(this.Rotation, 0.0f, Time.deltaTime * 3.6f) : Mathf.Lerp(this.Rotation, this.TargetRotation, Time.deltaTime * 3.6f);
-        this.Door.transform.localEulerAngles = new Vector3(this.Door.transform.localEulerAngles.x, this.Rotation, this.Door.transform.localEulerAngles.z);
-      }
-    }
-    else
-    {
-      this.MyAudio.pitch = Time.timeScale;
-      if (this.GameOverPhase == 0)
-      {
-        this.Timer += Time.deltaTime;
-        if ((double) this.Timer <= 1.0 || this.MyAudio.isPlaying)
-          return;
-        Debug.Log((object) "Should be updating the subtitle with the Game Over text.");
-        this.Subtitle.transform.localScale = new Vector3(1f, 1f, 1f);
-        this.Subtitle.text = this.GameOverText ?? "";
-        this.MyAudio.clip = this.GameOverLine;
-        this.MyAudio.Play();
-        ++this.GameOverPhase;
-      }
-      else
-      {
-        if (this.MyAudio.isPlaying && !Input.GetButton("A"))
-          return;
-        this.Heartbroken.SetActive(true);
-        this.Subtitle.text = "";
-        this.enabled = false;
-        this.MyAudio.Stop();
-      }
-    }
-  }
+	public DetectionMarkerScript Marker;
 
-  private bool YandereIsInFOV()
-  {
-    Vector3 to = this.Yandere.transform.position - this.Head.position;
-    float num = 90f;
-    return (double) Vector3.Angle(this.Head.forward, to) <= (double) num;
-  }
+	public AudioClip GameOverSound;
 
-  private bool YandereIsInLOS()
-  {
-    Debug.DrawLine(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.YandereHead.position.y, this.Yandere.transform.position.z), Color.red);
-    RaycastHit hitInfo;
-    return Physics.Linecast(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.YandereHead.position.y, this.Yandere.transform.position.z), out hitInfo) && hitInfo.collider.gameObject.layer == 13;
-  }
+	public AudioClip GameOverLine;
 
-  private void TransitionToGameOver()
-  {
-    this.Yandere.RPGCamera.transform.position += new Vector3(0.0f, 100f, 0.0f);
-    if (!this.ProximityGameOver)
-      AudioSource.PlayClipAtPoint(this.GameOverSound, this.Yandere.RPGCamera.transform.position);
-    else
-      AudioSource.PlayClipAtPoint(this.CrunchSound, Camera.main.transform.position);
-    this.Marker.Tex.transform.localScale = new Vector3(1f, 0.0f, 1f);
-    this.Marker.Tex.color = new Color(1f, 0.0f, 0.0f, 0.0f);
-    this.Darkness.material.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    this.Yandere.RPGCamera.enabled = false;
-    this.Yandere.CanMove = false;
-    Time.timeScale = 1f;
-    this.Subtitle.text = "";
-    this.GameOver = true;
-    this.Jukebox.Stop();
-    this.MyAudio.Stop();
-    this.Alpha = 0.0f;
-  }
+	public AudioClip CrunchSound;
 
-  private void LookForYandere()
-  {
-    if (this.Yandere.Hidden && this.Yandere.Stance.Current == StanceType.Crouching)
-    {
-      this.Alpha = Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * this.NoticeSpeed);
-    }
-    else
-    {
-      this.Alpha = !this.YandereIsInFOV() ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * this.NoticeSpeed) : (!this.YandereIsInLOS() ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * this.NoticeSpeed) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * this.NoticeSpeed));
-      if (this.Investigating && (double) Vector3.Distance(this.Yandere.transform.position, this.transform.parent.position) < 1.0)
-        this.Alpha = Mathf.MoveTowards(this.Alpha, 1f, (float) ((double) Time.deltaTime * (double) this.NoticeSpeed * 2.0));
-    }
-    if ((double) this.Alpha == 1.0)
-    {
-      Debug.Log((object) ("Got a ''witnessed'' game over from " + this.gameObject.name));
-      this.TransitionToGameOver();
-    }
-    this.Marker.Tex.transform.localScale = new Vector3(1f, this.Alpha, 1f);
-    this.Marker.Tex.color = new Color(1f, 0.0f, 0.0f, this.Alpha);
-  }
+	public GameObject Heartbroken;
+
+	public GameObject Lights;
+
+	public Animation MyAnimation;
+
+	public Transform YandereHead;
+
+	public Transform Door;
+
+	public Transform Head;
+
+	public AudioSource Jukebox;
+
+	public AudioSource MyAudio;
+
+	public Renderer Darkness;
+
+	public UILabel Subtitle;
+
+	public AudioClip[] SpeechClip;
+
+	public AudioClip DoorOpen;
+
+	public AudioClip PowerOn;
+
+	public Transform[] Boundary;
+
+	public Transform[] Node;
+
+	public string[] SpeechText;
+
+	public float[] SpeechTime;
+
+	public string GameOverText;
+
+	public float MinimumDistance;
+
+	public float NoticeSpeed;
+
+	public float Distance;
+
+	public float FixTimer;
+
+	public float Alpha;
+
+	public float Scale;
+
+	public float Timer;
+
+	public float TargetRotation;
+
+	public float Rotation;
+
+	public int GameOverPhase;
+
+	public int CurrentNode;
+
+	public int SpeechPhase;
+
+	public int AnimPhase;
+
+	public bool Investigating;
+
+	public bool OpenFrontDoor;
+
+	public bool MultiClip;
+
+	public bool GameOver;
+
+	public bool Started;
+
+	public bool Return;
+
+	public bool ProximityGameOver;
+
+	private void Start()
+	{
+		Subtitle.transform.localScale = new Vector3(0f, 0f, 0f);
+	}
+
+	private void Update()
+	{
+		if (!GameOver)
+		{
+			if (!Investigating)
+			{
+				if (Yandere.transform.position.y > base.transform.position.y - 1f && Yandere.transform.position.y < base.transform.position.y + 1f)
+				{
+					Distance = Vector3.Distance(Yandere.transform.position, base.transform.position);
+					if (Distance < MinimumDistance)
+					{
+						if (!Started)
+						{
+							Subtitle.text = SpeechText[0];
+							MyAudio.Play();
+							Started = true;
+						}
+						else
+						{
+							MyAudio.pitch = Time.timeScale;
+							if (MultiClip)
+							{
+								if (MyAnimation["fatherFixing_00"].time > MyAnimation["fatherFixing_00"].length)
+								{
+									MyAnimation["fatherFixing_00"].time = MyAnimation["fatherFixing_00"].time - MyAnimation["fatherFixing_00"].length;
+								}
+								if (AnimPhase == 0)
+								{
+									if (MyAnimation["fatherFixing_00"].time > 18f && MyAnimation["fatherFixing_00"].time < 18.1f)
+									{
+										Subtitle.text = SpeechText[SpeechPhase];
+										MyAudio.clip = SpeechClip[SpeechPhase];
+										MyAudio.Play();
+										SpeechPhase++;
+										AnimPhase = 1;
+									}
+								}
+								else if (MyAnimation["fatherFixing_00"].time < 1f)
+								{
+									Subtitle.text = SpeechText[SpeechPhase];
+									MyAudio.clip = SpeechClip[SpeechPhase];
+									MyAudio.Play();
+									SpeechPhase++;
+									AnimPhase = 0;
+								}
+							}
+							else if (SpeechPhase < SpeechTime.Length && MyAudio.time > SpeechTime[SpeechPhase])
+							{
+								Subtitle.text = SpeechText[SpeechPhase];
+								SpeechPhase++;
+							}
+							Scale = Mathf.Abs(1f - (Distance - 1f) / (MinimumDistance - 1f));
+							if (Scale < 0f)
+							{
+								Scale = 0f;
+							}
+							if (Scale > 1f)
+							{
+								Scale = 1f;
+							}
+							Jukebox.volume = 1f - 0.9f * Scale;
+							Subtitle.transform.localScale = new Vector3(Scale, Scale, Scale);
+							MyAudio.volume = Scale;
+						}
+						for (int i = 0; i < Boundary.Length; i++)
+						{
+							Transform transform = Boundary[i];
+							if (transform != null && Vector3.Distance(Yandere.transform.position, transform.position) < 0.33333f)
+							{
+								Debug.Log("Got a ''proximity'' game over from " + base.gameObject.name);
+								ProximityGameOver = true;
+								TransitionToGameOver();
+							}
+						}
+						LookForYandere();
+					}
+					else if (Distance < MinimumDistance + 1f)
+					{
+						Jukebox.volume = 1f;
+						MyAudio.volume = 0f;
+						Subtitle.transform.localScale = new Vector3(0f, 0f, 0f);
+					}
+				}
+				if (Node.Length != 0)
+				{
+					Quaternion b = Quaternion.LookRotation(new Vector3(5.4f, 0f, -100f) - base.transform.parent.position);
+					base.transform.parent.rotation = Quaternion.Slerp(base.transform.parent.rotation, b, Time.deltaTime * 10f);
+				}
+				return;
+			}
+			LookForYandere();
+			base.transform.parent.position = Vector3.MoveTowards(base.transform.parent.position, Node[CurrentNode].position, Time.deltaTime);
+			if (FixTimer == 0f || FixTimer == 5f)
+			{
+				Quaternion b2 = Quaternion.LookRotation(Node[CurrentNode].position - base.transform.parent.position);
+				base.transform.parent.rotation = Quaternion.Slerp(base.transform.parent.rotation, b2, Time.deltaTime * 10f);
+			}
+			if (Vector3.Distance(base.transform.parent.position, Node[CurrentNode].position) < 0.1f)
+			{
+				if (CurrentNode == Node.Length - 1)
+				{
+					Return = true;
+				}
+				if (!Return)
+				{
+					CurrentNode++;
+					if (CurrentNode == 3)
+					{
+						AudioSource.PlayClipAtPoint(DoorOpen, Door.transform.position);
+						OpenFrontDoor = true;
+					}
+				}
+				else if (FixTimer == 5f)
+				{
+					BreakerDoor.Label.text = "Open";
+					BreakerDoor.Open = false;
+					MyAnimation.CrossFade("walkConfident_00");
+					CurrentNode--;
+					if (CurrentNode == 1)
+					{
+						AudioSource.PlayClipAtPoint(DoorOpen, Door.transform.position);
+						OpenFrontDoor = false;
+					}
+					if (CurrentNode < 0)
+					{
+						MyAnimation.CrossFade("fatherFixing_00");
+						BreakerDoor.ServedPurpose = false;
+						Investigating = false;
+						Return = false;
+						CurrentNode = 1;
+						FixTimer = 0f;
+					}
+				}
+				else
+				{
+					FixTimer = Mathf.MoveTowards(FixTimer, 5f, Time.deltaTime);
+					if (FixTimer >= 4f && !Lights.activeInHierarchy)
+					{
+						AudioSource.PlayClipAtPoint(PowerOn, Camera.main.transform.position);
+						Lights.SetActive(true);
+					}
+					MyAnimation.CrossFade("rummage_00");
+				}
+			}
+			if (OpenFrontDoor)
+			{
+				Rotation = Mathf.Lerp(Rotation, TargetRotation, Time.deltaTime * 3.6f);
+			}
+			else
+			{
+				Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 3.6f);
+			}
+			Door.transform.localEulerAngles = new Vector3(Door.transform.localEulerAngles.x, Rotation, Door.transform.localEulerAngles.z);
+			return;
+		}
+		MyAudio.pitch = Time.timeScale;
+		if (GameOverPhase == 0)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 1f && !MyAudio.isPlaying)
+			{
+				Debug.Log("Should be updating the subtitle with the Game Over text.");
+				Subtitle.transform.localScale = new Vector3(1f, 1f, 1f);
+				Subtitle.text = GameOverText ?? "";
+				MyAudio.clip = GameOverLine;
+				MyAudio.Play();
+				GameOverPhase++;
+			}
+		}
+		else if (!MyAudio.isPlaying || Input.GetButton("A"))
+		{
+			Heartbroken.SetActive(true);
+			Subtitle.text = "";
+			base.enabled = false;
+			MyAudio.Stop();
+		}
+	}
+
+	private bool YandereIsInFOV()
+	{
+		Vector3 to = Yandere.transform.position - Head.position;
+		float num = 90f;
+		return Vector3.Angle(Head.forward, to) <= num;
+	}
+
+	private bool YandereIsInLOS()
+	{
+		Debug.DrawLine(Head.position, new Vector3(Yandere.transform.position.x, YandereHead.position.y, Yandere.transform.position.z), Color.red);
+		RaycastHit hitInfo;
+		if (Physics.Linecast(Head.position, new Vector3(Yandere.transform.position.x, YandereHead.position.y, Yandere.transform.position.z), out hitInfo) && hitInfo.collider.gameObject.layer == 13)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	private void TransitionToGameOver()
+	{
+		Yandere.RPGCamera.transform.position += new Vector3(0f, 100f, 0f);
+		if (!ProximityGameOver)
+		{
+			AudioSource.PlayClipAtPoint(GameOverSound, Yandere.RPGCamera.transform.position);
+		}
+		else
+		{
+			AudioSource.PlayClipAtPoint(CrunchSound, Camera.main.transform.position);
+		}
+		Marker.Tex.transform.localScale = new Vector3(1f, 0f, 1f);
+		Marker.Tex.color = new Color(1f, 0f, 0f, 0f);
+		Darkness.material.color = new Color(0f, 0f, 0f, 1f);
+		Yandere.RPGCamera.enabled = false;
+		Yandere.CanMove = false;
+		Time.timeScale = 1f;
+		Subtitle.text = "";
+		GameOver = true;
+		Jukebox.Stop();
+		MyAudio.Stop();
+		Alpha = 0f;
+	}
+
+	private void LookForYandere()
+	{
+		if (Yandere.Hidden && Yandere.Stance.Current == StanceType.Crouching)
+		{
+			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * NoticeSpeed);
+		}
+		else
+		{
+			if (YandereIsInFOV())
+			{
+				if (YandereIsInLOS())
+				{
+					Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * NoticeSpeed);
+				}
+				else
+				{
+					Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * NoticeSpeed);
+				}
+			}
+			else
+			{
+				Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * NoticeSpeed);
+			}
+			if (Investigating && Vector3.Distance(Yandere.transform.position, base.transform.parent.position) < 1f)
+			{
+				Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * NoticeSpeed * 2f);
+			}
+		}
+		if (Alpha == 1f)
+		{
+			Debug.Log("Got a ''witnessed'' game over from " + base.gameObject.name);
+			TransitionToGameOver();
+		}
+		Marker.Tex.transform.localScale = new Vector3(1f, Alpha, 1f);
+		Marker.Tex.color = new Color(1f, 0f, 0f, Alpha);
+	}
 }

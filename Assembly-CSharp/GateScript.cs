@@ -1,129 +1,158 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: GateScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class GateScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public PromptScript Prompt;
-  public ClockScript Clock;
-  public Collider EmergencyDoor;
-  public Collider GateCollider;
-  public Transform RightGate;
-  public Transform LeftGate;
-  public bool ManuallyAdjusted;
-  public bool AudioPlayed;
-  public bool UpdateGates;
-  public bool Crushing;
-  public bool Closed;
-  public AudioSource RightGateAudio;
-  public AudioSource LeftGateAudio;
-  public AudioSource RightGateLoop;
-  public AudioSource LeftGateLoop;
-  public AudioClip Start;
-  public AudioClip StopOpen;
-  public AudioClip StopClose;
+	public StudentManagerScript StudentManager;
 
-  private void Update()
-  {
-    if (!this.ManuallyAdjusted)
-    {
-      if ((double) this.Clock.PresentTime / 60.0 > 8.0 && (double) this.Clock.PresentTime / 60.0 < 15.5)
-      {
-        if (!this.Closed)
-        {
-          this.PlayAudio();
-          this.Closed = true;
-          if (this.EmergencyDoor.enabled)
-            this.EmergencyDoor.enabled = false;
-        }
-      }
-      else if (this.Closed)
-      {
-        this.PlayAudio();
-        this.Closed = false;
-        if (!this.EmergencyDoor.enabled)
-          this.EmergencyDoor.enabled = true;
-      }
-    }
-    if ((Object) this.StudentManager.Students[97] != (Object) null)
-    {
-      if (this.StudentManager.Students[97].CurrentAction == StudentActionType.AtLocker && this.StudentManager.Students[97].Routine && this.StudentManager.Students[97].Alive)
-      {
-        if ((double) Vector3.Distance(this.StudentManager.Students[97].transform.position, this.StudentManager.Podiums.List[0].position) < 0.10000000149011612)
-        {
-          if (this.ManuallyAdjusted)
-            this.ManuallyAdjusted = false;
-          this.Prompt.enabled = false;
-          this.Prompt.Hide();
-        }
-        else
-          this.Prompt.enabled = true;
-      }
-      else
-        this.Prompt.enabled = true;
-    }
-    else
-      this.Prompt.enabled = true;
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      this.PlayAudio();
-      this.EmergencyDoor.enabled = !this.EmergencyDoor.enabled;
-      this.ManuallyAdjusted = true;
-      this.Closed = !this.Closed;
-      if ((Object) this.StudentManager.Students[97] != (Object) null && this.StudentManager.Students[97].Investigating)
-        this.StudentManager.Students[97].StopInvestigating();
-    }
-    if (!this.Closed)
-    {
-      if ((double) this.RightGate.localPosition.x == 7.0)
-        return;
-      this.RightGate.localPosition = new Vector3(Mathf.MoveTowards(this.RightGate.localPosition.x, 7f, Time.deltaTime), this.RightGate.localPosition.y, this.RightGate.localPosition.z);
-      this.LeftGate.localPosition = new Vector3(Mathf.MoveTowards(this.LeftGate.localPosition.x, -7f, Time.deltaTime), this.LeftGate.localPosition.y, this.LeftGate.localPosition.z);
-      if (this.AudioPlayed || (double) this.RightGate.localPosition.x != 7.0)
-        return;
-      this.RightGateAudio.clip = this.StopOpen;
-      this.LeftGateAudio.clip = this.StopOpen;
-      this.RightGateAudio.Play();
-      this.LeftGateAudio.Play();
-      this.RightGateLoop.Stop();
-      this.LeftGateLoop.Stop();
-      this.AudioPlayed = true;
-    }
-    else
-    {
-      if ((double) this.RightGate.localPosition.x == 2.3250000476837158)
-        return;
-      if ((double) this.RightGate.localPosition.x < 2.4000000953674316)
-        this.Crushing = true;
-      this.RightGate.localPosition = new Vector3(Mathf.MoveTowards(this.RightGate.localPosition.x, 2.325f, Time.deltaTime), this.RightGate.localPosition.y, this.RightGate.localPosition.z);
-      this.LeftGate.localPosition = new Vector3(Mathf.MoveTowards(this.LeftGate.localPosition.x, -2.325f, Time.deltaTime), this.LeftGate.localPosition.y, this.LeftGate.localPosition.z);
-      if (this.AudioPlayed || (double) this.RightGate.localPosition.x != 2.3250000476837158)
-        return;
-      this.RightGateAudio.clip = this.StopOpen;
-      this.LeftGateAudio.clip = this.StopOpen;
-      this.RightGateAudio.Play();
-      this.LeftGateAudio.Play();
-      this.RightGateLoop.Stop();
-      this.LeftGateLoop.Stop();
-      this.AudioPlayed = true;
-      this.Crushing = false;
-    }
-  }
+	public PromptScript Prompt;
 
-  public void PlayAudio()
-  {
-    this.RightGateAudio.clip = this.Start;
-    this.LeftGateAudio.clip = this.Start;
-    this.RightGateAudio.Play();
-    this.LeftGateAudio.Play();
-    this.RightGateLoop.Play();
-    this.LeftGateLoop.Play();
-    this.AudioPlayed = false;
-  }
+	public ClockScript Clock;
+
+	public Collider EmergencyDoor;
+
+	public Collider GateCollider;
+
+	public Transform RightGate;
+
+	public Transform LeftGate;
+
+	public bool ManuallyAdjusted;
+
+	public bool AudioPlayed;
+
+	public bool UpdateGates;
+
+	public bool Crushing;
+
+	public bool Closed;
+
+	public AudioSource RightGateAudio;
+
+	public AudioSource LeftGateAudio;
+
+	public AudioSource RightGateLoop;
+
+	public AudioSource LeftGateLoop;
+
+	public AudioClip Start;
+
+	public AudioClip StopOpen;
+
+	public AudioClip StopClose;
+
+	private void Update()
+	{
+		if (!ManuallyAdjusted)
+		{
+			if (Clock.PresentTime / 60f > 8f && Clock.PresentTime / 60f < 15.5f)
+			{
+				if (!Closed)
+				{
+					PlayAudio();
+					Closed = true;
+					if (EmergencyDoor.enabled)
+					{
+						EmergencyDoor.enabled = false;
+					}
+				}
+			}
+			else if (Closed)
+			{
+				PlayAudio();
+				Closed = false;
+				if (!EmergencyDoor.enabled)
+				{
+					EmergencyDoor.enabled = true;
+				}
+			}
+		}
+		if (StudentManager.Students[97] != null)
+		{
+			if (StudentManager.Students[97].CurrentAction == StudentActionType.AtLocker && StudentManager.Students[97].Routine && StudentManager.Students[97].Alive)
+			{
+				if (Vector3.Distance(StudentManager.Students[97].transform.position, StudentManager.Podiums.List[0].position) < 0.1f)
+				{
+					if (ManuallyAdjusted)
+					{
+						ManuallyAdjusted = false;
+					}
+					Prompt.enabled = false;
+					Prompt.Hide();
+				}
+				else
+				{
+					Prompt.enabled = true;
+				}
+			}
+			else
+			{
+				Prompt.enabled = true;
+			}
+		}
+		else
+		{
+			Prompt.enabled = true;
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			PlayAudio();
+			EmergencyDoor.enabled = !EmergencyDoor.enabled;
+			ManuallyAdjusted = true;
+			Closed = !Closed;
+			if (StudentManager.Students[97] != null && StudentManager.Students[97].Investigating)
+			{
+				StudentManager.Students[97].StopInvestigating();
+			}
+		}
+		if (!Closed)
+		{
+			if (RightGate.localPosition.x != 7f)
+			{
+				RightGate.localPosition = new Vector3(Mathf.MoveTowards(RightGate.localPosition.x, 7f, Time.deltaTime), RightGate.localPosition.y, RightGate.localPosition.z);
+				LeftGate.localPosition = new Vector3(Mathf.MoveTowards(LeftGate.localPosition.x, -7f, Time.deltaTime), LeftGate.localPosition.y, LeftGate.localPosition.z);
+				if (!AudioPlayed && RightGate.localPosition.x == 7f)
+				{
+					RightGateAudio.clip = StopOpen;
+					LeftGateAudio.clip = StopOpen;
+					RightGateAudio.Play();
+					LeftGateAudio.Play();
+					RightGateLoop.Stop();
+					LeftGateLoop.Stop();
+					AudioPlayed = true;
+				}
+			}
+		}
+		else if (RightGate.localPosition.x != 2.325f)
+		{
+			if (RightGate.localPosition.x < 2.4f)
+			{
+				Crushing = true;
+			}
+			RightGate.localPosition = new Vector3(Mathf.MoveTowards(RightGate.localPosition.x, 2.325f, Time.deltaTime), RightGate.localPosition.y, RightGate.localPosition.z);
+			LeftGate.localPosition = new Vector3(Mathf.MoveTowards(LeftGate.localPosition.x, -2.325f, Time.deltaTime), LeftGate.localPosition.y, LeftGate.localPosition.z);
+			if (!AudioPlayed && RightGate.localPosition.x == 2.325f)
+			{
+				RightGateAudio.clip = StopOpen;
+				LeftGateAudio.clip = StopOpen;
+				RightGateAudio.Play();
+				LeftGateAudio.Play();
+				RightGateLoop.Stop();
+				LeftGateLoop.Stop();
+				AudioPlayed = true;
+				Crushing = false;
+			}
+		}
+	}
+
+	public void PlayAudio()
+	{
+		RightGateAudio.clip = Start;
+		LeftGateAudio.clip = Start;
+		RightGateAudio.Play();
+		LeftGateAudio.Play();
+		RightGateLoop.Play();
+		LeftGateLoop.Play();
+		AudioPlayed = false;
+	}
 }

@@ -1,31 +1,30 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BarScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class BarScript : MonoBehaviour
 {
-  public float Speed;
-  public float Goal;
+	public float Speed;
 
-  private void Start() => this.transform.localScale = new Vector3(0.0f, 1f, 1f);
+	public float Goal;
 
-  private void Update()
-  {
-    if ((double) this.Goal == 0.0)
-    {
-      this.transform.localScale = new Vector3(this.transform.localScale.x + this.Speed * Time.deltaTime, 1f, 1f);
-      if ((double) this.transform.localScale.x <= 0.1)
-        return;
-      this.transform.localScale = new Vector3(0.0f, 1f, 1f);
-    }
-    else
-    {
-      this.Speed += Time.deltaTime;
-      this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(this.Goal, 1f, 1f), Time.deltaTime * this.Speed);
-    }
-  }
+	private void Start()
+	{
+		base.transform.localScale = new Vector3(0f, 1f, 1f);
+	}
+
+	private void Update()
+	{
+		if (Goal == 0f)
+		{
+			base.transform.localScale = new Vector3(base.transform.localScale.x + Speed * Time.deltaTime, 1f, 1f);
+			if ((double)base.transform.localScale.x > 0.1)
+			{
+				base.transform.localScale = new Vector3(0f, 1f, 1f);
+			}
+		}
+		else
+		{
+			Speed += Time.deltaTime;
+			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(Goal, 1f, 1f), Time.deltaTime * Speed);
+		}
+	}
 }

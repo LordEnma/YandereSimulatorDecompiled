@@ -1,83 +1,109 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TweenScale
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Tween/Tween Scale")]
 public class TweenScale : UITweener
 {
-  public Vector3 from = Vector3.one;
-  public Vector3 to = Vector3.one;
-  public bool updateTable;
-  private Transform mTrans;
-  private UITable mTable;
+	public Vector3 from = Vector3.one;
 
-  public Transform cachedTransform
-  {
-    get
-    {
-      if ((UnityEngine.Object) this.mTrans == (UnityEngine.Object) null)
-        this.mTrans = this.transform;
-      return this.mTrans;
-    }
-  }
+	public Vector3 to = Vector3.one;
 
-  public Vector3 value
-  {
-    get => this.cachedTransform.localScale;
-    set => this.cachedTransform.localScale = value;
-  }
+	public bool updateTable;
 
-  [Obsolete("Use 'value' instead")]
-  public Vector3 scale
-  {
-    get => this.value;
-    set => this.value = value;
-  }
+	private Transform mTrans;
 
-  protected override void OnUpdate(float factor, bool isFinished)
-  {
-    this.value = this.from * (1f - factor) + this.to * factor;
-    if (!this.updateTable)
-      return;
-    if ((UnityEngine.Object) this.mTable == (UnityEngine.Object) null)
-    {
-      this.mTable = NGUITools.FindInParents<UITable>(this.gameObject);
-      if ((UnityEngine.Object) this.mTable == (UnityEngine.Object) null)
-      {
-        this.updateTable = false;
-        return;
-      }
-    }
-    this.mTable.repositionNow = true;
-  }
+	private UITable mTable;
 
-  public static TweenScale Begin(GameObject go, float duration, Vector3 scale)
-  {
-    TweenScale tweenScale = UITweener.Begin<TweenScale>(go, duration);
-    tweenScale.from = tweenScale.value;
-    tweenScale.to = scale;
-    if ((double) duration <= 0.0)
-    {
-      tweenScale.Sample(1f, true);
-      tweenScale.enabled = false;
-    }
-    return tweenScale;
-  }
+	public Transform cachedTransform
+	{
+		get
+		{
+			if (mTrans == null)
+			{
+				mTrans = base.transform;
+			}
+			return mTrans;
+		}
+	}
 
-  [ContextMenu("Set 'From' to current value")]
-  public override void SetStartToCurrentValue() => this.from = this.value;
+	public Vector3 value
+	{
+		get
+		{
+			return cachedTransform.localScale;
+		}
+		set
+		{
+			cachedTransform.localScale = value;
+		}
+	}
 
-  [ContextMenu("Set 'To' to current value")]
-  public override void SetEndToCurrentValue() => this.to = this.value;
+	[Obsolete("Use 'value' instead")]
+	public Vector3 scale
+	{
+		get
+		{
+			return value;
+		}
+		set
+		{
+			this.value = value;
+		}
+	}
 
-  [ContextMenu("Assume value of 'From'")]
-  private void SetCurrentValueToStart() => this.value = this.from;
+	protected override void OnUpdate(float factor, bool isFinished)
+	{
+		value = from * (1f - factor) + to * factor;
+		if (!updateTable)
+		{
+			return;
+		}
+		if (mTable == null)
+		{
+			mTable = NGUITools.FindInParents<UITable>(base.gameObject);
+			if (mTable == null)
+			{
+				updateTable = false;
+				return;
+			}
+		}
+		mTable.repositionNow = true;
+	}
 
-  [ContextMenu("Assume value of 'To'")]
-  private void SetCurrentValueToEnd() => this.value = this.to;
+	public static TweenScale Begin(GameObject go, float duration, Vector3 scale)
+	{
+		TweenScale tweenScale = UITweener.Begin<TweenScale>(go, duration);
+		tweenScale.from = tweenScale.value;
+		tweenScale.to = scale;
+		if (duration <= 0f)
+		{
+			tweenScale.Sample(1f, true);
+			tweenScale.enabled = false;
+		}
+		return tweenScale;
+	}
+
+	[ContextMenu("Set 'From' to current value")]
+	public override void SetStartToCurrentValue()
+	{
+		from = value;
+	}
+
+	[ContextMenu("Set 'To' to current value")]
+	public override void SetEndToCurrentValue()
+	{
+		to = value;
+	}
+
+	[ContextMenu("Assume value of 'From'")]
+	private void SetCurrentValueToStart()
+	{
+		value = from;
+	}
+
+	[ContextMenu("Assume value of 'To'")]
+	private void SetCurrentValueToEnd()
+	{
+		value = to;
+	}
 }

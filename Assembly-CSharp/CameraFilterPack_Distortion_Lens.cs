@@ -1,72 +1,77 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CameraFilterPack_Distortion_Lens
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("Camera Filter Pack/Distortion/Lens")]
 public class CameraFilterPack_Distortion_Lens : MonoBehaviour
 {
-  public Shader SCShader;
-  private float TimeX = 1f;
-  private Material SCMaterial;
-  [Range(-1f, 1f)]
-  public float CenterX;
-  [Range(-1f, 1f)]
-  public float CenterY;
-  [Range(0.0f, 3f)]
-  public float Distortion = 1f;
+	public Shader SCShader;
 
-  private Material material
-  {
-    get
-    {
-      if ((Object) this.SCMaterial == (Object) null)
-      {
-        this.SCMaterial = new Material(this.SCShader);
-        this.SCMaterial.hideFlags = HideFlags.HideAndDontSave;
-      }
-      return this.SCMaterial;
-    }
-  }
+	private float TimeX = 1f;
 
-  private void Start()
-  {
-    this.SCShader = Shader.Find("CameraFilterPack/Distortion_Lens");
-    if (SystemInfo.supportsImageEffects)
-      return;
-    this.enabled = false;
-  }
+	private Material SCMaterial;
 
-  private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
-  {
-    if ((Object) this.SCShader != (Object) null)
-    {
-      this.TimeX += Time.deltaTime;
-      if ((double) this.TimeX > 100.0)
-        this.TimeX = 0.0f;
-      this.material.SetFloat("_TimeX", this.TimeX);
-      this.material.SetFloat("_CenterX", this.CenterX);
-      this.material.SetFloat("_CenterY", this.CenterY);
-      this.material.SetFloat("_Distortion", this.Distortion);
-      this.material.SetVector("_ScreenResolution", (Vector4) new Vector2((float) Screen.width, (float) Screen.height));
-      Graphics.Blit((Texture) sourceTexture, destTexture, this.material);
-    }
-    else
-      Graphics.Blit((Texture) sourceTexture, destTexture);
-  }
+	[Range(-1f, 1f)]
+	public float CenterX;
 
-  private void Update()
-  {
-  }
+	[Range(-1f, 1f)]
+	public float CenterY;
 
-  private void OnDisable()
-  {
-    if (!(bool) (Object) this.SCMaterial)
-      return;
-    Object.DestroyImmediate((Object) this.SCMaterial);
-  }
+	[Range(0f, 3f)]
+	public float Distortion = 1f;
+
+	private Material material
+	{
+		get
+		{
+			if (SCMaterial == null)
+			{
+				SCMaterial = new Material(SCShader);
+				SCMaterial.hideFlags = HideFlags.HideAndDontSave;
+			}
+			return SCMaterial;
+		}
+	}
+
+	private void Start()
+	{
+		SCShader = Shader.Find("CameraFilterPack/Distortion_Lens");
+		if (!SystemInfo.supportsImageEffects)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
+	{
+		if (SCShader != null)
+		{
+			TimeX += Time.deltaTime;
+			if (TimeX > 100f)
+			{
+				TimeX = 0f;
+			}
+			material.SetFloat("_TimeX", TimeX);
+			material.SetFloat("_CenterX", CenterX);
+			material.SetFloat("_CenterY", CenterY);
+			material.SetFloat("_Distortion", Distortion);
+			material.SetVector("_ScreenResolution", new Vector2(Screen.width, Screen.height));
+			Graphics.Blit(sourceTexture, destTexture, material);
+		}
+		else
+		{
+			Graphics.Blit(sourceTexture, destTexture);
+		}
+	}
+
+	private void Update()
+	{
+	}
+
+	private void OnDisable()
+	{
+		if ((bool)SCMaterial)
+		{
+			Object.DestroyImmediate(SCMaterial);
+		}
+	}
 }

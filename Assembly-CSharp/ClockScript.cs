@@ -1,551 +1,706 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ClockScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
 public class ClockScript : MonoBehaviour
 {
-  private string MinuteNumber = string.Empty;
-  private string HourNumber = string.Empty;
-  public Collider MeetingRoomTrespassZone;
-  public Collider[] TrespassZones;
-  public PostProcessingProfile Profile;
-  public RetroMinigameScript RetroMinigame;
-  public StudentManagerScript StudentManager;
-  public CameraEffectsScript CameraEffects;
-  public LoveManagerScript LoveManager;
-  public YandereScript Yandere;
-  public PoliceScript Police;
-  public ClockScript Clock;
-  public MotionBlur Blur;
-  public Vector3 OriginalPosition;
-  public Transform PromptParent;
-  public Transform MinuteHand;
-  public Transform HourHand;
-  public Transform Sun;
-  public GameObject SunFlare;
-  public UILabel PeriodLabel;
-  public UILabel TimeLabel;
-  public UILabel DayLabel;
-  public Light MainLight;
-  public float HalfwayTime;
-  public float PresentTime;
-  public float TargetTime;
-  public float StartTime;
-  public float HourTime;
-  public float AmbientLightDim;
-  public float BloomFadeSpeed = 10f;
-  public float TimeSkipSpeed = 1f;
-  public float BathroomDim;
-  public float CameraTimer;
-  public float DayProgress;
-  public float LastMinute;
-  public float BloomWait;
-  public float StartHour;
-  public float TimeSpeed;
-  public float Minute;
-  public float Timer;
-  public float Hour;
-  public PhaseOfDay Phase;
-  public int Weekday;
-  public int Period;
-  public int Day = 1;
-  public int ID;
-  public string TimeText = string.Empty;
-  public bool IgnorePhotographyClub;
-  public bool BloomDisabled;
-  public bool LateStudent;
-  public bool UpdateBloom;
-  public bool MissionMode;
-  public bool ReduceKnee;
-  public bool StopTime;
-  public bool TimeSkip;
-  public bool FadeIn;
-  public bool Horror;
-  public bool Lerp;
-  public AudioSource SchoolBell;
-  public Color SkyboxColor;
-  public float BloomIntensity = 11f;
-  public float BloomRadius = 7f;
-  public float BloomKnee = 1f;
-  public UISprite BathroomDimSprite;
-  public Light[] BathroomLight;
-  public Collider[] Bathroom;
+	private string MinuteNumber = string.Empty;
 
-  private void Start()
-  {
-    if (!this.MissionMode)
-    {
-      this.Profile.bloom.enabled = true;
-      this.BloomDisabled = OptionGlobals.DisableBloom;
-      OptionGlobals.DisableBloom = false;
-    }
-    RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f);
-    this.PeriodLabel.text = "BEFORE CLASS";
-    this.PresentTime = this.StartHour * 60f;
-    if (PlayerPrefs.GetInt("LoadingSave") == 1)
-    {
-      int profile = GameGlobals.Profile;
-      int num = PlayerPrefs.GetInt("SaveSlot");
-      this.Weekday = PlayerPrefs.GetInt("Profile_" + profile.ToString() + "_Slot_" + num.ToString() + "_Weekday");
-      if (this.Weekday == 1)
-        DateGlobals.Weekday = DayOfWeek.Monday;
-      else if (this.Weekday == 2)
-        DateGlobals.Weekday = DayOfWeek.Tuesday;
-      else if (this.Weekday == 3)
-        DateGlobals.Weekday = DayOfWeek.Wednesday;
-      else if (this.Weekday == 4)
-        DateGlobals.Weekday = DayOfWeek.Thursday;
-      else if (this.Weekday == 5)
-        DateGlobals.Weekday = DayOfWeek.Friday;
-    }
-    else
-    {
-      switch (DateGlobals.Weekday)
-      {
-        case DayOfWeek.Monday:
-          this.Weekday = 1;
-          break;
-        case DayOfWeek.Tuesday:
-          this.Weekday = 2;
-          break;
-        case DayOfWeek.Wednesday:
-          this.Weekday = 3;
-          break;
-        case DayOfWeek.Thursday:
-          this.Weekday = 4;
-          break;
-        case DayOfWeek.Friday:
-          this.Weekday = 5;
-          break;
-      }
-    }
-    this.Day = this.Weekday + (DateGlobals.Week - 1) * 5;
-    if (DateGlobals.Weekday == DayOfWeek.Sunday)
-      DateGlobals.Weekday = DayOfWeek.Monday;
-    if (!SchoolGlobals.SchoolAtmosphereSet)
-    {
-      SchoolGlobals.SchoolAtmosphereSet = true;
-      SchoolGlobals.PreviousSchoolAtmosphere = 1f;
-      SchoolGlobals.SchoolAtmosphere = 1f;
-    }
-    if ((double) SchoolGlobals.SchoolAtmosphere < 0.5)
-    {
-      this.CameraEffects.UpdateBloom(1f);
-      this.CameraEffects.UpdateBloomKnee(0.5f);
-      this.CameraEffects.UpdateBloomRadius(4f);
-      this.Police.Darkness.enabled = true;
-      this.Police.Darkness.color = new Color(this.Police.Darkness.color.r, this.Police.Darkness.color.g, this.Police.Darkness.color.b, 1f);
-      this.FadeIn = true;
-    }
-    else
-    {
-      this.CameraEffects.UpdateBloom(11f);
-      this.CameraEffects.UpdateBloomKnee(1f);
-      this.CameraEffects.UpdateBloomRadius(7f);
-      this.BloomKnee = 1f;
-      this.BloomRadius = 7f;
-      this.BloomIntensity = 11f;
-      this.UpdateBloom = true;
-    }
-    this.DayLabel.text = !GameGlobals.EightiesTutorial ? this.GetWeekdayText(DateGlobals.Weekday) + ", WEEK " + DateGlobals.Week.ToString() : this.GetWeekdayText(DateGlobals.Weekday) ?? "";
-    this.MainLight.color = new Color(1f, 1f, 1f, 1f);
-    RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f, 1f);
-    RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f));
-    if (ClubGlobals.GetClubClosed(ClubType.Photography) || StudentGlobals.GetStudentGrudge(56) || StudentGlobals.GetStudentGrudge(57) || StudentGlobals.GetStudentGrudge(58) || StudentGlobals.GetStudentGrudge(59) || StudentGlobals.GetStudentGrudge(60))
-      this.IgnorePhotographyClub = true;
-    this.MissionMode = MissionModeGlobals.MissionMode;
-    this.HourTime = this.PresentTime / 60f;
-    this.Hour = Mathf.Floor(this.PresentTime / 60f);
-    this.Minute = Mathf.Floor((float) (((double) this.PresentTime / 60.0 - (double) this.Hour) * 60.0));
-    this.UpdateClock();
-    if (GameGlobals.Eighties)
-      this.BecomeEighties();
-    if (!this.StudentManager.RecordingVideo)
-      return;
-    this.CameraEffects.UpdateBloom(1f);
-    this.CameraEffects.UpdateBloomRadius(4f);
-    this.CameraEffects.UpdateBloomKnee(0.75f);
-  }
+	private string HourNumber = string.Empty;
 
-  public void Update()
-  {
-    if (this.FadeIn && (double) Time.deltaTime < 1.0)
-    {
-      this.Police.Darkness.color = new Color(this.Police.Darkness.color.r, this.Police.Darkness.color.g, this.Police.Darkness.color.b, Mathf.MoveTowards(this.Police.Darkness.color.a, 0.0f, Time.deltaTime));
-      if ((double) this.Police.Darkness.color.a == 0.0)
-      {
-        this.Police.Darkness.enabled = false;
-        this.FadeIn = false;
-      }
-    }
-    if (!this.MissionMode && (double) this.CameraTimer < 1.0)
-    {
-      this.CameraTimer += Time.deltaTime;
-      if ((double) this.CameraTimer > 1.0 && !this.StudentManager.MemorialScene.enabled)
-      {
-        Debug.Log((object) "This is the exact moment that the player gains control of the character.");
-        if (this.BloomDisabled)
-        {
-          OptionGlobals.DisableBloom = true;
-          this.Profile.bloom.enabled = false;
-        }
-        this.Yandere.RPGCamera.mouseX = 0.0f;
-        this.Yandere.RPGCamera.enabled = true;
-        this.Yandere.CanMove = true;
-        if (!this.StudentManager.CameFromLoad)
-          this.GivePlayerBroughtWeapon();
-      }
-    }
-    if ((double) this.PresentTime < 1080.0)
-    {
-      if (this.UpdateBloom)
-      {
-        if ((double) this.BloomWait == 0.0)
-        {
-          if (!this.ReduceKnee)
-          {
-            if (this.Lerp)
-            {
-              this.BloomIntensity = Mathf.Lerp(this.BloomIntensity, 1f, Time.deltaTime);
-              this.BloomRadius = Mathf.Lerp(this.BloomRadius, 4f, Time.deltaTime);
-              if ((double) this.BloomIntensity < 1.1000000238418579)
-              {
-                this.BloomIntensity = 1f;
-                this.BloomRadius = 4f;
-              }
-            }
-            else
-            {
-              this.BloomIntensity = Mathf.MoveTowards(this.BloomIntensity, 1f, Time.deltaTime * this.BloomFadeSpeed);
-              this.BloomRadius = Mathf.MoveTowards(this.BloomRadius, 4f, Time.deltaTime * this.BloomFadeSpeed);
-            }
-            this.CameraEffects.UpdateBloom(this.BloomIntensity);
-            this.CameraEffects.UpdateBloomRadius(this.BloomRadius);
-            if ((double) this.BloomIntensity == 1.0 && (double) this.BloomRadius == 4.0)
-              this.ReduceKnee = true;
-          }
-          else
-          {
-            this.BloomKnee = Mathf.MoveTowards(this.BloomKnee, 0.75f, Time.deltaTime * (this.BloomFadeSpeed * 0.1f));
-            this.CameraEffects.UpdateBloomKnee(this.BloomKnee);
-            if ((double) this.BloomKnee == 0.75)
-              this.UpdateBloom = false;
-          }
-        }
-        else
-          this.BloomWait = Mathf.MoveTowards(this.BloomWait, 0.0f, Time.deltaTime);
-      }
-    }
-    else if (this.LoveManager.WaitingToConfess)
-    {
-      if (!this.StopTime)
-        this.LoveManager.BeginConfession();
-    }
-    else if (!this.Police.FadeOut && !this.Yandere.Attacking && !this.Yandere.Struggling && !this.Yandere.DelinquentFighting && !this.Yandere.Pickpocketing && !this.Yandere.Noticed)
-    {
-      Debug.Log((object) "Ending the day because it's 6:00 PM.");
-      if (!this.StudentManager.Portal.GetComponent<PortalScript>().EndedFinalEvents)
-        this.StudentManager.Portal.GetComponent<PortalScript>().EndFinalEvents();
-      this.StudentManager.Reputation.UpdateRep();
-      this.Police.DayOver = true;
-      this.Yandere.StudentManager.StopMoving();
-      this.Police.Darkness.enabled = true;
-      this.Police.FadeOut = true;
-      this.StopTime = true;
-    }
-    if (!this.StopTime)
-    {
-      if (this.Period == 3)
-        this.PresentTime += (float) ((double) Time.deltaTime * 0.01666666753590107 * (double) this.TimeSpeed * 0.5);
-      else
-        this.PresentTime += Time.deltaTime * 0.0166666675f * this.TimeSpeed;
-    }
-    this.HourTime = this.PresentTime / 60f;
-    this.Hour = Mathf.Floor(this.PresentTime / 60f);
-    this.Minute = Mathf.Floor((float) (((double) this.PresentTime / 60.0 - (double) this.Hour) * 60.0));
-    if ((double) this.Minute != (double) this.LastMinute)
-      this.UpdateClock();
-    this.MinuteHand.localEulerAngles = new Vector3(this.MinuteHand.localEulerAngles.x, this.MinuteHand.localEulerAngles.y, this.Minute * 6f);
-    this.HourHand.localEulerAngles = new Vector3(this.HourHand.localEulerAngles.x, this.HourHand.localEulerAngles.y, this.Hour * 30f);
-    if (this.LateStudent && (double) this.HourTime > 7.9000000953674316)
-      this.ActivateLateStudent();
-    if ((double) this.HourTime < 8.5)
-    {
-      if (this.Period < 1)
-      {
-        this.PeriodLabel.text = "BEFORE CLASS";
-        this.DeactivateTrespassZones();
-        ++this.Period;
-      }
-    }
-    else if ((double) this.HourTime < 13.0)
-    {
-      if (this.Period < 2)
-      {
-        this.PeriodLabel.text = "CLASS TIME";
-        this.ActivateTrespassZones();
-        ++this.Period;
-      }
-    }
-    else if ((double) this.HourTime < 13.5)
-    {
-      if (this.Period < 3)
-      {
-        this.PeriodLabel.text = "LUNCH TIME";
-        this.StudentManager.DramaPhase = 0;
-        this.StudentManager.UpdateDrama();
-        this.DeactivateTrespassZones();
-        ++this.Period;
-        this.StudentManager.WednesdayGiftBox.SetActive(false);
-        this.StudentManager.FridayTestNotes.SetActive(false);
-        this.StudentManager.MondayBento.SetActive(false);
-        this.StudentManager.RivalBookBag.NoBento = true;
-        this.StudentManager.Unstop();
-        if (!GameGlobals.Eighties && DateGlobals.Week == 1 && !this.StudentManager.MissionMode)
-          this.StudentManager.UpdateLunchtimeStudents();
-        this.UpdateClock();
-      }
-    }
-    else if ((double) this.HourTime < 15.5)
-    {
-      if (this.Period < 4)
-      {
-        this.PeriodLabel.text = "CLASS TIME";
-        this.ActivateTrespassZones();
-        ++this.Period;
-      }
-    }
-    else if ((double) this.HourTime < 16.0)
-    {
-      if (this.Period < 5)
-      {
-        this.StudentManager.Reputation.RepUpdateLabel.text = "REP WILL UPDATE AFTER SCHOOL";
-        if (this.StudentManager.Bully && this.StudentManager.Bullies > 0)
-          this.StudentManager.UpdateGraffiti();
-        this.PeriodLabel.text = "CLEANING TIME";
-        this.DeactivateTrespassZones();
-        if (this.Weekday == 5)
-          this.MeetingRoomTrespassZone.enabled = true;
-        this.StudentManager.Unstop();
-        ++this.Period;
-        this.UpdateClock();
-      }
-    }
-    else if (this.Period < 6)
-    {
-      this.PeriodLabel.text = "AFTER SCHOOL";
-      this.StudentManager.DramaPhase = 0;
-      this.StudentManager.UpdateDrama();
-      ++this.Period;
-    }
-    if (!this.IgnorePhotographyClub && (double) this.HourTime > 16.75 && this.StudentManager.SleuthPhase < 4)
-    {
-      this.StudentManager.SleuthPhase = 3;
-      this.StudentManager.UpdateSleuths();
-    }
-    this.Sun.eulerAngles = new Vector3(this.Sun.eulerAngles.x, this.Sun.eulerAngles.y, (float) (90.0 * ((double) this.PresentTime - 420.0) / 660.0 - 45.0));
-    if (!this.Horror)
-    {
-      Bounds bounds = this.StudentManager.WestBathroomArea.bounds;
-      if (!bounds.Contains(this.Yandere.transform.position))
-      {
-        bounds = this.StudentManager.EastBathroomArea.bounds;
-        if (!bounds.Contains(this.Yandere.transform.position))
-        {
-          this.BathroomDim = 0.0f;
-          goto label_72;
-        }
-      }
-      for (int index = 1; index < this.Bathroom.Length; ++index)
-      {
-        bounds = this.Bathroom[index].bounds;
-        if (bounds.Contains(this.Yandere.transform.position))
-          this.BathroomDim = this.BathroomLight[index].enabled ? 0.0f : 0.5f;
-      }
-label_72:
-      if ((double) this.BathroomDimSprite.alpha != (double) this.BathroomDim)
-        this.BathroomDimSprite.alpha = Mathf.MoveTowards(this.BathroomDimSprite.alpha, this.BathroomDim, Time.deltaTime * 10f);
-      this.AmbientLightDim = 0.75f;
-      if ((double) this.PresentTime > 930.0)
-      {
-        this.DayProgress = (float) (((double) this.PresentTime - 930.0) / 150.0);
-        this.MainLight.color = new Color((float) (1.0 - 0.14901959896087646 * (double) this.DayProgress), (float) (1.0 - 0.40392154455184937 * (double) this.DayProgress), (float) (1.0 - 0.70980393886566162 * (double) this.DayProgress));
-        RenderSettings.ambientLight = new Color((float) (1.0 - 0.14901959896087646 * (double) this.DayProgress - (1.0 - (double) this.AmbientLightDim) * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.40392154455184937 * (double) this.DayProgress - (1.0 - (double) this.AmbientLightDim) * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.70980393886566162 * (double) this.DayProgress - (1.0 - (double) this.AmbientLightDim) * (1.0 - (double) this.DayProgress)));
-        this.SkyboxColor = new Color((float) (1.0 - 0.14901959896087646 * (double) this.DayProgress - 0.5 * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.40392154455184937 * (double) this.DayProgress - 0.5 * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.70980393886566162 * (double) this.DayProgress - 0.5 * (1.0 - (double) this.DayProgress)));
-        RenderSettings.skybox.SetColor("_Tint", new Color(this.SkyboxColor.r, this.SkyboxColor.g, this.SkyboxColor.b));
-      }
-      else
-        RenderSettings.ambientLight = new Color(this.AmbientLightDim, this.AmbientLightDim, this.AmbientLightDim);
-    }
-    if (!this.TimeSkip)
-      return;
-    if ((double) this.HalfwayTime == 0.0)
-    {
-      this.HalfwayTime = this.PresentTime + (float) (((double) this.TargetTime - (double) this.PresentTime) * 0.5);
-      this.OriginalPosition = this.Yandere.transform.position;
-      if (!this.StudentManager.Eighties)
-      {
-        this.Yandere.Phone.transform.localPosition = new Vector3(0.02f, -0.005f, 0.03f);
-        this.Yandere.Phone.transform.localEulerAngles = new Vector3(0.0f, -165f, -165f);
-      }
-      else
-      {
-        this.Yandere.Phone.transform.localPosition = new Vector3(0.02f, -0.0066666f, 0.03f);
-        this.Yandere.Phone.transform.localEulerAngles = new Vector3(-75f, 120f, 75f);
-      }
-      this.Yandere.TimeSkipping = true;
-      this.Yandere.CanMove = false;
-      if (this.Yandere.Armed)
-        this.Yandere.Unequip();
-    }
-    this.TimeSkipSpeed += Time.deltaTime;
-    if ((double) Time.timeScale < 10.0)
-      Time.timeScale = Mathf.MoveTowards(Time.timeScale, 10f, this.TimeSkipSpeed * Time.unscaledDeltaTime);
-    this.Yandere.CharacterAnimation["f02_timeSkip_00"].speed = 1f / Time.timeScale;
-    if ((double) this.PresentTime > (double) this.TargetTime)
-      this.EndTimeSkip();
-    if ((double) this.Yandere.PauseScreen.transform.localPosition.x == 1351.0 && Input.GetButtonDown("A"))
-    {
-      if (!this.StudentManager.Eighties)
-        this.RetroMinigame.MyRenderer.mainTexture = this.RetroMinigame.ModernTexture;
-      this.Yandere.PauseScreen.PromptBar.Label[0].text = "Jump / Retry";
-      this.RetroMinigame.gameObject.SetActive(true);
-      this.RetroMinigame.Show = true;
-    }
-    else
-    {
-      if ((double) this.Yandere.CameraEffects.Streaks.color.a <= 0.0 && (double) this.Yandere.CameraEffects.MurderStreaks.color.a <= 0.0 && !this.Yandere.NearSenpai && !Input.GetButtonDown("B"))
-        return;
-      this.EndTimeSkip();
-    }
-  }
+	public Collider MeetingRoomTrespassZone;
 
-  public void EndTimeSkip()
-  {
-    Debug.Log((object) "Ending TimeSkip now.");
-    if (GameGlobals.AlphabetMode)
-      this.StopTime = true;
-    this.Yandere.PauseScreen.PromptBar.ClearButtons();
-    this.Yandere.PauseScreen.PromptBar.Show = false;
-    this.PromptParent.localScale = new Vector3(1f, 1f, 1f);
-    this.Yandere.transform.position = this.OriginalPosition;
-    this.Yandere.Phone.SetActive(false);
-    this.Yandere.TimeSkipping = false;
-    Time.timeScale = 1f;
-    this.TimeSkip = false;
-    this.HalfwayTime = 0.0f;
-    this.TimeSkipSpeed = 1f;
-    if (!this.Yandere.Noticed && !this.Police.FadeOut && !this.Yandere.Attacked)
-    {
-      this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
-      this.Yandere.CanMoveTimer = 0.5f;
-    }
-    this.RetroMinigame.MinigameCamera.SetActive(false);
-    this.RetroMinigame.Show = false;
-  }
+	public Collider[] TrespassZones;
 
-  public string GetWeekdayText(DayOfWeek weekday)
-  {
-    switch (weekday)
-    {
-      case DayOfWeek.Sunday:
-        this.Weekday = 0;
-        return "SUNDAY";
-      case DayOfWeek.Monday:
-        this.Weekday = 1;
-        return "MONDAY";
-      case DayOfWeek.Tuesday:
-        this.Weekday = 2;
-        return "TUESDAY";
-      case DayOfWeek.Wednesday:
-        this.Weekday = 3;
-        return "WEDNESDAY";
-      case DayOfWeek.Thursday:
-        this.Weekday = 4;
-        return "THURSDAY";
-      case DayOfWeek.Friday:
-        this.Weekday = 5;
-        return "FRIDAY";
-      default:
-        this.Weekday = 6;
-        return "SATURDAY";
-    }
-  }
+	public PostProcessingProfile Profile;
 
-  private void ActivateTrespassZones()
-  {
-    if (!this.SchoolBell.isPlaying || (double) this.SchoolBell.time > 1.0)
-      this.SchoolBell.Play();
-    foreach (Collider trespassZone in this.TrespassZones)
-      trespassZone.enabled = true;
-  }
+	public RetroMinigameScript RetroMinigame;
 
-  public void DeactivateTrespassZones()
-  {
-    this.Yandere.Trespassing = false;
-    if ((!this.SchoolBell.isPlaying || (double) this.SchoolBell.time > 1.0) && !this.StudentManager.SpawnNobody)
-      this.SchoolBell.Play();
-    foreach (Collider trespassZone in this.TrespassZones)
-    {
-      if (!trespassZone.GetComponent<TrespassScript>().OffLimits)
-      {
-        trespassZone.enabled = false;
-        if (trespassZone.GetComponent<TrespassScript>().CookingClub)
-          trespassZone.enabled = true;
-      }
-    }
-  }
+	public StudentManagerScript StudentManager;
 
-  public void ActivateLateStudent()
-  {
-    if (!this.StudentManager.MissionMode && (UnityEngine.Object) this.StudentManager.Students[7] != (UnityEngine.Object) null && this.StudentManager.Students[7].Alive)
-    {
-      this.StudentManager.Students[7].gameObject.SetActive(true);
-      this.StudentManager.Students[7].Pathfinding.speed = 4f;
-      this.StudentManager.Students[7].Spawned = true;
-      this.StudentManager.Students[7].Hurry = true;
-    }
-    this.LateStudent = false;
-  }
+	public CameraEffectsScript CameraEffects;
 
-  public void NightLighting()
-  {
-    this.MainLight.color = new Color(0.25f, 0.25f, 0.5f);
-    RenderSettings.ambientLight = new Color(0.25f, 0.25f, 0.5f);
-    this.SkyboxColor = new Color(0.1f, 0.1f, 0.2f);
-    RenderSettings.skybox.SetColor("_Tint", new Color(0.1f, 0.1f, 0.2f));
-  }
+	public LoveManagerScript LoveManager;
 
-  public void UpdateClock()
-  {
-    this.LastMinute = this.Minute;
-    this.HourNumber = (double) this.Hour == 0.0 || (double) this.Hour == 12.0 ? "12" : ((double) this.Hour >= 12.0 ? (this.Hour - 12f).ToString("f0") : this.Hour.ToString("f0"));
-    this.MinuteNumber = (double) this.Minute >= 10.0 ? this.Minute.ToString("f0") : "0" + this.Minute.ToString("f0");
-    this.TimeText = this.HourNumber + ":" + this.MinuteNumber + ((double) this.Hour < 12.0 ? " AM" : " PM");
-    this.TimeLabel.text = this.TimeText;
-  }
+	public YandereScript Yandere;
 
-  public void BecomeEighties()
-  {
-    this.StudentManager.EightiesifyLabel(this.TimeLabel);
-    this.StudentManager.EightiesifyLabel(this.PeriodLabel);
-    this.StudentManager.EightiesifyLabel(this.DayLabel);
-    this.StudentManager.EightiesifyLabel(this.Yandere.Inventory.MoneyLabel);
-    this.LateStudent = false;
-  }
+	public PoliceScript Police;
 
-  public void GivePlayerBroughtWeapon()
-  {
-    int bringingItem = PlayerGlobals.BringingItem;
-    if (bringingItem <= 0 || bringingItem >= this.Police.EndOfDay.WeaponManager.BroughtWeapons.Length)
-      return;
-    this.Police.EndOfDay.WeaponManager.BroughtWeapons[bringingItem].Prompt.Circle[3].fillAmount = 0.0f;
-    this.Police.EndOfDay.WeaponManager.BroughtWeapons[bringingItem].UnequipImmediately = true;
-  }
+	public ClockScript Clock;
+
+	public MotionBlur Blur;
+
+	public Vector3 OriginalPosition;
+
+	public Transform PromptParent;
+
+	public Transform MinuteHand;
+
+	public Transform HourHand;
+
+	public Transform Sun;
+
+	public GameObject SunFlare;
+
+	public UILabel PeriodLabel;
+
+	public UILabel TimeLabel;
+
+	public UILabel DayLabel;
+
+	public Light MainLight;
+
+	public float HalfwayTime;
+
+	public float PresentTime;
+
+	public float TargetTime;
+
+	public float StartTime;
+
+	public float HourTime;
+
+	public float AmbientLightDim;
+
+	public float BloomFadeSpeed = 10f;
+
+	public float TimeSkipSpeed = 1f;
+
+	public float BathroomDim;
+
+	public float CameraTimer;
+
+	public float DayProgress;
+
+	public float LastMinute;
+
+	public float BloomWait;
+
+	public float StartHour;
+
+	public float TimeSpeed;
+
+	public float Minute;
+
+	public float Timer;
+
+	public float Hour;
+
+	public PhaseOfDay Phase;
+
+	public int Weekday;
+
+	public int Period;
+
+	public int Day = 1;
+
+	public int ID;
+
+	public string TimeText = string.Empty;
+
+	public bool IgnorePhotographyClub;
+
+	public bool BloomDisabled;
+
+	public bool LateStudent;
+
+	public bool UpdateBloom;
+
+	public bool MissionMode;
+
+	public bool ReduceKnee;
+
+	public bool StopTime;
+
+	public bool TimeSkip;
+
+	public bool FadeIn;
+
+	public bool Horror;
+
+	public bool Lerp;
+
+	public AudioSource SchoolBell;
+
+	public Color SkyboxColor;
+
+	public float BloomIntensity = 11f;
+
+	public float BloomRadius = 7f;
+
+	public float BloomKnee = 1f;
+
+	public UISprite BathroomDimSprite;
+
+	public Light[] BathroomLight;
+
+	public Collider[] Bathroom;
+
+	private void Start()
+	{
+		if (!MissionMode)
+		{
+			Profile.bloom.enabled = true;
+			BloomDisabled = OptionGlobals.DisableBloom;
+			OptionGlobals.DisableBloom = false;
+		}
+		RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f);
+		PeriodLabel.text = "BEFORE CLASS";
+		PresentTime = StartHour * 60f;
+		if (PlayerPrefs.GetInt("LoadingSave") == 1)
+		{
+			int profile = GameGlobals.Profile;
+			int @int = PlayerPrefs.GetInt("SaveSlot");
+			Weekday = PlayerPrefs.GetInt("Profile_" + profile + "_Slot_" + @int + "_Weekday");
+			if (Weekday == 1)
+			{
+				DateGlobals.Weekday = DayOfWeek.Monday;
+			}
+			else if (Weekday == 2)
+			{
+				DateGlobals.Weekday = DayOfWeek.Tuesday;
+			}
+			else if (Weekday == 3)
+			{
+				DateGlobals.Weekday = DayOfWeek.Wednesday;
+			}
+			else if (Weekday == 4)
+			{
+				DateGlobals.Weekday = DayOfWeek.Thursday;
+			}
+			else if (Weekday == 5)
+			{
+				DateGlobals.Weekday = DayOfWeek.Friday;
+			}
+		}
+		else if (DateGlobals.Weekday == DayOfWeek.Monday)
+		{
+			Weekday = 1;
+		}
+		else if (DateGlobals.Weekday == DayOfWeek.Tuesday)
+		{
+			Weekday = 2;
+		}
+		else if (DateGlobals.Weekday == DayOfWeek.Wednesday)
+		{
+			Weekday = 3;
+		}
+		else if (DateGlobals.Weekday == DayOfWeek.Thursday)
+		{
+			Weekday = 4;
+		}
+		else if (DateGlobals.Weekday == DayOfWeek.Friday)
+		{
+			Weekday = 5;
+		}
+		Day = Weekday + (DateGlobals.Week - 1) * 5;
+		if (DateGlobals.Weekday == DayOfWeek.Sunday)
+		{
+			DateGlobals.Weekday = DayOfWeek.Monday;
+		}
+		if (!SchoolGlobals.SchoolAtmosphereSet)
+		{
+			SchoolGlobals.SchoolAtmosphereSet = true;
+			SchoolGlobals.PreviousSchoolAtmosphere = 1f;
+			SchoolGlobals.SchoolAtmosphere = 1f;
+		}
+		if (SchoolGlobals.SchoolAtmosphere < 0.5f)
+		{
+			CameraEffects.UpdateBloom(1f);
+			CameraEffects.UpdateBloomKnee(0.5f);
+			CameraEffects.UpdateBloomRadius(4f);
+			Police.Darkness.enabled = true;
+			Police.Darkness.color = new Color(Police.Darkness.color.r, Police.Darkness.color.g, Police.Darkness.color.b, 1f);
+			FadeIn = true;
+		}
+		else
+		{
+			CameraEffects.UpdateBloom(11f);
+			CameraEffects.UpdateBloomKnee(1f);
+			CameraEffects.UpdateBloomRadius(7f);
+			BloomKnee = 1f;
+			BloomRadius = 7f;
+			BloomIntensity = 11f;
+			UpdateBloom = true;
+		}
+		if (GameGlobals.EightiesTutorial)
+		{
+			DayLabel.text = GetWeekdayText(DateGlobals.Weekday) ?? "";
+		}
+		else
+		{
+			DayLabel.text = GetWeekdayText(DateGlobals.Weekday) + ", WEEK " + DateGlobals.Week;
+		}
+		MainLight.color = new Color(1f, 1f, 1f, 1f);
+		RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f, 1f);
+		RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f));
+		if (ClubGlobals.GetClubClosed(ClubType.Photography) || StudentGlobals.GetStudentGrudge(56) || StudentGlobals.GetStudentGrudge(57) || StudentGlobals.GetStudentGrudge(58) || StudentGlobals.GetStudentGrudge(59) || StudentGlobals.GetStudentGrudge(60))
+		{
+			IgnorePhotographyClub = true;
+		}
+		MissionMode = MissionModeGlobals.MissionMode;
+		HourTime = PresentTime / 60f;
+		Hour = Mathf.Floor(PresentTime / 60f);
+		Minute = Mathf.Floor((PresentTime / 60f - Hour) * 60f);
+		UpdateClock();
+		if (GameGlobals.Eighties)
+		{
+			BecomeEighties();
+		}
+		if (StudentManager.RecordingVideo)
+		{
+			CameraEffects.UpdateBloom(1f);
+			CameraEffects.UpdateBloomRadius(4f);
+			CameraEffects.UpdateBloomKnee(0.75f);
+		}
+	}
+
+	public void Update()
+	{
+		if (FadeIn && Time.deltaTime < 1f)
+		{
+			Police.Darkness.color = new Color(Police.Darkness.color.r, Police.Darkness.color.g, Police.Darkness.color.b, Mathf.MoveTowards(Police.Darkness.color.a, 0f, Time.deltaTime));
+			if (Police.Darkness.color.a == 0f)
+			{
+				Police.Darkness.enabled = false;
+				FadeIn = false;
+			}
+		}
+		if (!MissionMode && CameraTimer < 1f)
+		{
+			CameraTimer += Time.deltaTime;
+			if (CameraTimer > 1f && !StudentManager.MemorialScene.enabled)
+			{
+				Debug.Log("This is the exact moment that the player gains control of the character.");
+				if (BloomDisabled)
+				{
+					OptionGlobals.DisableBloom = true;
+					Profile.bloom.enabled = false;
+				}
+				Yandere.RPGCamera.mouseX = 0f;
+				Yandere.RPGCamera.enabled = true;
+				Yandere.CanMove = true;
+				if (!StudentManager.CameFromLoad)
+				{
+					GivePlayerBroughtWeapon();
+				}
+			}
+		}
+		if (PresentTime < 1080f)
+		{
+			if (UpdateBloom)
+			{
+				if (BloomWait == 0f)
+				{
+					if (!ReduceKnee)
+					{
+						if (Lerp)
+						{
+							BloomIntensity = Mathf.Lerp(BloomIntensity, 1f, Time.deltaTime);
+							BloomRadius = Mathf.Lerp(BloomRadius, 4f, Time.deltaTime);
+							if (BloomIntensity < 1.1f)
+							{
+								BloomIntensity = 1f;
+								BloomRadius = 4f;
+							}
+						}
+						else
+						{
+							BloomIntensity = Mathf.MoveTowards(BloomIntensity, 1f, Time.deltaTime * BloomFadeSpeed);
+							BloomRadius = Mathf.MoveTowards(BloomRadius, 4f, Time.deltaTime * BloomFadeSpeed);
+						}
+						CameraEffects.UpdateBloom(BloomIntensity);
+						CameraEffects.UpdateBloomRadius(BloomRadius);
+						if (BloomIntensity == 1f && BloomRadius == 4f)
+						{
+							ReduceKnee = true;
+						}
+					}
+					else
+					{
+						BloomKnee = Mathf.MoveTowards(BloomKnee, 0.75f, Time.deltaTime * (BloomFadeSpeed * 0.1f));
+						CameraEffects.UpdateBloomKnee(BloomKnee);
+						if (BloomKnee == 0.75f)
+						{
+							UpdateBloom = false;
+						}
+					}
+				}
+				else
+				{
+					BloomWait = Mathf.MoveTowards(BloomWait, 0f, Time.deltaTime);
+				}
+			}
+		}
+		else if (LoveManager.WaitingToConfess)
+		{
+			if (!StopTime)
+			{
+				LoveManager.BeginConfession();
+			}
+		}
+		else if (!Police.FadeOut && !Yandere.Attacking && !Yandere.Struggling && !Yandere.DelinquentFighting && !Yandere.Pickpocketing && !Yandere.Noticed)
+		{
+			Debug.Log("Ending the day because it's 6:00 PM.");
+			if (!StudentManager.Portal.GetComponent<PortalScript>().EndedFinalEvents)
+			{
+				StudentManager.Portal.GetComponent<PortalScript>().EndFinalEvents();
+			}
+			StudentManager.Reputation.UpdateRep();
+			Police.DayOver = true;
+			Yandere.StudentManager.StopMoving();
+			Police.Darkness.enabled = true;
+			Police.FadeOut = true;
+			StopTime = true;
+		}
+		if (!StopTime)
+		{
+			if (Period == 3)
+			{
+				PresentTime += Time.deltaTime * (1f / 60f) * TimeSpeed * 0.5f;
+			}
+			else
+			{
+				PresentTime += Time.deltaTime * (1f / 60f) * TimeSpeed;
+			}
+		}
+		HourTime = PresentTime / 60f;
+		Hour = Mathf.Floor(PresentTime / 60f);
+		Minute = Mathf.Floor((PresentTime / 60f - Hour) * 60f);
+		if (Minute != LastMinute)
+		{
+			UpdateClock();
+		}
+		MinuteHand.localEulerAngles = new Vector3(MinuteHand.localEulerAngles.x, MinuteHand.localEulerAngles.y, Minute * 6f);
+		HourHand.localEulerAngles = new Vector3(HourHand.localEulerAngles.x, HourHand.localEulerAngles.y, Hour * 30f);
+		if (LateStudent && HourTime > 7.9f)
+		{
+			ActivateLateStudent();
+		}
+		if (HourTime < 8.5f)
+		{
+			if (Period < 1)
+			{
+				PeriodLabel.text = "BEFORE CLASS";
+				DeactivateTrespassZones();
+				Period++;
+			}
+		}
+		else if (HourTime < 13f)
+		{
+			if (Period < 2)
+			{
+				PeriodLabel.text = "CLASS TIME";
+				ActivateTrespassZones();
+				Period++;
+			}
+		}
+		else if (HourTime < 13.5f)
+		{
+			if (Period < 3)
+			{
+				PeriodLabel.text = "LUNCH TIME";
+				StudentManager.DramaPhase = 0;
+				StudentManager.UpdateDrama();
+				DeactivateTrespassZones();
+				Period++;
+				StudentManager.WednesdayGiftBox.SetActive(false);
+				StudentManager.FridayTestNotes.SetActive(false);
+				StudentManager.MondayBento.SetActive(false);
+				StudentManager.RivalBookBag.NoBento = true;
+				StudentManager.Unstop();
+				if (!GameGlobals.Eighties && DateGlobals.Week == 1 && !StudentManager.MissionMode)
+				{
+					StudentManager.UpdateLunchtimeStudents();
+				}
+				UpdateClock();
+			}
+		}
+		else if (HourTime < 15.5f)
+		{
+			if (Period < 4)
+			{
+				PeriodLabel.text = "CLASS TIME";
+				ActivateTrespassZones();
+				Period++;
+			}
+		}
+		else if (HourTime < 16f)
+		{
+			if (Period < 5)
+			{
+				StudentManager.Reputation.RepUpdateLabel.text = "REP WILL UPDATE AFTER SCHOOL";
+				if (StudentManager.Bully && StudentManager.Bullies > 0)
+				{
+					StudentManager.UpdateGraffiti();
+				}
+				PeriodLabel.text = "CLEANING TIME";
+				DeactivateTrespassZones();
+				if (Weekday == 5)
+				{
+					MeetingRoomTrespassZone.enabled = true;
+				}
+				StudentManager.Unstop();
+				Period++;
+				UpdateClock();
+			}
+		}
+		else if (Period < 6)
+		{
+			PeriodLabel.text = "AFTER SCHOOL";
+			StudentManager.DramaPhase = 0;
+			StudentManager.UpdateDrama();
+			Period++;
+		}
+		if (!IgnorePhotographyClub && HourTime > 16.75f && StudentManager.SleuthPhase < 4)
+		{
+			StudentManager.SleuthPhase = 3;
+			StudentManager.UpdateSleuths();
+		}
+		Sun.eulerAngles = new Vector3(Sun.eulerAngles.x, Sun.eulerAngles.y, -45f + 90f * (PresentTime - 420f) / 660f);
+		if (!Horror)
+		{
+			if (StudentManager.WestBathroomArea.bounds.Contains(Yandere.transform.position) || StudentManager.EastBathroomArea.bounds.Contains(Yandere.transform.position))
+			{
+				for (int i = 1; i < Bathroom.Length; i++)
+				{
+					if (Bathroom[i].bounds.Contains(Yandere.transform.position))
+					{
+						if (!BathroomLight[i].enabled)
+						{
+							BathroomDim = 0.5f;
+						}
+						else
+						{
+							BathroomDim = 0f;
+						}
+					}
+				}
+			}
+			else
+			{
+				BathroomDim = 0f;
+			}
+			if (BathroomDimSprite.alpha != BathroomDim)
+			{
+				BathroomDimSprite.alpha = Mathf.MoveTowards(BathroomDimSprite.alpha, BathroomDim, Time.deltaTime * 10f);
+			}
+			AmbientLightDim = 0.75f;
+			if (PresentTime > 930f)
+			{
+				DayProgress = (PresentTime - 930f) / 150f;
+				MainLight.color = new Color(1f - 0.1490196f * DayProgress, 1f - 0.40392154f * DayProgress, 1f - 0.70980394f * DayProgress);
+				RenderSettings.ambientLight = new Color(1f - 0.1490196f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 0.40392154f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 0.70980394f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress));
+				SkyboxColor = new Color(1f - 0.1490196f * DayProgress - 0.5f * (1f - DayProgress), 1f - 0.40392154f * DayProgress - 0.5f * (1f - DayProgress), 1f - 0.70980394f * DayProgress - 0.5f * (1f - DayProgress));
+				RenderSettings.skybox.SetColor("_Tint", new Color(SkyboxColor.r, SkyboxColor.g, SkyboxColor.b));
+			}
+			else
+			{
+				RenderSettings.ambientLight = new Color(AmbientLightDim, AmbientLightDim, AmbientLightDim);
+			}
+		}
+		if (!TimeSkip)
+		{
+			return;
+		}
+		if (HalfwayTime == 0f)
+		{
+			HalfwayTime = PresentTime + (TargetTime - PresentTime) * 0.5f;
+			OriginalPosition = Yandere.transform.position;
+			if (!StudentManager.Eighties)
+			{
+				Yandere.Phone.transform.localPosition = new Vector3(0.02f, -0.005f, 0.03f);
+				Yandere.Phone.transform.localEulerAngles = new Vector3(0f, -165f, -165f);
+			}
+			else
+			{
+				Yandere.Phone.transform.localPosition = new Vector3(0.02f, -0.0066666f, 0.03f);
+				Yandere.Phone.transform.localEulerAngles = new Vector3(-75f, 120f, 75f);
+			}
+			Yandere.TimeSkipping = true;
+			Yandere.CanMove = false;
+			if (Yandere.Armed)
+			{
+				Yandere.Unequip();
+			}
+		}
+		TimeSkipSpeed += Time.deltaTime;
+		if (Time.timeScale < 10f)
+		{
+			Time.timeScale = Mathf.MoveTowards(Time.timeScale, 10f, TimeSkipSpeed * Time.unscaledDeltaTime);
+		}
+		Yandere.CharacterAnimation["f02_timeSkip_00"].speed = 1f / Time.timeScale;
+		if (PresentTime > TargetTime)
+		{
+			EndTimeSkip();
+		}
+		if (Yandere.PauseScreen.transform.localPosition.x == 1351f && Input.GetButtonDown("A"))
+		{
+			if (!StudentManager.Eighties)
+			{
+				RetroMinigame.MyRenderer.mainTexture = RetroMinigame.ModernTexture;
+			}
+			Yandere.PauseScreen.PromptBar.Label[0].text = "Jump / Retry";
+			RetroMinigame.gameObject.SetActive(true);
+			RetroMinigame.Show = true;
+		}
+		else if (Yandere.CameraEffects.Streaks.color.a > 0f || Yandere.CameraEffects.MurderStreaks.color.a > 0f || Yandere.NearSenpai || Input.GetButtonDown("B"))
+		{
+			EndTimeSkip();
+		}
+	}
+
+	public void EndTimeSkip()
+	{
+		Debug.Log("Ending TimeSkip now.");
+		if (GameGlobals.AlphabetMode)
+		{
+			StopTime = true;
+		}
+		Yandere.PauseScreen.PromptBar.ClearButtons();
+		Yandere.PauseScreen.PromptBar.Show = false;
+		PromptParent.localScale = new Vector3(1f, 1f, 1f);
+		Yandere.transform.position = OriginalPosition;
+		Yandere.Phone.SetActive(false);
+		Yandere.TimeSkipping = false;
+		Time.timeScale = 1f;
+		TimeSkip = false;
+		HalfwayTime = 0f;
+		TimeSkipSpeed = 1f;
+		if (!Yandere.Noticed && !Police.FadeOut && !Yandere.Attacked)
+		{
+			Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+			Yandere.CanMoveTimer = 0.5f;
+		}
+		RetroMinigame.MinigameCamera.SetActive(false);
+		RetroMinigame.Show = false;
+	}
+
+	public string GetWeekdayText(DayOfWeek weekday)
+	{
+		switch (weekday)
+		{
+		case DayOfWeek.Sunday:
+			Weekday = 0;
+			return "SUNDAY";
+		case DayOfWeek.Monday:
+			Weekday = 1;
+			return "MONDAY";
+		case DayOfWeek.Tuesday:
+			Weekday = 2;
+			return "TUESDAY";
+		case DayOfWeek.Wednesday:
+			Weekday = 3;
+			return "WEDNESDAY";
+		case DayOfWeek.Thursday:
+			Weekday = 4;
+			return "THURSDAY";
+		case DayOfWeek.Friday:
+			Weekday = 5;
+			return "FRIDAY";
+		default:
+			Weekday = 6;
+			return "SATURDAY";
+		}
+	}
+
+	private void ActivateTrespassZones()
+	{
+		if (!SchoolBell.isPlaying || SchoolBell.time > 1f)
+		{
+			SchoolBell.Play();
+		}
+		Collider[] trespassZones = TrespassZones;
+		for (int i = 0; i < trespassZones.Length; i++)
+		{
+			trespassZones[i].enabled = true;
+		}
+	}
+
+	public void DeactivateTrespassZones()
+	{
+		Yandere.Trespassing = false;
+		if ((!SchoolBell.isPlaying || SchoolBell.time > 1f) && !StudentManager.SpawnNobody)
+		{
+			SchoolBell.Play();
+		}
+		Collider[] trespassZones = TrespassZones;
+		foreach (Collider collider in trespassZones)
+		{
+			if (!collider.GetComponent<TrespassScript>().OffLimits)
+			{
+				collider.enabled = false;
+				if (collider.GetComponent<TrespassScript>().CookingClub)
+				{
+					collider.enabled = true;
+				}
+			}
+		}
+	}
+
+	public void ActivateLateStudent()
+	{
+		if (!StudentManager.MissionMode && StudentManager.Students[7] != null && StudentManager.Students[7].Alive)
+		{
+			StudentManager.Students[7].gameObject.SetActive(true);
+			StudentManager.Students[7].Pathfinding.speed = 4f;
+			StudentManager.Students[7].Spawned = true;
+			StudentManager.Students[7].Hurry = true;
+		}
+		LateStudent = false;
+	}
+
+	public void NightLighting()
+	{
+		MainLight.color = new Color(0.25f, 0.25f, 0.5f);
+		RenderSettings.ambientLight = new Color(0.25f, 0.25f, 0.5f);
+		SkyboxColor = new Color(0.1f, 0.1f, 0.2f);
+		RenderSettings.skybox.SetColor("_Tint", new Color(0.1f, 0.1f, 0.2f));
+	}
+
+	public void UpdateClock()
+	{
+		LastMinute = Minute;
+		if (Hour == 0f || Hour == 12f)
+		{
+			HourNumber = "12";
+		}
+		else if (Hour < 12f)
+		{
+			HourNumber = Hour.ToString("f0");
+		}
+		else
+		{
+			HourNumber = (Hour - 12f).ToString("f0");
+		}
+		if (Minute < 10f)
+		{
+			MinuteNumber = "0" + Minute.ToString("f0");
+		}
+		else
+		{
+			MinuteNumber = Minute.ToString("f0");
+		}
+		TimeText = HourNumber + ":" + MinuteNumber + ((Hour < 12f) ? " AM" : " PM");
+		TimeLabel.text = TimeText;
+	}
+
+	public void BecomeEighties()
+	{
+		StudentManager.EightiesifyLabel(TimeLabel);
+		StudentManager.EightiesifyLabel(PeriodLabel);
+		StudentManager.EightiesifyLabel(DayLabel);
+		StudentManager.EightiesifyLabel(Yandere.Inventory.MoneyLabel);
+		LateStudent = false;
+	}
+
+	public void GivePlayerBroughtWeapon()
+	{
+		int bringingItem = PlayerGlobals.BringingItem;
+		if (bringingItem > 0 && bringingItem < Police.EndOfDay.WeaponManager.BroughtWeapons.Length)
+		{
+			Police.EndOfDay.WeaponManager.BroughtWeapons[bringingItem].Prompt.Circle[3].fillAmount = 0f;
+			Police.EndOfDay.WeaponManager.BroughtWeapons[bringingItem].UnequipImmediately = true;
+		}
+	}
 }

@@ -1,57 +1,56 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIButtonKeys
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/Button Keys (Legacy)")]
 public class UIButtonKeys : UIKeyNavigation
 {
-  public UIButtonKeys selectOnClick;
-  public UIButtonKeys selectOnUp;
-  public UIButtonKeys selectOnDown;
-  public UIButtonKeys selectOnLeft;
-  public UIButtonKeys selectOnRight;
+	public UIButtonKeys selectOnClick;
 
-  protected override void OnEnable()
-  {
-    this.Upgrade();
-    base.OnEnable();
-  }
+	public UIButtonKeys selectOnUp;
 
-  public void Upgrade()
-  {
-    if ((Object) this.onClick == (Object) null && (Object) this.selectOnClick != (Object) null)
-    {
-      this.onClick = this.selectOnClick.gameObject;
-      this.selectOnClick = (UIButtonKeys) null;
-      NGUITools.SetDirty((Object) this);
-    }
-    if ((Object) this.onLeft == (Object) null && (Object) this.selectOnLeft != (Object) null)
-    {
-      this.onLeft = this.selectOnLeft.gameObject;
-      this.selectOnLeft = (UIButtonKeys) null;
-      NGUITools.SetDirty((Object) this);
-    }
-    if ((Object) this.onRight == (Object) null && (Object) this.selectOnRight != (Object) null)
-    {
-      this.onRight = this.selectOnRight.gameObject;
-      this.selectOnRight = (UIButtonKeys) null;
-      NGUITools.SetDirty((Object) this);
-    }
-    if ((Object) this.onUp == (Object) null && (Object) this.selectOnUp != (Object) null)
-    {
-      this.onUp = this.selectOnUp.gameObject;
-      this.selectOnUp = (UIButtonKeys) null;
-      NGUITools.SetDirty((Object) this);
-    }
-    if (!((Object) this.onDown == (Object) null) || !((Object) this.selectOnDown != (Object) null))
-      return;
-    this.onDown = this.selectOnDown.gameObject;
-    this.selectOnDown = (UIButtonKeys) null;
-    NGUITools.SetDirty((Object) this);
-  }
+	public UIButtonKeys selectOnDown;
+
+	public UIButtonKeys selectOnLeft;
+
+	public UIButtonKeys selectOnRight;
+
+	protected override void OnEnable()
+	{
+		Upgrade();
+		base.OnEnable();
+	}
+
+	public void Upgrade()
+	{
+		if (onClick == null && selectOnClick != null)
+		{
+			onClick = selectOnClick.gameObject;
+			selectOnClick = null;
+			NGUITools.SetDirty(this);
+		}
+		if (onLeft == null && selectOnLeft != null)
+		{
+			onLeft = selectOnLeft.gameObject;
+			selectOnLeft = null;
+			NGUITools.SetDirty(this);
+		}
+		if (onRight == null && selectOnRight != null)
+		{
+			onRight = selectOnRight.gameObject;
+			selectOnRight = null;
+			NGUITools.SetDirty(this);
+		}
+		if (onUp == null && selectOnUp != null)
+		{
+			onUp = selectOnUp.gameObject;
+			selectOnUp = null;
+			NGUITools.SetDirty(this);
+		}
+		if (onDown == null && selectOnDown != null)
+		{
+			onDown = selectOnDown.gameObject;
+			selectOnDown = null;
+			NGUITools.SetDirty(this);
+		}
+	}
 }

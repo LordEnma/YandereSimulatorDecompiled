@@ -1,738 +1,929 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: StudentInfoScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class StudentInfoScript : MonoBehaviour
 {
-  public StudentInfoMenuScript StudentInfoMenu;
-  public StudentManagerScript StudentManager;
-  public DialogueWheelScript DialogueWheel;
-  public HomeInternetScript HomeInternet;
-  public TopicManagerScript TopicManager;
-  public NoteLockerScript NoteLocker;
-  public RadarChart ReputationChart;
-  public PromptBarScript PromptBar;
-  public ShutterScript Shutter;
-  public YandereScript Yandere;
-  public JsonScript JSON;
-  public Texture GuidanceCounselor;
-  public Texture DefaultPortrait;
-  public Texture BlankPortrait;
-  public Texture Headmaster;
-  public Texture InfoChan;
-  public Transform ReputationBar;
-  public GameObject Static;
-  public GameObject Topics;
-  public UILabel OccupationLabel;
-  public UILabel ReputationLabel;
-  public UILabel RealNameLabel;
-  public UILabel StrengthLabel;
-  public UILabel PersonaLabel;
-  public UILabel ClassLabel;
-  public UILabel CrushLabel;
-  public UILabel ClubLabel;
-  public UILabel InfoLabel;
-  public UILabel NameLabel;
-  public UITexture Portrait;
-  public string[] OpinionSpriteNames;
-  public string[] Strings;
-  public int CurrentStudent;
-  public bool UpdatedOnce;
-  public bool Eighties;
-  public bool ShowRep;
-  public bool Back;
-  public UISprite[] TopicIcons;
-  public UISprite[] TopicOpinionIcons;
-  private static readonly IntAndStringDictionary StrengthStrings;
-  public UILabel LeftCrushLabel;
-  public string PartnerName;
-  public bool Matchmade;
+	public StudentInfoMenuScript StudentInfoMenu;
 
-  private void Start()
-  {
-    this.Topics.SetActive(false);
-    this.Eighties = GameGlobals.Eighties;
-    if (this.Eighties)
-      this.InfoLabel.transform.localPosition += new Vector3(0.0f, -10f, 0.0f);
-    if (this.UpdatedOnce)
-      return;
-    this.UpdateInfo(this.StudentInfoMenu.StudentID);
-  }
+	public StudentManagerScript StudentManager;
 
-  public void UpdateInfo(int ID)
-  {
-    this.CurrentStudent = ID;
-    if (!this.UpdatedOnce)
-      this.Eighties = GameGlobals.Eighties;
-    this.UpdatedOnce = true;
-    StudentJson student = this.JSON.Students[ID];
-    if (student.RealName == "")
-    {
-      this.NameLabel.transform.localPosition = new Vector3(-228f, 195f, 0.0f);
-      this.RealNameLabel.text = "";
-    }
-    else
-    {
-      this.NameLabel.transform.localPosition = new Vector3(-228f, 210f, 0.0f);
-      this.RealNameLabel.text = "Real Name: " + student.RealName;
-    }
-    this.NameLabel.text = student.Name;
-    this.ClassLabel.text = "Class " + (student.Class.ToString() ?? "").Insert(1, "-");
-    if (ID == 90 || ID > 96)
-      this.ClassLabel.text = "";
-    float studentRep = this.StudentManager.StudentReps[ID];
-    this.ReputationLabel.text = (double) studentRep >= 0.0 ? ((double) studentRep <= 0.0 ? "0" : "+" + studentRep.ToString()) : studentRep.ToString() ?? "";
-    this.ReputationBar.localPosition = new Vector3(studentRep * 0.96f, this.ReputationBar.localPosition.y, this.ReputationBar.localPosition.z);
-    if ((double) this.ReputationBar.localPosition.x > 96.0)
-      this.ReputationBar.localPosition = new Vector3(96f, this.ReputationBar.localPosition.y, this.ReputationBar.localPosition.z);
-    if ((double) this.ReputationBar.localPosition.x < -96.0)
-      this.ReputationBar.localPosition = new Vector3(-96f, this.ReputationBar.localPosition.y, this.ReputationBar.localPosition.z);
-    this.PersonaLabel.text = !((Object) this.StudentManager.Students[this.CurrentStudent] != (Object) null) ? Persona.PersonaNames[student.Persona] : Persona.PersonaNames[this.StudentManager.Students[this.CurrentStudent].Persona];
-    if (student.Persona == PersonaType.Strict && student.Club == ClubType.GymTeacher && !StudentGlobals.GetStudentReplaced(ID))
-      this.PersonaLabel.text = "Friendly but Strict";
-    this.MatchmadeCheck();
-    int suitorId = this.StudentManager.SuitorID;
-    if (this.Matchmade)
-    {
-      this.LeftCrushLabel.text = "Relationship";
-      this.CrushLabel.text = this.JSON.Students[student.Crush].Name;
-      this.CrushLabel.text = this.PartnerName;
-    }
-    else
-    {
-      this.LeftCrushLabel.text = "Crush";
-      if (this.CurrentStudent > 10 && this.CurrentStudent < 21)
-        this.CrushLabel.text = this.CurrentStudent != this.StudentManager.RivalID ? "None Anymore" : this.JSON.Students[student.Crush].Name;
-      if (this.CurrentStudent == suitorId)
-        this.CrushLabel.text = (Object) this.StudentManager.LoveManager != (Object) null && this.StudentManager.LoveManager.SuitorProgress == 0 || DatingGlobals.SuitorProgress == 0 ? "Unknown" : this.JSON.Students[student.Crush].Name;
-      else if (student.Crush == 0)
-        this.CrushLabel.text = "None";
-      else if (student.Crush == 99)
-      {
-        this.CrushLabel.text = "None";
-      }
-      else
-      {
-        Debug.Log((object) "The JSON has an entry for this character's crush...");
-        this.CrushLabel.text = this.JSON.Students[student.Crush].Name;
-        bool flag = false;
-        if (this.StudentManager.Week == 0)
-        {
-          Debug.Log((object) "Week was 0. Are we in the HomeScene?");
-          this.StudentManager.Week = DateGlobals.Week;
-        }
-        for (int index = this.StudentManager.Week + 1; index < 11; ++index)
-        {
-          if (this.CurrentStudent == this.StudentManager.SuitorIDs[index])
-          {
-            Debug.Log((object) "This guy's ID is in the suitor list.");
-            flag = true;
-          }
-        }
-        if (flag)
-        {
-          for (int index = 2; index < 11; ++index)
-          {
-            if (this.CurrentStudent == this.StudentManager.SuitorIDs[index] && this.StudentManager.Week < index)
-            {
-              Debug.Log((object) "This guy will be a suitor one day in the future.");
-              this.CrushLabel.text = "Unknown";
-            }
-          }
-        }
-        if (this.CurrentStudent == this.StudentManager.SuitorIDs[this.StudentManager.Week])
-        {
-          Debug.Log((object) "This guy is the CURRENT rival's suitor!");
-          if ((!((Object) this.StudentManager.LoveManager != (Object) null) ? DatingGlobals.SuitorProgress : this.StudentManager.LoveManager.SuitorProgress) == 0)
-          {
-            Debug.Log((object) "We don't know who he has a crush on yet.");
-            this.CrushLabel.text = "Unknown";
-          }
-          else
-            Debug.Log((object) "We know who he has a crush on.");
-        }
-      }
-    }
-    this.OccupationLabel.text = student.Club >= ClubType.Teacher ? "Occupation" : "Club";
-    this.ClubLabel.text = student.Club >= ClubType.Teacher ? Club.TeacherClubNames[student.Class] : Club.ClubNames[student.Club];
-    if (ClubGlobals.GetClubClosed(student.Club))
-      this.ClubLabel.text = "No Club";
-    this.StrengthLabel.text = StudentInfoScript.StrengthStrings[student.Strength];
-    AudioSource component = this.GetComponent<AudioSource>();
-    component.enabled = false;
-    this.Static.SetActive(false);
-    component.volume = 0.0f;
-    component.Stop();
-    string str = "";
-    if (this.Eighties)
-      str = "1989";
-    if (ID < 98)
-    {
-      if (this.Eighties || !this.Eighties && ID < 12 || !this.Eighties && ID > 20)
-      {
-        WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + str + "/Student_" + ID.ToString() + ".png");
-        if (!StudentGlobals.GetStudentReplaced(ID))
-          this.Portrait.mainTexture = (Texture) www.texture;
-        else
-          this.Portrait.mainTexture = this.StudentInfoMenu.BlankPortrait;
-        if (this.Eighties && this.CurrentStudent > 10 && this.CurrentStudent < 21 && DateGlobals.Week < this.CurrentStudent - 10)
-          this.Portrait.mainTexture = this.StudentInfoMenu.EightiesUnknown;
-      }
-      else
-        this.Portrait.mainTexture = this.StudentInfoMenu.RivalPortraits[ID];
-    }
-    else
-    {
-      switch (ID)
-      {
-        case 98:
-          this.Portrait.mainTexture = this.StudentInfoMenu.Counselor;
-          break;
-        case 99:
-          this.Portrait.mainTexture = this.StudentInfoMenu.Headmaster;
-          break;
-        case 100:
-          this.Portrait.mainTexture = this.StudentInfoMenu.InfoChan;
-          if (!this.Eighties)
-          {
-            this.Static.SetActive(true);
-            if (!this.StudentInfoMenu.Gossiping && !this.StudentInfoMenu.Distracting && !this.StudentInfoMenu.CyberBullying && !this.StudentInfoMenu.CyberStalking)
-            {
-              component.enabled = true;
-              component.volume = 1f;
-              component.Play();
-              break;
-            }
-            break;
-          }
-          break;
-      }
-    }
-    this.UpdateAdditionalInfo(ID);
-    this.UpdateRepChart();
-    this.CensorUnknownRivalInfo();
-    this.UpdateTagButton();
-  }
+	public DialogueWheelScript DialogueWheel;
 
-  private void Update()
-  {
-    if (this.CurrentStudent == 100)
-      this.UpdateRepChart();
-    if (Input.GetButtonDown("A"))
-    {
-      if (this.StudentInfoMenu.Gossiping)
-      {
-        this.StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
-        this.StudentInfoMenu.PauseScreen.Show = false;
-        this.DialogueWheel.Victim = this.CurrentStudent;
-        this.StudentInfoMenu.Gossiping = false;
-        this.gameObject.SetActive(false);
-        Time.timeScale = 0.0001f;
-        this.DialogueWheel.TopicInterface.Socializing = false;
-        this.DialogueWheel.TopicInterface.StudentID = this.Yandere.TargetStudent.StudentID;
-        this.DialogueWheel.TopicInterface.Student = this.Yandere.TargetStudent;
-        this.DialogueWheel.TopicInterface.TargetStudentID = this.CurrentStudent;
-        this.DialogueWheel.TopicInterface.TargetStudent = this.StudentManager.Students[this.CurrentStudent];
-        this.DialogueWheel.TopicInterface.UpdateOpinions();
-        this.DialogueWheel.TopicInterface.UpdateTopicHighlight();
-        this.DialogueWheel.TopicInterface.gameObject.SetActive(true);
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Label[0].text = "Speak";
-        this.PromptBar.Label[1].text = "Back";
-        this.PromptBar.Label[2].text = "Positive/Negative";
-        this.PromptBar.UpdateButtons();
-        this.PromptBar.Show = true;
-      }
-      else if (this.StudentInfoMenu.Distracting)
-      {
-        this.StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
-        this.StudentInfoMenu.PauseScreen.Show = false;
-        this.DialogueWheel.Victim = this.CurrentStudent;
-        this.StudentInfoMenu.Distracting = false;
-        this.gameObject.SetActive(false);
-        Time.timeScale = 1f;
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Show = false;
-      }
-      else if (this.StudentInfoMenu.CyberBullying)
-      {
-        this.HomeInternet.PostLabels[1].text = this.JSON.Students[this.CurrentStudent].Name;
-        this.HomeInternet.Student = this.CurrentStudent;
-        this.StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
-        this.StudentInfoMenu.PauseScreen.Show = false;
-        this.StudentInfoMenu.CyberBullying = false;
-        this.gameObject.SetActive(false);
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Show = false;
-      }
-      else if (this.StudentInfoMenu.CyberStalking)
-      {
-        this.HomeInternet.HomeCamera.CyberstalkWindow.SetActive(true);
-        this.HomeInternet.Student = this.CurrentStudent;
-        this.StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
-        this.StudentInfoMenu.PauseScreen.Show = false;
-        this.StudentInfoMenu.CyberStalking = false;
-        this.gameObject.SetActive(false);
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Show = false;
-      }
-      else if (this.StudentInfoMenu.MatchMaking)
-      {
-        this.StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
-        this.StudentInfoMenu.PauseScreen.Show = false;
-        this.DialogueWheel.Victim = this.CurrentStudent;
-        this.StudentInfoMenu.MatchMaking = false;
-        this.gameObject.SetActive(false);
-        Time.timeScale = 1f;
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Show = false;
-      }
-      else if (this.StudentInfoMenu.Targeting)
-      {
-        this.StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
-        this.StudentInfoMenu.PauseScreen.Show = false;
-        this.Yandere.TargetStudent.HuntTarget = this.StudentManager.Students[this.CurrentStudent];
-        this.Yandere.TargetStudent.HuntTarget.Hunted = true;
-        this.Yandere.TargetStudent.GoCommitMurder();
-        this.Yandere.RPGCamera.enabled = true;
-        this.Yandere.TargetStudent = (StudentScript) null;
-        this.StudentInfoMenu.Targeting = false;
-        this.gameObject.SetActive(false);
-        Time.timeScale = 1f;
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Show = false;
-      }
-      else if (this.StudentInfoMenu.SendingHome)
-      {
-        if (this.CurrentStudent == 10 || this.CurrentStudent == this.StudentManager.RivalID)
-        {
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(11);
-          this.gameObject.SetActive(false);
-          this.PromptBar.ClearButtons();
-          this.PromptBar.Label[0].text = string.Empty;
-          this.PromptBar.Label[1].text = "Back";
-          this.PromptBar.UpdateButtons();
-        }
-        else
-        {
-          if (this.StudentManager.Students[this.CurrentStudent].Routine && !this.StudentManager.Students[this.CurrentStudent].InEvent && !this.StudentManager.Students[this.CurrentStudent].TargetedForDistraction && this.StudentManager.Students[this.CurrentStudent].ClubActivityPhase < 16 && !this.StudentManager.Students[this.CurrentStudent].MyBento.Tampered)
-          {
-            this.StudentManager.Students[this.CurrentStudent].Routine = false;
-            this.StudentManager.Students[this.CurrentStudent].SentHome = true;
-            this.StudentManager.Students[this.CurrentStudent].CameraReacting = false;
-            this.StudentManager.Students[this.CurrentStudent].SpeechLines.Stop();
-            this.StudentManager.Students[this.CurrentStudent].EmptyHands();
-            this.Yandere.PauseScreen.ServiceMenu.ServicePurchased[this.Yandere.PauseScreen.ServiceMenu.Selected] = true;
-            this.StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(true);
-            this.StudentInfoMenu.PauseScreen.ServiceMenu.UpdateList();
-            this.StudentInfoMenu.PauseScreen.ServiceMenu.UpdateDesc();
-            this.StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
-            this.StudentInfoMenu.SendingHome = false;
-          }
-          else
-            this.StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(0);
-          this.gameObject.SetActive(false);
-          this.PromptBar.ClearButtons();
-          this.PromptBar.Label[0].text = string.Empty;
-          this.PromptBar.Label[1].text = "Back";
-          this.PromptBar.UpdateButtons();
-          this.PromptBar.Show = true;
-        }
-      }
-      else if (this.StudentInfoMenu.FindingLocker)
-      {
-        this.NoteLocker.gameObject.SetActive(true);
-        this.NoteLocker.transform.position = this.StudentManager.Students[this.StudentInfoMenu.StudentID].MyLocker.position;
-        this.NoteLocker.transform.position += new Vector3(0.0f, 1.355f, 0.0f);
-        this.NoteLocker.transform.position += this.StudentManager.Students[this.StudentInfoMenu.StudentID].MyLocker.forward * 0.33333f;
-        this.NoteLocker.Prompt.Label[0].text = "     Leave note for " + this.StudentManager.Students[this.StudentInfoMenu.StudentID].Name;
-        this.NoteLocker.Student = this.StudentManager.Students[this.StudentInfoMenu.StudentID];
-        this.NoteLocker.LockerOwner = this.StudentInfoMenu.StudentID;
-        this.NoteLocker.StudentID = this.StudentInfoMenu.StudentID;
-        this.NoteLocker.Prompt.enabled = true;
-        this.NoteLocker.transform.GetChild(0).gameObject.SetActive(true);
-        this.NoteLocker.CheckingNote = false;
-        this.NoteLocker.CanLeaveNote = true;
-        this.NoteLocker.SpawnedNote = false;
-        this.NoteLocker.NoteLeft = false;
-        this.NoteLocker.Success = false;
-        this.NoteLocker.Timer = 0.0f;
-        this.StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
-        this.StudentInfoMenu.PauseScreen.Show = false;
-        this.StudentInfoMenu.FindingLocker = false;
-        this.gameObject.SetActive(false);
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Show = false;
-        this.Yandere.RPGCamera.enabled = true;
-        Time.timeScale = 1f;
-        if (this.StudentInfoMenu.StudentID == 11 && SchemeGlobals.GetSchemeStage(6) == 4)
-        {
-          SchemeGlobals.SetSchemeStage(6, 5);
-          this.Yandere.PauseScreen.Schemes.UpdateInstructions();
-        }
-      }
-      else if (this.StudentInfoMenu.FiringCouncilMember)
-      {
-        if (this.StudentManager.Students[this.CurrentStudent].Routine && !this.StudentManager.Students[this.CurrentStudent].InEvent && !this.StudentManager.Students[this.CurrentStudent].TargetedForDistraction && this.StudentManager.Students[this.CurrentStudent].ClubActivityPhase < 16 && !this.StudentManager.Students[this.CurrentStudent].MyBento.Tampered)
-        {
-          this.StudentManager.Students[this.CurrentStudent].OriginalPersona = PersonaType.Heroic;
-          this.StudentManager.Students[this.CurrentStudent].Persona = PersonaType.Heroic;
-          this.StudentManager.Students[this.CurrentStudent].Club = ClubType.None;
-          this.StudentManager.Students[this.CurrentStudent].CameraReacting = false;
-          this.StudentManager.Students[this.CurrentStudent].SpeechLines.Stop();
-          this.StudentManager.Students[this.CurrentStudent].EmptyHands();
-          this.StudentManager.Students[this.CurrentStudent].IdleAnim = this.StudentManager.Students[this.CurrentStudent].BulliedIdleAnim;
-          this.StudentManager.Students[this.CurrentStudent].WalkAnim = this.StudentManager.Students[this.CurrentStudent].BulliedWalkAnim;
-          this.StudentManager.Students[this.CurrentStudent].Armband.SetActive(false);
-          StudentScript student = this.StudentManager.Students[this.CurrentStudent];
-          ScheduleBlock scheduleBlock = student.ScheduleBlocks[3];
-          scheduleBlock.destination = "LunchSpot";
-          scheduleBlock.action = "Eat";
-          student.GetDestinations();
-          student.CurrentDestination = student.Destinations[student.Phase];
-          student.Pathfinding.target = student.Destinations[student.Phase];
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(true);
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.UpdateList();
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.UpdateDesc();
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
-          this.StudentInfoMenu.FiringCouncilMember = false;
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(9);
-        }
-        else
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(0);
-        this.gameObject.SetActive(false);
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Label[0].text = string.Empty;
-        this.PromptBar.Label[1].text = "Back";
-        this.PromptBar.UpdateButtons();
-      }
-      else if (this.StudentInfoMenu.GettingOpinions)
-      {
-        for (int index = 1; index < 26; ++index)
-        {
-          ConversationGlobals.SetTopicDiscovered(index, true);
-          this.StudentManager.SetTopicLearnedByStudent(index, this.CurrentStudent, true);
-        }
-        this.StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
-        this.gameObject.SetActive(false);
-        this.StudentInfoMenu.GettingOpinions = false;
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Label[0].text = string.Empty;
-        this.PromptBar.Label[1].text = "Back";
-        this.PromptBar.UpdateButtons();
-      }
-    }
-    if (Input.GetButtonDown("B"))
-    {
-      this.ShowRep = false;
-      this.Topics.SetActive(false);
-      this.GetComponent<AudioSource>().Stop();
-      this.ReputationChart.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
-      if ((Object) this.Shutter != (Object) null)
-      {
-        if (!this.Shutter.PhotoIcons.activeInHierarchy)
-          this.Back = true;
-      }
-      else
-        this.Back = true;
-      if (this.Back)
-      {
-        this.StudentInfoMenu.gameObject.SetActive(true);
-        this.gameObject.SetActive(false);
-        this.PromptBar.ClearButtons();
-        this.PromptBar.Label[0].text = "View Info";
-        if (!this.StudentInfoMenu.Gossiping)
-          this.PromptBar.Label[1].text = "Back";
-        this.PromptBar.UpdateButtons();
-        this.Back = false;
-      }
-    }
-    if (Input.GetButtonDown("X") && this.PromptBar.Button[2].enabled)
-    {
-      if ((Object) this.StudentManager.Tag.Target != (Object) this.StudentManager.Students[this.CurrentStudent].Head)
-      {
-        this.StudentManager.Tag.Target = this.StudentManager.Students[this.CurrentStudent].Head;
-        this.StudentManager.TagStudentID = this.CurrentStudent;
-        this.PromptBar.Label[2].text = "Untag";
-      }
-      else
-      {
-        this.StudentManager.TagStudentID = 0;
-        this.StudentManager.Tag.Target = (Transform) null;
-        this.PromptBar.Label[2].text = "Tag";
-      }
-      this.PromptBar.UpdateButtons();
-    }
-    if (Input.GetButtonDown("Y") && this.PromptBar.Button[3].enabled)
-    {
-      if (!this.Topics.activeInHierarchy)
-      {
-        this.PromptBar.Label[3].text = "Basic Info";
-        this.PromptBar.UpdateButtons();
-        this.Topics.SetActive(true);
-        this.UpdateTopics();
-      }
-      else
-      {
-        this.PromptBar.Label[3].text = "Interests";
-        this.PromptBar.UpdateButtons();
-        this.Topics.SetActive(false);
-      }
-    }
-    if (Input.GetButtonDown("LB"))
-    {
-      this.UpdateRepChart();
-      this.ShowRep = !this.ShowRep;
-    }
-    if ((Object) this.Yandere != (Object) null && !this.Yandere.NoDebug)
-    {
-      if (Input.GetKeyDown(KeyCode.Equals))
-      {
-        this.StudentManager.StudentReps[this.CurrentStudent] += 10f;
-        this.UpdateInfo(this.CurrentStudent);
-      }
-      if (Input.GetKeyDown(KeyCode.Minus))
-      {
-        this.StudentManager.StudentReps[this.CurrentStudent] -= 10f;
-        this.UpdateInfo(this.CurrentStudent);
-      }
-    }
-    StudentInfoMenuScript studentInfoMenu = this.StudentInfoMenu;
-    if (!studentInfoMenu.CyberBullying && !studentInfoMenu.CyberStalking && !studentInfoMenu.FindingLocker && !studentInfoMenu.UsingLifeNote && !studentInfoMenu.GettingInfo && !studentInfoMenu.MatchMaking && !studentInfoMenu.Distracting && !studentInfoMenu.SendingHome && !studentInfoMenu.Gossiping && !studentInfoMenu.Targeting && !studentInfoMenu.GettingOpinions && !studentInfoMenu.Dead)
-    {
-      if (this.StudentInfoMenu.PauseScreen.InputManager.TappedRight)
-      {
-        ++this.CurrentStudent;
-        if (this.CurrentStudent > 100)
-          this.CurrentStudent = 1;
-        while (!this.StudentManager.StudentPhotographed[this.CurrentStudent])
-        {
-          ++this.CurrentStudent;
-          if (this.CurrentStudent > 100)
-            this.CurrentStudent = 1;
-        }
-        this.UpdateInfo(this.CurrentStudent);
-        this.UpdateTopics();
-      }
-      if (this.StudentInfoMenu.PauseScreen.InputManager.TappedLeft)
-      {
-        --this.CurrentStudent;
-        if (this.CurrentStudent < 1)
-          this.CurrentStudent = 100;
-        while (!this.StudentManager.StudentPhotographed[this.CurrentStudent])
-        {
-          --this.CurrentStudent;
-          if (this.CurrentStudent < 1)
-            this.CurrentStudent = 100;
-        }
-        this.UpdateInfo(this.CurrentStudent);
-        this.UpdateTopics();
-      }
-    }
-    if (this.ShowRep)
-      this.ReputationChart.transform.localScale = Vector3.Lerp(this.ReputationChart.transform.localScale, new Vector3(138f, 138f, 138f), Time.unscaledDeltaTime * 10f);
-    else
-      this.ReputationChart.transform.localScale = Vector3.Lerp(this.ReputationChart.transform.localScale, new Vector3(0.0f, 0.0f, 0.0f), Time.unscaledDeltaTime * 10f);
-  }
+	public HomeInternetScript HomeInternet;
 
-  private void UpdateAdditionalInfo(int ID)
-  {
-    if (!this.Eighties)
-    {
-      switch (ID)
-      {
-        case 11:
-          if ((Object) this.Yandere != (Object) null)
-          {
-            this.Strings[1] = this.Yandere.Police.EndOfDay.LearnedOsanaInfo1 ? "May be a victim of blackmail." : "?????";
-            this.Strings[2] = this.Yandere.Police.EndOfDay.LearnedOsanaInfo2 ? "Has a stalker." : "?????";
-          }
-          else
-          {
-            this.Strings[1] = "?????";
-            this.Strings[2] = "?????";
-          }
-          this.InfoLabel.text = this.Strings[1] + "\n\n" + this.Strings[2];
-          break;
-        case 51:
-          if (ClubGlobals.GetClubClosed(ClubType.LightMusic))
-          {
-            this.InfoLabel.text = "Disbanded the Light Music Club, dyed her hair back to its original color, removed her piercings, and stopped socializing with others.";
-            break;
-          }
-          this.InfoLabel.text = this.JSON.Students[ID].Info;
-          break;
-        default:
-          if (!StudentGlobals.GetStudentReplaced(ID))
-          {
-            if (this.JSON.Students[ID].Info == string.Empty)
-            {
-              this.InfoLabel.text = "No additional information is available at this time.";
-              break;
-            }
-            this.InfoLabel.text = this.JSON.Students[ID].Info;
-            break;
-          }
-          this.InfoLabel.text = "No additional information is available at this time.";
-          break;
-      }
-    }
-    else if (!StudentGlobals.GetStudentReplaced(ID))
-    {
-      if (this.JSON.Students[ID].Info == string.Empty)
-        this.InfoLabel.text = "No additional information is available at this time.";
-      else
-        this.InfoLabel.text = this.JSON.Students[ID].Info;
-    }
-    else
-      this.InfoLabel.text = "No additional information is available at this time.";
-  }
+	public TopicManagerScript TopicManager;
 
-  private void UpdateTopics()
-  {
-    int num1 = 0;
-    int num2 = 0;
-    for (int topicID = 1; topicID < this.TopicIcons.Length; ++topicID)
-      this.TopicIcons[topicID].spriteName = (!ConversationGlobals.GetTopicDiscovered(topicID) ? 0 : topicID).ToString();
-    for (int Topic = 1; Topic <= 25; ++Topic)
-    {
-      UISprite topicOpinionIcon = this.TopicOpinionIcons[Topic];
-      if (!this.StudentManager.GetTopicLearnedByStudent(Topic, this.CurrentStudent))
-      {
-        topicOpinionIcon.spriteName = "Unknown";
-      }
-      else
-      {
-        int[] topics = this.JSON.Topics[this.CurrentStudent].Topics;
-        topicOpinionIcon.spriteName = this.OpinionSpriteNames[topics[Topic]];
-        if (topics[Topic] == 1)
-          ++num2;
-        if (topics[Topic] == 2)
-          ++num1;
-      }
-    }
-  }
+	public NoteLockerScript NoteLocker;
 
-  private void UpdateRepChart()
-  {
-    Vector3 vector3 = Vector3.zero;
-    vector3 = this.CurrentStudent >= 100 ? (this.Eighties ? new Vector3(0.0f, 50f, 100f) : new Vector3((float) Random.Range(-100, 101), (float) Random.Range(-100, 101), (float) Random.Range(-100, 101))) : StudentGlobals.GetReputationTriangle(this.CurrentStudent);
-    this.ReputationChart.fields[0].Value = vector3.x;
-    this.ReputationChart.fields[1].Value = vector3.y;
-    this.ReputationChart.fields[2].Value = vector3.z;
-  }
+	public RadarChart ReputationChart;
 
-  private void MatchmadeCheck()
-  {
-    this.Matchmade = false;
-    if (this.Eighties)
-    {
-      if ((this.CurrentStudent <= 10 || this.CurrentStudent >= 21 || GameGlobals.GetRivalEliminations(this.CurrentStudent - 10) != 6) && (this.CurrentStudent != 22 || GameGlobals.GetRivalEliminations(1) != 6) && (this.CurrentStudent != 27 || GameGlobals.GetRivalEliminations(2) != 6) && (this.CurrentStudent != 32 || GameGlobals.GetRivalEliminations(3) != 6) && (this.CurrentStudent != 37 || GameGlobals.GetRivalEliminations(4) != 6) && (this.CurrentStudent != 42 || GameGlobals.GetRivalEliminations(5) != 6) && (this.CurrentStudent != 47 || GameGlobals.GetRivalEliminations(6) != 6) && (this.CurrentStudent != 57 || GameGlobals.GetRivalEliminations(7) != 6) && (this.CurrentStudent != 62 || GameGlobals.GetRivalEliminations(8) != 6) && (this.CurrentStudent != 67 || GameGlobals.GetRivalEliminations(9) != 6) && (this.CurrentStudent != 72 || GameGlobals.GetRivalEliminations(10) != 6))
-        return;
-      this.Matchmade = true;
-      if (this.CurrentStudent == 11)
-        this.PartnerName = this.JSON.Students[22].Name;
-      else if (this.CurrentStudent == 12)
-        this.PartnerName = this.JSON.Students[27].Name;
-      else if (this.CurrentStudent == 13)
-        this.PartnerName = this.JSON.Students[28].Name;
-      else if (this.CurrentStudent == 14)
-        this.PartnerName = this.JSON.Students[32].Name;
-      else if (this.CurrentStudent == 15)
-        this.PartnerName = this.JSON.Students[42].Name;
-      else if (this.CurrentStudent == 16)
-        this.PartnerName = this.JSON.Students[47].Name;
-      else if (this.CurrentStudent == 17)
-        this.PartnerName = this.JSON.Students[57].Name;
-      else if (this.CurrentStudent == 18)
-        this.PartnerName = this.JSON.Students[62].Name;
-      else if (this.CurrentStudent == 19)
-        this.PartnerName = this.JSON.Students[67].Name;
-      else if (this.CurrentStudent == 20)
-        this.PartnerName = this.JSON.Students[72].Name;
-      else if (this.CurrentStudent == 22)
-        this.PartnerName = this.JSON.Students[11].Name;
-      else if (this.CurrentStudent == 27)
-        this.PartnerName = this.JSON.Students[12].Name;
-      else if (this.CurrentStudent == 32)
-        this.PartnerName = this.JSON.Students[13].Name;
-      else if (this.CurrentStudent == 37)
-        this.PartnerName = this.JSON.Students[14].Name;
-      else if (this.CurrentStudent == 42)
-        this.PartnerName = this.JSON.Students[15].Name;
-      else if (this.CurrentStudent == 47)
-        this.PartnerName = this.JSON.Students[16].Name;
-      else if (this.CurrentStudent == 57)
-        this.PartnerName = this.JSON.Students[17].Name;
-      else if (this.CurrentStudent == 62)
-        this.PartnerName = this.JSON.Students[18].Name;
-      else if (this.CurrentStudent == 67)
-      {
-        this.PartnerName = this.JSON.Students[19].Name;
-      }
-      else
-      {
-        if (this.CurrentStudent != 72)
-          return;
-        this.PartnerName = this.JSON.Students[20].Name;
-      }
-    }
-    else
-    {
-      if ((this.CurrentStudent <= 10 || this.CurrentStudent >= 21 || GameGlobals.GetRivalEliminations(this.CurrentStudent - 10) != 6) && (this.CurrentStudent != 6 || GameGlobals.GetRivalEliminations(1) != 6))
-        return;
-      this.Matchmade = true;
-      if (this.CurrentStudent == 11)
-      {
-        this.PartnerName = this.JSON.Students[6].Name;
-      }
-      else
-      {
-        if (this.CurrentStudent != 6)
-          return;
-        this.PartnerName = this.JSON.Students[11].Name;
-      }
-    }
-  }
+	public PromptBarScript PromptBar;
 
-  private void CensorUnknownRivalInfo()
-  {
-    if (this.CurrentStudent <= 10 || this.CurrentStudent >= 21 || DateGlobals.Week >= this.CurrentStudent - 10)
-      return;
-    this.NameLabel.text = "?????";
-    this.PersonaLabel.text = "?????";
-    this.CrushLabel.text = "?????";
-    this.ClubLabel.text = "?????";
-    this.StrengthLabel.text = "?????";
-    this.InfoLabel.text = "?????";
-    this.ReputationLabel.text = "";
-    this.ReputationBar.localPosition = new Vector3(0.0f, -10f, 0.0f);
-  }
+	public ShutterScript Shutter;
 
-  public void UpdateTagButton()
-  {
-    this.PromptBar.Label[2].text = this.StudentManager.TagStudentID != this.CurrentStudent ? "Tag" : "Untag";
-    this.PromptBar.UpdateButtons();
-  }
+	public YandereScript Yandere;
 
-  static StudentInfoScript()
-  {
-    IntAndStringDictionary stringDictionary = new IntAndStringDictionary();
-    stringDictionary.Add(0, "Incapable");
-    stringDictionary.Add(1, "Very Weak");
-    stringDictionary.Add(2, "Weak");
-    stringDictionary.Add(3, "Strong");
-    stringDictionary.Add(4, "Very Strong");
-    stringDictionary.Add(5, "Peak Physical Strength");
-    stringDictionary.Add(6, "Extensive Training");
-    stringDictionary.Add(7, "Carries Pepper Spray");
-    stringDictionary.Add(8, "Armed");
-    stringDictionary.Add(9, "Invincible");
-    stringDictionary.Add(99, "?????");
-    StudentInfoScript.StrengthStrings = stringDictionary;
-  }
+	public JsonScript JSON;
+
+	public Texture GuidanceCounselor;
+
+	public Texture DefaultPortrait;
+
+	public Texture BlankPortrait;
+
+	public Texture Headmaster;
+
+	public Texture InfoChan;
+
+	public Transform ReputationBar;
+
+	public GameObject Static;
+
+	public GameObject Topics;
+
+	public UILabel OccupationLabel;
+
+	public UILabel ReputationLabel;
+
+	public UILabel RealNameLabel;
+
+	public UILabel StrengthLabel;
+
+	public UILabel PersonaLabel;
+
+	public UILabel ClassLabel;
+
+	public UILabel CrushLabel;
+
+	public UILabel ClubLabel;
+
+	public UILabel InfoLabel;
+
+	public UILabel NameLabel;
+
+	public UITexture Portrait;
+
+	public string[] OpinionSpriteNames;
+
+	public string[] Strings;
+
+	public int CurrentStudent;
+
+	public bool UpdatedOnce;
+
+	public bool Eighties;
+
+	public bool ShowRep;
+
+	public bool Back;
+
+	public UISprite[] TopicIcons;
+
+	public UISprite[] TopicOpinionIcons;
+
+	private static readonly IntAndStringDictionary StrengthStrings = new IntAndStringDictionary
+	{
+		{ 0, "Incapable" },
+		{ 1, "Very Weak" },
+		{ 2, "Weak" },
+		{ 3, "Strong" },
+		{ 4, "Very Strong" },
+		{ 5, "Peak Physical Strength" },
+		{ 6, "Extensive Training" },
+		{ 7, "Carries Pepper Spray" },
+		{ 8, "Armed" },
+		{ 9, "Invincible" },
+		{ 99, "?????" }
+	};
+
+	public UILabel LeftCrushLabel;
+
+	public string PartnerName;
+
+	public bool Matchmade;
+
+	private void Start()
+	{
+		Topics.SetActive(false);
+		Eighties = GameGlobals.Eighties;
+		if (Eighties)
+		{
+			InfoLabel.transform.localPosition += new Vector3(0f, -10f, 0f);
+		}
+		if (!UpdatedOnce)
+		{
+			UpdateInfo(StudentInfoMenu.StudentID);
+		}
+	}
+
+	public void UpdateInfo(int ID)
+	{
+		CurrentStudent = ID;
+		if (!UpdatedOnce)
+		{
+			Eighties = GameGlobals.Eighties;
+		}
+		UpdatedOnce = true;
+		StudentJson studentJson = JSON.Students[ID];
+		if (studentJson.RealName == "")
+		{
+			NameLabel.transform.localPosition = new Vector3(-228f, 195f, 0f);
+			RealNameLabel.text = "";
+		}
+		else
+		{
+			NameLabel.transform.localPosition = new Vector3(-228f, 210f, 0f);
+			RealNameLabel.text = "Real Name: " + studentJson.RealName;
+		}
+		NameLabel.text = studentJson.Name;
+		string text = studentJson.Class.ToString() ?? "";
+		text = text.Insert(1, "-");
+		ClassLabel.text = "Class " + text;
+		if (ID == 90 || ID > 96)
+		{
+			ClassLabel.text = "";
+		}
+		float num = 0f;
+		num = StudentManager.StudentReps[ID];
+		if (num < 0f)
+		{
+			ReputationLabel.text = num.ToString() ?? "";
+		}
+		else if (num > 0f)
+		{
+			ReputationLabel.text = "+" + num;
+		}
+		else
+		{
+			ReputationLabel.text = "0";
+		}
+		ReputationBar.localPosition = new Vector3(num * 0.96f, ReputationBar.localPosition.y, ReputationBar.localPosition.z);
+		if (ReputationBar.localPosition.x > 96f)
+		{
+			ReputationBar.localPosition = new Vector3(96f, ReputationBar.localPosition.y, ReputationBar.localPosition.z);
+		}
+		if (ReputationBar.localPosition.x < -96f)
+		{
+			ReputationBar.localPosition = new Vector3(-96f, ReputationBar.localPosition.y, ReputationBar.localPosition.z);
+		}
+		if (StudentManager.Students[CurrentStudent] != null)
+		{
+			PersonaLabel.text = Persona.PersonaNames[StudentManager.Students[CurrentStudent].Persona];
+		}
+		else
+		{
+			PersonaLabel.text = Persona.PersonaNames[studentJson.Persona];
+		}
+		if (studentJson.Persona == PersonaType.Strict && studentJson.Club == ClubType.GymTeacher && !StudentGlobals.GetStudentReplaced(ID))
+		{
+			PersonaLabel.text = "Friendly but Strict";
+		}
+		MatchmadeCheck();
+		int num2 = 0;
+		num2 = StudentManager.SuitorID;
+		if (Matchmade)
+		{
+			LeftCrushLabel.text = "Relationship";
+			CrushLabel.text = JSON.Students[studentJson.Crush].Name;
+			CrushLabel.text = PartnerName;
+		}
+		else
+		{
+			LeftCrushLabel.text = "Crush";
+			if (CurrentStudent > 10 && CurrentStudent < 21)
+			{
+				if (CurrentStudent == StudentManager.RivalID)
+				{
+					CrushLabel.text = JSON.Students[studentJson.Crush].Name;
+				}
+				else
+				{
+					CrushLabel.text = "None Anymore";
+				}
+			}
+			if (CurrentStudent == num2)
+			{
+				if ((StudentManager.LoveManager != null && StudentManager.LoveManager.SuitorProgress == 0) || DatingGlobals.SuitorProgress == 0)
+				{
+					CrushLabel.text = "Unknown";
+				}
+				else
+				{
+					CrushLabel.text = JSON.Students[studentJson.Crush].Name;
+				}
+			}
+			else if (studentJson.Crush == 0)
+			{
+				CrushLabel.text = "None";
+			}
+			else if (studentJson.Crush == 99)
+			{
+				CrushLabel.text = "None";
+			}
+			else
+			{
+				Debug.Log("The JSON has an entry for this character's crush...");
+				CrushLabel.text = JSON.Students[studentJson.Crush].Name;
+				bool flag = false;
+				if (StudentManager.Week == 0)
+				{
+					Debug.Log("Week was 0. Are we in the HomeScene?");
+					StudentManager.Week = DateGlobals.Week;
+				}
+				for (int i = StudentManager.Week + 1; i < 11; i++)
+				{
+					if (CurrentStudent == StudentManager.SuitorIDs[i])
+					{
+						Debug.Log("This guy's ID is in the suitor list.");
+						flag = true;
+					}
+				}
+				if (flag)
+				{
+					for (int i = 2; i < 11; i++)
+					{
+						if (CurrentStudent == StudentManager.SuitorIDs[i] && StudentManager.Week < i)
+						{
+							Debug.Log("This guy will be a suitor one day in the future.");
+							CrushLabel.text = "Unknown";
+						}
+					}
+				}
+				if (CurrentStudent == StudentManager.SuitorIDs[StudentManager.Week])
+				{
+					Debug.Log("This guy is the CURRENT rival's suitor!");
+					int num3 = 0;
+					if (((!(StudentManager.LoveManager != null)) ? DatingGlobals.SuitorProgress : StudentManager.LoveManager.SuitorProgress) == 0)
+					{
+						Debug.Log("We don't know who he has a crush on yet.");
+						CrushLabel.text = "Unknown";
+					}
+					else
+					{
+						Debug.Log("We know who he has a crush on.");
+					}
+				}
+			}
+		}
+		if (studentJson.Club < ClubType.Teacher)
+		{
+			OccupationLabel.text = "Club";
+		}
+		else
+		{
+			OccupationLabel.text = "Occupation";
+		}
+		if (studentJson.Club < ClubType.Teacher)
+		{
+			ClubLabel.text = Club.ClubNames[studentJson.Club];
+		}
+		else
+		{
+			ClubLabel.text = Club.TeacherClubNames[studentJson.Class];
+		}
+		if (ClubGlobals.GetClubClosed(studentJson.Club))
+		{
+			ClubLabel.text = "No Club";
+		}
+		StrengthLabel.text = StrengthStrings[studentJson.Strength];
+		AudioSource component = GetComponent<AudioSource>();
+		component.enabled = false;
+		Static.SetActive(false);
+		component.volume = 0f;
+		component.Stop();
+		string text2 = "";
+		if (Eighties)
+		{
+			text2 = "1989";
+		}
+		if (ID < 98)
+		{
+			if (Eighties || (!Eighties && ID < 12) || (!Eighties && ID > 20))
+			{
+				WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text2 + "/Student_" + ID + ".png");
+				if (!StudentGlobals.GetStudentReplaced(ID))
+				{
+					Portrait.mainTexture = wWW.texture;
+				}
+				else
+				{
+					Portrait.mainTexture = StudentInfoMenu.BlankPortrait;
+				}
+				if (Eighties && CurrentStudent > 10 && CurrentStudent < 21 && DateGlobals.Week < CurrentStudent - 10)
+				{
+					Portrait.mainTexture = StudentInfoMenu.EightiesUnknown;
+				}
+			}
+			else
+			{
+				Portrait.mainTexture = StudentInfoMenu.RivalPortraits[ID];
+			}
+		}
+		else
+		{
+			switch (ID)
+			{
+			case 98:
+				Portrait.mainTexture = StudentInfoMenu.Counselor;
+				break;
+			case 99:
+				Portrait.mainTexture = StudentInfoMenu.Headmaster;
+				break;
+			case 100:
+				Portrait.mainTexture = StudentInfoMenu.InfoChan;
+				if (!Eighties)
+				{
+					Static.SetActive(true);
+					if (!StudentInfoMenu.Gossiping && !StudentInfoMenu.Distracting && !StudentInfoMenu.CyberBullying && !StudentInfoMenu.CyberStalking)
+					{
+						component.enabled = true;
+						component.volume = 1f;
+						component.Play();
+					}
+				}
+				break;
+			}
+		}
+		UpdateAdditionalInfo(ID);
+		UpdateRepChart();
+		CensorUnknownRivalInfo();
+		UpdateTagButton();
+	}
+
+	private void Update()
+	{
+		if (CurrentStudent == 100)
+		{
+			UpdateRepChart();
+		}
+		if (Input.GetButtonDown("A"))
+		{
+			if (StudentInfoMenu.Gossiping)
+			{
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.Show = false;
+				DialogueWheel.Victim = CurrentStudent;
+				StudentInfoMenu.Gossiping = false;
+				base.gameObject.SetActive(false);
+				Time.timeScale = 0.0001f;
+				DialogueWheel.TopicInterface.Socializing = false;
+				DialogueWheel.TopicInterface.StudentID = Yandere.TargetStudent.StudentID;
+				DialogueWheel.TopicInterface.Student = Yandere.TargetStudent;
+				DialogueWheel.TopicInterface.TargetStudentID = CurrentStudent;
+				DialogueWheel.TopicInterface.TargetStudent = StudentManager.Students[CurrentStudent];
+				DialogueWheel.TopicInterface.UpdateOpinions();
+				DialogueWheel.TopicInterface.UpdateTopicHighlight();
+				DialogueWheel.TopicInterface.gameObject.SetActive(true);
+				PromptBar.ClearButtons();
+				PromptBar.Label[0].text = "Speak";
+				PromptBar.Label[1].text = "Back";
+				PromptBar.Label[2].text = "Positive/Negative";
+				PromptBar.UpdateButtons();
+				PromptBar.Show = true;
+			}
+			else if (StudentInfoMenu.Distracting)
+			{
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.Show = false;
+				DialogueWheel.Victim = CurrentStudent;
+				StudentInfoMenu.Distracting = false;
+				base.gameObject.SetActive(false);
+				Time.timeScale = 1f;
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
+			}
+			else if (StudentInfoMenu.CyberBullying)
+			{
+				HomeInternet.PostLabels[1].text = JSON.Students[CurrentStudent].Name;
+				HomeInternet.Student = CurrentStudent;
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.Show = false;
+				StudentInfoMenu.CyberBullying = false;
+				base.gameObject.SetActive(false);
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
+			}
+			else if (StudentInfoMenu.CyberStalking)
+			{
+				HomeInternet.HomeCamera.CyberstalkWindow.SetActive(true);
+				HomeInternet.Student = CurrentStudent;
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.Show = false;
+				StudentInfoMenu.CyberStalking = false;
+				base.gameObject.SetActive(false);
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
+			}
+			else if (StudentInfoMenu.MatchMaking)
+			{
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.Show = false;
+				DialogueWheel.Victim = CurrentStudent;
+				StudentInfoMenu.MatchMaking = false;
+				base.gameObject.SetActive(false);
+				Time.timeScale = 1f;
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
+			}
+			else if (StudentInfoMenu.Targeting)
+			{
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.Show = false;
+				Yandere.TargetStudent.HuntTarget = StudentManager.Students[CurrentStudent];
+				Yandere.TargetStudent.HuntTarget.Hunted = true;
+				Yandere.TargetStudent.GoCommitMurder();
+				Yandere.RPGCamera.enabled = true;
+				Yandere.TargetStudent = null;
+				StudentInfoMenu.Targeting = false;
+				base.gameObject.SetActive(false);
+				Time.timeScale = 1f;
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
+			}
+			else if (StudentInfoMenu.SendingHome)
+			{
+				if (CurrentStudent == 10 || CurrentStudent == StudentManager.RivalID)
+				{
+					StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(11);
+					base.gameObject.SetActive(false);
+					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = string.Empty;
+					PromptBar.Label[1].text = "Back";
+					PromptBar.UpdateButtons();
+				}
+				else
+				{
+					if (StudentManager.Students[CurrentStudent].Routine && !StudentManager.Students[CurrentStudent].InEvent && !StudentManager.Students[CurrentStudent].TargetedForDistraction && StudentManager.Students[CurrentStudent].ClubActivityPhase < 16 && !StudentManager.Students[CurrentStudent].MyBento.Tampered)
+					{
+						StudentManager.Students[CurrentStudent].Routine = false;
+						StudentManager.Students[CurrentStudent].SentHome = true;
+						StudentManager.Students[CurrentStudent].CameraReacting = false;
+						StudentManager.Students[CurrentStudent].SpeechLines.Stop();
+						StudentManager.Students[CurrentStudent].EmptyHands();
+						Yandere.PauseScreen.ServiceMenu.ServicePurchased[Yandere.PauseScreen.ServiceMenu.Selected] = true;
+						StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(true);
+						StudentInfoMenu.PauseScreen.ServiceMenu.UpdateList();
+						StudentInfoMenu.PauseScreen.ServiceMenu.UpdateDesc();
+						StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
+						StudentInfoMenu.SendingHome = false;
+					}
+					else
+					{
+						StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(0);
+					}
+					base.gameObject.SetActive(false);
+					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = string.Empty;
+					PromptBar.Label[1].text = "Back";
+					PromptBar.UpdateButtons();
+					PromptBar.Show = true;
+				}
+			}
+			else if (StudentInfoMenu.FindingLocker)
+			{
+				NoteLocker.gameObject.SetActive(true);
+				NoteLocker.transform.position = StudentManager.Students[StudentInfoMenu.StudentID].MyLocker.position;
+				NoteLocker.transform.position += new Vector3(0f, 1.355f, 0f);
+				NoteLocker.transform.position += StudentManager.Students[StudentInfoMenu.StudentID].MyLocker.forward * 0.33333f;
+				NoteLocker.Prompt.Label[0].text = "     Leave note for " + StudentManager.Students[StudentInfoMenu.StudentID].Name;
+				NoteLocker.Student = StudentManager.Students[StudentInfoMenu.StudentID];
+				NoteLocker.LockerOwner = StudentInfoMenu.StudentID;
+				NoteLocker.StudentID = StudentInfoMenu.StudentID;
+				NoteLocker.Prompt.enabled = true;
+				NoteLocker.transform.GetChild(0).gameObject.SetActive(true);
+				NoteLocker.CheckingNote = false;
+				NoteLocker.CanLeaveNote = true;
+				NoteLocker.SpawnedNote = false;
+				NoteLocker.NoteLeft = false;
+				NoteLocker.Success = false;
+				NoteLocker.Timer = 0f;
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.Show = false;
+				StudentInfoMenu.FindingLocker = false;
+				base.gameObject.SetActive(false);
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
+				Yandere.RPGCamera.enabled = true;
+				Time.timeScale = 1f;
+				if (StudentInfoMenu.StudentID == 11 && SchemeGlobals.GetSchemeStage(6) == 4)
+				{
+					SchemeGlobals.SetSchemeStage(6, 5);
+					Yandere.PauseScreen.Schemes.UpdateInstructions();
+				}
+			}
+			else if (StudentInfoMenu.FiringCouncilMember)
+			{
+				if (StudentManager.Students[CurrentStudent].Routine && !StudentManager.Students[CurrentStudent].InEvent && !StudentManager.Students[CurrentStudent].TargetedForDistraction && StudentManager.Students[CurrentStudent].ClubActivityPhase < 16 && !StudentManager.Students[CurrentStudent].MyBento.Tampered)
+				{
+					StudentManager.Students[CurrentStudent].OriginalPersona = PersonaType.Heroic;
+					StudentManager.Students[CurrentStudent].Persona = PersonaType.Heroic;
+					StudentManager.Students[CurrentStudent].Club = ClubType.None;
+					StudentManager.Students[CurrentStudent].CameraReacting = false;
+					StudentManager.Students[CurrentStudent].SpeechLines.Stop();
+					StudentManager.Students[CurrentStudent].EmptyHands();
+					StudentManager.Students[CurrentStudent].IdleAnim = StudentManager.Students[CurrentStudent].BulliedIdleAnim;
+					StudentManager.Students[CurrentStudent].WalkAnim = StudentManager.Students[CurrentStudent].BulliedWalkAnim;
+					StudentManager.Students[CurrentStudent].Armband.SetActive(false);
+					StudentScript studentScript = StudentManager.Students[CurrentStudent];
+					ScheduleBlock obj = studentScript.ScheduleBlocks[3];
+					obj.destination = "LunchSpot";
+					obj.action = "Eat";
+					studentScript.GetDestinations();
+					studentScript.CurrentDestination = studentScript.Destinations[studentScript.Phase];
+					studentScript.Pathfinding.target = studentScript.Destinations[studentScript.Phase];
+					StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(true);
+					StudentInfoMenu.PauseScreen.ServiceMenu.UpdateList();
+					StudentInfoMenu.PauseScreen.ServiceMenu.UpdateDesc();
+					StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
+					StudentInfoMenu.FiringCouncilMember = false;
+					StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(9);
+				}
+				else
+				{
+					StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(0);
+				}
+				base.gameObject.SetActive(false);
+				PromptBar.ClearButtons();
+				PromptBar.Label[0].text = string.Empty;
+				PromptBar.Label[1].text = "Back";
+				PromptBar.UpdateButtons();
+			}
+			else if (StudentInfoMenu.GettingOpinions)
+			{
+				for (int i = 1; i < 26; i++)
+				{
+					ConversationGlobals.SetTopicDiscovered(i, true);
+					StudentManager.SetTopicLearnedByStudent(i, CurrentStudent, true);
+				}
+				StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
+				base.gameObject.SetActive(false);
+				StudentInfoMenu.GettingOpinions = false;
+				PromptBar.ClearButtons();
+				PromptBar.Label[0].text = string.Empty;
+				PromptBar.Label[1].text = "Back";
+				PromptBar.UpdateButtons();
+			}
+		}
+		if (Input.GetButtonDown("B"))
+		{
+			ShowRep = false;
+			Topics.SetActive(false);
+			GetComponent<AudioSource>().Stop();
+			ReputationChart.transform.localScale = new Vector3(0f, 0f, 0f);
+			if (Shutter != null)
+			{
+				if (!Shutter.PhotoIcons.activeInHierarchy)
+				{
+					Back = true;
+				}
+			}
+			else
+			{
+				Back = true;
+			}
+			if (Back)
+			{
+				StudentInfoMenu.gameObject.SetActive(true);
+				base.gameObject.SetActive(false);
+				PromptBar.ClearButtons();
+				PromptBar.Label[0].text = "View Info";
+				if (!StudentInfoMenu.Gossiping)
+				{
+					PromptBar.Label[1].text = "Back";
+				}
+				PromptBar.UpdateButtons();
+				Back = false;
+			}
+		}
+		if (Input.GetButtonDown("X") && PromptBar.Button[2].enabled)
+		{
+			if (StudentManager.Tag.Target != StudentManager.Students[CurrentStudent].Head)
+			{
+				StudentManager.Tag.Target = StudentManager.Students[CurrentStudent].Head;
+				StudentManager.TagStudentID = CurrentStudent;
+				PromptBar.Label[2].text = "Untag";
+			}
+			else
+			{
+				StudentManager.TagStudentID = 0;
+				StudentManager.Tag.Target = null;
+				PromptBar.Label[2].text = "Tag";
+			}
+			PromptBar.UpdateButtons();
+		}
+		if (Input.GetButtonDown("Y") && PromptBar.Button[3].enabled)
+		{
+			if (!Topics.activeInHierarchy)
+			{
+				PromptBar.Label[3].text = "Basic Info";
+				PromptBar.UpdateButtons();
+				Topics.SetActive(true);
+				UpdateTopics();
+			}
+			else
+			{
+				PromptBar.Label[3].text = "Interests";
+				PromptBar.UpdateButtons();
+				Topics.SetActive(false);
+			}
+		}
+		if (Input.GetButtonDown("LB"))
+		{
+			UpdateRepChart();
+			ShowRep = !ShowRep;
+		}
+		if (Yandere != null && !Yandere.NoDebug)
+		{
+			if (Input.GetKeyDown(KeyCode.Equals))
+			{
+				StudentManager.StudentReps[CurrentStudent] += 10f;
+				UpdateInfo(CurrentStudent);
+			}
+			if (Input.GetKeyDown(KeyCode.Minus))
+			{
+				StudentManager.StudentReps[CurrentStudent] -= 10f;
+				UpdateInfo(CurrentStudent);
+			}
+		}
+		StudentInfoMenuScript studentInfoMenu = StudentInfoMenu;
+		if (!studentInfoMenu.CyberBullying && !studentInfoMenu.CyberStalking && !studentInfoMenu.FindingLocker && !studentInfoMenu.UsingLifeNote && !studentInfoMenu.GettingInfo && !studentInfoMenu.MatchMaking && !studentInfoMenu.Distracting && !studentInfoMenu.SendingHome && !studentInfoMenu.Gossiping && !studentInfoMenu.Targeting && !studentInfoMenu.GettingOpinions && !studentInfoMenu.Dead)
+		{
+			if (StudentInfoMenu.PauseScreen.InputManager.TappedRight)
+			{
+				CurrentStudent++;
+				if (CurrentStudent > 100)
+				{
+					CurrentStudent = 1;
+				}
+				while (!StudentManager.StudentPhotographed[CurrentStudent])
+				{
+					CurrentStudent++;
+					if (CurrentStudent > 100)
+					{
+						CurrentStudent = 1;
+					}
+				}
+				UpdateInfo(CurrentStudent);
+				UpdateTopics();
+			}
+			if (StudentInfoMenu.PauseScreen.InputManager.TappedLeft)
+			{
+				CurrentStudent--;
+				if (CurrentStudent < 1)
+				{
+					CurrentStudent = 100;
+				}
+				while (!StudentManager.StudentPhotographed[CurrentStudent])
+				{
+					CurrentStudent--;
+					if (CurrentStudent < 1)
+					{
+						CurrentStudent = 100;
+					}
+				}
+				UpdateInfo(CurrentStudent);
+				UpdateTopics();
+			}
+		}
+		if (ShowRep)
+		{
+			ReputationChart.transform.localScale = Vector3.Lerp(ReputationChart.transform.localScale, new Vector3(138f, 138f, 138f), Time.unscaledDeltaTime * 10f);
+		}
+		else
+		{
+			ReputationChart.transform.localScale = Vector3.Lerp(ReputationChart.transform.localScale, new Vector3(0f, 0f, 0f), Time.unscaledDeltaTime * 10f);
+		}
+	}
+
+	private void UpdateAdditionalInfo(int ID)
+	{
+		if (!Eighties)
+		{
+			switch (ID)
+			{
+			case 11:
+				if (Yandere != null)
+				{
+					Strings[1] = (Yandere.Police.EndOfDay.LearnedOsanaInfo1 ? "May be a victim of blackmail." : "?????");
+					Strings[2] = (Yandere.Police.EndOfDay.LearnedOsanaInfo2 ? "Has a stalker." : "?????");
+				}
+				else
+				{
+					Strings[1] = "?????";
+					Strings[2] = "?????";
+				}
+				InfoLabel.text = Strings[1] + "\n\n" + Strings[2];
+				return;
+			case 51:
+				if (ClubGlobals.GetClubClosed(ClubType.LightMusic))
+				{
+					InfoLabel.text = "Disbanded the Light Music Club, dyed her hair back to its original color, removed her piercings, and stopped socializing with others.";
+				}
+				else
+				{
+					InfoLabel.text = JSON.Students[ID].Info;
+				}
+				return;
+			}
+			if (!StudentGlobals.GetStudentReplaced(ID))
+			{
+				if (JSON.Students[ID].Info == string.Empty)
+				{
+					InfoLabel.text = "No additional information is available at this time.";
+				}
+				else
+				{
+					InfoLabel.text = JSON.Students[ID].Info;
+				}
+			}
+			else
+			{
+				InfoLabel.text = "No additional information is available at this time.";
+			}
+		}
+		else if (!StudentGlobals.GetStudentReplaced(ID))
+		{
+			if (JSON.Students[ID].Info == string.Empty)
+			{
+				InfoLabel.text = "No additional information is available at this time.";
+			}
+			else
+			{
+				InfoLabel.text = JSON.Students[ID].Info;
+			}
+		}
+		else
+		{
+			InfoLabel.text = "No additional information is available at this time.";
+		}
+	}
+
+	private void UpdateTopics()
+	{
+		int num = 0;
+		int num2 = 0;
+		for (int i = 1; i < TopicIcons.Length; i++)
+		{
+			TopicIcons[i].spriteName = (ConversationGlobals.GetTopicDiscovered(i) ? i : 0).ToString();
+		}
+		for (int j = 1; j <= 25; j++)
+		{
+			UISprite uISprite = TopicOpinionIcons[j];
+			if (!StudentManager.GetTopicLearnedByStudent(j, CurrentStudent))
+			{
+				uISprite.spriteName = "Unknown";
+				continue;
+			}
+			int[] topics = JSON.Topics[CurrentStudent].Topics;
+			uISprite.spriteName = OpinionSpriteNames[topics[j]];
+			if (topics[j] == 1)
+			{
+				num2++;
+			}
+			if (topics[j] == 2)
+			{
+				num++;
+			}
+		}
+	}
+
+	private void UpdateRepChart()
+	{
+		Vector3 zero = Vector3.zero;
+		zero = ((CurrentStudent < 100) ? StudentGlobals.GetReputationTriangle(CurrentStudent) : (Eighties ? new Vector3(0f, 50f, 100f) : new Vector3(Random.Range(-100, 101), Random.Range(-100, 101), Random.Range(-100, 101))));
+		ReputationChart.fields[0].Value = zero.x;
+		ReputationChart.fields[1].Value = zero.y;
+		ReputationChart.fields[2].Value = zero.z;
+	}
+
+	private void MatchmadeCheck()
+	{
+		Matchmade = false;
+		if (Eighties)
+		{
+			if ((CurrentStudent > 10 && CurrentStudent < 21 && GameGlobals.GetRivalEliminations(CurrentStudent - 10) == 6) || (CurrentStudent == 22 && GameGlobals.GetRivalEliminations(1) == 6) || (CurrentStudent == 27 && GameGlobals.GetRivalEliminations(2) == 6) || (CurrentStudent == 32 && GameGlobals.GetRivalEliminations(3) == 6) || (CurrentStudent == 37 && GameGlobals.GetRivalEliminations(4) == 6) || (CurrentStudent == 42 && GameGlobals.GetRivalEliminations(5) == 6) || (CurrentStudent == 47 && GameGlobals.GetRivalEliminations(6) == 6) || (CurrentStudent == 57 && GameGlobals.GetRivalEliminations(7) == 6) || (CurrentStudent == 62 && GameGlobals.GetRivalEliminations(8) == 6) || (CurrentStudent == 67 && GameGlobals.GetRivalEliminations(9) == 6) || (CurrentStudent == 72 && GameGlobals.GetRivalEliminations(10) == 6))
+			{
+				Matchmade = true;
+				if (CurrentStudent == 11)
+				{
+					PartnerName = JSON.Students[22].Name;
+				}
+				else if (CurrentStudent == 12)
+				{
+					PartnerName = JSON.Students[27].Name;
+				}
+				else if (CurrentStudent == 13)
+				{
+					PartnerName = JSON.Students[28].Name;
+				}
+				else if (CurrentStudent == 14)
+				{
+					PartnerName = JSON.Students[32].Name;
+				}
+				else if (CurrentStudent == 15)
+				{
+					PartnerName = JSON.Students[42].Name;
+				}
+				else if (CurrentStudent == 16)
+				{
+					PartnerName = JSON.Students[47].Name;
+				}
+				else if (CurrentStudent == 17)
+				{
+					PartnerName = JSON.Students[57].Name;
+				}
+				else if (CurrentStudent == 18)
+				{
+					PartnerName = JSON.Students[62].Name;
+				}
+				else if (CurrentStudent == 19)
+				{
+					PartnerName = JSON.Students[67].Name;
+				}
+				else if (CurrentStudent == 20)
+				{
+					PartnerName = JSON.Students[72].Name;
+				}
+				else if (CurrentStudent == 22)
+				{
+					PartnerName = JSON.Students[11].Name;
+				}
+				else if (CurrentStudent == 27)
+				{
+					PartnerName = JSON.Students[12].Name;
+				}
+				else if (CurrentStudent == 32)
+				{
+					PartnerName = JSON.Students[13].Name;
+				}
+				else if (CurrentStudent == 37)
+				{
+					PartnerName = JSON.Students[14].Name;
+				}
+				else if (CurrentStudent == 42)
+				{
+					PartnerName = JSON.Students[15].Name;
+				}
+				else if (CurrentStudent == 47)
+				{
+					PartnerName = JSON.Students[16].Name;
+				}
+				else if (CurrentStudent == 57)
+				{
+					PartnerName = JSON.Students[17].Name;
+				}
+				else if (CurrentStudent == 62)
+				{
+					PartnerName = JSON.Students[18].Name;
+				}
+				else if (CurrentStudent == 67)
+				{
+					PartnerName = JSON.Students[19].Name;
+				}
+				else if (CurrentStudent == 72)
+				{
+					PartnerName = JSON.Students[20].Name;
+				}
+			}
+		}
+		else if ((CurrentStudent > 10 && CurrentStudent < 21 && GameGlobals.GetRivalEliminations(CurrentStudent - 10) == 6) || (CurrentStudent == 6 && GameGlobals.GetRivalEliminations(1) == 6))
+		{
+			Matchmade = true;
+			if (CurrentStudent == 11)
+			{
+				PartnerName = JSON.Students[6].Name;
+			}
+			else if (CurrentStudent == 6)
+			{
+				PartnerName = JSON.Students[11].Name;
+			}
+		}
+	}
+
+	private void CensorUnknownRivalInfo()
+	{
+		if (CurrentStudent > 10 && CurrentStudent < 21 && DateGlobals.Week < CurrentStudent - 10)
+		{
+			NameLabel.text = "?????";
+			PersonaLabel.text = "?????";
+			CrushLabel.text = "?????";
+			ClubLabel.text = "?????";
+			StrengthLabel.text = "?????";
+			InfoLabel.text = "?????";
+			ReputationLabel.text = "";
+			ReputationBar.localPosition = new Vector3(0f, -10f, 0f);
+		}
+	}
+
+	public void UpdateTagButton()
+	{
+		if (StudentManager.TagStudentID == CurrentStudent)
+		{
+			PromptBar.Label[2].text = "Untag";
+		}
+		else
+		{
+			PromptBar.Label[2].text = "Tag";
+		}
+		PromptBar.UpdateButtons();
+	}
 }

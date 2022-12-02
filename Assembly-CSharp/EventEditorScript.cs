@@ -1,40 +1,45 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: EventEditorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class EventEditorScript : MonoBehaviour
 {
-  [SerializeField]
-  private UIPanel mainPanel;
-  [SerializeField]
-  private UIPanel eventPanel;
-  [SerializeField]
-  private UILabel titleLabel;
-  [SerializeField]
-  private PromptBarScript promptBar;
-  private InputManagerScript inputManager;
+	[SerializeField]
+	private UIPanel mainPanel;
 
-  private void Awake() => this.inputManager = Object.FindObjectOfType<InputManagerScript>();
+	[SerializeField]
+	private UIPanel eventPanel;
 
-  private void OnEnable()
-  {
-    this.promptBar.Label[0].text = string.Empty;
-    this.promptBar.Label[1].text = "Back";
-    this.promptBar.Label[4].text = string.Empty;
-    this.promptBar.UpdateButtons();
-  }
+	[SerializeField]
+	private UILabel titleLabel;
 
-  private void HandleInput()
-  {
-    if (!Input.GetButtonDown("B"))
-      return;
-    this.mainPanel.gameObject.SetActive(true);
-    this.eventPanel.gameObject.SetActive(false);
-  }
+	[SerializeField]
+	private PromptBarScript promptBar;
 
-  private void Update() => this.HandleInput();
+	private InputManagerScript inputManager;
+
+	private void Awake()
+	{
+		inputManager = Object.FindObjectOfType<InputManagerScript>();
+	}
+
+	private void OnEnable()
+	{
+		promptBar.Label[0].text = string.Empty;
+		promptBar.Label[1].text = "Back";
+		promptBar.Label[4].text = string.Empty;
+		promptBar.UpdateButtons();
+	}
+
+	private void HandleInput()
+	{
+		if (Input.GetButtonDown("B"))
+		{
+			mainPanel.gameObject.SetActive(true);
+			eventPanel.gameObject.SetActive(false);
+		}
+	}
+
+	private void Update()
+	{
+		HandleInput();
+	}
 }

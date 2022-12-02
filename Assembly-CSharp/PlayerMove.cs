@@ -1,94 +1,121 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PlayerMove
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-  [SerializeField]
-  private string horizontalInputName;
-  [SerializeField]
-  private string verticalInputName;
-  [SerializeField]
-  private float walkSpeed;
-  [SerializeField]
-  private float runSpeed;
-  [SerializeField]
-  private float runBuildUpSpeed;
-  [SerializeField]
-  private KeyCode runKey;
-  private float movementSpeed;
-  [SerializeField]
-  private float slopeForce;
-  [SerializeField]
-  private float slopeForceRayLength;
-  private CharacterController charController;
-  [SerializeField]
-  private AnimationCurve jumpFallOff;
-  [SerializeField]
-  private float jumpMultiplier;
-  [SerializeField]
-  private KeyCode jumpKey;
-  private bool isJumping;
+	[SerializeField]
+	private string horizontalInputName;
 
-  private void Awake() => this.charController = this.GetComponent<CharacterController>();
+	[SerializeField]
+	private string verticalInputName;
 
-  private void Update() => this.PlayerMovement();
+	[SerializeField]
+	private float walkSpeed;
 
-  private void PlayerMovement()
-  {
-    float axis1 = Input.GetAxis(this.horizontalInputName);
-    float axis2 = Input.GetAxis(this.verticalInputName);
-    this.charController.SimpleMove(Vector3.ClampMagnitude(this.transform.forward * axis2 + this.transform.right * axis1, 1f) * this.movementSpeed);
-    if (((double) axis2 != 0.0 || (double) axis1 != 0.0) && this.OnSlope())
-    {
-      int num = (int) this.charController.Move(Vector3.down * this.charController.height / 2f * this.slopeForce * Time.deltaTime);
-    }
-    this.SetMovementSpeed();
-    this.JumpInput();
-  }
+	[SerializeField]
+	private float runSpeed;
 
-  private void SetMovementSpeed()
-  {
-    if (Input.GetKey(this.runKey))
-      this.movementSpeed = Mathf.Lerp(this.movementSpeed, this.runSpeed, Time.deltaTime * this.runBuildUpSpeed);
-    else
-      this.movementSpeed = Mathf.Lerp(this.movementSpeed, this.walkSpeed, Time.deltaTime * this.runBuildUpSpeed);
-  }
+	[SerializeField]
+	private float runBuildUpSpeed;
 
-  private bool OnSlope()
-  {
-    RaycastHit hitInfo;
-    if (this.isJumping || !Physics.Raycast(this.transform.position, Vector3.down, out hitInfo, this.charController.height / 2f * this.slopeForceRayLength) || !(hitInfo.normal != Vector3.up))
-      return false;
-    MonoBehaviour.print((object) nameof (OnSlope));
-    return true;
-  }
+	[SerializeField]
+	private KeyCode runKey;
 
-  private void JumpInput()
-  {
-    if (!Input.GetKeyDown(this.jumpKey) || this.isJumping)
-      return;
-    this.isJumping = true;
-    this.StartCoroutine(this.JumpEvent());
-  }
+	private float movementSpeed;
 
-  private IEnumerator JumpEvent()
-  {
-    this.charController.slopeLimit = 90f;
-    float timeInAir = 0.0f;
-    do
-    {
-      int num = (int) this.charController.Move(Vector3.up * this.jumpFallOff.Evaluate(timeInAir) * this.jumpMultiplier * Time.deltaTime);
-      timeInAir += Time.deltaTime;
-      yield return (object) null;
-    }
-    while (!this.charController.isGrounded && this.charController.collisionFlags != CollisionFlags.Above);
-    this.charController.slopeLimit = 45f;
-    this.isJumping = false;
-  }
+	[SerializeField]
+	private float slopeForce;
+
+	[SerializeField]
+	private float slopeForceRayLength;
+
+	private CharacterController charController;
+
+	[SerializeField]
+	private AnimationCurve jumpFallOff;
+
+	[SerializeField]
+	private float jumpMultiplier;
+
+	[SerializeField]
+	private KeyCode jumpKey;
+
+	private bool isJumping;
+
+	private void Awake()
+	{
+		charController = GetComponent<CharacterController>();
+	}
+
+	private void Update()
+	{
+		PlayerMovement();
+	}
+
+	private void PlayerMovement()
+	{
+		float axis = Input.GetAxis(horizontalInputName);
+		float axis2 = Input.GetAxis(verticalInputName);
+		Vector3 vector = base.transform.forward * axis2;
+		Vector3 vector2 = base.transform.right * axis;
+		charController.SimpleMove(Vector3.ClampMagnitude(vector + vector2, 1f) * movementSpeed);
+		if ((axis2 != 0f || axis != 0f) && OnSlope())
+		{
+			charController.Move(Vector3.down * charController.height / 2f * slopeForce * Time.deltaTime);
+		}
+		SetMovementSpeed();
+		JumpInput();
+	}
+
+	private void SetMovementSpeed()
+	{
+		if (Input.GetKey(runKey))
+		{
+			movementSpeed = Mathf.Lerp(movementSpeed, runSpeed, Time.deltaTime * runBuildUpSpeed);
+		}
+		else
+		{
+			movementSpeed = Mathf.Lerp(movementSpeed, walkSpeed, Time.deltaTime * runBuildUpSpeed);
+		}
+	}
+
+	private bool OnSlope()
+	{
+		if (isJumping)
+		{
+			return false;
+		}
+		RaycastHit hitInfo;
+		if (Physics.Raycast(base.transform.position, Vector3.down, out hitInfo, charController.height / 2f * slopeForceRayLength) && hitInfo.normal != Vector3.up)
+		{
+			MonoBehaviour.print("OnSlope");
+			return true;
+		}
+		return false;
+	}
+
+	private void JumpInput()
+	{
+		if (Input.GetKeyDown(jumpKey) && !isJumping)
+		{
+			isJumping = true;
+			StartCoroutine(JumpEvent());
+		}
+	}
+
+	private IEnumerator JumpEvent()
+	{
+		charController.slopeLimit = 90f;
+		float timeInAir = 0f;
+		do
+		{
+			float num = jumpFallOff.Evaluate(timeInAir);
+			charController.Move(Vector3.up * num * jumpMultiplier * Time.deltaTime);
+			timeInAir += Time.deltaTime;
+			yield return null;
+		}
+		while (!charController.isGrounded && charController.collisionFlags != CollisionFlags.Above);
+		charController.slopeLimit = 45f;
+		isJumping = false;
+	}
 }

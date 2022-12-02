@@ -1,22 +1,20 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CensorBloodScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class CensorBloodScript : MonoBehaviour
 {
-  public ParticleSystem MyParticles;
-  public Texture Flower;
+	public ParticleSystem MyParticles;
 
-  private void Start()
-  {
-    if (!GameGlobals.CensorBlood)
-      return;
-    this.MyParticles.main.startColor = (ParticleSystem.MinMaxGradient) new Color(1f, 1f, 1f, 1f);
-    this.MyParticles.colorOverLifetime.enabled = false;
-    this.MyParticles.GetComponent<Renderer>().material.mainTexture = this.Flower;
-  }
+	public Texture Flower;
+
+	private void Start()
+	{
+		if (GameGlobals.CensorBlood)
+		{
+			ParticleSystem.MainModule main = MyParticles.main;
+			main.startColor = new Color(1f, 1f, 1f, 1f);
+			ParticleSystem.ColorOverLifetimeModule colorOverLifetime = MyParticles.colorOverLifetime;
+			colorOverLifetime.enabled = false;
+			MyParticles.GetComponent<Renderer>().material.mainTexture = Flower;
+		}
+	}
 }

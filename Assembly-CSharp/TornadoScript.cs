@@ -1,43 +1,45 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TornadoScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class TornadoScript : MonoBehaviour
 {
-  public GameObject FemaleBloodyScream;
-  public GameObject MaleBloodyScream;
-  public GameObject Scream;
-  public Collider MyCollider;
-  public float Strength = 10000f;
-  public float Timer;
+	public GameObject FemaleBloodyScream;
 
-  private void Update()
-  {
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer <= 0.5)
-      return;
-    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + Time.deltaTime, this.transform.position.z);
-    this.MyCollider.enabled = true;
-  }
+	public GameObject MaleBloodyScream;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (other.gameObject.layer != 9)
-      return;
-    StudentScript component = other.gameObject.GetComponent<StudentScript>();
-    if (!((Object) component != (Object) null) || component.StudentID <= 1)
-      return;
-    this.Scream = Object.Instantiate<GameObject>(component.Male ? this.MaleBloodyScream : this.FemaleBloodyScream, component.transform.position + Vector3.up, Quaternion.identity);
-    this.Scream.transform.parent = component.HipCollider.transform;
-    this.Scream.transform.localPosition = Vector3.zero;
-    component.DeathType = DeathType.EasterEgg;
-    component.BecomeRagdoll();
-    Rigidbody allRigidbody = component.Ragdoll.AllRigidbodies[0];
-    allRigidbody.isKinematic = false;
-    allRigidbody.AddForce(Vector3.up * this.Strength);
-  }
+	public GameObject Scream;
+
+	public Collider MyCollider;
+
+	public float Strength = 10000f;
+
+	public float Timer;
+
+	private void Update()
+	{
+		Timer += Time.deltaTime;
+		if (Timer > 0.5f)
+		{
+			base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + Time.deltaTime, base.transform.position.z);
+			MyCollider.enabled = true;
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer == 9)
+		{
+			StudentScript component = other.gameObject.GetComponent<StudentScript>();
+			if (component != null && component.StudentID > 1)
+			{
+				Scream = Object.Instantiate(component.Male ? MaleBloodyScream : FemaleBloodyScream, component.transform.position + Vector3.up, Quaternion.identity);
+				Scream.transform.parent = component.HipCollider.transform;
+				Scream.transform.localPosition = Vector3.zero;
+				component.DeathType = DeathType.EasterEgg;
+				component.BecomeRagdoll();
+				Rigidbody obj = component.Ragdoll.AllRigidbodies[0];
+				obj.isKinematic = false;
+				obj.AddForce(Vector3.up * Strength);
+			}
+		}
+	}
 }

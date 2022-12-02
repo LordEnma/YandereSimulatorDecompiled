@@ -1,44 +1,52 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AnimatedGifScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class AnimatedGifScript : MonoBehaviour
 {
-  [SerializeField]
-  private UISprite Sprite;
-  [SerializeField]
-  private string SpriteName;
-  [SerializeField]
-  private int Start;
-  [SerializeField]
-  private int Frame;
-  [SerializeField]
-  private int Limit;
-  [SerializeField]
-  private float FramesPerSecond;
-  [SerializeField]
-  private float CurrentSeconds;
+	[SerializeField]
+	private UISprite Sprite;
 
-  private void Awake()
-  {
-  }
+	[SerializeField]
+	private string SpriteName;
 
-  private float SecondsPerFrame => 1f / this.FramesPerSecond;
+	[SerializeField]
+	private int Start;
 
-  private void Update()
-  {
-    this.CurrentSeconds += Time.unscaledDeltaTime;
-    while ((double) this.CurrentSeconds >= (double) this.SecondsPerFrame)
-    {
-      this.CurrentSeconds -= this.SecondsPerFrame;
-      ++this.Frame;
-      if (this.Frame > this.Limit)
-        this.Frame = this.Start;
-    }
-    this.Sprite.spriteName = this.SpriteName + this.Frame.ToString();
-  }
+	[SerializeField]
+	private int Frame;
+
+	[SerializeField]
+	private int Limit;
+
+	[SerializeField]
+	private float FramesPerSecond;
+
+	[SerializeField]
+	private float CurrentSeconds;
+
+	private float SecondsPerFrame
+	{
+		get
+		{
+			return 1f / FramesPerSecond;
+		}
+	}
+
+	private void Awake()
+	{
+	}
+
+	private void Update()
+	{
+		CurrentSeconds += Time.unscaledDeltaTime;
+		while (CurrentSeconds >= SecondsPerFrame)
+		{
+			CurrentSeconds -= SecondsPerFrame;
+			Frame++;
+			if (Frame > Limit)
+			{
+				Frame = Start;
+			}
+		}
+		Sprite.spriteName = SpriteName + Frame;
+	}
 }

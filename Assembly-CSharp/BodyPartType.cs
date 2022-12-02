@@ -1,15 +1,9 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BodyPartType
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public enum BodyPartType
 {
-  Head,
-  Torso,
-  LeftArm,
-  RightArm,
-  LeftLeg,
-  RightLeg,
+	Head = 0,
+	Torso = 1,
+	LeftArm = 2,
+	RightArm = 3,
+	LeftLeg = 4,
+	RightLeg = 5
 }

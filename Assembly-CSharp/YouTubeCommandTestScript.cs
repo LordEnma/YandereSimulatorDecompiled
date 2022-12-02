@@ -1,458 +1,431 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: YouTubeCommandTestScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class YouTubeCommandTestScript : MonoBehaviour
 {
-  public InfoChanWindowScript InfoChanWindow;
-  public YandereShoeLockerScript ShoeLocker;
-  public YandereScript Yandere;
-  public YouTubeChat Chat;
-  public string RepKeyword;
-  public string CleanKeyword;
-  public string MoneyKeyword;
-  public string SanityKeyword;
-  public string FriendKeyword;
-  public string DelayKeyword;
-  public string InfoKeyword;
-  public string CloakKeyword;
-  public string StudyKeyword;
-  public string DropKeyword;
-  public string GossipKeyword;
-  public string BloodKeyword;
-  public string RobKeyword;
-  public string InsaneKeyword;
-  public string GrudgeKeyword;
-  public string CopsKeyword;
-  public string NemesisKeyword;
-  public string AggroKeyword;
-  public string GuiseKeyword;
-  public string OopsKeyword;
-  public string BustKeyword;
-  public string HairKeyword;
-  public string PantyKeyword;
-  public string PersonaKeyword;
-  public string AccessoryKeyword;
-  public UISprite CountdownCircle;
-  public string WeaponKeyword;
-  public float CloakTimer;
-  public bool[] Check;
+	public InfoChanWindowScript InfoChanWindow;
 
-  public void Update()
-  {
-    if (Input.GetMouseButtonDown(0) || (double) Input.GetAxis("RT") == 1.0)
-      this.Chat.UpdateMessagesList(false);
-    if ((double) this.CloakTimer > 0.0)
-    {
-      this.CloakTimer = Mathf.MoveTowards(this.CloakTimer, 0.0f, Time.deltaTime);
-      if ((double) this.CloakTimer == 0.0)
-      {
-        this.Yandere.Invisible = false;
-        this.Yandere.Decloak();
-      }
-    }
-    if (this.Chat.isValidURL && this.Chat.TimeBased)
-      this.CountdownCircle.fillAmount = (float) (1.0 - (double) this.Chat.Timer / 10.0);
-    if (!((UnityEngine.Object) YouTubeChat.instance != (UnityEngine.Object) null) || YouTubeChat.instance.NextInQueue() == null)
-      return;
-    string message = YouTubeChat.instance.NextInQueue().Message;
-    if (message[0] != '!')
-      return;
-    if (this.Check[1] && message.Contains(this.RepKeyword))
-    {
-      ++this.Yandere.StudentManager.Reputation.PendingRep;
-      this.Yandere.StudentManager.Reputation.UpdateRep();
-      this.Yandere.StudentManager.Reputation.UpdatePendingRepLabel();
-      this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you +1 Rep!";
-      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      YouTubeChat.instance.Dequeue();
-    }
-    else if (this.Check[2] && message.Contains(this.CleanKeyword))
-    {
-      Debug.Log((object) "Someone typed ''!clean''.");
-      if ((double) this.Yandere.Bloodiness > 0.0)
-      {
-        Debug.Log((object) "Player was bloody at the time. Cleaning blood.");
-        this.Yandere.Bloodiness = 0.0f;
-        if (this.Yandere.Schoolwear != 2)
-        {
-          if (this.Yandere.CurrentUniformOrigin == 1)
-            ++this.Yandere.StudentManager.OriginalUniforms;
-          else
-            ++this.Yandere.StudentManager.NewUniforms;
-          --this.Yandere.Police.BloodyClothing;
-        }
-        this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " cleaned your clothing!";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-      if (this.Yandere.RightFootprintSpawner.Bloodiness > 0)
-        this.Yandere.RightFootprintSpawner.Bloodiness = 0;
-      if (this.Yandere.LeftFootprintSpawner.Bloodiness > 0)
-        this.Yandere.LeftFootprintSpawner.Bloodiness = 0;
-      YouTubeChat.instance.Dequeue();
-    }
-    else if (this.Check[3] && message.Contains(this.MoneyKeyword))
-    {
-      ++this.Yandere.Inventory.Money;
-      this.Yandere.Inventory.UpdateMoney();
-      this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you $1.00!";
-      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      YouTubeChat.instance.Dequeue();
-    }
-    else if (this.Check[4] && message.Contains(this.SanityKeyword))
-    {
-      ++this.Yandere.Sanity;
-      this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " restored 1% Sanity!";
-      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      YouTubeChat.instance.Dequeue();
-    }
-    else
-    {
-      if (this.Check[5])
-      {
-        if (message.Contains(this.FriendKeyword))
-        {
-          try
-          {
-            int int32 = Convert.ToInt32(message.Split(' ')[1]);
-            if (int32 > 0)
-            {
-              if (int32 < 101)
-              {
-                if ((UnityEngine.Object) this.Yandere.StudentManager.Students[int32] != (UnityEngine.Object) null)
-                {
-                  this.Yandere.StudentManager.Students[int32].Friend = true;
-                  this.Yandere.StudentManager.Students[int32].Grudge = false;
-                  this.Yandere.StudentManager.StudentPhotographed[int32] = true;
-                  this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made you friends with Student #" + int32.ToString() + "!";
-                  this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-                }
-              }
-            }
-          }
-          catch
-          {
-          }
-          YouTubeChat.instance.Dequeue();
-          return;
-        }
-      }
-      if (this.Check[6] && message.Contains(this.DelayKeyword))
-      {
-        if (!this.Yandere.Police.Delayed)
-        {
-          this.Yandere.Police.Timer += 300f;
-          this.Yandere.Police.Delayed = true;
-          this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " delayed the police!";
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        }
-        YouTubeChat.instance.Dequeue();
-      }
-      else if (this.Check[7] && message.Contains(this.InfoKeyword))
-      {
-        ++this.Yandere.Inventory.PantyShots;
-        this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you 1 Info Point!";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        YouTubeChat.instance.Dequeue();
-      }
-      else if (this.Check[8] && message.Contains(this.CloakKeyword))
-      {
-        Debug.Log((object) "Someone typed ''!cloak''.");
-        Debug.Log((object) "Attempting to disable ShoeLocker...");
-        this.ShoeLocker.enabled = false;
-        Debug.Log((object) "Attempting to turn the girl invisible...");
-        this.Yandere.Invisible = true;
-        this.Yandere.Cloak();
-        this.CloakTimer = 10f;
-        Debug.Log((object) "Attempting to spawn a notification...");
-        this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " cloaked you for 10 seconds!";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        Debug.Log((object) "Attempting to remove this message from the deqeue...");
-        YouTubeChat.instance.Dequeue();
-        Debug.Log((object) "We made it!");
-      }
-      else if (this.Check[9] && message.Contains(this.StudyKeyword))
-      {
-        ++this.Yandere.Class.BonusPoints;
-        this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you 1 Study Point!";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        YouTubeChat.instance.Dequeue();
-      }
-      else
-      {
-        if (this.Check[10])
-        {
-          if (message.Contains(this.DropKeyword))
-          {
-            try
-            {
-              int int32 = Convert.ToInt32(message.Split(' ')[1]);
-              if (int32 > -1)
-              {
-                if (int32 < this.InfoChanWindow.Drops.Length)
-                {
-                  ++this.InfoChanWindow.Orders;
-                  this.InfoChanWindow.ItemsToDrop[this.InfoChanWindow.Orders] = int32;
-                  this.InfoChanWindow.DropObject();
-                  this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " ordered a Drop from Info-chan!";
-                  this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-                }
-              }
-            }
-            catch
-            {
-            }
-            YouTubeChat.instance.Dequeue();
-            return;
-          }
-        }
-        if (this.Check[11] && message.Contains(this.GossipKeyword))
-        {
-          --this.Yandere.StudentManager.Reputation.PendingRep;
-          this.Yandere.StudentManager.Reputation.UpdateRep();
-          this.Yandere.StudentManager.Reputation.UpdatePendingRepLabel();
-          this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " damaged your rep!";
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-          YouTubeChat.instance.Dequeue();
-        }
-        else if (this.Check[12] && message.Contains(this.BloodKeyword))
-        {
-          this.Yandere.Bloodiness += 20f;
-          this.Yandere.StainWeapon();
-          this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " splashed blood on you!";
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-          YouTubeChat.instance.Dequeue();
-        }
-        else if (this.Check[13] && message.Contains(this.RobKeyword))
-        {
-          --this.Yandere.Inventory.Money;
-          if ((double) this.Yandere.Inventory.Money < 0.0)
-            this.Yandere.Inventory.Money = 0.0f;
-          this.Yandere.Inventory.UpdateMoney();
-          this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " stole $1.00 from you!";
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-          YouTubeChat.instance.Dequeue();
-        }
-        else if (this.Check[14] && message.Contains(this.InsaneKeyword))
-        {
-          --this.Yandere.Sanity;
-          this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " reduced your Sanity!";
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-          YouTubeChat.instance.Dequeue();
-        }
-        else
-        {
-          if (this.Check[15])
-          {
-            if (message.Contains(this.GrudgeKeyword))
-            {
-              try
-              {
-                int int32 = Convert.ToInt32(message.Split(' ')[1]);
-                if (int32 > 0)
-                {
-                  if (int32 < 101)
-                  {
-                    if ((UnityEngine.Object) this.Yandere.StudentManager.Students[int32] != (UnityEngine.Object) null)
-                    {
-                      this.Yandere.StudentManager.Students[int32].Friend = false;
-                      this.Yandere.StudentManager.Students[int32].Grudge = true;
-                      this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made you enemies with Student #" + int32.ToString() + "!";
-                      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-                    }
-                  }
-                }
-              }
-              catch
-              {
-              }
-              YouTubeChat.instance.Dequeue();
-              return;
-            }
-          }
-          if (this.Check[16] && message.Contains(this.CopsKeyword))
-          {
-            this.Yandere.Police.Show = true;
-            this.Yandere.Police.Called = true;
-            this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " called the cops!";
-            this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-            YouTubeChat.instance.Dequeue();
-          }
-          else if (this.Check[17] && message.Contains(this.NemesisKeyword))
-          {
-            if (!this.Yandere.PauseScreen.MissionMode.Nemesis.activeInHierarchy)
-            {
-              this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " sent Nemesis after you!";
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-            }
-            YouTubeChat.instance.Dequeue();
-          }
-          else if (this.Check[18] && message.Contains(this.AggroKeyword))
-          {
-            if (this.Yandere.PauseScreen.MissionMode.Nemesis.activeInHierarchy)
-            {
-              this.Yandere.PauseScreen.MissionMode.Nemesis.GetComponent<NemesisScript>().Aggressive = true;
-              this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made Nemesis aggressive!";
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-            }
-            YouTubeChat.instance.Dequeue();
-          }
-          else if (this.Check[19] && message.Contains(this.GuiseKeyword))
-          {
-            if (this.Yandere.PauseScreen.MissionMode.Nemesis.activeInHierarchy)
-            {
-              this.Yandere.PauseScreen.MissionMode.Nemesis.GetComponent<NemesisScript>().PutOnDisguise = true;
-              this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave Nemesis a disguise!";
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-            }
-            YouTubeChat.instance.Dequeue();
-          }
-          else if (this.Check[20] && message.Contains(this.OopsKeyword))
-          {
-            if (this.Yandere.Armed || this.Yandere.Carrying || this.Yandere.HeavyWeight || (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null || this.Yandere.Dragging)
-            {
-              this.Yandere.EmptyHands();
-              this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made you drop it";
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-            }
-            YouTubeChat.instance.Dequeue();
-          }
-          else
-          {
-            if (this.Check[21])
-            {
-              if (message.Contains(this.BustKeyword))
-              {
-                try
-                {
-                  int int32 = Convert.ToInt32(message.Split(' ')[1]);
-                  if (int32 > -1)
-                  {
-                    if (int32 < 15)
-                    {
-                      this.Yandere.BreastSize = (float) (0.5 + (double) int32 * 0.10000000149011612);
-                      this.Yandere.RightBreast.localScale = new Vector3(this.Yandere.BreastSize, this.Yandere.BreastSize, this.Yandere.BreastSize);
-                      this.Yandere.LeftBreast.localScale = new Vector3(this.Yandere.BreastSize, this.Yandere.BreastSize, this.Yandere.BreastSize);
-                      this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " changed your bust size!";
-                      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-                    }
-                  }
-                }
-                catch
-                {
-                }
-                YouTubeChat.instance.Dequeue();
-                return;
-              }
-            }
-            if (this.Check[22])
-            {
-              if (message.Contains(this.HairKeyword))
-              {
-                try
-                {
-                  int int32 = Convert.ToInt32(message.Split(' ')[1]);
-                  if (int32 > -1)
-                  {
-                    if (int32 < this.Yandere.Hairstyles.Length)
-                    {
-                      this.Yandere.Hairstyle = int32;
-                      this.Yandere.UpdateHair();
-                      this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you a new hairstyle!";
-                      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-                    }
-                  }
-                }
-                catch
-                {
-                }
-                YouTubeChat.instance.Dequeue();
-                return;
-              }
-            }
-            if (this.Check[23])
-            {
-              if (message.Contains(this.PantyKeyword))
-              {
-                try
-                {
-                  int int32 = Convert.ToInt32(message.Split(' ')[1]);
-                  if (int32 > 0)
-                  {
-                    if (int32 < 12)
-                    {
-                      PlayerGlobals.PantiesEquipped = int32;
-                      this.Yandere.PantyAttacher.PantyID = int32;
-                      this.Yandere.PantyAttacher.UpdatePanties();
-                      this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " changed your panties!";
-                      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-                    }
-                  }
-                }
-                catch
-                {
-                }
-                YouTubeChat.instance.Dequeue();
-                return;
-              }
-            }
-            if (this.Check[24])
-            {
-              if (message.Contains(this.PersonaKeyword))
-              {
-                try
-                {
-                  int int32 = Convert.ToInt32(message.Split(' ')[1]);
-                  if (int32 > 0)
-                  {
-                    if (int32 < 12)
-                    {
-                      this.Yandere.PersonaID = int32;
-                      this.Yandere.StudentManager.Mirror.UpdatePersona();
-                    }
-                  }
-                }
-                catch
-                {
-                }
-                YouTubeChat.instance.Dequeue();
-                return;
-              }
-            }
-            if (this.Check[25])
-            {
-              if (message.Contains(this.AccessoryKeyword))
-              {
-                try
-                {
-                  int int32 = Convert.ToInt32(message.Split(' ')[1]);
-                  if (int32 > -1)
-                  {
-                    if (int32 < this.Yandere.Accessories.Length)
-                    {
-                      this.Yandere.AccessoryID = int32;
-                      this.Yandere.UpdateAccessory();
-                      this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you a new accessory!";
-                      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-                    }
-                  }
-                }
-                catch
-                {
-                }
-                YouTubeChat.instance.Dequeue();
-                return;
-              }
-            }
-            YouTubeChat.instance.Dequeue();
-          }
-        }
-      }
-    }
-  }
+	public YandereShoeLockerScript ShoeLocker;
+
+	public YandereScript Yandere;
+
+	public YouTubeChat Chat;
+
+	public string RepKeyword;
+
+	public string CleanKeyword;
+
+	public string MoneyKeyword;
+
+	public string SanityKeyword;
+
+	public string FriendKeyword;
+
+	public string DelayKeyword;
+
+	public string InfoKeyword;
+
+	public string CloakKeyword;
+
+	public string StudyKeyword;
+
+	public string DropKeyword;
+
+	public string GossipKeyword;
+
+	public string BloodKeyword;
+
+	public string RobKeyword;
+
+	public string InsaneKeyword;
+
+	public string GrudgeKeyword;
+
+	public string CopsKeyword;
+
+	public string NemesisKeyword;
+
+	public string AggroKeyword;
+
+	public string GuiseKeyword;
+
+	public string OopsKeyword;
+
+	public string BustKeyword;
+
+	public string HairKeyword;
+
+	public string PantyKeyword;
+
+	public string PersonaKeyword;
+
+	public string AccessoryKeyword;
+
+	public UISprite CountdownCircle;
+
+	public string WeaponKeyword;
+
+	public float CloakTimer;
+
+	public bool[] Check;
+
+	public void Update()
+	{
+		if (Input.GetMouseButtonDown(0) || Input.GetAxis("RT") == 1f)
+		{
+			Chat.UpdateMessagesList(false);
+		}
+		if (CloakTimer > 0f)
+		{
+			CloakTimer = Mathf.MoveTowards(CloakTimer, 0f, Time.deltaTime);
+			if (CloakTimer == 0f)
+			{
+				Yandere.Invisible = false;
+				Yandere.Decloak();
+			}
+		}
+		if (Chat.isValidURL && Chat.TimeBased)
+		{
+			CountdownCircle.fillAmount = 1f - Chat.Timer / 10f;
+		}
+		if (!(YouTubeChat.instance != null) || YouTubeChat.instance.NextInQueue() == null)
+		{
+			return;
+		}
+		string message = YouTubeChat.instance.NextInQueue().Message;
+		if (message[0] != '!')
+		{
+			return;
+		}
+		if (Check[1] && message.Contains(RepKeyword))
+		{
+			Yandere.StudentManager.Reputation.PendingRep += 1f;
+			Yandere.StudentManager.Reputation.UpdateRep();
+			Yandere.StudentManager.Reputation.UpdatePendingRepLabel();
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you +1 Rep!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[2] && message.Contains(CleanKeyword))
+		{
+			Debug.Log("Someone typed ''!clean''.");
+			if (Yandere.Bloodiness > 0f)
+			{
+				Debug.Log("Player was bloody at the time. Cleaning blood.");
+				Yandere.Bloodiness = 0f;
+				if (Yandere.Schoolwear != 2)
+				{
+					if (Yandere.CurrentUniformOrigin == 1)
+					{
+						Yandere.StudentManager.OriginalUniforms++;
+					}
+					else
+					{
+						Yandere.StudentManager.NewUniforms++;
+					}
+					Yandere.Police.BloodyClothing--;
+				}
+				Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " cleaned your clothing!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			if (Yandere.RightFootprintSpawner.Bloodiness > 0)
+			{
+				Yandere.RightFootprintSpawner.Bloodiness = 0;
+			}
+			if (Yandere.LeftFootprintSpawner.Bloodiness > 0)
+			{
+				Yandere.LeftFootprintSpawner.Bloodiness = 0;
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[3] && message.Contains(MoneyKeyword))
+		{
+			Yandere.Inventory.Money += 1f;
+			Yandere.Inventory.UpdateMoney();
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you $1.00!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[4] && message.Contains(SanityKeyword))
+		{
+			Yandere.Sanity++;
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " restored 1% Sanity!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[5] && message.Contains(FriendKeyword))
+		{
+			try
+			{
+				int num = Convert.ToInt32(message.Split(' ')[1]);
+				if (num > 0 && num < 101 && Yandere.StudentManager.Students[num] != null)
+				{
+					Yandere.StudentManager.Students[num].Friend = true;
+					Yandere.StudentManager.Students[num].Grudge = false;
+					Yandere.StudentManager.StudentPhotographed[num] = true;
+					Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made you friends with Student #" + num + "!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			catch
+			{
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[6] && message.Contains(DelayKeyword))
+		{
+			if (!Yandere.Police.Delayed)
+			{
+				Yandere.Police.Timer += 300f;
+				Yandere.Police.Delayed = true;
+				Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " delayed the police!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[7] && message.Contains(InfoKeyword))
+		{
+			Yandere.Inventory.PantyShots++;
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you 1 Info Point!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[8] && message.Contains(CloakKeyword))
+		{
+			Debug.Log("Someone typed ''!cloak''.");
+			Debug.Log("Attempting to disable ShoeLocker...");
+			ShoeLocker.enabled = false;
+			Debug.Log("Attempting to turn the girl invisible...");
+			Yandere.Invisible = true;
+			Yandere.Cloak();
+			CloakTimer = 10f;
+			Debug.Log("Attempting to spawn a notification...");
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " cloaked you for 10 seconds!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Debug.Log("Attempting to remove this message from the deqeue...");
+			YouTubeChat.instance.Dequeue();
+			Debug.Log("We made it!");
+		}
+		else if (Check[9] && message.Contains(StudyKeyword))
+		{
+			Yandere.Class.BonusPoints++;
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you 1 Study Point!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[10] && message.Contains(DropKeyword))
+		{
+			try
+			{
+				int num2 = Convert.ToInt32(message.Split(' ')[1]);
+				if (num2 > -1 && num2 < InfoChanWindow.Drops.Length)
+				{
+					InfoChanWindow.Orders++;
+					InfoChanWindow.ItemsToDrop[InfoChanWindow.Orders] = num2;
+					InfoChanWindow.DropObject();
+					Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " ordered a Drop from Info-chan!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			catch
+			{
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[11] && message.Contains(GossipKeyword))
+		{
+			Yandere.StudentManager.Reputation.PendingRep -= 1f;
+			Yandere.StudentManager.Reputation.UpdateRep();
+			Yandere.StudentManager.Reputation.UpdatePendingRepLabel();
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " damaged your rep!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[12] && message.Contains(BloodKeyword))
+		{
+			Yandere.Bloodiness += 20f;
+			Yandere.StainWeapon();
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " splashed blood on you!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[13] && message.Contains(RobKeyword))
+		{
+			Yandere.Inventory.Money -= 1f;
+			if (Yandere.Inventory.Money < 0f)
+			{
+				Yandere.Inventory.Money = 0f;
+			}
+			Yandere.Inventory.UpdateMoney();
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " stole $1.00 from you!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[14] && message.Contains(InsaneKeyword))
+		{
+			Yandere.Sanity--;
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " reduced your Sanity!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[15] && message.Contains(GrudgeKeyword))
+		{
+			try
+			{
+				int num3 = Convert.ToInt32(message.Split(' ')[1]);
+				if (num3 > 0 && num3 < 101 && Yandere.StudentManager.Students[num3] != null)
+				{
+					Yandere.StudentManager.Students[num3].Friend = false;
+					Yandere.StudentManager.Students[num3].Grudge = true;
+					Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made you enemies with Student #" + num3 + "!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			catch
+			{
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[16] && message.Contains(CopsKeyword))
+		{
+			Yandere.Police.Show = true;
+			Yandere.Police.Called = true;
+			Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " called the cops!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[17] && message.Contains(NemesisKeyword))
+		{
+			if (!Yandere.PauseScreen.MissionMode.Nemesis.activeInHierarchy)
+			{
+				Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " sent Nemesis after you!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[18] && message.Contains(AggroKeyword))
+		{
+			if (Yandere.PauseScreen.MissionMode.Nemesis.activeInHierarchy)
+			{
+				Yandere.PauseScreen.MissionMode.Nemesis.GetComponent<NemesisScript>().Aggressive = true;
+				Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made Nemesis aggressive!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[19] && message.Contains(GuiseKeyword))
+		{
+			if (Yandere.PauseScreen.MissionMode.Nemesis.activeInHierarchy)
+			{
+				Yandere.PauseScreen.MissionMode.Nemesis.GetComponent<NemesisScript>().PutOnDisguise = true;
+				Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave Nemesis a disguise!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[20] && message.Contains(OopsKeyword))
+		{
+			if (Yandere.Armed || Yandere.Carrying || Yandere.HeavyWeight || Yandere.PickUp != null || Yandere.Dragging)
+			{
+				Yandere.EmptyHands();
+				Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made you drop it";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[21] && message.Contains(BustKeyword))
+		{
+			try
+			{
+				int num4 = Convert.ToInt32(message.Split(' ')[1]);
+				if (num4 > -1 && num4 < 15)
+				{
+					Yandere.BreastSize = 0.5f + (float)num4 * 0.1f;
+					Yandere.RightBreast.localScale = new Vector3(Yandere.BreastSize, Yandere.BreastSize, Yandere.BreastSize);
+					Yandere.LeftBreast.localScale = new Vector3(Yandere.BreastSize, Yandere.BreastSize, Yandere.BreastSize);
+					Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " changed your bust size!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			catch
+			{
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[22] && message.Contains(HairKeyword))
+		{
+			try
+			{
+				int num5 = Convert.ToInt32(message.Split(' ')[1]);
+				if (num5 > -1 && num5 < Yandere.Hairstyles.Length)
+				{
+					Yandere.Hairstyle = num5;
+					Yandere.UpdateHair();
+					Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you a new hairstyle!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			catch
+			{
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[23] && message.Contains(PantyKeyword))
+		{
+			try
+			{
+				int num6 = Convert.ToInt32(message.Split(' ')[1]);
+				if (num6 > 0 && num6 < 12)
+				{
+					PlayerGlobals.PantiesEquipped = num6;
+					Yandere.PantyAttacher.PantyID = num6;
+					Yandere.PantyAttacher.UpdatePanties();
+					Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " changed your panties!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			catch
+			{
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[24] && message.Contains(PersonaKeyword))
+		{
+			try
+			{
+				int num7 = Convert.ToInt32(message.Split(' ')[1]);
+				if (num7 > 0 && num7 < 12)
+				{
+					Yandere.PersonaID = num7;
+					Yandere.StudentManager.Mirror.UpdatePersona();
+				}
+			}
+			catch
+			{
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else if (Check[25] && message.Contains(AccessoryKeyword))
+		{
+			try
+			{
+				int num8 = Convert.ToInt32(message.Split(' ')[1]);
+				if (num8 > -1 && num8 < Yandere.Accessories.Length)
+				{
+					Yandere.AccessoryID = num8;
+					Yandere.UpdateAccessory();
+					Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " gave you a new accessory!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
+			catch
+			{
+			}
+			YouTubeChat.instance.Dequeue();
+		}
+		else
+		{
+			YouTubeChat.instance.Dequeue();
+		}
+	}
 }

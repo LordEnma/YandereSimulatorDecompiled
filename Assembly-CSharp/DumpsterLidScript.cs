@@ -1,103 +1,138 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DumpsterLidScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DumpsterLidScript : MonoBehaviour
 {
-  public StudentScript Victim;
-  public Transform SlideLocation;
-  public Transform GarbageDebris;
-  public Transform Hinge;
-  public GameObject FallChecker;
-  public GameObject Corpse;
-  public PromptScript[] DragPrompts;
-  public PromptScript Prompt;
-  public float DisposalSpot;
-  public float Rotation;
-  public bool Slide;
-  public bool Fill;
-  public bool Open;
-  public int StudentToGoMissing;
+	public StudentScript Victim;
 
-  private void Start()
-  {
-    this.FallChecker.SetActive(false);
-    this.Prompt.HideButton[3] = true;
-  }
+	public Transform SlideLocation;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      if (!this.Open)
-      {
-        this.Prompt.Label[0].text = "     Close";
-        this.Open = true;
-      }
-      else
-      {
-        this.Prompt.Label[0].text = "     Open";
-        this.Open = false;
-      }
-    }
-    if (!this.Open)
-    {
-      this.Rotation = Mathf.Lerp(this.Rotation, 0.0f, Time.deltaTime * 10f);
-      this.Prompt.HideButton[3] = true;
-    }
-    else
-    {
-      this.Rotation = Mathf.Lerp(this.Rotation, -115f, Time.deltaTime * 10f);
-      this.Prompt.HideButton[3] = !((Object) this.Corpse != (Object) null) || !((Object) this.Prompt.Yandere.PickUp != (Object) null) || !this.Prompt.Yandere.PickUp.Garbage;
-      if ((double) this.Prompt.Circle[3].fillAmount == 0.0)
-      {
-        Object.Destroy((Object) this.Prompt.Yandere.PickUp.gameObject);
-        this.Prompt.Circle[3].fillAmount = 1f;
-        this.Prompt.HideButton[3] = false;
-        this.Fill = true;
-      }
-      if ((double) this.transform.position.z > (double) this.DisposalSpot - 0.05000000074505806 && (double) this.transform.position.z < (double) this.DisposalSpot + 0.05000000074505806)
-        this.FallChecker.SetActive(this.Prompt.Yandere.RoofPush);
-      else
-        this.FallChecker.SetActive(false);
-      if (this.Slide)
-      {
-        this.transform.eulerAngles = Vector3.Lerp(this.transform.eulerAngles, this.SlideLocation.eulerAngles, Time.deltaTime * 10f);
-        this.transform.position = Vector3.Lerp(this.transform.position, this.SlideLocation.position, Time.deltaTime * 10f);
-        this.Corpse.GetComponent<RagdollScript>().Student.Hips.position = this.transform.position + new Vector3(0.0f, 1f, 0.0f);
-        if ((double) Vector3.Distance(this.transform.position, this.SlideLocation.position) < 0.0099999997764825821)
-        {
-          this.DragPrompts[0].enabled = false;
-          this.DragPrompts[1].enabled = false;
-          this.FallChecker.SetActive(false);
-          this.Slide = false;
-        }
-      }
-    }
-    this.Hinge.localEulerAngles = new Vector3(this.Rotation, 0.0f, 0.0f);
-    if (!this.Fill)
-      return;
-    this.GarbageDebris.localPosition = new Vector3(this.GarbageDebris.localPosition.x, Mathf.Lerp(this.GarbageDebris.localPosition.y, 1f, Time.deltaTime * 10f), this.GarbageDebris.localPosition.z);
-    if ((double) this.GarbageDebris.localPosition.y <= 0.99000000953674316)
-      return;
-    this.Prompt.Yandere.Police.SuicideScene = false;
-    this.Prompt.Yandere.Police.Suicide = false;
-    if (!this.Corpse.GetComponent<RagdollScript>().Concealed)
-      --this.Prompt.Yandere.Police.HiddenCorpses;
-    --this.Prompt.Yandere.Police.Corpses;
-    if (this.Corpse.GetComponent<RagdollScript>().AddingToCount)
-      --this.Prompt.Yandere.NearBodies;
-    this.GarbageDebris.localPosition = new Vector3(this.GarbageDebris.localPosition.x, 1f, this.GarbageDebris.localPosition.z);
-    this.StudentToGoMissing = this.Corpse.GetComponent<StudentScript>().StudentID;
-    this.Corpse.gameObject.SetActive(false);
-    this.Fill = false;
-    this.Prompt.Yandere.StudentManager.UpdateStudents();
-  }
+	public Transform GarbageDebris;
 
-  public void SetVictimMissing() => StudentGlobals.SetStudentMissing(this.StudentToGoMissing, true);
+	public Transform Hinge;
+
+	public GameObject FallChecker;
+
+	public GameObject Corpse;
+
+	public PromptScript[] DragPrompts;
+
+	public PromptScript Prompt;
+
+	public float DisposalSpot;
+
+	public float Rotation;
+
+	public bool Slide;
+
+	public bool Fill;
+
+	public bool Open;
+
+	public int StudentToGoMissing;
+
+	private void Start()
+	{
+		FallChecker.SetActive(false);
+		Prompt.HideButton[3] = true;
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			if (!Open)
+			{
+				Prompt.Label[0].text = "     Close";
+				Open = true;
+			}
+			else
+			{
+				Prompt.Label[0].text = "     Open";
+				Open = false;
+			}
+		}
+		if (!Open)
+		{
+			Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 10f);
+			Prompt.HideButton[3] = true;
+		}
+		else
+		{
+			Rotation = Mathf.Lerp(Rotation, -115f, Time.deltaTime * 10f);
+			if (Corpse != null)
+			{
+				if (Prompt.Yandere.PickUp != null)
+				{
+					Prompt.HideButton[3] = !Prompt.Yandere.PickUp.Garbage;
+				}
+				else
+				{
+					Prompt.HideButton[3] = true;
+				}
+			}
+			else
+			{
+				Prompt.HideButton[3] = true;
+			}
+			if (Prompt.Circle[3].fillAmount == 0f)
+			{
+				Object.Destroy(Prompt.Yandere.PickUp.gameObject);
+				Prompt.Circle[3].fillAmount = 1f;
+				Prompt.HideButton[3] = false;
+				Fill = true;
+			}
+			if (base.transform.position.z > DisposalSpot - 0.05f && base.transform.position.z < DisposalSpot + 0.05f)
+			{
+				FallChecker.SetActive(Prompt.Yandere.RoofPush);
+			}
+			else
+			{
+				FallChecker.SetActive(false);
+			}
+			if (Slide)
+			{
+				base.transform.eulerAngles = Vector3.Lerp(base.transform.eulerAngles, SlideLocation.eulerAngles, Time.deltaTime * 10f);
+				base.transform.position = Vector3.Lerp(base.transform.position, SlideLocation.position, Time.deltaTime * 10f);
+				Corpse.GetComponent<RagdollScript>().Student.Hips.position = base.transform.position + new Vector3(0f, 1f, 0f);
+				if (Vector3.Distance(base.transform.position, SlideLocation.position) < 0.01f)
+				{
+					DragPrompts[0].enabled = false;
+					DragPrompts[1].enabled = false;
+					FallChecker.SetActive(false);
+					Slide = false;
+				}
+			}
+		}
+		Hinge.localEulerAngles = new Vector3(Rotation, 0f, 0f);
+		if (!Fill)
+		{
+			return;
+		}
+		GarbageDebris.localPosition = new Vector3(GarbageDebris.localPosition.x, Mathf.Lerp(GarbageDebris.localPosition.y, 1f, Time.deltaTime * 10f), GarbageDebris.localPosition.z);
+		if (GarbageDebris.localPosition.y > 0.99f)
+		{
+			Prompt.Yandere.Police.SuicideScene = false;
+			Prompt.Yandere.Police.Suicide = false;
+			if (!Corpse.GetComponent<RagdollScript>().Concealed)
+			{
+				Prompt.Yandere.Police.HiddenCorpses--;
+			}
+			Prompt.Yandere.Police.Corpses--;
+			if (Corpse.GetComponent<RagdollScript>().AddingToCount)
+			{
+				Prompt.Yandere.NearBodies--;
+			}
+			GarbageDebris.localPosition = new Vector3(GarbageDebris.localPosition.x, 1f, GarbageDebris.localPosition.z);
+			StudentToGoMissing = Corpse.GetComponent<StudentScript>().StudentID;
+			Corpse.gameObject.SetActive(false);
+			Fill = false;
+			Prompt.Yandere.StudentManager.UpdateStudents();
+		}
+	}
+
+	public void SetVictimMissing()
+	{
+		StudentGlobals.SetStudentMissing(StudentToGoMissing, true);
+	}
 }

@@ -1,14 +1,8 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PKDirType
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public enum PKDirType
 {
-  None,
-  Up,
-  Down,
-  Right,
-  Left,
+	None = 0,
+	Up = 1,
+	Down = 2,
+	Right = 3,
+	Left = 4
 }

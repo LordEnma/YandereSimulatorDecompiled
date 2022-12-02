@@ -1,21 +1,21 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CountdownTimerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class CountdownTimerScript : MonoBehaviour
 {
-  public UILabel CountdownLabel;
-  public float Timer;
+	public UILabel CountdownLabel;
 
-  private void Update()
-  {
-    this.Timer = Mathf.MoveTowards(this.Timer, 0.0f, Time.deltaTime);
-    this.DisplayTime(this.Timer);
-  }
+	public float Timer;
 
-  private void DisplayTime(float timeToDisplay) => this.CountdownLabel.text = string.Format("{0:0}:{1:00}", (object) (float) Mathf.FloorToInt(timeToDisplay / 60f), (object) (float) Mathf.FloorToInt(timeToDisplay % 60f));
+	private void Update()
+	{
+		Timer = Mathf.MoveTowards(Timer, 0f, Time.deltaTime);
+		DisplayTime(Timer);
+	}
+
+	private void DisplayTime(float timeToDisplay)
+	{
+		float num = Mathf.FloorToInt(timeToDisplay / 60f);
+		float num2 = Mathf.FloorToInt(timeToDisplay % 60f);
+		CountdownLabel.text = string.Format("{0:0}:{1:00}", num, num2);
+	}
 }

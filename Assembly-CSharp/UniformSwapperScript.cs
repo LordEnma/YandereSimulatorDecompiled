@@ -1,70 +1,73 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UniformSwapperScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class UniformSwapperScript : MonoBehaviour
 {
-  public Texture[] UniformTextures;
-  public Mesh[] UniformMeshes;
-  public Texture FaceTexture;
-  public SkinnedMeshRenderer MyRenderer;
-  public int UniformID;
-  public int FaceID;
-  public int SkinID;
-  public Transform LookTarget;
-  public Transform Head;
+	public Texture[] UniformTextures;
 
-  private void Start()
-  {
-    int maleUniform = StudentGlobals.MaleUniform;
-    this.MyRenderer.sharedMesh = this.UniformMeshes[maleUniform];
-    Texture uniformTexture = this.UniformTextures[maleUniform];
-    switch (maleUniform)
-    {
-      case 1:
-        this.SkinID = 0;
-        this.UniformID = 1;
-        this.FaceID = 2;
-        break;
-      case 2:
-        this.UniformID = 0;
-        this.FaceID = 1;
-        this.SkinID = 2;
-        break;
-      case 3:
-        this.UniformID = 0;
-        this.FaceID = 1;
-        this.SkinID = 2;
-        break;
-      case 4:
-        this.FaceID = 0;
-        this.SkinID = 1;
-        this.UniformID = 2;
-        break;
-      case 5:
-        this.FaceID = 0;
-        this.SkinID = 1;
-        this.UniformID = 2;
-        break;
-      case 6:
-        this.FaceID = 0;
-        this.SkinID = 1;
-        this.UniformID = 2;
-        break;
-    }
-    this.MyRenderer.materials[this.FaceID].mainTexture = this.FaceTexture;
-    this.MyRenderer.materials[this.SkinID].mainTexture = uniformTexture;
-    this.MyRenderer.materials[this.UniformID].mainTexture = uniformTexture;
-  }
+	public Mesh[] UniformMeshes;
 
-  private void LateUpdate()
-  {
-    if (!((Object) this.LookTarget != (Object) null))
-      return;
-    this.Head.LookAt(this.LookTarget);
-  }
+	public Texture FaceTexture;
+
+	public SkinnedMeshRenderer MyRenderer;
+
+	public int UniformID;
+
+	public int FaceID;
+
+	public int SkinID;
+
+	public Transform LookTarget;
+
+	public Transform Head;
+
+	private void Start()
+	{
+		int maleUniform = StudentGlobals.MaleUniform;
+		MyRenderer.sharedMesh = UniformMeshes[maleUniform];
+		Texture mainTexture = UniformTextures[maleUniform];
+		switch (maleUniform)
+		{
+		case 1:
+			SkinID = 0;
+			UniformID = 1;
+			FaceID = 2;
+			break;
+		case 2:
+			UniformID = 0;
+			FaceID = 1;
+			SkinID = 2;
+			break;
+		case 3:
+			UniformID = 0;
+			FaceID = 1;
+			SkinID = 2;
+			break;
+		case 4:
+			FaceID = 0;
+			SkinID = 1;
+			UniformID = 2;
+			break;
+		case 5:
+			FaceID = 0;
+			SkinID = 1;
+			UniformID = 2;
+			break;
+		case 6:
+			FaceID = 0;
+			SkinID = 1;
+			UniformID = 2;
+			break;
+		}
+		MyRenderer.materials[FaceID].mainTexture = FaceTexture;
+		MyRenderer.materials[SkinID].mainTexture = mainTexture;
+		MyRenderer.materials[UniformID].mainTexture = mainTexture;
+	}
+
+	private void LateUpdate()
+	{
+		if (LookTarget != null)
+		{
+			Head.LookAt(LookTarget);
+		}
+	}
 }

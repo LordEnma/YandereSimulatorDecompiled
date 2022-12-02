@@ -1,101 +1,134 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UniformSetterScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class UniformSetterScript : MonoBehaviour
 {
-  public Texture[] FemaleUniformTextures;
-  public Texture[] MaleUniformTextures;
-  public SkinnedMeshRenderer MyRenderer;
-  public Mesh[] FemaleUniforms;
-  public Mesh[] MaleUniforms;
-  public Texture SenpaiFace;
-  public Texture SenpaiSkin;
-  public Texture RyobaFace;
-  public Texture AyanoFace;
-  public Texture OsanaFace;
-  public int FaceID;
-  public int SkinID;
-  public int UniformID;
-  public int StudentID;
-  public bool AttachHair;
-  public bool Male;
-  public Transform Head;
-  public GameObject[] Hair;
-  public int HairID;
-  public int ForceUniform;
-  public bool Ryoba;
-  public Texture RyobaTexture;
+	public Texture[] FemaleUniformTextures;
 
-  public void Start()
-  {
-    if ((Object) this.MyRenderer == (Object) null)
-      this.MyRenderer = this.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>();
-    if (this.Male)
-      this.SetMaleUniform();
-    else
-      this.SetFemaleUniform();
-    if (!this.AttachHair)
-      return;
-    GameObject gameObject = Object.Instantiate<GameObject>(this.Hair[this.HairID], this.transform.position, this.transform.rotation);
-    this.Head = this.transform.Find("Character/PelvisRoot/Hips/Spine/Spine1/Spine2/Spine3/Neck/Head").transform;
-    gameObject.transform.parent = this.Head;
-  }
+	public Texture[] MaleUniformTextures;
 
-  public void SetMaleUniform()
-  {
-    int index = StudentGlobals.MaleUniform;
-    if (this.ForceUniform > 0)
-      index = this.ForceUniform;
-    this.MyRenderer.sharedMesh = this.MaleUniforms[index];
-    switch (index)
-    {
-      case 1:
-        this.SkinID = 0;
-        this.UniformID = 1;
-        this.FaceID = 2;
-        break;
-      case 2:
-      case 3:
-        this.UniformID = 0;
-        this.FaceID = 1;
-        this.SkinID = 2;
-        break;
-      case 4:
-      case 5:
-      case 6:
-        this.FaceID = 0;
-        this.SkinID = 1;
-        this.UniformID = 2;
-        break;
-    }
-    this.MyRenderer.materials[this.FaceID].mainTexture = this.SenpaiFace;
-    this.MyRenderer.materials[this.SkinID].mainTexture = this.SenpaiSkin;
-    this.MyRenderer.materials[this.UniformID].mainTexture = this.MaleUniformTextures[index];
-  }
+	public SkinnedMeshRenderer MyRenderer;
 
-  public void SetFemaleUniform()
-  {
-    int index = StudentGlobals.FemaleUniform;
-    if (this.ForceUniform > 0)
-      index = this.ForceUniform;
-    this.MyRenderer.sharedMesh = this.FemaleUniforms[index];
-    this.MyRenderer.materials[0].mainTexture = this.FemaleUniformTextures[index];
-    this.MyRenderer.materials[1].mainTexture = this.FemaleUniformTextures[index];
-    if (this.Ryoba)
-    {
-      this.MyRenderer.materials[0].mainTexture = this.RyobaTexture;
-      this.MyRenderer.materials[1].mainTexture = this.RyobaTexture;
-    }
-    if (this.StudentID == 0)
-      this.MyRenderer.materials[2].mainTexture = this.RyobaFace;
-    else if (this.StudentID == 1)
-      this.MyRenderer.materials[2].mainTexture = this.AyanoFace;
-    else
-      this.MyRenderer.materials[2].mainTexture = this.OsanaFace;
-  }
+	public Mesh[] FemaleUniforms;
+
+	public Mesh[] MaleUniforms;
+
+	public Texture SenpaiFace;
+
+	public Texture SenpaiSkin;
+
+	public Texture RyobaFace;
+
+	public Texture AyanoFace;
+
+	public Texture OsanaFace;
+
+	public int FaceID;
+
+	public int SkinID;
+
+	public int UniformID;
+
+	public int StudentID;
+
+	public bool AttachHair;
+
+	public bool Male;
+
+	public Transform Head;
+
+	public GameObject[] Hair;
+
+	public int HairID;
+
+	public int ForceUniform;
+
+	public bool Ryoba;
+
+	public Texture RyobaTexture;
+
+	public void Start()
+	{
+		if (MyRenderer == null)
+		{
+			MyRenderer = base.transform.GetChild(0).GetChild(0).GetChild(0)
+				.GetComponent<SkinnedMeshRenderer>();
+		}
+		if (Male)
+		{
+			SetMaleUniform();
+		}
+		else
+		{
+			SetFemaleUniform();
+		}
+		if (AttachHair)
+		{
+			GameObject obj = Object.Instantiate(Hair[HairID], base.transform.position, base.transform.rotation);
+			Head = base.transform.Find("Character/PelvisRoot/Hips/Spine/Spine1/Spine2/Spine3/Neck/Head").transform;
+			obj.transform.parent = Head;
+		}
+	}
+
+	public void SetMaleUniform()
+	{
+		int num = StudentGlobals.MaleUniform;
+		if (ForceUniform > 0)
+		{
+			num = ForceUniform;
+		}
+		MyRenderer.sharedMesh = MaleUniforms[num];
+		switch (num)
+		{
+		case 1:
+			SkinID = 0;
+			UniformID = 1;
+			FaceID = 2;
+			break;
+		case 2:
+		case 3:
+			UniformID = 0;
+			FaceID = 1;
+			SkinID = 2;
+			break;
+		case 4:
+		case 5:
+		case 6:
+			FaceID = 0;
+			SkinID = 1;
+			UniformID = 2;
+			break;
+		}
+		MyRenderer.materials[FaceID].mainTexture = SenpaiFace;
+		MyRenderer.materials[SkinID].mainTexture = SenpaiSkin;
+		MyRenderer.materials[UniformID].mainTexture = MaleUniformTextures[num];
+	}
+
+	public void SetFemaleUniform()
+	{
+		int num = StudentGlobals.FemaleUniform;
+		if (ForceUniform > 0)
+		{
+			num = ForceUniform;
+		}
+		MyRenderer.sharedMesh = FemaleUniforms[num];
+		MyRenderer.materials[0].mainTexture = FemaleUniformTextures[num];
+		MyRenderer.materials[1].mainTexture = FemaleUniformTextures[num];
+		if (Ryoba)
+		{
+			MyRenderer.materials[0].mainTexture = RyobaTexture;
+			MyRenderer.materials[1].mainTexture = RyobaTexture;
+		}
+		if (StudentID == 0)
+		{
+			MyRenderer.materials[2].mainTexture = RyobaFace;
+		}
+		else if (StudentID == 1)
+		{
+			MyRenderer.materials[2].mainTexture = AyanoFace;
+		}
+		else
+		{
+			MyRenderer.materials[2].mainTexture = OsanaFace;
+		}
+	}
 }

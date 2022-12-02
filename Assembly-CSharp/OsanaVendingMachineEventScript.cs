@@ -1,235 +1,285 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: OsanaVendingMachineEventScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class OsanaVendingMachineEventScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public JukeboxScript Jukebox;
-  public UILabel EventSubtitle;
-  public YandereScript Yandere;
-  public ClockScript Clock;
-  public StudentScript Rival;
-  public Transform Location;
-  public AudioSource VoiceSource;
-  public AudioSource MyAudio;
-  public AudioClip[] SpeechClip;
-  public AudioClip Bang;
-  public string[] SpeechText;
-  public string[] EventAnim;
-  public GameObject OsanaVandalismCollider;
-  public GameObject AlarmDisc;
-  public GameObject VoiceClip;
-  public float MinimumDistance = 0.5f;
-  public float Distance;
-  public float Scale;
-  public float Timer;
-  public DayOfWeek EventDay;
-  public int StartPeriod;
-  public int RivalID = 11;
-  public int Phase;
-  public int Frame;
-  public bool PlaySound;
+	public StudentManagerScript StudentManager;
 
-  private void Start()
-  {
-    this.EventSubtitle.transform.localScale = Vector3.zero;
-    if (!GameGlobals.Eighties)
-      return;
-    this.enabled = false;
-  }
+	public JukeboxScript Jukebox;
 
-  private void Update()
-  {
-    if (this.Phase == 0)
-    {
-      if (this.Frame > 0 && (UnityEngine.Object) this.StudentManager.Students[this.RivalID] != (UnityEngine.Object) null)
-      {
-        if ((UnityEngine.Object) this.Rival == (UnityEngine.Object) null)
-          this.Rival = this.StudentManager.Students[this.RivalID];
-        if (this.Rival.enabled && this.Rival.SnackPhase == 1)
-        {
-          Debug.Log((object) "Osana's vending machine event has begun.");
-          AudioClipPlayer.Play(this.SpeechClip[0], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.EventSubtitle.text = this.SpeechText[0];
-          this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-          this.Rival.CharacterAnimation.Play(this.Rival.WalkAnim);
-          this.Rival.Pathfinding.target = this.Location;
-          this.Rival.CurrentDestination = this.Location;
-          this.Rival.Pathfinding.canSearch = true;
-          this.Rival.Pathfinding.canMove = true;
-          this.Rival.EatingSnack = false;
-          this.Rival.Routine = false;
-          this.Rival.InEvent = true;
-          this.Rival.EmptyHands();
-          ++this.Phase;
-        }
-      }
-      ++this.Frame;
-    }
-    else
-    {
-      if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-      {
-        if ((UnityEngine.Object) this.VoiceSource == (UnityEngine.Object) null)
-          this.VoiceSource = this.VoiceClip.GetComponent<AudioSource>();
-        else
-          this.VoiceSource.pitch = Time.timeScale;
-      }
-      if ((double) this.Rival.DistanceToDestination < (double) this.MinimumDistance)
-      {
-        if (!this.Rival.GoAway)
-          this.Rival.MoveTowardsTarget(this.Location.position);
-        if ((double) Quaternion.Angle(this.Rival.transform.rotation, this.Location.rotation) > 1.0)
-          this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Location.rotation, 10f * Time.deltaTime);
-      }
-      if (this.Phase == 1)
-      {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-          this.Yandere.transform.position = this.Location.position + new Vector3(2f, 0.0f, 2f);
-          this.Rival.transform.position = this.Location.position + new Vector3(1f, 0.0f, 1f);
-        }
-        if ((double) this.Rival.DistanceToDestination < 0.5)
-        {
-          AudioClipPlayer.Play(this.SpeechClip[1], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.EventSubtitle.text = this.SpeechText[1];
-          this.Rival.CharacterAnimation.CrossFade(this.EventAnim[1]);
-          this.Rival.Pathfinding.canSearch = false;
-          this.Rival.Pathfinding.canMove = false;
-          this.Rival.Obstacle.enabled = true;
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 2)
-      {
-        if ((double) this.Rival.CharacterAnimation[this.EventAnim[1]].time >= (double) this.Rival.CharacterAnimation[this.EventAnim[1]].length)
-        {
-          this.Rival.CharacterAnimation[this.EventAnim[2]].time = 7f;
-          this.Rival.CharacterAnimation.CrossFade(this.EventAnim[2]);
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 3)
-      {
-        this.Timer += Time.deltaTime;
-        if ((double) this.Timer > 5.0)
-        {
-          AudioClipPlayer.Play(this.SpeechClip[3], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.EventSubtitle.text = this.SpeechText[3];
-          this.Rival.CharacterAnimation[this.EventAnim[3]].time = 7f;
-          this.Rival.CharacterAnimation.CrossFade(this.EventAnim[3]);
-          this.Timer = 0.0f;
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 4)
-      {
-        this.Timer += Time.deltaTime;
-        if ((double) this.Timer > 5.0)
-        {
-          AudioClipPlayer.Play(this.SpeechClip[4], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.Rival.CharacterAnimation[this.EventAnim[4]].speed = 0.0f;
-          this.Rival.CharacterAnimation.CrossFade(this.EventAnim[4]);
-          this.MinimumDistance = 1f;
-          this.Timer = 0.0f;
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 5)
-      {
-        this.Timer += Time.deltaTime;
-        if ((double) this.Timer > 0.5)
-        {
-          this.Rival.CharacterAnimation[this.EventAnim[4]].speed = 1f;
-          this.OsanaVandalismCollider.SetActive(true);
-        }
-        else
-          this.Location.position = Vector3.MoveTowards(this.Location.position, new Vector3(-2f, 4f, -31.7f), Time.deltaTime * 5f);
-        if ((double) this.Rival.CharacterAnimation[this.EventAnim[4]].time > (double) this.Rival.CharacterAnimation[this.EventAnim[4]].length)
-          this.Rival.CharacterAnimation[this.EventAnim[4]].time = 0.0f;
-        if ((double) this.Timer > 5.5)
-        {
-          this.Rival.CharacterAnimation[this.EventAnim[4]].speed = 0.0f;
-          this.OsanaVandalismCollider.SetActive(false);
-        }
-        if ((double) this.Timer > 6.0)
-        {
-          AudioClipPlayer.Play(this.SpeechClip[5], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.EventSubtitle.text = this.SpeechText[5];
-          this.Rival.CharacterAnimation[this.EventAnim[5]].time = 0.0f;
-          this.Rival.CharacterAnimation.CrossFade(this.EventAnim[5]);
-          this.Timer = 0.0f;
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 6)
-      {
-        this.Timer += Time.deltaTime;
-        if ((double) this.Timer > 5.0)
-          this.EndEvent();
-      }
-      if (this.Clock.Period > this.StartPeriod || this.Rival.Alarmed || this.Rival.Splashed || this.Rival.Dodging || this.Rival.GoAway)
-        this.EndEvent();
-      this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
-      if ((double) this.Distance - 4.0 < 15.0)
-      {
-        this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
-        if ((double) this.Scale < 0.0)
-          this.Scale = 0.0f;
-        if ((double) this.Scale > 1.0)
-          this.Scale = 1f;
-        this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
-        this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-        if ((UnityEngine.Object) this.VoiceSource != (UnityEngine.Object) null)
-          this.VoiceSource.volume = this.Scale;
-      }
-      else
-      {
-        this.EventSubtitle.transform.localScale = Vector3.zero;
-        if ((UnityEngine.Object) this.VoiceSource != (UnityEngine.Object) null)
-          this.VoiceSource.volume = 0.0f;
-      }
-      if (!((UnityEngine.Object) this.VoiceClip == (UnityEngine.Object) null))
-        return;
-      this.EventSubtitle.text = string.Empty;
-    }
-  }
+	public UILabel EventSubtitle;
 
-  private void EndEvent()
-  {
-    Debug.Log((object) "Osana's vending machine event has ended.");
-    if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-      UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    if (!this.Rival.Alarmed)
-    {
-      this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
-      this.Rival.DistanceToDestination = 100f;
-      this.Rival.CurrentDestination = this.Rival.Destinations[this.Rival.Phase];
-      this.Rival.Pathfinding.target = this.Rival.Destinations[this.Rival.Phase];
-      this.Rival.Pathfinding.canSearch = true;
-      this.Rival.Pathfinding.canMove = true;
-      this.Rival.Routine = true;
-    }
-    this.Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-    this.Rival.Obstacle.enabled = false;
-    this.Rival.Prompt.enabled = true;
-    this.Rival.InEvent = false;
-    this.Rival.Private = false;
-    if (!this.StudentManager.Stop)
-      this.StudentManager.UpdateStudents();
-    this.OsanaVandalismCollider.SetActive(false);
-    this.Jukebox.Dip = 1f;
-    this.EventSubtitle.text = string.Empty;
-    this.enabled = false;
-    if (!this.Rival.GoAway)
-      return;
-    this.Rival.Subtitle.CustomText = "Ugh, seriously?! It's not important anymore...";
-    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-  }
+	public YandereScript Yandere;
+
+	public ClockScript Clock;
+
+	public StudentScript Rival;
+
+	public Transform Location;
+
+	public AudioSource VoiceSource;
+
+	public AudioSource MyAudio;
+
+	public AudioClip[] SpeechClip;
+
+	public AudioClip Bang;
+
+	public string[] SpeechText;
+
+	public string[] EventAnim;
+
+	public GameObject OsanaVandalismCollider;
+
+	public GameObject AlarmDisc;
+
+	public GameObject VoiceClip;
+
+	public float MinimumDistance = 0.5f;
+
+	public float Distance;
+
+	public float Scale;
+
+	public float Timer;
+
+	public DayOfWeek EventDay;
+
+	public int StartPeriod;
+
+	public int RivalID = 11;
+
+	public int Phase;
+
+	public int Frame;
+
+	public bool PlaySound;
+
+	private void Start()
+	{
+		EventSubtitle.transform.localScale = Vector3.zero;
+		if (GameGlobals.Eighties)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (Phase == 0)
+		{
+			if (Frame > 0 && StudentManager.Students[RivalID] != null)
+			{
+				if (Rival == null)
+				{
+					Rival = StudentManager.Students[RivalID];
+				}
+				if (Rival.enabled && Rival.SnackPhase == 1)
+				{
+					Debug.Log("Osana's vending machine event has begun.");
+					AudioClipPlayer.Play(SpeechClip[0], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+					EventSubtitle.text = SpeechText[0];
+					Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+					Rival.CharacterAnimation.Play(Rival.WalkAnim);
+					Rival.Pathfinding.target = Location;
+					Rival.CurrentDestination = Location;
+					Rival.Pathfinding.canSearch = true;
+					Rival.Pathfinding.canMove = true;
+					Rival.EatingSnack = false;
+					Rival.Routine = false;
+					Rival.InEvent = true;
+					Rival.EmptyHands();
+					Phase++;
+				}
+			}
+			Frame++;
+			return;
+		}
+		if (VoiceClip != null)
+		{
+			if (VoiceSource == null)
+			{
+				VoiceSource = VoiceClip.GetComponent<AudioSource>();
+			}
+			else
+			{
+				VoiceSource.pitch = Time.timeScale;
+			}
+		}
+		if (Rival.DistanceToDestination < MinimumDistance)
+		{
+			if (!Rival.GoAway)
+			{
+				Rival.MoveTowardsTarget(Location.position);
+			}
+			if (Quaternion.Angle(Rival.transform.rotation, Location.rotation) > 1f)
+			{
+				Rival.transform.rotation = Quaternion.Slerp(Rival.transform.rotation, Location.rotation, 10f * Time.deltaTime);
+			}
+		}
+		if (Phase == 1)
+		{
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				Yandere.transform.position = Location.position + new Vector3(2f, 0f, 2f);
+				Rival.transform.position = Location.position + new Vector3(1f, 0f, 1f);
+			}
+			if (Rival.DistanceToDestination < 0.5f)
+			{
+				AudioClipPlayer.Play(SpeechClip[1], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				EventSubtitle.text = SpeechText[1];
+				Rival.CharacterAnimation.CrossFade(EventAnim[1]);
+				Rival.Pathfinding.canSearch = false;
+				Rival.Pathfinding.canMove = false;
+				Rival.Obstacle.enabled = true;
+				Phase++;
+			}
+		}
+		else if (Phase == 2)
+		{
+			if (Rival.CharacterAnimation[EventAnim[1]].time >= Rival.CharacterAnimation[EventAnim[1]].length)
+			{
+				Rival.CharacterAnimation[EventAnim[2]].time = 7f;
+				Rival.CharacterAnimation.CrossFade(EventAnim[2]);
+				Phase++;
+			}
+		}
+		else if (Phase == 3)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
+			{
+				AudioClipPlayer.Play(SpeechClip[3], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				EventSubtitle.text = SpeechText[3];
+				Rival.CharacterAnimation[EventAnim[3]].time = 7f;
+				Rival.CharacterAnimation.CrossFade(EventAnim[3]);
+				Timer = 0f;
+				Phase++;
+			}
+		}
+		else if (Phase == 4)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
+			{
+				AudioClipPlayer.Play(SpeechClip[4], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				Rival.CharacterAnimation[EventAnim[4]].speed = 0f;
+				Rival.CharacterAnimation.CrossFade(EventAnim[4]);
+				MinimumDistance = 1f;
+				Timer = 0f;
+				Phase++;
+			}
+		}
+		else if (Phase == 5)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 0.5f)
+			{
+				Rival.CharacterAnimation[EventAnim[4]].speed = 1f;
+				OsanaVandalismCollider.SetActive(true);
+			}
+			else
+			{
+				Location.position = Vector3.MoveTowards(Location.position, new Vector3(-2f, 4f, -31.7f), Time.deltaTime * 5f);
+			}
+			if (Rival.CharacterAnimation[EventAnim[4]].time > Rival.CharacterAnimation[EventAnim[4]].length)
+			{
+				Rival.CharacterAnimation[EventAnim[4]].time = 0f;
+			}
+			if (Timer > 5.5f)
+			{
+				Rival.CharacterAnimation[EventAnim[4]].speed = 0f;
+				OsanaVandalismCollider.SetActive(false);
+			}
+			if (Timer > 6f)
+			{
+				AudioClipPlayer.Play(SpeechClip[5], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				EventSubtitle.text = SpeechText[5];
+				Rival.CharacterAnimation[EventAnim[5]].time = 0f;
+				Rival.CharacterAnimation.CrossFade(EventAnim[5]);
+				Timer = 0f;
+				Phase++;
+			}
+		}
+		else if (Phase == 6)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
+			{
+				EndEvent();
+			}
+		}
+		if (Clock.Period > StartPeriod || Rival.Alarmed || Rival.Splashed || Rival.Dodging || Rival.GoAway)
+		{
+			EndEvent();
+		}
+		Distance = Vector3.Distance(Yandere.transform.position, Rival.transform.position);
+		if (Distance - 4f < 15f)
+		{
+			Scale = Mathf.Abs(1f - (Distance - 4f) / 15f);
+			if (Scale < 0f)
+			{
+				Scale = 0f;
+			}
+			if (Scale > 1f)
+			{
+				Scale = 1f;
+			}
+			Jukebox.Dip = 1f - 0.5f * Scale;
+			EventSubtitle.transform.localScale = new Vector3(Scale, Scale, Scale);
+			if (VoiceSource != null)
+			{
+				VoiceSource.volume = Scale;
+			}
+		}
+		else
+		{
+			EventSubtitle.transform.localScale = Vector3.zero;
+			if (VoiceSource != null)
+			{
+				VoiceSource.volume = 0f;
+			}
+		}
+		if (VoiceClip == null)
+		{
+			EventSubtitle.text = string.Empty;
+		}
+	}
+
+	private void EndEvent()
+	{
+		Debug.Log("Osana's vending machine event has ended.");
+		if (VoiceClip != null)
+		{
+			UnityEngine.Object.Destroy(VoiceClip);
+		}
+		if (!Rival.Alarmed)
+		{
+			Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
+			Rival.DistanceToDestination = 100f;
+			Rival.CurrentDestination = Rival.Destinations[Rival.Phase];
+			Rival.Pathfinding.target = Rival.Destinations[Rival.Phase];
+			Rival.Pathfinding.canSearch = true;
+			Rival.Pathfinding.canMove = true;
+			Rival.Routine = true;
+		}
+		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+		Rival.Obstacle.enabled = false;
+		Rival.Prompt.enabled = true;
+		Rival.InEvent = false;
+		Rival.Private = false;
+		if (!StudentManager.Stop)
+		{
+			StudentManager.UpdateStudents();
+		}
+		OsanaVandalismCollider.SetActive(false);
+		Jukebox.Dip = 1f;
+		EventSubtitle.text = string.Empty;
+		base.enabled = false;
+		if (Rival.GoAway)
+		{
+			Rival.Subtitle.CustomText = "Ugh, seriously?! It's not important anymore...";
+			Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+		}
+	}
 }

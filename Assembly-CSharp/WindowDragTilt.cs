@@ -1,32 +1,30 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: WindowDragTilt
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Examples/Window Drag Tilt")]
 public class WindowDragTilt : MonoBehaviour
 {
-  public int updateOrder;
-  public float degrees = 30f;
-  private Vector3 mLastPos;
-  private Transform mTrans;
-  private float mAngle;
+	public int updateOrder;
 
-  private void OnEnable()
-  {
-    this.mTrans = this.transform;
-    this.mLastPos = this.mTrans.position;
-  }
+	public float degrees = 30f;
 
-  private void Update()
-  {
-    Vector3 vector3 = this.mTrans.position - this.mLastPos;
-    this.mLastPos = this.mTrans.position;
-    this.mAngle += vector3.x * this.degrees;
-    this.mAngle = NGUIMath.SpringLerp(this.mAngle, 0.0f, 20f, Time.deltaTime);
-    this.mTrans.localRotation = Quaternion.Euler(0.0f, 0.0f, -this.mAngle);
-  }
+	private Vector3 mLastPos;
+
+	private Transform mTrans;
+
+	private float mAngle;
+
+	private void OnEnable()
+	{
+		mTrans = base.transform;
+		mLastPos = mTrans.position;
+	}
+
+	private void Update()
+	{
+		Vector3 vector = mTrans.position - mLastPos;
+		mLastPos = mTrans.position;
+		mAngle += vector.x * degrees;
+		mAngle = NGUIMath.SpringLerp(mAngle, 0f, 20f, Time.deltaTime);
+		mTrans.localRotation = Quaternion.Euler(0f, 0f, 0f - mAngle);
+	}
 }

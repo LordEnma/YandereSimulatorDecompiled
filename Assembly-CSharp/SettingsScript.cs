@@ -1,341 +1,392 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SettingsScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SettingsScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public QualityManagerScript QualityManager;
-  public InputManagerScript InputManager;
-  public PauseScreenScript PauseScreen;
-  public PromptBarScript PromptBar;
-  public UILabel DrawDistanceLabel;
-  public UILabel PostAliasingLabel;
-  public UILabel LowDetailLabel;
-  public UILabel AliasingLabel;
-  public UILabel OutlinesLabel;
-  public UILabel ParticleLabel;
-  public UILabel BloomLabel;
-  public UILabel FogLabel;
-  public UILabel ToggleRunLabel;
-  public UILabel FarAnimsLabel;
-  public UILabel FPSCapLabel;
-  public UILabel SensitivityLabel;
-  public UILabel InvertAxisLabel;
-  public UILabel DisableTutorialsLabel;
-  public UILabel WindowedMode;
-  public UILabel AmbientObscurance;
-  public UILabel ShadowsLabel;
-  public int SelectionLimit = 2;
-  public int Selected = 1;
-  public Transform CloudSystem;
-  public Transform Highlight;
-  public GameObject Background;
-  public GameObject WarningMessage;
+	public StudentManagerScript StudentManager;
 
-  private void Start() => Debug.Log((object) "Does this run? Anywhere? Ever?");
+	public QualityManagerScript QualityManager;
 
-  private void Update()
-  {
-    if (this.InputManager.TappedUp)
-    {
-      --this.Selected;
-      this.UpdateHighlight();
-    }
-    else if (this.InputManager.TappedDown)
-    {
-      ++this.Selected;
-      this.UpdateHighlight();
-    }
-    if (this.Selected == 1)
-    {
-      if (this.InputManager.TappedRight)
-      {
-        ++OptionGlobals.ParticleCount;
-        this.QualityManager.UpdateParticles();
-        this.UpdateText();
-      }
-      else if (this.InputManager.TappedLeft)
-      {
-        --OptionGlobals.ParticleCount;
-        this.QualityManager.UpdateParticles();
-        this.UpdateText();
-      }
-    }
-    else if (this.Selected == 2)
-    {
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        OptionGlobals.DisableOutlines = !OptionGlobals.DisableOutlines;
-        this.UpdateText();
-        this.QualityManager.UpdateOutlines();
-      }
-    }
-    else if (this.Selected == 3)
-    {
-      if (this.InputManager.TappedRight)
-      {
-        if (QualitySettings.antiAliasing > 0)
-          QualitySettings.antiAliasing *= 2;
-        else
-          QualitySettings.antiAliasing = 2;
-        this.UpdateText();
-      }
-      else if (this.InputManager.TappedLeft)
-      {
-        if (QualitySettings.antiAliasing > 0)
-          QualitySettings.antiAliasing /= 2;
-        else
-          QualitySettings.antiAliasing = 0;
-        this.UpdateText();
-      }
-    }
-    else if (this.Selected == 4)
-    {
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        OptionGlobals.DisablePostAliasing = !OptionGlobals.DisablePostAliasing;
-        this.UpdateText();
-        this.QualityManager.UpdatePostAliasing();
-      }
-    }
-    else if (this.Selected == 5)
-    {
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        OptionGlobals.DisableBloom = !OptionGlobals.DisableBloom;
-        this.UpdateText();
-        this.QualityManager.UpdateBloom();
-      }
-    }
-    else if (this.Selected == 6)
-    {
-      if (this.InputManager.TappedRight)
-      {
-        --OptionGlobals.LowDetailStudents;
-        this.QualityManager.UpdateLowDetailStudents();
-        this.UpdateText();
-      }
-      else if (this.InputManager.TappedLeft)
-      {
-        ++OptionGlobals.LowDetailStudents;
-        this.QualityManager.UpdateLowDetailStudents();
-        this.UpdateText();
-      }
-    }
-    else if (this.Selected == 7)
-    {
-      if (this.InputManager.TappedRight)
-      {
-        OptionGlobals.DrawDistance += 10;
-        this.QualityManager.UpdateDrawDistance();
-        this.UpdateText();
-      }
-      else if (this.InputManager.TappedLeft)
-      {
-        OptionGlobals.DrawDistance -= 10;
-        this.QualityManager.UpdateDrawDistance();
-        this.UpdateText();
-      }
-    }
-    else if (this.Selected == 8)
-    {
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        OptionGlobals.Fog = !OptionGlobals.Fog;
-        this.UpdateText();
-        this.QualityManager.UpdateFog();
-      }
-    }
-    else if (this.Selected == 9)
-    {
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        OptionGlobals.ToggleRun = !OptionGlobals.ToggleRun;
-        this.UpdateText();
-        this.QualityManager.ToggleRun();
-      }
-    }
-    else if (this.Selected == 10)
-    {
-      if (this.InputManager.TappedRight)
-      {
-        ++OptionGlobals.DisableFarAnimations;
-        this.QualityManager.UpdateAnims();
-        this.UpdateText();
-      }
-      else if (this.InputManager.TappedLeft)
-      {
-        --OptionGlobals.DisableFarAnimations;
-        this.QualityManager.UpdateAnims();
-        this.UpdateText();
-      }
-    }
-    else if (this.Selected == 11)
-    {
-      if (this.InputManager.TappedRight)
-      {
-        ++OptionGlobals.FPSIndex;
-        this.QualityManager.UpdateFPSIndex();
-      }
-      else if (this.InputManager.TappedLeft)
-      {
-        --OptionGlobals.FPSIndex;
-        this.QualityManager.UpdateFPSIndex();
-      }
-      this.UpdateText();
-    }
-    else if (this.Selected == 12)
-    {
-      if (this.InputManager.TappedRight)
-      {
-        if (OptionGlobals.Sensitivity < 10)
-          ++OptionGlobals.Sensitivity;
-      }
-      else if (this.InputManager.TappedLeft && OptionGlobals.Sensitivity > 1)
-        --OptionGlobals.Sensitivity;
-      if ((Object) this.PauseScreen.RPGCamera != (Object) null)
-        this.PauseScreen.RPGCamera.sensitivity = (float) OptionGlobals.Sensitivity;
-      this.UpdateText();
-    }
-    else if (this.Selected == 13)
-    {
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        OptionGlobals.InvertAxisY = !OptionGlobals.InvertAxisY;
-        if ((Object) this.PauseScreen.RPGCamera != (Object) null)
-          this.PauseScreen.RPGCamera.invertAxisY = OptionGlobals.InvertAxisY;
-        this.UpdateText();
-      }
-      this.UpdateText();
-    }
-    else if (this.Selected == 14)
-    {
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        OptionGlobals.TutorialsOff = !OptionGlobals.TutorialsOff;
-        if (SceneManager.GetActiveScene().name == "SchoolScene")
-          this.StudentManager.TutorialWindow.enabled = !OptionGlobals.TutorialsOff;
-        this.UpdateText();
-      }
-      this.UpdateText();
-    }
-    else if (this.Selected == 15)
-    {
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        Screen.SetResolution(Screen.width, Screen.height, !Screen.fullScreen);
-        this.UpdateText();
-      }
-      this.UpdateText();
-    }
-    else if (this.Selected == 16)
-    {
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        OptionGlobals.DisableObscurance = !OptionGlobals.DisableObscurance;
-        this.QualityManager.UpdateObscurance();
-        this.UpdateText();
-      }
-      this.UpdateText();
-    }
-    else if (this.Selected == 17)
-    {
-      this.WarningMessage.SetActive(true);
-      if (this.InputManager.TappedRight || this.InputManager.TappedLeft)
-      {
-        OptionGlobals.EnableShadows = !OptionGlobals.EnableShadows;
-        this.QualityManager.UpdateShadows();
-        this.UpdateText();
-      }
-      this.UpdateText();
-    }
-    if (this.Selected != 17)
-      this.WarningMessage.SetActive(false);
-    if (Input.GetKeyDown("l"))
-    {
-      OptionGlobals.ParticleCount = 1;
-      OptionGlobals.DisableOutlines = true;
-      QualitySettings.antiAliasing = 0;
-      OptionGlobals.DisablePostAliasing = true;
-      OptionGlobals.DisableBloom = true;
-      OptionGlobals.LowDetailStudents = 1;
-      OptionGlobals.DrawDistance = 50;
-      OptionGlobals.EnableShadows = false;
-      OptionGlobals.DisableFarAnimations = 1;
-      OptionGlobals.RimLight = false;
-      OptionGlobals.DepthOfField = false;
-      this.QualityManager.UpdateFog();
-      this.QualityManager.UpdateAnims();
-      this.QualityManager.UpdateBloom();
-      this.QualityManager.UpdateFPSIndex();
-      this.QualityManager.UpdateShadows();
-      this.QualityManager.UpdateParticles();
-      this.QualityManager.UpdatePostAliasing();
-      this.QualityManager.UpdateDrawDistance();
-      this.QualityManager.UpdateLowDetailStudents();
-      this.QualityManager.UpdateOutlines();
-      this.UpdateText();
-    }
-    if (!Input.GetButtonDown("B"))
-      return;
-    this.WarningMessage.SetActive(false);
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Label[0].text = "Accept";
-    this.PromptBar.Label[1].text = "Exit";
-    this.PromptBar.Label[4].text = "Choose";
-    this.PromptBar.UpdateButtons();
-    if ((Object) this.PauseScreen.Yandere.Blur != (Object) null)
-      this.PauseScreen.Yandere.Blur.enabled = true;
-    this.PauseScreen.MainMenu.SetActive(true);
-    this.PauseScreen.Sideways = false;
-    this.PauseScreen.PressedB = true;
-    this.gameObject.SetActive(false);
-  }
+	public InputManagerScript InputManager;
 
-  public void UpdateText()
-  {
-    switch (OptionGlobals.ParticleCount)
-    {
-      case 1:
-        this.ParticleLabel.text = "None";
-        break;
-      case 2:
-        this.ParticleLabel.text = "Low";
-        break;
-      case 3:
-        this.ParticleLabel.text = "High";
-        break;
-    }
-    this.FPSCapLabel.text = QualityManagerScript.FPSStrings[OptionGlobals.FPSIndex];
-    this.OutlinesLabel.text = OptionGlobals.DisableOutlines ? "Off" : "On";
-    this.AliasingLabel.text = QualitySettings.antiAliasing.ToString() + "x";
-    this.PostAliasingLabel.text = OptionGlobals.DisablePostAliasing ? "Off" : "On";
-    this.BloomLabel.text = OptionGlobals.DisableBloom ? "Off" : "On";
-    this.LowDetailLabel.text = OptionGlobals.LowDetailStudents == 0 ? "Off" : (OptionGlobals.LowDetailStudents * 10).ToString() + "m";
-    this.FarAnimsLabel.text = OptionGlobals.DisableFarAnimations == 0 ? "Off" : (OptionGlobals.DisableFarAnimations * 5).ToString() + "m";
-    this.DrawDistanceLabel.text = OptionGlobals.DrawDistance.ToString() + "m";
-    this.FogLabel.text = OptionGlobals.Fog ? "On" : "Off";
-    this.ToggleRunLabel.text = OptionGlobals.ToggleRun ? "Toggle" : "Hold";
-    this.SensitivityLabel.text = OptionGlobals.Sensitivity.ToString() ?? "";
-    this.InvertAxisLabel.text = OptionGlobals.InvertAxisY ? "Yes" : "No";
-    this.DisableTutorialsLabel.text = OptionGlobals.TutorialsOff ? "Yes" : "No";
-    this.WindowedMode.text = Screen.fullScreen ? "No" : "Yes";
-    this.AmbientObscurance.text = OptionGlobals.DisableObscurance ? "Off" : "On";
-    this.ShadowsLabel.text = OptionGlobals.EnableShadows ? "Yes" : "No";
-  }
+	public PauseScreenScript PauseScreen;
 
-  private void UpdateHighlight()
-  {
-    if (this.Selected == 0)
-      this.Selected = this.SelectionLimit;
-    else if (this.Selected > this.SelectionLimit)
-      this.Selected = 1;
-    this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (430.0 - 50.0 * (double) this.Selected), this.Highlight.localPosition.z);
-  }
+	public PromptBarScript PromptBar;
+
+	public UILabel DrawDistanceLabel;
+
+	public UILabel PostAliasingLabel;
+
+	public UILabel LowDetailLabel;
+
+	public UILabel AliasingLabel;
+
+	public UILabel OutlinesLabel;
+
+	public UILabel ParticleLabel;
+
+	public UILabel BloomLabel;
+
+	public UILabel FogLabel;
+
+	public UILabel ToggleRunLabel;
+
+	public UILabel FarAnimsLabel;
+
+	public UILabel FPSCapLabel;
+
+	public UILabel SensitivityLabel;
+
+	public UILabel InvertAxisLabel;
+
+	public UILabel DisableTutorialsLabel;
+
+	public UILabel WindowedMode;
+
+	public UILabel AmbientObscurance;
+
+	public UILabel ShadowsLabel;
+
+	public int SelectionLimit = 2;
+
+	public int Selected = 1;
+
+	public Transform CloudSystem;
+
+	public Transform Highlight;
+
+	public GameObject Background;
+
+	public GameObject WarningMessage;
+
+	private void Start()
+	{
+		Debug.Log("Does this run? Anywhere? Ever?");
+	}
+
+	private void Update()
+	{
+		if (InputManager.TappedUp)
+		{
+			Selected--;
+			UpdateHighlight();
+		}
+		else if (InputManager.TappedDown)
+		{
+			Selected++;
+			UpdateHighlight();
+		}
+		if (Selected == 1)
+		{
+			if (InputManager.TappedRight)
+			{
+				OptionGlobals.ParticleCount++;
+				QualityManager.UpdateParticles();
+				UpdateText();
+			}
+			else if (InputManager.TappedLeft)
+			{
+				OptionGlobals.ParticleCount--;
+				QualityManager.UpdateParticles();
+				UpdateText();
+			}
+		}
+		else if (Selected == 2)
+		{
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				OptionGlobals.DisableOutlines = !OptionGlobals.DisableOutlines;
+				UpdateText();
+				QualityManager.UpdateOutlines();
+			}
+		}
+		else if (Selected == 3)
+		{
+			if (InputManager.TappedRight)
+			{
+				if (QualitySettings.antiAliasing > 0)
+				{
+					QualitySettings.antiAliasing *= 2;
+				}
+				else
+				{
+					QualitySettings.antiAliasing = 2;
+				}
+				UpdateText();
+			}
+			else if (InputManager.TappedLeft)
+			{
+				if (QualitySettings.antiAliasing > 0)
+				{
+					QualitySettings.antiAliasing /= 2;
+				}
+				else
+				{
+					QualitySettings.antiAliasing = 0;
+				}
+				UpdateText();
+			}
+		}
+		else if (Selected == 4)
+		{
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				OptionGlobals.DisablePostAliasing = !OptionGlobals.DisablePostAliasing;
+				UpdateText();
+				QualityManager.UpdatePostAliasing();
+			}
+		}
+		else if (Selected == 5)
+		{
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				OptionGlobals.DisableBloom = !OptionGlobals.DisableBloom;
+				UpdateText();
+				QualityManager.UpdateBloom();
+			}
+		}
+		else if (Selected == 6)
+		{
+			if (InputManager.TappedRight)
+			{
+				OptionGlobals.LowDetailStudents--;
+				QualityManager.UpdateLowDetailStudents();
+				UpdateText();
+			}
+			else if (InputManager.TappedLeft)
+			{
+				OptionGlobals.LowDetailStudents++;
+				QualityManager.UpdateLowDetailStudents();
+				UpdateText();
+			}
+		}
+		else if (Selected == 7)
+		{
+			if (InputManager.TappedRight)
+			{
+				OptionGlobals.DrawDistance += 10;
+				QualityManager.UpdateDrawDistance();
+				UpdateText();
+			}
+			else if (InputManager.TappedLeft)
+			{
+				OptionGlobals.DrawDistance -= 10;
+				QualityManager.UpdateDrawDistance();
+				UpdateText();
+			}
+		}
+		else if (Selected == 8)
+		{
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				OptionGlobals.Fog = !OptionGlobals.Fog;
+				UpdateText();
+				QualityManager.UpdateFog();
+			}
+		}
+		else if (Selected == 9)
+		{
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				OptionGlobals.ToggleRun = !OptionGlobals.ToggleRun;
+				UpdateText();
+				QualityManager.ToggleRun();
+			}
+		}
+		else if (Selected == 10)
+		{
+			if (InputManager.TappedRight)
+			{
+				OptionGlobals.DisableFarAnimations++;
+				QualityManager.UpdateAnims();
+				UpdateText();
+			}
+			else if (InputManager.TappedLeft)
+			{
+				OptionGlobals.DisableFarAnimations--;
+				QualityManager.UpdateAnims();
+				UpdateText();
+			}
+		}
+		else if (Selected == 11)
+		{
+			if (InputManager.TappedRight)
+			{
+				OptionGlobals.FPSIndex++;
+				QualityManager.UpdateFPSIndex();
+			}
+			else if (InputManager.TappedLeft)
+			{
+				OptionGlobals.FPSIndex--;
+				QualityManager.UpdateFPSIndex();
+			}
+			UpdateText();
+		}
+		else if (Selected == 12)
+		{
+			if (InputManager.TappedRight)
+			{
+				if (OptionGlobals.Sensitivity < 10)
+				{
+					OptionGlobals.Sensitivity++;
+				}
+			}
+			else if (InputManager.TappedLeft && OptionGlobals.Sensitivity > 1)
+			{
+				OptionGlobals.Sensitivity--;
+			}
+			if (PauseScreen.RPGCamera != null)
+			{
+				PauseScreen.RPGCamera.sensitivity = OptionGlobals.Sensitivity;
+			}
+			UpdateText();
+		}
+		else if (Selected == 13)
+		{
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				OptionGlobals.InvertAxisY = !OptionGlobals.InvertAxisY;
+				if (PauseScreen.RPGCamera != null)
+				{
+					PauseScreen.RPGCamera.invertAxisY = OptionGlobals.InvertAxisY;
+				}
+				UpdateText();
+			}
+			UpdateText();
+		}
+		else if (Selected == 14)
+		{
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				OptionGlobals.TutorialsOff = !OptionGlobals.TutorialsOff;
+				if (SceneManager.GetActiveScene().name == "SchoolScene")
+				{
+					StudentManager.TutorialWindow.enabled = !OptionGlobals.TutorialsOff;
+				}
+				UpdateText();
+			}
+			UpdateText();
+		}
+		else if (Selected == 15)
+		{
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				Screen.SetResolution(Screen.width, Screen.height, !Screen.fullScreen);
+				UpdateText();
+			}
+			UpdateText();
+		}
+		else if (Selected == 16)
+		{
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				OptionGlobals.DisableObscurance = !OptionGlobals.DisableObscurance;
+				QualityManager.UpdateObscurance();
+				UpdateText();
+			}
+			UpdateText();
+		}
+		else if (Selected == 17)
+		{
+			WarningMessage.SetActive(true);
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				OptionGlobals.EnableShadows = !OptionGlobals.EnableShadows;
+				QualityManager.UpdateShadows();
+				UpdateText();
+			}
+			UpdateText();
+		}
+		if (Selected != 17)
+		{
+			WarningMessage.SetActive(false);
+		}
+		if (Input.GetKeyDown("l"))
+		{
+			OptionGlobals.ParticleCount = 1;
+			OptionGlobals.DisableOutlines = true;
+			QualitySettings.antiAliasing = 0;
+			OptionGlobals.DisablePostAliasing = true;
+			OptionGlobals.DisableBloom = true;
+			OptionGlobals.LowDetailStudents = 1;
+			OptionGlobals.DrawDistance = 50;
+			OptionGlobals.EnableShadows = false;
+			OptionGlobals.DisableFarAnimations = 1;
+			OptionGlobals.RimLight = false;
+			OptionGlobals.DepthOfField = false;
+			QualityManager.UpdateFog();
+			QualityManager.UpdateAnims();
+			QualityManager.UpdateBloom();
+			QualityManager.UpdateFPSIndex();
+			QualityManager.UpdateShadows();
+			QualityManager.UpdateParticles();
+			QualityManager.UpdatePostAliasing();
+			QualityManager.UpdateDrawDistance();
+			QualityManager.UpdateLowDetailStudents();
+			QualityManager.UpdateOutlines();
+			UpdateText();
+		}
+		if (Input.GetButtonDown("B"))
+		{
+			WarningMessage.SetActive(false);
+			PromptBar.ClearButtons();
+			PromptBar.Label[0].text = "Accept";
+			PromptBar.Label[1].text = "Exit";
+			PromptBar.Label[4].text = "Choose";
+			PromptBar.UpdateButtons();
+			if (PauseScreen.Yandere.Blur != null)
+			{
+				PauseScreen.Yandere.Blur.enabled = true;
+			}
+			PauseScreen.MainMenu.SetActive(true);
+			PauseScreen.Sideways = false;
+			PauseScreen.PressedB = true;
+			base.gameObject.SetActive(false);
+		}
+	}
+
+	public void UpdateText()
+	{
+		if (OptionGlobals.ParticleCount == 3)
+		{
+			ParticleLabel.text = "High";
+		}
+		else if (OptionGlobals.ParticleCount == 2)
+		{
+			ParticleLabel.text = "Low";
+		}
+		else if (OptionGlobals.ParticleCount == 1)
+		{
+			ParticleLabel.text = "None";
+		}
+		FPSCapLabel.text = QualityManagerScript.FPSStrings[OptionGlobals.FPSIndex];
+		OutlinesLabel.text = (OptionGlobals.DisableOutlines ? "Off" : "On");
+		AliasingLabel.text = QualitySettings.antiAliasing + "x";
+		PostAliasingLabel.text = (OptionGlobals.DisablePostAliasing ? "Off" : "On");
+		BloomLabel.text = (OptionGlobals.DisableBloom ? "Off" : "On");
+		LowDetailLabel.text = ((OptionGlobals.LowDetailStudents == 0) ? "Off" : (OptionGlobals.LowDetailStudents * 10 + "m"));
+		FarAnimsLabel.text = ((OptionGlobals.DisableFarAnimations == 0) ? "Off" : (OptionGlobals.DisableFarAnimations * 5 + "m"));
+		DrawDistanceLabel.text = OptionGlobals.DrawDistance + "m";
+		FogLabel.text = (OptionGlobals.Fog ? "On" : "Off");
+		ToggleRunLabel.text = (OptionGlobals.ToggleRun ? "Toggle" : "Hold");
+		SensitivityLabel.text = OptionGlobals.Sensitivity.ToString() ?? "";
+		InvertAxisLabel.text = (OptionGlobals.InvertAxisY ? "Yes" : "No");
+		DisableTutorialsLabel.text = (OptionGlobals.TutorialsOff ? "Yes" : "No");
+		WindowedMode.text = (Screen.fullScreen ? "No" : "Yes");
+		AmbientObscurance.text = (OptionGlobals.DisableObscurance ? "Off" : "On");
+		ShadowsLabel.text = (OptionGlobals.EnableShadows ? "Yes" : "No");
+	}
+
+	private void UpdateHighlight()
+	{
+		if (Selected == 0)
+		{
+			Selected = SelectionLimit;
+		}
+		else if (Selected > SelectionLimit)
+		{
+			Selected = 1;
+		}
+		Highlight.localPosition = new Vector3(Highlight.localPosition.x, 430f - 50f * (float)Selected, Highlight.localPosition.z);
+	}
 }

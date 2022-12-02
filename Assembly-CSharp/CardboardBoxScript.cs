@@ -1,42 +1,43 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CardboardBoxScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class CardboardBoxScript : MonoBehaviour
 {
-  public PromptScript Prompt;
+	public PromptScript Prompt;
 
-  private void Start() => Physics.IgnoreCollision(this.Prompt.Yandere.GetComponent<Collider>(), this.GetComponent<Collider>());
+	private void Start()
+	{
+		Physics.IgnoreCollision(Prompt.Yandere.GetComponent<Collider>(), GetComponent<Collider>());
+	}
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.MyCollider.enabled = false;
-      this.Prompt.Circle[0].fillAmount = 1f;
-      this.GetComponent<Rigidbody>().isKinematic = true;
-      this.GetComponent<Rigidbody>().useGravity = false;
-      this.Prompt.enabled = false;
-      this.Prompt.Hide();
-      this.transform.parent = this.Prompt.Yandere.Hips;
-      this.transform.localPosition = new Vector3(0.0f, -0.3f, 0.21f);
-      this.transform.localEulerAngles = new Vector3(-13.333f, 0.0f, 0.0f);
-    }
-    if (!((Object) this.transform.parent == (Object) this.Prompt.Yandere.Hips))
-      return;
-    this.transform.localEulerAngles = Vector3.zero;
-    if (this.Prompt.Yandere.Stance.Current != StanceType.Crawling)
-      this.transform.eulerAngles = new Vector3(0.0f, this.transform.eulerAngles.y, this.transform.eulerAngles.z);
-    if (!Input.GetButtonDown("RB"))
-      return;
-    this.Prompt.MyCollider.enabled = true;
-    this.GetComponent<Rigidbody>().isKinematic = false;
-    this.GetComponent<Rigidbody>().useGravity = true;
-    this.transform.parent = (Transform) null;
-    this.Prompt.enabled = true;
-  }
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.MyCollider.enabled = false;
+			Prompt.Circle[0].fillAmount = 1f;
+			GetComponent<Rigidbody>().isKinematic = true;
+			GetComponent<Rigidbody>().useGravity = false;
+			Prompt.enabled = false;
+			Prompt.Hide();
+			base.transform.parent = Prompt.Yandere.Hips;
+			base.transform.localPosition = new Vector3(0f, -0.3f, 0.21f);
+			base.transform.localEulerAngles = new Vector3(-13.333f, 0f, 0f);
+		}
+		if (base.transform.parent == Prompt.Yandere.Hips)
+		{
+			base.transform.localEulerAngles = Vector3.zero;
+			if (Prompt.Yandere.Stance.Current != StanceType.Crawling)
+			{
+				base.transform.eulerAngles = new Vector3(0f, base.transform.eulerAngles.y, base.transform.eulerAngles.z);
+			}
+			if (Input.GetButtonDown("RB"))
+			{
+				Prompt.MyCollider.enabled = true;
+				GetComponent<Rigidbody>().isKinematic = false;
+				GetComponent<Rigidbody>().useGravity = true;
+				base.transform.parent = null;
+				Prompt.enabled = true;
+			}
+		}
+	}
 }

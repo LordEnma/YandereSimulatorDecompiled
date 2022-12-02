@@ -1,165 +1,204 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SundayRivalCutsceneScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class SundayRivalCutsceneScript : MonoBehaviour
 {
-  public HomeSenpaiShrineScript HomeSenpaiShrine;
-  public HomeDarknessScript HomeDarkness;
-  public HomeYandereScript HomeYandere;
-  public PhoneScript Phone;
-  public GameObject InfoTextConvo;
-  public GameObject InfoTextPanel;
-  public AudioClip YoureSafeNow;
-  public AudioSource Vibration;
-  public GameObject GrabbyHand;
-  public GameObject HomeClock;
-  public UISprite SkipCircle;
-  public UIPanel SkipPanel;
-  public float Alpha = 1f;
-  public float Speed;
-  public float Timer;
-  public float X;
-  public float Y;
-  public float Z;
-  public int Phase;
-  public bool RestoreDOF;
+	public HomeSenpaiShrineScript HomeSenpaiShrine;
 
-  private void Start()
-  {
-    if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
-    {
-      this.HomeSenpaiShrine.Start();
-      this.HomeYandere.HomeDarkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-      this.HomeDarkness.enabled = false;
-      this.Alpha = 1f;
-      this.InfoTextConvo.gameObject.SetActive(true);
-      this.Vibration.gameObject.SetActive(true);
-      this.HomeYandere.Start();
-      this.HomeYandere.HomeCamera.Start();
-      this.HomeClock.SetActive(false);
-      this.HomeYandere.enabled = false;
-      this.HomeYandere.HomeCamera.enabled = false;
-      this.HomeYandere.HomeCamera.RoomJukebox.enabled = false;
-      this.HomeYandere.HomeCamera.HomeSenpaiShrine.enabled = false;
-      UnityEngine.Object.Destroy((UnityEngine.Object) this.HomeYandere.HomeCamera.PauseScreen.gameObject);
-      this.HomeYandere.HomeCamera.HomeSenpaiShrine.RightDoor.localEulerAngles = new Vector3(this.HomeYandere.HomeCamera.HomeSenpaiShrine.RightDoor.localEulerAngles.x, 135f, this.HomeYandere.HomeCamera.HomeSenpaiShrine.RightDoor.localEulerAngles.z);
-      this.HomeYandere.HomeCamera.HomeSenpaiShrine.LeftDoor.localEulerAngles = new Vector3(this.HomeYandere.HomeCamera.HomeSenpaiShrine.LeftDoor.localEulerAngles.x, -135f, this.HomeYandere.HomeCamera.HomeSenpaiShrine.LeftDoor.localEulerAngles.z);
-      this.HomeYandere.transform.position = new Vector3(-1.655f, 0.0f, 1.93f);
-      this.HomeYandere.transform.eulerAngles = new Vector3(0.0f, -45f, 0.0f);
-      this.HomeYandere.HomeCamera.transform.position = new Vector3(-1.905f, 1.48f, 2.15f);
-      this.HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(0.0f, -22.5f, 0.0f);
-      if (this.HomeYandere.HomeCamera.Profile.depthOfField.enabled)
-        this.RestoreDOF = true;
-      this.HomeYandere.HomeCamera.Profile.depthOfField.enabled = false;
-    }
-    else
-      this.gameObject.SetActive(false);
-  }
+	public HomeDarknessScript HomeDarkness;
 
-  private void Update()
-  {
-    if (Input.GetKeyDown("="))
-      ++Time.timeScale;
-    if (this.SkipCircle.transform.parent.gameObject.activeInHierarchy)
-    {
-      if (Input.GetButton("X"))
-      {
-        this.SkipCircle.fillAmount -= Time.deltaTime;
-        if ((double) this.SkipCircle.fillAmount == 0.0)
-        {
-          this.HomeYandere.HomeDarkness.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-          this.SkipCircle.transform.parent.gameObject.SetActive(false);
-          this.Phase = 5;
-          this.Timer = 0.0f;
-        }
-      }
-      else
-        this.SkipCircle.fillAmount = 1f;
-    }
-    if (this.Phase < 4)
-      this.HomeYandere.HomeCamera.transform.Translate(Vector3.forward * Time.deltaTime * -0.01f, Space.Self);
-    if (this.Phase == 0)
-    {
-      this.Alpha = Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.25f);
-      this.HomeYandere.HomeDarkness.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
-      if ((double) this.Alpha != 0.0)
-        return;
-      ++this.Phase;
-    }
-    else if (this.Phase == 1)
-    {
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer <= 1.0)
-        return;
-      this.HomeYandere.Character.GetComponent<Animation>().Play("f02_caressPhoto_00");
-      this.Timer = 0.0f;
-      ++this.Phase;
-    }
-    else if (this.Phase == 2)
-    {
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer <= 2.5)
-        return;
-      this.Vibration.PlayOneShot(this.YoureSafeNow);
-      this.Timer = 0.0f;
-      ++this.Phase;
-    }
-    else if (this.Phase == 3)
-    {
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 3.0 && !this.Vibration.isPlaying)
-        this.Vibration.Play();
-      if ((double) this.Timer <= 4.0)
-        return;
-      this.X = 0.0f;
-      this.Y = -22.5f;
-      this.Z = 0.0f;
-      this.Timer = 0.0f;
-      ++this.Phase;
-    }
-    else if (this.Phase == 4)
-    {
-      this.Timer += Time.deltaTime;
-      this.Speed += Time.deltaTime;
-      this.HomeYandere.HomeCamera.transform.position = Vector3.Lerp(this.HomeYandere.HomeCamera.transform.position, new Vector3(-2.055f, 1.075f, 1.99f), Time.deltaTime * this.Speed);
-      this.X = Mathf.Lerp(this.X, 67.5f, Time.deltaTime * this.Speed);
-      this.Y = Mathf.Lerp(this.Y, -22.5f, Time.deltaTime * this.Speed);
-      this.Z = Mathf.Lerp(this.Z, 0.0f, Time.deltaTime * this.Speed);
-      this.HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(this.X, this.Y, this.Z);
-      if ((double) this.Timer > 2.0)
-        this.HomeYandere.gameObject.SetActive(false);
-      if ((double) this.Timer > 2.5)
-        this.GrabbyHand.SetActive(true);
-      if ((double) this.Timer <= 4.5)
-        return;
-      this.HomeYandere.HomeCamera.transform.position = new Vector3(-1.638197f, 1.4925f, 2f);
-      this.HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(0.0f, -45f, 0.0f);
-      this.HomeYandere.gameObject.SetActive(false);
-      this.GrabbyHand.SetActive(false);
-      this.InfoTextConvo.SetActive(true);
-      this.Timer = 0.0f;
-      ++this.Phase;
-    }
-    else
-    {
-      if (this.Phase != 5)
-        return;
-      this.Timer += Time.deltaTime;
-      this.InfoTextPanel.transform.localPosition = Vector3.Lerp(this.InfoTextPanel.transform.localPosition, new Vector3(0.0f, 0.0f, 1f), Time.deltaTime * 10f);
-      if ((double) this.Timer <= 1.0)
-        return;
-      this.SkipPanel.alpha = 0.0f;
-      if (this.RestoreDOF)
-        this.HomeYandere.HomeCamera.Profile.depthOfField.enabled = true;
-      this.Phone.enabled = true;
-      Time.timeScale = 1f;
-      ++this.Phase;
-    }
-  }
+	public HomeYandereScript HomeYandere;
+
+	public PhoneScript Phone;
+
+	public GameObject InfoTextConvo;
+
+	public GameObject InfoTextPanel;
+
+	public AudioClip YoureSafeNow;
+
+	public AudioSource Vibration;
+
+	public GameObject GrabbyHand;
+
+	public GameObject HomeClock;
+
+	public UISprite SkipCircle;
+
+	public UIPanel SkipPanel;
+
+	public float Alpha = 1f;
+
+	public float Speed;
+
+	public float Timer;
+
+	public float X;
+
+	public float Y;
+
+	public float Z;
+
+	public int Phase;
+
+	public bool RestoreDOF;
+
+	private void Start()
+	{
+		if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
+		{
+			HomeSenpaiShrine.Start();
+			HomeYandere.HomeDarkness.color = new Color(0f, 0f, 0f, 1f);
+			HomeDarkness.enabled = false;
+			Alpha = 1f;
+			InfoTextConvo.gameObject.SetActive(true);
+			Vibration.gameObject.SetActive(true);
+			HomeYandere.Start();
+			HomeYandere.HomeCamera.Start();
+			HomeClock.SetActive(false);
+			HomeYandere.enabled = false;
+			HomeYandere.HomeCamera.enabled = false;
+			HomeYandere.HomeCamera.RoomJukebox.enabled = false;
+			HomeYandere.HomeCamera.HomeSenpaiShrine.enabled = false;
+			UnityEngine.Object.Destroy(HomeYandere.HomeCamera.PauseScreen.gameObject);
+			HomeYandere.HomeCamera.HomeSenpaiShrine.RightDoor.localEulerAngles = new Vector3(HomeYandere.HomeCamera.HomeSenpaiShrine.RightDoor.localEulerAngles.x, 135f, HomeYandere.HomeCamera.HomeSenpaiShrine.RightDoor.localEulerAngles.z);
+			HomeYandere.HomeCamera.HomeSenpaiShrine.LeftDoor.localEulerAngles = new Vector3(HomeYandere.HomeCamera.HomeSenpaiShrine.LeftDoor.localEulerAngles.x, -135f, HomeYandere.HomeCamera.HomeSenpaiShrine.LeftDoor.localEulerAngles.z);
+			HomeYandere.transform.position = new Vector3(-1.655f, 0f, 1.93f);
+			HomeYandere.transform.eulerAngles = new Vector3(0f, -45f, 0f);
+			HomeYandere.HomeCamera.transform.position = new Vector3(-1.905f, 1.48f, 2.15f);
+			HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(0f, -22.5f, 0f);
+			if (HomeYandere.HomeCamera.Profile.depthOfField.enabled)
+			{
+				RestoreDOF = true;
+			}
+			HomeYandere.HomeCamera.Profile.depthOfField.enabled = false;
+		}
+		else
+		{
+			base.gameObject.SetActive(false);
+		}
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown("="))
+		{
+			Time.timeScale += 1f;
+		}
+		if (SkipCircle.transform.parent.gameObject.activeInHierarchy)
+		{
+			if (Input.GetButton("X"))
+			{
+				SkipCircle.fillAmount -= Time.deltaTime;
+				if (SkipCircle.fillAmount == 0f)
+				{
+					HomeYandere.HomeDarkness.color = new Color(0f, 0f, 0f, 0f);
+					SkipCircle.transform.parent.gameObject.SetActive(false);
+					Phase = 5;
+					Timer = 0f;
+				}
+			}
+			else
+			{
+				SkipCircle.fillAmount = 1f;
+			}
+		}
+		if (Phase < 4)
+		{
+			HomeYandere.HomeCamera.transform.Translate(Vector3.forward * Time.deltaTime * -0.01f, Space.Self);
+		}
+		if (Phase == 0)
+		{
+			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.25f);
+			HomeYandere.HomeDarkness.color = new Color(0f, 0f, 0f, Alpha);
+			if (Alpha == 0f)
+			{
+				Phase++;
+			}
+		}
+		else if (Phase == 1)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 1f)
+			{
+				HomeYandere.Character.GetComponent<Animation>().Play("f02_caressPhoto_00");
+				Timer = 0f;
+				Phase++;
+			}
+		}
+		else if (Phase == 2)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 2.5f)
+			{
+				Vibration.PlayOneShot(YoureSafeNow);
+				Timer = 0f;
+				Phase++;
+			}
+		}
+		else if (Phase == 3)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 3f && !Vibration.isPlaying)
+			{
+				Vibration.Play();
+			}
+			if (Timer > 4f)
+			{
+				X = 0f;
+				Y = -22.5f;
+				Z = 0f;
+				Timer = 0f;
+				Phase++;
+			}
+		}
+		else if (Phase == 4)
+		{
+			Timer += Time.deltaTime;
+			Speed += Time.deltaTime;
+			HomeYandere.HomeCamera.transform.position = Vector3.Lerp(HomeYandere.HomeCamera.transform.position, new Vector3(-2.055f, 1.075f, 1.99f), Time.deltaTime * Speed);
+			X = Mathf.Lerp(X, 67.5f, Time.deltaTime * Speed);
+			Y = Mathf.Lerp(Y, -22.5f, Time.deltaTime * Speed);
+			Z = Mathf.Lerp(Z, 0f, Time.deltaTime * Speed);
+			HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(X, Y, Z);
+			if (Timer > 2f)
+			{
+				HomeYandere.gameObject.SetActive(false);
+			}
+			if (Timer > 2.5f)
+			{
+				GrabbyHand.SetActive(true);
+			}
+			if (Timer > 4.5f)
+			{
+				HomeYandere.HomeCamera.transform.position = new Vector3(-1.638197f, 1.4925f, 2f);
+				HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(0f, -45f, 0f);
+				HomeYandere.gameObject.SetActive(false);
+				GrabbyHand.SetActive(false);
+				InfoTextConvo.SetActive(true);
+				Timer = 0f;
+				Phase++;
+			}
+		}
+		else
+		{
+			if (Phase != 5)
+			{
+				return;
+			}
+			Timer += Time.deltaTime;
+			InfoTextPanel.transform.localPosition = Vector3.Lerp(InfoTextPanel.transform.localPosition, new Vector3(0f, 0f, 1f), Time.deltaTime * 10f);
+			if (Timer > 1f)
+			{
+				SkipPanel.alpha = 0f;
+				if (RestoreDOF)
+				{
+					HomeYandere.HomeCamera.Profile.depthOfField.enabled = true;
+				}
+				Phone.enabled = true;
+				Time.timeScale = 1f;
+				Phase++;
+			}
+		}
+	}
 }

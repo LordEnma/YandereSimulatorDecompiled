@@ -1,60 +1,72 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityEngine.PostProcessing.DepthOfFieldModel
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 
 namespace UnityEngine.PostProcessing
 {
-  [Serializable]
-  public class DepthOfFieldModel : PostProcessingModel
-  {
-    [SerializeField]
-    private DepthOfFieldModel.Settings m_Settings = DepthOfFieldModel.Settings.defaultSettings;
+	[Serializable]
+	public class DepthOfFieldModel : PostProcessingModel
+	{
+		public enum KernelSize
+		{
+			Small = 0,
+			Medium = 1,
+			Large = 2,
+			VeryLarge = 3
+		}
 
-    public DepthOfFieldModel.Settings settings
-    {
-      get => this.m_Settings;
-      set => this.m_Settings = value;
-    }
+		[Serializable]
+		public struct Settings
+		{
+			[Min(0.1f)]
+			[Tooltip("Distance to the point of focus.")]
+			public float focusDistance;
 
-    public override void Reset() => this.m_Settings = DepthOfFieldModel.Settings.defaultSettings;
+			[Range(0.05f, 32f)]
+			[Tooltip("Ratio of aperture (known as f-stop or f-number). The smaller the value is, the shallower the depth of field is.")]
+			public float aperture;
 
-    public enum KernelSize
-    {
-      Small,
-      Medium,
-      Large,
-      VeryLarge,
-    }
+			[Range(1f, 300f)]
+			[Tooltip("Distance between the lens and the film. The larger the value is, the shallower the depth of field is.")]
+			public float focalLength;
 
-    [Serializable]
-    public struct Settings
-    {
-      [Min(0.1f)]
-      [Tooltip("Distance to the point of focus.")]
-      public float focusDistance;
-      [Range(0.05f, 32f)]
-      [Tooltip("Ratio of aperture (known as f-stop or f-number). The smaller the value is, the shallower the depth of field is.")]
-      public float aperture;
-      [Range(1f, 300f)]
-      [Tooltip("Distance between the lens and the film. The larger the value is, the shallower the depth of field is.")]
-      public float focalLength;
-      [Tooltip("Calculate the focal length automatically from the field-of-view value set on the camera. Using this setting isn't recommended.")]
-      public bool useCameraFov;
-      [Tooltip("Convolution kernel size of the bokeh filter, which determines the maximum radius of bokeh. It also affects the performance (the larger the kernel is, the longer the GPU time is required).")]
-      public DepthOfFieldModel.KernelSize kernelSize;
+			[Tooltip("Calculate the focal length automatically from the field-of-view value set on the camera. Using this setting isn't recommended.")]
+			public bool useCameraFov;
 
-      public static DepthOfFieldModel.Settings defaultSettings => new DepthOfFieldModel.Settings()
-      {
-        focusDistance = 10f,
-        aperture = 5.6f,
-        focalLength = 50f,
-        useCameraFov = false,
-        kernelSize = DepthOfFieldModel.KernelSize.Medium
-      };
-    }
-  }
+			[Tooltip("Convolution kernel size of the bokeh filter, which determines the maximum radius of bokeh. It also affects the performance (the larger the kernel is, the longer the GPU time is required).")]
+			public KernelSize kernelSize;
+
+			public static Settings defaultSettings
+			{
+				get
+				{
+					Settings result = default(Settings);
+					result.focusDistance = 10f;
+					result.aperture = 5.6f;
+					result.focalLength = 50f;
+					result.useCameraFov = false;
+					result.kernelSize = KernelSize.Medium;
+					return result;
+				}
+			}
+		}
+
+		[SerializeField]
+		private Settings m_Settings = Settings.defaultSettings;
+
+		public Settings settings
+		{
+			get
+			{
+				return m_Settings;
+			}
+			set
+			{
+				m_Settings = value;
+			}
+		}
+
+		public override void Reset()
+		{
+			m_Settings = Settings.defaultSettings;
+		}
+	}
 }

@@ -1,97 +1,119 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BrokenScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class BrokenScript : MonoBehaviour
 {
-  public DynamicBone[] HairPhysics;
-  public string[] MutterTexts;
-  public AudioClip[] Mutters;
-  public Vector3 PermanentAngleR;
-  public Vector3 PermanentAngleL;
-  public Transform TwintailR;
-  public Transform TwintailL;
-  public AudioClip KillKillKill;
-  public AudioClip Stab;
-  public AudioClip DoIt;
-  public GameObject VoiceClip;
-  public GameObject Yandere;
-  public UILabel Subtitle;
-  public AudioSource MyAudio;
-  public bool Hunting;
-  public bool Stabbed;
-  public bool Began;
-  public bool Done;
-  public float SuicideTimer;
-  public float Timer;
-  public int ID = 1;
+	public DynamicBone[] HairPhysics;
 
-  private void Start()
-  {
-    this.HairPhysics[0].enabled = false;
-    this.HairPhysics[1].enabled = false;
-    this.PermanentAngleR = this.TwintailR.eulerAngles;
-    this.PermanentAngleL = this.TwintailL.eulerAngles;
-    this.Subtitle = GameObject.Find("EventSubtitle").GetComponent<UILabel>();
-    this.Yandere = GameObject.Find("YandereChan");
-  }
+	public string[] MutterTexts;
 
-  private void Update()
-  {
-    if (!this.Done)
-    {
-      float num1 = Vector3.Distance(this.Yandere.transform.position, this.transform.root.position);
-      if ((double) num1 < 6.0)
-      {
-        if ((double) num1 < 5.0)
-        {
-          if (!this.Hunting)
-          {
-            this.Timer += Time.deltaTime;
-            if ((Object) this.VoiceClip == (Object) null)
-              this.Subtitle.text = "";
-            if ((double) this.Timer > 5.0)
-            {
-              this.Timer = 0.0f;
-              this.Subtitle.text = this.MutterTexts[this.ID];
-              AudioClipPlayer.PlayAttached(this.Mutters[this.ID], this.transform.position, this.transform, 1f, 5f, out this.VoiceClip, this.Yandere.transform.position.y);
-              ++this.ID;
-              if (this.ID == this.Mutters.Length)
-                this.ID = 1;
-            }
-          }
-          else if (!this.Began)
-          {
-            if ((Object) this.VoiceClip != (Object) null)
-              Object.Destroy((Object) this.VoiceClip);
-            this.Subtitle.text = "Do it.";
-            AudioClipPlayer.PlayAttached(this.DoIt, this.transform.position, this.transform, 1f, 5f, out this.VoiceClip, this.Yandere.transform.position.y);
-            this.Began = true;
-          }
-          else if ((Object) this.VoiceClip == (Object) null)
-          {
-            this.Subtitle.text = "...kill...kill...kill...";
-            AudioClipPlayer.PlayAttached(this.KillKillKill, this.transform.position, this.transform, 1f, 5f, out this.VoiceClip, this.Yandere.transform.position.y);
-          }
-          float num2 = Mathf.Abs((float) (((double) num1 - 5.0) * 0.20000000298023224));
-          float num3 = (double) num2 > 1.0 ? 1f : num2;
-          this.Subtitle.transform.localScale = new Vector3(num3, num3, num3);
-        }
-        else
-          this.Subtitle.transform.localScale = Vector3.zero;
-      }
-    }
-    Vector3 eulerAngles1 = this.TwintailR.eulerAngles;
-    Vector3 eulerAngles2 = this.TwintailL.eulerAngles;
-    eulerAngles1.x = this.PermanentAngleR.x;
-    eulerAngles1.z = this.PermanentAngleR.z;
-    eulerAngles2.x = this.PermanentAngleL.x;
-    eulerAngles2.z = this.PermanentAngleL.z;
-    this.TwintailR.eulerAngles = eulerAngles1;
-    this.TwintailL.eulerAngles = eulerAngles2;
-  }
+	public AudioClip[] Mutters;
+
+	public Vector3 PermanentAngleR;
+
+	public Vector3 PermanentAngleL;
+
+	public Transform TwintailR;
+
+	public Transform TwintailL;
+
+	public AudioClip KillKillKill;
+
+	public AudioClip Stab;
+
+	public AudioClip DoIt;
+
+	public GameObject VoiceClip;
+
+	public GameObject Yandere;
+
+	public UILabel Subtitle;
+
+	public AudioSource MyAudio;
+
+	public bool Hunting;
+
+	public bool Stabbed;
+
+	public bool Began;
+
+	public bool Done;
+
+	public float SuicideTimer;
+
+	public float Timer;
+
+	public int ID = 1;
+
+	private void Start()
+	{
+		HairPhysics[0].enabled = false;
+		HairPhysics[1].enabled = false;
+		PermanentAngleR = TwintailR.eulerAngles;
+		PermanentAngleL = TwintailL.eulerAngles;
+		Subtitle = GameObject.Find("EventSubtitle").GetComponent<UILabel>();
+		Yandere = GameObject.Find("YandereChan");
+	}
+
+	private void Update()
+	{
+		if (!Done)
+		{
+			float num = Vector3.Distance(Yandere.transform.position, base.transform.root.position);
+			if (num < 6f)
+			{
+				if (num < 5f)
+				{
+					if (!Hunting)
+					{
+						Timer += Time.deltaTime;
+						if (VoiceClip == null)
+						{
+							Subtitle.text = "";
+						}
+						if (Timer > 5f)
+						{
+							Timer = 0f;
+							Subtitle.text = MutterTexts[ID];
+							AudioClipPlayer.PlayAttached(Mutters[ID], base.transform.position, base.transform, 1f, 5f, out VoiceClip, Yandere.transform.position.y);
+							ID++;
+							if (ID == Mutters.Length)
+							{
+								ID = 1;
+							}
+						}
+					}
+					else if (!Began)
+					{
+						if (VoiceClip != null)
+						{
+							Object.Destroy(VoiceClip);
+						}
+						Subtitle.text = "Do it.";
+						AudioClipPlayer.PlayAttached(DoIt, base.transform.position, base.transform, 1f, 5f, out VoiceClip, Yandere.transform.position.y);
+						Began = true;
+					}
+					else if (VoiceClip == null)
+					{
+						Subtitle.text = "...kill...kill...kill...";
+						AudioClipPlayer.PlayAttached(KillKillKill, base.transform.position, base.transform, 1f, 5f, out VoiceClip, Yandere.transform.position.y);
+					}
+					float num2 = Mathf.Abs((num - 5f) * 0.2f);
+					num2 = ((num2 > 1f) ? 1f : num2);
+					Subtitle.transform.localScale = new Vector3(num2, num2, num2);
+				}
+				else
+				{
+					Subtitle.transform.localScale = Vector3.zero;
+				}
+			}
+		}
+		Vector3 eulerAngles = TwintailR.eulerAngles;
+		Vector3 eulerAngles2 = TwintailL.eulerAngles;
+		eulerAngles.x = PermanentAngleR.x;
+		eulerAngles.z = PermanentAngleR.z;
+		eulerAngles2.x = PermanentAngleL.x;
+		eulerAngles2.z = PermanentAngleL.z;
+		TwintailR.eulerAngles = eulerAngles;
+		TwintailL.eulerAngles = eulerAngles2;
+	}
 }

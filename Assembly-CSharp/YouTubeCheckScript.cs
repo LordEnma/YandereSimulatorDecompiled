@@ -1,50 +1,67 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: YouTubeCheckScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class YouTubeCheckScript : MonoBehaviour
 {
-  private void Awake() => UnityEngine.Object.DontDestroyOnLoad((UnityEngine.Object) this.gameObject);
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
+	{
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-  private void Start() => this.StreamAPI();
+		public static Action<UnityWebRequest> _003C_003E9__4_0;
 
-  private void StreamAPI()
-  {
-    try
-    {
-      string commandLineArg1 = Environment.GetCommandLineArgs()[1];
-      string commandLineArg2 = Environment.GetCommandLineArgs()[2];
-      if (!(commandLineArg1 == "-key"))
-        return;
-      Debug.Log((object) ("I see a key: " + commandLineArg2.ToString()));
-      this.GetPosts();
-    }
-    catch (Exception ex)
-    {
-    }
-  }
+		internal void _003CGetPosts_003Eb__4_0(UnityWebRequest req)
+		{
+			Debug.Log("Test. Does this work?");
+			Debug.Log(req.downloadHandler.text);
+		}
+	}
 
-  private IEnumerator GetRequest(string url, System.Action<UnityWebRequest> callback)
-  {
-    UnityWebRequest request = (UnityWebRequest) null;
-    using (request = UnityWebRequest.Get(url))
-    {
-      yield return (object) request.SendWebRequest();
-      callback(request);
-    }
-    request = (UnityWebRequest) null;
-  }
+	private void Awake()
+	{
+		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
+	}
 
-  public void GetPosts() => this.StartCoroutine(this.GetRequest(Environment.GetCommandLineArgs()[2].ToString() ?? "", (System.Action<UnityWebRequest>) (req =>
-  {
-    Debug.Log((object) "Test. Does this work?");
-    Debug.Log((object) req.downloadHandler.text);
-  })));
+	private void Start()
+	{
+		StreamAPI();
+	}
+
+	private void StreamAPI()
+	{
+		try
+		{
+			string obj = Environment.GetCommandLineArgs()[1];
+			string text = Environment.GetCommandLineArgs()[2];
+			if (obj == "-key")
+			{
+				Debug.Log("I see a key: " + text.ToString());
+				GetPosts();
+			}
+		}
+		catch (Exception)
+		{
+		}
+	}
+
+	private IEnumerator GetRequest(string url, Action<UnityWebRequest> callback)
+	{
+		UnityWebRequest unityWebRequest;
+		UnityWebRequest request = (unityWebRequest = UnityWebRequest.Get(url));
+		using (unityWebRequest)
+		{
+			yield return request.SendWebRequest();
+			callback(request);
+		}
+	}
+
+	public void GetPosts()
+	{
+		string url = Environment.GetCommandLineArgs()[2].ToString() ?? "";
+		StartCoroutine(GetRequest(url, _003C_003Ec._003C_003E9__4_0 ?? (_003C_003Ec._003C_003E9__4_0 = _003C_003Ec._003C_003E9._003CGetPosts_003Eb__4_0)));
+	}
 }

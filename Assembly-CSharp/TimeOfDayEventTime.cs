@@ -1,51 +1,64 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TimeOfDayEventTime
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [Serializable]
 public class TimeOfDayEventTime : IScheduledEventTime
 {
-  [SerializeField]
-  private int week;
-  [SerializeField]
-  private DayOfWeek weekday;
-  [SerializeField]
-  private TimeOfDay timeOfDay;
+	[SerializeField]
+	private int week;
 
-  public TimeOfDayEventTime(int week, DayOfWeek weekday, TimeOfDay timeOfDay)
-  {
-    this.week = week;
-    this.weekday = weekday;
-    this.timeOfDay = timeOfDay;
-  }
+	[SerializeField]
+	private DayOfWeek weekday;
 
-  public ScheduledEventTimeType ScheduleType => ScheduledEventTimeType.TimeOfDay;
+	[SerializeField]
+	private TimeOfDay timeOfDay;
 
-  public bool OccurringNow(DateAndTime currentTime)
-  {
-    int num1 = currentTime.Week == this.week ? 1 : 0;
-    bool flag1 = currentTime.Weekday == this.weekday;
-    bool flag2 = currentTime.Clock.TimeOfDay == this.timeOfDay;
-    int num2 = flag1 ? 1 : 0;
-    return (num1 & num2 & (flag2 ? 1 : 0)) != 0;
-  }
+	public ScheduledEventTimeType ScheduleType
+	{
+		get
+		{
+			return ScheduledEventTimeType.TimeOfDay;
+		}
+	}
 
-  public bool OccursInTheFuture(DateAndTime currentTime)
-  {
-    if (currentTime.Week != this.week)
-      return currentTime.Week < this.week;
-    return currentTime.Weekday == this.weekday ? currentTime.Clock.TimeOfDay < this.timeOfDay : currentTime.Weekday < this.weekday;
-  }
+	public TimeOfDayEventTime(int week, DayOfWeek weekday, TimeOfDay timeOfDay)
+	{
+		this.week = week;
+		this.weekday = weekday;
+		this.timeOfDay = timeOfDay;
+	}
 
-  public bool OccurredInThePast(DateAndTime currentTime)
-  {
-    if (currentTime.Week != this.week)
-      return currentTime.Week > this.week;
-    return currentTime.Weekday == this.weekday ? currentTime.Clock.TimeOfDay > this.timeOfDay : currentTime.Weekday > this.weekday;
-  }
+	public bool OccurringNow(DateAndTime currentTime)
+	{
+		bool num = currentTime.Week == week;
+		bool flag = currentTime.Weekday == weekday;
+		bool flag2 = currentTime.Clock.TimeOfDay == timeOfDay;
+		return num && flag && flag2;
+	}
+
+	public bool OccursInTheFuture(DateAndTime currentTime)
+	{
+		if (currentTime.Week == week)
+		{
+			if (currentTime.Weekday == weekday)
+			{
+				return currentTime.Clock.TimeOfDay < timeOfDay;
+			}
+			return currentTime.Weekday < weekday;
+		}
+		return currentTime.Week < week;
+	}
+
+	public bool OccurredInThePast(DateAndTime currentTime)
+	{
+		if (currentTime.Week == week)
+		{
+			if (currentTime.Weekday == weekday)
+			{
+				return currentTime.Clock.TimeOfDay > timeOfDay;
+			}
+			return currentTime.Weekday > weekday;
+		}
+		return currentTime.Week > week;
+	}
 }

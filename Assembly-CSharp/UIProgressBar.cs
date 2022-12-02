@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIProgressBar
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,382 +6,500 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/NGUI Progress Bar")]
 public class UIProgressBar : UIWidgetContainer
 {
-  public static UIProgressBar current;
-  public UIProgressBar.OnDragFinished onDragFinished;
-  public Transform thumb;
-  [HideInInspector]
-  [SerializeField]
-  protected UIWidget mBG;
-  [HideInInspector]
-  [SerializeField]
-  protected UIWidget mFG;
-  [HideInInspector]
-  [SerializeField]
-  protected float mValue = 1f;
-  [HideInInspector]
-  [SerializeField]
-  protected UIProgressBar.FillDirection mFill;
-  [NonSerialized]
-  protected bool mStarted;
-  [NonSerialized]
-  protected Transform mTrans;
-  [NonSerialized]
-  protected bool mIsDirty;
-  [NonSerialized]
-  protected Camera mCam;
-  [NonSerialized]
-  protected float mOffset;
-  public int numberOfSteps;
-  public List<EventDelegate> onChange = new List<EventDelegate>();
+	[DoNotObfuscateNGUI]
+	public enum FillDirection
+	{
+		LeftToRight = 0,
+		RightToLeft = 1,
+		BottomToTop = 2,
+		TopToBottom = 3
+	}
 
-  public Transform cachedTransform
-  {
-    get
-    {
-      if ((UnityEngine.Object) this.mTrans == (UnityEngine.Object) null)
-        this.mTrans = this.transform;
-      return this.mTrans;
-    }
-  }
+	public delegate void OnDragFinished();
 
-  public Camera cachedCamera
-  {
-    get
-    {
-      if ((UnityEngine.Object) this.mCam == (UnityEngine.Object) null)
-        this.mCam = NGUITools.FindCameraForLayer(this.gameObject.layer);
-      return this.mCam;
-    }
-  }
+	public static UIProgressBar current;
 
-  public UIWidget foregroundWidget
-  {
-    get => this.mFG;
-    set
-    {
-      if (!((UnityEngine.Object) this.mFG != (UnityEngine.Object) value))
-        return;
-      this.mFG = value;
-      this.mIsDirty = true;
-    }
-  }
+	public OnDragFinished onDragFinished;
 
-  public UIWidget backgroundWidget
-  {
-    get => this.mBG;
-    set
-    {
-      if (!((UnityEngine.Object) this.mBG != (UnityEngine.Object) value))
-        return;
-      this.mBG = value;
-      this.mIsDirty = true;
-    }
-  }
+	public Transform thumb;
 
-  public UIProgressBar.FillDirection fillDirection
-  {
-    get => this.mFill;
-    set
-    {
-      if (this.mFill == value)
-        return;
-      this.mFill = value;
-      if (!this.mStarted)
-        return;
-      this.ForceUpdate();
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	protected UIWidget mBG;
 
-  public float value
-  {
-    get => this.numberOfSteps > 1 ? Mathf.Round(this.mValue * (float) (this.numberOfSteps - 1)) / (float) (this.numberOfSteps - 1) : this.mValue;
-    set => this.Set(value);
-  }
+	[HideInInspector]
+	[SerializeField]
+	protected UIWidget mFG;
 
-  public float alpha
-  {
-    get
-    {
-      if ((UnityEngine.Object) this.mFG != (UnityEngine.Object) null)
-        return this.mFG.alpha;
-      return (UnityEngine.Object) this.mBG != (UnityEngine.Object) null ? this.mBG.alpha : 1f;
-    }
-    set
-    {
-      if ((UnityEngine.Object) this.mFG != (UnityEngine.Object) null)
-      {
-        this.mFG.alpha = value;
-        if ((UnityEngine.Object) this.mFG.GetComponent<Collider>() != (UnityEngine.Object) null)
-          this.mFG.GetComponent<Collider>().enabled = (double) this.mFG.alpha > 1.0 / 1000.0;
-        else if ((UnityEngine.Object) this.mFG.GetComponent<Collider2D>() != (UnityEngine.Object) null)
-          this.mFG.GetComponent<Collider2D>().enabled = (double) this.mFG.alpha > 1.0 / 1000.0;
-      }
-      if ((UnityEngine.Object) this.mBG != (UnityEngine.Object) null)
-      {
-        this.mBG.alpha = value;
-        if ((UnityEngine.Object) this.mBG.GetComponent<Collider>() != (UnityEngine.Object) null)
-          this.mBG.GetComponent<Collider>().enabled = (double) this.mBG.alpha > 1.0 / 1000.0;
-        else if ((UnityEngine.Object) this.mBG.GetComponent<Collider2D>() != (UnityEngine.Object) null)
-          this.mBG.GetComponent<Collider2D>().enabled = (double) this.mBG.alpha > 1.0 / 1000.0;
-      }
-      if (!((UnityEngine.Object) this.thumb != (UnityEngine.Object) null))
-        return;
-      UIWidget component = this.thumb.GetComponent<UIWidget>();
-      if (!((UnityEngine.Object) component != (UnityEngine.Object) null))
-        return;
-      component.alpha = value;
-      if ((UnityEngine.Object) component.GetComponent<Collider>() != (UnityEngine.Object) null)
-      {
-        component.GetComponent<Collider>().enabled = (double) component.alpha > 1.0 / 1000.0;
-      }
-      else
-      {
-        if (!((UnityEngine.Object) component.GetComponent<Collider2D>() != (UnityEngine.Object) null))
-          return;
-        component.GetComponent<Collider2D>().enabled = (double) component.alpha > 1.0 / 1000.0;
-      }
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	protected float mValue = 1f;
 
-  protected bool isHorizontal => this.mFill == UIProgressBar.FillDirection.LeftToRight || this.mFill == UIProgressBar.FillDirection.RightToLeft;
+	[HideInInspector]
+	[SerializeField]
+	protected FillDirection mFill;
 
-  protected bool isInverted => this.mFill == UIProgressBar.FillDirection.RightToLeft || this.mFill == UIProgressBar.FillDirection.TopToBottom;
+	[NonSerialized]
+	protected bool mStarted;
 
-  public void Set(float val, bool notify = true)
-  {
-    val = Mathf.Clamp01(val);
-    if ((double) this.mValue == (double) val)
-      return;
-    float num = this.value;
-    this.mValue = val;
-    if (!this.mStarted || (double) num == (double) this.value)
-      return;
-    if (notify && NGUITools.GetActive((Behaviour) this) && EventDelegate.IsValid(this.onChange))
-    {
-      UIProgressBar.current = this;
-      EventDelegate.Execute(this.onChange);
-      UIProgressBar.current = (UIProgressBar) null;
-    }
-    this.ForceUpdate();
-  }
+	[NonSerialized]
+	protected Transform mTrans;
 
-  public void Start()
-  {
-    if (this.mStarted)
-      return;
-    this.mStarted = true;
-    this.Upgrade();
-    if (Application.isPlaying)
-    {
-      if ((UnityEngine.Object) this.mBG != (UnityEngine.Object) null)
-        this.mBG.autoResizeBoxCollider = true;
-      this.OnStart();
-      if ((UnityEngine.Object) UIProgressBar.current == (UnityEngine.Object) null && this.onChange != null)
-      {
-        UIProgressBar.current = this;
-        EventDelegate.Execute(this.onChange);
-        UIProgressBar.current = (UIProgressBar) null;
-      }
-    }
-    this.ForceUpdate();
-  }
+	[NonSerialized]
+	protected bool mIsDirty;
 
-  protected virtual void Upgrade()
-  {
-  }
+	[NonSerialized]
+	protected Camera mCam;
 
-  protected virtual void OnStart()
-  {
-  }
+	[NonSerialized]
+	protected float mOffset;
 
-  protected void Update()
-  {
-    if (!this.mIsDirty)
-      return;
-    this.ForceUpdate();
-  }
+	public int numberOfSteps;
 
-  protected void OnValidate()
-  {
-    if (NGUITools.GetActive((Behaviour) this))
-    {
-      this.Upgrade();
-      this.mIsDirty = true;
-      float num = Mathf.Clamp01(this.mValue);
-      if ((double) this.mValue != (double) num)
-        this.mValue = num;
-      if (this.numberOfSteps < 0)
-        this.numberOfSteps = 0;
-      else if (this.numberOfSteps > 21)
-        this.numberOfSteps = 21;
-      this.ForceUpdate();
-    }
-    else
-    {
-      float num = Mathf.Clamp01(this.mValue);
-      if ((double) this.mValue != (double) num)
-        this.mValue = num;
-      if (this.numberOfSteps < 0)
-      {
-        this.numberOfSteps = 0;
-      }
-      else
-      {
-        if (this.numberOfSteps <= 21)
-          return;
-        this.numberOfSteps = 21;
-      }
-    }
-  }
+	public List<EventDelegate> onChange = new List<EventDelegate>();
 
-  protected float ScreenToValue(Vector2 screenPos)
-  {
-    Transform cachedTransform = this.cachedTransform;
-    Plane plane = new Plane(cachedTransform.rotation * Vector3.back, cachedTransform.position);
-    Ray ray = this.cachedCamera.ScreenPointToRay((Vector3) screenPos);
-    float enter;
-    return !plane.Raycast(ray, out enter) ? this.value : this.LocalToValue((Vector2) cachedTransform.InverseTransformPoint(ray.GetPoint(enter)));
-  }
+	public Transform cachedTransform
+	{
+		get
+		{
+			if (mTrans == null)
+			{
+				mTrans = base.transform;
+			}
+			return mTrans;
+		}
+	}
 
-  protected virtual float LocalToValue(Vector2 localPos)
-  {
-    if (!((UnityEngine.Object) this.mFG != (UnityEngine.Object) null))
-      return this.value;
-    Vector3[] localCorners = this.mFG.localCorners;
-    Vector3 vector3 = localCorners[2] - localCorners[0];
-    if (this.isHorizontal)
-    {
-      float num = (localPos.x - localCorners[0].x) / vector3.x;
-      return !this.isInverted ? num : 1f - num;
-    }
-    float num1 = (localPos.y - localCorners[0].y) / vector3.y;
-    return !this.isInverted ? num1 : 1f - num1;
-  }
+	public Camera cachedCamera
+	{
+		get
+		{
+			if (mCam == null)
+			{
+				mCam = NGUITools.FindCameraForLayer(base.gameObject.layer);
+			}
+			return mCam;
+		}
+	}
 
-  public virtual void ForceUpdate()
-  {
-    this.mIsDirty = false;
-    bool flag = false;
-    if ((UnityEngine.Object) this.mFG != (UnityEngine.Object) null)
-    {
-      UIBasicSprite mFg = this.mFG as UIBasicSprite;
-      if (this.isHorizontal)
-      {
-        if ((UnityEngine.Object) mFg != (UnityEngine.Object) null && mFg.type == UIBasicSprite.Type.Filled)
-        {
-          if (mFg.fillDirection == UIBasicSprite.FillDirection.Horizontal || mFg.fillDirection == UIBasicSprite.FillDirection.Vertical)
-          {
-            mFg.fillDirection = UIBasicSprite.FillDirection.Horizontal;
-            mFg.invert = this.isInverted;
-          }
-          mFg.fillAmount = this.value;
-        }
-        else
-        {
-          this.mFG.drawRegion = this.isInverted ? new Vector4(1f - this.value, 0.0f, 1f, 1f) : new Vector4(0.0f, 0.0f, this.value, 1f);
-          this.mFG.enabled = true;
-          flag = (double) this.value < 1.0 / 1000.0;
-        }
-      }
-      else if ((UnityEngine.Object) mFg != (UnityEngine.Object) null && mFg.type == UIBasicSprite.Type.Filled)
-      {
-        if (mFg.fillDirection == UIBasicSprite.FillDirection.Horizontal || mFg.fillDirection == UIBasicSprite.FillDirection.Vertical)
-        {
-          mFg.fillDirection = UIBasicSprite.FillDirection.Vertical;
-          mFg.invert = this.isInverted;
-        }
-        mFg.fillAmount = this.value;
-      }
-      else
-      {
-        this.mFG.drawRegion = this.isInverted ? new Vector4(0.0f, 1f - this.value, 1f, 1f) : new Vector4(0.0f, 0.0f, 1f, this.value);
-        this.mFG.enabled = true;
-        flag = (double) this.value < 1.0 / 1000.0;
-      }
-    }
-    if ((UnityEngine.Object) this.thumb != (UnityEngine.Object) null && ((UnityEngine.Object) this.mFG != (UnityEngine.Object) null || (UnityEngine.Object) this.mBG != (UnityEngine.Object) null))
-    {
-      Vector3[] vector3Array = (UnityEngine.Object) this.mFG != (UnityEngine.Object) null ? this.mFG.localCorners : this.mBG.localCorners;
-      Vector4 vector4 = (UnityEngine.Object) this.mFG != (UnityEngine.Object) null ? this.mFG.border : this.mBG.border;
-      vector3Array[0].x += vector4.x;
-      vector3Array[1].x += vector4.x;
-      vector3Array[2].x -= vector4.z;
-      vector3Array[3].x -= vector4.z;
-      vector3Array[0].y += vector4.y;
-      vector3Array[1].y -= vector4.w;
-      vector3Array[2].y -= vector4.w;
-      vector3Array[3].y += vector4.y;
-      Transform transform = (UnityEngine.Object) this.mFG != (UnityEngine.Object) null ? this.mFG.cachedTransform : this.mBG.cachedTransform;
-      for (int index = 0; index < 4; ++index)
-        vector3Array[index] = transform.TransformPoint(vector3Array[index]);
-      if (this.isHorizontal)
-        this.SetThumbPosition(Vector3.Lerp(Vector3.Lerp(vector3Array[0], vector3Array[1], 0.5f), Vector3.Lerp(vector3Array[2], vector3Array[3], 0.5f), this.isInverted ? 1f - this.value : this.value));
-      else
-        this.SetThumbPosition(Vector3.Lerp(Vector3.Lerp(vector3Array[0], vector3Array[3], 0.5f), Vector3.Lerp(vector3Array[1], vector3Array[2], 0.5f), this.isInverted ? 1f - this.value : this.value));
-    }
-    if (!flag)
-      return;
-    this.mFG.enabled = false;
-  }
+	public UIWidget foregroundWidget
+	{
+		get
+		{
+			return mFG;
+		}
+		set
+		{
+			if (mFG != value)
+			{
+				mFG = value;
+				mIsDirty = true;
+			}
+		}
+	}
 
-  protected void SetThumbPosition(Vector3 worldPos)
-  {
-    Transform parent = this.thumb.parent;
-    if ((UnityEngine.Object) parent != (UnityEngine.Object) null)
-    {
-      worldPos = parent.InverseTransformPoint(worldPos);
-      worldPos.x = Mathf.Round(worldPos.x);
-      worldPos.y = Mathf.Round(worldPos.y);
-      worldPos.z = 0.0f;
-      if ((double) Vector3.Distance(this.thumb.localPosition, worldPos) <= 1.0 / 1000.0)
-        return;
-      this.thumb.localPosition = worldPos;
-    }
-    else
-    {
-      if ((double) Vector3.Distance(this.thumb.position, worldPos) <= 9.9999997473787516E-06)
-        return;
-      this.thumb.position = worldPos;
-    }
-  }
+	public UIWidget backgroundWidget
+	{
+		get
+		{
+			return mBG;
+		}
+		set
+		{
+			if (mBG != value)
+			{
+				mBG = value;
+				mIsDirty = true;
+			}
+		}
+	}
 
-  public virtual void OnPan(Vector2 delta)
-  {
-    if (!this.enabled)
-      return;
-    switch (this.mFill)
-    {
-      case UIProgressBar.FillDirection.LeftToRight:
-        float num1 = Mathf.Clamp01(this.mValue + delta.x);
-        this.value = num1;
-        this.mValue = num1;
-        break;
-      case UIProgressBar.FillDirection.RightToLeft:
-        float num2 = Mathf.Clamp01(this.mValue - delta.x);
-        this.value = num2;
-        this.mValue = num2;
-        break;
-      case UIProgressBar.FillDirection.BottomToTop:
-        float num3 = Mathf.Clamp01(this.mValue + delta.y);
-        this.value = num3;
-        this.mValue = num3;
-        break;
-      case UIProgressBar.FillDirection.TopToBottom:
-        float num4 = Mathf.Clamp01(this.mValue - delta.y);
-        this.value = num4;
-        this.mValue = num4;
-        break;
-    }
-  }
+	public FillDirection fillDirection
+	{
+		get
+		{
+			return mFill;
+		}
+		set
+		{
+			if (mFill != value)
+			{
+				mFill = value;
+				if (mStarted)
+				{
+					ForceUpdate();
+				}
+			}
+		}
+	}
 
-  [DoNotObfuscateNGUI]
-  public enum FillDirection
-  {
-    LeftToRight,
-    RightToLeft,
-    BottomToTop,
-    TopToBottom,
-  }
+	public float value
+	{
+		get
+		{
+			if (numberOfSteps > 1)
+			{
+				return Mathf.Round(mValue * (float)(numberOfSteps - 1)) / (float)(numberOfSteps - 1);
+			}
+			return mValue;
+		}
+		set
+		{
+			Set(value);
+		}
+	}
 
-  public delegate void OnDragFinished();
+	public float alpha
+	{
+		get
+		{
+			if (mFG != null)
+			{
+				return mFG.alpha;
+			}
+			if (mBG != null)
+			{
+				return mBG.alpha;
+			}
+			return 1f;
+		}
+		set
+		{
+			if (mFG != null)
+			{
+				mFG.alpha = value;
+				if (mFG.GetComponent<Collider>() != null)
+				{
+					mFG.GetComponent<Collider>().enabled = mFG.alpha > 0.001f;
+				}
+				else if (mFG.GetComponent<Collider2D>() != null)
+				{
+					mFG.GetComponent<Collider2D>().enabled = mFG.alpha > 0.001f;
+				}
+			}
+			if (mBG != null)
+			{
+				mBG.alpha = value;
+				if (mBG.GetComponent<Collider>() != null)
+				{
+					mBG.GetComponent<Collider>().enabled = mBG.alpha > 0.001f;
+				}
+				else if (mBG.GetComponent<Collider2D>() != null)
+				{
+					mBG.GetComponent<Collider2D>().enabled = mBG.alpha > 0.001f;
+				}
+			}
+			if (!(thumb != null))
+			{
+				return;
+			}
+			UIWidget component = thumb.GetComponent<UIWidget>();
+			if (component != null)
+			{
+				component.alpha = value;
+				if (component.GetComponent<Collider>() != null)
+				{
+					component.GetComponent<Collider>().enabled = component.alpha > 0.001f;
+				}
+				else if (component.GetComponent<Collider2D>() != null)
+				{
+					component.GetComponent<Collider2D>().enabled = component.alpha > 0.001f;
+				}
+			}
+		}
+	}
+
+	protected bool isHorizontal
+	{
+		get
+		{
+			if (mFill != 0)
+			{
+				return mFill == FillDirection.RightToLeft;
+			}
+			return true;
+		}
+	}
+
+	protected bool isInverted
+	{
+		get
+		{
+			if (mFill != FillDirection.RightToLeft)
+			{
+				return mFill == FillDirection.TopToBottom;
+			}
+			return true;
+		}
+	}
+
+	public void Set(float val, bool notify = true)
+	{
+		val = Mathf.Clamp01(val);
+		if (mValue == val)
+		{
+			return;
+		}
+		float num = value;
+		mValue = val;
+		if (mStarted && num != value)
+		{
+			if (notify && NGUITools.GetActive(this) && EventDelegate.IsValid(onChange))
+			{
+				current = this;
+				EventDelegate.Execute(onChange);
+				current = null;
+			}
+			ForceUpdate();
+		}
+	}
+
+	public void Start()
+	{
+		if (mStarted)
+		{
+			return;
+		}
+		mStarted = true;
+		Upgrade();
+		if (Application.isPlaying)
+		{
+			if (mBG != null)
+			{
+				mBG.autoResizeBoxCollider = true;
+			}
+			OnStart();
+			if (current == null && onChange != null)
+			{
+				current = this;
+				EventDelegate.Execute(onChange);
+				current = null;
+			}
+		}
+		ForceUpdate();
+	}
+
+	protected virtual void Upgrade()
+	{
+	}
+
+	protected virtual void OnStart()
+	{
+	}
+
+	protected void Update()
+	{
+		if (mIsDirty)
+		{
+			ForceUpdate();
+		}
+	}
+
+	protected void OnValidate()
+	{
+		if (NGUITools.GetActive(this))
+		{
+			Upgrade();
+			mIsDirty = true;
+			float num = Mathf.Clamp01(mValue);
+			if (mValue != num)
+			{
+				mValue = num;
+			}
+			if (numberOfSteps < 0)
+			{
+				numberOfSteps = 0;
+			}
+			else if (numberOfSteps > 21)
+			{
+				numberOfSteps = 21;
+			}
+			ForceUpdate();
+		}
+		else
+		{
+			float num2 = Mathf.Clamp01(mValue);
+			if (mValue != num2)
+			{
+				mValue = num2;
+			}
+			if (numberOfSteps < 0)
+			{
+				numberOfSteps = 0;
+			}
+			else if (numberOfSteps > 21)
+			{
+				numberOfSteps = 21;
+			}
+		}
+	}
+
+	protected float ScreenToValue(Vector2 screenPos)
+	{
+		Transform transform = cachedTransform;
+		Plane plane = new Plane(transform.rotation * Vector3.back, transform.position);
+		Ray ray = cachedCamera.ScreenPointToRay(screenPos);
+		float enter;
+		if (!plane.Raycast(ray, out enter))
+		{
+			return value;
+		}
+		return LocalToValue(transform.InverseTransformPoint(ray.GetPoint(enter)));
+	}
+
+	protected virtual float LocalToValue(Vector2 localPos)
+	{
+		if (mFG != null)
+		{
+			Vector3[] localCorners = mFG.localCorners;
+			Vector3 vector = localCorners[2] - localCorners[0];
+			if (isHorizontal)
+			{
+				float num = (localPos.x - localCorners[0].x) / vector.x;
+				if (!isInverted)
+				{
+					return num;
+				}
+				return 1f - num;
+			}
+			float num2 = (localPos.y - localCorners[0].y) / vector.y;
+			if (!isInverted)
+			{
+				return num2;
+			}
+			return 1f - num2;
+		}
+		return value;
+	}
+
+	public virtual void ForceUpdate()
+	{
+		mIsDirty = false;
+		bool flag = false;
+		if (mFG != null)
+		{
+			UIBasicSprite uIBasicSprite = mFG as UIBasicSprite;
+			if (isHorizontal)
+			{
+				if (uIBasicSprite != null && uIBasicSprite.type == UIBasicSprite.Type.Filled)
+				{
+					if (uIBasicSprite.fillDirection == UIBasicSprite.FillDirection.Horizontal || uIBasicSprite.fillDirection == UIBasicSprite.FillDirection.Vertical)
+					{
+						uIBasicSprite.fillDirection = UIBasicSprite.FillDirection.Horizontal;
+						uIBasicSprite.invert = isInverted;
+					}
+					uIBasicSprite.fillAmount = value;
+				}
+				else
+				{
+					mFG.drawRegion = (isInverted ? new Vector4(1f - value, 0f, 1f, 1f) : new Vector4(0f, 0f, value, 1f));
+					mFG.enabled = true;
+					flag = value < 0.001f;
+				}
+			}
+			else if (uIBasicSprite != null && uIBasicSprite.type == UIBasicSprite.Type.Filled)
+			{
+				if (uIBasicSprite.fillDirection == UIBasicSprite.FillDirection.Horizontal || uIBasicSprite.fillDirection == UIBasicSprite.FillDirection.Vertical)
+				{
+					uIBasicSprite.fillDirection = UIBasicSprite.FillDirection.Vertical;
+					uIBasicSprite.invert = isInverted;
+				}
+				uIBasicSprite.fillAmount = value;
+			}
+			else
+			{
+				mFG.drawRegion = (isInverted ? new Vector4(0f, 1f - value, 1f, 1f) : new Vector4(0f, 0f, 1f, value));
+				mFG.enabled = true;
+				flag = value < 0.001f;
+			}
+		}
+		if (thumb != null && (mFG != null || mBG != null))
+		{
+			Vector3[] array = ((mFG != null) ? mFG.localCorners : mBG.localCorners);
+			Vector4 vector = ((mFG != null) ? mFG.border : mBG.border);
+			array[0].x += vector.x;
+			array[1].x += vector.x;
+			array[2].x -= vector.z;
+			array[3].x -= vector.z;
+			array[0].y += vector.y;
+			array[1].y -= vector.w;
+			array[2].y -= vector.w;
+			array[3].y += vector.y;
+			Transform transform = ((mFG != null) ? mFG.cachedTransform : mBG.cachedTransform);
+			for (int i = 0; i < 4; i++)
+			{
+				array[i] = transform.TransformPoint(array[i]);
+			}
+			if (isHorizontal)
+			{
+				Vector3 a = Vector3.Lerp(array[0], array[1], 0.5f);
+				Vector3 b = Vector3.Lerp(array[2], array[3], 0.5f);
+				SetThumbPosition(Vector3.Lerp(a, b, isInverted ? (1f - value) : value));
+			}
+			else
+			{
+				Vector3 a2 = Vector3.Lerp(array[0], array[3], 0.5f);
+				Vector3 b2 = Vector3.Lerp(array[1], array[2], 0.5f);
+				SetThumbPosition(Vector3.Lerp(a2, b2, isInverted ? (1f - value) : value));
+			}
+		}
+		if (flag)
+		{
+			mFG.enabled = false;
+		}
+	}
+
+	protected void SetThumbPosition(Vector3 worldPos)
+	{
+		Transform parent = thumb.parent;
+		if (parent != null)
+		{
+			worldPos = parent.InverseTransformPoint(worldPos);
+			worldPos.x = Mathf.Round(worldPos.x);
+			worldPos.y = Mathf.Round(worldPos.y);
+			worldPos.z = 0f;
+			if (Vector3.Distance(thumb.localPosition, worldPos) > 0.001f)
+			{
+				thumb.localPosition = worldPos;
+			}
+		}
+		else if (Vector3.Distance(thumb.position, worldPos) > 1E-05f)
+		{
+			thumb.position = worldPos;
+		}
+	}
+
+	public virtual void OnPan(Vector2 delta)
+	{
+		if (base.enabled)
+		{
+			switch (mFill)
+			{
+			case FillDirection.LeftToRight:
+			{
+				float num8 = (value = Mathf.Clamp01(mValue + delta.x));
+				mValue = num8;
+				break;
+			}
+			case FillDirection.RightToLeft:
+			{
+				float num6 = (value = Mathf.Clamp01(mValue - delta.x));
+				mValue = num6;
+				break;
+			}
+			case FillDirection.BottomToTop:
+			{
+				float num4 = (value = Mathf.Clamp01(mValue + delta.y));
+				mValue = num4;
+				break;
+			}
+			case FillDirection.TopToBottom:
+			{
+				float num2 = (value = Mathf.Clamp01(mValue - delta.y));
+				mValue = num2;
+				break;
+			}
+			}
+		}
+	}
 }

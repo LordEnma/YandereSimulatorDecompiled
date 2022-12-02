@@ -1,50 +1,53 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: WritheScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class WritheScript : MonoBehaviour
 {
-  public float Rotation;
-  public float StartTime;
-  public float Duration;
-  public float StartValue;
-  public float EndValue;
-  public int ID;
-  public bool SpecialCase;
+	public float Rotation;
 
-  private void Start()
-  {
-    this.StartTime = Time.time;
-    this.Duration = Random.Range(1f, 5f);
-  }
+	public float StartTime;
 
-  private void Update()
-  {
-    if ((double) this.Rotation == (double) this.EndValue)
-    {
-      this.StartValue = this.EndValue;
-      this.EndValue = Random.Range(-45f, 45f);
-      this.StartTime = Time.time;
-      this.Duration = Random.Range(1f, 5f);
-    }
-    this.Rotation = Mathf.SmoothStep(this.StartValue, this.EndValue, (Time.time - this.StartTime) / this.Duration);
-    switch (this.ID)
-    {
-      case 1:
-        this.transform.localEulerAngles = new Vector3(this.Rotation, this.transform.localEulerAngles.y, this.transform.localEulerAngles.z);
-        break;
-      case 2:
-        if (this.SpecialCase)
-          this.Rotation += 180f;
-        this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.Rotation, this.transform.localEulerAngles.z);
-        break;
-      case 3:
-        this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, this.Rotation);
-        break;
-    }
-  }
+	public float Duration;
+
+	public float StartValue;
+
+	public float EndValue;
+
+	public int ID;
+
+	public bool SpecialCase;
+
+	private void Start()
+	{
+		StartTime = Time.time;
+		Duration = Random.Range(1f, 5f);
+	}
+
+	private void Update()
+	{
+		if (Rotation == EndValue)
+		{
+			StartValue = EndValue;
+			EndValue = Random.Range(-45f, 45f);
+			StartTime = Time.time;
+			Duration = Random.Range(1f, 5f);
+		}
+		float t = (Time.time - StartTime) / Duration;
+		Rotation = Mathf.SmoothStep(StartValue, EndValue, t);
+		switch (ID)
+		{
+		case 1:
+			base.transform.localEulerAngles = new Vector3(Rotation, base.transform.localEulerAngles.y, base.transform.localEulerAngles.z);
+			break;
+		case 2:
+			if (SpecialCase)
+			{
+				Rotation += 180f;
+			}
+			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, Rotation, base.transform.localEulerAngles.z);
+			break;
+		case 3:
+			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y, Rotation);
+			break;
+		}
+	}
 }

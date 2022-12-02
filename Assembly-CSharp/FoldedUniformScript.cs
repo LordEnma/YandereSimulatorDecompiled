@@ -1,126 +1,166 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FoldedUniformScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FoldedUniformScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public GameObject SteamCloud;
-  public bool ClubAttire;
-  public bool InPosition = true;
-  public bool Clean;
-  public bool Spare;
-  public float Timer;
-  public int Type;
-  public GameObject[] Uniforms;
-  public Renderer[] MyRenderer;
-  public Texture CleanTexture;
-  public Texture EightiesTexture;
-  public Texture BloodyEightiesTexture;
+	public YandereScript Yandere;
 
-  private void Start()
-  {
-    for (int index = 1; index < this.Uniforms.Length; ++index)
-      this.Uniforms[index].SetActive(false);
-    if (this.Uniforms.Length != 0)
-      this.Uniforms[StudentGlobals.FemaleUniform].SetActive(true);
-    if ((Object) this.Prompt != (Object) null && (Object) this.Prompt.Yandere != (Object) null)
-    {
-      this.Yandere = this.Prompt.Yandere;
-    }
-    else
-    {
-      GameObject gameObject = GameObject.Find("YandereChan");
-      if ((Object) gameObject != (Object) null)
-        this.Yandere = gameObject.GetComponent<YandereScript>();
-    }
-    bool flag = false;
-    if (this.Spare && !GameGlobals.SpareUniform)
-    {
-      Object.Destroy((Object) this.gameObject);
-      flag = true;
-    }
-    if (!flag && this.Clean && (Object) this.Prompt.Button[0] != (Object) null)
-    {
-      this.Prompt.HideButton[0] = true;
-      ++this.Yandere.StudentManager.NewUniforms;
-      this.Yandere.StudentManager.UpdateStudents();
-      this.Yandere.StudentManager.Uniforms[this.Yandere.StudentManager.NewUniforms] = this.transform;
-      Debug.Log((object) ("A new uniform has been spawned. The number of ''New Uniforms'' at school is now " + this.Yandere.StudentManager.NewUniforms.ToString() + "."));
-    }
-    if (this.Type == 1)
-      this.gameObject.name = "School Uniform";
-    if (this.Type == 2)
-      this.gameObject.name = "Swimsuit";
-    else if (this.Type == 3)
-      this.gameObject.name = "Gym Uniform";
-    else
-      this.gameObject.name = "Folded Club Uniform";
-    if (!GameGlobals.Eighties || !((Object) this.BloodyEightiesTexture != (Object) null))
-      return;
-    for (int index = 1; index < this.MyRenderer.Length; ++index)
-      this.MyRenderer[index].material.mainTexture = this.BloodyEightiesTexture;
-  }
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if (!this.Clean)
-      return;
-    this.InPosition = this.Yandere.StudentManager.LockerRoomArea.bounds.Contains(this.transform.position);
-    this.Prompt.HideButton[0] = (Object) this.Yandere.MyRenderer.sharedMesh != (Object) this.Yandere.Towel || (double) this.Yandere.Bloodiness != 0.0 || !this.InPosition;
-    if ((Object) this.Prompt.Circle[0] != (Object) null && (double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      Object.Instantiate<GameObject>(this.SteamCloud, this.Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
-      this.Yandere.CharacterAnimation.CrossFade("f02_stripping_00");
-      this.Yandere.CurrentUniformOrigin = 2;
-      this.Yandere.Stripping = true;
-      this.Yandere.CanMove = false;
-      if (this.Type > 1)
-      {
-        this.Yandere.MyLocker.Bloody[this.Type] = false;
-        this.Yandere.MyLocker.UpdateButtons();
-      }
-      this.Timer += Time.deltaTime;
-    }
-    if ((double) this.Timer > 0.0)
-    {
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 1.5)
-      {
-        if (!this.ClubAttire)
-        {
-          this.Yandere.Schoolwear = this.Type;
-          this.Yandere.ChangeSchoolwear();
-        }
-        else
-        {
-          Debug.Log((object) "Changing into club attire...");
-          this.Yandere.ChangeClubwear();
-          this.Yandere.StudentManager.ChangingBooths[(int) this.Yandere.Club].CannotChange = false;
-          this.Yandere.StudentManager.ChangingBooths[(int) this.Yandere.Club].CheckYandereClub();
-        }
-        Object.Destroy((Object) this.gameObject);
-      }
-    }
-    if (!((Object) this.CleanTexture != (Object) null) || !((Object) this.MyRenderer[1].material.mainTexture != (Object) this.CleanTexture))
-      return;
-    Debug.Log((object) ("My name is " + this.gameObject.name + " and for some reason I had the incorrect texture a moment ago."));
-    for (int index = 1; index < this.MyRenderer.Length; ++index)
-      this.MyRenderer[index].material.mainTexture = this.CleanTexture;
-  }
+	public GameObject SteamCloud;
 
-  public void CleanUp()
-  {
-    Debug.Log((object) "A folded uniform is firing the ''CleanUp()'' function.");
-    if (GameGlobals.Eighties && (Object) this.EightiesTexture != (Object) null)
-      this.CleanTexture = this.EightiesTexture;
-    this.Clean = true;
-    for (int index = 1; index < this.MyRenderer.Length; ++index)
-      this.MyRenderer[index].material.mainTexture = this.CleanTexture;
-  }
+	public bool ClubAttire;
+
+	public bool InPosition = true;
+
+	public bool Clean;
+
+	public bool Spare;
+
+	public float Timer;
+
+	public int Type;
+
+	public GameObject[] Uniforms;
+
+	public Renderer[] MyRenderer;
+
+	public Texture CleanTexture;
+
+	public Texture EightiesTexture;
+
+	public Texture BloodyEightiesTexture;
+
+	private void Start()
+	{
+		for (int i = 1; i < Uniforms.Length; i++)
+		{
+			Uniforms[i].SetActive(false);
+		}
+		if (Uniforms.Length != 0)
+		{
+			Uniforms[StudentGlobals.FemaleUniform].SetActive(true);
+		}
+		if (Prompt != null && Prompt.Yandere != null)
+		{
+			Yandere = Prompt.Yandere;
+		}
+		else
+		{
+			GameObject gameObject = GameObject.Find("YandereChan");
+			if (gameObject != null)
+			{
+				Yandere = gameObject.GetComponent<YandereScript>();
+			}
+		}
+		bool flag = false;
+		if (Spare && !GameGlobals.SpareUniform)
+		{
+			Object.Destroy(base.gameObject);
+			flag = true;
+		}
+		if (!flag && Clean && Prompt.Button[0] != null)
+		{
+			Prompt.HideButton[0] = true;
+			Yandere.StudentManager.NewUniforms++;
+			Yandere.StudentManager.UpdateStudents();
+			Yandere.StudentManager.Uniforms[Yandere.StudentManager.NewUniforms] = base.transform;
+			Debug.Log("A new uniform has been spawned. The number of ''New Uniforms'' at school is now " + Yandere.StudentManager.NewUniforms + ".");
+		}
+		if (Type == 1)
+		{
+			base.gameObject.name = "School Uniform";
+		}
+		if (Type == 2)
+		{
+			base.gameObject.name = "Swimsuit";
+		}
+		else if (Type == 3)
+		{
+			base.gameObject.name = "Gym Uniform";
+		}
+		else
+		{
+			base.gameObject.name = "Folded Club Uniform";
+		}
+		if (GameGlobals.Eighties && BloodyEightiesTexture != null)
+		{
+			for (int j = 1; j < MyRenderer.Length; j++)
+			{
+				MyRenderer[j].material.mainTexture = BloodyEightiesTexture;
+			}
+		}
+	}
+
+	private void Update()
+	{
+		if (!Clean)
+		{
+			return;
+		}
+		InPosition = Yandere.StudentManager.LockerRoomArea.bounds.Contains(base.transform.position);
+		if (Yandere.MyRenderer.sharedMesh != Yandere.Towel || Yandere.Bloodiness != 0f || !InPosition)
+		{
+			Prompt.HideButton[0] = true;
+		}
+		else
+		{
+			Prompt.HideButton[0] = false;
+		}
+		if (Prompt.Circle[0] != null && Prompt.Circle[0].fillAmount == 0f)
+		{
+			Object.Instantiate(SteamCloud, Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
+			Yandere.CharacterAnimation.CrossFade("f02_stripping_00");
+			Yandere.CurrentUniformOrigin = 2;
+			Yandere.Stripping = true;
+			Yandere.CanMove = false;
+			if (Type > 1)
+			{
+				Yandere.MyLocker.Bloody[Type] = false;
+				Yandere.MyLocker.UpdateButtons();
+			}
+			Timer += Time.deltaTime;
+		}
+		if (Timer > 0f)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 1.5f)
+			{
+				if (!ClubAttire)
+				{
+					Yandere.Schoolwear = Type;
+					Yandere.ChangeSchoolwear();
+				}
+				else
+				{
+					Debug.Log("Changing into club attire...");
+					Yandere.ChangeClubwear();
+					Yandere.StudentManager.ChangingBooths[(int)Yandere.Club].CannotChange = false;
+					Yandere.StudentManager.ChangingBooths[(int)Yandere.Club].CheckYandereClub();
+				}
+				Object.Destroy(base.gameObject);
+			}
+		}
+		if (CleanTexture != null && MyRenderer[1].material.mainTexture != CleanTexture)
+		{
+			Debug.Log("My name is " + base.gameObject.name + " and for some reason I had the incorrect texture a moment ago.");
+			for (int i = 1; i < MyRenderer.Length; i++)
+			{
+				MyRenderer[i].material.mainTexture = CleanTexture;
+			}
+		}
+	}
+
+	public void CleanUp()
+	{
+		Debug.Log("A folded uniform is firing the ''CleanUp()'' function.");
+		if (GameGlobals.Eighties && EightiesTexture != null)
+		{
+			CleanTexture = EightiesTexture;
+		}
+		Clean = true;
+		for (int i = 1; i < MyRenderer.Length; i++)
+		{
+			MyRenderer[i].material.mainTexture = CleanTexture;
+		}
+	}
 }

@@ -1,89 +1,106 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CutsceneManagerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class CutsceneManagerScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public CounselorScript Counselor;
-  public PromptBarScript PromptBar;
-  public EndOfDayScript EndOfDay;
-  public PortalScript Portal;
-  public UISprite Darkness;
-  public UILabel Subtitle;
-  public AudioClip[] Voice;
-  public string[] Text;
-  public int Scheme;
-  public int Phase = 1;
-  public int Line = 1;
+	public StudentManagerScript StudentManager;
 
-  private void Update()
-  {
-    AudioSource component = this.GetComponent<AudioSource>();
-    if (this.Phase == 1)
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a != 1.0)
-        return;
-      if (this.Scheme == 5)
-        ++this.Phase;
-      else
-        this.Phase = 4;
-    }
-    else if (this.Phase == 2)
-    {
-      this.Subtitle.text = this.Text[this.Line];
-      component.clip = this.Voice[this.Line];
-      component.Play();
-      ++this.Phase;
-    }
-    else if (this.Phase == 3)
-    {
-      if (component.isPlaying && !Input.GetButtonDown("A"))
-        return;
-      if (this.Line < 2)
-      {
-        --this.Phase;
-        ++this.Line;
-      }
-      else
-      {
-        this.Subtitle.text = string.Empty;
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 4)
-    {
-      Debug.Log((object) "We're activating EndOfDay from CutsceneManager.");
-      this.EndOfDay.gameObject.SetActive(true);
-      this.EndOfDay.Phase = 14;
-      this.Counselor.LecturePhase = this.Scheme != 5 ? 1 : 5;
-      ++this.Phase;
-    }
-    else if (this.Phase == 6)
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-      if ((double) this.Darkness.color.a != 0.0)
-        return;
-      ++this.Phase;
-    }
-    else
-    {
-      if (this.Phase != 7)
-        return;
-      if (this.Scheme == 5)
-      {
-        int num = (Object) this.StudentManager.Students[this.StudentManager.RivalID] != (Object) null ? 1 : 0;
-      }
-      this.PromptBar.ClearButtons();
-      this.PromptBar.Show = false;
-      this.Portal.Proceed = true;
-      this.gameObject.SetActive(false);
-      this.Scheme = 0;
-    }
-  }
+	public CounselorScript Counselor;
+
+	public PromptBarScript PromptBar;
+
+	public EndOfDayScript EndOfDay;
+
+	public PortalScript Portal;
+
+	public UISprite Darkness;
+
+	public UILabel Subtitle;
+
+	public AudioClip[] Voice;
+
+	public string[] Text;
+
+	public int Scheme;
+
+	public int Phase = 1;
+
+	public int Line = 1;
+
+	private void Update()
+	{
+		AudioSource component = GetComponent<AudioSource>();
+		if (Phase == 1)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+			if (Darkness.color.a == 1f)
+			{
+				if (Scheme == 5)
+				{
+					Phase++;
+				}
+				else
+				{
+					Phase = 4;
+				}
+			}
+		}
+		else if (Phase == 2)
+		{
+			Subtitle.text = Text[Line];
+			component.clip = Voice[Line];
+			component.Play();
+			Phase++;
+		}
+		else if (Phase == 3)
+		{
+			if (!component.isPlaying || Input.GetButtonDown("A"))
+			{
+				if (Line < 2)
+				{
+					Phase--;
+					Line++;
+				}
+				else
+				{
+					Subtitle.text = string.Empty;
+					Phase++;
+				}
+			}
+		}
+		else if (Phase == 4)
+		{
+			Debug.Log("We're activating EndOfDay from CutsceneManager.");
+			EndOfDay.gameObject.SetActive(true);
+			EndOfDay.Phase = 14;
+			if (Scheme == 5)
+			{
+				Counselor.LecturePhase = 5;
+			}
+			else
+			{
+				Counselor.LecturePhase = 1;
+			}
+			Phase++;
+		}
+		else if (Phase == 6)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
+			if (Darkness.color.a == 0f)
+			{
+				Phase++;
+			}
+		}
+		else if (Phase == 7)
+		{
+			if (Scheme == 5)
+			{
+				bool flag = StudentManager.Students[StudentManager.RivalID] != null;
+			}
+			PromptBar.ClearButtons();
+			PromptBar.Show = false;
+			Portal.Proceed = true;
+			base.gameObject.SetActive(false);
+			Scheme = 0;
+		}
+	}
 }

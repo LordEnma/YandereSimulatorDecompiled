@@ -1,67 +1,79 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.SceneWrapper
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using MaidDereMinigame.Malee;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace MaidDereMinigame
 {
-  [CreateAssetMenu(fileName = "New Scene Wrapper", menuName = "Scenes/New Scene Wrapper")]
-  public class SceneWrapper : ScriptableObject
-  {
-    [Reorderable]
-    public SceneObjectMetaData m_Scenes;
+	[CreateAssetMenu(fileName = "New Scene Wrapper", menuName = "Scenes/New Scene Wrapper")]
+	public class SceneWrapper : ScriptableObject
+	{
+		[Reorderable]
+		public SceneObjectMetaData m_Scenes;
 
-    public SceneObject GetSceneByBuildIndex(int buildIndex)
-    {
-      foreach (SceneObject scene in (ReorderableArray<SceneObject>) this.m_Scenes)
-      {
-        if (scene.sceneBuildNumber == buildIndex)
-          return scene;
-      }
-      return (SceneObject) null;
-    }
+		public SceneObject GetSceneByBuildIndex(int buildIndex)
+		{
+			foreach (SceneObject scene in m_Scenes)
+			{
+				if (scene.sceneBuildNumber == buildIndex)
+				{
+					return scene;
+				}
+			}
+			return null;
+		}
 
-    public SceneObject GetSceneByName(string name)
-    {
-      foreach (SceneObject scene in (ReorderableArray<SceneObject>) this.m_Scenes)
-      {
-        if (scene.name == name)
-          return scene;
-      }
-      return (SceneObject) null;
-    }
+		public SceneObject GetSceneByName(string name)
+		{
+			foreach (SceneObject scene in m_Scenes)
+			{
+				if (scene.name == name)
+				{
+					return scene;
+				}
+			}
+			return null;
+		}
 
-    public static void LoadScene(SceneObject sceneObject) => GameController.Scenes.LoadLevel(sceneObject);
+		public static void LoadScene(SceneObject sceneObject)
+		{
+			GameController.Scenes.LoadLevel(sceneObject);
+		}
 
-    public void LoadLevel(SceneObject sceneObject)
-    {
-      int sceneBuildIndex = -1;
-      for (int index = 0; index < this.m_Scenes.Length; ++index)
-      {
-        if ((Object) this.m_Scenes[index] == (Object) sceneObject)
-          sceneBuildIndex = this.m_Scenes[index].sceneBuildNumber;
-      }
-      if (sceneBuildIndex == -1)
-        Debug.LogError((object) "Scene could not be found. Is it in the Scene Wrapper?");
-      else
-        SceneManager.LoadScene(sceneBuildIndex);
-    }
+		public void LoadLevel(SceneObject sceneObject)
+		{
+			int num = -1;
+			for (int i = 0; i < m_Scenes.Length; i++)
+			{
+				if (m_Scenes[i] == sceneObject)
+				{
+					num = m_Scenes[i].sceneBuildNumber;
+				}
+			}
+			if (num == -1)
+			{
+				Debug.LogError("Scene could not be found. Is it in the Scene Wrapper?");
+			}
+			else
+			{
+				SceneManager.LoadScene(num);
+			}
+		}
 
-    public int GetSceneID(SceneObject scene)
-    {
-      for (int index = 0; index < this.m_Scenes.Count; ++index)
-      {
-        if ((Object) this.m_Scenes[index] == (Object) scene)
-          return index;
-      }
-      return -1;
-    }
+		public int GetSceneID(SceneObject scene)
+		{
+			for (int i = 0; i < m_Scenes.Count; i++)
+			{
+				if (m_Scenes[i] == scene)
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
 
-    public SceneObject GetSceneByIndex(int scene) => this.m_Scenes[scene];
-  }
+		public SceneObject GetSceneByIndex(int scene)
+		{
+			return m_Scenes[scene];
+		}
+	}
 }

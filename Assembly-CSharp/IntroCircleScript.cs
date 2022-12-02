@@ -1,44 +1,51 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: IntroCircleScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class IntroCircleScript : MonoBehaviour
 {
-  public UISprite Sprite;
-  public UILabel Label;
-  public float[] StartTime;
-  public float[] Duration;
-  public string[] Text;
-  public float CurrentTime;
-  public float LastTime;
-  public float Timer;
-  public int ID;
+	public UISprite Sprite;
 
-  private void Update()
-  {
-    this.Timer += Time.deltaTime;
-    if (this.ID < this.StartTime.Length && (double) this.Timer > (double) this.StartTime[this.ID])
-    {
-      this.CurrentTime = this.Duration[this.ID];
-      this.LastTime = this.Duration[this.ID];
-      this.Label.text = this.Text[this.ID];
-      ++this.ID;
-    }
-    if ((double) this.CurrentTime > 0.0)
-      this.CurrentTime -= Time.deltaTime;
-    if ((double) this.Timer > 1.0)
-    {
-      this.Sprite.fillAmount = this.CurrentTime / this.LastTime;
-      if ((double) this.Sprite.fillAmount == 0.0)
-        this.Label.text = string.Empty;
-    }
-    if (!Input.GetKeyDown(KeyCode.Space))
-      return;
-    this.CurrentTime -= 5f;
-    this.Timer += 5f;
-  }
+	public UILabel Label;
+
+	public float[] StartTime;
+
+	public float[] Duration;
+
+	public string[] Text;
+
+	public float CurrentTime;
+
+	public float LastTime;
+
+	public float Timer;
+
+	public int ID;
+
+	private void Update()
+	{
+		Timer += Time.deltaTime;
+		if (ID < StartTime.Length && Timer > StartTime[ID])
+		{
+			CurrentTime = Duration[ID];
+			LastTime = Duration[ID];
+			Label.text = Text[ID];
+			ID++;
+		}
+		if (CurrentTime > 0f)
+		{
+			CurrentTime -= Time.deltaTime;
+		}
+		if (Timer > 1f)
+		{
+			Sprite.fillAmount = CurrentTime / LastTime;
+			if (Sprite.fillAmount == 0f)
+			{
+				Label.text = string.Empty;
+			}
+		}
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			CurrentTime -= 5f;
+			Timer += 5f;
+		}
+	}
 }

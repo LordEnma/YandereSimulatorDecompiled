@@ -1,157 +1,182 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MetalDetectorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MetalDetectorScript : MonoBehaviour
 {
-  public MissionModeScript MissionMode;
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public ParticleSystem PepperSprayEffect;
-  public AudioSource MyAudio;
-  public AudioClip PepperSprayNoVoice;
-  public AudioClip PepperSpraySFX;
-  public AudioClip Alarm;
-  public Collider MyCollider;
-  public float SprayTimer;
-  public bool Spraying;
+	public MissionModeScript MissionMode;
 
-  private void Start() => this.MyAudio = this.GetComponent<AudioSource>();
+	public YandereScript Yandere;
 
-  private void Update()
-  {
-    if (this.Yandere.Armed)
-    {
-      if (this.Yandere.EquippedWeapon.WeaponID == 6)
-      {
-        this.Prompt.enabled = true;
-        if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-        {
-          this.MyAudio.Play();
-          this.MyCollider.enabled = false;
-          this.Prompt.Hide();
-          this.Prompt.enabled = false;
-          this.enabled = false;
-        }
-      }
-      else if (this.Prompt.enabled)
-      {
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-      }
-    }
-    else if (this.Prompt.enabled)
-    {
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-    }
-    if (this.Spraying)
-    {
-      this.SprayTimer += Time.deltaTime;
-      if ((double) this.SprayTimer > 0.66666)
-      {
-        if (this.Yandere.Armed)
-          this.Yandere.EquippedWeapon.Drop();
-        this.Yandere.EmptyHands();
-        this.PepperSprayEffect.Play();
-        this.Spraying = false;
-      }
-    }
-    this.MyAudio.volume -= Time.deltaTime * 0.01f;
-  }
+	public PromptScript Prompt;
 
-  private void OnTriggerStay(Collider other)
-  {
-    if (other.gameObject.layer == 9)
-    {
-      StudentScript component = other.gameObject.GetComponent<StudentScript>();
-      if ((Object) component != (Object) null && (component.FragileSlave || component.Slave && component.MyWeapon.Metal) && !this.MyAudio.isPlaying)
-      {
-        this.MyAudio.clip = this.Alarm;
-        this.MyAudio.Play();
-        this.MyAudio.volume = 0.1f;
-        AudioSource.PlayClipAtPoint(this.PepperSprayNoVoice, this.transform.position);
-        this.PepperSprayEffect.transform.position = new Vector3(this.transform.position.x, component.transform.position.y + 1.8f, component.transform.position.z);
-        this.PepperSprayEffect.Play();
-      }
-    }
-    if (!this.Yandere.enabled)
-      return;
-    bool flag = false;
-    if (this.MissionMode.GameOverID != 0 || other.gameObject.layer != 13)
-      return;
-    for (int index = 1; index < 4; ++index)
-    {
-      WeaponScript weaponScript = this.Yandere.Weapon[index];
-      flag = ((flag ? 1 : 0) | (!((Object) weaponScript != (Object) null) ? 0 : (weaponScript.Metal ? 1 : 0))) != 0;
-      if (!flag)
-      {
-        if ((Object) this.Yandere.Container != (Object) null)
-        {
-          Debug.Log((object) "Yandere-chan is wearing a weapon bag on her back...");
-          if ((Object) this.Yandere.Container.Weapon != (Object) null)
-          {
-            Debug.Log((object) "There is a weapon in the bag ...");
-            flag = this.Yandere.Container.Weapon.Metal;
-            if (flag)
-              Debug.Log((object) "It's metal!");
-          }
-          else if ((Object) this.Yandere.Container.TrashCan != (Object) null && !this.Yandere.Container.TrashCan.Foil && (Object) this.Yandere.Container.TrashCan.ConcealedWeapon != (Object) null)
-          {
-            Debug.Log((object) "There is a weapon in the bag ...");
-            flag = this.Yandere.Container.TrashCan.ConcealedWeapon.Metal;
-            if (flag)
-              Debug.Log((object) "It's metal!");
-          }
-        }
-        if ((Object) this.Yandere.PickUp != (Object) null)
-        {
-          if ((Object) this.Yandere.PickUp.TrashCan != (Object) null && this.Yandere.PickUp.TrashCan.Weapon)
-            flag = this.Yandere.PickUp.TrashCan.Item.GetComponent<WeaponScript>().Metal;
-          if ((Object) this.Yandere.PickUp.StuckBoxCutter != (Object) null)
-          {
-            WeaponScript stuckBoxCutter = this.Yandere.PickUp.StuckBoxCutter;
-            flag = true;
-          }
-        }
-      }
-    }
-    if (!flag || this.Yandere.Inventory.IDCard)
-      return;
-    if (this.MissionMode.enabled)
-    {
-      this.MissionMode.GameOverID = 16;
-      this.MissionMode.GameOver();
-      this.MissionMode.Phase = 4;
-      this.enabled = false;
-    }
-    else
-    {
-      if (this.Yandere.Sprayed)
-        return;
-      this.MyAudio.clip = this.Alarm;
-      this.MyAudio.loop = true;
-      this.MyAudio.Play();
-      this.MyAudio.volume = 0.1f;
-      AudioSource.PlayClipAtPoint(this.PepperSpraySFX, this.transform.position);
-      if (this.Yandere.Aiming)
-        this.Yandere.StopAiming();
-      this.PepperSprayEffect.transform.position = new Vector3(this.transform.position.x, this.Yandere.transform.position.y + 1.8f, this.Yandere.transform.position.z);
-      this.Spraying = true;
-      this.Yandere.CharacterAnimation.CrossFade("f02_sprayed_00");
-      this.Yandere.FollowHips = true;
-      this.Yandere.Punching = false;
-      this.Yandere.CanMove = false;
-      this.Yandere.Sprayed = true;
-      this.Yandere.StudentManager.YandereDying = true;
-      this.Yandere.StudentManager.StopMoving();
-      this.Yandere.Blur.Size = 1f;
-      this.Yandere.Jukebox.Volume = 0.0f;
-      Time.timeScale = 1f;
-    }
-  }
+	public ParticleSystem PepperSprayEffect;
+
+	public AudioSource MyAudio;
+
+	public AudioClip PepperSprayNoVoice;
+
+	public AudioClip PepperSpraySFX;
+
+	public AudioClip Alarm;
+
+	public Collider MyCollider;
+
+	public float SprayTimer;
+
+	public bool Spraying;
+
+	private void Start()
+	{
+		MyAudio = GetComponent<AudioSource>();
+	}
+
+	private void Update()
+	{
+		if (Yandere.Armed)
+		{
+			if (Yandere.EquippedWeapon.WeaponID == 6)
+			{
+				Prompt.enabled = true;
+				if (Prompt.Circle[0].fillAmount == 0f)
+				{
+					MyAudio.Play();
+					MyCollider.enabled = false;
+					Prompt.Hide();
+					Prompt.enabled = false;
+					base.enabled = false;
+				}
+			}
+			else if (Prompt.enabled)
+			{
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
+		}
+		else if (Prompt.enabled)
+		{
+			Prompt.Hide();
+			Prompt.enabled = false;
+		}
+		if (Spraying)
+		{
+			SprayTimer += Time.deltaTime;
+			if ((double)SprayTimer > 0.66666)
+			{
+				if (Yandere.Armed)
+				{
+					Yandere.EquippedWeapon.Drop();
+				}
+				Yandere.EmptyHands();
+				PepperSprayEffect.Play();
+				Spraying = false;
+			}
+		}
+		MyAudio.volume -= Time.deltaTime * 0.01f;
+	}
+
+	private void OnTriggerStay(Collider other)
+	{
+		if (other.gameObject.layer == 9)
+		{
+			StudentScript component = other.gameObject.GetComponent<StudentScript>();
+			if (component != null && (component.FragileSlave || (component.Slave && component.MyWeapon.Metal)) && !MyAudio.isPlaying)
+			{
+				MyAudio.clip = Alarm;
+				MyAudio.Play();
+				MyAudio.volume = 0.1f;
+				AudioSource.PlayClipAtPoint(PepperSprayNoVoice, base.transform.position);
+				PepperSprayEffect.transform.position = new Vector3(base.transform.position.x, component.transform.position.y + 1.8f, component.transform.position.z);
+				PepperSprayEffect.Play();
+			}
+		}
+		if (!Yandere.enabled)
+		{
+			return;
+		}
+		bool flag = false;
+		if (MissionMode.GameOverID != 0 || other.gameObject.layer != 13)
+		{
+			return;
+		}
+		for (int i = 1; i < 4; i++)
+		{
+			WeaponScript weaponScript = Yandere.Weapon[i];
+			flag |= weaponScript != null && weaponScript.Metal;
+			if (flag)
+			{
+				continue;
+			}
+			if (Yandere.Container != null)
+			{
+				Debug.Log("Yandere-chan is wearing a weapon bag on her back...");
+				if (Yandere.Container.Weapon != null)
+				{
+					Debug.Log("There is a weapon in the bag ...");
+					weaponScript = Yandere.Container.Weapon;
+					flag = weaponScript.Metal;
+					if (flag)
+					{
+						Debug.Log("It's metal!");
+					}
+				}
+				else if (Yandere.Container.TrashCan != null && !Yandere.Container.TrashCan.Foil && Yandere.Container.TrashCan.ConcealedWeapon != null)
+				{
+					Debug.Log("There is a weapon in the bag ...");
+					weaponScript = Yandere.Container.TrashCan.ConcealedWeapon;
+					flag = weaponScript.Metal;
+					if (flag)
+					{
+						Debug.Log("It's metal!");
+					}
+				}
+			}
+			if (Yandere.PickUp != null)
+			{
+				if (Yandere.PickUp.TrashCan != null && Yandere.PickUp.TrashCan.Weapon)
+				{
+					weaponScript = Yandere.PickUp.TrashCan.Item.GetComponent<WeaponScript>();
+					flag = weaponScript.Metal;
+				}
+				if (Yandere.PickUp.StuckBoxCutter != null)
+				{
+					weaponScript = Yandere.PickUp.StuckBoxCutter;
+					flag = true;
+				}
+			}
+		}
+		if (!flag || Yandere.Inventory.IDCard)
+		{
+			return;
+		}
+		if (MissionMode.enabled)
+		{
+			MissionMode.GameOverID = 16;
+			MissionMode.GameOver();
+			MissionMode.Phase = 4;
+			base.enabled = false;
+		}
+		else if (!Yandere.Sprayed)
+		{
+			MyAudio.clip = Alarm;
+			MyAudio.loop = true;
+			MyAudio.Play();
+			MyAudio.volume = 0.1f;
+			AudioSource.PlayClipAtPoint(PepperSpraySFX, base.transform.position);
+			if (Yandere.Aiming)
+			{
+				Yandere.StopAiming();
+			}
+			PepperSprayEffect.transform.position = new Vector3(base.transform.position.x, Yandere.transform.position.y + 1.8f, Yandere.transform.position.z);
+			Spraying = true;
+			Yandere.CharacterAnimation.CrossFade("f02_sprayed_00");
+			Yandere.FollowHips = true;
+			Yandere.Punching = false;
+			Yandere.CanMove = false;
+			Yandere.Sprayed = true;
+			Yandere.StudentManager.YandereDying = true;
+			Yandere.StudentManager.StopMoving();
+			Yandere.Blur.Size = 1f;
+			Yandere.Jukebox.Volume = 0f;
+			Time.timeScale = 1f;
+		}
+	}
 }

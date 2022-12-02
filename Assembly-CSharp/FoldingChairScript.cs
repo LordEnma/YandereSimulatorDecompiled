@@ -1,14 +1,12 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FoldingChairScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FoldingChairScript : MonoBehaviour
 {
-  public GameObject[] Student;
+	public GameObject[] Student;
 
-  private void Start() => Object.Instantiate<GameObject>(this.Student[Random.Range(0, this.Student.Length)], this.transform.position - new Vector3(0.0f, 0.4f, 0.0f), this.transform.rotation);
+	private void Start()
+	{
+		int num = Random.Range(0, Student.Length);
+		Object.Instantiate(Student[num], base.transform.position - new Vector3(0f, 0.4f, 0f), base.transform.rotation);
+	}
 }

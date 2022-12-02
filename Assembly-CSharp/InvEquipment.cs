@@ -1,116 +1,142 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: InvEquipment
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Examples/Equipment")]
 public class InvEquipment : MonoBehaviour
 {
-  private InvGameItem[] mItems;
-  private InvAttachmentPoint[] mAttachments;
+	private InvGameItem[] mItems;
 
-  public InvGameItem[] equippedItems => this.mItems;
+	private InvAttachmentPoint[] mAttachments;
 
-  public InvGameItem Replace(InvBaseItem.Slot slot, InvGameItem item)
-  {
-    InvBaseItem baseItem = item?.baseItem;
-    if (slot != InvBaseItem.Slot.None)
-    {
-      if (baseItem != null && baseItem.slot != slot)
-        return item;
-      if (this.mItems == null)
-        this.mItems = new InvGameItem[8];
-      InvGameItem mItem = this.mItems[(int) (slot - 1)];
-      this.mItems[(int) (slot - 1)] = item;
-      if (this.mAttachments == null)
-        this.mAttachments = this.GetComponentsInChildren<InvAttachmentPoint>();
-      int index = 0;
-      for (int length = this.mAttachments.Length; index < length; ++index)
-      {
-        InvAttachmentPoint mAttachment = this.mAttachments[index];
-        if (mAttachment.slot == slot)
-        {
-          GameObject gameObject = mAttachment.Attach(baseItem?.attachment);
-          if (baseItem != null && (Object) gameObject != (Object) null)
-          {
-            Renderer component = gameObject.GetComponent<Renderer>();
-            if ((Object) component != (Object) null)
-              component.material.color = baseItem.color;
-          }
-        }
-      }
-      return mItem;
-    }
-    if (item != null)
-      Debug.LogWarning((object) ("Can't equip \"" + item.name + "\" because it doesn't specify an item slot"));
-    return item;
-  }
+	public InvGameItem[] equippedItems
+	{
+		get
+		{
+			return mItems;
+		}
+	}
 
-  public InvGameItem Equip(InvGameItem item)
-  {
-    if (item != null)
-    {
-      InvBaseItem baseItem = item.baseItem;
-      if (baseItem != null)
-        return this.Replace(baseItem.slot, item);
-      Debug.LogWarning((object) ("Can't resolve the item ID of " + item.baseItemID.ToString()));
-    }
-    return item;
-  }
+	public InvGameItem Replace(InvBaseItem.Slot slot, InvGameItem item)
+	{
+		InvBaseItem invBaseItem = ((item != null) ? item.baseItem : null);
+		if (slot != 0)
+		{
+			if (invBaseItem != null && invBaseItem.slot != slot)
+			{
+				return item;
+			}
+			if (mItems == null)
+			{
+				int num = 8;
+				mItems = new InvGameItem[num];
+			}
+			InvGameItem result = mItems[(int)(slot - 1)];
+			mItems[(int)(slot - 1)] = item;
+			if (mAttachments == null)
+			{
+				mAttachments = GetComponentsInChildren<InvAttachmentPoint>();
+			}
+			int i = 0;
+			for (int num2 = mAttachments.Length; i < num2; i++)
+			{
+				InvAttachmentPoint invAttachmentPoint = mAttachments[i];
+				if (invAttachmentPoint.slot != slot)
+				{
+					continue;
+				}
+				GameObject gameObject = invAttachmentPoint.Attach((invBaseItem != null) ? invBaseItem.attachment : null);
+				if (invBaseItem != null && gameObject != null)
+				{
+					Renderer component = gameObject.GetComponent<Renderer>();
+					if (component != null)
+					{
+						component.material.color = invBaseItem.color;
+					}
+				}
+			}
+			return result;
+		}
+		if (item != null)
+		{
+			Debug.LogWarning("Can't equip \"" + item.name + "\" because it doesn't specify an item slot");
+		}
+		return item;
+	}
 
-  public InvGameItem Unequip(InvGameItem item)
-  {
-    if (item != null)
-    {
-      InvBaseItem baseItem = item.baseItem;
-      if (baseItem != null)
-        return this.Replace(baseItem.slot, (InvGameItem) null);
-    }
-    return item;
-  }
+	public InvGameItem Equip(InvGameItem item)
+	{
+		if (item != null)
+		{
+			InvBaseItem baseItem = item.baseItem;
+			if (baseItem != null)
+			{
+				return Replace(baseItem.slot, item);
+			}
+			Debug.LogWarning("Can't resolve the item ID of " + item.baseItemID);
+		}
+		return item;
+	}
 
-  public InvGameItem Unequip(InvBaseItem.Slot slot) => this.Replace(slot, (InvGameItem) null);
+	public InvGameItem Unequip(InvGameItem item)
+	{
+		if (item != null)
+		{
+			InvBaseItem baseItem = item.baseItem;
+			if (baseItem != null)
+			{
+				return Replace(baseItem.slot, null);
+			}
+		}
+		return item;
+	}
 
-  public bool HasEquipped(InvGameItem item)
-  {
-    if (this.mItems != null)
-    {
-      int index = 0;
-      for (int length = this.mItems.Length; index < length; ++index)
-      {
-        if (this.mItems[index] == item)
-          return true;
-      }
-    }
-    return false;
-  }
+	public InvGameItem Unequip(InvBaseItem.Slot slot)
+	{
+		return Replace(slot, null);
+	}
 
-  public bool HasEquipped(InvBaseItem.Slot slot)
-  {
-    if (this.mItems != null)
-    {
-      int index = 0;
-      for (int length = this.mItems.Length; index < length; ++index)
-      {
-        InvBaseItem baseItem = this.mItems[index].baseItem;
-        if (baseItem != null && baseItem.slot == slot)
-          return true;
-      }
-    }
-    return false;
-  }
+	public bool HasEquipped(InvGameItem item)
+	{
+		if (mItems != null)
+		{
+			int i = 0;
+			for (int num = mItems.Length; i < num; i++)
+			{
+				if (mItems[i] == item)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
-  public InvGameItem GetItem(InvBaseItem.Slot slot)
-  {
-    if (slot != InvBaseItem.Slot.None)
-    {
-      int index = (int) (slot - 1);
-      if (this.mItems != null && index < this.mItems.Length)
-        return this.mItems[index];
-    }
-    return (InvGameItem) null;
-  }
+	public bool HasEquipped(InvBaseItem.Slot slot)
+	{
+		if (mItems != null)
+		{
+			int i = 0;
+			for (int num = mItems.Length; i < num; i++)
+			{
+				InvBaseItem baseItem = mItems[i].baseItem;
+				if (baseItem != null && baseItem.slot == slot)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public InvGameItem GetItem(InvBaseItem.Slot slot)
+	{
+		if (slot != 0)
+		{
+			int num = (int)(slot - 1);
+			if (mItems != null && num < mItems.Length)
+			{
+				return mItems[num];
+			}
+		}
+		return null;
+	}
 }

@@ -1,183 +1,239 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AlphabetScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class AlphabetScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public MissionModeScript MissionMode;
-  public InventoryScript Inventory;
-  public ClassScript Class;
-  public GameObject BodyHidingLockers;
-  public GameObject AlphabetTools;
-  public GameObject Jukebox;
-  public GameObject AmnesiaBomb;
-  public GameObject SmokeBomb;
-  public GameObject StinkBomb;
-  public UILabel ChallengeFailed;
-  public UILabel DifficultyLabel;
-  public UILabel TargetLabel;
-  public UILabel BombLabel;
-  public AudioSource MusicPlayer;
-  public UITexture BombTexture;
-  public Transform LocalArrow;
-  public Renderer MyRenderer;
-  public Transform Yandere;
-  public bool AlternateMusic;
-  public bool StopMusic;
-  public bool Began;
-  public int RemainingBombs;
-  public int CurrentTarget;
-  public int CurrentTrack;
-  public int Cheats;
-  public int Limit;
-  public float LastTime;
-  public float Timer;
-  public AudioClip[] MusicTracks;
-  public string[] DifficultyText;
-  public int[] EightiesIDs;
-  public int[] IDs;
+	public StudentManagerScript StudentManager;
 
-  private void Start()
-  {
-    if (GameGlobals.AlphabetMode)
-    {
-      this.TargetLabel.transform.parent.gameObject.SetActive(true);
-      this.StudentManager.Yandere.NoDebug = true;
-      this.BodyHidingLockers.SetActive(true);
-      this.AlphabetTools.SetActive(true);
-      this.Jukebox.SetActive(false);
-      this.MyRenderer.enabled = true;
-      this.Class.PhysicalGrade = 5;
-      this.CurrentTrack = 1;
-      this.Limit = 79;
-      if (GameGlobals.Eighties)
-      {
-        this.IDs = this.EightiesIDs;
-        this.Limit = 79;
-      }
-      this.MissionMode.RemoveBoxes();
-      this.UpdateText();
-      this.UpdateDifficultyLabel();
-    }
-    else
-    {
-      this.TargetLabel.transform.parent.gameObject.SetActive(false);
-      this.BombLabel.transform.parent.gameObject.SetActive(false);
-      this.AlphabetTools.SetActive(false);
-      this.gameObject.SetActive(false);
-      this.enabled = false;
-    }
-  }
+	public MissionModeScript MissionMode;
 
-  private void Update()
-  {
-    if (!this.Began && this.StudentManager.Yandere.CanMove)
-    {
-      this.StudentManager.TeleportEveryoneToDestination();
-      this.MusicPlayer.Play();
-      this.Began = true;
-    }
-    if (this.CurrentTarget >= this.IDs.Length)
-      return;
-    if (Input.GetKeyDown("m"))
-    {
-      if (this.MusicPlayer.isPlaying)
-      {
-        this.MusicPlayer.Stop();
-        this.StopMusic = true;
-        this.MusicPlayer.time = 0.0f;
-        this.LastTime = 0.0f;
-      }
-      else
-      {
-        this.MusicPlayer.clip = this.MusicTracks[this.CurrentTrack];
-        this.MusicPlayer.Play();
-        this.StopMusic = false;
-      }
-    }
-    if ((double) this.MusicPlayer.time < 600.0 && (double) this.MusicPlayer.time > (double) this.LastTime)
-      this.LastTime = this.MusicPlayer.time;
-    if (this.Began && !this.MusicPlayer.isPlaying && !this.StopMusic)
-    {
-      this.MusicPlayer.Play();
-      this.MusicPlayer.time = this.LastTime;
-    }
-    if (this.StudentManager.Yandere.CanMove && (Input.GetButtonDown("LS") || Input.GetKeyDown(KeyCode.T)))
-    {
-      if (this.StudentManager.Yandere.Inventory.SmokeBomb)
-      {
-        Object.Instantiate<GameObject>(this.SmokeBomb, this.Yandere.position, Quaternion.identity);
-        --this.RemainingBombs;
-        this.BombLabel.text = this.RemainingBombs.ToString() ?? "";
-        if (this.RemainingBombs == 0)
-          this.StudentManager.Yandere.Inventory.SmokeBomb = false;
-      }
-      else if (this.StudentManager.Yandere.Inventory.StinkBomb)
-      {
-        Object.Instantiate<GameObject>(this.StinkBomb, this.Yandere.position, Quaternion.identity);
-        --this.RemainingBombs;
-        this.BombLabel.text = this.RemainingBombs.ToString() ?? "";
-        if (this.RemainingBombs == 0)
-          this.StudentManager.Yandere.Inventory.StinkBomb = false;
-      }
-      else if (this.StudentManager.Yandere.Inventory.AmnesiaBomb)
-      {
-        Object.Instantiate<GameObject>(this.AmnesiaBomb, this.Yandere.position, Quaternion.identity);
-        --this.RemainingBombs;
-        this.BombLabel.text = this.RemainingBombs.ToString() ?? "";
-        if (this.RemainingBombs == 0)
-          this.StudentManager.Yandere.Inventory.AmnesiaBomb = false;
-      }
-    }
-    this.LocalArrow.LookAt(this.StudentManager.Students[this.IDs[this.CurrentTarget]].transform.position);
-    this.transform.eulerAngles = this.LocalArrow.eulerAngles - new Vector3(0.0f, this.StudentManager.MainCamera.transform.eulerAngles.y, 0.0f);
-    if (this.StudentManager.Yandere.Attacking && this.StudentManager.Yandere.TargetStudent.StudentID != this.IDs[this.CurrentTarget] || this.StudentManager.Yandere.Struggling && this.StudentManager.Yandere.TargetStudent.StudentID != this.IDs[this.CurrentTarget] || this.StudentManager.Police.Show || this.StudentManager.Yandere.Noticed)
-      this.ChallengeFailed.enabled = true;
-    for (int index = this.CurrentTarget + 1; index < this.IDs.Length; ++index)
-    {
-      if (!this.StudentManager.Students[this.IDs[index]].gameObject.activeInHierarchy || !this.StudentManager.Students[this.IDs[index]].Alive)
-        this.ChallengeFailed.enabled = true;
-    }
-    if (!this.StudentManager.Students[this.IDs[this.CurrentTarget]].Alive)
-    {
-      ++this.CurrentTarget;
-      if (this.CurrentTarget > this.Limit)
-      {
-        this.TargetLabel.text = "Challenge Complete!";
-        SceneManager.LoadScene("OsanaJokeScene");
-      }
-      else
-        this.UpdateText();
-    }
-    if (!this.ChallengeFailed.enabled)
-      return;
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer <= 5.0)
-      return;
-    SceneManager.LoadScene("LoadingScene");
-  }
+	public InventoryScript Inventory;
 
-  public void UpdateText()
-  {
-    this.TargetLabel.text = "(" + this.CurrentTarget.ToString() + "/" + this.Limit.ToString() + ") Current Target: " + this.StudentManager.JSON.Students[this.IDs[this.CurrentTarget]].Name;
-    if (this.RemainingBombs <= 0)
-      return;
-    this.BombLabel.transform.parent.gameObject.SetActive(true);
-    if ((double) this.BombTexture.color.a >= 1.0)
-      return;
-    if (this.Inventory.StinkBomb)
-      this.BombTexture.color = new Color(0.0f, 0.5f, 0.0f, 1f);
-    else if (this.Inventory.AmnesiaBomb)
-      this.BombTexture.color = new Color(1f, 0.5f, 1f, 1f);
-    else
-      this.BombTexture.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-  }
+	public ClassScript Class;
 
-  public void UpdateDifficultyLabel() => this.DifficultyLabel.text = "Difficulty: " + this.DifficultyText[this.Cheats];
+	public GameObject BodyHidingLockers;
+
+	public GameObject AlphabetTools;
+
+	public GameObject Jukebox;
+
+	public GameObject AmnesiaBomb;
+
+	public GameObject SmokeBomb;
+
+	public GameObject StinkBomb;
+
+	public UILabel ChallengeFailed;
+
+	public UILabel DifficultyLabel;
+
+	public UILabel TargetLabel;
+
+	public UILabel BombLabel;
+
+	public AudioSource MusicPlayer;
+
+	public UITexture BombTexture;
+
+	public Transform LocalArrow;
+
+	public Renderer MyRenderer;
+
+	public Transform Yandere;
+
+	public bool AlternateMusic;
+
+	public bool StopMusic;
+
+	public bool Began;
+
+	public int RemainingBombs;
+
+	public int CurrentTarget;
+
+	public int CurrentTrack;
+
+	public int Cheats;
+
+	public int Limit;
+
+	public float LastTime;
+
+	public float Timer;
+
+	public AudioClip[] MusicTracks;
+
+	public string[] DifficultyText;
+
+	public int[] EightiesIDs;
+
+	public int[] IDs;
+
+	private void Start()
+	{
+		if (GameGlobals.AlphabetMode)
+		{
+			TargetLabel.transform.parent.gameObject.SetActive(true);
+			StudentManager.Yandere.NoDebug = true;
+			BodyHidingLockers.SetActive(true);
+			AlphabetTools.SetActive(true);
+			Jukebox.SetActive(false);
+			MyRenderer.enabled = true;
+			Class.PhysicalGrade = 5;
+			CurrentTrack = 1;
+			Limit = 79;
+			if (GameGlobals.Eighties)
+			{
+				IDs = EightiesIDs;
+				Limit = 79;
+			}
+			MissionMode.RemoveBoxes();
+			UpdateText();
+			UpdateDifficultyLabel();
+		}
+		else
+		{
+			TargetLabel.transform.parent.gameObject.SetActive(false);
+			BombLabel.transform.parent.gameObject.SetActive(false);
+			AlphabetTools.SetActive(false);
+			base.gameObject.SetActive(false);
+			base.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (!Began && StudentManager.Yandere.CanMove)
+		{
+			StudentManager.TeleportEveryoneToDestination();
+			MusicPlayer.Play();
+			Began = true;
+		}
+		if (CurrentTarget >= IDs.Length)
+		{
+			return;
+		}
+		if (Input.GetKeyDown("m"))
+		{
+			if (MusicPlayer.isPlaying)
+			{
+				MusicPlayer.Stop();
+				StopMusic = true;
+				MusicPlayer.time = 0f;
+				LastTime = 0f;
+			}
+			else
+			{
+				MusicPlayer.clip = MusicTracks[CurrentTrack];
+				MusicPlayer.Play();
+				StopMusic = false;
+			}
+		}
+		if (MusicPlayer.time < 600f && MusicPlayer.time > LastTime)
+		{
+			LastTime = MusicPlayer.time;
+		}
+		if (Began && !MusicPlayer.isPlaying && !StopMusic)
+		{
+			MusicPlayer.Play();
+			MusicPlayer.time = LastTime;
+		}
+		if (StudentManager.Yandere.CanMove && (Input.GetButtonDown("LS") || Input.GetKeyDown(KeyCode.T)))
+		{
+			if (StudentManager.Yandere.Inventory.SmokeBomb)
+			{
+				Object.Instantiate(SmokeBomb, Yandere.position, Quaternion.identity);
+				RemainingBombs--;
+				BombLabel.text = RemainingBombs.ToString() ?? "";
+				if (RemainingBombs == 0)
+				{
+					StudentManager.Yandere.Inventory.SmokeBomb = false;
+				}
+			}
+			else if (StudentManager.Yandere.Inventory.StinkBomb)
+			{
+				Object.Instantiate(StinkBomb, Yandere.position, Quaternion.identity);
+				RemainingBombs--;
+				BombLabel.text = RemainingBombs.ToString() ?? "";
+				if (RemainingBombs == 0)
+				{
+					StudentManager.Yandere.Inventory.StinkBomb = false;
+				}
+			}
+			else if (StudentManager.Yandere.Inventory.AmnesiaBomb)
+			{
+				Object.Instantiate(AmnesiaBomb, Yandere.position, Quaternion.identity);
+				RemainingBombs--;
+				BombLabel.text = RemainingBombs.ToString() ?? "";
+				if (RemainingBombs == 0)
+				{
+					StudentManager.Yandere.Inventory.AmnesiaBomb = false;
+				}
+			}
+		}
+		LocalArrow.LookAt(StudentManager.Students[IDs[CurrentTarget]].transform.position);
+		base.transform.eulerAngles = LocalArrow.eulerAngles - new Vector3(0f, StudentManager.MainCamera.transform.eulerAngles.y, 0f);
+		if ((StudentManager.Yandere.Attacking && StudentManager.Yandere.TargetStudent.StudentID != IDs[CurrentTarget]) || (StudentManager.Yandere.Struggling && StudentManager.Yandere.TargetStudent.StudentID != IDs[CurrentTarget]) || StudentManager.Police.Show || StudentManager.Yandere.Noticed)
+		{
+			ChallengeFailed.enabled = true;
+		}
+		for (int i = CurrentTarget + 1; i < IDs.Length; i++)
+		{
+			if (!StudentManager.Students[IDs[i]].gameObject.activeInHierarchy || !StudentManager.Students[IDs[i]].Alive)
+			{
+				ChallengeFailed.enabled = true;
+			}
+		}
+		if (!StudentManager.Students[IDs[CurrentTarget]].Alive)
+		{
+			CurrentTarget++;
+			if (CurrentTarget > Limit)
+			{
+				TargetLabel.text = "Challenge Complete!";
+				SceneManager.LoadScene("OsanaJokeScene");
+			}
+			else
+			{
+				UpdateText();
+			}
+		}
+		if (ChallengeFailed.enabled)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
+			{
+				SceneManager.LoadScene("LoadingScene");
+			}
+		}
+	}
+
+	public void UpdateText()
+	{
+		TargetLabel.text = "(" + CurrentTarget + "/" + Limit + ") Current Target: " + StudentManager.JSON.Students[IDs[CurrentTarget]].Name;
+		if (RemainingBombs <= 0)
+		{
+			return;
+		}
+		BombLabel.transform.parent.gameObject.SetActive(true);
+		if (BombTexture.color.a < 1f)
+		{
+			if (Inventory.StinkBomb)
+			{
+				BombTexture.color = new Color(0f, 0.5f, 0f, 1f);
+			}
+			else if (Inventory.AmnesiaBomb)
+			{
+				BombTexture.color = new Color(1f, 0.5f, 1f, 1f);
+			}
+			else
+			{
+				BombTexture.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			}
+		}
+	}
+
+	public void UpdateDifficultyLabel()
+	{
+		DifficultyLabel.text = "Difficulty: " + DifficultyText[Cheats];
+	}
 }

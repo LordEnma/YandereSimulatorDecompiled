@@ -1,491 +1,559 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: OsanaMondayLunchEventScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 public class OsanaMondayLunchEventScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public OsanaClubEventScript ClubEvent;
-  public JukeboxScript Jukebox;
-  public UILabel EventSubtitle;
-  public YandereScript Yandere;
-  public ClockScript Clock;
-  public SpyScript Spy;
-  public StudentScript Senpai;
-  public StudentScript Friend;
-  public StudentScript Rival;
-  public BentoScript[] Bento;
-  public string[] SabotagedSpeechText;
-  public string[] SpeechText;
-  public float[] SabotagedSpeechTime;
-  public float[] SpeechTime;
-  public AudioClip[] SpeechClip;
-  public Transform[] Location;
-  public Transform Epicenter;
-  public GameObject AlarmDisc;
-  public GameObject VoiceClip;
-  public Vector3 OriginalPosition;
-  public bool Sabotaged;
-  public float Distance;
-  public float Scale;
-  public float Timer;
-  public float RotationX;
-  public float RotationY;
-  public float RotationZ;
-  public int SpeechPhase = 1;
-  public int DebugPoison;
-  public int FriendID = 6;
-  public int RivalID = 11;
-  public int Phase;
-  public int Frame;
+	public StudentManagerScript StudentManager;
 
-  private void Start()
-  {
-    this.OriginalPosition = this.Epicenter.position;
-    this.EventSubtitle.transform.localScale = Vector3.zero;
-    if (DateGlobals.Week <= 1 && DateGlobals.Weekday == DayOfWeek.Monday && !GameGlobals.AlphabetMode && !MissionModeGlobals.MissionMode && !GameGlobals.Eighties)
-      return;
-    this.gameObject.SetActive(false);
-    this.enabled = false;
-  }
+	public OsanaClubEventScript ClubEvent;
 
-  private void Update()
-  {
-    if (this.Phase == 0)
-    {
-      if (this.Frame > 0 && (UnityEngine.Object) this.StudentManager.Students[this.RivalID] != (UnityEngine.Object) null && this.StudentManager.Students[this.RivalID].enabled && this.StudentManager.Students[1].gameObject.activeInHierarchy && this.Clock.Period == 3 && !this.StudentManager.Students[this.RivalID].Meeting)
-      {
-        Debug.Log((object) "Osana's lunchtime event has begun.");
-        if (this.ClubEvent.enabled)
-          this.ClubEvent.EndEvent();
-        this.DisableBentos();
-        this.Bento[1].gameObject.SetActive(true);
-        this.Bento[2].gameObject.SetActive(true);
-        this.Senpai = this.StudentManager.Students[1];
-        this.Rival = this.StudentManager.Students[this.RivalID];
-        this.Friend = this.StudentManager.Students[this.FriendID];
-        this.Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-        this.Senpai.CharacterAnimation.Play(this.Senpai.WalkAnim);
-        this.Senpai.Pathfinding.target = this.Location[1];
-        this.Senpai.CurrentDestination = this.Location[1];
-        this.Senpai.SmartPhone.SetActive(false);
-        this.Senpai.Pathfinding.canSearch = true;
-        this.Senpai.Pathfinding.canMove = true;
-        this.Senpai.Routine = false;
-        this.Senpai.InEvent = true;
-        this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-        this.Rival.CharacterAnimation.Play(this.Rival.WalkAnim);
-        this.Rival.Pathfinding.target = this.Location[0];
-        this.Rival.CurrentDestination = this.Location[0];
-        this.Rival.Pathfinding.canSearch = true;
-        this.Rival.Pathfinding.canMove = true;
-        this.Rival.Routine = false;
-        this.Rival.InEvent = true;
-        this.Rival.EmptyHands();
-        this.Spy.gameObject.SetActive(true);
-        if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
-        {
-          this.Friend.FocusOnYandere = false;
-          this.Friend.Distracted = true;
-          this.Friend.CanTalk = false;
-          this.Friend.EmptyHands();
-          this.Friend.SpeechLines.Stop();
-        }
-        this.Yandere.PauseScreen.Hint.Show = true;
-        this.Yandere.PauseScreen.Hint.QuickID = 7;
-        ++this.Phase;
-      }
-      ++this.Frame;
-    }
-    else if (this.Phase == 1)
-    {
-      if ((double) this.Rival.DistanceToDestination < 0.5)
-      {
-        this.EventSubtitle.text = this.SpeechText[this.SpeechPhase];
-        ++this.SpeechPhase;
-        AudioClipPlayer.Play(this.SpeechClip[0], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-        this.Rival.CharacterAnimation["f02_pondering_00"].speed = 2f;
-        this.Rival.CharacterAnimation.CrossFade("f02_pondering_00");
-        this.Epicenter.position = this.Rival.transform.position;
-        this.Rival.Pathfinding.canSearch = false;
-        this.Rival.Pathfinding.canMove = false;
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 2)
-    {
-      if (!this.Rival.GoAway)
-        this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
-      this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
-      if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
-      {
-        this.Friend.Pathfinding.target = this.Rival.transform;
-        this.Friend.CurrentDestination = this.Rival.transform;
-      }
-      if ((double) this.Rival.CharacterAnimation["f02_pondering_00"].time >= (double) this.Rival.CharacterAnimation["f02_pondering_00"].length)
-      {
-        this.Epicenter.position = this.OriginalPosition;
-        this.EventSubtitle.text = string.Empty;
-        this.Rival.CharacterAnimation.Play(this.Rival.WalkAnim);
-        this.Rival.Pathfinding.target = this.Location[2];
-        this.Rival.CurrentDestination = this.Location[2];
-        this.Rival.Pathfinding.canSearch = true;
-        this.Rival.Pathfinding.canMove = true;
-        this.Bento[1].gameObject.SetActive(false);
-        this.Bento[2].gameObject.SetActive(false);
-        if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
-        {
-          this.Rival.FollowTargetDestination.localPosition = new Vector3(0.0f, 0.0f, -0.5f);
-          this.Friend.Pathfinding.target = this.Rival.FollowTargetDestination;
-          this.Friend.CurrentDestination = this.Rival.FollowTargetDestination;
-        }
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 3)
-    {
-      if ((double) this.Senpai.DistanceToDestination < 0.5 && (double) this.Rival.DistanceToDestination < 0.5)
-      {
-        this.MakeRaibaruGoHide();
-        AudioClipPlayer.Play(this.SpeechClip[1], this.Epicenter.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-        this.Senpai.CharacterAnimation.CrossFade("Monday_2A");
-        this.Rival.CharacterAnimation.CrossFade("f02_Monday_2A");
-        this.Rival.Bento.transform.localEulerAngles = new Vector3(15f, this.Rival.Bento.transform.localEulerAngles.y, this.Rival.Bento.transform.localEulerAngles.z);
-        this.Rival.Bento.transform.localPosition = new Vector3(-0.02f, this.Rival.Bento.transform.localPosition.y, this.Rival.Bento.transform.localPosition.z);
-        this.Rival.Bento.SetActive(true);
-        this.Senpai.Pathfinding.canSearch = false;
-        this.Senpai.Pathfinding.canMove = false;
-        this.Rival.Pathfinding.canSearch = false;
-        this.Rival.Pathfinding.canMove = false;
-        ++this.Phase;
-      }
-      else
-      {
-        if ((double) this.Senpai.DistanceToDestination < 0.5)
-        {
-          this.Senpai.CharacterAnimation.CrossFade("thinking_00");
-          if (!this.Senpai.GoAway)
-            this.Senpai.MoveTowardsTarget(this.Senpai.CurrentDestination.position);
-          this.Senpai.transform.rotation = Quaternion.Slerp(this.Senpai.transform.rotation, this.Senpai.CurrentDestination.rotation, 10f * Time.deltaTime);
-          this.Senpai.Pathfinding.canSearch = false;
-          this.Senpai.Pathfinding.canMove = false;
-        }
-        if ((double) this.Rival.DistanceToDestination < 0.5)
-        {
-          this.Rival.CharacterAnimation.CrossFade("f02_pondering_00");
-          if (!this.Rival.GoAway)
-            this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
-          this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
-          this.Rival.Pathfinding.canSearch = false;
-          this.Rival.Pathfinding.canMove = false;
-        }
-      }
-    }
-    else if (this.Phase == 4)
-    {
-      this.Timer += Time.deltaTime;
-      this.MakeRaibaruGoHide();
-      if (!this.Senpai.GoAway)
-        this.Senpai.MoveTowardsTarget(this.Senpai.CurrentDestination.position);
-      this.Senpai.transform.rotation = Quaternion.Slerp(this.Senpai.transform.rotation, this.Senpai.CurrentDestination.rotation, 10f * Time.deltaTime);
-      if (!this.Rival.GoAway)
-        this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
-      this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
-      if ((double) this.Timer > 21.5)
-      {
-        this.Senpai.Bento.transform.localPosition = new Vector3(-0.01652f, -0.02516f, -0.08239f);
-        this.Senpai.Bento.transform.localEulerAngles = new Vector3(-35f, 116f, 165f);
-        this.RotationX = -35f;
-        this.RotationY = 115f;
-        this.RotationZ = 165f;
-        this.Senpai.Bento.SetActive(true);
-        this.Rival.Bento.SetActive(false);
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 5)
-    {
-      this.Timer += Time.deltaTime;
-      this.RotationX = Mathf.Lerp(this.RotationX, 6f, Time.deltaTime);
-      this.RotationY = Mathf.Lerp(this.RotationY, 153f, Time.deltaTime);
-      this.RotationZ = Mathf.Lerp(this.RotationZ, 102.5f, Time.deltaTime);
-      this.Senpai.Bento.transform.localPosition = Vector3.Lerp(this.Senpai.Bento.transform.localPosition, new Vector3(-0.045f, -0.08f, -0.025f), Time.deltaTime);
-      this.Senpai.Bento.transform.localEulerAngles = new Vector3(this.RotationX, this.RotationY, this.RotationZ);
-      if ((double) this.Timer > 29.833333969116211)
-      {
-        this.Senpai.Lid.transform.parent = this.Senpai.RightHand;
-        this.Senpai.Lid.transform.localPosition = new Vector3(-0.025f, -0.025f, -0.015f);
-        this.Senpai.Lid.transform.localEulerAngles = new Vector3(41.5f, -60f, -180f);
-      }
-      if ((double) this.Timer > 30.0 && (double) this.Bento[1].Poison > 0.0)
-      {
-        this.Senpai.CharacterAnimation.CrossFade("Monday_2B");
-        this.Rival.CharacterAnimation.CrossFade("f02_Monday_2B");
-        this.Sabotaged = true;
-        this.SpeechPhase = 0;
-      }
-      if ((double) this.Timer > 30.433332443237305)
-      {
-        this.Senpai.Lid.transform.parent = (Transform) null;
-        this.Senpai.Lid.transform.position = new Vector3(-0.31f, 12.501f, -29.335f);
-        this.Senpai.Lid.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-      }
-      if ((double) this.Timer > 31.0)
-      {
-        this.Senpai.Chopsticks[0].SetActive(true);
-        this.Senpai.Chopsticks[1].SetActive(true);
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 6)
-    {
-      this.Timer += Time.deltaTime;
-      if (!this.Sabotaged)
-      {
-        if ((double) this.Timer > 37.150001525878906)
-        {
-          AudioClipPlayer.Play(this.SpeechClip[2], this.Epicenter.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          ++this.Phase;
-        }
-      }
-      else if ((double) this.Timer > 41.0)
-      {
-        AudioClipPlayer.Play(this.SpeechClip[3], this.Epicenter.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-        ++this.Phase;
-      }
-    }
-    else if (this.Phase == 7)
-    {
-      this.Timer += Time.deltaTime;
-      if (!this.Sabotaged)
-      {
-        if ((double) this.Senpai.CharacterAnimation["Monday_2A"].time > (double) this.Senpai.CharacterAnimation["Monday_2A"].length)
-          this.EndEvent();
-      }
-      else
-      {
-        if ((double) this.Timer > 44.5 && (UnityEngine.Object) this.Senpai.Bento.transform.parent != (UnityEngine.Object) null)
-        {
-          this.Senpai.Bento.transform.parent = (Transform) null;
-          this.Senpai.Bento.transform.position = new Vector3(-0.853f, 12.501f, -29.33333f);
-          this.Senpai.Bento.transform.eulerAngles = new Vector3(0.0f, 180f, 0.0f);
-          this.Senpai.Chopsticks[0].SetActive(false);
-          this.Senpai.Chopsticks[1].SetActive(false);
-        }
-        if (this.Senpai.InEvent && (double) this.Senpai.CharacterAnimation["Monday_2B"].time > (double) this.Senpai.CharacterAnimation["Monday_2B"].length)
-        {
-          this.Senpai.WalkAnim = "stomachPainWalk_00";
-          this.Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-          this.Senpai.Pathfinding.target = this.StudentManager.MaleVomitSpots[3];
-          this.Senpai.CurrentDestination = this.StudentManager.MaleVomitSpots[3];
-          this.Senpai.CharacterAnimation.CrossFade(this.Senpai.WalkAnim);
-          this.Senpai.Pathfinding.canSearch = true;
-          this.Senpai.Pathfinding.canMove = true;
-          this.Senpai.Pathfinding.speed = 2f;
-          this.Senpai.Distracted = true;
-          this.Senpai.Vomiting = true;
-          this.Senpai.InEvent = false;
-          this.Senpai.Routine = false;
-          this.Senpai.Private = true;
-          ++this.StudentManager.SabotageProgress;
-          Debug.Log((object) ("Sabotage Progress: " + this.StudentManager.SabotageProgress.ToString() + "/5"));
-        }
-        if ((double) this.Rival.CharacterAnimation["f02_Monday_2B"].time > (double) this.Rival.CharacterAnimation["f02_Monday_2B"].length)
-          this.EndEvent();
-      }
-    }
-    if (this.Phase > 3)
-    {
-      if (!this.Sabotaged)
-      {
-        if (this.SpeechPhase < this.SpeechTime.Length && (double) this.Timer > (double) this.SpeechTime[this.SpeechPhase])
-        {
-          this.EventSubtitle.text = this.SpeechText[this.SpeechPhase];
-          ++this.SpeechPhase;
-        }
-      }
-      else if (this.SpeechPhase < this.SabotagedSpeechTime.Length && (double) this.Timer > 41.0 + (double) this.SabotagedSpeechTime[this.SpeechPhase])
-      {
-        this.EventSubtitle.text = this.SabotagedSpeechText[this.SpeechPhase];
-        ++this.SpeechPhase;
-      }
-      if ((double) this.Friend.DistanceToDestination < 0.5)
-      {
-        this.Friend.CharacterAnimation.CrossFade("f02_cornerPeek_00");
-        this.Friend.Pathfinding.canSearch = false;
-        this.Friend.Pathfinding.canMove = false;
-        if (!this.Friend.MyBento.gameObject.activeInHierarchy && !this.Friend.MyBento.Tampered)
-        {
-          this.Friend.MyBento.gameObject.SetActive(true);
-          this.Friend.MyBento.transform.parent = (Transform) null;
-          this.Friend.MyBento.transform.position = this.Bento[3].transform.position;
-          this.Friend.MyBento.transform.eulerAngles = this.Bento[3].transform.eulerAngles;
-          this.Friend.MyBento.Prompt.enabled = true;
-        }
-        this.SettleFriend();
-      }
-    }
-    if (this.Phase <= 0)
-      return;
-    if (this.Clock.Period > 3 || this.Senpai.Alarmed || this.Rival.Alarmed || this.Rival.Wet || this.Rival.GoAway || this.Senpai.GoAway)
-    {
-      if (this.Senpai.Alarmed || this.Rival.Alarmed && !this.Rival.Wet)
-        UnityEngine.Object.Instantiate<GameObject>(this.AlarmDisc, this.Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
-      this.EndEvent();
-    }
-    if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-      this.VoiceClip.GetComponent<AudioSource>().pitch = Time.timeScale;
-    this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position);
-    if (!this.enabled)
-      return;
-    if ((double) this.Yandere.transform.position.y > (double) this.Rival.transform.position.y - 0.10000000149011612 && (double) this.Yandere.transform.position.y < (double) this.Rival.transform.position.y + 0.10000000149011612 && (double) this.Distance - 4.0 < 15.0)
-    {
-      this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
-      if ((double) this.Scale < 0.0)
-        this.Scale = 0.0f;
-      if ((double) this.Scale > 1.0)
-        this.Scale = 1f;
-      this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
-      this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-      if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-        this.VoiceClip.GetComponent<AudioSource>().volume = this.Scale;
-      if (this.Phase <= 3)
-        return;
-      this.Yandere.Eavesdropping = (double) this.Distance < 2.5;
-    }
-    else
-    {
-      this.EventSubtitle.transform.localScale = Vector3.zero;
-      if (!((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null))
-        return;
-      this.VoiceClip.GetComponent<AudioSource>().volume = 0.0f;
-    }
-  }
+	public JukeboxScript Jukebox;
 
-  private void SettleFriend()
-  {
-    this.Friend.MoveTowardsTarget(this.Location[3].position);
-    if ((double) Quaternion.Angle(this.Friend.transform.rotation, this.Location[3].rotation) <= 1.0)
-      return;
-    this.Friend.transform.rotation = Quaternion.Slerp(this.Friend.transform.rotation, this.Location[3].rotation, 10f * Time.deltaTime);
-  }
+	public UILabel EventSubtitle;
 
-  private void EndEvent()
-  {
-    if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-      UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    if (this.Senpai.InEvent)
-    {
-      this.Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-      this.Senpai.InEvent = false;
-      this.Senpai.Private = false;
-      this.Senpai.Pathfinding.canSearch = true;
-      this.Senpai.Pathfinding.canMove = true;
-      this.Senpai.TargetDistance = 1f;
-      this.Senpai.Routine = true;
-    }
-    this.Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-    this.Rival.DistanceToDestination = 100f;
-    this.Rival.Prompt.enabled = true;
-    this.Rival.InEvent = false;
-    this.Rival.Private = false;
-    if (!this.Rival.Splashed)
-    {
-      this.Rival.Pathfinding.canSearch = true;
-      this.Rival.Pathfinding.canMove = true;
-    }
-    else
-    {
-      this.Rival.Pathfinding.canSearch = false;
-      this.Rival.Pathfinding.canMove = false;
-    }
-    this.Rival.TargetDistance = 1f;
-    this.Rival.Routine = !this.Rival.Splashed;
-    if (this.Rival.Alarmed || this.Senpai.Alarmed)
-    {
-      this.Senpai.Pathfinding.canSearch = false;
-      this.Senpai.Pathfinding.canMove = false;
-      this.Senpai.TargetDistance = 0.5f;
-      this.Senpai.Routine = !this.Senpai.Alarmed;
-      this.Rival.Pathfinding.canSearch = false;
-      this.Rival.Pathfinding.canMove = false;
-      this.Rival.TargetDistance = 0.5f;
-      this.Rival.Routine = !this.Rival.Alarmed;
-    }
-    if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null && !this.Friend.Electrified)
-    {
-      if (!this.Friend.Alarmed)
-      {
-        this.Friend.Pathfinding.canSearch = true;
-        this.Friend.Pathfinding.canMove = true;
-        this.Friend.CanTalk = true;
-        this.Friend.Routine = true;
-      }
-      this.Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-      this.Friend.Prompt.enabled = true;
-      this.Friend.InEvent = false;
-      this.Friend.Private = false;
-      ScheduleBlock scheduleBlock = this.Friend.ScheduleBlocks[4];
-      scheduleBlock.destination = "LunchSpot";
-      scheduleBlock.action = "Eat";
-      this.Friend.GetDestinations();
-      this.Friend.CurrentDestination = this.Friend.Destinations[this.Friend.Phase];
-      this.Friend.Pathfinding.target = this.Friend.Destinations[this.Friend.Phase];
-      this.Friend.DistanceToDestination = 100f;
-      this.Friend.MyBento.gameObject.SetActive(false);
-      this.Friend.MyBento.transform.parent = this.Friend.LeftHand;
-      this.Friend.MyBento.transform.localPosition = new Vector3(-0.025f, -0.105f, 0.0f);
-      this.Friend.MyBento.transform.localEulerAngles = new Vector3(0.0f, 165f, 82.5f);
-      Debug.Log((object) "Osana's Monday lunch event ended, so Raibaru is being told to set her destination to her current phase's destination.");
-    }
-    if (!this.StudentManager.Stop)
-      this.StudentManager.UpdateStudents();
-    this.Spy.Prompt.Hide();
-    this.Spy.Prompt.enabled = false;
-    if (this.Spy.Phase > 0)
-      this.Spy.End();
-    this.EventSubtitle.text = string.Empty;
-    this.Yandere.Eavesdropping = false;
-    this.enabled = false;
-    this.Jukebox.Dip = 1f;
-    Debug.Log((object) "Ending Osana's Monday Lunch Event.");
-    if (this.Rival.GoAway)
-    {
-      this.Rival.Subtitle.CustomText = "Ugh, seriously?! Nevermind, Senpai...just forget it...";
-      this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-    }
-    this.DisableBentos();
-  }
+	public YandereScript Yandere;
 
-  private void DisableBentos()
-  {
-    this.Bento[1].Prompt.Hide();
-    this.Bento[1].Prompt.enabled = false;
-    this.Bento[2].Prompt.Hide();
-    this.Bento[2].Prompt.enabled = false;
-    this.Bento[1].gameObject.SetActive(false);
-    this.Bento[2].gameObject.SetActive(false);
-    this.Bento[1].enabled = false;
-    this.Bento[2].enabled = false;
-  }
+	public ClockScript Clock;
 
-  private void MakeRaibaruGoHide()
-  {
-    if (!((UnityEngine.Object) this.Friend != (UnityEngine.Object) null) || (double) this.Friend.DistanceToDestination <= 1.0)
-      return;
-    this.Friend.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-    this.Friend.CharacterAnimation.Play(this.Friend.WalkAnim);
-    this.Friend.Pathfinding.target = this.Location[3];
-    this.Friend.CurrentDestination = this.Location[3];
-    this.Friend.Pathfinding.canSearch = true;
-    this.Friend.Pathfinding.canMove = true;
-    this.Friend.Distracted = false;
-    this.Friend.Routine = false;
-    this.Friend.InEvent = true;
-  }
+	public SpyScript Spy;
+
+	public StudentScript Senpai;
+
+	public StudentScript Friend;
+
+	public StudentScript Rival;
+
+	public BentoScript[] Bento;
+
+	public string[] SabotagedSpeechText;
+
+	public string[] SpeechText;
+
+	public float[] SabotagedSpeechTime;
+
+	public float[] SpeechTime;
+
+	public AudioClip[] SpeechClip;
+
+	public Transform[] Location;
+
+	public Transform Epicenter;
+
+	public GameObject AlarmDisc;
+
+	public GameObject VoiceClip;
+
+	public Vector3 OriginalPosition;
+
+	public bool Sabotaged;
+
+	public float Distance;
+
+	public float Scale;
+
+	public float Timer;
+
+	public float RotationX;
+
+	public float RotationY;
+
+	public float RotationZ;
+
+	public int SpeechPhase = 1;
+
+	public int DebugPoison;
+
+	public int FriendID = 6;
+
+	public int RivalID = 11;
+
+	public int Phase;
+
+	public int Frame;
+
+	private void Start()
+	{
+		OriginalPosition = Epicenter.position;
+		EventSubtitle.transform.localScale = Vector3.zero;
+		if (DateGlobals.Week > 1 || DateGlobals.Weekday != DayOfWeek.Monday || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || GameGlobals.Eighties)
+		{
+			base.gameObject.SetActive(false);
+			base.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (Phase == 0)
+		{
+			if (Frame > 0 && StudentManager.Students[RivalID] != null && StudentManager.Students[RivalID].enabled && StudentManager.Students[1].gameObject.activeInHierarchy && Clock.Period == 3 && !StudentManager.Students[RivalID].Meeting)
+			{
+				Debug.Log("Osana's lunchtime event has begun.");
+				if (ClubEvent.enabled)
+				{
+					ClubEvent.EndEvent();
+				}
+				DisableBentos();
+				Bento[1].gameObject.SetActive(true);
+				Bento[2].gameObject.SetActive(true);
+				Senpai = StudentManager.Students[1];
+				Rival = StudentManager.Students[RivalID];
+				Friend = StudentManager.Students[FriendID];
+				Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+				Senpai.CharacterAnimation.Play(Senpai.WalkAnim);
+				Senpai.Pathfinding.target = Location[1];
+				Senpai.CurrentDestination = Location[1];
+				Senpai.SmartPhone.SetActive(false);
+				Senpai.Pathfinding.canSearch = true;
+				Senpai.Pathfinding.canMove = true;
+				Senpai.Routine = false;
+				Senpai.InEvent = true;
+				Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+				Rival.CharacterAnimation.Play(Rival.WalkAnim);
+				Rival.Pathfinding.target = Location[0];
+				Rival.CurrentDestination = Location[0];
+				Rival.Pathfinding.canSearch = true;
+				Rival.Pathfinding.canMove = true;
+				Rival.Routine = false;
+				Rival.InEvent = true;
+				Rival.EmptyHands();
+				Spy.gameObject.SetActive(true);
+				if (Friend != null)
+				{
+					Friend.FocusOnYandere = false;
+					Friend.Distracted = true;
+					Friend.CanTalk = false;
+					Friend.EmptyHands();
+					Friend.SpeechLines.Stop();
+				}
+				Yandere.PauseScreen.Hint.Show = true;
+				Yandere.PauseScreen.Hint.QuickID = 7;
+				Phase++;
+			}
+			Frame++;
+		}
+		else if (Phase == 1)
+		{
+			if (Rival.DistanceToDestination < 0.5f)
+			{
+				EventSubtitle.text = SpeechText[SpeechPhase];
+				SpeechPhase++;
+				AudioClipPlayer.Play(SpeechClip[0], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				Rival.CharacterAnimation["f02_pondering_00"].speed = 2f;
+				Rival.CharacterAnimation.CrossFade("f02_pondering_00");
+				Epicenter.position = Rival.transform.position;
+				Rival.Pathfinding.canSearch = false;
+				Rival.Pathfinding.canMove = false;
+				Phase++;
+			}
+		}
+		else if (Phase == 2)
+		{
+			if (!Rival.GoAway)
+			{
+				Rival.MoveTowardsTarget(Rival.CurrentDestination.position);
+			}
+			Rival.transform.rotation = Quaternion.Slerp(Rival.transform.rotation, Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
+			if (Friend != null)
+			{
+				Friend.Pathfinding.target = Rival.transform;
+				Friend.CurrentDestination = Rival.transform;
+			}
+			if (Rival.CharacterAnimation["f02_pondering_00"].time >= Rival.CharacterAnimation["f02_pondering_00"].length)
+			{
+				Epicenter.position = OriginalPosition;
+				EventSubtitle.text = string.Empty;
+				Rival.CharacterAnimation.Play(Rival.WalkAnim);
+				Rival.Pathfinding.target = Location[2];
+				Rival.CurrentDestination = Location[2];
+				Rival.Pathfinding.canSearch = true;
+				Rival.Pathfinding.canMove = true;
+				Bento[1].gameObject.SetActive(false);
+				Bento[2].gameObject.SetActive(false);
+				if (Friend != null)
+				{
+					Rival.FollowTargetDestination.localPosition = new Vector3(0f, 0f, -0.5f);
+					Friend.Pathfinding.target = Rival.FollowTargetDestination;
+					Friend.CurrentDestination = Rival.FollowTargetDestination;
+				}
+				Phase++;
+			}
+		}
+		else if (Phase == 3)
+		{
+			if (Senpai.DistanceToDestination < 0.5f && Rival.DistanceToDestination < 0.5f)
+			{
+				MakeRaibaruGoHide();
+				AudioClipPlayer.Play(SpeechClip[1], Epicenter.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				Senpai.CharacterAnimation.CrossFade("Monday_2A");
+				Rival.CharacterAnimation.CrossFade("f02_Monday_2A");
+				Rival.Bento.transform.localEulerAngles = new Vector3(15f, Rival.Bento.transform.localEulerAngles.y, Rival.Bento.transform.localEulerAngles.z);
+				Rival.Bento.transform.localPosition = new Vector3(-0.02f, Rival.Bento.transform.localPosition.y, Rival.Bento.transform.localPosition.z);
+				Rival.Bento.SetActive(true);
+				Senpai.Pathfinding.canSearch = false;
+				Senpai.Pathfinding.canMove = false;
+				Rival.Pathfinding.canSearch = false;
+				Rival.Pathfinding.canMove = false;
+				Phase++;
+			}
+			else
+			{
+				if (Senpai.DistanceToDestination < 0.5f)
+				{
+					Senpai.CharacterAnimation.CrossFade("thinking_00");
+					if (!Senpai.GoAway)
+					{
+						Senpai.MoveTowardsTarget(Senpai.CurrentDestination.position);
+					}
+					Senpai.transform.rotation = Quaternion.Slerp(Senpai.transform.rotation, Senpai.CurrentDestination.rotation, 10f * Time.deltaTime);
+					Senpai.Pathfinding.canSearch = false;
+					Senpai.Pathfinding.canMove = false;
+				}
+				if (Rival.DistanceToDestination < 0.5f)
+				{
+					Rival.CharacterAnimation.CrossFade("f02_pondering_00");
+					if (!Rival.GoAway)
+					{
+						Rival.MoveTowardsTarget(Rival.CurrentDestination.position);
+					}
+					Rival.transform.rotation = Quaternion.Slerp(Rival.transform.rotation, Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
+					Rival.Pathfinding.canSearch = false;
+					Rival.Pathfinding.canMove = false;
+				}
+			}
+		}
+		else if (Phase == 4)
+		{
+			Timer += Time.deltaTime;
+			MakeRaibaruGoHide();
+			if (!Senpai.GoAway)
+			{
+				Senpai.MoveTowardsTarget(Senpai.CurrentDestination.position);
+			}
+			Senpai.transform.rotation = Quaternion.Slerp(Senpai.transform.rotation, Senpai.CurrentDestination.rotation, 10f * Time.deltaTime);
+			if (!Rival.GoAway)
+			{
+				Rival.MoveTowardsTarget(Rival.CurrentDestination.position);
+			}
+			Rival.transform.rotation = Quaternion.Slerp(Rival.transform.rotation, Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
+			if (Timer > 21.5f)
+			{
+				Senpai.Bento.transform.localPosition = new Vector3(-0.01652f, -0.02516f, -0.08239f);
+				Senpai.Bento.transform.localEulerAngles = new Vector3(-35f, 116f, 165f);
+				RotationX = -35f;
+				RotationY = 115f;
+				RotationZ = 165f;
+				Senpai.Bento.SetActive(true);
+				Rival.Bento.SetActive(false);
+				Phase++;
+			}
+		}
+		else if (Phase == 5)
+		{
+			Timer += Time.deltaTime;
+			RotationX = Mathf.Lerp(RotationX, 6f, Time.deltaTime);
+			RotationY = Mathf.Lerp(RotationY, 153f, Time.deltaTime);
+			RotationZ = Mathf.Lerp(RotationZ, 102.5f, Time.deltaTime);
+			Senpai.Bento.transform.localPosition = Vector3.Lerp(Senpai.Bento.transform.localPosition, new Vector3(-0.045f, -0.08f, -0.025f), Time.deltaTime);
+			Senpai.Bento.transform.localEulerAngles = new Vector3(RotationX, RotationY, RotationZ);
+			if (Timer > 29.833334f)
+			{
+				Senpai.Lid.transform.parent = Senpai.RightHand;
+				Senpai.Lid.transform.localPosition = new Vector3(-0.025f, -0.025f, -0.015f);
+				Senpai.Lid.transform.localEulerAngles = new Vector3(41.5f, -60f, -180f);
+			}
+			if (Timer > 30f && (float)Bento[1].Poison > 0f)
+			{
+				Senpai.CharacterAnimation.CrossFade("Monday_2B");
+				Rival.CharacterAnimation.CrossFade("f02_Monday_2B");
+				Sabotaged = true;
+				SpeechPhase = 0;
+			}
+			if (Timer > 30.433332f)
+			{
+				Senpai.Lid.transform.parent = null;
+				Senpai.Lid.transform.position = new Vector3(-0.31f, 12.501f, -29.335f);
+				Senpai.Lid.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+			}
+			if (Timer > 31f)
+			{
+				Senpai.Chopsticks[0].SetActive(true);
+				Senpai.Chopsticks[1].SetActive(true);
+				Phase++;
+			}
+		}
+		else if (Phase == 6)
+		{
+			Timer += Time.deltaTime;
+			if (!Sabotaged)
+			{
+				if (Timer > 37.15f)
+				{
+					AudioClipPlayer.Play(SpeechClip[2], Epicenter.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+					Phase++;
+				}
+			}
+			else if (Timer > 41f)
+			{
+				AudioClipPlayer.Play(SpeechClip[3], Epicenter.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
+				Phase++;
+			}
+		}
+		else if (Phase == 7)
+		{
+			Timer += Time.deltaTime;
+			if (!Sabotaged)
+			{
+				if (Senpai.CharacterAnimation["Monday_2A"].time > Senpai.CharacterAnimation["Monday_2A"].length)
+				{
+					EndEvent();
+				}
+			}
+			else
+			{
+				if (Timer > 44.5f && Senpai.Bento.transform.parent != null)
+				{
+					Senpai.Bento.transform.parent = null;
+					Senpai.Bento.transform.position = new Vector3(-0.853f, 12.501f, -29.33333f);
+					Senpai.Bento.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+					Senpai.Chopsticks[0].SetActive(false);
+					Senpai.Chopsticks[1].SetActive(false);
+				}
+				if (Senpai.InEvent && Senpai.CharacterAnimation["Monday_2B"].time > Senpai.CharacterAnimation["Monday_2B"].length)
+				{
+					Senpai.WalkAnim = "stomachPainWalk_00";
+					Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+					Senpai.Pathfinding.target = StudentManager.MaleVomitSpots[3];
+					Senpai.CurrentDestination = StudentManager.MaleVomitSpots[3];
+					Senpai.CharacterAnimation.CrossFade(Senpai.WalkAnim);
+					Senpai.Pathfinding.canSearch = true;
+					Senpai.Pathfinding.canMove = true;
+					Senpai.Pathfinding.speed = 2f;
+					Senpai.Distracted = true;
+					Senpai.Vomiting = true;
+					Senpai.InEvent = false;
+					Senpai.Routine = false;
+					Senpai.Private = true;
+					StudentManager.SabotageProgress++;
+					Debug.Log("Sabotage Progress: " + StudentManager.SabotageProgress + "/5");
+				}
+				if (Rival.CharacterAnimation["f02_Monday_2B"].time > Rival.CharacterAnimation["f02_Monday_2B"].length)
+				{
+					EndEvent();
+				}
+			}
+		}
+		if (Phase > 3)
+		{
+			if (!Sabotaged)
+			{
+				if (SpeechPhase < SpeechTime.Length && Timer > SpeechTime[SpeechPhase])
+				{
+					EventSubtitle.text = SpeechText[SpeechPhase];
+					SpeechPhase++;
+				}
+			}
+			else if (SpeechPhase < SabotagedSpeechTime.Length && Timer > 41f + SabotagedSpeechTime[SpeechPhase])
+			{
+				EventSubtitle.text = SabotagedSpeechText[SpeechPhase];
+				SpeechPhase++;
+			}
+			if (Friend.DistanceToDestination < 0.5f)
+			{
+				Friend.CharacterAnimation.CrossFade("f02_cornerPeek_00");
+				Friend.Pathfinding.canSearch = false;
+				Friend.Pathfinding.canMove = false;
+				if (!Friend.MyBento.gameObject.activeInHierarchy && !Friend.MyBento.Tampered)
+				{
+					Friend.MyBento.gameObject.SetActive(true);
+					Friend.MyBento.transform.parent = null;
+					Friend.MyBento.transform.position = Bento[3].transform.position;
+					Friend.MyBento.transform.eulerAngles = Bento[3].transform.eulerAngles;
+					Friend.MyBento.Prompt.enabled = true;
+				}
+				SettleFriend();
+			}
+		}
+		if (Phase <= 0)
+		{
+			return;
+		}
+		if (Clock.Period > 3 || Senpai.Alarmed || Rival.Alarmed || Rival.Wet || Rival.GoAway || Senpai.GoAway)
+		{
+			if (Senpai.Alarmed || (Rival.Alarmed && !Rival.Wet))
+			{
+				UnityEngine.Object.Instantiate(AlarmDisc, Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
+			}
+			EndEvent();
+		}
+		if (VoiceClip != null)
+		{
+			VoiceClip.GetComponent<AudioSource>().pitch = Time.timeScale;
+		}
+		Distance = Vector3.Distance(Yandere.transform.position, Epicenter.position);
+		if (!base.enabled)
+		{
+			return;
+		}
+		if (Yandere.transform.position.y > Rival.transform.position.y - 0.1f && Yandere.transform.position.y < Rival.transform.position.y + 0.1f && Distance - 4f < 15f)
+		{
+			Scale = Mathf.Abs(1f - (Distance - 4f) / 15f);
+			if (Scale < 0f)
+			{
+				Scale = 0f;
+			}
+			if (Scale > 1f)
+			{
+				Scale = 1f;
+			}
+			Jukebox.Dip = 1f - 0.5f * Scale;
+			EventSubtitle.transform.localScale = new Vector3(Scale, Scale, Scale);
+			if (VoiceClip != null)
+			{
+				VoiceClip.GetComponent<AudioSource>().volume = Scale;
+			}
+			if (Phase > 3)
+			{
+				Yandere.Eavesdropping = Distance < 2.5f;
+			}
+		}
+		else
+		{
+			EventSubtitle.transform.localScale = Vector3.zero;
+			if (VoiceClip != null)
+			{
+				VoiceClip.GetComponent<AudioSource>().volume = 0f;
+			}
+		}
+	}
+
+	private void SettleFriend()
+	{
+		Friend.MoveTowardsTarget(Location[3].position);
+		if (Quaternion.Angle(Friend.transform.rotation, Location[3].rotation) > 1f)
+		{
+			Friend.transform.rotation = Quaternion.Slerp(Friend.transform.rotation, Location[3].rotation, 10f * Time.deltaTime);
+		}
+	}
+
+	private void EndEvent()
+	{
+		if (VoiceClip != null)
+		{
+			UnityEngine.Object.Destroy(VoiceClip);
+		}
+		if (Senpai.InEvent)
+		{
+			Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+			Senpai.InEvent = false;
+			Senpai.Private = false;
+			Senpai.Pathfinding.canSearch = true;
+			Senpai.Pathfinding.canMove = true;
+			Senpai.TargetDistance = 1f;
+			Senpai.Routine = true;
+		}
+		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+		Rival.DistanceToDestination = 100f;
+		Rival.Prompt.enabled = true;
+		Rival.InEvent = false;
+		Rival.Private = false;
+		if (!Rival.Splashed)
+		{
+			Rival.Pathfinding.canSearch = true;
+			Rival.Pathfinding.canMove = true;
+		}
+		else
+		{
+			Rival.Pathfinding.canSearch = false;
+			Rival.Pathfinding.canMove = false;
+		}
+		Rival.TargetDistance = 1f;
+		Rival.Routine = !Rival.Splashed;
+		if (Rival.Alarmed || Senpai.Alarmed)
+		{
+			Senpai.Pathfinding.canSearch = false;
+			Senpai.Pathfinding.canMove = false;
+			Senpai.TargetDistance = 0.5f;
+			Senpai.Routine = !Senpai.Alarmed;
+			Rival.Pathfinding.canSearch = false;
+			Rival.Pathfinding.canMove = false;
+			Rival.TargetDistance = 0.5f;
+			Rival.Routine = !Rival.Alarmed;
+		}
+		if (Friend != null && !Friend.Electrified)
+		{
+			if (!Friend.Alarmed)
+			{
+				Friend.Pathfinding.canSearch = true;
+				Friend.Pathfinding.canMove = true;
+				Friend.CanTalk = true;
+				Friend.Routine = true;
+			}
+			Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+			Friend.Prompt.enabled = true;
+			Friend.InEvent = false;
+			Friend.Private = false;
+			ScheduleBlock obj = Friend.ScheduleBlocks[4];
+			obj.destination = "LunchSpot";
+			obj.action = "Eat";
+			Friend.GetDestinations();
+			Friend.CurrentDestination = Friend.Destinations[Friend.Phase];
+			Friend.Pathfinding.target = Friend.Destinations[Friend.Phase];
+			Friend.DistanceToDestination = 100f;
+			Friend.MyBento.gameObject.SetActive(false);
+			Friend.MyBento.transform.parent = Friend.LeftHand;
+			Friend.MyBento.transform.localPosition = new Vector3(-0.025f, -0.105f, 0f);
+			Friend.MyBento.transform.localEulerAngles = new Vector3(0f, 165f, 82.5f);
+			Debug.Log("Osana's Monday lunch event ended, so Raibaru is being told to set her destination to her current phase's destination.");
+		}
+		if (!StudentManager.Stop)
+		{
+			StudentManager.UpdateStudents();
+		}
+		Spy.Prompt.Hide();
+		Spy.Prompt.enabled = false;
+		if (Spy.Phase > 0)
+		{
+			Spy.End();
+		}
+		EventSubtitle.text = string.Empty;
+		Yandere.Eavesdropping = false;
+		base.enabled = false;
+		Jukebox.Dip = 1f;
+		Debug.Log("Ending Osana's Monday Lunch Event.");
+		if (Rival.GoAway)
+		{
+			Rival.Subtitle.CustomText = "Ugh, seriously?! Nevermind, Senpai...just forget it...";
+			Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+		}
+		DisableBentos();
+	}
+
+	private void DisableBentos()
+	{
+		Bento[1].Prompt.Hide();
+		Bento[1].Prompt.enabled = false;
+		Bento[2].Prompt.Hide();
+		Bento[2].Prompt.enabled = false;
+		Bento[1].gameObject.SetActive(false);
+		Bento[2].gameObject.SetActive(false);
+		Bento[1].enabled = false;
+		Bento[2].enabled = false;
+	}
+
+	private void MakeRaibaruGoHide()
+	{
+		if (Friend != null && Friend.DistanceToDestination > 1f)
+		{
+			Friend.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+			Friend.CharacterAnimation.Play(Friend.WalkAnim);
+			Friend.Pathfinding.target = Location[3];
+			Friend.CurrentDestination = Location[3];
+			Friend.Pathfinding.canSearch = true;
+			Friend.Pathfinding.canMove = true;
+			Friend.Distracted = false;
+			Friend.Routine = false;
+			Friend.InEvent = true;
+		}
+	}
 }

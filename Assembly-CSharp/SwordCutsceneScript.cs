@@ -1,65 +1,68 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SwordCutsceneScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SwordCutsceneScript : MonoBehaviour
 {
-  public Animation YandereAnimation;
-  public Animation SwordAnimation;
-  public Transform SecondAngle;
-  public Transform HeartSegment;
-  public Transform[] Segments;
-  public float Intensity;
+	public Animation YandereAnimation;
 
-  private void Start()
-  {
-    this.Segments = this.HeartSegment.gameObject.GetComponentsInChildren<Transform>();
-    this.transform.position = new Vector3(0.5f, 1.25f, -1.9f);
-    this.transform.eulerAngles = new Vector3(0.0f, -45f, 0.0f);
-  }
+	public Animation SwordAnimation;
 
-  private void Update()
-  {
-    Debug.Log((object) this.YandereAnimation["f02_swordPull_00"].time);
-    if (Input.GetKeyDown("space"))
-    {
-      this.YandereAnimation["f02_swordPull_00"].time = 15f;
-      this.SwordAnimation["Sword_Pull"].time = 15f;
-    }
-    if ((double) this.YandereAnimation["f02_swordPull_00"].time > 33.0)
-    {
-      if ((double) this.transform.position.x != 0.0)
-      {
-        this.transform.position = new Vector3(0.0f, 1f, 0.0f);
-        this.transform.eulerAngles = new Vector3(0.0f, 180f, 0.0f);
-      }
-      else
-        this.transform.position += new Vector3(0.0f, 0.0f, Time.deltaTime * 0.1f);
-    }
-    else if ((double) this.YandereAnimation["f02_swordPull_00"].time > 15.5)
-    {
-      this.transform.position = new Vector3(0.66666f, 1.25f, -1.75f);
-      this.transform.eulerAngles = new Vector3(0.0f, -45f, 0.0f);
-    }
-    else
-    {
-      if ((double) this.YandereAnimation["f02_swordPull_00"].time <= 10.5)
-        return;
-      this.transform.position = this.SecondAngle.position;
-      this.transform.eulerAngles = this.SecondAngle.eulerAngles;
-    }
-  }
+	public Transform SecondAngle;
 
-  private void LateUpdate()
-  {
-    if ((double) this.YandereAnimation["f02_swordPull_00"].time <= 16.5 || (double) this.YandereAnimation["f02_swordPull_00"].time >= 22.5)
-      return;
-    this.Intensity += Time.deltaTime;
-    foreach (Component segment in this.Segments)
-      segment.transform.position += new Vector3(Random.Range(-1f / 1000f * this.Intensity, 1f / 1000f * this.Intensity), Random.Range(-1f / 1000f * this.Intensity, 1f / 1000f * this.Intensity), Random.Range(-1f / 1000f * this.Intensity, 1f / 1000f * this.Intensity));
-  }
+	public Transform HeartSegment;
+
+	public Transform[] Segments;
+
+	public float Intensity;
+
+	private void Start()
+	{
+		Segments = HeartSegment.gameObject.GetComponentsInChildren<Transform>();
+		base.transform.position = new Vector3(0.5f, 1.25f, -1.9f);
+		base.transform.eulerAngles = new Vector3(0f, -45f, 0f);
+	}
+
+	private void Update()
+	{
+		Debug.Log(YandereAnimation["f02_swordPull_00"].time);
+		if (Input.GetKeyDown("space"))
+		{
+			YandereAnimation["f02_swordPull_00"].time = 15f;
+			SwordAnimation["Sword_Pull"].time = 15f;
+		}
+		if (YandereAnimation["f02_swordPull_00"].time > 33f)
+		{
+			if (base.transform.position.x != 0f)
+			{
+				base.transform.position = new Vector3(0f, 1f, 0f);
+				base.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+			}
+			else
+			{
+				base.transform.position += new Vector3(0f, 0f, Time.deltaTime * 0.1f);
+			}
+		}
+		else if (YandereAnimation["f02_swordPull_00"].time > 15.5f)
+		{
+			base.transform.position = new Vector3(0.66666f, 1.25f, -1.75f);
+			base.transform.eulerAngles = new Vector3(0f, -45f, 0f);
+		}
+		else if (YandereAnimation["f02_swordPull_00"].time > 10.5f)
+		{
+			base.transform.position = SecondAngle.position;
+			base.transform.eulerAngles = SecondAngle.eulerAngles;
+		}
+	}
+
+	private void LateUpdate()
+	{
+		if (YandereAnimation["f02_swordPull_00"].time > 16.5f && YandereAnimation["f02_swordPull_00"].time < 22.5f)
+		{
+			Intensity += Time.deltaTime;
+			Transform[] segments = Segments;
+			for (int i = 0; i < segments.Length; i++)
+			{
+				segments[i].transform.position += new Vector3(Random.Range(-0.001f * Intensity, 0.001f * Intensity), Random.Range(-0.001f * Intensity, 0.001f * Intensity), Random.Range(-0.001f * Intensity, 0.001f * Intensity));
+			}
+		}
+	}
 }

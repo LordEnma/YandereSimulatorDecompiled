@@ -1,224 +1,308 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HomePrisonerChanScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class HomePrisonerChanScript : MonoBehaviour
 {
-  public HomeYandereDetectorScript YandereDetector;
-  public HomeCameraScript HomeCamera;
-  public CosmeticScript Cosmetic;
-  public JsonScript JSON;
-  public Vector3 RightEyeRotOrigin;
-  public Vector3 LeftEyeRotOrigin;
-  public Vector3 PermanentAngleR;
-  public Vector3 PermanentAngleL;
-  public Vector3 RightEyeOrigin;
-  public Vector3 LeftEyeOrigin;
-  public Vector3 Twitch;
-  public Quaternion LastRotation;
-  public Transform HomeYandere;
-  public Transform RightBreast;
-  public Transform LeftBreast;
-  public Transform TwintailR;
-  public Transform TwintailL;
-  public Transform RightEye;
-  public Transform LeftEye;
-  public Transform Skirt;
-  public Transform Neck;
-  public GameObject RightMindbrokenEye;
-  public GameObject LeftMindbrokenEye;
-  public GameObject AnkleRopes;
-  public GameObject Blindfold;
-  public GameObject Character;
-  public GameObject Tripod;
-  public GameObject Flies;
-  public float HairRotation;
-  public float TwitchTimer;
-  public float NextTwitch;
-  public float BreastSize;
-  public float EyeShrink;
-  public float Sanity;
-  public float HairRot1;
-  public float HairRot2;
-  public float HairRot3;
-  public float HairRot4;
-  public float HairRot5;
-  public bool LookAhead;
-  public bool Tortured;
-  public bool Eighties;
-  public bool Male;
-  public int PrisonerID;
-  public int StudentID;
-  public int Health = 100;
-  public string IdleAnim;
+	public HomeYandereDetectorScript YandereDetector;
 
-  private void Start()
-  {
-    if (this.PrisonerID == 1)
-      this.StudentID = StudentGlobals.Prisoner1;
-    if (this.PrisonerID == 2)
-      this.StudentID = StudentGlobals.Prisoner2;
-    if (this.PrisonerID == 3)
-      this.StudentID = StudentGlobals.Prisoner3;
-    if (this.PrisonerID == 4)
-      this.StudentID = StudentGlobals.Prisoner4;
-    if (this.PrisonerID == 5)
-      this.StudentID = StudentGlobals.Prisoner5;
-    if (this.PrisonerID == 6)
-      this.StudentID = StudentGlobals.Prisoner6;
-    if (this.PrisonerID == 7)
-      this.StudentID = StudentGlobals.Prisoner7;
-    if (this.PrisonerID == 8)
-      this.StudentID = StudentGlobals.Prisoner8;
-    if (this.PrisonerID == 9)
-      this.StudentID = StudentGlobals.Prisoner9;
-    if (this.PrisonerID == 10)
-      this.StudentID = StudentGlobals.Prisoner10;
-    if (this.StudentID > 0)
-    {
-      if (StudentGlobals.GetStudentSanity(this.StudentID) == 100)
-        this.AnkleRopes.SetActive(false);
-      this.PermanentAngleR = this.TwintailR.eulerAngles;
-      this.PermanentAngleL = this.TwintailL.eulerAngles;
-      StudentGlobals.GetStudentArrested(this.StudentID);
-      StudentGlobals.GetStudentDead(this.StudentID);
-      if (!StudentGlobals.GetStudentArrested(this.StudentID) && !StudentGlobals.GetStudentDead(this.StudentID))
-      {
-        this.Cosmetic.StudentID = this.StudentID;
-        this.Cosmetic.enabled = true;
-        this.BreastSize = this.JSON.Students[this.StudentID].BreastSize;
-        this.RightEyeRotOrigin = this.RightEye.localEulerAngles;
-        this.LeftEyeRotOrigin = this.LeftEye.localEulerAngles;
-        this.RightEyeOrigin = this.RightEye.localPosition;
-        this.LeftEyeOrigin = this.LeftEye.localPosition;
-        this.UpdateSanity();
-        this.TwintailR.transform.localEulerAngles = new Vector3(0.0f, 180f, -90f);
-        this.TwintailL.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -90f);
-        this.Blindfold.SetActive(false);
-        this.Tripod.SetActive(false);
-        if (this.StudentID == 81 && !StudentGlobals.GetStudentBroken(81) && SchemeGlobals.HelpingKokona)
-        {
-          this.Blindfold.SetActive(true);
-          this.Tripod.SetActive(true);
-        }
-      }
-      else
-        this.gameObject.SetActive(false);
-      if (this.IdleAnim == "")
-        this.IdleAnim = "f02_kidnapIdle_01";
-      this.Character.GetComponent<Animation>().CrossFade(this.IdleAnim);
-      this.Health = StudentGlobals.GetStudentHealth(this.StudentID);
-      if (this.Health == 0)
-      {
-        if (this.PrisonerID == 1)
-        {
-          Debug.Log((object) ("Prisoner #" + this.PrisonerID.ToString() + "'s Health is 0."));
-          this.Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
-          this.Character.GetComponent<Animation>()["f02_kidnapIdle_02"].speed = 0.0f;
-        }
-        else
-          this.Character.GetComponent<Animation>()[this.IdleAnim].speed = 0.0f;
-        Object.Instantiate<GameObject>(this.Flies, this.transform.position, Quaternion.identity);
-      }
-    }
-    else
-      this.gameObject.SetActive(false);
-    if ((Object) this.Cosmetic.Student.Ragdoll != (Object) null)
-    {
-      for (int index = 0; index < this.Cosmetic.Student.Ragdoll.AllRigidbodies.Length; ++index)
-      {
-        this.Cosmetic.Student.Ragdoll.AllRigidbodies[index].isKinematic = true;
-        this.Cosmetic.Student.Ragdoll.AllColliders[index].enabled = false;
-      }
-      this.Cosmetic.Student.DisableFemaleProps();
-      this.Cosmetic.Student.SetSplashes(false);
-      this.Cosmetic.Student.DisableProps();
-      this.Blindfold.SetActive(true);
-    }
-    if (!GameGlobals.Eighties)
-      return;
-    if (this.Eighties)
-      this.Blindfold.SetActive(true);
-    else
-      this.gameObject.SetActive(false);
-  }
+	public HomeCameraScript HomeCamera;
 
-  private void LateUpdate()
-  {
-    this.Skirt.transform.localPosition = new Vector3(0.0f, -0.135f, 0.01f);
-    this.Skirt.transform.localScale = new Vector3(this.Skirt.transform.localScale.x, 1.2f, this.Skirt.transform.localScale.z);
-    if (this.Health > 0)
-    {
-      if (!this.Tortured && this.PrisonerID == 1)
-      {
-        if ((double) this.Sanity > 0.0)
-        {
-          if (this.LookAhead)
-            this.Neck.localEulerAngles = new Vector3(this.Neck.localEulerAngles.x - 45f, this.Neck.localEulerAngles.y, this.Neck.localEulerAngles.z);
-          else if (this.YandereDetector.YandereDetected && (double) Vector3.Distance(this.transform.position, this.HomeYandere.position) < 2.0)
-          {
-            Quaternion b;
-            if ((Object) this.HomeCamera.Target == (Object) this.HomeCamera.Targets[10])
-            {
-              b = Quaternion.LookRotation(this.HomeCamera.transform.position + Vector3.down * (float) (1.5 * ((100.0 - (double) this.Sanity) / 100.0)) - this.Neck.position);
-              this.HairRotation = Mathf.Lerp(this.HairRotation, this.HairRot1, Time.deltaTime * 2f);
-            }
-            else
-            {
-              b = Quaternion.LookRotation(this.HomeYandere.position + Vector3.up * 1.5f - this.Neck.position);
-              this.HairRotation = Mathf.Lerp(this.HairRotation, this.HairRot2, Time.deltaTime * 2f);
-            }
-            this.Neck.rotation = Quaternion.Slerp(this.LastRotation, b, Time.deltaTime * 2f);
-            this.TwintailR.transform.localEulerAngles = new Vector3(this.HairRotation, 180f, -90f);
-            this.TwintailL.transform.localEulerAngles = new Vector3(-this.HairRotation, 0.0f, -90f);
-          }
-          else
-          {
-            if ((Object) this.HomeCamera.Target == (Object) this.HomeCamera.Targets[10])
-            {
-              Quaternion.LookRotation(this.HomeCamera.transform.position + Vector3.down * (float) (1.5 * ((100.0 - (double) this.Sanity) / 100.0)) - this.Neck.position);
-              this.HairRotation = Mathf.Lerp(this.HairRotation, this.HairRot3, Time.deltaTime * 2f);
-            }
-            else
-              this.Neck.rotation = Quaternion.Slerp(this.LastRotation, Quaternion.LookRotation(this.transform.position + this.transform.forward - this.Neck.position), Time.deltaTime * 2f);
-            this.HairRotation = Mathf.Lerp(this.HairRotation, this.HairRot4, Time.deltaTime * 2f);
-            this.TwintailR.transform.localEulerAngles = new Vector3(this.HairRotation, 180f, -90f);
-            this.TwintailL.transform.localEulerAngles = new Vector3(-this.HairRotation, 0.0f, -90f);
-          }
-        }
-        else
-          this.Neck.localEulerAngles = new Vector3(this.Neck.localEulerAngles.x - 45f, this.Neck.localEulerAngles.y, this.Neck.localEulerAngles.z);
-      }
-      this.LastRotation = this.Neck.rotation;
-      if (!this.Tortured && (double) this.Sanity < 100.0 && (double) this.Sanity > 0.0)
-      {
-        this.TwitchTimer += Time.deltaTime;
-        if ((double) this.TwitchTimer > (double) this.NextTwitch)
-        {
-          this.Twitch = new Vector3((float) (1.0 - (double) this.Sanity / 100.0) * Random.Range(-10f, 10f), (float) (1.0 - (double) this.Sanity / 100.0) * Random.Range(-10f, 10f), (float) (1.0 - (double) this.Sanity / 100.0) * Random.Range(-10f, 10f));
-          this.NextTwitch = Random.Range(0.0f, 1f);
-          this.TwitchTimer = 0.0f;
-        }
-        this.Twitch = Vector3.Lerp(this.Twitch, Vector3.zero, Time.deltaTime * 10f);
-        this.Neck.localEulerAngles += this.Twitch;
-      }
-    }
-    if (!this.Tortured)
-      return;
-    this.HairRotation = Mathf.Lerp(this.HairRotation, this.HairRot5, Time.deltaTime * 2f);
-    this.TwintailR.transform.localEulerAngles = new Vector3(this.HairRotation, 180f, -90f);
-    this.TwintailL.transform.localEulerAngles = new Vector3(-this.HairRotation, 0.0f, -90f);
-  }
+	public CosmeticScript Cosmetic;
 
-  public void UpdateSanity()
-  {
-    this.Sanity = (float) StudentGlobals.GetStudentSanity(this.StudentID);
-    bool flag = (double) this.Sanity == 0.0;
-    this.RightMindbrokenEye.SetActive(flag);
-    this.LeftMindbrokenEye.SetActive(flag);
-  }
+	public JsonScript JSON;
+
+	public Vector3 RightEyeRotOrigin;
+
+	public Vector3 LeftEyeRotOrigin;
+
+	public Vector3 PermanentAngleR;
+
+	public Vector3 PermanentAngleL;
+
+	public Vector3 RightEyeOrigin;
+
+	public Vector3 LeftEyeOrigin;
+
+	public Vector3 Twitch;
+
+	public Quaternion LastRotation;
+
+	public Transform HomeYandere;
+
+	public Transform RightBreast;
+
+	public Transform LeftBreast;
+
+	public Transform TwintailR;
+
+	public Transform TwintailL;
+
+	public Transform RightEye;
+
+	public Transform LeftEye;
+
+	public Transform Skirt;
+
+	public Transform Neck;
+
+	public GameObject RightMindbrokenEye;
+
+	public GameObject LeftMindbrokenEye;
+
+	public GameObject AnkleRopes;
+
+	public GameObject Blindfold;
+
+	public GameObject Character;
+
+	public GameObject Tripod;
+
+	public GameObject Flies;
+
+	public float HairRotation;
+
+	public float TwitchTimer;
+
+	public float NextTwitch;
+
+	public float BreastSize;
+
+	public float EyeShrink;
+
+	public float Sanity;
+
+	public float HairRot1;
+
+	public float HairRot2;
+
+	public float HairRot3;
+
+	public float HairRot4;
+
+	public float HairRot5;
+
+	public bool LookAhead;
+
+	public bool Tortured;
+
+	public bool Eighties;
+
+	public bool Male;
+
+	public int PrisonerID;
+
+	public int StudentID;
+
+	public int Health = 100;
+
+	public string IdleAnim;
+
+	private void Start()
+	{
+		if (PrisonerID == 1)
+		{
+			StudentID = StudentGlobals.Prisoner1;
+		}
+		if (PrisonerID == 2)
+		{
+			StudentID = StudentGlobals.Prisoner2;
+		}
+		if (PrisonerID == 3)
+		{
+			StudentID = StudentGlobals.Prisoner3;
+		}
+		if (PrisonerID == 4)
+		{
+			StudentID = StudentGlobals.Prisoner4;
+		}
+		if (PrisonerID == 5)
+		{
+			StudentID = StudentGlobals.Prisoner5;
+		}
+		if (PrisonerID == 6)
+		{
+			StudentID = StudentGlobals.Prisoner6;
+		}
+		if (PrisonerID == 7)
+		{
+			StudentID = StudentGlobals.Prisoner7;
+		}
+		if (PrisonerID == 8)
+		{
+			StudentID = StudentGlobals.Prisoner8;
+		}
+		if (PrisonerID == 9)
+		{
+			StudentID = StudentGlobals.Prisoner9;
+		}
+		if (PrisonerID == 10)
+		{
+			StudentID = StudentGlobals.Prisoner10;
+		}
+		if (StudentID > 0)
+		{
+			if (StudentGlobals.GetStudentSanity(StudentID) == 100)
+			{
+				AnkleRopes.SetActive(false);
+			}
+			PermanentAngleR = TwintailR.eulerAngles;
+			PermanentAngleL = TwintailL.eulerAngles;
+			StudentGlobals.GetStudentArrested(StudentID);
+			StudentGlobals.GetStudentDead(StudentID);
+			if (!StudentGlobals.GetStudentArrested(StudentID) && !StudentGlobals.GetStudentDead(StudentID))
+			{
+				Cosmetic.StudentID = StudentID;
+				Cosmetic.enabled = true;
+				BreastSize = JSON.Students[StudentID].BreastSize;
+				RightEyeRotOrigin = RightEye.localEulerAngles;
+				LeftEyeRotOrigin = LeftEye.localEulerAngles;
+				RightEyeOrigin = RightEye.localPosition;
+				LeftEyeOrigin = LeftEye.localPosition;
+				UpdateSanity();
+				TwintailR.transform.localEulerAngles = new Vector3(0f, 180f, -90f);
+				TwintailL.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+				Blindfold.SetActive(false);
+				Tripod.SetActive(false);
+				if (StudentID == 81 && !StudentGlobals.GetStudentBroken(81) && SchemeGlobals.HelpingKokona)
+				{
+					Blindfold.SetActive(true);
+					Tripod.SetActive(true);
+				}
+			}
+			else
+			{
+				base.gameObject.SetActive(false);
+			}
+			if (IdleAnim == "")
+			{
+				IdleAnim = "f02_kidnapIdle_01";
+			}
+			Character.GetComponent<Animation>().CrossFade(IdleAnim);
+			Health = StudentGlobals.GetStudentHealth(StudentID);
+			if (Health == 0)
+			{
+				if (PrisonerID == 1)
+				{
+					Debug.Log("Prisoner #" + PrisonerID + "'s Health is 0.");
+					Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
+					Character.GetComponent<Animation>()["f02_kidnapIdle_02"].speed = 0f;
+				}
+				else
+				{
+					Character.GetComponent<Animation>()[IdleAnim].speed = 0f;
+				}
+				Object.Instantiate(Flies, base.transform.position, Quaternion.identity);
+			}
+		}
+		else
+		{
+			base.gameObject.SetActive(false);
+		}
+		if (Cosmetic.Student.Ragdoll != null)
+		{
+			int num = 0;
+			for (num = 0; num < Cosmetic.Student.Ragdoll.AllRigidbodies.Length; num++)
+			{
+				Cosmetic.Student.Ragdoll.AllRigidbodies[num].isKinematic = true;
+				Cosmetic.Student.Ragdoll.AllColliders[num].enabled = false;
+			}
+			Cosmetic.Student.DisableFemaleProps();
+			Cosmetic.Student.SetSplashes(false);
+			Cosmetic.Student.DisableProps();
+			Blindfold.SetActive(true);
+		}
+		if (GameGlobals.Eighties)
+		{
+			if (Eighties)
+			{
+				Blindfold.SetActive(true);
+			}
+			else
+			{
+				base.gameObject.SetActive(false);
+			}
+		}
+	}
+
+	private void LateUpdate()
+	{
+		Skirt.transform.localPosition = new Vector3(0f, -0.135f, 0.01f);
+		Skirt.transform.localScale = new Vector3(Skirt.transform.localScale.x, 1.2f, Skirt.transform.localScale.z);
+		if (Health > 0)
+		{
+			if (!Tortured && PrisonerID == 1)
+			{
+				if (Sanity > 0f)
+				{
+					if (LookAhead)
+					{
+						Neck.localEulerAngles = new Vector3(Neck.localEulerAngles.x - 45f, Neck.localEulerAngles.y, Neck.localEulerAngles.z);
+					}
+					else if (YandereDetector.YandereDetected && Vector3.Distance(base.transform.position, HomeYandere.position) < 2f)
+					{
+						Quaternion b;
+						if (HomeCamera.Target == HomeCamera.Targets[10])
+						{
+							b = Quaternion.LookRotation(HomeCamera.transform.position + Vector3.down * (1.5f * ((100f - Sanity) / 100f)) - Neck.position);
+							HairRotation = Mathf.Lerp(HairRotation, HairRot1, Time.deltaTime * 2f);
+						}
+						else
+						{
+							b = Quaternion.LookRotation(HomeYandere.position + Vector3.up * 1.5f - Neck.position);
+							HairRotation = Mathf.Lerp(HairRotation, HairRot2, Time.deltaTime * 2f);
+						}
+						Neck.rotation = Quaternion.Slerp(LastRotation, b, Time.deltaTime * 2f);
+						TwintailR.transform.localEulerAngles = new Vector3(HairRotation, 180f, -90f);
+						TwintailL.transform.localEulerAngles = new Vector3(0f - HairRotation, 0f, -90f);
+					}
+					else
+					{
+						if (HomeCamera.Target == HomeCamera.Targets[10])
+						{
+							Quaternion quaternion = Quaternion.LookRotation(HomeCamera.transform.position + Vector3.down * (1.5f * ((100f - Sanity) / 100f)) - Neck.position);
+							HairRotation = Mathf.Lerp(HairRotation, HairRot3, Time.deltaTime * 2f);
+						}
+						else
+						{
+							Quaternion quaternion = Quaternion.LookRotation(base.transform.position + base.transform.forward - Neck.position);
+							Neck.rotation = Quaternion.Slerp(LastRotation, quaternion, Time.deltaTime * 2f);
+						}
+						HairRotation = Mathf.Lerp(HairRotation, HairRot4, Time.deltaTime * 2f);
+						TwintailR.transform.localEulerAngles = new Vector3(HairRotation, 180f, -90f);
+						TwintailL.transform.localEulerAngles = new Vector3(0f - HairRotation, 0f, -90f);
+					}
+				}
+				else
+				{
+					Neck.localEulerAngles = new Vector3(Neck.localEulerAngles.x - 45f, Neck.localEulerAngles.y, Neck.localEulerAngles.z);
+				}
+			}
+			LastRotation = Neck.rotation;
+			if (!Tortured && Sanity < 100f && Sanity > 0f)
+			{
+				TwitchTimer += Time.deltaTime;
+				if (TwitchTimer > NextTwitch)
+				{
+					Twitch = new Vector3((1f - Sanity / 100f) * Random.Range(-10f, 10f), (1f - Sanity / 100f) * Random.Range(-10f, 10f), (1f - Sanity / 100f) * Random.Range(-10f, 10f));
+					NextTwitch = Random.Range(0f, 1f);
+					TwitchTimer = 0f;
+				}
+				Twitch = Vector3.Lerp(Twitch, Vector3.zero, Time.deltaTime * 10f);
+				Neck.localEulerAngles += Twitch;
+			}
+		}
+		if (Tortured)
+		{
+			HairRotation = Mathf.Lerp(HairRotation, HairRot5, Time.deltaTime * 2f);
+			TwintailR.transform.localEulerAngles = new Vector3(HairRotation, 180f, -90f);
+			TwintailL.transform.localEulerAngles = new Vector3(0f - HairRotation, 0f, -90f);
+		}
+	}
+
+	public void UpdateSanity()
+	{
+		Sanity = StudentGlobals.GetStudentSanity(StudentID);
+		bool active = Sanity == 0f;
+		RightMindbrokenEye.SetActive(active);
+		LeftMindbrokenEye.SetActive(active);
+	}
 }

@@ -1,108 +1,178 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MissionModeGlobals
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public static class MissionModeGlobals
 {
-  private const string Str_MissionCondition = "MissionCondition_";
-  private const string Str_MissionDifficulty = "MissionDifficulty";
-  private const string Str_MissionMode = "MissionMode";
-  private const string Str_MissionRequiredClothing = "MissionRequiredClothing";
-  private const string Str_MissionRequiredDisposal = "MissionRequiredDisposal";
-  private const string Str_MissionRequiredWeapon = "MissionRequiredWeapon";
-  private const string Str_MissionTarget = "MissionTarget";
-  private const string Str_MissionTargetName = "MissionTargetName";
-  private const string Str_NemesisDifficulty = "NemesisDifficulty";
-  private const string Str_NemesisAggression = "NemesisAggression";
-  private const string Str_MultiMission = "MultiMission";
+	private const string Str_MissionCondition = "MissionCondition_";
 
-  public static int GetMissionCondition(int id) => PlayerPrefs.GetInt("MissionCondition_" + id.ToString());
+	private const string Str_MissionDifficulty = "MissionDifficulty";
 
-  public static void SetMissionCondition(int id, int value)
-  {
-    string id1 = id.ToString();
-    KeysHelper.AddIfMissing("MissionCondition_", id1);
-    PlayerPrefs.SetInt("MissionCondition_" + id1, value);
-  }
+	private const string Str_MissionMode = "MissionMode";
 
-  public static int[] KeysOfMissionCondition() => KeysHelper.GetIntegerKeys("MissionCondition_");
+	private const string Str_MissionRequiredClothing = "MissionRequiredClothing";
 
-  public static int MissionDifficulty
-  {
-    get => PlayerPrefs.GetInt(nameof (MissionDifficulty));
-    set => PlayerPrefs.SetInt(nameof (MissionDifficulty), value);
-  }
+	private const string Str_MissionRequiredDisposal = "MissionRequiredDisposal";
 
-  public static bool MissionMode
-  {
-    get => GlobalsHelper.GetBool(nameof (MissionMode));
-    set => GlobalsHelper.SetBool(nameof (MissionMode), value);
-  }
+	private const string Str_MissionRequiredWeapon = "MissionRequiredWeapon";
 
-  public static bool MultiMission
-  {
-    get => GlobalsHelper.GetBool(nameof (MultiMission));
-    set => GlobalsHelper.SetBool(nameof (MultiMission), value);
-  }
+	private const string Str_MissionTarget = "MissionTarget";
 
-  public static int MissionRequiredClothing
-  {
-    get => PlayerPrefs.GetInt(nameof (MissionRequiredClothing));
-    set => PlayerPrefs.SetInt(nameof (MissionRequiredClothing), value);
-  }
+	private const string Str_MissionTargetName = "MissionTargetName";
 
-  public static int MissionRequiredDisposal
-  {
-    get => PlayerPrefs.GetInt(nameof (MissionRequiredDisposal));
-    set => PlayerPrefs.SetInt(nameof (MissionRequiredDisposal), value);
-  }
+	private const string Str_NemesisDifficulty = "NemesisDifficulty";
 
-  public static int MissionRequiredWeapon
-  {
-    get => PlayerPrefs.GetInt(nameof (MissionRequiredWeapon));
-    set => PlayerPrefs.SetInt(nameof (MissionRequiredWeapon), value);
-  }
+	private const string Str_NemesisAggression = "NemesisAggression";
 
-  public static int MissionTarget
-  {
-    get => PlayerPrefs.GetInt(nameof (MissionTarget));
-    set => PlayerPrefs.SetInt(nameof (MissionTarget), value);
-  }
+	private const string Str_MultiMission = "MultiMission";
 
-  public static string MissionTargetName
-  {
-    get => PlayerPrefs.GetString(nameof (MissionTargetName));
-    set => PlayerPrefs.SetString(nameof (MissionTargetName), value);
-  }
+	public static int MissionDifficulty
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("MissionDifficulty");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("MissionDifficulty", value);
+		}
+	}
 
-  public static int NemesisDifficulty
-  {
-    get => PlayerPrefs.GetInt(nameof (NemesisDifficulty));
-    set => PlayerPrefs.SetInt(nameof (NemesisDifficulty), value);
-  }
+	public static bool MissionMode
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("MissionMode");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("MissionMode", value);
+		}
+	}
 
-  public static bool NemesisAggression
-  {
-    get => GlobalsHelper.GetBool(nameof (NemesisAggression));
-    set => GlobalsHelper.SetBool(nameof (NemesisAggression), value);
-  }
+	public static bool MultiMission
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("MultiMission");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("MultiMission", value);
+		}
+	}
 
-  public static void DeleteAll()
-  {
-    Globals.DeleteCollection("MissionCondition_", MissionModeGlobals.KeysOfMissionCondition());
-    Globals.Delete("MissionDifficulty");
-    Globals.Delete("MissionMode");
-    Globals.Delete("MissionRequiredClothing");
-    Globals.Delete("MissionRequiredDisposal");
-    Globals.Delete("MissionRequiredWeapon");
-    Globals.Delete("MissionTarget");
-    Globals.Delete("MissionTargetName");
-    Globals.Delete("NemesisDifficulty");
-    Globals.Delete("NemesisAggression");
-    Globals.Delete("MultiMission");
-  }
+	public static int MissionRequiredClothing
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("MissionRequiredClothing");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("MissionRequiredClothing", value);
+		}
+	}
+
+	public static int MissionRequiredDisposal
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("MissionRequiredDisposal");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("MissionRequiredDisposal", value);
+		}
+	}
+
+	public static int MissionRequiredWeapon
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("MissionRequiredWeapon");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("MissionRequiredWeapon", value);
+		}
+	}
+
+	public static int MissionTarget
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("MissionTarget");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("MissionTarget", value);
+		}
+	}
+
+	public static string MissionTargetName
+	{
+		get
+		{
+			return PlayerPrefs.GetString("MissionTargetName");
+		}
+		set
+		{
+			PlayerPrefs.SetString("MissionTargetName", value);
+		}
+	}
+
+	public static int NemesisDifficulty
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("NemesisDifficulty");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("NemesisDifficulty", value);
+		}
+	}
+
+	public static bool NemesisAggression
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("NemesisAggression");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("NemesisAggression", value);
+		}
+	}
+
+	public static int GetMissionCondition(int id)
+	{
+		return PlayerPrefs.GetInt("MissionCondition_" + id);
+	}
+
+	public static void SetMissionCondition(int id, int value)
+	{
+		string text = id.ToString();
+		KeysHelper.AddIfMissing("MissionCondition_", text);
+		PlayerPrefs.SetInt("MissionCondition_" + text, value);
+	}
+
+	public static int[] KeysOfMissionCondition()
+	{
+		return KeysHelper.GetIntegerKeys("MissionCondition_");
+	}
+
+	public static void DeleteAll()
+	{
+		Globals.DeleteCollection("MissionCondition_", KeysOfMissionCondition());
+		Globals.Delete("MissionDifficulty");
+		Globals.Delete("MissionMode");
+		Globals.Delete("MissionRequiredClothing");
+		Globals.Delete("MissionRequiredDisposal");
+		Globals.Delete("MissionRequiredWeapon");
+		Globals.Delete("MissionTarget");
+		Globals.Delete("MissionTargetName");
+		Globals.Delete("NemesisDifficulty");
+		Globals.Delete("NemesisAggression");
+		Globals.Delete("MultiMission");
+	}
 }

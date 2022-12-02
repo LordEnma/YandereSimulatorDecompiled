@@ -1,45 +1,42 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: YandereShoeLockerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class YandereShoeLockerScript : MonoBehaviour
 {
-  public PromptScript Prompt;
-  public YandereScript Yandere;
-  public bool Outdoors = true;
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if ((double) this.Yandere.transform.position.y >= 1.0 || !this.Yandere.CanMove || this.Yandere.Schoolwear != 1 || this.Yandere.ClubAttire || this.Yandere.Egg || this.Yandere.WearingRaincoat || this.Yandere.CanCloak)
-      return;
-    if (this.Outdoors)
-    {
-      if ((double) this.Yandere.transform.position.x <= -30.0 || (double) this.Yandere.transform.position.x >= 30.0 || (double) this.Yandere.transform.position.z <= -34.0 || (double) this.Yandere.transform.position.z >= 30.0)
-        return;
-      this.Outdoors = false;
-      this.UpdateShoes();
-    }
-    else
-    {
-      if ((double) this.Yandere.transform.position.z <= 30.0 && ((double) this.Yandere.transform.position.z >= -34.0 || (double) this.Yandere.transform.position.x <= -6.0 || (double) this.Yandere.transform.position.x >= 6.0))
-        return;
-      this.Outdoors = true;
-      this.UpdateShoes();
-    }
-  }
+	public YandereScript Yandere;
 
-  private void UpdateShoes()
-  {
-    int bloodiness1 = this.Yandere.RightFootprintSpawner.Bloodiness;
-    int bloodiness2 = this.Yandere.LeftFootprintSpawner.Bloodiness;
-    this.Yandere.Casual = this.Outdoors;
-    this.Yandere.ChangeSchoolwear();
-    this.Yandere.CanMove = true;
-    this.Yandere.RightFootprintSpawner.Bloodiness = bloodiness1;
-    this.Yandere.LeftFootprintSpawner.Bloodiness = bloodiness2;
-  }
+	public bool Outdoors = true;
+
+	private void Update()
+	{
+		if (!(Yandere.transform.position.y < 1f) || !Yandere.CanMove || Yandere.Schoolwear != 1 || Yandere.ClubAttire || Yandere.Egg || Yandere.WearingRaincoat || Yandere.CanCloak)
+		{
+			return;
+		}
+		if (Outdoors)
+		{
+			if (Yandere.transform.position.x > -30f && Yandere.transform.position.x < 30f && Yandere.transform.position.z > -34f && Yandere.transform.position.z < 30f)
+			{
+				Outdoors = false;
+				UpdateShoes();
+			}
+		}
+		else if (Yandere.transform.position.z > 30f || (Yandere.transform.position.z < -34f && Yandere.transform.position.x > -6f && Yandere.transform.position.x < 6f))
+		{
+			Outdoors = true;
+			UpdateShoes();
+		}
+	}
+
+	private void UpdateShoes()
+	{
+		int bloodiness = Yandere.RightFootprintSpawner.Bloodiness;
+		int bloodiness2 = Yandere.LeftFootprintSpawner.Bloodiness;
+		Yandere.Casual = Outdoors;
+		Yandere.ChangeSchoolwear();
+		Yandere.CanMove = true;
+		Yandere.RightFootprintSpawner.Bloodiness = bloodiness;
+		Yandere.LeftFootprintSpawner.Bloodiness = bloodiness2;
+	}
 }

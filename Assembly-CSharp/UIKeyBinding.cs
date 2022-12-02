@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIKeyBinding
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,197 +5,265 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Key Binding")]
 public class UIKeyBinding : MonoBehaviour
 {
-  public static List<UIKeyBinding> list = new List<UIKeyBinding>();
-  public KeyCode keyCode;
-  public UIKeyBinding.Modifier modifier;
-  public UIKeyBinding.Action action;
-  [NonSerialized]
-  private bool mIgnoreUp;
-  [NonSerialized]
-  private bool mIsInput;
-  [NonSerialized]
-  private bool mPress;
+	[DoNotObfuscateNGUI]
+	public enum Action
+	{
+		PressAndClick = 0,
+		Select = 1,
+		All = 2
+	}
 
-  public string captionText
-  {
-    get
-    {
-      string caption = NGUITools.KeyToCaption(this.keyCode);
-      return this.modifier == UIKeyBinding.Modifier.None || this.modifier == UIKeyBinding.Modifier.Any ? caption : this.modifier.ToString() + "+" + caption;
-    }
-  }
+	[DoNotObfuscateNGUI]
+	public enum Modifier
+	{
+		Any = 0,
+		Shift = 1,
+		Ctrl = 2,
+		Alt = 3,
+		None = 4
+	}
 
-  public static bool IsBound(KeyCode key)
-  {
-    int index = 0;
-    for (int count = UIKeyBinding.list.Count; index < count; ++index)
-    {
-      UIKeyBinding uiKeyBinding = UIKeyBinding.list[index];
-      if ((UnityEngine.Object) uiKeyBinding != (UnityEngine.Object) null && uiKeyBinding.keyCode == key)
-        return true;
-    }
-    return false;
-  }
+	public static List<UIKeyBinding> list = new List<UIKeyBinding>();
 
-  public static UIKeyBinding Find(string name)
-  {
-    int index = 0;
-    for (int count = UIKeyBinding.list.Count; index < count; ++index)
-    {
-      if (UIKeyBinding.list[index].name == name)
-        return UIKeyBinding.list[index];
-    }
-    return (UIKeyBinding) null;
-  }
+	public KeyCode keyCode;
 
-  protected virtual void OnEnable() => UIKeyBinding.list.Add(this);
+	public Modifier modifier;
 
-  protected virtual void OnDisable() => UIKeyBinding.list.Remove(this);
+	public Action action;
 
-  protected virtual void Start()
-  {
-    UIInput component = this.GetComponent<UIInput>();
-    this.mIsInput = (UnityEngine.Object) component != (UnityEngine.Object) null;
-    if (!((UnityEngine.Object) component != (UnityEngine.Object) null))
-      return;
-    EventDelegate.Add(component.onSubmit, new EventDelegate.Callback(this.OnSubmit));
-  }
+	[NonSerialized]
+	private bool mIgnoreUp;
 
-  protected virtual void OnSubmit()
-  {
-    if (UICamera.currentKey != this.keyCode || !this.IsModifierActive())
-      return;
-    this.mIgnoreUp = true;
-  }
+	[NonSerialized]
+	private bool mIsInput;
 
-  protected virtual bool IsModifierActive() => UIKeyBinding.IsModifierActive(this.modifier);
+	[NonSerialized]
+	private bool mPress;
 
-  public static bool IsModifierActive(UIKeyBinding.Modifier modifier)
-  {
-    switch (modifier)
-    {
-      case UIKeyBinding.Modifier.Any:
-        return true;
-      case UIKeyBinding.Modifier.Shift:
-        if (UICamera.GetKey(KeyCode.LeftShift) || UICamera.GetKey(KeyCode.RightShift))
-          return true;
-        break;
-      case UIKeyBinding.Modifier.Ctrl:
-        if (UICamera.GetKey(KeyCode.LeftControl) || UICamera.GetKey(KeyCode.RightControl))
-          return true;
-        break;
-      case UIKeyBinding.Modifier.Alt:
-        if (UICamera.GetKey(KeyCode.LeftAlt) || UICamera.GetKey(KeyCode.RightAlt))
-          return true;
-        break;
-      case UIKeyBinding.Modifier.None:
-        return !UICamera.GetKey(KeyCode.LeftAlt) && !UICamera.GetKey(KeyCode.RightAlt) && !UICamera.GetKey(KeyCode.LeftControl) && !UICamera.GetKey(KeyCode.RightControl) && !UICamera.GetKey(KeyCode.LeftShift) && !UICamera.GetKey(KeyCode.RightShift);
-    }
-    return false;
-  }
+	public string captionText
+	{
+		get
+		{
+			string text = NGUITools.KeyToCaption(keyCode);
+			if (modifier == Modifier.None || modifier == Modifier.Any)
+			{
+				return text;
+			}
+			return modifier.ToString() + "+" + text;
+		}
+	}
 
-  protected virtual void Update()
-  {
-    if (this.keyCode != KeyCode.Numlock && UICamera.inputHasFocus || this.keyCode == KeyCode.None || !this.IsModifierActive())
-      return;
-    bool flag1 = UICamera.GetKeyDown(this.keyCode);
-    bool flag2 = UICamera.GetKeyUp(this.keyCode);
-    if (flag1)
-      this.mPress = true;
-    if (this.action == UIKeyBinding.Action.PressAndClick || this.action == UIKeyBinding.Action.All)
-    {
-      if (flag1)
-      {
-        UICamera.currentTouchID = -1;
-        UICamera.currentKey = this.keyCode;
-        this.OnBindingPress(true);
-      }
-      if (this.mPress & flag2)
-      {
-        UICamera.currentTouchID = -1;
-        UICamera.currentKey = this.keyCode;
-        this.OnBindingPress(false);
-        this.OnBindingClick();
-      }
-    }
-    if ((this.action == UIKeyBinding.Action.Select || this.action == UIKeyBinding.Action.All) && flag2)
-    {
-      if (this.mIsInput)
-      {
-        if (!this.mIgnoreUp && (this.keyCode == KeyCode.Numlock || !UICamera.inputHasFocus) && this.mPress)
-          UICamera.selectedObject = this.gameObject;
-        this.mIgnoreUp = false;
-      }
-      else if (this.mPress)
-        UICamera.hoveredObject = this.gameObject;
-    }
-    if (!flag2)
-      return;
-    this.mPress = false;
-  }
+	public static bool IsBound(KeyCode key)
+	{
+		int i = 0;
+		for (int count = list.Count; i < count; i++)
+		{
+			UIKeyBinding uIKeyBinding = list[i];
+			if (uIKeyBinding != null && uIKeyBinding.keyCode == key)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
-  protected virtual void OnBindingPress(bool pressed) => UICamera.Notify(this.gameObject, "OnPress", (object) pressed);
+	public static UIKeyBinding Find(string name)
+	{
+		int i = 0;
+		for (int count = list.Count; i < count; i++)
+		{
+			if (list[i].name == name)
+			{
+				return list[i];
+			}
+		}
+		return null;
+	}
 
-  protected virtual void OnBindingClick() => UICamera.Notify(this.gameObject, "OnClick", (object) null);
+	protected virtual void OnEnable()
+	{
+		list.Add(this);
+	}
 
-  public override string ToString() => UIKeyBinding.GetString(this.keyCode, this.modifier);
+	protected virtual void OnDisable()
+	{
+		list.Remove(this);
+	}
 
-  public static string GetString(KeyCode keyCode, UIKeyBinding.Modifier modifier) => modifier == UIKeyBinding.Modifier.None ? NGUITools.KeyToCaption(keyCode) : modifier.ToString() + "+" + NGUITools.KeyToCaption(keyCode);
+	protected virtual void Start()
+	{
+		UIInput component = GetComponent<UIInput>();
+		mIsInput = component != null;
+		if (component != null)
+		{
+			EventDelegate.Add(component.onSubmit, OnSubmit);
+		}
+	}
 
-  public static bool GetKeyCode(string text, out KeyCode key, out UIKeyBinding.Modifier modifier)
-  {
-    key = KeyCode.None;
-    modifier = UIKeyBinding.Modifier.None;
-    if (string.IsNullOrEmpty(text))
-      return true;
-    if (text.Length > 2 && text.Contains("+") && text[text.Length - 1] != '+')
-    {
-      string[] strArray = text.Split(new char[1]{ '+' }, 2);
-      key = NGUITools.CaptionToKey(strArray[1]);
-      try
-      {
-        modifier = (UIKeyBinding.Modifier) Enum.Parse(typeof (UIKeyBinding.Modifier), strArray[0]);
-      }
-      catch (Exception ex)
-      {
-        return false;
-      }
-    }
-    else
-    {
-      modifier = UIKeyBinding.Modifier.None;
-      key = NGUITools.CaptionToKey(text);
-    }
-    return true;
-  }
+	protected virtual void OnSubmit()
+	{
+		if (UICamera.currentKey == keyCode && IsModifierActive())
+		{
+			mIgnoreUp = true;
+		}
+	}
 
-  public static UIKeyBinding.Modifier GetActiveModifier()
-  {
-    UIKeyBinding.Modifier activeModifier = UIKeyBinding.Modifier.None;
-    if (UICamera.GetKey(KeyCode.LeftAlt) || UICamera.GetKey(KeyCode.RightAlt))
-      activeModifier = UIKeyBinding.Modifier.Alt;
-    else if (UICamera.GetKey(KeyCode.LeftShift) || UICamera.GetKey(KeyCode.RightShift))
-      activeModifier = UIKeyBinding.Modifier.Shift;
-    else if (UICamera.GetKey(KeyCode.LeftControl) || UICamera.GetKey(KeyCode.RightControl))
-      activeModifier = UIKeyBinding.Modifier.Ctrl;
-    return activeModifier;
-  }
+	protected virtual bool IsModifierActive()
+	{
+		return IsModifierActive(modifier);
+	}
 
-  [DoNotObfuscateNGUI]
-  public enum Action
-  {
-    PressAndClick,
-    Select,
-    All,
-  }
+	public static bool IsModifierActive(Modifier modifier)
+	{
+		switch (modifier)
+		{
+		case Modifier.Any:
+			return true;
+		case Modifier.Alt:
+			if (UICamera.GetKey(KeyCode.LeftAlt) || UICamera.GetKey(KeyCode.RightAlt))
+			{
+				return true;
+			}
+			break;
+		case Modifier.Ctrl:
+			if (UICamera.GetKey(KeyCode.LeftControl) || UICamera.GetKey(KeyCode.RightControl))
+			{
+				return true;
+			}
+			break;
+		case Modifier.Shift:
+			if (UICamera.GetKey(KeyCode.LeftShift) || UICamera.GetKey(KeyCode.RightShift))
+			{
+				return true;
+			}
+			break;
+		case Modifier.None:
+			if (!UICamera.GetKey(KeyCode.LeftAlt) && !UICamera.GetKey(KeyCode.RightAlt) && !UICamera.GetKey(KeyCode.LeftControl) && !UICamera.GetKey(KeyCode.RightControl) && !UICamera.GetKey(KeyCode.LeftShift))
+			{
+				return !UICamera.GetKey(KeyCode.RightShift);
+			}
+			return false;
+		}
+		return false;
+	}
 
-  [DoNotObfuscateNGUI]
-  public enum Modifier
-  {
-    Any,
-    Shift,
-    Ctrl,
-    Alt,
-    None,
-  }
+	protected virtual void Update()
+	{
+		if ((keyCode != KeyCode.Numlock && UICamera.inputHasFocus) || keyCode == KeyCode.None || !IsModifierActive())
+		{
+			return;
+		}
+		bool flag = UICamera.GetKeyDown(keyCode);
+		bool flag2 = UICamera.GetKeyUp(keyCode);
+		if (flag)
+		{
+			mPress = true;
+		}
+		if (action == Action.PressAndClick || action == Action.All)
+		{
+			if (flag)
+			{
+				UICamera.currentTouchID = -1;
+				UICamera.currentKey = keyCode;
+				OnBindingPress(true);
+			}
+			if (mPress && flag2)
+			{
+				UICamera.currentTouchID = -1;
+				UICamera.currentKey = keyCode;
+				OnBindingPress(false);
+				OnBindingClick();
+			}
+		}
+		if ((action == Action.Select || action == Action.All) && flag2)
+		{
+			if (mIsInput)
+			{
+				if (!mIgnoreUp && (keyCode == KeyCode.Numlock || !UICamera.inputHasFocus) && mPress)
+				{
+					UICamera.selectedObject = base.gameObject;
+				}
+				mIgnoreUp = false;
+			}
+			else if (mPress)
+			{
+				UICamera.hoveredObject = base.gameObject;
+			}
+		}
+		if (flag2)
+		{
+			mPress = false;
+		}
+	}
+
+	protected virtual void OnBindingPress(bool pressed)
+	{
+		UICamera.Notify(base.gameObject, "OnPress", pressed);
+	}
+
+	protected virtual void OnBindingClick()
+	{
+		UICamera.Notify(base.gameObject, "OnClick", null);
+	}
+
+	public override string ToString()
+	{
+		return GetString(keyCode, modifier);
+	}
+
+	public static string GetString(KeyCode keyCode, Modifier modifier)
+	{
+		if (modifier == Modifier.None)
+		{
+			return NGUITools.KeyToCaption(keyCode);
+		}
+		return modifier.ToString() + "+" + NGUITools.KeyToCaption(keyCode);
+	}
+
+	public static bool GetKeyCode(string text, out KeyCode key, out Modifier modifier)
+	{
+		key = KeyCode.None;
+		modifier = Modifier.None;
+		if (string.IsNullOrEmpty(text))
+		{
+			return true;
+		}
+		if (text.Length > 2 && text.Contains("+") && text[text.Length - 1] != '+')
+		{
+			string[] array = text.Split(new char[1] { '+' }, 2);
+			key = NGUITools.CaptionToKey(array[1]);
+			try
+			{
+				modifier = (Modifier)Enum.Parse(typeof(Modifier), array[0]);
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+		else
+		{
+			modifier = Modifier.None;
+			key = NGUITools.CaptionToKey(text);
+		}
+		return true;
+	}
+
+	public static Modifier GetActiveModifier()
+	{
+		Modifier result = Modifier.None;
+		if (UICamera.GetKey(KeyCode.LeftAlt) || UICamera.GetKey(KeyCode.RightAlt))
+		{
+			result = Modifier.Alt;
+		}
+		else if (UICamera.GetKey(KeyCode.LeftShift) || UICamera.GetKey(KeyCode.RightShift))
+		{
+			result = Modifier.Shift;
+		}
+		else if (UICamera.GetKey(KeyCode.LeftControl) || UICamera.GetKey(KeyCode.RightControl))
+		{
+			result = Modifier.Ctrl;
+		}
+		return result;
+	}
 }

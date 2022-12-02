@@ -1,30 +1,35 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HomeMangaBookScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class HomeMangaBookScript : MonoBehaviour
 {
-  public HomeMangaScript Manga;
-  public float RotationSpeed;
-  public int ID;
-  public Renderer MyRenderer;
-  public Texture EightiesCover;
-  public Texture EightiesBack;
-  public Texture EightiesSpine;
+	public HomeMangaScript Manga;
 
-  private void Start()
-  {
-    this.transform.eulerAngles = new Vector3(90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z);
-    if (!((Object) this.MyRenderer != (Object) null) || this.ID >= 10 || !GameGlobals.Eighties)
-      return;
-    this.MyRenderer.materials[0].mainTexture = this.EightiesCover;
-    this.MyRenderer.materials[1].mainTexture = this.EightiesBack;
-    this.MyRenderer.materials[2].mainTexture = this.EightiesSpine;
-  }
+	public float RotationSpeed;
 
-  private void Update() => this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, this.Manga.Selected == this.ID ? this.transform.eulerAngles.y + Time.deltaTime * this.RotationSpeed : 0.0f, this.transform.eulerAngles.z);
+	public int ID;
+
+	public Renderer MyRenderer;
+
+	public Texture EightiesCover;
+
+	public Texture EightiesBack;
+
+	public Texture EightiesSpine;
+
+	private void Start()
+	{
+		base.transform.eulerAngles = new Vector3(90f, base.transform.eulerAngles.y, base.transform.eulerAngles.z);
+		if (MyRenderer != null && ID < 10 && GameGlobals.Eighties)
+		{
+			MyRenderer.materials[0].mainTexture = EightiesCover;
+			MyRenderer.materials[1].mainTexture = EightiesBack;
+			MyRenderer.materials[2].mainTexture = EightiesSpine;
+		}
+	}
+
+	private void Update()
+	{
+		float y = ((Manga.Selected == ID) ? (base.transform.eulerAngles.y + Time.deltaTime * RotationSpeed) : 0f);
+		base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, y, base.transform.eulerAngles.z);
+	}
 }

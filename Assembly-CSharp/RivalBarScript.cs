@@ -1,69 +1,67 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RivalBarScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RivalBarScript : MonoBehaviour
 {
-  public int ID;
-  public float Speed;
-  public float Timer;
-  public UISprite[] Bars;
-  public float[] TargetHeights;
+	public int ID;
 
-  private void Start()
-  {
-    for (int index = 1; index < 11; ++index)
-      this.Bars[index].transform.localScale = new Vector3(1f, 0.0f, 1f);
-  }
+	public float Speed;
 
-  private void Update()
-  {
-    if (Input.GetKeyDown("space"))
-      this.UpdateBars();
-    this.Timer += Time.deltaTime;
-    if (this.ID < 11)
-    {
-      if ((double) this.Timer > 1.0)
-      {
-        this.UpdateBars();
-        this.Timer = 0.0f;
-      }
-    }
-    else if ((double) this.Timer > 2.5)
-    {
-      this.UpdateBars();
-      this.Timer = 0.0f;
-    }
-    for (int index = 1; index < this.ID; ++index)
-    {
-      this.Bars[index].transform.localScale = Vector3.Lerp(this.Bars[index].transform.localScale, new Vector3(1f, this.TargetHeights[index], 1f), Time.deltaTime * this.Speed);
-      this.Bars[index].color = new Color(this.TargetHeights[index] / 7f, (float) (1.0 - (double) this.TargetHeights[index] / 7.0), 0.0f);
-      if (index == 1)
-      {
-        float num = this.TargetHeights[index] / 7f;
-        string str1 = num.ToString();
-        num = (float) (1.0 - (double) this.TargetHeights[index] / 7.0);
-        string str2 = num.ToString();
-        Debug.Log((object) ("R is: " + str1 + " G is: " + str2));
-      }
-    }
-  }
+	public float Timer;
 
-  private void UpdateBars()
-  {
-    int index = 1;
-    if (this.ID < 11)
-    {
-      ++this.ID;
-    }
-    else
-    {
-      for (; index < this.ID; ++index)
-        this.TargetHeights[index] = Random.Range(0.7f, 7f);
-    }
-  }
+	public UISprite[] Bars;
+
+	public float[] TargetHeights;
+
+	private void Start()
+	{
+		for (int i = 1; i < 11; i++)
+		{
+			Bars[i].transform.localScale = new Vector3(1f, 0f, 1f);
+		}
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown("space"))
+		{
+			UpdateBars();
+		}
+		Timer += Time.deltaTime;
+		if (ID < 11)
+		{
+			if (Timer > 1f)
+			{
+				UpdateBars();
+				Timer = 0f;
+			}
+		}
+		else if (Timer > 2.5f)
+		{
+			UpdateBars();
+			Timer = 0f;
+		}
+		for (int i = 1; i < ID; i++)
+		{
+			Bars[i].transform.localScale = Vector3.Lerp(Bars[i].transform.localScale, new Vector3(1f, TargetHeights[i], 1f), Time.deltaTime * Speed);
+			Bars[i].color = new Color(TargetHeights[i] / 7f, 1f - TargetHeights[i] / 7f, 0f);
+			if (i == 1)
+			{
+				Debug.Log("R is: " + TargetHeights[i] / 7f + " G is: " + (1f - TargetHeights[i] / 7f));
+			}
+		}
+	}
+
+	private void UpdateBars()
+	{
+		int i = 1;
+		if (ID < 11)
+		{
+			ID++;
+			return;
+		}
+		for (; i < ID; i++)
+		{
+			TargetHeights[i] = Random.Range(0.7f, 7f);
+		}
+	}
 }

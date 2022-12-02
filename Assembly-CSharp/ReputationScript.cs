@@ -1,143 +1,177 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ReputationScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ReputationScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public ArmDetectorScript ArmDetector;
-  public PortalScript Portal;
-  public Transform CurrentRepMarker;
-  public Transform PendingRepMarker;
-  public UILabel PendingRepLabel;
-  public UILabel RepUpdateLabel;
-  public UILabel RepLabel;
-  public ClockScript Clock;
-  public float Reputation;
-  public float LerpTimer;
-  public float PreviousRep;
-  public float PendingRep;
-  public int CheckedRep = 1;
-  public int Phase;
-  public bool MissionMode;
+	public StudentManagerScript StudentManager;
 
-  private void Start()
-  {
-    this.RepUpdateLabel.enabled = true;
-    if (MissionModeGlobals.MissionMode)
-    {
-      this.RepUpdateLabel.enabled = false;
-      this.MissionMode = true;
-    }
-    if (GameGlobals.Eighties)
-      this.BecomeEighties();
-    this.Reputation = PlayerGlobals.Reputation;
-  }
+	public ArmDetectorScript ArmDetector;
 
-  private void Update()
-  {
-    switch (this.Phase)
-    {
-      case 1:
-        if ((double) this.Clock.PresentTime / 60.0 > 8.5)
-        {
-          ++this.Phase;
-          break;
-        }
-        break;
-      case 2:
-        if ((double) this.Clock.PresentTime / 60.0 > 13.5)
-        {
-          ++this.Phase;
-          break;
-        }
-        break;
-      case 3:
-        if ((double) this.Clock.PresentTime / 60.0 > 18.0)
-        {
-          this.RepUpdateLabel.text = "REP WILL UPDATE AFTER SCHOOL";
-          ++this.Phase;
-          break;
-        }
-        break;
-    }
-    if (this.CheckedRep < this.Phase && !this.StudentManager.Yandere.Struggling && !this.StudentManager.Yandere.DelinquentFighting && !this.StudentManager.Yandere.Pickpocketing && !this.StudentManager.Yandere.Noticed && !this.ArmDetector.SummonDemon)
-    {
-      this.UpdateRep();
-      if ((double) this.Reputation <= -100.0)
-        this.Portal.EndDay();
-    }
-    if (!this.MissionMode)
-    {
-      if ((double) this.LerpTimer < 1.0)
-      {
-        this.CurrentRepMarker.localPosition = new Vector3(Mathf.Lerp(this.CurrentRepMarker.localPosition.x, (float) ((double) this.Reputation * 1.5 - 830.0), Time.deltaTime * 10f), this.CurrentRepMarker.localPosition.y, this.CurrentRepMarker.localPosition.z);
-        this.PendingRepMarker.localPosition = new Vector3(Mathf.Lerp(this.PendingRepMarker.localPosition.x, this.CurrentRepMarker.transform.localPosition.x + this.PendingRep * 1.5f, Time.deltaTime * 10f), this.PendingRepMarker.localPosition.y, this.PendingRepMarker.localPosition.z);
-        this.LerpTimer += Time.deltaTime;
-      }
-      if ((double) this.PendingRep != (double) this.PreviousRep)
-        this.UpdatePendingRepLabel();
-    }
-    else
-    {
-      this.PendingRepMarker.localPosition = new Vector3(Mathf.Lerp(this.PendingRepMarker.localPosition.x, (float) ((double) this.PendingRep * -3.0 - 980.0), Time.deltaTime * 10f), this.PendingRepMarker.localPosition.y, this.PendingRepMarker.localPosition.z);
-      this.PendingRepLabel.text = (double) this.PendingRep >= 0.0 ? string.Empty : (-this.PendingRep).ToString("F1");
-    }
-    if ((double) this.CurrentRepMarker.localPosition.x < -980.0)
-      this.CurrentRepMarker.localPosition = new Vector3(-980f, this.CurrentRepMarker.localPosition.y, this.CurrentRepMarker.localPosition.z);
-    if ((double) this.PendingRepMarker.localPosition.x < -980.0)
-      this.PendingRepMarker.localPosition = new Vector3(-980f, this.PendingRepMarker.localPosition.y, this.PendingRepMarker.localPosition.z);
-    if ((double) this.CurrentRepMarker.localPosition.x > -680.0)
-      this.CurrentRepMarker.localPosition = new Vector3(-680f, this.CurrentRepMarker.localPosition.y, this.CurrentRepMarker.localPosition.z);
-    if ((double) this.PendingRepMarker.localPosition.x <= -680.0)
-      return;
-    this.PendingRepMarker.localPosition = new Vector3(-680f, this.PendingRepMarker.localPosition.y, this.PendingRepMarker.localPosition.z);
-  }
+	public PortalScript Portal;
 
-  public void UpdateRep()
-  {
-    this.Reputation += this.PendingRep;
-    this.PendingRep = 0.0f;
-    ++this.CheckedRep;
-    if (this.StudentManager.Yandere.Club == ClubType.Delinquent)
-    {
-      if ((double) this.Reputation > -33.333328247070313)
-        this.Reputation = -33.33333f;
-    }
-    else if ((double) this.Reputation > 100.0)
-      this.Reputation = 100f;
-    this.StudentManager.WipePendingRep();
-  }
+	public Transform CurrentRepMarker;
 
-  public void BecomeEighties()
-  {
-    this.StudentManager.EightiesifyLabel(this.PendingRepLabel);
-    this.StudentManager.EightiesifyLabel(this.RepUpdateLabel);
-    this.StudentManager.EightiesifyLabel(this.RepLabel);
-  }
+	public Transform PendingRepMarker;
 
-  public void UpdatePendingRepLabel()
-  {
-    this.PreviousRep = this.PendingRep;
-    this.LerpTimer = 0.0f;
-    if (!this.MissionMode)
-      this.RepUpdateLabel.enabled = true;
-    if ((double) this.PendingRep > 0.0)
-      this.PendingRepLabel.text = "+" + this.PendingRep.ToString("F1");
-    else if ((double) this.PendingRep < 0.0)
-    {
-      this.StudentManager.TutorialWindow.ShowRepMessage = true;
-      this.PendingRepLabel.text = this.PendingRep.ToString("F1");
-    }
-    else
-    {
-      this.RepUpdateLabel.enabled = false;
-      this.PendingRepLabel.text = string.Empty;
-    }
-    this.RepUpdateLabel.enabled = false;
-  }
+	public UILabel PendingRepLabel;
+
+	public UILabel RepUpdateLabel;
+
+	public UILabel RepLabel;
+
+	public ClockScript Clock;
+
+	public float Reputation;
+
+	public float LerpTimer;
+
+	public float PreviousRep;
+
+	public float PendingRep;
+
+	public int CheckedRep = 1;
+
+	public int Phase;
+
+	public bool MissionMode;
+
+	private void Start()
+	{
+		RepUpdateLabel.enabled = true;
+		if (MissionModeGlobals.MissionMode)
+		{
+			RepUpdateLabel.enabled = false;
+			MissionMode = true;
+		}
+		if (GameGlobals.Eighties)
+		{
+			BecomeEighties();
+		}
+		Reputation = PlayerGlobals.Reputation;
+	}
+
+	private void Update()
+	{
+		switch (Phase)
+		{
+		case 1:
+			if (Clock.PresentTime / 60f > 8.5f)
+			{
+				Phase++;
+			}
+			break;
+		case 2:
+			if (Clock.PresentTime / 60f > 13.5f)
+			{
+				Phase++;
+			}
+			break;
+		case 3:
+			if (Clock.PresentTime / 60f > 18f)
+			{
+				RepUpdateLabel.text = "REP WILL UPDATE AFTER SCHOOL";
+				Phase++;
+			}
+			break;
+		}
+		if (CheckedRep < Phase && !StudentManager.Yandere.Struggling && !StudentManager.Yandere.DelinquentFighting && !StudentManager.Yandere.Pickpocketing && !StudentManager.Yandere.Noticed && !ArmDetector.SummonDemon)
+		{
+			UpdateRep();
+			if (Reputation <= -100f)
+			{
+				Portal.EndDay();
+			}
+		}
+		if (!MissionMode)
+		{
+			if (LerpTimer < 1f)
+			{
+				CurrentRepMarker.localPosition = new Vector3(Mathf.Lerp(CurrentRepMarker.localPosition.x, -830f + Reputation * 1.5f, Time.deltaTime * 10f), CurrentRepMarker.localPosition.y, CurrentRepMarker.localPosition.z);
+				PendingRepMarker.localPosition = new Vector3(Mathf.Lerp(PendingRepMarker.localPosition.x, CurrentRepMarker.transform.localPosition.x + PendingRep * 1.5f, Time.deltaTime * 10f), PendingRepMarker.localPosition.y, PendingRepMarker.localPosition.z);
+				LerpTimer += Time.deltaTime;
+			}
+			if (PendingRep != PreviousRep)
+			{
+				UpdatePendingRepLabel();
+			}
+		}
+		else
+		{
+			PendingRepMarker.localPosition = new Vector3(Mathf.Lerp(PendingRepMarker.localPosition.x, -980f + PendingRep * -3f, Time.deltaTime * 10f), PendingRepMarker.localPosition.y, PendingRepMarker.localPosition.z);
+			if (PendingRep < 0f)
+			{
+				PendingRepLabel.text = (0f - PendingRep).ToString("F1");
+			}
+			else
+			{
+				PendingRepLabel.text = string.Empty;
+			}
+		}
+		if (CurrentRepMarker.localPosition.x < -980f)
+		{
+			CurrentRepMarker.localPosition = new Vector3(-980f, CurrentRepMarker.localPosition.y, CurrentRepMarker.localPosition.z);
+		}
+		if (PendingRepMarker.localPosition.x < -980f)
+		{
+			PendingRepMarker.localPosition = new Vector3(-980f, PendingRepMarker.localPosition.y, PendingRepMarker.localPosition.z);
+		}
+		if (CurrentRepMarker.localPosition.x > -680f)
+		{
+			CurrentRepMarker.localPosition = new Vector3(-680f, CurrentRepMarker.localPosition.y, CurrentRepMarker.localPosition.z);
+		}
+		if (PendingRepMarker.localPosition.x > -680f)
+		{
+			PendingRepMarker.localPosition = new Vector3(-680f, PendingRepMarker.localPosition.y, PendingRepMarker.localPosition.z);
+		}
+	}
+
+	public void UpdateRep()
+	{
+		Reputation += PendingRep;
+		PendingRep = 0f;
+		CheckedRep++;
+		if (StudentManager.Yandere.Club == ClubType.Delinquent)
+		{
+			if (Reputation > -33.33333f)
+			{
+				Reputation = -33.33333f;
+			}
+		}
+		else if (Reputation > 100f)
+		{
+			Reputation = 100f;
+		}
+		StudentManager.WipePendingRep();
+	}
+
+	public void BecomeEighties()
+	{
+		StudentManager.EightiesifyLabel(PendingRepLabel);
+		StudentManager.EightiesifyLabel(RepUpdateLabel);
+		StudentManager.EightiesifyLabel(RepLabel);
+	}
+
+	public void UpdatePendingRepLabel()
+	{
+		PreviousRep = PendingRep;
+		LerpTimer = 0f;
+		if (!MissionMode)
+		{
+			RepUpdateLabel.enabled = true;
+		}
+		if (PendingRep > 0f)
+		{
+			PendingRepLabel.text = "+" + PendingRep.ToString("F1");
+		}
+		else if (PendingRep < 0f)
+		{
+			StudentManager.TutorialWindow.ShowRepMessage = true;
+			PendingRepLabel.text = PendingRep.ToString("F1");
+		}
+		else
+		{
+			RepUpdateLabel.enabled = false;
+			PendingRepLabel.text = string.Empty;
+		}
+		RepUpdateLabel.enabled = false;
+	}
 }

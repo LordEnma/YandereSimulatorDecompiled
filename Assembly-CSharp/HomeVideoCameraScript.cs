@@ -1,54 +1,65 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HomeVideoCameraScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class HomeVideoCameraScript : MonoBehaviour
 {
-  public HomePrisonerChanScript HomePrisonerChan;
-  public HomeDarknessScript HomeDarkness;
-  public HomePrisonerScript HomePrisoner;
-  public HomeYandereScript HomeYandere;
-  public HomeCameraScript HomeCamera;
-  public PromptScript Prompt;
-  public UILabel Subtitle;
-  public bool AudioPlayed;
-  public bool TextSet;
-  public float Timer;
+	public HomePrisonerChanScript HomePrisonerChan;
 
-  private void Update()
-  {
-    if (!this.TextSet && !HomeGlobals.Night)
-      this.Prompt.Label[0].text = "     Only Available At Night";
-    if (!HomeGlobals.Night)
-      this.Prompt.Circle[0].fillAmount = 1f;
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.HomeCamera.Destination = this.HomeCamera.Destinations[11];
-      this.HomeCamera.Target = this.HomeCamera.Targets[11];
-      this.HomeCamera.ID = 11;
-      this.HomePrisonerChan.LookAhead = true;
-      this.HomeYandere.CanMove = false;
-      this.HomeYandere.gameObject.SetActive(false);
-    }
-    if (this.HomeCamera.ID != 11 || this.HomePrisoner.Bantering)
-      return;
-    this.Timer += Time.deltaTime;
-    AudioSource component = this.GetComponent<AudioSource>();
-    if ((double) this.Timer > 2.0 && !this.AudioPlayed)
-    {
-      this.Subtitle.text = "...daddy...please...help...I'm scared...I don't wanna die...";
-      this.AudioPlayed = true;
-      component.Play();
-    }
-    if ((double) this.Timer > 2.0 + (double) component.clip.length)
-      this.Subtitle.text = string.Empty;
-    if ((double) this.Timer <= 3.0 + (double) component.clip.length)
-      return;
-    this.HomeDarkness.FadeSlow = true;
-    this.HomeDarkness.FadeOut = true;
-  }
+	public HomeDarknessScript HomeDarkness;
+
+	public HomePrisonerScript HomePrisoner;
+
+	public HomeYandereScript HomeYandere;
+
+	public HomeCameraScript HomeCamera;
+
+	public PromptScript Prompt;
+
+	public UILabel Subtitle;
+
+	public bool AudioPlayed;
+
+	public bool TextSet;
+
+	public float Timer;
+
+	private void Update()
+	{
+		if (!TextSet && !HomeGlobals.Night)
+		{
+			Prompt.Label[0].text = "     Only Available At Night";
+		}
+		if (!HomeGlobals.Night)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			HomeCamera.Destination = HomeCamera.Destinations[11];
+			HomeCamera.Target = HomeCamera.Targets[11];
+			HomeCamera.ID = 11;
+			HomePrisonerChan.LookAhead = true;
+			HomeYandere.CanMove = false;
+			HomeYandere.gameObject.SetActive(false);
+		}
+		if (HomeCamera.ID == 11 && !HomePrisoner.Bantering)
+		{
+			Timer += Time.deltaTime;
+			AudioSource component = GetComponent<AudioSource>();
+			if (Timer > 2f && !AudioPlayed)
+			{
+				Subtitle.text = "...daddy...please...help...I'm scared...I don't wanna die...";
+				AudioPlayed = true;
+				component.Play();
+			}
+			if (Timer > 2f + component.clip.length)
+			{
+				Subtitle.text = string.Empty;
+			}
+			if (Timer > 3f + component.clip.length)
+			{
+				HomeDarkness.FadeSlow = true;
+				HomeDarkness.FadeOut = true;
+			}
+		}
+	}
 }

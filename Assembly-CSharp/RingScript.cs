@@ -1,35 +1,31 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RingScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class RingScript : MonoBehaviour
 {
-  public RingEventScript RingEvent;
-  public PromptScript Prompt;
+	public RingEventScript RingEvent;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    this.Prompt.Circle[0].fillAmount = 1f;
-    this.Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
-    if (!this.Prompt.Yandere.StudentManager.YandereVisible)
-    {
-      SchemeGlobals.SetSchemeStage(2, 5);
-      this.Prompt.Yandere.Inventory.Schemes.UpdateInstructions();
-      this.Prompt.Yandere.Inventory.Ring = true;
-      this.Prompt.Yandere.TheftTimer = 0.1f;
-      this.RingEvent.RingStolen = true;
-      this.gameObject.SetActive(false);
-    }
-    else
-    {
-      this.Prompt.Yandere.NotificationManager.CustomText = "Can't do that! Someone is watching!";
-      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-    }
-  }
+	public PromptScript Prompt;
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+			if (!Prompt.Yandere.StudentManager.YandereVisible)
+			{
+				SchemeGlobals.SetSchemeStage(2, 5);
+				Prompt.Yandere.Inventory.Schemes.UpdateInstructions();
+				Prompt.Yandere.Inventory.Ring = true;
+				Prompt.Yandere.TheftTimer = 0.1f;
+				RingEvent.RingStolen = true;
+				base.gameObject.SetActive(false);
+			}
+			else
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Can't do that! Someone is watching!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+		}
+	}
 }

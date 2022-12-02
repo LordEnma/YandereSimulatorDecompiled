@@ -1,266 +1,318 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.AIController
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
+using System;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  [RequireComponent(typeof (Animator))]
-  [RequireComponent(typeof (SpriteRenderer))]
-  [RequireComponent(typeof (Collider2D))]
-  public class AIController : AIMover
-  {
-    public GameObject throbObject;
-    public Meter happinessMeter;
-    public Bubble speechBubble;
-    public float distanceThreshold = 0.5f;
-    private Food desiredFood;
-    private Collider2D collider2d;
-    private Chair targetChair;
-    [HideInInspector]
-    public Transform leaveTarget;
-    [HideInInspector]
-    public AIController.AIState state;
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
-    private float patienceDegradation = 2f;
-    private float timeToOrder = 0.5f;
-    private float timeToEat;
-    private float happiness = 50f;
-    private float orderTime;
-    private float eatTime;
-    private int normalSortingLayer;
-    private bool isPaused;
-    public bool Male;
+	[RequireComponent(typeof(Animator))]
+	[RequireComponent(typeof(SpriteRenderer))]
+	[RequireComponent(typeof(Collider2D))]
+	public class AIController : AIMover
+	{
+		public enum AIState
+		{
+			Entering = 0,
+			Menu = 1,
+			Ordering = 2,
+			Waiting = 3,
+			Eating = 4,
+			Leaving = 5
+		}
 
-    public void Init()
-    {
-      this.animator = this.GetComponent<Animator>();
-      this.spriteRenderer = this.GetComponent<SpriteRenderer>();
-      this.throbObject.SetActive(false);
-      this.targetChair = Chair.RandomChair;
-      this.collider2d = this.GetComponent<Collider2D>();
-      this.collider2d.enabled = false;
-      if ((Object) this.targetChair == (Object) null)
-        Object.Destroy((Object) this.gameObject);
-      this.happinessMeter.gameObject.SetActive(false);
-      this.speechBubble.gameObject.SetActive(false);
-    }
+		public GameObject throbObject;
 
-    private void Start()
-    {
-      this.leaveTarget.GetComponent<CustomerSpawner>().OpenDoor();
-      this.moveSpeed = GameController.Instance.activeDifficultyVariables.customerMoveSpeed;
-      this.timeToOrder = GameController.Instance.activeDifficultyVariables.timeSpentOrdering;
-      this.eatTime = GameController.Instance.activeDifficultyVariables.timeSpentEatingFood;
-      this.patienceDegradation = GameController.Instance.activeDifficultyVariables.customerPatienceDegradation;
-      this.timeToEat = GameController.Instance.activeDifficultyVariables.timeSpentEatingFood;
-      SFXController.PlaySound(SFXController.Sounds.DoorBell);
-    }
+		public Meter happinessMeter;
 
-    private void OnEnable() => GameController.PauseGame += new BoolParameterEvent(this.Pause);
+		public Bubble speechBubble;
 
-    private void OnDisable() => GameController.PauseGame -= new BoolParameterEvent(this.Pause);
+		public float distanceThreshold = 0.5f;
 
-    public void Pause(bool toPause)
-    {
-      this.isPaused = toPause;
-      this.GetComponent<Animator>().speed = this.isPaused ? 0.0f : 1f;
-    }
+		private Food desiredFood;
 
-    private void Update()
-    {
-      if (this.isPaused)
-        return;
-      switch (this.state)
-      {
-        case AIController.AIState.Entering:
-          if ((double) Mathf.Abs(this.transform.position.x - this.targetChair.transform.position.x) > (double) this.distanceThreshold)
-            break;
-          this.SitDown();
-          this.happiness = 100f;
-          this.happinessMeter.SetFill(this.happiness / 100f);
-          this.state = AIController.AIState.Menu;
-          break;
-        case AIController.AIState.Menu:
-          if ((double) this.happiness <= 0.0)
-          {
-            this.StandUp();
-            this.state = AIController.AIState.Leaving;
-            GameController.AddAngryCustomer();
-            break;
-          }
-          this.ReduceHappiness();
-          break;
-        case AIController.AIState.Ordering:
-          if ((double) this.orderTime <= 0.0)
-          {
-            this.state = AIController.AIState.Waiting;
-            this.speechBubble.GetComponent<Animator>().SetTrigger("BubbleDrop");
-            this.animator.SetTrigger("DoneOrdering");
-            break;
-          }
-          this.orderTime -= Time.deltaTime;
-          break;
-        case AIController.AIState.Waiting:
-          if ((double) this.happiness <= 0.0)
-          {
-            this.StandUp();
-            this.state = AIController.AIState.Leaving;
-            GameController.AddAngryCustomer();
-            break;
-          }
-          this.ReduceHappiness();
-          break;
-        case AIController.AIState.Eating:
-          if ((double) this.eatTime <= 0.0)
-          {
-            this.StandUp();
-            this.state = AIController.AIState.Leaving;
-            break;
-          }
-          this.eatTime -= Time.deltaTime;
-          break;
-        case AIController.AIState.Leaving:
-          if ((double) Mathf.Abs(this.transform.position.x - this.leaveTarget.position.x) > (double) this.distanceThreshold)
-            break;
-          Object.Destroy((Object) this.gameObject);
-          this.leaveTarget.GetComponent<CustomerSpawner>().OpenDoor();
-          break;
-      }
-    }
+		private Collider2D collider2d;
 
-    public override ControlInput GetInput()
-    {
-      ControlInput input = new ControlInput();
-      if (this.isPaused)
-        return input;
-      switch (this.state)
-      {
-        case AIController.AIState.Entering:
-          if ((double) this.targetChair.transform.position.x > (double) this.transform.position.x)
-          {
-            input.horizontal = 1f;
-            this.SetFlip(false);
-            break;
-          }
-          input.horizontal = -1f;
-          this.SetFlip(true);
-          break;
-        case AIController.AIState.Leaving:
-          if ((double) this.leaveTarget.position.x > (double) this.transform.position.x)
-          {
-            input.horizontal = 1f;
-            this.SetFlip(false);
-            break;
-          }
-          input.horizontal = -1f;
-          this.SetFlip(true);
-          break;
-      }
-      return input;
-    }
+		private Chair targetChair;
 
-    public void TakeOrder()
-    {
-      this.state = AIController.AIState.Ordering;
-      this.happiness = 100f;
-      this.happinessMeter.SetFill(this.happiness / 100f);
-      this.orderTime = this.timeToOrder;
-      this.animator.SetTrigger("OrderTaken");
-      this.animator.SetFloat("Happiness", this.happiness);
-      this.desiredFood = FoodMenu.Instance.GetRandomFood();
-      this.speechBubble.gameObject.SetActive(true);
-      this.speechBubble.food = this.desiredFood;
-      if (this.Male)
-        SFXController.PlaySound(SFXController.Sounds.MaleCustomerGreet);
-      else
-        SFXController.PlaySound(SFXController.Sounds.FemaleCustomerGreet);
-    }
+		[HideInInspector]
+		public Transform leaveTarget;
 
-    public void DeliverFood(Food deliveredFood)
-    {
-      if (deliveredFood.name == this.desiredFood.name)
-      {
-        this.state = AIController.AIState.Eating;
-        this.animator.SetTrigger("ServedFood");
-        this.eatTime = this.timeToEat;
-        GameController.AddTip(GameController.Instance.activeDifficultyVariables.baseTip * this.happiness);
-        if ((double) this.happiness <= 50.0)
-        {
-          this.happiness = 50f;
-          this.animator.SetFloat("Happiness", this.happiness);
-        }
-        if (this.Male)
-          SFXController.PlaySound(SFXController.Sounds.MaleCustomerThank);
-        else
-          SFXController.PlaySound(SFXController.Sounds.FemaleCustomerThank);
-      }
-      else
-      {
-        this.state = AIController.AIState.Leaving;
-        this.happiness = 0.0f;
-        this.animator.SetFloat("Happiness", this.happiness);
-        GameController.AddAngryCustomer();
-        this.StandUp();
-        if (this.Male)
-          SFXController.PlaySound(SFXController.Sounds.MaleCustomerLeave);
-        else
-          SFXController.PlaySound(SFXController.Sounds.FemaleCustomerLeave);
-      }
-      this.happinessMeter.gameObject.SetActive(false);
-    }
+		[HideInInspector]
+		public AIState state;
 
-    private void SitDown()
-    {
-      this.transform.position = new Vector3(this.targetChair.transform.position.x, this.transform.position.y, this.transform.position.z);
-      this.animator.SetTrigger(nameof (SitDown));
-      this.SetFlip((double) this.targetChair.transform.localScale.x <= 0.0);
-      this.SetSortingLayer(true);
-      this.collider2d.enabled = true;
-      this.happinessMeter.gameObject.SetActive(true);
-    }
+		private Animator animator;
 
-    private void StandUp()
-    {
-      this.animator.SetTrigger(nameof (StandUp));
-      this.SetSortingLayer(false);
-      this.targetChair.available = true;
-      this.collider2d.enabled = false;
-      this.happinessMeter.gameObject.SetActive(false);
-    }
+		private SpriteRenderer spriteRenderer;
 
-    private void ReduceHappiness()
-    {
-      this.happiness -= Time.deltaTime * this.patienceDegradation;
-      this.animator.SetFloat("Happiness", this.happiness);
-      this.happinessMeter.SetFill(this.happiness / 100f);
-    }
+		private float patienceDegradation = 2f;
 
-    private void SetFlip(bool flip)
-    {
-      this.spriteRenderer.flipX = flip;
-      this.GetComponentInChildren<CharacterHairPlacer>().hairInstance.flipX = flip;
-    }
+		private float timeToOrder = 0.5f;
 
-    public void SetSortingLayer(bool back)
-    {
-      this.spriteRenderer.sortingLayerName = back ? "CustomerSitting" : "Default";
-      this.GetComponent<CharacterHairPlacer>().hairInstance.sortingLayerName = back ? "CustomerSitting" : "Default";
-      this.throbObject.GetComponent<SpriteRenderer>().sortingLayerName = back ? "CustomerSitting" : "Default";
-    }
+		private float timeToEat;
 
-    public enum AIState
-    {
-      Entering,
-      Menu,
-      Ordering,
-      Waiting,
-      Eating,
-      Leaving,
-    }
-  }
+		private float happiness = 50f;
+
+		private float orderTime;
+
+		private float eatTime;
+
+		private int normalSortingLayer;
+
+		private bool isPaused;
+
+		public bool Male;
+
+		public void Init()
+		{
+			animator = GetComponent<Animator>();
+			spriteRenderer = GetComponent<SpriteRenderer>();
+			throbObject.SetActive(false);
+			targetChair = Chair.RandomChair;
+			collider2d = GetComponent<Collider2D>();
+			collider2d.enabled = false;
+			if (targetChair == null)
+			{
+				UnityEngine.Object.Destroy(base.gameObject);
+			}
+			happinessMeter.gameObject.SetActive(false);
+			speechBubble.gameObject.SetActive(false);
+		}
+
+		private void Start()
+		{
+			leaveTarget.GetComponent<CustomerSpawner>().OpenDoor();
+			moveSpeed = GameController.Instance.activeDifficultyVariables.customerMoveSpeed;
+			timeToOrder = GameController.Instance.activeDifficultyVariables.timeSpentOrdering;
+			eatTime = GameController.Instance.activeDifficultyVariables.timeSpentEatingFood;
+			patienceDegradation = GameController.Instance.activeDifficultyVariables.customerPatienceDegradation;
+			timeToEat = GameController.Instance.activeDifficultyVariables.timeSpentEatingFood;
+			SFXController.PlaySound(SFXController.Sounds.DoorBell);
+		}
+
+		private void OnEnable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
+
+		private void OnDisable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
+
+		public void Pause(bool toPause)
+		{
+			isPaused = toPause;
+			GetComponent<Animator>().speed = ((!isPaused) ? 1 : 0);
+		}
+
+		private void Update()
+		{
+			if (isPaused)
+			{
+				return;
+			}
+			switch (state)
+			{
+			case AIState.Entering:
+				if (Mathf.Abs(base.transform.position.x - targetChair.transform.position.x) <= distanceThreshold)
+				{
+					SitDown();
+					happiness = 100f;
+					happinessMeter.SetFill(happiness / 100f);
+					state = AIState.Menu;
+				}
+				break;
+			case AIState.Menu:
+				if (happiness <= 0f)
+				{
+					StandUp();
+					state = AIState.Leaving;
+					GameController.AddAngryCustomer();
+				}
+				else
+				{
+					ReduceHappiness();
+				}
+				break;
+			case AIState.Ordering:
+				if (orderTime <= 0f)
+				{
+					state = AIState.Waiting;
+					speechBubble.GetComponent<Animator>().SetTrigger("BubbleDrop");
+					animator.SetTrigger("DoneOrdering");
+				}
+				else
+				{
+					orderTime -= Time.deltaTime;
+				}
+				break;
+			case AIState.Waiting:
+				if (happiness <= 0f)
+				{
+					StandUp();
+					state = AIState.Leaving;
+					GameController.AddAngryCustomer();
+				}
+				else
+				{
+					ReduceHappiness();
+				}
+				break;
+			case AIState.Eating:
+				if (eatTime <= 0f)
+				{
+					StandUp();
+					state = AIState.Leaving;
+				}
+				else
+				{
+					eatTime -= Time.deltaTime;
+				}
+				break;
+			case AIState.Leaving:
+				if (Mathf.Abs(base.transform.position.x - leaveTarget.position.x) <= distanceThreshold)
+				{
+					UnityEngine.Object.Destroy(base.gameObject);
+					leaveTarget.GetComponent<CustomerSpawner>().OpenDoor();
+				}
+				break;
+			}
+		}
+
+		public override ControlInput GetInput()
+		{
+			ControlInput result = default(ControlInput);
+			if (isPaused)
+			{
+				return result;
+			}
+			switch (state)
+			{
+			case AIState.Entering:
+				if (targetChair.transform.position.x > base.transform.position.x)
+				{
+					result.horizontal = 1f;
+					SetFlip(false);
+				}
+				else
+				{
+					result.horizontal = -1f;
+					SetFlip(true);
+				}
+				break;
+			case AIState.Leaving:
+				if (leaveTarget.position.x > base.transform.position.x)
+				{
+					result.horizontal = 1f;
+					SetFlip(false);
+				}
+				else
+				{
+					result.horizontal = -1f;
+					SetFlip(true);
+				}
+				break;
+			}
+			return result;
+		}
+
+		public void TakeOrder()
+		{
+			state = AIState.Ordering;
+			happiness = 100f;
+			happinessMeter.SetFill(happiness / 100f);
+			orderTime = timeToOrder;
+			animator.SetTrigger("OrderTaken");
+			animator.SetFloat("Happiness", happiness);
+			desiredFood = FoodMenu.Instance.GetRandomFood();
+			speechBubble.gameObject.SetActive(true);
+			speechBubble.food = desiredFood;
+			if (Male)
+			{
+				SFXController.PlaySound(SFXController.Sounds.MaleCustomerGreet);
+			}
+			else
+			{
+				SFXController.PlaySound(SFXController.Sounds.FemaleCustomerGreet);
+			}
+		}
+
+		public void DeliverFood(Food deliveredFood)
+		{
+			if (deliveredFood.name == desiredFood.name)
+			{
+				state = AIState.Eating;
+				animator.SetTrigger("ServedFood");
+				eatTime = timeToEat;
+				GameController.AddTip(GameController.Instance.activeDifficultyVariables.baseTip * happiness);
+				if (happiness <= 50f)
+				{
+					happiness = 50f;
+					animator.SetFloat("Happiness", happiness);
+				}
+				if (Male)
+				{
+					SFXController.PlaySound(SFXController.Sounds.MaleCustomerThank);
+				}
+				else
+				{
+					SFXController.PlaySound(SFXController.Sounds.FemaleCustomerThank);
+				}
+			}
+			else
+			{
+				state = AIState.Leaving;
+				happiness = 0f;
+				animator.SetFloat("Happiness", happiness);
+				GameController.AddAngryCustomer();
+				StandUp();
+				if (Male)
+				{
+					SFXController.PlaySound(SFXController.Sounds.MaleCustomerLeave);
+				}
+				else
+				{
+					SFXController.PlaySound(SFXController.Sounds.FemaleCustomerLeave);
+				}
+			}
+			happinessMeter.gameObject.SetActive(false);
+		}
+
+		private void SitDown()
+		{
+			base.transform.position = new Vector3(targetChair.transform.position.x, base.transform.position.y, base.transform.position.z);
+			animator.SetTrigger("SitDown");
+			SetFlip(!(targetChair.transform.localScale.x > 0f));
+			SetSortingLayer(true);
+			collider2d.enabled = true;
+			happinessMeter.gameObject.SetActive(true);
+		}
+
+		private void StandUp()
+		{
+			animator.SetTrigger("StandUp");
+			SetSortingLayer(false);
+			targetChair.available = true;
+			collider2d.enabled = false;
+			happinessMeter.gameObject.SetActive(false);
+		}
+
+		private void ReduceHappiness()
+		{
+			happiness -= Time.deltaTime * patienceDegradation;
+			animator.SetFloat("Happiness", happiness);
+			happinessMeter.SetFill(happiness / 100f);
+		}
+
+		private void SetFlip(bool flip)
+		{
+			spriteRenderer.flipX = flip;
+			GetComponentInChildren<CharacterHairPlacer>().hairInstance.flipX = flip;
+		}
+
+		public void SetSortingLayer(bool back)
+		{
+			spriteRenderer.sortingLayerName = (back ? "CustomerSitting" : "Default");
+			GetComponent<CharacterHairPlacer>().hairInstance.sortingLayerName = (back ? "CustomerSitting" : "Default");
+			throbObject.GetComponent<SpriteRenderer>().sortingLayerName = (back ? "CustomerSitting" : "Default");
+		}
+	}
 }

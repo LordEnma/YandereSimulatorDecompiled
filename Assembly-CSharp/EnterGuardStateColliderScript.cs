@@ -1,36 +1,33 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: EnterGuardStateColliderScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class EnterGuardStateColliderScript : MonoBehaviour
 {
-  public int Frame;
+	public int Frame;
 
-  private void Update()
-  {
-    ++this.Frame;
-    if (this.Frame <= 1)
-      return;
-    Object.Destroy((Object) this.gameObject);
-  }
+	private void Update()
+	{
+		Frame++;
+		if (Frame > 1)
+		{
+			Object.Destroy(base.gameObject);
+		}
+	}
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (other.gameObject.layer != 9)
-      return;
-    StudentScript component = other.gameObject.GetComponent<StudentScript>();
-    if (!((Object) component != (Object) null) || !component.Teacher)
-      return;
-    component.CharacterAnimation.CrossFade(component.GuardAnim);
-    component.IgnoringPettyActions = true;
-    component.Pathfinding.canSearch = false;
-    component.Pathfinding.canMove = false;
-    component.ReportPhase = 6;
-    component.Guarding = true;
-    component.Routine = false;
-  }
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer == 9)
+		{
+			StudentScript component = other.gameObject.GetComponent<StudentScript>();
+			if (component != null && component.Teacher)
+			{
+				component.CharacterAnimation.CrossFade(component.GuardAnim);
+				component.IgnoringPettyActions = true;
+				component.Pathfinding.canSearch = false;
+				component.Pathfinding.canMove = false;
+				component.ReportPhase = 6;
+				component.Guarding = true;
+				component.Routine = false;
+			}
+		}
+	}
 }

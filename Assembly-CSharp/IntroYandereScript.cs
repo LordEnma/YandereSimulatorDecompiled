@@ -1,42 +1,49 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: IntroYandereScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class IntroYandereScript : MonoBehaviour
 {
-  public Transform Hips;
-  public Transform Spine;
-  public Transform Spine1;
-  public Transform Spine2;
-  public Transform Spine3;
-  public Transform Neck;
-  public Transform Head;
-  public Transform RightUpLeg;
-  public Transform RightLeg;
-  public Transform RightFoot;
-  public Transform LeftUpLeg;
-  public Transform LeftLeg;
-  public Transform LeftFoot;
-  public float X;
+	public Transform Hips;
 
-  private void LateUpdate()
-  {
-    this.Hips.localEulerAngles = new Vector3(this.Hips.localEulerAngles.x + this.X, this.Hips.localEulerAngles.y, this.Hips.localEulerAngles.z);
-    this.Spine.localEulerAngles = new Vector3(this.Spine.localEulerAngles.x + this.X, this.Spine.localEulerAngles.y, this.Spine.localEulerAngles.z);
-    this.Spine1.localEulerAngles = new Vector3(this.Spine1.localEulerAngles.x + this.X, this.Spine1.localEulerAngles.y, this.Spine1.localEulerAngles.z);
-    this.Spine2.localEulerAngles = new Vector3(this.Spine2.localEulerAngles.x + this.X, this.Spine2.localEulerAngles.y, this.Spine2.localEulerAngles.z);
-    this.Spine3.localEulerAngles = new Vector3(this.Spine3.localEulerAngles.x + this.X, this.Spine3.localEulerAngles.y, this.Spine3.localEulerAngles.z);
-    this.Neck.localEulerAngles = new Vector3(this.Neck.localEulerAngles.x + this.X, this.Neck.localEulerAngles.y, this.Neck.localEulerAngles.z);
-    this.Head.localEulerAngles = new Vector3(this.Head.localEulerAngles.x + this.X, this.Head.localEulerAngles.y, this.Head.localEulerAngles.z);
-    this.RightUpLeg.localEulerAngles = new Vector3(this.RightUpLeg.localEulerAngles.x - this.X, this.RightUpLeg.localEulerAngles.y, this.RightUpLeg.localEulerAngles.z);
-    this.RightLeg.localEulerAngles = new Vector3(this.RightLeg.localEulerAngles.x - this.X, this.RightLeg.localEulerAngles.y, this.RightLeg.localEulerAngles.z);
-    this.RightFoot.localEulerAngles = new Vector3(this.RightFoot.localEulerAngles.x - this.X, this.RightFoot.localEulerAngles.y, this.RightFoot.localEulerAngles.z);
-    this.LeftUpLeg.localEulerAngles = new Vector3(this.LeftUpLeg.localEulerAngles.x - this.X, this.LeftUpLeg.localEulerAngles.y, this.LeftUpLeg.localEulerAngles.z);
-    this.LeftLeg.localEulerAngles = new Vector3(this.LeftLeg.localEulerAngles.x - this.X, this.LeftLeg.localEulerAngles.y, this.LeftLeg.localEulerAngles.z);
-    this.LeftFoot.localEulerAngles = new Vector3(this.LeftFoot.localEulerAngles.x - this.X, this.LeftFoot.localEulerAngles.y, this.LeftFoot.localEulerAngles.z);
-  }
+	public Transform Spine;
+
+	public Transform Spine1;
+
+	public Transform Spine2;
+
+	public Transform Spine3;
+
+	public Transform Neck;
+
+	public Transform Head;
+
+	public Transform RightUpLeg;
+
+	public Transform RightLeg;
+
+	public Transform RightFoot;
+
+	public Transform LeftUpLeg;
+
+	public Transform LeftLeg;
+
+	public Transform LeftFoot;
+
+	public float X;
+
+	private void LateUpdate()
+	{
+		Hips.localEulerAngles = new Vector3(Hips.localEulerAngles.x + X, Hips.localEulerAngles.y, Hips.localEulerAngles.z);
+		Spine.localEulerAngles = new Vector3(Spine.localEulerAngles.x + X, Spine.localEulerAngles.y, Spine.localEulerAngles.z);
+		Spine1.localEulerAngles = new Vector3(Spine1.localEulerAngles.x + X, Spine1.localEulerAngles.y, Spine1.localEulerAngles.z);
+		Spine2.localEulerAngles = new Vector3(Spine2.localEulerAngles.x + X, Spine2.localEulerAngles.y, Spine2.localEulerAngles.z);
+		Spine3.localEulerAngles = new Vector3(Spine3.localEulerAngles.x + X, Spine3.localEulerAngles.y, Spine3.localEulerAngles.z);
+		Neck.localEulerAngles = new Vector3(Neck.localEulerAngles.x + X, Neck.localEulerAngles.y, Neck.localEulerAngles.z);
+		Head.localEulerAngles = new Vector3(Head.localEulerAngles.x + X, Head.localEulerAngles.y, Head.localEulerAngles.z);
+		RightUpLeg.localEulerAngles = new Vector3(RightUpLeg.localEulerAngles.x - X, RightUpLeg.localEulerAngles.y, RightUpLeg.localEulerAngles.z);
+		RightLeg.localEulerAngles = new Vector3(RightLeg.localEulerAngles.x - X, RightLeg.localEulerAngles.y, RightLeg.localEulerAngles.z);
+		RightFoot.localEulerAngles = new Vector3(RightFoot.localEulerAngles.x - X, RightFoot.localEulerAngles.y, RightFoot.localEulerAngles.z);
+		LeftUpLeg.localEulerAngles = new Vector3(LeftUpLeg.localEulerAngles.x - X, LeftUpLeg.localEulerAngles.y, LeftUpLeg.localEulerAngles.z);
+		LeftLeg.localEulerAngles = new Vector3(LeftLeg.localEulerAngles.x - X, LeftLeg.localEulerAngles.y, LeftLeg.localEulerAngles.z);
+		LeftFoot.localEulerAngles = new Vector3(LeftFoot.localEulerAngles.x - X, LeftFoot.localEulerAngles.y, LeftFoot.localEulerAngles.z);
+	}
 }

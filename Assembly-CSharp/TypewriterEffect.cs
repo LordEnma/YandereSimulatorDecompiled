@@ -1,206 +1,252 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TypewriterEffect
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-[RequireComponent(typeof (UILabel))]
+[RequireComponent(typeof(UILabel))]
 [AddComponentMenu("NGUI/Interaction/Typewriter Effect")]
 public class TypewriterEffect : MonoBehaviour
 {
-  public static TypewriterEffect current;
-  public int charsPerSecond = 20;
-  public float fadeInTime;
-  public float delayOnPeriod;
-  public float delayOnNewLine;
-  public UIScrollView scrollView;
-  public bool keepFullDimensions;
-  public List<EventDelegate> onFinished = new List<EventDelegate>();
-  public UILabel mLabel;
-  public string mFullText = "";
-  public int mCurrentOffset;
-  private float mNextChar;
-  private bool mReset = true;
-  public bool mActive;
-  public bool delayOnComma;
-  private BetterList<TypewriterEffect.FadeEntry> mFade = new BetterList<TypewriterEffect.FadeEntry>();
+	private struct FadeEntry
+	{
+		public int index;
 
-  public bool isActive => this.mActive;
+		public string text;
 
-  public void ResetToBeginning()
-  {
-    this.Finish();
-    this.mReset = true;
-    this.mActive = true;
-    this.mNextChar = 0.0f;
-    this.mCurrentOffset = 0;
-    this.Update();
-  }
+		public float alpha;
+	}
 
-  public void Finish()
-  {
-    if (!this.mActive)
-      return;
-    this.mActive = false;
-    if (!this.mReset)
-    {
-      this.mCurrentOffset = this.mFullText.Length;
-      this.mFade.Clear();
-      this.mLabel.text = this.mFullText;
-    }
-    if (this.keepFullDimensions && (Object) this.scrollView != (Object) null)
-      this.scrollView.UpdatePosition();
-    TypewriterEffect.current = this;
-    EventDelegate.Execute(this.onFinished);
-    TypewriterEffect.current = (TypewriterEffect) null;
-  }
+	public static TypewriterEffect current;
 
-  private void OnEnable()
-  {
-    this.mReset = true;
-    this.mActive = true;
-  }
+	public int charsPerSecond = 20;
 
-  private void OnDisable() => this.Finish();
+	public float fadeInTime;
 
-  private void Update()
-  {
-    if (!this.mActive)
-      return;
-    if (this.mReset)
-    {
-      this.mCurrentOffset = 0;
-      this.mReset = false;
-      this.mLabel = this.GetComponent<UILabel>();
-      this.mFullText = this.mLabel.processedText;
-      this.mFade.Clear();
-      if (this.keepFullDimensions && (Object) this.scrollView != (Object) null)
-        this.scrollView.UpdatePosition();
-    }
-    if (string.IsNullOrEmpty(this.mFullText))
-      return;
-    int length = this.mFullText.Length;
-    while (this.mCurrentOffset < length && (double) this.mNextChar <= (double) RealTime.time)
-    {
-      int mCurrentOffset = this.mCurrentOffset;
-      this.charsPerSecond = Mathf.Max(1, this.charsPerSecond);
-      if (this.mLabel.supportEncoding)
-      {
-        while (NGUIText.ParseSymbol(this.mFullText, ref this.mCurrentOffset))
-          ;
-      }
-      ++this.mCurrentOffset;
-      if (this.mCurrentOffset <= length)
-      {
-        float num = 1f / (float) this.charsPerSecond;
-        char ch = mCurrentOffset < length ? this.mFullText[mCurrentOffset] : '\n';
-        if (ch == '\n')
-          num += this.delayOnNewLine;
-        else if (mCurrentOffset + 1 == length || this.mFullText[mCurrentOffset + 1] <= ' ')
-        {
-          switch (ch)
-          {
-            case '!':
-            case '?':
-              num += this.delayOnPeriod;
-              break;
-            case '.':
-              if (mCurrentOffset + 2 < length && this.mFullText[mCurrentOffset + 1] == '.' && this.mFullText[mCurrentOffset + 2] == '.')
-              {
-                num += this.delayOnPeriod * 3f;
-                mCurrentOffset += 2;
-                break;
-              }
-              num += this.delayOnPeriod;
-              break;
-          }
-        }
-        if ((double) this.mNextChar == 0.0)
-          this.mNextChar = RealTime.time + num;
-        else
-          this.mNextChar += num;
-        if ((double) this.fadeInTime != 0.0)
-        {
-          this.mFade.Add(new TypewriterEffect.FadeEntry()
-          {
-            index = mCurrentOffset,
-            alpha = 0.0f,
-            text = this.mFullText.Substring(mCurrentOffset, this.mCurrentOffset - mCurrentOffset)
-          });
-        }
-        else
-        {
-          this.mLabel.text = this.keepFullDimensions ? this.mFullText.Substring(0, this.mCurrentOffset) + "[00]" + this.mFullText.Substring(this.mCurrentOffset) : this.mFullText.Substring(0, this.mCurrentOffset);
-          if (!this.keepFullDimensions && (Object) this.scrollView != (Object) null)
-            this.scrollView.UpdatePosition();
-        }
-      }
-      else
-        break;
-    }
-    if (this.mCurrentOffset >= length && this.mFade.size == 0)
-    {
-      this.mLabel.text = this.mFullText;
-      TypewriterEffect.current = this;
-      EventDelegate.Execute(this.onFinished);
-      TypewriterEffect.current = (TypewriterEffect) null;
-      this.mActive = false;
-    }
-    else
-    {
-      if (this.mFade.size == 0)
-        return;
-      int index1 = 0;
-      while (index1 < this.mFade.size)
-      {
-        TypewriterEffect.FadeEntry fadeEntry = this.mFade.buffer[index1];
-        fadeEntry.alpha += RealTime.deltaTime / this.fadeInTime;
-        if ((double) fadeEntry.alpha < 1.0)
-        {
-          this.mFade.buffer[index1] = fadeEntry;
-          ++index1;
-        }
-        else
-          this.mFade.RemoveAt(index1);
-      }
-      if (this.mFade.size == 0)
-      {
-        if (this.keepFullDimensions)
-          this.mLabel.text = this.mFullText.Substring(0, this.mCurrentOffset) + "[00]" + this.mFullText.Substring(this.mCurrentOffset);
-        else
-          this.mLabel.text = this.mFullText.Substring(0, this.mCurrentOffset);
-      }
-      else
-      {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int index2 = 0; index2 < this.mFade.size; ++index2)
-        {
-          TypewriterEffect.FadeEntry fadeEntry = this.mFade.buffer[index2];
-          if (index2 == 0)
-            stringBuilder.Append(this.mFullText.Substring(0, fadeEntry.index));
-          stringBuilder.Append('[');
-          stringBuilder.Append(NGUIText.EncodeAlpha(fadeEntry.alpha));
-          stringBuilder.Append(']');
-          stringBuilder.Append(fadeEntry.text);
-        }
-        if (this.keepFullDimensions)
-        {
-          stringBuilder.Append("[00]");
-          stringBuilder.Append(this.mFullText.Substring(this.mCurrentOffset));
-        }
-        this.mLabel.text = stringBuilder.ToString();
-      }
-    }
-  }
+	public float delayOnPeriod;
 
-  private struct FadeEntry
-  {
-    public int index;
-    public string text;
-    public float alpha;
-  }
+	public float delayOnNewLine;
+
+	public UIScrollView scrollView;
+
+	public bool keepFullDimensions;
+
+	public List<EventDelegate> onFinished = new List<EventDelegate>();
+
+	public UILabel mLabel;
+
+	public string mFullText = "";
+
+	public int mCurrentOffset;
+
+	private float mNextChar;
+
+	private bool mReset = true;
+
+	public bool mActive;
+
+	public bool delayOnComma;
+
+	private BetterList<FadeEntry> mFade = new BetterList<FadeEntry>();
+
+	public bool isActive
+	{
+		get
+		{
+			return mActive;
+		}
+	}
+
+	public void ResetToBeginning()
+	{
+		Finish();
+		mReset = true;
+		mActive = true;
+		mNextChar = 0f;
+		mCurrentOffset = 0;
+		Update();
+	}
+
+	public void Finish()
+	{
+		if (mActive)
+		{
+			mActive = false;
+			if (!mReset)
+			{
+				mCurrentOffset = mFullText.Length;
+				mFade.Clear();
+				mLabel.text = mFullText;
+			}
+			if (keepFullDimensions && scrollView != null)
+			{
+				scrollView.UpdatePosition();
+			}
+			current = this;
+			EventDelegate.Execute(onFinished);
+			current = null;
+		}
+	}
+
+	private void OnEnable()
+	{
+		mReset = true;
+		mActive = true;
+	}
+
+	private void OnDisable()
+	{
+		Finish();
+	}
+
+	private void Update()
+	{
+		if (!mActive)
+		{
+			return;
+		}
+		if (mReset)
+		{
+			mCurrentOffset = 0;
+			mReset = false;
+			mLabel = GetComponent<UILabel>();
+			mFullText = mLabel.processedText;
+			mFade.Clear();
+			if (keepFullDimensions && scrollView != null)
+			{
+				scrollView.UpdatePosition();
+			}
+		}
+		if (string.IsNullOrEmpty(mFullText))
+		{
+			return;
+		}
+		int length = mFullText.Length;
+		while (mCurrentOffset < length && mNextChar <= RealTime.time)
+		{
+			int num = mCurrentOffset;
+			charsPerSecond = Mathf.Max(1, charsPerSecond);
+			if (mLabel.supportEncoding)
+			{
+				while (NGUIText.ParseSymbol(mFullText, ref mCurrentOffset))
+				{
+				}
+			}
+			mCurrentOffset++;
+			if (mCurrentOffset > length)
+			{
+				break;
+			}
+			float num2 = 1f / (float)charsPerSecond;
+			char c = ((num < length) ? mFullText[num] : '\n');
+			if (c == '\n')
+			{
+				num2 += delayOnNewLine;
+			}
+			else if (num + 1 == length || mFullText[num + 1] <= ' ')
+			{
+				switch (c)
+				{
+				case '.':
+					if (num + 2 < length && mFullText[num + 1] == '.' && mFullText[num + 2] == '.')
+					{
+						num2 += delayOnPeriod * 3f;
+						num += 2;
+					}
+					else
+					{
+						num2 += delayOnPeriod;
+					}
+					break;
+				case '!':
+				case '?':
+					num2 += delayOnPeriod;
+					break;
+				}
+			}
+			if (mNextChar == 0f)
+			{
+				mNextChar = RealTime.time + num2;
+			}
+			else
+			{
+				mNextChar += num2;
+			}
+			if (fadeInTime != 0f)
+			{
+				FadeEntry item = default(FadeEntry);
+				item.index = num;
+				item.alpha = 0f;
+				item.text = mFullText.Substring(num, mCurrentOffset - num);
+				mFade.Add(item);
+			}
+			else
+			{
+				mLabel.text = (keepFullDimensions ? (mFullText.Substring(0, mCurrentOffset) + "[00]" + mFullText.Substring(mCurrentOffset)) : mFullText.Substring(0, mCurrentOffset));
+				if (!keepFullDimensions && scrollView != null)
+				{
+					scrollView.UpdatePosition();
+				}
+			}
+		}
+		if (mCurrentOffset >= length && mFade.size == 0)
+		{
+			mLabel.text = mFullText;
+			current = this;
+			EventDelegate.Execute(onFinished);
+			current = null;
+			mActive = false;
+		}
+		else
+		{
+			if (mFade.size == 0)
+			{
+				return;
+			}
+			int num3 = 0;
+			while (num3 < mFade.size)
+			{
+				FadeEntry fadeEntry = mFade.buffer[num3];
+				fadeEntry.alpha += RealTime.deltaTime / fadeInTime;
+				if (fadeEntry.alpha < 1f)
+				{
+					mFade.buffer[num3] = fadeEntry;
+					num3++;
+				}
+				else
+				{
+					mFade.RemoveAt(num3);
+				}
+			}
+			if (mFade.size == 0)
+			{
+				if (keepFullDimensions)
+				{
+					mLabel.text = mFullText.Substring(0, mCurrentOffset) + "[00]" + mFullText.Substring(mCurrentOffset);
+				}
+				else
+				{
+					mLabel.text = mFullText.Substring(0, mCurrentOffset);
+				}
+				return;
+			}
+			StringBuilder stringBuilder = new StringBuilder();
+			for (int i = 0; i < mFade.size; i++)
+			{
+				FadeEntry fadeEntry2 = mFade.buffer[i];
+				if (i == 0)
+				{
+					stringBuilder.Append(mFullText.Substring(0, fadeEntry2.index));
+				}
+				stringBuilder.Append('[');
+				stringBuilder.Append(NGUIText.EncodeAlpha(fadeEntry2.alpha));
+				stringBuilder.Append(']');
+				stringBuilder.Append(fadeEntry2.text);
+			}
+			if (keepFullDimensions)
+			{
+				stringBuilder.Append("[00]");
+				stringBuilder.Append(mFullText.Substring(mCurrentOffset));
+			}
+			mLabel.text = stringBuilder.ToString();
+		}
+	}
 }

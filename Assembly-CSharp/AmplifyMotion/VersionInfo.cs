@@ -1,51 +1,74 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AmplifyMotion.VersionInfo
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 namespace AmplifyMotion
 {
-  [Serializable]
-  public class VersionInfo
-  {
-    public const byte Major = 1;
-    public const byte Minor = 8;
-    public const byte Release = 3;
-    private static string StageSuffix = "_dev001";
-    private static string TrialSuffix = "";
-    [SerializeField]
-    private int m_major;
-    [SerializeField]
-    private int m_minor;
-    [SerializeField]
-    private int m_release;
+	[Serializable]
+	public class VersionInfo
+	{
+		public const byte Major = 1;
 
-    public static string StaticToString() => string.Format("{0}.{1}.{2}", (object) (byte) 1, (object) (byte) 8, (object) (byte) 3) + VersionInfo.StageSuffix + VersionInfo.TrialSuffix;
+		public const byte Minor = 8;
 
-    public override string ToString() => string.Format("{0}.{1}.{2}", (object) this.m_major, (object) this.m_minor, (object) this.m_release) + VersionInfo.StageSuffix + VersionInfo.TrialSuffix;
+		public const byte Release = 3;
 
-    public int Number => this.m_major * 100 + this.m_minor * 10 + this.m_release;
+		private static string StageSuffix = "_dev001";
 
-    private VersionInfo()
-    {
-      this.m_major = 1;
-      this.m_minor = 8;
-      this.m_release = 3;
-    }
+		private static string TrialSuffix = "";
 
-    private VersionInfo(byte major, byte minor, byte release)
-    {
-      this.m_major = (int) major;
-      this.m_minor = (int) minor;
-      this.m_release = (int) release;
-    }
+		[SerializeField]
+		private int m_major;
 
-    public static VersionInfo Current() => new VersionInfo((byte) 1, (byte) 8, (byte) 3);
+		[SerializeField]
+		private int m_minor;
 
-    public static bool Matches(VersionInfo version) => 1 == version.m_major && 8 == version.m_minor && 3 == version.m_release;
-  }
+		[SerializeField]
+		private int m_release;
+
+		public int Number
+		{
+			get
+			{
+				return m_major * 100 + m_minor * 10 + m_release;
+			}
+		}
+
+		public static string StaticToString()
+		{
+			return string.Format("{0}.{1}.{2}", (byte)1, (byte)8, (byte)3) + StageSuffix + TrialSuffix;
+		}
+
+		public override string ToString()
+		{
+			return string.Format("{0}.{1}.{2}", m_major, m_minor, m_release) + StageSuffix + TrialSuffix;
+		}
+
+		private VersionInfo()
+		{
+			m_major = 1;
+			m_minor = 8;
+			m_release = 3;
+		}
+
+		private VersionInfo(byte major, byte minor, byte release)
+		{
+			m_major = major;
+			m_minor = minor;
+			m_release = release;
+		}
+
+		public static VersionInfo Current()
+		{
+			return new VersionInfo(1, 8, 3);
+		}
+
+		public static bool Matches(VersionInfo version)
+		{
+			if (1 == version.m_major && 8 == version.m_minor)
+			{
+				return 3 == version.m_release;
+			}
+			return false;
+		}
+	}
 }

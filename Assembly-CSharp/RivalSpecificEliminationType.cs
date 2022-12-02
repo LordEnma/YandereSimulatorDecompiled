@@ -1,30 +1,24 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: RivalSpecificEliminationType
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public enum RivalSpecificEliminationType
 {
-  None,
-  Attacked,
-  Befriended,
-  Betrayed,
-  Bullied,
-  Burned,
-  Crushed,
-  Drowned,
-  Electrocuted,
-  Expelled,
-  Fan,
-  Framed,
-  Kidnapped,
-  Matchmade,
-  MurderSuicide,
-  Poisoned,
-  Pool,
-  Pushed,
-  Rejected,
-  Suicide,
-  Exploded,
+	None = 0,
+	Attacked = 1,
+	Befriended = 2,
+	Betrayed = 3,
+	Bullied = 4,
+	Burned = 5,
+	Crushed = 6,
+	Drowned = 7,
+	Electrocuted = 8,
+	Expelled = 9,
+	Fan = 10,
+	Framed = 11,
+	Kidnapped = 12,
+	Matchmade = 13,
+	MurderSuicide = 14,
+	Poisoned = 15,
+	Pool = 16,
+	Pushed = 17,
+	Rejected = 18,
+	Suicide = 19,
+	Exploded = 20
 }

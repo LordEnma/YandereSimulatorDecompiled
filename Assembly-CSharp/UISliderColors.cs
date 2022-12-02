@@ -1,49 +1,51 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UISliderColors
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Examples/Slider Colors")]
 public class UISliderColors : MonoBehaviour
 {
-  public UISprite sprite;
-  public Color[] colors = new Color[3]
-  {
-    Color.red,
-    Color.yellow,
-    Color.green
-  };
-  private UIProgressBar mBar;
-  private UIBasicSprite mSprite;
+	public UISprite sprite;
 
-  private void Start()
-  {
-    this.mBar = this.GetComponent<UIProgressBar>();
-    this.mSprite = this.GetComponent<UIBasicSprite>();
-    this.Update();
-  }
+	public Color[] colors = new Color[3]
+	{
+		Color.red,
+		Color.yellow,
+		Color.green
+	};
 
-  private void Update()
-  {
-    if ((Object) this.sprite == (Object) null || this.colors.Length == 0)
-      return;
-    float f = ((Object) this.mBar != (Object) null ? this.mBar.value : this.mSprite.fillAmount) * (float) (this.colors.Length - 1);
-    int index = Mathf.FloorToInt(f);
-    Color color = this.colors[0];
-    if (index >= 0)
-    {
-      if (index + 1 < this.colors.Length)
-      {
-        float t = f - (float) index;
-        color = Color.Lerp(this.colors[index], this.colors[index + 1], t);
-      }
-      else
-        color = index >= this.colors.Length ? this.colors[this.colors.Length - 1] : this.colors[index];
-    }
-    color.a = this.sprite.color.a;
-    this.sprite.color = color;
-  }
+	private UIProgressBar mBar;
+
+	private UIBasicSprite mSprite;
+
+	private void Start()
+	{
+		mBar = GetComponent<UIProgressBar>();
+		mSprite = GetComponent<UIBasicSprite>();
+		Update();
+	}
+
+	private void Update()
+	{
+		if (sprite == null || colors.Length == 0)
+		{
+			return;
+		}
+		float num = ((mBar != null) ? mBar.value : mSprite.fillAmount);
+		num *= (float)(colors.Length - 1);
+		int num2 = Mathf.FloorToInt(num);
+		Color color = colors[0];
+		if (num2 >= 0)
+		{
+			if (num2 + 1 >= colors.Length)
+			{
+				color = ((num2 >= colors.Length) ? colors[colors.Length - 1] : colors[num2]);
+			}
+			else
+			{
+				float t = num - (float)num2;
+				color = Color.Lerp(colors[num2], colors[num2 + 1], t);
+			}
+		}
+		color.a = sprite.color.a;
+		sprite.color = color;
+	}
 }

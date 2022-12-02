@@ -1,254 +1,273 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: YouTubeChat
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
 using System.Threading;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using UnityEngine;
 
 public class YouTubeChat : MonoBehaviour
 {
-  public static YouTubeChat instance;
-  public WebDriver driver;
-  public string youtubeChatPopoutUrl;
-  private string pathToDriver = Directory.GetCurrentDirectory() + "\\Assets\\Packages\\Selenium.WebDriver.GeckoDriver.0.30.0.1\\driver\\";
-  private string defaultPathToDriver = Directory.GetCurrentDirectory() + "\\Assets\\Packages\\Selenium.WebDriver.GeckoDriver.0.30.0.1\\driver\\";
-  private FirefoxOptions options;
-  private FirefoxDriverService FFDriverService;
-  private int previousLength;
-  public Queue<YouTubeChatMessage> MessageQueue = new Queue<YouTubeChatMessage>();
-  private Thread updateThread;
-  private bool hasSetVersion;
-  private string _youtubeChatPopoutUrl;
-  public bool isValidURL;
-  public float Timer;
-  public bool TimeBased;
+	public static YouTubeChat instance;
 
-  private void OnEnable()
-  {
-    YouTubeChat.instance = this;
-    this.pathToDriver = Application.dataPath + "/StreamingAssets/Packages/Selenium.WebDriver.GeckoDriver.0.30.0.1/driver/";
-    this.defaultPathToDriver = this.pathToDriver;
-    this.options = this.getFirefoxOptions();
-    if (this.updateThread != null && this.updateThread.IsAlive)
-    {
-      this.updateThread.Abort();
-      this.updateThread = (Thread) null;
-    }
-    this.StartDriver();
-    this._youtubeChatPopoutUrl = this.youtubeChatPopoutUrl;
-  }
+	public WebDriver driver;
 
-  private void StartDriver()
-  {
-    if (this.FFDriverService != null)
-      this.FFDriverService = (FirefoxDriverService) null;
-    this.FFDriverService = FirefoxDriverService.CreateDefaultService(this.getVersionPath());
-    this.FFDriverService.HideCommandPromptWindow = true;
-    this.ActivateDriver();
-  }
+	public string youtubeChatPopoutUrl;
 
-  private void OnDisable()
-  {
-    YouTubeChat.instance = (YouTubeChat) null;
-    this.CloseDriver();
-  }
+	private string pathToDriver = Directory.GetCurrentDirectory() + "\\Assets\\Packages\\Selenium.WebDriver.GeckoDriver.0.30.0.1\\driver\\";
 
-  private void Update()
-  {
-    this.AssureDriverActivated();
-    if (this.isValidURL || this.updateThread == null || !this.updateThread.IsAlive)
-      return;
-    this.updateThread.Abort();
-  }
+	private string defaultPathToDriver = Directory.GetCurrentDirectory() + "\\Assets\\Packages\\Selenium.WebDriver.GeckoDriver.0.30.0.1\\driver\\";
 
-  public YouTubeChatMessage NextInQueue() => this.MessageQueue.Count != 0 ? this.MessageQueue.Peek() : (YouTubeChatMessage) null;
+	private FirefoxOptions options;
 
-  public void Dequeue() => this.MessageQueue.Dequeue();
+	private FirefoxDriverService FFDriverService;
 
-  private void _messageUpdate()
-  {
-    while (true)
-    {
-      try
-      {
-        this.UpdateMessagesList(false);
-      }
-      catch (Exception ex)
-      {
-      }
-    }
-  }
+	private int previousLength;
 
-  public void UpdateMessagesList(bool initialRun)
-  {
-    ReadOnlyCollection<IWebElement> elements = this.driver.FindElements(By.TagName("YT-LIVE-CHAT-TEXT-MESSAGE-RENDERER"));
-    if (!initialRun)
-    {
-      if (this.previousLength > elements.Count)
-        this.UpdateMessagesList(true);
-      if (this.previousLength < elements.Count)
-      {
-        for (int previousLength = this.previousLength; previousLength < elements.Count; ++previousLength)
-        {
-          try
-          {
-            IWebElement element = elements[previousLength].FindElement(By.Id("message"));
-            if (element != null)
-            {
-              if (element.Text != string.Empty)
-              {
-                if (element.Text[0] == '!')
-                  this.MessageQueue.Enqueue(new YouTubeChatMessage(elements[previousLength].FindElement(By.Id("author-name")).Text, elements[previousLength].GetAttribute("timestampString"), element.Text));
-              }
-            }
-          }
-          catch
-          {
-          }
-        }
-      }
-    }
-    this.previousLength = elements.Count;
-    if (this.previousLength < 100)
-      return;
-    this.driver.Navigate().Refresh();
-  }
+	public Queue<YouTubeChatMessage> MessageQueue = new Queue<YouTubeChatMessage>();
 
-  public void AssureDriverActivated()
-  {
-    if (this.driver != null && !string.IsNullOrEmpty(this.driver.CurrentWindowHandle) && !(this._youtubeChatPopoutUrl != this.youtubeChatPopoutUrl))
-      return;
-    if (this._youtubeChatPopoutUrl != this.youtubeChatPopoutUrl)
-      this.CloseDriver();
-    this.ActivateDriver();
-    this._youtubeChatPopoutUrl = this.youtubeChatPopoutUrl;
-  }
+	private Thread updateThread;
 
-  private void ActivateDriver()
-  {
-    Debug.Log((object) this.pathToDriver);
-    if (this.FFDriverService == null)
-    {
-      this.FFDriverService = FirefoxDriverService.CreateDefaultService(this.getVersionPath());
-      this.FFDriverService.HideCommandPromptWindow = true;
-    }
-    this.driver = (WebDriver) new FirefoxDriver(this.FFDriverService, this.options);
-    if (!string.IsNullOrEmpty(this.youtubeChatPopoutUrl) && this.youtubeChatPopoutUrl.Contains("https://www.youtube.") && this.youtubeChatPopoutUrl.Contains("/live_chat?is_popout="))
-    {
-      if (this.youtubeChatPopoutUrl.Contains("&v="))
-      {
-        try
-        {
-          HttpWebResponse response = (HttpWebResponse) WebRequest.Create(this.youtubeChatPopoutUrl).GetResponse();
-          if (response.StatusCode == HttpStatusCode.OK)
-          {
-            try
-            {
-              this.driver.Navigate().GoToUrl(this.youtubeChatPopoutUrl);
-              this.UpdateMessagesList(true);
-              this.isValidURL = true;
-              if (this.updateThread != null && this.updateThread.IsAlive)
-              {
-                this.updateThread.Abort();
-                this.updateThread = (Thread) null;
-              }
-              this.updateThread = new Thread(new ThreadStart(this._messageUpdate));
-              this.updateThread.Start();
-            }
-            catch (Exception ex)
-            {
-              this.isValidURL = false;
-            }
-          }
-          response.Dispose();
-          return;
-        }
-        catch
-        {
-          this.isValidURL = false;
-          this._youtubeChatPopoutUrl = string.Empty;
-          return;
-        }
-      }
-    }
-    this.isValidURL = false;
-  }
+	private bool hasSetVersion;
 
-  private void OnApplicationQuit() => this.CloseDriver();
+	private string _youtubeChatPopoutUrl;
 
-  private void CloseDriver()
-  {
-    if (this.driver == null)
-      return;
-    this.driver.Close();
-    this.driver.Quit();
-    this.driver = (WebDriver) null;
-    if (this.FFDriverService != null)
-    {
-      this.FFDriverService.Dispose();
-      this.FFDriverService = (FirefoxDriverService) null;
-    }
-    if (this.updateThread == null)
-      return;
-    this.updateThread.Abort();
-    this.updateThread = (Thread) null;
-  }
+	public bool isValidURL;
 
-  private string getVersionPath()
-  {
-    int platform = (int) Application.platform;
-    if (!this.hasSetVersion)
-    {
-      switch (Application.platform)
-      {
-        case RuntimePlatform.OSXEditor:
-          this.pathToDriver += "mac64";
-          break;
-        case RuntimePlatform.OSXPlayer:
-          this.pathToDriver += "mac64";
-          break;
-        case RuntimePlatform.WindowsPlayer:
-          this.pathToDriver += "win32";
-          break;
-        case RuntimePlatform.WindowsEditor:
-          this.pathToDriver += "win32";
-          break;
-        case RuntimePlatform.LinuxPlayer:
-          this.pathToDriver += "linux64";
-          break;
-        case RuntimePlatform.LinuxEditor:
-          this.pathToDriver += "linux64";
-          break;
-        default:
-          Debug.LogError((object) "Unsupported Version for Youtube Chat");
-          break;
-      }
-      this.hasSetVersion = true;
-    }
-    return this.pathToDriver;
-  }
+	public float Timer;
 
-  private FirefoxOptions getFirefoxOptions()
-  {
-    FirefoxOptions firefoxOptions = new FirefoxOptions();
-    firefoxOptions.BrowserExecutableLocation = this.defaultPathToDriver + "MozillaFirefox/firefox.exe";
-    firefoxOptions.AddArguments((IEnumerable<string>) new List<string>()
-    {
-      "--silent-launch",
-      "--no-startup-window",
-      "no-sandbox",
-      "--disable-gpu",
-      "-headless"
-    });
-    return firefoxOptions;
-  }
+	public bool TimeBased;
+
+	private void OnEnable()
+	{
+		instance = this;
+		pathToDriver = Application.dataPath + "/StreamingAssets/Packages/Selenium.WebDriver.GeckoDriver.0.30.0.1/driver/";
+		defaultPathToDriver = pathToDriver;
+		options = getFirefoxOptions();
+		if (updateThread != null && updateThread.IsAlive)
+		{
+			updateThread.Abort();
+			updateThread = null;
+		}
+		StartDriver();
+		_youtubeChatPopoutUrl = youtubeChatPopoutUrl;
+	}
+
+	private void StartDriver()
+	{
+		if (FFDriverService != null)
+		{
+			FFDriverService = null;
+		}
+		FFDriverService = FirefoxDriverService.CreateDefaultService(getVersionPath());
+		FFDriverService.HideCommandPromptWindow = true;
+		ActivateDriver();
+	}
+
+	private void OnDisable()
+	{
+		instance = null;
+		CloseDriver();
+	}
+
+	private void Update()
+	{
+		AssureDriverActivated();
+		if (!isValidURL && updateThread != null && updateThread.IsAlive)
+		{
+			updateThread.Abort();
+		}
+	}
+
+	public YouTubeChatMessage NextInQueue()
+	{
+		if (MessageQueue.Count != 0)
+		{
+			return MessageQueue.Peek();
+		}
+		return null;
+	}
+
+	public void Dequeue()
+	{
+		MessageQueue.Dequeue();
+	}
+
+	private void _messageUpdate()
+	{
+		while (true)
+		{
+			try
+			{
+				UpdateMessagesList(false);
+			}
+			catch (Exception)
+			{
+			}
+		}
+	}
+
+	public void UpdateMessagesList(bool initialRun)
+	{
+		ReadOnlyCollection<IWebElement> readOnlyCollection = driver.FindElements(By.TagName("YT-LIVE-CHAT-TEXT-MESSAGE-RENDERER"));
+		if (!initialRun)
+		{
+			if (previousLength > readOnlyCollection.Count)
+			{
+				UpdateMessagesList(true);
+			}
+			if (previousLength < readOnlyCollection.Count)
+			{
+				for (int i = previousLength; i < readOnlyCollection.Count; i++)
+				{
+					try
+					{
+						IWebElement webElement = readOnlyCollection[i].FindElement(By.Id("message"));
+						if (webElement != null && webElement.Text != string.Empty && webElement.Text[0] == '!')
+						{
+							MessageQueue.Enqueue(new YouTubeChatMessage(readOnlyCollection[i].FindElement(By.Id("author-name")).Text, readOnlyCollection[i].GetAttribute("timestampString"), webElement.Text));
+						}
+					}
+					catch
+					{
+					}
+				}
+			}
+		}
+		previousLength = readOnlyCollection.Count;
+		if (previousLength >= 100)
+		{
+			driver.Navigate().Refresh();
+		}
+	}
+
+	public void AssureDriverActivated()
+	{
+		if (driver == null || string.IsNullOrEmpty(driver.CurrentWindowHandle) || _youtubeChatPopoutUrl != youtubeChatPopoutUrl)
+		{
+			if (_youtubeChatPopoutUrl != youtubeChatPopoutUrl)
+			{
+				CloseDriver();
+			}
+			ActivateDriver();
+			_youtubeChatPopoutUrl = youtubeChatPopoutUrl;
+		}
+	}
+
+	private void ActivateDriver()
+	{
+		Debug.Log(pathToDriver);
+		if (FFDriverService == null)
+		{
+			FFDriverService = FirefoxDriverService.CreateDefaultService(getVersionPath());
+			FFDriverService.HideCommandPromptWindow = true;
+		}
+		driver = new FirefoxDriver(FFDriverService, options);
+		if (!string.IsNullOrEmpty(youtubeChatPopoutUrl) && youtubeChatPopoutUrl.Contains("https://www.youtube.") && youtubeChatPopoutUrl.Contains("/live_chat?is_popout=") && youtubeChatPopoutUrl.Contains("&v="))
+		{
+			try
+			{
+				HttpWebResponse httpWebResponse = null;
+				httpWebResponse = (HttpWebResponse)((HttpWebRequest)WebRequest.Create(youtubeChatPopoutUrl)).GetResponse();
+				if (httpWebResponse.StatusCode == HttpStatusCode.OK)
+				{
+					try
+					{
+						driver.Navigate().GoToUrl(youtubeChatPopoutUrl);
+						UpdateMessagesList(true);
+						isValidURL = true;
+						if (updateThread != null && updateThread.IsAlive)
+						{
+							updateThread.Abort();
+							updateThread = null;
+						}
+						updateThread = new Thread(_messageUpdate);
+						updateThread.Start();
+					}
+					catch (Exception)
+					{
+						isValidURL = false;
+					}
+				}
+				httpWebResponse.Dispose();
+				return;
+			}
+			catch
+			{
+				isValidURL = false;
+				_youtubeChatPopoutUrl = string.Empty;
+				return;
+			}
+		}
+		isValidURL = false;
+	}
+
+	private void OnApplicationQuit()
+	{
+		CloseDriver();
+	}
+
+	private void CloseDriver()
+	{
+		if (driver != null)
+		{
+			driver.Close();
+			driver.Quit();
+			driver = null;
+			if (FFDriverService != null)
+			{
+				FFDriverService.Dispose();
+				FFDriverService = null;
+			}
+			if (updateThread != null)
+			{
+				updateThread.Abort();
+				updateThread = null;
+			}
+		}
+	}
+
+	private string getVersionPath()
+	{
+		RuntimePlatform platform = Application.platform;
+		if (!hasSetVersion)
+		{
+			switch (Application.platform)
+			{
+			case RuntimePlatform.WindowsPlayer:
+				pathToDriver += "win32";
+				break;
+			case RuntimePlatform.WindowsEditor:
+				pathToDriver += "win32";
+				break;
+			case RuntimePlatform.OSXEditor:
+				pathToDriver += "mac64";
+				break;
+			case RuntimePlatform.OSXPlayer:
+				pathToDriver += "mac64";
+				break;
+			case RuntimePlatform.LinuxEditor:
+				pathToDriver += "linux64";
+				break;
+			case RuntimePlatform.LinuxPlayer:
+				pathToDriver += "linux64";
+				break;
+			default:
+				Debug.LogError("Unsupported Version for Youtube Chat");
+				break;
+			}
+			hasSetVersion = true;
+		}
+		return pathToDriver;
+	}
+
+	private FirefoxOptions getFirefoxOptions()
+	{
+		FirefoxOptions firefoxOptions = new FirefoxOptions();
+		firefoxOptions.BrowserExecutableLocation = defaultPathToDriver + "MozillaFirefox/firefox.exe";
+		firefoxOptions.AddArguments(new List<string> { "--silent-launch", "--no-startup-window", "no-sandbox", "--disable-gpu", "-headless" });
+		return firefoxOptions;
+	}
 }

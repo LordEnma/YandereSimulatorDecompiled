@@ -1,55 +1,54 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ObstacleDetectorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ObstacleDetectorScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public int Obstacles;
-  public int Frame;
-  public int ID;
+	public YandereScript Yandere;
 
-  private void Update()
-  {
-    ++this.Frame;
-    if (this.Frame == 3)
-    {
-      this.Frame = 0;
-      this.Obstacles = 0;
-      this.gameObject.SetActive(false);
-    }
-    else if (this.Frame == 2)
-    {
-      if (this.Obstacles > 0)
-      {
-        this.Yandere.NotificationManager.CustomText = "Something's in the way.";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        this.Yandere.NotificationManager.CustomText = "You can't set the cello case down here.";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-      else
-      {
-        this.Frame = 0;
-        this.Yandere.Container.Drop();
-        this.Yandere.WeaponMenu.UpdateSprites();
-        this.gameObject.SetActive(false);
-      }
-    }
-    else
-    {
-      int frame = this.Frame;
-    }
-  }
+	public int Obstacles;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (!this.Yandere.Container.CelloCase || other.gameObject.layer == 1 || other.gameObject.layer == 2 || other.gameObject.layer == 8 || other.gameObject.layer == 13 || other.gameObject.layer == 14)
-      return;
-    Debug.Log((object) ("Obstacle detected: " + other.gameObject.name + ". It's on Layer: " + other.gameObject.layer.ToString()));
-    ++this.Obstacles;
-  }
+	public int Frame;
+
+	public int ID;
+
+	private void Update()
+	{
+		Frame++;
+		if (Frame == 3)
+		{
+			Frame = 0;
+			Obstacles = 0;
+			base.gameObject.SetActive(false);
+		}
+		else if (Frame == 2)
+		{
+			if (Obstacles > 0)
+			{
+				Yandere.NotificationManager.CustomText = "Something's in the way.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Yandere.NotificationManager.CustomText = "You can't set the cello case down here.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else
+			{
+				Frame = 0;
+				Yandere.Container.Drop();
+				Yandere.WeaponMenu.UpdateSprites();
+				base.gameObject.SetActive(false);
+			}
+		}
+		else
+		{
+			int frame = Frame;
+			int num = 1;
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (Yandere.Container.CelloCase && other.gameObject.layer != 1 && other.gameObject.layer != 2 && other.gameObject.layer != 8 && other.gameObject.layer != 13 && other.gameObject.layer != 14)
+		{
+			Debug.Log("Obstacle detected: " + other.gameObject.name + ". It's on Layer: " + other.gameObject.layer);
+			Obstacles++;
+		}
+	}
 }

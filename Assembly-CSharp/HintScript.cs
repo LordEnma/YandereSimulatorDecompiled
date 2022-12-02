@@ -1,92 +1,104 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HintScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class HintScript : MonoBehaviour
 {
-  public PauseScreenScript PauseScreen;
-  public AudioSource MyAudio;
-  public float Speed = 10f;
-  public float Timer;
-  public int QuickID;
-  public bool DisplayTutorial;
-  public bool Show;
-  public UIPanel MyPanel;
+	public PauseScreenScript PauseScreen;
 
-  private void Start()
-  {
-    this.transform.localPosition = new Vector3(0.2043f, 0.0f, 1f);
-    if (DateGlobals.Week > 1 || GameGlobals.Eighties)
-      this.gameObject.SetActive(false);
-    if (!OptionGlobals.HintsOff)
-      return;
-    this.enabled = false;
-  }
+	public AudioSource MyAudio;
 
-  private void Update()
-  {
-    if ((double) this.MyPanel.alpha != 1.0)
-      return;
-    if (this.Show)
-    {
-      if ((double) this.Speed == 5.0)
-      {
-        this.MyAudio.Play();
-        this.Speed = 0.0f;
-      }
-      this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, new Vector3(0.0f, 0.0f, 1f), Time.deltaTime * 10f);
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer > 5.0)
-        this.Show = false;
-      if (!Input.GetButtonDown("Start") || this.PauseScreen.Yandere.Shutter.Snapping || this.PauseScreen.Yandere.TimeSkipping || this.PauseScreen.Yandere.Talking || this.PauseScreen.Yandere.Noticed || this.PauseScreen.Yandere.InClass || this.PauseScreen.Yandere.Struggling || this.PauseScreen.Yandere.Won || this.PauseScreen.Yandere.Dismembering || this.PauseScreen.Yandere.Attacked || !this.PauseScreen.Yandere.CanMove || this.PauseScreen.Yandere.Chased || this.PauseScreen.Yandere.Chasers != 0 || this.PauseScreen.Yandere.YandereVision || (double) Time.timeScale <= 9.9999997473787516E-05 || this.PauseScreen.Schedule.gameObject.activeInHierarchy)
-        return;
-      if (this.DisplayTutorial)
-      {
-        this.PauseScreen.Yandere.StudentManager.TutorialWindow.SummonWindow();
-        this.DisplayTutorial = false;
-      }
-      else
-      {
-        this.PauseScreen.ShowScheduleScreen();
-        this.PauseScreen.Sideways = true;
-        this.PauseScreen.Schedule.JumpToEvent(this.QuickID);
-      }
-      this.transform.localPosition = new Vector3(0.2043f, 0.0f, 1f);
-      this.Show = false;
-      this.Speed = 5f;
-      this.Timer = 0.0f;
-    }
-    else
-    {
-      if ((double) this.Speed >= 5.0)
-        return;
-      this.Timer = 0.0f;
-      this.Speed = Mathf.MoveTowards(this.Speed, 5f, Time.deltaTime);
-      this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, new Vector3(0.2043f, 0.0f, 1f), (float) ((double) this.Speed * (double) Time.deltaTime * 0.016666600480675697));
-      if ((double) this.Speed == 5.0)
-      {
-        this.transform.localPosition = new Vector3(0.2043f, 0.0f, 1f);
-        this.DisplayTutorial = false;
-      }
-      if (!Input.GetButtonDown("Start") || this.PauseScreen.Yandere.Shutter.Snapping || this.PauseScreen.Yandere.TimeSkipping || this.PauseScreen.Yandere.Talking || this.PauseScreen.Yandere.Noticed || this.PauseScreen.Yandere.InClass || this.PauseScreen.Yandere.Struggling || this.PauseScreen.Yandere.Won || this.PauseScreen.Yandere.Dismembering || this.PauseScreen.Yandere.Attacked || !this.PauseScreen.Yandere.CanMove || this.PauseScreen.Yandere.Chased || this.PauseScreen.Yandere.Chasers != 0 || this.PauseScreen.Yandere.YandereVision || (double) Time.timeScale <= 9.9999997473787516E-05 || this.PauseScreen.Schedule.gameObject.activeInHierarchy)
-        return;
-      if (this.DisplayTutorial)
-      {
-        this.PauseScreen.Yandere.StudentManager.TutorialWindow.SummonWindow();
-        this.DisplayTutorial = false;
-      }
-      else
-      {
-        this.PauseScreen.ShowScheduleScreen();
-        this.PauseScreen.Sideways = true;
-        this.PauseScreen.Schedule.JumpToEvent(this.QuickID);
-      }
-      this.transform.localPosition = new Vector3(0.2043f, 0.0f, 1f);
-      this.Speed = 5f;
-    }
-  }
+	public float Speed = 10f;
+
+	public float Timer;
+
+	public int QuickID;
+
+	public bool DisplayTutorial;
+
+	public bool Show;
+
+	public UIPanel MyPanel;
+
+	private void Start()
+	{
+		base.transform.localPosition = new Vector3(0.2043f, 0f, 1f);
+		if (DateGlobals.Week > 1 || GameGlobals.Eighties)
+		{
+			base.gameObject.SetActive(false);
+		}
+		if (OptionGlobals.HintsOff)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (MyPanel.alpha != 1f)
+		{
+			return;
+		}
+		if (Show)
+		{
+			if (Speed == 5f)
+			{
+				MyAudio.Play();
+				Speed = 0f;
+			}
+			base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(0f, 0f, 1f), Time.deltaTime * 10f);
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
+			{
+				Show = false;
+			}
+			if (Input.GetButtonDown("Start") && !PauseScreen.Yandere.Shutter.Snapping && !PauseScreen.Yandere.TimeSkipping && !PauseScreen.Yandere.Talking && !PauseScreen.Yandere.Noticed && !PauseScreen.Yandere.InClass && !PauseScreen.Yandere.Struggling && !PauseScreen.Yandere.Won && !PauseScreen.Yandere.Dismembering && !PauseScreen.Yandere.Attacked && PauseScreen.Yandere.CanMove && !PauseScreen.Yandere.Chased && PauseScreen.Yandere.Chasers == 0 && !PauseScreen.Yandere.YandereVision && Time.timeScale > 0.0001f && !PauseScreen.Schedule.gameObject.activeInHierarchy)
+			{
+				if (DisplayTutorial)
+				{
+					PauseScreen.Yandere.StudentManager.TutorialWindow.SummonWindow();
+					DisplayTutorial = false;
+				}
+				else
+				{
+					PauseScreen.ShowScheduleScreen();
+					PauseScreen.Sideways = true;
+					PauseScreen.Schedule.JumpToEvent(QuickID);
+				}
+				base.transform.localPosition = new Vector3(0.2043f, 0f, 1f);
+				Show = false;
+				Speed = 5f;
+				Timer = 0f;
+			}
+		}
+		else
+		{
+			if (!(Speed < 5f))
+			{
+				return;
+			}
+			Timer = 0f;
+			Speed = Mathf.MoveTowards(Speed, 5f, Time.deltaTime);
+			base.transform.localPosition = Vector3.MoveTowards(base.transform.localPosition, new Vector3(0.2043f, 0f, 1f), Speed * Time.deltaTime * 0.0166666f);
+			if (Speed == 5f)
+			{
+				base.transform.localPosition = new Vector3(0.2043f, 0f, 1f);
+				DisplayTutorial = false;
+			}
+			if (Input.GetButtonDown("Start") && !PauseScreen.Yandere.Shutter.Snapping && !PauseScreen.Yandere.TimeSkipping && !PauseScreen.Yandere.Talking && !PauseScreen.Yandere.Noticed && !PauseScreen.Yandere.InClass && !PauseScreen.Yandere.Struggling && !PauseScreen.Yandere.Won && !PauseScreen.Yandere.Dismembering && !PauseScreen.Yandere.Attacked && PauseScreen.Yandere.CanMove && !PauseScreen.Yandere.Chased && PauseScreen.Yandere.Chasers == 0 && !PauseScreen.Yandere.YandereVision && Time.timeScale > 0.0001f && !PauseScreen.Schedule.gameObject.activeInHierarchy)
+			{
+				if (DisplayTutorial)
+				{
+					PauseScreen.Yandere.StudentManager.TutorialWindow.SummonWindow();
+					DisplayTutorial = false;
+				}
+				else
+				{
+					PauseScreen.ShowScheduleScreen();
+					PauseScreen.Sideways = true;
+					PauseScreen.Schedule.JumpToEvent(QuickID);
+				}
+				base.transform.localPosition = new Vector3(0.2043f, 0f, 1f);
+				Speed = 5f;
+			}
+		}
+	}
 }

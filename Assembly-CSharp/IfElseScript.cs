@@ -1,67 +1,73 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: IfElseScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class IfElseScript : MonoBehaviour
 {
-  public int ID;
-  public string Day;
+	public int ID;
 
-  private void Start() => this.SwitchCase();
+	public string Day;
 
-  private void IfElse()
-  {
-    if (this.ID == 1)
-      this.Day = "Monday";
-    else if (this.ID == 2)
-      this.Day = "Tuesday";
-    else if (this.ID == 3)
-      this.Day = "Wednesday";
-    else if (this.ID == 4)
-      this.Day = "Thursday";
-    else if (this.ID == 5)
-      this.Day = "Friday";
-    else if (this.ID == 6)
-    {
-      this.Day = "Saturday";
-    }
-    else
-    {
-      if (this.ID != 7)
-        return;
-      this.Day = "Sunday";
-    }
-  }
+	private void Start()
+	{
+		SwitchCase();
+	}
 
-  private void SwitchCase()
-  {
-    switch (this.ID)
-    {
-      case 1:
-        this.Day = "Monday";
-        break;
-      case 2:
-        this.Day = "Tuesday";
-        break;
-      case 3:
-        this.Day = "Wednesday";
-        break;
-      case 4:
-        this.Day = "Thursday";
-        break;
-      case 5:
-        this.Day = "Friday";
-        break;
-      case 6:
-        this.Day = "Saturday";
-        break;
-      case 7:
-        this.Day = "Sunday";
-        break;
-    }
-  }
+	private void IfElse()
+	{
+		if (ID == 1)
+		{
+			Day = "Monday";
+		}
+		else if (ID == 2)
+		{
+			Day = "Tuesday";
+		}
+		else if (ID == 3)
+		{
+			Day = "Wednesday";
+		}
+		else if (ID == 4)
+		{
+			Day = "Thursday";
+		}
+		else if (ID == 5)
+		{
+			Day = "Friday";
+		}
+		else if (ID == 6)
+		{
+			Day = "Saturday";
+		}
+		else if (ID == 7)
+		{
+			Day = "Sunday";
+		}
+	}
+
+	private void SwitchCase()
+	{
+		switch (ID)
+		{
+		case 1:
+			Day = "Monday";
+			break;
+		case 2:
+			Day = "Tuesday";
+			break;
+		case 3:
+			Day = "Wednesday";
+			break;
+		case 4:
+			Day = "Thursday";
+			break;
+		case 5:
+			Day = "Friday";
+			break;
+		case 6:
+			Day = "Saturday";
+			break;
+		case 7:
+			Day = "Sunday";
+			break;
+		}
+	}
 }

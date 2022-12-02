@@ -1,42 +1,43 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AreaScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AreaScript : MonoBehaviour
 {
-  [Header("Do not touch any of these values. They get updated at runtime.")]
-  [Tooltip("The amount of students in this area.")]
-  public int Population;
-  [Tooltip("A list of students in this area.")]
-  public List<StudentScript> Students;
-  [Tooltip("This area's crowd. Students will go here.")]
-  public List<StudentScript> Crowd;
-  public int ID;
+	[Header("Do not touch any of these values. They get updated at runtime.")]
+	[Tooltip("The amount of students in this area.")]
+	public int Population;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (!other.CompareTag("Student"))
-      return;
-    StudentScript component = other.GetComponent<StudentScript>();
-    if (component.Teacher)
-      return;
-    this.Students.Add(component);
-    ++this.Population;
-  }
+	[Tooltip("A list of students in this area.")]
+	public List<StudentScript> Students;
 
-  private void OnTriggerExit(Collider other)
-  {
-    if (!other.CompareTag("Student"))
-      return;
-    StudentScript component = other.GetComponent<StudentScript>();
-    if (component.Teacher)
-      return;
-    this.Students.Remove(component);
-    --this.Population;
-  }
+	[Tooltip("This area's crowd. Students will go here.")]
+	public List<StudentScript> Crowd;
+
+	public int ID;
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Student"))
+		{
+			StudentScript component = other.GetComponent<StudentScript>();
+			if (!component.Teacher)
+			{
+				Students.Add(component);
+				Population++;
+			}
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.CompareTag("Student"))
+		{
+			StudentScript component = other.GetComponent<StudentScript>();
+			if (!component.Teacher)
+			{
+				Students.Remove(component);
+				Population--;
+			}
+		}
+	}
 }

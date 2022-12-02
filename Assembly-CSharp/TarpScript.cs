@@ -1,42 +1,49 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TarpScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class TarpScript : MonoBehaviour
 {
-  public PromptScript Prompt;
-  public MechaScript Mecha;
-  public AudioClip Tarp;
-  public float PreviousSpeed;
-  public float Speed;
-  public bool Unwrap;
+	public PromptScript Prompt;
 
-  private void Start() => this.transform.localScale = new Vector3(1f, 1f, 1f);
+	public MechaScript Mecha;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      AudioSource.PlayClipAtPoint(this.Tarp, this.transform.position);
-      this.Unwrap = true;
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.Mecha.enabled = true;
-      this.Mecha.Prompt.enabled = true;
-    }
-    if (!this.Unwrap)
-      return;
-    this.Speed += Time.deltaTime * 10f;
-    this.transform.localEulerAngles = Vector3.Lerp(this.transform.localEulerAngles, new Vector3(90f, 90f, 0.0f), Time.deltaTime * this.Speed);
-    if ((double) this.transform.localEulerAngles.x <= 45.0)
-      return;
-    if ((double) this.PreviousSpeed == 0.0)
-      this.PreviousSpeed = this.Speed;
-    this.Speed += Time.deltaTime * 10f;
-    this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1f, 1f, 0.0001f), (this.Speed - this.PreviousSpeed) * Time.deltaTime);
-  }
+	public AudioClip Tarp;
+
+	public float PreviousSpeed;
+
+	public float Speed;
+
+	public bool Unwrap;
+
+	private void Start()
+	{
+		base.transform.localScale = new Vector3(1f, 1f, 1f);
+	}
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			AudioSource.PlayClipAtPoint(Tarp, base.transform.position);
+			Unwrap = true;
+			Prompt.Hide();
+			Prompt.enabled = false;
+			Mecha.enabled = true;
+			Mecha.Prompt.enabled = true;
+		}
+		if (!Unwrap)
+		{
+			return;
+		}
+		Speed += Time.deltaTime * 10f;
+		base.transform.localEulerAngles = Vector3.Lerp(base.transform.localEulerAngles, new Vector3(90f, 90f, 0f), Time.deltaTime * Speed);
+		if (base.transform.localEulerAngles.x > 45f)
+		{
+			if (PreviousSpeed == 0f)
+			{
+				PreviousSpeed = Speed;
+			}
+			Speed += Time.deltaTime * 10f;
+			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 0.0001f), (Speed - PreviousSpeed) * Time.deltaTime);
+		}
+	}
 }

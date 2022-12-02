@@ -1,613 +1,801 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: WeaponScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-  public ParticleSystem[] ShortBloodSpray;
-  public ParticleSystem[] BloodSpray;
-  public OutlineScript[] Outline;
-  public float[] SoundTime;
-  public IncineratorScript Incinerator;
-  public StudentScript Returner;
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public Transform Origin;
-  public Transform Parent;
-  public AudioClip[] Clips;
-  public AudioClip[] Clips2;
-  public AudioClip[] Clips3;
-  public AudioClip DismemberClip;
-  public AudioClip EquipClip;
-  public ParticleSystem FireEffect;
-  public GameObject WeaponTrail;
-  public GameObject ExtraBlade;
-  public AudioSource FireAudio;
-  public Rigidbody MyRigidbody;
-  public AudioSource MyAudio;
-  public Collider MyCollider;
-  public Renderer MyRenderer;
-  public GameObject Nails;
-  public Transform Blade;
-  public Projector Blood;
-  public Vector3 StartingPosition;
-  public Vector3 StartingRotation;
-  public bool UnequipImmediately;
-  public bool InsideIncinerator;
-  public bool AlreadyExamined;
-  public bool BroughtFromHome;
-  public bool DelinquentOwned;
-  public bool DisableCollider;
-  public bool DoNotDisable;
-  public bool Dismembering;
-  public bool MurderWeapon;
-  public bool WeaponEffect;
-  public bool Concealable;
-  public bool Undroppable;
-  public bool Suspicious;
-  public bool Dangerous;
-  public bool Misplaced;
-  public bool Disposed;
-  public bool Evidence;
-  public bool Innocent;
-  public bool LeftHand;
-  public bool StartLow;
-  public bool Flaming;
-  public bool Bloody;
-  public bool Dumped;
-  public bool Heated;
-  public bool Rotate;
-  public bool Blunt;
-  public bool InBag;
-  public bool Metal;
-  public bool Flip;
-  public bool Spin;
-  public Color EvidenceColor;
-  public Color OriginalColor;
-  public float OriginalOffset;
-  public float KinematicTimer;
-  public float DumpTimer;
-  public float Rotation;
-  public float Speed;
-  public string SpriteName;
-  public string Name;
-  public int DismemberPhase;
-  public int FingerprintID;
-  public int GlobalID;
-  public int WeaponID;
-  public int AnimID;
-  public int BagID;
-  public WeaponType Type = WeaponType.Knife;
-  private AudioClip OriginalClip;
-  private int ID;
-  public MeshFilter MyMeshFilter;
-  public Mesh EightiesCircularSaw;
-  public Texture EightiesCircularSawTexture;
-  public bool[] Victims;
-  public bool ClubProperty;
-  public bool OneOfAKind;
-  public ClubType Club;
-  public GameObject HeartBurst;
-  public BoxCollider CookingClub;
+	public ParticleSystem[] ShortBloodSpray;
 
-  public void Start()
-  {
-    this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
-    this.StartingPosition = this.transform.position;
-    this.StartingRotation = this.transform.eulerAngles;
-    Physics.IgnoreCollision(this.Yandere.GetComponent<Collider>(), this.MyCollider);
-    this.OriginalColor = this.Outline[0].color;
-    if (this.StartLow)
-    {
-      this.OriginalOffset = this.Prompt.OffsetY[3];
-      this.Prompt.OffsetY[3] = 0.2f;
-    }
-    if (this.DisableCollider)
-      this.MyCollider.enabled = false;
-    this.MyAudio = this.GetComponent<AudioSource>();
-    if ((Object) this.MyAudio != (Object) null)
-      this.OriginalClip = this.MyAudio.clip;
-    this.MyRigidbody = this.GetComponent<Rigidbody>();
-    this.MyRigidbody.isKinematic = true;
-    if (!this.BroughtFromHome)
-    {
-      Transform transform = GameObject.Find("WeaponOriginParent").transform;
-      this.Origin = Object.Instantiate<GameObject>(this.Prompt.Yandere.StudentManager.EmptyObject, this.transform.position, Quaternion.identity).transform;
-      this.Origin.parent = transform;
-    }
-    if (this.WeaponID == 7 && GameGlobals.Eighties)
-    {
-      this.MyMeshFilter.mesh = this.EightiesCircularSaw;
-      this.MyRenderer.material.mainTexture = this.EightiesCircularSawTexture;
-      this.MyRenderer.transform.localPosition = new Vector3(0.005f, 0.045f, -0.0075f);
-    }
-    this.Innocent = !this.Suspicious;
-  }
+	public ParticleSystem[] BloodSpray;
 
-  public string GetTypePrefix()
-  {
-    Debug.Log((object) ("WeaponType is: " + this.Type.ToString()));
-    switch (this.Type)
-    {
-      case WeaponType.Knife:
-        return "knife";
-      case WeaponType.Katana:
-        return "katana";
-      case WeaponType.Bat:
-        return "bat";
-      case WeaponType.Saw:
-        return "saw";
-      case WeaponType.Syringe:
-        return "syringe";
-      case WeaponType.Weight:
-        return "weight";
-      case WeaponType.Scythe:
-        return "scythe";
-      case WeaponType.Garrote:
-        return "syringe";
-      default:
-        Debug.LogError((object) ("Weapon type \"" + this.Type.ToString() + "\" not implemented."));
-        return string.Empty;
-    }
-  }
+	public OutlineScript[] Outline;
 
-  public AudioClip GetClip(float sanity, bool stealth)
-  {
-    AudioClip[] audioClipArray = this.Clips2.Length != 0 ? (Random.Range(2, 4) == 2 ? this.Clips2 : this.Clips3) : this.Clips;
-    if (stealth)
-      return audioClipArray[0];
-    if ((double) sanity > 0.66666668653488159)
-      return audioClipArray[1];
-    return (double) sanity > 0.3333333432674408 ? audioClipArray[2] : audioClipArray[3];
-  }
+	public float[] SoundTime;
 
-  private void Update()
-  {
-    if (this.WeaponID == 16 && (Object) this.Yandere.EquippedWeapon == (Object) this && Input.GetButtonDown("RB") && (Object) this.ExtraBlade != (Object) null)
-      this.ExtraBlade.SetActive(!this.ExtraBlade.activeInHierarchy);
-    if (this.Dismembering)
-    {
-      if (this.DismemberPhase < 4)
-      {
-        if ((double) this.MyAudio.time > 0.75)
-        {
-          if ((double) this.Speed < 36.0)
-            this.Speed += Time.deltaTime + 10f;
-          this.Rotation += this.Speed;
-          this.Blade.localEulerAngles = new Vector3(this.Rotation, this.Blade.localEulerAngles.y, this.Blade.localEulerAngles.z);
-        }
-        if ((double) this.MyAudio.time > (double) this.SoundTime[this.DismemberPhase])
-        {
-          this.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 2.5f : 5f) * this.Yandere.Numbness;
-          this.Yandere.Bloodiness += 25f;
-          this.ShortBloodSpray[0].Play();
-          this.ShortBloodSpray[1].Play();
-          if (!this.Blood.enabled)
-            this.Yandere.StainWeapon();
-          ++this.DismemberPhase;
-          if (this.Yandere.Gloved && !this.Yandere.Gloves.Blood.enabled)
-          {
-            this.Yandere.Gloves.PickUp.Evidence = true;
-            this.Yandere.Gloves.Blood.enabled = true;
-            this.Yandere.GloveBlood = 1;
-            ++this.Yandere.Police.BloodyClothing;
-          }
-        }
-      }
-      else
-      {
-        this.Rotation = Mathf.Lerp(this.Rotation, 0.0f, Time.deltaTime * 2f);
-        this.Blade.localEulerAngles = new Vector3(this.Rotation, this.Blade.localEulerAngles.y, this.Blade.localEulerAngles.z);
-        if (!this.MyAudio.isPlaying)
-        {
-          this.MyAudio.clip = this.OriginalClip;
-          this.Dismembering = false;
-          this.DismemberPhase = 0;
-          this.Rotation = 0.0f;
-          this.Speed = 0.0f;
-        }
-      }
-    }
-    else if ((Object) this.Yandere.EquippedWeapon == (Object) this)
-    {
-      if (this.Yandere.AttackManager.IsAttacking())
-      {
-        if (this.Type == WeaponType.Knife)
-          this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, Mathf.Lerp(this.transform.localEulerAngles.y, this.Flip ? 180f : 0.0f, Time.deltaTime * 10f), this.transform.localEulerAngles.z);
-        else if (this.Type == WeaponType.Saw)
-        {
-          if (this.Spin)
-            this.Blade.transform.localEulerAngles = new Vector3(this.Blade.transform.localEulerAngles.x + Time.deltaTime * 360f, this.Blade.transform.localEulerAngles.y, this.Blade.transform.localEulerAngles.z);
-        }
-        else if (this.Type == WeaponType.Scythe)
-          this.MyRenderer.transform.localEulerAngles = new Vector3(12.5f, 7.5f, 90f);
-      }
-    }
-    else if (!this.MyRigidbody.isKinematic)
-    {
-      this.KinematicTimer = Mathf.MoveTowards(this.KinematicTimer, 5f, Time.deltaTime);
-      if ((double) this.KinematicTimer == 5.0)
-      {
-        this.MyRigidbody.isKinematic = true;
-        this.KinematicTimer = 0.0f;
-      }
-      if ((double) this.transform.position.x > -71.0 && (double) this.transform.position.x < -61.0 && (double) this.transform.position.z > -37.5 && (double) this.transform.position.z < -27.5)
-      {
-        this.Yandere.NotificationManager.CustomText = "The weapon has been placed nearby.";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        this.transform.position = new Vector3(-63f, 1f, -26.5f);
-        this.KinematicTimer = 0.0f;
-      }
-      if ((double) this.transform.position.x > -21.0 && (double) this.transform.position.x < 21.0 && (double) this.transform.position.z > 100.0 && (double) this.transform.position.z < 135.0)
-      {
-        this.Yandere.NotificationManager.CustomText = "It rolled to the bottom of the hill.";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        this.transform.position = new Vector3(0.0f, 0.5f, 99.5f);
-        this.KinematicTimer = 0.0f;
-      }
-      if ((double) this.transform.position.x > -46.0 && (double) this.transform.position.x < -18.0 && (double) this.transform.position.z > 66.0 && (double) this.transform.position.z < 78.0)
-      {
-        this.transform.position = new Vector3(-16f, 5f, 72f);
-        this.KinematicTimer = 0.0f;
-      }
-    }
-    if (!this.Rotate)
-      return;
-    this.transform.Rotate(Vector3.forward * Time.deltaTime * 100f);
-  }
+	public IncineratorScript Incinerator;
 
-  private void LateUpdate()
-  {
-    if ((double) this.Prompt.Circle[3].fillAmount == 0.0)
-    {
-      this.InBag = false;
-      if (this.WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 1)
-      {
-        SchemeGlobals.SetSchemeStage(4, 2);
-        this.Yandere.PauseScreen.Schemes.UpdateInstructions();
-      }
-      this.Prompt.Circle[3].fillAmount = 1f;
-      if ((double) this.Yandere.ImmunityTimer == 0.0 && this.Yandere.Chasers == 0)
-      {
-        if (this.Prompt.Suspicious)
-          this.Yandere.TheftTimer = 0.1f;
-        this.SuspicionCheck();
-        if (this.Suspicious)
-          this.Yandere.WeaponTimer = 0.1f;
-      }
-      if (!this.Yandere.Gloved)
-      {
-        if (this.FingerprintID == 0)
-        {
-          ++this.Yandere.WeaponManager.WeaponsTouched;
-          if (this.Yandere.WeaponManager.WeaponsTouched > 19)
-          {
-            if (!GameGlobals.Debug)
-              PlayerPrefs.SetInt("WeaponMaster", 1);
-            if (!GameGlobals.Debug)
-              PlayerPrefs.SetInt("a", 1);
-          }
-        }
-        this.FingerprintID = 100;
-      }
-      for (this.ID = 0; this.ID < this.Outline.Length; ++this.ID)
-      {
-        if ((Object) this.Outline[this.ID] != (Object) null)
-          this.Outline[this.ID].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-      }
-      if (this.LeftHand)
-        this.transform.parent = this.Yandere.LeftItemParent;
-      else
-        this.transform.parent = this.Yandere.ItemParent;
-      this.transform.localPosition = Vector3.zero;
-      if (this.Type == WeaponType.Bat)
-        this.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -90f);
-      else
-        this.transform.localEulerAngles = Vector3.zero;
-      this.MyCollider.enabled = false;
-      this.MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
-      if (this.Yandere.Equipped == 3 && (Object) this.Yandere.Weapon[3] != (Object) null)
-        this.Yandere.Weapon[3].Drop();
-      if ((Object) this.Yandere.PickUp != (Object) null)
-        this.Yandere.PickUp.Drop();
-      if (this.Yandere.Dragging)
-        this.Yandere.Ragdoll.GetComponent<RagdollScript>().StopDragging();
-      if (this.Yandere.Carrying)
-        this.Yandere.StopCarrying();
-      if (this.Concealable)
-      {
-        if ((Object) this.Yandere.Weapon[1] == (Object) null)
-        {
-          if ((Object) this.Yandere.Weapon[2] != (Object) null)
-            this.Yandere.Weapon[2].gameObject.SetActive(false);
-          this.Yandere.Equipped = 1;
-          this.Yandere.EquippedWeapon = this;
-          this.Yandere.WeaponManager.SetEquippedWeapon1(this);
-        }
-        else if ((Object) this.Yandere.Weapon[2] == (Object) null)
-        {
-          if ((Object) this.Yandere.Weapon[1] != (Object) null)
-          {
-            if (!this.DoNotDisable)
-              this.Yandere.Weapon[1].gameObject.SetActive(false);
-            this.DoNotDisable = false;
-          }
-          this.Yandere.Equipped = 2;
-          this.Yandere.EquippedWeapon = this;
-          this.Yandere.WeaponManager.SetEquippedWeapon2(this);
-        }
-        else if (this.Yandere.Weapon[2].gameObject.activeInHierarchy)
-        {
-          this.Yandere.Weapon[2].Drop();
-          this.Yandere.Equipped = 2;
-          this.Yandere.EquippedWeapon = this;
-          this.Yandere.WeaponManager.SetEquippedWeapon2(this);
-        }
-        else
-        {
-          this.Yandere.Weapon[1].Drop();
-          this.Yandere.Equipped = 1;
-          this.Yandere.EquippedWeapon = this;
-          this.Yandere.WeaponManager.SetEquippedWeapon1(this);
-        }
-      }
-      else
-      {
-        if ((Object) this.Yandere.Weapon[1] != (Object) null)
-          this.Yandere.Weapon[1].gameObject.SetActive(false);
-        if ((Object) this.Yandere.Weapon[2] != (Object) null)
-          this.Yandere.Weapon[2].gameObject.SetActive(false);
-        this.Yandere.Equipped = 3;
-        this.Yandere.EquippedWeapon = this;
-        this.Yandere.WeaponManager.SetEquippedWeapon3(this);
-      }
-      this.Yandere.StudentManager.UpdateStudents();
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.Yandere.NearestPrompt = (PromptScript) null;
-      if (this.WeaponID == 9 || this.WeaponID == 10 || this.WeaponID == 12 || this.WeaponID == 14 || this.WeaponID == 16 || this.WeaponID == 22 || this.WeaponID == 25)
-        this.SuspicionCheck();
-      if (this.Yandere.EquippedWeapon.Suspicious)
-      {
-        if (!this.Yandere.WeaponWarning)
-        {
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Armed);
-          this.Yandere.WeaponWarning = true;
-        }
-      }
-      else
-        this.Yandere.WeaponWarning = false;
-      this.Yandere.WeaponMenu.UpdateSprites();
-      this.Yandere.WeaponManager.UpdateLabels();
-      if (this.Blood.enabled)
-        --this.Yandere.Police.BloodyWeapons;
-      if (this.WeaponID == 11)
-      {
-        this.Yandere.IdleAnim = "CyborgNinja_Idle_Armed";
-        this.Yandere.WalkAnim = "CyborgNinja_Walk_Armed";
-        this.Yandere.RunAnim = "CyborgNinja_Run_Armed";
-      }
-      if (this.WeaponID == 26)
-        this.WeaponTrail.SetActive(true);
-      this.KinematicTimer = 0.0f;
-      AudioSource.PlayClipAtPoint(this.EquipClip, this.Yandere.MainCamera.transform.position);
-      if (this.UnequipImmediately)
-      {
-        this.UnequipImmediately = false;
-        this.Yandere.Unequip();
-      }
-      this.Yandere.UpdateConcealedWeaponStatus();
-    }
-    if ((Object) this.Yandere.EquippedWeapon == (Object) this)
-    {
-      if (this.Yandere.Armed)
-      {
-        this.transform.localScale = new Vector3(1f, 1f, 1f);
-        if (!this.Yandere.Struggling)
-        {
-          if (this.Yandere.CanMove)
-          {
-            this.transform.localPosition = Vector3.zero;
-            if (this.Type == WeaponType.Bat)
-              this.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -90f);
-            else
-              this.transform.localEulerAngles = Vector3.zero;
-          }
-        }
-        else
-          this.transform.localPosition = new Vector3(-0.01f, 0.005f, -0.01f);
-      }
-      if (this.Club == ClubType.Cooking && this.Yandere.Club == ClubType.Cooking)
-        this.SuspicionCheck();
-    }
-    if (this.Dumped)
-    {
-      this.DumpTimer += Time.deltaTime;
-      if ((double) this.DumpTimer > 1.0)
-      {
-        if (this.MurderWeapon)
-          ++this.Yandere.Incinerator.MurderWeapons;
-        if (this.Bloody)
-          ++this.Yandere.Incinerator.BloodyWeapons;
-        this.gameObject.SetActive(false);
-      }
-    }
-    if (!((Object) this.transform.parent == (Object) this.Yandere.ItemParent) && !((Object) this.transform.parent == (Object) this.Yandere.LeftItemParent) || !this.Concealable || !((Object) this.Yandere.Weapon[1] != (Object) this) || !((Object) this.Yandere.Weapon[2] != (Object) this))
-      return;
-    this.Drop();
-  }
+	public StudentScript Returner;
 
-  public void Drop()
-  {
-    if (this.Undroppable)
-      return;
-    if (this.WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 2)
-    {
-      SchemeGlobals.SetSchemeStage(4, 1);
-      this.Yandere.PauseScreen.Schemes.UpdateInstructions();
-    }
-    if (this.WeaponID == 11)
-    {
-      this.Yandere.IdleAnim = "CyborgNinja_Idle_Unarmed";
-      this.Yandere.WalkAnim = this.Yandere.OriginalWalkAnim;
-      this.Yandere.RunAnim = "CyborgNinja_Run_Unarmed";
-    }
-    if (this.StartLow)
-      this.Prompt.OffsetY[3] = this.OriginalOffset;
-    if ((Object) this.Yandere.Weapon[1] == (Object) this)
-      this.Yandere.WeaponManager.YandereWeapon1 = -1;
-    else if ((Object) this.Yandere.Weapon[2] == (Object) this)
-      this.Yandere.WeaponManager.YandereWeapon2 = -1;
-    else if ((Object) this.Yandere.Weapon[3] == (Object) this)
-      this.Yandere.WeaponManager.YandereWeapon3 = -1;
-    if ((Object) this.Yandere.EquippedWeapon == (Object) this)
-    {
-      this.Yandere.EquippedWeapon = (WeaponScript) null;
-      this.Yandere.Equipped = 0;
-      this.Yandere.StudentManager.UpdateStudents();
-    }
-    this.gameObject.SetActive(true);
-    this.transform.parent = (Transform) null;
-    this.MyRigidbody.constraints = RigidbodyConstraints.None;
-    this.MyRigidbody.isKinematic = false;
-    this.MyRigidbody.useGravity = true;
-    this.MyCollider.isTrigger = false;
-    if (this.Dumped)
-    {
-      this.transform.position = this.Incinerator.DumpPoint.position;
-    }
-    else
-    {
-      this.Prompt.enabled = true;
-      this.MyCollider.enabled = true;
-      if (this.Yandere.GetComponent<Collider>().enabled)
-        Physics.IgnoreCollision(this.Yandere.GetComponent<Collider>(), this.MyCollider);
-    }
-    if (this.Blood.enabled)
-      ++this.Yandere.Police.BloodyWeapons;
-    if ((double) Vector3.Distance(this.StartingPosition, this.transform.position) > 5.0 && (double) Vector3.Distance(this.transform.position, this.Yandere.StudentManager.WeaponBoxSpot.parent.position) > 1.0)
-    {
-      if (!this.Misplaced)
-      {
-        ++this.Prompt.Yandere.WeaponManager.MisplacedWeapons;
-        this.Misplaced = true;
-      }
-    }
-    else if (this.Misplaced)
-    {
-      --this.Prompt.Yandere.WeaponManager.MisplacedWeapons;
-      this.Misplaced = false;
-    }
-    for (this.ID = 0; this.ID < this.Outline.Length; ++this.ID)
-      this.Outline[this.ID].color = this.Evidence ? this.EvidenceColor : this.OriginalColor;
-    if ((double) this.transform.position.y > 1000.0)
-      this.transform.position = new Vector3(12f, 0.0f, 28f);
-    if (this.WeaponID == 26)
-    {
-      this.transform.parent = this.Parent;
-      this.transform.localEulerAngles = Vector3.zero;
-      this.transform.localPosition = Vector3.zero;
-      this.MyRigidbody.isKinematic = true;
-      this.WeaponTrail.SetActive(false);
-    }
-    if ((double) Vector3.Distance(this.transform.position, this.StartingPosition) >= 1.0 && (double) Vector3.Distance(this.Yandere.transform.position, this.StartingPosition) >= 1.0)
-      return;
-    this.transform.position = this.StartingPosition;
-    this.transform.eulerAngles = this.StartingRotation;
-    this.MyRigidbody.isKinematic = true;
-    this.MyRigidbody.useGravity = false;
-    this.MyCollider.isTrigger = true;
-  }
+	public YandereScript Yandere;
 
-  public void UpdateLabel()
-  {
-    if (!((Object) this != (Object) null) || !this.gameObject.activeInHierarchy)
-      return;
-    if ((Object) this.Yandere.Weapon[1] != (Object) null && (Object) this.Yandere.Weapon[2] != (Object) null && this.Concealable)
-    {
-      if (!((Object) this.Prompt.Label[3] != (Object) null))
-        return;
-      if (!this.Yandere.Armed || this.Yandere.Equipped == 3)
-        this.Prompt.Label[3].text = "     Swap " + this.Yandere.Weapon[1].Name + " for " + this.Name;
-      else
-        this.Prompt.Label[3].text = "     Swap " + this.Yandere.EquippedWeapon.Name + " for " + this.Name;
-    }
-    else
-    {
-      if (!((Object) this.Prompt.Label[3] != (Object) null))
-        return;
-      this.Prompt.Label[3].text = "     " + this.Name;
-    }
-  }
+	public PromptScript Prompt;
 
-  public void Effect()
-  {
-    if (this.WeaponID == 7)
-    {
-      this.BloodSpray[0].Play();
-      this.BloodSpray[1].Play();
-    }
-    else if (this.WeaponID == 8)
-    {
-      this.gameObject.GetComponent<ParticleSystem>().Play();
-      this.MyAudio.clip = this.OriginalClip;
-      this.MyAudio.Play();
-    }
-    else if (this.WeaponID == 2 || this.WeaponID == 9 || this.WeaponID == 10 || this.WeaponID == 12 || this.WeaponID == 13)
-    {
-      this.MyAudio.Play();
-    }
-    else
-    {
-      if (this.WeaponID != 14)
-        return;
-      Object.Instantiate<GameObject>(this.HeartBurst, this.Yandere.TargetStudent.Head.position, Quaternion.identity);
-      this.MyAudio.Play();
-    }
-  }
+	public Transform Origin;
 
-  public void Dismember()
-  {
-    this.Yandere.CameraEffects.UpdateDOF(0.6666667f);
-    this.MyAudio.clip = this.DismemberClip;
-    this.MyAudio.Play();
-    this.Dismembering = true;
-  }
+	public Transform Parent;
 
-  public void SuspicionCheck()
-  {
-    if (this.Innocent)
-      this.Suspicious = false;
-    else if (this.Club == ClubType.Cooking && this.Yandere.Club == ClubType.Cooking)
-    {
-      if (this.CookingClub.bounds.Contains(this.Yandere.transform.position))
-      {
-        Debug.Log((object) "Ayano is inside of the Cooking Club.");
-        this.Suspicious = false;
-      }
-      else
-      {
-        Debug.Log((object) "Ayano is not inside of the Cooking Club.");
-        this.Suspicious = true;
-      }
-    }
-    else
-      this.Suspicious = (this.WeaponID != 9 || this.Yandere.Club != ClubType.Sports) && (this.WeaponID != 10 || this.Yandere.Club != ClubType.Gardening) && (this.WeaponID != 12 || this.Yandere.Club != ClubType.Sports) && (this.WeaponID != 14 || this.Yandere.Club != ClubType.Drama) && (this.WeaponID != 16 || this.Yandere.Club != ClubType.Drama) && (this.WeaponID != 22 || this.Yandere.Club != ClubType.Drama) && (this.WeaponID != 25 || this.Yandere.Club != ClubType.LightMusic);
-    if (this.Bloody)
-    {
-      this.Suspicious = true;
-    }
-    else
-    {
-      for (this.ID = 0; this.ID < this.Outline.Length; ++this.ID)
-      {
-        if ((Object) this.Outline[this.ID] != (Object) null)
-          this.Outline[this.ID].color = new Color(0.0f, 1f, 1f, 1f);
-      }
-    }
-  }
+	public AudioClip[] Clips;
+
+	public AudioClip[] Clips2;
+
+	public AudioClip[] Clips3;
+
+	public AudioClip DismemberClip;
+
+	public AudioClip EquipClip;
+
+	public ParticleSystem FireEffect;
+
+	public GameObject WeaponTrail;
+
+	public GameObject ExtraBlade;
+
+	public AudioSource FireAudio;
+
+	public Rigidbody MyRigidbody;
+
+	public AudioSource MyAudio;
+
+	public Collider MyCollider;
+
+	public Renderer MyRenderer;
+
+	public GameObject Nails;
+
+	public Transform Blade;
+
+	public Projector Blood;
+
+	public Vector3 StartingPosition;
+
+	public Vector3 StartingRotation;
+
+	public bool UnequipImmediately;
+
+	public bool InsideIncinerator;
+
+	public bool AlreadyExamined;
+
+	public bool BroughtFromHome;
+
+	public bool DelinquentOwned;
+
+	public bool DisableCollider;
+
+	public bool DoNotDisable;
+
+	public bool Dismembering;
+
+	public bool MurderWeapon;
+
+	public bool WeaponEffect;
+
+	public bool Concealable;
+
+	public bool Undroppable;
+
+	public bool Suspicious;
+
+	public bool Dangerous;
+
+	public bool Misplaced;
+
+	public bool Disposed;
+
+	public bool Evidence;
+
+	public bool Innocent;
+
+	public bool LeftHand;
+
+	public bool StartLow;
+
+	public bool Flaming;
+
+	public bool Bloody;
+
+	public bool Dumped;
+
+	public bool Heated;
+
+	public bool Rotate;
+
+	public bool Blunt;
+
+	public bool InBag;
+
+	public bool Metal;
+
+	public bool Flip;
+
+	public bool Spin;
+
+	public Color EvidenceColor;
+
+	public Color OriginalColor;
+
+	public float OriginalOffset;
+
+	public float KinematicTimer;
+
+	public float DumpTimer;
+
+	public float Rotation;
+
+	public float Speed;
+
+	public string SpriteName;
+
+	public string Name;
+
+	public int DismemberPhase;
+
+	public int FingerprintID;
+
+	public int GlobalID;
+
+	public int WeaponID;
+
+	public int AnimID;
+
+	public int BagID;
+
+	public WeaponType Type = WeaponType.Knife;
+
+	private AudioClip OriginalClip;
+
+	private int ID;
+
+	public MeshFilter MyMeshFilter;
+
+	public Mesh EightiesCircularSaw;
+
+	public Texture EightiesCircularSawTexture;
+
+	public bool[] Victims;
+
+	public bool ClubProperty;
+
+	public bool OneOfAKind;
+
+	public ClubType Club;
+
+	public GameObject HeartBurst;
+
+	public BoxCollider CookingClub;
+
+	public void Start()
+	{
+		Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+		StartingPosition = base.transform.position;
+		StartingRotation = base.transform.eulerAngles;
+		Physics.IgnoreCollision(Yandere.GetComponent<Collider>(), MyCollider);
+		OriginalColor = Outline[0].color;
+		if (StartLow)
+		{
+			OriginalOffset = Prompt.OffsetY[3];
+			Prompt.OffsetY[3] = 0.2f;
+		}
+		if (DisableCollider)
+		{
+			MyCollider.enabled = false;
+		}
+		MyAudio = GetComponent<AudioSource>();
+		if (MyAudio != null)
+		{
+			OriginalClip = MyAudio.clip;
+		}
+		MyRigidbody = GetComponent<Rigidbody>();
+		MyRigidbody.isKinematic = true;
+		if (!BroughtFromHome)
+		{
+			Transform parent = GameObject.Find("WeaponOriginParent").transform;
+			Origin = Object.Instantiate(Prompt.Yandere.StudentManager.EmptyObject, base.transform.position, Quaternion.identity).transform;
+			Origin.parent = parent;
+		}
+		if (WeaponID == 7 && GameGlobals.Eighties)
+		{
+			MyMeshFilter.mesh = EightiesCircularSaw;
+			MyRenderer.material.mainTexture = EightiesCircularSawTexture;
+			MyRenderer.transform.localPosition = new Vector3(0.005f, 0.045f, -0.0075f);
+		}
+		Innocent = !Suspicious;
+	}
+
+	public string GetTypePrefix()
+	{
+		Debug.Log("WeaponType is: " + Type);
+		switch (Type)
+		{
+		case WeaponType.Knife:
+			return "knife";
+		case WeaponType.Katana:
+			return "katana";
+		case WeaponType.Bat:
+			return "bat";
+		case WeaponType.Saw:
+			return "saw";
+		case WeaponType.Syringe:
+			return "syringe";
+		case WeaponType.Weight:
+			return "weight";
+		case WeaponType.Scythe:
+			return "scythe";
+		case WeaponType.Garrote:
+			return "syringe";
+		default:
+			Debug.LogError("Weapon type \"" + Type.ToString() + "\" not implemented.");
+			return string.Empty;
+		}
+	}
+
+	public AudioClip GetClip(float sanity, bool stealth)
+	{
+		AudioClip[] array = ((Clips2.Length != 0) ? ((Random.Range(2, 4) == 2) ? Clips2 : Clips3) : Clips);
+		if (stealth)
+		{
+			return array[0];
+		}
+		if (sanity > 2f / 3f)
+		{
+			return array[1];
+		}
+		if (sanity > 1f / 3f)
+		{
+			return array[2];
+		}
+		return array[3];
+	}
+
+	private void Update()
+	{
+		if (WeaponID == 16 && Yandere.EquippedWeapon == this && Input.GetButtonDown("RB") && ExtraBlade != null)
+		{
+			ExtraBlade.SetActive(!ExtraBlade.activeInHierarchy);
+		}
+		if (Dismembering)
+		{
+			if (DismemberPhase < 4)
+			{
+				if (MyAudio.time > 0.75f)
+				{
+					if (Speed < 36f)
+					{
+						Speed += Time.deltaTime + 10f;
+					}
+					Rotation += Speed;
+					Blade.localEulerAngles = new Vector3(Rotation, Blade.localEulerAngles.y, Blade.localEulerAngles.z);
+				}
+				if (MyAudio.time > SoundTime[DismemberPhase])
+				{
+					Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 2.5f : 5f) * Yandere.Numbness;
+					Yandere.Bloodiness += 25f;
+					ShortBloodSpray[0].Play();
+					ShortBloodSpray[1].Play();
+					if (!Blood.enabled)
+					{
+						Yandere.StainWeapon();
+					}
+					DismemberPhase++;
+					if (Yandere.Gloved && !Yandere.Gloves.Blood.enabled)
+					{
+						Yandere.Gloves.PickUp.Evidence = true;
+						Yandere.Gloves.Blood.enabled = true;
+						Yandere.GloveBlood = 1;
+						Yandere.Police.BloodyClothing++;
+					}
+				}
+			}
+			else
+			{
+				Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 2f);
+				Blade.localEulerAngles = new Vector3(Rotation, Blade.localEulerAngles.y, Blade.localEulerAngles.z);
+				if (!MyAudio.isPlaying)
+				{
+					MyAudio.clip = OriginalClip;
+					Dismembering = false;
+					DismemberPhase = 0;
+					Rotation = 0f;
+					Speed = 0f;
+				}
+			}
+		}
+		else if (Yandere.EquippedWeapon == this)
+		{
+			if (Yandere.AttackManager.IsAttacking())
+			{
+				if (Type == WeaponType.Knife)
+				{
+					base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, Mathf.Lerp(base.transform.localEulerAngles.y, Flip ? 180f : 0f, Time.deltaTime * 10f), base.transform.localEulerAngles.z);
+				}
+				else if (Type == WeaponType.Saw)
+				{
+					if (Spin)
+					{
+						Blade.transform.localEulerAngles = new Vector3(Blade.transform.localEulerAngles.x + Time.deltaTime * 360f, Blade.transform.localEulerAngles.y, Blade.transform.localEulerAngles.z);
+					}
+				}
+				else if (Type == WeaponType.Scythe)
+				{
+					MyRenderer.transform.localEulerAngles = new Vector3(12.5f, 7.5f, 90f);
+				}
+			}
+		}
+		else if (!MyRigidbody.isKinematic)
+		{
+			KinematicTimer = Mathf.MoveTowards(KinematicTimer, 5f, Time.deltaTime);
+			if (KinematicTimer == 5f)
+			{
+				MyRigidbody.isKinematic = true;
+				KinematicTimer = 0f;
+			}
+			if (base.transform.position.x > -71f && base.transform.position.x < -61f && base.transform.position.z > -37.5f && base.transform.position.z < -27.5f)
+			{
+				Yandere.NotificationManager.CustomText = "The weapon has been placed nearby.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				base.transform.position = new Vector3(-63f, 1f, -26.5f);
+				KinematicTimer = 0f;
+			}
+			if (base.transform.position.x > -21f && base.transform.position.x < 21f && base.transform.position.z > 100f && base.transform.position.z < 135f)
+			{
+				Yandere.NotificationManager.CustomText = "It rolled to the bottom of the hill.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				base.transform.position = new Vector3(0f, 0.5f, 99.5f);
+				KinematicTimer = 0f;
+			}
+			if (base.transform.position.x > -46f && base.transform.position.x < -18f && base.transform.position.z > 66f && base.transform.position.z < 78f)
+			{
+				base.transform.position = new Vector3(-16f, 5f, 72f);
+				KinematicTimer = 0f;
+			}
+		}
+		if (Rotate)
+		{
+			base.transform.Rotate(Vector3.forward * Time.deltaTime * 100f);
+		}
+	}
+
+	private void LateUpdate()
+	{
+		if (Prompt.Circle[3].fillAmount == 0f)
+		{
+			InBag = false;
+			if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 1)
+			{
+				SchemeGlobals.SetSchemeStage(4, 2);
+				Yandere.PauseScreen.Schemes.UpdateInstructions();
+			}
+			Prompt.Circle[3].fillAmount = 1f;
+			if (Yandere.ImmunityTimer == 0f && Yandere.Chasers == 0)
+			{
+				if (Prompt.Suspicious)
+				{
+					Yandere.TheftTimer = 0.1f;
+				}
+				SuspicionCheck();
+				if (Suspicious)
+				{
+					Yandere.WeaponTimer = 0.1f;
+				}
+			}
+			if (!Yandere.Gloved)
+			{
+				if (FingerprintID == 0)
+				{
+					Yandere.WeaponManager.WeaponsTouched++;
+					if (Yandere.WeaponManager.WeaponsTouched > 19)
+					{
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("WeaponMaster", 1);
+						}
+						if (!GameGlobals.Debug)
+						{
+							PlayerPrefs.SetInt("a", 1);
+						}
+					}
+				}
+				FingerprintID = 100;
+			}
+			for (ID = 0; ID < Outline.Length; ID++)
+			{
+				if (Outline[ID] != null)
+				{
+					Outline[ID].color = new Color(0f, 0f, 0f, 1f);
+				}
+			}
+			if (LeftHand)
+			{
+				base.transform.parent = Yandere.LeftItemParent;
+			}
+			else
+			{
+				base.transform.parent = Yandere.ItemParent;
+			}
+			base.transform.localPosition = Vector3.zero;
+			if (Type == WeaponType.Bat)
+			{
+				base.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+			}
+			else
+			{
+				base.transform.localEulerAngles = Vector3.zero;
+			}
+			MyCollider.enabled = false;
+			MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+			if (Yandere.Equipped == 3 && Yandere.Weapon[3] != null)
+			{
+				Yandere.Weapon[3].Drop();
+			}
+			if (Yandere.PickUp != null)
+			{
+				Yandere.PickUp.Drop();
+			}
+			if (Yandere.Dragging)
+			{
+				Yandere.Ragdoll.GetComponent<RagdollScript>().StopDragging();
+			}
+			if (Yandere.Carrying)
+			{
+				Yandere.StopCarrying();
+			}
+			if (Concealable)
+			{
+				if (Yandere.Weapon[1] == null)
+				{
+					if (Yandere.Weapon[2] != null)
+					{
+						Yandere.Weapon[2].gameObject.SetActive(false);
+					}
+					Yandere.Equipped = 1;
+					Yandere.EquippedWeapon = this;
+					Yandere.WeaponManager.SetEquippedWeapon1(this);
+				}
+				else if (Yandere.Weapon[2] == null)
+				{
+					if (Yandere.Weapon[1] != null)
+					{
+						if (!DoNotDisable)
+						{
+							Yandere.Weapon[1].gameObject.SetActive(false);
+						}
+						DoNotDisable = false;
+					}
+					Yandere.Equipped = 2;
+					Yandere.EquippedWeapon = this;
+					Yandere.WeaponManager.SetEquippedWeapon2(this);
+				}
+				else if (Yandere.Weapon[2].gameObject.activeInHierarchy)
+				{
+					Yandere.Weapon[2].Drop();
+					Yandere.Equipped = 2;
+					Yandere.EquippedWeapon = this;
+					Yandere.WeaponManager.SetEquippedWeapon2(this);
+				}
+				else
+				{
+					Yandere.Weapon[1].Drop();
+					Yandere.Equipped = 1;
+					Yandere.EquippedWeapon = this;
+					Yandere.WeaponManager.SetEquippedWeapon1(this);
+				}
+			}
+			else
+			{
+				if (Yandere.Weapon[1] != null)
+				{
+					Yandere.Weapon[1].gameObject.SetActive(false);
+				}
+				if (Yandere.Weapon[2] != null)
+				{
+					Yandere.Weapon[2].gameObject.SetActive(false);
+				}
+				Yandere.Equipped = 3;
+				Yandere.EquippedWeapon = this;
+				Yandere.WeaponManager.SetEquippedWeapon3(this);
+			}
+			Yandere.StudentManager.UpdateStudents();
+			Prompt.Hide();
+			Prompt.enabled = false;
+			Yandere.NearestPrompt = null;
+			if (WeaponID == 9 || WeaponID == 10 || WeaponID == 12 || WeaponID == 14 || WeaponID == 16 || WeaponID == 22 || WeaponID == 25)
+			{
+				SuspicionCheck();
+			}
+			if (Yandere.EquippedWeapon.Suspicious)
+			{
+				if (!Yandere.WeaponWarning)
+				{
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Armed);
+					Yandere.WeaponWarning = true;
+				}
+			}
+			else
+			{
+				Yandere.WeaponWarning = false;
+			}
+			Yandere.WeaponMenu.UpdateSprites();
+			Yandere.WeaponManager.UpdateLabels();
+			if (Blood.enabled)
+			{
+				Yandere.Police.BloodyWeapons--;
+			}
+			if (WeaponID == 11)
+			{
+				Yandere.IdleAnim = "CyborgNinja_Idle_Armed";
+				Yandere.WalkAnim = "CyborgNinja_Walk_Armed";
+				Yandere.RunAnim = "CyborgNinja_Run_Armed";
+			}
+			if (WeaponID == 26)
+			{
+				WeaponTrail.SetActive(true);
+			}
+			KinematicTimer = 0f;
+			AudioSource.PlayClipAtPoint(EquipClip, Yandere.MainCamera.transform.position);
+			if (UnequipImmediately)
+			{
+				UnequipImmediately = false;
+				Yandere.Unequip();
+			}
+			Yandere.UpdateConcealedWeaponStatus();
+		}
+		if (Yandere.EquippedWeapon == this)
+		{
+			if (Yandere.Armed)
+			{
+				base.transform.localScale = new Vector3(1f, 1f, 1f);
+				if (!Yandere.Struggling)
+				{
+					if (Yandere.CanMove)
+					{
+						base.transform.localPosition = Vector3.zero;
+						if (Type == WeaponType.Bat)
+						{
+							base.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+						}
+						else
+						{
+							base.transform.localEulerAngles = Vector3.zero;
+						}
+					}
+				}
+				else
+				{
+					base.transform.localPosition = new Vector3(-0.01f, 0.005f, -0.01f);
+				}
+			}
+			if (Club == ClubType.Cooking && Yandere.Club == ClubType.Cooking)
+			{
+				SuspicionCheck();
+			}
+		}
+		if (Dumped)
+		{
+			DumpTimer += Time.deltaTime;
+			if (DumpTimer > 1f)
+			{
+				if (MurderWeapon)
+				{
+					Yandere.Incinerator.MurderWeapons++;
+				}
+				if (Bloody)
+				{
+					Yandere.Incinerator.BloodyWeapons++;
+				}
+				base.gameObject.SetActive(false);
+			}
+		}
+		if ((base.transform.parent == Yandere.ItemParent || base.transform.parent == Yandere.LeftItemParent) && Concealable && Yandere.Weapon[1] != this && Yandere.Weapon[2] != this)
+		{
+			Drop();
+		}
+	}
+
+	public void Drop()
+	{
+		if (Undroppable)
+		{
+			return;
+		}
+		if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 2)
+		{
+			SchemeGlobals.SetSchemeStage(4, 1);
+			Yandere.PauseScreen.Schemes.UpdateInstructions();
+		}
+		if (WeaponID == 11)
+		{
+			Yandere.IdleAnim = "CyborgNinja_Idle_Unarmed";
+			Yandere.WalkAnim = Yandere.OriginalWalkAnim;
+			Yandere.RunAnim = "CyborgNinja_Run_Unarmed";
+		}
+		if (StartLow)
+		{
+			Prompt.OffsetY[3] = OriginalOffset;
+		}
+		if (Yandere.Weapon[1] == this)
+		{
+			Yandere.WeaponManager.YandereWeapon1 = -1;
+		}
+		else if (Yandere.Weapon[2] == this)
+		{
+			Yandere.WeaponManager.YandereWeapon2 = -1;
+		}
+		else if (Yandere.Weapon[3] == this)
+		{
+			Yandere.WeaponManager.YandereWeapon3 = -1;
+		}
+		if (Yandere.EquippedWeapon == this)
+		{
+			Yandere.EquippedWeapon = null;
+			Yandere.Equipped = 0;
+			Yandere.StudentManager.UpdateStudents();
+		}
+		base.gameObject.SetActive(true);
+		base.transform.parent = null;
+		MyRigidbody.constraints = RigidbodyConstraints.None;
+		MyRigidbody.isKinematic = false;
+		MyRigidbody.useGravity = true;
+		MyCollider.isTrigger = false;
+		if (Dumped)
+		{
+			base.transform.position = Incinerator.DumpPoint.position;
+		}
+		else
+		{
+			Prompt.enabled = true;
+			MyCollider.enabled = true;
+			if (Yandere.GetComponent<Collider>().enabled)
+			{
+				Physics.IgnoreCollision(Yandere.GetComponent<Collider>(), MyCollider);
+			}
+		}
+		if (Blood.enabled)
+		{
+			Yandere.Police.BloodyWeapons++;
+		}
+		if (Vector3.Distance(StartingPosition, base.transform.position) > 5f && Vector3.Distance(base.transform.position, Yandere.StudentManager.WeaponBoxSpot.parent.position) > 1f)
+		{
+			if (!Misplaced)
+			{
+				Prompt.Yandere.WeaponManager.MisplacedWeapons++;
+				Misplaced = true;
+			}
+		}
+		else if (Misplaced)
+		{
+			Prompt.Yandere.WeaponManager.MisplacedWeapons--;
+			Misplaced = false;
+		}
+		for (ID = 0; ID < Outline.Length; ID++)
+		{
+			Outline[ID].color = (Evidence ? EvidenceColor : OriginalColor);
+		}
+		if (base.transform.position.y > 1000f)
+		{
+			base.transform.position = new Vector3(12f, 0f, 28f);
+		}
+		if (WeaponID == 26)
+		{
+			base.transform.parent = Parent;
+			base.transform.localEulerAngles = Vector3.zero;
+			base.transform.localPosition = Vector3.zero;
+			MyRigidbody.isKinematic = true;
+			WeaponTrail.SetActive(false);
+		}
+		if (Vector3.Distance(base.transform.position, StartingPosition) < 1f || Vector3.Distance(Yandere.transform.position, StartingPosition) < 1f)
+		{
+			base.transform.position = StartingPosition;
+			base.transform.eulerAngles = StartingRotation;
+			MyRigidbody.isKinematic = true;
+			MyRigidbody.useGravity = false;
+			MyCollider.isTrigger = true;
+		}
+	}
+
+	public void UpdateLabel()
+	{
+		if (!(this != null) || !base.gameObject.activeInHierarchy)
+		{
+			return;
+		}
+		if (Yandere.Weapon[1] != null && Yandere.Weapon[2] != null && Concealable)
+		{
+			if (Prompt.Label[3] != null)
+			{
+				if (!Yandere.Armed || Yandere.Equipped == 3)
+				{
+					Prompt.Label[3].text = "     Swap " + Yandere.Weapon[1].Name + " for " + Name;
+				}
+				else
+				{
+					Prompt.Label[3].text = "     Swap " + Yandere.EquippedWeapon.Name + " for " + Name;
+				}
+			}
+		}
+		else if (Prompt.Label[3] != null)
+		{
+			Prompt.Label[3].text = "     " + Name;
+		}
+	}
+
+	public void Effect()
+	{
+		if (WeaponID == 7)
+		{
+			BloodSpray[0].Play();
+			BloodSpray[1].Play();
+		}
+		else if (WeaponID == 8)
+		{
+			base.gameObject.GetComponent<ParticleSystem>().Play();
+			MyAudio.clip = OriginalClip;
+			MyAudio.Play();
+		}
+		else if (WeaponID == 2 || WeaponID == 9 || WeaponID == 10 || WeaponID == 12 || WeaponID == 13)
+		{
+			MyAudio.Play();
+		}
+		else if (WeaponID == 14)
+		{
+			Object.Instantiate(HeartBurst, Yandere.TargetStudent.Head.position, Quaternion.identity);
+			MyAudio.Play();
+		}
+	}
+
+	public void Dismember()
+	{
+		Yandere.CameraEffects.UpdateDOF(2f / 3f);
+		MyAudio.clip = DismemberClip;
+		MyAudio.Play();
+		Dismembering = true;
+	}
+
+	public void SuspicionCheck()
+	{
+		if (Innocent)
+		{
+			Suspicious = false;
+		}
+		else if (Club == ClubType.Cooking && Yandere.Club == ClubType.Cooking)
+		{
+			if (CookingClub.bounds.Contains(Yandere.transform.position))
+			{
+				Debug.Log("Ayano is inside of the Cooking Club.");
+				Suspicious = false;
+			}
+			else
+			{
+				Debug.Log("Ayano is not inside of the Cooking Club.");
+				Suspicious = true;
+			}
+		}
+		else if ((WeaponID == 9 && Yandere.Club == ClubType.Sports) || (WeaponID == 10 && Yandere.Club == ClubType.Gardening) || (WeaponID == 12 && Yandere.Club == ClubType.Sports) || (WeaponID == 14 && Yandere.Club == ClubType.Drama) || (WeaponID == 16 && Yandere.Club == ClubType.Drama) || (WeaponID == 22 && Yandere.Club == ClubType.Drama) || (WeaponID == 25 && Yandere.Club == ClubType.LightMusic))
+		{
+			Suspicious = false;
+		}
+		else
+		{
+			Suspicious = true;
+		}
+		if (Bloody)
+		{
+			Suspicious = true;
+			return;
+		}
+		for (ID = 0; ID < Outline.Length; ID++)
+		{
+			if (Outline[ID] != null)
+			{
+				Outline[ID].color = new Color(0f, 1f, 1f, 1f);
+			}
+		}
+	}
 }

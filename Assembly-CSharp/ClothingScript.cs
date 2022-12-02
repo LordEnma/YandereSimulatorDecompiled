@@ -1,40 +1,41 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ClothingScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class ClothingScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public GameObject FoldedUniform;
-  public bool CanPickUp;
+	public YandereScript Yandere;
 
-  private void Start() => this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if (this.CanPickUp)
-    {
-      if ((double) this.Yandere.Bloodiness == 0.0)
-      {
-        this.CanPickUp = false;
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-      }
-    }
-    else if ((double) this.Yandere.Bloodiness > 0.0)
-    {
-      this.CanPickUp = true;
-      this.Prompt.enabled = true;
-    }
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    this.Prompt.Yandere.Bloodiness = 0.0f;
-    Object.Instantiate<GameObject>(this.FoldedUniform, this.transform.position + Vector3.up, Quaternion.identity);
-    Object.Destroy((Object) this.gameObject);
-  }
+	public GameObject FoldedUniform;
+
+	public bool CanPickUp;
+
+	private void Start()
+	{
+		Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+	}
+
+	private void Update()
+	{
+		if (CanPickUp)
+		{
+			if (Yandere.Bloodiness == 0f)
+			{
+				CanPickUp = false;
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
+		}
+		else if (Yandere.Bloodiness > 0f)
+		{
+			CanPickUp = true;
+			Prompt.enabled = true;
+		}
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Yandere.Bloodiness = 0f;
+			Object.Instantiate(FoldedUniform, base.transform.position + Vector3.up, Quaternion.identity);
+			Object.Destroy(base.gameObject);
+		}
+	}
 }

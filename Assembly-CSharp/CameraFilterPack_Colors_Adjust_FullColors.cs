@@ -1,100 +1,114 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CameraFilterPack_Colors_Adjust_FullColors
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("Camera Filter Pack/ColorsAdjust/FullColors")]
 public class CameraFilterPack_Colors_Adjust_FullColors : MonoBehaviour
 {
-  public Shader SCShader;
-  private float TimeX = 1f;
-  private Material SCMaterial;
-  [Range(-200f, 200f)]
-  public float Red_R = 100f;
-  [Range(-200f, 200f)]
-  public float Red_G;
-  [Range(-200f, 200f)]
-  public float Red_B;
-  [Range(-200f, 200f)]
-  public float Red_Constant;
-  [Range(-200f, 200f)]
-  public float Green_R;
-  [Range(-200f, 200f)]
-  public float Green_G = 100f;
-  [Range(-200f, 200f)]
-  public float Green_B;
-  [Range(-200f, 200f)]
-  public float Green_Constant;
-  [Range(-200f, 200f)]
-  public float Blue_R;
-  [Range(-200f, 200f)]
-  public float Blue_G;
-  [Range(-200f, 200f)]
-  public float Blue_B = 100f;
-  [Range(-200f, 200f)]
-  public float Blue_Constant;
+	public Shader SCShader;
 
-  private Material material
-  {
-    get
-    {
-      if ((Object) this.SCMaterial == (Object) null)
-      {
-        this.SCMaterial = new Material(this.SCShader);
-        this.SCMaterial.hideFlags = HideFlags.HideAndDontSave;
-      }
-      return this.SCMaterial;
-    }
-  }
+	private float TimeX = 1f;
 
-  private void Start()
-  {
-    this.SCShader = Shader.Find("CameraFilterPack/Colors_Adjust_FullColors");
-    if (SystemInfo.supportsImageEffects)
-      return;
-    this.enabled = false;
-  }
+	private Material SCMaterial;
 
-  private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
-  {
-    if ((Object) this.SCShader != (Object) null)
-    {
-      this.TimeX += Time.deltaTime;
-      if ((double) this.TimeX > 100.0)
-        this.TimeX = 0.0f;
-      this.material.SetFloat("_TimeX", this.TimeX);
-      this.material.SetFloat("_Red_R", this.Red_R / 100f);
-      this.material.SetFloat("_Red_G", this.Red_G / 100f);
-      this.material.SetFloat("_Red_B", this.Red_B / 100f);
-      this.material.SetFloat("_Green_R", this.Green_R / 100f);
-      this.material.SetFloat("_Green_G", this.Green_G / 100f);
-      this.material.SetFloat("_Green_B", this.Green_B / 100f);
-      this.material.SetFloat("_Blue_R", this.Blue_R / 100f);
-      this.material.SetFloat("_Blue_G", this.Blue_G / 100f);
-      this.material.SetFloat("_Blue_B", this.Blue_B / 100f);
-      this.material.SetFloat("_Red_C", this.Red_Constant / 100f);
-      this.material.SetFloat("_Green_C", this.Green_Constant / 100f);
-      this.material.SetFloat("_Blue_C", this.Blue_Constant / 100f);
-      this.material.SetVector("_ScreenResolution", new Vector4((float) sourceTexture.width, (float) sourceTexture.height, 0.0f, 0.0f));
-      Graphics.Blit((Texture) sourceTexture, destTexture, this.material);
-    }
-    else
-      Graphics.Blit((Texture) sourceTexture, destTexture);
-  }
+	[Range(-200f, 200f)]
+	public float Red_R = 100f;
 
-  private void Update()
-  {
-    int num = Application.isPlaying ? 1 : 0;
-  }
+	[Range(-200f, 200f)]
+	public float Red_G;
 
-  private void OnDisable()
-  {
-    if (!(bool) (Object) this.SCMaterial)
-      return;
-    Object.DestroyImmediate((Object) this.SCMaterial);
-  }
+	[Range(-200f, 200f)]
+	public float Red_B;
+
+	[Range(-200f, 200f)]
+	public float Red_Constant;
+
+	[Range(-200f, 200f)]
+	public float Green_R;
+
+	[Range(-200f, 200f)]
+	public float Green_G = 100f;
+
+	[Range(-200f, 200f)]
+	public float Green_B;
+
+	[Range(-200f, 200f)]
+	public float Green_Constant;
+
+	[Range(-200f, 200f)]
+	public float Blue_R;
+
+	[Range(-200f, 200f)]
+	public float Blue_G;
+
+	[Range(-200f, 200f)]
+	public float Blue_B = 100f;
+
+	[Range(-200f, 200f)]
+	public float Blue_Constant;
+
+	private Material material
+	{
+		get
+		{
+			if (SCMaterial == null)
+			{
+				SCMaterial = new Material(SCShader);
+				SCMaterial.hideFlags = HideFlags.HideAndDontSave;
+			}
+			return SCMaterial;
+		}
+	}
+
+	private void Start()
+	{
+		SCShader = Shader.Find("CameraFilterPack/Colors_Adjust_FullColors");
+		if (!SystemInfo.supportsImageEffects)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
+	{
+		if (SCShader != null)
+		{
+			TimeX += Time.deltaTime;
+			if (TimeX > 100f)
+			{
+				TimeX = 0f;
+			}
+			material.SetFloat("_TimeX", TimeX);
+			material.SetFloat("_Red_R", Red_R / 100f);
+			material.SetFloat("_Red_G", Red_G / 100f);
+			material.SetFloat("_Red_B", Red_B / 100f);
+			material.SetFloat("_Green_R", Green_R / 100f);
+			material.SetFloat("_Green_G", Green_G / 100f);
+			material.SetFloat("_Green_B", Green_B / 100f);
+			material.SetFloat("_Blue_R", Blue_R / 100f);
+			material.SetFloat("_Blue_G", Blue_G / 100f);
+			material.SetFloat("_Blue_B", Blue_B / 100f);
+			material.SetFloat("_Red_C", Red_Constant / 100f);
+			material.SetFloat("_Green_C", Green_Constant / 100f);
+			material.SetFloat("_Blue_C", Blue_Constant / 100f);
+			material.SetVector("_ScreenResolution", new Vector4(sourceTexture.width, sourceTexture.height, 0f, 0f));
+			Graphics.Blit(sourceTexture, destTexture, material);
+		}
+		else
+		{
+			Graphics.Blit(sourceTexture, destTexture);
+		}
+	}
+
+	private void Update()
+	{
+		bool isPlaying = Application.isPlaying;
+	}
+
+	private void OnDisable()
+	{
+		if ((bool)SCMaterial)
+		{
+			Object.DestroyImmediate(SCMaterial);
+		}
+	}
 }

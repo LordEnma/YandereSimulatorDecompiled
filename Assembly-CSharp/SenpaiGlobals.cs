@@ -1,71 +1,113 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SenpaiGlobals
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public static class SenpaiGlobals
 {
-  private const string Str_CustomSenpai = "CustomSenpai";
-  private const string Str_SenpaiEyeColor = "SenpaiEyeColor";
-  private const string Str_SenpaiEyeWear = "SenpaiEyeWear";
-  private const string Str_SenpaiFacialHair = "SenpaiFacialHair";
-  private const string Str_SenpaiHairColor = "SenpaiHairColor";
-  private const string Str_SenpaiHairStyle = "SenpaiHairStyle";
-  private const string Str_SenpaiSkinColor = "SenpaiSkinColor";
+	private const string Str_CustomSenpai = "CustomSenpai";
 
-  public static bool CustomSenpai
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_CustomSenpai");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_CustomSenpai", value);
-  }
+	private const string Str_SenpaiEyeColor = "SenpaiEyeColor";
 
-  public static string SenpaiEyeColor
-  {
-    get => PlayerPrefs.GetString("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiEyeColor");
-    set => PlayerPrefs.SetString("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiEyeColor", value);
-  }
+	private const string Str_SenpaiEyeWear = "SenpaiEyeWear";
 
-  public static int SenpaiEyeWear
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiEyeWear");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiEyeWear", value);
-  }
+	private const string Str_SenpaiFacialHair = "SenpaiFacialHair";
 
-  public static int SenpaiFacialHair
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiFacialHair");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiFacialHair", value);
-  }
+	private const string Str_SenpaiHairColor = "SenpaiHairColor";
 
-  public static string SenpaiHairColor
-  {
-    get => PlayerPrefs.GetString("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiHairColor");
-    set => PlayerPrefs.SetString("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiHairColor", value);
-  }
+	private const string Str_SenpaiHairStyle = "SenpaiHairStyle";
 
-  public static int SenpaiHairStyle
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiHairStyle");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiHairStyle", value);
-  }
+	private const string Str_SenpaiSkinColor = "SenpaiSkinColor";
 
-  public static int SenpaiSkinColor
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiSkinColor");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiSkinColor", value);
-  }
+	public static bool CustomSenpai
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_CustomSenpai");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_CustomSenpai", value);
+		}
+	}
 
-  public static void DeleteAll()
-  {
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CustomSenpai");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiEyeColor");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiEyeWear");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiFacialHair");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiHairColor");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiHairStyle");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiSkinColor");
-  }
+	public static string SenpaiEyeColor
+	{
+		get
+		{
+			return PlayerPrefs.GetString("Profile_" + GameGlobals.Profile + "_SenpaiEyeColor");
+		}
+		set
+		{
+			PlayerPrefs.SetString("Profile_" + GameGlobals.Profile + "_SenpaiEyeColor", value);
+		}
+	}
+
+	public static int SenpaiEyeWear
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_SenpaiEyeWear");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_SenpaiEyeWear", value);
+		}
+	}
+
+	public static int SenpaiFacialHair
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_SenpaiFacialHair");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_SenpaiFacialHair", value);
+		}
+	}
+
+	public static string SenpaiHairColor
+	{
+		get
+		{
+			return PlayerPrefs.GetString("Profile_" + GameGlobals.Profile + "_SenpaiHairColor");
+		}
+		set
+		{
+			PlayerPrefs.SetString("Profile_" + GameGlobals.Profile + "_SenpaiHairColor", value);
+		}
+	}
+
+	public static int SenpaiHairStyle
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_SenpaiHairStyle");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_SenpaiHairStyle", value);
+		}
+	}
+
+	public static int SenpaiSkinColor
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_SenpaiSkinColor");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_SenpaiSkinColor", value);
+		}
+	}
+
+	public static void DeleteAll()
+	{
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CustomSenpai");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SenpaiEyeColor");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SenpaiEyeWear");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SenpaiFacialHair");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SenpaiHairColor");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SenpaiHairStyle");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SenpaiSkinColor");
+	}
 }

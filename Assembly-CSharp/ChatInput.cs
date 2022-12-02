@@ -1,38 +1,39 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ChatInput
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
-[RequireComponent(typeof (UIInput))]
+[RequireComponent(typeof(UIInput))]
 [AddComponentMenu("NGUI/Examples/Chat Input")]
 public class ChatInput : MonoBehaviour
 {
-  public UITextList textList;
-  public bool fillWithDummyData;
-  private UIInput mInput;
+	public UITextList textList;
 
-  private void Start()
-  {
-    this.mInput = this.GetComponent<UIInput>();
-    this.mInput.label.maxLineCount = 1;
-    if (!this.fillWithDummyData || !((Object) this.textList != (Object) null))
-      return;
-    for (int index = 0; index < 30; ++index)
-      this.textList.Add((index % 2 == 0 ? "[FFFFFF]" : "[AAAAAA]") + "This is an example paragraph for the text list, testing line " + index.ToString() + "[-]");
-  }
+	public bool fillWithDummyData;
 
-  public void OnSubmit()
-  {
-    if (!((Object) this.textList != (Object) null))
-      return;
-    string text = NGUIText.StripSymbols(this.mInput.value);
-    if (string.IsNullOrEmpty(text))
-      return;
-    this.textList.Add(text);
-    this.mInput.value = "";
-    this.mInput.isSelected = false;
-  }
+	private UIInput mInput;
+
+	private void Start()
+	{
+		mInput = GetComponent<UIInput>();
+		mInput.label.maxLineCount = 1;
+		if (fillWithDummyData && textList != null)
+		{
+			for (int i = 0; i < 30; i++)
+			{
+				textList.Add(((i % 2 == 0) ? "[FFFFFF]" : "[AAAAAA]") + "This is an example paragraph for the text list, testing line " + i + "[-]");
+			}
+		}
+	}
+
+	public void OnSubmit()
+	{
+		if (textList != null)
+		{
+			string text = NGUIText.StripSymbols(mInput.value);
+			if (!string.IsNullOrEmpty(text))
+			{
+				textList.Add(text);
+				mInput.value = "";
+				mInput.isSelected = false;
+			}
+		}
+	}
 }

@@ -1,220 +1,225 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PickpocketScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PickpocketScript : MonoBehaviour
 {
-  public PickpocketMinigameScript PickpocketMinigame;
-  public StudentScript Student;
-  public PromptScript Prompt;
-  public UIPanel PickpocketPanel;
-  public UISprite TimeBar;
-  public Transform PickpocketSpot;
-  public GameObject AlarmDisc;
-  public GameObject Key;
-  public float Timer;
-  public int ID = 1;
-  public bool NotNurse;
-  public bool Test;
+	public PickpocketMinigameScript PickpocketMinigame;
 
-  private void Start()
-  {
-    if (this.Student.StudentID != 71)
-    {
-      this.Prompt.transform.parent.gameObject.SetActive(false);
-      this.enabled = false;
-    }
-    else
-    {
-      this.PickpocketMinigame = this.Student.StudentManager.PickpocketMinigame;
-      if (this.Student.StudentID == this.Student.StudentManager.NurseID)
-        this.ID = 2;
-      else if (ClubGlobals.GetClubClosed(this.Student.OriginalClub))
-      {
-        this.Prompt.transform.parent.gameObject.SetActive(false);
-        this.enabled = false;
-      }
-      else
-      {
-        this.Prompt.Label[3].text = "     Steal Shed Key";
-        this.NotNurse = true;
-      }
-    }
-  }
+	public StudentScript Student;
 
-  private void Update()
-  {
-    if ((Object) this.Prompt.transform.parent != (Object) null)
-    {
-      if (this.Student.Routine)
-      {
-        if ((double) this.Student.DistanceToDestination > 0.5)
-        {
-          if (this.Prompt.enabled)
-          {
-            this.Prompt.Hide();
-            this.Prompt.enabled = false;
-            this.PickpocketPanel.enabled = false;
-          }
-          if (this.Student.Yandere.Pickpocketing && this.PickpocketMinigame.ID == this.ID)
-          {
-            this.Prompt.Yandere.Caught = true;
-            this.PickpocketMinigame.End();
-            this.Punish();
-          }
-        }
-        else
-        {
-          this.PickpocketPanel.enabled = true;
-          if ((Object) this.Student.Yandere.PickUp == (Object) null && (Object) this.Student.Yandere.Pursuer == (Object) null)
-          {
-            this.Prompt.enabled = true;
-          }
-          else
-          {
-            this.Prompt.enabled = false;
-            this.Prompt.Hide();
-          }
-          if ((Object) this.TimeBar != (Object) null)
-          {
-            this.Timer += Time.deltaTime * this.Student.CharacterAnimation[this.Student.PatrolAnim].speed;
-            this.TimeBar.fillAmount = (float) (1.0 - (double) this.Timer / (double) this.Student.CharacterAnimation[this.Student.PatrolAnim].length);
-            if ((double) this.Timer > (double) this.Student.CharacterAnimation[this.Student.PatrolAnim].length)
-            {
-              if (this.Student.Yandere.Pickpocketing && this.PickpocketMinigame.ID == this.ID)
-              {
-                this.Prompt.Yandere.Caught = true;
-                this.PickpocketMinigame.End();
-                this.Punish();
-              }
-              this.Timer = 0.0f;
-            }
-          }
-        }
-      }
-      else if (this.Prompt.enabled)
-      {
-        this.Prompt.Hide();
-        this.Prompt.enabled = false;
-        this.PickpocketPanel.enabled = false;
-        if (this.Student.Yandere.Pickpocketing && this.PickpocketMinigame.ID == this.ID)
-        {
-          this.Prompt.Yandere.Caught = true;
-          this.PickpocketMinigame.End();
-          this.Punish();
-        }
-      }
-      if ((double) this.Prompt.Circle[3].fillAmount == 0.0)
-      {
-        this.Prompt.Circle[3].fillAmount = 1f;
-        if (!this.Prompt.Yandere.Chased && this.Prompt.Yandere.Chasers == 0)
-        {
-          this.PickpocketMinigame.StartingAlerts = this.Prompt.Yandere.Alerts;
-          this.PickpocketMinigame.PickpocketSpot = this.PickpocketSpot;
-          this.PickpocketMinigame.NotNurse = this.NotNurse;
-          this.PickpocketMinigame.Show = true;
-          this.PickpocketMinigame.ID = this.ID;
-          this.Student.Yandere.CharacterAnimation.CrossFade("f02_pickpocketing_00");
-          this.Student.Yandere.Pickpocketing = true;
-          this.Student.Yandere.EmptyHands();
-          this.Student.Yandere.CanMove = false;
-        }
-      }
-      if ((Object) this.PickpocketMinigame != (Object) null && this.PickpocketMinigame.ID == this.ID)
-      {
-        if (this.PickpocketMinigame.Success)
-        {
-          this.PickpocketMinigame.Success = false;
-          this.PickpocketMinigame.ID = 0;
-          this.Succeed();
-          this.PickpocketPanel.enabled = false;
-          this.Prompt.enabled = false;
-          this.Prompt.Hide();
-          this.Key.SetActive(false);
-          this.enabled = false;
-        }
-        if (this.PickpocketMinigame.Failure)
-        {
-          this.PickpocketMinigame.Failure = false;
-          this.PickpocketMinigame.ID = 0;
-          this.Punish();
-        }
-      }
-      if (this.Student.Alive)
-        return;
-      this.transform.position = new Vector3(this.Student.transform.position.x, this.Student.transform.position.y + 1f, this.Student.transform.position.z);
-      this.Prompt.gameObject.GetComponent<BoxCollider>().isTrigger = false;
-      this.Prompt.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-      this.Prompt.gameObject.GetComponent<Rigidbody>().useGravity = true;
-      this.Prompt.enabled = true;
-      this.transform.parent = (Transform) null;
-      if ((double) this.transform.position.x <= -71.0 || (double) this.transform.position.x >= -61.0 || (double) this.transform.position.z <= -37.5 || (double) this.transform.position.z >= -27.5)
-        return;
-      this.Prompt.Yandere.NotificationManager.CustomText = "The dropped keys have been placed nearby.";
-      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      this.transform.position = new Vector3(-63f, 1f, -26.5f);
-    }
-    else
-    {
-      if ((double) this.Prompt.Circle[3].fillAmount != 0.0)
-        return;
-      this.Succeed();
-      this.Prompt.Hide();
-      this.PickpocketPanel.enabled = false;
-      this.Prompt.enabled = false;
-      this.Prompt.Hide();
-      this.Key.SetActive(false);
-      this.enabled = false;
-      this.gameObject.SetActive(false);
-    }
-  }
+	public PromptScript Prompt;
 
-  private void Punish()
-  {
-    Debug.Log((object) "Punishing Yandere-chan for pickpocketing.");
-    Object.Instantiate<GameObject>(this.AlarmDisc, this.Student.Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
-    if (!this.NotNurse && !this.Prompt.Yandere.Egg)
-    {
-      Debug.Log((object) "A faculty member saw pickpocketing.");
-      this.Student.Witnessed = StudentWitnessType.Theft;
-      this.Student.SenpaiNoticed();
-      this.Student.CameraEffects.MurderWitnessed();
-      this.Student.Concern = 5;
-    }
-    else
-    {
-      this.Student.Witnessed = StudentWitnessType.Pickpocketing;
-      this.Student.CameraEffects.Alarm();
-      this.Student.Alarm += 200f;
-    }
-    this.Timer = 0.0f;
-    this.Prompt.Hide();
-    this.Prompt.enabled = false;
-    this.PickpocketPanel.enabled = false;
-    this.Student.CharacterAnimation[this.Student.PatrolAnim].time = 0.0f;
-    this.Student.PatrolTimer = 0.0f;
-  }
+	public UIPanel PickpocketPanel;
 
-  private void Succeed()
-  {
-    if (this.ID == 1)
-    {
-      this.Student.StudentManager.ShedDoor.Prompt.Label[0].text = "     Open";
-      this.Student.StudentManager.ShedDoor.Locked = false;
-      this.Student.ClubManager.Padlock.SetActive(false);
-      this.Student.Yandere.Inventory.ShedKey = true;
-    }
-    else
-    {
-      this.Student.StudentManager.CabinetDoor.Prompt.Label[0].text = "     Open";
-      this.Student.StudentManager.CabinetDoor.Locked = false;
-      this.Student.Yandere.Inventory.CabinetKey = true;
-    }
-    this.Student.Yandere.NotificationManager.CustomText = "Got the key!";
-    this.Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-  }
+	public UISprite TimeBar;
+
+	public Transform PickpocketSpot;
+
+	public GameObject AlarmDisc;
+
+	public GameObject Key;
+
+	public float Timer;
+
+	public int ID = 1;
+
+	public bool NotNurse;
+
+	public bool Test;
+
+	private void Start()
+	{
+		if (Student.StudentID != 71)
+		{
+			Prompt.transform.parent.gameObject.SetActive(false);
+			base.enabled = false;
+			return;
+		}
+		PickpocketMinigame = Student.StudentManager.PickpocketMinigame;
+		if (Student.StudentID == Student.StudentManager.NurseID)
+		{
+			ID = 2;
+		}
+		else if (ClubGlobals.GetClubClosed(Student.OriginalClub))
+		{
+			Prompt.transform.parent.gameObject.SetActive(false);
+			base.enabled = false;
+		}
+		else
+		{
+			Prompt.Label[3].text = "     Steal Shed Key";
+			NotNurse = true;
+		}
+	}
+
+	private void Update()
+	{
+		if (Prompt.transform.parent != null)
+		{
+			if (Student.Routine)
+			{
+				if (Student.DistanceToDestination > 0.5f)
+				{
+					if (Prompt.enabled)
+					{
+						Prompt.Hide();
+						Prompt.enabled = false;
+						PickpocketPanel.enabled = false;
+					}
+					if (Student.Yandere.Pickpocketing && PickpocketMinigame.ID == ID)
+					{
+						Prompt.Yandere.Caught = true;
+						PickpocketMinigame.End();
+						Punish();
+					}
+				}
+				else
+				{
+					PickpocketPanel.enabled = true;
+					if (Student.Yandere.PickUp == null && Student.Yandere.Pursuer == null)
+					{
+						Prompt.enabled = true;
+					}
+					else
+					{
+						Prompt.enabled = false;
+						Prompt.Hide();
+					}
+					if (TimeBar != null)
+					{
+						Timer += Time.deltaTime * Student.CharacterAnimation[Student.PatrolAnim].speed;
+						TimeBar.fillAmount = 1f - Timer / Student.CharacterAnimation[Student.PatrolAnim].length;
+						if (Timer > Student.CharacterAnimation[Student.PatrolAnim].length)
+						{
+							if (Student.Yandere.Pickpocketing && PickpocketMinigame.ID == ID)
+							{
+								Prompt.Yandere.Caught = true;
+								PickpocketMinigame.End();
+								Punish();
+							}
+							Timer = 0f;
+						}
+					}
+				}
+			}
+			else if (Prompt.enabled)
+			{
+				Prompt.Hide();
+				Prompt.enabled = false;
+				PickpocketPanel.enabled = false;
+				if (Student.Yandere.Pickpocketing && PickpocketMinigame.ID == ID)
+				{
+					Prompt.Yandere.Caught = true;
+					PickpocketMinigame.End();
+					Punish();
+				}
+			}
+			if (Prompt.Circle[3].fillAmount == 0f)
+			{
+				Prompt.Circle[3].fillAmount = 1f;
+				if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
+				{
+					PickpocketMinigame.StartingAlerts = Prompt.Yandere.Alerts;
+					PickpocketMinigame.PickpocketSpot = PickpocketSpot;
+					PickpocketMinigame.NotNurse = NotNurse;
+					PickpocketMinigame.Show = true;
+					PickpocketMinigame.ID = ID;
+					Student.Yandere.CharacterAnimation.CrossFade("f02_pickpocketing_00");
+					Student.Yandere.Pickpocketing = true;
+					Student.Yandere.EmptyHands();
+					Student.Yandere.CanMove = false;
+				}
+			}
+			if (PickpocketMinigame != null && PickpocketMinigame.ID == ID)
+			{
+				if (PickpocketMinigame.Success)
+				{
+					PickpocketMinigame.Success = false;
+					PickpocketMinigame.ID = 0;
+					Succeed();
+					PickpocketPanel.enabled = false;
+					Prompt.enabled = false;
+					Prompt.Hide();
+					Key.SetActive(false);
+					base.enabled = false;
+				}
+				if (PickpocketMinigame.Failure)
+				{
+					PickpocketMinigame.Failure = false;
+					PickpocketMinigame.ID = 0;
+					Punish();
+				}
+			}
+			if (!Student.Alive)
+			{
+				base.transform.position = new Vector3(Student.transform.position.x, Student.transform.position.y + 1f, Student.transform.position.z);
+				Prompt.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+				Prompt.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+				Prompt.gameObject.GetComponent<Rigidbody>().useGravity = true;
+				Prompt.enabled = true;
+				base.transform.parent = null;
+				if (base.transform.position.x > -71f && base.transform.position.x < -61f && base.transform.position.z > -37.5f && base.transform.position.z < -27.5f)
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "The dropped keys have been placed nearby.";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					base.transform.position = new Vector3(-63f, 1f, -26.5f);
+				}
+			}
+		}
+		else if (Prompt.Circle[3].fillAmount == 0f)
+		{
+			Succeed();
+			Prompt.Hide();
+			PickpocketPanel.enabled = false;
+			Prompt.enabled = false;
+			Prompt.Hide();
+			Key.SetActive(false);
+			base.enabled = false;
+			base.gameObject.SetActive(false);
+		}
+	}
+
+	private void Punish()
+	{
+		Debug.Log("Punishing Yandere-chan for pickpocketing.");
+		Object.Instantiate(AlarmDisc, Student.Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
+		if (!NotNurse && !Prompt.Yandere.Egg)
+		{
+			Debug.Log("A faculty member saw pickpocketing.");
+			Student.Witnessed = StudentWitnessType.Theft;
+			Student.SenpaiNoticed();
+			Student.CameraEffects.MurderWitnessed();
+			Student.Concern = 5;
+		}
+		else
+		{
+			Student.Witnessed = StudentWitnessType.Pickpocketing;
+			Student.CameraEffects.Alarm();
+			Student.Alarm += 200f;
+		}
+		Timer = 0f;
+		Prompt.Hide();
+		Prompt.enabled = false;
+		PickpocketPanel.enabled = false;
+		Student.CharacterAnimation[Student.PatrolAnim].time = 0f;
+		Student.PatrolTimer = 0f;
+	}
+
+	private void Succeed()
+	{
+		if (ID == 1)
+		{
+			Student.StudentManager.ShedDoor.Prompt.Label[0].text = "     Open";
+			Student.StudentManager.ShedDoor.Locked = false;
+			Student.ClubManager.Padlock.SetActive(false);
+			Student.Yandere.Inventory.ShedKey = true;
+		}
+		else
+		{
+			Student.StudentManager.CabinetDoor.Prompt.Label[0].text = "     Open";
+			Student.StudentManager.CabinetDoor.Locked = false;
+			Student.Yandere.Inventory.CabinetKey = true;
+		}
+		Student.Yandere.NotificationManager.CustomText = "Got the key!";
+		Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+	}
 }

@@ -1,42 +1,43 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DanceMinigamePromptScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DanceMinigamePromptScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public Renderer OriginalRenderer;
-  public DDRManager DanceManager;
-  public PromptScript Prompt;
-  public ClockScript Clock;
-  public GameObject DanceMinigame;
-  public Transform PlayerLocation;
+	public StudentManagerScript StudentManager;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    this.Prompt.Yandere.transform.position = this.PlayerLocation.position;
-    this.Prompt.Yandere.transform.rotation = this.PlayerLocation.rotation;
-    this.Prompt.Yandere.CharacterAnimation.Play("f02_danceMachineIdle_00");
-    this.Prompt.Yandere.StudentManager.Clock.StopTime = true;
-    this.Prompt.Yandere.MyController.enabled = false;
-    this.Prompt.Yandere.HeartCamera.enabled = false;
-    this.Prompt.Yandere.HUD.enabled = false;
-    this.Prompt.Yandere.CanMove = false;
-    this.Prompt.Yandere.enabled = false;
-    this.Prompt.Yandere.Jukebox.LastVolume = this.Prompt.Yandere.Jukebox.Volume;
-    this.Prompt.Yandere.Jukebox.Volume = 0.0f;
-    this.Prompt.Yandere.HUD.transform.parent.gameObject.SetActive(false);
-    this.Prompt.Yandere.MainCamera.gameObject.SetActive(false);
-    this.OriginalRenderer.enabled = false;
-    Physics.SyncTransforms();
-    this.DanceMinigame.SetActive(true);
-    this.DanceManager.BeginMinigame();
-    this.StudentManager.DisableEveryone();
-  }
+	public Renderer OriginalRenderer;
+
+	public DDRManager DanceManager;
+
+	public PromptScript Prompt;
+
+	public ClockScript Clock;
+
+	public GameObject DanceMinigame;
+
+	public Transform PlayerLocation;
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Yandere.transform.position = PlayerLocation.position;
+			Prompt.Yandere.transform.rotation = PlayerLocation.rotation;
+			Prompt.Yandere.CharacterAnimation.Play("f02_danceMachineIdle_00");
+			Prompt.Yandere.StudentManager.Clock.StopTime = true;
+			Prompt.Yandere.MyController.enabled = false;
+			Prompt.Yandere.HeartCamera.enabled = false;
+			Prompt.Yandere.HUD.enabled = false;
+			Prompt.Yandere.CanMove = false;
+			Prompt.Yandere.enabled = false;
+			Prompt.Yandere.Jukebox.LastVolume = Prompt.Yandere.Jukebox.Volume;
+			Prompt.Yandere.Jukebox.Volume = 0f;
+			Prompt.Yandere.HUD.transform.parent.gameObject.SetActive(false);
+			Prompt.Yandere.MainCamera.gameObject.SetActive(false);
+			OriginalRenderer.enabled = false;
+			Physics.SyncTransforms();
+			DanceMinigame.SetActive(true);
+			DanceManager.BeginMinigame();
+			StudentManager.DisableEveryone();
+		}
+	}
 }

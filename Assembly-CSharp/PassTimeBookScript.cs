@@ -1,121 +1,140 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PassTimeBookScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PassTimeBookScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public UISprite Darkness;
-  public bool TimeSkipping;
-  public bool FadeOut;
-  public float CooldownTimer;
+	public YandereScript Yandere;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      if ((double) this.CooldownTimer > 0.0)
-      {
-        this.Yandere.NotificationManager.CustomText = "Try again in a few seconds...";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-      else if (this.Yandere.Police.Show)
-      {
-        this.Yandere.NotificationManager.CustomText = "Not when police are coming!";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-      else if ((double) this.Yandere.StudentManager.Clock.HourTime < 15.5)
-      {
-        this.Yandere.NotificationManager.CustomText = "Only available after 3:30 PM";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-      else if ((double) this.Yandere.StudentManager.Clock.HourTime > 17.5)
-      {
-        this.Yandere.NotificationManager.CustomText = "Not available after 5:30 PM";
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      }
-      else if (this.Yandere.Armed || (double) this.Yandere.Bloodiness > 0.0 || (double) this.Yandere.Sanity < 33.333000183105469 || this.Yandere.Attacking || this.Yandere.Dragging || this.Yandere.Carrying || (Object) this.Yandere.PickUp != (Object) null || this.Yandere.Chased || this.Yandere.Chasers > 0 || (Object) this.Yandere.StudentManager.Reporter != (Object) null && !this.Yandere.Police.Show || this.Yandere.StudentManager.MurderTakingPlace)
-      {
-        this.DisplayErrorMessage();
-      }
-      else
-      {
-        this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
-        this.Yandere.RPGCamera.enabled = false;
-        this.Darkness.enabled = true;
-        this.Yandere.CanMove = false;
-        this.TimeSkipping = true;
-        this.FadeOut = true;
-      }
-    }
-    if (this.TimeSkipping)
-    {
-      if (this.FadeOut)
-      {
-        this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-        if ((double) this.Darkness.color.a <= 0.99998998641967773)
-          return;
-        this.Yandere.StudentManager.PutStudentsToSleep();
-        this.Yandere.StudentManager.Clock.PresentTime += 30f;
-        this.Yandere.StudentManager.Clock.UpdateClock();
-        this.CooldownTimer = 4f;
-        this.FadeOut = false;
-      }
-      else
-      {
-        this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime);
-        if ((double) this.Darkness.color.a >= 0.10000000149011612)
-          return;
-        this.Darkness.alpha = 0.0f;
-        if (PlayerGlobals.PantiesEquipped == 7)
-        {
-          this.Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;
-          this.Yandere.NotificationManager.CustomText = "Gained 2 extra Study Points!";
-        }
-        else
-        {
-          ++this.Yandere.StudentManager.Reputation.Portal.Class.BonusPoints;
-          this.Yandere.NotificationManager.CustomText = "Gained 1 extra Study Point!";
-        }
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-        this.Yandere.RPGCamera.enabled = true;
-        this.Darkness.enabled = false;
-        this.Yandere.CanMove = true;
-        this.TimeSkipping = false;
-      }
-    }
-    else
-      this.CooldownTimer = Mathf.MoveTowards(this.CooldownTimer, 0.0f, Time.deltaTime);
-  }
+	public PromptScript Prompt;
 
-  public void DisplayErrorMessage()
-  {
-    if (this.Yandere.Armed)
-      this.Yandere.NotificationManager.CustomText = "Carrying Weapon";
-    else if ((double) this.Yandere.Bloodiness > 0.0)
-      this.Yandere.NotificationManager.CustomText = "Bloody";
-    else if ((double) this.Yandere.Sanity < 33.333000183105469)
-      this.Yandere.NotificationManager.CustomText = "Visibly Insane";
-    else if (this.Yandere.Attacking)
-      this.Yandere.NotificationManager.CustomText = "In Combat";
-    else if (this.Yandere.Dragging || this.Yandere.Carrying)
-      this.Yandere.NotificationManager.CustomText = "Holding Corpse";
-    else if ((Object) this.Yandere.PickUp != (Object) null)
-      this.Yandere.NotificationManager.CustomText = "Carrying Item";
-    else if (this.Yandere.Chased || this.Yandere.Chasers > 0)
-      this.Yandere.NotificationManager.CustomText = "Chased";
-    else if ((bool) (Object) this.Yandere.StudentManager.Reporter && !this.Yandere.Police.Show)
-      this.Yandere.NotificationManager.CustomText = "Murder being reported";
-    else if (this.Yandere.StudentManager.MurderTakingPlace)
-      this.Yandere.NotificationManager.CustomText = "Murder taking place";
-    this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-    this.Yandere.NotificationManager.CustomText = "Cannot pass time. Reason:";
-    this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-  }
+	public UISprite Darkness;
+
+	public bool TimeSkipping;
+
+	public bool FadeOut;
+
+	public float CooldownTimer;
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			if (CooldownTimer > 0f)
+			{
+				Yandere.NotificationManager.CustomText = "Try again in a few seconds...";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else if (Yandere.Police.Show)
+			{
+				Yandere.NotificationManager.CustomText = "Not when police are coming!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else if (Yandere.StudentManager.Clock.HourTime < 15.5f)
+			{
+				Yandere.NotificationManager.CustomText = "Only available after 3:30 PM";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else if (Yandere.StudentManager.Clock.HourTime > 17.5f)
+			{
+				Yandere.NotificationManager.CustomText = "Not available after 5:30 PM";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || (Yandere.StudentManager.Reporter != null && !Yandere.Police.Show) || Yandere.StudentManager.MurderTakingPlace)
+			{
+				DisplayErrorMessage();
+			}
+			else
+			{
+				Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+				Yandere.RPGCamera.enabled = false;
+				Darkness.enabled = true;
+				Yandere.CanMove = false;
+				TimeSkipping = true;
+				FadeOut = true;
+			}
+		}
+		if (TimeSkipping)
+		{
+			if (FadeOut)
+			{
+				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+				if (Darkness.color.a > 0.99999f)
+				{
+					Yandere.StudentManager.PutStudentsToSleep();
+					Yandere.StudentManager.Clock.PresentTime += 30f;
+					Yandere.StudentManager.Clock.UpdateClock();
+					CooldownTimer = 4f;
+					FadeOut = false;
+				}
+				return;
+			}
+			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
+			if (Darkness.color.a < 0.1f)
+			{
+				Darkness.alpha = 0f;
+				if (PlayerGlobals.PantiesEquipped == 7)
+				{
+					Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;
+					Yandere.NotificationManager.CustomText = "Gained 2 extra Study Points!";
+				}
+				else
+				{
+					Yandere.StudentManager.Reputation.Portal.Class.BonusPoints++;
+					Yandere.NotificationManager.CustomText = "Gained 1 extra Study Point!";
+				}
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Yandere.RPGCamera.enabled = true;
+				Darkness.enabled = false;
+				Yandere.CanMove = true;
+				TimeSkipping = false;
+			}
+		}
+		else
+		{
+			CooldownTimer = Mathf.MoveTowards(CooldownTimer, 0f, Time.deltaTime);
+		}
+	}
+
+	public void DisplayErrorMessage()
+	{
+		if (Yandere.Armed)
+		{
+			Yandere.NotificationManager.CustomText = "Carrying Weapon";
+		}
+		else if (Yandere.Bloodiness > 0f)
+		{
+			Yandere.NotificationManager.CustomText = "Bloody";
+		}
+		else if (Yandere.Sanity < 33.333f)
+		{
+			Yandere.NotificationManager.CustomText = "Visibly Insane";
+		}
+		else if (Yandere.Attacking)
+		{
+			Yandere.NotificationManager.CustomText = "In Combat";
+		}
+		else if (Yandere.Dragging || Yandere.Carrying)
+		{
+			Yandere.NotificationManager.CustomText = "Holding Corpse";
+		}
+		else if (Yandere.PickUp != null)
+		{
+			Yandere.NotificationManager.CustomText = "Carrying Item";
+		}
+		else if (Yandere.Chased || Yandere.Chasers > 0)
+		{
+			Yandere.NotificationManager.CustomText = "Chased";
+		}
+		else if ((bool)Yandere.StudentManager.Reporter && !Yandere.Police.Show)
+		{
+			Yandere.NotificationManager.CustomText = "Murder being reported";
+		}
+		else if (Yandere.StudentManager.MurderTakingPlace)
+		{
+			Yandere.NotificationManager.CustomText = "Murder taking place";
+		}
+		Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+		Yandere.NotificationManager.CustomText = "Cannot pass time. Reason:";
+		Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+	}
 }

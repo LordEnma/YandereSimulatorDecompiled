@@ -1,71 +1,83 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIButtonRotation
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Interaction/Button Rotation")]
 public class UIButtonRotation : MonoBehaviour
 {
-  public Transform tweenTarget;
-  public Vector3 hover = Vector3.zero;
-  public Vector3 pressed = Vector3.zero;
-  public float duration = 0.2f;
-  private Quaternion mRot;
-  private bool mStarted;
+	public Transform tweenTarget;
 
-  private void Start()
-  {
-    if (this.mStarted)
-      return;
-    this.mStarted = true;
-    if ((Object) this.tweenTarget == (Object) null)
-      this.tweenTarget = this.transform;
-    this.mRot = this.tweenTarget.localRotation;
-  }
+	public Vector3 hover = Vector3.zero;
 
-  private void OnEnable()
-  {
-    if (!this.mStarted)
-      return;
-    this.OnHover(UICamera.IsHighlighted(this.gameObject));
-  }
+	public Vector3 pressed = Vector3.zero;
 
-  private void OnDisable()
-  {
-    if (!this.mStarted || !((Object) this.tweenTarget != (Object) null))
-      return;
-    TweenRotation component = this.tweenTarget.GetComponent<TweenRotation>();
-    if (!((Object) component != (Object) null))
-      return;
-    component.value = this.mRot;
-    component.enabled = false;
-  }
+	public float duration = 0.2f;
 
-  private void OnPress(bool isPressed)
-  {
-    if (!this.enabled)
-      return;
-    if (!this.mStarted)
-      this.Start();
-    TweenRotation.Begin(this.tweenTarget.gameObject, this.duration, isPressed ? this.mRot * Quaternion.Euler(this.pressed) : (UICamera.IsHighlighted(this.gameObject) ? this.mRot * Quaternion.Euler(this.hover) : this.mRot)).method = UITweener.Method.EaseInOut;
-  }
+	private Quaternion mRot;
 
-  private void OnHover(bool isOver)
-  {
-    if (!this.enabled)
-      return;
-    if (!this.mStarted)
-      this.Start();
-    TweenRotation.Begin(this.tweenTarget.gameObject, this.duration, isOver ? this.mRot * Quaternion.Euler(this.hover) : this.mRot).method = UITweener.Method.EaseInOut;
-  }
+	private bool mStarted;
 
-  private void OnSelect(bool isSelected)
-  {
-    if (!this.enabled || isSelected && UICamera.currentScheme != UICamera.ControlScheme.Controller)
-      return;
-    this.OnHover(isSelected);
-  }
+	private void Start()
+	{
+		if (!mStarted)
+		{
+			mStarted = true;
+			if (tweenTarget == null)
+			{
+				tweenTarget = base.transform;
+			}
+			mRot = tweenTarget.localRotation;
+		}
+	}
+
+	private void OnEnable()
+	{
+		if (mStarted)
+		{
+			OnHover(UICamera.IsHighlighted(base.gameObject));
+		}
+	}
+
+	private void OnDisable()
+	{
+		if (mStarted && tweenTarget != null)
+		{
+			TweenRotation component = tweenTarget.GetComponent<TweenRotation>();
+			if (component != null)
+			{
+				component.value = mRot;
+				component.enabled = false;
+			}
+		}
+	}
+
+	private void OnPress(bool isPressed)
+	{
+		if (base.enabled)
+		{
+			if (!mStarted)
+			{
+				Start();
+			}
+			TweenRotation.Begin(tweenTarget.gameObject, duration, isPressed ? (mRot * Quaternion.Euler(pressed)) : (UICamera.IsHighlighted(base.gameObject) ? (mRot * Quaternion.Euler(hover)) : mRot)).method = UITweener.Method.EaseInOut;
+		}
+	}
+
+	private void OnHover(bool isOver)
+	{
+		if (base.enabled)
+		{
+			if (!mStarted)
+			{
+				Start();
+			}
+			TweenRotation.Begin(tweenTarget.gameObject, duration, isOver ? (mRot * Quaternion.Euler(hover)) : mRot).method = UITweener.Method.EaseInOut;
+		}
+	}
+
+	private void OnSelect(bool isSelected)
+	{
+		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
+		{
+			OnHover(isSelected);
+		}
+	}
 }

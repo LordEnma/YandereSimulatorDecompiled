@@ -1,56 +1,65 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityEngine.PostProcessing.ColorGradingCurve
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 
 namespace UnityEngine.PostProcessing
 {
-  [Serializable]
-  public sealed class ColorGradingCurve
-  {
-    public AnimationCurve curve;
-    [SerializeField]
-    private bool m_Loop;
-    [SerializeField]
-    private float m_ZeroValue;
-    [SerializeField]
-    private float m_Range;
-    private AnimationCurve m_InternalLoopingCurve;
+	[Serializable]
+	public sealed class ColorGradingCurve
+	{
+		public AnimationCurve curve;
 
-    public ColorGradingCurve(AnimationCurve curve, float zeroValue, bool loop, Vector2 bounds)
-    {
-      this.curve = curve;
-      this.m_ZeroValue = zeroValue;
-      this.m_Loop = loop;
-      this.m_Range = bounds.magnitude;
-    }
+		[SerializeField]
+		private bool m_Loop;
 
-    public void Cache()
-    {
-      if (!this.m_Loop)
-        return;
-      int length = this.curve.length;
-      if (length < 2)
-        return;
-      if (this.m_InternalLoopingCurve == null)
-        this.m_InternalLoopingCurve = new AnimationCurve();
-      Keyframe key1 = this.curve[length - 1];
-      key1.time -= this.m_Range;
-      Keyframe key2 = this.curve[0];
-      key2.time += this.m_Range;
-      this.m_InternalLoopingCurve.keys = this.curve.keys;
-      this.m_InternalLoopingCurve.AddKey(key1);
-      this.m_InternalLoopingCurve.AddKey(key2);
-    }
+		[SerializeField]
+		private float m_ZeroValue;
 
-    public float Evaluate(float t)
-    {
-      if (this.curve.length == 0)
-        return this.m_ZeroValue;
-      return !this.m_Loop || this.curve.length == 1 ? this.curve.Evaluate(t) : this.m_InternalLoopingCurve.Evaluate(t);
-    }
-  }
+		[SerializeField]
+		private float m_Range;
+
+		private AnimationCurve m_InternalLoopingCurve;
+
+		public ColorGradingCurve(AnimationCurve curve, float zeroValue, bool loop, Vector2 bounds)
+		{
+			this.curve = curve;
+			m_ZeroValue = zeroValue;
+			m_Loop = loop;
+			m_Range = bounds.magnitude;
+		}
+
+		public void Cache()
+		{
+			if (!m_Loop)
+			{
+				return;
+			}
+			int length = curve.length;
+			if (length >= 2)
+			{
+				if (m_InternalLoopingCurve == null)
+				{
+					m_InternalLoopingCurve = new AnimationCurve();
+				}
+				Keyframe key = curve[length - 1];
+				key.time -= m_Range;
+				Keyframe key2 = curve[0];
+				key2.time += m_Range;
+				m_InternalLoopingCurve.keys = curve.keys;
+				m_InternalLoopingCurve.AddKey(key);
+				m_InternalLoopingCurve.AddKey(key2);
+			}
+		}
+
+		public float Evaluate(float t)
+		{
+			if (curve.length == 0)
+			{
+				return m_ZeroValue;
+			}
+			if (!m_Loop || curve.length == 1)
+			{
+				return curve.Evaluate(t);
+			}
+			return m_InternalLoopingCurve.Evaluate(t);
+		}
+	}
 }

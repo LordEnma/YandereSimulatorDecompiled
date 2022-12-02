@@ -1,119 +1,122 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: IdeasMenuScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class IdeasMenuScript : MonoBehaviour
 {
-  public InputManagerScript InputManager;
-  public PauseScreenScript PauseScreen;
-  public Transform Highlight;
-  public UILabel Description;
-  public string[] IdeaNames;
-  public string[] Ideas;
-  public UILabel[] Labels;
-  public GameObject List;
-  public int ListSize = 21;
-  public int Selected = 1;
-  public int Offset;
-  public int Limit = 27;
+	public InputManagerScript InputManager;
 
-  private void Start()
-  {
-    for (int giftID = 1; giftID < 11; ++giftID)
-    {
-      if (!CollectibleGlobals.GetAdvicePurchased(giftID))
-      {
-        this.IdeaNames[17 + giftID] = "?????";
-        this.Ideas[17 + giftID] = "To unlock this information, you'll need to find someone who has experience getting away with murder...";
-      }
-    }
-    this.UpdateHighlightPosition();
-    this.Description.enabled = false;
-    this.List.SetActive(true);
-  }
+	public PauseScreenScript PauseScreen;
 
-  private void Update()
-  {
-    if (this.List.activeInHierarchy)
-    {
-      if (this.InputManager.TappedDown)
-      {
-        ++this.Selected;
-        this.UpdateHighlightPosition();
-      }
-      else if (this.InputManager.TappedUp)
-      {
-        --this.Selected;
-        this.UpdateHighlightPosition();
-      }
-      else if (Input.GetButtonDown("A"))
-      {
-        this.PauseScreen.PromptBar.ClearButtons();
-        this.PauseScreen.PromptBar.Label[1].text = "Back";
-        this.PauseScreen.PromptBar.UpdateButtons();
-        this.PauseScreen.PromptBar.Show = true;
-        this.Description.text = this.Ideas[this.Selected + this.Offset];
-        this.Description.text = this.Description.text.Replace('@', '\n');
-        this.Description.enabled = true;
-        this.List.SetActive(false);
-      }
-      else
-      {
-        if (!Input.GetButtonDown("B"))
-          return;
-        this.PauseScreen.PromptBar.ClearButtons();
-        this.PauseScreen.PromptBar.Label[0].text = "Accept";
-        this.PauseScreen.PromptBar.Label[1].text = "Exit";
-        this.PauseScreen.PromptBar.Label[4].text = "Choose";
-        this.PauseScreen.PromptBar.Label[5].text = "Choose";
-        this.PauseScreen.PromptBar.UpdateButtons();
-        this.PauseScreen.MainMenu.SetActive(true);
-        this.gameObject.SetActive(false);
-      }
-    }
-    else
-    {
-      if (!Input.GetButtonDown("B"))
-        return;
-      this.PauseScreen.PromptBar.ClearButtons();
-      this.PauseScreen.PromptBar.Label[0].text = "Confirm";
-      this.PauseScreen.PromptBar.Label[1].text = "Back";
-      this.PauseScreen.PromptBar.Label[4].text = "Choose";
-      this.PauseScreen.PromptBar.UpdateButtons();
-      this.PauseScreen.PromptBar.Show = true;
-      this.Description.enabled = false;
-      this.List.SetActive(true);
-    }
-  }
+	public Transform Highlight;
 
-  private void UpdateHighlightPosition()
-  {
-    if (this.Selected < 1)
-    {
-      this.Selected = 1;
-      --this.Offset;
-    }
-    else if (this.Selected > this.ListSize)
-    {
-      this.Selected = this.ListSize;
-      ++this.Offset;
-    }
-    if (this.Offset < 0)
-    {
-      this.Selected = this.ListSize;
-      this.Offset = this.Limit - this.ListSize;
-    }
-    else if (this.Offset > this.Limit - this.ListSize)
-    {
-      this.Selected = 1;
-      this.Offset = 0;
-    }
-    for (int index = 1; index < this.Labels.Length; ++index)
-      this.Labels[index].text = this.IdeaNames[index + this.Offset];
-    this.Highlight.transform.localPosition = new Vector3(-125f, (float) (550 - this.Selected * 50), 0.0f);
-  }
+	public UILabel Description;
+
+	public string[] IdeaNames;
+
+	public string[] Ideas;
+
+	public UILabel[] Labels;
+
+	public GameObject List;
+
+	public int ListSize = 21;
+
+	public int Selected = 1;
+
+	public int Offset;
+
+	public int Limit = 27;
+
+	private void Start()
+	{
+		for (int i = 1; i < 11; i++)
+		{
+			if (!CollectibleGlobals.GetAdvicePurchased(i))
+			{
+				IdeaNames[17 + i] = "?????";
+				Ideas[17 + i] = "To unlock this information, you'll need to find someone who has experience getting away with murder...";
+			}
+		}
+		UpdateHighlightPosition();
+		Description.enabled = false;
+		List.SetActive(true);
+	}
+
+	private void Update()
+	{
+		if (List.activeInHierarchy)
+		{
+			if (InputManager.TappedDown)
+			{
+				Selected++;
+				UpdateHighlightPosition();
+			}
+			else if (InputManager.TappedUp)
+			{
+				Selected--;
+				UpdateHighlightPosition();
+			}
+			else if (Input.GetButtonDown("A"))
+			{
+				PauseScreen.PromptBar.ClearButtons();
+				PauseScreen.PromptBar.Label[1].text = "Back";
+				PauseScreen.PromptBar.UpdateButtons();
+				PauseScreen.PromptBar.Show = true;
+				Description.text = Ideas[Selected + Offset];
+				Description.text = Description.text.Replace('@', '\n');
+				Description.enabled = true;
+				List.SetActive(false);
+			}
+			else if (Input.GetButtonDown("B"))
+			{
+				PauseScreen.PromptBar.ClearButtons();
+				PauseScreen.PromptBar.Label[0].text = "Accept";
+				PauseScreen.PromptBar.Label[1].text = "Exit";
+				PauseScreen.PromptBar.Label[4].text = "Choose";
+				PauseScreen.PromptBar.Label[5].text = "Choose";
+				PauseScreen.PromptBar.UpdateButtons();
+				PauseScreen.MainMenu.SetActive(true);
+				base.gameObject.SetActive(false);
+			}
+		}
+		else if (Input.GetButtonDown("B"))
+		{
+			PauseScreen.PromptBar.ClearButtons();
+			PauseScreen.PromptBar.Label[0].text = "Confirm";
+			PauseScreen.PromptBar.Label[1].text = "Back";
+			PauseScreen.PromptBar.Label[4].text = "Choose";
+			PauseScreen.PromptBar.UpdateButtons();
+			PauseScreen.PromptBar.Show = true;
+			Description.enabled = false;
+			List.SetActive(true);
+		}
+	}
+
+	private void UpdateHighlightPosition()
+	{
+		if (Selected < 1)
+		{
+			Selected = 1;
+			Offset--;
+		}
+		else if (Selected > ListSize)
+		{
+			Selected = ListSize;
+			Offset++;
+		}
+		if (Offset < 0)
+		{
+			Selected = ListSize;
+			Offset = Limit - ListSize;
+		}
+		else if (Offset > Limit - ListSize)
+		{
+			Selected = 1;
+			Offset = 0;
+		}
+		for (int i = 1; i < Labels.Length; i++)
+		{
+			Labels[i].text = IdeaNames[i + Offset];
+		}
+		Highlight.transform.localPosition = new Vector3(-125f, 550 - Selected * 50, 0f);
+	}
 }

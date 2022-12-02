@@ -1,39 +1,39 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: DipJukeboxScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class DipJukeboxScript : MonoBehaviour
 {
-  public JukeboxScript Jukebox;
-  public AudioSource MyAudio;
-  public Transform Yandere;
+	public JukeboxScript Jukebox;
 
-  private void Update()
-  {
-    if ((double) this.Yandere.transform.position.y < (double) this.transform.position.y - 1.0 || (double) this.Yandere.transform.position.y > (double) this.transform.position.y + 1.0)
-      this.MyAudio.volume = 0.0f;
-    else if (this.MyAudio.isPlaying)
-    {
-      this.MyAudio.volume = 1f;
-      float num = Vector3.Distance(this.Yandere.position, this.transform.position);
-      if ((double) num >= 8.0)
-        return;
-      this.Jukebox.ClubDip = Mathf.MoveTowards(this.Jukebox.ClubDip, (float) ((7.0 - (double) num) * 0.25) * this.Jukebox.Volume, Time.deltaTime);
-      if ((double) this.Jukebox.ClubDip < 0.0)
-        this.Jukebox.ClubDip = 0.0f;
-      if ((double) this.Jukebox.ClubDip <= (double) this.Jukebox.Volume)
-        return;
-      this.Jukebox.ClubDip = this.Jukebox.Volume;
-    }
-    else
-    {
-      if (!this.MyAudio.isPlaying)
-        return;
-      this.Jukebox.ClubDip = 0.0f;
-    }
-  }
+	public AudioSource MyAudio;
+
+	public Transform Yandere;
+
+	private void Update()
+	{
+		if (Yandere.transform.position.y < base.transform.position.y - 1f || Yandere.transform.position.y > base.transform.position.y + 1f)
+		{
+			MyAudio.volume = 0f;
+		}
+		else if (MyAudio.isPlaying)
+		{
+			MyAudio.volume = 1f;
+			float num = Vector3.Distance(Yandere.position, base.transform.position);
+			if (num < 8f)
+			{
+				Jukebox.ClubDip = Mathf.MoveTowards(Jukebox.ClubDip, (7f - num) * 0.25f * Jukebox.Volume, Time.deltaTime);
+				if (Jukebox.ClubDip < 0f)
+				{
+					Jukebox.ClubDip = 0f;
+				}
+				if (Jukebox.ClubDip > Jukebox.Volume)
+				{
+					Jukebox.ClubDip = Jukebox.Volume;
+				}
+			}
+		}
+		else if (MyAudio.isPlaying)
+		{
+			Jukebox.ClubDip = 0f;
+		}
+	}
 }

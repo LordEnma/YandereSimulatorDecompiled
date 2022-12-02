@@ -1,134 +1,140 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: InputManagerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class InputManagerScript : MonoBehaviour
 {
-  public bool TappedUp;
-  public bool TappedDown;
-  public bool TappedRight;
-  public bool TappedLeft;
-  public bool DPadUp;
-  public bool DPadDown;
-  public bool DPadRight;
-  public bool DPadLeft;
-  public bool StickUp;
-  public bool StickDown;
-  public bool StickRight;
-  public bool StickLeft;
+	public bool TappedUp;
 
-  private void Update()
-  {
-    this.TappedUp = false;
-    this.TappedDown = false;
-    this.TappedRight = false;
-    this.TappedLeft = false;
-    if ((double) Input.GetAxisRaw("DpadY") > 0.5)
-    {
-      this.TappedUp = !this.DPadUp;
-      this.DPadUp = true;
-    }
-    else if ((double) Input.GetAxisRaw("DpadY") < -0.5)
-    {
-      this.TappedDown = !this.DPadDown;
-      this.DPadDown = true;
-    }
-    else
-    {
-      this.DPadUp = false;
-      this.DPadDown = false;
-    }
-    if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
-    {
-      if ((double) Input.GetAxisRaw("Vertical") > 0.5)
-      {
-        this.TappedUp = !this.StickUp;
-        this.StickUp = !this.TappedDown;
-      }
-      else if ((double) Input.GetAxisRaw("Vertical") < -0.5)
-      {
-        this.TappedDown = !this.StickDown;
-        this.StickDown = !this.TappedUp;
-      }
-      else
-      {
-        this.StickUp = false;
-        this.StickDown = false;
-      }
-    }
-    if ((double) Input.GetAxisRaw("DpadX") > 0.5)
-    {
-      this.TappedRight = !this.DPadRight;
-      this.DPadRight = true;
-    }
-    else if ((double) Input.GetAxisRaw("DpadX") < -0.5)
-    {
-      this.TappedLeft = !this.DPadLeft;
-      this.DPadLeft = true;
-    }
-    else
-    {
-      this.DPadRight = false;
-      this.DPadLeft = false;
-    }
-    if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
-    {
-      if ((double) Input.GetAxisRaw("Horizontal") > 0.5)
-      {
-        this.TappedRight = !this.StickRight;
-        this.StickRight = true;
-      }
-      else if ((double) Input.GetAxisRaw("Horizontal") < -0.5)
-      {
-        this.TappedLeft = !this.StickLeft;
-        this.StickLeft = true;
-      }
-      else
-      {
-        this.StickRight = false;
-        this.StickLeft = false;
-      }
-    }
-    if ((double) Input.GetAxisRaw("Horizontal") < 0.5 && (double) Input.GetAxisRaw("Horizontal") > -0.5 && (double) Input.GetAxisRaw("DpadX") < 0.5 && (double) Input.GetAxisRaw("DpadX") > -0.5)
-    {
-      this.TappedRight = false;
-      this.TappedLeft = false;
-    }
-    if ((double) Input.GetAxisRaw("Vertical") < 0.5 && (double) Input.GetAxisRaw("Vertical") > -0.5 && (double) Input.GetAxisRaw("DpadY") < 0.5 && (double) Input.GetAxisRaw("DpadY") > -0.5)
-    {
-      this.TappedUp = false;
-      this.TappedDown = false;
-    }
-    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-    {
-      this.TappedUp = true;
-      this.NoStick();
-    }
-    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-    {
-      this.TappedDown = true;
-      this.NoStick();
-    }
-    if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-    {
-      this.TappedLeft = true;
-      this.NoStick();
-    }
-    if (!Input.GetKeyDown(KeyCode.D) && !Input.GetKeyDown(KeyCode.RightArrow))
-      return;
-    this.TappedRight = true;
-    this.NoStick();
-  }
+	public bool TappedDown;
 
-  private void NoStick()
-  {
-    this.StickUp = false;
-    this.StickDown = false;
-    this.StickLeft = false;
-    this.StickRight = false;
-  }
+	public bool TappedRight;
+
+	public bool TappedLeft;
+
+	public bool DPadUp;
+
+	public bool DPadDown;
+
+	public bool DPadRight;
+
+	public bool DPadLeft;
+
+	public bool StickUp;
+
+	public bool StickDown;
+
+	public bool StickRight;
+
+	public bool StickLeft;
+
+	private void Update()
+	{
+		TappedUp = false;
+		TappedDown = false;
+		TappedRight = false;
+		TappedLeft = false;
+		if (Input.GetAxisRaw("DpadY") > 0.5f)
+		{
+			TappedUp = !DPadUp;
+			DPadUp = true;
+		}
+		else if (Input.GetAxisRaw("DpadY") < -0.5f)
+		{
+			TappedDown = !DPadDown;
+			DPadDown = true;
+		}
+		else
+		{
+			DPadUp = false;
+			DPadDown = false;
+		}
+		if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+		{
+			if (Input.GetAxisRaw("Vertical") > 0.5f)
+			{
+				TappedUp = !StickUp;
+				StickUp = !TappedDown;
+			}
+			else if (Input.GetAxisRaw("Vertical") < -0.5f)
+			{
+				TappedDown = !StickDown;
+				StickDown = !TappedUp;
+			}
+			else
+			{
+				StickUp = false;
+				StickDown = false;
+			}
+		}
+		if (Input.GetAxisRaw("DpadX") > 0.5f)
+		{
+			TappedRight = !DPadRight;
+			DPadRight = true;
+		}
+		else if (Input.GetAxisRaw("DpadX") < -0.5f)
+		{
+			TappedLeft = !DPadLeft;
+			DPadLeft = true;
+		}
+		else
+		{
+			DPadRight = false;
+			DPadLeft = false;
+		}
+		if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+		{
+			if (Input.GetAxisRaw("Horizontal") > 0.5f)
+			{
+				TappedRight = !StickRight;
+				StickRight = true;
+			}
+			else if (Input.GetAxisRaw("Horizontal") < -0.5f)
+			{
+				TappedLeft = !StickLeft;
+				StickLeft = true;
+			}
+			else
+			{
+				StickRight = false;
+				StickLeft = false;
+			}
+		}
+		if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f && Input.GetAxisRaw("DpadX") < 0.5f && Input.GetAxisRaw("DpadX") > -0.5f)
+		{
+			TappedRight = false;
+			TappedLeft = false;
+		}
+		if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f && Input.GetAxisRaw("DpadY") < 0.5f && Input.GetAxisRaw("DpadY") > -0.5f)
+		{
+			TappedUp = false;
+			TappedDown = false;
+		}
+		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+		{
+			TappedUp = true;
+			NoStick();
+		}
+		if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+		{
+			TappedDown = true;
+			NoStick();
+		}
+		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			TappedLeft = true;
+			NoStick();
+		}
+		if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+		{
+			TappedRight = true;
+			NoStick();
+		}
+	}
+
+	private void NoStick()
+	{
+		StickUp = false;
+		StickDown = false;
+		StickLeft = false;
+		StickRight = false;
+	}
 }

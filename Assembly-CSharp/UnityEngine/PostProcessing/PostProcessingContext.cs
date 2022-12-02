@@ -1,40 +1,70 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityEngine.PostProcessing.PostProcessingContext
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 namespace UnityEngine.PostProcessing
 {
-  public class PostProcessingContext
-  {
-    public PostProcessingProfile profile;
-    public Camera camera;
-    public MaterialFactory materialFactory;
-    public RenderTextureFactory renderTextureFactory;
+	public class PostProcessingContext
+	{
+		public PostProcessingProfile profile;
 
-    public bool interrupted { get; private set; }
+		public Camera camera;
 
-    public void Interrupt() => this.interrupted = true;
+		public MaterialFactory materialFactory;
 
-    public PostProcessingContext Reset()
-    {
-      this.profile = (PostProcessingProfile) null;
-      this.camera = (Camera) null;
-      this.materialFactory = (MaterialFactory) null;
-      this.renderTextureFactory = (RenderTextureFactory) null;
-      this.interrupted = false;
-      return this;
-    }
+		public RenderTextureFactory renderTextureFactory;
 
-    public bool isGBufferAvailable => this.camera.actualRenderingPath == RenderingPath.DeferredShading;
+		public bool interrupted { get; private set; }
 
-    public bool isHdr => this.camera.allowHDR;
+		public bool isGBufferAvailable
+		{
+			get
+			{
+				return camera.actualRenderingPath == RenderingPath.DeferredShading;
+			}
+		}
 
-    public int width => this.camera.pixelWidth;
+		public bool isHdr
+		{
+			get
+			{
+				return camera.allowHDR;
+			}
+		}
 
-    public int height => this.camera.pixelHeight;
+		public int width
+		{
+			get
+			{
+				return camera.pixelWidth;
+			}
+		}
 
-    public Rect viewport => this.camera.rect;
-  }
+		public int height
+		{
+			get
+			{
+				return camera.pixelHeight;
+			}
+		}
+
+		public Rect viewport
+		{
+			get
+			{
+				return camera.rect;
+			}
+		}
+
+		public void Interrupt()
+		{
+			interrupted = true;
+		}
+
+		public PostProcessingContext Reset()
+		{
+			profile = null;
+			camera = null;
+			materialFactory = null;
+			renderTextureFactory = null;
+			interrupted = false;
+			return this;
+		}
+	}
 }

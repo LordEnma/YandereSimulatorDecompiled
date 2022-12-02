@@ -1,56 +1,57 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MatchboxScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MatchboxScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public PromptScript Prompt;
-  public PickUpScript PickUp;
-  public GameObject Match;
-  public AudioSource MyAudio;
-  public int Ammo;
+	public YandereScript Yandere;
 
-  private void Update()
-  {
-    if (this.Prompt.PauseScreen.Show)
-      return;
-    if ((Object) this.Prompt.Yandere.PickUp == (Object) this.PickUp)
-    {
-      if (this.Prompt.HideButton[0])
-      {
-        this.Prompt.Yandere.Arc.SetActive(true);
-        this.Prompt.HideButton[0] = false;
-        this.Prompt.HideButton[3] = true;
-      }
-      if ((double) this.Prompt.Circle[0].fillAmount >= 1.0 || (double) this.Prompt.Circle[0].fillAmount <= 0.0)
-        return;
-      this.Prompt.Circle[0].fillAmount = 0.0f;
-      this.MyAudio.Play();
-      Rigidbody component = Object.Instantiate<GameObject>(this.Match, this.Prompt.Yandere.ItemParent.position, this.Prompt.Yandere.transform.rotation).GetComponent<Rigidbody>();
-      component.isKinematic = false;
-      component.useGravity = true;
-      component.AddRelativeForce(Vector3.up * 250f);
-      component.AddRelativeForce(Vector3.forward * 250f);
-      this.Prompt.Yandere.SuspiciousActionTimer = 1f;
-      --this.Ammo;
-      if (this.Ammo >= 1)
-        return;
-      this.Prompt.Yandere.Arc.SetActive(false);
-      this.Prompt.Yandere.PickUp.Drop();
-      Object.Destroy((Object) this.gameObject);
-    }
-    else
-    {
-      if (!this.Prompt.Yandere.Arc.activeInHierarchy || this.Prompt.HideButton[0])
-        return;
-      this.Prompt.Yandere.Arc.SetActive(false);
-      this.Prompt.HideButton[0] = true;
-      this.Prompt.HideButton[3] = false;
-    }
-  }
+	public PromptScript Prompt;
+
+	public PickUpScript PickUp;
+
+	public GameObject Match;
+
+	public AudioSource MyAudio;
+
+	public int Ammo;
+
+	private void Update()
+	{
+		if (Prompt.PauseScreen.Show)
+		{
+			return;
+		}
+		if (Prompt.Yandere.PickUp == PickUp)
+		{
+			if (Prompt.HideButton[0])
+			{
+				Prompt.Yandere.Arc.SetActive(true);
+				Prompt.HideButton[0] = false;
+				Prompt.HideButton[3] = true;
+			}
+			if (Prompt.Circle[0].fillAmount < 1f && Prompt.Circle[0].fillAmount > 0f)
+			{
+				Prompt.Circle[0].fillAmount = 0f;
+				MyAudio.Play();
+				Rigidbody component = Object.Instantiate(Match, Prompt.Yandere.ItemParent.position, Prompt.Yandere.transform.rotation).GetComponent<Rigidbody>();
+				component.isKinematic = false;
+				component.useGravity = true;
+				component.AddRelativeForce(Vector3.up * 250f);
+				component.AddRelativeForce(Vector3.forward * 250f);
+				Prompt.Yandere.SuspiciousActionTimer = 1f;
+				Ammo--;
+				if (Ammo < 1)
+				{
+					Prompt.Yandere.Arc.SetActive(false);
+					Prompt.Yandere.PickUp.Drop();
+					Object.Destroy(base.gameObject);
+				}
+			}
+		}
+		else if (Prompt.Yandere.Arc.activeInHierarchy && !Prompt.HideButton[0])
+		{
+			Prompt.Yandere.Arc.SetActive(false);
+			Prompt.HideButton[0] = true;
+			Prompt.HideButton[3] = false;
+		}
+	}
 }

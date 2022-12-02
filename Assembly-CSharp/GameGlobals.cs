@@ -1,407 +1,731 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: GameGlobals
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public static class GameGlobals
 {
-  private const string Str_Profile = "Profile";
-  private const string Str_MostRecentSlot = "MostRecentSlot";
-  private const string Str_LoveSick = "LoveSick";
-  private const string Str_MasksBanned = "MasksBanned";
-  private const string Str_Paranormal = "Paranormal";
-  private const string Str_EasyMode = "EasyMode";
-  private const string Str_HardMode = "HardMode";
-  private const string Str_EmptyDemon = "EmptyDemon";
-  private const string Str_CensorBlood = "CensorBlood";
-  private const string Str_CensorPanties = "CensorPanties";
-  private const string Str_CensorKillingAnims = "CensorKillingAnims";
-  private const string Str_SpareUniform = "SpareUniform";
-  private const string Str_BlondeHair = "BlondeHair";
-  private const string Str_SenpaiMourning = "SenpaiMourning";
-  private const string Str_RivalEliminationID = "RivalEliminationID";
-  private const string Str_SpecificEliminationID = "SpecificEliminationID";
-  private const string Str_NonlethalElimination = "NonlethalElimination";
-  private const string Str_ReputationsInitialized = "ReputationsInitialized";
-  private const string Str_AnswerSheetUnavailable = "AnswerSheetUnavailable";
-  private const string Str_AlphabetMode = "AlphabetMode";
-  private const string Str_PoliceYesterday = "PoliceYesterday";
-  private const string Str_DarkEnding = "DarkEnding";
-  private const string Str_SenpaiSawOsanaCorpse = "SenpaiSawOsanaCorpse";
-  private const string Str_TransitionToPostCredits = "TransitionToPostCredits";
-  private const string Str_PlayerHasBeatenDemo = "PlayerHasBeatenDemo";
-  private const string Str_InformedAboutSkipping = "InformedAboutSkipping";
-  private const string Str_RingStolen = "RingStolen";
-  private const string Str_BeatEmUpDifficulty = "BeatEmUpDifficulty";
-  private const string Str_BeatEmUpSuccess = "BeatEmUpSuccess";
-  private const string Str_EightiesCutsceneID = "EightiesCutsceneID";
-  private const string Str_EightiesTutorial = "EightiesTutorial";
-  private const string Str_Eighties = "Eighties";
-  private const string Str_YakuzaPhase = "YakuzaPhase";
-  private const string Str_MetBarber = "MetBarber";
-  private const string Str_Debug = "Debug";
-  private const string Str_RivalEliminations = "RivalEliminations";
-  private const string Str_SpecificEliminations = "SpecificEliminations";
-  private const string Str_IntroducedAbduction = "IntroducedAbduction";
-  private const string Str_IntroducedRansom = "IntroducedRansom";
-  private const string Str_TrueEnding = "TrueEnding";
-  private const string Str_JustKidnapped = "JustKidnapped";
-  private const string Str_ShowAbduction = "ShowAbduction";
-  private const string Str_AbductionTarget = "AbductionTarget";
-  private const string Str_CameFromTitleScreen = "CameFromTitleScreen";
-  private const string Str_VtuberID = "VtuberID";
-  private const string Str_GrudgeConversationHappened = "GrudgeConversationHappened";
-  private const string Str_ItemRemoved = "ItemRemoved";
+	private const string Str_Profile = "Profile";
 
-  public static int Profile
-  {
-    get => PlayerPrefs.GetInt(nameof (Profile));
-    set => PlayerPrefs.SetInt(nameof (Profile), value);
-  }
+	private const string Str_MostRecentSlot = "MostRecentSlot";
 
-  public static int MostRecentSlot
-  {
-    get => PlayerPrefs.GetInt(nameof (MostRecentSlot));
-    set => PlayerPrefs.SetInt(nameof (MostRecentSlot), value);
-  }
+	private const string Str_LoveSick = "LoveSick";
 
-  public static bool LoveSick
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_LoveSick");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_LoveSick", value);
-  }
+	private const string Str_MasksBanned = "MasksBanned";
 
-  public static bool MasksBanned
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_MasksBanned");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_MasksBanned", value);
-  }
+	private const string Str_Paranormal = "Paranormal";
 
-  public static bool Paranormal
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_Paranormal");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_Paranormal", value);
-  }
+	private const string Str_EasyMode = "EasyMode";
 
-  public static bool EasyMode
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_EasyMode");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_EasyMode", value);
-  }
+	private const string Str_HardMode = "HardMode";
 
-  public static bool HardMode
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_HardMode");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_HardMode", value);
-  }
+	private const string Str_EmptyDemon = "EmptyDemon";
 
-  public static bool EmptyDemon
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_EmptyDemon");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_EmptyDemon", value);
-  }
+	private const string Str_CensorBlood = "CensorBlood";
 
-  public static bool CensorBlood
-  {
-    get => GlobalsHelper.GetBool("Profile__CensorBlood");
-    set => GlobalsHelper.SetBool("Profile__CensorBlood", value);
-  }
+	private const string Str_CensorPanties = "CensorPanties";
 
-  public static bool CensorPanties
-  {
-    get => GlobalsHelper.GetBool("Profile__CensorPanties");
-    set => GlobalsHelper.SetBool("Profile__CensorPanties", value);
-  }
+	private const string Str_CensorKillingAnims = "CensorKillingAnims";
 
-  public static bool CensorKillingAnims
-  {
-    get => GlobalsHelper.GetBool("Profile__CensorKillingAnims");
-    set => GlobalsHelper.SetBool("Profile__CensorKillingAnims", value);
-  }
+	private const string Str_SpareUniform = "SpareUniform";
 
-  public static bool SpareUniform
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SpareUniform");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SpareUniform", value);
-  }
+	private const string Str_BlondeHair = "BlondeHair";
 
-  public static bool BlondeHair
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_BlondeHair");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_BlondeHair", value);
-  }
+	private const string Str_SenpaiMourning = "SenpaiMourning";
 
-  public static bool SenpaiMourning
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiMourning");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiMourning", value);
-  }
+	private const string Str_RivalEliminationID = "RivalEliminationID";
 
-  public static int RivalEliminationID
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminationID");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminationID", value);
-  }
+	private const string Str_SpecificEliminationID = "SpecificEliminationID";
 
-  public static int SpecificEliminationID
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminationID");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminationID", value);
-  }
+	private const string Str_NonlethalElimination = "NonlethalElimination";
 
-  public static bool NonlethalElimination
-  {
-    get => GlobalsHelper.GetBool(nameof (NonlethalElimination));
-    set => GlobalsHelper.SetBool(nameof (NonlethalElimination), value);
-  }
+	private const string Str_ReputationsInitialized = "ReputationsInitialized";
 
-  public static bool ReputationsInitialized
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReputationsInitialized");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ReputationsInitialized", value);
-  }
+	private const string Str_AnswerSheetUnavailable = "AnswerSheetUnavailable";
 
-  public static bool AnswerSheetUnavailable
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_AnswerSheetUnavailable");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_AnswerSheetUnavailable", value);
-  }
+	private const string Str_AlphabetMode = "AlphabetMode";
 
-  public static bool AlphabetMode
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_AlphabetMode");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_AlphabetMode", value);
-  }
+	private const string Str_PoliceYesterday = "PoliceYesterday";
 
-  public static bool PoliceYesterday
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_PoliceYesterday");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_PoliceYesterday", value);
-  }
+	private const string Str_DarkEnding = "DarkEnding";
 
-  public static bool DarkEnding
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_DarkEnding");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_DarkEnding", value);
-  }
+	private const string Str_SenpaiSawOsanaCorpse = "SenpaiSawOsanaCorpse";
 
-  public static bool SenpaiSawOsanaCorpse
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiSawOsanaCorpse");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiSawOsanaCorpse", value);
-  }
+	private const string Str_TransitionToPostCredits = "TransitionToPostCredits";
 
-  public static bool TransitionToPostCredits
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_TransitionToPostCredits");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_TransitionToPostCredits", value);
-  }
+	private const string Str_PlayerHasBeatenDemo = "PlayerHasBeatenDemo";
 
-  public static bool PlayerHasBeatenDemo
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_PlayerHasBeatenDemo");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_PlayerHasBeatenDemo", value);
-  }
+	private const string Str_InformedAboutSkipping = "InformedAboutSkipping";
 
-  public static bool InformedAboutSkipping
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_InformedAboutSkipping");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_InformedAboutSkipping", value);
-  }
+	private const string Str_RingStolen = "RingStolen";
 
-  public static bool RingStolen
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_RingStolen");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_RingStolen", value);
-  }
+	private const string Str_BeatEmUpDifficulty = "BeatEmUpDifficulty";
 
-  public static int BeatEmUpDifficulty
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_BeatEmUpDifficulty");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_BeatEmUpDifficulty", value);
-  }
+	private const string Str_BeatEmUpSuccess = "BeatEmUpSuccess";
 
-  public static bool BeatEmUpSuccess
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_BeatEmUpSuccess");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_BeatEmUpSuccess", value);
-  }
+	private const string Str_EightiesCutsceneID = "EightiesCutsceneID";
 
-  public static int EightiesCutsceneID
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_EightiesCutsceneID");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_EightiesCutsceneID", value);
-  }
+	private const string Str_EightiesTutorial = "EightiesTutorial";
 
-  public static bool EightiesTutorial
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_EightiesTutorial");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_EightiesTutorial", value);
-  }
+	private const string Str_Eighties = "Eighties";
 
-  public static bool Eighties
-  {
-    get => GlobalsHelper.GetBool(nameof (Eighties));
-    set => GlobalsHelper.SetBool(nameof (Eighties), value);
-  }
+	private const string Str_YakuzaPhase = "YakuzaPhase";
 
-  public static int YakuzaPhase
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_YakuzaPhase");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_YakuzaPhase", value);
-  }
+	private const string Str_MetBarber = "MetBarber";
 
-  public static bool MetBarber
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_MetBarber");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_MetBarber", value);
-  }
+	private const string Str_Debug = "Debug";
 
-  public static bool IntroducedAbduction
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IntroducedAbduction");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IntroducedAbduction", value);
-  }
+	private const string Str_RivalEliminations = "RivalEliminations";
 
-  public static bool IntroducedRansom
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IntroducedRansom");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IntroducedRansom", value);
-  }
+	private const string Str_SpecificEliminations = "SpecificEliminations";
 
-  public static bool Debug
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_Debug");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_Debug", value);
-  }
+	private const string Str_IntroducedAbduction = "IntroducedAbduction";
 
-  public static int GetRivalEliminations(int elimID) => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations" + elimID.ToString());
+	private const string Str_IntroducedRansom = "IntroducedRansom";
 
-  public static void SetRivalEliminations(int elimID, int value)
-  {
-    string id = elimID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations", id);
-    PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations" + id, value);
-  }
+	private const string Str_TrueEnding = "TrueEnding";
 
-  public static int[] KeysOfRivalEliminations() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations");
+	private const string Str_JustKidnapped = "JustKidnapped";
 
-  public static int GetSpecificEliminations(int elimID) => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminations" + elimID.ToString());
+	private const string Str_ShowAbduction = "ShowAbduction";
 
-  public static void SetSpecificEliminations(int elimID, int value)
-  {
-    string id = elimID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminations", id);
-    PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminations" + id, value);
-  }
+	private const string Str_AbductionTarget = "AbductionTarget";
 
-  public static int[] KeysOfSpecificEliminations() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminations");
+	private const string Str_CameFromTitleScreen = "CameFromTitleScreen";
 
-  public static bool TrueEnding
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_TrueEnding");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_TrueEnding", value);
-  }
+	private const string Str_VtuberID = "VtuberID";
 
-  public static bool JustKidnapped
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_JustKidnapped");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_JustKidnapped", value);
-  }
+	private const string Str_GrudgeConversationHappened = "GrudgeConversationHappened";
 
-  public static bool ShowAbduction
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ShowAbduction");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ShowAbduction", value);
-  }
+	private const string Str_ItemRemoved = "ItemRemoved";
 
-  public static int AbductionTarget
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_AbductionTarget");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_AbductionTarget", value);
-  }
+	public static int Profile
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile", value);
+		}
+	}
 
-  public static bool CameFromTitleScreen
-  {
-    get => GlobalsHelper.GetBool(nameof (CameFromTitleScreen));
-    set => GlobalsHelper.SetBool(nameof (CameFromTitleScreen), value);
-  }
+	public static int MostRecentSlot
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("MostRecentSlot");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("MostRecentSlot", value);
+		}
+	}
 
-  public static bool GrudgeConversationHappened
-  {
-    get => GlobalsHelper.GetBool(nameof (GrudgeConversationHappened));
-    set => GlobalsHelper.SetBool(nameof (GrudgeConversationHappened), value);
-  }
+	public static bool LoveSick
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_LoveSick");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_LoveSick", value);
+		}
+	}
 
-  public static int VtuberID
-  {
-    get => PlayerPrefs.GetInt(nameof (VtuberID));
-    set => PlayerPrefs.SetInt(nameof (VtuberID), value);
-  }
+	public static bool MasksBanned
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_MasksBanned");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_MasksBanned", value);
+		}
+	}
 
-  public static int GetItemRemoved(int itemID) => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved" + itemID.ToString());
+	public static bool Paranormal
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_Paranormal");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_Paranormal", value);
+		}
+	}
 
-  public static void SetItemRemoved(int itemID, int value)
-  {
-    string id = itemID.ToString();
-    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved", id);
-    PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved" + id, value);
-  }
+	public static bool EasyMode
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_EasyMode");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_EasyMode", value);
+		}
+	}
 
-  public static int[] KeysOfItemRemoved() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved");
+	public static bool HardMode
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_HardMode");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_HardMode", value);
+		}
+	}
 
-  public static void DeleteAll()
-  {
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LoveSick");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MasksBanned");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Paranormal");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_EasyMode");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_HardMode");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_EmptyDemon");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CensorBlood");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CensorPanties");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CensorKillingAnims");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SpareUniform");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BlondeHair");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiMourning");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminationID");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminationID");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_NonlethalElimination");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ReputationsInitialized");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_AnswerSheetUnavailable");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_AlphabetMode");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_PoliceYesterday");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_DarkEnding");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MostRecentSlot");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiSawOsanaCorpse");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_TransitionToPostCredits");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_PlayerHasBeatenDemo");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_InformedAboutSkipping");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_RingStolen");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BeatEmUpDifficulty");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BeatEmUpSuccess");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_YakuzaPhase");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MetBarber");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Debug");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IntroducedAbduction");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IntroducedRansom");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_EightiesCutsceneID");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_EightiesTutorial");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Eighties");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_TrueEnding");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_JustKidnapped");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ShowAbduction");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_AbductionTarget");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CameFromTitleScreen");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_VtuberID");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_GrudgeConversationHappened");
-    for (int elimID = 1; elimID < 11; ++elimID)
-      GameGlobals.SetSpecificEliminations(elimID, 0);
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations", GameGlobals.KeysOfRivalEliminations());
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminations", GameGlobals.KeysOfSpecificEliminations());
-    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved", GameGlobals.KeysOfItemRemoved());
-  }
+	public static bool EmptyDemon
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_EmptyDemon");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_EmptyDemon", value);
+		}
+	}
+
+	public static bool CensorBlood
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile__CensorBlood");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile__CensorBlood", value);
+		}
+	}
+
+	public static bool CensorPanties
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile__CensorPanties");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile__CensorPanties", value);
+		}
+	}
+
+	public static bool CensorKillingAnims
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile__CensorKillingAnims");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile__CensorKillingAnims", value);
+		}
+	}
+
+	public static bool SpareUniform
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_SpareUniform");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_SpareUniform", value);
+		}
+	}
+
+	public static bool BlondeHair
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_BlondeHair");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_BlondeHair", value);
+		}
+	}
+
+	public static bool SenpaiMourning
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_SenpaiMourning");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_SenpaiMourning", value);
+		}
+	}
+
+	public static int RivalEliminationID
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminationID");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + Profile + "_RivalEliminationID", value);
+		}
+	}
+
+	public static int SpecificEliminationID
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_SpecificEliminationID");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + Profile + "_SpecificEliminationID", value);
+		}
+	}
+
+	public static bool NonlethalElimination
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("NonlethalElimination");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("NonlethalElimination", value);
+		}
+	}
+
+	public static bool ReputationsInitialized
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_ReputationsInitialized");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_ReputationsInitialized", value);
+		}
+	}
+
+	public static bool AnswerSheetUnavailable
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_AnswerSheetUnavailable");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_AnswerSheetUnavailable", value);
+		}
+	}
+
+	public static bool AlphabetMode
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_AlphabetMode");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_AlphabetMode", value);
+		}
+	}
+
+	public static bool PoliceYesterday
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_PoliceYesterday");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_PoliceYesterday", value);
+		}
+	}
+
+	public static bool DarkEnding
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_DarkEnding");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_DarkEnding", value);
+		}
+	}
+
+	public static bool SenpaiSawOsanaCorpse
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_SenpaiSawOsanaCorpse");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_SenpaiSawOsanaCorpse", value);
+		}
+	}
+
+	public static bool TransitionToPostCredits
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_TransitionToPostCredits");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_TransitionToPostCredits", value);
+		}
+	}
+
+	public static bool PlayerHasBeatenDemo
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_PlayerHasBeatenDemo");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_PlayerHasBeatenDemo", value);
+		}
+	}
+
+	public static bool InformedAboutSkipping
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_InformedAboutSkipping");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_InformedAboutSkipping", value);
+		}
+	}
+
+	public static bool RingStolen
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_RingStolen");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_RingStolen", value);
+		}
+	}
+
+	public static int BeatEmUpDifficulty
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_BeatEmUpDifficulty");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + Profile + "_BeatEmUpDifficulty", value);
+		}
+	}
+
+	public static bool BeatEmUpSuccess
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_BeatEmUpSuccess");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_BeatEmUpSuccess", value);
+		}
+	}
+
+	public static int EightiesCutsceneID
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_EightiesCutsceneID");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + Profile + "_EightiesCutsceneID", value);
+		}
+	}
+
+	public static bool EightiesTutorial
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_EightiesTutorial");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_EightiesTutorial", value);
+		}
+	}
+
+	public static bool Eighties
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Eighties");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Eighties", value);
+		}
+	}
+
+	public static int YakuzaPhase
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_YakuzaPhase");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + Profile + "_YakuzaPhase", value);
+		}
+	}
+
+	public static bool MetBarber
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_MetBarber");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_MetBarber", value);
+		}
+	}
+
+	public static bool IntroducedAbduction
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_IntroducedAbduction");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_IntroducedAbduction", value);
+		}
+	}
+
+	public static bool IntroducedRansom
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_IntroducedRansom");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_IntroducedRansom", value);
+		}
+	}
+
+	public static bool Debug
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_Debug");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_Debug", value);
+		}
+	}
+
+	public static bool TrueEnding
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_TrueEnding");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_TrueEnding", value);
+		}
+	}
+
+	public static bool JustKidnapped
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_JustKidnapped");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_JustKidnapped", value);
+		}
+	}
+
+	public static bool ShowAbduction
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_ShowAbduction");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_ShowAbduction", value);
+		}
+	}
+
+	public static int AbductionTarget
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_AbductionTarget");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + Profile + "_AbductionTarget", value);
+		}
+	}
+
+	public static bool CameFromTitleScreen
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("CameFromTitleScreen");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("CameFromTitleScreen", value);
+		}
+	}
+
+	public static bool GrudgeConversationHappened
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("GrudgeConversationHappened");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("GrudgeConversationHappened", value);
+		}
+	}
+
+	public static int VtuberID
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("VtuberID");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("VtuberID", value);
+		}
+	}
+
+	public static int GetRivalEliminations(int elimID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminations" + elimID);
+	}
+
+	public static void SetRivalEliminations(int elimID, int value)
+	{
+		string text = elimID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + Profile + "_RivalEliminations", text);
+		PlayerPrefs.SetInt("Profile_" + Profile + "_RivalEliminations" + text, value);
+	}
+
+	public static int[] KeysOfRivalEliminations()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_RivalEliminations");
+	}
+
+	public static int GetSpecificEliminations(int elimID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + Profile + "_SpecificEliminations" + elimID);
+	}
+
+	public static void SetSpecificEliminations(int elimID, int value)
+	{
+		string text = elimID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + Profile + "_SpecificEliminations", text);
+		PlayerPrefs.SetInt("Profile_" + Profile + "_SpecificEliminations" + text, value);
+	}
+
+	public static int[] KeysOfSpecificEliminations()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_SpecificEliminations");
+	}
+
+	public static int GetItemRemoved(int itemID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + Profile + "_ItemRemoved" + itemID);
+	}
+
+	public static void SetItemRemoved(int itemID, int value)
+	{
+		string text = itemID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + Profile + "_ItemRemoved", text);
+		PlayerPrefs.SetInt("Profile_" + Profile + "_ItemRemoved" + text, value);
+	}
+
+	public static int[] KeysOfItemRemoved()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_ItemRemoved");
+	}
+
+	public static void DeleteAll()
+	{
+		Globals.Delete("Profile_" + Profile + "_LoveSick");
+		Globals.Delete("Profile_" + Profile + "_MasksBanned");
+		Globals.Delete("Profile_" + Profile + "_Paranormal");
+		Globals.Delete("Profile_" + Profile + "_EasyMode");
+		Globals.Delete("Profile_" + Profile + "_HardMode");
+		Globals.Delete("Profile_" + Profile + "_EmptyDemon");
+		Globals.Delete("Profile_" + Profile + "_CensorBlood");
+		Globals.Delete("Profile_" + Profile + "_CensorPanties");
+		Globals.Delete("Profile_" + Profile + "_CensorKillingAnims");
+		Globals.Delete("Profile_" + Profile + "_SpareUniform");
+		Globals.Delete("Profile_" + Profile + "_BlondeHair");
+		Globals.Delete("Profile_" + Profile + "_SenpaiMourning");
+		Globals.Delete("Profile_" + Profile + "_RivalEliminationID");
+		Globals.Delete("Profile_" + Profile + "_SpecificEliminationID");
+		Globals.Delete("Profile_" + Profile + "_NonlethalElimination");
+		Globals.Delete("Profile_" + Profile + "_ReputationsInitialized");
+		Globals.Delete("Profile_" + Profile + "_AnswerSheetUnavailable");
+		Globals.Delete("Profile_" + Profile + "_AlphabetMode");
+		Globals.Delete("Profile_" + Profile + "_PoliceYesterday");
+		Globals.Delete("Profile_" + Profile + "_DarkEnding");
+		Globals.Delete("Profile_" + Profile + "_MostRecentSlot");
+		Globals.Delete("Profile_" + Profile + "_SenpaiSawOsanaCorpse");
+		Globals.Delete("Profile_" + Profile + "_TransitionToPostCredits");
+		Globals.Delete("Profile_" + Profile + "_PlayerHasBeatenDemo");
+		Globals.Delete("Profile_" + Profile + "_InformedAboutSkipping");
+		Globals.Delete("Profile_" + Profile + "_RingStolen");
+		Globals.Delete("Profile_" + Profile + "_BeatEmUpDifficulty");
+		Globals.Delete("Profile_" + Profile + "_BeatEmUpSuccess");
+		Globals.Delete("Profile_" + Profile + "_YakuzaPhase");
+		Globals.Delete("Profile_" + Profile + "_MetBarber");
+		Globals.Delete("Profile_" + Profile + "_Debug");
+		Globals.Delete("Profile_" + Profile + "_IntroducedAbduction");
+		Globals.Delete("Profile_" + Profile + "_IntroducedRansom");
+		Globals.Delete("Profile_" + Profile + "_EightiesCutsceneID");
+		Globals.Delete("Profile_" + Profile + "_EightiesTutorial");
+		Globals.Delete("Profile_" + Profile + "_Eighties");
+		Globals.Delete("Profile_" + Profile + "_TrueEnding");
+		Globals.Delete("Profile_" + Profile + "_JustKidnapped");
+		Globals.Delete("Profile_" + Profile + "_ShowAbduction");
+		Globals.Delete("Profile_" + Profile + "_AbductionTarget");
+		Globals.Delete("Profile_" + Profile + "_CameFromTitleScreen");
+		Globals.Delete("Profile_" + Profile + "_VtuberID");
+		Globals.Delete("Profile_" + Profile + "_GrudgeConversationHappened");
+		for (int i = 1; i < 11; i++)
+		{
+			SetSpecificEliminations(i, 0);
+		}
+		Globals.DeleteCollection("Profile_" + Profile + "_RivalEliminations", KeysOfRivalEliminations());
+		Globals.DeleteCollection("Profile_" + Profile + "_SpecificEliminations", KeysOfSpecificEliminations());
+		Globals.DeleteCollection("Profile_" + Profile + "_ItemRemoved", KeysOfItemRemoved());
+	}
 }

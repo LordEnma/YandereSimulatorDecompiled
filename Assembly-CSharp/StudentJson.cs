@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: StudentJson
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,182 +7,335 @@ using UnityEngine;
 [Serializable]
 public class StudentJson : JsonData
 {
-  [SerializeField]
-  private string name;
-  [SerializeField]
-  private string realname;
-  [SerializeField]
-  private int gender;
-  [SerializeField]
-  private int classID;
-  [SerializeField]
-  private int seat;
-  [SerializeField]
-  private ClubType club;
-  [SerializeField]
-  private PersonaType persona;
-  [SerializeField]
-  private int crush;
-  [SerializeField]
-  private float breastSize;
-  [SerializeField]
-  private int strength;
-  [SerializeField]
-  private string hairstyle;
-  [SerializeField]
-  private string color;
-  [SerializeField]
-  private string eyes;
-  [SerializeField]
-  private string eyeType;
-  [SerializeField]
-  private string stockings;
-  [SerializeField]
-  private string accessory;
-  [SerializeField]
-  private string info;
-  [SerializeField]
-  private ScheduleBlock[] scheduleBlocks;
-  [SerializeField]
-  private bool success;
+	[SerializeField]
+	private string name;
 
-  public static string FilePath => !GameGlobals.Eighties ? Path.Combine(JsonData.FolderPath, "Students.json") : Path.Combine(JsonData.FolderPath, "Eighties.json");
+	[SerializeField]
+	private string realname;
 
-  public static StudentJson[] LoadFromJson(string path)
-  {
-    StudentJson[] studentJsonArray = new StudentJson[101];
-    for (int index = 0; index < studentJsonArray.Length; ++index)
-      studentJsonArray[index] = new StudentJson();
-    foreach (Dictionary<string, object> dictionary in JsonData.Deserialize(path))
-    {
-      int index1 = TFUtils.LoadInt(dictionary, "ID");
-      if (index1 != 0)
-      {
-        StudentJson studentJson = studentJsonArray[index1];
-        studentJson.name = TFUtils.LoadString(dictionary, "Name");
-        studentJson.realname = TFUtils.LoadString(dictionary, "RealName");
-        studentJson.gender = TFUtils.LoadInt(dictionary, "Gender");
-        studentJson.classID = TFUtils.LoadInt(dictionary, "Class");
-        studentJson.seat = TFUtils.LoadInt(dictionary, "Seat");
-        studentJson.club = (ClubType) TFUtils.LoadInt(dictionary, "Club");
-        studentJson.persona = (PersonaType) TFUtils.LoadInt(dictionary, "Persona");
-        studentJson.crush = TFUtils.LoadInt(dictionary, "Crush");
-        studentJson.breastSize = TFUtils.LoadFloat(dictionary, "BreastSize");
-        studentJson.strength = TFUtils.LoadInt(dictionary, "Strength");
-        studentJson.hairstyle = TFUtils.LoadString(dictionary, "Hairstyle");
-        studentJson.color = TFUtils.LoadString(dictionary, "Color");
-        studentJson.eyes = TFUtils.LoadString(dictionary, "Eyes");
-        studentJson.eyeType = TFUtils.LoadString(dictionary, "EyeType");
-        studentJson.stockings = TFUtils.LoadString(dictionary, "Stockings");
-        studentJson.accessory = TFUtils.LoadString(dictionary, "Accessory");
-        studentJson.info = TFUtils.LoadString(dictionary, "Info");
-        if (GameGlobals.LoveSick)
-        {
-          studentJson.name = studentJson.realname;
-          studentJson.realname = "";
-        }
-        if (OptionGlobals.HighPopulation && studentJson.name == "Unknown")
-          studentJson.name = "Random";
-        float[] numArray = StudentJson.ConstructTempFloatArray(TFUtils.LoadString(dictionary, "ScheduleTime"));
-        string[] strArray1 = StudentJson.ConstructTempStringArray(TFUtils.LoadString(dictionary, "ScheduleDestination"));
-        string[] strArray2 = StudentJson.ConstructTempStringArray(TFUtils.LoadString(dictionary, "ScheduleAction"));
-        studentJson.scheduleBlocks = new ScheduleBlock[numArray.Length];
-        for (int index2 = 0; index2 < studentJson.scheduleBlocks.Length; ++index2)
-          studentJson.scheduleBlocks[index2] = new ScheduleBlock(numArray[index2], strArray1[index2], strArray2[index2]);
-        studentJson.success = true;
-      }
-      else
-        break;
-    }
-    return studentJsonArray;
-  }
+	[SerializeField]
+	private int gender;
 
-  public string Name
-  {
-    get => this.name;
-    set => this.name = value;
-  }
+	[SerializeField]
+	private int classID;
 
-  public string RealName
-  {
-    get => this.realname;
-    set => this.realname = value;
-  }
+	[SerializeField]
+	private int seat;
 
-  public int Gender => this.gender;
+	[SerializeField]
+	private ClubType club;
 
-  public int Class
-  {
-    get => this.classID;
-    set => this.classID = value;
-  }
+	[SerializeField]
+	private PersonaType persona;
 
-  public int Seat
-  {
-    get => this.seat;
-    set => this.seat = value;
-  }
+	[SerializeField]
+	private int crush;
 
-  public ClubType Club => this.club;
+	[SerializeField]
+	private float breastSize;
 
-  public PersonaType Persona
-  {
-    get => this.persona;
-    set => this.persona = value;
-  }
+	[SerializeField]
+	private int strength;
 
-  public int Crush => this.crush;
+	[SerializeField]
+	private string hairstyle;
 
-  public float BreastSize
-  {
-    get => this.breastSize;
-    set => this.breastSize = value;
-  }
+	[SerializeField]
+	private string color;
 
-  public int Strength
-  {
-    get => this.strength;
-    set => this.strength = value;
-  }
+	[SerializeField]
+	private string eyes;
 
-  public string Hairstyle
-  {
-    get => this.hairstyle;
-    set => this.hairstyle = value;
-  }
+	[SerializeField]
+	private string eyeType;
 
-  public string Color => this.color;
+	[SerializeField]
+	private string stockings;
 
-  public string Eyes => this.eyes;
+	[SerializeField]
+	private string accessory;
 
-  public string EyeType => this.eyeType;
+	[SerializeField]
+	private string info;
 
-  public string Stockings => this.stockings;
+	[SerializeField]
+	private ScheduleBlock[] scheduleBlocks;
 
-  public string Accessory
-  {
-    get => this.accessory;
-    set => this.accessory = value;
-  }
+	[SerializeField]
+	private bool success;
 
-  public string Info => this.info;
+	public static string FilePath
+	{
+		get
+		{
+			if (!GameGlobals.Eighties)
+			{
+				return Path.Combine(JsonData.FolderPath, "Students.json");
+			}
+			return Path.Combine(JsonData.FolderPath, "Eighties.json");
+		}
+	}
 
-  public ScheduleBlock[] ScheduleBlocks => this.scheduleBlocks;
+	public string Name
+	{
+		get
+		{
+			return name;
+		}
+		set
+		{
+			name = value;
+		}
+	}
 
-  public bool Success => this.success;
+	public string RealName
+	{
+		get
+		{
+			return realname;
+		}
+		set
+		{
+			realname = value;
+		}
+	}
 
-  private static float[] ConstructTempFloatArray(string str)
-  {
-    string[] strArray = str.Split('_');
-    float[] numArray = new float[strArray.Length];
-    for (int index = 0; index < strArray.Length; ++index)
-    {
-      float result;
-      if (float.TryParse(strArray[index], NumberStyles.Float, (IFormatProvider) NumberFormatInfo.InvariantInfo, out result))
-        numArray[index] = result;
-    }
-    return numArray;
-  }
+	public int Gender
+	{
+		get
+		{
+			return gender;
+		}
+	}
 
-  private static string[] ConstructTempStringArray(string str) => str.Split('_');
+	public int Class
+	{
+		get
+		{
+			return classID;
+		}
+		set
+		{
+			classID = value;
+		}
+	}
+
+	public int Seat
+	{
+		get
+		{
+			return seat;
+		}
+		set
+		{
+			seat = value;
+		}
+	}
+
+	public ClubType Club
+	{
+		get
+		{
+			return club;
+		}
+	}
+
+	public PersonaType Persona
+	{
+		get
+		{
+			return persona;
+		}
+		set
+		{
+			persona = value;
+		}
+	}
+
+	public int Crush
+	{
+		get
+		{
+			return crush;
+		}
+	}
+
+	public float BreastSize
+	{
+		get
+		{
+			return breastSize;
+		}
+		set
+		{
+			breastSize = value;
+		}
+	}
+
+	public int Strength
+	{
+		get
+		{
+			return strength;
+		}
+		set
+		{
+			strength = value;
+		}
+	}
+
+	public string Hairstyle
+	{
+		get
+		{
+			return hairstyle;
+		}
+		set
+		{
+			hairstyle = value;
+		}
+	}
+
+	public string Color
+	{
+		get
+		{
+			return color;
+		}
+	}
+
+	public string Eyes
+	{
+		get
+		{
+			return eyes;
+		}
+	}
+
+	public string EyeType
+	{
+		get
+		{
+			return eyeType;
+		}
+	}
+
+	public string Stockings
+	{
+		get
+		{
+			return stockings;
+		}
+	}
+
+	public string Accessory
+	{
+		get
+		{
+			return accessory;
+		}
+		set
+		{
+			accessory = value;
+		}
+	}
+
+	public string Info
+	{
+		get
+		{
+			return info;
+		}
+	}
+
+	public ScheduleBlock[] ScheduleBlocks
+	{
+		get
+		{
+			return scheduleBlocks;
+		}
+	}
+
+	public bool Success
+	{
+		get
+		{
+			return success;
+		}
+	}
+
+	public static StudentJson[] LoadFromJson(string path)
+	{
+		StudentJson[] array = new StudentJson[101];
+		for (int i = 0; i < array.Length; i++)
+		{
+			array[i] = new StudentJson();
+		}
+		Dictionary<string, object>[] array2 = JsonData.Deserialize(path);
+		foreach (Dictionary<string, object> dictionary in array2)
+		{
+			int num = TFUtils.LoadInt(dictionary, "ID");
+			if (num == 0)
+			{
+				break;
+			}
+			StudentJson studentJson = array[num];
+			studentJson.name = TFUtils.LoadString(dictionary, "Name");
+			studentJson.realname = TFUtils.LoadString(dictionary, "RealName");
+			studentJson.gender = TFUtils.LoadInt(dictionary, "Gender");
+			studentJson.classID = TFUtils.LoadInt(dictionary, "Class");
+			studentJson.seat = TFUtils.LoadInt(dictionary, "Seat");
+			studentJson.club = (ClubType)TFUtils.LoadInt(dictionary, "Club");
+			studentJson.persona = (PersonaType)TFUtils.LoadInt(dictionary, "Persona");
+			studentJson.crush = TFUtils.LoadInt(dictionary, "Crush");
+			studentJson.breastSize = TFUtils.LoadFloat(dictionary, "BreastSize");
+			studentJson.strength = TFUtils.LoadInt(dictionary, "Strength");
+			studentJson.hairstyle = TFUtils.LoadString(dictionary, "Hairstyle");
+			studentJson.color = TFUtils.LoadString(dictionary, "Color");
+			studentJson.eyes = TFUtils.LoadString(dictionary, "Eyes");
+			studentJson.eyeType = TFUtils.LoadString(dictionary, "EyeType");
+			studentJson.stockings = TFUtils.LoadString(dictionary, "Stockings");
+			studentJson.accessory = TFUtils.LoadString(dictionary, "Accessory");
+			studentJson.info = TFUtils.LoadString(dictionary, "Info");
+			if (GameGlobals.LoveSick)
+			{
+				studentJson.name = studentJson.realname;
+				studentJson.realname = "";
+			}
+			if (OptionGlobals.HighPopulation && studentJson.name == "Unknown")
+			{
+				studentJson.name = "Random";
+			}
+			float[] array3 = ConstructTempFloatArray(TFUtils.LoadString(dictionary, "ScheduleTime"));
+			string[] array4 = ConstructTempStringArray(TFUtils.LoadString(dictionary, "ScheduleDestination"));
+			string[] array5 = ConstructTempStringArray(TFUtils.LoadString(dictionary, "ScheduleAction"));
+			studentJson.scheduleBlocks = new ScheduleBlock[array3.Length];
+			for (int k = 0; k < studentJson.scheduleBlocks.Length; k++)
+			{
+				studentJson.scheduleBlocks[k] = new ScheduleBlock(array3[k], array4[k], array5[k]);
+			}
+			studentJson.success = true;
+		}
+		return array;
+	}
+
+	private static float[] ConstructTempFloatArray(string str)
+	{
+		string[] array = str.Split('_');
+		float[] array2 = new float[array.Length];
+		for (int i = 0; i < array.Length; i++)
+		{
+			float result;
+			if (float.TryParse(array[i], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out result))
+			{
+				array2[i] = result;
+			}
+		}
+		return array2;
+	}
+
+	private static string[] ConstructTempStringArray(string str)
+	{
+		return str.Split('_');
+	}
 }

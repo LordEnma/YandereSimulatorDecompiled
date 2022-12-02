@@ -1,109 +1,122 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: GenericBentoScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class GenericBentoScript : MonoBehaviour
 {
-  public GameObject EmptyGameObject;
-  public GameObject Lid;
-  public Transform PoisonSpot;
-  public PromptScript Prompt;
-  public bool Emetic;
-  public bool Tranquil;
-  public bool Headache;
-  public bool Lethal;
-  public bool Tampered;
-  public int StudentID;
+	public GameObject EmptyGameObject;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0 && (double) this.Prompt.Circle[1].fillAmount != 0.0 && (double) this.Prompt.Circle[2].fillAmount != 0.0 && (double) this.Prompt.Circle[3].fillAmount != 0.0)
-      return;
-    this.Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
-    if (!this.Prompt.Yandere.StudentManager.YandereVisible)
-    {
-      if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-      {
-        --this.Prompt.Yandere.Inventory.EmeticPoisons;
-        this.Prompt.Yandere.PoisonType = 1;
-        this.Emetic = true;
-        this.ShutOff();
-      }
-      else if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
-      {
-        --this.Prompt.Yandere.Inventory.SedativePoisons;
-        this.Prompt.Yandere.PoisonType = 4;
-        this.Tranquil = true;
-        this.ShutOff();
-      }
-      else if ((double) this.Prompt.Circle[2].fillAmount == 0.0)
-      {
-        this.Prompt.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Prompt.Yandere.Numbness;
-        --this.Prompt.Yandere.Inventory.LethalPoisons;
-        this.Prompt.Yandere.PoisonType = 2;
-        this.Lethal = true;
-        this.ShutOff();
-      }
-      else
-      {
-        if ((double) this.Prompt.Circle[3].fillAmount != 0.0)
-          return;
-        --this.Prompt.Yandere.Inventory.HeadachePoisons;
-        this.Prompt.Yandere.PoisonType = 5;
-        this.Headache = true;
-        this.ShutOff();
-      }
-    }
-    else
-    {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      this.Prompt.Circle[1].fillAmount = 1f;
-      this.Prompt.Circle[2].fillAmount = 1f;
-      this.Prompt.Circle[3].fillAmount = 1f;
-      this.Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
-      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-    }
-  }
+	public GameObject Lid;
 
-  private void ShutOff()
-  {
-    Debug.Log((object) "Shutting off a bento. This bento should be inaccessible from now on...");
-    this.PoisonSpot = Object.Instantiate<GameObject>(this.EmptyGameObject, this.transform.position, Quaternion.identity).transform;
-    this.PoisonSpot.position = new Vector3(this.PoisonSpot.position.x, this.Prompt.Yandere.transform.position.y, this.PoisonSpot.position.z);
-    this.PoisonSpot.LookAt(this.Prompt.Yandere.transform.position);
-    this.PoisonSpot.Translate(Vector3.forward * 0.25f);
-    this.Prompt.Yandere.CharacterAnimation["f02_poisoning_00"].speed = 2f;
-    this.Prompt.Yandere.CharacterAnimation.CrossFade("f02_poisoning_00");
-    this.Prompt.Yandere.StudentManager.UpdateAllBentos();
-    this.Prompt.Yandere.TargetBento = this;
-    this.Prompt.Yandere.Poisoning = true;
-    this.Prompt.Yandere.CanMove = false;
-    this.Tampered = true;
-    this.enabled = false;
-    this.Prompt.enabled = false;
-    this.Prompt.Hide();
-  }
+	public Transform PoisonSpot;
 
-  public void UpdatePrompts()
-  {
-    if (this.Tampered)
-      return;
-    this.Prompt.HideButton[0] = true;
-    this.Prompt.HideButton[1] = true;
-    this.Prompt.HideButton[2] = true;
-    this.Prompt.HideButton[3] = true;
-    if (this.Prompt.Yandere.Inventory.EmeticPoisons > 0)
-      this.Prompt.HideButton[0] = false;
-    if (this.Prompt.Yandere.Inventory.SedativePoisons > 0)
-      this.Prompt.HideButton[1] = false;
-    if (this.Prompt.Yandere.Inventory.LethalPoisons > 0)
-      this.Prompt.HideButton[2] = false;
-    if (this.Prompt.Yandere.Inventory.HeadachePoisons > 0)
-      this.Prompt.HideButton[3] = false;
-    this.Prompt.Yandere.EmptyHands();
-  }
+	public PromptScript Prompt;
+
+	public bool Emetic;
+
+	public bool Tranquil;
+
+	public bool Headache;
+
+	public bool Lethal;
+
+	public bool Tampered;
+
+	public int StudentID;
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount != 0f && Prompt.Circle[1].fillAmount != 0f && Prompt.Circle[2].fillAmount != 0f && Prompt.Circle[3].fillAmount != 0f)
+		{
+			return;
+		}
+		Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+		if (!Prompt.Yandere.StudentManager.YandereVisible)
+		{
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				Prompt.Yandere.Inventory.EmeticPoisons--;
+				Prompt.Yandere.PoisonType = 1;
+				Emetic = true;
+				ShutOff();
+			}
+			else if (Prompt.Circle[1].fillAmount == 0f)
+			{
+				Prompt.Yandere.Inventory.SedativePoisons--;
+				Prompt.Yandere.PoisonType = 4;
+				Tranquil = true;
+				ShutOff();
+			}
+			else if (Prompt.Circle[2].fillAmount == 0f)
+			{
+				Prompt.Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Prompt.Yandere.Numbness;
+				Prompt.Yandere.Inventory.LethalPoisons--;
+				Prompt.Yandere.PoisonType = 2;
+				Lethal = true;
+				ShutOff();
+			}
+			else if (Prompt.Circle[3].fillAmount == 0f)
+			{
+				Prompt.Yandere.Inventory.HeadachePoisons--;
+				Prompt.Yandere.PoisonType = 5;
+				Headache = true;
+				ShutOff();
+			}
+		}
+		else
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			Prompt.Circle[1].fillAmount = 1f;
+			Prompt.Circle[2].fillAmount = 1f;
+			Prompt.Circle[3].fillAmount = 1f;
+			Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+		}
+	}
+
+	private void ShutOff()
+	{
+		Debug.Log("Shutting off a bento. This bento should be inaccessible from now on...");
+		GameObject gameObject = Object.Instantiate(EmptyGameObject, base.transform.position, Quaternion.identity);
+		PoisonSpot = gameObject.transform;
+		PoisonSpot.position = new Vector3(PoisonSpot.position.x, Prompt.Yandere.transform.position.y, PoisonSpot.position.z);
+		PoisonSpot.LookAt(Prompt.Yandere.transform.position);
+		PoisonSpot.Translate(Vector3.forward * 0.25f);
+		Prompt.Yandere.CharacterAnimation["f02_poisoning_00"].speed = 2f;
+		Prompt.Yandere.CharacterAnimation.CrossFade("f02_poisoning_00");
+		Prompt.Yandere.StudentManager.UpdateAllBentos();
+		Prompt.Yandere.TargetBento = this;
+		Prompt.Yandere.Poisoning = true;
+		Prompt.Yandere.CanMove = false;
+		Tampered = true;
+		base.enabled = false;
+		Prompt.enabled = false;
+		Prompt.Hide();
+	}
+
+	public void UpdatePrompts()
+	{
+		if (!Tampered)
+		{
+			Prompt.HideButton[0] = true;
+			Prompt.HideButton[1] = true;
+			Prompt.HideButton[2] = true;
+			Prompt.HideButton[3] = true;
+			if (Prompt.Yandere.Inventory.EmeticPoisons > 0)
+			{
+				Prompt.HideButton[0] = false;
+			}
+			if (Prompt.Yandere.Inventory.SedativePoisons > 0)
+			{
+				Prompt.HideButton[1] = false;
+			}
+			if (Prompt.Yandere.Inventory.LethalPoisons > 0)
+			{
+				Prompt.HideButton[2] = false;
+			}
+			if (Prompt.Yandere.Inventory.HeadachePoisons > 0)
+			{
+				Prompt.HideButton[3] = false;
+			}
+			Prompt.Yandere.EmptyHands();
+		}
+	}
 }

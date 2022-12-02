@@ -1,44 +1,41 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.CameraForcedAspect
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  [RequireComponent(typeof (Camera))]
-  public class CameraForcedAspect : MonoBehaviour
-  {
-    public Vector2 targetAspect = new Vector2(16f, 9f);
-    private Camera cam;
+	[RequireComponent(typeof(Camera))]
+	public class CameraForcedAspect : MonoBehaviour
+	{
+		public Vector2 targetAspect = new Vector2(16f, 9f);
 
-    private void Awake() => this.cam = this.GetComponent<Camera>();
+		private Camera cam;
 
-    private void Start()
-    {
-      float num1 = (float) Screen.width / (float) Screen.height / (this.targetAspect.x / this.targetAspect.y);
-      if ((double) num1 < 1.0)
-      {
-        this.cam.rect = this.cam.rect with
-        {
-          width = 1f,
-          height = num1,
-          x = 0.0f,
-          y = (float) ((1.0 - (double) num1) / 2.0)
-        };
-      }
-      else
-      {
-        Rect rect = this.cam.rect;
-        float num2 = 1f / num1;
-        rect.width = num2;
-        rect.height = 1f;
-        rect.x = (float) ((1.0 - (double) num2) / 2.0);
-        rect.y = 0.0f;
-        this.cam.rect = rect;
-      }
-    }
-  }
+		private void Awake()
+		{
+			cam = GetComponent<Camera>();
+		}
+
+		private void Start()
+		{
+			float num = targetAspect.x / targetAspect.y;
+			float num2 = (float)Screen.width / (float)Screen.height / num;
+			if (num2 < 1f)
+			{
+				Rect rect = cam.rect;
+				rect.width = 1f;
+				rect.height = num2;
+				rect.x = 0f;
+				rect.y = (1f - num2) / 2f;
+				cam.rect = rect;
+			}
+			else
+			{
+				Rect rect2 = cam.rect;
+				float num4 = (rect2.width = 1f / num2);
+				rect2.height = 1f;
+				rect2.x = (1f - num4) / 2f;
+				rect2.y = 0f;
+				cam.rect = rect2;
+			}
+		}
+	}
 }

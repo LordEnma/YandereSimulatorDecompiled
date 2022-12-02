@@ -1,206 +1,265 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: WeaponTrail
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponTrail : MonoBehaviour
 {
-  [SerializeField]
-  private bool _emit = true;
-  [SerializeField]
-  private float _emitTime;
-  [SerializeField]
-  private Material _material;
-  [SerializeField]
-  private float _lifeTime = 1f;
-  [SerializeField]
-  private Color[] _colors;
-  [SerializeField]
-  private float[] _sizes;
-  [SerializeField]
-  private float _minVertexDistance = 0.1f;
-  [SerializeField]
-  private float _maxVertexDistance = 10f;
-  [SerializeField]
-  private float _maxAngle = 3f;
-  [SerializeField]
-  private bool _autoDestruct;
-  [SerializeField]
-  private Transform _base;
-  [SerializeField]
-  private Transform _tip;
-  private List<WeaponTrail.Point> _points = new List<WeaponTrail.Point>();
-  private GameObject _o;
-  private Mesh _trailMesh;
-  private Vector3 _lastPosition;
-  private Vector3 _lastCameraPosition1;
-  private Vector3 _lastCameraPosition2;
-  private bool _lastFrameEmit = true;
+	public class Point
+	{
+		public float timeCreated;
 
-  public bool Emit
-  {
-    set => this._emit = value;
-  }
+		public Vector3 basePosition;
 
-  public void Start()
-  {
-    this._lastPosition = this.transform.position;
-    this._o = new GameObject("Trail");
-    this._o.transform.parent = (Transform) null;
-    this._o.transform.position = Vector3.zero;
-    this._o.transform.rotation = Quaternion.identity;
-    this._o.transform.localScale = Vector3.one;
-    this._o.AddComponent<MeshFilter>();
-    this._o.AddComponent<MeshRenderer>();
-    this._o.GetComponent<Renderer>().material = this._material;
-    this._trailMesh = new Mesh();
-    this._trailMesh.name = this.name + "TrailMesh";
-    this._o.GetComponent<MeshFilter>().mesh = this._trailMesh;
-  }
+		public Vector3 tipPosition;
 
-  private void OnDisable() => Object.Destroy((Object) this._o);
+		public bool lineBreak;
+	}
 
-  private void Update()
-  {
-    if (this._emit && (double) this._emitTime != 0.0)
-    {
-      this._emitTime -= Time.deltaTime;
-      if ((double) this._emitTime == 0.0)
-        this._emitTime = -1f;
-      if ((double) this._emitTime < 0.0)
-        this._emit = false;
-    }
-    if (!this._emit && this._points.Count == 0 && this._autoDestruct)
-    {
-      Object.Destroy((Object) this._o);
-      Object.Destroy((Object) this.gameObject);
-    }
-    if (!(bool) (Object) Camera.main)
-      return;
-    float magnitude = (this._lastPosition - this.transform.position).magnitude;
-    if (this._emit)
-    {
-      if ((double) magnitude > (double) this._minVertexDistance)
-      {
-        bool flag = false;
-        if (this._points.Count < 3)
-          flag = true;
-        else if ((double) Vector3.Angle(this._points[this._points.Count - 2].tipPosition - this._points[this._points.Count - 3].tipPosition, this._points[this._points.Count - 1].tipPosition - this._points[this._points.Count - 2].tipPosition) > (double) this._maxAngle || (double) magnitude > (double) this._maxVertexDistance)
-          flag = true;
-        if (flag)
-        {
-          this._points.Add(new WeaponTrail.Point()
-          {
-            basePosition = this._base.position,
-            tipPosition = this._tip.position,
-            timeCreated = Time.time
-          });
-          this._lastPosition = this.transform.position;
-        }
-        else
-        {
-          this._points[this._points.Count - 1].basePosition = this._base.position;
-          this._points[this._points.Count - 1].tipPosition = this._tip.position;
-        }
-      }
-      else if (this._points.Count > 0)
-      {
-        this._points[this._points.Count - 1].basePosition = this._base.position;
-        this._points[this._points.Count - 1].tipPosition = this._tip.position;
-      }
-    }
-    if (!this._emit && this._lastFrameEmit && this._points.Count > 0)
-      this._points[this._points.Count - 1].lineBreak = true;
-    this._lastFrameEmit = this._emit;
-    List<WeaponTrail.Point> pointList = new List<WeaponTrail.Point>();
-    foreach (WeaponTrail.Point point in this._points)
-    {
-      if ((double) Time.time - (double) point.timeCreated > (double) this._lifeTime)
-        pointList.Add(point);
-    }
-    foreach (WeaponTrail.Point point in pointList)
-      this._points.Remove(point);
-    List<WeaponTrail.Point> points = this._points;
-    if (points.Count > 1)
-    {
-      Vector3[] vector3Array = new Vector3[points.Count * 2];
-      Vector2[] vector2Array = new Vector2[points.Count * 2];
-      int[] numArray = new int[(points.Count - 1) * 6];
-      Color[] colorArray = new Color[points.Count * 2];
-      for (int index = 0; index < points.Count; ++index)
-      {
-        WeaponTrail.Point point = points[index];
-        float t1 = (Time.time - point.timeCreated) / this._lifeTime;
-        Color color = Color.Lerp(Color.white, Color.clear, t1);
-        if (this._colors != null && this._colors.Length != 0)
-        {
-          float f = t1 * (float) (this._colors.Length - 1);
-          float a = Mathf.Floor(f);
-          float b = Mathf.Clamp(Mathf.Ceil(f), 1f, (float) this._colors.Length - 1f);
-          float t2 = Mathf.InverseLerp(a, b, f);
-          if ((double) a >= (double) this._colors.Length)
-            a = (float) this._colors.Length - 1f;
-          if ((double) a < 0.0)
-            a = 0.0f;
-          if ((double) b >= (double) this._colors.Length)
-            b = (float) this._colors.Length - 1f;
-          if ((double) b < 0.0)
-            b = 0.0f;
-          color = Color.Lerp(this._colors[(int) a], this._colors[(int) b], t2);
-        }
-        float num = 0.0f;
-        if (this._sizes != null && this._sizes.Length != 0)
-        {
-          float f = t1 * (float) (this._sizes.Length - 1);
-          float a = Mathf.Floor(f);
-          float b = Mathf.Clamp(Mathf.Ceil(f), 1f, (float) this._sizes.Length - 1f);
-          float t3 = Mathf.InverseLerp(a, b, f);
-          if ((double) a >= (double) this._sizes.Length)
-            a = (float) this._sizes.Length - 1f;
-          if ((double) a < 0.0)
-            a = 0.0f;
-          if ((double) b >= (double) this._sizes.Length)
-            b = (float) this._sizes.Length - 1f;
-          if ((double) b < 0.0)
-            b = 0.0f;
-          num = Mathf.Lerp(this._sizes[(int) a], this._sizes[(int) b], t3);
-        }
-        Vector3 vector3 = point.tipPosition - point.basePosition;
-        vector3Array[index * 2] = point.basePosition - vector3 * (num * 0.5f);
-        vector3Array[index * 2 + 1] = point.tipPosition + vector3 * (num * 0.5f);
-        colorArray[index * 2] = colorArray[index * 2 + 1] = color;
-        float x = (float) index / (float) points.Count;
-        vector2Array[index * 2] = new Vector2(x, 0.0f);
-        vector2Array[index * 2 + 1] = new Vector2(x, 1f);
-        if (index > 0)
-        {
-          numArray[(index - 1) * 6] = index * 2 - 2;
-          numArray[(index - 1) * 6 + 1] = index * 2 - 1;
-          numArray[(index - 1) * 6 + 2] = index * 2;
-          numArray[(index - 1) * 6 + 3] = index * 2 + 1;
-          numArray[(index - 1) * 6 + 4] = index * 2;
-          numArray[(index - 1) * 6 + 5] = index * 2 - 1;
-        }
-      }
-      this._trailMesh.Clear();
-      this._trailMesh.vertices = vector3Array;
-      this._trailMesh.colors = colorArray;
-      this._trailMesh.uv = vector2Array;
-      this._trailMesh.triangles = numArray;
-    }
-    else
-      this._trailMesh.Clear();
-  }
+	[SerializeField]
+	private bool _emit = true;
 
-  public class Point
-  {
-    public float timeCreated;
-    public Vector3 basePosition;
-    public Vector3 tipPosition;
-    public bool lineBreak;
-  }
+	[SerializeField]
+	private float _emitTime;
+
+	[SerializeField]
+	private Material _material;
+
+	[SerializeField]
+	private float _lifeTime = 1f;
+
+	[SerializeField]
+	private Color[] _colors;
+
+	[SerializeField]
+	private float[] _sizes;
+
+	[SerializeField]
+	private float _minVertexDistance = 0.1f;
+
+	[SerializeField]
+	private float _maxVertexDistance = 10f;
+
+	[SerializeField]
+	private float _maxAngle = 3f;
+
+	[SerializeField]
+	private bool _autoDestruct;
+
+	[SerializeField]
+	private Transform _base;
+
+	[SerializeField]
+	private Transform _tip;
+
+	private List<Point> _points = new List<Point>();
+
+	private GameObject _o;
+
+	private Mesh _trailMesh;
+
+	private Vector3 _lastPosition;
+
+	private Vector3 _lastCameraPosition1;
+
+	private Vector3 _lastCameraPosition2;
+
+	private bool _lastFrameEmit = true;
+
+	public bool Emit
+	{
+		set
+		{
+			_emit = value;
+		}
+	}
+
+	public void Start()
+	{
+		_lastPosition = base.transform.position;
+		_o = new GameObject("Trail");
+		_o.transform.parent = null;
+		_o.transform.position = Vector3.zero;
+		_o.transform.rotation = Quaternion.identity;
+		_o.transform.localScale = Vector3.one;
+		_o.AddComponent<MeshFilter>();
+		_o.AddComponent<MeshRenderer>();
+		_o.GetComponent<Renderer>().material = _material;
+		_trailMesh = new Mesh();
+		_trailMesh.name = base.name + "TrailMesh";
+		_o.GetComponent<MeshFilter>().mesh = _trailMesh;
+	}
+
+	private void OnDisable()
+	{
+		Object.Destroy(_o);
+	}
+
+	private void Update()
+	{
+		if (_emit && _emitTime != 0f)
+		{
+			_emitTime -= Time.deltaTime;
+			if (_emitTime == 0f)
+			{
+				_emitTime = -1f;
+			}
+			if (_emitTime < 0f)
+			{
+				_emit = false;
+			}
+		}
+		if (!_emit && _points.Count == 0 && _autoDestruct)
+		{
+			Object.Destroy(_o);
+			Object.Destroy(base.gameObject);
+		}
+		if (!Camera.main)
+		{
+			return;
+		}
+		float magnitude = (_lastPosition - base.transform.position).magnitude;
+		if (_emit)
+		{
+			if (magnitude > _minVertexDistance)
+			{
+				bool flag = false;
+				if (_points.Count < 3)
+				{
+					flag = true;
+				}
+				else
+				{
+					Vector3 from = _points[_points.Count - 2].tipPosition - _points[_points.Count - 3].tipPosition;
+					Vector3 to = _points[_points.Count - 1].tipPosition - _points[_points.Count - 2].tipPosition;
+					if (Vector3.Angle(from, to) > _maxAngle || magnitude > _maxVertexDistance)
+					{
+						flag = true;
+					}
+				}
+				if (flag)
+				{
+					Point point = new Point();
+					point.basePosition = _base.position;
+					point.tipPosition = _tip.position;
+					point.timeCreated = Time.time;
+					_points.Add(point);
+					_lastPosition = base.transform.position;
+				}
+				else
+				{
+					_points[_points.Count - 1].basePosition = _base.position;
+					_points[_points.Count - 1].tipPosition = _tip.position;
+				}
+			}
+			else if (_points.Count > 0)
+			{
+				_points[_points.Count - 1].basePosition = _base.position;
+				_points[_points.Count - 1].tipPosition = _tip.position;
+			}
+		}
+		if (!_emit && _lastFrameEmit && _points.Count > 0)
+		{
+			_points[_points.Count - 1].lineBreak = true;
+		}
+		_lastFrameEmit = _emit;
+		List<Point> list = new List<Point>();
+		foreach (Point point3 in _points)
+		{
+			if (Time.time - point3.timeCreated > _lifeTime)
+			{
+				list.Add(point3);
+			}
+		}
+		foreach (Point item in list)
+		{
+			_points.Remove(item);
+		}
+		List<Point> points = _points;
+		if (points.Count > 1)
+		{
+			Vector3[] array = new Vector3[points.Count * 2];
+			Vector2[] array2 = new Vector2[points.Count * 2];
+			int[] array3 = new int[(points.Count - 1) * 6];
+			Color[] array4 = new Color[points.Count * 2];
+			for (int i = 0; i < points.Count; i++)
+			{
+				Point point2 = points[i];
+				float num = (Time.time - point2.timeCreated) / _lifeTime;
+				Color color = Color.Lerp(Color.white, Color.clear, num);
+				if (_colors != null && _colors.Length != 0)
+				{
+					float num2 = num * (float)(_colors.Length - 1);
+					float num3 = Mathf.Floor(num2);
+					float num4 = Mathf.Clamp(Mathf.Ceil(num2), 1f, (float)_colors.Length - 1f);
+					float t = Mathf.InverseLerp(num3, num4, num2);
+					if (num3 >= (float)_colors.Length)
+					{
+						num3 = (float)_colors.Length - 1f;
+					}
+					if (num3 < 0f)
+					{
+						num3 = 0f;
+					}
+					if (num4 >= (float)_colors.Length)
+					{
+						num4 = (float)_colors.Length - 1f;
+					}
+					if (num4 < 0f)
+					{
+						num4 = 0f;
+					}
+					color = Color.Lerp(_colors[(int)num3], _colors[(int)num4], t);
+				}
+				float num5 = 0f;
+				if (_sizes != null && _sizes.Length != 0)
+				{
+					float num6 = num * (float)(_sizes.Length - 1);
+					float num7 = Mathf.Floor(num6);
+					float num8 = Mathf.Clamp(Mathf.Ceil(num6), 1f, (float)_sizes.Length - 1f);
+					float t2 = Mathf.InverseLerp(num7, num8, num6);
+					if (num7 >= (float)_sizes.Length)
+					{
+						num7 = (float)_sizes.Length - 1f;
+					}
+					if (num7 < 0f)
+					{
+						num7 = 0f;
+					}
+					if (num8 >= (float)_sizes.Length)
+					{
+						num8 = (float)_sizes.Length - 1f;
+					}
+					if (num8 < 0f)
+					{
+						num8 = 0f;
+					}
+					num5 = Mathf.Lerp(_sizes[(int)num7], _sizes[(int)num8], t2);
+				}
+				Vector3 vector = point2.tipPosition - point2.basePosition;
+				array[i * 2] = point2.basePosition - vector * (num5 * 0.5f);
+				array[i * 2 + 1] = point2.tipPosition + vector * (num5 * 0.5f);
+				array4[i * 2] = (array4[i * 2 + 1] = color);
+				float x = (float)i / (float)points.Count;
+				array2[i * 2] = new Vector2(x, 0f);
+				array2[i * 2 + 1] = new Vector2(x, 1f);
+				if (i > 0)
+				{
+					array3[(i - 1) * 6] = i * 2 - 2;
+					array3[(i - 1) * 6 + 1] = i * 2 - 1;
+					array3[(i - 1) * 6 + 2] = i * 2;
+					array3[(i - 1) * 6 + 3] = i * 2 + 1;
+					array3[(i - 1) * 6 + 4] = i * 2;
+					array3[(i - 1) * 6 + 5] = i * 2 - 1;
+				}
+			}
+			_trailMesh.Clear();
+			_trailMesh.vertices = array;
+			_trailMesh.colors = array4;
+			_trailMesh.uv = array2;
+			_trailMesh.triangles = array3;
+		}
+		else
+		{
+			_trailMesh.Clear();
+		}
+	}
 }

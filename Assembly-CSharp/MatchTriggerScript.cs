@@ -1,29 +1,31 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MatchTriggerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MatchTriggerScript : MonoBehaviour
 {
-  public StudentScript Student;
-  public bool Fireball;
-  public bool Candle;
+	public StudentScript Student;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (other.gameObject.layer != 9)
-      return;
-    this.Student = other.gameObject.transform.root.gameObject.GetComponent<StudentScript>();
-    if (!((Object) this.Student != (Object) null) || this.Student.StudentID <= 1 || !this.Student.Gas && !this.Fireball)
-      return;
-    if ((Object) this.Student.Yandere.PickUp != (Object) null && this.Student.Yandere.PickUp.OpenFlame)
-      this.Student.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Student.Yandere.Numbness;
-    this.Student.Combust();
-    if (this.Candle)
-      return;
-    Object.Destroy((Object) this.gameObject);
-  }
+	public bool Fireball;
+
+	public bool Candle;
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer != 9)
+		{
+			return;
+		}
+		Student = other.gameObject.transform.root.gameObject.GetComponent<StudentScript>();
+		if (Student != null && Student.StudentID > 1 && (Student.Gas || Fireball))
+		{
+			if (Student.Yandere.PickUp != null && Student.Yandere.PickUp.OpenFlame)
+			{
+				Student.Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Student.Yandere.Numbness;
+			}
+			Student.Combust();
+			if (!Candle)
+			{
+				Object.Destroy(base.gameObject);
+			}
+		}
+	}
 }

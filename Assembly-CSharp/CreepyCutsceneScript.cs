@@ -1,51 +1,50 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CreepyCutsceneScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class CreepyCutsceneScript : MonoBehaviour
 {
-  public StreetShopInterfaceScript ShopInterface;
-  public TypewriterEffect Typewriter;
-  public GameObject Jukebox;
-  public UILabel Label;
-  public string[] Lines;
-  public int ID;
+	public StreetShopInterfaceScript ShopInterface;
 
-  private void Update()
-  {
-    if (Input.GetButtonDown("A"))
-    {
-      if (this.Typewriter.mCurrentOffset < this.Typewriter.mFullText.Length)
-      {
-        this.Typewriter.Finish();
-      }
-      else
-      {
-        ++this.ID;
-        if (this.ID < this.Lines.Length)
-        {
-          this.Typewriter.ResetToBeginning();
-          this.Label.text = "";
-          this.Typewriter.mFullText = this.Lines[this.ID];
-        }
-        else
-        {
-          GameGlobals.MetBarber = true;
-          this.gameObject.SetActive(false);
-          this.Jukebox.SetActive(true);
-          this.ShopInterface.TransitionToCreepyCutscene = false;
-          this.ShopInterface.Salon.EightiesBarber();
-          this.ShopInterface.TransitionTimer = 0.0f;
-          this.ShopInterface.Jukebox.Play();
-          this.ShopInterface.Shopkeeper.transform.localPosition = new Vector3((float) this.ShopInterface.ShopkeeperPosition, 0.0f, 0.0f);
-          this.ShopInterface.Shopkeeper.transform.localScale = new Vector3(1.128f, 1.128f, 1.128f);
-        }
-      }
-    }
-    this.Label.alpha = 1f;
-  }
+	public TypewriterEffect Typewriter;
+
+	public GameObject Jukebox;
+
+	public UILabel Label;
+
+	public string[] Lines;
+
+	public int ID;
+
+	private void Update()
+	{
+		if (Input.GetButtonDown("A"))
+		{
+			if (Typewriter.mCurrentOffset < Typewriter.mFullText.Length)
+			{
+				Typewriter.Finish();
+			}
+			else
+			{
+				ID++;
+				if (ID < Lines.Length)
+				{
+					Typewriter.ResetToBeginning();
+					Label.text = "";
+					Typewriter.mFullText = Lines[ID];
+				}
+				else
+				{
+					GameGlobals.MetBarber = true;
+					base.gameObject.SetActive(false);
+					Jukebox.SetActive(true);
+					ShopInterface.TransitionToCreepyCutscene = false;
+					ShopInterface.Salon.EightiesBarber();
+					ShopInterface.TransitionTimer = 0f;
+					ShopInterface.Jukebox.Play();
+					ShopInterface.Shopkeeper.transform.localPosition = new Vector3(ShopInterface.ShopkeeperPosition, 0f, 0f);
+					ShopInterface.Shopkeeper.transform.localScale = new Vector3(1.128f, 1.128f, 1.128f);
+				}
+			}
+		}
+		Label.alpha = 1f;
+	}
 }

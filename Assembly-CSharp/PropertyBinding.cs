@@ -1,106 +1,117 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PropertyBinding
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Internal/Property Binding")]
 public class PropertyBinding : MonoBehaviour
 {
-  public PropertyReference source;
-  public PropertyReference target;
-  public PropertyBinding.Direction direction;
-  public PropertyBinding.UpdateCondition update = PropertyBinding.UpdateCondition.OnUpdate;
-  public bool editMode = true;
-  private object mLastValue;
+	[DoNotObfuscateNGUI]
+	public enum UpdateCondition
+	{
+		OnStart = 0,
+		OnUpdate = 1,
+		OnLateUpdate = 2,
+		OnFixedUpdate = 3
+	}
 
-  private void Start()
-  {
-    this.UpdateTarget();
-    if (this.update != PropertyBinding.UpdateCondition.OnStart)
-      return;
-    this.enabled = false;
-  }
+	[DoNotObfuscateNGUI]
+	public enum Direction
+	{
+		SourceUpdatesTarget = 0,
+		TargetUpdatesSource = 1,
+		BiDirectional = 2
+	}
 
-  private void Update()
-  {
-    if (this.update != PropertyBinding.UpdateCondition.OnUpdate)
-      return;
-    this.UpdateTarget();
-  }
+	public PropertyReference source;
 
-  private void LateUpdate()
-  {
-    if (this.update != PropertyBinding.UpdateCondition.OnLateUpdate)
-      return;
-    this.UpdateTarget();
-  }
+	public PropertyReference target;
 
-  private void FixedUpdate()
-  {
-    if (this.update != PropertyBinding.UpdateCondition.OnFixedUpdate)
-      return;
-    this.UpdateTarget();
-  }
+	public Direction direction;
 
-  private void OnValidate()
-  {
-    if (this.source != null)
-      this.source.Reset();
-    if (this.target == null)
-      return;
-    this.target.Reset();
-  }
+	public UpdateCondition update = UpdateCondition.OnUpdate;
 
-  [ContextMenu("Update Now")]
-  public void UpdateTarget()
-  {
-    if (this.source == null || this.target == null || !this.source.isValid || !this.target.isValid)
-      return;
-    if (this.direction == PropertyBinding.Direction.SourceUpdatesTarget)
-      this.target.Set(this.source.Get());
-    else if (this.direction == PropertyBinding.Direction.TargetUpdatesSource)
-    {
-      this.source.Set(this.target.Get());
-    }
-    else
-    {
-      if (!(this.source.GetPropertyType() == this.target.GetPropertyType()))
-        return;
-      object obj1 = this.source.Get();
-      if (this.mLastValue == null || !this.mLastValue.Equals(obj1))
-      {
-        this.mLastValue = obj1;
-        this.target.Set(obj1);
-      }
-      else
-      {
-        object obj2 = this.target.Get();
-        if (this.mLastValue.Equals(obj2))
-          return;
-        this.mLastValue = obj2;
-        this.source.Set(obj2);
-      }
-    }
-  }
+	public bool editMode = true;
 
-  [DoNotObfuscateNGUI]
-  public enum UpdateCondition
-  {
-    OnStart,
-    OnUpdate,
-    OnLateUpdate,
-    OnFixedUpdate,
-  }
+	private object mLastValue;
 
-  [DoNotObfuscateNGUI]
-  public enum Direction
-  {
-    SourceUpdatesTarget,
-    TargetUpdatesSource,
-    BiDirectional,
-  }
+	private void Start()
+	{
+		UpdateTarget();
+		if (update == UpdateCondition.OnStart)
+		{
+			base.enabled = false;
+		}
+	}
+
+	private void Update()
+	{
+		if (update == UpdateCondition.OnUpdate)
+		{
+			UpdateTarget();
+		}
+	}
+
+	private void LateUpdate()
+	{
+		if (update == UpdateCondition.OnLateUpdate)
+		{
+			UpdateTarget();
+		}
+	}
+
+	private void FixedUpdate()
+	{
+		if (update == UpdateCondition.OnFixedUpdate)
+		{
+			UpdateTarget();
+		}
+	}
+
+	private void OnValidate()
+	{
+		if (source != null)
+		{
+			source.Reset();
+		}
+		if (target != null)
+		{
+			target.Reset();
+		}
+	}
+
+	[ContextMenu("Update Now")]
+	public void UpdateTarget()
+	{
+		if (source == null || target == null || !source.isValid || !target.isValid)
+		{
+			return;
+		}
+		if (direction == Direction.SourceUpdatesTarget)
+		{
+			target.Set(source.Get());
+		}
+		else if (direction == Direction.TargetUpdatesSource)
+		{
+			source.Set(target.Get());
+		}
+		else
+		{
+			if (!(source.GetPropertyType() == target.GetPropertyType()))
+			{
+				return;
+			}
+			object obj = source.Get();
+			if (mLastValue == null || !mLastValue.Equals(obj))
+			{
+				mLastValue = obj;
+				target.Set(obj);
+				return;
+			}
+			obj = target.Get();
+			if (!mLastValue.Equals(obj))
+			{
+				mLastValue = obj;
+				source.Set(obj);
+			}
+		}
+	}
 }

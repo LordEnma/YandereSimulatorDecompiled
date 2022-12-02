@@ -1,71 +1,85 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: YanvaniaDoubleFireballScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class YanvaniaDoubleFireballScript : MonoBehaviour
 {
-  public GameObject Lavaball;
-  public GameObject FirstLavaball;
-  public GameObject SecondLavaball;
-  public GameObject LightningEffect;
-  public Transform Dracula;
-  public bool SpawnedFirst;
-  public bool SpawnedSecond;
-  public float FirstPosition;
-  public float SecondPosition;
-  public int Direction;
-  public float Timer;
-  public float Speed;
+	public GameObject Lavaball;
 
-  private void Start()
-  {
-    Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(this.transform.position.x, 8f, 0.0f), Quaternion.identity);
-    this.Direction = (double) this.Dracula.position.x > (double) this.transform.position.x ? -1 : 1;
-  }
+	public GameObject FirstLavaball;
 
-  private void Update()
-  {
-    if ((double) this.Timer > 1.0 && !this.SpawnedFirst)
-    {
-      Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(this.transform.position.x, 7f, 0.0f), Quaternion.identity);
-      this.FirstLavaball = Object.Instantiate<GameObject>(this.Lavaball, new Vector3(this.transform.position.x, 8f, 0.0f), Quaternion.identity);
-      this.FirstLavaball.transform.localScale = Vector3.zero;
-      this.SpawnedFirst = true;
-    }
-    if ((Object) this.FirstLavaball != (Object) null)
-    {
-      this.FirstLavaball.transform.localScale = Vector3.Lerp(this.FirstLavaball.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-      this.FirstPosition += (double) this.FirstPosition == 0.0 ? Time.deltaTime : this.FirstPosition * this.Speed;
-      this.FirstLavaball.transform.position = new Vector3(this.FirstLavaball.transform.position.x + this.FirstPosition * (float) this.Direction, this.FirstLavaball.transform.position.y, this.FirstLavaball.transform.position.z);
-      this.FirstLavaball.transform.eulerAngles = new Vector3(this.FirstLavaball.transform.eulerAngles.x, this.FirstLavaball.transform.eulerAngles.y, this.FirstLavaball.transform.eulerAngles.z - (float) ((double) this.FirstPosition * (double) this.Direction * 36.0));
-    }
-    if ((double) this.Timer > 2.0 && !this.SpawnedSecond)
-    {
-      this.SecondLavaball = Object.Instantiate<GameObject>(this.Lavaball, new Vector3(this.transform.position.x, 7f, 0.0f), Quaternion.identity);
-      this.SecondLavaball.transform.localScale = Vector3.zero;
-      this.SpawnedSecond = true;
-    }
-    if ((Object) this.SecondLavaball != (Object) null)
-    {
-      this.SecondLavaball.transform.localScale = Vector3.Lerp(this.SecondLavaball.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-      if ((double) this.SecondPosition == 0.0)
-        this.SecondPosition += Time.deltaTime;
-      else
-        this.SecondPosition += this.SecondPosition * this.Speed;
-      this.SecondLavaball.transform.position = new Vector3(this.SecondLavaball.transform.position.x + this.SecondPosition * (float) this.Direction, this.SecondLavaball.transform.position.y, this.SecondLavaball.transform.position.z);
-      this.SecondLavaball.transform.eulerAngles = new Vector3(this.SecondLavaball.transform.eulerAngles.x, this.SecondLavaball.transform.eulerAngles.y, this.SecondLavaball.transform.eulerAngles.z - (float) ((double) this.SecondPosition * (double) this.Direction * 36.0));
-    }
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer <= 10.0)
-      return;
-    if ((Object) this.FirstLavaball != (Object) null)
-      Object.Destroy((Object) this.FirstLavaball);
-    if ((Object) this.SecondLavaball != (Object) null)
-      Object.Destroy((Object) this.SecondLavaball);
-    Object.Destroy((Object) this.gameObject);
-  }
+	public GameObject SecondLavaball;
+
+	public GameObject LightningEffect;
+
+	public Transform Dracula;
+
+	public bool SpawnedFirst;
+
+	public bool SpawnedSecond;
+
+	public float FirstPosition;
+
+	public float SecondPosition;
+
+	public int Direction;
+
+	public float Timer;
+
+	public float Speed;
+
+	private void Start()
+	{
+		Object.Instantiate(LightningEffect, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
+		Direction = ((!(Dracula.position.x > base.transform.position.x)) ? 1 : (-1));
+	}
+
+	private void Update()
+	{
+		if (Timer > 1f && !SpawnedFirst)
+		{
+			Object.Instantiate(LightningEffect, new Vector3(base.transform.position.x, 7f, 0f), Quaternion.identity);
+			FirstLavaball = Object.Instantiate(Lavaball, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
+			FirstLavaball.transform.localScale = Vector3.zero;
+			SpawnedFirst = true;
+		}
+		if (FirstLavaball != null)
+		{
+			FirstLavaball.transform.localScale = Vector3.Lerp(FirstLavaball.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			FirstPosition += ((FirstPosition == 0f) ? Time.deltaTime : (FirstPosition * Speed));
+			FirstLavaball.transform.position = new Vector3(FirstLavaball.transform.position.x + FirstPosition * (float)Direction, FirstLavaball.transform.position.y, FirstLavaball.transform.position.z);
+			FirstLavaball.transform.eulerAngles = new Vector3(FirstLavaball.transform.eulerAngles.x, FirstLavaball.transform.eulerAngles.y, FirstLavaball.transform.eulerAngles.z - FirstPosition * (float)Direction * 36f);
+		}
+		if (Timer > 2f && !SpawnedSecond)
+		{
+			SecondLavaball = Object.Instantiate(Lavaball, new Vector3(base.transform.position.x, 7f, 0f), Quaternion.identity);
+			SecondLavaball.transform.localScale = Vector3.zero;
+			SpawnedSecond = true;
+		}
+		if (SecondLavaball != null)
+		{
+			SecondLavaball.transform.localScale = Vector3.Lerp(SecondLavaball.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			if (SecondPosition == 0f)
+			{
+				SecondPosition += Time.deltaTime;
+			}
+			else
+			{
+				SecondPosition += SecondPosition * Speed;
+			}
+			SecondLavaball.transform.position = new Vector3(SecondLavaball.transform.position.x + SecondPosition * (float)Direction, SecondLavaball.transform.position.y, SecondLavaball.transform.position.z);
+			SecondLavaball.transform.eulerAngles = new Vector3(SecondLavaball.transform.eulerAngles.x, SecondLavaball.transform.eulerAngles.y, SecondLavaball.transform.eulerAngles.z - SecondPosition * (float)Direction * 36f);
+		}
+		Timer += Time.deltaTime;
+		if (Timer > 10f)
+		{
+			if (FirstLavaball != null)
+			{
+				Object.Destroy(FirstLavaball);
+			}
+			if (SecondLavaball != null)
+			{
+				Object.Destroy(SecondLavaball);
+			}
+			Object.Destroy(base.gameObject);
+		}
+	}
 }

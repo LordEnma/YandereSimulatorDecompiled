@@ -1,171 +1,193 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TitleSaveFilesScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class TitleSaveFilesScript : MonoBehaviour
 {
-  public NewTitleScreenScript NewTitleScreen;
-  public InputManagerScript InputManager;
-  public TitleSaveDataScript[] SaveDatas;
-  public UILabel CorruptSaveLabel;
-  public UILabel NewSaveLabel;
-  public GameObject ConfirmationWindow;
-  public GameObject ErrorWindow;
-  public PromptBarScript PromptBar;
-  public TitleMenuScript Menu;
-  public Transform Highlight;
-  public bool Started;
-  public bool Show;
-  public int EightiesPrefix;
-  public int ID = 1;
+	public NewTitleScreenScript NewTitleScreen;
 
-  private void Update()
-  {
-    if ((double) this.NewTitleScreen.Speed <= 3.0 || this.NewTitleScreen.FadeOut)
-      return;
-    if (this.Started)
-    {
-      this.ErrorWindow.SetActive(true);
-      if (!this.Started)
-      {
-        this.CorruptSaveLabel.gameObject.SetActive(true);
-        this.NewSaveLabel.gameObject.SetActive(false);
-      }
-      this.Started = false;
-    }
-    if (!this.ConfirmationWindow.activeInHierarchy)
-    {
-      if (this.InputManager.TappedDown)
-      {
-        ++this.ID;
-        if (this.ID > 3)
-          this.ID = 1;
-        this.UpdateHighlight();
-      }
-      if (this.InputManager.TappedUp)
-      {
-        --this.ID;
-        if (this.ID < 1)
-          this.ID = 3;
-        this.UpdateHighlight();
-      }
-    }
-    if (!this.ErrorWindow.activeInHierarchy)
-    {
-      if (!this.ConfirmationWindow.activeInHierarchy)
-      {
-        if (!this.PromptBar.Show)
-        {
-          this.PromptBar.ClearButtons();
-          this.PromptBar.Label[0].text = "Make Selection";
-          this.PromptBar.Label[1].text = "Go Back";
-          this.PromptBar.Label[4].text = "Change Selection";
-          this.UpdateHighlight();
-          this.PromptBar.UpdateButtons();
-          this.PromptBar.Show = true;
-        }
-        if (Input.GetButtonDown("A") || this.PromptBar.Label[3].text != "" && Input.GetButtonDown("Y"))
-        {
-          if (PlayerPrefs.GetInt("ProfileCreated_" + (this.EightiesPrefix + this.ID).ToString()) == 0)
-          {
-            this.Started = true;
-            bool debug = GameGlobals.Debug;
-            GameGlobals.Profile = this.EightiesPrefix + this.ID;
-            Globals.DeleteAll();
-            if (GameGlobals.Eighties)
-            {
-              for (int studentID = 1; studentID < 101; ++studentID)
-                StudentGlobals.SetStudentPhotographed(studentID, true);
-            }
-            GameGlobals.Profile = this.EightiesPrefix + this.ID;
-            GameGlobals.Debug = debug;
-            this.NewTitleScreen.Darkness.color = new Color(1f, 1f, 1f, 0.0f);
-            this.Started = false;
-          }
-          else
-          {
-            Debug.Log((object) ("The game believed that Profile " + (this.EightiesPrefix + this.ID).ToString() + " already existed, so that profile is now being loaded."));
-            GameGlobals.Profile = this.EightiesPrefix + this.ID;
-            GameGlobals.Eighties = this.NewTitleScreen.Eighties;
-          }
-          this.NewTitleScreen.FadeOut = true;
-          if (!Input.GetButtonDown("Y"))
-            return;
-          if (!this.NewTitleScreen.Eighties)
-            this.NewTitleScreen.QuickStart = true;
-          else
-            this.NewTitleScreen.WeekSelect = true;
-        }
-        else if (Input.GetButtonDown("X"))
-        {
-          if (PlayerPrefs.GetInt("ProfileCreated_" + (this.EightiesPrefix + this.ID).ToString()) <= 0)
-            return;
-          this.ConfirmationWindow.SetActive(true);
-        }
-        else
-        {
-          if (!Input.GetButtonDown("B"))
-            return;
-          this.NewTitleScreen.Speed = 0.0f;
-          this.NewTitleScreen.Phase = 2;
-          this.PromptBar.Show = false;
-          this.enabled = false;
-        }
-      }
-      else
-      {
-        this.PromptBar.Show = false;
-        if (Input.GetButtonDown("A"))
-        {
-          PlayerPrefs.SetInt("ProfileCreated_" + (this.EightiesPrefix + this.ID).ToString(), 0);
-          this.ConfirmationWindow.SetActive(false);
-          this.SaveDatas[this.ID].Start();
-        }
-        else
-        {
-          if (!Input.GetButtonDown("B"))
-            return;
-          this.ConfirmationWindow.SetActive(false);
-        }
-      }
-    }
-    else
-    {
-      if (!Input.anyKeyDown)
-        return;
-      PlayerPrefs.DeleteAll();
-      Debug.Log((object) "All player prefs deleted...");
-      Application.Quit();
-    }
-  }
+	public InputManagerScript InputManager;
 
-  private void UpdateHighlight()
-  {
-    this.Highlight.localPosition = new Vector3(0.0f, (float) (700.0 - 350.0 * (double) this.ID), 0.0f);
-    this.PromptBar.Label[2].text = "";
-    this.PromptBar.Label[3].text = "";
-    if (PlayerPrefs.GetInt("ProfileCreated_" + (this.EightiesPrefix + this.ID).ToString()) > 0)
-    {
-      this.PromptBar.Label[2].text = "Delete";
-      this.PromptBar.UpdateButtons();
-    }
-    else if (!this.NewTitleScreen.Eighties)
-    {
-      if (GameGlobals.Debug)
-        this.PromptBar.Label[3].text = "Quick Start";
-    }
-    else
-      this.PromptBar.Label[3].text = "Week Select";
-    this.PromptBar.UpdateButtons();
-  }
+	public TitleSaveDataScript[] SaveDatas;
 
-  public void UpdateOutlines()
-  {
-    foreach (UILabel componentsInChild in this.GetComponentsInChildren<UILabel>())
-      componentsInChild.effectColor = new Color(0.0f, 0.0f, 0.0f);
-  }
+	public UILabel CorruptSaveLabel;
+
+	public UILabel NewSaveLabel;
+
+	public GameObject ConfirmationWindow;
+
+	public GameObject ErrorWindow;
+
+	public PromptBarScript PromptBar;
+
+	public TitleMenuScript Menu;
+
+	public Transform Highlight;
+
+	public bool Started;
+
+	public bool Show;
+
+	public int EightiesPrefix;
+
+	public int ID = 1;
+
+	private void Update()
+	{
+		if (!(NewTitleScreen.Speed > 3f) || NewTitleScreen.FadeOut)
+		{
+			return;
+		}
+		if (Started)
+		{
+			ErrorWindow.SetActive(true);
+			if (!Started)
+			{
+				CorruptSaveLabel.gameObject.SetActive(true);
+				NewSaveLabel.gameObject.SetActive(false);
+			}
+			Started = false;
+		}
+		if (!ConfirmationWindow.activeInHierarchy)
+		{
+			if (InputManager.TappedDown)
+			{
+				ID++;
+				if (ID > 3)
+				{
+					ID = 1;
+				}
+				UpdateHighlight();
+			}
+			if (InputManager.TappedUp)
+			{
+				ID--;
+				if (ID < 1)
+				{
+					ID = 3;
+				}
+				UpdateHighlight();
+			}
+		}
+		if (!ErrorWindow.activeInHierarchy)
+		{
+			if (!ConfirmationWindow.activeInHierarchy)
+			{
+				if (!PromptBar.Show)
+				{
+					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = "Make Selection";
+					PromptBar.Label[1].text = "Go Back";
+					PromptBar.Label[4].text = "Change Selection";
+					UpdateHighlight();
+					PromptBar.UpdateButtons();
+					PromptBar.Show = true;
+				}
+				if (Input.GetButtonDown("A") || (PromptBar.Label[3].text != "" && Input.GetButtonDown("Y")))
+				{
+					if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
+					{
+						Started = true;
+						bool debug = GameGlobals.Debug;
+						GameGlobals.Profile = EightiesPrefix + ID;
+						Globals.DeleteAll();
+						if (GameGlobals.Eighties)
+						{
+							for (int i = 1; i < 101; i++)
+							{
+								StudentGlobals.SetStudentPhotographed(i, true);
+							}
+						}
+						GameGlobals.Profile = EightiesPrefix + ID;
+						GameGlobals.Debug = debug;
+						NewTitleScreen.Darkness.color = new Color(1f, 1f, 1f, 0f);
+						Started = false;
+					}
+					else
+					{
+						Debug.Log("The game believed that Profile " + (EightiesPrefix + ID) + " already existed, so that profile is now being loaded.");
+						GameGlobals.Profile = EightiesPrefix + ID;
+						GameGlobals.Eighties = NewTitleScreen.Eighties;
+					}
+					NewTitleScreen.FadeOut = true;
+					if (Input.GetButtonDown("Y"))
+					{
+						if (!NewTitleScreen.Eighties)
+						{
+							NewTitleScreen.QuickStart = true;
+						}
+						else
+						{
+							NewTitleScreen.WeekSelect = true;
+						}
+					}
+				}
+				else if (Input.GetButtonDown("X"))
+				{
+					if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) > 0)
+					{
+						ConfirmationWindow.SetActive(true);
+					}
+				}
+				else if (Input.GetButtonDown("B"))
+				{
+					NewTitleScreen.Speed = 0f;
+					NewTitleScreen.Phase = 2;
+					PromptBar.Show = false;
+					base.enabled = false;
+				}
+			}
+			else
+			{
+				PromptBar.Show = false;
+				if (Input.GetButtonDown("A"))
+				{
+					PlayerPrefs.SetInt("ProfileCreated_" + (EightiesPrefix + ID), 0);
+					ConfirmationWindow.SetActive(false);
+					SaveDatas[ID].Start();
+				}
+				else if (Input.GetButtonDown("B"))
+				{
+					ConfirmationWindow.SetActive(false);
+				}
+			}
+		}
+		else if (Input.anyKeyDown)
+		{
+			PlayerPrefs.DeleteAll();
+			Debug.Log("All player prefs deleted...");
+			Application.Quit();
+		}
+	}
+
+	private void UpdateHighlight()
+	{
+		Highlight.localPosition = new Vector3(0f, 700f - 350f * (float)ID, 0f);
+		PromptBar.Label[2].text = "";
+		PromptBar.Label[3].text = "";
+		if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) > 0)
+		{
+			PromptBar.Label[2].text = "Delete";
+			PromptBar.UpdateButtons();
+		}
+		else if (!NewTitleScreen.Eighties)
+		{
+			if (GameGlobals.Debug)
+			{
+				PromptBar.Label[3].text = "Quick Start";
+			}
+		}
+		else
+		{
+			PromptBar.Label[3].text = "Week Select";
+		}
+		PromptBar.UpdateButtons();
+	}
+
+	public void UpdateOutlines()
+	{
+		UILabel[] componentsInChildren = GetComponentsInChildren<UILabel>();
+		for (int i = 0; i < componentsInChildren.Length; i++)
+		{
+			componentsInChildren[i].effectColor = new Color(0f, 0f, 0f);
+		}
+	}
 }

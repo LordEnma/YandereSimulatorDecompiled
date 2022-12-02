@@ -1,200 +1,286 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: StatsScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.IO;
 using UnityEngine;
 
 public class StatsScript : MonoBehaviour
 {
-  public PauseScreenScript PauseScreen;
-  public PromptBarScript PromptBar;
-  public ClassScript Class;
-  public UISprite[] Subject1Bars;
-  public UISprite[] Subject2Bars;
-  public UISprite[] Subject3Bars;
-  public UISprite[] Subject4Bars;
-  public UISprite[] Subject5Bars;
-  public UISprite[] Subject6Bars;
-  public UISprite[] Subject7Bars;
-  public UISprite[] Subject8Bars;
-  public UILabel[] Ranks;
-  public UILabel ClubLabel;
-  public int Grade;
-  public int BarID;
-  public UITexture Portrait;
-  public Texture RyobaPortrait;
-  private ClubTypeAndStringDictionary ClubLabels;
+	public PauseScreenScript PauseScreen;
 
-  private void Awake()
-  {
-    ClubTypeAndStringDictionary stringDictionary = new ClubTypeAndStringDictionary();
-    stringDictionary.Add(ClubType.None, "None");
-    stringDictionary.Add(ClubType.Cooking, "Cooking");
-    stringDictionary.Add(ClubType.Drama, "Drama");
-    stringDictionary.Add(ClubType.Occult, "Occult");
-    stringDictionary.Add(ClubType.Art, "Art");
-    stringDictionary.Add(ClubType.LightMusic, "Light Music");
-    stringDictionary.Add(ClubType.MartialArts, "Martial Arts");
-    stringDictionary.Add(ClubType.Photography, "Photography");
-    stringDictionary.Add(ClubType.Science, "Science");
-    stringDictionary.Add(ClubType.Sports, "Sports");
-    stringDictionary.Add(ClubType.Gardening, "Gardening");
-    stringDictionary.Add(ClubType.Gaming, "Gaming");
-    this.ClubLabels = stringDictionary;
-  }
+	public PromptBarScript PromptBar;
 
-  private void Start()
-  {
-    if (this.PauseScreen.Eighties)
-      this.Portrait.mainTexture = this.RyobaPortrait;
-    if (!File.Exists(Application.streamingAssetsPath + "/CustomPortrait.txt") || !(File.ReadAllText(Application.streamingAssetsPath + "/CustomPortrait.txt") == "1"))
-      return;
-    this.Portrait.mainTexture = (Texture) new WWW("file:///" + Application.streamingAssetsPath + "/CustomPortrait.png").texture;
-  }
+	public ClassScript Class;
 
-  private void Update()
-  {
-    if (!Input.GetButtonDown("B"))
-      return;
-    this.PromptBar.ClearButtons();
-    this.PromptBar.Label[0].text = "Accept";
-    this.PromptBar.Label[1].text = "Exit";
-    this.PromptBar.Label[4].text = "Choose";
-    this.PromptBar.UpdateButtons();
-    this.PauseScreen.MainMenu.SetActive(true);
-    this.PauseScreen.Sideways = false;
-    this.PauseScreen.PressedB = true;
-    this.gameObject.SetActive(false);
-  }
+	public UISprite[] Subject1Bars;
 
-  public void UpdateStats()
-  {
-    Debug.Log((object) "The Stats script just checked the Class script for info and updated the bars accordingly.");
-    this.Grade = this.Class.BiologyGrade;
-    for (this.BarID = 1; this.BarID < 6; ++this.BarID)
-    {
-      UISprite subject1Bar = this.Subject1Bars[this.BarID];
-      if (this.Grade > 0)
-      {
-        subject1Bar.color = new Color(1f, 1f, 1f, 1f);
-        --this.Grade;
-      }
-      else
-        subject1Bar.color = new Color(1f, 1f, 1f, 0.5f);
-    }
-    if (this.Class.BiologyGrade < 5)
-      this.Subject1Bars[this.Class.BiologyGrade + 1].color = this.Class.BiologyBonus > 0 ? new Color(1f, 0.0f, 0.0f, 1f) : new Color(1f, 1f, 1f, 0.5f);
-    this.Grade = this.Class.ChemistryGrade;
-    for (this.BarID = 1; this.BarID < 6; ++this.BarID)
-    {
-      UISprite subject2Bar = this.Subject2Bars[this.BarID];
-      if (this.Grade > 0)
-      {
-        subject2Bar.color = new Color(subject2Bar.color.r, subject2Bar.color.g, subject2Bar.color.b, 1f);
-        --this.Grade;
-      }
-      else
-        subject2Bar.color = new Color(subject2Bar.color.r, subject2Bar.color.g, subject2Bar.color.b, 0.5f);
-    }
-    if (this.Class.ChemistryGrade < 5)
-      this.Subject2Bars[this.Class.ChemistryGrade + 1].color = this.Class.ChemistryBonus > 0 ? new Color(1f, 0.0f, 0.0f, 1f) : new Color(1f, 1f, 1f, 0.5f);
-    this.Grade = this.Class.LanguageGrade;
-    for (this.BarID = 1; this.BarID < 6; ++this.BarID)
-    {
-      UISprite subject3Bar = this.Subject3Bars[this.BarID];
-      if (this.Grade > 0)
-      {
-        subject3Bar.color = new Color(subject3Bar.color.r, subject3Bar.color.g, subject3Bar.color.b, 1f);
-        --this.Grade;
-      }
-      else
-        subject3Bar.color = new Color(subject3Bar.color.r, subject3Bar.color.g, subject3Bar.color.b, 0.5f);
-    }
-    if (this.Class.LanguageGrade < 5)
-      this.Subject3Bars[this.Class.LanguageGrade + 1].color = this.Class.LanguageBonus > 0 ? new Color(1f, 0.0f, 0.0f, 1f) : new Color(1f, 1f, 1f, 0.5f);
-    this.Grade = this.Class.PhysicalGrade;
-    for (this.BarID = 1; this.BarID < 6; ++this.BarID)
-    {
-      UISprite subject4Bar = this.Subject4Bars[this.BarID];
-      if (this.Grade > 0)
-      {
-        subject4Bar.color = new Color(subject4Bar.color.r, subject4Bar.color.g, subject4Bar.color.b, 1f);
-        --this.Grade;
-      }
-      else
-        subject4Bar.color = new Color(subject4Bar.color.r, subject4Bar.color.g, subject4Bar.color.b, 0.5f);
-    }
-    if (this.Class.PhysicalGrade < 5)
-      this.Subject4Bars[this.Class.PhysicalGrade + 1].color = this.Class.PhysicalBonus > 0 ? new Color(1f, 0.0f, 0.0f, 1f) : new Color(1f, 1f, 1f, 0.5f);
-    this.Grade = this.Class.PsychologyGrade;
-    for (this.BarID = 1; this.BarID < 6; ++this.BarID)
-    {
-      UISprite subject5Bar = this.Subject5Bars[this.BarID];
-      if (this.Grade > 0)
-      {
-        subject5Bar.color = new Color(subject5Bar.color.r, subject5Bar.color.g, subject5Bar.color.b, 1f);
-        --this.Grade;
-      }
-      else
-        subject5Bar.color = new Color(subject5Bar.color.r, subject5Bar.color.g, subject5Bar.color.b, 0.5f);
-    }
-    if (this.Class.PsychologyGrade < 5)
-      this.Subject5Bars[this.Class.PsychologyGrade + 1].color = this.Class.PsychologyBonus > 0 ? new Color(1f, 0.0f, 0.0f, 1f) : new Color(1f, 1f, 1f, 0.5f);
-    this.Grade = this.Class.Seduction;
-    for (this.BarID = 1; this.BarID < 6; ++this.BarID)
-    {
-      UISprite subject6Bar = this.Subject6Bars[this.BarID];
-      if (this.Grade > 0)
-      {
-        subject6Bar.color = new Color(subject6Bar.color.r, subject6Bar.color.g, subject6Bar.color.b, 1f);
-        --this.Grade;
-      }
-      else
-        subject6Bar.color = new Color(subject6Bar.color.r, subject6Bar.color.g, subject6Bar.color.b, 0.5f);
-    }
-    if (this.Class.Seduction < 5)
-      this.Subject6Bars[this.Class.Seduction + 1].color = this.Class.SeductionBonus > 0 ? new Color(1f, 0.0f, 0.0f, 1f) : new Color(1f, 1f, 1f, 0.5f);
-    this.Grade = this.Class.Numbness;
-    for (this.BarID = 1; this.BarID < 6; ++this.BarID)
-    {
-      UISprite subject7Bar = this.Subject7Bars[this.BarID];
-      if (this.Grade > 0)
-      {
-        subject7Bar.color = new Color(subject7Bar.color.r, subject7Bar.color.g, subject7Bar.color.b, 1f);
-        --this.Grade;
-      }
-      else
-        subject7Bar.color = new Color(subject7Bar.color.r, subject7Bar.color.g, subject7Bar.color.b, 0.5f);
-    }
-    if (this.Class.Numbness < 5)
-      this.Subject7Bars[this.Class.Numbness + 1].color = this.Class.NumbnessBonus > 0 ? new Color(1f, 0.0f, 0.0f, 1f) : new Color(1f, 1f, 1f, 0.5f);
-    this.Grade = this.Class.Enlightenment;
-    for (this.BarID = 1; this.BarID < 6; ++this.BarID)
-    {
-      UISprite subject8Bar = this.Subject8Bars[this.BarID];
-      if (this.Grade > 0)
-      {
-        subject8Bar.color = new Color(subject8Bar.color.r, subject8Bar.color.g, subject8Bar.color.b, 1f);
-        --this.Grade;
-      }
-      else
-        subject8Bar.color = new Color(subject8Bar.color.r, subject8Bar.color.g, subject8Bar.color.b, 0.5f);
-    }
-    if (this.Class.Enlightenment < 5)
-      this.Subject8Bars[this.Class.Enlightenment + 1].color = this.Class.EnlightenmentBonus > 0 ? new Color(1f, 0.0f, 0.0f, 1f) : new Color(1f, 1f, 1f, 0.5f);
-    this.Ranks[1].text = "Rank: " + this.Class.BiologyGrade.ToString();
-    this.Ranks[2].text = "Rank: " + this.Class.ChemistryGrade.ToString();
-    this.Ranks[3].text = "Rank: " + this.Class.LanguageGrade.ToString();
-    this.Ranks[4].text = "Rank: " + this.Class.PhysicalGrade.ToString();
-    this.Ranks[5].text = "Rank: " + this.Class.PsychologyGrade.ToString();
-    this.Ranks[6].text = "Rank: " + this.Class.Seduction.ToString();
-    this.Ranks[7].text = "Rank: " + this.Class.Numbness.ToString();
-    this.Ranks[8].text = "Rank: " + this.Class.Enlightenment.ToString();
-    string str;
-    this.ClubLabels.TryGetValue(this.PauseScreen.Yandere.Club, out str);
-    this.ClubLabel.text = "Club: " + str;
-  }
+	public UISprite[] Subject2Bars;
+
+	public UISprite[] Subject3Bars;
+
+	public UISprite[] Subject4Bars;
+
+	public UISprite[] Subject5Bars;
+
+	public UISprite[] Subject6Bars;
+
+	public UISprite[] Subject7Bars;
+
+	public UISprite[] Subject8Bars;
+
+	public UILabel[] Ranks;
+
+	public UILabel ClubLabel;
+
+	public int Grade;
+
+	public int BarID;
+
+	public UITexture Portrait;
+
+	public Texture RyobaPortrait;
+
+	private ClubTypeAndStringDictionary ClubLabels;
+
+	private void Awake()
+	{
+		ClubLabels = new ClubTypeAndStringDictionary
+		{
+			{
+				ClubType.None,
+				"None"
+			},
+			{
+				ClubType.Cooking,
+				"Cooking"
+			},
+			{
+				ClubType.Drama,
+				"Drama"
+			},
+			{
+				ClubType.Occult,
+				"Occult"
+			},
+			{
+				ClubType.Art,
+				"Art"
+			},
+			{
+				ClubType.LightMusic,
+				"Light Music"
+			},
+			{
+				ClubType.MartialArts,
+				"Martial Arts"
+			},
+			{
+				ClubType.Photography,
+				"Photography"
+			},
+			{
+				ClubType.Science,
+				"Science"
+			},
+			{
+				ClubType.Sports,
+				"Sports"
+			},
+			{
+				ClubType.Gardening,
+				"Gardening"
+			},
+			{
+				ClubType.Gaming,
+				"Gaming"
+			}
+		};
+	}
+
+	private void Start()
+	{
+		if (PauseScreen.Eighties)
+		{
+			Portrait.mainTexture = RyobaPortrait;
+		}
+		if (File.Exists(Application.streamingAssetsPath + "/CustomPortrait.txt") && File.ReadAllText(Application.streamingAssetsPath + "/CustomPortrait.txt") == "1")
+		{
+			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/CustomPortrait.png");
+			Portrait.mainTexture = wWW.texture;
+		}
+	}
+
+	private void Update()
+	{
+		if (Input.GetButtonDown("B"))
+		{
+			PromptBar.ClearButtons();
+			PromptBar.Label[0].text = "Accept";
+			PromptBar.Label[1].text = "Exit";
+			PromptBar.Label[4].text = "Choose";
+			PromptBar.UpdateButtons();
+			PauseScreen.MainMenu.SetActive(true);
+			PauseScreen.Sideways = false;
+			PauseScreen.PressedB = true;
+			base.gameObject.SetActive(false);
+		}
+	}
+
+	public void UpdateStats()
+	{
+		Debug.Log("The Stats script just checked the Class script for info and updated the bars accordingly.");
+		Grade = Class.BiologyGrade;
+		for (BarID = 1; BarID < 6; BarID++)
+		{
+			UISprite uISprite = Subject1Bars[BarID];
+			if (Grade > 0)
+			{
+				uISprite.color = new Color(1f, 1f, 1f, 1f);
+				Grade--;
+			}
+			else
+			{
+				uISprite.color = new Color(1f, 1f, 1f, 0.5f);
+			}
+		}
+		if (Class.BiologyGrade < 5)
+		{
+			Subject1Bars[Class.BiologyGrade + 1].color = ((Class.BiologyBonus > 0) ? new Color(1f, 0f, 0f, 1f) : new Color(1f, 1f, 1f, 0.5f));
+		}
+		Grade = Class.ChemistryGrade;
+		for (BarID = 1; BarID < 6; BarID++)
+		{
+			UISprite uISprite2 = Subject2Bars[BarID];
+			if (Grade > 0)
+			{
+				uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 1f);
+				Grade--;
+			}
+			else
+			{
+				uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 0.5f);
+			}
+		}
+		if (Class.ChemistryGrade < 5)
+		{
+			Subject2Bars[Class.ChemistryGrade + 1].color = ((Class.ChemistryBonus > 0) ? new Color(1f, 0f, 0f, 1f) : new Color(1f, 1f, 1f, 0.5f));
+		}
+		Grade = Class.LanguageGrade;
+		for (BarID = 1; BarID < 6; BarID++)
+		{
+			UISprite uISprite3 = Subject3Bars[BarID];
+			if (Grade > 0)
+			{
+				uISprite3.color = new Color(uISprite3.color.r, uISprite3.color.g, uISprite3.color.b, 1f);
+				Grade--;
+			}
+			else
+			{
+				uISprite3.color = new Color(uISprite3.color.r, uISprite3.color.g, uISprite3.color.b, 0.5f);
+			}
+		}
+		if (Class.LanguageGrade < 5)
+		{
+			Subject3Bars[Class.LanguageGrade + 1].color = ((Class.LanguageBonus > 0) ? new Color(1f, 0f, 0f, 1f) : new Color(1f, 1f, 1f, 0.5f));
+		}
+		Grade = Class.PhysicalGrade;
+		for (BarID = 1; BarID < 6; BarID++)
+		{
+			UISprite uISprite4 = Subject4Bars[BarID];
+			if (Grade > 0)
+			{
+				uISprite4.color = new Color(uISprite4.color.r, uISprite4.color.g, uISprite4.color.b, 1f);
+				Grade--;
+			}
+			else
+			{
+				uISprite4.color = new Color(uISprite4.color.r, uISprite4.color.g, uISprite4.color.b, 0.5f);
+			}
+		}
+		if (Class.PhysicalGrade < 5)
+		{
+			Subject4Bars[Class.PhysicalGrade + 1].color = ((Class.PhysicalBonus > 0) ? new Color(1f, 0f, 0f, 1f) : new Color(1f, 1f, 1f, 0.5f));
+		}
+		Grade = Class.PsychologyGrade;
+		for (BarID = 1; BarID < 6; BarID++)
+		{
+			UISprite uISprite5 = Subject5Bars[BarID];
+			if (Grade > 0)
+			{
+				uISprite5.color = new Color(uISprite5.color.r, uISprite5.color.g, uISprite5.color.b, 1f);
+				Grade--;
+			}
+			else
+			{
+				uISprite5.color = new Color(uISprite5.color.r, uISprite5.color.g, uISprite5.color.b, 0.5f);
+			}
+		}
+		if (Class.PsychologyGrade < 5)
+		{
+			Subject5Bars[Class.PsychologyGrade + 1].color = ((Class.PsychologyBonus > 0) ? new Color(1f, 0f, 0f, 1f) : new Color(1f, 1f, 1f, 0.5f));
+		}
+		Grade = Class.Seduction;
+		for (BarID = 1; BarID < 6; BarID++)
+		{
+			UISprite uISprite6 = Subject6Bars[BarID];
+			if (Grade > 0)
+			{
+				uISprite6.color = new Color(uISprite6.color.r, uISprite6.color.g, uISprite6.color.b, 1f);
+				Grade--;
+			}
+			else
+			{
+				uISprite6.color = new Color(uISprite6.color.r, uISprite6.color.g, uISprite6.color.b, 0.5f);
+			}
+		}
+		if (Class.Seduction < 5)
+		{
+			Subject6Bars[Class.Seduction + 1].color = ((Class.SeductionBonus > 0) ? new Color(1f, 0f, 0f, 1f) : new Color(1f, 1f, 1f, 0.5f));
+		}
+		Grade = Class.Numbness;
+		for (BarID = 1; BarID < 6; BarID++)
+		{
+			UISprite uISprite7 = Subject7Bars[BarID];
+			if (Grade > 0)
+			{
+				uISprite7.color = new Color(uISprite7.color.r, uISprite7.color.g, uISprite7.color.b, 1f);
+				Grade--;
+			}
+			else
+			{
+				uISprite7.color = new Color(uISprite7.color.r, uISprite7.color.g, uISprite7.color.b, 0.5f);
+			}
+		}
+		if (Class.Numbness < 5)
+		{
+			Subject7Bars[Class.Numbness + 1].color = ((Class.NumbnessBonus > 0) ? new Color(1f, 0f, 0f, 1f) : new Color(1f, 1f, 1f, 0.5f));
+		}
+		Grade = Class.Enlightenment;
+		for (BarID = 1; BarID < 6; BarID++)
+		{
+			UISprite uISprite8 = Subject8Bars[BarID];
+			if (Grade > 0)
+			{
+				uISprite8.color = new Color(uISprite8.color.r, uISprite8.color.g, uISprite8.color.b, 1f);
+				Grade--;
+			}
+			else
+			{
+				uISprite8.color = new Color(uISprite8.color.r, uISprite8.color.g, uISprite8.color.b, 0.5f);
+			}
+		}
+		if (Class.Enlightenment < 5)
+		{
+			Subject8Bars[Class.Enlightenment + 1].color = ((Class.EnlightenmentBonus > 0) ? new Color(1f, 0f, 0f, 1f) : new Color(1f, 1f, 1f, 0.5f));
+		}
+		Ranks[1].text = "Rank: " + Class.BiologyGrade;
+		Ranks[2].text = "Rank: " + Class.ChemistryGrade;
+		Ranks[3].text = "Rank: " + Class.LanguageGrade;
+		Ranks[4].text = "Rank: " + Class.PhysicalGrade;
+		Ranks[5].text = "Rank: " + Class.PsychologyGrade;
+		Ranks[6].text = "Rank: " + Class.Seduction;
+		Ranks[7].text = "Rank: " + Class.Numbness;
+		Ranks[8].text = "Rank: " + Class.Enlightenment;
+		ClubType club = PauseScreen.Yandere.Club;
+		string value;
+		ClubLabels.TryGetValue(club, out value);
+		ClubLabel.text = "Club: " + value;
+	}
 }

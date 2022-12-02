@@ -1,114 +1,157 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: InvStat
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 
 [Serializable]
 public class InvStat
 {
-  public InvStat.Identifier id;
-  public InvStat.Modifier modifier;
-  public int amount;
+	public enum Identifier
+	{
+		Strength = 0,
+		Constitution = 1,
+		Agility = 2,
+		Intelligence = 3,
+		Damage = 4,
+		Crit = 5,
+		Armor = 6,
+		Health = 7,
+		Mana = 8,
+		Other = 9
+	}
 
-  public static string GetName(InvStat.Identifier i) => i.ToString();
+	public enum Modifier
+	{
+		Added = 0,
+		Percent = 1
+	}
 
-  public static string GetDescription(InvStat.Identifier i)
-  {
-    switch (i)
-    {
-      case InvStat.Identifier.Strength:
-        return "Strength increases melee damage";
-      case InvStat.Identifier.Constitution:
-        return "Constitution increases health";
-      case InvStat.Identifier.Agility:
-        return "Agility increases armor";
-      case InvStat.Identifier.Intelligence:
-        return "Intelligence increases mana";
-      case InvStat.Identifier.Damage:
-        return "Damage adds to the amount of damage done in combat";
-      case InvStat.Identifier.Crit:
-        return "Crit increases the chance of landing a critical strike";
-      case InvStat.Identifier.Armor:
-        return "Armor protects from damage";
-      case InvStat.Identifier.Health:
-        return "Health prolongs life";
-      case InvStat.Identifier.Mana:
-        return "Mana increases the number of spells that can be cast";
-      default:
-        return (string) null;
-    }
-  }
+	public Identifier id;
 
-  public static int CompareArmor(InvStat a, InvStat b)
-  {
-    int id1 = (int) a.id;
-    int id2 = (int) b.id;
-    if (a.id == InvStat.Identifier.Armor)
-      id1 -= 10000;
-    else if (a.id == InvStat.Identifier.Damage)
-      id1 -= 5000;
-    if (b.id == InvStat.Identifier.Armor)
-      id2 -= 10000;
-    else if (b.id == InvStat.Identifier.Damage)
-      id2 -= 5000;
-    if (a.amount < 0)
-      id1 += 1000;
-    if (b.amount < 0)
-      id2 += 1000;
-    if (a.modifier == InvStat.Modifier.Percent)
-      id1 += 100;
-    if (b.modifier == InvStat.Modifier.Percent)
-      id2 += 100;
-    if (id1 < id2)
-      return -1;
-    return id1 > id2 ? 1 : 0;
-  }
+	public Modifier modifier;
 
-  public static int CompareWeapon(InvStat a, InvStat b)
-  {
-    int id1 = (int) a.id;
-    int id2 = (int) b.id;
-    if (a.id == InvStat.Identifier.Damage)
-      id1 -= 10000;
-    else if (a.id == InvStat.Identifier.Armor)
-      id1 -= 5000;
-    if (b.id == InvStat.Identifier.Damage)
-      id2 -= 10000;
-    else if (b.id == InvStat.Identifier.Armor)
-      id2 -= 5000;
-    if (a.amount < 0)
-      id1 += 1000;
-    if (b.amount < 0)
-      id2 += 1000;
-    if (a.modifier == InvStat.Modifier.Percent)
-      id1 += 100;
-    if (b.modifier == InvStat.Modifier.Percent)
-      id2 += 100;
-    if (id1 < id2)
-      return -1;
-    return id1 > id2 ? 1 : 0;
-  }
+	public int amount;
 
-  public enum Identifier
-  {
-    Strength,
-    Constitution,
-    Agility,
-    Intelligence,
-    Damage,
-    Crit,
-    Armor,
-    Health,
-    Mana,
-    Other,
-  }
+	public static string GetName(Identifier i)
+	{
+		return i.ToString();
+	}
 
-  public enum Modifier
-  {
-    Added,
-    Percent,
-  }
+	public static string GetDescription(Identifier i)
+	{
+		switch (i)
+		{
+		case Identifier.Strength:
+			return "Strength increases melee damage";
+		case Identifier.Constitution:
+			return "Constitution increases health";
+		case Identifier.Agility:
+			return "Agility increases armor";
+		case Identifier.Intelligence:
+			return "Intelligence increases mana";
+		case Identifier.Damage:
+			return "Damage adds to the amount of damage done in combat";
+		case Identifier.Crit:
+			return "Crit increases the chance of landing a critical strike";
+		case Identifier.Armor:
+			return "Armor protects from damage";
+		case Identifier.Health:
+			return "Health prolongs life";
+		case Identifier.Mana:
+			return "Mana increases the number of spells that can be cast";
+		default:
+			return null;
+		}
+	}
+
+	public static int CompareArmor(InvStat a, InvStat b)
+	{
+		int num = (int)a.id;
+		int num2 = (int)b.id;
+		if (a.id == Identifier.Armor)
+		{
+			num -= 10000;
+		}
+		else if (a.id == Identifier.Damage)
+		{
+			num -= 5000;
+		}
+		if (b.id == Identifier.Armor)
+		{
+			num2 -= 10000;
+		}
+		else if (b.id == Identifier.Damage)
+		{
+			num2 -= 5000;
+		}
+		if (a.amount < 0)
+		{
+			num += 1000;
+		}
+		if (b.amount < 0)
+		{
+			num2 += 1000;
+		}
+		if (a.modifier == Modifier.Percent)
+		{
+			num += 100;
+		}
+		if (b.modifier == Modifier.Percent)
+		{
+			num2 += 100;
+		}
+		if (num < num2)
+		{
+			return -1;
+		}
+		if (num > num2)
+		{
+			return 1;
+		}
+		return 0;
+	}
+
+	public static int CompareWeapon(InvStat a, InvStat b)
+	{
+		int num = (int)a.id;
+		int num2 = (int)b.id;
+		if (a.id == Identifier.Damage)
+		{
+			num -= 10000;
+		}
+		else if (a.id == Identifier.Armor)
+		{
+			num -= 5000;
+		}
+		if (b.id == Identifier.Damage)
+		{
+			num2 -= 10000;
+		}
+		else if (b.id == Identifier.Armor)
+		{
+			num2 -= 5000;
+		}
+		if (a.amount < 0)
+		{
+			num += 1000;
+		}
+		if (b.amount < 0)
+		{
+			num2 += 1000;
+		}
+		if (a.modifier == Modifier.Percent)
+		{
+			num += 100;
+		}
+		if (b.modifier == Modifier.Percent)
+		{
+			num2 += 100;
+		}
+		if (num < num2)
+		{
+			return -1;
+		}
+		if (num > num2)
+		{
+			return 1;
+		}
+		return 0;
+	}
 }

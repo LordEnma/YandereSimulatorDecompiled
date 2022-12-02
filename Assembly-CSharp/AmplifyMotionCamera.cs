@@ -1,234 +1,317 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: AmplifyMotionCamera
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
+using AmplifyMotion;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 [AddComponentMenu("")]
-[RequireComponent(typeof (Camera))]
+[RequireComponent(typeof(Camera))]
 public class AmplifyMotionCamera : MonoBehaviour
 {
-  internal AmplifyMotionEffectBase Instance;
-  internal Matrix4x4 PrevViewProjMatrix;
-  internal Matrix4x4 ViewProjMatrix;
-  internal Matrix4x4 InvViewProjMatrix;
-  internal Matrix4x4 PrevViewProjMatrixRT;
-  internal Matrix4x4 ViewProjMatrixRT;
-  internal Transform Transform;
-  private bool m_linked;
-  private bool m_initialized;
-  private bool m_starting = true;
-  private bool m_autoStep = true;
-  private bool m_step;
-  private bool m_overlay;
-  private Camera m_camera;
-  private int m_prevFrameCount;
-  private HashSet<AmplifyMotionObjectBase> m_affectedObjectsTable = new HashSet<AmplifyMotionObjectBase>();
-  private AmplifyMotionObjectBase[] m_affectedObjects;
-  private bool m_affectedObjectsChanged = true;
-  private const CameraEvent m_renderCBEvent = CameraEvent.BeforeImageEffects;
-  private CommandBuffer m_renderCB;
+	internal AmplifyMotionEffectBase Instance;
 
-  public bool Initialized => this.m_initialized;
+	internal Matrix4x4 PrevViewProjMatrix;
 
-  public bool AutoStep => this.m_autoStep;
+	internal Matrix4x4 ViewProjMatrix;
 
-  public bool Overlay => this.m_overlay;
+	internal Matrix4x4 InvViewProjMatrix;
 
-  public Camera Camera => this.m_camera;
+	internal Matrix4x4 PrevViewProjMatrixRT;
 
-  public void RegisterObject(AmplifyMotionObjectBase obj)
-  {
-    this.m_affectedObjectsTable.Add(obj);
-    this.m_affectedObjectsChanged = true;
-  }
+	internal Matrix4x4 ViewProjMatrixRT;
 
-  public void UnregisterObject(AmplifyMotionObjectBase obj)
-  {
-    this.m_affectedObjectsTable.Remove(obj);
-    this.m_affectedObjectsChanged = true;
-  }
+	internal Transform Transform;
 
-  private void UpdateAffectedObjects()
-  {
-    if (this.m_affectedObjects == null || this.m_affectedObjectsTable.Count != this.m_affectedObjects.Length)
-      this.m_affectedObjects = new AmplifyMotionObjectBase[this.m_affectedObjectsTable.Count];
-    this.m_affectedObjectsTable.CopyTo(this.m_affectedObjects);
-    this.m_affectedObjectsChanged = false;
-  }
+	private bool m_linked;
 
-  public void LinkTo(AmplifyMotionEffectBase instance, bool overlay)
-  {
-    this.Instance = instance;
-    this.m_camera = this.GetComponent<Camera>();
-    this.m_camera.depthTextureMode |= DepthTextureMode.Depth;
-    this.InitializeCommandBuffers();
-    this.m_overlay = overlay;
-    this.m_linked = true;
-  }
+	private bool m_initialized;
 
-  public void Initialize()
-  {
-    this.m_step = false;
-    this.UpdateMatrices();
-    this.m_initialized = true;
-  }
+	private bool m_starting = true;
 
-  private void InitializeCommandBuffers()
-  {
-    this.ShutdownCommandBuffers();
-    this.m_renderCB = new CommandBuffer();
-    this.m_renderCB.name = "AmplifyMotion.Render";
-    this.m_camera.AddCommandBuffer(CameraEvent.BeforeImageEffects, this.m_renderCB);
-  }
+	private bool m_autoStep = true;
 
-  private void ShutdownCommandBuffers()
-  {
-    if (this.m_renderCB == null)
-      return;
-    this.m_camera.RemoveCommandBuffer(CameraEvent.BeforeImageEffects, this.m_renderCB);
-    this.m_renderCB.Release();
-    this.m_renderCB = (CommandBuffer) null;
-  }
+	private bool m_step;
 
-  private void Awake() => this.Transform = this.transform;
+	private bool m_overlay;
 
-  private void OnEnable() => AmplifyMotionEffectBase.RegisterCamera(this);
+	private Camera m_camera;
 
-  private void OnDisable()
-  {
-    this.m_initialized = false;
-    this.ShutdownCommandBuffers();
-    AmplifyMotionEffectBase.UnregisterCamera(this);
-  }
+	private int m_prevFrameCount;
 
-  private void OnDestroy()
-  {
-    if (!((Object) this.Instance != (Object) null))
-      return;
-    this.Instance.RemoveCamera(this.m_camera);
-  }
+	private HashSet<AmplifyMotionObjectBase> m_affectedObjectsTable = new HashSet<AmplifyMotionObjectBase>();
 
-  public void StopAutoStep()
-  {
-    if (!this.m_autoStep)
-      return;
-    this.m_autoStep = false;
-    this.m_step = true;
-  }
+	private AmplifyMotionObjectBase[] m_affectedObjects;
 
-  public void StartAutoStep() => this.m_autoStep = true;
+	private bool m_affectedObjectsChanged = true;
 
-  public void Step() => this.m_step = true;
+	private const CameraEvent m_renderCBEvent = CameraEvent.BeforeImageEffects;
 
-  private void Update()
-  {
-    if (!this.m_linked || !this.Instance.isActiveAndEnabled)
-      return;
-    if (!this.m_initialized)
-      this.Initialize();
-    if ((this.m_camera.depthTextureMode & DepthTextureMode.Depth) != DepthTextureMode.None)
-      return;
-    this.m_camera.depthTextureMode |= DepthTextureMode.Depth;
-  }
+	private CommandBuffer m_renderCB;
 
-  private void UpdateMatrices()
-  {
-    if (!this.m_starting)
-    {
-      this.PrevViewProjMatrix = this.ViewProjMatrix;
-      this.PrevViewProjMatrixRT = this.ViewProjMatrixRT;
-    }
-    Matrix4x4 worldToCameraMatrix = this.m_camera.worldToCameraMatrix;
-    this.ViewProjMatrix = GL.GetGPUProjectionMatrix(this.m_camera.projectionMatrix, false) * worldToCameraMatrix;
-    this.InvViewProjMatrix = Matrix4x4.Inverse(this.ViewProjMatrix);
-    this.ViewProjMatrixRT = GL.GetGPUProjectionMatrix(this.m_camera.projectionMatrix, true) * worldToCameraMatrix;
-    if (!this.m_starting)
-      return;
-    this.PrevViewProjMatrix = this.ViewProjMatrix;
-    this.PrevViewProjMatrixRT = this.ViewProjMatrixRT;
-  }
+	public bool Initialized
+	{
+		get
+		{
+			return m_initialized;
+		}
+	}
 
-  public void FixedUpdateTransform(AmplifyMotionEffectBase inst, CommandBuffer updateCB)
-  {
-    if (!this.m_initialized)
-      this.Initialize();
-    if (this.m_affectedObjectsChanged)
-      this.UpdateAffectedObjects();
-    for (int index = 0; index < this.m_affectedObjects.Length; ++index)
-    {
-      if (this.m_affectedObjects[index].FixedStep)
-        this.m_affectedObjects[index].OnUpdateTransform(inst, this.m_camera, updateCB, this.m_starting);
-    }
-  }
+	public bool AutoStep
+	{
+		get
+		{
+			return m_autoStep;
+		}
+	}
 
-  public void UpdateTransform(AmplifyMotionEffectBase inst, CommandBuffer updateCB)
-  {
-    if (!this.m_initialized)
-      this.Initialize();
-    if (Time.frameCount <= this.m_prevFrameCount || !this.m_autoStep && !this.m_step)
-      return;
-    this.UpdateMatrices();
-    if (this.m_affectedObjectsChanged)
-      this.UpdateAffectedObjects();
-    for (int index = 0; index < this.m_affectedObjects.Length; ++index)
-    {
-      if (!this.m_affectedObjects[index].FixedStep)
-        this.m_affectedObjects[index].OnUpdateTransform(inst, this.m_camera, updateCB, this.m_starting);
-    }
-    this.m_starting = false;
-    this.m_step = false;
-    this.m_prevFrameCount = Time.frameCount;
-  }
+	public bool Overlay
+	{
+		get
+		{
+			return m_overlay;
+		}
+	}
 
-  public void RenderReprojectionVectors(RenderTexture destination, float scale)
-  {
-    this.m_renderCB.SetGlobalMatrix("_AM_MATRIX_CURR_REPROJ", this.PrevViewProjMatrix * this.InvViewProjMatrix);
-    this.m_renderCB.SetGlobalFloat("_AM_MOTION_SCALE", scale);
-    this.m_renderCB.Blit(new RenderTargetIdentifier((Texture) null), (RenderTargetIdentifier) (Texture) destination, this.Instance.ReprojectionMaterial);
-  }
+	public Camera Camera
+	{
+		get
+		{
+			return m_camera;
+		}
+	}
 
-  public void PreRenderVectors(RenderTexture motionRT, bool clearColor, float rcpDepthThreshold)
-  {
-    this.m_renderCB.Clear();
-    this.m_renderCB.SetGlobalFloat("_AM_MIN_VELOCITY", this.Instance.MinVelocity);
-    this.m_renderCB.SetGlobalFloat("_AM_MAX_VELOCITY", this.Instance.MaxVelocity);
-    this.m_renderCB.SetGlobalFloat("_AM_RCP_TOTAL_VELOCITY", (float) (1.0 / ((double) this.Instance.MaxVelocity - (double) this.Instance.MinVelocity)));
-    this.m_renderCB.SetGlobalVector("_AM_DEPTH_THRESHOLD", (Vector4) new Vector2(this.Instance.DepthThreshold, rcpDepthThreshold));
-    this.m_renderCB.SetRenderTarget((RenderTargetIdentifier) (Texture) motionRT);
-    this.m_renderCB.ClearRenderTarget(true, clearColor, Color.black);
-  }
+	public void RegisterObject(AmplifyMotionObjectBase obj)
+	{
+		m_affectedObjectsTable.Add(obj);
+		m_affectedObjectsChanged = true;
+	}
 
-  public void RenderVectors(float scale, float fixedScale, AmplifyMotion.Quality quality)
-  {
-    if (!this.m_initialized)
-      this.Initialize();
-    float nearClipPlane = this.m_camera.nearClipPlane;
-    float farClipPlane = this.m_camera.farClipPlane;
-    Vector4 vector4;
-    if (AmplifyMotionEffectBase.IsD3D)
-    {
-      vector4.x = (float) (1.0 - (double) farClipPlane / (double) nearClipPlane);
-      vector4.y = farClipPlane / nearClipPlane;
-    }
-    else
-    {
-      vector4.x = (float) ((1.0 - (double) farClipPlane / (double) nearClipPlane) / 2.0);
-      vector4.y = (float) ((1.0 + (double) farClipPlane / (double) nearClipPlane) / 2.0);
-    }
-    vector4.z = vector4.x / farClipPlane;
-    vector4.w = vector4.y / farClipPlane;
-    this.m_renderCB.SetGlobalVector("_AM_ZBUFFER_PARAMS", vector4);
-    if (this.m_affectedObjectsChanged)
-      this.UpdateAffectedObjects();
-    for (int index = 0; index < this.m_affectedObjects.Length; ++index)
-    {
-      if ((this.m_camera.cullingMask & 1 << this.m_affectedObjects[index].gameObject.layer) != 0)
-        this.m_affectedObjects[index].OnRenderVectors(this.m_camera, this.m_renderCB, this.m_affectedObjects[index].FixedStep ? fixedScale : scale, quality);
-    }
-  }
+	public void UnregisterObject(AmplifyMotionObjectBase obj)
+	{
+		m_affectedObjectsTable.Remove(obj);
+		m_affectedObjectsChanged = true;
+	}
+
+	private void UpdateAffectedObjects()
+	{
+		if (m_affectedObjects == null || m_affectedObjectsTable.Count != m_affectedObjects.Length)
+		{
+			m_affectedObjects = new AmplifyMotionObjectBase[m_affectedObjectsTable.Count];
+		}
+		m_affectedObjectsTable.CopyTo(m_affectedObjects);
+		m_affectedObjectsChanged = false;
+	}
+
+	public void LinkTo(AmplifyMotionEffectBase instance, bool overlay)
+	{
+		Instance = instance;
+		m_camera = GetComponent<Camera>();
+		m_camera.depthTextureMode |= DepthTextureMode.Depth;
+		InitializeCommandBuffers();
+		m_overlay = overlay;
+		m_linked = true;
+	}
+
+	public void Initialize()
+	{
+		m_step = false;
+		UpdateMatrices();
+		m_initialized = true;
+	}
+
+	private void InitializeCommandBuffers()
+	{
+		ShutdownCommandBuffers();
+		m_renderCB = new CommandBuffer();
+		m_renderCB.name = "AmplifyMotion.Render";
+		m_camera.AddCommandBuffer(CameraEvent.BeforeImageEffects, m_renderCB);
+	}
+
+	private void ShutdownCommandBuffers()
+	{
+		if (m_renderCB != null)
+		{
+			m_camera.RemoveCommandBuffer(CameraEvent.BeforeImageEffects, m_renderCB);
+			m_renderCB.Release();
+			m_renderCB = null;
+		}
+	}
+
+	private void Awake()
+	{
+		Transform = base.transform;
+	}
+
+	private void OnEnable()
+	{
+		AmplifyMotionEffectBase.RegisterCamera(this);
+	}
+
+	private void OnDisable()
+	{
+		m_initialized = false;
+		ShutdownCommandBuffers();
+		AmplifyMotionEffectBase.UnregisterCamera(this);
+	}
+
+	private void OnDestroy()
+	{
+		if (Instance != null)
+		{
+			Instance.RemoveCamera(m_camera);
+		}
+	}
+
+	public void StopAutoStep()
+	{
+		if (m_autoStep)
+		{
+			m_autoStep = false;
+			m_step = true;
+		}
+	}
+
+	public void StartAutoStep()
+	{
+		m_autoStep = true;
+	}
+
+	public void Step()
+	{
+		m_step = true;
+	}
+
+	private void Update()
+	{
+		if (m_linked && Instance.isActiveAndEnabled)
+		{
+			if (!m_initialized)
+			{
+				Initialize();
+			}
+			if ((m_camera.depthTextureMode & DepthTextureMode.Depth) == 0)
+			{
+				m_camera.depthTextureMode |= DepthTextureMode.Depth;
+			}
+		}
+	}
+
+	private void UpdateMatrices()
+	{
+		if (!m_starting)
+		{
+			PrevViewProjMatrix = ViewProjMatrix;
+			PrevViewProjMatrixRT = ViewProjMatrixRT;
+		}
+		Matrix4x4 worldToCameraMatrix = m_camera.worldToCameraMatrix;
+		Matrix4x4 gPUProjectionMatrix = GL.GetGPUProjectionMatrix(m_camera.projectionMatrix, false);
+		ViewProjMatrix = gPUProjectionMatrix * worldToCameraMatrix;
+		InvViewProjMatrix = Matrix4x4.Inverse(ViewProjMatrix);
+		Matrix4x4 gPUProjectionMatrix2 = GL.GetGPUProjectionMatrix(m_camera.projectionMatrix, true);
+		ViewProjMatrixRT = gPUProjectionMatrix2 * worldToCameraMatrix;
+		if (m_starting)
+		{
+			PrevViewProjMatrix = ViewProjMatrix;
+			PrevViewProjMatrixRT = ViewProjMatrixRT;
+		}
+	}
+
+	public void FixedUpdateTransform(AmplifyMotionEffectBase inst, CommandBuffer updateCB)
+	{
+		if (!m_initialized)
+		{
+			Initialize();
+		}
+		if (m_affectedObjectsChanged)
+		{
+			UpdateAffectedObjects();
+		}
+		for (int i = 0; i < m_affectedObjects.Length; i++)
+		{
+			if (m_affectedObjects[i].FixedStep)
+			{
+				m_affectedObjects[i].OnUpdateTransform(inst, m_camera, updateCB, m_starting);
+			}
+		}
+	}
+
+	public void UpdateTransform(AmplifyMotionEffectBase inst, CommandBuffer updateCB)
+	{
+		if (!m_initialized)
+		{
+			Initialize();
+		}
+		if (Time.frameCount <= m_prevFrameCount || (!m_autoStep && !m_step))
+		{
+			return;
+		}
+		UpdateMatrices();
+		if (m_affectedObjectsChanged)
+		{
+			UpdateAffectedObjects();
+		}
+		for (int i = 0; i < m_affectedObjects.Length; i++)
+		{
+			if (!m_affectedObjects[i].FixedStep)
+			{
+				m_affectedObjects[i].OnUpdateTransform(inst, m_camera, updateCB, m_starting);
+			}
+		}
+		m_starting = false;
+		m_step = false;
+		m_prevFrameCount = Time.frameCount;
+	}
+
+	public void RenderReprojectionVectors(RenderTexture destination, float scale)
+	{
+		m_renderCB.SetGlobalMatrix("_AM_MATRIX_CURR_REPROJ", PrevViewProjMatrix * InvViewProjMatrix);
+		m_renderCB.SetGlobalFloat("_AM_MOTION_SCALE", scale);
+		RenderTexture tex = null;
+		m_renderCB.Blit(new RenderTargetIdentifier(tex), destination, Instance.ReprojectionMaterial);
+	}
+
+	public void PreRenderVectors(RenderTexture motionRT, bool clearColor, float rcpDepthThreshold)
+	{
+		m_renderCB.Clear();
+		m_renderCB.SetGlobalFloat("_AM_MIN_VELOCITY", Instance.MinVelocity);
+		m_renderCB.SetGlobalFloat("_AM_MAX_VELOCITY", Instance.MaxVelocity);
+		m_renderCB.SetGlobalFloat("_AM_RCP_TOTAL_VELOCITY", 1f / (Instance.MaxVelocity - Instance.MinVelocity));
+		m_renderCB.SetGlobalVector("_AM_DEPTH_THRESHOLD", new Vector2(Instance.DepthThreshold, rcpDepthThreshold));
+		m_renderCB.SetRenderTarget(motionRT);
+		m_renderCB.ClearRenderTarget(true, clearColor, Color.black);
+	}
+
+	public void RenderVectors(float scale, float fixedScale, Quality quality)
+	{
+		if (!m_initialized)
+		{
+			Initialize();
+		}
+		float nearClipPlane = m_camera.nearClipPlane;
+		float farClipPlane = m_camera.farClipPlane;
+		Vector4 value = default(Vector4);
+		if (AmplifyMotionEffectBase.IsD3D)
+		{
+			value.x = 1f - farClipPlane / nearClipPlane;
+			value.y = farClipPlane / nearClipPlane;
+		}
+		else
+		{
+			value.x = (1f - farClipPlane / nearClipPlane) / 2f;
+			value.y = (1f + farClipPlane / nearClipPlane) / 2f;
+		}
+		value.z = value.x / farClipPlane;
+		value.w = value.y / farClipPlane;
+		m_renderCB.SetGlobalVector("_AM_ZBUFFER_PARAMS", value);
+		if (m_affectedObjectsChanged)
+		{
+			UpdateAffectedObjects();
+		}
+		for (int i = 0; i < m_affectedObjects.Length; i++)
+		{
+			if ((m_camera.cullingMask & (1 << m_affectedObjects[i].gameObject.layer)) != 0)
+			{
+				m_affectedObjects[i].OnRenderVectors(m_camera, m_renderCB, m_affectedObjects[i].FixedStep ? fixedScale : scale, quality);
+			}
+		}
+	}
 }

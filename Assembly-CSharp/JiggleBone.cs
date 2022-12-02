@@ -1,81 +1,93 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: JiggleBone
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class JiggleBone : MonoBehaviour
 {
-  public bool debugMode = true;
-  private Vector3 dynamicPos;
-  public Vector3 boneAxis = new Vector3(0.0f, 0.0f, 1f);
-  public float targetDistance = 2f;
-  public float bStiffness = 0.1f;
-  public float bMass = 0.9f;
-  public float bDamping = 0.75f;
-  public float bGravity = 0.75f;
-  private Vector3 force;
-  private Vector3 acc;
-  private Vector3 vel;
-  public bool SquashAndStretch = true;
-  public float sideStretch = 0.15f;
-  public float frontStretch = 0.2f;
+	public bool debugMode = true;
 
-  private void Awake() => this.dynamicPos = this.transform.position + this.transform.TransformDirection(this.boneAxis * this.targetDistance);
+	private Vector3 dynamicPos;
 
-  private void LateUpdate()
-  {
-    this.transform.rotation = new Quaternion();
-    Vector3 dir = this.transform.TransformDirection(this.boneAxis * this.targetDistance);
-    Vector3 vector3 = this.transform.TransformDirection(new Vector3(0.0f, 1f, 0.0f));
-    Vector3 start = this.transform.position + this.transform.TransformDirection(this.boneAxis * this.targetDistance);
-    this.force.x = (start.x - this.dynamicPos.x) * this.bStiffness;
-    this.acc.x = this.force.x / this.bMass;
-    this.vel.x += this.acc.x * (1f - this.bDamping);
-    this.force.y = (start.y - this.dynamicPos.y) * this.bStiffness;
-    this.force.y -= this.bGravity / 10f;
-    this.acc.y = this.force.y / this.bMass;
-    this.vel.y += this.acc.y * (1f - this.bDamping);
-    this.force.z = (start.z - this.dynamicPos.z) * this.bStiffness;
-    this.acc.z = this.force.z / this.bMass;
-    this.vel.z += this.acc.z * (1f - this.bDamping);
-    this.dynamicPos += this.vel + this.force;
-    this.transform.LookAt(this.dynamicPos, vector3);
-    if (this.SquashAndStretch)
-    {
-      float magnitude = (this.dynamicPos - start).magnitude;
-      if ((double) this.boneAxis.x != 0.0)
-      {
-        double frontStretch1 = (double) this.frontStretch;
-      }
-      else
-      {
-        double sideStretch1 = (double) this.sideStretch;
-      }
-      if ((double) this.boneAxis.y != 0.0)
-      {
-        double frontStretch2 = (double) this.frontStretch;
-      }
-      else
-      {
-        double sideStretch2 = (double) this.sideStretch;
-      }
-      if ((double) this.boneAxis.z != 0.0)
-      {
-        double frontStretch3 = (double) this.frontStretch;
-      }
-      else
-      {
-        double sideStretch3 = (double) this.sideStretch;
-      }
-    }
-    if (!this.debugMode)
-      return;
-    Debug.DrawRay(this.transform.position, dir, Color.blue);
-    Debug.DrawRay(this.transform.position, vector3, Color.green);
-    Debug.DrawRay(start, Vector3.up * 0.2f, Color.yellow);
-    Debug.DrawRay(this.dynamicPos, Vector3.up * 0.2f, Color.red);
-  }
+	public Vector3 boneAxis = new Vector3(0f, 0f, 1f);
+
+	public float targetDistance = 2f;
+
+	public float bStiffness = 0.1f;
+
+	public float bMass = 0.9f;
+
+	public float bDamping = 0.75f;
+
+	public float bGravity = 0.75f;
+
+	private Vector3 force;
+
+	private Vector3 acc;
+
+	private Vector3 vel;
+
+	public bool SquashAndStretch = true;
+
+	public float sideStretch = 0.15f;
+
+	public float frontStretch = 0.2f;
+
+	private void Awake()
+	{
+		Vector3 vector = base.transform.position + base.transform.TransformDirection(boneAxis * targetDistance);
+		dynamicPos = vector;
+	}
+
+	private void LateUpdate()
+	{
+		base.transform.rotation = default(Quaternion);
+		Vector3 dir = base.transform.TransformDirection(boneAxis * targetDistance);
+		Vector3 vector = base.transform.TransformDirection(new Vector3(0f, 1f, 0f));
+		Vector3 vector2 = base.transform.position + base.transform.TransformDirection(boneAxis * targetDistance);
+		force.x = (vector2.x - dynamicPos.x) * bStiffness;
+		acc.x = force.x / bMass;
+		vel.x += acc.x * (1f - bDamping);
+		force.y = (vector2.y - dynamicPos.y) * bStiffness;
+		force.y -= bGravity / 10f;
+		acc.y = force.y / bMass;
+		vel.y += acc.y * (1f - bDamping);
+		force.z = (vector2.z - dynamicPos.z) * bStiffness;
+		acc.z = force.z / bMass;
+		vel.z += acc.z * (1f - bDamping);
+		dynamicPos += vel + force;
+		base.transform.LookAt(dynamicPos, vector);
+		if (SquashAndStretch)
+		{
+			float magnitude = (dynamicPos - vector2).magnitude;
+			if (boneAxis.x != 0f)
+			{
+				float frontStretch2 = frontStretch;
+			}
+			else
+			{
+				float sideStretch2 = sideStretch;
+			}
+			if (boneAxis.y != 0f)
+			{
+				float frontStretch3 = frontStretch;
+			}
+			else
+			{
+				float sideStretch3 = sideStretch;
+			}
+			if (boneAxis.z != 0f)
+			{
+				float frontStretch4 = frontStretch;
+			}
+			else
+			{
+				float sideStretch4 = sideStretch;
+			}
+		}
+		if (debugMode)
+		{
+			Debug.DrawRay(base.transform.position, dir, Color.blue);
+			Debug.DrawRay(base.transform.position, vector, Color.green);
+			Debug.DrawRay(vector2, Vector3.up * 0.2f, Color.yellow);
+			Debug.DrawRay(dynamicPos, Vector3.up * 0.2f, Color.red);
+		}
+	}
 }

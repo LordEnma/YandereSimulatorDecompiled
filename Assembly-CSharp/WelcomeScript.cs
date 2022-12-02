@@ -1,82 +1,103 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: WelcomeScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class WelcomeScript : MonoBehaviour
 {
-  public JsonScript JSON;
-  public GameObject WelcomePanel;
-  public UILabel[] FlashingLabels;
-  public UILabel AltBeginLabel;
-  public UILabel BeginLabel;
-  public UILabel[] Labels;
-  public UISprite Darkness;
-  public bool Continue;
-  public bool FlashRed;
-  public float VersionNumber;
-  public float Timer;
-  public float Speed = 1f;
-  public string Text;
-  public int CurrentLabel = 1;
-  public int ID;
+	public JsonScript JSON;
 
-  private void Start()
-  {
-    Time.timeScale = 1f;
-    for (this.ID = 0; this.ID < this.Labels.Length; ++this.ID)
-      this.Labels[this.ID].color = new Color(this.Labels[this.ID].color.r, this.Labels[this.ID].color.g, this.Labels[this.ID].color.b, 0.0f);
-    Cursor.lockState = CursorLockMode.Locked;
-    Cursor.visible = false;
-    if ((double) ApplicationGlobals.VersionNumber != (double) this.VersionNumber)
-      ApplicationGlobals.VersionNumber = this.VersionNumber;
-    if (!Application.CanStreamedLevelBeLoaded("FunScene"))
-      Application.Quit();
-    if (File.Exists(Application.streamingAssetsPath + "/Fun.txt"))
-      this.Text = File.ReadAllText(Application.streamingAssetsPath + "/Fun.txt");
-    if (!(this.Text == "0") && !(this.Text == "1") && !(this.Text == "2") && !(this.Text == "3") && !(this.Text == "4") && !(this.Text == "5") && !(this.Text == "6") && !(this.Text == "7") && !(this.Text == "8") && !(this.Text == "9") && !(this.Text == "10") && !(this.Text == "69") && !(this.Text == "666"))
-      return;
-    SceneManager.LoadScene("VeryFunScene");
-  }
+	public GameObject WelcomePanel;
 
-  private void Update()
-  {
-    Input.GetKeyDown(KeyCode.S);
-    Input.GetKeyDown(KeyCode.Y);
-    if (!this.Continue)
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, this.Darkness.color.a - Time.deltaTime);
-      if ((double) this.Darkness.color.a > 0.0)
-        return;
-      Input.GetKeyDown(KeyCode.W);
-      if (Input.anyKeyDown)
-        ++this.Speed;
-      if (this.CurrentLabel < this.Labels.Length)
-      {
-        this.Labels[this.CurrentLabel].color = new Color(this.Labels[this.CurrentLabel].color.r, this.Labels[this.CurrentLabel].color.g, this.Labels[this.CurrentLabel].color.b, this.Labels[this.CurrentLabel].color.a + Time.deltaTime * this.Speed);
-        if ((double) this.Labels[this.CurrentLabel].color.a < 1.0)
-          return;
-        ++this.CurrentLabel;
-      }
-      else
-      {
-        if (!Input.anyKeyDown)
-          return;
-        this.Darkness.color = new Color(1f, 1f, 1f, 0.0f);
-        this.Continue = true;
-      }
-    }
-    else
-    {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, this.Darkness.color.a + Time.deltaTime);
-      if ((double) this.Darkness.color.a < 1.0)
-        return;
-      SceneManager.LoadScene("SponsorScene");
-    }
-  }
+	public UILabel[] FlashingLabels;
+
+	public UILabel AltBeginLabel;
+
+	public UILabel BeginLabel;
+
+	public UILabel[] Labels;
+
+	public UISprite Darkness;
+
+	public bool Continue;
+
+	public bool FlashRed;
+
+	public float VersionNumber;
+
+	public float Timer;
+
+	public float Speed = 1f;
+
+	public string Text;
+
+	public int CurrentLabel = 1;
+
+	public int ID;
+
+	private void Start()
+	{
+		Time.timeScale = 1f;
+		for (ID = 0; ID < Labels.Length; ID++)
+		{
+			Labels[ID].color = new Color(Labels[ID].color.r, Labels[ID].color.g, Labels[ID].color.b, 0f);
+		}
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		if (ApplicationGlobals.VersionNumber != VersionNumber)
+		{
+			ApplicationGlobals.VersionNumber = VersionNumber;
+		}
+		if (!Application.CanStreamedLevelBeLoaded("FunScene"))
+		{
+			Application.Quit();
+		}
+		if (File.Exists(Application.streamingAssetsPath + "/Fun.txt"))
+		{
+			Text = File.ReadAllText(Application.streamingAssetsPath + "/Fun.txt");
+		}
+		if (Text == "0" || Text == "1" || Text == "2" || Text == "3" || Text == "4" || Text == "5" || Text == "6" || Text == "7" || Text == "8" || Text == "9" || Text == "10" || Text == "69" || Text == "666")
+		{
+			SceneManager.LoadScene("VeryFunScene");
+		}
+	}
+
+	private void Update()
+	{
+		Input.GetKeyDown(KeyCode.S);
+		Input.GetKeyDown(KeyCode.Y);
+		if (!Continue)
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Darkness.color.a - Time.deltaTime);
+			if (!(Darkness.color.a <= 0f))
+			{
+				return;
+			}
+			Input.GetKeyDown(KeyCode.W);
+			if (Input.anyKeyDown)
+			{
+				Speed += 1f;
+			}
+			if (CurrentLabel < Labels.Length)
+			{
+				Labels[CurrentLabel].color = new Color(Labels[CurrentLabel].color.r, Labels[CurrentLabel].color.g, Labels[CurrentLabel].color.b, Labels[CurrentLabel].color.a + Time.deltaTime * Speed);
+				if (Labels[CurrentLabel].color.a >= 1f)
+				{
+					CurrentLabel++;
+				}
+			}
+			else if (Input.anyKeyDown)
+			{
+				Darkness.color = new Color(1f, 1f, 1f, 0f);
+				Continue = true;
+			}
+		}
+		else
+		{
+			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Darkness.color.a + Time.deltaTime);
+			if (Darkness.color.a >= 1f)
+			{
+				SceneManager.LoadScene("SponsorScene");
+			}
+		}
+	}
 }

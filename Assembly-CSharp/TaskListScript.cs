@@ -1,188 +1,225 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TaskListScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections;
 using UnityEngine;
 
 public class TaskListScript : MonoBehaviour
 {
-  public TutorialWindowScript TutorialWindow;
-  public InputManagerScript InputManager;
-  public PauseScreenScript PauseScreen;
-  public TaskWindowScript TaskWindow;
-  public JsonScript JSON;
-  public GameObject MainMenu;
-  public UITexture StudentIcon;
-  public UITexture TaskIcon;
-  public UILabel TaskDesc;
-  public Texture QuestionMark;
-  public Transform Highlight;
-  public Texture Silhouette;
-  public UILabel[] TaskNameLabels;
-  public UISprite[] Checkmarks;
-  public Texture[] TutorialTextures;
-  public string[] TutorialDescs;
-  public string[] TutorialNames;
-  public float HeldDown;
-  public float HeldUp;
-  public int ListPosition;
-  public int Limit = 84;
-  public int ID = 1;
-  public bool Tutorials;
+	public TutorialWindowScript TutorialWindow;
 
-  private void Start()
-  {
-    if (!MissionModeGlobals.MissionMode)
-      return;
-    this.TaskDesc.color = new Color(1f, 1f, 1f, 1f);
-  }
+	public InputManagerScript InputManager;
 
-  private void Update()
-  {
-    if (this.InputManager.DPadUp || this.InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
-      this.HeldUp += Time.unscaledDeltaTime;
-    else
-      this.HeldUp = 0.0f;
-    if (this.InputManager.DPadDown || this.InputManager.StickDown || Input.GetKey("s") || Input.GetKey("down"))
-      this.HeldDown += Time.unscaledDeltaTime;
-    else
-      this.HeldDown = 0.0f;
-    if (this.InputManager.TappedUp || (double) this.HeldUp > 0.5)
-    {
-      if ((double) this.HeldUp > 0.5)
-        this.HeldUp = 0.45f;
-      if (this.ID == 1)
-      {
-        --this.ListPosition;
-        if (this.ListPosition < 0)
-        {
-          this.ListPosition = this.Limit - 16;
-          this.ID = 16;
-        }
-      }
-      else
-        --this.ID;
-      this.UpdateTaskList();
-      this.StartCoroutine(this.UpdateTaskInfo());
-    }
-    if (this.InputManager.TappedDown || (double) this.HeldDown > 0.5)
-    {
-      if ((double) this.HeldDown > 0.5)
-        this.HeldDown = 0.45f;
-      if (this.ID == 16)
-      {
-        ++this.ListPosition;
-        if (this.ID + this.ListPosition > this.Limit)
-        {
-          this.ListPosition = 0;
-          this.ID = 1;
-        }
-      }
-      else
-        ++this.ID;
-      this.UpdateTaskList();
-      this.StartCoroutine(this.UpdateTaskInfo());
-    }
-    if (this.Tutorials)
-    {
-      if (this.TutorialWindow.Hide || this.TutorialWindow.Show)
-        return;
-      if (Input.GetButtonDown("A"))
-      {
-        OptionGlobals.TutorialsOff = false;
-        this.TutorialWindow.ForceID = this.ListPosition + this.ID;
-        this.TutorialWindow.ShowTutorial();
-        this.TutorialWindow.enabled = true;
-        this.TutorialWindow.SummonWindow();
-      }
-      else
-      {
-        if (!Input.GetButtonDown("B"))
-          return;
-        this.Exit();
-      }
-    }
-    else
-    {
-      if (!Input.GetButtonDown("B"))
-        return;
-      this.Exit();
-    }
-  }
+	public PauseScreenScript PauseScreen;
 
-  public void UpdateTaskList()
-  {
-    if (!this.TaskWindow.TaskManager.Initialized)
-      this.TaskWindow.TaskManager.Start();
-    if (this.Tutorials)
-    {
-      for (int index = 1; index < this.TaskNameLabels.Length; ++index)
-        this.TaskNameLabels[index].text = this.TutorialNames[index + this.ListPosition];
-    }
-    else
-    {
-      for (int index = 1; index < this.TaskNameLabels.Length; ++index)
-      {
-        this.TaskNameLabels[index].text = this.TaskWindow.TaskManager.TaskStatus[index + this.ListPosition] != 0 ? this.JSON.Students[index + this.ListPosition].Name + "'s Task" : "Undiscovered Task #" + (index + this.ListPosition).ToString();
-        this.Checkmarks[index].enabled = this.TaskWindow.TaskManager.TaskStatus[index + this.ListPosition] == 3;
-      }
-    }
-  }
+	public TaskWindowScript TaskWindow;
 
-  public IEnumerator UpdateTaskInfo()
-  {
-    this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (200.0 - 25.0 * (double) this.ID), this.Highlight.localPosition.z);
-    if (this.Tutorials)
-    {
-      this.TaskIcon.mainTexture = this.TutorialTextures[this.ID + this.ListPosition];
-      this.TaskDesc.text = "This tutorial will teach you about the topic of ''" + this.TutorialNames[this.ID + this.ListPosition] + "''.";
-    }
-    else
-    {
-      string str = "";
-      if (GameGlobals.Eighties)
-        str = "1989";
-      if (this.TaskWindow.TaskManager.TaskStatus[this.ID + this.ListPosition] == 0)
-      {
-        this.StudentIcon.mainTexture = this.Silhouette;
-        this.TaskIcon.mainTexture = this.QuestionMark;
-        this.TaskDesc.text = "This task has not been discovered yet.";
-      }
-      else
-      {
-        WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + str + "/Student_" + (this.ID + this.ListPosition).ToString() + ".png");
-        yield return (object) www;
-        this.StudentIcon.mainTexture = (Texture) www.texture;
-        this.TaskWindow.AltGenericCheck(this.ID + this.ListPosition);
-        if (this.TaskWindow.Generic)
-        {
-          this.TaskIcon.mainTexture = this.TaskWindow.Icons[0];
-          this.TaskDesc.text = this.TaskWindow.Descriptions[0];
-        }
-        else
-        {
-          this.TaskIcon.mainTexture = this.TaskWindow.Icons[this.ID + this.ListPosition];
-          this.TaskDesc.text = this.TaskWindow.Descriptions[this.ID + this.ListPosition];
-        }
-        www = (WWW) null;
-      }
-    }
-  }
+	public JsonScript JSON;
 
-  public void Exit()
-  {
-    this.PauseScreen.PromptBar.ClearButtons();
-    this.PauseScreen.PromptBar.Label[0].text = "Accept";
-    this.PauseScreen.PromptBar.Label[1].text = "Back";
-    this.PauseScreen.PromptBar.Label[4].text = "Choose";
-    this.PauseScreen.PromptBar.Label[5].text = "Choose";
-    this.PauseScreen.PromptBar.UpdateButtons();
-    this.PauseScreen.Sideways = false;
-    this.PauseScreen.PressedB = true;
-    this.MainMenu.SetActive(true);
-    this.gameObject.SetActive(false);
-  }
+	public GameObject MainMenu;
+
+	public UITexture StudentIcon;
+
+	public UITexture TaskIcon;
+
+	public UILabel TaskDesc;
+
+	public Texture QuestionMark;
+
+	public Transform Highlight;
+
+	public Texture Silhouette;
+
+	public UILabel[] TaskNameLabels;
+
+	public UISprite[] Checkmarks;
+
+	public Texture[] TutorialTextures;
+
+	public string[] TutorialDescs;
+
+	public string[] TutorialNames;
+
+	public float HeldDown;
+
+	public float HeldUp;
+
+	public int ListPosition;
+
+	public int Limit = 84;
+
+	public int ID = 1;
+
+	public bool Tutorials;
+
+	private void Start()
+	{
+		if (MissionModeGlobals.MissionMode)
+		{
+			TaskDesc.color = new Color(1f, 1f, 1f, 1f);
+		}
+	}
+
+	private void Update()
+	{
+		if (InputManager.DPadUp || InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
+		{
+			HeldUp += Time.unscaledDeltaTime;
+		}
+		else
+		{
+			HeldUp = 0f;
+		}
+		if (InputManager.DPadDown || InputManager.StickDown || Input.GetKey("s") || Input.GetKey("down"))
+		{
+			HeldDown += Time.unscaledDeltaTime;
+		}
+		else
+		{
+			HeldDown = 0f;
+		}
+		if (InputManager.TappedUp || HeldUp > 0.5f)
+		{
+			if (HeldUp > 0.5f)
+			{
+				HeldUp = 0.45f;
+			}
+			if (ID == 1)
+			{
+				ListPosition--;
+				if (ListPosition < 0)
+				{
+					ListPosition = Limit - 16;
+					ID = 16;
+				}
+			}
+			else
+			{
+				ID--;
+			}
+			UpdateTaskList();
+			StartCoroutine(UpdateTaskInfo());
+		}
+		if (InputManager.TappedDown || HeldDown > 0.5f)
+		{
+			if (HeldDown > 0.5f)
+			{
+				HeldDown = 0.45f;
+			}
+			if (ID == 16)
+			{
+				ListPosition++;
+				if (ID + ListPosition > Limit)
+				{
+					ListPosition = 0;
+					ID = 1;
+				}
+			}
+			else
+			{
+				ID++;
+			}
+			UpdateTaskList();
+			StartCoroutine(UpdateTaskInfo());
+		}
+		if (Tutorials)
+		{
+			if (!TutorialWindow.Hide && !TutorialWindow.Show)
+			{
+				if (Input.GetButtonDown("A"))
+				{
+					OptionGlobals.TutorialsOff = false;
+					TutorialWindow.ForceID = ListPosition + ID;
+					TutorialWindow.ShowTutorial();
+					TutorialWindow.enabled = true;
+					TutorialWindow.SummonWindow();
+				}
+				else if (Input.GetButtonDown("B"))
+				{
+					Exit();
+				}
+			}
+		}
+		else if (Input.GetButtonDown("B"))
+		{
+			Exit();
+		}
+	}
+
+	public void UpdateTaskList()
+	{
+		if (!TaskWindow.TaskManager.Initialized)
+		{
+			TaskWindow.TaskManager.Start();
+		}
+		if (Tutorials)
+		{
+			for (int i = 1; i < TaskNameLabels.Length; i++)
+			{
+				TaskNameLabels[i].text = TutorialNames[i + ListPosition];
+			}
+			return;
+		}
+		for (int j = 1; j < TaskNameLabels.Length; j++)
+		{
+			if (TaskWindow.TaskManager.TaskStatus[j + ListPosition] == 0)
+			{
+				TaskNameLabels[j].text = "Undiscovered Task #" + (j + ListPosition);
+			}
+			else
+			{
+				TaskNameLabels[j].text = JSON.Students[j + ListPosition].Name + "'s Task";
+			}
+			Checkmarks[j].enabled = TaskWindow.TaskManager.TaskStatus[j + ListPosition] == 3;
+		}
+	}
+
+	public IEnumerator UpdateTaskInfo()
+	{
+		Highlight.localPosition = new Vector3(Highlight.localPosition.x, 200f - 25f * (float)ID, Highlight.localPosition.z);
+		if (Tutorials)
+		{
+			TaskIcon.mainTexture = TutorialTextures[ID + ListPosition];
+			TaskDesc.text = "This tutorial will teach you about the topic of ''" + TutorialNames[ID + ListPosition] + "''.";
+			yield break;
+		}
+		string text = "";
+		if (GameGlobals.Eighties)
+		{
+			text = "1989";
+		}
+		if (TaskWindow.TaskManager.TaskStatus[ID + ListPosition] == 0)
+		{
+			StudentIcon.mainTexture = Silhouette;
+			TaskIcon.mainTexture = QuestionMark;
+			TaskDesc.text = "This task has not been discovered yet.";
+			yield break;
+		}
+		string url = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_" + (ID + ListPosition) + ".png";
+		WWW www = new WWW(url);
+		yield return www;
+		StudentIcon.mainTexture = www.texture;
+		TaskWindow.AltGenericCheck(ID + ListPosition);
+		if (TaskWindow.Generic)
+		{
+			TaskIcon.mainTexture = TaskWindow.Icons[0];
+			TaskDesc.text = TaskWindow.Descriptions[0];
+		}
+		else
+		{
+			TaskIcon.mainTexture = TaskWindow.Icons[ID + ListPosition];
+			TaskDesc.text = TaskWindow.Descriptions[ID + ListPosition];
+		}
+	}
+
+	public void Exit()
+	{
+		PauseScreen.PromptBar.ClearButtons();
+		PauseScreen.PromptBar.Label[0].text = "Accept";
+		PauseScreen.PromptBar.Label[1].text = "Back";
+		PauseScreen.PromptBar.Label[4].text = "Choose";
+		PauseScreen.PromptBar.Label[5].text = "Choose";
+		PauseScreen.PromptBar.UpdateButtons();
+		PauseScreen.Sideways = false;
+		PauseScreen.PressedB = true;
+		MainMenu.SetActive(true);
+		base.gameObject.SetActive(false);
+	}
 }

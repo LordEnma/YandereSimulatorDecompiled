@@ -1,19 +1,16 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PhotoSwapperScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PhotoSwapperScript : MonoBehaviour
 {
-  public Renderer[] PhotoRenderer;
-  public Texture[] EightiesPhoto;
+	public Renderer[] PhotoRenderer;
 
-  private void Start()
-  {
-    for (int index = 1; index < this.PhotoRenderer.Length; ++index)
-      this.PhotoRenderer[index].material.mainTexture = this.EightiesPhoto[index];
-  }
+	public Texture[] EightiesPhoto;
+
+	private void Start()
+	{
+		for (int i = 1; i < PhotoRenderer.Length; i++)
+		{
+			PhotoRenderer[i].material.mainTexture = EightiesPhoto[i];
+		}
+	}
 }

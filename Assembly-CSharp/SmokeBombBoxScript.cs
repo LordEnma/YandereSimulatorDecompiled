@@ -1,63 +1,64 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SmokeBombBoxScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SmokeBombBoxScript : MonoBehaviour
 {
-  public AlphabetScript Alphabet;
-  public UITexture BombTexture;
-  public PromptScript Prompt;
-  public AudioSource MyAudio;
-  public bool Cheated;
-  public bool Amnesia;
-  public bool Stink;
+	public AlphabetScript Alphabet;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    if (!this.Cheated)
-    {
-      ++this.Alphabet.Cheats;
-      this.Alphabet.UpdateDifficultyLabel();
-      this.Cheated = true;
-    }
-    if (!this.Amnesia)
-    {
-      this.Alphabet.RemainingBombs = 5;
-      this.Alphabet.BombLabel.text = 5.ToString() ?? "";
-    }
-    else
-    {
-      this.Alphabet.RemainingBombs = 1;
-      this.Alphabet.BombLabel.text = 1.ToString() ?? "";
-    }
-    this.Prompt.Circle[0].fillAmount = 1f;
-    if (this.Stink)
-    {
-      this.BombTexture.color = new Color(0.0f, 0.5f, 0.0f, 1f);
-      this.Prompt.Yandere.Inventory.AmnesiaBomb = false;
-      this.Prompt.Yandere.Inventory.SmokeBomb = false;
-      this.Prompt.Yandere.Inventory.StinkBomb = true;
-    }
-    else if (this.Amnesia)
-    {
-      this.BombTexture.color = new Color(1f, 0.5f, 1f, 1f);
-      this.Prompt.Yandere.Inventory.AmnesiaBomb = true;
-      this.Prompt.Yandere.Inventory.SmokeBomb = false;
-      this.Prompt.Yandere.Inventory.StinkBomb = false;
-    }
-    else
-    {
-      this.BombTexture.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-      this.Prompt.Yandere.Inventory.AmnesiaBomb = false;
-      this.Prompt.Yandere.Inventory.StinkBomb = false;
-      this.Prompt.Yandere.Inventory.SmokeBomb = true;
-    }
-    this.MyAudio.Play();
-  }
+	public UITexture BombTexture;
+
+	public PromptScript Prompt;
+
+	public AudioSource MyAudio;
+
+	public bool Cheated;
+
+	public bool Amnesia;
+
+	public bool Stink;
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			if (!Cheated)
+			{
+				Alphabet.Cheats++;
+				Alphabet.UpdateDifficultyLabel();
+				Cheated = true;
+			}
+			if (!Amnesia)
+			{
+				Alphabet.RemainingBombs = 5;
+				Alphabet.BombLabel.text = 5.ToString() ?? "";
+			}
+			else
+			{
+				Alphabet.RemainingBombs = 1;
+				Alphabet.BombLabel.text = 1.ToString() ?? "";
+			}
+			Prompt.Circle[0].fillAmount = 1f;
+			if (Stink)
+			{
+				BombTexture.color = new Color(0f, 0.5f, 0f, 1f);
+				Prompt.Yandere.Inventory.AmnesiaBomb = false;
+				Prompt.Yandere.Inventory.SmokeBomb = false;
+				Prompt.Yandere.Inventory.StinkBomb = true;
+			}
+			else if (Amnesia)
+			{
+				BombTexture.color = new Color(1f, 0.5f, 1f, 1f);
+				Prompt.Yandere.Inventory.AmnesiaBomb = true;
+				Prompt.Yandere.Inventory.SmokeBomb = false;
+				Prompt.Yandere.Inventory.StinkBomb = false;
+			}
+			else
+			{
+				BombTexture.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				Prompt.Yandere.Inventory.AmnesiaBomb = false;
+				Prompt.Yandere.Inventory.StinkBomb = false;
+				Prompt.Yandere.Inventory.SmokeBomb = true;
+			}
+			MyAudio.Play();
+		}
+	}
 }

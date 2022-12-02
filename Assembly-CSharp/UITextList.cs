@@ -1,9 +1,3 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UITextList
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -11,214 +5,290 @@ using UnityEngine;
 [AddComponentMenu("NGUI/UI/Text List")]
 public class UITextList : MonoBehaviour
 {
-  public UILabel textLabel;
-  public UIProgressBar scrollBar;
-  public UITextList.Style style;
-  public int paragraphHistory = 100;
-  protected char[] mSeparator = new char[1]{ '\n' };
-  protected float mScroll;
-  protected int mTotalLines;
-  protected int mLastWidth;
-  protected int mLastHeight;
-  private BetterList<UITextList.Paragraph> mParagraphs;
-  private static Dictionary<string, BetterList<UITextList.Paragraph>> mHistory = new Dictionary<string, BetterList<UITextList.Paragraph>>();
+	[DoNotObfuscateNGUI]
+	public enum Style
+	{
+		Text = 0,
+		Chat = 1
+	}
 
-  protected BetterList<UITextList.Paragraph> paragraphs
-  {
-    get
-    {
-      if (this.mParagraphs == null && !UITextList.mHistory.TryGetValue(this.name, out this.mParagraphs))
-      {
-        this.mParagraphs = new BetterList<UITextList.Paragraph>();
-        UITextList.mHistory.Add(this.name, this.mParagraphs);
-      }
-      return this.mParagraphs;
-    }
-  }
+	protected class Paragraph
+	{
+		public string text;
 
-  public int paragraphCount => this.paragraphs.size;
+		public string[] lines;
+	}
 
-  public bool isValid => (Object) this.textLabel != (Object) null && this.textLabel.ambigiousFont != (Object) null;
+	public UILabel textLabel;
 
-  public float scrollValue
-  {
-    get => this.mScroll;
-    set
-    {
-      value = Mathf.Clamp01(value);
-      if (!this.isValid || (double) this.mScroll == (double) value)
-        return;
-      if ((Object) this.scrollBar != (Object) null)
-      {
-        this.scrollBar.value = value;
-      }
-      else
-      {
-        this.mScroll = value;
-        this.UpdateVisibleText();
-      }
-    }
-  }
+	public UIProgressBar scrollBar;
 
-  protected float lineHeight => !((Object) this.textLabel != (Object) null) ? 20f : (float) this.textLabel.fontSize + this.textLabel.effectiveSpacingY;
+	public Style style;
 
-  protected int scrollHeight => !this.isValid ? 0 : Mathf.Max(0, this.mTotalLines - Mathf.FloorToInt((float) this.textLabel.height / this.lineHeight));
+	public int paragraphHistory = 100;
 
-  public void Clear()
-  {
-    this.paragraphs.Clear();
-    this.UpdateVisibleText();
-  }
+	protected char[] mSeparator = new char[1] { '\n' };
 
-  private void Start()
-  {
-    if ((Object) this.textLabel == (Object) null)
-      this.textLabel = this.GetComponentInChildren<UILabel>();
-    if ((Object) this.scrollBar != (Object) null)
-      EventDelegate.Add(this.scrollBar.onChange, new EventDelegate.Callback(this.OnScrollBar));
-    this.textLabel.overflowMethod = UILabel.Overflow.ClampContent;
-    if (this.style == UITextList.Style.Chat)
-    {
-      this.textLabel.pivot = UIWidget.Pivot.BottomLeft;
-      this.scrollValue = 1f;
-    }
-    else
-    {
-      this.textLabel.pivot = UIWidget.Pivot.TopLeft;
-      this.scrollValue = 0.0f;
-    }
-  }
+	protected float mScroll;
 
-  private void Update()
-  {
-    if (!this.isValid || this.textLabel.width == this.mLastWidth && this.textLabel.height == this.mLastHeight)
-      return;
-    this.Rebuild();
-  }
+	protected int mTotalLines;
 
-  public void OnScroll(float val)
-  {
-    int scrollHeight = this.scrollHeight;
-    if (scrollHeight == 0)
-      return;
-    val *= this.lineHeight;
-    this.scrollValue = this.mScroll - val / (float) scrollHeight;
-  }
+	protected int mLastWidth;
 
-  public void OnDrag(Vector2 delta)
-  {
-    int scrollHeight = this.scrollHeight;
-    if (scrollHeight == 0)
-      return;
-    this.scrollValue = this.mScroll + delta.y / this.lineHeight / (float) scrollHeight;
-  }
+	protected int mLastHeight;
 
-  private void OnScrollBar()
-  {
-    this.mScroll = UIProgressBar.current.value;
-    this.UpdateVisibleText();
-  }
+	private BetterList<Paragraph> mParagraphs;
 
-  public void Add(string text) => this.Add(text, true);
+	private static Dictionary<string, BetterList<Paragraph>> mHistory = new Dictionary<string, BetterList<Paragraph>>();
 
-  protected void Add(string text, bool updateVisible)
-  {
-    UITextList.Paragraph paragraph;
-    if (this.paragraphs.size < this.paragraphHistory)
-    {
-      paragraph = new UITextList.Paragraph();
-    }
-    else
-    {
-      paragraph = this.mParagraphs.buffer[0];
-      this.mParagraphs.RemoveAt(0);
-    }
-    paragraph.text = text;
-    this.mParagraphs.Add(paragraph);
-    this.Rebuild();
-  }
+	protected BetterList<Paragraph> paragraphs
+	{
+		get
+		{
+			if (mParagraphs == null && !mHistory.TryGetValue(base.name, out mParagraphs))
+			{
+				mParagraphs = new BetterList<Paragraph>();
+				mHistory.Add(base.name, mParagraphs);
+			}
+			return mParagraphs;
+		}
+	}
 
-  protected void Rebuild()
-  {
-    if (!this.isValid)
-      return;
-    this.mLastWidth = this.textLabel.width;
-    this.mLastHeight = this.textLabel.height;
-    this.textLabel.UpdateNGUIText();
-    NGUIText.rectHeight = 1000000;
-    NGUIText.regionHeight = 1000000;
-    this.mTotalLines = 0;
-    for (int index = 0; index < this.paragraphs.size; ++index)
-    {
-      UITextList.Paragraph paragraph = this.mParagraphs.buffer[index];
-      string finalText;
-      NGUIText.WrapText(paragraph.text, out finalText, false, true);
-      paragraph.lines = finalText.Split('\n');
-      this.mTotalLines += paragraph.lines.Length;
-    }
-    this.mTotalLines = 0;
-    int index1 = 0;
-    for (int size = this.mParagraphs.size; index1 < size; ++index1)
-      this.mTotalLines += this.mParagraphs.buffer[index1].lines.Length;
-    if ((Object) this.scrollBar != (Object) null)
-    {
-      UIScrollBar scrollBar = this.scrollBar as UIScrollBar;
-      if ((Object) scrollBar != (Object) null)
-        scrollBar.barSize = this.mTotalLines == 0 ? 1f : (float) (1.0 - (double) this.scrollHeight / (double) this.mTotalLines);
-    }
-    this.UpdateVisibleText();
-  }
+	public int paragraphCount
+	{
+		get
+		{
+			return paragraphs.size;
+		}
+	}
 
-  protected void UpdateVisibleText()
-  {
-    if (!this.isValid)
-      return;
-    if (this.mTotalLines == 0)
-    {
-      this.textLabel.text = "";
-    }
-    else
-    {
-      int num1 = Mathf.FloorToInt((float) this.textLabel.height / this.lineHeight);
-      int num2 = Mathf.RoundToInt(this.mScroll * (float) Mathf.Max(0, this.mTotalLines - num1));
-      if (num2 < 0)
-        num2 = 0;
-      StringBuilder stringBuilder = new StringBuilder();
-      int index1 = 0;
-      for (int size = this.paragraphs.size; num1 > 0 && index1 < size; ++index1)
-      {
-        UITextList.Paragraph paragraph = this.mParagraphs.buffer[index1];
-        int index2 = 0;
-        for (int length = paragraph.lines.Length; num1 > 0 && index2 < length; ++index2)
-        {
-          string line = paragraph.lines[index2];
-          if (num2 > 0)
-          {
-            --num2;
-          }
-          else
-          {
-            if (stringBuilder.Length > 0)
-              stringBuilder.Append("\n");
-            stringBuilder.Append(line);
-            --num1;
-          }
-        }
-      }
-      this.textLabel.text = stringBuilder.ToString();
-    }
-  }
+	public bool isValid
+	{
+		get
+		{
+			if (textLabel != null)
+			{
+				return textLabel.ambigiousFont != null;
+			}
+			return false;
+		}
+	}
 
-  [DoNotObfuscateNGUI]
-  public enum Style
-  {
-    Text,
-    Chat,
-  }
+	public float scrollValue
+	{
+		get
+		{
+			return mScroll;
+		}
+		set
+		{
+			value = Mathf.Clamp01(value);
+			if (isValid && mScroll != value)
+			{
+				if (scrollBar != null)
+				{
+					scrollBar.value = value;
+					return;
+				}
+				mScroll = value;
+				UpdateVisibleText();
+			}
+		}
+	}
 
-  protected class Paragraph
-  {
-    public string text;
-    public string[] lines;
-  }
+	protected float lineHeight
+	{
+		get
+		{
+			if (!(textLabel != null))
+			{
+				return 20f;
+			}
+			return (float)textLabel.fontSize + textLabel.effectiveSpacingY;
+		}
+	}
+
+	protected int scrollHeight
+	{
+		get
+		{
+			if (!isValid)
+			{
+				return 0;
+			}
+			int num = Mathf.FloorToInt((float)textLabel.height / lineHeight);
+			return Mathf.Max(0, mTotalLines - num);
+		}
+	}
+
+	public void Clear()
+	{
+		paragraphs.Clear();
+		UpdateVisibleText();
+	}
+
+	private void Start()
+	{
+		if (textLabel == null)
+		{
+			textLabel = GetComponentInChildren<UILabel>();
+		}
+		if (scrollBar != null)
+		{
+			EventDelegate.Add(scrollBar.onChange, OnScrollBar);
+		}
+		textLabel.overflowMethod = UILabel.Overflow.ClampContent;
+		if (style == Style.Chat)
+		{
+			textLabel.pivot = UIWidget.Pivot.BottomLeft;
+			scrollValue = 1f;
+		}
+		else
+		{
+			textLabel.pivot = UIWidget.Pivot.TopLeft;
+			scrollValue = 0f;
+		}
+	}
+
+	private void Update()
+	{
+		if (isValid && (textLabel.width != mLastWidth || textLabel.height != mLastHeight))
+		{
+			Rebuild();
+		}
+	}
+
+	public void OnScroll(float val)
+	{
+		int num = scrollHeight;
+		if (num != 0)
+		{
+			val *= lineHeight;
+			scrollValue = mScroll - val / (float)num;
+		}
+	}
+
+	public void OnDrag(Vector2 delta)
+	{
+		int num = scrollHeight;
+		if (num != 0)
+		{
+			float num2 = delta.y / lineHeight;
+			scrollValue = mScroll + num2 / (float)num;
+		}
+	}
+
+	private void OnScrollBar()
+	{
+		mScroll = UIProgressBar.current.value;
+		UpdateVisibleText();
+	}
+
+	public void Add(string text)
+	{
+		Add(text, true);
+	}
+
+	protected void Add(string text, bool updateVisible)
+	{
+		Paragraph paragraph = null;
+		if (paragraphs.size < paragraphHistory)
+		{
+			paragraph = new Paragraph();
+		}
+		else
+		{
+			paragraph = mParagraphs.buffer[0];
+			mParagraphs.RemoveAt(0);
+		}
+		paragraph.text = text;
+		mParagraphs.Add(paragraph);
+		Rebuild();
+	}
+
+	protected void Rebuild()
+	{
+		if (!isValid)
+		{
+			return;
+		}
+		mLastWidth = textLabel.width;
+		mLastHeight = textLabel.height;
+		textLabel.UpdateNGUIText();
+		NGUIText.rectHeight = 1000000;
+		NGUIText.regionHeight = 1000000;
+		mTotalLines = 0;
+		for (int i = 0; i < paragraphs.size; i++)
+		{
+			Paragraph paragraph = mParagraphs.buffer[i];
+			string finalText;
+			NGUIText.WrapText(paragraph.text, out finalText, false, true);
+			paragraph.lines = finalText.Split('\n');
+			mTotalLines += paragraph.lines.Length;
+		}
+		mTotalLines = 0;
+		int j = 0;
+		for (int size = mParagraphs.size; j < size; j++)
+		{
+			mTotalLines += mParagraphs.buffer[j].lines.Length;
+		}
+		if (scrollBar != null)
+		{
+			UIScrollBar uIScrollBar = scrollBar as UIScrollBar;
+			if (uIScrollBar != null)
+			{
+				uIScrollBar.barSize = ((mTotalLines == 0) ? 1f : (1f - (float)scrollHeight / (float)mTotalLines));
+			}
+		}
+		UpdateVisibleText();
+	}
+
+	protected void UpdateVisibleText()
+	{
+		if (!isValid)
+		{
+			return;
+		}
+		if (mTotalLines == 0)
+		{
+			textLabel.text = "";
+			return;
+		}
+		int num = Mathf.FloorToInt((float)textLabel.height / lineHeight);
+		int num2 = Mathf.Max(0, mTotalLines - num);
+		int num3 = Mathf.RoundToInt(mScroll * (float)num2);
+		if (num3 < 0)
+		{
+			num3 = 0;
+		}
+		StringBuilder stringBuilder = new StringBuilder();
+		int num4 = 0;
+		int size = paragraphs.size;
+		while (num > 0 && num4 < size)
+		{
+			Paragraph paragraph = mParagraphs.buffer[num4];
+			int num5 = 0;
+			int num6 = paragraph.lines.Length;
+			while (num > 0 && num5 < num6)
+			{
+				string value = paragraph.lines[num5];
+				if (num3 > 0)
+				{
+					num3--;
+				}
+				else
+				{
+					if (stringBuilder.Length > 0)
+					{
+						stringBuilder.Append("\n");
+					}
+					stringBuilder.Append(value);
+					num--;
+				}
+				num5++;
+			}
+			num4++;
+		}
+		textLabel.text = stringBuilder.ToString();
+	}
 }

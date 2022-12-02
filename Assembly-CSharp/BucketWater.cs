@@ -1,37 +1,65 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: BucketWater
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [Serializable]
 public class BucketWater : BucketContents
 {
-  [SerializeField]
-  private float bloodiness;
-  [SerializeField]
-  private bool hasBleach;
+	[SerializeField]
+	private float bloodiness;
 
-  public float Bloodiness
-  {
-    get => this.bloodiness;
-    set => this.bloodiness = Mathf.Clamp01(value);
-  }
+	[SerializeField]
+	private bool hasBleach;
 
-  public bool HasBleach
-  {
-    get => this.hasBleach;
-    set => this.hasBleach = value;
-  }
+	public float Bloodiness
+	{
+		get
+		{
+			return bloodiness;
+		}
+		set
+		{
+			bloodiness = Mathf.Clamp01(value);
+		}
+	}
 
-  public override BucketContentsType Type => BucketContentsType.Water;
+	public bool HasBleach
+	{
+		get
+		{
+			return hasBleach;
+		}
+		set
+		{
+			hasBleach = value;
+		}
+	}
 
-  public override bool IsCleaningAgent => this.hasBleach;
+	public override BucketContentsType Type
+	{
+		get
+		{
+			return BucketContentsType.Water;
+		}
+	}
 
-  public override bool IsFlammable => false;
+	public override bool IsCleaningAgent
+	{
+		get
+		{
+			return hasBleach;
+		}
+	}
 
-  public override bool CanBeLifted(int strength) => true;
+	public override bool IsFlammable
+	{
+		get
+		{
+			return false;
+		}
+	}
+
+	public override bool CanBeLifted(int strength)
+	{
+		return true;
+	}
 }

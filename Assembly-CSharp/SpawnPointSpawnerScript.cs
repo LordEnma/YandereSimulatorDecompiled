@@ -1,48 +1,61 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SpawnPointSpawnerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SpawnPointSpawnerScript : MonoBehaviour
 {
-  public Transform SpawnPointParent;
-  public GameObject SimpleGirl;
-  public GameObject SpawnPoint;
-  public int IterationsToWait = 3;
-  public int Direction = 1;
-  public int Column = -4;
-  public int Iterations;
-  public int Limit;
-  public int Row;
-  public int ID;
-  public bool SpawnGirl;
+	public Transform SpawnPointParent;
 
-  private void Start()
-  {
-    while (this.ID < this.Limit)
-    {
-      if (this.Iterations == 0)
-      {
-        GameObject gameObject = !this.SpawnGirl ? Object.Instantiate<GameObject>(this.SpawnPoint, new Vector3((float) this.Column, 0.0f, (float) this.Row), Quaternion.identity) : Object.Instantiate<GameObject>(this.SimpleGirl, new Vector3((float) this.Column, 0.0f, (float) this.Row), Quaternion.identity);
-        gameObject.transform.parent = this.SpawnPointParent;
-        this.Iterations += this.IterationsToWait;
-        --this.Row;
-        ++this.ID;
-        gameObject.name = "SpawnPoint_" + this.ID.ToString();
-      }
-      this.Column += this.Direction;
-      if (this.Column > 4 || this.Column < -4)
-        this.Direction *= -1;
-      if (this.Column > 4)
-        this.Column -= 2;
-      if (this.Column < -4)
-        this.Column += 2;
-      if (this.Column == 0)
-        this.Column += this.Direction;
-      --this.Iterations;
-    }
-  }
+	public GameObject SimpleGirl;
+
+	public GameObject SpawnPoint;
+
+	public int IterationsToWait = 3;
+
+	public int Direction = 1;
+
+	public int Column = -4;
+
+	public int Iterations;
+
+	public int Limit;
+
+	public int Row;
+
+	public int ID;
+
+	public bool SpawnGirl;
+
+	private void Start()
+	{
+		while (ID < Limit)
+		{
+			if (Iterations == 0)
+			{
+				GameObject gameObject = null;
+				gameObject = ((!SpawnGirl) ? Object.Instantiate(SpawnPoint, new Vector3(Column, 0f, Row), Quaternion.identity) : Object.Instantiate(SimpleGirl, new Vector3(Column, 0f, Row), Quaternion.identity));
+				gameObject.transform.parent = SpawnPointParent;
+				Iterations += IterationsToWait;
+				Row--;
+				ID++;
+				gameObject.name = "SpawnPoint_" + ID;
+			}
+			Column += Direction;
+			if (Column > 4 || Column < -4)
+			{
+				Direction *= -1;
+			}
+			if (Column > 4)
+			{
+				Column -= 2;
+			}
+			if (Column < -4)
+			{
+				Column += 2;
+			}
+			if (Column == 0)
+			{
+				Column += Direction;
+			}
+			Iterations--;
+		}
+	}
 }

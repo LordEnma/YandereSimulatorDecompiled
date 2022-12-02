@@ -1,45 +1,40 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FixDummyScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FixDummyScript : MonoBehaviour
 {
-  public GameObject FixedDummy;
-  public PromptScript Prompt;
+	public GameObject FixedDummy;
 
-  private void Start()
-  {
-    this.FixedDummy.SetActive(false);
-    if (!GameGlobals.Eighties)
-      return;
-    this.Fix();
-  }
+	public PromptScript Prompt;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
-      return;
-    this.Prompt.Circle[0].fillAmount = 1f;
-    if (this.Prompt.Yandere.Armed && this.Prompt.Yandere.EquippedWeapon.WeaponID == 24)
-    {
-      this.Fix();
-    }
-    else
-    {
-      this.Prompt.Yandere.NotificationManager.CustomText = "Wrench required!";
-      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-    }
-  }
+	private void Start()
+	{
+		FixedDummy.SetActive(false);
+		if (GameGlobals.Eighties)
+		{
+			Fix();
+		}
+	}
 
-  private void Fix()
-  {
-    this.gameObject.SetActive(false);
-    this.FixedDummy.SetActive(true);
-    this.Prompt.enabled = false;
-    this.Prompt.Hide();
-  }
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			if (Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.WeaponID == 24)
+			{
+				Fix();
+				return;
+			}
+			Prompt.Yandere.NotificationManager.CustomText = "Wrench required!";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+		}
+	}
+
+	private void Fix()
+	{
+		base.gameObject.SetActive(false);
+		FixedDummy.SetActive(true);
+		Prompt.enabled = false;
+		Prompt.Hide();
+	}
 }

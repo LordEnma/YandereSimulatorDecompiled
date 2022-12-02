@@ -1,113 +1,153 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TweenColor
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Tween/Tween Color")]
 public class TweenColor : UITweener
 {
-  public Color from = Color.white;
-  public Color to = Color.white;
-  private bool mCached;
-  private UIWidget mWidget;
-  private Material mMat;
-  private Light mLight;
-  private SpriteRenderer mSr;
+	public Color from = Color.white;
 
-  private void Cache()
-  {
-    this.mCached = true;
-    this.mWidget = this.GetComponent<UIWidget>();
-    if ((UnityEngine.Object) this.mWidget != (UnityEngine.Object) null)
-      return;
-    this.mSr = this.GetComponent<SpriteRenderer>();
-    if ((UnityEngine.Object) this.mSr != (UnityEngine.Object) null)
-      return;
-    Renderer component = this.GetComponent<Renderer>();
-    if ((UnityEngine.Object) component != (UnityEngine.Object) null)
-    {
-      this.mMat = component.material;
-    }
-    else
-    {
-      this.mLight = this.GetComponent<Light>();
-      if (!((UnityEngine.Object) this.mLight == (UnityEngine.Object) null))
-        return;
-      this.mWidget = this.GetComponentInChildren<UIWidget>();
-    }
-  }
+	public Color to = Color.white;
 
-  [Obsolete("Use 'value' instead")]
-  public Color color
-  {
-    get => this.value;
-    set => this.value = value;
-  }
+	private bool mCached;
 
-  public Color value
-  {
-    get
-    {
-      if (!this.mCached)
-        this.Cache();
-      if ((UnityEngine.Object) this.mWidget != (UnityEngine.Object) null)
-        return this.mWidget.color;
-      if ((UnityEngine.Object) this.mMat != (UnityEngine.Object) null)
-        return this.mMat.color;
-      if ((UnityEngine.Object) this.mSr != (UnityEngine.Object) null)
-        return this.mSr.color;
-      return (UnityEngine.Object) this.mLight != (UnityEngine.Object) null ? this.mLight.color : Color.black;
-    }
-    set
-    {
-      if (!this.mCached)
-        this.Cache();
-      if ((UnityEngine.Object) this.mWidget != (UnityEngine.Object) null)
-        this.mWidget.color = value;
-      else if ((UnityEngine.Object) this.mMat != (UnityEngine.Object) null)
-        this.mMat.color = value;
-      else if ((UnityEngine.Object) this.mSr != (UnityEngine.Object) null)
-      {
-        this.mSr.color = value;
-      }
-      else
-      {
-        if (!((UnityEngine.Object) this.mLight != (UnityEngine.Object) null))
-          return;
-        this.mLight.color = value;
-        this.mLight.enabled = (double) value.r + (double) value.g + (double) value.b > 0.0099999997764825821;
-      }
-    }
-  }
+	private UIWidget mWidget;
 
-  protected override void OnUpdate(float factor, bool isFinished) => this.value = Color.Lerp(this.from, this.to, factor);
+	private Material mMat;
 
-  public static TweenColor Begin(GameObject go, float duration, Color color)
-  {
-    TweenColor tweenColor = UITweener.Begin<TweenColor>(go, duration);
-    tweenColor.from = tweenColor.value;
-    tweenColor.to = color;
-    if ((double) duration <= 0.0)
-    {
-      tweenColor.Sample(1f, true);
-      tweenColor.enabled = false;
-    }
-    return tweenColor;
-  }
+	private Light mLight;
 
-  [ContextMenu("Set 'From' to current value")]
-  public override void SetStartToCurrentValue() => this.from = this.value;
+	private SpriteRenderer mSr;
 
-  [ContextMenu("Set 'To' to current value")]
-  public override void SetEndToCurrentValue() => this.to = this.value;
+	[Obsolete("Use 'value' instead")]
+	public Color color
+	{
+		get
+		{
+			return value;
+		}
+		set
+		{
+			this.value = value;
+		}
+	}
 
-  [ContextMenu("Assume value of 'From'")]
-  private void SetCurrentValueToStart() => this.value = this.from;
+	public Color value
+	{
+		get
+		{
+			if (!mCached)
+			{
+				Cache();
+			}
+			if (mWidget != null)
+			{
+				return mWidget.color;
+			}
+			if (mMat != null)
+			{
+				return mMat.color;
+			}
+			if (mSr != null)
+			{
+				return mSr.color;
+			}
+			if (mLight != null)
+			{
+				return mLight.color;
+			}
+			return Color.black;
+		}
+		set
+		{
+			if (!mCached)
+			{
+				Cache();
+			}
+			if (mWidget != null)
+			{
+				mWidget.color = value;
+			}
+			else if (mMat != null)
+			{
+				mMat.color = value;
+			}
+			else if (mSr != null)
+			{
+				mSr.color = value;
+			}
+			else if (mLight != null)
+			{
+				mLight.color = value;
+				mLight.enabled = value.r + value.g + value.b > 0.01f;
+			}
+		}
+	}
 
-  [ContextMenu("Assume value of 'To'")]
-  private void SetCurrentValueToEnd() => this.value = this.to;
+	private void Cache()
+	{
+		mCached = true;
+		mWidget = GetComponent<UIWidget>();
+		if (mWidget != null)
+		{
+			return;
+		}
+		mSr = GetComponent<SpriteRenderer>();
+		if (mSr != null)
+		{
+			return;
+		}
+		Renderer component = GetComponent<Renderer>();
+		if (component != null)
+		{
+			mMat = component.material;
+			return;
+		}
+		mLight = GetComponent<Light>();
+		if (mLight == null)
+		{
+			mWidget = GetComponentInChildren<UIWidget>();
+		}
+	}
+
+	protected override void OnUpdate(float factor, bool isFinished)
+	{
+		value = Color.Lerp(from, to, factor);
+	}
+
+	public static TweenColor Begin(GameObject go, float duration, Color color)
+	{
+		TweenColor tweenColor = UITweener.Begin<TweenColor>(go, duration);
+		tweenColor.from = tweenColor.value;
+		tweenColor.to = color;
+		if (duration <= 0f)
+		{
+			tweenColor.Sample(1f, true);
+			tweenColor.enabled = false;
+		}
+		return tweenColor;
+	}
+
+	[ContextMenu("Set 'From' to current value")]
+	public override void SetStartToCurrentValue()
+	{
+		from = value;
+	}
+
+	[ContextMenu("Set 'To' to current value")]
+	public override void SetEndToCurrentValue()
+	{
+		to = value;
+	}
+
+	[ContextMenu("Assume value of 'From'")]
+	private void SetCurrentValueToStart()
+	{
+		value = from;
+	}
+
+	[ContextMenu("Assume value of 'To'")]
+	private void SetCurrentValueToEnd()
+	{
+		value = to;
+	}
 }

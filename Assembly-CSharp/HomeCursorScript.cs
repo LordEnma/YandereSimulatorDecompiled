@@ -1,57 +1,57 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: HomeCursorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class HomeCursorScript : MonoBehaviour
 {
-  public PhotoGalleryScript PhotoGallery;
-  public GameObject Photograph;
-  public Transform Highlight;
-  public GameObject Tack;
-  public Transform CircleHighlight;
+	public PhotoGalleryScript PhotoGallery;
 
-  private void OnTriggerExit(Collider other)
-  {
-    if ((Object) other.gameObject == (Object) this.Photograph)
-      this.PhotographNull();
-    if (!((Object) other.gameObject == (Object) this.Tack))
-      return;
-    this.CircleHighlight.position = new Vector3(this.CircleHighlight.position.x, 100f, this.Highlight.position.z);
-    this.Tack = (GameObject) null;
-    this.PhotoGallery.UpdateButtonPrompts();
-  }
+	public GameObject Photograph;
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (other.gameObject.layer == 16)
-    {
-      if (!((Object) this.Tack == (Object) null))
-        return;
-      this.Photograph = other.gameObject;
-      this.Highlight.localEulerAngles = this.Photograph.transform.localEulerAngles;
-      this.Highlight.localPosition = this.Photograph.transform.localPosition;
-      this.Highlight.localScale = new Vector3(this.Photograph.transform.localScale.x * 1.12f, this.Photograph.transform.localScale.y * 1.2f, 1f);
-      this.PhotoGallery.UpdateButtonPrompts();
-    }
-    else
-    {
-      if (!(other.gameObject.name != "SouthWall"))
-        return;
-      this.Tack = other.gameObject;
-      this.CircleHighlight.position = this.Tack.transform.position;
-      this.PhotoGallery.UpdateButtonPrompts();
-      this.PhotographNull();
-    }
-  }
+	public Transform Highlight;
 
-  private void PhotographNull()
-  {
-    this.Highlight.position = new Vector3(this.Highlight.position.x, 100f, this.Highlight.position.z);
-    this.Photograph = (GameObject) null;
-    this.PhotoGallery.UpdateButtonPrompts();
-  }
+	public GameObject Tack;
+
+	public Transform CircleHighlight;
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.gameObject == Photograph)
+		{
+			PhotographNull();
+		}
+		if (other.gameObject == Tack)
+		{
+			CircleHighlight.position = new Vector3(CircleHighlight.position.x, 100f, Highlight.position.z);
+			Tack = null;
+			PhotoGallery.UpdateButtonPrompts();
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer == 16)
+		{
+			if (Tack == null)
+			{
+				Photograph = other.gameObject;
+				Highlight.localEulerAngles = Photograph.transform.localEulerAngles;
+				Highlight.localPosition = Photograph.transform.localPosition;
+				Highlight.localScale = new Vector3(Photograph.transform.localScale.x * 1.12f, Photograph.transform.localScale.y * 1.2f, 1f);
+				PhotoGallery.UpdateButtonPrompts();
+			}
+		}
+		else if (other.gameObject.name != "SouthWall")
+		{
+			Tack = other.gameObject;
+			CircleHighlight.position = Tack.transform.position;
+			PhotoGallery.UpdateButtonPrompts();
+			PhotographNull();
+		}
+	}
+
+	private void PhotographNull()
+	{
+		Highlight.position = new Vector3(Highlight.position.x, 100f, Highlight.position.z);
+		Photograph = null;
+		PhotoGallery.UpdateButtonPrompts();
+	}
 }

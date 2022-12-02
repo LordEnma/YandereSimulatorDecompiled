@@ -1,187 +1,222 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIEventListener
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Internal/Event Listener")]
 public class UIEventListener : MonoBehaviour
 {
-  public object parameter;
-  public UIEventListener.VoidDelegate onSubmit;
-  public UIEventListener.VoidDelegate onClick;
-  public UIEventListener.VoidDelegate onDoubleClick;
-  public UIEventListener.BoolDelegate onHover;
-  public UIEventListener.BoolDelegate onPress;
-  public UIEventListener.BoolDelegate onSelect;
-  public UIEventListener.FloatDelegate onScroll;
-  public UIEventListener.VoidDelegate onDragStart;
-  public UIEventListener.VectorDelegate onDrag;
-  public UIEventListener.VoidDelegate onDragOver;
-  public UIEventListener.VoidDelegate onDragOut;
-  public UIEventListener.VoidDelegate onDragEnd;
-  public UIEventListener.ObjectDelegate onDrop;
-  public UIEventListener.KeyCodeDelegate onKey;
-  public UIEventListener.BoolDelegate onTooltip;
-  public bool needsActiveCollider = true;
+	public delegate void VoidDelegate(GameObject go);
 
-  private bool isColliderEnabled
-  {
-    get
-    {
-      if (!this.needsActiveCollider)
-        return true;
-      Collider component1 = this.GetComponent<Collider>();
-      if ((Object) component1 != (Object) null)
-        return component1.enabled;
-      Collider2D component2 = this.GetComponent<Collider2D>();
-      return (Object) component2 != (Object) null && component2.enabled;
-    }
-  }
+	public delegate void BoolDelegate(GameObject go, bool state);
 
-  private void OnSubmit()
-  {
-    if (!this.isColliderEnabled || this.onSubmit == null)
-      return;
-    this.onSubmit(this.gameObject);
-  }
+	public delegate void FloatDelegate(GameObject go, float delta);
 
-  private void OnClick()
-  {
-    if (!this.isColliderEnabled || this.onClick == null)
-      return;
-    this.onClick(this.gameObject);
-  }
+	public delegate void VectorDelegate(GameObject go, Vector2 delta);
 
-  private void OnDoubleClick()
-  {
-    if (!this.isColliderEnabled || this.onDoubleClick == null)
-      return;
-    this.onDoubleClick(this.gameObject);
-  }
+	public delegate void ObjectDelegate(GameObject go, GameObject obj);
 
-  private void OnHover(bool isOver)
-  {
-    if (!this.isColliderEnabled || this.onHover == null)
-      return;
-    this.onHover(this.gameObject, isOver);
-  }
+	public delegate void KeyCodeDelegate(GameObject go, KeyCode key);
 
-  private void OnPress(bool isPressed)
-  {
-    if (!this.isColliderEnabled || this.onPress == null)
-      return;
-    this.onPress(this.gameObject, isPressed);
-  }
+	public object parameter;
 
-  private void OnSelect(bool selected)
-  {
-    if (!this.isColliderEnabled || this.onSelect == null)
-      return;
-    this.onSelect(this.gameObject, selected);
-  }
+	public VoidDelegate onSubmit;
 
-  private void OnScroll(float delta)
-  {
-    if (!this.isColliderEnabled || this.onScroll == null)
-      return;
-    this.onScroll(this.gameObject, delta);
-  }
+	public VoidDelegate onClick;
 
-  private void OnDragStart()
-  {
-    if (this.onDragStart == null)
-      return;
-    this.onDragStart(this.gameObject);
-  }
+	public VoidDelegate onDoubleClick;
 
-  private void OnDrag(Vector2 delta)
-  {
-    if (this.onDrag == null)
-      return;
-    this.onDrag(this.gameObject, delta);
-  }
+	public BoolDelegate onHover;
 
-  private void OnDragOver()
-  {
-    if (!this.isColliderEnabled || this.onDragOver == null)
-      return;
-    this.onDragOver(this.gameObject);
-  }
+	public BoolDelegate onPress;
 
-  private void OnDragOut()
-  {
-    if (!this.isColliderEnabled || this.onDragOut == null)
-      return;
-    this.onDragOut(this.gameObject);
-  }
+	public BoolDelegate onSelect;
 
-  private void OnDragEnd()
-  {
-    if (this.onDragEnd == null)
-      return;
-    this.onDragEnd(this.gameObject);
-  }
+	public FloatDelegate onScroll;
 
-  private void OnDrop(GameObject go)
-  {
-    if (!this.isColliderEnabled || this.onDrop == null)
-      return;
-    this.onDrop(this.gameObject, go);
-  }
+	public VoidDelegate onDragStart;
 
-  private void OnKey(KeyCode key)
-  {
-    if (!this.isColliderEnabled || this.onKey == null)
-      return;
-    this.onKey(this.gameObject, key);
-  }
+	public VectorDelegate onDrag;
 
-  private void OnTooltip(bool show)
-  {
-    if (!this.isColliderEnabled || this.onTooltip == null)
-      return;
-    this.onTooltip(this.gameObject, show);
-  }
+	public VoidDelegate onDragOver;
 
-  public void Clear()
-  {
-    this.onSubmit = (UIEventListener.VoidDelegate) null;
-    this.onClick = (UIEventListener.VoidDelegate) null;
-    this.onDoubleClick = (UIEventListener.VoidDelegate) null;
-    this.onHover = (UIEventListener.BoolDelegate) null;
-    this.onPress = (UIEventListener.BoolDelegate) null;
-    this.onSelect = (UIEventListener.BoolDelegate) null;
-    this.onScroll = (UIEventListener.FloatDelegate) null;
-    this.onDragStart = (UIEventListener.VoidDelegate) null;
-    this.onDrag = (UIEventListener.VectorDelegate) null;
-    this.onDragOver = (UIEventListener.VoidDelegate) null;
-    this.onDragOut = (UIEventListener.VoidDelegate) null;
-    this.onDragEnd = (UIEventListener.VoidDelegate) null;
-    this.onDrop = (UIEventListener.ObjectDelegate) null;
-    this.onKey = (UIEventListener.KeyCodeDelegate) null;
-    this.onTooltip = (UIEventListener.BoolDelegate) null;
-  }
+	public VoidDelegate onDragOut;
 
-  public static UIEventListener Get(GameObject go)
-  {
-    UIEventListener uiEventListener = go.GetComponent<UIEventListener>();
-    if ((Object) uiEventListener == (Object) null)
-      uiEventListener = go.AddComponent<UIEventListener>();
-    return uiEventListener;
-  }
+	public VoidDelegate onDragEnd;
 
-  public delegate void VoidDelegate(GameObject go);
+	public ObjectDelegate onDrop;
 
-  public delegate void BoolDelegate(GameObject go, bool state);
+	public KeyCodeDelegate onKey;
 
-  public delegate void FloatDelegate(GameObject go, float delta);
+	public BoolDelegate onTooltip;
 
-  public delegate void VectorDelegate(GameObject go, Vector2 delta);
+	public bool needsActiveCollider = true;
 
-  public delegate void ObjectDelegate(GameObject go, GameObject obj);
+	private bool isColliderEnabled
+	{
+		get
+		{
+			if (!needsActiveCollider)
+			{
+				return true;
+			}
+			Collider component = GetComponent<Collider>();
+			if (component != null)
+			{
+				return component.enabled;
+			}
+			Collider2D component2 = GetComponent<Collider2D>();
+			if (component2 != null)
+			{
+				return component2.enabled;
+			}
+			return false;
+		}
+	}
 
-  public delegate void KeyCodeDelegate(GameObject go, KeyCode key);
+	private void OnSubmit()
+	{
+		if (isColliderEnabled && onSubmit != null)
+		{
+			onSubmit(base.gameObject);
+		}
+	}
+
+	private void OnClick()
+	{
+		if (isColliderEnabled && onClick != null)
+		{
+			onClick(base.gameObject);
+		}
+	}
+
+	private void OnDoubleClick()
+	{
+		if (isColliderEnabled && onDoubleClick != null)
+		{
+			onDoubleClick(base.gameObject);
+		}
+	}
+
+	private void OnHover(bool isOver)
+	{
+		if (isColliderEnabled && onHover != null)
+		{
+			onHover(base.gameObject, isOver);
+		}
+	}
+
+	private void OnPress(bool isPressed)
+	{
+		if (isColliderEnabled && onPress != null)
+		{
+			onPress(base.gameObject, isPressed);
+		}
+	}
+
+	private void OnSelect(bool selected)
+	{
+		if (isColliderEnabled && onSelect != null)
+		{
+			onSelect(base.gameObject, selected);
+		}
+	}
+
+	private void OnScroll(float delta)
+	{
+		if (isColliderEnabled && onScroll != null)
+		{
+			onScroll(base.gameObject, delta);
+		}
+	}
+
+	private void OnDragStart()
+	{
+		if (onDragStart != null)
+		{
+			onDragStart(base.gameObject);
+		}
+	}
+
+	private void OnDrag(Vector2 delta)
+	{
+		if (onDrag != null)
+		{
+			onDrag(base.gameObject, delta);
+		}
+	}
+
+	private void OnDragOver()
+	{
+		if (isColliderEnabled && onDragOver != null)
+		{
+			onDragOver(base.gameObject);
+		}
+	}
+
+	private void OnDragOut()
+	{
+		if (isColliderEnabled && onDragOut != null)
+		{
+			onDragOut(base.gameObject);
+		}
+	}
+
+	private void OnDragEnd()
+	{
+		if (onDragEnd != null)
+		{
+			onDragEnd(base.gameObject);
+		}
+	}
+
+	private void OnDrop(GameObject go)
+	{
+		if (isColliderEnabled && onDrop != null)
+		{
+			onDrop(base.gameObject, go);
+		}
+	}
+
+	private void OnKey(KeyCode key)
+	{
+		if (isColliderEnabled && onKey != null)
+		{
+			onKey(base.gameObject, key);
+		}
+	}
+
+	private void OnTooltip(bool show)
+	{
+		if (isColliderEnabled && onTooltip != null)
+		{
+			onTooltip(base.gameObject, show);
+		}
+	}
+
+	public void Clear()
+	{
+		onSubmit = null;
+		onClick = null;
+		onDoubleClick = null;
+		onHover = null;
+		onPress = null;
+		onSelect = null;
+		onScroll = null;
+		onDragStart = null;
+		onDrag = null;
+		onDragOver = null;
+		onDragOut = null;
+		onDragEnd = null;
+		onDrop = null;
+		onKey = null;
+		onTooltip = null;
+	}
+
+	public static UIEventListener Get(GameObject go)
+	{
+		UIEventListener uIEventListener = go.GetComponent<UIEventListener>();
+		if (uIEventListener == null)
+		{
+			uIEventListener = go.AddComponent<UIEventListener>();
+		}
+		return uIEventListener;
+	}
 }

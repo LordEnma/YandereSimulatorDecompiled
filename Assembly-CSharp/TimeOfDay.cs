@@ -1,17 +1,11 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TimeOfDay
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 public enum TimeOfDay
 {
-  Midnight,
-  EarlyMorning,
-  Morning,
-  LateMorning,
-  Noon,
-  Afternoon,
-  Evening,
-  Night,
+	Midnight = 0,
+	EarlyMorning = 1,
+	Morning = 2,
+	LateMorning = 3,
+	Noon = 4,
+	Afternoon = 5,
+	Evening = 6,
+	Night = 7
 }

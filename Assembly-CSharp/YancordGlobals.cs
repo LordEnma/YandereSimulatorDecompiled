@@ -1,31 +1,38 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: YancordGlobals
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public static class YancordGlobals
 {
-  private const string Str_JoinedYancord = "JoinedYancord";
-  private const string Str_CurrentConversation = "CurrentConversation";
+	private const string Str_JoinedYancord = "JoinedYancord";
 
-  public static bool JoinedYancord
-  {
-    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_JoinedYancord");
-    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_JoinedYancord", value);
-  }
+	private const string Str_CurrentConversation = "CurrentConversation";
 
-  public static int CurrentConversation
-  {
-    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_CurrentConversation");
-    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CurrentConversation", value);
-  }
+	public static bool JoinedYancord
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_JoinedYancord");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_JoinedYancord", value);
+		}
+	}
 
-  public static void DeleteAll()
-  {
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_JoinedYancord");
-    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CurrentConversation");
-  }
+	public static int CurrentConversation
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CurrentConversation");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CurrentConversation", value);
+		}
+	}
+
+	public static void DeleteAll()
+	{
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_JoinedYancord");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CurrentConversation");
+	}
 }

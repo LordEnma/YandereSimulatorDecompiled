@@ -1,73 +1,86 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: EditorManagerScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
-using JsonFx.Json;
 using System.Collections.Generic;
 using System.IO;
+using JsonFx.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EditorManagerScript : MonoBehaviour
 {
-  [SerializeField]
-  private UIPanel mainPanel;
-  [SerializeField]
-  private UIPanel[] editorPanels;
-  [SerializeField]
-  private UILabel cursorLabel;
-  [SerializeField]
-  private PromptBarScript promptBar;
-  private int buttonIndex;
-  private const int ButtonCount = 3;
-  private InputManagerScript inputManager;
+	[SerializeField]
+	private UIPanel mainPanel;
 
-  private void Awake()
-  {
-    this.buttonIndex = 0;
-    this.inputManager = Object.FindObjectOfType<InputManagerScript>();
-  }
+	[SerializeField]
+	private UIPanel[] editorPanels;
 
-  private void Start()
-  {
-    this.promptBar.Label[0].text = "Select";
-    this.promptBar.Label[1].text = "Exit";
-    this.promptBar.Label[4].text = "Choose";
-    this.promptBar.UpdateButtons();
-  }
+	[SerializeField]
+	private UILabel cursorLabel;
 
-  private void OnEnable()
-  {
-    this.promptBar.Label[0].text = "Select";
-    this.promptBar.Label[1].text = "Exit";
-    this.promptBar.Label[4].text = "Choose";
-    this.promptBar.UpdateButtons();
-  }
+	[SerializeField]
+	private PromptBarScript promptBar;
 
-  public static Dictionary<string, object>[] DeserializeJson(string filename) => JsonReader.Deserialize<Dictionary<string, object>[]>(File.ReadAllText(Path.Combine(Application.streamingAssetsPath, Path.Combine("JSON", filename))));
+	private int buttonIndex;
 
-  private void HandleInput()
-  {
-    if (Input.GetButtonDown("B"))
-      SceneManager.LoadScene("NewTitleScene");
-    int num = this.inputManager.TappedUp ? 1 : 0;
-    bool tappedDown = this.inputManager.TappedDown;
-    if (num != 0)
-      this.buttonIndex = this.buttonIndex > 0 ? this.buttonIndex - 1 : 2;
-    else if (tappedDown)
-      this.buttonIndex = this.buttonIndex < 2 ? this.buttonIndex + 1 : 0;
-    if ((num | (tappedDown ? 1 : 0)) != 0)
-    {
-      Transform transform = this.cursorLabel.transform;
-      transform.localPosition = new Vector3(transform.localPosition.x, (float) (100.0 - (double) this.buttonIndex * 100.0), transform.localPosition.z);
-    }
-    if (!Input.GetButtonDown("A"))
-      return;
-    this.editorPanels[this.buttonIndex].gameObject.SetActive(true);
-    this.mainPanel.gameObject.SetActive(false);
-  }
+	private const int ButtonCount = 3;
 
-  private void Update() => this.HandleInput();
+	private InputManagerScript inputManager;
+
+	private void Awake()
+	{
+		buttonIndex = 0;
+		inputManager = Object.FindObjectOfType<InputManagerScript>();
+	}
+
+	private void Start()
+	{
+		promptBar.Label[0].text = "Select";
+		promptBar.Label[1].text = "Exit";
+		promptBar.Label[4].text = "Choose";
+		promptBar.UpdateButtons();
+	}
+
+	private void OnEnable()
+	{
+		promptBar.Label[0].text = "Select";
+		promptBar.Label[1].text = "Exit";
+		promptBar.Label[4].text = "Choose";
+		promptBar.UpdateButtons();
+	}
+
+	public static Dictionary<string, object>[] DeserializeJson(string filename)
+	{
+		return JsonReader.Deserialize<Dictionary<string, object>[]>(File.ReadAllText(Path.Combine(Application.streamingAssetsPath, Path.Combine("JSON", filename))));
+	}
+
+	private void HandleInput()
+	{
+		if (Input.GetButtonDown("B"))
+		{
+			SceneManager.LoadScene("NewTitleScene");
+		}
+		bool tappedUp = inputManager.TappedUp;
+		bool tappedDown = inputManager.TappedDown;
+		if (tappedUp)
+		{
+			buttonIndex = ((buttonIndex > 0) ? (buttonIndex - 1) : 2);
+		}
+		else if (tappedDown)
+		{
+			buttonIndex = ((buttonIndex < 2) ? (buttonIndex + 1) : 0);
+		}
+		if (tappedUp || tappedDown)
+		{
+			Transform transform = cursorLabel.transform;
+			transform.localPosition = new Vector3(transform.localPosition.x, 100f - (float)buttonIndex * 100f, transform.localPosition.z);
+		}
+		if (Input.GetButtonDown("A"))
+		{
+			editorPanels[buttonIndex].gameObject.SetActive(true);
+			mainPanel.gameObject.SetActive(false);
+		}
+	}
+
+	private void Update()
+	{
+		HandleInput();
+	}
 }

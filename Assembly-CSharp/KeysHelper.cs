@@ -1,68 +1,118 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: KeysHelper
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public static class KeysHelper
 {
-  private const string KeyListPrefix = "Keys";
-  private const char KeyListSeparator = '|';
-  public const char PairSeparator = '^';
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
+	{
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-  public static int[] GetIntegerKeys(string key) => Array.ConvertAll<string, int>(KeysHelper.SplitList(KeysHelper.GetKeyList(KeysHelper.GetKeyListKey(key))), (Converter<string, int>) (str => int.Parse(str)));
+		public static Converter<string, int> _003C_003E9__3_0;
 
-  public static string[] GetStringKeys(string key) => KeysHelper.SplitList(KeysHelper.GetKeyList(KeysHelper.GetKeyListKey(key)));
+		internal int _003CGetIntegerKeys_003Eb__3_0(string str)
+		{
+			return int.Parse(str);
+		}
+	}
 
-  public static T[] GetEnumKeys<T>(string key) where T : struct, IConvertible => Array.ConvertAll<string, T>(KeysHelper.SplitList(KeysHelper.GetKeyList(KeysHelper.GetKeyListKey(key))), (Converter<string, T>) (str => (T) Enum.Parse(typeof (T), str)));
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec__5<T> where T : struct, IConvertible
+	{
+		public static readonly _003C_003Ec__5<T> _003C_003E9 = new _003C_003Ec__5<T>();
 
-  public static KeyValuePair<T, U>[] GetKeys<T, U>(string key)
-    where T : struct
-    where U : struct
-  {
-    string[] strArray1 = KeysHelper.SplitList(KeysHelper.GetKeyList(KeysHelper.GetKeyListKey(key)));
-    KeyValuePair<T, U>[] keys = new KeyValuePair<T, U>[strArray1.Length];
-    for (int index = 0; index < strArray1.Length; ++index)
-    {
-      string[] strArray2 = strArray1[index].Split('^');
-      keys[index] = new KeyValuePair<T, U>((T) (ValueType) int.Parse(strArray2[0]), (U) (ValueType) int.Parse(strArray2[1]));
-    }
-    return keys;
-  }
+		public static Converter<string, T> _003C_003E9__5_0;
 
-  public static void AddIfMissing(string key, string id)
-  {
-    string keyListKey = KeysHelper.GetKeyListKey(key);
-    string keyList = KeysHelper.GetKeyList(keyListKey);
-    if (KeysHelper.HasKey(KeysHelper.SplitList(keyList), id))
-      return;
-    KeysHelper.AppendKey(keyListKey, keyList, id);
-  }
+		internal T _003CGetEnumKeys_003Eb__5_0(string str)
+		{
+			return (T)Enum.Parse(typeof(T), str);
+		}
+	}
 
-  public static void Delete(string key) => Globals.Delete(KeysHelper.GetKeyListKey(key));
+	private const string KeyListPrefix = "Keys";
 
-  private static string GetKeyListKey(string key) => key + "Keys";
+	private const char KeyListSeparator = '|';
 
-  private static string GetKeyList(string keyListKey) => PlayerPrefs.GetString(keyListKey);
+	public const char PairSeparator = '^';
 
-  private static string[] SplitList(string keyList)
-  {
-    if (keyList.Length <= 0)
-      return new string[0];
-    return keyList.Split('|');
-  }
+	public static int[] GetIntegerKeys(string key)
+	{
+		return Array.ConvertAll(SplitList(GetKeyList(GetKeyListKey(key))), _003C_003Ec._003C_003E9__3_0 ?? (_003C_003Ec._003C_003E9__3_0 = _003C_003Ec._003C_003E9._003CGetIntegerKeys_003Eb__3_0));
+	}
 
-  private static int FindKey(string[] keyListStrings, string key) => Array.IndexOf<string>(keyListStrings, key);
+	public static string[] GetStringKeys(string key)
+	{
+		return SplitList(GetKeyList(GetKeyListKey(key)));
+	}
 
-  private static bool HasKey(string[] keyListStrings, string key) => KeysHelper.FindKey(keyListStrings, key) > -1;
+	public static T[] GetEnumKeys<T>(string key) where T : struct, IConvertible
+	{
+		return Array.ConvertAll(SplitList(GetKeyList(GetKeyListKey(key))), _003C_003Ec__5<T>._003C_003E9__5_0 ?? (_003C_003Ec__5<T>._003C_003E9__5_0 = _003C_003Ec__5<T>._003C_003E9._003CGetEnumKeys_003Eb__5_0));
+	}
 
-  private static void AppendKey(string keyListKey, string keyList, string key)
-  {
-    string str = keyList.Length == 0 ? keyList + key : keyList + "|" + key;
-    PlayerPrefs.SetString(keyListKey, str);
-  }
+	public static KeyValuePair<T, U>[] GetKeys<T, U>(string key) where T : struct where U : struct
+	{
+		string[] array = SplitList(GetKeyList(GetKeyListKey(key)));
+		KeyValuePair<T, U>[] array2 = new KeyValuePair<T, U>[array.Length];
+		for (int i = 0; i < array.Length; i++)
+		{
+			string[] array3 = array[i].Split('^');
+			array2[i] = new KeyValuePair<T, U>((T)(object)int.Parse(array3[0]), (U)(object)int.Parse(array3[1]));
+		}
+		return array2;
+	}
+
+	public static void AddIfMissing(string key, string id)
+	{
+		string keyListKey = GetKeyListKey(key);
+		string keyList = GetKeyList(keyListKey);
+		if (!HasKey(SplitList(keyList), id))
+		{
+			AppendKey(keyListKey, keyList, id);
+		}
+	}
+
+	public static void Delete(string key)
+	{
+		Globals.Delete(GetKeyListKey(key));
+	}
+
+	private static string GetKeyListKey(string key)
+	{
+		return key + "Keys";
+	}
+
+	private static string GetKeyList(string keyListKey)
+	{
+		return PlayerPrefs.GetString(keyListKey);
+	}
+
+	private static string[] SplitList(string keyList)
+	{
+		if (keyList.Length <= 0)
+		{
+			return new string[0];
+		}
+		return keyList.Split('|');
+	}
+
+	private static int FindKey(string[] keyListStrings, string key)
+	{
+		return Array.IndexOf(keyListStrings, key);
+	}
+
+	private static bool HasKey(string[] keyListStrings, string key)
+	{
+		return FindKey(keyListStrings, key) > -1;
+	}
+
+	private static void AppendKey(string keyListKey, string keyList, string key)
+	{
+		string value = ((keyList.Length == 0) ? (keyList + key) : (keyList + "|" + key));
+		PlayerPrefs.SetString(keyListKey, value);
+	}
 }

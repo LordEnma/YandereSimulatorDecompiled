@@ -1,52 +1,54 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UnityStandardAssets.Vehicles.Aeroplane.JetParticleEffect
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Aeroplane
 {
-  [RequireComponent(typeof (ParticleSystem))]
-  public class JetParticleEffect : MonoBehaviour
-  {
-    public Color minColour;
-    private AeroplaneController m_Jet;
-    private ParticleSystem m_System;
-    private float m_OriginalStartSize;
-    private float m_OriginalLifetime;
-    private Color m_OriginalStartColor;
+	[RequireComponent(typeof(ParticleSystem))]
+	public class JetParticleEffect : MonoBehaviour
+	{
+		public Color minColour;
 
-    private void Start()
-    {
-      this.m_Jet = this.FindAeroplaneParent();
-      this.m_System = this.GetComponent<ParticleSystem>();
-      this.m_OriginalLifetime = this.m_System.main.startLifetime.constant;
-      this.m_OriginalStartSize = this.m_System.main.startSize.constant;
-      this.m_OriginalStartColor = this.m_System.main.startColor.color;
-    }
+		private AeroplaneController m_Jet;
 
-    private void Update()
-    {
-      ParticleSystem.MainModule main = this.m_System.main with
-      {
-        startLifetime = (ParticleSystem.MinMaxCurve) Mathf.Lerp(0.0f, this.m_OriginalLifetime, this.m_Jet.Throttle),
-        startSize = (ParticleSystem.MinMaxCurve) Mathf.Lerp(this.m_OriginalStartSize * 0.3f, this.m_OriginalStartSize, this.m_Jet.Throttle),
-        startColor = (ParticleSystem.MinMaxGradient) Color.Lerp(this.minColour, this.m_OriginalStartColor, this.m_Jet.Throttle)
-      };
-    }
+		private ParticleSystem m_System;
 
-    private AeroplaneController FindAeroplaneParent()
-    {
-      for (Transform transform = this.transform; (UnityEngine.Object) transform != (UnityEngine.Object) null; transform = transform.parent)
-      {
-        AeroplaneController component = transform.GetComponent<AeroplaneController>();
-        if (!((UnityEngine.Object) component == (UnityEngine.Object) null))
-          return component;
-      }
-      throw new Exception(" AeroplaneContoller not found in object hierarchy");
-    }
-  }
+		private float m_OriginalStartSize;
+
+		private float m_OriginalLifetime;
+
+		private Color m_OriginalStartColor;
+
+		private void Start()
+		{
+			m_Jet = FindAeroplaneParent();
+			m_System = GetComponent<ParticleSystem>();
+			m_OriginalLifetime = m_System.main.startLifetime.constant;
+			m_OriginalStartSize = m_System.main.startSize.constant;
+			m_OriginalStartColor = m_System.main.startColor.color;
+		}
+
+		private void Update()
+		{
+			ParticleSystem.MainModule main = m_System.main;
+			main.startLifetime = Mathf.Lerp(0f, m_OriginalLifetime, m_Jet.Throttle);
+			main.startSize = Mathf.Lerp(m_OriginalStartSize * 0.3f, m_OriginalStartSize, m_Jet.Throttle);
+			main.startColor = Color.Lerp(minColour, m_OriginalStartColor, m_Jet.Throttle);
+		}
+
+		private AeroplaneController FindAeroplaneParent()
+		{
+			Transform parent = base.transform;
+			while (parent != null)
+			{
+				AeroplaneController component = parent.GetComponent<AeroplaneController>();
+				if (component == null)
+				{
+					parent = parent.parent;
+					continue;
+				}
+				return component;
+			}
+			throw new Exception(" AeroplaneContoller not found in object hierarchy");
+		}
+	}
 }

@@ -1,162 +1,191 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: LifeNoteScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LifeNoteScript : MonoBehaviour
 {
-  public UITexture Darkness;
-  public UITexture TextWindow;
-  public UITexture FinalDarkness;
-  public Transform BackgroundArt;
-  public TypewriterEffect Typewriter;
-  public GameObject Controls;
-  public AudioSource MyAudio;
-  public AudioClip[] Voices;
-  public string[] Lines;
-  public int[] Alphas;
-  public bool[] Reds;
-  public UILabel Label;
-  public float Timer;
-  public int Frame;
-  public int ID;
-  public float AutoTimer;
-  public float Alpha;
-  public string Text;
-  public AudioClip[] SFX;
-  public bool Spoke;
-  public bool Auto;
-  public AudioSource SFXAudioSource;
-  public AudioSource Jukebox;
+	public UITexture Darkness;
 
-  private void Start()
-  {
-    Application.targetFrameRate = 60;
-    this.Label.text = this.Lines[this.ID];
-    this.Controls.SetActive(false);
-    this.Label.gameObject.SetActive(false);
-    this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    this.BackgroundArt.localPosition = new Vector3(0.0f, -540f, 0.0f);
-    this.BackgroundArt.localScale = new Vector3(2.5f, 2.5f, 1f);
-    this.TextWindow.color = new Color(1f, 1f, 1f, 0.0f);
-  }
+	public UITexture TextWindow;
 
-  private void Update()
-  {
-    if (this.Controls.activeInHierarchy)
-    {
-      if (this.Typewriter.mCurrentOffset == 1)
-      {
-        if (this.Reds[this.ID])
-          this.Label.color = new Color(1f, 0.0f, 0.0f, 1f);
-        else
-          this.Label.color = new Color(1f, 1f, 1f, 1f);
-      }
-      if (Input.GetButtonDown("A") || (double) this.AutoTimer > 0.5)
-      {
-        if (this.ID < this.Lines.Length - 1)
-        {
-          if (this.Typewriter.mCurrentOffset < this.Typewriter.mFullText.Length)
-          {
-            this.Typewriter.Finish();
-          }
-          else
-          {
-            ++this.ID;
-            this.Alpha = (float) this.Alphas[this.ID];
-            this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
-            this.Typewriter.ResetToBeginning();
-            this.Typewriter.mFullText = this.Lines[this.ID];
-            this.Label.text = "";
-            this.Spoke = false;
-            this.Frame = 0;
-            if (this.Alphas[this.ID] == 1)
-              this.Jukebox.Stop();
-            else if (!this.Jukebox.isPlaying)
-              this.Jukebox.Play();
-            if (this.ID == 17)
-            {
-              this.SFXAudioSource.clip = this.SFX[1];
-              this.SFXAudioSource.Play();
-            }
-            if (this.ID == 18)
-            {
-              this.SFXAudioSource.clip = this.SFX[2];
-              this.SFXAudioSource.Play();
-            }
-            if (this.ID > 25)
-              this.Typewriter.charsPerSecond = 15;
-            this.AutoTimer = 0.0f;
-          }
-        }
-        else if (!this.FinalDarkness.enabled)
-        {
-          this.FinalDarkness.enabled = true;
-          this.Alpha = 0.0f;
-        }
-      }
-      if (!this.Spoke && !this.SFXAudioSource.isPlaying)
-      {
-        this.MyAudio.clip = this.Voices[this.ID];
-        this.MyAudio.Play();
-        this.Spoke = true;
-      }
-      if (this.Auto && this.Typewriter.mCurrentOffset == this.Typewriter.mFullText.Length && !this.SFXAudioSource.isPlaying && !this.MyAudio.isPlaying)
-        this.AutoTimer += Time.deltaTime;
-      if (this.FinalDarkness.enabled)
-      {
-        this.Alpha = Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.2f);
-        this.FinalDarkness.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
-        if ((double) this.Alpha == 1.0)
-        {
-          if (!GameGlobals.Debug)
-          {
-            PlayerPrefs.SetInt("LifeNote", 1);
-            PlayerPrefs.SetInt("a", 1);
-          }
-          SceneManager.LoadScene("HomeScene");
-        }
-      }
-    }
-    if ((double) this.TextWindow.color.a >= 1.0)
-      return;
-    if (Input.GetButtonDown("A"))
-    {
-      this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-      this.BackgroundArt.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-      this.BackgroundArt.localScale = new Vector3(1f, 1f, 1f);
-      this.TextWindow.color = new Color(1f, 1f, 1f, 1f);
-      this.Label.color = new Color(1f, 1f, 1f, 0.0f);
-      this.Label.gameObject.SetActive(true);
-      this.Controls.SetActive(true);
-      this.Timer = 0.0f;
-    }
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer > 6.0)
-    {
-      this.Alpha = Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime);
-      this.TextWindow.color = new Color(1f, 1f, 1f, this.Alpha);
-      if ((double) this.TextWindow.color.a != 1.0 || this.Typewriter.mActive)
-        return;
-      this.Label.color = new Color(1f, 1f, 1f, 0.0f);
-      this.Label.gameObject.SetActive(true);
-      this.Controls.SetActive(true);
-      this.Timer = 0.0f;
-    }
-    else if ((double) this.Timer > 2.0)
-    {
-      this.BackgroundArt.localScale = Vector3.Lerp(this.BackgroundArt.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * (this.Timer - 2f));
-      this.BackgroundArt.localPosition = Vector3.Lerp(this.BackgroundArt.localPosition, new Vector3(0.0f, 0.0f, 0.0f), Time.deltaTime * (this.Timer - 2f));
-    }
-    else
-    {
-      if ((double) this.Timer <= 0.0)
-        return;
-      this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-    }
-  }
+	public UITexture FinalDarkness;
+
+	public Transform BackgroundArt;
+
+	public TypewriterEffect Typewriter;
+
+	public GameObject Controls;
+
+	public AudioSource MyAudio;
+
+	public AudioClip[] Voices;
+
+	public string[] Lines;
+
+	public int[] Alphas;
+
+	public bool[] Reds;
+
+	public UILabel Label;
+
+	public float Timer;
+
+	public int Frame;
+
+	public int ID;
+
+	public float AutoTimer;
+
+	public float Alpha;
+
+	public string Text;
+
+	public AudioClip[] SFX;
+
+	public bool Spoke;
+
+	public bool Auto;
+
+	public AudioSource SFXAudioSource;
+
+	public AudioSource Jukebox;
+
+	private void Start()
+	{
+		Application.targetFrameRate = 60;
+		Label.text = Lines[ID];
+		Controls.SetActive(false);
+		Label.gameObject.SetActive(false);
+		Darkness.color = new Color(0f, 0f, 0f, 1f);
+		BackgroundArt.localPosition = new Vector3(0f, -540f, 0f);
+		BackgroundArt.localScale = new Vector3(2.5f, 2.5f, 1f);
+		TextWindow.color = new Color(1f, 1f, 1f, 0f);
+	}
+
+	private void Update()
+	{
+		if (Controls.activeInHierarchy)
+		{
+			if (Typewriter.mCurrentOffset == 1)
+			{
+				if (Reds[ID])
+				{
+					Label.color = new Color(1f, 0f, 0f, 1f);
+				}
+				else
+				{
+					Label.color = new Color(1f, 1f, 1f, 1f);
+				}
+			}
+			if (Input.GetButtonDown("A") || AutoTimer > 0.5f)
+			{
+				if (ID < Lines.Length - 1)
+				{
+					if (Typewriter.mCurrentOffset < Typewriter.mFullText.Length)
+					{
+						Typewriter.Finish();
+					}
+					else
+					{
+						ID++;
+						Alpha = Alphas[ID];
+						Darkness.color = new Color(0f, 0f, 0f, Alpha);
+						Typewriter.ResetToBeginning();
+						Typewriter.mFullText = Lines[ID];
+						Label.text = "";
+						Spoke = false;
+						Frame = 0;
+						if (Alphas[ID] == 1)
+						{
+							Jukebox.Stop();
+						}
+						else if (!Jukebox.isPlaying)
+						{
+							Jukebox.Play();
+						}
+						if (ID == 17)
+						{
+							SFXAudioSource.clip = SFX[1];
+							SFXAudioSource.Play();
+						}
+						if (ID == 18)
+						{
+							SFXAudioSource.clip = SFX[2];
+							SFXAudioSource.Play();
+						}
+						if (ID > 25)
+						{
+							Typewriter.charsPerSecond = 15;
+						}
+						AutoTimer = 0f;
+					}
+				}
+				else if (!FinalDarkness.enabled)
+				{
+					FinalDarkness.enabled = true;
+					Alpha = 0f;
+				}
+			}
+			if (!Spoke && !SFXAudioSource.isPlaying)
+			{
+				MyAudio.clip = Voices[ID];
+				MyAudio.Play();
+				Spoke = true;
+			}
+			if (Auto && Typewriter.mCurrentOffset == Typewriter.mFullText.Length && !SFXAudioSource.isPlaying && !MyAudio.isPlaying)
+			{
+				AutoTimer += Time.deltaTime;
+			}
+			if (FinalDarkness.enabled)
+			{
+				Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * 0.2f);
+				FinalDarkness.color = new Color(0f, 0f, 0f, Alpha);
+				if (Alpha == 1f)
+				{
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("LifeNote", 1);
+						PlayerPrefs.SetInt("a", 1);
+					}
+					SceneManager.LoadScene("HomeScene");
+				}
+			}
+		}
+		if (!(TextWindow.color.a < 1f))
+		{
+			return;
+		}
+		if (Input.GetButtonDown("A"))
+		{
+			Darkness.color = new Color(0f, 0f, 0f, 0f);
+			BackgroundArt.localPosition = new Vector3(0f, 0f, 0f);
+			BackgroundArt.localScale = new Vector3(1f, 1f, 1f);
+			TextWindow.color = new Color(1f, 1f, 1f, 1f);
+			Label.color = new Color(1f, 1f, 1f, 0f);
+			Label.gameObject.SetActive(true);
+			Controls.SetActive(true);
+			Timer = 0f;
+		}
+		Timer += Time.deltaTime;
+		if (Timer > 6f)
+		{
+			Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime);
+			TextWindow.color = new Color(1f, 1f, 1f, Alpha);
+			if (TextWindow.color.a == 1f && !Typewriter.mActive)
+			{
+				Label.color = new Color(1f, 1f, 1f, 0f);
+				Label.gameObject.SetActive(true);
+				Controls.SetActive(true);
+				Timer = 0f;
+			}
+		}
+		else if (Timer > 2f)
+		{
+			BackgroundArt.localScale = Vector3.Lerp(BackgroundArt.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * (Timer - 2f));
+			BackgroundArt.localPosition = Vector3.Lerp(BackgroundArt.localPosition, new Vector3(0f, 0f, 0f), Time.deltaTime * (Timer - 2f));
+		}
+		else if (Timer > 0f)
+		{
+			Darkness.color = new Color(0f, 0f, 0f, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
+		}
+	}
 }

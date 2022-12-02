@@ -1,80 +1,75 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: SecurityCameraScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class SecurityCameraScript : MonoBehaviour
 {
-  public SecuritySystemScript SecuritySystem;
-  public MissionModeScript MissionMode;
-  public YandereScript Yandere;
-  public float Rotation;
-  public int Direction = 1;
+	public SecuritySystemScript SecuritySystem;
 
-  private void Update()
-  {
-    this.Rotation += (float) this.Direction * 36f * Time.deltaTime;
-    this.transform.parent.localEulerAngles = new Vector3(this.transform.parent.localEulerAngles.x, this.Rotation, this.transform.parent.localEulerAngles.z);
-    if (this.Direction > 0)
-    {
-      if ((double) this.Rotation <= 86.5)
-        return;
-      this.Direction = -1;
-    }
-    else
-    {
-      if ((double) this.Rotation >= -86.5)
-        return;
-      this.Direction = 1;
-    }
-  }
+	public MissionModeScript MissionMode;
 
-  private void OnTriggerStay(Collider other)
-  {
-    if (this.MissionMode.GameOverID != 0)
-      return;
-    if (other.gameObject.layer == 13)
-    {
-      if ((!this.Yandere.Armed || !this.Yandere.EquippedWeapon.Suspicious) && ((double) this.Yandere.Bloodiness <= 0.0 || this.Yandere.RedPaint) && (double) this.Yandere.Sanity >= 33.333000183105469 && !this.Yandere.Attacking && !this.Yandere.Struggling && !this.Yandere.Dragging && !this.Yandere.Lewd && !this.Yandere.Dragging && !this.Yandere.Carrying && (!this.Yandere.Laughing || (double) this.Yandere.LaughIntensity <= 15.0) && (!((Object) this.Yandere.PickUp != (Object) null) || !this.Yandere.PickUp.Clothing || !this.Yandere.PickUp.Evidence || this.Yandere.PickUp.RedPaint))
-        return;
-      if ((Object) this.Yandere.Mask == (Object) null)
-      {
-        if (this.MissionMode.enabled)
-        {
-          this.MissionMode.GameOverID = 15;
-          this.MissionMode.GameOver();
-          this.MissionMode.Phase = 4;
-          this.enabled = false;
-        }
-        else
-        {
-          if (this.SecuritySystem.Evidence)
-            return;
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Evidence);
-          this.SecuritySystem.Evidence = true;
-          this.SecuritySystem.Masked = false;
-        }
-      }
-      else
-      {
-        if (this.SecuritySystem.Masked)
-          return;
-        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Evidence);
-        this.SecuritySystem.Evidence = true;
-        this.SecuritySystem.Masked = true;
-      }
-    }
-    else
-    {
-      if (other.gameObject.layer != 11 || !this.MissionMode.enabled)
-        return;
-      this.MissionMode.GameOverID = 15;
-      this.MissionMode.GameOver();
-      this.MissionMode.Phase = 4;
-      this.enabled = false;
-    }
-  }
+	public YandereScript Yandere;
+
+	public float Rotation;
+
+	public int Direction = 1;
+
+	private void Update()
+	{
+		Rotation += (float)Direction * 36f * Time.deltaTime;
+		base.transform.parent.localEulerAngles = new Vector3(base.transform.parent.localEulerAngles.x, Rotation, base.transform.parent.localEulerAngles.z);
+		if (Direction > 0)
+		{
+			if (Rotation > 86.5f)
+			{
+				Direction = -1;
+			}
+		}
+		else if (Rotation < -86.5f)
+		{
+			Direction = 1;
+		}
+	}
+
+	private void OnTriggerStay(Collider other)
+	{
+		if (MissionMode.GameOverID != 0)
+		{
+			return;
+		}
+		if (other.gameObject.layer == 13)
+		{
+			if ((!Yandere.Armed || !Yandere.EquippedWeapon.Suspicious) && (!(Yandere.Bloodiness > 0f) || Yandere.RedPaint) && !(Yandere.Sanity < 33.333f) && !Yandere.Attacking && !Yandere.Struggling && !Yandere.Dragging && !Yandere.Lewd && !Yandere.Dragging && !Yandere.Carrying && (!Yandere.Laughing || !(Yandere.LaughIntensity > 15f)) && (!(Yandere.PickUp != null) || !Yandere.PickUp.Clothing || !Yandere.PickUp.Evidence || Yandere.PickUp.RedPaint))
+			{
+				return;
+			}
+			if (Yandere.Mask == null)
+			{
+				if (MissionMode.enabled)
+				{
+					MissionMode.GameOverID = 15;
+					MissionMode.GameOver();
+					MissionMode.Phase = 4;
+					base.enabled = false;
+				}
+				else if (!SecuritySystem.Evidence)
+				{
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Evidence);
+					SecuritySystem.Evidence = true;
+					SecuritySystem.Masked = false;
+				}
+			}
+			else if (!SecuritySystem.Masked)
+			{
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Evidence);
+				SecuritySystem.Evidence = true;
+				SecuritySystem.Masked = true;
+			}
+		}
+		else if (other.gameObject.layer == 11 && MissionMode.enabled)
+		{
+			MissionMode.GameOverID = 15;
+			MissionMode.GameOver();
+			MissionMode.Phase = 4;
+			base.enabled = false;
+		}
+	}
 }

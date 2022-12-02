@@ -1,21 +1,15 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ScheduleBlockArrayWrapper
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 
 [Serializable]
 public class ScheduleBlockArrayWrapper : ArrayWrapper<ScheduleBlock>
 {
-  public ScheduleBlockArrayWrapper(int size)
-    : base(size)
-  {
-  }
+	public ScheduleBlockArrayWrapper(int size)
+		: base(size)
+	{
+	}
 
-  public ScheduleBlockArrayWrapper(ScheduleBlock[] elements)
-    : base(elements)
-  {
-  }
+	public ScheduleBlockArrayWrapper(ScheduleBlock[] elements)
+		: base(elements)
+	{
+	}
 }

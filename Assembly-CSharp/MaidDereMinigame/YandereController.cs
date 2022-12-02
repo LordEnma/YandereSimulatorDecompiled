@@ -1,204 +1,250 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MaidDereMinigame.YandereController
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
+using System;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-  [RequireComponent(typeof (SpriteRenderer))]
-  [RequireComponent(typeof (Animator))]
-  public class YandereController : AIMover
-  {
-    private static YandereController instance;
-    public static bool leftButton;
-    public static bool rightButton;
-    public Transform leftBounds;
-    public Transform rightBounds;
-    public Transform interactionIndicator;
-    public Transform plateTransform;
-    public Food heldItem;
-    public RuntimeAnimatorController EightiesAnimator;
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
-    private AIController aiTarget;
-    public bool leftButtonPast;
-    public bool rightButtonPast;
-    private bool isPaused;
-    private bool LastKnownFlip;
-    public string LastKnownPoints;
+	[RequireComponent(typeof(SpriteRenderer))]
+	[RequireComponent(typeof(Animator))]
+	public class YandereController : AIMover
+	{
+		private static YandereController instance;
 
-    public static YandereController Instance
-    {
-      get
-      {
-        if ((Object) YandereController.instance == (Object) null)
-          YandereController.instance = Object.FindObjectOfType<YandereController>();
-        return YandereController.instance;
-      }
-    }
+		public static bool leftButton;
 
-    private void Awake()
-    {
-      this.spriteRenderer = this.GetComponent<SpriteRenderer>();
-      this.animator = this.GetComponent<Animator>();
-      this.plateTransform.gameObject.SetActive(false);
-      this.moveSpeed = GameController.Instance.activeDifficultyVariables.playerMoveSpeed;
-      this.isPaused = true;
-      if (!GameGlobals.Eighties)
-        return;
-      this.animator.runtimeAnimatorController = this.EightiesAnimator;
-    }
+		public static bool rightButton;
 
-    private void OnEnable() => GameController.PauseGame += new BoolParameterEvent(this.Pause);
+		public Transform leftBounds;
 
-    private void OnDisable() => GameController.PauseGame -= new BoolParameterEvent(this.Pause);
+		public Transform rightBounds;
 
-    public void Pause(bool toPause)
-    {
-      this.isPaused = toPause;
-      if (this.isPaused)
-        this.animator.SetBool("Moving", false);
-      this.animator.speed = this.isPaused ? 0.0f : 1f;
-    }
+		public Transform interactionIndicator;
 
-    private void Update()
-    {
-      YandereController.rightButton = false;
-      YandereController.leftButton = false;
-      if ((double) Input.GetAxisRaw("Horizontal") > 0.0 || Input.GetKey("right") || (double) Input.GetAxis("DpadX") > 0.5)
-      {
-        if (!this.rightButtonPast)
-        {
-          this.rightButtonPast = true;
-          YandereController.rightButton = true;
-        }
-      }
-      else if ((double) Input.GetAxisRaw("Horizontal") < 0.0 || Input.GetKey("left") || (double) Input.GetAxis("DpadX") < -0.5)
-      {
-        if (!this.leftButtonPast)
-        {
-          this.leftButtonPast = true;
-          YandereController.leftButton = true;
-        }
-      }
-      else
-      {
-        this.leftButtonPast = false;
-        this.rightButtonPast = false;
-      }
-      if ((double) this.transform.position.x < (double) this.leftBounds.position.x)
-        this.transform.position = new Vector3(this.leftBounds.position.x, this.transform.position.y, this.transform.position.z);
-      if ((double) this.transform.position.x > (double) this.rightBounds.position.x)
-        this.transform.position = new Vector3(this.rightBounds.position.x, this.transform.position.y, this.transform.position.z);
-      if (Input.GetButtonDown("A") && (Object) this.aiTarget != (Object) null)
-      {
-        if (this.aiTarget.state == AIController.AIState.Menu)
-        {
-          this.aiTarget.TakeOrder();
-          InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
-        }
-        else if (this.aiTarget.state == AIController.AIState.Waiting && (Object) this.heldItem != (Object) null)
-        {
-          this.aiTarget.DeliverFood(this.heldItem);
-          SFXController.PlaySound(SFXController.Sounds.Plate);
-          InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
-          this.DropTray();
-        }
-      }
-      if ((Object) this.aiTarget != (Object) null)
-      {
-        this.interactionIndicator.gameObject.SetActive(true);
-        this.interactionIndicator.position = new Vector3(this.aiTarget.transform.position.x, this.aiTarget.transform.position.y + 0.6f, this.aiTarget.transform.position.z);
-      }
-      else
-        this.interactionIndicator.gameObject.SetActive(false);
-    }
+		public Transform plateTransform;
 
-    public override ControlInput GetInput()
-    {
-      if (this.isPaused)
-      {
-        this.animator.SetBool("Moving", false);
-        return new ControlInput();
-      }
-      float num = 0.0f;
-      if (this.rightButtonPast)
-        num = 1f;
-      else if (this.leftButtonPast)
-        num = -1f;
-      ControlInput input = new ControlInput();
-      input.horizontal = num;
-      if ((double) input.horizontal != 0.0)
-      {
-        if ((double) input.horizontal < 0.0)
-          this.spriteRenderer.flipX = true;
-        else if ((double) input.horizontal > 0.0)
-          this.spriteRenderer.flipX = false;
-        if (this.spriteRenderer.flipX != this.LastKnownFlip)
-          this.PositionTray(this.LastKnownPoints);
-        this.LastKnownFlip = this.spriteRenderer.flipX;
-        this.animator.SetBool("Moving", true);
-      }
-      else
-        this.animator.SetBool("Moving", false);
-      return input;
-    }
+		public Food heldItem;
 
-    public void PickUpTray(Food plate)
-    {
-      this.animator.SetTrigger("GetTray");
-      this.heldItem = plate;
-      this.plateTransform.gameObject.SetActive(false);
-      this.plateTransform.GetComponent<SpriteRenderer>().sprite = this.heldItem.smallSprite;
-      this.plateTransform.gameObject.SetActive(true);
-    }
+		public RuntimeAnimatorController EightiesAnimator;
 
-    public void DropTray()
-    {
-      this.plateTransform.gameObject.SetActive(false);
-      this.animator.SetTrigger(nameof (DropTray));
-      this.heldItem = (Food) null;
-    }
+		private SpriteRenderer spriteRenderer;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-      AIController component = collision.GetComponent<AIController>();
-      if (!((Object) component != (Object) null))
-        return;
-      if (component.state == AIController.AIState.Menu)
-      {
-        this.aiTarget = component;
-        InteractionMenu.SetAButton(InteractionMenu.AButtonText.TakeOrder);
-      }
-      if (component.state != AIController.AIState.Waiting || !((Object) this.heldItem != (Object) null))
-        return;
-      this.aiTarget = component;
-      InteractionMenu.SetAButton(InteractionMenu.AButtonText.GiveFood);
-    }
+		private Animator animator;
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-      AIController component = collision.GetComponent<AIController>();
-      if (!((Object) component != (Object) null) || !((Object) component == (Object) this.aiTarget))
-        return;
-      this.aiTarget = (AIController) null;
-      InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
-    }
+		private AIController aiTarget;
 
-    public void SetPause(bool toPause) => this.isPaused = toPause;
+		public bool leftButtonPast;
 
-    public void PositionTray(string point)
-    {
-      string[] strArray = point.Split(',');
-      this.LastKnownPoints = point;
-      float result1;
-      float.TryParse(strArray[0], out result1);
-      float result2;
-      float.TryParse(strArray[1], out result2);
-      this.plateTransform.localPosition = new Vector3(this.spriteRenderer.flipX ? -result1 : result1, result2, 0.0f);
-    }
-  }
+		public bool rightButtonPast;
+
+		private bool isPaused;
+
+		private bool LastKnownFlip;
+
+		public string LastKnownPoints;
+
+		public static YandereController Instance
+		{
+			get
+			{
+				if (instance == null)
+				{
+					instance = UnityEngine.Object.FindObjectOfType<YandereController>();
+				}
+				return instance;
+			}
+		}
+
+		private void Awake()
+		{
+			spriteRenderer = GetComponent<SpriteRenderer>();
+			animator = GetComponent<Animator>();
+			plateTransform.gameObject.SetActive(false);
+			moveSpeed = GameController.Instance.activeDifficultyVariables.playerMoveSpeed;
+			isPaused = true;
+			if (GameGlobals.Eighties)
+			{
+				animator.runtimeAnimatorController = EightiesAnimator;
+			}
+		}
+
+		private void OnEnable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
+
+		private void OnDisable()
+		{
+			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(Pause));
+		}
+
+		public void Pause(bool toPause)
+		{
+			isPaused = toPause;
+			if (isPaused)
+			{
+				animator.SetBool("Moving", false);
+			}
+			animator.speed = ((!isPaused) ? 1 : 0);
+		}
+
+		private void Update()
+		{
+			rightButton = false;
+			leftButton = false;
+			if (Input.GetAxisRaw("Horizontal") > 0f || Input.GetKey("right") || Input.GetAxis("DpadX") > 0.5f)
+			{
+				if (!rightButtonPast)
+				{
+					rightButtonPast = true;
+					rightButton = true;
+				}
+			}
+			else if (Input.GetAxisRaw("Horizontal") < 0f || Input.GetKey("left") || Input.GetAxis("DpadX") < -0.5f)
+			{
+				if (!leftButtonPast)
+				{
+					leftButtonPast = true;
+					leftButton = true;
+				}
+			}
+			else
+			{
+				leftButtonPast = false;
+				rightButtonPast = false;
+			}
+			if (base.transform.position.x < leftBounds.position.x)
+			{
+				base.transform.position = new Vector3(leftBounds.position.x, base.transform.position.y, base.transform.position.z);
+			}
+			if (base.transform.position.x > rightBounds.position.x)
+			{
+				base.transform.position = new Vector3(rightBounds.position.x, base.transform.position.y, base.transform.position.z);
+			}
+			if (Input.GetButtonDown("A") && aiTarget != null)
+			{
+				if (aiTarget.state == AIController.AIState.Menu)
+				{
+					aiTarget.TakeOrder();
+					InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
+				}
+				else if (aiTarget.state == AIController.AIState.Waiting && heldItem != null)
+				{
+					aiTarget.DeliverFood(heldItem);
+					SFXController.PlaySound(SFXController.Sounds.Plate);
+					InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
+					DropTray();
+				}
+			}
+			if (aiTarget != null)
+			{
+				interactionIndicator.gameObject.SetActive(true);
+				interactionIndicator.position = new Vector3(aiTarget.transform.position.x, aiTarget.transform.position.y + 0.6f, aiTarget.transform.position.z);
+			}
+			else
+			{
+				interactionIndicator.gameObject.SetActive(false);
+			}
+		}
+
+		public override ControlInput GetInput()
+		{
+			if (isPaused)
+			{
+				animator.SetBool("Moving", false);
+				return default(ControlInput);
+			}
+			float horizontal = 0f;
+			if (rightButtonPast)
+			{
+				horizontal = 1f;
+			}
+			else if (leftButtonPast)
+			{
+				horizontal = -1f;
+			}
+			ControlInput result = default(ControlInput);
+			result.horizontal = horizontal;
+			if (result.horizontal != 0f)
+			{
+				if (result.horizontal < 0f)
+				{
+					spriteRenderer.flipX = true;
+				}
+				else if (result.horizontal > 0f)
+				{
+					spriteRenderer.flipX = false;
+				}
+				if (spriteRenderer.flipX != LastKnownFlip)
+				{
+					PositionTray(LastKnownPoints);
+				}
+				LastKnownFlip = spriteRenderer.flipX;
+				animator.SetBool("Moving", true);
+			}
+			else
+			{
+				animator.SetBool("Moving", false);
+			}
+			return result;
+		}
+
+		public void PickUpTray(Food plate)
+		{
+			animator.SetTrigger("GetTray");
+			heldItem = plate;
+			plateTransform.gameObject.SetActive(false);
+			plateTransform.GetComponent<SpriteRenderer>().sprite = heldItem.smallSprite;
+			plateTransform.gameObject.SetActive(true);
+		}
+
+		public void DropTray()
+		{
+			plateTransform.gameObject.SetActive(false);
+			animator.SetTrigger("DropTray");
+			heldItem = null;
+		}
+
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			AIController component = collision.GetComponent<AIController>();
+			if (component != null)
+			{
+				if (component.state == AIController.AIState.Menu)
+				{
+					aiTarget = component;
+					InteractionMenu.SetAButton(InteractionMenu.AButtonText.TakeOrder);
+				}
+				if (component.state == AIController.AIState.Waiting && heldItem != null)
+				{
+					aiTarget = component;
+					InteractionMenu.SetAButton(InteractionMenu.AButtonText.GiveFood);
+				}
+			}
+		}
+
+		private void OnTriggerExit2D(Collider2D collision)
+		{
+			AIController component = collision.GetComponent<AIController>();
+			if (component != null && component == aiTarget)
+			{
+				aiTarget = null;
+				InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
+			}
+		}
+
+		public void SetPause(bool toPause)
+		{
+			isPaused = toPause;
+		}
+
+		public void PositionTray(string point)
+		{
+			string[] array = point.Split(',');
+			LastKnownPoints = point;
+			float result;
+			float.TryParse(array[0], out result);
+			float result2;
+			float.TryParse(array[1], out result2);
+			plateTransform.localPosition = new Vector3(spriteRenderer.flipX ? (0f - result) : result, result2, 0f);
+		}
+	}
 }

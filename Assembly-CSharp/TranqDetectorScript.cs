@@ -1,109 +1,145 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TranqDetectorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class TranqDetectorScript : MonoBehaviour
 {
-  public YandereScript Yandere;
-  public DoorScript Door;
-  public UIPanel Checklist;
-  public Collider MyCollider;
-  public UILabel KidnappingLabel;
-  public UISprite TranquilizerIcon;
-  public UISprite FollowerIcon;
-  public UISprite BiologyIcon;
-  public UISprite SyringeIcon;
-  public UISprite DoorIcon;
-  public bool StopChecking;
-  public bool CannotKidnap;
-  public int BasementPrisoners;
-  public AudioClip[] TranqClips;
+	public YandereScript Yandere;
 
-  private void Start()
-  {
-    this.Checklist.alpha = 0.0f;
-    this.BasementPrisoners = StudentGlobals.Prisoners;
-  }
+	public DoorScript Door;
 
-  private void Update()
-  {
-    if (!this.StopChecking)
-    {
-      if (this.MyCollider.bounds.Contains(this.Yandere.transform.position))
-      {
-        if (this.BasementPrisoners > 9)
-        {
-          this.KidnappingLabel.text = "There is no room for another prisoner in your basement.";
-          this.CannotKidnap = true;
-        }
-        else
-        {
-          this.TranquilizerIcon.spriteName = this.Yandere.Inventory.SedativePoisons <= 0 ? "No" : "Yes";
-          if (this.Yandere.Followers != 1)
-            this.FollowerIcon.spriteName = "No";
-          else if (this.Yandere.Follower.Male)
-          {
-            this.KidnappingLabel.text = "You cannot kidnap male students at this point in time.";
-            this.FollowerIcon.spriteName = "No";
-            this.CannotKidnap = true;
-          }
-          else
-          {
-            this.KidnappingLabel.text = "Kidnapping Checklist";
-            this.FollowerIcon.spriteName = "Yes";
-            this.CannotKidnap = false;
-          }
-          this.BiologyIcon.spriteName = this.Yandere.Class.BiologyGrade + this.Yandere.Class.BiologyBonus != 0 ? "Yes" : "No";
-          this.SyringeIcon.spriteName = this.Yandere.Armed ? (this.Yandere.EquippedWeapon.WeaponID == 3 ? "Yes" : "No") : "No";
-          this.DoorIcon.spriteName = this.Door.Open || (double) this.Door.Timer < 1.0 ? "No" : "Yes";
-        }
-        this.Checklist.alpha = Mathf.MoveTowards(this.Checklist.alpha, 1f, Time.deltaTime);
-      }
-      else
-      {
-        if ((double) this.Checklist.alpha == 0.0)
-          return;
-        this.Checklist.alpha = Mathf.MoveTowards(this.Checklist.alpha, 0.0f, Time.deltaTime);
-      }
-    }
-    else
-    {
-      this.Checklist.alpha = Mathf.MoveTowards(this.Checklist.alpha, 0.0f, Time.deltaTime);
-      if ((double) this.Checklist.alpha != 0.0)
-        return;
-      this.enabled = false;
-    }
-  }
+	public UIPanel Checklist;
 
-  public void TranqCheck()
-  {
-    if (this.StopChecking || this.CannotKidnap || !(this.TranquilizerIcon.spriteName == "Yes") || !(this.FollowerIcon.spriteName == "Yes") || !(this.BiologyIcon.spriteName == "Yes") || !(this.SyringeIcon.spriteName == "Yes") || !(this.DoorIcon.spriteName == "Yes"))
-      return;
-    AudioSource component = this.GetComponent<AudioSource>();
-    component.clip = this.TranqClips[Random.Range(0, this.TranqClips.Length)];
-    component.Play();
-    this.Door.Prompt.Hide();
-    this.Door.Prompt.enabled = false;
-    this.Door.enabled = false;
-    --this.Yandere.Inventory.SedativePoisons;
-    if (!this.Yandere.Follower.Male)
-      this.Yandere.CanTranq = true;
-    this.Yandere.EquippedWeapon.Type = WeaponType.Syringe;
-    this.Yandere.AttackManager.Stealth = true;
-    this.StopChecking = true;
-  }
+	public Collider MyCollider;
 
-  public void GarroteAttack()
-  {
-    AudioSource component = this.GetComponent<AudioSource>();
-    component.clip = this.TranqClips[Random.Range(0, this.TranqClips.Length)];
-    component.Play();
-    this.Yandere.EquippedWeapon.Type = WeaponType.Syringe;
-    this.Yandere.AttackManager.Stealth = true;
-    this.StopChecking = true;
-  }
+	public UILabel KidnappingLabel;
+
+	public UISprite TranquilizerIcon;
+
+	public UISprite FollowerIcon;
+
+	public UISprite BiologyIcon;
+
+	public UISprite SyringeIcon;
+
+	public UISprite DoorIcon;
+
+	public bool StopChecking;
+
+	public bool CannotKidnap;
+
+	public int BasementPrisoners;
+
+	public AudioClip[] TranqClips;
+
+	private void Start()
+	{
+		Checklist.alpha = 0f;
+		BasementPrisoners = StudentGlobals.Prisoners;
+	}
+
+	private void Update()
+	{
+		if (!StopChecking)
+		{
+			if (MyCollider.bounds.Contains(Yandere.transform.position))
+			{
+				if (BasementPrisoners > 9)
+				{
+					KidnappingLabel.text = "There is no room for another prisoner in your basement.";
+					CannotKidnap = true;
+				}
+				else
+				{
+					if (Yandere.Inventory.SedativePoisons > 0)
+					{
+						TranquilizerIcon.spriteName = "Yes";
+					}
+					else
+					{
+						TranquilizerIcon.spriteName = "No";
+					}
+					if (Yandere.Followers != 1)
+					{
+						FollowerIcon.spriteName = "No";
+					}
+					else if (Yandere.Follower.Male)
+					{
+						KidnappingLabel.text = "You cannot kidnap male students at this point in time.";
+						FollowerIcon.spriteName = "No";
+						CannotKidnap = true;
+					}
+					else
+					{
+						KidnappingLabel.text = "Kidnapping Checklist";
+						FollowerIcon.spriteName = "Yes";
+						CannotKidnap = false;
+					}
+					BiologyIcon.spriteName = ((Yandere.Class.BiologyGrade + Yandere.Class.BiologyBonus != 0) ? "Yes" : "No");
+					if (!Yandere.Armed)
+					{
+						SyringeIcon.spriteName = "No";
+					}
+					else if (Yandere.EquippedWeapon.WeaponID != 3)
+					{
+						SyringeIcon.spriteName = "No";
+					}
+					else
+					{
+						SyringeIcon.spriteName = "Yes";
+					}
+					if (Door.Open || Door.Timer < 1f)
+					{
+						DoorIcon.spriteName = "No";
+					}
+					else
+					{
+						DoorIcon.spriteName = "Yes";
+					}
+				}
+				Checklist.alpha = Mathf.MoveTowards(Checklist.alpha, 1f, Time.deltaTime);
+			}
+			else if (Checklist.alpha != 0f)
+			{
+				Checklist.alpha = Mathf.MoveTowards(Checklist.alpha, 0f, Time.deltaTime);
+			}
+		}
+		else
+		{
+			Checklist.alpha = Mathf.MoveTowards(Checklist.alpha, 0f, Time.deltaTime);
+			if (Checklist.alpha == 0f)
+			{
+				base.enabled = false;
+			}
+		}
+	}
+
+	public void TranqCheck()
+	{
+		if (!StopChecking && !CannotKidnap && TranquilizerIcon.spriteName == "Yes" && FollowerIcon.spriteName == "Yes" && BiologyIcon.spriteName == "Yes" && SyringeIcon.spriteName == "Yes" && DoorIcon.spriteName == "Yes")
+		{
+			AudioSource component = GetComponent<AudioSource>();
+			component.clip = TranqClips[Random.Range(0, TranqClips.Length)];
+			component.Play();
+			Door.Prompt.Hide();
+			Door.Prompt.enabled = false;
+			Door.enabled = false;
+			Yandere.Inventory.SedativePoisons--;
+			if (!Yandere.Follower.Male)
+			{
+				Yandere.CanTranq = true;
+			}
+			Yandere.EquippedWeapon.Type = WeaponType.Syringe;
+			Yandere.AttackManager.Stealth = true;
+			StopChecking = true;
+		}
+	}
+
+	public void GarroteAttack()
+	{
+		AudioSource component = GetComponent<AudioSource>();
+		component.clip = TranqClips[Random.Range(0, TranqClips.Length)];
+		component.Play();
+		Yandere.EquippedWeapon.Type = WeaponType.Syringe;
+		Yandere.AttackManager.Stealth = true;
+		StopChecking = true;
+	}
 }

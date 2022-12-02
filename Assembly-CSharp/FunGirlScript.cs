@@ -1,47 +1,56 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FunGirlScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FunGirlScript : MonoBehaviour
 {
-  public StudentManagerScript StudentManager;
-  public GameObject Jukebox;
-  public Transform Yandere;
-  public UIPanel HUD;
-  public float Speed;
+	public StudentManagerScript StudentManager;
 
-  private void Start() => this.ChaseYandereChan();
+	public GameObject Jukebox;
 
-  private void Update()
-  {
-    if ((double) this.Speed < 5.0)
-      this.Speed += Time.deltaTime * 0.1f;
-    else
-      this.Speed = 5f;
-    this.transform.position = Vector3.MoveTowards(this.transform.position, this.Yandere.position, Time.deltaTime * this.Speed);
-    this.transform.LookAt(this.Yandere.position);
-    if ((double) Vector3.Distance(this.transform.position, this.Yandere.position) >= 0.5)
-      return;
-    Application.Quit();
-  }
+	public Transform Yandere;
 
-  private void ChaseYandereChan()
-  {
-    SchoolGlobals.SchoolAtmosphereSet = true;
-    SchoolGlobals.SchoolAtmosphere = 0.0f;
-    this.StudentManager.SetAtmosphere();
-    foreach (StudentScript student in this.StudentManager.Students)
-    {
-      if ((Object) student != (Object) null)
-        student.gameObject.SetActive(false);
-    }
-    this.StudentManager.Yandere.NoDebug = true;
-    this.gameObject.SetActive(true);
-    this.Jukebox.SetActive(false);
-    this.HUD.enabled = false;
-  }
+	public UIPanel HUD;
+
+	public float Speed;
+
+	private void Start()
+	{
+		ChaseYandereChan();
+	}
+
+	private void Update()
+	{
+		if (Speed < 5f)
+		{
+			Speed += Time.deltaTime * 0.1f;
+		}
+		else
+		{
+			Speed = 5f;
+		}
+		base.transform.position = Vector3.MoveTowards(base.transform.position, Yandere.position, Time.deltaTime * Speed);
+		base.transform.LookAt(Yandere.position);
+		if (Vector3.Distance(base.transform.position, Yandere.position) < 0.5f)
+		{
+			Application.Quit();
+		}
+	}
+
+	private void ChaseYandereChan()
+	{
+		SchoolGlobals.SchoolAtmosphereSet = true;
+		SchoolGlobals.SchoolAtmosphere = 0f;
+		StudentManager.SetAtmosphere();
+		StudentScript[] students = StudentManager.Students;
+		foreach (StudentScript studentScript in students)
+		{
+			if (studentScript != null)
+			{
+				studentScript.gameObject.SetActive(false);
+			}
+		}
+		StudentManager.Yandere.NoDebug = true;
+		base.gameObject.SetActive(true);
+		Jukebox.SetActive(false);
+		HUD.enabled = false;
+	}
 }

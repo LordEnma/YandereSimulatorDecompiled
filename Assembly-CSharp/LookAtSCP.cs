@@ -1,21 +1,20 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: LookAtSCP
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class LookAtSCP : MonoBehaviour
 {
-  public Transform SCP;
+	public Transform SCP;
 
-  private void Start()
-  {
-    if ((Object) this.SCP == (Object) null)
-      this.SCP = GameObject.Find("SCPTarget").transform;
-    this.transform.LookAt(this.SCP);
-  }
+	private void Start()
+	{
+		if (SCP == null)
+		{
+			SCP = GameObject.Find("SCPTarget").transform;
+		}
+		base.transform.LookAt(SCP);
+	}
 
-  private void LateUpdate() => this.transform.LookAt(this.SCP);
+	private void LateUpdate()
+	{
+		base.transform.LookAt(SCP);
+	}
 }

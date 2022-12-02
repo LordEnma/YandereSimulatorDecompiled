@@ -1,99 +1,111 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PhoneMinigameScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class PhoneMinigameScript : MonoBehaviour
 {
-  public PickpocketMinigameScript PickpocketMinigame;
-  public OsanaThursdayAfterClassEventScript Event;
-  public Renderer SmartPhoneScreen;
-  public Transform Smartphone;
-  public PromptScript Prompt;
-  public Texture AlarmOff;
-  public bool Tampering;
-  public float Timer;
-  public Vector3 OriginalPosition;
-  public Vector3 OriginalRotation;
+	public PickpocketMinigameScript PickpocketMinigame;
 
-  private void Update()
-  {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
-    {
-      this.Prompt.Yandere.CameraEffects.UpdateDOF(0.23f);
-      this.Prompt.Yandere.MainCamera.GetComponent<AudioListener>().enabled = true;
-      this.Prompt.Yandere.Pickpocketing = true;
-      this.Prompt.Yandere.CanMove = false;
-      this.Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(45f, 180f, 0.0f);
-      this.Prompt.Yandere.MainCamera.transform.position = new Vector3(0.4f, 12.66666f, -29.2f);
-      this.Prompt.Yandere.RPGCamera.enabled = false;
-      this.SmartPhoneScreen = this.Event.Rival.SmartPhoneScreen;
-      this.Smartphone = this.Event.Rival.SmartPhone.transform;
-      this.PickpocketMinigame.StartingAlerts = this.Prompt.Yandere.Alerts;
-      this.PickpocketMinigame.PickpocketSpot = (Transform) null;
-      this.PickpocketMinigame.Sabotage = true;
-      this.PickpocketMinigame.Show = true;
-      this.OriginalRotation = this.Smartphone.eulerAngles;
-      this.OriginalPosition = this.Smartphone.position;
-      this.Tampering = true;
-    }
-    if (!this.Tampering)
-      return;
-    this.Prompt.Yandere.MoveTowardsTarget(new Vector3(0.0f, 12f, -28.66666f));
-    if (!this.PickpocketMinigame.Failure && this.Event.enabled)
-    {
-      if (this.PickpocketMinigame.Progress == 1)
-        this.Smartphone.position = Vector3.Lerp(this.Smartphone.position, new Vector3(0.4f, this.Smartphone.position.y, this.Smartphone.position.z), Time.deltaTime * 10f);
-      else if (this.PickpocketMinigame.Progress == 2)
-        this.Smartphone.eulerAngles = Vector3.Lerp(this.Smartphone.eulerAngles, new Vector3(0.0f, 180f, 0.0f), Time.deltaTime * 10f);
-      else if (this.PickpocketMinigame.Progress == 3)
-        this.SmartPhoneScreen.material.mainTexture = this.AlarmOff;
-      else if (this.PickpocketMinigame.Progress == 4)
-      {
-        this.Smartphone.eulerAngles = Vector3.Lerp(this.Smartphone.eulerAngles, new Vector3(this.OriginalRotation.x, this.OriginalRotation.y, this.OriginalRotation.z), Time.deltaTime * 10f);
-      }
-      else
-      {
-        if (this.PickpocketMinigame.Show)
-          return;
-        this.Smartphone.position = Vector3.Lerp(this.Smartphone.position, new Vector3(this.OriginalPosition.x, this.OriginalPosition.y, this.OriginalPosition.z), Time.deltaTime * 10f);
-        this.Timer += Time.deltaTime;
-        if ((double) this.Timer <= 1.0)
-          return;
-        this.Event.Sabotaged = true;
-        this.End();
-      }
-    }
-    else
-    {
-      if (!this.Event.enabled)
-        this.PickpocketMinigame.End();
-      this.Prompt.Yandere.transform.position = new Vector3(0.0f, 12f, -28.5f);
-      this.Prompt.Yandere.TheftTimer = 1f;
-      this.Event.EndEvent();
-      this.Event.Rival.transform.position = new Vector3(0.0f, 12f, -29.2f);
-      this.Event.Rival.YandereVisible = true;
-      this.Event.Rival.Distracted = false;
-      this.Event.Rival.Alarm = 200f;
-      this.End();
-    }
-  }
+	public OsanaThursdayAfterClassEventScript Event;
 
-  private void End()
-  {
-    this.Prompt.Yandere.CameraEffects.UpdateDOF(2f);
-    this.Prompt.Yandere.MainCamera.GetComponent<AudioListener>().enabled = false;
-    this.Prompt.Yandere.RPGCamera.enabled = true;
-    this.Prompt.Yandere.gameObject.SetActive(true);
-    this.Prompt.Yandere.Pickpocketing = false;
-    this.Prompt.Yandere.CanMove = true;
-    this.Prompt.Yandere.Caught = false;
-    this.Prompt.Hide();
-    this.Prompt.enabled = false;
-    this.Tampering = false;
-    this.gameObject.SetActive(false);
-  }
+	public Renderer SmartPhoneScreen;
+
+	public Transform Smartphone;
+
+	public PromptScript Prompt;
+
+	public Texture AlarmOff;
+
+	public bool Tampering;
+
+	public float Timer;
+
+	public Vector3 OriginalPosition;
+
+	public Vector3 OriginalRotation;
+
+	private void Update()
+	{
+		if (Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Yandere.CameraEffects.UpdateDOF(0.23f);
+			Prompt.Yandere.MainCamera.GetComponent<AudioListener>().enabled = true;
+			Prompt.Yandere.Pickpocketing = true;
+			Prompt.Yandere.CanMove = false;
+			Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(45f, 180f, 0f);
+			Prompt.Yandere.MainCamera.transform.position = new Vector3(0.4f, 12.66666f, -29.2f);
+			Prompt.Yandere.RPGCamera.enabled = false;
+			SmartPhoneScreen = Event.Rival.SmartPhoneScreen;
+			Smartphone = Event.Rival.SmartPhone.transform;
+			PickpocketMinigame.StartingAlerts = Prompt.Yandere.Alerts;
+			PickpocketMinigame.PickpocketSpot = null;
+			PickpocketMinigame.Sabotage = true;
+			PickpocketMinigame.Show = true;
+			OriginalRotation = Smartphone.eulerAngles;
+			OriginalPosition = Smartphone.position;
+			Tampering = true;
+		}
+		if (!Tampering)
+		{
+			return;
+		}
+		Prompt.Yandere.MoveTowardsTarget(new Vector3(0f, 12f, -28.66666f));
+		if (!PickpocketMinigame.Failure && Event.enabled)
+		{
+			if (PickpocketMinigame.Progress == 1)
+			{
+				Smartphone.position = Vector3.Lerp(Smartphone.position, new Vector3(0.4f, Smartphone.position.y, Smartphone.position.z), Time.deltaTime * 10f);
+			}
+			else if (PickpocketMinigame.Progress == 2)
+			{
+				Smartphone.eulerAngles = Vector3.Lerp(Smartphone.eulerAngles, new Vector3(0f, 180f, 0f), Time.deltaTime * 10f);
+			}
+			else if (PickpocketMinigame.Progress == 3)
+			{
+				SmartPhoneScreen.material.mainTexture = AlarmOff;
+			}
+			else if (PickpocketMinigame.Progress == 4)
+			{
+				Smartphone.eulerAngles = Vector3.Lerp(Smartphone.eulerAngles, new Vector3(OriginalRotation.x, OriginalRotation.y, OriginalRotation.z), Time.deltaTime * 10f);
+			}
+			else if (!PickpocketMinigame.Show)
+			{
+				Smartphone.position = Vector3.Lerp(Smartphone.position, new Vector3(OriginalPosition.x, OriginalPosition.y, OriginalPosition.z), Time.deltaTime * 10f);
+				Timer += Time.deltaTime;
+				if ((double)Timer > 1.0)
+				{
+					Event.Sabotaged = true;
+					End();
+				}
+			}
+		}
+		else
+		{
+			if (!Event.enabled)
+			{
+				PickpocketMinigame.End();
+			}
+			Prompt.Yandere.transform.position = new Vector3(0f, 12f, -28.5f);
+			Prompt.Yandere.TheftTimer = 1f;
+			Event.EndEvent();
+			Event.Rival.transform.position = new Vector3(0f, 12f, -29.2f);
+			Event.Rival.YandereVisible = true;
+			Event.Rival.Distracted = false;
+			Event.Rival.Alarm = 200f;
+			End();
+		}
+	}
+
+	private void End()
+	{
+		Prompt.Yandere.CameraEffects.UpdateDOF(2f);
+		Prompt.Yandere.MainCamera.GetComponent<AudioListener>().enabled = false;
+		Prompt.Yandere.RPGCamera.enabled = true;
+		Prompt.Yandere.gameObject.SetActive(true);
+		Prompt.Yandere.Pickpocketing = false;
+		Prompt.Yandere.CanMove = true;
+		Prompt.Yandere.Caught = false;
+		Prompt.Hide();
+		Prompt.enabled = false;
+		Tampering = false;
+		base.gameObject.SetActive(false);
+	}
 }

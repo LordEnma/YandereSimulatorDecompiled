@@ -1,19 +1,14 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: MinMaxRangeAttribute
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class MinMaxRangeAttribute : PropertyAttribute
 {
-  public float minLimit;
-  public float maxLimit;
+	public float minLimit;
 
-  public MinMaxRangeAttribute(float minLimit, float maxLimit)
-  {
-    this.minLimit = minLimit;
-    this.maxLimit = maxLimit;
-  }
+	public float maxLimit;
+
+	public MinMaxRangeAttribute(float minLimit, float maxLimit)
+	{
+		this.minLimit = minLimit;
+		this.maxLimit = maxLimit;
+	}
 }

@@ -1,63 +1,85 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: CollectibleSaveData
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
-using System.Collections.Generic;
 
 [Serializable]
 public class CollectibleSaveData
 {
-  public IntHashSet basementTapeCollected = new IntHashSet();
-  public IntHashSet basementTapeListened = new IntHashSet();
-  public IntHashSet mangaCollected = new IntHashSet();
-  public IntHashSet tapeCollected = new IntHashSet();
-  public IntHashSet tapeListened = new IntHashSet();
+	public IntHashSet basementTapeCollected = new IntHashSet();
 
-  public static CollectibleSaveData ReadFromGlobals()
-  {
-    CollectibleSaveData collectibleSaveData = new CollectibleSaveData();
-    foreach (int tapeID in CollectibleGlobals.KeysOfBasementTapeCollected())
-    {
-      if (CollectibleGlobals.GetBasementTapeCollected(tapeID))
-        collectibleSaveData.basementTapeCollected.Add(tapeID);
-    }
-    foreach (int tapeID in CollectibleGlobals.KeysOfBasementTapeListened())
-    {
-      if (CollectibleGlobals.GetBasementTapeListened(tapeID))
-        collectibleSaveData.basementTapeListened.Add(tapeID);
-    }
-    foreach (int mangaID in CollectibleGlobals.KeysOfMangaCollected())
-    {
-      if (CollectibleGlobals.GetMangaCollected(mangaID))
-        collectibleSaveData.mangaCollected.Add(mangaID);
-    }
-    foreach (int tapeID in CollectibleGlobals.KeysOfTapeCollected())
-    {
-      if (CollectibleGlobals.GetTapeCollected(tapeID))
-        collectibleSaveData.tapeCollected.Add(tapeID);
-    }
-    foreach (int tapeID in CollectibleGlobals.KeysOfTapeListened())
-    {
-      if (CollectibleGlobals.GetTapeListened(tapeID))
-        collectibleSaveData.tapeListened.Add(tapeID);
-    }
-    return collectibleSaveData;
-  }
+	public IntHashSet basementTapeListened = new IntHashSet();
 
-  public static void WriteToGlobals(CollectibleSaveData data)
-  {
-    foreach (int tapeID in (HashSet<int>) data.basementTapeCollected)
-      CollectibleGlobals.SetBasementTapeCollected(tapeID, true);
-    foreach (int tapeID in (HashSet<int>) data.basementTapeListened)
-      CollectibleGlobals.SetBasementTapeListened(tapeID, true);
-    foreach (int mangaID in (HashSet<int>) data.mangaCollected)
-      CollectibleGlobals.SetMangaCollected(mangaID, true);
-    foreach (int tapeID in (HashSet<int>) data.tapeCollected)
-      CollectibleGlobals.SetTapeCollected(tapeID, true);
-    foreach (int tapeID in (HashSet<int>) data.tapeListened)
-      CollectibleGlobals.SetTapeListened(tapeID, true);
-  }
+	public IntHashSet mangaCollected = new IntHashSet();
+
+	public IntHashSet tapeCollected = new IntHashSet();
+
+	public IntHashSet tapeListened = new IntHashSet();
+
+	public static CollectibleSaveData ReadFromGlobals()
+	{
+		CollectibleSaveData collectibleSaveData = new CollectibleSaveData();
+		int[] array = CollectibleGlobals.KeysOfBasementTapeCollected();
+		foreach (int num in array)
+		{
+			if (CollectibleGlobals.GetBasementTapeCollected(num))
+			{
+				collectibleSaveData.basementTapeCollected.Add(num);
+			}
+		}
+		array = CollectibleGlobals.KeysOfBasementTapeListened();
+		foreach (int num2 in array)
+		{
+			if (CollectibleGlobals.GetBasementTapeListened(num2))
+			{
+				collectibleSaveData.basementTapeListened.Add(num2);
+			}
+		}
+		array = CollectibleGlobals.KeysOfMangaCollected();
+		foreach (int num3 in array)
+		{
+			if (CollectibleGlobals.GetMangaCollected(num3))
+			{
+				collectibleSaveData.mangaCollected.Add(num3);
+			}
+		}
+		array = CollectibleGlobals.KeysOfTapeCollected();
+		foreach (int num4 in array)
+		{
+			if (CollectibleGlobals.GetTapeCollected(num4))
+			{
+				collectibleSaveData.tapeCollected.Add(num4);
+			}
+		}
+		array = CollectibleGlobals.KeysOfTapeListened();
+		foreach (int num5 in array)
+		{
+			if (CollectibleGlobals.GetTapeListened(num5))
+			{
+				collectibleSaveData.tapeListened.Add(num5);
+			}
+		}
+		return collectibleSaveData;
+	}
+
+	public static void WriteToGlobals(CollectibleSaveData data)
+	{
+		foreach (int item in data.basementTapeCollected)
+		{
+			CollectibleGlobals.SetBasementTapeCollected(item, true);
+		}
+		foreach (int item2 in data.basementTapeListened)
+		{
+			CollectibleGlobals.SetBasementTapeListened(item2, true);
+		}
+		foreach (int item3 in data.mangaCollected)
+		{
+			CollectibleGlobals.SetMangaCollected(item3, true);
+		}
+		foreach (int item4 in data.tapeCollected)
+		{
+			CollectibleGlobals.SetTapeCollected(item4, true);
+		}
+		foreach (int item5 in data.tapeListened)
+		{
+			CollectibleGlobals.SetTapeListened(item5, true);
+		}
+	}
 }

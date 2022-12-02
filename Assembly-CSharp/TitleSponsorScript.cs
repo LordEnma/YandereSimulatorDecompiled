@@ -1,91 +1,127 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: TitleSponsorScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class TitleSponsorScript : MonoBehaviour
 {
-  public NewTitleScreenScript NewTitleScreen;
-  public InputManagerScript InputManager;
-  public PromptBarScript PromptBar;
-  public string[] SponsorURLs;
-  public string[] Sponsors;
-  public UILabel SponsorName;
-  public Transform Highlight;
-  public bool Show;
-  public int Columns;
-  public int Rows;
-  private int Column;
-  private int Row;
-  public UISprite BlackSprite;
-  public UISprite[] RedSprites;
-  public UILabel[] Labels;
+	public NewTitleScreenScript NewTitleScreen;
 
-  private void Start()
-  {
-    this.UpdateHighlight();
-    if (!GameGlobals.LoveSick)
-      return;
-    this.TurnLoveSick();
-  }
+	public InputManagerScript InputManager;
 
-  public int GetSponsorIndex() => this.Column + this.Row * this.Columns;
+	public PromptBarScript PromptBar;
 
-  public bool SponsorHasWebsite(int index) => !string.IsNullOrEmpty(this.SponsorURLs[index]);
+	public string[] SponsorURLs;
 
-  private void Update()
-  {
-    if (this.InputManager.TappedUp)
-      this.Row = this.Row > 0 ? this.Row - 1 : this.Rows - 1;
-    if (this.InputManager.TappedDown)
-      this.Row = this.Row < this.Rows - 1 ? this.Row + 1 : 0;
-    if (this.InputManager.TappedRight)
-      this.Column = this.Column < this.Columns - 1 ? this.Column + 1 : 0;
-    if (this.InputManager.TappedLeft)
-      this.Column = this.Column > 0 ? this.Column - 1 : this.Columns - 1;
-    if ((this.InputManager.TappedUp || this.InputManager.TappedDown || this.InputManager.TappedRight ? 1 : (this.InputManager.TappedLeft ? 1 : 0)) != 0)
-      this.UpdateHighlight();
-    if ((double) this.NewTitleScreen.Speed <= 3.0)
-      return;
-    if (!this.PromptBar.Show)
-    {
-      this.PromptBar.ClearButtons();
-      this.PromptBar.Label[0].text = "Make Selection";
-      this.PromptBar.Label[1].text = "Go Back";
-      this.PromptBar.Label[4].text = "Change Selection";
-      this.PromptBar.Label[5].text = "Change Selection";
-      this.PromptBar.UpdateButtons();
-      this.PromptBar.Show = true;
-    }
-    if (Input.GetButtonDown("A"))
-    {
-      int sponsorIndex = this.GetSponsorIndex();
-      if (this.SponsorHasWebsite(sponsorIndex))
-        Application.OpenURL(this.SponsorURLs[sponsorIndex]);
-    }
-    if (!Input.GetButtonDown("B"))
-      return;
-    this.NewTitleScreen.Speed = 0.0f;
-    this.NewTitleScreen.Phase = 2;
-    this.PromptBar.Show = false;
-    this.enabled = false;
-  }
+	public string[] Sponsors;
 
-  private void UpdateHighlight()
-  {
-    this.Highlight.localPosition = new Vector3((float) ((double) this.Column * 256.0 - 384.0), (float) (128.0 - (double) this.Row * 256.0), this.Highlight.localPosition.z);
-    this.SponsorName.text = this.Sponsors[this.GetSponsorIndex()];
-  }
+	public UILabel SponsorName;
 
-  private void TurnLoveSick()
-  {
-    this.BlackSprite.color = Color.black;
-    foreach (UISprite redSprite in this.RedSprites)
-      redSprite.color = new Color(1f, 0.0f, 0.0f, redSprite.color.a);
-    foreach (UILabel label in this.Labels)
-      label.color = new Color(1f, 0.0f, 0.0f, label.color.a);
-  }
+	public Transform Highlight;
+
+	public bool Show;
+
+	public int Columns;
+
+	public int Rows;
+
+	private int Column;
+
+	private int Row;
+
+	public UISprite BlackSprite;
+
+	public UISprite[] RedSprites;
+
+	public UILabel[] Labels;
+
+	private void Start()
+	{
+		UpdateHighlight();
+		if (GameGlobals.LoveSick)
+		{
+			TurnLoveSick();
+		}
+	}
+
+	public int GetSponsorIndex()
+	{
+		return Column + Row * Columns;
+	}
+
+	public bool SponsorHasWebsite(int index)
+	{
+		return !string.IsNullOrEmpty(SponsorURLs[index]);
+	}
+
+	private void Update()
+	{
+		if (InputManager.TappedUp)
+		{
+			Row = ((Row > 0) ? (Row - 1) : (Rows - 1));
+		}
+		if (InputManager.TappedDown)
+		{
+			Row = ((Row < Rows - 1) ? (Row + 1) : 0);
+		}
+		if (InputManager.TappedRight)
+		{
+			Column = ((Column < Columns - 1) ? (Column + 1) : 0);
+		}
+		if (InputManager.TappedLeft)
+		{
+			Column = ((Column > 0) ? (Column - 1) : (Columns - 1));
+		}
+		if (InputManager.TappedUp || InputManager.TappedDown || InputManager.TappedRight || InputManager.TappedLeft)
+		{
+			UpdateHighlight();
+		}
+		if (!(NewTitleScreen.Speed > 3f))
+		{
+			return;
+		}
+		if (!PromptBar.Show)
+		{
+			PromptBar.ClearButtons();
+			PromptBar.Label[0].text = "Make Selection";
+			PromptBar.Label[1].text = "Go Back";
+			PromptBar.Label[4].text = "Change Selection";
+			PromptBar.Label[5].text = "Change Selection";
+			PromptBar.UpdateButtons();
+			PromptBar.Show = true;
+		}
+		if (Input.GetButtonDown("A"))
+		{
+			int sponsorIndex = GetSponsorIndex();
+			if (SponsorHasWebsite(sponsorIndex))
+			{
+				Application.OpenURL(SponsorURLs[sponsorIndex]);
+			}
+		}
+		if (Input.GetButtonDown("B"))
+		{
+			NewTitleScreen.Speed = 0f;
+			NewTitleScreen.Phase = 2;
+			PromptBar.Show = false;
+			base.enabled = false;
+		}
+	}
+
+	private void UpdateHighlight()
+	{
+		Highlight.localPosition = new Vector3(-384f + (float)Column * 256f, 128f - (float)Row * 256f, Highlight.localPosition.z);
+		SponsorName.text = Sponsors[GetSponsorIndex()];
+	}
+
+	private void TurnLoveSick()
+	{
+		BlackSprite.color = Color.black;
+		UISprite[] redSprites = RedSprites;
+		foreach (UISprite uISprite in redSprites)
+		{
+			uISprite.color = new Color(1f, 0f, 0f, uISprite.color.a);
+		}
+		UILabel[] labels = Labels;
+		foreach (UILabel uILabel in labels)
+		{
+			uILabel.color = new Color(1f, 0f, 0f, uILabel.color.a);
+		}
+	}
 }

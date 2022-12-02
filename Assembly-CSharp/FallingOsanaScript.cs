@@ -1,23 +1,21 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FallingOsanaScript
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using UnityEngine;
 
 public class FallingOsanaScript : MonoBehaviour
 {
-  public StudentScript Osana;
-  public GameObject GroundImpact;
+	public StudentScript Osana;
 
-  private void Update()
-  {
-    if ((double) this.transform.position.y > 0.0)
-      this.transform.position += new Vector3(0.0f, -1.0001f, 0.0f);
-    if ((double) this.transform.position.y >= 0.0)
-      return;
-    this.transform.position = new Vector3(this.transform.position.x, 0.0f, this.transform.position.z);
-    Object.Instantiate<GameObject>(this.GroundImpact, this.transform.position, Quaternion.identity);
-  }
+	public GameObject GroundImpact;
+
+	private void Update()
+	{
+		if (base.transform.position.y > 0f)
+		{
+			base.transform.position += new Vector3(0f, -1.0001f, 0f);
+		}
+		if (base.transform.position.y < 0f)
+		{
+			base.transform.position = new Vector3(base.transform.position.x, 0f, base.transform.position.z);
+			Object.Instantiate(GroundImpact, base.transform.position, Quaternion.identity);
+		}
+	}
 }

@@ -1,392 +1,514 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: UIAtlas
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class UIAtlas : MonoBehaviour, INGUIAtlas
 {
-  [HideInInspector]
-  [SerializeField]
-  private Material material;
-  [HideInInspector]
-  [SerializeField]
-  private List<UISpriteData> mSprites = new List<UISpriteData>();
-  [HideInInspector]
-  [SerializeField]
-  private float mPixelSize = 1f;
-  [HideInInspector]
-  [SerializeField]
-  private UnityEngine.Object mReplacement;
-  [HideInInspector]
-  [SerializeField]
-  private UIAtlas.Coordinates mCoordinates;
-  [HideInInspector]
-  [SerializeField]
-  private List<UIAtlas.Sprite> sprites = new List<UIAtlas.Sprite>();
-  [NonSerialized]
-  private int mPMA = -1;
-  [NonSerialized]
-  private Dictionary<string, int> mSpriteIndices = new Dictionary<string, int>();
+	[Serializable]
+	private class Sprite
+	{
+		public string name = "Unity Bug";
 
-  public Material spriteMaterial
-  {
-    get
-    {
-      INGUIAtlas replacement = this.replacement;
-      return replacement == null ? this.material : replacement.spriteMaterial;
-    }
-    set
-    {
-      INGUIAtlas replacement = this.replacement;
-      if (replacement != null)
-        replacement.spriteMaterial = value;
-      else if ((UnityEngine.Object) this.material == (UnityEngine.Object) null)
-      {
-        this.mPMA = 0;
-        this.material = value;
-      }
-      else
-      {
-        this.MarkAsChanged();
-        this.mPMA = -1;
-        this.material = value;
-        this.MarkAsChanged();
-      }
-    }
-  }
+		public Rect outer = new Rect(0f, 0f, 1f, 1f);
 
-  public bool premultipliedAlpha
-  {
-    get
-    {
-      INGUIAtlas replacement = this.replacement;
-      if (replacement != null)
-        return replacement.premultipliedAlpha;
-      if (this.mPMA == -1)
-      {
-        Material spriteMaterial = this.spriteMaterial;
-        this.mPMA = !((UnityEngine.Object) spriteMaterial != (UnityEngine.Object) null) || !((UnityEngine.Object) spriteMaterial.shader != (UnityEngine.Object) null) || !spriteMaterial.shader.name.Contains("Premultiplied") ? 0 : 1;
-      }
-      return this.mPMA == 1;
-    }
-  }
+		public Rect inner = new Rect(0f, 0f, 1f, 1f);
 
-  public List<UISpriteData> spriteList
-  {
-    get
-    {
-      INGUIAtlas replacement = this.replacement;
-      if (replacement != null)
-        return replacement.spriteList;
-      if (this.mSprites.Count == 0)
-        this.Upgrade();
-      return this.mSprites;
-    }
-    set
-    {
-      INGUIAtlas replacement = this.replacement;
-      if (replacement != null)
-        replacement.spriteList = value;
-      else
-        this.mSprites = value;
-    }
-  }
+		public bool rotated;
 
-  public Texture texture
-  {
-    get
-    {
-      INGUIAtlas replacement = this.replacement;
-      if (replacement != null)
-        return replacement.texture;
-      return !((UnityEngine.Object) this.material != (UnityEngine.Object) null) ? (Texture) null : this.material.mainTexture;
-    }
-  }
+		public float paddingLeft;
 
-  public float pixelSize
-  {
-    get
-    {
-      INGUIAtlas replacement = this.replacement;
-      return replacement == null ? this.mPixelSize : replacement.pixelSize;
-    }
-    set
-    {
-      INGUIAtlas replacement = this.replacement;
-      if (replacement != null)
-      {
-        replacement.pixelSize = value;
-      }
-      else
-      {
-        float num = Mathf.Clamp(value, 0.25f, 4f);
-        if ((double) this.mPixelSize == (double) num)
-          return;
-        this.mPixelSize = num;
-        this.MarkAsChanged();
-      }
-    }
-  }
+		public float paddingRight;
 
-  public INGUIAtlas replacement
-  {
-    get => this.mReplacement as INGUIAtlas;
-    set
-    {
-      INGUIAtlas nguiAtlas = value;
-      if (nguiAtlas == this)
-        nguiAtlas = (INGUIAtlas) null;
-      if (this.mReplacement as INGUIAtlas == nguiAtlas)
-        return;
-      if (nguiAtlas != null && nguiAtlas.replacement == this)
-        nguiAtlas.replacement = (INGUIAtlas) null;
-      if (this.mReplacement != (UnityEngine.Object) null)
-        this.MarkAsChanged();
-      this.mReplacement = nguiAtlas as UnityEngine.Object;
-      if (nguiAtlas != null)
-        this.material = (Material) null;
-      this.MarkAsChanged();
-    }
-  }
+		public float paddingTop;
 
-  public UISpriteData GetSprite(string name)
-  {
-    INGUIAtlas replacement = this.replacement;
-    if (replacement != null)
-      return replacement.GetSprite(name);
-    if (!string.IsNullOrEmpty(name))
-    {
-      if (this.mSprites.Count == 0)
-        this.Upgrade();
-      if (this.mSprites.Count == 0)
-        return (UISpriteData) null;
-      if (this.mSpriteIndices.Count != this.mSprites.Count)
-        this.MarkSpriteListAsChanged();
-      int index1;
-      if (this.mSpriteIndices.TryGetValue(name, out index1))
-      {
-        if (index1 > -1 && index1 < this.mSprites.Count)
-          return this.mSprites[index1];
-        this.MarkSpriteListAsChanged();
-        return !this.mSpriteIndices.TryGetValue(name, out index1) ? (UISpriteData) null : this.mSprites[index1];
-      }
-      int index2 = 0;
-      for (int count = this.mSprites.Count; index2 < count; ++index2)
-      {
-        UISpriteData mSprite = this.mSprites[index2];
-        if (!string.IsNullOrEmpty(mSprite.name) && name == mSprite.name)
-        {
-          this.MarkSpriteListAsChanged();
-          return mSprite;
-        }
-      }
-    }
-    return (UISpriteData) null;
-  }
+		public float paddingBottom;
 
-  public void MarkSpriteListAsChanged()
-  {
-    this.mSpriteIndices.Clear();
-    int index = 0;
-    for (int count = this.mSprites.Count; index < count; ++index)
-      this.mSpriteIndices[this.mSprites[index].name] = index;
-  }
+		public bool hasPadding
+		{
+			get
+			{
+				if (paddingLeft == 0f && paddingRight == 0f && paddingTop == 0f)
+				{
+					return paddingBottom != 0f;
+				}
+				return true;
+			}
+		}
+	}
 
-  public void SortAlphabetically() => this.mSprites.Sort((Comparison<UISpriteData>) ((s1, s2) => s1.name.CompareTo(s2.name)));
+	private enum Coordinates
+	{
+		Pixels = 0,
+		TexCoords = 1
+	}
 
-  public BetterList<string> GetListOfSprites()
-  {
-    INGUIAtlas replacement = this.replacement;
-    if (replacement != null)
-      return replacement.GetListOfSprites();
-    if (this.mSprites.Count == 0)
-      this.Upgrade();
-    BetterList<string> listOfSprites = new BetterList<string>();
-    int index = 0;
-    for (int count = this.mSprites.Count; index < count; ++index)
-    {
-      UISpriteData mSprite = this.mSprites[index];
-      if (mSprite != null && !string.IsNullOrEmpty(mSprite.name))
-        listOfSprites.Add(mSprite.name);
-    }
-    return listOfSprites;
-  }
+	[Serializable]
+	[CompilerGenerated]
+	private sealed class _003C_003Ec
+	{
+		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
 
-  public BetterList<string> GetListOfSprites(string match)
-  {
-    INGUIAtlas replacement = this.replacement;
-    if (replacement != null)
-      return replacement.GetListOfSprites(match);
-    if (string.IsNullOrEmpty(match))
-      return this.GetListOfSprites();
-    if (this.mSprites.Count == 0)
-      this.Upgrade();
-    BetterList<string> listOfSprites = new BetterList<string>();
-    int index1 = 0;
-    for (int count = this.mSprites.Count; index1 < count; ++index1)
-    {
-      UISpriteData mSprite = this.mSprites[index1];
-      if (mSprite != null && !string.IsNullOrEmpty(mSprite.name) && string.Equals(match, mSprite.name, StringComparison.OrdinalIgnoreCase))
-      {
-        listOfSprites.Add(mSprite.name);
-        return listOfSprites;
-      }
-    }
-    string[] strArray = match.Split(new char[1]{ ' ' }, StringSplitOptions.RemoveEmptyEntries);
-    for (int index2 = 0; index2 < strArray.Length; ++index2)
-      strArray[index2] = strArray[index2].ToLower();
-    int index3 = 0;
-    for (int count = this.mSprites.Count; index3 < count; ++index3)
-    {
-      UISpriteData mSprite = this.mSprites[index3];
-      if (mSprite != null && !string.IsNullOrEmpty(mSprite.name))
-      {
-        string lower = mSprite.name.ToLower();
-        int num = 0;
-        for (int index4 = 0; index4 < strArray.Length; ++index4)
-        {
-          if (lower.Contains(strArray[index4]))
-            ++num;
-        }
-        if (num == strArray.Length)
-          listOfSprites.Add(mSprite.name);
-      }
-    }
-    return listOfSprites;
-  }
+		public static Comparison<UISpriteData> _003C_003E9__28_0;
 
-  public bool References(INGUIAtlas atlas)
-  {
-    if (atlas == null)
-      return false;
-    if (atlas == this)
-      return true;
-    INGUIAtlas replacement = this.replacement;
-    return replacement != null && replacement.References(atlas);
-  }
+		internal int _003CSortAlphabetically_003Eb__28_0(UISpriteData s1, UISpriteData s2)
+		{
+			return s1.name.CompareTo(s2.name);
+		}
+	}
 
-  public void MarkAsChanged()
-  {
-    this.replacement?.MarkAsChanged();
-    UISprite[] active1 = NGUITools.FindActive<UISprite>();
-    int index1 = 0;
-    for (int length = active1.Length; index1 < length; ++index1)
-    {
-      UISprite uiSprite = active1[index1];
-      if (NGUITools.CheckIfRelated((INGUIAtlas) this, uiSprite.atlas))
-      {
-        INGUIAtlas atlas = uiSprite.atlas;
-        uiSprite.atlas = (INGUIAtlas) null;
-        uiSprite.atlas = atlas;
-      }
-    }
-    NGUIFont[] objectsOfTypeAll1 = Resources.FindObjectsOfTypeAll<NGUIFont>();
-    int index2 = 0;
-    for (int length = objectsOfTypeAll1.Length; index2 < length; ++index2)
-    {
-      NGUIFont nguiFont = objectsOfTypeAll1[index2];
-      if (nguiFont.atlas != null && NGUITools.CheckIfRelated((INGUIAtlas) this, nguiFont.atlas))
-      {
-        INGUIAtlas atlas = nguiFont.atlas;
-        nguiFont.atlas = (INGUIAtlas) null;
-        nguiFont.atlas = atlas;
-      }
-    }
-    UIFont[] objectsOfTypeAll2 = Resources.FindObjectsOfTypeAll<UIFont>();
-    int index3 = 0;
-    for (int length = objectsOfTypeAll2.Length; index3 < length; ++index3)
-    {
-      UIFont uiFont = objectsOfTypeAll2[index3];
-      if (NGUITools.CheckIfRelated((INGUIAtlas) this, uiFont.atlas))
-      {
-        INGUIAtlas atlas = uiFont.atlas;
-        uiFont.atlas = (INGUIAtlas) null;
-        uiFont.atlas = atlas;
-      }
-    }
-    UILabel[] active2 = NGUITools.FindActive<UILabel>();
-    int index4 = 0;
-    for (int length = active2.Length; index4 < length; ++index4)
-    {
-      UILabel uiLabel = active2[index4];
-      if (uiLabel.atlas != null && NGUITools.CheckIfRelated((INGUIAtlas) this, uiLabel.atlas))
-      {
-        INGUIAtlas atlas = uiLabel.atlas;
-        INGUIFont bitmapFont = uiLabel.bitmapFont;
-        uiLabel.bitmapFont = (INGUIFont) null;
-        uiLabel.bitmapFont = bitmapFont;
-      }
-    }
-  }
+	[HideInInspector]
+	[SerializeField]
+	private Material material;
 
-  private bool Upgrade()
-  {
-    INGUIAtlas replacement = this.replacement;
-    if (replacement != null)
-    {
-      UIAtlas uiAtlas = replacement as UIAtlas;
-      if ((UnityEngine.Object) uiAtlas != (UnityEngine.Object) null)
-        return uiAtlas.Upgrade();
-    }
-    if (this.mSprites.Count != 0 || this.sprites.Count <= 0 || !(bool) (UnityEngine.Object) this.material)
-      return false;
-    Texture mainTexture = this.material.mainTexture;
-    int width = (UnityEngine.Object) mainTexture != (UnityEngine.Object) null ? mainTexture.width : 512;
-    int height = (UnityEngine.Object) mainTexture != (UnityEngine.Object) null ? mainTexture.height : 512;
-    for (int index = 0; index < this.sprites.Count; ++index)
-    {
-      UIAtlas.Sprite sprite = this.sprites[index];
-      Rect outer = sprite.outer;
-      Rect inner = sprite.inner;
-      if (this.mCoordinates == UIAtlas.Coordinates.TexCoords)
-      {
-        NGUIMath.ConvertToPixels(outer, width, height, true);
-        NGUIMath.ConvertToPixels(inner, width, height, true);
-      }
-      this.mSprites.Add(new UISpriteData()
-      {
-        name = sprite.name,
-        x = Mathf.RoundToInt(outer.xMin),
-        y = Mathf.RoundToInt(outer.yMin),
-        width = Mathf.RoundToInt(outer.width),
-        height = Mathf.RoundToInt(outer.height),
-        paddingLeft = Mathf.RoundToInt(sprite.paddingLeft * outer.width),
-        paddingRight = Mathf.RoundToInt(sprite.paddingRight * outer.width),
-        paddingBottom = Mathf.RoundToInt(sprite.paddingBottom * outer.height),
-        paddingTop = Mathf.RoundToInt(sprite.paddingTop * outer.height),
-        borderLeft = Mathf.RoundToInt(inner.xMin - outer.xMin),
-        borderRight = Mathf.RoundToInt(outer.xMax - inner.xMax),
-        borderBottom = Mathf.RoundToInt(outer.yMax - inner.yMax),
-        borderTop = Mathf.RoundToInt(inner.yMin - outer.yMin)
-      });
-    }
-    this.sprites.Clear();
-    return true;
-  }
+	[HideInInspector]
+	[SerializeField]
+	private List<UISpriteData> mSprites = new List<UISpriteData>();
 
-  [Serializable]
-  private class Sprite
-  {
-    public string name = "Unity Bug";
-    public Rect outer = new Rect(0.0f, 0.0f, 1f, 1f);
-    public Rect inner = new Rect(0.0f, 0.0f, 1f, 1f);
-    public bool rotated;
-    public float paddingLeft;
-    public float paddingRight;
-    public float paddingTop;
-    public float paddingBottom;
+	[HideInInspector]
+	[SerializeField]
+	private float mPixelSize = 1f;
 
-    public bool hasPadding => (double) this.paddingLeft != 0.0 || (double) this.paddingRight != 0.0 || (double) this.paddingTop != 0.0 || (double) this.paddingBottom != 0.0;
-  }
+	[HideInInspector]
+	[SerializeField]
+	private UnityEngine.Object mReplacement;
 
-  private enum Coordinates
-  {
-    Pixels,
-    TexCoords,
-  }
+	[HideInInspector]
+	[SerializeField]
+	private Coordinates mCoordinates;
+
+	[HideInInspector]
+	[SerializeField]
+	private List<Sprite> sprites = new List<Sprite>();
+
+	[NonSerialized]
+	private int mPMA = -1;
+
+	[NonSerialized]
+	private Dictionary<string, int> mSpriteIndices = new Dictionary<string, int>();
+
+	public Material spriteMaterial
+	{
+		get
+		{
+			INGUIAtlas iNGUIAtlas = replacement;
+			if (iNGUIAtlas == null)
+			{
+				return material;
+			}
+			return iNGUIAtlas.spriteMaterial;
+		}
+		set
+		{
+			INGUIAtlas iNGUIAtlas = replacement;
+			if (iNGUIAtlas != null)
+			{
+				iNGUIAtlas.spriteMaterial = value;
+				return;
+			}
+			if (material == null)
+			{
+				mPMA = 0;
+				material = value;
+				return;
+			}
+			MarkAsChanged();
+			mPMA = -1;
+			material = value;
+			MarkAsChanged();
+		}
+	}
+
+	public bool premultipliedAlpha
+	{
+		get
+		{
+			INGUIAtlas iNGUIAtlas = replacement;
+			if (iNGUIAtlas != null)
+			{
+				return iNGUIAtlas.premultipliedAlpha;
+			}
+			if (mPMA == -1)
+			{
+				Material material = spriteMaterial;
+				mPMA = ((material != null && material.shader != null && material.shader.name.Contains("Premultiplied")) ? 1 : 0);
+			}
+			return mPMA == 1;
+		}
+	}
+
+	public List<UISpriteData> spriteList
+	{
+		get
+		{
+			INGUIAtlas iNGUIAtlas = replacement;
+			if (iNGUIAtlas != null)
+			{
+				return iNGUIAtlas.spriteList;
+			}
+			if (mSprites.Count == 0)
+			{
+				Upgrade();
+			}
+			return mSprites;
+		}
+		set
+		{
+			INGUIAtlas iNGUIAtlas = replacement;
+			if (iNGUIAtlas != null)
+			{
+				iNGUIAtlas.spriteList = value;
+			}
+			else
+			{
+				mSprites = value;
+			}
+		}
+	}
+
+	public Texture texture
+	{
+		get
+		{
+			INGUIAtlas iNGUIAtlas = replacement;
+			if (iNGUIAtlas == null)
+			{
+				if (!(material != null))
+				{
+					return null;
+				}
+				return material.mainTexture;
+			}
+			return iNGUIAtlas.texture;
+		}
+	}
+
+	public float pixelSize
+	{
+		get
+		{
+			INGUIAtlas iNGUIAtlas = replacement;
+			if (iNGUIAtlas == null)
+			{
+				return mPixelSize;
+			}
+			return iNGUIAtlas.pixelSize;
+		}
+		set
+		{
+			INGUIAtlas iNGUIAtlas = replacement;
+			if (iNGUIAtlas != null)
+			{
+				iNGUIAtlas.pixelSize = value;
+				return;
+			}
+			float num = Mathf.Clamp(value, 0.25f, 4f);
+			if (mPixelSize != num)
+			{
+				mPixelSize = num;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	public INGUIAtlas replacement
+	{
+		get
+		{
+			return mReplacement as INGUIAtlas;
+		}
+		set
+		{
+			INGUIAtlas iNGUIAtlas = value;
+			if (iNGUIAtlas == this)
+			{
+				iNGUIAtlas = null;
+			}
+			if (mReplacement as INGUIAtlas != iNGUIAtlas)
+			{
+				if (iNGUIAtlas != null && iNGUIAtlas.replacement == this)
+				{
+					iNGUIAtlas.replacement = null;
+				}
+				if (mReplacement != null)
+				{
+					MarkAsChanged();
+				}
+				mReplacement = iNGUIAtlas as UnityEngine.Object;
+				if (iNGUIAtlas != null)
+				{
+					material = null;
+				}
+				MarkAsChanged();
+			}
+		}
+	}
+
+	public UISpriteData GetSprite(string name)
+	{
+		INGUIAtlas iNGUIAtlas = replacement;
+		if (iNGUIAtlas != null)
+		{
+			return iNGUIAtlas.GetSprite(name);
+		}
+		if (!string.IsNullOrEmpty(name))
+		{
+			if (mSprites.Count == 0)
+			{
+				Upgrade();
+			}
+			if (mSprites.Count == 0)
+			{
+				return null;
+			}
+			if (mSpriteIndices.Count != mSprites.Count)
+			{
+				MarkSpriteListAsChanged();
+			}
+			int value;
+			if (mSpriteIndices.TryGetValue(name, out value))
+			{
+				if (value > -1 && value < mSprites.Count)
+				{
+					return mSprites[value];
+				}
+				MarkSpriteListAsChanged();
+				if (!mSpriteIndices.TryGetValue(name, out value))
+				{
+					return null;
+				}
+				return mSprites[value];
+			}
+			int i = 0;
+			for (int count = mSprites.Count; i < count; i++)
+			{
+				UISpriteData uISpriteData = mSprites[i];
+				if (!string.IsNullOrEmpty(uISpriteData.name) && name == uISpriteData.name)
+				{
+					MarkSpriteListAsChanged();
+					return uISpriteData;
+				}
+			}
+		}
+		return null;
+	}
+
+	public void MarkSpriteListAsChanged()
+	{
+		mSpriteIndices.Clear();
+		int i = 0;
+		for (int count = mSprites.Count; i < count; i++)
+		{
+			mSpriteIndices[mSprites[i].name] = i;
+		}
+	}
+
+	public void SortAlphabetically()
+	{
+		mSprites.Sort(_003C_003Ec._003C_003E9__28_0 ?? (_003C_003Ec._003C_003E9__28_0 = _003C_003Ec._003C_003E9._003CSortAlphabetically_003Eb__28_0));
+	}
+
+	public BetterList<string> GetListOfSprites()
+	{
+		INGUIAtlas iNGUIAtlas = replacement;
+		if (iNGUIAtlas != null)
+		{
+			return iNGUIAtlas.GetListOfSprites();
+		}
+		if (mSprites.Count == 0)
+		{
+			Upgrade();
+		}
+		BetterList<string> betterList = new BetterList<string>();
+		int i = 0;
+		for (int count = mSprites.Count; i < count; i++)
+		{
+			UISpriteData uISpriteData = mSprites[i];
+			if (uISpriteData != null && !string.IsNullOrEmpty(uISpriteData.name))
+			{
+				betterList.Add(uISpriteData.name);
+			}
+		}
+		return betterList;
+	}
+
+	public BetterList<string> GetListOfSprites(string match)
+	{
+		INGUIAtlas iNGUIAtlas = replacement;
+		if (iNGUIAtlas != null)
+		{
+			return iNGUIAtlas.GetListOfSprites(match);
+		}
+		if (string.IsNullOrEmpty(match))
+		{
+			return GetListOfSprites();
+		}
+		if (mSprites.Count == 0)
+		{
+			Upgrade();
+		}
+		BetterList<string> betterList = new BetterList<string>();
+		int i = 0;
+		for (int count = mSprites.Count; i < count; i++)
+		{
+			UISpriteData uISpriteData = mSprites[i];
+			if (uISpriteData != null && !string.IsNullOrEmpty(uISpriteData.name) && string.Equals(match, uISpriteData.name, StringComparison.OrdinalIgnoreCase))
+			{
+				betterList.Add(uISpriteData.name);
+				return betterList;
+			}
+		}
+		string[] array = match.Split(new char[1] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+		for (int j = 0; j < array.Length; j++)
+		{
+			array[j] = array[j].ToLower();
+		}
+		int k = 0;
+		for (int count2 = mSprites.Count; k < count2; k++)
+		{
+			UISpriteData uISpriteData2 = mSprites[k];
+			if (uISpriteData2 == null || string.IsNullOrEmpty(uISpriteData2.name))
+			{
+				continue;
+			}
+			string text = uISpriteData2.name.ToLower();
+			int num = 0;
+			for (int l = 0; l < array.Length; l++)
+			{
+				if (text.Contains(array[l]))
+				{
+					num++;
+				}
+			}
+			if (num == array.Length)
+			{
+				betterList.Add(uISpriteData2.name);
+			}
+		}
+		return betterList;
+	}
+
+	public bool References(INGUIAtlas atlas)
+	{
+		if (atlas == null)
+		{
+			return false;
+		}
+		if (atlas == this)
+		{
+			return true;
+		}
+		INGUIAtlas iNGUIAtlas = replacement;
+		if (iNGUIAtlas == null)
+		{
+			return false;
+		}
+		return iNGUIAtlas.References(atlas);
+	}
+
+	public void MarkAsChanged()
+	{
+		INGUIAtlas iNGUIAtlas = replacement;
+		if (iNGUIAtlas != null)
+		{
+			iNGUIAtlas.MarkAsChanged();
+		}
+		UISprite[] array = NGUITools.FindActive<UISprite>();
+		int i = 0;
+		for (int num = array.Length; i < num; i++)
+		{
+			UISprite uISprite = array[i];
+			if (NGUITools.CheckIfRelated(this, uISprite.atlas))
+			{
+				INGUIAtlas atlas = uISprite.atlas;
+				uISprite.atlas = null;
+				uISprite.atlas = atlas;
+			}
+		}
+		NGUIFont[] array2 = Resources.FindObjectsOfTypeAll<NGUIFont>();
+		int j = 0;
+		for (int num2 = array2.Length; j < num2; j++)
+		{
+			NGUIFont nGUIFont = array2[j];
+			if (nGUIFont.atlas != null && NGUITools.CheckIfRelated(this, nGUIFont.atlas))
+			{
+				INGUIAtlas atlas2 = nGUIFont.atlas;
+				nGUIFont.atlas = null;
+				nGUIFont.atlas = atlas2;
+			}
+		}
+		UIFont[] array3 = Resources.FindObjectsOfTypeAll<UIFont>();
+		int k = 0;
+		for (int num3 = array3.Length; k < num3; k++)
+		{
+			UIFont uIFont = array3[k];
+			if (NGUITools.CheckIfRelated(this, uIFont.atlas))
+			{
+				INGUIAtlas atlas3 = uIFont.atlas;
+				uIFont.atlas = null;
+				uIFont.atlas = atlas3;
+			}
+		}
+		UILabel[] array4 = NGUITools.FindActive<UILabel>();
+		int l = 0;
+		for (int num4 = array4.Length; l < num4; l++)
+		{
+			UILabel uILabel = array4[l];
+			if (uILabel.atlas != null && NGUITools.CheckIfRelated(this, uILabel.atlas))
+			{
+				INGUIAtlas atla = uILabel.atlas;
+				INGUIFont bitmapFont = uILabel.bitmapFont;
+				uILabel.bitmapFont = null;
+				uILabel.bitmapFont = bitmapFont;
+			}
+		}
+	}
+
+	private bool Upgrade()
+	{
+		INGUIAtlas iNGUIAtlas = replacement;
+		if (iNGUIAtlas != null)
+		{
+			UIAtlas uIAtlas = iNGUIAtlas as UIAtlas;
+			if (uIAtlas != null)
+			{
+				return uIAtlas.Upgrade();
+			}
+		}
+		if (mSprites.Count == 0 && sprites.Count > 0 && (bool)material)
+		{
+			Texture mainTexture = material.mainTexture;
+			int width = ((mainTexture != null) ? mainTexture.width : 512);
+			int height = ((mainTexture != null) ? mainTexture.height : 512);
+			for (int i = 0; i < sprites.Count; i++)
+			{
+				Sprite sprite = sprites[i];
+				Rect outer = sprite.outer;
+				Rect inner = sprite.inner;
+				if (mCoordinates == Coordinates.TexCoords)
+				{
+					NGUIMath.ConvertToPixels(outer, width, height, true);
+					NGUIMath.ConvertToPixels(inner, width, height, true);
+				}
+				UISpriteData uISpriteData = new UISpriteData();
+				uISpriteData.name = sprite.name;
+				uISpriteData.x = Mathf.RoundToInt(outer.xMin);
+				uISpriteData.y = Mathf.RoundToInt(outer.yMin);
+				uISpriteData.width = Mathf.RoundToInt(outer.width);
+				uISpriteData.height = Mathf.RoundToInt(outer.height);
+				uISpriteData.paddingLeft = Mathf.RoundToInt(sprite.paddingLeft * outer.width);
+				uISpriteData.paddingRight = Mathf.RoundToInt(sprite.paddingRight * outer.width);
+				uISpriteData.paddingBottom = Mathf.RoundToInt(sprite.paddingBottom * outer.height);
+				uISpriteData.paddingTop = Mathf.RoundToInt(sprite.paddingTop * outer.height);
+				uISpriteData.borderLeft = Mathf.RoundToInt(inner.xMin - outer.xMin);
+				uISpriteData.borderRight = Mathf.RoundToInt(outer.xMax - inner.xMax);
+				uISpriteData.borderBottom = Mathf.RoundToInt(outer.yMax - inner.yMax);
+				uISpriteData.borderTop = Mathf.RoundToInt(inner.yMin - outer.yMin);
+				mSprites.Add(uISpriteData);
+			}
+			sprites.Clear();
+			return true;
+		}
+		return false;
+	}
 }

@@ -1,74 +1,73 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PlayIdleAnimations
-// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
-// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
-
 using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("NGUI/Examples/Play Idle Animations")]
 public class PlayIdleAnimations : MonoBehaviour
 {
-  private Animation mAnim;
-  private AnimationClip mIdle;
-  private List<AnimationClip> mBreaks = new List<AnimationClip>();
-  private float mNextBreak;
-  private int mLastIndex;
+	private Animation mAnim;
 
-  private void Start()
-  {
-    this.mAnim = this.GetComponentInChildren<Animation>();
-    if ((Object) this.mAnim == (Object) null)
-    {
-      Debug.LogWarning((object) (NGUITools.GetHierarchy(this.gameObject) + " has no Animation component"));
-      Object.Destroy((Object) this);
-    }
-    else
-    {
-      foreach (AnimationState animationState in this.mAnim)
-      {
-        if (animationState.clip.name == "idle")
-        {
-          animationState.layer = 0;
-          this.mIdle = animationState.clip;
-          this.mAnim.Play(this.mIdle.name);
-        }
-        else if (animationState.clip.name.StartsWith("idle"))
-        {
-          animationState.layer = 1;
-          this.mBreaks.Add(animationState.clip);
-        }
-      }
-      if (this.mBreaks.Count != 0)
-        return;
-      Object.Destroy((Object) this);
-    }
-  }
+	private AnimationClip mIdle;
 
-  private void Update()
-  {
-    if ((double) this.mNextBreak >= (double) Time.time)
-      return;
-    if (this.mBreaks.Count == 1)
-    {
-      AnimationClip mBreak = this.mBreaks[0];
-      this.mNextBreak = Time.time + mBreak.length + Random.Range(5f, 15f);
-      this.mAnim.CrossFade(mBreak.name);
-    }
-    else
-    {
-      int index = Random.Range(0, this.mBreaks.Count - 1);
-      if (this.mLastIndex == index)
-      {
-        ++index;
-        if (index >= this.mBreaks.Count)
-          index = 0;
-      }
-      this.mLastIndex = index;
-      AnimationClip mBreak = this.mBreaks[index];
-      this.mNextBreak = Time.time + mBreak.length + Random.Range(2f, 8f);
-      this.mAnim.CrossFade(mBreak.name);
-    }
-  }
+	private List<AnimationClip> mBreaks = new List<AnimationClip>();
+
+	private float mNextBreak;
+
+	private int mLastIndex;
+
+	private void Start()
+	{
+		mAnim = GetComponentInChildren<Animation>();
+		if (mAnim == null)
+		{
+			Debug.LogWarning(NGUITools.GetHierarchy(base.gameObject) + " has no Animation component");
+			Object.Destroy(this);
+			return;
+		}
+		foreach (AnimationState item in mAnim)
+		{
+			if (item.clip.name == "idle")
+			{
+				item.layer = 0;
+				mIdle = item.clip;
+				mAnim.Play(mIdle.name);
+			}
+			else if (item.clip.name.StartsWith("idle"))
+			{
+				item.layer = 1;
+				mBreaks.Add(item.clip);
+			}
+		}
+		if (mBreaks.Count == 0)
+		{
+			Object.Destroy(this);
+		}
+	}
+
+	private void Update()
+	{
+		if (!(mNextBreak < Time.time))
+		{
+			return;
+		}
+		if (mBreaks.Count == 1)
+		{
+			AnimationClip animationClip = mBreaks[0];
+			mNextBreak = Time.time + animationClip.length + Random.Range(5f, 15f);
+			mAnim.CrossFade(animationClip.name);
+			return;
+		}
+		int num = Random.Range(0, mBreaks.Count - 1);
+		if (mLastIndex == num)
+		{
+			num++;
+			if (num >= mBreaks.Count)
+			{
+				num = 0;
+			}
+		}
+		mLastIndex = num;
+		AnimationClip animationClip2 = mBreaks[num];
+		mNextBreak = Time.time + animationClip2.length + Random.Range(2f, 8f);
+		mAnim.CrossFade(animationClip2.name);
+	}
 }
