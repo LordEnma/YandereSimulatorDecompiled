@@ -496,6 +496,7 @@ public class ConfessionManagerScript : MonoBehaviour
 				if (Reject)
 				{
 					Yandere.Play("YandereConfessionRejected");
+					StudentManager.Yandere.LoseGentleEyes();
 				}
 				Jukebox.pitch = Mathf.MoveTowards(Jukebox.pitch, 0f, Time.deltaTime * 0.1f);
 				RotateSpeed += Time.deltaTime * 0.5f;

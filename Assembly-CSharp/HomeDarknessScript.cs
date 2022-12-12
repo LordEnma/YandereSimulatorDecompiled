@@ -204,7 +204,7 @@ public class HomeDarknessScript : MonoBehaviour
 			{
 				if (DateGlobals.Weekday != 0)
 				{
-					PlayerGlobals.Reputation -= 10f;
+					PlayerGlobals.Reputation -= 20f;
 				}
 				HomeGlobals.Night = true;
 				SceneManager.LoadScene("HomeScene");

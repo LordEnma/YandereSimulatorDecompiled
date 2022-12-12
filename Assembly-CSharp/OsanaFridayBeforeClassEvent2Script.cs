@@ -343,7 +343,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 			AudioSoftware.ConversationRecorded = true;
 		}
 		EventSubtitle.text = string.Empty;
-		Jukebox.Dip = 0f;
+		Jukebox.Dip = 1f;
 		base.enabled = false;
 		if (Rival.GoAway)
 		{

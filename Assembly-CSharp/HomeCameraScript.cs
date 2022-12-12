@@ -110,11 +110,15 @@ public class HomeCameraScript : MonoBehaviour
 
 	public CosmeticScript SenpaiCosmetic;
 
+	public Renderer ClockFace;
+
 	public Renderer HairLock;
 
 	public AudioClip OpenDrawer;
 
 	public SkinnedMeshRenderer BedroomRenderer;
+
+	private int Ts;
 
 	public Transform PromptBarPanel;
 
@@ -155,6 +159,7 @@ public class HomeCameraScript : MonoBehaviour
 		base.transform.position = Destination.position;
 		if (HomeGlobals.Night)
 		{
+			ClockFace.material.SetTextureOffset("_MainTex", new Vector2(0.0322f, 0f));
 			CeilingLight.SetActive(true);
 			SenpaiLight.SetActive(true);
 			NightLight.SetActive(true);

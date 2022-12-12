@@ -567,7 +567,7 @@ public class CosmeticScript : MonoBehaviour
 				Hairstyle = 51;
 			}
 		}
-		if (StudentManager != null && StudentManager.EmptyDemon && (StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71))
+		if (((StudentManager != null && StudentManager.EmptyDemon) || Empty) && (StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71 || Empty))
 		{
 			if (!Male)
 			{
@@ -836,8 +836,23 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 71)
 					{
-						CharacterAnimation.Play("f02_idleGirly_00");
-						CharacterAnimation["f02_idleGirly_00"].time = 0f;
+						CharacterAnimation.Play("f02_gardeningPortrait_01");
+					}
+					else if (StudentID == 72)
+					{
+						CharacterAnimation.Play("f02_gardeningPortrait_02");
+					}
+					else if (StudentID == 73)
+					{
+						CharacterAnimation.Play("f02_gardeningPortrait_03");
+					}
+					else if (StudentID == 74)
+					{
+						CharacterAnimation.Play("f02_gardeningPortrait_04");
+					}
+					else if (StudentID == 75)
+					{
+						CharacterAnimation.Play("f02_gardeningPortrait_05");
 					}
 					else if (StudentID == 72)
 					{
@@ -929,8 +944,6 @@ public class CosmeticScript : MonoBehaviour
 				else
 				{
 					base.transform.position = new Vector3(0.015f, 0f, 0f);
-					int studentID = StudentID;
-					int num2 = 4;
 					if (StudentID > 10 && StudentID < 20)
 					{
 						base.transform.position = new Vector3(0f, 0f, 0f);
@@ -1001,93 +1014,99 @@ public class CosmeticScript : MonoBehaviour
 			if (StudentManager == null || !Eighties)
 			{
 				ThickBrows.SetActive(false);
-				if (Club == ClubType.Occult)
+				if (!Eighties)
 				{
-					CharacterAnimation["sadFace_00"].layer = 1;
-					CharacterAnimation.Play("sadFace_00");
-					CharacterAnimation["sadFace_00"].weight = 1f;
-				}
-				if (StudentID == 36 || StudentID == 66)
-				{
-					CharacterAnimation["toughFace_00"].layer = 1;
-					CharacterAnimation.Play("toughFace_00");
-					CharacterAnimation["toughFace_00"].weight = 1f;
-					if (StudentID == 66)
+					if (Club == ClubType.Occult)
 					{
-						ThickBrows.SetActive(true);
+						CharacterAnimation["sadFace_00"].layer = 1;
+						CharacterAnimation.Play("sadFace_00");
+						CharacterAnimation["sadFace_00"].weight = 1f;
 					}
-				}
-				if (SceneManager.GetActiveScene().name == "PortraitScene")
-				{
-					if (StudentID == 26)
+					if (StudentID == 36 || StudentID == 66)
 					{
-						CharacterAnimation.Play("idleHaughty_00");
+						CharacterAnimation["toughFace_00"].layer = 1;
+						CharacterAnimation.Play("toughFace_00");
+						CharacterAnimation["toughFace_00"].weight = 1f;
+						if (StudentID == 66)
+						{
+							ThickBrows.SetActive(true);
+						}
 					}
-					else if (StudentID == 36)
+					if (SceneManager.GetActiveScene().name == "PortraitScene")
 					{
-						CharacterAnimation.Play("slouchIdle_00");
-					}
-					else if (StudentID == 56)
-					{
-						CharacterAnimation.Play("idleConfident_00");
-					}
-					else if (StudentID == 57)
-					{
-						CharacterAnimation.Play("sleuthPortrait_00");
-					}
-					else if (StudentID == 58)
-					{
-						CharacterAnimation.Play("sleuthPortrait_01");
-					}
-					else if (StudentID == 61)
-					{
-						CharacterAnimation.Play("scienceMad_00");
-						base.transform.position = new Vector3(0f, 0.1f, 0f);
-					}
-					else if (StudentID == 62)
-					{
-						CharacterAnimation.Play("idleFrown_00");
-					}
-					else if (StudentID == 69)
-					{
-						CharacterAnimation.Play("idleFrown_00");
-					}
-					else if (StudentID == 76)
-					{
-						CharacterAnimation.Play("delinquentPoseB");
-					}
-					else if (StudentID == 77)
-					{
-						CharacterAnimation.Play("delinquentPoseA");
-					}
-					else if (StudentID == 78)
-					{
-						CharacterAnimation.Play("delinquentPoseC");
-					}
-					else if (StudentID == 79)
-					{
-						CharacterAnimation.Play("delinquentPoseD");
-					}
-					else if (StudentID == 80)
-					{
-						CharacterAnimation.Play("delinquentPoseE");
+						if (StudentID == 7)
+						{
+							CharacterAnimation.Play("femininePose_00");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 26)
+						{
+							CharacterAnimation.Play("idleHaughty_00");
+						}
+						else if (StudentID == 36)
+						{
+							CharacterAnimation.Play("slouchIdle_00");
+						}
+						else if (StudentID == 56)
+						{
+							CharacterAnimation.Play("idleConfident_00");
+						}
+						else if (StudentID == 57)
+						{
+							CharacterAnimation.Play("sleuthPortrait_00");
+						}
+						else if (StudentID == 58)
+						{
+							CharacterAnimation.Play("sleuthPortrait_01");
+						}
+						else if (StudentID == 61)
+						{
+							CharacterAnimation.Play("scienceMad_00");
+							base.transform.position = new Vector3(0f, 0.1f, 0f);
+						}
+						else if (StudentID == 62)
+						{
+							CharacterAnimation.Play("idleFrown_00");
+						}
+						else if (StudentID == 69)
+						{
+							CharacterAnimation.Play("idleFrown_00");
+						}
+						else if (StudentID == 76)
+						{
+							CharacterAnimation.Play("delinquentPoseB");
+						}
+						else if (StudentID == 77)
+						{
+							CharacterAnimation.Play("delinquentPoseA");
+						}
+						else if (StudentID == 78)
+						{
+							CharacterAnimation.Play("delinquentPoseC");
+						}
+						else if (StudentID == 79)
+						{
+							CharacterAnimation.Play("delinquentPoseD");
+						}
+						else if (StudentID == 80)
+						{
+							CharacterAnimation.Play("delinquentPoseE");
+						}
 					}
 				}
 			}
 			else if (!Student.Posing)
 			{
+				if (Club == ClubType.Delinquent)
+				{
+					base.transform.position = new Vector3(0.005f, 0.03f, 0f);
+				}
+				else
+				{
+					base.transform.position = new Vector3(0.005f, 0f, 0f);
+				}
 				if (Eighties)
 				{
-					if (StudentID == 86)
-					{
-						CharacterAnimation["toughFace_00"].layer = 1;
-						CharacterAnimation.Play("toughFace_00");
-						CharacterAnimation["toughFace_00"].weight = 1f;
-					}
-					if (Club == ClubType.Council)
-					{
-						CouncilBrows[StudentID - 85].SetActive(true);
-					}
 					if (StudentID == 76)
 					{
 						CharacterAnimation.Play("delinquentPoseB");
@@ -1108,14 +1127,16 @@ public class CosmeticScript : MonoBehaviour
 					{
 						CharacterAnimation.Play("delinquentPoseE");
 					}
-				}
-				if (Club == ClubType.Delinquent)
-				{
-					base.transform.position = new Vector3(0.005f, 0.03f, 0f);
-				}
-				else
-				{
-					base.transform.position = new Vector3(0.005f, 0f, 0f);
+					if (Club == ClubType.Council)
+					{
+						CouncilBrows[StudentID - 85].SetActive(true);
+					}
+					if (StudentID == 86)
+					{
+						CharacterAnimation["toughFace_00"].layer = 1;
+						CharacterAnimation.Play("toughFace_00");
+						CharacterAnimation["toughFace_00"].weight = 1f;
+					}
 				}
 			}
 		}

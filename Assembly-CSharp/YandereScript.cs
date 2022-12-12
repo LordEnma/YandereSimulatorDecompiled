@@ -250,6 +250,8 @@ public class YandereScript : MonoBehaviour
 
 	public float[] DropTimer;
 
+	public GameObject PhysicsActivator;
+
 	public GameObject PolaroidOfSenpai;
 
 	public GameObject CinematicCamera;
@@ -519,6 +521,8 @@ public class YandereScript : MonoBehaviour
 	public int Alerts;
 
 	public int Health = 5;
+
+	public int Kills;
 
 	public YandereInteractionType Interaction;
 
@@ -1580,6 +1584,16 @@ public class YandereScript : MonoBehaviour
 
 	public Mesh EightiesKerchiefMesh;
 
+	public GameObject MaidAttacher;
+
+	public Texture MaidFace;
+
+	public Texture MaidBody;
+
+	public Texture MaidOutfit;
+
+	public bool MaidCheck;
+
 	public Texture[] VtuberFaces;
 
 	public int VtuberID;
@@ -2208,7 +2222,7 @@ public class YandereScript : MonoBehaviour
 			{
 				UpdateDebugFunctionality();
 			}
-			if (!EasterEggMenu.activeInHierarchy && !DebugMenu.activeInHierarchy && !Aiming && CanMove && Time.timeScale > 0f && !StudentManager.TutorialActive && Input.GetKeyDown(KeyCode.Escape))
+			if (!EasterEggMenu.activeInHierarchy && !DebugMenu.activeInHierarchy && !Aiming && CanMove && Time.timeScale > 0f && !StudentManager.TutorialActive && !StudentManager.KokonaTutorial && Input.GetKeyDown(KeyCode.Escape))
 			{
 				PauseScreen.QuitLabel.text = "Do you wish to return to the main menu?";
 				PauseScreen.YesLabel.text = "Yes";
@@ -3857,7 +3871,7 @@ public class YandereScript : MonoBehaviour
 					Object.Instantiate(TargetStudent.StabBloodEffect, EquippedWeapon.transform.position, Quaternion.identity);
 					StrugglePhase++;
 				}
-				if (TargetStudent.Teacher && CharacterAnimation["f02_teacherStruggleWinA_00"].time > 2.25f)
+				if (TargetStudent.Teacher && CharacterAnimation["f02_teacherStruggleWinA_00"].time > 2.75f)
 				{
 					Debug.Log("A teacher lost a struggle and is falling now. Checking for nearby walls.");
 					TargetStudent.TooCloseToWall = false;
@@ -5112,8 +5126,16 @@ public class YandereScript : MonoBehaviour
 					}
 					else if (Armed)
 					{
-						Container.TrashCan.StashItem();
-						UpdateConcealedWeaponStatus();
+						if (EquippedWeapon.Type == WeaponType.Scythe)
+						{
+							NotificationManager.CustomText = "That's too big to fit inside!";
+							NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
+						else
+						{
+							Container.TrashCan.StashItem();
+							UpdateConcealedWeaponStatus();
+						}
 					}
 				}
 				else if (ConcealedItemLabel.alpha == 1f && Input.GetButtonDown("X"))
@@ -6802,6 +6824,16 @@ public class YandereScript : MonoBehaviour
 			}
 			component.color = Outline.color;
 			component.enabled = Outline.enabled;
+		}
+		if (MaidCheck)
+		{
+			GameObject obj = PelvisRoot.Find("Base").gameObject;
+			GameObject gameObject = PelvisRoot.Find("Legs").gameObject;
+			GameObject gameObject2 = PelvisRoot.Find("Outfit").gameObject;
+			obj.GetComponent<SkinnedMeshRenderer>().materials[0].mainTexture = MaidFace;
+			obj.GetComponent<SkinnedMeshRenderer>().materials[1].mainTexture = MaidBody;
+			gameObject.GetComponent<SkinnedMeshRenderer>().material.mainTexture = MaidBody;
+			gameObject2.GetComponent<SkinnedMeshRenderer>().material.mainTexture = MaidOutfit;
 		}
 	}
 
@@ -8904,6 +8936,21 @@ public class YandereScript : MonoBehaviour
 		ModernCamera.localScale = new Vector3(0f, 0f, 0f);
 		EightiesCamera.SetActive(true);
 		ClubAccessories[1].GetComponent<MeshFilter>().mesh = EightiesKerchiefMesh;
+	}
+
+	public void Maid()
+	{
+		WeaponManager.Weapons[53].gameObject.SetActive(true);
+		MaidAttacher.SetActive(true);
+		Hairstyle = 209;
+		UpdateHair();
+		EyewearID = 0;
+		UpdateDebugFunctionality();
+		for (ID = 1; ID < Accessories.Length; ID++)
+		{
+			Accessories[ID].SetActive(false);
+		}
+		MyRenderer.enabled = false;
 	}
 
 	public void LoseGentleEyes()

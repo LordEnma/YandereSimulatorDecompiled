@@ -130,6 +130,10 @@ public class GenocideEndingScript : MonoBehaviour
 			Senpai.transform.parent.gameObject.SetActive(true);
 			Osana.SetActive(false);
 			GameGlobals.DarkEnding = true;
+			if (GameGlobals.Eighties)
+			{
+				YellowifyLabel(Subtitle);
+			}
 		}
 	}
 

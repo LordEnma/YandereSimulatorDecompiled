@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class InventoryScript : MonoBehaviour
 {
+	public YandereScript Yandere;
+
 	public SchemesScript Schemes;
 
 	public GameObject ExplosiveDeviceSet;
@@ -197,6 +199,13 @@ public class InventoryScript : MonoBehaviour
 			break;
 		}
 		UpdateMoney();
+		for (int i = 1; i < 26; i++)
+		{
+			if (Yandere.PauseScreen.PhotoGallery.SenpaiPhoto[i])
+			{
+				SenpaiShots++;
+			}
+		}
 	}
 
 	public void UpdateMoney()

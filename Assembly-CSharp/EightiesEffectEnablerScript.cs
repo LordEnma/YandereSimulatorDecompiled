@@ -1,5 +1,6 @@
 using RetroAesthetics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EightiesEffectEnablerScript : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class EightiesEffectEnablerScript : MonoBehaviour
 
 	public void Start()
 	{
+		if (SceneManager.GetActiveScene().name == "PortraitScene")
+		{
+			base.enabled = false;
+			return;
+		}
 		if (EightiesEffects != null)
 		{
 			EightiesEffects.enabled = GameGlobals.Eighties;

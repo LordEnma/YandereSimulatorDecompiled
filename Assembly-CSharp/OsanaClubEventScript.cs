@@ -305,7 +305,6 @@ public class OsanaClubEventScript : MonoBehaviour
 	{
 		if (StudentManager.Students[10] != null && StudentManager.Students[11] != null && StudentManager.Students[11].Alive && StudentManager.Students[10].CurrentAction == StudentActionType.Follow)
 		{
-			Debug.Log("Osana's rooftop conversation with Raibaru can happen.");
 			RooftopConversation.CanHappen = true;
 		}
 	}

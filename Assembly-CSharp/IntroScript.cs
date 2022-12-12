@@ -121,6 +121,8 @@ public class IntroScript : MonoBehaviour
 
 	public float[] Cue;
 
+	public bool ResetSpeed;
+
 	public bool Narrating;
 
 	public bool Musicing;
@@ -228,6 +230,7 @@ public class IntroScript : MonoBehaviour
 		SkipTimer = 15f;
 		if (New)
 		{
+			SetToDefault();
 			RenderSettings.ambientLight = new Color(1f, 1f, 1f);
 			BloodyHandsAnim["f02_clenchFists_00"].speed = 0.166666f;
 			HoleInChestAnim["f02_holeInChest_00"].speed = 0f;
@@ -842,6 +845,9 @@ public class IntroScript : MonoBehaviour
 		{
 			if (HoleInChestAnim.gameObject.activeInHierarchy)
 			{
+				SetToDefault();
+				RenderSettings.ambientLight = new Color(1f, 1f, 1f);
+				RenderSettings.fog = false;
 				HoleInChestAnim.gameObject.SetActive(false);
 				ConfessionScene.SetActive(true);
 				base.transform.position = new Vector3(0f, 1f, -1f);
@@ -854,6 +860,7 @@ public class IntroScript : MonoBehaviour
 				ColorGradingModel.Settings settings19 = Profile.colorGrading.settings;
 				settings19.basic.saturation = 0f;
 				Profile.colorGrading.settings = settings19;
+				base.transform.eulerAngles = Vector3.zero;
 			}
 			base.transform.position -= new Vector3(0f, 0f, Time.deltaTime * Speed);
 			if (ID > 10)
@@ -888,31 +895,60 @@ public class IntroScript : MonoBehaviour
 		}
 		else if (ID > 4)
 		{
+			DepthOfFieldModel.Settings settings22 = Profile.depthOfField.settings;
 			if (BloodyHandsAnim.gameObject.activeInHierarchy)
 			{
+				RenderSettings.ambientLight = new Color(0f, 0f, 0f);
+				RenderSettings.fog = true;
 				base.transform.position = new Vector3(0.012f, 1.13f, 0.029f);
-				base.transform.eulerAngles = Vector3.zero;
+				base.transform.eulerAngles = new Vector3(0f, 0f, -15f);
 				BloodyHandsAnim.gameObject.SetActive(false);
 				HoleInChestAnim.gameObject.SetActive(true);
-				Alpha = 0f;
+				Alpha = -1f;
 				Darkness.color = new Color(0f, 0f, 0f, Alpha);
 				SetToDefault();
+				settings22.focusDistance = 0.1f;
+				Profile.depthOfField.settings = settings22;
+				Profile.depthOfField.enabled = true;
+				VignetteModel.Settings settings23 = Profile.vignette.settings;
+				settings23.color = new Color(0.01960784f, 0.04313726f, 0.1333333f);
+				settings23.smoothness = 1f;
+				Profile.vignette.settings = settings23;
 			}
-			Speed = Mathf.MoveTowards(Speed, 0.1f, Time.deltaTime * 0.01f);
+			base.transform.eulerAngles += new Vector3(0f, 0f, Time.deltaTime);
+			Speed = Mathf.MoveTowards(Speed, 0.1f, Time.deltaTime * 0.02f);
 			base.transform.position -= new Vector3(0f, 0f, Time.deltaTime * Speed);
-			if (base.transform.position.z < -0.05f)
+			if (base.transform.position.z < 0f)
 			{
-				SecondSpeed = Mathf.MoveTowards(SecondSpeed, 0.1f, Time.deltaTime * 0.1f);
-				base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(base.transform.position.x, 1f, base.transform.position.z), Time.deltaTime * SecondSpeed);
+				if (base.transform.position.z < -0.1f)
+				{
+					settings22.focusDistance = 0f - base.transform.position.z;
+					Profile.depthOfField.settings = settings22;
+				}
+				if (ID < 7)
+				{
+					SecondSpeed = Mathf.MoveTowards(SecondSpeed, 1f, Time.deltaTime * 0.1f);
+					base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(base.transform.position.x, 1.1f, base.transform.position.z), Time.deltaTime * SecondSpeed);
+				}
+				else
+				{
+					if (!ResetSpeed)
+					{
+						ResetSpeed = true;
+						SecondSpeed = 0f;
+					}
+					SecondSpeed = Mathf.MoveTowards(SecondSpeed, 1f, Time.deltaTime * 0.1f);
+					base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(base.transform.position.x, 0.8f, base.transform.position.z), Time.deltaTime * SecondSpeed);
+				}
 			}
-			if (base.transform.position.z < -0.5f)
+			if (base.transform.position.z < 0f)
 			{
-				HoleInChestAnim["f02_holeInChest_00"].speed = 0.5f;
+				HoleInChestAnim["f02_holeInChest_00"].speed = 0.3f;
 				HoleInChestAnim.Play();
 			}
 			if (ID > 8)
 			{
-				Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * 0.2f);
+				Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * 0.3f);
 				Darkness.color = new Color(0f, 0f, 0f, Alpha);
 			}
 		}
@@ -1079,6 +1115,13 @@ public class IntroScript : MonoBehaviour
 		BloomModel.Settings settings3 = Profile.bloom.settings;
 		settings3.bloom.intensity = 1f;
 		Profile.bloom.settings = settings3;
+		Debug.Log("Resetting vignette to default.");
+		VignetteModel.Settings settings4 = Profile.vignette.settings;
+		settings4.color = Color.black;
+		settings4.intensity = 0.45f;
+		settings4.smoothness = 0.2f;
+		settings4.roundness = 1f;
+		Profile.vignette.settings = settings4;
 	}
 
 	private void VtuberCheck()

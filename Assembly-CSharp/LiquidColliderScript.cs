@@ -69,7 +69,8 @@ public class LiquidColliderScript : MonoBehaviour
 		{
 			return;
 		}
-		if (component.Wet || component.Fleeing || component.SenpaiWitnessingRivalDie || (component.Schoolwear == 2 && !Brown && !Blood && !Gas) || component.Confessing || (component.Club == ClubType.Sports && component.ClubAttire && component.Clock.Period > 5 && !Brown && !Blood && !Gas))
+		Debug.Log(component.Name + " just came into contact with some liquid.");
+		if (component.Wet || component.Fleeing || component.SenpaiWitnessingRivalDie || component.SpecialRivalDeathReaction || (component.Schoolwear == 2 && !Brown && !Blood && !Gas) || component.Confessing || component.Guarding || (component.Club == ClubType.Sports && component.ClubAttire && component.Clock.Period > 5 && !Brown && !Blood && !Gas))
 		{
 			component.Yandere.NotificationManager.CustomText = "Didn't care.";
 			component.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -80,7 +81,7 @@ public class LiquidColliderScript : MonoBehaviour
 			}
 			return;
 		}
-		if (!component.BeenSplashed && component.StudentID > 1 && !component.Reflexes && !component.Teacher && component.Club != ClubType.Council && !component.GasWarned && component.CurrentAction != StudentActionType.Sunbathe)
+		if (!component.BeenSplashed && component.StudentID > 1 && !component.Reflexes && !component.Teacher && component.Club != ClubType.Council && !component.GasWarned && component.CurrentAction != StudentActionType.Sunbathe && !component.ClubAttire)
 		{
 			AudioSource.PlayClipAtPoint(SplashSound, base.transform.position);
 			Object.Instantiate(Splash, new Vector3(base.transform.position.x, 1.5f, base.transform.position.z), Quaternion.identity);

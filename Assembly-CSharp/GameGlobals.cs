@@ -64,6 +64,8 @@ public static class GameGlobals
 
 	private const string Str_EightiesTutorial = "EightiesTutorial";
 
+	private const string Str_KokonaTutorial = "KokonaTutorial";
+
 	private const string Str_Eighties = "Eighties";
 
 	private const string Str_YakuzaPhase = "YakuzaPhase";
@@ -468,6 +470,18 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool KokonaTutorial
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_KokonaTutorial");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_KokonaTutorial", value);
+		}
+	}
+
 	public static bool Eighties
 	{
 		get
@@ -720,6 +734,7 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_CameFromTitleScreen");
 		Globals.Delete("Profile_" + Profile + "_VtuberID");
 		Globals.Delete("Profile_" + Profile + "_GrudgeConversationHappened");
+		Globals.Delete("Profile_" + Profile + "_KokonaTutorial");
 		for (int i = 1; i < 11; i++)
 		{
 			SetSpecificEliminations(i, 0);

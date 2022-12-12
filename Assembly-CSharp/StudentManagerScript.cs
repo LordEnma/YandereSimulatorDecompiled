@@ -530,6 +530,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform[] MaleRestSpots;
 
+	public GameObject KokonaTutorialObject;
+
 	public GameObject ModernRivalBookBag;
 
 	public GameObject DelinquentVoices;
@@ -693,6 +695,8 @@ public class StudentManagerScript : MonoBehaviour
 	public bool TakingPortraits;
 
 	public bool TeachersSpawned;
+
+	public bool KokonaTutorial;
 
 	public bool MetalDetectors;
 
@@ -1001,9 +1005,10 @@ public class StudentManagerScript : MonoBehaviour
 
 	private void Start()
 	{
-		EightiesTutorial = GameGlobals.EightiesTutorial;
 		DisableRivalDeathSloMo = OptionGlobals.RivalDeathSlowMo;
+		EightiesTutorial = GameGlobals.EightiesTutorial;
 		MissionMode = MissionModeGlobals.MissionMode;
+		KokonaTutorial = GameGlobals.KokonaTutorial;
 		EmptyDemon = GameGlobals.EmptyDemon;
 		Week = DateGlobals.Week;
 		if (GameGlobals.Eighties)
@@ -1055,7 +1060,7 @@ public class StudentManagerScript : MonoBehaviour
 			}
 			SuitorID = 6;
 		}
-		if (EightiesTutorial || Week > 10)
+		if (KokonaTutorial || EightiesTutorial || Week > 10)
 		{
 			SpawnNobody = true;
 			if (Week > 10)
@@ -1069,9 +1074,13 @@ public class StudentManagerScript : MonoBehaviour
 				Yandere.HUD.transform.parent.gameObject.SetActive(false);
 			}
 		}
-		else if (Tutorial != null)
+		else if (EightiesTutorial && Tutorial != null)
 		{
 			Tutorial.gameObject.SetActive(false);
+		}
+		else if (KokonaTutorial && KokonaTutorialObject != null)
+		{
+			KokonaTutorialObject.SetActive(true);
 		}
 		InitialSabotageProgress = DatingGlobals.RivalSabotaged;
 		SabotageProgress = InitialSabotageProgress;
@@ -1595,7 +1604,7 @@ public class StudentManagerScript : MonoBehaviour
 					}
 					if (SpawnNobody)
 					{
-						if (Week < 11)
+						if (Week < 11 && Eighties)
 						{
 							TutorialActive = true;
 							Tutorial.gameObject.SetActive(true);
@@ -1712,7 +1721,7 @@ public class StudentManagerScript : MonoBehaviour
 							{
 								if (studentScript.Meeting)
 								{
-									Debug.Log("A student was in the middle of meeting someone when this save file was made. Attempting to update their schedule accordingly.");
+									Debug.Log(studentScript.Name + " was in the middle of meeting someone when this save file was made. Attempting to update their schedule accordingly.");
 									NoteWindow.NoteLocker.StudentID = MeetStudentID;
 									NoteWindow.NoteLocker.MeetTime = MeetTime;
 									NoteWindow.NoteLocker.MeetID = MeetID;
@@ -3235,6 +3244,21 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
+	public void DespawnAllStudents()
+	{
+		for (ID = 0; ID < Students.Length; ID++)
+		{
+			StudentScript studentScript = Students[ID];
+			if (studentScript != null)
+			{
+				studentScript.Prompt.Hide();
+				UnityEngine.Object.Destroy(studentScript.Prompt.gameObject);
+				UnityEngine.Object.Destroy(studentScript.gameObject);
+			}
+			Students[ID] = null;
+		}
+	}
+
 	public void StopHesitating()
 	{
 		for (ID = 0; ID < Students.Length; ID++)
@@ -4346,6 +4370,7 @@ public class StudentManagerScript : MonoBehaviour
 			}
 		}
 		FoodPlate.UpdateFood();
+		Debug.Log("End of loading sequence. ClubGlobals.ActivitiesAttended is now: " + ClubGlobals.ActivitiesAttended);
 		Debug.Log("The entire loading process has been completed.");
 		Week = DateGlobals.Week;
 		CameFromLoad = true;
@@ -5224,23 +5249,24 @@ public class StudentManagerScript : MonoBehaviour
 			Hangouts.List[ID] = Students[18].transform;
 			scheduleBlock = Students[ID].ScheduleBlocks[2];
 			scheduleBlock.destination = "Hangout";
-			scheduleBlock.action = "Socialize";
+			scheduleBlock.action = "Admire";
 			if (!Students[ID].Male)
 			{
 				scheduleBlock = Students[ID].ScheduleBlocks[4];
 				scheduleBlock.destination = "Hangout";
-				scheduleBlock.action = "Socialize";
+				scheduleBlock.action = "Admire";
 			}
 			scheduleBlock = Students[ID].ScheduleBlocks[6];
 			scheduleBlock.destination = "Hangout";
-			scheduleBlock.action = "Socialize";
+			scheduleBlock.action = "Admire";
 			scheduleBlock = Students[ID].ScheduleBlocks[7];
 			scheduleBlock.destination = "Hangout";
-			scheduleBlock.action = "Socialize";
+			scheduleBlock.action = "Admire";
 			Students[ID].GetDestinations();
 			Students[ID].Infatuated = true;
 			Students[ID].InfatuationID = 18;
 			Students[ID].Obstacle.enabled = false;
+			Students[ID].AdmireAnim = Students[ID].AdmireAnims[UnityEngine.Random.Range(0, 3)];
 			Physics.IgnoreCollision(Students[ID].MyController, Students[18].MyController);
 		}
 	}

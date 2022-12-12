@@ -2434,8 +2434,8 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		if (Arrests > 0)
 		{
-			Debug.Log("Increasing Atmosphere by 10% because a culprit was arrested.");
-			SchoolGlobals.SchoolAtmosphere += (float)Arrests * 0.1f;
+			Debug.Log("Increasing Atmosphere by 50% because a culprit was arrested.");
+			SchoolGlobals.SchoolAtmosphere += 0.5f;
 		}
 		if (Counselor.ExpelledDelinquents)
 		{
@@ -2618,6 +2618,7 @@ public class EndOfDayScript : MonoBehaviour
 		ClubManager.UpdateQuitClubs();
 		ClubManager.UpdateKickedClubs();
 		StudentGlobals.UpdateRivalReputation = false;
+		Debug.Log("Making the game aware of the fact that ClubManager.ActivitiesAttended was " + ClubManager.ActivitiesAttended + " at the end of this day.");
 		ClubGlobals.ActivitiesAttended = ClubManager.ActivitiesAttended;
 		UpdatePreviousRivalFriendships();
 		ArrestStudents();

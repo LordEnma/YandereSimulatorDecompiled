@@ -27,11 +27,20 @@ public class CounselorDoorScript : MonoBehaviour
 			for (int i = 1; i < Counselor.StudentManager.Students.Length; i++)
 			{
 				StudentScript studentScript = Counselor.StudentManager.Students[i];
-				if (studentScript != null && studentScript.Hunting)
+				if (studentScript != null)
 				{
-					Prompt.Yandere.NotificationManager.CustomText = "A murder is taking place!";
-					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					flag = true;
+					if (studentScript.Hunting)
+					{
+						Prompt.Yandere.NotificationManager.CustomText = "Not while a murder is taking place!";
+						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						flag = true;
+					}
+					else if (studentScript.Fleeing)
+					{
+						Prompt.Yandere.NotificationManager.CustomText = "Not while people are reacting to murder!";
+						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						flag = true;
+					}
 				}
 			}
 			if (!flag && !Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0 && !FadeIn && Prompt.Yandere.Bloodiness == 0f && Prompt.Yandere.Sanity > 66.66666f && !Prompt.Yandere.Carrying && !Prompt.Yandere.Dragging)

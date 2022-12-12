@@ -578,6 +578,7 @@ public class PickUpScript : MonoBehaviour
 		}
 		Yandere.PickUp = this;
 		Yandere.CarryAnimID = CarryAnimID;
+		Object.Instantiate(Yandere.PhysicsActivator, base.transform.position, Quaternion.identity);
 		if ((bool)BodyPart)
 		{
 			Yandere.NearBodies++;

@@ -302,6 +302,7 @@ public class AttackManagerScript : MonoBehaviour
 			{
 				Yandere.EquippedWeapon.MurderWeapon = true;
 				Yandere.CanMove = true;
+				Yandere.Kills++;
 			}
 			else
 			{

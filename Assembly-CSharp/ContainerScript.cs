@@ -63,15 +63,23 @@ public class ContainerScript : MonoBehaviour
 			Prompt.Circle[1].fillAmount = 1f;
 			if (Prompt.Yandere.Armed)
 			{
-				Weapon = Prompt.Yandere.EquippedWeapon;
-				Prompt.Yandere.EmptyHands();
-				Weapon.transform.parent = WeaponSpot;
-				Weapon.transform.localPosition = Vector3.zero;
-				Weapon.transform.localEulerAngles = Vector3.zero;
-				Weapon.gameObject.GetComponent<Rigidbody>().useGravity = false;
-				Weapon.MyCollider.isTrigger = true;
-				Weapon.Prompt.Hide();
-				Weapon.Prompt.enabled = false;
+				if (Prompt.Yandere.EquippedWeapon.Type == WeaponType.Scythe)
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "That's too big to fit inside!";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				else
+				{
+					Weapon = Prompt.Yandere.EquippedWeapon;
+					Prompt.Yandere.EmptyHands();
+					Weapon.transform.parent = WeaponSpot;
+					Weapon.transform.localPosition = Vector3.zero;
+					Weapon.transform.localEulerAngles = Vector3.zero;
+					Weapon.gameObject.GetComponent<Rigidbody>().useGravity = false;
+					Weapon.MyCollider.isTrigger = true;
+					Weapon.Prompt.Hide();
+					Weapon.Prompt.enabled = false;
+				}
 			}
 			else
 			{

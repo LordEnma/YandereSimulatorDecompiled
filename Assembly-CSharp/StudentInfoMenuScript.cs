@@ -564,13 +564,19 @@ public class StudentInfoMenuScript : MonoBehaviour
 			{
 				PromptBar.Label[0].text = "Get Info";
 			}
-			PromptBar.UpdateButtons();
 		}
 		if (GettingOpinions)
 		{
-			PromptBar.Label[0].text = "Get Opinions";
-			PromptBar.UpdateButtons();
+			if (StudentManager.StudentPhotographed[StudentID] && StudentID < 97)
+			{
+				PromptBar.Label[0].text = "Get Opinions";
+			}
+			else
+			{
+				PromptBar.Label[0].text = string.Empty;
+			}
 		}
+		PromptBar.UpdateButtons();
 		if (UsingLifeNote)
 		{
 			if (StudentID == 1 || StudentID > 97 || (StudentID > 11 && StudentID < 21) || StudentPortraits[StudentID].DeathShadow.activeInHierarchy || (StudentManager.Students[StudentID] != null && !StudentManager.Students[StudentID].enabled))

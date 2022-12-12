@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OsanaJokeScript : MonoBehaviour
 {
 	public ConstantRandomRotation[] Rotation;
 
 	public GameObject BloodSplatterEffect;
+
+	public GameObject ReturnLabel;
 
 	public AudioClip BloodSplatterSFX;
 
@@ -36,9 +39,13 @@ public class OsanaJokeScript : MonoBehaviour
 		if (Advance)
 		{
 			Timer += Time.deltaTime;
-			if (Timer > 14f)
+			if (Timer > 6.75f)
 			{
-				Application.Quit();
+				ReturnLabel.SetActive(true);
+				if (Input.GetKeyDown("e"))
+				{
+					SceneManager.LoadScene("NewTitleScene");
+				}
 			}
 			else if (Timer > 3f)
 			{

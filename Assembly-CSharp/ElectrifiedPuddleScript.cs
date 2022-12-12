@@ -9,13 +9,17 @@ public class ElectrifiedPuddleScript : MonoBehaviour
 		if (other.gameObject.layer == 9)
 		{
 			StudentScript component = other.gameObject.GetComponent<StudentScript>();
-			if (component != null && !component.Electrified && component.Yandere.Pursuer != component)
+			if (component != null)
 			{
-				component.Yandere.GazerEyes.ElectrocuteStudent(component);
-				base.gameObject.SetActive(false);
-				if (PowerSwitch != null)
+				Debug.Log(component.Name + " came into contact with an electrified puddle!");
+				if (!component.Electrified && component.Yandere.Pursuer != component)
 				{
-					PowerSwitch.On = false;
+					component.Yandere.GazerEyes.ElectrocuteStudent(component);
+					base.gameObject.SetActive(false);
+					if (PowerSwitch != null)
+					{
+						PowerSwitch.On = false;
+					}
 				}
 			}
 		}

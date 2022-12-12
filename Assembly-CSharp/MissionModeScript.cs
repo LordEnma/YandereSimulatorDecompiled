@@ -35,6 +35,8 @@ public class MissionModeScript : MonoBehaviour
 
 	public PromptBarScript PromptBar;
 
+	public WeaponScript MurderWeapon;
+
 	public BoundaryScript Boundary;
 
 	public JukeboxScript Jukebox;
@@ -728,6 +730,7 @@ public class MissionModeScript : MonoBehaviour
 					{
 						if (StudentManager.Students[TargetID].DeathType == DeathType.Weapon)
 						{
+							MurderWeapon = Yandere.EquippedWeapon;
 							MurderWeaponID = Yandere.EquippedWeapon.WeaponID;
 						}
 						else
@@ -917,15 +920,9 @@ public class MissionModeScript : MonoBehaviour
 					}
 				}
 			}
-			if (NoWeapon && !WeaponDisposed && Incinerator.Timer > 0f)
+			if (NoWeapon && !WeaponDisposed && ((MurderWeaponID > 0 && MurderWeapon == null) || (MurderWeaponID > 0 && MurderWeapon.Disposed)))
 			{
-				for (ID = 1; ID < Incinerator.DestroyedEvidence + 1; ID++)
-				{
-					if (Incinerator.EvidenceList[ID] == MurderWeaponID)
-					{
-						WeaponDisposed = true;
-					}
-				}
+				WeaponDisposed = true;
 			}
 			if (TimeLimit)
 			{

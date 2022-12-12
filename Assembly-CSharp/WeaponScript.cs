@@ -367,185 +367,7 @@ public class WeaponScript : MonoBehaviour
 	{
 		if (Prompt.Circle[3].fillAmount == 0f)
 		{
-			InBag = false;
-			if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 1)
-			{
-				SchemeGlobals.SetSchemeStage(4, 2);
-				Yandere.PauseScreen.Schemes.UpdateInstructions();
-			}
-			Prompt.Circle[3].fillAmount = 1f;
-			if (Yandere.ImmunityTimer == 0f && Yandere.Chasers == 0)
-			{
-				if (Prompt.Suspicious)
-				{
-					Yandere.TheftTimer = 0.1f;
-				}
-				SuspicionCheck();
-				if (Suspicious)
-				{
-					Yandere.WeaponTimer = 0.1f;
-				}
-			}
-			if (!Yandere.Gloved)
-			{
-				if (FingerprintID == 0)
-				{
-					Yandere.WeaponManager.WeaponsTouched++;
-					if (Yandere.WeaponManager.WeaponsTouched > 19)
-					{
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("WeaponMaster", 1);
-						}
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("a", 1);
-						}
-					}
-				}
-				FingerprintID = 100;
-			}
-			for (ID = 0; ID < Outline.Length; ID++)
-			{
-				if (Outline[ID] != null)
-				{
-					Outline[ID].color = new Color(0f, 0f, 0f, 1f);
-				}
-			}
-			if (LeftHand)
-			{
-				base.transform.parent = Yandere.LeftItemParent;
-			}
-			else
-			{
-				base.transform.parent = Yandere.ItemParent;
-			}
-			base.transform.localPosition = Vector3.zero;
-			if (Type == WeaponType.Bat)
-			{
-				base.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
-			}
-			else
-			{
-				base.transform.localEulerAngles = Vector3.zero;
-			}
-			MyCollider.enabled = false;
-			MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
-			if (Yandere.Equipped == 3 && Yandere.Weapon[3] != null)
-			{
-				Yandere.Weapon[3].Drop();
-			}
-			if (Yandere.PickUp != null)
-			{
-				Yandere.PickUp.Drop();
-			}
-			if (Yandere.Dragging)
-			{
-				Yandere.Ragdoll.GetComponent<RagdollScript>().StopDragging();
-			}
-			if (Yandere.Carrying)
-			{
-				Yandere.StopCarrying();
-			}
-			if (Concealable)
-			{
-				if (Yandere.Weapon[1] == null)
-				{
-					if (Yandere.Weapon[2] != null)
-					{
-						Yandere.Weapon[2].gameObject.SetActive(false);
-					}
-					Yandere.Equipped = 1;
-					Yandere.EquippedWeapon = this;
-					Yandere.WeaponManager.SetEquippedWeapon1(this);
-				}
-				else if (Yandere.Weapon[2] == null)
-				{
-					if (Yandere.Weapon[1] != null)
-					{
-						if (!DoNotDisable)
-						{
-							Yandere.Weapon[1].gameObject.SetActive(false);
-						}
-						DoNotDisable = false;
-					}
-					Yandere.Equipped = 2;
-					Yandere.EquippedWeapon = this;
-					Yandere.WeaponManager.SetEquippedWeapon2(this);
-				}
-				else if (Yandere.Weapon[2].gameObject.activeInHierarchy)
-				{
-					Yandere.Weapon[2].Drop();
-					Yandere.Equipped = 2;
-					Yandere.EquippedWeapon = this;
-					Yandere.WeaponManager.SetEquippedWeapon2(this);
-				}
-				else
-				{
-					Yandere.Weapon[1].Drop();
-					Yandere.Equipped = 1;
-					Yandere.EquippedWeapon = this;
-					Yandere.WeaponManager.SetEquippedWeapon1(this);
-				}
-			}
-			else
-			{
-				if (Yandere.Weapon[1] != null)
-				{
-					Yandere.Weapon[1].gameObject.SetActive(false);
-				}
-				if (Yandere.Weapon[2] != null)
-				{
-					Yandere.Weapon[2].gameObject.SetActive(false);
-				}
-				Yandere.Equipped = 3;
-				Yandere.EquippedWeapon = this;
-				Yandere.WeaponManager.SetEquippedWeapon3(this);
-			}
-			Yandere.StudentManager.UpdateStudents();
-			Prompt.Hide();
-			Prompt.enabled = false;
-			Yandere.NearestPrompt = null;
-			if (WeaponID == 9 || WeaponID == 10 || WeaponID == 12 || WeaponID == 14 || WeaponID == 16 || WeaponID == 22 || WeaponID == 25)
-			{
-				SuspicionCheck();
-			}
-			if (Yandere.EquippedWeapon.Suspicious)
-			{
-				if (!Yandere.WeaponWarning)
-				{
-					Yandere.NotificationManager.DisplayNotification(NotificationType.Armed);
-					Yandere.WeaponWarning = true;
-				}
-			}
-			else
-			{
-				Yandere.WeaponWarning = false;
-			}
-			Yandere.WeaponMenu.UpdateSprites();
-			Yandere.WeaponManager.UpdateLabels();
-			if (Blood.enabled)
-			{
-				Yandere.Police.BloodyWeapons--;
-			}
-			if (WeaponID == 11)
-			{
-				Yandere.IdleAnim = "CyborgNinja_Idle_Armed";
-				Yandere.WalkAnim = "CyborgNinja_Walk_Armed";
-				Yandere.RunAnim = "CyborgNinja_Run_Armed";
-			}
-			if (WeaponID == 26)
-			{
-				WeaponTrail.SetActive(true);
-			}
-			KinematicTimer = 0f;
-			AudioSource.PlayClipAtPoint(EquipClip, Yandere.MainCamera.transform.position);
-			if (UnequipImmediately)
-			{
-				UnequipImmediately = false;
-				Yandere.Unequip();
-			}
-			Yandere.UpdateConcealedWeaponStatus();
+			Equip();
 		}
 		if (Yandere.EquippedWeapon == this)
 		{
@@ -597,6 +419,190 @@ public class WeaponScript : MonoBehaviour
 		{
 			Drop();
 		}
+	}
+
+	public void Equip()
+	{
+		InBag = false;
+		if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 1)
+		{
+			SchemeGlobals.SetSchemeStage(4, 2);
+			Yandere.PauseScreen.Schemes.UpdateInstructions();
+		}
+		Prompt.Circle[3].fillAmount = 1f;
+		if (Yandere.ImmunityTimer == 0f && Yandere.Chasers == 0)
+		{
+			if (Prompt.Suspicious)
+			{
+				Yandere.TheftTimer = 0.1f;
+			}
+			SuspicionCheck();
+			if (Suspicious)
+			{
+				Yandere.WeaponTimer = 0.1f;
+			}
+		}
+		if (!Yandere.Gloved)
+		{
+			if (FingerprintID == 0)
+			{
+				Yandere.WeaponManager.WeaponsTouched++;
+				if (Yandere.WeaponManager.WeaponsTouched > 19)
+				{
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("WeaponMaster", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
+				}
+			}
+			FingerprintID = 100;
+		}
+		for (ID = 0; ID < Outline.Length; ID++)
+		{
+			if (Outline[ID] != null)
+			{
+				Outline[ID].color = new Color(0f, 0f, 0f, 1f);
+			}
+		}
+		if (LeftHand)
+		{
+			base.transform.parent = Yandere.LeftItemParent;
+		}
+		else
+		{
+			base.transform.parent = Yandere.ItemParent;
+		}
+		base.transform.localPosition = Vector3.zero;
+		if (Type == WeaponType.Bat)
+		{
+			base.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+		}
+		else
+		{
+			base.transform.localEulerAngles = Vector3.zero;
+		}
+		MyCollider.enabled = false;
+		MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+		if (Yandere.Equipped == 3 && Yandere.Weapon[3] != null)
+		{
+			Yandere.Weapon[3].Drop();
+		}
+		if (Yandere.PickUp != null)
+		{
+			Yandere.PickUp.Drop();
+		}
+		if (Yandere.Dragging)
+		{
+			Yandere.Ragdoll.GetComponent<RagdollScript>().StopDragging();
+		}
+		if (Yandere.Carrying)
+		{
+			Yandere.StopCarrying();
+		}
+		if (Concealable)
+		{
+			if (Yandere.Weapon[1] == null)
+			{
+				if (Yandere.Weapon[2] != null)
+				{
+					Yandere.Weapon[2].gameObject.SetActive(false);
+				}
+				Yandere.Equipped = 1;
+				Yandere.EquippedWeapon = this;
+				Yandere.WeaponManager.SetEquippedWeapon1(this);
+			}
+			else if (Yandere.Weapon[2] == null)
+			{
+				if (Yandere.Weapon[1] != null)
+				{
+					if (!DoNotDisable)
+					{
+						Yandere.Weapon[1].gameObject.SetActive(false);
+					}
+					DoNotDisable = false;
+				}
+				Yandere.Equipped = 2;
+				Yandere.EquippedWeapon = this;
+				Yandere.WeaponManager.SetEquippedWeapon2(this);
+			}
+			else if (Yandere.Weapon[2].gameObject.activeInHierarchy)
+			{
+				Yandere.Weapon[2].Drop();
+				Yandere.Equipped = 2;
+				Yandere.EquippedWeapon = this;
+				Yandere.WeaponManager.SetEquippedWeapon2(this);
+			}
+			else
+			{
+				Yandere.Weapon[1].Drop();
+				Yandere.Equipped = 1;
+				Yandere.EquippedWeapon = this;
+				Yandere.WeaponManager.SetEquippedWeapon1(this);
+			}
+		}
+		else
+		{
+			if (Yandere.Weapon[1] != null)
+			{
+				Yandere.Weapon[1].gameObject.SetActive(false);
+			}
+			if (Yandere.Weapon[2] != null)
+			{
+				Yandere.Weapon[2].gameObject.SetActive(false);
+			}
+			Yandere.Equipped = 3;
+			Yandere.EquippedWeapon = this;
+			Yandere.WeaponManager.SetEquippedWeapon3(this);
+		}
+		Object.Instantiate(Yandere.PhysicsActivator, base.transform.position, Quaternion.identity);
+		Yandere.StudentManager.UpdateStudents();
+		Prompt.Hide();
+		Prompt.enabled = false;
+		Yandere.NearestPrompt = null;
+		if (WeaponID == 9 || WeaponID == 10 || WeaponID == 12 || WeaponID == 14 || WeaponID == 16 || WeaponID == 22 || WeaponID == 25)
+		{
+			SuspicionCheck();
+		}
+		if (Yandere.EquippedWeapon.Suspicious)
+		{
+			if (!Yandere.WeaponWarning)
+			{
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Armed);
+				Yandere.WeaponWarning = true;
+			}
+		}
+		else
+		{
+			Yandere.WeaponWarning = false;
+		}
+		Yandere.WeaponMenu.UpdateSprites();
+		Yandere.WeaponManager.UpdateLabels();
+		if (Blood.enabled)
+		{
+			Yandere.Police.BloodyWeapons--;
+		}
+		if (WeaponID == 11)
+		{
+			Yandere.IdleAnim = "CyborgNinja_Idle_Armed";
+			Yandere.WalkAnim = "CyborgNinja_Walk_Armed";
+			Yandere.RunAnim = "CyborgNinja_Run_Armed";
+		}
+		if (WeaponID == 26)
+		{
+			WeaponTrail.SetActive(true);
+		}
+		KinematicTimer = 0f;
+		AudioSource.PlayClipAtPoint(EquipClip, Yandere.MainCamera.transform.position);
+		if (UnequipImmediately)
+		{
+			UnequipImmediately = false;
+			Yandere.Unequip();
+		}
+		Yandere.UpdateConcealedWeaponStatus();
 	}
 
 	public void Drop()

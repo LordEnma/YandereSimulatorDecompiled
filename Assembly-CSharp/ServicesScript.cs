@@ -207,6 +207,7 @@ public class ServicesScript : MonoBehaviour
 						Yandere.PauseScreen.StudentInfoMenu.UpdateHighlight();
 						Yandere.PauseScreen.Sideways = true;
 						Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+						Yandere.PauseScreen.StudentInfoMenu.GrabPortraitsNextFrame = true;
 						StartCoroutine(Yandere.PauseScreen.StudentInfoMenu.UpdatePortraits());
 						Yandere.PromptBar.ClearButtons();
 						Yandere.PromptBar.Label[0].text = "Get Opinions";

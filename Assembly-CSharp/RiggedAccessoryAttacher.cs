@@ -28,6 +28,14 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 
 	public SkinnedMeshRenderer newRenderer;
 
+	public SkinnedMeshRenderer[] newRenderers;
+
+	public Material[] MaterialSet1;
+
+	public Material[] MaterialSet2;
+
+	public Material[] MaterialSet3;
+
 	public bool UpdateBounds;
 
 	public bool Initialized;

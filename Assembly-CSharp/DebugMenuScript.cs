@@ -709,6 +709,7 @@ public class DebugMenuScript : MonoBehaviour
 				}
 				if (Input.GetKeyDown(KeyCode.Tab))
 				{
+					DatingGlobals.Affection = 100f;
 					DatingGlobals.SuitorProgress = 2;
 					DateGlobals.Weekday = DayOfWeek.Friday;
 					SceneManager.LoadScene("LoadingScene");
@@ -750,70 +751,38 @@ public class DebugMenuScript : MonoBehaviour
 		{
 			Input.GetKeyDown(KeyCode.Backslash);
 		}
-		if (!WaitingForNumber)
+		if (WaitingForNumber)
 		{
-			return;
-		}
-		if (Input.GetKey("1"))
-		{
-			Debug.Log("Going to class should trigger panty shot lecture.");
-			if (!StudentManager.Eighties)
+			if (Input.GetKey("1"))
 			{
-				SchemeGlobals.SetSchemeStage(1, 100);
+				Debug.Log("Sabotage Progress = 1/5");
+				DatingGlobals.RivalSabotaged = 1;
+				WaitingForNumber = false;
 			}
-			StudentGlobals.ExpelProgress = 0;
-			Counselor.CutsceneManager.Scheme = 1;
-			Counselor.LectureID = 1;
-			WaitingForNumber = false;
-		}
-		else if (Input.GetKey("2"))
-		{
-			Debug.Log("Going to class should trigger theft lecture.");
-			if (!StudentManager.Eighties)
+			else if (Input.GetKey("2"))
 			{
-				SchemeGlobals.SetSchemeStage(2, 100);
+				Debug.Log("Sabotage Progress = 2/5");
+				DatingGlobals.RivalSabotaged = 2;
+				WaitingForNumber = false;
 			}
-			StudentGlobals.ExpelProgress = 1;
-			Counselor.CutsceneManager.Scheme = 2;
-			Counselor.LectureID = 2;
-			WaitingForNumber = false;
-		}
-		else if (Input.GetKey("3"))
-		{
-			Debug.Log("Going to class should trigger contraband lecture.");
-			if (!StudentManager.Eighties)
+			else if (Input.GetKey("3"))
 			{
-				SchemeGlobals.SetSchemeStage(3, 100);
+				Debug.Log("Sabotage Progress = 3/5");
+				DatingGlobals.RivalSabotaged = 3;
+				WaitingForNumber = false;
 			}
-			StudentGlobals.ExpelProgress = 2;
-			Counselor.CutsceneManager.Scheme = 3;
-			Counselor.LectureID = 3;
-			WaitingForNumber = false;
-		}
-		else if (Input.GetKey("4"))
-		{
-			Debug.Log("Going to class should trigger Vandalism lecture.");
-			if (!StudentManager.Eighties)
+			else if (Input.GetKey("4"))
 			{
-				SchemeGlobals.SetSchemeStage(4, 100);
+				Debug.Log("Sabotage Progress = 4/5");
+				DatingGlobals.RivalSabotaged = 4;
+				WaitingForNumber = false;
 			}
-			StudentGlobals.ExpelProgress = 3;
-			Counselor.CutsceneManager.Scheme = 4;
-			Counselor.LectureID = 4;
-			WaitingForNumber = false;
-		}
-		else if (Input.GetKey("5"))
-		{
-			Debug.Log("Going to class at lunchtime should get your rival expelled!");
-			if (!StudentManager.Eighties)
+			else if (Input.GetKey("5"))
 			{
-				SchemeGlobals.SetSchemeStage(5, 100);
+				Debug.Log("Sabotage Progress = 5/5");
+				DatingGlobals.RivalSabotaged = 5;
+				WaitingForNumber = false;
 			}
-			Counselor.RivalExpelProgress = 4;
-			StudentGlobals.ExpelProgress = 4;
-			Counselor.CutsceneManager.Scheme = 5;
-			Counselor.LectureID = 5;
-			WaitingForNumber = false;
 		}
 	}
 

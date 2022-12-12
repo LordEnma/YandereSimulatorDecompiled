@@ -161,7 +161,6 @@ public class PortalScript : MonoBehaviour
 				}
 			}
 			int num2 = Police.BloodyWeapons;
-			Debug.Log("Counting bloody weapons. Police.BloodyWeapons is: " + Police.BloodyWeapons);
 			TrashCanScript[] trashCans = StudentManager.TrashCans;
 			foreach (TrashCanScript trashCanScript in trashCans)
 			{
@@ -369,7 +368,6 @@ public class PortalScript : MonoBehaviour
 						Class.BonusPoints = 0;
 						Class.StudyPoints -= Late;
 						Class.StartingPoints = Class.StudyPoints;
-						Debug.Log("Entered the class screen with " + Class.StartingPoints + " points to spend.");
 						Class.UpdateLabel();
 						Class.gameObject.SetActive(true);
 						Class.Show = true;
@@ -600,7 +598,6 @@ public class PortalScript : MonoBehaviour
 
 	private void CheckForLateness()
 	{
-		Debug.Log("Determining if Yandere-chan is late to class.");
 		Late = 0;
 		if (!(StudentManager.Teachers[21] != null) || !StudentManager.Teachers[21].Alive || !(StudentManager.Teachers[21].DistanceToDestination < 1f))
 		{
@@ -678,7 +675,6 @@ public class PortalScript : MonoBehaviour
 		}
 		if (!OsanaClubEvent.enabled && !OsanaClubEvent.ReachedTheEnd && !StudentManager.Eighties)
 		{
-			Debug.Log("The Portal is checking the Osana Club Event.");
 			OsanaClubEvent.CheckForRooftopConvo();
 		}
 		if (OsanaFridayEvent1.enabled)

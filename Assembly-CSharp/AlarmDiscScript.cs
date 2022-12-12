@@ -138,6 +138,7 @@ public class AlarmDiscScript : MonoBehaviour
 							if (Originator != null)
 							{
 								Debug.Log(Student.Name + " just heard an alarm disc that originated from " + Originator.Name + ".");
+								Student.FocusOnYandere = false;
 								if (Originator.WitnessedMurder)
 								{
 									Debug.Log(Originator.Name + " witnessed murder, and so " + Student.Name + " should look towards Yandere-chan.");
@@ -160,7 +161,6 @@ public class AlarmDiscScript : MonoBehaviour
 								{
 									Student.DistractionSpot = new Vector3(Originator.Corpse.transform.position.x, Student.transform.position.y, Originator.Corpse.transform.position.z);
 								}
-								Student.FocusOnYandere = false;
 							}
 							else
 							{
@@ -366,7 +366,7 @@ public class AlarmDiscScript : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("For some reason, " + Student.Name + " decided to completely ignore a SCREAM.");
+			Debug.Log(Student.Name + " has chosen to ignore a scream.");
 		}
 	}
 }

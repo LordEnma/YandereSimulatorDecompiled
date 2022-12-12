@@ -184,6 +184,7 @@ public class ClubManagerScript : MonoBehaviour
 	{
 		LearnKickedClubs();
 		ActivitiesAttended = ClubGlobals.ActivitiesAttended;
+		Debug.Log("ClubGlobals.ActivitiesAttended was " + ClubGlobals.ActivitiesAttended + ", so, as of now, at the start of the school day, ClubManager.ActivitiesAttended is being set to " + ActivitiesAttended + ".");
 		MyAudio = GetComponent<AudioSource>();
 		ClubWindow.ActivityWindow.localScale = Vector3.zero;
 		ClubWindow.ActivityWindow.gameObject.SetActive(false);
@@ -1133,6 +1134,11 @@ public class ClubManagerScript : MonoBehaviour
 				ClubGlobals.SetQuitClub(ClubArray[ID], true);
 				ActivitiesAttended = 0;
 			}
+		}
+		if (Yandere.ClubActivity)
+		{
+			Debug.Log("...but we joined a new club after quitting, so we're incrementing ActivitiesAttended anyway!");
+			ActivitiesAttended++;
 		}
 	}
 

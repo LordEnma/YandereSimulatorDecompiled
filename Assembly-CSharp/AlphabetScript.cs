@@ -79,7 +79,7 @@ public class AlphabetScript : MonoBehaviour
 			AlphabetTools.SetActive(true);
 			Jukebox.SetActive(false);
 			MyRenderer.enabled = true;
-			Class.PhysicalGrade = 5;
+			StudentManager.Yandere.SpeedBonus = 5;
 			CurrentTrack = 1;
 			Limit = 79;
 			if (GameGlobals.Eighties)

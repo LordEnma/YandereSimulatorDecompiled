@@ -4,6 +4,8 @@ public class BookbagScript : MonoBehaviour
 {
 	public PickUpScript ConcealedPickup;
 
+	public WeaponScript ConcealedWeapon;
+
 	public Rigidbody MyRigidbody;
 
 	public PromptScript Prompt;
@@ -97,6 +99,7 @@ public class BookbagScript : MonoBehaviour
 		ConcealedPickup.Prompt.Circle[3].fillAmount = -1f;
 		ConcealedPickup.InsideBookbag = false;
 		ConcealedPickup = null;
+		ConcealedWeapon = null;
 		Prompt.Label[0].text = "     Conceal Item";
 	}
 

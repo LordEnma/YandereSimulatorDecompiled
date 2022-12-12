@@ -178,7 +178,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 		if (GameGlobals.Eighties && EightiesAttacher != null)
 		{
-			if (HomeGlobals.Night || DateGlobals.Weekday != 0 || DateGlobals.Weekday != DayOfWeek.Saturday)
+			if (HomeGlobals.Night || DateGlobals.Weekday == DayOfWeek.Sunday || DateGlobals.Weekday == DayOfWeek.Saturday)
 			{
 				EightiesAttacher.SetActive(true);
 			}
@@ -214,7 +214,7 @@ public class StalkerYandereScript : MonoBehaviour
 			}
 			if (ClothingAttacher != null && !Initialized)
 			{
-				if (HomeGlobals.Night || DateGlobals.Weekday != 0 || DateGlobals.Weekday != DayOfWeek.Saturday)
+				if (HomeGlobals.Night || DateGlobals.Weekday == DayOfWeek.Sunday || DateGlobals.Weekday == DayOfWeek.Saturday)
 				{
 					ClothingAttacher.SetActive(true);
 					MyRenderer.gameObject.SetActive(false);
@@ -358,8 +358,17 @@ public class StalkerYandereScript : MonoBehaviour
 						{
 							CameraTarget.position = Vector3.MoveTowards(CameraTarget.position, new Vector3(-9.5f, 5f, -2.5f), Time.deltaTime);
 						}
-						MoveTowardsTarget(TrellisClimbSpot.position);
-						SpinTowardsTarget(TrellisClimbSpot.rotation);
+						if (MyAnimation["f02_climbTrellis_00"].time < 1f)
+						{
+							Time.timeScale = 1f;
+							MoveTowardsTarget(TrellisClimbSpot.position);
+							SpinTowardsTarget(TrellisClimbSpot.rotation);
+						}
+						else
+						{
+							base.transform.position = TrellisClimbSpot.position;
+							base.transform.rotation = TrellisClimbSpot.rotation;
+						}
 						if (MyAnimation["f02_climbTrellis_00"].time > 7.5f)
 						{
 							RPGCamera.transform.position = EntryPOV.position;

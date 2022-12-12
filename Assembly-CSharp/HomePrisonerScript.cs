@@ -126,7 +126,6 @@ public class HomePrisonerScript : MonoBehaviour
 		{
 			Sanity = StudentGlobals.GetStudentSanity(PrisonerManager.StudentID);
 			Health = StudentGlobals.GetStudentHealth(PrisonerManager.StudentID);
-			Debug.Log("Prisoner #" + PrisonerManager.StudentID + "'s Sanity is " + Sanity + " and Health is " + Health);
 			if (Health > 0f && (float)Sanity < 100f)
 			{
 				Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
@@ -431,7 +430,7 @@ public class HomePrisonerScript : MonoBehaviour
 				HomeYandere.gameObject.SetActive(true);
 				HomeWindow.Show = false;
 			}
-			if (Input.GetButtonDown("X") && PlayerGlobals.Meals > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) < 100)
+			if (Input.GetButtonDown("X") && PlayerGlobals.Meals > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) < 100)
 			{
 				StudentGlobals.SetStudentHealth(PrisonerManager.StudentID, StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) + 10);
 				PlayerGlobals.Meals--;

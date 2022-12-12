@@ -20,6 +20,8 @@ public class TributeScript : MonoBehaviour
 
 	public string[] NurseLetters;
 
+	public string[] MaidLetters;
+
 	public string[] AzurLane;
 
 	public string[] Letter;
@@ -33,6 +35,8 @@ public class TributeScript : MonoBehaviour
 	public int NurseID;
 
 	public int AzurID;
+
+	public int MaidID;
 
 	public int ID;
 
@@ -101,6 +105,15 @@ public class TributeScript : MonoBehaviour
 				if (MedibangID == MedibangLetters.Length)
 				{
 					Yandere.Medibang();
+					base.enabled = false;
+				}
+			}
+			if (Input.GetKeyDown(MaidLetters[MaidID]))
+			{
+				MaidID++;
+				if (MaidID == MaidLetters.Length)
+				{
+					Yandere.Maid();
 					base.enabled = false;
 				}
 			}
