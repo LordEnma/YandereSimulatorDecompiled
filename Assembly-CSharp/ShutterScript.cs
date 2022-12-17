@@ -75,6 +75,8 @@ public class ShutterScript : MonoBehaviour
 
 	public GameObject InfoX;
 
+	public bool PhotographedKokona;
+
 	public bool BountyComplete;
 
 	public bool AirGuitarShot;
@@ -235,7 +237,7 @@ public class ShutterScript : MonoBehaviour
 					{
 						PromptBar.Label[0].text = "";
 					}
-					if (StudentManager.Eighties)
+					if (StudentManager.Eighties || StudentManager.KokonaTutorial)
 					{
 						PromptBar.Label[2].text = "";
 					}
@@ -401,7 +403,15 @@ public class ShutterScript : MonoBehaviour
 				Time.timeScale = 0.0001f;
 				if (Input.GetButtonDown("A"))
 				{
-					if (!Yandere.RivalPhone)
+					if (StudentManager.KokonaTutorial)
+					{
+						if (TargetStudent == 30)
+						{
+							PhotographedKokona = true;
+						}
+						ResumeGameplay();
+					}
+					else if (!Yandere.RivalPhone)
 					{
 						bool flag2 = !BullyX.activeInHierarchy;
 						bool flag3 = !SenpaiX.activeInHierarchy;
@@ -976,7 +986,7 @@ public class ShutterScript : MonoBehaviour
 		Nemesis = false;
 		NotFace = false;
 		Skirt = false;
-		if (!StudentManager.Eighties)
+		if (!StudentManager.Eighties && !StudentManager.KokonaTutorial)
 		{
 			Yandere.PhonePromptBar.Panel.enabled = true;
 			Yandere.PhonePromptBar.Show = true;

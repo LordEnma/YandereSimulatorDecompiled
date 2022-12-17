@@ -29,6 +29,8 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 
 	public Collider SWStairs;
 
+	public Collider PoolStairs;
+
 	public Vector3[] Positions;
 
 	public bool CanSpawn;
@@ -62,6 +64,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 			NWStairs = StudentManager.NWStairs;
 			SEStairs = StudentManager.SEStairs;
 			SWStairs = StudentManager.SWStairs;
+			PoolStairs = StudentManager.PoolStairs;
 		}
 		BloodParent = GameObject.Find("BloodParent").transform;
 		Positions = new Vector3[5];
@@ -105,7 +108,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 			Vector3 position = base.transform.position;
 			if (SceneManager.GetActiveScene().name == "SchoolScene")
 			{
-				CanSpawn = !GardenArea.bounds.Contains(position) && !TreeArea.bounds.Contains(position) && !NEStairs.bounds.Contains(position) && !NWStairs.bounds.Contains(position) && !SEStairs.bounds.Contains(position) && !SWStairs.bounds.Contains(position);
+				CanSpawn = !GardenArea.bounds.Contains(position) && !TreeArea.bounds.Contains(position) && !NEStairs.bounds.Contains(position) && !NWStairs.bounds.Contains(position) && !SEStairs.bounds.Contains(position) && !SWStairs.bounds.Contains(position) && !PoolStairs.bounds.Contains(position);
 			}
 			if (!CanSpawn || !(position.y < Height + 1f / 3f))
 			{

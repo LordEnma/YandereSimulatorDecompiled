@@ -61,7 +61,7 @@ public class MapScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("Back") && Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f)
+		if (Input.GetButtonDown("Back") && Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial)
 		{
 			if (!Show)
 			{

@@ -221,11 +221,15 @@ public class CosmeticScript : MonoBehaviour
 
 	public Texture RedStockings;
 
+	public Texture PurpleSocks;
+
 	public Texture YellowSocks;
 
 	public Texture GreenSocks;
 
 	public Texture BlueSocks;
+
+	public Texture CyanSocks;
 
 	public Texture RedSocks;
 
@@ -719,6 +723,14 @@ public class CosmeticScript : MonoBehaviour
 			else
 			{
 				DisableFingernails();
+				if (Eighties && StudentID == 15)
+				{
+					for (int k = 0; k < 10; k++)
+					{
+						Fingernails[k].material.mainTexture = GanguroNailTextures[StudentID];
+						Fingernails[k].gameObject.SetActive(true);
+					}
+				}
 				if (Club == ClubType.Gardening && !TakingPortrait && !Kidnapped)
 				{
 					CanRenderer.material.mainTexture = CanTextures[StudentID];
@@ -836,23 +848,8 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 71)
 					{
-						CharacterAnimation.Play("f02_gardeningPortrait_01");
-					}
-					else if (StudentID == 72)
-					{
-						CharacterAnimation.Play("f02_gardeningPortrait_02");
-					}
-					else if (StudentID == 73)
-					{
-						CharacterAnimation.Play("f02_gardeningPortrait_03");
-					}
-					else if (StudentID == 74)
-					{
-						CharacterAnimation.Play("f02_gardeningPortrait_04");
-					}
-					else if (StudentID == 75)
-					{
-						CharacterAnimation.Play("f02_gardeningPortrait_05");
+						CharacterAnimation.Play("f02_idleGirly_00");
+						CharacterAnimation["f02_idleGirly_00"].time = 0f;
 					}
 					else if (StudentID == 72)
 					{
@@ -2300,6 +2297,14 @@ public class CosmeticScript : MonoBehaviour
 		else if (Stockings == "ShortBlack")
 		{
 			MyStockings = BlackKneeSocks;
+		}
+		else if (Stockings == "ShortPurple")
+		{
+			MyStockings = PurpleSocks;
+		}
+		else if (Stockings == "ShortCyan")
+		{
+			MyStockings = CyanSocks;
 		}
 		else if (Stockings == "Black")
 		{

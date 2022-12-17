@@ -16,27 +16,35 @@ public class BodyPartScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (!(Prompt != null))
+		if (Prompt != null)
 		{
-			return;
-		}
-		if (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox)
-		{
-			Prompt.HideButton[0] = false;
-			if (Prompt.Circle[0].fillAmount == 0f)
+			if (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox)
 			{
-				GameObject gameObject = Object.Instantiate(GarbageBag, base.transform.position, Quaternion.identity);
-				gameObject.GetComponent<BodyPartScript>().StudentID = StudentID;
-				gameObject.transform.parent = Prompt.Yandere.Police.GarbageParent;
-				Prompt.Yandere.StudentManager.GarbageBagList[Prompt.Yandere.StudentManager.GarbageBags] = gameObject;
-				Prompt.Yandere.StudentManager.GarbageBags++;
-				AudioSource.PlayClipAtPoint(WrapSFX, base.transform.position);
-				Object.Destroy(base.gameObject);
+				Prompt.HideButton[0] = false;
+				if (Prompt.Circle[0].fillAmount == 0f)
+				{
+					GameObject gameObject = Object.Instantiate(GarbageBag, base.transform.position, Quaternion.identity);
+					gameObject.GetComponent<BodyPartScript>().StudentID = StudentID;
+					gameObject.transform.parent = Prompt.Yandere.Police.GarbageParent;
+					Prompt.Yandere.StudentManager.GarbageBagList[Prompt.Yandere.StudentManager.GarbageBags] = gameObject;
+					Prompt.Yandere.StudentManager.GarbageBags++;
+					AudioSource.PlayClipAtPoint(WrapSFX, base.transform.position);
+					Object.Destroy(base.gameObject);
+				}
+			}
+			else
+			{
+				Prompt.HideButton[0] = true;
 			}
 		}
 		else
 		{
-			Prompt.HideButton[0] = true;
+			Prompt = base.gameObject.GetComponent<PromptScript>();
+		}
+		if (Prompt.Yandere.StudentManager.KokonaTutorialObject.Phase == 2)
+		{
+			Prompt.Hide();
+			Object.Destroy(base.gameObject);
 		}
 	}
 }

@@ -22,6 +22,8 @@ public class BucketScript : MonoBehaviour
 
 	public GameObject GasCollider;
 
+	public GameObject NewestPuddle;
+
 	[SerializeField]
 	private GameObject BloodSpillEffect;
 
@@ -510,7 +512,10 @@ public class BucketScript : MonoBehaviour
 			SchemeGlobals.SetSchemeStage(1, 1);
 			Yandere.PauseScreen.Schemes.UpdateInstructions();
 		}
-		AudioSource.PlayClipAtPoint(EmptyBucket, base.transform.position);
+		if (!Yandere.StudentManager.KokonaTutorial)
+		{
+			AudioSource.PlayClipAtPoint(EmptyBucket, base.transform.position);
+		}
 		UpdateAppearance = true;
 		StudentBloodID = 0;
 		Bloodiness = 0f;
@@ -596,5 +601,6 @@ public class BucketScript : MonoBehaviour
 		}
 		Empty();
 		Yandere.SuspiciousActionTimer = 1f;
+		NewestPuddle = gameObject2;
 	}
 }

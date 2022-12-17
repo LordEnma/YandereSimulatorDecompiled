@@ -98,6 +98,8 @@ public class PickUpScript : MonoBehaviour
 
 	public bool InsideBookbag;
 
+	public bool CannotPickUp;
+
 	public bool LockRotation;
 
 	public bool BeingLifted;
@@ -304,7 +306,7 @@ public class PickUpScript : MonoBehaviour
 					BeingLifted = true;
 				}
 			}
-			else
+			else if (!CannotPickUp)
 			{
 				BePickedUp();
 			}
@@ -367,7 +369,7 @@ public class PickUpScript : MonoBehaviour
 					Drop();
 				}
 			}
-			else
+			else if (!CannotPickUp)
 			{
 				BePickedUp();
 			}

@@ -184,7 +184,6 @@ public class ClubManagerScript : MonoBehaviour
 	{
 		LearnKickedClubs();
 		ActivitiesAttended = ClubGlobals.ActivitiesAttended;
-		Debug.Log("ClubGlobals.ActivitiesAttended was " + ClubGlobals.ActivitiesAttended + ", so, as of now, at the start of the school day, ClubManager.ActivitiesAttended is being set to " + ActivitiesAttended + ".");
 		MyAudio = GetComponent<AudioSource>();
 		ClubWindow.ActivityWindow.localScale = Vector3.zero;
 		ClubWindow.ActivityWindow.gameObject.SetActive(false);
@@ -848,74 +847,74 @@ public class ClubManagerScript : MonoBehaviour
 		switch (Check)
 		{
 		case ClubType.Cooking:
-			if (StudentManager.Students[21].Grudge)
+			if (StudentManager.Students[21] != null && StudentManager.Students[21].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.Drama:
-			if (StudentManager.Students[26].Grudge)
+			if (StudentManager.Students[26] != null && StudentManager.Students[26].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.Occult:
-			if (StudentManager.Students[31].Grudge)
+			if (StudentManager.Students[31] != null && StudentManager.Students[31].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.Art:
-			if (StudentManager.Students[41].Grudge)
+			if (StudentManager.Students[41] != null && StudentManager.Students[41].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.MartialArts:
-			if (StudentManager.Students[46].Grudge)
+			if (StudentManager.Students[46] != null && StudentManager.Students[46].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.LightMusic:
-			if (StudentManager.Students[51].Grudge)
+			if (StudentManager.Students[51] != null && StudentManager.Students[51].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.Photography:
-			if (StudentManager.Students[56].Grudge)
+			if (StudentManager.Students[56] != null && StudentManager.Students[56].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.Science:
-			if (StudentManager.Students[61].Grudge)
+			if (StudentManager.Students[61] != null && StudentManager.Students[61].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.Sports:
-			if (StudentManager.Students[66].Grudge)
+			if (StudentManager.Students[66] != null && StudentManager.Students[66].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.Gardening:
-			if (StudentManager.Students[71].Grudge)
+			if (StudentManager.Students[71] != null && StudentManager.Students[71].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.Delinquent:
-			if (StudentManager.Students[76].Grudge)
+			if (StudentManager.Students[76] != null && StudentManager.Students[76].Grudge)
 			{
 				LeaderGrudge = true;
 			}
 			break;
 		case ClubType.Gaming:
 		case ClubType.Newspaper:
-			if (StudentManager.Students[36].Grudge)
+			if (StudentManager.Students[36] != null && StudentManager.Students[36].Grudge)
 			{
 				LeaderGrudge = true;
 			}

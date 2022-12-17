@@ -199,6 +199,7 @@ public class InventoryScript : MonoBehaviour
 			break;
 		}
 		UpdateMoney();
+		Yandere.PauseScreen.PhotoGallery.Start();
 		for (int i = 1; i < 26; i++)
 		{
 			if (Yandere.PauseScreen.PhotoGallery.SenpaiPhoto[i])

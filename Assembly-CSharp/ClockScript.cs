@@ -277,7 +277,6 @@ public class ClockScript : MonoBehaviour
 					OptionGlobals.DisableBloom = true;
 					Profile.bloom.enabled = false;
 				}
-				Yandere.RPGCamera.mouseX = 0f;
 				if (!GameGlobals.KokonaTutorial)
 				{
 					Yandere.RPGCamera.enabled = true;
@@ -286,6 +285,10 @@ public class ClockScript : MonoBehaviour
 				if (!StudentManager.CameFromLoad)
 				{
 					GivePlayerBroughtWeapon();
+				}
+				if (!StudentManager.KokonaTutorial)
+				{
+					Yandere.FixCamera();
 				}
 			}
 		}

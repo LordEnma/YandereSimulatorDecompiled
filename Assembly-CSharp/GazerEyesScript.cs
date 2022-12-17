@@ -176,6 +176,7 @@ public class GazerEyesScript : MonoBehaviour
 
 	public void ElectrocuteStudent(StudentScript Target)
 	{
+		Target.enabled = true;
 		if (Target.Following)
 		{
 			ParticleSystem.EmissionModule emission = Target.Hearts.emission;

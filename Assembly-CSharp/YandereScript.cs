@@ -590,6 +590,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool Attacking;
 
+	public bool CannotAim;
+
 	public bool Degloving;
 
 	public bool Poisoning;
@@ -1635,6 +1637,10 @@ public class YandereScript : MonoBehaviour
 		set
 		{
 			sanity = Mathf.Clamp(value, 0f, 100f);
+			if (sanity > 99f)
+			{
+				sanity = 100f;
+			}
 			if (SanityPills)
 			{
 				sanity = 100f;
@@ -2484,7 +2490,7 @@ public class YandereScript : MonoBehaviour
 			}
 			if (!NearSenpai)
 			{
-				if (!Input.GetButton("A") && !Input.GetButton("B") && !Input.GetButton("X") && !Input.GetButton("Y") && !StudentManager.Clock.UpdateBloom && !Frozen && (Input.GetAxis("LT") > 0.5f || Input.GetMouseButton(1)))
+				if (!Input.GetButton("A") && !Input.GetButton("B") && !Input.GetButton("X") && !Input.GetButton("Y") && !StudentManager.Clock.UpdateBloom && !Frozen && !CannotAim && (Input.GetAxis("LT") > 0.5f || Input.GetMouseButton(1)))
 				{
 					if (Inventory.RivalPhone)
 					{
@@ -2551,8 +2557,11 @@ public class YandereScript : MonoBehaviour
 							}
 							HandCamera.gameObject.SetActive(true);
 							EmptyHands();
-							PhonePromptBar.Panel.enabled = true;
-							PhonePromptBar.Show = true;
+							if (!StudentManager.KokonaTutorial)
+							{
+								PhonePromptBar.Panel.enabled = true;
+								PhonePromptBar.Show = true;
+							}
 						}
 						else
 						{
@@ -2953,7 +2962,7 @@ public class YandereScript : MonoBehaviour
 			{
 				if (!StudentManager.Eighties || (StudentManager.Eighties && Club == ClubType.Photography))
 				{
-					if (!RivalPhone && !StudentManager.Eighties && Input.GetButtonDown("A"))
+					if (!RivalPhone && !StudentManager.Eighties && !StudentManager.KokonaTutorial && Input.GetButtonDown("A"))
 					{
 						Selfie = !Selfie;
 						UpdateSelfieStatus();
@@ -3755,45 +3764,7 @@ public class YandereScript : MonoBehaviour
 			CharacterAnimation.CrossFade("f02_removeGloves_00");
 			if (CharacterAnimation["f02_removeGloves_00"].time >= CharacterAnimation["f02_removeGloves_00"].length)
 			{
-				Gloves.GetComponent<Rigidbody>().isKinematic = false;
-				Gloves.transform.parent = null;
-				if (WearingRaincoat)
-				{
-					RaincoatAttacher.newRenderer.enabled = false;
-					CoatBloodiness = Bloodiness;
-					Bloodiness = OriginalBloodiness;
-					LeftFootprintSpawner.Bloodiness = 0;
-					RightFootprintSpawner.Bloodiness = 0;
-					WearingRaincoat = false;
-					if (Schoolwear == 1)
-					{
-						PantyAttacher.newRenderer.enabled = true;
-						TheDebugMenuScript.UpdateCensor();
-					}
-					Hairstyle = HairstyleBeforeRaincoat;
-					UpdateHair();
-				}
-				else
-				{
-					GloveAttacher.newRenderer.enabled = false;
-				}
-				Gloves.gameObject.SetActive(true);
-				if (Gloves.Blood.enabled)
-				{
-					OutlineScript component = Gloves.GetComponent<OutlineScript>();
-					if (component != null)
-					{
-						component.color = new Color(1f, 0.5f, 0f, 1f);
-					}
-				}
-				StudentManager.GloveID = 0;
-				Degloving = false;
-				CanMove = true;
-				Gloved = false;
-				Gloves = null;
-				SetUniform();
-				GloveBlood = 0;
-				Debug.Log("Gloves removed.");
+				RemoveGloves();
 			}
 			else if (Chased || Chasers > 0 || Noticed)
 			{
@@ -4055,7 +4026,10 @@ public class YandereScript : MonoBehaviour
 		}
 		if (Attacked && CharacterAnimation["f02_swingB_00"].time >= CharacterAnimation["f02_swingB_00"].length)
 		{
-			ShoulderCamera.HeartbrokenCamera.SetActive(true);
+			if (!StudentManager.KokonaTutorial)
+			{
+				ShoulderCamera.HeartbrokenCamera.SetActive(true);
+			}
 			base.enabled = false;
 		}
 		if (Hiding)
@@ -4120,10 +4094,10 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (CharacterAnimation["f02_flickingMatch_00"].time > 1f && Match != null)
 			{
-				Rigidbody component2 = Match.GetComponent<Rigidbody>();
-				component2.isKinematic = false;
-				component2.useGravity = true;
-				component2.AddRelativeForce(Vector3.right * 250f);
+				Rigidbody component = Match.GetComponent<Rigidbody>();
+				component.isKinematic = false;
+				component.useGravity = true;
+				component.AddRelativeForce(Vector3.right * 250f);
 				Match.transform.parent = null;
 				Match = null;
 			}
@@ -5040,6 +5014,7 @@ public class YandereScript : MonoBehaviour
 					LeftRedEye.material.color = new Color(1f, 1f, 1f, 1f);
 					RightYandereEye.material.color = new Color(1f, 1f, 1f, 0f);
 					LeftYandereEye.material.color = new Color(1f, 1f, 1f, 0f);
+					Debug.Log("Updating text based on number of SenpaiShots.");
 					if (Inventory.SenpaiShots > 0 || StudentManager.MissionMode || StudentManager.Eighties)
 					{
 						SenpaiShotLabel.text = "Speed Up Time";
@@ -6840,6 +6815,7 @@ public class YandereScript : MonoBehaviour
 	public void StainWeapon()
 	{
 		Debug.Log("Yandere-chan is running the code for staining her equipped weapon with blood and marking it as evidence.");
+		Debug.Log("Dismembering is: " + Dismembering);
 		if (!(EquippedWeapon != null))
 		{
 			return;
@@ -6864,17 +6840,13 @@ public class YandereScript : MonoBehaviour
 		{
 			EquippedWeapon.MurderWeapon = true;
 		}
-		else
-		{
-			bool enabled2 = EquippedWeapon.Blood.enabled;
-		}
 		if (EquippedWeapon.Type == WeaponType.Bat)
 		{
 			NoStainGloves = true;
 		}
 		if (!NoStainGloves)
 		{
-			if (Gloved && !Gloves.Blood.enabled)
+			if ((Gloved || WearingRaincoat) && !Gloves.Blood.enabled)
 			{
 				GloveAttacher.newRenderer.material.mainTexture = BloodyGloveTexture;
 				Gloves.PickUp.Evidence = true;
@@ -9129,6 +9101,49 @@ public class YandereScript : MonoBehaviour
 		Dismembering = false;
 		CanMove = true;
 		Ragdoll = null;
+	}
+
+	public void RemoveGloves()
+	{
+		Gloves.GetComponent<Rigidbody>().isKinematic = false;
+		Gloves.transform.parent = null;
+		if (WearingRaincoat)
+		{
+			RaincoatAttacher.newRenderer.enabled = false;
+			CoatBloodiness = Bloodiness;
+			Bloodiness = OriginalBloodiness;
+			LeftFootprintSpawner.Bloodiness = 0;
+			RightFootprintSpawner.Bloodiness = 0;
+			WearingRaincoat = false;
+			if (Schoolwear == 1)
+			{
+				PantyAttacher.newRenderer.enabled = true;
+				TheDebugMenuScript.UpdateCensor();
+			}
+			Hairstyle = HairstyleBeforeRaincoat;
+			UpdateHair();
+		}
+		else
+		{
+			GloveAttacher.newRenderer.enabled = false;
+		}
+		Gloves.gameObject.SetActive(true);
+		if (Gloves.Blood.enabled)
+		{
+			OutlineScript component = Gloves.GetComponent<OutlineScript>();
+			if (component != null)
+			{
+				component.color = new Color(1f, 0.5f, 0f, 1f);
+			}
+		}
+		StudentManager.GloveID = 0;
+		Degloving = false;
+		CanMove = true;
+		Gloved = false;
+		Gloves = null;
+		SetUniform();
+		GloveBlood = 0;
+		Debug.Log("Gloves removed.");
 	}
 
 	public void AssignFilters()

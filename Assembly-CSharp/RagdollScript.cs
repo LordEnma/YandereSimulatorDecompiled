@@ -372,7 +372,8 @@ public class RagdollScript : MonoBehaviour
 						GameObject myTarp = Object.Instantiate(Yandere.PickUp.TarpObject, new Vector3(Student.Hips.position.x, Yandere.transform.position.y, Student.Hips.position.z), Yandere.transform.rotation);
 						MyTarp = myTarp;
 						Yandere.EmptyHands();
-						Object.Destroy(obj);
+						obj.SetActive(false);
+						Yandere.StudentManager.KokonaTutorialObject.SpawnedTarp = MyTarp;
 					}
 					else if (!Yandere.Chased && Yandere.Chasers == 0)
 					{
@@ -485,8 +486,15 @@ public class RagdollScript : MonoBehaviour
 							Rigidbody rigidbody = AllRigidbodies[0];
 							rigidbody.transform.parent.transform.localPosition = new Vector3(rigidbody.transform.parent.transform.localPosition.x, 0.2f, rigidbody.transform.parent.transform.localPosition.z);
 						}
-						Yandere.CharacterAnimation["f02_carryLiftA_00"].speed = 1f + (float)(Yandere.Class.PhysicalGrade + Yandere.Class.PhysicalBonus) * 0.2f;
-						Student.CharacterAnimation[LiftAnim].speed = 1f + (float)(Yandere.Class.PhysicalGrade + Yandere.Class.PhysicalBonus) * 0.2f;
+						if (Yandere.StudentManager.KokonaTutorial)
+						{
+							Yandere.CharacterAnimation["f02_carryLiftA_00"].speed = 2f;
+						}
+						else
+						{
+							Yandere.CharacterAnimation["f02_carryLiftA_00"].speed = 1f + (float)(Yandere.Class.PhysicalGrade + Yandere.Class.PhysicalBonus) * 0.2f;
+						}
+						Student.CharacterAnimation[LiftAnim].speed = Yandere.CharacterAnimation["f02_carryLiftA_00"].speed;
 						Yandere.CharacterAnimation.Play("f02_carryLiftA_00");
 						Student.CharacterAnimation.enabled = true;
 						Student.CharacterAnimation.Play(LiftAnim);

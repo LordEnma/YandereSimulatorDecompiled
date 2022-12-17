@@ -149,7 +149,7 @@ public class PickpocketScript : MonoBehaviour
 					Punish();
 				}
 			}
-			if (!Student.Alive)
+			if (!Student.Alive || Student.Tranquil)
 			{
 				base.transform.position = new Vector3(Student.transform.position.x, Student.transform.position.y + 1f, Student.transform.position.z);
 				Prompt.gameObject.GetComponent<BoxCollider>().isTrigger = false;

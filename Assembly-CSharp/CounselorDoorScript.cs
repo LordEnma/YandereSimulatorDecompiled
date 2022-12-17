@@ -37,7 +37,7 @@ public class CounselorDoorScript : MonoBehaviour
 					}
 					else if (studentScript.Fleeing)
 					{
-						Prompt.Yandere.NotificationManager.CustomText = "Not while people are reacting to murder!";
+						Prompt.Yandere.NotificationManager.CustomText = "Not now - wait a minute!";
 						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 						flag = true;
 					}

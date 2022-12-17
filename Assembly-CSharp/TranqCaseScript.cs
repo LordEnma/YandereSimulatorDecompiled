@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TranqCaseScript : MonoBehaviour
 {
+	public TranqDetectorScript Detector;
+
 	public YandereScript Yandere;
 
 	public RagdollScript Ragdoll;

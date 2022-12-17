@@ -108,7 +108,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			if (S.TalkTimer == 0f)
 			{
-				if (!S.DialogueWheel.AppearanceWindow.Show && !S.StudentManager.TutorialActive)
+				if (!S.DialogueWheel.AppearanceWindow.Show && !S.StudentManager.TutorialActive && !S.StudentManager.KokonaTutorial)
 				{
 					S.DialogueWheel.Impatience.fillAmount += Time.deltaTime * 0.1f;
 				}

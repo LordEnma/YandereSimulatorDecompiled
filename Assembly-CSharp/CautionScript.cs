@@ -9,7 +9,7 @@ public class CautionScript : MonoBehaviour
 	private void Start()
 	{
 		Sprite.color = new Color(Sprite.color.r, Sprite.color.g, Sprite.color.b, 0f);
-		if (GameGlobals.EightiesTutorial)
+		if (GameGlobals.EightiesTutorial || GameGlobals.KokonaTutorial)
 		{
 			base.gameObject.SetActive(false);
 		}

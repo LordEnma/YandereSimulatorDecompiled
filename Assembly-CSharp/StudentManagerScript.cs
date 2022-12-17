@@ -26,6 +26,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public SelectiveGrayscale HandSelectiveGreyscale;
 
+	public KokonaTutorialScript KokonaTutorialObject;
+
 	public ReputationSetterScript ReputationSetter;
 
 	public SkinnedMeshRenderer FemaleShowerCurtain;
@@ -529,8 +531,6 @@ public class StudentManagerScript : MonoBehaviour
 	public Transform[] FemaleRestSpots;
 
 	public Transform[] MaleRestSpots;
-
-	public GameObject KokonaTutorialObject;
 
 	public GameObject ModernRivalBookBag;
 
@@ -1062,6 +1062,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (KokonaTutorial || EightiesTutorial || Week > 10)
 		{
+			Debug.Log("KokonaTutorial is: " + KokonaTutorial);
 			SpawnNobody = true;
 			if (Week > 10)
 			{
@@ -1080,7 +1081,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		else if (KokonaTutorial && KokonaTutorialObject != null)
 		{
-			KokonaTutorialObject.SetActive(true);
+			KokonaTutorialObject.gameObject.SetActive(true);
 		}
 		InitialSabotageProgress = DatingGlobals.RivalSabotaged;
 		SabotageProgress = InitialSabotageProgress;
@@ -1375,7 +1376,7 @@ public class StudentManagerScript : MonoBehaviour
 			SchoolGlobals.SchoolAtmosphereSet = true;
 			SchoolGlobals.SchoolAtmosphere = 0f;
 		}
-		if (!MissionMode)
+		if (!MissionMode && !KokonaTutorial)
 		{
 			if (!SchoolGlobals.SchoolAtmosphereSet)
 			{
@@ -1884,7 +1885,7 @@ public class StudentManagerScript : MonoBehaviour
 			for (ID = 1; ID < WitnessList.Length; ID++)
 			{
 				StudentScript studentScript3 = WitnessList[ID];
-				if (studentScript3 != null && (!studentScript3.Alive || studentScript3.Attacked || studentScript3.Dying || studentScript3.Routine || (studentScript3.Fleeing && !studentScript3.PinningDown)))
+				if (studentScript3 != null && (!studentScript3.Alive || studentScript3.Attacked || studentScript3.Dying || studentScript3.Routine || (studentScript3.Fleeing && !studentScript3.PinningDown) || studentScript3.Persona == PersonaType.Coward))
 				{
 					studentScript3.PinDownWitness = false;
 					studentScript3 = null;
@@ -3480,7 +3481,7 @@ public class StudentManagerScript : MonoBehaviour
 		for (ID = 1; ID < WitnessList.Length; ID++)
 		{
 			StudentScript studentScript = WitnessList[ID];
-			if (studentScript != null && (!studentScript.Alive || studentScript.Attacked || studentScript.Fleeing || studentScript.Dying || studentScript.Routine))
+			if (studentScript != null && (!studentScript.Alive || studentScript.Attacked || studentScript.Fleeing || studentScript.Dying || studentScript.Routine || studentScript.Persona == PersonaType.Coward))
 			{
 				studentScript = null;
 				if (ID != WitnessList.Length - 1)
@@ -3584,6 +3585,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (Bully)
 		{
+			Debug.Log(Students[VictimID].Name + " has been selected for bullying. Changing routine.");
 			if (Students[VictimID].Seat.position.x > 0f)
 			{
 				BullyGroup.position = Students[VictimID].Seat.position + new Vector3(0.33333f, 0f, 0f);
@@ -3605,8 +3607,8 @@ public class StudentManagerScript : MonoBehaviour
 			obj2.destination = "Seat";
 			obj2.action = "Sit";
 			ScheduleBlock obj3 = studentScript2.ScheduleBlocks[7];
-			obj3.destination = "ShameSpot";
-			obj3.action = "Shamed";
+			obj3.destination = "Exit";
+			obj3.action = "Exit";
 			if (studentScript2.Male)
 			{
 				studentScript2.ChemistScanner.MyRenderer.materials[1].mainTexture = studentScript2.ChemistScanner.SadEyes;
@@ -3984,6 +3986,10 @@ public class StudentManagerScript : MonoBehaviour
 				FemaleVomitSpot = FemaleVomitSpots[ID];
 				VomitStudent.VomitDoor = FemaleToiletDoors[ID];
 			}
+		}
+		if (KokonaTutorial)
+		{
+			FemaleVomitSpot = FemaleVomitSpots[0];
 		}
 	}
 

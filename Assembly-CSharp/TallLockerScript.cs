@@ -12,6 +12,8 @@ public class TallLockerScript : MonoBehaviour
 
 	public bool[] Bloody;
 
+	public GameObject NewestUniform;
+
 	public GameObject CleanUniform;
 
 	public GameObject SteamCloud;
@@ -122,9 +124,13 @@ public class TallLockerScript : MonoBehaviour
 		}
 		if (!Open)
 		{
-			if (YandereLocker)
+			if (YandereLocker && Rotation < -1f)
 			{
 				Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 10f);
+				if (Rotation > -1f)
+				{
+					Rotation = 0f;
+				}
 			}
 			Prompt.HideButton[1] = true;
 			Prompt.HideButton[2] = true;
@@ -132,9 +138,13 @@ public class TallLockerScript : MonoBehaviour
 		}
 		else
 		{
-			if (YandereLocker)
+			if (YandereLocker && Rotation > -179f)
 			{
 				Rotation = Mathf.Lerp(Rotation, -180f, Time.deltaTime * 10f);
+				if (Rotation < -179f)
+				{
+					Rotation = -180f;
+				}
 			}
 			if (Prompt.Circle[1].fillAmount == 0f)
 			{
@@ -322,7 +332,7 @@ public class TallLockerScript : MonoBehaviour
 					}
 					else
 					{
-						pickUpScript = Object.Instantiate(BloodyUniform[Yandere.PreviousSchoolwear], Yandere.transform.position + Vector3.forward * 0.5f + Vector3.up, Quaternion.identity).GetComponent<PickUpScript>();
+						pickUpScript = (NewestUniform = Object.Instantiate(BloodyUniform[Yandere.PreviousSchoolwear], Yandere.transform.position + Vector3.forward * 0.5f + Vector3.up, Quaternion.identity)).GetComponent<PickUpScript>();
 						Prompt.HideButton[Yandere.PreviousSchoolwear] = true;
 						Bloody[Yandere.PreviousSchoolwear] = true;
 					}

@@ -46,6 +46,8 @@ public class WeaponScript : MonoBehaviour
 
 	public Collider MyCollider;
 
+	public Collider SecondaryCollider;
+
 	public Renderer MyRenderer;
 
 	public GameObject Nails;
@@ -178,6 +180,10 @@ public class WeaponScript : MonoBehaviour
 		StartingPosition = base.transform.position;
 		StartingRotation = base.transform.eulerAngles;
 		Physics.IgnoreCollision(Yandere.GetComponent<Collider>(), MyCollider);
+		if (SecondaryCollider != null)
+		{
+			Physics.IgnoreCollision(Yandere.GetComponent<Collider>(), SecondaryCollider);
+		}
 		OriginalColor = Outline[0].color;
 		if (StartLow)
 		{
@@ -187,6 +193,10 @@ public class WeaponScript : MonoBehaviour
 		if (DisableCollider)
 		{
 			MyCollider.enabled = false;
+			if (SecondaryCollider != null)
+			{
+				SecondaryCollider.enabled = false;
+			}
 		}
 		MyAudio = GetComponent<AudioSource>();
 		if (MyAudio != null)
@@ -486,6 +496,10 @@ public class WeaponScript : MonoBehaviour
 			base.transform.localEulerAngles = Vector3.zero;
 		}
 		MyCollider.enabled = false;
+		if (SecondaryCollider != null)
+		{
+			SecondaryCollider.enabled = false;
+		}
 		MyRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 		if (Yandere.Equipped == 3 && Yandere.Weapon[3] != null)
 		{
@@ -650,6 +664,10 @@ public class WeaponScript : MonoBehaviour
 		MyRigidbody.isKinematic = false;
 		MyRigidbody.useGravity = true;
 		MyCollider.isTrigger = false;
+		if (SecondaryCollider != null)
+		{
+			SecondaryCollider.isTrigger = false;
+		}
 		if (Dumped)
 		{
 			base.transform.position = Incinerator.DumpPoint.position;
@@ -658,16 +676,25 @@ public class WeaponScript : MonoBehaviour
 		{
 			Prompt.enabled = true;
 			MyCollider.enabled = true;
+			if (SecondaryCollider != null)
+			{
+				SecondaryCollider.enabled = true;
+			}
 			if (Yandere.GetComponent<Collider>().enabled)
 			{
 				Physics.IgnoreCollision(Yandere.GetComponent<Collider>(), MyCollider);
+				if (SecondaryCollider != null)
+				{
+					Physics.IgnoreCollision(Yandere.GetComponent<Collider>(), SecondaryCollider);
+				}
 			}
 		}
 		if (Blood.enabled)
 		{
 			Yandere.Police.BloodyWeapons++;
 		}
-		if (Vector3.Distance(StartingPosition, base.transform.position) > 5f && Vector3.Distance(base.transform.position, Yandere.StudentManager.WeaponBoxSpot.parent.position) > 1f)
+		Debug.Log("Checking if this weapon is far enough away from its starting position for it to count as ''misplaced.''");
+		if (Vector3.Distance(StartingPosition, base.transform.position) > 2f && Vector3.Distance(base.transform.position, Yandere.StudentManager.WeaponBoxSpot.parent.position) > 1f)
 		{
 			if (!Misplaced)
 			{
@@ -703,6 +730,10 @@ public class WeaponScript : MonoBehaviour
 			MyRigidbody.isKinematic = true;
 			MyRigidbody.useGravity = false;
 			MyCollider.isTrigger = true;
+			if (SecondaryCollider != null)
+			{
+				SecondaryCollider.isTrigger = true;
+			}
 		}
 	}
 

@@ -84,6 +84,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public string[] LoveText;
 
+	public int KokonaTutorialPhase;
+
 	public int Selected;
 
 	public int Victim;
@@ -670,7 +672,7 @@ public class DialogueWheelScript : MonoBehaviour
 		if (!Yandere.StudentManager.Eighties && Yandere.TargetStudent.StudentID == 10 && TaskManager.TaskStatus[46] == 1 && Clock.Period != 3)
 		{
 			int period = Clock.Period;
-			int num2 = 5;
+			int num6 = 5;
 		}
 		TaskIcon.spriteName = (Yandere.TargetStudent.Friend ? "Heart" : "Task");
 		Impatience.fillAmount = 0f;
@@ -869,7 +871,7 @@ public class DialogueWheelScript : MonoBehaviour
 				Shadow[6].color = new Color(0f, 0f, 0f, 0.75f);
 			}
 			StudentActionType currentAction = Yandere.TargetStudent.CurrentAction;
-			int num3 = 30;
+			int num7 = 30;
 		}
 		if (Yandere.Club == Yandere.TargetStudent.Club)
 		{
@@ -956,6 +958,50 @@ public class DialogueWheelScript : MonoBehaviour
 			{
 				UISprite uISprite24 = Shadow[n];
 				uISprite24.color = new Color(uISprite24.color.r, uISprite24.color.g, uISprite24.color.b, 0.75f);
+			}
+		}
+		if (KokonaTutorialPhase == 1)
+		{
+			for (int num2 = 2; num2 < 7; num2++)
+			{
+				UISprite uISprite25 = Shadow[num2];
+				uISprite25.color = new Color(uISprite25.color.r, uISprite25.color.g, uISprite25.color.b, 0.75f);
+			}
+		}
+		else if (KokonaTutorialPhase == 2)
+		{
+			for (int num3 = 1; num3 < 7; num3++)
+			{
+				if (num3 != 2)
+				{
+					UISprite uISprite26 = Shadow[num3];
+					uISprite26.color = new Color(uISprite26.color.r, uISprite26.color.g, uISprite26.color.b, 0.75f);
+				}
+			}
+		}
+		else
+		{
+			if (KokonaTutorialPhase != 3)
+			{
+				return;
+			}
+			for (int num4 = 1; num4 < 7; num4++)
+			{
+				if (num4 != 6)
+				{
+					UISprite uISprite27 = Shadow[num4];
+					uISprite27.color = new Color(uISprite27.color.r, uISprite27.color.g, uISprite27.color.b, 0.75f);
+				}
+				else
+				{
+					UISprite uISprite28 = Shadow[num4];
+					uISprite28.color = new Color(uISprite28.color.r, uISprite28.color.g, uISprite28.color.b, 0f);
+				}
+			}
+			for (int num5 = 2; num5 < 5; num5++)
+			{
+				UISprite uISprite29 = FavorShadow[num5];
+				uISprite29.color = new Color(uISprite29.color.r, uISprite29.color.g, uISprite29.color.b, 0.75f);
 			}
 		}
 	}

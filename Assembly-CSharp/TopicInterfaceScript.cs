@@ -20,6 +20,8 @@ public class TopicInterfaceScript : MonoBehaviour
 
 	public GameObject EmbarassingSecret;
 
+	public GameObject TutorialShadow;
+
 	public Transform TopicHighlight;
 
 	public UISprite[] OpinionIcons;
@@ -65,6 +67,10 @@ public class TopicInterfaceScript : MonoBehaviour
 			EmbarassingLabel.text = "(You will also mention the embarassing information you found in her diary.)";
 			TopicNames[14] = "jokes";
 		}
+		if (GameGlobals.KokonaTutorial)
+		{
+			TutorialShadow.SetActive(true);
+		}
 	}
 
 	private void Update()
@@ -91,24 +97,35 @@ public class TopicInterfaceScript : MonoBehaviour
 		}
 		if (Input.GetButtonDown("A"))
 		{
-			if (Socializing)
+			bool flag = false;
+			if (Yandere.StudentManager.KokonaTutorial && TopicSelected != 2)
 			{
-				Yandere.Interaction = YandereInteractionType.Compliment;
-				Yandere.TalkTimer = 5f;
+				flag = true;
 			}
-			else
+			if (!flag)
 			{
-				Yandere.Interaction = YandereInteractionType.Gossip;
-				Yandere.TalkTimer = 5f;
+				if (Socializing)
+				{
+					Yandere.Interaction = YandereInteractionType.Compliment;
+					Yandere.TalkTimer = 5f;
+				}
+				else
+				{
+					Yandere.Interaction = YandereInteractionType.Gossip;
+					Yandere.TalkTimer = 5f;
+				}
+				Yandere.PromptBar.Show = false;
+				base.gameObject.SetActive(false);
+				Time.timeScale = 1f;
 			}
-			Yandere.PromptBar.Show = false;
-			base.gameObject.SetActive(false);
-			Time.timeScale = 1f;
 		}
 		else if (Input.GetButtonDown("X"))
 		{
-			Positive = !Positive;
-			UpdateTopicHighlight();
+			if (!Yandere.StudentManager.KokonaTutorial)
+			{
+				Positive = !Positive;
+				UpdateTopicHighlight();
+			}
 		}
 		else if (Input.GetButtonDown("B"))
 		{

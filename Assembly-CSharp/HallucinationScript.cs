@@ -178,7 +178,7 @@ public class HallucinationScript : MonoBehaviour
 			}
 		}
 		SawRenderer.material.SetFloat("_Alpha", Alpha);
-		if (YandereAnimation["f02_" + WeaponName[Weapon] + "LowSanityA_00"].time == YandereAnimation["f02_" + WeaponName[Weapon] + "LowSanityA_00"].length || Yandere.Aiming)
+		if (YandereAnimation["f02_" + WeaponName[Weapon] + "LowSanityA_00"].time >= YandereAnimation["f02_" + WeaponName[Weapon] + "LowSanityA_00"].length || Yandere.Aiming)
 		{
 			MakeTransparent();
 			Hallucinate = false;
@@ -205,5 +205,7 @@ public class HallucinationScript : MonoBehaviour
 			}
 		}
 		SawRenderer.material.SetFloat("_Alpha", Alpha);
+		HallucinatedYandere.SetActive(false);
+		HallucinatedRival.SetActive(false);
 	}
 }

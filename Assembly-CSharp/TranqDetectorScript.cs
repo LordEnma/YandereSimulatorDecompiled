@@ -130,6 +130,11 @@ public class TranqDetectorScript : MonoBehaviour
 			Yandere.EquippedWeapon.Type = WeaponType.Syringe;
 			Yandere.AttackManager.Stealth = true;
 			StopChecking = true;
+			TranquilizerIcon.spriteName = "No";
+			FollowerIcon.spriteName = "No";
+			BiologyIcon.spriteName = "No";
+			SyringeIcon.spriteName = "No";
+			DoorIcon.spriteName = "No";
 		}
 	}
 

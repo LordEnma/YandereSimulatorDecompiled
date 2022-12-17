@@ -6,14 +6,12 @@ public class PhysicsActivatorScript : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log("Spawned a PhysicsActivator.");
 	}
 
 	private void Update()
 	{
 		if (Frame > 0)
 		{
-			Debug.Log("Destroyed a PhysicsActivator.");
 			Object.Destroy(base.gameObject);
 		}
 		Frame++;
@@ -21,12 +19,11 @@ public class PhysicsActivatorScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("Collided with something.");
 		if (other.gameObject.layer != 15)
 		{
 			return;
 		}
-		Debug.Log("Collided with something on the PickUp layer.");
+		Debug.Log("A PhysicsActivator collided with something on the PickUp layer.");
 		PickUpScript component = other.gameObject.GetComponent<PickUpScript>();
 		if (component != null && component.enabled)
 		{

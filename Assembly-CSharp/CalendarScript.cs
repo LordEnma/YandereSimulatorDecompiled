@@ -116,7 +116,6 @@ public class CalendarScript : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log("ClubGlobals.ActivitiesAttended is currently: " + ClubGlobals.ActivitiesAttended);
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;

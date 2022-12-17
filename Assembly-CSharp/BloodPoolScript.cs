@@ -90,7 +90,7 @@ public class BloodPoolScript : MonoBehaviour
 		{
 			NewElectricity = Object.Instantiate(Electricity, base.transform.position, Quaternion.identity);
 			ElectroTimer = 1f;
-			if (other.gameObject.name == "CarBattery")
+			if (other.gameObject.name.Contains("CarBattery"))
 			{
 				Object.Instantiate(other.gameObject.GetComponent<PickUpScript>().PuddleSparks, base.transform.position, Quaternion.identity);
 				other.gameObject.GetComponent<PickUpScript>().Smoke.Play();

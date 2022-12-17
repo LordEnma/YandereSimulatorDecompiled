@@ -113,6 +113,8 @@ public class PhotoGalleryScript : MonoBehaviour
 
 	public int[] BullyPhoto;
 
+	public bool Started;
+
 	private int CurrentIndex
 	{
 		get
@@ -215,42 +217,46 @@ public class PhotoGalleryScript : MonoBehaviour
 
 	public void Start()
 	{
-		if (HomeCursor != null)
+		if (!Started)
 		{
-			HomeCursor.gameObject.SetActive(false);
-			base.enabled = false;
-		}
-		for (int i = 1; i < 26; i++)
-		{
-			if (PlayerGlobals.GetPhoto(i))
+			if (HomeCursor != null)
 			{
-				PhotographTaken[i] = true;
-				if (PlayerGlobals.GetSenpaiPhoto(i))
+				HomeCursor.gameObject.SetActive(false);
+				base.enabled = false;
+			}
+			for (int i = 1; i < 26; i++)
+			{
+				if (PlayerGlobals.GetPhoto(i))
 				{
-					SenpaiPhoto[i] = true;
-				}
-				else if (PlayerGlobals.GetBullyPhoto(i) > 0)
-				{
-					BullyPhoto[i] = PlayerGlobals.GetBullyPhoto(i);
-				}
-				else if (TaskGlobals.GetKittenPhoto(i))
-				{
-					KittenPhoto[i] = true;
-				}
-				else if (TaskGlobals.GetGuitarPhoto(i))
-				{
-					GuitarPhoto[i] = true;
-				}
-				else if (TaskGlobals.GetHorudaPhoto(i))
-				{
-					HorudaPhoto[i] = true;
+					PhotographTaken[i] = true;
+					if (PlayerGlobals.GetSenpaiPhoto(i))
+					{
+						SenpaiPhoto[i] = true;
+					}
+					else if (PlayerGlobals.GetBullyPhoto(i) > 0)
+					{
+						BullyPhoto[i] = PlayerGlobals.GetBullyPhoto(i);
+					}
+					else if (TaskGlobals.GetKittenPhoto(i))
+					{
+						KittenPhoto[i] = true;
+					}
+					else if (TaskGlobals.GetGuitarPhoto(i))
+					{
+						GuitarPhoto[i] = true;
+					}
+					else if (TaskGlobals.GetHorudaPhoto(i))
+					{
+						HorudaPhoto[i] = true;
+					}
 				}
 			}
+			if (Corkboard)
+			{
+				StartCoroutine(GetPhotos());
+			}
 		}
-		if (Corkboard)
-		{
-			StartCoroutine(GetPhotos());
-		}
+		Started = true;
 	}
 
 	private void UpdatePhotoSelection()
@@ -924,6 +930,7 @@ public class PhotoGalleryScript : MonoBehaviour
 
 	public void SavePhotosTaken()
 	{
+		Debug.Log("Saving Photos Taken right now.");
 		for (int i = 1; i < 26; i++)
 		{
 			if (PhotographTaken[i])
@@ -931,6 +938,7 @@ public class PhotoGalleryScript : MonoBehaviour
 				PlayerGlobals.SetPhoto(i, true);
 				if (SenpaiPhoto[i])
 				{
+					Debug.Log("Photo #" + i + " is a photo of Senpai.");
 					PlayerGlobals.SetSenpaiPhoto(i, true);
 				}
 				else if (BullyPhoto[i] > 0)

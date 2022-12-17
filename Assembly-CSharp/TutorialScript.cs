@@ -183,6 +183,7 @@ public class TutorialScript : MonoBehaviour
 		PhantomGirlOutline.transform.position = new Vector3(0f, 1000f, 0f);
 		PhantomGirlOutline.SetActive(false);
 		StudentManager.Graffiti[1].transform.parent.gameObject.SetActive(false);
+		StudentManager.Headmaster.gameObject.SetActive(false);
 		HeartbeatCamera.SetActive(false);
 		OutOfOrderSign.SetActive(false);
 		PauseScreen.SetActive(false);

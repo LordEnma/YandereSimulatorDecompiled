@@ -62,6 +62,8 @@ public class IncineratorScript : MonoBehaviour
 
 	public int BodyParts;
 
+	public int Contents;
+
 	public int Corpses;
 
 	public int Victims;
@@ -132,6 +134,7 @@ public class IncineratorScript : MonoBehaviour
 					Animate = false;
 					RightDoor.transform.localEulerAngles = new Vector3(RightDoor.transform.localEulerAngles.x, 0f, RightDoor.transform.localEulerAngles.z);
 					LeftDoor.transform.localEulerAngles = new Vector3(LeftDoor.transform.localEulerAngles.x, 0f, LeftDoor.transform.localEulerAngles.z);
+					Contents++;
 				}
 			}
 		}
@@ -344,12 +347,7 @@ public class IncineratorScript : MonoBehaviour
 			Circle.fillAmount = 1f - Timer / 60f;
 			if (Timer <= 0f)
 			{
-				Prompt.HideButton[0] = true;
-				Prompt.enabled = true;
-				Panel.SetActive(false);
-				Ready = false;
-				Flames.Stop();
-				Smoke.Stop();
+				Finish();
 			}
 		}
 		else
@@ -393,5 +391,15 @@ public class IncineratorScript : MonoBehaviour
 		Animate = true;
 		Ready = true;
 		Open = true;
+	}
+
+	public void Finish()
+	{
+		Prompt.HideButton[0] = true;
+		Prompt.enabled = true;
+		Panel.SetActive(false);
+		Ready = false;
+		Flames.Stop();
+		Smoke.Stop();
 	}
 }

@@ -45,7 +45,7 @@ public class EmergencyShowerScript : MonoBehaviour
 					Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 					Yandere.CannotBeSprayed = true;
 					Yandere.CanMove = false;
-					if (Yandere.PickUp != null)
+					if (Yandere.PickUp != null && Yandere.PickUp.gameObject.GetComponent<FoldedUniformScript>() != null)
 					{
 						CleanUniform = Yandere.PickUp.gameObject.GetComponent<FoldedUniformScript>();
 						Yandere.EmptyHands();
