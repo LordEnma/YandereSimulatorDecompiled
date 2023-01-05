@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -157,127 +156,61 @@ public class UICamera : MonoBehaviour
 
 	public delegate Touch GetTouchCallback(int index);
 
-	[Serializable]
-	[CompilerGenerated]
-	private sealed class _003C_003Ec
-	{
-		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
-
-		public static BetterList<DepthEntry>.CompareFunc _003C_003E9__190_0;
-
-		public static BetterList<DepthEntry>.CompareFunc _003C_003E9__190_1;
-
-		internal int _003CRaycast_003Eb__190_0(DepthEntry r1, DepthEntry r2)
-		{
-			return r2.depth.CompareTo(r1.depth);
-		}
-
-		internal int _003CRaycast_003Eb__190_1(DepthEntry r1, DepthEntry r2)
-		{
-			return r2.depth.CompareTo(r1.depth);
-		}
-
-		internal bool _003C_002Ecctor_003Eb__231_0(KeyCode key)
-		{
-			if (key >= KeyCode.JoystickButton0 && ignoreControllerInput)
-			{
-				return false;
-			}
-			return Input.GetKeyDown(key);
-		}
-
-		internal bool _003C_002Ecctor_003Eb__231_1(KeyCode key)
-		{
-			if (key >= KeyCode.JoystickButton0 && ignoreControllerInput)
-			{
-				return false;
-			}
-			return Input.GetKeyUp(key);
-		}
-
-		internal bool _003C_002Ecctor_003Eb__231_2(KeyCode key)
-		{
-			if (key >= KeyCode.JoystickButton0 && ignoreControllerInput)
-			{
-				return false;
-			}
-			return Input.GetKey(key);
-		}
-
-		internal float _003C_002Ecctor_003Eb__231_3(string axis)
-		{
-			if (ignoreControllerInput)
-			{
-				return 0f;
-			}
-			return Input.GetAxis(axis);
-		}
-
-		internal MouseOrTouch _003C_002Ecctor_003Eb__231_4(int button)
-		{
-			return mMouse[button];
-		}
-
-		internal MouseOrTouch _003C_002Ecctor_003Eb__231_5(int id, bool createIfMissing)
-		{
-			if (id < 0)
-			{
-				return GetMouse(-id - 1);
-			}
-			int i = 0;
-			for (int count = mTouchIDs.Count; i < count; i++)
-			{
-				if (mTouchIDs[i] == id)
-				{
-					return activeTouches[i];
-				}
-			}
-			if (createIfMissing)
-			{
-				MouseOrTouch mouseOrTouch = new MouseOrTouch
-				{
-					pressTime = RealTime.time,
-					touchBegan = true
-				};
-				activeTouches.Add(mouseOrTouch);
-				mTouchIDs.Add(id);
-				return mouseOrTouch;
-			}
-			return null;
-		}
-
-		internal void _003C_002Ecctor_003Eb__231_6(int id)
-		{
-			int i = 0;
-			for (int count = mTouchIDs.Count; i < count; i++)
-			{
-				if (mTouchIDs[i] == id)
-				{
-					mTouchIDs.RemoveAt(i);
-					activeTouches.RemoveAt(i);
-					break;
-				}
-			}
-		}
-	}
-
 	public static BetterList<UICamera> list = new BetterList<UICamera>();
 
-	public static GetKeyStateFunc GetKeyDown = _003C_003Ec._003C_003E9._003C_002Ecctor_003Eb__231_0;
+	public static GetKeyStateFunc GetKeyDown = (KeyCode key) => (key < KeyCode.JoystickButton0 || !ignoreControllerInput) && Input.GetKeyDown(key);
 
-	public static GetKeyStateFunc GetKeyUp = _003C_003Ec._003C_003E9._003C_002Ecctor_003Eb__231_1;
+	public static GetKeyStateFunc GetKeyUp = (KeyCode key) => (key < KeyCode.JoystickButton0 || !ignoreControllerInput) && Input.GetKeyUp(key);
 
-	public static GetKeyStateFunc GetKey = _003C_003Ec._003C_003E9._003C_002Ecctor_003Eb__231_2;
+	public static GetKeyStateFunc GetKey = (KeyCode key) => (key < KeyCode.JoystickButton0 || !ignoreControllerInput) && Input.GetKey(key);
 
-	public static GetAxisFunc GetAxis = _003C_003Ec._003C_003E9._003C_002Ecctor_003Eb__231_3;
+	public static GetAxisFunc GetAxis = (string axis) => ignoreControllerInput ? 0f : Input.GetAxis(axis);
 
 	public static GetAnyKeyFunc GetAnyKeyDown;
 
-	public static GetMouseDelegate GetMouse = _003C_003Ec._003C_003E9._003C_002Ecctor_003Eb__231_4;
+	public static GetMouseDelegate GetMouse = (int button) => mMouse[button];
 
-	public static GetTouchDelegate GetTouch = _003C_003Ec._003C_003E9._003C_002Ecctor_003Eb__231_5;
+	public static GetTouchDelegate GetTouch = delegate(int id, bool createIfMissing)
+	{
+		if (id < 0)
+		{
+			return GetMouse(-id - 1);
+		}
+		int j = 0;
+		for (int count2 = mTouchIDs.Count; j < count2; j++)
+		{
+			if (mTouchIDs[j] == id)
+			{
+				return activeTouches[j];
+			}
+		}
+		if (createIfMissing)
+		{
+			MouseOrTouch mouseOrTouch = new MouseOrTouch
+			{
+				pressTime = RealTime.time,
+				touchBegan = true
+			};
+			activeTouches.Add(mouseOrTouch);
+			mTouchIDs.Add(id);
+			return mouseOrTouch;
+		}
+		return null;
+	};
 
-	public static RemoveTouchDelegate RemoveTouch = _003C_003Ec._003C_003E9._003C_002Ecctor_003Eb__231_6;
+	public static RemoveTouchDelegate RemoveTouch = delegate(int id)
+	{
+		int i = 0;
+		for (int count = mTouchIDs.Count; i < count; i++)
+		{
+			if (mTouchIDs[i] == id)
+			{
+				mTouchIDs.RemoveAt(i);
+				activeTouches.RemoveAt(i);
+				break;
+			}
+		}
+	};
 
 	public static OnScreenResize onScreenResize;
 
@@ -1352,7 +1285,7 @@ public class UICamera : MonoBehaviour
 							mHits.Add(mHit);
 						}
 					}
-					mHits.Sort(_003C_003Ec._003C_003E9__190_0 ?? (_003C_003Ec._003C_003E9__190_0 = _003C_003Ec._003C_003E9._003CRaycast_003Eb__190_0));
+					mHits.Sort((DepthEntry r1, DepthEntry r2) => r2.depth.CompareTo(r1.depth));
 					for (int k = 0; k < mHits.size; k++)
 					{
 						if (IsVisible(ref mHits.buffer[k]))
@@ -1465,7 +1398,7 @@ public class UICamera : MonoBehaviour
 							mHits.Add(mHit);
 						}
 					}
-					mHits.Sort(_003C_003Ec._003C_003E9__190_1 ?? (_003C_003Ec._003C_003E9__190_1 = _003C_003Ec._003C_003E9._003CRaycast_003Eb__190_1));
+					mHits.Sort((DepthEntry r1, DepthEntry r2) => r2.depth.CompareTo(r1.depth));
 					for (int m = 0; m < mHits.size; m++)
 					{
 						if (IsVisible(ref mHits.buffer[m]))

@@ -52,6 +52,16 @@ public class EmergencyShowerScript : MonoBehaviour
 						CleanUniform.transform.position = base.transform.position + base.transform.up + base.transform.forward * 1.5f;
 					}
 					AudioSource.PlayClipAtPoint(CurtainClose, base.transform.position);
+					if (Yandere.Bookbag != null)
+					{
+						Yandere.Bookbag.transform.position = base.transform.position + base.transform.forward * 2f + base.transform.up * 2f;
+						Yandere.Bookbag.Drop();
+					}
+					if (Yandere.Container != null)
+					{
+						Yandere.Container.transform.position = base.transform.position + base.transform.forward * 2f + base.transform.up;
+						Yandere.Container.Drop();
+					}
 					Bathing = true;
 					Phase = 1;
 					Timer = 0f;

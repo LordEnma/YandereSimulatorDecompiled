@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Text;
 using UnityEngine;
 
@@ -119,20 +118,6 @@ public class StudentEditorScript : MonoBehaviour
 		}
 	}
 
-	[Serializable]
-	[CompilerGenerated]
-	private sealed class _003C_003Ec
-	{
-		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
-
-		public static Comparison<StudentData> _003C_003E9__14_0;
-
-		internal int _003CAwake_003Eb__14_0(StudentData a, StudentData b)
-		{
-			return a.id - b.id;
-		}
-	}
-
 	[SerializeField]
 	private UIPanel mainPanel;
 
@@ -165,7 +150,7 @@ public class StudentEditorScript : MonoBehaviour
 		{
 			students[i] = StudentData.Deserialize(array[i]);
 		}
-		Array.Sort(students, _003C_003Ec._003C_003E9__14_0 ?? (_003C_003Ec._003C_003E9__14_0 = _003C_003Ec._003C_003E9._003CAwake_003Eb__14_0));
+		Array.Sort(students, (StudentData a, StudentData b) => a.id - b.id);
 		for (int j = 0; j < students.Length; j++)
 		{
 			StudentData studentData = students[j];

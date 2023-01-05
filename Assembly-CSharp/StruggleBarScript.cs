@@ -157,7 +157,6 @@ public class StruggleBarScript : MonoBehaviour
 
 	private void ChooseButton()
 	{
-		Debug.Log("StruggleBar fired ChooseButton()");
 		int buttonID = ButtonID;
 		for (int i = 1; i < 5; i++)
 		{

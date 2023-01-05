@@ -766,9 +766,7 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 5)
 					{
-						CharacterAnimation[Student.ShyAnim].layer = 5;
-						CharacterAnimation.Play(Student.ShyAnim);
-						CharacterAnimation[Student.ShyAnim].weight = 0.5f;
+						CharacterAnimation.Play("f02_fragilePortraitPose_00");
 					}
 					else if (StudentID == 10)
 					{
@@ -848,28 +846,23 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 71)
 					{
-						CharacterAnimation.Play("f02_idleGirly_00");
-						CharacterAnimation["f02_idleGirly_00"].time = 0f;
+						CharacterAnimation.Play("f02_gardeningPortraitPose_01");
 					}
 					else if (StudentID == 72)
 					{
-						CharacterAnimation.Play("f02_idleGirly_00");
-						CharacterAnimation["f02_idleGirly_00"].time = 0.66666f;
+						CharacterAnimation.Play("f02_gardeningPortraitPose_02");
 					}
 					else if (StudentID == 73)
 					{
-						CharacterAnimation.Play("f02_idleGirly_00");
-						CharacterAnimation["f02_idleGirly_00"].time = 1.33332f;
+						CharacterAnimation.Play("f02_gardeningPortraitPose_03");
 					}
 					else if (StudentID == 74)
 					{
-						CharacterAnimation.Play("f02_idleGirly_00");
-						CharacterAnimation["f02_idleGirly_00"].time = 1.99998f;
+						CharacterAnimation.Play("f02_gardeningPortraitPose_04");
 					}
 					else if (StudentID == 75)
 					{
-						CharacterAnimation.Play("f02_idleGirly_00");
-						CharacterAnimation["f02_idleGirly_00"].time = 2.66664f;
+						CharacterAnimation.Play("f02_gardeningPortraitPose_05");
 					}
 					else if (StudentID == 81)
 					{
@@ -941,6 +934,11 @@ public class CosmeticScript : MonoBehaviour
 				else
 				{
 					base.transform.position = new Vector3(0.015f, 0f, 0f);
+					if (StudentID == 2)
+					{
+						Debug.Log("Attempting to play a test animation on Yui Rio.");
+						CharacterAnimation.Play("f02_testPose_00");
+					}
 					if (StudentID > 10 && StudentID < 20)
 					{
 						base.transform.position = new Vector3(0f, 0f, 0f);
@@ -1029,14 +1027,9 @@ public class CosmeticScript : MonoBehaviour
 							ThickBrows.SetActive(true);
 						}
 					}
-					if (SceneManager.GetActiveScene().name == "PortraitScene")
+					if (SceneManager.GetActiveScene().name == "PortraitScene" && StudentID != 7)
 					{
-						if (StudentID == 7)
-						{
-							CharacterAnimation.Play("femininePose_00");
-							base.transform.position = new Vector3(0f, -0.1f, 0f);
-						}
-						else if (StudentID == 26)
+						if (StudentID == 26)
 						{
 							CharacterAnimation.Play("idleHaughty_00");
 						}

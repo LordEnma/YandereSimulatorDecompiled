@@ -107,7 +107,8 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 			case BrakeCondition.TargetDistance:
 			{
-				float b = Mathf.InverseLerp(value: (m_Target.position - base.transform.position).magnitude, a: m_CautiousMaxDistance, b: 0f);
+				Vector3 vector = m_Target.position - base.transform.position;
+				float b = Mathf.InverseLerp(m_CautiousMaxDistance, 0f, vector.magnitude);
 				float value = m_Rigidbody.angularVelocity.magnitude * m_CautiousAngularVelocityFactor;
 				float t = Mathf.Max(Mathf.InverseLerp(0f, m_CautiousMaxAngle, value), b);
 				num = Mathf.Lerp(m_CarController.MaxSpeed, m_CarController.MaxSpeed * m_CautiousSpeedFactor, t);
@@ -127,10 +128,10 @@ namespace UnityStandardAssets.Vehicles.Car
 			float num2 = ((num < m_CarController.CurrentSpeed) ? m_BrakeSensitivity : m_AccelSensitivity);
 			float num3 = Mathf.Clamp((num - m_CarController.CurrentSpeed) * num2, -1f, 1f);
 			num3 *= 1f - m_AccelWanderAmount + Mathf.PerlinNoise(Time.time * m_AccelWanderSpeed, m_RandomPerlin) * m_AccelWanderAmount;
-			Vector3 vector = base.transform.InverseTransformPoint(position);
-			float steering = Mathf.Clamp(Mathf.Atan2(vector.x, vector.z) * 57.29578f * m_SteerSensitivity, -1f, 1f) * Mathf.Sign(m_CarController.CurrentSpeed);
+			Vector3 vector2 = base.transform.InverseTransformPoint(position);
+			float steering = Mathf.Clamp(Mathf.Atan2(vector2.x, vector2.z) * 57.29578f * m_SteerSensitivity, -1f, 1f) * Mathf.Sign(m_CarController.CurrentSpeed);
 			m_CarController.Move(steering, num3, num3, 0f);
-			if (m_StopWhenTargetReached && vector.magnitude < m_ReachTargetThreshold)
+			if (m_StopWhenTargetReached && vector2.magnitude < m_ReachTargetThreshold)
 			{
 				m_Driving = false;
 			}

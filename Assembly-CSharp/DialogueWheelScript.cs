@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DialogueWheelScript : MonoBehaviour
@@ -746,7 +747,8 @@ public class DialogueWheelScript : MonoBehaviour
 			}
 			else
 			{
-				if (Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
+				Debug.Log("As of now, Generic is: " + flag);
+				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 				{
 					flag = true;
 				}
@@ -755,6 +757,7 @@ public class DialogueWheelScript : MonoBehaviour
 					Debug.Log("Speaking to Osana's suitor.");
 					flag = false;
 				}
+				Debug.Log("And now, Generic is: " + flag);
 				if (Yandere.TargetStudent.StudentID == 1 || Yandere.TargetStudent.StudentID == 10)
 				{
 					Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
@@ -836,6 +839,7 @@ public class DialogueWheelScript : MonoBehaviour
 						Debug.Log("Player has the answer sheet.");
 					}
 				}
+				Debug.Log("Right before we check for library book, Generic is: " + flag);
 				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.Book)
 				{
 					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
@@ -889,11 +893,16 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			UISprite uISprite15 = ClubShadow[2];
 			uISprite15.color = new Color(uISprite15.color.r, uISprite15.color.g, uISprite15.color.b, 0f);
+			if (DateGlobals.Weekday == DayOfWeek.Friday && Clock.HourTime > 17.5f)
+			{
+				uISprite15 = ClubShadow[2];
+				uISprite15.color = new Color(uISprite15.color.r, uISprite15.color.g, uISprite15.color.b, 0.75f);
+			}
 			UISprite uISprite16 = ClubShadow[3];
 			uISprite16.color = new Color(uISprite16.color.r, uISprite16.color.g, uISprite16.color.b, 0.75f);
 			ClubShadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
-		if (Yandere.StudentManager.MurderTakingPlace)
+		if (Yandere.StudentManager.MurderTakingPlace || Yandere.StudentManager.MissionMode)
 		{
 			ClubShadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}

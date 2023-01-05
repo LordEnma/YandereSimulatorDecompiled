@@ -3294,6 +3294,7 @@ public class StudentManagerScript : MonoBehaviour
 		Debug.Log("Corpse's Y position is: " + CorpseLocation.position.y);
 		num = ((CorpseLocation.position.y > 1.4f && CorpseLocation.position.y < 1.6f) ? 1.4f : ((CorpseLocation.position.y < 2f) ? 0f : ((CorpseLocation.position.y < 4f) ? 2f : ((CorpseLocation.position.y < 6f) ? 4f : ((CorpseLocation.position.y < 8f) ? 6f : ((CorpseLocation.position.y < 10f) ? 8f : ((!(CorpseLocation.position.y < 12f)) ? 12f : 10f)))))));
 		CorpseLocation.position = new Vector3(CorpseLocation.position.x, num, CorpseLocation.position.z);
+		Debug.Log("CorpseLocation's Height has been set to: " + num);
 	}
 
 	public void LowerBloodPosition()
@@ -4070,8 +4071,11 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			morningEvents[i].SaveAnimationTime();
 		}
+		Debug.Log("At the moment of saving, PhotoGallery.PhotographTaken[1] was: " + Yandere.PauseScreen.PhotoGallery.PhotographTaken[1]);
+		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(true);
 		YanSave.SaveData("Profile_" + profile + "_Slot_" + @int);
 		PlayerPrefs.SetInt("Profile_" + profile + "_Slot_" + @int + "_MemorialStudents", StudentGlobals.MemorialStudents);
+		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(false);
 		Debug.Log("At the time of saving, StudentManager's GloveID was: " + GloveID);
 	}
 
@@ -4090,7 +4094,11 @@ public class StudentManagerScript : MonoBehaviour
 		int profile = GameGlobals.Profile;
 		int @int = PlayerPrefs.GetInt("SaveSlot");
 		Yandere.Class.gameObject.SetActive(true);
+		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(true);
+		Debug.Log("Before loading, PhotoGallery.PhotographTaken[1] was: " + Yandere.PauseScreen.PhotoGallery.PhotographTaken[1]);
 		YanSave.LoadData("Profile_" + profile + "_Slot_" + @int);
+		Debug.Log("After loading, PhotoGallery.PhotographTaken[1] was: " + Yandere.PauseScreen.PhotoGallery.PhotographTaken[1]);
+		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(false);
 		Yandere.Class.gameObject.SetActive(false);
 		Physics.SyncTransforms();
 		Yandere.Incinerator.ReturnFromSave();
@@ -4236,6 +4244,7 @@ public class StudentManagerScript : MonoBehaviour
 						NoteWindow.NoteLocker.MeetID = MeetID;
 						NoteWindow.NoteLocker.DetermineSchedule();
 					}
+					Students[ID].CameraReacting = false;
 				}
 			}
 		}
@@ -4798,6 +4807,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void Week1RoutineAdjustments()
 	{
+		Debug.Log("Making Week 1 routine adjustments.");
 		UpdateWeek1Hangout(25);
 		UpdateWeek1Hangout(30);
 		UpdateWeek1Hangout(24);
@@ -4831,6 +4841,10 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		if (Students[StudentID] != null && !Students[StudentID].Sleuthing)
 		{
+			if (StudentID == 59)
+			{
+				Debug.Log("Updating " + Students[StudentID].Name + "'s schedule.");
+			}
 			scheduleBlock = Students[StudentID].ScheduleBlocks[2];
 			scheduleBlock.destination = "Week1Hangout";
 			scheduleBlock.action = "Socialize";
@@ -4880,6 +4894,19 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		SukebanHangoutParent.position = SukebanSpots[Week].position;
 		SukebanHangoutParent.eulerAngles = SukebanSpots[Week].eulerAngles;
+		if (Week == 4)
+		{
+			EightiesLunchSpots.List[81].position = EightiesLunchSpots.List[101].position;
+			EightiesLunchSpots.List[82].position = EightiesLunchSpots.List[102].position;
+			EightiesLunchSpots.List[83].position = EightiesLunchSpots.List[103].position;
+			EightiesLunchSpots.List[84].position = EightiesLunchSpots.List[104].position;
+			EightiesLunchSpots.List[85].position = EightiesLunchSpots.List[105].position;
+			EightiesLunchSpots.List[81].eulerAngles = EightiesLunchSpots.List[101].eulerAngles;
+			EightiesLunchSpots.List[82].eulerAngles = EightiesLunchSpots.List[102].eulerAngles;
+			EightiesLunchSpots.List[83].eulerAngles = EightiesLunchSpots.List[103].eulerAngles;
+			EightiesLunchSpots.List[84].eulerAngles = EightiesLunchSpots.List[104].eulerAngles;
+			EightiesLunchSpots.List[85].eulerAngles = EightiesLunchSpots.List[105].eulerAngles;
+		}
 	}
 
 	public void UpdateLunchtimeStudents()
@@ -4928,7 +4955,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void UpdateLunchtimeHangout(int StudentID)
 	{
-		if (Students[StudentID] != null)
+		if (Students[StudentID] != null && !Students[StudentID].Sleuthing)
 		{
 			scheduleBlock = Students[StudentID].ScheduleBlocks[4];
 			scheduleBlock.destination = "LunchWitnessPosition";
@@ -5192,6 +5219,35 @@ public class StudentManagerScript : MonoBehaviour
 			FollowGravureIdol(63);
 			FollowGravureIdol(68);
 			FollowGravureIdol(73);
+		}
+	}
+
+	public void RevertEightiesWeek9RoutineAdjustments()
+	{
+		Debug.Log("Freeing all simps from the ''Follow Chigusa'' routine.");
+		StopFollowGravureIdol(1);
+		StopFollowGravureIdol(6);
+		StopFollowGravureIdol(7);
+		StopFollowGravureIdol(8);
+		StopFollowGravureIdol(9);
+		StopFollowGravureIdol(10);
+		StopFollowGravureIdol(23);
+		StopFollowGravureIdol(28);
+		StopFollowGravureIdol(33);
+		StopFollowGravureIdol(38);
+		StopFollowGravureIdol(43);
+		StopFollowGravureIdol(48);
+		StopFollowGravureIdol(63);
+		StopFollowGravureIdol(68);
+		StopFollowGravureIdol(73);
+	}
+
+	public void StopFollowGravureIdol(int ID)
+	{
+		if (Students[ID] != null)
+		{
+			Students[ID].SnackTimer = 6f;
+			Students[ID].CannotFindInfatuationTarget();
 		}
 	}
 

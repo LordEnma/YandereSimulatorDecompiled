@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -13,108 +12,6 @@ using UnityEngine.SceneManagement;
 
 public static class YanSave
 {
-	[Serializable]
-	[CompilerGenerated]
-	private sealed class _003C_003Ec
-	{
-		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
-
-		public static Func<Component, string> _003C_003E9__5_0;
-
-		public static Func<GameObject, string> _003C_003E9__5_1;
-
-		public static Func<Component, string> _003C_003E9__5_2;
-
-		public static Func<GameObject, string> _003C_003E9__5_3;
-
-		public static Func<Component, string> _003C_003E9__5_4;
-
-		public static Func<GameObject, string> _003C_003E9__5_5;
-
-		public static Func<Component, string> _003C_003E9__5_6;
-
-		public static Func<GameObject, string> _003C_003E9__5_7;
-
-		public static EventHandler<Newtonsoft.Json.Serialization.ErrorEventArgs> _003C_003E9__5_8;
-
-		internal string _003CSaveData_003Eb__5_0(Component x)
-		{
-			if (!(x.GetComponent<YanSaveIdentifier>() != null))
-			{
-				return string.Empty;
-			}
-			return x.GetComponent<YanSaveIdentifier>().ObjectID;
-		}
-
-		internal string _003CSaveData_003Eb__5_1(GameObject x)
-		{
-			if (!(x.GetComponent<YanSaveIdentifier>() != null))
-			{
-				return string.Empty;
-			}
-			return x.GetComponent<YanSaveIdentifier>().ObjectID;
-		}
-
-		internal string _003CSaveData_003Eb__5_2(Component x)
-		{
-			if (!(x.GetComponent<YanSaveIdentifier>() != null))
-			{
-				return string.Empty;
-			}
-			return x.GetComponent<YanSaveIdentifier>().ObjectID;
-		}
-
-		internal string _003CSaveData_003Eb__5_3(GameObject x)
-		{
-			if (!(x.GetComponent<YanSaveIdentifier>() != null))
-			{
-				return string.Empty;
-			}
-			return x.GetComponent<YanSaveIdentifier>().ObjectID;
-		}
-
-		internal string _003CSaveData_003Eb__5_4(Component x)
-		{
-			if (!(x.GetComponent<YanSaveIdentifier>() != null))
-			{
-				return string.Empty;
-			}
-			return x.GetComponent<YanSaveIdentifier>().ObjectID;
-		}
-
-		internal string _003CSaveData_003Eb__5_5(GameObject x)
-		{
-			if (!(x.GetComponent<YanSaveIdentifier>() != null))
-			{
-				return string.Empty;
-			}
-			return x.GetComponent<YanSaveIdentifier>().ObjectID;
-		}
-
-		internal string _003CSaveData_003Eb__5_6(Component x)
-		{
-			if (!(x.GetComponent<YanSaveIdentifier>() != null))
-			{
-				return string.Empty;
-			}
-			return x.GetComponent<YanSaveIdentifier>().ObjectID;
-		}
-
-		internal string _003CSaveData_003Eb__5_7(GameObject x)
-		{
-			if (!(x.GetComponent<YanSaveIdentifier>() != null))
-			{
-				return string.Empty;
-			}
-			return x.GetComponent<YanSaveIdentifier>().ObjectID;
-		}
-
-		internal void _003CSaveData_003Eb__5_8(object s, Newtonsoft.Json.Serialization.ErrorEventArgs e)
-		{
-			e.ErrorContext.Handled = true;
-		}
-	}
-
 	public const string SAVE_EXTENSION = "yansave";
 
 	public static Action OnLoad;
@@ -203,11 +100,11 @@ public static class YanSave
 							List<string> list3 = new List<string>();
 							if (flag4)
 							{
-								list3.AddRange(((Component[])value).Select(_003C_003Ec._003C_003E9__5_0 ?? (_003C_003Ec._003C_003E9__5_0 = _003C_003Ec._003C_003E9._003CSaveData_003Eb__5_0)));
+								list3.AddRange(((Component[])value).Select((Component x) => (!(x.GetComponent<YanSaveIdentifier>() != null)) ? string.Empty : x.GetComponent<YanSaveIdentifier>().ObjectID));
 							}
 							else if (flag5)
 							{
-								list3.AddRange(((GameObject[])value).Select(_003C_003Ec._003C_003E9__5_1 ?? (_003C_003Ec._003C_003E9__5_1 = _003C_003Ec._003C_003E9._003CSaveData_003Eb__5_1)));
+								list3.AddRange(((GameObject[])value).Select((GameObject x) => (!(x.GetComponent<YanSaveIdentifier>() != null)) ? string.Empty : x.GetComponent<YanSaveIdentifier>().ObjectID));
 							}
 							item.PropertyReferenceArrays.Add(propertyInfo.Name, list3);
 						}
@@ -265,11 +162,11 @@ public static class YanSave
 							List<string> list4 = new List<string>();
 							if (flag9)
 							{
-								list4.AddRange(((Component[])value2).Select(_003C_003Ec._003C_003E9__5_2 ?? (_003C_003Ec._003C_003E9__5_2 = _003C_003Ec._003C_003E9._003CSaveData_003Eb__5_2)));
+								list4.AddRange(((Component[])value2).Select((Component x) => (!(x.GetComponent<YanSaveIdentifier>() != null)) ? string.Empty : x.GetComponent<YanSaveIdentifier>().ObjectID));
 							}
 							else if (flag10)
 							{
-								list4.AddRange(((GameObject[])value2).Select(_003C_003Ec._003C_003E9__5_3 ?? (_003C_003Ec._003C_003E9__5_3 = _003C_003Ec._003C_003E9._003CSaveData_003Eb__5_3)));
+								list4.AddRange(((GameObject[])value2).Select((GameObject x) => (!(x.GetComponent<YanSaveIdentifier>() != null)) ? string.Empty : x.GetComponent<YanSaveIdentifier>().ObjectID));
 							}
 							item.FieldReferenceArrays.Add(fieldInfo.Name, list4);
 						}
@@ -366,11 +263,11 @@ public static class YanSave
 							List<string> list6 = new List<string>();
 							if (flag14)
 							{
-								list6.AddRange(((Component[])value3).Select(_003C_003Ec._003C_003E9__5_4 ?? (_003C_003Ec._003C_003E9__5_4 = _003C_003Ec._003C_003E9._003CSaveData_003Eb__5_4)));
+								list6.AddRange(((Component[])value3).Select((Component x) => (!(x.GetComponent<YanSaveIdentifier>() != null)) ? string.Empty : x.GetComponent<YanSaveIdentifier>().ObjectID));
 							}
 							else if (flag15)
 							{
-								list6.AddRange(((GameObject[])value3).Select(_003C_003Ec._003C_003E9__5_5 ?? (_003C_003Ec._003C_003E9__5_5 = _003C_003Ec._003C_003E9._003CSaveData_003Eb__5_5)));
+								list6.AddRange(((GameObject[])value3).Select((GameObject x) => (!(x.GetComponent<YanSaveIdentifier>() != null)) ? string.Empty : x.GetComponent<YanSaveIdentifier>().ObjectID));
 							}
 							item3.PropertyReferenceArrays.Add(propertyInfo2.Name, list6);
 						}
@@ -428,11 +325,11 @@ public static class YanSave
 							List<string> list7 = new List<string>();
 							if (flag19)
 							{
-								list7.AddRange(((Component[])value4).Select(_003C_003Ec._003C_003E9__5_6 ?? (_003C_003Ec._003C_003E9__5_6 = _003C_003Ec._003C_003E9._003CSaveData_003Eb__5_6)));
+								list7.AddRange(((Component[])value4).Select((Component x) => (!(x.GetComponent<YanSaveIdentifier>() != null)) ? string.Empty : x.GetComponent<YanSaveIdentifier>().ObjectID));
 							}
 							else if (flag20)
 							{
-								list7.AddRange(((GameObject[])value4).Select(_003C_003Ec._003C_003E9__5_7 ?? (_003C_003Ec._003C_003E9__5_7 = _003C_003Ec._003C_003E9._003CSaveData_003Eb__5_7)));
+								list7.AddRange(((GameObject[])value4).Select((GameObject x) => (!(x.GetComponent<YanSaveIdentifier>() != null)) ? string.Empty : x.GetComponent<YanSaveIdentifier>().ObjectID));
 							}
 							item3.FieldReferenceArrays.Add(fieldInfo2.Name, list7);
 						}
@@ -507,7 +404,10 @@ public static class YanSave
 		string contents = JsonConvert.SerializeObject(yanSaveData, new JsonSerializerSettings
 		{
 			ContractResolver = new YanSaveResolver(),
-			Error = (_003C_003Ec._003C_003E9__5_8 ?? (_003C_003Ec._003C_003E9__5_8 = _003C_003Ec._003C_003E9._003CSaveData_003Eb__5_8))
+			Error = delegate(object s, Newtonsoft.Json.Serialization.ErrorEventArgs e)
+			{
+				e.ErrorContext.Handled = true;
+			}
 		});
 		if (!Directory.Exists(SaveDataPath))
 		{

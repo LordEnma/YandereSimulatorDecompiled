@@ -320,8 +320,11 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 			Ganguro.Private = false;
 			if (Friend != null)
 			{
-				Friend.CurrentDestination = Friend.FollowTarget.transform;
-				Friend.Pathfinding.target = Friend.FollowTarget.transform;
+				if (Friend.FollowTarget != null)
+				{
+					Friend.CurrentDestination = Friend.FollowTarget.transform;
+					Friend.Pathfinding.target = Friend.FollowTarget.transform;
+				}
 				Friend.IdleAnim = Friend.OriginalIdleAnim;
 				Friend.DistanceToDestination = 1f;
 				Friend.SlideIn = false;

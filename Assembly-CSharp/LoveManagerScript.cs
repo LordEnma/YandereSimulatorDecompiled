@@ -279,6 +279,10 @@ public class LoveManagerScript : MonoBehaviour
 		Rival.gameObject.SetActive(true);
 		Suitor.enabled = false;
 		Rival.enabled = false;
+		Suitor.Pathfinding.canSearch = false;
+		Suitor.Pathfinding.canMove = false;
+		Rival.Pathfinding.canSearch = false;
+		Rival.Pathfinding.canMove = false;
 		if (!ConfessToSuitor)
 		{
 			ConfessionManager.Senpai = StudentManager.Students[1].CharacterAnimation;

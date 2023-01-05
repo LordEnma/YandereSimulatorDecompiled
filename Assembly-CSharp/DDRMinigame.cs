@@ -1,40 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DDRMinigame : MonoBehaviour
 {
-	[Serializable]
-	[CompilerGenerated]
-	private sealed class _003C_003Ec
-	{
-		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
-
-		public static Func<KeyValuePair<DDRRating, int>, int> _003C_003E9__37_0;
-
-		public static Comparison<float> _003C_003E9__39_0;
-
-		public static Comparison<float> _003C_003E9__40_0;
-
-		internal int _003CregisterRating_003Eb__37_0(KeyValuePair<DDRRating, int> x)
-		{
-			return x.Value;
-		}
-
-		internal int _003CremoveNodeAt_003Eb__39_0(float a, float b)
-		{
-			return a.CompareTo(b);
-		}
-
-		internal int _003CgetFirstNodeOn_003Eb__40_0(float a, float b)
-		{
-			return a.CompareTo(b);
-		}
-	}
-
 	[Header("General")]
 	[SerializeField]
 	private DDRManager manager;
@@ -366,7 +337,7 @@ public class DDRMinigame : MonoBehaviour
 	private void registerRating(DDRRating rating)
 	{
 		manager.GameState.Ratings[rating]++;
-		manager.GameState.Ratings.OrderBy(_003C_003Ec._003C_003E9__37_0 ?? (_003C_003Ec._003C_003E9__37_0 = _003C_003Ec._003C_003E9._003CregisterRating_003Eb__37_0));
+		manager.GameState.Ratings.OrderBy((KeyValuePair<DDRRating, int> x) => x.Value);
 	}
 
 	private void updateCombo(DDRRating rating)
@@ -398,7 +369,7 @@ public class DDRMinigame : MonoBehaviour
 	{
 		Dictionary<float, RectTransform> obj = trackCache[trackId];
 		float[] array = obj.Keys.ToArray();
-		Array.Sort(array, _003C_003Ec._003C_003E9__39_0 ?? (_003C_003Ec._003C_003E9__39_0 = _003C_003Ec._003C_003E9._003CremoveNodeAt_003Eb__39_0));
+		Array.Sort(array, (float a, float b) => a.CompareTo(b));
 		UnityEngine.Object.Destroy(obj[array[0]].gameObject, delay);
 		obj.Remove(array[0]);
 	}
@@ -407,7 +378,7 @@ public class DDRMinigame : MonoBehaviour
 	{
 		Dictionary<float, RectTransform> dictionary = trackCache[track];
 		float[] array = dictionary.Keys.ToArray();
-		Array.Sort(array, _003C_003Ec._003C_003E9__40_0 ?? (_003C_003Ec._003C_003E9__40_0 = _003C_003Ec._003C_003E9._003CgetFirstNodeOn_003Eb__40_0));
+		Array.Sort(array, (float a, float b) => a.CompareTo(b));
 		time = array[0];
 		rect = dictionary[time];
 	}

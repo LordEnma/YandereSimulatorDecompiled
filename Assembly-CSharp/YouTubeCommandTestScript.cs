@@ -298,6 +298,7 @@ public class YouTubeCommandTestScript : MonoBehaviour
 		{
 			if (!Yandere.PauseScreen.MissionMode.Nemesis.activeInHierarchy)
 			{
+				Yandere.PauseScreen.MissionMode.Nemesis.SetActive(true);
 				Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " sent Nemesis after you!";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}

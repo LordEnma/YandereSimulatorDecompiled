@@ -59,6 +59,16 @@ public class YandereShowerScript : MonoBehaviour
 				CensorSteam.SetActive(true);
 				MyAudio.Play();
 				Yandere.EmptyHands();
+				if (Yandere.Bookbag != null)
+				{
+					Yandere.Bookbag.transform.position = base.transform.position + base.transform.right + base.transform.up * 2f;
+					Yandere.Bookbag.Drop();
+				}
+				if (Yandere.Container != null)
+				{
+					Yandere.Container.transform.position = base.transform.position + base.transform.right + base.transform.up;
+					Yandere.Container.Drop();
+				}
 				Yandere.YandereShower = this;
 				Yandere.CanMove = false;
 				Yandere.Bathing = true;

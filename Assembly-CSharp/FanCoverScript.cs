@@ -129,7 +129,14 @@ public class FanCoverScript : MonoBehaviour
 		{
 			return;
 		}
-		Yandere.Sanity -= Time.deltaTime * ((PlayerGlobals.PantiesEquipped == 10) ? 5f : 10f) * Yandere.Numbness;
+		if (PlayerGlobals.PantiesEquipped == 10)
+		{
+			Yandere.Sanity -= Time.deltaTime * 5f * Yandere.Numbness;
+		}
+		else
+		{
+			Yandere.Sanity -= Time.deltaTime * 10f * Yandere.Numbness;
+		}
 		if (Phase == 1)
 		{
 			Yandere.transform.rotation = Quaternion.Slerp(Yandere.transform.rotation, MurderSpot.rotation, Time.deltaTime * 10f);

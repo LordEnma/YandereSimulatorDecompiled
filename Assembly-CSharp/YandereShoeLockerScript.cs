@@ -6,6 +6,8 @@ public class YandereShoeLockerScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public bool CheckedForMod;
+
 	public bool Outdoors = true;
 
 	private void Update()
@@ -16,14 +18,28 @@ public class YandereShoeLockerScript : MonoBehaviour
 		}
 		if (Outdoors)
 		{
-			if (Yandere.transform.position.x > -30f && Yandere.transform.position.x < 30f && Yandere.transform.position.z > -34f && Yandere.transform.position.z < 30f)
+			if ((!(Yandere.transform.position.x > -30f) || !(Yandere.transform.position.x < 30f) || !(Yandere.transform.position.z < 30f) || !(Yandere.transform.position.z > 0f)) && (!(Yandere.transform.position.x > -6f) || !(Yandere.transform.position.x < 6f) || !(Yandere.transform.position.z > -34f) || !(Yandere.transform.position.z < 30f)))
 			{
+				return;
+			}
+			if (!CheckedForMod)
+			{
+				if (Yandere.MyRenderer.materials[0].mainTexture != Yandere.TextureToUse)
+				{
+					base.enabled = false;
+				}
+				CheckedForMod = true;
+			}
+			else
+			{
+				Debug.Log("Was outdoors. Now going indoors.");
 				Outdoors = false;
 				UpdateShoes();
 			}
 		}
 		else if (Yandere.transform.position.z > 30f || (Yandere.transform.position.z < -34f && Yandere.transform.position.x > -6f && Yandere.transform.position.x < 6f))
 		{
+			Debug.Log("Was indoors. Now going outdoors.");
 			Outdoors = true;
 			UpdateShoes();
 		}

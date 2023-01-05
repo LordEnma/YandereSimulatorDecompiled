@@ -401,6 +401,14 @@ public class TallLockerScript : MonoBehaviour
 		SteamCountdown = true;
 		if (YandereLocker)
 		{
+			if (Yandere.Bookbag != null)
+			{
+				Yandere.Bookbag.Drop();
+			}
+			if (Yandere.Container != null)
+			{
+				Yandere.Container.Drop();
+			}
 			Object.Instantiate(SteamCloud, Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
 			Yandere.CharacterAnimation.CrossFade("f02_stripping_00");
 			Yandere.Stripping = true;

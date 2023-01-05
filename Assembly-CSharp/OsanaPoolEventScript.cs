@@ -446,6 +446,11 @@ public class OsanaPoolEventScript : MonoBehaviour
 			Rival.Schoolwear = 1;
 			Rival.ChangeSchoolwear();
 		}
+		else
+		{
+			Rival.Pathfinding.canSearch = false;
+			Rival.Pathfinding.canMove = false;
+		}
 		if (Rival.Schoolwear != 1)
 		{
 			Rival.CurrentDestination = Rival.StudentManager.StrippingPositions[Rival.GirlID];
@@ -486,6 +491,11 @@ public class OsanaPoolEventScript : MonoBehaviour
 			Friend.Pathfinding.canSearch = true;
 			Friend.Pathfinding.canMove = true;
 			Friend.CanTalk = true;
+			if (Friend.GoAway)
+			{
+				Friend.CurrentDestination = StudentManager.GoAwaySpots.List[Friend.StudentID];
+				Friend.Pathfinding.target = StudentManager.GoAwaySpots.List[Friend.StudentID];
+			}
 		}
 		EventSubtitle.text = string.Empty;
 		base.enabled = false;

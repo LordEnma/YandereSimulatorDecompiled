@@ -693,7 +693,6 @@ public class WeaponScript : MonoBehaviour
 		{
 			Yandere.Police.BloodyWeapons++;
 		}
-		Debug.Log("Checking if this weapon is far enough away from its starting position for it to count as ''misplaced.''");
 		if (Vector3.Distance(StartingPosition, base.transform.position) > 2f && Vector3.Distance(base.transform.position, Yandere.StudentManager.WeaponBoxSpot.parent.position) > 1f)
 		{
 			if (!Misplaced)

@@ -89,6 +89,10 @@ public class FoldedUniformScript : MonoBehaviour
 				MyRenderer[j].material.mainTexture = BloodyEightiesTexture;
 			}
 		}
+		if (Yandere.Club == ClubType.Art && !Clean)
+		{
+			base.gameObject.GetComponent<PickUpScript>().RedPaint = true;
+		}
 	}
 
 	private void Update()

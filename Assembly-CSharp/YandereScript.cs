@@ -1637,10 +1637,6 @@ public class YandereScript : MonoBehaviour
 		set
 		{
 			sanity = Mathf.Clamp(value, 0f, 100f);
-			if (sanity > 99f)
-			{
-				sanity = 100f;
-			}
 			if (SanityPills)
 			{
 				sanity = 100f;
@@ -1707,7 +1703,12 @@ public class YandereScript : MonoBehaviour
 			{
 				StudentManager.TutorialWindow.ShowBloodMessage = true;
 			}
-			if (!BloodyWarning && Bloodiness > 0f)
+			bool flag = false;
+			if (Club == ClubType.Art && ClubAttire)
+			{
+				flag = true;
+			}
+			if (!BloodyWarning && Bloodiness > 0f && !flag)
 			{
 				NotificationManager.DisplayNotification(NotificationType.Bloody);
 				BloodyWarning = true;
@@ -2151,7 +2152,7 @@ public class YandereScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (!StudentManager.Eighties && Input.GetKeyDown(KeyCode.LeftAlt))
+		if (!StudentManager.Eighties && !NoDebug && Input.GetKeyDown(KeyCode.LeftAlt))
 		{
 			CinematicCamera.SetActive(false);
 		}
@@ -3703,7 +3704,14 @@ public class YandereScript : MonoBehaviour
 			}
 			if (LaughIntensity > 15f)
 			{
-				Sanity += Time.deltaTime * 10f;
+				if (StudentManager.KokonaTutorial)
+				{
+					Sanity += Time.deltaTime * 20f;
+				}
+				else
+				{
+					Sanity += Time.deltaTime * 10f;
+				}
 			}
 			LaughTimer -= Time.deltaTime;
 			if (LaughTimer <= 0f)
@@ -5082,8 +5090,10 @@ public class YandereScript : MonoBehaviour
 					CheckForWall();
 					if (WallInFront)
 					{
+						Debug.Log("The player took a photo really close to a wall!");
 						NotificationManager.CustomText = "Camera's view is blocked!";
 						NotificationManager.DisplayNotification(NotificationType.Custom);
+						Shutter.Blocked = true;
 					}
 					EmptyHands();
 					YandereVision = false;
@@ -5193,6 +5203,10 @@ public class YandereScript : MonoBehaviour
 			{
 				MyController.Move(base.transform.forward * Time.deltaTime * -1f);
 				CameraEffects.UpdateDOF(Vector3.Distance(base.transform.position, TargetStudent.transform.position) + 0.1f);
+			}
+			if (TargetStudent.Follower != null)
+			{
+				TargetStudent.FollowTargetDestination.position = TargetStudent.Follower.transform.position;
 			}
 		}
 		if (Interaction == YandereInteractionType.Idle)
@@ -7145,6 +7159,10 @@ public class YandereScript : MonoBehaviour
 		{
 			RestoreGentleEyes();
 		}
+		if (sanity > 99f)
+		{
+			sanity = 100f;
+		}
 	}
 
 	private void SetUniform()
@@ -7760,6 +7778,20 @@ public class YandereScript : MonoBehaviour
 			StudentManager.Pose = false;
 		}
 		StudentManager.UpdateStudents();
+		SenpaiThreshold = 0f;
+		StudentScript studentScript = StudentManager.Students[1];
+		studentScript.Prompt.enabled = true;
+		studentScript.Prompt.ButtonActive[0] = true;
+		studentScript.Prompt.HideButton[0] = false;
+		studentScript.Prompt.Label[0].text = "     Pose";
+		studentScript.Prompt.BloodMask = 1;
+		studentScript.Prompt.BloodMask |= 2;
+		studentScript.Prompt.BloodMask |= 512;
+		studentScript.Prompt.BloodMask |= 8192;
+		studentScript.Prompt.BloodMask |= 16384;
+		studentScript.Prompt.BloodMask |= 65536;
+		studentScript.Prompt.BloodMask |= 2097152;
+		studentScript.Prompt.BloodMask = ~studentScript.Prompt.BloodMask;
 	}
 
 	private void HairBlades()
@@ -8532,6 +8564,7 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.materials[2].SetFloat("_BlendAmount", 1f - sanity / 100f);
 		}
 		MyLocker.UpdateButtons();
+		ClubAccessory();
 	}
 
 	public void ClubAccessory()

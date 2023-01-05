@@ -52,7 +52,8 @@ public class SceneLoader : MonoBehaviour
 		if (PlayerPrefs.GetInt("LoadingSave") == 1)
 		{
 			int profile = GameGlobals.Profile;
-			YanSave.LoadData(string.Concat(str3: PlayerPrefs.GetInt("SaveSlot").ToString(), str0: "Profile_", str1: profile.ToString(), str2: "_Slot_"));
+			int @int = PlayerPrefs.GetInt("SaveSlot");
+			YanSave.LoadData("Profile_" + profile + "_Slot_" + @int);
 		}
 		Application.runInBackground = true;
 		Time.timeScale = 1f;

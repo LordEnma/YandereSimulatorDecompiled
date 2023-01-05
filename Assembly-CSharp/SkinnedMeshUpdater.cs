@@ -1,24 +1,8 @@
 using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class SkinnedMeshUpdater : MonoBehaviour
 {
-	[CompilerGenerated]
-	private sealed class _003C_003Ec__DisplayClass16_0
-	{
-		public SkinnedMeshRenderer newMeshRenderer;
-
-		public int boneOrder;
-
-		public Predicate<Transform> _003C_003E9__0;
-
-		internal bool _003CUpdateMeshRenderer_003Eb__0(Transform c)
-		{
-			return c.name == newMeshRenderer.bones[boneOrder].name;
-		}
-	}
-
 	public SkinnedMeshRenderer MyRenderer;
 
 	public GameObject TransformEffect;
@@ -94,17 +78,14 @@ public class SkinnedMeshUpdater : MonoBehaviour
 
 	private void UpdateMeshRenderer(SkinnedMeshRenderer newMeshRenderer)
 	{
-		_003C_003Ec__DisplayClass16_0 _003C_003Ec__DisplayClass16_ = new _003C_003Ec__DisplayClass16_0();
-		_003C_003Ec__DisplayClass16_.newMeshRenderer = newMeshRenderer;
 		SkinnedMeshRenderer myRenderer = Prompt.Yandere.MyRenderer;
-		myRenderer.sharedMesh = _003C_003Ec__DisplayClass16_.newMeshRenderer.sharedMesh;
+		myRenderer.sharedMesh = newMeshRenderer.sharedMesh;
 		Transform[] componentsInChildren = Prompt.Yandere.transform.GetComponentsInChildren<Transform>(true);
-		Transform[] array = new Transform[_003C_003Ec__DisplayClass16_.newMeshRenderer.bones.Length];
-		_003C_003Ec__DisplayClass16_.boneOrder = 0;
-		while (_003C_003Ec__DisplayClass16_.boneOrder < _003C_003Ec__DisplayClass16_.newMeshRenderer.bones.Length)
+		Transform[] array = new Transform[newMeshRenderer.bones.Length];
+		int boneOrder;
+		for (boneOrder = 0; boneOrder < newMeshRenderer.bones.Length; boneOrder++)
 		{
-			array[_003C_003Ec__DisplayClass16_.boneOrder] = Array.Find(componentsInChildren, _003C_003Ec__DisplayClass16_._003C_003E9__0 ?? (_003C_003Ec__DisplayClass16_._003C_003E9__0 = _003C_003Ec__DisplayClass16_._003CUpdateMeshRenderer_003Eb__0));
-			_003C_003Ec__DisplayClass16_.boneOrder++;
+			array[boneOrder] = Array.Find(componentsInChildren, (Transform c) => c.name == newMeshRenderer.bones[boneOrder].name);
 		}
 		myRenderer.bones = array;
 	}

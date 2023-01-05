@@ -20,7 +20,7 @@ public class PantyDetectorScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (Student == null && other.gameObject.name == "Panties")
+		if (!Yandere.Shutter.Blocked && Student == null && other.gameObject.name == "Panties")
 		{
 			Student = other.gameObject.transform.root.gameObject.GetComponent<StudentScript>();
 			Yandere.ResetYandereEffects();

@@ -135,7 +135,10 @@ public class WaterCoolerScript : MonoBehaviour
 						Prompt.Circle[1].fillAmount = 1f;
 						if (base.transform.position.y < 0.1f || (base.transform.position.y > 3.9f && base.transform.position.y < 4.1f) || (base.transform.position.y > 7.9f && base.transform.position.y < 8.1f) || (base.transform.position.y > 11.9f && base.transform.position.y < 12.1f))
 						{
-							CheckForWallInFront();
+							if (!Yandere.StudentManager.KokonaTutorial)
+							{
+								CheckForWallInFront();
+							}
 							if (TooCloseToWall)
 							{
 								Yandere.NotificationManager.CustomText = "Too close to wall!";

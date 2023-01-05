@@ -37,7 +37,12 @@ public class SecurityCameraScript : MonoBehaviour
 		}
 		if (other.gameObject.layer == 13)
 		{
-			if ((!Yandere.Armed || !Yandere.EquippedWeapon.Suspicious) && (!(Yandere.Bloodiness > 0f) || Yandere.RedPaint) && !(Yandere.Sanity < 33.333f) && !Yandere.Attacking && !Yandere.Struggling && !Yandere.Dragging && !Yandere.Lewd && !Yandere.Dragging && !Yandere.Carrying && (!Yandere.Laughing || !(Yandere.LaughIntensity > 15f)) && (!(Yandere.PickUp != null) || !Yandere.PickUp.Clothing || !Yandere.PickUp.Evidence || Yandere.PickUp.RedPaint))
+			bool flag = true;
+			if (Yandere.CurrentRagdoll != null && Yandere.CurrentRagdoll.Concealed && Yandere.StudentManager.Clock.Period == 5)
+			{
+				flag = false;
+			}
+			if ((!Yandere.Armed || !Yandere.EquippedWeapon.Suspicious) && (!(Yandere.Bloodiness > 0f) || Yandere.RedPaint) && !(Yandere.Sanity < 33.333f) && !Yandere.Attacking && !Yandere.Struggling && !Yandere.Dragging && !Yandere.Lewd && !Yandere.Dragging && !(Yandere.Carrying && flag) && (!Yandere.Laughing || !(Yandere.LaughIntensity > 15f)) && (!(Yandere.PickUp != null) || !Yandere.PickUp.Clothing || !Yandere.PickUp.Evidence || Yandere.PickUp.RedPaint))
 			{
 				return;
 			}

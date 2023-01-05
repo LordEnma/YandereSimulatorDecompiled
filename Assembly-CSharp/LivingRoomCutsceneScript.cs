@@ -163,6 +163,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	private void Start()
 	{
+		Rival.transform.parent.gameObject.SetActive(true);
+		Debug.Log("Running this script.");
 		VtuberCheck();
 		SkipPanel.alpha = 0f;
 		if (BlondePony != null && GameGlobals.BlondeHair)
@@ -298,12 +300,13 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 		if (GameGlobals.Eighties)
 		{
+			Rival.transform.parent.gameObject.SetActive(false);
 			EightiesLabel.gameObject.SetActive(true);
 			SkipPanel.gameObject.SetActive(false);
 			PrologueLabel.enabled = false;
 			WarningLabel.SetActive(false);
-			Rival.SetActive(false);
 			Eighties = true;
+			Debug.Log("Disabled rival cuz 80s.");
 		}
 	}
 

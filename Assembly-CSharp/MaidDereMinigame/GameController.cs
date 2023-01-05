@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using MaidDereMinigame.Malee;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,50 +9,6 @@ namespace MaidDereMinigame
 {
 	public class GameController : MonoBehaviour
 	{
-		[Serializable]
-		[CompilerGenerated]
-		private sealed class _003C_003Ec
-		{
-			public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
-
-			public static Action _003C_003E9__19_0;
-
-			public static Action _003C_003E9__22_0;
-
-			internal void _003CGoToExitScene_003Eb__19_0()
-			{
-				if (Instance.totalPayout > 0f && !GameGlobals.Debug)
-				{
-					PlayerPrefs.SetInt("Maid", 1);
-					PlayerPrefs.SetInt("a", 1);
-				}
-				PlayerGlobals.Money += Instance.totalPayout;
-				if (PlayerGlobals.Money > 1000f)
-				{
-					if (!GameGlobals.Debug)
-					{
-						PlayerPrefs.SetInt("RichGirl", 1);
-					}
-					if (!GameGlobals.Debug)
-					{
-						PlayerPrefs.SetInt("a", 1);
-					}
-				}
-				if (SceneManager.GetActiveScene().name == "MaidMenuScene")
-				{
-					SceneManager.LoadScene("StreetScene");
-					return;
-				}
-				DateGlobals.PassDays = 1;
-				SceneManager.LoadScene("CalendarScene");
-			}
-
-			internal void _003CLoadScene_003Eb__22_0()
-			{
-				SceneManager.LoadScene("MaidGameScene");
-			}
-		}
-
 		private static GameController instance;
 
 		[Reorderable]
@@ -111,7 +66,55 @@ namespace MaidDereMinigame
 
 		public static void GoToExitScene(bool fadeOut = true)
 		{
-			Instance.StartCoroutine(Instance.FadeWithAction(_003C_003Ec._003C_003E9__19_0 ?? (_003C_003Ec._003C_003E9__19_0 = _003C_003Ec._003C_003E9._003CGoToExitScene_003Eb__19_0), fadeOut, true));
+			Instance.StartCoroutine(Instance.FadeWithAction(delegate
+			{
+				Debug.Log("Exiting the Maid Minigame.");
+				if (Instance.totalPayout > 0f && !GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Maid", 1);
+					PlayerPrefs.SetInt("a", 1);
+				}
+				PlayerGlobals.Money += Instance.totalPayout;
+				if (PlayerGlobals.Money > 1000f)
+				{
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("RichGirl", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
+				}
+				if (SceneManager.GetActiveScene().name == "MaidMenuScene")
+				{
+					SceneManager.LoadScene("StreetScene");
+				}
+				else
+				{
+					DateGlobals.PassDays = 1;
+					if (DateGlobals.Weekday == DayOfWeek.Sunday)
+					{
+						Debug.Log("It was Sunday.");
+						if (!HomeGlobals.Night)
+						{
+							Debug.Log("It was daytime.");
+							HomeGlobals.Night = true;
+							SceneManager.LoadScene("HomeScene");
+						}
+						else
+						{
+							Debug.Log("It was nighttime.");
+							DateGlobals.ForceSkip = true;
+							SceneManager.LoadScene("CalendarScene");
+						}
+					}
+					else
+					{
+						SceneManager.LoadScene("CalendarScene");
+					}
+				}
+			}, fadeOut, true));
 		}
 
 		private void Awake()
@@ -135,7 +138,10 @@ namespace MaidDereMinigame
 
 		public void LoadScene(SceneObject scene)
 		{
-			StartCoroutine(FadeWithAction(_003C_003Ec._003C_003E9__22_0 ?? (_003C_003Ec._003C_003E9__22_0 = _003C_003Ec._003C_003E9._003CLoadScene_003Eb__22_0)));
+			StartCoroutine(FadeWithAction(delegate
+			{
+				SceneManager.LoadScene("MaidGameScene");
+			}));
 		}
 
 		private IEnumerator FadeWithAction(Action PostFadeAction, bool doFadeOut = true, bool destroyGameController = false)

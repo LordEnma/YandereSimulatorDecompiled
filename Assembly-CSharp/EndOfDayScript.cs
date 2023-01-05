@@ -577,6 +577,28 @@ public class EndOfDayScript : MonoBehaviour
 				{
 					if (Police.LimbParent.childCount > 0 || Police.GarbageParent.childCount > 0)
 					{
+						Debug.Log("At least one severed limb was present at school.");
+						foreach (Transform item in Police.LimbParent)
+						{
+							if (!(item != null))
+							{
+								continue;
+							}
+							BodyPartScript component = item.gameObject.GetComponent<BodyPartScript>();
+							if (component != null)
+							{
+								if (component.StudentID == StudentManager.RivalID)
+								{
+									Debug.Log("It was a rival's limb!");
+									DetermineHowRivalDied(StudentManager.Students[StudentManager.RivalID].Ragdoll);
+								}
+								else if (component.StudentID > 10 && component.StudentID < DateGlobals.Week + 10)
+								{
+									Debug.Log("A previous rival died today.");
+									SetFormerRivalDeath(component.StudentID - 10, StudentManager.Students[component.StudentID]);
+								}
+							}
+						}
 						if (Police.LimbParent.childCount + Police.GarbageParent.childCount == 1)
 						{
 							Label.text = "The police find a severed body part at school.";
@@ -619,190 +641,21 @@ public class EndOfDayScript : MonoBehaviour
 			RagdollScript[] corpseList = Police.CorpseList;
 			foreach (RagdollScript ragdollScript in corpseList)
 			{
-				if (!(ragdollScript != null) || ragdollScript.Disposed)
+				if (ragdollScript != null && !ragdollScript.Disposed)
 				{
-					continue;
+					if (ragdollScript.Student.StudentID == StudentManager.RivalID)
+					{
+						DetermineHowRivalDied(ragdollScript);
+					}
+					else if (ragdollScript.Student.StudentID > 10 && ragdollScript.Student.StudentID < DateGlobals.Week + 10)
+					{
+						Debug.Log("A previous rival's corpse has been discovered.");
+						SetFormerRivalDeath(ragdollScript.Student.StudentID - 10, ragdollScript.Student);
+					}
+					VictimArray[Corpses] = ragdollScript.Student.StudentID;
+					list.Add(ragdollScript.Student.Name);
+					Corpses++;
 				}
-				if (ragdollScript.Student.StudentID == StudentManager.RivalID)
-				{
-					Debug.Log("The rival died, and now the game is determining exactly how she died.");
-					RivalEliminationMethod = RivalEliminationType.Murdered;
-					if (ragdollScript.Student.Electrified || ragdollScript.Student.Electrocuted || ragdollScript.Student.DeathType == DeathType.Burning || ragdollScript.Student.DeathType == DeathType.Weight || ragdollScript.Student.DeathType == DeathType.Drowning || ragdollScript.Student.DeathType == DeathType.Poison || ragdollScript.Student.DeathType == DeathType.Explosion)
-					{
-						RivalEliminationMethod = RivalEliminationType.Accident;
-					}
-					if (ragdollScript.Student.DeathType == DeathType.Burning)
-					{
-						GameGlobals.SpecificEliminationID = 5;
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("Burn", 1);
-						}
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("a", 1);
-						}
-					}
-					else if (ragdollScript.Student.DeathType == DeathType.Electrocution)
-					{
-						Debug.Log("The game should now be informing the Content Checklist that the player has performed an electrocution.");
-						GameGlobals.SpecificEliminationID = 8;
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("Electrocute", 1);
-						}
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("a", 1);
-						}
-					}
-					else if (ragdollScript.Student.DeathType == DeathType.Weight)
-					{
-						GameGlobals.SpecificEliminationID = 6;
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("Crush", 1);
-						}
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("a", 1);
-						}
-					}
-					else if (ragdollScript.Student.DeathType == DeathType.Drowning)
-					{
-						Debug.Log("The rival drowned.");
-						if (PoolEvent)
-						{
-							Debug.Log("The player eliminated the rival during a pool event.");
-							GameGlobals.SpecificEliminationID = 16;
-							if (!GameGlobals.Debug)
-							{
-								PlayerPrefs.SetInt("Pool", 1);
-							}
-							if (!GameGlobals.Debug)
-							{
-								PlayerPrefs.SetInt("a", 1);
-							}
-						}
-						else
-						{
-							Debug.Log("The player did not eliminate the rival during a pool event.");
-							GameGlobals.SpecificEliminationID = 7;
-							if (!GameGlobals.Debug)
-							{
-								PlayerPrefs.SetInt("Drown", 1);
-							}
-							if (!GameGlobals.Debug)
-							{
-								PlayerPrefs.SetInt("a", 1);
-							}
-						}
-					}
-					else if (ragdollScript.Decapitated)
-					{
-						GameGlobals.SpecificEliminationID = 10;
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("Fan", 1);
-						}
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("a", 1);
-						}
-					}
-					else if (ragdollScript.Student.DeathType == DeathType.Poison)
-					{
-						GameGlobals.SpecificEliminationID = 15;
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("Poison", 1);
-						}
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("a", 1);
-						}
-					}
-					else if (ragdollScript.Student.DeathType == DeathType.Falling)
-					{
-						GameGlobals.SpecificEliminationID = 17;
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("Push", 1);
-						}
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("a", 1);
-						}
-					}
-					else if (ragdollScript.Student.Hunted)
-					{
-						GameGlobals.SpecificEliminationID = 14;
-						if (!GameGlobals.Debug)
-						{
-							if (ragdollScript.Student.MurderedByFragile)
-							{
-								if (!GameGlobals.Debug)
-								{
-									PlayerPrefs.SetInt("DrivenToMurder", 1);
-								}
-								if (!GameGlobals.Debug)
-								{
-									PlayerPrefs.SetInt("a", 1);
-								}
-							}
-							else
-							{
-								if (!GameGlobals.Debug)
-								{
-									PlayerPrefs.SetInt("MurderSuicide", 1);
-								}
-								if (!GameGlobals.Debug)
-								{
-									PlayerPrefs.SetInt("a", 1);
-								}
-							}
-						}
-						Debug.Log("The game knows that the rival died as part of a murder-suicide.");
-					}
-					else if (ragdollScript.Student.DeathType == DeathType.Weapon)
-					{
-						Debug.Log("The game believes that the rival died from a ''Weapon''.");
-						GameGlobals.SpecificEliminationID = 1;
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("Attack", 1);
-						}
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("a", 1);
-						}
-					}
-					else if (ragdollScript.Student.DeathType == DeathType.Explosion)
-					{
-						Debug.Log("The game knows that the rival died from an explosion.");
-						GameGlobals.SpecificEliminationID = 20;
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("Attack", 1);
-						}
-						if (!GameGlobals.Debug)
-						{
-							PlayerPrefs.SetInt("a", 1);
-						}
-					}
-					else
-					{
-						Debug.Log("We know that the rival died, but we didn't get any noteworthy information about her death...");
-					}
-				}
-				else if (ragdollScript.Student.StudentID > 10 && ragdollScript.Student.StudentID < DateGlobals.Week + 10)
-				{
-					Debug.Log("A previous rival's corpse has been discovered.");
-					SetFormerRivalDeath(ragdollScript.Student.StudentID - 10, ragdollScript.Student);
-				}
-				VictimArray[Corpses] = ragdollScript.Student.StudentID;
-				list.Add(ragdollScript.Student.Name);
-				Corpses++;
 			}
 			list.Sort();
 			string text = "The police discover the corpse" + ((list.Count == 1) ? string.Empty : "s") + " of ";
@@ -2079,6 +1932,179 @@ public class EndOfDayScript : MonoBehaviour
 			{
 				Phase = 13;
 			}
+		}
+	}
+
+	private void DetermineHowRivalDied(RagdollScript corpse)
+	{
+		Debug.Log("The rival died, and now the game is determining exactly how she died.");
+		RivalEliminationMethod = RivalEliminationType.Murdered;
+		if (corpse.Student.Electrified || corpse.Student.Electrocuted || corpse.Student.DeathType == DeathType.Burning || corpse.Student.DeathType == DeathType.Weight || corpse.Student.DeathType == DeathType.Drowning || corpse.Student.DeathType == DeathType.Poison || corpse.Student.DeathType == DeathType.Explosion)
+		{
+			RivalEliminationMethod = RivalEliminationType.Accident;
+		}
+		if (corpse.Student.DeathType == DeathType.Burning)
+		{
+			GameGlobals.SpecificEliminationID = 5;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Burn", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (corpse.Student.DeathType == DeathType.Electrocution)
+		{
+			Debug.Log("The game should now be informing the Content Checklist that the player has performed an electrocution.");
+			GameGlobals.SpecificEliminationID = 8;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Electrocute", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (corpse.Student.DeathType == DeathType.Weight)
+		{
+			GameGlobals.SpecificEliminationID = 6;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Crush", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (corpse.Student.DeathType == DeathType.Drowning)
+		{
+			Debug.Log("The rival drowned.");
+			if (PoolEvent)
+			{
+				Debug.Log("The player eliminated the rival during a pool event.");
+				GameGlobals.SpecificEliminationID = 16;
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Pool", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
+			}
+			else
+			{
+				Debug.Log("The player did not eliminate the rival during a pool event.");
+				GameGlobals.SpecificEliminationID = 7;
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Drown", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
+			}
+		}
+		else if (corpse.Decapitated)
+		{
+			GameGlobals.SpecificEliminationID = 10;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Fan", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (corpse.Student.DeathType == DeathType.Poison)
+		{
+			GameGlobals.SpecificEliminationID = 15;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Poison", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (corpse.Student.DeathType == DeathType.Falling)
+		{
+			GameGlobals.SpecificEliminationID = 17;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Push", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (corpse.Student.Hunted)
+		{
+			GameGlobals.SpecificEliminationID = 14;
+			if (!GameGlobals.Debug)
+			{
+				if (corpse.Student.MurderedByFragile)
+				{
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("DrivenToMurder", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
+				}
+				else
+				{
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("MurderSuicide", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
+				}
+			}
+			Debug.Log("The game knows that the rival died as part of a murder-suicide.");
+		}
+		else if (corpse.Student.DeathType == DeathType.Weapon)
+		{
+			Debug.Log("The game believes that the rival died from a ''Weapon''.");
+			GameGlobals.SpecificEliminationID = 1;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Attack", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else if (corpse.Student.DeathType == DeathType.Explosion)
+		{
+			Debug.Log("The game knows that the rival died from an explosion.");
+			GameGlobals.SpecificEliminationID = 20;
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Attack", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		else
+		{
+			Debug.Log("We know that the rival died, but we didn't get any noteworthy information about her death...");
 		}
 	}
 

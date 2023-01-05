@@ -1,38 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public static class KeysHelper
 {
-	[Serializable]
-	[CompilerGenerated]
-	private sealed class _003C_003Ec
-	{
-		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
-
-		public static Converter<string, int> _003C_003E9__3_0;
-
-		internal int _003CGetIntegerKeys_003Eb__3_0(string str)
-		{
-			return int.Parse(str);
-		}
-	}
-
-	[Serializable]
-	[CompilerGenerated]
-	private sealed class _003C_003Ec__5<T> where T : struct, IConvertible
-	{
-		public static readonly _003C_003Ec__5<T> _003C_003E9 = new _003C_003Ec__5<T>();
-
-		public static Converter<string, T> _003C_003E9__5_0;
-
-		internal T _003CGetEnumKeys_003Eb__5_0(string str)
-		{
-			return (T)Enum.Parse(typeof(T), str);
-		}
-	}
-
 	private const string KeyListPrefix = "Keys";
 
 	private const char KeyListSeparator = '|';
@@ -41,7 +12,7 @@ public static class KeysHelper
 
 	public static int[] GetIntegerKeys(string key)
 	{
-		return Array.ConvertAll(SplitList(GetKeyList(GetKeyListKey(key))), _003C_003Ec._003C_003E9__3_0 ?? (_003C_003Ec._003C_003E9__3_0 = _003C_003Ec._003C_003E9._003CGetIntegerKeys_003Eb__3_0));
+		return Array.ConvertAll(SplitList(GetKeyList(GetKeyListKey(key))), (string str) => int.Parse(str));
 	}
 
 	public static string[] GetStringKeys(string key)
@@ -51,7 +22,7 @@ public static class KeysHelper
 
 	public static T[] GetEnumKeys<T>(string key) where T : struct, IConvertible
 	{
-		return Array.ConvertAll(SplitList(GetKeyList(GetKeyListKey(key))), _003C_003Ec__5<T>._003C_003E9__5_0 ?? (_003C_003Ec__5<T>._003C_003E9__5_0 = _003C_003Ec__5<T>._003C_003E9._003CGetEnumKeys_003Eb__5_0));
+		return Array.ConvertAll(SplitList(GetKeyList(GetKeyListKey(key))), (string str) => (T)Enum.Parse(typeof(T), str));
 	}
 
 	public static KeyValuePair<T, U>[] GetKeys<T, U>(string key) where T : struct where U : struct

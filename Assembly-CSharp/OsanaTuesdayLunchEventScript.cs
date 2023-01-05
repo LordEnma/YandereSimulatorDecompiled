@@ -107,8 +107,6 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 					Rival.Routine = false;
 					Rival.InEvent = true;
 					Rival.EmptyHands();
-					Debug.Log("Osana's ''StinkBombSpecialCase'' has been set to ''1''.");
-					Debug.Log("PlayerGlobals.RaibaruLoner is: " + PlayerGlobals.RaibaruLoner);
 					bool flag = true;
 					if (PlayerGlobals.RaibaruLoner || StudentManager.Police.EndOfDay.RaibaruLoner)
 					{

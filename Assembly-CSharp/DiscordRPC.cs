@@ -1,30 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Discord;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DiscordRPC : MonoBehaviour
 {
-	[Serializable]
-	[CompilerGenerated]
-	private sealed class _003C_003Ec
-	{
-		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
-
-		public static ActivityManager.UpdateActivityHandler _003C_003E9__17_0;
-
-		internal void _003CUpdateActivity_003Eb__17_0(Result RichPresenceResult)
-		{
-			if (RichPresenceResult != 0)
-			{
-				Debug.Log("Error! Connection Error (" + RichPresenceResult.ToString() + ")");
-			}
-		}
-	}
-
 	private global::Discord.Discord _discord;
 
 	private ActivityManager _activity;
@@ -64,7 +45,7 @@ public class DiscordRPC : MonoBehaviour
 
 	private void Start()
 	{
-		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
+		Object.DontDestroyOnLoad(base.gameObject);
 		if (_applicationID != string.Empty)
 		{
 			_discord = new global::Discord.Discord(long.Parse(_applicationID), 1uL);
@@ -89,7 +70,7 @@ public class DiscordRPC : MonoBehaviour
 	{
 		if (SceneManager.GetActiveScene().name == "SchoolScene" && _clockScript == null)
 		{
-			_clockScript = UnityEngine.Object.FindObjectOfType<ClockScript>();
+			_clockScript = Object.FindObjectOfType<ClockScript>();
 		}
 		UpdateActivity();
 	}
@@ -104,7 +85,13 @@ public class DiscordRPC : MonoBehaviour
 		activity.Details = _details;
 		activity.State = GetSceneDescription();
 		Activity activity2 = activity;
-		_activity.UpdateActivity(activity2, _003C_003Ec._003C_003E9__17_0 ?? (_003C_003Ec._003C_003E9__17_0 = _003C_003Ec._003C_003E9._003CUpdateActivity_003Eb__17_0));
+		_activity.UpdateActivity(activity2, delegate(Result RichPresenceResult)
+		{
+			if (RichPresenceResult != 0)
+			{
+				Debug.Log("Error! Connection Error (" + RichPresenceResult.ToString() + ")");
+			}
+		});
 	}
 
 	private string GetSceneDescription()

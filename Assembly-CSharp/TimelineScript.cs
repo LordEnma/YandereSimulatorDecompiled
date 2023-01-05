@@ -36,13 +36,16 @@ public class TimelineScript : MonoBehaviour
 		base.transform.localPosition = new Vector3(0f, -0.6f, 1f);
 		MaxHeight = base.transform.localPosition.y;
 		Darkness.alpha = 0f;
-		SpawnYear(1780);
+		SpawnYear(1779);
 		SpawnAishiData("The First Aishi is born.");
+		Height -= 100;
+		SpawnYear(1797);
+		SpawnAishiData("The First Aishi arrives in Japan.");
 		Height -= 100;
 		SpawnYear(1928);
 		SpawnSaikouData("Saisho Saikou is born.");
 		Height -= 100;
-		SpawnYear(1933);
+		SpawnYear(1930);
 		SpawnAishiData("Ryoba's grandmother is born.");
 		Height -= 100;
 		SpawnYear(1939);
@@ -64,10 +67,10 @@ public class TimelineScript : MonoBehaviour
 		Height -= 150;
 		SpawnSaikouData("Saisho Saikou invents Japan's first tape recorder.");
 		Height -= 150;
-		SpawnYear(1950);
+		SpawnYear(1948);
 		SpawnAishiData("Ryoba's grandmother finds her Senpai.");
 		Height -= 150;
-		SpawnYear(1953);
+		SpawnYear(1950);
 		SpawnAishiData("Ryoba's grandmother buys a house in Buraza, a small town near Tokyo.");
 		Height -= 150;
 		SpawnAishiData("Ryoba's mother is born.");
@@ -85,18 +88,18 @@ public class TimelineScript : MonoBehaviour
 		SpawnSaikouData("Saikou Corp releases the world's first integrated circuit radio.");
 		Height -= 150;
 		SpawnYear(1968);
+		SpawnAishiData("Ryoba's grandmother adds a basement to her house.");
 		SpawnSaikouData("Saikou Corp releases the world's first color television set.");
 		Height -= 150;
+		SpawnAishiData("Ryoba's mother finds her Senpai, kidnaps him, and keeps him prisoner in her basement.");
+		Height -= 200;
 		SpawnYear(1969);
 		SpawnMiscData("A man is born who would later become an investigative journalist.");
 		SpawnSaikouData("Saikou Corp releases the world's first compact cassette recorder.");
 		Height -= 150;
 		SpawnYear(1970);
-		SpawnAishiData("Ryoba's grandmother adds a basement to her house.");
 		SpawnSaikouData("Saisho Saikou's daughter is born. She is named Ichiko.");
 		Height -= 150;
-		SpawnAishiData("Ryoba's mother finds her Senpai, kidnaps him, and keeps him prisoner in her basement.");
-		Height -= 200;
 		SpawnYear(1971);
 		SpawnAishiData("Ryoba is born.");
 		Height -= 100;
@@ -119,7 +122,7 @@ public class TimelineScript : MonoBehaviour
 		SpawnSaikouData("Saikou Corp renovates numerous houses in Buraza Town for free, including Ryoba's home.");
 		Height -= 200;
 		SpawnYear(1985);
-		SpawnMiscData("Kocho Shuyona is interviewed by Saisho Saikou and is appointed the headmaster of Akademi.");
+		SpawnMiscData("Kocho Shuyona is interviewed by Saisho Saikou and is selected to become the headmaster of Akademi.");
 		Height -= 200;
 		SpawnYear(1986);
 		SpawnMiscData("Akademi officially opens.");
@@ -170,12 +173,12 @@ public class TimelineScript : MonoBehaviour
 		SpawnYear(2001);
 		SpawnSaikouData("Ichirou Saikou graduates from Akademi.");
 		Height -= 150;
-		SpawnYear(2004);
+		SpawnYear(2006);
 		SpawnMiscData("A woman falls in love with the investigative journalist who accused Ryoba of murder.");
 		Height -= 200;
 		SpawnMiscData("Taro Yamada is born.");
 		Height -= 100;
-		SpawnYear(2005);
+		SpawnYear(2007);
 		SpawnSaikouData("Ichirou Saikou's daughter is born. She is named Megami.");
 		SpawnMiscData("The investigative journalist's daughter is born.");
 		SpawnAishiData("Ryoba gives birth to a daughter. She is named Ayano.");
@@ -185,16 +188,16 @@ public class TimelineScript : MonoBehaviour
 		SpawnYear(2007);
 		SpawnSaikouData("Ichirou Saikou's son is born. He is named Kencho.");
 		Height -= 150;
-		SpawnYear(2020);
+		SpawnYear(2022);
 		SpawnSaikouData("Saisho Saikou steps down as CEO of Saikou Corp and appoints his son Ichirou as the new CEO.");
 		Height -= 200;
-		SpawnYear(2021);
+		SpawnYear(2023);
 		SpawnMiscData("An urban legend is born about a mysterious hacker and information broker named ''Info-chan.''");
 		Height -= 200;
-		SpawnYear(2022);
+		SpawnYear(2024);
 		SpawnAishiData("Ayano Aishi enrolls in Akademi.");
 		Height -= 100;
-		SpawnYear(2023);
+		SpawnYear(2025);
 		Long = true;
 		Height -= 100;
 		SpawnMiscData("The Saikou family announces to the world that Saisho Saikou has passed away at the age of 95.");
@@ -205,7 +208,7 @@ public class TimelineScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (base.transform.localPosition.y > 9.8f)
+		if (base.transform.localPosition.y > 10f)
 		{
 			Speed = Mathf.MoveTowards(Speed, 0f, Time.deltaTime * 0.01f);
 			Ambience.volume = Mathf.MoveTowards(Ambience.volume, 0f, Time.deltaTime * 0.1f);
@@ -234,7 +237,7 @@ public class TimelineScript : MonoBehaviour
 		}
 		else
 		{
-			if (base.transform.localPosition.y > 9.3f && base.transform.localPosition.y < 9.8f)
+			if (base.transform.localPosition.y > 9.5f && base.transform.localPosition.y < 10f)
 			{
 				Speed = Mathf.Lerp(Speed, 0.05f, Time.deltaTime * 10f);
 			}

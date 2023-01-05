@@ -41,10 +41,13 @@ public class BakeSaleScript : MonoBehaviour
 		}
 		if (StudentManager.Yandere.Alerts > 0 || StudentManager.Yandere.Police.StudentFoundCorpse)
 		{
-			AmaiFail.SetActive(true);
-			if (Input.GetKeyDown("`"))
+			if (!AmaiSuccess.activeInHierarchy)
 			{
-				SceneManager.LoadScene("LoadingScene");
+				AmaiFail.SetActive(true);
+				if (Input.GetKeyDown("`"))
+				{
+					SceneManager.LoadScene("LoadingScene");
+				}
 			}
 		}
 		else if (StudentManager.Students[12] != null && StudentManager.Students[12].Ragdoll.Disposed)

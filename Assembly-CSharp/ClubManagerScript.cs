@@ -1127,17 +1127,17 @@ public class ClubManagerScript : MonoBehaviour
 	{
 		for (ID = 1; ID < ClubArray.Length; ID++)
 		{
-			if (QuitClub[ID])
+			if (QuitClub[ID] && !ClubGlobals.GetQuitClub(ClubArray[ID]))
 			{
-				Debug.Log("Because we quit a club, ActivitiesAttended is now being set to 0.");
+				Debug.Log("We quit a club on this day. ActivitiesAttended is now being set to 0.");
 				ClubGlobals.SetQuitClub(ClubArray[ID], true);
 				ActivitiesAttended = 0;
+				if (Yandere.ClubActivity)
+				{
+					Debug.Log("...but we joined a new club after quitting, so we're incrementing ActivitiesAttended anyway!");
+					ActivitiesAttended++;
+				}
 			}
-		}
-		if (Yandere.ClubActivity)
-		{
-			Debug.Log("...but we joined a new club after quitting, so we're incrementing ActivitiesAttended anyway!");
-			ActivitiesAttended++;
 		}
 	}
 

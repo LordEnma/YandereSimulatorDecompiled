@@ -181,6 +181,10 @@ public class AlarmDiscScript : MonoBehaviour
 							{
 								Debug.Log("Raibaru just became aware that Yandere-chan committed murder.");
 								Student.AwareOfMurder = true;
+								Student.AmnesiaTimer = 0f;
+								Student.GoAwayTimer = 0f;
+								Student.Distracted = false;
+								Student.GoAway = false;
 							}
 							if (!NoScream)
 							{

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class NGUIAtlas : ScriptableObject, INGUIAtlas
@@ -9,20 +8,6 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 	{
 		Pixels = 0,
 		TexCoords = 1
-	}
-
-	[Serializable]
-	[CompilerGenerated]
-	private sealed class _003C_003Ec
-	{
-		public static readonly _003C_003Ec _003C_003E9 = new _003C_003Ec();
-
-		public static Comparison<UISpriteData> _003C_003E9__25_0;
-
-		internal int _003CSortAlphabetically_003Eb__25_0(UISpriteData s1, UISpriteData s2)
-		{
-			return s1.name.CompareTo(s2.name);
-		}
 	}
 
 	[HideInInspector]
@@ -261,7 +246,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 
 	public void SortAlphabetically()
 	{
-		mSprites.Sort(_003C_003Ec._003C_003E9__25_0 ?? (_003C_003Ec._003C_003E9__25_0 = _003C_003Ec._003C_003E9._003CSortAlphabetically_003Eb__25_0));
+		mSprites.Sort((UISpriteData s1, UISpriteData s2) => s1.name.CompareTo(s2.name));
 	}
 
 	public BetterList<string> GetListOfSprites()

@@ -229,24 +229,24 @@ public class CalendarScript : MonoBehaviour
 			SkipButton.transform.localPosition = new Vector3(-120f, -500f, 0f);
 			if (DateGlobals.Week == 1)
 			{
-				DayNumber[1].text = "2";
-				DayNumber[2].text = "3";
-				DayNumber[3].text = "4";
-				DayNumber[4].text = "5";
-				DayNumber[5].text = "6";
-				DayNumber[6].text = "7";
-				DayNumber[7].text = "8";
+				DayNumber[1].text = "6";
+				DayNumber[2].text = "7";
+				DayNumber[3].text = "8";
+				DayNumber[4].text = "9";
+				DayNumber[5].text = "10";
+				DayNumber[6].text = "11";
+				DayNumber[7].text = "12";
 				Adjustment = -50;
 			}
 			else if (DateGlobals.Week == 2)
 			{
-				DayNumber[1].text = "9";
-				DayNumber[2].text = "10";
-				DayNumber[3].text = "11";
-				DayNumber[4].text = "12";
-				DayNumber[5].text = "13";
-				DayNumber[6].text = "14";
-				DayNumber[7].text = "15";
+				DayNumber[1].text = "13";
+				DayNumber[2].text = "14";
+				DayNumber[3].text = "15";
+				DayNumber[4].text = "16";
+				DayNumber[5].text = "17";
+				DayNumber[6].text = "18";
+				DayNumber[7].text = "19";
 				Adjustment = -50;
 				AmaiButton.SetActive(true);
 			}

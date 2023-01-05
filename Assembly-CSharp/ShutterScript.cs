@@ -103,6 +103,8 @@ public class ShutterScript : MonoBehaviour
 
 	public bool Snapping;
 
+	public bool Blocked;
+
 	public bool Close;
 
 	public bool Disguise;

@@ -221,6 +221,8 @@ public class CounselorScript : MonoBehaviour
 
 	public InputDeviceScript InputDevice;
 
+	public WeaponScript WeaponToReturn;
+
 	public StudentWitnessType Crime;
 
 	public UITexture GenkaChibi;
@@ -868,6 +870,10 @@ public class CounselorScript : MonoBehaviour
 									{
 										Debug.Log("Disabling the rival's bag, since she was expelled.");
 										StudentManager.GenericRivalBag.gameObject.SetActive(false);
+										if (StudentManager.RivalID == 19)
+										{
+											StudentManager.RevertEightiesWeek9RoutineAdjustments();
+										}
 									}
 								}
 								else if (LectureID == 2)
@@ -1130,6 +1136,15 @@ public class CounselorScript : MonoBehaviour
 
 	public void Quit()
 	{
+		if (WeaponToReturn != null)
+		{
+			WeaponToReturn.Drop();
+			WeaponToReturn.transform.position = StudentManager.WeaponBoxSpot.parent.position + new Vector3(0f, 1f, 0f);
+			WeaponToReturn.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+			WeaponToReturn.MyRigidbody.useGravity = true;
+			WeaponToReturn.MyRigidbody.isKinematic = false;
+			WeaponToReturn = null;
+		}
 		Debug.Log("CounselorScript has called the Quit() function.");
 		bool noticed = Yandere.ShoulderCamera.Noticed;
 		CounselorSubtitle.text = "";

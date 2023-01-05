@@ -485,6 +485,7 @@ public class PortalScript : MonoBehaviour
 			{
 				if (Timer == 0f)
 				{
+					StudentScript studentScript = StudentManager.Students[StudentManager.RivalID];
 					if (Yandere.Armed)
 					{
 						Yandere.NotificationManager.CustomText = "Carrying Weapon";
@@ -529,6 +530,10 @@ public class PortalScript : MonoBehaviour
 					{
 						Yandere.NotificationManager.CustomText = "Murder being reported";
 					}
+					else if (studentScript != null && studentScript.Fleeing && studentScript.CurrentDestination == StudentManager.Students[studentScript.LovestruckTarget].transform)
+					{
+						Yandere.NotificationManager.CustomText = "Murder being reported";
+					}
 					else if (StudentManager.MurderTakingPlace)
 					{
 						Yandere.NotificationManager.CustomText = "Murder taking place";
@@ -554,7 +559,8 @@ public class PortalScript : MonoBehaviour
 
 	public void CheckForProblems()
 	{
-		if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Schoolwear == 2 || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || Yandere.Mask != null || Yandere.WearingRaincoat || (StudentManager.Reporter != null && !Police.Show) || StudentManager.MurderTakingPlace)
+		StudentScript studentScript = StudentManager.Students[StudentManager.RivalID];
+		if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Schoolwear == 2 || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || Yandere.Mask != null || Yandere.WearingRaincoat || (StudentManager.Reporter != null && !Police.Show) || StudentManager.MurderTakingPlace || (studentScript != null && studentScript.Fleeing && studentScript.CurrentDestination == StudentManager.Students[studentScript.LovestruckTarget].transform))
 		{
 			CanAttendClass = false;
 		}

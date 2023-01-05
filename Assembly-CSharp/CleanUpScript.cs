@@ -27,6 +27,8 @@ public class CleanUpScript : MonoBehaviour
 				CleanUpDarkness.alpha = Mathf.MoveTowards(CleanUpDarkness.alpha, 1f, Time.deltaTime);
 				if (CleanUpDarkness.alpha == 1f)
 				{
+					Prompt.Yandere.PickUp.Mop.Bloodiness = 100f;
+					Prompt.Yandere.PickUp.Mop.UpdateBlood();
 					BloodProjector.enabled = false;
 					FadeOut = false;
 					FadeIn = true;
