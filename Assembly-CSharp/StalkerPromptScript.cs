@@ -123,7 +123,7 @@ public class StalkerPromptScript : MonoBehaviour
 			{
 				Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime);
 			}
-			if (Vector3.Distance(base.transform.position, Yandere.transform.position) < MinimumDistance && !ServedPurpose && Input.GetButtonDown("A"))
+			if (Vector3.Distance(base.transform.position, Yandere.transform.position) < MinimumDistance && !ServedPurpose && Time.timeScale > 0.0001f && Input.GetButtonDown("A"))
 			{
 				if (!Eighties)
 				{

@@ -924,6 +924,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool SetUpRaincoatOutline;
 
+	public bool BypassRequirement;
+
 	public bool DropSpecifically;
 
 	public Texture[] GloveTextures;
@@ -1708,10 +1710,13 @@ public class YandereScript : MonoBehaviour
 			{
 				flag = true;
 			}
-			if (!BloodyWarning && Bloodiness > 0f && !flag)
+			if (!BloodyWarning && Bloodiness > 0f)
 			{
-				NotificationManager.DisplayNotification(NotificationType.Bloody);
-				BloodyWarning = true;
+				if (!flag)
+				{
+					NotificationManager.DisplayNotification(NotificationType.Bloody);
+					BloodyWarning = true;
+				}
 				if (Schoolwear > 0 && !WearingRaincoat)
 				{
 					Debug.Log("From YandereScript, incrementing Police.BloodyClothing.");
@@ -3036,7 +3041,7 @@ public class YandereScript : MonoBehaviour
 				{
 					StopAiming();
 				}
-				if (!StudentManager.Eighties)
+				if (!StudentManager.Eighties && !NoDebug)
 				{
 					if (Input.GetKey(KeyCode.LeftAlt))
 					{
@@ -7014,8 +7019,10 @@ public class YandereScript : MonoBehaviour
 
 	public void Unequip()
 	{
-		if (CanMove || Noticed)
+		Debug.Log("Yandere-chan has been told to de-equip whatever she currently has equipped - *if* she has anything equipped right now.");
+		if (CanMove || Noticed || BypassRequirement)
 		{
+			Debug.Log("Yandere-chan has now de-equipped her weapon.");
 			if (Equipped < 3)
 			{
 				CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
@@ -7035,6 +7042,7 @@ public class YandereScript : MonoBehaviour
 			WeaponManager.UpdateLabels();
 			WeaponMenu.UpdateSprites();
 			WeaponWarning = false;
+			BypassRequirement = false;
 		}
 		UpdateConcealedWeaponStatus();
 	}

@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StatsScript : MonoBehaviour
 {
@@ -90,6 +91,10 @@ public class StatsScript : MonoBehaviour
 			{
 				ClubType.Gaming,
 				"Gaming"
+			},
+			{
+				ClubType.Newspaper,
+				"Newspaper"
 			}
 		};
 	}
@@ -279,6 +284,10 @@ public class StatsScript : MonoBehaviour
 		Ranks[7].text = "Rank: " + Class.Numbness;
 		Ranks[8].text = "Rank: " + Class.Enlightenment;
 		ClubType club = PauseScreen.Yandere.Club;
+		if (SceneManager.GetActiveScene().name == "HomeScene")
+		{
+			club = ClubGlobals.Club;
+		}
 		string value;
 		ClubLabels.TryGetValue(club, out value);
 		ClubLabel.text = "Club: " + value;

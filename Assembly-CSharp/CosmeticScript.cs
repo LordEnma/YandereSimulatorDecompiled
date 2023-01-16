@@ -806,8 +806,7 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 38)
 					{
-						CharacterAnimation.Play("f02_idleGirly_00");
-						CharacterAnimation["f02_idleGirly_00"].time = 0f;
+						CharacterAnimation.Play("f02_pippiPose_00");
 					}
 					else if (StudentID == 39)
 					{
@@ -934,11 +933,6 @@ public class CosmeticScript : MonoBehaviour
 				else
 				{
 					base.transform.position = new Vector3(0.015f, 0f, 0f);
-					if (StudentID == 2)
-					{
-						Debug.Log("Attempting to play a test animation on Yui Rio.");
-						CharacterAnimation.Play("f02_testPose_00");
-					}
 					if (StudentID > 10 && StudentID < 20)
 					{
 						base.transform.position = new Vector3(0f, 0f, 0f);
@@ -960,6 +954,21 @@ public class CosmeticScript : MonoBehaviour
 						CharacterAnimation["f02_smile_00"].layer = 1;
 						CharacterAnimation.Play("f02_smile_00");
 						CharacterAnimation["f02_smile_00"].weight = 1f;
+					}
+					if (StudentID != 86)
+					{
+						if (StudentID == 87)
+						{
+							CharacterAnimation.Play("m01_eightiesForeignPortrait_00");
+						}
+						else if (StudentID == 88)
+						{
+							CharacterAnimation.Play("m01_eightiesHumblePortrait_00");
+						}
+						else if (StudentID == 89)
+						{
+							CharacterAnimation.Play("m01_eightiesEnforcerPortrait_00");
+						}
 					}
 				}
 			}
@@ -1327,6 +1336,10 @@ public class CosmeticScript : MonoBehaviour
 			{
 				MaleHair[Hairstyle].SetActive(true);
 				HairRenderer = MaleHairRenderers[Hairstyle];
+				if (StudentID == 1)
+				{
+					HairRenderer.material.SetFloat("_Saturation", 0f);
+				}
 			}
 			if (FacialHairstyle > 0)
 			{

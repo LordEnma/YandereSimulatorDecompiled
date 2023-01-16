@@ -64,7 +64,7 @@ public class OsanaWednesdayLunchEventScript : MonoBehaviour
 				{
 					base.enabled = false;
 				}
-				else if ((Clock.Period == 3 || Clock.Period == 6) && Rival.enabled && !Rival.InEvent && !Rival.Phoneless)
+				else if ((Clock.Period == 3 || Clock.Period == 6) && Rival.enabled && !Rival.InEvent && !Rival.Phoneless && !Rival.EndSearch)
 				{
 					Debug.Log("Osana's Wednesday lunchtime event has begun.");
 					Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;

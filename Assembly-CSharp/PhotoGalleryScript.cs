@@ -231,6 +231,7 @@ public class PhotoGalleryScript : MonoBehaviour
 					PhotographTaken[i] = true;
 					if (PlayerGlobals.GetSenpaiPhoto(i))
 					{
+						Debug.Log("Photo #" + i + " is a photo of Senpai.");
 						SenpaiPhoto[i] = true;
 					}
 					else if (PlayerGlobals.GetBullyPhoto(i) > 0)
@@ -344,8 +345,8 @@ public class PhotoGalleryScript : MonoBehaviour
 		else if (Input.GetButtonDown("Y") && SenpaiPhoto[CurrentIndex])
 		{
 			int currentIndex2 = CurrentIndex;
-			PlayerGlobals.SenpaiShots--;
 			Yandere.Inventory.SenpaiShots--;
+			Debug.Log("Now the game believes that we have " + Yandere.Inventory.SenpaiShots + " photographs of Senpai.");
 			PhotographTaken[currentIndex2] = false;
 			SenpaiPhoto[currentIndex2] = false;
 			Hearts[currentIndex2].gameObject.SetActive(false);

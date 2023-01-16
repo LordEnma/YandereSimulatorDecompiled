@@ -747,7 +747,6 @@ public class DialogueWheelScript : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("As of now, Generic is: " + flag);
 				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 				{
 					flag = true;
@@ -757,7 +756,6 @@ public class DialogueWheelScript : MonoBehaviour
 					Debug.Log("Speaking to Osana's suitor.");
 					flag = false;
 				}
-				Debug.Log("And now, Generic is: " + flag);
 				if (Yandere.TargetStudent.StudentID == 1 || Yandere.TargetStudent.StudentID == 10)
 				{
 					Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
@@ -839,7 +837,6 @@ public class DialogueWheelScript : MonoBehaviour
 						Debug.Log("Player has the answer sheet.");
 					}
 				}
-				Debug.Log("Right before we check for library book, Generic is: " + flag);
 				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.Book)
 				{
 					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
@@ -1195,6 +1192,10 @@ public class DialogueWheelScript : MonoBehaviour
 					Yandere.TargetStudent.FollowTarget.Routine = true;
 				}
 				Yandere.TargetStudent.FollowTarget.FocusOnYandere = false;
+			}
+			if (Yandere.TargetStudent.FollowTargetDestination != null)
+			{
+				Yandere.TargetStudent.FollowTargetDestination.localPosition = new Vector3(0f, 0f, 0f);
 			}
 			if (Yandere.TargetStudent != null && Yandere.TargetStudent.Talk != null)
 			{

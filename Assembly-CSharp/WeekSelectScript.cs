@@ -114,6 +114,7 @@ public class WeekSelectScript : MonoBehaviour
 						{
 							Debug.Log("Rival #" + i + " was kidnapped, so she will appear in the basement as a prisoner.");
 							StudentGlobals.SetStudentKidnapped(i + 10, true);
+							StudentGlobals.SetStudentHealth(i + 10, 100);
 							StudentGlobals.Prisoners++;
 							AssignPrisoner(i);
 						}

@@ -33,6 +33,11 @@ public class TapePlayerScript : MonoBehaviour
 	private void Start()
 	{
 		Tape.SetActive(false);
+		if (GameGlobals.Eighties)
+		{
+			Prompt.enabled = false;
+			Prompt.Hide();
+		}
 	}
 
 	private void Update()

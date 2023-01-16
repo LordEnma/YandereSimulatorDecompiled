@@ -1731,7 +1731,6 @@ public class StudentManagerScript : MonoBehaviour
 								}
 								if (studentScript.Schoolwear != 1)
 								{
-									Debug.Log(studentScript.Name + " was not wearing their school uniform when the save was made, so we're manually changing their clothing now.");
 									studentScript.ChangeSchoolwear();
 								}
 								if (studentScript.Actions[studentScript.Phase] == StudentActionType.ClubAction && studentScript.Club == ClubType.Cooking && studentScript.ClubActivityPhase > 0)
@@ -2738,15 +2737,22 @@ public class StudentManagerScript : MonoBehaviour
 							studentScript.UpdateGemaAppearance();
 						}
 					}
-					else if (ID != GymTeacherID && ID != NurseID)
-					{
-						studentScript.transform.position = Podiums.List[studentScript.Class].position + Vector3.up * 0.01f;
-						studentScript.transform.rotation = Podiums.List[studentScript.Class].rotation;
-					}
 					else
 					{
-						studentScript.transform.position = studentScript.Seat.position + Vector3.up * 0.01f;
-						studentScript.transform.rotation = studentScript.Seat.rotation;
+						if (studentScript.ReportPhase == 9)
+						{
+							studentScript.DropWeaponInBox();
+						}
+						if (ID != GymTeacherID && ID != NurseID)
+						{
+							studentScript.transform.position = Podiums.List[studentScript.Class].position + Vector3.up * 0.01f;
+							studentScript.transform.rotation = Podiums.List[studentScript.Class].rotation;
+						}
+						else
+						{
+							studentScript.transform.position = studentScript.Seat.position + Vector3.up * 0.01f;
+							studentScript.transform.rotation = studentScript.Seat.rotation;
+						}
 					}
 				}
 			}
@@ -4095,9 +4101,7 @@ public class StudentManagerScript : MonoBehaviour
 		int @int = PlayerPrefs.GetInt("SaveSlot");
 		Yandere.Class.gameObject.SetActive(true);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(true);
-		Debug.Log("Before loading, PhotoGallery.PhotographTaken[1] was: " + Yandere.PauseScreen.PhotoGallery.PhotographTaken[1]);
 		YanSave.LoadData("Profile_" + profile + "_Slot_" + @int);
-		Debug.Log("After loading, PhotoGallery.PhotographTaken[1] was: " + Yandere.PauseScreen.PhotoGallery.PhotographTaken[1]);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(false);
 		Yandere.Class.gameObject.SetActive(false);
 		Physics.SyncTransforms();
@@ -4244,6 +4248,45 @@ public class StudentManagerScript : MonoBehaviour
 						NoteWindow.NoteLocker.MeetID = MeetID;
 						NoteWindow.NoteLocker.DetermineSchedule();
 					}
+					if (Students[ID].Vomiting)
+					{
+						Students[ID].CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+						if (Students[ID].Male)
+						{
+							Students[ID].WalkAnim = "stomachPainWalk_00";
+							Students[ID].Pathfinding.target = MaleVomitSpot;
+							Students[ID].CurrentDestination = MaleVomitSpot;
+						}
+						else
+						{
+							Students[ID].WalkAnim = "f02_stomachPainWalk_00";
+							Students[ID].Pathfinding.target = FemaleVomitSpot;
+							Students[ID].CurrentDestination = FemaleVomitSpot;
+						}
+						if (Students[ID].StudentID == 10)
+						{
+							Students[ID].Pathfinding.target = AltFemaleVomitSpot;
+							Students[ID].CurrentDestination = AltFemaleVomitSpot;
+							Students[ID].VomitDoor = AltFemaleVomitDoor;
+						}
+						Students[ID].CharacterAnimation.CrossFade(Students[ID].WalkAnim);
+						Students[ID].DistanceToDestination = 100f;
+						Students[ID].Pathfinding.canSearch = true;
+						Students[ID].Pathfinding.canMove = true;
+						Students[ID].Pathfinding.speed = 2f;
+						Students[ID].MyBento.Tampered = false;
+						Students[ID].Routine = false;
+						Students[ID].Chopsticks[0].SetActive(false);
+						Students[ID].Chopsticks[1].SetActive(false);
+						Students[ID].Bento.SetActive(false);
+					}
+					if (Students[ID].Routine && Students[ID].StudentID == 10)
+					{
+						Students[ID].GetDestinations();
+						Students[ID].CurrentAction = Students[ID].Actions[Students[ID].Phase];
+						Students[ID].CurrentDestination = Students[ID].Destinations[Students[ID].Phase];
+						Students[ID].Pathfinding.target = Students[ID].Destinations[Students[ID].Phase];
+					}
 					Students[ID].CameraReacting = false;
 				}
 			}
@@ -4385,7 +4428,6 @@ public class StudentManagerScript : MonoBehaviour
 			}
 		}
 		FoodPlate.UpdateFood();
-		Debug.Log("End of loading sequence. ClubGlobals.ActivitiesAttended is now: " + ClubGlobals.ActivitiesAttended);
 		Debug.Log("The entire loading process has been completed.");
 		Week = DateGlobals.Week;
 		CameFromLoad = true;
@@ -4841,10 +4883,6 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		if (Students[StudentID] != null && !Students[StudentID].Sleuthing)
 		{
-			if (StudentID == 59)
-			{
-				Debug.Log("Updating " + Students[StudentID].Name + "'s schedule.");
-			}
 			scheduleBlock = Students[StudentID].ScheduleBlocks[2];
 			scheduleBlock.destination = "Week1Hangout";
 			scheduleBlock.action = "Socialize";
@@ -5083,14 +5121,18 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (Week > 9 && Students[19] != null)
 		{
-			Debug.Log("Attempting to update Rival #2's routine.");
-			scheduleBlock = Students[19].ScheduleBlocks[2];
-			scheduleBlock.destination = "Patrol";
-			scheduleBlock.action = "Patrol";
-			scheduleBlock = Students[19].ScheduleBlocks[7];
-			scheduleBlock.destination = "Patrol";
-			scheduleBlock.action = "Patrol";
-			Students[19].GetDestinations();
+			Debug.Log("Is Rival $9 in a couple?" + Students[19].InCouple);
+			if (!Students[19].InCouple)
+			{
+				Debug.Log("Attempting to update Rival #9's routine.");
+				scheduleBlock = Students[19].ScheduleBlocks[2];
+				scheduleBlock.destination = "Patrol";
+				scheduleBlock.action = "Patrol";
+				scheduleBlock = Students[19].ScheduleBlocks[7];
+				scheduleBlock.destination = "Patrol";
+				scheduleBlock.action = "Patrol";
+				Students[19].GetDestinations();
+			}
 		}
 	}
 
@@ -5765,7 +5807,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	private void CheckSelfReportStatus(StudentScript student)
+	public void CheckSelfReportStatus(StudentScript student)
 	{
 		if (Yandere.Bloodiness == 0f && (double)Yandere.Sanity > 66.66666 && !Yandere.StudentManager.WitnessCamera.Show && Yandere.StudentManager.ChaseCamera == null && !MurderTakingPlace)
 		{
@@ -5950,6 +5992,21 @@ public class StudentManagerScript : MonoBehaviour
 			if (studentScript != null)
 			{
 				studentScript.transform.position = studentScript.CurrentDestination.position;
+			}
+		}
+		Physics.SyncTransforms();
+	}
+
+	public void CheckStudentProximity()
+	{
+		Debug.Log("Checking to see if any students are currently less than 1 meter away from the player.");
+		StudentScript[] students = Students;
+		foreach (StudentScript studentScript in students)
+		{
+			if (studentScript != null && studentScript.gameObject.activeInHierarchy && studentScript.DistanceToPlayer < 1f)
+			{
+				Debug.Log(studentScript.Name + " is less than 1 meter away from the player!");
+				Yandere.MyController.Move((Yandere.transform.position - studentScript.transform.position) * 1f);
 			}
 		}
 		Physics.SyncTransforms();

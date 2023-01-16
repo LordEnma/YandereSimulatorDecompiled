@@ -6,6 +6,8 @@ public class KittenScript : MonoBehaviour
 
 	public GameObject Character;
 
+	public Renderer MyRenderer;
+
 	public string[] AnimationNames;
 
 	public Transform Target;
@@ -16,9 +18,19 @@ public class KittenScript : MonoBehaviour
 
 	public string IdleAnim = string.Empty;
 
+	public Texture EightiesCat;
+
 	public bool Wait;
 
 	public float Timer;
+
+	private void Start()
+	{
+		if (GameGlobals.Eighties)
+		{
+			MyRenderer.material.mainTexture = EightiesCat;
+		}
+	}
 
 	private void LateUpdate()
 	{

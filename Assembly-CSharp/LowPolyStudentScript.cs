@@ -13,6 +13,11 @@ public class LowPolyStudentScript : MonoBehaviour
 		if (Student.StudentManager == null || Student.Cosmetic.Kidnapped || Student.StudentID == 1)
 		{
 			base.enabled = false;
+			if (Student.StudentID == 1)
+			{
+				Student.MyRenderer.enabled = true;
+				MyMesh.enabled = false;
+			}
 		}
 	}
 
@@ -20,7 +25,9 @@ public class LowPolyStudentScript : MonoBehaviour
 	{
 		if (Student.StudentManager != null && (float)Student.StudentManager.LowDetailThreshold > 0f)
 		{
-			if (Student.Prompt.DistanceSqr > (float)Student.StudentManager.LowDetailThreshold)
+			float num = 0f;
+			num = ((!Student.Prompt.enabled) ? Vector3.Distance(Student.transform.position, Student.Yandere.transform.position) : Student.Prompt.DistanceSqr);
+			if (num > (float)Student.StudentManager.LowDetailThreshold)
 			{
 				if (!MyMesh.enabled)
 				{

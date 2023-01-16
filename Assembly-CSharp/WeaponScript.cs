@@ -433,6 +433,7 @@ public class WeaponScript : MonoBehaviour
 
 	public void Equip()
 	{
+		Debug.Log("Yandere-chan just equipped a " + Name);
 		InBag = false;
 		if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 1)
 		{
@@ -613,7 +614,9 @@ public class WeaponScript : MonoBehaviour
 		AudioSource.PlayClipAtPoint(EquipClip, Yandere.MainCamera.transform.position);
 		if (UnequipImmediately)
 		{
+			Debug.Log("This weapon knows that it should unequip itself.");
 			UnequipImmediately = false;
+			Yandere.BypassRequirement = true;
 			Yandere.Unequip();
 		}
 		Yandere.UpdateConcealedWeaponStatus();

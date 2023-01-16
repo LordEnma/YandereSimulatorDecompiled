@@ -108,6 +108,7 @@ public class StudentInfoScript : MonoBehaviour
 		if (Eighties)
 		{
 			InfoLabel.transform.localPosition += new Vector3(0f, -10f, 0f);
+			ReputationChart.BecomeEighties();
 		}
 		if (!UpdatedOnce)
 		{

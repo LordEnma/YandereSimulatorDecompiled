@@ -119,6 +119,11 @@ public class OsanaPoolEventScript : MonoBehaviour
 		}
 		else if (Phase == 1)
 		{
+			if (!Rival.Wet)
+			{
+				Rival.Pathfinding.target = StudentManager.FemaleStripSpot;
+				Rival.CurrentDestination = StudentManager.FemaleStripSpot;
+			}
 			if (Rival.DistanceToDestination < 0.5f)
 			{
 				if (StudentManager.CommunalLocker.Student == null)
@@ -387,7 +392,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 				Yandere.Police.EndOfDay.PoolEvent = true;
 			}
 		}
-		if (Clock.HourTime > 13.5f || Rival.Alarmed || Rival.Splashed || Rival.Attacked || Rival.Stop)
+		if (Clock.HourTime > 14f || Rival.Alarmed || Rival.Attacked || Rival.Stop)
 		{
 			EndEvent();
 		}

@@ -35,6 +35,8 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 
 	public bool HintGiven;
 
+	public bool Finished;
+
 	public float Distance;
 
 	public float Scale;
@@ -54,7 +56,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		EventSubtitle.transform.localScale = Vector3.zero;
 		Bentos[1].SetActive(false);
 		Bentos[2].SetActive(false);
-		if (DateGlobals.Weekday != DayOfWeek.Monday || StudentGlobals.StudentSlave == RivalID || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week > 1 || GameGlobals.Eighties)
+		if (DateGlobals.Weekday != DayOfWeek.Monday || StudentGlobals.StudentSlave == RivalID || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week > 1 || GameGlobals.Eighties || Finished)
 		{
 			base.enabled = false;
 		}
@@ -299,5 +301,6 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		EventSubtitle.text = string.Empty;
 		NextEvent.enabled = true;
 		base.enabled = false;
+		Finished = true;
 	}
 }

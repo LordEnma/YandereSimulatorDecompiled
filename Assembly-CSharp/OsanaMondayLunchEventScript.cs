@@ -47,6 +47,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 
 	public bool Sabotaged;
 
+	public bool Finished;
+
 	public float Distance;
 
 	public float Scale;
@@ -75,10 +77,14 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 	{
 		OriginalPosition = Epicenter.position;
 		EventSubtitle.transform.localScale = Vector3.zero;
-		if (DateGlobals.Week > 1 || DateGlobals.Weekday != DayOfWeek.Monday || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || GameGlobals.Eighties)
+		if (DateGlobals.Week > 1 || DateGlobals.Weekday != DayOfWeek.Monday || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || GameGlobals.Eighties || Finished)
 		{
 			base.gameObject.SetActive(false);
 			base.enabled = false;
+		}
+		if (Finished && StudentManager.Students[FriendID] != null)
+		{
+			MakeRaibaruEatLunch();
 		}
 	}
 
@@ -480,31 +486,9 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 			Rival.TargetDistance = 0.5f;
 			Rival.Routine = !Rival.Alarmed;
 		}
-		if (Friend != null && !Friend.Electrified)
+		if (Friend != null)
 		{
-			if (!Friend.Alarmed)
-			{
-				Friend.Pathfinding.canSearch = true;
-				Friend.Pathfinding.canMove = true;
-				Friend.CanTalk = true;
-				Friend.Routine = true;
-			}
-			Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-			Friend.Prompt.enabled = true;
-			Friend.InEvent = false;
-			Friend.Private = false;
-			ScheduleBlock obj = Friend.ScheduleBlocks[4];
-			obj.destination = "LunchSpot";
-			obj.action = "Eat";
-			Friend.GetDestinations();
-			Friend.CurrentDestination = Friend.Destinations[Friend.Phase];
-			Friend.Pathfinding.target = Friend.Destinations[Friend.Phase];
-			Friend.DistanceToDestination = 100f;
-			Friend.MyBento.gameObject.SetActive(false);
-			Friend.MyBento.transform.parent = Friend.LeftHand;
-			Friend.MyBento.transform.localPosition = new Vector3(-0.025f, -0.105f, 0f);
-			Friend.MyBento.transform.localEulerAngles = new Vector3(0f, 165f, 82.5f);
-			Debug.Log("Osana's Monday lunch event ended, so Raibaru is being told to set her destination to her current phase's destination.");
+			MakeRaibaruEatLunch();
 		}
 		if (!StudentManager.Stop)
 		{
@@ -527,6 +511,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 			Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 		}
 		DisableBentos();
+		Finished = true;
 	}
 
 	private void DisableBentos()
@@ -554,6 +539,36 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 			Friend.Distracted = false;
 			Friend.Routine = false;
 			Friend.InEvent = true;
+		}
+	}
+
+	private void MakeRaibaruEatLunch()
+	{
+		if (!Friend.Electrified)
+		{
+			if (!Friend.Alarmed)
+			{
+				Friend.Pathfinding.canSearch = true;
+				Friend.Pathfinding.canMove = true;
+				Friend.CanTalk = true;
+				Friend.Routine = true;
+			}
+			Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+			Friend.Prompt.enabled = true;
+			Friend.InEvent = false;
+			Friend.Private = false;
+			ScheduleBlock obj = Friend.ScheduleBlocks[4];
+			obj.destination = "LunchSpot";
+			obj.action = "Eat";
+			Friend.GetDestinations();
+			Friend.CurrentDestination = Friend.Destinations[Friend.Phase];
+			Friend.Pathfinding.target = Friend.Destinations[Friend.Phase];
+			Friend.DistanceToDestination = 100f;
+			Friend.MyBento.gameObject.SetActive(false);
+			Friend.MyBento.transform.parent = Friend.LeftHand;
+			Friend.MyBento.transform.localPosition = new Vector3(-0.025f, -0.105f, 0f);
+			Friend.MyBento.transform.localEulerAngles = new Vector3(0f, 165f, 82.5f);
+			Debug.Log("Osana's Monday lunch event ended, so Raibaru is being told to set her destination to her current phase's destination.");
 		}
 	}
 }

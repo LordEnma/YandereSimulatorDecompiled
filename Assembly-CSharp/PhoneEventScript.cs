@@ -107,7 +107,7 @@ public class PhoneEventScript : MonoBehaviour
 						if (EventStudentID == 11)
 						{
 							EventFriend = StudentManager.Students[EventFriendID];
-							if (EventFriend != null && EventFriend.CurrentAction == StudentActionType.Follow && !EventFriend.InvestigatingBloodPool && !EventFriend.ReturningMisplacedWeapon)
+							if (EventFriend != null && EventFriend.CurrentAction == StudentActionType.Follow && !EventFriend.InvestigatingBloodPool && !EventFriend.ReturningMisplacedWeapon && !EventFriend.Electrified)
 							{
 								Debug.Log("Raibaru is available, so she's getting involved in the event.");
 								EventFriend.CharacterAnimation.CrossFade(EventFriend.IdleAnim);

@@ -276,18 +276,21 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 		if (YandereWeapon1 > -1)
 		{
+			Debug.Log("Looks like the player had a " + Weapons[YandereWeapon1].gameObject.name + " in their possession when they saved.");
 			Weapons[YandereWeapon1].Prompt.Circle[3].fillAmount = 0f;
 			Weapons[YandereWeapon1].gameObject.SetActive(true);
 			Weapons[YandereWeapon1].UnequipImmediately = true;
 		}
 		if (YandereWeapon2 > -1)
 		{
+			Debug.Log("Looks like the player had a " + Weapons[YandereWeapon2].gameObject.name + " in their possession when they saved.");
 			Weapons[YandereWeapon2].Prompt.Circle[3].fillAmount = 0f;
 			Weapons[YandereWeapon2].gameObject.SetActive(true);
 			Weapons[YandereWeapon2].UnequipImmediately = true;
 		}
 		if (YandereWeapon3 > -1)
 		{
+			Debug.Log("Looks like the player had a " + Weapons[YandereWeapon3].gameObject.name + " equipped when they saved.");
 			Weapons[YandereWeapon3].Prompt.Circle[3].fillAmount = 0f;
 			Weapons[YandereWeapon3].gameObject.SetActive(true);
 			Weapons[YandereWeapon3].UnequipImmediately = true;

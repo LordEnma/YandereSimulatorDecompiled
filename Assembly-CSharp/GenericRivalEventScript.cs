@@ -925,7 +925,7 @@ public class GenericRivalEventScript : MonoBehaviour
 				}
 				break;
 			case 7:
-				SpeechText[1] = "Hello, Senpai! I have a question for you?";
+				SpeechText[1] = "Hello, Senpai! I have a question for you!";
 				SpeechText[2] = "Oh? Hi! What do you want to ask?";
 				SpeechText[3] = "I'd like to know if you'll be free around lunchtime!";
 				SpeechText[4] = "You see, there's something I'd like to give you...";

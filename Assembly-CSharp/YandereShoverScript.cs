@@ -4,6 +4,8 @@ public class YandereShoverScript : MonoBehaviour
 {
 	public YandereScript Yandere;
 
+	public bool MaleLockerRoom;
+
 	public bool PreventNudity;
 
 	private void OnTriggerStay(Collider other)
@@ -63,8 +65,9 @@ public class YandereShoverScript : MonoBehaviour
 				Yandere.transform.position = new Vector3(11f, 0f, 49f);
 			}
 		}
-		else if (other.gameObject.layer == 11 || other.gameObject.layer == 14)
+		else if ((other.gameObject.layer == 11 || other.gameObject.layer == 14) && MaleLockerRoom)
 		{
+			Debug.Log("Manually moving a corpse out of the male locker room.");
 			other.gameObject.transform.position += new Vector3(0f, 0f, -1f);
 		}
 	}

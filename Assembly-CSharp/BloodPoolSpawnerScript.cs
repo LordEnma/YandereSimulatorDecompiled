@@ -37,6 +37,8 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 
 	public bool Falling;
 
+	public int BloodPoolLimit = 20;
+
 	public int PoolsSpawned;
 
 	public int NearbyBlood;
@@ -65,6 +67,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 			SEStairs = StudentManager.SEStairs;
 			SWStairs = StudentManager.SWStairs;
 			PoolStairs = StudentManager.PoolStairs;
+			BloodPoolLimit -= Ragdoll.Student.Yandere.Class.BiologyGrade * 2;
 		}
 		BloodParent = GameObject.Find("BloodParent").transform;
 		Positions = new Vector3[5];
@@ -124,7 +127,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 			}
 			Timer = 0.1f;
 			GameObject gameObject = null;
-			if (PoolsSpawned < 10)
+			if ((float)PoolsSpawned < (float)BloodPoolLimit * 0.5f)
 			{
 				gameObject = Object.Instantiate(BloodPool, new Vector3(position.x, Height + 0.012f, position.z), Quaternion.identity);
 				gameObject.transform.localEulerAngles = new Vector3(90f, Random.Range(0f, 360f), 0f);
@@ -133,7 +136,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 				PoolsSpawned++;
 				Ragdoll.Student.BloodPoolsSpawned++;
 			}
-			else if (PoolsSpawned < 20)
+			else if (PoolsSpawned < BloodPoolLimit)
 			{
 				gameObject = Object.Instantiate(BloodPool, new Vector3(position.x, Height + 0.012f, position.z), Quaternion.identity);
 				gameObject.transform.localEulerAngles = new Vector3(90f, Random.Range(0f, 360f), 0f);
@@ -141,8 +144,8 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 				gameObject.GetComponent<BloodPoolScript>().StudentBloodID = Ragdoll.StudentID;
 				PoolsSpawned++;
 				Ragdoll.Student.BloodPoolsSpawned++;
-				gameObject.GetComponent<BloodPoolScript>().TargetSize = 1f - (float)(PoolsSpawned - 10) * 0.1f;
-				if (PoolsSpawned == 20)
+				gameObject.GetComponent<BloodPoolScript>().TargetSize = 1f - ((float)PoolsSpawned - (float)BloodPoolLimit * 0.5f) * 0.1f;
+				if (PoolsSpawned == BloodPoolLimit)
 				{
 					base.gameObject.SetActive(false);
 				}

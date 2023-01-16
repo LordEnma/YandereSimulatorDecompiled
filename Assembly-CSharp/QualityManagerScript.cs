@@ -412,11 +412,20 @@ public class QualityManagerScript : MonoBehaviour
 						if (studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials.Length == 1)
 						{
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.shader = NewHairShader;
+							if (studentScript.StudentID == 1 && studentScript.StudentID == 1)
+							{
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 0f);
+							}
 						}
 						else
 						{
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].shader = NewHairShader;
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].shader = NewHairShader;
+							if (studentScript.StudentID == 1 && studentScript.StudentID == 1)
+							{
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].SetFloat("_Saturation", 0f);
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].SetFloat("_Saturation", 0f);
+							}
 						}
 					}
 					if (studentScript.Cosmetic.Accessory > 0)
@@ -796,6 +805,10 @@ public class QualityManagerScript : MonoBehaviour
 						{
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.shader = NewBodyShader;
 							AdjustRimLight(studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material);
+							if (studentScript.StudentID == 1 && studentScript.StudentID == 1)
+							{
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 0f);
+							}
 						}
 						else
 						{
@@ -803,6 +816,11 @@ public class QualityManagerScript : MonoBehaviour
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].shader = NewBodyShader;
 							AdjustRimLight(studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0]);
 							AdjustRimLight(studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1]);
+							if (studentScript.StudentID == 1 && studentScript.StudentID == 1)
+							{
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].SetFloat("_Saturation", 0f);
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].SetFloat("_Saturation", 0f);
+							}
 						}
 					}
 					if (studentScript.Cosmetic.Accessory > 0)

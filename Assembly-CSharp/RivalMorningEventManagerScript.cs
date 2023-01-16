@@ -107,7 +107,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		}
 		if (Phase == 0)
 		{
-			if (Frame > 0 && StudentManager.Students[RivalID] != null && StudentManager.Students[1].gameObject.activeInHierarchy && StudentManager.Students[RivalID] != null)
+			if (Frame > 5 && StudentManager.Students[RivalID] != null && StudentManager.Students[1].gameObject.activeInHierarchy && StudentManager.Students[RivalID] != null)
 			{
 				Debug.Log("Osana's morning Senpai interaction event is now taking place.");
 				if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner && StudentGlobals.StudentSlave != FriendID)
@@ -406,7 +406,10 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 	{
 		if (Phase > 1 && base.enabled)
 		{
-			AnimationTime = Rival.CharacterAnimation["f02_" + Weekday + "_1"].time;
+			if (Rival != null)
+			{
+				AnimationTime = Rival.CharacterAnimation["f02_" + Weekday + "_1"].time;
+			}
 			Debug.Log("AnimationTime was: " + AnimationTime);
 		}
 	}

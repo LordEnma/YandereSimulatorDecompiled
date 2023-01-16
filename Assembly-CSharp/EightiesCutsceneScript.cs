@@ -383,7 +383,6 @@ public class EightiesCutsceneScript : MonoBehaviour
 			{
 				DateGlobals.PassDays = 1;
 			}
-			Debug.Log("Starting a new week. Setting ClubGlobals.ActivitiesAttended to 0.");
 			ClubGlobals.ActivitiesAttended = 0;
 			if (DateGlobals.Week < 11)
 			{
@@ -403,10 +402,6 @@ public class EightiesCutsceneScript : MonoBehaviour
 
 	private void Save()
 	{
-		int profile = GameGlobals.Profile;
-		int num = 11;
-		Debug.Log("Current profile is: " + profile);
-		YanSave.SaveData("Profile_" + profile + "_Slot_" + num);
-		Debug.Log("Saved current state of the game to Slot #" + num);
+		YanSave.SaveData("Profile_" + GameGlobals.Profile + "_Slot_" + 11);
 	}
 }

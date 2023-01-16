@@ -42,7 +42,12 @@ public class SecurityCameraScript : MonoBehaviour
 			{
 				flag = false;
 			}
-			if ((!Yandere.Armed || !Yandere.EquippedWeapon.Suspicious) && (!(Yandere.Bloodiness > 0f) || Yandere.RedPaint) && !(Yandere.Sanity < 33.333f) && !Yandere.Attacking && !Yandere.Struggling && !Yandere.Dragging && !Yandere.Lewd && !Yandere.Dragging && !(Yandere.Carrying && flag) && (!Yandere.Laughing || !(Yandere.LaughIntensity > 15f)) && (!(Yandere.PickUp != null) || !Yandere.PickUp.Clothing || !Yandere.PickUp.Evidence || Yandere.PickUp.RedPaint))
+			bool flag2 = false;
+			if (Yandere.Club == ClubType.Art && Yandere.ClubAttire)
+			{
+				flag2 = true;
+			}
+			if ((!Yandere.Armed || !Yandere.EquippedWeapon.Suspicious) && (!(Yandere.Bloodiness > 0f) || flag2) && !(Yandere.Sanity < 33.333f) && !Yandere.Attacking && !Yandere.Struggling && !Yandere.Dragging && !Yandere.Lewd && !Yandere.Dragging && !(Yandere.Carrying && flag) && (!Yandere.Laughing || !(Yandere.LaughIntensity > 15f)) && (!(Yandere.PickUp != null) || !Yandere.PickUp.Clothing || !Yandere.PickUp.Evidence || Yandere.PickUp.RedPaint))
 			{
 				return;
 			}

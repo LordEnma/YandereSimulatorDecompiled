@@ -214,6 +214,8 @@ public class CustomizationScript : MonoBehaviour
 
 	public Texture[] VtuberFace;
 
+	public Shader NewShader;
+
 	public bool OriginalDOFStatus;
 
 	private static readonly KeyValuePair<Color, string>[] ColorPairs = new KeyValuePair<Color, string>[11]
@@ -444,6 +446,15 @@ public class CustomizationScript : MonoBehaviour
 		else
 		{
 			VtuberHair[1].SetActive(false);
+		}
+		for (int j = 0; j < Hairstyles.Length; j++)
+		{
+			if (Hairstyles[j] != null)
+			{
+				HairRenderer = Hairstyles[j].GetComponent<Renderer>();
+				HairRenderer.material.shader = NewShader;
+				HairRenderer.material.SetFloat("_Saturation", 0f);
+			}
 		}
 	}
 

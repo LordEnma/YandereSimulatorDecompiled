@@ -290,7 +290,7 @@ public class ShutterScript : MonoBehaviour
 								ReactionDistance = FaceStudent.VisionDistance;
 							}
 							bool flag = FaceStudent.ShoeRemoval.enabled;
-							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
+							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
 							{
 								if (MissionMode)
 								{
@@ -332,7 +332,7 @@ public class ShutterScript : MonoBehaviour
 												FaceStudent.YandereVisible = true;
 											}
 										}
-										else
+										else if (Student != null && !Student.Teacher)
 										{
 											Penalize();
 										}
@@ -423,14 +423,14 @@ public class ShutterScript : MonoBehaviour
 						PhotoIcons.SetActive(false);
 						ID = 0;
 						FreeSpace = false;
-						while (ID < 26)
+						while (ID < 25)
 						{
 							ID++;
 							if (!Yandere.PauseScreen.PhotoGallery.PhotographTaken[ID])
 							{
 								FreeSpace = true;
 								Slot = ID;
-								ID = 26;
+								ID = 25;
 							}
 						}
 						if (FreeSpace)

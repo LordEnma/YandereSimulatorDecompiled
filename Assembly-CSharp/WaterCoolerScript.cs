@@ -195,7 +195,7 @@ public class WaterCoolerScript : MonoBehaviour
 				Cylinder.localScale = Vector3.Lerp(Cylinder.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			}
 		}
-		if ((Prompt.enabled && Prompt.DistanceSqr < 1f) || (!Prompt.enabled && Vector3.Distance(base.transform.position, Yandere.transform.position) < 1f))
+		if ((Prompt.enabled && Prompt.DistanceSqr < 1f && Prompt.InSight) || (!Prompt.enabled && Vector3.Distance(base.transform.position, Yandere.transform.position) < 1f))
 		{
 			if (WaterCoolerChecklist.alpha < 1f)
 			{

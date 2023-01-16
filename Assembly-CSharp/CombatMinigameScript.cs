@@ -16,6 +16,8 @@ public class CombatMinigameScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public UIPanel CombatPanel;
+
 	public Transform CombatTarget;
 
 	public Transform MainCamera;
@@ -99,6 +101,7 @@ public class CombatMinigameScript : MonoBehaviour
 		Midpoint.transform.position = MainCamera.transform.position + MainCamera.transform.forward;
 		MainCamera.transform.parent = CombatTarget;
 		Yandere.RPGCamera.enabled = false;
+		CombatPanel.alpha = 1f;
 		Zoom = true;
 		if (Delinquent.Male)
 		{
@@ -847,5 +850,6 @@ public class CombatMinigameScript : MonoBehaviour
 		Yandere.CannotRecover = false;
 		Yandere.CanMove = true;
 		Yandere.Chased = false;
+		CombatPanel.alpha = 0f;
 	}
 }

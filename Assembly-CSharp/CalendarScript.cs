@@ -114,6 +114,8 @@ public class CalendarScript : MonoBehaviour
 
 	public Font VCR;
 
+	public int Corpses;
+
 	private void Start()
 	{
 		NewTitleScreenProfile.colorGrading.enabled = false;
@@ -202,6 +204,7 @@ public class CalendarScript : MonoBehaviour
 		if (DateGlobals.PassDays > 0 && !SchoolGlobals.HighSecurity && SchoolGlobals.SchoolAtmosphere >= SchoolGlobals.PreviousSchoolAtmosphere)
 		{
 			SchoolGlobals.SchoolAtmosphere += 0.05f;
+			GetNumberOfCorpses();
 			ReducePrisonerHealth();
 		}
 		ImproveSchoolAtmosphere();
@@ -942,47 +945,92 @@ public class CalendarScript : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
+	public void GetNumberOfCorpses()
+	{
+		if (StudentGlobals.Prisoner1 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner1) == 0)
+		{
+			Corpses++;
+		}
+		if (StudentGlobals.Prisoner2 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner2) == 0)
+		{
+			Corpses++;
+		}
+		if (StudentGlobals.Prisoner3 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner3) == 0)
+		{
+			Corpses++;
+		}
+		if (StudentGlobals.Prisoner4 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner4) == 0)
+		{
+			Corpses++;
+		}
+		if (StudentGlobals.Prisoner5 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner5) == 0)
+		{
+			Corpses++;
+		}
+		if (StudentGlobals.Prisoner6 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner6) == 0)
+		{
+			Corpses++;
+		}
+		if (StudentGlobals.Prisoner7 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner7) == 0)
+		{
+			Corpses++;
+		}
+		if (StudentGlobals.Prisoner8 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner8) == 0)
+		{
+			Corpses++;
+		}
+		if (StudentGlobals.Prisoner9 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner9) == 0)
+		{
+			Corpses++;
+		}
+		if (StudentGlobals.Prisoner10 != 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner10) == 0)
+		{
+			Corpses++;
+		}
+	}
+
 	public void ReducePrisonerHealth()
 	{
+		int num = 10 + Corpses * 5;
 		if (StudentGlobals.Prisoner1 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner1, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner1) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner1, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner1) - num);
 		}
 		if (StudentGlobals.Prisoner2 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner2, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner2) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner2, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner2) - num);
 		}
 		if (StudentGlobals.Prisoner3 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner3, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner3) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner3, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner3) - num);
 		}
 		if (StudentGlobals.Prisoner4 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner4, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner4) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner4, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner4) - num);
 		}
 		if (StudentGlobals.Prisoner5 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner5, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner5) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner5, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner5) - num);
 		}
 		if (StudentGlobals.Prisoner6 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner6, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner6) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner6, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner6) - num);
 		}
 		if (StudentGlobals.Prisoner7 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner7, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner7) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner7, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner7) - num);
 		}
 		if (StudentGlobals.Prisoner8 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner8, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner8) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner8, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner8) - num);
 		}
 		if (StudentGlobals.Prisoner9 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner9, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner9) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner9, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner9) - num);
 		}
 		if (StudentGlobals.Prisoner10 != 0)
 		{
-			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner10, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner10) - 10);
+			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner10, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner10) - num);
 		}
 	}
 }
