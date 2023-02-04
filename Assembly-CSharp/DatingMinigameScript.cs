@@ -213,7 +213,7 @@ public class DatingMinigameScript : MonoBehaviour
 		GiveGift.localScale = Vector3.zero;
 		ShowOff.localScale = Vector3.zero;
 		Topics.localScale = Vector3.zero;
-		DatingSimHUD.gameObject.SetActive(false);
+		DatingSimHUD.gameObject.SetActive(value: false);
 		DatingSimHUD.alpha = 0f;
 		for (int i = 1; i < 26; i++)
 		{
@@ -348,8 +348,8 @@ public class DatingMinigameScript : MonoBehaviour
 				Rival.CharacterAnimation["f02_smile_00"].weight = 0f;
 				StudentManager.Clock.StopTime = true;
 				Yandere.RPGCamera.enabled = false;
-				HeartbeatCamera.SetActive(false);
-				Yandere.Headset.SetActive(true);
+				HeartbeatCamera.SetActive(value: false);
+				Yandere.Headset.SetActive(value: true);
 				Yandere.CanMove = false;
 				Yandere.EmptyHands();
 				if (Yandere.YandereVision)
@@ -400,7 +400,7 @@ public class DatingMinigameScript : MonoBehaviour
 				Suitor.CharacterAnimation.Play("insertEarpiece_00");
 				Suitor.CharacterAnimation["insertEarpiece_00"].time = 0f;
 				Suitor.CharacterAnimation.Play("insertEarpiece_00");
-				Suitor.Earpiece.SetActive(true);
+				Suitor.Earpiece.SetActive(value: true);
 				MainCamera.transform.position = new Vector3(45.5f, 1.25f, -44.5f);
 				MainCamera.transform.eulerAngles = new Vector3(0f, -45f, 0f);
 				Rotation = -45f;
@@ -427,7 +427,7 @@ public class DatingMinigameScript : MonoBehaviour
 					AffectionBar.localScale = new Vector3(Affection / 100f, AffectionBar.localScale.y, AffectionBar.localScale.z);
 					DialogueLabel.text = Greetings[AffectionLevel];
 					CalculateMultiplier();
-					DatingSimHUD.gameObject.SetActive(true);
+					DatingSimHUD.gameObject.SetActive(value: true);
 					Timer = 0f;
 					Phase++;
 				}
@@ -553,7 +553,7 @@ public class DatingMinigameScript : MonoBehaviour
 					DetermineOpinion();
 					if (!Yandere.StudentManager.GetTopicLearnedByStudent(Opinion, LoveManager.RivalID))
 					{
-						Yandere.StudentManager.SetTopicLearnedByStudent(Opinion, LoveManager.RivalID, true);
+						Yandere.StudentManager.SetTopicLearnedByStudent(Opinion, LoveManager.RivalID, boolean: true);
 					}
 					if (Negative)
 					{
@@ -764,7 +764,7 @@ public class DatingMinigameScript : MonoBehaviour
 						GiftStatusNeedsSaving = true;
 						GiftsPurchased[GiftSelected] = false;
 						GiftsGiven[GiftSelected] = true;
-						Rival.Cosmetic.CatGifts[GiftSelected].SetActive(true);
+						Rival.Cosmetic.CatGifts[GiftSelected].SetActive(value: true);
 						UILabel uILabel5 = Labels[5];
 						uILabel5.color = new Color(uILabel5.color.r, uILabel5.color.g, uILabel5.color.b, 0.5f);
 						GivingGift = false;
@@ -804,7 +804,7 @@ public class DatingMinigameScript : MonoBehaviour
 			DatingSimHUD.alpha = Mathf.MoveTowards(DatingSimHUD.alpha, 0f, Time.deltaTime);
 			if (DatingSimHUD.alpha == 0f)
 			{
-				DatingSimHUD.gameObject.SetActive(false);
+				DatingSimHUD.gameObject.SetActive(value: false);
 				Phase++;
 			}
 		}
@@ -842,9 +842,9 @@ public class DatingMinigameScript : MonoBehaviour
 				Rival.MeetTimer = 0f;
 				StudentManager.Clock.StopTime = false;
 				Yandere.RPGCamera.enabled = true;
-				Suitor.Earpiece.SetActive(false);
-				HeartbeatCamera.SetActive(true);
-				Yandere.Headset.SetActive(false);
+				Suitor.Earpiece.SetActive(value: false);
+				HeartbeatCamera.SetActive(value: true);
+				Yandere.Headset.SetActive(value: false);
 				if (AffectionLevel == 5)
 				{
 					LoveManager.ConfessToSuitor = true;
@@ -862,7 +862,7 @@ public class DatingMinigameScript : MonoBehaviour
 			{
 				Matchmaking = false;
 				Yandere.CanMove = true;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 1f, Time.deltaTime);
 		}
@@ -879,11 +879,11 @@ public class DatingMinigameScript : MonoBehaviour
 			Rival.transform.eulerAngles = new Vector3(Rival.transform.eulerAngles.x, 90f, Rival.transform.eulerAngles.z);
 			Rival.CharacterAnimation.Play(Rival.IdleAnim);
 			Rival.CharacterAnimation["f02_turnAround_00"].speed = 1f;
-			DatingGlobals.SetComplimentGiven(1, false);
-			DatingGlobals.SetComplimentGiven(4, false);
-			DatingGlobals.SetComplimentGiven(5, false);
-			DatingGlobals.SetComplimentGiven(8, false);
-			DatingGlobals.SetComplimentGiven(9, false);
+			DatingGlobals.SetComplimentGiven(1, value: false);
+			DatingGlobals.SetComplimentGiven(4, value: false);
+			DatingGlobals.SetComplimentGiven(5, value: false);
+			DatingGlobals.SetComplimentGiven(8, value: false);
+			DatingGlobals.SetComplimentGiven(9, value: false);
 			DatingGlobals.SetTraitDemonstrated(2, 0);
 			DatingGlobals.AffectionLevel = 0f;
 			DatingGlobals.Affection = 0f;
@@ -899,7 +899,7 @@ public class DatingMinigameScript : MonoBehaviour
 			Timer = 0f;
 			for (int k = 1; k < 26; k++)
 			{
-				DatingGlobals.SetTopicDiscussed(k, false);
+				DatingGlobals.SetTopicDiscussed(k, value: false);
 				UISprite uISprite2 = TopicIcons[k];
 				uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 1f);
 			}
@@ -919,8 +919,8 @@ public class DatingMinigameScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		int phase = Phase;
-		int num = 4;
+		_ = Phase;
+		_ = 4;
 	}
 
 	private void CalculateMultiplier()
@@ -948,22 +948,22 @@ public class DatingMinigameScript : MonoBehaviour
 		}
 		if (PlayerGlobals.PantiesEquipped == 2)
 		{
-			PantyIcon.SetActive(true);
+			PantyIcon.SetActive(value: true);
 			Multiplier++;
 		}
 		else
 		{
-			PantyIcon.SetActive(false);
+			PantyIcon.SetActive(value: false);
 		}
 		if (Yandere.Class.Seduction + Yandere.Class.SeductionBonus > 0)
 		{
 			SeductionLabel.text = (Yandere.Class.Seduction + Yandere.Class.SeductionBonus).ToString();
 			Multiplier += Yandere.Class.Seduction + Yandere.Class.SeductionBonus;
-			SeductionIcon.SetActive(true);
+			SeductionIcon.SetActive(value: true);
 		}
 		else
 		{
-			SeductionIcon.SetActive(false);
+			SeductionIcon.SetActive(value: false);
 		}
 		Multiplier += Yandere.Class.PsychologyGrade + Yandere.Class.PsychologyBonus;
 		MultiplierLabel.text = "Multiplier: " + Multiplier + "x";

@@ -75,7 +75,7 @@ namespace MaidDereMinigame
 					return emitter;
 				}
 			}
-			Debug.Log(string.Format("There is no sound emitter created for {0}", sound), this);
+			Debug.Log($"There is no sound emitter created for {sound}", this);
 			return null;
 		}
 

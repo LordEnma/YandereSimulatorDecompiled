@@ -26,7 +26,7 @@ public class KatanaCaseScript : MonoBehaviour
 			KeyPrompt.Yandere.Inventory.CaseKey = true;
 			CasePrompt.HideButton[0] = false;
 			CasePrompt.enabled = true;
-			Key.SetActive(false);
+			Key.SetActive(value: false);
 		}
 		if (CasePrompt.Circle[0].fillAmount == 0f)
 		{

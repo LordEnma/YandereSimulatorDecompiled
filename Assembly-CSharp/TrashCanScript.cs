@@ -132,7 +132,7 @@ public class TrashCanScript : MonoBehaviour
 				Foil = true;
 				GameObject obj = Yandere.PickUp.gameObject;
 				Yandere.EmptyHands();
-				obj.SetActive(false);
+				obj.SetActive(value: false);
 			}
 		}
 		else

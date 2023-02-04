@@ -79,13 +79,13 @@ public class MGPMMiyukiScript : MonoBehaviour
 		Time.timeScale = 1f;
 		if (!GameGlobals.EasyMode)
 		{
-			MagicBar.parent.gameObject.SetActive(false);
+			MagicBar.parent.gameObject.SetActive(value: false);
 		}
 		Eighties = GameGlobals.Eighties;
 		if (Eighties)
 		{
 			MyRenderer.enabled = false;
-			SpaceWitchSprite.SetActive(true);
+			SpaceWitchSprite.SetActive(value: true);
 		}
 	}
 
@@ -363,7 +363,7 @@ public class MGPMMiyukiScript : MonoBehaviour
 						AudioSource.PlayClipAtPoint(DeathSound, base.transform.position);
 					}
 					GameplayManager.BeginGameOver();
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 				}
 			}
 			UpdateHearts();
@@ -394,12 +394,12 @@ public class MGPMMiyukiScript : MonoBehaviour
 
 	private void UpdateHearts()
 	{
-		Hearts[1].SetActive(false);
-		Hearts[2].SetActive(false);
-		Hearts[3].SetActive(false);
+		Hearts[1].SetActive(value: false);
+		Hearts[2].SetActive(value: false);
+		Hearts[3].SetActive(value: false);
 		for (int i = 1; i < Health + 1; i++)
 		{
-			Hearts[i].SetActive(true);
+			Hearts[i].SetActive(value: true);
 		}
 	}
 

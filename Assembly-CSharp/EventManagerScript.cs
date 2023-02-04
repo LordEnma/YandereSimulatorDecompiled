@@ -166,8 +166,8 @@ public class EventManagerScript : MonoBehaviour
 							{
 								Yandere.PauseScreen.Hint.QuickID = 13;
 							}
-							double num2 = (double)StartTime;
-							double num3 = 15.5;
+							_ = (double)StartTime;
+							_ = 15.5;
 						}
 						EventStudent[2].EmptyHands();
 						EventStudent[1].SpeechLines.Stop();
@@ -396,8 +396,8 @@ public class EventManagerScript : MonoBehaviour
 		EventStudent[2].EventManager = null;
 		EventStudent[2].InEvent = false;
 		EventStudent[2].Private = false;
-		double num = (double)StartTime;
-		double num2 = 15.5;
+		_ = (double)StartTime;
+		_ = 15.5;
 		if (!StudentManager.Stop)
 		{
 			StudentManager.UpdateStudents();

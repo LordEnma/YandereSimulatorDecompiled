@@ -24,19 +24,19 @@ public class SchoolNewspaperScript : MonoBehaviour
 	{
 		if (GameGlobals.Eighties)
 		{
-			ClubPosters.SetActive(false);
+			ClubPosters.SetActive(value: false);
 			if (ClubGlobals.GetClubClosed(ClubType.Newspaper))
 			{
-				NewspaperPages[1].SetActive(false);
-				NewspaperPages[2].SetActive(false);
-				NewspaperPages[3].SetActive(false);
+				NewspaperPages[1].SetActive(value: false);
+				NewspaperPages[2].SetActive(value: false);
+				NewspaperPages[3].SetActive(value: false);
 				Prompt.enabled = false;
 				Prompt.Hide();
 			}
 		}
 		else
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -50,7 +50,7 @@ public class SchoolNewspaperScript : MonoBehaviour
 			PromptBar.Label[1].text = "Back";
 			PromptBar.UpdateButtons();
 			PromptBar.Show = true;
-			Newspaper.SetActive(true);
+			Newspaper.SetActive(value: true);
 			GameplayDay = (int)((DateGlobals.Week - 1) * 5 + DateGlobals.Weekday);
 			NewspaperLabel.text = Article[GameplayDay];
 			NewspaperLabel.text = NewspaperLabel.text.Replace('@', '\n');
@@ -65,7 +65,7 @@ public class SchoolNewspaperScript : MonoBehaviour
 		{
 			PromptBar.ClearButtons();
 			PromptBar.Show = false;
-			Newspaper.SetActive(false);
+			Newspaper.SetActive(value: false);
 			Time.timeScale = 1f;
 		}
 	}

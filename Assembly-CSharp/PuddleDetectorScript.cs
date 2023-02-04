@@ -21,7 +21,7 @@ public class PuddleDetectorScript : MonoBehaviour
 		{
 			PowerSwitch.NewPuddle = other.gameObject;
 			PowerSwitch.Electricity.transform.position = PowerSwitch.NewPuddle.transform.position;
-			PowerSwitch.Electricity.SetActive(true);
+			PowerSwitch.Electricity.SetActive(value: true);
 		}
 	}
 }

@@ -60,12 +60,12 @@ public class TreeTestScript : MonoBehaviour
 					{
 						if (Trees[TreeID] != null)
 						{
-							Trees[TreeID].SetActive(false);
+							Trees[TreeID].SetActive(value: false);
 						}
 					}
 					while (PetalID < Petals.Length)
 					{
-						Petals[PetalID].SetActive(false);
+						Petals[PetalID].SetActive(value: false);
 						PetalID++;
 					}
 				}
@@ -79,12 +79,12 @@ public class TreeTestScript : MonoBehaviour
 					{
 						if (Trees[TreeID] != null)
 						{
-							Trees[TreeID].SetActive(true);
+							Trees[TreeID].SetActive(value: true);
 						}
 					}
 					while (PetalID < Petals.Length)
 					{
-						Petals[PetalID].SetActive(true);
+						Petals[PetalID].SetActive(value: true);
 						PetalID++;
 					}
 				}
@@ -120,7 +120,7 @@ public class TreeTestScript : MonoBehaviour
 		}
 		else if (Is == 12)
 		{
-			StudentManager.MiniMap.SetActive(false);
+			StudentManager.MiniMap.SetActive(value: false);
 			Gray.enabled = false;
 			RGB.enabled = false;
 			Contrast.enabled = false;

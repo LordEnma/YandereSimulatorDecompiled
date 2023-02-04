@@ -30,13 +30,13 @@ public class RummageSpotScript : MonoBehaviour
 				Debug.Log("The answer sheet is no longer available, due to events on a previous day.");
 				Prompt.Hide();
 				Prompt.enabled = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 			else if (DateGlobals.Weekday == DayOfWeek.Friday && Clock.HourTime > 13.5f)
 			{
 				Prompt.Hide();
 				Prompt.enabled = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 	}
@@ -51,7 +51,7 @@ public class RummageSpotScript : MonoBehaviour
 			{
 				Yandere.EmptyHands();
 				Yandere.CharacterAnimation.CrossFade("f02_rummage_00");
-				Yandere.ProgressBar.transform.parent.gameObject.SetActive(true);
+				Yandere.ProgressBar.transform.parent.gameObject.SetActive(value: true);
 				Yandere.RummageSpot = this;
 				Yandere.Rummaging = true;
 				Yandere.CanMove = false;
@@ -91,7 +91,7 @@ public class RummageSpotScript : MonoBehaviour
 				Prompt.Yandere.Inventory.AnswerSheet = false;
 				Prompt.Hide();
 				Prompt.enabled = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				Phase++;
 			}
 		}

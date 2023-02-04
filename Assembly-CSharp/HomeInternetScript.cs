@@ -147,19 +147,19 @@ public class HomeInternetScript : MonoBehaviour
 		Highlights[1].enabled = false;
 		Highlights[2].enabled = false;
 		Highlights[3].enabled = false;
-		YanderePost.gameObject.SetActive(false);
-		NavigationMenu.SetActive(true);
-		ChangeLabel.SetActive(false);
-		ChangeIcon.SetActive(false);
-		PostLabel.SetActive(false);
-		PostIcon.SetActive(false);
-		OnlineShopping.SetActive(false);
-		NewPostText.SetActive(false);
-		BG.SetActive(false);
+		YanderePost.gameObject.SetActive(value: false);
+		NavigationMenu.SetActive(value: true);
+		ChangeLabel.SetActive(value: false);
+		ChangeIcon.SetActive(value: false);
+		PostLabel.SetActive(value: false);
+		PostIcon.SetActive(value: false);
+		OnlineShopping.SetActive(value: false);
+		NewPostText.SetActive(value: false);
+		BG.SetActive(value: false);
 		if (!SchemeGlobals.EmbarassingSecret || StudentGlobals.GetStudentExposed(11))
 		{
-			WriteLabel.SetActive(false);
-			WriteIcon.SetActive(false);
+			WriteLabel.SetActive(value: false);
+			WriteIcon.SetActive(value: false);
 		}
 		GetPortrait(2);
 		StudentPost1Portrait.mainTexture = CurrentPortrait;
@@ -189,8 +189,8 @@ public class HomeInternetScript : MonoBehaviour
 		{
 			if (Input.GetButtonDown("A"))
 			{
-				NavigationMenu.SetActive(false);
-				SocialMedia.SetActive(true);
+				NavigationMenu.SetActive(value: false);
+				SocialMedia.SetActive(value: true);
 			}
 			else if (Input.GetButtonDown("X"))
 			{
@@ -201,11 +201,11 @@ public class HomeInternetScript : MonoBehaviour
 			}
 			else if (Input.GetButtonDown("Y"))
 			{
-				PauseScreen.MainMenu.SetActive(false);
+				PauseScreen.MainMenu.SetActive(value: false);
 				PauseScreen.Panel.enabled = true;
 				PauseScreen.Sideways = true;
 				PauseScreen.Show = true;
-				StudentInfoMenu.gameObject.SetActive(true);
+				StudentInfoMenu.gameObject.SetActive(value: true);
 				StudentInfoMenu.CyberStalking = true;
 				StartCoroutine(StudentInfoMenu.UpdatePortraits());
 				PromptBar.ClearButtons();
@@ -216,8 +216,8 @@ public class HomeInternetScript : MonoBehaviour
 			}
 			else if (Input.GetButtonDown("LB"))
 			{
-				NavigationMenu.SetActive(false);
-				OnlineShopping.SetActive(true);
+				NavigationMenu.SetActive(value: false);
+				OnlineShopping.SetActive(value: true);
 				MoneyLabel.text = "$" + PlayerGlobals.Money.ToString("F2", NumberFormatInfo.InvariantInfo);
 			}
 			else if (Input.GetButtonDown("B"))
@@ -290,21 +290,21 @@ public class HomeInternetScript : MonoBehaviour
 						if (!WritingPost)
 						{
 							AcceptLabel.text = "Select";
-							ChangeLabel.SetActive(true);
-							ChangeIcon.SetActive(true);
-							NewPostText.SetActive(true);
-							BG.SetActive(true);
+							ChangeLabel.SetActive(value: true);
+							ChangeIcon.SetActive(value: true);
+							NewPostText.SetActive(value: true);
+							BG.SetActive(value: true);
 							WritingPost = true;
 							Selected = 1;
 							UpdateHighlight();
 						}
 						else if (Selected == 1)
 						{
-							PauseScreen.MainMenu.SetActive(false);
+							PauseScreen.MainMenu.SetActive(value: false);
 							PauseScreen.Panel.enabled = true;
 							PauseScreen.Sideways = true;
 							PauseScreen.Show = true;
-							StudentInfoMenu.gameObject.SetActive(true);
+							StudentInfoMenu.gameObject.SetActive(value: true);
 							StudentInfoMenu.CyberBullying = true;
 							StartCoroutine(StudentInfoMenu.UpdatePortraits());
 							PromptBar.ClearButtons();
@@ -357,16 +357,16 @@ public class HomeInternetScript : MonoBehaviour
 					{
 						if (!WritingPost)
 						{
-							NavigationMenu.SetActive(true);
-							SocialMedia.SetActive(false);
+							NavigationMenu.SetActive(value: true);
+							SocialMedia.SetActive(value: false);
 						}
 						else
 						{
 							AcceptLabel.text = "Write";
-							ChangeLabel.SetActive(false);
-							ChangeIcon.SetActive(false);
-							PostLabel.SetActive(false);
-							PostIcon.SetActive(false);
+							ChangeLabel.SetActive(value: false);
+							ChangeIcon.SetActive(value: false);
+							PostLabel.SetActive(value: false);
+							PostIcon.SetActive(value: false);
 							ExitPost();
 						}
 					}
@@ -379,13 +379,13 @@ public class HomeInternetScript : MonoBehaviour
 				{
 					YanderePostLabel.text = "Did you know that " + PostLabels[1].text + " used to " + PostLabels[2].text + " about " + PostLabels[3].text + "?";
 					ExitPost();
-					InternetPrompts.SetActive(false);
-					ChangeLabel.SetActive(false);
-					ChangeIcon.SetActive(false);
-					WriteLabel.SetActive(false);
-					WriteIcon.SetActive(false);
-					PostLabel.SetActive(false);
-					PostIcon.SetActive(false);
+					InternetPrompts.SetActive(value: false);
+					ChangeLabel.SetActive(value: false);
+					ChangeIcon.SetActive(value: false);
+					WriteLabel.SetActive(value: false);
+					WriteIcon.SetActive(value: false);
+					PostLabel.SetActive(value: false);
+					PostIcon.SetActive(value: false);
 					PostSequence = true;
 					Posted = true;
 					if (Student == 11 && Location == 10 && Action == 10)
@@ -395,8 +395,8 @@ public class HomeInternetScript : MonoBehaviour
 				}
 				if (Input.GetKeyDown("space"))
 				{
-					WriteLabel.SetActive(true);
-					WriteIcon.SetActive(true);
+					WriteLabel.SetActive(value: true);
+					WriteIcon.SetActive(value: true);
 				}
 			}
 			if (!PostSequence)
@@ -410,7 +410,7 @@ public class HomeInternetScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 1f && Timer < 3f)
 			{
-				YanderePost.gameObject.SetActive(true);
+				YanderePost.gameObject.SetActive(value: true);
 				YanderePost.transform.localPosition = new Vector3(YanderePost.transform.localPosition.x, Mathf.Lerp(YanderePost.transform.localPosition.y, -155f, Time.deltaTime * 10f), YanderePost.transform.localPosition.z);
 				StudentPost1.transform.localPosition = new Vector3(StudentPost1.transform.localPosition.x, Mathf.Lerp(StudentPost1.transform.localPosition.y, -365f, Time.deltaTime * 10f), StudentPost1.transform.localPosition.z);
 				StudentPost2.transform.localPosition = new Vector3(StudentPost2.transform.localPosition.x, Mathf.Lerp(StudentPost2.transform.localPosition.y, -550f, Time.deltaTime * 10f), StudentPost2.transform.localPosition.z);
@@ -426,7 +426,7 @@ public class HomeInternetScript : MonoBehaviour
 				if (Timer > 5f)
 				{
 					PlayerGlobals.Reputation -= 20f;
-					InternetPrompts.SetActive(true);
+					InternetPrompts.SetActive(value: true);
 					PostSequence = false;
 				}
 				return;
@@ -488,10 +488,10 @@ public class HomeInternetScript : MonoBehaviour
 			if (Timer > 13f)
 			{
 				PlayerGlobals.Reputation -= 10f;
-				StudentGlobals.SetStudentExposed(11, true);
+				StudentGlobals.SetStudentExposed(11, value: true);
 				StudentGlobals.UpdateRivalReputation = true;
 				Debug.Log("''StudentGlobals.UpdateRivalReputation''' has been set to ''true''.");
-				InternetPrompts.SetActive(true);
+				InternetPrompts.SetActive(value: true);
 				PostSequence = false;
 			}
 		}
@@ -513,11 +513,11 @@ public class HomeInternetScript : MonoBehaviour
 					{
 						if (!AreYouSure.activeInHierarchy)
 						{
-							AreYouSure.SetActive(true);
+							AreYouSure.SetActive(value: true);
 						}
 						else
 						{
-							AreYouSure.SetActive(false);
+							AreYouSure.SetActive(value: false);
 							GameGlobals.SpareUniform = true;
 							PlayerGlobals.Money -= 33.33f;
 							MyAudio.Play();
@@ -536,11 +536,11 @@ public class HomeInternetScript : MonoBehaviour
 					{
 						if (!AreYouSure.activeInHierarchy)
 						{
-							AreYouSure.SetActive(true);
+							AreYouSure.SetActive(value: true);
 						}
 						else
 						{
-							AreYouSure.SetActive(false);
+							AreYouSure.SetActive(value: false);
 							GameGlobals.BlondeHair = true;
 							PlayerGlobals.Money -= 8.49f;
 							MyAudio.Play();
@@ -560,12 +560,12 @@ public class HomeInternetScript : MonoBehaviour
 			{
 				if (!AreYouSure.activeInHierarchy)
 				{
-					NavigationMenu.SetActive(true);
-					OnlineShopping.SetActive(false);
+					NavigationMenu.SetActive(value: true);
+					OnlineShopping.SetActive(value: false);
 				}
 				else
 				{
-					AreYouSure.SetActive(false);
+					AreYouSure.SetActive(value: false);
 				}
 			}
 			if (!AreYouSure.activeInHierarchy)
@@ -611,8 +611,8 @@ public class HomeInternetScript : MonoBehaviour
 		Highlights[1].enabled = false;
 		Highlights[2].enabled = false;
 		Highlights[3].enabled = false;
-		NewPostText.SetActive(false);
-		BG.SetActive(false);
+		NewPostText.SetActive(value: false);
+		BG.SetActive(value: false);
 		PostLabels[1].text = string.Empty;
 		PostLabels[2].text = string.Empty;
 		PostLabels[3].text = string.Empty;
@@ -652,8 +652,8 @@ public class HomeInternetScript : MonoBehaviour
 	{
 		if (PostLabels[1].text != string.Empty && PostLabels[2].text != string.Empty && PostLabels[3].text != string.Empty)
 		{
-			PostLabel.SetActive(true);
-			PostIcon.SetActive(true);
+			PostLabel.SetActive(value: true);
+			PostIcon.SetActive(value: true);
 		}
 	}
 

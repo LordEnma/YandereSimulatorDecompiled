@@ -13,7 +13,7 @@ public class SanityPillsScript : MonoBehaviour
 			Prompt.Yandere.SanityPills = true;
 			Prompt.enabled = false;
 			Prompt.Hide();
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 }

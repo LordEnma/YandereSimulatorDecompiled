@@ -11,7 +11,7 @@ public class CautionScript : MonoBehaviour
 		Sprite.color = new Color(Sprite.color.r, Sprite.color.g, Sprite.color.b, 0f);
 		if (GameGlobals.EightiesTutorial || GameGlobals.KokonaTutorial)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 

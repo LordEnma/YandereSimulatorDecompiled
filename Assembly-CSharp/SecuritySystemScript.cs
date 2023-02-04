@@ -34,7 +34,7 @@ public class SecuritySystemScript : MonoBehaviour
 			for (int i = 0; i < Cameras.Length; i++)
 			{
 				Cameras[i].transform.parent.transform.parent.gameObject.GetComponent<AudioSource>().Stop();
-				Cameras[i].gameObject.SetActive(false);
+				Cameras[i].gameObject.SetActive(value: false);
 			}
 			for (int i = 0; i < Detectors.Length; i++)
 			{

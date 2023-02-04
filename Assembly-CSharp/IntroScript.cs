@@ -11,6 +11,8 @@ public class IntroScript : MonoBehaviour
 
 	public PostProcessingProfile Profile;
 
+	public GlassShardSpawnerScript GlassShardSpawner;
+
 	public GameObject[] AttackPair;
 
 	public GameObject MontagePrefab;
@@ -239,15 +241,15 @@ public class IntroScript : MonoBehaviour
 			BrightenEnvironment();
 			base.transform.position = new Vector3(0f, 1.255f, 0.2f);
 			base.transform.eulerAngles = new Vector3(45f, 0f, 0f);
-			HoleInChestAnim.gameObject.SetActive(false);
-			BloodyHandsAnim.gameObject.SetActive(true);
-			Montage.gameObject.SetActive(false);
-			ConfessionScene.SetActive(false);
-			ParentAndChild.SetActive(false);
-			DeathCorridor.SetActive(false);
-			Stalking.SetActive(false);
-			School.SetActive(false);
-			Room.SetActive(false);
+			HoleInChestAnim.gameObject.SetActive(value: false);
+			BloodyHandsAnim.gameObject.SetActive(value: true);
+			Montage.gameObject.SetActive(value: false);
+			ConfessionScene.SetActive(value: false);
+			ParentAndChild.SetActive(value: false);
+			DeathCorridor.SetActive(value: false);
+			Stalking.SetActive(value: false);
+			School.SetActive(value: false);
+			Room.SetActive(value: false);
 			SetToDefault();
 			DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 			settings.focusDistance = 0.66666f;
@@ -339,7 +341,7 @@ public class IntroScript : MonoBehaviour
 			Narration.volume = FadeOutDarkness.color.a;
 			if (FadeOutDarkness.color.a == 1f)
 			{
-				SceneManager.LoadScene("PhoneScene");
+				SceneManager.LoadScene("KokonaTutorialScene");
 			}
 		}
 		if (!New)
@@ -374,7 +376,7 @@ public class IntroScript : MonoBehaviour
 			}
 			if (Narration.time > 159.898f)
 			{
-				SceneManager.LoadScene("PhoneScene");
+				SceneManager.LoadScene("KokonaTutorialScene");
 			}
 		}
 		if (!New)
@@ -395,18 +397,18 @@ public class IntroScript : MonoBehaviour
 			{
 				Object.Destroy(MontageParent.gameObject);
 				Darkness.color = new Color(0f, 0f, 0f, 0f);
-				Montage.gameObject.SetActive(false);
+				Montage.gameObject.SetActive(value: false);
 				PostProcessing.enabled = true;
 				Label.enabled = false;
 				GUIPP.enabled = true;
 				Speed = 0f;
 				if (GameGlobals.LoveSick)
 				{
-					LoveSickLogo.gameObject.SetActive(true);
+					LoveSickLogo.gameObject.SetActive(value: true);
 				}
 				else
 				{
-					Logo.gameObject.SetActive(true);
+					Logo.gameObject.SetActive(value: true);
 				}
 				DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 				settings.focusDistance = 10f;
@@ -427,12 +429,12 @@ public class IntroScript : MonoBehaviour
 			Speed += Time.deltaTime;
 			if (Speed > 11f)
 			{
-				SceneManager.LoadScene("PhoneScene");
+				SceneManager.LoadScene("KokonaTutorialScene");
 			}
 			else if (Speed > 5f && (Logo.gameObject.activeInHierarchy || LoveSickLogo.gameObject.activeInHierarchy))
 			{
-				LoveSickLogo.gameObject.SetActive(false);
-				Logo.gameObject.SetActive(false);
+				LoveSickLogo.gameObject.SetActive(value: false);
+				Logo.gameObject.SetActive(value: false);
 				GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
 				VibrationCheck = true;
 				VibrationTimer = 0.1f;
@@ -444,10 +446,10 @@ public class IntroScript : MonoBehaviour
 			{
 				RenderSettings.ambientLight = new Color(1f, 1f, 1f);
 				Darkness.color = new Color(0f, 0f, 0f, 0f);
-				DeathCorridor.SetActive(false);
+				DeathCorridor.SetActive(value: false);
 				PostProcessing.enabled = false;
-				BloodParent.SetActive(false);
-				Stalking.SetActive(false);
+				BloodParent.SetActive(value: false);
+				Stalking.SetActive(value: false);
 				BGM.volume = 1f;
 				Speed = 0f;
 				SetToDefault();
@@ -502,10 +504,10 @@ public class IntroScript : MonoBehaviour
 			if (base.transform.position.z < 0f)
 			{
 				RenderSettings.ambientLight = new Color(0.2f, 0.2f, 0.2f);
-				AttackPair[3].SetActive(false);
-				DeathCorridor.SetActive(true);
-				Stalking.SetActive(false);
-				Quad.SetActive(false);
+				AttackPair[3].SetActive(value: false);
+				DeathCorridor.SetActive(value: true);
+				Stalking.SetActive(value: false);
+				Quad.SetActive(value: false);
 				base.transform.position = new Vector3(0f, 1f, 0f);
 				base.transform.eulerAngles = new Vector3(0f, 0f, -15f);
 				ColorGradingModel.Settings settings5 = Profile.colorGrading.settings;
@@ -536,8 +538,8 @@ public class IntroScript : MonoBehaviour
 		{
 			if (School.activeInHierarchy)
 			{
-				School.SetActive(false);
-				Stalking.SetActive(true);
+				School.SetActive(value: false);
+				Stalking.SetActive(value: true);
 				base.transform.position = new Vector3(-0.02f, 1.12f, 1f);
 				base.transform.eulerAngles = new Vector3(0f, 0f, 0f);
 				SetToDefault();
@@ -581,13 +583,13 @@ public class IntroScript : MonoBehaviour
 				}
 				if (Timer > 186f)
 				{
-					DeathCorridor.SetActive(true);
+					DeathCorridor.SetActive(value: true);
 					Alpha = 1f;
 				}
 				else if (Timer > 185.6f)
 				{
-					AttackPair[2].SetActive(false);
-					AttackPair[3].SetActive(true);
+					AttackPair[2].SetActive(value: false);
+					AttackPair[3].SetActive(value: true);
 					GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
 					VibrationCheck = true;
 					VibrationTimer = 0.2f;
@@ -599,8 +601,8 @@ public class IntroScript : MonoBehaviour
 				}
 				else if (Timer > 184.8f)
 				{
-					AttackPair[1].SetActive(false);
-					AttackPair[2].SetActive(true);
+					AttackPair[1].SetActive(value: false);
+					AttackPair[2].SetActive(value: true);
 					GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
 					VibrationCheck = true;
 					VibrationTimer = 0.2f;
@@ -618,9 +620,9 @@ public class IntroScript : MonoBehaviour
 					settings6.channelMixer.blue = Vector3.zero;
 					Profile.colorGrading.settings = settings6;
 					Alpha = 0f;
-					Stalking.SetActive(false);
-					Quad.SetActive(true);
-					AttackPair[1].SetActive(true);
+					Stalking.SetActive(value: false);
+					Quad.SetActive(value: true);
+					AttackPair[1].SetActive(value: true);
 					GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
 					VibrationCheck = true;
 					VibrationTimer = 0.2f;
@@ -637,7 +639,7 @@ public class IntroScript : MonoBehaviour
 				SenpaiAnim.transform.parent.localPosition = new Vector3(0.533333f, 0f, -6.9f);
 				SenpaiAnim.transform.parent.localEulerAngles = new Vector3(0f, 90f, 0f);
 				SenpaiAnim.Play("Monday_1");
-				Osana.SetActive(true);
+				Osana.SetActive(value: true);
 				DepthOfFieldModel.Settings settings7 = Profile.depthOfField.settings;
 				settings7.focusDistance = 1.5f;
 				Profile.depthOfField.settings = settings7;
@@ -711,8 +713,8 @@ public class IntroScript : MonoBehaviour
 		{
 			if (Room.gameObject.activeInHierarchy)
 			{
-				Room.gameObject.SetActive(false);
-				School.SetActive(true);
+				Room.gameObject.SetActive(value: false);
+				School.SetActive(value: true);
 				base.transform.localPosition = new Vector3(-3f, 1f, 1.5f);
 				Darkness.color = new Color(0f, 0f, 0f, 1f);
 				Alpha = 1f;
@@ -763,7 +765,7 @@ public class IntroScript : MonoBehaviour
 					settings13.channelMixer.red = Vector3.MoveTowards(settings13.channelMixer.red, new Vector3(2f, 0f, 0f), Time.deltaTime);
 					settings13.channelMixer.blue = Vector3.MoveTowards(settings13.channelMixer.blue, new Vector3(0f, 0f, 2f), Time.deltaTime);
 					Profile.colorGrading.settings = settings13;
-					Particles.SetActive(true);
+					Particles.SetActive(value: true);
 				}
 			}
 			else if (Narration.time > 98f)
@@ -783,8 +785,8 @@ public class IntroScript : MonoBehaviour
 		{
 			if (ParentAndChild.gameObject.activeInHierarchy)
 			{
-				ParentAndChild.gameObject.SetActive(false);
-				Room.SetActive(true);
+				ParentAndChild.gameObject.SetActive(value: false);
+				Room.SetActive(value: true);
 				base.transform.position = new Vector3(0f, 1f, 0f);
 				Darkness.color = new Color(0f, 0f, 0f, 1f);
 				Alpha = 1f;
@@ -808,8 +810,9 @@ public class IntroScript : MonoBehaviour
 		{
 			if (ConfessionScene.gameObject.activeInHierarchy)
 			{
-				ConfessionScene.gameObject.SetActive(false);
-				ParentAndChild.SetActive(true);
+				GlassShardSpawner.enabled = false;
+				ConfessionScene.gameObject.SetActive(value: false);
+				ParentAndChild.SetActive(value: true);
 				X = 15f;
 				Y = -90f;
 				X2 = 15f;
@@ -848,8 +851,8 @@ public class IntroScript : MonoBehaviour
 				SetToDefault();
 				RenderSettings.ambientLight = new Color(1f, 1f, 1f);
 				RenderSettings.fog = false;
-				HoleInChestAnim.gameObject.SetActive(false);
-				ConfessionScene.SetActive(true);
+				HoleInChestAnim.gameObject.SetActive(value: false);
+				ConfessionScene.SetActive(value: true);
 				base.transform.position = new Vector3(0f, 1f, -1f);
 				Darkness.color = new Color(0f, 0f, 0f, 1f);
 				Alpha = 1f;
@@ -865,6 +868,7 @@ public class IntroScript : MonoBehaviour
 			base.transform.position -= new Vector3(0f, 0f, Time.deltaTime * Speed);
 			if (ID > 10)
 			{
+				GlassShardSpawner.Fall = true;
 				YoungRyobaAnim["f02_introHoldHands_00"].speed = 0.5f;
 				YoungRyobaAnim.Play();
 				YoungFatherAnim["introHoldHands_00"].speed = 0.5f;
@@ -898,13 +902,14 @@ public class IntroScript : MonoBehaviour
 			DepthOfFieldModel.Settings settings22 = Profile.depthOfField.settings;
 			if (BloodyHandsAnim.gameObject.activeInHierarchy)
 			{
+				GlassShardSpawner.enabled = true;
 				RenderSettings.ambientLight = new Color(0f, 0f, 0f);
 				RenderSettings.fog = true;
 				base.transform.position = new Vector3(0.012f, 1.13f, 0.029f);
 				base.transform.eulerAngles = new Vector3(0f, 0f, -15f);
-				BloodyHandsAnim.gameObject.SetActive(false);
-				HoleInChestAnim.gameObject.SetActive(true);
-				Alpha = -1f;
+				BloodyHandsAnim.gameObject.SetActive(value: false);
+				HoleInChestAnim.gameObject.SetActive(value: true);
+				Alpha = 1f;
 				Darkness.color = new Color(0f, 0f, 0f, Alpha);
 				SetToDefault();
 				settings22.focusDistance = 0.1f;
@@ -948,7 +953,15 @@ public class IntroScript : MonoBehaviour
 			}
 			if (ID > 8)
 			{
-				Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * 0.3f);
+				if (Narration.time > 35f)
+				{
+					Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * 0.3f);
+				}
+				Darkness.color = new Color(0f, 0f, 0f, Alpha);
+			}
+			else
+			{
+				Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.2f);
 				Darkness.color = new Color(0f, 0f, 0f, Alpha);
 			}
 		}
@@ -1115,7 +1128,6 @@ public class IntroScript : MonoBehaviour
 		BloomModel.Settings settings3 = Profile.bloom.settings;
 		settings3.bloom.intensity = 1f;
 		Profile.bloom.settings = settings3;
-		Debug.Log("Resetting vignette to default.");
 		VignetteModel.Settings settings4 = Profile.vignette.settings;
 		settings4.color = Color.black;
 		settings4.intensity = 0.45f;
@@ -1130,8 +1142,8 @@ public class IntroScript : MonoBehaviour
 		{
 			for (int i = 1; i < OriginalHairs.Length; i++)
 			{
-				OriginalHairs[i].SetActive(false);
-				VtuberHairs[i].SetActive(true);
+				OriginalHairs[i].SetActive(value: false);
+				VtuberHairs[i].SetActive(value: true);
 			}
 			for (int i = 1; i < UniformSetters.Length; i++)
 			{
@@ -1150,7 +1162,7 @@ public class IntroScript : MonoBehaviour
 		{
 			for (int j = 1; j < VtuberHairs.Length; j++)
 			{
-				VtuberHairs[j].SetActive(false);
+				VtuberHairs[j].SetActive(value: false);
 			}
 		}
 	}

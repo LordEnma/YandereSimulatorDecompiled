@@ -60,7 +60,7 @@ public class TopicInterfaceScript : MonoBehaviour
 	{
 		if (Student == null)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		if (GameGlobals.Eighties)
 		{
@@ -69,7 +69,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		}
 		if (GameGlobals.KokonaTutorial)
 		{
-			TutorialShadow.SetActive(true);
+			TutorialShadow.SetActive(value: true);
 		}
 	}
 
@@ -115,7 +115,7 @@ public class TopicInterfaceScript : MonoBehaviour
 					Yandere.TalkTimer = 5f;
 				}
 				Yandere.PromptBar.Show = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				Time.timeScale = 1f;
 			}
 		}
@@ -132,7 +132,7 @@ public class TopicInterfaceScript : MonoBehaviour
 			Yandere.Interaction = YandereInteractionType.Bye;
 			Yandere.TalkTimer = 2f;
 			Yandere.PromptBar.Show = false;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			Time.timeScale = 1f;
 		}
 	}
@@ -177,20 +177,20 @@ public class TopicInterfaceScript : MonoBehaviour
 			}
 		}
 		Label.text = Statement;
-		EmbarassingSecret.SetActive(false);
+		EmbarassingSecret.SetActive(value: false);
 		if (!Socializing && TargetStudentID == StudentManager.RivalID && StudentManager.EmbarassingSecret)
 		{
-			EmbarassingSecret.SetActive(true);
+			EmbarassingSecret.SetActive(value: true);
 		}
 		if (Positive)
 		{
-			NegativeRemark.SetActive(false);
-			PositiveRemark.SetActive(true);
+			NegativeRemark.SetActive(value: false);
+			PositiveRemark.SetActive(value: true);
 		}
 		else
 		{
-			PositiveRemark.SetActive(false);
-			NegativeRemark.SetActive(true);
+			PositiveRemark.SetActive(value: false);
+			NegativeRemark.SetActive(value: true);
 		}
 	}
 

@@ -29,8 +29,8 @@ public class TextMessageManagerScript : MonoBehaviour
 			PromptBar.Label[5].text = "Choose";
 			PromptBar.UpdateButtons();
 			PauseScreen.Sideways = true;
-			ServicesMenu.SetActive(true);
-			base.gameObject.SetActive(false);
+			ServicesMenu.SetActive(value: true);
+			base.gameObject.SetActive(value: false);
 			PauseScreen.StudentInfoMenu.SendingHome = false;
 		}
 	}
@@ -41,8 +41,8 @@ public class TextMessageManagerScript : MonoBehaviour
 		PromptBar.Label[1].text = "Exit";
 		PromptBar.UpdateButtons();
 		PauseScreen.Sideways = false;
-		ServicesMenu.SetActive(false);
-		base.gameObject.SetActive(true);
+		ServicesMenu.SetActive(value: false);
+		base.gameObject.SetActive(value: true);
 		if (NewMessage != null)
 		{
 			Object.Destroy(NewMessage);

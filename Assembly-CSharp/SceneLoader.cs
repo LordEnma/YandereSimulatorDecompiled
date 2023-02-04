@@ -62,16 +62,16 @@ public class SceneLoader : MonoBehaviour
 			SchoolGlobals.SchoolAtmosphereSet = true;
 			SchoolGlobals.PreviousSchoolAtmosphere = 1f;
 			SchoolGlobals.SchoolAtmosphere = 1f;
-			PlayerGlobals.SetCannotBringItem(4, true);
-			PlayerGlobals.SetCannotBringItem(5, true);
-			PlayerGlobals.SetCannotBringItem(6, true);
-			PlayerGlobals.SetCannotBringItem(7, true);
+			PlayerGlobals.SetCannotBringItem(4, value: true);
+			PlayerGlobals.SetCannotBringItem(5, value: true);
+			PlayerGlobals.SetCannotBringItem(6, value: true);
+			PlayerGlobals.SetCannotBringItem(7, value: true);
 			PlayerGlobals.Money = 10f;
 		}
 		if (GameGlobals.Eighties)
 		{
-			LightAnimation.SetActive(false);
-			LightAnimation1989.SetActive(true);
+			LightAnimation.SetActive(value: false);
+			LightAnimation1989.SetActive(value: true);
 		}
 		if (SchoolGlobals.SchoolAtmosphere < 0.5f || GameGlobals.LoveSick)
 		{
@@ -83,13 +83,13 @@ public class SceneLoader : MonoBehaviour
 			ControllerLines.color = new Color(1f, 0f, 0f, 1f);
 			if (GameGlobals.Eighties)
 			{
-				LightAnimation1989.SetActive(false);
-				DarkAnimation1989.SetActive(true);
+				LightAnimation1989.SetActive(value: false);
+				DarkAnimation1989.SetActive(value: true);
 			}
 			else
 			{
-				LightAnimation.SetActive(false);
-				DarkAnimation.SetActive(true);
+				LightAnimation.SetActive(value: false);
+				DarkAnimation.SetActive(value: true);
 			}
 			for (int i = 1; i < ControllerText.Length; i++)
 			{
@@ -102,13 +102,13 @@ public class SceneLoader : MonoBehaviour
 		}
 		if (PlayerGlobals.UsingGamepad)
 		{
-			Keyboard.SetActive(false);
-			Gamepad.SetActive(true);
+			Keyboard.SetActive(value: false);
+			Gamepad.SetActive(value: true);
 		}
 		else
 		{
-			Keyboard.SetActive(true);
-			Gamepad.SetActive(false);
+			Keyboard.SetActive(value: true);
+			Gamepad.SetActive(value: false);
 		}
 		Debugging = false;
 	}

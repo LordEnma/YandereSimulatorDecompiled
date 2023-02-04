@@ -63,7 +63,7 @@ public class FeedListScript : MonoBehaviour
 			GameObject gameObject = Object.Instantiate(Line, Highlight.position, Quaternion.identity);
 			gameObject.transform.parent = Highlight.parent;
 			gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-			gameObject.SetActive(false);
+			gameObject.SetActive(value: false);
 			Lines[num] = gameObject;
 			num++;
 			if (num < 90)
@@ -196,28 +196,28 @@ public class FeedListScript : MonoBehaviour
 
 	private void CrossOutStudents()
 	{
-		Lines[21].SetActive(true);
-		Lines[22].SetActive(true);
-		Lines[23].SetActive(true);
-		Lines[24].SetActive(true);
-		Lines[25].SetActive(true);
-		Lines[66].SetActive(true);
-		Lines[67].SetActive(true);
-		Lines[68].SetActive(true);
-		Lines[69].SetActive(true);
-		Lines[70].SetActive(true);
-		Lines[76].SetActive(true);
-		Lines[77].SetActive(true);
-		Lines[78].SetActive(true);
-		Lines[79].SetActive(true);
-		Lines[80].SetActive(true);
+		Lines[21].SetActive(value: true);
+		Lines[22].SetActive(value: true);
+		Lines[23].SetActive(value: true);
+		Lines[24].SetActive(value: true);
+		Lines[25].SetActive(value: true);
+		Lines[66].SetActive(value: true);
+		Lines[67].SetActive(value: true);
+		Lines[68].SetActive(value: true);
+		Lines[69].SetActive(value: true);
+		Lines[70].SetActive(value: true);
+		Lines[76].SetActive(value: true);
+		Lines[77].SetActive(value: true);
+		Lines[78].SetActive(value: true);
+		Lines[79].SetActive(value: true);
+		Lines[80].SetActive(value: true);
 		if (Prompt.Yandere.StudentManager.Eighties)
 		{
-			Lines[81].SetActive(true);
-			Lines[82].SetActive(true);
-			Lines[83].SetActive(true);
-			Lines[84].SetActive(true);
-			Lines[85].SetActive(true);
+			Lines[81].SetActive(value: true);
+			Lines[82].SetActive(value: true);
+			Lines[83].SetActive(value: true);
+			Lines[84].SetActive(value: true);
+			Lines[85].SetActive(value: true);
 		}
 	}
 }

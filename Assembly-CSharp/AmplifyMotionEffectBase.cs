@@ -139,125 +139,35 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	internal Material ReprojectionMaterial
-	{
-		get
-		{
-			return m_reprojectionMaterial;
-		}
-	}
+	internal Material ReprojectionMaterial => m_reprojectionMaterial;
 
-	internal Material SolidVectorsMaterial
-	{
-		get
-		{
-			return m_solidVectorsMaterial;
-		}
-	}
+	internal Material SolidVectorsMaterial => m_solidVectorsMaterial;
 
-	internal Material SkinnedVectorsMaterial
-	{
-		get
-		{
-			return m_skinnedVectorsMaterial;
-		}
-	}
+	internal Material SkinnedVectorsMaterial => m_skinnedVectorsMaterial;
 
-	internal Material ClothVectorsMaterial
-	{
-		get
-		{
-			return m_clothVectorsMaterial;
-		}
-	}
+	internal Material ClothVectorsMaterial => m_clothVectorsMaterial;
 
-	internal RenderTexture MotionRenderTexture
-	{
-		get
-		{
-			return m_motionRT;
-		}
-	}
+	internal RenderTexture MotionRenderTexture => m_motionRT;
 
-	public Dictionary<Camera, AmplifyMotionCamera> LinkedCameras
-	{
-		get
-		{
-			return m_linkedCameras;
-		}
-	}
+	public Dictionary<Camera, AmplifyMotionCamera> LinkedCameras => m_linkedCameras;
 
-	internal float MotionScaleNorm
-	{
-		get
-		{
-			return m_motionScaleNorm;
-		}
-	}
+	internal float MotionScaleNorm => m_motionScaleNorm;
 
-	internal float FixedMotionScaleNorm
-	{
-		get
-		{
-			return m_fixedMotionScaleNorm;
-		}
-	}
+	internal float FixedMotionScaleNorm => m_fixedMotionScaleNorm;
 
-	public AmplifyMotionCamera BaseCamera
-	{
-		get
-		{
-			return m_baseCamera;
-		}
-	}
+	public AmplifyMotionCamera BaseCamera => m_baseCamera;
 
-	internal WorkerThreadPool WorkerPool
-	{
-		get
-		{
-			return m_workerThreadPool;
-		}
-	}
+	internal WorkerThreadPool WorkerPool => m_workerThreadPool;
 
-	public static bool IsD3D
-	{
-		get
-		{
-			return m_isD3D;
-		}
-	}
+	public static bool IsD3D => m_isD3D;
 
-	public bool CanUseGPU
-	{
-		get
-		{
-			return m_canUseGPU;
-		}
-	}
+	public bool CanUseGPU => m_canUseGPU;
 
-	public static bool IgnoreMotionScaleWarning
-	{
-		get
-		{
-			return m_ignoreMotionScaleWarning;
-		}
-	}
+	public static bool IgnoreMotionScaleWarning => m_ignoreMotionScaleWarning;
 
-	public static AmplifyMotionEffectBase FirstInstance
-	{
-		get
-		{
-			return m_firstInstance;
-		}
-	}
+	public static AmplifyMotionEffectBase FirstInstance => m_firstInstance;
 
-	public static AmplifyMotionEffectBase Instance
-	{
-		get
-		{
-			return m_firstInstance;
-		}
-	}
+	public static AmplifyMotionEffectBase Instance => m_firstInstance;
 
 	private void Awake()
 	{
@@ -535,7 +445,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 		InitializeCameras();
 		InitializeCommandBuffers();
-		UpdateRenderTextures(true);
+		UpdateRenderTextures(qualityChanged: true);
 		m_linkedCameras.TryGetValue(m_camera, out m_baseCamera);
 		if (m_baseCamera == null)
 		{
@@ -679,7 +589,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		{
 			if (!m_activeObjects.ContainsKey(array[i]))
 			{
-				TryRegister(array[i], true);
+				TryRegister(array[i], autoReg: true);
 			}
 		}
 	}
@@ -710,7 +620,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 			{
 				continue;
 			}
-			string text = material.GetTag("RenderType", false);
+			string text = material.GetTag("RenderType", searchFallbacks: false);
 			if (text == "Opaque" || text == "TransparentCutout")
 			{
 				if (!material.IsKeywordEnabled("_ALPHABLEND_ON"))
@@ -790,7 +700,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	{
 		if (!m_activeObjects.ContainsKey(gameObj))
 		{
-			TryRegister(gameObj, false);
+			TryRegister(gameObj, autoReg: false);
 		}
 	}
 
@@ -798,7 +708,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	{
 		if (!m_activeObjects.ContainsKey(gameObj))
 		{
-			TryRegister(gameObj, false);
+			TryRegister(gameObj, autoReg: false);
 		}
 	}
 
@@ -806,7 +716,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	{
 		if (!m_activeObjects.ContainsKey(gameObj))
 		{
-			TryRegister(gameObj, false);
+			TryRegister(gameObj, autoReg: false);
 		}
 		foreach (Transform item in gameObj.transform)
 		{
@@ -818,7 +728,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	{
 		if (!m_activeObjects.ContainsKey(gameObj))
 		{
-			TryRegister(gameObj, false);
+			TryRegister(gameObj, autoReg: false);
 		}
 		foreach (Transform item in gameObj.transform)
 		{

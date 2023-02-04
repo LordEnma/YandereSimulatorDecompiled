@@ -19,13 +19,11 @@ public class SerializableHashSet<T> : HashSet<T>, ISerializationCallbackReceiver
 	public void OnBeforeSerialize()
 	{
 		elements.Clear();
-		using (Enumerator enumerator = GetEnumerator())
+		using Enumerator enumerator = GetEnumerator();
+		while (enumerator.MoveNext())
 		{
-			while (enumerator.MoveNext())
-			{
-				T current = enumerator.Current;
-				elements.Add(current);
-			}
+			T current = enumerator.Current;
+			elements.Add(current);
 		}
 	}
 
@@ -64,15 +62,13 @@ public class SerializableHashSet<T> : HashSet<T>, ISerializationCallbackReceiver
 	public void WriteXml(XmlWriter writer)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-		using (Enumerator enumerator = GetEnumerator())
+		using Enumerator enumerator = GetEnumerator();
+		while (enumerator.MoveNext())
 		{
-			while (enumerator.MoveNext())
-			{
-				T current = enumerator.Current;
-				writer.WriteStartElement("Element");
-				xmlSerializer.Serialize(writer, current);
-				writer.WriteEndElement();
-			}
+			T current = enumerator.Current;
+			writer.WriteStartElement("Element");
+			xmlSerializer.Serialize(writer, current);
+			writer.WriteEndElement();
 		}
 	}
 }

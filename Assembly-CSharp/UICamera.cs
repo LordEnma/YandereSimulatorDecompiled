@@ -61,13 +61,7 @@ public class UICamera : MonoBehaviour
 
 		public int ignoreDelta;
 
-		public float deltaTime
-		{
-			get
-			{
-				return RealTime.time - pressTime;
-			}
-		}
+		public float deltaTime => RealTime.time - pressTime;
 
 		public bool isOverUI
 		{
@@ -444,13 +438,7 @@ public class UICamera : MonoBehaviour
 	public static GetTouchCallback GetInputTouch;
 
 	[Obsolete("Use new OnDragStart / OnDragOver / OnDragOut / OnDragEnd events instead")]
-	public bool stickyPress
-	{
-		get
-		{
-			return true;
-		}
-	}
+	public bool stickyPress => true;
 
 	public static bool disableController
 	{
@@ -642,37 +630,13 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	public static MouseOrTouch mouse0
-	{
-		get
-		{
-			return mMouse[0];
-		}
-	}
+	public static MouseOrTouch mouse0 => mMouse[0];
 
-	public static MouseOrTouch mouse1
-	{
-		get
-		{
-			return mMouse[1];
-		}
-	}
+	public static MouseOrTouch mouse1 => mMouse[1];
 
-	public static MouseOrTouch mouse2
-	{
-		get
-		{
-			return mMouse[2];
-		}
-	}
+	public static MouseOrTouch mouse2 => mMouse[2];
 
-	private bool handlesEvents
-	{
-		get
-		{
-			return eventHandler == this;
-		}
-	}
+	private bool handlesEvents => eventHandler == this;
 
 	public Camera cachedCamera
 	{
@@ -859,7 +823,7 @@ public class UICamera : MonoBehaviour
 				Notify(mSelected, "OnSelect", false);
 				if (onSelect != null)
 				{
-					onSelect(mSelected, false);
+					onSelect(mSelected, state: false);
 				}
 				mSelected = null;
 			}
@@ -868,7 +832,7 @@ public class UICamera : MonoBehaviour
 				Notify(mHover, "OnHover", false);
 				if (onHover != null)
 				{
-					onHover(mHover, false);
+					onHover(mHover, state: false);
 				}
 			}
 			mHover = value;
@@ -890,7 +854,7 @@ public class UICamera : MonoBehaviour
 				}
 				if (onHover != null)
 				{
-					onHover(mHover, true);
+					onHover(mHover, state: true);
 				}
 				Notify(mHover, "OnHover", true);
 			}
@@ -948,7 +912,7 @@ public class UICamera : MonoBehaviour
 				Notify(controller.current, "OnHover", false);
 				if (onHover != null)
 				{
-					onHover(controller.current, false);
+					onHover(controller.current, state: false);
 				}
 				controller.current = null;
 			}
@@ -990,7 +954,7 @@ public class UICamera : MonoBehaviour
 				Notify(mSelected, "OnSelect", false);
 				if (onSelect != null)
 				{
-					onSelect(mSelected, false);
+					onSelect(mSelected, state: false);
 				}
 			}
 			mSelected = value;
@@ -1013,7 +977,7 @@ public class UICamera : MonoBehaviour
 				mInputFocus = mSelected.activeInHierarchy && mSelected.GetComponent<UIInput>() != null;
 				if (onSelect != null)
 				{
-					onSelect(mSelected, true);
+					onSelect(mSelected, state: true);
 				}
 				Notify(mSelected, "OnSelect", true);
 			}
@@ -1028,13 +992,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	[Obsolete("Use either 'CountInputSources()' or 'activeTouches.Count'")]
-	public static int touchCount
-	{
-		get
-		{
-			return CountInputSources();
-		}
-	}
+	public static int touchCount => CountInputSources();
 
 	public static int dragCount
 	{
@@ -1943,7 +1901,7 @@ public class UICamera : MonoBehaviour
 				tapCount = touch2.tapCount;
 			}
 			currentTouchID = ((!allowMultiTouch) ? 1 : fingerId);
-			currentTouch = GetTouch(currentTouchID, true);
+			currentTouch = GetTouch(currentTouchID, createIfMissing: true);
 			bool flag = phase == TouchPhase.Began || currentTouch.touchBegan;
 			bool flag2 = phase == TouchPhase.Canceled || phase == TouchPhase.Ended;
 			currentTouch.delta = position - currentTouch.pos;
@@ -2172,7 +2130,7 @@ public class UICamera : MonoBehaviour
 			currentTouch.pressStarted = true;
 			if (onPress != null && (bool)currentTouch.pressed)
 			{
-				onPress(currentTouch.pressed, false);
+				onPress(currentTouch.pressed, state: false);
 			}
 			Notify(currentTouch.pressed, "OnPress", false);
 			if (currentScheme == ControlScheme.Mouse && hoveredObject == null && currentTouch.current != null)
@@ -2186,7 +2144,7 @@ public class UICamera : MonoBehaviour
 			currentTouch.dragStarted = false;
 			if (onPress != null && (bool)currentTouch.pressed)
 			{
-				onPress(currentTouch.pressed, true);
+				onPress(currentTouch.pressed, state: true);
 			}
 			Notify(currentTouch.pressed, "OnPress", true);
 			if (!(mSelected != currentTouch.pressed))
@@ -2199,7 +2157,7 @@ public class UICamera : MonoBehaviour
 				Notify(mSelected, "OnSelect", false);
 				if (onSelect != null)
 				{
-					onSelect(mSelected, false);
+					onSelect(mSelected, state: false);
 				}
 			}
 			mSelected = currentTouch.pressed;
@@ -2212,7 +2170,7 @@ public class UICamera : MonoBehaviour
 				mInputFocus = mSelected.activeInHierarchy && mSelected.GetComponent<UIInput>() != null;
 				if (onSelect != null)
 				{
-					onSelect(mSelected, true);
+					onSelect(mSelected, state: true);
 				}
 				Notify(mSelected, "OnSelect", true);
 			}
@@ -2328,7 +2286,7 @@ public class UICamera : MonoBehaviour
 			}
 			if (onPress != null)
 			{
-				onPress(currentTouch.pressed, false);
+				onPress(currentTouch.pressed, state: false);
 			}
 			Notify(currentTouch.pressed, "OnPress", false);
 			if (isMouse && HasCollider(currentTouch.pressed))
@@ -2337,7 +2295,7 @@ public class UICamera : MonoBehaviour
 				{
 					if (onHover != null)
 					{
-						onHover(currentTouch.current, true);
+						onHover(currentTouch.current, state: true);
 					}
 					Notify(currentTouch.current, "OnHover", true);
 				}
@@ -2454,7 +2412,7 @@ public class UICamera : MonoBehaviour
 			{
 				if (onTooltip != null)
 				{
-					onTooltip(mTooltip, false);
+					onTooltip(mTooltip, state: false);
 				}
 				Notify(mTooltip, "OnTooltip", false);
 			}
@@ -2464,7 +2422,7 @@ public class UICamera : MonoBehaviour
 			{
 				if (onTooltip != null)
 				{
-					onTooltip(mTooltip, true);
+					onTooltip(mTooltip, state: true);
 				}
 				Notify(mTooltip, "OnTooltip", true);
 			}

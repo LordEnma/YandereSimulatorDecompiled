@@ -60,7 +60,7 @@ public class UIDragScrollView : MonoBehaviour
 	{
 		if (mPressed && mScroll != null && mScroll.GetComponentInChildren<UIWrapContent>() == null)
 		{
-			mScroll.Press(false);
+			mScroll.Press(pressed: false);
 			mScroll = null;
 		}
 	}

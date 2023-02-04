@@ -106,15 +106,15 @@ public class StreetManagerScript : MonoBehaviour
 		if (!HomeGlobals.Night)
 		{
 			Day = true;
-			MaidLabel.SetActive(false);
-			MaidPrompt.SetActive(false);
+			MaidLabel.SetActive(value: false);
+			MaidPrompt.SetActive(value: false);
 			Clock.HourLabel.text = "6:00 AM";
 			Sunlight.shadows = LightShadows.Soft;
-			Yakuza.transform.parent.gameObject.SetActive(false);
+			Yakuza.transform.parent.gameObject.SetActive(value: false);
 			if (DateGlobals.Weekday == DayOfWeek.Sunday)
 			{
-				MaidLabel.SetActive(true);
-				MaidPrompt.SetActive(true);
+				MaidLabel.SetActive(value: true);
+				MaidPrompt.SetActive(value: true);
 			}
 		}
 		if (GameGlobals.Eighties)
@@ -123,9 +123,9 @@ public class StreetManagerScript : MonoBehaviour
 		}
 		else
 		{
-			Yakuza.transform.parent.gameObject.SetActive(false);
-			EightiesCivilians.SetActive(false);
-			ModernCivilians.SetActive(true);
+			Yakuza.transform.parent.gameObject.SetActive(value: false);
+			EightiesCivilians.SetActive(value: false);
+			ModernCivilians.SetActive(value: true);
 		}
 		if (GameGlobals.YakuzaPhase > 0)
 		{
@@ -268,9 +268,9 @@ public class StreetManagerScript : MonoBehaviour
 		HUDLabels[1].transform.parent.localPosition -= new Vector3(25f, 25f, 0f);
 		JukeboxDay.clip = DayStreet80s;
 		JukeboxNight.clip = NightStreet80s;
-		KenchoShip.SetActive(false);
-		EightiesCivilians.SetActive(true);
-		ModernCivilians.SetActive(false);
+		KenchoShip.SetActive(value: false);
+		EightiesCivilians.SetActive(value: true);
+		ModernCivilians.SetActive(value: false);
 		Konbini.material.mainTexture = EightiesKonbini;
 	}
 

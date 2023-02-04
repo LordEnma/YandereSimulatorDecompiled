@@ -10,13 +10,7 @@ public abstract class Entity
 	[SerializeField]
 	private DeathType deathType;
 
-	public GenderType Gender
-	{
-		get
-		{
-			return gender;
-		}
-	}
+	public GenderType Gender => gender;
 
 	public DeathType DeathType
 	{

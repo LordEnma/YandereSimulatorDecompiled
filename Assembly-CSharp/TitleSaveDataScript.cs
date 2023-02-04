@@ -41,8 +41,8 @@ public class TitleSaveDataScript : MonoBehaviour
 		{
 			int profile = GameGlobals.Profile;
 			GameGlobals.Profile = ID;
-			EmptyFile.SetActive(false);
-			Data.SetActive(true);
+			EmptyFile.SetActive(value: false);
+			Data.SetActive(value: true);
 			Kills.text = "Kills: " + PlayerGlobals.Kills;
 			Mood.text = "Mood: " + Mathf.RoundToInt(SchoolGlobals.SchoolAtmosphere * 100f);
 			Alerts.text = "Alerts: " + PlayerGlobals.Alerts;
@@ -94,8 +94,8 @@ public class TitleSaveDataScript : MonoBehaviour
 		}
 		else
 		{
-			EmptyFile.SetActive(true);
-			Data.SetActive(false);
+			EmptyFile.SetActive(value: true);
+			Data.SetActive(value: false);
 			Blood.enabled = false;
 		}
 	}

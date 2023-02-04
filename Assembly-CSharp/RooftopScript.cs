@@ -15,10 +15,10 @@ public class RooftopScript : MonoBehaviour
 			GameObject[] dumpPoints = DumpPoints;
 			for (int i = 0; i < dumpPoints.Length; i++)
 			{
-				dumpPoints[i].SetActive(false);
+				dumpPoints[i].SetActive(value: false);
 			}
-			Railing.SetActive(false);
-			Fence.SetActive(true);
+			Railing.SetActive(value: false);
+			Fence.SetActive(value: true);
 		}
 	}
 }

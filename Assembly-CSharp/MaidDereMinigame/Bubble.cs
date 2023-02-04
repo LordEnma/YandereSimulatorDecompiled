@@ -30,24 +30,24 @@ namespace MaidDereMinigame
 			if (toPause)
 			{
 				GetComponent<SpriteRenderer>().enabled = false;
-				foodRenderer.gameObject.SetActive(false);
+				foodRenderer.gameObject.SetActive(value: false);
 			}
 			else
 			{
 				GetComponent<SpriteRenderer>().enabled = true;
-				foodRenderer.gameObject.SetActive(true);
+				foodRenderer.gameObject.SetActive(value: true);
 			}
 		}
 
 		public void BubbleReachedMax()
 		{
-			foodRenderer.gameObject.SetActive(true);
+			foodRenderer.gameObject.SetActive(value: true);
 			foodRenderer.sprite = food.largeSprite;
 		}
 
 		public void BubbleClosing()
 		{
-			foodRenderer.gameObject.SetActive(false);
+			foodRenderer.gameObject.SetActive(value: false);
 		}
 
 		public void KillBubble()

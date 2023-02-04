@@ -56,13 +56,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		public static SceneWrapper Scenes
-		{
-			get
-			{
-				return Instance.scenes;
-			}
-		}
+		public static SceneWrapper Scenes => Instance.scenes;
 
 		public static void GoToExitScene(bool fadeOut = true)
 		{
@@ -114,7 +108,7 @@ namespace MaidDereMinigame
 						SceneManager.LoadScene("CalendarScene");
 					}
 				}
-			}, fadeOut, true));
+			}, fadeOut, destroyGameController: true));
 		}
 
 		private void Awake()
@@ -186,7 +180,7 @@ namespace MaidDereMinigame
 
 		public static void TimeUp()
 		{
-			SetPause(true);
+			SetPause(toPause: true);
 			Instance.tipPage.Init();
 			Instance.tipPage.DisplayTips(Instance.tips);
 			UnityEngine.Object.FindObjectOfType<GameStarter>().GetComponent<AudioSource>().Stop();
@@ -218,7 +212,7 @@ namespace MaidDereMinigame
 			if (Instance.angryCustomers >= Instance.activeDifficultyVariables.failQuantity)
 			{
 				FailGame.GameFailed();
-				SetPause(true);
+				SetPause(toPause: true);
 			}
 		}
 	}

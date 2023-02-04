@@ -47,14 +47,14 @@ public class CollectibleScript : MonoBehaviour
 	{
 		if ((CollectibleType == CollectibleType.HeadmasterTape && CollectibleGlobals.GetHeadmasterTapeCollected(ID)) || (CollectibleType == CollectibleType.BasementTape && CollectibleGlobals.GetBasementTapeCollected(ID)) || (CollectibleType == CollectibleType.Manga && CollectibleGlobals.GetMangaCollected(ID)) || (CollectibleType == CollectibleType.Tape && CollectibleGlobals.GetTapeCollected(ID)) || (CollectibleType == CollectibleType.Panty && CollectibleGlobals.GetPantyPurchased(11)))
 		{
-			CollectibleType collectibleType = CollectibleType;
-			int num = 5;
+			_ = CollectibleType;
+			_ = 5;
 			Object.Destroy(base.gameObject);
 		}
 		else
 		{
-			CollectibleType collectibleType2 = CollectibleType;
-			int num2 = 5;
+			_ = CollectibleType;
+			_ = 5;
 		}
 		if (GameGlobals.LoveSick || MissionModeGlobals.MissionMode || (GameGlobals.Eighties && CollectibleType == CollectibleType.Manga) || (GameGlobals.Eighties && CollectibleType == CollectibleType.Tape))
 		{
@@ -72,7 +72,7 @@ public class CollectibleScript : MonoBehaviour
 			}
 			else if (CollectibleType == CollectibleType.BasementTape)
 			{
-				CollectibleGlobals.SetBasementTapeCollected(ID, true);
+				CollectibleGlobals.SetBasementTapeCollected(ID, value: true);
 			}
 			else if (CollectibleType == CollectibleType.Manga)
 			{

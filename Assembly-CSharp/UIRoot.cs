@@ -203,7 +203,7 @@ public class UIRoot : MonoBehaviour
 		}
 		else
 		{
-			UpdateScale(false);
+			UpdateScale(updateAnchors: false);
 		}
 	}
 

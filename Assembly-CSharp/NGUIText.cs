@@ -119,17 +119,11 @@ public static class NGUIText
 
 	private static float[] mBoldOffset = new float[8] { -0.25f, 0f, 0.25f, 0f, 0f, -0.25f, 0f, 0.25f };
 
-	public static bool isDynamic
-	{
-		get
-		{
-			return bitmapFont == null;
-		}
-	}
+	public static bool isDynamic => bitmapFont == null;
 
 	public static void Update()
 	{
-		Update(true);
+		Update(request: true);
 	}
 
 	public static void Update(bool request)
@@ -362,7 +356,7 @@ public static class NGUIText
 		bool underline = false;
 		bool strike = false;
 		bool ignoreColor = false;
-		return ParseSymbol(text, ref index, null, false, ref sub, ref bold, ref italic, ref underline, ref strike, ref ignoreColor);
+		return ParseSymbol(text, ref index, null, premultiply: false, ref sub, ref bold, ref italic, ref underline, ref strike, ref ignoreColor);
 	}
 
 	[DebuggerHidden]
@@ -590,7 +584,7 @@ public static class NGUIText
 					bool strike = false;
 					bool ignoreColor = false;
 					int index = num;
-					if (ParseSymbol(text, ref index, null, false, ref sub, ref bold, ref italic, ref underline, ref strike, ref ignoreColor))
+					if (ParseSymbol(text, ref index, null, premultiply: false, ref sub, ref bold, ref italic, ref underline, ref strike, ref ignoreColor))
 					{
 						text = text.Remove(num, index - num);
 						length = text.Length;
@@ -1017,7 +1011,7 @@ public static class NGUIText
 
 	public static bool WrapText(string text, out string finalText, bool wrapLineColors = false)
 	{
-		return WrapText(text, out finalText, false, wrapLineColors);
+		return WrapText(text, out finalText, keepCharCount: false, wrapLineColors);
 	}
 
 	public static bool WrapText(string text, out string finalText, bool keepCharCount, bool wrapLineColors, bool useEllipsis = false)
@@ -2034,8 +2028,8 @@ public static class NGUIText
 		float num2 = 0f;
 		float num3 = 0f;
 		float num4 = (float)fontSize * fontScale;
-		int indexOffset = ((caret != null) ? caret.Count : 0);
-		int num5 = ((highlight != null) ? highlight.Count : 0);
+		int indexOffset = caret?.Count ?? 0;
+		int num5 = highlight?.Count ?? 0;
 		int length = text.Length;
 		int i = 0;
 		int num6 = 0;

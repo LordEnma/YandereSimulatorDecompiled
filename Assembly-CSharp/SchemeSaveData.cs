@@ -74,15 +74,15 @@ public class SchemeSaveData
 		}
 		foreach (int item3 in data.schemeStatus)
 		{
-			SchemeGlobals.SetSchemeStatus(item3, true);
+			SchemeGlobals.SetSchemeStatus(item3, value: true);
 		}
 		foreach (int item4 in data.schemeUnlocked)
 		{
-			SchemeGlobals.SetSchemeUnlocked(item4, true);
+			SchemeGlobals.SetSchemeUnlocked(item4, value: true);
 		}
 		foreach (int item5 in data.servicePurchased)
 		{
-			SchemeGlobals.SetServicePurchased(item5, true);
+			SchemeGlobals.SetServicePurchased(item5, value: true);
 		}
 	}
 }

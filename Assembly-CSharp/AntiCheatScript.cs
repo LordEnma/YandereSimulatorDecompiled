@@ -26,7 +26,7 @@ public class AntiCheatScript : MonoBehaviour
 	{
 		if (other.gameObject.name == "YandereChan")
 		{
-			Jukebox.SetActive(false);
+			Jukebox.SetActive(value: false);
 			Check = true;
 			MyAudio.Play();
 		}

@@ -60,7 +60,7 @@ public class YouTubeScript : MonoBehaviour
 			Phase++;
 			if (Type == 5)
 			{
-				Label[Phase].SetActive(true);
+				Label[Phase].SetActive(value: true);
 			}
 		}
 		if (Phase > 0)
@@ -110,7 +110,7 @@ public class YouTubeScript : MonoBehaviour
 				for (int i = 1; i < Trees.Length; i++)
 				{
 					Debug.Log("Deactivating trees...or trying to.");
-					Trees[i].SetActive(false);
+					Trees[i].SetActive(value: false);
 				}
 				EightiesEffects.enabled = true;
 			}

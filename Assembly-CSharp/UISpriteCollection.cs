@@ -159,12 +159,7 @@ public class UISpriteCollection : UIBasicSprite
 			{
 				return material;
 			}
-			INGUIAtlas iNGUIAtlas = atlas;
-			if (iNGUIAtlas != null)
-			{
-				return iNGUIAtlas.spriteMaterial;
-			}
-			return null;
+			return atlas?.spriteMaterial;
 		}
 		set
 		{
@@ -190,31 +185,9 @@ public class UISpriteCollection : UIBasicSprite
 		}
 	}
 
-	public override float pixelSize
-	{
-		get
-		{
-			INGUIAtlas iNGUIAtlas = atlas;
-			if (iNGUIAtlas != null)
-			{
-				return iNGUIAtlas.pixelSize;
-			}
-			return 1f;
-		}
-	}
+	public override float pixelSize => atlas?.pixelSize ?? 1f;
 
-	public override bool premultipliedAlpha
-	{
-		get
-		{
-			INGUIAtlas iNGUIAtlas = atlas;
-			if (iNGUIAtlas != null)
-			{
-				return iNGUIAtlas.premultipliedAlpha;
-			}
-			return false;
-		}
-	}
+	public override bool premultipliedAlpha => atlas?.premultipliedAlpha ?? false;
 
 	public override Vector4 border
 	{
@@ -252,7 +225,7 @@ public class UISpriteCollection : UIBasicSprite
 			return;
 		}
 		int count = verts.Count;
-		Vector4 drawRegion2 = base.drawRegion;
+		_ = base.drawRegion;
 		foreach (KeyValuePair<object, Sprite> mSprite in mSprites)
 		{
 			Sprite value = mSprite.Value;
@@ -382,8 +355,7 @@ public class UISpriteCollection : UIBasicSprite
 
 	public Sprite? GetSprite(object id)
 	{
-		Sprite value;
-		if (mSprites.TryGetValue(id, out value))
+		if (mSprites.TryGetValue(id, out var value))
 		{
 			return value;
 		}
@@ -425,8 +397,7 @@ public class UISpriteCollection : UIBasicSprite
 
 	public bool IsActive(object id)
 	{
-		Sprite value;
-		if (mSprites.TryGetValue(id, out value))
+		if (mSprites.TryGetValue(id, out var value))
 		{
 			return value.enabled;
 		}
@@ -435,8 +406,7 @@ public class UISpriteCollection : UIBasicSprite
 
 	public bool SetActive(object id, bool visible)
 	{
-		Sprite value;
-		if (mSprites.TryGetValue(id, out value))
+		if (mSprites.TryGetValue(id, out var value))
 		{
 			if (value.enabled != visible)
 			{
@@ -454,8 +424,7 @@ public class UISpriteCollection : UIBasicSprite
 
 	public bool SetPosition(object id, Vector2 pos, bool visible = true)
 	{
-		Sprite value;
-		if (mSprites.TryGetValue(id, out value))
+		if (mSprites.TryGetValue(id, out var value))
 		{
 			if (value.pos != pos)
 			{
@@ -565,12 +534,12 @@ public class UISpriteCollection : UIBasicSprite
 			mLastPress = GetCurrentSpriteID();
 			if (mLastPress != null)
 			{
-				onPress(mLastPress, true);
+				onPress(mLastPress, isPressed: true);
 			}
 		}
 		else if (mLastPress != null)
 		{
-			onPress(mLastPress, false);
+			onPress(mLastPress, isPressed: false);
 			mLastPress = null;
 		}
 	}
@@ -602,12 +571,12 @@ public class UISpriteCollection : UIBasicSprite
 		{
 			if (mLastHover != null)
 			{
-				onHover(mLastHover, false);
+				onHover(mLastHover, isOver: false);
 			}
 			mLastHover = currentSpriteID;
 			if (mLastHover != null)
 			{
-				onHover(mLastHover, true);
+				onHover(mLastHover, isOver: true);
 			}
 		}
 	}
@@ -630,17 +599,17 @@ public class UISpriteCollection : UIBasicSprite
 		{
 			if (mLastTooltip != null)
 			{
-				onTooltip(mLastTooltip, false);
+				onTooltip(mLastTooltip, show: false);
 			}
 			mLastTooltip = GetCurrentSpriteID();
 			if (mLastTooltip != null)
 			{
-				onTooltip(mLastTooltip, true);
+				onTooltip(mLastTooltip, show: true);
 			}
 		}
 		else
 		{
-			onTooltip(mLastTooltip, false);
+			onTooltip(mLastTooltip, show: false);
 			mLastTooltip = null;
 		}
 	}

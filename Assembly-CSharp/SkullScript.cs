@@ -106,7 +106,7 @@ public class SkullScript : MonoBehaviour
 					}
 					else if (RitualKnife.GetComponent<WeaponScript>().Blood.enabled)
 					{
-						DebugMenu.SetActive(false);
+						DebugMenu.SetActive(value: false);
 						Yandere.Character.GetComponent<Animation>().CrossFade(Yandere.IdleAnim);
 						Yandere.CanMove = false;
 						Object.Instantiate(DarkAura, Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
@@ -114,15 +114,15 @@ public class SkullScript : MonoBehaviour
 						Clock.StopTime = true;
 						if (StudentManager.Students[21] == null || StudentManager.Students[26] == null || StudentManager.Students[31] == null || StudentManager.Students[36] == null || StudentManager.Students[41] == null || StudentManager.Students[46] == null || StudentManager.Students[51] == null || StudentManager.Students[56] == null || StudentManager.Students[61] == null || StudentManager.Students[66] == null || StudentManager.Students[71] == null)
 						{
-							EmptyDemon.SetActive(false);
+							EmptyDemon.SetActive(value: false);
 						}
 						else if (!StudentManager.Students[21].Alive || !StudentManager.Students[26].Alive || !StudentManager.Students[31].Alive || !StudentManager.Students[36].Alive || !StudentManager.Students[41].Alive || !StudentManager.Students[46].Alive || !StudentManager.Students[51].Alive || !StudentManager.Students[56].Alive || !StudentManager.Students[61].Alive || !StudentManager.Students[66].Alive || !StudentManager.Students[71].Alive)
 						{
-							EmptyDemon.SetActive(false);
+							EmptyDemon.SetActive(value: false);
 						}
 						if (StudentManager.EmptyDemon)
 						{
-							EmptyDemon.SetActive(false);
+							EmptyDemon.SetActive(value: false);
 						}
 					}
 				}
@@ -133,7 +133,7 @@ public class SkullScript : MonoBehaviour
 			FlameTimer = Mathf.MoveTowards(FlameTimer, 0f, Time.deltaTime);
 			if (FlameTimer == 0f)
 			{
-				RitualKnife.GetComponent<WeaponScript>().FireEffect.gameObject.SetActive(true);
+				RitualKnife.GetComponent<WeaponScript>().FireEffect.gameObject.SetActive(value: true);
 				RitualKnife.GetComponent<WeaponScript>().Prompt.enabled = true;
 				RitualKnife.GetComponent<WeaponScript>().FireEffect.Play();
 				RitualKnife.GetComponent<WeaponScript>().FireAudio.Play();
@@ -160,17 +160,17 @@ public class SkullScript : MonoBehaviour
 					if (Darkness.color.a == 1f)
 					{
 						Yandere.transform.position = new Vector3(0f, 2000f, 0f);
-						Yandere.Character.SetActive(true);
+						Yandere.Character.SetActive(value: true);
 						Yandere.SetAnimationLayers();
-						HeartbeatCamera.SetActive(false);
-						FPS.SetActive(false);
-						HUD.SetActive(false);
-						Hell.SetActive(true);
+						HeartbeatCamera.SetActive(value: false);
+						FPS.SetActive(value: false);
+						HUD.SetActive(value: false);
+						Hell.SetActive(value: true);
 					}
 				}
 				else if (Timer > 1f)
 				{
-					Yandere.Character.SetActive(false);
+					Yandere.Character.SetActive(value: false);
 				}
 			}
 			else

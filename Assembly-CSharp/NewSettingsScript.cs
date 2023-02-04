@@ -134,8 +134,8 @@ public class NewSettingsScript : MonoBehaviour
 			{
 				if (SchoolScene)
 				{
-					PauseScreen.MainMenu.SetActive(true);
-					base.gameObject.SetActive(false);
+					PauseScreen.MainMenu.SetActive(value: true);
+					base.gameObject.SetActive(value: false);
 					base.enabled = false;
 				}
 				NewTitleScreen.Speed = 0f;

@@ -365,9 +365,9 @@ public class OfferHelpScript : MonoBehaviour
 					{
 						Yandere.PauseScreen.StudentInfoMenu.Targeting = true;
 						StartCoroutine(Yandere.PauseScreen.PhotoGallery.GetPhotos());
-						Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(true);
+						Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
 						Yandere.PauseScreen.PhotoGallery.NamingBully = true;
-						Yandere.PauseScreen.MainMenu.SetActive(false);
+						Yandere.PauseScreen.MainMenu.SetActive(value: false);
 						Yandere.PauseScreen.Panel.enabled = true;
 						Yandere.PauseScreen.Sideways = true;
 						Yandere.PauseScreen.Show = true;
@@ -390,7 +390,7 @@ public class OfferHelpScript : MonoBehaviour
 				}
 				if (StudentManager.Students[EventStudentID] != null && (StudentManager.Students[EventStudentID].Pushed || !StudentManager.Students[EventStudentID].Alive))
 				{
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 				}
 			}
 		}
@@ -460,13 +460,13 @@ public class OfferHelpScript : MonoBehaviour
 			{
 				Yandere.NotificationManager.TopicName = "Family";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				ConversationGlobals.SetTopicDiscovered(23, true);
+				ConversationGlobals.SetTopicDiscovered(23, value: true);
 			}
 			if (!StudentManager.GetTopicLearnedByStudent(23, EventStudentID))
 			{
 				Yandere.NotificationManager.TopicName = "Family";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-				StudentManager.SetTopicLearnedByStudent(23, EventStudentID, true);
+				StudentManager.SetTopicLearnedByStudent(23, EventStudentID, boolean: true);
 			}
 		}
 		if (EventPhase == EventSpeech.Length - 1)

@@ -46,7 +46,7 @@ public class WashingMachineScript : MonoBehaviour
 
 	private void Start()
 	{
-		Panel.SetActive(false);
+		Panel.SetActive(value: false);
 	}
 
 	private void Update()
@@ -73,7 +73,7 @@ public class WashingMachineScript : MonoBehaviour
 			float num = Mathf.CeilToInt(WashTimer * 60f);
 			float num2 = Mathf.Floor(num / 60f);
 			float num3 = Mathf.RoundToInt(num % 60f);
-			TimeLabel.text = string.Format("{0:00}:{1:00}", num2, num3);
+			TimeLabel.text = $"{num2:00}:{num3:00}";
 			if (WashTimer <= 0f)
 			{
 				Finish();
@@ -97,7 +97,7 @@ public class WashingMachineScript : MonoBehaviour
 			ClothingList[ClothingInMachine].MyRigidbody.useGravity = true;
 			ClothingList[ClothingInMachine].KeepGravity = true;
 			ClothingInMachine++;
-			Colliders.SetActive(true);
+			Colliders.SetActive(value: true);
 			AnimationTimer = 2f;
 			Speed = 0f;
 			Open = true;
@@ -113,7 +113,7 @@ public class WashingMachineScript : MonoBehaviour
 			{
 				Prompt.HideButton[0] = true;
 				Prompt.HideButton[3] = true;
-				Panel.SetActive(true);
+				Panel.SetActive(value: true);
 				WashTimer = 60f;
 				Washing = true;
 				MyAudio.clip = WashSFX;
@@ -191,7 +191,7 @@ public class WashingMachineScript : MonoBehaviour
 					ClothingList[i].RedPaint = false;
 				}
 				FoldedUniformScript component2 = ClothingList[i].GetComponent<FoldedUniformScript>();
-				Debug.Log("FoldedUniform is: " + (((object)component2 != null) ? component2.ToString() : null));
+				Debug.Log("FoldedUniform is: " + component2);
 				if ((component2 != null && component2.Type == 2) || (component2 != null && component2.Type == 3) || (component2 != null && component2.ClubAttire))
 				{
 					Debug.Log("The player put something into the washing machine that was not a regular school uniform.");
@@ -217,8 +217,8 @@ public class WashingMachineScript : MonoBehaviour
 		}
 		Prompt.Yandere.StudentManager.OriginalUniforms += ClothingInMachine;
 		ClothingInMachine = 0;
-		Colliders.SetActive(false);
-		Panel.SetActive(false);
+		Colliders.SetActive(value: false);
+		Panel.SetActive(value: false);
 		Washing = false;
 		MyAudio.clip = OpenSFX;
 		MyAudio.loop = false;

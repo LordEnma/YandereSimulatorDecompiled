@@ -19,13 +19,7 @@ public class UICenterOnChild : MonoBehaviour
 
 	private GameObject mCenteredObject;
 
-	public GameObject centeredObject
-	{
-		get
-		{
-			return mCenteredObject;
-		}
-	}
+	public GameObject centeredObject => mCenteredObject;
 
 	private void Start()
 	{
@@ -70,10 +64,7 @@ public class UICenterOnChild : MonoBehaviour
 			mScrollView = NGUITools.FindInParents<UIScrollView>(base.gameObject);
 			if (mScrollView == null)
 			{
-				Type type = GetType();
-				string obj = (((object)type != null) ? type.ToString() : null);
-				Type typeFromHandle = typeof(UIScrollView);
-				Debug.LogWarning(obj + " requires " + (((object)typeFromHandle != null) ? typeFromHandle.ToString() : null) + " on a parent object in order to work", this);
+				Debug.LogWarning(GetType()?.ToString() + " requires " + typeof(UIScrollView)?.ToString() + " on a parent object in order to work", this);
 				base.enabled = false;
 				return;
 			}
@@ -162,18 +153,12 @@ public class UICenterOnChild : MonoBehaviour
 			Vector3 vector4 = UICamera.currentTouch.totalDelta;
 			vector4 = base.transform.rotation * vector4;
 			float num7 = 0f;
-			switch (mScrollView.movement)
+			num7 = mScrollView.movement switch
 			{
-			case UIScrollView.Movement.Horizontal:
-				num7 = vector4.x;
-				break;
-			case UIScrollView.Movement.Vertical:
-				num7 = 0f - vector4.y;
-				break;
-			default:
-				num7 = vector4.magnitude;
-				break;
-			}
+				UIScrollView.Movement.Horizontal => vector4.x, 
+				UIScrollView.Movement.Vertical => 0f - vector4.y, 
+				_ => vector4.magnitude, 
+			};
 			if (Mathf.Abs(num7) > nextPageThreshold)
 			{
 				if (num7 > nextPageThreshold)

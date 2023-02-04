@@ -169,22 +169,22 @@ public class HeadmasterScript : MonoBehaviour
 	private void Start()
 	{
 		MyAnimation["HeadmasterRaiseTazer"].speed = 2f;
-		Tazer.SetActive(false);
+		Tazer.SetActive(value: false);
 		IdleAnim = "HeadmasterType";
 		if (GameGlobals.Eighties)
 		{
 			IdleAnim = "HeadmasterDeskWritePingPong";
 			MyAnimation.CrossFade(IdleAnim);
-			EightiesPaper.SetActive(true);
-			Trashcan.SetActive(false);
-			Laptop.SetActive(false);
-			Pen.SetActive(true);
-			EightiesAttacher.gameObject.SetActive(true);
+			EightiesPaper.SetActive(value: true);
+			Trashcan.SetActive(value: false);
+			Laptop.SetActive(value: false);
+			Pen.SetActive(value: true);
+			EightiesAttacher.gameObject.SetActive(value: true);
 			OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().material = Transparency;
-			OriginalMesh[2].SetActive(false);
-			OriginalMesh[3].SetActive(false);
-			OriginalMesh[4].SetActive(false);
-			OriginalMesh[5].SetActive(false);
+			OriginalMesh[2].SetActive(value: false);
+			OriginalMesh[3].SetActive(value: false);
+			OriginalMesh[4].SetActive(value: false);
+			OriginalMesh[5].SetActive(value: false);
 			HeadmasterSpeechText = EightiesHeadmasterSpeechText;
 			HeadmasterThreatText = EightiesHeadmasterThreatText;
 			HeadmasterBoxText = EightiesHeadmasterBoxText;
@@ -333,7 +333,7 @@ public class HeadmasterScript : MonoBehaviour
 					Aiming = false;
 					if ((double)MyAnimation["HeadmasterLowerTazer"].time > 1.33333)
 					{
-						Tazer.SetActive(false);
+						Tazer.SetActive(value: false);
 					}
 					if (MyAnimation["HeadmasterLowerTazer"].time > MyAnimation["HeadmasterLowerTazer"].length)
 					{
@@ -434,7 +434,7 @@ public class HeadmasterScript : MonoBehaviour
 			}
 			if ((double)MyAnimation["HeadmasterRaiseTazer"].time > 1.166666)
 			{
-				Tazer.SetActive(true);
+				Tazer.SetActive(value: true);
 				Aiming = true;
 			}
 		}

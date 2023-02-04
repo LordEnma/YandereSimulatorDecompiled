@@ -22,7 +22,7 @@ public class DumpsterHandleScript : MonoBehaviour
 
 	private void Start()
 	{
-		Panel.SetActive(false);
+		Panel.SetActive(value: false);
 	}
 
 	private void Update()
@@ -97,7 +97,7 @@ public class DumpsterHandleScript : MonoBehaviour
 		Prompt.Yandere.CanMove = true;
 		PromptBar.ClearButtons();
 		PromptBar.Show = false;
-		Panel.SetActive(false);
+		Panel.SetActive(value: false);
 		Grabbed = false;
 	}
 }

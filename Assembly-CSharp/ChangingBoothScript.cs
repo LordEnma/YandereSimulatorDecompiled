@@ -48,12 +48,25 @@ public class ChangingBoothScript : MonoBehaviour
 	{
 		if (!Occupied && Prompt.Circle[0].fillAmount == 0f)
 		{
-			Yandere.EmptyHands();
-			Yandere.CanMove = false;
-			YandereChanging = true;
-			Occupied = true;
-			Prompt.Hide();
-			Prompt.enabled = false;
+			Prompt.Circle[0].fillAmount = 1f;
+			if (Yandere.ClubAttire && Yandere.PreviousSchoolwear == 0)
+			{
+				Yandere.NotificationManager.CustomText = "Change clothing elsewhere.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Yandere.NotificationManager.CustomText = "No outfit to change into.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Yandere.NotificationManager.CustomText = "Cannot remove club attire now.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else
+			{
+				Yandere.EmptyHands();
+				Yandere.CanMove = false;
+				YandereChanging = true;
+				Occupied = true;
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
 		}
 		if (!Occupied)
 		{

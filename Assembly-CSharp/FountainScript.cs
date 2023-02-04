@@ -31,8 +31,8 @@ public class FountainScript : MonoBehaviour
 			StartTimer += Time.deltaTime;
 			if (StartTimer > 1f)
 			{
-				SpraySFX.gameObject.SetActive(true);
-				DropsSFX.gameObject.SetActive(true);
+				SpraySFX.gameObject.SetActive(value: true);
+				DropsSFX.gameObject.SetActive(value: true);
 			}
 		}
 		if (Drowning)

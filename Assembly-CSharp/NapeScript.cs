@@ -29,7 +29,7 @@ public class NapeScript : MonoBehaviour
 			MyStudent.Routine = false;
 			MyStudent.DeathType = DeathType.Weapon;
 			MyStudent.Yandere.Bloodiness += 20f;
-			BloodEffect.SetActive(true);
+			BloodEffect.SetActive(value: true);
 			Nape.enabled = false;
 			base.enabled = false;
 		}

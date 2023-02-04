@@ -43,7 +43,7 @@ public class BakeSaleScript : MonoBehaviour
 		{
 			if (!AmaiSuccess.activeInHierarchy)
 			{
-				AmaiFail.SetActive(true);
+				AmaiFail.SetActive(value: true);
 				if (Input.GetKeyDown("`"))
 				{
 					SceneManager.LoadScene("LoadingScene");
@@ -57,7 +57,7 @@ public class BakeSaleScript : MonoBehaviour
 				PlayerPrefs.SetInt("Amai", 1);
 				PlayerPrefs.SetInt("a", 1);
 			}
-			AmaiSuccess.SetActive(true);
+			AmaiSuccess.SetActive(value: true);
 		}
 	}
 

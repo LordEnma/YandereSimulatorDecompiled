@@ -24,8 +24,7 @@ public class DetectClickScript : MonoBehaviour
 
 	private void Update()
 	{
-		RaycastHit hitInfo;
-		if (Input.GetMouseButtonDown(0) && Physics.Raycast(GUICamera.ScreenPointToRay(Input.mousePosition), out hitInfo, 100f) && hitInfo.collider == MyCollider && Label.color.a == 1f)
+		if (Input.GetMouseButtonDown(0) && Physics.Raycast(GUICamera.ScreenPointToRay(Input.mousePosition), out var hitInfo, 100f) && hitInfo.collider == MyCollider && Label.color.a == 1f)
 		{
 			Sprite.color = new Color(1f, 1f, 1f, 1f);
 			Clicked = true;

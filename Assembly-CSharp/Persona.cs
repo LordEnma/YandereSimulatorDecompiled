@@ -87,13 +87,7 @@ public class Persona
 		}
 	};
 
-	public PersonaType Type
-	{
-		get
-		{
-			return type;
-		}
-	}
+	public PersonaType Type => type;
 
 	public Persona(PersonaType type)
 	{

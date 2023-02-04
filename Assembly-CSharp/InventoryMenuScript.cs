@@ -47,8 +47,8 @@ public class InventoryMenuScript : MonoBehaviour
 	{
 		if (Input.GetButtonDown("B"))
 		{
-			PauseScreen.MainMenu.SetActive(true);
-			base.gameObject.SetActive(false);
+			PauseScreen.MainMenu.SetActive(value: true);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 }

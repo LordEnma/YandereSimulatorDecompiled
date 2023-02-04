@@ -75,7 +75,7 @@ public class AmbientEventScript : MonoBehaviour
 		{
 			if (DateGlobals.Weekday != EventDay || GameGlobals.Eighties)
 			{
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				base.enabled = false;
 			}
 			else if ((!GameGlobals.GrudgeConversationHappened && StudentGlobals.GetStudentGrudge(2)) || (!GameGlobals.GrudgeConversationHappened && StudentGlobals.GetStudentGrudge(3)))
@@ -94,7 +94,7 @@ public class AmbientEventScript : MonoBehaviour
 		}
 		else if (DateGlobals.Weekday != EventDay || GameGlobals.Eighties)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			base.enabled = false;
 		}
 	}

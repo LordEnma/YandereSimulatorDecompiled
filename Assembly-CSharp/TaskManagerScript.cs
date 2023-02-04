@@ -32,7 +32,7 @@ public class TaskManagerScript : MonoBehaviour
 		{
 			if (TaskObjects[j] != null)
 			{
-				TaskObjects[j].SetActive(false);
+				TaskObjects[j].SetActive(value: false);
 			}
 		}
 		if (TaskStatus[46] == 1)
@@ -43,6 +43,10 @@ public class TaskManagerScript : MonoBehaviour
 		if (StudentManager != null)
 		{
 			UpdateTaskStatus();
+		}
+		if (GameGlobals.Eighties)
+		{
+			MuddyFootprintParent.gameObject.SetActive(value: false);
 		}
 		Initialized = true;
 	}
@@ -70,7 +74,7 @@ public class TaskManagerScript : MonoBehaviour
 			}
 			Yandere.NotificationManager.TopicName = "Cats";
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-			StudentManager.SetTopicLearnedByStudent(15, 11, true);
+			StudentManager.SetTopicLearnedByStudent(15, 11, boolean: true);
 			TaskStatus[11] = 2;
 			Object.Destroy(TaskObjects[11]);
 		}
@@ -115,12 +119,12 @@ public class TaskManagerScript : MonoBehaviour
 					{
 						StudentManager.Students[4].TaskPhase = 4;
 					}
-					TaskObjects[4].SetActive(true);
+					TaskObjects[4].SetActive(value: true);
 				}
 			}
 			else if (TaskObjects[4] != null)
 			{
-				TaskObjects[4].SetActive(false);
+				TaskObjects[4].SetActive(value: false);
 			}
 			if (TaskStatus[8] == 1 && StudentManager.Students[8] != null)
 			{
@@ -141,12 +145,12 @@ public class TaskManagerScript : MonoBehaviour
 					{
 						StudentManager.Students[11].TaskPhase = 4;
 					}
-					TaskObjects[11].SetActive(true);
+					TaskObjects[11].SetActive(value: true);
 				}
 			}
 			else if (TaskObjects[11] != null)
 			{
-				TaskObjects[11].SetActive(false);
+				TaskObjects[11].SetActive(value: false);
 			}
 			if (TaskStatus[25] == 1)
 			{
@@ -156,12 +160,12 @@ public class TaskManagerScript : MonoBehaviour
 					{
 						StudentManager.Students[25].TaskPhase = 4;
 					}
-					TaskObjects[25].SetActive(true);
+					TaskObjects[25].SetActive(value: true);
 				}
 			}
 			else if (TaskObjects[25] != null)
 			{
-				TaskObjects[25].SetActive(false);
+				TaskObjects[25].SetActive(value: false);
 			}
 			if (TaskStatus[28] == 1 && StudentManager.Students[28] != null)
 			{
@@ -202,12 +206,12 @@ public class TaskManagerScript : MonoBehaviour
 					{
 						StudentManager.Students[37].TaskPhase = 4;
 					}
-					TaskObjects[37].SetActive(true);
+					TaskObjects[37].SetActive(value: true);
 				}
 			}
 			else if (TaskObjects[37] != null)
 			{
-				TaskObjects[37].SetActive(false);
+				TaskObjects[37].SetActive(value: false);
 			}
 			if (TaskStatus[38] == 1)
 			{
@@ -228,12 +232,12 @@ public class TaskManagerScript : MonoBehaviour
 					{
 						StudentManager.Students[41].TaskPhase = 4;
 					}
-					TaskObjects[41].SetActive(true);
+					TaskObjects[41].SetActive(value: true);
 				}
 			}
 			else if (TaskObjects[41] != null)
 			{
-				TaskObjects[41].SetActive(false);
+				TaskObjects[41].SetActive(value: false);
 			}
 			if (TaskStatus[46] == 1 && StudentManager.Students[46] != null)
 			{

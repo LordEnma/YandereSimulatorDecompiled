@@ -45,12 +45,12 @@ public class FunGirlScript : MonoBehaviour
 		{
 			if (studentScript != null)
 			{
-				studentScript.gameObject.SetActive(false);
+				studentScript.gameObject.SetActive(value: false);
 			}
 		}
 		StudentManager.Yandere.NoDebug = true;
-		base.gameObject.SetActive(true);
-		Jukebox.SetActive(false);
+		base.gameObject.SetActive(value: true);
+		Jukebox.SetActive(value: false);
 		HUD.enabled = false;
 	}
 }

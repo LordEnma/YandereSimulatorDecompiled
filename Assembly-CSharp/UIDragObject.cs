@@ -152,7 +152,7 @@ public class UIDragObject : MonoBehaviour
 		else if (mPressed && mTouchID == UICamera.currentTouchID)
 		{
 			mPressed = false;
-			if (restrictWithinPanel && dragEffect == DragEffect.MomentumAndSpring && panelRegion.ConstrainTargetToBounds(target, ref mBounds, false))
+			if (restrictWithinPanel && dragEffect == DragEffect.MomentumAndSpring && panelRegion.ConstrainTargetToBounds(target, ref mBounds, immediate: false))
 			{
 				CancelMovement();
 			}
@@ -195,7 +195,7 @@ public class UIDragObject : MonoBehaviour
 		if (restrictWithinPanel)
 		{
 			mBounds.center += target.localPosition - localPosition;
-			if (dragEffect != DragEffect.MomentumAndSpring && panelRegion.ConstrainTargetToBounds(target, ref mBounds, true))
+			if (dragEffect != DragEffect.MomentumAndSpring && panelRegion.ConstrainTargetToBounds(target, ref mBounds, immediate: true))
 			{
 				CancelMovement();
 			}
@@ -235,7 +235,7 @@ public class UIDragObject : MonoBehaviour
 			UIScrollView component2 = panelRegion.GetComponent<UIScrollView>();
 			if (component2 != null)
 			{
-				component2.UpdateScrollbars(true);
+				component2.UpdateScrollbars(recalculateBounds: true);
 			}
 		}
 		else

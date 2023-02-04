@@ -91,12 +91,12 @@ public class PowerSwitchScript : MonoBehaviour
 			if (DrinkingFountain.Puddle != null && DrinkingFountain.Puddle.gameObject.activeInHierarchy && PowerOutlet.SabotagedOutlet.activeInHierarchy)
 			{
 				Electricity.transform.position = DrinkingFountain.Puddle.transform.position;
-				Electricity.SetActive(true);
+				Electricity.SetActive(value: true);
 			}
 		}
 		else
 		{
-			Electricity.SetActive(false);
+			Electricity.SetActive(value: false);
 		}
 	}
 }

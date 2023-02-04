@@ -219,7 +219,7 @@ public class TaskListScript : MonoBehaviour
 		PauseScreen.PromptBar.UpdateButtons();
 		PauseScreen.Sideways = false;
 		PauseScreen.PressedB = true;
-		MainMenu.SetActive(true);
-		base.gameObject.SetActive(false);
+		MainMenu.SetActive(value: true);
+		base.gameObject.SetActive(value: false);
 	}
 }

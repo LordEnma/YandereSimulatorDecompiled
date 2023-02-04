@@ -154,8 +154,8 @@ public class MiniMapController : MonoBehaviour
 		renderTex.Create();
 		mapMaterial.mainTexture = renderTex;
 		mapCamera.targetTexture = renderTex;
-		mapPanelMaskRect.gameObject.SetActive(false);
-		mapPanelMaskRect.gameObject.SetActive(true);
+		mapPanelMaskRect.gameObject.SetActive(value: false);
+		mapPanelMaskRect.gameObject.SetActive(value: true);
 	}
 
 	private void SetCam()

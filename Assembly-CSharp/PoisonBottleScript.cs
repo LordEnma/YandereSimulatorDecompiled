@@ -44,7 +44,7 @@ public class PoisonBottleScript : MonoBehaviour
 			Prompt.Yandere.StudentManager.UpdateAllBentos();
 			Prompt.Hide();
 			Prompt.enabled = false;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 }

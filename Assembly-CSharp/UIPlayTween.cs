@@ -100,7 +100,7 @@ public class UIPlayTween : MonoBehaviour
 	{
 		if (trigger == Trigger.OnHover)
 		{
-			OnHover(true);
+			OnHover(isOver: true);
 		}
 	}
 
@@ -130,7 +130,7 @@ public class UIPlayTween : MonoBehaviour
 			GameObject gameObject = base.gameObject;
 			if (!gameObject || !go || (!(go == gameObject) && !go.transform.IsChildOf(base.transform)))
 			{
-				OnHover(false);
+				OnHover(isOver: false);
 				UICamera.onHover = (UICamera.BoolDelegate)Delegate.Remove(UICamera.onHover, new UICamera.BoolDelegate(CustomHoverListener));
 			}
 		}
@@ -141,7 +141,7 @@ public class UIPlayTween : MonoBehaviour
 		if (base.enabled && mActivated)
 		{
 			mActivated = false;
-			Play(false);
+			Play(forward: false);
 		}
 	}
 
@@ -158,7 +158,7 @@ public class UIPlayTween : MonoBehaviour
 	{
 		if (base.enabled && trigger == Trigger.OnClick)
 		{
-			Play(true);
+			Play(forward: true);
 		}
 	}
 
@@ -166,7 +166,7 @@ public class UIPlayTween : MonoBehaviour
 	{
 		if (base.enabled && trigger == Trigger.OnDoubleClick)
 		{
-			Play(true);
+			Play(forward: true);
 		}
 	}
 
@@ -216,7 +216,7 @@ public class UIPlayTween : MonoBehaviour
 		{
 			if (flag2)
 			{
-				NGUITools.SetActive(tweenTarget, false);
+				NGUITools.SetActive(tweenTarget, state: false);
 			}
 			mTweens = null;
 		}
@@ -224,7 +224,7 @@ public class UIPlayTween : MonoBehaviour
 
 	public void Play()
 	{
-		Play(true);
+		Play(forward: true);
 	}
 
 	public void Play(bool forward)
@@ -237,14 +237,14 @@ public class UIPlayTween : MonoBehaviour
 			{
 				return;
 			}
-			NGUITools.SetActive(gameObject, true);
+			NGUITools.SetActive(gameObject, state: true);
 		}
 		mTweens = (includeChildren ? gameObject.GetComponentsInChildren<UITweener>() : gameObject.GetComponents<UITweener>());
 		if (mTweens.Length == 0)
 		{
 			if (disableWhenFinished != 0)
 			{
-				NGUITools.SetActive(tweenTarget, false);
+				NGUITools.SetActive(tweenTarget, state: false);
 			}
 			return;
 		}
@@ -264,12 +264,12 @@ public class UIPlayTween : MonoBehaviour
 			if (!flag && !NGUITools.GetActive(gameObject))
 			{
 				flag = true;
-				NGUITools.SetActive(gameObject, true);
+				NGUITools.SetActive(gameObject, state: true);
 			}
 			mActive++;
 			if (playDirection == AnimationOrTween.Direction.Toggle)
 			{
-				EventDelegate.Add(uITweener.onFinished, OnFinished, true);
+				EventDelegate.Add(uITweener.onFinished, OnFinished, oneShot: true);
 				uITweener.Toggle();
 				continue;
 			}
@@ -278,7 +278,7 @@ public class UIPlayTween : MonoBehaviour
 				uITweener.Play(forward);
 				uITweener.ResetToBeginning();
 			}
-			EventDelegate.Add(uITweener.onFinished, OnFinished, true);
+			EventDelegate.Add(uITweener.onFinished, OnFinished, oneShot: true);
 			uITweener.Play(forward);
 		}
 	}

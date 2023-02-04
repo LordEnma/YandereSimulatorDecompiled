@@ -95,7 +95,7 @@ namespace UnityEngine.PostProcessing
 			m_ComponentStates = new Dictionary<PostProcessingComponentBase, bool>();
 			foreach (PostProcessingComponentBase component in m_Components)
 			{
-				m_ComponentStates.Add(component, false);
+				m_ComponentStates.Add(component, value: false);
 			}
 			base.useGUILayout = false;
 		}
@@ -352,8 +352,7 @@ namespace UnityEngine.PostProcessing
 		private void RemoveCommandBuffer<T>() where T : PostProcessingModel
 		{
 			Type typeFromHandle = typeof(T);
-			KeyValuePair<CameraEvent, CommandBuffer> value;
-			if (m_CommandBuffers.TryGetValue(typeFromHandle, out value))
+			if (m_CommandBuffers.TryGetValue(typeFromHandle, out var value))
 			{
 				m_Camera.RemoveCommandBuffer(value.Key, value.Value);
 				m_CommandBuffers.Remove(typeFromHandle);
@@ -363,8 +362,7 @@ namespace UnityEngine.PostProcessing
 
 		private CommandBuffer GetCommandBuffer<T>(CameraEvent evt, string name) where T : PostProcessingModel
 		{
-			KeyValuePair<CameraEvent, CommandBuffer> value;
-			if (!m_CommandBuffers.TryGetValue(typeof(T), out value))
+			if (!m_CommandBuffers.TryGetValue(typeof(T), out var value))
 			{
 				return AddCommandBuffer<T>(evt, name);
 			}

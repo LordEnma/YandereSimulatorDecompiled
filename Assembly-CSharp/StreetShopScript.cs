@@ -216,9 +216,9 @@ public class StreetShopScript : MonoBehaviour
 				MyAudio.clip = InsertCoin;
 				PlayerGlobals.Money -= 0.25f;
 				HomeClock.UpdateMoneyLabel();
-				BinocularCamera.gameObject.SetActive(true);
+				BinocularCamera.gameObject.SetActive(value: true);
 				BinocularRenderer.enabled = false;
-				BinocularOverlay.SetActive(true);
+				BinocularOverlay.SetActive(value: true);
 				PromptBar.ClearButtons();
 				PromptBar.Label[1].text = "Exit";
 				PromptBar.UpdateButtons();
@@ -276,9 +276,9 @@ public class StreetShopScript : MonoBehaviour
 			StreetManager.CurrentlyActiveJukebox.volume = BinocularCamera.fieldOfView / 60f * 0.5f;
 			if (Input.GetButtonUp("B"))
 			{
-				BinocularCamera.gameObject.SetActive(false);
+				BinocularCamera.gameObject.SetActive(value: false);
 				BinocularRenderer.enabled = true;
-				BinocularOverlay.SetActive(false);
+				BinocularOverlay.SetActive(value: false);
 				RotationX = 0f;
 				RotationY = 0f;
 				Zoom = 60f;
@@ -294,12 +294,12 @@ public class StreetShopScript : MonoBehaviour
 	{
 		if (Descs[1] != "")
 		{
-			StreetShopInterface.DescriptionBox.SetActive(true);
+			StreetShopInterface.DescriptionBox.SetActive(value: true);
 			StreetShopInterface.DescriptionLabel.text = Descs[1];
 		}
 		else
 		{
-			StreetShopInterface.DescriptionBox.SetActive(false);
+			StreetShopInterface.DescriptionBox.SetActive(value: false);
 		}
 		Yandere.MainCamera.GetComponent<RPG_Camera>().enabled = false;
 		if (Yandere.Eighties && StoreType == ShopType.Convenience)

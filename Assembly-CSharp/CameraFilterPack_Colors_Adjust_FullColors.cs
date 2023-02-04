@@ -101,7 +101,7 @@ public class CameraFilterPack_Colors_Adjust_FullColors : MonoBehaviour
 
 	private void Update()
 	{
-		bool isPlaying = Application.isPlaying;
+		_ = Application.isPlaying;
 	}
 
 	private void OnDisable()

@@ -59,7 +59,7 @@ public class TweenFill : UITweener
 		tweenFill.to = fill;
 		if (duration <= 0f)
 		{
-			tweenFill.Sample(1f, true);
+			tweenFill.Sample(1f, isFinished: true);
 			tweenFill.enabled = false;
 		}
 		return tweenFill;

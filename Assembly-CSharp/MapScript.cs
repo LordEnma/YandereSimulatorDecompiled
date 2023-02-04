@@ -51,7 +51,7 @@ public class MapScript : MonoBehaviour
 			Labels[1].text = "Sociology Classroom";
 			if (DateGlobals.Week > 10)
 			{
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 		DisableCamera();
@@ -72,7 +72,7 @@ public class MapScript : MonoBehaviour
 					ElevationLabel.enabled = true;
 					Yandere.Blur.enabled = true;
 					MyCamera.enabled = true;
-					Compass.SetActive(true);
+					Compass.SetActive(value: true);
 					Time.timeScale = 0.001f;
 					PromptBar.ClearButtons();
 					PromptBar.Label[1].text = "Exit";
@@ -89,7 +89,7 @@ public class MapScript : MonoBehaviour
 				ElevationLabel.enabled = false;
 				Yandere.Blur.enabled = false;
 				PauseScreen.Show = false;
-				Compass.SetActive(false);
+				Compass.SetActive(value: false);
 				Time.timeScale = 1f;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
@@ -192,7 +192,7 @@ public class MapScript : MonoBehaviour
 			if (Input.GetButtonDown("B"))
 			{
 				ElevationLabel.enabled = false;
-				Compass.SetActive(false);
+				Compass.SetActive(value: false);
 				PauseScreen.Show = false;
 				Yandere.Blur.enabled = false;
 				Time.timeScale = 1f;

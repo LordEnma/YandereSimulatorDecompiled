@@ -13,7 +13,7 @@ public class PhoneJammerScript : MonoBehaviour
 			Prompt.Yandere.Alphabet.Cheats++;
 			Prompt.Yandere.Alphabet.UpdateDifficultyLabel();
 			Prompt.Yandere.StudentManager.Jammed = true;
-			JammingLines.SetActive(true);
+			JammingLines.SetActive(value: true);
 			Prompt.enabled = false;
 			Prompt.Hide();
 			base.enabled = false;

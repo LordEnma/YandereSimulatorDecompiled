@@ -94,7 +94,7 @@ public class ManholeScript : MonoBehaviour
 					Prompt.Yandere.Police.HiddenCorpses--;
 				}
 				Prompt.Yandere.Police.Corpses--;
-				Corpse.gameObject.SetActive(false);
+				Corpse.gameObject.SetActive(value: false);
 				Corpse.Student.Removed = true;
 				Corpse.Disposed = true;
 				if (Corpse.StudentID == Prompt.Yandere.StudentManager.RivalID)
@@ -104,7 +104,7 @@ public class ManholeScript : MonoBehaviour
 				}
 				Victims++;
 				VictimList[Victims] = Corpse.StudentID;
-				SewerCamera.SetActive(false);
+				SewerCamera.SetActive(value: false);
 				Prompt.Yandere.StudentManager.UpdateStudents();
 				ForceDown = false;
 			}
@@ -125,7 +125,7 @@ public class ManholeScript : MonoBehaviour
 					Corpse.Student.Cosmetic.BurlapSack.newRenderer.updateWhenOffscreen = true;
 				}
 				Physics.SyncTransforms();
-				SewerCamera.SetActive(true);
+				SewerCamera.SetActive(value: true);
 				SewerTimer = 5f;
 			}
 		}
@@ -145,7 +145,7 @@ public class ManholeScript : MonoBehaviour
 				Prompt.Yandere.EmptyHands();
 				Prompt.Yandere.Police.BloodyWeapons--;
 				equippedWeapon.Disposed = true;
-				equippedWeapon.gameObject.SetActive(false);
+				equippedWeapon.gameObject.SetActive(value: false);
 				return;
 			}
 			PickUpScript pickUp = Prompt.Yandere.PickUp;

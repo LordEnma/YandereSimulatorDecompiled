@@ -225,10 +225,7 @@ public class PropertyReference
 		{
 			if (Application.isPlaying)
 			{
-				Type type = value.GetType();
-				string obj = (((object)type != null) ? type.ToString() : null);
-				Type propertyType = GetPropertyType();
-				UnityEngine.Debug.LogError("Unable to convert " + obj + " to " + (((object)propertyType != null) ? propertyType.ToString() : null));
+				UnityEngine.Debug.LogError("Unable to convert " + value.GetType()?.ToString() + " to " + GetPropertyType());
 			}
 		}
 		else
@@ -327,8 +324,7 @@ public class PropertyReference
 		{
 			if (from == typeof(string))
 			{
-				int result;
-				if (int.TryParse((string)value, out result))
+				if (int.TryParse((string)value, out var result))
 				{
 					value = result;
 					return true;
@@ -351,8 +347,7 @@ public class PropertyReference
 		{
 			if (from == typeof(string))
 			{
-				float result2;
-				if (float.TryParse((string)value, out result2))
+				if (float.TryParse((string)value, out var result2))
 				{
 					value = result2;
 					return true;
@@ -371,8 +366,7 @@ public class PropertyReference
 		{
 			if (from == typeof(string))
 			{
-				double result3;
-				if (double.TryParse((string)value, out result3))
+				if (double.TryParse((string)value, out var result3))
 				{
 					value = result3;
 					return true;

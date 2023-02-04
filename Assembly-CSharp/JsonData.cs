@@ -5,13 +5,7 @@ using UnityEngine;
 
 public abstract class JsonData
 {
-	protected static string FolderPath
-	{
-		get
-		{
-			return Path.Combine(Application.streamingAssetsPath, "JSON");
-		}
-	}
+	protected static string FolderPath => Path.Combine(Application.streamingAssetsPath, "JSON");
 
 	protected static Dictionary<string, object>[] Deserialize(string filename)
 	{

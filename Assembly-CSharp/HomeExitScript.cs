@@ -39,7 +39,7 @@ public class HomeExitScript : MonoBehaviour
 					Labels[4].text = "Insane Asylum";
 				}
 			}
-			BringItemPrompt.SetActive(false);
+			BringItemPrompt.SetActive(value: false);
 		}
 		else if (DateGlobals.Weekday == DayOfWeek.Sunday)
 		{

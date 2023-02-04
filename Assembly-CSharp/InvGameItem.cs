@@ -31,13 +31,7 @@ public class InvGameItem
 
 	private InvBaseItem mBaseItem;
 
-	public int baseItemID
-	{
-		get
-		{
-			return mBaseItemID;
-		}
-	}
+	public int baseItemID => mBaseItemID;
 
 	public InvBaseItem baseItem
 	{

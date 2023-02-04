@@ -66,7 +66,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
-		PushPrompt.gameObject.SetActive(false);
+		PushPrompt.gameObject.SetActive(value: false);
 		if (DateGlobals.Weekday != EventDay || GameGlobals.RivalEliminationID > 0 || GameGlobals.Eighties)
 		{
 			base.enabled = false;
@@ -185,7 +185,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 			{
 				if (Rival.CharacterAnimation["f02_" + EventAnim[1]].time >= 0.833333f)
 				{
-					Rival.AnimatedBook.SetActive(true);
+					Rival.AnimatedBook.SetActive(value: true);
 				}
 				if (Rival.CharacterAnimation["f02_" + EventAnim[1]].time >= 5f)
 				{
@@ -216,7 +216,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 				if (Rival.CharacterAnimation["f02_" + EventAnim[3]].time >= Rival.CharacterAnimation["f02_" + EventAnim[3]].length)
 				{
 					Rival.AnimatedBook.transform.parent = null;
-					PushPrompt.gameObject.SetActive(true);
+					PushPrompt.gameObject.SetActive(value: true);
 					PushPrompt.enabled = true;
 					Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
 					Rival.Pathfinding.target = Location[StretchPhase];
@@ -262,7 +262,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 					}
 					else
 					{
-						PushPrompt.gameObject.SetActive(false);
+						PushPrompt.gameObject.SetActive(value: false);
 						Rival.StinkBombSpecialCase = 0;
 						if (!Sabotaged)
 						{
@@ -344,7 +344,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 			{
 				if (Rival.AnimatedBook.activeInHierarchy && Rival.CharacterAnimation["f02_" + EventAnim[6]].time > 2f)
 				{
-					Rival.AnimatedBook.SetActive(false);
+					Rival.AnimatedBook.SetActive(value: false);
 				}
 				if (Rival.CharacterAnimation["f02_" + EventAnim[6]].time >= Rival.CharacterAnimation["f02_" + EventAnim[6]].length)
 				{
@@ -355,7 +355,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 			{
 				if (Rival.AnimatedBook.activeInHierarchy && Rival.CharacterAnimation["f02_" + EventAnim[8]].time > 7f)
 				{
-					Rival.AnimatedBook.SetActive(false);
+					Rival.AnimatedBook.SetActive(value: false);
 				}
 				if (Rival.CharacterAnimation["f02_" + EventAnim[8]].time >= Rival.CharacterAnimation["f02_" + EventAnim[8]].length)
 				{
@@ -376,7 +376,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 			if (!PushPrompt.Yandere.StudentManager.YandereVisible)
 			{
 				PushPrompt.Hide();
-				PushPrompt.gameObject.SetActive(false);
+				PushPrompt.gameObject.SetActive(value: false);
 				Sabotaging = true;
 				Yandere.CanMove = false;
 				Yandere.CharacterAnimation.CrossFade("f02_" + EventAnim[7]);
@@ -481,7 +481,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 		}
 		if (Rival.AnimatedBook.transform.parent != null)
 		{
-			Rival.AnimatedBook.SetActive(false);
+			Rival.AnimatedBook.SetActive(value: false);
 		}
 		PushPrompt.enabled = false;
 		PushPrompt.Hide();

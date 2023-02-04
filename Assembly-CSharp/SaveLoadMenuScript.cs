@@ -53,8 +53,8 @@ public class SaveLoadMenuScript : MonoBehaviour
 			GameGlobals.Profile = 1;
 		}
 		Profile = GameGlobals.Profile;
-		WarningWindow.SetActive(true);
-		ConfirmWindow.SetActive(false);
+		WarningWindow.SetActive(value: true);
+		ConfirmWindow.SetActive(value: false);
 		StartCoroutine(GetThumbnails());
 	}
 
@@ -121,14 +121,14 @@ public class SaveLoadMenuScript : MonoBehaviour
 		{
 			if (Input.GetButtonDown("A"))
 			{
-				WarningWindow.SetActive(false);
+				WarningWindow.SetActive(value: false);
 			}
 			else if (Input.GetButtonDown("B"))
 			{
-				PauseScreen.MainMenu.SetActive(true);
+				PauseScreen.MainMenu.SetActive(value: true);
 				PauseScreen.Sideways = false;
 				PauseScreen.PressedB = true;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				PauseScreen.PromptBar.ClearButtons();
 				PauseScreen.PromptBar.Label[0].text = "Accept";
 				PauseScreen.PromptBar.Label[1].text = "Exit";
@@ -147,7 +147,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 					if (!ConfirmWindow.activeInHierarchy)
 					{
 						AreYouSureLabel.text = "Are you sure you'd like to load?";
-						ConfirmWindow.SetActive(true);
+						ConfirmWindow.SetActive(value: true);
 					}
 					else if (DataLabels[Selected].text != "No Data")
 					{
@@ -163,11 +163,11 @@ public class SaveLoadMenuScript : MonoBehaviour
 				if (!ConfirmWindow.activeInHierarchy)
 				{
 					AreYouSureLabel.text = "Are you sure you'd like to save?";
-					ConfirmWindow.SetActive(true);
+					ConfirmWindow.SetActive(value: true);
 				}
 				else
 				{
-					ConfirmWindow.SetActive(false);
+					ConfirmWindow.SetActive(value: false);
 					PlayerPrefs.SetInt("SaveSlot", Selected);
 					GameGlobals.MostRecentSlot = Selected;
 					PlayerPrefs.SetString("Profile_" + Profile + "_Slot_" + Selected + "_DateTime", DateTime.Now.ToString());
@@ -193,13 +193,13 @@ public class SaveLoadMenuScript : MonoBehaviour
 		{
 			if (ConfirmWindow.activeInHierarchy)
 			{
-				ConfirmWindow.SetActive(false);
+				ConfirmWindow.SetActive(value: false);
 				return;
 			}
-			PauseScreen.MainMenu.SetActive(true);
+			PauseScreen.MainMenu.SetActive(value: true);
 			PauseScreen.Sideways = false;
 			PauseScreen.PressedB = true;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			PauseScreen.PromptBar.ClearButtons();
 			PauseScreen.PromptBar.Label[0].text = "Accept";
 			PauseScreen.PromptBar.Label[1].text = "Exit";

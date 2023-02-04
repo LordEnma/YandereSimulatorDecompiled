@@ -26,7 +26,7 @@ public class BoundaryScript : MonoBehaviour
 		if (z < -94f)
 		{
 			Intensity = -95f + Mathf.Abs(z);
-			TextureCycle.gameObject.SetActive(true);
+			TextureCycle.gameObject.SetActive(value: true);
 			TextureCycle.Sprite.enabled = true;
 			TextureCycle.enabled = true;
 			Color color = Static.color + new Color(0.0001f, 0.0001f, 0.0001f, 0.0001f);
@@ -43,7 +43,7 @@ public class BoundaryScript : MonoBehaviour
 		}
 		else if (TextureCycle.enabled)
 		{
-			TextureCycle.gameObject.SetActive(false);
+			TextureCycle.gameObject.SetActive(value: false);
 			TextureCycle.Sprite.enabled = false;
 			TextureCycle.enabled = false;
 			Color color3 = Static.color;

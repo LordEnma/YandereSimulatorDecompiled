@@ -29,21 +29,9 @@ public class UISpriteData
 
 	public int paddingBottom;
 
-	public bool hasBorder
-	{
-		get
-		{
-			return (borderLeft | borderRight | borderTop | borderBottom) != 0;
-		}
-	}
+	public bool hasBorder => (borderLeft | borderRight | borderTop | borderBottom) != 0;
 
-	public bool hasPadding
-	{
-		get
-		{
-			return (paddingLeft | paddingRight | paddingTop | paddingBottom) != 0;
-		}
-	}
+	public bool hasPadding => (paddingLeft | paddingRight | paddingTop | paddingBottom) != 0;
 
 	public void SetRect(int x, int y, int width, int height)
 	{

@@ -69,7 +69,7 @@ public class MiyukiEnemyScript : MonoBehaviour
 			{
 				base.transform.position = SpawnPoints[ID].position;
 				base.transform.rotation = SpawnPoints[ID].rotation;
-				Enemy.SetActive(true);
+				Enemy.SetActive(value: true);
 				RespawnTimer = 0f;
 			}
 		}
@@ -87,7 +87,7 @@ public class MiyukiEnemyScript : MonoBehaviour
 		if (Health == 0f)
 		{
 			Object.Instantiate(DeathEffect, other.transform.position, Quaternion.identity);
-			Enemy.SetActive(false);
+			Enemy.SetActive(value: false);
 			Health = 50f;
 			ID++;
 			if (ID >= SpawnPoints.Length)

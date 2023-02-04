@@ -51,18 +51,18 @@ public class YanvaniaTitleScript : MonoBehaviour
 	{
 		Midori.transform.localPosition = new Vector3(1540f, 0f, 0f);
 		Midori.transform.localEulerAngles = Vector3.zero;
-		Midori.gameObject.SetActive(false);
+		Midori.gameObject.SetActive(value: false);
 		if (YanvaniaGlobals.DraculaDefeated)
 		{
 			TaskGlobals.SetTaskStatus(38, 2);
-			SkipButton.SetActive(true);
-			Logo.gameObject.SetActive(false);
+			SkipButton.SetActive(value: true);
+			Logo.gameObject.SetActive(value: false);
 		}
 		else
 		{
-			SkipButton.SetActive(false);
+			SkipButton.SetActive(value: false);
 		}
-		Prologue.gameObject.SetActive(false);
+		Prologue.gameObject.SetActive(value: false);
 		Prologue.localPosition = new Vector3(Prologue.localPosition.x, -2665f, Prologue.localPosition.z);
 		Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 1f);
 		Buttons.alpha = 0f;
@@ -113,7 +113,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 					{
 						if (!Prologue.gameObject.activeInHierarchy)
 						{
-							Prologue.gameObject.SetActive(true);
+							Prologue.gameObject.SetActive(value: true);
 							component.volume = 0.5f;
 							component.loop = true;
 							component.clip = BGM;
@@ -135,7 +135,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 							}
 							if (!ErrorLeave)
 							{
-								ErrorWindow.SetActive(true);
+								ErrorWindow.SetActive(value: true);
 								ErrorWindow.transform.localScale = Vector3.Lerp(ErrorWindow.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 								if (ErrorWindow.transform.localScale.x > 0.9f && Input.anyKeyDown)
 								{
@@ -253,7 +253,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 				else
 				{
 					Prologue.GetComponent<AudioSource>().enabled = false;
-					Midori.gameObject.SetActive(true);
+					Midori.gameObject.SetActive(value: true);
 					ScrollSpeed = 60f;
 					Midori.transform.localPosition = new Vector3(Mathf.Lerp(Midori.transform.localPosition.x, 875f, Time.deltaTime * 2f), Midori.transform.localPosition.y, Midori.transform.localPosition.z);
 					Midori.transform.localEulerAngles = new Vector3(Midori.transform.localEulerAngles.x, Midori.transform.localEulerAngles.y, Mathf.Lerp(Midori.transform.localEulerAngles.z, 45f, Time.deltaTime * 2f));

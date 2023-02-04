@@ -36,29 +36,19 @@ public class InvStat
 
 	public static string GetDescription(Identifier i)
 	{
-		switch (i)
+		return i switch
 		{
-		case Identifier.Strength:
-			return "Strength increases melee damage";
-		case Identifier.Constitution:
-			return "Constitution increases health";
-		case Identifier.Agility:
-			return "Agility increases armor";
-		case Identifier.Intelligence:
-			return "Intelligence increases mana";
-		case Identifier.Damage:
-			return "Damage adds to the amount of damage done in combat";
-		case Identifier.Crit:
-			return "Crit increases the chance of landing a critical strike";
-		case Identifier.Armor:
-			return "Armor protects from damage";
-		case Identifier.Health:
-			return "Health prolongs life";
-		case Identifier.Mana:
-			return "Mana increases the number of spells that can be cast";
-		default:
-			return null;
-		}
+			Identifier.Strength => "Strength increases melee damage", 
+			Identifier.Constitution => "Constitution increases health", 
+			Identifier.Agility => "Agility increases armor", 
+			Identifier.Intelligence => "Intelligence increases mana", 
+			Identifier.Damage => "Damage adds to the amount of damage done in combat", 
+			Identifier.Crit => "Crit increases the chance of landing a critical strike", 
+			Identifier.Armor => "Armor protects from damage", 
+			Identifier.Health => "Health prolongs life", 
+			Identifier.Mana => "Mana increases the number of spells that can be cast", 
+			_ => null, 
+		};
 	}
 
 	public static int CompareArmor(InvStat a, InvStat b)

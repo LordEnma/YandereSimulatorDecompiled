@@ -160,7 +160,7 @@ public class TutorialScript : MonoBehaviour
 	{
 		if (!GameGlobals.EightiesTutorial)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			return;
 		}
 		Debug.Log("The game believes that we are currently in the 1980s Mode tutorial sequence.");
@@ -181,17 +181,17 @@ public class TutorialScript : MonoBehaviour
 		RightEyeOrigin = RightEye.localPosition;
 		LeftEyeOrigin = LeftEye.localPosition;
 		PhantomGirlOutline.transform.position = new Vector3(0f, 1000f, 0f);
-		PhantomGirlOutline.SetActive(false);
-		StudentManager.Graffiti[1].transform.parent.gameObject.SetActive(false);
-		StudentManager.Headmaster.gameObject.SetActive(false);
-		HeartbeatCamera.SetActive(false);
-		OutOfOrderSign.SetActive(false);
-		PauseScreen.SetActive(false);
-		Blocker[1].SetActive(true);
-		Blocker[2].SetActive(true);
-		Jukebox.SetActive(false);
-		FPSBG.SetActive(false);
-		FPS.SetActive(false);
+		PhantomGirlOutline.SetActive(value: false);
+		StudentManager.Graffiti[1].transform.parent.gameObject.SetActive(value: false);
+		StudentManager.Headmaster.gameObject.SetActive(value: false);
+		HeartbeatCamera.SetActive(value: false);
+		OutOfOrderSign.SetActive(value: false);
+		PauseScreen.SetActive(value: false);
+		Blocker[1].SetActive(value: true);
+		Blocker[2].SetActive(value: true);
+		Jukebox.SetActive(value: false);
+		FPSBG.SetActive(value: false);
+		FPS.SetActive(value: false);
 		WoodChipper[0].enabled = false;
 		WoodChipper[1].enabled = false;
 		WoodChipper[0].Prompt.Hide();
@@ -202,10 +202,10 @@ public class TutorialScript : MonoBehaviour
 		WoodChipper[0].BucketPrompt.enabled = false;
 		VictimPrompt.Hide();
 		VictimPrompt.enabled = false;
-		VictimGirl.SetActive(false);
+		VictimGirl.SetActive(value: false);
 		MainCamera.farClipPlane = 50f;
 		Yandere.WeaponManager.DisableAllWeapons();
-		Knife.gameObject.SetActive(true);
+		Knife.gameObject.SetActive(value: true);
 		Knife.Prompt.enabled = false;
 		Knife.Prompt.Hide();
 		InstructionLabel.alpha = 0f;
@@ -464,8 +464,8 @@ public class TutorialScript : MonoBehaviour
 						{
 							if (!Yandere.Armed)
 							{
-								Blocker[2].SetActive(false);
-								Blocker[3].SetActive(true);
+								Blocker[2].SetActive(value: false);
+								Blocker[3].SetActive(value: true);
 								FadeInstructions = true;
 								Yandere.Frozen = false;
 							}
@@ -492,7 +492,7 @@ public class TutorialScript : MonoBehaviour
 								Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 								Yandere.RPGCamera.enabled = false;
 								TransitionToCutscene = true;
-								Blocker[4].SetActive(true);
+								Blocker[4].SetActive(value: true);
 								FadeInstructions = true;
 								Yandere.CanMove = false;
 							}
@@ -532,7 +532,7 @@ public class TutorialScript : MonoBehaviour
 								VictimPrompt.enabled = true;
 								VictimPrompt.HideButton[0] = true;
 								VictimPrompt.HideButton[2] = false;
-								PickUpBlocker.SetActive(true);
+								PickUpBlocker.SetActive(value: true);
 								FadeInstructions = true;
 							}
 						}
@@ -549,7 +549,7 @@ public class TutorialScript : MonoBehaviour
 								GarbageBagBox.transform.position = GarbageBagBox.OriginalPosition;
 								Profile.depthOfField.enabled = false;
 								Yandere.RPGCamera.enabled = false;
-								PickUpBlocker.SetActive(false);
+								PickUpBlocker.SetActive(value: false);
 								InstructionLabel.alpha = 0f;
 								WeaponMenu.enabled = true;
 								FadeInstructions = true;
@@ -663,9 +663,9 @@ public class TutorialScript : MonoBehaviour
 						{
 							if (Yandere.Carrying)
 							{
-								Blocker[1].SetActive(false);
-								Blocker[3].SetActive(false);
-								Blocker[4].SetActive(false);
+								Blocker[1].SetActive(value: false);
+								Blocker[3].SetActive(value: false);
+								Blocker[4].SetActive(value: false);
 								FadeInstructions = true;
 							}
 						}
@@ -816,7 +816,7 @@ public class TutorialScript : MonoBehaviour
 								}
 								StudentManager.Students[25].ShoeRemoval.PutOnShoes();
 								StudentManager.StayInOneSpot(25);
-								Blocker[5].SetActive(true);
+								Blocker[5].SetActive(value: true);
 								FadeInstructions = true;
 								Yandere.Frozen = false;
 							}
@@ -869,8 +869,8 @@ public class TutorialScript : MonoBehaviour
 								Yandere.RPGCamera.enabled = false;
 								MainCamera.transform.position = new Vector3(0f, 14f, -38.566666f);
 								MainCamera.transform.eulerAngles = Vector3.zero;
-								StudentManager.Students[25].gameObject.SetActive(false);
-								Blocker[5].SetActive(false);
+								StudentManager.Students[25].gameObject.SetActive(value: false);
+								Blocker[5].SetActive(value: false);
 								MainCamera.clearFlags = CameraClearFlags.Skybox;
 								MainCamera.farClipPlane = 350f;
 								RenderSettings.fog = false;
@@ -882,7 +882,7 @@ public class TutorialScript : MonoBehaviour
 						{
 							if (Input.GetButtonDown("A"))
 							{
-								ExitPortal.gameObject.SetActive(true);
+								ExitPortal.gameObject.SetActive(value: true);
 								Yandere.RPGCamera.enabled = true;
 								FadeInstructions = true;
 								Yandere.Frozen = false;
@@ -892,7 +892,7 @@ public class TutorialScript : MonoBehaviour
 						{
 							if (ExitPortal.Circle[0].fillAmount == 0f)
 							{
-								InstructionLabel.gameObject.SetActive(false);
+								InstructionLabel.gameObject.SetActive(value: false);
 								Yandere.Frozen = true;
 								Phase++;
 							}
@@ -924,7 +924,7 @@ public class TutorialScript : MonoBehaviour
 				{
 					Yandere.MainCamera.transform.position = new Vector3(25f, 9f, -29f);
 					Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, 75f, 0f);
-					VictimGirl.SetActive(true);
+					VictimGirl.SetActive(value: true);
 					Animator[2].Play("f02_walkShy_00");
 					CutscenePhase++;
 				}
@@ -1068,9 +1068,9 @@ public class TutorialScript : MonoBehaviour
 						StudentManager.Students[2].transform.eulerAngles = new Vector3(0f, -90f, 0f);
 						StudentManager.Students[2].BecomeRagdoll();
 						CosmeticScript cosmetic = StudentManager.Students[2].Cosmetic;
-						cosmetic.FemaleHair[StudentManager.Students[2].Cosmetic.Hairstyle].SetActive(false);
+						cosmetic.FemaleHair[StudentManager.Students[2].Cosmetic.Hairstyle].SetActive(value: false);
 						cosmetic.HairRenderer = StudentManager.Students[2].Cosmetic.FemaleHairRenderers[57];
-						cosmetic.FemaleHair[57].SetActive(true);
+						cosmetic.FemaleHair[57].SetActive(value: true);
 						cosmetic.Hairstyle = 57;
 						cosmetic.MyStockings = cosmetic.EightiesRivalStockings[11];
 						cosmetic.MyRenderer.materials[0].SetTexture("_OverlayTex", cosmetic.MyStockings);
@@ -1100,7 +1100,7 @@ public class TutorialScript : MonoBehaviour
 						StudentManager.Students[2].CharacterAnimation["f02_knifeStealthB_00"].time = StudentManager.Students[2].CharacterAnimation["f02_knifeStealthB_00"].length;
 						Profile.depthOfField.enabled = DOF;
 						TransitionToCutscene = false;
-						VictimGirl.SetActive(false);
+						VictimGirl.SetActive(value: false);
 						SubtitleLabel.text = "";
 						Yandere.Frozen = false;
 						Yandere.CanMove = true;

@@ -40,7 +40,7 @@ public class InterestManagerScript : MonoBehaviour
 			{
 				Yandere.NotificationManager.TopicName = TopicNames[i];
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-				StudentManager.SetTopicLearnedByStudent(i, FollowerID, true);
+				StudentManager.SetTopicLearnedByStudent(i, FollowerID, boolean: true);
 				Ignore[i] = true;
 			}
 		}
@@ -56,10 +56,10 @@ public class InterestManagerScript : MonoBehaviour
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 				Yandere.NotificationManager.TopicName = "Memes";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				ConversationGlobals.SetTopicDiscovered(11, true);
-				ConversationGlobals.SetTopicDiscovered(12, true);
-				ConversationGlobals.SetTopicDiscovered(13, true);
-				ConversationGlobals.SetTopicDiscovered(14, true);
+				ConversationGlobals.SetTopicDiscovered(11, value: true);
+				ConversationGlobals.SetTopicDiscovered(12, value: true);
+				ConversationGlobals.SetTopicDiscovered(13, value: true);
+				ConversationGlobals.SetTopicDiscovered(14, value: true);
 			}
 			Yandere.NotificationManager.TopicName = "Video Games";
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
@@ -69,10 +69,10 @@ public class InterestManagerScript : MonoBehaviour
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
 			Yandere.NotificationManager.TopicName = "Memes";
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-			StudentManager.SetTopicLearnedByStudent(11, FollowerID, true);
-			StudentManager.SetTopicLearnedByStudent(12, FollowerID, true);
-			StudentManager.SetTopicLearnedByStudent(13, FollowerID, true);
-			StudentManager.SetTopicLearnedByStudent(14, FollowerID, true);
+			StudentManager.SetTopicLearnedByStudent(11, FollowerID, boolean: true);
+			StudentManager.SetTopicLearnedByStudent(12, FollowerID, boolean: true);
+			StudentManager.SetTopicLearnedByStudent(13, FollowerID, boolean: true);
+			StudentManager.SetTopicLearnedByStudent(14, FollowerID, boolean: true);
 			Ignore[11] = true;
 		}
 		if (!Ignore[15] && Vector3.Distance(Yandere.Follower.transform.position, Kitten.position) < 2.5f && !StudentManager.GetTopicLearnedByStudent(15, FollowerID))
@@ -81,10 +81,10 @@ public class InterestManagerScript : MonoBehaviour
 			if (!ConversationGlobals.GetTopicDiscovered(15))
 			{
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				ConversationGlobals.SetTopicDiscovered(15, true);
+				ConversationGlobals.SetTopicDiscovered(15, value: true);
 			}
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-			StudentManager.SetTopicLearnedByStudent(15, FollowerID, true);
+			StudentManager.SetTopicLearnedByStudent(15, FollowerID, boolean: true);
 			Ignore[15] = true;
 		}
 		if (!Ignore[16] && Vector3.Distance(Yandere.Follower.transform.position, Clubs[6].position) < 4f && !StudentManager.GetTopicLearnedByStudent(16, FollowerID))
@@ -93,10 +93,10 @@ public class InterestManagerScript : MonoBehaviour
 			if (!ConversationGlobals.GetTopicDiscovered(16))
 			{
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				ConversationGlobals.SetTopicDiscovered(16, true);
+				ConversationGlobals.SetTopicDiscovered(16, value: true);
 			}
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-			StudentManager.SetTopicLearnedByStudent(16, FollowerID, true);
+			StudentManager.SetTopicLearnedByStudent(16, FollowerID, boolean: true);
 			Ignore[16] = true;
 		}
 		if (!Ignore[17] && Vector3.Distance(Yandere.Follower.transform.position, DelinquentZone.position) < 4f && !StudentManager.GetTopicLearnedByStudent(17, FollowerID))
@@ -105,10 +105,10 @@ public class InterestManagerScript : MonoBehaviour
 			if (!ConversationGlobals.GetTopicDiscovered(17))
 			{
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				ConversationGlobals.SetTopicDiscovered(17, true);
+				ConversationGlobals.SetTopicDiscovered(17, value: true);
 			}
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-			StudentManager.SetTopicLearnedByStudent(17, FollowerID, true);
+			StudentManager.SetTopicLearnedByStudent(17, FollowerID, boolean: true);
 			Ignore[17] = true;
 		}
 		if (!Ignore[18] && Vector3.Distance(Yandere.Follower.transform.position, Library.position) < 4f && !StudentManager.GetTopicLearnedByStudent(18, FollowerID))
@@ -117,10 +117,10 @@ public class InterestManagerScript : MonoBehaviour
 			if (!ConversationGlobals.GetTopicDiscovered(18))
 			{
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				ConversationGlobals.SetTopicDiscovered(18, true);
+				ConversationGlobals.SetTopicDiscovered(18, value: true);
 			}
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-			StudentManager.SetTopicLearnedByStudent(18, FollowerID, true);
+			StudentManager.SetTopicLearnedByStudent(18, FollowerID, boolean: true);
 			Ignore[18] = true;
 		}
 	}

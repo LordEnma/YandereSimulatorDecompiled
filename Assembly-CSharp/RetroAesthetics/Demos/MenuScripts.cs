@@ -40,7 +40,7 @@ namespace RetroAesthetics.Demos
 						_loadingSceneAsync = SceneManager.LoadSceneAsync(loadingScene);
 						if (_loadingSceneAsync == null)
 						{
-							Debug.LogWarning(string.Format("Please add scene `{0}` to the built scenes in the Build Settings.", loadingScene.SceneName));
+							Debug.LogWarning($"Please add scene `{loadingScene.SceneName}` to the built scenes in the Build Settings.");
 							return;
 						}
 						_loadingSceneAsync.allowSceneActivation = false;

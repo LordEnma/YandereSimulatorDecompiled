@@ -249,13 +249,7 @@ public abstract class UIRect : MonoBehaviour
 		}
 	}
 
-	public virtual bool canBeAnchored
-	{
-		get
-		{
-			return true;
-		}
-	}
+	public virtual bool canBeAnchored => true;
 
 	public UIRect parent
 	{
@@ -319,8 +313,7 @@ public abstract class UIRect : MonoBehaviour
 				Transform transform2 = mCam.transform;
 				Plane plane = new Plane(transform.rotation * Vector3.back, transform.position);
 				Ray ray = new Ray(transform2.position, transform2.rotation * Vector3.forward);
-				float enter;
-				if (plane.Raycast(ray, out enter))
+				if (plane.Raycast(ray, out var enter))
 				{
 					return enter;
 				}
@@ -338,7 +331,7 @@ public abstract class UIRect : MonoBehaviour
 		{
 			for (int i = 0; i < mChildren.size; i++)
 			{
-				mChildren.buffer[i].Invalidate(true);
+				mChildren.buffer[i].Invalidate(includeChildren: true);
 			}
 		}
 	}

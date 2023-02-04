@@ -62,8 +62,8 @@ public class GiggleScript : MonoBehaviour
 		}
 		if (Student.StudentID == Student.StudentManager.RivalID || Student.StudentID == 1)
 		{
-			StudentActionType currentAction = Student.CurrentAction;
-			int num = 10;
+			_ = Student.CurrentAction;
+			_ = 10;
 		}
 		if (!Student.YandereVisible && !Student.Alarmed && !Student.Distracted && !Student.Wet && !Student.Slave && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Investigating && !Student.InEvent && !Student.Following && !Student.Confessing && !Student.Meeting && !Student.TurnOffRadio && !Student.Fleeing && !Student.Distracting && !Student.GoAway && !Student.FocusOnYandere && !StudentIsBusy && !Student.MyBento.Tampered && !Student.Headache && Student.Routine && !Student.VisitSenpaiDesk && Student.Actions[Student.Phase] != StudentActionType.Teaching && Student.Actions[Student.Phase] != StudentActionType.SitAndTakeNotes && Student.Actions[Student.Phase] != StudentActionType.Graffiti && Student.Actions[Student.Phase] != StudentActionType.Bully)
 		{
@@ -103,18 +103,18 @@ public class GiggleScript : MonoBehaviour
 				}
 				if (Student.Persona != PersonaType.PhoneAddict && !Student.Sleuthing)
 				{
-					Student.SmartPhone.SetActive(false);
+					Student.SmartPhone.SetActive(value: false);
 				}
 				else if (!Student.Phoneless)
 				{
-					Student.SmartPhone.SetActive(true);
+					Student.SmartPhone.SetActive(value: true);
 				}
-				Student.OccultBook.SetActive(false);
-				Student.Pen.SetActive(false);
+				Student.OccultBook.SetActive(value: false);
+				Student.Pen.SetActive(value: false);
 				if (!Student.Male)
 				{
-					Student.Cigarette.SetActive(false);
-					Student.Lighter.SetActive(false);
+					Student.Cigarette.SetActive(value: false);
+					Student.Lighter.SetActive(value: false);
 				}
 				bool flag = false;
 				if (Student.Bento.activeInHierarchy && Student.StudentID > 1 && Student.Bento.transform.parent != null)
@@ -130,14 +130,14 @@ public class GiggleScript : MonoBehaviour
 				}
 				if (((Student.Persona == PersonaType.PhoneAddict && !Student.Phoneless && !flag2) || Student.Persona == PersonaType.Sleuth || Student.StudentID == 20) && !Student.Phoneless)
 				{
-					Student.SmartPhone.SetActive(true);
+					Student.SmartPhone.SetActive(value: true);
 				}
 				if (flag)
 				{
 					GenericBentoScript component = Student.Bento.GetComponent<GenericBentoScript>();
 					component.enabled = true;
 					component.Prompt.enabled = true;
-					Student.Bento.SetActive(true);
+					Student.Bento.SetActive(value: true);
 					Student.Bento.transform.parent = Student.transform;
 					if (Student.Male)
 					{

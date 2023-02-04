@@ -73,23 +73,23 @@ public class WeaponManagerScript : MonoBehaviour
 				else
 				{
 					Debug.Log("Weapon #" + i + " was destroyed! Disabling it!");
-					Weapons[i].gameObject.SetActive(false);
+					Weapons[i].gameObject.SetActive(value: false);
 				}
 			}
 		}
 		int bringingItem = PlayerGlobals.BringingItem;
 		if (bringingItem > 0 && bringingItem < BroughtWeapons.Length)
 		{
-			BroughtWeapons[bringingItem].gameObject.SetActive(true);
+			BroughtWeapons[bringingItem].gameObject.SetActive(value: true);
 		}
 		ChangeBloodTexture();
 		if (!GameGlobals.Eighties)
 		{
-			DelinquentWeapons[6].gameObject.SetActive(false);
-			DelinquentWeapons[7].gameObject.SetActive(false);
-			DelinquentWeapons[8].gameObject.SetActive(false);
-			DelinquentWeapons[9].gameObject.SetActive(false);
-			DelinquentWeapons[10].gameObject.SetActive(false);
+			DelinquentWeapons[6].gameObject.SetActive(value: false);
+			DelinquentWeapons[7].gameObject.SetActive(value: false);
+			DelinquentWeapons[8].gameObject.SetActive(value: false);
+			DelinquentWeapons[9].gameObject.SetActive(value: false);
+			DelinquentWeapons[10].gameObject.SetActive(value: false);
 		}
 	}
 
@@ -240,8 +240,7 @@ public class WeaponManagerScript : MonoBehaviour
 		{
 			if (Weapons[i] != null && Weapons[i].InsideIncinerator)
 			{
-				WeaponScript obj = Weapons[i];
-				Debug.Log((((object)obj != null) ? obj.ToString() : null) + " has been incinerated and marked as ''disposed''.");
+				Debug.Log(Weapons[i]?.ToString() + " has been incinerated and marked as ''disposed''.");
 				Weapons[i].Disposed = true;
 			}
 		}
@@ -278,21 +277,21 @@ public class WeaponManagerScript : MonoBehaviour
 		{
 			Debug.Log("Looks like the player had a " + Weapons[YandereWeapon1].gameObject.name + " in their possession when they saved.");
 			Weapons[YandereWeapon1].Prompt.Circle[3].fillAmount = 0f;
-			Weapons[YandereWeapon1].gameObject.SetActive(true);
+			Weapons[YandereWeapon1].gameObject.SetActive(value: true);
 			Weapons[YandereWeapon1].UnequipImmediately = true;
 		}
 		if (YandereWeapon2 > -1)
 		{
 			Debug.Log("Looks like the player had a " + Weapons[YandereWeapon2].gameObject.name + " in their possession when they saved.");
 			Weapons[YandereWeapon2].Prompt.Circle[3].fillAmount = 0f;
-			Weapons[YandereWeapon2].gameObject.SetActive(true);
+			Weapons[YandereWeapon2].gameObject.SetActive(value: true);
 			Weapons[YandereWeapon2].UnequipImmediately = true;
 		}
 		if (YandereWeapon3 > -1)
 		{
 			Debug.Log("Looks like the player had a " + Weapons[YandereWeapon3].gameObject.name + " equipped when they saved.");
 			Weapons[YandereWeapon3].Prompt.Circle[3].fillAmount = 0f;
-			Weapons[YandereWeapon3].gameObject.SetActive(true);
+			Weapons[YandereWeapon3].gameObject.SetActive(value: true);
 			Weapons[YandereWeapon3].UnequipImmediately = true;
 		}
 	}
@@ -357,7 +356,7 @@ public class WeaponManagerScript : MonoBehaviour
 	{
 		for (int i = 1; i < Weapons.Length; i++)
 		{
-			Weapons[i].gameObject.SetActive(false);
+			Weapons[i].gameObject.SetActive(value: false);
 		}
 	}
 

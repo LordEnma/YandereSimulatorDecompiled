@@ -160,7 +160,7 @@ public class StalkerScript : MonoBehaviour
 				MyAnimation.CrossFade("struggleB_00");
 				Yandere.BeginStruggle();
 				Struggling = true;
-				StruggleBar.gameObject.SetActive(true);
+				StruggleBar.gameObject.SetActive(value: true);
 				StruggleBar.Struggling = true;
 				Subtitle.text = "";
 			}
@@ -182,12 +182,12 @@ public class StalkerScript : MonoBehaviour
 					MyAnimation.CrossFade("struggleWinB_00");
 					if (MyAnimation["struggleWinB_00"].time >= 0.66666f)
 					{
-						BonkEffect[1].SetActive(true);
+						BonkEffect[1].SetActive(value: true);
 					}
 					if (MyAnimation["struggleWinB_00"].time >= 1.33333f)
 					{
-						KnockoutStars.SetActive(true);
-						BonkEffect[2].SetActive(true);
+						KnockoutStars.SetActive(value: true);
+						BonkEffect[2].SetActive(value: true);
 					}
 					if (MyAnimation["struggleWinB_00"].time >= MyAnimation["struggleWinB_00"].length)
 					{
@@ -209,7 +209,7 @@ public class StalkerScript : MonoBehaviour
 					MyAnimation.CrossFade("struggleLoseB_00");
 					if (MyAnimation["struggleLoseB_00"].time >= MyAnimation["struggleLoseB_00"].length)
 					{
-						Heartbroken.SetActive(true);
+						Heartbroken.SetActive(value: true);
 						base.enabled = false;
 					}
 				}

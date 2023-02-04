@@ -285,10 +285,10 @@ public class GenericPromptScript : MonoBehaviour
 				{
 					PickUpScript pickUp = Prompt.Yandere.PickUp;
 					Prompt.Yandere.EmptyHands();
-					pickUp.gameObject.SetActive(false);
+					pickUp.gameObject.SetActive(value: false);
 					pickUp.Prompt.enabled = false;
 					pickUp.Prompt.Hide();
-					Object[1].SetActive(true);
+					Object[1].SetActive(value: true);
 					Prompt.enabled = false;
 					Prompt.Hide();
 					base.enabled = false;
@@ -309,9 +309,9 @@ public class GenericPromptScript : MonoBehaviour
 				{
 					if (!Prompt.Yandere.StudentManager.YandereVisible)
 					{
-						base.gameObject.SetActive(false);
-						Object[1].SetActive(false);
-						Object[2].SetActive(true);
+						base.gameObject.SetActive(value: false);
+						Object[1].SetActive(value: false);
+						Object[2].SetActive(value: true);
 						Prompt.enabled = false;
 						Prompt.Hide();
 						base.enabled = false;
@@ -339,7 +339,7 @@ public class GenericPromptScript : MonoBehaviour
 					Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
 					if (!Prompt.Yandere.StudentManager.YandereVisible)
 					{
-						Object[1].SetActive(true);
+						Object[1].SetActive(value: true);
 						Prompt.Yandere.PickUp.Bucket.Empty();
 					}
 					else
@@ -375,7 +375,7 @@ public class GenericPromptScript : MonoBehaviour
 			Prompt.Yandere.transform.rotation = PlayerSpot.rotation;
 			if (Rotation == -90f)
 			{
-				NextPrompt.gameObject.SetActive(true);
+				NextPrompt.gameObject.SetActive(value: true);
 				Prompt.Yandere.CanMove = true;
 				Prompt.enabled = false;
 				Prompt.Hide();
@@ -403,17 +403,17 @@ public class GenericPromptScript : MonoBehaviour
 			}
 			Rotation = Mathf.MoveTowards(Rotation, TargetRotation, Time.deltaTime * 360f);
 			ObjectToRotate.localEulerAngles = new Vector3(Rotation, -90f, 0f);
-			CrushCollider.SetActive(true);
+			CrushCollider.SetActive(value: true);
 			if (Rotation == TargetRotation)
 			{
 				MyAudio.Play();
-				CrushCollider.SetActive(false);
+				CrushCollider.SetActive(value: false);
 				Prompt.Yandere.CanMove = true;
 				Prompt.enabled = false;
 				Prompt.Hide();
 				base.enabled = false;
 				PerformingAction = false;
-				Object[0].SetActive(true);
+				Object[0].SetActive(value: true);
 				if (Prompt.Yandere.StudentManager.Students[13] != null && Prompt.Yandere.StudentManager.Students[13].Alive)
 				{
 					Debug.Log("Updating the bookish girl's routine.");
@@ -453,7 +453,7 @@ public class GenericPromptScript : MonoBehaviour
 					StudentScript obj3 = Prompt.Yandere.StudentManager.Students[15];
 					obj3.Drowned = true;
 					obj3.BecomeRagdoll();
-					obj3.Ragdoll.Zs.SetActive(false);
+					obj3.Ragdoll.Zs.SetActive(value: false);
 					obj3.Ragdoll.DestroyRigidbodies();
 					obj3.DeathType = DeathType.Drowning;
 					obj3.CharacterAnimation.enabled = true;

@@ -24,7 +24,7 @@ public class MatchboxScript : MonoBehaviour
 		{
 			if (Prompt.HideButton[0])
 			{
-				Prompt.Yandere.Arc.SetActive(true);
+				Prompt.Yandere.Arc.SetActive(value: true);
 				Prompt.HideButton[0] = false;
 				Prompt.HideButton[3] = true;
 			}
@@ -41,7 +41,7 @@ public class MatchboxScript : MonoBehaviour
 				Ammo--;
 				if (Ammo < 1)
 				{
-					Prompt.Yandere.Arc.SetActive(false);
+					Prompt.Yandere.Arc.SetActive(value: false);
 					Prompt.Yandere.PickUp.Drop();
 					Object.Destroy(base.gameObject);
 				}
@@ -49,7 +49,7 @@ public class MatchboxScript : MonoBehaviour
 		}
 		else if (Prompt.Yandere.Arc.activeInHierarchy && !Prompt.HideButton[0])
 		{
-			Prompt.Yandere.Arc.SetActive(false);
+			Prompt.Yandere.Arc.SetActive(value: false);
 			Prompt.HideButton[0] = true;
 			Prompt.HideButton[3] = false;
 		}

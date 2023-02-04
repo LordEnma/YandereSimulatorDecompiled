@@ -208,7 +208,7 @@ public class ShoulderCameraScript : MonoBehaviour
 				}
 				if (NoticedTimer > (float)NoticedLimit || Skip)
 				{
-					Yandere.Senpai.GetComponent<StudentScript>().Character.SetActive(false);
+					Yandere.Senpai.GetComponent<StudentScript>().Character.SetActive(value: false);
 					GetComponent<Camera>().cullingMask |= 8192;
 					NoticedPOV.position = Yandere.transform.position + Yandere.transform.forward + Vector3.up * 1.375f;
 					NoticedPOV.LookAt(Yandere.transform.position + Vector3.up * 1.375f);
@@ -266,7 +266,7 @@ public class ShoulderCameraScript : MonoBehaviour
 						NoticedPOV.transform.position = new Vector3(NoticedPOV.transform.position.x, Yandere.transform.position.y + 1f, NoticedPOV.transform.position.z);
 						NoticedSpeed = 1f;
 						Yandere.Character.GetComponent<Animation>().CrossFade("f02_down_22");
-						HeartbrokenCamera.SetActive(true);
+						HeartbrokenCamera.SetActive(value: true);
 						Yandere.Police.Invalid = true;
 						Yandere.Collapse = true;
 						Phase = 3;
@@ -278,7 +278,7 @@ public class ShoulderCameraScript : MonoBehaviour
 						Yandere.HUD.alpha = 1f;
 						if (Yandere.Police.Timer == 300f && Yandere.Police.Corpses - Yandere.Police.HiddenCorpses <= 0)
 						{
-							HUD.SetActive(false);
+							HUD.SetActive(value: false);
 						}
 						Phase = 4;
 					}
@@ -298,7 +298,7 @@ public class ShoulderCameraScript : MonoBehaviour
 					if (Yandere.Police.Timer != 300f || Yandere.Police.Corpses - Yandere.Police.HiddenCorpses > 0 || Yandere.Police.BloodyWeapons > 0)
 					{
 						Debug.Log("Ending day instead of going to counselor.");
-						HUD.SetActive(true);
+						HUD.SetActive(value: true);
 						Portal.EndDay();
 						base.enabled = false;
 					}
@@ -310,7 +310,7 @@ public class ShoulderCameraScript : MonoBehaviour
 							Yandere.Mask.Drop();
 						}
 						Yandere.StudentManager.PreventAlarm();
-						Yandere.Subtitle.gameObject.SetActive(false);
+						Yandere.Subtitle.gameObject.SetActive(value: false);
 						Counselor.InfirmaryCabinetDoor.Prompt.Label[0].text = "     Locked";
 						Counselor.InfirmaryCabinetDoor.Prompt.HideButton[2] = true;
 						Counselor.InfirmaryCabinetDoor.Locked = true;
@@ -319,15 +319,15 @@ public class ShoulderCameraScript : MonoBehaviour
 						Counselor.InfirmaryCabinetDoor.UpdateLabel();
 						Counselor.Crime = Yandere.Senpai.GetComponent<StudentScript>().Witnessed;
 						Counselor.MyAnimation.Play("CounselorArmsCrossed");
-						Counselor.Laptop.SetActive(false);
+						Counselor.Laptop.SetActive(value: false);
 						Counselor.Interrogating = true;
 						Counselor.LookAtPlayer = true;
 						Counselor.Stern = true;
 						Counselor.Timer = 0f;
 						Counselor.transform.position = new Vector3(-28.93333f, 0f, 12f);
-						Counselor.RedPen.SetActive(false);
+						Counselor.RedPen.SetActive(value: false);
 						base.transform.Translate(Vector3.forward * -1f);
-						Yandere.Senpai.GetComponent<StudentScript>().Character.SetActive(true);
+						Yandere.Senpai.GetComponent<StudentScript>().Character.SetActive(value: true);
 						Yandere.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
 						Yandere.transform.position = new Vector3(-27.51f, 0f, 12f);
 						Yandere.Police.Darkness.color = new Color(0f, 0f, 0f, 1f);
@@ -405,7 +405,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			}
 			if (Timer > 10f && Phase < 5)
 			{
-				HeartbrokenCamera.SetActive(true);
+				HeartbrokenCamera.SetActive(value: true);
 				Phase++;
 			}
 			if (Timer < 5f)
@@ -472,7 +472,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			if (Timer > 12f && Phase < 5)
 			{
 				HeartbrokenCamera.GetComponent<Camera>().cullingMask |= 512;
-				HeartbrokenCamera.SetActive(true);
+				HeartbrokenCamera.SetActive(value: true);
 				Phase++;
 			}
 			if (Timer < 6f)
@@ -523,7 +523,7 @@ public class ShoulderCameraScript : MonoBehaviour
 				}
 				else if (!HeartbrokenCamera.activeInHierarchy)
 				{
-					HeartbrokenCamera.SetActive(true);
+					HeartbrokenCamera.SetActive(value: true);
 					Yandere.Jukebox.GameOver();
 					base.enabled = false;
 				}
@@ -547,7 +547,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			}
 			else if (!HeartbrokenCamera.activeInHierarchy)
 			{
-				HeartbrokenCamera.SetActive(true);
+				HeartbrokenCamera.SetActive(value: true);
 				Yandere.Jukebox.GameOver();
 				base.enabled = false;
 			}
@@ -578,7 +578,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			{
 				NoticedPOV.Translate(NoticedPOV.forward * (Time.deltaTime * -0.1f));
 				NoticedFocus.position = Yandere.transform.position + Vector3.up * 2.4f;
-				Yandere.Stand.Stand.SetActive(true);
+				Yandere.Stand.Stand.SetActive(value: true);
 				Timer += Time.deltaTime;
 				if (Timer > 5f)
 				{
@@ -648,8 +648,8 @@ public class ShoulderCameraScript : MonoBehaviour
 		NoticedPOV.localPosition = new Vector3(0f, 1f, 2f);
 		NoticedPOV.LookAt(NoticedFocus.position);
 		Yandere.CharacterAnimation.CrossFade("f02_down_22");
-		Yandere.HeartCamera.gameObject.SetActive(false);
-		HeartbrokenCamera.SetActive(true);
+		Yandere.HeartCamera.gameObject.SetActive(value: false);
+		HeartbrokenCamera.SetActive(value: true);
 		Yandere.RPGCamera.enabled = false;
 		Yandere.Collapse = true;
 		Yandere.HUD.alpha = 0f;

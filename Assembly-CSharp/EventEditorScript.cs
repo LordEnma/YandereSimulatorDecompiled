@@ -33,8 +33,8 @@ public class EventEditorScript : MonoBehaviour
 	{
 		if (Input.GetButtonDown("B"))
 		{
-			mainPanel.gameObject.SetActive(true);
-			eventPanel.gameObject.SetActive(false);
+			mainPanel.gameObject.SetActive(value: true);
+			eventPanel.gameObject.SetActive(value: false);
 		}
 	}
 

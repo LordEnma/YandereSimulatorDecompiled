@@ -79,7 +79,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		EventSubtitle.transform.localScale = Vector3.zero;
 		if (DateGlobals.Week > 1 || DateGlobals.Weekday != DayOfWeek.Monday || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || GameGlobals.Eighties || Finished)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			base.enabled = false;
 		}
 		if (Finished && StudentManager.Students[FriendID] != null)
@@ -100,8 +100,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 					ClubEvent.EndEvent();
 				}
 				DisableBentos();
-				Bento[1].gameObject.SetActive(true);
-				Bento[2].gameObject.SetActive(true);
+				Bento[1].gameObject.SetActive(value: true);
+				Bento[2].gameObject.SetActive(value: true);
 				Senpai = StudentManager.Students[1];
 				Rival = StudentManager.Students[RivalID];
 				Friend = StudentManager.Students[FriendID];
@@ -109,7 +109,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 				Senpai.CharacterAnimation.Play(Senpai.WalkAnim);
 				Senpai.Pathfinding.target = Location[1];
 				Senpai.CurrentDestination = Location[1];
-				Senpai.SmartPhone.SetActive(false);
+				Senpai.SmartPhone.SetActive(value: false);
 				Senpai.Pathfinding.canSearch = true;
 				Senpai.Pathfinding.canMove = true;
 				Senpai.Routine = false;
@@ -123,7 +123,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 				Rival.Routine = false;
 				Rival.InEvent = true;
 				Rival.EmptyHands();
-				Spy.gameObject.SetActive(true);
+				Spy.gameObject.SetActive(value: true);
 				if (Friend != null)
 				{
 					Friend.FocusOnYandere = false;
@@ -174,8 +174,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 				Rival.CurrentDestination = Location[2];
 				Rival.Pathfinding.canSearch = true;
 				Rival.Pathfinding.canMove = true;
-				Bento[1].gameObject.SetActive(false);
-				Bento[2].gameObject.SetActive(false);
+				Bento[1].gameObject.SetActive(value: false);
+				Bento[2].gameObject.SetActive(value: false);
 				if (Friend != null)
 				{
 					Rival.FollowTargetDestination.localPosition = new Vector3(0f, 0f, -0.5f);
@@ -195,7 +195,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 				Rival.CharacterAnimation.CrossFade("f02_Monday_2A");
 				Rival.Bento.transform.localEulerAngles = new Vector3(15f, Rival.Bento.transform.localEulerAngles.y, Rival.Bento.transform.localEulerAngles.z);
 				Rival.Bento.transform.localPosition = new Vector3(-0.02f, Rival.Bento.transform.localPosition.y, Rival.Bento.transform.localPosition.z);
-				Rival.Bento.SetActive(true);
+				Rival.Bento.SetActive(value: true);
 				Senpai.Pathfinding.canSearch = false;
 				Senpai.Pathfinding.canMove = false;
 				Rival.Pathfinding.canSearch = false;
@@ -249,8 +249,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 				RotationX = -35f;
 				RotationY = 115f;
 				RotationZ = 165f;
-				Senpai.Bento.SetActive(true);
-				Rival.Bento.SetActive(false);
+				Senpai.Bento.SetActive(value: true);
+				Rival.Bento.SetActive(value: false);
 				Phase++;
 			}
 		}
@@ -283,8 +283,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 			}
 			if (Timer > 31f)
 			{
-				Senpai.Chopsticks[0].SetActive(true);
-				Senpai.Chopsticks[1].SetActive(true);
+				Senpai.Chopsticks[0].SetActive(value: true);
+				Senpai.Chopsticks[1].SetActive(value: true);
 				Phase++;
 			}
 		}
@@ -322,8 +322,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 					Senpai.Bento.transform.parent = null;
 					Senpai.Bento.transform.position = new Vector3(-0.853f, 12.501f, -29.33333f);
 					Senpai.Bento.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-					Senpai.Chopsticks[0].SetActive(false);
-					Senpai.Chopsticks[1].SetActive(false);
+					Senpai.Chopsticks[0].SetActive(value: false);
+					Senpai.Chopsticks[1].SetActive(value: false);
 				}
 				if (Senpai.InEvent && Senpai.CharacterAnimation["Monday_2B"].time > Senpai.CharacterAnimation["Monday_2B"].length)
 				{
@@ -371,7 +371,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 				Friend.Pathfinding.canMove = false;
 				if (!Friend.MyBento.gameObject.activeInHierarchy && !Friend.MyBento.Tampered)
 				{
-					Friend.MyBento.gameObject.SetActive(true);
+					Friend.MyBento.gameObject.SetActive(value: true);
 					Friend.MyBento.transform.parent = null;
 					Friend.MyBento.transform.position = Bento[3].transform.position;
 					Friend.MyBento.transform.eulerAngles = Bento[3].transform.eulerAngles;
@@ -520,8 +520,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		Bento[1].Prompt.enabled = false;
 		Bento[2].Prompt.Hide();
 		Bento[2].Prompt.enabled = false;
-		Bento[1].gameObject.SetActive(false);
-		Bento[2].gameObject.SetActive(false);
+		Bento[1].gameObject.SetActive(value: false);
+		Bento[2].gameObject.SetActive(value: false);
 		Bento[1].enabled = false;
 		Bento[2].enabled = false;
 	}
@@ -564,7 +564,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 			Friend.CurrentDestination = Friend.Destinations[Friend.Phase];
 			Friend.Pathfinding.target = Friend.Destinations[Friend.Phase];
 			Friend.DistanceToDestination = 100f;
-			Friend.MyBento.gameObject.SetActive(false);
+			Friend.MyBento.gameObject.SetActive(value: false);
 			Friend.MyBento.transform.parent = Friend.LeftHand;
 			Friend.MyBento.transform.localPosition = new Vector3(-0.025f, -0.105f, 0f);
 			Friend.MyBento.transform.localEulerAngles = new Vector3(0f, 165f, 82.5f);

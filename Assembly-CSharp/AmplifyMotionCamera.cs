@@ -47,37 +47,13 @@ public class AmplifyMotionCamera : MonoBehaviour
 
 	private CommandBuffer m_renderCB;
 
-	public bool Initialized
-	{
-		get
-		{
-			return m_initialized;
-		}
-	}
+	public bool Initialized => m_initialized;
 
-	public bool AutoStep
-	{
-		get
-		{
-			return m_autoStep;
-		}
-	}
+	public bool AutoStep => m_autoStep;
 
-	public bool Overlay
-	{
-		get
-		{
-			return m_overlay;
-		}
-	}
+	public bool Overlay => m_overlay;
 
-	public Camera Camera
-	{
-		get
-		{
-			return m_camera;
-		}
-	}
+	public Camera Camera => m_camera;
 
 	public void RegisterObject(AmplifyMotionObjectBase obj)
 	{
@@ -203,10 +179,10 @@ public class AmplifyMotionCamera : MonoBehaviour
 			PrevViewProjMatrixRT = ViewProjMatrixRT;
 		}
 		Matrix4x4 worldToCameraMatrix = m_camera.worldToCameraMatrix;
-		Matrix4x4 gPUProjectionMatrix = GL.GetGPUProjectionMatrix(m_camera.projectionMatrix, false);
+		Matrix4x4 gPUProjectionMatrix = GL.GetGPUProjectionMatrix(m_camera.projectionMatrix, renderIntoTexture: false);
 		ViewProjMatrix = gPUProjectionMatrix * worldToCameraMatrix;
 		InvViewProjMatrix = Matrix4x4.Inverse(ViewProjMatrix);
-		Matrix4x4 gPUProjectionMatrix2 = GL.GetGPUProjectionMatrix(m_camera.projectionMatrix, true);
+		Matrix4x4 gPUProjectionMatrix2 = GL.GetGPUProjectionMatrix(m_camera.projectionMatrix, renderIntoTexture: true);
 		ViewProjMatrixRT = gPUProjectionMatrix2 * worldToCameraMatrix;
 		if (m_starting)
 		{
@@ -277,7 +253,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		m_renderCB.SetGlobalFloat("_AM_RCP_TOTAL_VELOCITY", 1f / (Instance.MaxVelocity - Instance.MinVelocity));
 		m_renderCB.SetGlobalVector("_AM_DEPTH_THRESHOLD", new Vector2(Instance.DepthThreshold, rcpDepthThreshold));
 		m_renderCB.SetRenderTarget(motionRT);
-		m_renderCB.ClearRenderTarget(true, clearColor, Color.black);
+		m_renderCB.ClearRenderTarget(clearDepth: true, clearColor, Color.black);
 	}
 
 	public void RenderVectors(float scale, float fixedScale, Quality quality)

@@ -94,7 +94,7 @@ public class PhoneEventScript : MonoBehaviour
 				{
 					EventStudent = StudentManager.Students[EventStudentID];
 				}
-				if (EventStudent != null && !EventStudent.InEvent && !EventStudent.Meeting && EventStudent.Alive && EventStudent.DistanceToDestination < 1f && !EventStudent.Phoneless)
+				if (EventStudent != null && !EventStudent.InEvent && !EventStudent.Meeting && EventStudent.Alive && EventStudent.DistanceToDestination < 1f && !EventStudent.Phoneless && !EventStudent.EndSearch && EventStudent.Routine)
 				{
 					Timer += Time.deltaTime;
 					if (Timer > 1f)
@@ -189,7 +189,7 @@ public class PhoneEventScript : MonoBehaviour
 				Timer += Time.deltaTime;
 				if (Timer > 1.5f)
 				{
-					EventStudent.SmartPhone.SetActive(true);
+					EventStudent.SmartPhone.SetActive(value: true);
 					EventStudent.SmartPhone.transform.localPosition = new Vector3(0.01f, -0.005f, -0.025f);
 					EventStudent.SmartPhone.transform.localEulerAngles = new Vector3(0f, -150f, 165f);
 				}
@@ -246,7 +246,7 @@ public class PhoneEventScript : MonoBehaviour
 			{
 				if (EventStudent.Character.GetComponent<Animation>()[EventAnim[2]].time >= EventStudent.Character.GetComponent<Animation>()[EventAnim[2]].length * 90.33333f)
 				{
-					EventStudent.SmartPhone.SetActive(true);
+					EventStudent.SmartPhone.SetActive(value: true);
 				}
 				if (EventStudent.Character.GetComponent<Animation>()[EventAnim[2]].time >= EventStudent.Character.GetComponent<Animation>()[EventAnim[2]].length)
 				{
@@ -300,12 +300,12 @@ public class PhoneEventScript : MonoBehaviour
 						{
 							EventGlobals.Event2 = true;
 							Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
-							ConversationGlobals.SetTopicDiscovered(25, true);
+							ConversationGlobals.SetTopicDiscovered(25, value: true);
 							Yandere.NotificationManager.TopicName = "Money";
 							Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 							Yandere.NotificationManager.TopicName = "Money";
 							Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-							StudentManager.SetTopicLearnedByStudent(25, EventStudentID, true);
+							StudentManager.SetTopicLearnedByStudent(25, EventStudentID, boolean: true);
 						}
 					}
 					else if (!Yandere.Police.EndOfDay.LearnedOsanaInfo1)
@@ -410,7 +410,7 @@ public class PhoneEventScript : MonoBehaviour
 			}
 			if (!EventStudent.WitnessedMurder)
 			{
-				EventStudent.SmartPhone.SetActive(false);
+				EventStudent.SmartPhone.SetActive(value: false);
 			}
 			EventStudent.Pathfinding.speed = 1f;
 			EventStudent.TargetDistance = 1f;

@@ -184,8 +184,8 @@ public class TapePlayerMenuScript : MonoBehaviour
 			}
 			else
 			{
-				TimeBar.gameObject.SetActive(false);
-				List.gameObject.SetActive(false);
+				TimeBar.gameObject.SetActive(value: false);
+				List.gameObject.SetActive(value: false);
 			}
 			return;
 		}
@@ -308,8 +308,8 @@ public class TapePlayerMenuScript : MonoBehaviour
 				TapePlayerAnim["InsertTape"].time -= Time.unscaledDeltaTime * 3.33333f;
 				if (TapePlayerAnim["InsertTape"].time <= 0f)
 				{
-					TapePlayer.Tape.SetActive(false);
-					Jukebox.SetActive(true);
+					TapePlayer.Tape.SetActive(value: false);
+					Jukebox.SetActive(value: true);
 					Listening = false;
 					Timer = 0f;
 					PromptBar.Label[0].text = "PLAY";
@@ -367,7 +367,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 					num2 = Mathf.FloorToInt(ResumeTime - (float)num * 60f);
 					Bar.fillAmount = ResumeTime / MyAudio.clip.length;
 				}
-				CurrentTime = string.Format("{00:00}:{1:00}", num, num2);
+				CurrentTime = $"{num:00}:{num2:00}";
 				Label.text = CurrentTime + " / " + ClipLength;
 				if (Category == 1)
 				{
@@ -668,7 +668,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 			{
 				if (StudentManager.TapesCollected[Selected])
 				{
-					CollectibleGlobals.SetTapeListened(Selected, true);
+					CollectibleGlobals.SetTapeListened(Selected, value: true);
 					flag = true;
 				}
 			}
@@ -676,19 +676,19 @@ public class TapePlayerMenuScript : MonoBehaviour
 			{
 				if (CollectibleGlobals.GetBasementTapeCollected(Selected))
 				{
-					CollectibleGlobals.SetBasementTapeListened(Selected, true);
+					CollectibleGlobals.SetBasementTapeListened(Selected, value: true);
 					flag = true;
 				}
 			}
 			else if (Category == 3 && StudentManager.HeadmasterTapesCollected[Selected])
 			{
-				CollectibleGlobals.SetHeadmasterTapeListened(Selected, true);
+				CollectibleGlobals.SetHeadmasterTapeListened(Selected, value: true);
 				flag = true;
 			}
 			if (flag)
 			{
-				NewIcons[Selected].SetActive(false);
-				Jukebox.SetActive(false);
+				NewIcons[Selected].SetActive(value: false);
+				Jukebox.SetActive(value: false);
 				Listening = true;
 				Phase = 1;
 				PromptBar.Label[0].text = string.Empty;
@@ -697,7 +697,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				TapePlayerAnim["InsertTape"].time = 0f;
 				TapePlayerAnim.Play("InsertTape");
-				TapePlayer.Tape.SetActive(true);
+				TapePlayer.Tape.SetActive(value: true);
 				if (Category == 1)
 				{
 					MyAudio.clip = Recordings[Selected];
@@ -714,7 +714,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 				RoundedTime = Mathf.CeilToInt(MyAudio.clip.length);
 				int num19 = (int)(RoundedTime / 60f);
 				int num20 = (int)(RoundedTime % 60f);
-				ClipLength = string.Format("{0:00}:{1:00}", num19, num20);
+				ClipLength = $"{num19:00}:{num20:00}";
 			}
 		}
 		else if (Input.GetButtonDown("B"))
@@ -722,7 +722,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 			TapePlayer.Yandere.HeartCamera.enabled = true;
 			TapePlayer.Yandere.RPGCamera.enabled = true;
 			TapePlayer.TapePlayerCamera.enabled = false;
-			TapePlayer.NoteWindow.SetActive(true);
+			TapePlayer.NoteWindow.SetActive(value: true);
 			TapePlayer.PromptBar.ClearButtons();
 			TapePlayer.Yandere.CanMove = true;
 			TapePlayer.PromptBar.Show = false;
@@ -750,7 +750,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 				else
 				{
 					TapeLabels[num].text = "?????";
-					NewIcons[num].SetActive(false);
+					NewIcons[num].SetActive(value: false);
 				}
 			}
 			else if (Category == 2)
@@ -764,7 +764,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 				else
 				{
 					TapeLabels[num].text = "?????";
-					NewIcons[num].SetActive(false);
+					NewIcons[num].SetActive(value: false);
 				}
 			}
 			else
@@ -778,7 +778,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 				else
 				{
 					TapeLabels[num].text = "?????";
-					NewIcons[num].SetActive(false);
+					NewIcons[num].SetActive(value: false);
 				}
 			}
 		}

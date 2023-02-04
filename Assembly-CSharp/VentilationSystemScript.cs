@@ -48,7 +48,7 @@ public class VentilationSystemScript : MonoBehaviour
 
 	private void Start()
 	{
-		Window.SetActive(false);
+		Window.SetActive(value: false);
 		UpdateHighlight();
 		UpdateRoomNameLabels();
 		if (GameGlobals.Eighties)
@@ -74,7 +74,7 @@ public class VentilationSystemScript : MonoBehaviour
 			Prompt.enabled = false;
 			Prompt.Yandere.RPGCamera.enabled = false;
 			Prompt.Yandere.CanMove = false;
-			Window.SetActive(true);
+			Window.SetActive(value: true);
 			Show = true;
 			CheckForStinkBombs();
 		}
@@ -94,7 +94,7 @@ public class VentilationSystemScript : MonoBehaviour
 			Object.Destroy(pickUp.gameObject);
 			if (Floor == 3 && RoomID == 23)
 			{
-				Prompt.Yandere.StudentManager.Portal.GetComponent<PortalScript>().Headmaster.SetActive(false);
+				Prompt.Yandere.StudentManager.Portal.GetComponent<PortalScript>().Headmaster.SetActive(value: false);
 			}
 			Exit();
 		}
@@ -247,7 +247,7 @@ public class VentilationSystemScript : MonoBehaviour
 		Prompt.Yandere.CanMove = true;
 		PromptBar.ClearButtons();
 		PromptBar.Show = false;
-		Window.SetActive(false);
+		Window.SetActive(value: false);
 		Prompt.enabled = true;
 		Time.timeScale = 1f;
 		Show = false;
@@ -283,21 +283,21 @@ public class VentilationSystemScript : MonoBehaviour
 		}
 		if (Floor == 1)
 		{
-			FirstFloorShadow.SetActive(true);
-			ThirdFloorShadow.SetActive(false);
+			FirstFloorShadow.SetActive(value: true);
+			ThirdFloorShadow.SetActive(value: false);
 		}
 		else if (Floor == 3)
 		{
-			FirstFloorShadow.SetActive(false);
+			FirstFloorShadow.SetActive(value: false);
 			if (!Eighties)
 			{
-				ThirdFloorShadow.SetActive(true);
+				ThirdFloorShadow.SetActive(value: true);
 			}
 		}
 		else
 		{
-			FirstFloorShadow.SetActive(false);
-			ThirdFloorShadow.SetActive(false);
+			FirstFloorShadow.SetActive(value: false);
+			ThirdFloorShadow.SetActive(value: false);
 		}
 		CheckForStinkBombs();
 	}

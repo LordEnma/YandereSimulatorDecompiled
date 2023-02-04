@@ -7,17 +7,11 @@ public class InvEquipment : MonoBehaviour
 
 	private InvAttachmentPoint[] mAttachments;
 
-	public InvGameItem[] equippedItems
-	{
-		get
-		{
-			return mItems;
-		}
-	}
+	public InvGameItem[] equippedItems => mItems;
 
 	public InvGameItem Replace(InvBaseItem.Slot slot, InvGameItem item)
 	{
-		InvBaseItem invBaseItem = ((item != null) ? item.baseItem : null);
+		InvBaseItem invBaseItem = item?.baseItem;
 		if (slot != 0)
 		{
 			if (invBaseItem != null && invBaseItem.slot != slot)
@@ -43,7 +37,7 @@ public class InvEquipment : MonoBehaviour
 				{
 					continue;
 				}
-				GameObject gameObject = invAttachmentPoint.Attach((invBaseItem != null) ? invBaseItem.attachment : null);
+				GameObject gameObject = invAttachmentPoint.Attach(invBaseItem?.attachment);
 				if (invBaseItem != null && gameObject != null)
 				{
 					Renderer component = gameObject.GetComponent<Renderer>();

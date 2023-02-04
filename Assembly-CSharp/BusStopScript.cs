@@ -140,8 +140,8 @@ public class BusStopScript : MonoBehaviour
 		Renderer.material.color = new Color(0f, 0f, 0f, 1f);
 		base.transform.position = new Vector3(0.375f, 0.5f, 2.5f);
 		base.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-		SecondAmai.gameObject.SetActive(false);
-		ThirdAmai.gameObject.SetActive(false);
+		SecondAmai.gameObject.SetActive(value: false);
+		ThirdAmai.gameObject.SetActive(value: false);
 		SenpaiAnim["sadFace_00"].layer = 1;
 		SenpaiAnim.Play("sadFace_00");
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
@@ -255,7 +255,7 @@ public class BusStopScript : MonoBehaviour
 			Amai.transform.position -= new Vector3(1f * Time.deltaTime, 0f, 0f);
 			if (Amai.transform.position.x < -2f)
 			{
-				SecondAmai.gameObject.SetActive(true);
+				SecondAmai.gameObject.SetActive(value: true);
 				if (SecondAmai["f02_motherRecipe_00"].speed == 1f)
 				{
 					SecondAmai["f02_motherRecipe_00"].speed = 0.66666f;
@@ -269,11 +269,11 @@ public class BusStopScript : MonoBehaviour
 				UpdateDOF(1f);
 				base.transform.position = new Vector3(0.55f, 1f, 1.55f);
 				base.transform.eulerAngles = new Vector3(0f, -135f, 0f);
-				SenpaiAnim.transform.parent.gameObject.SetActive(false);
-				SecondAmai.gameObject.SetActive(false);
-				NewSenpaiAnim.gameObject.SetActive(true);
-				NewAmaiAnim.gameObject.SetActive(true);
-				Amai.gameObject.SetActive(false);
+				SenpaiAnim.transform.parent.gameObject.SetActive(value: false);
+				SecondAmai.gameObject.SetActive(value: false);
+				NewSenpaiAnim.gameObject.SetActive(value: true);
+				NewAmaiAnim.gameObject.SetActive(value: true);
+				Amai.gameObject.SetActive(value: false);
 				Rotation = -125f;
 				SpeechID = 0;
 				Timer = 0f;
@@ -386,7 +386,7 @@ public class BusStopScript : MonoBehaviour
 				UpdateDOF(0.75f);
 				base.transform.position = new Vector3(0f, 1f, 0f);
 				base.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-				UtilityPole.SetActive(false);
+				UtilityPole.SetActive(value: false);
 				NewSenpaiAnim["SenpaiMeet_1"].time = NewSenpaiAnim["SenpaiMeet_1"].length - 4f;
 				Subtitle.text = "";
 				SpeechID = 0;
@@ -445,7 +445,7 @@ public class BusStopScript : MonoBehaviour
 				CupcakeBox.localScale = new Vector3(0.133333f, 0.15f, 0.15f);
 				NewSenpaiAnim.CrossFade("SenpaiMeet_3");
 				NewAmaiAnim.CrossFade("AmaiMeet_3");
-				UtilityPole.SetActive(true);
+				UtilityPole.SetActive(value: true);
 				Subtitle.text = "";
 				SpeechID = 0;
 				Timer = 0f;

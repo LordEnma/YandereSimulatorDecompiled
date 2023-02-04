@@ -14,13 +14,12 @@ namespace UnityEngine.PostProcessing
 
 		public Material Get(string shaderName)
 		{
-			Material value;
-			if (!m_Materials.TryGetValue(shaderName, out value))
+			if (!m_Materials.TryGetValue(shaderName, out var value))
 			{
 				Shader shader = Shader.Find(shaderName);
 				if (shader == null)
 				{
-					throw new ArgumentException(string.Format("Shader not found ({0})", shaderName));
+					throw new ArgumentException($"Shader not found ({shaderName})");
 				}
 				value = new Material(shader)
 				{

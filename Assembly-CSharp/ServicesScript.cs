@@ -147,13 +147,13 @@ public class ServicesScript : MonoBehaviour
 						Yandere.PauseScreen.StudentInfoMenu.Row = 0;
 						Yandere.PauseScreen.StudentInfoMenu.UpdateHighlight();
 						Yandere.PauseScreen.Sideways = true;
-						Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+						Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(value: true);
 						Yandere.PauseScreen.StudentInfoMenu.GrabPortraitsNextFrame = true;
 						Yandere.PromptBar.ClearButtons();
 						Yandere.PromptBar.Label[1].text = "Cancel";
 						Yandere.PromptBar.UpdateButtons();
 						Yandere.PromptBar.Show = true;
-						base.gameObject.SetActive(false);
+						base.gameObject.SetActive(value: false);
 					}
 					else if (Selected == 2)
 					{
@@ -178,14 +178,14 @@ public class ServicesScript : MonoBehaviour
 						Yandere.PauseScreen.StudentInfoMenu.Row = 0;
 						Yandere.PauseScreen.StudentInfoMenu.UpdateHighlight();
 						Yandere.PauseScreen.Sideways = true;
-						Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+						Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(value: true);
 						Yandere.PauseScreen.StudentInfoMenu.GrabbedPortraits = false;
 						StartCoroutine(Yandere.PauseScreen.StudentInfoMenu.UpdatePortraits());
 						Yandere.PromptBar.ClearButtons();
 						Yandere.PromptBar.Label[1].text = "Cancel";
 						Yandere.PromptBar.UpdateButtons();
 						Yandere.PromptBar.Show = true;
-						base.gameObject.SetActive(false);
+						base.gameObject.SetActive(value: false);
 					}
 					else if (Selected == 6)
 					{
@@ -206,7 +206,7 @@ public class ServicesScript : MonoBehaviour
 						Yandere.PauseScreen.StudentInfoMenu.Row = 0;
 						Yandere.PauseScreen.StudentInfoMenu.UpdateHighlight();
 						Yandere.PauseScreen.Sideways = true;
-						Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+						Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(value: true);
 						Yandere.PauseScreen.StudentInfoMenu.GrabPortraitsNextFrame = true;
 						StartCoroutine(Yandere.PauseScreen.StudentInfoMenu.UpdatePortraits());
 						Yandere.PromptBar.ClearButtons();
@@ -214,7 +214,7 @@ public class ServicesScript : MonoBehaviour
 						Yandere.PromptBar.Label[1].text = "Cancel";
 						Yandere.PromptBar.UpdateButtons();
 						Yandere.PromptBar.Show = true;
-						base.gameObject.SetActive(false);
+						base.gameObject.SetActive(value: false);
 					}
 					else if (Selected == 9)
 					{
@@ -223,14 +223,14 @@ public class ServicesScript : MonoBehaviour
 						Yandere.PauseScreen.StudentInfoMenu.Row = 0;
 						Yandere.PauseScreen.StudentInfoMenu.UpdateHighlight();
 						Yandere.PauseScreen.Sideways = true;
-						Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+						Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(value: true);
 						Yandere.PauseScreen.StudentInfoMenu.GrabbedPortraits = false;
 						StartCoroutine(Yandere.PauseScreen.StudentInfoMenu.UpdatePortraits());
 						Yandere.PromptBar.ClearButtons();
 						Yandere.PromptBar.Label[1].text = "Cancel";
 						Yandere.PromptBar.UpdateButtons();
 						Yandere.PromptBar.Show = true;
-						base.gameObject.SetActive(false);
+						base.gameObject.SetActive(value: false);
 					}
 					else if (Selected == 10)
 					{
@@ -269,8 +269,8 @@ public class ServicesScript : MonoBehaviour
 			PromptBar.Label[1].text = "Exit";
 			PromptBar.Label[5].text = "Choose";
 			PromptBar.UpdateButtons();
-			FavorMenu.SetActive(true);
-			base.gameObject.SetActive(false);
+			FavorMenu.SetActive(value: true);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 

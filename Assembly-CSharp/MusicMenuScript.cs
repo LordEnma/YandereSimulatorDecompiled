@@ -27,8 +27,8 @@ public class MusicMenuScript : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.C))
 		{
-			AudioMenu.SetActive(true);
-			base.gameObject.SetActive(false);
+			AudioMenu.SetActive(value: true);
+			base.gameObject.SetActive(value: false);
 		}
 		if (InputManager.TappedUp)
 		{
@@ -51,10 +51,10 @@ public class MusicMenuScript : MonoBehaviour
 			PromptBar.Label[1].text = "Exit";
 			PromptBar.Label[4].text = "Choose";
 			PromptBar.UpdateButtons();
-			PauseScreen.MainMenu.SetActive(true);
+			PauseScreen.MainMenu.SetActive(value: true);
 			PauseScreen.Sideways = false;
 			PauseScreen.PressedB = true;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 

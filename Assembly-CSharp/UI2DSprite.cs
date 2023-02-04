@@ -142,13 +142,7 @@ public class UI2DSprite : UIBasicSprite
 		}
 	}
 
-	public override float pixelSize
-	{
-		get
-		{
-			return mPixelSize;
-		}
-	}
+	public override float pixelSize => mPixelSize;
 
 	public override Vector4 drawingDimensions
 	{

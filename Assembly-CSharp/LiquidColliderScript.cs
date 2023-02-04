@@ -130,7 +130,7 @@ public class LiquidColliderScript : MonoBehaviour
 			Debug.Log("This student was following at the time they were slashed.");
 			ParticleSystem.EmissionModule emission = component.Hearts.emission;
 			emission.enabled = false;
-			component.FollowCountdown.gameObject.SetActive(false);
+			component.FollowCountdown.gameObject.SetActive(value: false);
 			component.Yandere.Follower = null;
 			component.Yandere.Followers--;
 			component.Following = false;

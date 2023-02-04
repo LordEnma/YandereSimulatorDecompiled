@@ -79,14 +79,14 @@ public class GardenHoleScript : MonoBehaviour
 		Yandere.transform.rotation = Quaternion.LookRotation(new Vector3(base.transform.position.x, Yandere.transform.position.y, base.transform.position.z) - Yandere.transform.position);
 		Yandere.RPGCamera.transform.eulerAngles = Yandere.DigSpot.eulerAngles;
 		Yandere.RPGCamera.transform.position = Yandere.DigSpot.position;
-		Yandere.EquippedWeapon.gameObject.SetActive(false);
+		Yandere.EquippedWeapon.gameObject.SetActive(value: false);
 		Yandere.CharacterAnimation["f02_shovelBury_00"].time = 0f;
 		Yandere.CharacterAnimation["f02_shovelDig_00"].time = 0f;
-		Yandere.FloatingShovel.SetActive(true);
+		Yandere.FloatingShovel.SetActive(value: true);
 		Yandere.RPGCamera.enabled = false;
 		Yandere.CanMove = false;
 		Yandere.DigPhase = 1;
-		Carrots.SetActive(false);
+		Carrots.SetActive(value: false);
 		Prompt.Circle[0].fillAmount = 1f;
 		if (!Dug)
 		{
@@ -97,7 +97,7 @@ public class GardenHoleScript : MonoBehaviour
 			Prompt.Label[0].text = "     Fill";
 			MyCollider.isTrigger = true;
 			MyMesh.mesh = HoleMesh;
-			Pile.SetActive(true);
+			Pile.SetActive(value: true);
 			Dug = true;
 		}
 		else
@@ -109,7 +109,7 @@ public class GardenHoleScript : MonoBehaviour
 			Prompt.Label[0].text = "     Dig";
 			MyCollider.isTrigger = false;
 			MyMesh.mesh = MoundMesh;
-			Pile.SetActive(false);
+			Pile.SetActive(value: false);
 			Dug = false;
 		}
 		if (Bury)
@@ -162,8 +162,8 @@ public class GardenHoleScript : MonoBehaviour
 	{
 		if (VictimID > 0)
 		{
-			StudentGlobals.SetStudentMissing(VictimID, true);
-			SchoolGlobals.SetGardenGraveOccupied(ID, true);
+			StudentGlobals.SetStudentMissing(VictimID, value: true);
+			SchoolGlobals.SetGardenGraveOccupied(ID, value: true);
 		}
 	}
 }

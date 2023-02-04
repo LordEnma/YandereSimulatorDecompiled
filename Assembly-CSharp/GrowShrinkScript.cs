@@ -79,6 +79,6 @@ public class GrowShrinkScript : MonoBehaviour
 		Scale = 0f;
 		Speed = 5f;
 		Timer = 0f;
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 	}
 }

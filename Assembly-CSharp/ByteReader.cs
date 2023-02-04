@@ -56,7 +56,7 @@ public class ByteReader
 
 	public string ReadLine()
 	{
-		return ReadLine(true);
+		return ReadLine(skipEmptyLines: true);
 	}
 
 	public string ReadLine(bool skipEmptyLines)
@@ -127,7 +127,7 @@ public class ByteReader
 		{
 			if (flag)
 			{
-				string text2 = ReadLine(false);
+				string text2 = ReadLine(skipEmptyLines: false);
 				if (text2 == null)
 				{
 					return null;
@@ -137,7 +137,7 @@ public class ByteReader
 			}
 			else
 			{
-				text = ReadLine(true);
+				text = ReadLine(skipEmptyLines: true);
 				if (text == null)
 				{
 					return null;

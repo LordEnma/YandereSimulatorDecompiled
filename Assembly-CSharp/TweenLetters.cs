@@ -99,7 +99,7 @@ public class TweenLetters : UITweener
 		{
 			int quadsPerCharacter = mLabel.quadsPerCharacter;
 			int num = count / quadsPerCharacter / 4;
-			string printedText = mLabel.printedText;
+			_ = mLabel.printedText;
 			if (mVertexCount != count)
 			{
 				mVertexCount = count;

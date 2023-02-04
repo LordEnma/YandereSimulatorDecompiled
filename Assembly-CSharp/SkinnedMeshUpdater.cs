@@ -80,7 +80,7 @@ public class SkinnedMeshUpdater : MonoBehaviour
 	{
 		SkinnedMeshRenderer myRenderer = Prompt.Yandere.MyRenderer;
 		myRenderer.sharedMesh = newMeshRenderer.sharedMesh;
-		Transform[] componentsInChildren = Prompt.Yandere.transform.GetComponentsInChildren<Transform>(true);
+		Transform[] componentsInChildren = Prompt.Yandere.transform.GetComponentsInChildren<Transform>(includeInactive: true);
 		Transform[] array = new Transform[newMeshRenderer.bones.Length];
 		int boneOrder;
 		for (boneOrder = 0; boneOrder < newMeshRenderer.bones.Length; boneOrder++)
@@ -92,15 +92,15 @@ public class SkinnedMeshUpdater : MonoBehaviour
 
 	private void GlassesCheck()
 	{
-		FumiGlasses.SetActive(false);
-		NinaGlasses.SetActive(false);
+		FumiGlasses.SetActive(value: false);
+		NinaGlasses.SetActive(value: false);
 		if (ID == 7)
 		{
-			FumiGlasses.SetActive(true);
+			FumiGlasses.SetActive(value: true);
 		}
 		else if (ID == 8)
 		{
-			NinaGlasses.SetActive(true);
+			NinaGlasses.SetActive(value: true);
 		}
 	}
 }

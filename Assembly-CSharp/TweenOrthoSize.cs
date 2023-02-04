@@ -60,7 +60,7 @@ public class TweenOrthoSize : UITweener
 		tweenOrthoSize.to = to;
 		if (duration <= 0f)
 		{
-			tweenOrthoSize.Sample(1f, true);
+			tweenOrthoSize.Sample(1f, isFinished: true);
 			tweenOrthoSize.enabled = false;
 		}
 		return tweenOrthoSize;

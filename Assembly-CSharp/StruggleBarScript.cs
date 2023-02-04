@@ -111,7 +111,7 @@ public class StruggleBarScript : MonoBehaviour
 		base.transform.localScale = Vector3.zero;
 		if (!Yandere.AttackManager.Censor)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			return;
 		}
 		if (AttackTimer == 0f)
@@ -128,7 +128,7 @@ public class StruggleBarScript : MonoBehaviour
 		Yandere.Blur.Size = Mathf.Lerp(Yandere.Blur.Size, 1f, Time.deltaTime * 32f);
 		if (AttackTimer >= 3f)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			Yandere.Blur.enabled = false;
 			Yandere.Blur.Size = 1f;
 			AttackTimer = 0f;

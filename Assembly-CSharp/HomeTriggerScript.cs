@@ -41,6 +41,6 @@ public class HomeTriggerScript : MonoBehaviour
 	public void Disable()
 	{
 		Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, 0f);
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 	}
 }

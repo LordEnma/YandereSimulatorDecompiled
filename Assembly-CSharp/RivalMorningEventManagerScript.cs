@@ -171,7 +171,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 				Phase++;
 				if (EventDay == DayOfWeek.Tuesday)
 				{
-					StudentManager.Students[1].EventBook.SetActive(true);
+					StudentManager.Students[1].EventBook.SetActive(value: true);
 				}
 			}
 			Frame++;
@@ -244,8 +244,8 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			}
 			if (Transfer && Rival.CharacterAnimation["f02_" + Weekday + "_1"].time > TransferTime)
 			{
-				Senpai.EventBook.SetActive(false);
-				Rival.EventBook.SetActive(true);
+				Senpai.EventBook.SetActive(value: false);
+				Rival.EventBook.SetActive(value: true);
 				Transfer = false;
 			}
 			if (Clock.Period > 1)
@@ -323,83 +323,82 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 	public void EndEvent()
 	{
 		Debug.Log("Osana's morning ''Talk with Senpai'' event has ended.");
-		if (Phase <= 0 || !Rival.Alive)
+		if (Phase > 0 && Rival.Alive)
 		{
-			return;
-		}
-		if (EventDay == DayOfWeek.Tuesday)
-		{
-			ScheduleBlock obj = Senpai.ScheduleBlocks[2];
-			obj.destination = "Patrol";
-			obj.action = "Patrol";
-			ScheduleBlock obj2 = Senpai.ScheduleBlocks[7];
-			obj2.destination = "Patrol";
-			obj2.action = "Patrol";
-			Senpai.GetDestinations();
-		}
-		if (VoiceClip != null)
-		{
-			UnityEngine.Object.Destroy(VoiceClip);
-		}
-		if (!Senpai.Alarmed)
-		{
-			Senpai.Pathfinding.canSearch = true;
-			Senpai.Pathfinding.canMove = true;
-			Senpai.Routine = true;
-		}
-		Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-		Senpai.EventBook.SetActive(false);
-		Senpai.InEvent = false;
-		Senpai.Private = false;
-		if (!Rival.Alarmed)
-		{
-			Rival.Pathfinding.canSearch = true;
-			Rival.Pathfinding.canMove = true;
-			Rival.Routine = true;
-		}
-		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-		Rival.EventBook.SetActive(false);
-		Rival.Prompt.enabled = true;
-		Rival.InEvent = false;
-		Rival.Private = false;
-		if (Friend != null)
-		{
-			if (!Friend.Alarmed && !Friend.DramaticReaction)
+			if (EventDay == DayOfWeek.Tuesday)
 			{
-				Friend.Pathfinding.canSearch = true;
-				Friend.Pathfinding.canMove = true;
-				Friend.Routine = true;
+				ScheduleBlock obj = Senpai.ScheduleBlocks[2];
+				obj.destination = "Patrol";
+				obj.action = "Patrol";
+				ScheduleBlock obj2 = Senpai.ScheduleBlocks[7];
+				obj2.destination = "Patrol";
+				obj2.action = "Patrol";
+				Senpai.GetDestinations();
 			}
-			if (NaturalEnd)
+			if (VoiceClip != null)
 			{
-				Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-				Friend.Prompt.enabled = true;
-				Friend.InEvent = false;
-				Friend.Private = false;
+				UnityEngine.Object.Destroy(VoiceClip);
 			}
-			else
+			if (!Senpai.Alarmed)
 			{
-				Friend.Pathfinding.target = Location[3];
-				Friend.CurrentDestination = Location[3];
+				Senpai.Pathfinding.canSearch = true;
+				Senpai.Pathfinding.canMove = true;
+				Senpai.Routine = true;
 			}
-			Friend.Cheer.enabled = false;
-			Friend.ImmuneToLaughter = false;
-			Friend.IgnoringPettyActions = false;
+			Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+			Senpai.EventBook.SetActive(value: false);
+			Senpai.InEvent = false;
+			Senpai.Private = false;
+			if (!Rival.Alarmed)
+			{
+				Rival.Pathfinding.canSearch = true;
+				Rival.Pathfinding.canMove = true;
+				Rival.Routine = true;
+			}
+			Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+			Rival.EventBook.SetActive(value: false);
+			Rival.Prompt.enabled = true;
+			Rival.InEvent = false;
+			Rival.Private = false;
+			if (Friend != null)
+			{
+				if (!Friend.Alarmed && !Friend.DramaticReaction)
+				{
+					Friend.Pathfinding.canSearch = true;
+					Friend.Pathfinding.canMove = true;
+					Friend.Routine = true;
+				}
+				if (NaturalEnd)
+				{
+					Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+					Friend.Prompt.enabled = true;
+					Friend.InEvent = false;
+					Friend.Private = false;
+				}
+				else
+				{
+					Friend.Pathfinding.target = Location[3];
+					Friend.CurrentDestination = Location[3];
+				}
+				Friend.Cheer.enabled = false;
+				Friend.ImmuneToLaughter = false;
+				Friend.IgnoringPettyActions = false;
+			}
+			if (!StudentManager.Stop)
+			{
+				StudentManager.UpdateStudents();
+			}
+			Spy.Prompt.Hide();
+			Spy.Prompt.enabled = false;
+			if (Spy.Phase > 0)
+			{
+				Spy.End();
+			}
+			Yandere.Eavesdropping = false;
+			EventSubtitle.text = string.Empty;
+			Jukebox.Dip = 1f;
 		}
-		if (!StudentManager.Stop)
-		{
-			StudentManager.UpdateStudents();
-		}
-		Spy.Prompt.Hide();
-		Spy.Prompt.enabled = false;
-		if (Spy.Phase > 0)
-		{
-			Spy.End();
-		}
-		Yandere.Eavesdropping = false;
-		EventSubtitle.text = string.Empty;
 		base.enabled = false;
-		Jukebox.Dip = 1f;
 	}
 
 	public void SaveAnimationTime()

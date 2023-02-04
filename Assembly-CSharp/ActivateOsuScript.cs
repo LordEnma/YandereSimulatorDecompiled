@@ -53,17 +53,17 @@ public class ActivateOsuScript : MonoBehaviour
 
 	private void ActivateOsu()
 	{
-		Osu.transform.parent.gameObject.SetActive(true);
-		Student.SmartPhone.SetActive(false);
-		Music.SetActive(true);
+		Osu.transform.parent.gameObject.SetActive(value: true);
+		Student.SmartPhone.SetActive(value: false);
+		Music.SetActive(value: true);
 		Mouse.parent = Student.RightHand;
 		Mouse.transform.localPosition = Vector3.zero;
 	}
 
 	private void DeactivateOsu()
 	{
-		Osu.transform.parent.gameObject.SetActive(false);
-		Music.SetActive(false);
+		Osu.transform.parent.gameObject.SetActive(value: false);
+		Music.SetActive(value: false);
 		OsuScript[] osuScripts = OsuScripts;
 		for (int i = 0; i < osuScripts.Length; i++)
 		{

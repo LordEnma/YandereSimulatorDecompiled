@@ -179,8 +179,8 @@ public class CourtroomScript : MonoBehaviour
 		GuiltyPoints[23] = PlayerGlobals.Friends * -1;
 		Fact[24] = "Ryoba's reputation at school is " + Mathf.RoundToInt(PlayerGlobals.Reputation) + ".";
 		GuiltyPoints[24] = Mathf.RoundToInt(PlayerGlobals.Reputation) * -1;
-		Fact[25] = "Ryoba's classmates witnessed her doing something suspicious " + PlayerGlobals.Alerts + " times.";
-		GuiltyPoints[25] = PlayerGlobals.Alerts;
+		Fact[25] = "Ryoba's classmates witnessed her doing something suspicious " + PlayerGlobals.Alarms + " times.";
+		GuiltyPoints[25] = PlayerGlobals.Alarms;
 		Fact[26] = "Ryoba's classmates witnessed her carrying a dangerous weapon around school " + PlayerGlobals.WeaponWitnessed + " times.";
 		GuiltyPoints[26] = PlayerGlobals.WeaponWitnessed;
 		Fact[27] = "Ryoba's classmates witnessed her walking around in blood-stained clothing " + PlayerGlobals.BloodWitnessed + " times.";
@@ -271,7 +271,7 @@ public class CourtroomScript : MonoBehaviour
 				}
 				FactLabel.text = Fact[FactID];
 				Guilt += GuiltyPoints[FactID];
-				SkipButton.SetActive(false);
+				SkipButton.SetActive(value: false);
 				Phase++;
 			}
 		}
@@ -579,8 +579,8 @@ public class CourtroomScript : MonoBehaviour
 	{
 		if (GameGlobals.VtuberID > 0)
 		{
-			OriginalHair.SetActive(false);
-			VtuberHairs[GameGlobals.VtuberID].SetActive(true);
+			OriginalHair.SetActive(value: false);
+			VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
 			MyRenderer.materials[2].mainTexture = VtuberFaces[GameGlobals.VtuberID];
 			for (int i = 0; i < 13; i++)
 			{
@@ -592,7 +592,7 @@ public class CourtroomScript : MonoBehaviour
 		}
 		else
 		{
-			VtuberHairs[1].SetActive(false);
+			VtuberHairs[1].SetActive(value: false);
 		}
 	}
 }

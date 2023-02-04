@@ -51,11 +51,11 @@ public class SchoolSaveData
 	{
 		foreach (int item in data.demonActive)
 		{
-			SchoolGlobals.SetDemonActive(item, true);
+			SchoolGlobals.SetDemonActive(item, value: true);
 		}
 		foreach (int item2 in data.gardenGraveOccupied)
 		{
-			SchoolGlobals.SetGardenGraveOccupied(item2, true);
+			SchoolGlobals.SetGardenGraveOccupied(item2, value: true);
 		}
 		SchoolGlobals.KidnapVictim = data.kidnapVictim;
 		SchoolGlobals.Population = data.population;

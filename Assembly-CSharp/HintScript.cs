@@ -23,7 +23,7 @@ public class HintScript : MonoBehaviour
 		base.transform.localPosition = new Vector3(0.2043f, 0f, 1f);
 		if (DateGlobals.Week > 1 || GameGlobals.Eighties)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		if (OptionGlobals.HintsOff)
 		{

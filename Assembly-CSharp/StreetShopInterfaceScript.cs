@@ -129,7 +129,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 				TransitionTimer += Time.deltaTime;
 				if (TransitionTimer > 9f)
 				{
-					CreepyCutscene.SetActive(true);
+					CreepyCutscene.SetActive(value: true);
 					Jukebox.Stop();
 				}
 				else if (TransitionTimer > 4f)
@@ -285,24 +285,24 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			{
 			case 1:
 				PurchaseEffect();
-				PlayerGlobals.SetCannotBringItem(6, false);
+				PlayerGlobals.SetCannotBringItem(6, value: false);
 				break;
 			case 2:
 				PurchaseEffect();
-				PlayerGlobals.SetCannotBringItem(5, false);
+				PlayerGlobals.SetCannotBringItem(5, value: false);
 				break;
 			case 3:
 				PurchaseEffect();
-				PlayerGlobals.SetCannotBringItem(7, false);
+				PlayerGlobals.SetCannotBringItem(7, value: false);
 				break;
 			case 4:
 				PurchaseEffect();
-				PlayerGlobals.SetCannotBringItem(4, false);
+				PlayerGlobals.SetCannotBringItem(4, value: false);
 				break;
 			case 5:
 				PurchaseEffect();
 				PlayerGlobals.BoughtSedative = true;
-				PlayerGlobals.SetCannotBringItem(9, false);
+				PlayerGlobals.SetCannotBringItem(9, value: false);
 				break;
 			case 6:
 				PurchaseEffect();
@@ -337,34 +337,34 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			switch (Selected)
 			{
 			case 1:
-				CollectibleGlobals.SetMangaCollected(6, true);
+				CollectibleGlobals.SetMangaCollected(6, value: true);
 				break;
 			case 2:
-				CollectibleGlobals.SetMangaCollected(7, true);
+				CollectibleGlobals.SetMangaCollected(7, value: true);
 				break;
 			case 3:
-				CollectibleGlobals.SetMangaCollected(8, true);
+				CollectibleGlobals.SetMangaCollected(8, value: true);
 				break;
 			case 4:
-				CollectibleGlobals.SetMangaCollected(9, true);
+				CollectibleGlobals.SetMangaCollected(9, value: true);
 				break;
 			case 5:
-				CollectibleGlobals.SetMangaCollected(10, true);
+				CollectibleGlobals.SetMangaCollected(10, value: true);
 				break;
 			case 6:
-				CollectibleGlobals.SetMangaCollected(1, true);
+				CollectibleGlobals.SetMangaCollected(1, value: true);
 				break;
 			case 7:
-				CollectibleGlobals.SetMangaCollected(2, true);
+				CollectibleGlobals.SetMangaCollected(2, value: true);
 				break;
 			case 8:
-				CollectibleGlobals.SetMangaCollected(3, true);
+				CollectibleGlobals.SetMangaCollected(3, value: true);
 				break;
 			case 9:
-				CollectibleGlobals.SetMangaCollected(4, true);
+				CollectibleGlobals.SetMangaCollected(4, value: true);
 				break;
 			case 10:
-				CollectibleGlobals.SetMangaCollected(5, true);
+				CollectibleGlobals.SetMangaCollected(5, value: true);
 				break;
 			}
 			break;
@@ -378,16 +378,16 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			{
 				CollectibleGlobals.MatchmakingGifts++;
 			}
-			CollectibleGlobals.SetGiftPurchased(Selected, true);
+			CollectibleGlobals.SetGiftPurchased(Selected, value: true);
 			break;
 		case ShopType.Lingerie:
 			PurchaseEffect();
-			CollectibleGlobals.SetPantyPurchased(Selected, true);
+			CollectibleGlobals.SetPantyPurchased(Selected, value: true);
 			CountPanties();
 			break;
 		case ShopType.Salon:
 			PurchaseEffect();
-			CollectibleGlobals.SetAdvicePurchased(Selected, true);
+			CollectibleGlobals.SetAdvicePurchased(Selected, value: true);
 			Timer = 1f;
 			break;
 		case ShopType.Hardware:
@@ -421,7 +421,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		for (int i = 1; i < 11; i++)
 		{
 			Icons[i].spriteName = "";
-			Icons[i].gameObject.SetActive(false);
+			Icons[i].gameObject.SetActive(value: false);
 			ProductsLabel[i].color = new Color(1f, 1f, 1f, 1f);
 		}
 		for (int i = 1; i < 11; i++)
@@ -553,7 +553,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		{
 			if (Icons[i].spriteName != "")
 			{
-				Icons[i].gameObject.SetActive(true);
+				Icons[i].gameObject.SetActive(value: true);
 				if (Icons[i].spriteName == "Yes")
 				{
 					ProductsLabel[i].color = new Color(1f, 1f, 1f, 0.5f);

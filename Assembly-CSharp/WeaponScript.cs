@@ -422,7 +422,7 @@ public class WeaponScript : MonoBehaviour
 				{
 					Yandere.Incinerator.BloodyWeapons++;
 				}
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 		if ((base.transform.parent == Yandere.ItemParent || base.transform.parent == Yandere.LeftItemParent) && Concealable && Yandere.Weapon[1] != this && Yandere.Weapon[2] != this)
@@ -524,7 +524,7 @@ public class WeaponScript : MonoBehaviour
 			{
 				if (Yandere.Weapon[2] != null)
 				{
-					Yandere.Weapon[2].gameObject.SetActive(false);
+					Yandere.Weapon[2].gameObject.SetActive(value: false);
 				}
 				Yandere.Equipped = 1;
 				Yandere.EquippedWeapon = this;
@@ -536,7 +536,7 @@ public class WeaponScript : MonoBehaviour
 				{
 					if (!DoNotDisable)
 					{
-						Yandere.Weapon[1].gameObject.SetActive(false);
+						Yandere.Weapon[1].gameObject.SetActive(value: false);
 					}
 					DoNotDisable = false;
 				}
@@ -563,11 +563,11 @@ public class WeaponScript : MonoBehaviour
 		{
 			if (Yandere.Weapon[1] != null)
 			{
-				Yandere.Weapon[1].gameObject.SetActive(false);
+				Yandere.Weapon[1].gameObject.SetActive(value: false);
 			}
 			if (Yandere.Weapon[2] != null)
 			{
-				Yandere.Weapon[2].gameObject.SetActive(false);
+				Yandere.Weapon[2].gameObject.SetActive(value: false);
 			}
 			Yandere.Equipped = 3;
 			Yandere.EquippedWeapon = this;
@@ -608,7 +608,7 @@ public class WeaponScript : MonoBehaviour
 		}
 		if (WeaponID == 26)
 		{
-			WeaponTrail.SetActive(true);
+			WeaponTrail.SetActive(value: true);
 		}
 		KinematicTimer = 0f;
 		AudioSource.PlayClipAtPoint(EquipClip, Yandere.MainCamera.transform.position);
@@ -661,7 +661,7 @@ public class WeaponScript : MonoBehaviour
 			Yandere.Equipped = 0;
 			Yandere.StudentManager.UpdateStudents();
 		}
-		base.gameObject.SetActive(true);
+		base.gameObject.SetActive(value: true);
 		base.transform.parent = null;
 		MyRigidbody.constraints = RigidbodyConstraints.None;
 		MyRigidbody.isKinematic = false;
@@ -723,7 +723,7 @@ public class WeaponScript : MonoBehaviour
 			base.transform.localEulerAngles = Vector3.zero;
 			base.transform.localPosition = Vector3.zero;
 			MyRigidbody.isKinematic = true;
-			WeaponTrail.SetActive(false);
+			WeaponTrail.SetActive(value: false);
 		}
 		if (Vector3.Distance(base.transform.position, StartingPosition) < 1f || Vector3.Distance(Yandere.transform.position, StartingPosition) < 1f)
 		{

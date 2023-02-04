@@ -99,7 +99,7 @@ public class MGPMManagerScript : MonoBehaviour
 			StageClearGraphic.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
 			GameOverGraphic.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
 			StartGraphic.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
-			GameOverGraphic.transform.GetChild(0).gameObject.SetActive(false);
+			GameOverGraphic.transform.GetChild(0).gameObject.SetActive(value: false);
 			RightArtwork.material.color = new Color(0f, 0f, 0f, 1f);
 			LeftArtwork.material.color = new Color(0f, 0f, 0f, 1f);
 			Miyuki.Hearts[1].transform.localPosition = new Vector3(145f, -260f, -4f);
@@ -128,7 +128,7 @@ public class MGPMManagerScript : MonoBehaviour
 		}
 		Miyuki.transform.localPosition = new Vector3(0f, -300f, 0f);
 		Black.material.color = new Color(0f, 0f, 0f, 1f);
-		StartGraphic.SetActive(false);
+		StartGraphic.SetActive(value: false);
 		Miyuki.Gameplay = false;
 		for (ID = 1; ID < EnemySpawner.Length; ID++)
 		{
@@ -148,7 +148,7 @@ public class MGPMManagerScript : MonoBehaviour
 				Miyuki.transform.localPosition = new Vector3(Miyuki.transform.localPosition.x, Miyuki.transform.localPosition.y + Time.deltaTime * 10f, Miyuki.transform.localPosition.z);
 				if (!StageClearGraphic.activeInHierarchy)
 				{
-					StageClearGraphic.SetActive(true);
+					StageClearGraphic.SetActive(value: true);
 					Jukebox.clip = VictoryMusic;
 					Jukebox.loop = false;
 					Jukebox.volume = 1f;
@@ -208,11 +208,11 @@ public class MGPMManagerScript : MonoBehaviour
 							Jukebox.pitch = 0.2f;
 						}
 					}
-					StartGraphic.SetActive(true);
+					StartGraphic.SetActive(value: true);
 					Timer += Time.deltaTime;
 					if ((double)Timer > 3.5)
 					{
-						StartGraphic.SetActive(false);
+						StartGraphic.SetActive(value: false);
 						for (ID = 1; ID < EnemySpawner.Length; ID++)
 						{
 							EnemySpawner[ID].enabled = true;
@@ -224,7 +224,7 @@ public class MGPMManagerScript : MonoBehaviour
 			}
 			if (Input.GetKeyDown("space"))
 			{
-				StartGraphic.SetActive(false);
+				StartGraphic.SetActive(value: false);
 				for (ID = 1; ID < EnemySpawner.Length; ID++)
 				{
 					EnemySpawner[ID].enabled = true;
@@ -247,7 +247,7 @@ public class MGPMManagerScript : MonoBehaviour
 		{
 			if (!GameOverGraphic.activeInHierarchy)
 			{
-				GameOverGraphic.SetActive(true);
+				GameOverGraphic.SetActive(value: true);
 				Jukebox.clip = GameOverMusic;
 				Jukebox.loop = false;
 				Jukebox.Play();

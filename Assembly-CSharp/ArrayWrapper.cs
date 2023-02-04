@@ -18,13 +18,7 @@ public class ArrayWrapper<T> : IEnumerable
 		}
 	}
 
-	public int Length
-	{
-		get
-		{
-			return elements.Length;
-		}
-	}
+	public int Length => elements.Length;
 
 	public ArrayWrapper(int size)
 	{

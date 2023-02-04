@@ -51,7 +51,7 @@ namespace MaidDereMinigame
 		{
 			cookQueue = new Foods();
 			animator = GetComponent<Animator>();
-			cookMeter.gameObject.SetActive(false);
+			cookMeter.gameObject.SetActive(value: false);
 			isPaused = true;
 		}
 
@@ -97,7 +97,7 @@ namespace MaidDereMinigame
 					currentPlate = GrabFromQueue();
 					timeToFinishDish = currentPlate.cookTimeMultiplier * cookTime;
 					state = ChefState.Cooking;
-					cookMeter.gameObject.SetActive(true);
+					cookMeter.gameObject.SetActive(value: true);
 				}
 				break;
 			case ChefState.Cooking:
@@ -105,7 +105,7 @@ namespace MaidDereMinigame
 				{
 					state = ChefState.Delivering;
 					animator.SetTrigger("PlateCooked");
-					cookMeter.gameObject.SetActive(false);
+					cookMeter.gameObject.SetActive(value: false);
 				}
 				else
 				{

@@ -167,7 +167,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 		if (!MissionModeGlobals.MultiMission)
 		{
-			MissionModeLabel.SetActive(false);
+			MissionModeLabel.SetActive(value: false);
 		}
 		MultiMission = MissionModeGlobals.MultiMission;
 		base.transform.localPosition = new Vector3(1351f, 0f, 0f);
@@ -175,32 +175,32 @@ public class PauseScreenScript : MonoBehaviour
 		base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y, 0f);
 		if (!Home)
 		{
-			YouTubeChatMenu.CommandChecker.CountdownCircle.transform.parent.gameObject.SetActive(false);
+			YouTubeChatMenu.CommandChecker.CountdownCircle.transform.parent.gameObject.SetActive(value: false);
 		}
-		FavorMenu.BountyMenu.gameObject.SetActive(false);
-		StudentInfoMenu.gameObject.SetActive(false);
-		YouTubeChatMenu.gameObject.SetActive(false);
-		InventoryMenu.gameObject.SetActive(false);
-		PhotoGallery.gameObject.SetActive(false);
-		SaveLoadMenu.gameObject.SetActive(false);
-		ServiceMenu.gameObject.SetActive(false);
-		NewSettings.gameObject.SetActive(false);
-		AudioMenu.gameObject.SetActive(false);
-		FavorMenu.gameObject.SetActive(false);
-		IdeasMenu.gameObject.SetActive(false);
-		Tutorials.gameObject.SetActive(false);
-		PassTime.gameObject.SetActive(false);
-		Schedule.gameObject.SetActive(false);
-		TaskList.gameObject.SetActive(false);
-		Stats.gameObject.SetActive(false);
-		LoadingScreen.SetActive(false);
-		ControlMenu.SetActive(false);
-		SchemesMenu.SetActive(false);
-		StudentInfo.SetActive(false);
-		DropsMenu.SetActive(false);
-		MainMenu.SetActive(true);
-		YouTubeChatMenu.InitializeWindow.SetActive(true);
-		YouTubeChatMenu.CommandWindow.SetActive(false);
+		FavorMenu.BountyMenu.gameObject.SetActive(value: false);
+		StudentInfoMenu.gameObject.SetActive(value: false);
+		YouTubeChatMenu.gameObject.SetActive(value: false);
+		InventoryMenu.gameObject.SetActive(value: false);
+		PhotoGallery.gameObject.SetActive(value: false);
+		SaveLoadMenu.gameObject.SetActive(value: false);
+		ServiceMenu.gameObject.SetActive(value: false);
+		NewSettings.gameObject.SetActive(value: false);
+		AudioMenu.gameObject.SetActive(value: false);
+		FavorMenu.gameObject.SetActive(value: false);
+		IdeasMenu.gameObject.SetActive(value: false);
+		Tutorials.gameObject.SetActive(value: false);
+		PassTime.gameObject.SetActive(value: false);
+		Schedule.gameObject.SetActive(value: false);
+		TaskList.gameObject.SetActive(value: false);
+		Stats.gameObject.SetActive(value: false);
+		LoadingScreen.SetActive(value: false);
+		ControlMenu.SetActive(value: false);
+		SchemesMenu.SetActive(value: false);
+		StudentInfo.SetActive(value: false);
+		DropsMenu.SetActive(value: false);
+		MainMenu.SetActive(value: true);
+		YouTubeChatMenu.InitializeWindow.SetActive(value: true);
+		YouTubeChatMenu.CommandWindow.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			Eighties = true;
@@ -213,13 +213,13 @@ public class PauseScreenScript : MonoBehaviour
 			SelectionNames[5] = "Ideas";
 			UISprite uISprite = PhoneIcons[17];
 			uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0.5f);
-			Notepad.SetActive(true);
-			Phone.SetActive(false);
-			Wifi.gameObject.SetActive(false);
+			Notepad.SetActive(value: true);
+			Phone.SetActive(value: false);
+			Wifi.gameObject.SetActive(value: false);
 		}
 		if (!(SceneManager.GetActiveScene().name == "SchoolScene"))
 		{
-			MissionModeIcons.SetActive(false);
+			MissionModeIcons.SetActive(value: false);
 			if (!Eighties)
 			{
 				UISprite uISprite2 = PhoneIcons[5];
@@ -241,7 +241,7 @@ public class PauseScreenScript : MonoBehaviour
 			uISprite9.color = new Color(uISprite9.color.r, uISprite9.color.g, uISprite9.color.b, 0.5f);
 			if (NewMissionModeWindow != null)
 			{
-				NewMissionModeWindow.SetActive(false);
+				NewMissionModeWindow.SetActive(value: false);
 			}
 		}
 		if (MissionModeGlobals.MissionMode)
@@ -257,7 +257,7 @@ public class PauseScreenScript : MonoBehaviour
 		CorrectingTime = false;
 		QuitLabel.text = "Do you wish to return to the main menu?";
 		YesLabel.text = "Yes";
-		HomeButton.SetActive(false);
+		HomeButton.SetActive(value: false);
 	}
 
 	private void Update()
@@ -482,8 +482,8 @@ public class PauseScreenScript : MonoBehaviour
 					{
 						if (Selected == 1)
 						{
-							MainMenu.SetActive(false);
-							LoadingScreen.SetActive(true);
+							MainMenu.SetActive(value: false);
+							LoadingScreen.SetActive(value: true);
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Back";
 							PromptBar.Label[4].text = "Choose";
@@ -493,8 +493,8 @@ public class PauseScreenScript : MonoBehaviour
 						}
 						else if (Selected == 2)
 						{
-							TaskList.gameObject.SetActive(true);
-							MainMenu.SetActive(false);
+							TaskList.gameObject.SetActive(value: true);
+							MainMenu.SetActive(value: false);
 							Sideways = true;
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Back";
@@ -511,14 +511,14 @@ public class PauseScreenScript : MonoBehaviour
 								{
 									Yandere.CharacterAnimation[Yandere.ArmedAnims[k]].weight = 0f;
 								}
-								MainMenu.SetActive(false);
+								MainMenu.SetActive(value: false);
 								PromptBar.ClearButtons();
 								PromptBar.Label[0].text = "Begin";
 								PromptBar.Label[1].text = "Back";
 								PromptBar.Label[4].text = "Adjust";
 								PromptBar.Label[5].text = "Choose";
 								PromptBar.UpdateButtons();
-								PassTime.gameObject.SetActive(true);
+								PassTime.gameObject.SetActive(value: true);
 								PassTime.GetCurrentTime();
 							}
 						}
@@ -527,9 +527,9 @@ public class PauseScreenScript : MonoBehaviour
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Exit";
 							PromptBar.UpdateButtons();
-							Stats.gameObject.SetActive(true);
+							Stats.gameObject.SetActive(value: true);
 							Stats.UpdateStats();
-							MainMenu.SetActive(false);
+							MainMenu.SetActive(value: false);
 							Sideways = true;
 						}
 						else if (Selected == 5)
@@ -543,9 +543,9 @@ public class PauseScreenScript : MonoBehaviour
 									PromptBar.Label[1].text = "Exit";
 									PromptBar.Label[5].text = "Choose";
 									PromptBar.UpdateButtons();
-									FavorMenu.gameObject.SetActive(true);
+									FavorMenu.gameObject.SetActive(value: true);
 									FavorMenu.gameObject.GetComponent<AudioSource>().Play();
-									MainMenu.SetActive(false);
+									MainMenu.SetActive(value: false);
 									Sideways = true;
 								}
 								else
@@ -556,18 +556,18 @@ public class PauseScreenScript : MonoBehaviour
 									PromptBar.Label[4].text = "Choose";
 									PromptBar.UpdateButtons();
 									PromptBar.Show = true;
-									IdeasMenu.gameObject.SetActive(true);
-									MainMenu.SetActive(false);
+									IdeasMenu.gameObject.SetActive(value: true);
+									MainMenu.SetActive(value: false);
 								}
 							}
 						}
 						else if (Selected == 6)
 						{
-							StudentInfoMenu.gameObject.SetActive(true);
+							StudentInfoMenu.gameObject.SetActive(value: true);
 							StudentInfoMenu.Start();
 							StartCoroutine(StudentInfoMenu.UpdatePortraits());
 							StudentInfoMenu.GrabbedPortraits = true;
-							MainMenu.SetActive(false);
+							MainMenu.SetActive(value: false);
 							Sideways = true;
 							PromptBar.ClearButtons();
 							PromptBar.Label[0].text = "View Info";
@@ -577,7 +577,7 @@ public class PauseScreenScript : MonoBehaviour
 						}
 						else if (Selected == 7)
 						{
-							SaveLoadMenu.gameObject.SetActive(true);
+							SaveLoadMenu.gameObject.SetActive(value: true);
 							SaveLoadMenu.Header.text = "Load Data";
 							SaveLoadMenu.Loading = true;
 							SaveLoadMenu.Saving = false;
@@ -585,7 +585,7 @@ public class PauseScreenScript : MonoBehaviour
 							SaveLoadMenu.Row = 1;
 							SaveLoadMenu.UpdateHighlight();
 							StartCoroutine(SaveLoadMenu.GetThumbnails());
-							MainMenu.SetActive(false);
+							MainMenu.SetActive(value: false);
 							Sideways = true;
 							PromptBar.ClearButtons();
 							PromptBar.Label[0].text = "Choose";
@@ -598,7 +598,7 @@ public class PauseScreenScript : MonoBehaviour
 						}
 						else if (Selected == 8)
 						{
-							NewSettings.gameObject.SetActive(true);
+							NewSettings.gameObject.SetActive(value: true);
 							if (Yandere.Blur != null)
 							{
 								Yandere.Blur.enabled = false;
@@ -608,11 +608,11 @@ public class PauseScreenScript : MonoBehaviour
 							NewSettings.Cursor.alpha = 0f;
 							NewSettings.Selection = 1;
 							NewSettings.UpdateLabels();
-							MainMenu.SetActive(false);
+							MainMenu.SetActive(value: false);
 						}
 						else if (Selected == 9)
 						{
-							SaveLoadMenu.gameObject.SetActive(true);
+							SaveLoadMenu.gameObject.SetActive(value: true);
 							SaveLoadMenu.Header.text = "Save Data";
 							SaveLoadMenu.Loading = false;
 							SaveLoadMenu.Saving = true;
@@ -620,7 +620,7 @@ public class PauseScreenScript : MonoBehaviour
 							SaveLoadMenu.Row = 1;
 							SaveLoadMenu.UpdateHighlight();
 							StartCoroutine(SaveLoadMenu.GetThumbnails());
-							MainMenu.SetActive(false);
+							MainMenu.SetActive(value: false);
 							Sideways = true;
 							PromptBar.ClearButtons();
 							PromptBar.Label[0].text = "Choose";
@@ -635,9 +635,9 @@ public class PauseScreenScript : MonoBehaviour
 						{
 							if (!Yandere.StudentManager.MissionMode)
 							{
-								AudioMenu.gameObject.SetActive(true);
+								AudioMenu.gameObject.SetActive(value: true);
 								AudioMenu.UpdateText();
-								MainMenu.SetActive(false);
+								MainMenu.SetActive(value: false);
 								PromptBar.ClearButtons();
 								PromptBar.Label[0].text = "Play";
 								PromptBar.Label[1].text = "Back";
@@ -653,8 +653,8 @@ public class PauseScreenScript : MonoBehaviour
 						}
 						else if (Selected == 11)
 						{
-							Tutorials.gameObject.SetActive(true);
-							MainMenu.SetActive(false);
+							Tutorials.gameObject.SetActive(value: true);
+							MainMenu.SetActive(value: false);
 							Sideways = true;
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Back";
@@ -667,17 +667,17 @@ public class PauseScreenScript : MonoBehaviour
 						{
 							if (InputDevice.Type == InputDeviceType.Gamepad)
 							{
-								Keyboard.SetActive(false);
-								Gamepad.SetActive(true);
+								Keyboard.SetActive(value: false);
+								Gamepad.SetActive(value: true);
 							}
 							else
 							{
-								Keyboard.SetActive(true);
-								Gamepad.SetActive(false);
+								Keyboard.SetActive(value: true);
+								Gamepad.SetActive(value: false);
 							}
-							ControlMenu.SetActive(false);
-							ControlMenu.SetActive(true);
-							MainMenu.SetActive(false);
+							ControlMenu.SetActive(value: false);
+							ControlMenu.SetActive(value: true);
+							MainMenu.SetActive(value: false);
 							ViewingControlMenu = true;
 							Sideways = true;
 							PromptBar.ClearButtons();
@@ -688,8 +688,8 @@ public class PauseScreenScript : MonoBehaviour
 						else if (Selected == 13)
 						{
 							InventoryMenu.UpdateLabels();
-							InventoryMenu.gameObject.SetActive(true);
-							MainMenu.SetActive(false);
+							InventoryMenu.gameObject.SetActive(value: true);
+							MainMenu.SetActive(value: false);
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Back";
 							PromptBar.UpdateButtons();
@@ -703,7 +703,7 @@ public class PauseScreenScript : MonoBehaviour
 							PromptBar.Show = false;
 							ResettingDay = false;
 							Quitting = true;
-							HomeButton.SetActive(false);
+							HomeButton.SetActive(value: false);
 						}
 						else if (Selected == 15)
 						{
@@ -711,12 +711,12 @@ public class PauseScreenScript : MonoBehaviour
 							if (Yandere.StudentManager.MissionMode)
 							{
 								YesLabel.text = "Yes";
-								HomeButton.SetActive(false);
+								HomeButton.SetActive(value: false);
 							}
 							else
 							{
 								YesLabel.text = "Yes, at school";
-								HomeButton.SetActive(true);
+								HomeButton.SetActive(value: true);
 							}
 							PromptBar.ClearButtons();
 							PromptBar.Show = false;
@@ -725,8 +725,8 @@ public class PauseScreenScript : MonoBehaviour
 						}
 						else if (Selected == 16)
 						{
-							YouTubeChatMenu.gameObject.SetActive(true);
-							MainMenu.SetActive(false);
+							YouTubeChatMenu.gameObject.SetActive(value: true);
+							MainMenu.SetActive(value: false);
 							Sideways = true;
 							PromptBar.ClearButtons();
 							PromptBar.Label[0].text = "Confirm";
@@ -774,8 +774,8 @@ public class PauseScreenScript : MonoBehaviour
 					Yandere.Unequip();
 					Yandere.Blur.enabled = false;
 					RPGCamera.enabled = true;
-					PassTime.gameObject.SetActive(false);
-					MainMenu.SetActive(true);
+					PassTime.gameObject.SetActive(value: false);
+					MainMenu.SetActive(value: true);
 					Show = false;
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Minigame";
@@ -786,42 +786,42 @@ public class PauseScreenScript : MonoBehaviour
 					Clock.TimeSkip = true;
 					Time.timeScale = 1f;
 					Yandere.ResetYandereEffects();
-					Yandere.Phone.SetActive(true);
+					Yandere.Phone.SetActive(value: true);
 				}
 				else if (Input.GetButtonDown("B"))
 				{
-					MainMenu.SetActive(true);
+					MainMenu.SetActive(value: true);
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Accept";
 					PromptBar.Label[1].text = "Exit";
 					PromptBar.Label[4].text = "Choose";
 					PromptBar.Label[5].text = "Choose";
 					PromptBar.UpdateButtons();
-					PassTime.gameObject.SetActive(false);
+					PassTime.gameObject.SetActive(value: false);
 				}
 			}
 			if (ViewingControlMenu)
 			{
 				if (InputDevice.Type == InputDeviceType.Gamepad)
 				{
-					Keyboard.SetActive(false);
-					Gamepad.SetActive(true);
+					Keyboard.SetActive(value: false);
+					Gamepad.SetActive(value: true);
 				}
 				else
 				{
-					Keyboard.SetActive(true);
-					Gamepad.SetActive(false);
+					Keyboard.SetActive(value: true);
+					Gamepad.SetActive(value: false);
 				}
 				if (Input.GetButtonDown("B"))
 				{
-					MainMenu.SetActive(true);
+					MainMenu.SetActive(value: true);
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Accept";
 					PromptBar.Label[1].text = "Exit";
 					PromptBar.Label[4].text = "Choose";
 					PromptBar.Label[5].text = "Choose";
 					PromptBar.UpdateButtons();
-					ControlMenu.SetActive(false);
+					ControlMenu.SetActive(value: false);
 					ViewingControlMenu = false;
 					Sideways = false;
 				}
@@ -848,7 +848,7 @@ public class PauseScreenScript : MonoBehaviour
 						Debug.Log("and StudentGlobals.PreviousPrisoner is: " + StudentGlobals.PreviousPrisoner);
 						if (StudentGlobals.StudentSlave > 0)
 						{
-							StudentGlobals.SetStudentKidnapped(StudentGlobals.StudentSlave, true);
+							StudentGlobals.SetStudentKidnapped(StudentGlobals.StudentSlave, value: true);
 							StudentGlobals.PrisonerChosen = 0;
 							StudentGlobals.StudentSlave = 0;
 						}
@@ -901,9 +901,9 @@ public class PauseScreenScript : MonoBehaviour
 
 	public void ShowScheduleScreen()
 	{
-		Schedule.gameObject.SetActive(true);
+		Schedule.gameObject.SetActive(value: true);
 		Schedule.Start();
-		MainMenu.SetActive(false);
+		MainMenu.SetActive(value: false);
 		Panel.enabled = true;
 		Sideways = true;
 		Show = true;
@@ -1007,22 +1007,37 @@ public class PauseScreenScript : MonoBehaviour
 		{
 			if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Alive)
 			{
-				if (Yandere.StudentManager.Students[i].Investigating || Yandere.StudentManager.Students[i].Alarmed || Yandere.StudentManager.Students[i].Fleeing || (Yandere.StudentManager.Students[i].Ragdoll.Zs.activeInHierarchy && Yandere.StudentManager.Police.EndOfDay.TranqCase.VictimID != i) || Yandere.StudentManager.Students[i].Wet)
+				if (Yandere.StudentManager.Students[i].Alarmed || Yandere.StudentManager.Students[i].Investigating || Yandere.StudentManager.Students[i].Fleeing || Yandere.StudentManager.Students[i].Guarding)
 				{
 					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is investigating, alarmed, fleeing, wet, or asleep on the ground.";
+					Reason = "You cannot save the game while a student is alarmed, investigating, or reacting to murder.";
 				}
-				if (Yandere.PickUp != null)
+				if (Yandere.StudentManager.Students[i].Ragdoll.Zs.activeInHierarchy && Yandere.StudentManager.Police.EndOfDay.TranqCase.VictimID != i)
 				{
 					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while you are holding that object.";
+					Reason = "You cannot save the game while a student is tranquilized and sleeping on the ground.";
 				}
-				if (Police.BloodyClothing > 0)
+				if (Yandere.StudentManager.Students[i].Wet)
 				{
 					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while bloody clothing is present at school.";
+					Reason = "You cannot save the game while a student is wet with any kind of liquid.";
 				}
 			}
+		}
+		if (Yandere.PickUp != null)
+		{
+			PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+			Reason = "You cannot save the game while you are holding that object.";
+		}
+		if (Police.BloodyClothing > 0)
+		{
+			PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+			Reason = "You cannot save the game while bloody clothing is present at school.";
+		}
+		if (Yandere.StudentManager.Students[Yandere.StudentManager.RivalID] != null && Yandere.StudentManager.Students[Yandere.StudentManager.RivalID].InEvent)
+		{
+			PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+			Reason = "You cannot save the game while a Rival Event is occuring.";
 		}
 	}
 

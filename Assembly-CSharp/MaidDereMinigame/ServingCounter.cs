@@ -58,11 +58,11 @@ namespace MaidDereMinigame
 		private void Awake()
 		{
 			plates = new List<FoodInstance>();
-			interactionIndicator.gameObject.SetActive(false);
+			interactionIndicator.gameObject.SetActive(value: false);
 			interactionIndicatorStartingPos = interactionIndicator.transform.position;
 			platePositions = new List<Transform>();
-			kitchenModeHide.gameObject.SetActive(false);
-			FoodMenu.Instance.gameObject.SetActive(false);
+			kitchenModeHide.gameObject.SetActive(value: false);
+			FoodMenu.Instance.gameObject.SetActive(value: false);
 			for (int i = 0; i < maxPlates; i++)
 			{
 				Transform transform = new GameObject("Position " + i).transform;
@@ -91,7 +91,7 @@ namespace MaidDereMinigame
 				{
 					state = KitchenState.SelectingInteraction;
 					selectedIndex = ((plates.Count == 0) ? 2 : 0);
-					kitchenModeHide.gameObject.SetActive(true);
+					kitchenModeHide.gameObject.SetActive(value: true);
 					SetMask(selectedIndex);
 					SFXController.PlaySound(SFXController.Sounds.MenuOpen);
 					if (plates.Count == 0 && YandereController.Instance.heldItem == null)
@@ -99,10 +99,10 @@ namespace MaidDereMinigame
 						interactionIndicator.transform.position = Chef.Instance.transform.position + Vector3.up * 0.8f;
 						InteractionMenu.SetAButton(InteractionMenu.AButtonText.PlaceOrder);
 						state = KitchenState.Chef;
-						FoodMenu.Instance.gameObject.SetActive(true);
+						FoodMenu.Instance.gameObject.SetActive(value: true);
 					}
-					GameController.SetPause(true);
-					InteractionMenu.SetBButton(true);
+					GameController.SetPause(toPause: true);
+					InteractionMenu.SetBButton(on: true);
 				}
 				break;
 			case KitchenState.SelectingInteraction:
@@ -138,18 +138,18 @@ namespace MaidDereMinigame
 					{
 						state = KitchenState.Chef;
 						InteractionMenu.SetAButton(InteractionMenu.AButtonText.PlaceOrder);
-						FoodMenu.Instance.gameObject.SetActive(true);
+						FoodMenu.Instance.gameObject.SetActive(value: true);
 						SFXController.PlaySound(SFXController.Sounds.MenuOpen);
 					}
 					break;
 				}
 				if (Input.GetButtonDown("B"))
 				{
-					InteractionMenu.SetBButton(false);
+					InteractionMenu.SetBButton(on: false);
 					InteractionMenu.SetAButton(InteractionMenu.AButtonText.KitchenMenu);
 					state = KitchenState.None;
-					GameController.SetPause(false);
-					kitchenModeHide.gameObject.SetActive(false);
+					GameController.SetPause(toPause: false);
+					kitchenModeHide.gameObject.SetActive(value: false);
 					interactionIndicator.transform.position = interactionIndicatorStartingPos;
 					SFXController.PlaySound(SFXController.Sounds.MenuBack);
 				}
@@ -188,7 +188,7 @@ namespace MaidDereMinigame
 				}
 				break;
 			case KitchenState.Plates:
-				interactionIndicator.gameObject.SetActive(true);
+				interactionIndicator.gameObject.SetActive(value: true);
 				interactionIndicator.transform.position = plates[selectedIndex].transform.position + Vector3.up * 0.25f;
 				SetMask(3);
 				plateMask.transform.position = plates[selectedIndex].transform.position + Vector3.up * 0.05f;
@@ -227,7 +227,7 @@ namespace MaidDereMinigame
 				if (Input.GetButtonDown("B"))
 				{
 					state = KitchenState.SelectingInteraction;
-					FoodMenu.Instance.gameObject.SetActive(false);
+					FoodMenu.Instance.gameObject.SetActive(value: false);
 					state = KitchenState.SelectingInteraction;
 					SFXController.PlaySound(SFXController.Sounds.MenuBack);
 				}
@@ -235,7 +235,7 @@ namespace MaidDereMinigame
 				{
 					state = KitchenState.SelectingInteraction;
 					Chef.AddToQueue(FoodMenu.Instance.GetActiveFood());
-					FoodMenu.Instance.gameObject.SetActive(false);
+					FoodMenu.Instance.gameObject.SetActive(value: false);
 					SFXController.PlaySound(SFXController.Sounds.MenuOpen);
 				}
 				break;
@@ -296,7 +296,7 @@ namespace MaidDereMinigame
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
-			interactionIndicator.gameObject.SetActive(true);
+			interactionIndicator.gameObject.SetActive(value: true);
 			interactionIndicator.transform.position = interactionIndicatorStartingPos;
 			interactionRange = true;
 			InteractionMenu.SetAButton(InteractionMenu.AButtonText.KitchenMenu);
@@ -304,7 +304,7 @@ namespace MaidDereMinigame
 
 		private void OnTriggerExit2D(Collider2D collision)
 		{
-			interactionIndicator.gameObject.SetActive(false);
+			interactionIndicator.gameObject.SetActive(value: false);
 			interactionRange = false;
 			InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
 		}

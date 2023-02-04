@@ -173,8 +173,7 @@ public class NotificationManagerScript : MonoBehaviour
 		obj.transform.localPosition = new Vector3(0f, 0.60275f + 0.049f * (float)NotificationsSpawned, 0f);
 		obj.transform.localEulerAngles = Vector3.zero;
 		component.NotificationManager = this;
-		string value;
-		NotificationMessages.TryGetValue(Type, out value);
+		NotificationMessages.TryGetValue(Type, out var value);
 		if (Type != NotificationType.Persona && Type != NotificationType.Custom)
 		{
 			string text = "";

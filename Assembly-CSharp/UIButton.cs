@@ -70,7 +70,7 @@ public class UIButton : UIButtonColor
 				UIButton[] components = GetComponents<UIButton>();
 				for (int i = 0; i < components.Length; i++)
 				{
-					components[i].SetState((!value) ? State.Disabled : State.Normal, false);
+					components[i].SetState((!value) ? State.Disabled : State.Normal, immediate: false);
 				}
 				return;
 			}
@@ -81,7 +81,7 @@ public class UIButton : UIButtonColor
 				UIButton[] components = GetComponents<UIButton>();
 				for (int i = 0; i < components.Length; i++)
 				{
-					components[i].SetState((!value) ? State.Disabled : State.Normal, false);
+					components[i].SetState((!value) ? State.Disabled : State.Normal, immediate: false);
 				}
 			}
 			else
@@ -179,7 +179,7 @@ public class UIButton : UIButtonColor
 		}
 		else
 		{
-			SetState(State.Disabled, true);
+			SetState(State.Disabled, immediate: true);
 		}
 	}
 

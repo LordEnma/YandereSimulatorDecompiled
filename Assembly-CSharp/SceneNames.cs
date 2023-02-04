@@ -99,4 +99,6 @@ public static class SceneNames
 	public const string WeekSelectScene = "WeekSelectScene";
 
 	public const string WeekLimitScene = "WeekLimitScene";
+
+	public const string KokonaTutorialScene = "KokonaTutorialScene";
 }

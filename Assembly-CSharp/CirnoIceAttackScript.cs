@@ -6,8 +6,8 @@ public class CirnoIceAttackScript : MonoBehaviour
 
 	private void Start()
 	{
-		Physics.IgnoreLayerCollision(18, 13, true);
-		Physics.IgnoreLayerCollision(18, 18, true);
+		Physics.IgnoreLayerCollision(18, 13, ignore: true);
+		Physics.IgnoreLayerCollision(18, 18, ignore: true);
 	}
 
 	private void OnCollisionEnter(Collision collision)

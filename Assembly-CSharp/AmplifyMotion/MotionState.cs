@@ -47,17 +47,13 @@ namespace AmplifyMotion
 
 			public Vector4 GetRow(int i)
 			{
-				switch (i)
+				return i switch
 				{
-				case 0:
-					return new Vector4(m00, m01, m02, m03);
-				case 1:
-					return new Vector4(m10, m11, m12, m13);
-				case 2:
-					return new Vector4(m20, m21, m22, m23);
-				default:
-					return new Vector4(0f, 0f, 0f, 1f);
-				}
+					0 => new Vector4(m00, m01, m02, m03), 
+					1 => new Vector4(m10, m11, m12, m13), 
+					2 => new Vector4(m20, m21, m22, m23), 
+					_ => new Vector4(0f, 0f, 0f, 1f), 
+				};
 			}
 
 			public static implicit operator Matrix3x4(Matrix4x4 from)
@@ -131,29 +127,11 @@ namespace AmplifyMotion
 
 		private static HashSet<Material> m_materialWarnings = new HashSet<Material>();
 
-		public AmplifyMotionCamera Owner
-		{
-			get
-			{
-				return m_owner;
-			}
-		}
+		public AmplifyMotionCamera Owner => m_owner;
 
-		public bool Initialized
-		{
-			get
-			{
-				return m_initialized;
-			}
-		}
+		public bool Initialized => m_initialized;
 
-		public bool Error
-		{
-			get
-			{
-				return m_error;
-			}
-		}
+		public bool Error => m_error;
 
 		public MotionState(AmplifyMotionCamera owner, AmplifyMotionObjectBase obj)
 		{
@@ -193,7 +171,7 @@ namespace AmplifyMotion
 			for (int i = 0; i < mats.Length; i++)
 			{
 				array[i].material = mats[i];
-				bool flag = mats[i].GetTag("RenderType", false) == "TransparentCutout" || mats[i].IsKeywordEnabled("_ALPHATEST_ON");
+				bool flag = mats[i].GetTag("RenderType", searchFallbacks: false) == "TransparentCutout" || mats[i].IsKeywordEnabled("_ALPHATEST_ON");
 				array[i].propertyBlock = new MaterialPropertyBlock();
 				array[i].coverage = mats[i].HasProperty("_MainTex") && flag;
 				array[i].cutoff = mats[i].HasProperty("_Cutoff");

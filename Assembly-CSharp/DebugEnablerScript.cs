@@ -30,14 +30,14 @@ public class DebugEnablerScript : MonoBehaviour
 
 	private void Start()
 	{
-		bool editor = Editor;
-		StandWeapons.SetActive(false);
-		Keys.SetActive(false);
+		_ = Editor;
+		StandWeapons.SetActive(value: false);
+		Keys.SetActive(value: false);
 		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || (!GameGlobals.Eighties && DateGlobals.Week == 2))
 		{
 			if (GameGlobals.Debug || Editor)
 			{
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 			else
 			{
@@ -60,20 +60,20 @@ public class DebugEnablerScript : MonoBehaviour
 		Yandere.NoDebug = false;
 		Yandere.EggBypass = 10;
 		Yandere.Egg = false;
-		StandWeapons.SetActive(true);
-		VoidGoddess.SetActive(true);
-		MurderKit.SetActive(true);
-		Memes.SetActive(true);
+		StandWeapons.SetActive(value: true);
+		VoidGoddess.SetActive(value: true);
+		MurderKit.SetActive(value: true);
+		Memes.SetActive(value: true);
 		if (!GameGlobals.Eighties)
 		{
-			Keys.SetActive(true);
+			Keys.SetActive(value: true);
 		}
 		DebugMenu.MissionMode = false;
 		DebugMenu.NoDebug = false;
 		Yandere.NoDebug = false;
 		Turtle.enabled = true;
 		MemeClosetDoor.Locked = false;
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 		Skull.Prompt.enabled = true;
 		Skull.enabled = true;
 	}

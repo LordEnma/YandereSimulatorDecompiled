@@ -59,27 +59,27 @@ public class JiggleBone : MonoBehaviour
 			float magnitude = (dynamicPos - vector2).magnitude;
 			if (boneAxis.x != 0f)
 			{
-				float frontStretch2 = frontStretch;
+				_ = frontStretch;
 			}
 			else
 			{
-				float sideStretch2 = sideStretch;
+				_ = sideStretch;
 			}
 			if (boneAxis.y != 0f)
 			{
-				float frontStretch3 = frontStretch;
+				_ = frontStretch;
 			}
 			else
 			{
-				float sideStretch3 = sideStretch;
+				_ = sideStretch;
 			}
 			if (boneAxis.z != 0f)
 			{
-				float frontStretch4 = frontStretch;
+				_ = frontStretch;
 			}
 			else
 			{
-				float sideStretch4 = sideStretch;
+				_ = sideStretch;
 			}
 		}
 		if (debugMode)

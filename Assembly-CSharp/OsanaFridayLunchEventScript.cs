@@ -146,7 +146,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 						Senpai.CurrentDestination = Location[1];
 						Senpai.Pathfinding.canSearch = true;
 						Senpai.Pathfinding.canMove = true;
-						Senpai.SmartPhone.SetActive(false);
+						Senpai.SmartPhone.SetActive(value: false);
 						Senpai.InEvent = true;
 						Senpai.DistanceToDestination = 100f;
 						Spy.Prompt.enabled = true;
@@ -160,7 +160,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 						Rival.CurrentDestination = Location[2];
 						Rival.Pathfinding.canSearch = true;
 						Rival.Pathfinding.canMove = true;
-						Rival.SmartPhone.SetActive(false);
+						Rival.SmartPhone.SetActive(value: false);
 						Rival.Routine = false;
 						Rival.InEvent = true;
 						Rival.DistanceToDestination = 100f;
@@ -314,13 +314,13 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 			}
 			if (TakeOut && Rival.CharacterAnimation["f02_" + Weekday + "_3" + Suffix].time > TakeOutTime)
 			{
-				Rival.SmartPhone.SetActive(true);
+				Rival.SmartPhone.SetActive(value: true);
 				TakeOut = false;
 				PutAway = true;
 			}
 			if (PutAway && Rival.CharacterAnimation["f02_" + Weekday + "_3" + Suffix].time > PutAwayTime)
 			{
-				Rival.SmartPhone.SetActive(false);
+				Rival.SmartPhone.SetActive(value: false);
 				PutAway = false;
 			}
 			if (Transfer && Rival.CharacterAnimation["f02_" + Weekday + "_3" + Suffix].time > TransferTime)
@@ -403,7 +403,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 				Rival.Routine = true;
 			}
 			Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-			Rival.SmartPhone.SetActive(false);
+			Rival.SmartPhone.SetActive(value: false);
 			Rival.Prompt.enabled = true;
 			Rival.InEvent = false;
 			Rival.Private = false;
@@ -468,7 +468,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 			Senpai.Routine = true;
 		}
 		Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-		Senpai.SmartPhone.SetActive(false);
+		Senpai.SmartPhone.SetActive(value: false);
 		Senpai.InEvent = false;
 		Senpai.Private = false;
 		Senpai.CurrentDestination = Senpai.Destinations[Senpai.Phase];

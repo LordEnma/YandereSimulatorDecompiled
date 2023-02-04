@@ -38,7 +38,7 @@ public class RetroMinigameScript : MonoBehaviour
 		PipeSet[3].transform.localPosition = new Vector3(18f, Random.RandomRange(-1.52f, 1.52f), 1f);
 		PipeSet[4].transform.localPosition = new Vector3(23f, Random.RandomRange(-1.52f, 1.52f), 1f);
 		PipeSet[5].transform.localPosition = new Vector3(28f, Random.RandomRange(-1.52f, 1.52f), 1f);
-		GameOverGraphic.SetActive(false);
+		GameOverGraphic.SetActive(value: false);
 		ScoreLabel.text = "0";
 		GameOverTimer = 0f;
 		GameOver = false;
@@ -57,7 +57,7 @@ public class RetroMinigameScript : MonoBehaviour
 				if (base.transform.localPosition.y > -1f)
 				{
 					base.transform.localPosition = new Vector3(0f, 0f, 0f);
-					MinigameCamera.SetActive(true);
+					MinigameCamera.SetActive(value: true);
 				}
 			}
 			else if (!GameOver)
@@ -100,7 +100,7 @@ public class RetroMinigameScript : MonoBehaviour
 			}
 			if (Yandere.CanMove)
 			{
-				MinigameCamera.SetActive(false);
+				MinigameCamera.SetActive(value: false);
 				Show = false;
 			}
 		}
@@ -110,14 +110,14 @@ public class RetroMinigameScript : MonoBehaviour
 			if (base.transform.localPosition.y < -1154f)
 			{
 				base.transform.localPosition = new Vector3(0f, -1155f, 0f);
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 	}
 
 	private void GetGameOver()
 	{
-		GameOverGraphic.SetActive(true);
+		GameOverGraphic.SetActive(value: true);
 		GameOver = true;
 	}
 }

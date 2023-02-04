@@ -97,7 +97,7 @@ public class MGPMSpawnerScript : MonoBehaviour
 				component2.GameplayManager = GameplayManager;
 				component2.HealthBar = HealthBar;
 				component2.Miyuki = Miyuki;
-				HealthBar.parent.gameObject.SetActive(true);
+				HealthBar.parent.gameObject.SetActive(value: true);
 				GameplayManager.Jukebox.clip = GameplayManager.FinalBoss;
 				GameplayManager.Jukebox.volume = 0.5f;
 				GameplayManager.Jukebox.Play();

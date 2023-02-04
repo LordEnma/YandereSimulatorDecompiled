@@ -16,7 +16,7 @@ public class RingTheftScript : MonoBehaviour
 	{
 		if (GameGlobals.Eighties)
 		{
-			BasuRing.SetActive(false);
+			BasuRing.SetActive(value: false);
 			Eighties = true;
 		}
 		else
@@ -27,11 +27,11 @@ public class RingTheftScript : MonoBehaviour
 			{
 				if (gameObject != null)
 				{
-					gameObject.SetActive(false);
+					gameObject.SetActive(value: false);
 				}
 			}
 		}
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 	}
 
 	private void Update()
@@ -48,13 +48,13 @@ public class RingTheftScript : MonoBehaviour
 			{
 				if (Eighties)
 				{
-					Rings[DateGlobals.Week].SetActive(false);
+					Rings[DateGlobals.Week].SetActive(value: false);
 				}
 				else
 				{
 					SchemeGlobals.SetSchemeStage(2, 5);
 					Prompt.Yandere.StudentManager.Schemes.UpdateInstructions();
-					BasuRing.SetActive(false);
+					BasuRing.SetActive(value: false);
 				}
 				Prompt.Yandere.Inventory.Ring = true;
 				Stolen = true;
@@ -70,11 +70,11 @@ public class RingTheftScript : MonoBehaviour
 		{
 			if (Eighties)
 			{
-				Rings[DateGlobals.Week].SetActive(true);
+				Rings[DateGlobals.Week].SetActive(value: true);
 			}
 			else
 			{
-				BasuRing.SetActive(true);
+				BasuRing.SetActive(value: true);
 			}
 			Prompt.Yandere.Inventory.Ring = false;
 			Stolen = false;

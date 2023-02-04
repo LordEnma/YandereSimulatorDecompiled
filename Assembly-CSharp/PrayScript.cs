@@ -66,7 +66,7 @@ public class PrayScript : MonoBehaviour
 		{
 			VictimLabel.color = new Color(VictimLabel.color.r, VictimLabel.color.g, VictimLabel.color.b, 0.5f);
 		}
-		GenderPrompt.gameObject.SetActive(true);
+		GenderPrompt.gameObject.SetActive(value: true);
 		PrayWindow.localScale = Vector3.zero;
 		Prompt.enabled = true;
 	}
@@ -125,7 +125,7 @@ public class PrayScript : MonoBehaviour
 			{
 				Yandere.TargetStudent = Student;
 				StudentManager.DisablePrompts();
-				PrayWindow.gameObject.SetActive(true);
+				PrayWindow.gameObject.SetActive(value: true);
 				Show = true;
 				Yandere.ShoulderCamera.OverShoulder = true;
 				Yandere.WeaponMenu.KeyboardShow = false;
@@ -152,7 +152,7 @@ public class PrayScript : MonoBehaviour
 					return;
 				}
 				PrayWindow.localScale = Vector3.zero;
-				PrayWindow.gameObject.SetActive(false);
+				PrayWindow.gameObject.SetActive(value: false);
 			}
 			return;
 		}
@@ -305,7 +305,7 @@ public class PrayScript : MonoBehaviour
 		Uses++;
 		if (Uses > 9)
 		{
-			FemaleTurtle.SetActive(true);
+			FemaleTurtle.SetActive(value: true);
 		}
 	}
 

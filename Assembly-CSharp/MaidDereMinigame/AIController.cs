@@ -64,7 +64,7 @@ namespace MaidDereMinigame
 		{
 			animator = GetComponent<Animator>();
 			spriteRenderer = GetComponent<SpriteRenderer>();
-			throbObject.SetActive(false);
+			throbObject.SetActive(value: false);
 			targetChair = Chair.RandomChair;
 			collider2d = GetComponent<Collider2D>();
 			collider2d.enabled = false;
@@ -72,8 +72,8 @@ namespace MaidDereMinigame
 			{
 				UnityEngine.Object.Destroy(base.gameObject);
 			}
-			happinessMeter.gameObject.SetActive(false);
-			speechBubble.gameObject.SetActive(false);
+			happinessMeter.gameObject.SetActive(value: false);
+			speechBubble.gameObject.SetActive(value: false);
 		}
 
 		private void Start()
@@ -190,24 +190,24 @@ namespace MaidDereMinigame
 				if (targetChair.transform.position.x > base.transform.position.x)
 				{
 					result.horizontal = 1f;
-					SetFlip(false);
+					SetFlip(flip: false);
 				}
 				else
 				{
 					result.horizontal = -1f;
-					SetFlip(true);
+					SetFlip(flip: true);
 				}
 				break;
 			case AIState.Leaving:
 				if (leaveTarget.position.x > base.transform.position.x)
 				{
 					result.horizontal = 1f;
-					SetFlip(false);
+					SetFlip(flip: false);
 				}
 				else
 				{
 					result.horizontal = -1f;
-					SetFlip(true);
+					SetFlip(flip: true);
 				}
 				break;
 			}
@@ -223,7 +223,7 @@ namespace MaidDereMinigame
 			animator.SetTrigger("OrderTaken");
 			animator.SetFloat("Happiness", happiness);
 			desiredFood = FoodMenu.Instance.GetRandomFood();
-			speechBubble.gameObject.SetActive(true);
+			speechBubble.gameObject.SetActive(value: true);
 			speechBubble.food = desiredFood;
 			if (Male)
 			{
@@ -273,7 +273,7 @@ namespace MaidDereMinigame
 					SFXController.PlaySound(SFXController.Sounds.FemaleCustomerLeave);
 				}
 			}
-			happinessMeter.gameObject.SetActive(false);
+			happinessMeter.gameObject.SetActive(value: false);
 		}
 
 		private void SitDown()
@@ -281,18 +281,18 @@ namespace MaidDereMinigame
 			base.transform.position = new Vector3(targetChair.transform.position.x, base.transform.position.y, base.transform.position.z);
 			animator.SetTrigger("SitDown");
 			SetFlip(!(targetChair.transform.localScale.x > 0f));
-			SetSortingLayer(true);
+			SetSortingLayer(back: true);
 			collider2d.enabled = true;
-			happinessMeter.gameObject.SetActive(true);
+			happinessMeter.gameObject.SetActive(value: true);
 		}
 
 		private void StandUp()
 		{
 			animator.SetTrigger("StandUp");
-			SetSortingLayer(false);
+			SetSortingLayer(back: false);
 			targetChair.available = true;
 			collider2d.enabled = false;
-			happinessMeter.gameObject.SetActive(false);
+			happinessMeter.gameObject.SetActive(value: false);
 		}
 
 		private void ReduceHappiness()

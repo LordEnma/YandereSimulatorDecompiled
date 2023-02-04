@@ -51,7 +51,7 @@ public class WaterCoolerScript : MonoBehaviour
 	private void Start()
 	{
 		Cylinder.localScale = new Vector3(1f, 0f, 1f);
-		TripwireTrap.SetActive(false);
+		TripwireTrap.SetActive(value: false);
 		Prompt.HideButton[1] = true;
 		OriginalColor[0] = Prompt.Label[1].gradientTop;
 		OriginalColor[1] = Prompt.Label[1].gradientBottom;
@@ -172,7 +172,7 @@ public class WaterCoolerScript : MonoBehaviour
 				Prompt.Label[1].text = "     Create Tripwire Trap";
 				Prompt.Label[1].applyGradient = false;
 				Prompt.Label[1].color = Color.red;
-				TripwireTrap.SetActive(false);
+				TripwireTrap.SetActive(value: false);
 				TrapSet = false;
 				Prompt.HideButton[3] = false;
 				PickUp.enabled = true;
@@ -250,8 +250,7 @@ public class WaterCoolerScript : MonoBehaviour
 		Transform transform = base.transform;
 		Vector3 vector = base.transform.TransformDirection(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.forward));
 		Debug.DrawRay(transform.position + Vector3.up, vector, Color.red);
-		RaycastHit hitInfo;
-		if (Physics.Raycast(transform.position + Vector3.up, vector, out hitInfo, float.PositiveInfinity, Yandere.StudentManager.Students[1].OnlyDefault))
+		if (Physics.Raycast(transform.position + Vector3.up, vector, out var hitInfo, float.PositiveInfinity, Yandere.StudentManager.Students[1].OnlyDefault))
 		{
 			float num = Vector3.Distance(transform.position + Vector3.up, hitInfo.point);
 			Debug.Log("There is a wall " + num + " meters away.");
@@ -285,7 +284,7 @@ public class WaterCoolerScript : MonoBehaviour
 		Prompt.Label[1].gradientTop = OriginalColor[0];
 		Prompt.Label[1].gradientBottom = OriginalColor[1];
 		Prompt.Label[1].color = Color.white;
-		TripwireTrap.SetActive(true);
+		TripwireTrap.SetActive(value: true);
 		TrapSet = true;
 		Prompt.HideButton[1] = false;
 		Prompt.HideButton[3] = true;

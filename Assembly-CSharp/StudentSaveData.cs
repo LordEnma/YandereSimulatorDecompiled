@@ -227,11 +227,11 @@ public class StudentSaveData
 		}
 		foreach (int item2 in data.studentArrested)
 		{
-			StudentGlobals.SetStudentArrested(item2, true);
+			StudentGlobals.SetStudentArrested(item2, value: true);
 		}
 		foreach (int item3 in data.studentBroken)
 		{
-			StudentGlobals.SetStudentBroken(item3, true);
+			StudentGlobals.SetStudentBroken(item3, value: true);
 		}
 		foreach (KeyValuePair<int, float> item4 in data.studentBustSize)
 		{
@@ -243,19 +243,19 @@ public class StudentSaveData
 		}
 		foreach (int item6 in data.studentDead)
 		{
-			StudentGlobals.SetStudentDead(item6, true);
+			StudentGlobals.SetStudentDead(item6, value: true);
 		}
 		foreach (int item7 in data.studentDying)
 		{
-			StudentGlobals.SetStudentDying(item7, true);
+			StudentGlobals.SetStudentDying(item7, value: true);
 		}
 		foreach (int item8 in data.studentExpelled)
 		{
-			StudentGlobals.SetStudentExpelled(item8, true);
+			StudentGlobals.SetStudentExpelled(item8, value: true);
 		}
 		foreach (int item9 in data.studentExposed)
 		{
-			StudentGlobals.SetStudentExposed(item9, true);
+			StudentGlobals.SetStudentExposed(item9, value: true);
 		}
 		foreach (KeyValuePair<int, Color> item10 in data.studentEyeColor)
 		{
@@ -263,7 +263,7 @@ public class StudentSaveData
 		}
 		foreach (int item11 in data.studentGrudge)
 		{
-			StudentGlobals.SetStudentGrudge(item11, true);
+			StudentGlobals.SetStudentGrudge(item11, value: true);
 		}
 		foreach (KeyValuePair<int, string> item12 in data.studentHairstyle)
 		{
@@ -271,11 +271,11 @@ public class StudentSaveData
 		}
 		foreach (int item13 in data.studentKidnapped)
 		{
-			StudentGlobals.SetStudentKidnapped(item13, true);
+			StudentGlobals.SetStudentKidnapped(item13, value: true);
 		}
 		foreach (int item14 in data.studentMissing)
 		{
-			StudentGlobals.SetStudentMissing(item14, true);
+			StudentGlobals.SetStudentMissing(item14, value: true);
 		}
 		foreach (KeyValuePair<int, string> item15 in data.studentName)
 		{
@@ -283,11 +283,11 @@ public class StudentSaveData
 		}
 		foreach (int item16 in data.studentPhotographed)
 		{
-			StudentGlobals.SetStudentPhotographed(item16, true);
+			StudentGlobals.SetStudentPhotographed(item16, value: true);
 		}
 		foreach (int item17 in data.studentReplaced)
 		{
-			StudentGlobals.SetStudentReplaced(item17, true);
+			StudentGlobals.SetStudentReplaced(item17, value: true);
 		}
 		foreach (KeyValuePair<int, int> item18 in data.studentReputation)
 		{

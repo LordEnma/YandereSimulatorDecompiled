@@ -50,8 +50,8 @@ public class PostCreditsScript : MonoBehaviour
 		Darkness.color = new Color(0f, 0f, 0f, 1f);
 		Subtitle.text = "";
 		Time.timeScale = 1f;
-		Logo.gameObject.SetActive(false);
-		LovesickLogo.SetActive(false);
+		Logo.gameObject.SetActive(value: false);
+		LovesickLogo.SetActive(value: false);
 	}
 
 	private void Update()
@@ -142,7 +142,7 @@ public class PostCreditsScript : MonoBehaviour
 					Jukebox.clip = CinematicHit;
 					Jukebox.volume = 1f;
 					Jukebox.Play();
-					Logo.gameObject.SetActive(true);
+					Logo.gameObject.SetActive(value: true);
 					Phase++;
 				}
 			}

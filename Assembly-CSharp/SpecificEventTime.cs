@@ -16,13 +16,7 @@ public class SpecificEventTime : IScheduledEventTime
 	[SerializeField]
 	private Clock endClock;
 
-	public ScheduledEventTimeType ScheduleType
-	{
-		get
-		{
-			return ScheduledEventTimeType.Specific;
-		}
-	}
+	public ScheduledEventTimeType ScheduleType => ScheduledEventTimeType.Specific;
 
 	public SpecificEventTime(int week, DayOfWeek weekday, Clock startClock, Clock endClock)
 	{

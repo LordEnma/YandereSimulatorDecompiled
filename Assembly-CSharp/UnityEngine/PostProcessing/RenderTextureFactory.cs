@@ -33,7 +33,7 @@ namespace UnityEngine.PostProcessing
 			{
 				if (!m_TemporaryRTs.Contains(rt))
 				{
-					throw new ArgumentException(string.Format("Attempting to remove a RenderTexture that was not allocated: {0}", rt));
+					throw new ArgumentException($"Attempting to remove a RenderTexture that was not allocated: {rt}");
 				}
 				m_TemporaryRTs.Remove(rt);
 				RenderTexture.ReleaseTemporary(rt);

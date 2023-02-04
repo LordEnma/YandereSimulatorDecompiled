@@ -47,16 +47,16 @@ public class DemonPortalScript : MonoBehaviour
 				if (Darkness.color.a == 1f)
 				{
 					Yandere.transform.position = new Vector3(12f, 0f, 28f);
-					Yandere.Character.SetActive(true);
+					Yandere.Character.SetActive(value: true);
 					Yandere.SetAnimationLayers();
-					HeartbeatCamera.SetActive(true);
-					FPS.SetActive(true);
-					HUD.SetActive(true);
+					HeartbeatCamera.SetActive(value: true);
+					FPS.SetActive(value: true);
+					HUD.SetActive(value: true);
 				}
 			}
 			else if (Timer > 1f)
 			{
-				Yandere.Character.SetActive(false);
+				Yandere.Character.SetActive(value: false);
 			}
 			return;
 		}
@@ -66,7 +66,7 @@ public class DemonPortalScript : MonoBehaviour
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
 			if (Darkness.color.a == 0f)
 			{
-				base.transform.parent.gameObject.SetActive(false);
+				base.transform.parent.gameObject.SetActive(value: false);
 				Darkness.enabled = false;
 				Yandere.CanMove = true;
 				Clock.StopTime = false;

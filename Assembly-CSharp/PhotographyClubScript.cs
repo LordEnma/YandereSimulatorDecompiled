@@ -14,24 +14,24 @@ public class PhotographyClubScript : MonoBehaviour
 
 	private void Start()
 	{
-		InvestigationPhotos.SetActive(false);
-		ArtsyPhotos.SetActive(true);
+		InvestigationPhotos.SetActive(value: false);
+		ArtsyPhotos.SetActive(value: true);
 		if (SchoolGlobals.SchoolAtmosphere <= 0.8f)
 		{
 			if (!GameGlobals.Eighties)
 			{
-				InvestigationPhotos.SetActive(true);
-				ArtsyPhotos.SetActive(false);
+				InvestigationPhotos.SetActive(value: true);
+				ArtsyPhotos.SetActive(value: false);
 			}
-			CrimeScene.SetActive(true);
-			StraightTables.SetActive(true);
-			CrookedTables.SetActive(false);
+			CrimeScene.SetActive(value: true);
+			StraightTables.SetActive(value: true);
+			CrookedTables.SetActive(value: false);
 		}
 		else
 		{
-			CrimeScene.SetActive(false);
-			StraightTables.SetActive(false);
-			CrookedTables.SetActive(true);
+			CrimeScene.SetActive(value: false);
+			StraightTables.SetActive(value: false);
+			CrookedTables.SetActive(value: true);
 		}
 	}
 }

@@ -382,7 +382,7 @@ public class ClassScript : MonoBehaviour
 			{
 				if (ChemistryGrade > 0 && Poison != null)
 				{
-					Poison.SetActive(true);
+					Poison.SetActive(value: true);
 				}
 				StudentManagerScript studentManager = Portal.Yandere.StudentManager;
 				if (CutsceneManager.Scheme > 0 && studentManager.Students[studentManager.RivalID] != null && studentManager.Students[studentManager.RivalID].Alive && !studentManager.Students[studentManager.RivalID].Tranquil)
@@ -391,9 +391,9 @@ public class ClassScript : MonoBehaviour
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Continue";
 					PromptBar.UpdateButtons();
-					CutsceneManager.gameObject.SetActive(true);
+					CutsceneManager.gameObject.SetActive(value: true);
 					Schemes.UpdateInstructions();
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 				}
 				else if (!Portal.FadeOut)
 				{
@@ -404,7 +404,7 @@ public class ClassScript : MonoBehaviour
 					Portal.FadeOut = false;
 					Portal.Proceed = true;
 					PromptBar.Show = false;
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 				}
 			}
 			return;

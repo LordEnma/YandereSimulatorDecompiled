@@ -246,7 +246,7 @@ public class HomePrisonerScript : MonoBehaviour
 			else if (DateGlobals.Weekday == DayOfWeek.Friday && GameGlobals.RivalEliminationID == 0)
 			{
 				ConfirmationLabel.text = "You can't dispose of a corpse today. You need to go to school and eliminate your rival before she confesses to the boy you love.";
-				YesButton.SetActive(false);
+				YesButton.SetActive(value: false);
 				NoLabel.text = "Back";
 			}
 		}
@@ -326,7 +326,7 @@ public class HomePrisonerScript : MonoBehaviour
 			{
 				if (YesButton.activeInHierarchy && Input.GetButtonDown("A"))
 				{
-					StudentGlobals.SetStudentDead(PrisonerManager.StudentID, true);
+					StudentGlobals.SetStudentDead(PrisonerManager.StudentID, value: true);
 					if (PrisonerManager.ChosenPrisoner == 1)
 					{
 						StudentGlobals.Prisoner1 = 0;
@@ -370,11 +370,11 @@ public class HomePrisonerScript : MonoBehaviour
 					StudentGlobals.Prisoners--;
 					HomeCamera.HomeDarkness.Disposing = true;
 					HomeCamera.HomeDarkness.FadeOut = true;
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 				}
 				else if (Input.GetButtonDown("B"))
 				{
-					ConfirmationWindow.SetActive(false);
+					ConfirmationWindow.SetActive(value: false);
 					HomeCamera.PromptBar.Show = true;
 					UpdateDesc();
 				}
@@ -427,7 +427,7 @@ public class HomePrisonerScript : MonoBehaviour
 				HomeCamera.PromptBar.ClearButtons();
 				HomeCamera.PromptBar.Show = false;
 				HomeYandere.CanMove = true;
-				HomeYandere.gameObject.SetActive(true);
+				HomeYandere.gameObject.SetActive(value: true);
 				HomeWindow.Show = false;
 			}
 			if (Input.GetButtonDown("X") && PlayerGlobals.Meals > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) < 100)
@@ -438,7 +438,7 @@ public class HomePrisonerScript : MonoBehaviour
 			}
 			if (Input.GetButtonDown("Y") && Health == 0f)
 			{
-				ConfirmationWindow.SetActive(true);
+				ConfirmationWindow.SetActive(value: true);
 				HomeCamera.PromptBar.Show = false;
 			}
 			return;
@@ -494,7 +494,7 @@ public class HomePrisonerScript : MonoBehaviour
 		if (ID == 1)
 		{
 			Time.timeScale = 1f;
-			NowLoading.SetActive(true);
+			NowLoading.SetActive(value: true);
 			HomeGlobals.LateForSchool = true;
 			if (DateGlobals.Weekday == DayOfWeek.Saturday)
 			{

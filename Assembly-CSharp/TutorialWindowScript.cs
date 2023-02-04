@@ -285,9 +285,9 @@ public class TutorialWindowScript : MonoBehaviour
 					if (DisableButton.activeInHierarchy)
 					{
 						OptionGlobals.TutorialsOff = true;
-						TutorialLabel.gameObject.SetActive(true);
-						ShortLabel.gameObject.SetActive(false);
-						DisableButton.SetActive(false);
+						TutorialLabel.gameObject.SetActive(value: true);
+						ShortLabel.gameObject.SetActive(value: false);
+						DisableButton.SetActive(value: false);
 						TitleLabel.text = "Tutorials Disabled";
 						TutorialLabel.text = DisabledString;
 						TutorialLabel.text = TutorialLabel.text.Replace('@', '\n');
@@ -297,8 +297,8 @@ public class TutorialWindowScript : MonoBehaviour
 				}
 				else if (Input.GetButtonDown("X") && ShortLabel.gameObject.activeInHierarchy)
 				{
-					TutorialLabel.gameObject.SetActive(true);
-					ShortLabel.gameObject.SetActive(false);
+					TutorialLabel.gameObject.SetActive(value: true);
+					ShortLabel.gameObject.SetActive(value: false);
 				}
 			}
 		}
@@ -643,13 +643,13 @@ public class TutorialWindowScript : MonoBehaviour
 		Timer = 0f;
 		if (ForcingTutorial)
 		{
-			TutorialLabel.gameObject.SetActive(true);
-			ShortLabel.gameObject.SetActive(false);
+			TutorialLabel.gameObject.SetActive(value: true);
+			ShortLabel.gameObject.SetActive(value: false);
 		}
 		else
 		{
-			TutorialLabel.gameObject.SetActive(false);
-			ShortLabel.gameObject.SetActive(true);
+			TutorialLabel.gameObject.SetActive(value: false);
+			ShortLabel.gameObject.SetActive(value: true);
 		}
 	}
 
@@ -659,9 +659,9 @@ public class TutorialWindowScript : MonoBehaviour
 		if (!ForcingTutorial)
 		{
 			Debug.Log("ForcingTutorial is being set to true.");
-			TutorialLabel.gameObject.SetActive(true);
-			ShortLabel.gameObject.SetActive(false);
-			DisableButton.SetActive(false);
+			TutorialLabel.gameObject.SetActive(value: true);
+			ShortLabel.gameObject.SetActive(value: false);
+			DisableButton.SetActive(value: false);
 			ContinueLabel.text = "RETURN";
 			ForcingTutorial = true;
 			HintTimer = 0f;
@@ -669,9 +669,9 @@ public class TutorialWindowScript : MonoBehaviour
 		}
 		else
 		{
-			TutorialLabel.gameObject.SetActive(false);
-			ShortLabel.gameObject.SetActive(true);
-			DisableButton.SetActive(true);
+			TutorialLabel.gameObject.SetActive(value: false);
+			ShortLabel.gameObject.SetActive(value: true);
+			DisableButton.SetActive(value: true);
 			ContinueLabel.text = "EXIT";
 			ForcingTutorial = false;
 			Timer = 0f;

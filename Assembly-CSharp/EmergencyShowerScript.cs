@@ -117,7 +117,7 @@ public class EmergencyShowerScript : MonoBehaviour
 		{
 			if (Timer > 2f)
 			{
-				CensorSteam.SetActive(true);
+				CensorSteam.SetActive(value: true);
 				MyAudio.Play();
 				Phase++;
 			}
@@ -160,7 +160,7 @@ public class EmergencyShowerScript : MonoBehaviour
 			if (Timer > 8.5f)
 			{
 				Debug.Log("As of now, # of OriginalUniforms is: " + Yandere.StudentManager.OriginalUniforms + " and # of NewUniforms is: " + Yandere.StudentManager.NewUniforms);
-				CensorSteam.SetActive(false);
+				CensorSteam.SetActive(value: false);
 				Yandere.CannotBeSprayed = false;
 				Yandere.CanMove = true;
 				Bathing = false;

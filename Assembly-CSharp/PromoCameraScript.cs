@@ -26,7 +26,7 @@ public class PromoCameraScript : MonoBehaviour
 	{
 		base.transform.eulerAngles = StartRotations[ID];
 		base.transform.position = StartPositions[ID];
-		PromoCharacter.gameObject.SetActive(false);
+		PromoCharacter.gameObject.SetActive(value: false);
 		PromoBlack.material.color = new Color(PromoBlack.material.color.r, PromoBlack.material.color.g, PromoBlack.material.color.b, 0f);
 		Noose.material.color = new Color(Noose.material.color.r, Noose.material.color.g, Noose.material.color.b, 0f);
 		Rope.material.color = new Color(Rope.material.color.r, Rope.material.color.g, Rope.material.color.b, 0f);
@@ -50,7 +50,7 @@ public class PromoCameraScript : MonoBehaviour
 		else if (ID == 2)
 		{
 			base.transform.Translate(Vector3.forward * (Time.deltaTime * 0.01f));
-			PromoCharacter.gameObject.SetActive(true);
+			PromoCharacter.gameObject.SetActive(value: true);
 		}
 		else if (ID == 1 || ID == 3)
 		{

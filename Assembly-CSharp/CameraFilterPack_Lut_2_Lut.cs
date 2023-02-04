@@ -71,14 +71,14 @@ public class CameraFilterPack_Lut_2_Lut : MonoBehaviour
 		{
 			Object.DestroyImmediate(converted3DLut);
 		}
-		converted3DLut = new Texture3D(num, num, num, TextureFormat.ARGB32, false);
+		converted3DLut = new Texture3D(num, num, num, TextureFormat.ARGB32, mipChain: false);
 		converted3DLut.SetPixels(array);
 		converted3DLut.Apply();
 		if ((bool)converted3DLut2)
 		{
 			Object.DestroyImmediate(converted3DLut2);
 		}
-		converted3DLut2 = new Texture3D(num, num, num, TextureFormat.ARGB32, false);
+		converted3DLut2 = new Texture3D(num, num, num, TextureFormat.ARGB32, mipChain: false);
 		converted3DLut2.SetPixels(array);
 		converted3DLut2.Apply();
 	}
@@ -126,7 +126,7 @@ public class CameraFilterPack_Lut_2_Lut : MonoBehaviour
 		{
 			Object.DestroyImmediate(cv3D);
 		}
-		cv3D = new Texture3D(num, num, num, TextureFormat.ARGB32, false);
+		cv3D = new Texture3D(num, num, num, TextureFormat.ARGB32, mipChain: false);
 		cv3D.SetPixels(array);
 		cv3D.Apply();
 		return cv3D;

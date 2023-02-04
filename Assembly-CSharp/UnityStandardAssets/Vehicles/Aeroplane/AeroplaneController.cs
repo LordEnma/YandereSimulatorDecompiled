@@ -71,13 +71,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 
 		public float EnginePower { get; private set; }
 
-		public float MaxEnginePower
-		{
-			get
-			{
-				return m_MaxEnginePower;
-			}
-		}
+		public float MaxEnginePower => m_MaxEnginePower;
 
 		public float RollAngle { get; private set; }
 
@@ -220,8 +214,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 		private void CalculateAltitude()
 		{
 			Ray ray = new Ray(base.transform.position - Vector3.up * 10f, -Vector3.up);
-			RaycastHit hitInfo;
-			Altitude = (Physics.Raycast(ray, out hitInfo) ? (hitInfo.distance + 10f) : base.transform.position.y);
+			Altitude = (Physics.Raycast(ray, out var hitInfo) ? (hitInfo.distance + 10f) : base.transform.position.y);
 		}
 
 		public void Immobilize()

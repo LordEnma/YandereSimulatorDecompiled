@@ -23,7 +23,7 @@ namespace MaidDereMinigame
 			animator.SetTrigger(toOpen ? "OpenPage" : "ClosePage");
 			if (objectToActivate != null)
 			{
-				objectToActivate.SetActive(false);
+				objectToActivate.SetActive(value: false);
 			}
 		}
 

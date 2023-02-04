@@ -75,15 +75,15 @@ public class HallucinationScript : MonoBehaviour
 		MakeTransparent();
 		for (int j = 1; j < 11; j++)
 		{
-			EightiesRivalHair[j].SetActive(false);
+			EightiesRivalHair[j].SetActive(value: false);
 		}
 		if (GameGlobals.Eighties)
 		{
 			if (week > 0 && week < 11)
 			{
-				YandereHairRenderer.transform.parent.gameObject.SetActive(false);
-				RivalHair[1].SetActive(false);
-				EightiesRivalHair[week].SetActive(true);
+				YandereHairRenderer.transform.parent.gameObject.SetActive(value: false);
+				RivalHair[1].SetActive(value: false);
+				EightiesRivalHair[week].SetActive(value: true);
 				YandereHairRenderer = RyobaHairRenderer;
 				RivalHairRenderer = EightiesRivalHairRenderers[week];
 				YandereRenderer.sharedMesh = LongSleeveUniform;
@@ -92,10 +92,10 @@ public class HallucinationScript : MonoBehaviour
 		}
 		else
 		{
-			RyobaHair.SetActive(false);
+			RyobaHair.SetActive(value: false);
 		}
-		HallucinatedYandere.SetActive(false);
-		HallucinatedRival.SetActive(false);
+		HallucinatedYandere.SetActive(value: false);
+		HallucinatedRival.SetActive(value: false);
 	}
 
 	private void Update()
@@ -108,8 +108,8 @@ public class HallucinationScript : MonoBehaviour
 			}
 			if (Timer > 6f)
 			{
-				HallucinatedYandere.SetActive(true);
-				HallucinatedRival.SetActive(true);
+				HallucinatedYandere.SetActive(value: true);
+				HallucinatedRival.SetActive(value: true);
 				Weapon = Random.Range(1, 6);
 				base.transform.position = Yandere.transform.position + Yandere.transform.forward;
 				base.transform.eulerAngles = Yandere.transform.eulerAngles;
@@ -134,10 +134,10 @@ public class HallucinationScript : MonoBehaviour
 				{
 					if (gameObject != null)
 					{
-						gameObject.SetActive(false);
+						gameObject.SetActive(value: false);
 					}
 				}
-				Weapons[Weapon].SetActive(true);
+				Weapons[Weapon].SetActive(value: true);
 				Hallucinate = true;
 				Timer = 0f;
 			}
@@ -205,7 +205,7 @@ public class HallucinationScript : MonoBehaviour
 			}
 		}
 		SawRenderer.material.SetFloat("_Alpha", Alpha);
-		HallucinatedYandere.SetActive(false);
-		HallucinatedRival.SetActive(false);
+		HallucinatedYandere.SetActive(value: false);
+		HallucinatedRival.SetActive(value: false);
 	}
 }

@@ -165,13 +165,13 @@ public class UIKeyBinding : MonoBehaviour
 			{
 				UICamera.currentTouchID = -1;
 				UICamera.currentKey = keyCode;
-				OnBindingPress(true);
+				OnBindingPress(pressed: true);
 			}
 			if (mPress && flag2)
 			{
 				UICamera.currentTouchID = -1;
 				UICamera.currentKey = keyCode;
-				OnBindingPress(false);
+				OnBindingPress(pressed: false);
 				OnBindingClick();
 			}
 		}

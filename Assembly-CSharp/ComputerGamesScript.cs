@@ -50,7 +50,7 @@ public class ComputerGamesScript : MonoBehaviour
 
 	private void Start()
 	{
-		GameWindow.gameObject.SetActive(false);
+		GameWindow.gameObject.SetActive(value: false);
 		UpdateHighlight();
 		DeactivateAllBenefits();
 		OriginalColor = Yandere.PowerUp.color;
@@ -103,7 +103,7 @@ public class ComputerGamesScript : MonoBehaviour
 		else
 		{
 			GameWindow.localScale = Vector3.zero;
-			GameWindow.gameObject.SetActive(false);
+			GameWindow.gameObject.SetActive(value: false);
 		}
 		if (Gaming)
 		{
@@ -113,7 +113,7 @@ public class ComputerGamesScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 5f)
 			{
-				Yandere.PowerUp.transform.parent.gameObject.SetActive(true);
+				Yandere.PowerUp.transform.parent.gameObject.SetActive(value: true);
 				Yandere.MyController.radius = 0.2f;
 				Yandere.CanMove = true;
 				Yandere.EmptyHands();
@@ -142,7 +142,7 @@ public class ComputerGamesScript : MonoBehaviour
 							PromptBar.Show = true;
 							Yandere.Character.GetComponent<Animation>().Play(Yandere.IdleAnim);
 							Yandere.CanMove = false;
-							GameWindow.gameObject.SetActive(true);
+							GameWindow.gameObject.SetActive(value: true);
 							ShowWindow = true;
 						}
 						else
@@ -169,8 +169,8 @@ public class ComputerGamesScript : MonoBehaviour
 			}
 			if (Timer > 6f)
 			{
-				Yandere.PowerUp.transform.parent.gameObject.SetActive(false);
-				base.gameObject.SetActive(false);
+				Yandere.PowerUp.transform.parent.gameObject.SetActive(value: false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 	}
@@ -181,7 +181,7 @@ public class ComputerGamesScript : MonoBehaviour
 		{
 			ComputerGames[i].enabled = true;
 		}
-		base.gameObject.SetActive(true);
+		base.gameObject.SetActive(value: true);
 	}
 
 	private void PlayGames()
@@ -208,7 +208,7 @@ public class ComputerGamesScript : MonoBehaviour
 		}
 		if (!Gaming)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -218,7 +218,7 @@ public class ComputerGamesScript : MonoBehaviour
 		{
 			Chairs[i].enabled = true;
 		}
-		base.gameObject.SetActive(true);
+		base.gameObject.SetActive(value: true);
 	}
 
 	private void DisableChairs()

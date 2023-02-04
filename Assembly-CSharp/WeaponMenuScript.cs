@@ -150,7 +150,7 @@ public class WeaponMenuScript : MonoBehaviour
 						Selected = 3;
 						if (Yandere.Container != null)
 						{
-							Yandere.ObstacleDetector.gameObject.SetActive(true);
+							Yandere.ObstacleDetector.gameObject.SetActive(value: true);
 						}
 					}
 					else if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -203,7 +203,7 @@ public class WeaponMenuScript : MonoBehaviour
 						{
 							if (Yandere.Container != null)
 							{
-								Yandere.ObstacleDetector.gameObject.SetActive(true);
+								Yandere.ObstacleDetector.gameObject.SetActive(value: true);
 							}
 						}
 						else if (Selected == 5)
@@ -231,7 +231,7 @@ public class WeaponMenuScript : MonoBehaviour
 					{
 						if (Yandere.Container.TrashCan.ConcealedWeapon != null)
 						{
-							WeaponScript concealedWeapon = Yandere.Container.TrashCan.ConcealedWeapon;
+							_ = Yandere.Container.TrashCan.ConcealedWeapon;
 						}
 						Yandere.Container.TrashCan.RemoveContents();
 						UpdateSprites();
@@ -287,7 +287,7 @@ public class WeaponMenuScript : MonoBehaviour
 		{
 			if (Yandere.Container.TrashCan.ConcealedWeapon != null)
 			{
-				WeaponScript concealedWeapon2 = Yandere.Container.TrashCan.ConcealedWeapon;
+				_ = Yandere.Container.TrashCan.ConcealedWeapon;
 			}
 			Yandere.Container.TrashCan.RemoveContents();
 			UpdateSprites();
@@ -316,14 +316,14 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 		if (Yandere.Weapon[1] != null)
 		{
-			Yandere.Weapon[1].gameObject.SetActive(false);
+			Yandere.Weapon[1].gameObject.SetActive(value: false);
 		}
 		if (Yandere.Weapon[2] != null)
 		{
-			Yandere.Weapon[2].gameObject.SetActive(false);
+			Yandere.Weapon[2].gameObject.SetActive(value: false);
 		}
 		Yandere.Equipped = Selected;
-		Yandere.EquippedWeapon.gameObject.SetActive(true);
+		Yandere.EquippedWeapon.gameObject.SetActive(value: true);
 		if (Yandere.EquippedWeapon.Flaming)
 		{
 			Yandere.EquippedWeapon.FireEffect.Play();

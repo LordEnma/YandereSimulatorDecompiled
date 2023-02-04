@@ -14,7 +14,7 @@ public class TutorialObjectScript : MonoBehaviour
 			Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
 			if (!Prompt.Yandere.StudentManager.YandereVisible)
 			{
-				Self.SetActive(false);
+				Self.SetActive(value: false);
 				Prompt.enabled = false;
 				Prompt.Hide();
 			}

@@ -35,8 +35,8 @@ public class PowerOutletScript : MonoBehaviour
 					Prompt.Yandere.EmptyHands();
 					PowerStrip.transform.parent = base.transform;
 					PowerStrip.transform.localPosition = new Vector3(0f, 0f, 0f);
-					PowerStrip.SetActive(false);
-					PluggedOutlet.SetActive(true);
+					PowerStrip.SetActive(value: false);
+					PluggedOutlet.SetActive(value: true);
 					Prompt.Label[0].text = "     Unplug";
 				}
 			}
@@ -64,10 +64,10 @@ public class PowerOutletScript : MonoBehaviour
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
 			Prompt.Circle[0].fillAmount = 1f;
-			PluggedOutlet.SetActive(false);
+			PluggedOutlet.SetActive(value: false);
 			PowerStrip.transform.localPosition = new Vector3(0.074f, -0.01385f, 0.0295f);
 			PowerStrip.transform.localEulerAngles = new Vector3(0f, -99f, 0f);
-			PowerStrip.SetActive(true);
+			PowerStrip.SetActive(value: true);
 			PowerStrip = null;
 			Prompt.HideButton[1] = true;
 			Prompt.Label[0].text = "     Plug In";
@@ -86,15 +86,15 @@ public class PowerOutletScript : MonoBehaviour
 		if (!Sabotaged)
 		{
 			Prompt.Yandere.SuspiciousActionTimer = 1f;
-			SabotagedOutlet.SetActive(true);
-			PluggedOutlet.SetActive(false);
+			SabotagedOutlet.SetActive(value: true);
+			PluggedOutlet.SetActive(value: false);
 			Prompt.Label[1].text = "     Repair";
 			Prompt.HideButton[0] = true;
 		}
 		else
 		{
-			SabotagedOutlet.SetActive(false);
-			PluggedOutlet.SetActive(true);
+			SabotagedOutlet.SetActive(value: false);
+			PluggedOutlet.SetActive(value: true);
 			Prompt.Label[1].text = "     Sabotage";
 			Prompt.HideButton[0] = false;
 		}

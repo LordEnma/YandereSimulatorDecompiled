@@ -61,8 +61,8 @@ public class TrueEndingScript : MonoBehaviour
 				Logo.alpha = Mathf.MoveTowards(Logo.alpha, 0f, Time.deltaTime * 0.33333f);
 				if (Logo.alpha == 0f)
 				{
-					TrueEndingPanel.SetActive(false);
-					TimelinePanel.SetActive(true);
+					TrueEndingPanel.SetActive(value: false);
+					TimelinePanel.SetActive(value: true);
 					base.enabled = false;
 				}
 			}

@@ -32,29 +32,11 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 
 	private int m_resetAtFrame = -1;
 
-	internal bool FixedStep
-	{
-		get
-		{
-			return m_fixedStep;
-		}
-	}
+	internal bool FixedStep => m_fixedStep;
 
-	internal int ObjectId
-	{
-		get
-		{
-			return m_objectId;
-		}
-	}
+	internal int ObjectId => m_objectId;
 
-	public ObjectType Type
-	{
-		get
-		{
-			return m_type;
-		}
-	}
+	public ObjectType Type => m_type;
 
 	internal void RegisterCamera(AmplifyMotionCamera camera)
 	{
@@ -62,23 +44,14 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		if ((component.cullingMask & (1 << base.gameObject.layer)) != 0 && !m_states.ContainsKey(component))
 		{
 			MotionState motionState = null;
-			switch (m_type)
+			motionState = m_type switch
 			{
-			case ObjectType.Solid:
-				motionState = new SolidState(camera, this);
-				break;
-			case ObjectType.Skinned:
-				motionState = new SkinnedState(camera, this);
-				break;
-			case ObjectType.Cloth:
-				motionState = new ClothState(camera, this);
-				break;
-			case ObjectType.Particle:
-				motionState = new ParticleState(camera, this);
-				break;
-			default:
-				throw new Exception("[AmplifyMotion] Invalid object type.");
-			}
+				ObjectType.Solid => new SolidState(camera, this), 
+				ObjectType.Skinned => new SkinnedState(camera, this), 
+				ObjectType.Cloth => new ClothState(camera, this), 
+				ObjectType.Particle => new ParticleState(camera, this), 
+				_ => throw new Exception("[AmplifyMotion] Invalid object type."), 
+			};
 			camera.RegisterObject(this);
 			m_states.Add(component, motionState);
 		}
@@ -87,8 +60,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 	internal void UnregisterCamera(AmplifyMotionCamera camera)
 	{
 		Camera component = camera.GetComponent<Camera>();
-		MotionState value;
-		if (m_states.TryGetValue(component, out value))
+		if (m_states.TryGetValue(component, out var value))
 		{
 			camera.UnregisterObject(this);
 			if (m_states.TryGetValue(component, out value))
@@ -102,7 +74,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 	private bool InitializeType()
 	{
 		Renderer component = GetComponent<Renderer>();
-		if (AmplifyMotionEffectBase.CanRegister(base.gameObject, false))
+		if (AmplifyMotionEffectBase.CanRegister(base.gameObject, autoReg: false))
 		{
 			if (GetComponent<ParticleSystem>() != null)
 			{
@@ -230,8 +202,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 
 	internal void OnUpdateTransform(AmplifyMotionEffectBase inst, Camera camera, CommandBuffer updateCB, bool starting)
 	{
-		MotionState value;
-		if (m_states.TryGetValue(camera, out value) && !value.Error)
+		if (m_states.TryGetValue(camera, out var value) && !value.Error)
 		{
 			CheckTeleportReset(inst);
 			bool flag = m_resetAtFrame > 0 && Time.frameCount >= m_resetAtFrame;
@@ -242,8 +213,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 
 	internal void OnRenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
 	{
-		MotionState value;
-		if (m_states.TryGetValue(camera, out value) && !value.Error)
+		if (m_states.TryGetValue(camera, out var value) && !value.Error)
 		{
 			value.RenderVectors(camera, renderCB, scale, quality);
 			if (m_resetAtFrame > 0 && Time.frameCount >= m_resetAtFrame)

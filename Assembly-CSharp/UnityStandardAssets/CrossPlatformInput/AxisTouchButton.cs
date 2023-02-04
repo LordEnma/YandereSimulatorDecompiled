@@ -33,8 +33,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 		private void FindPairedButton()
 		{
-			AxisTouchButton[] array = Object.FindObjectsOfType(typeof(AxisTouchButton)) as AxisTouchButton[];
-			if (array == null)
+			if (!(Object.FindObjectsOfType(typeof(AxisTouchButton)) is AxisTouchButton[] array))
 			{
 				return;
 			}

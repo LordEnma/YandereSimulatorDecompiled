@@ -6,7 +6,7 @@ public class RetroHeartScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		RetroMinigame.GameOverGraphic.SetActive(true);
+		RetroMinigame.GameOverGraphic.SetActive(value: true);
 		RetroMinigame.GameOver = true;
 	}
 }

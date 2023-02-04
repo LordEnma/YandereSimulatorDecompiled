@@ -13,7 +13,7 @@ public class RivalBagScript : MonoBehaviour
 	{
 		if (Schemes.StudentManager.Students[Schemes.StudentManager.RivalID] == null || StudentGlobals.StudentSlave == Schemes.StudentManager.RivalID)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			Prompt.enabled = false;
 			Prompt.Hide();
 		}

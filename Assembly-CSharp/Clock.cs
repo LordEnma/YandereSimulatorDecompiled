@@ -53,13 +53,7 @@ public class Clock
 		}
 	};
 
-	public int Hours24
-	{
-		get
-		{
-			return hours;
-		}
-	}
+	public int Hours24 => hours;
 
 	public int Hours12
 	{
@@ -74,53 +68,17 @@ public class Clock
 		}
 	}
 
-	public int Minutes
-	{
-		get
-		{
-			return minutes;
-		}
-	}
+	public int Minutes => minutes;
 
-	public int Seconds
-	{
-		get
-		{
-			return seconds;
-		}
-	}
+	public int Seconds => seconds;
 
-	public float CurrentSecond
-	{
-		get
-		{
-			return currentSecond;
-		}
-	}
+	public float CurrentSecond => currentSecond;
 
-	public int TotalSeconds
-	{
-		get
-		{
-			return hours * 3600 + minutes * 60 + seconds;
-		}
-	}
+	public int TotalSeconds => hours * 3600 + minutes * 60 + seconds;
 
-	public float PreciseTotalSeconds
-	{
-		get
-		{
-			return (float)TotalSeconds + currentSecond;
-		}
-	}
+	public float PreciseTotalSeconds => (float)TotalSeconds + currentSecond;
 
-	public bool IsAM
-	{
-		get
-		{
-			return hours < 12;
-		}
-	}
+	public bool IsAM => hours < 12;
 
 	public TimeOfDay TimeOfDay
 	{
@@ -158,13 +116,7 @@ public class Clock
 		}
 	}
 
-	public string TimeOfDayString
-	{
-		get
-		{
-			return TimeOfDayStrings[TimeOfDay];
-		}
-	}
+	public string TimeOfDayString => TimeOfDayStrings[TimeOfDay];
 
 	public Clock(int hours, int minutes, int seconds, float currentSecond)
 	{

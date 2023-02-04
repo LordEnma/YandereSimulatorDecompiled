@@ -52,6 +52,6 @@ public class HatredScript : MonoBehaviour
 
 	private void Start()
 	{
-		Character.SetActive(false);
+		Character.SetActive(value: false);
 	}
 }

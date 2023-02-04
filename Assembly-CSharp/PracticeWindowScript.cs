@@ -59,7 +59,7 @@ public class PracticeWindowScript : MonoBehaviour
 
 	private void Start()
 	{
-		Window.SetActive(false);
+		Window.SetActive(value: false);
 	}
 
 	private void Update()
@@ -92,7 +92,7 @@ public class PracticeWindowScript : MonoBehaviour
 						}
 						PromptBar.ClearButtons();
 						PromptBar.Show = false;
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 						ButtonUp = false;
 						Time.timeScale = 1f;
 					}
@@ -104,7 +104,7 @@ public class PracticeWindowScript : MonoBehaviour
 					Yandere.TargetStudent.ClubPhase = 3;
 					PromptBar.ClearButtons();
 					PromptBar.Show = false;
-					Window.SetActive(false);
+					Window.SetActive(value: false);
 					ButtonUp = false;
 					Time.timeScale = 1f;
 				}
@@ -143,7 +143,7 @@ public class PracticeWindowScript : MonoBehaviour
 						GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
 						for (int j = 0; j < rootGameObjects.Length; j++)
 						{
-							rootGameObjects[j].SetActive(false);
+							rootGameObjects[j].SetActive(value: false);
 						}
 					}
 				}
@@ -210,7 +210,7 @@ public class PracticeWindowScript : MonoBehaviour
 					GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
 					for (int j = 0; j < rootGameObjects.Length; j++)
 					{
-						rootGameObjects[j].SetActive(false);
+						rootGameObjects[j].SetActive(value: false);
 					}
 				}
 			}
@@ -384,7 +384,7 @@ public class PracticeWindowScript : MonoBehaviour
 			Label[4].text = Difficulties[4] ?? "";
 			Label[5].text = Difficulties[5] ?? "";
 		}
-		Window.SetActive(true);
+		Window.SetActive(value: true);
 		UpdateHighlight();
 		Time.timeScale = 0.0001f;
 	}

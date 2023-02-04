@@ -34,27 +34,27 @@ public class LowRepGameOverScript : MonoBehaviour
 
 	private void Start()
 	{
-		GossipGroup[1].SetActive(false);
-		GossipGroup[2].SetActive(false);
-		GossipGroup[3].SetActive(false);
-		GossipGroup[4].SetActive(false);
-		GossipGroup[5].SetActive(false);
+		GossipGroup[1].SetActive(value: false);
+		GossipGroup[2].SetActive(value: false);
+		GossipGroup[3].SetActive(value: false);
+		GossipGroup[4].SetActive(value: false);
+		GossipGroup[5].SetActive(value: false);
 		Senpai = StudentManager.Students[1];
 		Yandere.transform.parent = base.transform;
 		Yandere.transform.localPosition = new Vector3(0f, 0f, 0f);
 		Yandere.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 		Yandere.CharacterAnimation.Play("f02_LowRepGO_A");
-		Yandere.LifeNotePen.SetActive(false);
+		Yandere.LifeNotePen.SetActive(value: false);
 		MyCamera.eulerAngles = CameraPosition[0].eulerAngles;
 		MyCamera.position = CameraPosition[0].position;
-		Senpai.Chopsticks[0].SetActive(false);
-		Senpai.Chopsticks[1].SetActive(false);
-		Senpai.OccultBook.SetActive(false);
-		Senpai.SmartPhone.SetActive(false);
-		Senpai.Scrubber.SetActive(false);
-		Senpai.Eraser.SetActive(false);
-		Senpai.Bento.SetActive(false);
-		Senpai.Pen.SetActive(false);
+		Senpai.Chopsticks[0].SetActive(value: false);
+		Senpai.Chopsticks[1].SetActive(value: false);
+		Senpai.OccultBook.SetActive(value: false);
+		Senpai.SmartPhone.SetActive(value: false);
+		Senpai.Scrubber.SetActive(value: false);
+		Senpai.Eraser.SetActive(value: false);
+		Senpai.Bento.SetActive(value: false);
+		Senpai.Pen.SetActive(value: false);
 		Senpai.enabled = false;
 		Senpai.CharacterAnimation.enabled = true;
 		Senpai.MyController.enabled = false;
@@ -76,7 +76,7 @@ public class LowRepGameOverScript : MonoBehaviour
 			{
 				MyCamera.eulerAngles = CameraPosition[1].eulerAngles;
 				MyCamera.position = CameraPosition[1].position;
-				GossipGroup[1].SetActive(true);
+				GossipGroup[1].SetActive(value: true);
 				GigglePhase = 1;
 				Phase++;
 			}
@@ -90,7 +90,7 @@ public class LowRepGameOverScript : MonoBehaviour
 				MyCamera.eulerAngles = CameraPosition[2].eulerAngles;
 				MyCamera.position = CameraPosition[2].position;
 				Yandere.CharacterAnimation.Play("f02_LowRepGO_B");
-				GossipGroup[1].SetActive(false);
+				GossipGroup[1].SetActive(value: false);
 				GigglePhase++;
 				Timer = 0f;
 				Phase++;
@@ -103,7 +103,7 @@ public class LowRepGameOverScript : MonoBehaviour
 			{
 				MyCamera.eulerAngles = CameraPosition[3].eulerAngles;
 				MyCamera.position = CameraPosition[3].position;
-				GossipGroup[2].SetActive(true);
+				GossipGroup[2].SetActive(value: true);
 				Phase++;
 			}
 		}
@@ -116,7 +116,7 @@ public class LowRepGameOverScript : MonoBehaviour
 				MyCamera.eulerAngles = CameraPosition[4].eulerAngles;
 				MyCamera.position = CameraPosition[4].position;
 				Yandere.CharacterAnimation.Play("f02_LowRepGO_C");
-				GossipGroup[2].SetActive(false);
+				GossipGroup[2].SetActive(value: false);
 				GigglePhase++;
 				Timer = 0f;
 				Phase++;
@@ -129,7 +129,7 @@ public class LowRepGameOverScript : MonoBehaviour
 			{
 				MyCamera.eulerAngles = CameraPosition[5].eulerAngles;
 				MyCamera.position = CameraPosition[5].position;
-				GossipGroup[3].SetActive(true);
+				GossipGroup[3].SetActive(value: true);
 				Phase++;
 			}
 		}
@@ -142,8 +142,8 @@ public class LowRepGameOverScript : MonoBehaviour
 				MyCamera.eulerAngles = CameraPosition[6].eulerAngles;
 				MyCamera.position = CameraPosition[6].position;
 				Yandere.CharacterAnimation.Play("f02_LowRepGO_D");
-				GossipGroup[3].SetActive(false);
-				GossipGroup[4].SetActive(true);
+				GossipGroup[3].SetActive(value: false);
+				GossipGroup[4].SetActive(value: true);
 				GigglePhase++;
 				Timer = 0f;
 				Phase++;
@@ -161,7 +161,7 @@ public class LowRepGameOverScript : MonoBehaviour
 				Senpai.transform.position = SenpaiSpot.position;
 				Senpai.CharacterAnimation.Play(Senpai.OriginalIdleAnim);
 				Physics.SyncTransforms();
-				GossipGroup[5].SetActive(true);
+				GossipGroup[5].SetActive(value: true);
 				GigglePhase++;
 				Phase++;
 			}

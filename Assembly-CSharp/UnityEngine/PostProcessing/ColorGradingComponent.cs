@@ -212,7 +212,7 @@ namespace UnityEngine.PostProcessing
 		{
 			if (m_GradingCurves == null)
 			{
-				m_GradingCurves = new Texture2D(128, 2, GetCurveFormat(), false, true)
+				m_GradingCurves = new Texture2D(128, 2, GetCurveFormat(), mipChain: false, linear: true)
 				{
 					name = "Internal Curves Texture",
 					hideFlags = HideFlags.DontSave,
@@ -239,7 +239,7 @@ namespace UnityEngine.PostProcessing
 				m_pixels[i + 128] = new Color(r2, g2, b2, a2);
 			}
 			m_GradingCurves.SetPixels(m_pixels);
-			m_GradingCurves.Apply(false, false);
+			m_GradingCurves.Apply(updateMipmaps: false, makeNoLongerReadable: false);
 			return m_GradingCurves;
 		}
 
@@ -306,17 +306,11 @@ namespace UnityEngine.PostProcessing
 			material.SetFloat(Uniforms._Saturation, settings.basic.saturation);
 			material.SetFloat(Uniforms._Contrast, settings.basic.contrast);
 			material.SetVector(Uniforms._Balance, CalculateColorBalance(settings.basic.temperature, settings.basic.tint));
-			Vector3 outLift;
-			Vector3 outGamma;
-			Vector3 outGain;
-			CalculateLiftGammaGain(settings.colorWheels.linear.lift, settings.colorWheels.linear.gamma, settings.colorWheels.linear.gain, out outLift, out outGamma, out outGain);
+			CalculateLiftGammaGain(settings.colorWheels.linear.lift, settings.colorWheels.linear.gamma, settings.colorWheels.linear.gain, out var outLift, out var outGamma, out var outGain);
 			material.SetVector(Uniforms._Lift, outLift);
 			material.SetVector(Uniforms._InvGamma, outGamma);
 			material.SetVector(Uniforms._Gain, outGain);
-			Vector3 outSlope;
-			Vector3 outPower;
-			Vector3 outOffset;
-			CalculateSlopePowerOffset(settings.colorWheels.log.slope, settings.colorWheels.log.power, settings.colorWheels.log.offset, out outSlope, out outPower, out outOffset);
+			CalculateSlopePowerOffset(settings.colorWheels.log.slope, settings.colorWheels.log.power, settings.colorWheels.log.offset, out var outSlope, out var outPower, out var outOffset);
 			material.SetVector(Uniforms._Slope, outSlope);
 			material.SetVector(Uniforms._Power, outPower);
 			material.SetVector(Uniforms._Offset, outOffset);

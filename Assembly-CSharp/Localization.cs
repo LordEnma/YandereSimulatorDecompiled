@@ -79,18 +79,12 @@ public static class Localization
 	}
 
 	[Obsolete("Localization is now always active. You no longer need to check this property.")]
-	public static bool isActive
-	{
-		get
-		{
-			return true;
-		}
-	}
+	public static bool isActive => true;
 
 	public static bool Reload()
 	{
 		localizationHasBeenSet = false;
-		if (!LoadDictionary(mLanguage, true))
+		if (!LoadDictionary(mLanguage, merge: true))
 		{
 			return false;
 		}
@@ -375,8 +369,7 @@ public static class Localization
 			return array;
 		}
 		string key = added.buffer[0];
-		string[] value;
-		if (!mDictionary.TryGetValue(key, out value))
+		if (!mDictionary.TryGetValue(key, out var value))
 		{
 			value = new string[mLanguages.Length];
 		}
@@ -707,8 +700,7 @@ public static class Localization
 		{
 			if (array[i] == language)
 			{
-				string[] value;
-				if (!mDictionary.TryGetValue(key, out value))
+				if (!mDictionary.TryGetValue(key, out var value))
 				{
 					value = new string[array.Length];
 					mDictionary[key] = value;
@@ -730,8 +722,7 @@ public static class Localization
 			dictionary.Add(item.Key, array2);
 		}
 		mDictionary = dictionary;
-		string[] value2;
-		if (!mDictionary.TryGetValue(key, out value2))
+		if (!mDictionary.TryGetValue(key, out var value2))
 		{
 			value2 = new string[array.Length];
 			mDictionary[key] = value2;

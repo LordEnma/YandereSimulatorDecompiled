@@ -28,7 +28,7 @@ public class MaskScript : MonoBehaviour
 	{
 		if (GameGlobals.MasksBanned)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		else
 		{
@@ -70,7 +70,7 @@ public class MaskScript : MonoBehaviour
 		}
 		else
 		{
-			Yandere.NotificationManager.CustomText = "Can't remove mask in front of witnesses";
+			Yandere.NotificationManager.CustomText = "Can't put on mask in front of witnesses";
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		}
 	}

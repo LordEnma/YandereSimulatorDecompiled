@@ -31,7 +31,7 @@ public class SafeScript : MonoBehaviour
 			KeyPrompt.Yandere.Inventory.SafeKey = true;
 			SafePrompt.HideButton[0] = false;
 			SafePrompt.enabled = true;
-			Key.SetActive(false);
+			Key.SetActive(value: false);
 		}
 		if (SafePrompt.Circle[0].fillAmount == 0f)
 		{
@@ -47,7 +47,7 @@ public class SafeScript : MonoBehaviour
 			base.enabled = false;
 			ContentsPrompt.Hide();
 			ContentsPrompt.enabled = false;
-			ContentsPrompt.gameObject.SetActive(false);
+			ContentsPrompt.gameObject.SetActive(value: false);
 		}
 		if (Open)
 		{

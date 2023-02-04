@@ -173,20 +173,29 @@ public class TalkingScript : MonoBehaviour
 					Debug.Log("Time to change this student's outlines!");
 					for (int i = 0; i < S.Outlines.Length; i++)
 					{
-						if (S.Outlines[i] != null)
+						if (!(S.Outlines[i] != null))
 						{
-							if (!S.Rival)
+							continue;
+						}
+						if (!S.Rival)
+						{
+							if (S.StudentManager.StudentPhotographed[S.StudentID])
 							{
-								Debug.Log("They're not a rival, so they should be green!");
+								Debug.Log("They're not a rival, and they're photographed, so they should be green!");
 								S.Outlines[i].color = new Color(0f, 1f, 0f);
 							}
 							else
 							{
-								Debug.Log("She's a rival! She's going back to being red!");
-								S.Outlines[i].color = new Color(1f, 0f, 0f);
+								Debug.Log("They're not a rival, but they're not photographed, so they should have no outline!");
+								S.Outlines[i].enabled = false;
 							}
-							S.Outlines[i].enabled = true;
 						}
+						else
+						{
+							Debug.Log("She's a rival! She's going back to being red!");
+							S.Outlines[i].color = new Color(1f, 0f, 0f);
+						}
+						S.Outlines[i].enabled = true;
 					}
 					S.Forgave = true;
 					if (S.Witnessed == StudentWitnessType.Insanity || S.Witnessed == StudentWitnessType.WeaponAndBloodAndInsanity || S.Witnessed == StudentWitnessType.WeaponAndInsanity || S.Witnessed == StudentWitnessType.BloodAndInsanity)
@@ -233,13 +242,13 @@ public class TalkingScript : MonoBehaviour
 				{
 					S.Yandere.NotificationManager.TopicName = "Socializing";
 					S.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-					ConversationGlobals.SetTopicDiscovered(20, true);
+					ConversationGlobals.SetTopicDiscovered(20, value: true);
 				}
 				if (!S.StudentManager.GetTopicLearnedByStudent(20, S.StudentID))
 				{
 					S.Yandere.NotificationManager.TopicName = "Socializing";
 					S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-					S.StudentManager.SetTopicLearnedByStudent(20, S.StudentID, true);
+					S.StudentManager.SetTopicLearnedByStudent(20, S.StudentID, boolean: true);
 				}
 				if (S.Club != ClubType.Delinquent)
 				{
@@ -250,7 +259,7 @@ public class TalkingScript : MonoBehaviour
 					{
 						S.Yandere.NotificationManager.TopicName = S.StudentManager.InterestManager.TopicNames[topicSelected];
 						S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-						S.StudentManager.SetTopicLearnedByStudent(topicSelected, S.StudentID, true);
+						S.StudentManager.SetTopicLearnedByStudent(topicSelected, S.StudentID, boolean: true);
 					}
 					if (S.DialogueWheel.TopicInterface.Success)
 					{
@@ -359,13 +368,13 @@ public class TalkingScript : MonoBehaviour
 						{
 							S.Yandere.NotificationManager.TopicName = S.StudentManager.InterestManager.TopicNames[topicSelected2];
 							S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-							S.StudentManager.SetTopicLearnedByStudent(topicSelected2, S.StudentID, true);
+							S.StudentManager.SetTopicLearnedByStudent(topicSelected2, S.StudentID, boolean: true);
 						}
 						if (!S.StudentManager.GetTopicLearnedByStudent(19, S.StudentID))
 						{
 							S.Yandere.NotificationManager.TopicName = "Gossip";
 							S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-							S.StudentManager.SetTopicLearnedByStudent(19, S.StudentID, true);
+							S.StudentManager.SetTopicLearnedByStudent(19, S.StudentID, boolean: true);
 						}
 					}
 				}
@@ -472,13 +481,13 @@ public class TalkingScript : MonoBehaviour
 					{
 						S.Yandere.NotificationManager.TopicName = "Solitude";
 						S.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-						ConversationGlobals.SetTopicDiscovered(21, true);
+						ConversationGlobals.SetTopicDiscovered(21, value: true);
 					}
 					if (!S.StudentManager.GetTopicLearnedByStudent(21, S.StudentID))
 					{
 						S.Yandere.NotificationManager.TopicName = "Solitude";
 						S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-						S.StudentManager.SetTopicLearnedByStudent(21, S.StudentID, true);
+						S.StudentManager.SetTopicLearnedByStudent(21, S.StudentID, boolean: true);
 					}
 					S.DialogueWheel.TaskWindow.TaskComplete = true;
 					S.StudentManager.TaskManager.TaskStatus[S.StudentID] = 3;
@@ -493,7 +502,7 @@ public class TalkingScript : MonoBehaviour
 					}
 					else
 					{
-						S.StudentManager.DelinquentVoices.SetActive(false);
+						S.StudentManager.DelinquentVoices.SetActive(value: false);
 					}
 					if (SchemeGlobals.GetSchemeStage(6) == 3)
 					{
@@ -677,7 +686,7 @@ public class TalkingScript : MonoBehaviour
 						{
 							S.FollowCountdown.Speed = 1f / (35f + S.Reputation.Reputation * -0.25f);
 						}
-						S.FollowCountdown.gameObject.SetActive(true);
+						S.FollowCountdown.gameObject.SetActive(value: true);
 						S.Yandere.Follower = S;
 						S.Yandere.Followers++;
 						S.Following = true;
@@ -1433,7 +1442,7 @@ public class TalkingScript : MonoBehaviour
 			{
 				if (!S.Fed && S.Club != ClubType.Delinquent)
 				{
-					S.Yandere.PickUp.FoodPieces[S.Yandere.PickUp.Food].SetActive(false);
+					S.Yandere.PickUp.FoodPieces[S.Yandere.PickUp.Food].SetActive(value: false);
 					S.Yandere.PickUp.Food--;
 					S.Fed = true;
 				}
@@ -1630,7 +1639,7 @@ public class TalkingScript : MonoBehaviour
 				else
 				{
 					S.CharacterAnimation.CrossFade(S.PullBoxCutterAnim);
-					S.SmartPhone.SetActive(false);
+					S.SmartPhone.SetActive(value: false);
 					S.Subtitle.UpdateLabel(SubtitleType.GiveHelp, 0, 4f);
 				}
 			}

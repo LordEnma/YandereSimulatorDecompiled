@@ -73,7 +73,7 @@ public class LoveManagerScript : MonoBehaviour
 		int week = DateGlobals.Week;
 		if (week > 10)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			return;
 		}
 		SuitorProgress = DatingGlobals.SuitorProgress;
@@ -172,7 +172,7 @@ public class LoveManagerScript : MonoBehaviour
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					ProximityWarningTimer = 5f;
 				}
-				if (WaitingToConfess && !Yandere.Chased && Yandere.Chasers == 0 && !Yandere.Noticed && num > 10f && num < 25f)
+				if (WaitingToConfess && !Yandere.Chased && Yandere.Chasers == 0 && !Yandere.Noticed && num > 10f && num < 25f && !Yandere.Laughing)
 				{
 					BeginConfession();
 				}
@@ -275,8 +275,8 @@ public class LoveManagerScript : MonoBehaviour
 		Yandere.RPGCamera.enabled = false;
 		Yandere.CanMove = false;
 		StudentManager.DisableEveryone();
-		Suitor.gameObject.SetActive(true);
-		Rival.gameObject.SetActive(true);
+		Suitor.gameObject.SetActive(value: true);
+		Rival.gameObject.SetActive(value: true);
 		Suitor.enabled = false;
 		Rival.enabled = false;
 		Suitor.Pathfinding.canSearch = false;
@@ -286,13 +286,13 @@ public class LoveManagerScript : MonoBehaviour
 		if (!ConfessToSuitor)
 		{
 			ConfessionManager.Senpai = StudentManager.Students[1].CharacterAnimation;
-			ConfessionManager.gameObject.SetActive(true);
+			ConfessionManager.gameObject.SetActive(value: true);
 		}
 		else
 		{
 			ConfessionScene.enabled = true;
 		}
-		Clock.Police.gameObject.SetActive(false);
+		Clock.Police.gameObject.SetActive(value: false);
 		WaitingToConfess = false;
 		Clock.StopTime = true;
 		LeftNote = false;

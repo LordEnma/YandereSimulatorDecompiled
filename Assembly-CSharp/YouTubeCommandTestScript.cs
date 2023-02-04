@@ -73,7 +73,7 @@ public class YouTubeCommandTestScript : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(0) || Input.GetAxis("RT") == 1f)
 		{
-			Chat.UpdateMessagesList(false);
+			Chat.UpdateMessagesList(initialRun: false);
 		}
 		if (CloakTimer > 0f)
 		{
@@ -298,7 +298,7 @@ public class YouTubeCommandTestScript : MonoBehaviour
 		{
 			if (!Yandere.PauseScreen.MissionMode.Nemesis.activeInHierarchy)
 			{
-				Yandere.PauseScreen.MissionMode.Nemesis.SetActive(true);
+				Yandere.PauseScreen.MissionMode.Nemesis.SetActive(value: true);
 				Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " sent Nemesis after you!";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}

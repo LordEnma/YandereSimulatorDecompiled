@@ -74,12 +74,12 @@ public class GenocideEndingScript : MonoBehaviour
 	{
 		UpdateDOF(1f);
 		Time.timeScale = 1f;
-		SkipPanel.gameObject.SetActive(false);
+		SkipPanel.gameObject.SetActive(value: false);
 		if (GameGlobals.EightiesCutsceneID == 12)
 		{
 			SecondDarkness.color = new Color(0.1f, 0.1f, 0.1f, 0f);
 			Darkness.color = new Color(0.1f, 0.1f, 0.1f, 1f);
-			SkipPanel.gameObject.SetActive(true);
+			SkipPanel.gameObject.SetActive(value: true);
 			SkipPanel.alpha = 0f;
 			Debug.Log("We're here for the end of 1980s Mode.");
 			SpeechText = EightiesText;
@@ -91,10 +91,10 @@ public class GenocideEndingScript : MonoBehaviour
 			YellowifyLabel(Subtitle);
 			Senpai["kidnapTorture_01"].speed = 0.1f;
 			Senpai.Play();
-			SenpaiRopes.SetActive(true);
-			OsanaRopes.SetActive(false);
-			Senpai.transform.parent.gameObject.SetActive(true);
-			Osana.SetActive(false);
+			SenpaiRopes.SetActive(value: true);
+			OsanaRopes.SetActive(value: false);
+			Senpai.transform.parent.gameObject.SetActive(value: true);
+			Osana.SetActive(value: false);
 			EightiesEnding = true;
 			FadeSpeed = 0.1f;
 		}
@@ -103,10 +103,10 @@ public class GenocideEndingScript : MonoBehaviour
 			Debug.Log("We're here for a Betray cutscene.");
 			Osana.GetComponent<StudentScript>().CharacterAnimation["f02_kidnapTorture_01"].speed = 0.8f;
 			Osana.GetComponent<CosmeticScript>().SetFemaleUniform();
-			SenpaiRopes.SetActive(false);
-			OsanaRopes.SetActive(true);
-			Senpai.transform.parent.gameObject.SetActive(false);
-			Osana.SetActive(true);
+			SenpaiRopes.SetActive(value: false);
+			OsanaRopes.SetActive(value: true);
+			Senpai.transform.parent.gameObject.SetActive(value: false);
+			Osana.SetActive(value: true);
 			SpeechText[10] = "...huh? ...what is this? ...why am I tied to a...chair?! Why are you doing this?! This isn't funny! Lemme go! Lemme go right now!";
 			Subtitle.text = SpeechText[10];
 			MyAudio.clip = OsanaClip;
@@ -116,8 +116,8 @@ public class GenocideEndingScript : MonoBehaviour
 			Delay = 10f;
 			if (GameGlobals.Eighties)
 			{
-				RivalHair[0].SetActive(false);
-				RivalHair[DateGlobals.Week].SetActive(true);
+				RivalHair[0].SetActive(value: false);
+				RivalHair[DateGlobals.Week].SetActive(value: true);
 				YellowifyLabel(Subtitle);
 			}
 		}
@@ -125,10 +125,10 @@ public class GenocideEndingScript : MonoBehaviour
 		{
 			Debug.Log("We're here for the Genocide Ending.");
 			Senpai["kidnapTorture_01"].speed = 0.9f;
-			SenpaiRopes.SetActive(true);
-			OsanaRopes.SetActive(false);
-			Senpai.transform.parent.gameObject.SetActive(true);
-			Osana.SetActive(false);
+			SenpaiRopes.SetActive(value: true);
+			OsanaRopes.SetActive(value: false);
+			Senpai.transform.parent.gameObject.SetActive(value: true);
+			Osana.SetActive(value: false);
 			GameGlobals.DarkEnding = true;
 			if (GameGlobals.Eighties)
 			{
@@ -171,14 +171,14 @@ public class GenocideEndingScript : MonoBehaviour
 			{
 				if (Timer < 3f)
 				{
-					RIVAL.SetActive(true);
-					ELIMINATED.SetActive(true);
+					RIVAL.SetActive(value: true);
+					ELIMINATED.SetActive(value: true);
 				}
 				else if (Timer < 5f)
 				{
 					if (ELIMINATED.activeInHierarchy)
 					{
-						ELIMINATED.SetActive(false);
+						ELIMINATED.SetActive(value: false);
 						AudioSource.PlayClipAtPoint(Slam, base.transform.position);
 					}
 				}

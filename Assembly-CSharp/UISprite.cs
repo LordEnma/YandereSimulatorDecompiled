@@ -33,8 +33,7 @@ public class UISprite : UIBasicSprite
 		get
 		{
 			Material material = null;
-			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-			if (iNGUIAtlas != null)
+			if (mAtlas is INGUIAtlas iNGUIAtlas)
 			{
 				material = iNGUIAtlas.spriteMaterial;
 			}
@@ -59,8 +58,7 @@ public class UISprite : UIBasicSprite
 			{
 				return material;
 			}
-			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-			if (iNGUIAtlas != null)
+			if (mAtlas is INGUIAtlas iNGUIAtlas)
 			{
 				return iNGUIAtlas.spriteMaterial;
 			}
@@ -80,29 +78,24 @@ public class UISprite : UIBasicSprite
 		}
 		set
 		{
-			if (mAtlas as INGUIAtlas == value)
+			if (mAtlas as INGUIAtlas != value)
 			{
-				return;
-			}
-			RemoveFromPanel();
-			mAtlas = value as UnityEngine.Object;
-			mSpriteSet = false;
-			mSprite = null;
-			if (string.IsNullOrEmpty(mSpriteName))
-			{
-				INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-				if (iNGUIAtlas != null && iNGUIAtlas.spriteList.Count > 0)
+				RemoveFromPanel();
+				mAtlas = value as UnityEngine.Object;
+				mSpriteSet = false;
+				mSprite = null;
+				if (string.IsNullOrEmpty(mSpriteName) && mAtlas is INGUIAtlas iNGUIAtlas && iNGUIAtlas.spriteList.Count > 0)
 				{
 					SetAtlasSprite(iNGUIAtlas.spriteList[0]);
 					mSpriteName = mSprite.name;
 				}
-			}
-			if (!string.IsNullOrEmpty(mSpriteName))
-			{
-				string text = mSpriteName;
-				mSpriteName = "";
-				spriteName = text;
-				MarkAsChanged();
+				if (!string.IsNullOrEmpty(mSpriteName))
+				{
+					string text = mSpriteName;
+					mSpriteName = "";
+					spriteName = text;
+					MarkAsChanged();
+				}
 			}
 		}
 	}
@@ -154,13 +147,7 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	public bool isValid
-	{
-		get
-		{
-			return GetAtlasSprite() != null;
-		}
-	}
+	public bool isValid => GetAtlasSprite() != null;
 
 	[Obsolete("Use 'centerType' instead")]
 	public bool fillCenter
@@ -271,8 +258,7 @@ public class UISprite : UIBasicSprite
 			{
 				return 1f;
 			}
-			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-			if (iNGUIAtlas != null)
+			if (mAtlas is INGUIAtlas iNGUIAtlas)
 			{
 				return iNGUIAtlas.pixelSize;
 			}
@@ -413,8 +399,7 @@ public class UISprite : UIBasicSprite
 	{
 		get
 		{
-			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-			if (iNGUIAtlas != null)
+			if (mAtlas is INGUIAtlas iNGUIAtlas)
 			{
 				return iNGUIAtlas.premultipliedAlpha;
 			}
@@ -424,12 +409,7 @@ public class UISprite : UIBasicSprite
 
 	public UISpriteData GetSprite(string spriteName)
 	{
-		INGUIAtlas iNGUIAtlas = atlas;
-		if (iNGUIAtlas == null)
-		{
-			return null;
-		}
-		return iNGUIAtlas.GetSprite(spriteName);
+		return atlas?.GetSprite(spriteName);
 	}
 
 	public override void MarkAsChanged()
@@ -445,35 +425,31 @@ public class UISprite : UIBasicSprite
 		{
 			mSprite = null;
 		}
-		if (mSprite == null)
+		if (mSprite == null && mAtlas is INGUIAtlas iNGUIAtlas)
 		{
-			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-			if (iNGUIAtlas != null)
+			if (!string.IsNullOrEmpty(mSpriteName))
 			{
-				if (!string.IsNullOrEmpty(mSpriteName))
+				UISpriteData sprite = iNGUIAtlas.GetSprite(mSpriteName);
+				if (sprite == null)
 				{
-					UISpriteData sprite = iNGUIAtlas.GetSprite(mSpriteName);
-					if (sprite == null)
-					{
-						return null;
-					}
-					SetAtlasSprite(sprite);
+					return null;
 				}
-				if (mSprite == null && iNGUIAtlas.spriteList.Count > 0)
+				SetAtlasSprite(sprite);
+			}
+			if (mSprite == null && iNGUIAtlas.spriteList.Count > 0)
+			{
+				UISpriteData uISpriteData = iNGUIAtlas.spriteList[0];
+				if (uISpriteData == null)
 				{
-					UISpriteData uISpriteData = iNGUIAtlas.spriteList[0];
-					if (uISpriteData == null)
-					{
-						return null;
-					}
-					SetAtlasSprite(uISpriteData);
-					if (mSprite == null)
-					{
-						Debug.LogError((iNGUIAtlas as UnityEngine.Object).name + " seems to have a null sprite!");
-						return null;
-					}
-					mSpriteName = mSprite.name;
+					return null;
 				}
+				SetAtlasSprite(uISpriteData);
+				if (mSprite == null)
+				{
+					Debug.LogError((iNGUIAtlas as UnityEngine.Object).name + " seems to have a null sprite!");
+					return null;
+				}
+				mSpriteName = mSprite.name;
 			}
 		}
 		return mSprite;

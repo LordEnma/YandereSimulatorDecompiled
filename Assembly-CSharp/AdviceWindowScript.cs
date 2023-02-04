@@ -284,7 +284,7 @@ public class AdviceWindowScript : MonoBehaviour
 			Time.timeScale = 1f;
 			PromptBar.ClearButtons();
 			PromptBar.Show = false;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			Yandere.Interaction = YandereInteractionType.Advice;
 			Yandere.TalkTimer = 5f;
 		}
@@ -412,9 +412,9 @@ public class AdviceWindowScript : MonoBehaviour
 
 	private void CalculateMultiplier()
 	{
-		HUDElement[1].SetActive(false);
-		HUDElement[2].SetActive(false);
-		HUDElement[3].SetActive(false);
+		HUDElement[1].SetActive(value: false);
+		HUDElement[2].SetActive(value: false);
+		HUDElement[3].SetActive(value: false);
 		Suitor = StudentManager.Students[StudentManager.SuitorID];
 		GenericRivalBagScript rivalBookBag = StudentManager.RivalBookBag;
 		if (Suitor.Cosmetic.MaleHair[rivalBookBag.DesiredHairstyle].activeInHierarchy)
@@ -428,7 +428,14 @@ public class AdviceWindowScript : MonoBehaviour
 		}
 		if (Suitor.Cosmetic.MaleAccessories[rivalBookBag.DesiredAccessory].activeInHierarchy)
 		{
-			AttractionText[2] = "Your rival likes her suitor's piercings!";
+			if (rivalBookBag.DesiredAccessory == 17)
+			{
+				AttractionText[2] = "Your rival likes her suitor's piercings!";
+			}
+			else
+			{
+				AttractionText[2] = "Your rival likes her suitor's bandana!";
+			}
 			Multiplier++;
 		}
 		else
@@ -626,7 +633,7 @@ public class AdviceWindowScript : MonoBehaviour
 			}
 		}
 		ResultLabel.text = Outcomes[1] + "\n\n" + Outcomes[2] + "\n\n" + Outcomes[3] + "\n\n" + Outcomes[4] + "\n\n" + Outcomes[5] + "\n\n" + Outcomes[6] + "\n\n" + Outcomes[7];
-		ResultsScreen.gameObject.SetActive(true);
+		ResultsScreen.gameObject.SetActive(value: true);
 		Time.timeScale = 0.0001f;
 		GiftDataNeedsSaving = true;
 		DataNeedsSaving = true;

@@ -240,14 +240,14 @@ namespace UnityEngine.PostProcessing
 				get
 				{
 					CurvesSettings result = default(CurvesSettings);
-					result.master = new ColorGradingCurve(new AnimationCurve(new Keyframe(0f, 0f, 1f, 1f), new Keyframe(1f, 1f, 1f, 1f)), 0f, false, new Vector2(0f, 1f));
-					result.red = new ColorGradingCurve(new AnimationCurve(new Keyframe(0f, 0f, 1f, 1f), new Keyframe(1f, 1f, 1f, 1f)), 0f, false, new Vector2(0f, 1f));
-					result.green = new ColorGradingCurve(new AnimationCurve(new Keyframe(0f, 0f, 1f, 1f), new Keyframe(1f, 1f, 1f, 1f)), 0f, false, new Vector2(0f, 1f));
-					result.blue = new ColorGradingCurve(new AnimationCurve(new Keyframe(0f, 0f, 1f, 1f), new Keyframe(1f, 1f, 1f, 1f)), 0f, false, new Vector2(0f, 1f));
-					result.hueVShue = new ColorGradingCurve(new AnimationCurve(), 0.5f, true, new Vector2(0f, 1f));
-					result.hueVSsat = new ColorGradingCurve(new AnimationCurve(), 0.5f, true, new Vector2(0f, 1f));
-					result.satVSsat = new ColorGradingCurve(new AnimationCurve(), 0.5f, false, new Vector2(0f, 1f));
-					result.lumVSsat = new ColorGradingCurve(new AnimationCurve(), 0.5f, false, new Vector2(0f, 1f));
+					result.master = new ColorGradingCurve(new AnimationCurve(new Keyframe(0f, 0f, 1f, 1f), new Keyframe(1f, 1f, 1f, 1f)), 0f, loop: false, new Vector2(0f, 1f));
+					result.red = new ColorGradingCurve(new AnimationCurve(new Keyframe(0f, 0f, 1f, 1f), new Keyframe(1f, 1f, 1f, 1f)), 0f, loop: false, new Vector2(0f, 1f));
+					result.green = new ColorGradingCurve(new AnimationCurve(new Keyframe(0f, 0f, 1f, 1f), new Keyframe(1f, 1f, 1f, 1f)), 0f, loop: false, new Vector2(0f, 1f));
+					result.blue = new ColorGradingCurve(new AnimationCurve(new Keyframe(0f, 0f, 1f, 1f), new Keyframe(1f, 1f, 1f, 1f)), 0f, loop: false, new Vector2(0f, 1f));
+					result.hueVShue = new ColorGradingCurve(new AnimationCurve(), 0.5f, loop: true, new Vector2(0f, 1f));
+					result.hueVSsat = new ColorGradingCurve(new AnimationCurve(), 0.5f, loop: true, new Vector2(0f, 1f));
+					result.satVSsat = new ColorGradingCurve(new AnimationCurve(), 0.5f, loop: false, new Vector2(0f, 1f));
+					result.lumVSsat = new ColorGradingCurve(new AnimationCurve(), 0.5f, loop: false, new Vector2(0f, 1f));
 					result.e_CurrentEditingCurve = 0;
 					result.e_CurveY = true;
 					result.e_CurveR = false;

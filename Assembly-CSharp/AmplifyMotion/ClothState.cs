@@ -82,8 +82,7 @@ namespace AmplifyMotion
 				int num = 0;
 				for (int j = 0; j < vertexCount; j++)
 				{
-					int value;
-					if (dictionary.TryGetValue(vertices[j], out value))
+					if (dictionary.TryGetValue(vertices[j], out var value))
 					{
 						m_targetRemap[j] = value;
 						continue;

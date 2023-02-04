@@ -129,10 +129,10 @@ public abstract class UIItemSlot : MonoBehaviour
 			return;
 		}
 		mItem = invGameItem;
-		InvBaseItem invBaseItem = ((invGameItem != null) ? invGameItem.baseItem : null);
+		InvBaseItem invBaseItem = invGameItem?.baseItem;
 		if (label != null)
 		{
-			string text = ((invGameItem != null) ? invGameItem.name : null);
+			string text = invGameItem?.name;
 			if (string.IsNullOrEmpty(mText))
 			{
 				mText = label.text;
@@ -155,7 +155,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 		if (background != null)
 		{
-			background.color = ((invGameItem != null) ? invGameItem.color : Color.white);
+			background.color = invGameItem?.color ?? Color.white;
 		}
 	}
 }

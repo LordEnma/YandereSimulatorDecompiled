@@ -56,7 +56,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 		{
 			base.enabled = false;
 		}
-		Yoogle.SetActive(false);
+		Yoogle.SetActive(value: false);
 	}
 
 	private void Update()
@@ -99,7 +99,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 				Rival.Pathfinding.canMove = false;
 				Rival.Obstacle.enabled = true;
 				Rival.Distracted = true;
-				Yoogle.SetActive(true);
+				Yoogle.SetActive(value: true);
 				Phase++;
 			}
 		}
@@ -184,13 +184,13 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 			}
 			Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 			Rival.SmartPhoneScreen.enabled = false;
-			Rival.Ragdoll.Zs.SetActive(false);
+			Rival.Ragdoll.Zs.SetActive(value: false);
 			Rival.Obstacle.enabled = false;
 			Rival.Prompt.enabled = true;
 			Rival.Distracted = false;
 			Rival.InEvent = false;
 			Rival.Private = false;
-			Yoogle.SetActive(false);
+			Yoogle.SetActive(value: false);
 			Rival.SmartPhone.transform.parent = Rival.ItemParent;
 			Rival.SmartPhone.transform.localPosition = OriginalPosition;
 			Rival.SmartPhone.transform.localEulerAngles = OriginalRotation;

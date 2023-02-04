@@ -38,11 +38,11 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 		if (Started)
 		{
-			ErrorWindow.SetActive(true);
+			ErrorWindow.SetActive(value: true);
 			if (!Started)
 			{
-				CorruptSaveLabel.gameObject.SetActive(true);
-				NewSaveLabel.gameObject.SetActive(false);
+				CorruptSaveLabel.gameObject.SetActive(value: true);
+				NewSaveLabel.gameObject.SetActive(value: false);
 			}
 			Started = false;
 		}
@@ -93,7 +93,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 						{
 							for (int i = 1; i < 101; i++)
 							{
-								StudentGlobals.SetStudentPhotographed(i, true);
+								StudentGlobals.SetStudentPhotographed(i, value: true);
 							}
 						}
 						GameGlobals.Profile = EightiesPrefix + ID;
@@ -124,7 +124,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 				{
 					if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) > 0)
 					{
-						ConfirmationWindow.SetActive(true);
+						ConfirmationWindow.SetActive(value: true);
 					}
 				}
 				else if (Input.GetButtonDown("B"))
@@ -141,12 +141,12 @@ public class TitleSaveFilesScript : MonoBehaviour
 				if (Input.GetButtonDown("A"))
 				{
 					PlayerPrefs.SetInt("ProfileCreated_" + (EightiesPrefix + ID), 0);
-					ConfirmationWindow.SetActive(false);
+					ConfirmationWindow.SetActive(value: false);
 					SaveDatas[ID].Start();
 				}
 				else if (Input.GetButtonDown("B"))
 				{
-					ConfirmationWindow.SetActive(false);
+					ConfirmationWindow.SetActive(value: false);
 				}
 			}
 		}

@@ -53,7 +53,7 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 		{
 			if (PlayerGlobals.GetShrineCollectible(i))
 			{
-				Collectibles[i].SetActive(true);
+				Collectibles[i].SetActive(value: true);
 			}
 		}
 	}
@@ -113,7 +113,7 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 					HomeCamera.Destination = HomeCamera.Destinations[0];
 					HomeCamera.Target = HomeCamera.Targets[0];
 					HomeYandere.CanMove = true;
-					HomeYandere.gameObject.SetActive(true);
+					HomeYandere.gameObject.SetActive(value: true);
 					HomeWindow.Show = false;
 					AudioSource.PlayClipAtPoint(ShrineClose, HomeCamera.transform.position);
 				}

@@ -169,13 +169,7 @@ public class UIWidget : UIRect
 		}
 	}
 
-	public Vector2 pivotOffset
-	{
-		get
-		{
-			return NGUIMath.GetPivotOffset(pivot);
-		}
-	}
+	public Vector2 pivotOffset => NGUIMath.GetPivotOffset(pivot);
 
 	public int width
 	{
@@ -313,7 +307,7 @@ public class UIWidget : UIRect
 			if (mColor.a != value)
 			{
 				mColor.a = value;
-				Invalidate(true);
+				Invalidate(includeChildren: true);
 			}
 		}
 	}
@@ -489,13 +483,7 @@ public class UIWidget : UIRect
 		}
 	}
 
-	public Vector3 worldCenter
-	{
-		get
-		{
-			return base.cachedTransform.TransformPoint(localCenter);
-		}
-	}
+	public Vector3 worldCenter => base.cachedTransform.TransformPoint(localCenter);
 
 	public virtual Vector4 drawingDimensions
 	{
@@ -540,8 +528,7 @@ public class UIWidget : UIRect
 		}
 		set
 		{
-			Type type = GetType();
-			throw new NotImplementedException((((object)type != null) ? type.ToString() : null) + " has no mainTexture setter");
+			throw new NotImplementedException(GetType()?.ToString() + " has no mainTexture setter");
 		}
 	}
 
@@ -558,19 +545,12 @@ public class UIWidget : UIRect
 		}
 		set
 		{
-			Type type = GetType();
-			throw new NotImplementedException((((object)type != null) ? type.ToString() : null) + " has no shader setter");
+			throw new NotImplementedException(GetType()?.ToString() + " has no shader setter");
 		}
 	}
 
 	[Obsolete("There is no relative scale anymore. Widgets now have width and height instead")]
-	public Vector2 relativeSize
-	{
-		get
-		{
-			return Vector2.one;
-		}
-	}
+	public Vector2 relativeSize => Vector2.one;
 
 	public bool hasBoxCollider
 	{
@@ -584,21 +564,9 @@ public class UIWidget : UIRect
 		}
 	}
 
-	public virtual int minWidth
-	{
-		get
-		{
-			return 2;
-		}
-	}
+	public virtual int minWidth => 2;
 
-	public virtual int minHeight
-	{
-		get
-		{
-			return 2;
-		}
-	}
+	public virtual int minHeight => 2;
 
 	public virtual Vector4 border
 	{
@@ -618,7 +586,7 @@ public class UIWidget : UIRect
 			mColor.r = c.r;
 			mColor.g = c.g;
 			mColor.b = c.b;
-			Invalidate(false);
+			Invalidate(includeChildren: false);
 		}
 	}
 
@@ -705,7 +673,7 @@ public class UIWidget : UIRect
 			UpdateFinalAlpha(Time.frameCount);
 			if (includeChildren)
 			{
-				base.Invalidate(true);
+				base.Invalidate(includeChildren: true);
 			}
 		}
 	}
@@ -896,13 +864,13 @@ public class UIWidget : UIRect
 	{
 		if (mStarted && panel == null && base.enabled && NGUITools.GetActive(base.gameObject))
 		{
-			panel = UIPanel.Find(base.cachedTransform, true, base.cachedGameObject.layer);
+			panel = UIPanel.Find(base.cachedTransform, createIfMissing: true, base.cachedGameObject.layer);
 			if (panel != null)
 			{
 				mParentFound = false;
 				panel.AddWidget(this);
 				CheckLayer();
-				Invalidate(true);
+				Invalidate(includeChildren: true);
 			}
 		}
 		return panel;
@@ -922,7 +890,7 @@ public class UIWidget : UIRect
 		base.ParentHasChanged();
 		if (panel != null)
 		{
-			UIPanel uIPanel = UIPanel.Find(base.cachedTransform, true, base.cachedGameObject.layer);
+			UIPanel uIPanel = UIPanel.Find(base.cachedTransform, createIfMissing: true, base.cachedGameObject.layer);
 			if (panel != uIPanel)
 			{
 				RemoveFromPanel();
@@ -950,7 +918,7 @@ public class UIWidget : UIRect
 		Vector3 localScale = base.cachedTransform.localScale;
 		mWidth = Mathf.Abs(Mathf.RoundToInt(localScale.x));
 		mHeight = Mathf.Abs(Mathf.RoundToInt(localScale.y));
-		NGUITools.UpdateWidgetCollider(base.gameObject, true);
+		NGUITools.UpdateWidgetCollider(base.gameObject, considerInactive: true);
 	}
 
 	protected override void OnStart()

@@ -85,7 +85,7 @@ public class CraftableItemScript : MonoBehaviour
 			Prompt.Hide();
 			if (!DoNotDisappear)
 			{
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 	}

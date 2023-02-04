@@ -19,13 +19,7 @@ public class UIGeometry
 
 	private Vector4 mRtpTan;
 
-	public bool hasVertices
-	{
-		get
-		{
-			return verts.Count > 0;
-		}
-	}
+	public bool hasVertices => verts.Count > 0;
 
 	public bool hasTransformed
 	{

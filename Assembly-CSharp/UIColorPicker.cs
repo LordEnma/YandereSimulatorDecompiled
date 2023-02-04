@@ -58,7 +58,7 @@ public class UIColorPicker : MonoBehaviour
 				array[num] = Sample(x, y);
 			}
 		}
-		mTex = new Texture2D(mWidth, mHeight, TextureFormat.RGB24, false);
+		mTex = new Texture2D(mWidth, mHeight, TextureFormat.RGB24, mipChain: false);
 		mTex.SetPixels(array);
 		mTex.filterMode = FilterMode.Trilinear;
 		mTex.wrapMode = TextureWrapMode.Clamp;

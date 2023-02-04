@@ -9,7 +9,7 @@ public class ThreadSpoolScript : MonoBehaviour
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
 			Prompt.Yandere.Inventory.String = true;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 }

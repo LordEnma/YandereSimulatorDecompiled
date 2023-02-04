@@ -186,7 +186,7 @@ public class WoodChipperScript : MonoBehaviour
 				Victims++;
 				VictimList[Victims] = Yandere.Ragdoll.GetComponent<RagdollScript>().StudentID;
 				Open = true;
-				bool acid = Acid;
+				_ = Acid;
 			}
 		}
 		if (Acid && Prompt.Circle[1].fillAmount == 0f)
@@ -302,7 +302,7 @@ public class WoodChipperScript : MonoBehaviour
 			Bucket.Bucket.Bloodiness = 100f;
 			Bucket.Bucket.FillSpeed = 0.066666f;
 			Bucket.Bucket.Blood.material.color = new Color(1f, 1f, 1f, 1f);
-			Bucket.Bucket.Blood.gameObject.SetActive(true);
+			Bucket.Bucket.Blood.gameObject.SetActive(value: true);
 			Bucket.Bucket.UpdateAppearance = true;
 			Bucket.Bucket.Full = true;
 			Bucket.Outline[0].color = new Color(1f, 0.5f, 0f, 1f);
@@ -314,7 +314,7 @@ public class WoodChipperScript : MonoBehaviour
 		int[] victimList = VictimList;
 		for (int i = 0; i < victimList.Length; i++)
 		{
-			StudentGlobals.SetStudentMissing(victimList[i], true);
+			StudentGlobals.SetStudentMissing(victimList[i], value: true);
 		}
 	}
 }

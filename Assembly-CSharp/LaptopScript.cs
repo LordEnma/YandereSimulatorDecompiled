@@ -42,7 +42,7 @@ public class LaptopScript : MonoBehaviour
 		{
 			LaptopScreen.localScale = Vector3.zero;
 			LaptopCamera.enabled = false;
-			SCP.SetActive(false);
+			SCP.SetActive(value: false);
 			base.enabled = false;
 		}
 		else

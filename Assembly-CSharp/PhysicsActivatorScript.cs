@@ -19,7 +19,7 @@ public class PhysicsActivatorScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.layer != 15)
+		if (!(other.gameObject.transform.parent == null) || other.gameObject.layer != 15)
 		{
 			return;
 		}

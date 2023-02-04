@@ -50,7 +50,7 @@ public class AsylumIntroScript : MonoBehaviour
 		SkipPanel.alpha = 0f;
 		for (int num = 10 - DateGlobals.Week; num > 0; num--)
 		{
-			Bags[num].SetActive(false);
+			Bags[num].SetActive(value: false);
 		}
 	}
 

@@ -128,12 +128,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 	{
 		get
 		{
-			INGUIAtlas iNGUIAtlas = replacement;
-			if (iNGUIAtlas == null)
-			{
-				return mPixelSize;
-			}
-			return iNGUIAtlas.pixelSize;
+			return replacement?.pixelSize ?? mPixelSize;
 		}
 		set
 		{
@@ -206,8 +201,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 			{
 				MarkSpriteListAsChanged();
 			}
-			int value;
-			if (mSpriteIndices.TryGetValue(name, out value))
+			if (mSpriteIndices.TryGetValue(name, out var value))
 			{
 				if (value > -1 && value < mSprites.Count)
 				{
@@ -331,21 +325,12 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 		{
 			return true;
 		}
-		INGUIAtlas iNGUIAtlas = replacement;
-		if (iNGUIAtlas == null)
-		{
-			return false;
-		}
-		return iNGUIAtlas.References(atlas);
+		return replacement?.References(atlas) ?? false;
 	}
 
 	public void MarkAsChanged()
 	{
-		INGUIAtlas iNGUIAtlas = replacement;
-		if (iNGUIAtlas != null)
-		{
-			iNGUIAtlas.MarkAsChanged();
-		}
+		replacement?.MarkAsChanged();
 		UISprite[] array = NGUITools.FindActive<UISprite>();
 		int i = 0;
 		for (int num = array.Length; i < num; i++)
@@ -389,7 +374,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 			UILabel uILabel = array4[l];
 			if (uILabel.atlas != null && NGUITools.CheckIfRelated(this, uILabel.atlas))
 			{
-				INGUIAtlas atla = uILabel.atlas;
+				_ = uILabel.atlas;
 				INGUIFont bitmapFont = uILabel.bitmapFont;
 				uILabel.bitmapFont = null;
 				uILabel.bitmapFont = bitmapFont;

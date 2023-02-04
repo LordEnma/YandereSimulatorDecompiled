@@ -79,7 +79,7 @@ public class JournalistScript : MonoBehaviour
 	{
 		if (!GameGlobals.Eighties || GameGlobals.EightiesTutorial || DateGlobals.Week > 10)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		else
 		{
@@ -88,7 +88,7 @@ public class JournalistScript : MonoBehaviour
 		MyAnimation.CrossFade("crossarms_00");
 		Pathfinding.canSearch = false;
 		Pathfinding.canMove = false;
-		PepperSpray.SetActive(false);
+		PepperSpray.SetActive(value: false);
 	}
 
 	private void Update()
@@ -115,7 +115,7 @@ public class JournalistScript : MonoBehaviour
 			if (DistanceToDestination < 2.2f)
 			{
 				Yandere.StudentManager.Police.Show = true;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 			return;
 		}
@@ -316,7 +316,7 @@ public class JournalistScript : MonoBehaviour
 			Pathfinding.canSearch = false;
 			Pathfinding.canMove = false;
 			Pathfinding.speed = 0f;
-			PepperSpray.SetActive(true);
+			PepperSpray.SetActive(value: true);
 			if ((double)MyAnimation["spray_00"].time > 0.66666)
 			{
 				PepperSprayEffect.Play();
@@ -353,8 +353,7 @@ public class JournalistScript : MonoBehaviour
 		{
 			Vector3 position = Head.position;
 			Vector3 end = new Vector3(Yandere.transform.position.x, Yandere.Head.position.y, Yandere.transform.position.z);
-			RaycastHit hitInfo;
-			if (Physics.Linecast(position, end, out hitInfo, Mask) && hitInfo.collider.gameObject == Yandere.gameObject)
+			if (Physics.Linecast(position, end, out var hitInfo, Mask) && hitInfo.collider.gameObject == Yandere.gameObject)
 			{
 				return true;
 			}

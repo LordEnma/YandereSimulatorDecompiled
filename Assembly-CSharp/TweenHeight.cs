@@ -93,7 +93,7 @@ public class TweenHeight : UITweener
 		tweenHeight.to = height;
 		if (duration <= 0f)
 		{
-			tweenHeight.Sample(1f, true);
+			tweenHeight.Sample(1f, isFinished: true);
 			tweenHeight.enabled = false;
 		}
 		return tweenHeight;

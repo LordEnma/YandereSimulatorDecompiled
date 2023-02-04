@@ -118,9 +118,11 @@ public class CalendarScript : MonoBehaviour
 
 	private void Start()
 	{
+		Debug.Log("We just arrived at the calendar screen. DateGlobals.PassDays is: " + DateGlobals.PassDays);
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
+		Debug.Log("Upon entering the Calendar screen, DateGlobals.Weekday is: " + DateGlobals.Weekday);
 		if (GameGlobals.RivalEliminationID == 0 && StudentGlobals.GetStudentDead(10 + DateGlobals.Week))
 		{
 			Debug.Log("Upon entering the Calendar screen, the rival was dead, but RivalEliminationID was 0. Setting it to 1.");
@@ -175,7 +177,7 @@ public class CalendarScript : MonoBehaviour
 			}
 			for (int i = 1; i < 11; i++)
 			{
-				PlayerGlobals.SetShrineCollectible(i, true);
+				PlayerGlobals.SetShrineCollectible(i, value: true);
 			}
 		}
 		else if (DateGlobals.Week > 2)
@@ -187,7 +189,7 @@ public class CalendarScript : MonoBehaviour
 		{
 			for (int j = 1; j < 26; j++)
 			{
-				ConversationGlobals.SetTopicDiscovered(j, true);
+				ConversationGlobals.SetTopicDiscovered(j, value: true);
 			}
 		}
 		if (!SchoolGlobals.SchoolAtmosphereSet)
@@ -195,10 +197,10 @@ public class CalendarScript : MonoBehaviour
 			SchoolGlobals.SchoolAtmosphereSet = true;
 			SchoolGlobals.SchoolAtmosphere = 1f;
 			PlayerGlobals.Money = 10f;
-			PlayerGlobals.SetCannotBringItem(4, true);
-			PlayerGlobals.SetCannotBringItem(5, true);
-			PlayerGlobals.SetCannotBringItem(6, true);
-			PlayerGlobals.SetCannotBringItem(7, true);
+			PlayerGlobals.SetCannotBringItem(4, value: true);
+			PlayerGlobals.SetCannotBringItem(5, value: true);
+			PlayerGlobals.SetCannotBringItem(6, value: true);
+			PlayerGlobals.SetCannotBringItem(7, value: true);
 		}
 		LoveSickCheck();
 		if (DateGlobals.PassDays > 0 && !SchoolGlobals.HighSecurity && SchoolGlobals.SchoolAtmosphere >= SchoolGlobals.PreviousSchoolAtmosphere)
@@ -216,7 +218,7 @@ public class CalendarScript : MonoBehaviour
 		Time.timeScale = 1f;
 		if (GameGlobals.RivalEliminationID > 0)
 		{
-			DeadlineLabel.SetActive(false);
+			DeadlineLabel.SetActive(value: false);
 		}
 		WeekNumber.text = "WEEK " + DateGlobals.Week;
 		LoveSickCheck();
@@ -227,8 +229,8 @@ public class CalendarScript : MonoBehaviour
 		}
 		else
 		{
-			AmaiButton.SetActive(false);
-			StatsButton.SetActive(false);
+			AmaiButton.SetActive(value: false);
+			StatsButton.SetActive(value: false);
 			SkipButton.transform.localPosition = new Vector3(-120f, -500f, 0f);
 			if (DateGlobals.Week == 1)
 			{
@@ -251,7 +253,7 @@ public class CalendarScript : MonoBehaviour
 				DayNumber[6].text = "18";
 				DayNumber[7].text = "19";
 				Adjustment = -50;
-				AmaiButton.SetActive(true);
+				AmaiButton.SetActive(value: true);
 			}
 		}
 		Highlight.localPosition = new Vector3(-750f + Offset + 250f * (float)DateGlobals.Weekday + (float)Adjustment, Highlight.localPosition.y, Highlight.localPosition.z);
@@ -264,7 +266,7 @@ public class CalendarScript : MonoBehaviour
 			GameGlobals.CameFromTitleScreen = false;
 			CameFromTitleScreen = true;
 		}
-		SkipConfirmationWindow.SetActive(false);
+		SkipConfirmationWindow.SetActive(value: false);
 	}
 
 	private void Update()
@@ -297,7 +299,7 @@ public class CalendarScript : MonoBehaviour
 						if ((DateGlobals.Week == 1 && DateGlobals.Weekday == DayOfWeek.Sunday) || DateGlobals.ForceSkip)
 						{
 							DateGlobals.ForceSkip = false;
-							SundayLabel.SetActive(false);
+							SundayLabel.SetActive(value: false);
 							flag = true;
 						}
 						while (flag || (DateGlobals.PassDays > 0 && DateGlobals.Weekday != DayOfWeek.Saturday && DateGlobals.Weekday != 0))
@@ -324,10 +326,11 @@ public class CalendarScript : MonoBehaviour
 						DateGlobals.Weekday = DayOfWeek.Sunday;
 						Target = Adjustment;
 					}
+					Debug.Log("And, as of now, DateGlobals.Weekday is: " + DateGlobals.Weekday);
 					if (DateGlobals.Weekday != 0 && DateGlobals.Weekday < DayOfWeek.Saturday && GameGlobals.RivalEliminationID > 0 && !GameGlobals.InformedAboutSkipping && DateGlobals.Week < 2)
 					{
 						GameGlobals.InformedAboutSkipping = true;
-						CongratulationsWindow.SetActive(true);
+						CongratulationsWindow.SetActive(value: true);
 					}
 					Incremented = true;
 					ChangeDayColor();
@@ -346,7 +349,7 @@ public class CalendarScript : MonoBehaviour
 					{
 						if (Input.GetButtonDown("A"))
 						{
-							CongratulationsWindow.SetActive(false);
+							CongratulationsWindow.SetActive(value: false);
 						}
 					}
 					else if (ResetWeekWindow.activeInHierarchy)
@@ -358,12 +361,12 @@ public class CalendarScript : MonoBehaviour
 						}
 						else if (Input.GetButtonDown("B"))
 						{
-							ResetWeekWindow.SetActive(false);
+							ResetWeekWindow.SetActive(value: false);
 						}
 						else if (Input.GetButtonDown("X"))
 						{
-							ConfirmationWindow.SetActive(true);
-							ResetWeekWindow.SetActive(false);
+							ConfirmationWindow.SetActive(value: true);
+							ResetWeekWindow.SetActive(value: false);
 						}
 					}
 					else if (ConfirmationWindow.activeInHierarchy)
@@ -375,14 +378,14 @@ public class CalendarScript : MonoBehaviour
 						}
 						if (Input.GetButtonDown("B"))
 						{
-							ConfirmationWindow.SetActive(false);
+							ConfirmationWindow.SetActive(value: false);
 						}
 					}
 					else if (SkipConfirmationWindow.activeInHierarchy)
 					{
 						if (Input.GetButtonDown("A"))
 						{
-							SundayLabel.SetActive(false);
+							SundayLabel.SetActive(value: false);
 							if (StudentGlobals.MemorialStudents > 0)
 							{
 								StudentGlobals.MemorialStudents = 0;
@@ -396,7 +399,7 @@ public class CalendarScript : MonoBehaviour
 								StudentGlobals.MemorialStudent8 = 0;
 								StudentGlobals.MemorialStudent9 = 0;
 							}
-							SkipConfirmationWindow.SetActive(false);
+							SkipConfirmationWindow.SetActive(value: false);
 							if (DateGlobals.Weekday != 0 && DateGlobals.Weekday != DayOfWeek.Saturday)
 							{
 								Debug.Log("Skipping day. Not Saturday or Sunday. Awarding 10 bonus study points.");
@@ -415,24 +418,24 @@ public class CalendarScript : MonoBehaviour
 							ImproveSchoolAtmosphere();
 							if ((GameGlobals.RivalEliminationID == 0 && DateGlobals.Weekday == DayOfWeek.Friday) || DateGlobals.Weekday > DayOfWeek.Friday)
 							{
-								SkipButton.SetActive(false);
+								SkipButton.SetActive(value: false);
 								if (Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
 								{
-									SkipButton.SetActive(true);
+									SkipButton.SetActive(value: true);
 								}
 							}
 						}
 						if (Input.GetButtonDown("B"))
 						{
-							SkipConfirmationWindow.SetActive(false);
+							SkipConfirmationWindow.SetActive(value: false);
 						}
 					}
 					else if (AmaiWindow.activeInHierarchy)
 					{
 						if (Input.GetButtonDown("A"))
 						{
-							AmaiButton.SetActive(false);
-							AmaiWindow.SetActive(false);
+							AmaiButton.SetActive(value: false);
+							AmaiWindow.SetActive(value: false);
 							DateGlobals.Weekday++;
 							Incremented = false;
 							if (!SchoolGlobals.HighSecurity)
@@ -441,11 +444,11 @@ public class CalendarScript : MonoBehaviour
 							}
 							ReducePrisonerHealth();
 							ImproveSchoolAtmosphere();
-							AmaiWindow.SetActive(false);
+							AmaiWindow.SetActive(value: false);
 						}
 						if (Input.GetButtonDown("B"))
 						{
-							AmaiWindow.SetActive(false);
+							AmaiWindow.SetActive(value: false);
 						}
 					}
 					else
@@ -456,7 +459,7 @@ public class CalendarScript : MonoBehaviour
 						}
 						else if (Input.GetButtonDown("B"))
 						{
-							ResetWeekWindow.SetActive(true);
+							ResetWeekWindow.SetActive(value: true);
 						}
 						else if (Input.GetButtonDown("X") && Eighties)
 						{
@@ -466,16 +469,16 @@ public class CalendarScript : MonoBehaviour
 						{
 							if (Input.GetButtonDown("Y"))
 							{
-								SkipConfirmationWindow.SetActive(true);
+								SkipConfirmationWindow.SetActive(value: true);
 								if (DateGlobals.Weekday > DayOfWeek.Sunday && ClubGlobals.Club != 0 && ClubGlobals.ActivitiesAttended == 0)
 								{
-									ClubKickWindow.SetActive(true);
+									ClubKickWindow.SetActive(value: true);
 								}
 							}
 						}
 						else if (AmaiButton.activeInHierarchy && Input.GetButtonDown("Y"))
 						{
-							AmaiWindow.SetActive(true);
+							AmaiWindow.SetActive(value: true);
 						}
 					}
 				}
@@ -490,7 +493,7 @@ public class CalendarScript : MonoBehaviour
 				if (DateGlobals.Weekday == DayOfWeek.Saturday && ClubGlobals.Club != 0 && ClubGlobals.ActivitiesAttended == 0)
 				{
 					Debug.Log("Kicking player out of club.");
-					ClubGlobals.SetClubKicked(ClubGlobals.Club, true);
+					ClubGlobals.SetClubKicked(ClubGlobals.Club, value: true);
 					ClubGlobals.Club = ClubType.None;
 				}
 				if (ResetWeek)
@@ -611,28 +614,28 @@ public class CalendarScript : MonoBehaviour
 		UILabel[] dayLabel = DayLabel;
 		for (int i = 0; i < dayLabel.Length; i++)
 		{
-			UILabel uILabel = dayLabel[i];
+			_ = dayLabel[i];
 		}
 		dayLabel = DayNumber;
 		for (int i = 0; i < dayLabel.Length; i++)
 		{
-			bool flag = dayLabel[i] != null;
+			_ = dayLabel[i] != null;
 		}
 		if ((GameGlobals.RivalEliminationID == 0 && DateGlobals.Weekday < DayOfWeek.Friday) || (GameGlobals.RivalEliminationID > 0 && DateGlobals.Weekday < DayOfWeek.Saturday))
 		{
-			SkipButton.SetActive(true);
+			SkipButton.SetActive(value: true);
 		}
 		else
 		{
-			SkipButton.SetActive(false);
+			SkipButton.SetActive(value: false);
 			if (Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
 			{
-				SkipButton.SetActive(true);
+				SkipButton.SetActive(value: true);
 			}
 		}
 		if (!Eighties && DateGlobals.Week == 2)
 		{
-			SkipButton.SetActive(false);
+			SkipButton.SetActive(value: false);
 		}
 	}
 
@@ -709,12 +712,12 @@ public class CalendarScript : MonoBehaviour
 		StudentGlobals.MaleUniform = 1;
 		if (DateGlobals.Week > 1 && DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
-			SundayLabel.SetActive(true);
-			SkipButton.SetActive(true);
+			SundayLabel.SetActive(value: true);
+			SkipButton.SetActive(value: true);
 		}
 		if (DateGlobals.ForceSkip)
 		{
-			SundayLabel.SetActive(false);
+			SundayLabel.SetActive(value: false);
 		}
 		Eighties = true;
 		EightiesifyAllLabels();
@@ -839,7 +842,7 @@ public class CalendarScript : MonoBehaviour
 		else if (DateGlobals.Week == 11)
 		{
 			GameGlobals.RivalEliminationID = 1;
-			EndingLabel.SetActive(true);
+			EndingLabel.SetActive(value: true);
 			DayNumber[1].text = "11";
 			DayNumber[2].text = "12";
 			DayNumber[3].text = "13";
@@ -864,12 +867,12 @@ public class CalendarScript : MonoBehaviour
 
 	public void EightiesifyAllLabels()
 	{
-		ResetWeekWindow.SetActive(true);
-		ConfirmationWindow.SetActive(true);
-		SkipConfirmationWindow.SetActive(true);
-		CongratulationsWindow.SetActive(true);
-		ClubKickWindow.SetActive(true);
-		AmaiWindow.SetActive(true);
+		ResetWeekWindow.SetActive(value: true);
+		ConfirmationWindow.SetActive(value: true);
+		SkipConfirmationWindow.SetActive(value: true);
+		CongratulationsWindow.SetActive(value: true);
+		ClubKickWindow.SetActive(value: true);
+		AmaiWindow.SetActive(value: true);
 		Labels = UnityEngine.Object.FindSceneObjectsOfType(typeof(UILabel)) as UILabel[];
 		for (int i = 0; i < Labels.Length; i++)
 		{
@@ -893,12 +896,12 @@ public class CalendarScript : MonoBehaviour
 		CongratsBG.color = new Color(0f, 0f, 0.75f, 1f);
 		EightiesifyLabel(CongratsConfirmLabel);
 		EightiesifyLabel(CongratsLabel);
-		ResetWeekWindow.SetActive(false);
-		ConfirmationWindow.SetActive(false);
-		SkipConfirmationWindow.SetActive(false);
-		CongratulationsWindow.SetActive(false);
-		ClubKickWindow.SetActive(false);
-		AmaiWindow.SetActive(false);
+		ResetWeekWindow.SetActive(value: false);
+		ConfirmationWindow.SetActive(value: false);
+		SkipConfirmationWindow.SetActive(value: false);
+		CongratulationsWindow.SetActive(value: false);
+		ClubKickWindow.SetActive(value: false);
+		AmaiWindow.SetActive(value: false);
 	}
 
 	public void EightiesifyLabel(UILabel Label)
@@ -938,7 +941,7 @@ public class CalendarScript : MonoBehaviour
 		{
 			for (int i = 1; i < 101; i++)
 			{
-				StudentGlobals.SetStudentPhotographed(i, true);
+				StudentGlobals.SetStudentPhotographed(i, value: true);
 			}
 		}
 		YanSave.SaveData("Profile_" + num + "_Slot_" + 11);

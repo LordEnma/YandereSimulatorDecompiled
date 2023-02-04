@@ -10,8 +10,7 @@ public class SimpleDetectClickScript : MonoBehaviour
 
 	private void Update()
 	{
-		RaycastHit hitInfo;
-		if (Input.GetMouseButtonDown(0) && Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo, 100f) && hitInfo.collider == MyCollider)
+		if (Input.GetMouseButtonDown(0) && Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hitInfo, 100f) && hitInfo.collider == MyCollider)
 		{
 			Clicked = true;
 		}

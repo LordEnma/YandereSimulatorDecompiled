@@ -169,8 +169,8 @@ public class DropsScript : MonoBehaviour
 			PromptBar.Label[1].text = "Exit";
 			PromptBar.Label[5].text = "Choose";
 			PromptBar.UpdateButtons();
-			FavorMenu.SetActive(true);
-			base.gameObject.SetActive(false);
+			FavorMenu.SetActive(value: true);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 

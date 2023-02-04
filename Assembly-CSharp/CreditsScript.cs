@@ -59,13 +59,7 @@ public class CreditsScript : MonoBehaviour
 
 	public ParticleSystem Blossoms;
 
-	private bool ShouldStopCredits
-	{
-		get
-		{
-			return ID == JSON.Credits.Length;
-		}
-	}
+	private bool ShouldStopCredits => ID == JSON.Credits.Length;
 
 	private GameObject SpawnLabel(int size)
 	{

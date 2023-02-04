@@ -196,8 +196,7 @@ namespace AmplifyMotion
 			{
 				uint randomSeed = m_particles[i].randomSeed;
 				bool flag2 = false;
-				Particle value2;
-				if (!m_particleDict.TryGetValue(randomSeed, out value2) && m_particleStack.Count > 0)
+				if (!m_particleDict.TryGetValue(randomSeed, out var value2) && m_particleStack.Count > 0)
 				{
 					value2 = (m_particleDict[randomSeed] = m_particleStack.Pop());
 					flag2 = true;

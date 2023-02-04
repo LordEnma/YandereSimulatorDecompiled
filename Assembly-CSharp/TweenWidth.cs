@@ -93,7 +93,7 @@ public class TweenWidth : UITweener
 		tweenWidth.to = width;
 		if (duration <= 0f)
 		{
-			tweenWidth.Sample(1f, true);
+			tweenWidth.Sample(1f, isFinished: true);
 			tweenWidth.enabled = false;
 		}
 		return tweenWidth;

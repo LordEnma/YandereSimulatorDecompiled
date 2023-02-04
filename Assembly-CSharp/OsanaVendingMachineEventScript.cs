@@ -176,7 +176,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 			if (Timer > 0.5f)
 			{
 				Rival.CharacterAnimation[EventAnim[4]].speed = 1f;
-				OsanaVandalismCollider.SetActive(true);
+				OsanaVandalismCollider.SetActive(value: true);
 			}
 			else
 			{
@@ -189,7 +189,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 			if (Timer > 5.5f)
 			{
 				Rival.CharacterAnimation[EventAnim[4]].speed = 0f;
-				OsanaVandalismCollider.SetActive(false);
+				OsanaVandalismCollider.SetActive(value: false);
 			}
 			if (Timer > 6f)
 			{
@@ -272,7 +272,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 		{
 			StudentManager.UpdateStudents();
 		}
-		OsanaVandalismCollider.SetActive(false);
+		OsanaVandalismCollider.SetActive(value: false);
 		Jukebox.Dip = 1f;
 		EventSubtitle.text = string.Empty;
 		base.enabled = false;

@@ -358,7 +358,7 @@ public class YandereKunScript : MonoBehaviour
 		{
 			ThirdRenderer.enabled = true;
 		}
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 	}
 
 	private void LateUpdate()

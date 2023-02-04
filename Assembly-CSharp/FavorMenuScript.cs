@@ -56,32 +56,32 @@ public class FavorMenuScript : MonoBehaviour
 					SchemesMenu.UpdatePantyCount();
 					SchemesMenu.UpdateSchemeList();
 					SchemesMenu.UpdateSchemeInfo();
-					SchemesMenu.gameObject.SetActive(true);
-					base.gameObject.SetActive(false);
+					SchemesMenu.gameObject.SetActive(value: true);
+					base.gameObject.SetActive(value: false);
 				}
 				else if (ID == 2)
 				{
 					ServicesMenu.UpdatePantyCount();
 					ServicesMenu.UpdateList();
 					ServicesMenu.UpdateDesc();
-					ServicesMenu.gameObject.SetActive(true);
-					base.gameObject.SetActive(false);
+					ServicesMenu.gameObject.SetActive(value: true);
+					base.gameObject.SetActive(value: false);
 				}
 				else if (ID == 3)
 				{
 					DropsMenu.UpdatePantyCount();
 					DropsMenu.UpdateList();
 					DropsMenu.UpdateDesc();
-					DropsMenu.gameObject.SetActive(true);
-					base.gameObject.SetActive(false);
+					DropsMenu.gameObject.SetActive(value: true);
+					base.gameObject.SetActive(value: false);
 				}
 				else if (ID == 4)
 				{
 					PromptBar.ClearButtons();
 					PromptBar.Label[1].text = "Back";
 					PromptBar.UpdateButtons();
-					Panel.SetActive(false);
-					BountyMenu.SetActive(true);
+					Panel.SetActive(value: false);
+					BountyMenu.SetActive(value: true);
 				}
 			}
 			else if (Input.GetButtonDown("X"))
@@ -101,10 +101,10 @@ public class FavorMenuScript : MonoBehaviour
 				PromptBar.Label[1].text = "Exit";
 				PromptBar.Label[4].text = "Choose";
 				PromptBar.UpdateButtons();
-				PauseScreen.MainMenu.SetActive(true);
+				PauseScreen.MainMenu.SetActive(value: true);
 				PauseScreen.Sideways = false;
 				PauseScreen.PressedB = true;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 		else if (Input.GetButtonDown("B"))
@@ -114,8 +114,8 @@ public class FavorMenuScript : MonoBehaviour
 			PromptBar.Label[1].text = "Exit";
 			PromptBar.Label[4].text = "Choose";
 			PromptBar.UpdateButtons();
-			Panel.SetActive(true);
-			BountyMenu.SetActive(false);
+			Panel.SetActive(value: true);
+			BountyMenu.SetActive(value: false);
 		}
 	}
 

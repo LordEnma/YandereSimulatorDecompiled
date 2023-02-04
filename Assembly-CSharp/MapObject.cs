@@ -57,7 +57,7 @@ public class MapObject : MonoBehaviour
 
 	private void SetPositionAndRotation()
 	{
-		base.transform.SetParent(panelGO.transform, false);
+		base.transform.SetParent(panelGO.transform, worldPositionStays: false);
 		SetPosition();
 		SetRotation();
 	}

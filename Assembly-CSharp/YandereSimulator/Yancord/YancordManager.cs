@@ -106,7 +106,7 @@ namespace YandereSimulator.Yancord
 				ChatLabel.text = string.Empty;
 				Dialogue[1].isSystemMessage = true;
 				Dialogue[1].Message = "Ayano Aishi has joined the Moonlit Warrior Selene Fanserver.";
-				FirstTimeUI.gameObject.SetActive(true);
+				FirstTimeUI.gameObject.SetActive(value: true);
 			}
 			else
 			{
@@ -118,7 +118,7 @@ namespace YandereSimulator.Yancord
 				JoinServer();
 				Dialogue[1].isSystemMessage = true;
 				Dialogue[1].Message = "Ayano Aishi has logged in.";
-				PartnerOnline.SetActive(true);
+				PartnerOnline.SetActive(value: true);
 				BlueDiscordIcon.alpha = 0f;
 				ChatLabel.text = "Press E to start chatting on the Moonlit Warrior Selene Fanserver!";
 			}
@@ -229,8 +229,8 @@ namespace YandereSimulator.Yancord
 					{
 						ChatLabel.text = "Press E to log out of Yancord.";
 						CurrentPartner.CurrentStatus = Status.Invisible;
-						PartnerOnline.SetActive(false);
-						PartnerOffline.SetActive(true);
+						PartnerOnline.SetActive(value: false);
+						PartnerOffline.SetActive(value: true);
 					}
 					if (Input.GetButtonDown("A"))
 					{
@@ -249,7 +249,7 @@ namespace YandereSimulator.Yancord
 					if (Input.GetButtonDown("A") && !DialogueChooseMenu.activeInHierarchy)
 					{
 						ChatLabel.text = "Choose one of the following answers to respond.";
-						DialogueChooseMenu.SetActive(true);
+						DialogueChooseMenu.SetActive(value: true);
 						DialogueChooseLabel[1].text = Dialogue[currentPhase].OptionQ;
 						DialogueChooseLabel[2].text = Dialogue[currentPhase].OptionR;
 						DialogueChooseLabel[3].text = Dialogue[currentPhase].OptionF;
@@ -276,7 +276,7 @@ namespace YandereSimulator.Yancord
 							Dialogue[currentPhase + 1].Message = GetAnswer(currentPhase);
 							Dialogue[currentPhase + 2].Message = GetReaction(currentPhase);
 							Dialogue[currentPhase + 1].sentByPlayer = true;
-							DialogueChooseMenu.SetActive(false);
+							DialogueChooseMenu.SetActive(value: false);
 							ChatLabel.text = "";
 							ShowingDialogueOption = false;
 							timer = 0f;
@@ -300,7 +300,7 @@ namespace YandereSimulator.Yancord
 					YancordGlobals.JoinedYancord = true;
 					JoinServer();
 					SpawnChatMessage();
-					PartnerOnline.SetActive(true);
+					PartnerOnline.SetActive(value: true);
 					Chatting = true;
 				}
 				else if (Input.GetButtonDown("B"))
@@ -348,32 +348,24 @@ namespace YandereSimulator.Yancord
 
 		private string GetReaction(int phase)
 		{
-			switch (Choice[phase])
+			return Choice[phase] switch
 			{
-			case 1:
-				return Dialogue[phase].ReactionQ;
-			case 2:
-				return Dialogue[phase].ReactionR;
-			case 3:
-				return Dialogue[phase].ReactionF;
-			default:
-				return null;
-			}
+				1 => Dialogue[phase].ReactionQ, 
+				2 => Dialogue[phase].ReactionR, 
+				3 => Dialogue[phase].ReactionF, 
+				_ => null, 
+			};
 		}
 
 		private string GetAnswer(int phase)
 		{
-			switch (Choice[phase])
+			return Choice[phase] switch
 			{
-			case 1:
-				return Dialogue[phase].OptionQ;
-			case 2:
-				return Dialogue[phase].OptionR;
-			case 3:
-				return Dialogue[phase].OptionF;
-			default:
-				return null;
-			}
+				1 => Dialogue[phase].OptionQ, 
+				2 => Dialogue[phase].OptionR, 
+				3 => Dialogue[phase].OptionF, 
+				_ => null, 
+			};
 		}
 
 		private void SpawnAll()
@@ -400,7 +392,7 @@ namespace YandereSimulator.Yancord
 					Messages[i].MyProfile = CurrentPartner;
 				}
 				Messages[i].Awake();
-				Messages[i].gameObject.SetActive(false);
+				Messages[i].gameObject.SetActive(value: false);
 			}
 		}
 
@@ -410,10 +402,10 @@ namespace YandereSimulator.Yancord
 			{
 				if (!Messages[currentPhase].gameObject.activeInHierarchy)
 				{
-					Messages[currentPhase].gameObject.SetActive(true);
+					Messages[currentPhase].gameObject.SetActive(value: true);
 					Messages[currentPhase].MessageLabel.text = Dialogue[currentPhase].Message;
 					float num = -400f + (float)Messages[currentPhase].MessageLabel.height - 10f;
-					Vector3 position = Messages[currentPhase].transform.position;
+					_ = Messages[currentPhase].transform.position;
 					Messages[currentPhase].transform.position = new Vector3(0f, num * 0.0016723945f, 0f);
 					for (int num2 = currentPhase - 1; num2 >= 0; num2--)
 					{
@@ -427,7 +419,7 @@ namespace YandereSimulator.Yancord
 			}
 			else if (!Messages[currentPhase].gameObject.activeInHierarchy)
 			{
-				Messages[currentPhase].gameObject.SetActive(true);
+				Messages[currentPhase].gameObject.SetActive(value: true);
 				Messages[currentPhase].MessageLabel.text = Dialogue[currentPhase].Message;
 				for (int j = currentPhase; j < Messages.Count; j++)
 				{
@@ -438,14 +430,14 @@ namespace YandereSimulator.Yancord
 
 		private void JoinServer()
 		{
-			NewServer.SetActive(true);
-			SelectedServer.gameObject.SetActive(true);
+			NewServer.SetActive(value: true);
+			SelectedServer.gameObject.SetActive(value: true);
 			SelectedServer.position = new Vector3(SelectedServer.position.x, NewServer.transform.position.y, SelectedServer.position.z);
 			CreateNewServer.position = new Vector3(CreateNewServer.position.x, 0.37407407f, CreateNewServer.position.z);
-			DirectMessages.SetActive(false);
-			FindLabel.SetActive(false);
-			ServerRelated.SetActive(true);
-			FirstTimeUI.gameObject.SetActive(false);
+			DirectMessages.SetActive(value: false);
+			FindLabel.SetActive(value: false);
+			ServerRelated.SetActive(value: true);
+			FirstTimeUI.gameObject.SetActive(value: false);
 		}
 
 		private void CalculateMessageDelay()

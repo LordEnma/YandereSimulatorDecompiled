@@ -23,7 +23,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 		private void CheckEnableControlRig()
 		{
-			EnableControlRig(false);
+			EnableControlRig(enabled: false);
 		}
 
 		private void EnableControlRig(bool enabled)

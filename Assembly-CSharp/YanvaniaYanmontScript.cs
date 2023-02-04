@@ -223,8 +223,8 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		MyAnimation[CrouchPoseAnim].layer = 1;
 		MyAnimation.Play(CrouchPoseAnim);
 		MyAnimation[CrouchPoseAnim].weight = 0f;
-		Physics.IgnoreLayerCollision(19, 13, true);
-		Physics.IgnoreLayerCollision(19, 19, true);
+		Physics.IgnoreLayerCollision(19, 13, ignore: true);
+		Physics.IgnoreLayerCollision(19, 19, ignore: true);
 	}
 
 	private void Start()
@@ -470,7 +470,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 							Character.transform.localScale = new Vector3(1f, Character.transform.localScale.y, Character.transform.localScale.z);
 							WhipChain[0].transform.localScale = Vector3.zero;
 							fallingDamageThreshold = 100f;
-							TextBox.SetActive(true);
+							TextBox.SetActive(value: true);
 							Attacking = false;
 							base.enabled = false;
 						}
@@ -516,11 +516,11 @@ public class YanvaniaYanmontScript : MonoBehaviour
 			{
 				if (Darkness.gameObject.activeInHierarchy)
 				{
-					HealthBar.parent.gameObject.SetActive(false);
-					EXPBar.parent.gameObject.SetActive(false);
-					Darkness.gameObject.SetActive(false);
-					BossHealthBar.SetActive(false);
-					BlackBG.SetActive(true);
+					HealthBar.parent.gameObject.SetActive(value: false);
+					EXPBar.parent.gameObject.SetActive(value: false);
+					Darkness.gameObject.SetActive(value: false);
+					BossHealthBar.SetActive(value: false);
+					BlackBG.SetActive(value: true);
 				}
 				TryAgainWindow.transform.localScale = Vector3.Lerp(TryAgainWindow.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			}

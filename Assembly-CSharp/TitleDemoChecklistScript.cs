@@ -312,7 +312,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 				}
 				else if (Input.GetButtonDown("X"))
 				{
-					ResetWindow.SetActive(true);
+					ResetWindow.SetActive(value: true);
 				}
 				else if (Input.GetButtonDown("B"))
 				{
@@ -325,7 +325,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 				{
 					ResetLabel.text = "This is a hidden debug command for completely removing all Yandere Simulator data from your computer's registry. This command will delete all of your save data, but may fix certain types of bugs that cannot be fixed in any other way.";
 					DeletingGlobals = true;
-					ResetWindow.SetActive(true);
+					ResetWindow.SetActive(value: true);
 				}
 			}
 		}
@@ -410,7 +410,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 	private void ResetConfirmations()
 	{
 		ResetLabel.text = "Are you ABSOLUTELY CERTAIN that you want to reset your Demo Checklist progress?\n\nMash the Confirm button 10 times to reaffirm this decision.";
-		ResetWindow.SetActive(false);
+		ResetWindow.SetActive(value: false);
 		DeletingGlobals = false;
 		PromptBar.Show = true;
 		Confirmations = 0;

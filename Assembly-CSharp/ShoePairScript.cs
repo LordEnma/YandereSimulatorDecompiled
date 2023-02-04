@@ -11,7 +11,7 @@ public class ShoePairScript : MonoBehaviour
 	private void Start()
 	{
 		Police = GameObject.Find("Police").GetComponent<PoliceScript>();
-		Note.SetActive(false);
+		Note.SetActive(value: false);
 	}
 
 	private void Update()
@@ -29,7 +29,7 @@ public class ShoePairScript : MonoBehaviour
 			Prompt.Hide();
 			Prompt.enabled = false;
 			Police.SuicideNote = true;
-			Note.SetActive(true);
+			Note.SetActive(value: true);
 			base.enabled = false;
 		}
 	}

@@ -14,7 +14,7 @@ public class TextMessageScript : MonoBehaviour
 	{
 		if (!Attachment && Image != null)
 		{
-			Image.SetActive(false);
+			Image.SetActive(value: false);
 		}
 		if (Right && EventGlobals.OsanaConversation)
 		{

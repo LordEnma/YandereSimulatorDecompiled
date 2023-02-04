@@ -22,13 +22,7 @@ public class AnimatedTextureScript : MonoBehaviour
 
 	public Texture[] Image;
 
-	private float SecondsPerFrame
-	{
-		get
-		{
-			return 1f / FramesPerSecond;
-		}
-	}
+	private float SecondsPerFrame => 1f / FramesPerSecond;
 
 	private void Awake()
 	{

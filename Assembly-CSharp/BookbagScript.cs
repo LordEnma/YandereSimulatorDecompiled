@@ -73,8 +73,12 @@ public class BookbagScript : MonoBehaviour
 			ConcealedPickup = Prompt.Yandere.PickUp;
 			ConcealedPickup.InsideBookbag = true;
 			ConcealedPickup.Drop();
-			ConcealedPickup.gameObject.SetActive(false);
-			if (ConcealedPickup.Prompt.Text[3] != "")
+			ConcealedPickup.gameObject.SetActive(value: false);
+			if (ConcealedPickup.Clothing)
+			{
+				Prompt.Label[0].text = "     Retrieve " + ConcealedPickup.name;
+			}
+			else if (ConcealedPickup.Prompt.Text[3] != "")
 			{
 				Prompt.Label[0].text = "     Retrieve " + ConcealedPickup.Prompt.Text[3];
 			}
@@ -95,7 +99,7 @@ public class BookbagScript : MonoBehaviour
 		Prompt.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
 		Prompt.Yandere.ReachWeight = 1f;
 		ConcealedPickup.transform.position = base.transform.position;
-		ConcealedPickup.gameObject.SetActive(true);
+		ConcealedPickup.gameObject.SetActive(value: true);
 		ConcealedPickup.Prompt.Circle[3].fillAmount = -1f;
 		ConcealedPickup.InsideBookbag = false;
 		ConcealedPickup = null;

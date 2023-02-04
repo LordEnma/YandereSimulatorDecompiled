@@ -47,13 +47,7 @@ public class TypewriterEffect : MonoBehaviour
 
 	private BetterList<FadeEntry> mFade = new BetterList<FadeEntry>();
 
-	public bool isActive
-	{
-		get
-		{
-			return mActive;
-		}
-	}
+	public bool isActive => mActive;
 
 	public void ResetToBeginning()
 	{

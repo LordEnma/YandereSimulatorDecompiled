@@ -12,29 +12,11 @@ public class JsonScript : MonoBehaviour
 	[SerializeField]
 	private TopicJson[] topics;
 
-	public StudentJson[] Students
-	{
-		get
-		{
-			return students;
-		}
-	}
+	public StudentJson[] Students => students;
 
-	public CreditJson[] Credits
-	{
-		get
-		{
-			return credits;
-		}
-	}
+	public CreditJson[] Credits => credits;
 
-	public TopicJson[] Topics
-	{
-		get
-		{
-			return topics;
-		}
-	}
+	public TopicJson[] Topics => topics;
 
 	private void Start()
 	{
@@ -57,8 +39,8 @@ public class JsonScript : MonoBehaviour
 		{
 			if (StudentGlobals.GetStudentDead(i))
 			{
-				StudentGlobals.SetStudentReplaced(i, true);
-				StudentGlobals.SetStudentDead(i, false);
+				StudentGlobals.SetStudentReplaced(i, value: true);
+				StudentGlobals.SetStudentDead(i, value: false);
 				string value = firstNames[Random.Range(0, firstNames.Length)] + " " + lastNames[Random.Range(0, lastNames.Length)];
 				StudentGlobals.SetStudentName(i, value);
 				StudentGlobals.SetStudentBustSize(i, Random.Range(1f, 1.5f));

@@ -143,7 +143,7 @@ public class SchemesScript : MonoBehaviour
 		}
 		if (NextStepInput != null)
 		{
-			NextStepInput.SetActive(false);
+			NextStepInput.SetActive(value: false);
 		}
 		UpdateSchemeInfo();
 		if (StudentManager.MissionMode)
@@ -231,7 +231,7 @@ public class SchemesScript : MonoBehaviour
 						if (Inventory.PantyShots >= SchemeCosts[ID + ListPosition])
 						{
 							Inventory.PantyShots -= SchemeCosts[ID + ListPosition];
-							SchemeGlobals.SetSchemeUnlocked(ID + ListPosition, true);
+							SchemeGlobals.SetSchemeUnlocked(ID + ListPosition, value: true);
 							SchemeGlobals.CurrentScheme = ID + ListPosition;
 							if (SchemeGlobals.GetSchemeStage(ID + ListPosition) == 0)
 							{
@@ -276,8 +276,8 @@ public class SchemesScript : MonoBehaviour
 			PromptBar.Label[1].text = "Exit";
 			PromptBar.Label[5].text = "Choose";
 			PromptBar.UpdateButtons();
-			FavorMenu.SetActive(true);
-			base.gameObject.SetActive(false);
+			FavorMenu.SetActive(value: true);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -313,7 +313,7 @@ public class SchemesScript : MonoBehaviour
 		{
 			if (!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition))
 			{
-				Arrow.gameObject.SetActive(false);
+				Arrow.gameObject.SetActive(value: false);
 				if (Inventory != null)
 				{
 					PromptBar.Label[0].text = ((Inventory.PantyShots >= SchemeCosts[ID + ListPosition]) ? "Purchase" : string.Empty);
@@ -322,14 +322,14 @@ public class SchemesScript : MonoBehaviour
 			}
 			else if (SchemeGlobals.CurrentScheme == ID + ListPosition)
 			{
-				Arrow.gameObject.SetActive(true);
+				Arrow.gameObject.SetActive(value: true);
 				Arrow.localPosition = new Vector3(Arrow.localPosition.x, -10f - 21f * (float)SchemeGlobals.GetSchemeStage(ID + ListPosition), Arrow.localPosition.z);
 				PromptBar.Label[0].text = "Stop Tracking";
 				PromptBar.UpdateButtons();
 			}
 			else
 			{
-				Arrow.gameObject.SetActive(false);
+				Arrow.gameObject.SetActive(value: false);
 				PromptBar.Label[0].text = "Start Tracking";
 				PromptBar.UpdateButtons();
 			}
@@ -405,29 +405,29 @@ public class SchemesScript : MonoBehaviour
 				{
 					SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, 1);
 				}
-				HUDIcon.SetActive(true);
+				HUDIcon.SetActive(value: true);
 				HUDInstructions.text = Steps[SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) - 1].ToString();
 			}
 			else
 			{
-				Arrow.gameObject.SetActive(false);
-				HUDIcon.gameObject.SetActive(false);
+				Arrow.gameObject.SetActive(value: false);
+				HUDIcon.gameObject.SetActive(value: false);
 				HUDInstructions.text = string.Empty;
 				SchemeManager.CurrentScheme = 0;
 			}
 		}
 		else
 		{
-			HUDIcon.SetActive(false);
+			HUDIcon.SetActive(value: false);
 			HUDInstructions.text = string.Empty;
 		}
 		if (SchemeGlobals.CurrentScheme < 7)
 		{
-			NextStepInput.SetActive(false);
+			NextStepInput.SetActive(value: false);
 		}
 		else
 		{
-			NextStepInput.SetActive(true);
+			NextStepInput.SetActive(value: true);
 		}
 	}
 

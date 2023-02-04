@@ -59,7 +59,7 @@ public class TallLockerScript : MonoBehaviour
 		Prompt.HideButton[3] = true;
 		if (GameGlobals.EightiesTutorial)
 		{
-			Schoolwear[2].SetActive(false);
+			Schoolwear[2].SetActive(value: false);
 			Bloody[2] = true;
 		}
 	}
@@ -287,7 +287,7 @@ public class TallLockerScript : MonoBehaviour
 					Yandere.Gloves.transform.localPosition = new Vector3(0f, 1f, -1f);
 					Yandere.Gloves.transform.parent = null;
 					Yandere.GloveAttacher.newRenderer.enabled = false;
-					Yandere.Gloves.gameObject.SetActive(true);
+					Yandere.Gloves.gameObject.SetActive(value: true);
 					Yandere.Gloved = false;
 					Yandere.Gloves = null;
 					Yandere.GloveBlood = 0;
@@ -351,27 +351,26 @@ public class TallLockerScript : MonoBehaviour
 					{
 						if (!RivalPhone.gameObject.activeInHierarchy && !Yandere.Inventory.RivalPhone)
 						{
-							StudentScript student = Student;
-							Debug.Log((((object)student != null) ? student.ToString() : null) + " just left her smartphone in the locker room!");
+							Debug.Log(Student?.ToString() + " just left her smartphone in the locker room!");
 							RivalPhone.transform.parent = StudentManager.StrippingPositions[Student.GirlID];
 							RivalPhone.transform.localPosition = new Vector3(0.1f, 0.92f, 0.2375f);
 							RivalPhone.transform.localEulerAngles = new Vector3(-80f, 0f, 0f);
 							Physics.SyncTransforms();
-							RivalPhone.gameObject.SetActive(true);
+							RivalPhone.gameObject.SetActive(value: true);
 							RivalPhone.StudentID = Student.StudentID;
 							RivalPhone.MyRenderer.material.mainTexture = Student.SmartPhone.GetComponent<Renderer>().material.mainTexture;
 						}
 						if (Student.StudentID == 2 && Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory].activeInHierarchy)
 						{
-							Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory].SetActive(false);
+							Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory].SetActive(value: false);
 							Debug.Log("Sakyu Basu just left her ring in the locker room!");
-							Rings.gameObject.SetActive(true);
+							Rings.gameObject.SetActive(value: true);
 						}
 					}
 					else if (Student.StudentID == 30)
 					{
 						Debug.Log("Himedere just left her ring in the locker room!");
-						Rings.gameObject.SetActive(true);
+						Rings.gameObject.SetActive(value: true);
 					}
 				}
 				Student.ChangeSchoolwear();
@@ -395,8 +394,7 @@ public class TallLockerScript : MonoBehaviour
 	{
 		if (Student != null)
 		{
-			StudentScript student = Student;
-			Debug.Log((((object)student != null) ? student.ToString() : null) + " is changing clothes, with all strings attached.");
+			Debug.Log(Student?.ToString() + " is changing clothes, with all strings attached.");
 		}
 		SteamCountdown = true;
 		if (YandereLocker)
@@ -446,15 +444,15 @@ public class TallLockerScript : MonoBehaviour
 		}
 		if (!Bloody[1])
 		{
-			Schoolwear[1].SetActive(true);
+			Schoolwear[1].SetActive(value: true);
 		}
 		if (!Bloody[2])
 		{
-			Schoolwear[2].SetActive(true);
+			Schoolwear[2].SetActive(value: true);
 		}
 		if (!Bloody[3])
 		{
-			Schoolwear[3].SetActive(true);
+			Schoolwear[3].SetActive(value: true);
 		}
 		Prompt.Label[1].text = "     School Uniform";
 		Prompt.Label[2].text = "     School Swimsuit";
@@ -468,7 +466,7 @@ public class TallLockerScript : MonoBehaviour
 					Prompt.Label[Yandere.Schoolwear].text = "     Towel";
 					if (Removed[Yandere.Schoolwear])
 					{
-						Schoolwear[Yandere.Schoolwear].SetActive(false);
+						Schoolwear[Yandere.Schoolwear].SetActive(value: false);
 					}
 				}
 			}
@@ -480,7 +478,7 @@ public class TallLockerScript : MonoBehaviour
 		else if (Student != null && Student.Schoolwear > 0)
 		{
 			Prompt.HideButton[Student.Schoolwear] = true;
-			Schoolwear[Student.Schoolwear].SetActive(false);
+			Schoolwear[Student.Schoolwear].SetActive(value: false);
 			Student.Indoors = true;
 		}
 	}

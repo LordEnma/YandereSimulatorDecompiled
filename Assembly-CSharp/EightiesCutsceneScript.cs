@@ -14,6 +14,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 
 	public UITexture Silhouette;
 
+	public UITexture Render;
+
 	public AudioSource MyAudio;
 
 	public AudioSource BGM;
@@ -76,7 +78,65 @@ public class EightiesCutsceneScript : MonoBehaviour
 
 	public AudioClip[] FinalCutsceneClips;
 
+	public Texture[] Renders;
+
+	public Texture[] TutorialRenders;
+
+	public Texture[] Rival1Renders;
+
+	public Texture[] Rival2Renders;
+
+	public Texture[] Rival3Renders;
+
+	public Texture[] Rival4Renders;
+
+	public Texture[] Rival5Renders;
+
+	public Texture[] Rival6Renders;
+
+	public Texture[] Rival7Renders;
+
+	public Texture[] Rival8Renders;
+
+	public Texture[] Rival9Renders;
+
+	public Texture[] Rival10Renders;
+
+	public Texture[] ConfessionRenders;
+
+	public Texture[] EndingRenders;
+
+	public bool[] Nexts;
+
+	public bool[] TutorialNexts;
+
+	public bool[] Rival1Nexts;
+
+	public bool[] Rival2Nexts;
+
+	public bool[] Rival3Nexts;
+
+	public bool[] Rival4Nexts;
+
+	public bool[] Rival5Nexts;
+
+	public bool[] Rival6Nexts;
+
+	public bool[] Rival7Nexts;
+
+	public bool[] Rival8Nexts;
+
+	public bool[] Rival9Nexts;
+
+	public bool[] Rival10Nexts;
+
+	public bool[] ConfessionNexts;
+
+	public bool[] EndingNexts;
+
 	public float Speed;
+
+	public int CurrentRender;
 
 	public int RivalLine;
 
@@ -103,10 +163,12 @@ public class EightiesCutsceneScript : MonoBehaviour
 		{
 			Darkness.color = new Color(0.1f, 0.1f, 0.1f, 1f);
 		}
-		Typewriter.gameObject.SetActive(false);
+		Typewriter.gameObject.SetActive(value: false);
 		if (GameGlobals.EightiesCutsceneID == 0)
 		{
 			DarkLine = 13;
+			Renders = TutorialRenders;
+			Nexts = TutorialNexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 1)
 		{
@@ -115,6 +177,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 10;
 			RivalLine = 10;
 			Silhouette.mainTexture = RivalSilhouettes[1];
+			Renders = Rival1Renders;
+			Nexts = Rival1Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 2)
 		{
@@ -123,6 +187,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 13;
 			RivalLine = 3;
 			Silhouette.mainTexture = RivalSilhouettes[2];
+			Renders = Rival2Renders;
+			Nexts = Rival2Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 3)
 		{
@@ -131,6 +197,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 13;
 			RivalLine = 3;
 			Silhouette.mainTexture = RivalSilhouettes[3];
+			Renders = Rival3Renders;
+			Nexts = Rival3Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 4)
 		{
@@ -139,6 +207,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 12;
 			RivalLine = 3;
 			Silhouette.mainTexture = RivalSilhouettes[4];
+			Renders = Rival4Renders;
+			Nexts = Rival4Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 5)
 		{
@@ -147,6 +217,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 11;
 			RivalLine = 2;
 			Silhouette.mainTexture = RivalSilhouettes[5];
+			Renders = Rival5Renders;
+			Nexts = Rival5Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 6)
 		{
@@ -155,6 +227,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 12;
 			RivalLine = 2;
 			Silhouette.mainTexture = RivalSilhouettes[6];
+			Renders = Rival6Renders;
+			Nexts = Rival6Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 7)
 		{
@@ -163,6 +237,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 9;
 			RivalLine = 3;
 			Silhouette.mainTexture = RivalSilhouettes[7];
+			Renders = Rival7Renders;
+			Nexts = Rival7Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 8)
 		{
@@ -171,6 +247,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 14;
 			RivalLine = 11;
 			Silhouette.mainTexture = RivalSilhouettes[8];
+			Renders = Rival8Renders;
+			Nexts = Rival8Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 9)
 		{
@@ -179,6 +257,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 12;
 			RivalLine = 8;
 			Silhouette.mainTexture = RivalSilhouettes[9];
+			Renders = Rival9Renders;
+			Nexts = Rival9Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 10)
 		{
@@ -187,6 +267,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 0;
 			RivalLine = 9;
 			Silhouette.mainTexture = RivalSilhouettes[10];
+			Renders = Rival10Renders;
+			Nexts = Rival10Nexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 11)
 		{
@@ -195,6 +277,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 99;
 			RivalLine = 99;
 			Silhouette.mainTexture = RivalSilhouettes[10];
+			Renders = ConfessionRenders;
+			Nexts = ConfessionNexts;
 		}
 		if (GameGlobals.EightiesCutsceneID == 12)
 		{
@@ -203,11 +287,14 @@ public class EightiesCutsceneScript : MonoBehaviour
 			DarkLine = 99;
 			RivalLine = 99;
 			Silhouette.mainTexture = RivalSilhouettes[10];
+			Renders = EndingRenders;
+			Nexts = EndingNexts;
 		}
 		Silhouette.alpha = 0f;
+		Render.mainTexture = Renders[0];
 		if (GameGlobals.EightiesCutsceneID > 0)
 		{
-			SkipTutorialButton.SetActive(false);
+			SkipTutorialButton.SetActive(value: false);
 		}
 		Time.timeScale = 1f;
 	}
@@ -229,15 +316,18 @@ public class EightiesCutsceneScript : MonoBehaviour
 		if (RivalLine > 0 && ID >= RivalLine)
 		{
 			Speed += Time.deltaTime;
-			Label.transform.localPosition = Vector3.Lerp(Label.transform.localPosition, new Vector3(-800f, 360f, 0f), Time.deltaTime * Speed);
 			Silhouette.alpha = Mathf.MoveTowards(Silhouette.alpha, 1f, Time.deltaTime);
+		}
+		if (Render.alpha < 1f)
+		{
+			Render.alpha = Mathf.MoveTowards(Render.alpha, 1f, Time.deltaTime);
 		}
 		if (Phase == 0)
 		{
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
 			if (Darkness.alpha == 0f)
 			{
-				Typewriter.gameObject.SetActive(true);
+				Typewriter.gameObject.SetActive(value: true);
 				Typewriter.ResetToBeginning();
 				Label.text = "";
 				Typewriter.mFullText = Lines[ID];
@@ -260,6 +350,18 @@ public class EightiesCutsceneScript : MonoBehaviour
 					ID++;
 					if (ID < Lines.Length)
 					{
+						Debug.Log("ID is " + ID + ". Nexts[ID] is: " + Nexts[ID]);
+						if (Nexts[ID])
+						{
+							CurrentRender++;
+							GameObject gameObject = UnityEngine.Object.Instantiate(Render.gameObject, Render.transform.position, Render.transform.rotation);
+							gameObject.transform.parent = Render.transform.parent;
+							gameObject.transform.localScale = new Vector3(1.604f, 1.604f, 1f);
+							Render = gameObject.GetComponent<UITexture>();
+							Render.mainTexture = Renders[CurrentRender];
+							Render.color = new Color(1f, 1f, 1f, 0f);
+							Render.depth++;
+						}
 						Typewriter.ResetToBeginning();
 						Label.text = "";
 						Typewriter.mFullText = Lines[ID];
@@ -278,21 +380,21 @@ public class EightiesCutsceneScript : MonoBehaviour
 				}
 				else if (Input.GetButtonDown("Y") && SkipTutorialButton.activeInHierarchy)
 				{
-					SkipTutorialWindow.SetActive(true);
-					Panel.SetActive(false);
+					SkipTutorialWindow.SetActive(value: true);
+					Panel.SetActive(value: false);
 				}
 			}
 			else if (Input.GetButtonDown("A"))
 			{
-				SkipTutorialWindow.SetActive(false);
-				Panel.SetActive(true);
+				SkipTutorialWindow.SetActive(value: false);
+				Panel.SetActive(value: true);
 				Phase++;
 				SkipTutorial = true;
 			}
 			else if (Input.GetButtonDown("B"))
 			{
-				SkipTutorialWindow.SetActive(false);
-				Panel.SetActive(true);
+				SkipTutorialWindow.SetActive(value: false);
+				Panel.SetActive(value: true);
 			}
 		}
 		else if (Phase == 2)
@@ -363,20 +465,24 @@ public class EightiesCutsceneScript : MonoBehaviour
 			StudentGlobals.CustomSuitorTan = false;
 			for (int i = 1; i < 26; i++)
 			{
-				DatingGlobals.SetTopicDiscussed(i, false);
+				DatingGlobals.SetTopicDiscussed(i, value: false);
 			}
 			for (int j = 1; j < 11; j++)
 			{
-				DatingGlobals.SetComplimentGiven(j, false);
+				DatingGlobals.SetComplimentGiven(j, value: false);
 			}
-			for (int k = 1; k < 4; k++)
+			for (int k = 1; k < 11; k++)
 			{
-				DatingGlobals.SetTraitDemonstrated(k, 0);
-				DatingGlobals.SetSuitorTrait(k, 0);
+				DatingGlobals.SetSuitorCheck(k, value: false);
 			}
-			for (int l = 1; l < 5; l++)
+			for (int l = 1; l < 4; l++)
 			{
-				CollectibleGlobals.SetGiftGiven(l, false);
+				DatingGlobals.SetTraitDemonstrated(l, 0);
+				DatingGlobals.SetSuitorTrait(l, 0);
+			}
+			for (int m = 1; m < 5; m++)
+			{
+				CollectibleGlobals.SetGiftGiven(m, value: false);
 			}
 			DateGlobals.Weekday = DayOfWeek.Sunday;
 			if (DateGlobals.Week == 1)

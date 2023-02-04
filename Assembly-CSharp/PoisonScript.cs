@@ -12,11 +12,11 @@ public class PoisonScript : MonoBehaviour
 	{
 		if (Yandere.Class.ChemistryGrade + Yandere.Class.ChemistryBonus < 1 && ClassGlobals.ChemistryGrade + ClassGlobals.ChemistryGrade < 1)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		else
 		{
-			base.gameObject.SetActive(true);
+			base.gameObject.SetActive(value: true);
 		}
 	}
 
@@ -28,7 +28,7 @@ public class PoisonScript : MonoBehaviour
 			Yandere.StudentManager.UpdateAllBentos();
 			Prompt.Hide();
 			Prompt.enabled = false;
-			base.transform.parent.gameObject.SetActive(false);
+			base.transform.parent.gameObject.SetActive(value: false);
 		}
 	}
 }

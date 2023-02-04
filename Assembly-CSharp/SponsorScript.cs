@@ -14,8 +14,8 @@ public class SponsorScript : MonoBehaviour
 	private void Start()
 	{
 		Time.timeScale = 1f;
-		Set[1].SetActive(true);
-		Set[2].SetActive(false);
+		Set[1].SetActive(value: true);
+		Set[2].SetActive(value: false);
 		Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 1f);
 	}
 

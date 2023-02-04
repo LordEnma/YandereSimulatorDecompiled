@@ -186,7 +186,7 @@ public class ClubManagerScript : MonoBehaviour
 		ActivitiesAttended = ClubGlobals.ActivitiesAttended;
 		MyAudio = GetComponent<AudioSource>();
 		ClubWindow.ActivityWindow.localScale = Vector3.zero;
-		ClubWindow.ActivityWindow.gameObject.SetActive(false);
+		ClubWindow.ActivityWindow.gameObject.SetActive(value: false);
 		int num = 0;
 		ID = 1;
 		if (GameGlobals.Eighties)
@@ -198,8 +198,7 @@ public class ClubManagerScript : MonoBehaviour
 		{
 			if (ClubGlobals.GetClubClosed(ClubArray[ID]))
 			{
-				Debug.Log("The game recognizes that Club #" + ID + ", the " + ClubArray[ID].ToString() + " Club, should be closed!");
-				ClubPosters[ID].SetActive(false);
+				ClubPosters[ID].SetActive(value: false);
 				if (ClubArray[ID] == ClubType.Gardening)
 				{
 					ClubPatrolPoints[ID].transform.position = new Vector3(-36f, ClubPatrolPoints[ID].transform.position.y, ClubPatrolPoints[ID].transform.position.z);
@@ -261,7 +260,7 @@ public class ClubManagerScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 				ClubWindow.PerformingActivity = true;
-				ClubWindow.ActivityWindow.gameObject.SetActive(true);
+				ClubWindow.ActivityWindow.gameObject.SetActive(value: true);
 				ClubWindow.ActivityLabel.text = ClubWindow.ActivityDescs[(int)Club];
 				StudentManager.Portal.GetComponent<PortalScript>().EndFinalEvents();
 				ActivitiesAttended++;
@@ -330,11 +329,11 @@ public class ClubManagerScript : MonoBehaviour
 		MainCamera.transform.rotation = ClubVantages[(int)Club].rotation;
 		if (Club != ClubType.LightMusic)
 		{
-			StudentManager.PracticeMusic.gameObject.SetActive(false);
+			StudentManager.PracticeMusic.gameObject.SetActive(value: false);
 		}
 		if (Club == ClubType.Cooking)
 		{
-			Cake.SetActive(true);
+			Cake.SetActive(value: true);
 			for (ID = 0; ID < Club1Students.Length; ID++)
 			{
 				StudentScript studentScript = StudentManager.Students[Club1Students[ID]];
@@ -345,7 +344,7 @@ public class ClubManagerScript : MonoBehaviour
 					studentScript.CharacterAnimation[studentScript.SocialSitAnim].layer = 99;
 					studentScript.CharacterAnimation.Play(studentScript.SocialSitAnim);
 					studentScript.CharacterAnimation[studentScript.SocialSitAnim].weight = 1f;
-					studentScript.SmartPhone.SetActive(false);
+					studentScript.SmartPhone.SetActive(value: false);
 					studentScript.SpeechLines.Play();
 					studentScript.ClubActivity = true;
 					studentScript.Talking = false;
@@ -400,7 +399,7 @@ public class ClubManagerScript : MonoBehaviour
 				StudentScript studentScript3 = StudentManager.Students[Club3Students[ID]];
 				if (studentScript3 != null && !studentScript3.Tranquil)
 				{
-					studentScript3.gameObject.SetActive(false);
+					studentScript3.gameObject.SetActive(value: false);
 				}
 			}
 			MainCamera.GetComponent<AudioListener>().enabled = true;
@@ -409,20 +408,20 @@ public class ClubManagerScript : MonoBehaviour
 			component.loop = true;
 			component.volume = 0f;
 			component.Play();
-			Yandere.gameObject.SetActive(false);
-			Ritual.SetActive(true);
+			Yandere.gameObject.SetActive(value: false);
+			Ritual.SetActive(value: true);
 			CheckClub(ClubType.Occult);
 			GameObject[] cultists = Cultists;
 			foreach (GameObject gameObject in cultists)
 			{
 				if (gameObject != null)
 				{
-					gameObject.SetActive(false);
+					gameObject.SetActive(value: false);
 				}
 			}
 			while (ClubMembers > 0)
 			{
-				Cultists[ClubMembers].SetActive(true);
+				Cultists[ClubMembers].SetActive(value: true);
 				ClubMembers--;
 			}
 			CheckClub(ClubType.Occult);
@@ -508,7 +507,7 @@ public class ClubManagerScript : MonoBehaviour
 					studentScript7.transform.position = StudentManager.Clubs.List[studentScript7.StudentID].position;
 					studentScript7.transform.rotation = StudentManager.Clubs.List[studentScript7.StudentID].rotation;
 					studentScript7.CharacterAnimation[studentScript7.SocialSitAnim].weight = 1f;
-					studentScript7.SmartPhone.SetActive(false);
+					studentScript7.SmartPhone.SetActive(value: false);
 					studentScript7.ClubActivity = true;
 					studentScript7.SpeechLines.Play();
 					studentScript7.Talking = false;
@@ -605,8 +604,8 @@ public class ClubManagerScript : MonoBehaviour
 				{
 					studentScript11.transform.position = studentScript11.CurrentDestination.position;
 					studentScript11.transform.rotation = studentScript11.CurrentDestination.rotation;
-					studentScript11.ClubManager.GameScreens[ID].SetActive(true);
-					studentScript11.SmartPhone.SetActive(false);
+					studentScript11.ClubManager.GameScreens[ID].SetActive(value: true);
+					studentScript11.SmartPhone.SetActive(value: false);
 					studentScript11.ClubActivity = true;
 					studentScript11.Talking = false;
 					studentScript11.Routine = false;
@@ -616,14 +615,14 @@ public class ClubManagerScript : MonoBehaviour
 			Yandere.Talking = false;
 			Yandere.CanMove = false;
 			Yandere.ClubActivity = true;
-			GameScreens[6].SetActive(true);
+			GameScreens[6].SetActive(value: true);
 			Yandere.transform.position = StudentManager.ComputerGames.Chairs[1].transform.position;
 			Yandere.transform.rotation = StudentManager.ComputerGames.Chairs[1].transform.rotation;
 		}
 		else if (Club == ClubType.Delinquent)
 		{
 			Debug.Log("Calling the Delinquent 'club activity'.");
-			Yandere.gameObject.SetActive(false);
+			Yandere.gameObject.SetActive(value: false);
 			for (ID = 0; ID < Club14Students.Length; ID++)
 			{
 				StudentScript studentScript12 = StudentManager.Students[Club14Students[ID]];
@@ -663,10 +662,10 @@ public class ClubManagerScript : MonoBehaviour
 				Yandere.ChangeClubwear();
 			}
 		}
-		Clock.SetActive(false);
-		Reputation.SetActive(false);
-		Heartrate.SetActive(false);
-		Watermark.SetActive(false);
+		Clock.SetActive(value: false);
+		Reputation.SetActive(value: false);
+		Heartrate.SetActive(value: false);
+		Watermark.SetActive(value: false);
 	}
 
 	public void CheckClub(ClubType Check)
@@ -969,7 +968,7 @@ public class ClubManagerScript : MonoBehaviour
 		{
 			if (StudentManager.Eighties)
 			{
-				Viewfinder.SetActive(true);
+				Viewfinder.SetActive(value: true);
 			}
 		}
 		else if (Yandere.Club == ClubType.Science)
@@ -991,7 +990,7 @@ public class ClubManagerScript : MonoBehaviour
 		else if (Yandere.Club == ClubType.Gardening)
 		{
 			ShedDoor.Prompt.Label[0].text = "     Open";
-			Padlock.SetActive(false);
+			Padlock.SetActive(value: false);
 			ShedDoor.Locked = false;
 			if (Yandere.Armed)
 			{
@@ -1063,7 +1062,7 @@ public class ClubManagerScript : MonoBehaviour
 				{
 					if (StudentManager.Eighties)
 					{
-						Viewfinder.SetActive(false);
+						Viewfinder.SetActive(value: false);
 					}
 				}
 				else if (Yandere.Club == ClubType.Science)
@@ -1089,7 +1088,7 @@ public class ClubManagerScript : MonoBehaviour
 					if (!Yandere.Inventory.ShedKey)
 					{
 						ShedDoor.Prompt.Label[0].text = "     Locked";
-						Padlock.SetActive(true);
+						Padlock.SetActive(value: true);
 						ShedDoor.Locked = true;
 						ShedDoor.CloseDoor();
 					}
@@ -1130,7 +1129,7 @@ public class ClubManagerScript : MonoBehaviour
 			if (QuitClub[ID] && !ClubGlobals.GetQuitClub(ClubArray[ID]))
 			{
 				Debug.Log("We quit a club on this day. ActivitiesAttended is now being set to 0.");
-				ClubGlobals.SetQuitClub(ClubArray[ID], true);
+				ClubGlobals.SetQuitClub(ClubArray[ID], value: true);
 				ActivitiesAttended = 0;
 				if (Yandere.ClubActivity)
 				{
@@ -1160,7 +1159,7 @@ public class ClubManagerScript : MonoBehaviour
 			if (ClubsKickedFrom[ID])
 			{
 				Debug.Log("Because we were kicked from a club, ClubGlobals.SetClubKicked is being updated.");
-				ClubGlobals.SetClubKicked(ClubArray[ID], true);
+				ClubGlobals.SetClubKicked(ClubArray[ID], value: true);
 			}
 		}
 	}

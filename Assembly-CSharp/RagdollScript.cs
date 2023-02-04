@@ -206,12 +206,12 @@ public class RagdollScript : MonoBehaviour
 		ChokingAnimation = false;
 		Disturbing = false;
 		Yandere = Student.StudentManager.Yandere;
-		Physics.IgnoreLayerCollision(11, 13, true);
+		Physics.IgnoreLayerCollision(11, 13, ignore: true);
 		Zs.SetActive(Tranquil);
 		if (!Tranquil && !Poisoned && !Drowned && !Electrocuted && !Burning && !NeckSnapped)
 		{
 			Student.StudentManager.TutorialWindow.ShowPoolMessage = true;
-			BloodPoolSpawner.gameObject.SetActive(true);
+			BloodPoolSpawner.gameObject.SetActive(value: true);
 			BloodPoolSpawner.StudentManager = Student.StudentManager;
 			if (Pushed)
 			{
@@ -372,7 +372,7 @@ public class RagdollScript : MonoBehaviour
 						GameObject myTarp = Object.Instantiate(Yandere.PickUp.TarpObject, new Vector3(Student.Hips.position.x, Yandere.transform.position.y, Student.Hips.position.z), Yandere.transform.rotation);
 						MyTarp = myTarp;
 						Yandere.EmptyHands();
-						obj.SetActive(false);
+						obj.SetActive(value: false);
 						Yandere.StudentManager.KokonaTutorialObject.SpawnedTarp = MyTarp;
 					}
 					else if (!Yandere.Chased && Yandere.Chasers == 0)
@@ -581,7 +581,7 @@ public class RagdollScript : MonoBehaviour
 				DumpTimer += Time.deltaTime;
 				if (Student.CharacterAnimation[DumpedAnim].time >= Student.CharacterAnimation[DumpedAnim].length)
 				{
-					Student.Cosmetic.FemaleHair[Student.Cosmetic.Hairstyle].SetActive(false);
+					Student.Cosmetic.FemaleHair[Student.Cosmetic.Hairstyle].SetActive(value: false);
 					TranqCase.Open = false;
 					if (AddingToCount)
 					{
@@ -873,7 +873,7 @@ public class RagdollScript : MonoBehaviour
 		{
 			BloodPoolSpawner.SpawnBigPool();
 		}
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 	}
 
 	public void Dismember()
@@ -1029,12 +1029,12 @@ public class RagdollScript : MonoBehaviour
 		{
 			Police = Yandere.Police;
 		}
-		Police.PartsIcon.gameObject.SetActive(true);
+		Police.PartsIcon.gameObject.SetActive(value: true);
 		Police.BodyParts += 6;
 		Yandere.NearBodies--;
 		Police.Corpses--;
 		base.transform.parent = Student.StudentManager.DisabledObjectParent;
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 		Dismembered = true;
 		if (MyTarp != null)
 		{
@@ -1060,12 +1060,12 @@ public class RagdollScript : MonoBehaviour
 			Debug.Log("This is the exact moment a corpse was subtracted from the HiddenCorpses count. 1");
 			Police.HiddenCorpses--;
 		}
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 	}
 
 	public void DestroyRigidbodies()
 	{
-		BloodPoolSpawner.gameObject.SetActive(false);
+		BloodPoolSpawner.gameObject.SetActive(value: false);
 		for (int i = 0; i < AllRigidbodies.Length; i++)
 		{
 			if (AllRigidbodies[i].gameObject.GetComponent<CharacterJoint>() != null)
@@ -1105,16 +1105,17 @@ public class RagdollScript : MonoBehaviour
 
 	public void HideAccessories()
 	{
-		Student.Cosmetic.RightStockings[0].SetActive(false);
-		Student.Cosmetic.LeftStockings[0].SetActive(false);
-		Student.Cosmetic.RightWristband.SetActive(false);
-		Student.Cosmetic.LeftWristband.SetActive(false);
-		Student.Cosmetic.Bookbag.SetActive(false);
-		Student.Cosmetic.Hoodie.SetActive(false);
+		Student.Cosmetic.RightStockings[0].SetActive(value: false);
+		Student.Cosmetic.LeftStockings[0].SetActive(value: false);
+		Student.Cosmetic.RightWristband.SetActive(value: false);
+		Student.Cosmetic.LeftWristband.SetActive(value: false);
+		Student.Cosmetic.Bookbag.SetActive(value: false);
+		Student.Cosmetic.Hoodie.SetActive(value: false);
 	}
 
 	public void ConcealInTrashBag()
 	{
+		Student.LowPoly.enabled = false;
 		Prompt.Label[0].text = "     Dismember";
 		Student.StudentManager.Police.HiddenCorpses++;
 		Concealed = true;
@@ -1127,20 +1128,20 @@ public class RagdollScript : MonoBehaviour
 		Student.MyRenderer.enabled = false;
 		if (Student.Cosmetic.HairRenderer != null)
 		{
-			Student.Cosmetic.HairRenderer.gameObject.SetActive(false);
+			Student.Cosmetic.HairRenderer.gameObject.SetActive(value: false);
 		}
 		else if (Student.Nemesis)
 		{
-			Student.gameObject.GetComponent<NemesisScript>().NemesisHair.SetActive(false);
+			Student.gameObject.GetComponent<NemesisScript>().NemesisHair.SetActive(value: false);
 		}
-		Student.GarbageBag.SetActive(true);
+		Student.GarbageBag.SetActive(value: true);
 		if (!Student.Male)
 		{
-			Student.InstrumentBag[1].SetActive(false);
-			Student.InstrumentBag[2].SetActive(false);
-			Student.InstrumentBag[3].SetActive(false);
-			Student.InstrumentBag[4].SetActive(false);
-			Student.InstrumentBag[5].SetActive(false);
+			Student.InstrumentBag[1].SetActive(value: false);
+			Student.InstrumentBag[2].SetActive(value: false);
+			Student.InstrumentBag[3].SetActive(value: false);
+			Student.InstrumentBag[4].SetActive(value: false);
+			Student.InstrumentBag[5].SetActive(value: false);
 			HideAccessories();
 		}
 		if (Student.ApronAttacher.enabled)
@@ -1155,7 +1156,7 @@ public class RagdollScript : MonoBehaviour
 		{
 			Student.LabcoatAttacher.newRenderer.enabled = false;
 		}
-		Student.Armband.SetActive(false);
+		Student.Armband.SetActive(value: false);
 		BloodPoolSpawner.enabled = false;
 		if (Yandere.PickUp != null)
 		{

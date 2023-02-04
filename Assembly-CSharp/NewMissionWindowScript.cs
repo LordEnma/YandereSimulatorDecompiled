@@ -65,7 +65,7 @@ public class NewMissionWindowScript : MonoBehaviour
 			Portrait[i].mainTexture = BlankPortrait;
 			NameLabel[i].text = "Kill: (Nobody)";
 			MethodLabel[i].text = "By: Attacking";
-			DeathSkulls[i].SetActive(false);
+			DeathSkulls[i].SetActive(value: false);
 		}
 		DifficultyOptions.localScale = new Vector3(0f, 0f, 0f);
 	}
@@ -513,16 +513,16 @@ public class NewMissionWindowScript : MonoBehaviour
 				Portrait[i].mainTexture = wWW.texture;
 			}
 			MethodLabel[i].text = "By: " + MethodNames[Method[i]];
-			DeathSkulls[i].SetActive(false);
+			DeathSkulls[i].SetActive(value: false);
 		}
 	}
 
 	public void HideButtons()
 	{
-		Button[0].SetActive(false);
-		Button[1].SetActive(false);
-		Button[2].SetActive(false);
-		Button[3].SetActive(false);
+		Button[0].SetActive(value: false);
+		Button[1].SetActive(value: false);
+		Button[2].SetActive(value: false);
+		Button[3].SetActive(value: false);
 	}
 
 	private void UpdateNemesisDifficulty()

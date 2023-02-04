@@ -219,22 +219,22 @@ public class BeatEmUpScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			FaceTexture = RyobaHair.GetComponent<Renderer>().material.mainTexture;
-			RyobaHair.transform.parent.gameObject.SetActive(true);
-			PonytailRenderer.gameObject.SetActive(false);
+			RyobaHair.transform.parent.gameObject.SetActive(value: true);
+			PonytailRenderer.gameObject.SetActive(value: false);
 			Music.Stop();
 			Dialogue.clip = DialogueClips[CutsceneID];
 			Dialogue.Play();
 			Subtitle.text = DialogueText[CutsceneID];
 			Cutscene = true;
-			IncineratorScene.SetActive(false);
-			StreetScene.SetActive(true);
+			IncineratorScene.SetActive(value: false);
+			StreetScene.SetActive(value: true);
 			RightBreast.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			LeftBreast.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			Eighties = true;
 		}
 		else
 		{
-			RyobaHair.transform.parent.gameObject.SetActive(false);
+			RyobaHair.transform.parent.gameObject.SetActive(value: false);
 		}
 		ChangeSchoolwear();
 		Profile.motionBlur.enabled = false;
@@ -599,12 +599,12 @@ public class BeatEmUpScript : MonoBehaviour
 			{
 				if (Time.timeScale > 0f)
 				{
-					PauseLabel.SetActive(true);
+					PauseLabel.SetActive(value: true);
 					Time.timeScale = 0f;
 				}
 				else
 				{
-					PauseLabel.SetActive(false);
+					PauseLabel.SetActive(value: false);
 					Time.timeScale = 1f;
 				}
 			}
@@ -700,11 +700,11 @@ public class BeatEmUpScript : MonoBehaviour
 				MyAnimation.CrossFade(DefeatAnim);
 			}
 			Time.timeScale = 0.1f;
-			Ring.gameObject.SetActive(false);
-			HealthLabel.transform.parent.gameObject.SetActive(false);
-			White.transform.parent.gameObject.SetActive(true);
+			Ring.gameObject.SetActive(value: false);
+			HealthLabel.transform.parent.gameObject.SetActive(value: false);
+			White.transform.parent.gameObject.SetActive(value: true);
 			VictoryLabel.transform.localScale = Vector3.zero;
-			VictoryLabel.gameObject.SetActive(true);
+			VictoryLabel.gameObject.SetActive(value: true);
 			VictoryLabel.alpha = 0f;
 			IntroTimer = 0f;
 			Victory = true;
@@ -762,7 +762,7 @@ public class BeatEmUpScript : MonoBehaviour
 		GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
 		for (int i = 0; i < rootGameObjects.Length; i++)
 		{
-			rootGameObjects[i].SetActive(true);
+			rootGameObjects[i].SetActive(value: true);
 		}
 		SceneManager.UnloadSceneAsync(41);
 	}

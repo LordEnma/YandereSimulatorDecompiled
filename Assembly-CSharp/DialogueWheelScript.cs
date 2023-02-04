@@ -414,12 +414,12 @@ public class DialogueWheelScript : MonoBehaviour
 							else if (Selected == 4)
 							{
 								PauseScreen.StudentInfoMenu.Distracting = true;
-								PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+								PauseScreen.StudentInfoMenu.gameObject.SetActive(value: true);
 								PauseScreen.StudentInfoMenu.Column = 0;
 								PauseScreen.StudentInfoMenu.Row = 0;
 								PauseScreen.StudentInfoMenu.UpdateHighlight();
 								StartCoroutine(PauseScreen.StudentInfoMenu.UpdatePortraits());
-								PauseScreen.MainMenu.SetActive(false);
+								PauseScreen.MainMenu.SetActive(value: false);
 								PauseScreen.Panel.enabled = true;
 								PauseScreen.Sideways = true;
 								PauseScreen.Show = true;
@@ -453,7 +453,7 @@ public class DialogueWheelScript : MonoBehaviour
 								PromptBar.Label[4].text = "Change";
 								PromptBar.UpdateButtons();
 								PromptBar.Show = true;
-								AppearanceWindow.gameObject.SetActive(true);
+								AppearanceWindow.gameObject.SetActive(value: true);
 								AppearanceWindow.Show = true;
 								Show = false;
 							}
@@ -473,7 +473,7 @@ public class DialogueWheelScript : MonoBehaviour
 								PromptBar.UpdateButtons();
 								PromptBar.Show = true;
 								AdviceWindow.UpdateText();
-								AdviceWindow.gameObject.SetActive(true);
+								AdviceWindow.gameObject.SetActive(value: true);
 								Time.timeScale = 0.0001f;
 								base.transform.localScale = Vector3.zero;
 								Yandere.Subtitle.Label.text = "";
@@ -504,7 +504,7 @@ public class DialogueWheelScript : MonoBehaviour
 						TopicInterface.Student = Yandere.TargetStudent;
 						TopicInterface.UpdateOpinions();
 						TopicInterface.UpdateTopicHighlight();
-						TopicInterface.gameObject.SetActive(true);
+						TopicInterface.gameObject.SetActive(value: true);
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Speak";
 						PromptBar.Label[1].text = "Back";
@@ -523,10 +523,10 @@ public class DialogueWheelScript : MonoBehaviour
 						PromptBar.Label[1].text = "Cancel";
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
-						PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+						PauseScreen.StudentInfoMenu.gameObject.SetActive(value: true);
 						PauseScreen.StudentInfoMenu.UpdateHighlight();
 						StartCoroutine(PauseScreen.StudentInfoMenu.UpdatePortraits());
-						PauseScreen.MainMenu.SetActive(false);
+						PauseScreen.MainMenu.SetActive(value: false);
 						PauseScreen.Panel.enabled = true;
 						PauseScreen.Sideways = true;
 						PauseScreen.Show = true;
@@ -577,12 +577,12 @@ public class DialogueWheelScript : MonoBehaviour
 						else if (Yandere.LoveManager.SuitorProgress == 0)
 						{
 							PauseScreen.StudentInfoMenu.MatchMaking = true;
-							PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+							PauseScreen.StudentInfoMenu.gameObject.SetActive(value: true);
 							PauseScreen.StudentInfoMenu.Column = 0;
 							PauseScreen.StudentInfoMenu.Row = 0;
 							PauseScreen.StudentInfoMenu.UpdateHighlight();
 							StartCoroutine(PauseScreen.StudentInfoMenu.UpdatePortraits());
-							PauseScreen.MainMenu.SetActive(false);
+							PauseScreen.MainMenu.SetActive(value: false);
 							PauseScreen.Panel.enabled = true;
 							PauseScreen.Sideways = true;
 							PauseScreen.Show = true;
@@ -646,34 +646,34 @@ public class DialogueWheelScript : MonoBehaviour
 	public void HideShadows()
 	{
 		Jukebox.Dip = 0.5f;
-		bool clubLeader = ClubLeader;
-		TaskDialogueWindow.SetActive(false);
-		ClubLeaderWindow.SetActive(false);
-		LockerWindow.SetActive(false);
+		_ = ClubLeader;
+		TaskDialogueWindow.SetActive(value: false);
+		ClubLeaderWindow.SetActive(value: false);
+		LockerWindow.SetActive(value: false);
 		if (ClubLeader && !Yandere.TargetStudent.Talk.Fake)
 		{
-			SwitchTopicsWindow.SetActive(true);
+			SwitchTopicsWindow.SetActive(value: true);
 		}
 		else
 		{
-			SwitchTopicsWindow.SetActive(false);
+			SwitchTopicsWindow.SetActive(value: false);
 		}
 		if (Yandere.TargetStudent.Armband.activeInHierarchy && !ClubLeader && Yandere.TargetStudent.Club != ClubType.Council)
 		{
-			ClubLeaderWindow.SetActive(true);
+			ClubLeaderWindow.SetActive(value: true);
 		}
 		if (Yandere.TargetStudent.Indoors && NoteLocker.NoteLeft && NoteLocker.Student == Yandere.TargetStudent)
 		{
-			LockerWindow.SetActive(true);
+			LockerWindow.SetActive(value: true);
 		}
 		if (Yandere.TargetStudent.Club == ClubType.Bully && TaskManager.TaskStatus[36] == 1)
 		{
-			TaskDialogueWindow.SetActive(true);
+			TaskDialogueWindow.SetActive(value: true);
 		}
 		if (!Yandere.StudentManager.Eighties && Yandere.TargetStudent.StudentID == 10 && TaskManager.TaskStatus[46] == 1 && Clock.Period != 3)
 		{
-			int period = Clock.Period;
-			int num6 = 5;
+			_ = Clock.Period;
+			_ = 5;
 		}
 		TaskIcon.spriteName = (Yandere.TargetStudent.Friend ? "Heart" : "Task");
 		Impatience.fillAmount = 0f;
@@ -871,8 +871,8 @@ public class DialogueWheelScript : MonoBehaviour
 			{
 				Shadow[6].color = new Color(0f, 0f, 0f, 0.75f);
 			}
-			StudentActionType currentAction = Yandere.TargetStudent.CurrentAction;
-			int num7 = 30;
+			_ = Yandere.TargetStudent.CurrentAction;
+			_ = 30;
 		}
 		if (Yandere.Club == Yandere.TargetStudent.Club)
 		{
@@ -1045,7 +1045,7 @@ public class DialogueWheelScript : MonoBehaviour
 			else if (Yandere.TargetStudent.StudentID == 11 && TaskManager.TaskStatus[11] == 2)
 			{
 				Debug.Log("Setting Osana's phone charm active.");
-				Yandere.TargetStudent.Cosmetic.PhoneCharms[11].SetActive(true);
+				Yandere.TargetStudent.Cosmetic.PhoneCharms[11].SetActive(value: true);
 			}
 			else if (Yandere.TargetStudent.StudentID == 76 && TaskManager.TaskStatus[76] == 1)
 			{
@@ -1071,7 +1071,7 @@ public class DialogueWheelScript : MonoBehaviour
 				}
 				weaponScript.Drop();
 				weaponScript.FingerprintID = 77;
-				weaponScript.gameObject.SetActive(false);
+				weaponScript.gameObject.SetActive(value: false);
 				Yandere.WeaponManager.UpdateLabels();
 				Yandere.WeaponMenu.UpdateSprites();
 			}
@@ -1159,23 +1159,23 @@ public class DialogueWheelScript : MonoBehaviour
 				}
 				if (!Yandere.TargetStudent.Scrubber.activeInHierarchy && !flag && !Yandere.TargetStudent.Phoneless)
 				{
-					Yandere.TargetStudent.SmartPhone.SetActive(true);
+					Yandere.TargetStudent.SmartPhone.SetActive(value: true);
 					Yandere.TargetStudent.WalkAnim = Yandere.TargetStudent.PhoneAnims[1];
 				}
 				else
 				{
-					Yandere.TargetStudent.SmartPhone.SetActive(false);
+					Yandere.TargetStudent.SmartPhone.SetActive(value: false);
 				}
 			}
 			if (Yandere.TargetStudent.LostTeacherTrust)
 			{
 				Yandere.TargetStudent.WalkAnim = Yandere.TargetStudent.BulliedWalkAnim;
-				Yandere.TargetStudent.SmartPhone.SetActive(false);
+				Yandere.TargetStudent.SmartPhone.SetActive(value: false);
 			}
 			if (Yandere.TargetStudent.EatingSnack)
 			{
-				Yandere.TargetStudent.Scrubber.SetActive(false);
-				Yandere.TargetStudent.Eraser.SetActive(false);
+				Yandere.TargetStudent.Scrubber.SetActive(value: false);
+				Yandere.TargetStudent.Eraser.SetActive(value: false);
 			}
 			if (Yandere.TargetStudent.SentToLocker)
 			{
@@ -1211,7 +1211,7 @@ public class DialogueWheelScript : MonoBehaviour
 		Yandere.StudentManager.VolumeUp();
 		RestoreMusic();
 		Jukebox.Dip = 1f;
-		AppearanceWindow.gameObject.SetActive(false);
+		AppearanceWindow.gameObject.SetActive(value: false);
 		AppearanceWindow.Show = false;
 		AskingFavor = false;
 		Matchmaking = false;

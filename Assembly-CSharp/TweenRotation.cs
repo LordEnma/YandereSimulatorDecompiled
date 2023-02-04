@@ -61,7 +61,7 @@ public class TweenRotation : UITweener
 		tweenRotation.to = rot.eulerAngles;
 		if (duration <= 0f)
 		{
-			tweenRotation.Sample(1f, true);
+			tweenRotation.Sample(1f, isFinished: true);
 			tweenRotation.enabled = false;
 		}
 		return tweenRotation;

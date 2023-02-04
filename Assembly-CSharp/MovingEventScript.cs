@@ -64,10 +64,10 @@ public class MovingEventScript : MonoBehaviour
 				EventStudent.Character.GetComponent<Animation>()[EventStudent.BentoAnim].weight = 1f;
 				EventStudent.CurrentDestination = EventLocation[0];
 				EventStudent.Pathfinding.target = EventLocation[0];
-				EventStudent.SmartPhone.SetActive(false);
-				EventStudent.Scrubber.SetActive(false);
-				EventStudent.Bento.SetActive(true);
-				EventStudent.Pen.SetActive(false);
+				EventStudent.SmartPhone.SetActive(value: false);
+				EventStudent.Scrubber.SetActive(value: false);
+				EventStudent.Bento.SetActive(value: true);
+				EventStudent.Pen.SetActive(value: false);
 				EventStudent.MovingEvent = this;
 				EventStudent.InEvent = true;
 				EventStudent.Private = true;
@@ -260,8 +260,8 @@ public class MovingEventScript : MonoBehaviour
 				component3.CrossFade(EventStudent.EatAnim);
 				if (!EventStudent.Chopsticks[0].activeInHierarchy)
 				{
-					EventStudent.Chopsticks[0].SetActive(true);
-					EventStudent.Chopsticks[1].SetActive(true);
+					EventStudent.Chopsticks[0].SetActive(value: true);
+					EventStudent.Chopsticks[1].SetActive(value: true);
 				}
 			}
 			else
@@ -273,8 +273,8 @@ public class MovingEventScript : MonoBehaviour
 					if (!EventStudent.Chopsticks[0].activeInHierarchy)
 					{
 						AudioClipPlayer.Play(EventClip[5], EventStudent.transform.position + Vector3.up, 5f, 10f, out VoiceClip);
-						EventStudent.Chopsticks[0].SetActive(true);
-						EventStudent.Chopsticks[1].SetActive(true);
+						EventStudent.Chopsticks[0].SetActive(value: true);
+						EventStudent.Chopsticks[1].SetActive(value: true);
 						EventStudent.Distracted = true;
 					}
 				}
@@ -345,9 +345,9 @@ public class MovingEventScript : MonoBehaviour
 			EventStudent.CurrentDestination = EventStudent.Destinations[EventStudent.Phase];
 			EventStudent.Pathfinding.target = EventStudent.Destinations[EventStudent.Phase];
 			EventStudent.Character.GetComponent<Animation>()[EventStudent.BentoAnim].weight = 0f;
-			EventStudent.Chopsticks[0].SetActive(false);
-			EventStudent.Chopsticks[1].SetActive(false);
-			EventStudent.Bento.SetActive(false);
+			EventStudent.Chopsticks[0].SetActive(value: false);
+			EventStudent.Chopsticks[1].SetActive(value: false);
+			EventStudent.Bento.SetActive(value: false);
 			EventStudent.Prompt.enabled = true;
 			EventStudent.MovingEvent = null;
 			EventStudent.InEvent = false;

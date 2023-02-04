@@ -10,37 +10,13 @@ public class Timer
 	[SerializeField]
 	private float targetSeconds;
 
-	public float CurrentSeconds
-	{
-		get
-		{
-			return currentSeconds;
-		}
-	}
+	public float CurrentSeconds => currentSeconds;
 
-	public float TargetSeconds
-	{
-		get
-		{
-			return targetSeconds;
-		}
-	}
+	public float TargetSeconds => targetSeconds;
 
-	public bool IsDone
-	{
-		get
-		{
-			return currentSeconds >= targetSeconds;
-		}
-	}
+	public bool IsDone => currentSeconds >= targetSeconds;
 
-	public float Progress
-	{
-		get
-		{
-			return Mathf.Clamp01(currentSeconds / targetSeconds);
-		}
-	}
+	public float Progress => Mathf.Clamp01(currentSeconds / targetSeconds);
 
 	public Timer(float targetSeconds)
 	{

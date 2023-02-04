@@ -46,7 +46,7 @@ public class SpyScript : MonoBehaviour
 			if (!Recording && RecordEvent && Yandere.Inventory.DirectionalMic)
 			{
 				Yandere.CharacterAnimation.CrossFade("f02_spyRecord_00");
-				Yandere.Microphone.SetActive(true);
+				Yandere.Microphone.SetActive(value: true);
 				Recording = true;
 			}
 			Timer += Time.deltaTime;
@@ -57,7 +57,7 @@ public class SpyScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 				Yandere.MainCamera.enabled = false;
-				SpyCamera.SetActive(true);
+				SpyCamera.SetActive(value: true);
 				Phase++;
 			}
 		}
@@ -71,10 +71,10 @@ public class SpyScript : MonoBehaviour
 	{
 		PromptBar.ClearButtons();
 		PromptBar.Show = false;
-		Yandere.Microphone.SetActive(false);
+		Yandere.Microphone.SetActive(value: false);
 		Yandere.MainCamera.enabled = true;
 		Yandere.CanMove = true;
-		SpyCamera.SetActive(false);
+		SpyCamera.SetActive(value: false);
 		Timer = 0f;
 		Phase = 0;
 	}

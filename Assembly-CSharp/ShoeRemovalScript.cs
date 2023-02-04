@@ -106,8 +106,8 @@ public class ShoeRemovalScript : MonoBehaviour
 	{
 		if (!Student.AoT)
 		{
-			RightCasualShoe.gameObject.SetActive(true);
-			LeftCasualShoe.gameObject.SetActive(true);
+			RightCasualShoe.gameObject.SetActive(value: true);
+			LeftCasualShoe.gameObject.SetActive(value: true);
 			if (!Male)
 			{
 				MyRenderer.materials[0].mainTexture = Socks;
@@ -117,7 +117,7 @@ public class ShoeRemovalScript : MonoBehaviour
 			{
 				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
 			}
-			bool flag = Student.Follower != null;
+			_ = Student.Follower != null;
 		}
 	}
 
@@ -144,7 +144,7 @@ public class ShoeRemovalScript : MonoBehaviour
 				{
 					return;
 				}
-				bool flag = Student.Follower != null;
+				_ = Student.Follower != null;
 				if (Student.StudentID == Student.StudentManager.RivalID && !Student.StudentManager.MissionMode && !GameGlobals.AlphabetMode && !GameGlobals.AlphabetMode)
 				{
 					if (GameGlobals.Eighties)
@@ -235,8 +235,8 @@ public class ShoeRemovalScript : MonoBehaviour
 				RightNewShoe.parent = RightFoot;
 				RightNewShoe.localPosition = RightShoePosition;
 				RightNewShoe.localEulerAngles = Vector3.zero;
-				RightNewShoe.gameObject.SetActive(false);
-				LeftNewShoe.gameObject.SetActive(false);
+				RightNewShoe.gameObject.SetActive(value: false);
+				LeftNewShoe.gameObject.SetActive(value: false);
 				Phase++;
 			}
 			else if (Phase == 8)
@@ -270,16 +270,24 @@ public class ShoeRemovalScript : MonoBehaviour
 				{
 					return;
 				}
+				if (Student.StudentID == 31)
+				{
+					Debug.Log("Occult leader guy just finished taking off his shoes...");
+				}
+				if (Student.StudentID == 32)
+				{
+					Debug.Log("Chojo just finished taking off his shoes...");
+				}
 				Student.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 				Student.ChangingShoes = false;
 				Student.Routine = true;
 				base.enabled = false;
-				bool flag2 = Student.Follower != null;
+				_ = Student.Follower != null;
 				if (!Student.Indoors)
 				{
 					if (Student.Persona == PersonaType.PhoneAddict || Student.Sleuthing)
 					{
-						Student.SmartPhone.SetActive(true);
+						Student.SmartPhone.SetActive(value: true);
 						if (!Student.Sleuthing)
 						{
 							Student.WalkAnim = Student.PhoneAnims[1];
@@ -357,8 +365,8 @@ public class ShoeRemovalScript : MonoBehaviour
 		RightNewShoe.parent = RightFoot;
 		RightNewShoe.localPosition = RightShoePosition;
 		RightNewShoe.localEulerAngles = Vector3.zero;
-		RightNewShoe.gameObject.SetActive(false);
-		LeftNewShoe.gameObject.SetActive(false);
+		RightNewShoe.gameObject.SetActive(value: false);
+		LeftNewShoe.gameObject.SetActive(value: false);
 		ShoeParent.transform.position = (RightCurrentShoe.position - LeftCurrentShoe.position) * 0.5f;
 		RightCurrentShoe.parent = ShoeParent;
 		LeftCurrentShoe.parent = ShoeParent;
@@ -380,7 +388,6 @@ public class ShoeRemovalScript : MonoBehaviour
 			Debug.Log("A rival character just put her shoes on.");
 			if (GameGlobals.Eighties)
 			{
-				Debug.Log("It's the 80s, so...");
 				Student.StudentManager.UpdateExteriorEightiesStudents();
 			}
 			else if (DateGlobals.Week == 1)
@@ -435,8 +442,8 @@ public class ShoeRemovalScript : MonoBehaviour
 			}
 		}
 		Student.CharacterAnimation.CrossFade(RemovalAnim);
-		RightNewShoe.gameObject.SetActive(true);
-		LeftNewShoe.gameObject.SetActive(true);
+		RightNewShoe.gameObject.SetActive(value: true);
+		LeftNewShoe.gameObject.SetActive(value: true);
 		RightCurrentShoe = RightSchoolShoe;
 		LeftCurrentShoe = LeftSchoolShoe;
 		RightNewShoe = RightCasualShoe;

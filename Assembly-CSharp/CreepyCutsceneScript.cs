@@ -34,8 +34,8 @@ public class CreepyCutsceneScript : MonoBehaviour
 				else
 				{
 					GameGlobals.MetBarber = true;
-					base.gameObject.SetActive(false);
-					Jukebox.SetActive(true);
+					base.gameObject.SetActive(value: false);
+					Jukebox.SetActive(value: true);
 					ShopInterface.TransitionToCreepyCutscene = false;
 					ShopInterface.Salon.EightiesBarber();
 					ShopInterface.TransitionTimer = 0f;

@@ -77,11 +77,11 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 				num5 *= num6;
 				num2 *= num6;
 				num4 *= num6;
-				m_AeroplaneController.Move(num5, num2, num4, 0.5f, false);
+				m_AeroplaneController.Move(num5, num2, num4, 0.5f, airBrakes: false);
 			}
 			else
 			{
-				m_AeroplaneController.Move(0f, 0f, 0f, 0f, false);
+				m_AeroplaneController.Move(0f, 0f, 0f, 0f, airBrakes: false);
 			}
 		}
 

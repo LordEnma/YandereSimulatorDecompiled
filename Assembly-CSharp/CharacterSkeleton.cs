@@ -73,187 +73,49 @@ public class CharacterSkeleton
 	[SerializeField]
 	private Transform leftFoot;
 
-	public Transform Head
-	{
-		get
-		{
-			return head;
-		}
-	}
+	public Transform Head => head;
 
-	public Transform Neck
-	{
-		get
-		{
-			return neck;
-		}
-	}
+	public Transform Neck => neck;
 
-	public Transform Chest
-	{
-		get
-		{
-			return chest;
-		}
-	}
+	public Transform Chest => chest;
 
-	public Transform Stomach
-	{
-		get
-		{
-			return stomach;
-		}
-	}
+	public Transform Stomach => stomach;
 
-	public Transform Pelvis
-	{
-		get
-		{
-			return pelvis;
-		}
-	}
+	public Transform Pelvis => pelvis;
 
-	public Transform RightShoulder
-	{
-		get
-		{
-			return rightShoulder;
-		}
-	}
+	public Transform RightShoulder => rightShoulder;
 
-	public Transform LeftShoulder
-	{
-		get
-		{
-			return leftShoulder;
-		}
-	}
+	public Transform LeftShoulder => leftShoulder;
 
-	public Transform RightUpperArm
-	{
-		get
-		{
-			return rightUpperArm;
-		}
-	}
+	public Transform RightUpperArm => rightUpperArm;
 
-	public Transform LeftUpperArm
-	{
-		get
-		{
-			return leftUpperArm;
-		}
-	}
+	public Transform LeftUpperArm => leftUpperArm;
 
-	public Transform RightElbow
-	{
-		get
-		{
-			return rightElbow;
-		}
-	}
+	public Transform RightElbow => rightElbow;
 
-	public Transform LeftElbow
-	{
-		get
-		{
-			return leftElbow;
-		}
-	}
+	public Transform LeftElbow => leftElbow;
 
-	public Transform RightLowerArm
-	{
-		get
-		{
-			return rightLowerArm;
-		}
-	}
+	public Transform RightLowerArm => rightLowerArm;
 
-	public Transform LeftLowerArm
-	{
-		get
-		{
-			return leftLowerArm;
-		}
-	}
+	public Transform LeftLowerArm => leftLowerArm;
 
-	public Transform RightPalm
-	{
-		get
-		{
-			return rightPalm;
-		}
-	}
+	public Transform RightPalm => rightPalm;
 
-	public Transform LeftPalm
-	{
-		get
-		{
-			return leftPalm;
-		}
-	}
+	public Transform LeftPalm => leftPalm;
 
-	public Transform RightUpperLeg
-	{
-		get
-		{
-			return rightUpperLeg;
-		}
-	}
+	public Transform RightUpperLeg => rightUpperLeg;
 
-	public Transform LeftUpperLeg
-	{
-		get
-		{
-			return leftUpperLeg;
-		}
-	}
+	public Transform LeftUpperLeg => leftUpperLeg;
 
-	public Transform RightKnee
-	{
-		get
-		{
-			return rightKnee;
-		}
-	}
+	public Transform RightKnee => rightKnee;
 
-	public Transform LeftKnee
-	{
-		get
-		{
-			return leftKnee;
-		}
-	}
+	public Transform LeftKnee => leftKnee;
 
-	public Transform RightLowerLeg
-	{
-		get
-		{
-			return rightLowerLeg;
-		}
-	}
+	public Transform RightLowerLeg => rightLowerLeg;
 
-	public Transform LeftLowerLeg
-	{
-		get
-		{
-			return leftLowerLeg;
-		}
-	}
+	public Transform LeftLowerLeg => leftLowerLeg;
 
-	public Transform RightFoot
-	{
-		get
-		{
-			return rightFoot;
-		}
-	}
+	public Transform RightFoot => rightFoot;
 
-	public Transform LeftFoot
-	{
-		get
-		{
-			return leftFoot;
-		}
-	}
+	public Transform LeftFoot => leftFoot;
 }

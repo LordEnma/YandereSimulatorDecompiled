@@ -22,12 +22,12 @@ public class FindStudentLockerScript : MonoBehaviour
 			{
 				Prompt.Circle[0].fillAmount = 1f;
 				Prompt.Yandere.PauseScreen.StudentInfoMenu.FindingLocker = true;
-				Prompt.Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+				Prompt.Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(value: true);
 				Prompt.Yandere.PauseScreen.StudentInfoMenu.Column = 0;
 				Prompt.Yandere.PauseScreen.StudentInfoMenu.Row = 0;
 				Prompt.Yandere.PauseScreen.StudentInfoMenu.UpdateHighlight();
 				Prompt.StartCoroutine(Prompt.Yandere.PauseScreen.StudentInfoMenu.UpdatePortraits());
-				Prompt.Yandere.PauseScreen.MainMenu.SetActive(false);
+				Prompt.Yandere.PauseScreen.MainMenu.SetActive(value: false);
 				Prompt.Yandere.PauseScreen.Panel.enabled = true;
 				Prompt.Yandere.PauseScreen.Sideways = true;
 				Prompt.Yandere.PauseScreen.Show = true;

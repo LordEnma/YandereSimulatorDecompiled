@@ -187,7 +187,7 @@ public abstract class UITweener : MonoBehaviour
 		if (style == Style.Once && (duration == 0f || mFactor > 1f || mFactor < 0f))
 		{
 			mFactor = Mathf.Clamp01(mFactor);
-			Sample(mFactor, true);
+			Sample(mFactor, isFinished: true);
 			base.enabled = false;
 			if (!(current != this))
 			{
@@ -218,7 +218,7 @@ public abstract class UITweener : MonoBehaviour
 		}
 		else
 		{
-			Sample(mFactor, false);
+			Sample(mFactor, isFinished: false);
 		}
 	}
 
@@ -263,7 +263,7 @@ public abstract class UITweener : MonoBehaviour
 	{
 		if (base.enabled)
 		{
-			Sample((mAmountPerDelta > 0f) ? 1f : 0f, true);
+			Sample((mAmountPerDelta > 0f) ? 1f : 0f, isFinished: true);
 			base.enabled = false;
 		}
 	}
@@ -320,17 +320,17 @@ public abstract class UITweener : MonoBehaviour
 	[Obsolete("Use PlayForward() instead")]
 	public void Play()
 	{
-		Play(true);
+		Play(forward: true);
 	}
 
 	public void PlayForward()
 	{
-		Play(true);
+		Play(forward: true);
 	}
 
 	public void PlayReverse()
 	{
-		Play(false);
+		Play(forward: false);
 	}
 
 	public virtual void Play(bool forward)
@@ -352,7 +352,7 @@ public abstract class UITweener : MonoBehaviour
 	{
 		mStarted = false;
 		mFactor = ((amountPerDelta < 0f) ? 1f : 0f);
-		Sample(mFactor, false);
+		Sample(mFactor, isFinished: false);
 	}
 
 	public void Toggle()
@@ -393,8 +393,7 @@ public abstract class UITweener : MonoBehaviour
 			val = go.AddComponent<T>();
 			if ((UnityEngine.Object)val == (UnityEngine.Object)null)
 			{
-				Type typeFromHandle = typeof(T);
-				Debug.LogError("Unable to add " + (((object)typeFromHandle != null) ? typeFromHandle.ToString() : null) + " to " + NGUITools.GetHierarchy(go), go);
+				Debug.LogError("Unable to add " + typeof(T)?.ToString() + " to " + NGUITools.GetHierarchy(go), go);
 				return null;
 			}
 		}

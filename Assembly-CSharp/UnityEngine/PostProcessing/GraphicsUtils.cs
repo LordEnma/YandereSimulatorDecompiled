@@ -6,13 +6,7 @@ namespace UnityEngine.PostProcessing
 
 		private static Mesh s_Quad;
 
-		public static bool isLinearColorSpace
-		{
-			get
-			{
-				return QualitySettings.activeColorSpace == ColorSpace.Linear;
-			}
-		}
+		public static bool isLinearColorSpace => QualitySettings.activeColorSpace == ColorSpace.Linear;
 
 		public static bool supportsDX11
 		{
@@ -34,7 +28,7 @@ namespace UnityEngine.PostProcessing
 				{
 					return s_WhiteTexture;
 				}
-				s_WhiteTexture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
+				s_WhiteTexture = new Texture2D(1, 1, TextureFormat.ARGB32, mipChain: false);
 				s_WhiteTexture.SetPixel(0, 0, new Color(1f, 1f, 1f, 1f));
 				s_WhiteTexture.Apply();
 				return s_WhiteTexture;
@@ -98,7 +92,7 @@ namespace UnityEngine.PostProcessing
 		{
 			RenderTexture active = RenderTexture.active;
 			RenderTexture.active = destination;
-			GL.Clear(false, clearColor, Color.clear);
+			GL.Clear(clearDepth: false, clearColor, Color.clear);
 			GL.PushMatrix();
 			GL.LoadOrtho();
 			material.SetTexture("_MainTex", source);

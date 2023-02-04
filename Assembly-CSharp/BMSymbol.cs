@@ -38,53 +38,17 @@ public class BMSymbol
 		}
 	}
 
-	public int offsetX
-	{
-		get
-		{
-			return mOffsetX;
-		}
-	}
+	public int offsetX => mOffsetX;
 
-	public int offsetY
-	{
-		get
-		{
-			return mOffsetY;
-		}
-	}
+	public int offsetY => mOffsetY;
 
-	public int width
-	{
-		get
-		{
-			return mWidth;
-		}
-	}
+	public int width => mWidth;
 
-	public int height
-	{
-		get
-		{
-			return mHeight;
-		}
-	}
+	public int height => mHeight;
 
-	public int advance
-	{
-		get
-		{
-			return mAdvance;
-		}
-	}
+	public int advance => mAdvance;
 
-	public Rect uvRect
-	{
-		get
-		{
-			return mUV;
-		}
-	}
+	public Rect uvRect => mUV;
 
 	public void MarkAsChanged()
 	{

@@ -65,8 +65,8 @@ public class SewingMachineScript : MonoBehaviour
 				Uniform = Yandere.PickUp;
 				Yandere.EmptyHands();
 				Uniform.transform.parent = Yandere.RightHand;
-				Uniform.transform.localPosition = new Vector3(0f, 0f, 0.09f);
-				Uniform.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+				Uniform.transform.localPosition = new Vector3(0.1f, -0.03f, -0.1f);
+				Uniform.transform.localEulerAngles = new Vector3(0f, -25f, -5f);
 				Uniform.MyRigidbody.useGravity = false;
 				Uniform.MyCollider.enabled = false;
 			}

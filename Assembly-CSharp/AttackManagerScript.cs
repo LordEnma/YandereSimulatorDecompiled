@@ -47,13 +47,7 @@ public class AttackManagerScript : MonoBehaviour
 
 	public Transform RaycastOrigin;
 
-	public int OnlyDefault
-	{
-		get
-		{
-			return 1;
-		}
-	}
+	public int OnlyDefault => 1;
 
 	private void Awake()
 	{
@@ -80,15 +74,12 @@ public class AttackManagerScript : MonoBehaviour
 			{
 				return 0.75f;
 			}
-			switch (sanityType)
+			return sanityType switch
 			{
-			case SanityType.High:
-				return 1f;
-			case SanityType.Medium:
-				return 0.75f;
-			default:
-				return 0.5f;
-			}
+				SanityType.High => 1f, 
+				SanityType.Medium => 0.75f, 
+				_ => 0.5f, 
+			};
 		case WeaponType.Katana:
 			if (!Stealth)
 			{
@@ -96,7 +87,6 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			return 0.5f;
 		case WeaponType.Bat:
-		{
 			if (Stealth)
 			{
 				return 0.5f;
@@ -105,9 +95,8 @@ public class AttackManagerScript : MonoBehaviour
 			{
 				return 0.75f;
 			}
-			int num = 1;
+			_ = 1;
 			return 1f;
-		}
 		case WeaponType.Saw:
 			if (!Stealth)
 			{
@@ -115,7 +104,6 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			return 0.7f;
 		case WeaponType.Weight:
-		{
 			if (Stealth)
 			{
 				return 0.75f;
@@ -124,9 +112,8 @@ public class AttackManagerScript : MonoBehaviour
 			{
 				return 0.75f;
 			}
-			int num2 = 1;
+			_ = 1;
 			return 0.75f;
-		}
 		case WeaponType.Syringe:
 			return 0.5f;
 		case WeaponType.Garrote:
@@ -136,15 +123,12 @@ public class AttackManagerScript : MonoBehaviour
 			{
 				return 0.45f;
 			}
-			switch (sanityType)
+			return sanityType switch
 			{
-			case SanityType.High:
-				return 0.75f;
-			case SanityType.Medium:
-				return 0.95f;
-			default:
-				return 1f;
-			}
+				SanityType.High => 0.75f, 
+				SanityType.Medium => 0.95f, 
+				_ => 1f, 
+			};
 		default:
 			Debug.LogError("Weapon type \"" + weaponType.ToString() + "\" not implemented.");
 			return 0f;

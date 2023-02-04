@@ -103,7 +103,7 @@ public class ConfessionManagerScript : MonoBehaviour
 	private void Start()
 	{
 		StudentManager.Yandere.Class.Portal.EndEvents();
-		StudentManager.Students[StudentManager.RivalID].BookBag.SetActive(false);
+		StudentManager.Students[StudentManager.RivalID].BookBag.SetActive(value: false);
 		Senpai["SenpaiConfession"].speed = 0.9f;
 		TimelessDarkness.color = new Color(0f, 0f, 0f, 0f);
 		Darkness.color = new Color(0f, 0f, 0f, 1f);
@@ -138,8 +138,8 @@ public class ConfessionManagerScript : MonoBehaviour
 			{
 				TimelessDarkness.color = new Color(0f, 0f, 0f, 0f);
 				Darkness.color = new Color(0f, 0f, 0f, 1f);
-				ConfessionCamera.gameObject.SetActive(true);
-				MainCamera.SetActive(false);
+				ConfessionCamera.gameObject.SetActive(value: true);
+				MainCamera.SetActive(value: false);
 				OsanaCosmetic = StudentManager.Students[StudentManager.RivalID].Cosmetic;
 				Osana = StudentManager.Students[StudentManager.RivalID].CharacterAnimation;
 				Tears = StudentManager.Students[StudentManager.RivalID].Tears;
@@ -147,8 +147,8 @@ public class ConfessionManagerScript : MonoBehaviour
 				SenpaiNeck = StudentManager.Students[1].Neck;
 				Osana[OsanaCosmetic.Student.ShyAnim].weight = 0f;
 				Senpai["SenpaiConfession"].speed = 0.9f;
-				OriginalBlossoms.SetActive(false);
-				Tears.gameObject.SetActive(true);
+				OriginalBlossoms.SetActive(value: false);
+				Tears.gameObject.SetActive(value: true);
 				Osana.transform.position = new Vector3(0f, 6.6f, 119.5f);
 				Senpai.transform.position = new Vector3(0f, 6.6f, 119.5f);
 				Osana.transform.eulerAngles = new Vector3(0f, 180f, 0f);
@@ -159,8 +159,8 @@ public class ConfessionManagerScript : MonoBehaviour
 				Debug.Log("The characters were told to perform their confession animations.");
 				Senpai.Play("SenpaiConfession");
 				Osana.Play("OsanaConfession");
-				OriginalBlossoms.SetActive(false);
-				HeartBeatCamera.SetActive(false);
+				OriginalBlossoms.SetActive(value: false);
+				HeartBeatCamera.SetActive(value: false);
 				if (!Eighties)
 				{
 					MyAudio.Play();
@@ -210,7 +210,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			{
 				ConfessionCamera.eulerAngles = SenpaiPOV.eulerAngles;
 				ConfessionCamera.position = SenpaiPOV.position;
-				Senpai.gameObject.SetActive(false);
+				Senpai.gameObject.SetActive(value: false);
 				Osana["OsanaConfession"].time = 11f;
 				MyAudio.volume = 1f;
 				MyAudio.time = 8f;
@@ -451,7 +451,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			{
 				ConfessionCamera.eulerAngles = OriginalPOV.eulerAngles;
 				ConfessionCamera.position = OriginalPOV.position;
-				Senpai.gameObject.SetActive(true);
+				Senpai.gameObject.SetActive(value: true);
 				if (!Reject)
 				{
 					Senpai.Play("SenpaiConfessionAccepted");
@@ -525,7 +525,7 @@ public class ConfessionManagerScript : MonoBehaviour
 					MainCamera.transform.eulerAngles = ConfessionCamera.eulerAngles;
 					MainCamera.transform.position = ConfessionCamera.position;
 					Heartbroken.Confessed = true;
-					MainCamera.SetActive(true);
+					MainCamera.SetActive(value: true);
 					Camera.main.enabled = true;
 					ShoulderCamera.enabled = true;
 					ShoulderCamera.Noticed = true;
@@ -546,13 +546,13 @@ public class ConfessionManagerScript : MonoBehaviour
 						Debug.Log("Confession cutscene ended. Deciding where to go next.");
 						StudentManager.RivalEliminated = true;
 						StudentManager.Yandere.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Rejected;
-						MainCamera.SetActive(true);
-						base.gameObject.SetActive(false);
+						MainCamera.SetActive(value: true);
+						base.gameObject.SetActive(value: false);
 						StudentManager.Clock.PresentTime = 1080f;
 						StudentManager.Clock.StopTime = false;
 						StudentManager.Yandere.HUD.alpha = 1f;
 						StudentManager.Police.Darkness.color = new Color(0f, 0f, 0f, 1f);
-						StudentManager.Police.gameObject.SetActive(true);
+						StudentManager.Police.gameObject.SetActive(value: true);
 						StudentManager.Police.BeginConfession = false;
 						StudentManager.Police.enabled = true;
 						if (StudentManager.Police.EndOfDay.Phase == 25)
@@ -560,7 +560,7 @@ public class ConfessionManagerScript : MonoBehaviour
 							StudentManager.Police.EndOfDay.Phase = 13;
 							StudentManager.Police.EndOfDay.Darken = true;
 							StudentManager.Police.EndOfDay.EndOfDayDarkness.alpha = 1f;
-							StudentManager.Police.EndOfDay.gameObject.SetActive(true);
+							StudentManager.Police.EndOfDay.gameObject.SetActive(value: true);
 						}
 					}
 				}

@@ -191,7 +191,7 @@ public class UIWrapContent : MonoBehaviour
 					num5 += mPanel.clipOffset.x - mTrans.localPosition.x;
 					if (!UICamera.IsPressed(transform.gameObject))
 					{
-						NGUITools.SetActive(transform.gameObject, num5 > num3 && num5 < num4, false);
+						NGUITools.SetActive(transform.gameObject, num5 > num3 && num5 < num4, compatibilityMode: false);
 					}
 				}
 			}
@@ -246,7 +246,7 @@ public class UIWrapContent : MonoBehaviour
 					num10 += mPanel.clipOffset.y - mTrans.localPosition.y;
 					if (!UICamera.IsPressed(transform2.gameObject))
 					{
-						NGUITools.SetActive(transform2.gameObject, num10 > num8 && num10 < num9, false);
+						NGUITools.SetActive(transform2.gameObject, num10 > num8 && num10 < num9, compatibilityMode: false);
 					}
 				}
 			}

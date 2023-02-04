@@ -107,7 +107,7 @@ public class OsanaWednesdayLunchEventScript : MonoBehaviour
 		{
 			if ((double)Rival.CharacterAnimation["f02_" + EventAnim].time >= 1.33333)
 			{
-				Rival.SmartPhone.SetActive(true);
+				Rival.SmartPhone.SetActive(value: true);
 				Phase++;
 			}
 		}
@@ -115,7 +115,7 @@ public class OsanaWednesdayLunchEventScript : MonoBehaviour
 		{
 			if ((double)Rival.CharacterAnimation["f02_" + EventAnim].time >= 6.833333)
 			{
-				Rival.SmartPhone.SetActive(false);
+				Rival.SmartPhone.SetActive(value: false);
 				Phase++;
 			}
 		}

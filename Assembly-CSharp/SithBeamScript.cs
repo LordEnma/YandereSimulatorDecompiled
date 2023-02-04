@@ -59,13 +59,13 @@ public class SithBeamScript : MonoBehaviour
 		}
 		Object.Instantiate(BloodEffect, component.transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
 		component.Health -= Damage;
-		component.HealthBar.transform.parent.gameObject.SetActive(true);
+		component.HealthBar.transform.parent.gameObject.SetActive(value: true);
 		component.HealthBar.transform.localScale = new Vector3(component.Health / 100f, 1f, 1f);
 		component.Character.transform.localScale = new Vector3(component.Character.transform.localScale.x * -1f, component.Character.transform.localScale.y, component.Character.transform.localScale.z);
 		if (component.Health <= 0f)
 		{
 			component.DeathType = DeathType.EasterEgg;
-			component.HealthBar.transform.parent.gameObject.SetActive(false);
+			component.HealthBar.transform.parent.gameObject.SetActive(value: false);
 			component.BecomeRagdoll();
 			component.Ragdoll.AllRigidbodies[0].isKinematic = false;
 		}

@@ -56,7 +56,7 @@ public class VoidGoddessScript : MonoBehaviour
 
 	public void Start()
 	{
-		Window.parent.gameObject.SetActive(false);
+		Window.parent.gameObject.SetActive(value: false);
 		if (Initialized)
 		{
 			return;
@@ -133,12 +133,12 @@ public class VoidGoddessScript : MonoBehaviour
 				Prompt.HideButton[1] = false;
 				Prompt.HideButton[2] = false;
 				Prompt.OffsetX[0] = 0f;
-				Goddess.SetActive(true);
+				Goddess.SetActive(value: true);
 			}
 			else
 			{
-				Window.parent.gameObject.SetActive(true);
-				Window.gameObject.SetActive(true);
+				Window.parent.gameObject.SetActive(value: true);
+				Window.gameObject.SetActive(value: true);
 				Prompt.Yandere.CanMove = false;
 				PassingJudgement = true;
 			}
@@ -153,7 +153,7 @@ public class VoidGoddessScript : MonoBehaviour
 			Prompt.HideButton[2] = true;
 			Prompt.OffsetX[0] = 0f;
 			base.transform.position = new Vector3(-9.5f, 1f, -75f);
-			Goddess.SetActive(false);
+			Goddess.SetActive(value: false);
 			Follow = false;
 		}
 		if (Prompt.Circle[2].fillAmount == 0f)
@@ -374,7 +374,7 @@ public class VoidGoddessScript : MonoBehaviour
 		}
 		if (Input.GetButtonDown("B"))
 		{
-			Window.parent.gameObject.SetActive(false);
+			Window.parent.gameObject.SetActive(value: false);
 			Prompt.Yandere.CanMove = true;
 			Prompt.Yandere.Shoved = false;
 			PassingJudgement = false;

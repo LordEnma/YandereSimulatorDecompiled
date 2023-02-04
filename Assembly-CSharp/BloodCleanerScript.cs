@@ -23,7 +23,7 @@ public class BloodCleanerScript : MonoBehaviour
 	{
 		if (Super)
 		{
-			Physics.IgnoreLayerCollision(11, 15, true);
+			Physics.IgnoreLayerCollision(11, 15, ignore: true);
 			Prompt.Hide();
 			Prompt.enabled = false;
 		}
@@ -70,7 +70,7 @@ public class BloodCleanerScript : MonoBehaviour
 					Blood += Time.deltaTime;
 					if (Blood >= 100f)
 					{
-						Lens.SetActive(true);
+						Lens.SetActive(value: true);
 					}
 					if (child.transform.localScale.x < 0.1f)
 					{

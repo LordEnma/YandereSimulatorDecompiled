@@ -25,21 +25,9 @@ public class RangeInt
 		}
 	}
 
-	public int Min
-	{
-		get
-		{
-			return min;
-		}
-	}
+	public int Min => min;
 
-	public int Max
-	{
-		get
-		{
-			return max;
-		}
-	}
+	public int Max => max;
 
 	public int Next
 	{

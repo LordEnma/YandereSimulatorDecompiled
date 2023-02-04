@@ -41,7 +41,7 @@ public class OsanaJokeScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 6.75f)
 			{
-				ReturnLabel.SetActive(true);
+				ReturnLabel.SetActive(value: true);
 				if (Input.GetKeyDown("e"))
 				{
 					SceneManager.LoadScene("NewTitleScene");

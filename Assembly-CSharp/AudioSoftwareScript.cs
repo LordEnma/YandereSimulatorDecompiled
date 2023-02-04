@@ -26,7 +26,7 @@ public class AudioSoftwareScript : MonoBehaviour
 
 	private void Start()
 	{
-		Screen.SetActive(false);
+		Screen.SetActive(value: false);
 	}
 
 	private void Update()
@@ -49,7 +49,7 @@ public class AudioSoftwareScript : MonoBehaviour
 			Yandere.CanMove = false;
 			GetComponent<AudioSource>().Play();
 			ChairCollider.enabled = false;
-			Screen.SetActive(true);
+			Screen.SetActive(value: true);
 			Editing = true;
 		}
 		if (Editing)
@@ -81,7 +81,7 @@ public class AudioSoftwareScript : MonoBehaviour
 				Yandere.CanMove = true;
 				ChairCollider.enabled = true;
 				EventSubtitle.text = "";
-				Screen.SetActive(false);
+				Screen.SetActive(value: false);
 				AudioDoctored = true;
 				Editing = false;
 				Prompt.enabled = false;

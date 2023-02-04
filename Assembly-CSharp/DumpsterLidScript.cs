@@ -32,7 +32,7 @@ public class DumpsterLidScript : MonoBehaviour
 
 	private void Start()
 	{
-		FallChecker.SetActive(false);
+		FallChecker.SetActive(value: false);
 		Prompt.HideButton[3] = true;
 	}
 
@@ -88,7 +88,7 @@ public class DumpsterLidScript : MonoBehaviour
 			}
 			else
 			{
-				FallChecker.SetActive(false);
+				FallChecker.SetActive(value: false);
 			}
 			if (Slide)
 			{
@@ -99,7 +99,7 @@ public class DumpsterLidScript : MonoBehaviour
 				{
 					DragPrompts[0].enabled = false;
 					DragPrompts[1].enabled = false;
-					FallChecker.SetActive(false);
+					FallChecker.SetActive(value: false);
 					Slide = false;
 				}
 			}
@@ -125,7 +125,7 @@ public class DumpsterLidScript : MonoBehaviour
 			}
 			GarbageDebris.localPosition = new Vector3(GarbageDebris.localPosition.x, 1f, GarbageDebris.localPosition.z);
 			StudentToGoMissing = Corpse.GetComponent<StudentScript>().StudentID;
-			Corpse.gameObject.SetActive(false);
+			Corpse.gameObject.SetActive(value: false);
 			Fill = false;
 			Prompt.Yandere.StudentManager.UpdateStudents();
 		}
@@ -133,6 +133,6 @@ public class DumpsterLidScript : MonoBehaviour
 
 	public void SetVictimMissing()
 	{
-		StudentGlobals.SetStudentMissing(StudentToGoMissing, true);
+		StudentGlobals.SetStudentMissing(StudentToGoMissing, value: true);
 	}
 }

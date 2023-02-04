@@ -7,13 +7,7 @@ public class Phase
 	[SerializeField]
 	private PhaseOfDay type;
 
-	public PhaseOfDay Type
-	{
-		get
-		{
-			return type;
-		}
-	}
+	public PhaseOfDay Type => type;
 
 	public Phase(PhaseOfDay type)
 	{

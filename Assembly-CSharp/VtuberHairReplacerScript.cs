@@ -10,12 +10,12 @@ public class VtuberHairReplacerScript : MonoBehaviour
 	{
 		if (GameGlobals.VtuberID > 0)
 		{
-			YandereHair.SetActive(false);
-			VtuberHair[GameGlobals.VtuberID].SetActive(true);
+			YandereHair.SetActive(value: false);
+			VtuberHair[GameGlobals.VtuberID].SetActive(value: true);
 		}
 		else
 		{
-			VtuberHair[1].SetActive(false);
+			VtuberHair[1].SetActive(value: false);
 		}
 	}
 }

@@ -59,7 +59,7 @@ public class TweenTransform : UITweener
 		tweenTransform.to = to;
 		if (duration <= 0f)
 		{
-			tweenTransform.Sample(1f, true);
+			tweenTransform.Sample(1f, isFinished: true);
 			tweenTransform.enabled = false;
 		}
 		return tweenTransform;

@@ -33,8 +33,8 @@ public class RivalEditorScript : MonoBehaviour
 	{
 		if (Input.GetButtonDown("B"))
 		{
-			mainPanel.gameObject.SetActive(true);
-			rivalPanel.gameObject.SetActive(false);
+			mainPanel.gameObject.SetActive(value: true);
+			rivalPanel.gameObject.SetActive(value: false);
 		}
 	}
 

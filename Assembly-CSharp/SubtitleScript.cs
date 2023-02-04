@@ -600,6 +600,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public AudioClip LongestSilence;
 
+	public EightiesClubDialogueScript EightiesClubDialogue;
+
 	public SubtitleType PreviousSubtitle;
 
 	private int PreviousStudentID;
@@ -1040,7 +1042,7 @@ public class SubtitleScript : MonoBehaviour
 				ClubAccepts[i] = "That's great! Welcome to the club!";
 				ClubRefuses[i] = "Aww, too bad. Let me know if you change your mind!";
 				ClubRejoins[i] = "I'm sorry, I can't let you back into the club. You might leave us again, just like last time.";
-				ClubExclusives[i] = "I'm sorry, you're already a member of another club. You'd have to leave them if you want to join us";
+				ClubExclusives[i] = "I'm sorry, you're already a member of another club. You'd have to leave them if you want to join us.";
 				ClubGrudges[i] = "I'm sorry...someone in our club has a big problem with you. I can't let you join.";
 				ClubQuits[i] = "Uh-oh! Are you thinking about quitting the club?";
 				ClubConfirms[i] = "Aww, that's too bad. I'm sad to see you go.";
@@ -1070,6 +1072,9 @@ public class SubtitleScript : MonoBehaviour
 				ClubYesClips[i] = LongestSilence;
 				ClubNoClips[i] = LongestSilence;
 			}
+			EightiesClubDialogue.UpdateDialogue(2);
+			EightiesClubDialogue.UpdateDialogue(3);
+			EightiesClubDialogue.UpdateDialogue(4);
 			Shoving[1] = "Back off.";
 			Shoving[2] = "Desculpa!";
 			Shoving[3] = "Oops, sorry!";
@@ -3149,8 +3154,7 @@ public class SubtitleScript : MonoBehaviour
 	private void PlayVoice(SubtitleType subtitleType, int ID)
 	{
 		Jukebox.Dip = 0.5f;
-		AudioClipArrayWrapper value;
-		SubtitleClipArrays.TryGetValue(subtitleType, out value);
+		SubtitleClipArrays.TryGetValue(subtitleType, out var value);
 		if (CurrentClip != null && value[ID] != HmmClips[0])
 		{
 			Object.Destroy(CurrentClip);

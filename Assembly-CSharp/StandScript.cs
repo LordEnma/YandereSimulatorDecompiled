@@ -146,9 +146,9 @@ public class StandScript : MonoBehaviour
 	{
 		FalconPunch.MyCollider.enabled = false;
 		StandPunch.MyCollider.enabled = false;
-		StandCamera.SetActive(true);
+		StandCamera.SetActive(value: true);
 		MotionBlur.enabled = true;
-		Stand.SetActive(true);
+		Stand.SetActive(value: true);
 	}
 
 	private void Return()

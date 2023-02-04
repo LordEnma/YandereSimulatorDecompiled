@@ -47,15 +47,15 @@ public class ClubSaveData
 		ClubGlobals.Club = data.club;
 		foreach (ClubType item in data.clubClosed)
 		{
-			ClubGlobals.SetClubClosed(item, true);
+			ClubGlobals.SetClubClosed(item, value: true);
 		}
 		foreach (ClubType item2 in data.clubKicked)
 		{
-			ClubGlobals.SetClubKicked(item2, true);
+			ClubGlobals.SetClubKicked(item2, value: true);
 		}
 		foreach (ClubType item3 in data.quitClub)
 		{
-			ClubGlobals.SetQuitClub(item3, true);
+			ClubGlobals.SetQuitClub(item3, value: true);
 		}
 	}
 }

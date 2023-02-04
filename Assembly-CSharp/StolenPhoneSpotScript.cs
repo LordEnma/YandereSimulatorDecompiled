@@ -44,8 +44,8 @@ public class StolenPhoneSpotScript : MonoBehaviour
 						RivalPhone.transform.position = PhoneSpot.position;
 					}
 					RivalPhone.transform.eulerAngles = base.transform.eulerAngles;
-					RivalPhone.gameObject.SetActive(true);
-					base.gameObject.SetActive(false);
+					RivalPhone.gameObject.SetActive(value: true);
+					base.gameObject.SetActive(value: false);
 				}
 				else
 				{

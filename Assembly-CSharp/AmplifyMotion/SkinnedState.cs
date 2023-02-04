@@ -173,7 +173,7 @@ namespace AmplifyMotion
 				}
 				if (!m_useGPU)
 				{
-					m_asyncUpdateSignal = new ManualResetEvent(false);
+					m_asyncUpdateSignal = new ManualResetEvent(initialState: false);
 					m_asyncUpdateTriggered = false;
 				}
 			}
@@ -219,7 +219,7 @@ namespace AmplifyMotion
 				{
 					hideFlags = HideFlags.DontSave
 				};
-				m_gpuBones = new Texture2D(m_gpuBoneTexWidth, m_gpuBoneTexHeight, TextureFormat.RGBAFloat, false, true);
+				m_gpuBones = new Texture2D(m_gpuBoneTexWidth, m_gpuBoneTexHeight, TextureFormat.RGBAFloat, mipChain: false, linear: true);
 				m_gpuBones.hideFlags = HideFlags.DontSave;
 				m_gpuBones.name = "AM-" + m_obj.name + "-Bones";
 				m_gpuBones.filterMode = FilterMode.Point;
@@ -228,7 +228,7 @@ namespace AmplifyMotion
 				TextureFormat textureFormat = TextureFormat.RHalf;
 				textureFormat = ((m_weightCount == 2) ? TextureFormat.RGHalf : textureFormat);
 				textureFormat = ((m_weightCount == 4) ? TextureFormat.RGBAHalf : textureFormat);
-				m_gpuBoneIndices = new Texture2D(m_gpuVertexTexWidth, m_gpuVertexTexHeight, textureFormat, false, true);
+				m_gpuBoneIndices = new Texture2D(m_gpuVertexTexWidth, m_gpuVertexTexHeight, textureFormat, mipChain: false, linear: true);
 				m_gpuBoneIndices.hideFlags = HideFlags.DontSave;
 				m_gpuBoneIndices.name = "AM-" + m_obj.name + "-Bones";
 				m_gpuBoneIndices.filterMode = FilterMode.Point;
@@ -247,7 +247,7 @@ namespace AmplifyMotion
 				m_gpuBaseVertices = new Texture2D[m_weightCount];
 				for (int j = 0; j < m_weightCount; j++)
 				{
-					m_gpuBaseVertices[j] = new Texture2D(m_gpuVertexTexWidth, m_gpuVertexTexHeight, TextureFormat.RGBAFloat, false, true);
+					m_gpuBaseVertices[j] = new Texture2D(m_gpuVertexTexWidth, m_gpuVertexTexHeight, TextureFormat.RGBAFloat, mipChain: false, linear: true);
 					m_gpuBaseVertices[j].hideFlags = HideFlags.DontSave;
 					m_gpuBaseVertices[j].name = "AM-" + m_obj.name + "-BaseVerts";
 					m_gpuBaseVertices[j].filterMode = FilterMode.Point;

@@ -31,11 +31,11 @@ public class DanceMinigamePromptScript : MonoBehaviour
 			Prompt.Yandere.enabled = false;
 			Prompt.Yandere.Jukebox.LastVolume = Prompt.Yandere.Jukebox.Volume;
 			Prompt.Yandere.Jukebox.Volume = 0f;
-			Prompt.Yandere.HUD.transform.parent.gameObject.SetActive(false);
-			Prompt.Yandere.MainCamera.gameObject.SetActive(false);
+			Prompt.Yandere.HUD.transform.parent.gameObject.SetActive(value: false);
+			Prompt.Yandere.MainCamera.gameObject.SetActive(value: false);
 			OriginalRenderer.enabled = false;
 			Physics.SyncTransforms();
-			DanceMinigame.SetActive(true);
+			DanceMinigame.SetActive(value: true);
 			DanceManager.BeginMinigame();
 			StudentManager.DisableEveryone();
 		}

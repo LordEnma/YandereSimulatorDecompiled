@@ -410,9 +410,9 @@ public class ClockScript : MonoBehaviour
 				StudentManager.UpdateDrama();
 				DeactivateTrespassZones();
 				Period++;
-				StudentManager.WednesdayGiftBox.SetActive(false);
-				StudentManager.FridayTestNotes.SetActive(false);
-				StudentManager.MondayBento.SetActive(false);
+				StudentManager.WednesdayGiftBox.SetActive(value: false);
+				StudentManager.FridayTestNotes.SetActive(value: false);
+				StudentManager.MondayBento.SetActive(value: false);
 				StudentManager.RivalBookBag.NoBento = true;
 				StudentManager.Unstop();
 				if (!GameGlobals.Eighties && DateGlobals.Week == 1 && !StudentManager.MissionMode)
@@ -547,7 +547,7 @@ public class ClockScript : MonoBehaviour
 				RetroMinigame.MyRenderer.mainTexture = RetroMinigame.ModernTexture;
 			}
 			Yandere.PauseScreen.PromptBar.Label[0].text = "Jump / Retry";
-			RetroMinigame.gameObject.SetActive(true);
+			RetroMinigame.gameObject.SetActive(value: true);
 			RetroMinigame.Show = true;
 		}
 		else if (Yandere.CameraEffects.Streaks.color.a > 0f || Yandere.CameraEffects.MurderStreaks.color.a > 0f || Yandere.NearSenpai || Input.GetButtonDown("B"))
@@ -567,7 +567,7 @@ public class ClockScript : MonoBehaviour
 		Yandere.PauseScreen.PromptBar.Show = false;
 		PromptParent.localScale = new Vector3(1f, 1f, 1f);
 		Yandere.transform.position = OriginalPosition;
-		Yandere.Phone.SetActive(false);
+		Yandere.Phone.SetActive(value: false);
 		Yandere.TimeSkipping = false;
 		Time.timeScale = 1f;
 		TimeSkip = false;
@@ -578,7 +578,7 @@ public class ClockScript : MonoBehaviour
 			Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 			Yandere.CanMoveTimer = 0.5f;
 		}
-		RetroMinigame.MinigameCamera.SetActive(false);
+		RetroMinigame.MinigameCamera.SetActive(value: false);
 		RetroMinigame.Show = false;
 	}
 
@@ -648,7 +648,7 @@ public class ClockScript : MonoBehaviour
 	{
 		if (!StudentManager.MissionMode && StudentManager.Students[7] != null && StudentManager.Students[7].Alive)
 		{
-			StudentManager.Students[7].gameObject.SetActive(true);
+			StudentManager.Students[7].gameObject.SetActive(value: true);
 			StudentManager.Students[7].Pathfinding.speed = 4f;
 			StudentManager.Students[7].Spawned = true;
 			StudentManager.Students[7].Hurry = true;

@@ -53,8 +53,8 @@ public class LifeNoteScript : MonoBehaviour
 	{
 		Application.targetFrameRate = 60;
 		Label.text = Lines[ID];
-		Controls.SetActive(false);
-		Label.gameObject.SetActive(false);
+		Controls.SetActive(value: false);
+		Label.gameObject.SetActive(value: false);
 		Darkness.color = new Color(0f, 0f, 0f, 1f);
 		BackgroundArt.localPosition = new Vector3(0f, -540f, 0f);
 		BackgroundArt.localScale = new Vector3(2.5f, 2.5f, 1f);
@@ -161,8 +161,8 @@ public class LifeNoteScript : MonoBehaviour
 			BackgroundArt.localScale = new Vector3(1f, 1f, 1f);
 			TextWindow.color = new Color(1f, 1f, 1f, 1f);
 			Label.color = new Color(1f, 1f, 1f, 0f);
-			Label.gameObject.SetActive(true);
-			Controls.SetActive(true);
+			Label.gameObject.SetActive(value: true);
+			Controls.SetActive(value: true);
 			Timer = 0f;
 		}
 		Timer += Time.deltaTime;
@@ -173,8 +173,8 @@ public class LifeNoteScript : MonoBehaviour
 			if (TextWindow.color.a == 1f && !Typewriter.mActive)
 			{
 				Label.color = new Color(1f, 1f, 1f, 0f);
-				Label.gameObject.SetActive(true);
-				Controls.SetActive(true);
+				Label.gameObject.SetActive(value: true);
+				Controls.SetActive(value: true);
 				Timer = 0f;
 			}
 		}

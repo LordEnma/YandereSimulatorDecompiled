@@ -21,7 +21,7 @@ public class WarningScript : MonoBehaviour
 
 	private void Start()
 	{
-		WarningLabel.gameObject.SetActive(false);
+		WarningLabel.gameObject.SetActive(value: false);
 		Label.text = string.Empty;
 		Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 1f);
 	}
@@ -36,7 +36,7 @@ public class WarningScript : MonoBehaviour
 			{
 				if (Timer == 0f)
 				{
-					WarningLabel.gameObject.SetActive(true);
+					WarningLabel.gameObject.SetActive(value: true);
 					component.Play();
 				}
 				Timer += Time.deltaTime;

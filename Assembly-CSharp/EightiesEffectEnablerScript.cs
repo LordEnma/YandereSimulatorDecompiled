@@ -49,5 +49,10 @@ public class EightiesEffectEnablerScript : MonoBehaviour
 		{
 			Debug.Log("No 80s tint in this scene. Consider adding one to " + base.gameObject.name + "?");
 		}
+		if (SceneManager.GetActiveScene().name == "EightiesCutsceneScene")
+		{
+			EightiesEffects.useScanlines = true;
+			EightiesEffects.scanlineIntensity = 1f;
+		}
 	}
 }

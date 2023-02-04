@@ -25,7 +25,7 @@ public class RivalPhoneScript : MonoBehaviour
 		OriginalParent = base.transform.parent;
 		OriginalPosition = base.transform.localPosition;
 		OriginalRotation = base.transform.localRotation;
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 		Prompt.Hide();
 	}
 
@@ -53,7 +53,7 @@ public class RivalPhoneScript : MonoBehaviour
 			StolenPhoneDropoff.Phase = 1;
 			StolenPhoneDropoff.Timer = 0f;
 			StolenPhoneDropoff.Prompt.Label[0].text = "     Provide Stolen Phone";
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			Stolen = true;
 		}
 		else
@@ -68,7 +68,7 @@ public class RivalPhoneScript : MonoBehaviour
 		base.transform.parent = OriginalParent;
 		base.transform.localPosition = OriginalPosition;
 		base.transform.localRotation = OriginalRotation;
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 		Prompt.enabled = true;
 		LewdPhotos = false;
 		Stolen = false;

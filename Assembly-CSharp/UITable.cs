@@ -242,11 +242,11 @@ public class UITable : UIWidgetContainer
 		}
 		if (keepWithinPanel && mPanel != null)
 		{
-			mPanel.ConstrainTargetToBounds(target, true);
+			mPanel.ConstrainTargetToBounds(target, immediate: true);
 			UIScrollView component = mPanel.GetComponent<UIScrollView>();
 			if (component != null)
 			{
-				component.UpdateScrollbars(true);
+				component.UpdateScrollbars(recalculateBounds: true);
 			}
 		}
 		if (onReposition != null)

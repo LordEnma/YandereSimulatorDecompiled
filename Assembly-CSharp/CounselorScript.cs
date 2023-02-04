@@ -462,15 +462,15 @@ public class CounselorScript : MonoBehaviour
 		WeaponsBanned = CounselorGlobals.WeaponsBanned;
 		DelinquentPunishments = CounselorGlobals.DelinquentPunishments;
 		CounselorWindow.localScale = Vector3.zero;
-		CounselorWindow.gameObject.SetActive(false);
-		CounselorOptions.SetActive(false);
-		CounselorBar.SetActive(false);
-		Reticle.SetActive(false);
+		CounselorWindow.gameObject.SetActive(value: false);
+		CounselorOptions.SetActive(value: false);
+		CounselorBar.SetActive(value: false);
+		Reticle.SetActive(value: false);
 		RivalExpelProgress = StudentGlobals.ExpelProgress;
 		int week = DateGlobals.Week;
 		if (week > 10)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			return;
 		}
 		ExpelProgress.color = new Color(ExpelProgress.color.r, ExpelProgress.color.g, ExpelProgress.color.b, 0f);
@@ -480,13 +480,13 @@ public class CounselorScript : MonoBehaviour
 		{
 			Eighties = true;
 			MyAnimation.Play("f02_deskWritePingPong_00");
-			Laptop.SetActive(false);
-			EightiesPaper.SetActive(true);
-			EightiesAttacher.gameObject.SetActive(true);
+			Laptop.SetActive(value: false);
+			EightiesPaper.SetActive(value: true);
+			EightiesAttacher.gameObject.SetActive(value: true);
 			OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().enabled = false;
-			OriginalMesh[2].SetActive(false);
-			OriginalMesh[3].SetActive(false);
-			EightiesMesh[1].SetActive(true);
+			OriginalMesh[2].SetActive(value: false);
+			OriginalMesh[3].SetActive(value: false);
+			EightiesMesh[1].SetActive(value: true);
 			Countdown = EightiesCountdown;
 			Labels[1].text = "Report Alcohol";
 			Labels[2].text = "Report Condoms";
@@ -512,7 +512,7 @@ public class CounselorScript : MonoBehaviour
 			AngryEyesID = 2;
 			MouthOpenID = 9;
 			base.transform.position += new Vector3(0f, -0.1f, 0f);
-			RedPen.SetActive(true);
+			RedPen.SetActive(value: true);
 			LewdLectureClips[0] = LongSilence;
 			LewdLectureClips[1] = LongSilence;
 			LewdLectures[0] = "You've been caught aiming a camera at a student's unmentionables. Start talking.";
@@ -666,7 +666,7 @@ public class CounselorScript : MonoBehaviour
 		else if (CounselorWindow.gameObject.activeInHierarchy)
 		{
 			CounselorWindow.localScale = Vector3.zero;
-			CounselorWindow.gameObject.SetActive(false);
+			CounselorWindow.gameObject.SetActive(value: false);
 		}
 		if (Lecturing)
 		{
@@ -694,7 +694,7 @@ public class CounselorScript : MonoBehaviour
 				LectureLabel.color = new Color(LectureLabel.color.r, LectureLabel.color.g, LectureLabel.color.b, Mathf.MoveTowards(LectureLabel.color.a, 0f, Time.deltaTime));
 				if (LectureLabel.color.a == 0f)
 				{
-					EndOfDay.TextWindow.SetActive(false);
+					EndOfDay.TextWindow.SetActive(value: false);
 					EndOfDay.EODCamera.GetComponent<AudioListener>().enabled = true;
 					LectureSubtitle.text = CounselorLectureText[LectureID];
 					MyAudio.clip = CounselorLectureClips[LectureID];
@@ -760,11 +760,11 @@ public class CounselorScript : MonoBehaviour
 				ExpelTimer += Time.deltaTime;
 				if (ExpelTimer > 1f)
 				{
-					RIVAL.gameObject.SetActive(true);
+					RIVAL.gameObject.SetActive(value: true);
 				}
 				if (ExpelTimer > 3f)
 				{
-					EXPELLED.gameObject.SetActive(true);
+					EXPELLED.gameObject.SetActive(value: true);
 				}
 				if (ExpelTimer > 5f)
 				{
@@ -773,8 +773,8 @@ public class CounselorScript : MonoBehaviour
 				}
 				if (ExpelTimer > 7f)
 				{
-					RIVAL.gameObject.SetActive(false);
-					EXPELLED.gameObject.SetActive(false);
+					RIVAL.gameObject.SetActive(value: false);
+					EXPELLED.gameObject.SetActive(value: false);
 					LecturePhase++;
 				}
 			}
@@ -813,7 +813,7 @@ public class CounselorScript : MonoBehaviour
 					else
 					{
 						Debug.Log("The lecture is over. Now, the game decides where to go next.");
-						Yandere.Subtitle.gameObject.SetActive(true);
+						Yandere.Subtitle.gameObject.SetActive(value: true);
 						if (!EndOfDay.Police.Show)
 						{
 							Lecturing = false;
@@ -833,14 +833,14 @@ public class CounselorScript : MonoBehaviour
 							else
 							{
 								Debug.Log("We got here prior to Period 5. We are leaving the lecture and returning to gameplay.");
-								StudentManager.Portal.gameObject.GetComponent<PortalScript>().Class.gameObject.SetActive(true);
+								StudentManager.Portal.gameObject.GetComponent<PortalScript>().Class.gameObject.SetActive(value: true);
 								StudentManager.Portal.gameObject.GetComponent<PortalScript>().ReturningFromLecture = true;
-								EndOfDay.gameObject.SetActive(false);
+								EndOfDay.gameObject.SetActive(value: false);
 								EndOfDay.Phase = 1;
 								CutsceneManager.Phase++;
 								Yandere.PauseScreen.Schemes.SchemeManager.enabled = false;
-								Yandere.MainCamera.gameObject.SetActive(true);
-								Yandere.gameObject.SetActive(true);
+								Yandere.MainCamera.gameObject.SetActive(value: true);
+								Yandere.gameObject.SetActive(value: true);
 								SpawnDelinquents();
 								StudentManager.ComeBack();
 								StudentManager.Students[StudentManager.RivalID].IdleAnim = StudentManager.Students[StudentManager.RivalID].BulliedIdleAnim;
@@ -859,7 +859,7 @@ public class CounselorScript : MonoBehaviour
 									else if (LectureID == 6)
 									{
 										Debug.Log("Disabling the rival and her bag, since she was expelled.");
-										StudentManager.Students[StudentManager.RivalID].gameObject.SetActive(false);
+										StudentManager.Students[StudentManager.RivalID].gameObject.SetActive(value: false);
 										if (StudentManager.Students[StudentManager.SuitorID] != null)
 										{
 											Debug.Log("Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
@@ -869,7 +869,7 @@ public class CounselorScript : MonoBehaviour
 									if (StudentManager.Students[StudentManager.RivalID] != null && !StudentManager.Students[StudentManager.RivalID].gameObject.activeInHierarchy)
 									{
 										Debug.Log("Disabling the rival's bag, since she was expelled.");
-										StudentManager.GenericRivalBag.gameObject.SetActive(false);
+										StudentManager.GenericRivalBag.gameObject.SetActive(value: false);
 										if (StudentManager.RivalID == 19)
 										{
 											StudentManager.RevertEightiesWeek9RoutineAdjustments();
@@ -939,7 +939,7 @@ public class CounselorScript : MonoBehaviour
 		Yandere.TargetStudent = Student;
 		TalkTimer = 0f;
 		StudentManager.DisablePrompts();
-		CounselorWindow.gameObject.SetActive(true);
+		CounselorWindow.gameObject.SetActive(value: true);
 		LookAtPlayer = true;
 		ShowWindow = true;
 		Yandere.ShoulderCamera.OverShoulder = true;
@@ -954,7 +954,7 @@ public class CounselorScript : MonoBehaviour
 		PromptBar.UpdateButtons();
 		PromptBar.Show = true;
 		base.transform.position = new Vector3(-28.93333f, 0f, 12f);
-		RedPen.SetActive(false);
+		RedPen.SetActive(value: false);
 		UpdateList();
 	}
 
@@ -1056,11 +1056,11 @@ public class CounselorScript : MonoBehaviour
 		}
 		if (Selected == 6)
 		{
-			NarcoticsWindow.gameObject.SetActive(true);
+			NarcoticsWindow.gameObject.SetActive(value: true);
 		}
 		else
 		{
-			NarcoticsWindow.gameObject.SetActive(false);
+			NarcoticsWindow.gameObject.SetActive(value: false);
 		}
 		Highlight.transform.localPosition = new Vector3(Highlight.transform.localPosition.x, 200f - 50f * (float)Selected, Highlight.transform.localPosition.z);
 	}
@@ -1159,13 +1159,13 @@ public class CounselorScript : MonoBehaviour
 		Yandere.SuspiciousActionTimer = 0f;
 		Yandere.WeaponTimer = 0f;
 		Yandere.TheftTimer = 0f;
-		Yandere.HeartRate.gameObject.SetActive(true);
-		Yandere.Subtitle.gameObject.SetActive(true);
+		Yandere.HeartRate.gameObject.SetActive(value: true);
+		Yandere.Subtitle.gameObject.SetActive(value: true);
 		Yandere.CannotRecover = false;
 		Yandere.Noticed = false;
 		Yandere.Talking = true;
 		Yandere.ShoulderCamera.GoingToCounselor = false;
-		Yandere.ShoulderCamera.HUD.SetActive(true);
+		Yandere.ShoulderCamera.HUD.SetActive(value: true);
 		Yandere.ShoulderCamera.Noticed = false;
 		Yandere.ShoulderCamera.enabled = true;
 		Yandere.TargetStudent = Student;
@@ -1181,17 +1181,17 @@ public class CounselorScript : MonoBehaviour
 		Yandere.transform.position = new Vector3(-21.5f, 0f, 8f);
 		Yandere.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 		Yandere.ShoulderCamera.OverShoulder = false;
-		CounselorBar.SetActive(false);
+		CounselorBar.SetActive(value: false);
 		StudentManager.EnablePrompts();
 		if (!EightiesAttacher.gameObject.activeInHierarchy)
 		{
-			Laptop.SetActive(true);
+			Laptop.SetActive(value: true);
 		}
 		else
 		{
 			MyAnimation.CrossFade("f02_deskWritePingPong_00");
 			base.transform.position += new Vector3(0f, -0.1f, 0f);
-			RedPen.SetActive(true);
+			RedPen.SetActive(value: true);
 		}
 		LookAtPlayer = false;
 		ShowWindow = false;
@@ -1264,7 +1264,7 @@ public class CounselorScript : MonoBehaviour
 				}
 				Yandere.CameraEffects.UpdateDOF(1.1f);
 				GenkaChibi.mainTexture = AnnoyedChibi;
-				CounselorBar.SetActive(true);
+				CounselorBar.SetActive(value: true);
 				Subtitle.Label.text = "";
 				InterrogationPhase++;
 				Time.timeScale = 1f;
@@ -1372,7 +1372,7 @@ public class CounselorScript : MonoBehaviour
 					CounselorOption[i].transform.localPosition = CounselorOption[i].OriginalPosition;
 					CounselorOption[i].Sprite.color = CounselorOption[i].OriginalColor;
 					CounselorOption[i].transform.localScale = new Vector3(0.9f, 0.9f, 1f);
-					CounselorOption[i].gameObject.SetActive(true);
+					CounselorOption[i].gameObject.SetActive(value: true);
 					CounselorOption[i].Clicked = false;
 				}
 				Yandere.CharacterAnimation["f02_countdown_00"].speed = 1f;
@@ -1382,8 +1382,8 @@ public class CounselorScript : MonoBehaviour
 				Yandere.MainCamera.transform.position = new Vector3(-28f, 1.1f, 12f);
 				Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 				Reticle.transform.localPosition = new Vector3(0f, 0f, 0f);
-				CounselorOptions.SetActive(true);
-				CounselorBar.SetActive(false);
+				CounselorOptions.SetActive(value: true);
+				CounselorBar.SetActive(value: false);
 				CounselorSubtitle.text = "";
 				MyAudio.clip = Countdown;
 				MyAudio.Play();
@@ -1405,7 +1405,7 @@ public class CounselorScript : MonoBehaviour
 			CounselorOptions.transform.localEulerAngles += new Vector3(0f, 0f, Time.deltaTime * -36f);
 			if (InputDevice.Type == InputDeviceType.Gamepad)
 			{
-				Reticle.SetActive(true);
+				Reticle.SetActive(value: true);
 				Cursor.visible = false;
 				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 20f, Input.GetAxis("Vertical") * 20f, 0f);
 				if (Reticle.transform.localPosition.x > 975f)
@@ -1427,7 +1427,7 @@ public class CounselorScript : MonoBehaviour
 			}
 			else
 			{
-				Reticle.SetActive(true);
+				Reticle.SetActive(value: true);
 				Cursor.visible = true;
 				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 20f, Input.GetAxis("Vertical") * 20f, 0f);
 			}
@@ -1442,7 +1442,7 @@ public class CounselorScript : MonoBehaviour
 				{
 					if (k != j)
 					{
-						CounselorOption[k].gameObject.SetActive(false);
+						CounselorOption[k].gameObject.SetActive(value: false);
 					}
 				}
 				Yandere.CharacterAnimation["f02_countdown_00"].time = 10f;
@@ -1451,7 +1451,7 @@ public class CounselorScript : MonoBehaviour
 				MyAudio.Play();
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;
-				Reticle.SetActive(false);
+				Reticle.SetActive(value: false);
 				InterrogationPhase++;
 				Answer = j;
 				Timer = 0f;
@@ -1461,7 +1461,7 @@ public class CounselorScript : MonoBehaviour
 			{
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;
-				Reticle.SetActive(false);
+				Reticle.SetActive(value: false);
 				SilentTreatment = true;
 				InterrogationPhase++;
 				Timer = 0f;
@@ -1482,8 +1482,8 @@ public class CounselorScript : MonoBehaviour
 			if (Timer > 3f || Input.GetButtonDown("A"))
 			{
 				CounselorOptions.transform.localScale = new Vector3(1f, 1f, 1f);
-				CounselorOptions.SetActive(false);
-				CounselorBar.SetActive(true);
+				CounselorOptions.SetActive(value: false);
+				CounselorBar.SetActive(value: true);
 				Yandere.CameraEffects.UpdateDOF(1.1f);
 				Yandere.transform.position = new Vector3(-27.51f, 0f, 12f);
 				Yandere.MainCamera.transform.position = CameraTarget.position;
@@ -1849,13 +1849,13 @@ public class CounselorScript : MonoBehaviour
 						MyAudio.clip = ExpelDelinquentsClip;
 						CounselorSubtitle.text = ExpelDelinquents;
 						MustExpelDelinquents = false;
-						StudentManager.Students[76].gameObject.SetActive(false);
-						StudentManager.Students[77].gameObject.SetActive(false);
-						StudentManager.Students[78].gameObject.SetActive(false);
-						StudentManager.Students[79].gameObject.SetActive(false);
-						StudentManager.Students[80].gameObject.SetActive(false);
+						StudentManager.Students[76].gameObject.SetActive(value: false);
+						StudentManager.Students[77].gameObject.SetActive(value: false);
+						StudentManager.Students[78].gameObject.SetActive(value: false);
+						StudentManager.Students[79].gameObject.SetActive(value: false);
+						StudentManager.Students[80].gameObject.SetActive(value: false);
 						ExpelledDelinquents = true;
-						DelinquentRadio.SetActive(false);
+						DelinquentRadio.SetActive(value: false);
 					}
 					else if (Answer == 4)
 					{
@@ -1943,7 +1943,7 @@ public class CounselorScript : MonoBehaviour
 			{
 				Yandere.ShoulderCamera.GoingToCounselor = true;
 			}
-			Yandere.ShoulderCamera.HUD.SetActive(true);
+			Yandere.ShoulderCamera.HUD.SetActive(value: true);
 			InterrogationPhase++;
 			if (Patience == -6)
 			{
@@ -2008,11 +2008,11 @@ public class CounselorScript : MonoBehaviour
 	{
 		if (ExpelledDelinquents)
 		{
-			StudentGlobals.SetStudentExpelled(76, true);
-			StudentGlobals.SetStudentExpelled(77, true);
-			StudentGlobals.SetStudentExpelled(78, true);
-			StudentGlobals.SetStudentExpelled(79, true);
-			StudentGlobals.SetStudentExpelled(80, true);
+			StudentGlobals.SetStudentExpelled(76, value: true);
+			StudentGlobals.SetStudentExpelled(77, value: true);
+			StudentGlobals.SetStudentExpelled(78, value: true);
+			StudentGlobals.SetStudentExpelled(79, value: true);
+			StudentGlobals.SetStudentExpelled(80, value: true);
 		}
 	}
 

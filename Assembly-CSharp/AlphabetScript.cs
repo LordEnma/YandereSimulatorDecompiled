@@ -73,11 +73,11 @@ public class AlphabetScript : MonoBehaviour
 	{
 		if (GameGlobals.AlphabetMode)
 		{
-			TargetLabel.transform.parent.gameObject.SetActive(true);
+			TargetLabel.transform.parent.gameObject.SetActive(value: true);
 			StudentManager.Yandere.NoDebug = true;
-			BodyHidingLockers.SetActive(true);
-			AlphabetTools.SetActive(true);
-			Jukebox.SetActive(false);
+			BodyHidingLockers.SetActive(value: true);
+			AlphabetTools.SetActive(value: true);
+			Jukebox.SetActive(value: false);
 			MyRenderer.enabled = true;
 			StudentManager.Yandere.SpeedBonus = 5;
 			Class.PhysicalGrade = 5;
@@ -94,10 +94,10 @@ public class AlphabetScript : MonoBehaviour
 		}
 		else
 		{
-			TargetLabel.transform.parent.gameObject.SetActive(false);
-			BombLabel.transform.parent.gameObject.SetActive(false);
-			AlphabetTools.SetActive(false);
-			base.gameObject.SetActive(false);
+			TargetLabel.transform.parent.gameObject.SetActive(value: false);
+			BombLabel.transform.parent.gameObject.SetActive(value: false);
+			AlphabetTools.SetActive(value: false);
+			base.gameObject.SetActive(value: false);
 			base.enabled = false;
 		}
 	}
@@ -215,7 +215,7 @@ public class AlphabetScript : MonoBehaviour
 		{
 			return;
 		}
-		BombLabel.transform.parent.gameObject.SetActive(true);
+		BombLabel.transform.parent.gameObject.SetActive(value: true);
 		if (BombTexture.color.a < 1f)
 		{
 			if (Inventory.StinkBomb)

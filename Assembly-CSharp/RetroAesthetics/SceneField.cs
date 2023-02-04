@@ -12,13 +12,7 @@ namespace RetroAesthetics
 		[SerializeField]
 		private string m_SceneName = "";
 
-		public string SceneName
-		{
-			get
-			{
-				return m_SceneName;
-			}
-		}
+		public string SceneName => m_SceneName;
 
 		public static implicit operator string(SceneField sceneField)
 		{

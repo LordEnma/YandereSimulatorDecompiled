@@ -23,13 +23,7 @@ public class Stance
 		}
 	}
 
-	public StanceType Previous
-	{
-		get
-		{
-			return previous;
-		}
-	}
+	public StanceType Previous => previous;
 
 	public Stance(StanceType initialStance)
 	{

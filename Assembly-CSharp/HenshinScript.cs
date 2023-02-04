@@ -75,12 +75,12 @@ public class HenshinScript : MonoBehaviour
 	public void TransformYandere()
 	{
 		TransformingYandere = true;
-		Cameras[1].SetActive(false);
-		Cameras[2].SetActive(false);
-		Cameras[3].SetActive(false);
-		Cameras[4].SetActive(false);
-		Cameras[5].SetActive(false);
-		Cameras[6].SetActive(false);
+		Cameras[1].SetActive(value: false);
+		Cameras[2].SetActive(value: false);
+		Cameras[3].SetActive(value: false);
+		Cameras[4].SetActive(value: false);
+		Cameras[5].SetActive(value: false);
+		Cameras[6].SetActive(value: false);
 		MiyukiCamera.targetTexture = null;
 		MiyukiCamera.enabled = true;
 		Listener.enabled = true;
@@ -91,7 +91,7 @@ public class HenshinScript : MonoBehaviour
 		Yandere.enabled = false;
 		Yandere.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 		Yandere.transform.localPosition = new Vector3(0f, 0f, 0f);
-		Yandere.Accessories[Yandere.AccessoryID].SetActive(false);
+		Yandere.Accessories[Yandere.AccessoryID].SetActive(value: false);
 		Physics.SyncTransforms();
 		AudioSource.PlayClipAtPoint(Catchphrase, base.transform.position);
 		MyAudio.Play();
@@ -114,16 +114,16 @@ public class HenshinScript : MonoBehaviour
 		WhiteMiyukiRenderer.materials[0].color = new Color(1f, 1f, 1f, 0f);
 		WhiteMiyukiRenderer.materials[1].color = new Color(1f, 1f, 1f, 0f);
 		WhiteMiyukiRenderer.materials[2].color = new Color(1f, 1f, 1f, 0f);
-		Wand.gameObject.SetActive(true);
+		Wand.gameObject.SetActive(value: true);
 		Wand.transform.parent = base.transform.parent;
 		Wand.localPosition = new Vector3(0f, -0.6538f, 0.04405f);
 		White.material.color = new Color(1f, 1f, 1f, 1f);
-		Miyuki.gameObject.SetActive(false);
+		Miyuki.gameObject.SetActive(value: false);
 		if (MiyukiCostume.newRenderer != null)
 		{
 			MiyukiCostume.newRenderer.enabled = false;
 		}
-		HenshinSparkleBlast.SetActive(false);
+		HenshinSparkleBlast.SetActive(value: false);
 		HenshinSparkles.emissionRate = 1f;
 		HenshinSparkles.Clear();
 		HenshinSparkles.Stop();
@@ -187,13 +187,13 @@ public class HenshinScript : MonoBehaviour
 				{
 					Miyuki.localEulerAngles = new Vector3(0f, 180f, 45f);
 					Miyuki.localPosition = new Vector3(0f, 0f, 0.5f);
-					Miyuki.gameObject.SetActive(true);
-					Wand.gameObject.SetActive(false);
+					Miyuki.gameObject.SetActive(value: true);
+					Wand.gameObject.SetActive(value: false);
 					if (TransformingYandere)
 					{
 						MiyukiHairRenderer.enabled = false;
 						MiyukiRenderer.enabled = false;
-						MiyukiHair.SetActive(false);
+						MiyukiHair.SetActive(value: false);
 						Yandere.CharacterAnimation.Play("f02_henshin_00");
 					}
 					Sparkles.emissionRate = 1f;
@@ -245,17 +245,17 @@ public class HenshinScript : MonoBehaviour
 				HenshinSparkles.emissionRate += Time.deltaTime * 100f;
 				if (Timer > 5f)
 				{
-					Wand.gameObject.SetActive(true);
+					Wand.gameObject.SetActive(value: true);
 					Wand.parent = RightHand;
 					Wand.localEulerAngles = new Vector3(0f, 0f, 90f);
 					Wand.localPosition = new Vector3(0f, 0f, 0f);
 					if (TransformingYandere)
 					{
 						MiyukiRenderer.enabled = true;
-						Yandere.gameObject.SetActive(false);
+						Yandere.gameObject.SetActive(value: false);
 					}
-					MiyukiCostume.gameObject.SetActive(true);
-					MiyukiHair.SetActive(true);
+					MiyukiCostume.gameObject.SetActive(value: true);
+					MiyukiHair.SetActive(value: true);
 					if (MiyukiCostume.newRenderer != null)
 					{
 						MiyukiCostume.newRenderer.enabled = true;
@@ -271,7 +271,7 @@ public class HenshinScript : MonoBehaviour
 					Miyuki.localEulerAngles = new Vector3(15f, -135f, 15f);
 					WhiteMiyukiAnim.Play("f02_miyukiPose_00");
 					MiyukiAnim.Play("f02_miyukiPose_00");
-					HenshinSparkleBlast.SetActive(true);
+					HenshinSparkleBlast.SetActive(value: true);
 					HenshinSparkles.emissionRate = 1f;
 					HenshinSparkles.Clear();
 					HenshinSparkles.Stop();
@@ -297,15 +297,15 @@ public class HenshinScript : MonoBehaviour
 				{
 					if (TransformingYandere)
 					{
-						Cameras[1].SetActive(true);
-						Cameras[2].SetActive(true);
-						Cameras[3].SetActive(true);
-						Cameras[4].SetActive(true);
-						Cameras[5].SetActive(true);
-						Cameras[6].SetActive(true);
-						base.gameObject.SetActive(false);
+						Cameras[1].SetActive(value: true);
+						Cameras[2].SetActive(value: true);
+						Cameras[3].SetActive(value: true);
+						Cameras[4].SetActive(value: true);
+						Cameras[5].SetActive(value: true);
+						Cameras[6].SetActive(value: true);
+						base.gameObject.SetActive(value: false);
 						Yandere.transform.parent = null;
-						Yandere.gameObject.SetActive(true);
+						Yandere.gameObject.SetActive(value: true);
 						Yandere.transform.position = OriginalPosition;
 						Yandere.transform.rotation = OriginalRotation;
 						Yandere.Stance.Current = StanceType.Standing;
@@ -314,7 +314,7 @@ public class HenshinScript : MonoBehaviour
 						Yandere.enabled = true;
 						Yandere.CanMove = true;
 						Yandere.Miyuki();
-						base.transform.parent.gameObject.SetActive(false);
+						base.transform.parent.gameObject.SetActive(value: false);
 						Time.timeScale = 1f;
 					}
 					else

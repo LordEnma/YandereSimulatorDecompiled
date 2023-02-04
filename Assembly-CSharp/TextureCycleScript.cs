@@ -24,13 +24,7 @@ public class TextureCycleScript : MonoBehaviour
 
 	public int ID;
 
-	private float SecondsPerFrame
-	{
-		get
-		{
-			return 1f / FramesPerSecond;
-		}
-	}
+	private float SecondsPerFrame => 1f / FramesPerSecond;
 
 	private void Awake()
 	{

@@ -85,8 +85,7 @@ public class PlayerMove : MonoBehaviour
 		{
 			return false;
 		}
-		RaycastHit hitInfo;
-		if (Physics.Raycast(base.transform.position, Vector3.down, out hitInfo, charController.height / 2f * slopeForceRayLength) && hitInfo.normal != Vector3.up)
+		if (Physics.Raycast(base.transform.position, Vector3.down, out var hitInfo, charController.height / 2f * slopeForceRayLength) && hitInfo.normal != Vector3.up)
 		{
 			MonoBehaviour.print("OnSlope");
 			return true;

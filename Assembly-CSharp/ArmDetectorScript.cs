@@ -81,7 +81,7 @@ public class ArmDetectorScript : MonoBehaviour
 
 	private void Start()
 	{
-		DemonDress.SetActive(false);
+		DemonDress.SetActive(value: false);
 	}
 
 	private void Update()
@@ -143,7 +143,7 @@ public class ArmDetectorScript : MonoBehaviour
 					Yandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
 					Yandere.transform.position = new Vector3(12f, 0.1f, 26f);
 					DemonSubtitle.text = "...revenge...at last...";
-					BloodProjector.SetActive(true);
+					BloodProjector.SetActive(value: true);
 					DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, 0f);
 					Skull.Prompt.Hide();
 					Skull.Prompt.enabled = false;
@@ -267,10 +267,10 @@ public class ArmDetectorScript : MonoBehaviour
 				DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, Mathf.MoveTowards(DemonSubtitle.color.a, 0f, Time.deltaTime));
 				if (DemonSubtitle.color.a == 0f)
 				{
-					DemonDress.SetActive(true);
+					DemonDress.SetActive(value: true);
 					Yandere.MyRenderer.sharedMesh = FlameDemonMesh;
 					Yandere.PantyAttacher.newRenderer.enabled = false;
-					RiggedAccessory.SetActive(true);
+					RiggedAccessory.SetActive(value: true);
 					Yandere.FlameDemonic = true;
 					Yandere.Stance.Current = StanceType.Standing;
 					Yandere.Sanity = 100f;
@@ -298,8 +298,8 @@ public class ArmDetectorScript : MonoBehaviour
 				if (Timer > 5f)
 				{
 					MyAudio.PlayOneShot(FlameActivate);
-					RightFlame.SetActive(true);
-					LeftFlame.SetActive(true);
+					RightFlame.SetActive(value: true);
+					LeftFlame.SetActive(value: true);
 					Phase++;
 				}
 			}
@@ -339,7 +339,7 @@ public class ArmDetectorScript : MonoBehaviour
 					Yandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
 					Yandere.transform.position = new Vector3(12f, 0.1f, 26f);
 					DemonSubtitle.text = "At last...it is time to reclaim our rightful place.";
-					BloodProjector.SetActive(true);
+					BloodProjector.SetActive(value: true);
 					DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, 0f);
 					Skull.Prompt.Hide();
 					Skull.Prompt.enabled = false;

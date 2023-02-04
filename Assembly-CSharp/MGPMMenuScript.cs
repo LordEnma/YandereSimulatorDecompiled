@@ -63,12 +63,12 @@ public class MGPMMenuScript : MonoBehaviour
 			GameObject[] modernObjects = ModernObjects;
 			for (int i = 0; i < modernObjects.Length; i++)
 			{
-				modernObjects[i].SetActive(false);
+				modernObjects[i].SetActive(value: false);
 			}
 			modernObjects = EightiesObjects;
 			for (int i = 0; i < modernObjects.Length; i++)
 			{
-				modernObjects[i].SetActive(true);
+				modernObjects[i].SetActive(value: true);
 			}
 			MenuLimit = 2;
 			Jukebox.volume = 0f;
@@ -151,8 +151,8 @@ public class MGPMMenuScript : MonoBehaviour
 				{
 					if (!Eighties)
 					{
-						DifficultySelect.SetActive(true);
-						MainMenu.SetActive(false);
+						DifficultySelect.SetActive(value: true);
+						MainMenu.SetActive(value: false);
 						ID = 2;
 						UpdateHighlight();
 					}
@@ -165,8 +165,8 @@ public class MGPMMenuScript : MonoBehaviour
 				{
 					if (!Eighties)
 					{
-						Highlight.gameObject.SetActive(false);
-						Controls.SetActive(true);
+						Highlight.gameObject.SetActive(value: false);
+						Controls.SetActive(value: true);
 						WindowDisplaying = true;
 					}
 					else
@@ -177,8 +177,8 @@ public class MGPMMenuScript : MonoBehaviour
 				}
 				else if (ID == 3)
 				{
-					Highlight.gameObject.SetActive(false);
-					Credits.SetActive(true);
+					Highlight.gameObject.SetActive(value: false);
+					Credits.SetActive(value: true);
 					WindowDisplaying = true;
 				}
 				else if (ID == 4)
@@ -201,9 +201,9 @@ public class MGPMMenuScript : MonoBehaviour
 		}
 		else if (Input.GetButtonDown("B"))
 		{
-			Highlight.gameObject.SetActive(true);
-			Controls.SetActive(false);
-			Credits.SetActive(false);
+			Highlight.gameObject.SetActive(value: true);
+			Controls.SetActive(value: false);
+			Credits.SetActive(value: false);
 			WindowDisplaying = false;
 		}
 	}

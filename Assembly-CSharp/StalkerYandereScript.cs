@@ -56,6 +56,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public bool Running;
 
+	public bool NoChangeClothing;
+
 	public bool Invisible;
 
 	public bool Eighties;
@@ -174,13 +176,13 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 		else if (RyobaHair != null)
 		{
-			RyobaHair.SetActive(false);
+			RyobaHair.SetActive(value: false);
 		}
 		if (GameGlobals.Eighties && EightiesAttacher != null)
 		{
 			if (HomeGlobals.Night || DateGlobals.Weekday == DayOfWeek.Sunday || DateGlobals.Weekday == DayOfWeek.Saturday)
 			{
-				EightiesAttacher.SetActive(true);
+				EightiesAttacher.SetActive(value: true);
 			}
 			else
 			{
@@ -188,8 +190,8 @@ public class StalkerYandereScript : MonoBehaviour
 				UniformSetter.enabled = true;
 			}
 			MyRenderer.sharedMesh = HeadOnlyMesh;
-			PonytailRenderer.gameObject.SetActive(false);
-			RyobaHair.SetActive(true);
+			PonytailRenderer.gameObject.SetActive(value: false);
+			RyobaHair.SetActive(value: true);
 			MyRenderer.SetBlendShapeWeight(0, 50f);
 			MyRenderer.SetBlendShapeWeight(5, 25f);
 			MyRenderer.SetBlendShapeWeight(8, 0f);
@@ -212,12 +214,12 @@ public class StalkerYandereScript : MonoBehaviour
 				BreastL.transform.localScale = new Vector3(1f, 1f, 1f);
 				BreastR.transform.localScale = new Vector3(1f, 1f, 1f);
 			}
-			if (ClothingAttacher != null && !Initialized)
+			if (!NoChangeClothing && ClothingAttacher != null && !Initialized)
 			{
 				if (HomeGlobals.Night || DateGlobals.Weekday == DayOfWeek.Sunday || DateGlobals.Weekday == DayOfWeek.Saturday)
 				{
-					ClothingAttacher.SetActive(true);
-					MyRenderer.gameObject.SetActive(false);
+					ClothingAttacher.SetActive(value: true);
+					MyRenderer.gameObject.SetActive(value: false);
 				}
 				else
 				{
@@ -313,8 +315,8 @@ public class StalkerYandereScript : MonoBehaviour
 				Arc.gameObject.SetActive(Input.GetButton("X"));
 				if (Arc.gameObject.activeInHierarchy)
 				{
-					ThrowButton.SetActive(true);
-					AimButton.SetActive(false);
+					ThrowButton.SetActive(value: true);
+					AimButton.SetActive(value: false);
 					if (Input.GetButtonDown("A"))
 					{
 						MyAudio.Play();
@@ -327,14 +329,14 @@ public class StalkerYandereScript : MonoBehaviour
 						UpdatePebbles();
 						if (Pebbles < 1)
 						{
-							Arc.gameObject.SetActive(false);
+							Arc.gameObject.SetActive(value: false);
 						}
 					}
 				}
 				else
 				{
-					ThrowButton.SetActive(false);
-					AimButton.SetActive(true);
+					ThrowButton.SetActive(value: false);
+					AimButton.SetActive(value: true);
 				}
 			}
 		}
@@ -643,10 +645,10 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			if (Pebbles == 0)
 			{
-				PebbleIcon.SetActive(false);
+				PebbleIcon.SetActive(value: false);
 				return;
 			}
-			PebbleIcon.SetActive(true);
+			PebbleIcon.SetActive(value: true);
 			PebbleLabel.text = "PEBBLES: " + Pebbles;
 		}
 	}
@@ -659,7 +661,7 @@ public class StalkerYandereScript : MonoBehaviour
 			{
 				OriginalHairs[i].transform.localPosition = new Vector3(0f, 100f, 0f);
 			}
-			VtuberHairs[GameGlobals.VtuberID].SetActive(true);
+			VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
 			if (ClothingAttacher != null && ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
 			{
 				MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
@@ -680,7 +682,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 		else
 		{
-			VtuberHairs[1].SetActive(false);
+			VtuberHairs[1].SetActive(value: false);
 		}
 	}
 }

@@ -60,23 +60,16 @@ public class HomeClockScript : MonoBehaviour
 
 	private string GetWeekdayText(DayOfWeek weekday)
 	{
-		switch (weekday)
+		return weekday switch
 		{
-		case DayOfWeek.Sunday:
-			return "SUNDAY";
-		case DayOfWeek.Monday:
-			return "MONDAY";
-		case DayOfWeek.Tuesday:
-			return "TUESDAY";
-		case DayOfWeek.Wednesday:
-			return "WEDNESDAY";
-		case DayOfWeek.Thursday:
-			return "THURSDAY";
-		case DayOfWeek.Friday:
-			return "FRIDAY";
-		default:
-			return "SATURDAY";
-		}
+			DayOfWeek.Sunday => "SUNDAY", 
+			DayOfWeek.Monday => "MONDAY", 
+			DayOfWeek.Tuesday => "TUESDAY", 
+			DayOfWeek.Wednesday => "WEDNESDAY", 
+			DayOfWeek.Thursday => "THURSDAY", 
+			DayOfWeek.Friday => "FRIDAY", 
+			_ => "SATURDAY", 
+		};
 	}
 
 	public void UpdateMoneyLabel()

@@ -54,7 +54,7 @@ public class RingEventScript : MonoBehaviour
 		HoldingRotation = new Vector3(15f, -70f, -135f);
 		if (GameGlobals.RingStolen)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		if (GameGlobals.Eighties)
 		{
@@ -125,7 +125,7 @@ public class RingEventScript : MonoBehaviour
 			EventStudent.Cosmetic.FemaleAccessories[AccessoryID].transform.parent = EventStudent.LeftMiddleFinger;
 			EventStudent.Cosmetic.FemaleAccessories[AccessoryID].transform.localPosition = OriginalPosition;
 			EventStudent.Cosmetic.FemaleAccessories[AccessoryID].transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-			RingCollider.gameObject.SetActive(true);
+			RingCollider.gameObject.SetActive(value: true);
 			RingCollider.enabled = false;
 			RingPrompt.Hide();
 			RingPrompt.enabled = false;
@@ -154,10 +154,10 @@ public class RingEventScript : MonoBehaviour
 					EventStudent.CharacterAnimation.CrossFade(EventStudent.EatAnim);
 					EventStudent.Bento.transform.localPosition = new Vector3(-0.025f, -0.105f, 0f);
 					EventStudent.Bento.transform.localEulerAngles = new Vector3(0f, 165f, 82.5f);
-					EventStudent.Chopsticks[0].SetActive(true);
-					EventStudent.Chopsticks[1].SetActive(true);
-					EventStudent.Bento.SetActive(true);
-					EventStudent.Lid.SetActive(false);
+					EventStudent.Chopsticks[0].SetActive(value: true);
+					EventStudent.Chopsticks[1].SetActive(value: true);
+					EventStudent.Bento.SetActive(value: true);
+					EventStudent.Lid.SetActive(value: false);
 					RingCollider.enabled = true;
 					RingPrompt.enabled = true;
 					RingPrompt.GetComponent<RingScript>().enabled = true;
@@ -193,9 +193,9 @@ public class RingEventScript : MonoBehaviour
 			{
 				if (Clock.HourTime > 13.375f)
 				{
-					EventStudent.Bento.SetActive(false);
-					EventStudent.Chopsticks[0].SetActive(false);
-					EventStudent.Chopsticks[1].SetActive(false);
+					EventStudent.Bento.SetActive(value: false);
+					EventStudent.Chopsticks[0].SetActive(value: false);
+					EventStudent.Chopsticks[1].SetActive(value: false);
 					if (RingCollider != null)
 					{
 						RingCollider.enabled = false;

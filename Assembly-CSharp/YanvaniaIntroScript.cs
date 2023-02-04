@@ -26,11 +26,11 @@ public class YanvaniaIntroScript : MonoBehaviour
 
 	private void Start()
 	{
-		BlackRight.gameObject.SetActive(true);
-		BlackLeft.gameObject.SetActive(true);
-		FinalStage.gameObject.SetActive(true);
-		Heartbreak.gameObject.SetActive(true);
-		Triangle.gameObject.SetActive(true);
+		BlackRight.gameObject.SetActive(value: true);
+		BlackLeft.gameObject.SetActive(value: true);
+		FinalStage.gameObject.SetActive(value: true);
+		Heartbreak.gameObject.SetActive(value: true);
+		Triangle.gameObject.SetActive(value: true);
 		Triangle.transform.localScale = Vector3.zero;
 		Heartbreak.transform.localPosition = new Vector3(1300f, Heartbreak.transform.localPosition.y, Heartbreak.transform.localPosition.z);
 		FinalStage.transform.localPosition = new Vector3(-1300f, FinalStage.transform.localPosition.y, FinalStage.transform.localPosition.z);
@@ -44,7 +44,7 @@ public class YanvaniaIntroScript : MonoBehaviour
 			Yanmont.Character.transform.localScale = new Vector3(-1f, Yanmont.Character.transform.localScale.y, Yanmont.Character.transform.localScale.z);
 			if (!Jukebox.activeInHierarchy)
 			{
-				Jukebox.SetActive(true);
+				Jukebox.SetActive(value: true);
 			}
 			Triangle.transform.localScale = Vector3.Lerp(Triangle.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			Heartbreak.transform.localPosition = new Vector3(Mathf.Lerp(Heartbreak.transform.localPosition.x, 0f, Time.deltaTime * 10f), Heartbreak.transform.localPosition.y, Heartbreak.transform.localPosition.z);
@@ -54,7 +54,7 @@ public class YanvaniaIntroScript : MonoBehaviour
 		{
 			if (!Jukebox.activeInHierarchy)
 			{
-				Jukebox.SetActive(true);
+				Jukebox.SetActive(value: true);
 			}
 			Triangle.transform.localEulerAngles = new Vector3(Triangle.transform.localEulerAngles.x, Triangle.transform.localEulerAngles.y, Triangle.transform.localEulerAngles.z + 36f * Time.deltaTime);
 			Triangle.color = new Color(Triangle.color.r, Triangle.color.g, Triangle.color.b, Triangle.color.a - Time.deltaTime);
@@ -84,7 +84,7 @@ public class YanvaniaIntroScript : MonoBehaviour
 	{
 		if (!Jukebox.activeInHierarchy)
 		{
-			Jukebox.SetActive(true);
+			Jukebox.SetActive(value: true);
 		}
 		ZombieSpawner.enabled = true;
 		Yanmont.CanMove = true;

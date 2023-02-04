@@ -32,13 +32,7 @@ public class UISpriteAnimation : MonoBehaviour
 
 	protected List<string> mSpriteNames = new List<string>();
 
-	public int frames
-	{
-		get
-		{
-			return mSpriteNames.Count;
-		}
-	}
+	public int frames => mSpriteNames.Count;
 
 	public int framesPerSecond
 	{
@@ -80,13 +74,7 @@ public class UISpriteAnimation : MonoBehaviour
 		}
 	}
 
-	public bool isPlaying
-	{
-		get
-		{
-			return mActive;
-		}
-	}
+	public bool isPlaying => mActive;
 
 	protected virtual void Start()
 	{

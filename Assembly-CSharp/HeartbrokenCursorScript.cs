@@ -113,7 +113,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 		Continue.color = new Color(Continue.color.r, Continue.color.g, Continue.color.b, 0f);
 		if (StudentManager != null)
 		{
-			StudentManager.Yandere.Jukebox.gameObject.SetActive(false);
+			StudentManager.Yandere.Jukebox.gameObject.SetActive(value: false);
 			if (StudentManager.Yandere.Weapon[1] != null && StudentManager.Yandere.Weapon[1].Type == WeaponType.Knife)
 			{
 				StudentManager.Yandere.Weapon[1].Drop();
@@ -122,7 +122,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 			{
 				StudentManager.Yandere.Weapon[2].Drop();
 			}
-			StudentManager.Journalist.SetActive(false);
+			StudentManager.Journalist.SetActive(value: false);
 		}
 	}
 
@@ -219,7 +219,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 								int num = Random.Range(1, Cracks.Length);
 								if (!Cracks[num].activeInHierarchy)
 								{
-									Cracks[num].SetActive(true);
+									Cracks[num].SetActive(value: true);
 									CracksSpawned++;
 								}
 							}
@@ -227,7 +227,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 							{
 								while (CracksSpawned > 0)
 								{
-									Cracks[CracksSpawned].SetActive(false);
+									Cracks[CracksSpawned].SetActive(value: false);
 									CracksSpawned--;
 								}
 							}
@@ -239,7 +239,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 							for (int j = 1; j < Cracks.Length; j++)
 							{
 								Cracks[j].GetComponent<UITexture>().fillAmount = 0.425f;
-								Cracks[j].SetActive(false);
+								Cracks[j].SetActive(value: false);
 							}
 							CracksSpawned = 0;
 							StudentManager.SelectiveGreyscale.enabled = false;
@@ -265,14 +265,14 @@ public class HeartbrokenCursorScript : MonoBehaviour
 							MyLabel.color = new Color(0f, 0f, 0f, 0f);
 							CursorSprite.enabled = false;
 							MainFilter.enabled = true;
-							FPS.SetActive(false);
+							FPS.SetActive(value: false);
 							SnapSequence = true;
 							MyAudio.clip = GlassShatter;
 							MyAudio.volume = 1f;
 							MyAudio.Play();
-							Background[0].SetActive(false);
-							Background[1].SetActive(false);
-							SNAPLetters.SetActive(false);
+							Background[0].SetActive(value: false);
+							Background[1].SetActive(value: false);
+							SNAPLetters.SetActive(value: false);
 							Time.timeScale = 0.5f;
 							ShatterSpawner component = Object.Instantiate(ShatterPrefab).GetComponent<ShatterSpawner>();
 							component.ScreenMaterial.mainTexture = BlackTexture;
@@ -280,12 +280,12 @@ public class HeartbrokenCursorScript : MonoBehaviour
 							StudentManager.Yandere.CharacterAnimation["f02_snapRise_00"].speed = 2f;
 							StudentManager.Yandere.CharacterAnimation.CrossFade("f02_snapRise_00");
 							StudentManager.Yandere.enabled = false;
-							StudentManager.Students[1].Character.SetActive(true);
-							SnapUICamera.SetActive(true);
+							StudentManager.Students[1].Character.SetActive(value: true);
+							SnapUICamera.SetActive(value: true);
 							StudentManager.SnapSomeStudents();
 							StudentManager.OpenSomeDoors();
 							StudentManager.DarkenAllStudents();
-							StudentManager.Headmaster.gameObject.SetActive(false);
+							StudentManager.Headmaster.gameObject.SetActive(value: false);
 							HeartbrokenCamera.nearClipPlane = 0.01f;
 						}
 					}
@@ -352,7 +352,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 						{
 							if (StudentGlobals.GetStudentDying(k))
 							{
-								StudentGlobals.SetStudentDying(k, false);
+								StudentGlobals.SetStudentDying(k, value: false);
 							}
 						}
 						SceneManager.LoadScene("LoadingScene");
@@ -380,8 +380,8 @@ public class HeartbrokenCursorScript : MonoBehaviour
 						{
 							Debug.Log("Attempted to load a save from Slot #" + num2 + ", but apparently it didn't exist.");
 						}
-						StudentGlobals.SetStudentDead(10 + DateGlobals.Week, false);
-						StudentGlobals.SetStudentDying(10 + DateGlobals.Week, false);
+						StudentGlobals.SetStudentDead(10 + DateGlobals.Week, value: false);
+						StudentGlobals.SetStudentDying(10 + DateGlobals.Week, value: false);
 						StudentGlobals.FemaleUniform = femaleUniform;
 						StudentGlobals.MaleUniform = maleUniform;
 						SceneManager.LoadScene("CalendarScene");
@@ -401,7 +401,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 						{
 							if (StudentGlobals.GetStudentDying(l))
 							{
-								StudentGlobals.SetStudentDying(l, false);
+								StudentGlobals.SetStudentDying(l, value: false);
 							}
 						}
 						SceneManager.LoadScene("LoadingScene");

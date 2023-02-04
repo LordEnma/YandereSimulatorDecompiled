@@ -31,13 +31,7 @@ public class BMFont
 
 	private Dictionary<int, BMGlyph> mDict = new Dictionary<int, BMGlyph>();
 
-	public bool isValid
-	{
-		get
-		{
-			return mSaved.Count > 0;
-		}
-	}
+	public bool isValid => mSaved.Count > 0;
 
 	public int charSize
 	{
@@ -111,13 +105,7 @@ public class BMFont
 		}
 	}
 
-	public List<BMGlyph> glyphs
-	{
-		get
-		{
-			return mSaved;
-		}
-	}
+	public List<BMGlyph> glyphs => mSaved;
 
 	public BMGlyph GetGlyph(int index, bool createIfMissing)
 	{
@@ -143,7 +131,7 @@ public class BMFont
 
 	public BMGlyph GetGlyph(int index)
 	{
-		return GetGlyph(index, false);
+		return GetGlyph(index, createIfMissing: false);
 	}
 
 	public void Clear()
@@ -154,17 +142,12 @@ public class BMFont
 
 	public void Trim(int xMin, int yMin, int xMax, int yMax)
 	{
-		if (!isValid)
+		if (isValid)
 		{
-			return;
-		}
-		int i = 0;
-		for (int count = mSaved.Count; i < count; i++)
-		{
-			BMGlyph bMGlyph = mSaved[i];
-			if (bMGlyph != null)
+			int i = 0;
+			for (int count = mSaved.Count; i < count; i++)
 			{
-				bMGlyph.Trim(xMin, yMin, xMax, yMax);
+				mSaved[i]?.Trim(xMin, yMin, xMax, yMax);
 			}
 		}
 	}

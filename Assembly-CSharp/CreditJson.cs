@@ -12,29 +12,11 @@ public class CreditJson : JsonData
 	[SerializeField]
 	private int size;
 
-	public static string FilePath
-	{
-		get
-		{
-			return Path.Combine(JsonData.FolderPath, "Credits.json");
-		}
-	}
+	public static string FilePath => Path.Combine(JsonData.FolderPath, "Credits.json");
 
-	public string Name
-	{
-		get
-		{
-			return name;
-		}
-	}
+	public string Name => name;
 
-	public int Size
-	{
-		get
-		{
-			return size;
-		}
-	}
+	public int Size => size;
 
 	public static CreditJson[] LoadFromJson(string path)
 	{

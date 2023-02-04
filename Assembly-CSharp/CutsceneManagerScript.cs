@@ -70,7 +70,7 @@ public class CutsceneManagerScript : MonoBehaviour
 		else if (Phase == 4)
 		{
 			Debug.Log("We're activating EndOfDay from CutsceneManager.");
-			EndOfDay.gameObject.SetActive(true);
+			EndOfDay.gameObject.SetActive(value: true);
 			EndOfDay.Phase = 14;
 			if (Scheme == 5)
 			{
@@ -94,12 +94,12 @@ public class CutsceneManagerScript : MonoBehaviour
 		{
 			if (Scheme == 5)
 			{
-				bool flag = StudentManager.Students[StudentManager.RivalID] != null;
+				_ = StudentManager.Students[StudentManager.RivalID] != null;
 			}
 			PromptBar.ClearButtons();
 			PromptBar.Show = false;
 			Portal.Proceed = true;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			Scheme = 0;
 		}
 	}

@@ -63,7 +63,7 @@ public class TaskWindowScript : MonoBehaviour
 		{
 			UpdateTaskObjects(30);
 		}
-		Window.SetActive(false);
+		Window.SetActive(value: false);
 	}
 
 	public void UpdateWindow(int ID)
@@ -81,10 +81,10 @@ public class TaskWindowScript : MonoBehaviour
 			ID = 0;
 			Generic = false;
 		}
-		TaskDescLabel.transform.parent.gameObject.SetActive(true);
+		TaskDescLabel.transform.parent.gameObject.SetActive(value: true);
 		TaskDescLabel.text = Descriptions[ID];
 		Icon.mainTexture = Icons[ID];
-		Window.SetActive(true);
+		Window.SetActive(value: true);
 		Time.timeScale = 0.0001f;
 	}
 
@@ -100,7 +100,7 @@ public class TaskWindowScript : MonoBehaviour
 				Yandere.TargetStudent.TaskPhase = 4;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
-				Window.SetActive(false);
+				Window.SetActive(value: false);
 				if (!Yandere.StudentManager.Eighties)
 				{
 					UpdateTaskObjects(StudentID);
@@ -114,7 +114,7 @@ public class TaskWindowScript : MonoBehaviour
 				Yandere.TargetStudent.TaskPhase = 0;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
-				Window.SetActive(false);
+				Window.SetActive(value: false);
 				Time.timeScale = 1f;
 			}
 		}
@@ -130,7 +130,7 @@ public class TaskWindowScript : MonoBehaviour
 		Timer += Time.deltaTime;
 		if (ID < TaskCompleteLetters.Length && Timer > 0.05f)
 		{
-			TaskCompleteLetters[ID].SetActive(true);
+			TaskCompleteLetters[ID].SetActive(value: true);
 			Timer = 0f;
 			ID++;
 		}
@@ -168,7 +168,7 @@ public class TaskWindowScript : MonoBehaviour
 		}
 		else if (Yandere.TargetStudent.StudentID == 37)
 		{
-			DialogueWheel.Yandere.TargetStudent.Cosmetic.MaleAccessories[1].SetActive(true);
+			DialogueWheel.Yandere.TargetStudent.Cosmetic.MaleAccessories[1].SetActive(value: true);
 		}
 	}
 

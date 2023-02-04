@@ -164,29 +164,11 @@ public class UIDrawCall : MonoBehaviour
 	private static int dx9BugWorkaround = -1;
 
 	[Obsolete("Use UIDrawCall.activeList")]
-	public static BetterList<UIDrawCall> list
-	{
-		get
-		{
-			return mActiveList;
-		}
-	}
+	public static BetterList<UIDrawCall> list => mActiveList;
 
-	public static BetterList<UIDrawCall> activeList
-	{
-		get
-		{
-			return mActiveList;
-		}
-	}
+	public static BetterList<UIDrawCall> activeList => mActiveList;
 
-	public static BetterList<UIDrawCall> inactiveList
-	{
-		get
-		{
-			return mInactiveList;
-		}
-	}
+	public static BetterList<UIDrawCall> inactiveList => mInactiveList;
 
 	public int renderQueue
 	{
@@ -291,13 +273,7 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	public Material dynamicMaterial
-	{
-		get
-		{
-			return mDynamicMat;
-		}
-	}
+	public Material dynamicMaterial => mDynamicMat;
 
 	public Texture mainTexture
 	{
@@ -378,13 +354,7 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	public bool isClipped
-	{
-		get
-		{
-			return mClipCount != 0;
-		}
-	}
+	public bool isClipped => mClipCount != 0;
 
 	private void CreateMaterial()
 	{
@@ -837,7 +807,7 @@ public class UIDrawCall : MonoBehaviour
 				{
 					uIDrawCall.name = name;
 				}
-				NGUITools.SetActive(uIDrawCall.gameObject, true);
+				NGUITools.SetActive(uIDrawCall.gameObject, state: true);
 				return uIDrawCall;
 			}
 		}
@@ -859,7 +829,7 @@ public class UIDrawCall : MonoBehaviour
 			{
 				if (isPlaying)
 				{
-					NGUITools.SetActive(uIDrawCall.gameObject, false);
+					NGUITools.SetActive(uIDrawCall.gameObject, state: false);
 				}
 				else
 				{
@@ -919,7 +889,7 @@ public class UIDrawCall : MonoBehaviour
 		{
 			if (mActiveList.Remove(dc))
 			{
-				NGUITools.SetActive(dc.gameObject, false);
+				NGUITools.SetActive(dc.gameObject, state: false);
 				mInactiveList.Add(dc);
 				dc.mIsNew = true;
 			}

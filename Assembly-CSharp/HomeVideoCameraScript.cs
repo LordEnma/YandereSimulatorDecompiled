@@ -39,7 +39,7 @@ public class HomeVideoCameraScript : MonoBehaviour
 			HomeCamera.ID = 11;
 			HomePrisonerChan.LookAhead = true;
 			HomeYandere.CanMove = false;
-			HomeYandere.gameObject.SetActive(false);
+			HomeYandere.gameObject.SetActive(value: false);
 		}
 		if (HomeCamera.ID == 11 && !HomePrisoner.Bantering)
 		{

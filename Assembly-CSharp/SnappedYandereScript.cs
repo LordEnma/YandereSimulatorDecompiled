@@ -209,7 +209,7 @@ public class SnappedYandereScript : MonoBehaviour
 			}
 			if (GlitchTimer > GlitchTimeLimit)
 			{
-				SetGlitches(false);
+				SetGlitches(State: false);
 				if (MyAudio.clip != EndSNAP)
 				{
 					MyAudio.Stop();
@@ -271,7 +271,7 @@ public class SnappedYandereScript : MonoBehaviour
 		}
 		else
 		{
-			Knife.gameObject.SetActive(true);
+			Knife.gameObject.SetActive(value: true);
 		}
 		if (CanMove)
 		{
@@ -309,7 +309,7 @@ public class SnappedYandereScript : MonoBehaviour
 					MainCamera.transform.parent = base.transform;
 					MainCamera.transform.localPosition = new Vector3(0.25f, 1.546664f, -0.5473595f);
 					MainCamera.transform.localEulerAngles = new Vector3(15f, 0f, 0f);
-					SetGlitches(true);
+					SetGlitches(State: true);
 					GlitchTimeLimit = 0.5f;
 					TargetStudent.Student.BecomeRagdoll();
 					AttacksUsed[1] = false;
@@ -625,7 +625,7 @@ public class SnappedYandereScript : MonoBehaviour
 		if (Input.GetButtonDown("LB"))
 		{
 			MyController.Move(vector3 * 4f);
-			SetGlitches(true);
+			SetGlitches(State: true);
 			GlitchTimeLimit = 0.1f;
 		}
 	}
@@ -664,7 +664,7 @@ public class SnappedYandereScript : MonoBehaviour
 	public void ChooseAttack()
 	{
 		BloodSpawned = 0;
-		SetGlitches(true);
+		SetGlitches(State: true);
 		GlitchTimeLimit = 0.5f;
 		AttackID = Random.Range(1, 6);
 		while (AttacksUsed[AttackID])
@@ -717,7 +717,7 @@ public class SnappedYandereScript : MonoBehaviour
 				{
 					if (weaponScript != null)
 					{
-						SetGlitches(true);
+						SetGlitches(State: true);
 						GlitchTimeLimit = 1f;
 						base.transform.position = weaponScript.transform.position;
 						flag = true;
@@ -728,7 +728,7 @@ public class SnappedYandereScript : MonoBehaviour
 		else
 		{
 			Teleports++;
-			SetGlitches(true);
+			SetGlitches(State: true);
 			GlitchTimeLimit = 1f;
 			if (Teleports == 1)
 			{

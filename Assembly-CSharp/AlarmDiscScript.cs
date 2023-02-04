@@ -125,12 +125,12 @@ public class AlarmDiscScript : MonoBehaviour
 						}
 						if (Student.StudentID == Student.StudentManager.RivalID || Student.StudentID == 1)
 						{
-							StudentActionType currentAction = Student.CurrentAction;
-							int num = 10;
+							_ = Student.CurrentAction;
+							_ = 10;
 						}
 						if ((!Student.TurnOffRadio && Student.Alive && !Student.Blind && !Student.Pushed && !Student.Dying && !Student.Alarmed && !Student.Guarding && !Student.Wet && !Student.Slave && !Student.CheckingNote && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Emetic && !Student.Confessing && !StudentIsBusy && !Student.FocusOnYandere && !Student.Fleeing && !Student.Shoving && !Student.SentHome && Student.ClubActivityPhase < 16 && !Student.Vomiting && !Student.Lethal && !Student.Headache && !Student.Sedated && !Student.SenpaiWitnessingRivalDie && !Student.Hunted && !Student.Drowned && !Student.DramaticReaction && !Student.Yandere.Chased && !Student.Hunting && !Student.ImmuneToLaughter && !Student.ListeningToReport && !Student.Distracted && !Student.RetreivingMedicine) || (Student.Persona == PersonaType.Protective && Originator != null && Originator.StudentID == 11 && !Student.Hunted && !Student.Emetic && !Student.Headache))
 						{
-							bool male = Student.Male;
+							_ = Student.Male;
 							if (!Student.Struggling)
 							{
 								Student.CharacterAnimation.CrossFade(Student.LeanAnim);
@@ -256,7 +256,7 @@ public class AlarmDiscScript : MonoBehaviour
 									}
 									if ((Student.Persona == PersonaType.PhoneAddict && !Student.Phoneless && !flag2) || Student.Persona == PersonaType.Sleuth || Student.StudentID == 20)
 									{
-										Student.SmartPhone.SetActive(true);
+										Student.SmartPhone.SetActive(value: true);
 									}
 									if (flag)
 									{
@@ -265,7 +265,7 @@ public class AlarmDiscScript : MonoBehaviour
 											Student.MyBento.enabled = true;
 											Student.MyBento.Prompt.enabled = true;
 										}
-										Student.Bento.SetActive(true);
+										Student.Bento.SetActive(value: true);
 										Student.Bento.transform.parent = Student.transform;
 										if (Student.Male)
 										{

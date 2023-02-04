@@ -55,7 +55,7 @@ public class UISavedOption : MonoBehaviour
 			return;
 		}
 		string string2 = PlayerPrefs.GetString(key);
-		UIToggle[] componentsInChildren = GetComponentsInChildren<UIToggle>(true);
+		UIToggle[] componentsInChildren = GetComponentsInChildren<UIToggle>(includeInactive: true);
 		int i = 0;
 		for (int num = componentsInChildren.Length; i < num; i++)
 		{
@@ -81,7 +81,7 @@ public class UISavedOption : MonoBehaviour
 			EventDelegate.Remove(mSlider.onChange, SaveProgress);
 			return;
 		}
-		UIToggle[] componentsInChildren = GetComponentsInChildren<UIToggle>(true);
+		UIToggle[] componentsInChildren = GetComponentsInChildren<UIToggle>(includeInactive: true);
 		int i = 0;
 		for (int num = componentsInChildren.Length; i < num; i++)
 		{

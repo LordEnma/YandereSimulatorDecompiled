@@ -147,7 +147,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 				gameObject.GetComponent<BloodPoolScript>().TargetSize = 1f - ((float)PoolsSpawned - (float)BloodPoolLimit * 0.5f) * 0.1f;
 				if (PoolsSpawned == BloodPoolLimit)
 				{
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 				}
 			}
 			if (gameObject != null && (StudentManager.EastBathroomArea.bounds.Contains(base.transform.position) || StudentManager.WestBathroomArea.bounds.Contains(base.transform.position)))

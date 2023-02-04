@@ -103,7 +103,7 @@ public class StudentInfoScript : MonoBehaviour
 
 	private void Start()
 	{
-		Topics.SetActive(false);
+		Topics.SetActive(value: false);
 		Eighties = GameGlobals.Eighties;
 		if (Eighties)
 		{
@@ -288,7 +288,7 @@ public class StudentInfoScript : MonoBehaviour
 		StrengthLabel.text = StrengthStrings[studentJson.Strength];
 		AudioSource component = GetComponent<AudioSource>();
 		component.enabled = false;
-		Static.SetActive(false);
+		Static.SetActive(value: false);
 		component.volume = 0f;
 		component.Stop();
 		string text2 = "";
@@ -333,7 +333,7 @@ public class StudentInfoScript : MonoBehaviour
 				Portrait.mainTexture = StudentInfoMenu.InfoChan;
 				if (!Eighties)
 				{
-					Static.SetActive(true);
+					Static.SetActive(value: true);
 					if (!StudentInfoMenu.Gossiping && !StudentInfoMenu.Distracting && !StudentInfoMenu.CyberBullying && !StudentInfoMenu.CyberStalking)
 					{
 						component.enabled = true;
@@ -360,11 +360,11 @@ public class StudentInfoScript : MonoBehaviour
 		{
 			if (StudentInfoMenu.Gossiping)
 			{
-				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(value: true);
 				StudentInfoMenu.PauseScreen.Show = false;
 				DialogueWheel.Victim = CurrentStudent;
 				StudentInfoMenu.Gossiping = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				Time.timeScale = 0.0001f;
 				DialogueWheel.TopicInterface.Socializing = false;
 				DialogueWheel.TopicInterface.StudentID = Yandere.TargetStudent.StudentID;
@@ -373,7 +373,7 @@ public class StudentInfoScript : MonoBehaviour
 				DialogueWheel.TopicInterface.TargetStudent = StudentManager.Students[CurrentStudent];
 				DialogueWheel.TopicInterface.UpdateOpinions();
 				DialogueWheel.TopicInterface.UpdateTopicHighlight();
-				DialogueWheel.TopicInterface.gameObject.SetActive(true);
+				DialogueWheel.TopicInterface.gameObject.SetActive(value: true);
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "Speak";
 				PromptBar.Label[1].text = "Back";
@@ -383,11 +383,11 @@ public class StudentInfoScript : MonoBehaviour
 			}
 			else if (StudentInfoMenu.Distracting)
 			{
-				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(value: true);
 				StudentInfoMenu.PauseScreen.Show = false;
 				DialogueWheel.Victim = CurrentStudent;
 				StudentInfoMenu.Distracting = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				Time.timeScale = 1f;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
@@ -396,38 +396,38 @@ public class StudentInfoScript : MonoBehaviour
 			{
 				HomeInternet.PostLabels[1].text = JSON.Students[CurrentStudent].Name;
 				HomeInternet.Student = CurrentStudent;
-				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(value: true);
 				StudentInfoMenu.PauseScreen.Show = false;
 				StudentInfoMenu.CyberBullying = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
 			}
 			else if (StudentInfoMenu.CyberStalking)
 			{
-				HomeInternet.HomeCamera.CyberstalkWindow.SetActive(true);
+				HomeInternet.HomeCamera.CyberstalkWindow.SetActive(value: true);
 				HomeInternet.Student = CurrentStudent;
-				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(value: true);
 				StudentInfoMenu.PauseScreen.Show = false;
 				StudentInfoMenu.CyberStalking = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
 			}
 			else if (StudentInfoMenu.MatchMaking)
 			{
-				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(value: true);
 				StudentInfoMenu.PauseScreen.Show = false;
 				DialogueWheel.Victim = CurrentStudent;
 				StudentInfoMenu.MatchMaking = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				Time.timeScale = 1f;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
 			}
 			else if (StudentInfoMenu.Targeting)
 			{
-				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(value: true);
 				StudentInfoMenu.PauseScreen.Show = false;
 				Yandere.TargetStudent.HuntTarget = StudentManager.Students[CurrentStudent];
 				Yandere.TargetStudent.HuntTarget.Hunted = true;
@@ -435,7 +435,7 @@ public class StudentInfoScript : MonoBehaviour
 				Yandere.RPGCamera.enabled = true;
 				Yandere.TargetStudent = null;
 				StudentInfoMenu.Targeting = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				Time.timeScale = 1f;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
@@ -445,7 +445,7 @@ public class StudentInfoScript : MonoBehaviour
 				if (CurrentStudent == 10 || CurrentStudent == StudentManager.RivalID)
 				{
 					StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(11);
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = string.Empty;
 					PromptBar.Label[1].text = "Back";
@@ -461,7 +461,7 @@ public class StudentInfoScript : MonoBehaviour
 						StudentManager.Students[CurrentStudent].SpeechLines.Stop();
 						StudentManager.Students[CurrentStudent].EmptyHands();
 						Yandere.PauseScreen.ServiceMenu.ServicePurchased[Yandere.PauseScreen.ServiceMenu.Selected] = true;
-						StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(true);
+						StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(value: true);
 						StudentInfoMenu.PauseScreen.ServiceMenu.UpdateList();
 						StudentInfoMenu.PauseScreen.ServiceMenu.UpdateDesc();
 						StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
@@ -471,7 +471,7 @@ public class StudentInfoScript : MonoBehaviour
 					{
 						StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(0);
 					}
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = string.Empty;
 					PromptBar.Label[1].text = "Back";
@@ -481,7 +481,7 @@ public class StudentInfoScript : MonoBehaviour
 			}
 			else if (StudentInfoMenu.FindingLocker)
 			{
-				NoteLocker.gameObject.SetActive(true);
+				NoteLocker.gameObject.SetActive(value: true);
 				NoteLocker.transform.position = StudentManager.Students[StudentInfoMenu.StudentID].MyLocker.position;
 				NoteLocker.transform.position += new Vector3(0f, 1.355f, 0f);
 				NoteLocker.transform.position += StudentManager.Students[StudentInfoMenu.StudentID].MyLocker.forward * 0.33333f;
@@ -490,17 +490,17 @@ public class StudentInfoScript : MonoBehaviour
 				NoteLocker.LockerOwner = StudentInfoMenu.StudentID;
 				NoteLocker.StudentID = StudentInfoMenu.StudentID;
 				NoteLocker.Prompt.enabled = true;
-				NoteLocker.transform.GetChild(0).gameObject.SetActive(true);
+				NoteLocker.transform.GetChild(0).gameObject.SetActive(value: true);
 				NoteLocker.CheckingNote = false;
 				NoteLocker.CanLeaveNote = true;
 				NoteLocker.SpawnedNote = false;
 				NoteLocker.NoteLeft = false;
 				NoteLocker.Success = false;
 				NoteLocker.Timer = 0f;
-				StudentInfoMenu.PauseScreen.MainMenu.SetActive(true);
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(value: true);
 				StudentInfoMenu.PauseScreen.Show = false;
 				StudentInfoMenu.FindingLocker = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
 				Yandere.RPGCamera.enabled = true;
@@ -523,7 +523,7 @@ public class StudentInfoScript : MonoBehaviour
 					StudentManager.Students[CurrentStudent].EmptyHands();
 					StudentManager.Students[CurrentStudent].IdleAnim = StudentManager.Students[CurrentStudent].BulliedIdleAnim;
 					StudentManager.Students[CurrentStudent].WalkAnim = StudentManager.Students[CurrentStudent].BulliedWalkAnim;
-					StudentManager.Students[CurrentStudent].Armband.SetActive(false);
+					StudentManager.Students[CurrentStudent].Armband.SetActive(value: false);
 					StudentScript studentScript = StudentManager.Students[CurrentStudent];
 					ScheduleBlock obj = studentScript.ScheduleBlocks[3];
 					obj.destination = "LunchSpot";
@@ -531,7 +531,7 @@ public class StudentInfoScript : MonoBehaviour
 					studentScript.GetDestinations();
 					studentScript.CurrentDestination = studentScript.Destinations[studentScript.Phase];
 					studentScript.Pathfinding.target = studentScript.Destinations[studentScript.Phase];
-					StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(true);
+					StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(value: true);
 					StudentInfoMenu.PauseScreen.ServiceMenu.UpdateList();
 					StudentInfoMenu.PauseScreen.ServiceMenu.UpdateDesc();
 					StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
@@ -542,7 +542,7 @@ public class StudentInfoScript : MonoBehaviour
 				{
 					StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(0);
 				}
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = string.Empty;
 				PromptBar.Label[1].text = "Back";
@@ -552,11 +552,11 @@ public class StudentInfoScript : MonoBehaviour
 			{
 				for (int i = 1; i < 26; i++)
 				{
-					ConversationGlobals.SetTopicDiscovered(i, true);
-					StudentManager.SetTopicLearnedByStudent(i, CurrentStudent, true);
+					ConversationGlobals.SetTopicDiscovered(i, value: true);
+					StudentManager.SetTopicLearnedByStudent(i, CurrentStudent, boolean: true);
 				}
 				StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				StudentInfoMenu.GettingOpinions = false;
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = string.Empty;
@@ -567,7 +567,7 @@ public class StudentInfoScript : MonoBehaviour
 		if (Input.GetButtonDown("B"))
 		{
 			ShowRep = false;
-			Topics.SetActive(false);
+			Topics.SetActive(value: false);
 			GetComponent<AudioSource>().Stop();
 			ReputationChart.transform.localScale = new Vector3(0f, 0f, 0f);
 			if (Shutter != null)
@@ -583,8 +583,8 @@ public class StudentInfoScript : MonoBehaviour
 			}
 			if (Back)
 			{
-				StudentInfoMenu.gameObject.SetActive(true);
-				base.gameObject.SetActive(false);
+				StudentInfoMenu.gameObject.SetActive(value: true);
+				base.gameObject.SetActive(value: false);
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "View Info";
 				if (!StudentInfoMenu.Gossiping)
@@ -617,14 +617,14 @@ public class StudentInfoScript : MonoBehaviour
 			{
 				PromptBar.Label[3].text = "Basic Info";
 				PromptBar.UpdateButtons();
-				Topics.SetActive(true);
+				Topics.SetActive(value: true);
 				UpdateTopics();
 			}
 			else
 			{
 				PromptBar.Label[3].text = "Interests";
 				PromptBar.UpdateButtons();
-				Topics.SetActive(false);
+				Topics.SetActive(value: false);
 			}
 		}
 		if (Input.GetButtonDown("LB"))

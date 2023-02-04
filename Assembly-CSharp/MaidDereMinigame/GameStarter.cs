@@ -66,16 +66,16 @@ namespace MaidDereMinigame
 				spriteRenderer.sprite = numbers[timeToStart];
 			}
 			yield return new WaitForSeconds(1f);
-			GameController.SetPause(false);
+			GameController.SetPause(toPause: false);
 			spriteRenderer.sprite = null;
 		}
 
 		private IEnumerator EndGameRoutine()
 		{
-			GameController.SetPause(true);
+			GameController.SetPause(toPause: true);
 			spriteRenderer.sprite = timeUp;
 			yield return new WaitForSeconds(1f);
-			Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
+			Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(value: false);
 			GameController.TimeUp();
 		}
 

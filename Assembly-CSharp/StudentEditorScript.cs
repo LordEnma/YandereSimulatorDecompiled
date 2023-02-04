@@ -158,7 +158,7 @@ public class StudentEditorScript : MonoBehaviour
 			uILabel.text = "(" + studentData.id + ") " + studentData.name;
 			Transform transform = uILabel.transform;
 			transform.localPosition = new Vector3(transform.localPosition.x + (float)(uILabel.width / 2), transform.localPosition.y - (float)(j * uILabel.height), transform.localPosition.z);
-			uILabel.gameObject.SetActive(true);
+			uILabel.gameObject.SetActive(value: true);
 		}
 		studentIndex = 0;
 		bodyLabel.text = GetStudentText(students[studentIndex]);
@@ -217,8 +217,8 @@ public class StudentEditorScript : MonoBehaviour
 	{
 		if (Input.GetButtonDown("B"))
 		{
-			mainPanel.gameObject.SetActive(true);
-			studentPanel.gameObject.SetActive(false);
+			mainPanel.gameObject.SetActive(value: true);
+			studentPanel.gameObject.SetActive(value: false);
 		}
 		int num = 0;
 		int num2 = students.Length - 1;

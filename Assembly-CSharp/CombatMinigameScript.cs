@@ -611,7 +611,7 @@ public class CombatMinigameScript : MonoBehaviour
 				Timer += Time.deltaTime;
 				if (Timer > 1f)
 				{
-					Yandere.ShoulderCamera.HeartbrokenCamera.SetActive(true);
+					Yandere.ShoulderCamera.HeartbrokenCamera.SetActive(value: true);
 					Yandere.ShoulderCamera.enabled = false;
 					Yandere.RPGCamera.enabled = false;
 					Yandere.Jukebox.GameOver();

@@ -22,13 +22,7 @@ public static class YanSave
 
 	private static Dictionary<Type, FieldInfo[]> FieldCache = new Dictionary<Type, FieldInfo[]>();
 
-	public static string SaveDataPath
-	{
-		get
-		{
-			return Path.Combine(Application.streamingAssetsPath, "SaveFiles");
-		}
-	}
+	public static string SaveDataPath => Path.Combine(Application.streamingAssetsPath, "SaveFiles");
 
 	public static void SaveData(string targetSave)
 	{
@@ -62,7 +56,7 @@ public static class YanSave
 				PropertyInfo[] cachedProperties = GetCachedProperties(type);
 				foreach (PropertyInfo propertyInfo in cachedProperties)
 				{
-					if (!propertyInfo.CanWrite || propertyInfo.IsDefined(typeof(ObsoleteAttribute), true))
+					if (!propertyInfo.CanWrite || propertyInfo.IsDefined(typeof(ObsoleteAttribute), inherit: true))
 					{
 						continue;
 					}
@@ -128,7 +122,7 @@ public static class YanSave
 				FieldInfo[] cachedFields = GetCachedFields(type);
 				foreach (FieldInfo fieldInfo in cachedFields)
 				{
-					if (fieldInfo.IsLiteral || fieldInfo.IsDefined(typeof(ObsoleteAttribute), true))
+					if (fieldInfo.IsLiteral || fieldInfo.IsDefined(typeof(ObsoleteAttribute), inherit: true))
 					{
 						continue;
 					}
@@ -225,7 +219,7 @@ public static class YanSave
 				PropertyInfo[] cachedProperties = GetCachedProperties(type2);
 				foreach (PropertyInfo propertyInfo2 in cachedProperties)
 				{
-					if (!propertyInfo2.CanWrite || propertyInfo2.IsDefined(typeof(ObsoleteAttribute), true))
+					if (!propertyInfo2.CanWrite || propertyInfo2.IsDefined(typeof(ObsoleteAttribute), inherit: true))
 					{
 						continue;
 					}
@@ -291,7 +285,7 @@ public static class YanSave
 				FieldInfo[] cachedFields = GetCachedFields(type2);
 				foreach (FieldInfo fieldInfo2 in cachedFields)
 				{
-					if (fieldInfo2.IsLiteral || fieldInfo2.IsDefined(typeof(ObsoleteAttribute), true))
+					if (fieldInfo2.IsLiteral || fieldInfo2.IsDefined(typeof(ObsoleteAttribute), inherit: true))
 					{
 						continue;
 					}
@@ -378,7 +372,7 @@ public static class YanSave
 						{
 							Debug.Log("Couldn't grab replacement value of '" + text2 + "'");
 						}
-						text = text.Replace(string.Format("{{{0}}}", m), newValue);
+						text = text.Replace($"{{{m}}}", newValue);
 					}
 					string key = text.Replace("{i}", l.ToString());
 					switch (prefType)
@@ -414,11 +408,7 @@ public static class YanSave
 			Directory.CreateDirectory(SaveDataPath);
 		}
 		File.WriteAllText(Path.Combine(SaveDataPath, targetSave + ".yansave"), contents);
-		Action onSave = OnSave;
-		if (onSave != null)
-		{
-			onSave();
-		}
+		OnSave?.Invoke();
 	}
 
 	public static void LoadData(string targetSave, bool recreateMissing = false)
@@ -874,11 +864,7 @@ public static class YanSave
 				}
 			}
 		}
-		Action onLoad = OnLoad;
-		if (onLoad != null)
-		{
-			onLoad();
-		}
+		OnLoad?.Invoke();
 	}
 
 	public static void LoadPrefs(string targetSave)

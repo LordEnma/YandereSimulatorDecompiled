@@ -181,7 +181,7 @@ public class GazerEyesScript : MonoBehaviour
 		{
 			ParticleSystem.EmissionModule emission = Target.Hearts.emission;
 			emission.enabled = false;
-			Target.FollowCountdown.gameObject.SetActive(false);
+			Target.FollowCountdown.gameObject.SetActive(value: false);
 			Target.Yandere.Follower = null;
 			Target.Yandere.Followers--;
 			Target.Following = false;

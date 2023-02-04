@@ -84,29 +84,11 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		public float BrakeInput { get; private set; }
 
-		public float CurrentSteerAngle
-		{
-			get
-			{
-				return m_SteerAngle;
-			}
-		}
+		public float CurrentSteerAngle => m_SteerAngle;
 
-		public float CurrentSpeed
-		{
-			get
-			{
-				return m_Rigidbody.velocity.magnitude * 2.2369363f;
-			}
-		}
+		public float CurrentSpeed => m_Rigidbody.velocity.magnitude * 2.2369363f;
 
-		public float MaxSpeed
-		{
-			get
-			{
-				return m_Topspeed;
-			}
-		}
+		public float MaxSpeed => m_Topspeed;
 
 		public float Revs { get; private set; }
 
@@ -170,9 +152,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		{
 			for (int i = 0; i < 4; i++)
 			{
-				Vector3 pos;
-				Quaternion quat;
-				m_WheelColliders[i].GetWorldPose(out pos, out quat);
+				m_WheelColliders[i].GetWorldPose(out var pos, out var quat);
 				m_WheelMeshes[i].transform.position = pos;
 				m_WheelMeshes[i].transform.rotation = quat;
 			}
@@ -269,8 +249,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		{
 			for (int i = 0; i < 4; i++)
 			{
-				WheelHit hit;
-				m_WheelColliders[i].GetGroundHit(out hit);
+				m_WheelColliders[i].GetGroundHit(out var hit);
 				if (hit.normal == Vector3.zero)
 				{
 					return;
@@ -293,8 +272,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		{
 			for (int i = 0; i < 4; i++)
 			{
-				WheelHit hit;
-				m_WheelColliders[i].GetGroundHit(out hit);
+				m_WheelColliders[i].GetGroundHit(out var hit);
 				if (Mathf.Abs(hit.forwardSlip) >= m_SlipLimit || Mathf.Abs(hit.sidewaysSlip) >= m_SlipLimit)
 				{
 					m_WheelEffects[i].EmitTyreSmoke();

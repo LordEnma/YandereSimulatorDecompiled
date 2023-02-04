@@ -14,7 +14,7 @@ public class TypewriterScript : MonoBehaviour
 			Prompt.Yandere.RPGCamera.enabled = false;
 			Prompt.Yandere.CanMove = false;
 			Time.timeScale = 0.0001f;
-			Window.SetActive(true);
+			Window.SetActive(value: true);
 		}
 		if (Window.activeInHierarchy)
 		{
@@ -47,7 +47,7 @@ public class TypewriterScript : MonoBehaviour
 	{
 		Prompt.Yandere.RPGCamera.enabled = true;
 		Prompt.Yandere.CanMove = true;
-		Window.SetActive(false);
+		Window.SetActive(value: false);
 		Time.timeScale = 1f;
 	}
 

@@ -52,8 +52,8 @@ public class TributeScript : MonoBehaviour
 		{
 			base.enabled = false;
 		}
-		bool eighty = GameGlobals.Eighties;
-		Rainey.SetActive(false);
+		_ = GameGlobals.Eighties;
+		Rainey.SetActive(value: false);
 	}
 
 	private void Update()
@@ -75,7 +75,7 @@ public class TributeScript : MonoBehaviour
 				ID++;
 				if (ID == Letter.Length)
 				{
-					Rainey.SetActive(true);
+					Rainey.SetActive(value: true);
 					base.enabled = false;
 				}
 			}
@@ -95,7 +95,7 @@ public class TributeScript : MonoBehaviour
 				{
 					RiggedAttacher.root = StudentManager.Students[90].Hips.parent.gameObject;
 					RiggedAttacher.Student = StudentManager.Students[90];
-					RiggedAttacher.gameObject.SetActive(true);
+					RiggedAttacher.gameObject.SetActive(value: true);
 					StudentManager.Students[90].MyRenderer.enabled = false;
 				}
 			}

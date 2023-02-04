@@ -140,16 +140,16 @@ public class DDRManager : MonoBehaviour
 		yandereAnim.transform.position = Vector3.Lerp(yandereAnim.transform.position, position, 10f * Time.deltaTime);
 		if (CheckingForEnd && !audioSource.isPlaying)
 		{
-			OverlayCanvas.SetActive(false);
-			GameUI.SetActive(false);
+			OverlayCanvas.SetActive(value: false);
+			GameUI.SetActive(value: false);
 			CheckingForEnd = false;
 			Debug.Log("End() was called because song ended.");
 			StartCoroutine(End());
 		}
 		if (GameState.Health <= 0f && audioSource.pitch < 0.01f)
 		{
-			OverlayCanvas.SetActive(false);
-			GameUI.SetActive(false);
+			OverlayCanvas.SetActive(value: false);
+			GameUI.SetActive(value: false);
 			if (audioSource.isPlaying)
 			{
 				Debug.Log("End() was called because we ran out of health.");
@@ -171,8 +171,8 @@ public class DDRManager : MonoBehaviour
 		yandereAnim["f02_danceLeft_00"].weight = 1f;
 		yandereAnim["f02_danceUp_00"].weight = 1f;
 		yandereAnim["f02_danceDown_00"].weight = 1f;
-		OverlayCanvas.SetActive(true);
-		GameUI.SetActive(true);
+		OverlayCanvas.SetActive(value: true);
+		GameUI.SetActive(value: true);
 		ddrMinigame.LoadLevelSelect(levels);
 		StartCoroutine(minigameFlow());
 		YandereListener.enabled = false;
@@ -181,7 +181,7 @@ public class DDRManager : MonoBehaviour
 	public void BootOut()
 	{
 		minigameCamera.position = startPoint.position;
-		StartCoroutine(fade(true, fadeImage, 5f));
+		StartCoroutine(fade(fadein: true, fadeImage, 5f));
 		target = startPoint;
 		ddrMinigame.UnloadLevelSelect();
 		ReturnToNormalGameplay();
@@ -189,15 +189,15 @@ public class DDRManager : MonoBehaviour
 
 	private IEnumerator minigameFlow()
 	{
-		levelSelect.gameObject.SetActive(true);
-		defeatScreen.gameObject.SetActive(false);
-		endScreen.gameObject.SetActive(false);
+		levelSelect.gameObject.SetActive(value: true);
+		defeatScreen.gameObject.SetActive(value: false);
+		endScreen.gameObject.SetActive(value: false);
 		audioSource.pitch = 1f;
 		target = screenPoint;
 		if (!booted)
 		{
 			yield return new WaitForSecondsRealtime(0.2f);
-			StartCoroutine(fade(false, fadeImage));
+			StartCoroutine(fade(fadein: false, fadeImage));
 			while (fadeImage.color.a > 0.4f)
 			{
 				yield return null;
@@ -222,7 +222,7 @@ public class DDRManager : MonoBehaviour
 		target = watchPoint;
 		backgroundVideo.Play();
 		backgroundVideo.playbackSpeed = 0f;
-		StartCoroutine(fadeGameUI(true));
+		StartCoroutine(fadeGameUI(fadein: true));
 		backgroundVideo.playbackSpeed = 1f;
 		audioSource.clip = LoadedLevel.Song;
 		audioSource.time = 0f;
@@ -240,8 +240,8 @@ public class DDRManager : MonoBehaviour
 					{
 						Debug.Log("Pitch reached zero.");
 						audioSource.time = audioSource.clip.length;
-						OverlayCanvas.SetActive(false);
-						GameUI.SetActive(false);
+						OverlayCanvas.SetActive(value: false);
+						GameUI.SetActive(value: false);
 					}
 					yield return null;
 				}
@@ -254,12 +254,12 @@ public class DDRManager : MonoBehaviour
 	private IEnumerator End()
 	{
 		audioSource.Stop();
-		levelSelect.gameObject.SetActive(false);
-		StopCoroutine(fadeGameUI(true));
-		StartCoroutine(fadeGameUI(false));
+		levelSelect.gameObject.SetActive(value: false);
+		StopCoroutine(fadeGameUI(fadein: true));
+		StartCoroutine(fadeGameUI(fadein: false));
 		if (GameState.FinishStatus == DDRFinishStatus.Complete)
 		{
-			endScreen.gameObject.SetActive(true);
+			endScreen.gameObject.SetActive(value: true);
 			ddrMinigame.UpdateEndcard(GameState);
 			if (LoadedLevel != levels[4] && !GameGlobals.Debug)
 			{
@@ -269,13 +269,13 @@ public class DDRManager : MonoBehaviour
 		}
 		else
 		{
-			defeatScreen.SetActive(true);
+			defeatScreen.SetActive(value: true);
 		}
 		target = screenPoint;
 		LoadedLevel = null;
 		ddrMinigame.UnloadLevelSelect();
 		yield return new WaitForSecondsRealtime(2f);
-		StartCoroutine(fade(true, continueText));
+		StartCoroutine(fade(fadein: true, continueText));
 		while (!Input.anyKeyDown || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
 		{
 			yield return null;
@@ -348,12 +348,12 @@ public class DDRManager : MonoBehaviour
 		Yandere.enabled = true;
 		Yandere.HeartCamera.enabled = true;
 		Yandere.HUD.enabled = true;
-		Yandere.HUD.transform.parent.gameObject.SetActive(true);
-		Yandere.MainCamera.gameObject.SetActive(true);
+		Yandere.HUD.transform.parent.gameObject.SetActive(value: true);
+		Yandere.MainCamera.gameObject.SetActive(value: true);
 		Yandere.Jukebox.Volume = Yandere.Jukebox.LastVolume;
 		OriginalRenderer.enabled = true;
 		Physics.SyncTransforms();
-		base.transform.parent.gameObject.SetActive(false);
+		base.transform.parent.gameObject.SetActive(value: false);
 		YandereListener.enabled = true;
 		continueText.color = new Color(1f, 1f, 1f, 0f);
 	}

@@ -142,7 +142,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 		{
 			if (StudentGlobals.GetStudentSanity(StudentID) == 100)
 			{
-				AnkleRopes.SetActive(false);
+				AnkleRopes.SetActive(value: false);
 			}
 			PermanentAngleR = TwintailR.eulerAngles;
 			PermanentAngleL = TwintailL.eulerAngles;
@@ -160,17 +160,17 @@ public class HomePrisonerChanScript : MonoBehaviour
 				UpdateSanity();
 				TwintailR.transform.localEulerAngles = new Vector3(0f, 180f, -90f);
 				TwintailL.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
-				Blindfold.SetActive(false);
-				Tripod.SetActive(false);
+				Blindfold.SetActive(value: false);
+				Tripod.SetActive(value: false);
 				if (StudentID == 81 && !StudentGlobals.GetStudentBroken(81) && SchemeGlobals.HelpingKokona)
 				{
-					Blindfold.SetActive(true);
-					Tripod.SetActive(true);
+					Blindfold.SetActive(value: true);
+					Tripod.SetActive(value: true);
 				}
 			}
 			else
 			{
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 			if (IdleAnim == "")
 			{
@@ -195,7 +195,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 		}
 		else
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		if (Cosmetic.Student.Ragdoll != null)
 		{
@@ -206,19 +206,19 @@ public class HomePrisonerChanScript : MonoBehaviour
 				Cosmetic.Student.Ragdoll.AllColliders[num].enabled = false;
 			}
 			Cosmetic.Student.DisableFemaleProps();
-			Cosmetic.Student.SetSplashes(false);
+			Cosmetic.Student.SetSplashes(Bool: false);
 			Cosmetic.Student.DisableProps();
-			Blindfold.SetActive(true);
+			Blindfold.SetActive(value: true);
 		}
 		if (GameGlobals.Eighties)
 		{
 			if (Eighties)
 			{
-				Blindfold.SetActive(true);
+				Blindfold.SetActive(value: true);
 			}
 			else
 			{
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 	}

@@ -40,7 +40,7 @@ namespace RetroAesthetics
 				meshFilter = base.gameObject.AddComponent<MeshFilter>();
 			}
 			meshFilter.mesh = new Mesh();
-			meshFilter.sharedMesh.CombineMeshes(array, true, true);
+			meshFilter.sharedMesh.CombineMeshes(array, mergeSubMeshes: true, useMatrices: true);
 			if (GetComponent<MeshRenderer>() == null)
 			{
 				base.gameObject.AddComponent<MeshRenderer>().sharedMaterial = material;

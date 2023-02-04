@@ -121,7 +121,7 @@ public class TweenColor : UITweener
 		tweenColor.to = color;
 		if (duration <= 0f)
 		{
-			tweenColor.Sample(1f, true);
+			tweenColor.Sample(1f, isFinished: true);
 			tweenColor.enabled = false;
 		}
 		return tweenColor;

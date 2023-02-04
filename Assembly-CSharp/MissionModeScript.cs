@@ -267,25 +267,25 @@ public class MissionModeScript : MonoBehaviour
 	{
 		if (!SchoolGlobals.HighSecurity)
 		{
-			MetalDetectorGroup.SetActive(false);
+			MetalDetectorGroup.SetActive(value: false);
 		}
-		NewMissionWindow.gameObject.SetActive(false);
-		MissionModeHUD.SetActive(false);
-		SpottedWindow.SetActive(false);
-		ExitPortal.SetActive(false);
-		Safe.SetActive(false);
+		NewMissionWindow.gameObject.SetActive(value: false);
+		MissionModeHUD.SetActive(value: false);
+		SpottedWindow.SetActive(value: false);
+		ExitPortal.SetActive(value: false);
+		Safe.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			StudentManager.EightiesifyLabel(Watermark);
 			Watermark.transform.localPosition = new Vector3(0f, -546f, 0f);
 			if (GameGlobals.EightiesTutorial)
 			{
-				Watermark.gameObject.SetActive(false);
+				Watermark.gameObject.SetActive(value: false);
 			}
 		}
 		if (GameGlobals.LoveSick)
 		{
-			MurderKit.SetActive(false);
+			MurderKit.SetActive(value: false);
 			Yandere.HeartRate.MediumColour = new Color(1f, 1f, 1f, 1f);
 			Yandere.HeartRate.NormalColour = new Color(1f, 1f, 1f, 1f);
 			Clock.PeriodLabel.color = new Color(1f, 0f, 0f, 1f);
@@ -294,7 +294,7 @@ public class MissionModeScript : MonoBehaviour
 			MoneyLabel.color = new Color(1f, 0f, 0f, 1f);
 			MoneyLabel.applyGradient = false;
 			Reputation.PendingRepMarker.GetComponent<UISprite>().color = new Color(1f, 0f, 0f, 1f);
-			Reputation.CurrentRepMarker.gameObject.SetActive(false);
+			Reputation.CurrentRepMarker.gameObject.SetActive(value: false);
 			Reputation.PendingRepLabel.color = new Color(1f, 0f, 0f, 1f);
 			Reputation.PendingRepLabel.applyGradient = false;
 			ReputationFace1.color = new Color(1f, 0f, 0f, 1f);
@@ -329,15 +329,15 @@ public class MissionModeScript : MonoBehaviour
 			PhoneBG.gradientTop = new Color(1f, 1f, 1f, 1f);
 			PhoneBG.gradientBottom = new Color(0.5f, 0.5f, 0.5f, 1f);
 		}
-		NewFPSLabel.transform.parent.parent.gameObject.SetActive(true);
+		NewFPSLabel.transform.parent.parent.gameObject.SetActive(value: true);
 		if (MissionModeGlobals.MissionMode)
 		{
 			NewFPSLabel.color = new Color(1f, 1f, 1f, 1f);
 			NewFPSValueLabel.color = new Color(1f, 1f, 1f, 1f);
-			AlphabetArrow.gameObject.SetActive(true);
+			AlphabetArrow.gameObject.SetActive(value: true);
 			AlphabetArrow.gameObject.GetComponent<Renderer>().material.shader = StudentManager.QualityManager.ToonOutline;
 			AlphabetArrow.gameObject.GetComponent<Renderer>().material.color = new Color(1f, 1f, 1f, 0f);
-			Headmaster.SetActive(false);
+			Headmaster.SetActive(value: false);
 			Yandere.HeartRate.MediumColour = new Color(1f, 0.5f, 0.5f, 1f);
 			Yandere.HeartRate.NormalColour = new Color(1f, 1f, 1f, 1f);
 			Clock.PeriodLabel.color = new Color(1f, 1f, 1f, 1f);
@@ -348,7 +348,7 @@ public class MissionModeScript : MonoBehaviour
 			MoneyLabel.trueTypeFont = Arial;
 			MoneyLabel.applyGradient = false;
 			Reputation.PendingRepMarker.GetComponent<UISprite>().color = new Color(1f, 1f, 1f, 1f);
-			Reputation.CurrentRepMarker.gameObject.SetActive(false);
+			Reputation.CurrentRepMarker.gameObject.SetActive(value: false);
 			Reputation.PendingRepLabel.color = new Color(1f, 1f, 1f, 1f);
 			Reputation.PendingRepLabel.applyGradient = false;
 			ReputationLabel.fontStyle = FontStyle.Bold;
@@ -356,12 +356,12 @@ public class MissionModeScript : MonoBehaviour
 			ReputationLabel.color = new Color(1f, 1f, 1f, 1f);
 			ReputationLabel.applyGradient = false;
 			ReputationLabel.text = "AWARENESS";
-			ReputationIcons[0].SetActive(true);
-			ReputationIcons[1].SetActive(false);
-			ReputationIcons[2].SetActive(false);
-			ReputationIcons[3].SetActive(false);
-			ReputationIcons[4].SetActive(false);
-			ReputationIcons[5].SetActive(false);
+			ReputationIcons[0].SetActive(value: true);
+			ReputationIcons[1].SetActive(value: false);
+			ReputationIcons[2].SetActive(value: false);
+			ReputationIcons[3].SetActive(value: false);
+			ReputationIcons[4].SetActive(value: false);
+			ReputationIcons[5].SetActive(value: false);
 			Clock.TimeLabel.fontStyle = FontStyle.Bold;
 			Clock.TimeLabel.trueTypeFont = Arial;
 			Clock.TimeLabel.applyGradient = false;
@@ -466,7 +466,7 @@ public class MissionModeScript : MonoBehaviour
 			}
 			else
 			{
-				Safe.SetActive(true);
+				Safe.SetActive(value: true);
 			}
 			if (SecurityCameras)
 			{
@@ -474,11 +474,11 @@ public class MissionModeScript : MonoBehaviour
 			}
 			if (MetalDetectors)
 			{
-				MetalDetectorGroup.SetActive(true);
+				MetalDetectorGroup.SetActive(value: true);
 			}
 			if (TimeLimit)
 			{
-				TimeLabel.gameObject.SetActive(true);
+				TimeLabel.gameObject.SetActive(value: true);
 			}
 			if (NoSpeech)
 			{
@@ -490,7 +490,7 @@ public class MissionModeScript : MonoBehaviour
 			}
 			if (NemesisDifficulty > 0)
 			{
-				Nemesis.SetActive(true);
+				Nemesis.SetActive(value: true);
 			}
 			if (!NoWeapon)
 			{
@@ -510,22 +510,22 @@ public class MissionModeScript : MonoBehaviour
 			Yandere.RPGCamera.enabled = false;
 			Yandere.SanityBased = true;
 			Yandere.CanMove = false;
-			VoidGoddess.GetComponent<VoidGoddessScript>().Window.gameObject.SetActive(false);
+			VoidGoddess.GetComponent<VoidGoddessScript>().Window.gameObject.SetActive(value: false);
 			TranqDetector.GetComponent<TranqDetectorScript>().Checklist.alpha = 0f;
-			HeartbeatCamera.SetActive(false);
-			TranqDetector.SetActive(false);
-			VoidGoddess.SetActive(false);
-			MurderKit.SetActive(false);
+			HeartbeatCamera.SetActive(value: false);
+			TranqDetector.SetActive(value: false);
+			VoidGoddess.SetActive(value: false);
+			MurderKit.SetActive(value: false);
 			TargetHeight = 1.51505f;
 			Yandere.HUD.alpha = 0f;
 			MusicIcon.color = new Color(MusicIcon.color.r, MusicIcon.color.g, MusicIcon.color.b, 1f);
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 1f);
 			MissionModeMenu.UpdateGraphics();
-			MissionModeMenu.gameObject.SetActive(true);
+			MissionModeMenu.gameObject.SetActive(value: true);
 			if (MissionModeGlobals.MultiMission)
 			{
-				NewMissionWindow.gameObject.SetActive(true);
-				MissionModeMenu.gameObject.SetActive(false);
+				NewMissionWindow.gameObject.SetActive(value: true);
+				MissionModeMenu.gameObject.SetActive(value: false);
 				NewMissionWindow.FillOutInfo();
 				NewMissionWindow.HideButtons();
 				MultiMission = true;
@@ -543,8 +543,8 @@ public class MissionModeScript : MonoBehaviour
 		}
 		else
 		{
-			MissionModeMenu.gameObject.SetActive(false);
-			TimeLabel.gameObject.SetActive(false);
+			MissionModeMenu.gameObject.SetActive(value: false);
+			TimeLabel.gameObject.SetActive(value: false);
 			base.enabled = false;
 		}
 	}
@@ -566,7 +566,7 @@ public class MissionModeScript : MonoBehaviour
 				if (Yandere.HUD.alpha == 1f)
 				{
 					Yandere.RPGCamera.enabled = true;
-					HeartbeatCamera.SetActive(true);
+					HeartbeatCamera.SetActive(value: true);
 					Yandere.CanMove = true;
 					Phase++;
 				}
@@ -576,7 +576,7 @@ public class MissionModeScript : MonoBehaviour
 				Debug.Log("The player skipped the Misson Mode intro sequence.");
 				MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, TargetHeight, MainCamera.transform.position.z);
 				Yandere.RPGCamera.enabled = true;
-				HeartbeatCamera.SetActive(true);
+				HeartbeatCamera.SetActive(value: true);
 				Yandere.CanMove = true;
 				Yandere.HUD.alpha = 1f;
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 0f);
@@ -614,7 +614,7 @@ public class MissionModeScript : MonoBehaviour
 							{
 								if (StudentManager.Students[Target[i]].DeathType == DeathType.Weapon)
 								{
-									NewMissionWindow.DeathSkulls[i].SetActive(true);
+									NewMissionWindow.DeathSkulls[i].SetActive(value: true);
 									Checking[i] = false;
 									CheckForCompletion();
 								}
@@ -629,7 +629,7 @@ public class MissionModeScript : MonoBehaviour
 							{
 								if (StudentManager.Students[Target[i]].DeathType == DeathType.Drowning)
 								{
-									NewMissionWindow.DeathSkulls[i].SetActive(true);
+									NewMissionWindow.DeathSkulls[i].SetActive(value: true);
 									Checking[i] = false;
 									CheckForCompletion();
 								}
@@ -644,7 +644,7 @@ public class MissionModeScript : MonoBehaviour
 							{
 								if (StudentManager.Students[Target[i]].DeathType == DeathType.Poison)
 								{
-									NewMissionWindow.DeathSkulls[i].SetActive(true);
+									NewMissionWindow.DeathSkulls[i].SetActive(value: true);
 									Checking[i] = false;
 									CheckForCompletion();
 								}
@@ -659,7 +659,7 @@ public class MissionModeScript : MonoBehaviour
 							{
 								if (StudentManager.Students[Target[i]].DeathType == DeathType.Electrocution)
 								{
-									NewMissionWindow.DeathSkulls[i].SetActive(true);
+									NewMissionWindow.DeathSkulls[i].SetActive(value: true);
 									Checking[i] = false;
 									CheckForCompletion();
 								}
@@ -674,7 +674,7 @@ public class MissionModeScript : MonoBehaviour
 							{
 								if (StudentManager.Students[Target[i]].DeathType == DeathType.Burning)
 								{
-									NewMissionWindow.DeathSkulls[i].SetActive(true);
+									NewMissionWindow.DeathSkulls[i].SetActive(value: true);
 									Checking[i] = false;
 									CheckForCompletion();
 								}
@@ -689,7 +689,7 @@ public class MissionModeScript : MonoBehaviour
 							{
 								if (StudentManager.Students[Target[i]].DeathType == DeathType.Falling)
 								{
-									NewMissionWindow.DeathSkulls[i].SetActive(true);
+									NewMissionWindow.DeathSkulls[i].SetActive(value: true);
 									Checking[i] = false;
 									CheckForCompletion();
 								}
@@ -704,7 +704,7 @@ public class MissionModeScript : MonoBehaviour
 							{
 								if (StudentManager.Students[Target[i]].DeathType == DeathType.Weight)
 								{
-									NewMissionWindow.DeathSkulls[i].SetActive(true);
+									NewMissionWindow.DeathSkulls[i].SetActive(value: true);
 									Checking[i] = false;
 									CheckForCompletion();
 								}
@@ -723,7 +723,7 @@ public class MissionModeScript : MonoBehaviour
 			{
 				AlphabetArrow.LocalArrow.LookAt(StudentManager.Students[TargetID].transform.position);
 				AlphabetArrow.transform.eulerAngles = AlphabetArrow.LocalArrow.eulerAngles - new Vector3(0f, StudentManager.MainCamera.transform.eulerAngles.y, 0f);
-				AlphabetArrow.gameObject.SetActive(true);
+				AlphabetArrow.gameObject.SetActive(value: true);
 				if (!StudentManager.Students[TargetID].Alive)
 				{
 					if (Yandere.Equipped > 0)
@@ -742,7 +742,7 @@ public class MissionModeScript : MonoBehaviour
 					{
 						WeaponDisposed = true;
 					}
-					AlphabetArrow.gameObject.SetActive(false);
+					AlphabetArrow.gameObject.SetActive(value: false);
 					TargetDead = true;
 				}
 				if (StudentManager.Students[TargetID].transform.position.y < -11f)
@@ -864,7 +864,7 @@ public class MissionModeScript : MonoBehaviour
 					if (StudentManager.Students[ID] != null && StudentManager.Students[ID].WitnessedMurder && !Yandere.DelinquentFighting)
 					{
 						SpottedLabel.text = StudentManager.Students[ID].Name;
-						SpottedWindow.SetActive(true);
+						SpottedWindow.SetActive(value: true);
 						Chastise = true;
 						GameOverID = 6;
 						if (Yandere.Mopping)
@@ -883,7 +883,7 @@ public class MissionModeScript : MonoBehaviour
 					if (StudentManager.Students[ID] != null && (StudentManager.Students[ID].WitnessedCorpse || StudentManager.Students[ID].WitnessedMurder))
 					{
 						SpottedLabel.text = StudentManager.Students[ID].Name;
-						SpottedWindow.SetActive(true);
+						SpottedWindow.SetActive(value: true);
 						Chastise = true;
 						if (Yandere.DelinquentFighting)
 						{
@@ -933,7 +933,7 @@ public class MissionModeScript : MonoBehaviour
 				int num2 = Mathf.CeilToInt(TimeRemaining);
 				int num3 = num2 / 60;
 				int num4 = num2 % 60;
-				TimeLabel.text = string.Format("{0:00}:{1:00}", num3, num4);
+				TimeLabel.text = $"{num3:00}:{num4:00}";
 				if (TimeRemaining == 0f)
 				{
 					Chastise = true;
@@ -956,7 +956,7 @@ public class MissionModeScript : MonoBehaviour
 			}
 			if (HeartbrokenCamera.activeInHierarchy)
 			{
-				HeartbrokenCamera.SetActive(false);
+				HeartbrokenCamera.SetActive(value: false);
 				GameOverID = 0;
 				GameOver();
 				Phase = 4;
@@ -1006,7 +1006,7 @@ public class MissionModeScript : MonoBehaviour
 						Yandere.transform.position = new Vector3(0f, 0f, -94.5f);
 						Yandere.Character.GetComponent<Animation>().Play(Yandere.WalkAnim);
 						Yandere.RPGCamera.enabled = false;
-						Yandere.HUD.gameObject.SetActive(false);
+						Yandere.HUD.gameObject.SetActive(value: false);
 						Yandere.ResetYandereEffects();
 						Yandere.YandereVision = false;
 						Yandere.CanMove = false;
@@ -1014,7 +1014,7 @@ public class MissionModeScript : MonoBehaviour
 						Jukebox.MissionMode.loop = false;
 						Jukebox.MissionMode.Play();
 						MyAudio.PlayOneShot(InfoAccomplished);
-						HeartbeatCamera.SetActive(false);
+						HeartbeatCamera.SetActive(value: false);
 						Boundary.enabled = false;
 						Phase++;
 					}
@@ -1025,12 +1025,12 @@ public class MissionModeScript : MonoBehaviour
 				NotificationManager.DisplayNotification(NotificationType.Complete);
 				NotificationManager.DisplayNotification(NotificationType.Exfiltrate);
 				MyAudio.PlayOneShot(InfoExfiltrate);
-				AlphabetArrow.gameObject.SetActive(true);
-				ExitPortal.SetActive(true);
+				AlphabetArrow.gameObject.SetActive(value: true);
+				ExitPortal.SetActive(value: true);
 			}
 			if (NoBlood && BloodCleaned && Police.BloodParent.childCount > 0)
 			{
-				ExitPortal.SetActive(false);
+				ExitPortal.SetActive(value: false);
 				BloodCleaned = false;
 				BloodTimer = 0f;
 			}
@@ -1166,12 +1166,12 @@ public class MissionModeScript : MonoBehaviour
 		GameOverReason.text = GameOverReasons[GameOverID];
 		Fire.enabled = true;
 		MyAudio.PlayOneShot(GameOverSound);
-		DetectionCamera.SetActive(false);
-		HeartbeatCamera.SetActive(false);
-		WitnessCamera.SetActive(false);
-		GameOverText.SetActive(true);
-		Yandere.HUD.gameObject.SetActive(false);
-		Subtitle.SetActive(false);
+		DetectionCamera.SetActive(value: false);
+		HeartbeatCamera.SetActive(value: false);
+		WitnessCamera.SetActive(value: false);
+		GameOverText.SetActive(value: true);
+		Yandere.HUD.gameObject.SetActive(value: false);
+		Subtitle.SetActive(value: false);
 		Time.timeScale = 0.0001f;
 		GameOverPhase = 1;
 		Jukebox.MissionMode.Stop();
@@ -1188,15 +1188,15 @@ public class MissionModeScript : MonoBehaviour
 			}
 		}
 		DiscordCodeLabel.text = RandomNumber.ToString() ?? "";
-		DiscordCodeLabel.transform.parent.gameObject.SetActive(true);
+		DiscordCodeLabel.transform.parent.gameObject.SetActive(value: true);
 		GameOverHeader.transform.localPosition = new Vector3(GameOverHeader.transform.localPosition.x, 0f, GameOverHeader.transform.localPosition.z);
 		GameOverHeader.text = "MISSION ACCOMPLISHED";
-		GameOverReason.gameObject.SetActive(false);
-		DetectionCamera.SetActive(false);
-		WitnessCamera.SetActive(false);
-		GameOverText.SetActive(true);
+		GameOverReason.gameObject.SetActive(value: false);
+		DetectionCamera.SetActive(value: false);
+		WitnessCamera.SetActive(value: false);
+		GameOverText.SetActive(value: true);
 		GameOverReason.text = string.Empty;
-		Subtitle.SetActive(false);
+		Subtitle.SetActive(value: false);
 		Jukebox.Volume = 1f;
 		Time.timeScale = 0.0001f;
 		Fire.enabled = true;
@@ -1308,7 +1308,7 @@ public class MissionModeScript : MonoBehaviour
 	{
 		for (int i = 1; i < CardboardBoxes.Length; i++)
 		{
-			CardboardBoxes[i].SetActive(false);
+			CardboardBoxes[i].SetActive(value: false);
 		}
 	}
 }

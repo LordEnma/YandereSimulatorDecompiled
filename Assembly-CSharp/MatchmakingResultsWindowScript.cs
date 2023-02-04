@@ -8,11 +8,11 @@ public class MatchmakingResultsWindowScript : MonoBehaviour
 	{
 		if (Input.GetButtonDown("B"))
 		{
-			AdviceWindow.Yandere.PromptParent.gameObject.SetActive(true);
-			AdviceWindow.HUDElement[1].SetActive(true);
-			AdviceWindow.HUDElement[2].SetActive(true);
-			AdviceWindow.HUDElement[3].SetActive(true);
-			base.gameObject.SetActive(false);
+			AdviceWindow.Yandere.PromptParent.gameObject.SetActive(value: true);
+			AdviceWindow.HUDElement[1].SetActive(value: true);
+			AdviceWindow.HUDElement[2].SetActive(value: true);
+			AdviceWindow.HUDElement[3].SetActive(value: true);
+			base.gameObject.SetActive(value: false);
 			Time.timeScale = 1f;
 		}
 	}

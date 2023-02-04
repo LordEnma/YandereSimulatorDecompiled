@@ -56,7 +56,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject != null)
 			{
-				gameObject.SetActive(false);
+				gameObject.SetActive(value: false);
 			}
 		}
 		femaleHair = Cosmetic.TeacherHair;
@@ -64,7 +64,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject2 != null)
 			{
-				gameObject2.SetActive(false);
+				gameObject2.SetActive(value: false);
 			}
 		}
 		femaleHair = Cosmetic.FemaleAccessories;
@@ -72,7 +72,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject3 != null)
 			{
-				gameObject3.SetActive(false);
+				gameObject3.SetActive(value: false);
 			}
 		}
 		femaleHair = Cosmetic.TeacherAccessories;
@@ -80,7 +80,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject4 != null)
 			{
-				gameObject4.SetActive(false);
+				gameObject4.SetActive(value: false);
 			}
 		}
 		femaleHair = Cosmetic.ClubAccessories;
@@ -88,7 +88,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject5 != null)
 			{
-				gameObject5.SetActive(false);
+				gameObject5.SetActive(value: false);
 			}
 		}
 		femaleHair = Cosmetic.Kerchiefs;
@@ -96,7 +96,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject6 != null)
 			{
-				gameObject6.SetActive(false);
+				gameObject6.SetActive(value: false);
 			}
 		}
 		femaleHair = Cosmetic.CatGifts;
@@ -104,7 +104,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject7 != null)
 			{
-				gameObject7.SetActive(false);
+				gameObject7.SetActive(value: false);
 			}
 		}
 		femaleHair = Cosmetic.Rings;
@@ -112,7 +112,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject8 != null)
 			{
-				gameObject8.SetActive(false);
+				gameObject8.SetActive(value: false);
 			}
 		}
 		Difficulty = MissionModeGlobals.NemesisDifficulty;
@@ -129,8 +129,8 @@ public class NemesisScript : MonoBehaviour
 		Student.Yandere = Yandere;
 		Student.IdleAnim = "f02_newIdle_00";
 		Student.WalkAnim = "f02_newWalk_00";
-		Student.ShoeRemoval.RightCasualShoe.gameObject.SetActive(false);
-		Student.ShoeRemoval.LeftCasualShoe.gameObject.SetActive(false);
+		Student.ShoeRemoval.RightCasualShoe.gameObject.SetActive(value: false);
+		Student.ShoeRemoval.LeftCasualShoe.gameObject.SetActive(value: false);
 		if (Difficulty < 3)
 		{
 			Student.Character.GetComponent<Animation>()["f02_nemesisEyes_00"].layer = 2;
@@ -142,11 +142,11 @@ public class NemesisScript : MonoBehaviour
 			Cosmetic.RightEyeRenderer.material.mainTexture = NemesisEyes;
 			Cosmetic.LeftEyeRenderer.material.mainTexture = NemesisEyes;
 			Student.FaceCollider.tag = "Nemesis";
-			NemesisHair.SetActive(true);
+			NemesisHair.SetActive(value: true);
 		}
 		else
 		{
-			NemesisHair.SetActive(false);
+			NemesisHair.SetActive(value: false);
 			PutOnDisguise = true;
 		}
 		Student.LowPoly.enabled = false;
@@ -196,7 +196,7 @@ public class NemesisScript : MonoBehaviour
 					}
 				}
 				Debug.Log("Nemesis is replacing Student# " + num + " - " + Student.StudentManager.Students[num].Name);
-				Student.StudentManager.Students[num].gameObject.SetActive(false);
+				Student.StudentManager.Students[num].gameObject.SetActive(value: false);
 				Student.StudentManager.Students[num].Replaced = true;
 				Cosmetic.StudentID = num;
 				Cosmetic.Start();
@@ -300,7 +300,7 @@ public class NemesisScript : MonoBehaviour
 							AudioSource.PlayClipAtPoint(YandereDeath, base.transform.position);
 							Student.Pathfinding.canSearch = false;
 							Student.Pathfinding.canMove = false;
-							Knife.SetActive(true);
+							Knife.SetActive(value: true);
 							Attacking = true;
 							OriginalYPosition = Yandere.transform.position.y;
 							Yandere.StudentManager.YandereDying = true;
@@ -468,54 +468,54 @@ public class NemesisScript : MonoBehaviour
 
 	private void HideObjects()
 	{
-		Student.Cosmetic.RightStockings[0].SetActive(false);
-		Student.Cosmetic.LeftStockings[0].SetActive(false);
-		Student.Cosmetic.RightWristband.SetActive(false);
-		Student.Cosmetic.LeftWristband.SetActive(false);
-		Student.FollowCountdown.gameObject.SetActive(false);
-		Student.DramaticCamera.gameObject.SetActive(false);
-		Student.VomitEmitter.gameObject.SetActive(false);
-		Student.Countdown.gameObject.SetActive(false);
-		Student.ScienceProps[0].SetActive(false);
-		Student.Chopsticks[0].SetActive(false);
-		Student.Chopsticks[1].SetActive(false);
-		Student.Handkerchief.SetActive(false);
-		Student.ChaseCamera.SetActive(false);
-		Student.PepperSpray.SetActive(false);
-		Student.WateringCan.SetActive(false);
-		Student.OccultBook.SetActive(false);
-		Student.Cigarette.SetActive(false);
-		Student.EventBook.SetActive(false);
-		Student.Handcuffs.SetActive(false);
-		Student.CandyBar.SetActive(false);
-		Student.Scrubber.SetActive(false);
-		Student.Lighter.SetActive(false);
-		Student.Octodog.SetActive(false);
-		Student.Eraser.SetActive(false);
-		Student.Bento.SetActive(false);
-		Student.Pen.SetActive(false);
+		Student.Cosmetic.RightStockings[0].SetActive(value: false);
+		Student.Cosmetic.LeftStockings[0].SetActive(value: false);
+		Student.Cosmetic.RightWristband.SetActive(value: false);
+		Student.Cosmetic.LeftWristband.SetActive(value: false);
+		Student.FollowCountdown.gameObject.SetActive(value: false);
+		Student.DramaticCamera.gameObject.SetActive(value: false);
+		Student.VomitEmitter.gameObject.SetActive(value: false);
+		Student.Countdown.gameObject.SetActive(value: false);
+		Student.ScienceProps[0].SetActive(value: false);
+		Student.Chopsticks[0].SetActive(value: false);
+		Student.Chopsticks[1].SetActive(value: false);
+		Student.Handkerchief.SetActive(value: false);
+		Student.ChaseCamera.SetActive(value: false);
+		Student.PepperSpray.SetActive(value: false);
+		Student.WateringCan.SetActive(value: false);
+		Student.OccultBook.SetActive(value: false);
+		Student.Cigarette.SetActive(value: false);
+		Student.EventBook.SetActive(value: false);
+		Student.Handcuffs.SetActive(value: false);
+		Student.CandyBar.SetActive(value: false);
+		Student.Scrubber.SetActive(value: false);
+		Student.Lighter.SetActive(value: false);
+		Student.Octodog.SetActive(value: false);
+		Student.Eraser.SetActive(value: false);
+		Student.Bento.SetActive(value: false);
+		Student.Pen.SetActive(value: false);
 		Student.SpeechLines.Stop();
-		Student.InstrumentBag[1].SetActive(false);
-		Student.InstrumentBag[2].SetActive(false);
-		Student.InstrumentBag[3].SetActive(false);
-		Student.InstrumentBag[4].SetActive(false);
-		Student.InstrumentBag[5].SetActive(false);
-		Student.Instruments[1].SetActive(false);
-		Student.Instruments[2].SetActive(false);
-		Student.Instruments[3].SetActive(false);
-		Student.Instruments[4].SetActive(false);
-		Student.Instruments[5].SetActive(false);
-		Student.Drumsticks[0].SetActive(false);
-		Student.Drumsticks[1].SetActive(false);
-		Student.Cosmetic.ThickBrows.SetActive(false);
-		Student.RetroCamera.SetActive(false);
-		Student.WeaponBag.SetActive(false);
+		Student.InstrumentBag[1].SetActive(value: false);
+		Student.InstrumentBag[2].SetActive(value: false);
+		Student.InstrumentBag[3].SetActive(value: false);
+		Student.InstrumentBag[4].SetActive(value: false);
+		Student.InstrumentBag[5].SetActive(value: false);
+		Student.Instruments[1].SetActive(value: false);
+		Student.Instruments[2].SetActive(value: false);
+		Student.Instruments[3].SetActive(value: false);
+		Student.Instruments[4].SetActive(value: false);
+		Student.Instruments[5].SetActive(value: false);
+		Student.Drumsticks[0].SetActive(value: false);
+		Student.Drumsticks[1].SetActive(value: false);
+		Student.Cosmetic.ThickBrows.SetActive(value: false);
+		Student.RetroCamera.SetActive(value: false);
+		Student.WeaponBag.SetActive(value: false);
 		ParticleSystem[] splashEmitters = Student.SplashEmitters;
 		foreach (ParticleSystem particleSystem in splashEmitters)
 		{
 			if (particleSystem != null)
 			{
-				particleSystem.gameObject.SetActive(false);
+				particleSystem.gameObject.SetActive(value: false);
 			}
 		}
 		GameObject[] scienceProps = Student.ScienceProps;
@@ -523,7 +523,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject != null)
 			{
-				gameObject.SetActive(false);
+				gameObject.SetActive(value: false);
 			}
 		}
 		scienceProps = Student.Cosmetic.PunkAccessories;
@@ -531,7 +531,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject2 != null)
 			{
-				gameObject2.SetActive(false);
+				gameObject2.SetActive(value: false);
 			}
 		}
 		scienceProps = Student.Fingerfood;
@@ -539,7 +539,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			if (gameObject3 != null)
 			{
-				gameObject3.SetActive(false);
+				gameObject3.SetActive(value: false);
 			}
 		}
 	}

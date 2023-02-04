@@ -116,13 +116,7 @@ public class UIScrollView : MonoBehaviour
 	[HideInInspector]
 	public UICenterOnChild centerOnChild;
 
-	public UIPanel panel
-	{
-		get
-		{
-			return mPanel;
-		}
-	}
+	public UIPanel panel => mPanel;
 
 	public bool isDragging
 	{
@@ -342,7 +336,7 @@ public class UIScrollView : MonoBehaviour
 
 	public bool RestrictWithinBounds(bool instant)
 	{
-		return RestrictWithinBounds(instant, true, true);
+		return RestrictWithinBounds(instant, horizontal: true, vertical: true);
 	}
 
 	public bool RestrictWithinBounds(bool instant, bool horizontal, bool vertical)
@@ -403,7 +397,7 @@ public class UIScrollView : MonoBehaviour
 
 	public void UpdateScrollbars()
 	{
-		UpdateScrollbars(true);
+		UpdateScrollbars(recalculateBounds: true);
 	}
 
 	public virtual void UpdateScrollbars(bool recalculateBounds)
@@ -444,7 +438,7 @@ public class UIScrollView : MonoBehaviour
 				float num3 = finalClipRegion.x + f;
 				x = num2 - x;
 				x2 -= num3;
-				UpdateScrollbars(horizontalScrollBar, x, x2, contentSize, viewSize, false);
+				UpdateScrollbars(horizontalScrollBar, x, x2, contentSize, viewSize, inverted: false);
 			}
 			if (verticalScrollBar != null && vector2.y > vector.y)
 			{
@@ -468,7 +462,7 @@ public class UIScrollView : MonoBehaviour
 				float num6 = finalClipRegion2.y + f2;
 				y = num5 - y;
 				y2 -= num6;
-				UpdateScrollbars(verticalScrollBar, y, y2, contentSize2, viewSize2, true);
+				UpdateScrollbars(verticalScrollBar, y, y2, contentSize2, viewSize2, inverted: true);
 			}
 		}
 		else if (recalculateBounds)
@@ -582,8 +576,8 @@ public class UIScrollView : MonoBehaviour
 		{
 			mCalculatedBounds = false;
 			Vector2 pivotOffset = NGUIMath.GetPivotOffset(contentPivot);
-			SetDragAmount(pivotOffset.x, 1f - pivotOffset.y, false);
-			SetDragAmount(pivotOffset.x, 1f - pivotOffset.y, true);
+			SetDragAmount(pivotOffset.x, 1f - pivotOffset.y, updateScrollbars: false);
+			SetDragAmount(pivotOffset.x, 1f - pivotOffset.y, updateScrollbars: true);
 		}
 	}
 
@@ -596,8 +590,8 @@ public class UIScrollView : MonoBehaviour
 			Vector2 pivotOffset = NGUIMath.GetPivotOffset(contentPivot);
 			float x = ((horizontalScrollBar != null) ? horizontalScrollBar.value : pivotOffset.x);
 			float y = ((verticalScrollBar != null) ? verticalScrollBar.value : (1f - pivotOffset.y));
-			SetDragAmount(x, y, false);
-			UpdateScrollbars(true);
+			SetDragAmount(x, y, updateScrollbars: false);
+			UpdateScrollbars(recalculateBounds: true);
 			mIgnoreCallbacks = false;
 		}
 	}
@@ -609,7 +603,7 @@ public class UIScrollView : MonoBehaviour
 			mIgnoreCallbacks = true;
 			float x = ((horizontalScrollBar != null) ? horizontalScrollBar.value : 0f);
 			float y = ((verticalScrollBar != null) ? verticalScrollBar.value : 0f);
-			SetDragAmount(x, y, false);
+			SetDragAmount(x, y, updateScrollbars: false);
 			mIgnoreCallbacks = false;
 		}
 	}
@@ -621,7 +615,7 @@ public class UIScrollView : MonoBehaviour
 		clipOffset.x -= relative.x;
 		clipOffset.y -= relative.y;
 		mPanel.clipOffset = clipOffset;
-		UpdateScrollbars(false);
+		UpdateScrollbars(recalculateBounds: false);
 	}
 
 	public void MoveAbsolute(Vector3 absolute)
@@ -799,7 +793,7 @@ public class UIScrollView : MonoBehaviour
 		}
 		if (constrainOnDrag && restrictWithinPanel && mPanel.clipping != 0 && dragEffect != DragEffect.MomentumAndSpring)
 		{
-			RestrictWithinBounds(true, canMoveHorizontally, canMoveVertically);
+			RestrictWithinBounds(instant: true, canMoveHorizontally, canMoveVertically);
 		}
 	}
 
@@ -897,7 +891,7 @@ public class UIScrollView : MonoBehaviour
 					}
 					else
 					{
-						RestrictWithinBounds(false, canMoveHorizontally, canMoveVertically);
+						RestrictWithinBounds(instant: false, canMoveHorizontally, canMoveVertically);
 					}
 				}
 				if (onMomentumMove != null)

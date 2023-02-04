@@ -343,13 +343,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	public UITexture caret
-	{
-		get
-		{
-			return mCaret;
-		}
-	}
+	public UITexture caret => mCaret;
 
 	public void Set(string value, bool notify = true)
 	{
@@ -1001,12 +995,11 @@ public class UIInput : MonoBehaviour
 	{
 		Vector3[] worldCorners = label.worldCorners;
 		Ray currentRay = UICamera.currentRay;
-		float enter;
-		if (!new Plane(worldCorners[0], worldCorners[1], worldCorners[2]).Raycast(currentRay, out enter))
+		if (!new Plane(worldCorners[0], worldCorners[1], worldCorners[2]).Raycast(currentRay, out var enter))
 		{
 			return 0;
 		}
-		return mDrawStart + label.GetCharacterIndexAtPosition(currentRay.GetPoint(enter), false);
+		return mDrawStart + label.GetCharacterIndexAtPosition(currentRay.GetPoint(enter), precise: false);
 	}
 
 	protected virtual void OnPress(bool isPressed)
@@ -1159,7 +1152,7 @@ public class UIInput : MonoBehaviour
 			int num4 = mSelectionEnd - mDrawStart;
 			if (mBlankTex == null)
 			{
-				mBlankTex = new Texture2D(2, 2, TextureFormat.ARGB32, false);
+				mBlankTex = new Texture2D(2, 2, TextureFormat.ARGB32, mipChain: false);
 				for (int j = 0; j < 2; j++)
 				{
 					for (int k = 0; k < 2; k++)
@@ -1292,37 +1285,23 @@ public class UIInput : MonoBehaviour
 		{
 			if (validation == Validation.Filename)
 			{
-				switch (ch)
+				return ch switch
 				{
-				case ':':
-					return '\0';
-				case '/':
-					return '\0';
-				case '\\':
-					return '\0';
-				case '<':
-					return '\0';
-				case '>':
-					return '\0';
-				case '|':
-					return '\0';
-				case '^':
-					return '\0';
-				case '*':
-					return '\0';
-				case ';':
-					return '\0';
-				case '"':
-					return '\0';
-				case '`':
-					return '\0';
-				case '\t':
-					return '\0';
-				case '\n':
-					return '\0';
-				default:
-					return ch;
-				}
+					':' => '\0', 
+					'/' => '\0', 
+					'\\' => '\0', 
+					'<' => '\0', 
+					'>' => '\0', 
+					'|' => '\0', 
+					'^' => '\0', 
+					'*' => '\0', 
+					';' => '\0', 
+					'"' => '\0', 
+					'`' => '\0', 
+					'\t' => '\0', 
+					'\n' => '\0', 
+					_ => ch, 
+				};
 			}
 			if (validation == Validation.Name)
 			{

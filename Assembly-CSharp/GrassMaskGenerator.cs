@@ -104,7 +104,7 @@ public class GrassMaskGenerator : MonoBehaviour
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.yellow;
-		Matrix4x4 matrix = Gizmos.matrix;
+		_ = Gizmos.matrix;
 		Gizmos.matrix = Matrix4x4.TRS(base.transform.position, base.transform.rotation, Vector3.one);
 		float z = camera.farClipPlane - camera.nearClipPlane;
 		float z2 = (camera.farClipPlane + camera.nearClipPlane) * 0.5f;

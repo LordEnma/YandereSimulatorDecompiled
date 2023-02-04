@@ -51,11 +51,11 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 			HomeYandere.HomeDarkness.color = new Color(0f, 0f, 0f, 1f);
 			HomeDarkness.enabled = false;
 			Alpha = 1f;
-			InfoTextConvo.gameObject.SetActive(true);
-			Vibration.gameObject.SetActive(true);
+			InfoTextConvo.gameObject.SetActive(value: true);
+			Vibration.gameObject.SetActive(value: true);
 			HomeYandere.Start();
 			HomeYandere.HomeCamera.Start();
-			HomeClock.SetActive(false);
+			HomeClock.SetActive(value: false);
 			HomeYandere.enabled = false;
 			HomeYandere.HomeCamera.enabled = false;
 			HomeYandere.HomeCamera.RoomJukebox.enabled = false;
@@ -75,7 +75,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		}
 		else
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -93,7 +93,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 				if (SkipCircle.fillAmount == 0f)
 				{
 					HomeYandere.HomeDarkness.color = new Color(0f, 0f, 0f, 0f);
-					SkipCircle.transform.parent.gameObject.SetActive(false);
+					SkipCircle.transform.parent.gameObject.SetActive(value: false);
 					Phase = 5;
 					Timer = 0f;
 				}
@@ -163,19 +163,19 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 			HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(X, Y, Z);
 			if (Timer > 2f)
 			{
-				HomeYandere.gameObject.SetActive(false);
+				HomeYandere.gameObject.SetActive(value: false);
 			}
 			if (Timer > 2.5f)
 			{
-				GrabbyHand.SetActive(true);
+				GrabbyHand.SetActive(value: true);
 			}
 			if (Timer > 4.5f)
 			{
 				HomeYandere.HomeCamera.transform.position = new Vector3(-1.638197f, 1.4925f, 2f);
 				HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(0f, -45f, 0f);
-				HomeYandere.gameObject.SetActive(false);
-				GrabbyHand.SetActive(false);
-				InfoTextConvo.SetActive(true);
+				HomeYandere.gameObject.SetActive(value: false);
+				GrabbyHand.SetActive(value: false);
+				InfoTextConvo.SetActive(value: true);
 				Timer = 0f;
 				Phase++;
 			}

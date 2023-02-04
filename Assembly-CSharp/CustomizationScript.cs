@@ -233,141 +233,39 @@ public class CustomizationScript : MonoBehaviour
 		new KeyValuePair<Color, string>(new Color(1f, 1f, 1f), "White")
 	};
 
-	private int MinSkinColor
-	{
-		get
-		{
-			return 1;
-		}
-	}
+	private int MinSkinColor => 1;
 
-	private int MaxSkinColor
-	{
-		get
-		{
-			return 5;
-		}
-	}
+	private int MaxSkinColor => 5;
 
-	private int MinHairstyle
-	{
-		get
-		{
-			return 0;
-		}
-	}
+	private int MinHairstyle => 0;
 
-	private int MaxHairstyle
-	{
-		get
-		{
-			return Hairstyles.Length - 1;
-		}
-	}
+	private int MaxHairstyle => Hairstyles.Length - 1;
 
-	private int MinHairColor
-	{
-		get
-		{
-			return 1;
-		}
-	}
+	private int MinHairColor => 1;
 
-	private int MaxHairColor
-	{
-		get
-		{
-			return ColorPairs.Length - 1;
-		}
-	}
+	private int MaxHairColor => ColorPairs.Length - 1;
 
-	private int MinEyeColor
-	{
-		get
-		{
-			return 1;
-		}
-	}
+	private int MinEyeColor => 1;
 
-	private int MaxEyeColor
-	{
-		get
-		{
-			return ColorPairs.Length - 1;
-		}
-	}
+	private int MaxEyeColor => ColorPairs.Length - 1;
 
-	private int MinEyewear
-	{
-		get
-		{
-			return 0;
-		}
-	}
+	private int MinEyewear => 0;
 
-	private int MaxEyewear
-	{
-		get
-		{
-			return 5;
-		}
-	}
+	private int MaxEyewear => 5;
 
-	private int MinFacialHair
-	{
-		get
-		{
-			return 0;
-		}
-	}
+	private int MinFacialHair => 0;
 
-	private int MaxFacialHair
-	{
-		get
-		{
-			return FacialHairstyles.Length - 1;
-		}
-	}
+	private int MaxFacialHair => FacialHairstyles.Length - 1;
 
-	private int MinMaleUniform
-	{
-		get
-		{
-			return 1;
-		}
-	}
+	private int MinMaleUniform => 1;
 
-	private int MaxMaleUniform
-	{
-		get
-		{
-			return MaleUniforms.Length - 1;
-		}
-	}
+	private int MaxMaleUniform => MaleUniforms.Length - 1;
 
-	private int MinFemaleUniform
-	{
-		get
-		{
-			return 1;
-		}
-	}
+	private int MinFemaleUniform => 1;
 
-	private int MaxFemaleUniform
-	{
-		get
-		{
-			return FemaleUniforms.Length - 1;
-		}
-	}
+	private int MaxFemaleUniform => FemaleUniforms.Length - 1;
 
-	private float CameraSpeed
-	{
-		get
-		{
-			return Time.deltaTime * 10f;
-		}
-	}
+	private float CameraSpeed => Time.deltaTime * 10f;
 
 	private void Awake()
 	{
@@ -406,7 +304,7 @@ public class CustomizationScript : MonoBehaviour
 			Data.femaleUniform.Value = 5;
 			Data.maleUniform.Value = 5;
 			RenderSettings.fogColor = new Color(0f, 0f, 0f, 1f);
-			LoveSickCamera.SetActive(true);
+			LoveSickCamera.SetActive(value: true);
 			Black.color = Color.black;
 			MyAudio.loop = false;
 			MyAudio.clip = LoveSickIntro;
@@ -418,22 +316,22 @@ public class CustomizationScript : MonoBehaviour
 			Data.maleUniform.Value = MinMaleUniform;
 			RenderSettings.fogColor = new Color(1f, 0.5f, 1f, 1f);
 			Black.color = new Color(0f, 0f, 0f, 0f);
-			LoveSickCamera.SetActive(false);
+			LoveSickCamera.SetActive(value: false);
 		}
 		UpdateMaleUniform(Data.maleUniform.Value, Data.skinColor.Value);
 		UpdateFemaleUniform(Data.femaleUniform.Value);
 		Senpai.position = new Vector3(0f, -1f, 2f);
-		Senpai.gameObject.SetActive(true);
+		Senpai.gameObject.SetActive(value: true);
 		Senpai.GetComponent<Animation>().Play("newWalk_00");
 		Yandere.position = new Vector3(1f, -1f, 4.5f);
-		Yandere.gameObject.SetActive(true);
+		Yandere.gameObject.SetActive(value: true);
 		Yandere.GetComponent<Animation>().Play("f02_newWalk_00");
-		CensorCloud.SetActive(false);
-		Hearts.SetActive(false);
+		CensorCloud.SetActive(value: false);
+		Hearts.SetActive(value: false);
 		if (GameGlobals.VtuberID > 0)
 		{
-			YandereHair.SetActive(false);
-			VtuberHair[GameGlobals.VtuberID].SetActive(true);
+			YandereHair.SetActive(value: false);
+			VtuberHair[GameGlobals.VtuberID].SetActive(value: true);
 			FemaleFace = VtuberFace[GameGlobals.VtuberID];
 			UpdateFemaleUniform(1);
 			for (int i = 0; i < 13; i++)
@@ -445,7 +343,7 @@ public class CustomizationScript : MonoBehaviour
 		}
 		else
 		{
-			VtuberHair[1].SetActive(false);
+			VtuberHair[1].SetActive(value: false);
 		}
 		for (int j = 0; j < Hairstyles.Length; j++)
 		{
@@ -512,7 +410,7 @@ public class CustomizationScript : MonoBehaviour
 			Black.color = new Color(0f, 0f, 0f, Mathf.MoveTowards(Black.color.a, 0f, Time.deltaTime * 2f));
 			if (GenderPanel.alpha == 0f)
 			{
-				Senpai.gameObject.SetActive(true);
+				Senpai.gameObject.SetActive(value: true);
 				Phase++;
 			}
 		}
@@ -669,8 +567,8 @@ public class CustomizationScript : MonoBehaviour
 			{
 				UpdateFemaleUniform(Data.femaleUniform.Value);
 				UpdateMaleUniform(Data.maleUniform.Value, Data.skinColor.Value);
-				CensorCloud.SetActive(false);
-				Yandere.gameObject.SetActive(true);
+				CensorCloud.SetActive(value: false);
+				Yandere.gameObject.SetActive(value: true);
 				Selected = 1;
 				Phase++;
 			}
@@ -850,12 +748,12 @@ public class CustomizationScript : MonoBehaviour
 	{
 		for (int i = 1; i < Hairstyles.Length; i++)
 		{
-			Hairstyles[i].SetActive(false);
+			Hairstyles[i].SetActive(value: false);
 		}
 		if (hairstyle > 0)
 		{
 			HairRenderer = Hairstyles[hairstyle].GetComponent<Renderer>();
-			Hairstyles[hairstyle].SetActive(true);
+			Hairstyles[hairstyle].SetActive(value: true);
 		}
 		HairStyleLabel.text = "Hair Style " + hairstyle;
 		UpdateColor(Data.hairColor.Value);
@@ -865,12 +763,12 @@ public class CustomizationScript : MonoBehaviour
 	{
 		for (int i = 1; i < FacialHairstyles.Length; i++)
 		{
-			FacialHairstyles[i].SetActive(false);
+			FacialHairstyles[i].SetActive(value: false);
 		}
 		if (facialHair > 0)
 		{
 			FacialHairRenderer = FacialHairstyles[facialHair].GetComponent<Renderer>();
-			FacialHairstyles[facialHair].SetActive(true);
+			FacialHairstyles[facialHair].SetActive(value: true);
 		}
 		FacialHairStyleLabel.text = "Facial Hair " + facialHair;
 		UpdateColor(Data.hairColor.Value);
@@ -912,11 +810,11 @@ public class CustomizationScript : MonoBehaviour
 	{
 		for (int i = 1; i < Eyewears.Length; i++)
 		{
-			Eyewears[i].SetActive(false);
+			Eyewears[i].SetActive(value: false);
 		}
 		if (eyewear > 0)
 		{
-			Eyewears[eyewear].SetActive(true);
+			Eyewears[eyewear].SetActive(value: true);
 		}
 		EyeWearLabel.text = "Eye Wear " + eyewear;
 	}

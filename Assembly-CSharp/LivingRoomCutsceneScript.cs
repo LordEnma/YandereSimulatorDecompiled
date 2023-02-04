@@ -163,7 +163,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	private void Start()
 	{
-		Rival.transform.parent.gameObject.SetActive(true);
+		Rival.transform.parent.gameObject.SetActive(value: true);
 		Debug.Log("Running this script.");
 		VtuberCheck();
 		SkipPanel.alpha = 0f;
@@ -173,15 +173,15 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 		YandereCosmetic.FemaleUniformID = StudentGlobals.FemaleUniform;
 		YandereCosmetic.SetFemaleUniform();
-		YandereCosmetic.RightWristband.SetActive(false);
-		YandereCosmetic.LeftWristband.SetActive(false);
-		YandereCosmetic.ThickBrows.SetActive(false);
+		YandereCosmetic.RightWristband.SetActive(value: false);
+		YandereCosmetic.LeftWristband.SetActive(value: false);
+		YandereCosmetic.ThickBrows.SetActive(value: false);
 		for (ID = 0; ID < YandereCosmetic.FemaleHair.Length; ID++)
 		{
 			GameObject gameObject = YandereCosmetic.FemaleHair[ID];
 			if (gameObject != null)
 			{
-				gameObject.SetActive(false);
+				gameObject.SetActive(value: false);
 			}
 		}
 		for (ID = 0; ID < YandereCosmetic.TeacherHair.Length; ID++)
@@ -189,7 +189,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			GameObject gameObject2 = YandereCosmetic.TeacherHair[ID];
 			if (gameObject2 != null)
 			{
-				gameObject2.SetActive(false);
+				gameObject2.SetActive(value: false);
 			}
 		}
 		for (ID = 0; ID < YandereCosmetic.FemaleAccessories.Length; ID++)
@@ -197,7 +197,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			GameObject gameObject3 = YandereCosmetic.FemaleAccessories[ID];
 			if (gameObject3 != null)
 			{
-				gameObject3.SetActive(false);
+				gameObject3.SetActive(value: false);
 			}
 		}
 		for (ID = 0; ID < YandereCosmetic.TeacherAccessories.Length; ID++)
@@ -205,7 +205,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			GameObject gameObject4 = YandereCosmetic.TeacherAccessories[ID];
 			if (gameObject4 != null)
 			{
-				gameObject4.SetActive(false);
+				gameObject4.SetActive(value: false);
 			}
 		}
 		for (ID = 0; ID < YandereCosmetic.ClubAccessories.Length; ID++)
@@ -213,7 +213,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			GameObject gameObject5 = YandereCosmetic.ClubAccessories[ID];
 			if (gameObject5 != null)
 			{
-				gameObject5.SetActive(false);
+				gameObject5.SetActive(value: false);
 			}
 		}
 		GameObject[] scanners = YandereCosmetic.Scanners;
@@ -221,7 +221,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		{
 			if (gameObject6 != null)
 			{
-				gameObject6.SetActive(false);
+				gameObject6.SetActive(value: false);
 			}
 		}
 		scanners = YandereCosmetic.Flowers;
@@ -229,7 +229,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		{
 			if (gameObject7 != null)
 			{
-				gameObject7.SetActive(false);
+				gameObject7.SetActive(value: false);
 			}
 		}
 		scanners = YandereCosmetic.PunkAccessories;
@@ -237,7 +237,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		{
 			if (gameObject8 != null)
 			{
-				gameObject8.SetActive(false);
+				gameObject8.SetActive(value: false);
 			}
 		}
 		scanners = YandereCosmetic.RedCloth;
@@ -245,7 +245,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		{
 			if (gameObject9 != null)
 			{
-				gameObject9.SetActive(false);
+				gameObject9.SetActive(value: false);
 			}
 		}
 		scanners = YandereCosmetic.Kerchiefs;
@@ -253,15 +253,15 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		{
 			if (gameObject10 != null)
 			{
-				gameObject10.SetActive(false);
+				gameObject10.SetActive(value: false);
 			}
 		}
 		for (int j = 0; j < 10; j++)
 		{
-			YandereCosmetic.Fingernails[j].gameObject.SetActive(false);
+			YandereCosmetic.Fingernails[j].gameObject.SetActive(value: false);
 		}
 		ID = 0;
-		YandereCosmetic.FemaleHair[1].SetActive(true);
+		YandereCosmetic.FemaleHair[1].SetActive(value: true);
 		YandereCosmetic.MyRenderer.materials[2].mainTexture = YandereCosmetic.DefaultFaceTexture;
 		Subtitle.text = string.Empty;
 		RightEyeRenderer.material.color = new Color(0.33f, 0.33f, 0.33f, 1f);
@@ -286,8 +286,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		{
 			PrologueLabel.transform.localPosition = new Vector3(0f, 125f, 0f);
 			PrologueLabel.text = "Osana is eager to report her stalker to the police.\n\nHowever, she knows that the process could take a long time, so she decides to visit Ayano's house and get her cat back before contacting the police.\n\nThe next morning, Osana arrives at Ayano's house...";
-			WarningLabel.SetActive(true);
-			CatStuff.SetActive(true);
+			WarningLabel.SetActive(value: true);
+			CatStuff.SetActive(value: true);
 			OsanaCutscene = true;
 			Lines = RivalData.OsanaIntroLines;
 			Times = RivalData.OsanaIntroTimes;
@@ -300,11 +300,11 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 		if (GameGlobals.Eighties)
 		{
-			Rival.transform.parent.gameObject.SetActive(false);
-			EightiesLabel.gameObject.SetActive(true);
-			SkipPanel.gameObject.SetActive(false);
+			Rival.transform.parent.gameObject.SetActive(value: false);
+			EightiesLabel.gameObject.SetActive(value: true);
+			SkipPanel.gameObject.SetActive(value: false);
 			PrologueLabel.enabled = false;
-			WarningLabel.SetActive(false);
+			WarningLabel.SetActive(value: false);
 			Eighties = true;
 			Debug.Log("Disabled rival cuz 80s.");
 		}
@@ -352,7 +352,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 							CameraIDs = RivalData.OsanaBefriendCameraIDs;
 							Lines = RivalData.OsanaBefriendLines;
 							Times = RivalData.OsanaBefriendTimes;
-							Yandere.gameObject.SetActive(true);
+							Yandere.gameObject.SetActive(value: true);
 							MyAudio.clip = RivalData.OsanaBefriend;
 							MyAudio.Play();
 							MyAudio.time = 100f;
@@ -371,7 +371,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 							base.transform.LookAt(AyanoEyes);
 							Vignette.enabled = true;
 							BlurVision = true;
-							Yandere.gameObject.SetActive(true);
+							Yandere.gameObject.SetActive(value: true);
 							Yandere.GetComponent<Animation>().Play("f02_evilWitness_00");
 							Yandere.GetComponent<Animation>()["f02_evilWitness_00"].time = 2f;
 							Yandere.GetComponent<Animation>()["f02_evilWitness_00"].speed = 0.25f;
@@ -420,7 +420,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			if (Darkness.color.a == 1f)
 			{
 				Vignette.enabled = true;
-				Prologue.SetActive(false);
+				Prologue.SetActive(value: false);
 				if (!Eighties)
 				{
 					base.transform.parent = LivingRoomCamera;
@@ -436,7 +436,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				{
 					base.transform.position = TeaCamera.position;
 					base.transform.rotation = TeaCamera.rotation;
-					TeaSet.SetActive(true);
+					TeaSet.SetActive(value: true);
 					Phase = 100;
 				}
 			}
@@ -566,15 +566,15 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					ID++;
 					if (ID == 3)
 					{
-						OfferTea.SetActive(false);
+						OfferTea.SetActive(value: false);
 					}
 				}
 			}
 			else if (OsanaCutscene && Branch == 1)
 			{
 				Subtitle.text = "Here's your tea.";
-				OfferTea.SetActive(true);
-				Yandere.SetActive(true);
+				OfferTea.SetActive(value: true);
+				Yandere.SetActive(value: true);
 				if (!DruggedTea)
 				{
 					Debug.Log("Transitioning into Befriend branch NOW.");
@@ -612,7 +612,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 							base.transform.parent = null;
 							base.transform.position = KettleCameraOrigin.position;
 							base.transform.rotation = KettleCameraOrigin.rotation;
-							TeaSteam.SetActive(true);
+							TeaSteam.SetActive(value: true);
 						}
 						else
 						{
@@ -634,8 +634,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 							base.transform.parent = null;
 							base.transform.position = TeaCamera.position;
 							base.transform.rotation = TeaCamera.rotation;
-							Yandere.SetActive(false);
-							TeaSet.SetActive(true);
+							Yandere.SetActive(value: false);
+							TeaSet.SetActive(value: true);
 							AnimOffset += 2f;
 						}
 						if (Input.GetButtonDown("A"))
@@ -663,8 +663,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				}
 				else
 				{
-					int branch = Branch;
-					int num = 2;
+					_ = Branch;
+					_ = 2;
 				}
 			}
 			if (!OsanaCutscene)
@@ -715,10 +715,10 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			{
 				if (!OsanaCutscene)
 				{
-					StudentGlobals.SetStudentKidnapped(81, false);
-					StudentGlobals.SetStudentBroken(81, true);
+					StudentGlobals.SetStudentKidnapped(81, value: false);
+					StudentGlobals.SetStudentBroken(81, value: true);
 					SchoolGlobals.KidnapVictim = 0;
-					StudentGlobals.SetStudentKidnapped(30, true);
+					StudentGlobals.SetStudentKidnapped(30, value: true);
 					StudentGlobals.SetStudentHealth(30, 100);
 					StudentGlobals.SetStudentSanity(30, 100);
 					SchoolGlobals.KidnapVictim = 30;
@@ -783,7 +783,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
 				if (Darkness.color.a == 1f)
 				{
-					Prologue.SetActive(true);
+					Prologue.SetActive(value: true);
 					DecisionMade = false;
 					Phase++;
 				}
@@ -918,8 +918,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				MyAudio.clip = RivalProtest;
 				MyAudio.volume = 1f;
 				MyAudio.Play();
-				Jukebox.gameObject.SetActive(false);
-				BGM.gameObject.SetActive(false);
+				Jukebox.gameObject.SetActive(value: false);
+				BGM.gameObject.SetActive(value: false);
 				Subtitle.text = "Wait, what are you doing?! That's not funny! Stop! Let me go! ...n...NO!!!";
 				SubDarknessBG.color = new Color(SubDarknessBG.color.r, SubDarknessBG.color.g, SubDarknessBG.color.b, 1f);
 				Phase++;
@@ -944,7 +944,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	private void BetrayRival()
 	{
-		StudentGlobals.SetStudentKidnapped(10 + DateGlobals.Week, true);
+		StudentGlobals.SetStudentKidnapped(10 + DateGlobals.Week, value: true);
 		StudentGlobals.SetStudentHealth(10 + DateGlobals.Week, 100);
 		StudentGlobals.SetStudentSanity(10 + DateGlobals.Week, 100);
 		int num = 10 + DateGlobals.Week;
@@ -1044,7 +1044,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		{
 			for (int i = 1; i < VtuberHairs.Length; i++)
 			{
-				VtuberHairs[i].SetActive(false);
+				VtuberHairs[i].SetActive(value: false);
 			}
 		}
 	}

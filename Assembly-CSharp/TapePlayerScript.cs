@@ -32,7 +32,7 @@ public class TapePlayerScript : MonoBehaviour
 
 	private void Start()
 	{
-		Tape.SetActive(false);
+		Tape.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			Prompt.enabled = false;
@@ -46,12 +46,12 @@ public class TapePlayerScript : MonoBehaviour
 		{
 			Yandere.HeartCamera.enabled = false;
 			Yandere.RPGCamera.enabled = false;
-			TapePlayerMenu.TimeBar.gameObject.SetActive(true);
-			TapePlayerMenu.List.gameObject.SetActive(true);
+			TapePlayerMenu.TimeBar.gameObject.SetActive(value: true);
+			TapePlayerMenu.List.gameObject.SetActive(value: true);
 			TapePlayerCamera.enabled = true;
 			TapePlayerMenu.UpdateLabels();
 			TapePlayerMenu.Show = true;
-			NoteWindow.SetActive(false);
+			NoteWindow.SetActive(value: false);
 			Yandere.CanMove = false;
 			Yandere.HUD.alpha = 0f;
 			Time.timeScale = 0.0001f;

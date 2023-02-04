@@ -69,11 +69,11 @@ public class DatingSaveData
 		DatingGlobals.AffectionLevel = data.affectionLevel;
 		foreach (int item in data.complimentGiven)
 		{
-			DatingGlobals.SetComplimentGiven(item, true);
+			DatingGlobals.SetComplimentGiven(item, value: true);
 		}
 		foreach (int item2 in data.suitorCheck)
 		{
-			DatingGlobals.SetSuitorCheck(item2, true);
+			DatingGlobals.SetSuitorCheck(item2, value: true);
 		}
 		DatingGlobals.SuitorProgress = data.suitorProgress;
 		foreach (KeyValuePair<int, int> item3 in data.suitorTrait)
@@ -82,7 +82,7 @@ public class DatingSaveData
 		}
 		foreach (int item4 in data.topicDiscussed)
 		{
-			DatingGlobals.SetTopicDiscussed(item4, true);
+			DatingGlobals.SetTopicDiscussed(item4, value: true);
 		}
 		foreach (KeyValuePair<int, int> item5 in data.traitDemonstrated)
 		{

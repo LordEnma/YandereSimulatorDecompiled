@@ -214,7 +214,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 			}
 			if (EventDay == DayOfWeek.Tuesday)
 			{
-				Rival.EventBook.SetActive(true);
+				Rival.EventBook.SetActive(value: true);
 				if (!Sabotaged)
 				{
 					AudioClipPlayer.Play(SpeechClip, Epicenter.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
@@ -327,13 +327,13 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 			}
 			if (TakeOut && EventDay == DayOfWeek.Wednesday && Rival.CharacterAnimation["f02_" + Weekday + "_3" + Suffix].time > TakeOutTime)
 			{
-				Rival.SmartPhone.SetActive(true);
+				Rival.SmartPhone.SetActive(value: true);
 				TakeOut = false;
 				PutAway = true;
 			}
 			if (PutAway && EventDay == DayOfWeek.Wednesday && Rival.CharacterAnimation["f02_" + Weekday + "_3" + Suffix].time > PutAwayTime)
 			{
-				Rival.SmartPhone.SetActive(false);
+				Rival.SmartPhone.SetActive(value: false);
 				PutAway = false;
 			}
 			if (Transfer)
@@ -342,24 +342,24 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 				{
 					if (Rival.CharacterAnimation["f02_" + Weekday + "_3" + Suffix].time > TransferTime)
 					{
-						Rival.EventBook.SetActive(false);
-						Senpai.EventBook.SetActive(true);
+						Rival.EventBook.SetActive(value: false);
+						Senpai.EventBook.SetActive(value: true);
 						Transfer = false;
 						Return = true;
 					}
 				}
 				else if (EventDay == DayOfWeek.Wednesday && Rival.CharacterAnimation["f02_" + Weekday + "_3" + Suffix].time > TransferTime)
 				{
-					Rival.SmartPhone.SetActive(false);
-					Senpai.SmartPhone.SetActive(true);
+					Rival.SmartPhone.SetActive(value: false);
+					Senpai.SmartPhone.SetActive(value: true);
 					Transfer = false;
 					Return = true;
 				}
 			}
 			if (Return && EventDay == DayOfWeek.Wednesday && Rival.CharacterAnimation["f02_" + Weekday + "_3" + Suffix].time > ReturnTime)
 			{
-				Rival.SmartPhone.SetActive(true);
-				Senpai.SmartPhone.SetActive(false);
+				Rival.SmartPhone.SetActive(value: true);
+				Senpai.SmartPhone.SetActive(value: false);
 				Return = false;
 			}
 			if (Senpai.Alarmed || Rival.Alarmed || Rival.Splashed || Rival.GoAway)
@@ -445,7 +445,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 				Rival.Routine = true;
 			}
 			Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-			Rival.EventBook.SetActive(false);
+			Rival.EventBook.SetActive(value: false);
 			Rival.Prompt.enabled = true;
 			Rival.InEvent = false;
 			Rival.Private = false;
@@ -513,7 +513,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 			Senpai.Routine = true;
 		}
 		Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-		Senpai.EventBook.SetActive(false);
+		Senpai.EventBook.SetActive(value: false);
 		Senpai.InEvent = false;
 		Senpai.Private = false;
 		Senpai.CurrentDestination = Senpai.Destinations[Senpai.Phase];

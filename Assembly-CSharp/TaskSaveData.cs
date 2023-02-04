@@ -51,11 +51,11 @@ public class TaskSaveData
 	{
 		foreach (int item in data.kittenPhoto)
 		{
-			TaskGlobals.SetKittenPhoto(item, true);
+			TaskGlobals.SetKittenPhoto(item, value: true);
 		}
 		foreach (int item2 in data.guitarPhoto)
 		{
-			TaskGlobals.SetGuitarPhoto(item2, true);
+			TaskGlobals.SetGuitarPhoto(item2, value: true);
 		}
 		foreach (KeyValuePair<int, int> item3 in data.taskStatus)
 		{

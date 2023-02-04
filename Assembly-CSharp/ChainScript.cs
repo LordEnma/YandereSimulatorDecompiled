@@ -23,7 +23,7 @@ public class ChainScript : MonoBehaviour
 		{
 			AudioSource.PlayClipAtPoint(ChainRattle, base.transform.position);
 			Unlocked++;
-			Chains[Unlocked].SetActive(false);
+			Chains[Unlocked].SetActive(value: false);
 			Prompt.Yandere.Inventory.MysteriousKeys--;
 			if (Unlocked == 5)
 			{

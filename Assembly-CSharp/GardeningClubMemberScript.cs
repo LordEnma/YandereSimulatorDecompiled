@@ -168,7 +168,7 @@ public class GardeningClubMemberScript : MonoBehaviour
 						if (ID == 1)
 						{
 							ShedDoor.Prompt.Label[0].text = "     Open";
-							Padlock.SetActive(false);
+							Padlock.SetActive(value: false);
 							ShedDoor.Locked = false;
 							Yandere.Inventory.ShedKey = true;
 						}
@@ -178,8 +178,8 @@ public class GardeningClubMemberScript : MonoBehaviour
 							CabinetDoor.Locked = false;
 							Yandere.Inventory.CabinetKey = true;
 						}
-						Prompt.gameObject.SetActive(false);
-						Key.SetActive(false);
+						Prompt.gameObject.SetActive(value: false);
+						Key.SetActive(value: false);
 					}
 					if (PickpocketMinigame.Failure)
 					{
@@ -245,8 +245,7 @@ public class GardeningClubMemberScript : MonoBehaviour
 		{
 			if (GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(VisionCone), Yandere.GetComponent<Collider>().bounds))
 			{
-				RaycastHit hitInfo;
-				if (Physics.Linecast(end: new Vector3(Yandere.transform.position.x, Yandere.Head.position.y, Yandere.transform.position.z), start: Eyes.transform.position, hitInfo: out hitInfo))
+				if (Physics.Linecast(end: new Vector3(Yandere.transform.position.x, Yandere.Head.position.y, Yandere.transform.position.z), start: Eyes.transform.position, hitInfo: out var hitInfo))
 				{
 					if (hitInfo.collider.gameObject == Yandere.gameObject)
 					{

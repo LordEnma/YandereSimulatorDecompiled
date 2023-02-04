@@ -2,19 +2,7 @@ using UnityEngine;
 
 public class RealTime : MonoBehaviour
 {
-	public static float time
-	{
-		get
-		{
-			return Time.unscaledTime;
-		}
-	}
+	public static float time => Time.unscaledTime;
 
-	public static float deltaTime
-	{
-		get
-		{
-			return Time.unscaledDeltaTime;
-		}
-	}
+	public static float deltaTime => Time.unscaledDeltaTime;
 }

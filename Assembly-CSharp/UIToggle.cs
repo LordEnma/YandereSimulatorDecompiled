@@ -218,7 +218,7 @@ public class UIToggle : UIWidgetContainer
 					UIToggle uIToggle = list.buffer[num];
 					if (uIToggle != this && uIToggle.group == group)
 					{
-						uIToggle.Set(false);
+						uIToggle.Set(state: false);
 					}
 					if (list.size != size)
 					{
@@ -282,7 +282,7 @@ public class UIToggle : UIWidgetContainer
 				bool active = NGUITools.GetActive(this);
 				if (tween.tweenGroup != 0)
 				{
-					UITweener[] componentsInChildren = tween.GetComponentsInChildren<UITweener>(true);
+					UITweener[] componentsInChildren = tween.GetComponentsInChildren<UITweener>(includeInactive: true);
 					int i = 0;
 					for (int num2 = componentsInChildren.Length; i < num2; i++)
 					{

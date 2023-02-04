@@ -91,7 +91,7 @@ public class HomeMangaScript : MonoBehaviour
 		MangaParent.transform.localEulerAngles = new Vector3(MangaParent.transform.localEulerAngles.x, 0f, MangaParent.transform.localEulerAngles.z);
 		MangaParent.transform.localPosition = new Vector3(MangaParent.transform.localPosition.x, MangaParent.transform.localPosition.y, 1.8f);
 		MangaParent.transform.localScale = Vector3.zero;
-		MangaParent.gameObject.SetActive(false);
+		MangaParent.gameObject.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			MangaNames[0] = "Enchanting Petals Volume 1";
@@ -125,7 +125,7 @@ public class HomeMangaScript : MonoBehaviour
 			if (!AreYouSure.activeInHierarchy)
 			{
 				MangaParent.localScale = Vector3.Lerp(MangaParent.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				MangaParent.gameObject.SetActive(true);
+				MangaParent.gameObject.SetActive(value: true);
 				if (InputManager.TappedRight)
 				{
 					DestinationReached = false;
@@ -154,12 +154,19 @@ public class HomeMangaScript : MonoBehaviour
 				MangaParent.localEulerAngles = new Vector3(MangaParent.localEulerAngles.x, Rotation, MangaParent.localEulerAngles.z);
 				if (Input.GetButtonDown("A") && ReadButtonGroup.activeInHierarchy)
 				{
-					MangaGroup.SetActive(false);
-					AreYouSure.SetActive(true);
+					MangaGroup.SetActive(value: false);
+					AreYouSure.SetActive(value: true);
 					int num = 0;
 					num = ((Selected < 5) ? CollectibleGlobals.RomanceMangaProgress : ((Selected >= 10) ? CollectibleGlobals.EnlightenedMangaProgress : CollectibleGlobals.HorrorMangaProgress));
 					Debug.Log("Selected is: " + Selected + " and Percent is: " + num);
-					AreYouSureLabel.text = "You have read " + num + "% of this manga.\n\nWould you like to read " + (20 + ClassGlobals.LanguageGrade * 6) + "% of it before you go to sleep?";
+					if (HomeGlobals.Night)
+					{
+						AreYouSureLabel.text = "You have read " + num + "% of this manga.\n\nWould you like to read " + (20 + ClassGlobals.LanguageGrade * 6) + "% of it before you go to sleep?";
+					}
+					else
+					{
+						AreYouSureLabel.text = "You have read " + num + "% of this manga.\n\nWould you like to read " + (20 + ClassGlobals.LanguageGrade * 6) + "% of it for a few hours?";
+					}
 				}
 				if (Input.GetButtonDown("B"))
 				{
@@ -172,7 +179,7 @@ public class HomeMangaScript : MonoBehaviour
 				{
 					for (int i = 0; i < TotalManga; i++)
 					{
-						CollectibleGlobals.SetMangaCollected(i + 1, true);
+						CollectibleGlobals.SetMangaCollected(i + 1, value: true);
 					}
 				}
 				return;
@@ -206,13 +213,13 @@ public class HomeMangaScript : MonoBehaviour
 						CollectibleGlobals.EnlightenedMangaProgress = 0;
 					}
 				}
-				AreYouSure.SetActive(false);
+				AreYouSure.SetActive(value: false);
 				Darkness.FadeOut = true;
 			}
 			if (Input.GetButtonDown("B"))
 			{
-				MangaGroup.SetActive(true);
-				AreYouSure.SetActive(false);
+				MangaGroup.SetActive(value: true);
+				AreYouSure.SetActive(value: false);
 			}
 		}
 		else
@@ -220,7 +227,7 @@ public class HomeMangaScript : MonoBehaviour
 			MangaParent.localScale = Vector3.Lerp(MangaParent.localScale, Vector3.zero, Time.deltaTime * 10f);
 			if (MangaParent.localScale.x < 0.01f)
 			{
-				MangaParent.gameObject.SetActive(false);
+				MangaParent.gameObject.SetActive(value: false);
 			}
 		}
 	}
@@ -244,7 +251,7 @@ public class HomeMangaScript : MonoBehaviour
 			else
 			{
 				RequiredLabel.text = "You have not yet collected this manga.";
-				ReadButtonGroup.SetActive(false);
+				ReadButtonGroup.SetActive(value: false);
 			}
 		}
 		else if (Selected < 10)
@@ -264,7 +271,7 @@ public class HomeMangaScript : MonoBehaviour
 			else
 			{
 				RequiredLabel.text = "You have not yet collected this manga.";
-				ReadButtonGroup.SetActive(false);
+				ReadButtonGroup.SetActive(value: false);
 			}
 		}
 		else
@@ -284,7 +291,7 @@ public class HomeMangaScript : MonoBehaviour
 			else
 			{
 				RequiredLabel.text = "You have not yet collected this manga.";
-				ReadButtonGroup.SetActive(false);
+				ReadButtonGroup.SetActive(value: false);
 			}
 		}
 		if (CollectibleGlobals.GetMangaCollected(Selected + 1))

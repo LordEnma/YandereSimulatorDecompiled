@@ -178,7 +178,7 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 							MainCamera.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 						}
 						MainCamera.transform.localPosition = new Vector3(0f, 1.482f, 0f);
-						Cops.SetActive(true);
+						Cops.SetActive(value: true);
 						Speed = 0f;
 					}
 					else if (Phase == 16)
@@ -212,8 +212,8 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 			Rotation = Mathf.Lerp(Rotation, -180f, Time.deltaTime * Speed);
 			MainCamera.transform.localEulerAngles = new Vector3(0f, Rotation, 0f);
 		}
-		int phase = Phase;
-		int num = 1;
+		_ = Phase;
+		_ = 1;
 		if (FadeOut)
 		{
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime * 0.33333f);

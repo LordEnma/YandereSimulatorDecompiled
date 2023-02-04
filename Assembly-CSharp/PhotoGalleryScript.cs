@@ -115,37 +115,13 @@ public class PhotoGalleryScript : MonoBehaviour
 
 	public bool Started;
 
-	private int CurrentIndex
-	{
-		get
-		{
-			return Column + (Row - 1) * 5;
-		}
-	}
+	private int CurrentIndex => Column + (Row - 1) * 5;
 
-	private float LerpSpeed
-	{
-		get
-		{
-			return Time.unscaledDeltaTime * 10f;
-		}
-	}
+	private float LerpSpeed => Time.unscaledDeltaTime * 10f;
 
-	private float HighlightX
-	{
-		get
-		{
-			return -450f + 150f * (float)Column;
-		}
-	}
+	private float HighlightX => -450f + 150f * (float)Column;
 
-	private float HighlightY
-	{
-		get
-		{
-			return 225f - 75f * (float)Row;
-		}
-	}
+	private float HighlightY => 225f - 75f * (float)Row;
 
 	private float MovingPhotoXPercent
 	{
@@ -221,7 +197,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		{
 			if (HomeCursor != null)
 			{
-				HomeCursor.gameObject.SetActive(false);
+				HomeCursor.gameObject.SetActive(value: false);
 				base.enabled = false;
 			}
 			for (int i = 1; i < 26; i++)
@@ -278,7 +254,7 @@ public class PhotoGalleryScript : MonoBehaviour
 					{
 						for (int i = 1; i < 26; i++)
 						{
-							Hearts[i].gameObject.SetActive(false);
+							Hearts[i].gameObject.SetActive(value: false);
 						}
 					}
 					CanAdjust = false;
@@ -289,9 +265,9 @@ public class PhotoGalleryScript : MonoBehaviour
 			{
 				Yandere.Police.EndOfDay.FragileTarget = BullyPhoto[CurrentIndex];
 				Yandere.StudentManager.FragileOfferHelp.Continue();
-				PauseScreen.MainMenu.SetActive(true);
+				PauseScreen.MainMenu.SetActive(value: true);
 				Yandere.RPGCamera.enabled = true;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				PauseScreen.Show = false;
 				PromptBar.Show = false;
 				NamingBully = false;
@@ -306,10 +282,10 @@ public class PhotoGalleryScript : MonoBehaviour
 			PromptBar.Label[4].text = "Choose";
 			PromptBar.Label[5].text = "Choose";
 			PromptBar.UpdateButtons();
-			PauseScreen.MainMenu.SetActive(true);
+			PauseScreen.MainMenu.SetActive(value: true);
 			PauseScreen.Sideways = false;
 			PauseScreen.PressedB = true;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			UpdateButtonPrompts();
 		}
 		if (Input.GetButtonDown("X"))
@@ -324,7 +300,7 @@ public class PhotoGalleryScript : MonoBehaviour
 				SenpaiPhoto[currentIndex] = false;
 				KittenPhoto[currentIndex] = false;
 				BullyPhoto[currentIndex] = 0;
-				Hearts[currentIndex].gameObject.SetActive(false);
+				Hearts[currentIndex].gameObject.SetActive(value: false);
 				if (TaskManager != null)
 				{
 					TaskManager.UpdateTaskStatus();
@@ -337,7 +313,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			if (Input.GetButtonDown("Y"))
 			{
 				CanAdjust = false;
-				HomeCursor.gameObject.SetActive(true);
+				HomeCursor.gameObject.SetActive(value: true);
 				Adjusting = true;
 				UpdateButtonPrompts();
 			}
@@ -349,7 +325,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			Debug.Log("Now the game believes that we have " + Yandere.Inventory.SenpaiShots + " photographs of Senpai.");
 			PhotographTaken[currentIndex2] = false;
 			SenpaiPhoto[currentIndex2] = false;
-			Hearts[currentIndex2].gameObject.SetActive(false);
+			Hearts[currentIndex2].gameObject.SetActive(value: false);
 			Photographs[currentIndex2].mainTexture = NoPhoto;
 			TaskManager.UpdateTaskStatus();
 			CanAdjust = false;
@@ -427,7 +403,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			{
 				if (SenpaiPhoto[i])
 				{
-					Hearts[i].gameObject.SetActive(true);
+					Hearts[i].gameObject.SetActive(value: true);
 					CanAdjust = true;
 				}
 			}
@@ -476,7 +452,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		if (Input.GetButtonDown("A"))
 		{
 			HomeCursor.transform.localPosition = MovingPhotograph.transform.localPosition;
-			HomeCursor.gameObject.SetActive(true);
+			HomeCursor.gameObject.SetActive(value: true);
 			Moving = false;
 			UpdateButtonPrompts();
 			PhotoID++;
@@ -523,7 +499,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			else if (StringPhase == 1)
 			{
 				HomeCursor.transform.localPosition = transform.localPosition;
-				HomeCursor.gameObject.SetActive(true);
+				HomeCursor.gameObject.SetActive(value: true);
 				MovingString = false;
 				StringPhase = 0;
 				UpdateButtonPrompts();
@@ -540,7 +516,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		{
 			HomeCursor.Highlight.transform.position = new Vector3(HomeCursor.Highlight.transform.position.x, 100f, HomeCursor.Highlight.transform.position.z);
 			MovingPhotograph = HomeCursor.Photograph;
-			HomeCursor.gameObject.SetActive(false);
+			HomeCursor.gameObject.SetActive(value: false);
 			Moving = true;
 			UpdateButtonPrompts();
 		}
@@ -551,7 +527,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 			gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
 			String = gameObject.GetComponent<StringScript>();
-			HomeCursor.gameObject.SetActive(false);
+			HomeCursor.gameObject.SetActive(value: false);
 			MovingString = true;
 			CorkboardStrings[Strings] = String.GetComponent<StringScript>();
 			CorkboardStrings[Strings].ArrayID = Strings;
@@ -567,7 +543,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			HomeCursor.transform.localPosition = new Vector3(0f, 0f, HomeCursor.transform.localPosition.z);
 			HomeCursor.Highlight.transform.position = new Vector3(HomeCursor.Highlight.transform.position.x, 100f, HomeCursor.Highlight.transform.position.z);
 			CanAdjust = true;
-			HomeCursor.gameObject.SetActive(false);
+			HomeCursor.gameObject.SetActive(value: false);
 			Adjusting = false;
 			UpdateButtonPrompts();
 		}
@@ -601,7 +577,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			SpawnPhotographs();
 			SpawnStrings();
 			base.enabled = false;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.Label[1].text = string.Empty;
 			PromptBar.Label[2].text = string.Empty;
@@ -659,7 +635,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		{
 			for (int i = 1; i < 26; i++)
 			{
-				Hearts[i].gameObject.SetActive(false);
+				Hearts[i].gameObject.SetActive(value: false);
 			}
 		}
 		for (int ID = 1; ID < 26; ID++)
@@ -676,7 +652,7 @@ public class PhotoGalleryScript : MonoBehaviour
 				Photographs[ID].mainTexture = www.texture;
 				if (!Corkboard && SenpaiPhoto[ID])
 				{
-					Hearts[ID].gameObject.SetActive(true);
+					Hearts[ID].gameObject.SetActive(value: true);
 				}
 			}
 			else
@@ -685,14 +661,14 @@ public class PhotoGalleryScript : MonoBehaviour
 				PhotographTaken[ID] = false;
 			}
 		}
-		LoadingScreen.SetActive(false);
+		LoadingScreen.SetActive(value: false);
 		if (!Corkboard)
 		{
 			PauseScreen.Sideways = true;
 		}
 		UpdateButtonPrompts();
 		base.enabled = true;
-		base.gameObject.SetActive(true);
+		base.gameObject.SetActive(value: true);
 		GotPhotos = true;
 	}
 
@@ -936,11 +912,11 @@ public class PhotoGalleryScript : MonoBehaviour
 		{
 			if (PhotographTaken[i])
 			{
-				PlayerGlobals.SetPhoto(i, true);
+				PlayerGlobals.SetPhoto(i, value: true);
 				if (SenpaiPhoto[i])
 				{
 					Debug.Log("Photo #" + i + " is a photo of Senpai.");
-					PlayerGlobals.SetSenpaiPhoto(i, true);
+					PlayerGlobals.SetSenpaiPhoto(i, value: true);
 				}
 				else if (BullyPhoto[i] > 0)
 				{
@@ -948,15 +924,15 @@ public class PhotoGalleryScript : MonoBehaviour
 				}
 				else if (KittenPhoto[i])
 				{
-					TaskGlobals.SetKittenPhoto(i, true);
+					TaskGlobals.SetKittenPhoto(i, value: true);
 				}
 				else if (GuitarPhoto[i])
 				{
-					TaskGlobals.SetGuitarPhoto(i, true);
+					TaskGlobals.SetGuitarPhoto(i, value: true);
 				}
 				else if (HorudaPhoto[i])
 				{
-					TaskGlobals.SetHorudaPhoto(i, true);
+					TaskGlobals.SetHorudaPhoto(i, value: true);
 				}
 			}
 		}

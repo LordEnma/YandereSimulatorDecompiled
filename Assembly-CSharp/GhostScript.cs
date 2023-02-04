@@ -21,7 +21,7 @@ public class GhostScript : MonoBehaviour
 			if (Frame > 0)
 			{
 				GetComponent<Animation>().enabled = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				Frame = 0;
 			}
 			Frame++;

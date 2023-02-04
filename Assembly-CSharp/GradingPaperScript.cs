@@ -69,7 +69,7 @@ public class GradingPaperScript : MonoBehaviour
 					Paper.parent = LeftHand;
 					Paper.localPosition = PickUpPosition1;
 					Paper.localEulerAngles = PickUpRotation1;
-					Paper.gameObject.SetActive(true);
+					Paper.gameObject.SetActive(value: true);
 					Phase++;
 				}
 				break;
@@ -95,7 +95,7 @@ public class GradingPaperScript : MonoBehaviour
 				if (Teacher.CharacterAnimation["f02_deskWrite"].time > SetDownTime2)
 				{
 					Paper.parent = Character.transform;
-					Paper.gameObject.SetActive(false);
+					Paper.gameObject.SetActive(value: false);
 					Phase++;
 				}
 				break;
@@ -123,9 +123,9 @@ public class GradingPaperScript : MonoBehaviour
 	{
 		if (Paper.gameObject.activeInHierarchy)
 		{
-			Paper.gameObject.SetActive(false);
+			Paper.gameObject.SetActive(value: false);
 			Teacher.Obstacle.enabled = false;
-			Teacher.Pen.SetActive(false);
+			Teacher.Pen.SetActive(value: false);
 			Writing = false;
 			Phase = 1;
 		}

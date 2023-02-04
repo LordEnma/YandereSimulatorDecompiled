@@ -18,21 +18,9 @@ public class SaveFile
 
 	private static readonly string SaveName = "Save.txt";
 
-	public SaveFileData Data
-	{
-		get
-		{
-			return data;
-		}
-	}
+	public SaveFileData Data => data;
 
-	private static bool SavesFolderExists
-	{
-		get
-		{
-			return Directory.Exists(SavesPath);
-		}
-	}
+	private static bool SavesFolderExists => Directory.Exists(SavesPath);
 
 	public SaveFile(int index)
 	{
@@ -115,10 +103,8 @@ public class SaveFile
 			XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
 			xmlWriterSettings.Indent = true;
 			xmlWriterSettings.IndentChars = "\t";
-			using (XmlWriter xmlWriter = XmlWriter.Create(fullSaveFileName, xmlWriterSettings))
-			{
-				xmlSerializer.Serialize(xmlWriter, data);
-			}
+			using XmlWriter xmlWriter = XmlWriter.Create(fullSaveFileName, xmlWriterSettings);
+			xmlSerializer.Serialize(xmlWriter, data);
 		}
 		catch (Exception ex)
 		{

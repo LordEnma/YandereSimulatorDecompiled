@@ -228,8 +228,7 @@ public class UIFont : MonoBehaviour, INGUIFont
 			{
 				return iNGUIFont.material;
 			}
-			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-			if (iNGUIAtlas != null)
+			if (mAtlas is INGUIAtlas iNGUIAtlas)
 			{
 				return iNGUIAtlas.spriteMaterial;
 			}
@@ -264,13 +263,7 @@ public class UIFont : MonoBehaviour, INGUIFont
 	}
 
 	[Obsolete("Use premultipliedAlphaShader instead")]
-	public bool premultipliedAlpha
-	{
-		get
-		{
-			return premultipliedAlphaShader;
-		}
-	}
+	public bool premultipliedAlpha => premultipliedAlphaShader;
 
 	public bool premultipliedAlphaShader
 	{
@@ -281,8 +274,7 @@ public class UIFont : MonoBehaviour, INGUIFont
 			{
 				return iNGUIFont.premultipliedAlphaShader;
 			}
-			INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-			if (iNGUIAtlas != null)
+			if (mAtlas is INGUIAtlas iNGUIAtlas)
 			{
 				return iNGUIAtlas.premultipliedAlpha;
 			}
@@ -537,18 +529,7 @@ public class UIFont : MonoBehaviour, INGUIFont
 		}
 	}
 
-	public bool isDynamic
-	{
-		get
-		{
-			INGUIFont iNGUIFont = replacement;
-			if (iNGUIFont == null)
-			{
-				return mDynamicFont != null;
-			}
-			return iNGUIFont.isDynamic;
-		}
-	}
+	public bool isDynamic => replacement?.isDynamic ?? (mDynamicFont != null);
 
 	public Font dynamicFont
 	{
@@ -584,12 +565,7 @@ public class UIFont : MonoBehaviour, INGUIFont
 	{
 		get
 		{
-			INGUIFont iNGUIFont = replacement;
-			if (iNGUIFont == null)
-			{
-				return mDynamicFontStyle;
-			}
-			return iNGUIFont.dynamicFontStyle;
+			return replacement?.dynamicFontStyle ?? mDynamicFontStyle;
 		}
 		set
 		{
@@ -608,25 +584,19 @@ public class UIFont : MonoBehaviour, INGUIFont
 
 	public UISpriteData GetSprite(string spriteName)
 	{
-		INGUIAtlas iNGUIAtlas = atlas;
-		if (iNGUIAtlas != null)
-		{
-			return iNGUIAtlas.GetSprite(spriteName);
-		}
-		return null;
+		return atlas?.GetSprite(spriteName);
 	}
 
 	private void Trim()
 	{
 		Texture texture = null;
-		INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-		if (iNGUIAtlas != null)
+		if (mAtlas is INGUIAtlas iNGUIAtlas)
 		{
 			texture = iNGUIAtlas.texture;
 		}
 		if (texture != null && mSprite != null)
 		{
-			Rect rect = NGUIMath.ConvertToPixels(mUVRect, this.texture.width, this.texture.height, true);
+			Rect rect = NGUIMath.ConvertToPixels(mUVRect, this.texture.width, this.texture.height, round: true);
 			Rect rect2 = new Rect(mSprite.x, mSprite.y, mSprite.width, mSprite.height);
 			int xMin = Mathf.RoundToInt(rect2.xMin - rect.xMin);
 			int yMin = Mathf.RoundToInt(rect2.yMin - rect.yMin);
@@ -646,21 +616,12 @@ public class UIFont : MonoBehaviour, INGUIFont
 		{
 			return true;
 		}
-		INGUIFont iNGUIFont = replacement;
-		if (iNGUIFont == null)
-		{
-			return false;
-		}
-		return iNGUIFont.References(font);
+		return replacement?.References(font) ?? false;
 	}
 
 	public void MarkAsChanged()
 	{
-		INGUIFont iNGUIFont = replacement;
-		if (iNGUIFont != null)
-		{
-			iNGUIFont.MarkAsChanged();
-		}
+		replacement?.MarkAsChanged();
 		mSprite = null;
 		UILabel[] array = NGUITools.FindActive<UILabel>();
 		int i = 0;
@@ -688,8 +649,7 @@ public class UIFont : MonoBehaviour, INGUIFont
 			return;
 		}
 		Texture texture = null;
-		INGUIAtlas iNGUIAtlas = mAtlas as INGUIAtlas;
-		if (iNGUIAtlas != null)
+		if (mAtlas is INGUIAtlas iNGUIAtlas)
 		{
 			texture = iNGUIAtlas.texture;
 		}
@@ -760,13 +720,13 @@ public class UIFont : MonoBehaviour, INGUIFont
 
 	public void AddSymbol(string sequence, string spriteName)
 	{
-		GetSymbol(sequence, true).spriteName = spriteName;
+		GetSymbol(sequence, createIfMissing: true).spriteName = spriteName;
 		MarkAsChanged();
 	}
 
 	public void RemoveSymbol(string sequence)
 	{
-		BMSymbol symbol = GetSymbol(sequence, false);
+		BMSymbol symbol = GetSymbol(sequence, createIfMissing: false);
 		if (symbol != null)
 		{
 			symbols.Remove(symbol);
@@ -776,7 +736,7 @@ public class UIFont : MonoBehaviour, INGUIFont
 
 	public void RenameSymbol(string before, string after)
 	{
-		BMSymbol symbol = GetSymbol(before, false);
+		BMSymbol symbol = GetSymbol(before, createIfMissing: false);
 		if (symbol != null)
 		{
 			symbol.sequence = after;

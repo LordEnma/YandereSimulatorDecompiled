@@ -92,14 +92,14 @@ public class StalkerPromptScript : MonoBehaviour
 		{
 			if (BagID > DateGlobals.Week)
 			{
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 		else if (ID == 5)
 		{
 			BagsToBurn = DateGlobals.Week;
 			BagsToBurnLabel.text = "BAGS TO BURN: " + BagsToBurn;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -130,7 +130,7 @@ public class StalkerPromptScript : MonoBehaviour
 					if (ID == 1)
 					{
 						Yandere.MyAnimation.CrossFade("f02_climbTrellis_00");
-						CatPrompt.SetActive(true);
+						CatPrompt.SetActive(value: true);
 						Yandere.Climbing = true;
 						Yandere.CanMove = false;
 						Object.Destroy(base.gameObject);
@@ -138,7 +138,7 @@ public class StalkerPromptScript : MonoBehaviour
 					}
 					else if (ID == 2)
 					{
-						CatPrompt.SetActive(true);
+						CatPrompt.SetActive(value: true);
 						Stalker.enabled = true;
 						ServedPurpose = true;
 						OpenDoor = true;
@@ -149,21 +149,21 @@ public class StalkerPromptScript : MonoBehaviour
 						BeginCarryingCat();
 						Door.transform.localEulerAngles = Vector3.zero;
 						KitchenDoor.localEulerAngles = new Vector3(0f, 180f, 0f);
-						Father.SetActive(false);
-						Mother.SetActive(false);
-						DomesticDispute.SetActive(true);
-						StairBlocker.SetActive(true);
-						FrontDoor.SetActive(true);
+						Father.SetActive(value: false);
+						Mother.SetActive(value: false);
+						DomesticDispute.SetActive(value: true);
+						StairBlocker.SetActive(value: true);
+						FrontDoor.SetActive(value: true);
 						Cat.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 						Cat.enabled = false;
 						MyAudio.Play();
-						base.gameObject.SetActive(false);
+						base.gameObject.SetActive(value: false);
 						Object.Destroy(MySprite);
 						Stalker.Limit = 10;
 					}
 					else if (ID == 4)
 					{
-						CatCage.gameObject.SetActive(true);
+						CatCage.gameObject.SetActive(value: true);
 						ServedPurpose = true;
 						OpenDoor = true;
 						MyAudio.Play();
@@ -190,7 +190,7 @@ public class StalkerPromptScript : MonoBehaviour
 							FatherVoice.MyAnimation.CrossFade("walkConfident_00");
 							FatherVoice.Investigating = true;
 							AudioSource.PlayClipAtPoint(PowerDown, Camera.main.transform.position);
-							Lights.SetActive(false);
+							Lights.SetActive(value: false);
 							ServedPurpose = true;
 						}
 					}
@@ -198,7 +198,7 @@ public class StalkerPromptScript : MonoBehaviour
 				else if (ID == 1)
 				{
 					ExitPrompt.CountBags();
-					Fire.SetActive(true);
+					Fire.SetActive(value: true);
 					ServedPurpose = true;
 					MyAudio.Play();
 				}
@@ -245,12 +245,12 @@ public class StalkerPromptScript : MonoBehaviour
 					{
 						Yandere.Cigs = true;
 					}
-					base.transform.parent.parent.gameObject.SetActive(false);
+					base.transform.parent.parent.gameObject.SetActive(value: false);
 				}
 				else if (ID == 5)
 				{
 					Yandere.MyAnimation.CrossFade(Yandere.IdleAnim);
-					BagsToBurnLabel.gameObject.SetActive(false);
+					BagsToBurnLabel.gameObject.SetActive(value: false);
 					Yandere.CanMove = false;
 					ServedPurpose = true;
 					FadeOut = true;
@@ -264,7 +264,7 @@ public class StalkerPromptScript : MonoBehaviour
 			{
 				if (ID == 1)
 				{
-					CatPrompt.SetActive(true);
+					CatPrompt.SetActive(value: true);
 				}
 				ServedPurpose = true;
 			}
@@ -312,7 +312,7 @@ public class StalkerPromptScript : MonoBehaviour
 				}
 				if (Yandere.Cigs)
 				{
-					PlayerGlobals.SetCannotBringItem(6, false);
+					PlayerGlobals.SetCannotBringItem(6, value: false);
 				}
 				SceneManager.LoadScene("LivingRoomScene");
 			}
@@ -350,7 +350,7 @@ public class StalkerPromptScript : MonoBehaviour
 		if (BagsToBurn == 0)
 		{
 			BagsToBurnLabel.text = "EXIT THE BUILDING FROM THE WINDOW YOU CAME IN FROM!";
-			base.gameObject.SetActive(true);
+			base.gameObject.SetActive(value: true);
 		}
 		else
 		{

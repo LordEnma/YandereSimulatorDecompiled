@@ -94,11 +94,11 @@ public class OsanaPoolEventScript : MonoBehaviour
 					Rival.CurrentDestination = StudentManager.FemaleStripSpot;
 					Rival.Pathfinding.canSearch = true;
 					Rival.Pathfinding.canMove = true;
-					Rival.Pen.SetActive(false);
+					Rival.Pen.SetActive(value: false);
 					Rival.Routine = false;
 					Rival.InEvent = true;
 					Rival.StinkBombSpecialCase = 1;
-					Rival.SmartPhone.SetActive(false);
+					Rival.SmartPhone.SetActive(value: false);
 					Yandere.PauseScreen.Hint.Show = true;
 					Yandere.PauseScreen.Hint.QuickID = 17;
 					Phase++;
@@ -216,7 +216,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 				EventSubtitle.text = SpeechText[2];
 				Rival.CharacterAnimation.CrossFade("f02_" + EventAnim[3]);
 				Rival.OsanaHair.GetComponent<Animation>().CrossFade("Hair_" + EventAnim[3]);
-				Rival.Ragdoll.Zs.SetActive(true);
+				Rival.Ragdoll.Zs.SetActive(value: true);
 				Timer = 0f;
 				Phase++;
 			}
@@ -233,8 +233,8 @@ public class OsanaPoolEventScript : MonoBehaviour
 					Rival.CharacterAnimation.CrossFade("f02_" + EventAnim[2]);
 					Rival.OsanaHair.GetComponent<Animation>().CrossFade("Hair_" + EventAnim[2]);
 					Prompt.Hide();
-					Prompt.gameObject.SetActive(false);
-					Rival.Ragdoll.Zs.SetActive(false);
+					Prompt.gameObject.SetActive(value: false);
+					Rival.Ragdoll.Zs.SetActive(value: false);
 					Timer = 0f;
 					Phase++;
 				}
@@ -325,12 +325,12 @@ public class OsanaPoolEventScript : MonoBehaviour
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
 			Prompt.Hide();
-			Prompt.gameObject.SetActive(false);
+			Prompt.gameObject.SetActive(value: false);
 			Murdering = true;
 			Rival.Blind = true;
 			Yandere.CanMove = false;
 			Rival.Distracted = true;
-			Rival.Ragdoll.Zs.SetActive(false);
+			Rival.Ragdoll.Zs.SetActive(value: false);
 			Yandere.CharacterAnimation.CrossFade("f02_" + EventAnim[5]);
 			Rival.CharacterAnimation.CrossFade("f02_" + EventAnim[6]);
 			Rival.OsanaHair.GetComponent<Animation>().CrossFade("Hair_" + EventAnim[6]);
@@ -465,7 +465,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 		}
 		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 		Rival.MyRenderer.updateWhenOffscreen = false;
-		Rival.Ragdoll.Zs.SetActive(false);
+		Rival.Ragdoll.Zs.SetActive(value: false);
 		Rival.Obstacle.enabled = false;
 		Rival.StinkBombSpecialCase = 0;
 		Rival.Prompt.enabled = true;

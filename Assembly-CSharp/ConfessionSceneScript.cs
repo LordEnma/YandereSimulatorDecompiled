@@ -108,7 +108,7 @@ public class ConfessionSceneScript : MonoBehaviour
 					Suitor.EmptyHands();
 					ParticleSystem.EmissionModule emission = MythBlossoms.emission;
 					emission.rateOverTime = 100f;
-					HeartBeatCamera.SetActive(false);
+					HeartBeatCamera.SetActive(value: false);
 					GetComponent<AudioSource>().Play();
 					MainCamera.position = CameraDestinations[1].position;
 					MainCamera.eulerAngles = CameraDestinations[1].eulerAngles;
@@ -184,7 +184,7 @@ public class ConfessionSceneScript : MonoBehaviour
 			LetterTimer += Time.deltaTime;
 			if (LetterTimer > 0.1f && LetterID < Letters.Length)
 			{
-				Letters[LetterID].SetActive(true);
+				Letters[LetterID].SetActive(value: true);
 				LetterTimer = 0f;
 				LetterID++;
 			}
@@ -208,7 +208,7 @@ public class ConfessionSceneScript : MonoBehaviour
 					PromptBar.ClearButtons();
 					PromptBar.UpdateButtons();
 					PromptBar.Show = false;
-					ConfessionBG.SetActive(false);
+					ConfessionBG.SetActive(value: false);
 					Yandere.FixCamera();
 					Phase++;
 				}
@@ -231,10 +231,10 @@ public class ConfessionSceneScript : MonoBehaviour
 				Rival.Pathfinding.canSearch = false;
 				Yandere.RPGCamera.enabled = true;
 				Yandere.CanMove = true;
-				HeartBeatCamera.SetActive(true);
+				HeartBeatCamera.SetActive(value: true);
 				ParticleSystem.EmissionModule emission4 = MythBlossoms.emission;
 				emission4.rateOverTime = 20f;
-				Clock.Police.gameObject.SetActive(true);
+				Clock.Police.gameObject.SetActive(value: true);
 				Clock.StopTime = false;
 				base.enabled = false;
 				Suitor.PartnerID = LoveManager.RivalID;
@@ -259,7 +259,7 @@ public class ConfessionSceneScript : MonoBehaviour
 		}
 		else if (Suitor != null)
 		{
-			Suitor.gameObject.SetActive(true);
+			Suitor.gameObject.SetActive(value: true);
 			Suitor.Character.transform.localScale = Vector3.Lerp(Suitor.Character.transform.localScale, new Vector3(0.94f, 0.94f, 0.94f), Time.deltaTime);
 			if (MoveSuitor)
 			{

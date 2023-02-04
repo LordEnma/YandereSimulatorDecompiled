@@ -84,6 +84,12 @@ public class HomeDarknessScript : MonoBehaviour
 				}
 				else if (HomeCamera.ID == 9)
 				{
+					if (!HomeGlobals.Night)
+					{
+						HomeGlobals.Night = true;
+						SceneManager.LoadScene("HomeScene");
+						return;
+					}
 					if (DateGlobals.PassDays < 1)
 					{
 						DateGlobals.PassDays = 1;
@@ -116,7 +122,7 @@ public class HomeDarknessScript : MonoBehaviour
 					}
 					else
 					{
-						StudentGlobals.SetStudentKidnapped(PrisonerManager.StudentID, false);
+						StudentGlobals.SetStudentKidnapped(PrisonerManager.StudentID, value: false);
 						StudentGlobals.StudentSlave = PrisonerManager.StudentID;
 						StudentGlobals.PrisonerChosen = PrisonerManager.ChosenPrisoner;
 						CheckForOsanaThursday();
@@ -153,7 +159,7 @@ public class HomeDarknessScript : MonoBehaviour
 						HomeCamera.Target = HomeCamera.Targets[0];
 						HomeCamera.Focus.position = HomeCamera.Target.position;
 						BasementLabel.text = "Upstairs";
-						HomeCamera.DayLight.SetActive(true);
+						HomeCamera.DayLight.SetActive(value: true);
 						HomeCamera.DayLight.GetComponent<Light>().intensity = 0.66666f;
 						Physics.SyncTransforms();
 						return;
@@ -170,7 +176,7 @@ public class HomeDarknessScript : MonoBehaviour
 					BasementLabel.text = "Basement";
 					if (HomeGlobals.Night)
 					{
-						HomeCamera.DayLight.SetActive(false);
+						HomeCamera.DayLight.SetActive(value: false);
 					}
 					HomeCamera.DayLight.GetComponent<Light>().intensity = 2f;
 					Physics.SyncTransforms();

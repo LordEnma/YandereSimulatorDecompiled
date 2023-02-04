@@ -141,37 +141,13 @@ public class ShutterScript : MonoBehaviour
 
 	public Vector3 OriginalPosition;
 
-	public int OnlyPhotography
-	{
-		get
-		{
-			return 65537;
-		}
-	}
+	public int OnlyPhotography => 65537;
 
-	public int OnlyCharacters
-	{
-		get
-		{
-			return 513;
-		}
-	}
+	public int OnlyCharacters => 513;
 
-	public int OnlyRagdolls
-	{
-		get
-		{
-			return 2049;
-		}
-	}
+	public int OnlyRagdolls => 2049;
 
-	public int OnlyBlood
-	{
-		get
-		{
-			return 16385;
-		}
-	}
+	public int OnlyBlood => 16385;
 
 	private void Start()
 	{
@@ -180,15 +156,15 @@ public class ShutterScript : MonoBehaviour
 			MissionMode = true;
 		}
 		ErrorWindow.transform.localScale = Vector3.zero;
-		CameraButtons.SetActive(false);
-		PhotoIcons.SetActive(false);
+		CameraButtons.SetActive(value: false);
+		PhotoIcons.SetActive(value: false);
 		Sprite.color = new Color(Sprite.color.r, Sprite.color.g, Sprite.color.b, 0f);
 		OriginalPosition = PhotoIcons.transform.localPosition;
 	}
 
 	private void Update()
 	{
-		bool selfie = Yandere.Selfie;
+		_ = Yandere.Selfie;
 		if (Snapping)
 		{
 			if (Yandere.Noticed)
@@ -207,8 +183,8 @@ public class ShutterScript : MonoBehaviour
 				Sprite.spriteName = "Shutter" + Frame;
 				if (Frame == 8)
 				{
-					StudentManager.GhostChan.gameObject.SetActive(true);
-					PhotoDescription.SetActive(false);
+					StudentManager.GhostChan.gameObject.SetActive(value: true);
+					PhotoDescription.SetActive(value: false);
 					PhotoDescLabel.text = "";
 					StudentManager.GhostChan.Look();
 					CheckPhoto();
@@ -216,17 +192,17 @@ public class ShutterScript : MonoBehaviour
 					{
 						PhotoDescLabel.text = "Cannot determine subject of photo. Try again.";
 					}
-					PhotoDescription.SetActive(true);
+					PhotoDescription.SetActive(value: true);
 					SmartphoneCamera.targetTexture = null;
 					Yandere.PhonePromptBar.Show = false;
-					NotificationManager.SetActive(false);
-					HeartbeatCamera.SetActive(false);
+					NotificationManager.SetActive(value: false);
+					HeartbeatCamera.SetActive(value: false);
 					PhotoIcons.transform.localPosition = OriginalPosition;
-					Yandere.SelfieGuide.SetActive(false);
+					Yandere.SelfieGuide.SetActive(value: false);
 					MainCamera.enabled = false;
-					PhotoIcons.SetActive(true);
-					SubPanel.SetActive(false);
-					Panel.SetActive(false);
+					PhotoIcons.SetActive(value: true);
+					SubPanel.SetActive(value: false);
+					Panel.SetActive(value: false);
 					Close = false;
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Save";
@@ -290,7 +266,7 @@ public class ShutterScript : MonoBehaviour
 								ReactionDistance = FaceStudent.VisionDistance;
 							}
 							bool flag = FaceStudent.ShoeRemoval.enabled;
-							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
+							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
 							{
 								if (MissionMode)
 								{
@@ -420,7 +396,7 @@ public class ShutterScript : MonoBehaviour
 						PromptBar.transform.localPosition = new Vector3(PromptBar.transform.localPosition.x, -627f, PromptBar.transform.localPosition.z);
 						PromptBar.ClearButtons();
 						PromptBar.Show = false;
-						PhotoIcons.SetActive(false);
+						PhotoIcons.SetActive(value: false);
 						ID = 0;
 						FreeSpace = false;
 						while (ID < 25)
@@ -438,7 +414,7 @@ public class ShutterScript : MonoBehaviour
 							Debug.Log("We're going to save a photo into Slot #" + Slot);
 							if (StudentManager.Eighties)
 							{
-								Yandere.HandCamera.gameObject.SetActive(true);
+								Yandere.HandCamera.gameObject.SetActive(value: true);
 							}
 							ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Photographs/Photo_" + Slot + ".png");
 							TookPhoto = true;
@@ -508,8 +484,8 @@ public class ShutterScript : MonoBehaviour
 					}
 					if (!flag4)
 					{
-						Panel.SetActive(true);
-						MainMenu.SetActive(false);
+						Panel.SetActive(value: true);
+						MainMenu.SetActive(value: false);
 						PauseScreen.Show = true;
 						PauseScreen.Panel.enabled = true;
 						PromptBar.ClearButtons();
@@ -540,13 +516,13 @@ public class ShutterScript : MonoBehaviour
 								}
 							}
 							StudentInfo.UpdateInfo(Student.StudentID);
-							StudentInfo.gameObject.SetActive(true);
+							StudentInfo.gameObject.SetActive(value: true);
 							PhotoIcons.transform.localPosition = new Vector3(0f, 1000f, 0f);
 						}
 						else if (!TextMessages.gameObject.activeInHierarchy)
 						{
 							PauseScreen.Sideways = false;
-							TextMessages.gameObject.SetActive(true);
+							TextMessages.gameObject.SetActive(value: true);
 							SpawnMessage();
 						}
 					}
@@ -582,14 +558,14 @@ public class ShutterScript : MonoBehaviour
 		ErrorWindow.transform.localScale = Vector3.zero;
 		if (!StudentManager.Eighties)
 		{
-			Yandere.HandCamera.gameObject.SetActive(false);
+			Yandere.HandCamera.gameObject.SetActive(value: false);
 		}
 		else
 		{
 			SmartphoneCamera.transform.parent = Yandere.HandCamera.transform;
 			SmartphoneCamera.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 			SmartphoneCamera.transform.localPosition = new Vector3(0f, 0f, 0f);
-			StudentManager.ClubManager.Viewfinder.SetActive(false);
+			StudentManager.ClubManager.Viewfinder.SetActive(value: false);
 		}
 		Sprite.color = new Color(Sprite.color.r, Sprite.color.g, Sprite.color.b, 1f);
 		MyAudio.Play();
@@ -601,11 +577,11 @@ public class ShutterScript : MonoBehaviour
 	public void CheckPhoto()
 	{
 		Debug.Log("We are now checking what Yandere-chan took a picture of.");
-		InfoX.SetActive(true);
-		BullyX.SetActive(true);
-		SenpaiX.SetActive(true);
-		PantiesX.SetActive(true);
-		ViolenceX.SetActive(true);
+		InfoX.SetActive(value: true);
+		BullyX.SetActive(value: true);
+		SenpaiX.SetActive(value: true);
+		PantiesX.SetActive(value: true);
+		ViolenceX.SetActive(value: true);
 		AirGuitarShot = false;
 		PlushieShot = false;
 		BountyShot = false;
@@ -617,8 +593,8 @@ public class ShutterScript : MonoBehaviour
 		Skirt = false;
 		Transform transform = (Yandere.Aiming ? SmartphoneCamera.transform : ((!Yandere.WallInFront) ? Palm : Yandere.StudentManager.transform));
 		Vector3 direction = (Yandere.Selfie ? SelfieRayParent.TransformDirection(Vector3.forward) : transform.TransformDirection(Vector3.forward));
-		StudentManager.UpdatePanties(true);
-		StudentManager.UpdateSkirts(true);
+		StudentManager.UpdatePanties(Status: true);
+		StudentManager.UpdateSkirts(Status: true);
 		if (Physics.Raycast(transform.position, direction, out hit, float.PositiveInfinity, OnlyPhotography))
 		{
 			Debug.Log("The camera's raycast collided with something named ''" + hit.collider.gameObject.name + "''");
@@ -626,15 +602,15 @@ public class ShutterScript : MonoBehaviour
 			{
 				Student = hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>();
 				PhotoDescLabel.text = "Photo of: " + Student.Name + "'s Panties";
-				PantiesX.SetActive(false);
+				PantiesX.SetActive(value: false);
 				if (!Yandere.Aiming)
 				{
 					Yandere.ResetYandereEffects();
-					PhotoIcons.SetActive(true);
-					InfoX.SetActive(true);
+					PhotoIcons.SetActive(value: true);
+					InfoX.SetActive(value: true);
 					Time.timeScale = 0f;
-					Panel.SetActive(true);
-					MainMenu.SetActive(false);
+					Panel.SetActive(value: true);
+					MainMenu.SetActive(value: false);
 					PauseScreen.Show = true;
 					PauseScreen.Panel.enabled = true;
 					PromptBar.ClearButtons();
@@ -642,7 +618,7 @@ public class ShutterScript : MonoBehaviour
 					PromptBar.UpdateButtons();
 					PromptBar.Show = true;
 					PauseScreen.Sideways = false;
-					TextMessages.gameObject.SetActive(true);
+					TextMessages.gameObject.SetActive(value: true);
 					SpawnMessage();
 				}
 			}
@@ -665,12 +641,12 @@ public class ShutterScript : MonoBehaviour
 					if (Student.StudentID == 1)
 					{
 						PhotoDescLabel.text = "Photo of: Senpai";
-						SenpaiX.SetActive(false);
+						SenpaiX.SetActive(value: false);
 					}
 					else
 					{
 						PhotoDescLabel.text = "Photo of: " + Student.Name;
-						InfoX.SetActive(false);
+						InfoX.SetActive(value: false);
 					}
 				}
 			}
@@ -687,17 +663,17 @@ public class ShutterScript : MonoBehaviour
 			if (hit.collider.transform.root.gameObject.name == "Student_51 (Miyuji Shan)" && StudentManager.Students[51].AirGuitar.isPlaying)
 			{
 				AirGuitarShot = true;
-				PhotoDescription.SetActive(true);
+				PhotoDescription.SetActive(value: true);
 				PhotoDescLabel.text = "Photo of: Miyuji's True Nature?";
 			}
 			if (hit.collider.gameObject.name == "Kitten")
 			{
 				KittenShot = true;
-				PhotoDescription.SetActive(true);
+				PhotoDescription.SetActive(value: true);
 				PhotoDescLabel.text = "Photo of: Kitten";
 				if (!ConversationGlobals.GetTopicDiscovered(15))
 				{
-					ConversationGlobals.SetTopicDiscovered(15, true);
+					ConversationGlobals.SetTopicDiscovered(15, value: true);
 					Yandere.NotificationManager.TopicName = "Cats";
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 				}
@@ -705,13 +681,13 @@ public class ShutterScript : MonoBehaviour
 			if (hit.collider.gameObject.tag == "Horuda")
 			{
 				HorudaShot = true;
-				PhotoDescription.SetActive(true);
+				PhotoDescription.SetActive(value: true);
 				PhotoDescLabel.text = "Photo of: Horuda's Hiding Spot";
 			}
 			if (hit.collider.gameObject.name == "Bounty")
 			{
 				BountyShot = true;
-				PhotoDescription.SetActive(true);
+				PhotoDescription.SetActive(value: true);
 				if (StudentManager.Clock.Day == 1)
 				{
 					PhotoDescLabel.text = "Photo of: Ryuto Gaming At School";
@@ -737,33 +713,33 @@ public class ShutterScript : MonoBehaviour
 			{
 				PhotoDescLabel.text = "Photo of: Student Speaking With Bully";
 				BullyPhotoCollider = hit.collider.gameObject;
-				BullyX.SetActive(false);
+				BullyX.SetActive(value: false);
 			}
 			if (hit.collider.gameObject.tag == "RivalEvidence")
 			{
 				OsanaShot = true;
-				PhotoDescription.SetActive(true);
+				PhotoDescription.SetActive(value: true);
 				PhotoDescLabel.text = "Photo of: Osana Vandalizing School Property";
 			}
 			if (hit.collider.gameObject.transform.parent != null && hit.collider.gameObject.transform.parent.name == "PlushieShelf")
 			{
 				PlushieShot = true;
 				PlushieName = hit.collider.gameObject.name;
-				PhotoDescription.SetActive(true);
+				PhotoDescription.SetActive(value: true);
 				PhotoDescLabel.text = "Photo of: A cute plushie doll";
 			}
 		}
 		if (Physics.Raycast(SmartphoneCamera.transform.position, direction, out hit, float.PositiveInfinity, OnlyRagdolls) && hit.collider.gameObject.layer == 11)
 		{
 			PhotoDescLabel.text = "Photo of: Corpse";
-			ViolenceX.SetActive(false);
+			ViolenceX.SetActive(value: false);
 		}
 		if (Physics.Raycast(SmartphoneCamera.transform.position, SmartphoneCamera.transform.TransformDirection(Vector3.forward), out hit, float.PositiveInfinity, OnlyBlood) && hit.collider.gameObject.layer == 14)
 		{
 			PhotoDescLabel.text = "Photo of: Blood";
-			ViolenceX.SetActive(false);
+			ViolenceX.SetActive(value: false);
 		}
-		StudentManager.UpdateSkirts(false);
+		StudentManager.UpdateSkirts(Status: false);
 		if (!Yandere.Aiming)
 		{
 			if (NewMessage == null)
@@ -771,7 +747,7 @@ public class ShutterScript : MonoBehaviour
 				Yandere.NotificationManager.CustomText = "You missed.";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
-			StudentManager.UpdatePanties(false);
+			StudentManager.UpdatePanties(Status: false);
 		}
 	}
 
@@ -960,22 +936,22 @@ public class ShutterScript : MonoBehaviour
 	{
 		ErrorWindow.transform.localScale = Vector3.zero;
 		SmartphoneCamera.targetTexture = SmartphoneScreen;
-		StudentManager.GhostChan.gameObject.SetActive(false);
-		Yandere.HandCamera.gameObject.SetActive(true);
-		NotificationManager.SetActive(true);
+		StudentManager.GhostChan.gameObject.SetActive(value: false);
+		Yandere.HandCamera.gameObject.SetActive(value: true);
+		NotificationManager.SetActive(value: true);
 		PauseScreen.CorrectingTime = true;
-		HeartbeatCamera.SetActive(true);
-		TextMessages.gameObject.SetActive(false);
-		StudentInfo.gameObject.SetActive(false);
+		HeartbeatCamera.SetActive(value: true);
+		TextMessages.gameObject.SetActive(value: false);
+		StudentInfo.gameObject.SetActive(value: false);
 		Yandere.DetectionPanel.alpha = 1f;
 		MainCamera.enabled = true;
-		PhotoIcons.SetActive(false);
+		PhotoIcons.SetActive(value: false);
 		PauseScreen.Show = false;
-		SubPanel.SetActive(true);
-		MainMenu.SetActive(true);
+		SubPanel.SetActive(value: true);
+		MainMenu.SetActive(value: true);
 		Yandere.CanMove = true;
 		DisplayError = false;
-		Panel.SetActive(true);
+		Panel.SetActive(value: true);
 		Time.timeScale = 1f;
 		TakePhoto = false;
 		TookPhoto = false;
@@ -995,7 +971,7 @@ public class ShutterScript : MonoBehaviour
 		}
 		else if (Yandere.Club == ClubType.Photography)
 		{
-			StudentManager.ClubManager.Viewfinder.SetActive(true);
+			StudentManager.ClubManager.Viewfinder.SetActive(value: true);
 		}
 		PromptBar.ClearButtons();
 		PromptBar.Show = false;

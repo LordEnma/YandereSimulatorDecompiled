@@ -63,23 +63,23 @@ public class CollectibleSaveData
 	{
 		foreach (int item in data.basementTapeCollected)
 		{
-			CollectibleGlobals.SetBasementTapeCollected(item, true);
+			CollectibleGlobals.SetBasementTapeCollected(item, value: true);
 		}
 		foreach (int item2 in data.basementTapeListened)
 		{
-			CollectibleGlobals.SetBasementTapeListened(item2, true);
+			CollectibleGlobals.SetBasementTapeListened(item2, value: true);
 		}
 		foreach (int item3 in data.mangaCollected)
 		{
-			CollectibleGlobals.SetMangaCollected(item3, true);
+			CollectibleGlobals.SetMangaCollected(item3, value: true);
 		}
 		foreach (int item4 in data.tapeCollected)
 		{
-			CollectibleGlobals.SetTapeCollected(item4, true);
+			CollectibleGlobals.SetTapeCollected(item4, value: true);
 		}
 		foreach (int item5 in data.tapeListened)
 		{
-			CollectibleGlobals.SetTapeListened(item5, true);
+			CollectibleGlobals.SetTapeListened(item5, value: true);
 		}
 	}
 }

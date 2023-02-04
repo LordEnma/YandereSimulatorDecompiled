@@ -40,7 +40,7 @@ namespace AmplifyMotion
 				m_threadStateQueues = new Queue<MotionState>[m_threadPoolSize];
 				m_threadStateQueueLocks = new object[m_threadPoolSize];
 				m_threadPool = new Thread[m_threadPoolSize];
-				m_threadPoolTerminateSignal = new ManualResetEvent(false);
+				m_threadPoolTerminateSignal = new ManualResetEvent(initialState: false);
 				m_threadPoolContinueSignals = new AutoResetEvent[m_threadPoolSize];
 				m_threadPoolLock = new object();
 				m_threadPoolIndex = 0;
@@ -48,7 +48,7 @@ namespace AmplifyMotion
 				{
 					m_threadStateQueues[i] = new Queue<MotionState>(1024);
 					m_threadStateQueueLocks[i] = new object();
-					m_threadPoolContinueSignals[i] = new AutoResetEvent(false);
+					m_threadPoolContinueSignals[i] = new AutoResetEvent(initialState: false);
 					m_threadPool[i] = new Thread(AsyncUpdateThread);
 					m_threadPool[i].Start(new KeyValuePair<object, int>(this, i));
 				}

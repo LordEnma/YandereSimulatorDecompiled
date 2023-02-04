@@ -19,29 +19,11 @@ public class BucketWeights : BucketContents
 		}
 	}
 
-	public override BucketContentsType Type
-	{
-		get
-		{
-			return BucketContentsType.Weights;
-		}
-	}
+	public override BucketContentsType Type => BucketContentsType.Weights;
 
-	public override bool IsCleaningAgent
-	{
-		get
-		{
-			return false;
-		}
-	}
+	public override bool IsCleaningAgent => false;
 
-	public override bool IsFlammable
-	{
-		get
-		{
-			return false;
-		}
-	}
+	public override bool IsFlammable => false;
 
 	public override bool CanBeLifted(int strength)
 	{

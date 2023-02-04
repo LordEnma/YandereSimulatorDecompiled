@@ -14,9 +14,9 @@ public class StudentPortraitScript : MonoBehaviour
 
 	private void Start()
 	{
-		DeathShadow.SetActive(false);
-		PrisonBars.SetActive(false);
-		Panties.SetActive(false);
-		Friend.SetActive(false);
+		DeathShadow.SetActive(value: false);
+		PrisonBars.SetActive(value: false);
+		Panties.SetActive(value: false);
+		Friend.SetActive(value: false);
 	}
 }

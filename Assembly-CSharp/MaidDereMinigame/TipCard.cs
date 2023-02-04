@@ -17,9 +17,9 @@ namespace MaidDereMinigame
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
 			if (tip == 0f)
 			{
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
-			string text = string.Format("{0:#.00}", tip).Replace(".", "");
+			string text = $"{tip:#.00}".Replace(".", "");
 			string text2 = "";
 			for (int num = text.Length - 1; num >= 0; num--)
 			{
@@ -40,16 +40,16 @@ namespace MaidDereMinigame
 			if (text2.Length <= 3)
 			{
 				digits[3].sprite = GameController.Instance.numbers[10];
-				dollarSign.gameObject.SetActive(false);
+				dollarSign.gameObject.SetActive(value: false);
 			}
 			if (text2.Length <= 4 && digits.Count > 4)
 			{
 				digits[4].sprite = GameController.Instance.numbers[10];
-				dollarSign.gameObject.SetActive(false);
+				dollarSign.gameObject.SetActive(value: false);
 				if (text2.Length < 4)
 				{
 					digits[3].sprite = GameController.Instance.numbers[10];
-					digits[4].gameObject.SetActive(false);
+					digits[4].gameObject.SetActive(value: false);
 				}
 			}
 		}

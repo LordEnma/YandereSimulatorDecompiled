@@ -8,7 +8,7 @@ public class FixDummyScript : MonoBehaviour
 
 	private void Start()
 	{
-		FixedDummy.SetActive(false);
+		FixedDummy.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			Fix();
@@ -32,8 +32,8 @@ public class FixDummyScript : MonoBehaviour
 
 	private void Fix()
 	{
-		base.gameObject.SetActive(false);
-		FixedDummy.SetActive(true);
+		base.gameObject.SetActive(value: false);
+		FixedDummy.SetActive(value: true);
 		Prompt.enabled = false;
 		Prompt.Hide();
 	}

@@ -273,7 +273,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		}
 		else if (!MyAudio.isPlaying || Input.GetButton("A"))
 		{
-			Heartbroken.SetActive(true);
+			Heartbroken.SetActive(value: true);
 			Subtitle.text = "";
 			base.enabled = false;
 			MyAudio.Stop();
@@ -290,8 +290,7 @@ public class EvilPhotographerScript : MonoBehaviour
 	private bool YandereIsInLOS()
 	{
 		Debug.DrawLine(Head.position, new Vector3(Yandere.transform.position.x, Yandere.transform.position.y + Yandere.MyController.height - 0.2f, Yandere.transform.position.z), Color.red);
-		RaycastHit hitInfo;
-		if (Physics.Linecast(Head.position, new Vector3(Yandere.transform.position.x, Yandere.transform.position.y + Yandere.MyController.height - 0.2f, Yandere.transform.position.z), out hitInfo) && hitInfo.collider.gameObject.layer == 13)
+		if (Physics.Linecast(Head.position, new Vector3(Yandere.transform.position.x, Yandere.transform.position.y + Yandere.MyController.height - 0.2f, Yandere.transform.position.z), out var hitInfo) && hitInfo.collider.gameObject.layer == 13)
 		{
 			return true;
 		}

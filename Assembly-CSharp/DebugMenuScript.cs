@@ -91,8 +91,8 @@ public class DebugMenuScript : MonoBehaviour
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, 0f, base.transform.localPosition.z);
-		MissionModeWindow.SetActive(false);
-		Window.SetActive(false);
+		MissionModeWindow.SetActive(value: false);
+		Window.SetActive(value: false);
 		MissionMode = true;
 		NoDebug = true;
 	}
@@ -105,13 +105,13 @@ public class DebugMenuScript : MonoBehaviour
 			{
 				if (Input.GetKeyDown(KeyCode.Backslash) && Yandere.transform.position.y < 100f)
 				{
-					EasterEggWindow.SetActive(false);
+					EasterEggWindow.SetActive(value: false);
 					Window.SetActive(!Window.activeInHierarchy);
 				}
 			}
 			else if (Window.activeInHierarchy)
 			{
-				Window.SetActive(false);
+				Window.SetActive(value: false);
 			}
 			if (Window.activeInHierarchy)
 			{
@@ -155,23 +155,23 @@ public class DebugMenuScript : MonoBehaviour
 				{
 					for (ID = 1; ID < 8; ID++)
 					{
-						StudentManager.DrinkingFountains[ID].PowerSwitch.PowerOutlet.SabotagedOutlet.SetActive(true);
-						StudentManager.DrinkingFountains[ID].Puddle.SetActive(true);
+						StudentManager.DrinkingFountains[ID].PowerSwitch.PowerOutlet.SabotagedOutlet.SetActive(value: true);
+						StudentManager.DrinkingFountains[ID].Puddle.SetActive(value: true);
 					}
-					Window.SetActive(false);
+					Window.SetActive(value: false);
 				}
 				else if (Input.GetKeyDown(KeyCode.F8))
 				{
 					GameGlobals.CensorBlood = !GameGlobals.CensorBlood;
 					WeaponManager.ChangeBloodTexture();
 					Yandere.Bloodiness += 0f;
-					Window.SetActive(false);
+					Window.SetActive(value: false);
 				}
 				else if (Input.GetKeyDown(KeyCode.F9))
 				{
 					GameGlobals.CensorKillingAnims = !GameGlobals.CensorKillingAnims;
 					Yandere.AttackManager.Censor = !Yandere.AttackManager.Censor;
-					Window.SetActive(false);
+					Window.SetActive(value: false);
 				}
 				else if (Input.GetKeyDown(KeyCode.F10))
 				{
@@ -180,7 +180,7 @@ public class DebugMenuScript : MonoBehaviour
 					StudentManager.Students[23].Attempts = 101;
 					StudentManager.Students[24].Attempts = 101;
 					StudentManager.Students[25].Attempts = 101;
-					Window.SetActive(false);
+					Window.SetActive(value: false);
 				}
 				else if (Input.GetKeyDown(KeyCode.F11))
 				{
@@ -224,7 +224,7 @@ public class DebugMenuScript : MonoBehaviour
 							Yandere.Follower.transform.position = Yandere.transform.position;
 						}
 						Physics.SyncTransforms();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.Alpha7))
 					{
@@ -234,7 +234,7 @@ public class DebugMenuScript : MonoBehaviour
 							Yandere.Follower.transform.position = Yandere.transform.position;
 						}
 						Physics.SyncTransforms();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.Alpha8))
 					{
@@ -244,7 +244,7 @@ public class DebugMenuScript : MonoBehaviour
 							Yandere.Follower.transform.position = Yandere.transform.position;
 						}
 						Physics.SyncTransforms();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.Alpha9))
 					{
@@ -265,7 +265,7 @@ public class DebugMenuScript : MonoBehaviour
 							studentScript.Pathfinding.target = MidoriSpot;
 							studentScript.transform.position = MidoriSpot.position;
 						}
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 						Physics.SyncTransforms();
 					}
 					else if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -275,7 +275,7 @@ public class DebugMenuScript : MonoBehaviour
 						{
 							Yandere.Follower.transform.position = Yandere.transform.position;
 						}
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 						Physics.SyncTransforms();
 					}
 					else if (Input.GetKeyDown(KeyCode.A))
@@ -299,10 +299,10 @@ public class DebugMenuScript : MonoBehaviour
 					{
 						for (ID = 1; ID < 11; ID++)
 						{
-							CollectibleGlobals.SetTapeCollected(ID, true);
+							CollectibleGlobals.SetTapeCollected(ID, value: true);
 							StudentManager.TapesCollected[ID] = true;
 						}
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.D))
 					{
@@ -323,19 +323,19 @@ public class DebugMenuScript : MonoBehaviour
 							}
 						}
 						Physics.SyncTransforms();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 						CounselorGlobals.CounselorTape = 1;
 						CounselorGlobals.DelinquentPunishments = 5;
 					}
 					else if (Input.GetKeyDown(KeyCode.F))
 					{
-						GreenScreen.SetActive(true);
-						Window.SetActive(false);
+						GreenScreen.SetActive(value: true);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.G))
 					{
 						StudentScript studentScript3 = StudentManager.Students[RooftopStudent];
-						PlayerGlobals.SetStudentFriend(RooftopStudent, true);
+						PlayerGlobals.SetStudentFriend(RooftopStudent, value: true);
 						StudentManager.Students[RooftopStudent].Friend = true;
 						Yandere.transform.position = RooftopSpot.position + new Vector3(1f, 0f, 0f);
 						WeaponManager.Weapons[6].transform.position = Yandere.transform.position + new Vector3(0f, 0f, 1.915f);
@@ -371,7 +371,7 @@ public class DebugMenuScript : MonoBehaviour
 							Clock.PresentTime = 426f;
 						}
 						Physics.SyncTransforms();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.K))
 					{
@@ -390,12 +390,12 @@ public class DebugMenuScript : MonoBehaviour
 						PlayerGlobals.Money = 100f;
 						Yandere.Inventory.Money = 100f;
 						Yandere.Inventory.UpdateMoney();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.O))
 					{
 						Yandere.Inventory.RivalPhone = true;
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.P))
 					{
@@ -411,12 +411,12 @@ public class DebugMenuScript : MonoBehaviour
 						}
 						Yandere.Inventory.PantyShots += 20;
 						PlayerGlobals.PantyShots += 20;
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.Q))
 					{
 						Censor();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.R))
 					{
@@ -448,7 +448,7 @@ public class DebugMenuScript : MonoBehaviour
 						Reputation.PreviousRep = 999f;
 						Reputation.PendingRep = PlayerGlobals.Reputation;
 						Reputation.UpdateRep();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.S))
 					{
@@ -458,7 +458,7 @@ public class DebugMenuScript : MonoBehaviour
 						StudentManager.Police.UpdateCorpses();
 						for (ID = 1; ID < 101; ID++)
 						{
-							StudentGlobals.SetStudentPhotographed(ID, true);
+							StudentGlobals.SetStudentPhotographed(ID, value: true);
 							StudentManager.StudentPhotographed[ID] = true;
 							if (StudentManager.Students[ID] != null)
 							{
@@ -466,25 +466,25 @@ public class DebugMenuScript : MonoBehaviour
 							}
 						}
 						StudentManager.Students[46].Friend = false;
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.T))
 					{
 						Zoom.OverShoulder = !Zoom.OverShoulder;
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.U))
 					{
-						PlayerGlobals.SetStudentFriend(StudentManager.SuitorID, true);
-						PlayerGlobals.SetStudentFriend(StudentManager.RivalID, true);
+						PlayerGlobals.SetStudentFriend(StudentManager.SuitorID, value: true);
+						PlayerGlobals.SetStudentFriend(StudentManager.RivalID, value: true);
 						StudentManager.Students[StudentManager.SuitorID].Friend = true;
 						StudentManager.Students[StudentManager.RivalID].Friend = true;
 						for (ID = 1; ID < 26; ID++)
 						{
-							ConversationGlobals.SetTopicDiscovered(ID, true);
-							StudentManager.SetTopicLearnedByStudent(ID, StudentManager.RivalID, true);
+							ConversationGlobals.SetTopicDiscovered(ID, value: true);
+							StudentManager.SetTopicLearnedByStudent(ID, StudentManager.RivalID, boolean: true);
 						}
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.Z))
 					{
@@ -493,7 +493,7 @@ public class DebugMenuScript : MonoBehaviour
 						{
 							for (ID = 2; ID < 93; ID++)
 							{
-								bool flag = StudentManager.Students[ID] != null;
+								_ = StudentManager.Students[ID] != null;
 							}
 						}
 						else
@@ -510,7 +510,7 @@ public class DebugMenuScript : MonoBehaviour
 								}
 							}
 						}
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.X))
 					{
@@ -523,7 +523,7 @@ public class DebugMenuScript : MonoBehaviour
 						Time.timeScale = 1f;
 						Clock.PresentTime = 1079f;
 						Clock.HourTime = Clock.PresentTime / 60f;
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.BackQuote))
 					{
@@ -536,7 +536,7 @@ public class DebugMenuScript : MonoBehaviour
 						StudentGlobals.MaleUniform = 6;
 						for (int i = 1; i < 101; i++)
 						{
-							StudentGlobals.SetStudentPhotographed(i, true);
+							StudentGlobals.SetStudentPhotographed(i, value: true);
 						}
 						SceneManager.LoadScene("LoadingScene");
 					}
@@ -565,7 +565,7 @@ public class DebugMenuScript : MonoBehaviour
 						}
 						Clock.PresentTime = 1015f;
 						Clock.HourTime = Clock.PresentTime / 60f;
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 						OsanaEvent1.enabled = false;
 						OsanaEvent2.enabled = false;
 						OsanaEvent3.enabled = false;
@@ -582,7 +582,7 @@ public class DebugMenuScript : MonoBehaviour
 						Clock.PresentTime = 425f;
 						Clock.HourTime = Clock.PresentTime / 60f;
 						Physics.SyncTransforms();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.LeftControl))
 					{
@@ -592,7 +592,7 @@ public class DebugMenuScript : MonoBehaviour
 							Yandere.Follower.transform.position = Yandere.transform.position;
 						}
 						Physics.SyncTransforms();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.RightControl))
 					{
@@ -602,12 +602,12 @@ public class DebugMenuScript : MonoBehaviour
 							Yandere.Follower.transform.position = Yandere.transform.position;
 						}
 						Physics.SyncTransforms();
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (Input.GetKeyDown(KeyCode.Equals))
 					{
 						Clock.PresentTime += 10f;
-						Window.SetActive(false);
+						Window.SetActive(value: false);
 					}
 					else if (!Input.GetKeyDown(KeyCode.Return))
 					{
@@ -616,18 +616,18 @@ public class DebugMenuScript : MonoBehaviour
 							Yandere.Inventory.Headset = true;
 							StudentManager.LoveManager.SuitorProgress = 1;
 							DatingGlobals.SuitorProgress = 1;
-							PlayerGlobals.SetStudentFriend(6, true);
-							PlayerGlobals.SetStudentFriend(11, true);
+							PlayerGlobals.SetStudentFriend(6, value: true);
+							PlayerGlobals.SetStudentFriend(11, value: true);
 							StudentManager.Students[6].Friend = true;
 							StudentManager.Students[11].Friend = true;
 							for (int k = 0; k < 11; k++)
 							{
-								DatingGlobals.SetComplimentGiven(k, false);
+								DatingGlobals.SetComplimentGiven(k, value: false);
 							}
 							for (ID = 1; ID < 26; ID++)
 							{
-								ConversationGlobals.SetTopicDiscovered(ID, true);
-								StudentManager.SetTopicLearnedByStudent(ID, 11, true);
+								ConversationGlobals.SetTopicDiscovered(ID, value: true);
+								StudentManager.SetTopicLearnedByStudent(ID, 11, boolean: true);
 							}
 							StudentScript studentScript6 = StudentManager.Students[11];
 							if (studentScript6 != null)
@@ -656,22 +656,22 @@ public class DebugMenuScript : MonoBehaviour
 								studentScript7.Pathfinding.target = studentScript7.Destinations[2];
 								studentScript7.transform.position = studentScript7.Destinations[2].position;
 							}
-							StudentScript studentScript8 = StudentManager.Students[10];
+							_ = StudentManager.Students[10];
 							if (studentScript7 != null)
 							{
 								studentScript7.transform.position = studentScript6.transform.position;
 							}
-							CollectibleGlobals.SetGiftPurchased(6, true);
-							CollectibleGlobals.SetGiftPurchased(7, true);
-							CollectibleGlobals.SetGiftPurchased(8, true);
-							CollectibleGlobals.SetGiftPurchased(9, true);
+							CollectibleGlobals.SetGiftPurchased(6, value: true);
+							CollectibleGlobals.SetGiftPurchased(7, value: true);
+							CollectibleGlobals.SetGiftPurchased(8, value: true);
+							CollectibleGlobals.SetGiftPurchased(9, value: true);
 							Physics.SyncTransforms();
-							Window.SetActive(false);
+							Window.SetActive(value: false);
 						}
 						else if (Input.GetKeyDown(KeyCode.Pause))
 						{
 							Clock.StopTime = !Clock.StopTime;
-							Window.SetActive(false);
+							Window.SetActive(value: false);
 						}
 						else if (Input.GetKeyDown(KeyCode.W))
 						{
@@ -703,7 +703,7 @@ public class DebugMenuScript : MonoBehaviour
 							ElectrocutionKit[1].transform.position = Yandere.transform.position;
 							ElectrocutionKit[2].transform.position = Yandere.transform.position;
 							ElectrocutionKit[3].transform.position = Yandere.transform.position;
-							ElectrocutionKit[3].SetActive(true);
+							ElectrocutionKit[3].SetActive(value: true);
 						}
 					}
 				}
@@ -731,7 +731,7 @@ public class DebugMenuScript : MonoBehaviour
 						{
 							if (StudentGlobals.GetStudentDying(ID))
 							{
-								StudentGlobals.SetStudentDying(ID, false);
+								StudentGlobals.SetStudentDying(ID, value: false);
 							}
 						}
 						SceneManager.LoadScene("LoadingScene");

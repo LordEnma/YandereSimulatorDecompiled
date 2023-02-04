@@ -319,13 +319,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	protected bool isValid
-	{
-		get
-		{
-			return ambigiousFont != null;
-		}
-	}
+	protected bool isValid => ambigiousFont != null;
 
 	protected int activeFontSize
 	{
@@ -336,11 +330,7 @@ public class UIPopupList : UIWidgetContainer
 			{
 				return fontSize;
 			}
-			if (iNGUIFont == null)
-			{
-				return fontSize;
-			}
-			return iNGUIFont.defaultSize;
+			return iNGUIFont?.defaultSize ?? fontSize;
 		}
 	}
 
@@ -481,11 +471,7 @@ public class UIPopupList : UIWidgetContainer
 			{
 				eventReceiver.SendMessage(functionName, mSelectedItem, SendMessageOptions.DontRequireReceiver);
 			}
-			Action action = callback;
-			if (action != null)
-			{
-				action();
-			}
+			callback?.Invoke();
 			current = uIPopupList;
 			mExecuting = false;
 		}
@@ -573,8 +559,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 		Vector4 border = mHighlight.border;
 		float num = 1f;
-		INGUIAtlas iNGUIAtlas = atlas as INGUIAtlas;
-		if (iNGUIAtlas != null)
+		if (atlas is INGUIAtlas iNGUIAtlas)
 		{
 			num = iNGUIAtlas.pixelSize;
 		}
@@ -602,7 +587,7 @@ public class UIPopupList : UIWidgetContainer
 		if (isOver)
 		{
 			UILabel component = go.GetComponent<UILabel>();
-			Highlight(component, false);
+			Highlight(component, instant: false);
 		}
 	}
 
@@ -616,7 +601,7 @@ public class UIPopupList : UIWidgetContainer
 
 	protected virtual void OnItemClick(GameObject go)
 	{
-		Select(go.GetComponent<UILabel>(), true);
+		Select(go.GetComponent<UILabel>(), instant: true);
 		UIEventListener component = go.GetComponent<UIEventListener>();
 		value = component.parameter as string;
 		UIPlaySound[] components = GetComponents<UIPlaySound>();
@@ -653,13 +638,13 @@ public class UIPopupList : UIWidgetContainer
 		case KeyCode.UpArrow:
 			if (num > 0)
 			{
-				Select(mLabelList[--num], false);
+				Select(mLabelList[--num], instant: false);
 			}
 			break;
 		case KeyCode.DownArrow:
 			if (num + 1 < mLabelList.Count)
 			{
-				Select(mLabelList[++num], false);
+				Select(mLabelList[++num], instant: false);
 			}
 			break;
 		}
@@ -669,7 +654,7 @@ public class UIPopupList : UIWidgetContainer
 	{
 		if (base.enabled && current == this && (key == UICamera.current.cancelKey0 || key == UICamera.current.cancelKey1))
 		{
-			OnSelect(false);
+			OnSelect(isSelected: false);
 		}
 	}
 
@@ -791,7 +776,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 		else if (mHighlightedLabel != null)
 		{
-			OnItemPress(mHighlightedLabel.gameObject, true);
+			OnItemPress(mHighlightedLabel.gameObject, isPressed: true);
 		}
 	}
 
@@ -883,7 +868,7 @@ public class UIPopupList : UIWidgetContainer
 			}
 			else
 			{
-				Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(cachedTransform, base.transform, false, false);
+				Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(cachedTransform, base.transform, considerInactive: false, considerChildren: false);
 				vector = bounds.min;
 				vector2 = bounds.max;
 				transform.localPosition = vector;
@@ -984,7 +969,7 @@ public class UIPopupList : UIWidgetContainer
 				uIEventListener.parameter = text;
 				if (mSelectedItem == text || (i == 0 && string.IsNullOrEmpty(mSelectedItem)))
 				{
-					Highlight(uILabel, true);
+					Highlight(uILabel, instant: true);
 				}
 				mLabelList.Add(uILabel);
 			}
@@ -1025,8 +1010,7 @@ public class UIPopupList : UIWidgetContainer
 				uILabel3.width = width;
 			}
 			float num10 = 2f;
-			INGUIAtlas iNGUIAtlas = atlas as INGUIAtlas;
-			if (iNGUIAtlas != null)
+			if (atlas is INGUIAtlas iNGUIAtlas)
 			{
 				num10 *= iNGUIAtlas.pixelSize;
 			}
@@ -1097,7 +1081,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 		else
 		{
-			OnSelect(false);
+			OnSelect(isSelected: false);
 		}
 	}
 }

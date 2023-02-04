@@ -24,7 +24,7 @@ public class OsanaMatrixScript : MonoBehaviour
 		}
 		else if (Phase == 4)
 		{
-			Rivals.SetActive(true);
+			Rivals.SetActive(value: true);
 		}
 	}
 }

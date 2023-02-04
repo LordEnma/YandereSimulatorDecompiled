@@ -61,7 +61,7 @@ public class DateChaser : MonoBehaviour
 			CurrentDate = (int)Mathf.Lerp(startDate, endDate, curve.Evaluate(num / generalDuration));
 			DateTime dateTime = fromUnix(CurrentDate);
 			string text = ((dateTime.Day == 22 || dateTime.Day == 2) ? "nd" : ((dateTime.Day == 3) ? "rd" : ((dateTime.Day == 1) ? "st" : "th")));
-			CurrentTimeString = string.Format("{0} {1}{2}, {3}", monthNames[dateTime.Month - 1], dateTime.Day, text, dateTime.Year);
+			CurrentTimeString = $"{monthNames[dateTime.Month - 1]} {dateTime.Day}{text}, {dateTime.Year}";
 			if (lastFrameDay != dateTime.Day)
 			{
 				onDayTick(dateTime.Day);

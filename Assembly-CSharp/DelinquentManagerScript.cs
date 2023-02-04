@@ -32,7 +32,7 @@ public class DelinquentManagerScript : MonoBehaviour
 
 	private void Start()
 	{
-		Delinquents.SetActive(false);
+		Delinquents.SetActive(value: false);
 		TimerMax = 15f;
 		Timer = 15f;
 		Phase++;
@@ -89,8 +89,8 @@ public class DelinquentManagerScript : MonoBehaviour
 				Phase++;
 				return;
 			}
-			Delinquents.SetActive(false);
-			Panel.SetActive(false);
+			Delinquents.SetActive(value: false);
+			Panel.SetActive(value: false);
 		}
 	}
 
@@ -98,14 +98,14 @@ public class DelinquentManagerScript : MonoBehaviour
 	{
 		if (Clock.HourTime < 13f)
 		{
-			Delinquents.SetActive(false);
+			Delinquents.SetActive(value: false);
 			TimerMax = 15f;
 			Timer = 15f;
 			Phase = 6;
 		}
 		else if (Clock.HourTime < 15.5f)
 		{
-			Delinquents.SetActive(false);
+			Delinquents.SetActive(value: false);
 			TimerMax = 15f;
 			Timer = 15f;
 			Phase = 8;
@@ -114,7 +114,7 @@ public class DelinquentManagerScript : MonoBehaviour
 
 	public void EasterEgg()
 	{
-		RapBeat.SetActive(true);
+		RapBeat.SetActive(value: true);
 		Mirror.Limit++;
 	}
 }

@@ -99,7 +99,7 @@ public class CameraFilterPack_Blend2Camera_GreenScreen : MonoBehaviour
 	{
 		ScreenSize.x = Screen.width;
 		ScreenSize.y = Screen.height;
-		bool isPlaying = Application.isPlaying;
+		_ = Application.isPlaying;
 	}
 
 	private void OnEnable()

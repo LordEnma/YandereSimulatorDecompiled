@@ -50,7 +50,7 @@ public class GloveScript : MonoBehaviour
 				Debug.Log("The StudentManager was just informed that GloveID should be: " + GloveID);
 				Prompt.Yandere.Gloves = this;
 				Prompt.Yandere.WearGloves();
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 		Prompt.HideButton[0] = Prompt.Yandere.Schoolwear != 1 || Prompt.Yandere.ClubAttire;

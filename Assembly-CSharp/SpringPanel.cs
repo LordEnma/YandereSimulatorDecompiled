@@ -71,7 +71,7 @@ public class SpringPanel : MonoBehaviour
 		mPanel.clipOffset = clipOffset;
 		if (mDrag != null)
 		{
-			mDrag.UpdateScrollbars(false);
+			mDrag.UpdateScrollbars(recalculateBounds: false);
 		}
 		if (flag && onFinished != null)
 		{

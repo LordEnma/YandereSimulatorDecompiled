@@ -352,12 +352,7 @@ public class UILabel : UIWidget
 	{
 		get
 		{
-			INGUIFont iNGUIFont = bitmapFont;
-			if (iNGUIFont != null)
-			{
-				return iNGUIFont.atlas;
-			}
-			return null;
+			return bitmapFont?.atlas;
 		}
 		set
 		{
@@ -377,12 +372,7 @@ public class UILabel : UIWidget
 			{
 				return mTrueTypeFont;
 			}
-			INGUIFont iNGUIFont = bitmapFont;
-			if (iNGUIFont != null)
-			{
-				return iNGUIFont.dynamicFont;
-			}
-			return null;
+			return bitmapFont?.dynamicFont;
 		}
 		set
 		{
@@ -415,8 +405,7 @@ public class UILabel : UIWidget
 		}
 		set
 		{
-			INGUIFont iNGUIFont = value as INGUIFont;
-			if (iNGUIFont != null)
+			if (value is INGUIFont iNGUIFont)
 			{
 				bitmapFont = iNGUIFont;
 			}
@@ -473,12 +462,7 @@ public class UILabel : UIWidget
 			{
 				return mFontSize;
 			}
-			INGUIFont iNGUIFont = bitmapFont;
-			if (iNGUIFont != null)
-			{
-				return iNGUIFont.defaultSize;
-			}
-			return 16;
+			return bitmapFont?.defaultSize ?? 16;
 		}
 	}
 
@@ -1091,31 +1075,9 @@ public class UILabel : UIWidget
 		}
 	}
 
-	private bool premultipliedAlphaShader
-	{
-		get
-		{
-			INGUIFont iNGUIFont = bitmapFont;
-			if (iNGUIFont != null)
-			{
-				return iNGUIFont.premultipliedAlphaShader;
-			}
-			return false;
-		}
-	}
+	private bool premultipliedAlphaShader => bitmapFont?.premultipliedAlphaShader ?? false;
 
-	private bool packedFontShader
-	{
-		get
-		{
-			INGUIFont iNGUIFont = bitmapFont;
-			if (iNGUIFont != null)
-			{
-				return iNGUIFont.packedFontShader;
-			}
-			return false;
-		}
-	}
+	private bool packedFontShader => bitmapFont?.packedFontShader ?? false;
 
 	protected override void OnInit()
 	{
@@ -1138,8 +1100,7 @@ public class UILabel : UIWidget
 			return;
 		}
 		Font font = mActiveTTF;
-		int value;
-		if (font != null && mFontUsage.TryGetValue(font, out value))
+		if (font != null && mFontUsage.TryGetValue(font, out var value))
 		{
 			value = Mathf.Max(0, --value);
 			if (value == 0)
@@ -1215,7 +1176,7 @@ public class UILabel : UIWidget
 
 	protected override void UpgradeFrom265()
 	{
-		ProcessText(true);
+		ProcessText(legacyMode: true);
 		if (mShrinkToFit)
 		{
 			overflowMethod = Overflow.ShrinkContent;
@@ -1246,7 +1207,7 @@ public class UILabel : UIWidget
 		mMaxLineWidth = 0;
 		mMaxLineHeight = 0;
 		mShrinkToFit = false;
-		NGUITools.UpdateWidgetCollider(base.gameObject, true);
+		NGUITools.UpdateWidgetCollider(base.gameObject, considerInactive: true);
 	}
 
 	protected override void OnAnchor()
@@ -1394,8 +1355,8 @@ public class UILabel : UIWidget
 						NGUIText.fontScale = mScale;
 					}
 				}
-				NGUIText.Update(false);
-				bool flag2 = NGUIText.WrapText(printedText, out mProcessedText, false, false, mOverflow == Overflow.ClampContent && mOverflowEllipsis);
+				NGUIText.Update(request: false);
+				bool flag2 = NGUIText.WrapText(printedText, out mProcessedText, keepCharCount: false, wrapLineColors: false, mOverflow == Overflow.ClampContent && mOverflowEllipsis);
 				if (mOverflow == Overflow.ShrinkContent && !flag2)
 				{
 					if (--num3 <= 1)
@@ -1562,13 +1523,13 @@ public class UILabel : UIWidget
 	[Obsolete("Use UILabel.GetCharacterAtPosition instead")]
 	public int GetCharacterIndex(Vector3 worldPos)
 	{
-		return GetCharacterIndexAtPosition(worldPos, false);
+		return GetCharacterIndexAtPosition(worldPos, precise: false);
 	}
 
 	[Obsolete("Use UILabel.GetCharacterAtPosition instead")]
 	public int GetCharacterIndex(Vector2 localPos)
 	{
-		return GetCharacterIndexAtPosition(localPos, false);
+		return GetCharacterIndexAtPosition(localPos, precise: false);
 	}
 
 	public int GetCharacterIndexAtPosition(Vector3 worldPos, bool precise)
@@ -1613,13 +1574,13 @@ public class UILabel : UIWidget
 
 	public string GetWordAtPosition(Vector3 worldPos)
 	{
-		int characterIndexAtPosition = GetCharacterIndexAtPosition(worldPos, true);
+		int characterIndexAtPosition = GetCharacterIndexAtPosition(worldPos, precise: true);
 		return GetWordAtCharacterIndex(characterIndexAtPosition);
 	}
 
 	public string GetWordAtPosition(Vector2 localPos)
 	{
-		int characterIndexAtPosition = GetCharacterIndexAtPosition(localPos, true);
+		int characterIndexAtPosition = GetCharacterIndexAtPosition(localPos, precise: true);
 		return GetWordAtCharacterIndex(characterIndexAtPosition);
 	}
 
@@ -1648,12 +1609,12 @@ public class UILabel : UIWidget
 
 	public string GetUrlAtPosition(Vector3 worldPos)
 	{
-		return GetUrlAtCharacterIndex(GetCharacterIndexAtPosition(worldPos, true));
+		return GetUrlAtCharacterIndex(GetCharacterIndexAtPosition(worldPos, precise: true));
 	}
 
 	public string GetUrlAtPosition(Vector2 localPos)
 	{
-		return GetUrlAtCharacterIndex(GetCharacterIndexAtPosition(localPos, true));
+		return GetUrlAtCharacterIndex(GetCharacterIndexAtPosition(localPos, precise: true));
 	}
 
 	public string GetUrlAtCharacterIndex(int characterIndex)
@@ -1747,14 +1708,8 @@ public class UILabel : UIWidget
 
 	public void PrintOverlay(int start, int end, UIGeometry caret, UIGeometry highlight, Color caretColor, Color highlightColor)
 	{
-		if (caret != null)
-		{
-			caret.Clear();
-		}
-		if (highlight != null)
-		{
-			highlight.Clear();
-		}
+		caret?.Clear();
+		highlight?.Clear();
 		if (!isValid)
 		{
 			return;
@@ -2036,7 +1991,7 @@ public class UILabel : UIWidget
 		}
 		if (mDensity != NGUIText.pixelDensity)
 		{
-			ProcessText(false, false);
+			ProcessText(legacyMode: false, full: false);
 			NGUIText.rectWidth = mWidth;
 			NGUIText.rectHeight = mHeight;
 			NGUIText.regionWidth = Mathf.RoundToInt((float)mWidth * (mDrawRegion.z - mDrawRegion.x));
@@ -2072,7 +2027,7 @@ public class UILabel : UIWidget
 	{
 		if (!paused && mTrueTypeFont != null)
 		{
-			Invalidate(false);
+			Invalidate(includeChildren: false);
 		}
 	}
 }

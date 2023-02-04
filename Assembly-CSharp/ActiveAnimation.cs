@@ -27,13 +27,7 @@ public class ActiveAnimation : MonoBehaviour
 
 	private string mClip = "";
 
-	private float playbackTime
-	{
-		get
-		{
-			return Mathf.Clamp01(mAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime);
-		}
-	}
+	private float playbackTime => Mathf.Clamp01(mAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime);
 
 	public bool isPlaying
 	{
@@ -218,7 +212,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 		if (mDisableDirection != 0 && mLastDirection == mDisableDirection)
 		{
-			NGUITools.SetActive(base.gameObject, false);
+			NGUITools.SetActive(base.gameObject, state: false);
 		}
 	}
 
@@ -286,7 +280,7 @@ public class ActiveAnimation : MonoBehaviour
 			{
 				return null;
 			}
-			NGUITools.SetActive(anim.gameObject, true);
+			NGUITools.SetActive(anim.gameObject, state: true);
 			UIPanel[] componentsInChildren = anim.gameObject.GetComponentsInChildren<UIPanel>();
 			int i = 0;
 			for (int num = componentsInChildren.Length; i < num; i++)
@@ -332,7 +326,7 @@ public class ActiveAnimation : MonoBehaviour
 			{
 				return null;
 			}
-			NGUITools.SetActive(anim.gameObject, true);
+			NGUITools.SetActive(anim.gameObject, state: true);
 			UIPanel[] componentsInChildren = anim.gameObject.GetComponentsInChildren<UIPanel>();
 			int i = 0;
 			for (int num = componentsInChildren.Length; i < num; i++)

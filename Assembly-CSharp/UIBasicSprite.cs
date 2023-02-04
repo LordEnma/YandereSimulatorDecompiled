@@ -217,47 +217,19 @@ public abstract class UIBasicSprite : UIWidget
 		}
 	}
 
-	public virtual bool premultipliedAlpha
-	{
-		get
-		{
-			return false;
-		}
-	}
+	public virtual bool premultipliedAlpha => false;
 
-	public virtual float pixelSize
-	{
-		get
-		{
-			return 1f;
-		}
-	}
+	public virtual float pixelSize => 1f;
 
-	protected virtual Vector4 padding
-	{
-		get
-		{
-			return new Vector4(0f, 0f, 0f, 0f);
-		}
-	}
+	protected virtual Vector4 padding => new Vector4(0f, 0f, 0f, 0f);
 
-	protected Vector4 drawingUVs
+	protected Vector4 drawingUVs => mFlip switch
 	{
-		get
-		{
-			switch (mFlip)
-			{
-			case Flip.Horizontally:
-				return new Vector4(mOuterUV.xMax, mOuterUV.yMin, mOuterUV.xMin, mOuterUV.yMax);
-			case Flip.Vertically:
-				return new Vector4(mOuterUV.xMin, mOuterUV.yMax, mOuterUV.xMax, mOuterUV.yMin);
-			case Flip.Both:
-				return new Vector4(mOuterUV.xMax, mOuterUV.yMax, mOuterUV.xMin, mOuterUV.yMin);
-			default:
-				return new Vector4(mOuterUV.xMin, mOuterUV.yMin, mOuterUV.xMax, mOuterUV.yMax);
-			}
-		}
-	}
+		Flip.Horizontally => new Vector4(mOuterUV.xMax, mOuterUV.yMin, mOuterUV.xMin, mOuterUV.yMax), 
+		Flip.Vertically => new Vector4(mOuterUV.xMin, mOuterUV.yMax, mOuterUV.xMax, mOuterUV.yMin), 
+		Flip.Both => new Vector4(mOuterUV.xMax, mOuterUV.yMax, mOuterUV.xMin, mOuterUV.yMin), 
+		_ => new Vector4(mOuterUV.xMin, mOuterUV.yMin, mOuterUV.xMax, mOuterUV.yMax), 
+	};
 
 	protected Color drawingColor
 	{

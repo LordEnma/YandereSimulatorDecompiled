@@ -30,7 +30,7 @@ public class PickpocketScript : MonoBehaviour
 	{
 		if (Student.StudentID != 71)
 		{
-			Prompt.transform.parent.gameObject.SetActive(false);
+			Prompt.transform.parent.gameObject.SetActive(value: false);
 			base.enabled = false;
 			return;
 		}
@@ -41,7 +41,7 @@ public class PickpocketScript : MonoBehaviour
 		}
 		else if (ClubGlobals.GetClubClosed(Student.OriginalClub))
 		{
-			Prompt.transform.parent.gameObject.SetActive(false);
+			Prompt.transform.parent.gameObject.SetActive(value: false);
 			base.enabled = false;
 		}
 		else
@@ -139,7 +139,7 @@ public class PickpocketScript : MonoBehaviour
 					PickpocketPanel.enabled = false;
 					Prompt.enabled = false;
 					Prompt.Hide();
-					Key.SetActive(false);
+					Key.SetActive(value: false);
 					base.enabled = false;
 				}
 				if (PickpocketMinigame.Failure)
@@ -172,9 +172,9 @@ public class PickpocketScript : MonoBehaviour
 			PickpocketPanel.enabled = false;
 			Prompt.enabled = false;
 			Prompt.Hide();
-			Key.SetActive(false);
+			Key.SetActive(value: false);
 			base.enabled = false;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -210,7 +210,7 @@ public class PickpocketScript : MonoBehaviour
 		{
 			Student.StudentManager.ShedDoor.Prompt.Label[0].text = "     Open";
 			Student.StudentManager.ShedDoor.Locked = false;
-			Student.ClubManager.Padlock.SetActive(false);
+			Student.ClubManager.Padlock.SetActive(value: false);
 			Student.Yandere.Inventory.ShedKey = true;
 		}
 		else

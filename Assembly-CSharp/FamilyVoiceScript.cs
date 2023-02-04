@@ -234,7 +234,7 @@ public class FamilyVoiceScript : MonoBehaviour
 					if (FixTimer >= 4f && !Lights.activeInHierarchy)
 					{
 						AudioSource.PlayClipAtPoint(PowerOn, Camera.main.transform.position);
-						Lights.SetActive(true);
+						Lights.SetActive(value: true);
 					}
 					MyAnimation.CrossFade("rummage_00");
 				}
@@ -266,7 +266,7 @@ public class FamilyVoiceScript : MonoBehaviour
 		}
 		else if (!MyAudio.isPlaying || Input.GetButton("A"))
 		{
-			Heartbroken.SetActive(true);
+			Heartbroken.SetActive(value: true);
 			Subtitle.text = "";
 			base.enabled = false;
 			MyAudio.Stop();
@@ -283,8 +283,7 @@ public class FamilyVoiceScript : MonoBehaviour
 	private bool YandereIsInLOS()
 	{
 		Debug.DrawLine(Head.position, new Vector3(Yandere.transform.position.x, YandereHead.position.y, Yandere.transform.position.z), Color.red);
-		RaycastHit hitInfo;
-		if (Physics.Linecast(Head.position, new Vector3(Yandere.transform.position.x, YandereHead.position.y, Yandere.transform.position.z), out hitInfo) && hitInfo.collider.gameObject.layer == 13)
+		if (Physics.Linecast(Head.position, new Vector3(Yandere.transform.position.x, YandereHead.position.y, Yandere.transform.position.z), out var hitInfo) && hitInfo.collider.gameObject.layer == 13)
 		{
 			return true;
 		}

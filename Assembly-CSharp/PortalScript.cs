@@ -114,11 +114,11 @@ public class PortalScript : MonoBehaviour
 
 	private void Start()
 	{
-		EvidenceWarning.SetActive(false);
+		EvidenceWarning.SetActive(value: false);
 		ClassDarkness.enabled = false;
 		if (GameGlobals.EightiesTutorial)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -139,13 +139,13 @@ public class PortalScript : MonoBehaviour
 		{
 			if (Input.GetButtonDown("A"))
 			{
-				EvidenceWarning.SetActive(false);
+				EvidenceWarning.SetActive(value: false);
 				BypassWarning = true;
 				flag = true;
 			}
 			if (Input.GetButtonDown("B"))
 			{
-				EvidenceWarning.SetActive(false);
+				EvidenceWarning.SetActive(value: false);
 				Yandere.CanMove = true;
 			}
 		}
@@ -193,7 +193,7 @@ public class PortalScript : MonoBehaviour
 					AttendClassLabel.text = "Leave School";
 				}
 				Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
-				EvidenceWarning.SetActive(true);
+				EvidenceWarning.SetActive(value: true);
 				Yandere.CanMove = false;
 			}
 			else
@@ -260,9 +260,9 @@ public class PortalScript : MonoBehaviour
 					if (Clock.HourTime < 15.5f)
 					{
 						Yandere.CharacterAnimation.CrossFade("f02_takingNotes_00");
-						Yandere.LifeNotePen.SetActive(true);
+						Yandere.LifeNotePen.SetActive(value: true);
 						Yandere.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
-						Paper.SetActive(true);
+						Paper.SetActive(value: true);
 					}
 					else
 					{
@@ -346,7 +346,7 @@ public class PortalScript : MonoBehaviour
 						{
 							Yandere.Unequip();
 						}
-						HeartbeatCamera.SetActive(false);
+						HeartbeatCamera.SetActive(value: false);
 						FadeOut = false;
 						Proceed = false;
 						Yandere.RPGCamera.enabled = false;
@@ -354,9 +354,9 @@ public class PortalScript : MonoBehaviour
 						Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, 45f, 0f);
 						OriginalDOF = Yandere.CameraEffects.Profile.depthOfField.settings.focusDistance;
 						Yandere.CameraEffects.UpdateDOF(0.6f);
-						Clock.gameObject.SetActive(false);
-						StudentManager.Reputation.gameObject.SetActive(false);
-						Yandere.SanityLabel.transform.parent.gameObject.SetActive(false);
+						Clock.gameObject.SetActive(value: false);
+						StudentManager.Reputation.gameObject.SetActive(value: false);
+						Yandere.SanityLabel.transform.parent.gameObject.SetActive(value: false);
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Continue";
 						PromptBar.Label[4].text = "Choose";
@@ -369,7 +369,7 @@ public class PortalScript : MonoBehaviour
 						Class.StudyPoints -= Late;
 						Class.StartingPoints = Class.StudyPoints;
 						Class.UpdateLabel();
-						Class.gameObject.SetActive(true);
+						Class.gameObject.SetActive(value: true);
 						Class.Show = true;
 						if (Police.Show)
 						{
@@ -391,7 +391,7 @@ public class PortalScript : MonoBehaviour
 				}
 				if (ClassDarkness.color.a == 1f)
 				{
-					HeartbeatCamera.SetActive(true);
+					HeartbeatCamera.SetActive(value: true);
 					Clock.enabled = true;
 					Yandere.FixCamera();
 					Yandere.RPGCamera.enabled = false;
@@ -424,11 +424,11 @@ public class PortalScript : MonoBehaviour
 					Yandere.RPGCamera.enabled = true;
 					Yandere.InClass = false;
 					Yandere.CanMove = true;
-					Yandere.LifeNotePen.SetActive(false);
-					Paper.SetActive(false);
-					Clock.gameObject.SetActive(true);
-					StudentManager.Reputation.gameObject.SetActive(true);
-					Yandere.SanityLabel.transform.parent.gameObject.SetActive(true);
+					Yandere.LifeNotePen.SetActive(value: false);
+					Paper.SetActive(value: false);
+					Clock.gameObject.SetActive(value: true);
+					StudentManager.Reputation.gameObject.SetActive(value: true);
+					Yandere.SanityLabel.transform.parent.gameObject.SetActive(value: true);
 					StudentManager.ResumeMovement();
 					if (Clock.HourTime > 15f)
 					{
@@ -438,11 +438,11 @@ public class PortalScript : MonoBehaviour
 					{
 						if (Headmaster.activeInHierarchy)
 						{
-							Headmaster.SetActive(false);
+							Headmaster.SetActive(value: false);
 						}
 						else
 						{
-							Headmaster.SetActive(true);
+							Headmaster.SetActive(value: true);
 						}
 					}
 				}

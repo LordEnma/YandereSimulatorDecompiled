@@ -101,7 +101,7 @@ public class YouTubeChat : MonoBehaviour
 		{
 			try
 			{
-				UpdateMessagesList(false);
+				UpdateMessagesList(initialRun: false);
 			}
 			catch (Exception)
 			{
@@ -116,7 +116,7 @@ public class YouTubeChat : MonoBehaviour
 		{
 			if (previousLength > readOnlyCollection.Count)
 			{
-				UpdateMessagesList(true);
+				UpdateMessagesList(initialRun: true);
 			}
 			if (previousLength < readOnlyCollection.Count)
 			{
@@ -176,7 +176,7 @@ public class YouTubeChat : MonoBehaviour
 					try
 					{
 						driver.Navigate().GoToUrl(youtubeChatPopoutUrl);
-						UpdateMessagesList(true);
+						UpdateMessagesList(initialRun: true);
 						isValidURL = true;
 						if (updateThread != null && updateThread.IsAlive)
 						{
@@ -231,7 +231,7 @@ public class YouTubeChat : MonoBehaviour
 
 	private string getVersionPath()
 	{
-		RuntimePlatform platform = Application.platform;
+		_ = Application.platform;
 		if (!hasSetVersion)
 		{
 			switch (Application.platform)

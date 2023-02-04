@@ -241,7 +241,7 @@ public static class NGUIMath
 
 	public static Rect MakePixelPerfect(Rect rect, int width, int height)
 	{
-		rect = ConvertToPixels(rect, width, height, true);
+		rect = ConvertToPixels(rect, width, height, round: true);
 		rect.xMin = Mathf.RoundToInt(rect.xMin);
 		rect.yMin = Mathf.RoundToInt(rect.yMin);
 		rect.xMax = Mathf.RoundToInt(rect.xMax);
@@ -366,7 +366,7 @@ public static class NGUIMath
 			Matrix4x4 toLocal = relativeTo.worldToLocalMatrix;
 			Vector3 vMin = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 			Vector3 vMax = new Vector3(float.MinValue, float.MinValue, float.MinValue);
-			CalculateRelativeWidgetBounds(content, considerInactive, true, ref toLocal, ref vMin, ref vMax, ref isSet, considerChildren);
+			CalculateRelativeWidgetBounds(content, considerInactive, isRoot: true, ref toLocal, ref vMin, ref vMax, ref isSet, considerChildren);
 			if (isSet)
 			{
 				Bounds result = new Bounds(vMin, Vector3.zero);
@@ -465,7 +465,7 @@ public static class NGUIMath
 		int k = 0;
 		for (int childCount = content.childCount; k < childCount; k++)
 		{
-			CalculateRelativeWidgetBounds(content.GetChild(k), considerInactive, false, ref toLocal, ref vMin, ref vMax, ref isSet, true);
+			CalculateRelativeWidgetBounds(content.GetChild(k), considerInactive, isRoot: false, ref toLocal, ref vMin, ref vMax, ref isSet, considerChildren: true);
 		}
 	}
 

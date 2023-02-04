@@ -25,22 +25,16 @@ namespace AmplifyMotion
 		[SerializeField]
 		private int m_release;
 
-		public int Number
-		{
-			get
-			{
-				return m_major * 100 + m_minor * 10 + m_release;
-			}
-		}
+		public int Number => m_major * 100 + m_minor * 10 + m_release;
 
 		public static string StaticToString()
 		{
-			return string.Format("{0}.{1}.{2}", (byte)1, (byte)8, (byte)3) + StageSuffix + TrialSuffix;
+			return $"{(byte)1}.{(byte)8}.{(byte)3}" + StageSuffix + TrialSuffix;
 		}
 
 		public override string ToString()
 		{
-			return string.Format("{0}.{1}.{2}", m_major, m_minor, m_release) + StageSuffix + TrialSuffix;
+			return $"{m_major}.{m_minor}.{m_release}" + StageSuffix + TrialSuffix;
 		}
 
 		private VersionInfo()

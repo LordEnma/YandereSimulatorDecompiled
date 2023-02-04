@@ -45,7 +45,7 @@ namespace MaidDereMinigame
 
 		private IEnumerator GameFailedRoutine()
 		{
-			Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
+			Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(value: false);
 			yield return null;
 			textRenderer.color = Color.white;
 			while (transitionTime < targetTransitionTime)
@@ -53,7 +53,7 @@ namespace MaidDereMinigame
 				transitionTime += Time.deltaTime;
 				yield return null;
 			}
-			base.transform.GetChild(1).gameObject.SetActive(true);
+			base.transform.GetChild(1).gameObject.SetActive(value: true);
 			while (!Input.anyKeyDown)
 			{
 				yield return null;
@@ -65,7 +65,7 @@ namespace MaidDereMinigame
 				spriteRenderer.color = new Color(0f, 0f, 0f, a);
 				yield return null;
 			}
-			GameController.GoToExitScene(false);
+			GameController.GoToExitScene(fadeOut: false);
 		}
 
 		private IEnumerator SlowPitch()

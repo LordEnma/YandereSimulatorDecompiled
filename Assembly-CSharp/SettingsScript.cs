@@ -288,7 +288,7 @@ public class SettingsScript : MonoBehaviour
 		}
 		else if (Selected == 17)
 		{
-			WarningMessage.SetActive(true);
+			WarningMessage.SetActive(value: true);
 			if (InputManager.TappedRight || InputManager.TappedLeft)
 			{
 				OptionGlobals.EnableShadows = !OptionGlobals.EnableShadows;
@@ -299,7 +299,7 @@ public class SettingsScript : MonoBehaviour
 		}
 		if (Selected != 17)
 		{
-			WarningMessage.SetActive(false);
+			WarningMessage.SetActive(value: false);
 		}
 		if (Input.GetKeyDown("l"))
 		{
@@ -328,7 +328,7 @@ public class SettingsScript : MonoBehaviour
 		}
 		if (Input.GetButtonDown("B"))
 		{
-			WarningMessage.SetActive(false);
+			WarningMessage.SetActive(value: false);
 			PromptBar.ClearButtons();
 			PromptBar.Label[0].text = "Accept";
 			PromptBar.Label[1].text = "Exit";
@@ -338,10 +338,10 @@ public class SettingsScript : MonoBehaviour
 			{
 				PauseScreen.Yandere.Blur.enabled = true;
 			}
-			PauseScreen.MainMenu.SetActive(true);
+			PauseScreen.MainMenu.SetActive(value: true);
 			PauseScreen.Sideways = false;
 			PauseScreen.PressedB = true;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 

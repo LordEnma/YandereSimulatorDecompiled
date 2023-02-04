@@ -118,6 +118,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public SkinnedMeshRenderer BedroomRenderer;
 
+	private int Is;
+
 	private int Ts;
 
 	public Transform PromptBarPanel;
@@ -160,10 +162,10 @@ public class HomeCameraScript : MonoBehaviour
 		if (HomeGlobals.Night)
 		{
 			ClockFace.material.SetTextureOffset("_MainTex", new Vector2(0.0322f, 0f));
-			CeilingLight.SetActive(true);
-			SenpaiLight.SetActive(true);
-			NightLight.SetActive(true);
-			DayLight.SetActive(false);
+			CeilingLight.SetActive(value: true);
+			SenpaiLight.SetActive(value: true);
+			NightLight.SetActive(value: true);
+			DayLight.SetActive(value: false);
 			Triggers[7].Disable();
 			BasementJukebox.clip = NightBasement;
 			RoomJukebox.clip = NightRoom;
@@ -175,7 +177,7 @@ public class HomeCameraScript : MonoBehaviour
 		{
 			BasementJukebox.Play();
 			RoomJukebox.Play();
-			ComputerScreen.SetActive(false);
+			ComputerScreen.SetActive(value: false);
 			if (DateGlobals.Weekday == DayOfWeek.Friday && GameGlobals.RivalEliminationID == 0)
 			{
 				EightiesTriggers[2].Disable();
@@ -187,9 +189,9 @@ public class HomeCameraScript : MonoBehaviour
 		}
 		if (StudentGlobals.Prisoners == 0)
 		{
-			RopeGroup.SetActive(false);
-			Tripod.SetActive(false);
-			Victim.SetActive(false);
+			RopeGroup.SetActive(value: false);
+			Tripod.SetActive(value: false);
+			Victim.SetActive(value: false);
 			EightiesTriggers[10].Disable();
 			Triggers[10].Disable();
 		}
@@ -220,12 +222,12 @@ public class HomeCameraScript : MonoBehaviour
 		}
 		Butsudan.localPosition = new Vector3(-0.2041f, 0.095f, 0.241f);
 		Butsudan.localEulerAngles = new Vector3(0f, 135f, 0f);
-		ModernDayRoom.SetActive(true);
-		EightiesRoom.SetActive(false);
-		EightiesLabelPanel.SetActive(false);
-		LabelPanel.SetActive(true);
-		EightiesTriggers[1].transform.parent.gameObject.SetActive(false);
-		Triggers[1].transform.parent.gameObject.SetActive(true);
+		ModernDayRoom.SetActive(value: true);
+		EightiesRoom.SetActive(value: false);
+		EightiesLabelPanel.SetActive(value: false);
+		LabelPanel.SetActive(value: true);
+		EightiesTriggers[1].transform.parent.gameObject.SetActive(value: false);
+		Triggers[1].transform.parent.gameObject.SetActive(value: true);
 	}
 
 	private void LateUpdate()
@@ -282,10 +284,10 @@ public class HomeCameraScript : MonoBehaviour
 			}
 			else if (ID == 4)
 			{
-				CorkboardLabel.SetActive(false);
+				CorkboardLabel.SetActive(value: false);
 				HomeCorkboard.enabled = true;
-				LoadingScreen.SetActive(true);
-				HomeYandere.gameObject.SetActive(false);
+				LoadingScreen.SetActive(value: true);
+				HomeYandere.gameObject.SetActive(value: false);
 			}
 			else if (ID == 5)
 			{
@@ -314,7 +316,7 @@ public class HomeCameraScript : MonoBehaviour
 			{
 				HomeSenpaiShrine.enabled = true;
 				AudioSource.PlayClipAtPoint(HomeSenpaiShrine.ShrineOpen, base.transform.position);
-				HomeYandere.gameObject.SetActive(false);
+				HomeYandere.gameObject.SetActive(value: false);
 			}
 			else if (ID == 7)
 			{
@@ -333,7 +335,7 @@ public class HomeCameraScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 				HomePrisoner.UpdateDesc();
-				HomeYandere.gameObject.SetActive(false);
+				HomeYandere.gameObject.SetActive(value: false);
 			}
 			else if (ID == 12)
 			{
@@ -370,8 +372,8 @@ public class HomeCameraScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown(KeyCode.M))
 		{
-			BasementJukebox.gameObject.SetActive(false);
-			RoomJukebox.gameObject.SetActive(false);
+			BasementJukebox.gameObject.SetActive(value: false);
+			RoomJukebox.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -413,7 +415,7 @@ public class HomeCameraScript : MonoBehaviour
 		HomeDarkness.Sprite.color = Color.black;
 		BasementJukebox.clip = HomeLoveSick;
 		RoomJukebox.clip = HomeLoveSick;
-		LoveSickCamera.SetActive(true);
+		LoveSickCamera.SetActive(value: true);
 		PlayMusic();
 	}
 
@@ -447,14 +449,14 @@ public class HomeCameraScript : MonoBehaviour
 		Butsudan.localPosition = new Vector3(0.2095f, 0.0721f, -0.25f);
 		Butsudan.localEulerAngles = new Vector3(0f, -50f, 0f);
 		Eighties = true;
-		CassetteTapes.SetActive(false);
-		ModernDayRoom.SetActive(false);
-		EightiesRoom.SetActive(true);
-		EightiesLabelPanel.SetActive(true);
-		LabelPanel.SetActive(false);
-		MonitorLight.SetActive(false);
-		EightiesTriggers[1].transform.parent.gameObject.SetActive(true);
-		Triggers[1].transform.parent.gameObject.SetActive(false);
+		CassetteTapes.SetActive(value: false);
+		ModernDayRoom.SetActive(value: false);
+		EightiesRoom.SetActive(value: true);
+		EightiesLabelPanel.SetActive(value: true);
+		LabelPanel.SetActive(value: false);
+		MonitorLight.SetActive(value: false);
+		EightiesTriggers[1].transform.parent.gameObject.SetActive(value: true);
+		Triggers[1].transform.parent.gameObject.SetActive(value: false);
 		for (int i = 1; i < HUDLabels.Length; i++)
 		{
 			EightiesifyLabel(HUDLabels[i]);
@@ -476,7 +478,7 @@ public class HomeCameraScript : MonoBehaviour
 		Triggers = EightiesTriggers;
 		Targets = EightiesTargets;
 		Destination = Destinations[0];
-		ComputerScreen.SetActive(false);
+		ComputerScreen.SetActive(value: false);
 		if (HomeGlobals.Night)
 		{
 			Triggers[7].Disable();

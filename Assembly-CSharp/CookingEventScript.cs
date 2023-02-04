@@ -73,13 +73,13 @@ public class CookingEventScript : MonoBehaviour
 
 	private void Start()
 	{
-		Octodog.SetActive(false);
-		Sausage.SetActive(false);
+		Octodog.SetActive(value: false);
+		Sausage.SetActive(value: false);
 		Rotation = -90f;
 		Transform[] octodogs = Octodogs;
 		for (int i = 0; i < octodogs.Length; i++)
 		{
-			octodogs[i].gameObject.SetActive(false);
+			octodogs[i].gameObject.SetActive(value: false);
 		}
 		EventSubtitle.transform.localScale = Vector3.zero;
 		EventCheck = true;
@@ -104,8 +104,8 @@ public class CookingEventScript : MonoBehaviour
 					Snacks.enabled = false;
 					EventStudent.CurrentDestination = EventLocations[0];
 					EventStudent.Pathfinding.target = EventLocations[0];
-					EventStudent.Scrubber.SetActive(false);
-					EventStudent.Eraser.SetActive(false);
+					EventStudent.Scrubber.SetActive(value: false);
+					EventStudent.Eraser.SetActive(value: false);
 					EventStudent.Obstacle.checkTime = 99f;
 					EventStudent.CookingEvent = this;
 					EventStudent.InEvent = true;
@@ -153,7 +153,7 @@ public class CookingEventScript : MonoBehaviour
 				{
 					SchemeGlobals.SetSchemeStage(4, 5);
 					Schemes.UpdateInstructions();
-					RivalPhone.SetActive(false);
+					RivalPhone.SetActive(value: false);
 					EventSubtitle.text = string.Empty;
 					EventPhase++;
 					Timer = 0f;
@@ -164,7 +164,7 @@ public class CookingEventScript : MonoBehaviour
 				if (!RivalPhone.activeInHierarchy)
 				{
 					EventStudent.CharacterAnimation.Play("f02_prepareFood_00");
-					EventStudent.SmartPhone.SetActive(false);
+					EventStudent.SmartPhone.SetActive(value: false);
 					Octodog.transform.parent = EventStudent.RightHand;
 					Octodog.transform.localPosition = new Vector3(0.0129f, -0.02475f, 0.0316f);
 					Octodog.transform.localEulerAngles = new Vector3(-90f, 0f, 0f);
@@ -235,7 +235,7 @@ public class CookingEventScript : MonoBehaviour
 				if (EventStudent.CharacterAnimation["f02_prepareFood_00"].time >= EventStudent.CharacterAnimation["f02_prepareFood_00"].length)
 				{
 					EventStudent.CharacterAnimation.CrossFade("f02_cutFood_00");
-					Sausage.SetActive(true);
+					Sausage.SetActive(value: true);
 					EventPhase++;
 				}
 			}
@@ -243,8 +243,8 @@ public class CookingEventScript : MonoBehaviour
 			{
 				if (EventStudent.CharacterAnimation["f02_cutFood_00"].time > 2.66666f)
 				{
-					Octodog.SetActive(true);
-					Sausage.SetActive(false);
+					Octodog.SetActive(value: true);
+					Sausage.SetActive(value: false);
 					EventPhase++;
 				}
 			}
@@ -258,8 +258,8 @@ public class CookingEventScript : MonoBehaviour
 				}
 				if (EventStudent.CharacterAnimation["f02_cutFood_00"].time > 6f)
 				{
-					Octodog.SetActive(false);
-					Octodogs[Loop].gameObject.SetActive(true);
+					Octodog.SetActive(value: false);
+					Octodogs[Loop].gameObject.SetActive(value: true);
 					EventPhase++;
 				}
 			}
@@ -273,7 +273,7 @@ public class CookingEventScript : MonoBehaviour
 						Octodog.transform.localPosition = new Vector3(Octodog.transform.localPosition.x, Octodog.transform.localPosition.y, 0.0316f);
 						EventStudent.CharacterAnimation["f02_cutFood_00"].time = 0f;
 						EventStudent.CharacterAnimation.Play("f02_cutFood_00");
-						Sausage.SetActive(true);
+						Sausage.SetActive(value: true);
 						EventPhase = 7;
 						Rotation = -90f;
 						Loop++;
@@ -393,7 +393,7 @@ public class CookingEventScript : MonoBehaviour
 				Plate.GetComponent<BoxCollider>().enabled = true;
 			}
 			EventStudent.CharacterAnimation[EventStudent.CarryAnim].weight = 0f;
-			EventStudent.SmartPhone.SetActive(false);
+			EventStudent.SmartPhone.SetActive(value: false);
 			EventStudent.Pathfinding.speed = 1f;
 			EventStudent.TargetDistance = 1f;
 			EventStudent.PhoneEvent = null;

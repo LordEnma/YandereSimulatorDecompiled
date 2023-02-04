@@ -34,11 +34,11 @@ public class FoldedUniformScript : MonoBehaviour
 	{
 		for (int i = 1; i < Uniforms.Length; i++)
 		{
-			Uniforms[i].SetActive(false);
+			Uniforms[i].SetActive(value: false);
 		}
 		if (Uniforms.Length != 0)
 		{
-			Uniforms[StudentGlobals.FemaleUniform].SetActive(true);
+			Uniforms[StudentGlobals.FemaleUniform].SetActive(value: true);
 		}
 		if (Prompt != null && Prompt.Yandere != null)
 		{
@@ -78,9 +78,13 @@ public class FoldedUniformScript : MonoBehaviour
 		{
 			base.gameObject.name = "Gym Uniform";
 		}
-		else
+		else if (ClubAttire)
 		{
 			base.gameObject.name = "Folded Club Uniform";
+		}
+		else
+		{
+			base.gameObject.name = "School Uniform";
 		}
 		if (GameGlobals.Eighties && BloodyEightiesTexture != null)
 		{
@@ -112,6 +116,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 		if (Prompt.Circle[0] != null && Prompt.Circle[0].fillAmount == 0f)
 		{
+			Yandere.PreviousSchoolwear = Yandere.Schoolwear;
 			Object.Instantiate(SteamCloud, Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
 			Yandere.CharacterAnimation.CrossFade("f02_stripping_00");
 			Yandere.CurrentUniformOrigin = 2;

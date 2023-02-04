@@ -118,7 +118,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 		else if (dragEffect == UIDragObject.DragEffect.MomentumAndSpring)
 		{
-			ConstrainToBounds(false);
+			ConstrainToBounds(immediate: false);
 		}
 	}
 
@@ -137,7 +137,7 @@ public class UIDraggableCamera : MonoBehaviour
 		Vector2 vector = Vector2.Scale(delta, -scale);
 		mTrans.localPosition += (Vector3)vector;
 		mMomentum = Vector2.Lerp(mMomentum, mMomentum + vector * (0.01f * momentumAmount), 0.67f);
-		if (dragEffect != UIDragObject.DragEffect.MomentumAndSpring && ConstrainToBounds(true))
+		if (dragEffect != UIDragObject.DragEffect.MomentumAndSpring && ConstrainToBounds(immediate: true))
 		{
 			mMomentum = Vector2.zero;
 			mScroll = 0f;

@@ -135,6 +135,10 @@ public class MusicMinigameScript : MonoBehaviour
 
 	public Texture SadRyoba;
 
+	public AudioSource GameOverAudioSource;
+
+	public AudioClip EightiesFail;
+
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -153,12 +157,13 @@ public class MusicMinigameScript : MonoBehaviour
 			SadMiyuji.GetComponent<Renderer>().material.mainTexture = SadLeader;
 			SadAyano.GetComponent<Renderer>().material.mainTexture = SadRyoba;
 			Background.material.mainTexture = EightiesBG;
+			GameOverAudioSource.clip = EightiesFail;
 		}
 		StartRep = PlayerPrefs.GetFloat("TempReputation");
 		Application.targetFrameRate = 60;
 		Time.timeScale = 1f;
-		Black.gameObject.SetActive(true);
-		GameOverScreen.SetActive(false);
+		Black.gameObject.SetActive(value: true);
+		GameOverScreen.SetActive(value: false);
 		Scales[0].localPosition = new Vector3(-1f, 0f, 0f);
 		Scales[1].localPosition = new Vector3(0f, 0f, 0f);
 		Scales[2].localPosition = new Vector3(1f, 0f, 0f);
@@ -204,7 +209,7 @@ public class MusicMinigameScript : MonoBehaviour
 			{
 				SadMiyuji.localPosition = new Vector3(-0.51f, -0.1f, -0.2f);
 				SadAyano.localPosition = new Vector3(0.495f, -0.1f, -0.2f);
-				GameOverScreen.SetActive(true);
+				GameOverScreen.SetActive(value: true);
 			}
 			SadMiyuji.localPosition = Vector3.Lerp(SadMiyuji.localPosition, new Vector3(-0.455f, -0.1f, -0.2f), Time.deltaTime);
 			SadAyano.localPosition = Vector3.Lerp(SadAyano.localPosition, new Vector3(0.44f, -0.1f, -0.2f), Time.deltaTime);
@@ -738,7 +743,7 @@ public class MusicMinigameScript : MonoBehaviour
 		GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
 		for (int i = 0; i < rootGameObjects.Length; i++)
 		{
-			rootGameObjects[i].SetActive(true);
+			rootGameObjects[i].SetActive(value: true);
 		}
 		SceneManager.UnloadSceneAsync(23);
 	}

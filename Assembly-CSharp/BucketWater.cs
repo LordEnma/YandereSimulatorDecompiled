@@ -34,29 +34,11 @@ public class BucketWater : BucketContents
 		}
 	}
 
-	public override BucketContentsType Type
-	{
-		get
-		{
-			return BucketContentsType.Water;
-		}
-	}
+	public override BucketContentsType Type => BucketContentsType.Water;
 
-	public override bool IsCleaningAgent
-	{
-		get
-		{
-			return hasBleach;
-		}
-	}
+	public override bool IsCleaningAgent => hasBleach;
 
-	public override bool IsFlammable
-	{
-		get
-		{
-			return false;
-		}
-	}
+	public override bool IsFlammable => false;
 
 	public override bool CanBeLifted(int strength)
 	{

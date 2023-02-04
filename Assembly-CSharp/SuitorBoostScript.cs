@@ -166,7 +166,7 @@ public class SuitorBoostScript : MonoBehaviour
 		}
 		if (Phase == 2)
 		{
-			TextBox.gameObject.SetActive(true);
+			TextBox.gameObject.SetActive(value: true);
 			TextBox.localScale = Vector3.Lerp(TextBox.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			if (TextBox.localScale.x > 0.9f)
 			{
@@ -191,7 +191,7 @@ public class SuitorBoostScript : MonoBehaviour
 				TextBox.localScale = Vector3.Lerp(TextBox.localScale, Vector3.zero, Time.deltaTime * 10f);
 				return;
 			}
-			TextBox.gameObject.SetActive(false);
+			TextBox.gameObject.SetActive(value: false);
 			FadeOut = true;
 			Phase++;
 		}

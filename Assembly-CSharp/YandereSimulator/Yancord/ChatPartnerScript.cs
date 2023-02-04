@@ -30,7 +30,7 @@ namespace YandereSimulator.Yancord
 				}
 				if (TagLabel != null)
 				{
-					TagLabel.text = MyProfile.GetTag(true);
+					TagLabel.text = MyProfile.GetTag(WithHashtag: true);
 				}
 				if (ProfilPictureTexture != null)
 				{
@@ -51,19 +51,14 @@ namespace YandereSimulator.Yancord
 
 		private Texture2D GetStatusTexture(Status currentStatus)
 		{
-			switch (currentStatus)
+			return currentStatus switch
 			{
-			case Status.Online:
-				return StatusTextures[1];
-			case Status.Idle:
-				return StatusTextures[2];
-			case Status.DontDisturb:
-				return StatusTextures[3];
-			case Status.Invisible:
-				return StatusTextures[4];
-			default:
-				return null;
-			}
+				Status.Online => StatusTextures[1], 
+				Status.Idle => StatusTextures[2], 
+				Status.DontDisturb => StatusTextures[3], 
+				Status.Invisible => StatusTextures[4], 
+				_ => null, 
+			};
 		}
 	}
 }

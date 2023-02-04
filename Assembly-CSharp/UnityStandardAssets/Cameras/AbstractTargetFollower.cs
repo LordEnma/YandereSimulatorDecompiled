@@ -22,13 +22,7 @@ namespace UnityStandardAssets.Cameras
 
 		protected Rigidbody targetRigidbody;
 
-		public Transform Target
-		{
-			get
-			{
-				return m_Target;
-			}
-		}
+		public Transform Target => m_Target;
 
 		protected virtual void Start()
 		{

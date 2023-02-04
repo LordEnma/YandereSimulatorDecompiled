@@ -17,7 +17,7 @@ public class CheeseScript : MonoBehaviour
 			Subtitle.text = "Knowing the mouse might one day leave its hole and get the cheese...It fills you with determination.";
 			Prompt.Hide();
 			Prompt.enabled = false;
-			GlowingEye.SetActive(true);
+			GlowingEye.SetActive(value: true);
 			Timer = 5f;
 		}
 		if (Timer > 0f)

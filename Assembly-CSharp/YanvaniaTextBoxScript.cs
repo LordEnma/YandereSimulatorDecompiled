@@ -63,7 +63,7 @@ public class YanvaniaTextBoxScript : MonoBehaviour
 		SpeakerLabel.text = string.Empty;
 		Border.color = new Color(Border.color.r, Border.color.g, Border.color.b, 0f);
 		BG.color = new Color(BG.color.r, BG.color.g, BG.color.b, 0f);
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 	}
 
 	private void Update()

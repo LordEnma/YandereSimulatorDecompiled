@@ -139,7 +139,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 				if (Rival.CharacterAnimation[EventAnim[1]].time >= 6f)
 				{
 					Rival.SmartPhoneScreen.enabled = true;
-					Rival.SmartPhone.SetActive(true);
+					Rival.SmartPhone.SetActive(value: true);
 					Phase++;
 				}
 			}
@@ -161,7 +161,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 				{
 					Rival.CharacterAnimation.Play(EventAnim[2]);
 					PhoneMinigame.Prompt.enabled = true;
-					Rival.Ragdoll.Zs.SetActive(true);
+					Rival.Ragdoll.Zs.SetActive(value: true);
 					EventSubtitle.text = "";
 					Rival.Distracted = true;
 					Phase++;
@@ -196,7 +196,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 					{
 						AudioClipPlayer.Play(SpeechClip[2], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
 						Rival.CharacterAnimation.CrossFade(EventAnim[3]);
-						Rival.Ragdoll.Zs.SetActive(false);
+						Rival.Ragdoll.Zs.SetActive(value: false);
 						Rival.Hurry = true;
 						Phase++;
 						PhoneMinigame.Prompt.enabled = false;
@@ -218,7 +218,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 			{
 				if ((double)Rival.CharacterAnimation[EventAnim[3]].time >= 3.5)
 				{
-					Rival.SmartPhone.SetActive(false);
+					Rival.SmartPhone.SetActive(value: false);
 					Phase++;
 				}
 			}
@@ -300,7 +300,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		}
 		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 		Rival.SmartPhoneScreen.enabled = false;
-		Rival.Ragdoll.Zs.SetActive(false);
+		Rival.Ragdoll.Zs.SetActive(value: false);
 		Rival.Obstacle.enabled = false;
 		Rival.Prompt.enabled = true;
 		Rival.Distracted = false;
@@ -358,8 +358,8 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		Rival.InEvent = true;
 		Rival.Drownable = false;
 		Rival.StudentManager.UpdateMe(Rival.StudentID);
-		Rival.Scrubber.SetActive(false);
-		Rival.Eraser.SetActive(false);
+		Rival.Scrubber.SetActive(value: false);
+		Rival.Eraser.SetActive(value: false);
 		Yandere.PauseScreen.Hint.Show = true;
 		Yandere.PauseScreen.Hint.QuickID = 19;
 		Phase = 1;

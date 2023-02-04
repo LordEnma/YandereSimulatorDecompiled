@@ -46,13 +46,13 @@ public class ResolutionScript : MonoBehaviour
 	{
 		if (Screen.width < 1280 || Screen.height < 720)
 		{
-			Screen.SetResolution(1280, 720, false);
+			Screen.SetResolution(1280, 720, fullscreen: false);
 			ResID = 0;
 		}
 		Darkness.color = new Color(1f, 1f, 1f, 1f);
 		Cursor.visible = false;
 		Screen.fullScreen = false;
-		Screen.SetResolution(Screen.width, Screen.height, false);
+		Screen.SetResolution(Screen.width, Screen.height, fullscreen: false);
 		ResolutionLabel.text = Screen.width + " x " + Screen.height;
 		QualityLabel.text = Qualities[QualitySettings.GetQualityLevel()] ?? "";
 		FullScreenLabel.text = "No";
@@ -64,7 +64,7 @@ public class ResolutionScript : MonoBehaviour
 	{
 		if (Screen.width < 1280 || Screen.height < 720)
 		{
-			Screen.SetResolution(1280, 720, false);
+			Screen.SetResolution(1280, 720, fullscreen: false);
 			ResolutionLabel.text = Screen.width + " x " + Screen.height;
 			ResID = 0;
 		}
@@ -163,7 +163,7 @@ public class ResolutionScript : MonoBehaviour
 			if (Rs == 10)
 			{
 				PlayerPrefs.DeleteAll();
-				Screen.SetResolution(1280, 720, false);
+				Screen.SetResolution(1280, 720, fullscreen: false);
 				SceneManager.LoadScene("ResolutionScene");
 			}
 		}
@@ -185,7 +185,7 @@ public class ResolutionScript : MonoBehaviour
 
 	private void UpdateQuality()
 	{
-		QualitySettings.SetQualityLevel(QualityID, true);
+		QualitySettings.SetQualityLevel(QualityID, applyExpensiveChanges: true);
 		QualityLabel.text = Qualities[QualityID] ?? "";
 		Debug.Log("The quality level is set to: " + QualitySettings.GetQualityLevel());
 	}

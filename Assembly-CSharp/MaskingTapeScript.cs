@@ -13,7 +13,7 @@ public class MaskingTapeScript : MonoBehaviour
 			Prompt.Yandere.Inventory.MaskingTape = true;
 			Box.Prompt.enabled = true;
 			Box.enabled = true;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 }

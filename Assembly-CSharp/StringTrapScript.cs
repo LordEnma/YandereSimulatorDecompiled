@@ -68,7 +68,7 @@ public class StringTrapScript : MonoBehaviour
 				WaterCooler.Yandere.Subtitle.CustomText = "Someone tried to pull a prank? How childish...";
 				WaterCooler.Yandere.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 			}
-			base.transform.parent.gameObject.SetActive(false);
+			base.transform.parent.gameObject.SetActive(value: false);
 			WaterCooler.Prompt.HideButton[3] = false;
 			WaterCooler.PickUp.enabled = true;
 			WaterCooler.Prompt.enabled = true;
@@ -127,7 +127,7 @@ public class StringTrapScript : MonoBehaviour
 		WaterCooler.Prompt.Label[1].text = "     Create Tripwire Trap";
 		WaterCooler.Prompt.Label[1].applyGradient = false;
 		WaterCooler.Prompt.Label[1].color = Color.red;
-		base.transform.parent.gameObject.SetActive(false);
+		base.transform.parent.gameObject.SetActive(value: false);
 		WaterCooler.Prompt.HideButton[3] = false;
 		WaterCooler.PickUp.enabled = true;
 		WaterCooler.MyRigidbody.isKinematic = false;

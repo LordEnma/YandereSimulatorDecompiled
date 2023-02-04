@@ -40,7 +40,7 @@ public class CleanUpScript : MonoBehaviour
 				if (CleanUpDarkness.alpha == 0f)
 				{
 					Prompt.Hide();
-					BloodProjector.gameObject.SetActive(false);
+					BloodProjector.gameObject.SetActive(value: false);
 					Prompt.Yandere.CanMove = true;
 				}
 			}

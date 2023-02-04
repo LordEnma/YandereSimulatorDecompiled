@@ -177,16 +177,16 @@ public class GenericRivalBagScript : MonoBehaviour
 		if (!Initialized)
 		{
 			GrabRivalInfo();
-			Magazine.gameObject.SetActive(false);
-			MagazineButton.SetActive(false);
+			Magazine.gameObject.SetActive(value: false);
+			MagazineButton.SetActive(value: false);
 			Magazine.localPosition = new Vector3(-700f, -1470f, 0f);
 			Magazine.localEulerAngles = new Vector3(0f, 0f, 45f);
-			Diary.gameObject.SetActive(false);
-			DiaryButton.SetActive(false);
+			Diary.gameObject.SetActive(value: false);
+			DiaryButton.SetActive(value: false);
 			Diary.localPosition = new Vector3(-700f, -1470f, 0f);
 			Diary.localEulerAngles = new Vector3(0f, 0f, 45f);
-			base.gameObject.SetActive(false);
-			Window.SetActive(false);
+			base.gameObject.SetActive(value: false);
+			Window.SetActive(value: false);
 			Prompt.enabled = false;
 			Prompt.Hide();
 			Initialized = true;
@@ -206,7 +206,7 @@ public class GenericRivalBagScript : MonoBehaviour
 					Prompt.Yandere.RPGCamera.enabled = false;
 					Prompt.Yandere.CanMove = false;
 					Time.timeScale = 0.0001f;
-					Window.SetActive(true);
+					Window.SetActive(value: true);
 					Menu = 1;
 					UpdateMenuLabels();
 					PromptBar.ClearButtons();
@@ -278,8 +278,8 @@ public class GenericRivalBagScript : MonoBehaviour
 					}
 					else if (Selected == 2)
 					{
-						MagazineButton.SetActive(true);
-						Highlight.gameObject.SetActive(false);
+						MagazineButton.SetActive(value: true);
+						Highlight.gameObject.SetActive(value: false);
 						PromptBar.ClearButtons();
 						PromptBar.Label[1].text = "Back";
 						PromptBar.UpdateButtons();
@@ -288,9 +288,9 @@ public class GenericRivalBagScript : MonoBehaviour
 					}
 					else if (Selected == 3)
 					{
-						DiaryButton.SetActive(true);
+						DiaryButton.SetActive(value: true);
 						GrabRivalInfo();
-						Highlight.gameObject.SetActive(false);
+						Highlight.gameObject.SetActive(value: false);
 						PromptBar.ClearButtons();
 						PromptBar.Label[1].text = "Back";
 						PromptBar.UpdateButtons();
@@ -298,7 +298,7 @@ public class GenericRivalBagScript : MonoBehaviour
 						UpdateMenuLabels();
 						for (int i = 1; i < 26; i++)
 						{
-							Prompt.Yandere.StudentManager.SetTopicLearnedByStudent(i, Prompt.Yandere.StudentManager.RivalID, true);
+							Prompt.Yandere.StudentManager.SetTopicLearnedByStudent(i, Prompt.Yandere.StudentManager.RivalID, boolean: true);
 						}
 						Prompt.Yandere.NotificationManager.CustomText = "Learned the rival's likes & dislikes";
 						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -395,8 +395,8 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				PromptBar.Label[5].text = "Change Selection";
 				PromptBar.UpdateButtons();
-				Magazine.gameObject.SetActive(true);
-				MagazineButton.SetActive(false);
+				Magazine.gameObject.SetActive(value: true);
+				MagazineButton.SetActive(value: false);
 				ShowMagazine = true;
 				HideAllHearts();
 				Page = 1;
@@ -404,8 +404,8 @@ public class GenericRivalBagScript : MonoBehaviour
 			}
 			else if (Menu == 6)
 			{
-				Diary.gameObject.SetActive(true);
-				DiaryButton.SetActive(false);
+				Diary.gameObject.SetActive(value: true);
+				DiaryButton.SetActive(value: false);
 				ShowDiary = true;
 			}
 		}
@@ -415,21 +415,21 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				PromptBar.Label[5].text = "";
 				PromptBar.UpdateButtons();
-				MagazineButton.SetActive(true);
+				MagazineButton.SetActive(value: true);
 				ShowMagazine = false;
 			}
 			else if (ShowDiary)
 			{
 				PromptBar.Label[5].text = "";
 				PromptBar.UpdateButtons();
-				DiaryButton.SetActive(true);
+				DiaryButton.SetActive(value: true);
 				ShowDiary = false;
 			}
 			else
 			{
-				MagazineButton.SetActive(false);
-				DiaryButton.SetActive(false);
-				Highlight.gameObject.SetActive(true);
+				MagazineButton.SetActive(value: false);
+				DiaryButton.SetActive(value: false);
+				Highlight.gameObject.SetActive(value: true);
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "Confirm";
 				PromptBar.Label[4].text = "Change Selection";
@@ -508,7 +508,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		UpdateHighlight();
 		Prompt.Yandere.RPGCamera.enabled = true;
 		Prompt.Yandere.CanMove = true;
-		Window.SetActive(false);
+		Window.SetActive(value: false);
 		Time.timeScale = 1f;
 		PromptBar.ClearButtons();
 		PromptBar.Show = false;
@@ -700,74 +700,74 @@ public class GenericRivalBagScript : MonoBehaviour
 
 	private void HideAllHearts()
 	{
-		PonytailHearts.SetActive(false);
-		SlickHearts.SetActive(false);
-		PiercingHearts.SetActive(false);
-		BandanaHearts.SetActive(false);
-		GlassesHearts.SetActive(false);
-		SunglassesHearts.SetActive(false);
-		TanHearts.SetActive(false);
-		DarkHairHearts.SetActive(false);
-		JewleryHearts.SetActive(false);
-		CourageHearts.SetActive(false);
-		SmartHearts.SetActive(false);
-		StrongHearts.SetActive(false);
-		QuoteBoxes.SetActive(false);
+		PonytailHearts.SetActive(value: false);
+		SlickHearts.SetActive(value: false);
+		PiercingHearts.SetActive(value: false);
+		BandanaHearts.SetActive(value: false);
+		GlassesHearts.SetActive(value: false);
+		SunglassesHearts.SetActive(value: false);
+		TanHearts.SetActive(value: false);
+		DarkHairHearts.SetActive(value: false);
+		JewleryHearts.SetActive(value: false);
+		CourageHearts.SetActive(value: false);
+		SmartHearts.SetActive(value: false);
+		StrongHearts.SetActive(value: false);
+		QuoteBoxes.SetActive(value: false);
 	}
 
 	private void UpdateHearts()
 	{
 		if (Page == 1)
 		{
-			QuoteBoxes.SetActive(true);
+			QuoteBoxes.SetActive(value: true);
 			if (DesiredAccessory == 17)
 			{
-				PiercingHearts.SetActive(true);
+				PiercingHearts.SetActive(value: true);
 			}
 			else if (DesiredAccessory == 1)
 			{
-				BandanaHearts.SetActive(true);
+				BandanaHearts.SetActive(value: true);
 			}
 			if (DesiredEyewear == 6)
 			{
-				GlassesHearts.SetActive(true);
+				GlassesHearts.SetActive(value: true);
 			}
 			else if (DesiredEyewear == 3)
 			{
-				SunglassesHearts.SetActive(true);
+				SunglassesHearts.SetActive(value: true);
 			}
 			if (DesiredSkin == 6)
 			{
-				TanHearts.SetActive(true);
+				TanHearts.SetActive(value: true);
 			}
 			if (DesiredHairColor == "SolidBlack")
 			{
-				DarkHairHearts.SetActive(true);
+				DarkHairHearts.SetActive(value: true);
 			}
 			if (DesiredJewelry)
 			{
-				JewleryHearts.SetActive(true);
+				JewleryHearts.SetActive(value: true);
 			}
 			if (DesiredTrait == 1)
 			{
-				CourageHearts.SetActive(true);
+				CourageHearts.SetActive(value: true);
 			}
 			else if (DesiredTrait == 2)
 			{
-				SmartHearts.SetActive(true);
+				SmartHearts.SetActive(value: true);
 			}
 			else if (DesiredTrait == 3)
 			{
-				StrongHearts.SetActive(true);
+				StrongHearts.SetActive(value: true);
 			}
 		}
 		else if (DesiredHairstyle == 55)
 		{
-			PonytailHearts.SetActive(true);
+			PonytailHearts.SetActive(value: true);
 		}
 		else if (DesiredHairstyle == 56)
 		{
-			SlickHearts.SetActive(true);
+			SlickHearts.SetActive(value: true);
 		}
 	}
 

@@ -38,7 +38,7 @@ public class IdeasMenuScript : MonoBehaviour
 		}
 		UpdateHighlightPosition();
 		Description.enabled = false;
-		List.SetActive(true);
+		List.SetActive(value: true);
 	}
 
 	private void Update()
@@ -64,7 +64,7 @@ public class IdeasMenuScript : MonoBehaviour
 				Description.text = Ideas[Selected + Offset];
 				Description.text = Description.text.Replace('@', '\n');
 				Description.enabled = true;
-				List.SetActive(false);
+				List.SetActive(value: false);
 			}
 			else if (Input.GetButtonDown("B"))
 			{
@@ -74,8 +74,8 @@ public class IdeasMenuScript : MonoBehaviour
 				PauseScreen.PromptBar.Label[4].text = "Choose";
 				PauseScreen.PromptBar.Label[5].text = "Choose";
 				PauseScreen.PromptBar.UpdateButtons();
-				PauseScreen.MainMenu.SetActive(true);
-				base.gameObject.SetActive(false);
+				PauseScreen.MainMenu.SetActive(value: true);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 		else if (Input.GetButtonDown("B"))
@@ -87,7 +87,7 @@ public class IdeasMenuScript : MonoBehaviour
 			PauseScreen.PromptBar.UpdateButtons();
 			PauseScreen.PromptBar.Show = true;
 			Description.enabled = false;
-			List.SetActive(true);
+			List.SetActive(value: true);
 		}
 	}
 

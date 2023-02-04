@@ -115,13 +115,7 @@ public class DoorScript : MonoBehaviour
 
 	public bool Initialized;
 
-	private bool Double
-	{
-		get
-		{
-			return Doors.Length == 2;
-		}
-	}
+	private bool Double => Doors.Length == 2;
 
 	public void Start()
 	{
@@ -720,7 +714,7 @@ public class DoorScript : MonoBehaviour
 		case 3:
 			if (!ConversationGlobals.GetTopicDiscovered(22))
 			{
-				ConversationGlobals.SetTopicDiscovered(22, true);
+				ConversationGlobals.SetTopicDiscovered(22, value: true);
 				Yandere.NotificationManager.TopicName = "School";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -728,7 +722,7 @@ public class DoorScript : MonoBehaviour
 		case 13:
 			if (!ConversationGlobals.GetTopicDiscovered(18))
 			{
-				ConversationGlobals.SetTopicDiscovered(18, true);
+				ConversationGlobals.SetTopicDiscovered(18, value: true);
 				Yandere.NotificationManager.TopicName = "Reading";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -736,10 +730,10 @@ public class DoorScript : MonoBehaviour
 		case 22:
 			if (!ConversationGlobals.GetTopicDiscovered(11))
 			{
-				ConversationGlobals.SetTopicDiscovered(11, true);
-				ConversationGlobals.SetTopicDiscovered(12, true);
-				ConversationGlobals.SetTopicDiscovered(13, true);
-				ConversationGlobals.SetTopicDiscovered(14, true);
+				ConversationGlobals.SetTopicDiscovered(11, value: true);
+				ConversationGlobals.SetTopicDiscovered(12, value: true);
+				ConversationGlobals.SetTopicDiscovered(13, value: true);
+				ConversationGlobals.SetTopicDiscovered(14, value: true);
 				Yandere.NotificationManager.TopicName = "Video Games";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 				Yandere.NotificationManager.TopicName = "Anime";
@@ -761,7 +755,7 @@ public class DoorScript : MonoBehaviour
 		case 26:
 			if (!ConversationGlobals.GetTopicDiscovered(1))
 			{
-				ConversationGlobals.SetTopicDiscovered(1, true);
+				ConversationGlobals.SetTopicDiscovered(1, value: true);
 				Yandere.NotificationManager.TopicName = "Cooking";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -769,7 +763,7 @@ public class DoorScript : MonoBehaviour
 		case 27:
 			if (!ConversationGlobals.GetTopicDiscovered(2))
 			{
-				ConversationGlobals.SetTopicDiscovered(2, true);
+				ConversationGlobals.SetTopicDiscovered(2, value: true);
 				Yandere.NotificationManager.TopicName = "Drama";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -777,7 +771,7 @@ public class DoorScript : MonoBehaviour
 		case 28:
 			if (!ConversationGlobals.GetTopicDiscovered(3))
 			{
-				ConversationGlobals.SetTopicDiscovered(3, true);
+				ConversationGlobals.SetTopicDiscovered(3, value: true);
 				Yandere.NotificationManager.TopicName = "Occult";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -785,7 +779,7 @@ public class DoorScript : MonoBehaviour
 		case 29:
 			if (!ConversationGlobals.GetTopicDiscovered(4))
 			{
-				ConversationGlobals.SetTopicDiscovered(4, true);
+				ConversationGlobals.SetTopicDiscovered(4, value: true);
 				Yandere.NotificationManager.TopicName = "Art";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -793,7 +787,7 @@ public class DoorScript : MonoBehaviour
 		case 30:
 			if (!ConversationGlobals.GetTopicDiscovered(5))
 			{
-				ConversationGlobals.SetTopicDiscovered(5, true);
+				ConversationGlobals.SetTopicDiscovered(5, value: true);
 				Yandere.NotificationManager.TopicName = "Music";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -801,19 +795,19 @@ public class DoorScript : MonoBehaviour
 		case 31:
 			if (!ConversationGlobals.GetTopicDiscovered(6))
 			{
-				ConversationGlobals.SetTopicDiscovered(6, true);
+				ConversationGlobals.SetTopicDiscovered(6, value: true);
 				Yandere.NotificationManager.TopicName = "Martial Arts";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
 			if (!ConversationGlobals.GetTopicDiscovered(16))
 			{
-				ConversationGlobals.SetTopicDiscovered(16, true);
+				ConversationGlobals.SetTopicDiscovered(16, value: true);
 				Yandere.NotificationManager.TopicName = "Justice";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
 			if (!ConversationGlobals.GetTopicDiscovered(17))
 			{
-				ConversationGlobals.SetTopicDiscovered(17, true);
+				ConversationGlobals.SetTopicDiscovered(17, value: true);
 				Yandere.NotificationManager.TopicName = "Violence";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -821,7 +815,7 @@ public class DoorScript : MonoBehaviour
 		case 32:
 			if (!ConversationGlobals.GetTopicDiscovered(7))
 			{
-				ConversationGlobals.SetTopicDiscovered(7, true);
+				ConversationGlobals.SetTopicDiscovered(7, value: true);
 				Yandere.NotificationManager.TopicName = "Photography";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -829,7 +823,7 @@ public class DoorScript : MonoBehaviour
 		case 34:
 			if (!ConversationGlobals.GetTopicDiscovered(8))
 			{
-				ConversationGlobals.SetTopicDiscovered(8, true);
+				ConversationGlobals.SetTopicDiscovered(8, value: true);
 				Yandere.NotificationManager.TopicName = "Science";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -837,7 +831,7 @@ public class DoorScript : MonoBehaviour
 		case 35:
 			if (!ConversationGlobals.GetTopicDiscovered(9))
 			{
-				ConversationGlobals.SetTopicDiscovered(9, true);
+				ConversationGlobals.SetTopicDiscovered(9, value: true);
 				Yandere.NotificationManager.TopicName = "Sports";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
@@ -845,13 +839,13 @@ public class DoorScript : MonoBehaviour
 		case 36:
 			if (!ConversationGlobals.GetTopicDiscovered(10))
 			{
-				ConversationGlobals.SetTopicDiscovered(10, true);
+				ConversationGlobals.SetTopicDiscovered(10, value: true);
 				Yandere.NotificationManager.TopicName = "Gardening";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
 			if (!ConversationGlobals.GetTopicDiscovered(24))
 			{
-				ConversationGlobals.SetTopicDiscovered(24, true);
+				ConversationGlobals.SetTopicDiscovered(24, value: true);
 				Yandere.NotificationManager.TopicName = "Nature";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}

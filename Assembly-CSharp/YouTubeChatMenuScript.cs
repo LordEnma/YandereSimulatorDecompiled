@@ -70,9 +70,9 @@ public class YouTubeChatMenuScript : MonoBehaviour
 		Cursor.visible = true;
 		if (Frame == 1)
 		{
-			InitializeWindow.SetActive(false);
-			CommandWindow.SetActive(true);
-			Chat.gameObject.SetActive(true);
+			InitializeWindow.SetActive(value: false);
+			CommandWindow.SetActive(value: true);
+			Chat.gameObject.SetActive(value: true);
 			PauseScreen.PromptBar.Label[0].text = "Toggle";
 			PauseScreen.PromptBar.Label[1].text = "Back";
 			PauseScreen.PromptBar.Label[4].text = "Scroll";
@@ -94,7 +94,7 @@ public class YouTubeChatMenuScript : MonoBehaviour
 		{
 			if (Chat.isValidURL)
 			{
-				Chat.UpdateMessagesList(false);
+				Chat.UpdateMessagesList(initialRun: false);
 			}
 			Frame++;
 		}
@@ -107,7 +107,7 @@ public class YouTubeChatMenuScript : MonoBehaviour
 					InitializationLabel.text = "Now initializing the chat-checking system! Please wait...";
 					InitializationLabel.transform.localPosition = new Vector3(0f, 0f, 0f);
 					PauseScreen.PromptBar.ClearButtons();
-					Button.SetActive(false);
+					Button.SetActive(value: false);
 					Cursor.lockState = CursorLockMode.None;
 					Cursor.visible = true;
 					Frame++;
@@ -226,9 +226,9 @@ public class YouTubeChatMenuScript : MonoBehaviour
 	private void Exit()
 	{
 		PauseScreen.PromptBar.Label[0].text = "Accept";
-		PauseScreen.MainMenu.SetActive(true);
+		PauseScreen.MainMenu.SetActive(value: true);
 		PauseScreen.Sideways = false;
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 		Cursor.lockState = CursorLockMode.Confined;
 		Cursor.visible = false;
 	}

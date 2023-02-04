@@ -208,9 +208,9 @@ public class NewTitleScreenScript : MonoBehaviour
 		Sponsors.alpha = 0f;
 		Cursor.alpha = 0f;
 		Profile.colorGrading.enabled = false;
-		BloodProjector.SetActive(false);
-		LoveLetter.SetActive(true);
-		Knife.SetActive(false);
+		BloodProjector.SetActive(value: false);
+		LoveLetter.SetActive(value: true);
+		Knife.SetActive(value: false);
 		if (Eighties)
 		{
 			EnableEightiesEffects();
@@ -239,11 +239,11 @@ public class NewTitleScreenScript : MonoBehaviour
 		GameGlobals.Debug = false;
 		if (DateGlobals.Week == 2 && !GameGlobals.PlayerHasBeatenDemo && !Eighties)
 		{
-			CongratulationsWindow.SetActive(true);
+			CongratulationsWindow.SetActive(value: true);
 			GameGlobals.PlayerHasBeatenDemo = true;
 		}
 		EightiesLogo.alpha = 0f;
-		VtuberHairs[1].SetActive(false);
+		VtuberHairs[1].SetActive(value: false);
 	}
 
 	private void Update()
@@ -298,7 +298,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		{
 			if (Input.GetKeyDown("g"))
 			{
-				DebugLog.gameObject.SetActive(true);
+				DebugLog.gameObject.SetActive(value: true);
 				Log++;
 			}
 		}
@@ -354,7 +354,7 @@ public class NewTitleScreenScript : MonoBehaviour
 						}
 						if (Input.GetButtonDown("A"))
 						{
-							CongratulationsWindow.SetActive(false);
+							CongratulationsWindow.SetActive(value: false);
 							PromptBar.Show = false;
 						}
 					}
@@ -765,16 +765,16 @@ public class NewTitleScreenScript : MonoBehaviour
 		EightiesJukebox.volume = 0.5f;
 		Jukebox.volume = 0f;
 		MissionModeLabel.alpha = 0.5f;
-		EightiesLogo.gameObject.SetActive(true);
-		Osana.gameObject.SetActive(false);
-		NormalLogo.SetActive(false);
-		HeartPanel.SetActive(true);
-		DemoText.SetActive(false);
-		AyanoHair.SetActive(false);
-		RyobaHair.SetActive(true);
-		EightiesFilter.SetActive(true);
-		PalmTrees.SetActive(true);
-		Trees.SetActive(false);
+		EightiesLogo.gameObject.SetActive(value: true);
+		Osana.gameObject.SetActive(value: false);
+		NormalLogo.SetActive(value: false);
+		HeartPanel.SetActive(value: true);
+		DemoText.SetActive(value: false);
+		AyanoHair.SetActive(value: false);
+		RyobaHair.SetActive(value: true);
+		EightiesFilter.SetActive(value: true);
+		PalmTrees.SetActive(value: true);
+		Trees.SetActive(value: false);
 		ChangeTextOutline();
 		ExtrasLabel.alpha = 1f;
 		PressStart.trueTypeFont = VCR;
@@ -801,16 +801,16 @@ public class NewTitleScreenScript : MonoBehaviour
 		EightiesJukebox.volume = 0f;
 		Jukebox.volume = 0.5f;
 		MissionModeLabel.alpha = 1f;
-		EightiesLogo.gameObject.SetActive(false);
-		Osana.gameObject.SetActive(true);
-		HeartPanel.SetActive(false);
-		NormalLogo.SetActive(true);
-		DemoText.SetActive(true);
-		AyanoHair.SetActive(true);
-		RyobaHair.SetActive(false);
-		EightiesFilter.SetActive(false);
-		PalmTrees.SetActive(false);
-		Trees.SetActive(true);
+		EightiesLogo.gameObject.SetActive(value: false);
+		Osana.gameObject.SetActive(value: true);
+		HeartPanel.SetActive(value: false);
+		NormalLogo.SetActive(value: true);
+		DemoText.SetActive(value: true);
+		AyanoHair.SetActive(value: true);
+		RyobaHair.SetActive(value: false);
+		EightiesFilter.SetActive(value: false);
+		PalmTrees.SetActive(value: false);
+		Trees.SetActive(value: true);
 		ChangeTextOutline();
 		ExtrasLabel.alpha = 1f;
 		GameGlobals.Profile = 1;
@@ -847,7 +847,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		GameGlobals.Eighties = true;
 		for (int i = 1; i < 101; i++)
 		{
-			StudentGlobals.SetStudentPhotographed(i, true);
+			StudentGlobals.SetStudentPhotographed(i, value: true);
 		}
 		StudentGlobals.FemaleUniform = 6;
 		StudentGlobals.MaleUniform = 1;
@@ -858,15 +858,15 @@ public class NewTitleScreenScript : MonoBehaviour
 	{
 		if (PlayerGlobals.Kills > 0 || (GameGlobals.RivalEliminationID > 0 && !GameGlobals.NonlethalElimination))
 		{
-			BloodProjector.SetActive(true);
-			LoveLetter.SetActive(false);
-			Knife.SetActive(true);
+			BloodProjector.SetActive(value: true);
+			LoveLetter.SetActive(value: false);
+			Knife.SetActive(value: true);
 		}
 		else
 		{
-			BloodProjector.SetActive(false);
-			LoveLetter.SetActive(true);
-			Knife.SetActive(false);
+			BloodProjector.SetActive(value: false);
+			LoveLetter.SetActive(value: true);
+			Knife.SetActive(value: false);
 		}
 	}
 
@@ -877,7 +877,7 @@ public class NewTitleScreenScript : MonoBehaviour
 			ID++;
 			if (ID == Letter.Length)
 			{
-				PikaLoliMode.SetActive(true);
+				PikaLoliMode.SetActive(value: true);
 				GameGlobals.VtuberID = 1;
 				UpdateModeDescLabels();
 			}
@@ -887,7 +887,7 @@ public class NewTitleScreenScript : MonoBehaviour
 			Spaces++;
 			if (Spaces > 19)
 			{
-				PikaLoliMode.SetActive(true);
+				PikaLoliMode.SetActive(value: true);
 				GameGlobals.VtuberID = 1;
 				UpdateModeDescLabels();
 			}
@@ -898,7 +898,7 @@ public class NewTitleScreenScript : MonoBehaviour
 	{
 		ModeDescLabel[1].text = "Play as " + VtuberNames[GameGlobals.VtuberID] + " in the year 2023.\n\nThis mode is still in development, and currently only features one rival girl.";
 		ModeDescLabel[2].text = "Play as " + VtuberNames[GameGlobals.VtuberID] + " in the year 1989.\n\nThis mode is complete, and features ten rival girls.";
-		VtuberHairs[GameGlobals.VtuberID].SetActive(true);
+		VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
 		RyobaHair.transform.position = new Vector3(0f, 100f, 0f);
 		AyanoHair.transform.position = new Vector3(0f, 100f, 0f);
 	}

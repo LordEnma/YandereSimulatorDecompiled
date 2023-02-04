@@ -299,8 +299,7 @@ public class PromptScript : MonoBehaviour
 					if (Yandere.CanMove && (!flag || AllowedWhenCrouching(OwnerType)) && (!flag2 || AllowedWhenCrawling(OwnerType)) && !Yandere.Aiming && !Yandere.Mopping && !Yandere.NearSenpai)
 					{
 						InSight = false;
-						RaycastHit hitInfo;
-						if (Physics.Linecast(Yandere.Eyes.position + Vector3.down * Height, RaycastTarget.position, out hitInfo, BloodMask))
+						if (Physics.Linecast(Yandere.Eyes.position + Vector3.down * Height, RaycastTarget.position, out var hitInfo, BloodMask))
 						{
 							InSight = hitInfo.collider == MyCollider;
 						}
@@ -315,7 +314,7 @@ public class PromptScript : MonoBehaviour
 								{
 									if (!Button[ID].gameObject.activeInHierarchy)
 									{
-										Button[ID].gameObject.SetActive(true);
+										Button[ID].gameObject.SetActive(value: true);
 									}
 									if (Vector3.Angle(Yandere.MainCamera.transform.forward, Yandere.MainCamera.transform.position - CurrentPosition) > 90f)
 									{
@@ -631,7 +630,7 @@ public class PromptScript : MonoBehaviour
 			}
 			if (Button[ID] != null)
 			{
-				Button[ID].gameObject.SetActive(false);
+				Button[ID].gameObject.SetActive(value: false);
 			}
 		}
 		if (Speaker != null)

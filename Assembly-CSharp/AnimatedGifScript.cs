@@ -23,13 +23,7 @@ public class AnimatedGifScript : MonoBehaviour
 	[SerializeField]
 	private float CurrentSeconds;
 
-	private float SecondsPerFrame
-	{
-		get
-		{
-			return 1f / FramesPerSecond;
-		}
-	}
+	private float SecondsPerFrame => 1f / FramesPerSecond;
 
 	private void Awake()
 	{

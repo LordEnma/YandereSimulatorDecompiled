@@ -22,7 +22,7 @@ public class DelinquentVoicesScript : MonoBehaviour
 		}
 		else if (PlayerGlobals.GetStudentFriend(76) || PlayerGlobals.GetStudentFriend(77) || PlayerGlobals.GetStudentFriend(78) || PlayerGlobals.GetStudentFriend(79) || PlayerGlobals.GetStudentFriend(80))
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		Timer = 5f;
 	}

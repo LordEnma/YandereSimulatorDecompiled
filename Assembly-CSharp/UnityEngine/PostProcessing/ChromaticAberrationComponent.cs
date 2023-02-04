@@ -37,7 +37,7 @@ namespace UnityEngine.PostProcessing
 			{
 				if (m_SpectrumLut == null)
 				{
-					m_SpectrumLut = new Texture2D(3, 1, TextureFormat.RGB24, false)
+					m_SpectrumLut = new Texture2D(3, 1, TextureFormat.RGB24, mipChain: false)
 					{
 						name = "Chromatic Aberration Spectrum Lookup",
 						filterMode = FilterMode.Bilinear,

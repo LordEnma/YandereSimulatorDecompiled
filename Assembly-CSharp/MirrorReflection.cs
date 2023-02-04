@@ -33,8 +33,7 @@ public class MirrorReflection : MonoBehaviour
 			return;
 		}
 		s_InsideRendering = true;
-		Camera reflectionCamera;
-		CreateMirrorObjects(current, out reflectionCamera);
+		CreateMirrorObjects(current, out var reflectionCamera);
 		Vector3 position = base.transform.position;
 		Vector3 up = base.transform.up;
 		int pixelLightCount = QualitySettings.pixelLightCount;

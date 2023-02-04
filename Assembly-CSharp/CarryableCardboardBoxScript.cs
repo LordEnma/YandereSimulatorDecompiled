@@ -49,7 +49,7 @@ public class CarryableCardboardBoxScript : MonoBehaviour
 						MyCutter.Prompt.Hide();
 						MyCutter.Prompt.enabled = false;
 						MyCutter.enabled = false;
-						MyCutter.gameObject.SetActive(true);
+						MyCutter.gameObject.SetActive(value: true);
 						Prompt.HideButton[0] = true;
 						Prompt.HideButton[3] = false;
 						PickUp.StuckBoxCutter = MyCutter;

@@ -82,10 +82,11 @@ public class NoteLockerScript : MonoBehaviour
 		}
 		if (Prompt != null && Prompt.Circle[0].fillAmount == 0f)
 		{
+			Debug.Log("Just attempted to slow down time to 0.0001f.");
 			Prompt.Circle[0].fillAmount = 1f;
 			NoteWindow.NoteLocker = this;
 			Yandere.Blur.enabled = true;
-			NoteWindow.gameObject.SetActive(true);
+			NoteWindow.gameObject.SetActive(value: true);
 			Yandere.CanMove = false;
 			NoteWindow.Show = true;
 			Yandere.HUD.alpha = 0f;
@@ -104,7 +105,7 @@ public class NoteLockerScript : MonoBehaviour
 		{
 			if ((Student.Routine && Student.Phase < 3) || (Student.Routine && Student.Phase == 8) || Student.SentToLocker)
 			{
-				if (Vector3.Distance(base.transform.position, Student.transform.position) < 1.5f && !Student.InEvent)
+				if (Vector3.Distance(base.transform.position, Student.transform.position) < 1.5f && !Student.InEvent && !Student.ChangingShoes)
 				{
 					Student.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 					if (!Success)
@@ -140,7 +141,7 @@ public class NoteLockerScript : MonoBehaviour
 		}
 		if (Timer == 0f)
 		{
-			bool flag = Student.Follower != null;
+			_ = Student.Follower != null;
 			Phase = 1;
 		}
 		Timer += Time.deltaTime;
@@ -323,7 +324,7 @@ public class NoteLockerScript : MonoBehaviour
 		Phase++;
 		NewBall = null;
 		Timer = 0f;
-		bool flag = Student.Follower != null;
+		_ = Student.Follower != null;
 	}
 
 	public void ReleaseStudent()
@@ -337,7 +338,7 @@ public class NoteLockerScript : MonoBehaviour
 		Phase++;
 		NewBall = null;
 		Timer = 0f;
-		bool flag = Student.Follower != null;
+		_ = Student.Follower != null;
 	}
 
 	public void DetermineSchedule()

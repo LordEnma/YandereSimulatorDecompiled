@@ -164,7 +164,7 @@ public class TweenAlpha : UITweener
 		tweenAlpha.to = alpha;
 		if (duration <= 0f)
 		{
-			tweenAlpha.Sample(1f, true);
+			tweenAlpha.Sample(1f, isFinished: true);
 			tweenAlpha.enabled = false;
 		}
 		return tweenAlpha;

@@ -77,7 +77,7 @@ public class TweenScale : UITweener
 		tweenScale.to = scale;
 		if (duration <= 0f)
 		{
-			tweenScale.Sample(1f, true);
+			tweenScale.Sample(1f, isFinished: true);
 			tweenScale.enabled = false;
 		}
 		return tweenScale;

@@ -43,7 +43,7 @@ public class ChallengeScript : MonoBehaviour
 					if (List == 0)
 					{
 						Arrows.localPosition = new Vector3(Arrows.localPosition.x, -300f, Arrows.localPosition.z);
-						ViewButton.SetActive(true);
+						ViewButton.SetActive(value: true);
 						Panels[0].alpha = 0.5f;
 						Panels[1].alpha = 1f;
 						List = 1;
@@ -51,7 +51,7 @@ public class ChallengeScript : MonoBehaviour
 					else
 					{
 						Arrows.localPosition = new Vector3(Arrows.localPosition.x, 200f, Arrows.localPosition.z);
-						ViewButton.SetActive(false);
+						ViewButton.SetActive(value: false);
 						Panels[0].alpha = 1f;
 						Panels[1].alpha = 0.5f;
 						List = 0;

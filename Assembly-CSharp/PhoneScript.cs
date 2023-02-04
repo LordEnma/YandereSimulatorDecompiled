@@ -328,7 +328,7 @@ public class PhoneScript : MonoBehaviour
 		}
 		if (Height[ID] == 9 && Speaker[ID] == 2)
 		{
-			Buttons.gameObject.SetActive(false);
+			Buttons.gameObject.SetActive(value: false);
 			Darkness.enabled = true;
 			Jukebox.Stop();
 			Timer = -99999f;

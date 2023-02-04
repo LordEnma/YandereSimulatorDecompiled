@@ -161,9 +161,9 @@ public class YakuzaMenuScript : MonoBehaviour
 	private void Start()
 	{
 		UpdateMoneyLabel();
-		RansomConfirmationWindow.SetActive(false);
-		ConfirmationWindow.SetActive(false);
-		ResultWindow.SetActive(false);
+		RansomConfirmationWindow.SetActive(value: false);
+		ConfirmationWindow.SetActive(value: false);
+		ResultWindow.SetActive(value: false);
 		AssassinationMenu.alpha = 0f;
 		ContrabandMenu.alpha = 0f;
 		KidnappingMenu.alpha = 0f;
@@ -220,11 +220,11 @@ public class YakuzaMenuScript : MonoBehaviour
 		Background.material.color = new Color(1f, 0f, 0f, 0f);
 		if (GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night || StudentGlobals.GetStudentDead(79))
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 			ButtonPrompt.alpha = 0f;
 			if (StudentGlobals.GetStudentDead(79))
 			{
-				Yakuza.gameObject.SetActive(false);
+				Yakuza.gameObject.SetActive(value: false);
 			}
 		}
 		CountPrisoners();
@@ -375,7 +375,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							if (RivalPortraits[TargetSelected].color == new Color(1f, 1f, 1f, 1f))
 							{
 								AudioSource.PlayClipAtPoint(Confirmation, Yandere.MainCamera.transform.position);
-								ConfirmationWindow.SetActive(true);
+								ConfirmationWindow.SetActive(value: true);
 								ConfirmationLabel.text = "Do you want " + RivalNames[TargetSelected] + " to disappear forever? It will cost $" + Costs[TargetSelected] + ".";
 								PromptBar.Show = false;
 							}
@@ -399,10 +399,10 @@ public class YakuzaMenuScript : MonoBehaviour
 							if (PlayerGlobals.Money > (float)Costs[TargetSelected])
 							{
 								AudioSource.PlayClipAtPoint(AssassinationPurchase, Yandere.MainCamera.transform.position);
-								StudentGlobals.SetStudentKidnapped(TargetSelected + 10, true);
-								StudentGlobals.SetStudentMissing(TargetSelected + 10, true);
-								StudentGlobals.SetStudentKidnapped(TargetSelected + 10, true);
-								StudentGlobals.SetStudentMissing(TargetSelected + 10, true);
+								StudentGlobals.SetStudentKidnapped(TargetSelected + 10, value: true);
+								StudentGlobals.SetStudentMissing(TargetSelected + 10, value: true);
+								StudentGlobals.SetStudentKidnapped(TargetSelected + 10, value: true);
+								StudentGlobals.SetStudentMissing(TargetSelected + 10, value: true);
 								if (TargetSelected == DateGlobals.Week)
 								{
 									GameGlobals.RivalEliminationID = 11;
@@ -420,8 +420,8 @@ public class YakuzaMenuScript : MonoBehaviour
 								ResultLabel.text = "You don't have enough money to pay for her abduction!";
 								Fail = true;
 							}
-							ConfirmationWindow.SetActive(false);
-							ResultWindow.SetActive(true);
+							ConfirmationWindow.SetActive(value: false);
+							ResultWindow.SetActive(value: true);
 						}
 						else if (Input.GetButtonDown("B"))
 						{
@@ -432,7 +432,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							PromptBar.Label[4].text = "Change Selection";
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
-							ConfirmationWindow.SetActive(false);
+							ConfirmationWindow.SetActive(value: false);
 						}
 					}
 					else if (Input.GetButtonDown("A"))
@@ -443,7 +443,7 @@ public class YakuzaMenuScript : MonoBehaviour
 						PromptBar.Label[4].text = "Change Selection";
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
-						ResultWindow.SetActive(false);
+						ResultWindow.SetActive(value: false);
 						if (!Fail && GameGlobals.YakuzaPhase == 6)
 						{
 							GameGlobals.YakuzaPhase = 7;
@@ -508,7 +508,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							{
 								AudioSource.PlayClipAtPoint(Confirmation, Yandere.MainCamera.transform.position);
 								ItemConfirmationLabel.text = "Would you like to purchase " + ItemName[ItemSelected] + " for $" + ItemPrice[ItemSelected] + "?";
-								ItemConfirmationWindow.SetActive(true);
+								ItemConfirmationWindow.SetActive(value: true);
 								PromptBar.Show = false;
 							}
 						}
@@ -559,7 +559,7 @@ public class YakuzaMenuScript : MonoBehaviour
 						PlayerGlobals.Money -= ItemPrice[ItemSelected];
 						UpdateMoneyLabel();
 						UpdateItem();
-						ItemConfirmationWindow.SetActive(false);
+						ItemConfirmationWindow.SetActive(value: false);
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Purchase";
 						PromptBar.Label[1].text = "Back";
@@ -570,7 +570,7 @@ public class YakuzaMenuScript : MonoBehaviour
 					else if (Input.GetButtonDown("B"))
 					{
 						AudioSource.PlayClipAtPoint(BackOut, Yandere.MainCamera.transform.position);
-						ItemConfirmationWindow.SetActive(false);
+						ItemConfirmationWindow.SetActive(value: false);
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Purchase";
 						PromptBar.Label[1].text = "Back";
@@ -594,7 +594,7 @@ public class YakuzaMenuScript : MonoBehaviour
 						{
 							if (Prisoners > 0)
 							{
-								RansomConfirmationWindow.SetActive(true);
+								RansomConfirmationWindow.SetActive(value: true);
 								if (Prisoners == 1)
 								{
 									RansomConfirmationLabel.text = "Give a kidnapped prisoner to the yakuza in exchange for $" + Payout + "?";
@@ -622,10 +622,10 @@ public class YakuzaMenuScript : MonoBehaviour
 						AudioSource.PlayClipAtPoint(ContrabandPurchase, Yandere.MainCamera.transform.position);
 						while (Prisoners > 0)
 						{
-							StudentGlobals.SetStudentKidnapped(PrisonerList[Prisoners], false);
-							StudentGlobals.SetStudentMissing(PrisonerList[Prisoners], false);
-							StudentGlobals.SetStudentRansomed(PrisonerList[Prisoners], true);
-							StudentGlobals.SetStudentBroken(PrisonerList[Prisoners], true);
+							StudentGlobals.SetStudentKidnapped(PrisonerList[Prisoners], value: false);
+							StudentGlobals.SetStudentMissing(PrisonerList[Prisoners], value: false);
+							StudentGlobals.SetStudentRansomed(PrisonerList[Prisoners], value: true);
+							StudentGlobals.SetStudentBroken(PrisonerList[Prisoners], value: true);
 							Prisoners--;
 						}
 						PlayerGlobals.Money += Payout;
@@ -644,7 +644,7 @@ public class YakuzaMenuScript : MonoBehaviour
 						DeprisonStudents();
 						CountPrisoners();
 						UpdateRansomPortraits();
-						RansomConfirmationWindow.SetActive(false);
+						RansomConfirmationWindow.SetActive(value: false);
 						PrisonerLabel.text = "Come back after kidnapping one of these girls.";
 						PromptBar.ClearButtons();
 						PromptBar.Label[1].text = "Back";
@@ -659,7 +659,7 @@ public class YakuzaMenuScript : MonoBehaviour
 						PromptBar.Label[1].text = "Back";
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
-						RansomConfirmationWindow.SetActive(false);
+						RansomConfirmationWindow.SetActive(value: false);
 					}
 				}
 			}
@@ -1053,7 +1053,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		PromptBar.Label[5].text = "Change Selection";
 		PromptBar.UpdateButtons();
 		PromptBar.Show = true;
-		MoneyLabel.transform.parent.gameObject.SetActive(false);
+		MoneyLabel.transform.parent.gameObject.SetActive(value: false);
 		ContrabandMenu.alpha = 1f;
 		ServicesMenu.alpha = 0f;
 		Jukebox.volume = 1f;
@@ -1073,7 +1073,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		PromptBar.Label[5].text = "Change Selection";
 		PromptBar.UpdateButtons();
 		PromptBar.Show = true;
-		MoneyLabel.transform.parent.gameObject.SetActive(true);
+		MoneyLabel.transform.parent.gameObject.SetActive(value: true);
 		AssassinationMenu.alpha = 1f;
 		ServicesMenu.alpha = 0f;
 		Jukebox.volume = 1f;
@@ -1092,7 +1092,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		PromptBar.Label[4].text = "Change Selection";
 		PromptBar.UpdateButtons();
 		PromptBar.Show = true;
-		MoneyLabel.transform.parent.gameObject.SetActive(true);
+		MoneyLabel.transform.parent.gameObject.SetActive(value: true);
 		AssassinationMenu.alpha = 0f;
 		ServicesMenu.alpha = 1f;
 		Jukebox.volume = 1f;
@@ -1113,7 +1113,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		PromptBar.Label[1].text = "Back";
 		PromptBar.UpdateButtons();
 		PromptBar.Show = true;
-		MoneyLabel.transform.parent.gameObject.SetActive(true);
+		MoneyLabel.transform.parent.gameObject.SetActive(value: true);
 		AssassinationMenu.alpha = 0f;
 		ServicesMenu.alpha = 1f;
 		Jukebox.volume = 1f;

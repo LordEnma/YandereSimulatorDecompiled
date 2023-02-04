@@ -75,7 +75,7 @@ public class SpringPosition : MonoBehaviour
 		}
 		if (mSv != null)
 		{
-			mSv.UpdateScrollbars(true);
+			mSv.UpdateScrollbars(recalculateBounds: true);
 		}
 	}
 

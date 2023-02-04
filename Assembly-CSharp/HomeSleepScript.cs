@@ -27,7 +27,7 @@ public class HomeSleepScript : MonoBehaviour
 		{
 			return;
 		}
-		SkipSchoolWindow.SetActive(false);
+		SkipSchoolWindow.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			Label = EightiesLabel;
@@ -43,7 +43,7 @@ public class HomeSleepScript : MonoBehaviour
 			{
 				DescLabel.text = "Advance to nighttime?";
 				Label.text = "Skip School";
-				SkipSchoolWindow.SetActive(true);
+				SkipSchoolWindow.SetActive(value: true);
 			}
 		}
 	}

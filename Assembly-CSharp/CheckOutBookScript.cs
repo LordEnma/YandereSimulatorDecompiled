@@ -14,7 +14,7 @@ public class CheckOutBookScript : MonoBehaviour
 			{
 				Prompt.Hide();
 				Prompt.enabled = false;
-				base.transform.parent.gameObject.SetActive(false);
+				base.transform.parent.gameObject.SetActive(value: false);
 			}
 		}
 		else if (ID == 0)

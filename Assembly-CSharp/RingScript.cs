@@ -19,7 +19,7 @@ public class RingScript : MonoBehaviour
 				Prompt.Yandere.Inventory.Ring = true;
 				Prompt.Yandere.TheftTimer = 0.1f;
 				RingEvent.RingStolen = true;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 			else
 			{

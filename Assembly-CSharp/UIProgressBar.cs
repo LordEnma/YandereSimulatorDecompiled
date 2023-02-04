@@ -339,8 +339,7 @@ public class UIProgressBar : UIWidgetContainer
 		Transform transform = cachedTransform;
 		Plane plane = new Plane(transform.rotation * Vector3.back, transform.position);
 		Ray ray = cachedCamera.ScreenPointToRay(screenPos);
-		float enter;
-		if (!plane.Raycast(ray, out enter))
+		if (!plane.Raycast(ray, out var enter))
 		{
 			return value;
 		}

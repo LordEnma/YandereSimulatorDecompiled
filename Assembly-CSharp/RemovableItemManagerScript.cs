@@ -25,7 +25,7 @@ public class RemovableItemManagerScript : MonoBehaviour
 				else
 				{
 					Debug.Log("Item #" + i + " (" + RemovableItems[i].gameObject.name + ") was used up by the player. It is now being removed.");
-					RemovableItems[i].gameObject.SetActive(false);
+					RemovableItems[i].gameObject.SetActive(value: false);
 				}
 			}
 		}

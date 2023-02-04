@@ -40,7 +40,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 				AudioSource.PlayClipAtPoint(LockerClose, Prompt.Yandere.MainCamera.transform.position);
 				if (Corpse != null)
 				{
-					Corpse.gameObject.SetActive(false);
+					Corpse.gameObject.SetActive(value: false);
 				}
 				Prompt.enabled = true;
 				Rotation = 0f;
@@ -132,7 +132,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 			Prompt.Label[0].text = "     Hide Corpse";
 			AudioSource.PlayClipAtPoint(LockerOpen, Prompt.Yandere.MainCamera.transform.position);
 			Corpse.enabled = true;
-			Corpse.gameObject.SetActive(true);
+			Corpse.gameObject.SetActive(value: true);
 			Corpse.CharacterAnimation.enabled = false;
 			Corpse.transform.localPosition = new Vector3(0f, 0f, 0.5f);
 			Corpse.transform.localEulerAngles = new Vector3(0f, -90f, 0.5f);
@@ -148,7 +148,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 			}
 			for (int i = 0; i < Corpse.Student.FireEmitters.Length; i++)
 			{
-				Corpse.Student.FireEmitters[i].gameObject.SetActive(false);
+				Corpse.Student.FireEmitters[i].gameObject.SetActive(value: false);
 			}
 			Corpse = null;
 			Rotation = -180f;

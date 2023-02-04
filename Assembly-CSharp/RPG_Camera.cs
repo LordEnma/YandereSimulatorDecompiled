@@ -297,8 +297,7 @@ public class RPG_Camera : MonoBehaviour
 		int layerMask = 257;
 		if (MainCamera != null)
 		{
-			RaycastHit hitInfo;
-			if (Physics.Linecast(from, to, out hitInfo, layerMask))
+			if (Physics.Linecast(from, to, out var hitInfo, layerMask))
 			{
 				num = hitInfo.distance - MainCamera.nearClipPlane;
 			}

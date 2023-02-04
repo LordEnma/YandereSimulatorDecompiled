@@ -168,13 +168,7 @@ public class UIPanel : UIRect
 		}
 	}
 
-	public override bool canBeAnchored
-	{
-		get
-		{
-			return mClipping != UIDrawCall.Clipping.None;
-		}
-	}
+	public override bool canBeAnchored => mClipping != UIDrawCall.Clipping.None;
 
 	public override float alpha
 	{
@@ -233,29 +227,11 @@ public class UIPanel : UIRect
 		}
 	}
 
-	public float width
-	{
-		get
-		{
-			return GetViewSize().x;
-		}
-	}
+	public float width => GetViewSize().x;
 
-	public float height
-	{
-		get
-		{
-			return GetViewSize().y;
-		}
-	}
+	public float height => GetViewSize().y;
 
-	public bool halfPixelOffset
-	{
-		get
-		{
-			return false;
-		}
-	}
+	public bool halfPixelOffset => false;
 
 	public bool usedForUI
 	{
@@ -310,13 +286,7 @@ public class UIPanel : UIRect
 		}
 	}
 
-	public UIPanel parentPanel
-	{
-		get
-		{
-			return mParentPanel;
-		}
-	}
+	public UIPanel parentPanel => mParentPanel;
 
 	public int clipCount
 	{
@@ -348,22 +318,10 @@ public class UIPanel : UIRect
 		}
 	}
 
-	public bool hasCumulativeClipping
-	{
-		get
-		{
-			return clipCount != 0;
-		}
-	}
+	public bool hasCumulativeClipping => clipCount != 0;
 
 	[Obsolete("Use 'hasClipping' or 'hasCumulativeClipping' instead")]
-	public bool clipsChildren
-	{
-		get
-		{
-			return hasCumulativeClipping;
-		}
-	}
+	public bool clipsChildren => hasCumulativeClipping;
 
 	public Vector2 clipOffset
 	{
@@ -814,7 +772,7 @@ public class UIPanel : UIRect
 		{
 			drawCalls[i].isDirty = true;
 		}
-		Invalidate(true);
+		Invalidate(includeChildren: true);
 	}
 
 	protected override void Awake()
@@ -1585,7 +1543,7 @@ public class UIPanel : UIRect
 
 	public static UIPanel Find(Transform trans)
 	{
-		return Find(trans, false, -1);
+		return Find(trans, createIfMissing: false, -1);
 	}
 
 	public static UIPanel Find(Transform trans, bool createIfMissing)
@@ -1608,7 +1566,7 @@ public class UIPanel : UIRect
 		{
 			return null;
 		}
-		return NGUITools.CreateUI(trans, false, layer);
+		return NGUITools.CreateUI(trans, advanced3D: false, layer);
 	}
 
 	public Vector2 GetWindowSize()

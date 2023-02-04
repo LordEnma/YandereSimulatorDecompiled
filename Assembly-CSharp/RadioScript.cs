@@ -150,7 +150,7 @@ public class RadioScript : MonoBehaviour
 	{
 		Prompt.Label[0].text = "     Turn Off";
 		MyRenderer.material.mainTexture = OnTexture;
-		RadioNotes.SetActive(true);
+		RadioNotes.SetActive(value: true);
 		MyAudio.Play();
 		On = true;
 	}
@@ -161,7 +161,7 @@ public class RadioScript : MonoBehaviour
 		Prompt.enabled = false;
 		Prompt.Hide();
 		MyRenderer.material.mainTexture = OffTexture;
-		RadioNotes.SetActive(false);
+		RadioNotes.SetActive(value: false);
 		CooldownTimer = 1f;
 		MyAudio.Stop();
 		Victim = null;

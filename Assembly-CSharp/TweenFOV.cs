@@ -60,7 +60,7 @@ public class TweenFOV : UITweener
 		tweenFOV.to = to;
 		if (duration <= 0f)
 		{
-			tweenFOV.Sample(1f, true);
+			tweenFOV.Sample(1f, isFinished: true);
 			tweenFOV.enabled = false;
 		}
 		return tweenFOV;

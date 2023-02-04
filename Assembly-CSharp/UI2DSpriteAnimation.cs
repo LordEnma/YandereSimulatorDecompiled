@@ -19,13 +19,7 @@ public class UI2DSpriteAnimation : MonoBehaviour
 
 	private float mUpdate;
 
-	public bool isPlaying
-	{
-		get
-		{
-			return base.enabled;
-		}
-	}
+	public bool isPlaying => base.enabled;
 
 	public int framesPerSecond
 	{

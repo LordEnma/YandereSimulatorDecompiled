@@ -136,7 +136,7 @@ public class RefrigeratorScript : MonoBehaviour
 			if (Yandere.Character.GetComponent<Animation>()["f02_prepareFood_00"].time >= Yandere.Character.GetComponent<Animation>()["f02_prepareFood_00"].length)
 			{
 				Yandere.Character.GetComponent<Animation>().CrossFade("f02_cutFood_00");
-				Sausage.SetActive(true);
+				Sausage.SetActive(value: true);
 				EventPhase++;
 			}
 		}
@@ -144,8 +144,8 @@ public class RefrigeratorScript : MonoBehaviour
 		{
 			if (Yandere.Character.GetComponent<Animation>()["f02_cutFood_00"].time > 2.66666f)
 			{
-				Octodog.SetActive(true);
-				Sausage.SetActive(false);
+				Octodog.SetActive(value: true);
+				Sausage.SetActive(value: false);
 				EventPhase++;
 			}
 		}
@@ -159,10 +159,10 @@ public class RefrigeratorScript : MonoBehaviour
 			}
 			if (Yandere.Character.GetComponent<Animation>()["f02_cutFood_00"].time > 6f)
 			{
-				Octodog.SetActive(false);
+				Octodog.SetActive(value: false);
 				for (int i = 1; i < Octodogs.Length; i++)
 				{
-					Octodogs[i].SetActive(true);
+					Octodogs[i].SetActive(value: true);
 				}
 				EventPhase++;
 			}

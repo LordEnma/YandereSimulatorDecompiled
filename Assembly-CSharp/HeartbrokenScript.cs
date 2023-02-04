@@ -119,7 +119,7 @@ public class HeartbrokenScript : MonoBehaviour
 			LetterID = 1;
 			StopID = 8;
 			NoSnap = true;
-			SNAP.SetActive(false);
+			SNAP.SetActive(value: false);
 			Cursor.Options = 3;
 		}
 		else if (Confessed)
@@ -179,7 +179,7 @@ public class HeartbrokenScript : MonoBehaviour
 			{
 				uILabel2.transform.localPosition = new Vector3(uILabel2.transform.localPosition.x + 100f, uILabel2.transform.localPosition.y, uILabel2.transform.localPosition.z);
 			}
-			SNAP.SetActive(false);
+			SNAP.SetActive(value: false);
 			Cursor.Options = 4;
 			NoSnap = true;
 		}
@@ -311,7 +311,7 @@ public class HeartbrokenScript : MonoBehaviour
 			}
 			if (num == 0 || NoSnap || Yandere.Police.GameOver || Yandere.StudentManager.Clock.HourTime >= 18f || Yandere.transform.position.y < -1f)
 			{
-				SNAP.SetActive(false);
+				SNAP.SetActive(value: false);
 				Cursor.Options = 4;
 			}
 			Clock.StopTime = true;

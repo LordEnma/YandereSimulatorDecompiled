@@ -16,6 +16,6 @@ public class CountdownTimerScript : MonoBehaviour
 	{
 		float num = Mathf.FloorToInt(timeToDisplay / 60f);
 		float num2 = Mathf.FloorToInt(timeToDisplay % 60f);
-		CountdownLabel.text = string.Format("{0:0}:{1:00}", num, num2);
+		CountdownLabel.text = $"{num:0}:{num2:00}";
 	}
 }

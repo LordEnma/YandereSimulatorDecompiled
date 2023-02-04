@@ -17,7 +17,7 @@ public class ObstacleDetectorScript : MonoBehaviour
 		{
 			Frame = 0;
 			Obstacles = 0;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		else if (Frame == 2)
 		{
@@ -33,13 +33,13 @@ public class ObstacleDetectorScript : MonoBehaviour
 				Frame = 0;
 				Yandere.Container.Drop();
 				Yandere.WeaponMenu.UpdateSprites();
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 		else
 		{
-			int frame = Frame;
-			int num = 1;
+			_ = Frame;
+			_ = 1;
 		}
 	}
 

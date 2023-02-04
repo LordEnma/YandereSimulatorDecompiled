@@ -28,14 +28,12 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 	{
 		keys.Clear();
 		values.Clear();
-		using (Enumerator enumerator = GetEnumerator())
+		using Enumerator enumerator = GetEnumerator();
+		while (enumerator.MoveNext())
 		{
-			while (enumerator.MoveNext())
-			{
-				KeyValuePair<K, V> current = enumerator.Current;
-				keys.Add(current.Key);
-				values.Add(current.Value);
-			}
+			KeyValuePair<K, V> current = enumerator.Current;
+			keys.Add(current.Key);
+			values.Add(current.Value);
 		}
 	}
 
@@ -82,20 +80,18 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(K));
 		XmlSerializer xmlSerializer2 = new XmlSerializer(typeof(V));
-		using (Enumerator enumerator = GetEnumerator())
+		using Enumerator enumerator = GetEnumerator();
+		while (enumerator.MoveNext())
 		{
-			while (enumerator.MoveNext())
-			{
-				KeyValuePair<K, V> current = enumerator.Current;
-				writer.WriteStartElement("Item");
-				writer.WriteStartElement("Key");
-				xmlSerializer.Serialize(writer, current.Key);
-				writer.WriteEndElement();
-				writer.WriteStartElement("Value");
-				xmlSerializer2.Serialize(writer, current.Value);
-				writer.WriteEndElement();
-				writer.WriteEndElement();
-			}
+			KeyValuePair<K, V> current = enumerator.Current;
+			writer.WriteStartElement("Item");
+			writer.WriteStartElement("Key");
+			xmlSerializer.Serialize(writer, current.Key);
+			writer.WriteEndElement();
+			writer.WriteStartElement("Value");
+			xmlSerializer2.Serialize(writer, current.Value);
+			writer.WriteEndElement();
+			writer.WriteEndElement();
 		}
 	}
 }

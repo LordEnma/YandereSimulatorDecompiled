@@ -74,8 +74,8 @@ public class EditorManagerScript : MonoBehaviour
 		}
 		if (Input.GetButtonDown("A"))
 		{
-			editorPanels[buttonIndex].gameObject.SetActive(true);
-			mainPanel.gameObject.SetActive(false);
+			editorPanels[buttonIndex].gameObject.SetActive(value: true);
+			mainPanel.gameObject.SetActive(value: false);
 		}
 	}
 

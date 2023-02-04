@@ -22,8 +22,8 @@ public class PortraitScript : MonoBehaviour
 
 	private void Start()
 	{
-		StudentObject[1].SetActive(false);
-		StudentObject[2].SetActive(false);
+		StudentObject[1].SetActive(value: false);
+		StudentObject[2].SetActive(value: false);
 		Selected = 1;
 		UpdateHair();
 	}
@@ -32,23 +32,23 @@ public class PortraitScript : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			StudentObject[0].SetActive(true);
-			StudentObject[1].SetActive(false);
-			StudentObject[2].SetActive(false);
+			StudentObject[0].SetActive(value: true);
+			StudentObject[1].SetActive(value: false);
+			StudentObject[2].SetActive(value: false);
 			Selected = 1;
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			StudentObject[0].SetActive(false);
-			StudentObject[1].SetActive(true);
-			StudentObject[2].SetActive(false);
+			StudentObject[0].SetActive(value: false);
+			StudentObject[1].SetActive(value: true);
+			StudentObject[2].SetActive(value: false);
 			Selected = 2;
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
-			StudentObject[0].SetActive(false);
-			StudentObject[1].SetActive(false);
-			StudentObject[2].SetActive(true);
+			StudentObject[0].SetActive(value: false);
+			StudentObject[1].SetActive(value: false);
+			StudentObject[2].SetActive(value: true);
 			Selected = 3;
 		}
 		if (Input.GetKeyDown(KeyCode.Space))

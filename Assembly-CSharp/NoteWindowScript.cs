@@ -147,13 +147,14 @@ public class NoteWindowScript : MonoBehaviour
 			}
 			else
 			{
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 			return;
 		}
 		base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, Vector3.zero, t);
 		Rotation = Mathf.Lerp(Rotation, 0f, t);
 		base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y, Rotation);
+		Time.timeScale = 0.0001f;
 		if (!Selecting)
 		{
 			if (SubMenu.transform.localScale.x > 0.1f)
@@ -188,12 +189,12 @@ public class NoteWindowScript : MonoBehaviour
 				{
 					Yandere.PauseScreen.transform.parent.GetComponent<UIPanel>().alpha = 1f;
 					Yandere.PauseScreen.StudentInfoMenu.UsingLifeNote = true;
-					Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
+					Yandere.PauseScreen.StudentInfoMenu.gameObject.SetActive(value: true);
 					Yandere.PauseScreen.StudentInfoMenu.Column = 0;
 					Yandere.PauseScreen.StudentInfoMenu.Row = 0;
 					Yandere.PauseScreen.StudentInfoMenu.UpdateHighlight();
 					Yandere.PauseScreen.StudentInfoMenu.GrabbedPortraits = false;
-					Yandere.PauseScreen.MainMenu.SetActive(false);
+					Yandere.PauseScreen.MainMenu.SetActive(value: false);
 					Yandere.PauseScreen.Panel.enabled = true;
 					Yandere.PauseScreen.Sideways = true;
 					Yandere.PauseScreen.Show = true;
@@ -202,7 +203,7 @@ public class NoteWindowScript : MonoBehaviour
 					Yandere.PromptBar.Label[1].text = "Cancel";
 					Yandere.PromptBar.UpdateButtons();
 					Yandere.PromptBar.Show = true;
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 				}
 				else
 				{
@@ -335,7 +336,7 @@ public class NoteWindowScript : MonoBehaviour
 					NoteLocker.FindStudentLocker.Prompt.Hide();
 					NoteLocker.FindStudentLocker.Prompt.Label[0].text = "     You Must Wait For Other Student";
 					NoteLocker.FindStudentLocker.TargetedStudent = NoteLocker.Student;
-					NoteLocker.transform.GetChild(0).gameObject.SetActive(false);
+					NoteLocker.transform.GetChild(0).gameObject.SetActive(value: false);
 				}
 				Exit();
 			}

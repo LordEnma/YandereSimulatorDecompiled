@@ -35,8 +35,8 @@ public class AudioMenuScript : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.C))
 		{
-			CustomMusicMenu.SetActive(true);
-			base.gameObject.SetActive(false);
+			CustomMusicMenu.SetActive(value: true);
+			base.gameObject.SetActive(value: false);
 		}
 		if (InputManager.TappedUp)
 		{
@@ -89,8 +89,8 @@ public class AudioMenuScript : MonoBehaviour
 		}
 		else
 		{
-			int selected = Selected;
-			int num = 3;
+			_ = Selected;
+			_ = 3;
 		}
 		if (Input.GetButtonDown("B"))
 		{
@@ -100,10 +100,10 @@ public class AudioMenuScript : MonoBehaviour
 			PromptBar.Label[4].text = "Choose";
 			PromptBar.UpdateButtons();
 			PauseScreen.Yandere.Blur.enabled = true;
-			PauseScreen.MainMenu.SetActive(true);
+			PauseScreen.MainMenu.SetActive(value: true);
 			PauseScreen.Sideways = false;
 			PauseScreen.PressedB = true;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 

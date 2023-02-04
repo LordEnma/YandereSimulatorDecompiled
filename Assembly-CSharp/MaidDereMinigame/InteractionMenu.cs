@@ -47,8 +47,8 @@ namespace MaidDereMinigame
 		private void Awake()
 		{
 			SetAButton(AButtonText.None);
-			SetBButton(false);
-			SetADButton(true);
+			SetBButton(on: false);
+			SetADButton(on: true);
 		}
 
 		public static void SetAButton(AButtonText text)
@@ -57,11 +57,11 @@ namespace MaidDereMinigame
 			{
 				if (i == (int)text)
 				{
-					Instance.aButtonSprites[i].gameObject.SetActive(true);
+					Instance.aButtonSprites[i].gameObject.SetActive(value: true);
 				}
 				else
 				{
-					Instance.aButtonSprites[i].gameObject.SetActive(false);
+					Instance.aButtonSprites[i].gameObject.SetActive(value: false);
 				}
 			}
 			SpriteRenderer[] array = Instance.aButtons;

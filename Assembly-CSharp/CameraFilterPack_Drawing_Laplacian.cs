@@ -53,7 +53,7 @@ public class CameraFilterPack_Drawing_Laplacian : MonoBehaviour
 
 	private void Update()
 	{
-		bool isPlaying = Application.isPlaying;
+		_ = Application.isPlaying;
 	}
 
 	private void OnDisable()

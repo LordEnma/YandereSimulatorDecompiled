@@ -33,11 +33,11 @@ public class ConversationSaveData
 	{
 		foreach (int item in data.topicDiscovered)
 		{
-			ConversationGlobals.SetTopicDiscovered(item, true);
+			ConversationGlobals.SetTopicDiscovered(item, value: true);
 		}
 		foreach (IntAndIntPair item2 in data.topicLearnedByStudent)
 		{
-			ConversationGlobals.SetTopicLearnedByStudent(item2.first, item2.second, true);
+			ConversationGlobals.SetTopicLearnedByStudent(item2.first, item2.second, value: true);
 		}
 	}
 }

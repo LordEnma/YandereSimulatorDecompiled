@@ -82,8 +82,8 @@ public class DrinkingFountainScript : MonoBehaviour
 			if (Prompt.Circle[1].fillAmount == 0f)
 			{
 				Prompt.HideButton[1] = true;
-				Puddle.SetActive(true);
-				Leak.SetActive(true);
+				Puddle.SetActive(value: true);
+				Leak.SetActive(value: true);
 				MyAudio.Play();
 				PowerSwitch.CheckPuddle();
 			}

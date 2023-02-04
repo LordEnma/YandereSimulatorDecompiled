@@ -60,7 +60,7 @@ public class HomePantyChangerScript : MonoBehaviour
 		PantyParent.transform.localPosition = new Vector3(PantyParent.transform.localPosition.x, PantyParent.transform.localPosition.y, 1.8f);
 		UpdatePantyLabels();
 		PantyParent.transform.localScale = Vector3.zero;
-		PantyParent.gameObject.SetActive(false);
+		PantyParent.gameObject.SetActive(value: false);
 	}
 
 	private void Update()
@@ -68,7 +68,7 @@ public class HomePantyChangerScript : MonoBehaviour
 		if (HomeWindow.Show)
 		{
 			PantyParent.localScale = Vector3.Lerp(PantyParent.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-			PantyParent.gameObject.SetActive(true);
+			PantyParent.gameObject.SetActive(value: true);
 			if (InputManager.TappedRight)
 			{
 				DestinationReached = false;
@@ -119,17 +119,17 @@ public class HomePantyChangerScript : MonoBehaviour
 			}
 			if (Input.GetKeyDown("z"))
 			{
-				CollectibleGlobals.SetPantyPurchased(1, true);
-				CollectibleGlobals.SetPantyPurchased(2, true);
-				CollectibleGlobals.SetPantyPurchased(3, true);
-				CollectibleGlobals.SetPantyPurchased(4, true);
-				CollectibleGlobals.SetPantyPurchased(5, true);
-				CollectibleGlobals.SetPantyPurchased(6, true);
-				CollectibleGlobals.SetPantyPurchased(7, true);
-				CollectibleGlobals.SetPantyPurchased(8, true);
-				CollectibleGlobals.SetPantyPurchased(9, true);
-				CollectibleGlobals.SetPantyPurchased(10, true);
-				CollectibleGlobals.SetPantyPurchased(11, true);
+				CollectibleGlobals.SetPantyPurchased(1, value: true);
+				CollectibleGlobals.SetPantyPurchased(2, value: true);
+				CollectibleGlobals.SetPantyPurchased(3, value: true);
+				CollectibleGlobals.SetPantyPurchased(4, value: true);
+				CollectibleGlobals.SetPantyPurchased(5, value: true);
+				CollectibleGlobals.SetPantyPurchased(6, value: true);
+				CollectibleGlobals.SetPantyPurchased(7, value: true);
+				CollectibleGlobals.SetPantyPurchased(8, value: true);
+				CollectibleGlobals.SetPantyPurchased(9, value: true);
+				CollectibleGlobals.SetPantyPurchased(10, value: true);
+				CollectibleGlobals.SetPantyPurchased(11, value: true);
 			}
 		}
 		else
@@ -137,7 +137,7 @@ public class HomePantyChangerScript : MonoBehaviour
 			PantyParent.localScale = Vector3.Lerp(PantyParent.localScale, Vector3.zero, Time.deltaTime * 10f);
 			if (PantyParent.localScale.x < 0.01f)
 			{
-				PantyParent.gameObject.SetActive(false);
+				PantyParent.gameObject.SetActive(value: false);
 			}
 		}
 	}

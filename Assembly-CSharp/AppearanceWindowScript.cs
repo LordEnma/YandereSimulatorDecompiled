@@ -43,7 +43,7 @@ public class AppearanceWindowScript : MonoBehaviour
 					return;
 				}
 				Window.localScale = Vector3.zero;
-				Window.gameObject.SetActive(false);
+				Window.gameObject.SetActive(value: false);
 			}
 			return;
 		}

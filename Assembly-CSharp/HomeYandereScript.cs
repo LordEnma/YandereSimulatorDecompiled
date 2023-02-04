@@ -160,7 +160,7 @@ public class HomeYandereScript : MonoBehaviour
 				Controller.transform.localEulerAngles = new Vector3(0f, 0f, -180f);
 				HomeCamera.Destination = HomeCamera.Destinations[5];
 				HomeCamera.Target = HomeCamera.Targets[5];
-				Disc.SetActive(true);
+				Disc.SetActive(value: true);
 				WearPajamas();
 				MyAudio.clip = MiyukiReaction;
 			}
@@ -173,7 +173,7 @@ public class HomeYandereScript : MonoBehaviour
 				Controller.transform.localEulerAngles = new Vector3(0f, 0f, -180f);
 				HomeCamera.Destination = HomeCamera.Destinations[5];
 				HomeCamera.Target = HomeCamera.Targets[5];
-				Disc.SetActive(true);
+				Disc.SetActive(value: true);
 				WearPajamas();
 			}
 			if (GameGlobals.BlondeHair)
@@ -189,7 +189,7 @@ public class HomeYandereScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			StudentManager.Eighties = true;
-			RyobaHair.SetActive(true);
+			RyobaHair.SetActive(value: true);
 			Hairstyle = 0;
 			UpdateHair();
 			IdleAnim = "f02_ryobaIdle_00";
@@ -220,8 +220,8 @@ public class HomeYandereScript : MonoBehaviour
 		}
 		else
 		{
-			PonytailRenderer.transform.parent.gameObject.SetActive(true);
-			RyobaHair.SetActive(false);
+			PonytailRenderer.transform.parent.gameObject.SetActive(value: true);
+			RyobaHair.SetActive(value: false);
 			if (HomeGlobals.Night)
 			{
 				Hairstyle = 2;
@@ -326,7 +326,7 @@ public class HomeYandereScript : MonoBehaviour
 			{
 				YanvaniaGlobals.DraculaDefeated = false;
 				HomeGlobals.MiyukiDefeated = false;
-				Disc.SetActive(false);
+				Disc.SetActive(value: false);
 				HomeVideoGames.Quit();
 			}
 			Timer += Time.deltaTime;
@@ -353,10 +353,10 @@ public class HomeYandereScript : MonoBehaviour
 				StudentGlobals.MemorialStudents = 0;
 				for (int i = 1; i < 101; i++)
 				{
-					StudentGlobals.SetStudentDead(i, false);
-					StudentGlobals.SetStudentKidnapped(i, false);
-					StudentGlobals.SetStudentArrested(i, false);
-					StudentGlobals.SetStudentExpelled(i, false);
+					StudentGlobals.SetStudentDead(i, value: false);
+					StudentGlobals.SetStudentKidnapped(i, value: false);
+					StudentGlobals.SetStudentArrested(i, value: false);
+					StudentGlobals.SetStudentExpelled(i, value: false);
 				}
 				SceneManager.LoadScene("LoadingScene");
 			}
@@ -365,7 +365,7 @@ public class HomeYandereScript : MonoBehaviour
 		{
 			PauseScreen.QuitLabel.text = "Do you wish to return to the main menu?";
 			PauseScreen.YesLabel.text = "Yes";
-			PauseScreen.HomeButton.SetActive(false);
+			PauseScreen.HomeButton.SetActive(value: false);
 			PauseScreen.JumpToQuit();
 			CanMove = false;
 		}
@@ -375,17 +375,17 @@ public class HomeYandereScript : MonoBehaviour
 	{
 		if (Hairstyle == 0)
 		{
-			LongHairRenderer.gameObject.SetActive(false);
+			LongHairRenderer.gameObject.SetActive(value: false);
 			PonytailRenderer.enabled = false;
 		}
 		else if (Hairstyle == 1)
 		{
-			LongHairRenderer.gameObject.SetActive(false);
+			LongHairRenderer.gameObject.SetActive(value: false);
 			PonytailRenderer.enabled = true;
 		}
 		else if (Hairstyle == 2)
 		{
-			LongHairRenderer.gameObject.SetActive(true);
+			LongHairRenderer.gameObject.SetActive(value: true);
 			PonytailRenderer.enabled = false;
 		}
 	}
@@ -401,7 +401,7 @@ public class HomeYandereScript : MonoBehaviour
 
 	private void WearPajamas()
 	{
-		Pajamas.gameObject.SetActive(true);
+		Pajamas.gameObject.SetActive(value: true);
 		MyRenderer.sharedMesh = null;
 		MyRenderer.materials[0].mainTexture = PajamaTexture;
 		MyRenderer.materials[1].mainTexture = PajamaTexture;
@@ -491,7 +491,7 @@ public class HomeYandereScript : MonoBehaviour
 			{
 				OriginalHairs[i].transform.localPosition = new Vector3(0f, 1f, 0f);
 			}
-			VtuberHairs[GameGlobals.VtuberID].SetActive(true);
+			VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
 			for (int i = 0; i < 13; i++)
 			{
 				MyRenderer.SetBlendShapeWeight(i, 0f);
@@ -507,7 +507,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 		else
 		{
-			VtuberHairs[1].SetActive(false);
+			VtuberHairs[1].SetActive(value: false);
 		}
 	}
 }

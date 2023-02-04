@@ -30,17 +30,17 @@ namespace MaidDereMinigame.Malee
 		}
 
 		public ReorderableAttribute(string elementNameProperty)
-			: this(true, true, true, elementNameProperty)
+			: this(add: true, remove: true, draggable: true, elementNameProperty)
 		{
 		}
 
 		public ReorderableAttribute(string elementNameProperty, string elementIconPath)
-			: this(true, true, true, elementNameProperty, null, elementIconPath)
+			: this(add: true, remove: true, draggable: true, elementNameProperty, null, elementIconPath)
 		{
 		}
 
 		public ReorderableAttribute(string elementNameProperty, string elementNameOverride, string elementIconPath)
-			: this(true, true, true, elementNameProperty, elementNameOverride, elementIconPath)
+			: this(add: true, remove: true, draggable: true, elementNameProperty, elementNameOverride, elementIconPath)
 		{
 		}
 

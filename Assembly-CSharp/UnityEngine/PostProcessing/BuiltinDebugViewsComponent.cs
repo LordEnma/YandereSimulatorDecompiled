@@ -77,7 +77,7 @@ namespace UnityEngine.PostProcessing
 				mesh.SetVertices(list);
 				mesh.SetUVs(0, list2);
 				mesh.SetIndices(array2, MeshTopology.Lines, 0);
-				mesh.UploadMeshData(true);
+				mesh.UploadMeshData(markNoLongerReadable: true);
 				columnCount = columns;
 				rowCount = rows;
 			}

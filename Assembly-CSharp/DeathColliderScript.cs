@@ -33,7 +33,7 @@ public class DeathColliderScript : MonoBehaviour
 			}
 			component.transform.position = new Vector3(-28.78f, 100f, 10.386f);
 			component.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
-			component.MapMarker.gameObject.SetActive(false);
+			component.MapMarker.gameObject.SetActive(value: false);
 			GenericPrompt.CrushedStudent = component;
 		}
 		else if (other.gameObject.layer == 15 && other.gameObject.name == "Radio")

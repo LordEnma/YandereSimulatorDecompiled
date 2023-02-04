@@ -145,14 +145,14 @@ public class OsanaClubEventScript : MonoBehaviour
 						Debug.Log("Current EventPhase is: 30 and Osana is talking about the delinquents.");
 						Yandere.NotificationManager.TopicName = "Violence";
 						Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-						StudentManager.SetTopicLearnedByStudent(ClubIDs[EventPhase], 11, true);
+						StudentManager.SetTopicLearnedByStudent(ClubIDs[EventPhase], 11, boolean: true);
 					}
 					else
 					{
 						Debug.Log("Current EventPhase is: " + EventPhase + " and ClubID is: " + ClubIDs[EventPhase]);
 						Yandere.NotificationManager.TopicName = Yandere.NotificationManager.ClubNames[ClubIDs[EventPhase]];
 						Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-						StudentManager.SetTopicLearnedByStudent(ClubIDs[EventPhase], 11, true);
+						StudentManager.SetTopicLearnedByStudent(ClubIDs[EventPhase], 11, boolean: true);
 					}
 				}
 				return;

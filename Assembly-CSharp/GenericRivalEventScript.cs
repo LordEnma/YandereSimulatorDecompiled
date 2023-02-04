@@ -1596,7 +1596,7 @@ public class GenericRivalEventScript : MonoBehaviour
 						Senpai.Pathfinding.canMove = true;
 						Senpai.InEvent = true;
 						Senpai.DistanceToDestination = 100f;
-						Spy.gameObject.SetActive(true);
+						Spy.gameObject.SetActive(value: true);
 						Spy.Prompt.enabled = true;
 						if (Teleport)
 						{
@@ -1625,7 +1625,7 @@ public class GenericRivalEventScript : MonoBehaviour
 						Rival.Pathfinding.canMove = true;
 						Rival.InEvent = true;
 						Rival.DistanceToDestination = 100f;
-						Spy.gameObject.SetActive(true);
+						Spy.gameObject.SetActive(value: true);
 						Spy.Prompt.enabled = true;
 						if (Teleport)
 						{

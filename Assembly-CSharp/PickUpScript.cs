@@ -60,6 +60,10 @@ public class PickUpScript : MonoBehaviour
 
 	public GameObject Flame;
 
+	public GameObject MainModel;
+
+	public GameObject AltModel;
+
 	public GameObject[] FoodPieces;
 
 	public Mesh EightiesMesh;
@@ -131,6 +135,8 @@ public class PickUpScript : MonoBehaviour
 	public bool OpenFlame;
 
 	public bool SmokeBomb;
+
+	public bool SwapModel;
 
 	public bool Clothing;
 
@@ -212,7 +218,7 @@ public class PickUpScript : MonoBehaviour
 		Gloves = GetComponent<GloveScript>();
 		if (DisableAtStart)
 		{
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		if (GameGlobals.Eighties && EightiesMesh != null)
 		{
@@ -243,6 +249,13 @@ public class PickUpScript : MonoBehaviour
 			Yandere.StudentManager.SpawnedObjectManager.SpawnedObjectList[Yandere.StudentManager.SpawnedObjectManager.ObjectsSpawned] = ObjectType;
 			Yandere.StudentManager.SpawnedObjectManager.SpawnedTransforms[Yandere.StudentManager.SpawnedObjectManager.ObjectsSpawned] = base.transform;
 			Yandere.StudentManager.SpawnedObjectManager.ObjectsSpawned++;
+			OriginalPosition = Vector3.zero;
+			OriginalRotation = Vector3.zero;
+		}
+		if (SwapModel)
+		{
+			MainModel.SetActive(value: false);
+			AltModel.SetActive(value: true);
 		}
 	}
 
@@ -333,7 +346,7 @@ public class PickUpScript : MonoBehaviour
 				{
 					Yandere.Incinerator.BodyParts++;
 				}
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 			}
 		}
 		if (Yandere.PickUp != this && !MyRigidbody.isKinematic)
@@ -503,7 +516,7 @@ public class PickUpScript : MonoBehaviour
 		if (CarryAnimID == 10)
 		{
 			MyRenderer.mesh = OpenBook;
-			Yandere.LifeNotePen.SetActive(true);
+			Yandere.LifeNotePen.SetActive(value: true);
 		}
 		if (MyAnimation != null)
 		{
@@ -594,7 +607,7 @@ public class PickUpScript : MonoBehaviour
 		}
 		if (StinkBombs || BangSnaps)
 		{
-			Prompt.Yandere.Arc.SetActive(true);
+			Prompt.Yandere.Arc.SetActive(value: true);
 		}
 		Yandere.UpdateConcealedItemStatus();
 	}
@@ -627,7 +640,7 @@ public class PickUpScript : MonoBehaviour
 		if (CarryAnimID == 10)
 		{
 			MyRenderer.mesh = ClosedBook;
-			Yandere.LifeNotePen.SetActive(false);
+			Yandere.LifeNotePen.SetActive(value: false);
 		}
 		if (Weight)
 		{
@@ -733,7 +746,7 @@ public class PickUpScript : MonoBehaviour
 		}
 		if (StinkBombs || BangSnaps || SmokeBomb)
 		{
-			Prompt.Yandere.Arc.SetActive(false);
+			Prompt.Yandere.Arc.SetActive(value: false);
 			Prompt.HideButton[3] = false;
 			Prompt.HideButton[0] = true;
 		}
@@ -770,7 +783,7 @@ public class PickUpScript : MonoBehaviour
 		while (num < Food)
 		{
 			num++;
-			FoodPieces[num].SetActive(true);
+			FoodPieces[num].SetActive(value: true);
 		}
 	}
 }

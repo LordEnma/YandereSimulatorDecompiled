@@ -88,7 +88,7 @@ public class TweenPosition : UITweener
 		tweenPosition.to = pos;
 		if (duration <= 0f)
 		{
-			tweenPosition.Sample(1f, true);
+			tweenPosition.Sample(1f, isFinished: true);
 			tweenPosition.enabled = false;
 		}
 		return tweenPosition;
@@ -102,7 +102,7 @@ public class TweenPosition : UITweener
 		tweenPosition.to = pos;
 		if (duration <= 0f)
 		{
-			tweenPosition.Sample(1f, true);
+			tweenPosition.Sample(1f, isFinished: true);
 			tweenPosition.enabled = false;
 		}
 		return tweenPosition;

@@ -578,7 +578,7 @@ public class MissionModeMenuScript : MonoBehaviour
 					SceneManager.LoadScene("NewTitleScene");
 					return;
 				}
-				NowLoading.SetActive(true);
+				NowLoading.SetActive(value: true);
 				SceneManager.LoadScene("SchoolScene");
 			}
 		}
@@ -1264,7 +1264,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		ChangeLabel(Descs[1]);
 		for (int i = 2; i < Objectives.Length; i++)
 		{
-			Objectives[i].gameObject.SetActive(false);
+			Objectives[i].gameObject.SetActive(value: false);
 		}
 		if (MissionModeGlobals.MissionDifficulty <= 1)
 		{
@@ -1272,7 +1272,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 		for (int j = 2; j < MissionModeGlobals.MissionDifficulty + 1; j++)
 		{
-			Objectives[j].gameObject.SetActive(true);
+			Objectives[j].gameObject.SetActive(value: true);
 			Icons[j].mainTexture = ConditionIcons[MissionModeGlobals.GetMissionCondition(j)];
 			ChangeLabel(Descs[j]);
 			if (MissionModeGlobals.GetMissionCondition(j) > 3)

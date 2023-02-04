@@ -13,13 +13,7 @@ public class TimeOfDayEventTime : IScheduledEventTime
 	[SerializeField]
 	private TimeOfDay timeOfDay;
 
-	public ScheduledEventTimeType ScheduleType
-	{
-		get
-		{
-			return ScheduledEventTimeType.TimeOfDay;
-		}
-	}
+	public ScheduledEventTimeType ScheduleType => ScheduledEventTimeType.TimeOfDay;
 
 	public TimeOfDayEventTime(int week, DayOfWeek weekday, TimeOfDay timeOfDay)
 	{

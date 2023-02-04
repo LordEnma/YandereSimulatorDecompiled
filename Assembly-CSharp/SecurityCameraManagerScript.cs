@@ -11,7 +11,7 @@ public class SecurityCameraManagerScript : MonoBehaviour
 		{
 			if (num < Cameras.Length)
 			{
-				Cameras[num].SetActive(true);
+				Cameras[num].SetActive(value: true);
 			}
 		}
 	}
@@ -22,7 +22,7 @@ public class SecurityCameraManagerScript : MonoBehaviour
 		{
 			if (num < Cameras.Length)
 			{
-				Cameras[num].SetActive(true);
+				Cameras[num].SetActive(value: true);
 			}
 		}
 	}

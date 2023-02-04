@@ -172,12 +172,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	{
 		get
 		{
-			INGUIAtlas iNGUIAtlas = replacement;
-			if (iNGUIAtlas == null)
-			{
-				return mPixelSize;
-			}
-			return iNGUIAtlas.pixelSize;
+			return replacement?.pixelSize ?? mPixelSize;
 		}
 		set
 		{
@@ -250,8 +245,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 			{
 				MarkSpriteListAsChanged();
 			}
-			int value;
-			if (mSpriteIndices.TryGetValue(name, out value))
+			if (mSpriteIndices.TryGetValue(name, out var value))
 			{
 				if (value > -1 && value < mSprites.Count)
 				{
@@ -383,21 +377,12 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 		{
 			return true;
 		}
-		INGUIAtlas iNGUIAtlas = replacement;
-		if (iNGUIAtlas == null)
-		{
-			return false;
-		}
-		return iNGUIAtlas.References(atlas);
+		return replacement?.References(atlas) ?? false;
 	}
 
 	public void MarkAsChanged()
 	{
-		INGUIAtlas iNGUIAtlas = replacement;
-		if (iNGUIAtlas != null)
-		{
-			iNGUIAtlas.MarkAsChanged();
-		}
+		replacement?.MarkAsChanged();
 		UISprite[] array = NGUITools.FindActive<UISprite>();
 		int i = 0;
 		for (int num = array.Length; i < num; i++)
@@ -441,7 +426,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 			UILabel uILabel = array4[l];
 			if (uILabel.atlas != null && NGUITools.CheckIfRelated(this, uILabel.atlas))
 			{
-				INGUIAtlas atla = uILabel.atlas;
+				_ = uILabel.atlas;
 				INGUIFont bitmapFont = uILabel.bitmapFont;
 				uILabel.bitmapFont = null;
 				uILabel.bitmapFont = bitmapFont;
@@ -472,8 +457,8 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 				Rect inner = sprite.inner;
 				if (mCoordinates == Coordinates.TexCoords)
 				{
-					NGUIMath.ConvertToPixels(outer, width, height, true);
-					NGUIMath.ConvertToPixels(inner, width, height, true);
+					NGUIMath.ConvertToPixels(outer, width, height, round: true);
+					NGUIMath.ConvertToPixels(inner, width, height, round: true);
 				}
 				UISpriteData uISpriteData = new UISpriteData();
 				uISpriteData.name = sprite.name;

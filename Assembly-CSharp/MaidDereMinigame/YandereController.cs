@@ -57,7 +57,7 @@ namespace MaidDereMinigame
 		{
 			spriteRenderer = GetComponent<SpriteRenderer>();
 			animator = GetComponent<Animator>();
-			plateTransform.gameObject.SetActive(false);
+			plateTransform.gameObject.SetActive(value: false);
 			moveSpeed = GameController.Instance.activeDifficultyVariables.playerMoveSpeed;
 			isPaused = true;
 			if (GameGlobals.Eighties)
@@ -81,7 +81,7 @@ namespace MaidDereMinigame
 			isPaused = toPause;
 			if (isPaused)
 			{
-				animator.SetBool("Moving", false);
+				animator.SetBool("Moving", value: false);
 			}
 			animator.speed = ((!isPaused) ? 1 : 0);
 		}
@@ -136,12 +136,12 @@ namespace MaidDereMinigame
 			}
 			if (aiTarget != null)
 			{
-				interactionIndicator.gameObject.SetActive(true);
+				interactionIndicator.gameObject.SetActive(value: true);
 				interactionIndicator.position = new Vector3(aiTarget.transform.position.x, aiTarget.transform.position.y + 0.6f, aiTarget.transform.position.z);
 			}
 			else
 			{
-				interactionIndicator.gameObject.SetActive(false);
+				interactionIndicator.gameObject.SetActive(value: false);
 			}
 		}
 
@@ -149,7 +149,7 @@ namespace MaidDereMinigame
 		{
 			if (isPaused)
 			{
-				animator.SetBool("Moving", false);
+				animator.SetBool("Moving", value: false);
 				return default(ControlInput);
 			}
 			float horizontal = 0f;
@@ -178,11 +178,11 @@ namespace MaidDereMinigame
 					PositionTray(LastKnownPoints);
 				}
 				LastKnownFlip = spriteRenderer.flipX;
-				animator.SetBool("Moving", true);
+				animator.SetBool("Moving", value: true);
 			}
 			else
 			{
-				animator.SetBool("Moving", false);
+				animator.SetBool("Moving", value: false);
 			}
 			return result;
 		}
@@ -191,14 +191,14 @@ namespace MaidDereMinigame
 		{
 			animator.SetTrigger("GetTray");
 			heldItem = plate;
-			plateTransform.gameObject.SetActive(false);
+			plateTransform.gameObject.SetActive(value: false);
 			plateTransform.GetComponent<SpriteRenderer>().sprite = heldItem.smallSprite;
-			plateTransform.gameObject.SetActive(true);
+			plateTransform.gameObject.SetActive(value: true);
 		}
 
 		public void DropTray()
 		{
-			plateTransform.gameObject.SetActive(false);
+			plateTransform.gameObject.SetActive(value: false);
 			animator.SetTrigger("DropTray");
 			heldItem = null;
 		}
@@ -240,10 +240,8 @@ namespace MaidDereMinigame
 		{
 			string[] array = point.Split(',');
 			LastKnownPoints = point;
-			float result;
-			float.TryParse(array[0], out result);
-			float result2;
-			float.TryParse(array[1], out result2);
+			float.TryParse(array[0], out var result);
+			float.TryParse(array[1], out var result2);
 			plateTransform.localPosition = new Vector3(spriteRenderer.flipX ? (0f - result) : result, result2, 0f);
 		}
 	}

@@ -185,7 +185,7 @@ public class TimelineScript : MonoBehaviour
 		Height -= 150;
 		SpawnAishiData("Ryoba's sister gives birth to a daughter.");
 		Height -= 150;
-		SpawnYear(2007);
+		SpawnYear(2009);
 		SpawnSaikouData("Ichirou Saikou's son is born. He is named Kencho.");
 		Height -= 150;
 		SpawnYear(2022);
@@ -200,7 +200,7 @@ public class TimelineScript : MonoBehaviour
 		SpawnYear(2025);
 		Long = true;
 		Height -= 100;
-		SpawnMiscData("The Saikou family announces to the world that Saisho Saikou has passed away at the age of 95.");
+		SpawnMiscData("The Saikou family announces to the world that Saisho Saikou has passed away at the age of 97.");
 		Height -= 150;
 		Hide = true;
 		SpawnMiscData("Ayano Aishi finds her Senpai.");

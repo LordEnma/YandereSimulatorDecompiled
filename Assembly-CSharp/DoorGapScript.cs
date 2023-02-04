@@ -20,7 +20,7 @@ public class DoorGapScript : MonoBehaviour
 
 	private void Start()
 	{
-		Papers[1].gameObject.SetActive(false);
+		Papers[1].gameObject.SetActive(value: false);
 	}
 
 	private void Update()
@@ -34,7 +34,7 @@ public class DoorGapScript : MonoBehaviour
 					Prompt.Hide();
 					Prompt.enabled = false;
 					Prompt.Yandere.Inventory.AnswerSheet = false;
-					Papers[1].gameObject.SetActive(true);
+					Papers[1].gameObject.SetActive(value: true);
 					SchemeGlobals.SetSchemeStage(5, 6);
 					Schemes.UpdateInstructions();
 					GetComponent<AudioSource>().Play();
@@ -45,7 +45,7 @@ public class DoorGapScript : MonoBehaviour
 					Prompt.enabled = false;
 					Prompt.Yandere.Inventory.AnswerSheet = true;
 					Prompt.Yandere.Inventory.DuplicateSheet = true;
-					Papers[2].gameObject.SetActive(false);
+					Papers[2].gameObject.SetActive(value: false);
 					RummageSpot.Prompt.Label[0].text = "     Return Answer Sheet";
 					RummageSpot.Prompt.enabled = true;
 					SchemeGlobals.SetSchemeStage(5, 7);
@@ -95,7 +95,7 @@ public class DoorGapScript : MonoBehaviour
 					Prompt.Yandere.Inventory.PantyShots += 20;
 					Prompt.Yandere.NotificationManager.CustomText = "+20 Info Points! You have " + Prompt.Yandere.Inventory.PantyShots + " in total";
 					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					Papers[1].gameObject.SetActive(true);
+					Papers[1].gameObject.SetActive(value: true);
 					GetComponent<AudioSource>().Play();
 					Phase++;
 				}
@@ -103,7 +103,7 @@ public class DoorGapScript : MonoBehaviour
 			else if (Phase == 2)
 			{
 				Prompt.Yandere.Inventory.RivalPhone = true;
-				Papers[1].gameObject.SetActive(false);
+				Papers[1].gameObject.SetActive(value: false);
 				Prompt.Hide();
 				Prompt.enabled = false;
 				Phase++;
@@ -134,7 +134,7 @@ public class DoorGapScript : MonoBehaviour
 		{
 			if (PhoneHacked[i])
 			{
-				StudentGlobals.SetStudentPhoneStolen(i, true);
+				StudentGlobals.SetStudentPhoneStolen(i, value: true);
 			}
 		}
 	}

@@ -13,29 +13,11 @@ public class DateAndTime
 	[SerializeField]
 	private Clock clock;
 
-	public int Week
-	{
-		get
-		{
-			return week;
-		}
-	}
+	public int Week => week;
 
-	public DayOfWeek Weekday
-	{
-		get
-		{
-			return weekday;
-		}
-	}
+	public DayOfWeek Weekday => weekday;
 
-	public Clock Clock
-	{
-		get
-		{
-			return clock;
-		}
-	}
+	public Clock Clock => clock;
 
 	public int TotalSeconds
 	{

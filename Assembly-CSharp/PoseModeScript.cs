@@ -70,7 +70,7 @@ public class PoseModeScript : MonoBehaviour
 
 	private void Start()
 	{
-		PoseModeCamera.gameObject.SetActive(false);
+		PoseModeCamera.gameObject.SetActive(value: false);
 		base.transform.localScale = Vector3.zero;
 		Panel.enabled = false;
 	}
@@ -141,7 +141,7 @@ public class PoseModeScript : MonoBehaviour
 					}
 					else if (Selected == 6)
 					{
-						PoseModeCamera.gameObject.SetActive(true);
+						PoseModeCamera.gameObject.SetActive(value: true);
 						PoseModeCamera.transform.parent = Student.Head;
 						PoseModeCamera.transform.localPosition = new Vector3(0f, 0f, 0.5f);
 						PoseModeCamera.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
@@ -649,7 +649,7 @@ public class PoseModeScript : MonoBehaviour
 					PromptBar.Label[2].text = string.Empty;
 					PromptBar.Label[3].text = string.Empty;
 					PromptBar.UpdateButtons();
-					PoseModeCamera.gameObject.SetActive(false);
+					PoseModeCamera.gameObject.SetActive(value: false);
 					ChoosingAction = true;
 					EditingFace = false;
 					UpdateLabels();
@@ -698,7 +698,7 @@ public class PoseModeScript : MonoBehaviour
 					PromptBar.Label[2].text = string.Empty;
 					PromptBar.Label[3].text = string.Empty;
 					PromptBar.UpdateButtons();
-					PoseModeCamera.gameObject.SetActive(false);
+					PoseModeCamera.gameObject.SetActive(value: false);
 					ChoosingAction = true;
 					SavingLoading = false;
 					UpdateLabels();
@@ -779,10 +779,10 @@ public class PoseModeScript : MonoBehaviour
 			uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 1f);
 			uILabel.text = string.Empty;
 		}
-		Warning.SetActive(false);
+		Warning.SetActive(value: false);
 		if (ChoosingAction)
 		{
-			Warning.SetActive(true);
+			Warning.SetActive(value: true);
 			HeaderLabel.text = "Choose Action";
 			OptionLabels[1].text = "Pose";
 			OptionLabels[2].text = "Re-Position";

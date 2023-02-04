@@ -180,7 +180,7 @@ public class ToiletEventScript : MonoBehaviour
 						EventStudent.CurrentDestination = EventLocation[3];
 						EventStudent.Pathfinding.target = EventLocation[3];
 						EventStudent.TargetDistance = 2f;
-						StallDoor.gameObject.SetActive(true);
+						StallDoor.gameObject.SetActive(value: true);
 						StallDoor.Prompt.enabled = true;
 						StallDoor.Locked = false;
 						EventPhase++;
@@ -263,7 +263,7 @@ public class ToiletEventScript : MonoBehaviour
 			EventSubtitle.text = string.Empty;
 			StudentManager.UpdateStudents();
 		}
-		StallDoor.gameObject.SetActive(true);
+		StallDoor.gameObject.SetActive(value: true);
 		StallDoor.Prompt.enabled = true;
 		StallDoor.Locked = false;
 		BucketPour.enabled = false;

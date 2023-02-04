@@ -41,7 +41,7 @@ public class BringItemScript : MonoBehaviour
 		{
 			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 50f - (float)PlayerGlobals.BringingItem * 50f, Highlight.localPosition.z);
 			Checkmark.transform.localPosition = new Vector3(300f, Highlight.localPosition.y, 0f);
-			Checkmark.SetActive(true);
+			Checkmark.SetActive(value: true);
 		}
 		if (PlayerGlobals.BoughtLockpick)
 		{
@@ -102,12 +102,12 @@ public class BringItemScript : MonoBehaviour
 			if (PlayerGlobals.BringingItem != ID)
 			{
 				Checkmark.transform.localPosition = new Vector3(300f, Highlight.localPosition.y, 0f);
-				Checkmark.SetActive(true);
+				Checkmark.SetActive(value: true);
 				PlayerGlobals.BringingItem = ID;
 			}
 			else
 			{
-				Checkmark.SetActive(false);
+				Checkmark.SetActive(value: false);
 				PlayerGlobals.BringingItem = 0;
 			}
 		}

@@ -124,15 +124,15 @@ public class StudentInfoMenuScript : MonoBehaviour
 		{
 			return;
 		}
-		StudentGlobals.SetStudentPhotographed(StudentManager.RivalID, true);
+		StudentGlobals.SetStudentPhotographed(StudentManager.RivalID, value: true);
 		StudentManager.StudentPhotographed[StudentManager.RivalID] = true;
-		StudentGlobals.SetStudentPhotographed(0, true);
-		StudentGlobals.SetStudentPhotographed(1, true);
+		StudentGlobals.SetStudentPhotographed(0, value: true);
+		StudentGlobals.SetStudentPhotographed(1, value: true);
 		StudentManager.StudentPhotographed[0] = true;
 		StudentManager.StudentPhotographed[1] = true;
-		StudentGlobals.SetStudentPhotographed(98, true);
-		StudentGlobals.SetStudentPhotographed(99, true);
-		StudentGlobals.SetStudentPhotographed(100, true);
+		StudentGlobals.SetStudentPhotographed(98, value: true);
+		StudentGlobals.SetStudentPhotographed(99, value: true);
+		StudentGlobals.SetStudentPhotographed(100, value: true);
 		StudentManager.StudentPhotographed[98] = true;
 		StudentManager.StudentPhotographed[99] = true;
 		StudentManager.StudentPhotographed[100] = true;
@@ -198,12 +198,12 @@ public class StudentInfoMenuScript : MonoBehaviour
 				{
 					if (UsingLifeNote)
 					{
-						PauseScreen.MainMenu.SetActive(true);
+						PauseScreen.MainMenu.SetActive(value: true);
 						PauseScreen.Sideways = false;
 						PauseScreen.Show = false;
-						base.gameObject.SetActive(false);
+						base.gameObject.SetActive(value: false);
 						NoteWindow.TargetStudent = StudentID;
-						NoteWindow.gameObject.SetActive(true);
+						NoteWindow.gameObject.SetActive(value: true);
 						NoteWindow.SlotLabels[1].text = StudentManager.Students[StudentID].Name;
 						NoteWindow.SlotsFilled[1] = true;
 						UsingLifeNote = false;
@@ -213,10 +213,10 @@ public class StudentInfoMenuScript : MonoBehaviour
 					}
 					else
 					{
-						StudentInfo.gameObject.SetActive(true);
+						StudentInfo.gameObject.SetActive(value: true);
 						StudentInfo.UpdateInfo(StudentID);
-						StudentInfo.Topics.SetActive(false);
-						base.gameObject.SetActive(false);
+						StudentInfo.Topics.SetActive(value: false);
+						base.gameObject.SetActive(value: false);
 						PromptBar.ClearButtons();
 						if (Gossiping)
 						{
@@ -295,12 +295,12 @@ public class StudentInfoMenuScript : MonoBehaviour
 							}
 						}
 					}
-					PauseScreen.ServiceMenu.gameObject.SetActive(true);
+					PauseScreen.ServiceMenu.gameObject.SetActive(value: true);
 					PauseScreen.ServiceMenu.UpdateList();
 					PauseScreen.ServiceMenu.UpdateDesc();
 					PauseScreen.ServiceMenu.Purchase();
 					GettingInfo = false;
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 				}
 				if (PauseScreen.Eighties)
 				{
@@ -319,10 +319,10 @@ public class StudentInfoMenuScript : MonoBehaviour
 				}
 				PauseScreen.Yandere.Interaction = YandereInteractionType.Bye;
 				PauseScreen.Yandere.TalkTimer = 2f;
-				PauseScreen.MainMenu.SetActive(true);
+				PauseScreen.MainMenu.SetActive(value: true);
 				PauseScreen.Sideways = false;
 				PauseScreen.Show = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				Time.timeScale = 1f;
 				Distracting = false;
 				MatchMaking = false;
@@ -333,10 +333,10 @@ public class StudentInfoMenuScript : MonoBehaviour
 			}
 			else if (CyberBullying || CyberStalking || FindingLocker)
 			{
-				PauseScreen.MainMenu.SetActive(true);
+				PauseScreen.MainMenu.SetActive(value: true);
 				PauseScreen.Sideways = false;
 				PauseScreen.Show = false;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				Time.timeScale = 1f;
 				if (FindingLocker)
 				{
@@ -348,10 +348,10 @@ public class StudentInfoMenuScript : MonoBehaviour
 			}
 			else if (SendingHome || GettingInfo || GettingOpinions || FiringCouncilMember)
 			{
-				PauseScreen.ServiceMenu.gameObject.SetActive(true);
+				PauseScreen.ServiceMenu.gameObject.SetActive(value: true);
 				PauseScreen.ServiceMenu.UpdateList();
 				PauseScreen.ServiceMenu.UpdateDesc();
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				FiringCouncilMember = false;
 				GettingOpinions = false;
 				SendingHome = false;
@@ -359,19 +359,19 @@ public class StudentInfoMenuScript : MonoBehaviour
 			}
 			else if (UsingLifeNote)
 			{
-				PauseScreen.MainMenu.SetActive(true);
+				PauseScreen.MainMenu.SetActive(value: true);
 				PauseScreen.Sideways = false;
 				PauseScreen.Show = false;
-				base.gameObject.SetActive(false);
-				NoteWindow.gameObject.SetActive(true);
+				base.gameObject.SetActive(value: false);
+				NoteWindow.gameObject.SetActive(value: true);
 				UsingLifeNote = false;
 			}
 			else
 			{
-				PauseScreen.MainMenu.SetActive(true);
+				PauseScreen.MainMenu.SetActive(value: true);
 				PauseScreen.Sideways = false;
 				PauseScreen.PressedB = true;
-				base.gameObject.SetActive(false);
+				base.gameObject.SetActive(value: false);
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "Accept";
 				PromptBar.Label[1].text = "Exit";
@@ -716,7 +716,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 			}
 			if (StudentManager.PantyShotTaken[ID] || PlayerGlobals.GetStudentPantyShot(ID))
 			{
-				StudentPortraits[ID].Panties.SetActive(true);
+				StudentPortraits[ID].Panties.SetActive(value: true);
 			}
 			if (StudentManager.Students[ID] != null && StudentPortraits[ID] != null)
 			{
@@ -728,20 +728,20 @@ public class StudentInfoMenuScript : MonoBehaviour
 			}
 			if (StudentGlobals.GetStudentDying(ID) || StudentGlobals.GetStudentDead(ID) || (StudentManager.Students[ID] != null && !StudentManager.Students[ID].Alive))
 			{
-				StudentPortraits[ID].DeathShadow.SetActive(true);
+				StudentPortraits[ID].DeathShadow.SetActive(value: true);
 			}
 			if (MissionModeGlobals.MissionMode && ID == 1)
 			{
-				StudentPortraits[ID].DeathShadow.SetActive(true);
+				StudentPortraits[ID].DeathShadow.SetActive(value: true);
 			}
 			if (SceneManager.GetActiveScene().name == "SchoolScene" && StudentManager.Students[ID] != null && StudentManager.Students[ID].Tranquil)
 			{
-				StudentPortraits[ID].DeathShadow.SetActive(true);
+				StudentPortraits[ID].DeathShadow.SetActive(value: true);
 			}
 			if (StudentGlobals.GetStudentArrested(ID))
 			{
-				StudentPortraits[ID].PrisonBars.SetActive(true);
-				StudentPortraits[ID].DeathShadow.SetActive(true);
+				StudentPortraits[ID].PrisonBars.SetActive(value: true);
+				StudentPortraits[ID].DeathShadow.SetActive(value: true);
 			}
 			if (StudentManager.Eighties && ID > 11 && ID < 21 && DateGlobals.Week < ID - 10 && StudentPortraits[ID] != null)
 			{

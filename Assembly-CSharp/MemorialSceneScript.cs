@@ -57,12 +57,12 @@ public class MemorialSceneScript : MonoBehaviour
 		int i;
 		for (i = 1; i < 10; i++)
 		{
-			Canvases[i].SetActive(false);
+			Canvases[i].SetActive(value: false);
 		}
 		string text = "";
 		if (GameGlobals.Eighties)
 		{
-			StudentManager.IdolStage.SetActive(false);
+			StudentManager.IdolStage.SetActive(value: false);
 			text = "1989";
 			TurnYoung();
 		}
@@ -70,7 +70,7 @@ public class MemorialSceneScript : MonoBehaviour
 		while (MemorialStudents > 0)
 		{
 			i++;
-			Canvases[i].SetActive(true);
+			Canvases[i].SetActive(value: true);
 			if (MemorialStudents == 1)
 			{
 				num = StudentGlobals.MemorialStudent1;
@@ -143,6 +143,7 @@ public class MemorialSceneScript : MonoBehaviour
 				{
 					StudentManager.Yandere.Subtitle.UpdateLabel(SubtitleType.Eulogy, 1, 8f);
 				}
+				StudentManager.Yandere.PromptBar.ClearButtons();
 				StudentManager.Yandere.PromptBar.Label[0].text = "Continue";
 				StudentManager.Yandere.PromptBar.UpdateButtons();
 				StudentManager.Yandere.PromptBar.Show = true;
@@ -172,8 +173,8 @@ public class MemorialSceneScript : MonoBehaviour
 			}
 			if (StudentManager.Eighties && DateGlobals.Week == 6)
 			{
-				StudentManager.IdolStage.SetActive(true);
-				base.gameObject.SetActive(false);
+				StudentManager.IdolStage.SetActive(value: true);
+				base.gameObject.SetActive(value: false);
 			}
 			StudentManager.Yandere.Casual = !StudentManager.Yandere.Casual;
 			StudentManager.Yandere.ChangeSchoolwear();
@@ -193,8 +194,8 @@ public class MemorialSceneScript : MonoBehaviour
 			StudentManager.Clock.HourTime = 7.5f;
 			StudentManager.Unstop();
 			StudentManager.SkipTo8();
-			Headmaster.SetActive(false);
-			Counselor.SetActive(false);
+			Headmaster.SetActive(value: false);
+			Counselor.SetActive(value: false);
 			StudentManager.UpdateAllSleuthClothing();
 			StudentManager.Clock.GivePlayerBroughtWeapon();
 			base.enabled = false;
@@ -204,19 +205,19 @@ public class MemorialSceneScript : MonoBehaviour
 
 	private void TurnYoung()
 	{
-		YoungHeadmaster.SetActive(true);
-		HeadmasterMesh[1].SetActive(false);
-		HeadmasterMesh[2].SetActive(false);
-		HeadmasterMesh[3].SetActive(false);
-		HeadmasterMesh[4].SetActive(false);
-		HeadmasterMesh[5].SetActive(false);
-		CounselorMother.SetActive(true);
-		CounselorMesh[1].SetActive(false);
-		CounselorMesh[2].SetActive(false);
-		CounselorMesh[3].SetActive(false);
-		CounselorMesh[4].SetActive(false);
-		CounselorMesh[5].SetActive(false);
-		CounselorMesh[6].SetActive(false);
-		CounselorMesh[7].SetActive(true);
+		YoungHeadmaster.SetActive(value: true);
+		HeadmasterMesh[1].SetActive(value: false);
+		HeadmasterMesh[2].SetActive(value: false);
+		HeadmasterMesh[3].SetActive(value: false);
+		HeadmasterMesh[4].SetActive(value: false);
+		HeadmasterMesh[5].SetActive(value: false);
+		CounselorMother.SetActive(value: true);
+		CounselorMesh[1].SetActive(value: false);
+		CounselorMesh[2].SetActive(value: false);
+		CounselorMesh[3].SetActive(value: false);
+		CounselorMesh[4].SetActive(value: false);
+		CounselorMesh[5].SetActive(value: false);
+		CounselorMesh[6].SetActive(value: false);
+		CounselorMesh[7].SetActive(value: true);
 	}
 }

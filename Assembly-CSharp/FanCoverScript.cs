@@ -171,7 +171,7 @@ public class FanCoverScript : MonoBehaviour
 						Yandere.Police.BloodyClothing++;
 					}
 				}
-				BloodProjector.gameObject.SetActive(true);
+				BloodProjector.gameObject.SetActive(value: true);
 				BloodProjector.material.mainTexture = BloodTexture[1];
 				BloodEffects.transform.parent = Rival.Head;
 				BloodEffects.transform.localPosition = new Vector3(0f, 0.1f, 0f);
@@ -204,12 +204,12 @@ public class FanCoverScript : MonoBehaviour
 				BloodProjector.material.mainTexture = BloodTexture[5];
 				Yandere.Bloodiness += 20f;
 				Rival.Ragdoll.Decapitated = true;
-				Rival.OsanaHair.SetActive(false);
+				Rival.OsanaHair.SetActive(value: false);
 				Rival.DeathType = DeathType.Weapon;
 				Rival.BecomeRagdoll();
 				BloodEffects.Stop();
-				Explosion.SetActive(true);
-				Smoke.SetActive(true);
+				Explosion.SetActive(value: true);
+				Smoke.SetActive(value: true);
 				Fan.enabled = false;
 				Phase = 10;
 			}
@@ -218,7 +218,7 @@ public class FanCoverScript : MonoBehaviour
 		{
 			Yandere.Blur.Size = Mathf.MoveTowards(Yandere.Blur.Size, 0f, Time.deltaTime);
 			Yandere.MurderousActionTimer = 0f;
-			OfferHelp.SetActive(false);
+			OfferHelp.SetActive(value: false);
 			Yandere.CanMove = true;
 			Yandere.Blur.Size = 0f;
 			base.enabled = false;

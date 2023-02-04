@@ -84,7 +84,7 @@ public class TranqCaseScript : MonoBehaviour
 				Open = true;
 				if (Ragdoll.Student.Club == ClubType.LightMusic && Ragdoll.Student.InstrumentBag[Ragdoll.Student.ClubMemberID] != null)
 				{
-					Ragdoll.Student.InstrumentBag[Ragdoll.Student.ClubMemberID].gameObject.SetActive(false);
+					Ragdoll.Student.InstrumentBag[Ragdoll.Student.ClubMemberID].gameObject.SetActive(value: false);
 				}
 			}
 		}

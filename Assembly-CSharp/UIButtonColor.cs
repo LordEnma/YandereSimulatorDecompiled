@@ -47,7 +47,7 @@ public class UIButtonColor : UIWidgetContainer
 		}
 		set
 		{
-			SetState(value, false);
+			SetState(value, instant: false);
 		}
 	}
 
@@ -70,7 +70,7 @@ public class UIButtonColor : UIWidgetContainer
 			mDefaultColor = value;
 			State state = mState;
 			mState = State.Disabled;
-			SetState(state, false);
+			SetState(state, instant: false);
 		}
 	}
 
@@ -107,7 +107,7 @@ public class UIButtonColor : UIWidgetContainer
 		}
 		if (!isEnabled)
 		{
-			SetState(State.Disabled, true);
+			SetState(State.Disabled, instant: true);
 		}
 	}
 
@@ -164,11 +164,11 @@ public class UIButtonColor : UIWidgetContainer
 		{
 			if (UICamera.currentTouch.pressed == base.gameObject)
 			{
-				OnPress(true);
+				OnPress(isPressed: true);
 			}
 			else if (UICamera.currentTouch.current == base.gameObject)
 			{
-				OnHover(true);
+				OnHover(isOver: true);
 			}
 		}
 	}
@@ -179,7 +179,7 @@ public class UIButtonColor : UIWidgetContainer
 		{
 			return;
 		}
-		SetState(State.Normal, true);
+		SetState(State.Normal, instant: true);
 		if (tweenTarget != null)
 		{
 			TweenColor component = tweenTarget.GetComponent<TweenColor>();
@@ -201,7 +201,7 @@ public class UIButtonColor : UIWidgetContainer
 			}
 			if (tweenTarget != null)
 			{
-				SetState(isOver ? State.Hover : State.Normal, false);
+				SetState(isOver ? State.Hover : State.Normal, instant: false);
 			}
 		}
 	}
@@ -222,26 +222,26 @@ public class UIButtonColor : UIWidgetContainer
 		}
 		if (isPressed)
 		{
-			SetState(State.Pressed, false);
+			SetState(State.Pressed, instant: false);
 		}
 		else if (UICamera.currentTouch != null && UICamera.currentTouch.current == base.gameObject)
 		{
 			if (UICamera.currentScheme == UICamera.ControlScheme.Controller)
 			{
-				SetState(State.Hover, false);
+				SetState(State.Hover, instant: false);
 			}
 			else if (UICamera.currentScheme == UICamera.ControlScheme.Mouse && UICamera.hoveredObject == base.gameObject)
 			{
-				SetState(State.Hover, false);
+				SetState(State.Hover, instant: false);
 			}
 			else
 			{
-				SetState(State.Normal, false);
+				SetState(State.Normal, instant: false);
 			}
 		}
 		else
 		{
-			SetState(State.Normal, false);
+			SetState(State.Normal, instant: false);
 		}
 	}
 
@@ -255,7 +255,7 @@ public class UIButtonColor : UIWidgetContainer
 			}
 			if (tweenTarget != null)
 			{
-				SetState(State.Pressed, false);
+				SetState(State.Pressed, instant: false);
 			}
 		}
 	}
@@ -270,7 +270,7 @@ public class UIButtonColor : UIWidgetContainer
 			}
 			if (tweenTarget != null)
 			{
-				SetState(State.Normal, false);
+				SetState(State.Normal, instant: false);
 			}
 		}
 	}
@@ -293,22 +293,13 @@ public class UIButtonColor : UIWidgetContainer
 	{
 		if (mInitDone && tweenTarget != null)
 		{
-			TweenColor tweenColor;
-			switch (mState)
+			TweenColor tweenColor = mState switch
 			{
-			case State.Hover:
-				tweenColor = TweenColor.Begin(tweenTarget, duration, hover);
-				break;
-			case State.Pressed:
-				tweenColor = TweenColor.Begin(tweenTarget, duration, pressed);
-				break;
-			case State.Disabled:
-				tweenColor = TweenColor.Begin(tweenTarget, duration, disabledColor);
-				break;
-			default:
-				tweenColor = TweenColor.Begin(tweenTarget, duration, mDefaultColor);
-				break;
-			}
+				State.Hover => TweenColor.Begin(tweenTarget, duration, hover), 
+				State.Pressed => TweenColor.Begin(tweenTarget, duration, pressed), 
+				State.Disabled => TweenColor.Begin(tweenTarget, duration, disabledColor), 
+				_ => TweenColor.Begin(tweenTarget, duration, mDefaultColor), 
+			};
 			if (instant && tweenColor != null)
 			{
 				tweenColor.value = tweenColor.to;

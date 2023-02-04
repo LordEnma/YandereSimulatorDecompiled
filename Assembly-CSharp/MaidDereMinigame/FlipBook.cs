@@ -107,7 +107,7 @@ namespace MaidDereMinigame
 			}
 			else
 			{
-				flipBookPages[curPage].ObjectActive(false);
+				flipBookPages[curPage].ObjectActive(toActive: false);
 				while (curPage > page)
 				{
 					flipBookPages[--curPage].Transition(flag);

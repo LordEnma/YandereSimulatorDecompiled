@@ -218,7 +218,7 @@ public class PoliceScript : MonoBehaviour
 		}
 		ContinueLabel.color = new Color(ContinueLabel.color.r, ContinueLabel.color.g, ContinueLabel.color.b, 0f);
 		ContinueButton.color = new Color(ContinueButton.color.r, ContinueButton.color.g, ContinueButton.color.b, 0f);
-		Icons.SetActive(false);
+		Icons.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			Protagonist = "Ryoba";
@@ -243,14 +243,14 @@ public class PoliceScript : MonoBehaviour
 						StudentManager.EightiesifyLabel(label);
 					}
 					TextUpdated = true;
-					Yandere.CinematicCamera.SetActive(false);
+					Yandere.CinematicCamera.SetActive(value: false);
 				}
 			}
 			StudentManager.TutorialWindow.ShowPoliceMessage = true;
-			bool poisonScene = PoisonScene;
+			_ = PoisonScene;
 			if (!Icons.activeInHierarchy)
 			{
-				Icons.SetActive(true);
+				Icons.SetActive(value: true);
 			}
 			base.transform.localPosition = new Vector3(Mathf.Lerp(base.transform.localPosition.x, TargetX, Time.deltaTime * 10f), Mathf.Lerp(base.transform.localPosition.y, TargetY, Time.deltaTime * 10f), base.transform.localPosition.z);
 			if (BloodParent.childCount == 0)
@@ -351,7 +351,7 @@ public class PoliceScript : MonoBehaviour
 			int num = Mathf.CeilToInt(Timer);
 			Minutes = num / 60;
 			Seconds = num % 60;
-			TimeLabel.text = string.Format("{0:00}:{1:00}", Minutes, Seconds);
+			TimeLabel.text = $"{Minutes:00}:{Seconds:00}";
 			if (Yandere.NotificationManager.NotificationParent.localPosition.x == 0f)
 			{
 				Yandere.NotificationManager.NotificationParent.localPosition = new Vector3(0.15f, Yandere.NotificationManager.NotificationParent.localPosition.y, Yandere.NotificationManager.NotificationParent.localPosition.z);
@@ -378,7 +378,7 @@ public class PoliceScript : MonoBehaviour
 				Yandere.CanMove = false;
 				Yandere.YandereVision = false;
 				Yandere.PauseScreen.enabled = false;
-				Yandere.CinematicCamera.SetActive(false);
+				Yandere.CinematicCamera.SetActive(value: false);
 				Yandere.CharacterAnimation.CrossFade("f02_idleShort_00");
 				if (Yandere.Mask != null)
 				{
@@ -400,8 +400,8 @@ public class PoliceScript : MonoBehaviour
 				Darkness.alpha = 1f;
 				if (!ShowResults)
 				{
-					HeartbeatCamera.SetActive(false);
-					DetectionCamera.SetActive(false);
+					HeartbeatCamera.SetActive(value: false);
+					DetectionCamera.SetActive(value: false);
 					if (ClubActivity)
 					{
 						ClubManager.Club = Yandere.Club;
@@ -521,9 +521,9 @@ public class PoliceScript : MonoBehaviour
 		else if (GameOver)
 		{
 			Heartbroken.transform.parent.transform.parent = null;
-			Heartbroken.transform.parent.gameObject.SetActive(true);
+			Heartbroken.transform.parent.gameObject.SetActive(value: true);
 			Heartbroken.Noticed = false;
-			base.transform.parent.transform.parent.gameObject.SetActive(false);
+			base.transform.parent.transform.parent.gameObject.SetActive(value: false);
 			if (!EndOfDay.gameObject.activeInHierarchy)
 			{
 				Time.timeScale = 1f;
@@ -536,9 +536,9 @@ public class PoliceScript : MonoBehaviour
 			Yandere.RPGCamera.transform.parent = LowRepGameOver.MyCamera;
 			Yandere.RPGCamera.transform.localPosition = new Vector3(0f, 0f, 0f);
 			Yandere.RPGCamera.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-			LowRepGameOver.gameObject.SetActive(true);
-			UICamera.SetActive(false);
-			FPS.SetActive(false);
+			LowRepGameOver.gameObject.SetActive(value: true);
+			UICamera.SetActive(value: false);
+			FPS.SetActive(value: false);
 			Time.timeScale = 1f;
 			base.enabled = false;
 		}
@@ -547,7 +547,7 @@ public class PoliceScript : MonoBehaviour
 			if (EndOfDay.Phase == 1)
 			{
 				Yandere.MyListener.enabled = false;
-				EndOfDay.gameObject.SetActive(true);
+				EndOfDay.gameObject.SetActive(value: true);
 				EndOfDay.enabled = true;
 				EndOfDay.Phase = 14;
 				if (EndOfDay.PreviouslyActivated)
@@ -577,12 +577,12 @@ public class PoliceScript : MonoBehaviour
 		{
 			Protagonist = VtuberNames[Yandere.VtuberID];
 		}
-		ResultsLabels[0].transform.parent.gameObject.SetActive(true);
+		ResultsLabels[0].transform.parent.gameObject.SetActive(value: true);
 		if (Show)
 		{
 			Yandere.MyListener.enabled = false;
 			EndOfDay.PoliceArrived = true;
-			EndOfDay.gameObject.SetActive(true);
+			EndOfDay.gameObject.SetActive(value: true);
 			EndOfDay.enabled = true;
 			base.enabled = false;
 			if (EndOfDay.PreviouslyActivated)
@@ -735,7 +735,15 @@ public class PoliceScript : MonoBehaviour
 				return;
 			}
 			BloodyClothing -= RedPaintClothing;
-			if (Corpses == 0 && LimbParent.childCount == 0 && BloodParent.childCount == 0 && BloodyWeapons == 0 && BloodyClothing == 0 && !SuicideScene)
+			int num = 0;
+			foreach (Transform item in LimbParent)
+			{
+				if (item.gameObject.activeInHierarchy)
+				{
+					num++;
+				}
+			}
+			if (Corpses == 0 && num == 0 && BloodParent.childCount == 0 && BloodyWeapons == 0 && BloodyClothing == 0 && !SuicideScene)
 			{
 				if (Yandere.Sanity < 66.66666f || (Yandere.Bloodiness > 0f && !Yandere.RedPaint))
 				{
@@ -859,7 +867,7 @@ public class PoliceScript : MonoBehaviour
 				TeacherReport = true;
 				Show = true;
 			}
-			else if (LimbParent.childCount > 0)
+			else if (num > 0)
 			{
 				ResultsLabels[1].text = "While walking around the school, a faculty member discovers a dismembered body part.";
 				ResultsLabels[2].text = "The faculty member decides to call the police.";
@@ -958,7 +966,7 @@ public class PoliceScript : MonoBehaviour
 				continue;
 			}
 			Deaths++;
-			StudentGlobals.SetStudentDead(i, true);
+			StudentGlobals.SetStudentDead(i, value: true);
 			Debug.Log("Student #" + i + " committed suicide due to low reputation. They will have a memorial at school tomorrow.");
 			if (StudentGlobals.MemorialStudents < 9)
 			{
@@ -1016,14 +1024,14 @@ public class PoliceScript : MonoBehaviour
 						SchoolGlobals.SchoolAtmosphere -= 1f;
 						SchoolGlobals.HighSecurity = true;
 					}
-					StudentGlobals.SetStudentDead(j, true);
+					StudentGlobals.SetStudentDead(j, value: true);
 					if (j > 10 && j < DateGlobals.Week + 10 && StudentManager.Students[j] != null && StudentManager.Students[j].Ragdoll.Disposed)
 					{
 						Debug.Log("The player killed a previous rival and disposed of her corpse.");
 						EndOfDay.SetFormerRivalDeath(j - 10, StudentManager.Students[j]);
 						GameGlobals.SetRivalEliminations(j - 10, 11);
 					}
-					StudentGlobals.SetStudentGrudge(j, false);
+					StudentGlobals.SetStudentGrudge(j, value: false);
 				}
 			}
 			if (Corpses > 0)
@@ -1165,19 +1173,19 @@ public class PoliceScript : MonoBehaviour
 			StudentScript studentScript = StudentManager.Students[l];
 			if (studentScript != null && studentScript.Grudge && studentScript.Persona != PersonaType.Evil)
 			{
-				StudentGlobals.SetStudentGrudge(l, true);
+				StudentGlobals.SetStudentGrudge(l, value: true);
 				if (studentScript.OriginalPersona == PersonaType.Sleuth && !StudentGlobals.GetStudentDying(l))
 				{
-					StudentGlobals.SetStudentGrudge(56, true);
-					StudentGlobals.SetStudentGrudge(57, true);
-					StudentGlobals.SetStudentGrudge(58, true);
-					StudentGlobals.SetStudentGrudge(59, true);
-					StudentGlobals.SetStudentGrudge(60, true);
+					StudentGlobals.SetStudentGrudge(56, value: true);
+					StudentGlobals.SetStudentGrudge(57, value: true);
+					StudentGlobals.SetStudentGrudge(58, value: true);
+					StudentGlobals.SetStudentGrudge(59, value: true);
+					StudentGlobals.SetStudentGrudge(60, value: true);
 				}
 				if (!StudentManager.Eighties && (studentScript.StudentID == 2 || studentScript.StudentID == 3))
 				{
-					StudentGlobals.SetStudentGrudge(2, true);
-					StudentGlobals.SetStudentGrudge(3, true);
+					StudentGlobals.SetStudentGrudge(2, value: true);
+					StudentGlobals.SetStudentGrudge(3, value: true);
 				}
 			}
 		}

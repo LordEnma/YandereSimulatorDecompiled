@@ -51,7 +51,7 @@ public class MechaScript : MonoBehaviour
 			Prompt.Hide();
 			MainCamera = Prompt.Yandere.MainCamera;
 			base.transform.parent = null;
-			StudentCrusher.SetActive(true);
+			StudentCrusher.SetActive(value: true);
 			base.gameObject.layer = 9;
 		}
 		if (Prompt.Yandere.Riding)
@@ -72,18 +72,18 @@ public class MechaScript : MonoBehaviour
 				if (ShellType == MechaShell)
 				{
 					ShellType = DestructiveShell;
-					Sparks[1].SetActive(true);
-					Sparks[2].SetActive(true);
-					Sparks[3].SetActive(true);
-					Sparks[4].SetActive(true);
+					Sparks[1].SetActive(value: true);
+					Sparks[2].SetActive(value: true);
+					Sparks[3].SetActive(value: true);
+					Sparks[4].SetActive(value: true);
 				}
 				else
 				{
 					ShellType = MechaShell;
-					Sparks[1].SetActive(false);
-					Sparks[2].SetActive(false);
-					Sparks[3].SetActive(false);
-					Sparks[4].SetActive(false);
+					Sparks[1].SetActive(value: false);
+					Sparks[2].SetActive(value: false);
+					Sparks[3].SetActive(value: false);
+					Sparks[4].SetActive(value: false);
 				}
 			}
 			if (Fire)

@@ -46,7 +46,7 @@ public class ClubWindowScript : MonoBehaviour
 
 	private void Start()
 	{
-		Window.SetActive(false);
+		Window.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			ActivityDescs[7] = "The Photography Club review each others' photographs and share advice on how to improve.";
@@ -96,7 +96,7 @@ public class ClubWindowScript : MonoBehaviour
 					Yandere.TargetStudent.ClubPhase = 2;
 					PromptBar.ClearButtons();
 					PromptBar.Show = false;
-					Window.SetActive(false);
+					Window.SetActive(value: false);
 				}
 				if (Input.GetButtonDown("B"))
 				{
@@ -118,19 +118,19 @@ public class ClubWindowScript : MonoBehaviour
 					Yandere.TargetStudent.ClubPhase = 3;
 					PromptBar.ClearButtons();
 					PromptBar.Show = false;
-					Window.SetActive(false);
+					Window.SetActive(value: false);
 				}
 				if (Input.GetButtonDown("X") && !Quitting && !Activity)
 				{
 					if (!Warning.activeInHierarchy)
 					{
-						ClubInfo.SetActive(false);
-						Warning.SetActive(true);
+						ClubInfo.SetActive(value: false);
+						Warning.SetActive(value: true);
 					}
 					else
 					{
-						ClubInfo.SetActive(true);
-						Warning.SetActive(false);
+						ClubInfo.SetActive(value: true);
+						Warning.SetActive(value: false);
 					}
 				}
 			}
@@ -184,9 +184,9 @@ public class ClubWindowScript : MonoBehaviour
 			PromptBar.Show = true;
 			BottomLabel.text = "Will you quit the " + ClubNames[(int)Club] + "?";
 		}
-		ClubInfo.SetActive(true);
-		Warning.SetActive(false);
-		Window.SetActive(true);
+		ClubInfo.SetActive(value: true);
+		Warning.SetActive(value: false);
+		Window.SetActive(value: true);
 		Timer = 0f;
 	}
 }

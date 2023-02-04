@@ -12,7 +12,7 @@ public class MemeManagerScript : MonoBehaviour
 			GameObject[] memes = Memes;
 			for (int i = 0; i < memes.Length; i++)
 			{
-				memes[i].SetActive(false);
+				memes[i].SetActive(value: false);
 			}
 		}
 	}

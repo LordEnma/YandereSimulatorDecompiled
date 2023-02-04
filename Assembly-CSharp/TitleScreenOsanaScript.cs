@@ -19,7 +19,7 @@ public class TitleScreenOsanaScript : MonoBehaviour
 		if (GameGlobals.SpecificEliminationID > 0)
 		{
 			NewTitleScreen.ExtrasLabel.alpha = 1f;
-			DeadOsanas[GameGlobals.SpecificEliminationID].SetActive(true);
+			DeadOsanas[GameGlobals.SpecificEliminationID].SetActive(value: true);
 		}
 	}
 }

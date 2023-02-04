@@ -128,8 +128,8 @@ public class DelinquentScript : MonoBehaviour
 
 	private void Start()
 	{
-		EasterHair.SetActive(false);
-		Bandanas.SetActive(false);
+		EasterHair.SetActive(value: false);
+		Bandanas.SetActive(value: false);
 		OriginalRotation = base.transform.rotation;
 		LookAtTarget = Default.position;
 		if (Weapon != null)
@@ -149,8 +149,7 @@ public class DelinquentScript : MonoBehaviour
 			Planes = GeometryUtility.CalculateFrustumPlanes(Eyes);
 			if (GeometryUtility.TestPlanesAABB(Planes, Yandere.GetComponent<Collider>().bounds))
 			{
-				RaycastHit hitInfo;
-				if (Physics.Linecast(Eyes.transform.position, Yandere.transform.position + Vector3.up, out hitInfo))
+				if (Physics.Linecast(Eyes.transform.position, Yandere.transform.position + Vector3.up, out var hitInfo))
 				{
 					if (hitInfo.collider.gameObject == Yandere.gameObject)
 					{
@@ -275,7 +274,7 @@ public class DelinquentScript : MonoBehaviour
 								Yandere.StopAiming();
 							}
 							Character.GetComponent<Animation>().CrossFade(SwingAnim);
-							MyWeapon.SetActive(true);
+							MyWeapon.SetActive(value: true);
 							Attacking = true;
 							Yandere.Character.GetComponent<Animation>().CrossFade("f02_swingB_00");
 							Yandere.RPGCamera.enabled = false;
@@ -290,7 +289,7 @@ public class DelinquentScript : MonoBehaviour
 						{
 							if (Character.GetComponent<Animation>()[SwingAnim].time >= Character.GetComponent<Animation>()[SwingAnim].length * 0.3f)
 							{
-								Jukebox.SetActive(false);
+								Jukebox.SetActive(value: false);
 								AudioPhase++;
 								component.pitch = 1f;
 								component.clip = Strike;
@@ -392,23 +391,23 @@ public class DelinquentScript : MonoBehaviour
 			{
 				if (HairRenderer == null)
 				{
-					DefaultHair.SetActive(false);
-					EasterHair.SetActive(true);
+					DefaultHair.SetActive(value: false);
+					EasterHair.SetActive(value: true);
 					EasterHair.GetComponent<Renderer>().material.mainTexture = BlondThugHair;
 				}
 			}
 			else if (Spaces == 10)
 			{
 				Rapping = true;
-				MyWeapon.SetActive(false);
+				MyWeapon.SetActive(value: false);
 				IdleAnim = Prefix + "gruntIdle_00";
 				Animation component4 = Character.GetComponent<Animation>();
 				component4.CrossFade(IdleAnim);
 				component4[IdleAnim].time = Random.Range(0f, component4[IdleAnim].length);
-				DefaultHair.SetActive(false);
-				Mask.SetActive(false);
-				EasterHair.SetActive(true);
-				Bandanas.SetActive(true);
+				DefaultHair.SetActive(value: false);
+				Mask.SetActive(value: false);
+				EasterHair.SetActive(value: true);
+				Bandanas.SetActive(value: true);
 				if (HairRenderer != null)
 				{
 					HairRenderer.material.color = HairColor;

@@ -36,8 +36,7 @@ public class UIDragResize : MonoBehaviour
 			Vector3[] worldCorners = target.worldCorners;
 			mPlane = new Plane(worldCorners[0], worldCorners[1], worldCorners[3]);
 			Ray currentRay = UICamera.currentRay;
-			float enter;
-			if (mPlane.Raycast(currentRay, out enter))
+			if (mPlane.Raycast(currentRay, out var enter))
 			{
 				mRayPos = currentRay.GetPoint(enter);
 				mLocalPos = target.cachedTransform.localPosition;
@@ -55,8 +54,7 @@ public class UIDragResize : MonoBehaviour
 			return;
 		}
 		Ray currentRay = UICamera.currentRay;
-		float enter;
-		if (mPlane.Raycast(currentRay, out enter))
+		if (mPlane.Raycast(currentRay, out var enter))
 		{
 			Transform cachedTransform = target.cachedTransform;
 			cachedTransform.localPosition = mLocalPos;

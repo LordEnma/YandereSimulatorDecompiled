@@ -23,7 +23,7 @@ namespace MaidDereMinigame
 					cards.Add(item2.GetComponent<TipCard>());
 				}
 			}
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 
 		public void DisplayTips(List<float> tips)
@@ -32,7 +32,7 @@ namespace MaidDereMinigame
 			{
 				tips = new List<float>();
 			}
-			base.gameObject.SetActive(true);
+			base.gameObject.SetActive(value: true);
 			float num = 0f;
 			for (int i = 0; i < cards.Count; i++)
 			{

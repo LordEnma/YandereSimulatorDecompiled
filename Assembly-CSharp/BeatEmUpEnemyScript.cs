@@ -114,7 +114,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 	{
 		for (int i = 1; i < Weapons.Length; i++)
 		{
-			Weapons[i].SetActive(false);
+			Weapons[i].SetActive(value: false);
 		}
 	}
 
@@ -124,15 +124,15 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 		Difficulty = GameGlobals.BeatEmUpDifficulty;
 		MaxHealth += Difficulty * 25;
 		MyAnimation[WalkAnim].speed = AnimSpeed;
-		Weapons[MyWeapon].SetActive(true);
+		Weapons[MyWeapon].SetActive(value: true);
 		Health = MaxHealth;
 		if (GameGlobals.Eighties)
 		{
 			HairRenderer.material.color = new Color(0.2f, 0.2f, 0.2f, 1f);
 			Name = "Rival Gang Member #" + EnemyID;
 			WeaponBagRenderer.enabled = false;
-			MyRenderer.SetActive(false);
-			BeltCoat.SetActive(true);
+			MyRenderer.SetActive(value: false);
+			BeltCoat.SetActive(value: true);
 		}
 	}
 
@@ -178,8 +178,8 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 		{
 			if (MyAnimation[StraightSpecialAnim].time >= MyAnimation[StraightSpecialAnim].length * 0.9f)
 			{
-				StraightSpecialHitbox.SetActive(false);
-				EyeTwinkle.SetActive(false);
+				StraightSpecialHitbox.SetActive(value: false);
+				EyeTwinkle.SetActive(value: false);
 				StraightSpecial = false;
 				HitboxSpawned = false;
 				Object.Destroy(Warning);
@@ -188,7 +188,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 			{
 				if (MyAnimation[StraightSpecialAnim].time >= MyAnimation[StraightSpecialAnim].length * 0.39f)
 				{
-					StraightSpecialHitbox.SetActive(true);
+					StraightSpecialHitbox.SetActive(value: true);
 					HitboxSpawned = true;
 					Speed = MaxSpeed;
 				}
@@ -199,7 +199,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 				Speed = Mathf.MoveTowards(Speed, 0f, Time.deltaTime * MaxSpeed);
 				if (Speed < 1f)
 				{
-					StraightSpecialHitbox.SetActive(false);
+					StraightSpecialHitbox.SetActive(value: false);
 				}
 			}
 			return;
@@ -230,7 +230,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 				Weapons[MyWeapon].transform.parent = WeaponParent;
 				Weapons[MyWeapon].transform.localPosition = Vector3.zero;
 				Weapons[MyWeapon].transform.localEulerAngles = Vector3.zero;
-				EyeTwinkle.SetActive(false);
+				EyeTwinkle.SetActive(value: false);
 				HitboxSpawned = false;
 				ArcSpecial = false;
 				Object.Destroy(Warning);
@@ -239,13 +239,13 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 			{
 				if (MyAnimation[ArcSpecialAnimB].time >= MyAnimation[ArcSpecialAnimB].length * 0.34f)
 				{
-					ArcSpecialHitbox.SetActive(true);
+					ArcSpecialHitbox.SetActive(value: true);
 					HitboxSpawned = true;
 				}
 			}
 			else if (MyAnimation[ArcSpecialAnimB].time >= MyAnimation[ArcSpecialAnimB].length * 0.44f)
 			{
-				ArcSpecialHitbox.SetActive(false);
+				ArcSpecialHitbox.SetActive(value: false);
 			}
 			return;
 		}
@@ -280,14 +280,14 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 				case 1:
 					Warning = Object.Instantiate(StraightSpecialWarning, base.transform.position, base.transform.rotation);
 					MyAnimation.CrossFade(StraightSpecialAnim);
-					EyeTwinkle.SetActive(true);
+					EyeTwinkle.SetActive(value: true);
 					StraightSpecial = true;
 					break;
 				case 2:
 					Warning = Object.Instantiate(ArcSpecialWarning, base.transform.position, base.transform.rotation);
 					Warning.transform.parent = base.transform;
 					MyAnimation.CrossFade(ArcSpecialAnimA);
-					EyeTwinkle.SetActive(true);
+					EyeTwinkle.SetActive(value: true);
 					ArcSpecial = true;
 					Speed = 5f;
 					break;
@@ -377,8 +377,8 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 		if (Health <= 0f)
 		{
 			AudioSource.PlayClipAtPoint(Defeat[Random.Range(1, Defeat.Length)], Player.MainCamera.transform.position);
-			StraightSpecialHitbox.SetActive(false);
-			ArcSpecialHitbox.SetActive(false);
+			StraightSpecialHitbox.SetActive(value: false);
+			ArcSpecialHitbox.SetActive(value: false);
 			if (Warning != null)
 			{
 				Object.Destroy(Warning);

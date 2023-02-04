@@ -15,7 +15,7 @@ public class ElectrifiedPuddleScript : MonoBehaviour
 				if (!component.Electrified && component.Yandere.Pursuer != component)
 				{
 					component.Yandere.GazerEyes.ElectrocuteStudent(component);
-					base.gameObject.SetActive(false);
+					base.gameObject.SetActive(value: false);
 					if (PowerSwitch != null)
 					{
 						PowerSwitch.On = false;

@@ -146,7 +146,7 @@ public class UIPlayAnimation : MonoBehaviour
 	{
 		if (UICamera.currentTouchID != -2 && UICamera.currentTouchID != -3 && base.enabled && trigger == Trigger.OnClick)
 		{
-			Play(true, false);
+			Play(forward: true, onlyIfDifferent: false);
 		}
 	}
 
@@ -154,7 +154,7 @@ public class UIPlayAnimation : MonoBehaviour
 	{
 		if (UICamera.currentTouchID != -2 && UICamera.currentTouchID != -3 && base.enabled && trigger == Trigger.OnDoubleClick)
 		{
-			Play(true, false);
+			Play(forward: true, onlyIfDifferent: false);
 		}
 	}
 
@@ -180,11 +180,11 @@ public class UIPlayAnimation : MonoBehaviour
 		{
 			if (UICamera.currentTouch.dragged == base.gameObject)
 			{
-				Play(true, true);
+				Play(forward: true, onlyIfDifferent: true);
 			}
 			else if (dragHighlight && trigger == Trigger.OnPress)
 			{
-				Play(true, true);
+				Play(forward: true, onlyIfDifferent: true);
 			}
 		}
 	}
@@ -193,7 +193,7 @@ public class UIPlayAnimation : MonoBehaviour
 	{
 		if (base.enabled && dualState && UICamera.hoveredObject != base.gameObject)
 		{
-			Play(false, true);
+			Play(forward: false, onlyIfDifferent: true);
 		}
 	}
 
@@ -201,13 +201,13 @@ public class UIPlayAnimation : MonoBehaviour
 	{
 		if (base.enabled && trigger == Trigger.OnPress && UICamera.currentTouch.dragged != base.gameObject)
 		{
-			Play(false, true);
+			Play(forward: false, onlyIfDifferent: true);
 		}
 	}
 
 	public void Play(bool forward)
 	{
-		Play(forward, true);
+		Play(forward, onlyIfDifferent: true);
 	}
 
 	public void Play(bool forward, bool onlyIfDifferent)
@@ -239,19 +239,19 @@ public class UIPlayAnimation : MonoBehaviour
 			}
 			for (int i = 0; i < onFinished.Count; i++)
 			{
-				EventDelegate.Add(activeAnimation.onFinished, OnFinished, true);
+				EventDelegate.Add(activeAnimation.onFinished, OnFinished, oneShot: true);
 			}
 		}
 	}
 
 	public void PlayForward()
 	{
-		Play(true);
+		Play(forward: true);
 	}
 
 	public void PlayReverse()
 	{
-		Play(false);
+		Play(forward: false);
 	}
 
 	private void OnFinished()

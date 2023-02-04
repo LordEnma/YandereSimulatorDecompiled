@@ -1815,13 +1815,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	public bool Armed
-	{
-		get
-		{
-			return EquippedWeapon != null;
-		}
-	}
+	public bool Armed => EquippedWeapon != null;
 
 	public SanityType SanityType
 	{
@@ -1839,29 +1833,11 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	public Vector3 HeadPosition
-	{
-		get
-		{
-			return new Vector3(base.transform.position.x, base.transform.position.y + Zoom.Height + 0.1f, base.transform.position.z);
-		}
-	}
+	public Vector3 HeadPosition => new Vector3(base.transform.position.x, base.transform.position.y + Zoom.Height + 0.1f, base.transform.position.z);
 
-	public int OnlyGroundLayer
-	{
-		get
-		{
-			return 256;
-		}
-	}
+	public int OnlyGroundLayer => 256;
 
-	public int OnlyDefault
-	{
-		get
-		{
-			return 1;
-		}
-	}
+	public int OnlyDefault => 1;
 
 	private void Start()
 	{
@@ -1899,90 +1875,90 @@ public class YandereScript : MonoBehaviour
 		Bloodiness = 0f;
 		YandereFade = 100f;
 		EasterEggMenu.transform.localPosition = new Vector3(EasterEggMenu.transform.localPosition.x, 0f, EasterEggMenu.transform.localPosition.z);
-		ProgressBar.transform.parent.gameObject.SetActive(false);
-		Smartphone.transform.parent.gameObject.SetActive(false);
-		ObstacleDetector.gameObject.SetActive(false);
-		SithBeam[1].gameObject.SetActive(false);
-		SithBeam[2].gameObject.SetActive(false);
-		PunishedAccessories.SetActive(false);
-		SukebanAccessories.SetActive(false);
-		FalconShoulderpad.SetActive(false);
-		CensorSteam[0].SetActive(false);
-		CensorSteam[1].SetActive(false);
-		CensorSteam[2].SetActive(false);
-		CensorSteam[3].SetActive(false);
-		FloatingShovel.SetActive(false);
-		BlackEyePatch.SetActive(false);
-		EasterEggMenu.SetActive(false);
-		FalconKneepad1.SetActive(false);
-		FalconKneepad2.SetActive(false);
-		PunishedScarf.SetActive(false);
-		FalconBuckle.SetActive(false);
-		FalconHelmet.SetActive(false);
-		TornadoDress.SetActive(false);
-		Stand.Stand.SetActive(false);
-		TornadoHair.SetActive(false);
-		MemeGlasses.SetActive(false);
-		CirnoWings.SetActive(false);
-		KONGlasses.SetActive(false);
-		EbolaWings.SetActive(false);
-		Microphone.SetActive(false);
-		Poisons[1].SetActive(false);
-		Poisons[2].SetActive(false);
-		Poisons[3].SetActive(false);
-		BladeHair.SetActive(false);
-		CirnoHair.SetActive(false);
-		EbolaHair.SetActive(false);
-		EyepatchL.SetActive(false);
-		EyepatchR.SetActive(false);
-		Handcuffs.SetActive(false);
-		ZipTie[0].SetActive(false);
-		ZipTie[1].SetActive(false);
-		Shoes[0].SetActive(false);
-		Shoes[1].SetActive(false);
-		Phone.SetActive(false);
-		Cape.SetActive(false);
-		HeavySwordParent.gameObject.SetActive(false);
-		LightSwordParent.gameObject.SetActive(false);
-		Pod.SetActive(false);
+		ProgressBar.transform.parent.gameObject.SetActive(value: false);
+		Smartphone.transform.parent.gameObject.SetActive(value: false);
+		ObstacleDetector.gameObject.SetActive(value: false);
+		SithBeam[1].gameObject.SetActive(value: false);
+		SithBeam[2].gameObject.SetActive(value: false);
+		PunishedAccessories.SetActive(value: false);
+		SukebanAccessories.SetActive(value: false);
+		FalconShoulderpad.SetActive(value: false);
+		CensorSteam[0].SetActive(value: false);
+		CensorSteam[1].SetActive(value: false);
+		CensorSteam[2].SetActive(value: false);
+		CensorSteam[3].SetActive(value: false);
+		FloatingShovel.SetActive(value: false);
+		BlackEyePatch.SetActive(value: false);
+		EasterEggMenu.SetActive(value: false);
+		FalconKneepad1.SetActive(value: false);
+		FalconKneepad2.SetActive(value: false);
+		PunishedScarf.SetActive(value: false);
+		FalconBuckle.SetActive(value: false);
+		FalconHelmet.SetActive(value: false);
+		TornadoDress.SetActive(value: false);
+		Stand.Stand.SetActive(value: false);
+		TornadoHair.SetActive(value: false);
+		MemeGlasses.SetActive(value: false);
+		CirnoWings.SetActive(value: false);
+		KONGlasses.SetActive(value: false);
+		EbolaWings.SetActive(value: false);
+		Microphone.SetActive(value: false);
+		Poisons[1].SetActive(value: false);
+		Poisons[2].SetActive(value: false);
+		Poisons[3].SetActive(value: false);
+		BladeHair.SetActive(value: false);
+		CirnoHair.SetActive(value: false);
+		EbolaHair.SetActive(value: false);
+		EyepatchL.SetActive(value: false);
+		EyepatchR.SetActive(value: false);
+		Handcuffs.SetActive(value: false);
+		ZipTie[0].SetActive(value: false);
+		ZipTie[1].SetActive(value: false);
+		Shoes[0].SetActive(value: false);
+		Shoes[1].SetActive(value: false);
+		Phone.SetActive(value: false);
+		Cape.SetActive(value: false);
+		HeavySwordParent.gameObject.SetActive(value: false);
+		LightSwordParent.gameObject.SetActive(value: false);
+		Pod.SetActive(value: false);
 		OriginalIdleAnim = IdleAnim;
 		OriginalWalkAnim = WalkAnim;
 		OriginalRunAnim = RunAnim;
 		GameObject[] armor = Armor;
 		for (int i = 0; i < armor.Length; i++)
 		{
-			armor[i].SetActive(false);
+			armor[i].SetActive(value: false);
 		}
 		for (ID = 1; ID < Accessories.Length; ID++)
 		{
-			Accessories[ID].SetActive(false);
+			Accessories[ID].SetActive(value: false);
 		}
 		armor = PunishedArm;
 		for (int i = 0; i < armor.Length; i++)
 		{
-			armor[i].SetActive(false);
+			armor[i].SetActive(value: false);
 		}
 		armor = GaloAccessories;
 		for (int i = 0; i < armor.Length; i++)
 		{
-			armor[i].SetActive(false);
+			armor[i].SetActive(value: false);
 		}
 		armor = Vectors;
 		for (int i = 0; i < armor.Length; i++)
 		{
-			armor[i].SetActive(false);
+			armor[i].SetActive(value: false);
 		}
 		for (ID = 1; ID < CyborgParts.Length; ID++)
 		{
-			CyborgParts[ID].SetActive(false);
+			CyborgParts[ID].SetActive(value: false);
 		}
 		for (ID = 0; ID < KLKParts.Length; ID++)
 		{
-			KLKParts[ID].SetActive(false);
+			KLKParts[ID].SetActive(value: false);
 		}
 		for (ID = 0; ID < BanchoAccessories.Length; ID++)
 		{
-			BanchoAccessories[ID].SetActive(false);
+			BanchoAccessories[ID].SetActive(value: false);
 		}
 		if (PlayerGlobals.PantiesEquipped == 5)
 		{
@@ -2011,21 +1987,18 @@ public class YandereScript : MonoBehaviour
 			BecomeRyoba();
 		}
 		SetUniform();
-		HandCamera.gameObject.SetActive(false);
+		HandCamera.gameObject.SetActive(value: false);
 		CharacterAnimation.Sample();
 	}
 
 	public string GetSanityString(SanityType sanityType)
 	{
-		switch (sanityType)
+		return sanityType switch
 		{
-		case SanityType.High:
-			return "High";
-		case SanityType.Medium:
-			return "Med";
-		default:
-			return "Low";
-		}
+			SanityType.High => "High", 
+			SanityType.Medium => "Med", 
+			_ => "Low", 
+		};
 	}
 
 	public void SetAnimationLayers()
@@ -2153,13 +2126,14 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation["f02_carryIdleA_00"].speed = 1.75f;
 		CharacterAnimation["CyborgNinja_Run_Armed"].speed = 2f;
 		CharacterAnimation["CyborgNinja_Run_Unarmed"].speed = 2f;
+		CharacterAnimation["f02_laugh_04"].speed = 2f;
 	}
 
 	private void Update()
 	{
 		if (!StudentManager.Eighties && !NoDebug && Input.GetKeyDown(KeyCode.LeftAlt))
 		{
-			CinematicCamera.SetActive(false);
+			CinematicCamera.SetActive(value: false);
 		}
 		if (!PauseScreen.Show)
 		{
@@ -2238,7 +2212,7 @@ public class YandereScript : MonoBehaviour
 			{
 				PauseScreen.QuitLabel.text = "Do you wish to return to the main menu?";
 				PauseScreen.YesLabel.text = "Yes";
-				PauseScreen.HomeButton.SetActive(false);
+				PauseScreen.HomeButton.SetActive(value: false);
 				PauseScreen.JumpToQuit();
 			}
 			if (base.transform.position.y < 0f)
@@ -2341,8 +2315,8 @@ public class YandereScript : MonoBehaviour
 							CharacterAnimation.CrossFade(WalkAnim);
 							MyController.Move(base.transform.forward * (WalkSpeed * Time.deltaTime));
 						}
-						StanceType current = Stance.Current;
-						int num = 1;
+						_ = Stance.Current;
+						_ = 1;
 						if (Stance.Current == StanceType.Crawling)
 						{
 							Stance.Current = StanceType.Crouching;
@@ -2555,13 +2529,13 @@ public class YandereScript : MonoBehaviour
 						CharacterAnimation.Play(IdleAnim);
 						if (!StudentManager.Eighties)
 						{
-							Smartphone.transform.parent.gameObject.SetActive(true);
+							Smartphone.transform.parent.gameObject.SetActive(value: true);
 							Blur.enabled = true;
 							if (!CinematicCamera.activeInHierarchy)
 							{
 								DisableHairAndAccessories();
 							}
-							HandCamera.gameObject.SetActive(true);
+							HandCamera.gameObject.SetActive(value: true);
 							EmptyHands();
 							if (!StudentManager.KokonaTutorial)
 							{
@@ -2598,7 +2572,7 @@ public class YandereScript : MonoBehaviour
 						}
 						Time.timeScale = 1f;
 						UpdateSelfieStatus();
-						StudentManager.UpdatePanties(true);
+						StudentManager.UpdatePanties(Status: true);
 						CameraEffects.SmartphoneCamera.depthTextureMode = DepthTextureMode.DepthNormals;
 						if (Club == ClubType.Newspaper)
 						{
@@ -2701,8 +2675,8 @@ public class YandereScript : MonoBehaviour
 							}
 							else if (Sans)
 							{
-								SansEyes[0].SetActive(true);
-								SansEyes[1].SetActive(true);
+								SansEyes[0].SetActive(value: true);
+								SansEyes[1].SetActive(value: true);
 								GlowEffect.Play();
 								SummonBones = true;
 								YandereTimer = 0f;
@@ -2762,8 +2736,8 @@ public class YandereScript : MonoBehaviour
 									AudioSource.PlayClipAtPoint(BlasterClip, base.transform.position + Vector3.up);
 									CharacterAnimation["f02_sansBlaster_00"].time = 0f;
 									CharacterAnimation.Play("f02_sansBlaster_00");
-									SansEyes[0].SetActive(true);
-									SansEyes[1].SetActive(true);
+									SansEyes[0].SetActive(value: true);
+									SansEyes[1].SetActive(value: true);
 									GlowEffect.Play();
 									Blasting = true;
 									CanMove = false;
@@ -2815,7 +2789,7 @@ public class YandereScript : MonoBehaviour
 									}
 									else if (PickUp != null && PickUp.CarryAnimID == 10)
 									{
-										StudentManager.NoteWindow.gameObject.SetActive(true);
+										StudentManager.NoteWindow.gameObject.SetActive(value: true);
 										StudentManager.NoteWindow.Show = true;
 										PromptBar.Show = true;
 										Blur.enabled = true;
@@ -2848,23 +2822,23 @@ public class YandereScript : MonoBehaviour
 											Laughing = true;
 											Mopping = false;
 											CanMove = false;
-											Teeth.SetActive(false);
+											Teeth.SetActive(value: false);
 										}
 										else if (LongHair[0].gameObject.activeInHierarchy)
 										{
-											LongHair[0].gameObject.SetActive(false);
-											BlackEyePatch.SetActive(false);
-											SlenderHair[0].transform.parent.gameObject.SetActive(true);
-											SlenderHair[0].SetActive(true);
-											SlenderHair[1].SetActive(true);
+											LongHair[0].gameObject.SetActive(value: false);
+											BlackEyePatch.SetActive(value: false);
+											SlenderHair[0].transform.parent.gameObject.SetActive(value: true);
+											SlenderHair[0].SetActive(value: true);
+											SlenderHair[1].SetActive(value: true);
 										}
 										else
 										{
-											LongHair[0].gameObject.SetActive(true);
-											BlackEyePatch.SetActive(true);
-											SlenderHair[0].transform.parent.gameObject.SetActive(true);
-											SlenderHair[0].SetActive(false);
-											SlenderHair[1].SetActive(false);
+											LongHair[0].gameObject.SetActive(value: true);
+											BlackEyePatch.SetActive(value: true);
+											SlenderHair[0].transform.parent.gameObject.SetActive(value: true);
+											SlenderHair[0].SetActive(value: false);
+											SlenderHair[1].SetActive(value: false);
 										}
 									}
 									else if (!Punching && !FloppyHat.activeInHierarchy)
@@ -2999,11 +2973,11 @@ public class YandereScript : MonoBehaviour
 						{
 							if (!SelfieGuide.activeInHierarchy)
 							{
-								SelfieGuide.SetActive(true);
+								SelfieGuide.SetActive(value: true);
 							}
 							else
 							{
-								SelfieGuide.SetActive(false);
+								SelfieGuide.SetActive(value: false);
 							}
 						}
 					}
@@ -3051,7 +3025,7 @@ public class YandereScript : MonoBehaviour
 							{
 								CinematicCamera.transform.eulerAngles = Smartphone.transform.eulerAngles;
 								CinematicCamera.transform.position = Smartphone.transform.position;
-								CinematicCamera.SetActive(true);
+								CinematicCamera.SetActive(value: true);
 								CinematicTimer = 0f;
 								UpdateHair();
 								StopAiming();
@@ -3516,8 +3490,16 @@ public class YandereScript : MonoBehaviour
 			{
 				CharacterAnimation["f02_dipping_00"].time = 0f;
 				Mop.Prompt.enabled = true;
+				TooCloseToWall = false;
 				Dipping = false;
 				CanMove = true;
+			}
+			TooCloseToWall = false;
+			Direction = 1;
+			CheckForWall();
+			if (TooCloseToWall)
+			{
+				MyController.Move(base.transform.forward * -1f * Time.deltaTime);
 			}
 		}
 		if (Pouring)
@@ -4041,7 +4023,7 @@ public class YandereScript : MonoBehaviour
 		{
 			if (!StudentManager.KokonaTutorial)
 			{
-				ShoulderCamera.HeartbrokenCamera.SetActive(true);
+				ShoulderCamera.HeartbrokenCamera.SetActive(value: true);
 			}
 			base.enabled = false;
 		}
@@ -4101,7 +4083,7 @@ public class YandereScript : MonoBehaviour
 			if (CharacterAnimation["f02_flickingMatch_00"].time >= CharacterAnimation["f02_flickingMatch_00"].length)
 			{
 				PickUp.GetComponent<MatchboxScript>().Prompt.enabled = true;
-				Arc.SetActive(true);
+				Arc.SetActive(value: true);
 				Flicking = false;
 				CanMove = true;
 			}
@@ -4124,7 +4106,7 @@ public class YandereScript : MonoBehaviour
 			if (RummageTimer > 10f)
 			{
 				RummageSpot.GetReward();
-				ProgressBar.transform.parent.gameObject.SetActive(false);
+				ProgressBar.transform.parent.gameObject.SetActive(value: false);
 				RummageSpot = null;
 				Rummaging = false;
 				RummageTimer = 0f;
@@ -4163,8 +4145,8 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (DigPhase == 4 && CharacterAnimation["f02_shovelDig_00"].time >= CharacterAnimation["f02_shovelDig_00"].length)
 			{
-				EquippedWeapon.gameObject.SetActive(true);
-				FloatingShovel.SetActive(false);
+				EquippedWeapon.gameObject.SetActive(value: true);
+				FloatingShovel.SetActive(value: false);
 				RPGCamera.enabled = true;
 				Digging = false;
 				CanMove = true;
@@ -4193,8 +4175,8 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (CharacterAnimation["f02_shovelBury_00"].time >= CharacterAnimation["f02_shovelBury_00"].length)
 			{
-				EquippedWeapon.gameObject.SetActive(true);
-				FloatingShovel.SetActive(false);
+				EquippedWeapon.gameObject.SetActive(value: true);
+				FloatingShovel.SetActive(value: false);
 				RPGCamera.enabled = true;
 				Burying = false;
 				CanMove = true;
@@ -4234,8 +4216,8 @@ public class YandereScript : MonoBehaviour
 						{
 							CharacterAnimation.Play("f02_tied_00");
 							RPGCamera.enabled = false;
-							ZipTie[0].SetActive(true);
-							ZipTie[1].SetActive(true);
+							ZipTie[0].SetActive(value: true);
+							ZipTie[1].SetActive(value: true);
 							Blur.enabled = false;
 							SprayTimer = 0f;
 							SprayPhase++;
@@ -4251,8 +4233,8 @@ public class YandereScript : MonoBehaviour
 					SprayTimer += Time.deltaTime;
 					if (SprayTimer > 1f)
 					{
-						ShoulderCamera.HeartbrokenCamera.SetActive(true);
-						HeartCamera.gameObject.SetActive(false);
+						ShoulderCamera.HeartbrokenCamera.SetActive(value: true);
+						HeartCamera.gameObject.SetActive(value: false);
 						HUD.alpha = 0f;
 						SprayPhase++;
 					}
@@ -4334,13 +4316,13 @@ public class YandereScript : MonoBehaviour
 				CharacterAnimation.CrossFade("f02_sneakShot_01");
 				if (CharacterAnimation["f02_sneakShot_01"].time >= 1f)
 				{
-					SneakShotPhone.SetActive(true);
+					SneakShotPhone.SetActive(value: true);
 				}
 				if (CharacterAnimation["f02_sneakShot_01"].time >= CharacterAnimation["f02_sneakShot_01"].length)
 				{
 					SneakShotTimer += Time.deltaTime;
-					CameraFlash.SetActive(true);
-					StudentManager.UpdatePanties(true);
+					CameraFlash.SetActive(value: true);
+					StudentManager.UpdatePanties(Status: true);
 					Object.Instantiate(PantyDetector, SneakShotPhone.transform.position, base.transform.rotation).GetComponent<PantyDetectorScript>().Yandere = this;
 				}
 			}
@@ -4353,8 +4335,9 @@ public class YandereScript : MonoBehaviour
 					CharacterAnimation.CrossFade("f02_sneakShot_02");
 					if (CharacterAnimation["f02_sneakShot_02"].time >= 1.5f)
 					{
-						SneakShotPhone.SetActive(false);
-						CameraFlash.SetActive(false);
+						SneakShotPhone.SetActive(value: false);
+						CameraFlash.SetActive(value: false);
+						Shutter.Blocked = false;
 						SneakingShot = false;
 						CanMove = true;
 						Lewd = false;
@@ -4453,8 +4436,8 @@ public class YandereScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = false;
 				Ragdoll.GetComponent<RagdollScript>().StopDragging();
-				SansEyes[0].SetActive(false);
-				SansEyes[1].SetActive(false);
+				SansEyes[0].SetActive(value: false);
+				SansEyes[1].SetActive(value: false);
 				GlowEffect.Stop();
 				CanMove = true;
 				PK = false;
@@ -4474,8 +4457,8 @@ public class YandereScript : MonoBehaviour
 			}
 			if (Input.GetButtonUp("RB"))
 			{
-				SansEyes[0].SetActive(false);
-				SansEyes[1].SetActive(false);
+				SansEyes[0].SetActive(value: false);
+				SansEyes[1].SetActive(value: false);
 				GlowEffect.Stop();
 				SummonBones = false;
 				CanMove = true;
@@ -4486,8 +4469,8 @@ public class YandereScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = false;
 				Ragdoll.GetComponent<RagdollScript>().StopDragging();
-				SansEyes[0].SetActive(false);
-				SansEyes[1].SetActive(false);
+				SansEyes[0].SetActive(value: false);
+				SansEyes[1].SetActive(value: false);
 				GlowEffect.Stop();
 				CanMove = true;
 				PK = false;
@@ -4497,8 +4480,8 @@ public class YandereScript : MonoBehaviour
 		{
 			if (CharacterAnimation["f02_sansBlaster_00"].time >= CharacterAnimation["f02_sansBlaster_00"].length - 0.25f)
 			{
-				SansEyes[0].SetActive(false);
-				SansEyes[1].SetActive(false);
+				SansEyes[0].SetActive(value: false);
+				SansEyes[1].SetActive(value: false);
 				GlowEffect.Stop();
 				Blasting = false;
 				CanMove = true;
@@ -4509,8 +4492,8 @@ public class YandereScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = false;
 				Ragdoll.GetComponent<RagdollScript>().StopDragging();
-				SansEyes[0].SetActive(false);
-				SansEyes[1].SetActive(false);
+				SansEyes[0].SetActive(value: false);
+				SansEyes[1].SetActive(value: false);
 				GlowEffect.Stop();
 				CanMove = true;
 				PK = false;
@@ -4641,7 +4624,7 @@ public class YandereScript : MonoBehaviour
 					Hunger++;
 					if (Hunger == 5)
 					{
-						RisingSmoke.SetActive(true);
+						RisingSmoke.SetActive(value: true);
 						RunAnim = "f02_sixFastRun_00";
 					}
 				}
@@ -4827,8 +4810,8 @@ public class YandereScript : MonoBehaviour
 							MyAudio.volume = 1f;
 							MyAudio.Play();
 						}
-						InvertSphere.gameObject.SetActive(true);
-						PlayerOnlyCamera.SetActive(true);
+						InvertSphere.gameObject.SetActive(value: true);
+						PlayerOnlyCamera.SetActive(value: true);
 						StudentManager.TimeFreeze();
 					}
 					InvertSphere.transform.localScale = Vector3.MoveTowards(InvertSphere.transform.localScale, new Vector3(0.2375f, 0.2375f, 0f), Time.deltaTime);
@@ -4899,18 +4882,18 @@ public class YandereScript : MonoBehaviour
 			StudentManager.Portal.GetComponent<PortalScript>().OsanaEvent.Bentos[1].GetComponent<BentoScript>().BeingPoisoned = false;
 			StudentManager.Portal.GetComponent<PortalScript>().OsanaEvent.Bentos[1].GetComponent<BentoScript>().BeingPoisoned = false;
 			CharacterAnimation["f02_poisoning_00"].speed = 1f;
-			Poisons[PoisonType].SetActive(false);
+			Poisons[PoisonType].SetActive(value: false);
 			PoisonSpot = null;
 			Poisoning = false;
 			CanMove = true;
 		}
 		else if (CharacterAnimation["f02_poisoning_00"].time >= 5.25f)
 		{
-			Poisons[PoisonType].SetActive(false);
+			Poisons[PoisonType].SetActive(value: false);
 		}
 		else if ((double)CharacterAnimation["f02_poisoning_00"].time >= 0.75)
 		{
-			Poisons[PoisonType].SetActive(true);
+			Poisons[PoisonType].SetActive(value: true);
 		}
 	}
 
@@ -4964,7 +4947,7 @@ public class YandereScript : MonoBehaviour
 			SenpaiFilter.FadeFX = Mathf.Lerp(SenpaiFilter.FadeFX, 1f, Time.deltaTime * 10f);
 			SenpaiFade = Mathf.Lerp(SenpaiFade, 0f, Time.deltaTime * 10f);
 			SenpaiTint = 1f - SenpaiFade / 100f;
-			bool attacking = Attacking;
+			_ = Attacking;
 			SelectGrayscale.desaturation = Mathf.Lerp(SelectGrayscale.desaturation, 0f, Time.deltaTime * 10f);
 			HeartBeat.volume = SenpaiTint;
 			Sanity += Time.deltaTime * 10f;
@@ -5027,7 +5010,6 @@ public class YandereScript : MonoBehaviour
 					LeftRedEye.material.color = new Color(1f, 1f, 1f, 1f);
 					RightYandereEye.material.color = new Color(1f, 1f, 1f, 0f);
 					LeftYandereEye.material.color = new Color(1f, 1f, 1f, 0f);
-					Debug.Log("Updating text based on number of SenpaiShots.");
 					if (Inventory.SenpaiShots > 0 || StudentManager.MissionMode || StudentManager.Eighties)
 					{
 						SenpaiShotLabel.text = "Speed Up Time";
@@ -5065,13 +5047,13 @@ public class YandereScript : MonoBehaviour
 			}
 			if (SenpaiGazing)
 			{
-				Phone.SetActive(true);
+				Phone.SetActive(value: true);
 				CharacterAnimation["f02_phonePose_00"].weight = Mathf.Lerp(CharacterAnimation["f02_phonePose_00"].weight, 1f, Time.unscaledDeltaTime * 10f);
 				Time.timeScale = Mathf.Lerp(Time.timeScale, 2f, Time.unscaledDeltaTime * 10f);
 			}
 			else
 			{
-				Phone.SetActive(false);
+				Phone.SetActive(value: false);
 				CharacterAnimation["f02_phonePose_00"].weight = Mathf.Lerp(CharacterAnimation["f02_phonePose_00"].weight, 0f, Time.unscaledDeltaTime * 10f);
 				Time.timeScale = Mathf.Lerp(Time.timeScale, 0.5f, Time.unscaledDeltaTime * 10f);
 			}
@@ -5085,7 +5067,7 @@ public class YandereScript : MonoBehaviour
 			}
 			if (StudentManager.Students[StudentManager.RivalID] != null)
 			{
-				StudentManager.RedString.gameObject.SetActive(true);
+				StudentManager.RedString.gameObject.SetActive(value: true);
 			}
 			if (CanMove && !Carrying && !Dragging && YandereVisionPanel.alpha == 1f)
 			{
@@ -5167,7 +5149,7 @@ public class YandereScript : MonoBehaviour
 			{
 				Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, Time.unscaledDeltaTime * 10f);
 			}
-			Phone.SetActive(false);
+			Phone.SetActive(value: false);
 			CharacterAnimation["f02_phonePose_00"].weight = Mathf.Lerp(CharacterAnimation["f02_phonePose_00"].weight, 0f, Time.unscaledDeltaTime * 10f);
 			YandereVisionPanel.alpha = Mathf.Lerp(YandereVisionPanel.alpha, 0f, Time.unscaledDeltaTime * 10f);
 			YandereFilter.FadeFX = Mathf.Lerp(YandereFilter.FadeFX, 0f, Time.unscaledDeltaTime * 10f);
@@ -5175,7 +5157,7 @@ public class YandereScript : MonoBehaviour
 			YandereTint = YandereFade / 100f;
 			CameraEffects.UpdateVignette(1f - Sanity * 0.01f);
 			StudentManager.Tag.Sprite.color = new Color(1f, 0f, 0f, Mathf.Lerp(StudentManager.Tag.Sprite.color.a, 0f, Time.unscaledDeltaTime * 10f));
-			StudentManager.RedString.gameObject.SetActive(false);
+			StudentManager.RedString.gameObject.SetActive(value: false);
 			RightRedEye.material.color = new Color(RightRedEye.material.color.r, RightRedEye.material.color.g, RightRedEye.material.color.b, 1f - YandereFade / 100f);
 			LeftRedEye.material.color = new Color(LeftRedEye.material.color.r, LeftRedEye.material.color.g, LeftRedEye.material.color.b, 1f - YandereFade / 100f);
 			RightYandereEye.material.color = new Color(RightYandereEye.material.color.r, YandereFade / 100f, YandereFade / 100f, RightYandereEye.material.color.a);
@@ -5766,8 +5748,8 @@ public class YandereScript : MonoBehaviour
 				if (Shoes[0].activeInHierarchy)
 				{
 					Object.Instantiate(ShoePair, base.transform.position + new Vector3(0f, 0.045f, 0f) + base.transform.forward * 1.6f, Quaternion.identity).transform.eulerAngles = base.transform.eulerAngles;
-					Shoes[0].SetActive(false);
-					Shoes[1].SetActive(false);
+					Shoes[0].SetActive(value: false);
+					Shoes[1].SetActive(value: false);
 				}
 			}
 			else if (CharacterAnimation["f02_roofPushA_00"].time > 2.1666667f)
@@ -5780,8 +5762,8 @@ public class YandereScript : MonoBehaviour
 				if (TargetStudent.Schoolwear == 1 && !TargetStudent.ClubAttire && !Shoes[0].activeInHierarchy)
 				{
 					TargetStudent.RemoveShoes();
-					Shoes[0].SetActive(true);
-					Shoes[1].SetActive(true);
+					Shoes[0].SetActive(value: true);
+					Shoes[1].SetActive(value: true);
 				}
 			}
 			float num = 0f;
@@ -5966,7 +5948,7 @@ public class YandereScript : MonoBehaviour
 				}
 				else
 				{
-					TargetStudent.BloodSpray.SetActive(true);
+					TargetStudent.BloodSpray.SetActive(value: true);
 					TargetStudent.DeathType = DeathType.Weapon;
 					Bloodiness += 20f;
 				}
@@ -6096,38 +6078,38 @@ public class YandereScript : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.P))
 			{
-				CyborgParts[1].SetActive(false);
-				MemeGlasses.SetActive(false);
-				KONGlasses.SetActive(false);
-				EyepatchR.SetActive(false);
-				EyepatchL.SetActive(false);
+				CyborgParts[1].SetActive(value: false);
+				MemeGlasses.SetActive(value: false);
+				KONGlasses.SetActive(value: false);
+				EyepatchR.SetActive(value: false);
+				EyepatchL.SetActive(value: false);
 				EyewearID++;
 				if (EyewearID == 1)
 				{
-					EyepatchR.SetActive(true);
+					EyepatchR.SetActive(value: true);
 				}
 				else if (EyewearID == 2)
 				{
-					EyepatchL.SetActive(true);
+					EyepatchL.SetActive(value: true);
 				}
 				else if (EyewearID == 3)
 				{
-					EyepatchR.SetActive(true);
-					EyepatchL.SetActive(true);
+					EyepatchR.SetActive(value: true);
+					EyepatchL.SetActive(value: true);
 				}
 				else if (EyewearID == 4)
 				{
-					KONGlasses.SetActive(true);
+					KONGlasses.SetActive(value: true);
 				}
 				else if (EyewearID == 5)
 				{
-					MemeGlasses.SetActive(true);
+					MemeGlasses.SetActive(value: true);
 				}
 				else if (EyewearID == 6)
 				{
 					if (CyborgParts[2].activeInHierarchy)
 					{
-						CyborgParts[1].SetActive(true);
+						CyborgParts[1].SetActive(value: true);
 					}
 					else
 					{
@@ -6160,7 +6142,7 @@ public class YandereScript : MonoBehaviour
 			{
 				if (AccessoryID > 0)
 				{
-					Accessories[AccessoryID].SetActive(false);
+					Accessories[AccessoryID].SetActive(value: false);
 				}
 				if (Input.GetButton("LB"))
 				{
@@ -6176,7 +6158,7 @@ public class YandereScript : MonoBehaviour
 			{
 				if (AccessoryID > 0)
 				{
-					Accessories[AccessoryID].SetActive(false);
+					Accessories[AccessoryID].SetActive(value: false);
 				}
 				AccessoryID--;
 				UpdateAccessory();
@@ -6236,7 +6218,7 @@ public class YandereScript : MonoBehaviour
 				{
 					if (Input.GetKeyDown(KeyCode.Slash))
 					{
-						DebugMenu.SetActive(false);
+						DebugMenu.SetActive(value: false);
 						EasterEggMenu.SetActive(!EasterEggMenu.activeInHierarchy);
 					}
 					if (EasterEggMenu.activeInHierarchy)
@@ -6275,7 +6257,7 @@ public class YandereScript : MonoBehaviour
 						{
 							if (Input.GetKeyDown(KeyCode.K))
 							{
-								EasterEggMenu.SetActive(false);
+								EasterEggMenu.SetActive(value: false);
 								StudentManager.Kong();
 								DK = true;
 							}
@@ -6287,179 +6269,179 @@ public class YandereScript : MonoBehaviour
 							{
 								if (Input.GetKeyDown(KeyCode.S))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Egg = true;
 									StudentManager.Spook();
 								}
 								else if (Input.GetKeyDown(KeyCode.F))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Falcon();
 								}
 								else if (Input.GetKeyDown(KeyCode.X))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									X();
 								}
 								else if (Input.GetKeyDown(KeyCode.O))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Punch();
 								}
 								else if (Input.GetKeyDown(KeyCode.U))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									BadTime();
 								}
 								else if (Input.GetKeyDown(KeyCode.Y))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									CyborgNinja();
 								}
 								else if (Input.GetKeyDown(KeyCode.E))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Ebola();
 								}
 								else if (Input.GetKeyDown(KeyCode.Q))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Samus();
 								}
 								else if (Input.GetKeyDown(KeyCode.W))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Witch();
 								}
 								else if (Input.GetKeyDown(KeyCode.R))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Pose();
 								}
 								else if (Input.GetKeyDown(KeyCode.V))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Vaporwave();
 								}
 								else if (Input.GetKeyDown(KeyCode.Alpha2))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									HairBlades();
 								}
 								else if (Input.GetKeyDown(KeyCode.Alpha7))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Tornado();
 								}
 								else if (Input.GetKeyDown(KeyCode.Alpha8))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									GenderSwap();
 								}
 								else if (Input.GetKeyDown(KeyCode.A))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									HollowMode();
 								}
 								else if (Input.GetKeyDown(KeyCode.I))
 								{
 									StudentManager.NoGravity = true;
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.D))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Sith();
 								}
 								else if (Input.GetKeyDown(KeyCode.M))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Snake();
 								}
 								else if (Input.GetKeyDown(KeyCode.Alpha1))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Gazer();
 								}
 								else if (Input.GetKeyDown(KeyCode.Alpha3))
 								{
 									StudentManager.SecurityCameras();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.Alpha4))
 								{
 									KLK();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.Alpha6))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 									Six();
 								}
 								else if (Input.GetKeyDown(KeyCode.F1))
 								{
 									Weather();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F2))
 								{
 									Horror();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F3))
 								{
 									LifeNote();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F4))
 								{
 									Mandere();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F5))
 								{
 									BlackHoleChan();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F6))
 								{
 									ElfenLied();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F7))
 								{
 									Berserk();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F8))
 								{
 									Nier();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F9))
 								{
 									Ghoul();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F10))
 								{
 									CinematicCameraFilters.enabled = true;
 									CameraFilters.enabled = true;
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F11))
 								{
 									GarbageMode();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (Input.GetKeyDown(KeyCode.F12))
 								{
 									TallMode();
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 								else if (!Input.GetKeyDown(KeyCode.ScrollLock) && Input.GetKeyDown(KeyCode.Space))
 								{
-									EasterEggMenu.SetActive(false);
+									EasterEggMenu.SetActive(value: false);
 								}
 							}
 						}
@@ -6839,8 +6821,7 @@ public class YandereScript : MonoBehaviour
 		{
 			return;
 		}
-		WeaponScript equippedWeapon = EquippedWeapon;
-		Debug.Log("Yandere-chan's eqipped weapon is: " + (((object)equippedWeapon != null) ? equippedWeapon.ToString() : null));
+		Debug.Log("Yandere-chan's eqipped weapon is: " + EquippedWeapon);
 		if (TargetStudent != null && TargetStudent.StudentID < EquippedWeapon.Victims.Length)
 		{
 			EquippedWeapon.Victims[TargetStudent.StudentID] = true;
@@ -6915,22 +6896,22 @@ public class YandereScript : MonoBehaviour
 		}
 		Smartphone.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 		Smartphone.targetTexture = Shutter.SmartphoneScreen;
-		Smartphone.transform.parent.gameObject.SetActive(false);
+		Smartphone.transform.parent.gameObject.SetActive(value: false);
 		Smartphone.fieldOfView = 60f;
 		MainCamera.farClipPlane = OptionGlobals.DrawDistance;
 		MainCamera.nearClipPlane = 0.1f;
 		Shutter.TargetStudent = 0;
 		Height = 0f;
 		Bend = 0f;
-		HandCamera.gameObject.SetActive(false);
-		SelfieGuide.SetActive(false);
+		HandCamera.gameObject.SetActive(value: false);
+		SelfieGuide.SetActive(value: false);
 		PhonePromptBar.Show = false;
 		MainCamera.enabled = true;
 		UsingController = false;
 		Aiming = false;
 		Selfie = false;
 		Lewd = false;
-		StudentManager.UpdatePanties(false);
+		StudentManager.UpdatePanties(Status: false);
 		if (OptionGlobals.DepthOfField)
 		{
 			PauseScreen.NewSettings.Profile.depthOfField.enabled = true;
@@ -6960,7 +6941,7 @@ public class YandereScript : MonoBehaviour
 	public void ResetSenpaiEffects()
 	{
 		SenpaiFilter.enabled = false;
-		Phone.SetActive(false);
+		Phone.SetActive(value: false);
 		for (int i = 1; i < 6; i++)
 		{
 			CharacterAnimation[CreepyIdles[i]].weight = 0f;
@@ -6976,7 +6957,7 @@ public class YandereScript : MonoBehaviour
 	public void ResetYandereEffects()
 	{
 		YandereTimer = 0f;
-		Phone.SetActive(false);
+		Phone.SetActive(value: false);
 		CharacterAnimation["f02_phonePose_00"].weight = 0f;
 		YandereVisionPanel.alpha = 0f;
 		SenpaiGazing = false;
@@ -6986,7 +6967,7 @@ public class YandereScript : MonoBehaviour
 		Time.timeScale = 1f;
 		YandereFade = 100f;
 		StudentManager.Tag.Sprite.color = new Color(1f, 0f, 0f, 0f);
-		StudentManager.RedString.gameObject.SetActive(false);
+		StudentManager.RedString.gameObject.SetActive(value: false);
 		RightRedEye.material.color = new Color(1f, 1f, 1f, 0f);
 		LeftRedEye.material.color = new Color(1f, 1f, 1f, 0f);
 		RightYandereEye.material.color = new Color(1f, 1f, 1f, 1f);
@@ -7029,7 +7010,7 @@ public class YandereScript : MonoBehaviour
 				ReachWeight = 1f;
 				if (EquippedWeapon != null)
 				{
-					EquippedWeapon.gameObject.SetActive(false);
+					EquippedWeapon.gameObject.SetActive(value: false);
 				}
 			}
 			else if (Weapon[3] != null)
@@ -7089,7 +7070,7 @@ public class YandereScript : MonoBehaviour
 		}
 		for (ID = 1; ID < Poisons.Length; ID++)
 		{
-			Poisons[ID].SetActive(false);
+			Poisons[ID].SetActive(value: false);
 		}
 		Mopping = false;
 		UpdateConcealedItemStatus();
@@ -7131,11 +7112,15 @@ public class YandereScript : MonoBehaviour
 		}
 		for (ID = 1; ID < Hairstyles.Length; ID++)
 		{
-			Hairstyles[ID].SetActive(false);
+			Hairstyles[ID].SetActive(value: false);
 		}
 		if (Hairstyle > 0)
 		{
-			Hairstyles[Hairstyle].SetActive(true);
+			Hairstyles[Hairstyle].SetActive(value: true);
+		}
+		for (ID = 1; ID < Hairstyles.Length; ID++)
+		{
+			Hairstyles[ID].layer = 13;
 		}
 	}
 
@@ -7145,7 +7130,7 @@ public class YandereScript : MonoBehaviour
 		BladeHairCollider2.enabled = false;
 		if (Sanity < 33.33333f)
 		{
-			Teeth.SetActive(true);
+			Teeth.SetActive(value: true);
 		}
 		LaughIntensity = 0f;
 		Laughing = false;
@@ -7332,9 +7317,9 @@ public class YandereScript : MonoBehaviour
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		ODMGear.SetActive(true);
-		TitanSword[0].SetActive(true);
-		TitanSword[1].SetActive(true);
+		ODMGear.SetActive(value: true);
+		TitanSword[0].SetActive(value: true);
+		TitanSword[1].SetActive(value: true);
 		IdleAnim = "f02_heroicIdle_00";
 		WalkAnim = "f02_walkConfident_00";
 		RunAnim = "f02_sithRun_00";
@@ -7346,7 +7331,7 @@ public class YandereScript : MonoBehaviour
 		MusicCredit.BandLabel.text = "By: The Kira Justice";
 		MusicCredit.Sprite.enabled = true;
 		MusicCredit.Slide = true;
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		Egg = true;
 		Outline.h.ReinitMaterials();
 	}
@@ -7366,15 +7351,15 @@ public class YandereScript : MonoBehaviour
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		Egg = true;
-		PunishedAccessories.SetActive(true);
-		PunishedScarf.SetActive(true);
-		EyepatchL.SetActive(false);
-		EyepatchR.SetActive(false);
+		PunishedAccessories.SetActive(value: true);
+		PunishedScarf.SetActive(value: true);
+		EyepatchL.SetActive(value: false);
+		EyepatchR.SetActive(value: false);
 		for (ID = 0; ID < PunishedArm.Length; ID++)
 		{
-			PunishedArm[ID].SetActive(true);
+			PunishedArm[ID].SetActive(value: true);
 		}
 		MyRenderer.sharedMesh = PunishedMesh;
 		MyRenderer.materials[0].mainTexture = PunishedTextures[1];
@@ -7399,23 +7384,23 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[2].mainTexture = FaceTexture;
 		RenderSettings.skybox = HatefulSkybox;
 		SelectGrayscale.desaturation = 1f;
-		HeartRate.gameObject.SetActive(false);
+		HeartRate.gameObject.SetActive(value: false);
 		Sanity = 0f;
 		Hairstyle = 15;
 		UpdateHair();
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		Egg = true;
 	}
 
 	private void Sukeban()
 	{
 		IdleAnim = "f02_idle_00";
-		SukebanAccessories.SetActive(true);
+		SukebanAccessories.SetActive(value: true);
 		MyRenderer.sharedMesh = Uniforms[1];
 		MyRenderer.materials[1].mainTexture = SukebanBandages;
 		MyRenderer.materials[0].mainTexture = SukebanUniform;
 		MyRenderer.materials[2].mainTexture = FaceTexture;
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		Egg = true;
 	}
 
@@ -7424,18 +7409,18 @@ public class YandereScript : MonoBehaviour
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		BanchoCamera.SetActive(true);
+		BanchoCamera.SetActive(value: true);
 		MotionObject.enabled = true;
 		MotionBlur.enabled = true;
-		BanchoAccessories[0].SetActive(true);
-		BanchoAccessories[1].SetActive(true);
-		BanchoAccessories[2].SetActive(true);
-		BanchoAccessories[3].SetActive(true);
-		BanchoAccessories[4].SetActive(true);
-		BanchoAccessories[5].SetActive(true);
-		BanchoAccessories[6].SetActive(true);
-		BanchoAccessories[7].SetActive(true);
-		BanchoAccessories[8].SetActive(true);
+		BanchoAccessories[0].SetActive(value: true);
+		BanchoAccessories[1].SetActive(value: true);
+		BanchoAccessories[2].SetActive(value: true);
+		BanchoAccessories[3].SetActive(value: true);
+		BanchoAccessories[4].SetActive(value: true);
+		BanchoAccessories[5].SetActive(value: true);
+		BanchoAccessories[6].SetActive(value: true);
+		BanchoAccessories[7].SetActive(value: true);
+		BanchoAccessories[8].SetActive(value: true);
 		Laugh1 = BanchoYanYan;
 		Laugh2 = BanchoYanYan;
 		Laugh3 = BanchoYanYan;
@@ -7447,7 +7432,7 @@ public class YandereScript : MonoBehaviour
 		OriginalWalkAnim = WalkAnim;
 		OriginalRunAnim = RunAnim;
 		RunSpeed *= 2f;
-		BanchoPants.SetActive(true);
+		BanchoPants.SetActive(value: true);
 		MyRenderer.sharedMesh = BanchoMesh;
 		MyRenderer.materials[0].mainTexture = BanchoFace;
 		MyRenderer.materials[1].mainTexture = BanchoBody;
@@ -7457,7 +7442,7 @@ public class YandereScript : MonoBehaviour
 		Character.transform.localPosition = new Vector3(0f, 0.04f, 0f);
 		Hairstyle = 0;
 		UpdateHair();
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		Egg = true;
 	}
 
@@ -7469,16 +7454,16 @@ public class YandereScript : MonoBehaviour
 		RenderSettings.skybox = SlenderSkybox;
 		SelectGrayscale.desaturation = 0.5f;
 		SelectGrayscale.enabled = true;
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		Slender = true;
 		Egg = true;
 		Hairstyle = 0;
 		UpdateHair();
-		SlenderHair[0].transform.parent.gameObject.SetActive(true);
-		SlenderHair[0].SetActive(true);
-		SlenderHair[1].SetActive(true);
-		RightYandereEye.gameObject.SetActive(false);
-		LeftYandereEye.gameObject.SetActive(false);
+		SlenderHair[0].transform.parent.gameObject.SetActive(value: true);
+		SlenderHair[0].SetActive(value: true);
+		SlenderHair[1].SetActive(value: true);
+		RightYandereEye.gameObject.SetActive(value: false);
+		LeftYandereEye.gameObject.SetActive(value: false);
 		Character.transform.localPosition = new Vector3(Character.transform.localPosition.x, 0.822f, Character.transform.localPosition.z);
 		MyRenderer.sharedMesh = Uniforms[1];
 		MyRenderer.materials[0].mainTexture = SlenderUniform;
@@ -7496,9 +7481,9 @@ public class YandereScript : MonoBehaviour
 		Egg = true;
 		Hairstyle = 9;
 		UpdateHair();
-		BlackEyePatch.SetActive(true);
-		XSclera.SetActive(true);
-		XEye.SetActive(true);
+		BlackEyePatch.SetActive(value: true);
+		XSclera.SetActive(value: true);
+		XEye.SetActive(value: true);
 		Schoolwear = 2;
 		ChangeSchoolwear();
 		CanMove = true;
@@ -7513,11 +7498,11 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		IdleAnim = "f02_gruntIdle_00";
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		Egg = true;
 		for (ID = 0; ID < GaloAccessories.Length; ID++)
 		{
-			GaloAccessories[ID].SetActive(true);
+			GaloAccessories[ID].SetActive(value: true);
 		}
 		MyRenderer.sharedMesh = Uniforms[1];
 		MyRenderer.materials[0].mainTexture = UniformTextures[1];
@@ -7535,7 +7520,7 @@ public class YandereScript : MonoBehaviour
 		AudioSource.PlayClipAtPoint(SummonStand, base.transform.position);
 		IdleAnim = "f02_jojoPose_00";
 		WalkAnim = "f02_jojoWalk_00";
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		CanMove = false;
 		Egg = true;
 		CharacterAnimation.CrossFade("f02_summonStand_00");
@@ -7554,9 +7539,9 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].mainTexture = AgentSuit;
 		MyRenderer.materials[1].mainTexture = AgentSuit;
 		MyRenderer.materials[2].mainTexture = AgentFace;
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		Egg = true;
-		Barcode.SetActive(true);
+		Barcode.SetActive(value: true);
 		Hairstyle = 0;
 		UpdateHair();
 	}
@@ -7570,12 +7555,12 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].mainTexture = CirnoUniform;
 		MyRenderer.materials[1].mainTexture = CirnoUniform;
 		MyRenderer.materials[2].mainTexture = CirnoFace;
-		CirnoWings.SetActive(true);
-		CirnoHair.SetActive(true);
+		CirnoWings.SetActive(value: true);
+		CirnoHair.SetActive(value: true);
 		IdleAnim = "f02_cirnoIdle_00";
 		WalkAnim = "f02_cirnoWalk_00";
 		RunAnim = "f02_cirnoRun_00";
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		Stance.Current = StanceType.Standing;
 		Uncrouch();
 		Egg = true;
@@ -7592,11 +7577,11 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].mainTexture = FalconFace;
 		MyRenderer.materials[1].mainTexture = FalconBody;
 		MyRenderer.materials[2].mainTexture = FalconBody;
-		FalconShoulderpad.SetActive(true);
-		FalconKneepad1.SetActive(true);
-		FalconKneepad2.SetActive(true);
-		FalconBuckle.SetActive(true);
-		FalconHelmet.SetActive(true);
+		FalconShoulderpad.SetActive(value: true);
+		FalconKneepad1.SetActive(value: true);
+		FalconKneepad2.SetActive(value: true);
+		FalconBuckle.SetActive(value: true);
+		FalconHelmet.SetActive(value: true);
 		CharacterAnimation[RunAnim].speed = 5f;
 		IdleAnim = "f02_falconIdle_00";
 		RunSpeed *= 5f;
@@ -7619,9 +7604,9 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].mainTexture = SaitamaSuit;
 		MyRenderer.materials[1].mainTexture = SaitamaSuit;
 		MyRenderer.materials[2].mainTexture = FaceTexture;
-		EasterEggMenu.SetActive(false);
-		Barcode.SetActive(false);
-		Cape.SetActive(true);
+		EasterEggMenu.SetActive(value: false);
+		Barcode.SetActive(value: false);
+		Cape.SetActive(value: true);
 		Egg = true;
 		Hairstyle = 0;
 		UpdateHair();
@@ -7637,12 +7622,12 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].mainTexture = SansFace;
 		MyRenderer.materials[1].mainTexture = SansTexture;
 		MyRenderer.materials[2].mainTexture = SansTexture;
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		IdleAnim = "f02_sansIdle_00";
 		WalkAnim = "f02_sansWalk_00";
 		RunAnim = "f02_sansRun_00";
 		StudentManager.BadTime();
-		Barcode.SetActive(false);
+		Barcode.SetActive(value: false);
 		Sans = true;
 		Egg = true;
 		Hairstyle = 0;
@@ -7655,7 +7640,7 @@ public class YandereScript : MonoBehaviour
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		EnergySword.SetActive(true);
+		EnergySword.SetActive(value: true);
 		IdleAnim = "CyborgNinja_Idle_Unarmed";
 		RunAnim = "CyborgNinja_Run_Unarmed";
 		MyRenderer.sharedMesh = NudeMesh;
@@ -7665,7 +7650,7 @@ public class YandereScript : MonoBehaviour
 		Schoolwear = 0;
 		for (ID = 1; ID < CyborgParts.Length; ID++)
 		{
-			CyborgParts[ID].SetActive(true);
+			CyborgParts[ID].SetActive(value: true);
 		}
 		for (ID = 1; ID < StudentManager.Students.Length; ID++)
 		{
@@ -7696,9 +7681,9 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.enabled = false;
 		Hairstyle = 0;
 		UpdateHair();
-		EbolaAttacher.SetActive(true);
-		EbolaWings.SetActive(true);
-		EbolaHair.SetActive(true);
+		EbolaAttacher.SetActive(value: true);
+		EbolaWings.SetActive(value: true);
+		EbolaHair.SetActive(value: true);
 		Egg = true;
 	}
 
@@ -7713,8 +7698,8 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].mainTexture = TextureToUse;
 		MyRenderer.materials[1].mainTexture = NewFace;
 		MyRenderer.materials[2].mainTexture = TextureToUse;
-		RightYandereEye.gameObject.SetActive(false);
-		LeftYandereEye.gameObject.SetActive(false);
+		RightYandereEye.gameObject.SetActive(value: false);
+		LeftYandereEye.gameObject.SetActive(value: false);
 	}
 
 	private void Nude()
@@ -7730,7 +7715,7 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
-		EasterEggMenu.SetActive(false);
+		EasterEggMenu.SetActive(value: false);
 		ClubAttire = false;
 		Schoolwear = 0;
 		if (StudentManager.Eighties)
@@ -7806,7 +7791,7 @@ public class YandereScript : MonoBehaviour
 	{
 		Hairstyle = 0;
 		UpdateHair();
-		BladeHair.SetActive(true);
+		BladeHair.SetActive(value: true);
 		Egg = true;
 	}
 
@@ -7817,9 +7802,9 @@ public class YandereScript : MonoBehaviour
 		IdleAnim = "f02_tornadoIdle_00";
 		WalkAnim = "f02_tornadoWalk_00";
 		RunAnim = "f02_tornadoRun_00";
-		TornadoHair.SetActive(true);
-		TornadoDress.SetActive(true);
-		RiggedAccessory.SetActive(true);
+		TornadoHair.SetActive(value: true);
+		TornadoDress.SetActive(value: true);
+		RiggedAccessory.SetActive(value: true);
 		MyRenderer.sharedMesh = NoTorsoMesh;
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -7835,8 +7820,8 @@ public class YandereScript : MonoBehaviour
 
 	private void GenderSwap()
 	{
-		Kun.SetActive(true);
-		KunHair.SetActive(true);
+		Kun.SetActive(value: true);
+		KunHair.SetActive(value: true);
 		MyRenderer.enabled = false;
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -7853,14 +7838,14 @@ public class YandereScript : MonoBehaviour
 
 	private void Mandere()
 	{
-		Man.SetActive(true);
-		Barcode.SetActive(false);
+		Man.SetActive(value: true);
+		Barcode.SetActive(value: false);
 		MyRenderer.enabled = false;
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		RightYandereEye.gameObject.SetActive(false);
-		LeftYandereEye.gameObject.SetActive(false);
+		RightYandereEye.gameObject.SetActive(value: false);
+		LeftYandereEye.gameObject.SetActive(value: false);
 		IdleAnim = "idleShort_00";
 		WalkAnim = "walk_00";
 		RunAnim = "newSprint_00";
@@ -7889,7 +7874,7 @@ public class YandereScript : MonoBehaviour
 		OriginalRunAnim = RunAnim;
 		Hairstyle = 182;
 		UpdateHair();
-		BlackHoleEffects.SetActive(true);
+		BlackHoleEffects.SetActive(value: true);
 		BlackHole = true;
 		Egg = true;
 		DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
@@ -7906,7 +7891,7 @@ public class YandereScript : MonoBehaviour
 		GameObject[] vectors = Vectors;
 		for (int i = 0; i < vectors.Length; i++)
 		{
-			vectors[i].SetActive(true);
+			vectors[i].SetActive(value: true);
 		}
 		IdleAnim = "f02_sixIdle_00";
 		WalkAnim = "f02_sixWalk_00";
@@ -7914,8 +7899,8 @@ public class YandereScript : MonoBehaviour
 		OriginalIdleAnim = IdleAnim;
 		OriginalWalkAnim = WalkAnim;
 		OriginalRunAnim = RunAnim;
-		LucyHelmet.SetActive(true);
-		Bandages.SetActive(true);
+		LucyHelmet.SetActive(value: true);
+		Bandages.SetActive(value: true);
 		Egg = true;
 		WalkSpeed = 0.75f;
 		RunSpeed = 2f;
@@ -7935,7 +7920,7 @@ public class YandereScript : MonoBehaviour
 		GameObject[] kagune = Kagune;
 		for (int i = 0; i < kagune.Length; i++)
 		{
-			kagune[i].SetActive(true);
+			kagune[i].SetActive(value: true);
 		}
 		IdleAnim = "f02_sixIdle_00";
 		WalkAnim = "f02_sixWalk_00";
@@ -7960,7 +7945,7 @@ public class YandereScript : MonoBehaviour
 		GameObject[] armor = Armor;
 		for (int i = 0; i < armor.Length; i++)
 		{
-			armor[i].SetActive(true);
+			armor[i].SetActive(value: true);
 		}
 		Renderer[] trees = StudentManager.Trees;
 		for (int i = 0; i < trees.Length; i++)
@@ -7996,12 +7981,12 @@ public class YandereScript : MonoBehaviour
 	{
 		Hairstyle = 67;
 		UpdateHair();
-		SithTrail1.SetActive(true);
-		SithTrail2.SetActive(true);
+		SithTrail1.SetActive(value: true);
+		SithTrail2.SetActive(value: true);
 		IdleAnim = "f02_sithIdle_00";
 		WalkAnim = "f02_sithWalk_00";
 		RunAnim = "f02_sithRun_00";
-		BlackRobe.SetActive(true);
+		BlackRobe.SetActive(value: true);
 		MyRenderer.sharedMesh = NoUpperBodyMesh;
 		MyRenderer.materials[0].mainTexture = NudePanties;
 		MyRenderer.materials[1].mainTexture = FaceTexture;
@@ -8038,7 +8023,7 @@ public class YandereScript : MonoBehaviour
 	{
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		GazerEyes.gameObject.SetActive(true);
+		GazerEyes.gameObject.SetActive(value: true);
 		MyRenderer.sharedMesh = NudeMesh;
 		MyRenderer.materials[0].mainTexture = GazerFace;
 		MyRenderer.materials[1].mainTexture = GazerBody;
@@ -8071,7 +8056,7 @@ public class YandereScript : MonoBehaviour
 		OriginalIdleAnim = IdleAnim;
 		OriginalWalkAnim = WalkAnim;
 		OriginalRunAnim = RunAnim;
-		SixRaincoat.SetActive(true);
+		SixRaincoat.SetActive(value: true);
 		MyRenderer.sharedMesh = SixBodyMesh;
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -8108,7 +8093,7 @@ public class YandereScript : MonoBehaviour
 			}
 			UpdateHair();
 		}
-		RaincoatAttacher.gameObject.SetActive(true);
+		RaincoatAttacher.gameObject.SetActive(value: true);
 		MyRenderer.sharedMesh = HeadAndKnees;
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -8123,7 +8108,7 @@ public class YandereScript : MonoBehaviour
 	{
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		KLKSword.SetActive(true);
+		KLKSword.SetActive(value: true);
 		IdleAnim = "f02_heroicIdle_00";
 		WalkAnim = "f02_walkConfident_00";
 		MyRenderer.sharedMesh = NudeMesh;
@@ -8134,7 +8119,7 @@ public class YandereScript : MonoBehaviour
 		Schoolwear = 0;
 		for (ID = 0; ID < KLKParts.Length; ID++)
 		{
-			KLKParts[ID].SetActive(true);
+			KLKParts[ID].SetActive(value: true);
 		}
 		for (ID = 1; ID < StudentManager.Students.Length; ID++)
 		{
@@ -8150,8 +8135,8 @@ public class YandereScript : MonoBehaviour
 
 	public void Miyuki()
 	{
-		MiyukiCostume.SetActive(true);
-		MiyukiWings.SetActive(true);
+		MiyukiCostume.SetActive(value: true);
+		MiyukiWings.SetActive(value: true);
 		IdleAnim = "f02_idleGirly_00";
 		WalkAnim = "f02_walkGirly_00";
 		MyRenderer.sharedMesh = NudeMesh;
@@ -8180,9 +8165,9 @@ public class YandereScript : MonoBehaviour
 		OriginalIdleAnim = IdleAnim;
 		OriginalWalkAnim = WalkAnim;
 		OriginalRunAnim = RunAnim;
-		AzurGuns.SetActive(true);
-		AzurWater.SetActive(true);
-		AzurMist.SetActive(true);
+		AzurGuns.SetActive(value: true);
+		AzurWater.SetActive(value: true);
+		AzurMist.SetActive(value: true);
 		Shipgirl = true;
 		CanMove = true;
 		Egg = true;
@@ -8195,14 +8180,14 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.sharedMesh = null;
 		Hairstyle = 0;
 		UpdateHair();
-		GarbageBag.SetActive(true);
+		GarbageBag.SetActive(value: true);
 		for (ID = 1; ID < 101; ID++)
 		{
 			if (StudentManager.Students[ID] != null && StudentManager.Students[ID].gameObject.activeInHierarchy)
 			{
-				StudentManager.Students[ID].Cosmetic.HairRenderer.gameObject.SetActive(false);
+				StudentManager.Students[ID].Cosmetic.HairRenderer.gameObject.SetActive(value: false);
 				StudentManager.Students[ID].MyRenderer.enabled = false;
-				StudentManager.Students[ID].GarbageBag.SetActive(true);
+				StudentManager.Students[ID].GarbageBag.SetActive(value: true);
 			}
 		}
 	}
@@ -8211,9 +8196,9 @@ public class YandereScript : MonoBehaviour
 	{
 		SchoolGlobals.SchoolAtmosphere = 0.5f;
 		StudentManager.SetAtmosphere();
-		TallLadyAttacher.SetActive(true);
-		BlackRose.SetActive(true);
-		FloppyHat.SetActive(true);
+		TallLadyAttacher.SetActive(value: true);
+		BlackRose.SetActive(value: true);
+		FloppyHat.SetActive(value: true);
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.sharedMesh = null;
 		Hairstyle = 201;
@@ -8239,10 +8224,10 @@ public class YandereScript : MonoBehaviour
 		RenderSettings.skybox = HorrorSkybox;
 		SchoolGlobals.SchoolAtmosphere = 0f;
 		StudentManager.SetAtmosphere();
-		HollowCloakAttacher.SetActive(true);
-		HollowSword.SetActive(true);
-		HollowMask.SetActive(true);
-		DarkParticles.SetActive(true);
+		HollowCloakAttacher.SetActive(value: true);
+		HollowSword.SetActive(value: true);
+		HollowMask.SetActive(value: true);
+		DarkParticles.SetActive(value: true);
 		MyRenderer.sharedMesh = NoButtMesh;
 		MyRenderer.materials[0].mainTexture = HollowFaceTexture;
 		MyRenderer.materials[1].mainTexture = HollowBodyTexture;
@@ -8277,7 +8262,7 @@ public class YandereScript : MonoBehaviour
 		WalkAnim = "f02_jojoWalk_00";
 		OriginalIdleAnim = "f02_idleElegant_00";
 		OriginalWalkAnim = "f02_jojoWalk_00";
-		BlacklightOutfit.SetActive(true);
+		BlacklightOutfit.SetActive(value: true);
 		MyRenderer.sharedMesh = BlacklightBodyMesh;
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -8294,13 +8279,13 @@ public class YandereScript : MonoBehaviour
 		{
 			SchoolGlobals.SchoolAtmosphere = 0f;
 			StudentManager.SetAtmosphere();
-			Rain.SetActive(true);
+			Rain.SetActive(value: true);
 			Jukebox.Start();
 			return;
 		}
 		Hairstyle = 67;
 		UpdateHair();
-		RaincoatAttacher.gameObject.SetActive(true);
+		RaincoatAttacher.gameObject.SetActive(value: true);
 		MyRenderer.sharedMesh = SixBodyMesh;
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -8313,7 +8298,7 @@ public class YandereScript : MonoBehaviour
 
 	private void Horror()
 	{
-		Rain.SetActive(false);
+		Rain.SetActive(value: false);
 		RenderSettings.ambientLight = new Color(0.1f, 0.1f, 0.1f);
 		RenderSettings.skybox = HorrorSkybox;
 		SchoolGlobals.SchoolAtmosphere = 0f;
@@ -8322,23 +8307,23 @@ public class YandereScript : MonoBehaviour
 		Zoom.OverShoulder = true;
 		Zoom.TargetZoom = 0.2f;
 		PauseScreen.MissionMode.FPS.transform.localPosition = new Vector3(1020f, -465f, 0f);
-		PauseScreen.MissionMode.Watermark.gameObject.SetActive(false);
-		PauseScreen.MissionMode.Nemesis.SetActive(true);
+		PauseScreen.MissionMode.Watermark.gameObject.SetActive(value: false);
+		PauseScreen.MissionMode.Nemesis.SetActive(value: true);
 		StudentManager.Clock.MainLight.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-		StudentManager.Clock.gameObject.SetActive(false);
-		StudentManager.Clock.SunFlare.SetActive(false);
+		StudentManager.Clock.gameObject.SetActive(value: false);
+		StudentManager.Clock.SunFlare.SetActive(value: false);
 		StudentManager.Clock.Horror = true;
 		StudentManager.Students[1].transform.position = new Vector3(0f, 0f, 0f);
-		StudentManager.Headmaster.gameObject.SetActive(false);
-		StudentManager.Reputation.gameObject.SetActive(false);
-		StudentManager.Flashlight.gameObject.SetActive(true);
+		StudentManager.Headmaster.gameObject.SetActive(value: false);
+		StudentManager.Reputation.gameObject.SetActive(value: false);
+		StudentManager.Flashlight.gameObject.SetActive(value: true);
 		StudentManager.Flashlight.BePickedUp();
-		StudentManager.DelinquentRadio.SetActive(false);
+		StudentManager.DelinquentRadio.SetActive(value: false);
 		StudentManager.CounselorDoor[0].enabled = false;
 		StudentManager.CounselorDoor[1].enabled = false;
 		StudentManager.CounselorDoor[0].Prompt.enabled = false;
 		StudentManager.CounselorDoor[1].Prompt.enabled = false;
-		StudentManager.Portal.SetActive(false);
+		StudentManager.Portal.SetActive(value: false);
 		RenderSettings.ambientLight = new Color(0.1f, 0.1f, 0.1f);
 		for (ID = 1; ID < 101; ID++)
 		{
@@ -8361,7 +8346,7 @@ public class YandereScript : MonoBehaviour
 		LifeNotebook.transform.position = base.transform.position + base.transform.forward + new Vector3(0f, 2.5f, 0f);
 		LifeNotebook.GetComponent<Rigidbody>().useGravity = true;
 		LifeNotebook.GetComponent<Rigidbody>().isKinematic = false;
-		LifeNotebook.gameObject.SetActive(true);
+		LifeNotebook.gameObject.SetActive(value: true);
 		MyRenderer.sharedMesh = YamikoMesh;
 		MyRenderer.materials[0].mainTexture = YamikoSkinTexture;
 		MyRenderer.materials[1].mainTexture = YamikoAccessoryTexture;
@@ -8377,14 +8362,14 @@ public class YandereScript : MonoBehaviour
 
 	private void Nier()
 	{
-		NierCostume.SetActive(true);
-		HeavySwordParent.gameObject.SetActive(true);
-		LightSwordParent.gameObject.SetActive(true);
+		NierCostume.SetActive(value: true);
+		HeavySwordParent.gameObject.SetActive(value: true);
+		LightSwordParent.gameObject.SetActive(value: true);
 		HeavySword.GetComponent<WeaponTrail>().Start();
 		LightSword.GetComponent<WeaponTrail>().Start();
 		HeavySword.GetComponent<WeaponTrail>().enabled = false;
 		LightSword.GetComponent<WeaponTrail>().enabled = false;
-		Pod.SetActive(true);
+		Pod.SetActive(value: true);
 		SithSpawnTime = NierSpawnTime;
 		SithHardSpawnTime1 = NierHardSpawnTime;
 		SithHardSpawnTime2 = NierHardSpawnTime;
@@ -8407,19 +8392,19 @@ public class YandereScript : MonoBehaviour
 
 	public void WearChinaDress()
 	{
-		EbolaHair.SetActive(false);
+		EbolaHair.SetActive(value: false);
 		EbolaWings.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f);
 		EbolaWings.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(0f, 0f, 0f));
 		Hairstyle = 1;
 		UpdateHair();
-		ChinaDress.SetActive(true);
+		ChinaDress.SetActive(value: true);
 		Nude();
 		PantyAttacher.newRenderer.enabled = true;
 	}
 
 	public void Medibang()
 	{
-		MedibangAttacher.SetActive(true);
+		MedibangAttacher.SetActive(value: true);
 		Hairstyle = 208;
 		UpdateHair();
 		MyRenderer.enabled = false;
@@ -8429,10 +8414,10 @@ public class YandereScript : MonoBehaviour
 	{
 		VaporwaveVisuals.ApplyNormalView();
 		RenderSettings.skybox = VaporwaveSkybox;
-		PalmTrees.SetActive(true);
+		PalmTrees.SetActive(value: true);
 		for (int i = 1; i < Trees.Length; i++)
 		{
-			Trees[i].SetActive(false);
+			Trees[i].SetActive(value: false);
 		}
 	}
 
@@ -8454,7 +8439,7 @@ public class YandereScript : MonoBehaviour
 		Paint = false;
 		for (ID = 0; ID < CensorSteam.Length; ID++)
 		{
-			CensorSteam[ID].SetActive(false);
+			CensorSteam[ID].SetActive(value: false);
 		}
 		if (Casual)
 		{
@@ -8582,12 +8567,12 @@ public class YandereScript : MonoBehaviour
 			GameObject gameObject = ClubAccessories[ID];
 			if (gameObject != null)
 			{
-				gameObject.SetActive(false);
+				gameObject.SetActive(value: false);
 			}
 		}
 		if (MyRenderer.sharedMesh != Towel && Club > ClubType.None && ClubAccessories[(int)Club] != null)
 		{
-			ClubAccessories[(int)Club].SetActive(true);
+			ClubAccessories[(int)Club].SetActive(value: true);
 		}
 	}
 
@@ -8662,7 +8647,7 @@ public class YandereScript : MonoBehaviour
 	{
 		if (AccessoryGroup != null)
 		{
-			AccessoryGroup.SetPartsActive(false);
+			AccessoryGroup.SetPartsActive(active: false);
 		}
 		if (AccessoryID > Accessories.Length - 1)
 		{
@@ -8674,12 +8659,16 @@ public class YandereScript : MonoBehaviour
 		}
 		if (AccessoryID > 0)
 		{
-			Accessories[AccessoryID].SetActive(true);
+			Accessories[AccessoryID].SetActive(value: true);
 			AccessoryGroup = Accessories[AccessoryID].GetComponent<AccessoryGroupScript>();
 			if (AccessoryGroup != null)
 			{
-				AccessoryGroup.SetPartsActive(true);
+				AccessoryGroup.SetPartsActive(active: true);
 			}
+		}
+		for (ID = 1; ID < Accessories.Length; ID++)
+		{
+			Accessories[ID].layer = 13;
 		}
 	}
 
@@ -8687,11 +8676,11 @@ public class YandereScript : MonoBehaviour
 	{
 		for (ID = 1; ID < Accessories.Length; ID++)
 		{
-			Accessories[ID].SetActive(false);
+			Accessories[ID].layer = 4;
 		}
 		for (ID = 1; ID < Hairstyles.Length; ID++)
 		{
-			Hairstyles[ID].SetActive(false);
+			Hairstyles[ID].layer = 4;
 		}
 	}
 
@@ -8797,8 +8786,8 @@ public class YandereScript : MonoBehaviour
 		{
 			Smartphone.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 			Smartphone.targetTexture = Shutter.SmartphoneScreen;
-			HandCamera.gameObject.SetActive(true);
-			SelfieGuide.SetActive(false);
+			HandCamera.gameObject.SetActive(value: true);
+			SelfieGuide.SetActive(value: false);
 			MainCamera.enabled = true;
 			if (!StudentManager.Eighties)
 			{
@@ -8817,7 +8806,7 @@ public class YandereScript : MonoBehaviour
 		Smartphone.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
 		UpdateAccessory();
 		UpdateHair();
-		HandCamera.gameObject.SetActive(false);
+		HandCamera.gameObject.SetActive(value: false);
 		Smartphone.targetTexture = null;
 		MainCamera.enabled = false;
 		Smartphone.cullingMask &= ~(1 << LayerMask.NameToLayer("Miyuki"));
@@ -8947,21 +8936,21 @@ public class YandereScript : MonoBehaviour
 		UniformTextures[6] = EightiesUniform;
 		CasualTextures[6] = EightiesCasual;
 		ModernCamera.localScale = new Vector3(0f, 0f, 0f);
-		EightiesCamera.SetActive(true);
+		EightiesCamera.SetActive(value: true);
 		ClubAccessories[1].GetComponent<MeshFilter>().mesh = EightiesKerchiefMesh;
 	}
 
 	public void Maid()
 	{
-		WeaponManager.Weapons[53].gameObject.SetActive(true);
-		MaidAttacher.SetActive(true);
+		WeaponManager.Weapons[53].gameObject.SetActive(value: true);
+		MaidAttacher.SetActive(value: true);
 		Hairstyle = 209;
 		UpdateHair();
 		EyewearID = 0;
 		UpdateDebugFunctionality();
 		for (ID = 1; ID < Accessories.Length; ID++)
 		{
-			Accessories[ID].SetActive(false);
+			Accessories[ID].SetActive(value: false);
 		}
 		MyRenderer.enabled = false;
 	}
@@ -9103,6 +9092,10 @@ public class YandereScript : MonoBehaviour
 		{
 			direction = corpseOrigin.TransformDirection(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.forward));
 			maxDistance = 0.66666f;
+			if (Dipping)
+			{
+				maxDistance = 1f;
+			}
 		}
 		else if (Direction == 2)
 		{
@@ -9168,7 +9161,7 @@ public class YandereScript : MonoBehaviour
 		{
 			GloveAttacher.newRenderer.enabled = false;
 		}
-		Gloves.gameObject.SetActive(true);
+		Gloves.gameObject.SetActive(value: true);
 		if (Gloves.Blood.enabled)
 		{
 			OutlineScript component = Gloves.GetComponent<OutlineScript>();
@@ -9177,6 +9170,8 @@ public class YandereScript : MonoBehaviour
 				component.color = new Color(1f, 0.5f, 0f, 1f);
 			}
 		}
+		Gloves.PickUp.MyRigidbody.isKinematic = false;
+		Gloves.PickUp.MyRigidbody.useGravity = true;
 		StudentManager.GloveID = 0;
 		Degloving = false;
 		CanMove = true;

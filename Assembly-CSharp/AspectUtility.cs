@@ -10,45 +10,15 @@ public class AspectUtility : MonoBehaviour
 
 	private static Camera backgroundCam;
 
-	public static int screenHeight
-	{
-		get
-		{
-			return (int)((float)Screen.height * cam.rect.height);
-		}
-	}
+	public static int screenHeight => (int)((float)Screen.height * cam.rect.height);
 
-	public static int screenWidth
-	{
-		get
-		{
-			return (int)((float)Screen.width * cam.rect.width);
-		}
-	}
+	public static int screenWidth => (int)((float)Screen.width * cam.rect.width);
 
-	public static int xOffset
-	{
-		get
-		{
-			return (int)((float)Screen.width * cam.rect.x);
-		}
-	}
+	public static int xOffset => (int)((float)Screen.width * cam.rect.x);
 
-	public static int yOffset
-	{
-		get
-		{
-			return (int)((float)Screen.height * cam.rect.y);
-		}
-	}
+	public static int yOffset => (int)((float)Screen.height * cam.rect.y);
 
-	public static Rect screenRect
-	{
-		get
-		{
-			return new Rect(cam.rect.x * (float)Screen.width, cam.rect.y * (float)Screen.height, cam.rect.width * (float)Screen.width, cam.rect.height * (float)Screen.height);
-		}
-	}
+	public static Rect screenRect => new Rect(cam.rect.x * (float)Screen.width, cam.rect.y * (float)Screen.height, cam.rect.width * (float)Screen.width, cam.rect.height * (float)Screen.height);
 
 	public static Vector3 mousePosition
 	{

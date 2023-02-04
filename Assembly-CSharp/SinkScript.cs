@@ -110,7 +110,7 @@ public class SinkScript : MonoBehaviour
 			else if (Yandere.PickUp.BloodCleaner != null)
 			{
 				Yandere.PickUp.BloodCleaner.Blood = 0f;
-				Yandere.PickUp.BloodCleaner.Lens.SetActive(false);
+				Yandere.PickUp.BloodCleaner.Lens.SetActive(value: false);
 			}
 			Prompt.Circle[0].fillAmount = 1f;
 		}

@@ -351,15 +351,12 @@ public class EventDelegate
 		}
 		if (mMethod == null)
 		{
-			string text = mMethodName;
-			Type type2 = mTarget.GetType();
-			Debug.LogError("Could not find method '" + text + "' on " + (((object)type2 != null) ? type2.ToString() : null), mTarget);
+			Debug.LogError("Could not find method '" + mMethodName + "' on " + mTarget.GetType(), mTarget);
 			return;
 		}
 		if (mMethod.ReturnType != typeof(void))
 		{
-			Type type3 = mTarget.GetType();
-			Debug.LogError((((object)type3 != null) ? type3.ToString() : null) + "." + mMethodName + " must have a 'void' return type.", mTarget);
+			Debug.LogError(mTarget.GetType()?.ToString() + "." + mMethodName + " must have a 'void' return type.", mTarget);
 			return;
 		}
 		mParameterInfos = mMethod.GetParameters();
@@ -422,16 +419,7 @@ public class EventDelegate
 				catch (ArgumentException ex)
 				{
 					string text = "Error calling ";
-					if (mTarget == null)
-					{
-						text += mMethod.Name;
-					}
-					else
-					{
-						string text2 = text;
-						Type type = mTarget.GetType();
-						text = text2 + (((object)type != null) ? type.ToString() : null) + "." + mMethod.Name;
-					}
+					text = ((!(mTarget == null)) ? (text + mTarget.GetType()?.ToString() + "." + mMethod.Name) : (text + mMethod.Name));
 					text = text + ": " + ex.Message;
 					text += "\n  Expected: ";
 					if (mParameterInfos.Length == 0)
@@ -440,14 +428,10 @@ public class EventDelegate
 					}
 					else
 					{
-						string text3 = text;
-						ParameterInfo obj = mParameterInfos[0];
-						text = text3 + ((obj != null) ? obj.ToString() : null);
+						text += mParameterInfos[0];
 						for (int j = 1; j < mParameterInfos.Length; j++)
 						{
-							string text4 = text;
-							Type parameterType = mParameterInfos[j].ParameterType;
-							text = text4 + ", " + (((object)parameterType != null) ? parameterType.ToString() : null);
+							text = text + ", " + mParameterInfos[j].ParameterType;
 						}
 					}
 					text += "\n  Received: ";
@@ -457,14 +441,10 @@ public class EventDelegate
 					}
 					else
 					{
-						string text5 = text;
-						Type type2 = mParameters[0].type;
-						text = text5 + (((object)type2 != null) ? type2.ToString() : null);
+						text += mParameters[0].type;
 						for (int k = 1; k < mParameters.Length; k++)
 						{
-							string text6 = text;
-							Type type3 = mParameters[k].type;
-							text = text6 + ", " + (((object)type3 != null) ? type3.ToString() : null);
+							text = text + ", " + mParameters[k].type;
 						}
 					}
 					text += "\n";
@@ -606,7 +586,7 @@ public class EventDelegate
 
 	public static EventDelegate Add(List<EventDelegate> list, Callback callback)
 	{
-		return Add(list, callback, false);
+		return Add(list, callback, oneShot: false);
 	}
 
 	public static EventDelegate Add(List<EventDelegate> list, Callback callback, bool oneShot)

@@ -22,7 +22,7 @@ public class IDCardScript : MonoBehaviour
 				Prompt.Yandere.Inventory.FakeID = true;
 			}
 			Prompt.Hide();
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 }

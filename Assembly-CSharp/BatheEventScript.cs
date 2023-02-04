@@ -41,7 +41,7 @@ public class BatheEventScript : MonoBehaviour
 
 	private void Start()
 	{
-		RivalPhone.SetActive(false);
+		RivalPhone.SetActive(value: false);
 		if (DateGlobals.Weekday != EventDay)
 		{
 			base.enabled = false;
@@ -66,7 +66,7 @@ public class BatheEventScript : MonoBehaviour
 					EventStudent.Pathfinding.speed = 1f;
 					EventStudent.SpeechLines.Stop();
 					EventStudent.DistanceToDestination = 100f;
-					EventStudent.SmartPhone.SetActive(false);
+					EventStudent.SmartPhone.SetActive(value: false);
 					EventStudent.Obstacle.checkTime = 99f;
 					EventStudent.InEvent = true;
 					EventStudent.Private = true;
@@ -113,7 +113,7 @@ public class BatheEventScript : MonoBehaviour
 			{
 				if (EventStudent.BathePhase == 4)
 				{
-					RivalPhone.SetActive(true);
+					RivalPhone.SetActive(value: true);
 					EventPhase++;
 				}
 			}

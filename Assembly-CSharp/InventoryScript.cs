@@ -195,7 +195,7 @@ public class InventoryScript : MonoBehaviour
 			LethalPoisons++;
 			break;
 		case 12:
-			ExplosiveDeviceSet.SetActive(true);
+			ExplosiveDeviceSet.SetActive(value: true);
 			break;
 		}
 		UpdateMoney();

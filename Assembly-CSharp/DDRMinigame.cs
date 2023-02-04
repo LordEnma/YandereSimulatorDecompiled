@@ -124,7 +124,7 @@ public class DDRMinigame : MonoBehaviour
 			component.GetComponent<Image>().sprite = levels[i].LevelIcon;
 			levelSelectCache.Add(component, levels[i]);
 		}
-		positionLevels(true);
+		positionLevels(instant: true);
 	}
 
 	public void UnloadLevelSelect()
@@ -217,18 +217,15 @@ public class DDRMinigame : MonoBehaviour
 
 	public void UpdateEndcard(GameState state)
 	{
-		scoreText.text = string.Format("Score: {0}", state.Score);
-		Color resultColor;
-		rankText.text = getRank(state, out resultColor);
+		scoreText.text = $"Score: {state.Score}";
+		rankText.text = getRank(state, out var resultColor);
 		rankText.color = resultColor;
-		longestComboText.text = string.Format("Biggest combo: {0}", state.LongestCombo.ToString());
+		longestComboText.text = $"Biggest combo: {state.LongestCombo.ToString()}";
 	}
 
 	private DDRRating getRating(int track, float time)
 	{
-		float time2;
-		RectTransform rect;
-		getFirstNodeOn(track, out time2, out rect);
+		getFirstNodeOn(track, out var _, out var rect);
 		DDRRating result = DDRRating.Miss;
 		float num = offset.y - rect.localPosition.y;
 		if (num < 130f)
@@ -355,7 +352,7 @@ public class DDRMinigame : MonoBehaviour
 			}
 			if (manager.GameState.Combo >= 2)
 			{
-				comboText.text = string.Format("x{0} combo", manager.GameState.Combo);
+				comboText.text = $"x{manager.GameState.Combo} combo";
 				comboText.color = Color.white;
 			}
 		}

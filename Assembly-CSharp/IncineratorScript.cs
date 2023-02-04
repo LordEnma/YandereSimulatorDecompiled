@@ -88,11 +88,11 @@ public class IncineratorScript : MonoBehaviour
 
 	private void Start()
 	{
-		Panel.SetActive(false);
+		Panel.SetActive(value: false);
 		Prompt.enabled = true;
 		if (!GameGlobals.Eighties && DateGlobals.Week == 2)
 		{
-			OutOfOrderSign.SetActive(true);
+			OutOfOrderSign.SetActive(value: true);
 			Prompt.enabled = false;
 			Prompt.Hide();
 			base.enabled = false;
@@ -288,7 +288,7 @@ public class IncineratorScript : MonoBehaviour
 				}
 			}
 			Prompt.Circle[0].fillAmount = 1f;
-			Panel.SetActive(true);
+			Panel.SetActive(value: true);
 			Timer = 60f;
 			MyAudio.clip = IncineratorActivate;
 			MyAudio.Play();
@@ -359,7 +359,7 @@ public class IncineratorScript : MonoBehaviour
 			float num2 = Mathf.CeilToInt(Timer * 60f);
 			float num3 = Mathf.Floor(num2 / 60f);
 			float num4 = Mathf.RoundToInt(num2 % 60f);
-			TimeLabel.text = string.Format("{0:00}:{1:00}", num3, num4);
+			TimeLabel.text = $"{num3:00}:{num4:00}";
 		}
 	}
 
@@ -372,7 +372,7 @@ public class IncineratorScript : MonoBehaviour
 			if (num > 0)
 			{
 				Debug.Log("Student #" + num + " was incinerated and is now considered ''missing'.");
-				StudentGlobals.SetStudentMissing(num, true);
+				StudentGlobals.SetStudentMissing(num, value: true);
 			}
 		}
 	}
@@ -397,7 +397,7 @@ public class IncineratorScript : MonoBehaviour
 	{
 		Prompt.HideButton[0] = true;
 		Prompt.enabled = true;
-		Panel.SetActive(false);
+		Panel.SetActive(value: false);
 		Ready = false;
 		Flames.Stop();
 		Smoke.Stop();

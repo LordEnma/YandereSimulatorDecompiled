@@ -126,7 +126,7 @@ public class SmokeBombScript : MonoBehaviour
 				Student.Yandere.Followers--;
 				ParticleSystem.EmissionModule emission = Student.Hearts.emission;
 				emission.enabled = false;
-				Student.FollowCountdown.gameObject.SetActive(false);
+				Student.FollowCountdown.gameObject.SetActive(value: false);
 				Student.Following = false;
 			}
 			if (Student.SolvingPuzzle)
@@ -139,10 +139,10 @@ public class SmokeBombScript : MonoBehaviour
 				Debug.Log("Hit a student who was in an event with a stink bomb special case.");
 				Student.Subtitle.CustomText = "Ew! Something STINKS! Gonna hold my breath until it's gone...";
 				Student.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-				Student.CharacterAnimation.CrossFade("f02_idleShame_00");
+				Student.CharacterAnimation.CrossFade("f02_stinkBombReact_00");
 				Student.Pathfinding.canSearch = false;
 				Student.Pathfinding.canMove = false;
-				Student.Ragdoll.Zs.SetActive(false);
+				Student.Ragdoll.Zs.SetActive(value: false);
 				Student.StinkBombSpecialCase = 2;
 			}
 			else

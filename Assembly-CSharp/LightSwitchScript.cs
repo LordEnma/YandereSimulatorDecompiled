@@ -66,7 +66,7 @@ public class LightSwitchScript : MonoBehaviour
 			if (BathroomLight.activeInHierarchy)
 			{
 				Prompt.Label[0].text = "     Turn On";
-				BathroomLight.SetActive(false);
+				BathroomLight.SetActive(value: false);
 				component.clip = Flick[1];
 				component.Play();
 				if (ToiletEvent.EventActive && (ToiletEvent.EventPhase == 2 || ToiletEvent.EventPhase == 3))
@@ -80,7 +80,7 @@ public class LightSwitchScript : MonoBehaviour
 			else
 			{
 				Prompt.Label[0].text = "     Turn Off";
-				BathroomLight.SetActive(true);
+				BathroomLight.SetActive(value: true);
 				component.clip = Flick[0];
 				component.Play();
 			}

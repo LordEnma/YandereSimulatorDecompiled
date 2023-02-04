@@ -23,29 +23,11 @@ namespace MaidDereMinigame.Malee
 			}
 		}
 
-		public int Length
-		{
-			get
-			{
-				return array.Count;
-			}
-		}
+		public int Length => array.Count;
 
-		public bool IsReadOnly
-		{
-			get
-			{
-				return false;
-			}
-		}
+		public bool IsReadOnly => false;
 
-		public int Count
-		{
-			get
-			{
-				return array.Count;
-			}
-		}
+		public int Count => array.Count;
 
 		public ReorderableArray()
 			: this(0)

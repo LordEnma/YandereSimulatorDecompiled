@@ -10,7 +10,7 @@ public class YanvaniaCutsceneTriggerScript : MonoBehaviour
 	{
 		if (other.gameObject.name == "YanmontChan")
 		{
-			BossBattleWall.SetActive(true);
+			BossBattleWall.SetActive(value: true);
 			Yanmont.EnterCutscene = true;
 			Object.Destroy(base.gameObject);
 		}

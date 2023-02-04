@@ -54,13 +54,7 @@ public class UITextList : MonoBehaviour
 		}
 	}
 
-	public int paragraphCount
-	{
-		get
-		{
-			return paragraphs.size;
-		}
-	}
+	public int paragraphCount => paragraphs.size;
 
 	public bool isValid
 	{
@@ -186,7 +180,7 @@ public class UITextList : MonoBehaviour
 
 	public void Add(string text)
 	{
-		Add(text, true);
+		Add(text, updateVisible: true);
 	}
 
 	protected void Add(string text, bool updateVisible)
@@ -221,8 +215,7 @@ public class UITextList : MonoBehaviour
 		for (int i = 0; i < paragraphs.size; i++)
 		{
 			Paragraph paragraph = mParagraphs.buffer[i];
-			string finalText;
-			NGUIText.WrapText(paragraph.text, out finalText, false, true);
+			NGUIText.WrapText(paragraph.text, out var finalText, keepCharCount: false, wrapLineColors: true);
 			paragraph.lines = finalText.Split('\n');
 			mTotalLines += paragraph.lines.Length;
 		}

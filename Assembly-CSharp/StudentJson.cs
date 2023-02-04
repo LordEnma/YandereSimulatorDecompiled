@@ -100,13 +100,7 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public int Gender
-	{
-		get
-		{
-			return gender;
-		}
-	}
+	public int Gender => gender;
 
 	public int Class
 	{
@@ -132,13 +126,7 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public ClubType Club
-	{
-		get
-		{
-			return club;
-		}
-	}
+	public ClubType Club => club;
 
 	public PersonaType Persona
 	{
@@ -152,13 +140,7 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public int Crush
-	{
-		get
-		{
-			return crush;
-		}
-	}
+	public int Crush => crush;
 
 	public float BreastSize
 	{
@@ -196,37 +178,13 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public string Color
-	{
-		get
-		{
-			return color;
-		}
-	}
+	public string Color => color;
 
-	public string Eyes
-	{
-		get
-		{
-			return eyes;
-		}
-	}
+	public string Eyes => eyes;
 
-	public string EyeType
-	{
-		get
-		{
-			return eyeType;
-		}
-	}
+	public string EyeType => eyeType;
 
-	public string Stockings
-	{
-		get
-		{
-			return stockings;
-		}
-	}
+	public string Stockings => stockings;
 
 	public string Accessory
 	{
@@ -240,29 +198,11 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public string Info
-	{
-		get
-		{
-			return info;
-		}
-	}
+	public string Info => info;
 
-	public ScheduleBlock[] ScheduleBlocks
-	{
-		get
-		{
-			return scheduleBlocks;
-		}
-	}
+	public ScheduleBlock[] ScheduleBlocks => scheduleBlocks;
 
-	public bool Success
-	{
-		get
-		{
-			return success;
-		}
-	}
+	public bool Success => success;
 
 	public static StudentJson[] LoadFromJson(string path)
 	{
@@ -325,8 +265,7 @@ public class StudentJson : JsonData
 		float[] array2 = new float[array.Length];
 		for (int i = 0; i < array.Length; i++)
 		{
-			float result;
-			if (float.TryParse(array[i], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out result))
+			if (float.TryParse(array[i], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out var result))
 			{
 				array2[i] = result;
 			}

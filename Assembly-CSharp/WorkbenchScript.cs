@@ -80,7 +80,7 @@ public class WorkbenchScript : MonoBehaviour
 
 	private void Start()
 	{
-		WorkbenchWindow.gameObject.SetActive(false);
+		WorkbenchWindow.gameObject.SetActive(value: false);
 		RemoveCheckmarks();
 	}
 
@@ -110,7 +110,7 @@ public class WorkbenchScript : MonoBehaviour
 				Prompt.Yandere.MyController.enabled = false;
 				Prompt.Yandere.RPGCamera.enabled = false;
 				Prompt.Yandere.CanMove = false;
-				WorkbenchWindow.gameObject.SetActive(true);
+				WorkbenchWindow.gameObject.SetActive(value: true);
 				PromptBar.Label[0].text = "Select";
 				PromptBar.Label[1].text = "Exit";
 				PromptBar.UpdateButtons();
@@ -122,14 +122,14 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					Limit = 11;
 					CheckInventory();
-					EleventhOption.SetActive(true);
+					EleventhOption.SetActive(value: true);
 					HeaderLabel.text = "Materials";
 				}
 				else
 				{
 					Limit = 10;
 					CheckChemicals();
-					EleventhOption.SetActive(false);
+					EleventhOption.SetActive(value: false);
 					HeaderLabel.text = "Chemicals";
 				}
 			}
@@ -176,7 +176,7 @@ public class WorkbenchScript : MonoBehaviour
 				}
 				else if (Input.GetButtonDown("B"))
 				{
-					WorkbenchWindow.gameObject.SetActive(false);
+					WorkbenchWindow.gameObject.SetActive(value: false);
 					Prompt.Yandere.MyController.enabled = true;
 					Prompt.Yandere.RPGCamera.enabled = true;
 					Prompt.Yandere.CanMove = true;
@@ -192,7 +192,7 @@ public class WorkbenchScript : MonoBehaviour
 				}
 				else if (Input.GetButtonDown("X") && PromptBar.Label[2].text != "")
 				{
-					ConfirmationWindow.SetActive(true);
+					ConfirmationWindow.SetActive(value: true);
 					PromptBar.Label[0].text = "";
 					if (!Chemistry)
 					{
@@ -215,10 +215,10 @@ public class WorkbenchScript : MonoBehaviour
 			}
 			else if (PromptBar.Label[0].text != "" && Input.GetButtonDown("A"))
 			{
-				ConfirmationWindow.SetActive(false);
+				ConfirmationWindow.SetActive(value: false);
 				OutcomeModel[OutcomeID].transform.localScale = new Vector3(0f, 0f, 0f);
-				OutcomeModel[OutcomeID].SetActive(true);
-				OutcomeCamera.SetActive(true);
+				OutcomeModel[OutcomeID].SetActive(value: true);
+				OutcomeCamera.SetActive(value: true);
 				CraftingSequence = true;
 				PromptBar.Label[0].text = "Continue";
 				PromptBar.Label[1].text = "";
@@ -236,7 +236,7 @@ public class WorkbenchScript : MonoBehaviour
 			}
 			else if (Input.GetButtonDown("B"))
 			{
-				ConfirmationWindow.SetActive(false);
+				ConfirmationWindow.SetActive(value: false);
 				PromptBar.Label[0].text = "Select";
 				PromptBar.Label[1].text = "Exit";
 				PromptBar.UpdateButtons();
@@ -263,6 +263,8 @@ public class WorkbenchScript : MonoBehaviour
 					obj.GetComponent<Rigidbody>().useGravity = true;
 					obj.GetComponent<Rigidbody>().isKinematic = false;
 					obj.name = "Box of Stink Bombs";
+					obj.GetComponent<PickUpScript>().SwapModel = true;
+					obj.GetComponent<PickUpScript>().InstantiatedObject = true;
 				}
 				else if (OutcomeID == 2)
 				{
@@ -278,11 +280,12 @@ public class WorkbenchScript : MonoBehaviour
 					obj2.GetComponent<Rigidbody>().useGravity = true;
 					obj2.GetComponent<Rigidbody>().isKinematic = false;
 					obj2.name = "Box of Bang Snaps";
+					obj2.GetComponent<PickUpScript>().InstantiatedObject = true;
 				}
 				else if (OutcomeID == 4)
 				{
 					Inventory.Nails = false;
-					Prompt.Yandere.EquippedWeapon.Nails.SetActive(true);
+					Prompt.Yandere.EquippedWeapon.Nails.SetActive(value: true);
 				}
 				else if (OutcomeID == 5)
 				{
@@ -290,7 +293,7 @@ public class WorkbenchScript : MonoBehaviour
 					Inventory.WoodenSticks = false;
 					Inventory.Glass = false;
 					MakeshiftKnife = Prompt.Yandere.WeaponManager.Weapons[45];
-					MakeshiftKnife.gameObject.SetActive(true);
+					MakeshiftKnife.gameObject.SetActive(value: true);
 					MakeshiftKnife.transform.position = Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f);
 					MakeshiftKnife.Start();
 					MakeshiftKnife.MyRigidbody.useGravity = true;
@@ -335,6 +338,7 @@ public class WorkbenchScript : MonoBehaviour
 					obj3.GetComponent<Rigidbody>().useGravity = true;
 					obj3.GetComponent<Rigidbody>().isKinematic = false;
 					obj3.name = "Smoke Bomb";
+					obj3.GetComponent<PickUpScript>().InstantiatedObject = true;
 				}
 				Prompt.Yandere.StudentManager.UpdateAllBentos();
 			}
@@ -358,8 +362,8 @@ public class WorkbenchScript : MonoBehaviour
 			if (Darkness.alpha == 0f)
 			{
 				OutcomeModel[OutcomeID].transform.localScale = Vector3.zero;
-				OutcomeModel[OutcomeID].SetActive(false);
-				OutcomeCamera.SetActive(false);
+				OutcomeModel[OutcomeID].SetActive(value: false);
+				OutcomeCamera.SetActive(value: false);
 				PromptBar.Label[0].text = "Select";
 				PromptBar.Label[1].text = "Exit";
 				PromptBar.UpdateButtons();
@@ -585,8 +589,8 @@ public class WorkbenchScript : MonoBehaviour
 	{
 		for (int i = 1; i < Limit + 1; i++)
 		{
-			MaterialModel[i].SetActive(false);
-			Checkmark[i].SetActive(false);
+			MaterialModel[i].SetActive(value: false);
+			Checkmark[i].SetActive(value: false);
 		}
 		Checkmarks = 0;
 	}

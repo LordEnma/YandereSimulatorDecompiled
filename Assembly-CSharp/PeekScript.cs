@@ -41,8 +41,8 @@ public class PeekScript : MonoBehaviour
 			if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
 			{
 				Prompt.Yandere.CanMove = false;
-				PeekCamera.SetActive(true);
-				BlueLight.SetActive(true);
+				PeekCamera.SetActive(value: true);
+				BlueLight.SetActive(value: true);
 				PromptBar.ClearButtons();
 				PromptBar.Label[1].text = "Stop";
 				PromptBar.UpdateButtons();
@@ -66,8 +66,8 @@ public class PeekScript : MonoBehaviour
 			{
 				Prompt.Yandere.CanMove = true;
 			}
-			PeekCamera.SetActive(false);
-			BlueLight.SetActive(false);
+			PeekCamera.SetActive(value: false);
+			BlueLight.SetActive(value: false);
 			PromptBar.ClearButtons();
 			PromptBar.Show = false;
 			Timer = 0f;

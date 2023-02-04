@@ -137,11 +137,11 @@ public class PlayerSaveData
 		Debug.Log("Is this being called anywhere?");
 		foreach (int item in data.photo)
 		{
-			PlayerGlobals.SetPhoto(item, true);
+			PlayerGlobals.SetPhoto(item, value: true);
 		}
 		foreach (int item2 in data.photoOnCorkboard)
 		{
-			PlayerGlobals.SetPhotoOnCorkboard(item2, true);
+			PlayerGlobals.SetPhotoOnCorkboard(item2, value: true);
 		}
 		foreach (KeyValuePair<int, Vector2> item3 in data.photoPosition)
 		{
@@ -156,7 +156,7 @@ public class PlayerSaveData
 		PlayerGlobals.SeductionBonus = data.seductionBonus;
 		foreach (int item5 in data.senpaiPhoto)
 		{
-			PlayerGlobals.SetSenpaiPhoto(item5, true);
+			PlayerGlobals.SetSenpaiPhoto(item5, value: true);
 		}
 		PlayerGlobals.SenpaiShots = data.senpaiShots;
 		PlayerGlobals.SocialBonus = data.socialBonus;
@@ -164,11 +164,11 @@ public class PlayerSaveData
 		PlayerGlobals.StealthBonus = data.stealthBonus;
 		foreach (int item6 in data.studentFriend)
 		{
-			PlayerGlobals.SetStudentFriend(item6, true);
+			PlayerGlobals.SetStudentFriend(item6, value: true);
 		}
 		foreach (int item7 in data.studentPantyShot)
 		{
-			PlayerGlobals.SetStudentPantyShot(item7, true);
+			PlayerGlobals.SetStudentPantyShot(item7, value: true);
 		}
 	}
 }

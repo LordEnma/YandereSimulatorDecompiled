@@ -34,8 +34,8 @@ public class SuicideCutsceneScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			MyAudio.clip = EightiesMother;
-			RivalHair[1].SetActive(false);
-			EightiesHair[DateGlobals.Week].SetActive(true);
+			RivalHair[1].SetActive(value: false);
+			EightiesHair[DateGlobals.Week].SetActive(value: true);
 		}
 	}
 

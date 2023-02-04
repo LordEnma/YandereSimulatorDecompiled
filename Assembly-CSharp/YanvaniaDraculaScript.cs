@@ -374,7 +374,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		WWW www = new WWW(url);
 		yield return www;
 		Photograph.mainTexture = www.texture;
-		MainCamera.SetActive(false);
+		MainCamera.SetActive(value: false);
 		EndCamera.GetComponent<AudioListener>().enabled = true;
 		Time.timeScale = 1f;
 	}

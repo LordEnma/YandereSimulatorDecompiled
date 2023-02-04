@@ -99,13 +99,13 @@ public class PhoneMinigameScript : MonoBehaviour
 		Prompt.Yandere.CameraEffects.UpdateDOF(2f);
 		Prompt.Yandere.MainCamera.GetComponent<AudioListener>().enabled = false;
 		Prompt.Yandere.RPGCamera.enabled = true;
-		Prompt.Yandere.gameObject.SetActive(true);
+		Prompt.Yandere.gameObject.SetActive(value: true);
 		Prompt.Yandere.Pickpocketing = false;
 		Prompt.Yandere.CanMove = true;
 		Prompt.Yandere.Caught = false;
 		Prompt.Hide();
 		Prompt.enabled = false;
 		Tampering = false;
-		base.gameObject.SetActive(false);
+		base.gameObject.SetActive(value: false);
 	}
 }

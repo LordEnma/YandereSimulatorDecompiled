@@ -52,7 +52,7 @@ public class WeekSelectScript : MonoBehaviour
 	private void Start()
 	{
 		base.transform.position = new Vector3(0f, 2.31f, 0f);
-		EditLabel.gameObject.SetActive(false);
+		EditLabel.gameObject.SetActive(value: false);
 		StartLabel.text = "NEXT";
 		Darkness.alpha = 1f;
 		UpdateArrow();
@@ -88,13 +88,13 @@ public class WeekSelectScript : MonoBehaviour
 						if (GameGlobals.GetSpecificEliminations(i) == 1 || GameGlobals.GetSpecificEliminations(i) == 5 || GameGlobals.GetSpecificEliminations(i) == 6 || GameGlobals.GetSpecificEliminations(i) == 7 || GameGlobals.GetSpecificEliminations(i) == 8 || GameGlobals.GetSpecificEliminations(i) == 10 || GameGlobals.GetSpecificEliminations(i) == 14 || GameGlobals.GetSpecificEliminations(i) == 15 || GameGlobals.GetSpecificEliminations(i) == 16 || GameGlobals.GetSpecificEliminations(i) == 17 || GameGlobals.GetSpecificEliminations(i) == 19 || GameGlobals.GetSpecificEliminations(i) == 20)
 						{
 							Debug.Log("Rival #" + i + " is dead.");
-							StudentGlobals.SetStudentDead(i + 10, true);
+							StudentGlobals.SetStudentDead(i + 10, value: true);
 							continue;
 						}
-						StudentGlobals.SetStudentDead(i + 10, false);
+						StudentGlobals.SetStudentDead(i + 10, value: false);
 						if (GameGlobals.GetSpecificEliminations(i) == 3 || GameGlobals.GetSpecificEliminations(i) == 4)
 						{
-							StudentGlobals.SetStudentMissing(i + 10, true);
+							StudentGlobals.SetStudentMissing(i + 10, value: true);
 							if (GameGlobals.GetSpecificEliminations(i) == 3)
 							{
 								Debug.Log("Rival #" + i + " was betrayed, so she will appear in the basement as a prisoner.");
@@ -104,21 +104,23 @@ public class WeekSelectScript : MonoBehaviour
 						}
 						else if (GameGlobals.GetSpecificEliminations(i) == 9)
 						{
-							StudentGlobals.SetStudentExpelled(i + 10, true);
+							StudentGlobals.SetStudentExpelled(i + 10, value: true);
 						}
 						else if (GameGlobals.GetSpecificEliminations(i) == 11)
 						{
-							StudentGlobals.SetStudentArrested(i + 10, true);
+							StudentGlobals.SetStudentArrested(i + 10, value: true);
 						}
 						else if (GameGlobals.GetSpecificEliminations(i) == 12)
 						{
 							Debug.Log("Rival #" + i + " was kidnapped, so she will appear in the basement as a prisoner.");
-							StudentGlobals.SetStudentKidnapped(i + 10, true);
+							StudentGlobals.SetStudentKidnapped(i + 10, value: true);
 							StudentGlobals.SetStudentHealth(i + 10, 100);
 							StudentGlobals.Prisoners++;
 							AssignPrisoner(i);
 						}
 					}
+					GameGlobals.SetSpecificEliminations(DateGlobals.Week, 0);
+					GameGlobals.SetRivalEliminations(DateGlobals.Week, 0);
 					ClassGlobals.BonusStudyPoints = DateGlobals.Week * 50 - 50;
 					GameGlobals.EightiesCutsceneID = DateGlobals.Week;
 					DateGlobals.PassDays = 0;
@@ -329,33 +331,33 @@ public class WeekSelectScript : MonoBehaviour
 			{
 				if (!StudentGlobals.GetStudentGrudge(2))
 				{
-					SetGrudges(true);
+					SetGrudges(Grudge: true);
 				}
 				else
 				{
-					SetGrudges(false);
+					SetGrudges(Grudge: false);
 				}
 			}
 			else if (DetailID == 5)
 			{
 				if (PlayerGlobals.Friends == 0)
 				{
-					MakeFriends(true);
+					MakeFriends(Friend: true);
 				}
 				else
 				{
-					MakeFriends(false);
+					MakeFriends(Friend: false);
 				}
 			}
 			else if (DetailID == 6)
 			{
-				if (PlayerGlobals.Alerts == 0)
+				if (PlayerGlobals.Alarms == 0)
 				{
-					PlayerGlobals.Alerts = 10;
+					PlayerGlobals.Alarms = 10;
 				}
 				else
 				{
-					PlayerGlobals.Alerts = 0;
+					PlayerGlobals.Alarms = 0;
 				}
 			}
 			else if (DetailID == 7)
@@ -389,7 +391,7 @@ public class WeekSelectScript : MonoBehaviour
 			{
 				SettingWeek = false;
 				SettingRivals = true;
-				EditLabel.gameObject.SetActive(true);
+				EditLabel.gameObject.SetActive(value: true);
 				StartLabel.text = "START";
 				RivalID = 1;
 				UpdateArrow();
@@ -407,7 +409,7 @@ public class WeekSelectScript : MonoBehaviour
 				SettingWeek = true;
 				SettingRivals = false;
 				SettingDetails = false;
-				EditLabel.gameObject.SetActive(false);
+				EditLabel.gameObject.SetActive(value: false);
 				StartLabel.text = "NEXT";
 				UpdateArrow();
 			}
@@ -461,10 +463,10 @@ public class WeekSelectScript : MonoBehaviour
 		{
 			if (i < DateGlobals.Week)
 			{
-				Shadow[i].SetActive(false);
+				Shadow[i].SetActive(value: false);
 				continue;
 			}
-			Shadow[i].SetActive(true);
+			Shadow[i].SetActive(value: true);
 			GameGlobals.SetRivalEliminations(i, 0);
 			GameGlobals.SetSpecificEliminations(i, 0);
 		}

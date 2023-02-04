@@ -554,7 +554,7 @@ public class QualityManagerScript : MonoBehaviour
 		flag = (float)StudentManager.LowDetailThreshold > 0f;
 		for (int i = 1; i < 101; i++)
 		{
-			if (StudentManager.Students[i] != null)
+			if (StudentManager.Students[i] != null && !StudentManager.Students[i].Ragdoll.Concealed)
 			{
 				StudentManager.Students[i].LowPoly.enabled = flag;
 				if (!flag && StudentManager.Students[i].LowPoly.MyMesh.enabled)

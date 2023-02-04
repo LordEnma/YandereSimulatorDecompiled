@@ -36,6 +36,6 @@ public class SpeedrunTimerScript : MonoBehaviour
 		int num3 = num % 60;
 		float num4 = time * 1000f;
 		num4 %= 1000f;
-		return string.Format("{0:00}:{1:00}:{2:000}", num2, num3, num4);
+		return $"{num2:00}:{num3:00}:{num4:000}";
 	}
 }

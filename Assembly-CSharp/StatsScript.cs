@@ -121,10 +121,10 @@ public class StatsScript : MonoBehaviour
 			PromptBar.Label[1].text = "Exit";
 			PromptBar.Label[4].text = "Choose";
 			PromptBar.UpdateButtons();
-			PauseScreen.MainMenu.SetActive(true);
+			PauseScreen.MainMenu.SetActive(value: true);
 			PauseScreen.Sideways = false;
 			PauseScreen.PressedB = true;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -288,8 +288,7 @@ public class StatsScript : MonoBehaviour
 		{
 			club = ClubGlobals.Club;
 		}
-		string value;
-		ClubLabels.TryGetValue(club, out value);
+		ClubLabels.TryGetValue(club, out var value);
 		ClubLabel.text = "Club: " + value;
 	}
 }

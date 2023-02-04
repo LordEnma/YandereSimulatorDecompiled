@@ -54,8 +54,8 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
-		Bentos[1].SetActive(false);
-		Bentos[2].SetActive(false);
+		Bentos[1].SetActive(value: false);
+		Bentos[2].SetActive(value: false);
 		if (DateGlobals.Weekday != DayOfWeek.Monday || StudentGlobals.StudentSlave == RivalID || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week > 1 || GameGlobals.Eighties || Finished)
 		{
 			base.enabled = false;
@@ -130,8 +130,8 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 				Rival.CharacterAnimation.CrossFade("f02_pondering_00");
 				Rival.Pathfinding.canSearch = false;
 				Rival.Pathfinding.canMove = false;
-				Bentos[1].SetActive(true);
-				Bentos[2].SetActive(true);
+				Bentos[1].SetActive(value: true);
+				Bentos[2].SetActive(value: true);
 				Phase++;
 			}
 			if (Rival.Follower != null && Rival.Follower.InEvent)
@@ -248,8 +248,8 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 			if (!Yandere.NoDebug && Input.GetKeyDown(KeyCode.LeftControl))
 			{
 				Debug.Log("Ending because of debug command.");
-				Bentos[1].SetActive(true);
-				Bentos[2].SetActive(true);
+				Bentos[1].SetActive(value: true);
+				Bentos[2].SetActive(value: true);
 				EndEvent();
 			}
 		}

@@ -127,11 +127,11 @@ public class FunScript : MonoBehaviour
 			G = 0f;
 			B = 0f;
 			Label.color = new Color(R, G, B, 1f);
-			Skip.SetActive(false);
+			Skip.SetActive(value: false);
 		}
-		Skip.SetActive(false);
-		Controls.SetActive(false);
-		Label.gameObject.SetActive(false);
+		Skip.SetActive(value: false);
+		Controls.SetActive(value: false);
+		Label.gameObject.SetActive(value: false);
 		Girl.color = new Color(R, G, B, 0f);
 	}
 
@@ -152,13 +152,13 @@ public class FunScript : MonoBehaviour
 		{
 			if (!Typewriter.mActive)
 			{
-				Controls.SetActive(true);
+				Controls.SetActive(value: true);
 			}
 		}
 		else if (Timer > 2f)
 		{
 			Girl.mainTexture = Portraits[ID];
-			Label.gameObject.SetActive(true);
+			Label.gameObject.SetActive(value: true);
 		}
 		else if (Timer > 1f)
 		{
@@ -173,7 +173,7 @@ public class FunScript : MonoBehaviour
 			if (Skip.activeInHierarchy)
 			{
 				ID = 19;
-				Skip.SetActive(false);
+				Skip.SetActive(value: false);
 				Girl.mainTexture = Portraits[ID];
 				Typewriter.ResetToBeginning();
 				Typewriter.mFullText = Lines[ID];
@@ -195,7 +195,7 @@ public class FunScript : MonoBehaviour
 				ID++;
 				if (ID == 19)
 				{
-					Skip.SetActive(false);
+					Skip.SetActive(value: false);
 				}
 				Girl.mainTexture = Portraits[ID];
 				Typewriter.ResetToBeginning();

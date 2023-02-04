@@ -6,6 +6,8 @@ public static class PlayerGlobals
 
 	private const string Str_Alerts = "Alerts";
 
+	private const string Str_Alarms = "Alarms";
+
 	private const string Str_BullyPhoto = "BullyPhoto_";
 
 	private const string Str_Enlightenment = "Enlightenment";
@@ -103,6 +105,18 @@ public static class PlayerGlobals
 		set
 		{
 			PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile + "_Money", value);
+		}
+	}
+
+	public static int Alarms
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_Alarms");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_Alarms", value);
 		}
 	}
 
@@ -700,6 +714,7 @@ public static class PlayerGlobals
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_Money");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_Alerts");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_Alarms");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_Enlightenment");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_EnlightenmentBonus");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_Friends");

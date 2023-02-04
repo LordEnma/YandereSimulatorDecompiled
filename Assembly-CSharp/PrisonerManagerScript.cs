@@ -44,10 +44,10 @@ public class PrisonerManagerScript : MonoBehaviour
 		OriginalTarget = Target[0].transform.position;
 		for (int i = 1; i < Boxes.Length; i++)
 		{
-			Boxes[i].SetActive(true);
+			Boxes[i].SetActive(value: true);
 			if (Tapes[i] != null)
 			{
-				Tapes[i].SetActive(false);
+				Tapes[i].SetActive(value: false);
 			}
 		}
 		ShufflePrisoners();
@@ -147,10 +147,10 @@ public class PrisonerManagerScript : MonoBehaviour
 				component2.Cosmetic.StudentID = component2.StudentID;
 				component2.Cosmetic.Start();
 			}
-			Boxes[PrisonersSpawned + 1].SetActive(false);
+			Boxes[PrisonersSpawned + 1].SetActive(value: false);
 			if (Tapes[PrisonersSpawned + 1] != null)
 			{
-				Tapes[PrisonersSpawned + 1].SetActive(true);
+				Tapes[PrisonersSpawned + 1].SetActive(value: true);
 			}
 			PrisonersSpawned++;
 		}

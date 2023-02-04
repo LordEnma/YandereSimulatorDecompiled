@@ -7,13 +7,7 @@ public class WeekEventTime : IScheduledEventTime
 	[SerializeField]
 	private int week;
 
-	public ScheduledEventTimeType ScheduleType
-	{
-		get
-		{
-			return ScheduledEventTimeType.Week;
-		}
-	}
+	public ScheduledEventTimeType ScheduleType => ScheduledEventTimeType.Week;
 
 	public WeekEventTime(int week)
 	{

@@ -56,7 +56,7 @@ public class YandereShowerScript : MonoBehaviour
 			else
 			{
 				AudioSource.PlayClipAtPoint(CurtainOpen, base.transform.position);
-				CensorSteam.SetActive(true);
+				CensorSteam.SetActive(value: true);
 				MyAudio.Play();
 				Yandere.EmptyHands();
 				if (Yandere.Bookbag != null)
@@ -91,7 +91,7 @@ public class YandereShowerScript : MonoBehaviour
 			Open = false;
 			if (Timer == 0f)
 			{
-				CensorSteam.SetActive(false);
+				CensorSteam.SetActive(value: false);
 				UpdateCurtain = false;
 			}
 		}

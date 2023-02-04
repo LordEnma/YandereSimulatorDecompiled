@@ -18,7 +18,7 @@ public class BugScript : MonoBehaviour
 		{
 			Prompt.Hide();
 			Prompt.enabled = false;
-			base.gameObject.SetActive(false);
+			base.gameObject.SetActive(value: false);
 		}
 		MyRenderer.enabled = false;
 	}
