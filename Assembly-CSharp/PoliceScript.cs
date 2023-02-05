@@ -1224,4 +1224,86 @@ public class PoliceScript : MonoBehaviour
 			}
 		}
 	}
+
+	public void UpdateIconsForTutorial()
+	{
+		if (BloodParent.childCount == 0)
+		{
+			if (!BloodDisposed)
+			{
+				BloodIcon.spriteName = "Yes";
+				BloodDisposed = true;
+			}
+		}
+		else if (BloodDisposed)
+		{
+			BloodIcon.spriteName = "No";
+			BloodDisposed = false;
+		}
+		if (!StudentManager.KokonaTutorialObject.Raincoat.gameObject.activeInHierarchy)
+		{
+			if (!UniformDisposed)
+			{
+				UniformIcon.spriteName = "Yes";
+				UniformDisposed = true;
+			}
+		}
+		else if (UniformDisposed)
+		{
+			UniformIcon.spriteName = "No";
+			UniformDisposed = false;
+		}
+		if (!StudentManager.KokonaTutorialObject.WeaponManager.Weapons[8].Blood.enabled)
+		{
+			if (!WeaponDisposed)
+			{
+				WeaponIcon.spriteName = "Yes";
+				WeaponDisposed = true;
+			}
+		}
+		else if (WeaponDisposed)
+		{
+			WeaponIcon.spriteName = "No";
+			WeaponDisposed = false;
+		}
+		if (Corpses == 0)
+		{
+			if (!CorpseDisposed)
+			{
+				CorpseIcon.spriteName = "Yes";
+				CorpseDisposed = true;
+			}
+		}
+		else if (CorpseDisposed)
+		{
+			CorpseIcon.spriteName = "No";
+			CorpseDisposed = false;
+		}
+		if (Yandere.Sanity == 100f)
+		{
+			if (!SanityRestored)
+			{
+				SanityIcon.spriteName = "Yes";
+				SanityRestored = true;
+			}
+		}
+		else if (SanityRestored)
+		{
+			SanityIcon.spriteName = "No";
+			SanityRestored = false;
+		}
+		if (StudentManager.KokonaTutorialObject.Incinerator.Smoke.isPlaying)
+		{
+			if (!PartsDisposed)
+			{
+				PartsIcon.spriteName = "Yes";
+				PartsDisposed = true;
+			}
+		}
+		else if (PartsDisposed)
+		{
+			PartsIcon.spriteName = "No";
+			PartsDisposed = false;
+		}
+	}
 }

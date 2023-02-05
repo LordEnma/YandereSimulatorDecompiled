@@ -57,7 +57,7 @@ public class EightiesStatsScript : MonoBehaviour
 			EliminationIDs[i] = GameGlobals.GetSpecificEliminations(i);
 			DetailIDs[i] = GameGlobals.GetRivalEliminations(i);
 		}
-		if (GameGlobals.RivalEliminationID > 0)
+		if (GameGlobals.RivalEliminationID > 0 && DateGlobals.Week < 11)
 		{
 			EliminationIDs[DateGlobals.Week] = GameGlobals.SpecificEliminationID;
 			DetailIDs[DateGlobals.Week] = GameGlobals.RivalEliminationID;

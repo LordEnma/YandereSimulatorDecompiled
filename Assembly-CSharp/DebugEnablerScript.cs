@@ -33,7 +33,7 @@ public class DebugEnablerScript : MonoBehaviour
 		_ = Editor;
 		StandWeapons.SetActive(value: false);
 		Keys.SetActive(value: false);
-		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || (!GameGlobals.Eighties && DateGlobals.Week == 2))
+		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || GameGlobals.KokonaTutorial || (!GameGlobals.Eighties && DateGlobals.Week == 2))
 		{
 			if (GameGlobals.Debug || Editor)
 			{

@@ -42,6 +42,8 @@ public class IncineratorScript : MonoBehaviour
 
 	public bool CannotIncinerate;
 
+	public bool DoNotPlaySound;
+
 	public bool Animate;
 
 	public bool Ready;
@@ -129,8 +131,12 @@ public class IncineratorScript : MonoBehaviour
 				LeftDoor.transform.localEulerAngles = new Vector3(LeftDoor.transform.localEulerAngles.x, Mathf.MoveTowards(LeftDoor.transform.localEulerAngles.y, 0f, Time.deltaTime * 360f), LeftDoor.transform.localEulerAngles.z);
 				if (RightDoor.transform.localEulerAngles.y < 1f)
 				{
-					MyAudio.clip = IncineratorClose;
-					MyAudio.Play();
+					if (!DoNotPlaySound)
+					{
+						MyAudio.clip = IncineratorClose;
+						MyAudio.Play();
+					}
+					DoNotPlaySound = false;
 					Animate = false;
 					RightDoor.transform.localEulerAngles = new Vector3(RightDoor.transform.localEulerAngles.x, 0f, RightDoor.transform.localEulerAngles.z);
 					LeftDoor.transform.localEulerAngles = new Vector3(LeftDoor.transform.localEulerAngles.x, 0f, LeftDoor.transform.localEulerAngles.z);
@@ -222,6 +228,9 @@ public class IncineratorScript : MonoBehaviour
 				{
 					Yandere.NotificationManager.CustomText = "Must be carrying, not dragging.";
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Yandere.EmptyHands();
+					Yandere.CurrentRagdoll.Prompt.Circle[3].fillAmount = 0f;
+					DoNotPlaySound = true;
 				}
 				else
 				{

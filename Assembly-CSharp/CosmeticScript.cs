@@ -639,6 +639,10 @@ public class CosmeticScript : MonoBehaviour
 		if (!Male)
 		{
 			FemaleUniformID = StudentGlobals.FemaleUniform;
+			if (Empty)
+			{
+				FemaleUniformID = 1;
+			}
 			ThickBrows.SetActive(value: false);
 			if (!TakingPortrait)
 			{

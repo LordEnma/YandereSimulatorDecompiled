@@ -21,8 +21,7 @@ public class DoorScript : MonoBehaviour
 
 	public PromptScript Prompt;
 
-	[SerializeField]
-	private Collider[] DoorColliders;
+	public Collider[] DoorColliders;
 
 	[SerializeField]
 	private float[] ClosedPositions;

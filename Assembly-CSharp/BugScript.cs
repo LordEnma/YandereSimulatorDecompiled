@@ -14,7 +14,7 @@ public class BugScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (GameGlobals.Eighties)
+		if (GameGlobals.Eighties || GameGlobals.KokonaTutorial)
 		{
 			Prompt.Hide();
 			Prompt.enabled = false;

@@ -21,7 +21,7 @@ public class HintScript : MonoBehaviour
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(0.2043f, 0f, 1f);
-		if (DateGlobals.Week > 1 || GameGlobals.Eighties)
+		if (DateGlobals.Week > 1 || GameGlobals.Eighties || GameGlobals.KokonaTutorial)
 		{
 			base.gameObject.SetActive(value: false);
 		}

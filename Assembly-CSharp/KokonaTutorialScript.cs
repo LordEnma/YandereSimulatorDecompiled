@@ -62,7 +62,13 @@ public class KokonaTutorialScript : MonoBehaviour
 
 	public GameObject[] TutorialWall;
 
+	public GameObject[] PoliceIcons;
+
+	public DoorScript[] HomeEcDoors;
+
 	public DoorScript[] Doors;
+
+	public UILabel[] PoliceLabels;
 
 	public UILabel InstructionLabel;
 
@@ -321,6 +327,9 @@ public class KokonaTutorialScript : MonoBehaviour
 		WeaponManager.Weapons[2].transform.position = new Vector3(0f, 0f, 0f);
 		WeaponManager.Weapons[0].transform.position = new Vector3(0f, 0f, 0f);
 		WeaponManager.Weapons[0].Undroppable = false;
+		PoliceIcons[0].SetActive(value: false);
+		PoliceIcons[1].SetActive(value: false);
+		PoliceIcons[2].SetActive(value: false);
 		MainCamera.transform.position = CameraStartPoint.position;
 		MainCamera.transform.eulerAngles = CameraStartPoint.eulerAngles;
 		StudentSpawnPoints = TutorialIntroPoints;
@@ -923,6 +932,8 @@ public class KokonaTutorialScript : MonoBehaviour
 			{
 				if (Yandere.PickUp != null && Yandere.PickUp.Clothing)
 				{
+					Doors[1].Locked = false;
+					Doors[2].Locked = false;
 					TutorialPhase++;
 					PlayKokonaVoice();
 				}
@@ -1482,11 +1493,16 @@ public class KokonaTutorialScript : MonoBehaviour
 		}
 		else if (Selected == 15)
 		{
+			StudentManager.Police.UpdateIconsForTutorial();
 			if ((Yandere.Alerts > 0 || StudentManager.Yandere.Police.StudentFoundCorpse || StudentManager.BloodReporter != null) && TutorialPhase != 0)
 			{
 				TutorialTimer = 0f;
 				TutorialPhase = 0;
 				PlayKokonaVoice();
+			}
+			if (Yandere.Sanity < 100f)
+			{
+				T.SanityHUD.alpha = Mathf.MoveTowards(T.SanityHUD.alpha, 1f, Time.deltaTime);
 			}
 			if (Incinerator.Contents > 6)
 			{
@@ -1511,7 +1527,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			}
 			else if (TutorialPhase == 2)
 			{
-				if (VG.BloodParent.childCount == 0 && !WeaponManager.Weapons[8].Blood.enabled && Incinerator.Smoke.isPlaying)
+				if (VG.BloodParent.childCount == 0 && !WeaponManager.Weapons[8].Blood.enabled && Incinerator.Smoke.isPlaying && Yandere.Sanity == 100f)
 				{
 					TutorialPhase++;
 					PlayKokonaVoice();
@@ -1538,7 +1554,7 @@ public class KokonaTutorialScript : MonoBehaviour
 
 	public void ExitTutorial()
 	{
-		if (!Yandere.Attacking && !KokonaAudioSource.isPlaying && NextClip == null)
+		if (!Yandere.Attacking && !Yandere.Dipping && !KokonaAudioSource.isPlaying && NextClip == null)
 		{
 			InstructionLabel.text = "";
 			SubtitleLabel.text = "";
@@ -1583,6 +1599,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			Yandere.CanMove = false;
 			Yandere.DropSpecifically = false;
 			Phase++;
+			Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 		}
 	}
 
@@ -1689,6 +1706,14 @@ public class KokonaTutorialScript : MonoBehaviour
 			Doors[2].enabled = true;
 			Doors[1].Prompt.enabled = true;
 			Doors[2].Prompt.enabled = true;
+			Doors[1].Locked = true;
+			Doors[2].Locked = true;
+			Doors[1].CloseDoor();
+			Doors[2].CloseDoor();
+			Doors[1].DoorColliders[0].isTrigger = false;
+			Doors[1].DoorColliders[1].isTrigger = false;
+			Doors[2].DoorColliders[0].isTrigger = false;
+			Doors[2].DoorColliders[1].isTrigger = false;
 			SpawnStudent(26);
 			SpawnStudent(27);
 			SpawnStudent(28);
@@ -1843,6 +1868,14 @@ public class KokonaTutorialScript : MonoBehaviour
 			WeaponManager.Weapons[8].gameObject.SetActive(value: true);
 			WeaponManager.Weapons[8].enabled = true;
 			WeaponManager.Weapons[8].Prompt.enabled = true;
+			WeaponManager.Weapons[8].MyCollider.enabled = true;
+			WeaponManager.Weapons[8].InsideIncinerator = false;
+			WeaponManager.Weapons[8].Blood.enabled = false;
+			WeaponManager.Weapons[8].MurderWeapon = false;
+			WeaponManager.Weapons[8].KinematicTimer = 0f;
+			WeaponManager.Weapons[8].Bloody = false;
+			WeaponManager.Weapons[8].Dumped = false;
+			WeaponManager.Weapons[8].DumpTimer = 0f;
 			EnableAttacking = true;
 			EnableMovement = true;
 			SpawnStudent(2);
@@ -1869,6 +1902,9 @@ public class KokonaTutorialScript : MonoBehaviour
 			Bleach.transform.parent = TutorialSets[3].transform;
 			Bleach.transform.localPosition = new Vector3(-2f, 0f, 11f);
 			Bleach.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+			PoliceIcons[0].transform.parent.localPosition = new Vector3(0f, 0f, 0f);
+			PoliceIcons[0].transform.localPosition = new Vector3(0f, -100f, 0f);
+			PoliceIcons[0].SetActive(value: true);
 			T.Clock.Period = 5;
 			break;
 		}
@@ -1887,6 +1923,8 @@ public class KokonaTutorialScript : MonoBehaviour
 				}
 			}
 		}
+		PoliceLabels[2].text = "Dispose of Raincoat";
+		PoliceLabels[3].text = "Wash Circular Saw";
 		AStar.OnEnable();
 		Physics.SyncTransforms();
 	}

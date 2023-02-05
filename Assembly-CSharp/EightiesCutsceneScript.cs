@@ -264,8 +264,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 		{
 			Lines = CutsceneLines10;
 			Clips = CutsceneClips10;
-			DarkLine = 0;
-			RivalLine = 9;
+			DarkLine = 1;
+			RivalLine = 0;
 			Silhouette.mainTexture = RivalSilhouettes[10];
 			Renders = Rival10Renders;
 			Nexts = Rival10Nexts;
@@ -350,7 +350,6 @@ public class EightiesCutsceneScript : MonoBehaviour
 					ID++;
 					if (ID < Lines.Length)
 					{
-						Debug.Log("ID is " + ID + ". Nexts[ID] is: " + Nexts[ID]);
 						if (Nexts[ID])
 						{
 							CurrentRender++;

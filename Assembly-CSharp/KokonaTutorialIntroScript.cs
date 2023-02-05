@@ -66,6 +66,10 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 
 	public int SpeechID;
 
+	public int DebugID;
+
+	public bool Debug;
+
 	public PostProcessingProfile Profile;
 
 	private void Start()
@@ -91,11 +95,19 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 			SpeechID++;
 			Subtitle.text = SpeechLines[SpeechID];
 		}
+		if (Input.GetButtonDown("A"))
+		{
+			DebugID++;
+			if (DebugID > 9)
+			{
+				Debug = true;
+			}
+		}
 		if (Phase == 0)
 		{
 			Timer = Mathf.MoveTowards(Timer, 1f, Time.deltaTime);
 			SkipPanel.alpha = Timer;
-			if (Timer == 1f || Input.GetButtonDown("A"))
+			if (Timer == 1f || (Debug && Input.GetButtonDown("A")))
 			{
 				Jukebox.Play();
 				Timer = 0f;
@@ -105,11 +117,11 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		else if (Phase == 1)
 		{
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime * 0.33333f);
-			if (Darkness.alpha == 0f || Input.GetButtonDown("A"))
+			if (Darkness.alpha == 0f || (Debug && Input.GetButtonDown("A")))
 			{
 				Darkness.alpha = 0f;
 				Timer += Time.deltaTime;
-				if (Timer > 1f || Input.GetButtonDown("A"))
+				if (Timer > 1f || (Debug && Input.GetButtonDown("A")))
 				{
 					KokonaAnim["Tutorial_Kokona_Intro"].speed = 1f;
 					AyanoAnim["Tutorial_Ayano_Intro"].speed = 1f;
@@ -121,7 +133,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 2)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Debug && Input.GetButtonDown("A"))
 			{
 				MainCamera.transform.position = new Vector3(3.01f, 1.25f, 20.5f);
 				MainCamera.transform.eulerAngles = new Vector3(0f, 22.5f, 0f);
@@ -165,7 +177,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 					AyanoAnim["Tutorial_Ayano_Intro_ALT"].speed = Mathf.MoveTowards(AyanoAnim["Tutorial_Ayano_Intro_ALT"].speed, 2f, Time.deltaTime);
 				}
 			}
-			if (KokonaAnim["Tutorial_Kokona_Intro"].time > KokonaAnim["Tutorial_Kokona_Intro"].length - 1f || Input.GetButtonDown("A"))
+			if (KokonaAnim["Tutorial_Kokona_Intro"].time > KokonaAnim["Tutorial_Kokona_Intro"].length - 1f || (Debug && Input.GetButtonDown("A")))
 			{
 				Jukebox.clip = WaitLoop;
 				Jukebox.loop = true;
@@ -209,7 +221,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 6)
 		{
-			if (!MyAudioSource.isPlaying || Input.GetButtonDown("A"))
+			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown("A")))
 			{
 				KokonaAnim.CrossFade("Tutorial_Kokona_Accept");
 				AyanoAnim.CrossFade("Tutorial_Ayano_Accept_Idle");
@@ -220,7 +232,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 7)
 		{
-			if (!MyAudioSource.isPlaying || Input.GetButtonDown("A"))
+			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown("A")))
 			{
 				Phase++;
 			}
@@ -228,7 +240,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		else if (Phase == 8)
 		{
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
-			if (Darkness.alpha == 1f || Input.GetButtonDown("A"))
+			if (Darkness.alpha == 1f || (Debug && Input.GetButtonDown("A")))
 			{
 				GameGlobals.KokonaTutorial = true;
 				SceneManager.LoadScene("LoadingScene");
@@ -236,7 +248,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 9)
 		{
-			if (!MyAudioSource.isPlaying || Input.GetButtonDown("A"))
+			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown("A")))
 			{
 				KokonaAnim.CrossFade("Tutorial_Kokona_Decline");
 				MyAudioSource.clip = KokonaNo;
@@ -246,7 +258,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 10)
 		{
-			if (!MyAudioSource.isPlaying || Input.GetButtonDown("A"))
+			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown("A")))
 			{
 				Phase++;
 			}
@@ -254,7 +266,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		else if (Phase == 11)
 		{
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
-			if (Darkness.alpha == 1f || Input.GetButtonDown("A"))
+			if (Darkness.alpha == 1f || (Debug && Input.GetButtonDown("A")))
 			{
 				GameGlobals.KokonaTutorial = false;
 				SceneManager.LoadScene("PhoneScene");
@@ -274,7 +286,14 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 				SkipCircle.fillAmount -= Time.deltaTime;
 				if (SkipCircle.fillAmount == 0f)
 				{
-					Phase = 11;
+					if (Phase > 5 && Phase < 9)
+					{
+						Phase = 8;
+					}
+					else
+					{
+						Phase = 11;
+					}
 				}
 			}
 			else
