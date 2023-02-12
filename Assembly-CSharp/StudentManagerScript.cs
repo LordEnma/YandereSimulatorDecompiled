@@ -1062,7 +1062,6 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (KokonaTutorial || EightiesTutorial || Week > 10)
 		{
-			Debug.Log("KokonaTutorial is: " + KokonaTutorial);
 			SpawnNobody = true;
 			if (Week > 10)
 			{

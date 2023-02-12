@@ -32,14 +32,12 @@ public class YandereShoeLockerScript : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("Was outdoors. Now going indoors.");
 				Outdoors = false;
 				UpdateShoes();
 			}
 		}
 		else if (Yandere.transform.position.z > 30f || (Yandere.transform.position.z < -34f && Yandere.transform.position.x > -6f && Yandere.transform.position.x < 6f))
 		{
-			Debug.Log("Was indoors. Now going outdoors.");
 			Outdoors = true;
 			UpdateShoes();
 		}

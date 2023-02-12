@@ -587,6 +587,7 @@ public class CosmeticScript : MonoBehaviour
 			Stockings = "";
 			BreastSize = 1f;
 			Empty = true;
+			Student.Name = "A student";
 		}
 		if (Name == "Random")
 		{

@@ -78,6 +78,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		KokonaAnim["Tutorial_Kokona_Intro"].speed = 0f;
 		AyanoAnim["Tutorial_Ayano_Intro"].speed = 0f;
 		Window.localScale = new Vector3(0f, 0f, 0f);
+		GameGlobals.Eighties = false;
 		SkipPanel.alpha = 0f;
 		Darkness.alpha = 1f;
 		Subtitle.text = "";

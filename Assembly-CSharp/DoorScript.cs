@@ -296,10 +296,22 @@ public class DoorScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (!Open && Timer >= TimeLimit)
 			{
+				if (DoorColliders[0] == null)
+				{
+					Initialized = false;
+				}
+				if (!Initialized)
+				{
+					Start();
+				}
 				DoorColliders[0].isTrigger = false;
 				if (DoorColliders[1] != null)
 				{
 					DoorColliders[1].isTrigger = false;
+				}
+				if (Portal != null)
+				{
+					Portal.open = Open;
 				}
 			}
 			if (BucketSet)
@@ -412,6 +424,14 @@ public class DoorScript : MonoBehaviour
 
 	public void OpenDoor()
 	{
+		if (DoorColliders[0] == null)
+		{
+			Initialized = false;
+		}
+		if (!Initialized)
+		{
+			Start();
+		}
 		DoorColliders[0].isTrigger = true;
 		if (DoorColliders[1] != null)
 		{

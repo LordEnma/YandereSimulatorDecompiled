@@ -6,6 +6,8 @@ public class TributeScript : MonoBehaviour
 
 	public StudentManagerScript StudentManager;
 
+	public GameObject StudentFootageCamera;
+
 	public HenshinScript Henshin;
 
 	public YandereScript Yandere;
@@ -15,6 +17,8 @@ public class TributeScript : MonoBehaviour
 	public string[] MinecraftLetters;
 
 	public string[] MedibangLetters;
+
+	public string[] FootageLetters;
 
 	public string[] MiyukiLetters;
 
@@ -29,6 +33,8 @@ public class TributeScript : MonoBehaviour
 	public int MinecraftID;
 
 	public int MedibangID;
+
+	public int FootageID;
 
 	public int MiyukiID;
 
@@ -124,6 +130,15 @@ public class TributeScript : MonoBehaviour
 				{
 					Henshin.TransformYandere();
 					Yandere.CanMove = false;
+					base.enabled = false;
+				}
+			}
+			if (Input.GetKeyDown(FootageLetters[FootageID]))
+			{
+				FootageID++;
+				if (FootageID == FootageLetters.Length)
+				{
+					StudentFootageCamera.SetActive(value: true);
 					base.enabled = false;
 				}
 			}

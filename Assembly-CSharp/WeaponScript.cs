@@ -222,7 +222,6 @@ public class WeaponScript : MonoBehaviour
 
 	public string GetTypePrefix()
 	{
-		Debug.Log("WeaponType is: " + Type);
 		switch (Type)
 		{
 		case WeaponType.Knife:
@@ -433,7 +432,7 @@ public class WeaponScript : MonoBehaviour
 
 	public void Equip()
 	{
-		Debug.Log("Yandere-chan just equipped a " + Name);
+		Debug.Log("Yandere-chan just equipped a " + Name + ".");
 		InBag = false;
 		if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 1)
 		{

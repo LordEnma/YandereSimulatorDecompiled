@@ -326,7 +326,7 @@ public class PhoneEventScript : MonoBehaviour
 			EventStudent.Character.GetComponent<Animation>().CrossFade(EventStudent.RunAnim);
 			EventStudent.Pathfinding.speed = 4f;
 		}
-		if ((!EventStudent.Pathfinding.canMove && EventPhase <= 3) || !(EventFriend != null) || EventFriend.CurrentAction != StudentActionType.Follow || !EventFriend.InEvent || EventPhase <= 3)
+		if ((!EventStudent.Pathfinding.canMove && EventPhase <= 3) || !(EventFriend != null) || EventFriend.CurrentAction != StudentActionType.Follow || !EventFriend.InEvent || !EventFriend.Alive || EventFriend.Electrified || EventFriend.Electrocuted || EventPhase <= 3)
 		{
 			return;
 		}

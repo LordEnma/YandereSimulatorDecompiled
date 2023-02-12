@@ -12,6 +12,8 @@ public class NotificationManagerScript : MonoBehaviour
 
 	public int NotificationsSpawned;
 
+	public int NotificationLimit = 2;
+
 	public int Phase = 1;
 
 	public ClockScript Clock;
@@ -193,6 +195,7 @@ public class NotificationManagerScript : MonoBehaviour
 		}
 		NotificationsSpawned++;
 		component.ID = NotificationsSpawned;
+		component.Limit = NotificationLimit;
 		PreviousText = CustomText;
 	}
 }

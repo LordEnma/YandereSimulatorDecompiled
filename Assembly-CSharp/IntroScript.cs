@@ -71,6 +71,8 @@ public class IntroScript : MonoBehaviour
 
 	public Animation SenpaiAnim;
 
+	public Animation WindowAnim;
+
 	public Animation MotherAnim;
 
 	public Animation ChildAnim;
@@ -238,6 +240,7 @@ public class IntroScript : MonoBehaviour
 			HoleInChestAnim["f02_holeInChest_00"].speed = 0f;
 			YoungRyobaAnim["f02_introHoldHands_00"].speed = 0f;
 			YoungFatherAnim["introHoldHands_00"].speed = 0f;
+			WindowAnim["f02_yandereWindowSit_00"].speed = 1.2f;
 			BrightenEnvironment();
 			base.transform.position = new Vector3(0f, 1.255f, 0.2f);
 			base.transform.eulerAngles = new Vector3(45f, 0f, 0f);

@@ -370,6 +370,11 @@ public class TallLockerScript : MonoBehaviour
 					else if (Student.StudentID == 30)
 					{
 						Debug.Log("Himedere just left her ring in the locker room!");
+						Transform parent = Rings.transform.parent;
+						Rings.transform.parent = Student.transform;
+						Rings.transform.localPosition = new Vector3(0f, 0.8306667f, 0.2217484f);
+						Rings.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
+						Rings.transform.parent = parent;
 						Rings.gameObject.SetActive(value: true);
 					}
 				}

@@ -118,15 +118,23 @@ public class ShoulderCameraScript : MonoBehaviour
 				LastPosition = base.transform.position;
 				RPGCamera.enabled = false;
 			}
-			if (Yandere.TargetStudent.Counselor)
+			if (Yandere.TargetStudent != null)
 			{
-				base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position + new Vector3(0f, -0.49f, 0f), Time.deltaTime * 10f);
+				if (Yandere.TargetStudent.Counselor)
+				{
+					base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position + new Vector3(0f, -0.49f, 0f), Time.deltaTime * 10f);
+				}
+				else
+				{
+					base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position, Time.deltaTime * 10f);
+				}
+				ShoulderFocus.position = Vector3.Lerp(ShoulderFocus.position, Yandere.TargetStudent.transform.position + Vector3.up * Height, Time.deltaTime * 10f);
 			}
 			else
 			{
 				base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position, Time.deltaTime * 10f);
+				ShoulderFocus.position = Vector3.Lerp(ShoulderFocus.position, Yandere.transform.position + Yandere.transform.forward + Vector3.up * Height, Time.deltaTime * 10f);
 			}
-			ShoulderFocus.position = Vector3.Lerp(ShoulderFocus.position, Yandere.TargetStudent.transform.position + Vector3.up * Height, Time.deltaTime * 10f);
 			base.transform.LookAt(ShoulderFocus);
 		}
 		else if (AimingCamera)

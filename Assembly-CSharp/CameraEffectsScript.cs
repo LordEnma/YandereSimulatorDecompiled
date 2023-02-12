@@ -165,4 +165,11 @@ public class CameraEffectsScript : MonoBehaviour
 		settings.focusDistance = Focus;
 		Profile.depthOfField.settings = settings;
 	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		settings.aperture = Aperture;
+		Profile.depthOfField.settings = settings;
+	}
 }

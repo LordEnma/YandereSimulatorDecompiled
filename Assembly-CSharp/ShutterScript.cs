@@ -475,7 +475,7 @@ public class ShutterScript : MonoBehaviour
 						ResumeGameplay();
 					}
 				}
-				if (!Yandere.RivalPhone && Input.GetButtonDown("X"))
+				if (!StudentManager.KokonaTutorial && !Yandere.RivalPhone && Input.GetButtonDown("X"))
 				{
 					bool flag4 = false;
 					if (StudentManager.Eighties && InfoX.activeInHierarchy)
@@ -576,7 +576,6 @@ public class ShutterScript : MonoBehaviour
 
 	public void CheckPhoto()
 	{
-		Debug.Log("We are now checking what Yandere-chan took a picture of.");
 		InfoX.SetActive(value: true);
 		BullyX.SetActive(value: true);
 		SenpaiX.SetActive(value: true);
@@ -597,7 +596,6 @@ public class ShutterScript : MonoBehaviour
 		StudentManager.UpdateSkirts(Status: true);
 		if (Physics.Raycast(transform.position, direction, out hit, float.PositiveInfinity, OnlyPhotography))
 		{
-			Debug.Log("The camera's raycast collided with something named ''" + hit.collider.gameObject.name + "''");
 			if (hit.collider.gameObject.name == "Panties")
 			{
 				Student = hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>();

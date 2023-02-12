@@ -3454,7 +3454,6 @@ public class StudentScript : MonoBehaviour
 	{
 		if (!Blind)
 		{
-			Debug.DrawLine(Eyes.position, targetPoint, Color.green);
 			Vector3 position = Eyes.transform.position;
 			Vector3 vector = targetPoint - position;
 			float num = VisionDistance * VisionDistance;
@@ -4285,6 +4284,13 @@ public class StudentScript : MonoBehaviour
 						}
 					}
 				}
+				else if (Actions[Phase] == StudentActionType.Relax && Curious)
+				{
+					if (CurrentDestination == StudentManager.Students[Crush].transform)
+					{
+						TargetDistance = 5f;
+					}
+				}
 				else if (Actions[Phase] == StudentActionType.Stalk && StudentManager.LockerRoomArea.bounds.Contains(Yandere.transform.position))
 				{
 					if (Vector3.Distance(base.transform.position, StudentManager.FleeSpots[0].position) > 10f)
@@ -5002,6 +5008,7 @@ public class StudentScript : MonoBehaviour
 								{
 									Pathfinding.target = StudentManager.Students[Crush].transform;
 									CurrentDestination = StudentManager.Students[Crush].transform;
+									DistanceToDestination = 100f;
 									TargetDistance = 5f;
 									CuriosityTimer = 0f;
 									CuriosityPhase++;
@@ -5018,6 +5025,7 @@ public class StudentScript : MonoBehaviour
 							Pathfinding.target = StudentManager.Students[Crush].transform;
 							CurrentDestination = StudentManager.Students[Crush].transform;
 						}
+						TargetDistance = 6f;
 						if ((!StudentManager.Students[Crush].Alive && StudentManager.Students[Crush].Ragdoll.Concealed) || (!StudentManager.Students[Crush].Alive && StudentManager.Students[Crush].Ragdoll.Disposed) || !StudentManager.Students[Crush].gameObject.activeInHierarchy)
 						{
 							CharacterAnimation.CrossFade("lookLeftRightConfused_00");
@@ -7852,6 +7860,12 @@ public class StudentScript : MonoBehaviour
 				Pathfinding.target = Yandere.transform;
 				CurrentDestination = Yandere.transform;
 			}
+			if (FollowTarget != null && Vector3.Distance(base.transform.position, FollowTarget.transform.position) < 10f && FollowTarget.Attacked && FollowTarget.Alive && !FollowTarget.Tranquil && !Blind)
+			{
+				Debug.Log("Raibaru should be aware that Osana is being attacked.");
+				AwareOfMurder = true;
+				Alarm = 200f;
+			}
 			if (!Dying && !Spraying)
 			{
 				if (!PinningDown)
@@ -8614,6 +8628,24 @@ public class StudentScript : MonoBehaviour
 											Pathfinding.enabled = true;
 											ReportPhase++;
 										}
+									}
+								}
+								else
+								{
+									Debug.Log("Lovestruck student is running for an exit.");
+									if (StudentID == 10)
+									{
+										Debug.Log("The Lovestruck student is Raibaru.");
+									}
+									if (FollowTarget != null)
+									{
+										Debug.Log("Raibaru knows about Osana.");
+									}
+									if (FollowTarget != null && Vector3.Distance(base.transform.position, FollowTarget.transform.position) < 10f && FollowTarget.Attacked && FollowTarget.Alive && !FollowTarget.Tranquil && !Blind)
+									{
+										Debug.Log("Raibaru should be aware that Osana is being attacked.");
+										AwareOfMurder = true;
+										Alarm = 200f;
 									}
 								}
 							}
@@ -11856,6 +11888,7 @@ public class StudentScript : MonoBehaviour
 							break;
 						}
 						CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+						Debug.Log(Name + " has seen a dropped weapon on the ground.");
 						CheckForBento();
 						BloodPool = myCollider.transform;
 						if (Yandere.WeaponManager.Weapons[ID].Blood.enabled)

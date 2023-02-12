@@ -157,19 +157,20 @@ public class KokonaTutorialScript : MonoBehaviour
 		Window.transform.localScale = new Vector3(0f, 0f, 0f);
 		if (!GameGlobals.KokonaTutorial)
 		{
+			Window.gameObject.SetActive(value: false);
 			base.gameObject.SetActive(value: false);
 			return;
 		}
+		Window.gameObject.SetActive(value: true);
 		Yandere.StudentManager.Atmosphere = 1f;
 		Yandere.StudentManager.SetAtmosphere();
-		Debug.Log("The game believes that we are currently in the Kokona tutorial sequence.");
 		EightiesTutorialGraphics.SetActive(value: false);
 		GameGlobals.EightiesTutorial = false;
 		GameGlobals.Eighties = false;
-		Yandere.NotificationManager.transform.localPosition = new Vector3(0f, 100f, 0f);
 		Yandere.YandereVisionPanel.transform.localPosition = new Vector3(0f, 0f, 0f);
 		Yandere.transform.eulerAngles = YandereSpawnPoints[0].eulerAngles;
 		Yandere.transform.position = YandereSpawnPoints[0].position;
+		Yandere.NotificationManager.NotificationLimit = 0;
 		Yandere.PauseScreen.gameObject.SetActive(value: false);
 		Yandere.Jukebox.gameObject.SetActive(value: false);
 		Yandere.Shutter.PhotographedKokona = false;
@@ -262,6 +263,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		T.Clock.CameraEffects.UpdateBloomKnee(0.75f);
 		T.Clock.CameraEffects.UpdateBloomRadius(4f);
 		T.Clock.CameraEffects.UpdateBloom(1f);
+		T.Clock.StopTime = true;
 		Darkness.color = new Color(1f, 1f, 1f, 1f);
 		Darkness.enabled = true;
 		MainCamera.farClipPlane = 50f;
@@ -364,6 +366,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		if (ID < 25 || ID > 31)
 		{
 			studentScript.Cosmetic.Empty = true;
+			studentScript.Name = "A student";
 		}
 		studentScript.Cosmetic.Start();
 		studentScript.Start();
@@ -714,7 +717,7 @@ public class KokonaTutorialScript : MonoBehaviour
 
 	private void UpdateTutorial()
 	{
-		if (Yandere.CanMove)
+		if (Yandere.CanMove && !Yandere.Aiming)
 		{
 			ExitGroup.alpha = Mathf.MoveTowards(ExitGroup.alpha, 1f, Time.deltaTime);
 			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
@@ -1166,6 +1169,11 @@ public class KokonaTutorialScript : MonoBehaviour
 							StudentManager.Students[30].Outlines[i].enabled = true;
 						}
 					}
+					Yandere.CannotAim = true;
+					if (Yandere.Aiming)
+					{
+						Yandere.StopAiming();
+					}
 					TutorialPhase++;
 					PlayKokonaVoice();
 				}
@@ -1504,7 +1512,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			{
 				T.SanityHUD.alpha = Mathf.MoveTowards(T.SanityHUD.alpha, 1f, Time.deltaTime);
 			}
-			if (Incinerator.Contents > 6)
+			if (Incinerator.Contents > 5)
 			{
 				Incinerator.CannotIncinerate = false;
 			}
@@ -1527,7 +1535,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			}
 			else if (TutorialPhase == 2)
 			{
-				if (VG.BloodParent.childCount == 0 && !WeaponManager.Weapons[8].Blood.enabled && Incinerator.Smoke.isPlaying && Yandere.Sanity == 100f)
+				if (VG.BloodParent.childCount == 0 && !WeaponManager.Weapons[8].Blood.enabled && !Raincoat.Blood.enabled && Incinerator.Smoke.isPlaying && Yandere.Sanity == 100f)
 				{
 					TutorialPhase++;
 					PlayKokonaVoice();
@@ -1914,6 +1922,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		}
 		if (StudentManager.Students[30] != null)
 		{
+			StudentManager.Students[30].AddOutlineToHair();
 			for (int k = 0; k < StudentManager.Students[30].Outlines.Length; k++)
 			{
 				if (StudentManager.Students[30].Outlines[k] != null)
@@ -1923,7 +1932,7 @@ public class KokonaTutorialScript : MonoBehaviour
 				}
 			}
 		}
-		PoliceLabels[2].text = "Dispose of Raincoat";
+		PoliceLabels[2].text = "Wash Raincoat";
 		PoliceLabels[3].text = "Wash Circular Saw";
 		AStar.OnEnable();
 		Physics.SyncTransforms();

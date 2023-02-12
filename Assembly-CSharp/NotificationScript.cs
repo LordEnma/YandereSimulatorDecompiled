@@ -14,6 +14,8 @@ public class NotificationScript : MonoBehaviour
 
 	public float Timer;
 
+	public int Limit = 2;
+
 	public int ID;
 
 	private void Start()
@@ -43,7 +45,7 @@ public class NotificationScript : MonoBehaviour
 		{
 			Display = false;
 		}
-		if (NotificationManager.NotificationsSpawned > ID + 2)
+		if (NotificationManager.NotificationsSpawned > ID + Limit)
 		{
 			Display = false;
 		}

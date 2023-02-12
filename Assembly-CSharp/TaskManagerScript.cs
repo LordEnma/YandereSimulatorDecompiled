@@ -44,7 +44,7 @@ public class TaskManagerScript : MonoBehaviour
 		{
 			UpdateTaskStatus();
 		}
-		if (GameGlobals.Eighties)
+		if (GameGlobals.Eighties && MuddyFootprintParent != null)
 		{
 			MuddyFootprintParent.gameObject.SetActive(value: false);
 		}

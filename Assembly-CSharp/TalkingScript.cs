@@ -1712,7 +1712,7 @@ public class TalkingScript : MonoBehaviour
 						if (S.Schoolwear == 2)
 						{
 							S.CharacterAnimation.CrossFade(S.GossipAnim);
-							S.Subtitle.CustomText = "Thanks for letting me know, but...I'm in a swimsuit right now. It'll just have to wait.";
+							S.Subtitle.CustomText = "Thanks for letting me know, but...I'm in a swimsuit right now. Remind me later.";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 							Refuse = true;
 						}
@@ -1745,6 +1745,13 @@ public class TalkingScript : MonoBehaviour
 							}
 							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.Subtitle.UpdateLabel(SubtitleType.SendToLocker, 4, 5f);
+							Refuse = true;
+						}
+						else if (S.Clock.HourTime > 13f && S.Clock.HourTime < 13.375f)
+						{
+							S.CharacterAnimation.CrossFade(S.GossipAnim);
+							S.Subtitle.CustomText = "Thanks for letting me know, but...I'm eating lunch right now. Remind me later.";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 							Refuse = true;
 						}
 						else

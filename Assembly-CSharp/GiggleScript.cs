@@ -65,7 +65,7 @@ public class GiggleScript : MonoBehaviour
 			_ = Student.CurrentAction;
 			_ = 10;
 		}
-		if (!Student.YandereVisible && !Student.Alarmed && !Student.Distracted && !Student.Wet && !Student.Slave && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Investigating && !Student.InEvent && !Student.Following && !Student.Confessing && !Student.Meeting && !Student.TurnOffRadio && !Student.Fleeing && !Student.Distracting && !Student.GoAway && !Student.FocusOnYandere && !StudentIsBusy && !Student.MyBento.Tampered && !Student.Headache && Student.Routine && !Student.VisitSenpaiDesk && Student.Actions[Student.Phase] != StudentActionType.Teaching && Student.Actions[Student.Phase] != StudentActionType.SitAndTakeNotes && Student.Actions[Student.Phase] != StudentActionType.Graffiti && Student.Actions[Student.Phase] != StudentActionType.Bully)
+		if (!Student.YandereVisible && !Student.Alarmed && !Student.Distracted && !Student.Wet && !Student.Slave && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Investigating && !Student.InEvent && !Student.Following && !Student.Confessing && !Student.Meeting && !Student.TurnOffRadio && !Student.Fleeing && !Student.Distracting && !Student.GoAway && !Student.FocusOnYandere && !StudentIsBusy && !Student.MyBento.Tampered && !Student.Headache && Student.Routine && !Student.VisitSenpaiDesk && !Student.Restless && Student.Actions[Student.Phase] != StudentActionType.Teaching && Student.Actions[Student.Phase] != StudentActionType.SitAndTakeNotes && Student.Actions[Student.Phase] != StudentActionType.Graffiti && Student.Actions[Student.Phase] != StudentActionType.Bully)
 		{
 			Student.CharacterAnimation.CrossFade(Student.IdleAnim);
 			Giggle = Object.Instantiate(EmptyGameObject, new Vector3(base.transform.position.x, Student.transform.position.y, base.transform.position.z), Quaternion.identity);
@@ -166,7 +166,7 @@ public class GiggleScript : MonoBehaviour
 		}
 		else
 		{
-			if (Student.InEvent)
+			if (Student.InEvent || Student.Restless)
 			{
 				Student.Yandere.NotificationManager.CustomText = Student.Name + " is in an event right now.";
 				Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

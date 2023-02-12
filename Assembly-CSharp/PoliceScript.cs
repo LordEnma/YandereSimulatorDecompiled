@@ -1240,7 +1240,7 @@ public class PoliceScript : MonoBehaviour
 			BloodIcon.spriteName = "No";
 			BloodDisposed = false;
 		}
-		if (!StudentManager.KokonaTutorialObject.Raincoat.gameObject.activeInHierarchy)
+		if (!StudentManager.KokonaTutorialObject.Raincoat.Blood.enabled)
 		{
 			if (!UniformDisposed)
 			{

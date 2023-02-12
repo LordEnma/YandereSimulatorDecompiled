@@ -358,6 +358,8 @@ public class YandereScript : MonoBehaviour
 
 	public float MurderousActionTimer;
 
+	public float PrepareThrowTimer;
+
 	public float CinematicTimer;
 
 	public float SneakShotTimer;
@@ -555,6 +557,8 @@ public class YandereScript : MonoBehaviour
 	public bool BucketDropping;
 
 	public bool CleaningWeapon;
+
+	public bool PreparingThrow;
 
 	public bool SubtleStabbing;
 
@@ -2120,6 +2124,9 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation["f02_phonePose_00"].layer = 38;
 		CharacterAnimation.Play("f02_phonePose_00");
 		CharacterAnimation["f02_phonePose_00"].weight = 0f;
+		CharacterAnimation["f02_prepareThrow_00"].layer = 39;
+		CharacterAnimation.Play("f02_prepareThrow_00");
+		CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
 		CharacterAnimation["f02_dipping_00"].speed = 2f;
 		CharacterAnimation["f02_stripping_00"].speed = 1.5f;
 		CharacterAnimation["f02_falconIdle_00"].speed = 2f;
@@ -2280,7 +2287,7 @@ public class YandereScript : MonoBehaviour
 				v = 0f;
 				h = 0f;
 			}
-			if (!Aiming)
+			if (!Aiming && !PreparingThrow)
 			{
 				Vector3 vector = MainCamera.transform.TransformDirection(Vector3.forward);
 				vector.y = 0f;
@@ -3038,6 +3045,10 @@ public class YandereScript : MonoBehaviour
 						CinematicTimer = 0f;
 					}
 				}
+			}
+			if (PreparingThrow && Time.timeScale > 0.0001f && ((UsingController && Input.GetAxis("LT") < 0.5f) || (!UsingController && !Input.GetMouseButton(1))))
+			{
+				StopAiming();
 			}
 			if (Gloved)
 			{
@@ -5071,7 +5082,7 @@ public class YandereScript : MonoBehaviour
 			}
 			if (CanMove && !Carrying && !Dragging && YandereVisionPanel.alpha == 1f)
 			{
-				if (SneakShotLabel.alpha == 1f && Input.GetButtonDown("B"))
+				if (!StudentManager.KokonaTutorial && SneakShotLabel.alpha == 1f && Input.GetButtonDown("B"))
 				{
 					Direction = 1;
 					CheckForWall();
@@ -6537,6 +6548,19 @@ public class YandereScript : MonoBehaviour
 			Height = Mathf.Lerp(Height, TargetHeight, Time.deltaTime * 10f);
 			PelvisRoot.transform.localPosition = new Vector3(PelvisRoot.transform.localPosition.x, Height, PelvisRoot.transform.localPosition.z);
 		}
+		if (PreparingThrow)
+		{
+			if (PrepareThrowTimer < 1f)
+			{
+				PrepareThrowTimer += Time.deltaTime;
+				CharacterAnimation["f02_prepareThrow_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_prepareThrow_00"].weight, 1f, Time.deltaTime * 10f);
+			}
+		}
+		else if (PrepareThrowTimer < 1f)
+		{
+			PrepareThrowTimer += Time.deltaTime;
+			CharacterAnimation["f02_prepareThrow_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_prepareThrow_00"].weight, 0f, Time.deltaTime * 10f);
+		}
 		if (Egg)
 		{
 			if (Slender)
@@ -6816,7 +6840,6 @@ public class YandereScript : MonoBehaviour
 	public void StainWeapon()
 	{
 		Debug.Log("Yandere-chan is running the code for staining her equipped weapon with blood and marking it as evidence.");
-		Debug.Log("Dismembering is: " + Dismembering);
 		if (!(EquippedWeapon != null))
 		{
 			return;
@@ -6921,6 +6944,9 @@ public class YandereScript : MonoBehaviour
 			ClubAccessories[(int)Club].transform.localScale = new Vector3(1f, 1f, 1f);
 		}
 		MyController.radius = 0.2f;
+		ShoulderCamera.OverShoulder = false;
+		PreparingThrow = false;
+		PrepareThrowTimer = 0f;
 	}
 
 	public void FixCamera()
@@ -8298,6 +8324,7 @@ public class YandereScript : MonoBehaviour
 
 	private void Horror()
 	{
+		Class.Portal.EndEvents();
 		Rain.SetActive(value: false);
 		RenderSettings.ambientLight = new Color(0.1f, 0.1f, 0.1f);
 		RenderSettings.skybox = HorrorSkybox;

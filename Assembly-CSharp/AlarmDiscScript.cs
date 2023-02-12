@@ -366,6 +366,8 @@ public class AlarmDiscScript : MonoBehaviour
 				Student.StopPairing();
 				Student.EmptyHands();
 				Student.HeardScream = true;
+				Student.Drownable = false;
+				Student.StudentManager.UpdateMe(Student.StudentID);
 			}
 		}
 		else

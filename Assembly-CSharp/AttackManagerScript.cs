@@ -188,7 +188,6 @@ public class AttackManagerScript : MonoBehaviour
 			return;
 		}
 		CheckForWalls();
-		Debug.Log("Victim is supposed to be playing the victim animation right now.");
 		VictimAnim.CrossFade(VictimAnimName);
 		if (Censor)
 		{

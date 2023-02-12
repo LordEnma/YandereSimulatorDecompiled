@@ -30,6 +30,8 @@ public class WashingMachineScript : MonoBehaviour
 
 	public float AnimationTimer;
 
+	public float WashSpeed = 1f;
+
 	public float WashTimer;
 
 	public float Rotation;
@@ -68,7 +70,7 @@ public class WashingMachineScript : MonoBehaviour
 		else
 		{
 			Tumbler.Rotate(0f, 0f, 360f * Time.deltaTime, Space.Self);
-			WashTimer -= Time.deltaTime;
+			WashTimer -= Time.deltaTime * WashSpeed;
 			Circle.fillAmount = 1f - WashTimer / 60f;
 			float num = Mathf.CeilToInt(WashTimer * 60f);
 			float num2 = Mathf.Floor(num / 60f);
