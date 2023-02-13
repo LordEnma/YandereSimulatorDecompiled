@@ -152,6 +152,8 @@ public class YandereScript : MonoBehaviour
 
 	public LookAtTarget LookAt;
 
+	public NewArcScript NewArc;
+
 	public PickUpScript PickUp;
 
 	public PoliceScript Police;
@@ -597,6 +599,8 @@ public class YandereScript : MonoBehaviour
 	public bool CannotAim;
 
 	public bool Degloving;
+
+	public bool OutOfAmmo;
 
 	public bool Poisoning;
 
@@ -2479,111 +2483,131 @@ public class YandereScript : MonoBehaviour
 			{
 				if (!Input.GetButton("A") && !Input.GetButton("B") && !Input.GetButton("X") && !Input.GetButton("Y") && !StudentManager.Clock.UpdateBloom && !Frozen && !CannotAim && (Input.GetAxis("LT") > 0.5f || Input.GetMouseButton(1)))
 				{
-					if (Inventory.RivalPhone)
+					if ((PickUp != null && PickUp.BangSnaps) || (PickUp != null && PickUp.StinkBombs))
 					{
-						if (Input.GetButtonDown("LB"))
+						if (!PreparingThrow && !Throwing)
 						{
-							CharacterAnimation["f02_cameraPose_00"].weight = 0f;
-							CharacterAnimation["f02_selfie_00"].weight = 0f;
-							CharacterAnimation["f02_selfie_01"].weight = 0f;
-							if (!RivalPhone)
+							base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
+							TargetStudent = null;
+							PreparingThrow = true;
+							PrepareThrowTimer = 0f;
+							RPGCamera.enabled = false;
+							ShoulderCamera.OverShoulder = true;
+							if (Input.GetAxis("LT") > 0.5f)
 							{
-								SmartphoneRenderer.material.mainTexture = RivalPhoneTexture;
-								PhonePromptBar.Label.text = "SWITCH TO YOUR PHONE";
-								RivalPhone = true;
+								UsingController = true;
 							}
-							else
-							{
-								SmartphoneRenderer.material.mainTexture = YanderePhoneTexture;
-								PhonePromptBar.Label.text = "SWITCH TO STOLEN PHONE";
-								RivalPhone = false;
-							}
+							NewArc.gameObject.SetActive(value: true);
 						}
 					}
-					else if (!Selfie && Input.GetButtonDown("LB") && !StudentManager.Eighties)
+					else
 					{
-						if (!AR)
-						{
-							Smartphone.cullingMask |= 1 << LayerMask.NameToLayer("Miyuki");
-							AR = true;
-						}
-						else
-						{
-							Smartphone.cullingMask &= ~(1 << LayerMask.NameToLayer("Miyuki"));
-							AR = false;
-						}
-					}
-					if (Input.GetAxis("LT") > 0.5f)
-					{
-						UsingController = true;
-					}
-					if (!Aiming)
-					{
-						PauseScreen.NewSettings.Profile.depthOfField.enabled = false;
-						if (CameraEffects.OneCamera)
-						{
-							MainCamera.clearFlags = CameraClearFlags.Color;
-							MainCamera.farClipPlane = 0.02f;
-							HandCamera.clearFlags = CameraClearFlags.Color;
-						}
-						else
-						{
-							MainCamera.clearFlags = CameraClearFlags.Skybox;
-							MainCamera.farClipPlane = OptionGlobals.DrawDistance;
-							HandCamera.clearFlags = CameraClearFlags.Depth;
-						}
-						base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
-						CharacterAnimation.Play(IdleAnim);
-						if (!StudentManager.Eighties)
-						{
-							Smartphone.transform.parent.gameObject.SetActive(value: true);
-							Blur.enabled = true;
-							if (!CinematicCamera.activeInHierarchy)
-							{
-								DisableHairAndAccessories();
-							}
-							HandCamera.gameObject.SetActive(value: true);
-							EmptyHands();
-							if (!StudentManager.KokonaTutorial)
-							{
-								PhonePromptBar.Panel.enabled = true;
-								PhonePromptBar.Show = true;
-							}
-						}
-						else
-						{
-							MainCamera.nearClipPlane = 0.181f;
-							HandCamera.nearClipPlane = 0.35f;
-							Smartphone.nearClipPlane = 0.182f;
-						}
-						ShoulderCamera.AimingCamera = true;
-						YandereVision = false;
-						Mopping = false;
-						Selfie = false;
-						Aiming = true;
-						MyController.radius = 0.45f;
 						if (Inventory.RivalPhone)
 						{
-							if (!RivalPhone)
+							if (Input.GetButtonDown("LB"))
 							{
-								PhonePromptBar.Label.text = "SWITCH TO STOLEN PHONE";
+								CharacterAnimation["f02_cameraPose_00"].weight = 0f;
+								CharacterAnimation["f02_selfie_00"].weight = 0f;
+								CharacterAnimation["f02_selfie_01"].weight = 0f;
+								if (!RivalPhone)
+								{
+									SmartphoneRenderer.material.mainTexture = RivalPhoneTexture;
+									PhonePromptBar.Label.text = "SWITCH TO YOUR PHONE";
+									RivalPhone = true;
+								}
+								else
+								{
+									SmartphoneRenderer.material.mainTexture = YanderePhoneTexture;
+									PhonePromptBar.Label.text = "SWITCH TO STOLEN PHONE";
+									RivalPhone = false;
+								}
+							}
+						}
+						else if (!Selfie && Input.GetButtonDown("LB") && !StudentManager.Eighties)
+						{
+							if (!AR)
+							{
+								Smartphone.cullingMask |= 1 << LayerMask.NameToLayer("Miyuki");
+								AR = true;
 							}
 							else
 							{
-								PhonePromptBar.Label.text = "SWITCH TO YOUR PHONE";
+								Smartphone.cullingMask &= ~(1 << LayerMask.NameToLayer("Miyuki"));
+								AR = false;
 							}
 						}
-						else
+						if (Input.GetAxis("LT") > 0.5f)
 						{
-							PhonePromptBar.Label.text = "AR GAME ON/OFF";
+							UsingController = true;
 						}
-						Time.timeScale = 1f;
-						UpdateSelfieStatus();
-						StudentManager.UpdatePanties(Status: true);
-						CameraEffects.SmartphoneCamera.depthTextureMode = DepthTextureMode.DepthNormals;
-						if (Club == ClubType.Newspaper)
+						if (!Aiming)
 						{
-							ClubAccessories[(int)Club].transform.localScale = new Vector3(1f, 1f, 0.9f);
+							PauseScreen.NewSettings.Profile.depthOfField.enabled = false;
+							if (CameraEffects.OneCamera)
+							{
+								MainCamera.clearFlags = CameraClearFlags.Color;
+								MainCamera.farClipPlane = 0.02f;
+								HandCamera.clearFlags = CameraClearFlags.Color;
+							}
+							else
+							{
+								MainCamera.clearFlags = CameraClearFlags.Skybox;
+								MainCamera.farClipPlane = OptionGlobals.DrawDistance;
+								HandCamera.clearFlags = CameraClearFlags.Depth;
+							}
+							base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
+							CharacterAnimation.Play(IdleAnim);
+							if (!StudentManager.Eighties)
+							{
+								Smartphone.transform.parent.gameObject.SetActive(value: true);
+								Blur.enabled = true;
+								if (!CinematicCamera.activeInHierarchy)
+								{
+									DisableHairAndAccessories();
+								}
+								HandCamera.gameObject.SetActive(value: true);
+								EmptyHands();
+								if (!StudentManager.KokonaTutorial)
+								{
+									PhonePromptBar.Panel.enabled = true;
+									PhonePromptBar.Show = true;
+								}
+							}
+							else
+							{
+								MainCamera.nearClipPlane = 0.181f;
+								HandCamera.nearClipPlane = 0.35f;
+								Smartphone.nearClipPlane = 0.182f;
+							}
+							ShoulderCamera.AimingCamera = true;
+							YandereVision = false;
+							Mopping = false;
+							Selfie = false;
+							Aiming = true;
+							MyController.radius = 0.45f;
+							if (Inventory.RivalPhone)
+							{
+								if (!RivalPhone)
+								{
+									PhonePromptBar.Label.text = "SWITCH TO STOLEN PHONE";
+								}
+								else
+								{
+									PhonePromptBar.Label.text = "SWITCH TO YOUR PHONE";
+								}
+							}
+							else
+							{
+								PhonePromptBar.Label.text = "AR GAME ON/OFF";
+							}
+							Time.timeScale = 1f;
+							UpdateSelfieStatus();
+							StudentManager.UpdatePanties(Status: true);
+							CameraEffects.SmartphoneCamera.depthTextureMode = DepthTextureMode.DepthNormals;
+							if (Club == ClubType.Newspaper)
+							{
+								ClubAccessories[(int)Club].transform.localScale = new Vector3(1f, 1f, 0.9f);
+							}
 						}
 					}
 				}
@@ -3046,9 +3070,23 @@ public class YandereScript : MonoBehaviour
 					}
 				}
 			}
-			if (PreparingThrow && Time.timeScale > 0.0001f && ((UsingController && Input.GetAxis("LT") < 0.5f) || (!UsingController && !Input.GetMouseButton(1))))
+			if (PreparingThrow && Time.timeScale > 0.0001f)
 			{
-				StopAiming();
+				if (Input.GetAxis("RT") > 0.5f || Input.GetMouseButtonDown(0))
+				{
+					CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
+					CharacterAnimation["f02_throw_00"].speed = 2f;
+					CharacterAnimation["f02_throw_00"].time = 0f;
+					CharacterAnimation.Play("f02_throw_00");
+					PreparingThrow = false;
+					Throwing = true;
+					CanMove = false;
+					NewArc.gameObject.SetActive(value: false);
+				}
+				else if ((UsingController && Input.GetAxis("LT") < 0.5f) || (!UsingController && !Input.GetMouseButton(1)))
+				{
+					StopAiming();
+				}
 			}
 			if (Gloved)
 			{
@@ -4094,7 +4132,6 @@ public class YandereScript : MonoBehaviour
 			if (CharacterAnimation["f02_flickingMatch_00"].time >= CharacterAnimation["f02_flickingMatch_00"].length)
 			{
 				PickUp.GetComponent<MatchboxScript>().Prompt.enabled = true;
-				Arc.SetActive(value: true);
 				Flicking = false;
 				CanMove = true;
 			}
@@ -4358,6 +4395,22 @@ public class YandereScript : MonoBehaviour
 						SneakShotTimer = 0f;
 					}
 				}
+			}
+		}
+		if (Throwing && CharacterAnimation["f02_throw_00"].time >= CharacterAnimation["f02_throw_00"].length)
+		{
+			Throwing = false;
+			CanMove = true;
+			if (OutOfAmmo)
+			{
+				Debug.Log("Was out of ammo.");
+				StopAiming();
+			}
+			else
+			{
+				CharacterAnimation["f02_prepareThrow_00"].weight = 1f;
+				PreparingThrow = true;
+				NewArc.gameObject.SetActive(value: true);
 			}
 		}
 		if (CanMoveTimer > 0f)
@@ -6947,6 +7000,8 @@ public class YandereScript : MonoBehaviour
 		ShoulderCamera.OverShoulder = false;
 		PreparingThrow = false;
 		PrepareThrowTimer = 0f;
+		NewArc.gameObject.SetActive(value: false);
+		OutOfAmmo = false;
 	}
 
 	public void FixCamera()

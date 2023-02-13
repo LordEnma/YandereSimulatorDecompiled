@@ -138,7 +138,14 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 			{
 				if (Rival.Follower.DistanceToDestination >= Rival.Follower.TargetDistance + 0.1f)
 				{
-					Rival.Follower.CharacterAnimation.CrossFade(Rival.Follower.WalkAnim);
+					if (Rival.Follower.Pathfinding.speed > 1f)
+					{
+						Rival.Follower.CharacterAnimation.CrossFade(Rival.Follower.SprintAnim);
+					}
+					else
+					{
+						Rival.Follower.CharacterAnimation.CrossFade(Rival.Follower.WalkAnim);
+					}
 				}
 				else
 				{
@@ -157,7 +164,14 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 			{
 				if (Rival.Follower.DistanceToDestination >= Rival.Follower.TargetDistance + 0.1f)
 				{
-					Rival.Follower.CharacterAnimation.CrossFade(Rival.Follower.WalkAnim);
+					if (Rival.Follower.Pathfinding.speed > 1f)
+					{
+						Rival.Follower.CharacterAnimation.CrossFade(Rival.Follower.SprintAnim);
+					}
+					else
+					{
+						Rival.Follower.CharacterAnimation.CrossFade(Rival.Follower.WalkAnim);
+					}
 				}
 				else
 				{

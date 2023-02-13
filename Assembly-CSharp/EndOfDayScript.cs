@@ -1620,14 +1620,28 @@ public class EndOfDayScript : MonoBehaviour
 				Rival.EmptyHands();
 				Rival.MyController.enabled = false;
 				Rival.CharacterAnimation.enabled = true;
-				Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
-				Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
 				Rival.CharacterAnimation.Play("f02_holdHandsLoop_00");
 				emission = Rival.Hearts.emission;
 				emission.enabled = true;
 				Rival.Hearts.Play();
 				RivalEliminationMethod = RivalEliminationType.Matchmade;
 				Label.text = "After the police investigation ends, " + RivalName + " confesses to a boy that she has fallen in love with. She will no longer attempt to pursue a relationship with " + Protagonist + "'s Senpai.";
+				Phase = 12;
+			}
+			else if (LoveManager.ConfessToSuitor)
+			{
+				Rival.enabled = false;
+				Rival.Pathfinding.enabled = false;
+				Rival.transform.parent = base.transform;
+				Rival.gameObject.SetActive(value: true);
+				Rival.transform.localPosition = new Vector3(0f, 0f, 0f);
+				Rival.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+				Rival.EmptyHands();
+				Rival.MyController.enabled = false;
+				Rival.CharacterAnimation.enabled = true;
+				Rival.CharacterAnimation.CrossFade("f02_bulliedIdle_00");
+				RivalEliminationMethod = RivalEliminationType.Matchmade;
+				Label.text = RivalName + " was planning to confess her love to a boy that she had fallen in love with, but that boy is now dead. Her heart is broken. Under these circumstances, she can no longer consider pursuing a relationship with " + Protagonist + "'s Senpai.";
 				Phase = 12;
 			}
 			else

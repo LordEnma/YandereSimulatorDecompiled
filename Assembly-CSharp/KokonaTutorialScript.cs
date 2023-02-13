@@ -1502,7 +1502,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		else if (Selected == 15)
 		{
 			StudentManager.Police.UpdateIconsForTutorial();
-			if ((Yandere.Alerts > 0 || StudentManager.Yandere.Police.StudentFoundCorpse || StudentManager.BloodReporter != null) && TutorialPhase != 0)
+			if ((Yandere.Alerts > 0 || StudentManager.Yandere.Police.StudentFoundCorpse || StudentManager.BloodReporter != null || (Yandere.Attacking && Yandere.TargetStudent.StudentID != 30)) && TutorialPhase != 0)
 			{
 				TutorialTimer = 0f;
 				TutorialPhase = 0;

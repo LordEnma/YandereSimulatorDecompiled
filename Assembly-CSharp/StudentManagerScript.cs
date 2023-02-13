@@ -220,6 +220,10 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform AltFemaleVomitSpot;
 
+	public Transform AltFriendLunchSpot;
+
+	public Transform AltRivalLunchSpot;
+
 	public Transform RaibaruMentorSpot;
 
 	public Transform SleepSpot;

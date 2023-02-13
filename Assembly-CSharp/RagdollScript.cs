@@ -304,7 +304,7 @@ public class RagdollScript : MonoBehaviour
 					{
 						if (TeleportNextFrame)
 						{
-							Student.transform.position = new Vector3(-28.78f, 4f, 10.386f);
+							Student.transform.position = new Vector3(-28.78f, 4f, 10.25f);
 							TeleportNextFrame = false;
 						}
 						if (Student.DeathType == DeathType.Weight && RigidbodiesManuallyDisabled)

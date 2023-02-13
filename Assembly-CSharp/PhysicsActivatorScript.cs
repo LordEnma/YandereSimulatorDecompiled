@@ -30,8 +30,11 @@ public class PhysicsActivatorScript : MonoBehaviour
 			Debug.Log("Found a PickUpScript attached.");
 			if (component.Yandere.PickUp != component)
 			{
-				Debug.Log("It's not in Ayano's hands. Telling it to Drop().");
-				component.Drop();
+				if (component.transform.position != component.OriginalPosition)
+				{
+					Debug.Log("It's not in Ayano's hands. Telling it to Drop().");
+					component.Drop();
+				}
 			}
 			else
 			{

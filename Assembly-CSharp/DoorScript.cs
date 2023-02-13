@@ -180,8 +180,10 @@ public class DoorScript : MonoBehaviour
 		{
 			DoorColliders[0] = Doors[0].GetChild(0).gameObject.GetComponent<BoxCollider>();
 		}
+		Doors[0].gameObject.layer = 26;
 		if (Doors.Length > 1)
 		{
+			Doors[1].gameObject.layer = 26;
 			DoorColliders[1] = Doors[1].GetComponent<BoxCollider>();
 		}
 		if (!StudentManager.Eighties && RoomID == 22)

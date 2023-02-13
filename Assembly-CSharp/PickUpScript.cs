@@ -605,9 +605,9 @@ public class PickUpScript : MonoBehaviour
 		{
 			AudioSource.PlayClipAtPoint(PickUpSound, base.transform.position);
 		}
-		if (StinkBombs || BangSnaps)
+		if (!StinkBombs)
 		{
-			Prompt.Yandere.Arc.SetActive(value: true);
+			_ = BangSnaps;
 		}
 		Yandere.UpdateConcealedItemStatus();
 	}

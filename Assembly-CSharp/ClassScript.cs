@@ -61,6 +61,8 @@ public class ClassScript : MonoBehaviour
 
 	public string[] Desc;
 
+	public string[] EightiesDesc;
+
 	public int StartingPoints;
 
 	public int BonusPoints;
@@ -165,6 +167,7 @@ public class ClassScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			Subject3GradeText = Subject3GradeTextEighties;
+			Desc[3] = EightiesDesc[3];
 		}
 	}
 

@@ -237,6 +237,7 @@ public class PromptScript : MonoBehaviour
 			BloodMask |= 16384;
 			BloodMask |= 65536;
 			BloodMask |= 2097152;
+			BloodMask |= 67108864;
 			BloodMask = ~BloodMask;
 		}
 	}
@@ -419,7 +420,7 @@ public class PromptScript : MonoBehaviour
 												Circle[ID].fillAmount = 1f;
 											}
 										}
-										if (ButtonActive[ButtonHeld - 1] && !HideButton[ButtonHeld - 1] && AcceptingInput[ButtonHeld - 1] && !Yandere.Attacking)
+										if (ButtonActive[ButtonHeld - 1] && !HideButton[ButtonHeld - 1] && AcceptingInput[ButtonHeld - 1] && !Yandere.Attacking && Yandere.NearestPrompt == this)
 										{
 											Circle[ButtonHeld - 1].color = new Color(1f, 1f, 1f, 1f);
 											if (!Attack)

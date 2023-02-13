@@ -2294,6 +2294,11 @@ public class StudentScript : MonoBehaviour
 						WalkAnim = "f02_walkGirly_00";
 						PatrolAnim = "f02_stretch_00";
 						OriginalIdleAnim = IdleAnim;
+						if (GameGlobals.RivalEliminationID == 4)
+						{
+							StudentManager.LunchSpots.List[StudentID].position = StudentManager.AltFriendLunchSpot.position;
+							StudentManager.LunchSpots.List[StudentID].eulerAngles = StudentManager.AltFriendLunchSpot.eulerAngles;
+						}
 					}
 					else
 					{
@@ -2348,6 +2353,11 @@ public class StudentScript : MonoBehaviour
 					TaskAnims[5] = "f02_Task33_Line5";
 					LovestruckTarget = 1;
 					PhotoPatience = 0f;
+					if (GameGlobals.RivalEliminationID == 4)
+					{
+						StudentManager.LunchSpots.List[StudentID].position = StudentManager.AltRivalLunchSpot.position;
+						StudentManager.LunchSpots.List[StudentID].eulerAngles = StudentManager.AltRivalLunchSpot.eulerAngles;
+					}
 					if (StudentManager.Students[10] == null)
 					{
 						Debug.Log("Raibaru has been killed/arrested/vanished, so Osana's schedule has changed.");
@@ -3790,7 +3800,7 @@ public class StudentScript : MonoBehaviour
 					}
 				}
 			}
-			else if (Phase < ScheduleBlocks.Length - 1 && Clock.HourTime >= ScheduleBlocks[Phase].time && !InEvent && !Meeting && ClubActivityPhase < 16 && !Ragdoll.Zs.activeInHierarchy)
+			else if (Phase < ScheduleBlocks.Length - 1 && Clock.HourTime >= ScheduleBlocks[Phase].time && !InEvent && !Meeting && ClubActivityPhase < 16 && !Ragdoll.Zs.activeInHierarchy && !Dying)
 			{
 				if (Actions[Phase] == StudentActionType.Clean && Pushable && !Meeting)
 				{
@@ -5026,7 +5036,7 @@ public class StudentScript : MonoBehaviour
 							CurrentDestination = StudentManager.Students[Crush].transform;
 						}
 						TargetDistance = 6f;
-						if ((!StudentManager.Students[Crush].Alive && StudentManager.Students[Crush].Ragdoll.Concealed) || (!StudentManager.Students[Crush].Alive && StudentManager.Students[Crush].Ragdoll.Disposed) || !StudentManager.Students[Crush].gameObject.activeInHierarchy)
+						if ((!StudentManager.Students[Crush].Alive && StudentManager.Students[Crush].Ragdoll.Concealed) || (!StudentManager.Students[Crush].Alive && StudentManager.Students[Crush].Ragdoll.Disposed) || StudentManager.Students[Crush].Ragdoll.Zs.activeInHierarchy || !StudentManager.Students[Crush].gameObject.activeInHierarchy)
 						{
 							CharacterAnimation.CrossFade("lookLeftRightConfused_00");
 						}
@@ -8523,7 +8533,7 @@ public class StudentScript : MonoBehaviour
 								}
 								if (ReportPhase == 1)
 								{
-									if (!StudentManager.Students[LovestruckTarget].gameObject.activeInHierarchy || StudentManager.Students[LovestruckTarget].Ragdoll.Concealed)
+									if (!StudentManager.Students[LovestruckTarget].gameObject.activeInHierarchy || StudentManager.Students[LovestruckTarget].Ragdoll.Concealed || StudentManager.Students[LovestruckTarget].Ragdoll.Zs.activeInHierarchy)
 									{
 										Debug.Log("A character wants to run to someone to tell them about murder, but that character is either gone or in a garbage bag.");
 										Subtitle.UpdateLabel(SubtitleType.RaibaruRivalDeathReaction, 5, 10f);
@@ -8663,7 +8673,7 @@ public class StudentScript : MonoBehaviour
 							}
 							else if (Persona == PersonaType.Protective)
 							{
-								if (!Yandere.Dumping && !Yandere.Attacking)
+								if (!Yandere.Dumping && !Yandere.Attacking && !Yandere.Struggling)
 								{
 									Debug.Log("A protective student is taking down Yandere-chan.");
 									if (Yandere.Aiming)

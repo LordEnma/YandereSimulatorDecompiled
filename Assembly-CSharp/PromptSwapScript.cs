@@ -14,6 +14,8 @@ public class PromptSwapScript : MonoBehaviour
 
 	public string GamepadName = string.Empty;
 
+	public bool DisableButton;
+
 	private void Awake()
 	{
 		if (InputDevice == null)
@@ -24,6 +26,15 @@ public class PromptSwapScript : MonoBehaviour
 
 	public void UpdateSpriteType(InputDeviceType deviceType)
 	{
+		if (DisableButton)
+		{
+			MySprite.spriteName = "BlackCircle";
+			if (MyLetter != null)
+			{
+				MyLetter.text = "";
+			}
+			return;
+		}
 		if (InputDevice == null)
 		{
 			InputDevice = Object.FindObjectOfType<InputDeviceScript>();

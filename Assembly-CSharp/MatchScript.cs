@@ -10,6 +10,10 @@ public class MatchScript : MonoBehaviour
 
 	public GameObject Flash;
 
+	public Rigidbody MyRigidbody;
+
+	public float GravityFactor;
+
 	public AudioClip Bang;
 
 	public bool StinkBomb;
@@ -21,10 +25,19 @@ public class MatchScript : MonoBehaviour
 		base.transform.Rotate(360f * Time.deltaTime, 360f * Time.deltaTime, 360f * Time.deltaTime);
 	}
 
+	private void FixedUpdate()
+	{
+		if (MyRigidbody != null && GravityFactor > 0f)
+		{
+			MyRigidbody.AddForce(Physics.gravity * GravityFactor);
+		}
+	}
+
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.layer == 0 || collision.gameObject.layer == 8)
 		{
+			Debug.Log("Exploding because struck: " + collision.gameObject.name);
 			if (StinkBomb)
 			{
 				Object.Instantiate(GasCloud, base.transform.position, Quaternion.identity);
