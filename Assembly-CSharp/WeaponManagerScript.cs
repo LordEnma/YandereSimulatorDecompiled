@@ -53,6 +53,8 @@ public class WeaponManagerScript : MonoBehaviour
 
 	public int BloodyWeapons;
 
+	public Shader OverlayShader;
+
 	public void Start()
 	{
 		bool flag = false;
@@ -82,6 +84,7 @@ public class WeaponManagerScript : MonoBehaviour
 		{
 			BroughtWeapons[bringingItem].gameObject.SetActive(value: true);
 		}
+		UpdateWeaponMaterials();
 		ChangeBloodTexture();
 		if (!GameGlobals.Eighties)
 		{
@@ -151,6 +154,7 @@ public class WeaponManagerScript : MonoBehaviour
 			{
 				weaponScript.Blood.enabled = false;
 				weaponScript.FingerprintID = 0;
+				weaponScript.RemoveBlood();
 			}
 		}
 	}
@@ -160,17 +164,26 @@ public class WeaponManagerScript : MonoBehaviour
 		WeaponScript[] weapons = Weapons;
 		foreach (WeaponScript weaponScript in weapons)
 		{
-			if (weaponScript != null)
+			if (!(weaponScript != null))
 			{
-				if (!GameGlobals.CensorBlood)
+				continue;
+			}
+			if (!GameGlobals.CensorBlood)
+			{
+				weaponScript.Blood.material.mainTexture = null;
+				weaponScript.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
+				if (weaponScript.MyRenderer != null)
 				{
-					weaponScript.Blood.material.mainTexture = Blood;
-					weaponScript.Blood.material.SetColor("_TintColor", new Color(0.25f, 0.25f, 0.25f, 0.5f));
+					weaponScript.MyRenderer.material.SetTexture("_OverlayTex", Blood);
 				}
-				else
+			}
+			else
+			{
+				weaponScript.Blood.material.mainTexture = null;
+				weaponScript.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
+				if (weaponScript.MyRenderer != null)
 				{
-					weaponScript.Blood.material.mainTexture = Flower;
-					weaponScript.Blood.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, 0.5f));
+					weaponScript.MyRenderer.material.SetTexture("_OverlayTex", Flower);
 				}
 			}
 		}
@@ -229,6 +242,7 @@ public class WeaponManagerScript : MonoBehaviour
 			if (Weapons[i] != null && !Weapons[i].Disposed && Weapons[i].Bloody)
 			{
 				Weapons[i].Blood.enabled = true;
+				Weapons[i].StainWithBlood();
 				Yandere.Police.BloodyWeapons++;
 			}
 		}
@@ -394,6 +408,21 @@ public class WeaponManagerScript : MonoBehaviour
 			{
 				Debug.Log("The one-of-a-kind " + Weapons[i].Name + " was destroyed! Setting status to 1!");
 				WeaponGlobals.SetWeaponStatus(i, 1);
+			}
+		}
+	}
+
+	public void UpdateWeaponMaterials()
+	{
+		for (int i = 0; i < Weapons.Length; i++)
+		{
+			if (Weapons[i].MyRenderer != null)
+			{
+				Weapons[i].MyRenderer.material.shader = OverlayShader;
+				Weapons[i].MyRenderer.material.SetTexture("_OverlayTex", Blood);
+				Weapons[i].MyRenderer.material.SetFloat("_BlendAmount", 0f);
+				Weapons[i].Blood.material.mainTexture = null;
+				Weapons[i].Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
 			}
 		}
 	}

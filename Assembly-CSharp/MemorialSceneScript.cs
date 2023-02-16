@@ -199,7 +199,10 @@ public class MemorialSceneScript : MonoBehaviour
 			StudentManager.UpdateAllSleuthClothing();
 			StudentManager.Clock.GivePlayerBroughtWeapon();
 			base.enabled = false;
-			StudentManager.Students[1].transform.position = new Vector3(0f, 0f, 0f);
+			if (GameGlobals.SenpaiMourning)
+			{
+				StudentManager.Students[1].transform.position = new Vector3(0f, 0f, 0f);
+			}
 		}
 	}
 

@@ -2912,7 +2912,12 @@ public class YandereScript : MonoBehaviour
 						YandereTimer = 0f;
 					}
 				}
-				if (0 == 0)
+				bool flag = false;
+				if (PreparingThrow)
+				{
+					flag = true;
+				}
+				if (!flag)
 				{
 					if (Stance.Current != StanceType.Crouching && Stance.Current != StanceType.Crawling)
 					{
@@ -3392,10 +3397,8 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("Whoa! Did this code just run?");
-				PreparedForStruggle = false;
-				CanMove = true;
-				Chased = false;
+				Debug.Log("If the code got here, it means that Yandere-chan is being chased, but Pursuer is null.");
+				Debug.Log("This COULD mean that there was a Pursuer, who is now dead. Or, it could mean something else.");
 			}
 		}
 		StopArmedAnim();
@@ -4298,6 +4301,7 @@ public class YandereScript : MonoBehaviour
 				EquippedWeapon.Blood.enabled = false;
 				EquippedWeapon.Evidence = false;
 				EquippedWeapon.Bloody = false;
+				EquippedWeapon.RemoveBlood();
 				EquippedWeapon.SuspicionCheck();
 				if (Gloved)
 				{
@@ -4387,7 +4391,10 @@ public class YandereScript : MonoBehaviour
 						CameraFlash.SetActive(value: false);
 						Shutter.Blocked = false;
 						SneakingShot = false;
-						CanMove = true;
+						if (!Chased)
+						{
+							CanMove = true;
+						}
 						Lewd = false;
 						WallToLeft = false;
 						WallToRight = false;
@@ -6912,6 +6919,7 @@ public class YandereScript : MonoBehaviour
 			}
 		}
 		EquippedWeapon.Blood.enabled = true;
+		EquippedWeapon.StainWithBlood();
 		if (!Dismembering)
 		{
 			EquippedWeapon.MurderWeapon = true;
@@ -7000,6 +7008,7 @@ public class YandereScript : MonoBehaviour
 		ShoulderCamera.OverShoulder = false;
 		PreparingThrow = false;
 		PrepareThrowTimer = 0f;
+		Throwing = false;
 		NewArc.gameObject.SetActive(value: false);
 		OutOfAmmo = false;
 	}

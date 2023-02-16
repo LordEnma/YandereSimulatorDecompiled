@@ -118,11 +118,9 @@ public class CalendarScript : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log("We just arrived at the calendar screen. DateGlobals.PassDays is: " + DateGlobals.PassDays);
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
-		Debug.Log("Upon entering the Calendar screen, DateGlobals.Weekday is: " + DateGlobals.Weekday);
 		if (GameGlobals.RivalEliminationID == 0 && StudentGlobals.GetStudentDead(10 + DateGlobals.Week))
 		{
 			Debug.Log("Upon entering the Calendar screen, the rival was dead, but RivalEliminationID was 0. Setting it to 1.");
@@ -326,7 +324,6 @@ public class CalendarScript : MonoBehaviour
 						DateGlobals.Weekday = DayOfWeek.Sunday;
 						Target = Adjustment;
 					}
-					Debug.Log("And, as of now, DateGlobals.Weekday is: " + DateGlobals.Weekday);
 					if (DateGlobals.Weekday != 0 && DateGlobals.Weekday < DayOfWeek.Saturday && GameGlobals.RivalEliminationID > 0 && !GameGlobals.InformedAboutSkipping && DateGlobals.Week < 2)
 					{
 						GameGlobals.InformedAboutSkipping = true;

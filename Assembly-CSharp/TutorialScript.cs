@@ -1092,6 +1092,7 @@ public class TutorialScript : MonoBehaviour
 						BGM[3].volume = 0.5f;
 						Knife.Blood.enabled = true;
 						Knife.MurderWeapon = true;
+						Knife.StainWithBlood();
 						Knife.Bloody = true;
 						Yandere.Bloodiness += 100f;
 						Yandere.Sanity -= 50f;

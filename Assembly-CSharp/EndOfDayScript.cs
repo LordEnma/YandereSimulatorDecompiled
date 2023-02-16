@@ -1562,10 +1562,6 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 22)
 		{
-			Debug.Log("The End-of-Day sequence is now checking whether or not we need to boot the player out of a club.");
-			Debug.Log("Yandere.Club is: " + Yandere.Club);
-			Debug.Log("DateGlobals.Weekday is: " + DateGlobals.Weekday);
-			Debug.Log("ClubManager.ActivitiesAttended is: " + ClubManager.ActivitiesAttended);
 			if (Yandere.Club != 0 && DateGlobals.Weekday == DayOfWeek.Friday && ClubManager.ActivitiesAttended == 0)
 			{
 				TeleportYandere();
@@ -2686,7 +2682,6 @@ public class EndOfDayScript : MonoBehaviour
 		ClubManager.UpdateQuitClubs();
 		ClubManager.UpdateKickedClubs();
 		StudentGlobals.UpdateRivalReputation = false;
-		Debug.Log("Making the game aware of the fact that ClubManager.ActivitiesAttended was " + ClubManager.ActivitiesAttended + " at the end of this day.");
 		ClubGlobals.ActivitiesAttended = ClubManager.ActivitiesAttended;
 		UpdatePreviousRivalFriendships();
 		ArrestStudents();

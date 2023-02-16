@@ -167,7 +167,10 @@ public class ClassScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			Subject3GradeText = Subject3GradeTextEighties;
-			Desc[3] = EightiesDesc[3];
+			if (EightiesDesc.Length != 0)
+			{
+				Desc[3] = EightiesDesc[3];
+			}
 		}
 	}
 

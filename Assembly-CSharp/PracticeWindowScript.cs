@@ -239,6 +239,10 @@ public class PracticeWindowScript : MonoBehaviour
 				Timer = 0f;
 				Debug.Log("Regenerating pathfinding grid.");
 				AstarPath.active.Scan();
+				if (StudentManager.Clock.HourTime < 7.9f && StudentManager.Students[7] != null)
+				{
+					StudentManager.Students[7].gameObject.SetActive(value: false);
+				}
 			}
 		}
 		else if (Club == ClubType.MartialArts)
@@ -275,8 +279,12 @@ public class PracticeWindowScript : MonoBehaviour
 				Timer = 0f;
 			}
 		}
-		else if (Club == ClubType.Delinquent)
+		else
 		{
+			if (Club != ClubType.Delinquent)
+			{
+				return;
+			}
 			Timer += Time.deltaTime;
 			if (Timer > 1f)
 			{
@@ -286,6 +294,10 @@ public class PracticeWindowScript : MonoBehaviour
 				FadeIn = false;
 				Timer = 0f;
 				DialogueWheel.RestoreMusic();
+				if (StudentManager.Clock.HourTime < 7.9f && StudentManager.Students[7] != null)
+				{
+					StudentManager.Students[7].gameObject.SetActive(value: false);
+				}
 			}
 		}
 	}

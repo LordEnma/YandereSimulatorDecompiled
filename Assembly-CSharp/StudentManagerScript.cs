@@ -3026,6 +3026,7 @@ public class StudentManagerScript : MonoBehaviour
 							studentScript.MyWeapon.Victims[studentScript.StudentID] = true;
 							studentScript.MyWeapon.transform.parent = null;
 							studentScript.MyWeapon.Blood.enabled = true;
+							studentScript.MyWeapon.StainWithBlood();
 							studentScript.MyWeapon.Evidence = true;
 							studentScript.MyWeapon.Drop();
 							studentScript.MyWeapon.transform.localScale = new Vector3(1f, 1f, 1f);

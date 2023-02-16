@@ -361,7 +361,7 @@ public class VoidGoddessScript : MonoBehaviour
 		{
 			for (ID = 2; ID < 101; ID++)
 			{
-				if (ID != 1 && ID != 2 && ID != 3 && ID != 6 && ID != 10 && ID != 11 && ID != 26 && ID != 36 && ID != 39 && ID != 41 && ID != 42 && ID != 43 && ID != 44 && ID != 45 && ID != 46 && ID != 47 && ID != 48 && ID != 49 && ID != 50 && ID != 71 && ID != 81 && ID != 82 && ID != 83 && ID != 84 && ID != 85)
+				if (ID != 1 && ID != 10 && ID != 11)
 				{
 					StudentManager.DisableStudent(ID);
 				}

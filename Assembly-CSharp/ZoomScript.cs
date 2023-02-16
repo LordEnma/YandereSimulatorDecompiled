@@ -75,7 +75,7 @@ public class ZoomScript : MonoBehaviour
 		{
 			base.transform.position = new Vector3(base.transform.position.x, Mathf.MoveTowards(base.transform.position.y, Yandere.Hips.position.y, Time.deltaTime), base.transform.position.z);
 		}
-		if (!Yandere.Aiming && Yandere.CanMove && !Yandere.PauseScreen.Show)
+		if (!Yandere.Aiming && Yandere.CanMove && !Yandere.PauseScreen.Show && !Yandere.PreparingThrow && !Yandere.Throwing)
 		{
 			TargetZoom += Input.GetAxis("Mouse ScrollWheel");
 		}

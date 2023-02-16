@@ -270,14 +270,6 @@ public class ShoeRemovalScript : MonoBehaviour
 				{
 					return;
 				}
-				if (Student.StudentID == 31)
-				{
-					Debug.Log("Occult leader guy just finished taking off his shoes...");
-				}
-				if (Student.StudentID == 32)
-				{
-					Debug.Log("Chojo just finished taking off his shoes...");
-				}
 				Student.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 				Student.ChangingShoes = false;
 				Student.Routine = true;

@@ -1087,7 +1087,7 @@ public class SubtitleScript : MonoBehaviour
 			Spraying[2] = "Spray de pimenta!";
 			Spraying[3] = "You brought this on yourself!";
 			Spraying[4] = "Get on the ground now!";
-			BreakingUp[1] = "Cease this nonsesne immediately.";
+			BreakingUp[1] = "Cease this nonsense immediately.";
 			BreakingUp[2] = "No! Do not fight!";
 			BreakingUp[3] = "Um, please, don't do this!";
 			BreakingUp[4] = "Knock it off, or I'll kick BOTH your asses.";

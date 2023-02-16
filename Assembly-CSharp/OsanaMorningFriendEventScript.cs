@@ -15,6 +15,8 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public MusicTest AudioData;
+
 	public ClockScript Clock;
 
 	public SpyScript Spy;
@@ -309,6 +311,25 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 	}
 
+	public void LateUpdate()
+	{
+		if (VoiceClip != null)
+		{
+			if (AudioData.MyAudioSource == null)
+			{
+				AudioData.MyAudioSource = VoiceClip.GetComponent<AudioSource>();
+			}
+		}
+		else
+		{
+			AudioData.MyAudioSource = null;
+		}
+		if (AudioData.MyAudioSource != null)
+		{
+			CurrentSpeaker.Jaw.transform.localEulerAngles += new Vector3(0f, 0f, AudioData.g[1].transform.position.y);
+		}
+	}
+
 	public void EndEvent()
 	{
 		Debug.Log("Osana's ''talk with friend before going to the lockers'' event has ended.");
@@ -344,20 +365,20 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 		if (Friend != null)
 		{
+			if (!LosingFriend)
+			{
+				Friend.CurrentDestination = Rival.FollowTargetDestination;
+				Friend.Pathfinding.target = Rival.FollowTargetDestination;
+			}
+			else
+			{
+				Friend.CurrentDestination = Friend.Destinations[Friend.Phase];
+				Friend.Pathfinding.target = Friend.Destinations[Friend.Phase];
+			}
 			if (!Friend.Alarmed && !Friend.DramaticReaction)
 			{
 				Friend.CharacterAnimation.CrossFade(Friend.WalkAnim);
 				Friend.DistanceToDestination = 100f;
-				if (!LosingFriend)
-				{
-					Friend.CurrentDestination = Rival.FollowTargetDestination;
-					Friend.Pathfinding.target = Rival.FollowTargetDestination;
-				}
-				else
-				{
-					Friend.CurrentDestination = Friend.Destinations[Friend.Phase];
-					Friend.Pathfinding.target = Friend.Destinations[Friend.Phase];
-				}
 				Friend.Pathfinding.canSearch = true;
 				Friend.Pathfinding.canMove = true;
 				Friend.Routine = true;
@@ -403,6 +424,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 				Rival.GetDestinations();
 			}
 		}
+		AudioData.MyAudioSource = null;
 	}
 
 	private void SettleRival()

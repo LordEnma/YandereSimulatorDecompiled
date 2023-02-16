@@ -30,9 +30,15 @@ public class NewArcScript : MonoBehaviour
 
 	public Transform RotationTarget;
 
+	public InputDeviceScript InputDevice;
+
 	private void Update()
 	{
-		if (ArcParticles != null)
+		if (!(ArcParticles != null))
+		{
+			return;
+		}
+		if (InputDevice.Type == InputDeviceType.Gamepad)
 		{
 			if (Input.GetAxis("Mouse Y") > 0f)
 			{
@@ -42,10 +48,22 @@ public class NewArcScript : MonoBehaviour
 			{
 				GravityFactor = Mathf.MoveTowards(GravityFactor, 2f, Input.GetAxis("Mouse Y") * Time.deltaTime * -1f);
 			}
-			if (_position != base.transform.position || _rotation != base.transform.eulerAngles || _scale != base.transform.localScale || (int)ArcParticles.collision.collidesWith != (int)CollisionLayers || ArcParticles.main.startSpeedMultiplier != ForwardMomentum || ArcParticles.main.gravityModifierMultiplier != GravityFactor)
+		}
+		else
+		{
+			GravityFactor -= Input.GetAxis("Mouse ScrollWheel");
+			if (GravityFactor > 2f)
 			{
-				UpdateParticles();
+				GravityFactor = 2f;
 			}
+			if (GravityFactor < 0.1f)
+			{
+				GravityFactor = 0.1f;
+			}
+		}
+		if (_position != base.transform.position || _rotation != base.transform.eulerAngles || _scale != base.transform.localScale || (int)ArcParticles.collision.collidesWith != (int)CollisionLayers || ArcParticles.main.startSpeedMultiplier != ForwardMomentum || ArcParticles.main.gravityModifierMultiplier != GravityFactor)
+		{
+			UpdateParticles();
 		}
 	}
 

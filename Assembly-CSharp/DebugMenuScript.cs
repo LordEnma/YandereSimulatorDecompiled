@@ -691,10 +691,12 @@ public class DebugMenuScript : MonoBehaviour
 						else if (Input.GetKeyDown(KeyCode.I))
 						{
 							StudentManager.Students[3].BecomeRagdoll();
+							WeaponManager.Weapons[1].StainWithBlood();
 							WeaponManager.Weapons[1].Blood.enabled = true;
 							WeaponManager.Weapons[1].FingerprintID = 2;
 							WeaponManager.Weapons[1].Victims[3] = true;
 							StudentManager.Students[5].BecomeRagdoll();
+							WeaponManager.Weapons[2].StainWithBlood();
 							WeaponManager.Weapons[2].Blood.enabled = true;
 							WeaponManager.Weapons[2].FingerprintID = 4;
 							WeaponManager.Weapons[2].Victims[5] = true;

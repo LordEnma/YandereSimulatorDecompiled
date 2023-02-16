@@ -18,7 +18,20 @@ public class DanceMinigamePromptScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Prompt.Circle[0].fillAmount == 0f)
+		if (Prompt.Circle[0].fillAmount != 0f)
+		{
+			return;
+		}
+		Prompt.Circle[0].fillAmount = 1f;
+		bool flag = false;
+		for (int i = 1; i < 100; i++)
+		{
+			if (StudentManager.Students[i] != null && StudentManager.Students[i].InEvent)
+			{
+				flag = true;
+			}
+		}
+		if (!flag)
 		{
 			Prompt.Yandere.transform.position = PlayerLocation.position;
 			Prompt.Yandere.transform.rotation = PlayerLocation.rotation;
@@ -38,6 +51,13 @@ public class DanceMinigamePromptScript : MonoBehaviour
 			DanceMinigame.SetActive(value: true);
 			DanceManager.BeginMinigame();
 			StudentManager.DisableEveryone();
+		}
+		else
+		{
+			Prompt.Yandere.NotificationManager.CustomText = "Try again in a few minutes.";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Prompt.Yandere.NotificationManager.CustomText = "It's installing a firmware update.";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		}
 	}
 }

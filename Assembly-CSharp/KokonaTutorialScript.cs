@@ -167,6 +167,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		EightiesTutorialGraphics.SetActive(value: false);
 		GameGlobals.EightiesTutorial = false;
 		GameGlobals.Eighties = false;
+		Yandere.NotificationManager.transform.localPosition = new Vector3(0f, 100f, 0f);
 		Yandere.YandereVisionPanel.transform.localPosition = new Vector3(0f, 0f, 0f);
 		Yandere.transform.eulerAngles = YandereSpawnPoints[0].eulerAngles;
 		Yandere.transform.position = YandereSpawnPoints[0].position;
@@ -377,6 +378,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		studentScript.transform.position = StudentSpawnPoints[ID].position;
 		studentScript.transform.eulerAngles = StudentSpawnPoints[ID].eulerAngles;
 		studentScript.CharacterAnimation.Play(studentScript.IdleAnim);
+		studentScript.InEvent = true;
 		if (EnableAttacking)
 		{
 			studentScript.OriginalPersona = PersonaType.Coward;
@@ -1709,6 +1711,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			SpawnedClothing = UnityEngine.Object.Instantiate(Yandere.MyLocker.BloodyUniform[1], new Vector3(20f, 1f, -12f), Quaternion.identity);
 			WeaponManager.Weapons[0].Equip();
 			WeaponManager.Weapons[0].Blood.enabled = true;
+			WeaponManager.Weapons[0].StainWithBlood();
 			WeaponManager.Weapons[0].Bloody = true;
 			Doors[1].enabled = true;
 			Doors[2].enabled = true;
@@ -1735,6 +1738,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			EnableAttacking = true;
 			EnableMovement = true;
 			SpawnStudent(30);
+			StudentManager.Students[30].InEvent = false;
 			break;
 		case 7:
 			Incinerator.gameObject.transform.localPosition = new Vector3(7.5f, 0f, 5.75f);
@@ -1813,6 +1817,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			EnableEating = true;
 			SpawnStudent(30);
 			StudentManager.Students[30].Phase = 1;
+			StudentManager.Students[30].InEvent = false;
 			break;
 		case 12:
 			CarBattery.transform.position = new Vector3(38.25f, 0.745f, 70f);
@@ -1850,6 +1855,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			StudentManager.Students[30].Phase = 1;
 			break;
 		case 15:
+			Yandere.NotificationManager.transform.localPosition = new Vector3(0f, 0f, -999.9999f);
 			Incinerator.gameObject.transform.localPosition = new Vector3(10f, 0f, 5.75f);
 			Incinerator.gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
 			Incinerator.gameObject.SetActive(value: true);
@@ -1884,6 +1890,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			WeaponManager.Weapons[8].Bloody = false;
 			WeaponManager.Weapons[8].Dumped = false;
 			WeaponManager.Weapons[8].DumpTimer = 0f;
+			WeaponManager.Weapons[8].RemoveBlood();
 			EnableAttacking = true;
 			EnableMovement = true;
 			SpawnStudent(2);
@@ -1899,6 +1906,15 @@ public class KokonaTutorialScript : MonoBehaviour
 			SpawnStudent(28);
 			SpawnStudent(29);
 			SpawnStudent(30);
+			StudentManager.Students[2].InEvent = false;
+			StudentManager.Students[3].InEvent = false;
+			StudentManager.Students[4].InEvent = false;
+			StudentManager.Students[5].InEvent = false;
+			StudentManager.Students[26].InEvent = false;
+			StudentManager.Students[27].InEvent = false;
+			StudentManager.Students[28].InEvent = false;
+			StudentManager.Students[29].InEvent = false;
+			StudentManager.Students[30].InEvent = false;
 			TutorialSets[3].transform.localPosition = new Vector3(1.25f, 0f, 5.75f);
 			TutorialSets[3].transform.localEulerAngles = new Vector3(0f, -90f, 0f);
 			TutorialSets[3].SetActive(value: true);

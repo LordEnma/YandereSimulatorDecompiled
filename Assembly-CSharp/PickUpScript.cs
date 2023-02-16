@@ -749,6 +749,10 @@ public class PickUpScript : MonoBehaviour
 			Prompt.Yandere.Arc.SetActive(value: false);
 			Prompt.HideButton[3] = false;
 			Prompt.HideButton[0] = true;
+			if (Yandere.PreparingThrow)
+			{
+				Yandere.StopAiming();
+			}
 		}
 		if (Bucket != null)
 		{

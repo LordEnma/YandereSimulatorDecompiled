@@ -1008,6 +1008,8 @@ public class StudentScript : MonoBehaviour
 
 	public float WitnessCooldownTimer;
 
+	public float InstantNoticeTimer;
+
 	public float InvestigationTimer;
 
 	public float PersonalSpaceTimer;
@@ -2802,7 +2804,7 @@ public class StudentScript : MonoBehaviour
 				Grudge = true;
 				CameraAnims = EvilAnims;
 			}
-			if (Rival)
+			if (!StudentManager.MissionMode && Rival)
 			{
 				for (ID = 0; ID < Outlines.Length; ID++)
 				{
@@ -3245,6 +3247,35 @@ public class StudentScript : MonoBehaviour
 					}
 				}
 			}
+			if (StudentManager.MissionMode)
+			{
+				if (StudentID == 11)
+				{
+					for (ID = 0; ID < Outlines.Length; ID++)
+					{
+						if (Outlines[ID] != null)
+						{
+							Outlines[ID].enabled = false;
+						}
+					}
+				}
+				for (int i = 1; i < 11; i++)
+				{
+					if (PlayerPrefs.GetInt("MissionModeTarget" + i) != StudentID)
+					{
+						continue;
+					}
+					Debug.Log("Whoa! Student #" + StudentID + " is one of the targets! Turning outlines red!");
+					for (ID = 0; ID < Outlines.Length; ID++)
+					{
+						if (Outlines[ID] != null)
+						{
+							Outlines[ID].color = new Color(10f, 0f, 0f, 1f);
+							Outlines[ID].enabled = true;
+						}
+					}
+				}
+			}
 			PickRandomAnim();
 			PickRandomSleuthAnim();
 			Renderer component = Armband.GetComponent<Renderer>();
@@ -3275,7 +3306,7 @@ public class StudentScript : MonoBehaviour
 				BookRenderer.material.mainTexture = RedBookTexture;
 			}
 			CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-			if ((StudentManager.MissionMode && StudentID == MissionModeGlobals.MissionTarget) || Rival)
+			if ((StudentManager.MissionMode && StudentID == MissionModeGlobals.MissionTarget) || (!StudentManager.MissionMode && Rival))
 			{
 				for (ID = 0; ID < Outlines.Length; ID++)
 				{
@@ -10186,6 +10217,7 @@ public class StudentScript : MonoBehaviour
 										obj21.transform.parent = Police.BloodParent;
 										MyWeapon.Victims[HuntTarget.StudentID] = true;
 										MyWeapon.Blood.enabled = true;
+										MyWeapon.StainWithBlood();
 										if (!MyWeapon.Evidence)
 										{
 											Debug.Log("A mind-broken slave is running the code for staining her equipped weapon with blood and marking it as evidence.");
@@ -10399,6 +10431,7 @@ public class StudentScript : MonoBehaviour
 					UnityEngine.Object.Instantiate(StabBloodEffect, MyWeapon.transform.position, Quaternion.identity);
 					MyWeapon.Victims[StudentID] = true;
 					MyWeapon.Blood.enabled = true;
+					MyWeapon.StainWithBlood();
 					if (!MyWeapon.Evidence)
 					{
 						MyWeapon.Evidence = true;
@@ -10745,6 +10778,7 @@ public class StudentScript : MonoBehaviour
 					Shoving = false;
 					Routine = true;
 					Paired = false;
+					InstantNoticeTimer = 1f;
 				}
 				else if (Club == ClubType.Council || Shovey)
 				{
@@ -11767,6 +11801,10 @@ public class StudentScript : MonoBehaviour
 			targetRotation = Quaternion.LookRotation(new Vector3(WeirdStudent.position.x, base.transform.position.y, WeirdStudent.position.z) - base.transform.position);
 			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
 		}
+		if (InstantNoticeTimer > 0f)
+		{
+			InstantNoticeTimer = Mathf.MoveTowards(InstantNoticeTimer, 0f, Time.deltaTime);
+		}
 	}
 
 	private void LookAtYandere()
@@ -12313,6 +12351,10 @@ public class StudentScript : MonoBehaviour
 											}
 											if (!Yandere.Chased && Yandere.Chasers == 0)
 											{
+												if (InstantNoticeTimer > 0f)
+												{
+													Alarm = 100f;
+												}
 												Alarm += Time.deltaTime * (100f / DistanceToPlayer) * Paranoia * Perception * (float)num;
 												if (Yandere.SneakingShot)
 												{
@@ -12436,6 +12478,7 @@ public class StudentScript : MonoBehaviour
 		}
 		if (!Alarmed || DiscCheck)
 		{
+			Debug.Log(Name + " is proceeding with the Alarmed code now.");
 			bool flag = false;
 			if (CurrentAction == StudentActionType.Sunbathe && SunbathePhase > 2)
 			{
@@ -12720,6 +12763,10 @@ public class StudentScript : MonoBehaviour
 				Pathfinding.canSearch = false;
 				Pathfinding.canMove = false;
 			}
+		}
+		else
+		{
+			Debug.Log("Was not able to proceed with the Alarmed code.");
 		}
 		NotAlarmedByYandereChan = false;
 		SawCorpseThisFrame = false;
@@ -15827,7 +15874,7 @@ public class StudentScript : MonoBehaviour
 			Yandere.EmptyHands();
 		}
 		Yandere.Senpai = base.transform;
-		if (Yandere.Aiming)
+		if (Yandere.Aiming || Yandere.Throwing || Yandere.PreparingThrow)
 		{
 			Yandere.StopAiming();
 		}

@@ -263,8 +263,12 @@ public class WorkbenchScript : MonoBehaviour
 					obj.GetComponent<Rigidbody>().useGravity = true;
 					obj.GetComponent<Rigidbody>().isKinematic = false;
 					obj.name = "Box of Stink Bombs";
+					obj.GetComponent<PickUpScript>().LeftHand = false;
 					obj.GetComponent<PickUpScript>().SwapModel = true;
 					obj.GetComponent<PickUpScript>().InstantiatedObject = true;
+					obj.GetComponent<PickUpScript>().HoldPosition = new Vector3(0f, -0.01f, 0f);
+					obj.GetComponent<PickUpScript>().HoldRotation = new Vector3(0f, 0f, 0f);
+					obj.GetComponent<PickUpScript>().CarryAnimID = 3;
 				}
 				else if (OutcomeID == 2)
 				{

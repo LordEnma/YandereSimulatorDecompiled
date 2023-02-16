@@ -201,6 +201,7 @@ public class PickpocketScript : MonoBehaviour
 		Prompt.enabled = false;
 		PickpocketPanel.enabled = false;
 		Student.CharacterAnimation[Student.PatrolAnim].time = 0f;
+		Student.FocusOnYandere = true;
 		Student.PatrolTimer = 0f;
 	}
 

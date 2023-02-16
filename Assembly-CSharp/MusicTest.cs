@@ -4,11 +4,13 @@ public class MusicTest : MonoBehaviour
 {
 	public float[] freqData;
 
-	public AudioSource MainSong;
+	public AudioSource MyAudioSource;
 
 	public float[] band;
 
 	public GameObject[] g;
+
+	public GameObject EmptyTransform;
 
 	private void Start()
 	{
@@ -28,15 +30,18 @@ public class MusicTest : MonoBehaviour
 		for (int j = 0; j < band.Length; j++)
 		{
 			band[j] = 0f;
-			g[j] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			g[j] = Object.Instantiate(EmptyTransform);
 			g[j].transform.position = new Vector3(j, 0f, 0f);
 		}
-		InvokeRepeating("check", 0f, 1f / 30f);
 	}
 
-	private void check()
+	private void Update()
 	{
-		GetComponent<AudioSource>().GetSpectrumData(freqData, 0, FFTWindow.Rectangular);
+		if (!(MyAudioSource != null) || !(MyAudioSource.clip != null))
+		{
+			return;
+		}
+		MyAudioSource.GetSpectrumData(freqData, 0, FFTWindow.Rectangular);
 		int num = 0;
 		int num2 = 2;
 		for (int i = 0; i < freqData.Length; i++)

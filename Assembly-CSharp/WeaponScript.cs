@@ -836,4 +836,14 @@ public class WeaponScript : MonoBehaviour
 			}
 		}
 	}
+
+	public void StainWithBlood()
+	{
+		MyRenderer.material.SetFloat("_BlendAmount", 1f);
+	}
+
+	public void RemoveBlood()
+	{
+		MyRenderer.material.SetFloat("_BlendAmount", 0f);
+	}
 }

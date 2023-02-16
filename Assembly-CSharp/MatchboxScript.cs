@@ -56,41 +56,37 @@ public class MatchboxScript : MonoBehaviour
 				}
 				LabelUpdated = true;
 			}
-			if (Input.GetAxis("RT") > 0.5f || Input.GetMouseButtonDown(0))
+			if ((Input.GetAxis("RT") > 0.5f || Input.GetMouseButtonDown(0)) && ((Prompt.Yandere.PreparingThrow && !Throwing) || (Prompt.Yandere.Throwing && !Throwing)))
 			{
-				Debug.Log("User clicked.");
-				if ((Prompt.Yandere.PreparingThrow && !Throwing) || (Prompt.Yandere.Throwing && !Throwing))
+				Throwing = true;
+				MyAudio.Play();
+				GameObject obj = Object.Instantiate(Match, Prompt.Yandere.ItemParent.position, Prompt.Yandere.transform.rotation);
+				obj.GetComponent<MatchScript>().GravityFactor = Prompt.Yandere.NewArc.GravityFactor;
+				Rigidbody component = obj.GetComponent<Rigidbody>();
+				component.isKinematic = false;
+				component.AddRelativeForce(Vector3.forward * Prompt.Yandere.NewArc.ForwardMomentum, ForceMode.VelocityChange);
+				Prompt.Yandere.SuspiciousActionTimer = 1f;
+				Ammo--;
+				if (Ammo < 1)
 				{
-					Throwing = true;
-					MyAudio.Play();
-					GameObject obj = Object.Instantiate(Match, Prompt.Yandere.ItemParent.position, Prompt.Yandere.transform.rotation);
-					obj.GetComponent<MatchScript>().GravityFactor = Prompt.Yandere.NewArc.GravityFactor;
-					Rigidbody component = obj.GetComponent<Rigidbody>();
-					component.isKinematic = false;
-					component.AddRelativeForce(Vector3.forward * Prompt.Yandere.NewArc.ForwardMomentum, ForceMode.VelocityChange);
-					Prompt.Yandere.SuspiciousActionTimer = 1f;
-					Ammo--;
-					if (Ammo < 1)
+					Prompt.Yandere.OutOfAmmo = true;
+					Prompt.Yandere.Arc.SetActive(value: false);
+					Prompt.Yandere.PickUp.Drop();
+					Prompt.Yandere.NotificationManager.CustomText = "Out of " + ProjectileNames + "!";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Object.Destroy(base.gameObject);
+				}
+				else
+				{
+					if (Ammo == 1)
 					{
-						Prompt.Yandere.OutOfAmmo = true;
-						Prompt.Yandere.Arc.SetActive(value: false);
-						Prompt.Yandere.PickUp.Drop();
-						Prompt.Yandere.NotificationManager.CustomText = "Out of " + ProjectileNames + "!";
-						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-						Object.Destroy(base.gameObject);
+						Prompt.Yandere.NotificationManager.CustomText = Ammo + " " + ProjectileName + " left!";
 					}
 					else
 					{
-						if (Ammo == 1)
-						{
-							Prompt.Yandere.NotificationManager.CustomText = Ammo + " " + ProjectileName + " left!";
-						}
-						else
-						{
-							Prompt.Yandere.NotificationManager.CustomText = Ammo + " " + ProjectileNames + " left!";
-						}
-						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						Prompt.Yandere.NotificationManager.CustomText = Ammo + " " + ProjectileNames + " left!";
 					}
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				}
 			}
 		}
@@ -106,7 +102,6 @@ public class MatchboxScript : MonoBehaviour
 		}
 		if (!Prompt.Yandere.PreparingThrow && LabelUpdated)
 		{
-			Debug.Log("Ran this code.");
 			UpdateLabel();
 			LabelUpdated = false;
 		}
