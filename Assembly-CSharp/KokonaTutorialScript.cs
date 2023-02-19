@@ -1785,6 +1785,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			EnableAttacking = true;
 			EnableTalking = true;
 			SpawnStudent(30);
+			StudentManager.Students[30].InEvent = false;
 			break;
 		case 9:
 			Yandere.CannotAim = false;
@@ -1803,6 +1804,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			EnableAttacking = true;
 			EnableTalking = true;
 			SpawnStudent(30);
+			StudentManager.Students[30].InEvent = false;
 			StudentManager.Students[30].Friend = true;
 			StudentManager.Students[30].Phase = 2;
 			break;

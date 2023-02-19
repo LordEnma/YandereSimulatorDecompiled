@@ -546,9 +546,14 @@ public class ShoulderCameraScript : MonoBehaviour
 		else if (LookDown)
 		{
 			Timer += Time.deltaTime;
+			float num = 3f;
+			if (Yandere.StudentManager.NEStairs.bounds.Contains(Yandere.transform.position) || Yandere.StudentManager.NWStairs.bounds.Contains(Yandere.transform.position) || Yandere.StudentManager.SEStairs.bounds.Contains(Yandere.transform.position) || Yandere.StudentManager.SWStairs.bounds.Contains(Yandere.transform.position))
+			{
+				num = 2f;
+			}
 			if (Timer < 5f)
 			{
-				base.transform.position = Vector3.Lerp(base.transform.position, Yandere.Hips.position + Vector3.up * 3f + Vector3.right * 0.1f, Time.deltaTime * Timer);
+				base.transform.position = Vector3.Lerp(base.transform.position, Yandere.Hips.position + Vector3.up * num + Vector3.right * 0.1f, Time.deltaTime * Timer);
 				Focus.transform.parent = null;
 				Focus.transform.position = Vector3.Lerp(Focus.transform.position, Yandere.Hips.position, Time.deltaTime * Timer);
 				base.transform.LookAt(Focus);

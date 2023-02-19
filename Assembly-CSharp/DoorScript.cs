@@ -181,10 +181,18 @@ public class DoorScript : MonoBehaviour
 			DoorColliders[0] = Doors[0].GetChild(0).gameObject.GetComponent<BoxCollider>();
 		}
 		Doors[0].gameObject.layer = 26;
+		if (Doors[0].transform.childCount > 0)
+		{
+			Doors[0].transform.SetChildLayer(26);
+		}
 		if (Doors.Length > 1)
 		{
 			Doors[1].gameObject.layer = 26;
 			DoorColliders[1] = Doors[1].GetComponent<BoxCollider>();
+			if (Doors[1].transform.childCount > 0)
+			{
+				Doors[1].transform.SetChildLayer(26);
+			}
 		}
 		if (!StudentManager.Eighties && RoomID == 22)
 		{

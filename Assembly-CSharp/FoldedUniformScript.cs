@@ -95,7 +95,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 		if (Yandere.Club == ClubType.Art && !Clean)
 		{
-			base.gameObject.GetComponent<PickUpScript>().RedPaint = true;
+			base.gameObject.GetComponent<PickUpScript>().BloodMistakenForPaint = true;
 		}
 	}
 

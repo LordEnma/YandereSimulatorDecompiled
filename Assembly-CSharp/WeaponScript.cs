@@ -839,11 +839,25 @@ public class WeaponScript : MonoBehaviour
 
 	public void StainWithBlood()
 	{
-		MyRenderer.material.SetFloat("_BlendAmount", 1f);
+		if (MyRenderer.materials.Length > 1)
+		{
+			MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
+		}
+		else
+		{
+			MyRenderer.material.SetFloat("_BlendAmount", 1f);
+		}
 	}
 
 	public void RemoveBlood()
 	{
-		MyRenderer.material.SetFloat("_BlendAmount", 0f);
+		if (MyRenderer.materials.Length > 1)
+		{
+			MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
+		}
+		else
+		{
+			MyRenderer.material.SetFloat("_BlendAmount", 0f);
+		}
 	}
 }

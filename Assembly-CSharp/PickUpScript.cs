@@ -86,6 +86,8 @@ public class PickUpScript : MonoBehaviour
 
 	public Color OriginalColor;
 
+	public bool BloodMistakenForPaint;
+
 	public bool InstantiatedObject;
 
 	public bool ConcealedBodyPart;

@@ -164,7 +164,7 @@ public class WeaponManagerScript : MonoBehaviour
 		WeaponScript[] weapons = Weapons;
 		foreach (WeaponScript weaponScript in weapons)
 		{
-			if (!(weaponScript != null))
+			if (!(weaponScript != null) || !(weaponScript != Weapons[2]))
 			{
 				continue;
 			}
@@ -416,7 +416,7 @@ public class WeaponManagerScript : MonoBehaviour
 	{
 		for (int i = 0; i < Weapons.Length; i++)
 		{
-			if (Weapons[i].MyRenderer != null)
+			if (i != 2 && Weapons[i].MyRenderer != null)
 			{
 				Weapons[i].MyRenderer.material.shader = OverlayShader;
 				Weapons[i].MyRenderer.material.SetTexture("_OverlayTex", Blood);
