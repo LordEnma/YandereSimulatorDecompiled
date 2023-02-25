@@ -172,6 +172,5 @@ public class ReputationScript : MonoBehaviour
 			RepUpdateLabel.enabled = false;
 			PendingRepLabel.text = string.Empty;
 		}
-		RepUpdateLabel.enabled = false;
 	}
 }

@@ -1720,11 +1720,13 @@ public class YandereScript : MonoBehaviour
 			}
 			if (!BloodyWarning && Bloodiness > 0f)
 			{
-				if (!flag)
+				if (flag)
 				{
-					NotificationManager.DisplayNotification(NotificationType.Bloody);
-					BloodyWarning = true;
+					NotificationManager.CustomText = "...but not suspicious.";
+					NotificationManager.DisplayNotification(NotificationType.Custom);
 				}
+				NotificationManager.DisplayNotification(NotificationType.Bloody);
+				BloodyWarning = true;
 				if (Schoolwear > 0 && !WearingRaincoat)
 				{
 					Debug.Log("From YandereScript, incrementing Police.BloodyClothing.");

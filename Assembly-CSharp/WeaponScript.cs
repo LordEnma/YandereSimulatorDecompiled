@@ -841,6 +841,7 @@ public class WeaponScript : MonoBehaviour
 	{
 		if (MyRenderer.materials.Length > 1)
 		{
+			MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
 			MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
 		}
 		else
@@ -853,6 +854,7 @@ public class WeaponScript : MonoBehaviour
 	{
 		if (MyRenderer.materials.Length > 1)
 		{
+			MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 			MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		}
 		else

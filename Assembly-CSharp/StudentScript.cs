@@ -64,6 +64,8 @@ public class StudentScript : MonoBehaviour
 
 	public DynamicGridObstacle Obstacle;
 
+	public StudentScript StudentToMourn;
+
 	public PhoneEventScript PhoneEvent;
 
 	public PickpocketScript PickPocket;
@@ -9016,131 +9018,137 @@ public class StudentScript : MonoBehaviour
 											}
 										}
 									}
-									else if (ReportPhase != 6)
+									else if (ReportPhase == 6)
 									{
-										if (ReportPhase == 7)
+										if (Corpse != null && Corpse.Concealed)
 										{
-											if (StudentManager.BloodReporter != this)
-											{
-												StudentManager.BloodReporter = null;
-											}
-											StudentManager.UpdateStudents();
-											BloodPool.GetComponent<WeaponScript>().Prompt.enabled = false;
-											BloodPool.GetComponent<WeaponScript>().Prompt.Hide();
-											BloodPool.GetComponent<WeaponScript>().enabled = false;
-											ReportPhase++;
+											Alarm = 200f;
+											Yandere.PotentiallyMurderousTimer = 1f;
+											Witnessed = StudentWitnessType.Murder;
 										}
-										else if (ReportPhase == 8)
+									}
+									else if (ReportPhase == 7)
+									{
+										if (StudentManager.BloodReporter != this)
 										{
-											CharacterAnimation.CrossFade("f02_teacherPickUp_00");
-											if (CharacterAnimation["f02_teacherPickUp_00"].time >= 0.33333f)
+											StudentManager.BloodReporter = null;
+										}
+										StudentManager.UpdateStudents();
+										BloodPool.GetComponent<WeaponScript>().Prompt.enabled = false;
+										BloodPool.GetComponent<WeaponScript>().Prompt.Hide();
+										BloodPool.GetComponent<WeaponScript>().enabled = false;
+										ReportPhase++;
+									}
+									else if (ReportPhase == 8)
+									{
+										CharacterAnimation.CrossFade("f02_teacherPickUp_00");
+										if (CharacterAnimation["f02_teacherPickUp_00"].time >= 0.33333f)
+										{
+											Handkerchief.SetActive(value: true);
+										}
+										if (CharacterAnimation["f02_teacherPickUp_00"].time >= 2f)
+										{
+											BloodPool.parent = RightHand;
+											BloodPool.localPosition = new Vector3(0f, 0f, 0f);
+											BloodPool.localEulerAngles = new Vector3(0f, 0f, 0f);
+											BloodPool.GetComponent<WeaponScript>().Returner = this;
+										}
+										if (CharacterAnimation["f02_teacherPickUp_00"].time >= CharacterAnimation["f02_teacherPickUp_00"].length)
+										{
+											CurrentDestination = StudentManager.WeaponBoxSpot;
+											Pathfinding.target = StudentManager.WeaponBoxSpot;
+											Pathfinding.speed = WalkSpeed;
+											Hurry = false;
+											ReportPhase++;
+											if (MyReporter != null)
 											{
-												Handkerchief.SetActive(value: true);
-											}
-											if (CharacterAnimation["f02_teacherPickUp_00"].time >= 2f)
-											{
-												BloodPool.parent = RightHand;
-												BloodPool.localPosition = new Vector3(0f, 0f, 0f);
-												BloodPool.localEulerAngles = new Vector3(0f, 0f, 0f);
-												BloodPool.GetComponent<WeaponScript>().Returner = this;
-											}
-											if (CharacterAnimation["f02_teacherPickUp_00"].time >= CharacterAnimation["f02_teacherPickUp_00"].length)
-											{
-												CurrentDestination = StudentManager.WeaponBoxSpot;
-												Pathfinding.target = StudentManager.WeaponBoxSpot;
-												Pathfinding.speed = WalkSpeed;
-												Hurry = false;
-												ReportPhase++;
-												if (MyReporter != null)
+												Debug.Log("Telling reporter to go back to their normal routine.");
+												MyReporter.CurrentDestination = MyReporter.Destinations[MyReporter.Phase];
+												MyReporter.Pathfinding.target = MyReporter.Destinations[MyReporter.Phase];
+												MyReporter.Pathfinding.speed = 1f;
+												MyReporter.ReportTimer = 0f;
+												MyReporter.AlarmTimer = 0f;
+												MyReporter.TargetDistance = 1f;
+												MyReporter.ReportPhase = 0;
+												MyReporter.WitnessedSomething = false;
+												MyReporter.WitnessedWeapon = false;
+												MyReporter.Distracted = false;
+												MyReporter.Reacted = false;
+												MyReporter.Alarmed = false;
+												MyReporter.Fleeing = false;
+												MyReporter.Routine = true;
+												MyReporter.Halt = false;
+												MyReporter.Persona = MyReporter.OriginalPersona;
+												MyReporter.BloodPool = null;
+												if (MyReporter.Club == ClubType.Council)
 												{
-													Debug.Log("Telling reporter to go back to their normal routine.");
-													MyReporter.CurrentDestination = MyReporter.Destinations[MyReporter.Phase];
-													MyReporter.Pathfinding.target = MyReporter.Destinations[MyReporter.Phase];
-													MyReporter.Pathfinding.speed = 1f;
-													MyReporter.ReportTimer = 0f;
-													MyReporter.AlarmTimer = 0f;
-													MyReporter.TargetDistance = 1f;
-													MyReporter.ReportPhase = 0;
-													MyReporter.WitnessedSomething = false;
-													MyReporter.WitnessedWeapon = false;
-													MyReporter.Distracted = false;
-													MyReporter.Reacted = false;
-													MyReporter.Alarmed = false;
-													MyReporter.Fleeing = false;
-													MyReporter.Routine = true;
-													MyReporter.Halt = false;
-													MyReporter.Persona = MyReporter.OriginalPersona;
-													MyReporter.BloodPool = null;
-													if (MyReporter.Club == ClubType.Council)
+													MyReporter.Persona = PersonaType.Dangerous;
+												}
+												for (ID = 0; ID < MyReporter.Outlines.Length; ID++)
+												{
+													if (MyReporter.Outlines[ID] != null)
 													{
-														MyReporter.Persona = PersonaType.Dangerous;
+														MyReporter.Outlines[ID].color = new Color(1f, 1f, 0f, 1f);
 													}
-													for (ID = 0; ID < MyReporter.Outlines.Length; ID++)
-													{
-														if (MyReporter.Outlines[ID] != null)
-														{
-															MyReporter.Outlines[ID].color = new Color(1f, 1f, 0f, 1f);
-														}
-													}
-													if (MyReporter.BeforeReturnAnim != "")
-													{
-														MyReporter.WalkAnim = MyReporter.BeforeReturnAnim;
-													}
+												}
+												if (MyReporter.BeforeReturnAnim != "")
+												{
+													MyReporter.WalkAnim = MyReporter.BeforeReturnAnim;
 												}
 											}
 										}
-										else if (ReportPhase == 9)
+									}
+									else if (ReportPhase == 9)
+									{
+										DropWeaponInBox();
+										CharacterAnimation.CrossFade(RunAnim);
+										CurrentDestination = Destinations[Phase];
+										Pathfinding.target = Destinations[Phase];
+										Pathfinding.canSearch = true;
+										Pathfinding.canMove = true;
+										Pathfinding.speed = WalkSpeed;
+										WitnessedSomething = false;
+										VerballyReacted = false;
+										WitnessedWeapon = false;
+										YandereInnocent = false;
+										ReportingBlood = false;
+										Distracted = false;
+										Alarmed = false;
+										Fleeing = false;
+										Routine = true;
+										Halt = false;
+										ReportTimer = 0f;
+										ReportPhase = 0;
+									}
+									else if (ReportPhase == 98)
+									{
+										CharacterAnimation.CrossFade(IdleAnim);
+										targetRotation = Quaternion.LookRotation(MyReporter.transform.position - base.transform.position);
+										base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
+										ReportTimer += Time.deltaTime;
+										if (ReportTimer > 7f)
 										{
-											DropWeaponInBox();
-											CharacterAnimation.CrossFade(RunAnim);
-											CurrentDestination = Destinations[Phase];
-											Pathfinding.target = Destinations[Phase];
-											Pathfinding.canSearch = true;
-											Pathfinding.canMove = true;
-											Pathfinding.speed = WalkSpeed;
-											WitnessedSomething = false;
-											VerballyReacted = false;
-											WitnessedWeapon = false;
-											YandereInnocent = false;
-											ReportingBlood = false;
-											Distracted = false;
-											Alarmed = false;
-											Fleeing = false;
-											Routine = true;
-											Halt = false;
-											ReportTimer = 0f;
-											ReportPhase = 0;
+											ReportPhase++;
 										}
-										else if (ReportPhase == 98)
-										{
-											CharacterAnimation.CrossFade(IdleAnim);
-											targetRotation = Quaternion.LookRotation(MyReporter.transform.position - base.transform.position);
-											base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
-											ReportTimer += Time.deltaTime;
-											if (ReportTimer > 7f)
-											{
-												ReportPhase++;
-											}
-										}
-										else if (ReportPhase == 99)
-										{
-											CharacterAnimation.CrossFade(RunAnim);
-											CurrentDestination = Destinations[Phase];
-											Pathfinding.target = Destinations[Phase];
-											Pathfinding.canSearch = true;
-											Pathfinding.canMove = true;
-											MyReporter.Persona = PersonaType.TeachersPet;
-											MyReporter.ReportPhase = 100;
-											MyReporter.Fleeing = true;
-											ReportTimer = 0f;
-											ReportPhase = 0;
-											InvestigatingPossibleBlood = false;
-											InvestigatingPossibleDeath = false;
-											InvestigatingPossibleLimb = false;
-											Alarmed = false;
-											Fleeing = false;
-											Routine = true;
-										}
+									}
+									else if (ReportPhase == 99)
+									{
+										CharacterAnimation.CrossFade(RunAnim);
+										CurrentDestination = Destinations[Phase];
+										Pathfinding.target = Destinations[Phase];
+										Pathfinding.canSearch = true;
+										Pathfinding.canMove = true;
+										MyReporter.Persona = PersonaType.TeachersPet;
+										MyReporter.ReportPhase = 100;
+										MyReporter.Fleeing = true;
+										ReportTimer = 0f;
+										ReportPhase = 0;
+										InvestigatingPossibleBlood = false;
+										InvestigatingPossibleDeath = false;
+										InvestigatingPossibleLimb = false;
+										Alarmed = false;
+										Fleeing = false;
+										Routine = true;
 									}
 								}
 								else if (!Yandere.Dumping && !Yandere.Attacking)
@@ -11270,6 +11278,12 @@ public class StudentScript : MonoBehaviour
 				}
 			}
 		}
+		if (Guarding && Corpse != null && Corpse.Concealed && !Alarmed)
+		{
+			Alarm = 200f;
+			Yandere.PotentiallyMurderousTimer = 1f;
+			Witnessed = StudentWitnessType.Murder;
+		}
 		if (!Guarding && InvestigatingBloodPool)
 		{
 			if (BloodPool != null)
@@ -11626,6 +11640,12 @@ public class StudentScript : MonoBehaviour
 			{
 				Alarm = 200f;
 			}
+			if (StudentManager.Students[StudentManager.RivalID].Ragdoll.Concealed)
+			{
+				Alarm = 200f;
+				Yandere.PotentiallyMurderousTimer = 1f;
+				Witnessed = StudentWitnessType.Murder;
+			}
 		}
 		if (SpecialRivalDeathReaction)
 		{
@@ -11735,9 +11755,15 @@ public class StudentScript : MonoBehaviour
 					}
 				}
 			}
-			if ((Yandere.Lifting || Yandere.Dragging) && Yandere.TargetStudent == StudentManager.Students[StudentManager.RivalID])
+			if ((Yandere.Lifting || Yandere.Dragging) && Yandere.TargetStudent == StudentToMourn)
 			{
 				Alarm = 200f;
+			}
+			if (StudentToMourn.Ragdoll.Concealed)
+			{
+				Alarm = 200f;
+				Yandere.PotentiallyMurderousTimer = 1f;
+				Witnessed = StudentWitnessType.Murder;
 			}
 		}
 		if (SolvingPuzzle)
@@ -16689,6 +16715,7 @@ public class StudentScript : MonoBehaviour
 				CurrentDestination = Corpse.Student.Hips;
 				Pathfinding.target = Corpse.Student.Hips;
 				CorpseHead = Corpse.Student.Head;
+				StudentToMourn = Corpse.Student;
 				SpecialRivalDeathReaction = true;
 				IgnoringPettyActions = true;
 				WitnessRivalDiePhase = 1;

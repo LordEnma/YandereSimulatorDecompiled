@@ -174,16 +174,22 @@ public class WeaponManagerScript : MonoBehaviour
 				weaponScript.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
 				if (weaponScript.MyRenderer != null)
 				{
-					weaponScript.MyRenderer.material.SetTexture("_OverlayTex", Blood);
+					Material[] materials = weaponScript.MyRenderer.materials;
+					for (int j = 0; j < materials.Length; j++)
+					{
+						materials[j].SetTexture("_OverlayTex", Blood);
+					}
 				}
+				continue;
 			}
-			else
+			weaponScript.Blood.material.mainTexture = null;
+			weaponScript.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
+			if (weaponScript.MyRenderer != null)
 			{
-				weaponScript.Blood.material.mainTexture = null;
-				weaponScript.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
-				if (weaponScript.MyRenderer != null)
+				Material[] materials = weaponScript.MyRenderer.materials;
+				for (int j = 0; j < materials.Length; j++)
 				{
-					weaponScript.MyRenderer.material.SetTexture("_OverlayTex", Flower);
+					materials[j].SetTexture("_OverlayTex", Flower);
 				}
 			}
 		}
@@ -418,11 +424,14 @@ public class WeaponManagerScript : MonoBehaviour
 		{
 			if (i != 2 && Weapons[i].MyRenderer != null)
 			{
-				Weapons[i].MyRenderer.material.shader = OverlayShader;
-				Weapons[i].MyRenderer.material.SetTexture("_OverlayTex", Blood);
-				Weapons[i].MyRenderer.material.SetFloat("_BlendAmount", 0f);
-				Weapons[i].Blood.material.mainTexture = null;
-				Weapons[i].Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
+				Material[] materials = Weapons[i].MyRenderer.materials;
+				foreach (Material obj in materials)
+				{
+					obj.shader = OverlayShader;
+					obj.SetTexture("_OverlayTex", Blood);
+					obj.SetFloat("_BlendAmount", 0f);
+					obj.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
+				}
 			}
 		}
 	}

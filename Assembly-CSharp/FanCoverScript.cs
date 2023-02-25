@@ -158,6 +158,7 @@ public class FanCoverScript : MonoBehaviour
 				{
 					if (Yandere.Gloved && !Yandere.Gloves.Blood.enabled)
 					{
+						Debug.Log("Splattering with blood here.");
 						Yandere.GloveAttacher.newRenderer.material.mainTexture = Yandere.BloodyGloveTexture;
 						Yandere.Gloves.PickUp.Evidence = true;
 						Yandere.Gloves.Blood.enabled = true;

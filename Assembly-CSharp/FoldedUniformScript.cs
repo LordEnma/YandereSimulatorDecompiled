@@ -97,6 +97,17 @@ public class FoldedUniformScript : MonoBehaviour
 		{
 			base.gameObject.GetComponent<PickUpScript>().BloodMistakenForPaint = true;
 		}
+		if (!ClubAttire && MyRenderer.Length != 0)
+		{
+			if (Clean)
+			{
+				RemoveBlood();
+			}
+			else
+			{
+				StainWithBlood();
+			}
+		}
 	}
 
 	private void Update()
@@ -170,6 +181,44 @@ public class FoldedUniformScript : MonoBehaviour
 		for (int i = 1; i < MyRenderer.Length; i++)
 		{
 			MyRenderer[i].material.mainTexture = CleanTexture;
+		}
+	}
+
+	public void StainWithBlood()
+	{
+		Renderer[] myRenderer = MyRenderer;
+		foreach (Renderer renderer in myRenderer)
+		{
+			if (renderer != null)
+			{
+				if (renderer.materials.Length > 1)
+				{
+					renderer.materials[1].SetFloat("_BlendAmount", 1f);
+				}
+				else
+				{
+					renderer.material.SetFloat("_BlendAmount", 1f);
+				}
+			}
+		}
+	}
+
+	public void RemoveBlood()
+	{
+		Renderer[] myRenderer = MyRenderer;
+		foreach (Renderer renderer in myRenderer)
+		{
+			if (renderer != null)
+			{
+				if (renderer.materials.Length > 1)
+				{
+					renderer.materials[1].SetFloat("_BlendAmount", 0f);
+				}
+				else
+				{
+					renderer.material.SetFloat("_BlendAmount", 0f);
+				}
+			}
 		}
 	}
 }

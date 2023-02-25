@@ -348,7 +348,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		EventSubtitle.text = string.Empty;
 		Jukebox.Dip = 1f;
 		base.enabled = false;
-		if (Rival.GoAway)
+		if (Rival != null && Rival.GoAway)
 		{
 			Rival.Subtitle.CustomText = "Ugh, seriously?! I'm not in the mood for this...";
 			Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);

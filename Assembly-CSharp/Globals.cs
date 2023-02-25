@@ -33,6 +33,7 @@ public static class Globals
 		CounselorGlobals.DeleteAll();
 		YancordGlobals.DeleteAll();
 		CorkboardGlobals.DeleteAll();
+		ChallengeGlobals.DeleteAll();
 		GameGlobals.Profile = profile;
 		DateGlobals.Week = 1;
 	}

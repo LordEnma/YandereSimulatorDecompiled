@@ -170,6 +170,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		Yandere.NotificationManager.transform.localPosition = new Vector3(0f, 100f, 0f);
 		Yandere.YandereVisionPanel.transform.localPosition = new Vector3(0f, 0f, 0f);
 		Yandere.transform.eulerAngles = YandereSpawnPoints[0].eulerAngles;
+		Yandere.CameraEffects.UpdateDOF(2f - Yandere.Zoom.Zoom * 3.75f);
 		Yandere.transform.position = YandereSpawnPoints[0].position;
 		Yandere.NotificationManager.NotificationLimit = 0;
 		Yandere.PauseScreen.gameObject.SetActive(value: false);
@@ -1021,6 +1022,10 @@ public class KokonaTutorialScript : MonoBehaviour
 			{
 				Yandere.EmptyHands();
 			}
+			if (TutorialPhase < 4)
+			{
+				Yandere.GloveTimer = 0f;
+			}
 			if (TutorialPhase == 1)
 			{
 				if (Yandere.PickUp != null && Yandere.transform.position.z < 73f)
@@ -1855,6 +1860,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			EnablePatrol = true;
 			SpawnStudent(30);
 			StudentManager.Students[30].Phase = 1;
+			StudentManager.Students[30].InEvent = false;
 			break;
 		case 15:
 			Yandere.NotificationManager.transform.localPosition = new Vector3(0f, 0f, -999.9999f);
