@@ -279,6 +279,23 @@ public class TutorialWindowScript : MonoBehaviour
 					Time.timeScale = 1f;
 					Show = false;
 					Hide = true;
+					if (Yandere.PauseScreen.Show)
+					{
+						Debug.Log("Returning to Favors screen?");
+						Yandere.PromptBar.ClearButtons();
+						Yandere.PromptBar.Label[0].text = "Confirm";
+						Yandere.PromptBar.Label[1].text = "Back";
+						if (Yandere.PauseScreen.FavorMenu.isActiveAndEnabled)
+						{
+							Yandere.PromptBar.Label[5].text = "Change";
+						}
+						else
+						{
+							Yandere.PromptBar.Label[4].text = "Change";
+						}
+						Yandere.PromptBar.UpdateButtons();
+						Yandere.PauseScreen.PromptBar.Show = true;
+					}
 				}
 				else if (Input.GetButtonDown("B"))
 				{

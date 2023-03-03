@@ -380,7 +380,6 @@ public class EightiesCutsceneScript : MonoBehaviour
 				else if (Input.GetButtonDown("Y") && SkipTutorialButton.activeInHierarchy)
 				{
 					SkipTutorialWindow.SetActive(value: true);
-					Panel.SetActive(value: false);
 				}
 			}
 			else if (Input.GetButtonDown("A"))

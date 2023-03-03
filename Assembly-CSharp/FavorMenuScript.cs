@@ -93,13 +93,14 @@ public class FavorMenuScript : MonoBehaviour
 				TutorialWindow.ForcingTutorial = true;
 				TutorialWindow.enabled = true;
 				TutorialWindow.SummonWindow();
+				PromptBar.Show = false;
 			}
 			else if (Input.GetButtonDown("B"))
 			{
 				PromptBar.ClearButtons();
-				PromptBar.Label[0].text = "Accept";
-				PromptBar.Label[1].text = "Exit";
-				PromptBar.Label[4].text = "Choose";
+				PromptBar.Label[0].text = "Confirm";
+				PromptBar.Label[1].text = "Back";
+				PromptBar.Label[4].text = "Change";
 				PromptBar.UpdateButtons();
 				PauseScreen.MainMenu.SetActive(value: true);
 				PauseScreen.Sideways = false;

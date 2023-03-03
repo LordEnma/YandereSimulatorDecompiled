@@ -171,6 +171,8 @@ public class CounselorScript : MonoBehaviour
 
 	public int DelinquentPunishments;
 
+	public GameObject ModernAttacher;
+
 	public bool ReportedAlcohol;
 
 	public bool ReportedCondoms;
@@ -517,6 +519,13 @@ public class CounselorScript : MonoBehaviour
 			LewdLectureClips[1] = LongSilence;
 			LewdLectures[0] = "You've been caught aiming a camera at a student's unmentionables. Start talking.";
 			LewdLectures[1] = "Once again, you're here because you stuck a camera up someone's skirt. Oh, I can't wait to hear your excuse this time.";
+		}
+		else
+		{
+			ModernAttacher.gameObject.SetActive(value: true);
+			OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().enabled = false;
+			OriginalMesh[2].SetActive(value: false);
+			OriginalMesh[3].SetActive(value: false);
 		}
 	}
 
@@ -1100,6 +1109,11 @@ public class CounselorScript : MonoBehaviour
 			BS_AngryEyes = Mathf.Lerp(BS_AngryEyes, 0f, Time.deltaTime * 10f);
 		}
 		if (EightiesAttacher.gameObject.activeInHierarchy && !UpdatedFace)
+		{
+			UpdatedFace = true;
+			Face = PelvisRoot.GetChild(1).GetComponent<SkinnedMeshRenderer>();
+		}
+		else if (ModernAttacher.gameObject.activeInHierarchy && !UpdatedFace)
 		{
 			UpdatedFace = true;
 			Face = PelvisRoot.GetChild(1).GetComponent<SkinnedMeshRenderer>();

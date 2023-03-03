@@ -270,11 +270,9 @@ public class PhoneScript : MonoBehaviour
 				}
 				else if (DateGlobals.Weekday == DayOfWeek.Sunday)
 				{
-					if (DateGlobals.PassDays < 1)
-					{
-						DateGlobals.PassDays = 1;
-					}
-					SceneManager.LoadScene("CalendarScene");
+					HomeGlobals.Night = true;
+					GameGlobals.CorkboardScene = false;
+					SceneManager.LoadScene("HomeScene");
 				}
 				else if (!EventGlobals.BefriendConversation && !EventGlobals.LivingRoom)
 				{

@@ -15,6 +15,10 @@ public class CabinetDoorScript : MonoBehaviour
 	private void Start()
 	{
 		Eighties = GameGlobals.Eighties;
+		if (!Eighties)
+		{
+			Prompt.Label[2].text = "     Cannot Be Lockpicked";
+		}
 	}
 
 	private void Update()

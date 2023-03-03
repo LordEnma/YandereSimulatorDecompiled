@@ -115,7 +115,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 						}
 						else
 						{
-							PromptBar.Label[0].text = "Load GAme";
+							PromptBar.Label[0].text = "Load Game";
 						}
 						PromptBar.Label[1].text = "Go Back";
 						PromptBar.Label[4].text = "Change Selection";

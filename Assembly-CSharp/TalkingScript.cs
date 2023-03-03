@@ -1747,7 +1747,7 @@ public class TalkingScript : MonoBehaviour
 							S.Subtitle.UpdateLabel(SubtitleType.SendToLocker, 4, 5f);
 							Refuse = true;
 						}
-						else if (S.Clock.HourTime > 13f && S.Clock.HourTime < 13.375f)
+						else if (S.Rival && S.Clock.HourTime > 13f && S.Clock.HourTime < 13.375f)
 						{
 							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.Subtitle.CustomText = "Thanks for letting me know, but...I'm eating lunch right now. Remind me later.";

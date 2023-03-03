@@ -395,6 +395,11 @@ public class RagdollScript : MonoBehaviour
 						}
 						else if (Yandere.StudentManager.OriginalUniforms + Yandere.StudentManager.NewUniforms > 0)
 						{
+							if (Yandere.YandereVision)
+							{
+								Yandere.ResetYandereEffects();
+								Yandere.YandereVision = false;
+							}
 							Yandere.CharacterAnimation.CrossFade("f02_dismember_00");
 							Yandere.transform.LookAt(base.transform);
 							Yandere.RPGCamera.transform.position = Yandere.DismemberSpot.position;
@@ -679,6 +684,8 @@ public class RagdollScript : MonoBehaviour
 	{
 		if (!Male)
 		{
+			RightBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
+			LeftBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
 			if (LeftEye != null)
 			{
 				LeftEye.localPosition = new Vector3(LeftEye.localPosition.x, LeftEye.localPosition.y, LeftEyeOrigin.z - EyeShrink * 0.01f);

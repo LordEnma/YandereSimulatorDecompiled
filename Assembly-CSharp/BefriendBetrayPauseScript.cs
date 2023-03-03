@@ -13,10 +13,11 @@ public class BefriendBetrayPauseScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Yandere.CanMove && Input.GetButtonDown("Start"))
+		if (Yandere.CanMove && !Input.GetButton("RB") && Input.GetButtonDown("Start"))
 		{
 			if (!Panel.enabled)
 			{
+				Yandere.ResetYandereEffects();
 				Panel.enabled = true;
 				Time.timeScale = 0f;
 			}

@@ -834,17 +834,17 @@ public class MissionModeMenuScript : MonoBehaviour
 						ErrorLabel.text = "Invalid Mission ID (That student has not been implemented yet)";
 						return;
 					}
-					if (WeaponNumber == 11)
+					if (WeaponNumber == 11 || WeaponNumber == 17 || WeaponNumber == 26 || WeaponNumber == 27)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Weapon does not apply to Mission Mode)";
 						return;
 					}
-					if (WeaponNumber > 14)
+					if (WeaponNumber > 31)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Weapon does not exist)";
 						return;
 					}
-					if (ClothingNumber > 5)
+					if (ClothingNumber > 6)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Clothing does not exist)";
 						return;
@@ -1210,8 +1210,10 @@ public class MissionModeMenuScript : MonoBehaviour
 			switch (num)
 			{
 			case 1:
-				for (RequiredWeaponID = 11; RequiredWeaponID == 11; RequiredWeaponID = Random.Range(1, WeaponNames.Length))
+				RequiredWeaponID = 11;
+				while (RequiredWeaponID == 11 || RequiredWeaponID == 17 || RequiredWeaponID == 26 || RequiredWeaponID == 27)
 				{
+					RequiredWeaponID = Random.Range(1, WeaponNames.Length);
 				}
 				Descs[Difficulty].text = ConditionDescs[num] + " " + WeaponNames[RequiredWeaponID];
 				break;

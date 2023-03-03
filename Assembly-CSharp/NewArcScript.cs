@@ -3,6 +3,8 @@ using UnityEngine;
 [ExecuteAlways]
 public class NewArcScript : MonoBehaviour
 {
+	public YandereScript Yandere;
+
 	[Header("References")]
 	public ParticleSystem ArcParticles;
 
@@ -32,35 +34,42 @@ public class NewArcScript : MonoBehaviour
 
 	public InputDeviceScript InputDevice;
 
+	public int Max;
+
+	public int Min;
+
 	private void Update()
 	{
 		if (!(ArcParticles != null))
 		{
 			return;
 		}
+		if (Yandere.Obvious)
+		{
+			Max = 20 + Yandere.Class.PhysicalGrade;
+			Min = 10;
+		}
+		else
+		{
+			Max = 10 + Yandere.Class.PhysicalGrade;
+			Min = 5;
+		}
 		if (InputDevice.Type == InputDeviceType.Gamepad)
 		{
 			if (Input.GetAxis("Mouse Y") > 0f)
 			{
-				GravityFactor = Mathf.MoveTowards(GravityFactor, 0.1f, Input.GetAxis("Mouse Y") * Time.deltaTime);
+				ForwardMomentum = Mathf.MoveTowards(ForwardMomentum, Max, Input.GetAxis("Mouse Y") * Time.deltaTime * 10f);
 			}
 			else if (Input.GetAxis("Mouse Y") < 0f)
 			{
-				GravityFactor = Mathf.MoveTowards(GravityFactor, 2f, Input.GetAxis("Mouse Y") * Time.deltaTime * -1f);
+				ForwardMomentum = Mathf.MoveTowards(ForwardMomentum, Min, Input.GetAxis("Mouse Y") * Time.deltaTime * -1f * 10f);
 			}
 		}
 		else
 		{
-			GravityFactor -= Input.GetAxis("Mouse ScrollWheel");
-			if (GravityFactor > 2f)
-			{
-				GravityFactor = 2f;
-			}
-			if (GravityFactor < 0.1f)
-			{
-				GravityFactor = 0.1f;
-			}
+			ForwardMomentum += Input.GetAxis("Mouse ScrollWheel");
 		}
+		ForwardMomentum = Mathf.Clamp(ForwardMomentum, Min, Max);
 		if (_position != base.transform.position || _rotation != base.transform.eulerAngles || _scale != base.transform.localScale || (int)ArcParticles.collision.collidesWith != (int)CollisionLayers || ArcParticles.main.startSpeedMultiplier != ForwardMomentum || ArcParticles.main.gravityModifierMultiplier != GravityFactor)
 		{
 			UpdateParticles();

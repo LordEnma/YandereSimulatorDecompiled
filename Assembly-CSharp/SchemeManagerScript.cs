@@ -12,6 +12,10 @@ public class SchemeManagerScript : MonoBehaviour
 
 	public int CurrentScheme;
 
+	private void Start()
+	{
+	}
+
 	private void Update()
 	{
 		if (CurrentScheme < 6)

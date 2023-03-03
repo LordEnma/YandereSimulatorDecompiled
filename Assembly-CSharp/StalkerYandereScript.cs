@@ -224,8 +224,11 @@ public class StalkerYandereScript : MonoBehaviour
 				else
 				{
 					Debug.Log("Daytime or weekend. Staying in school uniform.");
-					UniformSetter.Ryoba = false;
-					UniformSetter.enabled = true;
+					if (UniformSetter != null)
+					{
+						UniformSetter.Ryoba = false;
+						UniformSetter.enabled = true;
+					}
 				}
 				Initialized = true;
 			}
@@ -593,8 +596,12 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public void UpdateYandereVision()
 	{
-		bool button = Input.GetButton("RB");
-		if (CanMove && button)
+		bool flag = Input.GetButton("RB");
+		if (Time.timeScale == 0f)
+		{
+			flag = false;
+		}
+		if (CanMove && flag)
 		{
 			if (YandereFilter.FadeFX < 1f)
 			{
@@ -628,7 +635,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	private void ResetYandereEffects()
+	public void ResetYandereEffects()
 	{
 		HighlightingR.enabled = false;
 		HighlightingB.enabled = false;

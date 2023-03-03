@@ -486,8 +486,8 @@ public class PauseScreenScript : MonoBehaviour
 							LoadingScreen.SetActive(value: true);
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Back";
-							PromptBar.Label[4].text = "Choose";
-							PromptBar.Label[5].text = "Choose";
+							PromptBar.Label[4].text = "Change";
+							PromptBar.Label[5].text = "Change";
 							PromptBar.UpdateButtons();
 							StartCoroutine(PhotoGallery.GetPhotos());
 						}
@@ -498,7 +498,7 @@ public class PauseScreenScript : MonoBehaviour
 							Sideways = true;
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Back";
-							PromptBar.Label[4].text = "Choose";
+							PromptBar.Label[4].text = "Change";
 							PromptBar.UpdateButtons();
 							TaskList.UpdateTaskList();
 							StartCoroutine(TaskList.UpdateTaskInfo());
@@ -516,7 +516,7 @@ public class PauseScreenScript : MonoBehaviour
 								PromptBar.Label[0].text = "Begin";
 								PromptBar.Label[1].text = "Back";
 								PromptBar.Label[4].text = "Adjust";
-								PromptBar.Label[5].text = "Choose";
+								PromptBar.Label[5].text = "Change";
 								PromptBar.UpdateButtons();
 								PassTime.gameObject.SetActive(value: true);
 								PassTime.GetCurrentTime();
@@ -539,9 +539,9 @@ public class PauseScreenScript : MonoBehaviour
 								if (!Eighties)
 								{
 									PromptBar.ClearButtons();
-									PromptBar.Label[0].text = "Accept";
-									PromptBar.Label[1].text = "Exit";
-									PromptBar.Label[5].text = "Choose";
+									PromptBar.Label[0].text = "Confirm";
+									PromptBar.Label[1].text = "Back";
+									PromptBar.Label[5].text = "Change";
 									PromptBar.UpdateButtons();
 									FavorMenu.gameObject.SetActive(value: true);
 									FavorMenu.gameObject.GetComponent<AudioSource>().Play();
@@ -553,7 +553,7 @@ public class PauseScreenScript : MonoBehaviour
 									PromptBar.ClearButtons();
 									PromptBar.Label[0].text = "Confirm";
 									PromptBar.Label[1].text = "Back";
-									PromptBar.Label[4].text = "Choose";
+									PromptBar.Label[4].text = "Change";
 									PromptBar.UpdateButtons();
 									PromptBar.Show = true;
 									IdeasMenu.gameObject.SetActive(value: true);
@@ -641,7 +641,7 @@ public class PauseScreenScript : MonoBehaviour
 								PromptBar.ClearButtons();
 								PromptBar.Label[0].text = "Play";
 								PromptBar.Label[1].text = "Back";
-								PromptBar.Label[4].text = "Choose";
+								PromptBar.Label[4].text = "Change";
 								PromptBar.UpdateButtons();
 								PromptBar.Show = true;
 							}
@@ -657,8 +657,9 @@ public class PauseScreenScript : MonoBehaviour
 							MainMenu.SetActive(value: false);
 							Sideways = true;
 							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Confirm";
 							PromptBar.Label[1].text = "Back";
-							PromptBar.Label[4].text = "Choose";
+							PromptBar.Label[4].text = "Change";
 							PromptBar.UpdateButtons();
 							Tutorials.UpdateTaskList();
 							StartCoroutine(Tutorials.UpdateTaskInfo());

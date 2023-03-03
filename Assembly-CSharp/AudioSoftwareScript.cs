@@ -12,9 +12,13 @@ public class AudioSoftwareScript : MonoBehaviour
 
 	public UILabel EventSubtitle;
 
+	public Transform SitSpot;
+
+	public GameObject YoogleScreen;
+
 	public GameObject Screen;
 
-	public Transform SitSpot;
+	public bool PuttingLewdPhotosOnPhone;
 
 	public bool ConversationRecorded;
 
@@ -26,16 +30,33 @@ public class AudioSoftwareScript : MonoBehaviour
 
 	private void Start()
 	{
+		YoogleScreen.SetActive(value: false);
 		Screen.SetActive(value: false);
 	}
 
 	private void Update()
 	{
-		if (ConversationRecorded && Yandere.Inventory.RivalPhone)
+		if (Yandere.Inventory.RivalPhone)
 		{
 			if (!Prompt.enabled)
 			{
 				Prompt.enabled = true;
+			}
+			if (ConversationRecorded)
+			{
+				Prompt.HideButton[0] = false;
+			}
+			else
+			{
+				Prompt.HideButton[0] = true;
+			}
+			if (!Yandere.StudentManager.CommunalLocker.RivalPhone.LewdPhotos)
+			{
+				Prompt.HideButton[1] = false;
+			}
+			else
+			{
+				Prompt.HideButton[1] = true;
 			}
 		}
 		else if (Prompt.enabled)
@@ -51,6 +72,15 @@ public class AudioSoftwareScript : MonoBehaviour
 			ChairCollider.enabled = false;
 			Screen.SetActive(value: true);
 			Editing = true;
+		}
+		if (Prompt.Circle[1].fillAmount == 0f)
+		{
+			Yandere.CharacterAnimation.CrossFade("f02_onComputer_00");
+			Yandere.MyController.radius = 0.1f;
+			Yandere.CanMove = false;
+			ChairCollider.enabled = false;
+			YoogleScreen.SetActive(value: true);
+			PuttingLewdPhotosOnPhone = true;
 		}
 		if (Editing)
 		{
@@ -84,9 +114,26 @@ public class AudioSoftwareScript : MonoBehaviour
 				Screen.SetActive(value: false);
 				AudioDoctored = true;
 				Editing = false;
-				Prompt.enabled = false;
-				Prompt.Hide();
-				base.enabled = false;
+				Timer = 0f;
+				ConversationRecorded = false;
+			}
+		}
+		if (PuttingLewdPhotosOnPhone)
+		{
+			targetRotation = Quaternion.LookRotation(new Vector3(Screen.transform.position.x, Yandere.transform.position.y, Screen.transform.position.z) - Yandere.transform.position);
+			Yandere.transform.rotation = Quaternion.Slerp(Yandere.transform.rotation, targetRotation, Time.deltaTime * 10f);
+			Yandere.MoveTowardsTarget(SitSpot.position);
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
+			{
+				Yandere.MyController.radius = 0.2f;
+				Yandere.CanMove = true;
+				ChairCollider.enabled = true;
+				EventSubtitle.text = "";
+				YoogleScreen.SetActive(value: false);
+				PuttingLewdPhotosOnPhone = false;
+				Timer = 0f;
+				Yandere.StudentManager.CommunalLocker.RivalPhone.LewdPhotos = true;
 			}
 		}
 	}

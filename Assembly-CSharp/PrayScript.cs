@@ -38,6 +38,8 @@ public class PrayScript : MonoBehaviour
 
 	public GameObject FemaleTurtle;
 
+	public GameObject Turtle;
+
 	public int StudentNumber;
 
 	public int StudentID;
@@ -69,6 +71,11 @@ public class PrayScript : MonoBehaviour
 		GenderPrompt.gameObject.SetActive(value: true);
 		PrayWindow.localScale = Vector3.zero;
 		Prompt.enabled = true;
+		if (ClubGlobals.GetClubClosed(ClubType.LightMusic))
+		{
+			Turtle.SetActive(value: false);
+			base.gameObject.SetActive(value: false);
+		}
 	}
 
 	private void Update()

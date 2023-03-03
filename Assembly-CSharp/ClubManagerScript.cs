@@ -74,6 +74,8 @@ public class ClubManagerScript : MonoBehaviour
 
 	public GameObject[] GameScreens;
 
+	public GameObject[] ClubStands;
+
 	public MaskScript[] Masks;
 
 	public GameObject[] Cultists;
@@ -198,7 +200,9 @@ public class ClubManagerScript : MonoBehaviour
 		{
 			if (ClubGlobals.GetClubClosed(ClubArray[ID]))
 			{
+				Debug.Log("The game recognizes that Club #" + ID + ", the " + ClubArray[ID].ToString() + " Club, should be closed!");
 				ClubPosters[ID].SetActive(value: false);
+				ClubStands[ID].SetActive(value: false);
 				if (ClubArray[ID] == ClubType.Gardening)
 				{
 					ClubPatrolPoints[ID].transform.position = new Vector3(-36f, ClubPatrolPoints[ID].transform.position.y, ClubPatrolPoints[ID].transform.position.z);
@@ -324,6 +328,10 @@ public class ClubManagerScript : MonoBehaviour
 		Yandere.CameraEffects.UpdateDOF(2f);
 		StudentManager.StopMoving();
 		ShoulderCamera.enabled = false;
+		if (StudentManager.MemorialScene.gameObject.activeInHierarchy)
+		{
+			ClubVantages[2].transform.position = new Vector3(-5.8f, 2.9f, 22.2f);
+		}
 		MainCamera.enabled = false;
 		MainCamera.transform.position = ClubVantages[(int)Club].position;
 		MainCamera.transform.rotation = ClubVantages[(int)Club].rotation;
@@ -372,10 +380,6 @@ public class ClubManagerScript : MonoBehaviour
 					{
 						studentScript2.transform.position = studentScript2.CurrentDestination.position;
 						studentScript2.transform.rotation = studentScript2.CurrentDestination.rotation;
-					}
-					else
-					{
-						studentScript2.transform.position = new Vector3(0f, 0f, 0f);
 					}
 					studentScript2.ClubActivity = true;
 					studentScript2.Talking = false;

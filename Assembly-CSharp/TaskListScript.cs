@@ -130,6 +130,7 @@ public class TaskListScript : MonoBehaviour
 					TutorialWindow.ShowTutorial();
 					TutorialWindow.enabled = true;
 					TutorialWindow.SummonWindow();
+					PauseScreen.PromptBar.Show = false;
 				}
 				else if (Input.GetButtonDown("B"))
 				{

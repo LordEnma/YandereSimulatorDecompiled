@@ -36,7 +36,9 @@ public class MemorialSceneScript : MonoBehaviour
 
 	public GameObject[] HeadmasterMesh;
 
-	public GameObject CounselorMother;
+	public GameObject CounselorEighties;
+
+	public GameObject CounselorModern;
 
 	public GameObject[] CounselorMesh;
 
@@ -65,6 +67,10 @@ public class MemorialSceneScript : MonoBehaviour
 			StudentManager.IdolStage.SetActive(value: false);
 			text = "1989";
 			TurnYoung();
+		}
+		else
+		{
+			CounselorModern.SetActive(value: true);
 		}
 		i = 0;
 		while (MemorialStudents > 0)
@@ -214,7 +220,7 @@ public class MemorialSceneScript : MonoBehaviour
 		HeadmasterMesh[3].SetActive(value: false);
 		HeadmasterMesh[4].SetActive(value: false);
 		HeadmasterMesh[5].SetActive(value: false);
-		CounselorMother.SetActive(value: true);
+		CounselorEighties.SetActive(value: true);
 		CounselorMesh[1].SetActive(value: false);
 		CounselorMesh[2].SetActive(value: false);
 		CounselorMesh[3].SetActive(value: false);

@@ -1134,6 +1134,11 @@ public class DialogueWheelScript : MonoBehaviour
 				{
 					Yandere.TargetStudent.EquipCleaningItems();
 				}
+				else if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.SearchPatrol)
+				{
+					Yandere.TargetStudent.CurrentDestination = Yandere.TargetStudent.StudentManager.SearchPatrols.List[Yandere.TargetStudent.Class].GetChild(Yandere.TargetStudent.PatrolID);
+					Yandere.TargetStudent.Pathfinding.target = Yandere.TargetStudent.CurrentDestination;
+				}
 				else if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.Patrol || (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.ClubAction && Yandere.TargetStudent.Club == ClubType.Gardening))
 				{
 					Yandere.TargetStudent.CurrentDestination = Yandere.TargetStudent.StudentManager.Patrols.List[Yandere.TargetStudent.StudentID].GetChild(Yandere.TargetStudent.PatrolID);

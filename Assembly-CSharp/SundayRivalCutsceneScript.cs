@@ -45,8 +45,9 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
+		if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday && GameGlobals.CorkboardScene)
 		{
+			Debug.Log("The Sunday Rival Cutscene thinks that it's time to play.");
 			HomeSenpaiShrine.Start();
 			HomeYandere.HomeDarkness.color = new Color(0f, 0f, 0f, 1f);
 			HomeDarkness.enabled = false;

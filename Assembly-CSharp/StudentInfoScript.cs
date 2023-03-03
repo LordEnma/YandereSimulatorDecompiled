@@ -701,6 +701,19 @@ public class StudentInfoScript : MonoBehaviour
 		{
 			switch (ID)
 			{
+			case 1:
+				if (StudentManager.MissionMode)
+				{
+					Strings[1] = "The first target you ever assassinated.";
+					Strings[2] = "Good thing you were wearing gloves at the time...";
+					Strings[3] = "Why? Oh, you know...fingerprints and whatnot...";
+					InfoLabel.text = Strings[1] + "\n\n" + Strings[2] + "\n\n" + Strings[3];
+				}
+				else
+				{
+					InfoLabel.text = JSON.Students[ID].Info;
+				}
+				return;
 			case 11:
 				if (Yandere != null)
 				{

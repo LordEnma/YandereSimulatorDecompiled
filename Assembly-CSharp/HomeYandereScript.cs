@@ -122,9 +122,16 @@ public class HomeYandereScript : MonoBehaviour
 		{
 			if (!YanvaniaGlobals.DraculaDefeated && !HomeGlobals.MiyukiDefeated)
 			{
-				base.transform.position = Vector3.zero;
-				base.transform.eulerAngles = Vector3.zero;
-				if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
+				if (GameGlobals.CorkboardScene)
+				{
+					base.transform.position = Vector3.zero;
+					base.transform.eulerAngles = Vector3.zero;
+				}
+				else
+				{
+					base.enabled = false;
+				}
+				if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday && GameGlobals.CorkboardScene)
 				{
 					Nude();
 				}

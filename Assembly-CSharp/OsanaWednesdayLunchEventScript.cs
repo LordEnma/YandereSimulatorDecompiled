@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class OsanaWednesdayLunchEventScript : MonoBehaviour
 {
+	public RivalAfterClassEventManagerScript AfterClassEvent;
+
 	public StudentManagerScript StudentManager;
 
 	public JukeboxScript Jukebox;
@@ -167,13 +169,17 @@ public class OsanaWednesdayLunchEventScript : MonoBehaviour
 		{
 			UnityEngine.Object.Destroy(VoiceClip);
 		}
-		if (!Rival.Alarmed)
+		if (!Rival.Alarmed && !Rival.Splashed)
 		{
 			Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
 			Rival.DistanceToDestination = 100f;
 			Rival.Pathfinding.canSearch = true;
 			Rival.Pathfinding.canMove = true;
 			Rival.Routine = true;
+		}
+		if (Rival.Splashed)
+		{
+			AfterClassEvent.Cancelled = true;
 		}
 		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 		Rival.Obstacle.enabled = false;

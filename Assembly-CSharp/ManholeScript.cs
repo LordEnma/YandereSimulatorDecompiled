@@ -107,6 +107,7 @@ public class ManholeScript : MonoBehaviour
 				SewerCamera.SetActive(value: false);
 				Prompt.Yandere.StudentManager.UpdateStudents();
 				ForceDown = false;
+				Prompt.Yandere.CanMove = true;
 			}
 		}
 		if (Prompt.Yandere.Ragdoll != null)
@@ -127,6 +128,12 @@ public class ManholeScript : MonoBehaviour
 				Physics.SyncTransforms();
 				SewerCamera.SetActive(value: true);
 				SewerTimer = 5f;
+				if (Prompt.Yandere.YandereVision)
+				{
+					Prompt.Yandere.ResetYandereEffects();
+					Prompt.Yandere.YandereVision = false;
+				}
+				Prompt.Yandere.CanMove = false;
 			}
 		}
 		else if ((Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.Evidence) || (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.Evidence) || (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.ConcealedBodyPart))

@@ -56,6 +56,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public GameObject CeilingLight;
 
+	public GameObject SchemeCamera;
+
 	public GameObject SenpaiLight;
 
 	public GameObject Controller;
@@ -155,6 +157,7 @@ public class HomeCameraScript : MonoBehaviour
 	public void Start()
 	{
 		ResetBloom();
+		ResetChroma();
 		HomeSleep.Start();
 		Button.color = new Color(Button.color.r, Button.color.g, Button.color.b, 0f);
 		Focus.position = Target.position;
@@ -169,9 +172,21 @@ public class HomeCameraScript : MonoBehaviour
 			Triggers[7].Disable();
 			BasementJukebox.clip = NightBasement;
 			RoomJukebox.clip = NightRoom;
-			PlayMusic();
 			PantiesMangaLabel.text = "Read Manga";
 			BedroomRenderer.SetBlendShapeWeight(1, 100f);
+			PlayMusic();
+			if (!GameGlobals.CorkboardScene)
+			{
+				Debug.Log("HomeCamera is now attempting to activate the Corkboard cutscene.");
+				HomeYandere.transform.position = new Vector3(-2f, 0f, -2.5f);
+				HomeYandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+				HomeYandere.CharacterAnimation.Play("f02_thinkLoop_00");
+				base.gameObject.SetActive(value: false);
+				HomeYandere.CanMove = false;
+				SchemeCamera.SetActive(value: true);
+				Triggers[1].Disable();
+				RoomJukebox.volume = 0f;
+			}
 		}
 		else
 		{
@@ -442,6 +457,13 @@ public class HomeCameraScript : MonoBehaviour
 		settings.bloom.softKnee = 0.75f;
 		settings.bloom.radius = 4f;
 		Profile.bloom.settings = settings;
+	}
+
+	private void ResetChroma()
+	{
+		ChromaticAberrationModel.Settings settings = Profile.chromaticAberration.settings;
+		settings.intensity = 0.1f;
+		Profile.chromaticAberration.settings = settings;
 	}
 
 	private void BecomeEighties()

@@ -4092,11 +4092,13 @@ public class StudentManagerScript : MonoBehaviour
 	public void Load()
 	{
 		Eighties = GameGlobals.Eighties;
+		DoorID = 0;
 		DoorScript[] doors = Doors;
 		foreach (DoorScript doorScript in doors)
 		{
 			if (doorScript != null)
 			{
+				doorScript.Initialized = false;
 				doorScript.Start();
 			}
 		}
@@ -4110,6 +4112,14 @@ public class StudentManagerScript : MonoBehaviour
 		Yandere.Class.gameObject.SetActive(value: false);
 		Physics.SyncTransforms();
 		Yandere.Incinerator.ReturnFromSave();
+		doors = Doors;
+		foreach (DoorScript doorScript2 in doors)
+		{
+			if (doorScript2 != null)
+			{
+				doorScript2.Initialized = true;
+			}
+		}
 		for (ID = 1; ID < 101; ID++)
 		{
 			if (Students[ID] != null)
@@ -4320,11 +4330,11 @@ public class StudentManagerScript : MonoBehaviour
 			Yandere.ChangeClubwear();
 		}
 		doors = Doors;
-		foreach (DoorScript doorScript2 in doors)
+		foreach (DoorScript doorScript3 in doors)
 		{
-			if (doorScript2 != null && doorScript2.enabled && doorScript2.Open)
+			if (doorScript3 != null && doorScript3.enabled && doorScript3.Open)
 			{
-				doorScript2.OpenDoor();
+				doorScript3.OpenDoor();
 			}
 		}
 		BugScript[] bugs = Bugs;

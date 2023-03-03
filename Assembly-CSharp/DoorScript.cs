@@ -127,9 +127,12 @@ public class DoorScript : MonoBehaviour
 		TrapSwing = 12.15f;
 		Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 		StudentManager = Yandere.StudentManager;
-		StudentManager.Doors[StudentManager.DoorID] = this;
-		StudentManager.DoorID++;
-		DoorID = StudentManager.DoorID;
+		if (DoorID == 0)
+		{
+			StudentManager.Doors[StudentManager.DoorID] = this;
+			StudentManager.DoorID++;
+			DoorID = StudentManager.DoorID;
+		}
 		if (Identifier != null)
 		{
 			Identifier.ObjectID = "Door_" + DoorID;
@@ -421,11 +424,17 @@ public class DoorScript : MonoBehaviour
 				CanSetBucket = false;
 			}
 		}
-		if (BucketSet && Bucket.Gasoline && StudentManager.Students[StudentManager.RivalID] != null && !StudentManager.Students[StudentManager.RivalID].GasWarned)
+		if (!BucketSet || !Bucket.Gasoline || !(StudentManager.Students[StudentManager.RivalID] != null) || StudentManager.Students[StudentManager.RivalID].GasWarned)
 		{
-			StudentScript follower = StudentManager.Students[StudentManager.RivalID].Follower;
-			if (follower != null && follower.Alive && follower.CurrentAction == StudentActionType.Follow && Vector3.Distance(StudentManager.Students[StudentManager.RivalID].transform.position, follower.transform.position) < 10f && Vector3.Distance(base.transform.position, StudentManager.Students[StudentManager.RivalID].transform.position) < 10f)
+			return;
+		}
+		StudentScript follower = StudentManager.Students[StudentManager.RivalID].Follower;
+		if (follower != null && follower.Alive && follower.CurrentAction == StudentActionType.Follow && !follower.ReturningMisplacedWeapon && Vector3.Distance(StudentManager.Students[StudentManager.RivalID].transform.position, follower.transform.position) < 10f)
+		{
+			Debug.Log("The rival has a follower who is currently following her and is not busy doing anything else.");
+			if (Vector3.Distance(base.transform.position, StudentManager.Students[StudentManager.RivalID].transform.position) < 10f)
 			{
+				Debug.Log("The follower has warned the rival.");
 				Yandere.Subtitle.UpdateLabel(SubtitleType.GasWarning, 1, 5f);
 				StudentManager.Students[StudentManager.RivalID].GasWarned = true;
 			}

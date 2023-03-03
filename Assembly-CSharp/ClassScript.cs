@@ -150,6 +150,14 @@ public class ClassScript : MonoBehaviour
 		if (SceneManager.GetActiveScene().name != "SchoolScene")
 		{
 			base.enabled = false;
+			if (GameGlobals.Eighties)
+			{
+				Subject3GradeText = Subject3GradeTextEighties;
+				if (EightiesDesc.Length != 0)
+				{
+					Desc[3] = EightiesDesc[3];
+				}
+			}
 		}
 		else
 		{
@@ -163,14 +171,6 @@ public class ClassScript : MonoBehaviour
 			UpdateSubjectLabels();
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 1f);
 			UpdateBars();
-		}
-		if (GameGlobals.Eighties)
-		{
-			Subject3GradeText = Subject3GradeTextEighties;
-			if (EightiesDesc.Length != 0)
-			{
-				Desc[3] = EightiesDesc[3];
-			}
 		}
 	}
 

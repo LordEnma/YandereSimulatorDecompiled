@@ -518,6 +518,7 @@ public class CalendarScript : MonoBehaviour
 					}
 					StudentGlobals.FemaleUniform = femaleUniform;
 					StudentGlobals.MaleUniform = maleUniform;
+					GameGlobals.CorkboardScene = true;
 					SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				}
 				else if (Reset)
@@ -941,6 +942,7 @@ public class CalendarScript : MonoBehaviour
 				StudentGlobals.SetStudentPhotographed(i, value: true);
 			}
 		}
+		GameGlobals.CorkboardScene = true;
 		YanSave.SaveData("Profile_" + num + "_Slot_" + 11);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}

@@ -98,6 +98,8 @@ public static class GameGlobals
 
 	private const string Str_ItemRemoved = "ItemRemoved";
 
+	private const string Str_CorkboardScene = "CorkboardScene";
+
 	public static int Profile
 	{
 		get
@@ -638,6 +640,18 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool CorkboardScene
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_CorkboardScene");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_CorkboardScene", value);
+		}
+	}
+
 	public static int GetRivalEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminations" + elimID);
@@ -742,5 +756,6 @@ public static class GameGlobals
 		Globals.DeleteCollection("Profile_" + Profile + "_RivalEliminations", KeysOfRivalEliminations());
 		Globals.DeleteCollection("Profile_" + Profile + "_SpecificEliminations", KeysOfSpecificEliminations());
 		Globals.DeleteCollection("Profile_" + Profile + "_ItemRemoved", KeysOfItemRemoved());
+		Globals.Delete("Profile_" + Profile + "_" + CorkboardScene);
 	}
 }

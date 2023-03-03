@@ -360,6 +360,8 @@ public class YandereScript : MonoBehaviour
 
 	public float MurderousActionTimer;
 
+	public float AnnoyingGiggleTimer;
+
 	public float PrepareThrowTimer;
 
 	public float CinematicTimer;
@@ -740,11 +742,13 @@ public class YandereScript : MonoBehaviour
 
 	public bool FlapOut;
 
+	public bool InClass;
+
 	public bool NoDebug;
 
 	public bool Noticed;
 
-	public bool InClass;
+	public bool Obvious;
 
 	public bool Slender;
 
@@ -2133,6 +2137,12 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation["f02_prepareThrow_00"].layer = 39;
 		CharacterAnimation.Play("f02_prepareThrow_00");
 		CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
+		CharacterAnimation["f02_subtleThrowIdle_00"].layer = 40;
+		CharacterAnimation.Play("f02_subtleThrowIdle_00");
+		CharacterAnimation["f02_subtleThrowIdle_00"].weight = 0f;
+		CharacterAnimation["f02_obviousThrowIdle_00"].layer = 41;
+		CharacterAnimation.Play("f02_obviousThrowIdle_00");
+		CharacterAnimation["f02_obviousThrowIdle_00"].weight = 0f;
 		CharacterAnimation["f02_dipping_00"].speed = 2f;
 		CharacterAnimation["f02_stripping_00"].speed = 1.5f;
 		CharacterAnimation["f02_falconIdle_00"].speed = 2f;
@@ -2156,7 +2166,7 @@ public class YandereScript : MonoBehaviour
 			{
 				MyAudio.volume -= Time.deltaTime * 2f;
 			}
-			else if (PickUp != null && !PickUp.Clothing)
+			else if (PickUp != null && !PickUp.Clothing && !PickUp.LeftHand)
 			{
 				CharacterAnimation[CarryAnims[1]].weight = Mathf.Lerp(CharacterAnimation[CarryAnims[1]].weight, 1f, Time.deltaTime * 10f);
 			}
@@ -2500,6 +2510,10 @@ public class YandereScript : MonoBehaviour
 								UsingController = true;
 							}
 							NewArc.gameObject.SetActive(value: true);
+							PromptBar.ClearButtons();
+							PromptBar.Label[1].text = "Subtle/Obvious";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
 						}
 					}
 					else
@@ -2754,7 +2768,7 @@ public class YandereScript : MonoBehaviour
 						}
 						if (Stance.Current != StanceType.Crouching && Stance.Current != StanceType.Crawling)
 						{
-							if (YandereTimer < 0.5f && !Dragging && !Carrying && !Pod.activeInHierarchy && !Laughing)
+							if (YandereTimer < 0.5f && !Dragging && !Carrying && !Pod.activeInHierarchy && !PreparingThrow && !Laughing)
 							{
 								if (Sans)
 								{
@@ -2849,7 +2863,7 @@ public class YandereScript : MonoBehaviour
 											}
 											GiggleLines.Play();
 											Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
-											PotentiallyAnnoyingTimer = 1f;
+											AnnoyingGiggleTimer = 1f;
 											MyAudio.volume = 1f;
 											LaughTimer = 0.5f;
 											Laughing = true;
@@ -2909,7 +2923,7 @@ public class YandereScript : MonoBehaviour
 							MyAudio.Play();
 							GiggleLines.Play();
 							Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
-							PotentiallyAnnoyingTimer = 1f;
+							AnnoyingGiggleTimer = 1f;
 						}
 						YandereTimer = 0f;
 					}
@@ -3079,12 +3093,30 @@ public class YandereScript : MonoBehaviour
 			}
 			if (PreparingThrow && Time.timeScale > 0.0001f)
 			{
+				if (Input.GetButtonDown("B"))
+				{
+					PrepareThrowTimer = 0f;
+					Obvious = !Obvious;
+				}
 				if (Input.GetAxis("RT") > 0.5f || Input.GetMouseButtonDown(0))
 				{
 					CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
+					CharacterAnimation["f02_subtleThrowIdle_00"].weight = 0f;
+					CharacterAnimation["f02_obviousThrowIdle_00"].weight = 0f;
 					CharacterAnimation["f02_throw_00"].speed = 2f;
 					CharacterAnimation["f02_throw_00"].time = 0f;
-					CharacterAnimation.Play("f02_throw_00");
+					CharacterAnimation["f02_subtleThrow_00"].speed = 2f;
+					CharacterAnimation["f02_obviousThrow_00"].speed = 2f;
+					CharacterAnimation["f02_subtleThrow_00"].time = 0f;
+					CharacterAnimation["f02_obviousThrow_00"].time = 0f;
+					if (Obvious)
+					{
+						CharacterAnimation.Play("f02_throw_00");
+					}
+					else
+					{
+						CharacterAnimation.Play("f02_subtleThrow_00");
+					}
 					PreparingThrow = false;
 					Throwing = true;
 					CanMove = false;
@@ -3266,6 +3298,10 @@ public class YandereScript : MonoBehaviour
 			{
 				Debug.Log("If a student sees a student being electrocuted right now, they should check for Yandere-chan.");
 				PotentiallyMurderousTimer = Mathf.MoveTowards(PotentiallyMurderousTimer, 0f, Time.deltaTime);
+			}
+			if (AnnoyingGiggleTimer > 0f)
+			{
+				AnnoyingGiggleTimer = Mathf.MoveTowards(AnnoyingGiggleTimer, 0f, Time.deltaTime);
 			}
 			if (PotentiallyAnnoyingTimer > 0f)
 			{
@@ -4406,7 +4442,7 @@ public class YandereScript : MonoBehaviour
 				}
 			}
 		}
-		if (Throwing && CharacterAnimation["f02_throw_00"].time >= CharacterAnimation["f02_throw_00"].length)
+		if (Throwing && ((Obvious && CharacterAnimation["f02_throw_00"].time >= CharacterAnimation["f02_throw_00"].length) || (!Obvious && CharacterAnimation["f02_subtleThrow_00"].time >= CharacterAnimation["f02_subtleThrow_00"].length)))
 		{
 			Throwing = false;
 			CanMove = true;
@@ -4417,7 +4453,14 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				CharacterAnimation["f02_prepareThrow_00"].weight = 1f;
+				if (Obvious)
+				{
+					CharacterAnimation["f02_prepareThrow_00"].weight = 1f;
+				}
+				else
+				{
+					CharacterAnimation["f02_subtleThrowIdle_00"].weight = 1f;
+				}
 				PreparingThrow = true;
 				NewArc.gameObject.SetActive(value: true);
 			}
@@ -6615,13 +6658,24 @@ public class YandereScript : MonoBehaviour
 			if (PrepareThrowTimer < 1f)
 			{
 				PrepareThrowTimer += Time.deltaTime;
-				CharacterAnimation["f02_prepareThrow_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_prepareThrow_00"].weight, 1f, Time.deltaTime * 10f);
+				if (Obvious)
+				{
+					CharacterAnimation["f02_prepareThrow_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_prepareThrow_00"].weight, 1f, Time.deltaTime * 10f);
+					CharacterAnimation["f02_subtleThrowIdle_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_subtleThrowIdle_00"].weight, 0f, Time.deltaTime * 10f);
+				}
+				else
+				{
+					CharacterAnimation["f02_prepareThrow_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_prepareThrow_00"].weight, 0f, Time.deltaTime * 10f);
+					CharacterAnimation["f02_subtleThrowIdle_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_subtleThrowIdle_00"].weight, 1f, Time.deltaTime * 10f);
+				}
 			}
 		}
 		else if (PrepareThrowTimer < 1f)
 		{
 			PrepareThrowTimer += Time.deltaTime;
 			CharacterAnimation["f02_prepareThrow_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_prepareThrow_00"].weight, 0f, Time.deltaTime * 10f);
+			CharacterAnimation["f02_subtleThrowIdle_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_subtleThrowIdle_00"].weight, 0f, Time.deltaTime * 10f);
+			CharacterAnimation["f02_obviousThrowIdle_00"].weight = Mathf.MoveTowards(CharacterAnimation["f02_obviousThrowIdle_00"].weight, 0f, Time.deltaTime * 10f);
 		}
 		if (Egg)
 		{
@@ -7013,6 +7067,8 @@ public class YandereScript : MonoBehaviour
 		Throwing = false;
 		NewArc.gameObject.SetActive(value: false);
 		OutOfAmmo = false;
+		PromptBar.ClearButtons();
+		PromptBar.Show = false;
 	}
 
 	public void FixCamera()
