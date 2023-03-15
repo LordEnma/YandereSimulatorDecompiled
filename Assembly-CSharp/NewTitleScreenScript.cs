@@ -243,6 +243,14 @@ public class NewTitleScreenScript : MonoBehaviour
 			GameGlobals.PlayerHasBeatenDemo = true;
 		}
 		EightiesLogo.alpha = 0f;
+		if (!OptionGlobals.Vsync)
+		{
+			QualitySettings.vSyncCount = 0;
+		}
+		else
+		{
+			QualitySettings.vSyncCount = 1;
+		}
 		VtuberHairs[1].SetActive(value: false);
 	}
 

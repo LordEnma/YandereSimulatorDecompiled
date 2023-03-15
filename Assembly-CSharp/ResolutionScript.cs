@@ -181,6 +181,7 @@ public class ResolutionScript : MonoBehaviour
 	{
 		Screen.SetResolution(Widths[ResID], Heights[ResID], Screen.fullScreen);
 		ResolutionLabel.text = Widths[ResID] + " x " + Heights[ResID];
+		OptionGlobals.ResolutionID = ResID;
 	}
 
 	private void UpdateQuality()
@@ -206,20 +207,24 @@ public class ResolutionScript : MonoBehaviour
 	{
 		if (OptionGlobals.SubtitleSize < 1)
 		{
+			Debug.Log("We are now initializing the OptionGlobals for the first time.");
 			OptionGlobals.SubtitleSize = 2;
+			OptionGlobals.DepthOfField = true;
+			OptionGlobals.DisableScanlines = true;
 		}
-		OptionGlobals.DrawDistance = 350;
-		OptionGlobals.DrawDistanceLimit = 350;
-		OptionGlobals.DisableStatic = false;
-		OptionGlobals.DisableDisplacement = false;
-		OptionGlobals.DisableAbberation = false;
-		OptionGlobals.DisableVignette = false;
-		OptionGlobals.DisableDistortion = false;
-		OptionGlobals.DisableNoise = false;
-		OptionGlobals.DisableScanlines = true;
-		OptionGlobals.OpaqueWindows = false;
-		OptionGlobals.MotionBlur = false;
-		OptionGlobals.Fog = false;
+		Profile.fog.enabled = OptionGlobals.Fog;
+		Profile.antialiasing.enabled = !OptionGlobals.DisablePostAliasing;
+		Profile.ambientOcclusion.enabled = !OptionGlobals.DisableObscurance;
+		Profile.depthOfField.enabled = OptionGlobals.DepthOfField;
+		Profile.motionBlur.enabled = OptionGlobals.MotionBlur;
+		Profile.bloom.enabled = !OptionGlobals.DisableBloom;
+		Profile.chromaticAberration.enabled = !OptionGlobals.DisableAbberation;
+		Profile.vignette.enabled = !OptionGlobals.DisableVignette;
+		if (OptionGlobals.DrawDistance < 10)
+		{
+			OptionGlobals.DrawDistance = 350;
+			OptionGlobals.DrawDistanceLimit = 350;
+		}
 		GameGlobals.VtuberID = 0;
 	}
 }

@@ -233,16 +233,26 @@ public class HomeCameraScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			BecomeEighties();
-			return;
 		}
-		Butsudan.localPosition = new Vector3(-0.2041f, 0.095f, 0.241f);
-		Butsudan.localEulerAngles = new Vector3(0f, 135f, 0f);
-		ModernDayRoom.SetActive(value: true);
-		EightiesRoom.SetActive(value: false);
-		EightiesLabelPanel.SetActive(value: false);
-		LabelPanel.SetActive(value: true);
-		EightiesTriggers[1].transform.parent.gameObject.SetActive(value: false);
-		Triggers[1].transform.parent.gameObject.SetActive(value: true);
+		else
+		{
+			Butsudan.localPosition = new Vector3(-0.2041f, 0.095f, 0.241f);
+			Butsudan.localEulerAngles = new Vector3(0f, 135f, 0f);
+			ModernDayRoom.SetActive(value: true);
+			EightiesRoom.SetActive(value: false);
+			EightiesLabelPanel.SetActive(value: false);
+			LabelPanel.SetActive(value: true);
+			EightiesTriggers[1].transform.parent.gameObject.SetActive(value: false);
+			Triggers[1].transform.parent.gameObject.SetActive(value: true);
+		}
+		if (!OptionGlobals.Vsync)
+		{
+			QualitySettings.vSyncCount = 0;
+		}
+		else
+		{
+			QualitySettings.vSyncCount = 1;
+		}
 	}
 
 	private void LateUpdate()

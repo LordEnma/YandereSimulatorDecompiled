@@ -564,6 +564,8 @@ public class StudentScript : MonoBehaviour
 
 	public bool FoundFriendCorpse;
 
+	public bool LovestruckWaiting;
+
 	public bool MurderedByFragile;
 
 	public bool MurderedByStudent;
@@ -4600,7 +4602,7 @@ public class StudentScript : MonoBehaviour
 					{
 						TargetDistance = 5f;
 					}
-					if (StudentManager.LockerRoomArea.bounds.Contains(CurrentDestination.position) || StudentManager.Students[InfatuationID].Meeting)
+					if (StudentManager.LockerRoomArea.bounds.Contains(CurrentDestination.position) || StudentManager.EastBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.WestBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.Students[InfatuationID].Meeting)
 					{
 						CharacterAnimation.CrossFade(IdleAnim);
 						Pathfinding.canSearch = false;
@@ -8657,7 +8659,9 @@ public class StudentScript : MonoBehaviour
 									}
 									else
 									{
+										Debug.Log("The character who needs to be warned is currently in an event...");
 										CharacterAnimation.CrossFade(ScaredAnim);
+										StudentManager.Students[LovestruckTarget].LovestruckWaiting = true;
 									}
 								}
 								else if (ReportPhase == 2)
@@ -11656,9 +11660,18 @@ public class StudentScript : MonoBehaviour
 			}
 			if (StudentManager.Students[StudentManager.RivalID].Ragdoll.Concealed)
 			{
-				Alarm = 200f;
-				Yandere.PotentiallyMurderousTimer = 1f;
-				Witnessed = StudentWitnessType.Murder;
+				Debug.Log("A corpse that was being mourned has been concealed in a trash bag. " + Name + " should now react as if they know the player is a murderer.");
+				if (!Yandere.Noticed)
+				{
+					Alarm = 200f;
+					Alarmed = false;
+					MurdersWitnessed = 1;
+					WitnessedMurder = true;
+					Yandere.PotentiallyMurderousTimer = 1f;
+					Witnessed = StudentWitnessType.Murder;
+					BecomeAlarmed();
+					SenpaiWitnessingRivalDie = false;
+				}
 			}
 		}
 		if (SpecialRivalDeathReaction)
@@ -11775,9 +11788,18 @@ public class StudentScript : MonoBehaviour
 			}
 			if (StudentToMourn.Ragdoll.Concealed)
 			{
-				Alarm = 200f;
-				Yandere.PotentiallyMurderousTimer = 1f;
-				Witnessed = StudentWitnessType.Murder;
+				Debug.Log("A corpse that was being mourned has been concealed in a trash bag. " + Name + " should now react as if they know the player is a murderer.");
+				if (!Yandere.Noticed)
+				{
+					Alarm = 200f;
+					Alarmed = false;
+					MurdersWitnessed = 1;
+					WitnessedMurder = true;
+					Yandere.PotentiallyMurderousTimer = 1f;
+					Witnessed = StudentWitnessType.Murder;
+					WitnessMurder();
+					SpecialRivalDeathReaction = false;
+				}
 			}
 		}
 		if (SolvingPuzzle)
@@ -12627,8 +12649,14 @@ public class StudentScript : MonoBehaviour
 			{
 				YandereVisible = false;
 			}
+			if ((SenpaiWitnessingRivalDie && StudentManager.Students[StudentManager.RivalID].Ragdoll.Concealed) || (SpecialRivalDeathReaction && StudentToMourn.Ragdoll.Concealed))
+			{
+				NotAlarmedByYandereChan = false;
+				YandereVisible = true;
+			}
 			if (YandereVisible && !NotAlarmedByYandereChan)
 			{
+				Debug.Log("Got here.");
 				TimesAlarmed++;
 				if ((!Injured && Persona == PersonaType.Violent && Yandere.Armed && !WitnessedCorpse && !RespectEarned) || (Persona == PersonaType.Violent && Yandere.DelinquentFighting))
 				{
@@ -12710,8 +12738,9 @@ public class StudentScript : MonoBehaviour
 					Debug.Log(Name + ", using the Teacher Persona, has just witnessed Yandere-chan doing something bad.");
 					if (!Fleeing)
 					{
-						if (AnnoyedByGiggles > 4 && Yandere.PotentiallyAnnoyingTimer > 0f)
+						if (AnnoyedByGiggles > 4 && Yandere.AnnoyingGiggleTimer > 0f)
 						{
+							Debug.Log("It seems to be a giggle, specifically, that annoyed the teacher.");
 							Concern = 5;
 						}
 						if (Concern < 5)
@@ -12758,58 +12787,62 @@ public class StudentScript : MonoBehaviour
 					ToiletEvent.EndEvent();
 				}
 			}
-			else if (!WitnessedCorpse)
+			else
 			{
-				if (Yandere.Caught)
+				Debug.Log("Got here instead.");
+				if (!WitnessedCorpse)
 				{
-					if (Yandere.Mask == null)
+					if (Yandere.Caught)
 					{
-						if (Yandere.Pickpocketing)
+						if (Yandere.Mask == null)
 						{
-							Witnessed = StudentWitnessType.Pickpocketing;
-							RepLoss += 10f;
+							if (Yandere.Pickpocketing)
+							{
+								Witnessed = StudentWitnessType.Pickpocketing;
+								RepLoss += 10f;
+							}
+							else
+							{
+								Witnessed = StudentWitnessType.Theft;
+							}
+							RepDeduction = 0f;
+							CalculateReputationPenalty();
+							if (RepDeduction >= 0f)
+							{
+								RepLoss -= RepDeduction;
+							}
+							Reputation.PendingRep -= RepLoss * Paranoia;
+							PendingRep -= RepLoss * Paranoia;
 						}
-						else
-						{
-							Witnessed = StudentWitnessType.Theft;
-						}
-						RepDeduction = 0f;
-						CalculateReputationPenalty();
-						if (RepDeduction >= 0f)
-						{
-							RepLoss -= RepDeduction;
-						}
-						Reputation.PendingRep -= RepLoss * Paranoia;
-						PendingRep -= RepLoss * Paranoia;
 					}
-				}
-				else if (WitnessedLimb)
-				{
-					Witnessed = StudentWitnessType.SeveredLimb;
-				}
-				else if (WitnessedBloodyWeapon)
-				{
-					Witnessed = StudentWitnessType.BloodyWeapon;
-				}
-				else if (WitnessedBloodPool)
-				{
-					Witnessed = StudentWitnessType.BloodPool;
-				}
-				else if (WitnessedWeapon)
-				{
-					Witnessed = StudentWitnessType.DroppedWeapon;
+					else if (WitnessedLimb)
+					{
+						Witnessed = StudentWitnessType.SeveredLimb;
+					}
+					else if (WitnessedBloodyWeapon)
+					{
+						Witnessed = StudentWitnessType.BloodyWeapon;
+					}
+					else if (WitnessedBloodPool)
+					{
+						Witnessed = StudentWitnessType.BloodPool;
+					}
+					else if (WitnessedWeapon)
+					{
+						Witnessed = StudentWitnessType.DroppedWeapon;
+					}
+					else
+					{
+						Witnessed = StudentWitnessType.None;
+						DiscCheck = true;
+						Witness = false;
+					}
 				}
 				else
 				{
-					Witnessed = StudentWitnessType.None;
-					DiscCheck = true;
-					Witness = false;
+					Pathfinding.canSearch = false;
+					Pathfinding.canMove = false;
 				}
-			}
-			else
-			{
-				Pathfinding.canSearch = false;
-				Pathfinding.canMove = false;
 			}
 		}
 		else
@@ -13369,6 +13402,9 @@ public class StudentScript : MonoBehaviour
 		}
 		if (!Yandere.Armed && Drownable)
 		{
+			GameObject obj2 = UnityEngine.Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity);
+			obj2.GetComponent<AlarmDiscScript>().Originator = this;
+			obj2.GetComponent<AlarmDiscScript>().Silent = true;
 			Debug.Log("Just began to drown someone.");
 			if (VomitDoor != null)
 			{
@@ -14498,6 +14534,10 @@ public class StudentScript : MonoBehaviour
 						CharacterAnimation.CrossFade("senpaiFightReaction_00");
 						GameOverCause = GameOverType.Violence;
 						Concern = 5;
+					}
+					else
+					{
+						Debug.Log("Senpai witnessed...nothing?!");
 					}
 					if (Concern == 5)
 					{
@@ -16935,7 +16975,6 @@ public class StudentScript : MonoBehaviour
 					Subtitle.UpdateLabel(SubtitleType.TeacherCorpseReaction, 1, 3f);
 				}
 				float y = Corpse.AllColliders[0].transform.position.y;
-				Debug.Log("Corpse's Y position is: " + y);
 				float num = 0f;
 				num = ((y > 1.4f && y < 1.6f) ? 1.4f : ((y < 2f) ? 0f : ((y < 4f) ? 2f : ((y < 6f) ? 4f : ((y < 8f) ? 6f : ((y < 10f) ? 8f : ((!(y < 12f)) ? 12f : 10f)))))));
 				Debug.Log("PathfindingTarget's height has been set to: " + num);
@@ -20323,6 +20362,8 @@ public class StudentScript : MonoBehaviour
 			CharacterAnimation[AngryFaceAnim].weight = 0f;
 			CharacterAnimation["f02_wetIdle_00"].speed = 1.25f;
 			CharacterAnimation["f02_sleuthScan_00"].speed = 1.4f;
+			CharacterAnimation["f02_friendWave_00"].layer = 10;
+			CharacterAnimation["f02_friendWave_00"].weight = 0f;
 			BoobsResized = false;
 		}
 		else
@@ -20346,6 +20387,8 @@ public class StudentScript : MonoBehaviour
 			CharacterAnimation[AngryFaceAnim].layer = 2;
 			CharacterAnimation.Play(AngryFaceAnim);
 			CharacterAnimation[AngryFaceAnim].weight = 0f;
+			CharacterAnimation["friendWave_00"].layer = 10;
+			CharacterAnimation["friendWave_00"].weight = 0f;
 			CharacterAnimation["sleuthScan_00"].speed = 1.4f;
 		}
 		if (Persona == PersonaType.Sleuth)

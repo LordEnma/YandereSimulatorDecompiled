@@ -132,7 +132,6 @@ public class ShoulderCameraScript : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("Aiming a throwable object.");
 				if (Yandere.Obvious)
 				{
 					base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position, Time.deltaTime * 10f);

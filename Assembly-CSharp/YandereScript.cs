@@ -7047,7 +7047,6 @@ public class YandereScript : MonoBehaviour
 		SelfieGuide.SetActive(value: false);
 		PhonePromptBar.Show = false;
 		MainCamera.enabled = true;
-		UsingController = false;
 		Aiming = false;
 		Selfie = false;
 		Lewd = false;
@@ -7062,6 +7061,7 @@ public class YandereScript : MonoBehaviour
 		}
 		MyController.radius = 0.2f;
 		ShoulderCamera.OverShoulder = false;
+		UsingController = false;
 		PreparingThrow = false;
 		PrepareThrowTimer = 0f;
 		Throwing = false;

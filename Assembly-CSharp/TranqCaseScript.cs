@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TranqCaseScript : MonoBehaviour
 {
+	public StudentScript StudentToCheckFor;
+
 	public TranqDetectorScript Detector;
 
 	public YandereScript Yandere;
@@ -87,6 +89,12 @@ public class TranqCaseScript : MonoBehaviour
 					Ragdoll.Student.InstrumentBag[Ragdoll.Student.ClubMemberID].gameObject.SetActive(value: false);
 				}
 			}
+		}
+		if (StudentToCheckFor != null && !StudentToCheckFor.Alive)
+		{
+			Door.Prompt.enabled = true;
+			Door.enabled = true;
+			StudentToCheckFor = null;
 		}
 		if (!Animate)
 		{

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ClubManagerScript : MonoBehaviour
@@ -13,6 +14,8 @@ public class ClubManagerScript : MonoBehaviour
 	public BloodCleanerScript BloodCleaner;
 
 	public RefrigeratorScript Refrigerator;
+
+	public SchoolMangaScript SchoolManga;
 
 	public ClubWindowScript ClubWindow;
 
@@ -117,6 +120,8 @@ public class ClubManagerScript : MonoBehaviour
 	public int[] Club14Students;
 
 	public int[] Club15Students;
+
+	public bool ClubActivityReminder;
 
 	public bool LeaderAshamed;
 
@@ -243,83 +248,96 @@ public class ClubManagerScript : MonoBehaviour
 		AcidVats[1].Prompt.Hide();
 		AcidVats[2].Prompt.enabled = false;
 		AcidVats[2].Prompt.Hide();
+		if (ClubGlobals.Club != 0 && DateGlobals.Weekday == DayOfWeek.Friday && ClubGlobals.ActivitiesAttended == 0)
+		{
+			ClubActivityReminder = true;
+		}
 	}
 
 	private void Update()
 	{
-		if (Club == ClubType.None)
-		{
-			return;
-		}
-		if (Phase == 1)
-		{
-			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
-		}
-		if (Darkness.color.a == 0f)
+		if (Club != 0)
 		{
 			if (Phase == 1)
 			{
-				PromptBar.ClearButtons();
-				PromptBar.Label[0].text = "Continue";
-				PromptBar.UpdateButtons();
-				PromptBar.Show = true;
-				ClubWindow.PerformingActivity = true;
-				ClubWindow.ActivityWindow.gameObject.SetActive(value: true);
-				ClubWindow.ActivityLabel.text = ClubWindow.ActivityDescs[(int)Club];
-				StudentManager.Portal.GetComponent<PortalScript>().EndFinalEvents();
-				ActivitiesAttended++;
-				Debug.Log("Incremending ActivitiesAttended. That number is now " + ActivitiesAttended);
-				Phase++;
+				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
 			}
-			else if (Phase == 2)
+			if (Darkness.color.a == 0f)
 			{
-				if (ClubWindow.ActivityWindow.localScale.x > 0.9f)
+				if (Phase == 1)
 				{
-					if (Club == ClubType.MartialArts)
+					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = "Continue";
+					PromptBar.UpdateButtons();
+					PromptBar.Show = true;
+					ClubWindow.PerformingActivity = true;
+					ClubWindow.ActivityWindow.gameObject.SetActive(value: true);
+					ClubWindow.ActivityLabel.text = ClubWindow.ActivityDescs[(int)Club];
+					StudentManager.Portal.GetComponent<PortalScript>().EndFinalEvents();
+					ActivitiesAttended++;
+					Debug.Log("Incremending ActivitiesAttended. That number is now " + ActivitiesAttended);
+					Phase++;
+				}
+				else if (Phase == 2)
+				{
+					if (ClubWindow.ActivityWindow.localScale.x > 0.9f)
 					{
-						if (ClubPhase == 0)
+						if (Club == ClubType.MartialArts)
 						{
-							MyAudio.clip = MotivationalQuotes[Random.Range(0, MotivationalQuotes.Length)];
-							MyAudio.Play();
-							ClubEffect = true;
-							ClubPhase++;
-							TimeLimit = MyAudio.clip.length;
-						}
-						else if (ClubPhase == 1)
-						{
-							Timer += Time.deltaTime;
-							if (Timer > TimeLimit)
+							if (ClubPhase == 0)
 							{
-								for (ID = 0; ID < Club6Students.Length; ID++)
-								{
-									if (StudentManager.Students[ID] != null && !StudentManager.Students[ID].Tranquil)
-									{
-										StudentManager.Students[Club6Students[ID]].GetComponent<AudioSource>().volume = 1f;
-									}
-								}
+								MyAudio.clip = MotivationalQuotes[UnityEngine.Random.Range(0, MotivationalQuotes.Length)];
+								MyAudio.Play();
+								ClubEffect = true;
 								ClubPhase++;
+								TimeLimit = MyAudio.clip.length;
+							}
+							else if (ClubPhase == 1)
+							{
+								Timer += Time.deltaTime;
+								if (Timer > TimeLimit)
+								{
+									for (ID = 0; ID < Club6Students.Length; ID++)
+									{
+										if (StudentManager.Students[ID] != null && !StudentManager.Students[ID].Tranquil)
+										{
+											StudentManager.Students[Club6Students[ID]].GetComponent<AudioSource>().volume = 1f;
+										}
+									}
+									ClubPhase++;
+								}
 							}
 						}
-					}
-					if (Input.GetButtonDown("A"))
-					{
-						ClubWindow.PerformingActivity = false;
-						PromptBar.Show = false;
-						Phase++;
+						if (Input.GetButtonDown("A"))
+						{
+							ClubWindow.PerformingActivity = false;
+							PromptBar.Show = false;
+							Phase++;
+						}
 					}
 				}
+				else if (ClubWindow.ActivityWindow.localScale.x < 0.1f)
+				{
+					StudentManager.Reputation.UpdateRep();
+					Police.Darkness.enabled = true;
+					Police.ClubActivity = false;
+					Police.FadeOut = true;
+				}
 			}
-			else if (ClubWindow.ActivityWindow.localScale.x < 0.1f)
+			if (Club == ClubType.Occult)
 			{
-				StudentManager.Reputation.UpdateRep();
-				Police.Darkness.enabled = true;
-				Police.ClubActivity = false;
-				Police.FadeOut = true;
+				MyAudio.volume = 1f - Darkness.color.a;
 			}
 		}
-		if (Club == ClubType.Occult)
+		if (ClubActivityReminder && StudentManager.Clock.HourTime >= 17f)
 		{
-			MyAudio.volume = 1f - Darkness.color.a;
+			Yandere.NotificationManager.CustomText = "unless you attend a club activity today!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Yandere.NotificationManager.CustomText = "You will be kicked out of the club you joined";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Yandere.NotificationManager.CustomText = "You haven't attended club activities this week!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			ClubActivityReminder = false;
 		}
 	}
 
@@ -973,7 +991,10 @@ public class ClubManagerScript : MonoBehaviour
 			if (StudentManager.Eighties)
 			{
 				Viewfinder.SetActive(value: true);
+				return;
 			}
+			SchoolManga.enabled = true;
+			SchoolManga.Prompt.enabled = true;
 		}
 		else if (Yandere.Club == ClubType.Science)
 		{
@@ -1067,6 +1088,10 @@ public class ClubManagerScript : MonoBehaviour
 					if (StudentManager.Eighties)
 					{
 						Viewfinder.SetActive(value: false);
+					}
+					else
+					{
+						SchoolManga.Disable();
 					}
 				}
 				else if (Yandere.Club == ClubType.Science)

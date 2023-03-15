@@ -237,6 +237,7 @@ public class GazerEyesScript : MonoBehaviour
 			Target.FocusOnYandere = false;
 			Target.EatingSnack = false;
 			Target.Electrified = true;
+			Target.Attacked = false;
 			Target.Fleeing = false;
 			Target.Dying = true;
 			Target.Shy = false;

@@ -20,6 +20,8 @@ public class MatchboxScript : MonoBehaviour
 
 	public string ProjectileName;
 
+	public float ThrowTimer;
+
 	public int Ammo;
 
 	private void Start()
@@ -58,6 +60,8 @@ public class MatchboxScript : MonoBehaviour
 			}
 			if ((Input.GetAxis("RT") > 0.5f || Input.GetMouseButtonDown(0)) && ((Prompt.Yandere.PreparingThrow && !Throwing) || (Prompt.Yandere.Throwing && !Throwing)))
 			{
+				Debug.Log("Threw an object. Throwing was false?");
+				ThrowTimer = 0.1f;
 				Throwing = true;
 				MyAudio.Play();
 				GameObject obj = Object.Instantiate(Match, Prompt.Yandere.ItemParent.position, Prompt.Yandere.transform.rotation);
@@ -96,9 +100,13 @@ public class MatchboxScript : MonoBehaviour
 			Prompt.HideButton[0] = true;
 			Prompt.HideButton[3] = false;
 		}
-		if (Throwing && !Prompt.Yandere.Throwing)
+		if (Throwing)
 		{
-			Throwing = false;
+			ThrowTimer = Mathf.MoveTowards(ThrowTimer, 0f, Time.deltaTime);
+			if (ThrowTimer == 0f && !Prompt.Yandere.Throwing)
+			{
+				Throwing = false;
+			}
 		}
 		if (!Prompt.Yandere.PreparingThrow && LabelUpdated)
 		{

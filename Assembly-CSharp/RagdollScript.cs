@@ -1168,7 +1168,6 @@ public class RagdollScript : MonoBehaviour
 		if (Yandere.PickUp != null)
 		{
 			Yandere.PickUp.GetComponent<AudioSource>().Play();
-			Yandere.MurderousActionTimer = 1f;
 		}
 		if (Student.BikiniAttacher != null && Student.BikiniAttacher.newRenderer != null)
 		{
@@ -1199,6 +1198,28 @@ public class RagdollScript : MonoBehaviour
 		if (!Student.Male)
 		{
 			Student.Cosmetic.DisableFingernails();
+		}
+		if (Student.Yandere.PickUp != null && Student.Yandere.PickUp.GarbageBagBox && Student.Yandere.PickUp.BodyBags > 0)
+		{
+			Student.Yandere.PickUp.BodyBags--;
+			if (Student.Yandere.PickUp.BodyBags == 0)
+			{
+				Yandere.NotificationManager.CustomText = "Out of bodybags!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				GameObject obj = Prompt.Yandere.PickUp.gameObject;
+				Prompt.Yandere.EmptyHands();
+				obj.SetActive(value: false);
+			}
+			else if (Student.Yandere.PickUp.BodyBags == 1)
+			{
+				Yandere.NotificationManager.CustomText = "1 bodybag remaining!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else
+			{
+				Yandere.NotificationManager.CustomText = Student.Yandere.PickUp.BodyBags + " bodybags remaining!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
 		}
 	}
 

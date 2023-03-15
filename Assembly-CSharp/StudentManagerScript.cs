@@ -5183,13 +5183,13 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void EightiesWeek5RoutineAdjustments()
 	{
-		SunbatheAllDay(25);
-		SunbatheAllDay(30);
-		SunbatheAllDay(35);
-		SunbatheAllDay(40);
 		SunbatheAllDay(45);
 		SunbatheAllDay(50);
 		SunbatheAllDay(55);
+		SunbatheAllDay(60);
+		SunbatheAllDay(65);
+		SunbatheAllDay(70);
+		SunbatheAllDay(75);
 	}
 
 	public void EightiesWeek6RoutineAdjustments()

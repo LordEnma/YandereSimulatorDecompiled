@@ -123,7 +123,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 				EndEvent();
 			}
 		}
-		if (Rival.Alarmed || Clock.HourTime > 8f || Rival.Splashed || Rival.Dodging || Rival.GoAway)
+		if (Rival.Alarmed || Clock.HourTime > 8f || Rival.Splashed || Rival.Dodging || Rival.GoAway || Rival.LovestruckWaiting)
 		{
 			EndEvent();
 		}
@@ -202,7 +202,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 		Jukebox.Dip = 1f;
 		EventSubtitle.text = string.Empty;
 		base.enabled = false;
-		if (Rival.GoAway)
+		if (Rival != null && Rival.GoAway)
 		{
 			Rival.Subtitle.CustomText = "Ugh, seriously?! Guess I'll just do it later...";
 			Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);

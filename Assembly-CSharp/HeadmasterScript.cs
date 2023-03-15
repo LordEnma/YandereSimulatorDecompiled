@@ -533,6 +533,7 @@ public class HeadmasterScript : MonoBehaviour
 		Yandere.CharacterAnimation["f02_swingB_00"].time = 0.5f;
 		Yandere.RPGCamera.enabled = false;
 		Yandere.FakingReaction = false;
+		Yandere.TargetStudent = null;
 		Yandere.Attacked = true;
 		Heartbroken.Headmaster = true;
 		Jukebox.Volume = 0f;

@@ -1039,6 +1039,11 @@ public class PoliceScript : MonoBehaviour
 				Debug.Log("Subtracting " + Corpses * 10 + "% school atmosphere because " + Corpses + " murders are confirmed.");
 				SchoolGlobals.SchoolAtmosphere -= (float)Corpses * 0.1f;
 			}
+			if (DrownVictims > 0)
+			{
+				Debug.Log("Subtracting " + DrownVictims * 10 + "% school atmosphere because " + DrownVictims + " drown victims are confirmed.");
+				SchoolGlobals.SchoolAtmosphere -= (float)DrownVictims * 0.1f;
+			}
 			if (DrownVictims + Corpses > 0)
 			{
 				Debug.Log("Today, there were corpses on school grounds.");
@@ -1097,17 +1102,28 @@ public class PoliceScript : MonoBehaviour
 					}
 				}
 			}
+			int num = 0;
 			if (LimbParent.childCount > 0)
 			{
-				Debug.Log("Today, there were " + LimbParent.childCount + " body parts on school grounds.");
 				foreach (Transform item in LimbParent)
 				{
-					if (!(item.gameObject != null) || !(item.GetComponent<BodyPartScript>() != null))
+					if (item.gameObject.activeInHierarchy)
+					{
+						num++;
+					}
+				}
+			}
+			if (num > 0)
+			{
+				Debug.Log("Today, there were " + num + " body parts on school grounds.");
+				foreach (Transform item2 in LimbParent)
+				{
+					if (!(item2.gameObject != null) || !item2.gameObject.activeInHierarchy || !(item2.GetComponent<BodyPartScript>() != null))
 					{
 						continue;
 					}
-					Debug.Log("This limb's name is " + item.name + ".");
-					int studentID = item.GetComponent<BodyPartScript>().StudentID;
+					Debug.Log("This limb's name is " + item2.name + ".");
+					int studentID = item2.GetComponent<BodyPartScript>().StudentID;
 					Debug.Log("Limb belonged to Student # " + studentID + ".");
 					if (!IDsToIgnore.Contains(studentID))
 					{

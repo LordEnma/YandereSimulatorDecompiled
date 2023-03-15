@@ -325,6 +325,7 @@ public class IncineratorScript : MonoBehaviour
 				Yandere.Police.MurderScene = false;
 			}
 			BloodyClothing = 0;
+			BloodyWeapons = 0;
 			HiddenCorpses = 0;
 			MurderWeapons = 0;
 			BodyParts = 0;

@@ -14,6 +14,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public PostProcessingProfile Profile;
 
+	public InputDeviceScript InputDevice;
+
 	public AutoSaveManager SaveManager;
 
 	public UILabel InstructionLabel;
@@ -140,6 +142,22 @@ public class StalkerYandereScript : MonoBehaviour
 
 	private int UpdateFrame;
 
+	public UILabel KeyboardControls;
+
+	public UILabel GamepadControls;
+
+	public GameObject ShoulderCamera;
+
+	public NewArcScript NewArc;
+
+	public bool UsingController;
+
+	public float PrepareThrowTimer;
+
+	public bool PreparingThrow;
+
+	public bool Throwing;
+
 	public CameraFilterPack_Colors_Adjust_PreFilters YandereFilter;
 
 	public HighlightingRenderer HighlightingR;
@@ -166,6 +184,14 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public void Start()
 	{
+		if (!OptionGlobals.Vsync)
+		{
+			QualitySettings.vSyncCount = 0;
+		}
+		else
+		{
+			QualitySettings.vSyncCount = 1;
+		}
 		if (BlondePony != null && GameGlobals.BlondeHair)
 		{
 			PonytailRenderer.material.mainTexture = BlondePony;
@@ -235,6 +261,12 @@ public class StalkerYandereScript : MonoBehaviour
 			UpdatePebbles();
 		}
 		VtuberCheck();
+		if (Asylum)
+		{
+			MyAnimation["f02_prepareThrow_00"].layer = 1;
+			MyAnimation.Play("f02_prepareThrow_00");
+			MyAnimation["f02_prepareThrow_00"].weight = 0f;
+		}
 	}
 
 	private void Update()
@@ -311,37 +343,21 @@ public class StalkerYandereScript : MonoBehaviour
 			UpdateMovement();
 			if (Pebbles > 0)
 			{
-				if (!Arc.gameObject.activeInHierarchy)
+				if (InputDevice.Type == InputDeviceType.Gamepad)
 				{
-					Arc.Timer = 1f;
-				}
-				Arc.gameObject.SetActive(Input.GetButton("X"));
-				if (Arc.gameObject.activeInHierarchy)
-				{
-					ThrowButton.SetActive(value: true);
-					AimButton.SetActive(value: false);
-					if (Input.GetButtonDown("A"))
+					if (!GamepadControls.enabled)
 					{
-						MyAudio.Play();
-						Rigidbody component = UnityEngine.Object.Instantiate(Pebble, Arc.transform.position, base.transform.rotation).GetComponent<Rigidbody>();
-						component.isKinematic = false;
-						component.useGravity = true;
-						component.AddRelativeForce(Vector3.up * 250f);
-						component.AddRelativeForce(Vector3.forward * 250f);
-						Pebbles--;
-						UpdatePebbles();
-						if (Pebbles < 1)
-						{
-							Arc.gameObject.SetActive(value: false);
-						}
+						KeyboardControls.enabled = false;
+						GamepadControls.enabled = true;
 					}
 				}
-				else
+				else if (!KeyboardControls.enabled)
 				{
-					ThrowButton.SetActive(value: false);
-					AimButton.SetActive(value: true);
+					KeyboardControls.enabled = true;
+					GamepadControls.enabled = false;
 				}
 			}
+			UpdateAim();
 		}
 		else
 		{
@@ -409,6 +425,7 @@ public class StalkerYandereScript : MonoBehaviour
 					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, b, 10f * Time.deltaTime);
 				}
 			}
+			UpdateThrow();
 		}
 		if (YandereFilter != null)
 		{
@@ -461,6 +478,112 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
+	private void UpdateAim()
+	{
+		if ((Input.GetAxis("LT") > 0.5f || Input.GetMouseButton(1)) && Pebbles > 0 && !PreparingThrow && !Throwing)
+		{
+			base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
+			PreparingThrow = true;
+			PrepareThrowTimer = 0f;
+			RPGCamera.enabled = false;
+			ShoulderCamera.SetActive(value: true);
+			if (Input.GetAxis("LT") > 0.5f)
+			{
+				UsingController = true;
+			}
+			NewArc.gameObject.SetActive(value: true);
+		}
+		if (!PreparingThrow || !(Time.timeScale > 0.0001f))
+		{
+			return;
+		}
+		if (Input.GetAxis("RT") > 0.5f || Input.GetMouseButtonDown(0))
+		{
+			MyAnimation["f02_prepareThrow_00"].weight = 0f;
+			MyAnimation["f02_throw_00"].speed = 2f;
+			MyAnimation["f02_throw_00"].time = 0f;
+			MyAnimation.Play("f02_throw_00");
+			PreparingThrow = false;
+			Throwing = true;
+			CanMove = false;
+			NewArc.gameObject.SetActive(value: false);
+			MyAudio.Play();
+			Rigidbody component = UnityEngine.Object.Instantiate(Pebble, Arc.transform.position, base.transform.rotation).GetComponent<Rigidbody>();
+			component.isKinematic = false;
+			component.useGravity = true;
+			component.AddRelativeForce(Vector3.forward * NewArc.ForwardMomentum, ForceMode.VelocityChange);
+			Pebbles--;
+			UpdatePebbles();
+			if (Pebbles < 1)
+			{
+				Arc.gameObject.SetActive(value: false);
+			}
+		}
+		else if ((UsingController && Input.GetAxis("LT") < 0.5f) || (!UsingController && !Input.GetMouseButton(1)))
+		{
+			StopAiming();
+		}
+	}
+
+	public void UpdateThrow()
+	{
+		if (Throwing && MyAnimation["f02_throw_00"].time >= MyAnimation["f02_throw_00"].length)
+		{
+			Throwing = false;
+			CanMove = true;
+			if (Pebbles == 0)
+			{
+				Debug.Log("Was out of ammo.");
+				StopAiming();
+			}
+			else
+			{
+				MyAnimation["f02_prepareThrow_00"].weight = 1f;
+				PreparingThrow = true;
+				NewArc.gameObject.SetActive(value: true);
+			}
+		}
+	}
+
+	public void StopAiming()
+	{
+		ShoulderCamera.SetActive(value: false);
+		RPGCamera.enabled = true;
+		UsingController = false;
+		PreparingThrow = false;
+		PrepareThrowTimer = 0f;
+		Throwing = false;
+		NewArc.gameObject.SetActive(value: false);
+	}
+
+	private void LateUpdate()
+	{
+		if (Asylum)
+		{
+			if (PreparingThrow)
+			{
+				if (PrepareThrowTimer < 1f)
+				{
+					PrepareThrowTimer += Time.deltaTime;
+					MyAnimation["f02_prepareThrow_00"].weight = Mathf.MoveTowards(MyAnimation["f02_prepareThrow_00"].weight, 1f, Time.deltaTime * 10f);
+				}
+			}
+			else if (PrepareThrowTimer < 1f)
+			{
+				PrepareThrowTimer += Time.deltaTime;
+				MyAnimation["f02_prepareThrow_00"].weight = Mathf.MoveTowards(MyAnimation["f02_prepareThrow_00"].weight, 0f, Time.deltaTime * 10f);
+			}
+		}
+		if (Object != null)
+		{
+			if (RightArm != null)
+			{
+				RightArm.localEulerAngles = new Vector3(RightArm.localEulerAngles.x, RightArm.localEulerAngles.y + 15f, RightArm.localEulerAngles.z);
+			}
+			Object.LookAt(ObjectTarget);
+		}
+	}
+
 	private void UpdateMovement()
 	{
 		if (!OptionGlobals.ToggleRun)
@@ -478,66 +601,93 @@ public class StalkerYandereScript : MonoBehaviour
 		MyController.Move(Physics.gravity * Time.deltaTime);
 		float axis = Input.GetAxis("Vertical");
 		float axis2 = Input.GetAxis("Horizontal");
-		Vector3 vector = MainCamera.transform.TransformDirection(Vector3.forward);
-		vector.y = 0f;
-		vector = vector.normalized;
-		Vector3 vector2 = new Vector3(vector.z, 0f, 0f - vector.x);
-		Vector3 vector3 = axis2 * vector2 + axis * vector;
-		Quaternion b = Quaternion.identity;
-		if (vector3 != Vector3.zero)
+		if (!PreparingThrow)
 		{
-			b = Quaternion.LookRotation(vector3);
-		}
-		if (vector3 != Vector3.zero)
-		{
-			base.transform.rotation = Quaternion.Lerp(base.transform.rotation, b, Time.deltaTime * 10f);
-		}
-		else
-		{
-			b = new Quaternion(0f, 0f, 0f, 0f);
-		}
-		if (!Street)
-		{
-			if (Stance.Current == StanceType.Standing)
+			Vector3 vector = MainCamera.transform.TransformDirection(Vector3.forward);
+			vector.y = 0f;
+			vector = vector.normalized;
+			Vector3 vector2 = new Vector3(vector.z, 0f, 0f - vector.x);
+			Vector3 vector3 = axis2 * vector2 + axis * vector;
+			Quaternion b = Quaternion.identity;
+			if (vector3 != Vector3.zero)
 			{
-				if (Input.GetButtonDown("RS"))
+				b = Quaternion.LookRotation(vector3);
+			}
+			if (vector3 != Vector3.zero)
+			{
+				base.transform.rotation = Quaternion.Lerp(base.transform.rotation, b, Time.deltaTime * 10f);
+			}
+			else
+			{
+				b = new Quaternion(0f, 0f, 0f, 0f);
+			}
+			if (!Street)
+			{
+				if (Stance.Current == StanceType.Standing)
 				{
-					Stance.Current = StanceType.Crouching;
-					MyController.center = new Vector3(0f, 0.5f, 0f);
-					MyController.height = 1f;
+					if (Input.GetButtonDown("RS"))
+					{
+						Stance.Current = StanceType.Crouching;
+						MyController.center = new Vector3(0f, 0.5f, 0f);
+						MyController.height = 1f;
+					}
+				}
+				else if (Input.GetButtonDown("RS"))
+				{
+					Stance.Current = StanceType.Standing;
+					MyController.center = new Vector3(0f, 0.75f, 0f);
+					MyController.height = 1.5f;
 				}
 			}
-			else if (Input.GetButtonDown("RS"))
+			if (axis != 0f || axis2 != 0f)
 			{
-				Stance.Current = StanceType.Standing;
-				MyController.center = new Vector3(0f, 0.75f, 0f);
-				MyController.height = 1.5f;
-			}
-		}
-		if (axis != 0f || axis2 != 0f)
-		{
-			if (Running)
-			{
-				if (Stance.Current == StanceType.Crouching)
+				if (Running)
 				{
-					MyAnimation.CrossFade(CrouchRunAnim);
-					MyController.Move(base.transform.forward * CrouchRunSpeed * Time.deltaTime);
+					if (Stance.Current == StanceType.Crouching)
+					{
+						MyAnimation.CrossFade(CrouchRunAnim);
+						MyController.Move(base.transform.forward * CrouchRunSpeed * Time.deltaTime);
+					}
+					else
+					{
+						MyAnimation.CrossFade(RunAnim);
+						MyController.Move(base.transform.forward * RunSpeed * Time.deltaTime);
+					}
+				}
+				else if (Stance.Current == StanceType.Crouching)
+				{
+					MyAnimation.CrossFade(CrouchWalkAnim);
+					MyController.Move(base.transform.forward * (CrouchWalkSpeed * Time.deltaTime));
 				}
 				else
 				{
-					MyAnimation.CrossFade(RunAnim);
-					MyController.Move(base.transform.forward * RunSpeed * Time.deltaTime);
+					MyAnimation.CrossFade(WalkAnim);
+					MyController.Move(base.transform.forward * (WalkSpeed * Time.deltaTime));
 				}
 			}
 			else if (Stance.Current == StanceType.Crouching)
 			{
+				MyAnimation.CrossFade(CrouchIdleAnim);
+			}
+			else
+			{
+				MyAnimation.CrossFade(IdleAnim);
+			}
+			return;
+		}
+		if (axis != 0f || axis2 != 0f)
+		{
+			if (Stance.Current == StanceType.Crouching)
+			{
 				MyAnimation.CrossFade(CrouchWalkAnim);
-				MyController.Move(base.transform.forward * (CrouchWalkSpeed * Time.deltaTime));
+				MyController.Move(base.transform.forward * (CrouchWalkSpeed * Time.deltaTime * axis));
+				MyController.Move(base.transform.right * (CrouchWalkSpeed * Time.deltaTime * axis2));
 			}
 			else
 			{
 				MyAnimation.CrossFade(WalkAnim);
-				MyController.Move(base.transform.forward * (WalkSpeed * Time.deltaTime));
+				MyController.Move(base.transform.forward * (WalkSpeed * Time.deltaTime * axis));
+				MyController.Move(base.transform.right * (WalkSpeed * Time.deltaTime * axis2));
 			}
 		}
 		else if (Stance.Current == StanceType.Crouching)
@@ -548,17 +698,13 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			MyAnimation.CrossFade(IdleAnim);
 		}
-	}
-
-	private void LateUpdate()
-	{
-		if (Object != null)
+		if (!RPGCamera.invertAxisX)
 		{
-			if (RightArm != null)
-			{
-				RightArm.localEulerAngles = new Vector3(RightArm.localEulerAngles.x, RightArm.localEulerAngles.y + 15f, RightArm.localEulerAngles.z);
-			}
-			Object.LookAt(ObjectTarget);
+			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
+		}
+		else
+		{
+			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y - Input.GetAxis("Mouse X") * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
 		}
 	}
 

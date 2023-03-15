@@ -114,7 +114,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 					Ganguro.Routine = false;
 					Ganguro.InEvent = true;
 					Rival.InEvent = true;
-					if (Friend != null && Friend.CurrentAction != StudentActionType.Follow)
+					if (Friend != null && (Friend.InvestigatingBloodPool || Friend.ReturningMisplacedWeapon || Friend.CurrentAction != StudentActionType.Follow))
 					{
 						IgnoreFriend = true;
 						Friend = null;
@@ -160,6 +160,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 				Ganguro.Pathfinding.speed = 1f;
 				Phase++;
 			}
+			CheckForFriendDistraction();
 			if (Friend != null)
 			{
 				Friend.Distracted = true;
@@ -185,6 +186,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		}
 		else if (Phase == 4)
 		{
+			CheckForFriendDistraction();
 			if (Friend != null && Rival.DistanceToDestination < 5f)
 			{
 				Friend.CurrentDestination = Location[3];
@@ -376,6 +378,15 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		if (Quaternion.Angle(Ganguro.transform.rotation, Location[2].rotation) > 1f)
 		{
 			Ganguro.transform.rotation = Quaternion.Slerp(Ganguro.transform.rotation, Location[2].rotation, 10f * Time.deltaTime);
+		}
+	}
+
+	private void CheckForFriendDistraction()
+	{
+		if (Friend != null && (Friend.InvestigatingBloodPool || Friend.ReturningMisplacedWeapon || Friend.CurrentAction != StudentActionType.Follow))
+		{
+			IgnoreFriend = true;
+			Friend = null;
 		}
 	}
 }

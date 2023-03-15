@@ -15,6 +15,11 @@ public class DoorOpenerScript : MonoBehaviour
 			base.transform.localPosition = new Vector3(base.transform.localPosition.x, 0.15f, base.transform.localPosition.z);
 			component.size = new Vector3(component.size.x, 0.3f, component.size.y);
 		}
+		if (GameGlobals.KokonaTutorial)
+		{
+			base.gameObject.SetActive(value: false);
+			base.enabled = false;
+		}
 	}
 
 	private void OnTriggerEnter(Collider other)

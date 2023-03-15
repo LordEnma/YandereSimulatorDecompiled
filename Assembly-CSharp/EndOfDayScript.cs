@@ -24,6 +24,8 @@ public class EndOfDayScript : MonoBehaviour
 
 	public RummageSpotScript RummageSpot;
 
+	public SchoolMangaScript SchoolManga;
+
 	public VoidGoddessScript VoidGoddess;
 
 	public WoodChipperScript WoodChipper;
@@ -2523,6 +2525,9 @@ public class EndOfDayScript : MonoBehaviour
 		ClassGlobals.LanguageGrade = Class.LanguageGrade;
 		ClassGlobals.PhysicalGrade = Class.PhysicalGrade;
 		ClassGlobals.PsychologyGrade = Class.PsychologyGrade;
+		PlayerGlobals.Numbness = Class.Numbness;
+		PlayerGlobals.Seduction = Class.Seduction;
+		PlayerGlobals.Enlightenment = Class.Enlightenment;
 		PlayerGlobals.Headset = Yandere.Inventory.Headset;
 		PlayerGlobals.DirectionalMic = Yandere.Inventory.DirectionalMic;
 		WeaponManager.TrackDumpedWeapons();
@@ -2561,6 +2566,7 @@ public class EndOfDayScript : MonoBehaviour
 		DatingGlobals.RivalSabotaged = StudentManager.SabotageProgress;
 		PlayerGlobals.PersonaID = Yandere.PersonaID;
 		PlayerGlobals.CorpsesDiscovered += Police.Corpses;
+		PlayerGlobals.CorpsesDiscovered += Police.DrownVictims;
 		ClassGlobals.BonusStudyPoints = Class.StudyPoints + Class.BonusPoints;
 		HomeGlobals.LateForSchool = false;
 		PlayerGlobals.ShrineItems += ShrineItemsCollected;
@@ -2697,6 +2703,7 @@ public class EndOfDayScript : MonoBehaviour
 			GameGlobals.GrudgeConversationHappened = true;
 		}
 		Yandere.PauseScreen.PhotoGallery.SavePhotosTaken();
+		SchoolManga.SaveMangaProgress();
 		Yandere.CameraEffects.UpdateVignette(0f);
 	}
 

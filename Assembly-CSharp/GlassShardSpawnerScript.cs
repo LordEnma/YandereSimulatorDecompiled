@@ -10,6 +10,8 @@ public class GlassShardSpawnerScript : MonoBehaviour
 
 	public GameObject[] SpawnedShards;
 
+	public Vector3[] ShardOrigins;
+
 	public float FallTimer;
 
 	public bool Fall;
@@ -32,6 +34,8 @@ public class GlassShardSpawnerScript : MonoBehaviour
 			gameObject.transform.eulerAngles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
 			gameObject.transform.localScale = new Vector3(50f, 50f, 50f);
 			SpawnedShards[j] = gameObject;
+			ShardOrigins[j] = gameObject.transform.position;
+			gameObject.transform.parent = base.transform;
 		}
 	}
 
@@ -52,5 +56,19 @@ public class GlassShardSpawnerScript : MonoBehaviour
 	public static bool isMeshInCameraView(Mesh mesh, Camera camera)
 	{
 		return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(camera), mesh.bounds);
+	}
+
+	public void RestoreShards()
+	{
+		base.enabled = true;
+		FallTimer = 0f;
+		Fall = false;
+		int num = 0;
+		GameObject[] spawnedShards = SpawnedShards;
+		for (int i = 0; i < spawnedShards.Length; i++)
+		{
+			spawnedShards[i].transform.position = ShardOrigins[num];
+			num++;
+		}
 	}
 }

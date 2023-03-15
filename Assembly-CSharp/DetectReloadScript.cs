@@ -24,6 +24,7 @@ public class DetectReloadScript : MonoBehaviour
 
 	private void ResetPostProcessingSettings()
 	{
+		Debug.Log("Post processing settings were just reset from this place in the code.");
 		Profile.fog.enabled = OptionGlobals.Fog;
 		Profile.antialiasing.enabled = !OptionGlobals.DisablePostAliasing;
 		Profile.ambientOcclusion.enabled = !OptionGlobals.DisableObscurance;
@@ -31,6 +32,7 @@ public class DetectReloadScript : MonoBehaviour
 		Profile.motionBlur.enabled = OptionGlobals.MotionBlur;
 		Profile.bloom.enabled = !OptionGlobals.DisableBloom;
 		Profile.chromaticAberration.enabled = !OptionGlobals.DisableAbberation;
+		Profile.vignette.enabled = !OptionGlobals.DisableVignette;
 	}
 
 	private void Update()

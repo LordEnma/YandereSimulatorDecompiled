@@ -80,6 +80,8 @@ public static class OptionGlobals
 
 	private const string Str_DisableTint = "DisableTint";
 
+	private const string Str_ResolutionID = "ResolutionID";
+
 	public static bool DisableBloom
 	{
 		get
@@ -548,6 +550,18 @@ public static class OptionGlobals
 		}
 	}
 
+	public static int ResolutionID
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + 0 + "_ResolutionID");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + 0 + "_ResolutionID", value);
+		}
+	}
+
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_DisableBloom");
@@ -589,5 +603,6 @@ public static class OptionGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_DisableScanlines");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_DisableNoise");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_DisableTint");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_ResolutionID");
 	}
 }

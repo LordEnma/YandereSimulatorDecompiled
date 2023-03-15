@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ClubWindowScript : MonoBehaviour
@@ -77,6 +78,10 @@ public class ClubWindowScript : MonoBehaviour
 						Yandere.ClubAccessory();
 						Yandere.TargetStudent.Interaction = StudentInteractionType.ClubJoin;
 						ClubManager.ActivateClubBenefit();
+						if (DateGlobals.Weekday == DayOfWeek.Friday)
+						{
+							ClubManager.ClubActivityReminder = true;
+						}
 					}
 					else if (Quitting)
 					{

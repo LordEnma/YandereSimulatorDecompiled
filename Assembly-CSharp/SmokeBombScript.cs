@@ -166,6 +166,12 @@ public class SmokeBombScript : MonoBehaviour
 				Student.GoAwayLimit = 60f;
 			}
 			Student.AlarmTimer = 0f;
+			if (Student.Nemesis)
+			{
+				Student.gameObject.GetComponent<NemesisScript>().Aggressive = true;
+				Student.CurrentDestination = Student.Yandere.transform;
+				Student.Pathfinding.target = Student.Yandere.transform;
+			}
 		}
 	}
 }

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TranqDetectorScript : MonoBehaviour
 {
+	public TranqCaseScript TranqCase;
+
 	public YandereScript Yandere;
 
 	public DoorScript Door;
@@ -135,6 +137,7 @@ public class TranqDetectorScript : MonoBehaviour
 			BiologyIcon.spriteName = "No";
 			SyringeIcon.spriteName = "No";
 			DoorIcon.spriteName = "No";
+			TranqCase.StudentToCheckFor = Yandere.Follower;
 		}
 	}
 

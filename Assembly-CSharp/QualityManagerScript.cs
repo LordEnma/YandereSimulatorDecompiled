@@ -151,6 +151,7 @@ public class QualityManagerScript : MonoBehaviour
 			UpdateShadows();
 			UpdateFPSIndex();
 			UpdateDrawDistance();
+			UpdateSubtitleSize();
 			UpdateOpaqueWindows();
 			UpdateCameraPosition();
 			UpdateLowDetailStudents();
@@ -857,6 +858,10 @@ public class QualityManagerScript : MonoBehaviour
 				{
 					studentScript.ApronAttacher.newRenderer.material.shader = NewHairShader;
 				}
+				if (studentScript.LabcoatAttacher.newRenderer != null)
+				{
+					studentScript.LabcoatAttacher.newRenderer.material.shader = NewHairShader;
+				}
 			}
 			UpdateYandereChan();
 			Nemesis.Cosmetic.MyRenderer.materials[0].shader = NewBodyShader;
@@ -947,6 +952,14 @@ public class QualityManagerScript : MonoBehaviour
 				StudentManager.Yandere.Zoom.OverShoulder = true;
 				StudentManager.Yandere.Zoom.midOffset = -0.25f;
 			}
+		}
+	}
+
+	public void UpdateSubtitleSize()
+	{
+		if (StudentManager.Yandere.PauseScreen != null)
+		{
+			StudentManager.Yandere.PauseScreen.UpdateSubtitleSize();
 		}
 	}
 }

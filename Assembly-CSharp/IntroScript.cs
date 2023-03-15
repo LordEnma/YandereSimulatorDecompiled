@@ -11,11 +11,15 @@ public class IntroScript : MonoBehaviour
 
 	public PostProcessingProfile Profile;
 
+	public NoiseEffect Noise;
+
 	public GlassShardSpawnerScript GlassShardSpawner;
 
 	public GameObject[] AttackPair;
 
 	public GameObject MontagePrefab;
+
+	public GameObject CorpseCamera;
 
 	public GameObject ConfessionScene;
 
@@ -38,6 +42,8 @@ public class IntroScript : MonoBehaviour
 	public GameObject Quad;
 
 	public Texture[] Textures;
+
+	public Transform[] Corpses;
 
 	public Transform RightForeArm;
 
@@ -105,6 +111,8 @@ public class IntroScript : MonoBehaviour
 
 	public UISprite FadeOutDarkness;
 
+	public UITexture SanitySmudges;
+
 	public UITexture LoveSickLogo;
 
 	public UIPanel SkipPanel;
@@ -153,15 +161,21 @@ public class IntroScript : MonoBehaviour
 
 	public float EyeTimer;
 
+	public float Tension;
+
 	public float Alpha;
 
 	public float Timer;
+
+	public float DeathCameraTimer;
 
 	public float AnimTimer;
 
 	public int PhotosSpawned;
 
 	public int TextureID;
+
+	public int CorpseID;
 
 	public int ID;
 
@@ -258,11 +272,6 @@ public class IntroScript : MonoBehaviour
 			settings.focusDistance = 0.66666f;
 			settings.aperture = 32f;
 			Profile.depthOfField.settings = settings;
-			Renderer[] componentsInChildren = Corridors.gameObject.GetComponentsInChildren<Renderer>();
-			for (int i = 0; i < componentsInChildren.Length; i++)
-			{
-				componentsInChildren[i].material.color = new Color(0.75f, 0.75f, 0.75f, 1f);
-			}
 			AttackAnim[1]["f02_katanaHighSanityA_00"].speed = 2.5f;
 			AttackAnim[2]["f02_katanaHighSanityB_00"].speed = 2.5f;
 			AttackAnim[3]["f02_batLowSanityA_00"].speed = 2.5f;
@@ -271,23 +280,23 @@ public class IntroScript : MonoBehaviour
 			AttackAnim[6]["f02_katanaLowSanityB_00"].speed = 2.5f;
 			MotherAnim["f02_parentTalking_00"].speed = 0.75f;
 			ChildAnim["f02_childListening_00"].speed = 0.75f;
-			for (int j = 4; j < Cue.Length; j++)
+			for (int i = 4; i < Cue.Length; i++)
 			{
-				if (j < 21)
+				if (i < 21)
 				{
-					Cue[j] += 3.898f;
+					Cue[i] += 3.898f;
 				}
-				else if (j > 32)
+				else if (i > 32)
 				{
-					Cue[j] += 4f;
+					Cue[i] += 4f;
 				}
 				else
 				{
-					Cue[j] += 2f;
+					Cue[i] += 2f;
 				}
-				if (j > 40)
+				if (i > 40)
 				{
-					Cue[j] += 3f;
+					Cue[i] += 3f;
 				}
 			}
 		}
@@ -451,6 +460,7 @@ public class IntroScript : MonoBehaviour
 				Darkness.color = new Color(0f, 0f, 0f, 0f);
 				DeathCorridor.SetActive(value: false);
 				PostProcessing.enabled = false;
+				CorpseCamera.SetActive(value: false);
 				BloodParent.SetActive(value: false);
 				Stalking.SetActive(value: false);
 				BGM.volume = 1f;
@@ -465,6 +475,8 @@ public class IntroScript : MonoBehaviour
 				Profile.bloom.settings = settings4;
 				Profile.bloom.enabled = false;
 				VibrationIntensity = 0f;
+				SanitySmudges.alpha = 0f;
+				Noise.enabled = false;
 			}
 			Speed += 1f;
 			if (Speed > 2f)
@@ -506,7 +518,7 @@ public class IntroScript : MonoBehaviour
 		{
 			if (base.transform.position.z < 0f)
 			{
-				RenderSettings.ambientLight = new Color(0.2f, 0.2f, 0.2f);
+				RenderSettings.ambientLight = new Color(0.25f, 0.25f, 0.25f);
 				AttackPair[3].SetActive(value: false);
 				DeathCorridor.SetActive(value: true);
 				Stalking.SetActive(value: false);
@@ -522,6 +534,8 @@ public class IntroScript : MonoBehaviour
 				Rotation = -15f;
 				Speed = 0f;
 				BGM.volume = 0.5f;
+				SanitySmudges.alpha = 1f;
+				Noise.enabled = true;
 			}
 			Speed += Time.deltaTime * 0.015f;
 			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 1f, 34f), Time.deltaTime * Speed);
@@ -529,7 +543,38 @@ public class IntroScript : MonoBehaviour
 			base.transform.eulerAngles = new Vector3(0f, 0f, Rotation);
 			if (ID < 51)
 			{
-				Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.2f);
+				if (ID < 49)
+				{
+					Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.2f);
+					if (Alpha == 0f)
+					{
+						DeathCameraTimer += Time.deltaTime * Tension;
+						if (DeathCameraTimer >= 3f)
+						{
+							CorpseCamera.transform.position += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * Time.deltaTime;
+							if (!CorpseCamera.activeInHierarchy)
+							{
+								CorpseCamera.transform.position += new Vector3(0f, 0f, 2f);
+								CorpseID++;
+								CorpseCamera.transform.LookAt(Corpses[CorpseID]);
+								CorpseCamera.SetActive(value: true);
+								SanitySmudges.alpha = 0f;
+							}
+							if (DeathCameraTimer >= 4f)
+							{
+								DeathCameraTimer = 0f;
+								CorpseCamera.SetActive(value: false);
+								SanitySmudges.alpha = 1f;
+							}
+						}
+					}
+				}
+				else if (CorpseCamera.activeInHierarchy)
+				{
+					DeathCameraTimer = 0f;
+					SanitySmudges.alpha = 1f;
+					CorpseCamera.SetActive(value: false);
+				}
 			}
 			else
 			{
@@ -629,6 +674,7 @@ public class IntroScript : MonoBehaviour
 					GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
 					VibrationCheck = true;
 					VibrationTimer = 0.2f;
+					Noise.enabled = true;
 				}
 			}
 			Darkness.color = new Color(0f, 0f, 0f, Alpha);
@@ -797,6 +843,7 @@ public class IntroScript : MonoBehaviour
 				DepthOfFieldModel.Settings settings14 = Profile.depthOfField.settings;
 				settings14.focusDistance = 10f;
 				Profile.depthOfField.settings = settings14;
+				GlassShardSpawner.gameObject.SetActive(value: false);
 			}
 			base.transform.position -= new Vector3(0f, 0f, Time.deltaTime * Speed * 0.75f);
 			if (Narration.time > 88.898f)
@@ -835,6 +882,7 @@ public class IntroScript : MonoBehaviour
 				settings17.focusDistance = 10f;
 				settings17.aperture = 11.2f;
 				Profile.depthOfField.settings = settings17;
+				GlassShardSpawner.RestoreShards();
 			}
 			base.transform.position -= new Vector3(0f, 0f, Time.deltaTime * Speed);
 			if (Narration.time > 69.898f)

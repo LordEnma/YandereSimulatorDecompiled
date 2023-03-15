@@ -18,6 +18,8 @@ public class WorkbenchScript : MonoBehaviour
 
 	public GameObject OutcomeCamera;
 
+	public GameObject BodyBags;
+
 	public Transform WorkbenchWindow;
 
 	public Transform Highlight;
@@ -88,49 +90,68 @@ public class WorkbenchScript : MonoBehaviour
 	{
 		if (!Show)
 		{
-			if (Prompt.Circle[0].fillAmount != 0f)
+			if (Prompt.Circle[0].fillAmount == 0f)
 			{
-				return;
+				Prompt.Circle[0].fillAmount = 1f;
+				if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
+				{
+					if (!Chemistry)
+					{
+						Prompt.Yandere.MainCamera.transform.position = new Vector3(26f, 5.55f, 5f);
+						Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(54f, 0f, 0f);
+						Prompt.Yandere.transform.position = new Vector3(26f, 4f, 4f);
+					}
+					else
+					{
+						Prompt.Yandere.MainCamera.transform.position = new Vector3(26f, 5.55f, -9.307f);
+						Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(54f, 180f, 0f);
+						Prompt.Yandere.transform.position = new Vector3(26f, 4f, -8.5f);
+					}
+					Prompt.Yandere.MyController.enabled = false;
+					Prompt.Yandere.RPGCamera.enabled = false;
+					Prompt.Yandere.CanMove = false;
+					WorkbenchWindow.gameObject.SetActive(value: true);
+					PromptBar.Label[0].text = "Select";
+					PromptBar.Label[1].text = "Exit";
+					PromptBar.UpdateButtons();
+					PromptBar.Show = true;
+					Show = true;
+					Selection = 1;
+					UpdateHighlight();
+					if (!Chemistry)
+					{
+						Limit = 11;
+						CheckInventory();
+						EleventhOption.SetActive(value: true);
+						HeaderLabel.text = "Materials";
+					}
+					else
+					{
+						Limit = 10;
+						CheckChemicals();
+						EleventhOption.SetActive(value: false);
+						HeaderLabel.text = "Chemicals";
+					}
+				}
 			}
-			Prompt.Circle[0].fillAmount = 1f;
-			if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
+			else if (!Chemistry)
 			{
-				if (!Chemistry)
+				if (Prompt.Yandere.Inventory.MaskingTape && Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox)
 				{
-					Prompt.Yandere.MainCamera.transform.position = new Vector3(26f, 5.55f, 5f);
-					Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(54f, 0f, 0f);
-					Prompt.Yandere.transform.position = new Vector3(26f, 4f, 4f);
+					Prompt.HideButton[1] = false;
 				}
 				else
 				{
-					Prompt.Yandere.MainCamera.transform.position = new Vector3(26f, 5.55f, -9.307f);
-					Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(54f, 180f, 0f);
-					Prompt.Yandere.transform.position = new Vector3(26f, 4f, -8.5f);
+					Prompt.HideButton[1] = true;
 				}
-				Prompt.Yandere.MyController.enabled = false;
-				Prompt.Yandere.RPGCamera.enabled = false;
-				Prompt.Yandere.CanMove = false;
-				WorkbenchWindow.gameObject.SetActive(value: true);
-				PromptBar.Label[0].text = "Select";
-				PromptBar.Label[1].text = "Exit";
-				PromptBar.UpdateButtons();
-				PromptBar.Show = true;
-				Show = true;
-				Selection = 1;
-				UpdateHighlight();
-				if (!Chemistry)
+				if (Prompt.Circle[1].fillAmount == 0f)
 				{
-					Limit = 11;
-					CheckInventory();
-					EleventhOption.SetActive(value: true);
-					HeaderLabel.text = "Materials";
-				}
-				else
-				{
-					Limit = 10;
-					CheckChemicals();
-					EleventhOption.SetActive(value: false);
-					HeaderLabel.text = "Chemicals";
+					Prompt.Circle[1].fillAmount = 1f;
+					Prompt.Yandere.Inventory.MaskingTape = false;
+					GameObject obj = Prompt.Yandere.PickUp.gameObject;
+					Prompt.Yandere.EmptyHands();
+					obj.SetActive(value: false);
+					BodyBags.SetActive(value: true);
 				}
 			}
 			return;
@@ -259,16 +280,16 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					Inventory.Ammonium = false;
 					Inventory.Balloons = false;
-					GameObject obj = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[13], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
-					obj.GetComponent<Rigidbody>().useGravity = true;
-					obj.GetComponent<Rigidbody>().isKinematic = false;
-					obj.name = "Box of Stink Bombs";
-					obj.GetComponent<PickUpScript>().LeftHand = false;
-					obj.GetComponent<PickUpScript>().SwapModel = true;
-					obj.GetComponent<PickUpScript>().InstantiatedObject = true;
-					obj.GetComponent<PickUpScript>().HoldPosition = new Vector3(0f, -0.01f, 0f);
-					obj.GetComponent<PickUpScript>().HoldRotation = new Vector3(0f, 0f, 0f);
-					obj.GetComponent<PickUpScript>().CarryAnimID = 3;
+					GameObject obj2 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[13], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
+					obj2.GetComponent<Rigidbody>().useGravity = true;
+					obj2.GetComponent<Rigidbody>().isKinematic = false;
+					obj2.name = "Box of Stink Bombs";
+					obj2.GetComponent<PickUpScript>().LeftHand = false;
+					obj2.GetComponent<PickUpScript>().SwapModel = true;
+					obj2.GetComponent<PickUpScript>().InstantiatedObject = true;
+					obj2.GetComponent<PickUpScript>().HoldPosition = new Vector3(0f, -0.01f, 0f);
+					obj2.GetComponent<PickUpScript>().HoldRotation = new Vector3(0f, 0f, 0f);
+					obj2.GetComponent<PickUpScript>().CarryAnimID = 3;
 				}
 				else if (OutcomeID == 2)
 				{
@@ -280,11 +301,11 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					Inventory.SilverFulminate = false;
 					Inventory.Paper = false;
-					GameObject obj2 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[12], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
-					obj2.GetComponent<Rigidbody>().useGravity = true;
-					obj2.GetComponent<Rigidbody>().isKinematic = false;
-					obj2.name = "Box of Bang Snaps";
-					obj2.GetComponent<PickUpScript>().InstantiatedObject = true;
+					GameObject obj3 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[12], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
+					obj3.GetComponent<Rigidbody>().useGravity = true;
+					obj3.GetComponent<Rigidbody>().isKinematic = false;
+					obj3.name = "Box of Bang Snaps";
+					obj3.GetComponent<PickUpScript>().InstantiatedObject = true;
 				}
 				else if (OutcomeID == 4)
 				{
@@ -338,11 +359,11 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					Inventory.PotassiumNitrate = false;
 					Inventory.Sugar = false;
-					GameObject obj3 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[14], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
-					obj3.GetComponent<Rigidbody>().useGravity = true;
-					obj3.GetComponent<Rigidbody>().isKinematic = false;
-					obj3.name = "Smoke Bomb";
-					obj3.GetComponent<PickUpScript>().InstantiatedObject = true;
+					GameObject obj4 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[14], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
+					obj4.GetComponent<Rigidbody>().useGravity = true;
+					obj4.GetComponent<Rigidbody>().isKinematic = false;
+					obj4.name = "Smoke Bomb";
+					obj4.GetComponent<PickUpScript>().InstantiatedObject = true;
 				}
 				Prompt.Yandere.StudentManager.UpdateAllBentos();
 			}

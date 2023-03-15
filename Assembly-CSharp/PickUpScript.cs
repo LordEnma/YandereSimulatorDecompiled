@@ -180,6 +180,8 @@ public class PickUpScript : MonoBehaviour
 
 	public int CarryAnimID;
 
+	public int BodyBags;
+
 	public int Strength;
 
 	public int Period;

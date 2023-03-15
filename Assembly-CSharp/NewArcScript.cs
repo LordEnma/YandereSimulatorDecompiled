@@ -38,21 +38,36 @@ public class NewArcScript : MonoBehaviour
 
 	public int Min;
 
+	public int Strength;
+
+	public void Start()
+	{
+		Strength = ClassGlobals.PhysicalGrade;
+	}
+
 	private void Update()
 	{
 		if (!(ArcParticles != null))
 		{
 			return;
 		}
-		if (Yandere.Obvious)
+		if (Yandere != null)
 		{
-			Max = 20 + Yandere.Class.PhysicalGrade;
-			Min = 10;
+			if (Yandere.Obvious)
+			{
+				Max = 20 + Yandere.Class.PhysicalGrade;
+				Min = 10;
+			}
+			else
+			{
+				Max = 10 + Yandere.Class.PhysicalGrade;
+				Min = 5;
+			}
 		}
 		else
 		{
-			Max = 10 + Yandere.Class.PhysicalGrade;
-			Min = 5;
+			Max = 20 + Strength;
+			Min = 10;
 		}
 		if (InputDevice.Type == InputDeviceType.Gamepad)
 		{

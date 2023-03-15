@@ -47,9 +47,15 @@ public class NewSettingsScript : MonoBehaviour
 
 	public int Menu = 1;
 
+	public bool UpdateOnNextFrame;
+
 	public bool SchoolScene;
 
 	public bool Transition;
+
+	public int[] Widths;
+
+	public int[] Heights;
 
 	public Renderer Window;
 
@@ -72,6 +78,11 @@ public class NewSettingsScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (UpdateOnNextFrame)
+		{
+			UpdateLabels();
+			UpdateOnNextFrame = false;
+		}
 		Cursor.transform.parent.Rotate(new Vector3(Time.unscaledDeltaTime * 100f, 0f, 0f), Space.Self);
 		Cursor.transform.parent.localPosition = Vector3.Lerp(Cursor.transform.parent.localPosition, new Vector3(665f, -100f - 100f * (float)Selection, Cursor.transform.parent.localPosition.z), Time.unscaledDeltaTime * 10f);
 		Labels[13].text = (Screen.fullScreen ? "No" : "Yes");
@@ -187,6 +198,10 @@ public class NewSettingsScript : MonoBehaviour
 				{
 					Profile.vignette.enabled = !Profile.vignette.enabled;
 				}
+				OptionGlobals.DisablePostAliasing = !Profile.antialiasing.enabled;
+				OptionGlobals.DisableObscurance = !Profile.ambientOcclusion.enabled;
+				OptionGlobals.DisableAbberation = !Profile.chromaticAberration.enabled;
+				OptionGlobals.DisableVignette = !Profile.vignette.enabled;
 				UpdateLabels();
 			}
 			else if (Input.GetButtonDown("X"))
@@ -198,6 +213,10 @@ public class NewSettingsScript : MonoBehaviour
 				Profile.bloom.enabled = false;
 				Profile.chromaticAberration.enabled = false;
 				Profile.vignette.enabled = false;
+				OptionGlobals.DisablePostAliasing = !Profile.antialiasing.enabled;
+				OptionGlobals.DisableObscurance = !Profile.ambientOcclusion.enabled;
+				OptionGlobals.DisableAbberation = !Profile.chromaticAberration.enabled;
+				OptionGlobals.DisableVignette = !Profile.vignette.enabled;
 				UpdateLabels();
 			}
 			else if (Input.GetButtonDown("Y"))
@@ -209,6 +228,10 @@ public class NewSettingsScript : MonoBehaviour
 				Profile.bloom.enabled = true;
 				Profile.chromaticAberration.enabled = true;
 				Profile.vignette.enabled = true;
+				OptionGlobals.DisablePostAliasing = !Profile.antialiasing.enabled;
+				OptionGlobals.DisableObscurance = !Profile.ambientOcclusion.enabled;
+				OptionGlobals.DisableAbberation = !Profile.chromaticAberration.enabled;
+				OptionGlobals.DisableVignette = !Profile.vignette.enabled;
 				UpdateLabels();
 			}
 			else if (Input.GetButtonDown("B"))
@@ -730,12 +753,8 @@ public class NewSettingsScript : MonoBehaviour
 				Menu = 0;
 			}
 		}
-		else
+		else if (Menu == 5)
 		{
-			if (Menu != 5)
-			{
-				return;
-			}
 			if (!PromptBar.Show)
 			{
 				PromptBar.ClearButtons();
@@ -851,6 +870,59 @@ public class NewSettingsScript : MonoBehaviour
 				Menu = 0;
 			}
 		}
+		else
+		{
+			if (Menu != 6)
+			{
+				return;
+			}
+			if (!PromptBar.Show)
+			{
+				PromptBar.ClearButtons();
+				PromptBar.Label[1].text = "Go Back";
+				PromptBar.Label[4].text = "Change Selection";
+				PromptBar.Label[5].text = "Edit Setting";
+				PromptBar.UpdateButtons();
+				PromptBar.Show = true;
+			}
+			if (Selection == 1)
+			{
+				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
+				{
+					if (NewTitleScreen.InputManager.TappedRight)
+					{
+						OptionGlobals.ResolutionID++;
+						if (OptionGlobals.ResolutionID == Widths.Length)
+						{
+							OptionGlobals.ResolutionID = 0;
+						}
+					}
+					else
+					{
+						OptionGlobals.ResolutionID--;
+						if (OptionGlobals.ResolutionID < 0)
+						{
+							OptionGlobals.ResolutionID = Widths.Length - 1;
+						}
+					}
+					Screen.SetResolution(Widths[OptionGlobals.ResolutionID], Heights[OptionGlobals.ResolutionID], Screen.fullScreen);
+					UpdateOnNextFrame = true;
+				}
+			}
+			else if (Selection == 2 && (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft))
+			{
+				Screen.fullScreen = !Screen.fullScreen;
+				UpdateOnNextFrame = true;
+			}
+			if (Input.GetButtonDown("B"))
+			{
+				PromptBar.ClearButtons();
+				PromptBar.UpdateButtons();
+				PromptBar.Show = false;
+				Transition = true;
+				Menu = 0;
+			}
+		}
 	}
 
 	private void UpdateCursor()
@@ -957,6 +1029,8 @@ public class NewSettingsScript : MonoBehaviour
 		Labels[39].text = (OptionGlobals.DisableScanlines ? "Yes" : "No");
 		Labels[40].text = (OptionGlobals.DisableNoise ? "Yes" : "No");
 		Labels[41].text = (OptionGlobals.DisableTint ? "Yes" : "No");
+		Labels[43].text = Screen.width + " x " + Screen.height;
+		Labels[44].text = ((!Screen.fullScreen) ? "Yes" : "No");
 		if (GameGlobals.Eighties)
 		{
 			UILabel[] componentsInChildren = base.gameObject.GetComponentsInChildren<UILabel>();

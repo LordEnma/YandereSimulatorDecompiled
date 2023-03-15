@@ -295,6 +295,35 @@ public class AttackManagerScript : MonoBehaviour
 			equippedWeapon.MyAudio.pitch = 1f;
 			Time.timeScale = 1f;
 		}
+		if (!Yandere.TargetStudent.Electrified && !Yandere.TargetStudent.Electrocuted)
+		{
+			return;
+		}
+		Yandere.TargetStudent = null;
+		Yandere.HipCollider.enabled = false;
+		Yandere.FollowHips = false;
+		Yandere.Attacking = false;
+		Yandere.CanMove = true;
+		Victim = null;
+		VictimAnimName = null;
+		AnimName = null;
+		Stealth = false;
+		EffectPhase = 0;
+		AttackTimer = 0f;
+		Timer = 0f;
+		Yandere.Blur.enabled = false;
+		Yandere.Blur.Size = 1f;
+		if (Yandere.CanTranq)
+		{
+			Yandere.StudentManager.UpdateAllBentos();
+			Yandere.CanTranq = false;
+			if (Yandere.Followers > 0)
+			{
+				Yandere.Follower = null;
+				Yandere.Followers--;
+			}
+			equippedWeapon.Type = WeaponType.Knife;
+		}
 	}
 
 	private void SpecialEffect(WeaponScript weapon, SanityType sanityType)
