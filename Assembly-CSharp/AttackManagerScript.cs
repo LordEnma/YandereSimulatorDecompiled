@@ -978,7 +978,10 @@ public class AttackManagerScript : MonoBehaviour
 	{
 		if (weapon.Type == WeaponType.Scythe)
 		{
-			weapon.MyRenderer.transform.localEulerAngles = new Vector3(12.5f, 7.5f, 90f);
+			if (!weapon.Chainsaw)
+			{
+				weapon.MyRenderer.transform.localEulerAngles = new Vector3(12.5f, 7.5f, 90f);
+			}
 		}
 		else if (weapon.WeaponID == 8 && GameGlobals.Paranormal)
 		{

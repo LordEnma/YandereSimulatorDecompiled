@@ -44,7 +44,15 @@ public class SchoolNewspaperScript : MonoBehaviour
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
+			if (Prompt.Yandere.YandereVision)
+			{
+				Prompt.Yandere.ResetYandereEffects();
+				Prompt.Yandere.YandereVision = false;
+			}
+			Prompt.Yandere.transform.position = new Vector3(-3.5f, 0f, -18.66666f);
+			Prompt.Yandere.transform.eulerAngles = new Vector3(0f, 0f, 0f);
 			Prompt.Yandere.RPGCamera.ZeroEverything();
+			Prompt.Yandere.FixCamera();
 			Prompt.Circle[0].fillAmount = 1f;
 			PromptBar.ClearButtons();
 			PromptBar.Label[1].text = "Back";

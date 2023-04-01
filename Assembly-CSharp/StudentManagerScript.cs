@@ -14,6 +14,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public OsanaThursdayAfterClassEventScript OsanaThursdayAfterClassEvent;
 
+	public FollowPrimaryLookSecondaryScript FollowPrimaryLookSecondary;
+
 	public SpawnedObjectManagerScript SpawnedObjectManager;
 
 	public SelectiveGrayscale SmartphoneSelectiveGreyscale;
@@ -354,6 +356,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform[] ShockedSpots;
 
+	public Transform[] StalkerSpots;
+
 	public Transform[] SukebanSpots;
 
 	public Transform[] FridaySpots;
@@ -651,6 +655,8 @@ public class StudentManagerScript : MonoBehaviour
 	public int ObstacleID = 6;
 
 	public int CurrentID;
+
+	public int StalkerID;
 
 	public int SuitorID = 13;
 
@@ -969,6 +975,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public GameObject Journalist;
 
+	public PostProcessingProfile EightiesProfile;
+
 	public UIPanel FreeFloatingPanel;
 
 	public bool[] RivalKilledSelf;
@@ -996,6 +1004,10 @@ public class StudentManagerScript : MonoBehaviour
 	public GameObject Whistle;
 
 	public GameObject MiniMap;
+
+	public int FemaleGenerics;
+
+	public int MaleGenerics;
 
 	private void Awake()
 	{
@@ -1167,7 +1179,11 @@ public class StudentManagerScript : MonoBehaviour
 		if (ClubGlobals.GetClubClosed(ClubType.Gardening))
 		{
 			GardenBlockade.SetActive(value: true);
-			Flowers.SetActive(value: false);
+			Patrols.List[71].localPosition = new Vector3(51.5f, 0f, 24f);
+			Patrols.List[71].localEulerAngles = new Vector3(0f, 90f, 0f);
+			Patrols.List[72].localScale = new Vector3(0.985f, 1f, 1f);
+			Patrols.List[73].localScale = new Vector3(0.985f, 1f, 1f);
+			Patrols.List[74].localScale = new Vector3(0.985f, 1f, 1f);
 		}
 		ID = 0;
 		for (ID = 1; ID < JSON.Students.Length; ID++)
@@ -1369,7 +1385,10 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			Police.EndOfDay.VoidGoddess.Window.parent.gameObject.SetActive(value: false);
 		}
-		Yandere.PauseScreen.PhotoGallery.Start();
+		if (Yandere != null && Yandere.PauseScreen != null)
+		{
+			Yandere.PauseScreen.PhotoGallery.Start();
+		}
 	}
 
 	public void SetAtmosphere()
@@ -1807,6 +1826,35 @@ public class StudentManagerScript : MonoBehaviour
 					LookAtTest();
 					Yandere.EmptyHands();
 					Yandere.FilterUpdated = false;
+					if (ClubGlobals.GetClubClosed(ClubType.Drama))
+					{
+						Debug.Log("The Drama Club was shut down. Making adjustments accordingly.");
+						UpdateDrama();
+					}
+					if (ClubGlobals.GetClubClosed(ClubType.MartialArts))
+					{
+						Debug.Log("The Martial Arts Club was shut down. Making adjustments accordingly.");
+						UpdateMartialArts();
+					}
+					if (ClubGlobals.GetClubClosed(ClubType.Occult))
+					{
+						Debug.Log("The Occult Club was shut down. Making adjustments accordingly.");
+						Patrols.List[31].GetChild(0).position = Hangouts.List[31].position;
+						Patrols.List[32].GetChild(0).position = Hangouts.List[32].position;
+						Patrols.List[33].GetChild(0).position = Hangouts.List[33].position;
+						Patrols.List[34].GetChild(0).position = Hangouts.List[34].position;
+						Patrols.List[35].GetChild(0).position = Hangouts.List[35].position;
+						EightiesPatrols.List[31].GetChild(0).position = EightiesHangouts.List[31].position;
+						EightiesPatrols.List[32].GetChild(0).position = EightiesHangouts.List[32].position;
+						EightiesPatrols.List[33].GetChild(0).position = EightiesHangouts.List[33].position;
+						EightiesPatrols.List[34].GetChild(0).position = EightiesHangouts.List[34].position;
+						EightiesPatrols.List[35].GetChild(0).position = EightiesHangouts.List[35].position;
+					}
+					if (ClubGlobals.GetClubClosed(ClubType.LightMusic))
+					{
+						PracticeSpots[1].transform.position = new Vector3(0f, 4f, 21.33333f);
+						PracticeSpots[1].transform.eulerAngles = new Vector3(0f, 180f, 0f);
+					}
 				}
 			}
 			if ((double)Clock.HourTime > 16.9)
@@ -2988,7 +3036,7 @@ public class StudentManagerScript : MonoBehaviour
 					{
 						if (studentScript.MurderReaction == 0 && !studentScript.Blind)
 						{
-							studentScript.Character.GetComponent<Animation>().CrossFade(studentScript.ScaredAnim);
+							studentScript.CharacterAnimation.CrossFade(studentScript.ScaredAnim);
 						}
 					}
 					else if (ID > 1 && studentScript.CharacterAnimation != null)
@@ -3767,7 +3815,7 @@ public class StudentManagerScript : MonoBehaviour
 		DramaPhase++;
 		for (ID = 26; ID < 31; ID++)
 		{
-			if (Students[ID] != null)
+			if (Students[ID] != null && Students[ID].OriginalClub == ClubType.Drama)
 			{
 				if (DramaPhase == 1)
 				{
@@ -3810,9 +3858,13 @@ public class StudentManagerScript : MonoBehaviour
 					DramaPhase = 1;
 					UpdateDrama();
 				}
-				Students[ID].DistanceToDestination = 100f;
-				Students[ID].SmartPhone.SetActive(value: false);
-				Students[ID].SpeechLines.Stop();
+				if (ID < 31)
+				{
+					Students[ID].DistanceToDestination = 100f;
+					Students[ID].SmartPhone.SetActive(value: false);
+					Students[ID].SpeechLines.Stop();
+				}
+				Students[ID].GetDestinations();
 			}
 		}
 	}
@@ -3843,11 +3895,18 @@ public class StudentManagerScript : MonoBehaviour
 				else if (MartialArtsPhase == 4)
 				{
 					MartialArtsPhase = 0;
+					if (ClubGlobals.GetClubClosed(ClubType.MartialArts))
+					{
+						MartialArtsPhase = 1;
+					}
 					UpdateMartialArts();
 				}
-				Students[ID].DistanceToDestination = 100f;
-				Students[ID].SmartPhone.SetActive(value: false);
-				Students[ID].SpeechLines.Stop();
+				if (ID < 51)
+				{
+					Students[ID].DistanceToDestination = 100f;
+					Students[ID].SmartPhone.SetActive(value: false);
+					Students[ID].SpeechLines.Stop();
+				}
 			}
 		}
 		RaibaruMentorSpot.position = Clubs.List[46].position + Clubs.List[46].forward * 0.5f + Clubs.List[46].right * 0.5f;
@@ -4150,7 +4209,7 @@ public class StudentManagerScript : MonoBehaviour
 					Students[ID].MyController.enabled = false;
 					Students[ID].Pathfinding.enabled = false;
 					Students[ID].HipCollider.enabled = true;
-					if (!StudentGlobals.GetStudentDying(ID))
+					if (!StudentGlobals.GetStudentDying(ID) && !Students[ID].Ragdoll.Disposed)
 					{
 						Debug.Log("For some reason, " + Students[ID].Name + " may not have been added to the Police CorpseList, so we're doing it manually.");
 						Police.CorpseList[Police.Corpses] = Students[ID].Ragdoll;
@@ -5246,6 +5305,9 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		if (Students[19] != null && StudentGlobals.StudentSlave != 19)
 		{
+			FollowPrimaryLookSecondary.transform.parent = Students[19].transform;
+			FollowPrimaryLookSecondary.transform.localPosition = Vector3.zero;
+			FollowPrimaryLookSecondary.transform.localEulerAngles = Vector3.zero;
 			Students[1].Infatuated = true;
 			if (DateGlobals.Weekday != DayOfWeek.Monday)
 			{
@@ -5304,7 +5366,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void StopFollowGravureIdol(int ID)
 	{
-		if (Students[ID] != null)
+		if (Students[ID] != null && !Students[ID].InEvent)
 		{
 			Students[ID].SnackTimer = 6f;
 			Students[ID].CannotFindInfatuationTarget();
@@ -5397,7 +5459,9 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		if (Students[ID] != null)
 		{
-			Hangouts.List[ID] = Students[19].transform;
+			Debug.Log("Stalker #" + StalkerID + " is now having their schedule adjusted.");
+			StalkerID++;
+			Hangouts.List[ID] = StalkerSpots[StalkerID];
 			scheduleBlock = Students[ID].ScheduleBlocks[2];
 			scheduleBlock.destination = "Hangout";
 			scheduleBlock.action = "Admire";
@@ -5525,13 +5589,13 @@ public class StudentManagerScript : MonoBehaviour
 		if (Eighties)
 		{
 			Debug.Log("A bunch of girls are now being instructed to forget about sunbathing.");
-			ForgetAboutSunbathing(25);
-			ForgetAboutSunbathing(30);
-			ForgetAboutSunbathing(35);
-			ForgetAboutSunbathing(40);
 			ForgetAboutSunbathing(45);
 			ForgetAboutSunbathing(50);
 			ForgetAboutSunbathing(55);
+			ForgetAboutSunbathing(60);
+			ForgetAboutSunbathing(65);
+			ForgetAboutSunbathing(70);
+			ForgetAboutSunbathing(75);
 		}
 	}
 
@@ -5680,11 +5744,11 @@ public class StudentManagerScript : MonoBehaviour
 		WeekLimit = 10;
 		if (TakingPortraits)
 		{
+			Profile.profile = EightiesProfile;
 			PhotoBG.mainTexture = EightiesBG;
 			PortraitChan = StudentChan;
 			PortraitKun = StudentKun;
 			EightiesPrefix = "1989";
-			Profile.enabled = true;
 			return;
 		}
 		Yandere.HeartCamera.enabled = false;
@@ -5855,7 +5919,16 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void UpdateInfatuatedTargetDistances()
 	{
-		Debug.Log("Rival's Meeting boolean is set to " + Students[RivalID].Meeting + ". Updating InfatuatedTargetDistances.");
+		if (Clock.HourTime > 13f && Clock.HourTime < 13.5f)
+		{
+			FollowPrimaryLookSecondary.transform.localPosition = new Vector3(-0.5f, 0f, 0f);
+			FollowPrimaryLookSecondary.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
+		}
+		else
+		{
+			FollowPrimaryLookSecondary.transform.localPosition = new Vector3(0f, 0f, 0f);
+			FollowPrimaryLookSecondary.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+		}
 		if (Eighties && Week == 9)
 		{
 			if (DateGlobals.Weekday != DayOfWeek.Monday)
@@ -5892,7 +5965,7 @@ public class StudentManagerScript : MonoBehaviour
 			else
 			{
 				Debug.Log("Rival is NOT meeting someone, so TargetDistance is nearby.");
-				Students[ID].TargetDistance = 5f;
+				Students[ID].TargetDistance = 0.5f;
 			}
 		}
 	}

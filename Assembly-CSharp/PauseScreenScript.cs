@@ -691,6 +691,7 @@ public class PauseScreenScript : MonoBehaviour
 							InventoryMenu.UpdateLabels();
 							InventoryMenu.gameObject.SetActive(value: true);
 							MainMenu.SetActive(value: false);
+							Sideways = true;
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Back";
 							PromptBar.UpdateButtons();

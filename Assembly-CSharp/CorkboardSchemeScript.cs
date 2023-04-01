@@ -67,7 +67,6 @@ public class CorkboardSchemeScript : MonoBehaviour
 	{
 		if (!HomeGlobals.Night || GameGlobals.Eighties)
 		{
-			Debug.Log("Disabling the Corkboard cutscene because it's daytime, or because we're in the 80s.");
 			GameGlobals.CorkboardScene = true;
 			base.gameObject.SetActive(value: false);
 		}

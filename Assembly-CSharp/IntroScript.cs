@@ -299,6 +299,7 @@ public class IntroScript : MonoBehaviour
 					Cue[i] += 3f;
 				}
 			}
+			CorpseCamera.SetActive(value: false);
 		}
 		VtuberCheck();
 	}

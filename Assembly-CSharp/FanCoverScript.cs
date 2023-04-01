@@ -22,6 +22,8 @@ public class FanCoverScript : MonoBehaviour
 
 	public Transform MurderSpot;
 
+	public GameObject GiggleDisc;
+
 	public GameObject Explosion;
 
 	public GameObject OfferHelp;
@@ -177,6 +179,12 @@ public class FanCoverScript : MonoBehaviour
 				BloodEffects.transform.parent = Rival.Head;
 				BloodEffects.transform.localPosition = new Vector3(0f, 0.1f, 0f);
 				BloodEffects.Play();
+				GameObject obj = Object.Instantiate(GiggleDisc, base.transform.position, Quaternion.identity);
+				obj.GetComponent<BoxCollider>().size = new Vector3(0.03f, 1f, 0.03f);
+				obj.GetComponent<GiggleScript>().BangSnap = true;
+				GameObject obj2 = Object.Instantiate(GiggleDisc, base.transform.position, Quaternion.identity);
+				obj2.GetComponent<BoxCollider>().size = new Vector3(0.03f, 1f, 0.03f);
+				obj2.GetComponent<GiggleScript>().BangSnap = true;
 				Phase++;
 			}
 			if (Yandere.Blur.enabled)

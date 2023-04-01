@@ -1092,6 +1092,8 @@ public class StudentScript : MonoBehaviour
 
 	public float PyroTimer;
 
+	public float ReadTimer;
+
 	public float SulkTimer;
 
 	public float TalkTimer;
@@ -2114,7 +2116,20 @@ public class StudentScript : MonoBehaviour
 			}
 			if (ClubGlobals.GetClubClosed(Club))
 			{
+				if (Club == ClubType.Cooking || Club == ClubType.Drama || Club == ClubType.Occult || Club == ClubType.Gaming || Club == ClubType.Art || Club == ClubType.MartialArts || Club == ClubType.LightMusic || Club == ClubType.Photography || Club == ClubType.Science || Club == ClubType.Sports || Club == ClubType.Gardening || Club == ClubType.Newspaper)
+				{
+					ScheduleBlock obj = ScheduleBlocks[7];
+					obj.destination = "Locker";
+					obj.action = "Shoes";
+					if (ScheduleBlocks.Length > 8)
+					{
+						ScheduleBlock obj2 = ScheduleBlocks[8];
+						obj2.destination = "Exit";
+						obj2.action = "Stand";
+					}
+				}
 				Club = ClubType.None;
+				GetDestinations();
 			}
 			Yandere = StudentManager.Yandere;
 			DialogueWheel = StudentManager.DialogueWheel;
@@ -2173,24 +2188,24 @@ public class StudentScript : MonoBehaviour
 					MapMarker.gameObject.SetActive(value: true);
 					if (DateGlobals.Week == 2)
 					{
-						ScheduleBlock obj = ScheduleBlocks[2];
-						obj.destination = "Patrol";
-						obj.action = "Patrol";
-						ScheduleBlock obj2 = ScheduleBlocks[7];
-						obj2.destination = "Patrol";
-						obj2.action = "Patrol";
+						ScheduleBlock obj3 = ScheduleBlocks[2];
+						obj3.destination = "Patrol";
+						obj3.action = "Patrol";
+						ScheduleBlock obj4 = ScheduleBlocks[7];
+						obj4.destination = "Patrol";
+						obj4.action = "Patrol";
 					}
 				}
 				else if (StudentID == 2)
 				{
 					if (StudentGlobals.GetStudentDead(3) || StudentGlobals.GetStudentKidnapped(3) || StudentManager.Students[3] == null || (StudentManager.Students[3] != null && StudentManager.Students[3].Slave))
 					{
-						ScheduleBlock obj3 = ScheduleBlocks[2];
-						obj3.destination = "Mourn";
-						obj3.action = "Mourn";
-						ScheduleBlock obj4 = ScheduleBlocks[7];
-						obj4.destination = "Mourn";
-						obj4.action = "Mourn";
+						ScheduleBlock obj5 = ScheduleBlocks[2];
+						obj5.destination = "Mourn";
+						obj5.action = "Mourn";
+						ScheduleBlock obj6 = ScheduleBlocks[7];
+						obj6.destination = "Mourn";
+						obj6.action = "Mourn";
 						IdleAnim = BulliedIdleAnim;
 						WalkAnim = BulliedWalkAnim;
 					}
@@ -2200,12 +2215,12 @@ public class StudentScript : MonoBehaviour
 				{
 					if (StudentGlobals.GetStudentDead(2) || StudentGlobals.GetStudentKidnapped(2) || StudentManager.Students[2] == null || (StudentManager.Students[2] != null && StudentManager.Students[2].Slave))
 					{
-						ScheduleBlock obj5 = ScheduleBlocks[2];
-						obj5.destination = "Mourn";
-						obj5.action = "Mourn";
-						ScheduleBlock obj6 = ScheduleBlocks[7];
-						obj6.destination = "Mourn";
-						obj6.action = "Mourn";
+						ScheduleBlock obj7 = ScheduleBlocks[2];
+						obj7.destination = "Mourn";
+						obj7.action = "Mourn";
+						ScheduleBlock obj8 = ScheduleBlocks[7];
+						obj8.destination = "Mourn";
+						obj8.action = "Mourn";
 						IdleAnim = BulliedIdleAnim;
 						WalkAnim = BulliedWalkAnim;
 					}
@@ -2316,26 +2331,26 @@ public class StudentScript : MonoBehaviour
 						else if ((float)StudentGlobals.GetStudentReputation(10) <= -33.33333f)
 						{
 							ShoeRemoval.PutOnShoes();
-							ScheduleBlock obj7 = ScheduleBlocks[2];
-							obj7.destination = "ShameSpot";
-							obj7.action = "Shamed";
-							obj7.time = 8f;
-							ScheduleBlock obj8 = ScheduleBlocks[4];
-							obj8.destination = "Seat";
-							obj8.action = "Sit";
+							ScheduleBlock obj9 = ScheduleBlocks[2];
+							obj9.destination = "ShameSpot";
+							obj9.action = "Shamed";
+							obj9.time = 8f;
+							ScheduleBlock obj10 = ScheduleBlocks[4];
+							obj10.destination = "Seat";
+							obj10.action = "Sit";
 							IdleAnim = BulliedIdleAnim;
 							WalkAnim = BulliedWalkAnim;
 							OriginalIdleAnim = IdleAnim;
 						}
 						else if (DatingGlobals.SuitorProgress == 2)
 						{
-							ScheduleBlock obj9 = ScheduleBlocks[2];
-							obj9.destination = "Peek";
-							obj9.action = "Peek";
-							obj9.time = 8f;
-							ScheduleBlock obj10 = ScheduleBlocks[4];
-							obj10.destination = "LunchSpot";
-							obj10.action = "Eat";
+							ScheduleBlock obj11 = ScheduleBlocks[2];
+							obj11.destination = "Peek";
+							obj11.action = "Peek";
+							obj11.time = 8f;
+							ScheduleBlock obj12 = ScheduleBlocks[4];
+							obj12.destination = "LunchSpot";
+							obj12.action = "Eat";
 						}
 						RaibaruStopsFollowingOsana();
 						TargetDistance = 0.5f;
@@ -2367,23 +2382,23 @@ public class StudentScript : MonoBehaviour
 					if (StudentManager.Students[10] == null)
 					{
 						Debug.Log("Raibaru has been killed/arrested/vanished, so Osana's schedule has changed.");
-						ScheduleBlock obj11 = ScheduleBlocks[2];
-						obj11.destination = "Mourn";
-						obj11.action = "Mourn";
-						ScheduleBlock obj12 = ScheduleBlocks[7];
-						obj12.destination = "Mourn";
-						obj12.action = "Mourn";
+						ScheduleBlock obj13 = ScheduleBlocks[2];
+						obj13.destination = "Mourn";
+						obj13.action = "Mourn";
+						ScheduleBlock obj14 = ScheduleBlocks[7];
+						obj14.destination = "Mourn";
+						obj14.action = "Mourn";
 						IdleAnim = BulliedIdleAnim;
 						WalkAnim = BulliedWalkAnim;
 					}
 					else if (PlayerGlobals.RaibaruLoner || GameGlobals.AlphabetMode || StudentManager.MissionMode)
 					{
-						ScheduleBlock obj13 = ScheduleBlocks[2];
-						obj13.destination = "Patrol";
-						obj13.action = "Patrol";
-						ScheduleBlock obj14 = ScheduleBlocks[7];
-						obj14.destination = "Patrol";
-						obj14.action = "Patrol";
+						ScheduleBlock obj15 = ScheduleBlocks[2];
+						obj15.destination = "Patrol";
+						obj15.action = "Patrol";
+						ScheduleBlock obj16 = ScheduleBlocks[7];
+						obj16.destination = "Patrol";
+						obj16.action = "Patrol";
 						PatrolAnim = "f02_pondering_00";
 						if (StudentManager.MissionMode)
 						{
@@ -2460,9 +2475,9 @@ public class StudentScript : MonoBehaviour
 					}
 					if (StudentManager.MissionMode)
 					{
-						ScheduleBlock obj15 = ScheduleBlocks[4];
-						obj15.destination = "LunchSpot";
-						obj15.action = "Eat";
+						ScheduleBlock obj17 = ScheduleBlocks[4];
+						obj17.destination = "LunchSpot";
+						obj17.action = "Eat";
 					}
 				}
 				else if (StudentID == 39)
@@ -2483,40 +2498,40 @@ public class StudentScript : MonoBehaviour
 						Persona = PersonaType.Loner;
 						if (!SchoolGlobals.RoofFence)
 						{
-							ScheduleBlock obj16 = ScheduleBlocks[2];
-							obj16.destination = "Sulk";
-							obj16.action = "Sulk";
-							ScheduleBlock obj17 = ScheduleBlocks[4];
-							obj17.destination = "Sulk";
-							obj17.action = "Sulk";
-							ScheduleBlock obj18 = ScheduleBlocks[7];
+							ScheduleBlock obj18 = ScheduleBlocks[2];
 							obj18.destination = "Sulk";
 							obj18.action = "Sulk";
-							ScheduleBlock obj19 = ScheduleBlocks[8];
+							ScheduleBlock obj19 = ScheduleBlocks[4];
 							obj19.destination = "Sulk";
 							obj19.action = "Sulk";
+							ScheduleBlock obj20 = ScheduleBlocks[7];
+							obj20.destination = "Sulk";
+							obj20.action = "Sulk";
+							ScheduleBlock obj21 = ScheduleBlocks[8];
+							obj21.destination = "Sulk";
+							obj21.action = "Sulk";
 						}
 						else
 						{
-							ScheduleBlock obj20 = ScheduleBlocks[2];
-							obj20.destination = "Seat";
-							obj20.action = "Sit";
-							ScheduleBlock obj21 = ScheduleBlocks[4];
-							obj21.destination = "Seat";
-							obj21.action = "Sit";
-							ScheduleBlock obj22 = ScheduleBlocks[7];
+							ScheduleBlock obj22 = ScheduleBlocks[2];
 							obj22.destination = "Seat";
 							obj22.action = "Sit";
-							ScheduleBlock obj23 = ScheduleBlocks[8];
+							ScheduleBlock obj23 = ScheduleBlocks[4];
 							obj23.destination = "Seat";
 							obj23.action = "Sit";
+							ScheduleBlock obj24 = ScheduleBlocks[7];
+							obj24.destination = "Seat";
+							obj24.action = "Sit";
+							ScheduleBlock obj25 = ScheduleBlocks[8];
+							obj25.destination = "Seat";
+							obj25.action = "Sit";
 						}
 					}
 					if (StudentManager.MissionMode)
 					{
-						ScheduleBlock obj24 = ScheduleBlocks[4];
-						obj24.destination = "LunchSpot";
-						obj24.action = "Eat";
+						ScheduleBlock obj26 = ScheduleBlocks[4];
+						obj26.destination = "LunchSpot";
+						obj26.action = "Eat";
 					}
 				}
 				else if (StudentID == 56)
@@ -2605,18 +2620,18 @@ public class StudentScript : MonoBehaviour
 				if ((StudentID == 6 || StudentID == 11) && DatingGlobals.SuitorProgress == 2)
 				{
 					Partner = ((StudentID == 11) ? StudentManager.Students[6] : StudentManager.Students[11]);
-					ScheduleBlock obj25 = ScheduleBlocks[2];
-					obj25.destination = "Cuddle";
-					obj25.action = "Cuddle";
-					ScheduleBlock obj26 = ScheduleBlocks[4];
-					obj26.destination = "Cuddle";
-					obj26.action = "Cuddle";
-					ScheduleBlock obj27 = ScheduleBlocks[6];
-					obj27.destination = "Locker";
-					obj27.action = "Shoes";
-					ScheduleBlock obj28 = ScheduleBlocks[7];
-					obj28.destination = "Exit";
-					obj28.action = "Exit";
+					ScheduleBlock obj27 = ScheduleBlocks[2];
+					obj27.destination = "Cuddle";
+					obj27.action = "Cuddle";
+					ScheduleBlock obj28 = ScheduleBlocks[4];
+					obj28.destination = "Cuddle";
+					obj28.action = "Cuddle";
+					ScheduleBlock obj29 = ScheduleBlocks[6];
+					obj29.destination = "Locker";
+					obj29.action = "Shoes";
+					ScheduleBlock obj30 = ScheduleBlocks[7];
+					obj30.destination = "Exit";
+					obj30.action = "Exit";
 				}
 			}
 			else
@@ -2631,9 +2646,9 @@ public class StudentScript : MonoBehaviour
 				{
 					if (StudentID > 10 && StudentID < 21)
 					{
-						ScheduleBlock obj29 = ScheduleBlocks[2];
-						obj29.destination = "Seat";
-						obj29.action = "PlaceBag";
+						ScheduleBlock obj31 = ScheduleBlocks[2];
+						obj31.destination = "Seat";
+						obj31.action = "PlaceBag";
 					}
 					BookBag.SetActive(value: true);
 					LovestruckTarget = 1;
@@ -2698,12 +2713,12 @@ public class StudentScript : MonoBehaviour
 					ClubAnim = "f02_vocalSingA_00";
 					if (DateGlobals.Week != 6)
 					{
-						ScheduleBlock obj30 = ScheduleBlocks[2];
-						obj30.destination = "Lyrics";
-						obj30.action = "Lyrics";
-						ScheduleBlock obj31 = ScheduleBlocks[7];
-						obj31.destination = "Lyrics";
-						obj31.action = "Lyrics";
+						ScheduleBlock obj32 = ScheduleBlocks[2];
+						obj32.destination = "Lyrics";
+						obj32.action = "Lyrics";
+						ScheduleBlock obj33 = ScheduleBlocks[7];
+						obj33.destination = "Lyrics";
+						obj33.action = "Lyrics";
 					}
 					if (!Rival)
 					{
@@ -2882,7 +2897,7 @@ public class StudentScript : MonoBehaviour
 					{
 						text = "f02_";
 					}
-					ScaredAnim = "delinquentCombatIdle_00";
+					ScaredAnim = text + "delinquentCombatIdle_00";
 					LeanAnim = "delinquentConcern_00";
 					ShoveAnim = text + "pushTough_00";
 					WalkAnim = text + "walkTough_00";
@@ -2974,22 +2989,26 @@ public class StudentScript : MonoBehaviour
 				if (StudentManager.Week == 1 && DateGlobals.Weekday == DayOfWeek.Friday)
 				{
 					Debug.Log("It's Friday, so the art club is changing their club activity to painting the cherry tree.");
-					ScheduleBlock obj32 = ScheduleBlocks[7];
-					obj32.destination = "Paint";
-					obj32.action = "Paint";
+					ScheduleBlock obj34 = ScheduleBlocks[7];
+					obj34.destination = "Paint";
+					obj34.action = "Paint";
 					VisionDistance += 5f;
 				}
 				ClubMemberID = StudentID - 40;
 				Painting = StudentManager.FridayPaintings[ClubMemberID];
 				GetDestinations();
 			}
-			else if (Club == ClubType.LightMusic)
+			else if (OriginalClub == ClubType.LightMusic)
 			{
 				ClubMemberID = StudentID - 50;
 				InstrumentBag[ClubMemberID].SetActive(value: true);
 				if (StudentID == 51)
 				{
 					ClubAnim = "f02_practiceGuitar_01";
+					if (ClubGlobals.GetClubClosed(ClubType.LightMusic))
+					{
+						InstrumentBag[ClubMemberID].SetActive(value: false);
+					}
 				}
 				else if (StudentID == 52 || StudentID == 53)
 				{
@@ -3031,7 +3050,7 @@ public class StudentScript : MonoBehaviour
 					}
 				}
 			}
-			else if (Club == ClubType.MartialArts)
+			else if (OriginalClub == ClubType.MartialArts)
 			{
 				ChangingBooth = StudentManager.ChangingBooths[6];
 				DressCode = true;
@@ -3103,7 +3122,7 @@ public class StudentScript : MonoBehaviour
 				}
 				ClubMemberID = StudentID - 60;
 			}
-			else if (Club == ClubType.Sports)
+			else if (OriginalClub == ClubType.Sports)
 			{
 				if (Male)
 				{
@@ -3118,7 +3137,7 @@ public class StudentScript : MonoBehaviour
 				DressCode = true;
 				ClubMemberID = StudentID - 65;
 			}
-			else if (Club == ClubType.Gardening)
+			else if (OriginalClub == ClubType.Gardening)
 			{
 				if (!StudentManager.Eighties)
 				{
@@ -3127,6 +3146,11 @@ public class StudentScript : MonoBehaviour
 						PatrolAnim = "f02_thinking_00";
 						ClubAnim = "f02_thinking_00";
 						CharacterAnimation[PatrolAnim].speed = 0.9f;
+					}
+					else if (ClubGlobals.GetClubClosed(ClubType.Gardening))
+					{
+						ClubAnim = "f02_arrangeFlowers_00";
+						WateringCan.SetActive(value: false);
 					}
 					else
 					{
@@ -3384,15 +3408,15 @@ public class StudentScript : MonoBehaviour
 			{
 				if (StudentID < 86)
 				{
-					ScheduleBlock obj33 = ScheduleBlocks[6];
-					obj33.destination = "Meeting";
-					obj33.action = "Meeting";
+					ScheduleBlock obj35 = ScheduleBlocks[6];
+					obj35.destination = "Meeting";
+					obj35.action = "Meeting";
 				}
 				else
 				{
-					ScheduleBlock obj34 = ScheduleBlocks[5];
-					obj34.destination = "Meeting";
-					obj34.action = "Meeting";
+					ScheduleBlock obj36 = ScheduleBlocks[5];
+					obj36.destination = "Meeting";
+					obj36.action = "Meeting";
 				}
 				GetDestinations();
 			}
@@ -4058,7 +4082,7 @@ public class StudentScript : MonoBehaviour
 				{
 					if (!StudentManager.Eighties)
 					{
-						if (WateringCan != null && WateringCan.transform.parent != Hips)
+						if (WateringCan != null && WateringCan.activeInHierarchy && WateringCan.transform.parent != Hips)
 						{
 							WateringCan.transform.parent = Hips;
 							WateringCan.transform.localPosition = new Vector3(0f, 0.0135f, -0.184f);
@@ -4079,7 +4103,7 @@ public class StudentScript : MonoBehaviour
 						Pathfinding.target = CurrentDestination;
 					}
 				}
-				if (Club == ClubType.LightMusic)
+				if (OriginalClub == ClubType.LightMusic)
 				{
 					if (StudentID == 51)
 					{
@@ -4252,7 +4276,7 @@ public class StudentScript : MonoBehaviour
 						else
 						{
 							Debug.Log("Rival is NOT meeting someone, so TargetDistance is nearby.");
-							TargetDistance = 5f;
+							TargetDistance = 0.5f;
 						}
 					}
 				}
@@ -4600,7 +4624,7 @@ public class StudentScript : MonoBehaviour
 					}
 					else
 					{
-						TargetDistance = 5f;
+						TargetDistance = 0.5f;
 					}
 					if (StudentManager.LockerRoomArea.bounds.Contains(CurrentDestination.position) || StudentManager.EastBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.WestBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.Students[InfatuationID].Meeting)
 					{
@@ -4649,7 +4673,7 @@ public class StudentScript : MonoBehaviour
 					}
 					else
 					{
-						TargetDistance = 5f;
+						TargetDistance = 0.5f;
 					}
 					flag2 = true;
 				}
@@ -5324,7 +5348,7 @@ public class StudentScript : MonoBehaviour
 								GetFoodTarget();
 							}
 						}
-						else if (Club == ClubType.Drama)
+						else if (OriginalClub == ClubType.Drama)
 						{
 							StudentManager.DramaTimer += Time.deltaTime;
 							if (StudentManager.DramaPhase == 1)
@@ -5423,7 +5447,7 @@ public class StudentScript : MonoBehaviour
 								Palette.SetActive(value: true);
 							}
 						}
-						else if (Club == ClubType.LightMusic)
+						else if (OriginalClub == ClubType.LightMusic)
 						{
 							if ((double)Clock.HourTime < 16.9)
 							{
@@ -5754,7 +5778,7 @@ public class StudentScript : MonoBehaviour
 								CharacterAnimation.CrossFade(IdleAnim);
 							}
 						}
-						else if (Club == ClubType.Sports)
+						else if (OriginalClub == ClubType.Sports)
 						{
 							CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 							if (ClubActivityPhase == 0)
@@ -5915,7 +5939,7 @@ public class StudentScript : MonoBehaviour
 								}
 							}
 						}
-						else if (Club == ClubType.Gardening)
+						else if (OriginalClub == ClubType.Gardening)
 						{
 							if (!StudentManager.Eighties && WateringCan.transform.parent != RightHand)
 							{
@@ -5942,7 +5966,7 @@ public class StudentScript : MonoBehaviour
 								}
 							}
 						}
-						else if (Club == ClubType.Gaming)
+						else if (OriginalClub == ClubType.Gaming)
 						{
 							if (Phase < 8)
 							{
@@ -6418,6 +6442,7 @@ public class StudentScript : MonoBehaviour
 							if (Infatuated)
 							{
 								Debug.Log("Senpai is now changing his routine to go stalk the gravure idol.");
+								StudentManager.StalkerID = 0;
 								StudentManager.FollowGravureIdol(1);
 								CurrentDestination = StudentManager.Students[InfatuationID].transform;
 								Pathfinding.target = StudentManager.Students[InfatuationID].transform;
@@ -6511,6 +6536,22 @@ public class StudentScript : MonoBehaviour
 							else if (CharacterAnimation[BookSitAnim].time > 1f)
 							{
 								OccultBook.SetActive(value: true);
+							}
+						}
+						if (Rival)
+						{
+							ReadTimer += Time.deltaTime;
+							if (ReadTimer > 300f)
+							{
+								OccultBook.SetActive(value: false);
+								ScheduleBlock obj9 = ScheduleBlocks[Phase];
+								obj9.destination = "LunchSpot";
+								obj9.action = "SitAndEatBento";
+								Actions[Phase] = StudentActionType.SitAndEatBento;
+								CurrentAction = StudentActionType.SitAndEatBento;
+								GetDestinations();
+								CurrentDestination = Destinations[Phase];
+								Pathfinding.target = Destinations[Phase];
 							}
 						}
 					}
@@ -6736,9 +6777,9 @@ public class StudentScript : MonoBehaviour
 								return;
 							}
 							DistanceToDestination = 100f;
-							ScheduleBlock obj9 = ScheduleBlocks[2];
-							obj9.destination = "Patrol";
-							obj9.action = "Patrol";
+							ScheduleBlock obj10 = ScheduleBlocks[2];
+							obj10.destination = "Patrol";
+							obj10.action = "Patrol";
 							GetDestinations();
 							if (!StudentManager.Eighties)
 							{
@@ -6759,9 +6800,9 @@ public class StudentScript : MonoBehaviour
 					else if (Actions[Phase] == StudentActionType.Bully)
 					{
 						CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-						if (StudentManager.Students[StudentManager.VictimID] != null)
+						if (StudentManager.Students[StudentManager.VictimID] != null && StudentManager.Students[StudentManager.VictimID].Alive && StudentManager.Students[StudentManager.VictimID].Tranquil)
 						{
-							if (StudentManager.Students[StudentManager.VictimID].Distracted || StudentManager.Students[StudentManager.VictimID].Tranquil)
+							if (StudentManager.Students[StudentManager.VictimID].Distracted)
 							{
 								StudentManager.NoBully[BullyID] = true;
 								KilledMood = true;
@@ -6775,9 +6816,9 @@ public class StudentScript : MonoBehaviour
 							}
 							if (StudentManager.Students[81] == null)
 							{
-								ScheduleBlock obj10 = ScheduleBlocks[4];
-								obj10.destination = "Patrol";
-								obj10.action = "Patrol";
+								ScheduleBlock obj11 = ScheduleBlocks[4];
+								obj11.destination = "Patrol";
+								obj11.action = "Patrol";
 								GetDestinations();
 								CurrentDestination = Destinations[Phase];
 								Pathfinding.target = Destinations[Phase];
@@ -6830,9 +6871,9 @@ public class StudentScript : MonoBehaviour
 									}
 									CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 									StudentManager.Students[StudentManager.VictimID].Routine = true;
-									ScheduleBlock obj11 = ScheduleBlocks[4];
-									obj11.destination = "Patrol";
-									obj11.action = "Patrol";
+									ScheduleBlock obj12 = ScheduleBlocks[4];
+									obj12.destination = "Patrol";
+									obj12.action = "Patrol";
 									GetDestinations();
 									if (!StudentManager.Eighties)
 									{
@@ -6877,9 +6918,9 @@ public class StudentScript : MonoBehaviour
 							{
 								CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 								DistanceToDestination = 100f;
-								ScheduleBlock obj12 = ScheduleBlocks[4];
-								obj12.destination = "Patrol";
-								obj12.action = "Patrol";
+								ScheduleBlock obj13 = ScheduleBlocks[4];
+								obj13.destination = "Patrol";
+								obj13.action = "Patrol";
 								GetDestinations();
 								CurrentDestination = Destinations[Phase];
 								Pathfinding.target = Destinations[Phase];
@@ -6890,9 +6931,9 @@ public class StudentScript : MonoBehaviour
 						{
 							CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 							DistanceToDestination = 100f;
-							ScheduleBlock obj13 = ScheduleBlocks[4];
-							obj13.destination = "Patrol";
-							obj13.action = "Patrol";
+							ScheduleBlock obj14 = ScheduleBlocks[4];
+							obj14.destination = "Patrol";
+							obj14.action = "Patrol";
 							GetDestinations();
 							CurrentDestination = Destinations[Phase];
 							Pathfinding.target = Destinations[Phase];
@@ -6935,9 +6976,9 @@ public class StudentScript : MonoBehaviour
 							if (FollowTarget.Routine && !FollowTarget.InEvent && FollowTarget.CurrentAction == StudentActionType.SitAndEatBento && FollowTarget.DistanceToDestination < 1f)
 							{
 								Debug.Log("Raibaru just changed her destination to lunch.");
-								ScheduleBlock obj14 = ScheduleBlocks[Phase];
-								obj14.destination = "LunchSpot";
-								obj14.action = "SitAndEatBento";
+								ScheduleBlock obj15 = ScheduleBlocks[Phase];
+								obj15.destination = "LunchSpot";
+								obj15.action = "SitAndEatBento";
 								Actions[Phase] = StudentActionType.SitAndEatBento;
 								CurrentAction = StudentActionType.SitAndEatBento;
 								GetDestinations();
@@ -6948,9 +6989,9 @@ public class StudentScript : MonoBehaviour
 							if (FollowTarget.Routine && !FollowTarget.InEvent && FollowTarget.Phase == 8 && FollowTarget.DistanceToDestination < 1f)
 							{
 								Debug.Log("Raibaru just changed her destination to the lockers.");
-								ScheduleBlock obj15 = ScheduleBlocks[Phase];
-								obj15.destination = "Locker";
-								obj15.action = "Shoes";
+								ScheduleBlock obj16 = ScheduleBlocks[Phase];
+								obj16.destination = "Locker";
+								obj16.action = "Shoes";
 								Actions[Phase] = StudentActionType.ChangeShoes;
 								CurrentAction = StudentActionType.ChangeShoes;
 								GetDestinations();
@@ -6968,10 +7009,10 @@ public class StudentScript : MonoBehaviour
 							if (FollowTarget.ConfessPhase == 5)
 							{
 								Debug.Log("Raibaru just changed her action to Sketch and her destination to Paint.");
-								ScheduleBlock obj16 = ScheduleBlocks[Phase];
-								obj16.destination = "Paint";
-								obj16.action = "Sketch";
-								obj16.time = 99f;
+								ScheduleBlock obj17 = ScheduleBlocks[Phase];
+								obj17.destination = "Paint";
+								obj17.action = "Sketch";
+								obj17.time = 99f;
 								GetDestinations();
 								CurrentDestination = Destinations[Phase];
 								Pathfinding.target = Destinations[Phase];
@@ -7118,9 +7159,9 @@ public class StudentScript : MonoBehaviour
 							if (SewTimer > 20f)
 							{
 								CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-								ScheduleBlock obj17 = ScheduleBlocks[Phase];
-								obj17.destination = "Patrol";
-								obj17.action = "Patrol";
+								ScheduleBlock obj18 = ScheduleBlocks[Phase];
+								obj18.destination = "Patrol";
+								obj18.action = "Patrol";
 								GetDestinations();
 								EmptyHands();
 								PatrolID = 1;
@@ -7648,9 +7689,9 @@ public class StudentScript : MonoBehaviour
 							MyBento.gameObject.SetActive(value: false);
 							MyBento.Prompt.enabled = false;
 							MyBento.Prompt.Hide();
-							ScheduleBlock obj18 = ScheduleBlocks[Phase];
-							obj18.destination = "LunchSpot";
-							obj18.action = "Eat";
+							ScheduleBlock obj19 = ScheduleBlocks[Phase];
+							obj19.destination = "LunchSpot";
+							obj19.action = "Eat";
 							GetDestinations();
 							Pathfinding.target = Destinations[Phase];
 							CurrentDestination = Destinations[Phase];
@@ -9691,9 +9732,9 @@ public class StudentScript : MonoBehaviour
 								if (!LightSwitch.Flicker)
 								{
 									CharacterAnimation["f02_electrocution_00"].speed = 0.85f;
-									GameObject obj19 = UnityEngine.Object.Instantiate(LightSwitch.Electricity, base.transform.position, Quaternion.identity);
-									obj19.transform.parent = Bones[1].transform;
-									obj19.transform.localPosition = Vector3.zero;
+									GameObject obj20 = UnityEngine.Object.Instantiate(LightSwitch.Electricity, base.transform.position, Quaternion.identity);
+									obj20.transform.parent = Bones[1].transform;
+									obj20.transform.localPosition = Vector3.zero;
 									Subtitle.UpdateLabel(SubtitleType.LightSwitchReaction, 3, 0f);
 									LightSwitch.GetComponent<AudioSource>().clip = LightSwitch.Flick[2];
 									LightSwitch.Flicker = true;
@@ -9977,11 +10018,11 @@ public class StudentScript : MonoBehaviour
 			HuntTimer += Time.deltaTime;
 			if (HuntTimer > 1f)
 			{
-				GameObject obj20 = UnityEngine.Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity);
-				obj20.GetComponent<AlarmDiscScript>().Originator = this;
-				obj20.GetComponent<AlarmDiscScript>().Shocking = true;
-				obj20.GetComponent<AlarmDiscScript>().NoScream = true;
-				obj20.GetComponent<AlarmDiscScript>().Silent = true;
+				GameObject obj21 = UnityEngine.Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity);
+				obj21.GetComponent<AlarmDiscScript>().Originator = this;
+				obj21.GetComponent<AlarmDiscScript>().Shocking = true;
+				obj21.GetComponent<AlarmDiscScript>().NoScream = true;
+				obj21.GetComponent<AlarmDiscScript>().Silent = true;
 				HuntTimer = 0f;
 			}
 			if (HuntTarget != null)
@@ -10246,9 +10287,9 @@ public class StudentScript : MonoBehaviour
 								{
 									if (CharacterAnimation["f02_murderSuicide_00"].time >= 3.3f)
 									{
-										GameObject obj21 = UnityEngine.Object.Instantiate(Ragdoll.BloodPoolSpawner.BloodPool, base.transform.position + base.transform.up * 0.012f + base.transform.forward, Quaternion.identity);
-										obj21.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
-										obj21.transform.parent = Police.BloodParent;
+										GameObject obj22 = UnityEngine.Object.Instantiate(Ragdoll.BloodPoolSpawner.BloodPool, base.transform.position + base.transform.up * 0.012f + base.transform.forward, Quaternion.identity);
+										obj22.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
+										obj22.transform.parent = Police.BloodParent;
 										MyWeapon.Victims[HuntTarget.StudentID] = true;
 										MyWeapon.Blood.enabled = true;
 										MyWeapon.StainWithBlood();
@@ -10748,12 +10789,12 @@ public class StudentScript : MonoBehaviour
 					scheduleBlock.destination = "Practice";
 					scheduleBlock.action = "Practice";
 				}
-				ScheduleBlock obj22 = ScheduleBlocks[4];
-				obj22.destination = "LunchSpot";
-				obj22.action = "Eat";
-				ScheduleBlock obj23 = ScheduleBlocks[7];
-				obj23.destination = "Hangout";
-				obj23.action = "Hangout";
+				ScheduleBlock obj23 = ScheduleBlocks[4];
+				obj23.destination = "LunchSpot";
+				obj23.action = "Eat";
+				ScheduleBlock obj24 = ScheduleBlocks[7];
+				obj24.destination = "Hangout";
+				obj24.action = "Hangout";
 				Debug.Log("ScheduleBlocks[2].destination is: " + ScheduleBlocks[2].destination);
 				RestoreOriginalScheduleBlocks();
 				RestoreOriginalActions();
@@ -10868,24 +10909,38 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (SentHomePhase == 1)
 			{
+				CharacterAnimation.CrossFade(SentHomeAnim);
+				Pathfinding.canSearch = false;
+				Pathfinding.canMove = false;
 				if (CharacterAnimation[SentHomeAnim].time > 0.66666f)
 				{
 					SmartPhone.SetActive(value: true);
 					SentHomePhase++;
 				}
 			}
-			else if (SentHomePhase == 2 && CharacterAnimation[SentHomeAnim].time > CharacterAnimation[SentHomeAnim].length)
+			else if (SentHomePhase == 2)
 			{
-				Debug.Log("Sprinting becasue sent home.");
-				SprintAnim = OriginalSprintAnim;
+				CharacterAnimation.CrossFade(SentHomeAnim);
+				Pathfinding.canSearch = false;
+				Pathfinding.canMove = false;
+				if (CharacterAnimation[SentHomeAnim].time > CharacterAnimation[SentHomeAnim].length)
+				{
+					Debug.Log("Sprinting becasue sent home.");
+					SprintAnim = OriginalSprintAnim;
+					CharacterAnimation.CrossFade(SprintAnim);
+					CurrentDestination = StudentManager.Exit;
+					Pathfinding.target = StudentManager.Exit;
+					Pathfinding.canSearch = true;
+					Pathfinding.canMove = true;
+					SmartPhone.SetActive(value: false);
+					Pathfinding.speed = 4f;
+					SentHomePhase++;
+				}
+			}
+			else if (SentHomePhase == 3)
+			{
 				CharacterAnimation.CrossFade(SprintAnim);
-				CurrentDestination = StudentManager.Exit;
-				Pathfinding.target = StudentManager.Exit;
-				Pathfinding.canSearch = true;
-				Pathfinding.canMove = true;
-				SmartPhone.SetActive(value: false);
 				Pathfinding.speed = 4f;
-				SentHomePhase++;
 			}
 		}
 		if (DramaticReaction)
@@ -11084,9 +11139,9 @@ public class StudentScript : MonoBehaviour
 				{
 					Pathfinding.canSearch = true;
 					Pathfinding.canMove = true;
-					ScheduleBlock obj24 = ScheduleBlocks[Phase];
-					obj24.destination = "InfirmarySeat";
-					obj24.action = "Relax";
+					ScheduleBlock obj25 = ScheduleBlocks[Phase];
+					obj25.destination = "InfirmarySeat";
+					obj25.action = "Relax";
 					GetDestinations();
 					CurrentDestination = Destinations[Phase];
 					Pathfinding.target = Destinations[Phase];
@@ -15390,6 +15445,10 @@ public class StudentScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
+		if (Input.GetKeyDown("z"))
+		{
+			GetDestinations();
+		}
 		if (StudentManager.DisableFarAnims && DistanceToPlayer >= (float)StudentManager.FarAnimThreshold && CharacterAnimation.cullingType != 0 && !WitnessCamera.Show)
 		{
 			CharacterAnimation.enabled = false;
@@ -15556,6 +15615,11 @@ public class StudentScript : MonoBehaviour
 			Debug.Log(Name + "'s CurrentDestination became ''null'' for some reason.");
 			CurrentDestination = Destinations[Phase];
 			Pathfinding.target = CurrentDestination;
+			if (Leaving)
+			{
+				CurrentDestination = StudentManager.Exit;
+				Pathfinding.target = StudentManager.Exit;
+			}
 			Debug.Log("Phase is " + Phase + ". Changing " + Name + "'s CurrentDestination to: " + Destinations[Phase]);
 		}
 	}
@@ -17176,8 +17240,9 @@ public class StudentScript : MonoBehaviour
 			else if (scheduleBlock.destination == "Patrol")
 			{
 				Destinations[ID] = StudentManager.Patrols.List[StudentID].GetChild(0);
-				if (Club == ClubType.None)
+				if (OriginalClub != 0 && Club == ClubType.None && OriginalClub != ClubType.Occult && OriginalClub != ClubType.Gardening)
 				{
+					Debug.Log("Student #" + StudentID + "'s club disbanded, so their destination has been set to ''Hangout''.");
 					Destinations[ID] = StudentManager.Hangouts.List[StudentID];
 				}
 			}
@@ -17246,14 +17311,56 @@ public class StudentScript : MonoBehaviour
 			{
 				if (Club > ClubType.None)
 				{
+					Destinations[ID] = StudentManager.Clubs.List[StudentID];
 					if (Club == ClubType.Sports)
 					{
 						Destinations[ID] = StudentManager.Clubs.List[StudentID].GetChild(0);
 					}
-					else
-					{
-						Destinations[ID] = StudentManager.Clubs.List[StudentID];
-					}
+				}
+				else if (OriginalClub == ClubType.Cooking)
+				{
+					Destinations[ID] = StudentManager.Hangouts.List[StudentID];
+				}
+				else if (OriginalClub == ClubType.Drama)
+				{
+					Destinations[ID] = StudentManager.Clubs.List[StudentID];
+				}
+				else if (OriginalClub == ClubType.Gaming)
+				{
+					Destinations[ID] = StudentManager.Hangouts.List[StudentID];
+				}
+				else if (OriginalClub == ClubType.Art)
+				{
+					Destinations[ID] = StudentManager.Hangouts.List[StudentID];
+				}
+				else if (OriginalClub == ClubType.MartialArts)
+				{
+					Destinations[ID] = StudentManager.Clubs.List[StudentID];
+					DressCode = false;
+				}
+				else if (OriginalClub == ClubType.LightMusic)
+				{
+					Destinations[ID] = StudentManager.Clubs.List[StudentID];
+				}
+				else if (OriginalClub == ClubType.Photography)
+				{
+					Destinations[ID] = StudentManager.Hangouts.List[StudentID];
+				}
+				else if (OriginalClub == ClubType.Science)
+				{
+					Destinations[ID] = StudentManager.Hangouts.List[StudentID];
+				}
+				else if (OriginalClub == ClubType.Sports)
+				{
+					Destinations[ID] = StudentManager.Clubs.List[StudentID].GetChild(0);
+				}
+				else if (OriginalClub == ClubType.Gardening)
+				{
+					Destinations[ID] = StudentManager.Clubs.List[StudentID].GetChild(0);
+				}
+				else if (OriginalClub == ClubType.Newspaper)
+				{
+					Destinations[ID] = StudentManager.Hangouts.List[StudentID];
 				}
 				else
 				{
@@ -17287,11 +17394,8 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.destination == "Practice")
 			{
-				if (Club > ClubType.None)
-				{
-					Destinations[ID] = StudentManager.PracticeSpots[ClubMemberID];
-				}
-				else
+				Destinations[ID] = StudentManager.PracticeSpots[ClubMemberID];
+				if (Club == ClubType.None && !StudentManager.Eighties && StudentID == 51)
 				{
 					Destinations[ID] = StudentManager.Hangouts.List[StudentID];
 				}
@@ -17383,6 +17487,10 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.action == "Socialize")
 			{
+				if (StudentID == 26)
+				{
+					Debug.Log("Somehow, this guy's shit is being set to ''Socializing''?");
+				}
 				Actions[ID] = StudentActionType.Socializing;
 			}
 			else if (scheduleBlock.action == "Game")
@@ -17428,9 +17536,9 @@ public class StudentScript : MonoBehaviour
 			else if (scheduleBlock.action == "Patrol")
 			{
 				Actions[ID] = StudentActionType.Patrol;
-				if (OriginalClub != 0 && Club == ClubType.None)
+				if (OriginalClub != 0 && Club == ClubType.None && OriginalClub != ClubType.Occult)
 				{
-					Debug.Log("This student's club disbanded, so their action has been set to ''Socialize''.");
+					Debug.Log("Student #" + StudentID + "'s club disbanded, so their action has been set to ''Socialize''.");
 					Actions[ID] = StudentActionType.Socializing;
 				}
 			}
@@ -17601,12 +17709,60 @@ public class StudentScript : MonoBehaviour
 				{
 					Actions[ID] = StudentActionType.ClubAction;
 				}
+				else if (OriginalClub == ClubType.Cooking)
+				{
+					Actions[ID] = StudentActionType.Socializing;
+				}
+				else if (OriginalClub == ClubType.Drama)
+				{
+					Debug.Log("The Drama Club was shut down. They are still being told to perform their club action, though.");
+					Actions[ID] = StudentActionType.ClubAction;
+					Debug.Log(Name + "'s Actions[" + ID + "] should be: " + Actions[ID]);
+				}
+				else if (OriginalClub == ClubType.Occult)
+				{
+					Actions[ID] = StudentActionType.ClubAction;
+				}
+				else if (OriginalClub == ClubType.Gaming)
+				{
+					Actions[ID] = StudentActionType.ClubAction;
+				}
 				else if (OriginalClub == ClubType.Art)
 				{
 					Actions[ID] = StudentActionType.Sketch;
 				}
+				else if (OriginalClub == ClubType.MartialArts)
+				{
+					Actions[ID] = StudentActionType.ClubAction;
+					DressCode = false;
+				}
+				else if (OriginalClub == ClubType.LightMusic)
+				{
+					Actions[ID] = StudentActionType.ClubAction;
+				}
+				else if (OriginalClub == ClubType.LightMusic)
+				{
+					Actions[ID] = StudentActionType.Socializing;
+				}
+				else if (OriginalClub == ClubType.Science)
+				{
+					Actions[ID] = StudentActionType.Socializing;
+				}
+				else if (OriginalClub == ClubType.Sports)
+				{
+					Actions[ID] = StudentActionType.ClubAction;
+				}
+				else if (OriginalClub == ClubType.Gardening)
+				{
+					Actions[ID] = StudentActionType.ClubAction;
+				}
+				else if (OriginalClub == ClubType.Newspaper)
+				{
+					Actions[ID] = StudentActionType.Socializing;
+				}
 				else
 				{
+					Debug.Log("Somehow, Student#" + StudentID + " - " + Name + " - reached this part of the code.");
 					Actions[ID] = StudentActionType.Socializing;
 				}
 			}
@@ -18739,7 +18895,7 @@ public class StudentScript : MonoBehaviour
 			{
 				WearLabCoat();
 			}
-			else if (Club == ClubType.Sports)
+			else if (OriginalClub == ClubType.Sports)
 			{
 				if (Clock.Period < 3 || StudentManager.PoolClosed)
 				{
@@ -20444,8 +20600,16 @@ public class StudentScript : MonoBehaviour
 		if (Ragdoll.Concealed && Ragdoll.InsideIncinerator)
 		{
 			Debug.Log("This character was wrapped in a garbage bag and inside of an incinerator at the point in time when UpdateAnimLayers() was called.");
-			CharacterAnimation.Play("f02_carryDisposeB_00");
-			CharacterAnimation["f02_carryDisposeB_00"].time = CharacterAnimation["f02_carryDisposeB_00"].length;
+			if (Male)
+			{
+				CharacterAnimation.Play("carryDisposeB_00");
+				CharacterAnimation["carryDisposeB_00"].time = CharacterAnimation["carryDisposeB_00"].length;
+			}
+			else
+			{
+				CharacterAnimation.Play("f02_carryDisposeB_00");
+				CharacterAnimation["f02_carryDisposeB_00"].time = CharacterAnimation["f02_carryDisposeB_00"].length;
+			}
 		}
 	}
 
@@ -21610,7 +21774,6 @@ public class StudentScript : MonoBehaviour
 
 	public void BecomeSleuth()
 	{
-		Debug.Log("Student #" + StudentID + ", " + Name + ", has fired the BecomeSleuth() function.");
 		if (Club != ClubType.Newspaper && Club != ClubType.Photography)
 		{
 			_ = Club;

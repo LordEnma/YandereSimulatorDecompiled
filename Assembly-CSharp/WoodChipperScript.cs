@@ -196,7 +196,7 @@ public class WoodChipperScript : MonoBehaviour
 			{
 				WeaponScript equippedWeapon = Yandere.EquippedWeapon;
 				Yandere.EmptyHands();
-				Yandere.Police.BloodyWeapons--;
+				Yandere.Police.MurderWeapons--;
 				Object.Destroy(equippedWeapon.gameObject);
 			}
 			else
@@ -247,10 +247,6 @@ public class WoodChipperScript : MonoBehaviour
 			{
 				Debug.Log("Student #" + VictimID + " is null?!");
 			}
-			if (Yandere.StudentManager.Students[VictimID].Drowned)
-			{
-				Yandere.Police.DrownVictims--;
-			}
 			if (!Acid)
 			{
 				Shredding = true;
@@ -259,7 +255,14 @@ public class WoodChipperScript : MonoBehaviour
 			{
 				Occupied = false;
 			}
-			Yandere.StudentManager.Students[VictimID].Ragdoll.Disposed = true;
+			if (Yandere.StudentManager.Students[VictimID] != null)
+			{
+				if (Yandere.StudentManager.Students[VictimID].Drowned)
+				{
+					Yandere.Police.DrownVictims--;
+				}
+				Yandere.StudentManager.Students[VictimID].Ragdoll.Disposed = true;
+			}
 			if (Yandere.StudentManager.Students[Yandere.StudentManager.RivalID] != null && Yandere.StudentManager.Students[Yandere.StudentManager.RivalID].Ragdoll.Disposed)
 			{
 				Debug.Log("Just shredded or dissolved the current rival's corpse.");

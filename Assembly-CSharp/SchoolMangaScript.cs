@@ -193,7 +193,7 @@ public class SchoolMangaScript : MonoBehaviour
 				return;
 			}
 			Darkness.alpha = 0f;
-			if (Selected < 5)
+			if (Selected < 6)
 			{
 				RomanceMangaProgress += 20 + Yandere.Class.LanguageGrade * 6;
 				if (RomanceMangaProgress >= 100)
@@ -204,7 +204,7 @@ public class SchoolMangaScript : MonoBehaviour
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				}
 			}
-			else if (Selected < 10)
+			else if (Selected < 11)
 			{
 				HorrorMangaProgress += 20 + Yandere.Class.LanguageGrade * 6;
 				if (HorrorMangaProgress >= 100)

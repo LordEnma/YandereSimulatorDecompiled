@@ -1508,7 +1508,11 @@ public class KokonaTutorialScript : MonoBehaviour
 		}
 		else if (Selected == 15)
 		{
-			StudentManager.Police.UpdateIconsForTutorial();
+			if (!StudentManager.Students[30].Alive)
+			{
+				PoliceIcons[0].transform.localPosition = Vector3.Lerp(PoliceIcons[0].transform.localPosition, new Vector3(0f, -100f, 0f), Time.deltaTime * 10f);
+				StudentManager.Police.UpdateIconsForTutorial();
+			}
 			if ((Yandere.Alerts > 0 || StudentManager.Yandere.Police.StudentFoundCorpse || StudentManager.BloodReporter != null || (Yandere.Attacking && Yandere.TargetStudent.StudentID != 30)) && TutorialPhase != 0)
 			{
 				TutorialTimer = 0f;
@@ -1935,7 +1939,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			Bleach.transform.localPosition = new Vector3(-2f, 0f, 11f);
 			Bleach.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 			PoliceIcons[0].transform.parent.localPosition = new Vector3(0f, 0f, 0f);
-			PoliceIcons[0].transform.localPosition = new Vector3(0f, -100f, 0f);
+			PoliceIcons[0].transform.localPosition = new Vector3(-230f, -100f, 0f);
 			PoliceIcons[0].SetActive(value: true);
 			T.Clock.Period = 5;
 			break;

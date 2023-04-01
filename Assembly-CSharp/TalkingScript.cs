@@ -1481,6 +1481,10 @@ public class TalkingScript : MonoBehaviour
 			{
 				S.CharacterAnimation.CrossFade(IdleAnim);
 			}
+			if (S.CharacterAnimation["f02_nod_00"].time >= S.CharacterAnimation["f02_nod_00"].length)
+			{
+				S.CharacterAnimation.CrossFade(IdleAnim);
+			}
 			S.TalkTimer -= Time.deltaTime;
 			if (S.TalkTimer <= 0f)
 			{

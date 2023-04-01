@@ -288,6 +288,7 @@ public class ClockScript : MonoBehaviour
 				}
 				if (!StudentManager.KokonaTutorial)
 				{
+					Yandere.RPGCamera.ZeroEverything();
 					Yandere.FixCamera();
 				}
 			}
@@ -389,6 +390,7 @@ public class ClockScript : MonoBehaviour
 			{
 				PeriodLabel.text = "BEFORE CLASS";
 				DeactivateTrespassZones();
+				ChangePeriod();
 				Period++;
 			}
 		}
@@ -398,6 +400,7 @@ public class ClockScript : MonoBehaviour
 			{
 				PeriodLabel.text = "CLASS TIME";
 				ActivateTrespassZones();
+				ChangePeriod();
 				Period++;
 			}
 		}
@@ -409,6 +412,7 @@ public class ClockScript : MonoBehaviour
 				StudentManager.DramaPhase = 0;
 				StudentManager.UpdateDrama();
 				DeactivateTrespassZones();
+				ChangePeriod();
 				Period++;
 				StudentManager.WednesdayGiftBox.SetActive(value: false);
 				StudentManager.FridayTestNotes.SetActive(value: false);
@@ -428,6 +432,7 @@ public class ClockScript : MonoBehaviour
 			{
 				PeriodLabel.text = "CLASS TIME";
 				ActivateTrespassZones();
+				ChangePeriod();
 				Period++;
 			}
 		}
@@ -447,6 +452,7 @@ public class ClockScript : MonoBehaviour
 					MeetingRoomTrespassZone.enabled = true;
 				}
 				StudentManager.Unstop();
+				ChangePeriod();
 				Period++;
 				UpdateClock();
 			}
@@ -456,6 +462,7 @@ public class ClockScript : MonoBehaviour
 			PeriodLabel.text = "AFTER SCHOOL";
 			StudentManager.DramaPhase = 0;
 			StudentManager.UpdateDrama();
+			ChangePeriod();
 			Period++;
 		}
 		if (!IgnorePhotographyClub && HourTime > 16.75f && StudentManager.SleuthPhase < 4)
@@ -708,5 +715,10 @@ public class ClockScript : MonoBehaviour
 			Police.EndOfDay.WeaponManager.BroughtWeapons[bringingItem].Prompt.Circle[3].fillAmount = 0f;
 			Police.EndOfDay.WeaponManager.BroughtWeapons[bringingItem].UnequipImmediately = true;
 		}
+	}
+
+	public void ChangePeriod()
+	{
+		StudentManager.UpdateInfatuatedTargetDistances();
 	}
 }

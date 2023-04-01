@@ -301,10 +301,10 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					Inventory.SilverFulminate = false;
 					Inventory.Paper = false;
-					GameObject obj3 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[12], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
+					GameObject obj3 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[15], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
 					obj3.GetComponent<Rigidbody>().useGravity = true;
 					obj3.GetComponent<Rigidbody>().isKinematic = false;
-					obj3.name = "Box of Bang Snaps";
+					obj3.name = "Bundle of Bang Snaps";
 					obj3.GetComponent<PickUpScript>().InstantiatedObject = true;
 				}
 				else if (OutcomeID == 4)

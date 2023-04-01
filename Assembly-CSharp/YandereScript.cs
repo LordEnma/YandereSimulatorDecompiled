@@ -478,6 +478,8 @@ public class YandereScript : MonoBehaviour
 
 	public int NearestCorpseID;
 
+	public int VendingMachines;
+
 	public int StolenObjectID;
 
 	public int StrugglePhase;

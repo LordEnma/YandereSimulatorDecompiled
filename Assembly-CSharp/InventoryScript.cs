@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class InventoryScript : MonoBehaviour
 {
+	public MoneyLabelScript TheMoneyLabelScript;
+
 	public YandereScript Yandere;
 
 	public SchemesScript Schemes;
@@ -212,5 +214,6 @@ public class InventoryScript : MonoBehaviour
 	public void UpdateMoney()
 	{
 		MoneyLabel.text = "$" + Money.ToString("F2", NumberFormatInfo.InvariantInfo);
+		TheMoneyLabelScript.UpdateTimer = 5f;
 	}
 }

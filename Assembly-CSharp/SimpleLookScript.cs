@@ -91,7 +91,7 @@ public class SimpleLookScript : MonoBehaviour
 				if (Mathf.Abs(Vector3.Angle(-base.transform.forward, Yandere.transform.position - base.transform.position)) >= 90f && Student.DistanceToPlayer < 2f && !Ignore)
 				{
 					LookTimer += Time.deltaTime;
-					if (!ReactedToFriend && Student.Friend && LookTimer > 1f)
+					if (!ReactedToFriend && Student.Friend && Student.Yandere.Mask == null && LookTimer > 1f)
 					{
 						if (!Student.Male)
 						{
@@ -187,7 +187,7 @@ public class SimpleLookScript : MonoBehaviour
 			PreviousNeck = Neck.localEulerAngles.y;
 			PreviousSpine = Spine.localEulerAngles.y;
 		}
-		if (!Student.Alive)
+		if (!Student.Alive || Student.Slave)
 		{
 			base.enabled = false;
 		}

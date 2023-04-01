@@ -78,6 +78,8 @@ public class BeatEmUpScript : MonoBehaviour
 
 	public UISprite White;
 
+	public Light LightSource;
+
 	public int RollDirection = 1;
 
 	public int AttackLimit;
@@ -239,6 +241,14 @@ public class BeatEmUpScript : MonoBehaviour
 		ChangeSchoolwear();
 		Profile.motionBlur.enabled = false;
 		UpdateDOF(2f);
+		if (!OptionGlobals.EnableShadows)
+		{
+			LightSource.shadows = LightShadows.None;
+		}
+		else
+		{
+			LightSource.shadows = LightShadows.Soft;
+		}
 	}
 
 	private void ChangeSchoolwear()

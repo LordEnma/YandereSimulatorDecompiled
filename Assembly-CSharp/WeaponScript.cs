@@ -90,6 +90,8 @@ public class WeaponScript : MonoBehaviour
 
 	public bool Misplaced;
 
+	public bool Chainsaw;
+
 	public bool Disposed;
 
 	public bool Evidence;
@@ -332,7 +334,7 @@ public class WeaponScript : MonoBehaviour
 						Blade.transform.localEulerAngles = new Vector3(Blade.transform.localEulerAngles.x + Time.deltaTime * 360f, Blade.transform.localEulerAngles.y, Blade.transform.localEulerAngles.z);
 					}
 				}
-				else if (Type == WeaponType.Scythe)
+				else if (Type == WeaponType.Scythe && !Chainsaw)
 				{
 					MyRenderer.transform.localEulerAngles = new Vector3(12.5f, 7.5f, 90f);
 				}

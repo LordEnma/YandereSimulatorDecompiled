@@ -1609,6 +1609,10 @@ public class GenericRivalEventScript : MonoBehaviour
 							Senpai.Spawned = true;
 						}
 						Speaker[1] = Senpai;
+						if (StartTime > 17f && Rival.StudentID == 19)
+						{
+							StudentManager.RevertEightiesWeek9RoutineAdjustments();
+						}
 					}
 					bool flag2 = false;
 					if ((Teleport || LunchTime || Rival.Leaving || Rival.CurrentDestination == StudentManager.Exit) && !Rival.Ragdoll.Zs.activeInHierarchy)

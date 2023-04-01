@@ -124,6 +124,7 @@ public class GardenHoleScript : MonoBehaviour
 				Yandere.Police.MurderScene = false;
 			}
 			VictimID = Corpse.StudentID;
+			Corpse.Disposed = true;
 			Corpse.Remove();
 			Corpse.transform.parent = base.transform;
 			if (Corpse.StudentID == Yandere.StudentManager.RivalID)

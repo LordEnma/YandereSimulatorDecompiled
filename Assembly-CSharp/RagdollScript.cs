@@ -379,7 +379,15 @@ public class RagdollScript : MonoBehaviour
 					{
 						if (Wrappable)
 						{
-							ConcealInTrashBag();
+							if (!Student.FireEmitters[1].isPlaying)
+							{
+								ConcealInTrashBag();
+							}
+							else
+							{
+								Yandere.NotificationManager.CustomText = "Wait until fire goes out";
+								Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
 						}
 						else if (Cauterizable)
 						{

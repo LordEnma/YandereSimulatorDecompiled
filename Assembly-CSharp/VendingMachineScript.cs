@@ -14,6 +14,8 @@ public class VendingMachineScript : MonoBehaviour
 
 	public bool Sabotaged;
 
+	public bool Near;
+
 	public int Price;
 
 	private void Start()
@@ -31,6 +33,19 @@ public class VendingMachineScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (Prompt.DistanceSqr < 1f)
+		{
+			if (!Near)
+			{
+				Near = true;
+				Prompt.Yandere.VendingMachines++;
+			}
+		}
+		else if (Near)
+		{
+			Near = false;
+			Prompt.Yandere.VendingMachines--;
+		}
 		if (Prompt.Circle[0].fillAmount != 0f)
 		{
 			return;
