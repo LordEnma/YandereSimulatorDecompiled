@@ -1017,6 +1017,10 @@ public class StudentManagerScript : MonoBehaviour
 			DateGlobals.Week = 0;
 			SceneManager.LoadScene("VeryFunScene");
 		}
+		if (TakingPortraits)
+		{
+			Screen.SetResolution(512, 512, fullscreen: false);
+		}
 	}
 
 	private void Start()
@@ -1862,75 +1866,83 @@ public class StudentManagerScript : MonoBehaviour
 				CheckMusic();
 			}
 		}
-		else if (NPCsSpawned < StudentsTotal + TeachersTotal)
-		{
-			Frame++;
-			if (Frame == 1)
-			{
-				if (NewStudent != null)
-				{
-					UnityEngine.Object.Destroy(NewStudent);
-				}
-				if (Eighties || NPCsSpawned < 12 || NPCsSpawned > 19)
-				{
-					if (Randomize)
-					{
-						int num = UnityEngine.Random.Range(0, 2);
-						NewStudent = UnityEngine.Object.Instantiate((num == 0) ? PortraitChan : PortraitKun, Vector3.zero, Quaternion.identity);
-					}
-					else
-					{
-						NewStudent = UnityEngine.Object.Instantiate((JSON.Students[NPCsSpawned + 1].Gender == 0) ? PortraitChan : PortraitKun, Vector3.zero, Quaternion.identity);
-					}
-					CosmeticScript component = NewStudent.GetComponent<CosmeticScript>();
-					component.StudentID = NPCsSpawned + 1;
-					component.StudentManager = this;
-					component.TakingPortrait = true;
-					component.Randomize = Randomize;
-					component.JSON = JSON;
-					component.Student.enabled = false;
-					component.Student.Prompt.enabled = false;
-					component.Student.MyCollider.enabled = false;
-					component.Student.Pathfinding.enabled = false;
-					component.Student.MyRigidbody.useGravity = false;
-					component.Student.DisableProps();
-					if (component.Student.Male)
-					{
-						component.Student.DisableMaleProps();
-					}
-					else
-					{
-						component.Student.DisableFemaleProps();
-					}
-					component.Start();
-					StudentScript component2 = NewStudent.GetComponent<StudentScript>();
-					component2.Yandere = Yandere;
-					component2.SetSplashes(Bool: false);
-					PromptScript[] componentsInChildren = component.gameObject.GetComponentsInChildren<PromptScript>();
-					for (int l = 0; l < componentsInChildren.Length; l++)
-					{
-						componentsInChildren[l].enabled = false;
-					}
-					if (!Eighties && component.StudentID == 97)
-					{
-						Whistle.SetActive(value: true);
-					}
-				}
-				if (!Randomize)
-				{
-					NPCsSpawned++;
-				}
-			}
-			if (Frame == 2)
-			{
-				ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Portraits" + EightiesPrefix + "/Student_" + NPCsSpawned + ".png");
-				Frame = 0;
-			}
-		}
 		else
 		{
-			ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Portraits" + EightiesPrefix + "/Student_" + NPCsSpawned + ".png");
-			base.gameObject.SetActive(value: false);
+			if (NPCsSpawned < StudentsTotal + TeachersTotal)
+			{
+				Frame++;
+				if (Frame == 1)
+				{
+					if (NewStudent != null)
+					{
+						UnityEngine.Object.Destroy(NewStudent);
+					}
+					if (Eighties || NPCsSpawned < 12 || NPCsSpawned > 19)
+					{
+						if (Randomize)
+						{
+							int num = UnityEngine.Random.Range(0, 2);
+							NewStudent = UnityEngine.Object.Instantiate((num == 0) ? PortraitChan : PortraitKun, Vector3.zero, Quaternion.identity);
+						}
+						else
+						{
+							NewStudent = UnityEngine.Object.Instantiate((JSON.Students[NPCsSpawned + 1].Gender == 0) ? PortraitChan : PortraitKun, Vector3.zero, Quaternion.identity);
+						}
+						CosmeticScript component = NewStudent.GetComponent<CosmeticScript>();
+						component.StudentID = NPCsSpawned + 1;
+						component.StudentManager = this;
+						component.TakingPortrait = true;
+						component.Randomize = Randomize;
+						component.JSON = JSON;
+						component.Student.enabled = false;
+						component.Student.Prompt.enabled = false;
+						component.Student.MyCollider.enabled = false;
+						component.Student.Pathfinding.enabled = false;
+						component.Student.MyRigidbody.useGravity = false;
+						component.Student.DisableProps();
+						if (component.Student.Male)
+						{
+							component.Student.DisableMaleProps();
+						}
+						else
+						{
+							component.Student.DisableFemaleProps();
+						}
+						component.Start();
+						StudentScript component2 = NewStudent.GetComponent<StudentScript>();
+						component2.Yandere = Yandere;
+						component2.SetSplashes(Bool: false);
+						PromptScript[] componentsInChildren = component.gameObject.GetComponentsInChildren<PromptScript>();
+						for (int l = 0; l < componentsInChildren.Length; l++)
+						{
+							componentsInChildren[l].enabled = false;
+						}
+						if (!Eighties && component.StudentID == 97)
+						{
+							Whistle.SetActive(value: true);
+						}
+					}
+					if (!Randomize)
+					{
+						NPCsSpawned++;
+					}
+				}
+				if (Frame == 2)
+				{
+					ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Portraits" + EightiesPrefix + "/Student_" + NPCsSpawned + ".png");
+					Frame = 0;
+				}
+			}
+			else
+			{
+				ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Portraits" + EightiesPrefix + "/Student_" + NPCsSpawned + ".png");
+				base.gameObject.SetActive(value: false);
+			}
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				Screen.SetResolution(280, 720, fullscreen: false);
+				SceneManager.LoadScene("TitleScene");
+			}
 		}
 		if (Witnesses > 0)
 		{
@@ -2221,7 +2233,7 @@ public class StudentManagerScript : MonoBehaviour
 				flag = false;
 			}
 		}
-		if (JSON.Students[spawnID].Club != ClubType.Delinquent && StudentGlobals.GetStudentReputation(spawnID) < -100)
+		if (JSON.Students[spawnID].Club != ClubType.Delinquent && StudentGlobals.GetStudentReputation(spawnID) <= -100)
 		{
 			flag = true;
 		}

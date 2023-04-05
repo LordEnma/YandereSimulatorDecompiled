@@ -132,7 +132,7 @@ public class WoodChipperScript : MonoBehaviour
 			{
 				Prompt.HideButton[3] = false;
 			}
-			if ((Yandere.Armed && Yandere.EquippedWeapon.Evidence) || (Yandere.PickUp != null && Yandere.PickUp.Evidence) || (Yandere.PickUp != null && Yandere.PickUp.ConcealedBodyPart))
+			if ((Yandere.Armed && Yandere.EquippedWeapon.Evidence) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (Yandere.Armed && Yandere.EquippedWeapon.MurderWeapon) || (Yandere.PickUp != null && Yandere.PickUp.Evidence) || (Yandere.PickUp != null && Yandere.PickUp.ConcealedBodyPart))
 			{
 				Prompt.HideButton[1] = false;
 			}

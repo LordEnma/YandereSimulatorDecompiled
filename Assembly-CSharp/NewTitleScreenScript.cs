@@ -604,6 +604,11 @@ public class NewTitleScreenScript : MonoBehaviour
 						Speed = 0f;
 						Phase = 2;
 					}
+					if (Input.GetKeyDown(KeyCode.P))
+					{
+						Screen.SetResolution(512, 512, fullscreen: false);
+						SceneManager.LoadScene("PortraitScene");
+					}
 				}
 			}
 			else if (Phase == 8)

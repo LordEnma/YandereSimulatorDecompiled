@@ -136,7 +136,7 @@ public class ManholeScript : MonoBehaviour
 				Prompt.Yandere.CanMove = false;
 			}
 		}
-		else if ((Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.Evidence) || (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.Evidence) || (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.ConcealedBodyPart))
+		else if ((Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.Evidence) || (Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.Bloody) || (Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.MurderWeapon) || (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.Evidence) || (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.ConcealedBodyPart))
 		{
 			Prompt.Label[0].text = "     Dump Evidence";
 			Prompt.HideButton[0] = false;

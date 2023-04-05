@@ -920,6 +920,7 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (Club != ClubType.Council)
 					{
+						Debug.Log("Calling PickGenericAnim() from here. 1");
 						PickGenericAnim();
 					}
 				}
@@ -964,6 +965,7 @@ public class CosmeticScript : MonoBehaviour
 						}
 						else
 						{
+							Debug.Log("Calling PickGenericAnim() from here. 2");
 							PickGenericAnim();
 						}
 					}
@@ -1096,6 +1098,7 @@ public class CosmeticScript : MonoBehaviour
 						}
 						else
 						{
+							Debug.Log("Calling PickGenericAnim() from here. 3");
 							PickGenericAnim();
 						}
 					}
@@ -1113,29 +1116,33 @@ public class CosmeticScript : MonoBehaviour
 				}
 				if (Eighties)
 				{
-					if (StudentID == 76)
+					if (TakingPortrait)
 					{
-						CharacterAnimation.Play("delinquentPoseB");
-					}
-					else if (StudentID == 77)
-					{
-						CharacterAnimation.Play("delinquentPoseA");
-					}
-					else if (StudentID == 78)
-					{
-						CharacterAnimation.Play("delinquentPoseC");
-					}
-					else if (StudentID == 79)
-					{
-						CharacterAnimation.Play("delinquentPoseD");
-					}
-					else if (StudentID == 80)
-					{
-						CharacterAnimation.Play("delinquentPoseE");
-					}
-					else
-					{
-						PickGenericAnim();
+						if (StudentID == 76)
+						{
+							CharacterAnimation.Play("delinquentPoseB");
+						}
+						else if (StudentID == 77)
+						{
+							CharacterAnimation.Play("delinquentPoseA");
+						}
+						else if (StudentID == 78)
+						{
+							CharacterAnimation.Play("delinquentPoseC");
+						}
+						else if (StudentID == 79)
+						{
+							CharacterAnimation.Play("delinquentPoseD");
+						}
+						else if (StudentID == 80)
+						{
+							CharacterAnimation.Play("delinquentPoseE");
+						}
+						else
+						{
+							Debug.Log("Calling PickGenericAnim() from here. 4");
+							PickGenericAnim();
+						}
 					}
 					if (Club == ClubType.Council)
 					{
@@ -3139,7 +3146,7 @@ public class CosmeticScript : MonoBehaviour
 
 	public void PickGenericAnim()
 	{
-		Debug.Log("Trying to assign an animation to a student.");
+		Debug.Log("Trying to assign an animation to " + Name);
 		if (!PickedAnim)
 		{
 			if (!Male)

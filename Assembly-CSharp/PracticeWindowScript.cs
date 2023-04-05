@@ -80,7 +80,6 @@ public class PracticeWindowScript : MonoBehaviour
 			{
 				if (Input.GetButtonDown("A"))
 				{
-					UpdateWindow();
 					if (Texture[Selected].color.r == 1f)
 					{
 						Yandere.TargetStudent.Interaction = StudentInteractionType.ClubPractice;
@@ -320,6 +319,7 @@ public class PracticeWindowScript : MonoBehaviour
 
 	public void UpdateWindow()
 	{
+		Debug.Log("Updating Window now.");
 		PromptBar.ClearButtons();
 		PromptBar.Label[0].text = "Confirm";
 		PromptBar.Label[1].text = "Back";
@@ -397,12 +397,14 @@ public class PracticeWindowScript : MonoBehaviour
 			Label[5].text = Difficulties[5] ?? "";
 		}
 		Window.SetActive(value: true);
+		Selected = 1;
 		UpdateHighlight();
 		Time.timeScale = 0.0001f;
 	}
 
 	public void UpdateHighlight()
 	{
+		Debug.Log("Updating Highlight now.");
 		if (Selected < 1)
 		{
 			Selected = 5;

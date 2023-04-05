@@ -849,7 +849,7 @@ public class MissionModeMenuScript : MonoBehaviour
 						ErrorLabel.text = "Invalid Mission ID (Clothing does not exist)";
 						return;
 					}
-					if (DisposalNumber > 3)
+					if (DisposalNumber > 5)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Disposal method does not exist)";
 						return;
