@@ -265,6 +265,7 @@ public class SchemesScript : MonoBehaviour
 			}
 			else if (SchemeGlobals.GetSchemeStage(ID + ListPosition) != 100 && Inventory.PantyShots < SchemeCosts[ID + ListPosition])
 			{
+				StudentManager.Yandere.PauseScreen.FavorMenu.Flicker = true;
 				component.clip = InfoAfford;
 				component.Play();
 			}

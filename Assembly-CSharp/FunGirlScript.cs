@@ -4,6 +4,8 @@ public class FunGirlScript : MonoBehaviour
 {
 	public StudentManagerScript StudentManager;
 
+	public CameraFilterPack_NewGlitch4 GlitchEffects;
+
 	public GameObject Jukebox;
 
 	public Transform Yandere;
@@ -29,6 +31,10 @@ public class FunGirlScript : MonoBehaviour
 		}
 		base.transform.position = Vector3.MoveTowards(base.transform.position, Yandere.position, Time.deltaTime * Speed);
 		base.transform.LookAt(Yandere.position);
+		if (Vector3.Distance(base.transform.position, Yandere.position) < 11f)
+		{
+			GlitchEffects._Fade = (11f - Vector3.Distance(base.transform.position, Yandere.position)) * 0.1f;
+		}
 		if (Vector3.Distance(base.transform.position, Yandere.position) < 0.5f)
 		{
 			Application.Quit();
@@ -52,5 +58,6 @@ public class FunGirlScript : MonoBehaviour
 		base.gameObject.SetActive(value: true);
 		Jukebox.SetActive(value: false);
 		HUD.enabled = false;
+		GlitchEffects.enabled = true;
 	}
 }

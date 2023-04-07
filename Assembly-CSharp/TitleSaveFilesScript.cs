@@ -300,7 +300,6 @@ public class TitleSaveFilesScript : MonoBehaviour
 
 	public void StartNewGame()
 	{
-		Debug.Log("Before creating a new save file, OptionGlobals.SubtitleSize was: " + OptionGlobals.SubtitleSize);
 		Debug.Log("The game believed that Profile " + (EightiesPrefix + ID) + " was empty, so that profile is now being created.");
 		Started = true;
 		bool debug = GameGlobals.Debug;
@@ -321,6 +320,5 @@ public class TitleSaveFilesScript : MonoBehaviour
 		GameGlobals.Debug = debug;
 		NewTitleScreen.Darkness.color = new Color(1f, 1f, 1f, 0f);
 		Started = false;
-		Debug.Log("After creating a new save file, OptionGlobals.SubtitleSize is: " + OptionGlobals.SubtitleSize);
 	}
 }

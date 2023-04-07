@@ -147,6 +147,7 @@ public class DropsScript : MonoBehaviour
 				}
 				else if (Inventory.PantyShots < DropCosts[Selected])
 				{
+					Inventory.Yandere.PauseScreen.FavorMenu.Flicker = true;
 					component.clip = InfoAfford;
 					component.Play();
 				}

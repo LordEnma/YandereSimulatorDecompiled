@@ -28,6 +28,10 @@ public class FunScript : MonoBehaviour
 
 	public bool VeryFun;
 
+	public Texture NewPortrait;
+
+	public bool Transition;
+
 	public float R = 1f;
 
 	public float G = 1f;
@@ -164,47 +168,59 @@ public class FunScript : MonoBehaviour
 		{
 			Girl.color = new Color(R, G, B, Mathf.MoveTowards(Girl.color.a, 1f, Time.deltaTime));
 		}
-		if (!Controls.activeInHierarchy)
+		if (Controls.activeInHierarchy)
 		{
-			return;
-		}
-		if (Input.GetButtonDown("B"))
-		{
-			if (Skip.activeInHierarchy)
+			if (Input.GetButtonDown("B"))
 			{
-				ID = 19;
-				Skip.SetActive(value: false);
+				if (Skip.activeInHierarchy)
+				{
+					ID = 19;
+					Skip.SetActive(value: false);
+					NewPortrait = Portraits[ID];
+					Transition = true;
+					Typewriter.ResetToBeginning();
+					Typewriter.mFullText = Lines[ID];
+				}
+			}
+			else if (Input.GetButtonDown("A"))
+			{
+				if (ID < Lines.Length - 1 && !VeryFun)
+				{
+					if (Typewriter.mCurrentOffset < Typewriter.mFullText.Length)
+					{
+						Typewriter.Finish();
+					}
+					else
+					{
+						ID++;
+						if (ID == 19)
+						{
+							Skip.SetActive(value: false);
+						}
+						NewPortrait = Portraits[ID];
+						Transition = true;
+						Typewriter.ResetToBeginning();
+						Typewriter.mFullText = Lines[ID];
+					}
+				}
+				else
+				{
+					Application.Quit();
+				}
+			}
+		}
+		if (Transition)
+		{
+			Girl.transform.localScale = Vector3.MoveTowards(Girl.transform.localScale, new Vector3(0f, 2f, 1f), Time.deltaTime * 50f);
+			if (Girl.transform.localScale.x == 0f)
+			{
 				Girl.mainTexture = Portraits[ID];
-				Typewriter.ResetToBeginning();
-				Typewriter.mFullText = Lines[ID];
+				Transition = false;
 			}
 		}
 		else
 		{
-			if (!Input.GetButtonDown("A"))
-			{
-				return;
-			}
-			if (ID < Lines.Length - 1 && !VeryFun)
-			{
-				if (Typewriter.mCurrentOffset < Typewriter.mFullText.Length)
-				{
-					Typewriter.Finish();
-					return;
-				}
-				ID++;
-				if (ID == 19)
-				{
-					Skip.SetActive(value: false);
-				}
-				Girl.mainTexture = Portraits[ID];
-				Typewriter.ResetToBeginning();
-				Typewriter.mFullText = Lines[ID];
-			}
-			else
-			{
-				Application.Quit();
-			}
+			Girl.transform.localScale = Vector3.MoveTowards(Girl.transform.localScale, new Vector3(2f, 2f, 1f), Time.deltaTime * 50f);
 		}
 	}
 }

@@ -665,13 +665,13 @@ public class StudentInfoMenuScript : MonoBehaviour
 						if (StudentManager.StudentPhotographed[ID])
 						{
 							string url = "file:///" + Application.streamingAssetsPath + "/Portraits" + EightiesPrefix + "/Student_" + ID + ".png";
-							WWW www = new WWW(url);
-							yield return www;
-							if (www.error == null)
+							WWW www2 = new WWW(url);
+							yield return www2;
+							if (www2.error == null)
 							{
 								if (!StudentGlobals.GetStudentReplaced(ID))
 								{
-									StudentPortraits[ID].Portrait.mainTexture = www.texture;
+									StudentPortraits[ID].Portrait.mainTexture = www2.texture;
 								}
 								else
 								{
@@ -688,6 +688,22 @@ public class StudentInfoMenuScript : MonoBehaviour
 						else if (StudentPortraits[ID] != null)
 						{
 							StudentPortraits[ID].Portrait.mainTexture = UnknownPortrait;
+						}
+						if (!PauseScreen.Eighties && ID == 1)
+						{
+							Debug.Log("Attempting to load custom Senpai portrait.");
+							string url2 = "file:///" + Application.streamingAssetsPath + "/SenpaiPortrait.png";
+							WWW www2 = new WWW(url2);
+							yield return www2;
+							if (www2.error == null)
+							{
+								Debug.Log("No error!");
+								StudentPortraits[ID].Portrait.mainTexture = www2.texture;
+							}
+							else
+							{
+								Debug.Log("Uh, there was an error: " + www2.error);
+							}
 						}
 					}
 					else if (StudentPortraits[ID] != null)

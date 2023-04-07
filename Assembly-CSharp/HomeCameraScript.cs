@@ -177,7 +177,6 @@ public class HomeCameraScript : MonoBehaviour
 			PlayMusic();
 			if (!GameGlobals.CorkboardScene)
 			{
-				Debug.Log("HomeCamera is now attempting to activate the Corkboard cutscene.");
 				HomeYandere.transform.position = new Vector3(-2f, 0f, -2.5f);
 				HomeYandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
 				HomeYandere.CharacterAnimation.Play("f02_thinkLoop_00");

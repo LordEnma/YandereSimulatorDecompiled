@@ -1829,7 +1829,6 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (HomeScene)
 		{
-			Student.CharacterAnimation["idle_00"].time = 9f;
 			Student.CharacterAnimation["idle_00"].speed = 0f;
 			Hairstyle = 65;
 		}

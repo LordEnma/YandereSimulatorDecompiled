@@ -55,9 +55,16 @@ public class WelcomeScript : MonoBehaviour
 		{
 			Text = File.ReadAllText(Application.streamingAssetsPath + "/Fun.txt");
 		}
-		if (Text == "0" || Text == "1" || Text == "2" || Text == "3" || Text == "4" || Text == "5" || Text == "6" || Text == "7" || Text == "8" || Text == "9" || Text == "10" || Text == "69" || Text == "666")
+		if (Text != "")
 		{
-			SceneManager.LoadScene("VeryFunScene");
+			if (Text == "0" || Text == "1" || Text == "2" || Text == "3" || Text == "4" || Text == "5" || Text == "6" || Text == "7" || Text == "8" || Text == "9" || Text == "10" || Text == "69" || Text == "666")
+			{
+				SceneManager.LoadScene("VeryFunScene");
+			}
+			else
+			{
+				SceneManager.LoadScene("FunScene");
+			}
 		}
 	}
 

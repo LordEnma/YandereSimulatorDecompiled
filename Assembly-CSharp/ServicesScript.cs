@@ -247,6 +247,7 @@ public class ServicesScript : MonoBehaviour
 				}
 				else if (Inventory.PantyShots < ServiceCosts[Selected])
 				{
+					StudentManager.Yandere.PauseScreen.FavorMenu.Flicker = true;
 					MyAudio.clip = InfoAfford;
 					MyAudio.Play();
 				}

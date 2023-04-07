@@ -363,14 +363,12 @@ public class RPG_Camera : MonoBehaviour
 
 	public void RotateWithCharacter()
 	{
-		Debug.Log("Fired RotateWithCharacter()");
 		float num = Input.GetAxis("Horizontal") * RPG_Controller.instance.turnSpeed;
 		mouseX += num;
 	}
 
 	public void ZeroEverything()
 	{
-		Debug.Log("Fired ZeroEverything()");
 		mouseX = 0f;
 		mouseXSmooth = 0f;
 		mouseY = 0f;

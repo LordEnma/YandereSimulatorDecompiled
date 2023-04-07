@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ShoulderCameraScript : MonoBehaviour
 {
+	public HeadCollisionDetectionScript Head;
+
 	public PauseScreenScript PauseScreen;
 
 	public CounselorScript Counselor;
@@ -489,6 +491,48 @@ public class ShoulderCameraScript : MonoBehaviour
 				HeartbrokenCamera.GetComponent<Camera>().cullingMask |= 512;
 				HeartbrokenCamera.SetActive(value: true);
 				Phase++;
+			}
+			if (Timer < 8.5f)
+			{
+				Yandere.WallToRight = false;
+				Yandere.WallToLeft = false;
+				Yandere.WallAbove = false;
+				Yandere.Direction = 2;
+				Yandere.CheckForWall();
+				if (Yandere.WallToRight)
+				{
+					Yandere.MyController.Move(Yandere.transform.right * (Time.deltaTime * -1f));
+					if (Yandere.TargetStudent != null)
+					{
+						Yandere.TargetStudent.MyController.Move(Yandere.TargetStudent.transform.right * (Time.deltaTime * 1f));
+					}
+				}
+				else if (Yandere.TargetStudent != null)
+				{
+					Yandere.TargetStudent.TooCloseToWall = false;
+					Yandere.TargetStudent.CheckForWallToRight();
+					if (Yandere.TargetStudent.TooCloseToWall)
+					{
+						Yandere.MyController.Move(Yandere.transform.right * (Time.deltaTime * -1f));
+						Yandere.TargetStudent.MyController.Move(Yandere.TargetStudent.transform.right * (Time.deltaTime * 1f));
+					}
+				}
+			}
+			else
+			{
+				Head.MyCollider.enabled = true;
+				if (Head.Clipping)
+				{
+					Debug.Log("Head is clipping, we have to move the character...");
+					Yandere.MyController.Move(Yandere.transform.forward * (Time.deltaTime * -1f));
+					Yandere.MyController.Move(Yandere.transform.right * (Time.deltaTime * 1f));
+					if (Yandere.TargetStudent != null)
+					{
+						Yandere.TargetStudent.MyController.Move(Yandere.TargetStudent.transform.forward * (Time.deltaTime * 1f));
+						Yandere.TargetStudent.MyController.Move(Yandere.TargetStudent.transform.right * (Time.deltaTime * -1f));
+					}
+					Head.Clipping = false;
+				}
 			}
 			if (Timer < 6f)
 			{

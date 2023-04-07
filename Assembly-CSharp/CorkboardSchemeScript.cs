@@ -72,7 +72,6 @@ public class CorkboardSchemeScript : MonoBehaviour
 		}
 		else if (!GameGlobals.CorkboardScene)
 		{
-			Debug.Log("CorkboardCutscene acknowledges that it should be running.");
 			Video.transform.parent.localScale = Vector3.zero;
 			CorkboardPhotos.SetActive(value: true);
 			CorkboardLight.SetActive(value: true);

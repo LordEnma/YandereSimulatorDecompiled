@@ -16,6 +16,8 @@ public class FavorMenuScript : MonoBehaviour
 
 	public PromptBarScript PromptBar;
 
+	public GameObject IdiotArrows;
+
 	public GameObject BountyMenu;
 
 	public GameObject Panel;
@@ -24,10 +26,24 @@ public class FavorMenuScript : MonoBehaviour
 
 	public UITexture Portrait;
 
+	public bool Flicker;
+
+	public float Timer;
+
 	public int ID = 1;
 
 	private void Update()
 	{
+		if (Flicker)
+		{
+			Debug.Log("Yeah, Flicker is true...");
+			Timer += Time.unscaledDeltaTime;
+			if (Timer > 0.1f)
+			{
+				IdiotArrows.SetActive(!IdiotArrows.activeInHierarchy);
+				Timer = 0f;
+			}
+		}
 		if (!BountyMenu.activeInHierarchy)
 		{
 			if (InputManager.TappedRight)
@@ -106,6 +122,8 @@ public class FavorMenuScript : MonoBehaviour
 				PauseScreen.Sideways = false;
 				PauseScreen.PressedB = true;
 				base.gameObject.SetActive(value: false);
+				IdiotArrows.SetActive(value: false);
+				Flicker = false;
 			}
 		}
 		else if (Input.GetButtonDown("B"))

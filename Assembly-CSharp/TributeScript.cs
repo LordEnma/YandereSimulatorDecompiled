@@ -12,6 +12,8 @@ public class TributeScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public GameObject FunGirl;
+
 	public GameObject Rainey;
 
 	public string[] MinecraftLetters;
@@ -25,6 +27,8 @@ public class TributeScript : MonoBehaviour
 	public string[] NurseLetters;
 
 	public string[] MaidLetters;
+
+	public string[] FunLetters;
 
 	public string[] AzurLane;
 
@@ -43,6 +47,8 @@ public class TributeScript : MonoBehaviour
 	public int AzurID;
 
 	public int MaidID;
+
+	public int FunID;
 
 	public int ID;
 
@@ -139,6 +145,16 @@ public class TributeScript : MonoBehaviour
 				if (FootageID == FootageLetters.Length)
 				{
 					StudentFootageCamera.SetActive(value: true);
+					base.enabled = false;
+				}
+			}
+			if (Input.GetKeyDown(FunLetters[FunID]))
+			{
+				FunID++;
+				if (FunID == FunLetters.Length)
+				{
+					StudentManager.DespawnAllStudents();
+					FunGirl.SetActive(value: true);
 					base.enabled = false;
 				}
 			}

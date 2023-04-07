@@ -256,7 +256,7 @@ public class DebugMenuScript : MonoBehaviour
 							Yandere.Follower.transform.position = Yandere.transform.position;
 						}
 						StudentScript studentScript = StudentManager.Students[39];
-						if (studentScript != null)
+						if (studentScript != null && studentScript.Alive)
 						{
 							studentScript.ShoeRemoval.Start();
 							studentScript.ShoeRemoval.PutOnShoes();

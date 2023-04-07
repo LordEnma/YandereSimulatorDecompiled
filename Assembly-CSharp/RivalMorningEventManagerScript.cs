@@ -208,12 +208,6 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 				}
 			}
 			Timer += Time.deltaTime;
-			if (Timer > 1f && !HintGiven)
-			{
-				Yandere.PauseScreen.Hint.Show = true;
-				Yandere.PauseScreen.Hint.QuickID = 1;
-				HintGiven = true;
-			}
 			if (VoiceClipSource != null)
 			{
 				VoiceClipSource.pitch = Time.timeScale;

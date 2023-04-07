@@ -313,6 +313,20 @@ public class StudentInfoScript : MonoBehaviour
 				{
 					Portrait.mainTexture = StudentInfoMenu.EightiesUnknown;
 				}
+				if (!Eighties && ID == 1)
+				{
+					Debug.Log("Attempting to load custom Senpai portrait.");
+					WWW wWW2 = new WWW("file:///" + Application.streamingAssetsPath + "/SenpaiPortrait.png");
+					if (wWW2.error == null)
+					{
+						Debug.Log("No error!");
+						Portrait.mainTexture = wWW2.texture;
+					}
+					else
+					{
+						Debug.Log("Uh, there was an error: " + wWW2.error);
+					}
+				}
 			}
 			else
 			{

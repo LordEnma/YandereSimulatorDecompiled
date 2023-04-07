@@ -481,28 +481,33 @@ public class MGPMEnemyScript : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.layer == 8)
+		if (collision.gameObject.layer != 8)
 		{
-			GameObject obj = Object.Instantiate(Impact, base.transform.position, Quaternion.identity);
-			obj.transform.parent = base.transform.parent;
-			obj.transform.localScale = new Vector3(32f, 32f, 32f);
-			obj.transform.localPosition = new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.y, 1f);
-			MyRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f, 1f));
-			if (ExtraRenderer != null)
+			return;
+		}
+		GameObject obj = Object.Instantiate(Impact, base.transform.position, Quaternion.identity);
+		obj.transform.parent = base.transform.parent;
+		obj.transform.localScale = new Vector3(32f, 32f, 32f);
+		obj.transform.localPosition = new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.y, 1f);
+		MyRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f, 1f));
+		if (ExtraRenderer != null)
+		{
+			ExtraRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f, 1f));
+		}
+		Object.Destroy(collision.gameObject);
+		FlashWhite = 0.05f;
+		Health--;
+		if (Health == 0 && MyCollider != null)
+		{
+			MyCollider.enabled = false;
+			if (Pattern == 11)
 			{
-				ExtraRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f, 1f));
+				Miyuki.Invincibility = 100f;
 			}
-			Object.Destroy(collision.gameObject);
-			FlashWhite = 0.05f;
-			Health--;
-			if (Health == 0 && MyCollider != null)
-			{
-				MyCollider.enabled = false;
-			}
-			if (HealthBar != null)
-			{
-				HealthBar.localScale = new Vector3((float)Health / 500f, 1f, 1f);
-			}
+		}
+		if (HealthBar != null)
+		{
+			HealthBar.localScale = new Vector3((float)Health / 500f, 1f, 1f);
 		}
 	}
 }

@@ -254,9 +254,9 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		}
 		if (Phase > 0)
 		{
-			if (Clock.Period > 1 || Rival.Splashed || Rival.Electrified)
+			if (Clock.Period > 1 || Rival.Splashed || Rival.Electrified || Rival.Alarmed)
 			{
-				Debug.Log("Ending because of clock, splash, or electricity.");
+				Debug.Log("Osana's ''put a bento on the desk'' event is ending because of clock, splash, electricity, or alarm.");
 				EndEvent();
 			}
 			if (!Yandere.NoDebug && Input.GetKeyDown(KeyCode.LeftControl))

@@ -884,7 +884,7 @@ public class RagdollScript : MonoBehaviour
 		{
 			BloodPoolSpawner.Start();
 		}
-		if (!Student.StudentManager.NEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.NWStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SWStairs.bounds.Contains(BloodPoolSpawner.transform.position))
+		if (!Student.StudentManager.NEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.NWStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SWStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.GardenArea.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.TreeArea.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.PoolStairs.bounds.Contains(BloodPoolSpawner.transform.position))
 		{
 			BloodPoolSpawner.SpawnBigPool();
 		}
@@ -984,7 +984,7 @@ public class RagdollScript : MonoBehaviour
 					}
 					gameObject.GetComponent<Renderer>().materials[0].mainTexture = Student.Cosmetic.FaceTexture;
 					gameObject.transform.position += new Vector3(0f, 1f, 0f);
-					if (!Student.StudentManager.NEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.NWStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SWStairs.bounds.Contains(BloodPoolSpawner.transform.position))
+					if (!Student.StudentManager.NEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.NWStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SWStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.GardenArea.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.TreeArea.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.PoolStairs.bounds.Contains(BloodPoolSpawner.transform.position))
 					{
 						BloodPoolSpawner.SpawnBigPool();
 						if (BloodPoolSpawner.BloodParent == null)

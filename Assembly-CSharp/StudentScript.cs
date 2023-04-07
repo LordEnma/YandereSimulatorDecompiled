@@ -3630,6 +3630,15 @@ public class StudentScript : MonoBehaviour
 					{
 						MyController.Move(base.transform.forward * (Time.deltaTime * -1f));
 					}
+					if (Yandere.Attacking)
+					{
+						targetRotation = Quaternion.LookRotation(new Vector3(Yandere.TargetStudent.Hips.transform.position.x, base.transform.position.y, Yandere.TargetStudent.Hips.transform.position.z) - base.transform.position);
+						base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
+						if (Vector3.Distance(base.transform.position, Yandere.TargetStudent.transform.position) < 2f)
+						{
+							MyController.Move(base.transform.forward * (Time.deltaTime * -1f));
+						}
+					}
 				}
 			}
 		}
@@ -9339,34 +9348,42 @@ public class StudentScript : MonoBehaviour
 						}
 					}
 				}
-				else if (PinPhase == 0)
+				else
 				{
-					if (DistanceToDestination < 1f)
+					Debug.Log("Raibaru knows that she needs to pin down the player.");
+					if (PinPhase == 0)
 					{
-						if (Pathfinding.canSearch)
+						if (DistanceToDestination < 1f)
 						{
-							Pathfinding.canSearch = false;
-							Pathfinding.canMove = false;
+							if (Pathfinding.canSearch)
+							{
+								Pathfinding.canSearch = false;
+								Pathfinding.canMove = false;
+							}
+							targetRotation = Quaternion.LookRotation(new Vector3(Yandere.Hips.transform.position.x, base.transform.position.y, Yandere.Hips.transform.position.z) - base.transform.position);
+							base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
+							CharacterAnimation.CrossFade(ReadyToFightAnim);
+							MoveTowardsTarget(CurrentDestination.position);
 						}
-						targetRotation = Quaternion.LookRotation(new Vector3(Yandere.Hips.transform.position.x, base.transform.position.y, Yandere.Hips.transform.position.z) - base.transform.position);
-						base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
-						CharacterAnimation.CrossFade(ReadyToFightAnim);
-						MoveTowardsTarget(CurrentDestination.position);
+						else
+						{
+							CharacterAnimation.CrossFade(SprintAnim);
+							if (!Pathfinding.canSearch)
+							{
+								Pathfinding.canSearch = true;
+								Pathfinding.canMove = true;
+							}
+						}
 					}
 					else
 					{
-						CharacterAnimation.CrossFade(SprintAnim);
-						if (!Pathfinding.canSearch)
+						if (StudentID == 10)
 						{
-							Pathfinding.canSearch = true;
-							Pathfinding.canMove = true;
+							Debug.Log("Raibaru is at this part of the pin down code.");
 						}
+						base.transform.rotation = Quaternion.Slerp(base.transform.rotation, CurrentDestination.rotation, Time.deltaTime * 10f);
+						MoveTowardsTarget(CurrentDestination.position);
 					}
-				}
-				else
-				{
-					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, CurrentDestination.rotation, Time.deltaTime * 10f);
-					MoveTowardsTarget(CurrentDestination.position);
 				}
 			}
 		}
@@ -12711,7 +12728,6 @@ public class StudentScript : MonoBehaviour
 			}
 			if (YandereVisible && !NotAlarmedByYandereChan)
 			{
-				Debug.Log("Got here.");
 				TimesAlarmed++;
 				if ((!Injured && Persona == PersonaType.Violent && Yandere.Armed && !WitnessedCorpse && !RespectEarned) || (Persona == PersonaType.Violent && Yandere.DelinquentFighting))
 				{
@@ -12842,67 +12858,63 @@ public class StudentScript : MonoBehaviour
 					ToiletEvent.EndEvent();
 				}
 			}
-			else
+			else if (!WitnessedCorpse)
 			{
-				Debug.Log("Got here instead.");
-				if (!WitnessedCorpse)
+				if (Yandere.Caught)
 				{
-					if (Yandere.Caught)
+					if (Yandere.Mask == null)
 					{
-						if (Yandere.Mask == null)
+						if (Yandere.Pickpocketing)
 						{
-							if (Yandere.Pickpocketing)
-							{
-								Witnessed = StudentWitnessType.Pickpocketing;
-								RepLoss += 10f;
-							}
-							else
-							{
-								Witnessed = StudentWitnessType.Theft;
-							}
-							RepDeduction = 0f;
-							CalculateReputationPenalty();
-							if (RepDeduction >= 0f)
-							{
-								RepLoss -= RepDeduction;
-							}
-							Reputation.PendingRep -= RepLoss * Paranoia;
-							PendingRep -= RepLoss * Paranoia;
+							Witnessed = StudentWitnessType.Pickpocketing;
+							RepLoss += 10f;
 						}
+						else
+						{
+							Witnessed = StudentWitnessType.Theft;
+						}
+						RepDeduction = 0f;
+						CalculateReputationPenalty();
+						if (RepDeduction >= 0f)
+						{
+							RepLoss -= RepDeduction;
+						}
+						Reputation.PendingRep -= RepLoss * Paranoia;
+						PendingRep -= RepLoss * Paranoia;
 					}
-					else if (WitnessedLimb)
-					{
-						Witnessed = StudentWitnessType.SeveredLimb;
-					}
-					else if (WitnessedBloodyWeapon)
-					{
-						Witnessed = StudentWitnessType.BloodyWeapon;
-					}
-					else if (WitnessedBloodPool)
-					{
-						Witnessed = StudentWitnessType.BloodPool;
-					}
-					else if (WitnessedWeapon)
-					{
-						Witnessed = StudentWitnessType.DroppedWeapon;
-					}
-					else
-					{
-						Witnessed = StudentWitnessType.None;
-						DiscCheck = true;
-						Witness = false;
-					}
+				}
+				else if (WitnessedLimb)
+				{
+					Witnessed = StudentWitnessType.SeveredLimb;
+				}
+				else if (WitnessedBloodyWeapon)
+				{
+					Witnessed = StudentWitnessType.BloodyWeapon;
+				}
+				else if (WitnessedBloodPool)
+				{
+					Witnessed = StudentWitnessType.BloodPool;
+				}
+				else if (WitnessedWeapon)
+				{
+					Witnessed = StudentWitnessType.DroppedWeapon;
 				}
 				else
 				{
-					Pathfinding.canSearch = false;
-					Pathfinding.canMove = false;
+					Witnessed = StudentWitnessType.None;
+					DiscCheck = true;
+					Witness = false;
 				}
+			}
+			else
+			{
+				Pathfinding.canSearch = false;
+				Pathfinding.canMove = false;
 			}
 		}
 		else
 		{
-			Debug.Log("Was not able to proceed with the Alarmed code.");
+			Debug.Log("For some reason, " + Name + " was not able to proceed with the Alarmed code.");
 		}
 		NotAlarmedByYandereChan = false;
 		SawCorpseThisFrame = false;
@@ -13594,6 +13606,7 @@ public class StudentScript : MonoBehaviour
 					CharacterAnimation.CrossFade("f02_dramaticStealth_00");
 				}
 				Yandere.CharacterAnimation.CrossFade("f02_readyToFight_00");
+				Yandere.Invisible = true;
 				Yandere.CanMove = false;
 				DramaticCamera.enabled = true;
 				DramaticCamera.rect = new Rect(0f, 0.5f, 1f, 0f);
@@ -16334,7 +16347,7 @@ public class StudentScript : MonoBehaviour
 		{
 			SpawnAlarmDisc();
 		}
-		if (!PinDownWitness && Persona != PersonaType.Evil)
+		if (!PinDownWitness && Persona != PersonaType.Evil && Persona != PersonaType.Protective)
 		{
 			StudentManager.Witnesses++;
 			StudentManager.WitnessList[StudentManager.Witnesses] = this;
@@ -16786,7 +16799,7 @@ public class StudentScript : MonoBehaviour
 		}
 		else if (Persona == PersonaType.Coward || Persona == PersonaType.Fragile)
 		{
-			Debug.Log("This character just set their destination to themself.");
+			Debug.Log(Name + " just set their destination to themself.");
 			CurrentDestination = base.transform;
 			Pathfinding.target = base.transform;
 			Subtitle.UpdateLabel(SubtitleType.CowardMurderReaction, 1, 5f);

@@ -1940,8 +1940,8 @@ public class StudentManagerScript : MonoBehaviour
 			}
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
-				Screen.SetResolution(280, 720, fullscreen: false);
-				SceneManager.LoadScene("TitleScene");
+				Screen.SetResolution(1280, 720, fullscreen: false);
+				SceneManager.LoadScene("NewTitleScene");
 			}
 		}
 		if (Witnesses > 0)
@@ -3322,11 +3322,20 @@ public class StudentManagerScript : MonoBehaviour
 			StudentScript studentScript = Students[ID];
 			if (studentScript != null)
 			{
-				studentScript.Prompt.Hide();
-				UnityEngine.Object.Destroy(studentScript.Prompt.gameObject);
-				UnityEngine.Object.Destroy(studentScript.gameObject);
+				if (studentScript.StudentID > 1)
+				{
+					studentScript.Prompt.Hide();
+					UnityEngine.Object.Destroy(studentScript.Prompt.gameObject);
+					UnityEngine.Object.Destroy(studentScript.gameObject);
+					Students[ID] = null;
+				}
+				else
+				{
+					studentScript.transform.position = Vector3.zero;
+					studentScript.gameObject.SetActive(value: false);
+					studentScript.Prompt.Hide();
+				}
 			}
-			Students[ID] = null;
 		}
 	}
 

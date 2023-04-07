@@ -61,7 +61,7 @@ public class MovingEventScript : MonoBehaviour
 			EventStudent = StudentManager.Students[30];
 			if (EventStudent != null)
 			{
-				EventStudent.Character.GetComponent<Animation>()[EventStudent.BentoAnim].weight = 1f;
+				EventStudent.CharacterAnimation[EventStudent.BentoAnim].weight = 1f;
 				EventStudent.CurrentDestination = EventLocation[0];
 				EventStudent.Pathfinding.target = EventLocation[0];
 				EventStudent.SmartPhone.SetActive(value: false);
@@ -97,7 +97,7 @@ public class MovingEventScript : MonoBehaviour
 		}
 		if (EventPhase == 0)
 		{
-			EventStudent.Character.GetComponent<Animation>().CrossFade(EventStudent.IdleAnim);
+			EventStudent.CharacterAnimation.CrossFade(EventStudent.IdleAnim);
 			if (Clock.HourTime > 13.05f)
 			{
 				EventStudent.CurrentDestination = EventLocation[1];
@@ -112,7 +112,7 @@ public class MovingEventScript : MonoBehaviour
 				if (Timer == 0f)
 				{
 					AudioClipPlayer.Play(EventClip[1], EventStudent.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip);
-					EventStudent.Character.GetComponent<Animation>().CrossFade(EventStudent.IdleAnim);
+					EventStudent.CharacterAnimation.CrossFade(EventStudent.IdleAnim);
 					if (Distance < 10f)
 					{
 						EventSubtitle.text = EventSpeech[1];
@@ -141,11 +141,11 @@ public class MovingEventScript : MonoBehaviour
 		}
 		else if (EventPhase == 2)
 		{
-			Animation component = EventStudent.Character.GetComponent<Animation>();
-			component[EventStudent.BentoAnim].weight -= Time.deltaTime;
+			Animation characterAnimation = EventStudent.CharacterAnimation;
+			characterAnimation[EventStudent.BentoAnim].weight -= Time.deltaTime;
 			if (Timer == 0f)
 			{
-				component.CrossFade("f02_bentoPlace_00");
+				characterAnimation.CrossFade("f02_bentoPlace_00");
 			}
 			Timer += Time.deltaTime;
 			if (Timer > 1f && EventStudent.Bento.transform.parent != null)
@@ -170,7 +170,7 @@ public class MovingEventScript : MonoBehaviour
 		else if (EventPhase == 3)
 		{
 			AudioClipPlayer.Play(EventClip[2], EventStudent.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip);
-			EventStudent.Character.GetComponent<Animation>().CrossFade("f02_cornerPeek_00");
+			EventStudent.CharacterAnimation.CrossFade("f02_cornerPeek_00");
 			if (Distance < 10f)
 			{
 				EventSubtitle.text = EventSpeech[2];
@@ -226,10 +226,10 @@ public class MovingEventScript : MonoBehaviour
 		{
 			if (Timer == 0f)
 			{
-				Animation component2 = EventStudent.Character.GetComponent<Animation>();
-				component2["f02_bentoPlace_00"].time = component2["f02_bentoPlace_00"].length;
-				component2["f02_bentoPlace_00"].speed = -1f;
-				component2.CrossFade("f02_bentoPlace_00");
+				Animation characterAnimation2 = EventStudent.CharacterAnimation;
+				characterAnimation2["f02_bentoPlace_00"].time = characterAnimation2["f02_bentoPlace_00"].length;
+				characterAnimation2["f02_bentoPlace_00"].speed = -1f;
+				characterAnimation2.CrossFade("f02_bentoPlace_00");
 			}
 			Timer += Time.deltaTime;
 			if (Timer > 1f && EventStudent.Bento.transform.parent == null)
@@ -253,11 +253,11 @@ public class MovingEventScript : MonoBehaviour
 		}
 		else if (EventPhase == 8)
 		{
-			Animation component3 = EventStudent.Character.GetComponent<Animation>();
+			Animation characterAnimation3 = EventStudent.CharacterAnimation;
 			if (!Poisoned)
 			{
-				component3[EventStudent.BentoAnim].weight = 0f;
-				component3.CrossFade(EventStudent.EatAnim);
+				characterAnimation3[EventStudent.BentoAnim].weight = 0f;
+				characterAnimation3.CrossFade(EventStudent.EatAnim);
 				if (!EventStudent.Chopsticks[0].activeInHierarchy)
 				{
 					EventStudent.Chopsticks[0].SetActive(value: true);
@@ -266,7 +266,7 @@ public class MovingEventScript : MonoBehaviour
 			}
 			else
 			{
-				component3.CrossFade("f02_poisonDeath_00");
+				characterAnimation3.CrossFade("f02_poisonDeath_00");
 				Timer += Time.deltaTime;
 				if (Timer < 13.55f)
 				{
@@ -296,12 +296,12 @@ public class MovingEventScript : MonoBehaviour
 					EventStudent.Bento.transform.parent = null;
 					EventStudent.Bento.GetComponent<Collider>().isTrigger = false;
 					EventStudent.Bento.AddComponent<Rigidbody>();
-					Rigidbody component4 = EventStudent.Bento.GetComponent<Rigidbody>();
-					component4.AddRelativeForce(Vector3.up * 100f);
-					component4.AddRelativeForce(Vector3.left * 100f);
-					component4.AddRelativeForce(Vector3.forward * -100f);
+					Rigidbody component = EventStudent.Bento.GetComponent<Rigidbody>();
+					component.AddRelativeForce(Vector3.up * 100f);
+					component.AddRelativeForce(Vector3.left * 100f);
+					component.AddRelativeForce(Vector3.forward * -100f);
 				}
-				if (component3["f02_poisonDeath_00"].time > component3["f02_poisonDeath_00"].length)
+				if (characterAnimation3["f02_poisonDeath_00"].time > characterAnimation3["f02_poisonDeath_00"].length)
 				{
 					EventStudent.Ragdoll.Poisoned = true;
 					EventStudent.BecomeRagdoll();
@@ -344,7 +344,7 @@ public class MovingEventScript : MonoBehaviour
 			}
 			EventStudent.CurrentDestination = EventStudent.Destinations[EventStudent.Phase];
 			EventStudent.Pathfinding.target = EventStudent.Destinations[EventStudent.Phase];
-			EventStudent.Character.GetComponent<Animation>()[EventStudent.BentoAnim].weight = 0f;
+			EventStudent.CharacterAnimation[EventStudent.BentoAnim].weight = 0f;
 			EventStudent.Chopsticks[0].SetActive(value: false);
 			EventStudent.Chopsticks[1].SetActive(value: false);
 			EventStudent.Bento.SetActive(value: false);

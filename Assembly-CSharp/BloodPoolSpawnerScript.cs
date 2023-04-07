@@ -33,6 +33,8 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 
 	public Vector3[] Positions;
 
+	public bool SchoolScene;
+
 	public bool CanSpawn;
 
 	public bool Falling;
@@ -68,6 +70,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 			SWStairs = StudentManager.SWStairs;
 			PoolStairs = StudentManager.PoolStairs;
 			BloodPoolLimit -= Ragdoll.Student.Yandere.Class.BiologyGrade * 2;
+			SchoolScene = true;
 		}
 		BloodParent = GameObject.Find("BloodParent").transform;
 		Positions = new Vector3[5];
@@ -109,7 +112,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 			}
 			SetHeight();
 			Vector3 position = base.transform.position;
-			if (SceneManager.GetActiveScene().name == "SchoolScene")
+			if (SchoolScene)
 			{
 				CanSpawn = !GardenArea.bounds.Contains(position) && !TreeArea.bounds.Contains(position) && !NEStairs.bounds.Contains(position) && !NWStairs.bounds.Contains(position) && !SEStairs.bounds.Contains(position) && !SWStairs.bounds.Contains(position) && !PoolStairs.bounds.Contains(position);
 			}

@@ -323,7 +323,7 @@ public class EventManagerScript : MonoBehaviour
 					EndEvent();
 				}
 			}
-			if (!Suitor && Yandere.transform.position.y > EventStudent[1].transform.position.y - 1f && EventPhase == 7 && num < 5f)
+			if (!Suitor && Yandere.transform.position.y > EventStudent[1].transform.position.y - 1f && EventPhase == 7 && num < 6f)
 			{
 				if (EventStudent1 == 25)
 				{
