@@ -131,6 +131,12 @@ public class InventoryScript : MonoBehaviour
 
 	public int PantyShots;
 
+	public int[] ItemsRequested;
+
+	public int[] ItemsCollected;
+
+	public int Cloth;
+
 	public float Money;
 
 	public bool[] ShrineCollectibles;

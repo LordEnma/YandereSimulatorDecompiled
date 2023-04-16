@@ -5,6 +5,8 @@ public class ScreenshotTestScript : MonoBehaviour
 {
 	public Camera SenpaiCamera;
 
+	public Renderer Target;
+
 	public int Frames;
 
 	private void LateUpdate()
@@ -12,6 +14,8 @@ public class ScreenshotTestScript : MonoBehaviour
 		if (Frames > 0)
 		{
 			OnPostRenderCallback(SenpaiCamera);
+			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/SenpaiPortrait.png");
+			Target.materials[0].mainTexture = wWW.texture;
 			base.enabled = false;
 		}
 		Frames++;

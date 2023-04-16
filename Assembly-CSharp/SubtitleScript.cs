@@ -464,11 +464,25 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] TaskGenericLines;
 
-	public string[] TaskGenericEightiesLines;
+	public string[] TaskGenericEightiesLines1;
 
-	public string[] TaskGenericEightiesLinesMale;
+	public string[] TaskGenericEightiesLines2;
 
-	public string[] TaskGenericEightiesLinesFemale;
+	public string[] TaskGenericEightiesLines3;
+
+	public string[] TaskGenericEightiesLines4;
+
+	public string[] TaskGenericEightiesLines5;
+
+	public string[] TaskGenericEightiesLines6;
+
+	public string[] TaskGenericEightiesLines7;
+
+	public string[] TaskGenericEightiesLines8;
+
+	public string[] TaskGenericEightiesLines9;
+
+	public string[] TaskGenericEightiesLines10;
 
 	public string[] TaskInquiries;
 
@@ -754,9 +768,45 @@ public class SubtitleScript : MonoBehaviour
 
 	public AudioClip[] TaskGenericFemaleClips;
 
-	public AudioClip[] TaskGenericEightiesMaleClips;
+	public AudioClip[] TaskGenericEightiesMaleClips1;
 
-	public AudioClip[] TaskGenericEightiesFemaleClips;
+	public AudioClip[] TaskGenericEightiesMaleClips2;
+
+	public AudioClip[] TaskGenericEightiesMaleClips3;
+
+	public AudioClip[] TaskGenericEightiesMaleClips4;
+
+	public AudioClip[] TaskGenericEightiesMaleClips5;
+
+	public AudioClip[] TaskGenericEightiesMaleClips6;
+
+	public AudioClip[] TaskGenericEightiesMaleClips7;
+
+	public AudioClip[] TaskGenericEightiesMaleClips8;
+
+	public AudioClip[] TaskGenericEightiesMaleClips9;
+
+	public AudioClip[] TaskGenericEightiesMaleClips10;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips1;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips2;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips3;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips4;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips5;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips6;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips7;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips8;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips9;
+
+	public AudioClip[] TaskGenericEightiesFemaleClips10;
 
 	public AudioClip[] TaskInquiryClips;
 
@@ -1606,12 +1656,84 @@ public class SubtitleScript : MonoBehaviour
 				new AudioClipArrayWrapper(TaskGenericFemaleClips)
 			},
 			{
-				SubtitleType.TaskGenericEightiesLineMale,
-				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips)
+				SubtitleType.TaskGenericEightiesLineMale1,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips1)
 			},
 			{
-				SubtitleType.TaskGenericEightiesLineFemale,
-				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips)
+				SubtitleType.TaskGenericEightiesLineMale2,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips2)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineMale3,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips3)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineMale4,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips4)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineMale5,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips5)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineMale6,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips6)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineMale7,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips7)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineMale8,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips8)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineMale9,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips9)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineMale10,
+				new AudioClipArrayWrapper(TaskGenericEightiesMaleClips10)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale1,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips1)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale2,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips2)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale3,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips3)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale4,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips4)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale5,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips5)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale6,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips6)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale7,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips7)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale8,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips8)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale9,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips9)
+			},
+			{
+				SubtitleType.TaskGenericEightiesLineFemale10,
+				new AudioClipArrayWrapper(TaskGenericEightiesFemaleClips10)
 			},
 			{
 				SubtitleType.TaskInquiry,
@@ -2907,15 +3029,114 @@ public class SubtitleScript : MonoBehaviour
 					PlayVoice(SubtitleType.TaskGenericLineFemale, ID);
 				}
 				break;
-			case SubtitleType.TaskGenericEightiesLine:
-				Label.text = "(PLACEHOLDER TASK - WILL BE REPLACED IN FUTURE)\n" + TaskGenericEightiesLines[ID];
+			case SubtitleType.TaskGenericEightiesLine1:
+				Label.text = TaskGenericEightiesLines1[ID];
 				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
 				{
-					PlayVoice(SubtitleType.TaskGenericEightiesLineMale, ID);
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale1, ID);
 				}
 				else
 				{
-					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale, ID);
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale1, ID);
+				}
+				break;
+			case SubtitleType.TaskGenericEightiesLine2:
+				Label.text = TaskGenericEightiesLines2[ID];
+				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale2, ID);
+				}
+				else
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale2, ID);
+				}
+				break;
+			case SubtitleType.TaskGenericEightiesLine3:
+				Label.text = TaskGenericEightiesLines3[ID];
+				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale3, ID);
+				}
+				else
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale3, ID);
+				}
+				break;
+			case SubtitleType.TaskGenericEightiesLine4:
+				Label.text = TaskGenericEightiesLines4[ID];
+				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale4, ID);
+				}
+				else
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale4, ID);
+				}
+				break;
+			case SubtitleType.TaskGenericEightiesLine5:
+				Label.text = TaskGenericEightiesLines5[ID];
+				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale5, ID);
+				}
+				else
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale5, ID);
+				}
+				break;
+			case SubtitleType.TaskGenericEightiesLine6:
+				Label.text = TaskGenericEightiesLines6[ID];
+				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale6, ID);
+				}
+				else
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale6, ID);
+				}
+				break;
+			case SubtitleType.TaskGenericEightiesLine7:
+				Label.text = TaskGenericEightiesLines7[ID];
+				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale7, ID);
+				}
+				else
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale7, ID);
+				}
+				break;
+			case SubtitleType.TaskGenericEightiesLine8:
+				Label.text = TaskGenericEightiesLines8[ID];
+				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale8, ID);
+				}
+				else
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale8, ID);
+				}
+				break;
+			case SubtitleType.TaskGenericEightiesLine9:
+				Label.text = TaskGenericEightiesLines9[ID];
+				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale9, ID);
+				}
+				else
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale9, ID);
+				}
+				break;
+			case SubtitleType.TaskGenericEightiesLine10:
+				Label.text = TaskGenericEightiesLines10[ID];
+				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineMale10, ID);
+				}
+				else
+				{
+					PlayVoice(SubtitleType.TaskGenericEightiesLineFemale10, ID);
 				}
 				break;
 			case SubtitleType.TaskInquiry:
@@ -3220,19 +3441,104 @@ public class SubtitleScript : MonoBehaviour
 		case 81:
 			return Task81Clips[TaskPhase].length;
 		default:
-			if (!Yandere.GetComponent<YandereScript>().StudentManager.Eighties)
+		{
+			YandereScript component = Yandere.GetComponent<YandereScript>();
+			if (!component.StudentManager.Eighties)
 			{
-				if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+				if (component.TargetStudent.Male)
 				{
 					return TaskGenericMaleClips[TaskPhase].length;
 				}
 				return TaskGenericFemaleClips[TaskPhase].length;
 			}
-			if (Yandere.GetComponent<YandereScript>().TargetStudent.Male)
+			if (component.TargetStudent.Male)
 			{
-				return TaskGenericEightiesMaleClips[TaskPhase].length;
+				if (component.TargetStudent.GenericTaskID == 1)
+				{
+					return TaskGenericEightiesMaleClips1[TaskPhase].length;
+				}
+				if (component.TargetStudent.GenericTaskID == 2)
+				{
+					return TaskGenericEightiesMaleClips2[TaskPhase].length;
+				}
+				if (component.TargetStudent.GenericTaskID == 3)
+				{
+					return TaskGenericEightiesMaleClips3[TaskPhase].length;
+				}
+				if (component.TargetStudent.GenericTaskID == 4)
+				{
+					return TaskGenericEightiesMaleClips4[TaskPhase].length;
+				}
+				if (component.TargetStudent.GenericTaskID == 5)
+				{
+					return TaskGenericEightiesMaleClips5[TaskPhase].length;
+				}
+				if (component.TargetStudent.GenericTaskID == 6)
+				{
+					return TaskGenericEightiesMaleClips6[TaskPhase].length;
+				}
+				if (component.TargetStudent.GenericTaskID == 7)
+				{
+					return TaskGenericEightiesMaleClips7[TaskPhase].length;
+				}
+				if (component.TargetStudent.GenericTaskID == 8)
+				{
+					return TaskGenericEightiesMaleClips8[TaskPhase].length;
+				}
+				if (component.TargetStudent.GenericTaskID == 9)
+				{
+					return TaskGenericEightiesMaleClips9[TaskPhase].length;
+				}
+				if (component.TargetStudent.GenericTaskID == 10)
+				{
+					return TaskGenericEightiesMaleClips10[TaskPhase].length;
+				}
+				Debug.Log("This code is returning null, which is bad.");
+				return 1f;
 			}
-			return TaskGenericEightiesFemaleClips[TaskPhase].length;
+			if (component.TargetStudent.GenericTaskID == 1)
+			{
+				return TaskGenericEightiesFemaleClips1[TaskPhase].length;
+			}
+			if (component.TargetStudent.GenericTaskID == 2)
+			{
+				return TaskGenericEightiesFemaleClips2[TaskPhase].length;
+			}
+			if (component.TargetStudent.GenericTaskID == 3)
+			{
+				return TaskGenericEightiesFemaleClips3[TaskPhase].length;
+			}
+			if (component.TargetStudent.GenericTaskID == 4)
+			{
+				return TaskGenericEightiesFemaleClips4[TaskPhase].length;
+			}
+			if (component.TargetStudent.GenericTaskID == 5)
+			{
+				return TaskGenericEightiesFemaleClips5[TaskPhase].length;
+			}
+			if (component.TargetStudent.GenericTaskID == 6)
+			{
+				return TaskGenericEightiesFemaleClips6[TaskPhase].length;
+			}
+			if (component.TargetStudent.GenericTaskID == 7)
+			{
+				return TaskGenericEightiesFemaleClips7[TaskPhase].length;
+			}
+			if (component.TargetStudent.GenericTaskID == 8)
+			{
+				return TaskGenericEightiesFemaleClips8[TaskPhase].length;
+			}
+			if (component.TargetStudent.GenericTaskID == 9)
+			{
+				return TaskGenericEightiesFemaleClips9[TaskPhase].length;
+			}
+			if (component.TargetStudent.GenericTaskID == 10)
+			{
+				return TaskGenericEightiesFemaleClips10[TaskPhase].length;
+			}
+			Debug.Log("This code is returning null, which is bad.");
+			return 1f;
+		}
 		}
 	}
 

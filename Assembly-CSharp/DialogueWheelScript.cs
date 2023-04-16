@@ -739,9 +739,9 @@ public class DialogueWheelScript : MonoBehaviour
 					flag = true;
 				}
 				HideTaskButtonIfNecessary();
-				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.FinishedHomework)
+				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID] > 0)
 				{
-					Debug.Log("The player has finished another student's homework, and can turn in a task right now.");
+					Debug.Log("The player can turn in a task right now.");
 					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
 				}
 			}
@@ -1098,7 +1098,7 @@ public class DialogueWheelScript : MonoBehaviour
 				flag = true;
 			}
 		}
-		if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && ((!Yandere.StudentManager.Eighties && Yandere.Inventory.Book) || (Yandere.StudentManager.Eighties && Yandere.Inventory.FinishedHomework)))
+		if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && ((!Yandere.StudentManager.Eighties && Yandere.Inventory.Book) || (Yandere.StudentManager.Eighties && Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID] > 0)))
 		{
 			Yandere.TargetStudent.TaskPhase = 5;
 		}

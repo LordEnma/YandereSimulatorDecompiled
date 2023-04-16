@@ -24,6 +24,8 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public InputDeviceScript InputDevice;
 
+	public TitleExtrasScript TitleExtras;
+
 	public PromptBarScript PromptBar;
 
 	public PostProcessingProfile Profile;
@@ -60,7 +62,7 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public UISprite ModeSelection;
 
-	public UISprite CheatEntry;
+	public UISprite ExtrasMenu;
 
 	public UISprite SaveFiles;
 
@@ -201,7 +203,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		ResetVignette();
 		ModeSelection.alpha = 0f;
 		DemoChecklist.alpha = 0f;
-		CheatEntry.alpha = 0f;
+		ExtrasMenu.alpha = 0f;
 		PressStart.alpha = 0f;
 		SaveFiles.alpha = 0f;
 		Settings.alpha = 0f;
@@ -438,7 +440,7 @@ public class NewTitleScreenScript : MonoBehaviour
 				Settings.alpha = Mathf.MoveTowards(Settings.alpha, 0f, Time.deltaTime);
 				Sponsors.alpha = Mathf.MoveTowards(Sponsors.alpha, 0f, Time.deltaTime);
 				SaveFiles.alpha = Mathf.MoveTowards(SaveFiles.alpha, 0f, Time.deltaTime);
-				CheatEntry.alpha = Mathf.MoveTowards(CheatEntry.alpha, 0f, Time.deltaTime);
+				ExtrasMenu.alpha = Mathf.MoveTowards(ExtrasMenu.alpha, 0f, Time.deltaTime);
 				DemoChecklist.alpha = Mathf.MoveTowards(DemoChecklist.alpha, 0f, Time.deltaTime);
 				if (Speed > 3f)
 				{
@@ -573,42 +575,20 @@ public class NewTitleScreenScript : MonoBehaviour
 			else if (Phase == 7)
 			{
 				Speed += Time.deltaTime * 2f;
-				base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 2.4f, -0.5f), Time.deltaTime * Speed);
-				LookAtTarget.position = Vector3.Lerp(LookAtTarget.position, new Vector3(0f, 2.4f, 0f), Time.deltaTime * Speed);
+				base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 2.372f, -0.5f), Time.deltaTime * Speed);
+				LookAtTarget.position = Vector3.Lerp(LookAtTarget.position, new Vector3(0f, 2.372f, 0f), Time.deltaTime * Speed);
 				DepthFocus = Mathf.Lerp(DepthFocus, 0.5f, Time.deltaTime * Speed);
 				UpdateDOF(DepthFocus);
-				CheatEntry.alpha = Mathf.MoveTowards(CheatEntry.alpha, 1f, Time.deltaTime);
-				if (Speed > 3f)
+				ExtrasMenu.alpha = Mathf.MoveTowards(ExtrasMenu.alpha, 1f, Time.deltaTime);
+				if (Speed > 3f && !PromptBar.Show)
 				{
-					if (!PromptBar.Show)
-					{
-						PromptBar.ClearButtons();
-						PromptBar.Label[1].text = "Go Back";
-						PromptBar.UpdateButtons();
-						PromptBar.Show = true;
-					}
-					if (Input.GetKeyDown(KeyCode.Return))
-					{
-						if (CheatLabel.text == "debug" || CheatLabel.text == "Debug")
-						{
-							CheatLabel.text = "Type 'debug' while at school!";
-						}
-						else if (CheatLabel.text == "Nice Boat")
-						{
-							CheatLabel.text = "Awwwww, you remembered!";
-						}
-					}
-					if (Input.GetButtonDown("B"))
-					{
-						PromptBar.Show = false;
-						Speed = 0f;
-						Phase = 2;
-					}
-					if (Input.GetKeyDown(KeyCode.P))
-					{
-						Screen.SetResolution(512, 512, fullscreen: false);
-						SceneManager.LoadScene("PortraitScene");
-					}
+					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = "Make Selection";
+					PromptBar.Label[1].text = "Back";
+					PromptBar.Label[4].text = "Change Selection";
+					PromptBar.UpdateButtons();
+					PromptBar.Show = true;
+					TitleExtras.Show = true;
 				}
 			}
 			else if (Phase == 8)

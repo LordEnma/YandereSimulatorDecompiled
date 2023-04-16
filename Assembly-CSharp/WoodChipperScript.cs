@@ -42,9 +42,13 @@ public class WoodChipperScript : MonoBehaviour
 
 	public int Victims;
 
+	public int Limbs;
+
 	public int ID;
 
 	public int[] VictimList;
+
+	public int[] LimbList;
 
 	public AudioSource MyAudio;
 
@@ -202,6 +206,11 @@ public class WoodChipperScript : MonoBehaviour
 			else
 			{
 				PickUpScript pickUp = Yandere.PickUp;
+				if (Yandere.PickUp.BodyPart != null)
+				{
+					Limbs++;
+					LimbList[Limbs] = Yandere.PickUp.GetComponent<BodyPartScript>().StudentID;
+				}
 				Yandere.EmptyHands();
 				if (pickUp.Clothing)
 				{

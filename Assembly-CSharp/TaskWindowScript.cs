@@ -24,7 +24,11 @@ public class TaskWindowScript : MonoBehaviour
 
 	public GameObject[] TaskCompleteLetters;
 
+	public string[] GenericDescriptions;
+
 	public string[] Descriptions;
+
+	public Texture[] GenericIcons;
 
 	public Texture[] Portraits;
 
@@ -75,15 +79,26 @@ public class TaskWindowScript : MonoBehaviour
 		PromptBar.Show = true;
 		GetPortrait(ID);
 		StudentID = ID;
+		TaskDescLabel.text = Descriptions[ID];
+		Icon.mainTexture = Icons[ID];
 		GenericCheck();
 		if (Generic)
 		{
-			ID = 0;
-			Generic = false;
+			if (Yandere.StudentManager.Eighties)
+			{
+				ID = Yandere.StudentManager.GenericTaskIDs[ID];
+				TaskDescLabel.text = GenericDescriptions[ID];
+				Icon.mainTexture = GenericIcons[ID];
+			}
+			else
+			{
+				ID = 0;
+				TaskDescLabel.text = Descriptions[ID];
+				Icon.mainTexture = Icons[ID];
+			}
 		}
+		Generic = false;
 		TaskDescLabel.transform.parent.gameObject.SetActive(value: true);
-		TaskDescLabel.text = Descriptions[ID];
-		Icon.mainTexture = Icons[ID];
 		Window.SetActive(value: true);
 		Time.timeScale = 0.0001f;
 	}
@@ -104,6 +119,10 @@ public class TaskWindowScript : MonoBehaviour
 				if (!Yandere.StudentManager.Eighties)
 				{
 					UpdateTaskObjects(StudentID);
+				}
+				else
+				{
+					Yandere.Inventory.ItemsRequested[Yandere.TargetStudent.GenericTaskID]++;
 				}
 				Time.timeScale = 1f;
 			}
@@ -140,6 +159,11 @@ public class TaskWindowScript : MonoBehaviour
 			{
 				TaskCompleteLetters[ID].GetComponent<GrowShrinkScript>().Return();
 			}
+			if (Yandere.StudentManager.Eighties)
+			{
+				Yandere.Inventory.ItemsRequested[Yandere.TargetStudent.GenericTaskID]--;
+				Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID]--;
+			}
 			TaskCheck();
 			DialogueWheel.End();
 			TaskComplete = false;
@@ -159,10 +183,16 @@ public class TaskWindowScript : MonoBehaviour
 				Yandere.Inventory.Book = false;
 				CheckOutBook.UpdatePrompt();
 			}
-			else
+			else if (Yandere.TargetStudent.GenericTaskID == 3)
 			{
-				Yandere.Inventory.FinishedHomework = false;
-				HomeworkAssignment.UpdatePrompt();
+				if (Yandere.TargetStudent.Male)
+				{
+					DialogueWheel.Yandere.TargetStudent.Cosmetic.MaleAccessories[13].SetActive(value: true);
+				}
+				else
+				{
+					DialogueWheel.Yandere.TargetStudent.Cosmetic.FemaleAccessories[16].SetActive(value: true);
+				}
 			}
 			Generic = false;
 		}

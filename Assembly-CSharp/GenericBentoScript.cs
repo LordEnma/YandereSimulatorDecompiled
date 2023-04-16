@@ -6,6 +6,8 @@ public class GenericBentoScript : MonoBehaviour
 
 	public GameObject Lid;
 
+	public GameObject[] FoodVariant;
+
 	public Transform PoisonSpot;
 
 	public PromptScript Prompt;
@@ -21,6 +23,15 @@ public class GenericBentoScript : MonoBehaviour
 	public bool Tampered;
 
 	public int StudentID;
+
+	private void Start()
+	{
+		FoodVariant[0].SetActive(value: false);
+		FoodVariant[1].SetActive(value: false);
+		FoodVariant[2].SetActive(value: false);
+		FoodVariant[3].SetActive(value: false);
+		FoodVariant[Random.Range(0, 4)].SetActive(value: true);
+	}
 
 	private void Update()
 	{

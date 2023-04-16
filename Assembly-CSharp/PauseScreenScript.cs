@@ -149,6 +149,10 @@ public class PauseScreenScript : MonoBehaviour
 
 	public bool Show;
 
+	public string[] F305;
+
+	public int F305ID;
+
 	public int Row = 1;
 
 	public int Column = 2;
@@ -356,6 +360,14 @@ public class PauseScreenScript : MonoBehaviour
 				Show = true;
 			}
 			return;
+		}
+		if (F305ID < F305.Length && Input.GetKeyDown(F305[F305ID]))
+		{
+			F305ID++;
+			if (F305ID == F305.Length)
+			{
+				Yandere.StudentManager.Reputation.RepUpdateLabel.alpha = 0f;
+			}
 		}
 		if (!EggsChecked)
 		{

@@ -194,6 +194,8 @@ public class StudentScript : MonoBehaviour
 
 	public Texture MidoriPhoneTexture;
 
+	public Texture SocialMediaTexture;
+
 	public Texture OsanaPhoneTexture;
 
 	public Texture RedBookTexture;
@@ -399,6 +401,8 @@ public class StudentScript : MonoBehaviour
 	public GameObject EightiesTeacherAttacher;
 
 	public GameObject EnterGuardStateCollider;
+
+	public GameObject HeadacheMedicinePrompt;
 
 	public GameObject BloodSprayCollider;
 
@@ -1252,6 +1256,8 @@ public class StudentScript : MonoBehaviour
 
 	public int MurderReaction;
 
+	public int GenericTaskID;
+
 	public int PhaseFromSave;
 
 	public int CleaningRole;
@@ -1842,7 +1848,48 @@ public class StudentScript : MonoBehaviour
 		{
 			if (StudentManager.Eighties && StudentID != 79)
 			{
-				return SubtitleType.TaskGenericEightiesLine;
+				if (GenericTaskID == 1)
+				{
+					return SubtitleType.TaskGenericEightiesLine1;
+				}
+				if (GenericTaskID == 2)
+				{
+					return SubtitleType.TaskGenericEightiesLine2;
+				}
+				if (GenericTaskID == 3)
+				{
+					return SubtitleType.TaskGenericEightiesLine3;
+				}
+				if (GenericTaskID == 4)
+				{
+					return SubtitleType.TaskGenericEightiesLine4;
+				}
+				if (GenericTaskID == 5)
+				{
+					return SubtitleType.TaskGenericEightiesLine5;
+				}
+				if (GenericTaskID == 6)
+				{
+					return SubtitleType.TaskGenericEightiesLine6;
+				}
+				if (GenericTaskID == 7)
+				{
+					return SubtitleType.TaskGenericEightiesLine7;
+				}
+				if (GenericTaskID == 8)
+				{
+					return SubtitleType.TaskGenericEightiesLine8;
+				}
+				if (GenericTaskID == 9)
+				{
+					return SubtitleType.TaskGenericEightiesLine9;
+				}
+				if (GenericTaskID == 10)
+				{
+					return SubtitleType.TaskGenericEightiesLine10;
+				}
+				Debug.Log("This student doesn't have a Generic Task ID assigned.");
+				return SubtitleType.TaskGenericEightiesLine1;
 			}
 			if (StudentID == 4)
 			{
@@ -3461,6 +3508,16 @@ public class StudentScript : MonoBehaviour
 				OriginalIdleAnim = "f02_tsunIdle_00";
 				IdleAnim = "f02_tsunIdle_00";
 			}
+		}
+		if (Club != ClubType.Bully)
+		{
+			MiyukiGameScreen.SetActive(value: true);
+			if (StudentID <= 35 || StudentID >= 41)
+			{
+				MiyukiGameScreen.GetComponent<Renderer>().material.mainTexture = SocialMediaTexture;
+			}
+			SmartPhone.transform.localPosition = new Vector3(0.02f, 0.01f, 0.025f);
+			SmartPhone.transform.localEulerAngles = new Vector3(15f, -145f, 180f);
 		}
 		CharacterAnimation.Sample();
 	}
@@ -10688,7 +10745,7 @@ public class StudentScript : MonoBehaviour
 					}
 					else
 					{
-						CharacterAnimation.CrossFade("f02_heardSuspiciousNoise_00");
+						CharacterAnimation.CrossFade("f02_heardSuspiciousNoise_01");
 					}
 					Pathfinding.canSearch = false;
 					Pathfinding.canMove = false;
@@ -12405,7 +12462,7 @@ public class StudentScript : MonoBehaviour
 							{
 								flag3 = true;
 							}
-							if ((Yandere.Armed && Yandere.EquippedWeapon.Suspicious) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.Suspicious) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.CleaningProduct && Clock.Period != 5) || (Guarding && Yandere.Mopping && Yandere.Mop.Bloodiness > 0f) || (Yandere.Bloodiness + (float)Yandere.GloveBlood > 0f && !Yandere.Paint) || Yandere.Sanity < 33.333f || Yandere.Pickpocketing || Yandere.Attacking || Yandere.Cauterizing || Yandere.Struggling || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || (!IgnoringPettyActions && Yandere.Lewd) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Carrying && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || Yandere.Medusa || Yandere.Poisoning || Yandere.Pickpocketing || Yandere.WeaponTimer > 0f || Yandere.WearingRaincoat || Yandere.MurderousActionTimer > 0f || (!IgnoringPettyActions && Yandere.Schoolwear == 2 && Yandere.transform.position.z < 30f) || (!IgnoringPettyActions && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (!IgnoringPettyActions && Yandere.SuspiciousActionTimer > 0f) || (!IgnoringPettyActions && Yandere.Laughing && Yandere.LaughIntensity > 15f) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crouching) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crawling) || (!IgnoringPettyActions && Yandere.Trespassing) || (Private && Yandere.Eavesdropping) || (Teacher && !WitnessedCorpse && Yandere.Trespassing) || (Teacher && !IgnoringPettyActions && Yandere.Rummaging) || (!IgnoringPettyActions && Yandere.TheftTimer > 0f) || (StudentID == 1 && Yandere.NearSenpai && !Yandere.Talking) || (Yandere.Eavesdropping && Private) || (!IgnoringPettyActions && !StudentManager.CombatMinigame.Practice && Yandere.DelinquentFighting && StudentID != 10 && StudentManager.CombatMinigame.Path < 4 && !StudentManager.CombatMinigame.Practice && !Yandere.SeenByAuthority) || (flag3 && Yandere.PickUp != null && Yandere.PickUp.Mop != null && Yandere.PickUp.Mop.Bloodiness > 50f) || (!IgnoringPettyActions && flag3 && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (Yandere.PickUp != null && Yandere.PickUp.Clothing && Yandere.PickUp.Evidence && !Yandere.PickUp.BloodMistakenForPaint) || (!IgnoringPettyActions && AnnoyedByRadio > 1 && Yandere.PotentiallyAnnoyingTimer > 0f) || (!IgnoringPettyActions && AnnoyedByGiggles > 4 && Yandere.AnnoyingGiggleTimer > 0f) || (!IgnoringPettyActions && Yandere.PreparingThrow && Yandere.Obvious))
+							if ((Yandere.Armed && Yandere.EquippedWeapon.Suspicious) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.Suspicious) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.CleaningProduct && Clock.Period != 5) || (Guarding && Yandere.Mopping && Yandere.Mop.Bloodiness > 0f) || (Yandere.Bloodiness + (float)Yandere.GloveBlood > 0f && !Yandere.Paint) || Yandere.Sanity < 33.333f || Yandere.Pickpocketing || Yandere.Attacking || Yandere.Cauterizing || Yandere.Struggling || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || (!IgnoringPettyActions && Yandere.Lewd) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Carrying && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || Yandere.Medusa || Yandere.Poisoning || Yandere.Pickpocketing || Yandere.WeaponTimer > 0f || Yandere.WearingRaincoat || Yandere.MurderousActionTimer > 0f || (!IgnoringPettyActions && Yandere.Schoolwear == 2 && Yandere.transform.position.z < 30f) || (!IgnoringPettyActions && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (!IgnoringPettyActions && Yandere.SuspiciousActionTimer > 0f) || (!IgnoringPettyActions && Yandere.Laughing && Yandere.LaughIntensity > 15f) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crouching) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crawling) || (!IgnoringPettyActions && Yandere.Trespassing) || (Private && Yandere.Eavesdropping && !Yandere.Talking) || (Teacher && !WitnessedCorpse && Yandere.Trespassing) || (Teacher && !IgnoringPettyActions && Yandere.Rummaging) || (!IgnoringPettyActions && Yandere.TheftTimer > 0f) || (StudentID == 1 && Yandere.NearSenpai && !Yandere.Talking) || (!IgnoringPettyActions && !StudentManager.CombatMinigame.Practice && Yandere.DelinquentFighting && StudentID != 10 && StudentManager.CombatMinigame.Path < 4 && !StudentManager.CombatMinigame.Practice && !Yandere.SeenByAuthority) || (flag3 && Yandere.PickUp != null && Yandere.PickUp.Mop != null && Yandere.PickUp.Mop.Bloodiness > 50f) || (!IgnoringPettyActions && flag3 && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (Yandere.PickUp != null && Yandere.PickUp.Clothing && Yandere.PickUp.Evidence && !Yandere.PickUp.BloodMistakenForPaint) || (!IgnoringPettyActions && AnnoyedByRadio > 1 && Yandere.PotentiallyAnnoyingTimer > 0f) || (!IgnoringPettyActions && AnnoyedByGiggles > 4 && Yandere.AnnoyingGiggleTimer > 0f) || (!IgnoringPettyActions && Yandere.PreparingThrow && Yandere.Obvious))
 							{
 								bool flag4 = false;
 								if (Yandere.transform.position.y < base.transform.position.y + 4f)
@@ -17957,6 +18014,10 @@ public class StudentScript : MonoBehaviour
 			VisionDistance = 12f * Paranoia;
 			PatrolAnim = "f02_idle_00";
 			base.name = "Nurse_" + Name;
+			if (StudentManager.Eighties)
+			{
+				HeadacheMedicinePrompt.SetActive(value: true);
+			}
 		}
 		else
 		{
@@ -19682,7 +19743,14 @@ public class StudentScript : MonoBehaviour
 			Yandere.Punching = false;
 			Yandere.CanMove = false;
 			Yandere.Shoved = true;
-			Yandere.EmptyHands();
+			if (Yandere.PickUp != null && Yandere.PickUp.PreventTipping)
+			{
+				Debug.Log("She's holding a water cooler. Don't do a god damn thing.");
+			}
+			else
+			{
+				Yandere.EmptyHands();
+			}
 			Yandere.GloveTimer = 0f;
 			Yandere.h = 0f;
 			Yandere.v = 0f;

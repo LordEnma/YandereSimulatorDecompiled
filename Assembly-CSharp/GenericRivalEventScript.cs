@@ -1622,7 +1622,6 @@ public class GenericRivalEventScript : MonoBehaviour
 					if (flag2 && !Rival.InEvent)
 					{
 						Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-						Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
 						Rival.Pathfinding.target = Location[2];
 						Rival.CurrentDestination = Location[2];
 						Rival.Pathfinding.canSearch = true;
@@ -1631,6 +1630,14 @@ public class GenericRivalEventScript : MonoBehaviour
 						Rival.DistanceToDestination = 100f;
 						Spy.gameObject.SetActive(value: true);
 						Spy.Prompt.enabled = true;
+						if (Rival.Hurry)
+						{
+							Rival.CharacterAnimation.CrossFade(Rival.SprintAnim);
+						}
+						else
+						{
+							Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
+						}
 						if (Teleport)
 						{
 							Rival.transform.eulerAngles = Location[2].eulerAngles;

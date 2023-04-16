@@ -280,6 +280,8 @@ public class YandereScript : MonoBehaviour
 
 	public GameObject Microphone;
 
+	public GameObject Paintbrush;
+
 	public GameObject SpiderLegs;
 
 	public GameObject AlarmDisc;
@@ -301,6 +303,8 @@ public class YandereScript : MonoBehaviour
 	public GameObject Barcode;
 
 	public GameObject Headset;
+
+	public GameObject Palette;
 
 	public GameObject Ragdoll;
 
@@ -345,6 +349,8 @@ public class YandereScript : MonoBehaviour
 	public Renderer PonytailRenderer;
 
 	public Renderer NoPonyRenderer;
+
+	public Renderer LooseRenderer;
 
 	public Renderer PigtailR;
 
@@ -919,6 +925,8 @@ public class YandereScript : MonoBehaviour
 	public Texture RivalPhoneTexture;
 
 	public Texture GloveTexture;
+
+	public Texture BlondeLoose;
 
 	public Texture BlondePony;
 
@@ -1917,10 +1925,12 @@ public class YandereScript : MonoBehaviour
 		Stand.Stand.SetActive(value: false);
 		TornadoHair.SetActive(value: false);
 		MemeGlasses.SetActive(value: false);
+		MemeGlasses.SetActive(value: false);
 		CirnoWings.SetActive(value: false);
 		KONGlasses.SetActive(value: false);
 		EbolaWings.SetActive(value: false);
 		Microphone.SetActive(value: false);
+		Paintbrush.SetActive(value: false);
 		Poisons[1].SetActive(value: false);
 		Poisons[2].SetActive(value: false);
 		Poisons[3].SetActive(value: false);
@@ -1934,6 +1944,7 @@ public class YandereScript : MonoBehaviour
 		ZipTie[1].SetActive(value: false);
 		Shoes[0].SetActive(value: false);
 		Shoes[1].SetActive(value: false);
+		Palette.SetActive(value: false);
 		Phone.SetActive(value: false);
 		Cape.SetActive(value: false);
 		HeavySwordParent.gameObject.SetActive(value: false);
@@ -1997,6 +2008,7 @@ public class YandereScript : MonoBehaviour
 		{
 			PonytailRenderer.material.mainTexture = BlondePony;
 			NoPonyRenderer.material.mainTexture = BlondePony;
+			LooseRenderer.material.mainTexture = BlondeLoose;
 		}
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
@@ -8549,8 +8561,6 @@ public class YandereScript : MonoBehaviour
 	public void WearChinaDress()
 	{
 		EbolaHair.SetActive(value: false);
-		EbolaWings.GetComponent<Renderer>().material.color = new Color(0f, 0f, 0f);
-		EbolaWings.GetComponent<Renderer>().material.SetColor("_OutlineColor", new Color(0f, 0f, 0f));
 		Hairstyle = 1;
 		UpdateHair();
 		ChinaDress.SetActive(value: true);
@@ -8605,6 +8615,11 @@ public class YandereScript : MonoBehaviour
 		{
 			TextureToUse = CasualTextures[StudentGlobals.FemaleUniform];
 		}
+		if (!Egg && !StudentManager.Eighties && Hairstyle == 210)
+		{
+			Hairstyle = 1;
+			UpdateHair();
+		}
 		if ((ClubAttire && Bloodiness > 0f) || Schoolwear == 0)
 		{
 			MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -8617,6 +8632,11 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.materials[2].mainTexture = FaceTexture;
 			ClubAttire = false;
 			Schoolwear = 0;
+			if (!Egg && !StudentManager.Eighties && Hairstyle == 1)
+			{
+				Hairstyle = 210;
+				UpdateHair();
+			}
 		}
 		else if (Schoolwear == 1)
 		{

@@ -38,9 +38,14 @@ public class TalkingScript : MonoBehaviour
 
 	public string RejectGossipLine;
 
+	public MusicTest AudioData;
+
+	public GameObject VoiceClip;
+
 	private void Start()
 	{
 		Eighties = GameGlobals.Eighties;
+		AudioData = S.StudentManager.AudioData;
 	}
 
 	private void Update()
@@ -1322,7 +1327,7 @@ public class TalkingScript : MonoBehaviour
 					S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 3, 5f);
 					S.CharacterAnimation.CrossFade(S.Nod1Anim);
 				}
-				else if (S.BikiniAttacher.enabled && !S.MyRenderer.enabled)
+				else if ((S.BikiniAttacher.enabled && !S.MyRenderer.enabled) || S.Schoolwear == 2)
 				{
 					S.Subtitle.CustomText = "Bad timing. As you can see, I'm in a swimsuit right now. Maybe later.";
 					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 10f);
@@ -2005,5 +2010,28 @@ public class TalkingScript : MonoBehaviour
 			S.RepBonus++;
 		}
 		S.RepBonus += S.Yandere.Class.PsychologyGrade + S.Yandere.Class.PsychologyBonus;
+	}
+
+	private void LateUpdate()
+	{
+		if (!S.Talking)
+		{
+			return;
+		}
+		if (S.Subtitle.CurrentClip != null)
+		{
+			if (AudioData.MyAudioSource == null)
+			{
+				AudioData.MyAudioSource = S.Subtitle.CurrentClip.GetComponent<AudioSource>();
+			}
+		}
+		else
+		{
+			AudioData.MyAudioSource = null;
+		}
+		if (AudioData.MyAudioSource != null)
+		{
+			S.Jaw.transform.localEulerAngles += new Vector3(0f, 0f, AudioData.g[1].transform.position.y);
+		}
 	}
 }

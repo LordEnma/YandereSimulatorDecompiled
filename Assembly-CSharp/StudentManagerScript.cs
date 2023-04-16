@@ -162,6 +162,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public ListScript MeetSpots;
 
+	public MusicTest AudioData;
+
 	public MirrorScript Mirror;
 
 	public PoliceScript Police;
@@ -819,6 +821,8 @@ public class StudentManagerScript : MonoBehaviour
 	public string[] LastNames;
 
 	public float[] TargetSize;
+
+	public int[] GenericTaskIDs;
 
 	public int[] SuitorIDs;
 
@@ -2344,6 +2348,10 @@ public class StudentManagerScript : MonoBehaviour
 			else if (spawnID == RivalID)
 			{
 				studentScript.MiniMapIcon.icon = studentScript.RivalSprite;
+			}
+			if (Eighties)
+			{
+				studentScript.GenericTaskID = GenericTaskIDs[spawnID];
 			}
 			OccupySeat();
 		}

@@ -200,8 +200,18 @@ public class TaskListScript : MonoBehaviour
 		TaskWindow.AltGenericCheck(ID + ListPosition);
 		if (TaskWindow.Generic)
 		{
-			TaskIcon.mainTexture = TaskWindow.Icons[0];
-			TaskDesc.text = TaskWindow.Descriptions[0];
+			int num = 0;
+			if (PauseScreen.Yandere.StudentManager.Eighties)
+			{
+				num = PauseScreen.Yandere.StudentManager.GenericTaskIDs[ID];
+				TaskIcon.mainTexture = TaskWindow.GenericIcons[num];
+				TaskDesc.text = TaskWindow.GenericDescriptions[num];
+			}
+			else
+			{
+				TaskIcon.mainTexture = TaskWindow.Icons[num];
+				TaskDesc.text = TaskWindow.Descriptions[num];
+			}
 		}
 		else
 		{

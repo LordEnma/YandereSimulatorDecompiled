@@ -616,10 +616,6 @@ public class DoorScript : MonoBehaviour
 			Sign.material.mainTexture = Plates[1];
 			Sign.material.mainTextureOffset = new Vector2(0.25f, 0.5f);
 			break;
-		case 7:
-			Sign.material.mainTexture = Plates[1];
-			Sign.material.mainTextureOffset = new Vector2(0.25f, 0.25f);
-			break;
 		case 8:
 			Sign.material.mainTexture = Plates[1];
 			Sign.material.mainTextureOffset = new Vector2(0.25f, 0f);
@@ -732,6 +728,7 @@ public class DoorScript : MonoBehaviour
 			Sign.material.mainTexture = Plates[3];
 			Sign.material.mainTextureOffset = new Vector2(0f, 0.25f);
 			break;
+		case 7:
 		case 35:
 		case 36:
 		case 37:

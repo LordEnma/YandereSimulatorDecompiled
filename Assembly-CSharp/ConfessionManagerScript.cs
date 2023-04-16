@@ -156,6 +156,8 @@ public class ConfessionManagerScript : MonoBehaviour
 				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.FaceID].SetFloat("_BlendAmount", 1f);
 				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.SkinID].SetFloat("_BlendAmount", 0f);
 				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.UniformID].SetFloat("_BlendAmount", 0f);
+				Tears.materials[0].SetFloat("_TearReveal", 0f);
+				Tears.materials[1].SetFloat("_TearReveal", 0f);
 				Debug.Log("The characters were told to perform their confession animations.");
 				Senpai.Play("SenpaiConfession");
 				Osana.Play("OsanaConfession");

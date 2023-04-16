@@ -816,6 +816,18 @@ public class MissionModeScript : MonoBehaviour
 						DisposalMethod = 4;
 					}
 				}
+				int num2 = 0;
+				for (ID = 1; ID < AcidVat.Limbs + 1; ID++)
+				{
+					if (AcidVat.LimbList[ID] == TargetID)
+					{
+						num2++;
+					}
+					if (num2 == 6)
+					{
+						DisposalMethod = 4;
+					}
+				}
 				for (ID = 1; ID < Manhole.Victims + 1; ID++)
 				{
 					if (Manhole.VictimList[ID] == TargetID)
@@ -930,10 +942,10 @@ public class MissionModeScript : MonoBehaviour
 				{
 					TimeRemaining = Mathf.MoveTowards(TimeRemaining, 0f, Time.deltaTime);
 				}
-				int num2 = Mathf.CeilToInt(TimeRemaining);
-				int num3 = num2 / 60;
-				int num4 = num2 % 60;
-				TimeLabel.text = $"{num3:00}:{num4:00}";
+				int num3 = Mathf.CeilToInt(TimeRemaining);
+				int num4 = num3 / 60;
+				int num5 = num3 % 60;
+				TimeLabel.text = $"{num4:00}:{num5:00}";
 				if (TimeRemaining == 0f)
 				{
 					Chastise = true;
