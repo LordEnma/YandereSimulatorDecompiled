@@ -24,11 +24,13 @@ public class RetroMinigameScript : MonoBehaviour
 
 	public bool GameOver;
 
+	public bool Show;
+
 	public float Speed;
 
-	public int Score;
+	public float Timer;
 
-	public bool Show;
+	public int Score;
 
 	private void Start()
 	{
@@ -44,6 +46,7 @@ public class RetroMinigameScript : MonoBehaviour
 		GameOver = false;
 		Momentum = 2f;
 		Score = 0;
+		Timer = 0f;
 		Speed = 2f;
 	}
 
@@ -62,6 +65,12 @@ public class RetroMinigameScript : MonoBehaviour
 			}
 			else if (!GameOver)
 			{
+				Timer += Time.unscaledDeltaTime;
+				if (Timer > 5f && Score < 1)
+				{
+					Score++;
+					ScoreLabel.text = Score.ToString() ?? "";
+				}
 				Speed += Time.unscaledDeltaTime * 0.1f;
 				for (int i = 1; i < 6; i++)
 				{

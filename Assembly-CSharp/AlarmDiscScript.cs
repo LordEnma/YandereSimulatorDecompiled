@@ -254,7 +254,7 @@ public class AlarmDiscScript : MonoBehaviour
 										Student.SunbathePhase = 2;
 										flag2 = true;
 									}
-									if ((Student.Persona == PersonaType.PhoneAddict && !Student.Phoneless && !flag2) || Student.Persona == PersonaType.Sleuth || Student.StudentID == 20)
+									if (((Student.Persona == PersonaType.PhoneAddict && !Student.Phoneless && !flag2) || Student.Persona == PersonaType.Sleuth || Student.StudentID == 20) && !Student.Phoneless)
 									{
 										Student.SmartPhone.SetActive(value: true);
 									}

@@ -98,7 +98,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 				{
 					base.enabled = false;
 				}
-				else if ((double)Clock.HourTime > 7.25 && Rival.enabled && !Rival.InEvent && !Rival.Meeting && Rival.Indoors && !Rival.Wet && !Rival.Following && !Rival.Meeting && !Rival.Hunted && Rival.Pathfinding.target == Rival.Destinations[2] && Rival.DistanceToDestination < 1f && !Rival.Phoneless && !Rival.EndSearch)
+				else if ((double)Clock.HourTime > 7.25 && Rival.enabled && !Rival.InEvent && !Rival.Meeting && Rival.Indoors && !Rival.Wet && !Rival.Following && !Rival.Meeting && !Rival.Hunted && !Rival.CheckingNote && !Rival.Talking && Rival.Pathfinding.target == Rival.Destinations[2] && Rival.DistanceToDestination < 1f && !Rival.Phoneless && !Rival.EndSearch)
 				{
 					Debug.Log("Osana's ''Talk with Musume'' event has begun.");
 					Ganguro.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;

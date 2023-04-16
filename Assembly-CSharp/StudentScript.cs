@@ -19516,7 +19516,7 @@ public class StudentScript : MonoBehaviour
 			SunbathePhase = 2;
 			flag = true;
 		}
-		if ((Persona == PersonaType.PhoneAddict && !Phoneless && !flag) || Persona == PersonaType.Sleuth || StudentID == 20)
+		if (((Persona == PersonaType.PhoneAddict && !Phoneless && !flag) || Persona == PersonaType.Sleuth || StudentID == 20) && !Phoneless)
 		{
 			SmartPhone.SetActive(value: true);
 		}

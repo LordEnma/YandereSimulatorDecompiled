@@ -33,6 +33,7 @@ public class RemovableItemManagerScript : MonoBehaviour
 
 	public void RemoveItems()
 	{
+		Debug.Log("Now running RemoveItems()");
 		for (int i = 0; i < RemovableItems.Length; i++)
 		{
 			if (RemovableItems[i] == null || !RemovableItems[i].gameObject.activeInHierarchy)

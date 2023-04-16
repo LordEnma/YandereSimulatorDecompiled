@@ -70,4 +70,16 @@ public class BloodParentScript : MonoBehaviour
 			FootprintID--;
 		}
 	}
+
+	public void ChangeBloodTexture()
+	{
+		foreach (Transform item in base.transform)
+		{
+			BloodPoolScript component = item.GetComponent<BloodPoolScript>();
+			if (component != null)
+			{
+				component.UpdateCensor();
+			}
+		}
+	}
 }

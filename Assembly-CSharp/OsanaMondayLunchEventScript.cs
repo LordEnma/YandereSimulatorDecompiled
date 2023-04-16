@@ -279,7 +279,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 			{
 				Senpai.Lid.transform.parent = null;
 				Senpai.Lid.transform.position = new Vector3(-0.31f, 12.501f, -29.335f);
-				Senpai.Lid.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+				Senpai.Lid.transform.eulerAngles = new Vector3(0f, 0f, 180f);
 			}
 			if (Timer > 31f)
 			{

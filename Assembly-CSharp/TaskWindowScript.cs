@@ -79,6 +79,7 @@ public class TaskWindowScript : MonoBehaviour
 		PromptBar.Show = true;
 		GetPortrait(ID);
 		StudentID = ID;
+		Debug.Log("Updating window with information for Student #" + ID);
 		TaskDescLabel.text = Descriptions[ID];
 		Icon.mainTexture = Icons[ID];
 		GenericCheck();

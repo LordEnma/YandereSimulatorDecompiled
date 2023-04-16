@@ -203,7 +203,8 @@ public class TaskListScript : MonoBehaviour
 			int num = 0;
 			if (PauseScreen.Yandere.StudentManager.Eighties)
 			{
-				num = PauseScreen.Yandere.StudentManager.GenericTaskIDs[ID];
+				Debug.Log("Grabbing this student's Generic Task description.");
+				num = PauseScreen.Yandere.StudentManager.GenericTaskIDs[ListPosition + ID];
 				TaskIcon.mainTexture = TaskWindow.GenericIcons[num];
 				TaskDesc.text = TaskWindow.GenericDescriptions[num];
 			}

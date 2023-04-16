@@ -118,6 +118,7 @@ public class CalendarScript : MonoBehaviour
 
 	private void Start()
 	{
+		Debug.Log("At this moment, GameGlobals.GetItemRemoved(0) is: " + GameGlobals.GetItemRemoved(0));
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
@@ -267,7 +268,7 @@ public class CalendarScript : MonoBehaviour
 		SkipConfirmationWindow.SetActive(value: false);
 		if (DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
-			Debug.Log("It's the start of a new week. Creating the ''Reset Week'' save file here and now.");
+			Debug.Log("It's the start of a new week: Week #" + DateGlobals.Week + ". Creating a new ''Reset Week'' save file.");
 			YanSave.SaveData("Profile_" + GameGlobals.Profile + "_Slot_" + 11);
 		}
 	}

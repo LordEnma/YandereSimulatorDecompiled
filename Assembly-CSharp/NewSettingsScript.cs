@@ -733,6 +733,7 @@ public class NewSettingsScript : MonoBehaviour
 				if (SchoolScene)
 				{
 					StudentManager.Yandere.WeaponManager.ChangeBloodTexture();
+					StudentManager.BloodParent.ChangeBloodTexture();
 					StudentManager.Yandere.Bloodiness += 0f;
 				}
 				UpdateLabels();

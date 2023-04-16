@@ -18,6 +18,8 @@ public class BloodPoolScript : MonoBehaviour
 
 	public GameObject NewElectricity;
 
+	public Texture OriginalTexture;
+
 	public GameObject Electricity;
 
 	public Renderer MyRenderer;
@@ -36,10 +38,7 @@ public class BloodPoolScript : MonoBehaviour
 		{
 			TargetSize *= 0.5f;
 		}
-		if (GameGlobals.CensorBlood)
-		{
-			MyRenderer.material = Flower;
-		}
+		UpdateCensor();
 		if (GameGlobals.EightiesTutorial)
 		{
 			TargetSize = 1f;
@@ -101,6 +100,18 @@ public class BloodPoolScript : MonoBehaviour
 				PowerSwitch = other.gameObject.GetComponent<ElectrifiedPuddleScript>().PowerSwitch;
 				NewElectricity.GetComponent<SM_destroyThisTimed>().enabled = false;
 			}
+		}
+	}
+
+	public void UpdateCensor()
+	{
+		if (GameGlobals.CensorBlood)
+		{
+			MyRenderer.material = Flower;
+		}
+		else
+		{
+			MyRenderer.material = BloodPool;
 		}
 	}
 }

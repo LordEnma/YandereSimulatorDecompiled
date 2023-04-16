@@ -6,6 +6,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public Transform Yandere;
 
+	public UILabel EventLabel;
+
 	public UILabel Label;
 
 	public string[] WeaponBloodInsanityReactions;
@@ -3368,6 +3370,18 @@ public class SubtitleScript : MonoBehaviour
 				Jukebox.Dip = 1f;
 				Label.text = string.Empty;
 				Timer = 0f;
+			}
+		}
+		if (Label.text != "" && EventLabel.text != "")
+		{
+			EventLabel.transform.localPosition = Vector3.Lerp(EventLabel.transform.localPosition, new Vector3(0f, -485f, 0f), Time.deltaTime * 10f);
+		}
+		else if (EventLabel.transform.localPosition.y < -334f)
+		{
+			EventLabel.transform.localPosition = Vector3.Lerp(EventLabel.transform.localPosition, new Vector3(0f, -335f, 0f), Time.deltaTime * 10f);
+			if (EventLabel.transform.localPosition.y > -334f)
+			{
+				EventLabel.transform.localPosition = new Vector3(0f, -335f, 0f);
 			}
 		}
 	}
