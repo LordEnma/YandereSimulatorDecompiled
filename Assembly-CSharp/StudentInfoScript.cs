@@ -370,7 +370,7 @@ public class StudentInfoScript : MonoBehaviour
 		{
 			UpdateRepChart();
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (StudentInfoMenu.Gossiping)
 			{
@@ -527,7 +527,7 @@ public class StudentInfoScript : MonoBehaviour
 			}
 			else if (StudentInfoMenu.FiringCouncilMember)
 			{
-				if (StudentManager.Students[CurrentStudent].Routine && !StudentManager.Students[CurrentStudent].InEvent && !StudentManager.Students[CurrentStudent].TargetedForDistraction && StudentManager.Students[CurrentStudent].ClubActivityPhase < 16 && !StudentManager.Students[CurrentStudent].MyBento.Tampered)
+				if (StudentManager.Students[CurrentStudent].Routine && !StudentManager.Students[CurrentStudent].InEvent && !StudentManager.Students[CurrentStudent].Distracted && StudentManager.Students[CurrentStudent].ClubActivityPhase < 16 && !StudentManager.Students[CurrentStudent].MyBento.Tampered)
 				{
 					StudentManager.Students[CurrentStudent].OriginalPersona = PersonaType.Heroic;
 					StudentManager.Students[CurrentStudent].Persona = PersonaType.Heroic;
@@ -578,7 +578,7 @@ public class StudentInfoScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 			}
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			ShowRep = false;
 			Topics.SetActive(value: false);
@@ -609,7 +609,7 @@ public class StudentInfoScript : MonoBehaviour
 				Back = false;
 			}
 		}
-		if (Input.GetButtonDown("X") && PromptBar.Button[2].enabled)
+		if (Input.GetButtonDown(InputNames.Xbox_X) && PromptBar.Button[2].enabled)
 		{
 			if (StudentManager.Tag.Target != StudentManager.Students[CurrentStudent].Head)
 			{
@@ -625,7 +625,7 @@ public class StudentInfoScript : MonoBehaviour
 			}
 			PromptBar.UpdateButtons();
 		}
-		if (Input.GetButtonDown("Y") && PromptBar.Button[3].enabled)
+		if (Input.GetButtonDown(InputNames.Xbox_Y) && PromptBar.Button[3].enabled)
 		{
 			if (!Topics.activeInHierarchy)
 			{
@@ -641,7 +641,7 @@ public class StudentInfoScript : MonoBehaviour
 				Topics.SetActive(value: false);
 			}
 		}
-		if (Input.GetButtonDown("LB"))
+		if (Input.GetButtonDown(InputNames.Xbox_LB))
 		{
 			UpdateRepChart();
 			ShowRep = !ShowRep;

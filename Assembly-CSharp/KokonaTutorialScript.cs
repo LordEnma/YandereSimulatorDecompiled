@@ -484,7 +484,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		}
 		else if (Phase == 2)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Timer = 4f;
 				Darkness.alpha = 0f;
@@ -559,7 +559,7 @@ public class KokonaTutorialScript : MonoBehaviour
 				}
 				UpdateHighlight();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				HighSanity.time = MenuSanity.time;
 				MedSanity.time = MenuSanity.time;
@@ -646,7 +646,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		}
 		else if (Phase == 9)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				KokonaAudioSource.Stop();
 				Timer = 1f;
@@ -661,7 +661,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		}
 		else if (Phase == 10)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				KokonaAudioSource.Stop();
 			}
@@ -723,7 +723,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		if (Yandere.CanMove && !Yandere.Aiming)
 		{
 			ExitGroup.alpha = Mathf.MoveTowards(ExitGroup.alpha, 1f, Time.deltaTime);
-			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
+			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown(InputNames.Xbox_Start))
 			{
 				KokonaAudioSource.Stop();
 				NextClip = null;

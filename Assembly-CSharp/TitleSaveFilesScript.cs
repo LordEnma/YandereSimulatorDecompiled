@@ -18,6 +18,8 @@ public class TitleSaveFilesScript : MonoBehaviour
 
 	public GameObject ErrorWindow;
 
+	public GameObject StartButton;
+
 	public PromptBarScript PromptBar;
 
 	public TitleMenuScript Menu;
@@ -44,23 +46,36 @@ public class TitleSaveFilesScript : MonoBehaviour
 
 	public UILabel ChallengeDescLabel;
 
+	public string[] EightiesChallengeNames;
+
+	public string[] EightiesChallengeDescs;
+
 	public string[] ChallengeNames;
 
 	public string[] ChallengeDescs;
 
 	public UISprite[] ChallengeCheckmarks;
 
+	public UITexture[] ChallengeIcons;
+
+	public Texture[] EightiesIcons;
+
+	public Texture[] ModernIcons;
+
 	private void Start()
 	{
 		ConfirmationWindow.SetActive(value: false);
 		ChallengeWindow.SetActive(value: false);
 		ErrorWindow.SetActive(value: false);
+		StartButton.SetActive(value: false);
 		ChallengeCheckmarks[1].enabled = false;
 		ChallengeCheckmarks[2].enabled = false;
 		ChallengeCheckmarks[3].enabled = false;
 		ChallengeCheckmarks[4].enabled = false;
 		ChallengeCheckmarks[5].enabled = false;
 		ChallengeCheckmarks[6].enabled = false;
+		ChallengeCheckmarks[7].enabled = false;
+		ChallengeCheckmarks[8].enabled = false;
 	}
 
 	private void Update()
@@ -123,7 +138,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
 					}
-					if (Input.GetButtonDown("A") || (PromptBar.Label[3].text != "" && Input.GetButtonDown("Y")))
+					if (Input.GetButtonDown(InputNames.Xbox_A) || (PromptBar.Label[3].text != "" && Input.GetButtonDown(InputNames.Xbox_Y)))
 					{
 						if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
 						{
@@ -136,7 +151,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 							GameGlobals.Eighties = NewTitleScreen.Eighties;
 						}
 						NewTitleScreen.FadeOut = true;
-						if (Input.GetButtonDown("Y"))
+						if (Input.GetButtonDown(InputNames.Xbox_Y))
 						{
 							if (!NewTitleScreen.Eighties)
 							{
@@ -148,28 +163,36 @@ public class TitleSaveFilesScript : MonoBehaviour
 							}
 						}
 					}
-					else if (Input.GetButtonDown("B"))
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						NewTitleScreen.Speed = 0f;
 						NewTitleScreen.Phase = 2;
 						PromptBar.Show = false;
 						base.enabled = false;
 					}
-					else if (Input.GetButtonDown("X") && PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 1)
+					else if (Input.GetButtonDown(InputNames.Xbox_X))
 					{
-						ConfirmationWindow.SetActive(value: true);
+						if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 1)
+						{
+							ConfirmationWindow.SetActive(value: true);
+							return;
+						}
+						PromptBar.Label[0].text = "Enable/Disable";
+						PromptBar.Label[2].text = "";
+						PromptBar.UpdateButtons();
+						ChallengeWindow.SetActive(value: true);
 					}
 				}
 				else
 				{
 					PromptBar.Show = false;
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						PlayerPrefs.SetInt("ProfileCreated_" + (EightiesPrefix + ID), 0);
 						ConfirmationWindow.SetActive(value: false);
 						SaveDatas[ID].Start();
 					}
-					else if (Input.GetButtonDown("B"))
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						ConfirmationWindow.SetActive(value: false);
 					}
@@ -179,7 +202,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 			if (InputManager.TappedDown)
 			{
 				ChallengeRow++;
-				if (ChallengeRow > 2)
+				if (ChallengeRow > 3)
 				{
 					ChallengeRow = 1;
 				}
@@ -190,14 +213,14 @@ public class TitleSaveFilesScript : MonoBehaviour
 				ChallengeRow--;
 				if (ChallengeRow < 1)
 				{
-					ChallengeRow = 2;
+					ChallengeRow = 3;
 				}
 				UpdateChallengeHighlight();
 			}
 			if (InputManager.TappedRight)
 			{
 				ChallengeColumn++;
-				if (ChallengeColumn > 3)
+				if (ChallengeColumn > 4)
 				{
 					ChallengeColumn = 1;
 				}
@@ -208,12 +231,17 @@ public class TitleSaveFilesScript : MonoBehaviour
 				ChallengeColumn--;
 				if (ChallengeColumn < 1)
 				{
-					ChallengeColumn = 3;
+					ChallengeColumn = 4;
 				}
 				UpdateChallengeHighlight();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
+				if (ChallengeID < 9)
+				{
+					ChallengeCheckmarks[ChallengeID].enabled = !ChallengeCheckmarks[ChallengeID].enabled;
+					return;
+				}
 				StartNewGame();
 				if (ChallengeCheckmarks[1].enabled)
 				{
@@ -221,33 +249,40 @@ public class TitleSaveFilesScript : MonoBehaviour
 				}
 				if (ChallengeCheckmarks[2].enabled)
 				{
-					ChallengeGlobals.NoFriends = true;
+					ChallengeGlobals.NoAlerts = true;
 				}
 				if (ChallengeCheckmarks[3].enabled)
 				{
-					ChallengeGlobals.NoGaming = true;
+					ChallengeGlobals.NoBag = true;
 				}
 				if (ChallengeCheckmarks[4].enabled)
 				{
-					ChallengeGlobals.NoInfo = true;
+					ChallengeGlobals.NoFriends = true;
 				}
 				if (ChallengeCheckmarks[5].enabled)
 				{
-					ChallengeGlobals.NoLaugh = true;
+					ChallengeGlobals.NoGaming = true;
 				}
 				if (ChallengeCheckmarks[6].enabled)
 				{
+					ChallengeGlobals.NoInfo = true;
+				}
+				if (ChallengeCheckmarks[7].enabled)
+				{
+					ChallengeGlobals.NoLaugh = true;
+				}
+				if (ChallengeCheckmarks[8].enabled)
+				{
 					ChallengeGlobals.RivalsOnly = true;
 				}
+				NewTitleScreen.FadeOut = true;
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				ChallengeWindow.SetActive(value: false);
-				PromptBar.Label[2].text = "Challenge";
-			}
-			else if (Input.GetButtonDown("X"))
-			{
-				ChallengeCheckmarks[ChallengeID].enabled = !ChallengeCheckmarks[ChallengeID].enabled;
+				PromptBar.Label[0].text = "New Game";
+				PromptBar.Label[2].text = "Challenges";
+				PromptBar.UpdateButtons();
 			}
 		}
 		else if (Input.anyKeyDown)
@@ -267,26 +302,49 @@ public class TitleSaveFilesScript : MonoBehaviour
 		{
 			PromptBar.Label[2].text = "Delete";
 		}
-		else if (!NewTitleScreen.Eighties)
-		{
-			if (GameGlobals.Debug)
-			{
-				PromptBar.Label[3].text = "Quick Start";
-			}
-		}
 		else
 		{
-			PromptBar.Label[3].text = "Week Select";
+			PromptBar.Label[2].text = "Challenges";
+			if (!NewTitleScreen.Eighties)
+			{
+				if (GameGlobals.Debug)
+				{
+					PromptBar.Label[3].text = "Quick Start";
+				}
+			}
+			else
+			{
+				PromptBar.Label[3].text = "Week Select";
+			}
 		}
 		PromptBar.UpdateButtons();
 	}
 
 	private void UpdateChallengeHighlight()
 	{
-		ChallengeHighlight.localPosition = new Vector3(-800f + 400f * (float)ChallengeColumn, 700f - 366.66f * (float)ChallengeRow, 0f);
-		ChallengeID = ChallengeColumn + (ChallengeRow - 1) * 3;
-		ChallengeNameLabel.text = ChallengeNames[ChallengeID];
-		ChallengeDescLabel.text = ChallengeDescs[ChallengeID];
+		if (ChallengeRow == 3)
+		{
+			ChallengeID = 9;
+			ChallengeHighlight.gameObject.SetActive(value: false);
+			StartButton.SetActive(value: true);
+		}
+		else
+		{
+			ChallengeID = ChallengeColumn + (ChallengeRow - 1) * 4;
+			ChallengeHighlight.gameObject.SetActive(value: true);
+			StartButton.SetActive(value: false);
+		}
+		ChallengeHighlight.localPosition = new Vector3(-875f + 350f * (float)ChallengeColumn, 525f - 350f * (float)ChallengeRow, 0f);
+		if (GameGlobals.Eighties)
+		{
+			ChallengeNameLabel.text = EightiesChallengeNames[ChallengeID];
+			ChallengeDescLabel.text = EightiesChallengeDescs[ChallengeID];
+		}
+		else
+		{
+			ChallengeNameLabel.text = ChallengeNames[ChallengeID];
+			ChallengeDescLabel.text = ChallengeDescs[ChallengeID];
+		}
 	}
 
 	public void UpdateOutlines()
@@ -320,5 +378,17 @@ public class TitleSaveFilesScript : MonoBehaviour
 		GameGlobals.Debug = debug;
 		NewTitleScreen.Darkness.color = new Color(1f, 1f, 1f, 0f);
 		Started = false;
+	}
+
+	public void BecomeEighties()
+	{
+		ChallengeIcons[5].mainTexture = EightiesIcons[5];
+		ChallengeIcons[6].mainTexture = EightiesIcons[6];
+	}
+
+	public void BecomeModern()
+	{
+		ChallengeIcons[5].mainTexture = ModernIcons[5];
+		ChallengeIcons[6].mainTexture = ModernIcons[6];
 	}
 }

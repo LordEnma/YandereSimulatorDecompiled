@@ -53,7 +53,7 @@ public class EditorManagerScript : MonoBehaviour
 
 	private void HandleInput()
 	{
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			SceneManager.LoadScene("NewTitleScene");
 		}
@@ -72,7 +72,7 @@ public class EditorManagerScript : MonoBehaviour
 			Transform transform = cursorLabel.transform;
 			transform.localPosition = new Vector3(transform.localPosition.x, 100f - (float)buttonIndex * 100f, transform.localPosition.z);
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			editorPanels[buttonIndex].gameObject.SetActive(value: true);
 			mainPanel.gameObject.SetActive(value: false);

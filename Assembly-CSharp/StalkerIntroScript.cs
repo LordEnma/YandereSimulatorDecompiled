@@ -152,7 +152,7 @@ public class StalkerIntroScript : MonoBehaviour
 		{
 			SkipPanel.alpha += Time.deltaTime;
 		}
-		if (Input.GetButton("X"))
+		if (Input.GetButton(InputNames.Xbox_X))
 		{
 			SkipPanel.alpha = 1f;
 			SkipTimer = 0f;

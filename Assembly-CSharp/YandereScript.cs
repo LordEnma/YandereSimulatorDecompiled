@@ -528,6 +528,8 @@ public class YandereScript : MonoBehaviour
 
 	public int SelfieID;
 
+	public int Friends;
+
 	public int Chasers;
 
 	public int Costume;
@@ -753,6 +755,8 @@ public class YandereScript : MonoBehaviour
 	public bool InClass;
 
 	public bool NoDebug;
+
+	public bool NoLaugh;
 
 	public bool Noticed;
 
@@ -1872,6 +1876,8 @@ public class YandereScript : MonoBehaviour
 		SenpaiThreshold = 1f - (float)PlayerGlobals.ShrineItems * 0.1f;
 		PhysicalGrade = ClassGlobals.PhysicalGrade;
 		SpeedBonus = PlayerGlobals.SpeedBonus;
+		NoLaugh = ChallengeGlobals.NoLaugh;
+		Friends = PlayerGlobals.Friends;
 		Club = ClubGlobals.Club;
 		SanitySmudges.color = new Color(1f, 1f, 1f, 0f);
 		SpiderLegs.SetActive(GameGlobals.EmptyDemon);
@@ -2092,71 +2098,74 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation.Play("f02_holdBook_00");
 		CharacterAnimation["f02_holdBook_00"].weight = 0f;
 		CharacterAnimation["f02_holdBook_00"].speed = 0.5f;
-		CharacterAnimation[CreepyIdles[1]].layer = 20;
+		CharacterAnimation["f02_holdingKitten_00"].layer = 20;
+		CharacterAnimation.Play("f02_holdingKitten_00");
+		CharacterAnimation["f02_holdingKitten_00"].weight = 0f;
+		CharacterAnimation[CreepyIdles[1]].layer = 21;
 		CharacterAnimation.Play(CreepyIdles[1]);
 		CharacterAnimation[CreepyIdles[1]].weight = 0f;
-		CharacterAnimation[CreepyIdles[2]].layer = 21;
+		CharacterAnimation[CreepyIdles[2]].layer = 22;
 		CharacterAnimation.Play(CreepyIdles[2]);
 		CharacterAnimation[CreepyIdles[2]].weight = 0f;
-		CharacterAnimation[CreepyIdles[3]].layer = 22;
+		CharacterAnimation[CreepyIdles[3]].layer = 23;
 		CharacterAnimation.Play(CreepyIdles[3]);
 		CharacterAnimation[CreepyIdles[3]].weight = 0f;
-		CharacterAnimation[CreepyIdles[4]].layer = 23;
+		CharacterAnimation[CreepyIdles[4]].layer = 24;
 		CharacterAnimation.Play(CreepyIdles[4]);
 		CharacterAnimation[CreepyIdles[4]].weight = 0f;
-		CharacterAnimation[CreepyIdles[5]].layer = 24;
+		CharacterAnimation[CreepyIdles[5]].layer = 25;
 		CharacterAnimation.Play(CreepyIdles[5]);
 		CharacterAnimation[CreepyIdles[5]].weight = 0f;
-		CharacterAnimation[CreepyWalks[1]].layer = 25;
+		CharacterAnimation[CreepyWalks[1]].layer = 26;
 		CharacterAnimation.Play(CreepyWalks[1]);
 		CharacterAnimation[CreepyWalks[1]].weight = 0f;
-		CharacterAnimation[CreepyWalks[2]].layer = 26;
+		CharacterAnimation[CreepyWalks[2]].layer = 27;
 		CharacterAnimation.Play(CreepyWalks[2]);
 		CharacterAnimation[CreepyWalks[2]].weight = 0f;
-		CharacterAnimation[CreepyWalks[3]].layer = 27;
+		CharacterAnimation[CreepyWalks[3]].layer = 28;
 		CharacterAnimation.Play(CreepyWalks[3]);
 		CharacterAnimation[CreepyWalks[3]].weight = 0f;
-		CharacterAnimation[CreepyWalks[4]].layer = 28;
+		CharacterAnimation[CreepyWalks[4]].layer = 29;
 		CharacterAnimation.Play(CreepyWalks[4]);
 		CharacterAnimation[CreepyWalks[4]].weight = 0f;
-		CharacterAnimation[CreepyWalks[5]].layer = 29;
+		CharacterAnimation[CreepyWalks[5]].layer = 30;
 		CharacterAnimation.Play(CreepyWalks[5]);
 		CharacterAnimation[CreepyWalks[5]].weight = 0f;
-		CharacterAnimation["f02_carryDramatic_00"].layer = 30;
+		CharacterAnimation["f02_carryDramatic_00"].layer = 31;
 		CharacterAnimation.Play("f02_carryDramatic_00");
 		CharacterAnimation["f02_carryDramatic_00"].weight = 0f;
-		CharacterAnimation["f02_selfie_00"].layer = 31;
+		CharacterAnimation["f02_selfie_00"].layer = 32;
 		CharacterAnimation.Play("f02_selfie_00");
 		CharacterAnimation["f02_selfie_00"].weight = 0f;
-		CharacterAnimation["f02_selfie_01"].layer = 32;
+		CharacterAnimation["f02_selfie_01"].layer = 33;
 		CharacterAnimation.Play("f02_selfie_01");
 		CharacterAnimation["f02_selfie_01"].weight = 0f;
-		CharacterAnimation["f02_dramaticWriting_00"].layer = 33;
+		CharacterAnimation["f02_dramaticWriting_00"].layer = 34;
 		CharacterAnimation.Play("f02_dramaticWriting_00");
 		CharacterAnimation["f02_dramaticWriting_00"].weight = 0f;
-		CharacterAnimation["f02_reachForWeapon_00"].layer = 34;
+		CharacterAnimation["f02_reachForWeapon_00"].layer = 35;
 		CharacterAnimation.Play("f02_reachForWeapon_00");
 		CharacterAnimation["f02_reachForWeapon_00"].weight = 0f;
 		CharacterAnimation["f02_reachForWeapon_00"].speed = 2f;
-		CharacterAnimation["f02_gutsEye_00"].layer = 35;
+		CharacterAnimation["f02_gutsEye_00"].layer = 36;
 		CharacterAnimation.Play("f02_gutsEye_00");
 		CharacterAnimation["f02_gutsEye_00"].weight = 0f;
-		CharacterAnimation["f02_fingerSnap_00"].layer = 36;
+		CharacterAnimation["f02_fingerSnap_00"].layer = 37;
 		CharacterAnimation.Play("f02_fingerSnap_00");
 		CharacterAnimation["f02_fingerSnap_00"].weight = 0f;
-		CharacterAnimation["f02_sadEyebrows_00"].layer = 37;
+		CharacterAnimation["f02_sadEyebrows_00"].layer = 38;
 		CharacterAnimation.Play("f02_sadEyebrows_00");
 		CharacterAnimation["f02_sadEyebrows_00"].weight = 0f;
-		CharacterAnimation["f02_phonePose_00"].layer = 38;
+		CharacterAnimation["f02_phonePose_00"].layer = 39;
 		CharacterAnimation.Play("f02_phonePose_00");
 		CharacterAnimation["f02_phonePose_00"].weight = 0f;
-		CharacterAnimation["f02_prepareThrow_00"].layer = 39;
+		CharacterAnimation["f02_prepareThrow_00"].layer = 40;
 		CharacterAnimation.Play("f02_prepareThrow_00");
 		CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
-		CharacterAnimation["f02_subtleThrowIdle_00"].layer = 40;
+		CharacterAnimation["f02_subtleThrowIdle_00"].layer = 41;
 		CharacterAnimation.Play("f02_subtleThrowIdle_00");
 		CharacterAnimation["f02_subtleThrowIdle_00"].weight = 0f;
-		CharacterAnimation["f02_obviousThrowIdle_00"].layer = 41;
+		CharacterAnimation["f02_obviousThrowIdle_00"].layer = 42;
 		CharacterAnimation.Play("f02_obviousThrowIdle_00");
 		CharacterAnimation["f02_obviousThrowIdle_00"].weight = 0f;
 		CharacterAnimation["f02_dipping_00"].speed = 2f;
@@ -2193,7 +2202,7 @@ public class YandereScript : MonoBehaviour
 			else
 			{
 				CharacterAnimation["f02_mopping_00"].weight = Mathf.Lerp(CharacterAnimation["f02_mopping_00"].weight, 1f, Time.deltaTime * 10f);
-				if (Input.GetButtonUp("A") || Input.GetKeyDown(KeyCode.Escape))
+				if (Input.GetButtonUp(InputNames.Xbox_A) || Input.GetKeyDown(KeyCode.Escape))
 				{
 					Mopping = false;
 				}
@@ -2288,12 +2297,12 @@ public class YandereScript : MonoBehaviour
 			if (!ToggleRun)
 			{
 				Running = false;
-				if (Input.GetButton("LB"))
+				if (Input.GetButton(InputNames.Xbox_LB))
 				{
 					Running = true;
 				}
 			}
-			else if (Input.GetButtonDown("LB"))
+			else if (Input.GetButtonDown(InputNames.Xbox_LB))
 			{
 				Running = !Running;
 			}
@@ -2354,9 +2363,7 @@ public class YandereScript : MonoBehaviour
 							CharacterAnimation.CrossFade(WalkAnim);
 							MyController.Move(base.transform.forward * (WalkSpeed * Time.deltaTime));
 						}
-						_ = Stance.Current;
-						_ = 1;
-						if (Stance.Current == StanceType.Crawling)
+						if (!StudentManager.TutorialActive && Stance.Current == StanceType.Crawling)
 						{
 							Stance.Current = StanceType.Crouching;
 							Crouch();
@@ -2509,7 +2516,7 @@ public class YandereScript : MonoBehaviour
 			}
 			if (!NearSenpai)
 			{
-				if (!Input.GetButton("A") && !Input.GetButton("B") && !Input.GetButton("X") && !Input.GetButton("Y") && !StudentManager.Clock.UpdateBloom && !Frozen && !CannotAim && (Input.GetAxis("LT") > 0.5f || Input.GetMouseButton(1)))
+				if (!Input.GetButton(InputNames.Xbox_A) && !Input.GetButton(InputNames.Xbox_B) && !Input.GetButton(InputNames.Xbox_X) && !Input.GetButton(InputNames.Xbox_Y) && !StudentManager.Clock.UpdateBloom && !Frozen && !CannotAim && (Input.GetAxis(InputNames.Xbox_LT) > 0.5f || Input.GetMouseButton(InputNames.Mouse_RMB)))
 				{
 					if ((PickUp != null && PickUp.BangSnaps) || (PickUp != null && PickUp.StinkBombs))
 					{
@@ -2521,7 +2528,7 @@ public class YandereScript : MonoBehaviour
 							PrepareThrowTimer = 0f;
 							RPGCamera.enabled = false;
 							ShoulderCamera.OverShoulder = true;
-							if (Input.GetAxis("LT") > 0.5f)
+							if (Input.GetAxis(InputNames.Xbox_LT) > 0.5f)
 							{
 								UsingController = true;
 							}
@@ -2536,7 +2543,7 @@ public class YandereScript : MonoBehaviour
 					{
 						if (Inventory.RivalPhone)
 						{
-							if (Input.GetButtonDown("LB"))
+							if (Input.GetButtonDown(InputNames.Xbox_LB))
 							{
 								CharacterAnimation["f02_cameraPose_00"].weight = 0f;
 								CharacterAnimation["f02_selfie_00"].weight = 0f;
@@ -2555,7 +2562,7 @@ public class YandereScript : MonoBehaviour
 								}
 							}
 						}
-						else if (!Selfie && Input.GetButtonDown("LB") && !StudentManager.Eighties)
+						else if (!Selfie && Input.GetButtonDown(InputNames.Xbox_LB) && !StudentManager.Eighties)
 						{
 							if (!AR)
 							{
@@ -2568,7 +2575,7 @@ public class YandereScript : MonoBehaviour
 								AR = false;
 							}
 						}
-						if (Input.GetAxis("LT") > 0.5f)
+						if (Input.GetAxis(InputNames.Xbox_LT) > 0.5f)
 						{
 							UsingController = true;
 						}
@@ -2644,13 +2651,13 @@ public class YandereScript : MonoBehaviour
 					}
 				}
 				PermitLaugh += Time.deltaTime;
-				if (!Aiming && !Accessories[9].activeInHierarchy && !Accessories[16].activeInHierarchy && !Pod.activeInHierarchy && PermitLaugh > 1f && !Chased && !Input.GetButton("A"))
+				if (!Aiming && !Accessories[9].activeInHierarchy && !Accessories[16].activeInHierarchy && !Pod.activeInHierarchy && PermitLaugh > 1f && !Chased && !Input.GetButton(InputNames.Xbox_A))
 				{
-					if (Input.GetButton("RB"))
+					if (Input.GetButton(InputNames.Xbox_RB))
 					{
 						if (MagicalGirl)
 						{
-							if (Armed && EquippedWeapon.WeaponID == 14 && Input.GetButtonDown("RB") && !ShootingBeam)
+							if (Armed && EquippedWeapon.WeaponID == 14 && Input.GetButtonDown(InputNames.Xbox_RB) && !ShootingBeam)
 							{
 								AudioSource.PlayClipAtPoint(LoveLoveBeamVoice, base.transform.position);
 								CharacterAnimation["f02_LoveLoveBeam_00"].time = 0f;
@@ -2661,7 +2668,7 @@ public class YandereScript : MonoBehaviour
 						}
 						else if (BlackRobe.activeInHierarchy)
 						{
-							if (Input.GetButtonDown("RB"))
+							if (Input.GetButtonDown(InputNames.Xbox_RB))
 							{
 								AudioSource.PlayClipAtPoint(SithOn, base.transform.position);
 							}
@@ -2671,7 +2678,7 @@ public class YandereScript : MonoBehaviour
 							Beam[1].Play();
 							Beam[2].Play();
 							Beam[3].Play();
-							if (Input.GetButtonDown("X"))
+							if (Input.GetButtonDown(InputNames.Xbox_X))
 							{
 								CharacterAnimation["f02_sithAttack_00"].time = 0f;
 								CharacterAnimation.Play("f02_sithAttack_00");
@@ -2682,7 +2689,7 @@ public class YandereScript : MonoBehaviour
 								SithPrefix = "";
 								AttackPrefix = "sith";
 							}
-							if (Input.GetButtonDown("Y"))
+							if (Input.GetButtonDown(InputNames.Xbox_Y))
 							{
 								CharacterAnimation["f02_sithAttackHard_00"].time = 0f;
 								CharacterAnimation.Play("f02_sithAttackHard_00");
@@ -2696,7 +2703,7 @@ public class YandereScript : MonoBehaviour
 						}
 						else if (FloppyHat.activeInHierarchy)
 						{
-							if (Input.GetButtonDown("RB"))
+							if (Input.GetButtonDown(InputNames.Xbox_RB))
 							{
 								LongFingers = !LongFingers;
 								if (LongFingers)
@@ -2709,7 +2716,7 @@ public class YandereScript : MonoBehaviour
 								}
 							}
 						}
-						else if (Input.GetButtonDown("RB") && SpiderLegs.activeInHierarchy)
+						else if (Input.GetButtonDown(InputNames.Xbox_RB) && SpiderLegs.activeInHierarchy)
 						{
 							SpiderGrow = !SpiderGrow;
 							if (SpiderGrow)
@@ -2753,7 +2760,7 @@ public class YandereScript : MonoBehaviour
 						{
 							SithTrailEnd1.localPosition = new Vector3(0f, 0f, 0f);
 							SithTrailEnd2.localPosition = new Vector3(0f, 0f, 0f);
-							if (Input.GetButtonUp("RB"))
+							if (Input.GetButtonUp(InputNames.Xbox_RB))
 							{
 								AudioSource.PlayClipAtPoint(SithOff, base.transform.position);
 							}
@@ -2767,7 +2774,7 @@ public class YandereScript : MonoBehaviour
 							YandereVision = false;
 						}
 					}
-					if (Input.GetButtonUp("RB"))
+					if (Input.GetButtonUp(InputNames.Xbox_RB))
 					{
 						if (CanCloak && !WearingRaincoat)
 						{
@@ -2868,24 +2875,32 @@ public class YandereScript : MonoBehaviour
 									{
 										if (!Xtan)
 										{
-											if (!CirnoHair.activeInHierarchy && !TornadoHair.activeInHierarchy && !BladeHair.activeInHierarchy)
+											if (!NoLaugh)
 											{
-												LaughAnim = "f02_laugh_01";
-												LaughClip = Laugh1;
-												LaughIntensity += 1f;
-												MyAudio.clip = LaughClip;
-												MyAudio.time = 0f;
-												MyAudio.Play();
+												if (!CirnoHair.activeInHierarchy && !TornadoHair.activeInHierarchy && !BladeHair.activeInHierarchy)
+												{
+													LaughAnim = "f02_laugh_01";
+													LaughClip = Laugh1;
+													LaughIntensity += 1f;
+													MyAudio.clip = LaughClip;
+													MyAudio.time = 0f;
+													MyAudio.Play();
+												}
+												GiggleLines.Play();
+												Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
+												AnnoyingGiggleTimer = 1f;
+												MyAudio.volume = 1f;
+												LaughTimer = 0.5f;
+												Laughing = true;
+												Mopping = false;
+												CanMove = false;
+												Teeth.SetActive(value: false);
 											}
-											GiggleLines.Play();
-											Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
-											AnnoyingGiggleTimer = 1f;
-											MyAudio.volume = 1f;
-											LaughTimer = 0.5f;
-											Laughing = true;
-											Mopping = false;
-											CanMove = false;
-											Teeth.SetActive(value: false);
+											else
+											{
+												NotificationManager.CustomText = "No giggling or laughing allowed.";
+												NotificationManager.DisplayNotification(NotificationType.Custom);
+											}
 										}
 										else if (LongHair[0].gameObject.activeInHierarchy)
 										{
@@ -2945,7 +2960,7 @@ public class YandereScript : MonoBehaviour
 					}
 				}
 				bool flag = false;
-				if (PreparingThrow)
+				if (PreparingThrow || StudentManager.TutorialActive)
 				{
 					flag = true;
 				}
@@ -2953,7 +2968,7 @@ public class YandereScript : MonoBehaviour
 				{
 					if (Stance.Current != StanceType.Crouching && Stance.Current != StanceType.Crawling)
 					{
-						if (Input.GetButtonDown("RS"))
+						if (Input.GetButtonDown(InputNames.Xbox_RS))
 						{
 							CrouchButtonDown = true;
 							YandereVision = false;
@@ -2969,7 +2984,7 @@ public class YandereScript : MonoBehaviour
 					{
 						if (Stance.Current == StanceType.Crouching)
 						{
-							if (Input.GetButton("RS") && !CameFromCrouch)
+							if (Input.GetButton(InputNames.Xbox_RS) && !CameFromCrouch)
 							{
 								CrawlTimer += Time.deltaTime;
 							}
@@ -2984,20 +2999,20 @@ public class YandereScript : MonoBehaviour
 									Crawl();
 								}
 							}
-							else if (Input.GetButtonUp("RS") && !CrouchButtonDown && !CameFromCrouch)
+							else if (Input.GetButtonUp(InputNames.Xbox_RS) && !CrouchButtonDown && !CameFromCrouch)
 							{
 								Stance.Current = StanceType.Standing;
 								CrawlTimer = 0f;
 								Uncrouch();
 							}
 						}
-						else if (Input.GetButtonDown("RS"))
+						else if (Input.GetButtonDown(InputNames.Xbox_RS))
 						{
 							CameFromCrouch = true;
 							Stance.Current = StanceType.Crouching;
 							Crouch();
 						}
-						if (Input.GetButtonUp("RS"))
+						if (Input.GetButtonUp(InputNames.Xbox_RS))
 						{
 							CrouchButtonDown = false;
 							CameFromCrouch = false;
@@ -3010,7 +3025,7 @@ public class YandereScript : MonoBehaviour
 			{
 				if (!StudentManager.Eighties || (StudentManager.Eighties && Club == ClubType.Photography))
 				{
-					if (!RivalPhone && !StudentManager.Eighties && !StudentManager.KokonaTutorial && Input.GetButtonDown("A"))
+					if (!RivalPhone && !StudentManager.Eighties && !StudentManager.KokonaTutorial && Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						Selfie = !Selfie;
 						UpdateSelfieStatus();
@@ -3037,7 +3052,7 @@ public class YandereScript : MonoBehaviour
 							CharacterAnimation["f02_selfie_00"].weight = Mathf.Lerp(CharacterAnimation["f02_selfie_00"].weight, 0f, Time.deltaTime * 10f);
 							CharacterAnimation["f02_selfie_01"].weight = Mathf.Lerp(CharacterAnimation["f02_selfie_01"].weight, 1f, Time.deltaTime * 10f);
 						}
-						if (Input.GetButtonDown("B"))
+						if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							if (!SelfieGuide.activeInHierarchy)
 							{
@@ -3070,7 +3085,7 @@ public class YandereScript : MonoBehaviour
 							Smartphone.fieldOfView = 30f;
 						}
 					}
-					if (Input.GetAxis("RT") == 1f || Input.GetMouseButtonDown(0) || Input.GetButtonDown("RB"))
+					if (Input.GetAxis(InputNames.Xbox_RT) == 1f || Input.GetMouseButtonDown(InputNames.Mouse_LMB) || Input.GetButtonDown(InputNames.Xbox_RB))
 					{
 						RPGCamera.enabled = false;
 						PauseScreen.CorrectingTime = false;
@@ -3079,7 +3094,7 @@ public class YandereScript : MonoBehaviour
 						Shutter.Snap();
 					}
 				}
-				if (Time.timeScale > 0.0001f && ((UsingController && Input.GetAxis("LT") < 0.5f) || (!UsingController && !Input.GetMouseButton(1))))
+				if (Time.timeScale > 0.0001f && ((UsingController && Input.GetAxis(InputNames.Xbox_LT) < 0.5f) || (!UsingController && !Input.GetMouseButton(InputNames.Mouse_RMB))))
 				{
 					StopAiming();
 				}
@@ -3109,12 +3124,12 @@ public class YandereScript : MonoBehaviour
 			}
 			if (PreparingThrow && Time.timeScale > 0.0001f)
 			{
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					PrepareThrowTimer = 0f;
 					Obvious = !Obvious;
 				}
-				if (Input.GetAxis("RT") > 0.5f || Input.GetMouseButtonDown(0))
+				if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB))
 				{
 					CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
 					CharacterAnimation["f02_subtleThrowIdle_00"].weight = 0f;
@@ -3138,7 +3153,7 @@ public class YandereScript : MonoBehaviour
 					CanMove = false;
 					NewArc.gameObject.SetActive(value: false);
 				}
-				else if ((UsingController && Input.GetAxis("LT") < 0.5f) || (!UsingController && !Input.GetMouseButton(1)))
+				else if ((UsingController && Input.GetAxis(InputNames.Xbox_LT) < 0.5f) || (!UsingController && !Input.GetMouseButton(InputNames.Mouse_RMB)))
 				{
 					StopAiming();
 				}
@@ -3234,7 +3249,7 @@ public class YandereScript : MonoBehaviour
 					DropTimer[2] = 0f;
 				}
 			}
-			if (Input.GetButtonDown("LS") || Input.GetKeyDown(KeyCode.T))
+			if (Input.GetButtonDown(InputNames.Xbox_LS) || Input.GetKeyDown(KeyCode.T))
 			{
 				if (NewTrail != null)
 				{
@@ -3359,7 +3374,7 @@ public class YandereScript : MonoBehaviour
 						HeavySwordParticles.Play();
 					}
 				}
-				if (Input.GetButtonDown("X"))
+				if (Input.GetButtonDown(InputNames.Xbox_X))
 				{
 					LightSword.transform.parent = LeftItemParent;
 					LightSword.transform.localPosition = new Vector3(-0.015f, 0f, 0f);
@@ -3375,7 +3390,7 @@ public class YandereScript : MonoBehaviour
 					SithPrefix = "";
 					AttackPrefix = "nier";
 				}
-				if (Input.GetButtonDown("Y"))
+				if (Input.GetButtonDown(InputNames.Xbox_Y))
 				{
 					HeavySword.transform.parent = ItemParent;
 					HeavySword.transform.localPosition = new Vector3(-0.015f, 0f, 0f);
@@ -3392,7 +3407,7 @@ public class YandereScript : MonoBehaviour
 					AttackPrefix = "nier";
 				}
 			}
-			if (WitchMode && Input.GetButtonDown("X") && InvertSphere.gameObject.activeInHierarchy)
+			if (WitchMode && Input.GetButtonDown(InputNames.Xbox_X) && InvertSphere.gameObject.activeInHierarchy)
 			{
 				CharacterAnimation["f02_fingerSnap_00"].time = 0f;
 				CharacterAnimation.Play("f02_fingerSnap_00");
@@ -3400,7 +3415,7 @@ public class YandereScript : MonoBehaviour
 				Snapping = true;
 				CanMove = false;
 			}
-			if (Armor[20].activeInHierarchy && Armor[20].transform.parent == ItemParent && (Input.GetButtonDown("X") || Input.GetButtonDown("Y")))
+			if (Armor[20].activeInHierarchy && Armor[20].transform.parent == ItemParent && (Input.GetButtonDown(InputNames.Xbox_X) || Input.GetButtonDown(InputNames.Xbox_Y)))
 			{
 				CharacterAnimation["f02_nierAttackHard_00"].time = 0f;
 				CharacterAnimation.Play("f02_nierAttackHard_00");
@@ -3411,7 +3426,7 @@ public class YandereScript : MonoBehaviour
 				SithPrefix = "Hard";
 				AttackPrefix = "nier";
 			}
-			if (LongFingers && Input.GetButtonDown("X") && !Swiping)
+			if (LongFingers && Input.GetButtonDown(InputNames.Xbox_X) && !Swiping)
 			{
 				if (SwipeID == 1)
 				{
@@ -3744,7 +3759,7 @@ public class YandereScript : MonoBehaviour
 				MyAudio.Play();
 			}
 			CharacterAnimation.CrossFade(LaughAnim);
-			if (Input.GetButtonDown("RB"))
+			if (Input.GetButtonDown(InputNames.Xbox_RB))
 			{
 				LaughIntensity += 1f;
 				if (LaughIntensity <= 5f)
@@ -4140,7 +4155,7 @@ public class YandereScript : MonoBehaviour
 				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, HidingSpot.rotation, Time.deltaTime * 10f);
 				MoveTowardsTarget(HidingSpot.position);
 				CharacterAnimation.CrossFade(HideAnim);
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					PromptBar.ClearButtons();
 					PromptBar.Show = false;
@@ -4562,7 +4577,7 @@ public class YandereScript : MonoBehaviour
 				RagdollPK.transform.localPosition = new Vector3(0f, 1.5f, 2f);
 				PKDir = PKDirType.None;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				PromptBar.ClearButtons();
 				PromptBar.UpdateButtons();
@@ -4587,7 +4602,7 @@ public class YandereScript : MonoBehaviour
 			{
 				BoneTimer = 0f;
 			}
-			if (Input.GetButtonUp("RB"))
+			if (Input.GetButtonUp(InputNames.Xbox_RB))
 			{
 				SansEyes[0].SetActive(value: false);
 				SansEyes[1].SetActive(value: false);
@@ -4702,11 +4717,11 @@ public class YandereScript : MonoBehaviour
 				}
 				else
 				{
-					if (Input.GetButtonDown("X") && SithComboLength < SithCombo + 1 && SithComboLength < 2)
+					if (Input.GetButtonDown(InputNames.Xbox_X) && SithComboLength < SithCombo + 1 && SithComboLength < 2)
 					{
 						SithComboLength++;
 					}
-					if (Input.GetButtonDown("Y") && SithComboLength < SithCombo + 1 && SithComboLength < 2)
+					if (Input.GetButtonDown(InputNames.Xbox_Y) && SithComboLength < SithCombo + 1 && SithComboLength < 2)
 					{
 						SithComboLength++;
 					}
@@ -5164,7 +5179,7 @@ public class YandereScript : MonoBehaviour
 			if (YandereVisionPanel.alpha == 1f && flag && PickUp == null && !Armed && !Carrying && !Dragging)
 			{
 				SenpaiShotLabel.text = "Speed Up Time";
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					SenpaiGazing = !SenpaiGazing;
 				}
@@ -5203,7 +5218,7 @@ public class YandereScript : MonoBehaviour
 			}
 			if (CanMove && !Carrying && !Dragging && YandereVisionPanel.alpha == 1f)
 			{
-				if (!StudentManager.KokonaTutorial && SneakShotLabel.alpha == 1f && Input.GetButtonDown("B"))
+				if (!StudentManager.KokonaTutorial && SneakShotLabel.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Direction = 1;
 					CheckForWall();
@@ -5220,7 +5235,7 @@ public class YandereScript : MonoBehaviour
 					CanMove = false;
 					Lewd = true;
 				}
-				else if (ConcealedWeaponLabel.alpha == 1f && Input.GetButtonDown("Y"))
+				else if (ConcealedWeaponLabel.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_Y))
 				{
 					if (Container.TrashCan.Item != null)
 					{
@@ -5242,7 +5257,7 @@ public class YandereScript : MonoBehaviour
 						}
 					}
 				}
-				else if (ConcealedItemLabel.alpha == 1f && Input.GetButtonDown("X"))
+				else if (ConcealedItemLabel.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_X))
 				{
 					StudentManager.CheckForAttackPrompt();
 					if (!StudentManager.AttackPromptActive)
@@ -5410,7 +5425,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5437,7 +5452,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5464,7 +5479,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5490,7 +5505,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5529,7 +5544,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5568,7 +5583,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5607,7 +5622,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5633,7 +5648,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5659,7 +5674,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5693,7 +5708,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5719,7 +5734,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5752,7 +5767,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5779,7 +5794,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5805,7 +5820,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5831,7 +5846,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TalkTimer = 0f;
 				}
@@ -5914,7 +5929,7 @@ public class YandereScript : MonoBehaviour
 				CanMove = true;
 				Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				SplashCamera.transform.parent = base.transform;
 				SplashCamera.transform.localPosition = new Vector3(2f, -10.65f, 4.775f);
@@ -6174,6 +6189,13 @@ public class YandereScript : MonoBehaviour
 		{
 			if (!CorpseWarning)
 			{
+				if (PickUp != null && PickUp.GarbageBagBox)
+				{
+					NotificationManager.CustomText = "using masking tape and garbage bags!";
+					NotificationManager.DisplayNotification(NotificationType.Custom);
+					NotificationManager.CustomText = "Craft bodybags at the workbench";
+					NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
 				NotificationManager.DisplayNotification(NotificationType.Body);
 				StudentManager.UpdateStudents();
 				CorpseWarning = true;
@@ -6258,7 +6280,7 @@ public class YandereScript : MonoBehaviour
 			}
 			if (Input.GetKeyDown(KeyCode.H))
 			{
-				if (Input.GetButton("LB"))
+				if (Input.GetButton(InputNames.Xbox_LB))
 				{
 					Hairstyle += 10;
 				}
@@ -6279,7 +6301,7 @@ public class YandereScript : MonoBehaviour
 				{
 					Accessories[AccessoryID].SetActive(value: false);
 				}
-				if (Input.GetButton("LB"))
+				if (Input.GetButton(InputNames.Xbox_LB))
 				{
 					AccessoryID += 10;
 				}
@@ -7037,7 +7059,7 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation["f02_selfie_01"].weight = 0f;
 		PelvisRoot.transform.localPosition = new Vector3(PelvisRoot.transform.localPosition.x, 0f, PelvisRoot.transform.localPosition.z);
 		ShoulderCamera.AimingCamera = false;
-		if (!Input.GetButtonDown("Start") && !Input.GetKeyDown(KeyCode.Escape))
+		if (!Input.GetButtonDown(InputNames.Xbox_Start) && !Input.GetKeyDown(KeyCode.Escape))
 		{
 			FixCamera();
 		}
@@ -9027,7 +9049,7 @@ public class YandereScript : MonoBehaviour
 	{
 		if (Jumping && (CharacterAnimation["ODM_Jump"].time > 0.25f || CharacterAnimation["ODM_Slash"].time > 0f))
 		{
-			if (Input.GetButtonDown("X") && (CharacterAnimation["ODM_Slash"].time == 0f || CharacterAnimation["ODM_Slash"].time >= CharacterAnimation["ODM_Slash"].length))
+			if (Input.GetButtonDown(InputNames.Xbox_X) && (CharacterAnimation["ODM_Slash"].time == 0f || CharacterAnimation["ODM_Slash"].time >= CharacterAnimation["ODM_Slash"].length))
 			{
 				AudioSource.PlayClipAtPoint(Swoosh, base.transform.position + Vector3.up);
 				GameObject obj = Object.Instantiate(TitanSlash, base.transform.position, Quaternion.identity);
@@ -9057,7 +9079,7 @@ public class YandereScript : MonoBehaviour
 		}
 		MyController.Move(Physics.gravity * Time.deltaTime * 2f);
 		impact = Vector3.Lerp(impact, Vector3.zero, Time.deltaTime * SlowDownSpeed);
-		if (Input.GetButtonDown("A") && base.transform.position.y < 50f)
+		if (Input.GetButtonDown(InputNames.Xbox_A) && base.transform.position.y < 50f)
 		{
 			AudioSource.PlayClipAtPoint(AirBlast, base.transform.position);
 			v = Input.GetAxis("Vertical");

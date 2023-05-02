@@ -137,13 +137,13 @@ public class PortalScript : MonoBehaviour
 		bool flag = false;
 		if (EvidenceWarning.activeInHierarchy)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				EvidenceWarning.SetActive(value: false);
 				BypassWarning = true;
 				flag = true;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				EvidenceWarning.SetActive(value: false);
 				Yandere.CanMove = true;

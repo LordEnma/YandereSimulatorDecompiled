@@ -145,6 +145,8 @@ public class PauseScreenScript : MonoBehaviour
 
 	public bool Eighties;
 
+	public bool NoInfo;
+
 	public bool Home;
 
 	public bool Show;
@@ -221,6 +223,10 @@ public class PauseScreenScript : MonoBehaviour
 			Phone.SetActive(value: false);
 			Wifi.gameObject.SetActive(value: false);
 		}
+		else
+		{
+			NoInfo = ChallengeGlobals.NoInfo;
+		}
 		if (!(SceneManager.GetActiveScene().name == "SchoolScene"))
 		{
 			MissionModeIcons.SetActive(value: false);
@@ -256,6 +262,11 @@ public class PauseScreenScript : MonoBehaviour
 			uISprite11.color = new Color(uISprite11.color.r, uISprite11.color.g, uISprite11.color.b, 0.5f);
 			UISprite uISprite12 = PhoneIcons[10];
 			uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 1f);
+		}
+		if (NoInfo)
+		{
+			UISprite uISprite13 = PhoneIcons[5];
+			uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 0.5f);
 		}
 		UpdateSelection();
 		CorrectingTime = false;
@@ -298,7 +309,7 @@ public class PauseScreenScript : MonoBehaviour
 					Time.timeScale = 1f;
 				}
 			}
-			if (!Input.GetButtonDown("Start"))
+			if (!Input.GetButtonDown(InputNames.Xbox_Start))
 			{
 				return;
 			}
@@ -469,7 +480,7 @@ public class PauseScreenScript : MonoBehaviour
 			{
 				ShowMissionModeDetails = !ShowMissionModeDetails;
 			}
-			if (ShowMissionModeDetails && Input.GetButtonDown("B"))
+			if (ShowMissionModeDetails && Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				ShowMissionModeDetails = false;
 			}
@@ -483,7 +494,7 @@ public class PauseScreenScript : MonoBehaviour
 			}
 			if (!ShowMissionModeDetails)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					PressedA = true;
 					if (Eighties)
@@ -764,12 +775,12 @@ public class PauseScreenScript : MonoBehaviour
 				}
 				else if (!PressedB)
 				{
-					if (Input.GetButtonDown("Start") || Input.GetButtonDown("B"))
+					if (Input.GetButtonDown(InputNames.Xbox_Start) || Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						ExitPhone();
 					}
 				}
-				else if (Input.GetButtonUp("B"))
+				else if (Input.GetButtonUp(InputNames.Xbox_B))
 				{
 					PressedB = false;
 				}
@@ -779,7 +790,7 @@ public class PauseScreenScript : MonoBehaviour
 		{
 			if (PassTime.gameObject.activeInHierarchy)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (Yandere.PickUp != null)
 					{
@@ -802,7 +813,7 @@ public class PauseScreenScript : MonoBehaviour
 					Yandere.ResetYandereEffects();
 					Yandere.Phone.SetActive(value: true);
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					MainMenu.SetActive(value: true);
 					PromptBar.ClearButtons();
@@ -826,7 +837,7 @@ public class PauseScreenScript : MonoBehaviour
 					Keyboard.SetActive(value: true);
 					Gamepad.SetActive(value: false);
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					MainMenu.SetActive(value: true);
 					PromptBar.ClearButtons();
@@ -842,7 +853,7 @@ public class PauseScreenScript : MonoBehaviour
 			}
 			if (Quitting)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (ResettingDay)
 					{
@@ -854,7 +865,7 @@ public class PauseScreenScript : MonoBehaviour
 						SceneManager.LoadScene("NewTitleScene");
 					}
 				}
-				else if (Input.GetButtonDown("X"))
+				else if (Input.GetButtonDown(InputNames.Xbox_X))
 				{
 					if (ResettingDay && !Yandere.StudentManager.MissionMode)
 					{
@@ -882,7 +893,7 @@ public class PauseScreenScript : MonoBehaviour
 						SceneManager.LoadScene("HomeScene");
 					}
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Accept";
@@ -907,7 +918,7 @@ public class PauseScreenScript : MonoBehaviour
 				EightiesPhoneIcons[l].color = PhoneIcons[l].color;
 			}
 		}
-		if (Input.GetButtonUp("A"))
+		if (Input.GetButtonUp(InputNames.Xbox_A))
 		{
 			PressedA = false;
 		}
@@ -1035,6 +1046,16 @@ public class PauseScreenScript : MonoBehaviour
 				{
 					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 					Reason = "You cannot save the game while a student is wet with any kind of liquid.";
+				}
+				if (Yandere.StudentManager.Students[i].Hunting)
+				{
+					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+					Reason = "You cannot save the game while a student is about to commit murder.";
+				}
+				if (Yandere.Dragging)
+				{
+					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+					Reason = "You cannot save the game while dragging a dead body.";
 				}
 			}
 		}

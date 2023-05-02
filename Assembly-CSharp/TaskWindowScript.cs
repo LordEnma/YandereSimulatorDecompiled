@@ -36,6 +36,8 @@ public class TaskWindowScript : MonoBehaviour
 
 	public bool TaskComplete;
 
+	public bool Eighties;
+
 	public bool Generic;
 
 	public GameObject Window;
@@ -68,6 +70,7 @@ public class TaskWindowScript : MonoBehaviour
 			UpdateTaskObjects(30);
 		}
 		Window.SetActive(value: false);
+		Eighties = GameGlobals.Eighties;
 	}
 
 	public void UpdateWindow(int ID)
@@ -108,7 +111,7 @@ public class TaskWindowScript : MonoBehaviour
 	{
 		if (Window.activeInHierarchy)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				TaskManager.TaskStatus[StudentID] = 1;
 				Yandere.TargetStudent.TalkTimer = 100f;
@@ -127,7 +130,7 @@ public class TaskWindowScript : MonoBehaviour
 				}
 				Time.timeScale = 1f;
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				Yandere.TargetStudent.TalkTimer = 100f;
 				Yandere.TargetStudent.Interaction = StudentInteractionType.GivingTask;
@@ -197,9 +200,17 @@ public class TaskWindowScript : MonoBehaviour
 			}
 			Generic = false;
 		}
-		else if (Yandere.TargetStudent.StudentID == 37)
+		else if (!Eighties)
 		{
-			DialogueWheel.Yandere.TargetStudent.Cosmetic.MaleAccessories[1].SetActive(value: true);
+			if (Yandere.TargetStudent.StudentID == 37)
+			{
+				DialogueWheel.Yandere.TargetStudent.Cosmetic.MaleAccessories[1].SetActive(value: true);
+			}
+		}
+		else if (Yandere.TargetStudent.StudentID == 11)
+		{
+			DialogueWheel.Yandere.TargetStudent.Cosmetic.Stockings = "ShortPink";
+			DialogueWheel.Yandere.TargetStudent.Cosmetic.StartCoroutine(DialogueWheel.Yandere.TargetStudent.Cosmetic.PutOnStockings());
 		}
 	}
 
@@ -227,9 +238,10 @@ public class TaskWindowScript : MonoBehaviour
 		Generic = false;
 		if (Yandere.StudentManager.Eighties)
 		{
-			if (Yandere.TargetStudent.StudentID != 79)
+			Generic = true;
+			if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
 			{
-				Generic = true;
+				Generic = false;
 			}
 		}
 		else if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 6 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 46 && Yandere.TargetStudent.StudentID != 47 && Yandere.TargetStudent.StudentID != 48 && Yandere.TargetStudent.StudentID != 49 && Yandere.TargetStudent.StudentID != 50 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
@@ -243,9 +255,10 @@ public class TaskWindowScript : MonoBehaviour
 		Generic = false;
 		if (Yandere.StudentManager.Eighties)
 		{
-			if (TempID != 79)
+			Generic = true;
+			if ((TempID > 10 && TempID < 21) || TempID == 79)
 			{
-				Generic = true;
+				Generic = false;
 			}
 		}
 		else if (TempID != 4 && TempID != 6 && TempID != 8 && TempID != 11 && TempID != 25 && TempID != 28 && TempID != 30 && TempID != 36 && TempID != 37 && TempID != 38 && TempID != 41 && TempID != 46 && TempID != 47 && TempID != 48 && TempID != 49 && TempID != 50 && TempID != 52 && TempID != 76 && TempID != 77 && TempID != 78 && TempID != 79 && TempID != 80 && TempID != 81)

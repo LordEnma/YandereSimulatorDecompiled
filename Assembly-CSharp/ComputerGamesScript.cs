@@ -79,7 +79,7 @@ public class ComputerGamesScript : MonoBehaviour
 				Subject++;
 				UpdateHighlight();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				ShowWindow = false;
 				PlayGames();
@@ -87,7 +87,7 @@ public class ComputerGamesScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = false;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				Yandere.CanMove = true;
 				ShowWindow = false;

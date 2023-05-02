@@ -139,7 +139,7 @@ public class AlphabetScript : MonoBehaviour
 			MusicPlayer.Play();
 			MusicPlayer.time = LastTime;
 		}
-		if (StudentManager.Yandere.CanMove && (Input.GetButtonDown("LS") || Input.GetKeyDown(KeyCode.T)))
+		if (StudentManager.Yandere.CanMove && (Input.GetButtonDown(InputNames.Xbox_LS) || Input.GetKeyDown(KeyCode.T)))
 		{
 			if (StudentManager.Yandere.Inventory.SmokeBomb)
 			{

@@ -324,7 +324,7 @@ public class HomePrisonerScript : MonoBehaviour
 		{
 			if (ConfirmationWindow.activeInHierarchy)
 			{
-				if (YesButton.activeInHierarchy && Input.GetButtonDown("A"))
+				if (YesButton.activeInHierarchy && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					StudentGlobals.SetStudentDead(PrisonerManager.StudentID, value: true);
 					if (PrisonerManager.ChosenPrisoner == 1)
@@ -372,7 +372,7 @@ public class HomePrisonerScript : MonoBehaviour
 					HomeCamera.HomeDarkness.FadeOut = true;
 					base.gameObject.SetActive(value: false);
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					ConfirmationWindow.SetActive(value: false);
 					HomeCamera.PromptBar.Show = true;
@@ -380,7 +380,7 @@ public class HomePrisonerScript : MonoBehaviour
 				}
 				return;
 			}
-			if (Input.GetButtonDown("A") && OptionLabels[ID].color.a == 1f)
+			if (Input.GetButtonDown(InputNames.Xbox_A) && OptionLabels[ID].color.a == 1f)
 			{
 				if ((float)Sanity > 0f)
 				{
@@ -420,7 +420,7 @@ public class HomePrisonerScript : MonoBehaviour
 				HomeCamera.PromptBar.Show = false;
 				Jukebox.volume -= 0.5f;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				HomeCamera.Destination = HomeCamera.Destinations[0];
 				HomeCamera.Target = HomeCamera.Targets[0];
@@ -430,13 +430,13 @@ public class HomePrisonerScript : MonoBehaviour
 				HomeYandere.gameObject.SetActive(value: true);
 				HomeWindow.Show = false;
 			}
-			if (Input.GetButtonDown("X") && PlayerGlobals.Meals > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) < 100)
+			if (Input.GetButtonDown(InputNames.Xbox_X) && PlayerGlobals.Meals > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) > 0 && StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) < 100)
 			{
 				StudentGlobals.SetStudentHealth(PrisonerManager.StudentID, StudentGlobals.GetStudentHealth(PrisonerManager.StudentID) + 10);
 				PlayerGlobals.Meals--;
 				Start();
 			}
-			if (Input.GetButtonDown("Y") && Health == 0f)
+			if (Input.GetButtonDown(InputNames.Xbox_Y) && Health == 0f)
 			{
 				ConfirmationWindow.SetActive(value: true);
 				HomeCamera.PromptBar.Show = false;

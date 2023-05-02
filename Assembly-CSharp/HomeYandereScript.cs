@@ -278,12 +278,12 @@ public class HomeYandereScript : MonoBehaviour
 				if (!OptionGlobals.ToggleRun)
 				{
 					Running = false;
-					if (Input.GetButton("LB"))
+					if (Input.GetButton(InputNames.Xbox_LB))
 					{
 						Running = true;
 					}
 				}
-				else if (Input.GetButtonDown("LB"))
+				else if (Input.GetButtonDown(InputNames.Xbox_LB))
 				{
 					Running = !Running;
 				}

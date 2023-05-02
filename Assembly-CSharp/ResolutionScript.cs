@@ -151,7 +151,7 @@ public class ResolutionScript : MonoBehaviour
 					UpdateQuality();
 				}
 			}
-			else if (ID == 4 && Input.GetButtonUp("A"))
+			else if (ID == 4 && Input.GetButtonUp(InputNames.Xbox_A))
 			{
 				FadeOut = true;
 			}

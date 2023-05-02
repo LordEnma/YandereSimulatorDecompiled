@@ -87,7 +87,6 @@ public class CounselorDoorScript : MonoBehaviour
 						Counselor.Yandere.RestoreGentleEyes();
 					}
 					Darkness.color = new Color(0f, 0f, 0f, 2f);
-					Debug.Log("Darkness.color.a just became 2.");
 					Counselor.Quit();
 					FadeOut = false;
 					FadeIn = true;

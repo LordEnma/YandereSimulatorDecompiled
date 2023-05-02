@@ -79,7 +79,7 @@ public class ThanksForPlayingScript : MonoBehaviour
 		}
 		if (SkipPanel.alpha == 1f)
 		{
-			if (Input.GetButton("X"))
+			if (Input.GetButton(InputNames.Xbox_X))
 			{
 				SkipCircle.fillAmount -= Time.deltaTime;
 				if (SkipCircle.fillAmount == 0f)
@@ -159,7 +159,7 @@ public class ThanksForPlayingScript : MonoBehaviour
 		if (Yandere.position.z > 130f && Yandere.position.z < 140f)
 		{
 			CrowdfundPanel.alpha = Mathf.MoveTowards(CrowdfundPanel.alpha, 1f, Time.deltaTime * 0.5f);
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				FadeOut = true;
 			}

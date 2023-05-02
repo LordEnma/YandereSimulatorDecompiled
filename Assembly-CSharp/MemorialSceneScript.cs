@@ -156,7 +156,7 @@ public class MemorialSceneScript : MonoBehaviour
 				Eulogized = true;
 			}
 			StudentManager.MainCamera.position = Vector3.Lerp(StudentManager.MainCamera.position, new Vector3(38f, 4.125f, 68.825f), (Speed - 1f) * Time.deltaTime * 0.15f);
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				StudentManager.Yandere.PromptBar.Show = false;
 				FadeOut = true;

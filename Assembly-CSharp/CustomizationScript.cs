@@ -380,21 +380,21 @@ public class CustomizationScript : MonoBehaviour
 				GenderPanel.alpha = Mathf.MoveTowards(GenderPanel.alpha, 1f, Time.deltaTime * 2f);
 				if (GenderPanel.alpha == 1f)
 				{
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						Phase++;
 					}
-					if (Input.GetButtonDown("B"))
+					if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						Apologize = true;
 					}
-					if (Input.GetButtonDown("X"))
+					if (Input.GetButtonDown(InputNames.Xbox_X))
 					{
 						White.color = new Color(0f, 0f, 0f, 1f);
 						FadeOut = true;
 						Phase = 0;
 					}
-					if (Input.GetButtonDown("Y"))
+					if (Input.GetButtonDown(InputNames.Xbox_Y))
 					{
 						White.color = new Color(0f, 0f, 0f, 1f);
 						SkipToCalendar = true;
@@ -428,7 +428,7 @@ public class CustomizationScript : MonoBehaviour
 			CustomizePanel.alpha = Mathf.MoveTowards(CustomizePanel.alpha, 1f, Time.deltaTime * 2f);
 			if (CustomizePanel.alpha == 1f)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Senpai.localEulerAngles = new Vector3(Senpai.localEulerAngles.x, 180f, Senpai.localEulerAngles.z);
 					Phase++;
@@ -548,11 +548,11 @@ public class CustomizationScript : MonoBehaviour
 			FinishPanel.alpha = Mathf.MoveTowards(FinishPanel.alpha, 1f, Time.deltaTime * 2f);
 			if (FinishPanel.alpha == 1f)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Phase++;
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Selected = 1;
 					Highlight.localPosition = new Vector3(Highlight.localPosition.x, 650f - (float)Selected * 150f, Highlight.localPosition.z);
@@ -578,7 +578,7 @@ public class CustomizationScript : MonoBehaviour
 			UniformPanel.alpha = Mathf.MoveTowards(UniformPanel.alpha, 1f, Time.deltaTime * 2f);
 			if (UniformPanel.alpha == 1f)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Yandere.localEulerAngles = new Vector3(Yandere.localEulerAngles.x, 180f, Yandere.localEulerAngles.z);
 					Senpai.localEulerAngles = new Vector3(Senpai.localEulerAngles.x, 180f, Senpai.localEulerAngles.z);
@@ -630,11 +630,11 @@ public class CustomizationScript : MonoBehaviour
 			FinishPanel.alpha = Mathf.MoveTowards(FinishPanel.alpha, 1f, Time.deltaTime * 2f);
 			if (FinishPanel.alpha == 1f)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Phase++;
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Selected = 1;
 					UniformHighlight.localPosition = new Vector3(UniformHighlight.localPosition.x, 650f - (float)Selected * 150f, UniformHighlight.localPosition.z);

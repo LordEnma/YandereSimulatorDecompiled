@@ -44,7 +44,7 @@ public class YanvaniaTryAgainScript : MonoBehaviour
 					Highlight.localPosition = new Vector3(Mathf.Lerp(Highlight.localPosition.x, 100f, Time.deltaTime * 10f), Highlight.localPosition.y, Highlight.localPosition.z);
 					Highlight.localScale = new Vector3(Mathf.Lerp(Highlight.localScale.x, 1f, Time.deltaTime * 10f), Highlight.localScale.y, Highlight.localScale.z);
 				}
-				if (Input.GetButtonDown("A") || Input.GetKeyDown("z") || Input.GetKeyDown("x"))
+				if (Input.GetButtonDown(InputNames.Xbox_A) || Input.GetKeyDown("z") || Input.GetKeyDown("x"))
 				{
 					GameObject obj = Object.Instantiate(ButtonEffect, Highlight.position, Quaternion.identity);
 					obj.transform.parent = Highlight;

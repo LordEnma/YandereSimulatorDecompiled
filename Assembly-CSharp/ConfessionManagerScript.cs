@@ -179,7 +179,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			if (Darkness.color.a == 0f)
 			{
 				ContinueButton.alpha = Mathf.MoveTowards(ContinueButton.alpha, 1f, Time.deltaTime);
-				if (ContinueButton.alpha == 1f && Input.GetButtonDown("A"))
+				if (ContinueButton.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Timer = 11f;
 				}
@@ -245,7 +245,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			if (Darkness.color.a == 0f)
 			{
 				ContinueButton.alpha = Mathf.MoveTowards(ContinueButton.alpha, 1f, Time.deltaTime);
-				if (ContinueButton.alpha == 1f && Input.GetButtonDown("A"))
+				if (ContinueButton.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					ConfessionCamera.eulerAngles = new Vector3(0f, 0f, 0f);
 					ConfessionCamera.position = new Vector3(0f, 7.85f, 118f);
@@ -366,7 +366,7 @@ public class ConfessionManagerScript : MonoBehaviour
 					{
 						ContinueButton.alpha = Mathf.MoveTowards(ContinueButton.alpha, 1f, Time.deltaTime);
 					}
-					if (ContinueButton.alpha == 1f && Input.GetButtonDown("A"))
+					if (ContinueButton.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						Debug.Log("Skippin'.");
 						MyAudio.enabled = false;
@@ -422,7 +422,7 @@ public class ConfessionManagerScript : MonoBehaviour
 					{
 						ContinueButton.alpha = Mathf.MoveTowards(ContinueButton.alpha, 1f, Time.deltaTime);
 					}
-					if (ContinueButton.alpha == 1f && Input.GetButtonDown("A"))
+					if (ContinueButton.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						Debug.Log("Skippin'.");
 						MyAudio.enabled = false;

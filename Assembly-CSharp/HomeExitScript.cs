@@ -29,7 +29,7 @@ public class HomeExitScript : MonoBehaviour
 		if (HomeGlobals.Night)
 		{
 			uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
-			if (SchemeGlobals.GetSchemeStage(6) == 9 && !StudentGlobals.GetStudentDead(10 + DateGlobals.Week) && !StudentGlobals.GetStudentKidnapped(10 + DateGlobals.Week) && GameGlobals.RivalEliminationID == 0)
+			if (SchemeGlobals.GetSchemeStage(6) == 9 && !StudentGlobals.GetStudentDead(10 + DateGlobals.Week) && !StudentGlobals.GetStudentKidnapped(10 + DateGlobals.Week) && GameGlobals.RivalEliminationID == 0 && !ChallengeGlobals.KnifeOnly)
 			{
 				UILabel uILabel2 = Labels[4];
 				uILabel2.color = new Color(uILabel2.color.r, uILabel2.color.g, uILabel2.color.b, 1f);
@@ -71,7 +71,7 @@ public class HomeExitScript : MonoBehaviour
 			}
 			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 50f - (float)ID * 50f, Highlight.localPosition.z);
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (Labels[ID].color.a != 1f)
 			{
@@ -99,7 +99,7 @@ public class HomeExitScript : MonoBehaviour
 			HomeWindow.Show = false;
 			base.enabled = false;
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			HomeCamera.Destination = HomeCamera.Destinations[0];
 			HomeCamera.Target = HomeCamera.Targets[0];

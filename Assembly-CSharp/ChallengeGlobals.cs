@@ -2,6 +2,10 @@ public static class ChallengeGlobals
 {
 	private const string Str_KnifeOnly = "KnifeOnly";
 
+	private const string Str_NoAlerts = "NoAlerts";
+
+	private const string Str_NoBag = "NoBag";
+
 	private const string Str_NoFriends = "NoFriends";
 
 	private const string Str_NoGaming = "NoGaming";
@@ -21,6 +25,30 @@ public static class ChallengeGlobals
 		set
 		{
 			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_KnifeOnly", value);
+		}
+	}
+
+	public static bool NoAlerts
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_NoAlerts");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_NoAlerts", value);
+		}
+	}
+
+	public static bool NoBag
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_NoBag");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_NoBag", value);
 		}
 	}
 
@@ -87,6 +115,8 @@ public static class ChallengeGlobals
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_KnifeOnly");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_NoAlerts");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_NoBag");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_NoFriends");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_NoGaming");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_NoInfo");

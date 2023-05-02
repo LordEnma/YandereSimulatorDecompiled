@@ -83,7 +83,6 @@ public class CorkboardSchemeScript : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("Disabling the Corkboard cutscene because we've already seen it.");
 			base.gameObject.SetActive(value: false);
 		}
 	}
@@ -94,7 +93,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		{
 			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 1f, Time.deltaTime);
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
-			if (Darkness.alpha == 0f || Input.GetButtonDown("A"))
+			if (Darkness.alpha == 0f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Darkness.alpha = 0f;
 				Jukebox.volume = 1f;
@@ -107,7 +106,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(-0.9f, 1.5f, -1.5f), Time.deltaTime * Speed);
 			Rotation = Mathf.Lerp(Rotation, -165f, Time.deltaTime * Speed);
 			base.transform.eulerAngles = new Vector3(0f, Rotation, 0f);
-			if (Speed > 1.2f || Input.GetButtonDown("A"))
+			if (Speed > 1.2f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				base.transform.position = new Vector3(-0.9f, 1.5f, -1.5f);
 				base.transform.eulerAngles = new Vector3(0f, -165f, 0f);
@@ -117,7 +116,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		else if (Phase == 2)
 		{
 			SchemeSelectWindow.alpha = Mathf.MoveTowards(SchemeSelectWindow.alpha, 1f, Time.deltaTime);
-			if (SchemeSelectWindow.alpha == 1f || Input.GetButtonDown("A"))
+			if (SchemeSelectWindow.alpha == 1f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				SchemeSelectWindow.alpha = 1f;
 				Phase++;
@@ -126,7 +125,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		else if (Phase == 3)
 		{
 			ExplanationPanel.alpha = Mathf.MoveTowards(ExplanationPanel.alpha, 1f, Time.deltaTime);
-			if (ExplanationPanel.alpha == 1f || Input.GetButtonDown("A"))
+			if (ExplanationPanel.alpha == 1f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Video.enabled = true;
 				ExplanationPanel.alpha = 1f;
@@ -140,7 +139,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		else if (Phase == 4)
 		{
 			Video.transform.parent.localScale = Vector3.Lerp(Video.transform.parent.localScale, new Vector3(0.00075f, 0.00075f, 0f), Time.deltaTime * 10f);
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
@@ -151,7 +150,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		{
 			Video.transform.parent.localScale = Vector3.Lerp(Video.transform.parent.localScale, Vector3.zero, Time.deltaTime * 10f);
 			ExplanationPanel.alpha = Mathf.MoveTowards(ExplanationPanel.alpha, 0f, Time.deltaTime);
-			if (ExplanationPanel.alpha == 0f || Input.GetButtonDown("A"))
+			if (ExplanationPanel.alpha == 0f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Video.transform.parent.localScale = Vector3.zero;
 				Video.enabled = false;
@@ -207,7 +206,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 				}
 				UpdateHighlight();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				PromptBar.Show = false;
 				Phase++;
@@ -216,7 +215,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		else if (Phase == 7)
 		{
 			SchemeSelectWindow.alpha = Mathf.MoveTowards(SchemeSelectWindow.alpha, 0f, Time.deltaTime);
-			if (SchemeSelectWindow.alpha == 0f || Input.GetButtonDown("A"))
+			if (SchemeSelectWindow.alpha == 0f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				SchemeSelectWindow.alpha = 0f;
 				Phase++;
@@ -226,7 +225,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		{
 			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 0f, Time.deltaTime);
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
-			if (Darkness.alpha == 1f || Input.GetButtonDown("A"))
+			if (Darkness.alpha == 1f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (MethodID == 10)
 				{

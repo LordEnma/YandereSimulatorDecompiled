@@ -463,6 +463,12 @@ public class ClockScript : MonoBehaviour
 			StudentManager.UpdateDrama();
 			ChangePeriod();
 			Period++;
+			if (StudentManager.Week == 2)
+			{
+				StudentManager.RainbowBoysHangoutParent.transform.position = new Vector3(0f, 4f, -22f);
+				StudentManager.EightiesHangouts.List[12].transform.position = new Vector3(-1f, 4f, -22f);
+				StudentManager.Students[12].PyroUrge = false;
+			}
 		}
 		if (!IgnorePhotographyClub && HourTime > 16.75f && StudentManager.SleuthPhase < 4)
 		{
@@ -546,7 +552,7 @@ public class ClockScript : MonoBehaviour
 		{
 			EndTimeSkip();
 		}
-		if (Yandere.PauseScreen.transform.localPosition.x == 1351f && Input.GetButtonDown("A"))
+		if (Yandere.PauseScreen.transform.localPosition.x == 1351f && Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (!StudentManager.Eighties)
 			{
@@ -556,7 +562,7 @@ public class ClockScript : MonoBehaviour
 			RetroMinigame.gameObject.SetActive(value: true);
 			RetroMinigame.Show = true;
 		}
-		else if (Yandere.CameraEffects.Streaks.color.a > 0f || Yandere.CameraEffects.MurderStreaks.color.a > 0f || Yandere.NearSenpai || Input.GetButtonDown("B"))
+		else if (Yandere.CameraEffects.Streaks.color.a > 0f || Yandere.CameraEffects.MurderStreaks.color.a > 0f || Yandere.NearSenpai || Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			EndTimeSkip();
 		}

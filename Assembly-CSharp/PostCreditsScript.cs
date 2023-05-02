@@ -76,7 +76,7 @@ public class PostCreditsScript : MonoBehaviour
 				SceneManager.LoadScene("ThanksForPlayingScene");
 			}
 		}
-		else if (Input.GetButton("X"))
+		else if (Input.GetButton(InputNames.Xbox_X))
 		{
 			SkipPanel.alpha = 1f;
 			SkipTimer = 0f;

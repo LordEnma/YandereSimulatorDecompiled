@@ -68,7 +68,7 @@ public class AppearanceWindowScript : MonoBehaviour
 				}
 				UpdateHighlight();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Selected == 1)
 				{
@@ -207,7 +207,7 @@ public class AppearanceWindowScript : MonoBehaviour
 				}
 			}
 		}
-		if (Input.GetButtonUp("A"))
+		if (Input.GetButtonUp(InputNames.Xbox_A))
 		{
 			Ready = true;
 		}

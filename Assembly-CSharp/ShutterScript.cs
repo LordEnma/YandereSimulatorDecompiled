@@ -379,7 +379,7 @@ public class ShutterScript : MonoBehaviour
 			if (PhotoIcons.activeInHierarchy && !Snapping && !TextMessages.gameObject.activeInHierarchy)
 			{
 				Time.timeScale = 0.0001f;
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (StudentManager.KokonaTutorial)
 					{
@@ -416,7 +416,7 @@ public class ShutterScript : MonoBehaviour
 							{
 								Yandere.HandCamera.gameObject.SetActive(value: true);
 							}
-							ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Photographs/Photo_" + Slot + ".png");
+							ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Photographs/Profile_" + GameGlobals.Profile + "/Photo_" + Slot + ".png");
 							TookPhoto = true;
 							Debug.Log("Setting Photo " + Slot + " to ''true''.");
 							PauseScreen.PhotoGallery.PhotographTaken[Slot] = true;
@@ -475,7 +475,7 @@ public class ShutterScript : MonoBehaviour
 						ResumeGameplay();
 					}
 				}
-				if (!StudentManager.KokonaTutorial && !Yandere.RivalPhone && Input.GetButtonDown("X"))
+				if (!StudentManager.KokonaTutorial && !Yandere.RivalPhone && Input.GetButtonDown(InputNames.Xbox_X))
 				{
 					bool flag4 = false;
 					if (StudentManager.Eighties && InfoX.activeInHierarchy)
@@ -527,12 +527,12 @@ public class ShutterScript : MonoBehaviour
 						}
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					ResumeGameplay();
 				}
 			}
-			else if (PhotoIcons.activeInHierarchy && Input.GetButtonDown("B"))
+			else if (PhotoIcons.activeInHierarchy && Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				ResumeGameplay();
 				if (!Yandere.Aiming)
@@ -546,7 +546,7 @@ public class ShutterScript : MonoBehaviour
 		{
 			float t = Time.unscaledDeltaTime * 10f;
 			ErrorWindow.transform.localScale = Vector3.Lerp(ErrorWindow.transform.localScale, new Vector3(1f, 1f, 1f), t);
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				ResumeGameplay();
 			}

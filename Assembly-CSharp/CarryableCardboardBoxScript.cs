@@ -25,8 +25,15 @@ public class CarryableCardboardBoxScript : MonoBehaviour
 				Prompt.HideButton[0] = true;
 				Closed = true;
 			}
+			return;
 		}
-		else if (MyCutter == null)
+		if (MyRenderer.mesh != ClosedMesh)
+		{
+			Prompt.Label[0].text = "     Insert Box Cutter";
+			MyRenderer.mesh = ClosedMesh;
+			Prompt.HideButton[0] = true;
+		}
+		if (MyCutter == null)
 		{
 			Prompt.HideButton[0] = true;
 			if (Prompt.Yandere.Armed)
@@ -37,22 +44,9 @@ public class CarryableCardboardBoxScript : MonoBehaviour
 					if (Prompt.Circle[0].fillAmount == 0f)
 					{
 						MyCutter = Prompt.Yandere.EquippedWeapon;
-						Physics.IgnoreCollision(GetComponent<Collider>(), MyCutter.MyCollider);
-						Prompt.Yandere.DropTimer[Prompt.Yandere.Equipped] = 0.5f;
-						Prompt.Yandere.DropWeapon(Prompt.Yandere.Equipped);
-						MyCutter.MyRigidbody.useGravity = false;
-						MyCutter.MyRigidbody.isKinematic = true;
-						MyCutter.MyCollider.isTrigger = true;
-						MyCutter.transform.parent = base.transform;
-						MyCutter.transform.localPosition = new Vector3(0f, 0.24f, 0f);
-						MyCutter.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
-						MyCutter.Prompt.Hide();
-						MyCutter.Prompt.enabled = false;
-						MyCutter.enabled = false;
-						MyCutter.gameObject.SetActive(value: true);
+						MyCutter.GetStuckInBox();
 						Prompt.HideButton[0] = true;
 						Prompt.HideButton[3] = false;
-						PickUp.StuckBoxCutter = MyCutter;
 						PickUp.enabled = true;
 					}
 				}

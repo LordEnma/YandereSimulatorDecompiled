@@ -251,6 +251,10 @@ public class WeaponManagerScript : MonoBehaviour
 				Weapons[i].StainWithBlood();
 				Yandere.Police.BloodyWeapons++;
 			}
+			if (Weapons[i].InBox)
+			{
+				Weapons[i].GetStuckInBox();
+			}
 		}
 	}
 

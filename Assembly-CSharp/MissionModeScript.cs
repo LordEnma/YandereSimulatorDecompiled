@@ -571,7 +571,7 @@ public class MissionModeScript : MonoBehaviour
 					Phase++;
 				}
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Debug.Log("The player skipped the Misson Mode intro sequence.");
 				MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, TargetHeight, MainCamera.transform.position.z);
@@ -1087,19 +1087,19 @@ public class MissionModeScript : MonoBehaviour
 					else
 					{
 						GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							PromptBar.Show = false;
 							Destination = 1;
 							FadeOut = true;
 						}
-						else if (Input.GetButtonDown("B"))
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							PromptBar.Show = false;
 							Destination = 2;
 							FadeOut = true;
 						}
-						else if (Input.GetButtonDown("X"))
+						else if (Input.GetButtonDown(InputNames.Xbox_X))
 						{
 							PromptBar.Show = false;
 							Destination = 3;

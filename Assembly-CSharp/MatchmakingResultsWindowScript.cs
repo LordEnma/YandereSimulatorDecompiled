@@ -6,7 +6,7 @@ public class MatchmakingResultsWindowScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			AdviceWindow.Yandere.PromptParent.gameObject.SetActive(value: true);
 			AdviceWindow.HUDElement[1].SetActive(value: true);

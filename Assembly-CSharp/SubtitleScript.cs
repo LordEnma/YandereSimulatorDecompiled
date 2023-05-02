@@ -414,11 +414,23 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] Task11Lines;
 
+	public string[] Task12Lines;
+
 	public string[] Task13Lines;
 
 	public string[] Task14Lines;
 
 	public string[] Task15Lines;
+
+	public string[] Task16Lines;
+
+	public string[] Task17Lines;
+
+	public string[] Task18Lines;
+
+	public string[] Task19Lines;
+
+	public string[] Task20Lines;
 
 	public string[] Task25Lines;
 
@@ -487,6 +499,30 @@ public class SubtitleScript : MonoBehaviour
 	public string[] TaskGenericEightiesLines10;
 
 	public string[] TaskInquiries;
+
+	public string[] TaskRequirements;
+
+	public string[] TaskEightiesRequirements;
+
+	public string[] Task11LinesEighties;
+
+	public string[] Task12LinesEighties;
+
+	public string[] Task13LinesEighties;
+
+	public string[] Task14LinesEighties;
+
+	public string[] Task15LinesEighties;
+
+	public string[] Task16LinesEighties;
+
+	public string[] Task17LinesEighties;
+
+	public string[] Task18LinesEighties;
+
+	public string[] Task19LinesEighties;
+
+	public string[] Task20LinesEighties;
 
 	public string[] Task79LinesEighties;
 
@@ -716,11 +752,23 @@ public class SubtitleScript : MonoBehaviour
 
 	public AudioClip[] Task11Clips;
 
+	public AudioClip[] Task12Clips;
+
 	public AudioClip[] Task13Clips;
 
 	public AudioClip[] Task14Clips;
 
 	public AudioClip[] Task15Clips;
+
+	public AudioClip[] Task16Clips;
+
+	public AudioClip[] Task17Clips;
+
+	public AudioClip[] Task18Clips;
+
+	public AudioClip[] Task19Clips;
+
+	public AudioClip[] Task20Clips;
 
 	public AudioClip[] Task25Clips;
 
@@ -811,6 +859,30 @@ public class SubtitleScript : MonoBehaviour
 	public AudioClip[] TaskGenericEightiesFemaleClips10;
 
 	public AudioClip[] TaskInquiryClips;
+
+	public AudioClip[] TaskRequirementClips;
+
+	public AudioClip[] TaskEightiesRequirementClips;
+
+	public AudioClip[] Task11ClipsEighties;
+
+	public AudioClip[] Task12ClipsEighties;
+
+	public AudioClip[] Task13ClipsEighties;
+
+	public AudioClip[] Task14ClipsEighties;
+
+	public AudioClip[] Task15ClipsEighties;
+
+	public AudioClip[] Task16ClipsEighties;
+
+	public AudioClip[] Task17ClipsEighties;
+
+	public AudioClip[] Task18ClipsEighties;
+
+	public AudioClip[] Task19ClipsEighties;
+
+	public AudioClip[] Task20ClipsEighties;
 
 	public AudioClip[] Task79ClipsEighties;
 
@@ -1053,6 +1125,26 @@ public class SubtitleScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			PlayerLove[4] = "She's at the east fountain. Go there and use the advice I gave you.";
+			Task11Lines = Task11LinesEighties;
+			Task11Clips = Task11ClipsEighties;
+			Task12Lines = Task12LinesEighties;
+			Task12Clips = Task12ClipsEighties;
+			Task13Lines = Task13LinesEighties;
+			Task13Clips = Task13ClipsEighties;
+			Task14Lines = Task14LinesEighties;
+			Task14Clips = Task14ClipsEighties;
+			Task15Lines = Task15LinesEighties;
+			Task15Clips = Task15ClipsEighties;
+			Task16Lines = Task16LinesEighties;
+			Task16Clips = Task16ClipsEighties;
+			Task17Lines = Task17LinesEighties;
+			Task17Clips = Task17ClipsEighties;
+			Task18Lines = Task18LinesEighties;
+			Task18Clips = Task18ClipsEighties;
+			Task19Lines = Task19LinesEighties;
+			Task19Clips = Task19ClipsEighties;
+			Task20Lines = Task20LinesEighties;
+			Task20Clips = Task20ClipsEighties;
 			Task79Lines = Task79LinesEighties;
 			Task79Clips = Task79ClipsEighties;
 			Club1Info[1] = "This is the cooking club! Everyone here enjoys preparing food! We also like to hand out our food to people around school!";
@@ -1127,6 +1219,7 @@ public class SubtitleScript : MonoBehaviour
 			EightiesClubDialogue.UpdateDialogue(2);
 			EightiesClubDialogue.UpdateDialogue(3);
 			EightiesClubDialogue.UpdateDialogue(4);
+			TaskRequirements = TaskEightiesRequirements;
 			Shoving[1] = "Back off.";
 			Shoving[2] = "Desculpa!";
 			Shoving[3] = "Oops, sorry!";
@@ -1558,6 +1651,10 @@ public class SubtitleScript : MonoBehaviour
 				new AudioClipArrayWrapper(Task11Clips)
 			},
 			{
+				SubtitleType.Task12Line,
+				new AudioClipArrayWrapper(Task12Clips)
+			},
+			{
 				SubtitleType.Task13Line,
 				new AudioClipArrayWrapper(Task13Clips)
 			},
@@ -1568,6 +1665,26 @@ public class SubtitleScript : MonoBehaviour
 			{
 				SubtitleType.Task15Line,
 				new AudioClipArrayWrapper(Task15Clips)
+			},
+			{
+				SubtitleType.Task16Line,
+				new AudioClipArrayWrapper(Task16Clips)
+			},
+			{
+				SubtitleType.Task17Line,
+				new AudioClipArrayWrapper(Task17Clips)
+			},
+			{
+				SubtitleType.Task18Line,
+				new AudioClipArrayWrapper(Task18Clips)
+			},
+			{
+				SubtitleType.Task19Line,
+				new AudioClipArrayWrapper(Task19Clips)
+			},
+			{
+				SubtitleType.Task20Line,
+				new AudioClipArrayWrapper(Task20Clips)
 			},
 			{
 				SubtitleType.Task25Line,
@@ -1740,6 +1857,14 @@ public class SubtitleScript : MonoBehaviour
 			{
 				SubtitleType.TaskInquiry,
 				new AudioClipArrayWrapper(TaskInquiryClips)
+			},
+			{
+				SubtitleType.TaskRequirement,
+				new AudioClipArrayWrapper(TaskRequirementClips)
+			},
+			{
+				SubtitleType.TaskEightiesRequirement,
+				new AudioClipArrayWrapper(TaskEightiesRequirementClips)
 			},
 			{
 				SubtitleType.TheftReaction,
@@ -2920,6 +3045,10 @@ public class SubtitleScript : MonoBehaviour
 				Label.text = Task11Lines[ID];
 				PlayVoice(subtitleType, ID);
 				break;
+			case SubtitleType.Task12Line:
+				Label.text = Task12Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
 			case SubtitleType.Task13Line:
 				Label.text = Task13Lines[ID];
 				PlayVoice(subtitleType, ID);
@@ -2930,6 +3059,26 @@ public class SubtitleScript : MonoBehaviour
 				break;
 			case SubtitleType.Task15Line:
 				Label.text = Task15Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.Task16Line:
+				Label.text = Task16Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.Task17Line:
+				Label.text = Task17Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.Task18Line:
+				Label.text = Task18Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.Task19Line:
+				Label.text = Task19Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.Task20Line:
+				Label.text = Task20Lines[ID];
 				PlayVoice(subtitleType, ID);
 				break;
 			case SubtitleType.Task25Line:
@@ -3143,6 +3292,14 @@ public class SubtitleScript : MonoBehaviour
 				break;
 			case SubtitleType.TaskInquiry:
 				Label.text = TaskInquiries[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.TaskRequirement:
+				Label.text = TaskRequirements[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.TaskEightiesRequirement:
+				Label.text = TaskEightiesRequirements[ID];
 				PlayVoice(subtitleType, ID);
 				break;
 			case SubtitleType.ClubGreeting:
@@ -3416,6 +3573,24 @@ public class SubtitleScript : MonoBehaviour
 			return Task8Clips[TaskPhase].length;
 		case 11:
 			return Task11Clips[TaskPhase].length;
+		case 12:
+			return Task12Clips[TaskPhase].length;
+		case 13:
+			return Task13Clips[TaskPhase].length;
+		case 14:
+			return Task14Clips[TaskPhase].length;
+		case 15:
+			return Task15Clips[TaskPhase].length;
+		case 16:
+			return Task16Clips[TaskPhase].length;
+		case 17:
+			return Task17Clips[TaskPhase].length;
+		case 18:
+			return Task18Clips[TaskPhase].length;
+		case 19:
+			return Task19Clips[TaskPhase].length;
+		case 20:
+			return Task20Clips[TaskPhase].length;
 		case 25:
 			return Task25Clips[TaskPhase].length;
 		case 28:

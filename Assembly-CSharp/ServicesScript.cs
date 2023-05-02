@@ -70,8 +70,21 @@ public class ServicesScript : MonoBehaviour
 	{
 		for (int i = 1; i < ServiceNames.Length; i++)
 		{
-			ServicePurchased[i] = SchemeGlobals.GetServicePurchased(i);
 			NameLabels[i].text = ServiceNames[i];
+			if (!StudentManager.CameFromLoad)
+			{
+				Debug.Log("The Services Menu believes that the player did NOT load a save recently.");
+				ServicePurchased[i] = SchemeGlobals.GetServicePurchased(i);
+			}
+			else
+			{
+				Debug.Log("The Services Menu is aware that player loaded a save recently.");
+			}
+		}
+		if (StudentManager.CameFromLoad)
+		{
+			ServicePurchased = StudentManager.ServicesPurchased;
+			UpdateList();
 		}
 		if (MissionModeGlobals.MissionMode)
 		{
@@ -130,7 +143,7 @@ public class ServicesScript : MonoBehaviour
 			}
 			UpdateDesc();
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (!ServicePurchased[Selected] && (double)NameLabels[Selected].color.a == 1.0)
 			{
@@ -263,7 +276,7 @@ public class ServicesScript : MonoBehaviour
 				MyAudio.Play();
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PromptBar.ClearButtons();
 			PromptBar.Label[0].text = "Accept";

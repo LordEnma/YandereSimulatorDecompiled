@@ -103,7 +103,7 @@ public class NewMissionWindowScript : MonoBehaviour
 				Column--;
 				UpdateHighlight();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				int num = 0;
 				for (int i = 0; i < 11; i++)
@@ -154,7 +154,7 @@ public class NewMissionWindowScript : MonoBehaviour
 					}
 				}
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				MissionModeMenu.PromptBar.ClearButtons();
 				MissionModeMenu.PromptBar.Label[0].text = "Accept";
@@ -165,7 +165,7 @@ public class NewMissionWindowScript : MonoBehaviour
 				MissionModeMenu.Phase = 2;
 				base.enabled = false;
 			}
-			if (Input.GetButtonDown("X"))
+			if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				if (Row == 1)
 				{
@@ -218,7 +218,7 @@ public class NewMissionWindowScript : MonoBehaviour
 					MethodLabel[Column + 5].text = "By: " + MethodNames[Method[Column + 5]];
 				}
 			}
-			if (Input.GetButtonDown("Y"))
+			if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				if (Row == 1)
 				{
@@ -282,17 +282,17 @@ public class NewMissionWindowScript : MonoBehaviour
 		else
 		{
 			DifficultyOptions.localScale = Vector3.Lerp(DifficultyOptions.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				NemesisDifficulty++;
 				UpdateNemesisDifficulty();
 			}
-			if (Input.GetButtonDown("X"))
+			if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				NemesisAggression = !NemesisAggression;
 				UpdateNemesisDifficulty();
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				MissionModeMenu.PromptBar.ClearButtons();
 				MissionModeMenu.PromptBar.Label[0].text = "";

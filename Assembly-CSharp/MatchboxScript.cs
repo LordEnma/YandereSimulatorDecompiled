@@ -58,7 +58,7 @@ public class MatchboxScript : MonoBehaviour
 				}
 				LabelUpdated = true;
 			}
-			if ((Input.GetAxis("RT") > 0.5f || Input.GetMouseButtonDown(0)) && ((Prompt.Yandere.PreparingThrow && !Throwing) || (Prompt.Yandere.Throwing && !Throwing)))
+			if ((Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB)) && ((Prompt.Yandere.PreparingThrow && !Throwing) || (Prompt.Yandere.Throwing && !Throwing)))
 			{
 				Debug.Log("Threw an object. Throwing was false?");
 				ThrowTimer = 0.1f;

@@ -118,7 +118,6 @@ public class CalendarScript : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log("At this moment, GameGlobals.GetItemRemoved(0) is: " + GameGlobals.GetItemRemoved(0));
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
@@ -343,30 +342,30 @@ public class CalendarScript : MonoBehaviour
 				{
 					if (ViewingStats)
 					{
-						if (Input.GetButtonDown("B"))
+						if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							Switch = true;
 						}
 					}
 					else if (CongratulationsWindow.activeInHierarchy)
 					{
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							CongratulationsWindow.SetActive(value: false);
 						}
 					}
 					else if (ResetWeekWindow.activeInHierarchy)
 					{
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							FadeOut = true;
 							ResetWeek = true;
 						}
-						else if (Input.GetButtonDown("B"))
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							ResetWeekWindow.SetActive(value: false);
 						}
-						else if (Input.GetButtonDown("X"))
+						else if (Input.GetButtonDown(InputNames.Xbox_X))
 						{
 							ConfirmationWindow.SetActive(value: true);
 							ResetWeekWindow.SetActive(value: false);
@@ -374,19 +373,19 @@ public class CalendarScript : MonoBehaviour
 					}
 					else if (ConfirmationWindow.activeInHierarchy)
 					{
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							FadeOut = true;
 							Reset = true;
 						}
-						if (Input.GetButtonDown("B"))
+						if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							ConfirmationWindow.SetActive(value: false);
 						}
 					}
 					else if (SkipConfirmationWindow.activeInHierarchy)
 					{
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							SundayLabel.SetActive(value: false);
 							if (StudentGlobals.MemorialStudents > 0)
@@ -428,14 +427,14 @@ public class CalendarScript : MonoBehaviour
 								}
 							}
 						}
-						if (Input.GetButtonDown("B"))
+						if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							SkipConfirmationWindow.SetActive(value: false);
 						}
 					}
 					else if (AmaiWindow.activeInHierarchy)
 					{
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							AmaiButton.SetActive(value: false);
 							AmaiWindow.SetActive(value: false);
@@ -449,28 +448,28 @@ public class CalendarScript : MonoBehaviour
 							ImproveSchoolAtmosphere();
 							AmaiWindow.SetActive(value: false);
 						}
-						if (Input.GetButtonDown("B"))
+						if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							AmaiWindow.SetActive(value: false);
 						}
 					}
 					else
 					{
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							FadeOut = true;
 						}
-						else if (Input.GetButtonDown("B"))
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							ResetWeekWindow.SetActive(value: true);
 						}
-						else if (Input.GetButtonDown("X") && Eighties)
+						else if (Input.GetButtonDown(InputNames.Xbox_X) && Eighties)
 						{
 							Switch = true;
 						}
 						if (SkipButton.activeInHierarchy)
 						{
-							if (Input.GetButtonDown("Y"))
+							if (Input.GetButtonDown(InputNames.Xbox_Y))
 							{
 								SkipConfirmationWindow.SetActive(value: true);
 								if (DateGlobals.Weekday > DayOfWeek.Sunday && ClubGlobals.Club != 0 && ClubGlobals.ActivitiesAttended == 0)
@@ -479,7 +478,7 @@ public class CalendarScript : MonoBehaviour
 								}
 							}
 						}
-						else if (AmaiButton.activeInHierarchy && Input.GetButtonDown("Y"))
+						else if (AmaiButton.activeInHierarchy && Input.GetButtonDown(InputNames.Xbox_Y))
 						{
 							AmaiWindow.SetActive(value: true);
 						}

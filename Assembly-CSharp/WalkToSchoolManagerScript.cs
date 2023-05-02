@@ -165,7 +165,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 				{
 					if (!Ending)
 					{
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							Timer = 1f;
 						}
@@ -229,7 +229,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 						{
 							AutoTimer += Time.deltaTime;
 						}
-						if (Input.GetButtonDown("A") || AutoTimer > 1f)
+						if (Input.GetButtonDown(InputNames.Xbox_A) || AutoTimer > 1f)
 						{
 							Debug.Log("Detected button press.");
 							AutoTimer = 0f;
@@ -264,7 +264,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 								End();
 							}
 						}
-						if (Input.GetButtonDown("X"))
+						if (Input.GetButtonDown(InputNames.Xbox_X))
 						{
 							End();
 						}

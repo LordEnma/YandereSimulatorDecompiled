@@ -427,6 +427,22 @@ public class BucketScript : MonoBehaviour
 				{
 					Prompt.HideButton[0] = false;
 				}
+				if (!Yandere.NoDebug && Input.GetKeyDown(KeyCode.B))
+				{
+					Debug.Log("Just attempted to update bucket.");
+					Fill();
+					UpdateAppearance = true;
+					if (Bloodiness == 0f)
+					{
+						Bloodiness = 100f;
+						Gasoline = false;
+					}
+					else
+					{
+						Bloodiness = 0f;
+						Gasoline = true;
+					}
+				}
 			}
 			else if (!Trap)
 			{

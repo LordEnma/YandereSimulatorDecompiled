@@ -233,7 +233,7 @@ public class GenericRivalBagScript : MonoBehaviour
 			Selected--;
 			UpdateHighlight();
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (Menu == 1)
 			{
@@ -409,7 +409,7 @@ public class GenericRivalBagScript : MonoBehaviour
 				ShowDiary = true;
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			if (ShowMagazine)
 			{

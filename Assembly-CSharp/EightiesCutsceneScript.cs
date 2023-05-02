@@ -340,7 +340,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 		{
 			if (!SkipTutorialWindow.activeInHierarchy)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (Typewriter.mCurrentOffset < Typewriter.mFullText.Length)
 					{
@@ -373,23 +373,23 @@ public class EightiesCutsceneScript : MonoBehaviour
 						Phase++;
 					}
 				}
-				else if (Input.GetButtonDown("X"))
+				else if (Input.GetButtonDown(InputNames.Xbox_X))
 				{
 					Phase++;
 				}
-				else if (Input.GetButtonDown("Y") && SkipTutorialButton.activeInHierarchy)
+				else if (Input.GetButtonDown(InputNames.Xbox_Y) && SkipTutorialButton.activeInHierarchy)
 				{
 					SkipTutorialWindow.SetActive(value: true);
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				SkipTutorialWindow.SetActive(value: false);
 				Panel.SetActive(value: true);
 				Phase++;
 				SkipTutorial = true;
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				SkipTutorialWindow.SetActive(value: false);
 				Panel.SetActive(value: true);

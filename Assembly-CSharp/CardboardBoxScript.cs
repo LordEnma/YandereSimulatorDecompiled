@@ -30,7 +30,7 @@ public class CardboardBoxScript : MonoBehaviour
 			{
 				base.transform.eulerAngles = new Vector3(0f, base.transform.eulerAngles.y, base.transform.eulerAngles.z);
 			}
-			if (Input.GetButtonDown("RB"))
+			if (Input.GetButtonDown(InputNames.Xbox_RB))
 			{
 				Prompt.MyCollider.enabled = true;
 				GetComponent<Rigidbody>().isKinematic = false;

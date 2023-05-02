@@ -15,6 +15,8 @@ public class InputDeviceScript : MonoBehaviour
 
 	public string[] joystickNames;
 
+	public int PreviousLength;
+
 	private void Start()
 	{
 		joystickNames = new string[20];
@@ -29,7 +31,8 @@ public class InputDeviceScript : MonoBehaviour
 		MouseDelta = Input.mousePosition - MousePrevious;
 		MousePrevious = Input.mousePosition;
 		InputDeviceType type = Type;
-		if ((Input.GetJoystickNames().Length == 0 && Input.anyKey) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || MouseDelta != Vector3.zero)
+		int num = Input.GetJoystickNames().Length;
+		if ((num == 0 && Input.anyKey) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || MouseDelta != Vector3.zero)
 		{
 			Type = InputDeviceType.MouseAndKeyboard;
 		}
@@ -61,5 +64,6 @@ public class InputDeviceScript : MonoBehaviour
 		}
 		Horizontal = Input.GetAxis("Horizontal");
 		Vertical = Input.GetAxis("Vertical");
+		PreviousLength = num;
 	}
 }

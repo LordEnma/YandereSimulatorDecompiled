@@ -43,7 +43,7 @@ public class ChoiceScript : MonoBehaviour
 				Darkness.color = new Color(0f, 0f, 0f, 0f);
 				Selected = 1;
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Phase++;
 			}

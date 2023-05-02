@@ -84,7 +84,7 @@ public class RetroMinigameScript : MonoBehaviour
 				}
 				Heart.transform.localPosition += new Vector3(0f, Momentum * Time.unscaledDeltaTime * 5f, 0f);
 				Momentum -= Time.unscaledDeltaTime * 5f;
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Momentum = 1f;
 				}
@@ -102,7 +102,7 @@ public class RetroMinigameScript : MonoBehaviour
 			else
 			{
 				GameOverTimer += Time.unscaledDeltaTime;
-				if (GameOverTimer > 1f && Input.GetButtonDown("A"))
+				if (GameOverTimer > 1f && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Start();
 				}

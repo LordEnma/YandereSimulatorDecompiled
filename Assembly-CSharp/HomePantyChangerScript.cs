@@ -95,7 +95,7 @@ public class HomePantyChangerScript : MonoBehaviour
 			}
 			Rotation = Mathf.Lerp(Rotation, TargetRotation, Time.deltaTime * 10f);
 			PantyParent.localEulerAngles = new Vector3(PantyParent.localEulerAngles.x, Rotation, PantyParent.localEulerAngles.z);
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Selected == 0 || CollectibleGlobals.GetPantyPurchased(Selected))
 				{
@@ -109,7 +109,7 @@ public class HomePantyChangerScript : MonoBehaviour
 				}
 				UpdatePantyLabels();
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				HomeCamera.Destination = HomeCamera.Destinations[0];
 				HomeCamera.Target = HomeCamera.Targets[0];

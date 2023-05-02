@@ -20,7 +20,7 @@ public class NoAnimationWarningScript : MonoBehaviour
 		{
 			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime);
 			Darkness.color = new Color(0f, 0f, 0f, Alpha);
-			if (Alpha == 0f && Input.GetButtonDown("A"))
+			if (Alpha == 0f && Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				FadeOut = true;
 			}

@@ -220,7 +220,7 @@ public class GenocideEndingScript : MonoBehaviour
 			{
 				SkipPanel.alpha = Mathf.MoveTowards(SkipPanel.alpha, 1f, Time.deltaTime);
 			}
-			else if (Input.GetButton("X"))
+			else if (Input.GetButton(InputNames.Xbox_X))
 			{
 				SkipCircle.fillAmount += Time.deltaTime;
 				if (SkipCircle.fillAmount >= 1f)
@@ -248,7 +248,7 @@ public class GenocideEndingScript : MonoBehaviour
 				MyAudio.volume -= Time.deltaTime;
 			}
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			MyAudio.Stop();
 		}

@@ -70,7 +70,7 @@ public class ClubWindowScript : MonoBehaviour
 		{
 			if (Timer > 0.5f)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (!Quitting && !Activity)
 					{
@@ -103,7 +103,7 @@ public class ClubWindowScript : MonoBehaviour
 					PromptBar.Show = false;
 					Window.SetActive(value: false);
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					if (!Quitting && !Activity)
 					{
@@ -125,7 +125,7 @@ public class ClubWindowScript : MonoBehaviour
 					PromptBar.Show = false;
 					Window.SetActive(value: false);
 				}
-				if (Input.GetButtonDown("X") && !Quitting && !Activity)
+				if (Input.GetButtonDown(InputNames.Xbox_X) && !Quitting && !Activity)
 				{
 					if (!Warning.activeInHierarchy)
 					{

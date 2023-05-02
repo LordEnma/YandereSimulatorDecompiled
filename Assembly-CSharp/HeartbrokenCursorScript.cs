@@ -162,7 +162,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 					MyAudio.Play();
 				}
 				Continue.color = new Color(Continue.color.r, Continue.color.g, Continue.color.b, (Selected != 5) ? 1f : 0f);
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Nudge = true;
 					if (Selected != 5)

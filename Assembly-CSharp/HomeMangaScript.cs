@@ -152,7 +152,7 @@ public class HomeMangaScript : MonoBehaviour
 				}
 				Rotation = Mathf.Lerp(Rotation, TargetRotation, Time.deltaTime * 10f);
 				MangaParent.localEulerAngles = new Vector3(MangaParent.localEulerAngles.x, Rotation, MangaParent.localEulerAngles.z);
-				if (Input.GetButtonDown("A") && ReadButtonGroup.activeInHierarchy)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && ReadButtonGroup.activeInHierarchy)
 				{
 					MangaGroup.SetActive(value: false);
 					AreYouSure.SetActive(value: true);
@@ -168,7 +168,7 @@ public class HomeMangaScript : MonoBehaviour
 						AreYouSureLabel.text = "You have read " + num + "% of this manga.\n\nWould you like to read " + (20 + ClassGlobals.LanguageGrade * 6) + "% of it for a few hours?";
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					HomeCamera.Destination = HomeCamera.Destinations[0];
 					HomeCamera.Target = HomeCamera.Targets[0];
@@ -184,7 +184,7 @@ public class HomeMangaScript : MonoBehaviour
 				}
 				return;
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Selected < 5)
 				{
@@ -216,7 +216,7 @@ public class HomeMangaScript : MonoBehaviour
 				AreYouSure.SetActive(value: false);
 				Darkness.FadeOut = true;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				MangaGroup.SetActive(value: true);
 				AreYouSure.SetActive(value: false);

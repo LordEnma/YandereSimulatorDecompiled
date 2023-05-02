@@ -53,7 +53,7 @@ public class CutsceneManagerScript : MonoBehaviour
 		}
 		else if (Phase == 3)
 		{
-			if (!component.isPlaying || Input.GetButtonDown("A"))
+			if (!component.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Line < 2)
 				{

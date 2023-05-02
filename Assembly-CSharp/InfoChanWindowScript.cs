@@ -37,7 +37,12 @@ public class InfoChanWindowScript : MonoBehaviour
 			{
 				if ((float)Orders > 0f)
 				{
-					Object.Instantiate(Drops[ItemsToDrop[Orders]], DropPoint.position, Quaternion.identity).name = DropMenu.DropNames[ItemsToDrop[Orders]];
+					GameObject gameObject = Object.Instantiate(Drops[ItemsToDrop[Orders]], DropPoint.position, Quaternion.identity);
+					gameObject.name = DropMenu.DropNames[ItemsToDrop[Orders]];
+					if (gameObject.GetComponent<PickUpScript>() != null)
+					{
+						gameObject.GetComponent<PickUpScript>().InstantiatedObject = true;
+					}
 					Timer = 0f;
 					Orders--;
 				}

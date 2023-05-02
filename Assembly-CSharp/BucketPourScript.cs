@@ -85,7 +85,7 @@ public class BucketPourScript : MonoBehaviour
 		}
 		if (Yandere.Pouring)
 		{
-			if (Input.GetButtonDown("B") && Prompt.DistanceSqr < 1f)
+			if (Input.GetButtonDown(InputNames.Xbox_B) && Prompt.DistanceSqr < 1f)
 			{
 				SplashCamera.Show = true;
 				SplashCamera.MyCamera.enabled = true;
@@ -101,7 +101,7 @@ public class BucketPourScript : MonoBehaviour
 				}
 			}
 		}
-		else if (Yandere.BucketDropping && Input.GetButtonDown("B") && Prompt.DistanceSqr < 1f)
+		else if (Yandere.BucketDropping && Input.GetButtonDown(InputNames.Xbox_B) && Prompt.DistanceSqr < 1f)
 		{
 			SplashCamera.Show = true;
 			SplashCamera.MyCamera.enabled = true;

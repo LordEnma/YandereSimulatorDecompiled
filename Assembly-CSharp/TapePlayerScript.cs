@@ -22,7 +22,11 @@ public class TapePlayerScript : MonoBehaviour
 
 	public GameObject Tape;
 
+	public bool MelodyRecording;
+
 	public bool FastForward;
+
+	public bool Eighties;
 
 	public bool Rewind;
 
@@ -32,11 +36,14 @@ public class TapePlayerScript : MonoBehaviour
 
 	private void Start()
 	{
+		Eighties = GameGlobals.Eighties;
 		Tape.SetActive(value: false);
-		if (GameGlobals.Eighties)
+		if (Eighties)
 		{
-			Prompt.enabled = false;
+			Prompt.Text[0] = "Pick Up";
+			Prompt.Label[0].text = "     " + Prompt.Text[0];
 			Prompt.Hide();
+			Prompt.enabled = false;
 		}
 	}
 
@@ -44,25 +51,35 @@ public class TapePlayerScript : MonoBehaviour
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			Yandere.HeartCamera.enabled = false;
-			Yandere.RPGCamera.enabled = false;
-			TapePlayerMenu.TimeBar.gameObject.SetActive(value: true);
-			TapePlayerMenu.List.gameObject.SetActive(value: true);
-			TapePlayerCamera.enabled = true;
-			TapePlayerMenu.UpdateLabels();
-			TapePlayerMenu.Show = true;
-			NoteWindow.SetActive(value: false);
-			Yandere.CanMove = false;
-			Yandere.HUD.alpha = 0f;
-			Time.timeScale = 0.0001f;
-			PromptBar.ClearButtons();
-			PromptBar.Label[1].text = "EXIT";
-			PromptBar.Label[4].text = "CHOOSE";
-			PromptBar.Label[5].text = "CATEGORY";
-			TapePlayerMenu.CheckSelection();
-			PromptBar.Show = true;
-			Prompt.Hide();
-			Prompt.enabled = false;
+			if (Eighties)
+			{
+				Yandere.Inventory.TapePlayer = true;
+				base.gameObject.SetActive(value: false);
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
+			else
+			{
+				Yandere.HeartCamera.enabled = false;
+				Yandere.RPGCamera.enabled = false;
+				TapePlayerMenu.TimeBar.gameObject.SetActive(value: true);
+				TapePlayerMenu.List.gameObject.SetActive(value: true);
+				TapePlayerCamera.enabled = true;
+				TapePlayerMenu.UpdateLabels();
+				TapePlayerMenu.Show = true;
+				NoteWindow.SetActive(value: false);
+				Yandere.CanMove = false;
+				Yandere.HUD.alpha = 0f;
+				Time.timeScale = 0.0001f;
+				PromptBar.ClearButtons();
+				PromptBar.Label[1].text = "EXIT";
+				PromptBar.Label[4].text = "CHOOSE";
+				PromptBar.Label[5].text = "CATEGORY";
+				TapePlayerMenu.CheckSelection();
+				PromptBar.Show = true;
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
 		}
 		if (Spin)
 		{

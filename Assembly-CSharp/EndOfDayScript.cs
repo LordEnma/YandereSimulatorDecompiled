@@ -331,7 +331,7 @@ public class EndOfDayScript : MonoBehaviour
 			EndOfDayDarkness.color = new Color(0f, 0f, 0f, 1f);
 			Darken = true;
 		}
-		if (EndOfDayDarkness.color.a < 0.001f && Input.GetButtonDown("A"))
+		if (EndOfDayDarkness.color.a < 0.001f && Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			Darken = true;
 		}

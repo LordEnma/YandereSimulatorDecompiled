@@ -31,7 +31,7 @@ public class EventEditorScript : MonoBehaviour
 
 	private void HandleInput()
 	{
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			mainPanel.gameObject.SetActive(value: true);
 			eventPanel.gameObject.SetActive(value: false);

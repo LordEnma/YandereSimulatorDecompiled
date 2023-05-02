@@ -29,7 +29,7 @@ public class ARMiyukiScript : MonoBehaviour
 		if (!Student && Yandere.AR && Time.timeScale == 1f)
 		{
 			base.transform.LookAt(Enemy.position);
-			if (Input.GetButtonDown("X"))
+			if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				Shoot();
 			}

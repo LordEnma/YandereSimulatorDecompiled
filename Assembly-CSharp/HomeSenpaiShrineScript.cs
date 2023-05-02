@@ -108,7 +108,7 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 				{
 					UpdateText(currentIndex - 1);
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					HomeCamera.Destination = HomeCamera.Destinations[0];
 					HomeCamera.Target = HomeCamera.Targets[0];

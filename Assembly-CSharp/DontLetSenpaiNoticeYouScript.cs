@@ -29,7 +29,7 @@ public class DontLetSenpaiNoticeYouScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			Proceed = true;
 		}

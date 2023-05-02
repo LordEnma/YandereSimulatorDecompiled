@@ -190,7 +190,7 @@ public class WeaponMenuScript : MonoBehaviour
 				}
 				else
 				{
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						if (Selected < 3)
 						{
@@ -227,7 +227,7 @@ public class WeaponMenuScript : MonoBehaviour
 							Yandere.Mopping = false;
 						}
 					}
-					if (EquipCaseWeaponButton.enabled && Input.GetButtonDown("Y"))
+					if (EquipCaseWeaponButton.enabled && Input.GetButtonDown(InputNames.Xbox_Y))
 					{
 						if (Yandere.Container.TrashCan.ConcealedWeapon != null)
 						{
@@ -237,7 +237,7 @@ public class WeaponMenuScript : MonoBehaviour
 						UpdateSprites();
 						Show = false;
 					}
-					if (Input.GetButtonDown("B"))
+					if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						Show = false;
 					}
@@ -283,7 +283,7 @@ public class WeaponMenuScript : MonoBehaviour
 		{
 			KeyboardShow = false;
 		}
-		if (EquipCaseWeaponKey.enabled && Input.GetButtonDown("Y"))
+		if (EquipCaseWeaponKey.enabled && Input.GetButtonDown(InputNames.Xbox_Y))
 		{
 			if (Yandere.Container.TrashCan.ConcealedWeapon != null)
 			{
@@ -292,7 +292,7 @@ public class WeaponMenuScript : MonoBehaviour
 			Yandere.Container.TrashCan.RemoveContents();
 			UpdateSprites();
 		}
-		if (!Yandere.CanMove || Yandere.Aiming || PauseScreen.Show || InputDevice.Type == InputDeviceType.Gamepad || Input.GetButton("Y"))
+		if (!Yandere.CanMove || Yandere.Aiming || PauseScreen.Show || InputDevice.Type == InputDeviceType.Gamepad || Input.GetButton(InputNames.Xbox_Y))
 		{
 			KeyboardShow = false;
 		}

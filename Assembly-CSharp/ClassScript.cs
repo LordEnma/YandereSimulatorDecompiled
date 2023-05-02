@@ -314,7 +314,7 @@ public class ClassScript : MonoBehaviour
 					{
 						HoldLeftTimer = 0f;
 					}
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						bool flag = true;
 						if (BiologyGrade == 5 && ChemistryGrade == 5 && LanguageGrade == 5 && PhysicalGrade == 5 && PsychologyGrade == 5)
@@ -337,11 +337,11 @@ public class ClassScript : MonoBehaviour
 				}
 				else if (WarningWindow.localScale.x > 0.9f)
 				{
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						ExitClass();
 					}
-					if (Input.GetButtonDown("B"))
+					if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Finish Class";
@@ -448,7 +448,7 @@ public class ClassScript : MonoBehaviour
 			PromptBar.UpdateButtons();
 			PromptBar.Show = true;
 		}
-		else if (GradeUpWindow.localScale.x > 0.9f && Input.GetButtonDown("A"))
+		else if (GradeUpWindow.localScale.x > 0.9f && Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			PromptBar.ClearButtons();
 			GradeUp = false;

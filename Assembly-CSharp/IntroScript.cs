@@ -315,7 +315,7 @@ public class IntroScript : MonoBehaviour
 				VibrationCheck = false;
 			}
 		}
-		if (Input.GetButton("X"))
+		if (Input.GetButton(InputNames.Xbox_X))
 		{
 			Circle.fillAmount = Mathf.MoveTowards(Circle.fillAmount, 1f, Time.deltaTime);
 			SkipTimer = 15f;

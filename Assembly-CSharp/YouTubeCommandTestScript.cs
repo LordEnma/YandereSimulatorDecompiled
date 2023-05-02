@@ -71,7 +71,7 @@ public class YouTubeCommandTestScript : MonoBehaviour
 
 	public void Update()
 	{
-		if (Input.GetMouseButtonDown(0) || Input.GetAxis("RT") == 1f)
+		if (Input.GetMouseButtonDown(InputNames.Mouse_LMB) || Input.GetAxis(InputNames.Xbox_RT) == 1f)
 		{
 			Chat.UpdateMessagesList(initialRun: false);
 		}

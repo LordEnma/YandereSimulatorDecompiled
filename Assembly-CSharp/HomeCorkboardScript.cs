@@ -26,7 +26,7 @@ public class HomeCorkboardScript : MonoBehaviour
 				PhotoGallery.gameObject.SetActive(value: true);
 				Loaded = true;
 			}
-			if (!PhotoGallery.Adjusting && !PhotoGallery.Viewing && !PhotoGallery.LoadingScreen.activeInHierarchy && Input.GetButtonDown("B"))
+			if (!PhotoGallery.Adjusting && !PhotoGallery.Viewing && !PhotoGallery.LoadingScreen.activeInHierarchy && Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				Cursor.lockState = CursorLockMode.None;
 				Cursor.visible = true;

@@ -141,7 +141,7 @@ public class FeedListScript : MonoBehaviour
 				}
 				UpdateHighlight();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (StudentNames[Selected] != "")
 				{
@@ -149,7 +149,7 @@ public class FeedListScript : MonoBehaviour
 				}
 				CrossOutStudents();
 			}
-			if (!Input.GetButtonDown("B"))
+			if (!Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				return;
 			}

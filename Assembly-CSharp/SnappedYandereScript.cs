@@ -462,7 +462,7 @@ public class SnappedYandereScript : MonoBehaviour
 				{
 					SuicidePrompt.alpha += Time.deltaTime;
 					ImpatienceTimer += Time.deltaTime;
-					if (Input.GetButtonDown("X") || ImpatienceTimer > ImpatienceLimit)
+					if (Input.GetButtonDown(InputNames.Xbox_X) || ImpatienceTimer > ImpatienceLimit)
 					{
 						MyAnim["f02_suicide_00"].layer = 101;
 						MyAnim.Play("f02_suicide_00");
@@ -483,7 +483,7 @@ public class SnappedYandereScript : MonoBehaviour
 			{
 				SuicidePrompt.alpha += Time.deltaTime;
 				ImpatienceTimer += Time.deltaTime;
-				if (Input.GetButtonDown("X") || ImpatienceTimer > ImpatienceLimit)
+				if (Input.GetButtonDown(InputNames.Xbox_X) || ImpatienceTimer > ImpatienceLimit)
 				{
 					Target += 0.1f;
 					SpeedUp = true;
@@ -518,7 +518,7 @@ public class SnappedYandereScript : MonoBehaviour
 			else if (AttackPhase == 5)
 			{
 				ImpatienceTimer += Time.deltaTime;
-				if (Input.GetButtonDown("X") || ImpatienceTimer > ImpatienceLimit)
+				if (Input.GetButtonDown(InputNames.Xbox_X) || ImpatienceTimer > ImpatienceLimit)
 				{
 					Target += 0.1f;
 					SpeedUp = true;
@@ -622,7 +622,7 @@ public class SnappedYandereScript : MonoBehaviour
 		{
 			base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, base.transform.eulerAngles.y + num * 36f * Time.deltaTime, base.transform.eulerAngles.z);
 		}
-		if (Input.GetButtonDown("LB"))
+		if (Input.GetButtonDown(InputNames.Xbox_LB))
 		{
 			MyController.Move(vector3 * 4f);
 			SetGlitches(State: true);

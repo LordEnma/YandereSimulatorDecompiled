@@ -176,7 +176,7 @@ public class ScheduleScript : MonoBehaviour
 			Y++;
 			UpdateHighlightPosition();
 		}
-		if (Input.GetButtonDown("RB"))
+		if (Input.GetButtonDown(InputNames.Xbox_RB))
 		{
 			Weekday++;
 			if (Weekday > DayOfWeek.Friday)
@@ -185,7 +185,7 @@ public class ScheduleScript : MonoBehaviour
 			}
 			UpdateIcons();
 		}
-		if (Input.GetButtonDown("LB"))
+		if (Input.GetButtonDown(InputNames.Xbox_LB))
 		{
 			Weekday--;
 			if (Weekday < DayOfWeek.Monday)
@@ -194,7 +194,7 @@ public class ScheduleScript : MonoBehaviour
 			}
 			UpdateIcons();
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PauseScreen.PromptBar.ClearButtons();
 			PauseScreen.PromptBar.Label[0].text = "Accept";
@@ -206,7 +206,7 @@ public class ScheduleScript : MonoBehaviour
 			PauseScreen.Sideways = false;
 			base.gameObject.SetActive(value: false);
 		}
-		if (Input.GetButtonDown("X"))
+		if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			PauseScreen.PromptBar.ClearButtons();
 			PauseScreen.PromptBar.Label[0].text = "Accept";
@@ -219,7 +219,7 @@ public class ScheduleScript : MonoBehaviour
 			PauseScreen.SchemesMenu.gameObject.SetActive(value: true);
 			base.gameObject.SetActive(value: false);
 		}
-		if (Input.GetButtonDown("Y"))
+		if (Input.GetButtonDown(InputNames.Xbox_Y))
 		{
 			PauseScreen.Hint.enabled = !PauseScreen.Hint.enabled;
 			OptionGlobals.HintsOff = !OptionGlobals.HintsOff;

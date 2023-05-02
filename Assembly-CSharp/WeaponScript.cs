@@ -176,6 +176,10 @@ public class WeaponScript : MonoBehaviour
 
 	public BoxCollider CookingClub;
 
+	public CarryableCardboardBoxScript Box;
+
+	public bool InBox;
+
 	public void Start()
 	{
 		Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
@@ -268,7 +272,7 @@ public class WeaponScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (WeaponID == 16 && Yandere.EquippedWeapon == this && Input.GetButtonDown("RB") && ExtraBlade != null)
+		if (WeaponID == 16 && Yandere.EquippedWeapon == this && Input.GetButtonDown(InputNames.Xbox_RB) && ExtraBlade != null)
 		{
 			ExtraBlade.SetActive(!ExtraBlade.activeInHierarchy);
 		}
@@ -863,5 +867,27 @@ public class WeaponScript : MonoBehaviour
 		{
 			MyRenderer.material.SetFloat("_BlendAmount", 0f);
 		}
+	}
+
+	public void GetStuckInBox()
+	{
+		Physics.IgnoreCollision(Box.GetComponent<Collider>(), MyCollider);
+		if (Prompt.Yandere.EquippedWeapon == this)
+		{
+			Prompt.Yandere.DropTimer[Prompt.Yandere.Equipped] = 0.5f;
+			Prompt.Yandere.DropWeapon(Prompt.Yandere.Equipped);
+		}
+		MyRigidbody.useGravity = false;
+		MyRigidbody.isKinematic = true;
+		MyCollider.isTrigger = true;
+		base.transform.parent = Box.transform;
+		base.transform.localPosition = new Vector3(0f, 0.24f, 0f);
+		base.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
+		Prompt.Hide();
+		Prompt.enabled = false;
+		base.enabled = false;
+		base.gameObject.SetActive(value: true);
+		Box.PickUp.StuckBoxCutter = this;
+		InBox = true;
 	}
 }

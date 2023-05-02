@@ -170,7 +170,7 @@ public class FunScript : MonoBehaviour
 		}
 		if (Controls.activeInHierarchy)
 		{
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				if (Skip.activeInHierarchy)
 				{
@@ -182,7 +182,7 @@ public class FunScript : MonoBehaviour
 					Typewriter.mFullText = Lines[ID];
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (ID < Lines.Length - 1 && !VeryFun)
 				{

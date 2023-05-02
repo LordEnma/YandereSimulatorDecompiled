@@ -564,7 +564,7 @@ public class CounselorScript : MonoBehaviour
 			}
 			if (ShowWindow)
 			{
-				if (CounselorDoor.Darkness.color.a == 0f && Input.GetButtonDown("A"))
+				if (CounselorDoor.Darkness.color.a == 0f && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (Selected == 7)
 					{
@@ -647,7 +647,7 @@ public class CounselorScript : MonoBehaviour
 			}
 			else if (!Interrogating)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					MyAudio.Stop();
 				}
@@ -690,7 +690,7 @@ public class CounselorScript : MonoBehaviour
 					PromptBar.Label[0].text = "Continue";
 					PromptBar.UpdateButtons();
 					PromptBar.Show = true;
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						LecturePhase++;
 						PromptBar.ClearButtons();
@@ -713,7 +713,7 @@ public class CounselorScript : MonoBehaviour
 			}
 			else if (LecturePhase == 3)
 			{
-				if (!MyAudio.isPlaying || Input.GetButtonDown("A"))
+				if (!MyAudio.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					LectureSubtitle.text = RivalText[LectureID];
 					MyAudio.clip = RivalClips[LectureID];
@@ -723,7 +723,7 @@ public class CounselorScript : MonoBehaviour
 			}
 			else if (LecturePhase == 4)
 			{
-				if (!MyAudio.isPlaying || Input.GetButtonDown("A"))
+				if (!MyAudio.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					LectureSubtitle.text = string.Empty;
 					if (RivalExpelProgress < 5)
@@ -1241,13 +1241,13 @@ public class CounselorScript : MonoBehaviour
 			}
 		}
 		Timer += Time.deltaTime;
-		if (Input.GetButtonDown("A") && InterrogationPhase != 4)
+		if (Input.GetButtonDown(InputNames.Xbox_A) && InterrogationPhase != 4)
 		{
 			Timer += 20f;
 		}
 		if (InterrogationPhase == 0)
 		{
-			if (Timer > 1f || Input.GetButtonDown("A"))
+			if (Timer > 1f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Debug.Log("Previous Punishments: " + CounselorPunishments);
 				Patience -= CounselorPunishments;
@@ -1289,7 +1289,7 @@ public class CounselorScript : MonoBehaviour
 		{
 			Yandere.Police.Darkness.color -= new Color(0f, 0f, 0f, Time.deltaTime);
 			Yandere.MainCamera.transform.position = Vector3.Lerp(Yandere.MainCamera.transform.position, CameraTarget.position, Timer * Time.deltaTime * 0.5f);
-			if (Timer > 5f || Input.GetButtonDown("A"))
+			if (Timer > 5f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Yandere.MainCamera.transform.position = CameraTarget.position;
 				MyAudio.clip = GreetingClips[CounselorVisits];
@@ -1302,7 +1302,7 @@ public class CounselorScript : MonoBehaviour
 		}
 		else if (InterrogationPhase == 2)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				MyAudio.Stop();
 			}
@@ -1375,7 +1375,7 @@ public class CounselorScript : MonoBehaviour
 		}
 		else if (InterrogationPhase == 3)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				MyAudio.Stop();
 			}
@@ -1448,7 +1448,7 @@ public class CounselorScript : MonoBehaviour
 			for (int j = 1; j < 7; j++)
 			{
 				CounselorOption[j].transform.eulerAngles = new Vector3(CounselorOption[j].transform.eulerAngles.x, CounselorOption[j].transform.eulerAngles.y, 0f);
-				if (!CounselorOption[j].Clicked && (!(CounselorOption[j].Sprite.color != CounselorOption[j].OriginalColor) || !Input.GetButtonDown("A")))
+				if (!CounselorOption[j].Clicked && (!(CounselorOption[j].Sprite.color != CounselorOption[j].OriginalColor) || !Input.GetButtonDown(InputNames.Xbox_A)))
 				{
 					continue;
 				}
@@ -1493,7 +1493,7 @@ public class CounselorScript : MonoBehaviour
 					CounselorOption[l].transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
 				}
 			}
-			if (Timer > 3f || Input.GetButtonDown("A"))
+			if (Timer > 3f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				CounselorOptions.transform.localScale = new Vector3(1f, 1f, 1f);
 				CounselorOptions.SetActive(value: false);
@@ -1575,7 +1575,7 @@ public class CounselorScript : MonoBehaviour
 				Yandere.Sanity = Mathf.MoveTowards(Yandere.Sanity, 0f, Time.deltaTime * 7.5f);
 				Rumble.volume += Time.deltaTime * 0.075f;
 			}
-			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A"))
+			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (SilentTreatment)
 				{
@@ -1846,7 +1846,7 @@ public class CounselorScript : MonoBehaviour
 		}
 		else if (InterrogationPhase == 7)
 		{
-			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A"))
+			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Patience < 0)
 				{
@@ -1892,7 +1892,7 @@ public class CounselorScript : MonoBehaviour
 		}
 		else if (InterrogationPhase == 8)
 		{
-			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A"))
+			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				CounselorDoor.FadeOut = true;
 				CounselorDoor.Exit = true;
@@ -1903,7 +1903,7 @@ public class CounselorScript : MonoBehaviour
 		}
 		else if (InterrogationPhase == 9)
 		{
-			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A"))
+			if (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				MyAnimation.Play("CounselorSlamDesk");
 				InterrogationPhase++;
@@ -1931,7 +1931,7 @@ public class CounselorScript : MonoBehaviour
 				Shake.shakeAmount = Mathf.Lerp(Shake.shakeAmount, 0f, Time.deltaTime);
 			}
 			Shake.shakeAmount = Mathf.Lerp(Shake.shakeAmount, 0f, Time.deltaTime * 10f);
-			if (Timer > 1.5f || Input.GetButtonDown("A"))
+			if (Timer > 1.5f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				MyAudio.clip = SuspensionClips[Mathf.Abs(Patience)];
 				CounselorSubtitle.text = Suspensions[Mathf.Abs(Patience)];
@@ -1943,7 +1943,7 @@ public class CounselorScript : MonoBehaviour
 				Timer = 0f;
 			}
 		}
-		else if (InterrogationPhase == 11 && (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown("A")) && !Yandere.Police.FadeOut)
+		else if (InterrogationPhase == 11 && (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown(InputNames.Xbox_A)) && !Yandere.Police.FadeOut)
 		{
 			CounselorPunishments++;
 			Yandere.Police.Darkness.color = new Color(0f, 0f, 0f, 0f);

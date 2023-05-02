@@ -92,7 +92,7 @@ public class PoseModeScript : MonoBehaviour
 			}
 			if (ChoosingAction)
 			{
-				if (Input.GetButtonDown("A") && OptionLabels[Selected].color.a == 1f)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && OptionLabels[Selected].color.a == 1f)
 				{
 					ChoosingAction = false;
 					if (Selected == 1)
@@ -185,14 +185,14 @@ public class PoseModeScript : MonoBehaviour
 						}
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Exit();
 				}
 			}
 			else if (ChoosingBodyRegion)
 			{
-				if (Input.GetButtonDown("A") && OptionLabels[Selected].color.a == 1f)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && OptionLabels[Selected].color.a == 1f)
 				{
 					ChoosingBodyRegion = false;
 					if (Selected == 1)
@@ -211,7 +211,7 @@ public class PoseModeScript : MonoBehaviour
 						UpdateHighlight();
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					ChoosingBodyRegion = false;
 					ChoosingAction = true;
@@ -223,7 +223,7 @@ public class PoseModeScript : MonoBehaviour
 			}
 			else if (ChoosingBone)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					ChoosingBone = false;
 					Posing = true;
@@ -266,7 +266,7 @@ public class PoseModeScript : MonoBehaviour
 					RememberPose();
 					UpdateLabels();
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					ChoosingBodyRegion = true;
 					ChoosingBone = false;
@@ -337,11 +337,11 @@ public class PoseModeScript : MonoBehaviour
 						UpdateLabels();
 					}
 				}
-				else if (Selected == 11 && Input.GetButtonDown("A"))
+				else if (Selected == 11 && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					ResetPose();
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					if (Region == 1)
 					{
@@ -554,7 +554,7 @@ public class PoseModeScript : MonoBehaviour
 					CapColors();
 					UpdateLabels();
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					ChoosingAction = true;
 					Customizing = false;
@@ -565,22 +565,22 @@ public class PoseModeScript : MonoBehaviour
 			}
 			else if (Animating)
 			{
-				if (Input.GetButtonDown("X"))
+				if (Input.GetButtonDown(InputNames.Xbox_X))
 				{
 					Offset += 16;
 					UpdateHighlight();
 				}
-				if (Input.GetButtonDown("Y"))
+				if (Input.GetButtonDown(InputNames.Xbox_Y))
 				{
 					Offset -= 16;
 					UpdateHighlight();
 				}
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Student.CharacterAnimation.Stop();
 					Student.CharacterAnimation.CrossFade(AnimationArray[Selected + Offset]);
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					PromptBar.Label[2].text = string.Empty;
 					PromptBar.Label[3].text = string.Empty;
@@ -633,18 +633,18 @@ public class PoseModeScript : MonoBehaviour
 						}
 						UpdateLabels();
 					}
-					if (Input.GetButtonDown("X"))
+					if (Input.GetButtonDown(InputNames.Xbox_X))
 					{
 						Student.MyRenderer.SetBlendShapeWeight(Selected - 1, 0f);
 						UpdateLabels();
 					}
-					if (Input.GetButtonDown("Y"))
+					if (Input.GetButtonDown(InputNames.Xbox_Y))
 					{
 						Student.MyRenderer.SetBlendShapeWeight(Selected - 1, 100f);
 						UpdateLabels();
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					PromptBar.Label[2].text = string.Empty;
 					PromptBar.Label[3].text = string.Empty;
@@ -679,7 +679,7 @@ public class PoseModeScript : MonoBehaviour
 						UpdateLabels();
 					}
 				}
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (Selected == 2)
 					{
@@ -693,7 +693,7 @@ public class PoseModeScript : MonoBehaviour
 						PoseSerializer.DeserializePose(Student.Cosmetic, Student.transform, SaveSlot.ToString() ?? "");
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					PromptBar.Label[2].text = string.Empty;
 					PromptBar.Label[3].text = string.Empty;
@@ -717,9 +717,9 @@ public class PoseModeScript : MonoBehaviour
 			base.transform.localScale = Vector3.zero;
 			Panel.enabled = false;
 		}
-		if (Placing && (Input.GetButtonDown("A") || Input.GetButtonDown("B")))
+		if (Placing && (Input.GetButtonDown(InputNames.Xbox_A) || Input.GetButtonDown(InputNames.Xbox_B)))
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Student.transform.position = Marker.transform.position;
 			}

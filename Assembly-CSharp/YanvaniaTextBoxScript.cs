@@ -113,7 +113,7 @@ public class YanvaniaTextBoxScript : MonoBehaviour
 					else
 					{
 						NewLineTimer += Time.deltaTime;
-						if (NewLineTimer > component.clip.length + 0.5f || Input.GetButtonDown("A") || Input.GetKeyDown("z") || Input.GetKeyDown("x"))
+						if (NewLineTimer > component.clip.length + 0.5f || Input.GetButtonDown(InputNames.Xbox_A) || Input.GetKeyDown("z") || Input.GetKeyDown("x"))
 						{
 							Display = false;
 						}

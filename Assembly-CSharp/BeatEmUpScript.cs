@@ -297,7 +297,7 @@ public class BeatEmUpScript : MonoBehaviour
 			{
 				b = new Quaternion(0f, 0f, 0f, 0f);
 			}
-			if ((CanMove || (!CanMove && Attacking)) && Input.GetButtonDown("A"))
+			if ((CanMove || (!CanMove && Attacking)) && Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Attacking = false;
 				CanMove = false;
@@ -328,7 +328,7 @@ public class BeatEmUpScript : MonoBehaviour
 				{
 					MyAnimation.CrossFade(IdleAnim);
 				}
-				if (Input.GetButtonDown("X") || Input.GetButtonDown("Y"))
+				if (Input.GetButtonDown(InputNames.Xbox_X) || Input.GetButtonDown(InputNames.Xbox_Y))
 				{
 					MyAudio.clip = AttackVoices[Random.Range(1, AttackVoices.Length)];
 					MyAudio.Play();
@@ -341,7 +341,7 @@ public class BeatEmUpScript : MonoBehaviour
 					Heavy = false;
 					b = Quaternion.LookRotation(Enemy.transform.position - base.transform.position);
 					base.transform.rotation = b;
-					if (Input.GetButtonDown("Y"))
+					if (Input.GetButtonDown(InputNames.Xbox_Y))
 					{
 						Heavy = true;
 					}
@@ -358,7 +358,7 @@ public class BeatEmUpScript : MonoBehaviour
 					MyAnimation[AttackAnim[AttackID]].time = 0f;
 					MyAnimation.Play(AttackAnim[AttackID]);
 				}
-				else if (SuperMeter >= 100f && Input.GetButtonDown("B"))
+				else if (SuperMeter >= 100f && Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					MyAudio.clip = AttackVoices[Random.Range(1, AttackVoices.Length)];
 					MyAudio.Play();
@@ -430,11 +430,11 @@ public class BeatEmUpScript : MonoBehaviour
 					}
 					else if (AttackID < AttackLimit)
 					{
-						if (!Heavy && Input.GetButtonDown("X"))
+						if (!Heavy && Input.GetButtonDown(InputNames.Xbox_X))
 						{
 							Combo = true;
 						}
-						else if (Heavy && Input.GetButtonDown("Y"))
+						else if (Heavy && Input.GetButtonDown(InputNames.Xbox_Y))
 						{
 							Combo = true;
 						}
@@ -442,11 +442,11 @@ public class BeatEmUpScript : MonoBehaviour
 				}
 				else if (AttackID < AttackLimit)
 				{
-					if (!Heavy && Input.GetButtonDown("X"))
+					if (!Heavy && Input.GetButtonDown(InputNames.Xbox_X))
 					{
 						Combo = true;
 					}
-					else if (Heavy && Input.GetButtonDown("Y"))
+					else if (Heavy && Input.GetButtonDown(InputNames.Xbox_Y))
 					{
 						Combo = true;
 					}
@@ -520,7 +520,7 @@ public class BeatEmUpScript : MonoBehaviour
 			{
 				if (Cutscene)
 				{
-					if (!Dialogue.isPlaying || Input.GetButtonDown("A"))
+					if (!Dialogue.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						CutsceneID++;
 						if (CutsceneID < 3)
@@ -605,7 +605,7 @@ public class BeatEmUpScript : MonoBehaviour
 					}
 				}
 			}
-			if (Input.GetButtonDown("Start"))
+			if (Input.GetButtonDown(InputNames.Xbox_Start))
 			{
 				if (Time.timeScale > 0f)
 				{
@@ -658,7 +658,7 @@ public class BeatEmUpScript : MonoBehaviour
 				MyAnimation.CrossFade(IdleAnim);
 			}
 		}
-		else if (!Dialogue.isPlaying || Input.GetButtonDown("A"))
+		else if (!Dialogue.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			CutsceneID++;
 			if (CutsceneID < DialogueClips.Length)

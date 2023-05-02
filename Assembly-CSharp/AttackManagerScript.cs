@@ -176,9 +176,11 @@ public class AttackManagerScript : MonoBehaviour
 		weapon.MyAudio.Play();
 		if (weapon.Type == WeaponType.Knife)
 		{
+			Yandere.TargetStudent.Stabbed = true;
 			weapon.Flip = true;
 		}
 		Distance = GetReachDistance(weapon.Type, sanityType);
+		Yandere.StudentManager.IncreaseStudentVisionDistance();
 	}
 
 	private void Update()
@@ -294,6 +296,7 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			equippedWeapon.MyAudio.pitch = 1f;
 			Time.timeScale = 1f;
+			Yandere.StudentManager.IncreaseStudentVisionDistance();
 		}
 		if (!Yandere.TargetStudent.Electrified && !Yandere.TargetStudent.Electrocuted)
 		{
@@ -324,6 +327,7 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			equippedWeapon.Type = WeaponType.Knife;
 		}
+		Yandere.StudentManager.IncreaseStudentVisionDistance();
 	}
 
 	private void SpecialEffect(WeaponScript weapon, SanityType sanityType)
@@ -879,7 +883,7 @@ public class AttackManagerScript : MonoBehaviour
 
 	private void LoopCheck(WeaponScript weapon)
 	{
-		if (Input.GetButtonDown("X") && !Yandere.Chased && Yandere.Chasers == 0)
+		if (Input.GetButtonDown(InputNames.Xbox_X) && !Yandere.Chased && Yandere.Chasers == 0)
 		{
 			if (weapon.Type == WeaponType.Knife)
 			{

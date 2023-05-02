@@ -486,7 +486,7 @@ public class DatingMinigameScript : MonoBehaviour
 					Selected++;
 					UpdateHighlight();
 				}
-				if (Input.GetButtonDown("A") && Labels[Selected].color.a == 1f)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && Labels[Selected].color.a == 1f)
 				{
 					if (Selected == 1)
 					{
@@ -544,7 +544,7 @@ public class DatingMinigameScript : MonoBehaviour
 					Column++;
 					UpdateTopicHighlight();
 				}
-				if (Input.GetButtonDown("A") && TopicIcons[TopicSelected].color.a == 1f)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && TopicIcons[TopicSelected].color.a == 1f)
 				{
 					SelectingTopic = false;
 					UISprite uISprite = TopicIcons[TopicSelected];
@@ -614,7 +614,7 @@ public class DatingMinigameScript : MonoBehaviour
 						Affection = 0f;
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					SelectingTopic = false;
 				}
@@ -642,7 +642,7 @@ public class DatingMinigameScript : MonoBehaviour
 					Side++;
 					UpdateComplimentHighlight();
 				}
-				if (Input.GetButtonDown("A") && ComplimentLabels[ComplimentSelected].color.a == 1f)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && ComplimentLabels[ComplimentSelected].color.a == 1f)
 				{
 					UILabel uILabel3 = Labels[3];
 					uILabel3.color = new Color(uILabel3.color.r, uILabel3.color.g, uILabel3.color.b, 0.5f);
@@ -672,7 +672,7 @@ public class DatingMinigameScript : MonoBehaviour
 						Affection = 0f;
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Complimenting = false;
 				}
@@ -690,7 +690,7 @@ public class DatingMinigameScript : MonoBehaviour
 					TraitSelected++;
 					UpdateTraitHighlight();
 				}
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					UILabel uILabel4 = Labels[4];
 					uILabel4.color = new Color(uILabel4.color.r, uILabel4.color.g, uILabel4.color.b, 0.5f);
@@ -729,7 +729,7 @@ public class DatingMinigameScript : MonoBehaviour
 						Affection = 0f;
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					ShowingOff = false;
 				}
@@ -757,7 +757,7 @@ public class DatingMinigameScript : MonoBehaviour
 					GiftColumn++;
 					UpdateGiftHighlight();
 				}
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (GiftIcons[GiftSelected].enabled)
 					{
@@ -783,7 +783,7 @@ public class DatingMinigameScript : MonoBehaviour
 						Affection = 0f;
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					GivingGift = false;
 				}
@@ -794,7 +794,7 @@ public class DatingMinigameScript : MonoBehaviour
 			Speed += Time.deltaTime * 100f;
 			AffectionSet.localPosition = new Vector3(AffectionSet.localPosition.x, AffectionSet.localPosition.y + Speed, AffectionSet.localPosition.z);
 			OptionSet.localPosition = new Vector3(OptionSet.localPosition.x + Speed, OptionSet.localPosition.y, OptionSet.localPosition.z);
-			if (Speed > 100f && Input.GetButtonDown("A"))
+			if (Speed > 100f && Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Phase++;
 			}

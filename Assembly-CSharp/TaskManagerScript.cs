@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class TaskManagerScript : MonoBehaviour
 {
+	public GravurePhotoShootScript GravureShoot;
+
 	public StudentManagerScript StudentManager;
 
+	public WeaponManagerScript WeaponManager;
+
 	public YandereScript Yandere;
+
+	public ClockScript Clock;
 
 	public Transform MuddyFootprintParent;
 
@@ -12,15 +18,29 @@ public class TaskManagerScript : MonoBehaviour
 
 	public PromptScript[] Prompts;
 
+	public TapePlayerScript TapePlayer;
+
+	public TaskKittenScript Kitten;
+
+	public ClothScript Cloth;
+
 	public bool[] GirlsQuestioned;
 
 	public GameObject FixedDummy;
+
+	public GameObject Flyers;
+
+	public GameObject Books;
 
 	public int[] TaskStatus;
 
 	public bool Initialized;
 
+	public bool Eighties;
+
 	public bool Mentored;
+
+	public bool Proceed;
 
 	public void Start()
 	{
@@ -44,9 +64,23 @@ public class TaskManagerScript : MonoBehaviour
 		{
 			UpdateTaskStatus();
 		}
-		if (GameGlobals.Eighties && MuddyFootprintParent != null)
+		if (GameGlobals.Eighties)
 		{
-			MuddyFootprintParent.gameObject.SetActive(value: false);
+			if (MuddyFootprintParent != null)
+			{
+				MuddyFootprintParent.gameObject.SetActive(value: false);
+			}
+			Eighties = true;
+		}
+		if (Eighties)
+		{
+			for (int k = 1; k < 101; k++)
+			{
+				if (TaskStatus[k] == 1 && StudentManager.Students[k] != null && StudentManager.GenericTaskIDs[k] > 0)
+				{
+					Yandere.Inventory.ItemsRequested[StudentManager.GenericTaskIDs[k]]++;
+				}
+			}
 		}
 		Initialized = true;
 	}
@@ -335,8 +369,101 @@ public class TaskManagerScript : MonoBehaviour
 					StudentManager.Students[81].TaskPhase = 5;
 				}
 			}
+			return;
 		}
-		else if (TaskStatus[79] == 1 && StudentManager.Students[79] != null)
+		if (TaskStatus[11] == 1 && StudentManager.Students[11] != null)
+		{
+			if (!Yandere.Inventory.PinkCloth)
+			{
+				Cloth.PinkSockTask = true;
+			}
+			if (Yandere.Inventory.PinkSocks)
+			{
+				Debug.Log("Cutesy's task should be ready to turn in!");
+				StudentManager.Students[11].TaskPhase = 5;
+			}
+		}
+		if (TaskStatus[12] == 1 && StudentManager.Students[12] != null)
+		{
+			int num = 0;
+			for (int l = 6; l < 11; l++)
+			{
+				for (int m = 1; m < 26; m++)
+				{
+					if (StudentManager.OpinionsLearned.StudentOpinions[l].Opinions[m])
+					{
+						num++;
+					}
+				}
+			}
+			Debug.Log("Current number of opinions learned is: " + num);
+			if (num > 9)
+			{
+				Debug.Log("Fiery's task should be ready to turn in!");
+				StudentManager.Students[12].TaskPhase = 5;
+			}
+		}
+		if (TaskStatus[13] == 1 && StudentManager.Students[13] != null)
+		{
+			Flyers.transform.parent.gameObject.SetActive(value: true);
+			if (Flyers.activeInHierarchy && Yandere.Inventory.Flyers == 0)
+			{
+				Debug.Log("Bookworm's task should be ready to turn in!");
+				StudentManager.Students[13].TaskPhase = 5;
+			}
+		}
+		if (TaskStatus[14] == 1 && StudentManager.Students[14] != null)
+		{
+			Kitten.gameObject.SetActive(value: true);
+			if (Kitten.Caught && Vector3.Distance(StudentManager.Students[14].transform.position, Kitten.gameObject.transform.position) < 5f)
+			{
+				Debug.Log("Sporty's task should be ready to turn in!");
+				StudentManager.Students[14].TaskPhase = 5;
+			}
+		}
+		if (TaskStatus[15] == 1 && StudentManager.Students[15] != null && Yandere.Inventory.Money > 999.99f)
+		{
+			Debug.Log("Rich's task should be ready to turn in!");
+			StudentManager.Students[15].TaskPhase = 5;
+		}
+		if (TaskStatus[16] == 1 && StudentManager.Students[16] != null)
+		{
+			TapePlayer.Prompt.enabled = true;
+			if (TapePlayer.MelodyRecording)
+			{
+				Debug.Log("Idol's task should be ready to turn in!");
+				StudentManager.Students[16].TaskPhase = 5;
+			}
+		}
+		if (TaskStatus[17] == 1 && StudentManager.Students[17] != null)
+		{
+			Books.transform.parent.gameObject.SetActive(value: true);
+			if (Books.activeInHierarchy && Yandere.Inventory.Books == 0)
+			{
+				Debug.Log("Prodigy's task should be ready to turn in!");
+				StudentManager.Students[17].TaskPhase = 5;
+			}
+		}
+		if (TaskStatus[18] == 1 && StudentManager.Students[18] != null && Yandere.Friends > 19)
+		{
+			Debug.Log("Traditional's task should be ready to turn in!");
+			StudentManager.Students[18].TaskPhase = 5;
+		}
+		if (TaskStatus[19] == 1 && StudentManager.Students[19] != null)
+		{
+			GravureShoot.gameObject.SetActive(value: true);
+			if (GravureShoot.Complete)
+			{
+				Debug.Log("Gravure's task should be ready to turn in!");
+				StudentManager.Students[19].TaskPhase = 5;
+			}
+		}
+		if (TaskStatus[20] == 1 && StudentManager.Students[20] != null && Clock.HourTime < 8f && WeaponManager.Weapons[1] != null && Vector3.Distance(StudentManager.Students[20].transform.position, WeaponManager.Weapons[1].transform.position) < 3f)
+		{
+			Debug.Log("Investigator's task should be ready to turn in!");
+			StudentManager.Students[20].TaskPhase = 5;
+		}
+		if (TaskStatus[79] == 1 && StudentManager.Students[79] != null)
 		{
 			Debug.Log("Telling Yakuza's litle brother to change his destination.");
 			ScheduleBlock obj = StudentManager.Students[79].ScheduleBlocks[6];
@@ -346,6 +473,107 @@ public class TaskManagerScript : MonoBehaviour
 			obj2.destination = "Wait";
 			obj2.action = "Wait";
 			StudentManager.Students[79].GetDestinations();
+		}
+	}
+
+	public void CheckTaskRequirement(int StudentID)
+	{
+		Proceed = false;
+		if (!Eighties)
+		{
+			if (StudentID == 46)
+			{
+				bool flag = false;
+				bool flag2 = false;
+				bool flag3 = false;
+				bool num = StudentManager.Students[47] != null && StudentManager.Students[47].Friend;
+				flag = StudentManager.Students[48] != null && StudentManager.Students[48].Friend;
+				flag2 = StudentManager.Students[49] != null && StudentManager.Students[49].Friend;
+				flag3 = StudentManager.Students[50] != null && StudentManager.Students[50].Friend;
+				if (!num || !flag || !flag2 || !flag3)
+				{
+					Proceed = false;
+				}
+				else
+				{
+					Proceed = true;
+				}
+			}
+		}
+		else
+		{
+			switch (StudentID)
+			{
+			case 12:
+			{
+				bool flag4 = false;
+				bool flag5 = false;
+				bool flag6 = false;
+				bool flag7 = false;
+				bool num2 = StudentManager.Students[6] != null && StudentManager.Students[6].Friend;
+				flag4 = StudentManager.Students[7] != null && StudentManager.Students[7].Friend;
+				flag5 = StudentManager.Students[8] != null && StudentManager.Students[8].Friend;
+				flag6 = StudentManager.Students[9] != null && StudentManager.Students[9].Friend;
+				flag7 = StudentManager.Students[10] != null && StudentManager.Students[10].Friend;
+				if (num2 || flag4 || flag5 || flag6 || flag7)
+				{
+					Proceed = true;
+				}
+				break;
+			}
+			case 13:
+				if (Yandere.Class.LanguageGrade > 0)
+				{
+					Proceed = true;
+				}
+				break;
+			case 14:
+				if (Yandere.Class.PhysicalGrade > 0)
+				{
+					Proceed = true;
+				}
+				break;
+			case 15:
+				if (Yandere.Inventory.Money > 499.99f)
+				{
+					Proceed = true;
+				}
+				break;
+			case 16:
+				if (Yandere.Club == ClubType.LightMusic)
+				{
+					Proceed = true;
+				}
+				break;
+			case 17:
+				if (Yandere.Class.BiologyGrade == 5 || Yandere.Class.ChemistryGrade == 5 || Yandere.Class.LanguageGrade == 5 || Yandere.Class.PhysicalGrade == 5 || Yandere.Class.PsychologyGrade == 5)
+				{
+					Proceed = true;
+				}
+				break;
+			case 18:
+				if (Yandere.Friends > 9 || PlayerGlobals.Friends + Yandere.Police.EndOfDay.NewFriends > 9)
+				{
+					Proceed = true;
+				}
+				break;
+			case 19:
+				if (Yandere.Class.Seduction > 0)
+				{
+					Proceed = true;
+				}
+				break;
+			case 20:
+				if (Yandere.Inventory.IDCard)
+				{
+					Proceed = true;
+				}
+				break;
+			}
+		}
+		if (Proceed)
+		{
+			Debug.Log("Hey, the player meets the criteria to unlock this character's Task!");
 		}
 	}
 

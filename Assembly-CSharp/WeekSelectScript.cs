@@ -216,7 +216,7 @@ public class WeekSelectScript : MonoBehaviour
 				}
 				UpdateArrow();
 			}
-			else if (Input.GetButtonDown("Y"))
+			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				GameGlobals.SetSpecificEliminations(RivalID, GameGlobals.GetSpecificEliminations(RivalID) + 1);
 				if (GameGlobals.GetSpecificEliminations(RivalID) > 20)
@@ -228,7 +228,7 @@ public class WeekSelectScript : MonoBehaviour
 				Debug.Log("Rival #" + RivalID + "'s Elimination is now " + GameGlobals.GetRivalEliminations(RivalID));
 				UpdateText();
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				GameGlobals.SetSpecificEliminations(RivalID, GameGlobals.GetSpecificEliminations(RivalID) - 1);
 				if (GameGlobals.GetSpecificEliminations(RivalID) < 1)
@@ -292,7 +292,7 @@ public class WeekSelectScript : MonoBehaviour
 			}
 			UpdateArrow();
 		}
-		else if (Input.GetButtonDown("Y") || Input.GetButtonDown("X"))
+		else if (Input.GetButtonDown(InputNames.Xbox_Y) || Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			if (DetailID == 1)
 			{
@@ -387,7 +387,7 @@ public class WeekSelectScript : MonoBehaviour
 		if (SettingWeek)
 		{
 			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 2.31f, 0f), Time.deltaTime * 10f);
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				SettingWeek = false;
 				SettingRivals = true;
@@ -400,11 +400,11 @@ public class WeekSelectScript : MonoBehaviour
 		else
 		{
 			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Fading = true;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				SettingWeek = true;
 				SettingRivals = false;

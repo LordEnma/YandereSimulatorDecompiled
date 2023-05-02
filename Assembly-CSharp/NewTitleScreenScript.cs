@@ -362,7 +362,7 @@ public class NewTitleScreenScript : MonoBehaviour
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
 						}
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							CongratulationsWindow.SetActive(value: false);
 							PromptBar.Show = false;
@@ -371,7 +371,7 @@ public class NewTitleScreenScript : MonoBehaviour
 					else
 					{
 						PressStart.alpha = Mathf.MoveTowards(PressStart.alpha, 1f, Time.deltaTime);
-						if (Input.GetButtonDown("Start"))
+						if (Input.GetButtonDown(InputNames.Xbox_Start))
 						{
 							PromptBar.ClearButtons();
 							PromptBar.Label[0].text = "Confirm";
@@ -414,7 +414,7 @@ public class NewTitleScreenScript : MonoBehaviour
 							DisableEightiesEffects();
 						}
 					}
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						PromptBar.Label[0].text = "Make Selection";
 						PromptBar.Label[1].text = "Back";
@@ -466,7 +466,7 @@ public class NewTitleScreenScript : MonoBehaviour
 							Selection--;
 							UpdateCursor();
 						}
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							if (ForVideo)
 							{
@@ -523,7 +523,7 @@ public class NewTitleScreenScript : MonoBehaviour
 								MyAudio.Play();
 							}
 						}
-						else if (Input.GetButtonDown("B"))
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							PromptBar.Label[1].text = "";
 							PromptBar.Label[4].text = "";
@@ -600,7 +600,7 @@ public class NewTitleScreenScript : MonoBehaviour
 				else if (!FadeQuestion)
 				{
 					Questions[CurrentQuestion].alpha = Mathf.MoveTowards(Questions[CurrentQuestion].alpha, 1f, Time.deltaTime * 2f);
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						FadeQuestion = true;
 					}
@@ -662,8 +662,7 @@ public class NewTitleScreenScript : MonoBehaviour
 					{
 						if (DateGlobals.Week < 11)
 						{
-							GameGlobals.CameFromTitleScreen = true;
-							SceneManager.LoadScene("CalendarScene");
+							SceneManager.LoadScene("HomeScene");
 						}
 						else
 						{
@@ -773,6 +772,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		PressStart.trueTypeFont = VCR;
 		GameGlobals.Profile = 11;
 		GameGlobals.Eighties = true;
+		TitleSaveFiles.BecomeEighties();
 		TitleSaveFiles.EightiesPrefix = 10;
 		TitleSaveFiles.SaveDatas[1].ID = 11;
 		TitleSaveFiles.SaveDatas[2].ID = 12;
@@ -808,6 +808,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		ExtrasLabel.alpha = 1f;
 		GameGlobals.Profile = 1;
 		GameGlobals.Eighties = false;
+		TitleSaveFiles.BecomeModern();
 		TitleSaveFiles.EightiesPrefix = 0;
 		TitleSaveFiles.SaveDatas[1].ID = 1;
 		TitleSaveFiles.SaveDatas[2].ID = 2;

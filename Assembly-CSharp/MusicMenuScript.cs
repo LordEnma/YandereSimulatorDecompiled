@@ -40,11 +40,11 @@ public class MusicMenuScript : MonoBehaviour
 			Selected++;
 			UpdateHighlight();
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			StartCoroutine(DownloadCoroutine());
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PromptBar.ClearButtons();
 			PromptBar.Label[0].text = "Accept";

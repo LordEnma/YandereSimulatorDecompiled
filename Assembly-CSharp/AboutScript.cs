@@ -33,7 +33,7 @@ public class AboutScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (SlideID < Labels.Length)
 			{

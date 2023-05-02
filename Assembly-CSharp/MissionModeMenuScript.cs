@@ -302,7 +302,7 @@ public class MissionModeMenuScript : MonoBehaviour
 					}
 				}
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (!InfoSpoke[0])
 				{
@@ -358,7 +358,7 @@ public class MissionModeMenuScript : MonoBehaviour
 			}
 			Transform transform8 = Option[Selected];
 			transform8.localPosition = new Vector3(Mathf.Lerp(transform8.transform.localPosition.x, 50f, Time.deltaTime * 10f), transform8.localPosition.y, transform8.localPosition.z);
-			if (!Input.GetButtonDown("A"))
+			if (!Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				return;
 			}
@@ -519,11 +519,11 @@ public class MissionModeMenuScript : MonoBehaviour
 				NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 				NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				StartMission();
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				Cursor.visible = false;
 				PromptBar.ClearButtons();
@@ -534,7 +534,7 @@ public class MissionModeMenuScript : MonoBehaviour
 				TargetID = 0;
 				Phase--;
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				RequiredClothingID = 0;
 				RequiredDisposalID = 0;
@@ -552,7 +552,7 @@ public class MissionModeMenuScript : MonoBehaviour
 				}
 				UpdateDifficultyLabel();
 			}
-			else if (Input.GetButtonDown("Y"))
+			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				UpdatePopulation();
 			}
@@ -611,7 +611,7 @@ public class MissionModeMenuScript : MonoBehaviour
 				Column--;
 				UpdateObjectiveHighlight();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (CustomSelected == 1)
 				{
@@ -671,7 +671,7 @@ public class MissionModeMenuScript : MonoBehaviour
 				}
 				CalculateMissionID();
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				Cursor.visible = false;
 				PromptBar.ClearButtons();
@@ -692,7 +692,7 @@ public class MissionModeMenuScript : MonoBehaviour
 				TargetID = 0;
 				Phase = 2;
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				if (CustomSelected == 1)
 				{
@@ -738,7 +738,7 @@ public class MissionModeMenuScript : MonoBehaviour
 				}
 				CalculateMissionID();
 			}
-			else if (Input.GetButtonDown("Y") && CustomSelected == 12)
+			else if (Input.GetButtonDown(InputNames.Xbox_Y) && CustomSelected == 12)
 			{
 				NemesisAggression = !NemesisAggression;
 			}
@@ -877,7 +877,7 @@ public class MissionModeMenuScript : MonoBehaviour
 					ErrorLabel.text = "Invalid Mission ID (Cannot be negative number)";
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Valid)
 				{
@@ -1007,7 +1007,7 @@ public class MissionModeMenuScript : MonoBehaviour
 					ChooseTarget();
 				}
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				Cursor.visible = false;
 				PromptBar.ClearButtons();
@@ -1077,7 +1077,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		{
 			if (TargetNumber > 11 && TargetNumber < 21)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					TargetID++;
 				}
@@ -1120,7 +1120,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		{
 			if (Phase == 5)
 			{
-				TargetID += (Input.GetButtonDown("A") ? 1 : (-1));
+				TargetID += (Input.GetButtonDown(InputNames.Xbox_A) ? 1 : (-1));
 			}
 			ChooseTarget();
 		}

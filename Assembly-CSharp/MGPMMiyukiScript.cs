@@ -146,7 +146,7 @@ public class MGPMMiyukiScript : MonoBehaviour
 			}
 		}
 		MovementSpeed = 0f;
-		if (Input.GetButton("LB"))
+		if (Input.GetButton(InputNames.Xbox_LB))
 		{
 			MovementSpeed = Speed * 0.5f;
 		}
@@ -237,7 +237,7 @@ public class MGPMMiyukiScript : MonoBehaviour
 				PositionY = -224f;
 			}
 			base.transform.localPosition = new Vector3(PositionX, PositionY, 0f);
-			if (Input.GetKey("z") || Input.GetKey("y") || Input.GetButton("A"))
+			if (Input.GetKey("z") || Input.GetKey("y") || Input.GetButton(InputNames.Xbox_A))
 			{
 				if (ShootTimer == 0f)
 				{
@@ -312,7 +312,7 @@ public class MGPMMiyukiScript : MonoBehaviour
 					ShootTimer = 0f;
 				}
 			}
-			if (Input.GetKeyUp("z") || Input.GetKeyUp("y") || Input.GetButtonUp("A"))
+			if (Input.GetKeyUp("z") || Input.GetKeyUp("y") || Input.GetButtonUp(InputNames.Xbox_A))
 			{
 				ShootTimer = 0f;
 			}

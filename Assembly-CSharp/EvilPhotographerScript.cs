@@ -271,7 +271,7 @@ public class EvilPhotographerScript : MonoBehaviour
 				GameOverPhase++;
 			}
 		}
-		else if (!MyAudio.isPlaying || Input.GetButton("A"))
+		else if (!MyAudio.isPlaying || Input.GetButton(InputNames.Xbox_A))
 		{
 			Heartbroken.SetActive(value: true);
 			Subtitle.text = "";

@@ -25,7 +25,7 @@ public class PodScript : MonoBehaviour
 		base.transform.position = Vector3.Lerp(base.transform.position, PodTarget.position, Time.deltaTime * 100f);
 		base.transform.rotation = AimTarget.parent.rotation;
 		base.transform.eulerAngles += new Vector3(-15f, 7.5f, 0f);
-		if (Input.GetButton("RB"))
+		if (Input.GetButton(InputNames.Xbox_RB))
 		{
 			Timer += Time.deltaTime;
 			if (Timer > FireRate)

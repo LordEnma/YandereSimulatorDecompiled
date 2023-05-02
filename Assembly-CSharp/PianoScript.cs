@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PianoScript : MonoBehaviour
 {
+	public TaskTapePlayerScript TapePlayer;
+
 	public PromptScript Prompt;
 
 	public AudioSource[] Notes;
@@ -15,6 +17,11 @@ public class PianoScript : MonoBehaviour
 			Prompt.Circle[0].fillAmount = 0f;
 			Notes[ID].Play();
 			ID++;
+			if (TapePlayer.gameObject.activeInHierarchy)
+			{
+				TapePlayer.NotesRecorded++;
+				TapePlayer.MelodyCheck();
+			}
 			if (ID == Notes.Length)
 			{
 				ID = 0;

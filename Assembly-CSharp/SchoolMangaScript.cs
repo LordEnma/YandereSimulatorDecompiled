@@ -146,7 +146,7 @@ public class SchoolMangaScript : MonoBehaviour
 				}
 				UpdateHighlight();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Selected < 16)
 				{
@@ -167,7 +167,7 @@ public class SchoolMangaScript : MonoBehaviour
 					CloseWindow();
 				}
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				CloseWindow();
 			}

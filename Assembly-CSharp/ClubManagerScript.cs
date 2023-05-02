@@ -27,6 +27,8 @@ public class ClubManagerScript : MonoBehaviour
 
 	public TranqCaseScript TranqCase;
 
+	public TrashCanScript WeaponBag;
+
 	public FeedListScript FeedList;
 
 	public YandereScript Yandere;
@@ -149,6 +151,8 @@ public class ClubManagerScript : MonoBehaviour
 
 	public bool[] QuitClub;
 
+	public bool NoBag;
+
 	public bool LeaderMissing;
 
 	public bool LeaderDead;
@@ -189,6 +193,7 @@ public class ClubManagerScript : MonoBehaviour
 
 	private void Start()
 	{
+		NoBag = ChallengeGlobals.NoBag;
 		LearnKickedClubs();
 		ActivitiesAttended = ClubGlobals.ActivitiesAttended;
 		MyAudio = GetComponent<AudioSource>();
@@ -308,7 +313,7 @@ public class ClubManagerScript : MonoBehaviour
 								}
 							}
 						}
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							ClubWindow.PerformingActivity = false;
 							PromptBar.Show = false;
@@ -749,6 +754,17 @@ public class ClubManagerScript : MonoBehaviour
 		{
 			ClubMembers--;
 		}
+		for (ID = 1; ID < ClubIDs.Length; ID++)
+		{
+			if (StudentManager.Students[ClubIDs[ID]] == null)
+			{
+				ClubMembers--;
+			}
+			else if (!StudentManager.Students[ClubIDs[ID]].Alive)
+			{
+				ClubMembers--;
+			}
+		}
 		if (Check == ClubType.LightMusic && ClubMembers < 5)
 		{
 			LeaderAshamed = true;
@@ -981,6 +997,11 @@ public class ClubManagerScript : MonoBehaviour
 		{
 			Container.enabled = true;
 			Container.Prompt.enabled = true;
+			if (NoBag)
+			{
+				WeaponBag.gameObject.SetActive(value: true);
+				WeaponBag.AttachToBack();
+			}
 		}
 		else if (Yandere.Club == ClubType.MartialArts)
 		{
@@ -1031,6 +1052,11 @@ public class ClubManagerScript : MonoBehaviour
 			Typewriter.Prompt.enabled = true;
 			Typewriter.enabled = true;
 		}
+		else if (Yandere.Club == ClubType.Delinquent && NoBag)
+		{
+			WeaponBag.gameObject.SetActive(value: true);
+			WeaponBag.AttachToBack();
+		}
 	}
 
 	public void DeactivateClubBenefit()
@@ -1076,6 +1102,11 @@ public class ClubManagerScript : MonoBehaviour
 				Container.enabled = false;
 				Container.Prompt.Hide();
 				Container.Prompt.enabled = false;
+				if (NoBag && Yandere.Container != null)
+				{
+					Yandere.Container.Drop();
+					WeaponBag.gameObject.SetActive(value: false);
+				}
 			}
 			else
 			{
@@ -1137,6 +1168,11 @@ public class ClubManagerScript : MonoBehaviour
 					Typewriter.Prompt.enabled = false;
 					Typewriter.enabled = false;
 					Typewriter.Prompt.Hide();
+				}
+				else if (Yandere.Club == ClubType.Delinquent && NoBag && Yandere.Container != null)
+				{
+					Yandere.Container.Drop();
+					WeaponBag.gameObject.SetActive(value: false);
 				}
 			}
 		}

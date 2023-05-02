@@ -213,7 +213,7 @@ public class SchemesScript : MonoBehaviour
 			}
 			UpdateSchemeInfo();
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			AudioSource component = GetComponent<AudioSource>();
 			if (PromptBar.Label[0].text != string.Empty)
@@ -270,7 +270,7 @@ public class SchemesScript : MonoBehaviour
 				component.Play();
 			}
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PromptBar.ClearButtons();
 			PromptBar.Label[0].text = "Accept";

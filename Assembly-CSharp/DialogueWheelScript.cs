@@ -97,6 +97,10 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public bool ClubLeader;
 
+	public bool NoFriends;
+
+	public bool NoGaming;
+
 	public bool Pestered;
 
 	public bool Show;
@@ -123,6 +127,8 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			LoveText[4] = "Advice";
 		}
+		NoFriends = ChallengeGlobals.NoFriends;
+		NoGaming = ChallengeGlobals.NoGaming;
 	}
 
 	private void Update()
@@ -303,7 +309,7 @@ public class DialogueWheelScript : MonoBehaviour
 					obj4.localScale = Vector3.Lerp(obj4.localScale, (Selected == l) ? new Vector3(1.3f, 1.3f, 1f) : new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 				}
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (ClubLeader)
 				{
@@ -608,7 +614,7 @@ public class DialogueWheelScript : MonoBehaviour
 					}
 				}
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				if (TaskDialogueWindow.activeInHierarchy)
 				{
@@ -627,7 +633,7 @@ public class DialogueWheelScript : MonoBehaviour
 					HideShadows();
 				}
 			}
-			else if (Input.GetButtonDown("B") && LockerWindow.activeInHierarchy)
+			else if (Input.GetButtonDown(InputNames.Xbox_B) && LockerWindow.activeInHierarchy)
 			{
 				Impatience.fillAmount = 0f;
 				Yandere.Interaction = YandereInteractionType.SendingToLocker;
@@ -725,7 +731,7 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite10 = Shadow[3];
 			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.75f);
 		}
-		if (!Yandere.TargetStudent.Indoors || Yandere.TargetStudent.Club == ClubType.Council)
+		if (!Yandere.TargetStudent.Indoors || Yandere.TargetStudent.Club == ClubType.Council || NoFriends)
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
@@ -734,9 +740,10 @@ public class DialogueWheelScript : MonoBehaviour
 			bool flag = false;
 			if (Yandere.StudentManager.Eighties)
 			{
-				if (Yandere.TargetStudent.StudentID != 79)
+				flag = true;
+				if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
 				{
-					flag = true;
+					flag = false;
 				}
 				HideTaskButtonIfNecessary();
 				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID] > 0)
@@ -876,6 +883,7 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		if (Yandere.Club == Yandere.TargetStudent.Club)
 		{
+			Debug.Log("Disabling Join option.");
 			UISprite uISprite12 = ClubShadow[1];
 			uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 0.75f);
 			UISprite uISprite13 = ClubShadow[2];
@@ -890,6 +898,11 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			UISprite uISprite15 = ClubShadow[2];
 			uISprite15.color = new Color(uISprite15.color.r, uISprite15.color.g, uISprite15.color.b, 0f);
+			if ((NoGaming && Yandere.TargetStudent.Club == ClubType.Gaming) || (NoGaming && Yandere.TargetStudent.Club == ClubType.Newspaper))
+			{
+				uISprite15 = ClubShadow[2];
+				uISprite15.color = new Color(uISprite15.color.r, uISprite15.color.g, uISprite15.color.b, 0.75f);
+			}
 			if (DateGlobals.Weekday == DayOfWeek.Friday && Clock.HourTime > 17.5f)
 			{
 				uISprite15 = ClubShadow[2];
@@ -1017,9 +1030,10 @@ public class DialogueWheelScript : MonoBehaviour
 		bool flag = false;
 		if (Yandere.StudentManager.Eighties)
 		{
-			if (Yandere.TargetStudent.StudentID != 79)
+			flag = true;
+			if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
 			{
-				flag = true;
+				flag = false;
 			}
 		}
 		else
@@ -1149,10 +1163,18 @@ public class DialogueWheelScript : MonoBehaviour
 					Yandere.TargetStudent.CurrentDestination = Yandere.TargetStudent.SleuthTarget;
 					Yandere.TargetStudent.Pathfinding.target = Yandere.TargetStudent.SleuthTarget;
 				}
-				else if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.Sunbathe && Yandere.TargetStudent.SunbathePhase > 1)
+				else if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.Sunbathe)
 				{
-					Yandere.TargetStudent.CurrentDestination = Yandere.StudentManager.SunbatheSpots[Yandere.TargetStudent.StudentID];
-					Yandere.TargetStudent.Pathfinding.target = Yandere.StudentManager.SunbatheSpots[Yandere.TargetStudent.StudentID];
+					if (Yandere.TargetStudent.SunbathePhase > 1)
+					{
+						Yandere.TargetStudent.CurrentDestination = Yandere.StudentManager.SunbatheSpots[Yandere.TargetStudent.StudentID];
+						Yandere.TargetStudent.Pathfinding.target = Yandere.StudentManager.SunbatheSpots[Yandere.TargetStudent.StudentID];
+					}
+				}
+				else if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.SitAndTakeNotes && Yandere.TargetStudent.MustChangeClothing)
+				{
+					Yandere.TargetStudent.GoChange();
+					Yandere.TargetStudent.CharacterAnimation.CrossFade(Yandere.TargetStudent.WalkAnim);
 				}
 			}
 			if (Yandere.TargetStudent.Persona == PersonaType.PhoneAddict)

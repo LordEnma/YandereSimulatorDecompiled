@@ -218,7 +218,7 @@ namespace YandereSimulator.Yancord
 					{
 						currentPhase++;
 					}
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						timer = messageDelay;
 					}
@@ -232,7 +232,7 @@ namespace YandereSimulator.Yancord
 						PartnerOnline.SetActive(value: false);
 						PartnerOffline.SetActive(value: true);
 					}
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						Debug.Log("Quitting!");
 						YancordGlobals.CurrentConversation++;
@@ -246,7 +246,7 @@ namespace YandereSimulator.Yancord
 				}
 				if (ShowingDialogueOption)
 				{
-					if (Input.GetButtonDown("A") && !DialogueChooseMenu.activeInHierarchy)
+					if (Input.GetButtonDown(InputNames.Xbox_A) && !DialogueChooseMenu.activeInHierarchy)
 					{
 						ChatLabel.text = "Choose one of the following answers to respond.";
 						DialogueChooseMenu.SetActive(value: true);
@@ -259,15 +259,15 @@ namespace YandereSimulator.Yancord
 					}
 					if (DialogueChooseMenu.activeInHierarchy)
 					{
-						if (Input.GetButtonDown("B"))
+						if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							Choice[currentPhase] = 1;
 						}
-						else if (Input.GetButtonDown("Y"))
+						else if (Input.GetButtonDown(InputNames.Xbox_Y))
 						{
 							Choice[currentPhase] = 2;
 						}
-						else if (Input.GetButtonDown("X"))
+						else if (Input.GetButtonDown(InputNames.Xbox_X))
 						{
 							Choice[currentPhase] = 3;
 						}
@@ -295,7 +295,7 @@ namespace YandereSimulator.Yancord
 			}
 			else if (!YancordGlobals.JoinedYancord)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					YancordGlobals.JoinedYancord = true;
 					JoinServer();
@@ -303,19 +303,19 @@ namespace YandereSimulator.Yancord
 					PartnerOnline.SetActive(value: true);
 					Chatting = true;
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Debug.Log("Quitting!");
 					FadeOut = true;
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				ChatLabel.text = string.Empty;
 				SpawnChatMessage();
 				Chatting = true;
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				Debug.Log("Quitting!");
 				FadeOut = true;

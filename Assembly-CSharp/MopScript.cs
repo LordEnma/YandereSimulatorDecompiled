@@ -67,7 +67,7 @@ public class MopScript : MonoBehaviour
 					if (Prompt.Button[0].color.a > 0f)
 					{
 						Prompt.Label[0].text = "     Sweep";
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							Yandere.Mopping = true;
 							HeadCollider.enabled = true;
@@ -91,7 +91,7 @@ public class MopScript : MonoBehaviour
 							if (Yandere.Bucket.Bloodiness < 100f)
 							{
 								Prompt.Label[0].text = "     Dip";
-								if (Input.GetButtonDown("A"))
+								if (Input.GetButtonDown(InputNames.Xbox_A))
 								{
 									if (Yandere.Bucket.transform.position.y < Yandere.transform.position.y + 0.1f)
 									{

@@ -238,7 +238,7 @@ public class PhotoGalleryScript : MonoBehaviour
 
 	private void UpdatePhotoSelection()
 	{
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (!NamingBully)
 			{
@@ -274,7 +274,7 @@ public class PhotoGalleryScript : MonoBehaviour
 				Time.timeScale = 1f;
 			}
 		}
-		if (!NamingBully && Input.GetButtonDown("B"))
+		if (!NamingBully && Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PromptBar.ClearButtons();
 			PromptBar.Label[0].text = "Accept";
@@ -288,7 +288,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			base.gameObject.SetActive(value: false);
 			UpdateButtonPrompts();
 		}
-		if (Input.GetButtonDown("X"))
+		if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			ViewPhoto.mainTexture = null;
 			int currentIndex = CurrentIndex;
@@ -310,7 +310,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 		if (Corkboard)
 		{
-			if (Input.GetButtonDown("Y"))
+			if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				CanAdjust = false;
 				HomeCursor.gameObject.SetActive(value: true);
@@ -318,7 +318,7 @@ public class PhotoGalleryScript : MonoBehaviour
 				UpdateButtonPrompts();
 			}
 		}
-		else if (Input.GetButtonDown("Y") && SenpaiPhoto[CurrentIndex])
+		else if (Input.GetButtonDown(InputNames.Xbox_Y) && SenpaiPhoto[CurrentIndex])
 		{
 			int currentIndex2 = CurrentIndex;
 			Yandere.Inventory.SenpaiShots--;
@@ -368,7 +368,7 @@ public class PhotoGalleryScript : MonoBehaviour
 	{
 		ViewPhoto.transform.localScale = Vector3.Lerp(ViewPhoto.transform.localScale, Corkboard ? new Vector3(5.8f, 5.8f, 5.8f) : new Vector3(6.5f, 6.5f, 6.5f), LerpSpeed);
 		ViewPhoto.transform.localPosition = Vector3.Lerp(ViewPhoto.transform.localPosition, Vector3.zero, LerpSpeed);
-		if (Corkboard && Input.GetButtonDown("A"))
+		if (Corkboard && Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			GameObject gameObject = Object.Instantiate(Photograph, base.transform.position, Quaternion.identity);
 			gameObject.transform.parent = CorkboardPanel;
@@ -387,7 +387,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			Photos++;
 			UpdateButtonPrompts();
 		}
-		if (!Input.GetButtonDown("B"))
+		if (!Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			return;
 		}
@@ -414,7 +414,7 @@ public class PhotoGalleryScript : MonoBehaviour
 	private void UpdateCorkboardPhoto()
 	{
 		Cursor.lockState = CursorLockMode.None;
-		if (Input.GetMouseButton(1))
+		if (Input.GetMouseButton(InputNames.Mouse_RMB))
 		{
 			MovingPhotoRotation += MouseDelta.x;
 		}
@@ -422,15 +422,15 @@ public class PhotoGalleryScript : MonoBehaviour
 		{
 			MovingPhotograph.transform.localPosition = new Vector3(MovingPhotograph.transform.localPosition.x + MouseDelta.x * 8.66666f, MovingPhotograph.transform.localPosition.y + MouseDelta.y * 8.66666f, 0f);
 		}
-		if (Input.GetButton("LB"))
+		if (Input.GetButton(InputNames.Xbox_LB))
 		{
 			MovingPhotoRotation += Time.deltaTime * 100f;
 		}
-		if (Input.GetButton("RB"))
+		if (Input.GetButton(InputNames.Xbox_RB))
 		{
 			MovingPhotoRotation -= Time.deltaTime * 100f;
 		}
-		if (Input.GetButton("Y"))
+		if (Input.GetButton(InputNames.Xbox_Y))
 		{
 			MovingPhotograph.transform.localScale += new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
 			if (MovingPhotograph.transform.localScale.x > 2f)
@@ -438,7 +438,7 @@ public class PhotoGalleryScript : MonoBehaviour
 				MovingPhotograph.transform.localScale = new Vector3(2f, 2f, 2f);
 			}
 		}
-		if (Input.GetButton("X"))
+		if (Input.GetButton(InputNames.Xbox_X))
 		{
 			MovingPhotograph.transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
 			if (MovingPhotograph.transform.localScale.x < 1f)
@@ -449,7 +449,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		Vector2 vector = new Vector2(MovingPhotograph.transform.localPosition.x, MovingPhotograph.transform.localPosition.y);
 		Vector2 vector2 = new Vector2(Input.GetAxis("Horizontal") * 86.66666f * SpeedLimit, Input.GetAxis("Vertical") * 86.66666f * SpeedLimit);
 		MovingPhotograph.transform.localPosition = new Vector3(Mathf.Clamp(vector.x + vector2.x, 0f - MaxPhotoX, MaxPhotoX), Mathf.Clamp(vector.y + vector2.y, 0f - MaxPhotoY, MaxPhotoY), MovingPhotograph.transform.localPosition.z);
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			HomeCursor.transform.localPosition = MovingPhotograph.transform.localPosition;
 			HomeCursor.gameObject.SetActive(value: true);
@@ -490,7 +490,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		{
 			transform.localPosition = new Vector3(transform.localPosition.x, -0.637f, transform.localPosition.z);
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (StringPhase == 0)
 			{
@@ -512,7 +512,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		Vector2 vector = new Vector2(HomeCursor.transform.localPosition.x, HomeCursor.transform.localPosition.y);
 		Vector2 vector2 = new Vector2(MouseDelta.x * 8.66666f + Input.GetAxis("Horizontal") * 8.66666f * SpeedLimit, MouseDelta.y * 8.66666f + Input.GetAxis("Vertical") * 8.66666f * SpeedLimit) * 5f;
 		HomeCursor.transform.localPosition = new Vector3(Mathf.Clamp(vector.x + vector2.x, -4788f, 4788f), Mathf.Clamp(vector.y + vector2.y, -3122f, 3122f), HomeCursor.transform.localPosition.z);
-		if (Input.GetButtonDown("A") && HomeCursor.Photograph != null)
+		if (Input.GetButtonDown(InputNames.Xbox_A) && HomeCursor.Photograph != null)
 		{
 			HomeCursor.Highlight.transform.position = new Vector3(HomeCursor.Highlight.transform.position.x, 100f, HomeCursor.Highlight.transform.position.z);
 			MovingPhotograph = HomeCursor.Photograph;
@@ -520,7 +520,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			Moving = true;
 			UpdateButtonPrompts();
 		}
-		if (Input.GetButtonDown("Y"))
+		if (Input.GetButtonDown(InputNames.Xbox_Y))
 		{
 			GameObject gameObject = Object.Instantiate(StringSet, base.transform.position, Quaternion.identity);
 			gameObject.transform.parent = StringParent;
@@ -534,7 +534,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			Strings++;
 			UpdateButtonPrompts();
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			if (HomeCursor.Photograph != null)
 			{
@@ -547,7 +547,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			Adjusting = false;
 			UpdateButtonPrompts();
 		}
-		if (Input.GetButtonDown("X"))
+		if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			if (HomeCursor.Photograph != null)
 			{
@@ -638,13 +638,14 @@ public class PhotoGalleryScript : MonoBehaviour
 				Hearts[i].gameObject.SetActive(value: false);
 			}
 		}
+		int Profile = GameGlobals.Profile;
 		for (int ID = 1; ID < 26; ID++)
 		{
 			if (!PhotographTaken[ID])
 			{
 				continue;
 			}
-			string url = "file:///" + Application.streamingAssetsPath + "/Photographs/Photo_" + ID + ".png";
+			string url = "file:///" + Application.streamingAssetsPath + "/Photographs/Profile_" + Profile + "/Photo_" + ID + ".png";
 			WWW www = new WWW(url);
 			yield return www;
 			if (www.error == null)
@@ -907,7 +908,6 @@ public class PhotoGalleryScript : MonoBehaviour
 
 	public void SavePhotosTaken()
 	{
-		Debug.Log("Saving Photos Taken right now.");
 		for (int i = 1; i < 26; i++)
 		{
 			if (PhotographTaken[i])

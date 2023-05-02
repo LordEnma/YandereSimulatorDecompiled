@@ -143,7 +143,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonUp("B"))
+				if (Input.GetButtonUp(InputNames.Xbox_B))
 				{
 					Yandere.RPGCamera.enabled = true;
 					PromptBar.Show = false;
@@ -151,7 +151,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 					Patronized = false;
 					Show = false;
 				}
-				if (Timer > 0.5f && Input.GetButtonUp("A") && Icons[Selected].spriteName != "Yes")
+				if (Timer > 0.5f && Input.GetButtonUp(InputNames.Xbox_A) && Icons[Selected].spriteName != "Yes")
 				{
 					CheckStore();
 					UpdateIcons();
@@ -211,12 +211,12 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			{
 				BlurAmount = Mathf.Lerp(BlurAmount, 0f, Time.deltaTime * 10f);
 				MaidWindow.localScale = Vector3.Lerp(MaidWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					StreetManager.FadeOut = true;
 					StreetManager.GoToCafe = true;
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Yandere.RPGCamera.enabled = true;
 					Yandere.CanMove = true;

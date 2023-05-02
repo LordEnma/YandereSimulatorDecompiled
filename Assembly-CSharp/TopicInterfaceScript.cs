@@ -95,7 +95,7 @@ public class TopicInterfaceScript : MonoBehaviour
 			Column++;
 			UpdateTopicHighlight();
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			bool flag = false;
 			if (Yandere.StudentManager.KokonaTutorial && TopicSelected != 2)
@@ -119,7 +119,7 @@ public class TopicInterfaceScript : MonoBehaviour
 				Time.timeScale = 1f;
 			}
 		}
-		else if (Input.GetButtonDown("X"))
+		else if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			if (!Yandere.StudentManager.KokonaTutorial)
 			{
@@ -127,7 +127,7 @@ public class TopicInterfaceScript : MonoBehaviour
 				UpdateTopicHighlight();
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			Yandere.Interaction = YandereInteractionType.Bye;
 			Yandere.TalkTimer = 2f;

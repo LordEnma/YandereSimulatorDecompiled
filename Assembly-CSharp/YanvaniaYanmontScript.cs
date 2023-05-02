@@ -254,11 +254,11 @@ public class YanvaniaYanmontScript : MonoBehaviour
 						{
 							if (!Crouching)
 							{
-								if (Input.GetAxis("VaniaHorizontal") > 0f)
+								if (Input.GetAxis(InputNames.Yanvania_Horizontal) > 0f)
 								{
 									inputX = 1f;
 								}
-								else if (Input.GetAxis("VaniaHorizontal") < 0f)
+								else if (Input.GetAxis(InputNames.Yanvania_Horizontal) < 0f)
 								{
 									inputX = -1f;
 								}
@@ -276,13 +276,13 @@ public class YanvaniaYanmontScript : MonoBehaviour
 							speed = 0f;
 						}
 					}
-					else if (Input.GetAxis("VaniaHorizontal") != 0f)
+					else if (Input.GetAxis(InputNames.Yanvania_Horizontal) != 0f)
 					{
-						if (Input.GetAxis("VaniaHorizontal") > 0f)
+						if (Input.GetAxis(InputNames.Yanvania_Horizontal) > 0f)
 						{
 							inputX = 1f;
 						}
-						else if (Input.GetAxis("VaniaHorizontal") < 0f)
+						else if (Input.GetAxis(InputNames.Yanvania_Horizontal) < 0f)
 						{
 							inputX = -1f;
 						}
@@ -299,12 +299,12 @@ public class YanvaniaYanmontScript : MonoBehaviour
 					float num2 = ((inputX != 0f && num != 0f && limitDiagonalSpeed) ? 0.70710677f : 1f);
 					if (!Attacking)
 					{
-						if (Input.GetAxis("VaniaHorizontal") < 0f)
+						if (Input.GetAxis(InputNames.Yanvania_Horizontal) < 0f)
 						{
 							Character.transform.localEulerAngles = new Vector3(Character.transform.localEulerAngles.x, -90f, Character.transform.localEulerAngles.z);
 							Character.transform.localScale = new Vector3(-1f, Character.transform.localScale.y, Character.transform.localScale.z);
 						}
-						else if (Input.GetAxis("VaniaHorizontal") > 0f)
+						else if (Input.GetAxis(InputNames.Yanvania_Horizontal) > 0f)
 						{
 							Character.transform.localEulerAngles = new Vector3(Character.transform.localEulerAngles.x, 90f, Character.transform.localEulerAngles.z);
 							Character.transform.localScale = new Vector3(1f, Character.transform.localScale.y, Character.transform.localScale.z);
@@ -314,7 +314,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 					{
 						if (!Attacking && !Dangling)
 						{
-							if (Input.GetAxis("VaniaVertical") < -0.5f)
+							if (Input.GetAxis(InputNames.Yanvania_Vertical) < -0.5f)
 							{
 								MyController.center = new Vector3(MyController.center.x, 0.5f, MyController.center.z);
 								MyController.height = 1f;
@@ -329,7 +329,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 								{
 									if (!Dangling)
 									{
-										if (Input.GetAxis("VaniaVertical") > -0.5f)
+										if (Input.GetAxis(InputNames.Yanvania_Vertical) > -0.5f)
 										{
 											MyAnimation[CrouchPoseAnim].weight = 0f;
 											MyController.center = new Vector3(MyController.center.x, 0.75f, MyController.center.z);
@@ -337,7 +337,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 											Crouching = false;
 										}
 									}
-									else if (Input.GetAxis("VaniaVertical") > -0.5f && Input.GetButton("X"))
+									else if (Input.GetAxis(InputNames.Yanvania_Vertical) > -0.5f && Input.GetButton(InputNames.Xbox_X))
 									{
 										MyAnimation[CrouchPoseAnim].weight = 0f;
 										MyController.center = new Vector3(MyController.center.x, 0.75f, MyController.center.z);
@@ -408,7 +408,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 							moveDirection = myTransform.TransformDirection(moveDirection) * speed;
 							playerControl = true;
 						}
-						if (!Input.GetButton("VaniaJump"))
+						if (!Input.GetButton(InputNames.Yanvania_Jump))
 						{
 							jumpTimer++;
 						}
@@ -553,7 +553,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 			{
 				Taps = 0;
 			}
-			if (Input.GetButtonDown("VaniaAttack") && !Attacking)
+			if (Input.GetButtonDown(InputNames.Yanvania_Attack) && !Attacking)
 			{
 				AudioSource.PlayClipAtPoint(WhipSound, base.transform.position);
 				AudioSource component2 = GetComponent<AudioSource>();
@@ -589,7 +589,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 				else
 				{
 					LoosenWhip();
-					if (Input.GetAxis("VaniaHorizontal") > -0.5f && Input.GetAxis("VaniaHorizontal") < 0.5f && Input.GetAxis("VaniaVertical") > -0.5f && Input.GetAxis("VaniaVertical") < 0.5f)
+					if (Input.GetAxis(InputNames.Yanvania_Horizontal) > -0.5f && Input.GetAxis(InputNames.Yanvania_Horizontal) < 0.5f && Input.GetAxis(InputNames.Yanvania_Vertical) > -0.5f && Input.GetAxis(InputNames.Yanvania_Vertical) < 0.5f)
 					{
 						component.CrossFade(WhipNeutralAnim);
 						if (Crouching)
@@ -603,7 +603,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 					}
 					else
 					{
-						if (Input.GetAxis("VaniaVertical") > 0.5f)
+						if (Input.GetAxis(InputNames.Yanvania_Vertical) > 0.5f)
 						{
 							if (!SpunUp)
 							{
@@ -619,7 +619,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 						{
 							SpunUp = false;
 						}
-						if (Input.GetAxis("VaniaVertical") < -0.5f)
+						if (Input.GetAxis(InputNames.Yanvania_Vertical) < -0.5f)
 						{
 							if (!SpunDown)
 							{
@@ -635,7 +635,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 						{
 							SpunDown = false;
 						}
-						if (Input.GetAxis("VaniaHorizontal") > 0.5f)
+						if (Input.GetAxis(InputNames.Yanvania_Horizontal) > 0.5f)
 						{
 							if (Character.transform.localScale.x == 1f)
 							{
@@ -654,7 +654,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 						{
 							SpunRight = false;
 						}
-						if (Input.GetAxis("VaniaHorizontal") < -0.5f)
+						if (Input.GetAxis(InputNames.Yanvania_Horizontal) < -0.5f)
 						{
 							if (Character.transform.localScale.x == 1f)
 							{
@@ -676,7 +676,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 					}
 					Rotation = Mathf.MoveTowards(Rotation, TargetRotation, Time.deltaTime * 3600f * 0.5f);
 					WhipChain[1].transform.localEulerAngles = new Vector3(0f, 0f, Rotation);
-					if (!Input.GetButton("VaniaAttack"))
+					if (!Input.GetButton(InputNames.Yanvania_Attack))
 					{
 						StopAttacking();
 					}
@@ -696,7 +696,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 			}
 			if ((!Crouching && component[AttackAnim].time >= component[AttackAnim].length) || (Crouching && component[CrouchAttackAnim].time >= component[CrouchAttackAnim].length))
 			{
-				if (Input.GetButton("VaniaAttack"))
+				if (Input.GetButton(InputNames.Yanvania_Attack))
 				{
 					if (Crouching)
 					{

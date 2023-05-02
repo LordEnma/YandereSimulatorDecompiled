@@ -76,7 +76,7 @@ public class LifeNoteScript : MonoBehaviour
 					Label.color = new Color(1f, 1f, 1f, 1f);
 				}
 			}
-			if (Input.GetButtonDown("A") || AutoTimer > 0.5f)
+			if (Input.GetButtonDown(InputNames.Xbox_A) || AutoTimer > 0.5f)
 			{
 				if (ID < Lines.Length - 1)
 				{
@@ -154,7 +154,7 @@ public class LifeNoteScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			Darkness.color = new Color(0f, 0f, 0f, 0f);
 			BackgroundArt.localPosition = new Vector3(0f, 0f, 0f);

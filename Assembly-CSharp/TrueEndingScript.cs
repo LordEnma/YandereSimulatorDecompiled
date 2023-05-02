@@ -69,7 +69,7 @@ public class TrueEndingScript : MonoBehaviour
 			WaitTimer += Time.deltaTime;
 			if (WaitTimer > 1f)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					SpeechTimer = 1f;
 					if (Phase < 16)

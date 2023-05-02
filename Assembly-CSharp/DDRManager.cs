@@ -206,7 +206,7 @@ public class DDRManager : MonoBehaviour
 			booted = true;
 		}
 		yield return new WaitForEndOfFrame();
-		while (Input.GetAxis("A") != 0f)
+		while (Input.GetAxis(InputNames.Xbox_A) != 0f)
 		{
 			yield return null;
 		}

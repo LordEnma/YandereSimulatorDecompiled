@@ -183,7 +183,7 @@ public class NoteWindowScript : MonoBehaviour
 				}
 				UpdateHighlights();
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (LifeNote && Slot == 1)
 				{
@@ -213,11 +213,11 @@ public class NoteWindowScript : MonoBehaviour
 					UpdateSubLabels();
 				}
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				Exit();
 			}
-			if (Input.GetButtonDown("X") && SlotsFilled[1] && SlotsFilled[2] && SlotsFilled[3])
+			if (Input.GetButtonDown(InputNames.Xbox_X) && SlotsFilled[1] && SlotsFilled[2] && SlotsFilled[3])
 			{
 				if (LifeNote)
 				{
@@ -376,7 +376,7 @@ public class NoteWindowScript : MonoBehaviour
 				}
 				SubHighlight.localPosition = new Vector3(SubHighlight.localPosition.x, 550f - 100f * (float)SubSlot, SubHighlight.localPosition.z);
 			}
-			if (Input.GetButtonDown("A") && SubLabels[SubSlot].color.a > 0.5f && SubLabels[SubSlot].text != string.Empty && SubLabels[SubSlot].text != "??????????")
+			if (Input.GetButtonDown(InputNames.Xbox_A) && SubLabels[SubSlot].color.a > 0.5f && SubLabels[SubSlot].text != string.Empty && SubLabels[SubSlot].text != "??????????")
 			{
 				SlotLabels[Slot].text = SubLabels[SubSlot].text;
 				SlotsFilled[Slot] = true;
@@ -397,7 +397,7 @@ public class NoteWindowScript : MonoBehaviour
 				SubSlot = 1;
 				SubHighlight.localPosition = new Vector3(SubHighlight.localPosition.x, 450f, SubHighlight.localPosition.z);
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				CheckForCompletion();
 				Selecting = false;

@@ -215,7 +215,7 @@ public class StudentEditorScript : MonoBehaviour
 
 	private void HandleInput()
 	{
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			mainPanel.gameObject.SetActive(value: true);
 			studentPanel.gameObject.SetActive(value: false);

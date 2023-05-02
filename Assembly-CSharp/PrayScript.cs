@@ -182,7 +182,7 @@ public class PrayScript : MonoBehaviour
 			}
 			UpdateHighlight();
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (Selected == 1)
 			{

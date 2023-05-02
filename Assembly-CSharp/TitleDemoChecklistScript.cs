@@ -232,7 +232,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 			{
 				Items[Selected].transform.localPosition = Vector3.Lerp(Items[Selected].transform.localPosition, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
 				Items[Selected].transform.localScale = Vector3.Lerp(Items[Selected].transform.localScale, new Vector3(0.6f, 0.6f, 0.6f), Time.deltaTime * 10f);
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Items[Selected].transform.parent = Icons;
 					Items[Selected].depth = 0;
@@ -303,18 +303,18 @@ public class TitleDemoChecklistScript : MonoBehaviour
 					PromptBar.UpdateButtons();
 					PromptBar.Show = true;
 				}
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					OriginalPosition = Items[Selected].transform.localPosition;
 					Items[Selected].transform.parent = ExaminedIconParent;
 					Items[Selected].depth = 2;
 					Zoom = true;
 				}
-				else if (Input.GetButtonDown("X"))
+				else if (Input.GetButtonDown(InputNames.Xbox_X))
 				{
 					ResetWindow.SetActive(value: true);
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					NewTitleScreen.Speed = 0f;
 					NewTitleScreen.Phase = 2;
@@ -329,7 +329,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 				}
 			}
 		}
-		else if (Input.GetButtonDown("A"))
+		else if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			Confirmations++;
 			ConfirmBlocks[Confirmations].color = new Color(1f, 1f, 1f, 1f);
@@ -387,7 +387,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 				SceneManager.LoadScene("ResolutionScene");
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			ResetConfirmations();
 		}

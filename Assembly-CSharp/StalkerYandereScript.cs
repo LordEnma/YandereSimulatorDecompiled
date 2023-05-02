@@ -480,14 +480,14 @@ public class StalkerYandereScript : MonoBehaviour
 
 	private void UpdateAim()
 	{
-		if ((Input.GetAxis("LT") > 0.5f || Input.GetMouseButton(1)) && Pebbles > 0 && !PreparingThrow && !Throwing)
+		if ((Input.GetAxis(InputNames.Xbox_LT) > 0.5f || Input.GetMouseButton(InputNames.Mouse_RMB)) && Pebbles > 0 && !PreparingThrow && !Throwing)
 		{
 			base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
 			PreparingThrow = true;
 			PrepareThrowTimer = 0f;
 			RPGCamera.enabled = false;
 			ShoulderCamera.SetActive(value: true);
-			if (Input.GetAxis("LT") > 0.5f)
+			if (Input.GetAxis(InputNames.Xbox_LT) > 0.5f)
 			{
 				UsingController = true;
 			}
@@ -497,7 +497,7 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Input.GetAxis("RT") > 0.5f || Input.GetMouseButtonDown(0))
+		if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB))
 		{
 			MyAnimation["f02_prepareThrow_00"].weight = 0f;
 			MyAnimation["f02_throw_00"].speed = 2f;
@@ -519,7 +519,7 @@ public class StalkerYandereScript : MonoBehaviour
 				Arc.gameObject.SetActive(value: false);
 			}
 		}
-		else if ((UsingController && Input.GetAxis("LT") < 0.5f) || (!UsingController && !Input.GetMouseButton(1)))
+		else if ((UsingController && Input.GetAxis(InputNames.Xbox_LT) < 0.5f) || (!UsingController && !Input.GetMouseButton(InputNames.Mouse_RMB)))
 		{
 			StopAiming();
 		}
@@ -589,12 +589,12 @@ public class StalkerYandereScript : MonoBehaviour
 		if (!OptionGlobals.ToggleRun)
 		{
 			Running = false;
-			if (Input.GetButton("LB"))
+			if (Input.GetButton(InputNames.Xbox_LB))
 			{
 				Running = true;
 			}
 		}
-		else if (Input.GetButtonDown("LB"))
+		else if (Input.GetButtonDown(InputNames.Xbox_LB))
 		{
 			Running = !Running;
 		}
@@ -625,14 +625,14 @@ public class StalkerYandereScript : MonoBehaviour
 			{
 				if (Stance.Current == StanceType.Standing)
 				{
-					if (Input.GetButtonDown("RS"))
+					if (Input.GetButtonDown(InputNames.Xbox_RS))
 					{
 						Stance.Current = StanceType.Crouching;
 						MyController.center = new Vector3(0f, 0.5f, 0f);
 						MyController.height = 1f;
 					}
 				}
-				else if (Input.GetButtonDown("RS"))
+				else if (Input.GetButtonDown(InputNames.Xbox_RS))
 				{
 					Stance.Current = StanceType.Standing;
 					MyController.center = new Vector3(0f, 0.75f, 0f);
@@ -742,7 +742,7 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public void UpdateYandereVision()
 	{
-		bool flag = Input.GetButton("RB");
+		bool flag = Input.GetButton(InputNames.Xbox_RB);
 		if (Time.timeScale == 0f)
 		{
 			flag = false;

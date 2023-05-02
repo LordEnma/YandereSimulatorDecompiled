@@ -477,7 +477,7 @@ public class PoliceScript : MonoBehaviour
 				FadeOut = false;
 				ResultsTimer = 0f;
 			}
-			if (ResultsTimer > 7f && Input.GetButtonDown("A"))
+			if (ResultsTimer > 7f && Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				ShowResults = false;
 				FadeResults = true;

@@ -60,7 +60,7 @@ public class PeekScript : MonoBehaviour
 			Spoke = true;
 			GetComponent<AudioSource>().Play();
 		}
-		if (Input.GetButtonDown("B") || Prompt.Yandere.Noticed || Prompt.Yandere.Sprayed)
+		if (Input.GetButtonDown(InputNames.Xbox_B) || Prompt.Yandere.Noticed || Prompt.Yandere.Sprayed)
 		{
 			if (!Prompt.Yandere.Noticed && !Prompt.Yandere.Sprayed)
 			{

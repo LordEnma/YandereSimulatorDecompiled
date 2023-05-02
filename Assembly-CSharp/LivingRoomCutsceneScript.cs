@@ -315,7 +315,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		if (Phase > 3 && !WaitingForInput && Timer < 172f && !NoSkip)
 		{
 			SkipPanel.alpha += Time.deltaTime;
-			if (Input.GetButton("X"))
+			if (Input.GetButton(InputNames.Xbox_X))
 			{
 				SkipPanel.alpha = 1f;
 				SkipCircle.fillAmount -= Time.deltaTime;
@@ -407,7 +407,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			if (Timer > 1f)
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
-				if (Darkness.color.a == 0f && Input.GetButtonDown("A"))
+				if (Darkness.color.a == 0f && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Timer = 0f;
 					Phase++;
@@ -638,12 +638,12 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 							TeaSet.SetActive(value: true);
 							AnimOffset += 2f;
 						}
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							WaitingForInput = false;
 							DecisionMade = true;
 						}
-						if (Input.GetButtonDown("B"))
+						if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							WaitingForInput = false;
 							DecisionMade = true;
@@ -758,7 +758,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
 				if (Darkness.color.a == 0f)
 				{
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						if (DateGlobals.Week < 10)
 						{
@@ -770,7 +770,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 						}
 						DecisionMade = true;
 					}
-					if (Input.GetButtonDown("B"))
+					if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						EightiesLabel.text = "Ryoba's rival drinks the drugged tea and passes out. When she wakes up...";
 						DecisionMade = true;
@@ -794,7 +794,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			if (!DecisionMade)
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					DecisionMade = true;
 				}
@@ -913,7 +913,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		else if (!OsanaCutscene)
 		{
 			EliminationPanel.alpha = Mathf.MoveTowards(EliminationPanel.alpha, 1f, Time.deltaTime);
-			if (Input.GetButtonDown("X"))
+			if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				MyAudio.clip = RivalProtest;
 				MyAudio.volume = 1f;

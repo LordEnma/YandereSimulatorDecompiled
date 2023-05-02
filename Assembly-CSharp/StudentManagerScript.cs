@@ -30,6 +30,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public KokonaTutorialScript KokonaTutorialObject;
 
+	public ChallengeMangerScript ChallengeManager;
+
 	public ReputationSetterScript ReputationSetter;
 
 	public SkinnedMeshRenderer FemaleShowerCurtain;
@@ -220,6 +222,10 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform MaleLockerRoomChangingSpot;
 
+	public Transform CurrentRivalCleaningSpots;
+
+	public Transform RainbowBoysHangoutParent;
+
 	public Transform SukebanHangoutParent;
 
 	public Transform AltFemaleVomitSpot;
@@ -233,6 +239,14 @@ public class StudentManagerScript : MonoBehaviour
 	public Transform SleepSpot;
 
 	public Transform PyroSpot;
+
+	public ListScript EightiesWeek8LunchSpots;
+
+	public ListScript EightiesStretchSpots;
+
+	public ListScript EightiesShowerSpots;
+
+	public ListScript EightiesDramaSpots;
 
 	public ListScript EightiesSpots;
 
@@ -251,6 +265,8 @@ public class StudentManagerScript : MonoBehaviour
 	public ListScript LunchWitnessPositions;
 
 	public ListScript EntranceVectors;
+
+	public ListScript WaterLowSpots;
 
 	public ListScript ShowerLockers;
 
@@ -341,6 +357,8 @@ public class StudentManagerScript : MonoBehaviour
 	public Transform[] RivalGuardSpots;
 
 	public Transform[] BackstageSpots;
+
+	public Transform[] RichLunchSpots;
 
 	public Transform[] SpawnPositions;
 
@@ -544,6 +562,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public GameObject ModernRivalBookBag;
 
+	public GameObject StageClosureSigns;
+
 	public GameObject DelinquentVoices;
 
 	public GameObject LovestruckCamera;
@@ -600,6 +620,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public int InitialSabotageProgress;
 
+	public int StudentsToReposition;
+
 	public int LowDetailThreshold;
 
 	public int FarAnimThreshold;
@@ -623,6 +645,8 @@ public class StudentManagerScript : MonoBehaviour
 	public int GirlsSpawned;
 
 	public int TagStudentID;
+
+	public int WitnessBonus;
 
 	public int GarbageBags;
 
@@ -676,6 +700,16 @@ public class StudentManagerScript : MonoBehaviour
 
 	public int ID;
 
+	public bool RepositionSomeStudentsAfterRivalDrops;
+
+	public bool RepositionSomeStudentsAfterRivalRises;
+
+	public bool RepositionStudentsAfterRivalRises;
+
+	public bool RepositionAfterPhotoshootLater;
+
+	public bool RepositionAfterPhotoshoot;
+
 	public bool RaibaruKnowsAboutStalker;
 
 	public bool DisableRivalDeathSloMo;
@@ -683,6 +717,12 @@ public class StudentManagerScript : MonoBehaviour
 	public bool ReplaceSparringPartner;
 
 	public bool ReactedToGameLeader;
+
+	public bool SwitchSpotsAfter430;
+
+	public bool Floor1Repositioned;
+
+	public bool Floor2Repositioned;
 
 	public bool UnequipImmediately;
 
@@ -1012,6 +1052,46 @@ public class StudentManagerScript : MonoBehaviour
 	public int FemaleGenerics;
 
 	public int MaleGenerics;
+
+	public StudentAvailabilityList[] Weeks;
+
+	public StudentScript[] AvailableWitnessList;
+
+	public int AvailableWitnesses;
+
+	public int WitnessID;
+
+	public Transform[] WitnessSpots;
+
+	public Transform[] LunchWitnessSpots;
+
+	public Transform[] CleaningWitnessSpots;
+
+	public Transform[] AfterClassWitnessSpots;
+
+	public Transform[] Week4WitnessSpots;
+
+	public Transform[] Week5WitnessSpots;
+
+	public Transform[] Week5AfterClassWitnessSpots;
+
+	public Transform[] Week5ConfessionWitnessSpots;
+
+	public Transform[] Week7WitnessSpots;
+
+	public Transform[] Week7AfterClassWitnessSpots;
+
+	public Transform[] Week8WitnessSpots;
+
+	public Transform[] Week8AfterClassWitnessSpots;
+
+	public Transform[] Week9WitnessSpots;
+
+	public Transform[] Week9LunchWitnessSpots;
+
+	public Transform[] Week9FridayWitnessSpots;
+
+	public bool[] ServicesPurchased;
 
 	private void Awake()
 	{
@@ -1566,9 +1646,18 @@ public class StudentManagerScript : MonoBehaviour
 						IdolStage.SetActive(value: false);
 						if (Students[RivalID] != null)
 						{
+							if (Clock.Weekday == 5)
+							{
+								SendArtClubToTree();
+							}
+							IdentifyAvailableWitnesses();
 							if (Week > 1)
 							{
 								RivalPostWeekRoutineAdjustments();
+							}
+							if (Week == 2)
+							{
+								EightiesWeek2RoutineAdjustments();
 							}
 							if (Week == 3)
 							{
@@ -1590,6 +1679,7 @@ public class StudentManagerScript : MonoBehaviour
 							else if (Week == 7)
 							{
 								EightiesWeek3RoutineAdjustments();
+								EightiesWeek7RoutineAdjustments();
 							}
 							else if (Week == 8)
 							{
@@ -1603,7 +1693,6 @@ public class StudentManagerScript : MonoBehaviour
 								{
 									if (Students[j] != null && !Students[j].Grudge)
 									{
-										Debug.Log("Student #" + j + " does NOT hold a grudge.");
 										Photographers++;
 									}
 								}
@@ -1624,6 +1713,14 @@ public class StudentManagerScript : MonoBehaviour
 							else if (Week == 10)
 							{
 								EightiesWeek10RoutineAdjustments();
+							}
+							if (!RivalEliminated)
+							{
+								CleaningManager.Floors[34 + Week] = CleaningManager.Floors[46];
+								CleaningManager.GetRole(RivalID);
+								Students[RivalID].CleaningSpot = CleaningManager.Spot;
+								Students[RivalID].CleaningRole = CleaningManager.Role;
+								Students[RivalID].GetDestinations();
 							}
 						}
 						if (Students[RivalID] != null && Students[SuitorID] != null)
@@ -2211,6 +2308,162 @@ public class StudentManagerScript : MonoBehaviour
 			else
 			{
 				BehindSchoolOccluder.open = true;
+			}
+		}
+		if (RepositionStudentsAfterRivalRises)
+		{
+			if (!Floor1Repositioned)
+			{
+				if (Students[RivalID] != null && Students[RivalID].transform.position.y > 0.1f)
+				{
+					Debug.Log("Repositioning all students who were on Floor 1.");
+					for (int n = 1; n < 7; n++)
+					{
+						StudentScript studentScript12 = AvailableWitnessList[n];
+						if (studentScript12 != null)
+						{
+							studentScript12.WitnessBonus = 24;
+							studentScript12.GetDestinations();
+							studentScript12.CurrentDestination = studentScript12.Destinations[studentScript12.Phase];
+							studentScript12.Pathfinding.target = studentScript12.Destinations[studentScript12.Phase];
+							studentScript12.DistanceToDestination = 100f;
+							studentScript12.ReadPhase = 0;
+						}
+					}
+					Floor1Repositioned = true;
+				}
+			}
+			else if (!Floor2Repositioned)
+			{
+				if (Students[RivalID] != null && Students[RivalID].transform.position.y > 4.1f)
+				{
+					Debug.Log("Repositioning all students who were on Floor 2.");
+					for (int num2 = 7; num2 < 12; num2++)
+					{
+						StudentScript studentScript13 = AvailableWitnessList[num2];
+						if (studentScript13 != null)
+						{
+							studentScript13.WitnessBonus = 24;
+							studentScript13.GetDestinations();
+							studentScript13.CurrentDestination = studentScript13.Destinations[studentScript13.Phase];
+							studentScript13.Pathfinding.target = studentScript13.Destinations[studentScript13.Phase];
+							studentScript13.DistanceToDestination = 100f;
+							studentScript13.ReadPhase = 0;
+						}
+					}
+					Floor2Repositioned = true;
+				}
+			}
+			else if (Students[RivalID] != null && Students[RivalID].transform.position.y < 3.9f)
+			{
+				Debug.Log("Repositioning all students who were on Floor 3.");
+				Week4WitnessSpots[28].transform.position -= new Vector3(0f, 4f, 0f);
+				Week4WitnessSpots[29].transform.position -= new Vector3(0f, 4f, 0f);
+				Week4WitnessSpots[31].transform.position -= new Vector3(0f, 4f, 0f);
+				Week4WitnessSpots[32].transform.position -= new Vector3(0f, 4f, 0f);
+				RepositionStudentsAfterRivalRises = false;
+			}
+		}
+		if (SwitchSpotsAfter430 && Clock.HourTime > 16.5f)
+		{
+			AfterClassWitnessSpots = Week5ConfessionWitnessSpots;
+			for (int num3 = 1; num3 < AfterClassWitnessSpots.Length; num3++)
+			{
+				StudentScript studentScript14 = AvailableWitnessList[num3];
+				if (studentScript14 != null)
+				{
+					studentScript14.GetDestinations();
+					studentScript14.CurrentDestination = studentScript14.Destinations[studentScript14.Phase];
+					studentScript14.Pathfinding.target = studentScript14.Destinations[studentScript14.Phase];
+					studentScript14.DistanceToDestination = 100f;
+					studentScript14.ReadPhase = 0;
+				}
+			}
+			SwitchSpotsAfter430 = false;
+		}
+		if (RepositionSomeStudentsAfterRivalRises && Students[RivalID] != null && Students[RivalID].transform.position.y > 0.1f)
+		{
+			StudentScript studentScript15 = null;
+			for (int num4 = 1; num4 < StudentsToReposition + 1; num4++)
+			{
+				studentScript15 = AvailableWitnessList[num4];
+				if (studentScript15 != null)
+				{
+					studentScript15.WitnessBonus = WitnessBonus;
+					studentScript15.GetDestinations();
+					studentScript15.CurrentDestination = studentScript15.Destinations[studentScript15.Phase];
+					studentScript15.Pathfinding.target = studentScript15.Destinations[studentScript15.Phase];
+					studentScript15.DistanceToDestination = 100f;
+					studentScript15.ReadPhase = 0;
+				}
+			}
+			RepositionSomeStudentsAfterRivalRises = false;
+			if (Week == 9 && Clock.Weekday == 5)
+			{
+				RepositionAfterPhotoshootLater = true;
+				RepositionAfterPhotoshoot = true;
+			}
+		}
+		if (RepositionSomeStudentsAfterRivalDrops && Clock.HourTime > 16f)
+		{
+			Debug.Log("We're supposed to reposition when the rival walks down the stairs...");
+			if (Students[RivalID] != null && Students[RivalID].transform.position.y < 3.9f)
+			{
+				Debug.Log("We're supposed to reposition now!");
+				StudentScript studentScript16 = null;
+				int num5 = 28;
+				for (int num6 = 28; num6 < num5 + StudentsToReposition + 1; num6++)
+				{
+					studentScript16 = AvailableWitnessList[num6];
+					if (studentScript16 != null)
+					{
+						studentScript16.AfterWitnessBonus = WitnessBonus;
+						studentScript16.GetDestinations();
+						studentScript16.CurrentDestination = studentScript16.Destinations[studentScript16.Phase];
+						studentScript16.Pathfinding.target = studentScript16.Destinations[studentScript16.Phase];
+						studentScript16.DistanceToDestination = 100f;
+						studentScript16.ReadPhase = 0;
+					}
+				}
+				RepositionSomeStudentsAfterRivalDrops = false;
+			}
+		}
+		if (RepositionAfterPhotoshoot && Clock.HourTime < 12f && Students[RivalID] != null && Students[RivalID].transform.position.y > 3.9f && Students[RivalID].transform.position.z > 71f)
+		{
+			WitnessSpots = Week9WitnessSpots;
+			StudentScript studentScript17 = null;
+			for (int num7 = 1; num7 < AvailableWitnessList.Length; num7++)
+			{
+				studentScript17 = AvailableWitnessList[num7];
+				if (studentScript17 != null)
+				{
+					studentScript17.WitnessBonus = 0;
+					studentScript17.GetDestinations();
+					studentScript17.CurrentDestination = studentScript17.Destinations[studentScript17.Phase];
+					studentScript17.Pathfinding.target = studentScript17.Destinations[studentScript17.Phase];
+					studentScript17.DistanceToDestination = 100f;
+					studentScript17.ReadPhase = 0;
+				}
+			}
+			RepositionAfterPhotoshoot = false;
+		}
+		if (RepositionAfterPhotoshootLater && Clock.HourTime > 16f)
+		{
+			Debug.Log("Waiting to re-position students...");
+			if (Students[RivalID] != null && Students[RivalID].transform.position.y > 3.9f && Students[RivalID].transform.position.z > 71f)
+			{
+				AvailableWitnesses = 0;
+				Weeks[9].StudentAvailability[86] = true;
+				Weeks[9].StudentAvailability[87] = true;
+				Weeks[9].StudentAvailability[88] = true;
+				Weeks[9].StudentAvailability[89] = true;
+				IdentifyAvailableWitnesses();
+				for (int num8 = 86; num8 < 90; num8++)
+				{
+					Students[num8].CurrentDestination = Students[num8].Destinations[Students[num8].Phase];
+					Students[num8].Pathfinding.target = Students[num8].Destinations[Students[num8].Phase];
+				}
+				RepositionAfterPhotoshootLater = false;
 			}
 		}
 		YandereVisible = false;
@@ -4169,8 +4422,8 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			morningEvents[i].SaveAnimationTime();
 		}
-		Debug.Log("At the moment of saving, PhotoGallery.PhotographTaken[1] was: " + Yandere.PauseScreen.PhotoGallery.PhotographTaken[1]);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
+		ServicesPurchased = Yandere.PauseScreen.ServiceMenu.ServicePurchased;
 		YanSave.SaveData("Profile_" + profile + "_Slot_" + @int);
 		PlayerPrefs.SetInt("Profile_" + profile + "_Slot_" + @int + "_MemorialStudents", StudentGlobals.MemorialStudents);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
@@ -4530,6 +4783,7 @@ public class StudentManagerScript : MonoBehaviour
 			}
 		}
 		FoodPlate.UpdateFood();
+		Yandere.Class.Poison.GetComponent<PoisonScript>().Start();
 		Debug.Log("The entire loading process has been completed.");
 		Week = DateGlobals.Week;
 		CameFromLoad = true;
@@ -5015,6 +5269,23 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
+	public void SendArtClubToTree()
+	{
+		for (int i = 41; i < 46; i++)
+		{
+			if (Students[i] != null && !Students[i].Sleuthing)
+			{
+				Debug.Log("Sending Student #" + i + ", " + Students[i].Name + " to the confession tree.");
+				ScheduleBlock obj = Students[i].ScheduleBlocks[7];
+				obj.destination = "Paint";
+				obj.action = "Paint";
+				Students[i].VisionDistance += 5f;
+				Weeks[Week].StudentAvailability[i] = false;
+				Students[i].GetDestinations();
+			}
+		}
+	}
+
 	public void UpdateExteriorStudents()
 	{
 		Debug.Log("Osana finished changing her shoes, so exterior students are moving back inside.");
@@ -5034,7 +5305,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		SukebanHangoutParent.position = SukebanSpots[Week].position;
 		SukebanHangoutParent.eulerAngles = SukebanSpots[Week].eulerAngles;
-		if (Week == 4)
+		if (Week == 3)
 		{
 			EightiesLunchSpots.List[81].position = EightiesLunchSpots.List[101].position;
 			EightiesLunchSpots.List[82].position = EightiesLunchSpots.List[102].position;
@@ -5046,6 +5317,19 @@ public class StudentManagerScript : MonoBehaviour
 			EightiesLunchSpots.List[83].eulerAngles = EightiesLunchSpots.List[103].eulerAngles;
 			EightiesLunchSpots.List[84].eulerAngles = EightiesLunchSpots.List[104].eulerAngles;
 			EightiesLunchSpots.List[85].eulerAngles = EightiesLunchSpots.List[105].eulerAngles;
+		}
+		else if (Week == 4)
+		{
+			EightiesLunchSpots.List[81].position = EightiesLunchSpots.List[106].position;
+			EightiesLunchSpots.List[82].position = EightiesLunchSpots.List[107].position;
+			EightiesLunchSpots.List[83].position = EightiesLunchSpots.List[108].position;
+			EightiesLunchSpots.List[84].position = EightiesLunchSpots.List[109].position;
+			EightiesLunchSpots.List[85].position = EightiesLunchSpots.List[110].position;
+			EightiesLunchSpots.List[81].eulerAngles = EightiesLunchSpots.List[106].eulerAngles;
+			EightiesLunchSpots.List[82].eulerAngles = EightiesLunchSpots.List[107].eulerAngles;
+			EightiesLunchSpots.List[83].eulerAngles = EightiesLunchSpots.List[108].eulerAngles;
+			EightiesLunchSpots.List[84].eulerAngles = EightiesLunchSpots.List[109].eulerAngles;
+			EightiesLunchSpots.List[85].eulerAngles = EightiesLunchSpots.List[110].eulerAngles;
 		}
 	}
 
@@ -5223,7 +5507,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (Week > 9 && Students[19] != null)
 		{
-			Debug.Log("Is Rival $9 in a couple?" + Students[19].InCouple);
+			Debug.Log("Is Rival #9 in a couple? " + Students[19].InCouple);
 			if (!Students[19].InCouple)
 			{
 				Debug.Log("Attempting to update Rival #9's routine.");
@@ -5238,6 +5522,38 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
+	public void EightiesWeek2RoutineAdjustments()
+	{
+		RainbowBoysHangoutParent.transform.position = new Vector3(0f, 0f, 56f);
+		WaterLowPlants(72);
+		WaterLowPlants(73);
+		WaterLowPlants(74);
+		WaterLowPlants(75);
+	}
+
+	public void WaterLowPlants(int StudentID)
+	{
+		if (Students[StudentID] != null)
+		{
+			EightiesPatrols.List[StudentID] = WaterLowSpots.List[StudentID];
+			Students[StudentID].WateringCan.SetActive(value: true);
+			if (!Students[StudentID].Male)
+			{
+				Students[StudentID].ClubAnim = "f02_waterLowPlants_00";
+			}
+			else
+			{
+				Students[StudentID].ClubAnim = "waterLowPlants_00";
+			}
+			Students[StudentID].WaterLow = true;
+			scheduleBlock = Students[StudentID].ScheduleBlocks[2];
+			scheduleBlock.time += 0.25f;
+			scheduleBlock = Students[StudentID].ScheduleBlocks[7];
+			scheduleBlock.time += 999f;
+			Students[StudentID].GetDestinations();
+		}
+	}
+
 	public void EightiesWeek3RoutineAdjustments()
 	{
 		for (int i = 2; i < 6; i++)
@@ -5247,9 +5563,16 @@ public class StudentManagerScript : MonoBehaviour
 				scheduleBlock = Students[i].ScheduleBlocks[2];
 				scheduleBlock.destination = "EightiesSpot";
 				scheduleBlock.action = "Read";
+				scheduleBlock.time += 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[4];
+				scheduleBlock.destination = "EightiesSpot";
+				scheduleBlock.time += 0.125f;
+				scheduleBlock = Students[i].ScheduleBlocks[6];
+				scheduleBlock.time -= 0.25f;
 				scheduleBlock = Students[i].ScheduleBlocks[7];
 				scheduleBlock.destination = "EightiesSpot";
 				scheduleBlock.action = "Read";
+				scheduleBlock.time += 0.25f;
 				Students[i].GetDestinations();
 			}
 		}
@@ -5257,6 +5580,23 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void EightiesWeek4RoutineAdjustments()
 	{
+		StageClosureSigns.SetActive(value: true);
+		for (int i = 2; i < 6; i++)
+		{
+			if (Students[i] != null)
+			{
+				scheduleBlock = Students[i].ScheduleBlocks[2];
+				scheduleBlock.destination = "EightiesShowerSpot";
+				scheduleBlock.action = "Socialize";
+				scheduleBlock.time += 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[6];
+				scheduleBlock.time -= 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[7];
+				scheduleBlock.destination = "EightiesStretchSpot";
+				scheduleBlock.action = "Stretch";
+				Students[i].GetDestinations();
+			}
+		}
 		for (int i = 6; i < 11; i++)
 		{
 			if (Students[i] != null)
@@ -5264,13 +5604,55 @@ public class StudentManagerScript : MonoBehaviour
 				scheduleBlock = Students[i].ScheduleBlocks[4];
 				scheduleBlock.destination = "EightiesSpot";
 				scheduleBlock.action = "PrepareFood";
+				scheduleBlock = Students[i].ScheduleBlocks[6];
+				scheduleBlock.time -= 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[7];
+				scheduleBlock.destination = "EightiesStretchSpot";
+				scheduleBlock.action = "Stretch";
 				Students[i].GetDestinations();
 			}
+		}
+		for (int i = 26; i < 31; i++)
+		{
+			if (Students[i] != null)
+			{
+				scheduleBlock = Students[i].ScheduleBlocks[2];
+				scheduleBlock.destination = "EightiesDramaSpot";
+				scheduleBlock.action = "Rehearse";
+				Students[i].GetDestinations();
+				scheduleBlock = Students[i].ScheduleBlocks[7];
+				scheduleBlock.destination = "EightiesDramaSpot";
+				scheduleBlock.action = "Rehearse";
+				Students[i].GetDestinations();
+			}
+		}
+		WaterLowPlants(72);
+		WaterLowPlants(73);
+		if (Clock.Weekday == 5)
+		{
+			RepositionStudentsAfterRivalRises = true;
 		}
 	}
 
 	public void EightiesWeek5RoutineAdjustments()
 	{
+		for (int i = 2; i < 6; i++)
+		{
+			if (Students[i] != null)
+			{
+				scheduleBlock = Students[i].ScheduleBlocks[2];
+				scheduleBlock.destination = "EightiesShowerSpot";
+				scheduleBlock.action = "Socialize";
+				scheduleBlock.time += 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[6];
+				scheduleBlock.time -= 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[7];
+				scheduleBlock.destination = "EightiesShowerSpot";
+				scheduleBlock.action = "Socialize";
+				scheduleBlock.time = 999f;
+				Students[i].GetDestinations();
+			}
+		}
 		SunbatheAllDay(45);
 		SunbatheAllDay(50);
 		SunbatheAllDay(55);
@@ -5278,84 +5660,141 @@ public class StudentManagerScript : MonoBehaviour
 		SunbatheAllDay(65);
 		SunbatheAllDay(70);
 		SunbatheAllDay(75);
+		EightiesLunchSpots.List[65].transform.position = RichLunchSpots[2].position;
+		EightiesLunchSpots.List[70].transform.position = RichLunchSpots[3].position;
+		EightiesLunchSpots.List[75].transform.position = RichLunchSpots[4].position;
+		EightiesLunchSpots.List[65].transform.rotation = RichLunchSpots[2].rotation;
+		EightiesLunchSpots.List[70].transform.rotation = RichLunchSpots[3].rotation;
+		EightiesLunchSpots.List[75].transform.rotation = RichLunchSpots[4].rotation;
 	}
 
 	public void EightiesWeek6RoutineAdjustments()
 	{
-		int num = 26;
-		if (Students[num] != null)
+		for (int i = 26; i < 28; i++)
 		{
-			scheduleBlock = Students[num].ScheduleBlocks[2];
-			scheduleBlock.destination = "Patrol";
-			scheduleBlock.action = "Patrol";
-			scheduleBlock = Students[num].ScheduleBlocks[7];
-			scheduleBlock.destination = "Patrol";
-			scheduleBlock.action = "Patrol";
-			Students[num].GetDestinations();
-		}
-		num = 29;
-		if (Students[num] != null)
-		{
-			scheduleBlock = Students[num].ScheduleBlocks[2];
-			scheduleBlock.destination = "Patrol";
-			scheduleBlock.action = "Patrol";
-			scheduleBlock = Students[num].ScheduleBlocks[7];
-			scheduleBlock.destination = "Patrol";
-			scheduleBlock.action = "Patrol";
-			Students[num].GetDestinations();
-		}
-		for (num = 52; num < 56; num++)
-		{
-			if (Students[num] != null && Students[num].Club != 0)
+			if (Students[i] != null)
 			{
-				scheduleBlock = Students[num].ScheduleBlocks[2];
+				scheduleBlock = Students[i].ScheduleBlocks[2];
+				scheduleBlock.destination = "Patrol";
+				scheduleBlock.action = "Socialize";
+				scheduleBlock.time += 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[7];
+				scheduleBlock.destination = "Patrol";
+				scheduleBlock.action = "Socialize";
+				scheduleBlock.time += 0.25f;
+				Students[i].GetDestinations();
+			}
+		}
+		for (int i = 52; i < 56; i++)
+		{
+			if (Students[i] != null && Students[i].Club != 0)
+			{
+				scheduleBlock = Students[i].ScheduleBlocks[2];
 				scheduleBlock.destination = "Perform";
 				scheduleBlock.action = "Perform";
-				scheduleBlock = Students[num].ScheduleBlocks[7];
+				scheduleBlock.time += 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[4];
+				scheduleBlock.time += 0.125f;
+				scheduleBlock = Students[i].ScheduleBlocks[7];
 				scheduleBlock.destination = "Perform";
 				scheduleBlock.action = "Perform";
-				Students[num].GetDestinations();
+				scheduleBlock.time = 999f;
+				Students[i].GetDestinations();
+			}
+		}
+		WaterLowPlants(72);
+		WaterLowPlants(73);
+		if (Clock.Weekday == 5)
+		{
+			RepositionSomeStudentsAfterRivalRises = true;
+			StudentsToReposition = 1;
+			WitnessBonus = 36;
+		}
+	}
+
+	public void EightiesWeek7RoutineAdjustments()
+	{
+		for (int i = 1; i < 5; i++)
+		{
+			if (Students[i] != null)
+			{
+				scheduleBlock = Students[i].ScheduleBlocks[4];
+				scheduleBlock.time += 0.125f;
+				Students[i].GetDestinations();
 			}
 		}
 	}
 
 	public void EightiesWeek8RoutineAdjustments()
 	{
+		LunchWitnessSpots[14].transform.position = new Vector3(-20f, 4f, 28.75f);
+		LunchWitnessSpots[14].transform.eulerAngles = new Vector3(0f, 180f, 0f);
 		if (Students[18] != null && StudentGlobals.StudentSlave != 18)
 		{
-			for (int i = 2; i < 11; i++)
+			for (int i = 2; i < 6; i++)
 			{
 				FollowTraditionalGirl(i);
 			}
+		}
+		if (Clock.Weekday == 5)
+		{
+			RepositionSomeStudentsAfterRivalDrops = true;
+			StudentsToReposition = 4;
+			WitnessBonus = 8;
 		}
 	}
 
 	public void EightiesWeek9RoutineAdjustments()
 	{
-		if (Students[19] != null && StudentGlobals.StudentSlave != 19)
+		CurrentRivalCleaningSpots.position = new Vector3(CurrentRivalCleaningSpots.position.x, 0f, CurrentRivalCleaningSpots.position.z);
+		if (!(Students[19] != null) || StudentGlobals.StudentSlave == 19)
 		{
-			FollowPrimaryLookSecondary.transform.parent = Students[19].transform;
-			FollowPrimaryLookSecondary.transform.localPosition = Vector3.zero;
-			FollowPrimaryLookSecondary.transform.localEulerAngles = Vector3.zero;
-			Students[1].Infatuated = true;
-			if (DateGlobals.Weekday != DayOfWeek.Monday)
+			return;
+		}
+		for (int i = 2; i < 6; i++)
+		{
+			if (Students[i] != null)
 			{
-				FollowGravureIdol(1);
+				scheduleBlock = Students[i].ScheduleBlocks[2];
+				scheduleBlock.destination = "EightiesShowerSpot";
+				scheduleBlock.action = "Socialize";
+				scheduleBlock.time += 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[6];
+				scheduleBlock.time -= 0.25f;
+				scheduleBlock = Students[i].ScheduleBlocks[7];
+				scheduleBlock.destination = "EightiesShowerSpot";
+				scheduleBlock.action = "Socialize";
+				scheduleBlock.time += 999f;
+				Students[i].GetDestinations();
 			}
-			FollowGravureIdol(6);
-			FollowGravureIdol(7);
-			FollowGravureIdol(8);
-			FollowGravureIdol(9);
-			FollowGravureIdol(10);
-			FollowGravureIdol(23);
-			FollowGravureIdol(28);
-			FollowGravureIdol(33);
-			FollowGravureIdol(38);
-			FollowGravureIdol(43);
-			FollowGravureIdol(48);
-			FollowGravureIdol(63);
-			FollowGravureIdol(68);
-			FollowGravureIdol(73);
+		}
+		FollowPrimaryLookSecondary.transform.parent = Students[19].transform;
+		FollowPrimaryLookSecondary.transform.localPosition = Vector3.zero;
+		FollowPrimaryLookSecondary.transform.localEulerAngles = Vector3.zero;
+		Students[1].Infatuated = true;
+		if (DateGlobals.Weekday != DayOfWeek.Monday)
+		{
+			FollowGravureIdol(1);
+		}
+		FollowGravureIdol(6);
+		FollowGravureIdol(7);
+		FollowGravureIdol(8);
+		FollowGravureIdol(9);
+		FollowGravureIdol(10);
+		FollowGravureIdol(23);
+		FollowGravureIdol(28);
+		FollowGravureIdol(33);
+		FollowGravureIdol(38);
+		FollowGravureIdol(43);
+		FollowGravureIdol(48);
+		FollowGravureIdol(63);
+		FollowGravureIdol(68);
+		FollowGravureIdol(73);
+		if (Clock.Weekday == 5)
+		{
+			RepositionSomeStudentsAfterRivalRises = true;
+			StudentsToReposition = 6;
+			WitnessBonus = 19;
 		}
 	}
 
@@ -5366,6 +5805,7 @@ public class StudentManagerScript : MonoBehaviour
 			scheduleBlock = Students[i].ScheduleBlocks[2];
 			scheduleBlock.destination = "PhotoShoot";
 			scheduleBlock.action = "PhotoShoot";
+			scheduleBlock.time += 0.25f;
 			scheduleBlock = Students[i].ScheduleBlocks[7];
 			scheduleBlock.destination = "PhotoShoot";
 			scheduleBlock.action = "PhotoShoot";
@@ -5442,15 +5882,23 @@ public class StudentManagerScript : MonoBehaviour
 			ScheduleBlock obj = Students[ID].ScheduleBlocks[2];
 			obj.destination = "Guard";
 			obj.action = "Guard";
+			obj.time += 0.25f;
 			ScheduleBlock obj2 = Students[ID].ScheduleBlocks[4];
 			obj2.destination = "Guard";
 			obj2.action = "Guard";
-			ScheduleBlock obj3 = Students[ID].ScheduleBlocks[7];
+			obj2.time += 0.125f;
+			ScheduleBlock obj3 = Students[ID].ScheduleBlocks[6];
 			obj3.destination = "Guard";
 			obj3.action = "Guard";
-			_ = Students[ID].ScheduleBlocks[8];
-			obj3.destination = "Guard";
-			obj3.action = "Guard";
+			obj3.time += 0.25f;
+			ScheduleBlock obj4 = Students[ID].ScheduleBlocks[7];
+			obj4.destination = "Guard";
+			obj4.action = "Guard";
+			obj4.time += 0.25f;
+			ScheduleBlock obj5 = Students[ID].ScheduleBlocks[8];
+			obj5.destination = "Guard";
+			obj5.action = "Guard";
+			obj5.time += 0.25f;
 			Students[ID].GetDestinations();
 		}
 	}
@@ -5460,21 +5908,21 @@ public class StudentManagerScript : MonoBehaviour
 		if (Students[ID] != null)
 		{
 			Hangouts.List[ID] = Students[18].transform;
+			LunchSpots.List[ID] = EightiesWeek8LunchSpots.List[ID];
 			scheduleBlock = Students[ID].ScheduleBlocks[2];
 			scheduleBlock.destination = "Hangout";
 			scheduleBlock.action = "Admire";
-			if (!Students[ID].Male)
-			{
-				scheduleBlock = Students[ID].ScheduleBlocks[4];
-				scheduleBlock.destination = "Hangout";
-				scheduleBlock.action = "Admire";
-			}
+			scheduleBlock.time += 0.25f;
+			scheduleBlock = Students[ID].ScheduleBlocks[4];
+			scheduleBlock.time += 0.125f;
 			scheduleBlock = Students[ID].ScheduleBlocks[6];
 			scheduleBlock.destination = "Hangout";
 			scheduleBlock.action = "Admire";
+			scheduleBlock.time += 0.25f;
 			scheduleBlock = Students[ID].ScheduleBlocks[7];
 			scheduleBlock.destination = "Hangout";
 			scheduleBlock.action = "Admire";
+			scheduleBlock.time += 0.25f;
 			Students[ID].GetDestinations();
 			Students[ID].Infatuated = true;
 			Students[ID].InfatuationID = 18;
@@ -5488,24 +5936,27 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		if (Students[ID] != null)
 		{
-			Debug.Log("Stalker #" + StalkerID + " is now having their schedule adjusted.");
 			StalkerID++;
 			Hangouts.List[ID] = StalkerSpots[StalkerID];
 			scheduleBlock = Students[ID].ScheduleBlocks[2];
 			scheduleBlock.destination = "Hangout";
 			scheduleBlock.action = "Admire";
+			scheduleBlock.time += 0.25f;
 			if (ID > 1)
 			{
 				scheduleBlock = Students[ID].ScheduleBlocks[4];
 				scheduleBlock.destination = "Hangout";
 				scheduleBlock.action = "Admire";
+				scheduleBlock.time += 0.125f;
 			}
 			scheduleBlock = Students[ID].ScheduleBlocks[6];
 			scheduleBlock.destination = "Hangout";
 			scheduleBlock.action = "Admire";
+			scheduleBlock.time += 0.25f;
 			scheduleBlock = Students[ID].ScheduleBlocks[7];
 			scheduleBlock.destination = "Hangout";
 			scheduleBlock.action = "Admire";
+			scheduleBlock.time += 999f;
 			Students[ID].GetDestinations();
 			Students[ID].Infatuated = true;
 			Students[ID].InfatuationID = 19;
@@ -5523,12 +5974,13 @@ public class StudentManagerScript : MonoBehaviour
 			scheduleBlock = Students[ID].ScheduleBlocks[2];
 			scheduleBlock.destination = "Sunbathe";
 			scheduleBlock.action = "Sunbathe";
-			scheduleBlock = Students[ID].ScheduleBlocks[6];
-			scheduleBlock.destination = "Sunbathe";
-			scheduleBlock.action = "Sunbathe";
+			scheduleBlock.time += 0.25f;
+			scheduleBlock = Students[ID].ScheduleBlocks[4];
+			scheduleBlock.time += 0.1f;
 			scheduleBlock = Students[ID].ScheduleBlocks[7];
 			scheduleBlock.destination = "Sunbathe";
 			scheduleBlock.action = "Sunbathe";
+			scheduleBlock.time += 0.25f;
 			Students[ID].GetDestinations();
 		}
 		ID++;
@@ -6130,5 +6582,147 @@ public class StudentManagerScript : MonoBehaviour
 			}
 		}
 		Physics.SyncTransforms();
+	}
+
+	public void IdentifyAvailableWitnesses()
+	{
+		WitnessID = 1;
+		for (int i = 0; i < 101; i++)
+		{
+			if (Weeks[Week].StudentAvailability[i])
+			{
+				AvailableWitnessList[WitnessID] = Students[i];
+				AvailableWitnesses++;
+				WitnessID++;
+			}
+		}
+		if (Week > 1)
+		{
+			AssignWitnessRoutines();
+		}
+	}
+
+	public void AssignWitnessRoutines()
+	{
+		if (Week == 4)
+		{
+			WitnessSpots = Week4WitnessSpots;
+		}
+		else if (Week == 5)
+		{
+			WitnessSpots = Week5WitnessSpots;
+			AfterClassWitnessSpots = Week5AfterClassWitnessSpots;
+			Debug.Log("Updating student routines for week 5 specifically.");
+		}
+		else if (Week == 7)
+		{
+			WitnessSpots = Week7WitnessSpots;
+			AfterClassWitnessSpots = Week7AfterClassWitnessSpots;
+		}
+		else if (Week == 8)
+		{
+			WitnessSpots = Week8WitnessSpots;
+			AfterClassWitnessSpots = Week8AfterClassWitnessSpots;
+		}
+		else if (Week == 9)
+		{
+			WitnessSpots = Week9WitnessSpots;
+			LunchWitnessSpots = Week9LunchWitnessSpots;
+			AfterClassWitnessSpots = Week9WitnessSpots;
+			if (Clock.Weekday == 5)
+			{
+				WitnessSpots = Week9FridayWitnessSpots;
+			}
+		}
+		Debug.Log("Starting to assign routines.");
+		int num = WitnessSpots.Length;
+		if (LunchWitnessSpots.Length > num)
+		{
+			num = LunchWitnessSpots.Length;
+		}
+		if (AfterClassWitnessSpots.Length > num)
+		{
+			num = AfterClassWitnessSpots.Length;
+		}
+		WitnessID = 1;
+		while (WitnessID < num && AvailableWitnesses > 0)
+		{
+			BecomeLivingSecurityCamera(AvailableWitnessList[WitnessID]);
+			AvailableWitnesses--;
+			WitnessID++;
+		}
+		Debug.Log("Done assigning routines.");
+	}
+
+	public void BecomeLivingSecurityCamera(StudentScript Student)
+	{
+		Student.WitnessID = WitnessID;
+		if (WitnessID < WitnessSpots.Length)
+		{
+			ScheduleBlock obj = Student.ScheduleBlocks[2];
+			obj.destination = "WitnessSpot";
+			obj.action = "Read";
+			obj.time += 0.25f;
+		}
+		if (WitnessID < LunchWitnessSpots.Length)
+		{
+			ScheduleBlock obj2 = Student.ScheduleBlocks[4];
+			obj2.destination = "LunchWitnessSpot";
+			obj2.action = "Eat";
+			obj2.time += 0.1f;
+			Student.Hurry = true;
+		}
+		ScheduleBlock scheduleBlock = Student.ScheduleBlocks[6];
+		scheduleBlock.time -= 0.1f;
+		if (Clock.Weekday == 4)
+		{
+			Debug.Log("It's a Thursday. The rival will be traveling to the infirmary. Some characters must completely skip Cleaning Time.");
+			scheduleBlock.time = 0f;
+		}
+		if (Week == 5 && Clock.Weekday == 5)
+		{
+			SwitchSpotsAfter430 = true;
+		}
+		if (WitnessID < AfterClassWitnessSpots.Length)
+		{
+			if (Student.ScheduleBlocks.Length > 7)
+			{
+				ScheduleBlock obj3 = Student.ScheduleBlocks[7];
+				obj3.destination = "AfterWitnessSpot";
+				obj3.action = "Read";
+				obj3.time = 999f;
+			}
+			else
+			{
+				ScheduleBlock obj4 = Student.ScheduleBlocks[6];
+				obj4.destination = "AfterWitnessSpot";
+				obj4.action = "Read";
+				obj4.time = 999f;
+			}
+		}
+		Student.GetDestinations();
+		Student.DressCode = false;
+	}
+
+	public void IncreaseStudentVisionDistance()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			if (Students[i] != null)
+			{
+				Students[i].VisionDistance += 5f;
+			}
+		}
+	}
+
+	public void RestoreVisionDistance()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			if (Students[i] != null)
+			{
+				Students[i].VisionDistance -= 5f;
+			}
+		}
 	}
 }

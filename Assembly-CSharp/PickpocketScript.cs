@@ -20,6 +20,8 @@ public class PickpocketScript : MonoBehaviour
 
 	public float Timer;
 
+	public int Frame;
+
 	public int ID = 1;
 
 	public bool NotNurse;
@@ -55,6 +57,18 @@ public class PickpocketScript : MonoBehaviour
 	{
 		if (Prompt.transform.parent != null)
 		{
+			if (Student.KeyStolen)
+			{
+				Frame++;
+				if (Frame > 60)
+				{
+					PickpocketPanel.enabled = false;
+					Prompt.enabled = false;
+					Prompt.Hide();
+					Key.SetActive(value: false);
+					base.enabled = false;
+				}
+			}
 			if (Student.Routine)
 			{
 				if (Student.DistanceToDestination > 0.5f)
@@ -168,7 +182,6 @@ public class PickpocketScript : MonoBehaviour
 		else if (Prompt.Circle[3].fillAmount == 0f)
 		{
 			Succeed();
-			Prompt.Hide();
 			PickpocketPanel.enabled = false;
 			Prompt.enabled = false;
 			Prompt.Hide();
@@ -213,6 +226,7 @@ public class PickpocketScript : MonoBehaviour
 			Student.StudentManager.ShedDoor.Locked = false;
 			Student.ClubManager.Padlock.SetActive(value: false);
 			Student.Yandere.Inventory.ShedKey = true;
+			Student.KeyStolen = true;
 		}
 		else
 		{

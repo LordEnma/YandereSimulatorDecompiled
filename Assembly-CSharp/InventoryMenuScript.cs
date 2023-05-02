@@ -72,7 +72,7 @@ public class InventoryMenuScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PauseScreen.MainMenu.SetActive(value: true);
 			PauseScreen.Sideways = false;

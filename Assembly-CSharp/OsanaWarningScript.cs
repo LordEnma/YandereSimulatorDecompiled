@@ -45,7 +45,7 @@ public class OsanaWarningScript : MonoBehaviour
 		Darkness.color = new Color(0f, 0f, 0f, Alpha);
 		if (Alpha == 0f)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				FadeOut = true;
 			}

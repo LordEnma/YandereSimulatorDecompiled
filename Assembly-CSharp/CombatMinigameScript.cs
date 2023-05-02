@@ -159,7 +159,7 @@ public class CombatMinigameScript : MonoBehaviour
 		{
 			Timer += Time.deltaTime;
 			Circle.fillAmount = 1f - Timer / 0.33333f;
-			if ((Input.GetButtonDown("A") && CurrentButton != "A") || (Input.GetButtonDown("B") && CurrentButton != "B") || (Input.GetButtonDown("X") && CurrentButton != "X") || (Input.GetButtonDown("Y") && CurrentButton != "Y"))
+			if ((Input.GetButtonDown(InputNames.Xbox_A) && CurrentButton != "A") || (Input.GetButtonDown(InputNames.Xbox_B) && CurrentButton != "B") || (Input.GetButtonDown(InputNames.Xbox_X) && CurrentButton != "X") || (Input.GetButtonDown(InputNames.Xbox_Y) && CurrentButton != "Y"))
 			{
 				Time.timeScale = 1f;
 				MyVocals.pitch = 1f;

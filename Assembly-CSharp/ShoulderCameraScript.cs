@@ -211,7 +211,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			NoticedTimer += Time.deltaTime;
 			if (Phase == 1)
 			{
-				if (Input.GetButtonDown("A") && !Yandere.Attacking)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && !Yandere.Attacking)
 				{
 					Yandere.transform.rotation = Quaternion.LookRotation(Yandere.Senpai.position - Yandere.transform.position);
 					NoticedTimer += 10f;
@@ -253,7 +253,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			}
 			else if (Phase == 2)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					NoticedTimer += 10f;
 				}

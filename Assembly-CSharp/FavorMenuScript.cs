@@ -60,7 +60,7 @@ public class FavorMenuScript : MonoBehaviour
 			{
 				return;
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "Accept";
@@ -100,7 +100,7 @@ public class FavorMenuScript : MonoBehaviour
 					BountyMenu.SetActive(value: true);
 				}
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				TutorialWindow.TitleLabel.text = "Info Points";
 				TutorialWindow.TutorialLabel.text = TutorialWindow.PointsString;
@@ -111,7 +111,7 @@ public class FavorMenuScript : MonoBehaviour
 				TutorialWindow.SummonWindow();
 				PromptBar.Show = false;
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "Confirm";
@@ -126,7 +126,7 @@ public class FavorMenuScript : MonoBehaviour
 				Flicker = false;
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PromptBar.ClearButtons();
 			PromptBar.Label[0].text = "Accept";

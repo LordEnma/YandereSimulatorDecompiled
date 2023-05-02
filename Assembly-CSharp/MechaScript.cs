@@ -63,11 +63,11 @@ public class MechaScript : MonoBehaviour
 				Physics.SyncTransforms();
 			}
 			UpdateMovement();
-			if (Input.GetButtonDown("RB"))
+			if (Input.GetButtonDown(InputNames.Xbox_RB))
 			{
 				Fire = true;
 			}
-			if (Input.GetButtonDown("X"))
+			if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				if (ShellType == MechaShell)
 				{
@@ -121,7 +121,7 @@ public class MechaScript : MonoBehaviour
 					Timer = 0f;
 				}
 			}
-			if (Input.GetButtonDown("RS") || Input.GetButtonDown("LS"))
+			if (Input.GetButtonDown(InputNames.Xbox_RS) || Input.GetButtonDown(InputNames.Xbox_LS))
 			{
 				Prompt.Yandere.transform.parent = null;
 				Prompt.Yandere.enabled = true;
@@ -158,12 +158,12 @@ public class MechaScript : MonoBehaviour
 		if (!Prompt.Yandere.ToggleRun)
 		{
 			Running = false;
-			if (Input.GetButton("LB"))
+			if (Input.GetButton(InputNames.Xbox_LB))
 			{
 				Running = true;
 			}
 		}
-		else if (Input.GetButtonDown("LB"))
+		else if (Input.GetButtonDown(InputNames.Xbox_LB))
 		{
 			Running = !Running;
 		}

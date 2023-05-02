@@ -25,7 +25,13 @@ public class InventoryScript : MonoBehaviour
 
 	public bool RivalPhone;
 
+	public bool TapePlayer;
+
 	public bool Narcotics;
+
+	public bool PinkCloth;
+
+	public bool PinkSocks;
 
 	public bool LockPick;
 
@@ -130,6 +136,10 @@ public class InventoryScript : MonoBehaviour
 	public int SenpaiShots;
 
 	public int PantyShots;
+
+	public int Flyers;
+
+	public int Books;
 
 	public int[] ItemsRequested;
 

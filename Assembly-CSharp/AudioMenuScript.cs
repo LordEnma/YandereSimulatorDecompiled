@@ -92,7 +92,7 @@ public class AudioMenuScript : MonoBehaviour
 			_ = Selected;
 			_ = 3;
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PromptBar.ClearButtons();
 			PromptBar.Label[0].text = "Accept";

@@ -181,7 +181,7 @@ public class BusStopScript : MonoBehaviour
 				ExitCutscene();
 			}
 		}
-		else if (Input.GetButton("X"))
+		else if (Input.GetButton(InputNames.Xbox_X))
 		{
 			SkipPanel.alpha = 1f;
 			SkipTimer = 0f;

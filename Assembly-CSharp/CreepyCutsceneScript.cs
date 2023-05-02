@@ -16,7 +16,7 @@ public class CreepyCutsceneScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (Typewriter.mCurrentOffset < Typewriter.mFullText.Length)
 			{

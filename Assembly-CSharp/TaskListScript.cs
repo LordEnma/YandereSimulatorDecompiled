@@ -123,7 +123,7 @@ public class TaskListScript : MonoBehaviour
 		{
 			if (!TutorialWindow.Hide && !TutorialWindow.Show)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					OptionGlobals.TutorialsOff = false;
 					TutorialWindow.ForceID = ListPosition + ID;
@@ -132,13 +132,13 @@ public class TaskListScript : MonoBehaviour
 					TutorialWindow.SummonWindow();
 					PauseScreen.PromptBar.Show = false;
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Exit();
 				}
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			Exit();
 		}

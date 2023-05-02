@@ -51,5 +51,7 @@ public enum StudentActionType
 	Guard = 48,
 	HelpTeacher = 49,
 	Admire = 50,
-	Random = 51
+	Rehearse = 51,
+	Stretch = 52,
+	Random = 53
 }

@@ -135,13 +135,13 @@ public class NewSettingsScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Menu = Selection;
 				Transition = true;
 				PromptBar.Show = false;
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				if (SchoolScene)
 				{
@@ -204,7 +204,7 @@ public class NewSettingsScript : MonoBehaviour
 				OptionGlobals.DisableVignette = !Profile.vignette.enabled;
 				UpdateLabels();
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				Profile.antialiasing.enabled = false;
 				Profile.ambientOcclusion.enabled = false;
@@ -219,7 +219,7 @@ public class NewSettingsScript : MonoBehaviour
 				OptionGlobals.DisableVignette = !Profile.vignette.enabled;
 				UpdateLabels();
 			}
-			else if (Input.GetButtonDown("Y"))
+			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				Profile.antialiasing.enabled = true;
 				Profile.ambientOcclusion.enabled = true;
@@ -234,7 +234,7 @@ public class NewSettingsScript : MonoBehaviour
 				OptionGlobals.DisableVignette = !Profile.vignette.enabled;
 				UpdateLabels();
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				OptionGlobals.DepthOfField = Profile.depthOfField.enabled;
 				OptionGlobals.MotionBlur = Profile.motionBlur.enabled;
@@ -480,7 +480,7 @@ public class NewSettingsScript : MonoBehaviour
 				}
 				UpdateLabels();
 			}
-			if (Input.GetButtonDown("X"))
+			if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				OptionGlobals.OpaqueWindows = true;
 				OptionGlobals.DisableFarAnimations = 1;
@@ -504,7 +504,7 @@ public class NewSettingsScript : MonoBehaviour
 				}
 				UpdateLabels();
 			}
-			else if (Input.GetButtonDown("Y"))
+			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				OptionGlobals.OpaqueWindows = true;
 				OptionGlobals.DisableFarAnimations = 10;
@@ -529,7 +529,7 @@ public class NewSettingsScript : MonoBehaviour
 				}
 				UpdateLabels();
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				PromptBar.Show = false;
 				Transition = true;
@@ -693,7 +693,7 @@ public class NewSettingsScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				PromptBar.Show = false;
 				Transition = true;
@@ -747,7 +747,7 @@ public class NewSettingsScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				PromptBar.Show = false;
 				Transition = true;
@@ -836,7 +836,7 @@ public class NewSettingsScript : MonoBehaviour
 				QualityManager.UpdateEightiesEffects();
 				UpdateLabels();
 			}
-			if (Input.GetButtonDown("X"))
+			if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				OptionGlobals.DisableStatic = true;
 				OptionGlobals.DisableDisplacement = true;
@@ -849,7 +849,7 @@ public class NewSettingsScript : MonoBehaviour
 				QualityManager.UpdateEightiesEffects();
 				UpdateLabels();
 			}
-			else if (Input.GetButtonDown("Y"))
+			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				OptionGlobals.DisableStatic = false;
 				OptionGlobals.DisableDisplacement = false;
@@ -862,7 +862,7 @@ public class NewSettingsScript : MonoBehaviour
 				QualityManager.UpdateEightiesEffects();
 				UpdateLabels();
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				PromptBar.ClearButtons();
 				PromptBar.UpdateButtons();
@@ -915,7 +915,7 @@ public class NewSettingsScript : MonoBehaviour
 				Screen.fullScreen = !Screen.fullScreen;
 				UpdateOnNextFrame = true;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				PromptBar.ClearButtons();
 				PromptBar.UpdateButtons();

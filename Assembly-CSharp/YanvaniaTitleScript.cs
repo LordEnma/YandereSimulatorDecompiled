@@ -92,7 +92,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 		{
 			if (Darkness.color.a > 0f)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Skip();
 				}
@@ -119,7 +119,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 							component.clip = BGM;
 							component.Play();
 						}
-						if (Input.GetButtonDown("B"))
+						if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							Prologue.localPosition = new Vector3(Prologue.localPosition.x, 2501f, Prologue.localPosition.z);
 							Prologue.GetComponent<AudioSource>().Stop();
@@ -179,7 +179,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 					if (component.clip != BGM)
 					{
 						Logo.color = new Color(Logo.color.r, Logo.color.g, Logo.color.b, Logo.color.a + Time.deltaTime);
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							Skip();
 						}
@@ -199,7 +199,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 						{
 							return;
 						}
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							Object.Instantiate(ButtonEffect, Highlight.position, Quaternion.identity);
 							if (Selected == 1 || Selected == 4)
@@ -244,7 +244,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 							Credits.alpha = Mathf.MoveTowards(Credits.alpha, 1f, Time.deltaTime);
 						}
 					}
-					if ((Controls.alpha == 1f || Credits.alpha == 1f) && Input.GetButtonDown("B"))
+					if ((Controls.alpha == 1f || Credits.alpha == 1f) && Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						Object.Instantiate(ButtonEffect, BackButtons[Selected].position, Quaternion.identity);
 						FadeButtons = false;

@@ -117,7 +117,7 @@ public class DropsScript : MonoBehaviour
 			}
 			UpdateDesc();
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			AudioSource component = GetComponent<AudioSource>();
 			if (!Purchased[Selected] && InfoChanWindow.Orders < 11)
@@ -163,7 +163,7 @@ public class DropsScript : MonoBehaviour
 				component.Play();
 			}
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PromptBar.ClearButtons();
 			PromptBar.Label[0].text = "Accept";

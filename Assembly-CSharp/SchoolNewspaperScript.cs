@@ -69,7 +69,7 @@ public class SchoolNewspaperScript : MonoBehaviour
 			Time.timeScale = 0.0001f;
 			Show = true;
 		}
-		if (Show && Input.GetButtonDown("B"))
+		if (Show && Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PromptBar.ClearButtons();
 			PromptBar.Show = false;

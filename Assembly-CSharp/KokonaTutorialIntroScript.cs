@@ -96,7 +96,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 			SpeechID++;
 			Subtitle.text = SpeechLines[SpeechID];
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			DebugID++;
 			if (DebugID > 9)
@@ -108,7 +108,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		{
 			Timer = Mathf.MoveTowards(Timer, 1f, Time.deltaTime);
 			SkipPanel.alpha = Timer;
-			if (Timer == 1f || (Debug && Input.GetButtonDown("A")))
+			if (Timer == 1f || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				Jukebox.Play();
 				Timer = 0f;
@@ -118,11 +118,11 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		else if (Phase == 1)
 		{
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime * 0.33333f);
-			if (Darkness.alpha == 0f || (Debug && Input.GetButtonDown("A")))
+			if (Darkness.alpha == 0f || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				Darkness.alpha = 0f;
 				Timer += Time.deltaTime;
-				if (Timer > 1f || (Debug && Input.GetButtonDown("A")))
+				if (Timer > 1f || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 				{
 					KokonaAnim["Tutorial_Kokona_Intro"].speed = 1f;
 					AyanoAnim["Tutorial_Ayano_Intro"].speed = 1f;
@@ -134,7 +134,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 2)
 		{
-			if (Debug && Input.GetButtonDown("A"))
+			if (Debug && Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				MainCamera.transform.position = new Vector3(3.01f, 1.25f, 20.5f);
 				MainCamera.transform.eulerAngles = new Vector3(0f, 22.5f, 0f);
@@ -178,7 +178,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 					AyanoAnim["Tutorial_Ayano_Intro_ALT"].speed = Mathf.MoveTowards(AyanoAnim["Tutorial_Ayano_Intro_ALT"].speed, 2f, Time.deltaTime);
 				}
 			}
-			if (KokonaAnim["Tutorial_Kokona_Intro"].time > KokonaAnim["Tutorial_Kokona_Intro"].length - 1f || (Debug && Input.GetButtonDown("A")))
+			if (KokonaAnim["Tutorial_Kokona_Intro"].time > KokonaAnim["Tutorial_Kokona_Intro"].length - 1f || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				Jukebox.clip = WaitLoop;
 				Jukebox.loop = true;
@@ -194,7 +194,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 			Window.localScale = Vector3.Lerp(Window.localScale, Vector3.one, Time.deltaTime * 10f);
 			if (Window.localScale.x > 0.9f)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Jukebox.clip = AcceptClip;
 					Jukebox.loop = false;
@@ -206,7 +206,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 					SpeechTimer = 30f;
 					Phase++;
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Jukebox.clip = DeclineClip;
 					Jukebox.loop = false;
@@ -222,7 +222,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 6)
 		{
-			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown("A")))
+			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				KokonaAnim.CrossFade("Tutorial_Kokona_Accept");
 				AyanoAnim.CrossFade("Tutorial_Ayano_Accept_Idle");
@@ -233,7 +233,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 7)
 		{
-			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown("A")))
+			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				Phase++;
 			}
@@ -241,7 +241,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		else if (Phase == 8)
 		{
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
-			if (Darkness.alpha == 1f || (Debug && Input.GetButtonDown("A")))
+			if (Darkness.alpha == 1f || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				GameGlobals.KokonaTutorial = true;
 				SceneManager.LoadScene("LoadingScene");
@@ -249,7 +249,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 9)
 		{
-			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown("A")))
+			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				KokonaAnim.CrossFade("Tutorial_Kokona_Decline");
 				MyAudioSource.clip = KokonaNo;
@@ -259,7 +259,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		}
 		else if (Phase == 10)
 		{
-			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown("A")))
+			if (!MyAudioSource.isPlaying || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				Phase++;
 			}
@@ -267,7 +267,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		else if (Phase == 11)
 		{
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
-			if (Darkness.alpha == 1f || (Debug && Input.GetButtonDown("A")))
+			if (Darkness.alpha == 1f || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				GameGlobals.KokonaTutorial = false;
 				SceneManager.LoadScene("PhoneScene");
@@ -280,7 +280,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 			{
 				SkipPanel.alpha -= Time.deltaTime;
 			}
-			if (Input.GetButton("X"))
+			if (Input.GetButton(InputNames.Xbox_X))
 			{
 				SkipPanel.alpha = 1f;
 				SkipTimer = 0f;

@@ -51,6 +51,8 @@ public class TitleExtrasScript : MonoBehaviour
 
 	public bool Show;
 
+	public UILabel Header;
+
 	public float Height;
 
 	public int Selected;
@@ -140,7 +142,7 @@ public class TitleExtrasScript : MonoBehaviour
 						Selected = 5;
 					}
 				}
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					NextMenu = Selected;
 					FadeOut = true;
@@ -148,7 +150,7 @@ public class TitleExtrasScript : MonoBehaviour
 					PromptBar.UpdateButtons();
 					PromptBar.Show = false;
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Show = false;
 					PromptBar.Show = false;
@@ -164,7 +166,7 @@ public class TitleExtrasScript : MonoBehaviour
 					Screen.SetResolution(512, 512, fullscreen: false);
 					SceneManager.LoadScene("PortraitScene");
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					ReturnToMain();
 				}
@@ -217,7 +219,7 @@ public class TitleExtrasScript : MonoBehaviour
 						VideoContainers[i].alpha = 1f;
 					}
 				}
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (Menu == 1)
 					{
@@ -236,7 +238,7 @@ public class TitleExtrasScript : MonoBehaviour
 						Application.OpenURL(LoreURLs[Video]);
 					}
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					ReturnToMain();
 				}
@@ -277,6 +279,22 @@ public class TitleExtrasScript : MonoBehaviour
 			{
 				VideoContainers[i].alpha = 1f;
 			}
+		}
+		if (NextMenu == 1)
+		{
+			Header.text = "Promo Videos";
+		}
+		else if (NextMenu == 2)
+		{
+			Header.text = "Humor Videos";
+		}
+		else if (NextMenu == 3)
+		{
+			Header.text = "Parody Videos";
+		}
+		else if (NextMenu == 4)
+		{
+			Header.text = "Lore Videos";
 		}
 	}
 

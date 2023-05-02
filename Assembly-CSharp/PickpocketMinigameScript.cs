@@ -81,7 +81,7 @@ public class PickpocketMinigameScript : MonoBehaviour
 					return;
 				}
 				Circle.fillAmount = 1f - Timer / 1f;
-				if ((Input.GetButtonDown("A") && CurrentButton != "A") || (Input.GetButtonDown("B") && CurrentButton != "B") || (Input.GetButtonDown("X") && CurrentButton != "X") || (Input.GetButtonDown("Y") && CurrentButton != "Y"))
+				if ((Input.GetButtonDown(InputNames.Xbox_A) && CurrentButton != "A") || (Input.GetButtonDown(InputNames.Xbox_B) && CurrentButton != "B") || (Input.GetButtonDown(InputNames.Xbox_X) && CurrentButton != "X") || (Input.GetButtonDown(InputNames.Xbox_Y) && CurrentButton != "Y"))
 				{
 					Yandere.Caught = true;
 					Failure = true;

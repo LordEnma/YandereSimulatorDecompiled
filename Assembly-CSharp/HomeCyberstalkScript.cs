@@ -6,7 +6,7 @@ public class HomeCyberstalkScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
 			HomeDarkness.Cyberstalking = true;
@@ -19,7 +19,7 @@ public class HomeCyberstalkScript : MonoBehaviour
 				ConversationGlobals.SetTopicDiscovered(num, value: true);
 			}
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			base.gameObject.SetActive(value: false);
 		}

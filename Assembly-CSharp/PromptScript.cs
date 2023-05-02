@@ -391,19 +391,19 @@ public class PromptScript : MonoBehaviour
 											}
 										}
 									}
-									if (Input.GetButton("A"))
+									if (Input.GetButton(InputNames.Xbox_A))
 									{
 										ButtonHeld = 1;
 									}
-									else if (Input.GetButton("B"))
+									else if (Input.GetButton(InputNames.Xbox_B))
 									{
 										ButtonHeld = 2;
 									}
-									else if (Input.GetButton("X"))
+									else if (Input.GetButton(InputNames.Xbox_X))
 									{
 										ButtonHeld = 3;
 									}
-									else if (Input.GetButton("Y"))
+									else if (Input.GetButton(InputNames.Xbox_Y))
 									{
 										ButtonHeld = 4;
 									}

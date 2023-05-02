@@ -326,7 +326,7 @@ public class SettingsScript : MonoBehaviour
 			QualityManager.UpdateOutlines();
 			UpdateText();
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			WarningMessage.SetActive(value: false);
 			PromptBar.ClearButtons();

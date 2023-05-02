@@ -220,7 +220,7 @@ public class PhoneScript : MonoBehaviour
 							OsanaCover.alpha = Mathf.MoveTowards(OsanaCover.alpha, 1f, Time.deltaTime);
 						}
 					}
-					if ((Auto && AutoTimer > VoiceClips[ID].length + 1f) || Input.GetButtonDown("A") || ManuallyAdvance)
+					if ((Auto && AutoTimer > VoiceClips[ID].length + 1f) || Input.GetButtonDown(InputNames.Xbox_A) || ManuallyAdvance)
 					{
 						ManuallyAdvance = false;
 						if (MeetingInfoChan && ID == 16 && PauseMenuPhase == 0 && !PostElimination)
@@ -250,7 +250,7 @@ public class PhoneScript : MonoBehaviour
 						}
 					}
 				}
-				if (Input.GetButtonDown("X") && Buttons.localPosition.y > -1f)
+				if (Input.GetButtonDown(InputNames.Xbox_X) && Buttons.localPosition.y > -1f)
 				{
 					FadeOut = true;
 				}

@@ -100,7 +100,7 @@ public class YouTubeChatMenuScript : MonoBehaviour
 		}
 		if (InitializeWindow.activeInHierarchy)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (PauseScreen.transform.localEulerAngles.z > 89f)
 				{
@@ -113,7 +113,7 @@ public class YouTubeChatMenuScript : MonoBehaviour
 					Frame++;
 				}
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				Exit();
 			}
@@ -132,7 +132,7 @@ public class YouTubeChatMenuScript : MonoBehaviour
 				ValidURL.color = new Color(1f, 0f, 0f, 1f);
 			}
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			Debug.Log("Updating sprites...or trying to.");
 			Commands[ID] = !Commands[ID];
@@ -146,11 +146,11 @@ public class YouTubeChatMenuScript : MonoBehaviour
 				Checkmarks[ID].spriteName = "No";
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			Exit();
 		}
-		else if (Input.GetButtonDown("X"))
+		else if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			ValidURL.text = "Checking URL, please wait...";
 			ValidURL.color = new Color(1f, 1f, 1f, 1f);

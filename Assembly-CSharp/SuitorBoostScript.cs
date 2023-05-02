@@ -177,7 +177,7 @@ public class SuitorBoostScript : MonoBehaviour
 					PromptBar.UpdateButtons();
 					PromptBar.Show = true;
 				}
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					PromptBar.Show = false;
 					Phase++;

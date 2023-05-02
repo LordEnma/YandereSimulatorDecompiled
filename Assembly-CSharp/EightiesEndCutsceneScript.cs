@@ -155,7 +155,7 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 			return;
 		}
 		Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 0.1f, Time.deltaTime);
-		if (!MyAudio.isPlaying || (Debugging && Input.GetButtonDown("A") && Phase < 16))
+		if (!MyAudio.isPlaying || (Debugging && Input.GetButtonDown(InputNames.Xbox_A) && Phase < 16))
 		{
 			Timer = 1.1f;
 			if (Timer > 1f)
@@ -234,7 +234,7 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Input.GetButton("X"))
+		if (Input.GetButton(InputNames.Xbox_X))
 		{
 			SkipCircle.fillAmount -= Time.deltaTime;
 			if (SkipCircle.fillAmount == 0f)

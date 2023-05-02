@@ -110,7 +110,7 @@ public class CreditsScript : MonoBehaviour
 					Timer -= TimerLimit;
 				}
 			}
-			if (Input.GetButtonDown("X") || MusicTimer >= Jukebox.clip.length)
+			if (Input.GetButtonDown(InputNames.Xbox_X) || MusicTimer >= Jukebox.clip.length)
 			{
 				FadeOut = true;
 			}

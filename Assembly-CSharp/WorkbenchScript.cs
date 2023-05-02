@@ -84,6 +84,10 @@ public class WorkbenchScript : MonoBehaviour
 	{
 		WorkbenchWindow.gameObject.SetActive(value: false);
 		RemoveCheckmarks();
+		if (GameGlobals.EightiesTutorial)
+		{
+			Prompt.HideButton[0] = true;
+		}
 	}
 
 	private void Update()
@@ -149,6 +153,7 @@ public class WorkbenchScript : MonoBehaviour
 					Prompt.Circle[1].fillAmount = 1f;
 					Prompt.Yandere.Inventory.MaskingTape = false;
 					GameObject obj = Prompt.Yandere.PickUp.gameObject;
+					Prompt.Yandere.PickUp.CannotDrop = false;
 					Prompt.Yandere.EmptyHands();
 					obj.SetActive(value: false);
 					BodyBags.SetActive(value: true);
@@ -177,7 +182,7 @@ public class WorkbenchScript : MonoBehaviour
 					Selection++;
 					UpdateHighlight();
 				}
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (InStock[Selection] && Label[Selection].alpha == 1f)
 					{
@@ -195,7 +200,7 @@ public class WorkbenchScript : MonoBehaviour
 						PlayRandomSound();
 					}
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					WorkbenchWindow.gameObject.SetActive(value: false);
 					Prompt.Yandere.MyController.enabled = true;
@@ -211,7 +216,7 @@ public class WorkbenchScript : MonoBehaviour
 					Triple = false;
 					Show = false;
 				}
-				else if (Input.GetButtonDown("X") && PromptBar.Label[2].text != "")
+				else if (Input.GetButtonDown(InputNames.Xbox_X) && PromptBar.Label[2].text != "")
 				{
 					ConfirmationWindow.SetActive(value: true);
 					PromptBar.Label[0].text = "";
@@ -234,7 +239,7 @@ public class WorkbenchScript : MonoBehaviour
 					PromptBar.UpdateButtons();
 				}
 			}
-			else if (PromptBar.Label[0].text != "" && Input.GetButtonDown("A"))
+			else if (PromptBar.Label[0].text != "" && Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				ConfirmationWindow.SetActive(value: false);
 				OutcomeModel[OutcomeID].transform.localScale = new Vector3(0f, 0f, 0f);
@@ -255,7 +260,7 @@ public class WorkbenchScript : MonoBehaviour
 					PlayRandomSound();
 				}
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				ConfirmationWindow.SetActive(value: false);
 				PromptBar.Label[0].text = "Select";
@@ -270,7 +275,7 @@ public class WorkbenchScript : MonoBehaviour
 			OutcomeModel[OutcomeID].transform.localScale = Vector3.Lerp(OutcomeModel[OutcomeID].transform.localScale, Vector3.one, Time.deltaTime * 10f);
 			OutcomeModel[OutcomeID].transform.localEulerAngles = new Vector3(0f, Rotation, 0f);
 			Darkness.alpha = Mathf.Lerp(Darkness.alpha, 0.5f, Time.deltaTime * 10f);
-			if (!(Darkness.alpha > 0.49f) || !Input.GetButtonDown("A"))
+			if (!(Darkness.alpha > 0.49f) || !Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				return;
 			}
@@ -280,16 +285,10 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					Inventory.Ammonium = false;
 					Inventory.Balloons = false;
-					GameObject obj2 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[13], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
+					GameObject obj2 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[15], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
 					obj2.GetComponent<Rigidbody>().useGravity = true;
 					obj2.GetComponent<Rigidbody>().isKinematic = false;
-					obj2.name = "Box of Stink Bombs";
-					obj2.GetComponent<PickUpScript>().LeftHand = false;
-					obj2.GetComponent<PickUpScript>().SwapModel = true;
-					obj2.GetComponent<PickUpScript>().InstantiatedObject = true;
-					obj2.GetComponent<PickUpScript>().HoldPosition = new Vector3(0f, -0.01f, 0f);
-					obj2.GetComponent<PickUpScript>().HoldRotation = new Vector3(0f, 0f, 0f);
-					obj2.GetComponent<PickUpScript>().CarryAnimID = 3;
+					obj2.name = "Stink Bombs";
 				}
 				else if (OutcomeID == 2)
 				{
@@ -301,11 +300,10 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					Inventory.SilverFulminate = false;
 					Inventory.Paper = false;
-					GameObject obj3 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[15], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
+					GameObject obj3 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[16], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
 					obj3.GetComponent<Rigidbody>().useGravity = true;
 					obj3.GetComponent<Rigidbody>().isKinematic = false;
 					obj3.name = "Bundle of Bang Snaps";
-					obj3.GetComponent<PickUpScript>().InstantiatedObject = true;
 				}
 				else if (OutcomeID == 4)
 				{

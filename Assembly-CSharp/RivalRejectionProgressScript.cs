@@ -42,7 +42,7 @@ public class RivalRejectionProgressScript : MonoBehaviour
 		}
 		else if (Phase == 2)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Phase++;
 			}

@@ -37,11 +37,15 @@ public class HeartbrokenScript : MonoBehaviour
 
 	public UILabel Subtitle;
 
+	public GameObject Failed;
+
 	public GameObject SNAP;
 
 	public AudioClip EightiesGameOver;
 
 	public AudioClip Slam;
+
+	public bool ChallengeFailed;
 
 	public bool Headmaster;
 
@@ -98,7 +102,31 @@ public class HeartbrokenScript : MonoBehaviour
 		{
 			Arrested = true;
 		}
-		if (Caught)
+		if (ChallengeFailed)
+		{
+			Letters[0].text = "";
+			Letters[1].text = "C";
+			Letters[2].text = "H";
+			Letters[3].text = "A";
+			Letters[4].text = "L";
+			Letters[5].text = "L";
+			Letters[6].text = "E";
+			Letters[7].text = "N";
+			Letters[8].text = "G";
+			Letters[9].text = "E";
+			Letters[10].text = "";
+			UILabel[] letters = Letters;
+			foreach (UILabel uILabel in letters)
+			{
+				uILabel.transform.localPosition = new Vector3(uILabel.transform.localPosition.x + 25f, uILabel.transform.localPosition.y, uILabel.transform.localPosition.z);
+			}
+			LetterID = 1;
+			StopID = 10;
+			SNAP.SetActive(value: false);
+			Cursor.Options = 4;
+			NoSnap = true;
+		}
+		else if (Caught)
 		{
 			Letters[0].text = "";
 			Letters[1].text = "";
@@ -112,9 +140,9 @@ public class HeartbrokenScript : MonoBehaviour
 			Letters[9].text = "";
 			Letters[10].text = "";
 			UILabel[] letters = Letters;
-			foreach (UILabel uILabel in letters)
+			foreach (UILabel uILabel2 in letters)
 			{
-				uILabel.transform.localPosition = new Vector3(uILabel.transform.localPosition.x + 125f, uILabel.transform.localPosition.y, uILabel.transform.localPosition.z);
+				uILabel2.transform.localPosition = new Vector3(uILabel2.transform.localPosition.x + 125f, uILabel2.transform.localPosition.y, uILabel2.transform.localPosition.z);
 			}
 			LetterID = 1;
 			StopID = 8;
@@ -175,9 +203,9 @@ public class HeartbrokenScript : MonoBehaviour
 				StopID = 10;
 			}
 			UILabel[] letters = Letters;
-			foreach (UILabel uILabel2 in letters)
+			foreach (UILabel uILabel3 in letters)
 			{
-				uILabel2.transform.localPosition = new Vector3(uILabel2.transform.localPosition.x + 100f, uILabel2.transform.localPosition.y, uILabel2.transform.localPosition.z);
+				uILabel3.transform.localPosition = new Vector3(uILabel3.transform.localPosition.x + 100f, uILabel3.transform.localPosition.y, uILabel3.transform.localPosition.z);
 			}
 			SNAP.SetActive(value: false);
 			Cursor.Options = 4;
@@ -214,9 +242,9 @@ public class HeartbrokenScript : MonoBehaviour
 			Letters[9].text = string.Empty;
 			Letters[10].text = string.Empty;
 			UILabel[] letters = Letters;
-			foreach (UILabel uILabel3 in letters)
+			foreach (UILabel uILabel4 in letters)
 			{
-				uILabel3.transform.localPosition = new Vector3(uILabel3.transform.localPosition.x + 100f, uILabel3.transform.localPosition.y, uILabel3.transform.localPosition.z);
+				uILabel4.transform.localPosition = new Vector3(uILabel4.transform.localPosition.x + 100f, uILabel4.transform.localPosition.y, uILabel4.transform.localPosition.z);
 			}
 			LetterID = 1;
 			StopID = 9;
@@ -236,9 +264,9 @@ public class HeartbrokenScript : MonoBehaviour
 			Letters[9].text = string.Empty;
 			Letters[10].text = string.Empty;
 			UILabel[] letters = Letters;
-			foreach (UILabel uILabel4 in letters)
+			foreach (UILabel uILabel5 in letters)
 			{
-				uILabel4.transform.localPosition = new Vector3(uILabel4.transform.localPosition.x + 100f, uILabel4.transform.localPosition.y, uILabel4.transform.localPosition.z);
+				uILabel5.transform.localPosition = new Vector3(uILabel5.transform.localPosition.x + 100f, uILabel5.transform.localPosition.y, uILabel5.transform.localPosition.z);
 			}
 			LetterID = 1;
 			StopID = 9;
@@ -258,9 +286,9 @@ public class HeartbrokenScript : MonoBehaviour
 			Letters[9].text = string.Empty;
 			Letters[10].text = string.Empty;
 			UILabel[] letters = Letters;
-			foreach (UILabel uILabel5 in letters)
+			foreach (UILabel uILabel6 in letters)
 			{
-				uILabel5.transform.localPosition = new Vector3(uILabel5.transform.localPosition.x + 100f, uILabel5.transform.localPosition.y, uILabel5.transform.localPosition.z);
+				uILabel6.transform.localPosition = new Vector3(uILabel6.transform.localPosition.x + 100f, uILabel6.transform.localPosition.y, uILabel6.transform.localPosition.z);
 			}
 			LetterID = 1;
 			StopID = 9;
@@ -277,15 +305,15 @@ public class HeartbrokenScript : MonoBehaviour
 		}
 		for (ID = 0; ID < Letters.Length; ID++)
 		{
-			UILabel uILabel6 = Letters[ID];
-			uILabel6.transform.localScale = new Vector3(10f, 10f, 1f);
-			uILabel6.color = new Color(uILabel6.color.r, uILabel6.color.g, uILabel6.color.b, 0f);
-			Origins[ID] = uILabel6.transform.localPosition;
+			UILabel uILabel7 = Letters[ID];
+			uILabel7.transform.localScale = new Vector3(10f, 10f, 1f);
+			uILabel7.color = new Color(uILabel7.color.r, uILabel7.color.g, uILabel7.color.b, 0f);
+			Origins[ID] = uILabel7.transform.localPosition;
 		}
 		for (ID = 0; ID < Options.Length; ID++)
 		{
-			UILabel uILabel7 = Options[ID];
-			uILabel7.color = new Color(uILabel7.color.r, uILabel7.color.g, uILabel7.color.b, 0f);
+			UILabel uILabel8 = Options[ID];
+			uILabel8.color = new Color(uILabel8.color.r, uILabel8.color.g, uILabel8.color.b, 0f);
 		}
 		ID = 0;
 		Subtitle.alpha = 0f;
@@ -358,7 +386,7 @@ public class HeartbrokenScript : MonoBehaviour
 			}
 			else if (Phase == 2)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					AudioTimer = 100f;
 				}
@@ -406,6 +434,10 @@ public class HeartbrokenScript : MonoBehaviour
 				LetterID++;
 				if (LetterID == StopID)
 				{
+					if (ChallengeFailed)
+					{
+						Failed.SetActive(value: true);
+					}
 					ID = 0;
 				}
 			}

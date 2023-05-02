@@ -61,7 +61,7 @@ public class SpyScript : MonoBehaviour
 				Phase++;
 			}
 		}
-		else if (Phase == 2 && Input.GetButtonDown("B"))
+		else if (Phase == 2 && Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			End();
 		}

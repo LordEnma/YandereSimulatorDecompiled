@@ -268,7 +268,7 @@ public class TutorialWindowScript : MonoBehaviour
 			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1.2925f, 1.2925f, 1.2925f), Time.unscaledDeltaTime * 10f);
 			if (base.transform.localScale.x > 1f)
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					if (ForcingTutorial)
 					{
@@ -297,7 +297,7 @@ public class TutorialWindowScript : MonoBehaviour
 						Yandere.PauseScreen.PromptBar.Show = true;
 					}
 				}
-				else if (Input.GetButtonDown("B"))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					if (DisableButton.activeInHierarchy)
 					{
@@ -312,7 +312,7 @@ public class TutorialWindowScript : MonoBehaviour
 						ShadowLabel.text = TutorialLabel.text;
 					}
 				}
-				else if (Input.GetButtonDown("X") && ShortLabel.gameObject.activeInHierarchy)
+				else if (Input.GetButtonDown(InputNames.Xbox_X) && ShortLabel.gameObject.activeInHierarchy)
 				{
 					TutorialLabel.gameObject.SetActive(value: true);
 					ShortLabel.gameObject.SetActive(value: false);

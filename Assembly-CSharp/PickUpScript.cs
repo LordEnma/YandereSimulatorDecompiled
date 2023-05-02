@@ -10,6 +10,8 @@ public class PickUpScript : MonoBehaviour
 
 	public Collider PoolClosureCollider;
 
+	public TaskKittenScript TaskKitten;
+
 	public WeaponScript StuckBoxCutter;
 
 	public Transform ExplosiveDevice;
@@ -115,6 +117,8 @@ public class PickUpScript : MonoBehaviour
 	public bool BrownPaint;
 
 	public bool CanCollide;
+
+	public bool CannotDrop;
 
 	public bool CarBattery;
 
@@ -260,6 +264,12 @@ public class PickUpScript : MonoBehaviour
 		{
 			MainModel.SetActive(value: false);
 			AltModel.SetActive(value: true);
+		}
+		if (BodyBags > 0 && GameGlobals.EightiesTutorial)
+		{
+			Prompt.Text[3] = "Makeshift Body Bag";
+			Prompt.Label[3].text = "     " + Prompt.Text[3];
+			BodyBags = 1;
 		}
 	}
 
@@ -507,6 +517,13 @@ public class PickUpScript : MonoBehaviour
 
 	public void BePickedUp()
 	{
+		if (TaskKitten != null)
+		{
+			TaskKitten.Anim.Play("E_held");
+			TaskKitten.enabled = false;
+			TaskKitten.Caught = true;
+			TaskKitten.Stop();
+		}
 		if (Radio && SchemeGlobals.GetSchemeStage(5) == 2)
 		{
 			SchemeGlobals.SetSchemeStage(5, 3);
@@ -618,6 +635,10 @@ public class PickUpScript : MonoBehaviour
 
 	public void Drop()
 	{
+		if (CannotDrop)
+		{
+			return;
+		}
 		if ((bool)Mop)
 		{
 			Mop.MyAudio.Stop();
@@ -773,6 +794,14 @@ public class PickUpScript : MonoBehaviour
 			MyCollider.isTrigger = true;
 		}
 		DoNotTeleport = false;
+		if (TaskKitten != null)
+		{
+			TaskKitten.transform.position = Yandere.transform.position;
+			TaskKitten.transform.rotation = Yandere.transform.rotation;
+			TaskKitten.Anim.Play("B_idle");
+			MyRigidbody.isKinematic = true;
+			MyRigidbody.useGravity = false;
+		}
 	}
 
 	public void DisableGarbageBag()

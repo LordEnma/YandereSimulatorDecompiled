@@ -180,7 +180,7 @@ public class StreetShopScript : MonoBehaviour
 			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 10f);
 		}
 		MyLabel.color = new Color(1f, 0.75f, 1f, Alpha);
-		if (Alpha == 1f && Input.GetButtonDown("A"))
+		if (Alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (Exit)
 			{
@@ -274,7 +274,7 @@ public class StreetShopScript : MonoBehaviour
 			}
 			BinocularCamera.fieldOfView = Mathf.Lerp(BinocularCamera.fieldOfView, Zoom, Time.deltaTime * 10f);
 			StreetManager.CurrentlyActiveJukebox.volume = BinocularCamera.fieldOfView / 60f * 0.5f;
-			if (Input.GetButtonUp("B"))
+			if (Input.GetButtonUp(InputNames.Xbox_B))
 			{
 				BinocularCamera.gameObject.SetActive(value: false);
 				BinocularRenderer.enabled = true;

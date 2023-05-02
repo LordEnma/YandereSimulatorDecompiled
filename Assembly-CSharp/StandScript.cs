@@ -46,7 +46,7 @@ public class StandScript : MonoBehaviour
 	{
 		if (!Stand.activeInHierarchy)
 		{
-			if (Weapons == 8 && Yandere.transform.position.y > 11.9f && Input.GetButtonDown("RB") && !MissionModeGlobals.MissionMode && !Yandere.Laughing && Yandere.CanMove)
+			if (Weapons == 8 && Yandere.transform.position.y > 11.9f && Input.GetButtonDown(InputNames.Xbox_RB) && !MissionModeGlobals.MissionMode && !Yandere.Laughing && Yandere.CanMove)
 			{
 				Yandere.Jojo();
 			}

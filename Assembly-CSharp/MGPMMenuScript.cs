@@ -141,7 +141,7 @@ public class MGPMMenuScript : MonoBehaviour
 				ID--;
 				UpdateHighlight();
 			}
-			if (!Input.GetButtonDown("A") && !Input.GetKeyDown("z") && !(Input.GetKeyDown("return") | Input.GetKeyDown("space")))
+			if (!Input.GetButtonDown(InputNames.Xbox_A) && !Input.GetKeyDown("z") && !(Input.GetKeyDown("return") | Input.GetKeyDown("space")))
 			{
 				return;
 			}
@@ -199,7 +199,7 @@ public class MGPMMenuScript : MonoBehaviour
 				FadeOut = true;
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			Highlight.gameObject.SetActive(value: true);
 			Controls.SetActive(value: false);

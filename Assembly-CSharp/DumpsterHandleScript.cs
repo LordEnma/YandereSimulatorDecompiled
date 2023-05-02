@@ -85,7 +85,7 @@ public class DumpsterHandleScript : MonoBehaviour
 			base.transform.parent.transform.position = new Vector3(base.transform.parent.transform.position.x, base.transform.parent.transform.position.y, PushLimit);
 		}
 		Panel.SetActive(DumpsterLid.transform.position.z > DumpsterLid.DisposalSpot - 0.05f && DumpsterLid.transform.position.z < DumpsterLid.DisposalSpot + 0.05f);
-		if (Prompt.Yandere.Chased || Prompt.Yandere.Chasers > 0 || Input.GetButtonDown("B"))
+		if (Prompt.Yandere.Chased || Prompt.Yandere.Chasers > 0 || Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			StopGrabbing();
 		}

@@ -97,7 +97,7 @@ public class BringItemScript : MonoBehaviour
 			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 50f - (float)ID * 50f, Highlight.localPosition.z);
 			DescLabel.text = Descriptions[ID];
 		}
-		if (Input.GetButtonDown("A") && Labels[ID].color.a == 1f)
+		if (Input.GetButtonDown(InputNames.Xbox_A) && Labels[ID].color.a == 1f)
 		{
 			if (PlayerGlobals.BringingItem != ID)
 			{
@@ -111,12 +111,12 @@ public class BringItemScript : MonoBehaviour
 				PlayerGlobals.BringingItem = 0;
 			}
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			HomeExit.HomeWindow.Show = true;
 			HomeWindow.Show = false;
 		}
-		if (Input.GetButtonDown("X"))
+		if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			HomeExit.HomeWindow.Show = true;
 			HomeWindow.Show = false;

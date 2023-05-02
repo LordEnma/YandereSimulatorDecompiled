@@ -55,7 +55,7 @@ public class IdeasMenuScript : MonoBehaviour
 				Selected--;
 				UpdateHighlightPosition();
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				PauseScreen.PromptBar.ClearButtons();
 				PauseScreen.PromptBar.Label[1].text = "Back";
@@ -66,7 +66,7 @@ public class IdeasMenuScript : MonoBehaviour
 				Description.enabled = true;
 				List.SetActive(value: false);
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				PauseScreen.PromptBar.ClearButtons();
 				PauseScreen.PromptBar.Label[0].text = "Accept";
@@ -78,7 +78,7 @@ public class IdeasMenuScript : MonoBehaviour
 				base.gameObject.SetActive(value: false);
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			PauseScreen.PromptBar.ClearButtons();
 			PauseScreen.PromptBar.Label[0].text = "Confirm";

@@ -149,11 +149,11 @@ public class DDRMinigame : MonoBehaviour
 		levelSelectScroll = Mathf.Clamp(levelSelectScroll, 0f, levels.Length - 1);
 		selectedLevel = (int)Mathf.Round(levelSelectScroll);
 		positionLevels();
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			manager.LoadedLevel = levels[selectedLevel];
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			manager.BootOut();
 		}

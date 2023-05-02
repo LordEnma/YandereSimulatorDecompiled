@@ -14,6 +14,8 @@ public class GenericEightiesTaskScript : MonoBehaviour
 
 	public PromptScript Prompt;
 
+	public GameObject Model;
+
 	public string TaskAnim;
 
 	public float TaskTimer;
@@ -50,12 +52,14 @@ public class GenericEightiesTaskScript : MonoBehaviour
 			Prompt.Hide();
 			base.enabled = false;
 		}
+		Prompt.MyCollider.enabled = false;
 	}
 
 	private void Update()
 	{
 		if (Prompt.Yandere.Inventory.ItemsRequested[Type] > Prompt.Yandere.Inventory.ItemsCollected[Type])
 		{
+			Prompt.MyCollider.enabled = true;
 			Prompt.enabled = true;
 			if (Prompt.Circle[0].fillAmount == 0f)
 			{
@@ -92,6 +96,10 @@ public class GenericEightiesTaskScript : MonoBehaviour
 							MyStudent.CharacterAnimation.CrossFade("f02_giveItem_00");
 							TaskTimer = 3f;
 						}
+						if (Type == 6)
+						{
+							Model.SetActive(value: true);
+						}
 						if (Type == 8)
 						{
 							Prompt.Yandere.Paintbrush.SetActive(value: true);
@@ -100,6 +108,10 @@ public class GenericEightiesTaskScript : MonoBehaviour
 							OriginalPainting.material.mainTexture = OriginalArt[Paintings];
 							FixedPainting.material.mainTexture = FixedArt[Paintings];
 							OriginalPainting.material.color = new Color(1f, 1f, 1f, 1f);
+						}
+						if (TaskAnim == "f02_studentPickUp_00")
+						{
+							Prompt.Yandere.CharacterAnimation["f02_studentPickUp_00"].speed = 0.8f;
 						}
 						Prompt.Yandere.CanMove = false;
 						Animate = true;
@@ -113,6 +125,7 @@ public class GenericEightiesTaskScript : MonoBehaviour
 		}
 		else if (Prompt.enabled)
 		{
+			Prompt.MyCollider.enabled = false;
 			Prompt.enabled = false;
 			Prompt.Hide();
 		}
@@ -168,6 +181,10 @@ public class GenericEightiesTaskScript : MonoBehaviour
 		TaskTimer = 0f;
 		Prompt.Yandere.Paintbrush.SetActive(value: false);
 		Prompt.Yandere.Palette.SetActive(value: false);
+		if (Type == 6)
+		{
+			Model.SetActive(value: false);
+		}
 		if (Type == 8)
 		{
 			OriginalPainting.material.color = new Color(1f, 1f, 1f, 0f);

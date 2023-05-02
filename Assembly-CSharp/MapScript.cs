@@ -61,7 +61,7 @@ public class MapScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("Back") && Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial)
+		if (Input.GetButtonDown(InputNames.Xbox_Back) && Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial)
 		{
 			if (!Show)
 			{
@@ -132,7 +132,7 @@ public class MapScript : MonoBehaviour
 			{
 				MyCamera.orthographicSize = 40.75f;
 			}
-			if (Input.GetButtonDown("X"))
+			if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				base.transform.position += new Vector3(0f, -4f, 0f);
 				if (base.transform.position.y < 3f)
@@ -140,7 +140,7 @@ public class MapScript : MonoBehaviour
 					base.transform.position = new Vector3(base.transform.position.x, 3f, base.transform.position.z);
 				}
 			}
-			if (Input.GetButtonDown("Y"))
+			if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				base.transform.position += new Vector3(0f, 4f, 0f);
 				if (base.transform.position.y > 15f)
@@ -189,7 +189,7 @@ public class MapScript : MonoBehaviour
 				StudentManager.Students[1].MapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
 				StudentManager.Students[1].MapMarker.eulerAngles = new Vector3(90f, 0f, 0f);
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				ElevationLabel.enabled = false;
 				Compass.SetActive(value: false);

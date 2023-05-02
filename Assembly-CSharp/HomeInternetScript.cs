@@ -187,19 +187,19 @@ public class HomeInternetScript : MonoBehaviour
 		}
 		if (NavigationMenu.activeInHierarchy && !HomeCamera.CyberstalkWindow.activeInHierarchy)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				NavigationMenu.SetActive(value: false);
 				SocialMedia.SetActive(value: true);
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				if (DateGlobals.DayPassed)
 				{
 					HomeCamera.HomeDarkness.FadeOut = true;
 				}
 			}
-			else if (Input.GetButtonDown("Y"))
+			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				PauseScreen.MainMenu.SetActive(value: false);
 				PauseScreen.Panel.enabled = true;
@@ -214,13 +214,13 @@ public class HomeInternetScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 			}
-			else if (Input.GetButtonDown("LB"))
+			else if (Input.GetButtonDown(InputNames.Xbox_LB))
 			{
 				NavigationMenu.SetActive(value: false);
 				OnlineShopping.SetActive(value: true);
 				MoneyLabel.text = "$" + PlayerGlobals.Money.ToString("F2", NumberFormatInfo.InvariantInfo);
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				HomeCamera.Destination = HomeCamera.Destinations[0];
 				HomeCamera.Target = HomeCamera.Targets[0];
@@ -283,7 +283,7 @@ public class HomeInternetScript : MonoBehaviour
 			}
 			if (!PostSequence)
 			{
-				if (Input.GetButtonDown("A") && WriteIcon.activeInHierarchy && !Posted)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && WriteIcon.activeInHierarchy && !Posted)
 				{
 					if (!ShowMenu)
 					{
@@ -351,7 +351,7 @@ public class HomeInternetScript : MonoBehaviour
 						CheckForCompletion();
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					if (!ShowMenu)
 					{
@@ -375,7 +375,7 @@ public class HomeInternetScript : MonoBehaviour
 						ShowMenu = false;
 					}
 				}
-				if (Input.GetButtonDown("X") && PostIcon.activeInHierarchy)
+				if (Input.GetButtonDown(InputNames.Xbox_X) && PostIcon.activeInHierarchy)
 				{
 					YanderePostLabel.text = "Did you know that " + PostLabels[1].text + " used to " + PostLabels[2].text + " about " + PostLabels[3].text + "?";
 					ExitPost();
@@ -403,7 +403,7 @@ public class HomeInternetScript : MonoBehaviour
 			{
 				return;
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Timer += 2f;
 			}
@@ -505,7 +505,7 @@ public class HomeInternetScript : MonoBehaviour
 			{
 				PlayerGlobals.Money = 100f;
 			}
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Height == 0 || Height > 1)
 				{
@@ -556,7 +556,7 @@ public class HomeInternetScript : MonoBehaviour
 			}
 			Shake = Mathf.MoveTowards(Shake, 0f, Time.deltaTime * 10f);
 			MoneyLabel.transform.localPosition = new Vector3(570f + Random.Range(Shake * -1f, Shake * 1f), 420f + Random.Range(Shake * -1f, Shake * 1f), 0f);
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				if (!AreYouSure.activeInHierarchy)
 				{

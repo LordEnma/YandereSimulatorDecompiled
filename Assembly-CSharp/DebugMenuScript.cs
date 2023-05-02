@@ -389,8 +389,8 @@ public class DebugMenuScript : MonoBehaviour
 					}
 					else if (Input.GetKeyDown(KeyCode.M))
 					{
-						PlayerGlobals.Money = 100f;
-						Yandere.Inventory.Money = 100f;
+						Yandere.Inventory.Money += 100f;
+						PlayerGlobals.Money += 100f;
 						Yandere.Inventory.UpdateMoney();
 						Window.SetActive(value: false);
 					}
@@ -772,6 +772,7 @@ public class DebugMenuScript : MonoBehaviour
 				{
 					SchemeGlobals.SetSchemeStage(1, 100);
 				}
+				Counselor.RivalExpelProgress = 0;
 				StudentGlobals.ExpelProgress = 0;
 				Counselor.CutsceneManager.Scheme = 1;
 				Counselor.LectureID = 1;
@@ -784,6 +785,7 @@ public class DebugMenuScript : MonoBehaviour
 				{
 					SchemeGlobals.SetSchemeStage(2, 100);
 				}
+				Counselor.RivalExpelProgress = 1;
 				StudentGlobals.ExpelProgress = 1;
 				Counselor.CutsceneManager.Scheme = 2;
 				Counselor.LectureID = 2;
@@ -796,6 +798,7 @@ public class DebugMenuScript : MonoBehaviour
 				{
 					SchemeGlobals.SetSchemeStage(3, 100);
 				}
+				Counselor.RivalExpelProgress = 2;
 				StudentGlobals.ExpelProgress = 2;
 				Counselor.CutsceneManager.Scheme = 3;
 				Counselor.LectureID = 3;
@@ -808,6 +811,7 @@ public class DebugMenuScript : MonoBehaviour
 				{
 					SchemeGlobals.SetSchemeStage(4, 100);
 				}
+				Counselor.RivalExpelProgress = 3;
 				StudentGlobals.ExpelProgress = 3;
 				Counselor.CutsceneManager.Scheme = 4;
 				Counselor.LectureID = 4;

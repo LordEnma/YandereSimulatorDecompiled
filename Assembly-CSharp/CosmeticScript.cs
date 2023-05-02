@@ -147,6 +147,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Texture[] MusicStockings;
 
+	public Texture[] MartialArtistGis;
+
 	public Mesh[] FemaleUniforms;
 
 	public Mesh[] MaleUniforms;
@@ -230,6 +232,8 @@ public class CosmeticScript : MonoBehaviour
 	public Texture BlueSocks;
 
 	public Texture CyanSocks;
+
+	public Texture PinkSocks;
 
 	public Texture RedSocks;
 
@@ -578,6 +582,10 @@ public class CosmeticScript : MonoBehaviour
 				Stockings = "Music6";
 				Hairstyle = 51;
 			}
+		}
+		else if (StudentManager != null && StudentManager.TaskManager != null && StudentManager.TaskManager.TaskStatus[36] == 3)
+		{
+			Stockings = "ShortPink";
 		}
 		if (((StudentManager != null && StudentManager.EmptyDemon) || Empty) && (StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71 || Empty))
 		{
@@ -2335,6 +2343,10 @@ public class CosmeticScript : MonoBehaviour
 		else if (Stockings == "ShortCyan")
 		{
 			MyStockings = CyanSocks;
+		}
+		else if (Stockings == "ShortPink")
+		{
+			MyStockings = PinkSocks;
 		}
 		else if (Stockings == "Black")
 		{

@@ -33,7 +33,7 @@ public class EightiesClubDialogueScript : MonoBehaviour
 			break;
 		case 3:
 			Subtitle.ClubGreetings[ClubID] = "...uh...is there...something wrong...?...";
-			Subtitle.Club3Info[1] = "We are the Occult Club. We study the supernatural...with a aprticular emphasis on black magic and demons.";
+			Subtitle.Club3Info[1] = "We are the Occult Club. We study the supernatural...with a particular emphasis on black magic and demons.";
 			Subtitle.Club3Info[2] = "Please, don't get the wrong idea...we don't wish harm on anyone, we're just fascinated by anything...otherworldly.";
 			Subtitle.Club3Info[3] = "If you join our club, you'll grow a tolerance for...horrific things. In short...you'll develop a stronger grip on your sanity.";
 			Subtitle.ClubUnwelcomes[ClubID] = "You! Do you think that just because I enjoy the Occult, I would condone murder?! Begone...or I'll cast a hex on you!";

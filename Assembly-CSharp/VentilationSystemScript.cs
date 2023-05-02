@@ -82,7 +82,7 @@ public class VentilationSystemScript : MonoBehaviour
 		{
 			return;
 		}
-		if (CanStink && Input.GetButtonDown("A"))
+		if (CanStink && Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			GameObject gameObject = Object.Instantiate(StinkBombCloud, Rooms[RoomID].position + Vector3.up * (Floor - 1) * 4f, Quaternion.identity);
 			if (Column > 1 && Column < 5)
@@ -98,11 +98,11 @@ public class VentilationSystemScript : MonoBehaviour
 			}
 			Exit();
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			Exit();
 		}
-		if (Input.GetButtonDown("X"))
+		if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			Floor++;
 			if (Floor > 3)

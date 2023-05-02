@@ -101,7 +101,7 @@ public class DemonScript : MonoBehaviour
 			DemonSubtitle.transform.localPosition = new Vector3(Random.Range(0f - Intensity, Intensity), Random.Range(0f - Intensity, Intensity), Random.Range(0f - Intensity, Intensity));
 			DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, Mathf.MoveTowards(DemonSubtitle.color.a, 1f, Time.deltaTime));
 			Button.color = new Color(Button.color.r, Button.color.g, Button.color.b, Mathf.MoveTowards(Button.color.a, 1f, Time.deltaTime));
-			if (DemonSubtitle.color.a > 0.9f && Input.GetButtonDown("A"))
+			if (DemonSubtitle.color.a > 0.9f && Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Phase++;
 			}

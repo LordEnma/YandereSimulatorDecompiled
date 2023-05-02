@@ -288,7 +288,7 @@ public class HomeCameraScript : MonoBehaviour
 				Profile.depthOfField.enabled = false;
 			}
 		}
-		if (ID != 11 && Input.GetButtonDown("A") && HomeYandere.CanMove && ID != 0)
+		if (ID != 11 && Input.GetButtonDown(InputNames.Xbox_A) && HomeYandere.CanMove && ID != 0)
 		{
 			Destination = Destinations[ID];
 			Target = Targets[ID];

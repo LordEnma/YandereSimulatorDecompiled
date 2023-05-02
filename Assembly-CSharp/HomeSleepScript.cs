@@ -52,7 +52,7 @@ public class HomeSleepScript : MonoBehaviour
 	{
 		if (!HomeYandere.CanMove && !HomeDarkness.FadeOut)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
 				HomeDarkness.Cyberstalking = true;
@@ -60,7 +60,7 @@ public class HomeSleepScript : MonoBehaviour
 				HomeWindow.Show = false;
 				base.enabled = false;
 			}
-			if (Input.GetButtonDown("B"))
+			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				HomeCamera.Destination = HomeCamera.Destinations[0];
 				HomeCamera.Target = HomeCamera.Targets[0];

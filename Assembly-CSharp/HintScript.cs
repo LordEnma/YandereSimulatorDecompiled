@@ -50,7 +50,7 @@ public class HintScript : MonoBehaviour
 			{
 				Show = false;
 			}
-			if (Input.GetButtonDown("Start") && !PauseScreen.Yandere.Shutter.Snapping && !PauseScreen.Yandere.TimeSkipping && !PauseScreen.Yandere.Talking && !PauseScreen.Yandere.Noticed && !PauseScreen.Yandere.InClass && !PauseScreen.Yandere.Struggling && !PauseScreen.Yandere.Won && !PauseScreen.Yandere.Dismembering && !PauseScreen.Yandere.Attacked && PauseScreen.Yandere.CanMove && !PauseScreen.Yandere.Chased && PauseScreen.Yandere.Chasers == 0 && !PauseScreen.Yandere.YandereVision && Time.timeScale > 0.0001f && !PauseScreen.Schedule.gameObject.activeInHierarchy)
+			if (Input.GetButtonDown(InputNames.Xbox_Start) && !PauseScreen.Yandere.Shutter.Snapping && !PauseScreen.Yandere.TimeSkipping && !PauseScreen.Yandere.Talking && !PauseScreen.Yandere.Noticed && !PauseScreen.Yandere.InClass && !PauseScreen.Yandere.Struggling && !PauseScreen.Yandere.Won && !PauseScreen.Yandere.Dismembering && !PauseScreen.Yandere.Attacked && PauseScreen.Yandere.CanMove && !PauseScreen.Yandere.Chased && PauseScreen.Yandere.Chasers == 0 && !PauseScreen.Yandere.YandereVision && Time.timeScale > 0.0001f && !PauseScreen.Schedule.gameObject.activeInHierarchy)
 			{
 				if (DisplayTutorial)
 				{
@@ -83,7 +83,7 @@ public class HintScript : MonoBehaviour
 				base.transform.localPosition = new Vector3(0.2043f, 0f, 1f);
 				DisplayTutorial = false;
 			}
-			if (Input.GetButtonDown("Start") && !PauseScreen.Yandere.Shutter.Snapping && !PauseScreen.Yandere.TimeSkipping && !PauseScreen.Yandere.Talking && !PauseScreen.Yandere.Noticed && !PauseScreen.Yandere.InClass && !PauseScreen.Yandere.Struggling && !PauseScreen.Yandere.Won && !PauseScreen.Yandere.Dismembering && !PauseScreen.Yandere.Attacked && PauseScreen.Yandere.CanMove && !PauseScreen.Yandere.Chased && PauseScreen.Yandere.Chasers == 0 && !PauseScreen.Yandere.YandereVision && Time.timeScale > 0.0001f && !PauseScreen.Schedule.gameObject.activeInHierarchy)
+			if (Input.GetButtonDown(InputNames.Xbox_Start) && !PauseScreen.Yandere.Shutter.Snapping && !PauseScreen.Yandere.TimeSkipping && !PauseScreen.Yandere.Talking && !PauseScreen.Yandere.Noticed && !PauseScreen.Yandere.InClass && !PauseScreen.Yandere.Struggling && !PauseScreen.Yandere.Won && !PauseScreen.Yandere.Dismembering && !PauseScreen.Yandere.Attacked && PauseScreen.Yandere.CanMove && !PauseScreen.Yandere.Chased && PauseScreen.Yandere.Chasers == 0 && !PauseScreen.Yandere.YandereVision && Time.timeScale > 0.0001f && !PauseScreen.Schedule.gameObject.activeInHierarchy)
 			{
 				if (DisplayTutorial)
 				{

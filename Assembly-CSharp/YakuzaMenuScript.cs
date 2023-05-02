@@ -218,7 +218,7 @@ public class YakuzaMenuScript : MonoBehaviour
 			Scales[j].material.color = new Color(1f, 0f, 0f, Alpha);
 		}
 		Background.material.color = new Color(1f, 0f, 0f, 0f);
-		if (GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night || StudentGlobals.GetStudentDead(79))
+		if (GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night || StudentGlobals.GetStudentDead(79) || ChallengeGlobals.NoInfo)
 		{
 			base.gameObject.SetActive(value: false);
 			ButtonPrompt.alpha = 0f;
@@ -275,7 +275,7 @@ public class YakuzaMenuScript : MonoBehaviour
 						Selected--;
 						UpdateBullet();
 					}
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						if (Selected == 1)
 						{
@@ -338,7 +338,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							Quit();
 						}
 					}
-					else if (Input.GetButtonDown("B"))
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						AudioSource.PlayClipAtPoint(Exit, Yandere.MainCamera.transform.position);
 						Quit();
@@ -370,7 +370,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							Column--;
 							UpdateCrosshair();
 						}
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							if (RivalPortraits[TargetSelected].color == new Color(1f, 1f, 1f, 1f))
 							{
@@ -380,7 +380,7 @@ public class YakuzaMenuScript : MonoBehaviour
 								PromptBar.Show = false;
 							}
 						}
-						else if (Input.GetButtonDown("B"))
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							PromptBar.ClearButtons();
 							PromptBar.Label[0].text = "Confirm";
@@ -394,7 +394,7 @@ public class YakuzaMenuScript : MonoBehaviour
 					}
 					else if (ConfirmationWindow.activeInHierarchy)
 					{
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							if (PlayerGlobals.Money > (float)Costs[TargetSelected])
 							{
@@ -423,7 +423,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							ConfirmationWindow.SetActive(value: false);
 							ResultWindow.SetActive(value: true);
 						}
-						else if (Input.GetButtonDown("B"))
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							AudioSource.PlayClipAtPoint(BackOut, Yandere.MainCamera.transform.position);
 							PromptBar.ClearButtons();
@@ -435,7 +435,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							ConfirmationWindow.SetActive(value: false);
 						}
 					}
-					else if (Input.GetButtonDown("A"))
+					else if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Confirm";
@@ -475,7 +475,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							ItemSelected--;
 							UpdateItem();
 						}
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							if (GameGlobals.YakuzaPhase < 4)
 							{
@@ -512,7 +512,7 @@ public class YakuzaMenuScript : MonoBehaviour
 								PromptBar.Show = false;
 							}
 						}
-						else if (Input.GetButtonDown("B"))
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							if (GameGlobals.YakuzaPhase < 4)
 							{
@@ -533,7 +533,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							}
 						}
 					}
-					else if (Input.GetButtonDown("A"))
+					else if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						AudioSource.PlayClipAtPoint(ContrabandPurchase, Yandere.MainCamera.transform.position);
 						if (ItemSelected == 1)
@@ -567,7 +567,7 @@ public class YakuzaMenuScript : MonoBehaviour
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
 					}
-					else if (Input.GetButtonDown("B"))
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						AudioSource.PlayClipAtPoint(BackOut, Yandere.MainCamera.transform.position);
 						ItemConfirmationWindow.SetActive(value: false);
@@ -590,7 +590,7 @@ public class YakuzaMenuScript : MonoBehaviour
 				{
 					if (!RansomConfirmationWindow.activeInHierarchy)
 					{
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							if (Prisoners > 0)
 							{
@@ -606,7 +606,7 @@ public class YakuzaMenuScript : MonoBehaviour
 								PromptBar.Show = false;
 							}
 						}
-						else if (Input.GetButtonDown("B"))
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
 							PromptBar.ClearButtons();
 							PromptBar.Label[0].text = "Confirm";
@@ -617,7 +617,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							Menu = 1;
 						}
 					}
-					else if (Input.GetButtonDown("A"))
+					else if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						AudioSource.PlayClipAtPoint(ContrabandPurchase, Yandere.MainCamera.transform.position);
 						while (Prisoners > 0)
@@ -651,7 +651,7 @@ public class YakuzaMenuScript : MonoBehaviour
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
 					}
-					else if (Input.GetButtonDown("B"))
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						AudioSource.PlayClipAtPoint(BackOut, Yandere.MainCamera.transform.position);
 						PromptBar.ClearButtons();
@@ -706,7 +706,7 @@ public class YakuzaMenuScript : MonoBehaviour
 			if (Vector3.Distance(Yandere.transform.position, Yakuza.position) < 2f)
 			{
 				ButtonPrompt.alpha = Mathf.MoveTowards(ButtonPrompt.alpha, 1f, Time.deltaTime * 2f);
-				if (Input.GetButtonDown("A") && Alpha == 0f)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && Alpha == 0f)
 				{
 					if (GameGlobals.YakuzaPhase == 1)
 					{
@@ -756,7 +756,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 		Speed += Time.deltaTime;
 		Yandere.MainCamera.transform.position = Vector3.Lerp(Yandere.MainCamera.transform.position, new Vector3(-2.25f, 1.5f, -5.5f), Time.deltaTime * Speed * 0.01f);
-		if (Dialogue.isPlaying && !Input.GetButtonDown("A"))
+		if (Dialogue.isPlaying && !Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			return;
 		}

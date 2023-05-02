@@ -10,6 +10,8 @@ public class TutorialScript : MonoBehaviour
 
 	public InputDeviceType PreviousInputDevice;
 
+	public GameObject CleaningItemBlocker;
+
 	public PostProcessingProfile Profile;
 
 	public InputDeviceScript InputDevice;
@@ -17,6 +19,8 @@ public class TutorialScript : MonoBehaviour
 	public WeaponMenuScript WeaponMenu;
 
 	public PickUpScript GarbageBagBox;
+
+	public WorkbenchScript Workbench;
 
 	public PromptScript VictimPrompt;
 
@@ -32,9 +36,13 @@ public class TutorialScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public PromptScript DuctTape;
+
 	public Transform BloodParent;
 
 	public UILabel SubtitleLabel;
+
+	public PickUpScript BodyBag;
 
 	public DoorScript FirstDoor;
 
@@ -73,6 +81,8 @@ public class TutorialScript : MonoBehaviour
 	public WoodChipperScript[] WoodChipper;
 
 	public PromptScript[] PromptsToDisable;
+
+	public GameObject[] ObjectsToDisable;
 
 	public Transform[] Destination;
 
@@ -158,6 +168,13 @@ public class TutorialScript : MonoBehaviour
 
 	private void Start()
 	{
+		Blocker[1].SetActive(value: false);
+		Blocker[2].SetActive(value: false);
+		Blocker[3].SetActive(value: false);
+		Blocker[4].SetActive(value: false);
+		Blocker[5].SetActive(value: false);
+		Blocker[6].SetActive(value: false);
+		Blocker[7].SetActive(value: false);
 		if (!GameGlobals.EightiesTutorial)
 		{
 			base.gameObject.SetActive(value: false);
@@ -188,7 +205,6 @@ public class TutorialScript : MonoBehaviour
 		OutOfOrderSign.SetActive(value: false);
 		PauseScreen.SetActive(value: false);
 		Blocker[1].SetActive(value: true);
-		Blocker[2].SetActive(value: true);
 		Jukebox.SetActive(value: false);
 		FPSBG.SetActive(value: false);
 		FPS.SetActive(value: false);
@@ -213,6 +229,8 @@ public class TutorialScript : MonoBehaviour
 		Clock.BloomFadeSpeed = 5f;
 		Clock.StopTime = true;
 		Clock.BloomWait = 1f;
+		GarbageBagBox.CannotDrop = true;
+		BodyBag.CannotDrop = true;
 		Knife.Undroppable = true;
 		SubtitleLabel.text = "";
 		ReputationHUD.alpha = 0f;
@@ -223,17 +241,21 @@ public class TutorialScript : MonoBehaviour
 			PromptsToDisable[i].Hide();
 			PromptsToDisable[i].enabled = false;
 		}
+		for (int i = 1; i < ObjectsToDisable.Length; i++)
+		{
+			ObjectsToDisable[i].gameObject.SetActive(value: false);
+		}
 	}
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
+		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown(InputNames.Xbox_Start))
 		{
 			TogglePauseScreen();
 		}
 		if (Pause)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				EightiesEffectsEnabled = !EightiesEffectsEnabled;
 				OptionGlobals.DisableStatic = !EightiesEffectsEnabled;
@@ -247,20 +269,20 @@ public class TutorialScript : MonoBehaviour
 				EightiesEffectEnabler.UpdateEightiesEffects();
 				TogglePauseScreen();
 			}
-			else if (Input.GetButtonDown("Y"))
+			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
-				Phase = 54;
+				Phase = KeyboardInstructions.Length - 1;
 				TogglePauseScreen();
 				Time.timeScale = 5f;
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				ReturnToTitleScreen = true;
-				Phase = 54;
+				Phase = KeyboardInstructions.Length - 1;
 				TogglePauseScreen();
 				Time.timeScale = 5f;
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				TogglePauseScreen();
 			}
@@ -269,19 +291,19 @@ public class TutorialScript : MonoBehaviour
 		{
 			if (!Cutscene)
 			{
-				if (Phase > 51 && Phase < 54)
+				if (Phase > 58 && Phase < 61)
 				{
 					ClockHUD.alpha = Mathf.MoveTowards(ClockHUD.alpha, 1f, Time.deltaTime);
 				}
-				else if (Phase > 47)
+				else if (Phase > 54)
 				{
 					ReputationHUD.alpha = Mathf.MoveTowards(ReputationHUD.alpha, 1f, Time.deltaTime);
 				}
-				else if (Phase > 46)
+				else if (Phase > 53)
 				{
 					StudentManager.Students[25].Witnessed = StudentWitnessType.Tutorial;
 				}
-				else if (Phase > 45)
+				else if (Phase > 52)
 				{
 					if (StudentManager.Students[2] != null)
 					{
@@ -289,20 +311,20 @@ public class TutorialScript : MonoBehaviour
 						StudentManager.Students[2].CurrentDestination = Destination[47];
 					}
 				}
-				else if (Phase > 44)
+				else if (Phase > 51)
 				{
 					SanityHUD.alpha = Mathf.MoveTowards(SanityHUD.alpha, 1f, Time.deltaTime);
 				}
-				else if (Phase == 15 && !CanPickUp)
+				else if (Phase == 23 && !CanPickUp)
 				{
 					StudentManager.Students[2].CharacterAnimation.Play("f02_knifeStealthB_00");
 					StudentManager.Students[2].CharacterAnimation["f02_knifeStealthB_00"].time = StudentManager.Students[2].CharacterAnimation["f02_knifeStealthB_00"].length;
 				}
-				if (Phase > 53)
+				if (Phase > 60)
 				{
 					BGM[1].volume = Mathf.MoveTowards(BGM[1].volume, 0f, Time.deltaTime * 0.2f);
 				}
-				else if (Phase > 52)
+				else if (Phase > 59)
 				{
 					if (!MyAudio.isPlaying)
 					{
@@ -314,7 +336,7 @@ public class TutorialScript : MonoBehaviour
 					}
 					BGM[2].volume = Mathf.MoveTowards(BGM[2].volume, 0f, Time.deltaTime * 0.2f);
 				}
-				else if (Phase > 45)
+				else if (Phase > 52)
 				{
 					if (!MyAudio.isPlaying)
 					{
@@ -326,7 +348,7 @@ public class TutorialScript : MonoBehaviour
 					}
 					BGM[3].volume = Mathf.MoveTowards(BGM[3].volume, 0f, Time.deltaTime * 0.2f);
 				}
-				else if (Phase > 13)
+				else if (Phase > 20)
 				{
 					BGM[2].volume = Mathf.MoveTowards(BGM[2].volume, 0f, Time.deltaTime * 0.2f);
 					if (!MyAudio.isPlaying)
@@ -417,7 +439,7 @@ public class TutorialScript : MonoBehaviour
 						}
 						else if (Phase == 2)
 						{
-							if (Input.GetButtonDown("LS") || Input.GetKeyDown("t") || Vector3.Distance(Yandere.transform.position, Destination[3].position) < 1f)
+							if (Input.GetButtonDown(InputNames.Xbox_LS) || Input.GetKeyDown("t") || Vector3.Distance(Yandere.transform.position, Destination[3].position) < 1f)
 							{
 								if (Vector3.Distance(Yandere.transform.position, Destination[3].position) < 1f)
 								{
@@ -464,20 +486,102 @@ public class TutorialScript : MonoBehaviour
 						{
 							if (!Yandere.Armed)
 							{
-								Blocker[2].SetActive(value: false);
-								Blocker[3].SetActive(value: true);
+								Blocker[1].SetActive(value: false);
+								Blocker[2].SetActive(value: true);
 								FadeInstructions = true;
 								Yandere.Frozen = false;
+								WeaponMenu.enabled = false;
+								WeaponMenu.InstantHide();
 							}
 						}
 						else if (Phase == 8)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 1f)
 							{
+								Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+								DuctTape.enabled = true;
 								FadeInstructions = true;
+								Yandere.Frozen = true;
 							}
 						}
 						else if (Phase == 9)
+						{
+							if (Yandere.Inventory.MaskingTape)
+							{
+								Blocker[2].SetActive(value: false);
+								Blocker[3].SetActive(value: true);
+								FadeInstructions = true;
+								Yandere.Frozen = false;
+							}
+						}
+						else if (Phase == 10)
+						{
+							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 1.5f)
+							{
+								Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+								GarbageBagBox.enabled = true;
+								FadeInstructions = true;
+								Yandere.Frozen = true;
+							}
+						}
+						else if (Phase == 11)
+						{
+							if (Yandere.PickUp != null && Yandere.PickUp == GarbageBagBox)
+							{
+								Blocker[3].SetActive(value: false);
+								Blocker[4].SetActive(value: true);
+								FadeInstructions = true;
+								Yandere.Frozen = false;
+							}
+						}
+						else if (Phase == 12)
+						{
+							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 1f)
+							{
+								Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+								Workbench.Prompt.enabled = true;
+								FadeInstructions = true;
+								Yandere.Frozen = true;
+							}
+						}
+						else if (Phase == 13)
+						{
+							if (BodyBag.gameObject.activeInHierarchy)
+							{
+								FadeInstructions = true;
+							}
+						}
+						else if (Phase == 14)
+						{
+							if (Yandere.PickUp != null && Yandere.PickUp == BodyBag)
+							{
+								Blocker[4].SetActive(value: false);
+								Blocker[5].SetActive(value: true);
+								FadeInstructions = true;
+								Yandere.Frozen = false;
+							}
+						}
+						else if (Phase == 15)
+						{
+							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 0.5f)
+							{
+								Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+								BodyBag.CannotDrop = false;
+								WeaponMenu.enabled = true;
+								FadeInstructions = true;
+								Yandere.Frozen = true;
+							}
+						}
+						else if (Phase == 16)
+						{
+							if (Yandere.PickUp == null)
+							{
+								BodyBag.CannotPickUp = true;
+								FadeInstructions = true;
+								Yandere.Frozen = false;
+							}
+						}
+						else if (Phase == 17)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 0.5f)
 							{
@@ -485,19 +589,20 @@ public class TutorialScript : MonoBehaviour
 								Yandere.Frozen = false;
 							}
 						}
-						else if (Phase == 10)
+						else if (Phase == 18)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 0.5f && !BathroomDoor.Open)
 							{
 								Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 								Yandere.RPGCamera.enabled = false;
 								TransitionToCutscene = true;
-								Blocker[4].SetActive(value: true);
+								Blocker[5].SetActive(value: false);
+								Blocker[6].SetActive(value: true);
 								FadeInstructions = true;
 								Yandere.CanMove = false;
 							}
 						}
-						else if (Phase == 11)
+						else if (Phase == 19)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 1f)
 							{
@@ -506,7 +611,7 @@ public class TutorialScript : MonoBehaviour
 								Yandere.Frozen = true;
 							}
 						}
-						else if (Phase == 12)
+						else if (Phase == 20)
 						{
 							if (VictimPrompt.Circle[0].fillAmount == 0f)
 							{
@@ -521,9 +626,10 @@ public class TutorialScript : MonoBehaviour
 								SubtitleLabel.text = Text[CutscenePhase];
 								MyAudio.clip = Voice[CutscenePhase];
 								MyAudio.Play();
+								WeaponMenu.enabled = true;
 							}
 						}
-						else if (Phase == 13)
+						else if (Phase == 21)
 						{
 							if (Yandere.Armed)
 							{
@@ -536,7 +642,7 @@ public class TutorialScript : MonoBehaviour
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 14)
+						else if (Phase == 22)
 						{
 							if (VictimPrompt.Circle[2].fillAmount != 1f)
 							{
@@ -548,8 +654,10 @@ public class TutorialScript : MonoBehaviour
 								DOF = Profile.depthOfField.enabled;
 								GarbageBagBox.transform.position = GarbageBagBox.OriginalPosition;
 								Profile.depthOfField.enabled = false;
+								CleaningItemBlocker.SetActive(value: false);
 								Yandere.RPGCamera.enabled = false;
 								PickUpBlocker.SetActive(value: false);
+								BodyBag.CannotPickUp = false;
 								InstructionLabel.alpha = 0f;
 								WeaponMenu.enabled = true;
 								FadeInstructions = true;
@@ -557,7 +665,7 @@ public class TutorialScript : MonoBehaviour
 								Cutscene = true;
 							}
 						}
-						else if (Phase == 15)
+						else if (Phase == 23)
 						{
 							if (Yandere.PickUp != null && Yandere.PickUp.GarbageBagBox)
 							{
@@ -565,91 +673,84 @@ public class TutorialScript : MonoBehaviour
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 16)
+						else if (Phase == 24)
 						{
 							if (Ragdoll.Concealed)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 17)
-						{
-							if (Yandere.PickUp == null)
-							{
-								FadeInstructions = true;
-							}
-						}
-						else if (Phase == 18)
+						else if (Phase == 25)
 						{
 							if (Yandere.PickUp != null && Yandere.PickUp.Bucket != null)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 19)
+						else if (Phase == 26)
 						{
 							if (Yandere.PickUp != null && Yandere.PickUp.Bucket != null && Yandere.PickUp.Bucket.Full)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 20)
+						else if (Phase == 27)
 						{
 							if (Yandere.PickUp == null)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 21)
+						else if (Phase == 28)
 						{
 							if (Yandere.PickUp != null && Yandere.PickUp.Bleach)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 22)
+						else if (Phase == 29)
 						{
 							if (Bucket.Bleached)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 23)
+						else if (Phase == 30)
 						{
 							if (Yandere.PickUp == null)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 24)
+						else if (Phase == 31)
 						{
 							if (Yandere.PickUp != null && Yandere.PickUp.Mop != null)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 25)
+						else if (Phase == 32)
 						{
 							if (Yandere.PickUp != null && Yandere.PickUp.Mop != null && Yandere.PickUp.Mop.Bleached)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 26)
+						else if (Phase == 33)
 						{
 							if (Yandere.YandereVision)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 27)
+						else if (Phase == 34)
 						{
 							if (BloodParent.childCount == 0)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 28)
+						else if (Phase == 35)
 						{
 							if (Yandere.PickUp == null)
 							{
@@ -659,17 +760,15 @@ public class TutorialScript : MonoBehaviour
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 29)
+						else if (Phase == 36)
 						{
 							if (Yandere.Carrying)
 							{
-								Blocker[1].SetActive(value: false);
-								Blocker[3].SetActive(value: false);
-								Blocker[4].SetActive(value: false);
+								Blocker[6].SetActive(value: false);
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 30)
+						else if (Phase == 37)
 						{
 							if (Yandere.Carrying && Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 0.5f)
 							{
@@ -678,14 +777,14 @@ public class TutorialScript : MonoBehaviour
 								Yandere.Frozen = true;
 							}
 						}
-						else if (Phase == 31)
+						else if (Phase == 38)
 						{
 							if (Yandere.Dumping)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 32)
+						else if (Phase == 39)
 						{
 							if (Yandere.Armed)
 							{
@@ -693,7 +792,7 @@ public class TutorialScript : MonoBehaviour
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 33)
+						else if (Phase == 40)
 						{
 							if (Knife.Dumped)
 							{
@@ -701,7 +800,7 @@ public class TutorialScript : MonoBehaviour
 								Yandere.Frozen = false;
 							}
 						}
-						else if (Phase == 34)
+						else if (Phase == 41)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 1f)
 							{
@@ -709,63 +808,63 @@ public class TutorialScript : MonoBehaviour
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 35)
+						else if (Phase == 42)
 						{
 							if (Locker.Open)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 36)
+						else if (Phase == 43)
 						{
 							if (Yandere.Schoolwear == 0)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 37)
+						else if (Phase == 44)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 0.5f)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 38)
+						else if (Phase == 45)
 						{
 							if (Yandere.Bloodiness == 0f)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 39)
+						else if (Phase == 46)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 1f)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 40)
+						else if (Phase == 47)
 						{
 							if (Yandere.Schoolwear == 3)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 41)
+						else if (Phase == 48)
 						{
 							if (Yandere.PickUp != null && Yandere.PickUp.Clothing)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 42)
+						else if (Phase == 49)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 0.5f)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 43)
+						else if (Phase == 50)
 						{
 							if (Yandere.Incinerator.BloodyClothing > 0)
 							{
@@ -773,7 +872,7 @@ public class TutorialScript : MonoBehaviour
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 44)
+						else if (Phase == 51)
 						{
 							if (Yandere.Incinerator.Timer > 0f)
 							{
@@ -781,14 +880,14 @@ public class TutorialScript : MonoBehaviour
 								Yandere.Frozen = true;
 							}
 						}
-						else if (Phase == 45)
+						else if (Phase == 52)
 						{
-							if (Input.GetButtonDown("A"))
+							if (Input.GetButtonDown(InputNames.Xbox_A))
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 46)
+						else if (Phase == 53)
 						{
 							if (Yandere.Sanity == 100f)
 							{
@@ -816,12 +915,12 @@ public class TutorialScript : MonoBehaviour
 								}
 								StudentManager.Students[25].ShoeRemoval.PutOnShoes();
 								StudentManager.StayInOneSpot(25);
-								Blocker[5].SetActive(value: true);
+								Blocker[7].SetActive(value: true);
 								FadeInstructions = true;
 								Yandere.Frozen = false;
 							}
 						}
-						else if (Phase == 47)
+						else if (Phase == 54)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 4f)
 							{
@@ -836,15 +935,15 @@ public class TutorialScript : MonoBehaviour
 								Yandere.Frozen = true;
 							}
 						}
-						else if (Phase == 48)
+						else if (Phase == 55)
 						{
-							if (Input.GetButtonDown("A"))
+							if (Input.GetButtonDown(InputNames.Xbox_A))
 							{
 								FadeInstructions = true;
 								Yandere.Frozen = false;
 							}
 						}
-						else if (Phase == 49)
+						else if (Phase == 56)
 						{
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 1f)
 							{
@@ -854,14 +953,14 @@ public class TutorialScript : MonoBehaviour
 								Yandere.Frozen = true;
 							}
 						}
-						else if (Phase == 50)
+						else if (Phase == 57)
 						{
 							if (Yandere.Talking)
 							{
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 51)
+						else if (Phase == 58)
 						{
 							if (StudentManager.Students[25].Forgave && !Yandere.Talking)
 							{
@@ -870,7 +969,7 @@ public class TutorialScript : MonoBehaviour
 								MainCamera.transform.position = new Vector3(0f, 14f, -38.566666f);
 								MainCamera.transform.eulerAngles = Vector3.zero;
 								StudentManager.Students[25].gameObject.SetActive(value: false);
-								Blocker[5].SetActive(value: false);
+								Blocker[7].SetActive(value: false);
 								MainCamera.clearFlags = CameraClearFlags.Skybox;
 								MainCamera.farClipPlane = 350f;
 								RenderSettings.fog = false;
@@ -878,9 +977,9 @@ public class TutorialScript : MonoBehaviour
 								FadeInstructions = true;
 							}
 						}
-						else if (Phase == 52)
+						else if (Phase == 59)
 						{
-							if (Input.GetButtonDown("A"))
+							if (Input.GetButtonDown(InputNames.Xbox_A))
 							{
 								ExitPortal.gameObject.SetActive(value: true);
 								Yandere.RPGCamera.enabled = true;
@@ -888,7 +987,7 @@ public class TutorialScript : MonoBehaviour
 								Yandere.Frozen = false;
 							}
 						}
-						else if (Phase == 53)
+						else if (Phase == 60)
 						{
 							if (ExitPortal.Circle[0].fillAmount == 0f)
 							{
@@ -897,7 +996,7 @@ public class TutorialScript : MonoBehaviour
 								Phase++;
 							}
 						}
-						else if (Phase == 54)
+						else if (Phase == 61)
 						{
 							TutorialFadeOut.alpha = Mathf.MoveTowards(TutorialFadeOut.alpha, 1f, Time.deltaTime * 0.2f);
 							if (TutorialFadeOut.alpha == 1f)
@@ -932,7 +1031,7 @@ public class TutorialScript : MonoBehaviour
 				{
 					VictimGirl.transform.position += new Vector3(Time.deltaTime, 0f, 0f);
 					Animator[2].CrossFade("f02_walkShy_00");
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						VictimGirl.transform.position = new Vector3(29.5f, 8f, -28.5f);
 					}
@@ -948,7 +1047,7 @@ public class TutorialScript : MonoBehaviour
 				}
 				else if (CutscenePhase == 2)
 				{
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						MyAudio.Stop();
 					}
@@ -977,7 +1076,7 @@ public class TutorialScript : MonoBehaviour
 					Yandere.MoveTowardsTarget(new Vector3(28.5f, 8f, -28.5f));
 					Yandere.targetRotation = Quaternion.LookRotation(VictimGirl.transform.position - Yandere.transform.position);
 					Yandere.transform.rotation = Quaternion.Slerp(Yandere.transform.rotation, Yandere.targetRotation, Time.deltaTime * 10f);
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						MyAudio.Stop();
 					}

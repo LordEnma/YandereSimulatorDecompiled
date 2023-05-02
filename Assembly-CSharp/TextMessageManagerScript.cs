@@ -20,7 +20,7 @@ public class TextMessageManagerScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			Object.Destroy(NewMessage);
 			PromptBar.ClearButtons();

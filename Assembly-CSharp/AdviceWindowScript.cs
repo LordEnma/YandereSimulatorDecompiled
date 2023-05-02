@@ -277,7 +277,7 @@ public class AdviceWindowScript : MonoBehaviour
 			}
 			UpdateText();
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			Selected = 1;
 			UpdateHighlight();

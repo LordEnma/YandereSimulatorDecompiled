@@ -223,7 +223,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -285,7 +285,7 @@ public class TalkingScript : MonoBehaviour
 				}
 				S.Complimented = true;
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.TalkTimer = 0f;
 			}
@@ -390,7 +390,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -418,7 +418,7 @@ public class TalkingScript : MonoBehaviour
 					S.Subtitle.UpdateLabel(SubtitleType.Dismissive, 3, 3f);
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.TalkTimer = 0f;
 			}
@@ -435,19 +435,11 @@ public class TalkingScript : MonoBehaviour
 			if (S.TalkTimer == 100f)
 			{
 				bool flag = true;
-				if (S.StudentID == 46)
+				if (S.Subtitle.TaskRequirements[S.StudentID] != "")
 				{
-					bool flag2 = false;
-					bool flag3 = false;
-					bool flag4 = false;
-					bool num = S.StudentManager.Students[47] != null && S.StudentManager.Students[47].Friend;
-					flag2 = S.StudentManager.Students[48] != null && S.StudentManager.Students[48].Friend;
-					flag3 = S.StudentManager.Students[49] != null && S.StudentManager.Students[49].Friend;
-					flag4 = S.StudentManager.Students[50] != null && S.StudentManager.Students[50].Friend;
-					if (!num || !flag2 || !flag3 || !flag4)
-					{
-						flag = false;
-					}
+					Debug.Log("This character has a requirement to offer a Task.");
+					S.StudentManager.TaskManager.CheckTaskRequirement(S.StudentID);
+					flag = S.StudentManager.TaskManager.Proceed;
 				}
 				if (flag)
 				{
@@ -459,15 +451,14 @@ public class TalkingScript : MonoBehaviour
 				else
 				{
 					S.TaskPhase = 999;
-					S.Subtitle.CustomText = "I'm sorry, it's a little difficult for me to confide in a complete stranger. If you befriend all of my clubmembers, I'd be able to trust you.";
-					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 10f);
+					S.Subtitle.UpdateLabel(SubtitleType.TaskRequirement, S.StudentID, 10f);
 					S.Subtitle.Timer = 0f;
 					S.CharacterAnimation.CrossFade(S.TaskAnims[1]);
 					S.CurrentAnim = S.TaskAnims[1];
 					S.TalkTimer = 10f;
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.Subtitle.Label.text = string.Empty;
 				Object.Destroy(S.Subtitle.CurrentClip);
@@ -497,6 +488,7 @@ public class TalkingScript : MonoBehaviour
 					S.DialogueWheel.TaskWindow.TaskComplete = true;
 					S.StudentManager.TaskManager.TaskStatus[S.StudentID] = 3;
 					S.Police.EndOfDay.NewFriends++;
+					S.Yandere.Friends++;
 					S.Interaction = StudentInteractionType.Idle;
 					S.Friend = true;
 					if (S.Club != ClubType.Delinquent)
@@ -549,14 +541,14 @@ public class TalkingScript : MonoBehaviour
 			{
 				if (S.Club != ClubType.Delinquent)
 				{
-					bool flag5 = false;
-					bool flag6 = false;
-					bool flag7 = false;
+					bool flag2 = false;
+					bool flag3 = false;
+					bool flag4 = false;
 					if (S.StudentID == S.StudentManager.RivalID)
 					{
 						if (S.Follower != null && S.Follower.CurrentAction == StudentActionType.Follow && !S.Follower.Distracting && !S.Follower.GoAway && !S.Follower.EatingSnack && S.gameObject.activeInHierarchy)
 						{
-							flag5 = true;
+							flag2 = true;
 						}
 						else if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
 						{
@@ -575,14 +567,14 @@ public class TalkingScript : MonoBehaviour
 							}
 							S.Yandere.NotificationManager.CustomText = "You need at least " + DateGlobals.Week * 10 + " Reputation Points";
 							S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-							flag7 = true;
+							flag4 = true;
 						}
 						else if (S.CurrentAction == StudentActionType.SitAndEatBento)
 						{
-							flag6 = true;
+							flag3 = true;
 						}
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag5) || (S.StudentID == S.StudentManager.RivalID && flag7) || (S.StudentID == S.StudentManager.RivalID && flag6) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag2) || (S.StudentID == S.StudentManager.RivalID && flag4) || (S.StudentID == S.StudentManager.RivalID && flag3) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						NegativeResponse = true;
@@ -594,17 +586,17 @@ public class TalkingScript : MonoBehaviour
 								S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 								S.TalkTimer = 5f;
 							}
-							else if (flag5)
+							else if (flag2)
 							{
 								S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 2, 5f);
 								S.TalkTimer = 5f;
 							}
-							else if (flag7)
+							else if (flag4)
 							{
 								S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
 								S.TalkTimer = 13f;
 							}
-							else if (flag6)
+							else if (flag3)
 							{
 								S.Subtitle.CustomText = "Now? I'm busy eating...can you show me later, instead?";
 								S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
@@ -643,15 +635,15 @@ public class TalkingScript : MonoBehaviour
 					}
 					else
 					{
-						int num2 = 0;
+						int num = 0;
 						if (S.Yandere.Club == ClubType.Delinquent)
 						{
 							S.Reputation.PendingRep -= 10f;
 							S.PendingRep -= 10f;
-							num2++;
+							num++;
 						}
 						S.CharacterAnimation.CrossFade(S.Nod1Anim);
-						S.Subtitle.UpdateLabel(SubtitleType.StudentFollow, num2, 2f);
+						S.Subtitle.UpdateLabel(SubtitleType.StudentFollow, num, 2f);
 						Follow = true;
 					}
 				}
@@ -662,7 +654,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -733,15 +725,15 @@ public class TalkingScript : MonoBehaviour
 					}
 					else
 					{
-						int num3 = 0;
+						int num2 = 0;
 						if (S.Yandere.Club == ClubType.Delinquent)
 						{
 							S.Reputation.PendingRep -= 10f;
 							S.PendingRep -= 10f;
-							num3++;
+							num2++;
 						}
 						S.CharacterAnimation.CrossFade(S.Nod1Anim);
-						S.Subtitle.UpdateLabel(SubtitleType.StudentLeave, num3, 3f);
+						S.Subtitle.UpdateLabel(SubtitleType.StudentLeave, num2, 3f);
 						S.GoAway = true;
 					}
 				}
@@ -752,7 +744,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -805,15 +797,15 @@ public class TalkingScript : MonoBehaviour
 						}
 						if (studentScript.Routine && !studentScript.TargetedForDistraction && !studentScript.InEvent && !Grudge && studentScript.Indoors && studentScript.gameObject.activeInHierarchy && studentScript.ClubActivityPhase < 16 && studentScript.CurrentAction != StudentActionType.Sunbathe)
 						{
-							int num4 = 0;
+							int num3 = 0;
 							if (S.Yandere.Club == ClubType.Delinquent)
 							{
 								S.Reputation.PendingRep -= 10f;
 								S.PendingRep -= 10f;
-								num4++;
+								num3++;
 							}
 							S.CharacterAnimation.CrossFade(S.Nod1Anim);
-							S.Subtitle.UpdateLabel(SubtitleType.StudentDistract, num4, 3f);
+							S.Subtitle.UpdateLabel(SubtitleType.StudentDistract, num3, 3f);
 							Refuse = false;
 						}
 						else
@@ -839,7 +831,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -897,7 +889,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -915,7 +907,7 @@ public class TalkingScript : MonoBehaviour
 				S.Subtitle.UpdateLabel(S.ClubInfoResponseType, S.ClubPhase, 99f);
 				S.TalkTimer = S.Subtitle.GetClubClipLength(S.Club, S.ClubPhase);
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.Subtitle.Label.text = string.Empty;
 				Object.Destroy(S.Subtitle.CurrentClip);
@@ -975,7 +967,7 @@ public class TalkingScript : MonoBehaviour
 					S.TalkTimer = S.Subtitle.CurrentClip.GetComponent<AudioSource>().clip.length;
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.Subtitle.Label.text = string.Empty;
 				Object.Destroy(S.Subtitle.CurrentClip);
@@ -1021,7 +1013,7 @@ public class TalkingScript : MonoBehaviour
 					S.TalkTimer = S.Subtitle.CurrentClip.GetComponent<AudioSource>().clip.length;
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.Subtitle.Label.text = string.Empty;
 				Object.Destroy(S.Subtitle.CurrentClip);
@@ -1057,7 +1049,7 @@ public class TalkingScript : MonoBehaviour
 			{
 				S.Subtitle.UpdateLabel(SubtitleType.ClubFarewell, (int)(S.Club + ClubBonus), S.Subtitle.ClubFarewellClips[(int)(S.Club + ClubBonus)].length);
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.TalkTimer = 0f;
 			}
@@ -1097,7 +1089,7 @@ public class TalkingScript : MonoBehaviour
 					S.TalkTimer = S.Subtitle.CurrentClip.GetComponent<AudioSource>().clip.length;
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.Subtitle.Label.text = string.Empty;
 				Object.Destroy(S.Subtitle.CurrentClip);
@@ -1138,7 +1130,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -1159,7 +1151,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -1191,7 +1183,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -1222,7 +1214,7 @@ public class TalkingScript : MonoBehaviour
 					S.TalkTimer = S.Subtitle.CurrentClip.GetComponent<AudioSource>().clip.length;
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.Subtitle.Label.text = string.Empty;
 				Object.Destroy(S.Subtitle.CurrentClip);
@@ -1275,7 +1267,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -1301,7 +1293,7 @@ public class TalkingScript : MonoBehaviour
 				}
 				else
 				{
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						S.TalkTimer = 0f;
 					}
@@ -1348,7 +1340,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -1389,7 +1381,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -1430,7 +1422,7 @@ public class TalkingScript : MonoBehaviour
 					S.PendingRep += 1f + (float)S.RepBonus;
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.TalkTimer = 0f;
 			}
@@ -1478,7 +1470,7 @@ public class TalkingScript : MonoBehaviour
 					}
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.TalkTimer = 0f;
 			}
@@ -1522,7 +1514,7 @@ public class TalkingScript : MonoBehaviour
 			Debug.Log(S.Name + " is reacting to being offered a snack.");
 			if (S.TalkTimer == 5f)
 			{
-				bool flag8 = false;
+				bool flag5 = false;
 				if (S.StudentID == S.StudentManager.RivalID)
 				{
 					if (S.StudentManager.Eighties)
@@ -1534,13 +1526,13 @@ public class TalkingScript : MonoBehaviour
 						}
 						else
 						{
-							flag8 = true;
+							flag5 = true;
 						}
 					}
 					else if (!S.Hungry)
 					{
 						Debug.Log("The rival is not hungry, so she is going to refuse the snack.");
-						flag8 = true;
+						flag5 = true;
 					}
 					else
 					{
@@ -1553,7 +1545,7 @@ public class TalkingScript : MonoBehaviour
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 1, 3f);
 					S.IgnoreFoodTimer = 10f;
 				}
-				else if (S.Fed || S.Club == ClubType.Council || flag8 || S.StudentID == 22)
+				else if (S.Fed || S.Club == ClubType.Council || flag5 || S.StudentID == 22)
 				{
 					S.CharacterAnimation.CrossFade(S.GossipAnim);
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 0, 3f);
@@ -1582,7 +1574,7 @@ public class TalkingScript : MonoBehaviour
 					S.PendingRep += 1f + (float)S.RepBonus;
 				}
 			}
-			else if (Input.GetButtonDown("A"))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				S.TalkTimer = 0f;
 			}
@@ -1597,12 +1589,12 @@ public class TalkingScript : MonoBehaviour
 			S.TalkTimer -= Time.deltaTime;
 			if (S.TalkTimer <= 0f)
 			{
-				bool flag9 = false;
+				bool flag6 = false;
 				if (S.Club == ClubType.Delinquent && !S.StudentManager.MissionMode)
 				{
-					flag9 = true;
+					flag6 = true;
 				}
-				if (!S.Fed && !flag9)
+				if (!S.Fed && !flag6)
 				{
 					if (S.StudentID == S.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(4) == 5)
 					{
@@ -1654,7 +1646,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				Input.GetButtonDown("A");
+				Input.GetButtonDown(InputNames.Xbox_A);
 			}
 			if (S.CharacterAnimation[S.GossipAnim].time >= S.CharacterAnimation[S.GossipAnim].length)
 			{
@@ -1688,6 +1680,7 @@ public class TalkingScript : MonoBehaviour
 				{
 					StuckBoxCutter = S.Yandere.PickUp.StuckBoxCutter;
 					S.Yandere.PickUp.StuckBoxCutter = null;
+					StuckBoxCutter.InBox = false;
 					StuckBoxCutter.FingerprintID = S.StudentID;
 					StuckBoxCutter.transform.parent = S.RightHand;
 					StuckBoxCutter.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -1702,18 +1695,18 @@ public class TalkingScript : MonoBehaviour
 		}
 		else if (S.Interaction == StudentInteractionType.SentToLocker)
 		{
-			bool flag10 = false;
+			bool flag7 = false;
 			if (S.Club == ClubType.Delinquent && !S.StudentManager.MissionMode)
 			{
-				flag10 = true;
+				flag7 = true;
 			}
 			if (S.Friend)
 			{
-				flag10 = false;
+				flag7 = false;
 			}
 			if (S.TalkTimer == 5f)
 			{
-				if (!flag10)
+				if (!flag7)
 				{
 					Refuse = false;
 					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || S.Schoolwear == 2)
@@ -1782,7 +1775,7 @@ public class TalkingScript : MonoBehaviour
 			}
 			else
 			{
-				if (Input.GetButtonDown("A"))
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					S.TalkTimer = 0f;
 				}
@@ -1794,7 +1787,7 @@ public class TalkingScript : MonoBehaviour
 				{
 					if (!Refuse)
 					{
-						if (!flag10)
+						if (!flag7)
 						{
 							S.Pathfinding.speed = 4f;
 							S.TargetDistance = 1f;
@@ -2014,7 +2007,7 @@ public class TalkingScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (!S.Talking)
+		if (!S.Talking || !(S.Yandere.TalkTimer <= 0f))
 		{
 			return;
 		}

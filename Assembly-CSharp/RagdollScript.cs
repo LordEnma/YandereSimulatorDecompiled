@@ -324,7 +324,7 @@ public class RagdollScript : MonoBehaviour
 				}
 				if (Yandere.PickUp != null)
 				{
-					if (Yandere.PickUp.GarbageBagBox)
+					if (Yandere.PickUp.BodyBags > 0)
 					{
 						if (!Concealed)
 						{
@@ -545,7 +545,7 @@ public class RagdollScript : MonoBehaviour
 					Yandere.NearBodies--;
 					AddingToCount = false;
 				}
-				if (!Prompt.AcceptingInput[1] && Input.GetButtonUp("B"))
+				if (!Prompt.AcceptingInput[1] && Input.GetButtonUp(InputNames.Xbox_B))
 				{
 					Prompt.AcceptingInput[1] = true;
 				}
@@ -557,7 +557,7 @@ public class RagdollScript : MonoBehaviour
 					Wrappable = false;
 					flag = true;
 				}
-				if ((Yandere.PickUp != null && Yandere.PickUp.Blowtorch && !Cauterized) || (Yandere.PickUp != null && Yandere.PickUp.Tarp) || (Yandere.PickUp != null && Yandere.PickUp.GarbageBagBox && !Concealed))
+				if ((Yandere.PickUp != null && Yandere.PickUp.Blowtorch && !Cauterized) || (Yandere.PickUp != null && Yandere.PickUp.Tarp) || (Yandere.PickUp != null && Yandere.PickUp.BodyBags > 0 && !Concealed))
 				{
 					flag = true;
 				}
@@ -1207,7 +1207,7 @@ public class RagdollScript : MonoBehaviour
 		{
 			Student.Cosmetic.DisableFingernails();
 		}
-		if (Student.Yandere.PickUp != null && Student.Yandere.PickUp.GarbageBagBox && Student.Yandere.PickUp.BodyBags > 0)
+		if (Student.Yandere.PickUp != null && Student.Yandere.PickUp.BodyBags > 0)
 		{
 			Student.Yandere.PickUp.BodyBags--;
 			if (Student.Yandere.PickUp.BodyBags == 0)

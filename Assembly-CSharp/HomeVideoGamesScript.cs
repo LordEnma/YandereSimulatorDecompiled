@@ -88,7 +88,7 @@ public class HomeVideoGamesScript : MonoBehaviour
 					TitleScreen.mainTexture = TitleScreens[ID];
 					Highlight.localPosition = new Vector3(Highlight.localPosition.x, 150f - (float)ID * 50f, Highlight.localPosition.z);
 				}
-				if (Input.GetButtonDown("A") && GameTitles[ID].color.a == 1f)
+				if (Input.GetButtonDown(InputNames.Xbox_A) && GameTitles[ID].color.a == 1f)
 				{
 					Transform transform = HomeCamera.Targets[5];
 					if (!HomeCamera.Eighties)
@@ -105,7 +105,7 @@ public class HomeVideoGamesScript : MonoBehaviour
 					PromptBar.Show = false;
 					HomeCamera.ID = 5;
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					Quit();
 				}

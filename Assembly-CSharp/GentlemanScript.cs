@@ -8,7 +8,7 @@ public class GentlemanScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("RB"))
+		if (Input.GetButtonDown(InputNames.Xbox_RB))
 		{
 			AudioSource component = GetComponent<AudioSource>();
 			if (!component.isPlaying)

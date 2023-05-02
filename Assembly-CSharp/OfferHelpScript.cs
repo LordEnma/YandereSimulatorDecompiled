@@ -335,7 +335,7 @@ public class OfferHelpScript : MonoBehaviour
 					Spoken = true;
 					return;
 				}
-				if (!Yandere.PauseScreen.Show && Input.GetButtonDown("A"))
+				if (!Yandere.PauseScreen.Show && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Timer += EventClip[EventPhase].length + 1f;
 				}

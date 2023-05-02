@@ -96,7 +96,7 @@ public class GazerEyesScript : MonoBehaviour
 		}
 		if (axis != 0f || axis2 != 0f)
 		{
-			if (Input.GetButton("LB"))
+			if (Input.GetButton(InputNames.Xbox_LB))
 			{
 				GetComponent<Animation>().CrossFade("Eyeballs_Run", 1f);
 			}

@@ -158,7 +158,7 @@ public class ArmDetectorScript : MonoBehaviour
 			{
 				DemonSubtitle.transform.localPosition = new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), Random.Range(-10f, 10f));
 				DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, Mathf.MoveTowards(DemonSubtitle.color.a, 1f, Time.deltaTime));
-				if (DemonSubtitle.color.a == 1f && Input.GetButtonDown("A"))
+				if (DemonSubtitle.color.a == 1f && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Phase++;
 				}
@@ -256,7 +256,7 @@ public class ArmDetectorScript : MonoBehaviour
 			{
 				DemonSubtitle.transform.localPosition = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f));
 				DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, Mathf.MoveTowards(DemonSubtitle.color.a, 1f, Time.deltaTime));
-				if (DemonSubtitle.color.a == 1f && Input.GetButtonDown("A"))
+				if (DemonSubtitle.color.a == 1f && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Phase++;
 				}
@@ -353,7 +353,7 @@ public class ArmDetectorScript : MonoBehaviour
 			{
 				DemonSubtitle.transform.localPosition = new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), Random.Range(-10f, 10f));
 				DemonSubtitle.color = new Color(DemonSubtitle.color.r, DemonSubtitle.color.g, DemonSubtitle.color.b, Mathf.MoveTowards(DemonSubtitle.color.a, 1f, Time.deltaTime));
-				if (DemonSubtitle.color.a == 1f && Input.GetButtonDown("A"))
+				if (DemonSubtitle.color.a == 1f && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Phase++;
 				}

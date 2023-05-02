@@ -170,7 +170,7 @@ public class ConfessionSceneScript : MonoBehaviour
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
 						}
-						if (Input.GetButtonDown("A"))
+						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							TextPhase++;
 							ShowLabel = false;

@@ -94,11 +94,11 @@ public class ChallengeScript : MonoBehaviour
 			}
 		}
 		Shadow.color = new Color(Shadow.color.r, Shadow.color.g, Shadow.color.b, LargeIcon.color.a * 0.75f);
-		if (!Switch && Input.GetButtonDown("A") && List == 1)
+		if (!Switch && Input.GetButtonDown(InputNames.Xbox_A) && List == 1)
 		{
 			Viewing = true;
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			if (Viewing)
 			{

@@ -18,25 +18,25 @@ public class TypewriterScript : MonoBehaviour
 		}
 		if (Window.activeInHierarchy)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Prompt.Yandere.Police.EndOfDay.ArticleID = 1;
 				CloseWindow();
 				Disable();
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				Prompt.Yandere.Police.EndOfDay.ArticleID = 2;
 				CloseWindow();
 				Disable();
 			}
-			else if (Input.GetButtonDown("Y"))
+			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				Prompt.Yandere.Police.EndOfDay.ArticleID = 3;
 				CloseWindow();
 				Disable();
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				CloseWindow();
 			}

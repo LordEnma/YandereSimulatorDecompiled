@@ -87,7 +87,7 @@ public class TitleSponsorScript : MonoBehaviour
 			PromptBar.UpdateButtons();
 			PromptBar.Show = true;
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			int sponsorIndex = GetSponsorIndex();
 			if (SponsorHasWebsite(sponsorIndex))
@@ -95,7 +95,7 @@ public class TitleSponsorScript : MonoBehaviour
 				Application.OpenURL(SponsorURLs[sponsorIndex]);
 			}
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			NewTitleScreen.Speed = 0f;
 			NewTitleScreen.Phase = 2;

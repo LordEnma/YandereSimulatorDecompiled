@@ -88,7 +88,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		}
 		if (SkipCircle.transform.parent.gameObject.activeInHierarchy)
 		{
-			if (Input.GetButton("X"))
+			if (Input.GetButton(InputNames.Xbox_X))
 			{
 				SkipCircle.fillAmount -= Time.deltaTime;
 				if (SkipCircle.fillAmount == 0f)

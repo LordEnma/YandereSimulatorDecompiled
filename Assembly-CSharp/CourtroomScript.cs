@@ -104,6 +104,22 @@ public class CourtroomScript : MonoBehaviour
 
 	public AudioClip InnocentClip;
 
+	public GameObject KnifeOnlyIcon;
+
+	public GameObject NoAlertsIcon;
+
+	public GameObject NoBagIcon;
+
+	public GameObject NoFriendsIcon;
+
+	public GameObject NoGamingIcon;
+
+	public GameObject NoInfoIcon;
+
+	public GameObject NoLaughIcon;
+
+	public GameObject RivalsOnlyIcon;
+
 	public GameObject OriginalHair;
 
 	public GameObject[] VtuberHairs;
@@ -127,6 +143,14 @@ public class CourtroomScript : MonoBehaviour
 		Jukebox.volume = 0f;
 		ResetBloom();
 		VtuberCheck();
+		KnifeOnlyIcon.SetActive(ChallengeGlobals.KnifeOnly);
+		NoAlertsIcon.SetActive(ChallengeGlobals.NoAlerts);
+		NoBagIcon.SetActive(ChallengeGlobals.NoBag);
+		NoFriendsIcon.SetActive(ChallengeGlobals.NoFriends);
+		NoGamingIcon.SetActive(ChallengeGlobals.NoGaming);
+		NoInfoIcon.SetActive(ChallengeGlobals.NoInfo);
+		NoLaughIcon.SetActive(ChallengeGlobals.NoLaugh);
+		RivalsOnlyIcon.SetActive(ChallengeGlobals.RivalsOnly);
 	}
 
 	public void UpdateFactLabels()
@@ -208,11 +232,11 @@ public class CourtroomScript : MonoBehaviour
 			Speed += Time.deltaTime * 0.2f;
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime * 0.2f);
 			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 2f, 2f), Time.deltaTime * Speed);
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Timer = 11f;
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				Timer = 0f;
 				Phase = 66;
@@ -234,7 +258,7 @@ public class CourtroomScript : MonoBehaviour
 		}
 		else if (Phase < 66)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Phase++;
 				if (Phase < 66)
@@ -250,7 +274,7 @@ public class CourtroomScript : MonoBehaviour
 					Subtitle.text = "";
 				}
 			}
-			else if (Input.GetButtonDown("X"))
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
 			{
 				Phase = 66;
 				Subtitle.text = "";
@@ -277,7 +301,7 @@ public class CourtroomScript : MonoBehaviour
 		}
 		else if (Phase == 67)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (FactID < Fact.Length - 1)
 				{
@@ -318,7 +342,7 @@ public class CourtroomScript : MonoBehaviour
 		}
 		else if (Phase == 69)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Guilt - Innocence > 0)
 				{
@@ -366,7 +390,7 @@ public class CourtroomScript : MonoBehaviour
 		}
 		else if (Phase == 70)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				Speed = 0f;
 				Subtitle.text = "";
@@ -420,7 +444,7 @@ public class CourtroomScript : MonoBehaviour
 			if (RankIcon.transform.localScale.x > 0.999f)
 			{
 				RankDesc.alpha = Mathf.MoveTowards(RankDesc.alpha, 1f, Time.deltaTime);
-				if (RankDesc.alpha == 1f && Input.GetButtonDown("A"))
+				if (RankDesc.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					Phase++;
 				}

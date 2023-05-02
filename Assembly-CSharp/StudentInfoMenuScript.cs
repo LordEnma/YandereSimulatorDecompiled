@@ -190,7 +190,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 				PauseScreen.BlackenAllText();
 			}
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (PromptBar.Label[0].text != string.Empty)
 			{
@@ -308,7 +308,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 				}
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			BusyBlocker.position = new Vector3(0f, 0f, 0f);
 			if (Gossiping || Distracting || MatchMaking || Targeting)

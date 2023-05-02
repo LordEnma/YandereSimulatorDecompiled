@@ -231,7 +231,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 					{
 						TapePlayerAnim["PressPlay"].time = 0f;
 					}
-					if (Input.GetButtonDown("A"))
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						Debug.Log("The player just pressed the ''A'' button to pause it.");
 						PromptBar.Label[0].text = "PAUSE";
@@ -261,7 +261,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 						Subtitle.text = string.Empty;
 						Phase++;
 					}
-					if (!ButtonPressed && Input.GetButtonDown("A"))
+					if (!ButtonPressed && Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						Debug.Log("The player just pressed the ''A'' button to unpause it.");
 						if (MyAudio.isPlaying)
@@ -273,7 +273,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 						}
 					}
 				}
-				if (Input.GetButtonDown("B"))
+				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					TapePlayerAnim.Play("PressEject");
 					TapePlayer.Spin = false;
@@ -661,7 +661,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 440f - 80f * (float)Selected, Highlight.localPosition.z);
 			CheckSelection();
 		}
-		else if (Input.GetButtonDown("A"))
+		else if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			bool flag = false;
 			if (Category == 1)
@@ -717,7 +717,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 				ClipLength = $"{num19:00}:{num20:00}";
 			}
 		}
-		else if (Input.GetButtonDown("B"))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			TapePlayer.Yandere.HeartCamera.enabled = true;
 			TapePlayer.Yandere.RPGCamera.enabled = true;
