@@ -421,10 +421,17 @@ public class TaskManagerScript : MonoBehaviour
 				StudentManager.Students[14].TaskPhase = 5;
 			}
 		}
-		if (TaskStatus[15] == 1 && StudentManager.Students[15] != null && Yandere.Inventory.Money > 999.99f)
+		if (TaskStatus[15] == 1 && StudentManager.Students[15] != null)
 		{
-			Debug.Log("Rich's task should be ready to turn in!");
-			StudentManager.Students[15].TaskPhase = 5;
+			if (Yandere.Inventory.Money > 999.99f)
+			{
+				Debug.Log("Rich's task should be ready to turn in!");
+				StudentManager.Students[15].TaskPhase = 5;
+			}
+			else
+			{
+				StudentManager.Students[15].TaskPhase = 4;
+			}
 		}
 		if (TaskStatus[16] == 1 && StudentManager.Students[16] != null)
 		{

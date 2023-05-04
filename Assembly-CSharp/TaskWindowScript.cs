@@ -212,6 +212,11 @@ public class TaskWindowScript : MonoBehaviour
 			DialogueWheel.Yandere.TargetStudent.Cosmetic.Stockings = "ShortPink";
 			DialogueWheel.Yandere.TargetStudent.Cosmetic.StartCoroutine(DialogueWheel.Yandere.TargetStudent.Cosmetic.PutOnStockings());
 		}
+		else if (Yandere.TargetStudent.StudentID == 15)
+		{
+			Yandere.Inventory.Money -= 1000f;
+			Yandere.Inventory.UpdateMoney();
+		}
 	}
 
 	private void GetPortrait(int ID)

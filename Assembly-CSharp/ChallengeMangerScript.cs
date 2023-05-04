@@ -48,14 +48,17 @@ public class ChallengeMangerScript : MonoBehaviour
 
 	private void Start()
 	{
-		KnifeOnly = ChallengeGlobals.KnifeOnly;
-		NoAlerts = ChallengeGlobals.NoAlerts;
-		NoBag = ChallengeGlobals.NoBag;
-		NoFriends = ChallengeGlobals.NoFriends;
-		NoGaming = ChallengeGlobals.NoGaming;
-		NoInfo = ChallengeGlobals.NoInfo;
-		NoLaugh = ChallengeGlobals.NoLaugh;
-		RivalsOnly = ChallengeGlobals.RivalsOnly;
+		if (!GameGlobals.EightiesTutorial && !GameGlobals.KokonaTutorial)
+		{
+			KnifeOnly = ChallengeGlobals.KnifeOnly;
+			NoAlerts = ChallengeGlobals.NoAlerts;
+			NoBag = ChallengeGlobals.NoBag;
+			NoFriends = ChallengeGlobals.NoFriends;
+			NoGaming = ChallengeGlobals.NoGaming;
+			NoInfo = ChallengeGlobals.NoInfo;
+			NoLaugh = ChallengeGlobals.NoLaugh;
+			RivalsOnly = ChallengeGlobals.RivalsOnly;
+		}
 		UpdateIcons();
 	}
 

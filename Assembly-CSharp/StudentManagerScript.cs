@@ -3354,6 +3354,7 @@ public class StudentManagerScript : MonoBehaviour
 							studentScript.MyWeapon = null;
 						}
 					}
+					studentScript.EmptyHands();
 				}
 			}
 		}

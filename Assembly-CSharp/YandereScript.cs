@@ -1873,10 +1873,13 @@ public class YandereScript : MonoBehaviour
 	{
 		Application.runInBackground = false;
 		VtuberCheck();
+		if (!GameGlobals.EightiesTutorial && !GameGlobals.KokonaTutorial)
+		{
+			NoLaugh = ChallengeGlobals.NoLaugh;
+		}
 		SenpaiThreshold = 1f - (float)PlayerGlobals.ShrineItems * 0.1f;
 		PhysicalGrade = ClassGlobals.PhysicalGrade;
 		SpeedBonus = PlayerGlobals.SpeedBonus;
-		NoLaugh = ChallengeGlobals.NoLaugh;
 		Friends = PlayerGlobals.Friends;
 		Club = ClubGlobals.Club;
 		SanitySmudges.color = new Color(1f, 1f, 1f, 0f);
@@ -2946,7 +2949,7 @@ public class YandereScript : MonoBehaviour
 								}
 							}
 						}
-						else if (YandereFade == 100f)
+						else if (YandereFade == 100f && !NoLaugh)
 						{
 							MyAudio.clip = Laugh1;
 							MyAudio.volume = 1f;
@@ -2955,6 +2958,11 @@ public class YandereScript : MonoBehaviour
 							GiggleLines.Play();
 							Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
 							AnnoyingGiggleTimer = 1f;
+						}
+						else
+						{
+							NotificationManager.CustomText = "No giggling or laughing allowed.";
+							NotificationManager.DisplayNotification(NotificationType.Custom);
 						}
 						YandereTimer = 0f;
 					}
@@ -6189,7 +6197,7 @@ public class YandereScript : MonoBehaviour
 		{
 			if (!CorpseWarning)
 			{
-				if (PickUp != null && PickUp.GarbageBagBox)
+				if (PickUp != null && PickUp.GarbageBagBox && PickUp.BodyBags == 0)
 				{
 					NotificationManager.CustomText = "using masking tape and garbage bags!";
 					NotificationManager.DisplayNotification(NotificationType.Custom);

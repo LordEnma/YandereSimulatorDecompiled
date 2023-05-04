@@ -5504,13 +5504,18 @@ public class StudentScript : MonoBehaviour
 								{
 									if (Phoneless)
 									{
-										if (!Male)
+										if (ClubLeader)
+										{
+											CharacterAnimation.CrossFade(IdleAnim);
+										}
+										else if (!Male)
 										{
 											Debug.Log(Name + " is going to try to perform the ''FemaleSit01'' animation now.");
 											CharacterAnimation.CrossFade("f02_sit_01");
 										}
 										else
 										{
+											Debug.Log(Name + " is going to try to perform the ''FemaleSit01'' animation now.");
 											CharacterAnimation.CrossFade("sit_01");
 										}
 									}
@@ -8009,7 +8014,7 @@ public class StudentScript : MonoBehaviour
 						if (StretchTimer > 5f)
 						{
 							StretchPhase++;
-							if (StretchPhase == StretchAnims.Length - 1)
+							if (StretchPhase == StretchAnims.Length)
 							{
 								StretchPhase = 0;
 							}

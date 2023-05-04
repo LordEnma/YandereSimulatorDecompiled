@@ -153,6 +153,8 @@ public class ClubManagerScript : MonoBehaviour
 
 	public bool NoBag;
 
+	public Transform ElightiesVantageLMC;
+
 	public bool LeaderMissing;
 
 	public bool LeaderDead;
@@ -203,6 +205,7 @@ public class ClubManagerScript : MonoBehaviour
 		ID = 1;
 		if (GameGlobals.Eighties)
 		{
+			ClubVantages[5] = ElightiesVantageLMC;
 			ClubPatrolPoints = EightiesClubPatrolPoints;
 			ClubPosters = EightiesClubPosters;
 		}
