@@ -66,7 +66,7 @@ public class ChallengeMangerScript : MonoBehaviour
 	{
 		if (Yandere.CanMove && !Yandere.PauseScreen.Show)
 		{
-			if (KnifeOnly && StudentManager.Students[StudentManager.RivalID] != null && ((!StudentManager.Students[StudentManager.RivalID].Alive && !StudentManager.Students[StudentManager.RivalID].Stabbed) || StudentManager.StudentReps[StudentManager.RivalID] <= -100f || (StudentManager.RivalEliminated && !StudentManager.Students[StudentManager.RivalID].Stabbed) || StudentManager.Students[StudentManager.RivalID].Sedated))
+			if (KnifeOnly && StudentManager.Students[StudentManager.RivalID] != null && ((!StudentManager.Students[StudentManager.RivalID].Alive && !StudentManager.Students[StudentManager.RivalID].Stabbed) || StudentManager.StudentReps[StudentManager.RivalID] <= -100f || (StudentManager.RivalEliminated && !StudentManager.Students[StudentManager.RivalID].Stabbed) || StudentManager.Students[StudentManager.RivalID].Tranquil))
 			{
 				GameOver();
 			}

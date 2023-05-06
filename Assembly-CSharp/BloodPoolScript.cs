@@ -105,13 +105,16 @@ public class BloodPoolScript : MonoBehaviour
 
 	public void UpdateCensor()
 	{
-		if (GameGlobals.CensorBlood)
+		if (MyRenderer != null)
 		{
-			MyRenderer.material = Flower;
-		}
-		else
-		{
-			MyRenderer.material = BloodPool;
+			if (GameGlobals.CensorBlood)
+			{
+				MyRenderer.material = Flower;
+			}
+			else
+			{
+				MyRenderer.material = BloodPool;
+			}
 		}
 	}
 }

@@ -11,12 +11,20 @@ public class TaskKittenScript : MonoBehaviour
 
 	public Animation Anim;
 
+	public bool RememberPosition;
+
 	public bool Caught;
+
+	public GameObject ObjectsToAvoid;
+
+	public int Frame;
 
 	private void Start()
 	{
+		Debug.Log("Task Kitten is now active.");
 		Anim["A_run"].speed = 2f;
 		Anim["E_held"].speed = 0.1f;
+		Physics.IgnoreCollision(base.gameObject.GetComponent<CharacterController>(), ObjectsToAvoid.GetComponent<Collider>());
 	}
 
 	private void Update()

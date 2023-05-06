@@ -245,6 +245,7 @@ public class TutorialScript : MonoBehaviour
 		{
 			ObjectsToDisable[i].gameObject.SetActive(value: false);
 		}
+		Blocker[0].SetActive(value: true);
 	}
 
 	private void Update()

@@ -296,7 +296,7 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			equippedWeapon.MyAudio.pitch = 1f;
 			Time.timeScale = 1f;
-			Yandere.StudentManager.IncreaseStudentVisionDistance();
+			Yandere.StudentManager.RestoreStudentVisionDistance();
 		}
 		if (!Yandere.TargetStudent.Electrified && !Yandere.TargetStudent.Electrocuted)
 		{
@@ -327,7 +327,7 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			equippedWeapon.Type = WeaponType.Knife;
 		}
-		Yandere.StudentManager.IncreaseStudentVisionDistance();
+		Yandere.StudentManager.RestoreStudentVisionDistance();
 	}
 
 	private void SpecialEffect(WeaponScript weapon, SanityType sanityType)

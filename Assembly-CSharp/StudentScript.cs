@@ -170,6 +170,8 @@ public class StudentScript : MonoBehaviour
 
 	public float VisionFOV;
 
+	public float VisionBonus;
+
 	public float VisionDistance;
 
 	public ParticleSystem DelinquentSpeechLines;
@@ -523,6 +525,8 @@ public class StudentScript : MonoBehaviour
 	public GameObject Pen;
 
 	public GameObject Lid;
+
+	public bool InvestigatingMysteriousDisappearance;
 
 	public bool InvestigatingPossibleBlood;
 
@@ -3611,15 +3615,20 @@ public class StudentScript : MonoBehaviour
 		Vector3 vector = targetPoint - position;
 		if (PointIsInFOV(targetPoint))
 		{
-			float num = VisionDistance * VisionDistance;
-			if (vector.sqrMagnitude <= num)
+			float num = VisionDistance;
+			if (obj == Yandere.gameObject)
+			{
+				num += VisionBonus;
+			}
+			float num2 = num * num;
+			if (vector.sqrMagnitude <= num2)
 			{
 				Debug.DrawLine(position, targetPoint, Color.green);
 				if (Physics.Linecast(position, targetPoint, out var hitInfo, mask) && (hitInfo.collider.gameObject == obj || hitInfo.collider.gameObject.transform.root.gameObject == obj))
 				{
-					foreach (int num2 in layers)
+					foreach (int num3 in layers)
 					{
-						if (hitInfo.collider.gameObject.layer == num2)
+						if (hitInfo.collider.gameObject.layer == num3)
 						{
 							return true;
 						}
@@ -3636,10 +3645,15 @@ public class StudentScript : MonoBehaviour
 		{
 			Vector3 position = Eyes.transform.position;
 			Vector3 vector = targetPoint - position;
-			float num = VisionDistance * VisionDistance;
-			bool num2 = PointIsInFOV(targetPoint);
-			bool flag = vector.sqrMagnitude <= num;
-			if (num2 && flag && Physics.Linecast(position, targetPoint, out var hitInfo, Mask) && hitInfo.collider.gameObject == obj)
+			float num = VisionDistance;
+			if (obj == Yandere.gameObject)
+			{
+				num += VisionBonus;
+			}
+			float num2 = num * num;
+			bool num3 = PointIsInFOV(targetPoint);
+			bool flag = vector.sqrMagnitude <= num2;
+			if (num3 && flag && Physics.Linecast(position, targetPoint, out var hitInfo, Mask) && hitInfo.collider.gameObject == obj)
 			{
 				return true;
 			}
@@ -4025,9 +4039,16 @@ public class StudentScript : MonoBehaviour
 				}
 				if ((Actions[Phase] == StudentActionType.SitAndTakeNotes && Schoolwear == 2) || (Actions[Phase] == StudentActionType.ChangeShoes && Schoolwear == 2) || (Actions[Phase] == StudentActionType.AtLocker && Schoolwear == 2) || (Actions[Phase] == StudentActionType.AtLocker && BikiniAttacher != null && BikiniAttacher.newRenderer != null))
 				{
-					Debug.Log(Name + " needs to change clothing before doing whatever they're supposed to do next.");
-					MustChangeClothing = true;
-					ChangeClothingPhase = 0;
+					if (Schoolwear == 2 && BeenSplashed)
+					{
+						Debug.Log(Name + " doesn't have access to a clean uniform. They will simply have to continue wearing their gym clothing.");
+					}
+					else
+					{
+						Debug.Log(Name + " needs to change clothing before doing whatever they're supposed to do next.");
+						MustChangeClothing = true;
+						ChangeClothingPhase = 0;
+					}
 				}
 				if (Actions[Phase] == StudentActionType.Graffiti && !StudentManager.Bully)
 				{
@@ -4382,32 +4403,33 @@ public class StudentScript : MonoBehaviour
 				}
 				if (Infatuated && Actions[Phase] == StudentActionType.Admire)
 				{
-					if (base.transform.position.y > CurrentDestination.position.y + 1f || base.transform.position.y < CurrentDestination.position.y - 1f)
+					if (DistanceToDestination > TargetDistance + 5f)
 					{
-						TargetDistance = 2f;
+						Pathfinding.speed = 5f;
 					}
 					else
 					{
-						Debug.Log("This is the exact moment an infatuated character is deciding their TargetDistance.");
-						if (StudentManager.Students[StudentManager.RivalID] != null && StudentManager.Students[StudentManager.RivalID].Meeting)
-						{
-							Debug.Log("Rival is meeting someone, so TargetDistance is far away.");
-							TargetDistance = 10f;
-						}
-						else
-						{
-							Debug.Log("Rival is NOT meeting someone, so TargetDistance is...");
-							if (StudentManager.Week > 8)
-							{
-								Debug.Log("0.5 meters.");
-								TargetDistance = 0.5f;
-							}
-							else
-							{
-								Debug.Log("5 meters.");
-								TargetDistance = 5f;
-							}
-						}
+						Pathfinding.speed = WalkSpeed;
+					}
+					if (InvestigatingMysteriousDisappearance)
+					{
+						TargetDistance = 1f;
+					}
+					else if (base.transform.position.y > CurrentDestination.position.y + 1f || base.transform.position.y < CurrentDestination.position.y - 1f)
+					{
+						TargetDistance = 2f;
+					}
+					else if (StudentManager.Students[StudentManager.RivalID] != null && StudentManager.Students[StudentManager.RivalID].Meeting)
+					{
+						TargetDistance = 10f;
+					}
+					else if (StudentManager.Week > 8)
+					{
+						TargetDistance = 0.5f;
+					}
+					else
+					{
+						TargetDistance = 5f;
 					}
 				}
 				if (Club == ClubType.Sports && Clock.Period == 6 && !StudentManager.PoolClosed && Schoolwear == 3)
@@ -4749,9 +4771,21 @@ public class StudentScript : MonoBehaviour
 				}
 				if (Infatuated && Actions[Phase] == StudentActionType.Admire)
 				{
-					if (base.transform.position.y > CurrentDestination.position.y + 1f || base.transform.position.y < CurrentDestination.position.y - 1f)
+					if (DistanceToDestination > TargetDistance + 5f)
 					{
-						TargetDistance = 2f;
+						Pathfinding.speed = 5f;
+					}
+					else
+					{
+						Pathfinding.speed = WalkSpeed;
+					}
+					if (InvestigatingMysteriousDisappearance)
+					{
+						TargetDistance = 1f;
+					}
+					else if (base.transform.position.y > CurrentDestination.position.y + 0.1f || base.transform.position.y < CurrentDestination.position.y - 0.1f)
+					{
+						TargetDistance = 1f;
 					}
 					else if (StudentManager.Students[StudentManager.RivalID].Meeting || StudentManager.Students[StudentManager.RivalID].InEvent)
 					{
@@ -4765,7 +4799,7 @@ public class StudentScript : MonoBehaviour
 					{
 						TargetDistance = 5f;
 					}
-					if (StudentManager.LockerRoomArea.bounds.Contains(CurrentDestination.position) || StudentManager.EastBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.WestBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.Students[InfatuationID].Meeting)
+					if (StudentManager.LockerRoomArea.bounds.Contains(CurrentDestination.position) || StudentManager.EastBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.WestBathroomArea.bounds.Contains(CurrentDestination.position))
 					{
 						CharacterAnimation.CrossFade(IdleAnim);
 						Pathfinding.canSearch = false;
@@ -4806,9 +4840,21 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (Infatuated && Actions[Phase] == StudentActionType.Admire)
 				{
-					if (base.transform.position.y > CurrentDestination.position.y + 1f || base.transform.position.y < CurrentDestination.position.y - 1f)
+					if (DistanceToDestination > TargetDistance + 5f)
 					{
-						TargetDistance = 2f;
+						Pathfinding.speed = 5f;
+					}
+					else
+					{
+						Pathfinding.speed = WalkSpeed;
+					}
+					if (InvestigatingMysteriousDisappearance)
+					{
+						TargetDistance = 1f;
+					}
+					else if (base.transform.position.y > CurrentDestination.position.y + 0.1f || base.transform.position.y < CurrentDestination.position.y - 0.1f)
+					{
+						TargetDistance = 1f;
 					}
 					else if (!StudentManager.Students[StudentManager.RivalID].Meeting && !StudentManager.Students[StudentManager.RivalID].InEvent)
 					{
@@ -4856,6 +4902,9 @@ public class StudentScript : MonoBehaviour
 						StudentScript studentScript = StudentManager.Students[InfatuationID];
 						if (studentScript != null && (!studentScript.gameObject.activeInHierarchy || !studentScript.enabled))
 						{
+							Debug.Log("TargetDistance must become 1.");
+							InvestigatingMysteriousDisappearance = true;
+							TargetDistance = 1f;
 							CannotFindInfatuationTarget();
 						}
 					}
@@ -11179,7 +11228,6 @@ public class StudentScript : MonoBehaviour
 		}
 		if (Electrified)
 		{
-			Debug.Log(Name + " is now being electrocuted.");
 			CharacterAnimation.CrossFade(ElectroAnim);
 			if (CharacterAnimation[ElectroAnim].time >= CharacterAnimation[ElectroAnim].length || TooCloseToWall)
 			{
@@ -12567,7 +12615,7 @@ public class StudentScript : MonoBehaviour
 					}
 				}
 				PreviousAlarm = Alarm;
-				if (DistanceToPlayer < VisionDistance - ChameleonBonus)
+				if (DistanceToPlayer < VisionDistance + VisionBonus - ChameleonBonus)
 				{
 					if (!Talking && !Spraying && !SentHome && !Slave && !Attacked)
 					{
@@ -19046,7 +19094,14 @@ public class StudentScript : MonoBehaviour
 		}
 		Pathfinding.canSearch = true;
 		Pathfinding.canMove = true;
-		MustChangeClothing = true;
+		if (!SchoolwearUnavailable && !BeenSplashed)
+		{
+			MustChangeClothing = true;
+		}
+		else
+		{
+			Debug.Log(Name + " should not try to change clothing later on this day.");
+		}
 		Distracted = false;
 	}
 

@@ -36,7 +36,6 @@ public class FavorMenuScript : MonoBehaviour
 	{
 		if (Flicker)
 		{
-			Debug.Log("Yeah, Flicker is true...");
 			Timer += Time.unscaledDeltaTime;
 			if (Timer > 0.1f)
 			{

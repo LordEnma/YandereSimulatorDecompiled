@@ -33,10 +33,6 @@ public class TextMessageManagerScript : MonoBehaviour
 			base.gameObject.SetActive(value: false);
 			PauseScreen.StudentInfoMenu.SendingHome = false;
 			PauseScreen.Yandere.RPGCamera.enabled = true;
-			PauseScreen.Yandere.RPGCamera.mouseX = PauseScreen.Yandere.RPGCamera.mouseXSmooth;
-			PauseScreen.Yandere.RPGCamera.mouseY = PauseScreen.Yandere.RPGCamera.mouseYSmooth;
-			PauseScreen.Yandere.RPGCamera.mouseSmoothingFactor = 0.08f;
-			PauseScreen.Yandere.RPGCamera.UpdateRotation();
 		}
 	}
 

@@ -10,8 +10,15 @@ public class YandereShoeLockerScript : MonoBehaviour
 
 	public bool Outdoors = true;
 
+	public int Frame;
+
 	private void Update()
 	{
+		Frame++;
+		if (Frame == 3)
+		{
+			UpdateShoes();
+		}
 		if (!(Yandere.transform.position.y < 1f) || !Yandere.CanMove || Yandere.Schoolwear != 1 || Yandere.ClubAttire || Yandere.Egg || Yandere.WearingRaincoat || Yandere.CanCloak)
 		{
 			return;

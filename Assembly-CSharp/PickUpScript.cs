@@ -635,6 +635,10 @@ public class PickUpScript : MonoBehaviour
 
 	public void Drop()
 	{
+		if (CarBattery)
+		{
+			Yandere.PotentiallyMurderousTimer = 1f;
+		}
 		if (CannotDrop)
 		{
 			return;

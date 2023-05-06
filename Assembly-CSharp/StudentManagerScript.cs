@@ -1533,7 +1533,7 @@ public class StudentManagerScript : MonoBehaviour
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;
 			}
-			if (Frame < 4)
+			if (Frame < 11)
 			{
 				Frame++;
 				if (!FirstUpdate)
@@ -1872,7 +1872,6 @@ public class StudentManagerScript : MonoBehaviour
 									studentScript.LeanAnim = studentScript.PlateIdleAnim;
 									studentScript.Attempts = 0;
 									studentScript.SleuthID--;
-									Debug.Log("Loading save. Instructing " + studentScript.Name + " to GetFoodTarget().");
 									studentScript.GetFoodTarget();
 									studentScript.ClubTimer = 0f;
 								}
@@ -1960,6 +1959,10 @@ public class StudentManagerScript : MonoBehaviour
 						PracticeSpots[1].transform.position = new Vector3(0f, 4f, 21.33333f);
 						PracticeSpots[1].transform.eulerAngles = new Vector3(0f, 180f, 0f);
 					}
+				}
+				else if (Frame == 5)
+				{
+					TaskManager.UpdateTaskStatus();
 				}
 			}
 			if ((double)Clock.HourTime > 16.9)
@@ -2748,13 +2751,24 @@ public class StudentManagerScript : MonoBehaviour
 							}
 						}
 					}
-					if (studentScript.FightingSlave && Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Knife)
+					if (studentScript.FightingSlave)
 					{
-						Debug.Log("Fighting with a slave!");
-						studentScript.Prompt.Label[0].text = "     Stab";
-						studentScript.Prompt.HideButton[0] = false;
-						studentScript.Prompt.HideButton[2] = true;
-						studentScript.Prompt.enabled = true;
+						if (Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Knife)
+						{
+							Debug.Log("Fighting with a slave!");
+							studentScript.Prompt.Label[0].text = "     Stab";
+							studentScript.Prompt.HideButton[0] = false;
+							studentScript.Prompt.HideButton[2] = true;
+							studentScript.Prompt.enabled = true;
+						}
+					}
+					else if (studentScript.Drownable && !Yandere.Armed && Yandere.PickUp == null)
+					{
+						studentScript.Prompt.Label[2].text = "     Drown";
+						studentScript.Prompt.HideButton[0] = true;
+						studentScript.Prompt.HideButton[2] = false;
+						studentScript.Prompt.MinimumDistance = 1f;
+						studentScript.Prompt.Attack = true;
 					}
 					if (NoSpeech && !studentScript.Armband.activeInHierarchy)
 					{
@@ -4449,8 +4463,10 @@ public class StudentManagerScript : MonoBehaviour
 		int @int = PlayerPrefs.GetInt("SaveSlot");
 		Yandere.Class.gameObject.SetActive(value: true);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
+		TaskManager.Kitten.gameObject.SetActive(value: true);
 		YanSave.LoadData("Profile_" + profile + "_Slot_" + @int);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
+		TaskManager.Kitten.gameObject.SetActive(value: false);
 		Yandere.Class.gameObject.SetActive(value: false);
 		Physics.SyncTransforms();
 		Yandere.Incinerator.ReturnFromSave();
@@ -5930,6 +5946,22 @@ public class StudentManagerScript : MonoBehaviour
 			Students[ID].Obstacle.enabled = false;
 			Students[ID].AdmireAnim = Students[ID].AdmireAnims[UnityEngine.Random.Range(0, 3)];
 			Physics.IgnoreCollision(Students[ID].MyController, Students[18].MyController);
+			if (ID != 2 && Students[2] != null)
+			{
+				Physics.IgnoreCollision(Students[ID].MyController, Students[2].MyController);
+			}
+			else if (ID != 3 && Students[3] != null)
+			{
+				Physics.IgnoreCollision(Students[ID].MyController, Students[3].MyController);
+			}
+			else if (ID != 4 && Students[4] != null)
+			{
+				Physics.IgnoreCollision(Students[ID].MyController, Students[4].MyController);
+			}
+			else if (ID != 5 && Students[5] != null)
+			{
+				Physics.IgnoreCollision(Students[ID].MyController, Students[5].MyController);
+			}
 		}
 	}
 
@@ -6529,6 +6561,15 @@ public class StudentManagerScript : MonoBehaviour
 				AttackPromptActive = true;
 			}
 		}
+		if (QualityManager.Nemesis != null && QualityManager.Nemesis.gameObject.activeInHierarchy)
+		{
+			Debug.Log("Nemesis is out and about.");
+		}
+		if (QualityManager.Nemesis != null && QualityManager.Nemesis.gameObject.activeInHierarchy && Yandere.NearestPrompt == QualityManager.Nemesis.Student.Prompt && !QualityManager.Nemesis.Student.Prompt.HideButton[2])
+		{
+			Debug.Log("Under the impression that Nemesis's Attack Prompt is visible.");
+			AttackPromptActive = true;
+		}
 	}
 
 	public void LookAtTest()
@@ -6588,6 +6629,13 @@ public class StudentManagerScript : MonoBehaviour
 	public void IdentifyAvailableWitnesses()
 	{
 		WitnessID = 1;
+		for (int i = 0; i < 101; i++)
+		{
+			if (JSON.Students[i].Persona == PersonaType.Sleuth && (Atmosphere <= 0.8f || StudentGlobals.GetStudentGrudge(i)))
+			{
+				Weeks[Week].StudentAvailability[i] = false;
+			}
+		}
 		for (int i = 0; i < 101; i++)
 		{
 			if (Weeks[Week].StudentAvailability[i])
@@ -6657,6 +6705,10 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void BecomeLivingSecurityCamera(StudentScript Student)
 	{
+		if (!(Student != null))
+		{
+			return;
+		}
 		Student.WitnessID = WitnessID;
 		if (WitnessID < WitnessSpots.Length)
 		{
@@ -6711,18 +6763,18 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			if (Students[i] != null)
 			{
-				Students[i].VisionDistance += 5f;
+				Students[i].VisionBonus += 5f;
 			}
 		}
 	}
 
-	public void RestoreVisionDistance()
+	public void RestoreStudentVisionDistance()
 	{
 		for (int i = 1; i < 101; i++)
 		{
 			if (Students[i] != null)
 			{
-				Students[i].VisionDistance -= 5f;
+				Students[i].VisionBonus -= 5f;
 			}
 		}
 	}

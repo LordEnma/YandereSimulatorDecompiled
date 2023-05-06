@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class HenshinScript : MonoBehaviour
 {
@@ -72,8 +73,11 @@ public class HenshinScript : MonoBehaviour
 
 	public AudioClip Catchphrase;
 
+	public PostProcessingBehaviour PostProcessing;
+
 	public void TransformYandere()
 	{
+		PostProcessing.enabled = true;
 		TransformingYandere = true;
 		Cameras[1].SetActive(value: false);
 		Cameras[2].SetActive(value: false);
@@ -326,6 +330,7 @@ public class HenshinScript : MonoBehaviour
 		}
 		else
 		{
+			PostProcessing.enabled = false;
 			MiyukiCamera.enabled = false;
 		}
 	}

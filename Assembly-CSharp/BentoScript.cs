@@ -107,8 +107,10 @@ public class BentoScript : MonoBehaviour
 				}
 			}
 		}
-		else
+		else if (Prompt.enabled)
 		{
+			Prompt.enabled = false;
+			Prompt.Hide();
 			Prompt.enabled = false;
 		}
 	}

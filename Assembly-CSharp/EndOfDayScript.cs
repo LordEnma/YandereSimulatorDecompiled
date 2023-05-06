@@ -236,6 +236,8 @@ public class EndOfDayScript : MonoBehaviour
 
 	public bool WeaponsChecked;
 
+	public string AchievementToGrant;
+
 	public void Start()
 	{
 		Debug.Log("The End-of-Day GameObject has just fired its Start() function.");
@@ -693,7 +695,12 @@ public class EndOfDayScript : MonoBehaviour
 				ShruggingCops.SetActive(value: true);
 				if (Weapons == 0)
 				{
-					if (PoolEvent)
+					if (Police.Corpses == 1 && Police.CorpseList[0] != null && Police.CorpseList[0].Student.DeathType == DeathType.Weight)
+					{
+						Label.text = "The police can tell that the victim was killed by a bucket of heavy weights that was dropped from above, but they are unable to collect sufficient evidence to identify a culprit.";
+						Phase += 2;
+					}
+					else if (PoolEvent)
 					{
 						Label.text = "The police can tell that Osana was murdered by someone who tied a heavy weight to her hair and pushed the weight into the school pool to drown her, but they have no way of knowing who did it.";
 						Phase += 2;
@@ -2100,27 +2107,13 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			Debug.Log("The game believes that the rival died from a ''Weapon''.");
 			GameGlobals.SpecificEliminationID = 1;
-			if (!GameGlobals.Debug)
-			{
-				PlayerPrefs.SetInt("Attack", 1);
-			}
-			if (!GameGlobals.Debug)
-			{
-				PlayerPrefs.SetInt("a", 1);
-			}
+			AchievementToGrant = "Attack";
 		}
 		else if (corpse.Student.DeathType == DeathType.Explosion)
 		{
 			Debug.Log("The game knows that the rival died from an explosion.");
 			GameGlobals.SpecificEliminationID = 20;
-			if (!GameGlobals.Debug)
-			{
-				PlayerPrefs.SetInt("Attack", 1);
-			}
-			if (!GameGlobals.Debug)
-			{
-				PlayerPrefs.SetInt("a", 1);
-			}
+			AchievementToGrant = "Attack";
 		}
 		else
 		{
@@ -2705,6 +2698,7 @@ public class EndOfDayScript : MonoBehaviour
 		Yandere.PauseScreen.PhotoGallery.SavePhotosTaken();
 		SchoolManga.SaveMangaProgress();
 		Yandere.CameraEffects.UpdateVignette(0f);
+		GrantAchievement();
 	}
 
 	private void DisableThings(StudentScript TargetStudent)
@@ -2875,19 +2869,13 @@ public class EndOfDayScript : MonoBehaviour
 		else if (ragdoll.Student.DeathType == DeathType.Weapon)
 		{
 			GameGlobals.SpecificEliminationID = 1;
-			if (!GameGlobals.Debug)
-			{
-				PlayerPrefs.SetInt("Attack", 1);
-			}
-			if (!GameGlobals.Debug)
-			{
-				PlayerPrefs.SetInt("a", 1);
-			}
+			AchievementToGrant = "Attack";
 			Debug.Log("The game knows that she was attacked, though.");
 		}
 		else if (ragdoll.Student.DeathType == DeathType.Explosion)
 		{
 			GameGlobals.SpecificEliminationID = 20;
+			AchievementToGrant = "Attack";
 			Debug.Log("The game knows that she was blown up, though.");
 		}
 	}
@@ -2998,6 +2986,21 @@ public class EndOfDayScript : MonoBehaviour
 			for (int j = 1; j < 26; j++)
 			{
 				ConversationGlobals.SetTopicLearnedByStudent(j, i, StudentManager.GetTopicLearnedByStudent(j, i));
+			}
+		}
+	}
+
+	public void GrantAchievement()
+	{
+		if (AchievementToGrant == "Attack")
+		{
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("Attack", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
 			}
 		}
 	}

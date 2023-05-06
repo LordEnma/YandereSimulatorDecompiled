@@ -25,13 +25,19 @@ public class GravurePhotoShootScript : MonoBehaviour
 				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				return;
 			}
+			if ((Prompt.Yandere.StudentManager.Students[19] != null && Prompt.Yandere.StudentManager.Students[19].Electrified) || (Prompt.Yandere.StudentManager.Students[19] != null && Prompt.Yandere.StudentManager.Students[19].Electrocuted) || (Prompt.Yandere.StudentManager.Students[19] != null && !Prompt.Yandere.StudentManager.Students[19].Alive))
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Chigusa is dead!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				return;
+			}
 			Prompt.Yandere.CharacterAnimation.CrossFade(Prompt.Yandere.IdleAnim);
 			Prompt.Yandere.transform.position = new Vector3(-17f, 4f, 71f);
 			Prompt.Yandere.transform.rotation = base.transform.rotation;
 			Prompt.Yandere.RPGCamera.enabled = false;
 			Prompt.Yandere.CanMove = false;
 			Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, -90f, 0f);
-			Prompt.Yandere.MainCamera.transform.position = new Vector3(-14.5f, 5f, 71.5f);
+			Prompt.Yandere.MainCamera.transform.position = new Vector3(-15f, 4.8f, 71.5f);
 			TaskMinigame.Show = true;
 			TaskMinigame.Limit = 10;
 		}

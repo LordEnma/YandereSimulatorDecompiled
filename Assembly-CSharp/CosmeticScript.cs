@@ -583,7 +583,7 @@ public class CosmeticScript : MonoBehaviour
 				Hairstyle = 51;
 			}
 		}
-		else if (StudentManager != null && StudentManager.TaskManager != null && StudentManager.TaskManager.TaskStatus[36] == 3)
+		else if (StudentManager != null && StudentManager.TaskManager != null && StudentID == 11 && StudentManager.TaskManager.TaskStatus[11] == 3)
 		{
 			Stockings = "ShortPink";
 		}
@@ -1840,10 +1840,7 @@ public class CosmeticScript : MonoBehaviour
 			Student.CharacterAnimation["idle_00"].speed = 0f;
 			Hairstyle = 65;
 		}
-		if (!Eighties)
-		{
-			TaskCheck();
-		}
+		TaskCheck();
 		TurnOnCheck();
 		if (!Male && StudentID != 90)
 		{
@@ -2001,6 +1998,11 @@ public class CosmeticScript : MonoBehaviour
 
 	public void SetFemaleUniform()
 	{
+		if (Male)
+		{
+			Debug.Log("Something just caused the game to try running SetFemaleUniform() on a Male character...");
+			return;
+		}
 		if (Club != ClubType.Council)
 		{
 			if (FemaleUniformID == 0 && Eighties)
@@ -2128,6 +2130,10 @@ public class CosmeticScript : MonoBehaviour
 
 	private void TaskCheck()
 	{
+		if (Eighties)
+		{
+			return;
+		}
 		if (StudentID == 37)
 		{
 			if (TaskGlobals.GetTaskStatus(37) < 3)

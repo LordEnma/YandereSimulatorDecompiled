@@ -44,41 +44,44 @@ public class TaskManagerScript : MonoBehaviour
 
 	public void Start()
 	{
-		for (int i = 1; i < 101; i++)
+		if (!Initialized)
 		{
-			TaskStatus[i] = TaskGlobals.GetTaskStatus(i);
-		}
-		for (int j = 1; j < TaskObjects.Length; j++)
-		{
-			if (TaskObjects[j] != null)
+			for (int i = 1; i < 101; i++)
 			{
-				TaskObjects[j].SetActive(value: false);
+				TaskStatus[i] = TaskGlobals.GetTaskStatus(i);
 			}
-		}
-		if (TaskStatus[46] == 1)
-		{
-			TaskGlobals.SetTaskStatus(46, 0);
-			TaskStatus[46] = 0;
-		}
-		if (StudentManager != null)
-		{
-			UpdateTaskStatus();
-		}
-		if (GameGlobals.Eighties)
-		{
-			if (MuddyFootprintParent != null)
+			for (int j = 1; j < TaskObjects.Length; j++)
 			{
-				MuddyFootprintParent.gameObject.SetActive(value: false);
-			}
-			Eighties = true;
-		}
-		if (Eighties)
-		{
-			for (int k = 1; k < 101; k++)
-			{
-				if (TaskStatus[k] == 1 && StudentManager.Students[k] != null && StudentManager.GenericTaskIDs[k] > 0)
+				if (TaskObjects[j] != null)
 				{
-					Yandere.Inventory.ItemsRequested[StudentManager.GenericTaskIDs[k]]++;
+					TaskObjects[j].SetActive(value: false);
+				}
+			}
+			if (TaskStatus[46] == 1)
+			{
+				TaskGlobals.SetTaskStatus(46, 0);
+				TaskStatus[46] = 0;
+			}
+			if (StudentManager != null)
+			{
+				UpdateTaskStatus();
+			}
+			if (GameGlobals.Eighties)
+			{
+				if (MuddyFootprintParent != null)
+				{
+					MuddyFootprintParent.gameObject.SetActive(value: false);
+				}
+				Eighties = true;
+			}
+			if (Eighties)
+			{
+				for (int k = 1; k < 101; k++)
+				{
+					if (TaskStatus[k] == 1 && StudentManager.Students[k] != null && StudentManager.GenericTaskIDs[k] > 0)
+					{
+						Yandere.Inventory.ItemsRequested[StudentManager.GenericTaskIDs[k]]++;
+					}
 				}
 			}
 		}
@@ -412,13 +415,18 @@ public class TaskManagerScript : MonoBehaviour
 				StudentManager.Students[13].TaskPhase = 5;
 			}
 		}
-		if (TaskStatus[14] == 1 && StudentManager.Students[14] != null)
+		if (TaskStatus[14] == 1)
 		{
-			Kitten.gameObject.SetActive(value: true);
-			if (Kitten.Caught && Vector3.Distance(StudentManager.Students[14].transform.position, Kitten.gameObject.transform.position) < 5f)
+			Debug.Log("Sporty's TaskStatus is 1.");
+			if (StudentManager.Students[14] != null)
 			{
-				Debug.Log("Sporty's task should be ready to turn in!");
-				StudentManager.Students[14].TaskPhase = 5;
+				Debug.Log("She's at school.");
+				Kitten.gameObject.SetActive(value: true);
+				if (Kitten.Caught && Vector3.Distance(StudentManager.Students[14].transform.position, Kitten.gameObject.transform.position) < 5f)
+				{
+					Debug.Log("Sporty's task should be ready to turn in!");
+					StudentManager.Students[14].TaskPhase = 5;
+				}
 			}
 		}
 		if (TaskStatus[15] == 1 && StudentManager.Students[15] != null)
