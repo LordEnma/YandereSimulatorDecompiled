@@ -628,6 +628,7 @@ public class BucketScript : MonoBehaviour
 				Dumbbells--;
 			}
 			component.DeathType = DeathType.Weight;
+			component.CrushedByBucket = true;
 			component.BecomeRagdoll();
 			Dropped = false;
 			GameObjectUtils.SetLayerRecursively(base.gameObject, 15);

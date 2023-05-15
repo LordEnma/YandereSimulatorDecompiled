@@ -267,7 +267,6 @@ public class CalendarScript : MonoBehaviour
 		SkipConfirmationWindow.SetActive(value: false);
 		if (DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
-			Debug.Log("It's the start of a new week: Week #" + DateGlobals.Week + ". Creating a new ''Reset Week'' save file.");
 			YanSave.SaveData("Profile_" + GameGlobals.Profile + "_Slot_" + 11);
 		}
 	}

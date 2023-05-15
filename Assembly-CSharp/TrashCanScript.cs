@@ -33,7 +33,7 @@ public class TrashCanScript : MonoBehaviour
 	private void Start()
 	{
 		Physics.IgnoreCollision(Yandere.GetComponent<Collider>(), base.gameObject.GetComponent<BoxCollider>());
-		if (ChallengeGlobals.NoBag)
+		if (Wearable && ChallengeGlobals.NoBag)
 		{
 			if (Yandere.Club == ClubType.Delinquent || Yandere.Club == ClubType.LightMusic)
 			{

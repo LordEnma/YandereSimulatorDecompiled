@@ -15,7 +15,13 @@ public class ClassScript : MonoBehaviour
 
 	public GameObject Poison;
 
+	public GameObject DetailsWindow;
+
+	public GameObject DescWindow;
+
 	public UILabel StudyPointsLabel;
+
+	public UILabel[] BenefitLabels;
 
 	public UILabel[] SubjectLabels;
 
@@ -62,6 +68,18 @@ public class ClassScript : MonoBehaviour
 	public string[] Desc;
 
 	public string[] EightiesDesc;
+
+	public string[] BiologyBenefits;
+
+	public string[] ChemistryBenefits;
+
+	public string[] LanguageBenefits;
+
+	public string[] LanguageBenefitsEighties;
+
+	public string[] PhysicalBenefits;
+
+	public string[] PsychologyBenefits;
 
 	public int StartingPoints;
 
@@ -153,6 +171,7 @@ public class ClassScript : MonoBehaviour
 			if (GameGlobals.Eighties)
 			{
 				Subject3GradeText = Subject3GradeTextEighties;
+				LanguageBenefits = LanguageBenefitsEighties;
 				if (EightiesDesc.Length != 0)
 				{
 					Desc[3] = EightiesDesc[3];
@@ -167,7 +186,6 @@ public class ClassScript : MonoBehaviour
 			Subject[3] = Language;
 			Subject[4] = Physical;
 			Subject[5] = Psychology;
-			DescLabel.text = Desc[Selected];
 			UpdateSubjectLabels();
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 1f);
 			UpdateBars();
@@ -268,7 +286,6 @@ public class ClassScript : MonoBehaviour
 							Selected = 1;
 						}
 						Highlight.localPosition = new Vector3(Highlight.localPosition.x, 375f - 125f * (float)Selected, Highlight.localPosition.z);
-						DescLabel.text = Desc[Selected];
 						UpdateSubjectLabels();
 					}
 					if (InputManager.TappedUp)
@@ -279,7 +296,6 @@ public class ClassScript : MonoBehaviour
 							Selected = 5;
 						}
 						Highlight.localPosition = new Vector3(Highlight.localPosition.x, 375f - 125f * (float)Selected, Highlight.localPosition.z);
-						DescLabel.text = Desc[Selected];
 						UpdateSubjectLabels();
 					}
 					if (InputManager.TappedRight)
@@ -334,6 +350,19 @@ public class ClassScript : MonoBehaviour
 							ExitClass();
 						}
 					}
+					if (Input.GetButtonDown(InputNames.Xbox_X))
+					{
+						if (DescWindow.activeInHierarchy)
+						{
+							DetailsWindow.SetActive(value: true);
+							DescWindow.SetActive(value: false);
+						}
+						else
+						{
+							DetailsWindow.SetActive(value: false);
+							DescWindow.SetActive(value: true);
+						}
+					}
 				}
 				else if (WarningWindow.localScale.x > 0.9f)
 				{
@@ -345,6 +374,7 @@ public class ClassScript : MonoBehaviour
 					{
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Finish Class";
+						PromptBar.Label[2].text = "Details";
 						PromptBar.Label[4].text = "Choose";
 						PromptBar.Label[5].text = "Allocate";
 						PromptBar.UpdateButtons();
@@ -458,9 +488,33 @@ public class ClassScript : MonoBehaviour
 
 	private void UpdateSubjectLabels()
 	{
+		DescLabel.text = Desc[Selected];
 		for (int i = 1; i < 6; i++)
 		{
-			SubjectLabels[i].color = new Color(0f, 0f, 0f, 1f);
+			if (Selected == 1)
+			{
+				BenefitLabels[i].text = BiologyBenefits[i];
+			}
+			else if (Selected == 2)
+			{
+				BenefitLabels[i].text = ChemistryBenefits[i];
+			}
+			else if (Selected == 3)
+			{
+				BenefitLabels[i].text = LanguageBenefits[i];
+			}
+			else if (Selected == 4)
+			{
+				BenefitLabels[i].text = PhysicalBenefits[i];
+			}
+			else if (Selected == 5)
+			{
+				BenefitLabels[i].text = PsychologyBenefits[i];
+			}
+		}
+		for (int j = 1; j < 6; j++)
+		{
+			SubjectLabels[j].color = new Color(0f, 0f, 0f, 1f);
 		}
 		SubjectLabels[Selected].color = new Color(1f, 1f, 1f, 1f);
 	}

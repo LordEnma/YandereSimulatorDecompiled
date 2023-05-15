@@ -616,6 +616,10 @@ public class TutorialScript : MonoBehaviour
 						{
 							if (VictimPrompt.Circle[0].fillAmount == 0f)
 							{
+								if (Yandere.Armed)
+								{
+									Yandere.Unequip();
+								}
 								VictimPrompt.Hide();
 								VictimPrompt.enabled = false;
 								Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);

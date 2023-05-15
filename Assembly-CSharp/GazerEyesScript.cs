@@ -241,6 +241,7 @@ public class GazerEyesScript : MonoBehaviour
 			Target.Fleeing = false;
 			Target.Dying = true;
 			Target.Shy = false;
+			Target.Wet = false;
 			Target.Police.CorpseList[Target.Police.Corpses] = Target.Ragdoll;
 			Target.Police.Corpses++;
 			GameObjectUtils.SetLayerRecursively(Target.gameObject, 11);

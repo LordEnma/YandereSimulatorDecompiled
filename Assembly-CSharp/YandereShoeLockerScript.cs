@@ -18,6 +18,7 @@ public class YandereShoeLockerScript : MonoBehaviour
 		if (Frame == 3)
 		{
 			UpdateShoes();
+			Yandere.CanMove = false;
 		}
 		if (!(Yandere.transform.position.y < 1f) || !Yandere.CanMove || Yandere.Schoolwear != 1 || Yandere.ClubAttire || Yandere.Egg || Yandere.WearingRaincoat || Yandere.CanCloak)
 		{

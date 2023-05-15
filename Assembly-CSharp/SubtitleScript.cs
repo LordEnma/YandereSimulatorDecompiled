@@ -1239,7 +1239,7 @@ public class SubtitleScript : MonoBehaviour
 			CouncilToCounselors[1] = "This conduct is unacceptable. Come with me to the counselor's office.";
 			CouncilToCounselors[2] = "I'm sorry! You must go to the conselheira.";
 			CouncilToCounselors[3] = "Um, I'm really sorry, but the counselor will need to hear about this...";
-			CouncilToCounselors[4] = "What the hell do you think you're doing? Get your ass to the counelsor's office.";
+			CouncilToCounselors[4] = "What the hell do you think you're doing? Get your ass to the counselor's office.";
 			CouncilCorpseReactions[1] = "A dead body?!";
 			CouncilCorpseReactions[2] = "Você morreu?!";
 			CouncilCorpseReactions[3] = "Oh, no! This is horrible!";
@@ -2131,7 +2131,6 @@ public class SubtitleScript : MonoBehaviour
 	{
 		if (!Jukebox.Yandere.Talking && subtitleType == PreviousSubtitle && Timer > 0f)
 		{
-			Debug.Log("A character is attempting to say a subtitle that another character is already saying: " + subtitleType);
 			return;
 		}
 		switch (subtitleType)
@@ -3563,14 +3562,85 @@ public class SubtitleScript : MonoBehaviour
 
 	public float GetClipLength(int StudentID, int TaskPhase)
 	{
+		YandereScript component = Yandere.GetComponent<YandereScript>();
+		if (!component.StudentManager.Eighties)
+		{
+			switch (StudentID)
+			{
+			case 4:
+				return Task4Clips[TaskPhase].length + 0.5f;
+			case 6:
+				return Task6Clips[TaskPhase].length + 0.5f;
+			case 8:
+				return Task8Clips[TaskPhase].length;
+			case 11:
+				return Task11Clips[TaskPhase].length;
+			case 12:
+				return Task12Clips[TaskPhase].length;
+			case 13:
+				return Task13Clips[TaskPhase].length;
+			case 14:
+				return Task14Clips[TaskPhase].length;
+			case 15:
+				return Task15Clips[TaskPhase].length;
+			case 16:
+				return Task16Clips[TaskPhase].length;
+			case 17:
+				return Task17Clips[TaskPhase].length;
+			case 18:
+				return Task18Clips[TaskPhase].length;
+			case 19:
+				return Task19Clips[TaskPhase].length;
+			case 20:
+				return Task20Clips[TaskPhase].length;
+			case 25:
+				return Task25Clips[TaskPhase].length;
+			case 28:
+				return Task28Clips[TaskPhase].length;
+			case 30:
+				return Task30Clips[TaskPhase].length;
+			case 36:
+				return Task36Clips[TaskPhase].length;
+			case 37:
+				return Task37Clips[TaskPhase].length;
+			case 38:
+				return Task38Clips[TaskPhase].length;
+			case 41:
+				return Task41Clips[TaskPhase].length;
+			case 46:
+				return Task46Clips[TaskPhase].length;
+			case 47:
+				return Task47Clips[TaskPhase].length;
+			case 48:
+				return Task48Clips[TaskPhase].length;
+			case 49:
+				return Task49Clips[TaskPhase].length;
+			case 50:
+				return Task50Clips[TaskPhase].length;
+			case 52:
+				return Task52Clips[TaskPhase].length;
+			case 76:
+				return Task76Clips[TaskPhase].length;
+			case 77:
+				return Task77Clips[TaskPhase].length;
+			case 78:
+				return Task78Clips[TaskPhase].length;
+			case 79:
+				return Task79Clips[TaskPhase].length;
+			case 80:
+				return Task80Clips[TaskPhase].length;
+			case 81:
+				return Task81Clips[TaskPhase].length;
+			default:
+				if (component.TargetStudent.Male)
+				{
+					return TaskGenericMaleClips[TaskPhase].length;
+				}
+				return TaskGenericFemaleClips[TaskPhase].length;
+			}
+		}
 		switch (StudentID)
 		{
-		case 4:
-			return Task4Clips[TaskPhase].length + 0.5f;
-		case 6:
-			return Task6Clips[TaskPhase].length + 0.5f;
-		case 8:
-			return Task8Clips[TaskPhase].length;
 		case 11:
 			return Task11Clips[TaskPhase].length;
 		case 12:
@@ -3590,55 +3660,16 @@ public class SubtitleScript : MonoBehaviour
 		case 19:
 			return Task19Clips[TaskPhase].length;
 		case 20:
-			return Task20Clips[TaskPhase].length;
-		case 25:
-			return Task25Clips[TaskPhase].length;
-		case 28:
-			return Task28Clips[TaskPhase].length;
-		case 30:
-			return Task30Clips[TaskPhase].length;
-		case 36:
-			return Task36Clips[TaskPhase].length;
-		case 37:
-			return Task37Clips[TaskPhase].length;
-		case 38:
-			return Task38Clips[TaskPhase].length;
-		case 41:
-			return Task41Clips[TaskPhase].length;
-		case 46:
-			return Task46Clips[TaskPhase].length;
-		case 47:
-			return Task47Clips[TaskPhase].length;
-		case 48:
-			return Task48Clips[TaskPhase].length;
-		case 49:
-			return Task49Clips[TaskPhase].length;
-		case 50:
-			return Task50Clips[TaskPhase].length;
-		case 52:
-			return Task52Clips[TaskPhase].length;
-		case 76:
-			return Task76Clips[TaskPhase].length;
-		case 77:
-			return Task77Clips[TaskPhase].length;
-		case 78:
-			return Task78Clips[TaskPhase].length;
-		case 79:
-			return Task79Clips[TaskPhase].length;
-		case 80:
-			return Task80Clips[TaskPhase].length;
-		case 81:
-			return Task81Clips[TaskPhase].length;
-		default:
-		{
-			YandereScript component = Yandere.GetComponent<YandereScript>();
-			if (!component.StudentManager.Eighties)
+			if (StudentID == 20)
 			{
-				if (component.TargetStudent.Male)
-				{
-					return TaskGenericMaleClips[TaskPhase].length;
-				}
-				return TaskGenericFemaleClips[TaskPhase].length;
+				return Task20Clips[TaskPhase].length;
+			}
+			Debug.Log("This code is returning null, which is bad.");
+			return 1f;
+		default:
+			if (StudentID == 79)
+			{
+				return Task79Clips[TaskPhase].length;
 			}
 			if (component.TargetStudent.Male)
 			{
@@ -3727,7 +3758,6 @@ public class SubtitleScript : MonoBehaviour
 			}
 			Debug.Log("This code is returning null, which is bad.");
 			return 1f;
-		}
 		}
 	}
 

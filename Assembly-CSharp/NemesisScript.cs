@@ -133,8 +133,8 @@ public class NemesisScript : MonoBehaviour
 		Student.ShoeRemoval.LeftCasualShoe.gameObject.SetActive(value: false);
 		if (Difficulty < 3)
 		{
-			Student.Character.GetComponent<Animation>()["f02_nemesisEyes_00"].layer = 2;
-			Student.Character.GetComponent<Animation>().Play("f02_nemesisEyes_00");
+			Student.CharacterAnimation["f02_nemesisEyes_00"].layer = 2;
+			Student.CharacterAnimation.Play("f02_nemesisEyes_00");
 			Cosmetic.MyRenderer.sharedMesh = Cosmetic.FemaleUniforms[5];
 			Cosmetic.MyRenderer.materials[0].mainTexture = NemesisUniform;
 			Cosmetic.MyRenderer.materials[1].mainTexture = NemesisUniform;
@@ -252,7 +252,7 @@ public class NemesisScript : MonoBehaviour
 				{
 					if (Student.Pathfinding.canSearch)
 					{
-						Student.Character.GetComponent<Animation>().CrossFade("f02_idleShort_00");
+						Student.CharacterAnimation.CrossFade("f02_idleShort_00");
 						Student.Pathfinding.canSearch = false;
 						Student.Pathfinding.canMove = false;
 						Student.Pathfinding.speed = 0f;
@@ -269,12 +269,12 @@ public class NemesisScript : MonoBehaviour
 					{
 						if (!Chasing)
 						{
-							Student.Character.GetComponent<Animation>().CrossFade(Student.WalkAnim);
+							Student.CharacterAnimation.CrossFade(Student.WalkAnim);
 							Student.Pathfinding.speed = 1f;
 						}
 						else
 						{
-							Student.Character.GetComponent<Animation>().CrossFade("f02_sithRun_00");
+							Student.CharacterAnimation.CrossFade("f02_sithRun_00");
 							Student.Pathfinding.speed = 5f;
 						}
 						Student.Pathfinding.canSearch = true;
@@ -285,7 +285,7 @@ public class NemesisScript : MonoBehaviour
 					if (!Chasing)
 					{
 						Student.Pathfinding.speed = Mathf.MoveTowards(Student.Pathfinding.speed, InView ? 2f : 1f, Time.deltaTime * 0.1f);
-						Student.Character.GetComponent<Animation>()[Student.WalkAnim].speed = Student.Pathfinding.speed;
+						Student.CharacterAnimation[Student.WalkAnim].speed = Student.Pathfinding.speed;
 					}
 					else
 					{
@@ -317,7 +317,7 @@ public class NemesisScript : MonoBehaviour
 					}
 					else if (Vector3.Distance(base.transform.position, MissionMode.LastKnownPosition.position) < 1f)
 					{
-						Student.Character.GetComponent<Animation>().CrossFade("f02_nemesisScan_00");
+						Student.CharacterAnimation.CrossFade("f02_lookLeftRight_00");
 						Student.Pathfinding.speed = 0f;
 						ScanTimer += Time.deltaTime;
 						if (ScanTimer > 6f)

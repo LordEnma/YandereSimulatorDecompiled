@@ -752,6 +752,11 @@ public class ShutterScript : MonoBehaviour
 	public void SpawnMessage()
 	{
 		Debug.Log("Spawning a message.");
+		if (Yandere.NoInfo)
+		{
+			ResumeGameplay();
+			return;
+		}
 		if (NewMessage != null)
 		{
 			UnityEngine.Object.Destroy(NewMessage);

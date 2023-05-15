@@ -765,12 +765,13 @@ public class TalkingScript : MonoBehaviour
 			{
 				if (S.Club != ClubType.Delinquent)
 				{
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.Rival && S.CurrentAction == StudentActionType.SitAndEatBento))
 					{
 						if (S.Schoolwear == 2)
 						{
 							S.Subtitle.CustomText = "Uh...I'm wearing a swimsuit right now. I can't really do that for you. Maybe later...?";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
+							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.TalkTimer = 7.5f;
 							Refuse = true;
 						}
@@ -778,13 +779,22 @@ public class TalkingScript : MonoBehaviour
 						{
 							S.Subtitle.CustomText = "I'm sorry, I wouldn't be comfortable with that...I'm not even sure if we're safe right now.";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
+							S.CharacterAnimation.CrossFade(S.GossipAnim);
+							S.TalkTimer = 7.5f;
+							Refuse = true;
+						}
+						else if (S.CurrentAction == StudentActionType.SitAndEatBento)
+						{
+							S.Subtitle.CustomText = "I'm sorry, but could I please do it later? I'm eating a meal right now...";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
+							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.TalkTimer = 7.5f;
 							Refuse = true;
 						}
 						else
 						{
-							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 0, 5f);
+							S.CharacterAnimation.CrossFade(S.GossipAnim);
 						}
 					}
 					else
@@ -2009,6 +2019,11 @@ public class TalkingScript : MonoBehaviour
 	{
 		if (!S.Talking || !(S.Yandere.TalkTimer <= 0f))
 		{
+			return;
+		}
+		if (!S.Male && S.Club == ClubType.Delinquent)
+		{
+			Debug.Log("This is a female delinquent, wearing a mask. No need for lip movement.");
 			return;
 		}
 		if (S.Subtitle.CurrentClip != null)

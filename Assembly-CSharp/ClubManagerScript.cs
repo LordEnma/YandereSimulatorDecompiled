@@ -672,6 +672,7 @@ public class ClubManagerScript : MonoBehaviour
 		}
 		else if (Club == ClubType.Newspaper)
 		{
+			Debug.Log("Displaying the newspaper club performing their club activity.");
 			for (ID = 0; ID < Club15Students.Length; ID++)
 			{
 				StudentScript studentScript13 = StudentManager.Students[Club15Students[ID]];
@@ -748,7 +749,7 @@ public class ClubManagerScript : MonoBehaviour
 		ClubMembers = 0;
 		for (ID = 1; ID < ClubIDs.Length; ID++)
 		{
-			if (!StudentGlobals.GetStudentDead(ClubIDs[ID]) && !StudentGlobals.GetStudentDying(ClubIDs[ID]) && !StudentGlobals.GetStudentKidnapped(ClubIDs[ID]) && !StudentGlobals.GetStudentArrested(ClubIDs[ID]) && !StudentGlobals.GetStudentExpelled(ClubIDs[ID]) && StudentGlobals.GetStudentReputation(ClubIDs[ID]) > -100)
+			if (!StudentGlobals.GetStudentArrested(ClubIDs[ID]) && !StudentGlobals.GetStudentExpelled(ClubIDs[ID]) && StudentGlobals.GetStudentReputation(ClubIDs[ID]) > -100)
 			{
 				ClubMembers++;
 			}
@@ -756,25 +757,29 @@ public class ClubManagerScript : MonoBehaviour
 		if (TranqCase.VictimClubType == Check)
 		{
 			ClubMembers--;
+			Debug.Log("Subtracting a clubmember because someone's in the tranq case.");
 		}
 		for (ID = 1; ID < ClubIDs.Length; ID++)
 		{
 			if (StudentManager.Students[ClubIDs[ID]] == null)
 			{
 				ClubMembers--;
+				Debug.Log("Subtracting a clubmember because someone's not in the Student list.");
 			}
 			else if (!StudentManager.Students[ClubIDs[ID]].Alive)
 			{
 				ClubMembers--;
+				Debug.Log("Subtracting a clubmember because someone's dead.");
 			}
+		}
+		if (Yandere.Club == Check)
+		{
+			Debug.Log("Ayano is a member of this club, so that increases the population by 1...");
+			ClubMembers++;
 		}
 		if (Check == ClubType.LightMusic && ClubMembers < 5)
 		{
 			LeaderAshamed = true;
-		}
-		if (Yandere.Club == Check)
-		{
-			ClubMembers++;
 		}
 		int num = 0;
 		switch (Check)

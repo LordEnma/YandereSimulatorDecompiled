@@ -570,7 +570,6 @@ public class CosmeticScript : MonoBehaviour
 				EyewearID = 8;
 				if (StudentManager.TaskManager != null && StudentManager.TaskManager.TaskStatus[36] == 3)
 				{
-					Debug.Log("Gema is updating his appearance.");
 					FacialHairstyle = 0;
 					EyewearID = 9;
 					Hairstyle = 49;

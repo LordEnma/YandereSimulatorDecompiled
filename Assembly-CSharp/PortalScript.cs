@@ -359,6 +359,7 @@ public class PortalScript : MonoBehaviour
 						Yandere.SanityLabel.transform.parent.gameObject.SetActive(value: false);
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Continue";
+						PromptBar.Label[2].text = "Details";
 						PromptBar.Label[4].text = "Choose";
 						PromptBar.Label[5].text = "Allocate";
 						PromptBar.UpdateButtons();

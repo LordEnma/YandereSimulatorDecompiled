@@ -60,7 +60,6 @@ public class MatchboxScript : MonoBehaviour
 			}
 			if ((Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB)) && ((Prompt.Yandere.PreparingThrow && !Throwing) || (Prompt.Yandere.Throwing && !Throwing)))
 			{
-				Debug.Log("Threw an object. Throwing was false?");
 				ThrowTimer = 0.1f;
 				Throwing = true;
 				MyAudio.Play();

@@ -114,6 +114,16 @@ public class ShoulderCameraScript : MonoBehaviour
 		}
 		if (OverShoulder)
 		{
+			bool flag = false;
+			Vector3 b = Vector3.zero;
+			Vector3.Distance(ShoulderFocus.position, ShoulderPOV.position);
+			ShoulderFocus.LookAt(ShoulderPOV);
+			Debug.DrawRay(ShoulderFocus.position, ShoulderFocus.forward, Color.green);
+			if (Physics.Raycast(ShoulderFocus.position, ShoulderFocus.forward, out var hitInfo, 1f, Yandere.OnlyDefault))
+			{
+				b = hitInfo.point;
+				flag = true;
+			}
 			if (RPGCamera.enabled)
 			{
 				ShoulderFocus.position = RPGCamera.cameraPivot.position;
@@ -126,9 +136,13 @@ public class ShoulderCameraScript : MonoBehaviour
 				{
 					base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position + new Vector3(0f, -0.49f, 0f), Time.deltaTime * 10f);
 				}
-				else
+				else if (!flag)
 				{
 					base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position, Time.deltaTime * 10f);
+				}
+				else
+				{
+					base.transform.position = Vector3.Lerp(base.transform.position, b, Time.deltaTime * 10f);
 				}
 				ShoulderFocus.position = Vector3.Lerp(ShoulderFocus.position, Yandere.TargetStudent.transform.position + Vector3.up * Height, Time.deltaTime * 10f);
 			}

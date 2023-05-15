@@ -358,7 +358,6 @@ public class TitleSaveFilesScript : MonoBehaviour
 
 	public void StartNewGame()
 	{
-		Debug.Log("The game believed that Profile " + (EightiesPrefix + ID) + " was empty, so that profile is now being created.");
 		Started = true;
 		bool debug = GameGlobals.Debug;
 		GameGlobals.Profile = EightiesPrefix + ID;

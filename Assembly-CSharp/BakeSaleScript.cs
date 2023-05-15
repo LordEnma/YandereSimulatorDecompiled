@@ -15,6 +15,11 @@ public class BakeSaleScript : MonoBehaviour
 
 	public int ID = 46;
 
+	private void Start()
+	{
+		StudentManager.RivalEliminated = false;
+	}
+
 	private void Update()
 	{
 		float hourTime = StudentManager.Clock.HourTime;

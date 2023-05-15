@@ -137,7 +137,6 @@ public class StruggleBarScript : MonoBehaviour
 
 	public void HeroWins()
 	{
-		Debug.Log("StruggleBar fired HeroWins()");
 		if (Yandere.enabled && Yandere.Armed)
 		{
 			Yandere.EquippedWeapon.Drop();
@@ -153,6 +152,7 @@ public class StruggleBarScript : MonoBehaviour
 		{
 			Yandere.StudentManager.StopMoving();
 		}
+		base.enabled = false;
 	}
 
 	private void ChooseButton()

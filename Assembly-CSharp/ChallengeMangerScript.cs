@@ -68,6 +68,23 @@ public class ChallengeMangerScript : MonoBehaviour
 		{
 			if (KnifeOnly && StudentManager.Students[StudentManager.RivalID] != null && ((!StudentManager.Students[StudentManager.RivalID].Alive && !StudentManager.Students[StudentManager.RivalID].Stabbed) || StudentManager.StudentReps[StudentManager.RivalID] <= -100f || (StudentManager.RivalEliminated && !StudentManager.Students[StudentManager.RivalID].Stabbed) || StudentManager.Students[StudentManager.RivalID].Tranquil))
 			{
+				Debug.Log("Current rival is: " + StudentManager.Students[StudentManager.RivalID].Name);
+				if (!StudentManager.Students[StudentManager.RivalID].Alive && !StudentManager.Students[StudentManager.RivalID].Stabbed)
+				{
+					Debug.Log("Rival is not alive and rival was not stabbed.");
+				}
+				if (StudentManager.StudentReps[StudentManager.RivalID] <= -100f)
+				{
+					Debug.Log("Rival's reputation is too low.");
+				}
+				if (StudentManager.RivalEliminated && !StudentManager.Students[StudentManager.RivalID].Stabbed)
+				{
+					Debug.Log("RivalEliminated is true and the rival is not stabbed.");
+				}
+				if (StudentManager.Students[StudentManager.RivalID].Tranquil)
+				{
+					Debug.Log("Rival is Tranquil.");
+				}
 				GameOver();
 			}
 			CountDownToGameOver();
@@ -79,7 +96,7 @@ public class ChallengeMangerScript : MonoBehaviour
 			{
 				if (StudentManager.Students[i] != null && StudentManager.Students[i].Alarmed && StudentManager.Students[i].Witnessed != 0)
 				{
-					Debug.Log("Firing this code.");
+					Debug.Log("A student was alarmed by something.");
 					StudentToZoomInOn = StudentManager.Students[i];
 					StudentToZoomInOn.StudentID = 1;
 					StudentToZoomInOn.Teacher = false;
@@ -94,7 +111,6 @@ public class ChallengeMangerScript : MonoBehaviour
 		}
 		if (StudentToZoomInOn != null)
 		{
-			Debug.Log("And now, firing this code.");
 			Yandere.ShoulderCamera.GoingToCounselor = false;
 			ZoomInTimer = Mathf.MoveTowards(ZoomInTimer, 0f, Time.deltaTime);
 			if (ZoomInTimer == 0f)

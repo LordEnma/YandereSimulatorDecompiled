@@ -299,6 +299,10 @@ public class EvilPhotographerScript : MonoBehaviour
 
 	private void TransitionToGameOver()
 	{
+		if (Fire != null)
+		{
+			Fire.SetActive(value: false);
+		}
 		Marker.Tex.transform.localScale = new Vector3(1f, 0f, 1f);
 		Marker.Tex.color = new Color(1f, 0f, 0f, 0f);
 		Darkness.material.color = new Color(0f, 0f, 0f, 1f);

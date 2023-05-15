@@ -695,7 +695,7 @@ public class EndOfDayScript : MonoBehaviour
 				ShruggingCops.SetActive(value: true);
 				if (Weapons == 0)
 				{
-					if (Police.Corpses == 1 && Police.CorpseList[0] != null && Police.CorpseList[0].Student.DeathType == DeathType.Weight)
+					if (Police.Corpses == 1 && Police.CorpseList[0] != null && Police.CorpseList[0].Student.CrushedByBucket)
 					{
 						Label.text = "The police can tell that the victim was killed by a bucket of heavy weights that was dropped from above, but they are unable to collect sufficient evidence to identify a culprit.";
 						Phase += 2;
@@ -1398,6 +1398,10 @@ public class EndOfDayScript : MonoBehaviour
 				{
 					Debug.Log("Checking to see if anyone in Club #" + ClubID + " has a grudge on Ayano.");
 					ClubManager.CheckGrudge(ClubArray[ClubID]);
+					if (StudentManager.Eighties)
+					{
+						Protagonist = "Ryoba";
+					}
 					if (ClubManager.LeaderGrudge)
 					{
 						EODCamera.position = ClubManager.ClubVantages[ClubID].position;

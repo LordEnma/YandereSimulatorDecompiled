@@ -202,6 +202,8 @@ public class PickUpScript : MonoBehaviour
 
 	public SpawnedObjectType ObjectType;
 
+	public AudioClip WrappingCorpse;
+
 	private void Start()
 	{
 		Yandere = Prompt.Yandere;

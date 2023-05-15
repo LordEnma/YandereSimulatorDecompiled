@@ -192,6 +192,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Collider PoolStairs;
 
+	public Collider TranqArea;
+
 	public Collider TreeArea;
 
 	public Collider NEStairs;
@@ -5629,6 +5631,7 @@ public class StudentManagerScript : MonoBehaviour
 				Students[i].GetDestinations();
 			}
 		}
+		ClubZones[2].transform.position = EightiesDramaSpots.List[26].position;
 		for (int i = 26; i < 31; i++)
 		{
 			if (Students[i] != null)
@@ -6775,6 +6778,25 @@ public class StudentManagerScript : MonoBehaviour
 			if (Students[i] != null)
 			{
 				Students[i].VisionBonus -= 5f;
+			}
+		}
+	}
+
+	public void ZeroAllStalkerSpots()
+	{
+		Transform[] stalkerSpots = StalkerSpots;
+		foreach (Transform transform in stalkerSpots)
+		{
+			if (transform != null)
+			{
+				transform.localPosition = Vector3.zero;
+			}
+		}
+		for (int j = 1; j < 101; j++)
+		{
+			if (Students[j] != null && Students[j].Infatuated)
+			{
+				Students[j].TargetDistance = 1f;
 			}
 		}
 	}

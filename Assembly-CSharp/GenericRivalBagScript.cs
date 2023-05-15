@@ -197,9 +197,18 @@ public class GenericRivalBagScript : MonoBehaviour
 	{
 		if (!Window.activeInHierarchy)
 		{
-			if (Prompt.Circle[0].fillAmount == 0f)
+			if (Prompt.Circle[0].fillAmount != 0f)
 			{
-				Prompt.Circle[0].fillAmount = 1f;
+				return;
+			}
+			Prompt.Circle[0].fillAmount = 1f;
+			if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
+			{
+				if (Prompt.Yandere.YandereVision)
+				{
+					Prompt.Yandere.YandereVision = false;
+					Prompt.Yandere.ResetYandereEffects();
+				}
 				Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
 				if (!Prompt.Yandere.StudentManager.YandereVisible)
 				{

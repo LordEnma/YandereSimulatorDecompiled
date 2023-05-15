@@ -92,7 +92,12 @@ public class WeekSelectScript : MonoBehaviour
 							continue;
 						}
 						StudentGlobals.SetStudentDead(i + 10, value: false);
-						if (GameGlobals.GetSpecificEliminations(i) == 3 || GameGlobals.GetSpecificEliminations(i) == 4)
+						if (GameGlobals.GetSpecificEliminations(i) == 2)
+						{
+							PlayerGlobals.SetStudentFriend(i + 10, value: true);
+							PlayerGlobals.Friends++;
+						}
+						else if (GameGlobals.GetSpecificEliminations(i) == 3 || GameGlobals.GetSpecificEliminations(i) == 4)
 						{
 							StudentGlobals.SetStudentMissing(i + 10, value: true);
 							if (GameGlobals.GetSpecificEliminations(i) == 3)

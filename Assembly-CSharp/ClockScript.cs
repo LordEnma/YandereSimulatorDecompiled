@@ -281,6 +281,10 @@ public class ClockScript : MonoBehaviour
 					Yandere.RPGCamera.enabled = true;
 					Yandere.CanMove = true;
 				}
+				else
+				{
+					Yandere.CanMove = false;
+				}
 				if (!StudentManager.CameFromLoad)
 				{
 					GivePlayerBroughtWeapon();

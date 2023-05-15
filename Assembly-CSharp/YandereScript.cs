@@ -566,6 +566,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool DumpsterGrabbing;
 
+	public bool WrappingCorpse;
+
 	public bool FakingReaction;
 
 	public bool BucketDropping;
@@ -767,6 +769,8 @@ public class YandereScript : MonoBehaviour
 	public bool Sprayed;
 
 	public bool Caught;
+
+	public bool NoInfo;
 
 	public bool CanMove = true;
 
@@ -1876,6 +1880,12 @@ public class YandereScript : MonoBehaviour
 		if (!GameGlobals.EightiesTutorial && !GameGlobals.KokonaTutorial)
 		{
 			NoLaugh = ChallengeGlobals.NoLaugh;
+		}
+		NoInfo = ChallengeGlobals.NoInfo;
+		if (NoInfo)
+		{
+			SneakShotButton.alpha = 0.5f;
+			SneakShotLabel.alpha = 0f;
 		}
 		SenpaiThreshold = 1f - (float)PlayerGlobals.ShrineItems * 0.1f;
 		PhysicalGrade = ClassGlobals.PhysicalGrade;
@@ -4126,6 +4136,10 @@ public class YandereScript : MonoBehaviour
 		if (Dismembering && CharacterAnimation["f02_dismember_00"].time >= CharacterAnimation["f02_dismember_00"].length)
 		{
 			StopDismembering();
+		}
+		if (WrappingCorpse && CharacterAnimation["f02_dismember_00"].time >= CharacterAnimation["f02_dismember_00"].length)
+		{
+			StopWrappingCorpse();
 		}
 		if (Shoved)
 		{
@@ -9356,6 +9370,23 @@ public class YandereScript : MonoBehaviour
 		Dismembering = false;
 		CanMove = true;
 		Ragdoll = null;
+	}
+
+	public void StopWrappingCorpse()
+	{
+		CameraEffects.UpdateDOF(2f);
+		Ragdoll.GetComponent<RagdollScript>().ConcealInTrashBag();
+		RPGCamera.enabled = true;
+		TargetStudent = null;
+		WrappingCorpse = false;
+		CanMove = true;
+		Ragdoll = null;
+		PickUpScript pickUp = PickUp;
+		if (pickUp != null)
+		{
+			pickUp.Drop();
+			pickUp.BePickedUp();
+		}
 	}
 
 	public void RemoveGloves()

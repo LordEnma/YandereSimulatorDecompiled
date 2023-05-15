@@ -64,60 +64,68 @@ public class GenericEightiesTaskScript : MonoBehaviour
 			if (Prompt.Circle[0].fillAmount == 0f)
 			{
 				Prompt.Circle[0].fillAmount = 1f;
-				bool flag = false;
-				if (Type == 3)
+				if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
 				{
-					if (Prompt.Yandere.Inventory.Cloth == 0)
+					if (Prompt.Yandere.YandereVision)
 					{
-						Prompt.Yandere.NotificationManager.CustomText = "Grab some nearby cloth first!";
-						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-						flag = true;
+						Prompt.Yandere.YandereVision = false;
+						Prompt.Yandere.ResetYandereEffects();
 					}
-					else
+					bool flag = false;
+					if (Type == 3)
 					{
-						Prompt.Yandere.Inventory.Cloth--;
+						if (Prompt.Yandere.Inventory.Cloth == 0)
+						{
+							Prompt.Yandere.NotificationManager.CustomText = "Grab some nearby cloth first!";
+							Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							flag = true;
+						}
+						else
+						{
+							Prompt.Yandere.Inventory.Cloth--;
+						}
 					}
-				}
-				if (!flag)
-				{
-					if (!Animation)
+					if (!flag)
 					{
-						CompleteTask();
-					}
-					else
-					{
-						if (Prop != null)
+						if (!Animation)
 						{
-							Prop.transform.position = PropDestination.position;
+							CompleteTask();
 						}
-						if ((bool)MyStudent)
+						else
 						{
-							MyStudent.Routine = false;
-							MyStudent.CharacterAnimation.CrossFade("f02_giveItem_00");
-							TaskTimer = 3f;
-						}
-						if (Type == 6)
-						{
-							Model.SetActive(value: true);
-						}
-						if (Type == 8)
-						{
-							Prompt.Yandere.Paintbrush.SetActive(value: true);
-							Prompt.Yandere.Palette.SetActive(value: true);
-							Paintings++;
-							OriginalPainting.material.mainTexture = OriginalArt[Paintings];
-							FixedPainting.material.mainTexture = FixedArt[Paintings];
-							OriginalPainting.material.color = new Color(1f, 1f, 1f, 1f);
-						}
-						if (TaskAnim == "f02_studentPickUp_00")
-						{
-							Prompt.Yandere.CharacterAnimation["f02_studentPickUp_00"].speed = 0.8f;
-						}
-						Prompt.Yandere.CanMove = false;
-						Animate = true;
-						if (Suspicious)
-						{
-							Prompt.Yandere.SuspiciousActionTimer = 5f;
+							if (Prop != null)
+							{
+								Prop.transform.position = PropDestination.position;
+							}
+							if ((bool)MyStudent)
+							{
+								MyStudent.Routine = false;
+								MyStudent.CharacterAnimation.CrossFade("f02_giveItem_00");
+								TaskTimer = 3f;
+							}
+							if (Type == 6)
+							{
+								Model.SetActive(value: true);
+							}
+							if (Type == 8)
+							{
+								Prompt.Yandere.Paintbrush.SetActive(value: true);
+								Prompt.Yandere.Palette.SetActive(value: true);
+								Paintings++;
+								OriginalPainting.material.mainTexture = OriginalArt[Paintings];
+								FixedPainting.material.mainTexture = FixedArt[Paintings];
+								OriginalPainting.material.color = new Color(1f, 1f, 1f, 1f);
+							}
+							if (TaskAnim == "f02_studentPickUp_00")
+							{
+								Prompt.Yandere.CharacterAnimation["f02_studentPickUp_00"].speed = 0.8f;
+							}
+							Prompt.Yandere.CanMove = false;
+							Animate = true;
+							if (Suspicious)
+							{
+								Prompt.Yandere.SuspiciousActionTimer = 5f;
+							}
 						}
 					}
 				}

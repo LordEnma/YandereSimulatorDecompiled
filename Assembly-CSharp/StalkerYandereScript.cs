@@ -140,6 +140,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public bool Cigs;
 
+	public Material SolidBlackMaterial;
+
 	private int UpdateFrame;
 
 	public UILabel KeyboardControls;

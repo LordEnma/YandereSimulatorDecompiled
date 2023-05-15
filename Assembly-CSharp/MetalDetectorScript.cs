@@ -141,6 +141,10 @@ public class MetalDetectorScript : MonoBehaviour
 					weaponScript = Yandere.PickUp.StuckBoxCutter;
 					flag = true;
 				}
+				if (Yandere.PickUp.CarBattery)
+				{
+					flag = true;
+				}
 			}
 		}
 		if (!flag || Yandere.Inventory.IDCard)

@@ -99,6 +99,11 @@ public class WorkbenchScript : MonoBehaviour
 				Prompt.Circle[0].fillAmount = 1f;
 				if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
 				{
+					if (Prompt.Yandere.YandereVision)
+					{
+						Prompt.Yandere.YandereVision = false;
+						Prompt.Yandere.ResetYandereEffects();
+					}
 					if (!Chemistry)
 					{
 						Prompt.Yandere.MainCamera.transform.position = new Vector3(26f, 5.55f, 5f);

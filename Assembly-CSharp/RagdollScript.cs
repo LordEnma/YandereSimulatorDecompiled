@@ -381,7 +381,25 @@ public class RagdollScript : MonoBehaviour
 						{
 							if (!Student.FireEmitters[1].isPlaying)
 							{
-								ConcealInTrashBag();
+								if (Yandere.YandereVision)
+								{
+									Yandere.ResetYandereEffects();
+									Yandere.YandereVision = false;
+								}
+								Yandere.CharacterAnimation.CrossFade("f02_dismember_00");
+								Yandere.transform.LookAt(new Vector3(Student.Hips.transform.position.x, Yandere.transform.position.y, Student.Hips.transform.position.z));
+								Yandere.RPGCamera.transform.position = Yandere.DismemberSpot.position;
+								Yandere.RPGCamera.transform.eulerAngles = Yandere.DismemberSpot.eulerAngles;
+								Yandere.RPGCamera.enabled = false;
+								Yandere.TargetStudent = Student;
+								Yandere.Ragdoll = base.gameObject;
+								Yandere.WrappingCorpse = true;
+								Yandere.CanMove = false;
+								Yandere.CameraEffects.UpdateDOF(1f);
+								Yandere.PickUp.transform.parent = Yandere.LeftHand;
+								Yandere.PickUp.transform.localPosition = Vector3.zero;
+								Yandere.PickUp.transform.localEulerAngles = Vector3.zero;
+								AudioSource.PlayClipAtPoint(Yandere.PickUp.WrappingCorpse, Yandere.RPGCamera.transform.position);
 							}
 							else
 							{
@@ -409,7 +427,7 @@ public class RagdollScript : MonoBehaviour
 								Yandere.YandereVision = false;
 							}
 							Yandere.CharacterAnimation.CrossFade("f02_dismember_00");
-							Yandere.transform.LookAt(base.transform);
+							Yandere.transform.LookAt(new Vector3(Student.Hips.transform.position.x, Yandere.transform.position.y, Student.Hips.transform.position.z));
 							Yandere.RPGCamera.transform.position = Yandere.DismemberSpot.position;
 							Yandere.RPGCamera.transform.eulerAngles = Yandere.DismemberSpot.eulerAngles;
 							Yandere.EquippedWeapon.Dismember();
@@ -893,7 +911,13 @@ public class RagdollScript : MonoBehaviour
 
 	public void Dismember()
 	{
-		Debug.Log("Dismembering a character.");
+		Debug.Log("Dismembering " + Student.Name);
+		if (Yandere.Pursuer == Student)
+		{
+			Yandere.Pursuer = null;
+			Yandere.Chased = false;
+			Yandere.CanMove = true;
+		}
 		if (Dismembered)
 		{
 			return;
@@ -1173,10 +1197,7 @@ public class RagdollScript : MonoBehaviour
 		}
 		Student.Armband.SetActive(value: false);
 		BloodPoolSpawner.enabled = false;
-		if (Yandere.PickUp != null)
-		{
-			Yandere.PickUp.GetComponent<AudioSource>().Play();
-		}
+		_ = Yandere.PickUp != null;
 		if (Student.BikiniAttacher != null && Student.BikiniAttacher.newRenderer != null)
 		{
 			Student.BikiniAttacher.newRenderer.enabled = false;

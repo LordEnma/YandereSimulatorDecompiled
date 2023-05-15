@@ -662,7 +662,14 @@ public class NewTitleScreenScript : MonoBehaviour
 					{
 						if (DateGlobals.Week < 11)
 						{
-							SceneManager.LoadScene("HomeScene");
+							if (HomeGlobals.Night)
+							{
+								SceneManager.LoadScene("HomeScene");
+							}
+							else
+							{
+								SceneManager.LoadScene("CalendarScene");
+							}
 						}
 						else
 						{

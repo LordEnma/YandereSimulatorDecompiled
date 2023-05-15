@@ -450,7 +450,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 		{
 			UnityEngine.Object.Destroy(VoiceClip);
 		}
-		if (!Rival.Splashed && !Rival.Dodging)
+		if (!Rival.Splashed && !Rival.Dodging && !Rival.Alarmed)
 		{
 			Rival.Pathfinding.canSearch = true;
 			Rival.Pathfinding.canMove = true;
@@ -479,10 +479,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 				Friend.ResumeFollowingAfter = true;
 			}
 		}
-		if (Rival.AnimatedBook.transform.parent != null)
-		{
-			Rival.AnimatedBook.SetActive(value: false);
-		}
+		Rival.AnimatedBook.SetActive(value: false);
 		PushPrompt.enabled = false;
 		PushPrompt.Hide();
 		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
