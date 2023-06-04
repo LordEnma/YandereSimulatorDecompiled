@@ -15,7 +15,12 @@ public class YandereShoverScript : MonoBehaviour
 			bool flag = false;
 			if (PreventNudity)
 			{
-				if (Yandere.Schoolwear == 0)
+				bool flag2 = false;
+				if (Yandere.EightiesBikiniAttacher.newRenderer != null && Yandere.EightiesBikiniAttacher.newRenderer.enabled)
+				{
+					flag2 = true;
+				}
+				if (Yandere.Schoolwear == 0 && !flag2)
 				{
 					flag = true;
 					if (Yandere.NotificationManager.NotificationParent.childCount == 0)

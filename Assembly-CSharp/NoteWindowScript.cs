@@ -333,10 +333,8 @@ public class NoteWindowScript : MonoBehaviour
 					{
 						NoteLocker.Success = true;
 					}
-					NoteLocker.FindStudentLocker.Prompt.Hide();
-					NoteLocker.FindStudentLocker.Prompt.Label[0].text = "     You Must Wait For Other Student";
-					NoteLocker.FindStudentLocker.TargetedStudent = NoteLocker.Student;
-					NoteLocker.transform.GetChild(0).gameObject.SetActive(value: false);
+					TargetStudent = NoteLocker.StudentID;
+					InformFindStudentLocker();
 				}
 				Exit();
 			}
@@ -454,7 +452,7 @@ public class NoteWindowScript : MonoBehaviour
 					SubLabels[10].text = "??????????";
 				}
 			}
-			else if (!Yandere.Police.EndOfDay.LearnedAboutPhotographer)
+			else if (!Yandere.Police.EndOfDay.LearnedAboutPhotographer && !Yandere.StudentManager.EmbarassingSecret)
 			{
 				SubLabels[10].text = "??????????";
 			}
@@ -575,5 +573,18 @@ public class NoteWindowScript : MonoBehaviour
 			UILabel uILabel10 = SubLabels[10];
 			uILabel10.color = new Color(uILabel10.color.r, uILabel10.color.g, uILabel10.color.b, 0.5f);
 		}
+	}
+
+	public void InformFindStudentLocker()
+	{
+		NoteLocker.transform.position = NoteLocker.StudentManager.Students[TargetStudent].MyLocker.position;
+		NoteLocker.transform.position += new Vector3(0f, 1.355f, 0f);
+		NoteLocker.transform.position += NoteLocker.StudentManager.Students[TargetStudent].MyLocker.forward * 0.33333f;
+		NoteLocker.FindStudentLocker.Prompt.Hide();
+		NoteLocker.FindStudentLocker.Prompt.Label[0].text = "     You Must Wait For Other Student";
+		NoteLocker.FindStudentLocker.TargetedStudent = NoteLocker.StudentManager.Students[TargetStudent];
+		NoteLocker.Student = NoteLocker.StudentManager.Students[TargetStudent];
+		NoteLocker.gameObject.SetActive(value: true);
+		NoteLocker.transform.GetChild(0).gameObject.SetActive(value: false);
 	}
 }

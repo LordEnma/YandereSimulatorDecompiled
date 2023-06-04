@@ -569,7 +569,6 @@ public class PortalScript : MonoBehaviour
 
 	public void EndDay()
 	{
-		Debug.Log("Ending the day through the Portal script.");
 		StudentManager.StopMoving();
 		Yandere.StopLaughing();
 		Yandere.EmptyHands();

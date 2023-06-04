@@ -333,53 +333,60 @@ public class OfferHelpScript : MonoBehaviour
 					component.clip = EventClip[EventPhase];
 					component.Play();
 					Spoken = true;
-					return;
-				}
-				if (!Yandere.PauseScreen.Show && Input.GetButtonDown(InputNames.Xbox_A))
-				{
-					Timer += EventClip[EventPhase].length + 1f;
-				}
-				if (EventSpeaker[EventPhase] == 1)
-				{
-					if (characterAnimation[EventAnim[EventPhase]].time >= characterAnimation[EventAnim[EventPhase]].length)
-					{
-						characterAnimation.CrossFade(Yandere.IdleAnim);
-					}
-				}
-				else if (characterAnimation2[EventAnim[EventPhase]].time >= characterAnimation2[EventAnim[EventPhase]].length)
-				{
-					characterAnimation2.CrossFade(Student.IdleAnim);
-				}
-				Timer += Time.deltaTime;
-				if (Timer > EventClip[EventPhase].length)
-				{
-					EventSubtitle.text = string.Empty;
 				}
 				else
 				{
-					EventSubtitle.text = EventSpeech[EventPhase];
-				}
-				if (Timer > EventClip[EventPhase].length + 1f)
-				{
-					if (EventStudentID == 5 && EventPhase == 2)
+					if (!Yandere.PauseScreen.Show && Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						Yandere.PauseScreen.StudentInfoMenu.Targeting = true;
-						StartCoroutine(Yandere.PauseScreen.PhotoGallery.GetPhotos());
-						Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
-						Yandere.PauseScreen.PhotoGallery.NamingBully = true;
-						Yandere.PauseScreen.MainMenu.SetActive(value: false);
-						Yandere.PauseScreen.Panel.enabled = true;
-						Yandere.PauseScreen.Sideways = true;
-						Yandere.PauseScreen.Show = true;
-						Time.timeScale = 0.0001f;
-						Yandere.PauseScreen.PhotoGallery.UpdateButtonPrompts();
-						Student.HelpOffered = false;
-						Offering = false;
+						Timer += EventClip[EventPhase].length + 1f;
+					}
+					if (EventSpeaker[EventPhase] == 1)
+					{
+						if (characterAnimation[EventAnim[EventPhase]].time >= characterAnimation[EventAnim[EventPhase]].length)
+						{
+							characterAnimation.CrossFade(Yandere.IdleAnim);
+						}
+					}
+					else if (characterAnimation2[EventAnim[EventPhase]].time >= characterAnimation2[EventAnim[EventPhase]].length)
+					{
+						characterAnimation2.CrossFade(Student.IdleAnim);
+					}
+					Timer += Time.deltaTime;
+					if (Timer > EventClip[EventPhase].length)
+					{
+						EventSubtitle.text = string.Empty;
 					}
 					else
 					{
-						Continue();
+						EventSubtitle.text = EventSpeech[EventPhase];
 					}
+					if (Timer > EventClip[EventPhase].length + 1f)
+					{
+						if (EventStudentID == 5 && EventPhase == 2)
+						{
+							Yandere.PauseScreen.StudentInfoMenu.Targeting = true;
+							StartCoroutine(Yandere.PauseScreen.PhotoGallery.GetPhotos());
+							Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
+							Yandere.PauseScreen.PhotoGallery.NamingBully = true;
+							Yandere.PauseScreen.MainMenu.SetActive(value: false);
+							Yandere.PauseScreen.Panel.enabled = true;
+							Yandere.PauseScreen.Sideways = true;
+							Yandere.PauseScreen.Show = true;
+							Time.timeScale = 0.0001f;
+							Yandere.PauseScreen.PhotoGallery.UpdateButtonPrompts();
+							Student.HelpOffered = false;
+							Offering = false;
+						}
+						else
+						{
+							Continue();
+						}
+					}
+				}
+				if (Yandere.Attacked)
+				{
+					EventPhase = EventSpeech.Length - 1;
+					Continue();
 				}
 			}
 			else

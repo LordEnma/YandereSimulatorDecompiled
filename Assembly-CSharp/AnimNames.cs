@@ -582,7 +582,7 @@ public static class AnimNames
 
 	public const string MaleThinking = "thinking_00";
 
-	public const string MaleWait = "waiting_00";
+	public const string MaleWait = "impatientWait_00";
 
 	public const string MaleWalk = "walk_00";
 

@@ -53,12 +53,15 @@ public class YandereShoeLockerScript : MonoBehaviour
 
 	private void UpdateShoes()
 	{
-		int bloodiness = Yandere.RightFootprintSpawner.Bloodiness;
-		int bloodiness2 = Yandere.LeftFootprintSpawner.Bloodiness;
-		Yandere.Casual = Outdoors;
-		Yandere.ChangeSchoolwear();
-		Yandere.CanMove = true;
-		Yandere.RightFootprintSpawner.Bloodiness = bloodiness;
-		Yandere.LeftFootprintSpawner.Bloodiness = bloodiness2;
+		if (!Yandere.ClubAttire)
+		{
+			int bloodiness = Yandere.RightFootprintSpawner.Bloodiness;
+			int bloodiness2 = Yandere.LeftFootprintSpawner.Bloodiness;
+			Yandere.Casual = Outdoors;
+			Yandere.ChangeSchoolwear();
+			Yandere.CanMove = true;
+			Yandere.RightFootprintSpawner.Bloodiness = bloodiness;
+			Yandere.LeftFootprintSpawner.Bloodiness = bloodiness2;
+		}
 	}
 }

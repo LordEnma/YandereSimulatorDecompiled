@@ -1661,7 +1661,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						if (!Impatient)
 						{
-							Senpai.CharacterAnimation.CrossFade("waiting_00");
+							Senpai.CharacterAnimation.CrossFade("impatientWait_00");
 							Senpai.Pathfinding.canSearch = false;
 							Senpai.Pathfinding.canMove = false;
 							if (Clock.HourTime > 17.916666f)

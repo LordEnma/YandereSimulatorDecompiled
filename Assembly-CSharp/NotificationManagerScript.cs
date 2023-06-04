@@ -30,6 +30,8 @@ public class NotificationManagerScript : MonoBehaviour
 
 	private NotificationTypeAndStringDictionary NotificationMessages;
 
+	public float Timer;
+
 	private void Awake()
 	{
 		NotificationMessages = new NotificationTypeAndStringDictionary
@@ -160,6 +162,10 @@ public class NotificationManagerScript : MonoBehaviour
 				DisplayNotification(NotificationType.ClassNow);
 			}
 			Phase++;
+		}
+		if (Timer > 0f)
+		{
+			Timer = Mathf.MoveTowards(Timer, 0f, Time.deltaTime);
 		}
 	}
 

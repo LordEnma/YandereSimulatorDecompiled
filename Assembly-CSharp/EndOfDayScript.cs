@@ -323,6 +323,7 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			ClothingWithRedPaint++;
 		}
+		StudentManager.RemoveLowPolyEffect();
 	}
 
 	private void Update()
@@ -1107,6 +1108,12 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 12)
 		{
+			if (Police.Deaths + PlayerGlobals.Kills > 50)
+			{
+				Phase = 16;
+				UpdateScene();
+				return;
+			}
 			Senpai.enabled = false;
 			Senpai.transform.parent = base.transform;
 			Senpai.gameObject.SetActive(value: true);
@@ -1197,6 +1204,7 @@ public class EndOfDayScript : MonoBehaviour
 			{
 				Senpai.CharacterAnimation.Play(Senpai.WalkAnim);
 			}
+			Yandere.LookAt.gameObject.name = "HeadRENAMED";
 			Yandere.LookAt.enabled = true;
 			Yandere.MyController.enabled = false;
 			Yandere.transform.parent = base.transform;
@@ -2421,6 +2429,7 @@ public class EndOfDayScript : MonoBehaviour
 			StudentGlobals.SetStudentKidnapped(TranqCase.VictimID, value: true);
 			StudentGlobals.SetStudentHealth(TranqCase.VictimID, 100);
 			StudentGlobals.SetStudentSanity(TranqCase.VictimID, 100);
+			Debug.Log("Student #" + TranqCase.VictimID + " is being set as ''Kidnapped.''");
 			if (flag)
 			{
 				GameGlobals.JustKidnapped = true;
@@ -3006,6 +3015,14 @@ public class EndOfDayScript : MonoBehaviour
 			{
 				PlayerPrefs.SetInt("a", 1);
 			}
+		}
+	}
+
+	public void LateUpdate()
+	{
+		if (Yandere.LookAt.enabled)
+		{
+			Yandere.Head.LookAt(Yandere.LookAt.target);
 		}
 	}
 }

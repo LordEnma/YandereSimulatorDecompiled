@@ -346,6 +346,7 @@ public class DatingMinigameScript : MonoBehaviour
 				Rival.CharacterAnimation["f02_smile_00"].layer = 1;
 				Rival.CharacterAnimation.Play("f02_smile_00");
 				Rival.CharacterAnimation["f02_smile_00"].weight = 0f;
+				Yandere.MyController.enabled = false;
 				StudentManager.Clock.StopTime = true;
 				Yandere.RPGCamera.enabled = false;
 				HeartbeatCamera.SetActive(value: false);
@@ -863,6 +864,7 @@ public class DatingMinigameScript : MonoBehaviour
 				Matchmaking = false;
 				Yandere.CanMove = true;
 				base.gameObject.SetActive(value: false);
+				Yandere.MyController.enabled = true;
 			}
 			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 1f, Time.deltaTime);
 		}

@@ -4,6 +4,8 @@ public class SewingMachineScript : MonoBehaviour
 {
 	public StudentManagerScript StudentManager;
 
+	public TallLockerScript TallLocker;
+
 	public YandereScript Yandere;
 
 	public PromptScript Prompt;
@@ -17,6 +19,8 @@ public class SewingMachineScript : MonoBehaviour
 	public bool Eighties;
 
 	public bool MoveAway;
+
+	public bool Bikini;
 
 	public bool Sewing;
 
@@ -41,7 +45,7 @@ public class SewingMachineScript : MonoBehaviour
 	{
 		if (Check)
 		{
-			if ((!Eighties && Yandere.PickUp != null && Yandere.PickUp.Clothing) || (Eighties && Yandere.Inventory.PinkCloth))
+			if ((!Eighties && Yandere.PickUp != null && Yandere.PickUp.Clothing) || (Eighties && Yandere.Inventory.PinkCloth) || (Eighties && Yandere.Inventory.Cloth > 0))
 			{
 				Prompt.enabled = true;
 				if (!Eighties)
@@ -50,10 +54,29 @@ public class SewingMachineScript : MonoBehaviour
 					{
 						Prompt.HideButton[0] = false;
 					}
+					else
+					{
+						Prompt.HideButton[0] = true;
+					}
 				}
-				else if (Yandere.Inventory.PinkCloth)
+				else
 				{
-					Prompt.HideButton[1] = false;
+					if (Yandere.Inventory.PinkCloth && !Yandere.Inventory.PinkSocks)
+					{
+						Prompt.HideButton[1] = false;
+					}
+					else
+					{
+						Prompt.HideButton[1] = true;
+					}
+					if (Yandere.Inventory.Cloth > 0 && !Yandere.Inventory.Bikini)
+					{
+						Prompt.HideButton[2] = false;
+					}
+					else
+					{
+						Prompt.HideButton[2] = true;
+					}
 				}
 			}
 			else
@@ -62,10 +85,16 @@ public class SewingMachineScript : MonoBehaviour
 				Prompt.enabled = false;
 			}
 		}
-		if (Prompt.Circle[0].fillAmount == 0f || Prompt.Circle[1].fillAmount == 0f)
+		if (Prompt.Circle[0].fillAmount == 0f || Prompt.Circle[1].fillAmount == 0f || Prompt.Circle[2].fillAmount == 0f)
 		{
+			if (Prompt.Circle[2].fillAmount == 0f)
+			{
+				Prompt.Yandere.Inventory.Cloth--;
+				Bikini = true;
+			}
 			Prompt.Circle[0].fillAmount = 1f;
 			Prompt.Circle[1].fillAmount = 1f;
+			Prompt.Circle[2].fillAmount = 1f;
 			if (!Yandere.Chased && Yandere.Chasers == 0)
 			{
 				Yandere.CharacterAnimation.CrossFade("f02_sewing_00");
@@ -103,7 +132,19 @@ public class SewingMachineScript : MonoBehaviour
 			Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 			if (Eighties)
 			{
-				Yandere.Inventory.PinkSocks = true;
+				if (Bikini)
+				{
+					Yandere.Inventory.Bikini = true;
+					Prompt.HideButton[2] = true;
+					TallLocker.Bikini = true;
+					Bikini = false;
+				}
+				else
+				{
+					Yandere.Inventory.PinkCloth = false;
+					Yandere.Inventory.PinkSocks = true;
+					Prompt.HideButton[1] = true;
+				}
 			}
 			else
 			{
@@ -113,19 +154,31 @@ public class SewingMachineScript : MonoBehaviour
 				Object.Destroy(Uniform.gameObject);
 			}
 			MoveAway = true;
-			Check = false;
 			return;
 		}
 		Yandere.MoveTowardsTarget(Chair.gameObject.transform.position + new Vector3(-0.5f, 0f, 0f));
-		if (Timer > 6f)
+		if (Timer > 5.5f)
 		{
 			Yandere.MyController.radius = 0.2f;
 			Yandere.CanMove = true;
 			Chair.enabled = true;
-			base.enabled = false;
+			MoveAway = false;
 			Sewing = false;
-			Prompt.Hide();
-			Prompt.enabled = false;
+			Timer = 0f;
+			if (!Eighties)
+			{
+				Prompt.Hide();
+				Prompt.enabled = false;
+				base.enabled = false;
+				Check = false;
+			}
+			if (Eighties && !Yandere.Inventory.PinkCloth && Yandere.Inventory.Cloth == 0)
+			{
+				Prompt.Hide();
+				Prompt.enabled = false;
+				base.enabled = false;
+				Check = false;
+			}
 		}
 	}
 }

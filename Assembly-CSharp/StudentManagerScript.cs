@@ -126,6 +126,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public ParticleSystem PyroFlames;
 
+	public WorkbenchScript Workbench;
+
 	public HologramScript Holograms;
 
 	public RobotArmScript RobotArms;
@@ -562,6 +564,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform[] MaleRestSpots;
 
+	public Transform[] RestSpots;
+
 	public GameObject ModernRivalBookBag;
 
 	public GameObject StageClosureSigns;
@@ -791,6 +795,8 @@ public class StudentManagerScript : MonoBehaviour
 	public bool LoadedSave;
 
 	public bool PoolClosed;
+
+	public bool BagPlaced;
 
 	public bool NoGravity;
 
@@ -1062,6 +1068,8 @@ public class StudentManagerScript : MonoBehaviour
 	public int AvailableWitnesses;
 
 	public int WitnessID;
+
+	public WeeksDataScript WeeksData;
 
 	public Transform[] WitnessSpots;
 
@@ -1603,13 +1611,20 @@ public class StudentManagerScript : MonoBehaviour
 					else
 					{
 						Debug.Log("Because Yandere-chan is late for school, we're teleporting students where they would be at 8 AM.");
-						Clock.PresentTime = 480f;
-						Clock.HourTime = 8f;
-						Clock.Hour = Mathf.Floor(Clock.PresentTime / 60f);
-						Clock.Minute = Mathf.Floor((Clock.PresentTime / 60f - Clock.Hour) * 60f);
-						Clock.UpdateClock();
-						Clock.Update();
-						SkipTo8();
+						if (!LoadedSave)
+						{
+							Clock.PresentTime = 480f;
+							Clock.HourTime = 8f;
+							Clock.Hour = Mathf.Floor(Clock.PresentTime / 60f);
+							Clock.Minute = Mathf.Floor((Clock.PresentTime / 60f - Clock.Hour) * 60f);
+							Clock.UpdateClock();
+							Clock.Update();
+							SkipTo8();
+						}
+						else
+						{
+							Debug.Log("Wait, we just loaded a save! Nevermind! Don't teleport students or change the time of day!");
+						}
 					}
 					for (int i = 1; i < 101; i++)
 					{
@@ -1628,6 +1643,7 @@ public class StudentManagerScript : MonoBehaviour
 						CensorStudents();
 						Yandere.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().Censor();
 					}
+					Eighties = GameGlobals.Eighties;
 					if (!Eighties)
 					{
 						if (!MissionMode && !GameGlobals.AlphabetMode)
@@ -1766,7 +1782,7 @@ public class StudentManagerScript : MonoBehaviour
 					{
 						FanCover.enabled = true;
 					}
-					if (!MissionMode && !GameGlobals.AlphabetMode)
+					if (!MissionMode && !GameGlobals.AlphabetMode && !YandereLate)
 					{
 						for (int k = 76; k < 90; k++)
 						{
@@ -1965,6 +1981,27 @@ public class StudentManagerScript : MonoBehaviour
 				else if (Frame == 5)
 				{
 					TaskManager.UpdateTaskStatus();
+					if (YandereLate && !LoadedSave)
+					{
+						Debug.Log("Yandere was late. Attempting to manually force delinquents and bullies to their seats.");
+						for (int n = 76; n < 81; n++)
+						{
+							if (Students[n] != null)
+							{
+								Students[n].transform.position = Hangouts.List[n].position + Vector3.up * 0.01f;
+								Students[n].transform.rotation = Hangouts.List[n].rotation;
+							}
+						}
+						for (int n = 81; n < 86; n++)
+						{
+							if (Students[n] != null)
+							{
+								Students[n].transform.position = Students[n].Seat.position + Vector3.up * 0.01f;
+								Students[n].transform.rotation = Students[n].Seat.rotation;
+								Students[n].SpeechLines.Stop();
+							}
+						}
+					}
 				}
 			}
 			if ((double)Clock.HourTime > 16.9)
@@ -2322,9 +2359,9 @@ public class StudentManagerScript : MonoBehaviour
 				if (Students[RivalID] != null && Students[RivalID].transform.position.y > 0.1f)
 				{
 					Debug.Log("Repositioning all students who were on Floor 1.");
-					for (int n = 1; n < 7; n++)
+					for (int num2 = 1; num2 < 7; num2++)
 					{
-						StudentScript studentScript12 = AvailableWitnessList[n];
+						StudentScript studentScript12 = AvailableWitnessList[num2];
 						if (studentScript12 != null)
 						{
 							studentScript12.WitnessBonus = 24;
@@ -2343,9 +2380,9 @@ public class StudentManagerScript : MonoBehaviour
 				if (Students[RivalID] != null && Students[RivalID].transform.position.y > 4.1f)
 				{
 					Debug.Log("Repositioning all students who were on Floor 2.");
-					for (int num2 = 7; num2 < 12; num2++)
+					for (int num3 = 7; num3 < 12; num3++)
 					{
-						StudentScript studentScript13 = AvailableWitnessList[num2];
+						StudentScript studentScript13 = AvailableWitnessList[num3];
 						if (studentScript13 != null)
 						{
 							studentScript13.WitnessBonus = 24;
@@ -2372,9 +2409,9 @@ public class StudentManagerScript : MonoBehaviour
 		if (SwitchSpotsAfter430 && Clock.HourTime > 16.5f)
 		{
 			AfterClassWitnessSpots = Week5ConfessionWitnessSpots;
-			for (int num3 = 1; num3 < AfterClassWitnessSpots.Length; num3++)
+			for (int num4 = 1; num4 < AfterClassWitnessSpots.Length; num4++)
 			{
-				StudentScript studentScript14 = AvailableWitnessList[num3];
+				StudentScript studentScript14 = AvailableWitnessList[num4];
 				if (studentScript14 != null)
 				{
 					studentScript14.GetDestinations();
@@ -2389,9 +2426,9 @@ public class StudentManagerScript : MonoBehaviour
 		if (RepositionSomeStudentsAfterRivalRises && Students[RivalID] != null && Students[RivalID].transform.position.y > 0.1f)
 		{
 			StudentScript studentScript15 = null;
-			for (int num4 = 1; num4 < StudentsToReposition + 1; num4++)
+			for (int num5 = 1; num5 < StudentsToReposition + 1; num5++)
 			{
-				studentScript15 = AvailableWitnessList[num4];
+				studentScript15 = AvailableWitnessList[num5];
 				if (studentScript15 != null)
 				{
 					studentScript15.WitnessBonus = WitnessBonus;
@@ -2416,10 +2453,10 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				Debug.Log("We're supposed to reposition now!");
 				StudentScript studentScript16 = null;
-				int num5 = 28;
-				for (int num6 = 28; num6 < num5 + StudentsToReposition + 1; num6++)
+				int num6 = 28;
+				for (int num7 = 28; num7 < num6 + StudentsToReposition + 1; num7++)
 				{
-					studentScript16 = AvailableWitnessList[num6];
+					studentScript16 = AvailableWitnessList[num7];
 					if (studentScript16 != null)
 					{
 						studentScript16.AfterWitnessBonus = WitnessBonus;
@@ -2437,9 +2474,9 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			WitnessSpots = Week9WitnessSpots;
 			StudentScript studentScript17 = null;
-			for (int num7 = 1; num7 < AvailableWitnessList.Length; num7++)
+			for (int num8 = 1; num8 < AvailableWitnessList.Length; num8++)
 			{
-				studentScript17 = AvailableWitnessList[num7];
+				studentScript17 = AvailableWitnessList[num8];
 				if (studentScript17 != null)
 				{
 					studentScript17.WitnessBonus = 0;
@@ -2463,10 +2500,10 @@ public class StudentManagerScript : MonoBehaviour
 				Weeks[9].StudentAvailability[88] = true;
 				Weeks[9].StudentAvailability[89] = true;
 				IdentifyAvailableWitnesses();
-				for (int num8 = 86; num8 < 90; num8++)
+				for (int num9 = 86; num9 < 90; num9++)
 				{
-					Students[num8].CurrentDestination = Students[num8].Destinations[Students[num8].Phase];
-					Students[num8].Pathfinding.target = Students[num8].Destinations[Students[num8].Phase];
+					Students[num9].CurrentDestination = Students[num9].Destinations[Students[num9].Phase];
+					Students[num9].Pathfinding.target = Students[num9].Destinations[Students[num9].Phase];
 				}
 				RepositionAfterPhotoshootLater = false;
 			}
@@ -4008,6 +4045,18 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
+	public void DisableAllStudentScripts()
+	{
+		for (ID = 1; ID < Students.Length; ID++)
+		{
+			StudentScript studentScript = Students[ID];
+			if (studentScript != null)
+			{
+				studentScript.enabled = false;
+			}
+		}
+	}
+
 	public void DisableStudent(int DisableID)
 	{
 		StudentScript studentScript = Students[DisableID];
@@ -4464,11 +4513,24 @@ public class StudentManagerScript : MonoBehaviour
 		int profile = GameGlobals.Profile;
 		int @int = PlayerPrefs.GetInt("SaveSlot");
 		Yandere.Class.gameObject.SetActive(value: true);
+		DialogueWheel.NoteLocker.NoteWindow.gameObject.SetActive(value: true);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
+		DialogueWheel.NoteLocker.gameObject.SetActive(value: true);
 		TaskManager.Kitten.gameObject.SetActive(value: true);
+		Workbench.BodyBags.SetActive(value: true);
 		YanSave.LoadData("Profile_" + profile + "_Slot_" + @int);
+		DialogueWheel.NoteLocker.NoteWindow.gameObject.SetActive(value: false);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
+		DialogueWheel.NoteLocker.gameObject.SetActive(value: false);
 		TaskManager.Kitten.gameObject.SetActive(value: false);
+		if (DialogueWheel.NoteLocker.NoteWindow.TargetStudent > 0)
+		{
+			DialogueWheel.NoteLocker.NoteWindow.InformFindStudentLocker();
+		}
+		if (Workbench.BodyBags != null)
+		{
+			Workbench.BodyBags.SetActive(Workbench.BodyBags.GetComponent<PickUpScript>().KeepActive);
+		}
 		Yandere.Class.gameObject.SetActive(value: false);
 		Physics.SyncTransforms();
 		Yandere.Incinerator.ReturnFromSave();
@@ -4488,6 +4550,11 @@ public class StudentManagerScript : MonoBehaviour
 				{
 					Debug.Log("At time of loading, " + Students[ID].Name + " needed to change clothing.");
 					Students[ID].ChangeSchoolwear();
+				}
+				if (Students[ID].WearingBikini)
+				{
+					Debug.Log("At time of loading, " + Students[ID].Name + " needed to switch into a bikini.");
+					Students[ID].WearBikini();
 				}
 				if (!Students[ID].Alive)
 				{
@@ -4512,15 +4579,27 @@ public class StudentManagerScript : MonoBehaviour
 					Students[ID].HipCollider.enabled = true;
 					if (!StudentGlobals.GetStudentDying(ID) && !Students[ID].Ragdoll.Disposed)
 					{
-						Debug.Log("For some reason, " + Students[ID].Name + " may not have been added to the Police CorpseList, so we're doing it manually.");
-						Police.CorpseList[Police.Corpses] = Students[ID].Ragdoll;
-						Police.Corpses++;
-						Police.Deaths++;
-						if (Students[ID].Removed)
+						bool flag = false;
+						for (int j = 0; j < 101; j++)
 						{
-							Debug.Log("Oh, wait! " + Students[ID].Name + " should be removed from the Police CorpseList. Removing her now.");
-							Students[ID].Ragdoll.Remove();
-							Police.Corpses--;
+							if (Police.CorpseList[j] == Students[ID].Ragdoll)
+							{
+								Debug.Log("No worries. " + Students[ID].Name + " is already on the Police CorpseList.");
+								flag = true;
+							}
+						}
+						if (!flag)
+						{
+							Debug.Log("For some reason, " + Students[ID].Name + " may not have been added to the Police CorpseList, so we're doing it manually.");
+							Police.CorpseList[Police.Corpses] = Students[ID].Ragdoll;
+							Police.Corpses++;
+							Police.Deaths++;
+							if (Students[ID].Removed)
+							{
+								Debug.Log("Oh, wait! " + Students[ID].Name + " should be removed from the Police CorpseList. Removing her now.");
+								Students[ID].Ragdoll.Remove();
+								Police.Corpses--;
+							}
 						}
 					}
 					else
@@ -4603,7 +4682,6 @@ public class StudentManagerScript : MonoBehaviour
 					}
 					if (Students[ID].Actions[Students[ID].Phase] == StudentActionType.ClubAction && Students[ID].Club == ClubType.Cooking && Students[ID].ClubActivityPhase > 0)
 					{
-						Debug.Log("Upon loading, " + Students[ID].Name + "'s FoodTarget was Student #" + Students[ID].SleuthID + " : " + Students[Students[ID].SleuthID].Name + ".");
 						Students[Students[ID].SleuthID].TargetedForDistraction = false;
 					}
 					else if (Students[ID].Phase > 1)
@@ -4682,12 +4760,17 @@ public class StudentManagerScript : MonoBehaviour
 		Yandere.WeaponManager.UpdateDelinquentWeapons();
 		Yandere.WeaponManager.RestoreBlood();
 		Yandere.ImmunityTimer = 1f;
-		Yandere.ChangeSchoolwear();
 		Mirror.UpdatePersona();
 		if (Yandere.ClubAttire)
 		{
+			Debug.Log("Upon loading, firing ChangeClubwear()");
 			Yandere.ClubAttire = false;
 			Yandere.ChangeClubwear();
+		}
+		else
+		{
+			Debug.Log("Upon loading, firing ChangeSchoolwear()");
+			Yandere.ChangeSchoolwear();
 		}
 		doors = Doors;
 		foreach (DoorScript doorScript3 in doors)
@@ -4794,7 +4877,7 @@ public class StudentManagerScript : MonoBehaviour
 		if (Students[RivalID] != null)
 		{
 			Debug.Log("Rival's Phase is: " + Students[RivalID].Phase);
-			if (Students[RivalID].Phase == 1 && Students[RivalID].Indoors && Students[RivalID].BagPlaced)
+			if (BagPlaced)
 			{
 				Debug.Log("Placing bag due to reloading.");
 				Students[RivalID].PlaceBag();
@@ -6446,7 +6529,7 @@ public class StudentManagerScript : MonoBehaviour
 			FollowPrimaryLookSecondary.transform.localPosition = new Vector3(0f, 0f, 0f);
 			FollowPrimaryLookSecondary.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 		}
-		if (Eighties && Week == 9)
+		if (Eighties && Week == 9 && Students[RivalID] != null)
 		{
 			if (DateGlobals.Weekday != DayOfWeek.Monday)
 			{
@@ -6471,17 +6554,14 @@ public class StudentManagerScript : MonoBehaviour
 
 	private void DecideTargetDistance(int ID)
 	{
-		Debug.Log("Updating the TargetDistance for Student#" + ID);
 		if (Students[ID] != null)
 		{
 			if (Students[RivalID].Meeting)
 			{
-				Debug.Log("Rival is meeting someone, so TargetDistance is far away.");
 				Students[ID].TargetDistance = 10f;
 			}
 			else
 			{
-				Debug.Log("Rival is NOT meeting someone, so TargetDistance is nearby.");
 				Students[ID].TargetDistance = 0.5f;
 			}
 		}
@@ -6632,14 +6712,17 @@ public class StudentManagerScript : MonoBehaviour
 	public void IdentifyAvailableWitnesses()
 	{
 		WitnessID = 1;
-		for (int i = 0; i < 101; i++)
+		int i = 0;
+		AvailableWitnessList = new StudentScript[100];
+		Weeks = WeeksData.Weeks;
+		for (; i < 101; i++)
 		{
 			if (JSON.Students[i].Persona == PersonaType.Sleuth && (Atmosphere <= 0.8f || StudentGlobals.GetStudentGrudge(i)))
 			{
 				Weeks[Week].StudentAvailability[i] = false;
 			}
 		}
-		for (int i = 0; i < 101; i++)
+		for (i = 0; i < 101; i++)
 		{
 			if (Weeks[Week].StudentAvailability[i])
 			{
@@ -6797,6 +6880,30 @@ public class StudentManagerScript : MonoBehaviour
 			if (Students[j] != null && Students[j].Infatuated)
 			{
 				Students[j].TargetDistance = 1f;
+			}
+		}
+	}
+
+	public void RemoveLowPolyEffect()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			if (Students[i] != null)
+			{
+				Students[i].LowPoly.MyMesh.enabled = false;
+				Students[i].MyRenderer.enabled = true;
+				Students[i].LowPoly.enabled = false;
+			}
+		}
+	}
+
+	public void EnableAllOutlines()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			if (Students[i] != null)
+			{
+				Students[i].EnableOutlines();
 			}
 		}
 	}

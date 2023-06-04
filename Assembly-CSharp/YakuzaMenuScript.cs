@@ -626,6 +626,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							StudentGlobals.SetStudentMissing(PrisonerList[Prisoners], value: false);
 							StudentGlobals.SetStudentRansomed(PrisonerList[Prisoners], value: true);
 							StudentGlobals.SetStudentBroken(PrisonerList[Prisoners], value: true);
+							SchoolGlobals.SchoolAtmosphere += 0.1f;
 							Prisoners--;
 						}
 						PlayerGlobals.Money += Payout;

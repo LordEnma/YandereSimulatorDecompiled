@@ -58,6 +58,11 @@ public class RefrigeratorScript : MonoBehaviour
 				Knife.GetComponent<WeaponScript>().enabled = false;
 				CookingEvent.EventCheck = false;
 				Yandere.EmptyHands();
+				if (Yandere.YandereVision)
+				{
+					Yandere.YandereVision = false;
+					Yandere.ResetYandereEffects();
+				}
 				Yandere.CanMove = false;
 				Yandere.Cooking = true;
 			}

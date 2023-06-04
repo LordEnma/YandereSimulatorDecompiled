@@ -91,6 +91,11 @@ public class SchoolMangaScript : MonoBehaviour
 				Prompt.Yandere.CanMove = false;
 				Time.timeScale = 0.0001f;
 				Window.SetActive(value: true);
+				if (Yandere.YandereVision)
+				{
+					Yandere.YandereVision = false;
+					Yandere.ResetYandereEffects();
+				}
 				UpdateHighlight();
 			}
 		}

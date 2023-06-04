@@ -108,7 +108,7 @@ public class PracticeWindowScript : MonoBehaviour
 					Time.timeScale = 1f;
 				}
 			}
-			else if (Input.GetButtonUp("A"))
+			else if (Input.GetButtonUp("A") || Input.GetButtonUp("B"))
 			{
 				ButtonUp = true;
 			}
@@ -162,7 +162,7 @@ public class PracticeWindowScript : MonoBehaviour
 						StudentManager.Students[46].Hearts.Stop();
 						for (int k = 1; k < 5; k++)
 						{
-							if (StudentManager.Students[46 + k] != null && StudentManager.Students[46 + k].Alive && StudentManager.Students[46 + k].Routine && StudentManager.Students[46 + k].Alive && StudentManager.Students[46 + k].ClubAttire)
+							if (StudentManager.Students[46 + k] != null && StudentManager.Students[46 + k].Alive && StudentManager.Students[46 + k].Routine && StudentManager.Students[46 + k].ClubAttire && !StudentManager.Students[46 + k].Alarmed && !StudentManager.Students[46 + k].InvestigatingBloodPool && !StudentManager.Students[46 + k].ReturningMisplacedWeapon)
 							{
 								StudentManager.Students[46 + k].transform.position = KneelSpot[k].position;
 								StudentManager.Students[46 + k].transform.eulerAngles = KneelSpot[k].eulerAngles;
@@ -242,6 +242,12 @@ public class PracticeWindowScript : MonoBehaviour
 				{
 					StudentManager.Students[7].gameObject.SetActive(value: false);
 				}
+				if (GameGlobals.SenpaiMourning)
+				{
+					StudentManager.Students[1].gameObject.SetActive(value: false);
+					StudentManager.Students[1].transform.position = new Vector3(0f, 100f, 0f);
+					StudentManager.Students[1].transform.parent = base.transform;
+				}
 			}
 		}
 		else if (Club == ClubType.MartialArts)
@@ -305,7 +311,7 @@ public class PracticeWindowScript : MonoBehaviour
 	{
 		for (int i = 1; i < 6; i++)
 		{
-			if (StudentManager.Students[45 + i] != null && StudentManager.Students[45 + i].Alive)
+			if (StudentManager.Students[45 + i] != null && StudentManager.Students[45 + i].Alive && !StudentManager.Students[45 + i].Alarmed && !StudentManager.Students[45 + i].InvestigatingBloodPool && !StudentManager.Students[45 + i].ReturningMisplacedWeapon)
 			{
 				StudentManager.Students[45 + i].Pathfinding.canSearch = true;
 				StudentManager.Students[45 + i].Pathfinding.canMove = true;

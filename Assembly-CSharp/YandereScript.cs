@@ -32,6 +32,8 @@ public class YandereScript : MonoBehaviour
 
 	public CameraFilterPack_Blur_GaussianBlur Blur;
 
+	public RiggedAccessoryAttacher EightiesBikiniAttacher;
+
 	public NotificationManagerScript NotificationManager;
 
 	public ObstacleDetectorScript ObstacleDetector;
@@ -542,6 +544,8 @@ public class YandereScript : MonoBehaviour
 
 	public YandereInteractionType Interaction;
 
+	public YanderePersonaType PreviousPersona;
+
 	public YanderePersonaType Persona;
 
 	public ClubType Club;
@@ -859,6 +863,14 @@ public class YandereScript : MonoBehaviour
 	public Vector3 Twitch;
 
 	private AudioClip LaughClip;
+
+	public string PreviousIdleAnim = string.Empty;
+
+	public string PreviousWalkAnim = string.Empty;
+
+	public string DefaultIdleAnim = string.Empty;
+
+	public string DefaultWalkAnim = string.Empty;
 
 	public string PourHeight = string.Empty;
 
@@ -1753,7 +1765,6 @@ public class YandereScript : MonoBehaviour
 				BloodyWarning = true;
 				if (Schoolwear > 0 && !WearingRaincoat)
 				{
-					Debug.Log("From YandereScript, incrementing Police.BloodyClothing.");
 					Police.BloodyClothing++;
 					if (!ClubAttire)
 					{
@@ -1875,6 +1886,10 @@ public class YandereScript : MonoBehaviour
 
 	private void Start()
 	{
+		DefaultIdleAnim = IdleAnim;
+		DefaultWalkAnim = WalkAnim;
+		PreviousIdleAnim = IdleAnim;
+		PreviousWalkAnim = WalkAnim;
 		Application.runInBackground = false;
 		VtuberCheck();
 		if (!GameGlobals.EightiesTutorial && !GameGlobals.KokonaTutorial)
@@ -2535,6 +2550,12 @@ public class YandereScript : MonoBehaviour
 					{
 						if (!PreparingThrow && !Throwing)
 						{
+							PreviousPersona = Persona;
+							PreviousIdleAnim = IdleAnim;
+							PreviousWalkAnim = WalkAnim;
+							IdleAnim = DefaultIdleAnim;
+							WalkAnim = DefaultWalkAnim;
+							Debug.Log("IdleAnim is now " + IdleAnim + ". Once we stop aiming, we have to return to " + PreviousIdleAnim + ".");
 							base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
 							TargetStudent = null;
 							PreparingThrow = true;
@@ -2627,9 +2648,9 @@ public class YandereScript : MonoBehaviour
 							}
 							else
 							{
-								MainCamera.nearClipPlane = 0.181f;
+								MainCamera.nearClipPlane = 0.266666f;
 								HandCamera.nearClipPlane = 0.35f;
-								Smartphone.nearClipPlane = 0.182f;
+								Smartphone.nearClipPlane = 0.266666f;
 							}
 							ShoulderCamera.AimingCamera = true;
 							YandereVision = false;
@@ -3166,6 +3187,8 @@ public class YandereScript : MonoBehaviour
 					{
 						CharacterAnimation.Play("f02_subtleThrow_00");
 					}
+					IdleAnim = PreviousIdleAnim;
+					WalkAnim = PreviousWalkAnim;
 					PreparingThrow = false;
 					Throwing = true;
 					CanMove = false;
@@ -3470,7 +3493,7 @@ public class YandereScript : MonoBehaviour
 		{
 			UpdateODM();
 		}
-		if (Chased && !Sprayed && !Attacking && !Dumping && !StudentManager.PinningDown && !DelinquentFighting && !Struggling && !ShoulderCamera.HeartbrokenCamera.activeInHierarchy)
+		if (Chased && !Sprayed && !Attacking && !Dumping && !Dropping && !StudentManager.PinningDown && !DelinquentFighting && !Struggling && !ShoulderCamera.HeartbrokenCamera.activeInHierarchy)
 		{
 			if (Pursuer != null)
 			{
@@ -4514,6 +4537,8 @@ public class YandereScript : MonoBehaviour
 				{
 					CharacterAnimation["f02_subtleThrowIdle_00"].weight = 1f;
 				}
+				IdleAnim = DefaultIdleAnim;
+				WalkAnim = DefaultWalkAnim;
 				PreparingThrow = true;
 				NewArc.gameObject.SetActive(value: true);
 			}
@@ -6391,245 +6416,238 @@ public class YandereScript : MonoBehaviour
 		}
 		if (CanMove)
 		{
-			if (!Egg || EggBypass > 8)
+			if (!Egg && base.transform.position.y < 1000f)
 			{
-				if (base.transform.position.y < 1000f)
+				if (Input.GetKeyDown(KeyCode.Slash))
 				{
-					if (Input.GetKeyDown(KeyCode.Slash))
+					DebugMenu.SetActive(value: false);
+					EasterEggMenu.SetActive(!EasterEggMenu.activeInHierarchy);
+				}
+				if (EasterEggMenu.activeInHierarchy)
+				{
+					if (Input.GetKeyDown(KeyCode.P))
 					{
-						DebugMenu.SetActive(value: false);
-						EasterEggMenu.SetActive(!EasterEggMenu.activeInHierarchy);
+						Punish();
 					}
-					if (EasterEggMenu.activeInHierarchy)
+					else if (Input.GetKeyDown(KeyCode.Z))
 					{
-						if (Input.GetKeyDown(KeyCode.P))
+						Slend();
+					}
+					else if (Input.GetKeyDown(KeyCode.B))
+					{
+						Bancho();
+					}
+					else if (Input.GetKeyDown(KeyCode.C))
+					{
+						Cirno();
+					}
+					else if (Input.GetKeyDown(KeyCode.H))
+					{
+						EmptyHands();
+						Hate();
+					}
+					else if (Input.GetKeyDown(KeyCode.T))
+					{
+						StudentManager.AttackOnTitan();
+						AttackOnTitan();
+					}
+					else if (Input.GetKeyDown(KeyCode.G))
+					{
+						GaloSengen();
+					}
+					else if (!Input.GetKeyDown(KeyCode.J))
+					{
+						if (Input.GetKeyDown(KeyCode.K))
 						{
-							Punish();
+							EasterEggMenu.SetActive(value: false);
+							StudentManager.Kong();
+							DK = true;
 						}
-						else if (Input.GetKeyDown(KeyCode.Z))
+						else if (Input.GetKeyDown(KeyCode.L))
 						{
-							Slend();
+							Agent();
 						}
-						else if (Input.GetKeyDown(KeyCode.B))
+						else if (!Input.GetKeyDown(KeyCode.N))
 						{
-							Bancho();
-						}
-						else if (Input.GetKeyDown(KeyCode.C))
-						{
-							Cirno();
-						}
-						else if (Input.GetKeyDown(KeyCode.H))
-						{
-							EmptyHands();
-							Hate();
-						}
-						else if (Input.GetKeyDown(KeyCode.T))
-						{
-							StudentManager.AttackOnTitan();
-							AttackOnTitan();
-						}
-						else if (Input.GetKeyDown(KeyCode.G))
-						{
-							GaloSengen();
-						}
-						else if (!Input.GetKeyDown(KeyCode.J))
-						{
-							if (Input.GetKeyDown(KeyCode.K))
+							if (Input.GetKeyDown(KeyCode.S))
 							{
 								EasterEggMenu.SetActive(value: false);
-								StudentManager.Kong();
-								DK = true;
+								Egg = true;
+								StudentManager.Spook();
 							}
-							else if (Input.GetKeyDown(KeyCode.L))
+							else if (Input.GetKeyDown(KeyCode.F))
 							{
-								Agent();
+								EasterEggMenu.SetActive(value: false);
+								Falcon();
 							}
-							else if (!Input.GetKeyDown(KeyCode.N))
+							else if (Input.GetKeyDown(KeyCode.X))
 							{
-								if (Input.GetKeyDown(KeyCode.S))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Egg = true;
-									StudentManager.Spook();
-								}
-								else if (Input.GetKeyDown(KeyCode.F))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Falcon();
-								}
-								else if (Input.GetKeyDown(KeyCode.X))
-								{
-									EasterEggMenu.SetActive(value: false);
-									X();
-								}
-								else if (Input.GetKeyDown(KeyCode.O))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Punch();
-								}
-								else if (Input.GetKeyDown(KeyCode.U))
-								{
-									EasterEggMenu.SetActive(value: false);
-									BadTime();
-								}
-								else if (Input.GetKeyDown(KeyCode.Y))
-								{
-									EasterEggMenu.SetActive(value: false);
-									CyborgNinja();
-								}
-								else if (Input.GetKeyDown(KeyCode.E))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Ebola();
-								}
-								else if (Input.GetKeyDown(KeyCode.Q))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Samus();
-								}
-								else if (Input.GetKeyDown(KeyCode.W))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Witch();
-								}
-								else if (Input.GetKeyDown(KeyCode.R))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Pose();
-								}
-								else if (Input.GetKeyDown(KeyCode.V))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Vaporwave();
-								}
-								else if (Input.GetKeyDown(KeyCode.Alpha2))
-								{
-									EasterEggMenu.SetActive(value: false);
-									HairBlades();
-								}
-								else if (Input.GetKeyDown(KeyCode.Alpha7))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Tornado();
-								}
-								else if (Input.GetKeyDown(KeyCode.Alpha8))
-								{
-									EasterEggMenu.SetActive(value: false);
-									GenderSwap();
-								}
-								else if (Input.GetKeyDown(KeyCode.A))
-								{
-									EasterEggMenu.SetActive(value: false);
-									HollowMode();
-								}
-								else if (Input.GetKeyDown(KeyCode.I))
-								{
-									StudentManager.NoGravity = true;
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.D))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Sith();
-								}
-								else if (Input.GetKeyDown(KeyCode.M))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Snake();
-								}
-								else if (Input.GetKeyDown(KeyCode.Alpha1))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Gazer();
-								}
-								else if (Input.GetKeyDown(KeyCode.Alpha3))
-								{
-									StudentManager.SecurityCameras();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.Alpha4))
-								{
-									KLK();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.Alpha6))
-								{
-									EasterEggMenu.SetActive(value: false);
-									Six();
-								}
-								else if (Input.GetKeyDown(KeyCode.F1))
-								{
-									Weather();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F2))
-								{
-									Horror();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F3))
-								{
-									LifeNote();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F4))
-								{
-									Mandere();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F5))
-								{
-									BlackHoleChan();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F6))
-								{
-									ElfenLied();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F7))
-								{
-									Berserk();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F8))
-								{
-									Nier();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F9))
-								{
-									Ghoul();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F10))
-								{
-									CinematicCameraFilters.enabled = true;
-									CameraFilters.enabled = true;
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F11))
-								{
-									GarbageMode();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (Input.GetKeyDown(KeyCode.F12))
-								{
-									TallMode();
-									EasterEggMenu.SetActive(value: false);
-								}
-								else if (!Input.GetKeyDown(KeyCode.ScrollLock) && Input.GetKeyDown(KeyCode.Space))
-								{
-									EasterEggMenu.SetActive(value: false);
-								}
+								EasterEggMenu.SetActive(value: false);
+								X();
+							}
+							else if (Input.GetKeyDown(KeyCode.O))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Punch();
+							}
+							else if (Input.GetKeyDown(KeyCode.U))
+							{
+								EasterEggMenu.SetActive(value: false);
+								BadTime();
+							}
+							else if (Input.GetKeyDown(KeyCode.Y))
+							{
+								EasterEggMenu.SetActive(value: false);
+								CyborgNinja();
+							}
+							else if (Input.GetKeyDown(KeyCode.E))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Ebola();
+							}
+							else if (Input.GetKeyDown(KeyCode.Q))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Samus();
+							}
+							else if (Input.GetKeyDown(KeyCode.W))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Witch();
+							}
+							else if (Input.GetKeyDown(KeyCode.R))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Pose();
+							}
+							else if (Input.GetKeyDown(KeyCode.V))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Vaporwave();
+							}
+							else if (Input.GetKeyDown(KeyCode.Alpha2))
+							{
+								EasterEggMenu.SetActive(value: false);
+								HairBlades();
+							}
+							else if (Input.GetKeyDown(KeyCode.Alpha7))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Tornado();
+							}
+							else if (Input.GetKeyDown(KeyCode.Alpha8))
+							{
+								EasterEggMenu.SetActive(value: false);
+								GenderSwap();
+							}
+							else if (Input.GetKeyDown(KeyCode.A))
+							{
+								EasterEggMenu.SetActive(value: false);
+								HollowMode();
+							}
+							else if (Input.GetKeyDown(KeyCode.I))
+							{
+								StudentManager.NoGravity = true;
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.D))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Sith();
+							}
+							else if (Input.GetKeyDown(KeyCode.M))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Snake();
+							}
+							else if (Input.GetKeyDown(KeyCode.Alpha1))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Gazer();
+							}
+							else if (Input.GetKeyDown(KeyCode.Alpha3))
+							{
+								StudentManager.SecurityCameras();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.Alpha4))
+							{
+								KLK();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.Alpha6))
+							{
+								EasterEggMenu.SetActive(value: false);
+								Six();
+							}
+							else if (Input.GetKeyDown(KeyCode.F1))
+							{
+								Weather();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F2))
+							{
+								Horror();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F3))
+							{
+								LifeNote();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F4))
+							{
+								Mandere();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F5))
+							{
+								BlackHoleChan();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F6))
+							{
+								ElfenLied();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F7))
+							{
+								Berserk();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F8))
+							{
+								Nier();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F9))
+							{
+								Ghoul();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F10))
+							{
+								CinematicCameraFilters.enabled = true;
+								CameraFilters.enabled = true;
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F11))
+							{
+								GarbageMode();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (Input.GetKeyDown(KeyCode.F12))
+							{
+								TallMode();
+								EasterEggMenu.SetActive(value: false);
+							}
+							else if (!Input.GetKeyDown(KeyCode.ScrollLock) && Input.GetKeyDown(KeyCode.Space))
+							{
+								EasterEggMenu.SetActive(value: false);
 							}
 						}
 					}
 				}
-			}
-			else if (Input.GetKeyDown(KeyCode.Slash))
-			{
-				EggBypass++;
 			}
 		}
 		else if (Input.GetKeyDown(KeyCode.Z))
@@ -7123,6 +7141,11 @@ public class YandereScript : MonoBehaviour
 			ClubAccessories[(int)Club].transform.localScale = new Vector3(1f, 1f, 1f);
 		}
 		MyController.radius = 0.2f;
+		if (PreparingThrow)
+		{
+			IdleAnim = PreviousIdleAnim;
+			WalkAnim = PreviousWalkAnim;
+		}
 		ShoulderCamera.OverShoulder = false;
 		UsingController = false;
 		PreparingThrow = false;
@@ -7447,6 +7470,12 @@ public class YandereScript : MonoBehaviour
 			PigtailR.material.mainTexture = CustomHair.texture;
 			PigtailL.material.mainTexture = CustomHair.texture;
 		}
+		WWW CustomLoose = new WWW("file:///" + Application.streamingAssetsPath + "/CustomLoose.png");
+		yield return CustomLoose;
+		if (CustomLoose.error == null)
+		{
+			LooseRenderer.material.mainTexture = CustomLoose.texture;
+		}
 		WWW CustomDrills = new WWW("file:///" + Application.streamingAssetsPath + "/CustomDrills.png");
 		yield return CustomDrills;
 		if (CustomDrills.error == null)
@@ -7515,6 +7544,10 @@ public class YandereScript : MonoBehaviour
 		else
 		{
 			GloveAttacher.newRenderer.enabled = true;
+		}
+		if (StudentGlobals.FemaleUniform == 2 || StudentGlobals.FemaleUniform == 4 || StudentGlobals.FemaleUniform == 5 || StudentGlobals.FemaleUniform == 6)
+		{
+			GloveAttacher.newRenderer.SetBlendShapeWeight(0, 100f);
 		}
 	}
 
@@ -7929,7 +7962,12 @@ public class YandereScript : MonoBehaviour
 		EasterEggMenu.SetActive(value: false);
 		ClubAttire = false;
 		Schoolwear = 0;
-		if (StudentManager.Eighties)
+		bool flag = false;
+		if (EightiesBikiniAttacher.gameObject.activeInHierarchy || (EightiesBikiniAttacher.newRenderer != null && EightiesBikiniAttacher.newRenderer.enabled))
+		{
+			flag = true;
+		}
+		if (StudentManager.Eighties && !flag)
 		{
 			for (int i = 0; i < 13; i++)
 			{
@@ -8313,6 +8351,7 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[1].mainTexture = NudeTexture;
 		MyRenderer.materials[2].mainTexture = NudeTexture;
 		TheDebugMenuScript.UpdateCensor();
+		ClubAccessory();
 	}
 
 	private void KLK()
@@ -8645,6 +8684,7 @@ public class YandereScript : MonoBehaviour
 		{
 			Schoolwear = PreviousSchoolwear;
 		}
+		EightiesBikiniAttacher.RemoveAccessory();
 		LabcoatAttacher.RemoveAccessory();
 		Paint = false;
 		for (ID = 0; ID < CensorSteam.Length; ID++)
@@ -8702,14 +8742,36 @@ public class YandereScript : MonoBehaviour
 		}
 		else if (Schoolwear == 2)
 		{
-			MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
-			MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-			MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
-			MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
-			MyRenderer.sharedMesh = SchoolSwimsuit;
-			MyRenderer.materials[0].mainTexture = SwimsuitTexture;
-			MyRenderer.materials[1].mainTexture = SwimsuitTexture;
-			MyRenderer.materials[2].mainTexture = FaceTexture;
+			if (Inventory.Bikini)
+			{
+				EightiesBikiniAttacher.gameObject.SetActive(value: true);
+				if (EightiesBikiniAttacher.newRenderer != null)
+				{
+					EightiesBikiniAttacher.newRenderer.enabled = true;
+				}
+				BreastSize = 1.1f;
+				RightBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
+				LeftBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
+				Nude();
+				Schoolwear = 2;
+			}
+			else
+			{
+				MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
+				MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
+				MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
+				MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
+				MyRenderer.sharedMesh = SchoolSwimsuit;
+				MyRenderer.materials[0].mainTexture = SwimsuitTexture;
+				MyRenderer.materials[1].mainTexture = SwimsuitTexture;
+				MyRenderer.materials[2].mainTexture = FaceTexture;
+				if (StudentManager.Eighties)
+				{
+					BreastSize = 1.5f;
+					RightBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
+					LeftBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
+				}
+			}
 		}
 		else if (Schoolwear == 3)
 		{
@@ -8776,6 +8838,11 @@ public class YandereScript : MonoBehaviour
 			ClubAttire = false;
 			MyRenderer.materials[2].SetFloat("_BlendAmount", 1f - sanity / 100f);
 		}
+		if (ClubAttire && Hairstyle == 210)
+		{
+			Hairstyle = 1;
+			UpdateHair();
+		}
 		MyLocker.UpdateButtons();
 		ClubAccessory();
 	}
@@ -8790,7 +8857,7 @@ public class YandereScript : MonoBehaviour
 				gameObject.SetActive(value: false);
 			}
 		}
-		if (MyRenderer.sharedMesh != Towel && Club > ClubType.None && ClubAccessories[(int)Club] != null)
+		if (MyRenderer.sharedMesh != Towel && !WearingRaincoat && Club > ClubType.None && ClubAccessories[(int)Club] != null)
 		{
 			ClubAccessories[(int)Club].SetActive(value: true);
 		}
@@ -9177,7 +9244,12 @@ public class YandereScript : MonoBehaviour
 
 	public void LoseGentleEyes()
 	{
-		if (!Egg)
+		bool flag = false;
+		if (EightiesBikiniAttacher.newRenderer != null && EightiesBikiniAttacher.newRenderer.enabled)
+		{
+			flag = true;
+		}
+		if (!Egg && !flag && VtuberID == 0)
 		{
 			MyRenderer.SetBlendShapeWeight(0, 0f);
 			MyRenderer.SetBlendShapeWeight(5, 0f);
@@ -9187,7 +9259,12 @@ public class YandereScript : MonoBehaviour
 
 	public void RestoreGentleEyes()
 	{
-		if (!Egg && VtuberID == 0)
+		bool flag = false;
+		if (EightiesBikiniAttacher.newRenderer != null && EightiesBikiniAttacher.newRenderer.enabled)
+		{
+			flag = true;
+		}
+		if (!Egg && !flag && VtuberID == 0)
 		{
 			MyRenderer.SetBlendShapeWeight(0, 50f);
 			MyRenderer.SetBlendShapeWeight(5, 25f);
@@ -9431,7 +9508,7 @@ public class YandereScript : MonoBehaviour
 		Gloves = null;
 		SetUniform();
 		GloveBlood = 0;
-		Debug.Log("Gloves removed.");
+		ClubAccessory();
 	}
 
 	public void AssignFilters()

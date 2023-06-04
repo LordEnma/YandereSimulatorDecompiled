@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FootstepScript : MonoBehaviour
 {
-	public StudentScript Student;
+	public HomeYandereScript HomeYandere;
 
 	public AudioSource MyAudio;
 
@@ -14,42 +14,40 @@ public class FootstepScript : MonoBehaviour
 
 	public float UpThreshold = 0.025f;
 
-	public bool FootUp;
+	public bool Debugging;
 
-	private void Start()
-	{
-		if (!Student.Nemesis)
-		{
-			base.enabled = false;
-		}
-	}
+	public bool FootUp;
 
 	private void Update()
 	{
+		if (Debugging)
+		{
+			Debug.Log("UpThreshold: " + (HomeYandere.transform.position.y + UpThreshold) + " | DownThreshold: " + (HomeYandere.transform.position.y + DownThreshold) + " | CurrentHeight: " + base.transform.position.y);
+		}
 		if (!FootUp)
 		{
-			if (base.transform.position.y > Student.transform.position.y + UpThreshold)
+			if (base.transform.position.y > HomeYandere.transform.position.y + UpThreshold)
 			{
 				FootUp = true;
 			}
 		}
 		else
 		{
-			if (!(base.transform.position.y < Student.transform.position.y + DownThreshold))
+			if (!(base.transform.position.y < HomeYandere.transform.position.y + DownThreshold))
 			{
 				return;
 			}
 			if (FootUp)
 			{
-				if (Student.Pathfinding.speed > 1f)
+				if (HomeYandere.Running)
 				{
 					MyAudio.clip = RunFootsteps[Random.Range(0, RunFootsteps.Length)];
-					MyAudio.volume = 0.2f;
+					MyAudio.volume = 0.4f;
 				}
 				else
 				{
 					MyAudio.clip = WalkFootsteps[Random.Range(0, WalkFootsteps.Length)];
-					MyAudio.volume = 0.1f;
+					MyAudio.volume = 0.2f;
 				}
 				MyAudio.Play();
 			}

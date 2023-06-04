@@ -117,7 +117,8 @@ public class AttackManagerScript : MonoBehaviour
 		case WeaponType.Syringe:
 			return 0.5f;
 		case WeaponType.Garrote:
-			return 0.5f;
+			Debug.Log("This distance.");
+			return 0.65f;
 		case WeaponType.Scythe:
 			if (Stealth)
 			{
@@ -178,6 +179,10 @@ public class AttackManagerScript : MonoBehaviour
 		{
 			Yandere.TargetStudent.Stabbed = true;
 			weapon.Flip = true;
+		}
+		else if (weapon.Type == WeaponType.Garrote)
+		{
+			weapon.Unravel = true;
 		}
 		Distance = GetReachDistance(weapon.Type, sanityType);
 		Yandere.StudentManager.IncreaseStudentVisionDistance();

@@ -32,6 +32,8 @@ public class WeaponScript : MonoBehaviour
 
 	public AudioClip EquipClip;
 
+	public SkinnedMeshRenderer SkinnedMesh;
+
 	public ParticleSystem FireEffect;
 
 	public GameObject WeaponTrail;
@@ -103,6 +105,8 @@ public class WeaponScript : MonoBehaviour
 	public bool StartLow;
 
 	public bool Flaming;
+
+	public bool Unravel;
 
 	public bool Bloody;
 
@@ -245,7 +249,7 @@ public class WeaponScript : MonoBehaviour
 		case WeaponType.Scythe:
 			return "scythe";
 		case WeaponType.Garrote:
-			return "syringe";
+			return "strangle";
 		default:
 			Debug.LogError("Weapon type \"" + Type.ToString() + "\" not implemented.");
 			return string.Empty;
@@ -375,6 +379,27 @@ public class WeaponScript : MonoBehaviour
 		if (Rotate)
 		{
 			base.transform.Rotate(Vector3.forward * Time.deltaTime * 100f);
+		}
+		if (!Unravel)
+		{
+			return;
+		}
+		if (Yandere.Attacking)
+		{
+			base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(0.05f, -0.033333f, 0.04f), Time.deltaTime * 2f);
+			base.transform.localEulerAngles = new Vector3(17.5f, 35f, -15f);
+			if (SkinnedMesh.GetBlendShapeWeight(0) < 100f)
+			{
+				SkinnedMesh.SetBlendShapeWeight(0, SkinnedMesh.GetBlendShapeWeight(0) + Time.deltaTime * 200f);
+			}
+			return;
+		}
+		SkinnedMesh.SetBlendShapeWeight(0, SkinnedMesh.GetBlendShapeWeight(0) - Time.deltaTime * 200f);
+		if (SkinnedMesh.GetBlendShapeWeight(0) <= 0f)
+		{
+			base.transform.localPosition = Vector3.zero;
+			base.transform.localEulerAngles = Vector3.zero;
+			Unravel = false;
 		}
 	}
 

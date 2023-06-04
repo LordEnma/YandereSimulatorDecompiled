@@ -14,6 +14,8 @@ public class GenericEightiesTaskScript : MonoBehaviour
 
 	public PromptScript Prompt;
 
+	public AudioSource MyAudio;
+
 	public GameObject Model;
 
 	public string TaskAnim;
@@ -125,6 +127,10 @@ public class GenericEightiesTaskScript : MonoBehaviour
 							if (Suspicious)
 							{
 								Prompt.Yandere.SuspiciousActionTimer = 5f;
+							}
+							if (MyAudio != null)
+							{
+								MyAudio.Play();
 							}
 						}
 					}

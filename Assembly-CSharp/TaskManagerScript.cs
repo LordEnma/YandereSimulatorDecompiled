@@ -573,7 +573,7 @@ public class TaskManagerScript : MonoBehaviour
 				}
 				break;
 			case 19:
-				if (Yandere.Class.Seduction > 0)
+				if (Yandere.EightiesBikiniAttacher.newRenderer != null && Yandere.EightiesBikiniAttacher.newRenderer.enabled)
 				{
 					Proceed = true;
 				}

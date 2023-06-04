@@ -124,6 +124,8 @@ public class TranqDetectorScript : MonoBehaviour
 			Door.Prompt.Hide();
 			Door.Prompt.enabled = false;
 			Door.enabled = false;
+			Door.DoorColliders[0].isTrigger = false;
+			Door.DoorColliders[1].isTrigger = false;
 			Yandere.Inventory.SedativePoisons--;
 			if (!Yandere.Follower.Male)
 			{
@@ -146,7 +148,6 @@ public class TranqDetectorScript : MonoBehaviour
 		AudioSource component = GetComponent<AudioSource>();
 		component.clip = TranqClips[Random.Range(0, TranqClips.Length)];
 		component.Play();
-		Yandere.EquippedWeapon.Type = WeaponType.Syringe;
 		Yandere.AttackManager.Stealth = true;
 		StopChecking = true;
 	}

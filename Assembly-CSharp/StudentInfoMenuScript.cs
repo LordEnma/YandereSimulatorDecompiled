@@ -691,18 +691,25 @@ public class StudentInfoMenuScript : MonoBehaviour
 						}
 						if (!PauseScreen.Eighties && ID == 1)
 						{
-							Debug.Log("Attempting to load custom Senpai portrait.");
-							string url2 = "file:///" + Application.streamingAssetsPath + "/SenpaiPortrait.png";
-							WWW www2 = new WWW(url2);
-							yield return www2;
-							if (www2.error == null)
+							if (StudentManager.MissionMode)
 							{
-								Debug.Log("No error!");
-								StudentPortraits[ID].Portrait.mainTexture = www2.texture;
+								StudentPortraits[ID].Portrait.mainTexture = BlankPortrait;
 							}
 							else
 							{
-								Debug.Log("Uh, there was an error: " + www2.error);
+								Debug.Log("Attempting to load custom Senpai portrait.");
+								string url2 = "file:///" + Application.streamingAssetsPath + "/SenpaiPortrait.png";
+								WWW www2 = new WWW(url2);
+								yield return www2;
+								if (www2.error == null)
+								{
+									Debug.Log("No error!");
+									StudentPortraits[ID].Portrait.mainTexture = www2.texture;
+								}
+								else
+								{
+									Debug.Log("Uh, there was an error: " + www2.error);
+								}
 							}
 						}
 					}

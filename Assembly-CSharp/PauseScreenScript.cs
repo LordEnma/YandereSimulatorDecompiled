@@ -183,28 +183,7 @@ public class PauseScreenScript : MonoBehaviour
 		{
 			YouTubeChatMenu.CommandChecker.CountdownCircle.transform.parent.gameObject.SetActive(value: false);
 		}
-		FavorMenu.BountyMenu.gameObject.SetActive(value: false);
-		StudentInfoMenu.gameObject.SetActive(value: false);
-		YouTubeChatMenu.gameObject.SetActive(value: false);
-		InventoryMenu.gameObject.SetActive(value: false);
-		PhotoGallery.gameObject.SetActive(value: false);
-		SaveLoadMenu.gameObject.SetActive(value: false);
-		ServiceMenu.gameObject.SetActive(value: false);
-		NewSettings.gameObject.SetActive(value: false);
-		AudioMenu.gameObject.SetActive(value: false);
-		FavorMenu.gameObject.SetActive(value: false);
-		IdeasMenu.gameObject.SetActive(value: false);
-		Tutorials.gameObject.SetActive(value: false);
-		PassTime.gameObject.SetActive(value: false);
-		Schedule.gameObject.SetActive(value: false);
-		TaskList.gameObject.SetActive(value: false);
-		Stats.gameObject.SetActive(value: false);
-		LoadingScreen.SetActive(value: false);
-		ControlMenu.SetActive(value: false);
-		SchemesMenu.SetActive(value: false);
-		StudentInfo.SetActive(value: false);
-		DropsMenu.SetActive(value: false);
-		MainMenu.SetActive(value: true);
+		DisableEverything();
 		YouTubeChatMenu.InitializeWindow.SetActive(value: true);
 		YouTubeChatMenu.CommandWindow.SetActive(value: false);
 		if (GameGlobals.Eighties)
@@ -353,6 +332,7 @@ public class PauseScreenScript : MonoBehaviour
 					}
 					CheckIfSavePossible();
 					UpdateSelection();
+					DisableEverything();
 				}
 			}
 			else if (HomeCamera.Destination == HomeCamera.Destinations[0])
@@ -1047,6 +1027,11 @@ public class PauseScreenScript : MonoBehaviour
 					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 					Reason = "You cannot save the game while a student is wet with any kind of liquid.";
 				}
+				if (Yandere.StudentManager.Police.LimbParent.childCount > 0)
+				{
+					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+					Reason = "You cannot save the game while dismembered limbs are present at school.";
+				}
 				if (Yandere.StudentManager.Students[i].Hunting)
 				{
 					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
@@ -1103,5 +1088,31 @@ public class PauseScreenScript : MonoBehaviour
 			obj.color = new Color(0f, 0f, 0f, 1f);
 			obj.effectStyle = UILabel.Effect.None;
 		}
+	}
+
+	public void DisableEverything()
+	{
+		FavorMenu.BountyMenu.gameObject.SetActive(value: false);
+		StudentInfoMenu.gameObject.SetActive(value: false);
+		YouTubeChatMenu.gameObject.SetActive(value: false);
+		InventoryMenu.gameObject.SetActive(value: false);
+		PhotoGallery.gameObject.SetActive(value: false);
+		SaveLoadMenu.gameObject.SetActive(value: false);
+		ServiceMenu.gameObject.SetActive(value: false);
+		NewSettings.gameObject.SetActive(value: false);
+		AudioMenu.gameObject.SetActive(value: false);
+		FavorMenu.gameObject.SetActive(value: false);
+		IdeasMenu.gameObject.SetActive(value: false);
+		Tutorials.gameObject.SetActive(value: false);
+		PassTime.gameObject.SetActive(value: false);
+		Schedule.gameObject.SetActive(value: false);
+		TaskList.gameObject.SetActive(value: false);
+		Stats.gameObject.SetActive(value: false);
+		LoadingScreen.SetActive(value: false);
+		ControlMenu.SetActive(value: false);
+		SchemesMenu.SetActive(value: false);
+		StudentInfo.SetActive(value: false);
+		DropsMenu.SetActive(value: false);
+		MainMenu.SetActive(value: true);
 	}
 }

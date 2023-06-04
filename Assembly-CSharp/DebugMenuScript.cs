@@ -493,9 +493,9 @@ public class DebugMenuScript : MonoBehaviour
 						Yandere.Police.Invalid = true;
 						if (Input.GetKey(KeyCode.LeftShift))
 						{
-							for (ID = 2; ID < 93; ID++)
+							for (ID = 2; ID < 55; ID++)
 							{
-								_ = StudentManager.Students[ID] != null;
+								_ = StudentManager.Students[ID];
 							}
 						}
 						else
@@ -690,16 +690,8 @@ public class DebugMenuScript : MonoBehaviour
 						}
 						else if (Input.GetKeyDown(KeyCode.I))
 						{
-							StudentManager.Students[3].BecomeRagdoll();
-							WeaponManager.Weapons[1].StainWithBlood();
-							WeaponManager.Weapons[1].Blood.enabled = true;
-							WeaponManager.Weapons[1].FingerprintID = 2;
-							WeaponManager.Weapons[1].Victims[3] = true;
-							StudentManager.Students[5].BecomeRagdoll();
-							WeaponManager.Weapons[2].StainWithBlood();
-							WeaponManager.Weapons[2].Blood.enabled = true;
-							WeaponManager.Weapons[2].FingerprintID = 4;
-							WeaponManager.Weapons[2].Victims[5] = true;
+							Yandere.Invisible = !Yandere.Invisible;
+							Window.SetActive(value: false);
 						}
 						else if (!Input.GetKeyDown(KeyCode.J))
 						{

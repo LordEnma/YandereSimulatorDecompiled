@@ -117,6 +117,11 @@ public class SmokeBombScript : MonoBehaviour
 		{
 			Debug.Log(Student.Name + " just smelled a stink bomb!");
 			Student.WasHurrying = Student.Hurry;
+			if (Student.BloodPool != null)
+			{
+				Debug.Log("ForgetAboutBloodPool() was called from this place in the code.");
+				Student.ForgetAboutBloodPool();
+			}
 			if (Student.Investigating)
 			{
 				Student.StopInvestigating();

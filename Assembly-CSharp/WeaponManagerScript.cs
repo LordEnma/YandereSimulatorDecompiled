@@ -242,7 +242,6 @@ public class WeaponManagerScript : MonoBehaviour
 
 	public void RestoreBlood()
 	{
-		Debug.Log("The ''restore blood'' command is being fired.");
 		for (int i = 0; i < Weapons.Length; i++)
 		{
 			if (Weapons[i] != null && !Weapons[i].Disposed && Weapons[i].Bloody)

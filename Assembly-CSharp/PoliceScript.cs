@@ -572,7 +572,6 @@ public class PoliceScript : MonoBehaviour
 
 	private void DetermineResults()
 	{
-		Debug.Log("DetermineResults() has been called.");
 		if (Yandere.VtuberID > 0)
 		{
 			Protagonist = VtuberNames[Yandere.VtuberID];
@@ -593,8 +592,9 @@ public class PoliceScript : MonoBehaviour
 			{
 				ResultsLabels[i].text = string.Empty;
 			}
+			return;
 		}
-		else if (Yandere.ShoulderCamera.GoingToCounselor && !EndOfDay.Counselor.Expelled)
+		if (Yandere.ShoulderCamera.GoingToCounselor && !EndOfDay.Counselor.Expelled)
 		{
 			if (Yandere.Police.Corpses - Yandere.Police.HiddenCorpses > 0)
 			{
@@ -622,8 +622,9 @@ public class PoliceScript : MonoBehaviour
 			}
 			TeacherReport = true;
 			Show = true;
+			return;
 		}
-		else if (Reputation.Reputation <= -100f)
+		if (Reputation.Reputation <= -100f)
 		{
 			ResultsLabels[0].text = Protagonist + "'s bizarre conduct has been observed and discussed by many people.";
 			ResultsLabels[1].text = "Word of " + Protagonist + "'s strange behavior has reached Senpai.";
@@ -631,8 +632,17 @@ public class PoliceScript : MonoBehaviour
 			ResultsLabels[3].text = "From this day forward, Senpai will fear and avoid " + Protagonist + ".";
 			ResultsLabels[4].text = Protagonist + " will never have her Senpai's love.";
 			LowRep = true;
+			return;
 		}
-		else if (!Suicide && !PoisonScene)
+		bool flag = false;
+		if (EndOfDay.Counselor.CounselorPunishments > 5 || EndOfDay.Counselor.Expelled)
+		{
+			Debug.Log("We should expel the player without worrying about anything else.");
+			flag = true;
+			PoisonScene = false;
+			Suicide = false;
+		}
+		if (!Suicide && !PoisonScene)
 		{
 			if (Clock.HourTime < 18f)
 			{
@@ -675,7 +685,7 @@ public class PoliceScript : MonoBehaviour
 			{
 				ResultsLabels[0].text = "The school day has ended. Faculty members must walk through the school and tell any lingering students to leave.";
 			}
-			if (Suspended)
+			if (Suspended || flag)
 			{
 				Yandere.Class.Portal.EndFinalEvents();
 				if (Clock.Weekday == 1)
@@ -961,7 +971,7 @@ public class PoliceScript : MonoBehaviour
 	{
 		for (int i = 1; i < 101; i++)
 		{
-			if (StudentGlobals.GetStudentDead(i) || !(StudentManager.StudentReps[i] < -150f))
+			if (StudentGlobals.GetStudentDead(i) || !StudentGlobals.GetStudentKidnapped(i) || !(StudentManager.StudentReps[i] < -150f))
 			{
 				continue;
 			}

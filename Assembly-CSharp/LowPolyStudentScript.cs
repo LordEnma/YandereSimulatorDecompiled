@@ -46,5 +46,10 @@ public class LowPolyStudentScript : MonoBehaviour
 			Student.MyRenderer.enabled = true;
 			MyMesh.enabled = false;
 		}
+		if (Student.WearingBikini && Student.MyRenderer.enabled)
+		{
+			Student.MyRenderer.enabled = false;
+			MyMesh.enabled = false;
+		}
 	}
 }

@@ -110,36 +110,44 @@ public class FootprintSpawnerScript : MonoBehaviour
 				MyAudio.Play();
 			}
 			FootUp = false;
-			if (Bloodiness <= 0)
+			if (Bloodiness > 0)
 			{
-				return;
-			}
-			CanSpawn = !GardenArea.bounds.Contains(base.transform.position) && !PoolStairs.bounds.Contains(base.transform.position) && !TreeArea.bounds.Contains(base.transform.position) && !NEStairs.bounds.Contains(base.transform.position) && !NWStairs.bounds.Contains(base.transform.position) && !SEStairs.bounds.Contains(base.transform.position) && !SWStairs.bounds.Contains(base.transform.position);
-			if (CanSpawn)
-			{
-				if (base.transform.position.y > -1f && base.transform.position.y < 1f)
+				CanSpawn = !GardenArea.bounds.Contains(base.transform.position) && !PoolStairs.bounds.Contains(base.transform.position) && !TreeArea.bounds.Contains(base.transform.position) && !NEStairs.bounds.Contains(base.transform.position) && !NWStairs.bounds.Contains(base.transform.position) && !SEStairs.bounds.Contains(base.transform.position) && !SWStairs.bounds.Contains(base.transform.position);
+				if (base.transform.position.y > -0.1f && base.transform.position.y < 0.1f)
 				{
 					Height = 0f;
 				}
-				else if (base.transform.position.y > 3f && base.transform.position.y < 5f)
+				else if (base.transform.position.y > 3.9f && base.transform.position.y < 4.1f)
 				{
 					Height = 4f;
 				}
-				else if (base.transform.position.y > 7f && base.transform.position.y < 9f)
+				else if (base.transform.position.y > 7.9f && base.transform.position.y < 8.1f)
 				{
 					Height = 8f;
 				}
-				else if (base.transform.position.y > 11f && base.transform.position.y < 13f)
+				else if (base.transform.position.y > 11.9f && base.transform.position.y < 12.1f)
 				{
 					Height = 12f;
 				}
-				GameObject gameObject = Object.Instantiate(BloodyFootprint, new Vector3(base.transform.position.x, Height + 0.012f, base.transform.position.z), Quaternion.identity);
-				gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, base.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
-				FootprintScript component = gameObject.transform.GetChild(0).GetComponent<FootprintScript>();
-				gameObject.transform.parent = BloodParent;
-				component.Yandere = Yandere;
-				component.StudentBloodID = StudentBloodID;
-				Bloodiness--;
+				else
+				{
+					CanSpawn = false;
+				}
+				if (base.transform.position.x > 0f && base.transform.position.y > 0.1f && base.transform.position.z > 58f)
+				{
+					CanSpawn = false;
+				}
+				if (CanSpawn)
+				{
+					Debug.Log("Height is: " + Height);
+					GameObject gameObject = Object.Instantiate(BloodyFootprint, new Vector3(base.transform.position.x, Height + 0.013f, base.transform.position.z), Quaternion.identity);
+					gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, base.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
+					FootprintScript component = gameObject.transform.GetChild(0).GetComponent<FootprintScript>();
+					gameObject.transform.parent = BloodParent;
+					component.Yandere = Yandere;
+					component.StudentBloodID = StudentBloodID;
+					Bloodiness--;
+				}
 			}
 		}
 	}

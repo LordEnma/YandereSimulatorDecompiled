@@ -15,9 +15,15 @@ public class UpdateCheckScript : MonoBehaviour
 
 	private IEnumerator Check()
 	{
-		using UnityWebRequest request = UnityWebRequest.Get("https://yanderesimulator.com/version.txt");
+		using UnityWebRequest request = UnityWebRequest.Get("https://yanderesimulator.com/version.txt?{DateTimeOffset.Now.Ticks}");
 		yield return request.SendWebRequest();
-		if (request.result != UnityWebRequest.Result.Success || request.downloadHandler.text == CurrentVersionNumber)
+		if (request.result != UnityWebRequest.Result.Success)
+		{
+			yield break;
+		}
+		string text = request.downloadHandler.text;
+		Debug.Log("version.txt says: " + text + ". The current version number is " + CurrentVersionNumber);
+		if (text == CurrentVersionNumber)
 		{
 			yield break;
 		}

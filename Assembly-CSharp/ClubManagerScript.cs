@@ -568,7 +568,7 @@ public class ClubManagerScript : MonoBehaviour
 					studentScript8.ClubActivity = true;
 					studentScript8.Talking = false;
 					studentScript8.Routine = true;
-					if (!studentScript8.ClubAttire)
+					if (!studentScript8.ClubAttire && !StudentManager.Eighties)
 					{
 						studentScript8.ChangeClubwear();
 					}

@@ -126,8 +126,10 @@ public class HomePrisonerScript : MonoBehaviour
 		{
 			Sanity = StudentGlobals.GetStudentSanity(PrisonerManager.StudentID);
 			Health = StudentGlobals.GetStudentHealth(PrisonerManager.StudentID);
-			if (Health > 0f && (float)Sanity < 100f)
+			Debug.Log("Prisoner #" + PrisonerManager.StudentID + "'s Sanity is " + Sanity + " and Health is " + Health);
+			if (!Initialized && Health > 0f && (float)Sanity < 100f)
 			{
+				Debug.Log("Prisoner # " + PrisonerManager.ChosenPrisoner + " is now having their animation updated.");
 				Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
 			}
 		}
@@ -145,25 +147,28 @@ public class HomePrisonerScript : MonoBehaviour
 		{
 			Descriptions[i] = "If you torture your prisoner for " + Hours[i] + ", you will reduce her sanity by " + (SanityNumbers[i] + ClassGlobals.PsychologyGrade * 10) + "%, and " + Notes[i];
 		}
-		if ((float)Sanity == 100f)
+		if (Initialized)
 		{
-			BanterText = FullSanityBanterText;
-			Banter = FullSanityBanter;
-		}
-		else if ((float)Sanity >= 50f)
-		{
-			BanterText = HighSanityBanterText;
-			Banter = HighSanityBanter;
-		}
-		else if ((float)Sanity == 0f)
-		{
-			BanterText = NoSanityBanterText;
-			Banter = NoSanityBanter;
-		}
-		else
-		{
-			BanterText = LowSanityBanterText;
-			Banter = LowSanityBanter;
+			if ((float)Sanity == 100f)
+			{
+				BanterText = FullSanityBanterText;
+				Banter = FullSanityBanter;
+			}
+			else if ((float)Sanity >= 50f)
+			{
+				BanterText = HighSanityBanterText;
+				Banter = HighSanityBanter;
+			}
+			else if ((float)Sanity == 0f)
+			{
+				BanterText = NoSanityBanterText;
+				Banter = NoSanityBanter;
+			}
+			else
+			{
+				BanterText = LowSanityBanterText;
+				Banter = LowSanityBanter;
+			}
 		}
 		OptionLabels[1].alpha = 1f;
 		OptionLabels[2].alpha = 1f;

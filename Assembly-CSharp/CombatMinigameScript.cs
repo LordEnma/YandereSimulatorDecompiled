@@ -301,6 +301,7 @@ public class CombatMinigameScript : MonoBehaviour
 							MyVocals.clip = Vocals[Path];
 							MyVocals.time = Yandere.CharacterAnimation["Yandere_CombatE"].time;
 							MyVocals.Play();
+							Delinquent.StudentManager.DisableAllStudentScripts();
 						}
 					}
 				}

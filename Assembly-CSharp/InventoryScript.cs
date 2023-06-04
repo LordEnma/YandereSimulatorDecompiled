@@ -39,6 +39,8 @@ public class InventoryScript : MonoBehaviour
 
 	public bool Headset;
 
+	public bool Bikini;
+
 	public bool FakeID;
 
 	public bool IDCard;

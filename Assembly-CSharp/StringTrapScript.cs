@@ -49,7 +49,7 @@ public class StringTrapScript : MonoBehaviour
 		}
 		Debug.Log("A character just came into contact with a tripwire trap!");
 		StudentScript component = other.gameObject.GetComponent<StudentScript>();
-		if (!(component != null) || component.ClubActivityPhase >= 16)
+		if (!(component != null) || !component.Pathfinding.canMove || component.ClubActivityPhase >= 16)
 		{
 			return;
 		}

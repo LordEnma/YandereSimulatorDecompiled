@@ -26,6 +26,14 @@ public class ChallengeMangerScript : MonoBehaviour
 
 	public GameObject RivalsOnlyIcon;
 
+	public Texture NewspaperIcon;
+
+	public Texture YakuzaIcon;
+
+	public UITexture GamingIcon;
+
+	public UITexture InfoIcon;
+
 	public bool KnifeOnly;
 
 	public bool NoAlerts;
@@ -150,6 +158,11 @@ public class ChallengeMangerScript : MonoBehaviour
 
 	private void UpdateIcons()
 	{
+		if (GameGlobals.Eighties)
+		{
+			GamingIcon.mainTexture = NewspaperIcon;
+			InfoIcon.mainTexture = YakuzaIcon;
+		}
 		KnifeOnlyIcon.SetActive(KnifeOnly);
 		NoAlertsIcon.SetActive(NoAlerts);
 		NoBagIcon.SetActive(NoBag);

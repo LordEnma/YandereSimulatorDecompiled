@@ -50,8 +50,9 @@ public class ClubWindowScript : MonoBehaviour
 		Window.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
-			ActivityDescs[7] = "The Photography Club review each others' photographs and share advice on how to improve.";
+			ActivityDescs[7] = "Every member of the Photography Club reviews each others' photographs and shares advice on how to improve.";
 			ClubDescs[7] = "If you join the Photography Club, you will gain access to a camera, and the Photography Club will not consider you to be a potential suspect if they are searching for a killer at school.";
+			ActivityDescs[8] = "The Science Club performs a wide variety of scientific experiments.";
 			ClubDescs[8] = "If you join the Science Club, you will have easy access to an emergency shower that can be used for changing out of a bloody outfit, and a vat of acid that can be used for disposing of corpses.";
 		}
 		if (SchoolGlobals.SchoolAtmosphere <= 0.9f)

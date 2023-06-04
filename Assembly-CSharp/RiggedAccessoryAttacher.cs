@@ -147,7 +147,10 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 
 	public void RemoveAccessory()
 	{
-		Object.Destroy(newRenderer);
+		if (newRenderer != null)
+		{
+			newRenderer.enabled = false;
+		}
 	}
 
 	private void AddLimb(GameObject bonedObj, GameObject rootObj, Material[] bonedObjMaterials)

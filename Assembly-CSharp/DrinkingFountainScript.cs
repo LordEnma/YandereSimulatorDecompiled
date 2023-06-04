@@ -73,6 +73,11 @@ public class DrinkingFountainScript : MonoBehaviour
 			if (Prompt.Circle[0].fillAmount == 0f)
 			{
 				Prompt.Circle[0].fillAmount = 1f;
+				if (Prompt.Yandere.YandereVision)
+				{
+					Prompt.Yandere.YandereVision = false;
+					Prompt.Yandere.ResetYandereEffects();
+				}
 				Prompt.Yandere.CharacterAnimation.CrossFade("f02_cleaningWeapon_00");
 				Prompt.Yandere.Target = DrinkPosition;
 				Prompt.Yandere.CleaningWeapon = true;

@@ -66,7 +66,7 @@ public class BookbagScript : MonoBehaviour
 			Prompt.Yandere.NotificationManager.CustomText = "That's too dangerous!";
 			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		}
-		else if (Prompt.Yandere.PickUp.TrashCan == null && !Prompt.Yandere.PickUp.JerryCan && !Prompt.Yandere.PickUp.Mop && !Prompt.Yandere.PickUp.Bucket && !Prompt.Yandere.PickUp.Bleach && !Prompt.Yandere.PickUp.TooBig && !Prompt.Yandere.PickUp.Weight)
+		else if (Prompt.Yandere.PickUp.TrashCan == null && !Prompt.Yandere.PickUp.JerryCan && !Prompt.Yandere.PickUp.Mop && !Prompt.Yandere.PickUp.Bucket && !Prompt.Yandere.PickUp.Bleach && !Prompt.Yandere.PickUp.TooBig && !Prompt.Yandere.PickUp.Weight && !Prompt.Yandere.PickUp.BodyPart)
 		{
 			Prompt.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
 			Prompt.Yandere.ReachWeight = 1f;

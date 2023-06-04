@@ -309,7 +309,7 @@ public class DoorScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (!Open && Timer >= TimeLimit)
 			{
-				if (DoorColliders[0] == null)
+				if (DoorColliders.Length != 0 && DoorColliders[0] == null)
 				{
 					Initialized = false;
 				}
@@ -317,8 +317,11 @@ public class DoorScript : MonoBehaviour
 				{
 					Start();
 				}
-				DoorColliders[0].isTrigger = false;
-				if (DoorColliders[1] != null)
+				if (DoorColliders.Length != 0)
+				{
+					DoorColliders[0].isTrigger = false;
+				}
+				if (DoorColliders.Length > 1 && DoorColliders[1] != null)
 				{
 					DoorColliders[1].isTrigger = false;
 				}
@@ -443,7 +446,7 @@ public class DoorScript : MonoBehaviour
 
 	public void OpenDoor()
 	{
-		if (DoorColliders[0] == null)
+		if (DoorColliders.Length == 0 || DoorColliders[0] == null)
 		{
 			Initialized = false;
 		}

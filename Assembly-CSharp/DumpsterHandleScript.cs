@@ -37,8 +37,8 @@ public class DumpsterHandleScript : MonoBehaviour
 				Prompt.Yandere.DumpsterHandle = this;
 				Prompt.Yandere.CanMove = false;
 				PromptBar.ClearButtons();
-				PromptBar.Label[1].text = "STOP";
-				PromptBar.Label[5].text = "PUSH / PULL";
+				PromptBar.Label[1].text = "Stop";
+				PromptBar.Label[5].text = "Push / Pull";
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 				Grabbed = true;

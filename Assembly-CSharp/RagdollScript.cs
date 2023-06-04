@@ -403,7 +403,7 @@ public class RagdollScript : MonoBehaviour
 							}
 							else
 							{
-								Yandere.NotificationManager.CustomText = "Wait until fire goes out";
+								Yandere.NotificationManager.CustomText = "Wait until the fire goes out!";
 								Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 							}
 						}
@@ -495,6 +495,11 @@ public class RagdollScript : MonoBehaviour
 							StopDragging();
 						}
 					}
+					else
+					{
+						Yandere.NotificationManager.CustomText = "Wait until the fire goes out!";
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					}
 				}
 				if (Prompt.Circle[3].fillAmount == 0f)
 				{
@@ -543,6 +548,11 @@ public class RagdollScript : MonoBehaviour
 						FallTimer = 0f;
 						RigidbodiesManuallyDisabled = false;
 						TeleportNextFrame = false;
+					}
+					else
+					{
+						Yandere.NotificationManager.CustomText = "Wait until the fire goes out!";
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					}
 				}
 				if (Yandere.Running && Yandere.CanMove && Dragged)

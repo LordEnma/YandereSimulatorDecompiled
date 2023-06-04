@@ -126,6 +126,8 @@ public class PickUpScript : MonoBehaviour
 
 	public bool Flashlight;
 
+	public bool KeepActive;
+
 	public bool PuzzleCube;
 
 	public bool StinkBombs;
@@ -273,6 +275,7 @@ public class PickUpScript : MonoBehaviour
 			Prompt.Label[3].text = "     " + Prompt.Text[3];
 			BodyBags = 1;
 		}
+		KeepActive = true;
 	}
 
 	private void LateUpdate()

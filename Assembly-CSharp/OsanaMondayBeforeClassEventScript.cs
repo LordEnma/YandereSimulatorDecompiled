@@ -90,7 +90,6 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 							Rival.InEvent = true;
 							if (Rival.Follower != null && !Rival.Follower.ReturningMisplacedWeapon && Rival.Follower.DistanceToDestination < 5f)
 							{
-								Debug.Log("Raibaru will be joining Osana for her bento event.");
 								Rival.Follower.TargetDistance = 1.5f;
 								Rival.Follower.InEvent = true;
 								Rival.Follower.CurrentDestination = Rival.FollowTargetDestination;

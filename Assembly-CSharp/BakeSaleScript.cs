@@ -28,7 +28,7 @@ public class BakeSaleScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 60f && StudentManager.Students[ID] != null)
 			{
-				if (ID < 86 && StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors)
+				if (ID < 86 && StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors && !StudentManager.Students[ID].Slave)
 				{
 					Debug.Log(StudentManager.Students[ID].Name + " has decided to go to the bake sale.");
 					Timer = 0f;

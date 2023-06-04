@@ -202,9 +202,9 @@ public class TapePlayerMenuScript : MonoBehaviour
 					TapePlayerAnim.Play("PressPlay");
 					MyAudio.pitch = 1f;
 					MyAudio.Play();
-					PromptBar.Label[0].text = "PAUSE";
-					PromptBar.Label[1].text = "STOP";
-					PromptBar.Label[5].text = "REWIND / FAST FORWARD";
+					PromptBar.Label[0].text = "Pause";
+					PromptBar.Label[1].text = "Stop";
+					PromptBar.Label[5].text = "Rewind / Fast Forward";
 					PromptBar.UpdateButtons();
 					Phase++;
 				}
@@ -234,7 +234,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						Debug.Log("The player just pressed the ''A'' button to pause it.");
-						PromptBar.Label[0].text = "PAUSE";
+						PromptBar.Label[0].text = "Pause";
 						TapePlayer.Spin = true;
 						MyAudio.time = ResumeTime;
 						MyAudio.Play();
@@ -266,7 +266,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 						Debug.Log("The player just pressed the ''A'' button to unpause it.");
 						if (MyAudio.isPlaying)
 						{
-							PromptBar.Label[0].text = "PLAY";
+							PromptBar.Label[0].text = "Play";
 							TapePlayer.Spin = false;
 							ResumeTime = MyAudio.time;
 							MyAudio.Stop();
@@ -312,10 +312,10 @@ public class TapePlayerMenuScript : MonoBehaviour
 					Jukebox.SetActive(value: true);
 					Listening = false;
 					Timer = 0f;
-					PromptBar.Label[0].text = "PLAY";
-					PromptBar.Label[1].text = "BACK";
-					PromptBar.Label[4].text = "CHOOSE";
-					PromptBar.Label[5].text = "CATEGORY";
+					PromptBar.Label[0].text = "Play";
+					PromptBar.Label[1].text = "Back";
+					PromptBar.Label[4].text = "Choose";
+					PromptBar.Label[5].text = "Category";
 					PromptBar.UpdateButtons();
 					if (Category == 1)
 					{
@@ -788,17 +788,17 @@ public class TapePlayerMenuScript : MonoBehaviour
 	{
 		if (Category == 1)
 		{
-			TapePlayer.PromptBar.Label[0].text = (StudentManager.TapesCollected[Selected] ? "PLAY" : string.Empty);
+			TapePlayer.PromptBar.Label[0].text = (StudentManager.TapesCollected[Selected] ? "Play" : string.Empty);
 			TapePlayer.PromptBar.UpdateButtons();
 		}
 		else if (Category == 2)
 		{
-			TapePlayer.PromptBar.Label[0].text = (CollectibleGlobals.GetBasementTapeCollected(Selected) ? "PLAY" : string.Empty);
+			TapePlayer.PromptBar.Label[0].text = (CollectibleGlobals.GetBasementTapeCollected(Selected) ? "Play" : string.Empty);
 			TapePlayer.PromptBar.UpdateButtons();
 		}
 		else
 		{
-			TapePlayer.PromptBar.Label[0].text = (StudentManager.HeadmasterTapesCollected[Selected] ? "PLAY" : string.Empty);
+			TapePlayer.PromptBar.Label[0].text = (StudentManager.HeadmasterTapesCollected[Selected] ? "Play" : string.Empty);
 			TapePlayer.PromptBar.UpdateButtons();
 		}
 	}

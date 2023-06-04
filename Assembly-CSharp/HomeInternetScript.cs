@@ -393,11 +393,6 @@ public class HomeInternetScript : MonoBehaviour
 						Success = true;
 					}
 				}
-				if (Input.GetKeyDown("space"))
-				{
-					WriteLabel.SetActive(value: true);
-					WriteIcon.SetActive(value: true);
-				}
 			}
 			if (!PostSequence)
 			{

@@ -85,6 +85,7 @@ public class AlphabetScript : MonoBehaviour
 			Limit = 79;
 			if (GameGlobals.Eighties)
 			{
+				StudentManager.EnableAllOutlines();
 				IDs = EightiesIDs;
 				Limit = 79;
 			}

@@ -266,6 +266,11 @@ public class JournalistScript : MonoBehaviour
 			}
 			return;
 		}
+		if (Yandere.TimeSkipping)
+		{
+			Yandere.StudentManager.Clock.EndTimeSkip();
+			Yandere.CanMoveTimer = 0f;
+		}
 		Yandere.CanMove = false;
 		targetRotation = Quaternion.LookRotation(base.transform.position - Yandere.transform.position);
 		Yandere.transform.rotation = Quaternion.Slerp(Yandere.transform.rotation, targetRotation, 10f * Time.deltaTime);

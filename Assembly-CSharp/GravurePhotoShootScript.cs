@@ -13,9 +13,14 @@ public class GravurePhotoShootScript : MonoBehaviour
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
 			Prompt.Circle[0].fillAmount = 1f;
-			if (Prompt.Yandere.Schoolwear != 2)
+			bool flag = false;
+			if (Prompt.Yandere.EightiesBikiniAttacher.newRenderer != null && Prompt.Yandere.EightiesBikiniAttacher.newRenderer.enabled)
 			{
-				Prompt.Yandere.NotificationManager.CustomText = "Go change into a swimsuit first!";
+				flag = true;
+			}
+			if (!flag)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Go change into a bikini first!";
 				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				return;
 			}

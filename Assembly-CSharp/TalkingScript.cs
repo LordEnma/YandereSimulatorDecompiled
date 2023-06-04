@@ -2017,13 +2017,8 @@ public class TalkingScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (!S.Talking || !(S.Yandere.TalkTimer <= 0f))
+		if (!S.Talking || !(S.Yandere.TalkTimer <= 0f) || (!S.Male && S.Club == ClubType.Delinquent))
 		{
-			return;
-		}
-		if (!S.Male && S.Club == ClubType.Delinquent)
-		{
-			Debug.Log("This is a female delinquent, wearing a mask. No need for lip movement.");
 			return;
 		}
 		if (S.Subtitle.CurrentClip != null)
@@ -2039,7 +2034,15 @@ public class TalkingScript : MonoBehaviour
 		}
 		if (AudioData.MyAudioSource != null)
 		{
-			S.Jaw.transform.localEulerAngles += new Vector3(0f, 0f, AudioData.g[1].transform.position.y);
+			S.Jaw.localEulerAngles += new Vector3(0f, 0f, AudioData.g[1].transform.position.y);
+			if (S.Jaw.localEulerAngles.z < 40f)
+			{
+				S.Jaw.localEulerAngles = new Vector3(S.Jaw.localEulerAngles.x, S.Jaw.localEulerAngles.y, 40f);
+			}
+			else if (S.Jaw.localEulerAngles.z > 55f)
+			{
+				S.Jaw.localEulerAngles = new Vector3(S.Jaw.localEulerAngles.x, S.Jaw.localEulerAngles.y, 55f);
+			}
 		}
 	}
 }

@@ -52,6 +52,8 @@ public class TallLockerScript : MonoBehaviour
 
 	public int Phase = 1;
 
+	public bool Bikini;
+
 	private void Start()
 	{
 		Prompt.HideButton[1] = true;
@@ -316,6 +318,7 @@ public class TallLockerScript : MonoBehaviour
 					}
 					Yandere.UpdateHair();
 				}
+				Debug.Log("The locker is now instructing the player to ChangeSchoolwear()");
 				Yandere.ChangeSchoolwear();
 				if (Yandere.Bloodiness > 0f)
 				{
@@ -462,6 +465,10 @@ public class TallLockerScript : MonoBehaviour
 		Prompt.Label[1].text = "     School Uniform";
 		Prompt.Label[2].text = "     School Swimsuit";
 		Prompt.Label[3].text = "     Gym Uniform";
+		if (Bikini)
+		{
+			Prompt.Label[2].text = "     Bikini";
+		}
 		if (YandereLocker)
 		{
 			if (!Yandere.ClubAttire)

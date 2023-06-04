@@ -337,6 +337,14 @@ public class OsanaPoolEventScript : MonoBehaviour
 		}
 		if (Murdering)
 		{
+			if (PlayerGlobals.PantiesEquipped == 10)
+			{
+				Yandere.Sanity -= Time.deltaTime * 5f * Yandere.Numbness;
+			}
+			else
+			{
+				Yandere.Sanity -= Time.deltaTime * 10f * Yandere.Numbness;
+			}
 			if (Yandere.Chased)
 			{
 				Murdering = false;
