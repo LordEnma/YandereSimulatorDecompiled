@@ -83,7 +83,7 @@ public class ZoomScript : MonoBehaviour
 		{
 			Slender = Mathf.Lerp(Slender, 2.5f, Time.deltaTime);
 		}
-		else if (Yandere.Slender || Yandere.Stand.Stand.activeInHierarchy || Yandere.Blasting || Yandere.PK || Yandere.Shipgirl || TallHat.activeInHierarchy || Yandere.Man.activeInHierarchy || (Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Scythe) || Yandere.Pod.activeInHierarchy || Yandere.LucyHelmet.activeInHierarchy || Yandere.Kagune[0].activeInHierarchy || Yandere.Demonic || Yandere.FloppyHat.activeInHierarchy)
+		else if (Yandere.Slender || Yandere.Stand.Stand.activeInHierarchy || Yandere.Blasting || Yandere.PK || Yandere.Shipgirl || TallHat.activeInHierarchy || Yandere.Man.activeInHierarchy || (Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Scythe) || Yandere.Pod.activeInHierarchy || Yandere.LucyHelmet.activeInHierarchy || Yandere.Kagune[0].activeInHierarchy || Yandere.Demonic || Yandere.FloppyHat.activeInHierarchy || Yandere.TitanSword[0].activeInHierarchy)
 		{
 			Slender = Mathf.Lerp(Slender, 0.5f, Time.deltaTime);
 		}

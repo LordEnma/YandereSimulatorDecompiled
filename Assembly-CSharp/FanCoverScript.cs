@@ -151,7 +151,7 @@ public class FanCoverScript : MonoBehaviour
 			}
 			if (Yandere.CharacterAnimation["f02_fanMurderA_00"].time > 5f)
 			{
-				Rival.LiquidProjector.material.mainTexture = Rival.BloodTexture;
+				Rival.LiquidProjector.material = Rival.BloodMaterial;
 				Rival.LiquidProjector.enabled = true;
 				Rival.EyeShrink = 1f;
 				Yandere.BloodTextures = YandereBloodTextures;

@@ -4310,11 +4310,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (DigPhase == 4 && CharacterAnimation["f02_shovelDig_00"].time >= CharacterAnimation["f02_shovelDig_00"].length)
 			{
-				EquippedWeapon.gameObject.SetActive(value: true);
-				FloatingShovel.SetActive(value: false);
-				RPGCamera.enabled = true;
-				Digging = false;
-				CanMove = true;
+				StopDigging();
 			}
 		}
 		if (Burying)
@@ -4340,11 +4336,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (CharacterAnimation["f02_shovelBury_00"].time >= CharacterAnimation["f02_shovelBury_00"].length)
 			{
-				EquippedWeapon.gameObject.SetActive(value: true);
-				FloatingShovel.SetActive(value: false);
-				RPGCamera.enabled = true;
-				Burying = false;
-				CanMove = true;
+				StopBurying();
 			}
 		}
 		if (Pickpocketing && !Noticed && Caught)
@@ -6047,14 +6039,14 @@ public class YandereScript : MonoBehaviour
 						TargetStudent.LiquidProjector.enabled = true;
 						EquippedWeapon.Effect();
 						StainWeapon();
-						TargetStudent.LiquidProjector.material.mainTexture = BloodTextures[1];
+						TargetStudent.LiquidProjector.material = TargetStudent.BloodMaterial;
 						Bloodiness += 20f;
 						AttackPhase++;
 					}
 				}
 				else if (AttackPhase < 6 && CharacterAnimation["f02_buzzSawKill_A_00"].time > 1f / 3f * (float)AttackPhase)
 				{
-					TargetStudent.LiquidProjector.material.mainTexture = BloodTextures[AttackPhase];
+					TargetStudent.LiquidProjector.material = TargetStudent.BloodMaterial;
 					Bloodiness += 20f;
 					AttackPhase++;
 				}
@@ -7554,8 +7546,8 @@ public class YandereScript : MonoBehaviour
 	private void AttackOnTitan()
 	{
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = TitanFaceTexture;
-		MyRenderer.materials[1].mainTexture = TitanBodyTexture;
+		MyRenderer.materials[0].mainTexture = TitanBodyTexture;
+		MyRenderer.materials[1].mainTexture = TitanFaceTexture;
 		MyRenderer.materials[2].mainTexture = TitanBodyTexture;
 		DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 		PantyAttacher.newRenderer.enabled = false;
@@ -7818,8 +7810,8 @@ public class YandereScript : MonoBehaviour
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		MyRenderer.materials[0].mainTexture = FalconFace;
-		MyRenderer.materials[1].mainTexture = FalconBody;
+		MyRenderer.materials[0].mainTexture = FalconBody;
+		MyRenderer.materials[1].mainTexture = FalconFace;
 		MyRenderer.materials[2].mainTexture = FalconBody;
 		FalconShoulderpad.SetActive(value: true);
 		FalconKneepad1.SetActive(value: true);
@@ -7888,8 +7880,8 @@ public class YandereScript : MonoBehaviour
 		IdleAnim = "CyborgNinja_Idle_Unarmed";
 		RunAnim = "CyborgNinja_Run_Unarmed";
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = CyborgFace;
-		MyRenderer.materials[1].mainTexture = CyborgBody;
+		MyRenderer.materials[0].mainTexture = CyborgBody;
+		MyRenderer.materials[1].mainTexture = CyborgFace;
 		MyRenderer.materials[2].mainTexture = CyborgBody;
 		Schoolwear = 0;
 		for (ID = 1; ID < CyborgParts.Length; ID++)
@@ -7950,8 +7942,8 @@ public class YandereScript : MonoBehaviour
 	{
 		Debug.Log("Making Yandere-chan nude.");
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = FaceTexture;
-		MyRenderer.materials[1].mainTexture = NudeTexture;
+		MyRenderer.materials[0].mainTexture = NudeTexture;
+		MyRenderer.materials[1].mainTexture = FaceTexture;
 		for (ID = 0; ID < CensorSteam.Length; ID++)
 		{
 		}
@@ -7982,11 +7974,11 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = SamusFace;
-		MyRenderer.materials[1].mainTexture = SamusBody;
+		MyRenderer.materials[0].mainTexture = SamusBody;
+		MyRenderer.materials[1].mainTexture = SamusFace;
 		PantyAttacher.newRenderer.enabled = false;
 		Schoolwear = 0;
-		PonytailRenderer.material.mainTexture = SamusFace;
+		PonytailRenderer.material.mainTexture = BlondePony;
 		Egg = true;
 		DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
@@ -7996,8 +7988,8 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = WitchFace;
-		MyRenderer.materials[1].mainTexture = WitchBody;
+		MyRenderer.materials[0].mainTexture = WitchBody;
+		MyRenderer.materials[1].mainTexture = WitchFace;
 		PantyAttacher.newRenderer.enabled = false;
 		Schoolwear = 0;
 		IdleAnim = "f02_idleElegant_00";
@@ -8110,8 +8102,8 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = BlackHoleFace;
-		MyRenderer.materials[1].mainTexture = Black;
+		MyRenderer.materials[0].mainTexture = Black;
+		MyRenderer.materials[1].mainTexture = BlackHoleFace;
 		MyRenderer.materials[2].mainTexture = Black;
 		PantyAttacher.newRenderer.enabled = false;
 		Schoolwear = 0;
@@ -8134,8 +8126,8 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = FaceTexture;
-		MyRenderer.materials[1].mainTexture = NudeTexture;
+		MyRenderer.materials[0].mainTexture = NudeTexture;
+		MyRenderer.materials[1].mainTexture = FaceTexture;
 		MyRenderer.materials[2].mainTexture = NudeTexture;
 		GameObject[] vectors = Vectors;
 		for (int i = 0; i < vectors.Length; i++)
@@ -8163,8 +8155,8 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = GhoulFace;
-		MyRenderer.materials[1].mainTexture = GhoulBody;
+		MyRenderer.materials[0].mainTexture = GhoulBody;
+		MyRenderer.materials[1].mainTexture = GhoulFace;
 		MyRenderer.materials[2].mainTexture = GhoulBody;
 		GameObject[] kagune = Kagune;
 		for (int i = 0; i < kagune.Length; i++)
@@ -8206,8 +8198,8 @@ public class YandereScript : MonoBehaviour
 		SithHardSpawnTime2 = NierHardSpawnTime;
 		SithAudio.clip = NierSwoosh;
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = Scarface;
-		MyRenderer.materials[1].mainTexture = Chainmail;
+		MyRenderer.materials[0].mainTexture = Chainmail;
+		MyRenderer.materials[1].mainTexture = Scarface;
 		MyRenderer.materials[2].mainTexture = Chainmail;
 		PantyAttacher.newRenderer.enabled = false;
 		Schoolwear = 0;
@@ -8274,8 +8266,8 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		GazerEyes.gameObject.SetActive(value: true);
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = GazerFace;
-		MyRenderer.materials[1].mainTexture = GazerBody;
+		MyRenderer.materials[0].mainTexture = GazerBody;
+		MyRenderer.materials[1].mainTexture = GazerFace;
 		MyRenderer.materials[2].mainTexture = GazerBody;
 		PantyAttacher.newRenderer.enabled = false;
 		Schoolwear = 0;
@@ -8310,8 +8302,8 @@ public class YandereScript : MonoBehaviour
 		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		MyRenderer.materials[0].mainTexture = SixFaceTexture;
-		MyRenderer.materials[1].mainTexture = NudeTexture;
+		MyRenderer.materials[0].mainTexture = NudeTexture;
+		MyRenderer.materials[1].mainTexture = SixFaceTexture;
 		MyRenderer.materials[2].mainTexture = NudeTexture;
 		TheDebugMenuScript.UpdateCensor();
 		SchoolGlobals.SchoolAtmosphere = 0f;
@@ -8362,8 +8354,8 @@ public class YandereScript : MonoBehaviour
 		IdleAnim = "f02_heroicIdle_00";
 		WalkAnim = "f02_walkConfident_00";
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = KLKFace;
-		MyRenderer.materials[1].mainTexture = KLKBody;
+		MyRenderer.materials[0].mainTexture = KLKBody;
+		MyRenderer.materials[1].mainTexture = KLKFace;
 		MyRenderer.materials[2].mainTexture = KLKBody;
 		PantyAttacher.newRenderer.enabled = false;
 		Schoolwear = 0;
@@ -8390,8 +8382,8 @@ public class YandereScript : MonoBehaviour
 		IdleAnim = "f02_idleGirly_00";
 		WalkAnim = "f02_walkGirly_00";
 		MyRenderer.sharedMesh = NudeMesh;
-		MyRenderer.materials[0].mainTexture = MiyukiFace;
-		MyRenderer.materials[1].mainTexture = MiyukiSkin;
+		MyRenderer.materials[0].mainTexture = MiyukiSkin;
+		MyRenderer.materials[1].mainTexture = MiyukiFace;
 		MyRenderer.materials[2].mainTexture = MiyukiSkin;
 		OriginalIdleAnim = IdleAnim;
 		OriginalWalkAnim = WalkAnim;
@@ -8749,9 +8741,6 @@ public class YandereScript : MonoBehaviour
 				{
 					EightiesBikiniAttacher.newRenderer.enabled = true;
 				}
-				BreastSize = 1.1f;
-				RightBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
-				LeftBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
 				Nude();
 				Schoolwear = 2;
 			}
@@ -8765,12 +8754,6 @@ public class YandereScript : MonoBehaviour
 				MyRenderer.materials[0].mainTexture = SwimsuitTexture;
 				MyRenderer.materials[1].mainTexture = SwimsuitTexture;
 				MyRenderer.materials[2].mainTexture = FaceTexture;
-				if (StudentManager.Eighties)
-				{
-					BreastSize = 1.5f;
-					RightBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
-					LeftBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
-				}
 			}
 		}
 		else if (Schoolwear == 3)
@@ -9526,5 +9509,23 @@ public class YandereScript : MonoBehaviour
 			}
 		}
 		HollowFilter = components[3];
+	}
+
+	public void StopDigging()
+	{
+		EquippedWeapon.gameObject.SetActive(value: true);
+		FloatingShovel.SetActive(value: false);
+		RPGCamera.enabled = true;
+		Digging = false;
+		CanMove = true;
+	}
+
+	public void StopBurying()
+	{
+		EquippedWeapon.gameObject.SetActive(value: true);
+		FloatingShovel.SetActive(value: false);
+		RPGCamera.enabled = true;
+		Burying = false;
+		CanMove = true;
 	}
 }

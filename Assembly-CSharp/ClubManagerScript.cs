@@ -837,7 +837,6 @@ public class ClubManagerScript : MonoBehaviour
 
 	public void CheckGrudge(ClubType Check)
 	{
-		Debug.Log("Checking " + Check.ToString() + " Club for a grudge...");
 		switch (Check)
 		{
 		case ClubType.Cooking:

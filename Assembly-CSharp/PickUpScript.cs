@@ -518,6 +518,11 @@ public class PickUpScript : MonoBehaviour
 		{
 			Flame.transform.localScale = new Vector3(Random.Range(17.5f, 22.5f), Random.Range(17.5f, 22.5f), Random.Range(17.5f, 22.5f));
 		}
+		if (InsideBookbag && base.gameObject.activeInHierarchy)
+		{
+			Prompt.Yandere.StudentManager.BookBag.ConcealedPickup = this;
+			base.gameObject.SetActive(value: false);
+		}
 	}
 
 	public void BePickedUp()

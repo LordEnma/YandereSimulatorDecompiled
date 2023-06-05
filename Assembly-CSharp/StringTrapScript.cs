@@ -39,6 +39,10 @@ public class StringTrapScript : MonoBehaviour
 				StudentManager.Students[StudentManager.RivalID].GasWarned = true;
 			}
 		}
+		if (WaterCooler.TrapSet && WaterCooler.Prompt.Yandere.ShoulderCamera.GoingToCounselor)
+		{
+			WaterCooler.RemoveTrap();
+		}
 	}
 
 	private void OnTriggerStay(Collider other)

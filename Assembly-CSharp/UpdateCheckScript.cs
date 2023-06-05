@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -15,7 +16,7 @@ public class UpdateCheckScript : MonoBehaviour
 
 	private IEnumerator Check()
 	{
-		using UnityWebRequest request = UnityWebRequest.Get("https://yanderesimulator.com/version.txt?{DateTimeOffset.Now.Ticks}");
+		using UnityWebRequest request = UnityWebRequest.Get("https://yanderesimulator.com/version.txt?" + DateTime.Now.Ticks);
 		yield return request.SendWebRequest();
 		if (request.result != UnityWebRequest.Result.Success)
 		{

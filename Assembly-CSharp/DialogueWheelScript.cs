@@ -731,7 +731,7 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite10 = Shadow[3];
 			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.75f);
 		}
-		if (!Yandere.TargetStudent.Indoors || Yandere.TargetStudent.Club == ClubType.Council || NoFriends)
+		if (!Yandere.TargetStudent.Indoors || Yandere.TargetStudent.Club == ClubType.Council)
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
@@ -880,6 +880,11 @@ public class DialogueWheelScript : MonoBehaviour
 			}
 			_ = Yandere.TargetStudent.CurrentAction;
 			_ = 30;
+		}
+		if (NoFriends)
+		{
+			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+			Shadow[6].color = new Color(0f, 0f, 0f, 0.75f);
 		}
 		if (Yandere.Club == Yandere.TargetStudent.Club)
 		{

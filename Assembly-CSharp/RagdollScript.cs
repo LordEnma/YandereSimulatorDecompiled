@@ -943,7 +943,7 @@ public class RagdollScript : MonoBehaviour
 				PlayerPrefs.SetInt("a", 1);
 			}
 		}
-		Student.LiquidProjector.material.mainTexture = Student.BloodTexture;
+		Student.LiquidProjector.material = Student.BloodMaterial;
 		if (MyTarp == null)
 		{
 			for (int i = 0; i < BodyParts.Length; i++)

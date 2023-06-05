@@ -1712,6 +1712,14 @@ public class StudentScript : MonoBehaviour
 
 	public GameObject EightiesPhone;
 
+	public Material BloodMaterial;
+
+	public Material BrownMaterial;
+
+	public Material WaterMaterial;
+
+	public Material GasMaterial;
+
 	public GameObject JojoHitEffect;
 
 	public GameObject[] ElectroSteam;
@@ -7055,7 +7063,7 @@ public class StudentScript : MonoBehaviour
 					else if (Actions[Phase] == StudentActionType.Bully)
 					{
 						CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-						if (StudentManager.Students[StudentManager.VictimID] != null && StudentManager.Students[StudentManager.VictimID].Alive && StudentManager.Students[StudentManager.VictimID].Tranquil)
+						if (StudentManager.Students[StudentManager.VictimID] != null && StudentManager.Students[StudentManager.VictimID].Alive && !StudentManager.Students[StudentManager.VictimID].Tranquil)
 						{
 							if (StudentManager.Students[StudentManager.VictimID].Distracted)
 							{
@@ -7171,6 +7179,7 @@ public class StudentScript : MonoBehaviour
 							}
 							if (CharacterAnimation["f02_bullyLaugh_00"].time >= CharacterAnimation["f02_bullyLaugh_00"].length || StudentManager.Students[81].BullyPhase == 4 || BullyPhase == 4)
 							{
+								Debug.Log("The bullying event has ended.");
 								CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 								DistanceToDestination = 100f;
 								ScheduleBlock obj14 = ScheduleBlocks[4];
@@ -7184,6 +7193,7 @@ public class StudentScript : MonoBehaviour
 						}
 						else
 						{
+							Debug.Log("This code is called when the bullies' victim is missing or dead.");
 							CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 							DistanceToDestination = 100f;
 							ScheduleBlock obj15 = ScheduleBlocks[4];
@@ -9695,12 +9705,14 @@ public class StudentScript : MonoBehaviour
 			DistanceToDestination = Vector3.Distance(base.transform.position, Pathfinding.target.position);
 			if (DistanceToDestination > 2f)
 			{
+				FollowCountdown.Sprite.fillAmount = Mathf.MoveTowards(FollowCountdown.Sprite.fillAmount, 0f, Time.deltaTime * 0.01f);
 				CharacterAnimation.CrossFade(RunAnim);
 				Pathfinding.speed = 4f;
 				Obstacle.enabled = false;
 			}
 			else if (DistanceToDestination > 1f)
 			{
+				FollowCountdown.Sprite.fillAmount = Mathf.MoveTowards(FollowCountdown.Sprite.fillAmount, 0f, Time.deltaTime * 0.01f);
 				CharacterAnimation.CrossFade(OriginalWalkAnim);
 				Pathfinding.canMove = true;
 				Obstacle.enabled = false;
@@ -9708,6 +9720,7 @@ public class StudentScript : MonoBehaviour
 			}
 			else
 			{
+				FollowCountdown.Sprite.fillAmount = Mathf.MoveTowards(FollowCountdown.Sprite.fillAmount, 0f, Time.deltaTime * 0.1f);
 				CharacterAnimation.CrossFade(IdleAnim);
 				Pathfinding.canMove = false;
 				Obstacle.enabled = true;
@@ -10624,10 +10637,10 @@ public class StudentScript : MonoBehaviour
 										}
 										UnityEngine.Object.Instantiate(BloodEffect, MyWeapon.transform.position, Quaternion.identity);
 										KnifeDown = true;
-										LiquidProjector.material.mainTexture = BloodTexture;
+										LiquidProjector.material = BloodMaterial;
 										LiquidProjector.gameObject.SetActive(value: true);
 										LiquidProjector.enabled = true;
-										HuntTarget.LiquidProjector.material.mainTexture = HuntTarget.BloodTexture;
+										HuntTarget.LiquidProjector.material = HuntTarget.BloodMaterial;
 										HuntTarget.LiquidProjector.gameObject.SetActive(value: true);
 										HuntTarget.LiquidProjector.enabled = true;
 										MurderSuicidePhase++;
@@ -12848,6 +12861,10 @@ public class StudentScript : MonoBehaviour
 											{
 												num = 5;
 											}
+											if (Yandere.Carrying)
+											{
+												num = 5;
+											}
 											if (!Yandere.Chased && Yandere.Chasers == 0)
 											{
 												if (InstantNoticeTimer > 0f)
@@ -13365,9 +13382,11 @@ public class StudentScript : MonoBehaviour
 				bool flag3 = false;
 				if (StudentID < 86 && Armband.activeInHierarchy && (Actions[Phase] == StudentActionType.ClubAction || Actions[Phase] == StudentActionType.SitAndSocialize || Actions[Phase] == StudentActionType.Socializing || Actions[Phase] == StudentActionType.Sleuth || Actions[Phase] == StudentActionType.Lyrics || Actions[Phase] == StudentActionType.Patrol || Actions[Phase] == StudentActionType.Rehearse || Actions[Phase] == StudentActionType.SitAndEatBento || Actions[Phase] == StudentActionType.Paint))
 				{
-					Debug.Log("This Club Leader is " + Vector3.Distance(base.transform.position, StudentManager.ClubZones[(int)Club].position) + " from the epicenter of his Club Zone.");
-					if (DistanceToDestination < 1f || (base.transform.position.y > StudentManager.ClubZones[(int)Club].position.y - 2.5f && base.transform.position.y < StudentManager.ClubZones[(int)Club].position.y + 2.5f && Vector3.Distance(base.transform.position, StudentManager.ClubZones[(int)Club].position) < ClubThreshold) || Vector3.Distance(base.transform.position, StudentManager.DramaSpots[1].position) < 12f)
+					Debug.Log("This Club Leader is " + Vector3.Distance(base.transform.position, StudentManager.ClubZones[(int)Club].position) + " meters from the center of his Club Zone.");
+					Debug.Log("This Club Leader's DistanceToDestination is " + DistanceToDestination + " but he is actually " + Vector3.Distance(base.transform.position, CurrentDestination.position) + " meters from his destination.");
+					if (DistanceToDestination < 10f || (base.transform.position.y > StudentManager.ClubZones[(int)Club].position.y - 2.5f && base.transform.position.y < StudentManager.ClubZones[(int)Club].position.y + 2.5f && Vector3.Distance(base.transform.position, StudentManager.ClubZones[(int)Club].position) < ClubThreshold) || (Club == ClubType.Drama && Vector3.Distance(base.transform.position, StudentManager.DramaSpots[1].position) < 12f) || (Club == ClubType.MartialArts && base.transform.position.y < 1f && Vector3.Distance(base.transform.position, StudentManager.Clubs.List[StudentID].position) < 12f))
 					{
+						Debug.Log("Criteria for talking to this Club Leader was met.");
 						flag3 = true;
 						Warned = false;
 					}
@@ -16344,6 +16363,14 @@ public class StudentScript : MonoBehaviour
 			}
 			ForgetAboutBloodPool();
 		}
+		if (Yandere.Digging)
+		{
+			Yandere.StopDigging();
+		}
+		if (Yandere.Burying)
+		{
+			Yandere.StopBurying();
+		}
 		if (Yandere.Talking)
 		{
 			Yandere.StudentManager.DialogueWheel.End();
@@ -18647,19 +18674,19 @@ public class StudentScript : MonoBehaviour
 		Alarmed = false;
 		if (Gas)
 		{
-			LiquidProjector.material.mainTexture = GasTexture;
+			LiquidProjector.material = GasMaterial;
 		}
 		else if (Bloody)
 		{
-			LiquidProjector.material.mainTexture = BloodTexture;
+			LiquidProjector.material = BloodMaterial;
 		}
 		else if (DyedBrown)
 		{
-			LiquidProjector.material.mainTexture = BrownTexture;
+			LiquidProjector.material = BrownMaterial;
 		}
 		else
 		{
-			LiquidProjector.material.mainTexture = WaterTexture;
+			LiquidProjector.material = WaterMaterial;
 		}
 		for (ID = 0; ID < LiquidEmitters.Length; ID++)
 		{
@@ -18748,19 +18775,19 @@ public class StudentScript : MonoBehaviour
 		LiquidProjector.enabled = true;
 		if (Gas)
 		{
-			LiquidProjector.material.mainTexture = GasTexture;
+			LiquidProjector.material = GasMaterial;
 		}
 		else if (Bloody)
 		{
-			LiquidProjector.material.mainTexture = BloodTexture;
+			LiquidProjector.material = BloodMaterial;
 		}
 		else if (DyedBrown)
 		{
-			LiquidProjector.material.mainTexture = BrownTexture;
+			LiquidProjector.material = BrownMaterial;
 		}
 		else
 		{
-			LiquidProjector.material.mainTexture = WaterTexture;
+			LiquidProjector.material = WaterMaterial;
 		}
 		for (ID = 0; ID < LiquidEmitters.Length; ID++)
 		{
@@ -18984,8 +19011,8 @@ public class StudentScript : MonoBehaviour
 		else if (!Male)
 		{
 			MyRenderer.sharedMesh = BaldNudeMesh;
-			MyRenderer.materials[0].mainTexture = Cosmetic.FaceTexture;
-			MyRenderer.materials[1].mainTexture = NudeTexture;
+			MyRenderer.materials[0].mainTexture = NudeTexture;
+			MyRenderer.materials[1].mainTexture = Cosmetic.FaceTexture;
 			if (MyRenderer.materials.Length > 2)
 			{
 				MyRenderer.materials[2].mainTexture = NudeTexture;

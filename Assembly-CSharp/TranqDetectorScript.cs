@@ -32,6 +32,8 @@ public class TranqDetectorScript : MonoBehaviour
 
 	public AudioClip[] TranqClips;
 
+	public AudioClip[] GarroteClips;
+
 	private void Start()
 	{
 		Checklist.alpha = 0f;
@@ -145,8 +147,9 @@ public class TranqDetectorScript : MonoBehaviour
 
 	public void GarroteAttack()
 	{
+		Debug.Log("Performing garrote attack.");
 		AudioSource component = GetComponent<AudioSource>();
-		component.clip = TranqClips[Random.Range(0, TranqClips.Length)];
+		component.clip = GarroteClips[Random.Range(0, GarroteClips.Length)];
 		component.Play();
 		Yandere.AttackManager.Stealth = true;
 		StopChecking = true;

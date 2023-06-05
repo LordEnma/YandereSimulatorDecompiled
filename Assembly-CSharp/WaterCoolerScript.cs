@@ -169,14 +169,7 @@ public class WaterCoolerScript : MonoBehaviour
 			else if (Prompt.Circle[1].fillAmount == 0f)
 			{
 				Prompt.Circle[1].fillAmount = 1f;
-				Prompt.Label[1].text = "     Create Tripwire Trap";
-				Prompt.Label[1].applyGradient = false;
-				Prompt.Label[1].color = Color.red;
-				TripwireTrap.SetActive(value: false);
-				TrapSet = false;
-				Prompt.HideButton[3] = false;
-				PickUp.enabled = true;
-				MyRigidbody.isKinematic = false;
+				RemoveTrap();
 			}
 			if (Yandere.YandereVision && !Empty)
 			{
@@ -290,5 +283,17 @@ public class WaterCoolerScript : MonoBehaviour
 		Prompt.HideButton[3] = true;
 		PickUp.enabled = false;
 		MyRigidbody.isKinematic = true;
+	}
+
+	public void RemoveTrap()
+	{
+		Prompt.Label[1].text = "     Create Tripwire Trap";
+		Prompt.Label[1].applyGradient = false;
+		Prompt.Label[1].color = Color.red;
+		TripwireTrap.SetActive(value: false);
+		TrapSet = false;
+		Prompt.HideButton[3] = false;
+		PickUp.enabled = true;
+		MyRigidbody.isKinematic = false;
 	}
 }

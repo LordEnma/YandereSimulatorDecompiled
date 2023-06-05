@@ -2868,7 +2868,6 @@ public class CosmeticScript : MonoBehaviour
 		Student.ChangeSchoolwear();
 		if (mySheet.Bloody)
 		{
-			Student.LiquidProjector.material.mainTexture = Student.BloodTexture;
 			Student.LiquidProjector.enabled = true;
 		}
 		if (!Male)
@@ -2894,7 +2893,7 @@ public class CosmeticScript : MonoBehaviour
 		result.BreastSize = BreastSize;
 		result.CustomHair = CustomHair;
 		result.Schoolwear = Student.Schoolwear;
-		result.Bloody = Student.LiquidProjector.enabled && Student.LiquidProjector.material.mainTexture == Student.BloodTexture;
+		result.Bloody = Student.LiquidProjector.enabled && Student.LiquidProjector.material == Student.BloodMaterial;
 		result.HairColor = HairRenderer.material.color;
 		result.EyeColor = RightEyeRenderer.material.color;
 		if (!Male)

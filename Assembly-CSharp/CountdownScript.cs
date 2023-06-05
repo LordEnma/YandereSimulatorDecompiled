@@ -10,6 +10,5 @@ public class CountdownScript : MonoBehaviour
 
 	private void Update()
 	{
-		Sprite.fillAmount = Mathf.MoveTowards(Sprite.fillAmount, 0f, Time.deltaTime * Speed);
 	}
 }
