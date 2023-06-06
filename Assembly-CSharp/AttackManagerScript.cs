@@ -261,6 +261,7 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			Yandere.TargetStudent.DeathCause = equippedWeapon.WeaponID;
 			Yandere.TargetStudent.BecomeRagdoll();
+			Debug.Log("The AttackManager calculates that we should subtract " + ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Yandere.Numbness + " from the player's Sanity.");
 			Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Yandere.Numbness;
 			Yandere.Attacking = false;
 			Yandere.FollowHips = false;

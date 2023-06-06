@@ -8,6 +8,12 @@ public class ClothScript : MonoBehaviour
 
 	public bool PinkSockTask;
 
+	public string[] BikiniLetters;
+
+	public bool BikiniCheck;
+
+	public int BikiniID;
+
 	public void Start()
 	{
 		if (!GameGlobals.Eighties)
@@ -43,6 +49,17 @@ public class ClothScript : MonoBehaviour
 			SewingMachine.enabled = true;
 			SewingMachine.Check = true;
 			PinkSockTask = false;
+		}
+		if (BikiniCheck && Input.GetKeyDown(BikiniLetters[BikiniID]))
+		{
+			BikiniID++;
+			if (BikiniID == BikiniLetters.Length)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Bikini Obtained";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Prompt.Yandere.Inventory.Bikini = true;
+				BikiniCheck = false;
+			}
 		}
 	}
 }

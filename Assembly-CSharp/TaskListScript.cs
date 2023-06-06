@@ -148,7 +148,7 @@ public class TaskListScript : MonoBehaviour
 	{
 		if (!TaskWindow.TaskManager.Initialized)
 		{
-			TaskWindow.TaskManager.Start();
+			TaskWindow.TaskManager.GetTaskStatus();
 		}
 		if (Tutorials)
 		{

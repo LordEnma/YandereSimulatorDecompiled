@@ -64,7 +64,6 @@ public class FoldedUniformScript : MonoBehaviour
 			Yandere.StudentManager.NewUniforms++;
 			Yandere.StudentManager.UpdateStudents();
 			Yandere.StudentManager.Uniforms[Yandere.StudentManager.NewUniforms] = base.transform;
-			Debug.Log("A new uniform has been spawned. The number of ''New Uniforms'' at school is now " + Yandere.StudentManager.NewUniforms + ".");
 		}
 		if (Type == 1)
 		{

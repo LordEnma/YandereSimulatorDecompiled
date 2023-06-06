@@ -30,15 +30,18 @@ public class SewingMachineScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (StudentManager.TaskManager.TaskStatus[30] == 1)
-		{
-			Check = true;
-		}
-		else if (StudentManager.TaskManager.TaskStatus[30] > 2)
-		{
-			base.enabled = false;
-		}
 		Eighties = GameGlobals.Eighties;
+		if (!Eighties)
+		{
+			if (StudentManager.TaskManager.TaskStatus[30] == 1)
+			{
+				Check = true;
+			}
+			else if (StudentManager.TaskManager.TaskStatus[30] > 2)
+			{
+				base.enabled = false;
+			}
+		}
 	}
 
 	private void Update()

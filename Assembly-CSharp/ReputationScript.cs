@@ -47,6 +47,7 @@ public class ReputationScript : MonoBehaviour
 			BecomeEighties();
 		}
 		Reputation = PlayerGlobals.Reputation;
+		RepLabel.text = "REPUATION: " + Reputation;
 	}
 
 	private void Update()
@@ -141,6 +142,7 @@ public class ReputationScript : MonoBehaviour
 			Reputation = 100f;
 		}
 		StudentManager.WipePendingRep();
+		RepLabel.text = "REPUATION: " + Reputation;
 	}
 
 	public void BecomeEighties()
@@ -172,5 +174,6 @@ public class ReputationScript : MonoBehaviour
 			RepUpdateLabel.enabled = false;
 			PendingRepLabel.text = string.Empty;
 		}
+		RepLabel.text = "REPUATION: " + Reputation;
 	}
 }

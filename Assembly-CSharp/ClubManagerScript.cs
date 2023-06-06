@@ -993,8 +993,8 @@ public class ClubManagerScript : MonoBehaviour
 		else if (Yandere.Club == ClubType.Occult)
 		{
 			StudentManager.UpdatePerception();
-			Yandere.Numbness -= 0.5f;
 			Candle.Suspicious = false;
+			Yandere.UpdateNumbness();
 		}
 		else if (Yandere.Club == ClubType.Art)
 		{
@@ -1095,7 +1095,7 @@ public class ClubManagerScript : MonoBehaviour
 		{
 			Yandere.Club = ClubType.None;
 			StudentManager.UpdatePerception();
-			Yandere.Numbness += 0.5f;
+			Yandere.UpdateNumbness();
 			Candle.Suspicious = true;
 		}
 		else

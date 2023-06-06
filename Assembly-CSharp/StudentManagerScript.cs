@@ -1419,6 +1419,7 @@ public class StudentManagerScript : MonoBehaviour
 					SpawnStudent(SpawnID);
 					SpawnID++;
 				}
+				TaskManager.GetTaskStatus();
 				Graffiti[1].SetActive(value: false);
 				Graffiti[2].SetActive(value: false);
 				Graffiti[3].SetActive(value: false);

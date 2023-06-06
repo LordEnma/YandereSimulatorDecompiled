@@ -603,7 +603,6 @@ public class PromptScript : MonoBehaviour
 		}
 		if (Square == null)
 		{
-			Debug.Log("An object named " + base.gameObject.name + " doesn't have a ''Square'' Sprite. The object's root is " + base.transform.root.gameObject.name);
 			return;
 		}
 		if (Square.enabled)

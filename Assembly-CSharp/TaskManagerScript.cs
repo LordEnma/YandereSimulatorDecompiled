@@ -42,13 +42,17 @@ public class TaskManagerScript : MonoBehaviour
 
 	public bool Proceed;
 
-	public void Start()
+	public void GetTaskStatus()
 	{
 		if (!Initialized)
 		{
 			for (int i = 1; i < 101; i++)
 			{
 				TaskStatus[i] = TaskGlobals.GetTaskStatus(i);
+				if (TaskStatus[i] == 1)
+				{
+					Debug.Log("Task #" + i + " has been accepted by the player.");
+				}
 			}
 			for (int j = 1; j < TaskObjects.Length; j++)
 			{
@@ -76,11 +80,30 @@ public class TaskManagerScript : MonoBehaviour
 			}
 			if (Eighties)
 			{
+				Debug.Log("At this moment, the TaskManager is determining what Generic Task items the player needs to obtain.");
 				for (int k = 1; k < 101; k++)
 				{
-					if (TaskStatus[k] == 1 && StudentManager.Students[k] != null && StudentManager.GenericTaskIDs[k] > 0)
+					if (TaskStatus[k] != 1)
 					{
-						Yandere.Inventory.ItemsRequested[StudentManager.GenericTaskIDs[k]]++;
+						continue;
+					}
+					Debug.Log("Task #" + k + " has been accepted by the player.");
+					if (StudentManager.Students[k] != null)
+					{
+						Debug.Log("Student #" + k + " is not null.");
+						if (StudentManager.GenericTaskIDs[k] > 0)
+						{
+							Yandere.Inventory.ItemsRequested[StudentManager.GenericTaskIDs[k]]++;
+							Debug.Log("The TaskManager has determined that the player has been asked to obtain Generic Item #" + StudentManager.GenericTaskIDs[k]);
+						}
+						else
+						{
+							Debug.Log("Student #" + k + " doesn't have a generic task.");
+						}
+					}
+					else
+					{
+						Debug.Log("However, Student #" + k + " is null.");
 					}
 				}
 			}

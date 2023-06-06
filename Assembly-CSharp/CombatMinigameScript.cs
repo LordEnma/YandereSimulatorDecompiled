@@ -97,6 +97,7 @@ public class CombatMinigameScript : MonoBehaviour
 
 	public void StartCombat()
 	{
+		Debug.Log("StartCombat() is being fired right NOW.");
 		StartPoint = MainCamera.transform.position;
 		Midpoint.transform.position = MainCamera.transform.position + MainCamera.transform.forward;
 		MainCamera.transform.parent = CombatTarget;

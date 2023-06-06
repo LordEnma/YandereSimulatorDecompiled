@@ -1687,7 +1687,6 @@ public class GenericRivalEventScript : MonoBehaviour
 					}
 					if (Senpai.CurrentDestination == Location[1] && Rival.CurrentDestination == Location[2] && Senpai.DistanceToDestination < 0.5f && Rival.DistanceToDestination < 0.5f && !Impatient)
 					{
-						Debug.Log(base.gameObject.name + " are now talking.");
 						StartPeriod = Clock.Period;
 						Phase++;
 					}

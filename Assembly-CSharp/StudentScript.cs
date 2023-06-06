@@ -15146,6 +15146,16 @@ public class StudentScript : MonoBehaviour
 			{
 				Yandere.Shoved = false;
 				Debug.Log("The combat minigame is now beginning.");
+				Yandere.CustomThreshold = 5f;
+				Yandere.WallToRight = false;
+				Yandere.Direction = 2;
+				Yandere.CheckForWall();
+				if (Yandere.WallToRight)
+				{
+					Debug.Log("Trying to move Yandere-chan to the left.");
+					Yandere.MyController.Move(Yandere.transform.right * Time.deltaTime * -1f);
+				}
+				Yandere.CustomThreshold = 0f;
 				string text = "";
 				if (!Male)
 				{

@@ -956,6 +956,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool VibrationCheck;
 
+	public AudioReverbZone SanityReverb;
+
 	public float v;
 
 	public float h;
@@ -1660,6 +1662,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool WallAbove;
 
+	public float CustomThreshold;
+
 	public int Direction;
 
 	public bool AudioPlayed;
@@ -1733,6 +1737,7 @@ public class YandereScript : MonoBehaviour
 			}
 			PreviousSanity = sanity;
 			Hairstyles[2].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, Sanity);
+			SanityReverb.maxDistance = 10f - Sanity / 100f * 10f;
 		}
 	}
 
@@ -7305,6 +7310,10 @@ public class YandereScript : MonoBehaviour
 	public void UpdateNumbness()
 	{
 		Numbness = 1f - 0.1f * (float)(Class.Numbness + Class.NumbnessBonus + Class.PsychologyGrade + Class.PsychologyBonus);
+		if (Club == ClubType.Occult)
+		{
+			Numbness -= 0.5f;
+		}
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -9369,10 +9378,14 @@ public class YandereScript : MonoBehaviour
 		Vector3 vector = Vector3.zero;
 		corpseOrigin = Hips;
 		float maxDistance = 1f;
+		if (CustomThreshold > 0f)
+		{
+			maxDistance = CustomThreshold;
+		}
 		if (Direction == 1)
 		{
 			Debug.Log("Checkin' front.");
-			vector = corpseOrigin.TransformDirection(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.forward));
+			vector = base.transform.forward;
 			maxDistance = 0.66666f;
 			if (Dipping)
 			{
@@ -9382,19 +9395,19 @@ public class YandereScript : MonoBehaviour
 		else if (Direction == 2)
 		{
 			Debug.Log("Checkin' right.");
-			vector = corpseOrigin.TransformDirection(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.right));
+			vector = base.transform.right;
 		}
 		else if (Direction == 3)
 		{
 			Debug.Log("Checkin' left.");
-			vector = corpseOrigin.TransformDirection(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.right * -1f));
+			vector = base.transform.right * -1f;
 		}
 		else if (Direction == 4)
 		{
 			Debug.Log("Checkin' up.");
-			vector = corpseOrigin.TransformDirection(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.up));
+			vector = base.transform.up;
 		}
-		Debug.DrawLine(corpseOrigin.position, vector, Color.red);
+		Debug.DrawRay(corpseOrigin.position, vector, Color.yellow);
 		if (Physics.Raycast(corpseOrigin.position, vector, out corpseHit, maxDistance, OnlyDefault))
 		{
 			if (Direction == 1)
@@ -9418,6 +9431,10 @@ public class YandereScript : MonoBehaviour
 				WallAbove = true;
 			}
 			TooCloseToWall = true;
+		}
+		else
+		{
+			Debug.Log("Nope, didn't hit a wall...");
 		}
 	}
 
