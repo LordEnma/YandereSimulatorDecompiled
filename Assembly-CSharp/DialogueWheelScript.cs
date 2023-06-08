@@ -664,7 +664,7 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			SwitchTopicsWindow.SetActive(value: false);
 		}
-		if (Yandere.TargetStudent.Armband.activeInHierarchy && !ClubLeader && Yandere.TargetStudent.Club != ClubType.Council)
+		if (Yandere.TargetStudent.Armband.activeInHierarchy && !ClubLeader && Yandere.TargetStudent.Club != ClubType.Council && !Yandere.TargetStudent.ExplainedKick)
 		{
 			ClubLeaderWindow.SetActive(value: true);
 		}

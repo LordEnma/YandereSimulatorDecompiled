@@ -84,6 +84,8 @@ public class YandereScript : MonoBehaviour
 
 	public SmartphoneScript PhoneToCrush;
 
+	public TrailWindowScript TrailWindow;
+
 	public WoodChipperScript WoodChipper;
 
 	public UILabel ConcealedWeaponLabel;
@@ -272,9 +274,9 @@ public class YandereScript : MonoBehaviour
 
 	public GameObject CameraFlash;
 
-	public GameObject SelfieGuide;
-
 	public GameObject MemeGlasses;
+
+	public GameObject SelfieGuide;
 
 	public GameObject GiggleDisc;
 
@@ -407,6 +409,8 @@ public class YandereScript : MonoBehaviour
 	public float SprayTimer;
 
 	public float TheftTimer;
+
+	public float TrailTimer;
 
 	public float BeatTimer;
 
@@ -3297,6 +3301,7 @@ public class YandereScript : MonoBehaviour
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_LS) || Input.GetKeyDown(KeyCode.T))
 			{
+				TrailTimer = 0f;
 				if (NewTrail != null)
 				{
 					Object.Destroy(NewTrail);
@@ -3308,13 +3313,13 @@ public class YandereScript : MonoBehaviour
 					{
 						NewTrail.GetComponent<AIPath>().target = StudentManager.Tutorial.Destination[StudentManager.Tutorial.Phase];
 					}
-					else if (StudentManager.Tag.Target == null)
+					else if (StudentManager.Tag.Target != null)
 					{
-						NewTrail.GetComponent<AIPath>().target = Homeroom;
+						NewTrail.GetComponent<AIPath>().target = StudentManager.Students[StudentManager.TagStudentID].transform;
 					}
 					else
 					{
-						NewTrail.GetComponent<AIPath>().target = StudentManager.Students[StudentManager.TagStudentID].transform;
+						NewTrail.GetComponent<AIPath>().target = TrailWindow.Destinations[TrailWindow.Selected];
 					}
 				}
 				else if (PauseScreen.Schemes.SchemeDestinations[SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme)] != null)
@@ -3324,6 +3329,20 @@ public class YandereScript : MonoBehaviour
 				else
 				{
 					Object.Destroy(NewTrail);
+				}
+			}
+			if (Input.GetButton(InputNames.Xbox_LS) || Input.GetKey(KeyCode.T))
+			{
+				TrailTimer += Time.deltaTime;
+				if (TrailTimer >= 1f)
+				{
+					PromptBar.ClearButtons();
+					PromptBar.Label[1].text = "Exit";
+					PromptBar.UpdateButtons();
+					PromptBar.Show = true;
+					PromptParent.gameObject.SetActive(value: false);
+					TrailWindow.gameObject.SetActive(value: true);
+					Time.timeScale = 0.0001f;
 				}
 			}
 			if (Armed)

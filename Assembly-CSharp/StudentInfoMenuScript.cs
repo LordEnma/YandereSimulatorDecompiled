@@ -213,73 +213,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 					}
 					else
 					{
-						StudentInfo.gameObject.SetActive(value: true);
-						StudentInfo.UpdateInfo(StudentID);
-						StudentInfo.Topics.SetActive(value: false);
-						base.gameObject.SetActive(value: false);
-						PromptBar.ClearButtons();
-						if (Gossiping)
-						{
-							PromptBar.Label[0].text = "Gossip";
-						}
-						if (Distracting)
-						{
-							PromptBar.Label[0].text = "Distract";
-						}
-						if (CyberBullying || CyberStalking)
-						{
-							PromptBar.Label[0].text = "Accept";
-						}
-						if (FindingLocker)
-						{
-							PromptBar.Label[0].text = "Find Locker";
-						}
-						if (MatchMaking)
-						{
-							PromptBar.Label[0].text = "Match";
-						}
-						if (Targeting || UsingLifeNote)
-						{
-							PromptBar.Label[0].text = "Kill";
-						}
-						if (SendingHome)
-						{
-							PromptBar.Label[0].text = "Send Home";
-						}
-						if (FiringCouncilMember)
-						{
-							PromptBar.Label[0].text = "Fire";
-						}
-						if (GettingOpinions)
-						{
-							PromptBar.Label[0].text = "Get Opinions";
-						}
-						if (StudentManager.Students[StudentID] != null)
-						{
-							if (StudentManager.Students[StudentID].gameObject.activeInHierarchy)
-							{
-								if (StudentManager.Tag.Target == StudentManager.Students[StudentID].Head)
-								{
-									PromptBar.Label[2].text = "Untag";
-								}
-								else
-								{
-									PromptBar.Label[2].text = "Tag";
-								}
-							}
-							else
-							{
-								PromptBar.Label[2].text = "";
-							}
-						}
-						else
-						{
-							PromptBar.Label[2].text = "";
-						}
-						PromptBar.Label[1].text = "Back";
-						PromptBar.Label[3].text = "Interests";
-						PromptBar.Label[6].text = "Reputation";
-						PromptBar.UpdateButtons();
+						LoadStudentInfoScreen();
 					}
 				}
 				else
@@ -697,18 +631,16 @@ public class StudentInfoMenuScript : MonoBehaviour
 							}
 							else
 							{
-								Debug.Log("Attempting to load custom Senpai portrait.");
 								string url2 = "file:///" + Application.streamingAssetsPath + "/SenpaiPortrait.png";
 								WWW www2 = new WWW(url2);
 								yield return www2;
 								if (www2.error == null)
 								{
-									Debug.Log("No error!");
 									StudentPortraits[ID].Portrait.mainTexture = www2.texture;
 								}
 								else
 								{
-									Debug.Log("Uh, there was an error: " + www2.error);
+									Debug.Log("Error while trying to load custom Senpai portrait: " + www2.error);
 								}
 							}
 						}
@@ -771,5 +703,76 @@ public class StudentInfoMenuScript : MonoBehaviour
 				StudentPortraits[ID].Portrait.mainTexture = UnknownPortrait;
 			}
 		}
+	}
+
+	public void LoadStudentInfoScreen()
+	{
+		StudentInfo.gameObject.SetActive(value: true);
+		StudentInfo.UpdateInfo(StudentID);
+		StudentInfo.Topics.SetActive(value: false);
+		base.gameObject.SetActive(value: false);
+		PromptBar.ClearButtons();
+		if (Gossiping)
+		{
+			PromptBar.Label[0].text = "Gossip";
+		}
+		if (Distracting)
+		{
+			PromptBar.Label[0].text = "Distract";
+		}
+		if (CyberBullying || CyberStalking)
+		{
+			PromptBar.Label[0].text = "Accept";
+		}
+		if (FindingLocker)
+		{
+			PromptBar.Label[0].text = "Find Locker";
+		}
+		if (MatchMaking)
+		{
+			PromptBar.Label[0].text = "Match";
+		}
+		if (Targeting || UsingLifeNote)
+		{
+			PromptBar.Label[0].text = "Kill";
+		}
+		if (SendingHome)
+		{
+			PromptBar.Label[0].text = "Send Home";
+		}
+		if (FiringCouncilMember)
+		{
+			PromptBar.Label[0].text = "Fire";
+		}
+		if (GettingOpinions)
+		{
+			PromptBar.Label[0].text = "Get Opinions";
+		}
+		if (StudentManager.Students[StudentID] != null)
+		{
+			if (StudentManager.Students[StudentID].gameObject.activeInHierarchy)
+			{
+				if (StudentManager.Tag.Target == StudentManager.Students[StudentID].Head)
+				{
+					PromptBar.Label[2].text = "Untag";
+				}
+				else
+				{
+					PromptBar.Label[2].text = "Tag";
+				}
+			}
+			else
+			{
+				PromptBar.Label[2].text = "";
+			}
+		}
+		else
+		{
+			PromptBar.Label[2].text = "";
+		}
+		PromptBar.Label[1].text = "Back";
+		PromptBar.Label[3].text = "Interests";
+		PromptBar.Label[6].text = "Reputation";
+		PromptBar.UpdateButtons();
 	}
 }

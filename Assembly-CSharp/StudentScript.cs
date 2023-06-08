@@ -644,6 +644,8 @@ public class StudentScript : MonoBehaviour
 
 	public bool CrimeReported;
 
+	public bool ExplainedKick;
+
 	public bool FleeWhenClean;
 
 	public bool MurderSuicide;
@@ -5622,13 +5624,11 @@ public class StudentScript : MonoBehaviour
 										}
 										else if (!Male)
 										{
-											Debug.Log(Name + " is going to try to perform the ''FemaleSit01'' animation now.");
 											CharacterAnimation.CrossFade("f02_sit_01");
 										}
 										else
 										{
-											Debug.Log(Name + " is going to try to perform the ''FemaleSit01'' animation now.");
-											CharacterAnimation.CrossFade("sit_01");
+											CharacterAnimation.CrossFade("sit_00");
 										}
 									}
 									else
@@ -13416,6 +13416,10 @@ public class StudentScript : MonoBehaviour
 				{
 					flag10 = true;
 				}
+				if (ClubGlobals.GetClubKicked(Club) && ExplainedKick)
+				{
+					flag3 = false;
+				}
 				if (StudentManager.Pose)
 				{
 					MyController.enabled = false;
@@ -13665,7 +13669,7 @@ public class StudentScript : MonoBehaviour
 								Police.SelfReported = true;
 								StudentManager.Reputation.Portal.EndDay();
 							}
-							else if (ClubGlobals.GetClubKicked(Club) && flag3)
+							else if (ClubGlobals.GetClubKicked(Club) && flag3 && !ExplainedKick)
 							{
 								Debug.Log("Player was kicked out of this club.");
 								if (ClubManager.ClubGrudge)
@@ -13677,6 +13681,7 @@ public class StudentScript : MonoBehaviour
 									Debug.Log("Player never showed up for club activities, got kicked.");
 								}
 								Interaction = StudentInteractionType.ClubGrudge;
+								ExplainedKick = true;
 								TalkTimer = 5f;
 								Warned = true;
 							}

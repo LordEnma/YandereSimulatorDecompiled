@@ -5,6 +5,8 @@ public class NewSettingsScript : MonoBehaviour
 {
 	public CameraFilterPack_Colors_Adjust_PreFilters ColorGrading;
 
+	public MinimalistManagerScript MinimalistManager;
+
 	public StudentManagerScript StudentManager;
 
 	public NewTitleScreenScript NewTitleScreen;
@@ -84,7 +86,7 @@ public class NewSettingsScript : MonoBehaviour
 			UpdateOnNextFrame = false;
 		}
 		Cursor.transform.parent.Rotate(new Vector3(Time.unscaledDeltaTime * 100f, 0f, 0f), Space.Self);
-		Cursor.transform.parent.localPosition = Vector3.Lerp(Cursor.transform.parent.localPosition, new Vector3(665f, -100f - 100f * (float)Selection, Cursor.transform.parent.localPosition.z), Time.unscaledDeltaTime * 10f);
+		Cursor.transform.parent.localPosition = Vector3.Lerp(Cursor.transform.parent.localPosition, new Vector3(700f, -100f - 100f * (float)Selection, Cursor.transform.parent.localPosition.z), Time.unscaledDeltaTime * 10f);
 		Labels[13].text = (Screen.fullScreen ? "No" : "Yes");
 		if (Cursor.alpha == 1f)
 		{
@@ -910,9 +912,21 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateOnNextFrame = true;
 				}
 			}
-			else if (Selection == 2 && (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft))
+			else if (Selection == 2)
 			{
-				Screen.fullScreen = !Screen.fullScreen;
+				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
+				{
+					Screen.fullScreen = !Screen.fullScreen;
+					UpdateOnNextFrame = true;
+				}
+			}
+			else if (Selection == 3 && (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft))
+			{
+				OptionGlobals.MinimalistHUD = !OptionGlobals.MinimalistHUD;
+				if (MinimalistManager != null)
+				{
+					MinimalistManager.Start();
+				}
 				UpdateOnNextFrame = true;
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -1032,6 +1046,7 @@ public class NewSettingsScript : MonoBehaviour
 		Labels[41].text = (OptionGlobals.DisableTint ? "Yes" : "No");
 		Labels[43].text = Screen.width + " x " + Screen.height;
 		Labels[44].text = ((!Screen.fullScreen) ? "Yes" : "No");
+		Labels[45].text = (OptionGlobals.MinimalistHUD ? "Yes" : "No");
 		if (GameGlobals.Eighties)
 		{
 			UILabel[] componentsInChildren = base.gameObject.GetComponentsInChildren<UILabel>();

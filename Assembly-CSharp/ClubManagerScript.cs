@@ -774,7 +774,6 @@ public class ClubManagerScript : MonoBehaviour
 		}
 		if (Yandere.Club == Check)
 		{
-			Debug.Log("Ayano is a member of this club, so that increases the population by 1...");
 			ClubMembers++;
 		}
 		if (Check == ClubType.LightMusic && ClubMembers < 5)

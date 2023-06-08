@@ -499,8 +499,11 @@ public class PauseScreenScript : MonoBehaviour
 							TaskList.gameObject.SetActive(value: true);
 							MainMenu.SetActive(value: false);
 							Sideways = true;
+							TaskList.ListPosition = 0;
+							TaskList.ID = 1;
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Back";
+							PromptBar.Label[2].text = "Visit Profile";
 							PromptBar.Label[4].text = "Change";
 							PromptBar.UpdateButtons();
 							TaskList.UpdateTaskList();

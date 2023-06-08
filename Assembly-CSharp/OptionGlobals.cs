@@ -82,6 +82,8 @@ public static class OptionGlobals
 
 	private const string Str_ResolutionID = "ResolutionID";
 
+	private const string Str_MinimalistHUD = "MinimalistHUD";
+
 	public static bool DisableBloom
 	{
 		get
@@ -562,6 +564,18 @@ public static class OptionGlobals
 		}
 	}
 
+	public static bool MinimalistHUD
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + 0 + "_MinimalistHUD");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + 0 + "_MinimalistHUD", value);
+		}
+	}
+
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_DisableBloom");
@@ -604,5 +618,6 @@ public static class OptionGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_DisableNoise");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_DisableTint");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_ResolutionID");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_MinimalistHUD");
 	}
 }

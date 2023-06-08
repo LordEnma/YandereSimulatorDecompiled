@@ -28,6 +28,8 @@ public class CalendarScript : MonoBehaviour
 
 	public GameObject DeadlineLabel;
 
+	public GameObject ResetButton;
+
 	public GameObject StatsButton;
 
 	public GameObject AmaiButton;
@@ -118,6 +120,7 @@ public class CalendarScript : MonoBehaviour
 
 	private void Start()
 	{
+		LearnIfKicked();
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
@@ -267,6 +270,7 @@ public class CalendarScript : MonoBehaviour
 		SkipConfirmationWindow.SetActive(value: false);
 		if (DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
+			Debug.Log("It's the start of a new week: Week #" + DateGlobals.Week + ". Creating a new ''Reset Week'' save file.");
 			YanSave.SaveData("Profile_" + GameGlobals.Profile + "_Slot_" + 11);
 		}
 	}
@@ -335,6 +339,10 @@ public class CalendarScript : MonoBehaviour
 					}
 					Incremented = true;
 					ChangeDayColor();
+					if (DateGlobals.Weekday == DayOfWeek.Saturday)
+					{
+						ResetButton.SetActive(value: false);
+					}
 				}
 				Continue.localPosition = new Vector3(Continue.localPosition.x, Mathf.Lerp(Continue.localPosition.y, -500f, Time.deltaTime * 10f), Continue.localPosition.z);
 				if (!Switch)
@@ -460,7 +468,10 @@ public class CalendarScript : MonoBehaviour
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
-							ResetWeekWindow.SetActive(value: true);
+							if (ResetButton.activeInHierarchy)
+							{
+								ResetWeekWindow.SetActive(value: true);
+							}
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_X) && Eighties)
 						{
@@ -491,12 +502,6 @@ public class CalendarScript : MonoBehaviour
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Darkness.color.a + Time.deltaTime);
 			if (Darkness.color.a >= 1f)
 			{
-				if (DateGlobals.Weekday == DayOfWeek.Saturday && ClubGlobals.Club != 0 && ClubGlobals.ActivitiesAttended == 0)
-				{
-					Debug.Log("Kicking player out of club.");
-					ClubGlobals.SetClubKicked(ClubGlobals.Club, value: true);
-					ClubGlobals.Club = ClubType.None;
-				}
 				if (ResetWeek)
 				{
 					int num = GameGlobals.Profile;
@@ -531,6 +536,12 @@ public class CalendarScript : MonoBehaviour
 				}
 				else
 				{
+					if (DateGlobals.Weekday == DayOfWeek.Saturday && ClubGlobals.Club != 0 && ClubGlobals.ActivitiesAttended == 0)
+					{
+						Debug.Log("Kicking player out of club.");
+						ClubGlobals.SetClubKicked(ClubGlobals.Club, value: true);
+						ClubGlobals.Club = ClubType.None;
+					}
 					if (HomeGlobals.Night)
 					{
 						HomeGlobals.Night = false;
@@ -1041,6 +1052,19 @@ public class CalendarScript : MonoBehaviour
 		if (StudentGlobals.Prisoner10 != 0)
 		{
 			StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner10, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner10) - num);
+		}
+	}
+
+	public void LearnIfKicked()
+	{
+		Debug.Log("Today is " + DateGlobals.Weekday.ToString() + ". Checking to see if we were kicked out of the Cooking Club.");
+		if (ClubGlobals.GetClubKicked(ClubType.Cooking))
+		{
+			Debug.Log("As of right now - " + DateGlobals.Weekday.ToString() + " - we believe that we were kicked out of the Cooking Club.");
+		}
+		else
+		{
+			Debug.Log("Nope, not kicked out of the Cooking Club...");
 		}
 	}
 }

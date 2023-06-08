@@ -1226,10 +1226,8 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 14)
 		{
-			Debug.Log("We're currently in the End-of-Day sequence, checking to see if the Counselor has to lecture anyone.");
 			if (!StudentGlobals.GetStudentDying(StudentManager.RivalID) && !StudentGlobals.GetStudentDead(StudentManager.RivalID) && !StudentGlobals.GetStudentArrested(StudentManager.RivalID))
 			{
-				Debug.Log("The current rival is not dying, dead, or arrested.");
 				if (Counselor.LectureID > 0)
 				{
 					Yandere.gameObject.SetActive(value: false);
@@ -1404,7 +1402,6 @@ public class EndOfDayScript : MonoBehaviour
 				}
 				if (!ClubGlobals.GetClubClosed(ClubArray[ClubID]) && !ClubGlobals.GetClubKicked(ClubArray[ClubID]) && Yandere.Club == ClubArray[ClubID])
 				{
-					Debug.Log("Checking to see if anyone in Club #" + ClubID + " has a grudge on Ayano.");
 					ClubManager.CheckGrudge(ClubArray[ClubID]);
 					if (StudentManager.Eighties)
 					{
@@ -1599,6 +1596,7 @@ public class EndOfDayScript : MonoBehaviour
 				ClubGlobals.SetClubKicked(Yandere.Club, value: true);
 				ClubGlobals.Club = ClubType.None;
 				Yandere.Club = ClubType.None;
+				Debug.Log("The player has been kicked out of a club.");
 			}
 			else
 			{
@@ -2152,7 +2150,6 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		if (RivalEliminationMethod == RivalEliminationType.Murdered)
 		{
-			Debug.Log("The rival was attacked with a weapon.");
 			GameGlobals.RivalEliminationID = 1;
 			GameGlobals.NonlethalElimination = false;
 			if (StudentManager.Students[1].SenpaiWitnessingRivalDie)

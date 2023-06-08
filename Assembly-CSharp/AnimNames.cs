@@ -564,6 +564,8 @@ public static class AnimNames
 
 	public const string MaleSenpaiWeaponReaction = "senpaiWeaponReaction_00";
 
+	public const string MaleSit00 = "sit_00";
+
 	public const string MaleSit01 = "sit_01";
 
 	public const string MaleSit04 = "sit_04";

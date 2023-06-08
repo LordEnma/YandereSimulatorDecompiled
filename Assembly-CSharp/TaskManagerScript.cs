@@ -80,7 +80,6 @@ public class TaskManagerScript : MonoBehaviour
 			}
 			if (Eighties)
 			{
-				Debug.Log("At this moment, the TaskManager is determining what Generic Task items the player needs to obtain.");
 				for (int k = 1; k < 101; k++)
 				{
 					if (TaskStatus[k] != 1)

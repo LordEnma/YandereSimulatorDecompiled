@@ -135,6 +135,17 @@ public class StreetManagerScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (Input.GetKeyDown("l"))
+		{
+			if (Sunlight.shadows != 0)
+			{
+				Sunlight.shadows = LightShadows.None;
+			}
+			else
+			{
+				Sunlight.shadows = LightShadows.Soft;
+			}
+		}
 		Timer += Time.deltaTime;
 		if (Timer > 0.5f)
 		{

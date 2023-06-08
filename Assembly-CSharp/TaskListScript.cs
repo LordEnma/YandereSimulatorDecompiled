@@ -142,6 +142,12 @@ public class TaskListScript : MonoBehaviour
 		{
 			Exit();
 		}
+		else if (Input.GetButtonDown(InputNames.Xbox_X) && TaskWindow.TaskManager.TaskStatus[ID + ListPosition] != 0)
+		{
+			PauseScreen.StudentInfoMenu.StudentID = ID + ListPosition;
+			PauseScreen.StudentInfoMenu.LoadStudentInfoScreen();
+			base.gameObject.SetActive(value: false);
+		}
 	}
 
 	public void UpdateTaskList()
@@ -191,6 +197,8 @@ public class TaskListScript : MonoBehaviour
 			StudentIcon.mainTexture = Silhouette;
 			TaskIcon.mainTexture = QuestionMark;
 			TaskDesc.text = "This task has not been discovered yet.";
+			PauseScreen.PromptBar.Label[2].text = "";
+			PauseScreen.PromptBar.UpdateButtons();
 			yield break;
 		}
 		string url = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_" + (ID + ListPosition) + ".png";
@@ -219,6 +227,8 @@ public class TaskListScript : MonoBehaviour
 			TaskIcon.mainTexture = TaskWindow.Icons[ID + ListPosition];
 			TaskDesc.text = TaskWindow.Descriptions[ID + ListPosition];
 		}
+		PauseScreen.PromptBar.Label[2].text = "Visit Profile";
+		PauseScreen.PromptBar.UpdateButtons();
 	}
 
 	public void Exit()

@@ -232,8 +232,11 @@ public class GazerEyesScript : MonoBehaviour
 			Target.CharacterAnimation[Target.ElectroAnim].speed = 0.85f;
 			Target.CharacterAnimation[Target.ElectroAnim].time = 2f;
 			Target.CharacterAnimation.CrossFade(Target.ElectroAnim);
-			Target.CharacterAnimation[Target.WetAnim].weight = 0f;
-			Target.CharacterAnimation[Target.ShyAnim].weight = 0f;
+			if (!Target.Male)
+			{
+				Target.CharacterAnimation[Target.WetAnim].weight = 0f;
+				Target.CharacterAnimation[Target.ShyAnim].weight = 0f;
+			}
 			Target.InvestigatingBloodPool = false;
 			Target.FocusOnYandere = false;
 			Target.EatingSnack = false;

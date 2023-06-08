@@ -1060,17 +1060,14 @@ public class PoliceScript : MonoBehaviour
 			}
 			if (Corpses > 0)
 			{
-				Debug.Log("Subtracting " + Corpses * 10 + "% school atmosphere because " + Corpses + " murders are confirmed.");
 				SchoolGlobals.SchoolAtmosphere -= (float)Corpses * 0.1f;
 			}
 			if (DrownVictims > 0)
 			{
-				Debug.Log("Subtracting " + DrownVictims * 10 + "% school atmosphere because " + DrownVictims + " drown victims are confirmed.");
 				SchoolGlobals.SchoolAtmosphere -= (float)DrownVictims * 0.1f;
 			}
 			if (DrownVictims + Corpses > 0)
 			{
-				Debug.Log("Today, there were corpses on school grounds.");
 				RagdollScript[] corpseList = CorpseList;
 				foreach (RagdollScript ragdollScript in corpseList)
 				{
@@ -1085,7 +1082,6 @@ public class PoliceScript : MonoBehaviour
 					}
 					if (StudentGlobals.MemorialStudents < 9)
 					{
-						Debug.Log("''MemorialStudents'' is being incremented upwards.");
 						StudentGlobals.MemorialStudents++;
 						if (StudentGlobals.MemorialStudents == 1)
 						{
