@@ -256,7 +256,7 @@ public class ShoulderCameraScript : MonoBehaviour
 						Yandere.CharacterAnimation["f02_sadEyebrows_00"].weight = 1f;
 						Yandere.CharacterAnimation.CrossFade("f02_whimper_00");
 						Yandere.Subtitle.UpdateLabel(SubtitleType.YandereWhimper, 1, 3.5f);
-						Debug.Log("Yandere-chan shoulder be whimpering now.");
+						Debug.Log("Yandere-chan should be whimpering now.");
 						if (Yandere.StudentManager.Eighties)
 						{
 							Yandere.LoseGentleEyes();

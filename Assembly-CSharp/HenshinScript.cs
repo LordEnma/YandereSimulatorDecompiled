@@ -265,8 +265,8 @@ public class HenshinScript : MonoBehaviour
 						MiyukiCostume.newRenderer.enabled = true;
 					}
 					MiyukiRenderer.sharedMesh = NudeMesh;
-					MiyukiRenderer.materials[0].mainTexture = MiyukiFace;
-					MiyukiRenderer.materials[1].mainTexture = MiyukiSkin;
+					MiyukiRenderer.materials[0].mainTexture = MiyukiSkin;
+					MiyukiRenderer.materials[1].mainTexture = MiyukiFace;
 					MiyukiRenderer.materials[2].mainTexture = MiyukiSkin;
 					MiyukiHairRenderer.material.color = new Color(1f, 1f, 1f, 0f);
 					WhiteMiyukiRenderer.materials[0].color = new Color(1f, 1f, 1f, 0f);

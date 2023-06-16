@@ -668,6 +668,7 @@ public class NewTitleScreenScript : MonoBehaviour
 							}
 							else
 							{
+								GameGlobals.CameFromTitleScreen = true;
 								SceneManager.LoadScene("CalendarScene");
 							}
 						}

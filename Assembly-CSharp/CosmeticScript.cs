@@ -778,6 +778,7 @@ public class CosmeticScript : MonoBehaviour
 			}
 			if (!Kidnapped && SceneManager.GetActiveScene().name == "PortraitScene")
 			{
+				Eighties = GameGlobals.Eighties;
 				if (!Eighties)
 				{
 					if (StudentID == 2)
@@ -970,11 +971,6 @@ public class CosmeticScript : MonoBehaviour
 						{
 							CharacterAnimation.Play("m01_eightiesEnforcerPortrait_00");
 						}
-						else
-						{
-							Debug.Log("Calling PickGenericAnim() from here. 2");
-							PickGenericAnim();
-						}
 					}
 				}
 			}
@@ -1144,11 +1140,6 @@ public class CosmeticScript : MonoBehaviour
 						else if (StudentID == 80)
 						{
 							CharacterAnimation.Play("delinquentPoseE");
-						}
-						else
-						{
-							Debug.Log("Calling PickGenericAnim() from here. 4");
-							PickGenericAnim();
 						}
 					}
 					if (Club == ClubType.Council)
@@ -2110,14 +2101,17 @@ public class CosmeticScript : MonoBehaviour
 
 	public void CensorPanties()
 	{
-		if (!Student.ClubAttire && Student.Schoolwear == 1)
+		if (!TakingPortrait)
 		{
-			MyRenderer.materials[0].SetFloat("_BlendAmount1", 1f);
-			MyRenderer.materials[1].SetFloat("_BlendAmount1", 1f);
-		}
-		else
-		{
-			RemoveCensor();
+			if (!Student.ClubAttire && Student.Schoolwear == 1)
+			{
+				MyRenderer.materials[0].SetFloat("_BlendAmount1", 1f);
+				MyRenderer.materials[1].SetFloat("_BlendAmount1", 1f);
+			}
+			else
+			{
+				RemoveCensor();
+			}
 		}
 	}
 

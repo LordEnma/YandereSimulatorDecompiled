@@ -272,7 +272,9 @@ public class LoveManagerScript : MonoBehaviour
 			Yandere.YandereVision = false;
 		}
 		Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+		Yandere.ShoulderCamera.enabled = false;
 		Yandere.RPGCamera.enabled = false;
+		Yandere.EmptyHands();
 		Yandere.CanMove = false;
 		StudentManager.DisableEveryone();
 		Suitor.gameObject.SetActive(value: true);

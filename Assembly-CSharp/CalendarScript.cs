@@ -120,7 +120,7 @@ public class CalendarScript : MonoBehaviour
 
 	private void Start()
 	{
-		LearnIfKicked();
+		GameGlobals.AlphabetMode = false;
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
@@ -270,7 +270,6 @@ public class CalendarScript : MonoBehaviour
 		SkipConfirmationWindow.SetActive(value: false);
 		if (DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
-			Debug.Log("It's the start of a new week: Week #" + DateGlobals.Week + ". Creating a new ''Reset Week'' save file.");
 			YanSave.SaveData("Profile_" + GameGlobals.Profile + "_Slot_" + 11);
 		}
 	}
@@ -304,6 +303,10 @@ public class CalendarScript : MonoBehaviour
 						bool flag = false;
 						if ((DateGlobals.Week == 1 && DateGlobals.Weekday == DayOfWeek.Sunday) || DateGlobals.ForceSkip)
 						{
+							if (DateGlobals.ForceSkip)
+							{
+								Debug.Log("DateGlobals.ForceSkip was true.");
+							}
 							DateGlobals.ForceSkip = false;
 							SundayLabel.SetActive(value: false);
 							flag = true;
@@ -324,6 +327,7 @@ public class CalendarScript : MonoBehaviour
 						DateGlobals.PassDays--;
 						DateGlobals.Weekday++;
 						ChangeDayColor();
+						Debug.Log("It is Friday, and CameFromTitleScreen is apparently false. Passed one day. " + DateGlobals.PassDays + " days remaining.");
 					}
 					Target = 250f * (float)DateGlobals.Weekday + (float)Adjustment;
 					if (DateGlobals.Weekday > DayOfWeek.Saturday)
@@ -573,52 +577,46 @@ public class CalendarScript : MonoBehaviour
 		{
 			Highlight.localPosition = new Vector3(Mathf.Lerp(Highlight.localPosition.x, -750f + Offset + Target, Time.deltaTime * 10f), Highlight.localPosition.y, Highlight.localPosition.z);
 		}
-		if (Switch)
+		if (!Switch)
 		{
-			if (!ViewingStats)
+			return;
+		}
+		if (!ViewingStats)
+		{
+			if (Phase == 1)
 			{
-				if (Phase == 1)
-				{
-					CalendarPanel.alpha = Mathf.MoveTowards(CalendarPanel.alpha, 0f, Time.deltaTime * 5f);
-					if (CalendarPanel.alpha <= 0f)
-					{
-						Phase++;
-					}
-				}
-				else
-				{
-					ChallengePanel.alpha = Mathf.MoveTowards(ChallengePanel.alpha, 1f, Time.deltaTime * 5f);
-					if (ChallengePanel.alpha >= 1f)
-					{
-						ViewingStats = true;
-						Switch = false;
-						Phase = 1;
-					}
-				}
-			}
-			else if (Phase == 1)
-			{
-				ChallengePanel.alpha = Mathf.MoveTowards(ChallengePanel.alpha, 0f, Time.deltaTime * 5f);
-				if (ChallengePanel.alpha <= 0f)
+				CalendarPanel.alpha = Mathf.MoveTowards(CalendarPanel.alpha, 0f, Time.deltaTime * 5f);
+				if (CalendarPanel.alpha <= 0f)
 				{
 					Phase++;
 				}
+				return;
 			}
-			else
+			ChallengePanel.alpha = Mathf.MoveTowards(ChallengePanel.alpha, 1f, Time.deltaTime * 5f);
+			if (ChallengePanel.alpha >= 1f)
 			{
-				CalendarPanel.alpha = Mathf.MoveTowards(CalendarPanel.alpha, 1f, Time.deltaTime * 5f);
-				if (CalendarPanel.alpha >= 1f)
-				{
-					ViewingStats = false;
-					Switch = false;
-					Phase = 1;
-				}
+				ViewingStats = true;
+				Switch = false;
+				Phase = 1;
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.L))
+		else if (Phase == 1)
 		{
-			GameGlobals.LoveSick = !GameGlobals.LoveSick;
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			ChallengePanel.alpha = Mathf.MoveTowards(ChallengePanel.alpha, 0f, Time.deltaTime * 5f);
+			if (ChallengePanel.alpha <= 0f)
+			{
+				Phase++;
+			}
+		}
+		else
+		{
+			CalendarPanel.alpha = Mathf.MoveTowards(CalendarPanel.alpha, 1f, Time.deltaTime * 5f);
+			if (CalendarPanel.alpha >= 1f)
+			{
+				ViewingStats = false;
+				Switch = false;
+				Phase = 1;
+			}
 		}
 	}
 

@@ -6,6 +6,8 @@ public class BloodPoolScript : MonoBehaviour
 
 	public float TargetSize;
 
+	public bool UnderInvestigation;
+
 	public bool Gasoline;
 
 	public bool Brown;

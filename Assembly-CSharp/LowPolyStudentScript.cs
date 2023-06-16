@@ -48,6 +48,7 @@ public class LowPolyStudentScript : MonoBehaviour
 		}
 		if (Student.WearingBikini && Student.MyRenderer.enabled)
 		{
+			Debug.Log("Disabling Chigusa's MyRenderer from the LowPolyStudent script because WearingBikini is true and MyRenderer is enabled.");
 			Student.MyRenderer.enabled = false;
 			MyMesh.enabled = false;
 		}

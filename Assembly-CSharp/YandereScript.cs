@@ -1741,7 +1741,7 @@ public class YandereScript : MonoBehaviour
 			}
 			PreviousSanity = sanity;
 			Hairstyles[2].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, Sanity);
-			SanityReverb.maxDistance = 10f - Sanity / 100f * 10f;
+			SanityReverb.maxDistance = 5f - Sanity / 100f * 5f;
 		}
 	}
 
@@ -8750,7 +8750,6 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
 			if (GameGlobals.CensorPanties)
 			{
-				Debug.Log("Activating shadows on Yandere-chan.");
 				MyRenderer.materials[0].SetFloat("_BlendAmount1", 1f);
 				MyRenderer.materials[1].SetFloat("_BlendAmount1", 1f);
 				PantyAttacher.newRenderer.enabled = false;

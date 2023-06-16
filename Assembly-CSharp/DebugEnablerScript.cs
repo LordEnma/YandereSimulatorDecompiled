@@ -33,7 +33,7 @@ public class DebugEnablerScript : MonoBehaviour
 		_ = Editor;
 		StandWeapons.SetActive(value: false);
 		Keys.SetActive(value: false);
-		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || GameGlobals.KokonaTutorial || (!GameGlobals.Eighties && DateGlobals.Week == 2) || ChallengeGlobals.KnifeOnly || ChallengeGlobals.NoAlerts || ChallengeGlobals.NoBag || ChallengeGlobals.NoFriends || ChallengeGlobals.NoGaming || ChallengeGlobals.NoInfo || ChallengeGlobals.NoLaugh || ChallengeGlobals.RivalsOnly)
+		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || GameGlobals.KokonaTutorial || GameGlobals.EightiesTutorial || (!GameGlobals.Eighties && DateGlobals.Week == 2) || ChallengeGlobals.KnifeOnly || ChallengeGlobals.NoAlerts || ChallengeGlobals.NoBag || ChallengeGlobals.NoFriends || ChallengeGlobals.NoGaming || ChallengeGlobals.NoInfo || ChallengeGlobals.NoLaugh || ChallengeGlobals.RivalsOnly)
 		{
 			if (GameGlobals.Debug || Editor)
 			{

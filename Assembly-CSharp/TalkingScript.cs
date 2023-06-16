@@ -500,6 +500,7 @@ public class TalkingScript : MonoBehaviour
 					else
 					{
 						S.StudentManager.DelinquentVoices.SetActive(value: false);
+						S.RespectEarned = true;
 					}
 					if (SchemeGlobals.GetSchemeStage(6) == 3)
 					{

@@ -1033,6 +1033,7 @@ public class PoliceScript : MonoBehaviour
 				}
 			}
 		}
+		Debug.Log("Deaths is " + Deaths + ", Corpses is " + Corpses + ".");
 		if (Deaths > 0)
 		{
 			PlayerGlobals.Kills += Deaths;
@@ -1068,6 +1069,7 @@ public class PoliceScript : MonoBehaviour
 			}
 			if (DrownVictims + Corpses > 0)
 			{
+				Debug.Log("Today, there were corpses on school grounds.");
 				RagdollScript[] corpseList = CorpseList;
 				foreach (RagdollScript ragdollScript in corpseList)
 				{
@@ -1082,6 +1084,7 @@ public class PoliceScript : MonoBehaviour
 					}
 					if (StudentGlobals.MemorialStudents < 9)
 					{
+						Debug.Log("''MemorialStudents'' is being incremented upwards.");
 						StudentGlobals.MemorialStudents++;
 						if (StudentGlobals.MemorialStudents == 1)
 						{

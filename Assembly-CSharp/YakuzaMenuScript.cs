@@ -22,6 +22,8 @@ public class YakuzaMenuScript : MonoBehaviour
 
 	public string[] DialogueText;
 
+	public int[] Speaker;
+
 	public AudioSource Dialogue;
 
 	public AudioSource Jukebox;
@@ -157,6 +159,20 @@ public class YakuzaMenuScript : MonoBehaviour
 	public AudioClip Exit;
 
 	public int[] RansomIDs;
+
+	public MusicTest AudioData;
+
+	public Transform YakuzaJaw;
+
+	public Transform RyobaJaw;
+
+	public bool YakuzaSpeaking;
+
+	public bool RyobaSpeaking;
+
+	public Transform YakuzaEyeL;
+
+	public Transform YakuzaEyeR;
 
 	private void Start()
 	{
@@ -1208,5 +1224,51 @@ public class YakuzaMenuScript : MonoBehaviour
 			StudentGlobals.Prisoner10 = 0;
 			StudentGlobals.Prisoners--;
 		}
+	}
+
+	private void LateUpdate()
+	{
+		if (Dialogue.isPlaying)
+		{
+			Debug.Log("Dialogue is playing.");
+			if (Dialogue.clip != null)
+			{
+				Debug.Log("Dialogue clip is not null.");
+				if (AudioData.MyAudioSource == null)
+				{
+					Debug.Log("AudioData's AudioSource is Dialogue.");
+					AudioData.MyAudioSource = Dialogue;
+				}
+			}
+			else
+			{
+				Debug.Log("AudioData's AudioSource is now null.");
+				AudioData.MyAudioSource = null;
+			}
+			if (AudioData.MyAudioSource != null)
+			{
+				Debug.Log("AudioData's AudioSource is not null. Rotating the jaw.");
+				if (Speaker[CutscenePhase] == 1)
+				{
+					RyobaJaw.localEulerAngles += new Vector3(0f, 0f, AudioData.g[1].transform.position.y);
+					Debug.Log("RyobaJaw.localEulerAngles.z is: " + RyobaJaw.localEulerAngles.z);
+					if (RyobaJaw.localEulerAngles.z < 40f)
+					{
+						RyobaJaw.localEulerAngles = new Vector3(RyobaJaw.localEulerAngles.x, RyobaJaw.localEulerAngles.y, 40f);
+					}
+					else if (RyobaJaw.localEulerAngles.z > 55f)
+					{
+						RyobaJaw.localEulerAngles = new Vector3(RyobaJaw.localEulerAngles.x, RyobaJaw.localEulerAngles.y, 55f);
+					}
+				}
+				else
+				{
+					YakuzaJaw.localEulerAngles = new Vector3(0f, 0f, 40f + AudioData.g[1].transform.position.y);
+					Debug.Log("YakuzaJaw.localEulerAngles.z is: " + YakuzaJaw.localEulerAngles.z);
+				}
+			}
+		}
+		YakuzaEyeL.transform.localEulerAngles = new Vector3(12f, Mathf.SmoothStep(-95f, -85f, Mathf.PingPong(Time.time / 10f, 1f)), 0f);
+		YakuzaEyeR.transform.localEulerAngles = new Vector3(-12f, Mathf.SmoothStep(85f, 95f, Mathf.PingPong(Time.time / 10f, 1f)), 180f);
 	}
 }

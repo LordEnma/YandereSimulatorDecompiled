@@ -825,6 +825,7 @@ public class StudentInfoScript : MonoBehaviour
 
 	private void MatchmadeCheck()
 	{
+		Debug.Log("Performing Matchmaking Check.");
 		Matchmade = false;
 		if (Eighties)
 		{
@@ -912,8 +913,11 @@ public class StudentInfoScript : MonoBehaviour
 					PartnerName = JSON.Students[20].Name;
 				}
 			}
+			return;
 		}
-		else if ((CurrentStudent > 10 && CurrentStudent < 21 && GameGlobals.GetRivalEliminations(CurrentStudent - 10) == 6) || (CurrentStudent == 6 && GameGlobals.GetRivalEliminations(1) == 6))
+		Debug.Log("Osana's elimination: " + GameGlobals.GetRivalEliminations(1));
+		Debug.Log("Matchmade elimination number is: " + 6);
+		if ((CurrentStudent > 10 && CurrentStudent < 21 && GameGlobals.GetRivalEliminations(CurrentStudent - 10) == 6) || (CurrentStudent == 6 && GameGlobals.GetRivalEliminations(1) == 6))
 		{
 			Matchmade = true;
 			if (CurrentStudent == 11)

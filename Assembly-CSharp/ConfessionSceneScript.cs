@@ -201,6 +201,7 @@ public class ConfessionSceneScript : MonoBehaviour
 				Timer += Time.deltaTime;
 				if (Timer > 1f)
 				{
+					Debug.Log("As of right now, the StudentManager should be aware that the rival was eliminated through matchmaking.");
 					DatingGlobals.SuitorProgress = 2;
 					StudentManager.RivalEliminated = true;
 					Yandere.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Matchmade;

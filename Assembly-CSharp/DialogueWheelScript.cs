@@ -1181,6 +1181,11 @@ public class DialogueWheelScript : MonoBehaviour
 					Yandere.TargetStudent.GoChange();
 					Yandere.TargetStudent.CharacterAnimation.CrossFade(Yandere.TargetStudent.WalkAnim);
 				}
+				else if (Yandere.TargetStudent.Actions[Yandere.TargetStudent.Phase] == StudentActionType.LightFire)
+				{
+					Debug.Log("Pyro girl was about to go burn something. Telling her to forget that.");
+					Yandere.TargetStudent.FinishPyro();
+				}
 			}
 			if (Yandere.TargetStudent.Persona == PersonaType.PhoneAddict)
 			{

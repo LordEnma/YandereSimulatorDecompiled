@@ -287,7 +287,7 @@ public class GenericRivalEventScript : MonoBehaviour
 				SpeechText[2] = "Sure, what's up?";
 				SpeechText[3] = "It's embarrassing...but I accidentally made an extra bento this morning.";
 				SpeechText[4] = "It pains me to see food go to waste...so, I'd like to offer it to you.";
-				SpeechText[5] = "Oh, that'd be an honor! I'd love to have it?";
+				SpeechText[5] = "Oh, that'd be an honor! I'd love to have it!";
 				SpeechText[6] = "Would you? That would make me so happy! Please take it, Senpai!";
 				SpeechText[7] = "Okay! I'll keep it on my desk for now, and eat it at lunchtime.";
 				SpeechText[8] = "Wonderful! At 5:15 PM, would you meet me here, so you can tell me how it tasted?";

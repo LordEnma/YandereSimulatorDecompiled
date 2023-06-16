@@ -503,6 +503,7 @@ public class ClubManagerScript : MonoBehaviour
 		}
 		else if (Club == ClubType.MartialArts)
 		{
+			Debug.Log("Teleporting Martial Artists to the club.");
 			for (ID = 0; ID < Club6Students.Length; ID++)
 			{
 				StudentScript studentScript6 = StudentManager.Students[Club6Students[ID]];
@@ -510,7 +511,10 @@ public class ClubManagerScript : MonoBehaviour
 				{
 					studentScript6.transform.position = Club6ActivitySpots[ID].position;
 					studentScript6.transform.rotation = Club6ActivitySpots[ID].rotation;
+					studentScript6.CharacterAnimation.enabled = true;
+					studentScript6.CharacterAnimation.Play(studentScript6.ActivityAnim);
 					studentScript6.ClubActivity = true;
+					studentScript6.Routine = false;
 					studentScript6.GetComponent<AudioSource>().volume = 0.1f;
 					if (!studentScript6.ClubAttire)
 					{

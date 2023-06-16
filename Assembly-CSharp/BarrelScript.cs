@@ -29,9 +29,17 @@ public class BarrelScript : MonoBehaviour
 				Prompt.Yandere.EmptyHands();
 				Corpse.transform.position = base.transform.position + Vector3.up * 2.5833333f;
 				Corpse.transform.eulerAngles = new Vector3(0f, 135f, 180f);
-				Corpse.GetComponent<RagdollScript>().enabled = false;
-				Corpse.GetComponent<StudentScript>().CharacterAnimation.enabled = true;
-				Corpse.GetComponent<StudentScript>().CharacterAnimation.Play("f02_idleShort_00");
+				RagdollScript component = Corpse.GetComponent<RagdollScript>();
+				component.enabled = false;
+				component.Student.CharacterAnimation.enabled = true;
+				if (!component.Male)
+				{
+					component.Student.CharacterAnimation.Play("f02_idleShort_00");
+				}
+				else
+				{
+					component.Student.CharacterAnimation.Play(component.Student.IdleAnim);
+				}
 				Prompt.Hide();
 				Prompt.enabled = false;
 				Fall = true;

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class HomeExitScript : MonoBehaviour
 {
+	public HomeWindowScript PartTimeJobWindow;
+
 	public InputManagerScript InputManager;
 
 	public HomeDarknessScript HomeDarkness;
@@ -26,6 +28,7 @@ public class HomeExitScript : MonoBehaviour
 	private void Start()
 	{
 		UILabel uILabel = Labels[1];
+		Labels[5].alpha = 0.5f;
 		if (HomeGlobals.Night)
 		{
 			uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
@@ -40,10 +43,12 @@ public class HomeExitScript : MonoBehaviour
 				}
 			}
 			BringItemPrompt.SetActive(value: false);
+			Labels[5].alpha = 1f;
 		}
 		else if (DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
 			uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
+			Labels[5].alpha = 1f;
 		}
 	}
 
@@ -56,20 +61,20 @@ public class HomeExitScript : MonoBehaviour
 		if (InputManager.TappedDown)
 		{
 			ID++;
-			if (ID > 4)
+			if (ID > 5)
 			{
 				ID = 1;
 			}
-			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 50f - (float)ID * 50f, Highlight.localPosition.z);
+			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 100f - (float)ID * 50f, Highlight.localPosition.z);
 		}
 		if (InputManager.TappedUp)
 		{
 			ID--;
 			if (ID < 1)
 			{
-				ID = 4;
+				ID = 5;
 			}
-			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 50f - (float)ID * 50f, Highlight.localPosition.z);
+			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 100f - (float)ID * 50f, Highlight.localPosition.z);
 		}
 		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
@@ -80,6 +85,12 @@ public class HomeExitScript : MonoBehaviour
 			if (ID == 1)
 			{
 				HomeBringItem.HomeWindow.Show = true;
+				HomeWindow.Show = false;
+				return;
+			}
+			if (ID == 5)
+			{
+				PartTimeJobWindow.Show = true;
 				HomeWindow.Show = false;
 				return;
 			}

@@ -529,6 +529,7 @@ public class ConfessionManagerScript : MonoBehaviour
 					Heartbroken.Confessed = true;
 					MainCamera.SetActive(value: true);
 					Camera.main.enabled = true;
+					StudentManager.Yandere.RPGCamera.enabled = false;
 					ShoulderCamera.enabled = true;
 					ShoulderCamera.Noticed = true;
 					ShoulderCamera.Skip = true;

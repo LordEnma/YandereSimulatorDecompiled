@@ -1444,6 +1444,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 18)
 		{
+			Debug.Log("The EoD sequence is now checking the TranqCase.");
 			if (TranqCase.Occupied)
 			{
 				ClosedTranqCase.SetActive(value: true);
@@ -1513,6 +1514,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 21)
 		{
+			Debug.Log("The EoD sequence is now checking the rival's reputation.");
 			Rival = StudentManager.Students[StudentManager.RivalID];
 			if (ArticleID == 2)
 			{
@@ -1543,6 +1545,7 @@ public class EndOfDayScript : MonoBehaviour
 				GameGlobals.SpecificEliminationID = 4;
 				if (StudentManager.StudentReps[StudentManager.RivalID] <= -150f)
 				{
+					Debug.Log("GoToSuicideScene is being set to true right here...");
 					Label.text = RivalName + " is absolutely devastated by the unbearable bullying and harassment that she is being subjected to. She silently returns to her home, planning something drastic...";
 					Rival.CharacterAnimation.Play(Rival.BulliedIdleAnim);
 					RivalEliminationMethod = RivalEliminationType.SuicideBully;
@@ -1803,7 +1806,7 @@ public class EndOfDayScript : MonoBehaviour
 					}
 					else
 					{
-						Label.text = JSON.Students[fingerprintID2].Name + "'s fingerprints are on the same weapon that killed them. The police cannot solve this mystery.";
+						Label.text = JSON.Students[fingerprintID2].Name + "'s fingerprints are on the same weapon that killed them. However, the wounds on the victim's body are not consistent with those of a suicide. The police conclude that the victim's death was not a suicide, and was most likely a homicide. However, they lack sufficient evidence to name the perpetrator.";
 					}
 				}
 			}
@@ -1839,19 +1842,7 @@ public class EndOfDayScript : MonoBehaviour
 				ShruggingCops.SetActive(value: true);
 				Label.text = "The police attempt to determine whether or not a student fell to their death from the school rooftop. The police are unable to reach a conclusion.";
 			}
-			for (ID = 0; ID < Police.CorpseList.Length; ID++)
-			{
-				RagdollScript ragdollScript2 = Police.CorpseList[ID];
-				if (ragdollScript2 != null && ragdollScript2.Suicide)
-				{
-					Police.SuicideVictims++;
-					ragdollScript2 = null;
-					if (Police.Corpses > 0)
-					{
-						Police.Corpses--;
-					}
-				}
-			}
+			Debug.Log("Why remove suicide victims from the corpse list?");
 			Phase = 2;
 		}
 		else if (Phase == 103)
@@ -1860,10 +1851,10 @@ public class EndOfDayScript : MonoBehaviour
 			Label.text = "The paramedics attempt to resuscitate the poisoned student, but they are unable to revive her. The police treat the incident as a murder case, and search the school for any other victims.";
 			for (ID = 0; ID < Police.CorpseList.Length; ID++)
 			{
-				RagdollScript ragdollScript3 = Police.CorpseList[ID];
-				if (ragdollScript3 != null && ragdollScript3.Poisoned)
+				RagdollScript ragdollScript2 = Police.CorpseList[ID];
+				if (ragdollScript2 != null && ragdollScript2.Poisoned)
 				{
-					ragdollScript3 = null;
+					ragdollScript2 = null;
 					if (Police.Corpses > 0)
 					{
 						Police.Corpses--;
@@ -1890,10 +1881,10 @@ public class EndOfDayScript : MonoBehaviour
 			Label.text = "The police determine that " + Police.DrownedStudentName + " died from drowning. The police treat the death as a possible murder, and search the school for any other victims.";
 			for (ID = 0; ID < Police.CorpseList.Length; ID++)
 			{
-				RagdollScript ragdollScript4 = Police.CorpseList[ID];
-				if (ragdollScript4 != null)
+				RagdollScript ragdollScript3 = Police.CorpseList[ID];
+				if (ragdollScript3 != null)
 				{
-					if (ragdollScript4.Student.StudentID == StudentManager.RivalID)
+					if (ragdollScript3.Student.StudentID == StudentManager.RivalID)
 					{
 						Debug.Log("The player drowned the rival.");
 						if (RivalEliminationMethod == RivalEliminationType.None)
@@ -1910,9 +1901,9 @@ public class EndOfDayScript : MonoBehaviour
 							PlayerPrefs.SetInt("a", 1);
 						}
 					}
-					if (ragdollScript4.Drowned)
+					if (ragdollScript3.Drowned)
 					{
-						ragdollScript4 = null;
+						ragdollScript3 = null;
 						if (Police.Corpses > 0)
 						{
 							Police.Corpses--;
@@ -1928,10 +1919,10 @@ public class EndOfDayScript : MonoBehaviour
 			Label.text = "The police determine that " + Police.ElectrocutedStudentName + " died from being electrocuted. The police treat the death as a possible murder, and search the school for any other victims.";
 			for (ID = 0; ID < Police.CorpseList.Length; ID++)
 			{
-				RagdollScript ragdollScript5 = Police.CorpseList[ID];
-				if (ragdollScript5 != null && ragdollScript5.Electrocuted)
+				RagdollScript ragdollScript4 = Police.CorpseList[ID];
+				if (ragdollScript4 != null && ragdollScript4.Electrocuted)
 				{
-					if (ragdollScript5.Student.StudentID == StudentManager.RivalID)
+					if (ragdollScript4.Student.StudentID == StudentManager.RivalID)
 					{
 						Debug.Log("The game should now be informing the Content Checklist that the player has performed an electrocution.");
 						if (!GameGlobals.Debug)
@@ -2359,6 +2350,11 @@ public class EndOfDayScript : MonoBehaviour
 			}
 		}
 		bool flag = DateGlobals.Weekday != DayOfWeek.Friday && StudentManager.SabotageProgress > StudentManager.InitialSabotageProgress;
+		if (StudentManager.RivalEliminated || GameGlobals.GetRivalEliminations(DateGlobals.Week) > 0)
+		{
+			Debug.Log("Rival is already eliminated; we don't need to go to the sabotage progress screen.");
+			flag = false;
+		}
 		if (!TranqCase.Occupied)
 		{
 			if (GoToSuicideScene)
@@ -2427,13 +2423,24 @@ public class EndOfDayScript : MonoBehaviour
 			StudentGlobals.SetStudentHealth(TranqCase.VictimID, 100);
 			StudentGlobals.SetStudentSanity(TranqCase.VictimID, 100);
 			Debug.Log("Student #" + TranqCase.VictimID + " is being set as ''Kidnapped.''");
-			if (flag)
+			if (TranqCase.VictimID == StudentManager.RivalID)
+			{
+				GoToSuicideScene = false;
+			}
+			Debug.Log("And now, GoToSuicideScreen is: " + GoToSuicideScene);
+			if (GoToSuicideScene)
+			{
+				Debug.Log("Loading SuicideScene, or trying to.");
+				SceneManager.LoadScene("SuicideScene");
+			}
+			else if (flag)
 			{
 				GameGlobals.JustKidnapped = true;
 				SceneManager.LoadScene("RivalRejectionProgressScene");
 			}
 			else
 			{
+				Debug.Log("Going to the Calendar Scene now...");
 				SceneManager.LoadScene("CalendarScene");
 			}
 		}
@@ -2570,6 +2577,10 @@ public class EndOfDayScript : MonoBehaviour
 		PlayerGlobals.PersonaID = Yandere.PersonaID;
 		PlayerGlobals.CorpsesDiscovered += Police.Corpses;
 		PlayerGlobals.CorpsesDiscovered += Police.DrownVictims;
+		if (Police.SuicideScene)
+		{
+			PlayerGlobals.CorpsesDiscovered++;
+		}
 		ClassGlobals.BonusStudyPoints = Class.StudyPoints + Class.BonusPoints;
 		HomeGlobals.LateForSchool = false;
 		PlayerGlobals.ShrineItems += ShrineItemsCollected;

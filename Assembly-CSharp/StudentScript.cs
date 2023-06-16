@@ -3517,15 +3517,11 @@ public class StudentScript : MonoBehaviour
 					BreakUpAnim = "delinquentTalk_03";
 					GuardAnim = ReadyToFightAnim;
 					RelaxAnim = "sit_00";
-					if (StudentID == 89)
-					{
-						RelaxAnim = "crossarms_00";
-					}
 					if (StudentID == 86)
 					{
 						ShoveAnim = "coldPush_00";
 					}
-					if (StudentID == 87)
+					else if (StudentID == 87)
 					{
 						ShoveAnim = "foreignPush_00";
 					}
@@ -3533,6 +3529,11 @@ public class StudentScript : MonoBehaviour
 					{
 						ShoveAnim = "humblePush_00";
 						CharacterAnimation["humblePush_00"].speed = 1.33333f;
+					}
+					else if (StudentID == 89)
+					{
+						RelaxAnim = "crossarms_00";
+						ShoveAnim = "toughPush_00";
 					}
 				}
 				ScaredAnim = ReadyToFightAnim;
@@ -3822,6 +3823,7 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (Club == ClubType.MartialArts)
 			{
+				CharacterAnimation.enabled = true;
 				CharacterAnimation.Play(ActivityAnim);
 				AudioSource component = GetComponent<AudioSource>();
 				if (!Male)
@@ -4864,7 +4866,7 @@ public class StudentScript : MonoBehaviour
 				{
 					TargetDistance = 5f;
 				}
-				if (StudentManager.LockerRoomArea.bounds.Contains(CurrentDestination.position) || StudentManager.EastBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.WestBathroomArea.bounds.Contains(CurrentDestination.position))
+				if (StudentManager.LockerRoomArea.bounds.Contains(CurrentDestination.position) || StudentManager.EastBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.WestBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.LockerRoomArea.bounds.Contains(StudentManager.Students[StudentManager.RivalID].transform.position) || StudentManager.EastBathroomArea.bounds.Contains(StudentManager.Students[StudentManager.RivalID].transform.position) || StudentManager.WestBathroomArea.bounds.Contains(StudentManager.Students[StudentManager.RivalID].transform.position))
 				{
 					if (Male)
 					{
@@ -8437,6 +8439,7 @@ public class StudentScript : MonoBehaviour
 							}
 							if (Persona == PersonaType.PhoneAddict && !Phoneless && !CrimeReported)
 							{
+								Countdown.Sprite.fillAmount = Mathf.MoveTowards(Countdown.Sprite.fillAmount, 0f, Time.deltaTime * Countdown.Speed);
 								if (Countdown.Sprite.fillAmount == 0f)
 								{
 									Countdown.Sprite.fillAmount = 1f;
@@ -11443,6 +11446,7 @@ public class StudentScript : MonoBehaviour
 						StudentManager.UpdateStudents(studentScript4.StudentID);
 						studentScript4.Pathfinding.canSearch = false;
 						studentScript4.Pathfinding.canMove = false;
+						studentScript4.RetrieveMedicinePhase = 0;
 						studentScript4.RetreivingMedicine = true;
 						studentScript4.Pathfinding.speed = 0f;
 						studentScript4.CameraReacting = false;
@@ -12344,6 +12348,7 @@ public class StudentScript : MonoBehaviour
 						Corpse = component;
 						if (Club == ClubType.Delinquent && Corpse.Student.Club == ClubType.Bully)
 						{
+							Debug.Log("At this moment, a delinquent is reacting to the corpse of a bully. 1");
 							ScaredAnim = EvilWitnessAnim;
 							Persona = PersonaType.Evil;
 						}
@@ -12386,6 +12391,11 @@ public class StudentScript : MonoBehaviour
 					StudentManager.BloodReporter = this;
 					ReportingBlood = true;
 					Debug.Log(Name + " has just appointed themself as a BloodReporter.");
+					if (BloodPool.gameObject.GetComponent<BloodPoolScript>() != null)
+					{
+						Debug.Log("Attempting to mark the blood pool as ''under investigation''.");
+						BloodPool.gameObject.GetComponent<BloodPoolScript>().UnderInvestigation = true;
+					}
 					DetermineBloodLocation();
 				}
 			}
@@ -12587,6 +12597,7 @@ public class StudentScript : MonoBehaviour
 							MeetTimer = 0f;
 							if (Persona == PersonaType.Spiteful && ((Bullied && Corpse.Student.Club == ClubType.Bully) || Corpse.Student.Bullied))
 							{
+								Debug.Log("At this moment, a delinquent is reacting to the corpse of a bully. 2");
 								ScaredAnim = EvilWitnessAnim;
 								Persona = PersonaType.Evil;
 							}
@@ -13352,7 +13363,7 @@ public class StudentScript : MonoBehaviour
 				{
 					flag2 = true;
 				}
-				if ((Alarm > 0f || AlarmTimer > 0f || Yandere.Armed || Yandere.Shoved || Waiting || InEvent || SentHome || Threatened || Guarding || VisitSenpaiDesk || (Distracted && !Drownable) || (StudentID == 1 && !flag2) || Yandere.YandereVision || TakingOutTrash) && ((!Slave && !BadTime && !Yandere.Gazing && !FightingSlave) || Yandere.YandereVision))
+				if ((Alarm > 0f || AlarmTimer > 0f || Yandere.Armed || Yandere.Shoved || Stripping || Waiting || InEvent || SentHome || Threatened || Guarding || VisitSenpaiDesk || (Distracted && !Drownable) || (StudentID == 1 && !flag2) || Yandere.YandereVision || TakingOutTrash) && ((!Slave && !BadTime && !Yandere.Gazing && !FightingSlave) || Yandere.YandereVision || Stripping))
 				{
 					if (InEvent || VisitSenpaiDesk)
 					{
@@ -15855,7 +15866,7 @@ public class StudentScript : MonoBehaviour
 		{
 			GetDestinations();
 		}
-		if (StudentManager.DisableFarAnims && DistanceToPlayer >= (float)StudentManager.FarAnimThreshold && CharacterAnimation.cullingType != 0 && !WitnessCamera.Show)
+		if (StudentManager.DisableFarAnims && DistanceToPlayer >= (float)StudentManager.FarAnimThreshold && CharacterAnimation.cullingType != 0 && !WitnessCamera.Show && !ClubActivity)
 		{
 			CharacterAnimation.enabled = false;
 		}
@@ -16112,6 +16123,18 @@ public class StudentScript : MonoBehaviour
 	public void AttackReaction()
 	{
 		Debug.Log(Name + " is being attacked.");
+		if (SeekingMedicine)
+		{
+			Debug.Log("Student was seeking medicine at the time of death.");
+			StudentScript studentScript = StudentManager.Students[90];
+			if (studentScript != null && studentScript.RetreivingMedicine)
+			{
+				Debug.Log("Nurse was retrieving medicine at the time of death.");
+				studentScript.RetrieveMedicinePhase = 5;
+				studentScript.MedicineTimer = 4f;
+				StudentManager.UpdateStudents(studentScript.StudentID);
+			}
+		}
 		if (TurnOffRadio)
 		{
 			ForgetRadio();
@@ -16593,23 +16616,33 @@ public class StudentScript : MonoBehaviour
 			Debug.Log("A Spiteful student witnessed a murder.");
 			if ((Bullied && Yandere.TargetStudent.Club == ClubType.Bully) || Yandere.TargetStudent.Bullied)
 			{
+				Debug.Log("At this moment, a delinquent is reacting to the murder of a bully. 1");
 				ScaredAnim = EvilWitnessAnim;
 				Persona = PersonaType.Evil;
 			}
 		}
 		if (Club == ClubType.Delinquent)
 		{
-			Debug.Log("A Delinquent witnessed a murder.");
-			if (Yandere.TargetStudent != null && Yandere.TargetStudent.Club == ClubType.Bully)
+			Debug.Log("A Delinquent witnessed murderous behavior, and now has to determine if he saw a bully's murder.");
+			if (Yandere.Attacking && Yandere.TargetStudent != null && Yandere.TargetStudent.Club == ClubType.Bully)
 			{
+				Debug.Log("At this moment, " + Name + " is reacting to the murder of a bully. 2");
 				ScaredAnim = EvilWitnessAnim;
 				Persona = PersonaType.Evil;
 				FoundEnemyCorpse = true;
 			}
-			if (((Yandere.Lifting && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed)) && Yandere.CurrentRagdoll.Student.Club == ClubType.Bully)
+			if ((Yandere.Lifting && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed))
 			{
-				ScaredAnim = EvilWitnessAnim;
-				Persona = PersonaType.Evil;
+				if (Yandere.CurrentRagdoll.Student.Club == ClubType.Bully || Yandere.CurrentRagdoll.Student.OriginalClub == ClubType.Bully)
+				{
+					Debug.Log("At this moment, a delinquent is reacting to the murder of a bully. 3");
+					ScaredAnim = EvilWitnessAnim;
+					Persona = PersonaType.Evil;
+				}
+				else
+				{
+					Debug.Log("Ain't a bully.");
+				}
 			}
 		}
 		if (Persona == PersonaType.Sleuth)
@@ -16751,6 +16784,7 @@ public class StudentScript : MonoBehaviour
 			if (!Yandere.Chased)
 			{
 				Debug.Log("A teacher has reached ChaseYandere through WitnessMurder.");
+				RetreivingMedicine = false;
 				ChaseYandere();
 			}
 		}
@@ -19061,6 +19095,7 @@ public class StudentScript : MonoBehaviour
 		}
 		if (!Male && BikiniAttacher.enabled)
 		{
+			Debug.Log("Destroying Bikini's newRenderer, re-enabling MyRenderer.");
 			UnityEngine.Object.Destroy(BikiniAttacher.newRenderer);
 			BikiniAttacher.enabled = false;
 			MyRenderer.enabled = true;
@@ -21771,6 +21806,9 @@ public class StudentScript : MonoBehaviour
 				Outlines[ID].color = new Color(1f, 1f, 0f, 1f);
 			}
 		}
+		Countdown.gameObject.SetActive(value: false);
+		Countdown.Sprite.fillAmount = 1f;
+		ChaseCamera.SetActive(value: false);
 	}
 
 	public void ForgetAboutBloodPool()
@@ -22623,6 +22661,7 @@ public class StudentScript : MonoBehaviour
 			{
 				BikiniAttacher.newRenderer.enabled = false;
 				MyRenderer.enabled = true;
+				WearingBikini = false;
 			}
 			if (CharacterAnimation[StripAnim].time >= CharacterAnimation[StripAnim].length)
 			{

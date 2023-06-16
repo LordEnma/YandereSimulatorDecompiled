@@ -360,9 +360,30 @@ public class GenericPromptScript : MonoBehaviour
 		else if (ID == 11 && Prompt.Circle[0].fillAmount == 0f)
 		{
 			Prompt.Circle[0].fillAmount = 1f;
+			if (!Object[2].activeInHierarchy)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Create a puddle of water in front of the microphone.";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			if (!Object[1].activeInHierarchy)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Sabotage the power strip with a screwdriver.";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Prompt.Yandere.NotificationManager.CustomText = "Plug a power strip into this machine.";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
 			if (Object[1].activeInHierarchy && Object[2].activeInHierarchy)
 			{
 				Effect.SetActive(!Effect.activeInHierarchy);
+				if (Effect.activeInHierarchy)
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "Electricity on!";
+				}
+				else
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "Electricity off.";
+				}
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
 		}
 		if (!PerformingAction)

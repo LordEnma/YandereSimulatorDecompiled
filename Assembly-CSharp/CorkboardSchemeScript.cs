@@ -73,6 +73,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		else if (!GameGlobals.CorkboardScene)
 		{
 			Video.transform.parent.localScale = Vector3.zero;
+			base.transform.GetChild(0).gameObject.SetActive(value: true);
 			CorkboardPhotos.SetActive(value: true);
 			CorkboardLight.SetActive(value: true);
 			SchemeSelectWindow.alpha = 0f;

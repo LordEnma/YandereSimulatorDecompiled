@@ -160,7 +160,8 @@ public class PortalScript : MonoBehaviour
 					num++;
 				}
 			}
-			int num2 = Police.BloodyWeapons;
+			int num2 = Police.BloodyWeapons - Police.IncineratedWeapons;
+			Debug.Log("Counting bloody weapons. Police.BloodyWeapons is: " + (Police.BloodyWeapons - Police.IncineratedWeapons));
 			TrashCanScript[] trashCans = StudentManager.TrashCans;
 			foreach (TrashCanScript trashCanScript in trashCans)
 			{

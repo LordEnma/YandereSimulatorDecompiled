@@ -1,10 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class StreetManagerScript : MonoBehaviour
 {
 	public StreetShopInterfaceScript StreetShopInterface;
+
+	public PostProcessingProfile Profile;
 
 	public AudioSource CurrentlyActiveJukebox;
 
@@ -131,6 +134,8 @@ public class StreetManagerScript : MonoBehaviour
 		{
 			Threatened = true;
 		}
+		Profile.depthOfField.enabled = OptionGlobals.DepthOfField;
+		Profile.ambientOcclusion.enabled = !OptionGlobals.DisableObscurance;
 	}
 
 	private void Update()

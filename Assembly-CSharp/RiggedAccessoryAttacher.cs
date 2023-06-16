@@ -195,7 +195,10 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 			Student.RiggedAccessoryOutlines[Student.RiggedAccessoryOutlineID].color = Student.Outlines[0].color;
 			Student.RiggedAccessoryOutlines[Student.RiggedAccessoryOutlineID].enabled = Student.Outlines[0].enabled;
 			Student.RiggedAccessoryOutlineID++;
-			newRenderer.material.shader = Student.Yandere.PauseScreen.NewSettings.QualityManager.NewHairShader;
+			if (Student.Yandere != null && Student.Yandere.PauseScreen != null)
+			{
+				newRenderer.material.shader = Student.Yandere.PauseScreen.NewSettings.QualityManager.NewHairShader;
+			}
 		}
 	}
 

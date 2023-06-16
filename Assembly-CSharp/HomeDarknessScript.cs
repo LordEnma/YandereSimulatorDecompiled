@@ -64,15 +64,18 @@ public class HomeDarknessScript : MonoBehaviour
 						{
 							DateGlobals.ForceSkip = true;
 						}
+						Debug.Log("Exiting home via cyberstalking.");
 						SceneManager.LoadScene("CalendarScene");
 					}
 					else
 					{
+						Debug.Log("Exiting home via Yancord.");
 						SceneManager.LoadScene("YancordScene");
 					}
 				}
 				else if (HomeCamera.ID == 5)
 				{
+					Debug.Log("Exiting home via video game.");
 					if (HomeVideoGames.ID == 1)
 					{
 						SceneManager.LoadScene("YanvaniaTitleScene");
@@ -84,6 +87,7 @@ public class HomeDarknessScript : MonoBehaviour
 				}
 				else if (HomeCamera.ID == 9)
 				{
+					Debug.Log("Exiting home via manga.");
 					if (!HomeGlobals.Night)
 					{
 						HomeGlobals.Night = true;
@@ -102,6 +106,7 @@ public class HomeDarknessScript : MonoBehaviour
 				}
 				else if (HomeCamera.ID == 10)
 				{
+					Debug.Log("Exiting home via taking mind-broken slave to school.");
 					if (Disposing)
 					{
 						if (!HomeGlobals.Night)
@@ -130,11 +135,13 @@ public class HomeDarknessScript : MonoBehaviour
 				}
 				else if (HomeCamera.ID == 11)
 				{
+					Debug.Log("Exiting home via kidnap conversation.");
 					EventGlobals.KidnapConversation = true;
 					SceneManager.LoadScene("PhoneScene");
 				}
 				else if (HomeCamera.ID == 12)
 				{
+					Debug.Log("Exiting home via watching anime.");
 					SceneManager.LoadScene("LifeNoteScene");
 				}
 				else if (HomeExit.ID == 1)
@@ -192,6 +199,10 @@ public class HomeDarknessScript : MonoBehaviour
 						SceneManager.LoadScene("AsylumScene");
 					}
 				}
+				else if (HomeExit.ID == 5)
+				{
+					SceneManager.LoadScene("CalendarScene");
+				}
 			}
 			else if (HomeGlobals.Night)
 			{
@@ -204,7 +215,6 @@ public class HomeDarknessScript : MonoBehaviour
 					DateGlobals.PassDays = 1;
 				}
 				SceneManager.LoadScene("CalendarScene");
-				Debug.Log("Went to sleep.");
 			}
 			else
 			{
