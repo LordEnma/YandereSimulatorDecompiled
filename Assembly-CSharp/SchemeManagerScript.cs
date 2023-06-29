@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SchemeManagerScript : MonoBehaviour
@@ -12,8 +13,53 @@ public class SchemeManagerScript : MonoBehaviour
 
 	public int CurrentScheme;
 
-	private void Start()
+	public void Start()
 	{
+		if (SchemeGlobals.UnlockExpulsionDaily)
+		{
+			Debug.Log("SchemeGlobals.UnlockExpulsionDaily is true.");
+			if (DateGlobals.Weekday == DayOfWeek.Tuesday)
+			{
+				SchemeGlobals.CurrentScheme = 2;
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Wednesday)
+			{
+				SchemeGlobals.CurrentScheme = 3;
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Thursday)
+			{
+				SchemeGlobals.CurrentScheme = 4;
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Friday)
+			{
+				SchemeGlobals.CurrentScheme = 5;
+			}
+		}
+		if (SchemeGlobals.UnlockRejectionDaily)
+		{
+			Debug.Log("SchemeGlobals.UnlockRejectionDaily is true.");
+			if (DateGlobals.Weekday == DayOfWeek.Tuesday)
+			{
+				SchemeGlobals.CurrentScheme = 22;
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Wednesday)
+			{
+				SchemeGlobals.CurrentScheme = 23;
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Thursday)
+			{
+				SchemeGlobals.CurrentScheme = 24;
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Friday)
+			{
+				SchemeGlobals.CurrentScheme = 25;
+			}
+		}
+		if (SchemeGlobals.UnlockExpulsionDaily || SchemeGlobals.UnlockRejectionDaily)
+		{
+			SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, 1);
+			Debug.Log("SchemeGlobals is now: " + SchemeGlobals.CurrentScheme + " and SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) is: " + SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme));
+		}
 	}
 
 	private void Update()

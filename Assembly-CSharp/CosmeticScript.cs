@@ -818,6 +818,13 @@ public class CosmeticScript : MonoBehaviour
 						CharacterAnimation.Play("f02_rivalPortraitPose_01");
 						base.transform.position = new Vector3(-0.045f, 0f, 0f);
 					}
+					else if (StudentID == 12)
+					{
+						Debug.Log("Choosing Amai's animation and telling her to LookCamera.");
+						CharacterAnimation.Play("f02_idleGirly_00");
+						base.transform.position = new Vector3(-0.025f, 0f, 0f);
+						LookCamera = true;
+					}
 					else if (StudentID == 38)
 					{
 						CharacterAnimation.Play("f02_pippiPose_00");
@@ -1173,9 +1180,12 @@ public class CosmeticScript : MonoBehaviour
 		{
 			if (!StudentGlobals.GetStudentReplaced(StudentID))
 			{
-				CharacterAnimation["f02_smile_00"].layer = 1;
-				CharacterAnimation.Play("f02_smile_00");
-				CharacterAnimation["f02_smile_00"].weight = 1f;
+				if (!TakingPortrait)
+				{
+					CharacterAnimation["f02_smile_00"].layer = 1;
+					CharacterAnimation.Play("f02_smile_00");
+					CharacterAnimation["f02_smile_00"].weight = 1f;
+				}
 				RightEyeRenderer.gameObject.SetActive(value: false);
 				LeftEyeRenderer.gameObject.SetActive(value: false);
 			}
@@ -1404,11 +1414,11 @@ public class CosmeticScript : MonoBehaviour
 				}
 				if (Club == ClubType.Cooking)
 				{
+					ClubAccessories[(int)Club].SetActive(value: false);
 					if (StudentID != 12)
 					{
-						ClubAccessories[(int)Club].SetActive(value: false);
 						ClubAccessories[(int)Club] = Kerchiefs[StudentID];
-						if (!ClubGlobals.GetClubClosed(Club) && StudentID > 12)
+						if (!ClubGlobals.GetClubClosed(Club))
 						{
 							ClubAccessories[(int)Club].SetActive(value: true);
 						}
@@ -3145,6 +3155,16 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
+	public void LateUpdate()
+	{
+		if (LookCamera)
+		{
+			Debug.Log("LookCamera is true.");
+			Student.Head.LookAt(Camera.main.transform.position);
+			Student.Neck.LookAt(Camera.main.transform.position);
+		}
+	}
+
 	public void DisableFingernails()
 	{
 		for (int i = 0; i < 10; i++)
@@ -3155,7 +3175,6 @@ public class CosmeticScript : MonoBehaviour
 
 	public void PickGenericAnim()
 	{
-		Debug.Log("Trying to assign an animation to " + Name);
 		if (!PickedAnim)
 		{
 			if (!Male)

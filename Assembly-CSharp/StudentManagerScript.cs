@@ -1231,6 +1231,7 @@ public class StudentManagerScript : MonoBehaviour
 		RoofFenceUp = SchoolGlobals.RoofFence;
 		if (Schemes != null)
 		{
+			Schemes.SchemeManager.Start();
 			Schemes.HUDIcon.gameObject.SetActive(value: false);
 			Schemes.HUDInstructions.text = string.Empty;
 			Schemes.SchemeManager.CurrentScheme = 0;
@@ -2773,7 +2774,7 @@ public class StudentManagerScript : MonoBehaviour
 						{
 							if (Yandere.Armed)
 							{
-								if (Yandere.EquippedWeapon.Concealable)
+								if (Yandere.EquippedWeapon.Concealable && !studentScript.Hunting)
 								{
 									studentScript.Prompt.HideButton[0] = false;
 									studentScript.Prompt.Label[0].text = "     Give Weapon";
@@ -3032,6 +3033,7 @@ public class StudentManagerScript : MonoBehaviour
 						{
 							NoteWindow.NoteLocker.Finish();
 						}
+						studentScript.WearingBikini = false;
 						studentScript.Distracting = false;
 						studentScript.Distracted = false;
 						studentScript.Tripping = false;
@@ -4220,6 +4222,10 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void UpdateMartialArts()
 	{
+		if (Yandere.DelinquentFighting)
+		{
+			return;
+		}
 		ConvoManager.BothCharactersInPosition = false;
 		MartialArtsPhase++;
 		for (ID = 46; ID < 51; ID++)
@@ -6083,6 +6089,10 @@ public class StudentManagerScript : MonoBehaviour
 			Students[ID].Obstacle.enabled = false;
 			Students[ID].AdmireAnim = Students[ID].AdmireAnims[UnityEngine.Random.Range(0, 3)];
 			Physics.IgnoreCollision(Students[ID].MyController, Students[19].MyController);
+			if (Students[SuitorID] != null)
+			{
+				Physics.IgnoreCollision(Students[ID].MyController, Students[SuitorID].MyController);
+			}
 		}
 	}
 

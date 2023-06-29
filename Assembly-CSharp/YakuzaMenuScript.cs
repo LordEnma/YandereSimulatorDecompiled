@@ -1230,28 +1230,22 @@ public class YakuzaMenuScript : MonoBehaviour
 	{
 		if (Dialogue.isPlaying)
 		{
-			Debug.Log("Dialogue is playing.");
 			if (Dialogue.clip != null)
 			{
-				Debug.Log("Dialogue clip is not null.");
 				if (AudioData.MyAudioSource == null)
 				{
-					Debug.Log("AudioData's AudioSource is Dialogue.");
 					AudioData.MyAudioSource = Dialogue;
 				}
 			}
 			else
 			{
-				Debug.Log("AudioData's AudioSource is now null.");
 				AudioData.MyAudioSource = null;
 			}
 			if (AudioData.MyAudioSource != null)
 			{
-				Debug.Log("AudioData's AudioSource is not null. Rotating the jaw.");
 				if (Speaker[CutscenePhase] == 1)
 				{
 					RyobaJaw.localEulerAngles += new Vector3(0f, 0f, AudioData.g[1].transform.position.y);
-					Debug.Log("RyobaJaw.localEulerAngles.z is: " + RyobaJaw.localEulerAngles.z);
 					if (RyobaJaw.localEulerAngles.z < 40f)
 					{
 						RyobaJaw.localEulerAngles = new Vector3(RyobaJaw.localEulerAngles.x, RyobaJaw.localEulerAngles.y, 40f);
@@ -1264,7 +1258,6 @@ public class YakuzaMenuScript : MonoBehaviour
 				else
 				{
 					YakuzaJaw.localEulerAngles = new Vector3(0f, 0f, 40f + AudioData.g[1].transform.position.y);
-					Debug.Log("YakuzaJaw.localEulerAngles.z is: " + YakuzaJaw.localEulerAngles.z);
 				}
 			}
 		}

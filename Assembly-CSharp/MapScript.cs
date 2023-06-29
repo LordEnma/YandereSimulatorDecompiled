@@ -12,6 +12,8 @@ public class MapScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public GameObject MapParent;
+
 	public GameObject Compass;
 
 	public Transform YandereMapMarker;
@@ -39,6 +41,8 @@ public class MapScript : MonoBehaviour
 	public bool Show;
 
 	public Texture RyobaFace;
+
+	public Transform[] AllLabels;
 
 	public UILabel[] Labels;
 
@@ -73,6 +77,7 @@ public class MapScript : MonoBehaviour
 					Yandere.Blur.enabled = true;
 					MyCamera.enabled = true;
 					Compass.SetActive(value: true);
+					MapParent.SetActive(value: true);
 					Time.timeScale = 0.001f;
 					PromptBar.ClearButtons();
 					PromptBar.Label[1].text = "Exit";
@@ -90,6 +95,7 @@ public class MapScript : MonoBehaviour
 				Yandere.Blur.enabled = false;
 				PauseScreen.Show = false;
 				Compass.SetActive(value: false);
+				MapParent.SetActive(value: false);
 				Time.timeScale = 1f;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
@@ -116,6 +122,7 @@ public class MapScript : MonoBehaviour
 				num2 = Input.GetAxis("Mouse X");
 				base.transform.position += new Vector3(num2 * Time.unscaledDeltaTime * 50f, 0f, num * Time.unscaledDeltaTime * 50f);
 				MyCamera.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.unscaledDeltaTime * 1000f;
+				UpdateLabelSizes();
 			}
 			else
 			{
@@ -123,6 +130,7 @@ public class MapScript : MonoBehaviour
 				num2 = Input.GetAxis("Horizontal");
 				base.transform.position += new Vector3(num2 * Time.unscaledDeltaTime * 100f, 0f, num * Time.unscaledDeltaTime * 100f);
 				MyCamera.orthographicSize -= Input.GetAxis("Mouse Y") * Time.unscaledDeltaTime * 100f;
+				UpdateLabelSizes();
 			}
 			if (MyCamera.orthographicSize < 4f)
 			{
@@ -223,5 +231,16 @@ public class MapScript : MonoBehaviour
 		MyCamera.rect = new Rect(0.5f, 0.5f, 0f, 0f);
 		ElevationLabel.enabled = false;
 		MyCamera.enabled = false;
+	}
+
+	private void UpdateLabelSizes()
+	{
+		Debug.Log("Resizing now.");
+		float num = YandereMapMarker.localScale.x * 0.2f;
+		Transform[] allLabels = AllLabels;
+		for (int i = 0; i < allLabels.Length; i++)
+		{
+			allLabels[i].localScale = new Vector3(1f + num, 1f + num, 1f + num);
+		}
 	}
 }

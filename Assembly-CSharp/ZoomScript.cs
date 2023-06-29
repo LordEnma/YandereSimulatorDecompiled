@@ -109,7 +109,7 @@ public class ZoomScript : MonoBehaviour
 		if (Zoom != TargetZoom)
 		{
 			Zoom = Mathf.MoveTowards(Zoom, TargetZoom, Time.deltaTime);
-			Yandere.CameraEffects.UpdateDOF(2f - Zoom * 3.75f);
+			UpdateDOF();
 		}
 		if (!Yandere.Possessed)
 		{
@@ -168,5 +168,10 @@ public class ZoomScript : MonoBehaviour
 		{
 			base.transform.localPosition = new Vector3(0f, base.transform.localPosition.y, 0f);
 		}
+	}
+
+	public void UpdateDOF()
+	{
+		Yandere.CameraEffects.UpdateDOF(2f - Zoom * 3.75f);
 	}
 }

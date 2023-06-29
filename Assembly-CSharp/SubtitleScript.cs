@@ -3546,7 +3546,7 @@ public class SubtitleScript : MonoBehaviour
 	{
 		Jukebox.Dip = 0.5f;
 		SubtitleClipArrays.TryGetValue(subtitleType, out var value);
-		if (CurrentClip != null && value[ID] != HmmClips[0])
+		if (CurrentClip != null && ID <= value.Length && value[ID] != HmmClips[0])
 		{
 			Object.Destroy(CurrentClip);
 		}

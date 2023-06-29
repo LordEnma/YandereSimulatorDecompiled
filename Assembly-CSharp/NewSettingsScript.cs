@@ -1056,6 +1056,10 @@ public class NewSettingsScript : MonoBehaviour
 			}
 		}
 		OptionGlobals.DisableBloom = !Profile.bloom.enabled;
+		if (StudentManager != null && StudentManager.Yandere != null && StudentManager.Yandere.Zoom != null && StudentManager.Yandere.CameraEffects != null)
+		{
+			StudentManager.Yandere.Zoom.UpdateDOF();
+		}
 	}
 
 	public void SetWindowsOpaque()

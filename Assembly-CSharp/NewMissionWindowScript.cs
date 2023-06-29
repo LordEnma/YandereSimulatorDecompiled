@@ -61,7 +61,6 @@ public class NewMissionWindowScript : MonoBehaviour
 		UpdateHighlight();
 		for (int i = 1; i < 11; i++)
 		{
-			Debug.Log("Updating portraits in Start() function.");
 			Portrait[i].mainTexture = BlankPortrait;
 			NameLabel[i].text = "Kill: (Nobody)";
 			MethodLabel[i].text = "By: Attacking";
@@ -119,6 +118,8 @@ public class NewMissionWindowScript : MonoBehaviour
 					{
 						if (num > 0)
 						{
+							Debug.Log("Switching GameGlobals.Profile to 4, since we are beginning a Mission Mode mission, and nothing we do in here should carry over to any of the player's other save files.");
+							GameGlobals.Profile = 4;
 							Globals.DeleteAll();
 							SaveInfo();
 							MissionModeMenu.GetComponent<AudioSource>().PlayOneShot(MissionModeMenu.InfoLines[6]);
@@ -335,7 +336,6 @@ public class NewMissionWindowScript : MonoBehaviour
 			NameLabel[Column + Number].text = "Kill: " + JSON.Students[Target[Column + Number]].Name;
 		}
 		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + Target[Column + Number] + ".png");
-		Debug.Log("Updating portraits in Increment() function.");
 		if (Target[Column + Number] > 0)
 		{
 			Portrait[Column + Number].mainTexture = wWW.texture;

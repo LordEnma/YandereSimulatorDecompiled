@@ -490,18 +490,19 @@ public class WeekSelectScript : MonoBehaviour
 	{
 		for (int i = 2; i < 86; i++)
 		{
-			PlayerGlobals.SetStudentFriend(i, Friend);
+			if (i < 11 || i > 20)
+			{
+				PlayerGlobals.SetStudentFriend(i, Friend);
+				PlayerGlobals.Friends++;
+			}
 		}
 		if (Friend)
 		{
-			PlayerGlobals.Friends = 84;
 			GameGlobals.YakuzaPhase = 1;
+			return;
 		}
-		else
-		{
-			PlayerGlobals.Friends = 0;
-			GameGlobals.YakuzaPhase = 0;
-		}
+		PlayerGlobals.Friends = 0;
+		GameGlobals.YakuzaPhase = 0;
 	}
 
 	private void DetermineSelectedWeek()

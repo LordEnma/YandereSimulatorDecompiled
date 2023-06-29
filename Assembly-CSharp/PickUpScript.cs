@@ -645,6 +645,10 @@ public class PickUpScript : MonoBehaviour
 
 	public void Drop()
 	{
+		if (Yandere.PersonaID == 4)
+		{
+			base.transform.position = Yandere.transform.position + new Vector3(0f, 1f, 0f);
+		}
 		if (CarBattery)
 		{
 			Yandere.PotentiallyMurderousTimer = 1f;

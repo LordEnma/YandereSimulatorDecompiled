@@ -380,26 +380,31 @@ public class WeaponScript : MonoBehaviour
 		{
 			base.transform.Rotate(Vector3.forward * Time.deltaTime * 100f);
 		}
-		if (!Unravel)
+		if (Unravel)
 		{
-			return;
-		}
-		if (Yandere.Attacking)
-		{
-			base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(0.05f, -0.033333f, 0.04f), Time.deltaTime * 2f);
-			base.transform.localEulerAngles = new Vector3(17.5f, 35f, -15f);
-			if (SkinnedMesh.GetBlendShapeWeight(0) < 100f)
+			if (Yandere.Attacking)
 			{
-				SkinnedMesh.SetBlendShapeWeight(0, SkinnedMesh.GetBlendShapeWeight(0) + Time.deltaTime * 200f);
+				base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(0.05f, -0.033333f, 0.04f), Time.deltaTime * 2f);
+				base.transform.localEulerAngles = new Vector3(17.5f, 35f, -15f);
+				if (SkinnedMesh.GetBlendShapeWeight(0) < 100f)
+				{
+					SkinnedMesh.SetBlendShapeWeight(0, SkinnedMesh.GetBlendShapeWeight(0) + Time.deltaTime * 200f);
+				}
 			}
-			return;
+			else
+			{
+				SkinnedMesh.SetBlendShapeWeight(0, SkinnedMesh.GetBlendShapeWeight(0) - Time.deltaTime * 200f);
+				if (SkinnedMesh.GetBlendShapeWeight(0) <= 0f)
+				{
+					base.transform.localPosition = Vector3.zero;
+					base.transform.localEulerAngles = Vector3.zero;
+					Unravel = false;
+				}
+			}
 		}
-		SkinnedMesh.SetBlendShapeWeight(0, SkinnedMesh.GetBlendShapeWeight(0) - Time.deltaTime * 200f);
-		if (SkinnedMesh.GetBlendShapeWeight(0) <= 0f)
+		if (WeaponID == 24 && Flip)
 		{
-			base.transform.localPosition = Vector3.zero;
-			base.transform.localEulerAngles = Vector3.zero;
-			Unravel = false;
+			base.transform.localEulerAngles = new Vector3(2f, -172f, -102.5f);
 		}
 	}
 
@@ -657,6 +662,10 @@ public class WeaponScript : MonoBehaviour
 		if (Undroppable)
 		{
 			return;
+		}
+		if (Yandere.PersonaID == 4)
+		{
+			base.transform.position = Yandere.transform.position + new Vector3(0f, 1f, 0f);
 		}
 		if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 2)
 		{

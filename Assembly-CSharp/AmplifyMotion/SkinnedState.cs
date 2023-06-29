@@ -305,12 +305,12 @@ namespace AmplifyMotion
 					array2[num6] = new Vector2(x, y);
 				}
 				m_clonedMesh.uv2 = array2;
-				return result;
 			}
 			catch (Exception)
 			{
-				return false;
+				result = false;
 			}
+			return result;
 		}
 
 		private void ShutdownGPUSkinDeform()

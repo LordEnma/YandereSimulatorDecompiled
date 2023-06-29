@@ -34,6 +34,8 @@ public class AlarmDiscScript : MonoBehaviour
 
 	public bool Radio;
 
+	public bool Loud;
+
 	public bool Male;
 
 	public bool Long;
@@ -48,6 +50,11 @@ public class AlarmDiscScript : MonoBehaviour
 		localScale.x *= 2f - SchoolGlobals.SchoolAtmosphere;
 		localScale.z = localScale.x;
 		base.transform.localScale = localScale;
+		if (Loud)
+		{
+			base.transform.localScale *= 3f;
+			Debug.Log("Alarming death! Alarm Disc scale is thrice as big as normal!");
+		}
 	}
 
 	private void Update()
@@ -105,6 +112,10 @@ public class AlarmDiscScript : MonoBehaviour
 				Student.Investigating = false;
 				Student.DiscCheck = false;
 				Student.VisionDistance += 1f;
+				if (Loud)
+				{
+					Student.VisionDistance += 4f;
+				}
 				Student.ChalkDust.Stop();
 				Student.CleanTimer = 0f;
 				if (!Radio)
@@ -155,10 +166,12 @@ public class AlarmDiscScript : MonoBehaviour
 								}
 								else if (Originator.Corpse == null)
 								{
+									Debug.Log("Originator didn't see a corpse.");
 									Student.DistractionSpot = new Vector3(base.transform.position.x, Student.transform.position.y, base.transform.position.z);
 								}
 								else
 								{
+									Debug.Log(Student.Name + " heard a scream from " + Originator?.ToString() + ", who witnessed a corpse. So, " + Student.Name + " really should be looking towards that corpse.");
 									Student.DistractionSpot = new Vector3(Originator.Corpse.transform.position.x, Student.transform.position.y, Originator.Corpse.transform.position.z);
 								}
 							}

@@ -143,102 +143,107 @@ public class PromptScript : MonoBehaviour
 				Yandere = YandereObject.GetComponent<YandereScript>();
 			}
 		}
-		if (!(Yandere != null))
+		if (Yandere != null)
 		{
-			return;
-		}
-		PromptParent = Yandere.PromptParent;
-		if (PromptParent == null)
-		{
-			base.enabled = false;
-			return;
-		}
-		PauseScreen = Yandere.PauseScreen;
-		UICamera = Yandere.UICamera;
-		MainCamera = Yandere.MainCamera;
-		if (Noisy)
-		{
-			Speaker = Object.Instantiate(SpeakerObject, CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
-			Speaker.transform.parent = PromptParent.transform;
-			Speaker.transform.localScale = new Vector3(1f, 1f, 1f);
-			Speaker.transform.localEulerAngles = Vector3.zero;
-			Speaker.enabled = false;
-		}
-		Square = Object.Instantiate(PromptParent.SquareObject, CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
-		Square.transform.parent = PromptParent.transform;
-		Square.transform.localScale = new Vector3(1f, 1f, 1f);
-		Square.transform.localEulerAngles = Vector3.zero;
-		Square.applyGradient = true;
-		Square.gradientTop = new Color(1f, 1f, 1f, 1f);
-		Square.gradientBottom = new Color(1f, 0.75f, 1f, 1f);
-		Square.color = new Color(1f, 1f, 1f, 0f);
-		Color color = Square.color;
-		color.a = 0f;
-		Square.color = color;
-		Square.enabled = false;
-		for (ID = 0; ID < 4; ID++)
-		{
-			if (ButtonActive[ID])
+			PromptParent = Yandere.PromptParent;
+			if (PromptParent == null)
 			{
-				Button[ID] = Object.Instantiate(ButtonObject[ID], CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
-				UISprite uISprite = Button[ID];
-				uISprite.transform.parent = PromptParent.transform;
-				uISprite.transform.localScale = new Vector3(1f, 1f, 1f);
-				uISprite.transform.localEulerAngles = Vector3.zero;
-				uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0f);
-				uISprite.enabled = false;
-				Circle[ID] = Object.Instantiate(CircleObject, CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
-				UISprite uISprite2 = Circle[ID];
-				uISprite2.transform.parent = Button[ID].transform;
-				uISprite2.transform.localScale = new Vector3(1f, 1f, 1f);
-				uISprite2.transform.localEulerAngles = Vector3.zero;
-				uISprite2.transform.localPosition = Vector3.zero;
-				uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 0f);
-				uISprite2.enabled = false;
-				Label[ID] = Object.Instantiate(LabelObject, CurrentPosition, Quaternion.identity).GetComponent<UILabel>();
-				UILabel uILabel = Label[ID];
-				uILabel.transform.parent = Button[ID].transform;
-				uILabel.transform.localScale = new Vector3(1f, 1f, 1f);
-				uILabel.transform.localEulerAngles = Vector3.zero;
-				uILabel.transform.localPosition = Vector3.zero;
-				uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0f);
-				uILabel.enabled = false;
-				if (Suspicious)
-				{
-					uILabel.color = new Color(1f, 0f, 0f, 0f);
-				}
-				else
-				{
-					uILabel.applyGradient = true;
-					uILabel.gradientTop = new Color(1f, 1f, 1f, 1f);
-					uILabel.gradientBottom = new Color(1f, 0.75f, 1f, 1f);
-					uILabel.color = new Color(1f, 1f, 1f, 0f);
-				}
-				uILabel.text = "     " + Text[ID];
+				base.enabled = false;
+				return;
 			}
-			AcceptingInput[ID] = true;
+			PauseScreen = Yandere.PauseScreen;
+			UICamera = Yandere.UICamera;
+			MainCamera = Yandere.MainCamera;
+			if (Noisy)
+			{
+				Speaker = Object.Instantiate(SpeakerObject, CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
+				Speaker.transform.parent = PromptParent.transform;
+				Speaker.transform.localScale = new Vector3(1f, 1f, 1f);
+				Speaker.transform.localEulerAngles = Vector3.zero;
+				Speaker.enabled = false;
+			}
+			Square = Object.Instantiate(PromptParent.SquareObject, CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
+			Square.transform.parent = PromptParent.transform;
+			Square.transform.localScale = new Vector3(1f, 1f, 1f);
+			Square.transform.localEulerAngles = Vector3.zero;
+			Square.applyGradient = true;
+			Square.gradientTop = new Color(1f, 1f, 1f, 1f);
+			Square.gradientBottom = new Color(1f, 0.75f, 1f, 1f);
+			Square.color = new Color(1f, 1f, 1f, 0f);
+			Color color = Square.color;
+			color.a = 0f;
+			Square.color = color;
+			Square.enabled = false;
+			for (ID = 0; ID < 4; ID++)
+			{
+				if (ButtonActive[ID])
+				{
+					Button[ID] = Object.Instantiate(ButtonObject[ID], CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
+					UISprite uISprite = Button[ID];
+					uISprite.transform.parent = PromptParent.transform;
+					uISprite.transform.localScale = new Vector3(1f, 1f, 1f);
+					uISprite.transform.localEulerAngles = Vector3.zero;
+					uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0f);
+					uISprite.enabled = false;
+					Circle[ID] = Object.Instantiate(CircleObject, CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
+					UISprite uISprite2 = Circle[ID];
+					uISprite2.transform.parent = Button[ID].transform;
+					uISprite2.transform.localScale = new Vector3(1f, 1f, 1f);
+					uISprite2.transform.localEulerAngles = Vector3.zero;
+					uISprite2.transform.localPosition = Vector3.zero;
+					uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 0f);
+					uISprite2.enabled = false;
+					Label[ID] = Object.Instantiate(LabelObject, CurrentPosition, Quaternion.identity).GetComponent<UILabel>();
+					UILabel uILabel = Label[ID];
+					uILabel.transform.parent = Button[ID].transform;
+					uILabel.transform.localScale = new Vector3(1f, 1f, 1f);
+					uILabel.transform.localEulerAngles = Vector3.zero;
+					uILabel.transform.localPosition = Vector3.zero;
+					uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0f);
+					uILabel.enabled = false;
+					if (Suspicious)
+					{
+						uILabel.color = new Color(1f, 0f, 0f, 0f);
+					}
+					else
+					{
+						uILabel.applyGradient = true;
+						uILabel.gradientTop = new Color(1f, 1f, 1f, 1f);
+						uILabel.gradientBottom = new Color(1f, 0.75f, 1f, 1f);
+						uILabel.color = new Color(1f, 1f, 1f, 0f);
+					}
+					uILabel.text = "     " + Text[ID];
+				}
+				AcceptingInput[ID] = true;
+			}
+			if (Student && !Door)
+			{
+				BloodMask = 4;
+				BloodMask |= 512;
+				BloodMask |= 8192;
+				BloodMask |= 16384;
+				BloodMask |= 65536;
+				BloodMask |= 2097152;
+				BloodMask = ~BloodMask;
+			}
+			else
+			{
+				BloodMask = 2;
+				BloodMask |= 4;
+				BloodMask |= 512;
+				BloodMask |= 8192;
+				BloodMask |= 16384;
+				BloodMask |= 65536;
+				BloodMask |= 2097152;
+				BloodMask |= 67108864;
+				BloodMask = ~BloodMask;
+			}
 		}
-		if (Student && !Door)
+		if (PauseScreen == null)
 		{
-			BloodMask = 4;
-			BloodMask |= 512;
-			BloodMask |= 8192;
-			BloodMask |= 16384;
-			BloodMask |= 65536;
-			BloodMask |= 2097152;
-			BloodMask = ~BloodMask;
-		}
-		else
-		{
-			BloodMask = 2;
-			BloodMask |= 4;
-			BloodMask |= 512;
-			BloodMask |= 8192;
-			BloodMask |= 16384;
-			BloodMask |= 65536;
-			BloodMask |= 2097152;
-			BloodMask |= 67108864;
-			BloodMask = ~BloodMask;
+			Debug.Log("My name is " + base.name + " and I am a prompt that is disabling itself because my PauseScreen reference is null.");
+			base.enabled = false;
+			Hide();
 		}
 	}
 
@@ -272,13 +277,7 @@ public class PromptScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (PauseScreen == null)
-		{
-			Debug.Log("My name is " + base.name + " and I am a prompt that is disabling itself because my PauseScreen reference is null.");
-			base.enabled = false;
-			Hide();
-		}
-		else if (!PauseScreen.Show)
+		if (!PauseScreen.Show)
 		{
 			if (InView)
 			{

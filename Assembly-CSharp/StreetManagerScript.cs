@@ -134,6 +134,7 @@ public class StreetManagerScript : MonoBehaviour
 		{
 			Threatened = true;
 		}
+		Profile.bloom.enabled = !OptionGlobals.DisableBloom;
 		Profile.depthOfField.enabled = OptionGlobals.DepthOfField;
 		Profile.ambientOcclusion.enabled = !OptionGlobals.DisableObscurance;
 	}

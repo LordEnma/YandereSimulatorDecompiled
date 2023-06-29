@@ -84,6 +84,7 @@ public class FanCoverScript : MonoBehaviour
 		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
+			Debug.Log("Uh?");
 			Yandere.CharacterAnimation.CrossFade("f02_fanMurderA_00");
 			Rival.CharacterAnimation.CrossFade("f02_fanMurderB_00");
 			Rival.OsanaHair.GetComponent<Animation>().CrossFade("fanMurderHair");

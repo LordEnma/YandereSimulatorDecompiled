@@ -114,6 +114,8 @@ public class DoorScript : MonoBehaviour
 
 	public bool Initialized;
 
+	public string LockPickAnim = "f02_lockPick_00";
+
 	private bool Double => Doors.Length == 2;
 
 	public void Start()
@@ -383,10 +385,16 @@ public class DoorScript : MonoBehaviour
 				Prompt.HideButton[2] = false;
 				if (Prompt.Circle[2].fillAmount == 0f)
 				{
+					Debug.Log("Commence lockpicking.");
 					Prompt.Yandere.Inventory.LockPick = false;
 					Prompt.Label[0].text = "     Open";
 					Prompt.HideButton[2] = true;
 					Locked = false;
+					Prompt.Yandere.LockPickAnim = LockPickAnim;
+					Prompt.Yandere.CharacterAnimation.CrossFade(LockPickAnim);
+					Prompt.Yandere.LockpickTarget = base.transform;
+					Prompt.Yandere.Lockpicking = true;
+					Prompt.Yandere.CanMove = false;
 				}
 			}
 			else if (!Prompt.HideButton[2])

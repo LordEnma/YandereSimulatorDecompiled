@@ -1044,7 +1044,12 @@ public class RagdollScript : MonoBehaviour
 		}
 		else
 		{
-			for (int j = 0; j < 6; j++)
+			int num = 6;
+			if (Decapitated)
+			{
+				num = 5;
+			}
+			for (int j = 0; j < num; j++)
 			{
 				GameObject gameObject2 = Object.Instantiate(TarpBag, Student.Hips.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
 				switch (j)

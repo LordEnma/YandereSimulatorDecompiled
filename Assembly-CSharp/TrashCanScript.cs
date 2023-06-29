@@ -167,7 +167,7 @@ public class TrashCanScript : MonoBehaviour
 			}
 			if (base.transform.position.x > -21f && base.transform.position.x < 21f && base.transform.position.z > 100f && base.transform.position.z < 135f)
 			{
-				base.transform.position = new Vector3(0f, 1f, 100f);
+				base.transform.position = new Vector3(0f, 1f, 99.5f);
 				KinematicTimer = 0f;
 			}
 			if (base.transform.position.x > -46f && base.transform.position.x < -18f && base.transform.position.z > 66f && base.transform.position.z < 78f)

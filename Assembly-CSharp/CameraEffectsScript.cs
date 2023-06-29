@@ -28,6 +28,10 @@ public class CameraEffectsScript : MonoBehaviour
 
 	public Camera SmartphoneCamera;
 
+	public float ZoomFactor;
+
+	public float NewFocus;
+
 	private void Start()
 	{
 		MurderStreaks.color = new Color(MurderStreaks.color.r, MurderStreaks.color.g, MurderStreaks.color.b, 0f);
@@ -160,16 +164,18 @@ public class CameraEffectsScript : MonoBehaviour
 
 	public void UpdateDOF(float Focus)
 	{
-		Focus *= ((float)Screen.width / 1280f + (float)Screen.height / 720f) * 0.5f;
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 		settings.focusDistance = Focus;
 		Profile.depthOfField.settings = settings;
+		UpdateAperture(5.6f);
 	}
 
 	public void UpdateAperture(float Aperture)
 	{
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
-		settings.aperture = Aperture;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
 		Profile.depthOfField.settings = settings;
 	}
 }

@@ -12,6 +12,8 @@ public class SinkScript : MonoBehaviour
 
 	public bool WashingDisabled;
 
+	public string CleanAnim = "f02_cleaningWeapon_00";
+
 	private void Start()
 	{
 		Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
@@ -117,7 +119,8 @@ public class SinkScript : MonoBehaviour
 		if (Prompt.Circle[1].fillAmount == 0f)
 		{
 			Prompt.Circle[1].fillAmount = 1f;
-			Prompt.Yandere.CharacterAnimation.CrossFade("f02_cleaningWeapon_00");
+			Prompt.Yandere.CleanAnim = CleanAnim;
+			Prompt.Yandere.CharacterAnimation.CrossFade(Prompt.Yandere.CleanAnim);
 			Prompt.Yandere.Target = WashPosition;
 			Prompt.Yandere.CleaningWeapon = true;
 			Prompt.Yandere.CanMove = false;

@@ -226,8 +226,11 @@ public class SchemesScript : MonoBehaviour
 					{
 						SchemeManager.ClockCheck = true;
 					}
+					Debug.Log("Before pressing the button, SchemeGlobals.GetSchemeStage(2) was " + SchemeGlobals.GetSchemeStage(2));
+					Debug.Log("Selecting a scheme. Checking to see if we had already unlocked that scheme or not.");
 					if (!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition))
 					{
+						Debug.Log("Scheme hadn't been unlocked.");
 						if (Inventory.PantyShots >= SchemeCosts[ID + ListPosition])
 						{
 							Inventory.PantyShots -= SchemeCosts[ID + ListPosition];
@@ -247,6 +250,7 @@ public class SchemesScript : MonoBehaviour
 					}
 					else
 					{
+						Debug.Log("Scheme had already been unlocked.");
 						if (SchemeGlobals.CurrentScheme == ID + ListPosition)
 						{
 							SchemeGlobals.CurrentScheme = 0;
@@ -284,6 +288,7 @@ public class SchemesScript : MonoBehaviour
 
 	public void UpdateSchemeList()
 	{
+		Debug.Log("Running this code now.");
 		for (int i = 1; i < SchemeNameLabels.Length; i++)
 		{
 			if (SchemeGlobals.GetSchemeStage(i + ListPosition) == 100)
@@ -310,6 +315,11 @@ public class SchemesScript : MonoBehaviour
 
 	public void UpdateSchemeInfo()
 	{
+		Debug.Log("SchemeGlobals.GetSchemeStage(1) is " + SchemeGlobals.GetSchemeStage(1));
+		Debug.Log("SchemeGlobals.GetSchemeStage(2) is " + SchemeGlobals.GetSchemeStage(2));
+		Debug.Log("SchemeGlobals.GetSchemeStage(3) is " + SchemeGlobals.GetSchemeStage(3));
+		Debug.Log("SchemeGlobals.GetSchemeStage(4) is " + SchemeGlobals.GetSchemeStage(4));
+		Debug.Log("SchemeGlobals.GetSchemeStage(5) is " + SchemeGlobals.GetSchemeStage(5));
 		if (SchemeGlobals.GetSchemeStage(ID + ListPosition) != 100)
 		{
 			if (!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition))
@@ -389,7 +399,9 @@ public class SchemesScript : MonoBehaviour
 
 	public void UpdateInstructions()
 	{
+		Debug.Log("Before running UpdateInstructions(), SchemeGlobals.GetSchemeStage(2) was: " + SchemeGlobals.GetSchemeStage(2));
 		Steps = SchemeSteps[SchemeGlobals.CurrentScheme].Split('\n');
+		Debug.Log("At this moment, SchemeGlobals.CurrentScheme is: " + SchemeGlobals.CurrentScheme);
 		if (SchemeGlobals.CurrentScheme > 0)
 		{
 			if (SchemeGlobals.CurrentScheme == 4 && SchemeGlobals.GetSchemeStage(4) == 1 && ((StudentManager.Yandere.Weapon[1] != null && StudentManager.Yandere.Weapon[1].WeaponID == 6) || (StudentManager.Yandere.Weapon[2] != null && StudentManager.Yandere.Weapon[2].WeaponID == 6)))
@@ -398,12 +410,15 @@ public class SchemesScript : MonoBehaviour
 			}
 			if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 100)
 			{
+				Debug.Log("SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) is less than 100...");
 				if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 1)
 				{
+					Debug.Log("SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) is less than 1...");
 					SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, Steps.Length);
 				}
 				else if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) > Steps.Length)
 				{
+					Debug.Log("SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) is greater than the number of stea");
 					SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, 1);
 				}
 				HUDIcon.SetActive(value: true);
@@ -430,10 +445,12 @@ public class SchemesScript : MonoBehaviour
 		{
 			NextStepInput.SetActive(value: true);
 		}
+		Debug.Log("After running UpdateInstructions(), SchemeGlobals.GetSchemeStage(2) is: " + SchemeGlobals.GetSchemeStage(2));
 	}
 
 	public void UpdateSchemeDestinations()
 	{
+		Debug.Log("Before running UpdateSchemeDestinations(), SchemeGlobals.GetSchemeStage(2) was: " + SchemeGlobals.GetSchemeStage(2));
 		if (StudentManager.Students[StudentManager.RivalID] != null)
 		{
 			Scheme1Destinations[3] = StudentManager.Students[StudentManager.RivalID].transform;
@@ -469,5 +486,6 @@ public class SchemesScript : MonoBehaviour
 		{
 			SchemeDestinations = Scheme5Destinations;
 		}
+		Debug.Log("After running UpdateSchemeDestinations(), SchemeGlobals.GetSchemeStage(2) is: " + SchemeGlobals.GetSchemeStage(2));
 	}
 }

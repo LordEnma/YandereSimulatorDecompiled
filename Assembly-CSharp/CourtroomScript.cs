@@ -120,6 +120,10 @@ public class CourtroomScript : MonoBehaviour
 
 	public GameObject RivalsOnlyIcon;
 
+	public Texture[] Portraits;
+
+	public UITexture PolaroidTexture;
+
 	public GameObject OriginalHair;
 
 	public GameObject[] VtuberHairs;
@@ -129,6 +133,22 @@ public class CourtroomScript : MonoBehaviour
 	public SkinnedMeshRenderer MyRenderer;
 
 	public bool Vtuber;
+
+	public MusicTest AudioData;
+
+	public Transform JournalistJaw;
+
+	public Transform JudgeJaw;
+
+	public Transform RyobaJaw;
+
+	public Transform JournalistVantage;
+
+	public Transform RyobaVantage;
+
+	public bool YakuzaSpeaking;
+
+	public bool RyobaSpeaking;
 
 	private void Start()
 	{
@@ -151,6 +171,12 @@ public class CourtroomScript : MonoBehaviour
 		NoInfoIcon.SetActive(ChallengeGlobals.NoInfo);
 		NoLaughIcon.SetActive(ChallengeGlobals.NoLaugh);
 		RivalsOnlyIcon.SetActive(ChallengeGlobals.RivalsOnly);
+		for (int i = 11; i < 26; i++)
+		{
+			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + i + ".png");
+			Portraits[i] = wWW.texture;
+		}
+		PolaroidTexture.mainTexture = Portraits[25];
 	}
 
 	public void UpdateFactLabels()
@@ -505,15 +531,58 @@ public class CourtroomScript : MonoBehaviour
 			}
 			Walla.volume = Mathf.MoveTowards(Walla.volume, 0f, Time.deltaTime * 0.2f);
 		}
-		if (Phase == 9 || Phase == 10)
+		if (Phase == 9 || Phase == 10 || (Phase == 67 && FactID < 21))
 		{
-			Polaroid.transform.localPosition = Vector3.Lerp(Polaroid.transform.localPosition, new Vector3(700f, 200f, 0f), Time.deltaTime);
+			Polaroid.transform.localPosition = Vector3.Lerp(Polaroid.transform.localPosition, new Vector3(750f, 100f, 0f), Time.deltaTime);
 			Polaroid.alpha = Mathf.MoveTowards(Polaroid.alpha, 1f, Time.deltaTime);
 		}
 		else
 		{
-			Polaroid.transform.localPosition = Vector3.Lerp(Polaroid.transform.localPosition, new Vector3(700f, 0f, 0f), Time.deltaTime);
+			Polaroid.transform.localPosition = Vector3.Lerp(Polaroid.transform.localPosition, new Vector3(750f, 0f, 0f), Time.deltaTime);
 			Polaroid.alpha = Mathf.MoveTowards(Polaroid.alpha, 0f, Time.deltaTime);
+		}
+		if (Phase == 67)
+		{
+			if (FactID < 3)
+			{
+				PolaroidTexture.mainTexture = Portraits[11];
+			}
+			else if (FactID < 5)
+			{
+				PolaroidTexture.mainTexture = Portraits[12];
+			}
+			else if (FactID < 7)
+			{
+				PolaroidTexture.mainTexture = Portraits[13];
+			}
+			else if (FactID < 9)
+			{
+				PolaroidTexture.mainTexture = Portraits[14];
+			}
+			else if (FactID < 11)
+			{
+				PolaroidTexture.mainTexture = Portraits[15];
+			}
+			else if (FactID < 13)
+			{
+				PolaroidTexture.mainTexture = Portraits[16];
+			}
+			else if (FactID < 15)
+			{
+				PolaroidTexture.mainTexture = Portraits[17];
+			}
+			else if (FactID < 17)
+			{
+				PolaroidTexture.mainTexture = Portraits[18];
+			}
+			else if (FactID < 19)
+			{
+				PolaroidTexture.mainTexture = Portraits[19];
+			}
+			else if (FactID < 21)
+			{
+				PolaroidTexture.mainTexture = Portraits[20];
+			}
 		}
 		TargetRotation = (float)(Guilt - Innocence) * 0.25f;
 		if (TargetRotation > 25f)
@@ -617,6 +686,54 @@ public class CourtroomScript : MonoBehaviour
 		else
 		{
 			VtuberHairs[1].SetActive(value: false);
+		}
+	}
+
+	private void LateUpdate()
+	{
+		if (!MyAudio.isPlaying)
+		{
+			return;
+		}
+		Debug.Log("MyAudio is playing.");
+		if (MyAudio.clip != null)
+		{
+			Debug.Log("MyAudio clip is not null.");
+			if (AudioData.MyAudioSource == null)
+			{
+				Debug.Log("AudioData's AudioSource is now MyAudio.");
+				AudioData.MyAudioSource = MyAudio;
+			}
+		}
+		else
+		{
+			Debug.Log("AudioData's AudioSource is now null.");
+			AudioData.MyAudioSource = null;
+		}
+		if (!(AudioData.MyAudioSource != null))
+		{
+			return;
+		}
+		Debug.Log("AudioData's AudioSource is not null. Rotating the jaw.");
+		if (base.transform.position == RyobaVantage.position)
+		{
+			RyobaJaw.localEulerAngles += new Vector3(0f, 0f, AudioData.g[1].transform.position.y);
+			if (RyobaJaw.localEulerAngles.z < 40f)
+			{
+				RyobaJaw.localEulerAngles = new Vector3(RyobaJaw.localEulerAngles.x, RyobaJaw.localEulerAngles.y, 40f);
+			}
+			else if (RyobaJaw.localEulerAngles.z > 55f)
+			{
+				RyobaJaw.localEulerAngles = new Vector3(RyobaJaw.localEulerAngles.x, RyobaJaw.localEulerAngles.y, 55f);
+			}
+		}
+		else if (base.transform.position == JournalistVantage.position)
+		{
+			JournalistJaw.localEulerAngles = new Vector3(0f, 0f, 40f + AudioData.g[1].transform.position.y);
+		}
+		else
+		{
+			JudgeJaw.localEulerAngles = new Vector3(0f, 0f, 40f + AudioData.g[1].transform.position.y);
 		}
 	}
 }

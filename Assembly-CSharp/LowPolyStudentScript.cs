@@ -15,6 +15,7 @@ public class LowPolyStudentScript : MonoBehaviour
 			base.enabled = false;
 			if (Student.StudentID == 1)
 			{
+				Debug.Log("Senpai is currently disabling his LowPolyStudentScript.");
 				Student.MyRenderer.enabled = true;
 				MyMesh.enabled = false;
 			}

@@ -589,6 +589,7 @@ public class CounselorScript : MonoBehaviour
 							}
 							else if (Selected == 2)
 							{
+								Debug.Log("This code is only supposed to fire if the player was speaking to the Counselor...");
 								SchemeGlobals.SetSchemeStage(2, 7);
 								Schemes.UpdateInstructions();
 							}

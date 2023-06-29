@@ -18,6 +18,8 @@ public class CalendarScript : MonoBehaviour
 
 	public GameObject CongratulationsWindow;
 
+	public GameObject ResetWeekErrorWindow;
+
 	public GameObject ConfirmationWindow;
 
 	public GameObject ResetWeekWindow;
@@ -41,6 +43,8 @@ public class CalendarScript : MonoBehaviour
 	public UIPanel ChallengePanel;
 
 	public UIPanel CalendarPanel;
+
+	public UILabel ErrorLabel;
 
 	public UISprite Darkness;
 
@@ -369,8 +373,26 @@ public class CalendarScript : MonoBehaviour
 					{
 						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
-							FadeOut = true;
-							ResetWeek = true;
+							int num = GameGlobals.Profile;
+							int num2 = 11;
+							Debug.Log("We've been instructed to reset the week. We're currently on Profile #" + num);
+							if (Eighties && num < 11)
+							{
+								Debug.Log("...but we're in the 80s! Let's adjust that!");
+								num += 10;
+							}
+							if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + num + "_Slot_" + num2 + ".yansave"))
+							{
+								FadeOut = true;
+								ResetWeek = true;
+							}
+							else
+							{
+								ErrorLabel.text = "[c][ff0000]COULD NOT LOAD RESET WEEK SAVE DATA.[-][/c]\n\nThe game searched for this file: \n\n" + Application.streamingAssetsPath + "/SaveFiles/Profile_" + num + "_Slot_" + num2 + ".yansave\n\nHowever, the file was not found.\n\nThis may be happening because you recently updated to a new build of Yandere Sim.\n\nTo retrieve your ''Reset Week'' save data, you'll have to look in the StreamingAssets directory of the previous version of Yandere Sim that you played.\n\nYou must find the file named above, and put that file into the StreamingAssets/SaveFiles directory of the version of Yandere Sim that you are currently playing.";
+								ResetWeekErrorWindow.SetActive(value: true);
+								ResetWeekWindow.SetActive(value: false);
+								Debug.Log("An error message must be displayed.");
+							}
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
@@ -464,6 +486,13 @@ public class CalendarScript : MonoBehaviour
 							AmaiWindow.SetActive(value: false);
 						}
 					}
+					else if (ResetWeekErrorWindow.activeInHierarchy)
+					{
+						if (Input.GetButtonDown(InputNames.Xbox_B))
+						{
+							ResetWeekErrorWindow.SetActive(value: false);
+						}
+					}
 					else
 					{
 						if (Input.GetButtonDown(InputNames.Xbox_A))
@@ -508,26 +537,26 @@ public class CalendarScript : MonoBehaviour
 			{
 				if (ResetWeek)
 				{
-					int num = GameGlobals.Profile;
-					int num2 = 11;
+					int num3 = GameGlobals.Profile;
+					int num4 = 11;
 					int femaleUniform = StudentGlobals.FemaleUniform;
 					int maleUniform = StudentGlobals.MaleUniform;
 					Debug.Log("We've been instructed to reset the week.");
-					Debug.Log("We're currently on Profile #" + num);
-					if (Eighties && num < 11)
+					Debug.Log("We're currently on Profile #" + num3);
+					if (Eighties && num3 < 11)
 					{
 						Debug.Log("...but we're in the 80s! Let's adjust that!");
-						num += 10;
+						num3 += 10;
 					}
-					if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + num + "_Slot_" + num2 + ".yansave"))
+					if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + num3 + "_Slot_" + num4 + ".yansave"))
 					{
-						YanSave.LoadData("Profile_" + num + "_Slot_" + num2);
-						YanSave.LoadPrefs("Profile_" + num + "_Slot_" + num2);
-						Debug.Log("Successfully loaded the save in Slot #" + num2);
+						YanSave.LoadData("Profile_" + num3 + "_Slot_" + num4);
+						YanSave.LoadPrefs("Profile_" + num3 + "_Slot_" + num4);
+						Debug.Log("Successfully loaded the save in Slot #" + num4);
 					}
 					else
 					{
-						Debug.Log("Attempted to load a save from Slot #" + num2 + ", but apparently it didn't exist.");
+						Debug.Log("Attempted to load a save from Slot #" + num4 + ", but apparently it didn't exist.");
 					}
 					StudentGlobals.FemaleUniform = femaleUniform;
 					StudentGlobals.MaleUniform = maleUniform;

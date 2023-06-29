@@ -13,7 +13,7 @@ public class GentlemanScript : MonoBehaviour
 			AudioSource component = GetComponent<AudioSource>();
 			if (!component.isPlaying)
 			{
-				component.clip = Clips[Random.Range(0, Clips.Length - 1)];
+				component.clip = Clips[Random.Range(0, Clips.Length)];
 				component.Play();
 				Yandere.Sanity += 10f;
 			}

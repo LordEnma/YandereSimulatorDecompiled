@@ -553,7 +553,13 @@ public class QualityManagerScript : MonoBehaviour
 		StudentManager.LowDetailThreshold = OptionGlobals.LowDetailStudents * 10;
 		bool flag = false;
 		flag = (float)StudentManager.LowDetailThreshold > 0f;
-		for (int i = 1; i < 101; i++)
+		if (StudentManager.Students[1] != null)
+		{
+			StudentManager.Students[1].LowPoly.MyMesh.enabled = false;
+			StudentManager.Students[1].MyRenderer.enabled = true;
+			StudentManager.Students[1].LowPoly.enabled = false;
+		}
+		for (int i = 2; i < 101; i++)
 		{
 			if (StudentManager.Students[i] != null && !StudentManager.Students[i].Ragdoll.Concealed)
 			{

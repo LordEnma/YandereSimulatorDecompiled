@@ -18,6 +18,10 @@ public static class SchemeGlobals
 
 	private const string Str_ServicePurchased = "ServicePurchased_";
 
+	private const string Str_UnlockExpulsionDaily = "UnlockExpulsionDaily";
+
+	private const string Str_UnlockRejectionDaily = "UnlockRejectionDaily";
+
 	public static int CurrentScheme
 	{
 		get
@@ -51,6 +55,30 @@ public static class SchemeGlobals
 		set
 		{
 			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_HelpingKokona", value);
+		}
+	}
+
+	public static bool UnlockExpulsionDaily
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_UnlockExpulsionDaily");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_UnlockExpulsionDaily", value);
+		}
+	}
+
+	public static bool UnlockRejectionDaily
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_UnlockRejectionDaily");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_UnlockRejectionDaily", value);
 		}
 	}
 
@@ -149,5 +177,7 @@ public static class SchemeGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_SchemeStatus_", KeysOfSchemeStatus());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_SchemeUnlocked_", KeysOfSchemeUnlocked());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_ServicePurchased_", KeysOfServicePurchased());
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_UnlockExpulsionDaily");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_UnlockRejectionDaily");
 	}
 }

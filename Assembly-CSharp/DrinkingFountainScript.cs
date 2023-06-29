@@ -26,6 +26,8 @@ public class DrinkingFountainScript : MonoBehaviour
 
 	public bool Occupied;
 
+	public string CleanAnim = "f02_cleaningWeapon_00";
+
 	private void Start()
 	{
 		if (GameGlobals.EightiesTutorial)
@@ -78,7 +80,8 @@ public class DrinkingFountainScript : MonoBehaviour
 					Prompt.Yandere.YandereVision = false;
 					Prompt.Yandere.ResetYandereEffects();
 				}
-				Prompt.Yandere.CharacterAnimation.CrossFade("f02_cleaningWeapon_00");
+				Prompt.Yandere.CleanAnim = CleanAnim;
+				Prompt.Yandere.CharacterAnimation.CrossFade(Prompt.Yandere.CleanAnim);
 				Prompt.Yandere.Target = DrinkPosition;
 				Prompt.Yandere.CleaningWeapon = true;
 				Prompt.Yandere.CanMove = false;

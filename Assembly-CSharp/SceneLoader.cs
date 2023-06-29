@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
+using XInputDotNetPure;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -111,6 +112,7 @@ public class SceneLoader : MonoBehaviour
 			Gamepad.SetActive(value: false);
 		}
 		Debugging = false;
+		GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
 	}
 
 	private void Update()

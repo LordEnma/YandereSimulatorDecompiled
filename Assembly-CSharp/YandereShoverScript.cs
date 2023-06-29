@@ -10,7 +10,7 @@ public class YandereShoverScript : MonoBehaviour
 
 	private void OnTriggerStay(Collider other)
 	{
-		if (other.gameObject.layer == 13)
+		if (other.gameObject.layer == 13 && !Yandere.Attacked)
 		{
 			bool flag = false;
 			if (PreventNudity)

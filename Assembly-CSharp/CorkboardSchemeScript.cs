@@ -237,6 +237,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 					SchemeGlobals.SetSchemeUnlocked(5, value: true);
 					SchemeGlobals.SetSchemeStage(1, 1);
 					SchemeGlobals.CurrentScheme = 1;
+					SchemeGlobals.UnlockExpulsionDaily = true;
 				}
 				else if (MethodID == 19)
 				{
@@ -247,6 +248,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 					SchemeGlobals.SetSchemeUnlocked(25, value: true);
 					SchemeGlobals.SetSchemeStage(21, 1);
 					SchemeGlobals.CurrentScheme = 21;
+					SchemeGlobals.UnlockRejectionDaily = true;
 				}
 				else
 				{
@@ -264,6 +266,8 @@ public class CorkboardSchemeScript : MonoBehaviour
 					DateGlobals.PassDays = 1;
 				}
 				SceneManager.LoadScene("CalendarScene");
+				Debug.Log("SchemeGlobals.UnlockExpulsionDaily is: " + SchemeGlobals.UnlockExpulsionDaily);
+				Debug.Log("SchemeGlobals.UnlockRejectionDaily is: " + SchemeGlobals.UnlockExpulsionDaily);
 			}
 		}
 		IconPanel.localPosition = Vector3.Lerp(IconPanel.localPosition, new Vector3(0f, 300 * TargetHeight, 0f), Time.deltaTime * 10f);

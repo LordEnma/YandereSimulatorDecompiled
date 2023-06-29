@@ -1271,12 +1271,37 @@ public class EndOfDayScript : MonoBehaviour
 				}
 				if (!StudentManager.Eighties)
 				{
-					Label.text = "The guidance counselor returns Sakyu's stolen ring to her. Sakyu decides to stop bringing the ring to school.";
+					if (StudentManager.Students[2] != null)
+					{
+						if (StudentManager.Students[2].Alive)
+						{
+							Label.text = "The guidance counselor returns Sakyu's stolen ring to her. Sakyu decides to stop bringing the ring to school.";
+						}
+						else
+						{
+							Label.text = "The guidance counselor cannot return Sakyu's stolen ring to her, because she is dead.";
+						}
+					}
+					else
+					{
+						Label.text = "The guidance counselor cannot return Sakyu's stolen ring to her.";
+					}
 					GameGlobals.RingStolen = true;
+				}
+				else if (StudentManager.Students[2] != null)
+				{
+					if (StudentManager.Students[30].Alive)
+					{
+						Label.text = "The guidance counselor returns Himeko's stolen ring to her. Having her ring stolen does not affect Himeko's decision to wear expensive jewelry at school every day.";
+					}
+					else
+					{
+						Label.text = "The guidance counselor cannot return Himeko's stolen ring to her, because she is dead.";
+					}
 				}
 				else
 				{
-					Label.text = "The guidance counselor returns Himeko's stolen ring to her. Having her ring stolen does not affect Himeko's decision to wear expensive jewelry at school every day.";
+					Label.text = "The guidance counselor cannot return Himeko's stolen ring to her.";
 				}
 				Counselor.MustReturnStolenRing = false;
 			}
@@ -1792,21 +1817,34 @@ public class EndOfDayScript : MonoBehaviour
 				else
 				{
 					bool flag2 = false;
+					bool flag3 = false;
 					for (ID = 0; ID < VictimArray.Length; ID++)
 					{
-						if (VictimArray[ID] == fingerprintID2 && !studentScript.MurderSuicide)
+						if (VictimArray[ID] == fingerprintID2 && studentScript.Suicide)
 						{
 							flag2 = true;
 						}
 					}
-					if (!flag2)
+					for (ID = 0; ID < VictimArray.Length; ID++)
 					{
-						Label.text = JSON.Students[fingerprintID2].Name + " is dead. The police cannot perform an arrest.";
+						if (VictimArray[ID] == fingerprintID2 && !studentScript.MurderSuicide)
+						{
+							flag3 = true;
+						}
+					}
+					if (flag2)
+					{
+						Label.text = JSON.Students[fingerprintID2].Name + " is dead, and the wound that caused her death appears to be self-inflicted. The police conclude that she ended her own life.";
 						DeadPerps++;
+					}
+					else if (flag3)
+					{
+						Label.text = JSON.Students[fingerprintID2].Name + "'s fingerprints are on the same weapon that killed them. However, the wounds on the victim's body are not consistent with those of a suicide. The police conclude that the victim's death was not a suicide, and was most likely a homicide. However, they lack sufficient evidence to name the perpetrator.";
 					}
 					else
 					{
-						Label.text = JSON.Students[fingerprintID2].Name + "'s fingerprints are on the same weapon that killed them. However, the wounds on the victim's body are not consistent with those of a suicide. The police conclude that the victim's death was not a suicide, and was most likely a homicide. However, they lack sufficient evidence to name the perpetrator.";
+						Label.text = JSON.Students[fingerprintID2].Name + " is dead. The police cannot perform an arrest.";
+						DeadPerps++;
 					}
 				}
 			}
@@ -2484,10 +2522,19 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			PlayerGlobals.Friends += NewFriends;
 		}
+		Debug.Log("Yandere.Alerts is: " + Yandere.Alerts);
+		Debug.Log("PlayerGlobals.Alerts is: " + PlayerGlobals.Alerts);
 		if (Yandere.Alerts > 0)
 		{
+			Debug.Log("PlayerGlobals.Alerts is being incremented!");
 			PlayerGlobals.Alerts += Yandere.Alerts;
 		}
+		else
+		{
+			Debug.Log("PlayerGlobals.Alerts is not being incremented!");
+		}
+		Debug.Log("And now, Yandere.Alerts is: " + Yandere.Alerts);
+		Debug.Log("And now, PlayerGlobals.Alerts is: " + PlayerGlobals.Alerts);
 		if (Arrests > 0)
 		{
 			Debug.Log("Increasing Atmosphere by 50% because a culprit was arrested.");
@@ -2579,7 +2626,15 @@ public class EndOfDayScript : MonoBehaviour
 		PlayerGlobals.CorpsesDiscovered += Police.DrownVictims;
 		if (Police.SuicideScene)
 		{
-			PlayerGlobals.CorpsesDiscovered++;
+			Debug.Log("Apparently, SuicideScene was true.");
+			if (Police.Corpses > 0)
+			{
+				PlayerGlobals.CorpsesDiscovered++;
+			}
+		}
+		else
+		{
+			Debug.Log("SuicideScene was false.");
 		}
 		ClassGlobals.BonusStudyPoints = Class.StudyPoints + Class.BonusPoints;
 		HomeGlobals.LateForSchool = false;

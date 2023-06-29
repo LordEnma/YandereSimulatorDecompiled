@@ -156,7 +156,6 @@ public class WorkbenchScript : MonoBehaviour
 				if (Prompt.Circle[1].fillAmount == 0f)
 				{
 					Prompt.Circle[1].fillAmount = 1f;
-					Prompt.Yandere.Inventory.MaskingTape = false;
 					GameObject obj = Prompt.Yandere.PickUp.gameObject;
 					Prompt.Yandere.PickUp.CannotDrop = false;
 					Prompt.Yandere.EmptyHands();

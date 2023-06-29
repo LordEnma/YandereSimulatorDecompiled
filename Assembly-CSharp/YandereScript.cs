@@ -182,6 +182,8 @@ public class YandereScript : MonoBehaviour
 
 	public Transform LeftItemParent;
 
+	public Transform LockpickTarget;
+
 	public Transform BookBagParent;
 
 	public Transform DismemberSpot;
@@ -568,6 +570,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool CreatingTripwireTrap;
 
+	public bool SabotagingWithWrench;
+
 	public bool CreatingBucketTrap;
 
 	public bool DelinquentFighting;
@@ -609,6 +613,8 @@ public class YandereScript : MonoBehaviour
 	public bool Cauterizing;
 
 	public bool HeavyWeight;
+
+	public bool Lockpicking;
 
 	public bool Trespassing;
 
@@ -878,9 +884,15 @@ public class YandereScript : MonoBehaviour
 
 	public string PourHeight = string.Empty;
 
+	public string LockPickAnim = string.Empty;
+
+	public string CleanAnim = string.Empty;
+
 	public string DrownAnim = string.Empty;
 
 	public string LaughAnim = string.Empty;
+
+	public string ShoveAnim = string.Empty;
 
 	public string HideAnim = string.Empty;
 
@@ -2989,20 +3001,23 @@ public class YandereScript : MonoBehaviour
 								}
 							}
 						}
-						else if (YandereFade == 100f && !NoLaugh)
-						{
-							MyAudio.clip = Laugh1;
-							MyAudio.volume = 1f;
-							MyAudio.time = 0f;
-							MyAudio.Play();
-							GiggleLines.Play();
-							Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
-							AnnoyingGiggleTimer = 1f;
-						}
 						else
 						{
-							NotificationManager.CustomText = "No giggling or laughing allowed.";
-							NotificationManager.DisplayNotification(NotificationType.Custom);
+							if (YandereFade == 100f && !NoLaugh)
+							{
+								MyAudio.clip = Laugh1;
+								MyAudio.volume = 1f;
+								MyAudio.time = 0f;
+								MyAudio.Play();
+								GiggleLines.Play();
+								Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
+								AnnoyingGiggleTimer = 1f;
+							}
+							if (NoLaugh)
+							{
+								NotificationManager.CustomText = "No giggling or laughing allowed.";
+								NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
 						}
 						YandereTimer = 0f;
 					}
@@ -3531,6 +3546,12 @@ public class YandereScript : MonoBehaviour
 			}
 			else
 			{
+				if (Hiding)
+				{
+					PromptBar.ClearButtons();
+					PromptBar.Show = false;
+					Hiding = false;
+				}
 				Debug.Log("If the code got here, it means that Yandere-chan is being chased, but Pursuer is null.");
 				Debug.Log("This COULD mean that there was a Pursuer, who is now dead. Or, it could mean something else.");
 			}
@@ -4190,7 +4211,7 @@ public class YandereScript : MonoBehaviour
 		}
 		if (Shoved)
 		{
-			if (CharacterAnimation["f02_shoveA_01"].time >= CharacterAnimation["f02_shoveA_01"].length)
+			if (CharacterAnimation[ShoveAnim].time >= CharacterAnimation[ShoveAnim].length)
 			{
 				CharacterAnimation.CrossFade(IdleAnim);
 				Shoved = false;
@@ -4199,7 +4220,7 @@ public class YandereScript : MonoBehaviour
 					CanMove = true;
 				}
 			}
-			else if (CharacterAnimation["f02_shoveA_01"].time < 0.66666f)
+			else if (CharacterAnimation[ShoveAnim].time < 0.66666f)
 			{
 				MyController.Move(base.transform.forward * -1f * ShoveSpeed * Time.deltaTime);
 				MyController.Move(Physics.gravity * 0.1f);
@@ -4426,7 +4447,7 @@ public class YandereScript : MonoBehaviour
 		{
 			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, Target.rotation, Time.deltaTime * 10f);
 			MoveTowardsTarget(Target.position);
-			if (CharacterAnimation["f02_cleaningWeapon_00"].time >= CharacterAnimation["f02_cleaningWeapon_00"].length)
+			if (CharacterAnimation[CleanAnim].time >= CharacterAnimation[CleanAnim].length)
 			{
 				EquippedWeapon.Blood.enabled = false;
 				EquippedWeapon.Evidence = false;
@@ -4557,6 +4578,28 @@ public class YandereScript : MonoBehaviour
 				WalkAnim = DefaultWalkAnim;
 				PreparingThrow = true;
 				NewArc.gameObject.SetActive(value: true);
+			}
+		}
+		if (Lockpicking)
+		{
+			targetRotation = Quaternion.LookRotation(new Vector3(LockpickTarget.position.x, base.transform.position.y, LockpickTarget.position.z) - base.transform.position);
+			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
+			MoveTowardsTarget(new Vector3(LockpickTarget.position.x, base.transform.position.y, LockpickTarget.position.z));
+			if (CharacterAnimation[LockPickAnim].time >= CharacterAnimation[LockPickAnim].length)
+			{
+				Lockpicking = false;
+				CanMove = true;
+			}
+		}
+		if (SabotagingWithWrench)
+		{
+			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, LockpickTarget.rotation, Time.deltaTime * 10f);
+			MoveTowardsTarget(new Vector3(LockpickTarget.position.x, base.transform.position.y, LockpickTarget.position.z));
+			if (CharacterAnimation["f02_sabotageAirUnit_00"].time >= CharacterAnimation["f02_sabotageAirUnit_00"].length)
+			{
+				EquippedWeapon.Flip = false;
+				SabotagingWithWrench = false;
+				CanMove = true;
 			}
 		}
 		if (CanMoveTimer > 0f)
@@ -8867,7 +8910,7 @@ public class YandereScript : MonoBehaviour
 				gameObject.SetActive(value: false);
 			}
 		}
-		if (MyRenderer.sharedMesh != Towel && !WearingRaincoat && Club > ClubType.None && ClubAccessories[(int)Club] != null)
+		if (MyRenderer.sharedMesh != Towel && !WearingRaincoat && Schoolwear != 2 && Club > ClubType.None && ClubAccessories[(int)Club] != null)
 		{
 			ClubAccessories[(int)Club].SetActive(value: true);
 		}

@@ -18,17 +18,21 @@ public static class InputNames
 
 	public static string Xbox_RB = "RB";
 
-	public static string Xbox_LT = "LT";
+	public static string Xbox_Start = "Start";
 
-	public static string Xbox_RT = "RT";
+	public static string Xbox_Back = "Back";
 
 	public static string Xbox_LS = "LS";
 
 	public static string Xbox_RS = "RS";
 
-	public static string Xbox_Start = "Start";
+	public static string Xbox_LT = "LT";
 
-	public static string Xbox_Back = "Back";
+	public static string Xbox_RT = "RT";
+
+	public static string Xbox_DpadX = "DpadX";
+
+	public static string Xbox_DpadY = "DpadY";
 
 	public static string Yanvania_Horizontal = "VaniaHorizontal";
 

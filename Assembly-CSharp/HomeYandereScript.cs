@@ -25,9 +25,11 @@ public class HomeYandereScript : MonoBehaviour
 
 	public GameObject Character;
 
-	public GameObject RyobaHair;
-
 	public GameObject Disc;
+
+	public GameObject RyobaLongHair;
+
+	public GameObject RyobaHair;
 
 	public Renderer LongHairRenderer;
 
@@ -196,7 +198,6 @@ public class HomeYandereScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			StudentManager.Eighties = true;
-			RyobaHair.SetActive(value: true);
 			Hairstyle = 0;
 			UpdateHair();
 			IdleAnim = "f02_ryobaIdle_00";
@@ -222,12 +223,20 @@ public class HomeYandereScript : MonoBehaviour
 			BreastL.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
 			if (HomeGlobals.Night)
 			{
+				RyobaLongHair.SetActive(value: true);
+				RyobaHair.SetActive(value: false);
 				UpdateFace = true;
+			}
+			else
+			{
+				RyobaLongHair.SetActive(value: false);
+				RyobaHair.SetActive(value: true);
 			}
 		}
 		else
 		{
 			PonytailRenderer.transform.parent.gameObject.SetActive(value: true);
+			RyobaLongHair.SetActive(value: false);
 			RyobaHair.SetActive(value: false);
 			if (HomeGlobals.Night)
 			{

@@ -199,8 +199,24 @@ public class HomeDarknessScript : MonoBehaviour
 						SceneManager.LoadScene("AsylumScene");
 					}
 				}
-				else if (HomeExit.ID == 5)
+				else
 				{
+					if (HomeExit.ID != 5)
+					{
+						return;
+					}
+					Debug.Log("Exiting HomeScene via Part Time Job menu.");
+					if (!HomeGlobals.Night)
+					{
+						HomeGlobals.Night = true;
+						SceneManager.LoadScene("HomeScene");
+						return;
+					}
+					if (DateGlobals.Weekday == DayOfWeek.Sunday)
+					{
+						Debug.Log("It was Sunday.");
+						DateGlobals.ForceSkip = true;
+					}
 					SceneManager.LoadScene("CalendarScene");
 				}
 			}

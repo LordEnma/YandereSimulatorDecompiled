@@ -10,6 +10,8 @@ public class CabinetDoorScript : MonoBehaviour
 
 	public bool Open;
 
+	public string LockPickAnim;
+
 	public float Timer;
 
 	private void Start()
@@ -42,6 +44,11 @@ public class CabinetDoorScript : MonoBehaviour
 						Prompt.Label[0].text = "     Open";
 						Prompt.HideButton[2] = true;
 						Locked = false;
+						Prompt.Yandere.LockPickAnim = LockPickAnim;
+						Prompt.Yandere.CharacterAnimation.CrossFade(LockPickAnim);
+						Prompt.Yandere.LockpickTarget = base.transform;
+						Prompt.Yandere.Lockpicking = true;
+						Prompt.Yandere.CanMove = false;
 					}
 					else
 					{
