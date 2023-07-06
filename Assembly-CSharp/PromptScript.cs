@@ -241,7 +241,6 @@ public class PromptScript : MonoBehaviour
 		}
 		if (PauseScreen == null)
 		{
-			Debug.Log("My name is " + base.name + " and I am a prompt that is disabling itself because my PauseScreen reference is null.");
 			base.enabled = false;
 			Hide();
 		}

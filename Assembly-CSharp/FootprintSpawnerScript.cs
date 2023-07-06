@@ -52,6 +52,32 @@ public class FootprintSpawnerScript : MonoBehaviour
 
 	public int StudentBloodID;
 
+	public FloorSoundInformation Concrete;
+
+	public FloorSoundInformation Grass;
+
+	public LayerMask GroundMask;
+
+	private const int floorColliderLayer = 8388608;
+
+	public Vector3 RayOffset = new Vector3(0f, 0.25f, 0f);
+
+	private FloorSoundInformation DefaultSound
+	{
+		get
+		{
+			if (Yandere.transform.position.z > 100f)
+			{
+				return Grass;
+			}
+			if (Yandere.transform.position.y > 0.1f)
+			{
+				return Concrete;
+			}
+			return Grass;
+		}
+	}
+
 	private void Start()
 	{
 		if (MyAudio == null)
@@ -65,6 +91,7 @@ public class FootprintSpawnerScript : MonoBehaviour
 		NWStairs = Yandere.StudentManager.NWStairs;
 		SEStairs = Yandere.StudentManager.SEStairs;
 		SWStairs = Yandere.StudentManager.SWStairs;
+		GroundMask = 256;
 	}
 
 	private void Update()
@@ -97,15 +124,9 @@ public class FootprintSpawnerScript : MonoBehaviour
 						MyAudio.volume = 0.2f;
 					}
 				}
-				else if (Yandere.Running)
-				{
-					MyAudio.clip = RunFootsteps[Random.Range(0, RunFootsteps.Length)];
-					MyAudio.volume = 0.15f;
-				}
 				else
 				{
-					MyAudio.clip = WalkFootsteps[Random.Range(0, WalkFootsteps.Length)];
-					MyAudio.volume = 0.1f;
+					FindFloorSound();
 				}
 				MyAudio.Play();
 			}
@@ -150,5 +171,39 @@ public class FootprintSpawnerScript : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	private void FindFloorSound()
+	{
+		Transform obj = base.transform;
+		if (!Physics.Raycast(direction: obj.TransformDirection(Vector3.up * -1f), origin: obj.position + RayOffset, hitInfo: out var hitInfo, maxDistance: 1.1f, layerMask: GroundMask))
+		{
+			PlaySound(DefaultSound);
+			return;
+		}
+		FloorSoundScript component = hitInfo.transform.GetComponent<FloorSoundScript>();
+		if (component == null)
+		{
+			PlaySound(DefaultSound);
+		}
+		else
+		{
+			PlaySound(component.Sound);
+		}
+	}
+
+	private void PlaySound(FloorSoundInformation sound)
+	{
+		if (Yandere.Running)
+		{
+			MyAudio.clip = sound.Run[Random.Range(0, sound.Run.Length)];
+			MyAudio.volume = sound.RunVolume;
+		}
+		else
+		{
+			MyAudio.clip = sound.Walk[Random.Range(0, sound.Walk.Length)];
+			MyAudio.volume = sound.WalkVolume;
+		}
+		MyAudio.Play();
 	}
 }

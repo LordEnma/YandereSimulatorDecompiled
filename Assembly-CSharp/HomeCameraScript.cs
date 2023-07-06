@@ -266,6 +266,7 @@ public class HomeCameraScript : MonoBehaviour
 		base.transform.LookAt(Focus.position);
 		if (HomeYandere.CanMove)
 		{
+			ResetChroma();
 			UpdateDOF(1.66666f);
 			if (RestoreBloom)
 			{

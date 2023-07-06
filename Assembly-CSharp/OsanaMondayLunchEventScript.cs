@@ -127,7 +127,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 				if (Friend != null)
 				{
 					Friend.FocusOnYandere = false;
-					Friend.Distracted = true;
+					Friend.IgnoringThingsOnGround = true;
 					Friend.CanTalk = false;
 					Friend.EmptyHands();
 					Friend.SpeechLines.Stop();
@@ -568,6 +568,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 			Friend.MyBento.transform.parent = Friend.LeftHand;
 			Friend.MyBento.transform.localPosition = new Vector3(-0.025f, -0.105f, 0f);
 			Friend.MyBento.transform.localEulerAngles = new Vector3(0f, 165f, 82.5f);
+			Friend.IgnoringThingsOnGround = false;
 			Debug.Log("Osana's Monday lunch event ended, so Raibaru is being told to set her destination to her current phase's destination.");
 		}
 	}

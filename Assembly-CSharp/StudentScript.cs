@@ -1202,8 +1202,6 @@ public class StudentScript : MonoBehaviour
 
 	public int GraffitiPhase;
 
-	public int InfatuationID;
-
 	public int SentHomePhase;
 
 	public int SunbathePhase;
@@ -1280,8 +1278,6 @@ public class StudentScript : MonoBehaviour
 
 	public int MurderReaction;
 
-	public int GenericTaskID;
-
 	public int PhaseFromSave;
 
 	public int CleaningRole;
@@ -1313,6 +1309,12 @@ public class StudentScript : MonoBehaviour
 	public int Defeats;
 
 	public int Crush;
+
+	public int GenericTaskID;
+
+	public int InfatuationID;
+
+	public int PinDownID;
 
 	public StudentWitnessType PreviouslyWitnessed;
 
@@ -1609,6 +1611,8 @@ public class StudentScript : MonoBehaviour
 	public string StretchAnim = string.Empty;
 
 	public string LookLeftRightAnim = string.Empty;
+
+	public string PinDownAnim = string.Empty;
 
 	public string[] AdmireAnims;
 
@@ -2793,6 +2797,7 @@ public class StudentScript : MonoBehaviour
 					CharacterAnimation["f02_startFire_00"].speed = 2f;
 					IdleAnim = "f02_idleConfident_01";
 					WalkAnim = "f02_walkConfident_01";
+					GameAnim = "f02_lookLeftRight_00";
 					PyroUrge = true;
 					PyroLimit = 60f;
 					if (StudentManager.Week > 2)
@@ -8791,7 +8796,7 @@ public class StudentScript : MonoBehaviour
 												concealedWeapon.gameObject.SetActive(value: true);
 											}
 										}
-										if (!Yandere.Armed || !Yandere.EquippedWeapon.Concealable)
+										if (!Yandere.Armed || !Yandere.EquippedWeapon.Concealable || Yandere.EquippedWeapon.Type == WeaponType.Garrote)
 										{
 											BeginStruggle();
 											Yandere.StruggleBar.HeroWins();
@@ -9674,38 +9679,46 @@ public class StudentScript : MonoBehaviour
 						}
 					}
 				}
-				else if (PinPhase == 0)
+				else
 				{
-					if (DistanceToDestination < 1f)
+					Debug.Log(Name + " is running the code for pinning down the player.");
+					if (PinPhase == 0)
 					{
-						if (Pathfinding.canSearch)
+						if (DistanceToDestination < 1f)
 						{
-							Pathfinding.canSearch = false;
-							Pathfinding.canMove = false;
+							if (Pathfinding.canSearch)
+							{
+								Pathfinding.canSearch = false;
+								Pathfinding.canMove = false;
+							}
+							targetRotation = Quaternion.LookRotation(new Vector3(Yandere.Hips.transform.position.x, base.transform.position.y, Yandere.Hips.transform.position.z) - base.transform.position);
+							base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
+							CharacterAnimation.CrossFade(ReadyToFightAnim);
+							MoveTowardsTarget(CurrentDestination.position);
 						}
-						targetRotation = Quaternion.LookRotation(new Vector3(Yandere.Hips.transform.position.x, base.transform.position.y, Yandere.Hips.transform.position.z) - base.transform.position);
-						base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
-						CharacterAnimation.CrossFade(ReadyToFightAnim);
-						MoveTowardsTarget(CurrentDestination.position);
+						else
+						{
+							CharacterAnimation.CrossFade(SprintAnim);
+							if (!Pathfinding.canSearch)
+							{
+								Pathfinding.canSearch = true;
+								Pathfinding.canMove = true;
+							}
+						}
 					}
 					else
 					{
-						CharacterAnimation.CrossFade(SprintAnim);
-						if (!Pathfinding.canSearch)
+						Debug.Log(Name + " is at this part of the ''pin down the player'' code.");
+						if (PinDownID > 0)
 						{
-							Pathfinding.canSearch = true;
-							Pathfinding.canMove = true;
+							Debug.Log("We reached this code.");
+							CharacterAnimation.CrossFade(PinDownAnim);
+							CurrentDestination = StudentManager.PinDownSpots[PinDownID];
+							Pathfinding.target = StudentManager.PinDownSpots[PinDownID];
+							MoveTowardsTarget(CurrentDestination.position);
+							base.transform.rotation = Quaternion.Slerp(base.transform.rotation, CurrentDestination.rotation, Time.deltaTime * 10f);
 						}
 					}
-				}
-				else
-				{
-					if (StudentID == 10)
-					{
-						Debug.Log("Raibaru is at this part of the pin down code.");
-					}
-					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, CurrentDestination.rotation, Time.deltaTime * 10f);
-					MoveTowardsTarget(CurrentDestination.position);
 				}
 			}
 		}
@@ -10722,6 +10735,7 @@ public class StudentScript : MonoBehaviour
 									{
 										Yandere.NearMindSlave = false;
 										MyWeapon.transform.parent = null;
+										MyWeapon.DoNotRelocate = true;
 										MyWeapon.Drop();
 										MyWeapon = null;
 										StudentManager.StopHesitating();
@@ -10763,6 +10777,7 @@ public class StudentScript : MonoBehaviour
 											Debug.Log("A former rival killed herself as a mind-broken slave. StudentManager will be informed.");
 											StudentManager.UpdateRivalEliminationDetails(StudentID);
 										}
+										Debug.Log("MurderTakingPlace *should* now be false...");
 									}
 								}
 								else if (MurderSuicidePhase == 9)
@@ -10780,11 +10795,13 @@ public class StudentScript : MonoBehaviour
 										HuntTarget.Routine = true;
 										HuntTarget.FightingSlave = false;
 										StudentManager.UpdateMe(HuntTarget.StudentID);
+										StudentManager.MurderTakingPlace = false;
 										if (StudentID > 10 && StudentID < 21)
 										{
 											Debug.Log("A former rival killed herself as a mind-broken slave. StudentManager will be informed.");
 											StudentManager.UpdateRivalEliminationDetails(StudentID);
 										}
+										Debug.Log("MurderTakingPlace *should* now be false...");
 									}
 									else if (CharacterAnimation["f02_brokenAttackFailA_00"].time >= 6.5f && HuntTarget.FightingSlave)
 									{
@@ -10880,6 +10897,7 @@ public class StudentScript : MonoBehaviour
 			else if (MurderSuicidePhase == 5 && CharacterAnimation["f02_suicide_00"].time >= CharacterAnimation["f02_suicide_00"].length)
 			{
 				MyWeapon.transform.parent = null;
+				MyWeapon.DoNotRelocate = true;
 				MyWeapon.Drop();
 				MyWeapon = null;
 				StudentManager.StopHesitating();
@@ -10892,6 +10910,13 @@ public class StudentScript : MonoBehaviour
 				Broken.HairPhysics[0].enabled = true;
 				Broken.HairPhysics[1].enabled = true;
 				Broken.enabled = false;
+				StudentManager.MurderTakingPlace = false;
+				if (StudentID > 10 && StudentID < 21)
+				{
+					Debug.Log("A former rival killed herself as a mind-broken slave. StudentManager will be informed.");
+					StudentManager.UpdateRivalEliminationDetails(StudentID);
+				}
+				Debug.Log("MurderTakingPlace *should* now be false...");
 			}
 		}
 		if (CameraReacting)
@@ -12302,6 +12327,9 @@ public class StudentScript : MonoBehaviour
 				Yandere.Incinerator.DumpGarbageBag(TrashDestination.GetComponent<PickUpScript>());
 				TakingOutTrash = false;
 				Routine = true;
+				GetDestinations();
+				Pathfinding.target = Destinations[Phase];
+				CurrentDestination = Destinations[Phase];
 			}
 		}
 		if (FocusOnYandere)
@@ -12720,8 +12748,12 @@ public class StudentScript : MonoBehaviour
 						{
 							UpdateVisibleLimbs();
 						}
-						if (BloodPool == null && (Police.BloodyWeapons > 0 || Yandere.WeaponManager.MisplacedWeapons > 0) && !InvestigatingPossibleLimb && !TakingOutTrash && !Alarmed && !InEvent && !InvestigatingPossibleBlood && !ChangingShoes && Persona != PersonaType.Violent && (MyPlate == null || (MyPlate != null && MyPlate.parent != RightHand)))
+						if (BloodPool == null && (Police.BloodyWeapons > 0 || Yandere.WeaponManager.MisplacedWeapons > 0) && !InvestigatingPossibleLimb && !TakingOutTrash && !Alarmed && !InEvent && !Distracted && !InvestigatingPossibleBlood && !ChangingShoes && Persona != PersonaType.Violent && (MyPlate == null || (MyPlate != null && MyPlate.parent != RightHand)))
 						{
+							if (StudentID == 10)
+							{
+								Debug.Log("Raibaru be checkin' now.");
+							}
 							UpdateVisibleWeapons();
 						}
 						if (BloodPool == null)
@@ -12791,7 +12823,6 @@ public class StudentScript : MonoBehaviour
 							bool flag3 = false;
 							if (Guarding || Fleeing || (InvestigatingBloodPool && WitnessedBloodPool))
 							{
-								Debug.Log(Name + " is currently ''SuspiciousOfBloodyMop''");
 								flag3 = true;
 							}
 							if ((Yandere.Armed && Yandere.EquippedWeapon.Suspicious) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.Suspicious) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.CleaningProduct && Clock.Period != 5) || (Guarding && Yandere.Mopping && Yandere.Mop.Bloodiness > 0f) || (Yandere.Bloodiness + (float)Yandere.GloveBlood > 0f && !Yandere.Paint) || Yandere.Sanity < 33.333f || Yandere.Pickpocketing || Yandere.Lockpicking || Yandere.Attacking || Yandere.Cauterizing || Yandere.Struggling || Yandere.WrappingCorpse || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || (!IgnoringPettyActions && Yandere.Lewd) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Carrying && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || Yandere.Medusa || Yandere.Poisoning || Yandere.WeaponTimer > 0f || Yandere.WearingRaincoat || Yandere.MurderousActionTimer > 0f || (!IgnoringPettyActions && Yandere.Schoolwear == 2 && Yandere.transform.position.z < 30f) || (!IgnoringPettyActions && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (!IgnoringPettyActions && Yandere.SuspiciousActionTimer > 0f) || (!IgnoringPettyActions && Yandere.Laughing && Yandere.LaughIntensity > 15f) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crouching) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crawling) || (!IgnoringPettyActions && Yandere.Trespassing) || (Private && Yandere.Eavesdropping && !Yandere.Talking) || (Teacher && !WitnessedCorpse && Yandere.Trespassing) || (Teacher && !IgnoringPettyActions && Yandere.Rummaging) || (!IgnoringPettyActions && Yandere.TheftTimer > 0f) || (StudentID == 1 && Yandere.NearSenpai && !Yandere.Talking) || (!IgnoringPettyActions && !StudentManager.CombatMinigame.Practice && Yandere.DelinquentFighting && StudentID != 10 && StudentManager.CombatMinigame.Path < 4 && !StudentManager.CombatMinigame.Practice && !Yandere.SeenByAuthority) || (flag3 && Yandere.PickUp != null && Yandere.PickUp.Mop != null && Yandere.PickUp.Mop.Bloodiness > 50f) || (!IgnoringPettyActions && flag3 && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (Yandere.PickUp != null && Yandere.PickUp.Clothing && Yandere.PickUp.Evidence && !Yandere.PickUp.BloodMistakenForPaint) || (!IgnoringPettyActions && AnnoyedByRadio > 1 && Yandere.PotentiallyAnnoyingTimer > 0f) || (!IgnoringPettyActions && AnnoyedByGiggles > 4 && Yandere.AnnoyingGiggleTimer > 0f) || (!IgnoringPettyActions && Yandere.PreparingThrow && Yandere.Obvious))
@@ -13244,20 +13275,23 @@ public class StudentScript : MonoBehaviour
 						}
 					}
 				}
-				if (!Teacher && Club != ClubType.Delinquent && Witnessed == PreviouslyWitnessed)
+				if (!Teacher)
 				{
-					RepeatReaction = true;
-				}
-				if (Yandere.Mask == null)
-				{
-					RepDeduction = 0f;
-					CalculateReputationPenalty();
-					if (RepDeduction >= 0f)
+					if (Club != ClubType.Delinquent && Witnessed == PreviouslyWitnessed)
 					{
-						RepLoss -= RepDeduction;
+						RepeatReaction = true;
 					}
-					Reputation.PendingRep -= RepLoss * Paranoia;
-					PendingRep -= RepLoss * Paranoia;
+					if (Yandere.Mask == null)
+					{
+						RepDeduction = 0f;
+						CalculateReputationPenalty();
+						if (RepDeduction >= 0f)
+						{
+							RepLoss -= RepDeduction;
+						}
+						Reputation.PendingRep -= RepLoss * Paranoia;
+						PendingRep -= RepLoss * Paranoia;
+					}
 				}
 				if (ToiletEvent != null && ToiletEvent.EventDay == DayOfWeek.Monday)
 				{
@@ -13280,6 +13314,7 @@ public class StudentScript : MonoBehaviour
 							Witnessed = StudentWitnessType.Theft;
 						}
 						RepDeduction = 0f;
+						Debug.Log("Calculating reputation penalty from here. 1");
 						CalculateReputationPenalty();
 						if (RepDeduction >= 0f)
 						{
@@ -13359,6 +13394,7 @@ public class StudentScript : MonoBehaviour
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
+			Debug.Log("The player is attempting to talk to a student.");
 			bool flag = false;
 			if (!StudentManager.EmptyDemon)
 			{
@@ -13384,7 +13420,11 @@ public class StudentScript : MonoBehaviour
 				}
 				if (FocusOnYandere)
 				{
-					EndAlarm();
+					Debug.Log("''FocusOnYandere'' was true at the time.");
+					if (!StudentManager.KokonaTutorial)
+					{
+						EndAlarm();
+					}
 				}
 				if ((Alarm > 0f || AlarmTimer > 0f || Yandere.Armed || Yandere.Shoved || Stripping || Waiting || InEvent || SentHome || Threatened || Guarding || VisitSenpaiDesk || (Distracted && !Drownable) || (StudentID == 1 && !flag2) || Yandere.YandereVision || TakingOutTrash) && ((!Slave && !BadTime && !Yandere.Gazing && !FightingSlave) || Yandere.YandereVision || Stripping))
 				{
@@ -13435,7 +13475,7 @@ public class StudentScript : MonoBehaviour
 				flag6 = StudentManager.Students[78] != null && StudentManager.Students[78].Friend;
 				flag7 = StudentManager.Students[79] != null && StudentManager.Students[79].Friend;
 				flag8 = StudentManager.Students[80] != null && StudentManager.Students[80].Friend;
-				if ((StudentID == 76 && GameGlobals.BlondeHair && Reputation.Reputation < -33.33333f && Yandere.Persona == YanderePersonaType.Tough && flag4 && flag5 && flag6 && flag7 && flag8) || Yandere.Club == ClubType.Delinquent)
+				if ((StudentID == 76 && GameGlobals.BlondeHair && Reputation.Reputation < -33.33333f && Yandere.Persona == YanderePersonaType.Tough && flag4 && flag5 && flag6 && flag7 && flag8) || (StudentID == 76 && Yandere.Club == ClubType.Delinquent))
 				{
 					flag3 = true;
 					Warned = false;
@@ -14501,7 +14541,7 @@ public class StudentScript : MonoBehaviour
 					if (!WitnessedCorpse)
 					{
 						Debug.Log(Name + " witnessed: " + Witnessed);
-						if (Concern > 4)
+						if (Concern > 4 || Witnessed == StudentWitnessType.Trespassing)
 						{
 							Debug.Log("A teacher's subtitle is now being determined.");
 							CharacterAnimation.CrossFade(IdleAnim);
@@ -14537,6 +14577,7 @@ public class StudentScript : MonoBehaviour
 								Concern = 5;
 								break;
 							case StudentWitnessType.Trespassing:
+								Debug.Log("Witnessed was Trespassing, so we're using TeacherTrespassingReaction.");
 								Subtitle.UpdateLabel(SubtitleType.TeacherTrespassingReaction, Concern, 5f);
 								break;
 							case StudentWitnessType.Pickpocketing:
@@ -14547,6 +14588,7 @@ public class StudentScript : MonoBehaviour
 						}
 						else
 						{
+							Debug.Log("Concerned was below 5 and player was not trespassing, so we're using HmmReaction.");
 							Subtitle.UpdateLabel(SubtitleType.HmmReaction, 1, 3f);
 						}
 						if (Club == ClubType.Council)
@@ -16207,13 +16249,15 @@ public class StudentScript : MonoBehaviour
 			Debug.Log(Name + "'s BloodPool was not null.");
 			if (BloodPool.GetComponent<WeaponScript>() != null && BloodPool.GetComponent<WeaponScript>().Returner == this)
 			{
+				BloodPool.GetComponent<WeaponScript>().DoNotRelocate = true;
 				BloodPool.GetComponent<WeaponScript>().Returner = null;
 				BloodPool.GetComponent<WeaponScript>().Drop();
 				BloodPool.GetComponent<WeaponScript>().enabled = true;
 				BloodPool = null;
 			}
 		}
-		if (Yandere.Armed && Yandere.EquippedWeapon.WeaponID == 27)
+		Yandere.TargetStudent = this;
+		if (Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Garrote)
 		{
 			StudentManager.TranqDetector.GarroteAttack();
 		}
@@ -16241,7 +16285,6 @@ public class StudentScript : MonoBehaviour
 		Yandere.CharacterAnimation["f02_swingA_00"].time = 0f;
 		CharacterAnimation[WetAnim].weight = 0f;
 		Yandere.HipCollider.enabled = true;
-		Yandere.TargetStudent = this;
 		Yandere.YandereVision = false;
 		Yandere.Attacking = true;
 		Yandere.CanMove = false;
@@ -16469,6 +16512,7 @@ public class StudentScript : MonoBehaviour
 					WeaponToTakeAway.transform.eulerAngles = WeaponToTakeAway.GetComponent<WeaponScript>().StartingRotation;
 					WeaponToTakeAway.GetComponent<WeaponScript>().Prompt.enabled = true;
 					WeaponToTakeAway.GetComponent<WeaponScript>().enabled = true;
+					WeaponToTakeAway.GetComponent<WeaponScript>().DoNotRelocate = true;
 					WeaponToTakeAway.GetComponent<WeaponScript>().Drop();
 					WeaponToTakeAway.GetComponent<WeaponScript>().MyRigidbody.useGravity = false;
 					WeaponToTakeAway.GetComponent<WeaponScript>().MyRigidbody.isKinematic = true;
@@ -16865,6 +16909,7 @@ public class StudentScript : MonoBehaviour
 		ReturningMisplacedWeaponPhase = 0;
 		ReturningMisplacedWeapon = false;
 		BloodPool.GetComponent<WeaponScript>().Returner = null;
+		BloodPool.GetComponent<WeaponScript>().DoNotRelocate = true;
 		BloodPool.GetComponent<WeaponScript>().Drop();
 		BloodPool.GetComponent<WeaponScript>().enabled = true;
 		BloodPool = null;
@@ -20116,6 +20161,7 @@ public class StudentScript : MonoBehaviour
 		Debug.Log("A mind-broken slave has just been instructed to go kill somebody.");
 		StudentManager.MurderTakingPlace = true;
 		StudentManager.MindBrokenSlave = this;
+		Debug.Log("MurderTakingPlace should now be true!");
 		StudentManager.UpdateTeachers();
 		if (!FragileSlave)
 		{
@@ -21063,6 +21109,7 @@ public class StudentScript : MonoBehaviour
 		if (TrashDestination != null && TrashDestination.parent == ItemParent)
 		{
 			Debug.Log("Attempting to drop trash bag.");
+			TrashDestination.gameObject.GetComponent<PickUpScript>().DoNotRelocate = true;
 			TrashDestination.gameObject.GetComponent<PickUpScript>().Drop();
 		}
 		GameObject[] scienceProps = ScienceProps;
@@ -21712,6 +21759,7 @@ public class StudentScript : MonoBehaviour
 		BloodPool.eulerAngles = BloodPool.GetComponent<WeaponScript>().StartingRotation;
 		BloodPool.GetComponent<WeaponScript>().Prompt.enabled = true;
 		BloodPool.GetComponent<WeaponScript>().enabled = true;
+		BloodPool.GetComponent<WeaponScript>().DoNotRelocate = true;
 		BloodPool.GetComponent<WeaponScript>().Drop();
 		BloodPool.GetComponent<WeaponScript>().MyRigidbody.useGravity = false;
 		BloodPool.GetComponent<WeaponScript>().MyRigidbody.isKinematic = true;
@@ -21816,6 +21864,7 @@ public class StudentScript : MonoBehaviour
 	public void DropPuzzle()
 	{
 		PuzzleCube.enabled = true;
+		PuzzleCube.DoNotRelocate = true;
 		PuzzleCube.Drop();
 		SolvingPuzzle = false;
 		Distracted = false;
@@ -22830,6 +22879,7 @@ public class StudentScript : MonoBehaviour
 		BloodPool.GetComponent<WeaponScript>().Prompt.enabled = true;
 		BloodPool.GetComponent<WeaponScript>().Returner = null;
 		BloodPool.GetComponent<WeaponScript>().enabled = true;
+		BloodPool.GetComponent<WeaponScript>().DoNotRelocate = true;
 		BloodPool.GetComponent<WeaponScript>().Drop();
 		Handkerchief.SetActive(value: false);
 		StopInvestigating();

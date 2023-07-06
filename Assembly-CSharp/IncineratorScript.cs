@@ -315,6 +315,10 @@ public class IncineratorScript : MonoBehaviour
 			Yandere.Police.HiddenCorpses -= HiddenCorpses;
 			Yandere.Police.BodyParts -= BodyParts;
 			Yandere.Police.Corpses -= Corpses;
+			if (Yandere.Police.BloodyWeapons < 0)
+			{
+				Yandere.Police.BloodyWeapons = 0;
+			}
 			Yandere.Police.RedPaintClothing -= ClothingWithRedPaint;
 			if (Yandere.Police.SuicideScene && Yandere.Police.Corpses == 1)
 			{
@@ -349,6 +353,8 @@ public class IncineratorScript : MonoBehaviour
 			}
 			Yandere.StudentManager.UpdateStudents();
 			Yandere.WeaponManager.IncinerateWeapons();
+			Debug.Log("Now firing the ForgetAboutTrash() function.");
+			Yandere.StudentManager.ForgetAboutTrash();
 		}
 		if (Smoke.isPlaying)
 		{

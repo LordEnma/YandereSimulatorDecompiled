@@ -32,7 +32,11 @@ public class TranqDetectorScript : MonoBehaviour
 
 	public AudioClip[] TranqClips;
 
-	public AudioClip[] GarroteClips;
+	public AudioClip[] FemaleGarroteClips;
+
+	public AudioClip[] MaleGarroteClips;
+
+	public AudioSource MyAudioSource;
 
 	private void Start()
 	{
@@ -148,10 +152,24 @@ public class TranqDetectorScript : MonoBehaviour
 	public void GarroteAttack()
 	{
 		Debug.Log("Performing garrote attack.");
-		AudioSource component = GetComponent<AudioSource>();
-		component.clip = GarroteClips[Random.Range(0, GarroteClips.Length)];
-		component.Play();
 		Yandere.AttackManager.Stealth = true;
-		StopChecking = true;
+		if (Yandere.TargetStudent.Male)
+		{
+			MyAudioSource.clip = MaleGarroteClips[Random.Range(0, MaleGarroteClips.Length)];
+		}
+		else
+		{
+			MyAudioSource.clip = FemaleGarroteClips[Random.Range(0, FemaleGarroteClips.Length)];
+		}
+		MyAudioSource.Play();
+		base.enabled = true;
+	}
+
+	public void LateUpdate()
+	{
+		if (MyAudioSource.isPlaying)
+		{
+			MyAudioSource.pitch = Time.timeScale;
+		}
 	}
 }

@@ -4,6 +4,8 @@ public class SabotageAirUnitScript : MonoBehaviour
 {
 	public FallingObjectScript AirUnit;
 
+	public SM_rotateThis Rotation;
+
 	public Transform SabotageSpot;
 
 	public PromptScript Prompt;
@@ -39,6 +41,7 @@ public class SabotageAirUnitScript : MonoBehaviour
 			}
 			if (Timer == 0f)
 			{
+				Rotation.enabled = false;
 				AirUnit.enabled = true;
 				Prompt.enabled = false;
 				Prompt.Hide();

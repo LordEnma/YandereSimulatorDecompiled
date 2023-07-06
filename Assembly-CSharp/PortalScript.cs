@@ -161,7 +161,9 @@ public class PortalScript : MonoBehaviour
 				}
 			}
 			int num2 = Police.BloodyWeapons - Police.IncineratedWeapons;
-			Debug.Log("Counting bloody weapons. Police.BloodyWeapons is: " + (Police.BloodyWeapons - Police.IncineratedWeapons));
+			Debug.Log("Counting bloody weapons.");
+			Debug.Log("Police.BloodyWeapons is: " + Police.BloodyWeapons + " and Police.IncineratedWeapons is: " + Police.IncineratedWeapons);
+			Debug.Log("Therefore, Police.BloodyWeapons is: " + (Police.BloodyWeapons - Police.IncineratedWeapons));
 			TrashCanScript[] trashCans = StudentManager.TrashCans;
 			foreach (TrashCanScript trashCanScript in trashCans)
 			{
@@ -570,6 +572,7 @@ public class PortalScript : MonoBehaviour
 
 	public void EndDay()
 	{
+		Debug.Log("Ending the day through the Portal script.");
 		StudentManager.StopMoving();
 		Yandere.StopLaughing();
 		Yandere.EmptyHands();

@@ -1101,6 +1101,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			{
 				if (StudentManager.Students[30].AlarmTimer > 1f)
 				{
+					StudentManager.Students[30].CanTalk = true;
 					StudentManager.Students[30].Blind = true;
 					T.ReputationHUD.alpha = 1f;
 					TutorialPhase++;
@@ -1794,6 +1795,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			EnableAttacking = true;
 			EnableTalking = true;
 			SpawnStudent(30);
+			StudentManager.Students[30].CanTalk = false;
 			StudentManager.Students[30].InEvent = false;
 			break;
 		case 9:

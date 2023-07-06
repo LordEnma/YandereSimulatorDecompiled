@@ -326,7 +326,7 @@ public class ShoulderCameraScript : MonoBehaviour
 				if (Yandere.Police.Darkness.color.a >= 1f)
 				{
 					Debug.Log("As of this exact moment, the game believes that there are " + Yandere.Police.BloodyWeapons + " bloody weapons on school grounds.");
-					if (Yandere.Police.Timer != 300f || Yandere.Police.Corpses - Yandere.Police.HiddenCorpses > 0 || Yandere.Police.BloodyWeapons > 0)
+					if (Yandere.Police.Timer != 300f || Yandere.Police.Corpses - Yandere.Police.HiddenCorpses > 0 || Yandere.Police.BloodyWeapons > 0 || Yandere.Police.BloodParent.childCount > 0 || Yandere.Police.LimbParent.childCount > 0)
 					{
 						Debug.Log("Ending day instead of going to counselor.");
 						HUD.SetActive(value: true);

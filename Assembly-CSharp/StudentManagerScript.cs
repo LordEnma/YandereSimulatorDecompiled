@@ -812,6 +812,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public bool Jammed;
 
+	public bool Nerfed;
+
 	public bool Spooky;
 
 	public bool Bully;
@@ -2119,21 +2121,30 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (PinningDown)
 		{
-			if (!Yandere.Attacking && Yandere.CanMove)
+			if (!Yandere.Attacking)
 			{
-				Yandere.CharacterAnimation.CrossFade("f02_pinDownPanic_00");
-				Yandere.EmptyHands();
-				Yandere.CanMove = false;
-				if (Yandere.YandereVision)
+				if (Yandere.Laughing)
 				{
-					Yandere.YandereVision = false;
-					Yandere.ResetYandereEffects();
+					Yandere.StopLaughing();
+					Yandere.CanMove = true;
+				}
+				if (Yandere.CanMove)
+				{
+					Yandere.EmptyHands();
+					Yandere.CanMove = false;
+					if (Yandere.YandereVision)
+					{
+						Yandere.YandereVision = false;
+						Yandere.ResetYandereEffects();
+					}
+					Yandere.CharacterAnimation.CrossFade("f02_pinDownPanic_00");
 				}
 			}
 			if (PinPhase == 1)
 			{
 				if (!Yandere.Attacking && !Yandere.Struggling)
 				{
+					Yandere.CharacterAnimation.CrossFade("f02_pinDownPanic_00");
 					PinTimer += Time.deltaTime;
 				}
 				if (PinTimer > 1f)
@@ -2204,6 +2215,8 @@ public class StudentManagerScript : MonoBehaviour
 							}
 							studentScript5.CharacterAnimation.CrossFade(((studentScript5.Male ? "pinDown_0" : "f02_pinDown_0") + ID).ToString());
 							studentScript5.PinPhase++;
+							studentScript5.PinDownID = ID;
+							studentScript5.PinDownAnim = ((studentScript5.Male ? "pinDown_0" : "f02_pinDown_0") + ID).ToString();
 						}
 					}
 				}
@@ -2228,7 +2241,11 @@ public class StudentManagerScript : MonoBehaviour
 					for (ID = 1; ID < 5; ID++)
 					{
 						StudentScript studentScript6 = WitnessList[ID];
-						studentScript6.CharacterAnimation.CrossFade(((studentScript6.Male ? "pinDownLoop_0" : "f02_pinDownLoop_0") + ID).ToString());
+						studentScript6.PinDownAnim = ((studentScript6.Male ? "pinDownLoop_0" : "f02_pinDownLoop_0") + ID).ToString();
+						studentScript6.CharacterAnimation.CrossFade(studentScript6.PinDownAnim);
+						studentScript6.PinDownID = ID;
+						studentScript6.CurrentDestination = PinDownSpots[ID];
+						studentScript6.Pathfinding.target = PinDownSpots[ID];
 					}
 					PinningDown = false;
 				}
@@ -2509,6 +2526,32 @@ public class StudentManagerScript : MonoBehaviour
 				}
 				RepositionAfterPhotoshootLater = false;
 			}
+		}
+		if (Yandere.Egg && !Nerfed)
+		{
+			Journalist.SetActive(value: false);
+			if (Students[1] != null)
+			{
+				Students[1].Blind = true;
+			}
+			for (ID = 2; ID < Students.Length; ID++)
+			{
+				StudentScript studentScript18 = Students[ID];
+				if (studentScript18 != null)
+				{
+					studentScript18.Strength = 0;
+					studentScript18.Teacher = false;
+					studentScript18.Persona = PersonaType.Coward;
+					studentScript18.OriginalPersona = PersonaType.Coward;
+					if (studentScript18.Club == ClubType.Council)
+					{
+						studentScript18.Club = ClubType.None;
+						studentScript18.OriginalClub = ClubType.None;
+					}
+				}
+			}
+			Nerfed = true;
+			Debug.Log("Nerfed all students for easter egg.");
 		}
 		YandereVisible = false;
 	}
@@ -6159,8 +6202,12 @@ public class StudentManagerScript : MonoBehaviour
 				{
 					i++;
 				}
-				for (; Students[i] == null || !Students[i].gameObject.activeInHierarchy || Students[i].Slave || (!Students[i].Male && WestMaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (!Students[i].Male && EastMaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && WestFemaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && EastFemaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)); i++)
+				while (Students[i] == null || !Students[i].gameObject.activeInHierarchy || Students[i].Slave || (!Students[i].Male && WestMaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (!Students[i].Male && EastMaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && WestFemaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && EastFemaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && LockerRoomArea.bounds.Contains(GarbageBagList[j].transform.position)))
 				{
+					Debug.Log("Skipping Student #" + i);
+					for (i++; i > 9 && i < 21; i++)
+					{
+					}
 				}
 				GarbageBagList[j].GetComponent<PickUpScript>().DisableGarbageBag();
 				Students[i].TakingOutTrash = true;
@@ -6170,6 +6217,23 @@ public class StudentManagerScript : MonoBehaviour
 			}
 			i++;
 		}
+	}
+
+	public void ForgetAboutTrash()
+	{
+		Debug.Log("Firing the ForgetAboutTrash() function.");
+		for (int i = 2; i < 90; i++)
+		{
+			if (Students[i] != null && Students[i].TakingOutTrash)
+			{
+				Students[i].TakingOutTrash = false;
+				Students[i].Routine = true;
+				Students[i].TrashDestination.gameObject.GetComponent<PickUpScript>().Drop();
+				Students[i].TrashDestination.transform.position = Students[i].transform.position;
+				Students[i].TrashDestination = null;
+			}
+		}
+		Physics.SyncTransforms();
 	}
 
 	public void Medibang()

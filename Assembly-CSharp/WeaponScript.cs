@@ -140,6 +140,10 @@ public class WeaponScript : MonoBehaviour
 
 	public float Speed;
 
+	public Vector3 UnravelPosition = new Vector3(0.05f, -0.033333f, 0.04f);
+
+	public Vector3 UnravelRotation = new Vector3(17.5f, 35f, -15f);
+
 	public string SpriteName;
 
 	public string Name;
@@ -175,6 +179,10 @@ public class WeaponScript : MonoBehaviour
 	public bool OneOfAKind;
 
 	public ClubType Club;
+
+	public Vector3 CustomRotation;
+
+	public bool DoNotRelocate;
 
 	public GameObject HeartBurst;
 
@@ -350,6 +358,10 @@ public class WeaponScript : MonoBehaviour
 		}
 		else if (!MyRigidbody.isKinematic)
 		{
+			if (base.transform.position.y < 0f)
+			{
+				base.transform.position = new Vector3(base.transform.position.x, 0.02f, base.transform.position.z);
+			}
 			KinematicTimer = Mathf.MoveTowards(KinematicTimer, 5f, Time.deltaTime);
 			if (KinematicTimer == 5f)
 			{
@@ -384,8 +396,8 @@ public class WeaponScript : MonoBehaviour
 		{
 			if (Yandere.Attacking)
 			{
-				base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(0.05f, -0.033333f, 0.04f), Time.deltaTime * 2f);
-				base.transform.localEulerAngles = new Vector3(17.5f, 35f, -15f);
+				base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, UnravelPosition, Time.deltaTime * 2f);
+				base.transform.localEulerAngles = UnravelRotation;
 				if (SkinnedMesh.GetBlendShapeWeight(0) < 100f)
 				{
 					SkinnedMesh.SetBlendShapeWeight(0, SkinnedMesh.GetBlendShapeWeight(0) + Time.deltaTime * 200f);
@@ -398,6 +410,10 @@ public class WeaponScript : MonoBehaviour
 				{
 					base.transform.localPosition = Vector3.zero;
 					base.transform.localEulerAngles = Vector3.zero;
+					if (CustomRotation != Vector3.zero)
+					{
+						base.transform.localPosition = CustomRotation;
+					}
 					Unravel = false;
 				}
 			}
@@ -430,7 +446,7 @@ public class WeaponScript : MonoBehaviour
 						}
 						else
 						{
-							base.transform.localEulerAngles = Vector3.zero;
+							base.transform.localEulerAngles = CustomRotation;
 						}
 					}
 				}
@@ -663,10 +679,11 @@ public class WeaponScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Yandere.PersonaID == 4)
+		if (!DoNotRelocate && Yandere.PersonaID == 4)
 		{
 			base.transform.position = Yandere.transform.position + new Vector3(0f, 1f, 0f);
 		}
+		DoNotRelocate = false;
 		if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 2)
 		{
 			SchemeGlobals.SetSchemeStage(4, 1);

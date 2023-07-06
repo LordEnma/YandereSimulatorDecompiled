@@ -175,7 +175,6 @@ public class TalkingScript : MonoBehaviour
 					}
 					S.PendingRep += S.RepRecovery;
 					S.Reputation.PendingRep += S.RepRecovery;
-					Debug.Log("Time to change this student's outlines!");
 					for (int i = 0; i < S.Outlines.Length; i++)
 					{
 						if (!(S.Outlines[i] != null))
@@ -191,7 +190,6 @@ public class TalkingScript : MonoBehaviour
 							}
 							else
 							{
-								Debug.Log("They're not a rival, but they're not photographed, so they should have no outline!");
 								S.Outlines[i].enabled = false;
 							}
 						}

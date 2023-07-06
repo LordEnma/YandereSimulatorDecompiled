@@ -230,6 +230,7 @@ public class ConfessionSceneScript : MonoBehaviour
 				Rival.Prompt.enabled = false;
 				Rival.Pathfinding.canMove = false;
 				Rival.Pathfinding.canSearch = false;
+				Yandere.ShoulderCamera.enabled = true;
 				Yandere.RPGCamera.enabled = true;
 				Yandere.CanMove = true;
 				HeartBeatCamera.SetActive(value: true);

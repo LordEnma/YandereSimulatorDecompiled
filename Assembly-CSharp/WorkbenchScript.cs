@@ -289,7 +289,7 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					Inventory.Ammonium = false;
 					Inventory.Balloons = false;
-					GameObject obj2 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[15], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
+					GameObject obj2 = Object.Instantiate(Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[0], Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f), Quaternion.identity);
 					obj2.GetComponent<Rigidbody>().useGravity = true;
 					obj2.GetComponent<Rigidbody>().isKinematic = false;
 					obj2.name = "Stink Bombs";

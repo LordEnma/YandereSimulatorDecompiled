@@ -266,8 +266,6 @@ public class CorkboardSchemeScript : MonoBehaviour
 					DateGlobals.PassDays = 1;
 				}
 				SceneManager.LoadScene("CalendarScene");
-				Debug.Log("SchemeGlobals.UnlockExpulsionDaily is: " + SchemeGlobals.UnlockExpulsionDaily);
-				Debug.Log("SchemeGlobals.UnlockRejectionDaily is: " + SchemeGlobals.UnlockExpulsionDaily);
 			}
 		}
 		IconPanel.localPosition = Vector3.Lerp(IconPanel.localPosition, new Vector3(0f, 300 * TargetHeight, 0f), Time.deltaTime * 10f);

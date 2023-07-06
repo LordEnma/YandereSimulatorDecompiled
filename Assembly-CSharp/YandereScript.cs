@@ -1678,6 +1678,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool WallAbove;
 
+	public bool WallBehind;
+
 	public float CustomThreshold;
 
 	public int Direction;
@@ -4595,9 +4597,14 @@ public class YandereScript : MonoBehaviour
 		{
 			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, LockpickTarget.rotation, Time.deltaTime * 10f);
 			MoveTowardsTarget(new Vector3(LockpickTarget.position.x, base.transform.position.y, LockpickTarget.position.z));
+			if (Input.GetButtonDown(InputNames.Xbox_B))
+			{
+				EnableSplashCamera();
+			}
 			if (CharacterAnimation["f02_sabotageAirUnit_00"].time >= CharacterAnimation["f02_sabotageAirUnit_00"].length)
 			{
 				EquippedWeapon.Flip = false;
+				SplashCamera.transform.parent = null;
 				SabotagingWithWrench = false;
 				CanMove = true;
 			}
@@ -6037,11 +6044,7 @@ public class YandereScript : MonoBehaviour
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
-				SplashCamera.transform.parent = base.transform;
-				SplashCamera.transform.localPosition = new Vector3(2f, -10.65f, 4.775f);
-				SplashCamera.transform.localEulerAngles = new Vector3(0f, -135f, 0f);
-				SplashCamera.Show = true;
-				SplashCamera.MyCamera.enabled = true;
+				EnableSplashCamera();
 			}
 		}
 		else if (TargetStudent.Teacher)
@@ -6059,7 +6062,7 @@ public class YandereScript : MonoBehaviour
 			{
 				return;
 			}
-			if (EquippedWeapon.WeaponID == 27)
+			if (EquippedWeapon.Type == WeaponType.Garrote)
 			{
 				Debug.Log("Well, uh, we're killing with a garrote...");
 				return;
@@ -9468,6 +9471,11 @@ public class YandereScript : MonoBehaviour
 			Debug.Log("Checkin' up.");
 			vector = base.transform.up;
 		}
+		else if (Direction == 5)
+		{
+			Debug.Log("Checkin' back.");
+			vector = base.transform.forward * -1f;
+		}
 		Debug.DrawRay(corpseOrigin.position, vector, Color.yellow);
 		if (Physics.Raycast(corpseOrigin.position, vector, out corpseHit, maxDistance, OnlyDefault))
 		{
@@ -9490,6 +9498,11 @@ public class YandereScript : MonoBehaviour
 			{
 				Debug.Log("Wall up above!");
 				WallAbove = true;
+			}
+			else if (Direction == 5)
+			{
+				Debug.Log("Wall behind!");
+				WallBehind = true;
 			}
 			TooCloseToWall = true;
 		}
@@ -9605,5 +9618,14 @@ public class YandereScript : MonoBehaviour
 		RPGCamera.enabled = true;
 		Burying = false;
 		CanMove = true;
+	}
+
+	public void EnableSplashCamera()
+	{
+		SplashCamera.transform.parent = base.transform;
+		SplashCamera.transform.localPosition = new Vector3(2f, -10.65f, 4.775f);
+		SplashCamera.transform.localEulerAngles = new Vector3(0f, -135f, 0f);
+		SplashCamera.Show = true;
+		SplashCamera.MyCamera.enabled = true;
 	}
 }

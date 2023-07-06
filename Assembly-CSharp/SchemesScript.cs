@@ -315,11 +315,6 @@ public class SchemesScript : MonoBehaviour
 
 	public void UpdateSchemeInfo()
 	{
-		Debug.Log("SchemeGlobals.GetSchemeStage(1) is " + SchemeGlobals.GetSchemeStage(1));
-		Debug.Log("SchemeGlobals.GetSchemeStage(2) is " + SchemeGlobals.GetSchemeStage(2));
-		Debug.Log("SchemeGlobals.GetSchemeStage(3) is " + SchemeGlobals.GetSchemeStage(3));
-		Debug.Log("SchemeGlobals.GetSchemeStage(4) is " + SchemeGlobals.GetSchemeStage(4));
-		Debug.Log("SchemeGlobals.GetSchemeStage(5) is " + SchemeGlobals.GetSchemeStage(5));
 		if (SchemeGlobals.GetSchemeStage(ID + ListPosition) != 100)
 		{
 			if (!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition))

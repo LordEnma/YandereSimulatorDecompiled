@@ -175,6 +175,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 			if (IdleAnim == "")
 			{
 				IdleAnim = "f02_kidnapIdle_01";
+				Debug.Log("I'm Prisoner #" + PrisonerID + " and for some reason, my IdleAnim was blank.");
 			}
 			Character.GetComponent<Animation>().CrossFade(IdleAnim);
 			Health = StudentGlobals.GetStudentHealth(StudentID);
@@ -191,6 +192,10 @@ public class HomePrisonerChanScript : MonoBehaviour
 					Character.GetComponent<Animation>()[IdleAnim].speed = 0f;
 				}
 				Object.Instantiate(Flies, base.transform.position, Quaternion.identity);
+			}
+			else if (PrisonerID == 1 && Sanity == 0f)
+			{
+				Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
 			}
 		}
 		else

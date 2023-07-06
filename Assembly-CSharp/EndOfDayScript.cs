@@ -100,6 +100,8 @@ public class EndOfDayScript : MonoBehaviour
 
 	public bool PoliceArrived;
 
+	public bool KillerIsDead;
+
 	public bool RaibaruLoner;
 
 	public bool StopMourning;
@@ -1080,6 +1082,10 @@ public class EndOfDayScript : MonoBehaviour
 				{
 					Label.text = "The police conclude that a murder-suicide took place, but are unable to take any further action. The police investigation ends, and students are free to leave.";
 				}
+				else if (KillerIsDead)
+				{
+					Label.text = "The police are not able to take any further action. The police investigation ends, and students are free to leave.";
+				}
 				else
 				{
 					Label.text = "The police believe that they know the identity of the killer, but they cannot locate the suspect at school. The police leave to search for the person that they believe is the killer. The police investigation ends, and students are free to leave.";
@@ -1546,7 +1552,7 @@ public class EndOfDayScript : MonoBehaviour
 				StudentManager.StudentReps[StudentManager.RivalID] -= 20f * (1f + (float)Class.LanguageGrade * 0.2f);
 				StudentGlobals.SetStudentReputation(StudentManager.RivalID, Mathf.RoundToInt(StudentManager.StudentReps[StudentManager.RivalID]));
 			}
-			if (Rival != null && Rival.Alive && StudentManager.StudentReps[StudentManager.RivalID] <= -100f)
+			if (Rival != null && Rival.Alive && !Rival.Tranquil && StudentManager.StudentReps[StudentManager.RivalID] <= -100f)
 			{
 				Debug.Log("The rival is not null, the rival is alive, and the rival's reputation is below -100.");
 				Rival.gameObject.SetActive(value: true);
@@ -1835,6 +1841,7 @@ public class EndOfDayScript : MonoBehaviour
 					if (flag2)
 					{
 						Label.text = JSON.Students[fingerprintID2].Name + " is dead, and the wound that caused her death appears to be self-inflicted. The police conclude that she ended her own life.";
+						KillerIsDead = true;
 						DeadPerps++;
 					}
 					else if (flag3)
@@ -2522,8 +2529,6 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			PlayerGlobals.Friends += NewFriends;
 		}
-		Debug.Log("Yandere.Alerts is: " + Yandere.Alerts);
-		Debug.Log("PlayerGlobals.Alerts is: " + PlayerGlobals.Alerts);
 		if (Yandere.Alerts > 0)
 		{
 			Debug.Log("PlayerGlobals.Alerts is being incremented!");
@@ -2533,8 +2538,6 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			Debug.Log("PlayerGlobals.Alerts is not being incremented!");
 		}
-		Debug.Log("And now, Yandere.Alerts is: " + Yandere.Alerts);
-		Debug.Log("And now, PlayerGlobals.Alerts is: " + PlayerGlobals.Alerts);
 		if (Arrests > 0)
 		{
 			Debug.Log("Increasing Atmosphere by 50% because a culprit was arrested.");

@@ -37,11 +37,22 @@ public class InfoChanWindowScript : MonoBehaviour
 			{
 				if ((float)Orders > 0f)
 				{
-					GameObject gameObject = Object.Instantiate(Drops[ItemsToDrop[Orders]], DropPoint.position, Quaternion.identity);
-					gameObject.name = DropMenu.DropNames[ItemsToDrop[Orders]];
-					if (gameObject.GetComponent<PickUpScript>() != null)
+					if (ItemsToDrop[Orders] < 15)
 					{
-						gameObject.GetComponent<PickUpScript>().InstantiatedObject = true;
+						GameObject gameObject = Object.Instantiate(Drops[ItemsToDrop[Orders]], DropPoint.position, Quaternion.identity);
+						gameObject.name = DropMenu.DropNames[ItemsToDrop[Orders]];
+						if (gameObject.GetComponent<PickUpScript>() != null)
+						{
+							gameObject.GetComponent<PickUpScript>().InstantiatedObject = true;
+						}
+					}
+					else
+					{
+						Debug.Log("Dropping Garrote!");
+						Drops[ItemsToDrop[Orders]].transform.position = DropPoint.position;
+						Drops[ItemsToDrop[Orders]].GetComponent<WeaponScript>().KinematicTimer = 0f;
+						Drops[ItemsToDrop[Orders]].GetComponent<Rigidbody>().isKinematic = false;
+						Drops[ItemsToDrop[Orders]].GetComponent<Rigidbody>().useGravity = true;
 					}
 					Timer = 0f;
 					Orders--;
