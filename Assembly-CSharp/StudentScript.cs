@@ -1682,6 +1682,10 @@ public class StudentScript : MonoBehaviour
 
 	public Vector3 BurnTarget;
 
+	public Vector3 OriginalEyePos;
+
+	public Vector3 OriginalEyeRot;
+
 	public Transform RightBreast;
 
 	public Transform LeftBreast;
@@ -14013,6 +14017,15 @@ public class StudentScript : MonoBehaviour
 		Debug.Log(Name + " was just attacked, either because the player pressed the X button, or because Yandere-chan had low sanity.");
 		float f = Vector3.Angle(-base.transform.forward, Yandere.transform.position - base.transform.position);
 		Yandere.AttackManager.Stealth = Mathf.Abs(f) <= 45f;
+		if (Yandere.EquippedWeapon.Type == WeaponType.Garrote && !Yandere.AttackManager.Stealth)
+		{
+			if (Input.GetButtonDown(InputNames.Xbox_X))
+			{
+				Yandere.NotificationManager.CustomText = "To strangle, approach from behind.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			return;
+		}
 		bool flag13 = false;
 		if (Yandere.Armed && Yandere.AttackManager.Stealth && (Yandere.EquippedWeapon.Type == WeaponType.Bat || Yandere.EquippedWeapon.Type == WeaponType.Weight))
 		{
@@ -16256,11 +16269,6 @@ public class StudentScript : MonoBehaviour
 				BloodPool = null;
 			}
 		}
-		Yandere.TargetStudent = this;
-		if (Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Garrote)
-		{
-			StudentManager.TranqDetector.GarroteAttack();
-		}
 		if (!Male)
 		{
 			if (Club != ClubType.Council)
@@ -16391,14 +16399,22 @@ public class StudentScript : MonoBehaviour
 		}
 		else
 		{
-			if (!Yandere.AttackManager.Stealth)
+			Yandere.TargetStudent = this;
+			if (Yandere.Armed)
 			{
-				Subtitle.UpdateLabel(SubtitleType.Dying, 0, 1f);
-				SpawnAlarmDisc();
-			}
-			if (Yandere.SanityBased)
-			{
-				Yandere.AttackManager.Attack(Character, Yandere.EquippedWeapon);
+				if (Yandere.EquippedWeapon.Type == WeaponType.Garrote)
+				{
+					StudentManager.TranqDetector.GarroteAttack();
+				}
+				if (Yandere.SanityBased)
+				{
+					Yandere.AttackManager.Attack(Character, Yandere.EquippedWeapon);
+				}
+				if (!Yandere.AttackManager.Stealth)
+				{
+					Subtitle.UpdateLabel(SubtitleType.Dying, 0, 1f);
+					SpawnAlarmDisc();
+				}
 			}
 		}
 		if (StudentManager.Reporter == this)
@@ -22909,5 +22925,14 @@ public class StudentScript : MonoBehaviour
 				Outlines[ID].color = new Color(0f, 1f, 0f);
 			}
 		}
+	}
+
+	public void ResetEyes()
+	{
+		Debug.Log("Resetting eyes...now!");
+		LeftEye.localPosition = new Vector3(LeftEye.localPosition.x, LeftEye.localPosition.y, LeftEyeOrigin.z - EyeShrink * 0.01f);
+		RightEye.localPosition = new Vector3(RightEye.localPosition.x, RightEye.localPosition.y, RightEyeOrigin.z + EyeShrink * 0.01f);
+		LeftEye.localScale = new Vector3(1f - EyeShrink * 0.5f, 1f - EyeShrink * 0.5f, LeftEye.localScale.z);
+		RightEye.localScale = new Vector3(1f - EyeShrink * 0.5f, 1f - EyeShrink * 0.5f, RightEye.localScale.z);
 	}
 }

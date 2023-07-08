@@ -254,10 +254,19 @@ public class RagdollScript : MonoBehaviour
 		{
 			ConcealInTrashBag();
 		}
+		Student.ResetEyes();
 	}
 
 	private void Update()
 	{
+		if (Frame < 2)
+		{
+			Frame++;
+			if (Frame == 2)
+			{
+				Student.ResetEyes();
+			}
+		}
 		if (UpdateNextFrame)
 		{
 			Student.Hips.localPosition = NextPosition;

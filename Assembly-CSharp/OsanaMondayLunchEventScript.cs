@@ -187,6 +187,12 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 		else if (Phase == 3)
 		{
+			if (Rival.DistanceToDestination > 0.5f && !Rival.Dodging)
+			{
+				Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
+				Rival.Pathfinding.target = Location[2];
+				Rival.CurrentDestination = Location[2];
+			}
 			if (Senpai.DistanceToDestination < 0.5f && Rival.DistanceToDestination < 0.5f)
 			{
 				MakeRaibaruGoHide();

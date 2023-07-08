@@ -500,7 +500,7 @@ public class HeadmasterScript : MonoBehaviour
 				Shoot();
 			}
 		}
-		else if (Yandere.Armed)
+		else if (Yandere.Armed && Yandere.EquippedWeapon.Dangerous)
 		{
 			if (!Shooting)
 			{

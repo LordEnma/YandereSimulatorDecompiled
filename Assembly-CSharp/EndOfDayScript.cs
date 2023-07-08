@@ -1876,8 +1876,9 @@ public class EndOfDayScript : MonoBehaviour
 				{
 					Label.text = "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police treat the incident as a murder case, and search the school for any other victims.";
 				}
-				if (Police.SuicideID == StudentManager.RivalID)
+				if (Police.SuicideID == StudentManager.RivalID && Police.SuicideNote)
 				{
+					Debug.Log("The police should be drawing the conclusion that the rival committed suicide, and the Calendar screen ought to reflect this.");
 					RivalEliminationMethod = RivalEliminationType.SuicideFake;
 				}
 				ErectFence = true;
@@ -1887,7 +1888,6 @@ public class EndOfDayScript : MonoBehaviour
 				ShruggingCops.SetActive(value: true);
 				Label.text = "The police attempt to determine whether or not a student fell to their death from the school rooftop. The police are unable to reach a conclusion.";
 			}
-			Debug.Log("Why remove suicide victims from the corpse list?");
 			Phase = 2;
 		}
 		else if (Phase == 103)
@@ -2016,6 +2016,11 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			RivalEliminationMethod = RivalEliminationType.Accident;
 		}
+		if (corpse.Student.DeathType == DeathType.Falling && Police.SuicideID == StudentManager.RivalID && Police.SuicideNote)
+		{
+			Debug.Log("Calendar screen should say ''Not believed to be murdered.''");
+			RivalEliminationMethod = RivalEliminationType.SuicideFake;
+		}
 		if (corpse.Student.DeathType == DeathType.Burning)
 		{
 			GameGlobals.SpecificEliminationID = 5;
@@ -2109,6 +2114,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (corpse.Student.DeathType == DeathType.Falling)
 		{
+			Debug.Log("Rival was killed by being pushed from rooftop.");
 			GameGlobals.SpecificEliminationID = 17;
 			if (!GameGlobals.Debug)
 			{
@@ -2627,18 +2633,6 @@ public class EndOfDayScript : MonoBehaviour
 		PlayerGlobals.PersonaID = Yandere.PersonaID;
 		PlayerGlobals.CorpsesDiscovered += Police.Corpses;
 		PlayerGlobals.CorpsesDiscovered += Police.DrownVictims;
-		if (Police.SuicideScene)
-		{
-			Debug.Log("Apparently, SuicideScene was true.");
-			if (Police.Corpses > 0)
-			{
-				PlayerGlobals.CorpsesDiscovered++;
-			}
-		}
-		else
-		{
-			Debug.Log("SuicideScene was false.");
-		}
 		ClassGlobals.BonusStudyPoints = Class.StudyPoints + Class.BonusPoints;
 		HomeGlobals.LateForSchool = false;
 		PlayerGlobals.ShrineItems += ShrineItemsCollected;

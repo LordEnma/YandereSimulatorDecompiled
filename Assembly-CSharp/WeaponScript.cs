@@ -909,6 +909,7 @@ public class WeaponScript : MonoBehaviour
 
 	public void RemoveBlood()
 	{
+		Debug.Log("My name is: " + base.gameObject.name);
 		if (MyRenderer.materials.Length > 1)
 		{
 			MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);

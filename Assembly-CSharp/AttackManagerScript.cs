@@ -267,7 +267,7 @@ public class AttackManagerScript : MonoBehaviour
 			Yandere.FollowHips = false;
 			Yandere.HipCollider.enabled = false;
 			bool flag = false;
-			if (Yandere.EquippedWeapon.Type == WeaponType.Bat)
+			if (Yandere.EquippedWeapon.Type == WeaponType.Bat || Yandere.EquippedWeapon.Type == WeaponType.Garrote)
 			{
 				flag = true;
 			}
