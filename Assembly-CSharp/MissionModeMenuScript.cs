@@ -325,9 +325,11 @@ public class MissionModeMenuScript : MonoBehaviour
 				PromptBar.Show = true;
 				Phase++;
 			}
+			return;
 		}
-		else if (Phase == 2)
+		if (Phase == 2)
 		{
+			Header.color = new Color(Header.color.r, Header.color.g, Header.color.b, Mathf.MoveTowards(Header.color.a, 1f, Time.deltaTime * 10f));
 			InfoChan.localEulerAngles = new Vector3(InfoChan.localEulerAngles.x, Mathf.Lerp(InfoChan.localEulerAngles.y, 180f, Time.deltaTime * (Speed - 3f)), InfoChan.localEulerAngles.z);
 			base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y, Mathf.Lerp(base.transform.position.z, 2f, Speed * Time.deltaTime * 0.25f));
 			CustomMissionWindow.localScale = Vector3.Lerp(CustomMissionWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
@@ -449,8 +451,10 @@ public class MissionModeMenuScript : MonoBehaviour
 				Phase = 4;
 				Speed = 0f;
 			}
+			return;
 		}
-		else if (Phase == 3)
+		Header.color = new Color(Header.color.r, Header.color.g, Header.color.b, Mathf.MoveTowards(Header.color.a, 0f, Time.deltaTime * 10f));
+		if (Phase == 3)
 		{
 			InfoChan.localEulerAngles = new Vector3(InfoChan.localEulerAngles.x, Mathf.Lerp(InfoChan.localEulerAngles.y, 180f, Time.deltaTime * (Speed - 3f)), InfoChan.localEulerAngles.z);
 			base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y, Mathf.Lerp(base.transform.position.z, 2f, Speed * Time.deltaTime * 0.25f));
@@ -1211,7 +1215,7 @@ public class MissionModeMenuScript : MonoBehaviour
 			{
 			case 1:
 				RequiredWeaponID = 11;
-				while (RequiredWeaponID == 11 || RequiredWeaponID == 17 || RequiredWeaponID == 26 || RequiredWeaponID == 27)
+				while (RequiredWeaponID == 11 || RequiredWeaponID == 17 || RequiredWeaponID == 26 || RequiredWeaponID == 32)
 				{
 					RequiredWeaponID = Random.Range(1, WeaponNames.Length);
 				}

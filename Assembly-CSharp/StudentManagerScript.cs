@@ -442,6 +442,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public bool[] StudentPhotographed;
 
+	public bool[] StudentBefriended;
+
 	public bool[] PantyShotTaken;
 
 	public bool[] SeatsTaken11;
@@ -1127,6 +1129,7 @@ public class StudentManagerScript : MonoBehaviour
 		KokonaTutorial = GameGlobals.KokonaTutorial;
 		EmptyDemon = GameGlobals.EmptyDemon;
 		Week = DateGlobals.Week;
+		PoolPhotoShootCameras.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			Become1989();
@@ -1461,6 +1464,7 @@ public class StudentManagerScript : MonoBehaviour
 			Yandere.PersonaID = PlayerGlobals.PersonaID;
 			Mirror.UpdatePersona();
 		}
+		LoadFriends();
 		LoadPantyshots();
 		LoadPhotographs();
 		if (RecordingVideo)
@@ -2817,7 +2821,7 @@ public class StudentManagerScript : MonoBehaviour
 						{
 							if (Yandere.Armed)
 							{
-								if (Yandere.EquippedWeapon.Concealable && !studentScript.Hunting)
+								if (Yandere.EquippedWeapon.Concealable && Yandere.EquippedWeapon.Type == WeaponType.Knife && !studentScript.Hunting)
 								{
 									studentScript.Prompt.HideButton[0] = false;
 									studentScript.Prompt.Label[0].text = "     Give Weapon";
@@ -5321,6 +5325,21 @@ public class StudentManagerScript : MonoBehaviour
 		foreach (bool value in studentPhotographed)
 		{
 			StudentGlobals.SetStudentPhotographed(ID, value);
+			ID++;
+		}
+	}
+
+	public void LoadFriends()
+	{
+		ID = 1;
+		bool[] studentBefriended = StudentBefriended;
+		for (int i = 0; i < studentBefriended.Length; i++)
+		{
+			_ = studentBefriended[i];
+			if (ID < StudentBefriended.Length)
+			{
+				StudentBefriended[ID] = PlayerGlobals.GetStudentFriend(ID);
+			}
 			ID++;
 		}
 	}

@@ -117,7 +117,6 @@ public class AttackManagerScript : MonoBehaviour
 		case WeaponType.Syringe:
 			return 0.5f;
 		case WeaponType.Garrote:
-			Debug.Log("This distance.");
 			return 0.65f;
 		case WeaponType.Scythe:
 			if (Stealth)

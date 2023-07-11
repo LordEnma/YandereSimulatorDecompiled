@@ -42,10 +42,9 @@ public static class PoseSerializer
 			return;
 		}
 		SerializedPose serializedPose = JsonUtility.FromJson<SerializedPose>(File.ReadAllText(path));
-		StudentCosmeticSheet mySheet = JsonUtility.FromJson<StudentCosmeticSheet>(serializedPose.CosmeticData);
-		cosmeticScript.LoadCosmeticSheet(mySheet);
+		StudentCosmeticSheet studentCosmeticSheet = JsonUtility.FromJson<StudentCosmeticSheet>(serializedPose.CosmeticData);
 		cosmeticScript.CharacterAnimation.Stop();
-		bool flag = cosmeticScript.Male == mySheet.Male;
+		bool flag = cosmeticScript.Male == studentCosmeticSheet.Male;
 		Transform[] componentsInChildren = root.GetComponentsInChildren<Transform>();
 		BoneData[] boneData = serializedPose.BoneData;
 		for (int i = 0; i < boneData.Length; i++)
@@ -54,7 +53,9 @@ public static class PoseSerializer
 			Transform[] array = componentsInChildren;
 			foreach (Transform transform in array)
 			{
-				if (transform.name == boneData2.BoneName && transform != cosmeticScript.LeftEyeRenderer.transform && transform != cosmeticScript.RightEyeRenderer.transform)
+				Transform transform2 = null;
+				transform2 = (cosmeticScript.Male ? cosmeticScript.MaleHair[cosmeticScript.Hairstyle].transform : ((!cosmeticScript.Teacher) ? cosmeticScript.FemaleHair[cosmeticScript.Hairstyle].transform : cosmeticScript.TeacherHair[cosmeticScript.Hairstyle].transform));
+				if (transform.name == boneData2.BoneName && transform != cosmeticScript.LeftEyeRenderer.transform && transform != cosmeticScript.RightEyeRenderer.transform && transform != transform2 && transform != cosmeticScript.HairRenderer.transform && transform != cosmeticScript.ScarfRenderer.gameObject.transform.parent)
 				{
 					transform.localRotation = boneData2.LocalRotation;
 					if (flag)

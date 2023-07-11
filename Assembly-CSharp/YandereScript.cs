@@ -52,6 +52,8 @@ public class YandereScript : MonoBehaviour
 
 	public StudentManagerScript StudentManager;
 
+	public YandereShoeLockerScript ShoeLocker;
+
 	public AttackManagerScript AttackManager;
 
 	public CameraEffectsScript CameraEffects;
@@ -437,6 +439,8 @@ public class YandereScript : MonoBehaviour
 	public float NextTwitch;
 
 	public float SenpaiThreshold;
+
+	public float InteractWeight;
 
 	public float LaughIntensity;
 
@@ -1905,7 +1909,7 @@ public class YandereScript : MonoBehaviour
 
 	public int OnlyGroundLayer => 256;
 
-	public int OnlyDefault => 1;
+	public int OnlyDefault => 2097155;
 
 	private void Start()
 	{
@@ -2198,25 +2202,29 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation.Play("f02_reachForWeapon_00");
 		CharacterAnimation["f02_reachForWeapon_00"].weight = 0f;
 		CharacterAnimation["f02_reachForWeapon_00"].speed = 2f;
-		CharacterAnimation["f02_gutsEye_00"].layer = 36;
+		CharacterAnimation["f02_genericInteraction_00"].layer = 36;
+		CharacterAnimation.Play("f02_genericInteraction_00");
+		CharacterAnimation["f02_genericInteraction_00"].weight = 0f;
+		CharacterAnimation["f02_genericInteraction_00"].speed = 2f;
+		CharacterAnimation["f02_gutsEye_00"].layer = 37;
 		CharacterAnimation.Play("f02_gutsEye_00");
 		CharacterAnimation["f02_gutsEye_00"].weight = 0f;
-		CharacterAnimation["f02_fingerSnap_00"].layer = 37;
+		CharacterAnimation["f02_fingerSnap_00"].layer = 38;
 		CharacterAnimation.Play("f02_fingerSnap_00");
 		CharacterAnimation["f02_fingerSnap_00"].weight = 0f;
-		CharacterAnimation["f02_sadEyebrows_00"].layer = 38;
+		CharacterAnimation["f02_sadEyebrows_00"].layer = 39;
 		CharacterAnimation.Play("f02_sadEyebrows_00");
 		CharacterAnimation["f02_sadEyebrows_00"].weight = 0f;
-		CharacterAnimation["f02_phonePose_00"].layer = 39;
+		CharacterAnimation["f02_phonePose_00"].layer = 40;
 		CharacterAnimation.Play("f02_phonePose_00");
 		CharacterAnimation["f02_phonePose_00"].weight = 0f;
-		CharacterAnimation["f02_prepareThrow_00"].layer = 40;
+		CharacterAnimation["f02_prepareThrow_00"].layer = 41;
 		CharacterAnimation.Play("f02_prepareThrow_00");
 		CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
-		CharacterAnimation["f02_subtleThrowIdle_00"].layer = 41;
+		CharacterAnimation["f02_subtleThrowIdle_00"].layer = 42;
 		CharacterAnimation.Play("f02_subtleThrowIdle_00");
 		CharacterAnimation["f02_subtleThrowIdle_00"].weight = 0f;
-		CharacterAnimation["f02_obviousThrowIdle_00"].layer = 42;
+		CharacterAnimation["f02_obviousThrowIdle_00"].layer = 43;
 		CharacterAnimation.Play("f02_obviousThrowIdle_00");
 		CharacterAnimation["f02_obviousThrowIdle_00"].weight = 0f;
 		CharacterAnimation["f02_dipping_00"].speed = 2f;
@@ -4607,6 +4615,8 @@ public class YandereScript : MonoBehaviour
 				SplashCamera.transform.parent = null;
 				SabotagingWithWrench = false;
 				CanMove = true;
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
 			}
 		}
 		if (CanMoveTimer > 0f)
@@ -6041,6 +6051,8 @@ public class YandereScript : MonoBehaviour
 				RoofPush = false;
 				CanMove = true;
 				Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
@@ -7027,6 +7039,16 @@ public class YandereScript : MonoBehaviour
 			{
 				ReachWeight = 0f;
 				CharacterAnimation["f02_reachForWeapon_00"].weight = 0f;
+			}
+		}
+		if (InteractWeight > 0f)
+		{
+			CharacterAnimation["f02_genericInteraction_00"].weight = InteractWeight;
+			InteractWeight = Mathf.MoveTowards(InteractWeight, 0f, Time.deltaTime * 2f);
+			if (InteractWeight < 0.01f)
+			{
+				InteractWeight = 0f;
+				CharacterAnimation["f02_genericInteraction_00"].weight = 0f;
 			}
 		}
 		if (SanitySmudges.color.a > 1f - sanity / 100f + 0.0001f || SanitySmudges.color.a < 1f - sanity / 100f - 0.0001f)

@@ -32,6 +32,8 @@ public class WeaponScript : MonoBehaviour
 
 	public AudioClip EquipClip;
 
+	public StudentScript InteractingStudent;
+
 	public SkinnedMeshRenderer SkinnedMesh;
 
 	public ParticleSystem FireEffect;
@@ -46,10 +48,6 @@ public class WeaponScript : MonoBehaviour
 
 	public AudioSource MyAudio;
 
-	public Collider MyCollider;
-
-	public Collider SecondaryCollider;
-
 	public Renderer MyRenderer;
 
 	public GameObject Nails;
@@ -57,6 +55,10 @@ public class WeaponScript : MonoBehaviour
 	public Transform Blade;
 
 	public Projector Blood;
+
+	public Collider SecondaryCollider;
+
+	public Collider MyCollider;
 
 	public Vector3 StartingPosition;
 
@@ -229,11 +231,18 @@ public class WeaponScript : MonoBehaviour
 			Origin = Object.Instantiate(Prompt.Yandere.StudentManager.EmptyObject, base.transform.position, Quaternion.identity).transform;
 			Origin.parent = parent;
 		}
-		if (WeaponID == 7 && GameGlobals.Eighties)
+		if (GameGlobals.Eighties)
 		{
-			MyMeshFilter.mesh = EightiesCircularSaw;
-			MyRenderer.material.mainTexture = EightiesCircularSawTexture;
-			MyRenderer.transform.localPosition = new Vector3(0.005f, 0.045f, -0.0075f);
+			if (WeaponID == 7)
+			{
+				MyMeshFilter.mesh = EightiesCircularSaw;
+				MyRenderer.material.mainTexture = EightiesCircularSawTexture;
+				MyRenderer.transform.localPosition = new Vector3(0.005f, 0.045f, -0.0075f);
+			}
+			else if (EightiesCircularSawTexture != null)
+			{
+				MyRenderer.material.mainTexture = EightiesCircularSawTexture;
+			}
 		}
 		Innocent = !Suspicious;
 	}
@@ -360,7 +369,8 @@ public class WeaponScript : MonoBehaviour
 		{
 			if (base.transform.position.y < 0f)
 			{
-				base.transform.position = new Vector3(base.transform.position.x, 0.02f, base.transform.position.z);
+				Debug.Log("Allegedly, this weapon just fell beneath y 0?");
+				base.transform.position = new Vector3(base.transform.position.x, 0.025f, base.transform.position.z);
 			}
 			KinematicTimer = Mathf.MoveTowards(KinematicTimer, 5f, Time.deltaTime);
 			if (KinematicTimer == 5f)
@@ -428,7 +438,20 @@ public class WeaponScript : MonoBehaviour
 	{
 		if (Prompt.Circle[3].fillAmount == 0f)
 		{
-			Equip();
+			if (Returner != null && (!Returner.Alive || !Returner.WitnessedMurder))
+			{
+				Returner = null;
+			}
+			if (Returner != null)
+			{
+				Prompt.Circle[3].fillAmount = 1f;
+				Yandere.NotificationManager.CustomText = "Someone is currently interacting with that weapon...";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else
+			{
+				Equip();
+			}
 		}
 		if (Yandere.EquippedWeapon == this)
 		{
@@ -678,6 +701,11 @@ public class WeaponScript : MonoBehaviour
 		if (Undroppable)
 		{
 			return;
+		}
+		if (Unravel)
+		{
+			SkinnedMesh.SetBlendShapeWeight(0, 0f);
+			Unravel = false;
 		}
 		if (!DoNotRelocate && Yandere.PersonaID == 4)
 		{

@@ -66,15 +66,11 @@ public class FootprintSpawnerScript : MonoBehaviour
 	{
 		get
 		{
-			if (Yandere.transform.position.z > 100f)
+			if (Yandere.ShoeLocker.Outdoors)
 			{
 				return Grass;
 			}
-			if (Yandere.transform.position.y > 0.1f)
-			{
-				return Concrete;
-			}
-			return Grass;
+			return Concrete;
 		}
 	}
 

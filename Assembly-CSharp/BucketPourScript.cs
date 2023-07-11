@@ -16,29 +16,25 @@ public class BucketPourScript : MonoBehaviour
 
 	public int ID;
 
-	private void Start()
-	{
-	}
-
 	private void Update()
 	{
 		if (Yandere.PickUp != null)
 		{
-			if (Yandere.PickUp.Bucket != null)
+			if (Yandere.PickUp.Weight)
+			{
+				if (!Prompt.enabled)
+				{
+					Prompt.Label[0].text = "     Drop";
+					Prompt.enabled = true;
+				}
+			}
+			else if (Yandere.PickUp.Bucket != null)
 			{
 				if (Yandere.PickUp.Bucket.Full)
 				{
 					if (!Prompt.enabled)
 					{
 						Prompt.Label[0].text = "     Pour";
-						Prompt.enabled = true;
-					}
-				}
-				else if (Yandere.PickUp.Bucket.Dumbbells == 5)
-				{
-					if (!Prompt.enabled)
-					{
-						Prompt.Label[0].text = "     Drop";
 						Prompt.enabled = true;
 					}
 				}
@@ -64,13 +60,14 @@ public class BucketPourScript : MonoBehaviour
 			Prompt.Circle[0].fillAmount = 1f;
 			if (!Yandere.Chased && Yandere.Chasers == 0)
 			{
-				if (Yandere.PickUp.Bucket.Dumbbells == 5)
+				if (Yandere.PickUp.Weight)
 				{
-					Yandere.CharacterAnimation.CrossFade("f02_bucketDrop_00");
-					Yandere.MyController.radius = 0f;
-					Yandere.BucketDropping = true;
-					Yandere.DropSpot = base.transform;
-					Yandere.CanMove = false;
+					GameObject obj = Yandere.PickUp.gameObject;
+					Yandere.EmptyHands();
+					obj.transform.position = base.transform.position + base.transform.up + base.transform.forward * 0.66666f;
+					obj.transform.rotation = Quaternion.identity;
+					obj.GetComponent<FallingObjectScript>().enabled = true;
+					obj.layer = 0;
 				}
 				else
 				{

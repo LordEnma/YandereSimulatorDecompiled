@@ -9440,6 +9440,7 @@ public class StudentScript : MonoBehaviour
 										BloodPool.GetComponent<WeaponScript>().Prompt.enabled = false;
 										BloodPool.GetComponent<WeaponScript>().Prompt.Hide();
 										BloodPool.GetComponent<WeaponScript>().enabled = false;
+										Debug.Log("A WeaponScript has been disabled from this part of the code. 1");
 										ReportPhase++;
 									}
 									else if (ReportPhase == 8)
@@ -11780,12 +11781,13 @@ public class StudentScript : MonoBehaviour
 							}
 							if (!WitnessedBloodyWeapon && StudentID > 1 && !flag8 && CurrentAction != StudentActionType.SitAndTakeNotes && Indoors && !flag6 && Club != ClubType.Delinquent && !flag5 && !flag7 && !BloodPool.GetComponent<WeaponScript>().Dangerous && BloodPool.GetComponent<WeaponScript>().Returner == null && BloodPool.GetComponent<WeaponScript>().Origin != null)
 							{
-								Debug.Log(Name + " has picked up a weapon with intent to return it to its original location.");
+								Debug.Log(Name + " is now picking up a weapon with intent to return it to its original location.");
 								CharacterAnimation[PickUpAnim].time = 0f;
 								BloodPool.GetComponent<WeaponScript>().Prompt.Hide();
 								BloodPool.GetComponent<WeaponScript>().Prompt.enabled = false;
 								BloodPool.GetComponent<WeaponScript>().enabled = false;
 								BloodPool.GetComponent<WeaponScript>().Returner = this;
+								Debug.Log("A WeaponScript has been disabled from this part of the code. 2");
 								if (StudentID == 41 && !StudentManager.Eighties)
 								{
 									Subtitle.UpdateLabel(SubtitleType.Impatience, 6, 5f);
@@ -12555,6 +12557,10 @@ public class StudentScript : MonoBehaviour
 						if (!WitnessedCorpse)
 						{
 							Debug.Log(Name + " discovered the corpse of " + Corpse.Student.Name);
+							if (ReturningMisplacedWeapon)
+							{
+								DropMisplacedWeapon();
+							}
 							if (BloodPool != null)
 							{
 								Debug.Log("ForgetAboutBloodPool() was called from this place in the code.");
@@ -12604,10 +12610,6 @@ public class StudentScript : MonoBehaviour
 							Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 							SetOutlinesYellow();
 							SummonWitnessCamera();
-							if (ReturningMisplacedWeapon)
-							{
-								DropMisplacedWeapon();
-							}
 							if (StudentManager.BloodReporter == this)
 							{
 								StudentManager.BloodReporter = null;
@@ -12754,10 +12756,6 @@ public class StudentScript : MonoBehaviour
 						}
 						if (BloodPool == null && (Police.BloodyWeapons > 0 || Yandere.WeaponManager.MisplacedWeapons > 0) && !InvestigatingPossibleLimb && !TakingOutTrash && !Alarmed && !InEvent && !Distracted && !InvestigatingPossibleBlood && !ChangingShoes && Persona != PersonaType.Violent && (MyPlate == null || (MyPlate != null && MyPlate.parent != RightHand)))
 						{
-							if (StudentID == 10)
-							{
-								Debug.Log("Raibaru be checkin' now.");
-							}
 							UpdateVisibleWeapons();
 						}
 						if (BloodPool == null)
@@ -14012,6 +14010,10 @@ public class StudentScript : MonoBehaviour
 			Pushed = true;
 			CharacterAnimation.CrossFade(PushedAnim);
 			RemoveOfferHelpPrompt();
+			Yandere.PromptBar.ClearButtons();
+			Yandere.PromptBar.Show = true;
+			Yandere.PromptBar.Label[1].text = "Death Cam";
+			Yandere.PromptBar.UpdateButtons();
 			return;
 		}
 		Debug.Log(Name + " was just attacked, either because the player pressed the X button, or because Yandere-chan had low sanity.");
@@ -16317,6 +16319,7 @@ public class StudentScript : MonoBehaviour
 			}
 		}
 		VomitEmitter.gameObject.SetActive(value: false);
+		SpecialRivalDeathReaction = false;
 		InvestigatingBloodPool = false;
 		SeekingMedicine = false;
 		Investigating = false;
@@ -16377,6 +16380,7 @@ public class StudentScript : MonoBehaviour
 				Yandere.Talking = false;
 				Yandere.Noticed = true;
 				Yandere.HUD.alpha = 0f;
+				Yandere.TargetStudent = this;
 			}
 		}
 		else if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache)
@@ -16920,6 +16924,10 @@ public class StudentScript : MonoBehaviour
 
 	public void DropMisplacedWeapon()
 	{
+		if (BloodPool == null)
+		{
+			Debug.Log(Name + " was told to DropMisplacedWeapon(), but BloodPool was null!!");
+		}
 		WitnessedWeapon = false;
 		InvestigatingBloodPool = false;
 		ReturningMisplacedWeaponPhase = 0;
@@ -21492,7 +21500,11 @@ public class StudentScript : MonoBehaviour
 				{
 					AnnoyedByGiggles++;
 				}
-				if (AnnoyedByGiggles > 4)
+				if (Yandere.Laughing && Yandere.LaughIntensity > 15f)
+				{
+					Concern = 5;
+				}
+				else if (AnnoyedByGiggles > 4)
 				{
 					if (StudentID == 1 && AnnoyedByRadio > 1 && Yandere.PotentiallyAnnoyingTimer > 0f)
 					{

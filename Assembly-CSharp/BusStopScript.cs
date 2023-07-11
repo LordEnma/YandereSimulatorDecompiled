@@ -160,6 +160,7 @@ public class BusStopScript : MonoBehaviour
 		{
 			RivalEliminationID = 1;
 		}
+		Time.timeScale = 1f;
 		Debug.Log("GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID + ", and this cutscene's RivalEliminationID is: " + RivalEliminationID);
 	}
 

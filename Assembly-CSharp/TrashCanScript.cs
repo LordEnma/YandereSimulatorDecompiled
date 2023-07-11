@@ -54,6 +54,7 @@ public class TrashCanScript : MonoBehaviour
 			{
 				if (Yandere.Armed)
 				{
+					Debug.Log("Player just armed themself, so containers need to update their prompts now.");
 					UpdatePrompt();
 				}
 			}
@@ -189,7 +190,12 @@ public class TrashCanScript : MonoBehaviour
 			}
 			else if (Yandere.PickUp != null)
 			{
-				if (!Yandere.PickUp.Bucket && !Yandere.PickUp.Mop)
+				bool flag = false;
+				if (Wearable && (Yandere.PickUp.TooBig || Yandere.PickUp.Bleach || Yandere.PickUp.BodyPart != null))
+				{
+					flag = true;
+				}
+				if (!Yandere.PickUp.Bucket && !Yandere.PickUp.Mop && !Yandere.PickUp.OpenFlame && !flag)
 				{
 					if (Yandere.PickUp.Evidence || Yandere.PickUp.Suspicious)
 					{

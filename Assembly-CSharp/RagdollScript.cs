@@ -870,6 +870,7 @@ public class RagdollScript : MonoBehaviour
 
 	public void Fall()
 	{
+		Debug.Log("This corpse is now falling.");
 		Student.Prompt.enabled = false;
 		Student.Prompt.Hide();
 		base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.0001f, base.transform.position.z);

@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class FallingObjectScript : MonoBehaviour
 {
+	public float PreviousVelocity;
+
+	public float Velocity;
+
+	public float Timer;
+
+	public int Frame;
+
 	public Rigidbody MyRigidbody;
 
 	private void Start()
@@ -11,15 +19,34 @@ public class FallingObjectScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (base.transform.position.y < 0.1f)
+		Frame++;
+		if (Frame > 1)
 		{
-			GetComponent<AudioSource>().Play();
-			base.enabled = false;
+			Velocity = Mathf.Abs(MyRigidbody.velocity.x) + Mathf.Abs(MyRigidbody.velocity.y) + Mathf.Abs(MyRigidbody.velocity.z);
+			if (Velocity < PreviousVelocity - 10f)
+			{
+				Debug.Log("Struck the ground or a person on this frame.");
+				GetComponent<AudioSource>().Play();
+			}
+			if (MyRigidbody.velocity == Vector3.zero)
+			{
+				MyRigidbody.useGravity = false;
+				MyRigidbody.isKinematic = true;
+				base.enabled = false;
+				base.gameObject.layer = 15;
+				Velocity = 0f;
+				Frame = 0;
+			}
+			PreviousVelocity = Velocity;
 		}
 	}
 
 	private void OnCollisionEnter(Collision other)
 	{
+		if (!(PreviousVelocity > 10f))
+		{
+			return;
+		}
 		StudentScript component = other.gameObject.GetComponent<StudentScript>();
 		if (!(component != null))
 		{
@@ -66,10 +93,8 @@ public class FallingObjectScript : MonoBehaviour
 		}
 		else
 		{
-			GetComponent<AudioSource>().Play();
 			component.DeathType = DeathType.Weight;
 			component.BecomeRagdoll();
-			base.enabled = false;
 			component.MapMarker.gameObject.layer = 10;
 			Debug.Log(component.Name + "'s ''Alive'' variable is: " + component.Alive);
 			Object.Instantiate(component.AlarmDisc, new Vector3(component.Hips.position.x, 1f, component.Hips.position.z), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);

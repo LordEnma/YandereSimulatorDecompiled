@@ -172,6 +172,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 			}
 			StudentManager.LoadPhotographs();
 			StudentManager.LoadPantyshots();
+			StudentManager.LoadFriends();
 		}
 		Column = 0;
 		Row = 0;
@@ -194,7 +195,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		{
 			if (PromptBar.Label[0].text != string.Empty)
 			{
-				if (StudentManager.StudentPhotographed[StudentID] || StudentID > 97)
+				if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || StudentID > 97)
 				{
 					if (UsingLifeNote)
 					{
@@ -413,7 +414,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		Highlight.localPosition = new Vector3(-300f + (float)Column * 150f, 80f - (float)Row * 160f, Highlight.localPosition.z);
 		BusyBlocker.position = new Vector3(0f, 0f, 0f);
 		StudentID = 1 + (Column + Row * Columns);
-		if (StudentManager.StudentPhotographed[StudentID] || StudentID > 97)
+		if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || StudentID > 97)
 		{
 			PromptBar.Label[0].text = "View Info";
 			PromptBar.UpdateButtons();
@@ -438,7 +439,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.UpdateButtons();
 		}
-		if (FindingLocker && (StudentID == 1 || StudentID > 89 || (StudentManager.Students[StudentID] != null && StudentManager.Students[StudentID].Club == ClubType.Council) || StudentGlobals.GetStudentDead(StudentID)))
+		if (FindingLocker && (StudentID == 1 || StudentID > 89 || StudentManager.Students[StudentID] == null || (StudentManager.Students[StudentID] != null && StudentManager.Students[StudentID].Club == ClubType.Council) || StudentGlobals.GetStudentDead(StudentID)))
 		{
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.UpdateButtons();
@@ -482,7 +483,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		if (SendingHome && StudentManager.Students[StudentID] != null)
 		{
 			StudentScript studentScript = StudentManager.Students[StudentID];
-			if (StudentID == 1 || StudentGlobals.GetStudentDead(StudentID) || (StudentID < 98 && studentScript.SentHome) || StudentID > 97 || StudentGlobals.StudentSlave == StudentID || (studentScript.Club == ClubType.MartialArts && studentScript.ClubAttire) || (studentScript.Club == ClubType.Sports && studentScript.ClubAttire) || StudentManager.Students[StudentID].CameraReacting || !StudentManager.StudentPhotographed[StudentID] || studentScript.Wet || studentScript.Slave || studentScript.Phoneless)
+			if (StudentID == 1 || StudentGlobals.GetStudentDead(StudentID) || (StudentID < 98 && studentScript.SentHome) || StudentID > 97 || StudentGlobals.StudentSlave == StudentID || (studentScript.Club == ClubType.MartialArts && studentScript.ClubAttire) || (studentScript.Club == ClubType.Sports && studentScript.ClubAttire) || StudentManager.Students[StudentID].CameraReacting || (!StudentManager.StudentPhotographed[StudentID] && !StudentManager.StudentBefriended[StudentID]) || studentScript.Wet || studentScript.Slave || studentScript.Phoneless)
 			{
 				PromptBar.Label[0].text = string.Empty;
 				PromptBar.UpdateButtons();
@@ -490,7 +491,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		}
 		if (GettingInfo)
 		{
-			if (StudentManager.StudentPhotographed[StudentID] || StudentID > 97)
+			if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || StudentID > 97)
 			{
 				PromptBar.Label[0].text = string.Empty;
 			}
@@ -501,9 +502,16 @@ public class StudentInfoMenuScript : MonoBehaviour
 		}
 		if (GettingOpinions)
 		{
-			if (StudentManager.StudentPhotographed[StudentID] && StudentID < 97)
+			if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID])
 			{
-				PromptBar.Label[0].text = "Get Opinions";
+				if (StudentID < 97)
+				{
+					PromptBar.Label[0].text = "Get Opinions";
+				}
+				else
+				{
+					PromptBar.Label[0].text = string.Empty;
+				}
 			}
 			else
 			{
@@ -527,7 +535,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		{
 			if (StudentManager.Students[StudentID] != null)
 			{
-				if (!StudentManager.StudentPhotographed[StudentID] || StudentManager.Students[StudentID].Club != ClubType.Council)
+				if ((!StudentManager.StudentPhotographed[StudentID] && !StudentManager.StudentBefriended[StudentID]) || StudentManager.Students[StudentID].Club != ClubType.Council)
 				{
 					PromptBar.Label[0].text = "";
 				}
@@ -559,7 +567,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 
 	private void UpdateNameLabel()
 	{
-		if (StudentID > 97 || StudentManager.StudentPhotographed[StudentID] || GettingInfo)
+		if (StudentID > 97 || StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || GettingInfo)
 		{
 			NameLabel.text = JSON.Students[StudentID].Name;
 			if (StudentManager.Eighties && StudentID > 10 && StudentID < 21 && DateGlobals.Week < StudentID - 10)
@@ -596,7 +604,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 				{
 					if (PauseScreen.Eighties || (!PauseScreen.Eighties && ID < 12) || (!PauseScreen.Eighties && ID > 20))
 					{
-						if (StudentManager.StudentPhotographed[ID])
+						if (StudentManager.StudentBefriended[ID] || StudentManager.StudentPhotographed[ID])
 						{
 							string url = "file:///" + Application.streamingAssetsPath + "/Portraits" + EightiesPrefix + "/Student_" + ID + ".png";
 							WWW www2 = new WWW(url);

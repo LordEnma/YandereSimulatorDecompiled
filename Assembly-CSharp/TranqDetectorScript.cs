@@ -38,6 +38,8 @@ public class TranqDetectorScript : MonoBehaviour
 
 	public AudioSource MyAudioSource;
 
+	private bool DisableAfterwards = true;
+
 	private void Start()
 	{
 		Checklist.alpha = 0f;
@@ -151,6 +153,11 @@ public class TranqDetectorScript : MonoBehaviour
 
 	public void GarroteAttack()
 	{
+		if (!base.gameObject.activeInHierarchy)
+		{
+			base.gameObject.SetActive(value: true);
+			DisableAfterwards = true;
+		}
 		Debug.Log("Performing garrote attack.");
 		Yandere.AttackManager.Stealth = true;
 		if (Yandere.TargetStudent.Male)
@@ -170,6 +177,10 @@ public class TranqDetectorScript : MonoBehaviour
 		if (MyAudioSource.isPlaying)
 		{
 			MyAudioSource.pitch = Time.timeScale;
+		}
+		else if (DisableAfterwards)
+		{
+			base.gameObject.SetActive(value: false);
 		}
 	}
 }

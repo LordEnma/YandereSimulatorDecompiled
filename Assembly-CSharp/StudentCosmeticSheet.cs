@@ -21,6 +21,8 @@ public struct StudentCosmeticSheet
 
 	public bool Male;
 
+	public bool Teacher;
+
 	public bool CustomHair;
 
 	public bool Bloody;

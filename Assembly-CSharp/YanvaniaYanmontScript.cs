@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class YanvaniaYanmontScript : MonoBehaviour
@@ -776,32 +775,6 @@ public class YanvaniaYanmontScript : MonoBehaviour
 			EXPBar.localScale = new Vector3(EXPBar.localScale.x, Mathf.Lerp(EXPBar.localScale.y, EXP / 100f, Time.deltaTime * 10f), EXPBar.localScale.z);
 		}
 		base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y, 0f);
-		if (Input.GetKeyDown(KeyCode.BackQuote))
-		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha2))
-		{
-			base.transform.position = new Vector3(-31.75f, 6.51f, 0f);
-			Physics.SyncTransforms();
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha5))
-		{
-			Level = 5;
-			LevelLabel.text = Level.ToString();
-		}
-		if (Input.GetKeyDown(KeyCode.Equals))
-		{
-			Time.timeScale += 10f;
-		}
-		if (Input.GetKeyDown(KeyCode.Minus))
-		{
-			Time.timeScale -= 10f;
-			if (Time.timeScale < 0f)
-			{
-				Time.timeScale = 1f;
-			}
-		}
 	}
 
 	private void LateUpdate()

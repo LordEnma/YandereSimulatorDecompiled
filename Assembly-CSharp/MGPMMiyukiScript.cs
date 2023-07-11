@@ -316,10 +316,6 @@ public class MGPMMiyukiScript : MonoBehaviour
 			{
 				ShootTimer = 0f;
 			}
-			if (Input.GetKeyDown("r"))
-			{
-				Application.LoadLevel(Application.loadedLevel);
-			}
 		}
 		if (Invincibility > 0f)
 		{

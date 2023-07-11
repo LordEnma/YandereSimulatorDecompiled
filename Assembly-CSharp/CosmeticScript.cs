@@ -1841,7 +1841,10 @@ public class CosmeticScript : MonoBehaviour
 			Hairstyle = 65;
 		}
 		TaskCheck();
-		TurnOnCheck();
+		if (Student.enabled)
+		{
+			TurnOnCheck();
+		}
 		if (!Male && StudentID != 90)
 		{
 			EyeTypeCheck();
@@ -2845,42 +2848,32 @@ public class CosmeticScript : MonoBehaviour
 
 	public void LoadCosmeticSheet(StudentCosmeticSheet mySheet)
 	{
-		if (Male != mySheet.Male)
+		Debug.Log("Loading CosmeticSheet");
+		if (Male == mySheet.Male)
 		{
-			return;
-		}
-		Accessory = mySheet.Accessory;
-		Hairstyle = mySheet.Hairstyle;
-		Stockings = mySheet.Stockings;
-		BreastSize = mySheet.BreastSize;
-		Start();
-		ColorValue = mySheet.HairColor;
-		HairRenderer.material.color = ColorValue;
-		if (mySheet.CustomHair)
-		{
-			RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
-			LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
-			FaceTexture = HairRenderer.material.mainTexture;
-			LeftIrisLight.SetActive(value: false);
-			RightIrisLight.SetActive(value: false);
-			CustomHair = true;
-		}
-		CorrectColor = mySheet.EyeColor;
-		RightEyeRenderer.material.color = CorrectColor;
-		LeftEyeRenderer.material.color = CorrectColor;
-		Student.Schoolwear = mySheet.Schoolwear;
-		Student.ChangeSchoolwear();
-		if (mySheet.Bloody)
-		{
-			Student.LiquidProjector.enabled = true;
-		}
-		if (!Male)
-		{
+			Accessory = mySheet.Accessory;
+			Hairstyle = mySheet.Hairstyle;
 			Stockings = mySheet.Stockings;
-			StartCoroutine(Student.Cosmetic.PutOnStockings());
-			for (int i = 0; i < MyRenderer.sharedMesh.blendShapeCount; i++)
+			BreastSize = mySheet.BreastSize;
+			Teacher = mySheet.Teacher;
+			Start();
+			ColorValue = mySheet.HairColor;
+			HairRenderer.material.color = ColorValue;
+			if (mySheet.CustomHair)
 			{
-				MyRenderer.SetBlendShapeWeight(i, mySheet.Blendshapes[i]);
+				RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+				LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+				FaceTexture = HairRenderer.material.mainTexture;
+				LeftIrisLight.SetActive(value: false);
+				RightIrisLight.SetActive(value: false);
+				CustomHair = true;
+			}
+			CorrectColor = mySheet.EyeColor;
+			RightEyeRenderer.material.color = CorrectColor;
+			LeftEyeRenderer.material.color = CorrectColor;
+			if (mySheet.Bloody)
+			{
+				Student.LiquidProjector.enabled = true;
 			}
 		}
 	}
@@ -2890,6 +2883,7 @@ public class CosmeticScript : MonoBehaviour
 		StudentCosmeticSheet result = default(StudentCosmeticSheet);
 		result.Blendshapes = new List<float>();
 		result.Male = Male;
+		result.Teacher = Teacher;
 		result.CustomHair = CustomHair;
 		result.Accessory = Accessory;
 		result.Hairstyle = Hairstyle;

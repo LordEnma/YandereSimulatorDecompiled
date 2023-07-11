@@ -20,6 +20,12 @@ public class WitnessCameraScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (Input.GetKeyDown("z"))
+		{
+			WitnessPOV = Yandere.StudentManager.Students[1].WitnessPOV;
+			MyCamera.enabled = true;
+			Show = true;
+		}
 		if (Show)
 		{
 			MyCamera.rect = new Rect(MyCamera.rect.x, MyCamera.rect.y, Mathf.Lerp(MyCamera.rect.width, 0.25f, Time.deltaTime * 10f), Mathf.Lerp(MyCamera.rect.height, 4f / 9f, Time.deltaTime * 10f));

@@ -38,6 +38,8 @@ public class ResolutionScript : MonoBehaviour
 
 	public int Enters;
 
+	public int As;
+
 	public int Rs;
 
 	public int ID = 1;

@@ -231,6 +231,8 @@ public class DoorScript : MonoBehaviour
 				if (Prompt.Circle[0].fillAmount < 1f && Prompt.Circle[0].fillAmount > 0f)
 				{
 					Prompt.Circle[0].fillAmount = 0f;
+					Prompt.Yandere.CharacterAnimation["f02_genericInteraction_00"].time = 0f;
+					Prompt.Yandere.InteractWeight = 1f;
 					if (!Locked)
 					{
 						if (!Open)
@@ -241,6 +243,11 @@ public class DoorScript : MonoBehaviour
 						{
 							CloseDoor();
 						}
+					}
+					else
+					{
+						Prompt.Yandere.NotificationManager.CustomText = "It's locked!";
+						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					}
 				}
 				if (Double && Swinging && Prompt.Circle[1].fillAmount == 0f)

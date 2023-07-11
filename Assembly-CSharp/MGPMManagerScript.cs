@@ -192,46 +192,15 @@ public class MGPMManagerScript : MonoBehaviour
 					Jukebox.Play();
 					FadeIn = false;
 				}
+				return;
 			}
-			else
+			Miyuki.transform.localPosition = new Vector3(0f, Mathf.MoveTowards(Miyuki.transform.localPosition.y, -120f, Time.deltaTime * 60f), 0f);
+			if (Miyuki.transform.localPosition.y != -120f)
 			{
-				Miyuki.transform.localPosition = new Vector3(0f, Mathf.MoveTowards(Miyuki.transform.localPosition.y, -120f, Time.deltaTime * 60f), 0f);
-				if (Miyuki.transform.localPosition.y == -120f)
-				{
-					if (!Jukebox.isPlaying)
-					{
-						Jukebox.loop = true;
-						Jukebox.clip = BGM;
-						Jukebox.Play();
-						if (GameGlobals.HardMode)
-						{
-							Jukebox.pitch = 0.2f;
-						}
-					}
-					StartGraphic.SetActive(value: true);
-					Timer += Time.deltaTime;
-					if ((double)Timer > 3.5)
-					{
-						StartGraphic.SetActive(value: false);
-						for (ID = 1; ID < EnemySpawner.Length; ID++)
-						{
-							EnemySpawner[ID].enabled = true;
-						}
-						Miyuki.Gameplay = true;
-						Intro = false;
-					}
-				}
+				return;
 			}
-			if (Input.GetKeyDown("space"))
+			if (!Jukebox.isPlaying)
 			{
-				StartGraphic.SetActive(value: false);
-				for (ID = 1; ID < EnemySpawner.Length; ID++)
-				{
-					EnemySpawner[ID].enabled = true;
-				}
-				Black.material.color = new Color(0f, 0f, 0f, 0f);
-				Miyuki.Gameplay = true;
-				Intro = false;
 				Jukebox.loop = true;
 				Jukebox.clip = BGM;
 				Jukebox.Play();
@@ -239,6 +208,18 @@ public class MGPMManagerScript : MonoBehaviour
 				{
 					Jukebox.pitch = 0.2f;
 				}
+			}
+			StartGraphic.SetActive(value: true);
+			Timer += Time.deltaTime;
+			if ((double)Timer > 3.5)
+			{
+				StartGraphic.SetActive(value: false);
+				for (ID = 1; ID < EnemySpawner.Length; ID++)
+				{
+					EnemySpawner[ID].enabled = true;
+				}
+				Miyuki.Gameplay = true;
+				Intro = false;
 			}
 			return;
 		}

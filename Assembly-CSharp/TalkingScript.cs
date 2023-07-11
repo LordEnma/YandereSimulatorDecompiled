@@ -485,6 +485,7 @@ public class TalkingScript : MonoBehaviour
 					}
 					S.DialogueWheel.TaskWindow.TaskComplete = true;
 					S.StudentManager.TaskManager.TaskStatus[S.StudentID] = 3;
+					S.StudentManager.StudentBefriended[S.StudentID] = true;
 					S.Police.EndOfDay.NewFriends++;
 					S.Yandere.Friends++;
 					S.Interaction = StudentInteractionType.Idle;
@@ -549,7 +550,7 @@ public class TalkingScript : MonoBehaviour
 						{
 							flag2 = true;
 						}
-						else if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
+						if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
 						{
 							Debug.Log("Reputation + PendingRep is: " + (S.Reputation.Reputation + S.Reputation.PendingRep));
 							if (S.Reputation.Reputation + S.Reputation.PendingRep >= (float)(DateGlobals.Week * 10))
@@ -620,10 +621,13 @@ public class TalkingScript : MonoBehaviour
 							S.Subtitle.CustomText = "I wouldn't be comfortable with that...the school doesn't feel safe right now.";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
 							S.TalkTimer = 5f;
+							Refuse = true;
 						}
 						else
 						{
 							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 0, 5f);
+							S.TalkTimer = 5f;
+							Refuse = true;
 						}
 					}
 					else if (S.StudentManager.LockerRoomArea.bounds.Contains(S.Yandere.transform.position) || S.StudentManager.WestBathroomArea.bounds.Contains(S.Yandere.transform.position) || S.StudentManager.EastBathroomArea.bounds.Contains(S.Yandere.transform.position) || S.StudentManager.HeadmasterArea.bounds.Contains(S.Yandere.transform.position) || S.MyRenderer.sharedMesh == S.SchoolSwimsuit || S.MyRenderer.sharedMesh == S.SwimmingTrunks || S.Traumatized)
@@ -701,14 +705,43 @@ public class TalkingScript : MonoBehaviour
 			{
 				if (S.Club != ClubType.Delinquent)
 				{
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2)
+					bool flag5 = false;
+					bool flag6 = false;
+					if (S.StudentID == S.StudentManager.RivalID)
 					{
+						if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
+						{
+							Debug.Log("Reputation + PendingRep is: " + (S.Reputation.Reputation + S.Reputation.PendingRep));
+							if (S.Reputation.Reputation + S.Reputation.PendingRep >= (float)(DateGlobals.Week * 10))
+							{
+								if (S.Clock.Period < 5)
+								{
+									S.Yandere.NotificationManager.CustomText = "Your rep will update after you attend class.";
+								}
+								else
+								{
+									S.Yandere.NotificationManager.CustomText = "Your rep will update tomorrow.";
+								}
+								S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
+							S.Yandere.NotificationManager.CustomText = "You need at least " + DateGlobals.Week * 10 + " Reputation Points";
+							S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							flag6 = true;
+						}
+						else if (S.CurrentAction == StudentActionType.SitAndEatBento)
+						{
+							flag5 = true;
+						}
+					}
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag5) || (S.StudentID == S.StudentManager.RivalID && flag6))
+					{
+						S.CharacterAnimation.CrossFade(S.GossipAnim);
+						Refuse = true;
 						if (S.Schoolwear == 2)
 						{
 							S.Subtitle.CustomText = "Uh...I'm wearing a swimsuit right now. I can't really do that for you. Maybe later...?";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
 							S.TalkTimer = 7.5f;
-							Refuse = true;
 						}
 						else if (SchoolGlobals.SchoolAtmosphere <= 0.5f)
 						{
@@ -716,10 +749,21 @@ public class TalkingScript : MonoBehaviour
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
 							S.TalkTimer = 7.5f;
 						}
+						else if (flag5)
+						{
+							S.Subtitle.CustomText = "Ugh...now? Seriously? I'm busy eating...can it wait?";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
+							S.TalkTimer = 7.5f;
+						}
+						else if (flag6)
+						{
+							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
+							S.TalkTimer = 13f;
+						}
 						else
 						{
-							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 0, 5f);
+							S.TalkTimer = 5f;
 						}
 					}
 					else
@@ -764,36 +808,65 @@ public class TalkingScript : MonoBehaviour
 			{
 				if (S.Club != ClubType.Delinquent)
 				{
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.Rival && S.CurrentAction == StudentActionType.SitAndEatBento))
+					bool flag7 = false;
+					bool flag8 = false;
+					if (S.StudentID == S.StudentManager.RivalID)
 					{
+						if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
+						{
+							Debug.Log("Reputation + PendingRep is: " + (S.Reputation.Reputation + S.Reputation.PendingRep));
+							if (S.Reputation.Reputation + S.Reputation.PendingRep >= (float)(DateGlobals.Week * 10))
+							{
+								if (S.Clock.Period < 5)
+								{
+									S.Yandere.NotificationManager.CustomText = "Your rep will update after you attend class.";
+								}
+								else
+								{
+									S.Yandere.NotificationManager.CustomText = "Your rep will update tomorrow.";
+								}
+								S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
+							S.Yandere.NotificationManager.CustomText = "You need at least " + DateGlobals.Week * 10 + " Reputation Points";
+							S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							flag8 = true;
+						}
+						else if (S.CurrentAction == StudentActionType.SitAndEatBento)
+						{
+							flag7 = true;
+						}
+					}
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag7) || (S.StudentID == S.StudentManager.RivalID && flag8))
+					{
+						S.CharacterAnimation.CrossFade(S.GossipAnim);
+						Refuse = true;
 						if (S.Schoolwear == 2)
 						{
 							S.Subtitle.CustomText = "Uh...I'm wearing a swimsuit right now. I can't really do that for you. Maybe later...?";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
-							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.TalkTimer = 7.5f;
-							Refuse = true;
 						}
 						else if (SchoolGlobals.SchoolAtmosphere <= 0.5f)
 						{
 							S.Subtitle.CustomText = "I'm sorry, I wouldn't be comfortable with that...I'm not even sure if we're safe right now.";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
-							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.TalkTimer = 7.5f;
-							Refuse = true;
 						}
-						else if (S.CurrentAction == StudentActionType.SitAndEatBento)
+						else if (flag7)
 						{
 							S.Subtitle.CustomText = "I'm sorry, but could I please do it later? I'm eating a meal right now...";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
-							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.TalkTimer = 7.5f;
-							Refuse = true;
+						}
+						else if (flag8)
+						{
+							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
+							S.TalkTimer = 13f;
 						}
 						else
 						{
 							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 0, 5f);
-							S.CharacterAnimation.CrossFade(S.GossipAnim);
+							S.TalkTimer = 5f;
 						}
 					}
 					else
@@ -1323,6 +1396,31 @@ public class TalkingScript : MonoBehaviour
 		{
 			if (S.TalkTimer == 3f)
 			{
+				bool flag9 = false;
+				bool flag10 = false;
+				if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
+				{
+					Debug.Log("Reputation + PendingRep is: " + (S.Reputation.Reputation + S.Reputation.PendingRep));
+					if (S.Reputation.Reputation + S.Reputation.PendingRep >= (float)(DateGlobals.Week * 10))
+					{
+						if (S.Clock.Period < 5)
+						{
+							S.Yandere.NotificationManager.CustomText = "Your rep will update after you attend class.";
+						}
+						else
+						{
+							S.Yandere.NotificationManager.CustomText = "Your rep will update tomorrow.";
+						}
+						S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					}
+					S.Yandere.NotificationManager.CustomText = "You need at least " + DateGlobals.Week * 10 + " Reputation Points";
+					S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					flag10 = true;
+				}
+				else if (S.CurrentAction == StudentActionType.SitAndEatBento)
+				{
+					flag9 = true;
+				}
 				if (S.Male)
 				{
 					S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 3, 5f);
@@ -1339,6 +1437,19 @@ public class TalkingScript : MonoBehaviour
 				{
 					S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 6, 5f);
 					S.CharacterAnimation.CrossFade(S.GossipAnim);
+					Refuse = true;
+				}
+				else if (flag10)
+				{
+					S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
+					S.TalkTimer = 13f;
+					Refuse = true;
+				}
+				else if (flag9)
+				{
+					S.Subtitle.CustomText = "Ugh...now? Seriously? I'm busy eating...can it wait?";
+					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+					S.TalkTimer = 5f;
 					Refuse = true;
 				}
 				else
@@ -1523,7 +1634,7 @@ public class TalkingScript : MonoBehaviour
 			Debug.Log(S.Name + " is reacting to being offered a snack.");
 			if (S.TalkTimer == 5f)
 			{
-				bool flag5 = false;
+				bool flag11 = false;
 				if (S.StudentID == S.StudentManager.RivalID)
 				{
 					if (S.StudentManager.Eighties)
@@ -1535,13 +1646,13 @@ public class TalkingScript : MonoBehaviour
 						}
 						else
 						{
-							flag5 = true;
+							flag11 = true;
 						}
 					}
 					else if (!S.Hungry)
 					{
 						Debug.Log("The rival is not hungry, so she is going to refuse the snack.");
-						flag5 = true;
+						flag11 = true;
 					}
 					else
 					{
@@ -1554,7 +1665,7 @@ public class TalkingScript : MonoBehaviour
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 1, 3f);
 					S.IgnoreFoodTimer = 10f;
 				}
-				else if (S.Fed || S.Club == ClubType.Council || flag5 || S.StudentID == 22)
+				else if (S.Fed || S.Club == ClubType.Council || flag11 || S.StudentID == 22)
 				{
 					S.CharacterAnimation.CrossFade(S.GossipAnim);
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 0, 3f);
@@ -1598,12 +1709,12 @@ public class TalkingScript : MonoBehaviour
 			S.TalkTimer -= Time.deltaTime;
 			if (S.TalkTimer <= 0f)
 			{
-				bool flag6 = false;
+				bool flag12 = false;
 				if (S.Club == ClubType.Delinquent && !S.StudentManager.MissionMode)
 				{
-					flag6 = true;
+					flag12 = true;
 				}
-				if (!S.Fed && !flag6)
+				if (!S.Fed && !flag12)
 				{
 					if (S.StudentID == S.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(4) == 5)
 					{
@@ -1704,18 +1815,18 @@ public class TalkingScript : MonoBehaviour
 		}
 		else if (S.Interaction == StudentInteractionType.SentToLocker)
 		{
-			bool flag7 = false;
+			bool flag13 = false;
 			if (S.Club == ClubType.Delinquent && !S.StudentManager.MissionMode)
 			{
-				flag7 = true;
+				flag13 = true;
 			}
 			if (S.Friend)
 			{
-				flag7 = false;
+				flag13 = false;
 			}
 			if (S.TalkTimer == 5f)
 			{
-				if (!flag7)
+				if (!flag13)
 				{
 					Refuse = false;
 					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || S.Schoolwear == 2)
@@ -1796,7 +1907,7 @@ public class TalkingScript : MonoBehaviour
 				{
 					if (!Refuse)
 					{
-						if (!flag7)
+						if (!flag13)
 						{
 							S.Pathfinding.speed = 4f;
 							S.TargetDistance = 1f;
