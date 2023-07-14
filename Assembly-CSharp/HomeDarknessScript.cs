@@ -22,6 +22,8 @@ public class HomeDarknessScript : MonoBehaviour
 
 	public bool Cyberstalking;
 
+	public bool GoWatchAnime;
+
 	public bool Disposing;
 
 	public bool FadeSlow;
@@ -139,7 +141,7 @@ public class HomeDarknessScript : MonoBehaviour
 					EventGlobals.KidnapConversation = true;
 					SceneManager.LoadScene("PhoneScene");
 				}
-				else if (HomeCamera.ID == 12)
+				else if (HomeCamera.ID == 12 || GoWatchAnime)
 				{
 					Debug.Log("Exiting home via watching anime.");
 					SceneManager.LoadScene("LifeNoteScene");
@@ -192,6 +194,7 @@ public class HomeDarknessScript : MonoBehaviour
 				{
 					if (!GameGlobals.Eighties)
 					{
+						Debug.Log("Going to Stalker House Scene because HomeExit.ID was 4.");
 						SceneManager.LoadScene("StalkerHouseScene");
 					}
 					else

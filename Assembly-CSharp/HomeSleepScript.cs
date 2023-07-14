@@ -56,6 +56,7 @@ public class HomeSleepScript : MonoBehaviour
 			{
 				HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
 				HomeDarkness.Cyberstalking = true;
+				HomeDarkness.GoWatchAnime = Anime;
 				HomeDarkness.FadeOut = true;
 				HomeWindow.Show = false;
 				base.enabled = false;

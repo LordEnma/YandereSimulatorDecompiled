@@ -4521,6 +4521,7 @@ public class StudentScript : MonoBehaviour
 			}
 			if (MeetTime > 0f)
 			{
+				Debug.Log(Name + " acknowledges that she has to meet someone later today, at " + MeetTime);
 				bool flag = false;
 				if (MyPlate != null && MyPlate.parent == RightHand)
 				{
@@ -11991,7 +11992,7 @@ public class StudentScript : MonoBehaviour
 			else
 			{
 				CharacterAnimation.CrossFade(WalkAnim);
-				if (DistanceToDestination < 1.1f)
+				if (DistanceToDestination < 1.2f)
 				{
 					ReturnMisplacedWeapon();
 				}
@@ -20682,6 +20683,7 @@ public class StudentScript : MonoBehaviour
 
 	private void EndAlarm()
 	{
+		Debug.Log(Name + " just fired the EndAlarm() function.");
 		if (ReturnToRoutineAfter)
 		{
 			CurrentDestination = Destinations[Phase];
@@ -20690,6 +20692,10 @@ public class StudentScript : MonoBehaviour
 		}
 		Pathfinding.canSearch = true;
 		Pathfinding.canMove = true;
+		if (TurnOffRadio)
+		{
+			RadioTimer = 3f;
+		}
 		if (StudentID == 1 || Teacher)
 		{
 			IgnoreTimer = 0.0001f;

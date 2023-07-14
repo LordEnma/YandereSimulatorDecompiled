@@ -443,6 +443,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			{
 				StruggleFocus.localPosition = Vector3.Lerp(StruggleFocus.localPosition, new Vector3(0f, 1.4f, 0.7f), Time.deltaTime);
 				StrugglePOV.localPosition = Vector3.Lerp(StrugglePOV.localPosition, new Vector3(0.5f, 1.4f, 0.3f), Time.deltaTime);
+				StruggleDOF = Mathf.MoveTowards(StruggleDOF, 0.66666f, Time.deltaTime);
 			}
 			else if (Timer < 10f)
 			{
@@ -457,11 +458,17 @@ public class ShoulderCameraScript : MonoBehaviour
 				base.transform.Translate(Vector3.back * Time.deltaTime * 10f * PullBackTimer);
 				StruggleFocus.localPosition = Vector3.Lerp(StruggleFocus.localPosition, new Vector3(0f, 0.3f, -0.766666f), Time.deltaTime);
 				StrugglePOV.localPosition = Vector3.Lerp(StrugglePOV.localPosition, new Vector3(0.75f, 0.3f, -0.966666f), Time.deltaTime);
+				StruggleDOF = Mathf.MoveTowards(StruggleDOF, 1f, Time.deltaTime);
 			}
 			else
 			{
 				StruggleFocus.localPosition = Vector3.Lerp(StruggleFocus.localPosition, new Vector3(0f, 0.3f, -0.766666f), Time.deltaTime);
 				StrugglePOV.localPosition = Vector3.Lerp(StrugglePOV.localPosition, new Vector3(0.75f, 0.3f, -0.966666f), Time.deltaTime);
+				StruggleDOF = Mathf.MoveTowards(StruggleDOF, 1f, Time.deltaTime);
+			}
+			if (!HeartbrokenCamera.activeInHierarchy)
+			{
+				Yandere.CameraEffects.UpdateDOF(StruggleDOF);
 			}
 		}
 		else if (ObstacleCounter)

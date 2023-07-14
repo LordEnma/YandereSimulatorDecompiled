@@ -450,14 +450,32 @@ public class QualityManagerScript : MonoBehaviour
 			Yandere.MyRenderer.materials[0].shader = NewBodyShader;
 			Yandere.MyRenderer.materials[1].shader = NewBodyShader;
 			Yandere.MyRenderer.materials[2].shader = NewBodyShader;
+			Yandere.EightiesPonytailRenderer.material.shader = NewHairShader;
+			YandereHairRenderer.material.shader = NewHairShader;
 			for (int j = 1; j < Yandere.Hairstyles.Length; j++)
 			{
 				Renderer component3 = Yandere.Hairstyles[j].GetComponent<Renderer>();
 				if (component3 != null)
 				{
-					Yandere.EightiesPonytailRenderer.material.shader = NewHairShader;
-					YandereHairRenderer.material.shader = NewHairShader;
 					component3.material.shader = NewHairShader;
+				}
+				if (Yandere.Hairstyles[j].transform.childCount <= 0)
+				{
+					continue;
+				}
+				foreach (Transform item in Yandere.Hairstyles[j].transform)
+				{
+					Renderer component4 = item.GetComponent<Renderer>();
+					if (component4 != null)
+					{
+						component4.material.shader = NewHairShader;
+						continue;
+					}
+					SkinnedMeshRenderer component5 = item.GetComponent<SkinnedMeshRenderer>();
+					if (component5 != null)
+					{
+						component5.material.shader = NewHairShader;
+					}
 				}
 			}
 			Nemesis.Cosmetic.MyRenderer.materials[0].shader = NewBodyShader;
@@ -901,6 +919,26 @@ public class QualityManagerScript : MonoBehaviour
 				AdjustRimLight(YandereHairRenderer.material);
 				AdjustRimLight(component.material);
 			}
+			if (Yandere.Hairstyles[i].transform.childCount <= 0)
+			{
+				continue;
+			}
+			foreach (Transform item in Yandere.Hairstyles[i].transform)
+			{
+				Renderer component2 = item.GetComponent<Renderer>();
+				if (component2 != null)
+				{
+					component2.material.shader = NewBodyShader;
+					AdjustRimLight(component2.material);
+					continue;
+				}
+				SkinnedMeshRenderer component3 = item.GetComponent<SkinnedMeshRenderer>();
+				if (component3 != null)
+				{
+					component3.material.shader = NewBodyShader;
+					AdjustRimLight(component3.material);
+				}
+			}
 		}
 	}
 
@@ -920,6 +958,7 @@ public class QualityManagerScript : MonoBehaviour
 			mat.SetFloat("_RimCrisp", 0.5f);
 			mat.SetFloat("_RimAdditive", 0.5f);
 			mat.SetFloat("_BlendAmount", 0f);
+			mat.SetFloat("_BlendAmount1", 0f);
 		}
 		UpdateStockings();
 	}

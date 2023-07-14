@@ -1609,10 +1609,6 @@ public class GenericRivalEventScript : MonoBehaviour
 							Senpai.Spawned = true;
 						}
 						Speaker[1] = Senpai;
-						if (StartTime > 17f && Rival.StudentID == 19)
-						{
-							StudentManager.RevertEightiesWeek9RoutineAdjustments();
-						}
 					}
 					bool flag2 = false;
 					if ((Teleport || LunchTime || Rival.Leaving || Rival.CurrentDestination == StudentManager.Exit) && !Rival.Ragdoll.Zs.activeInHierarchy)
@@ -1870,49 +1866,52 @@ public class GenericRivalEventScript : MonoBehaviour
 				Rival.WalkAnim = Rival.BulliedWalkAnim;
 			}
 		}
-		if (!Teleport || !NaturalEnd)
+		if (Teleport && NaturalEnd)
 		{
-			return;
-		}
-		if (DateGlobals.Weekday == DayOfWeek.Monday)
-		{
-			Senpai.ExtraBento = true;
-		}
-		else if (DateGlobals.Weekday == DayOfWeek.Tuesday)
-		{
-			StudentManager.RivalBookBag.BorrowedBook = true;
-			ScheduleBlock obj = Rival.ScheduleBlocks[4];
-			obj.destination = "LunchSpot";
-			obj.action = "Read";
-			Rival.GetDestinations();
-		}
-		else if (DateGlobals.Weekday == DayOfWeek.Wednesday)
-		{
-			Rival.GiftBox = true;
-		}
-		else if (DateGlobals.Weekday == DayOfWeek.Thursday)
-		{
-			Debug.Log("Thursday-specific ''Rival going to sleep'' code just fired.");
-			ScheduleBlock obj2 = Rival.ScheduleBlocks[6];
-			obj2.destination = "SleepSpot";
-			obj2.action = "Sleep";
-			if (Rival.Sedated && Rival.StudentID != 15 && Rival.ScheduleBlocks.Length == 10)
+			if (DateGlobals.Weekday == DayOfWeek.Monday)
 			{
-				ScheduleBlock obj3 = Rival.ScheduleBlocks[7];
-				obj3.destination = "SleepSpot";
-				obj3.action = "Sleep";
-				ScheduleBlock obj4 = Rival.ScheduleBlocks[8];
-				obj4.destination = "SleepSpot";
-				obj4.action = "Sleep";
-				ScheduleBlock obj5 = Rival.ScheduleBlocks[9];
-				obj5.destination = "SleepSpot";
-				obj5.action = "Sleep";
+				Senpai.ExtraBento = true;
 			}
-			Rival.GetDestinations();
+			else if (DateGlobals.Weekday == DayOfWeek.Tuesday)
+			{
+				StudentManager.RivalBookBag.BorrowedBook = true;
+				ScheduleBlock obj = Rival.ScheduleBlocks[4];
+				obj.destination = "LunchSpot";
+				obj.action = "Read";
+				Rival.GetDestinations();
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Wednesday)
+			{
+				Rival.GiftBox = true;
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Thursday)
+			{
+				Debug.Log("Thursday-specific ''Rival going to sleep'' code just fired.");
+				ScheduleBlock obj2 = Rival.ScheduleBlocks[6];
+				obj2.destination = "SleepSpot";
+				obj2.action = "Sleep";
+				if (Rival.Sedated && Rival.StudentID != 15 && Rival.ScheduleBlocks.Length == 10)
+				{
+					ScheduleBlock obj3 = Rival.ScheduleBlocks[7];
+					obj3.destination = "SleepSpot";
+					obj3.action = "Sleep";
+					ScheduleBlock obj4 = Rival.ScheduleBlocks[8];
+					obj4.destination = "SleepSpot";
+					obj4.action = "Sleep";
+					ScheduleBlock obj5 = Rival.ScheduleBlocks[9];
+					obj5.destination = "SleepSpot";
+					obj5.action = "Sleep";
+				}
+				Rival.GetDestinations();
+			}
+			else if (DateGlobals.Weekday == DayOfWeek.Friday)
+			{
+				Rival.VisitSenpaiDesk = true;
+			}
 		}
-		else if (DateGlobals.Weekday == DayOfWeek.Friday)
+		if (StartTime > 17f && Rival.StudentID == 19)
 		{
-			Rival.VisitSenpaiDesk = true;
+			StudentManager.RevertEightiesWeek9RoutineAdjustments();
 		}
 	}
 

@@ -578,7 +578,7 @@ public class PoliceScript : MonoBehaviour
 			Protagonist = VtuberNames[Yandere.VtuberID];
 		}
 		ResultsLabels[0].transform.parent.gameObject.SetActive(value: true);
-		Debug.Log("As of this moment, Show is: " + Show + " and Called is: " + Called);
+		Debug.Log("Police.Show is: " + Show + " and Police.Called is: " + Called);
 		if (Show)
 		{
 			Debug.Log("The police were called.");

@@ -343,7 +343,7 @@ public class NoteLockerScript : MonoBehaviour
 
 	public void DetermineSchedule()
 	{
-		Debug.Log("At the time of DetermineSchedule() being called, StudentID was: " + StudentID + " and MeetID was: " + MeetID);
+		Debug.Log("At the time of DetermineSchedule() being called, StudentID was: " + StudentID + " MeetTime was: " + MeetTime + " and MeetID was: " + MeetID);
 		if (Student == null)
 		{
 			Student = StudentManager.Students[StudentID];

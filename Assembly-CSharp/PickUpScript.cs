@@ -374,7 +374,7 @@ public class PickUpScript : MonoBehaviour
 		{
 			if (base.transform.position.y < 0f)
 			{
-				base.transform.rotation = Quaternion.identity;
+				base.transform.eulerAngles = OriginalRotation;
 				base.transform.position = new Vector3(base.transform.position.x, 0.025f, base.transform.position.z);
 			}
 			if (!KeepGravity)

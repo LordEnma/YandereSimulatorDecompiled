@@ -1294,6 +1294,11 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (StudentID == 1 && SenpaiGlobals.CustomSenpai)
 		{
+			HairRenderer = MaleHairRenderers[Hairstyle];
+			if (StartShader != null)
+			{
+				HairRenderer.material.shader = StartShader;
+			}
 			if (SenpaiGlobals.SenpaiEyeWear > 0)
 			{
 				Eyewear[SenpaiGlobals.SenpaiEyeWear].SetActive(value: true);
@@ -1500,7 +1505,7 @@ public class CosmeticScript : MonoBehaviour
 				ClubAccessories[(int)Club].SetActive(value: false);
 			}
 		}
-		if (StudentID == 11 && !TakingPortrait && !Cutscene && !Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene")
+		if (((Student.Rival && !Student.Male) || (StudentManager != null && !StudentManager.MissionMode && StudentID == StudentManager.RivalID)) && !TakingPortrait && !Cutscene && !Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene")
 		{
 			CatGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
 			CatGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));

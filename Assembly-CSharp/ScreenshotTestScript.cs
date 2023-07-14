@@ -5,15 +5,36 @@ public class ScreenshotTestScript : MonoBehaviour
 {
 	public Camera SenpaiCamera;
 
+	public Texture EightiesBG;
+
+	public GameObject Petals;
+
+	public GameObject Tree;
+
 	public Renderer Target;
 
+	public UITexture BG;
+
 	public int Frames;
+
+	private void Start()
+	{
+		if (GameGlobals.Eighties)
+		{
+			BG.mainTexture = EightiesBG;
+			Petals.SetActive(value: false);
+			Tree.SetActive(value: false);
+		}
+	}
 
 	private void LateUpdate()
 	{
 		if (Frames > 0)
 		{
-			OnPostRenderCallback(SenpaiCamera);
+			if (!HomeGlobals.Night)
+			{
+				OnPostRenderCallback(SenpaiCamera);
+			}
 			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/SenpaiPortrait.png");
 			Target.materials[0].mainTexture = wWW.texture;
 			base.enabled = false;

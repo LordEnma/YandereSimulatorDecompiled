@@ -701,6 +701,7 @@ public class ClubManagerScript : MonoBehaviour
 		Reputation.SetActive(value: false);
 		Heartrate.SetActive(value: false);
 		Watermark.SetActive(value: false);
+		Yandere.ClubActivity = true;
 	}
 
 	public void CheckClub(ClubType Check)

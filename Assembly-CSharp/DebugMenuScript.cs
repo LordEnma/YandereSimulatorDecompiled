@@ -337,6 +337,9 @@ public class DebugMenuScript : MonoBehaviour
 					else if (Input.GetKeyDown(KeyCode.G))
 					{
 						StudentScript studentScript3 = StudentManager.Students[RooftopStudent];
+						StudentManager.MeetStudentID = RooftopStudent;
+						StudentManager.MeetTime = 7f;
+						StudentManager.MeetID = 9;
 						PlayerGlobals.SetStudentFriend(RooftopStudent, value: true);
 						StudentManager.Students[RooftopStudent].Friend = true;
 						Yandere.transform.position = RooftopSpot.position + new Vector3(1f, 0f, 0f);

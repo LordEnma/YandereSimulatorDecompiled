@@ -110,7 +110,7 @@ public class WeaponManagerScript : MonoBehaviour
 
 	public void CheckWeapons()
 	{
-		Debug.Log("The WeaponManager is, at this moment, counting how many murder weapons are lying around at school.");
+		Debug.Log("WeaponManager is now counting how many murder weapons are lying around at school.");
 		MurderWeapons = 0;
 		Fingerprints = 0;
 		for (int i = 0; i < Victims.Length; i++)

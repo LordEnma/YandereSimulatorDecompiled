@@ -38,7 +38,7 @@ public class TranqDetectorScript : MonoBehaviour
 
 	public AudioSource MyAudioSource;
 
-	private bool DisableAfterwards = true;
+	public bool DisableAfterwards;
 
 	private void Start()
 	{

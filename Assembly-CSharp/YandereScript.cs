@@ -8787,10 +8787,21 @@ public class YandereScript : MonoBehaviour
 		{
 			TextureToUse = CasualTextures[StudentGlobals.FemaleUniform];
 		}
-		if (!Egg && !StudentManager.Eighties && Hairstyle == 210)
+		if (!Egg)
 		{
-			Hairstyle = 1;
-			UpdateHair();
+			if (!StudentManager.Eighties)
+			{
+				if (Hairstyle == 210)
+				{
+					Hairstyle = 1;
+					UpdateHair();
+				}
+			}
+			else if (Hairstyle == 211)
+			{
+				Hairstyle = 203;
+				UpdateHair();
+			}
 		}
 		if ((ClubAttire && Bloodiness > 0f) || Schoolwear == 0)
 		{
@@ -8804,10 +8815,21 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.materials[2].mainTexture = FaceTexture;
 			ClubAttire = false;
 			Schoolwear = 0;
-			if (!Egg && !StudentManager.Eighties && Hairstyle == 1)
+			if (!Egg)
 			{
-				Hairstyle = 210;
-				UpdateHair();
+				if (!StudentManager.Eighties)
+				{
+					if (Hairstyle == 1)
+					{
+						Hairstyle = 210;
+						UpdateHair();
+					}
+				}
+				else if (Hairstyle == 203)
+				{
+					Hairstyle = 211;
+					UpdateHair();
+				}
 			}
 		}
 		else if (Schoolwear == 1)
@@ -8916,10 +8938,21 @@ public class YandereScript : MonoBehaviour
 			ClubAttire = false;
 			MyRenderer.materials[2].SetFloat("_BlendAmount", 1f - sanity / 100f);
 		}
-		if (ClubAttire && Hairstyle == 210)
+		if (ClubAttire)
 		{
-			Hairstyle = 1;
-			UpdateHair();
+			if (!StudentManager.Eighties)
+			{
+				if (Hairstyle == 210)
+				{
+					Hairstyle = 1;
+					UpdateHair();
+				}
+			}
+			else if (Hairstyle == 211)
+			{
+				Hairstyle = 203;
+				UpdateHair();
+			}
 		}
 		MyLocker.UpdateButtons();
 		ClubAccessory();

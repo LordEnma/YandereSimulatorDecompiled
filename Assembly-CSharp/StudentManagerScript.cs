@@ -1129,7 +1129,6 @@ public class StudentManagerScript : MonoBehaviour
 		KokonaTutorial = GameGlobals.KokonaTutorial;
 		EmptyDemon = GameGlobals.EmptyDemon;
 		Week = DateGlobals.Week;
-		PoolPhotoShootCameras.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			Become1989();
@@ -1164,6 +1163,7 @@ public class StudentManagerScript : MonoBehaviour
 			}
 			if (!TakingPortraits)
 			{
+				PoolPhotoShootCameras.SetActive(value: false);
 				InfoClubRoom.SetActive(value: true);
 				InfoClubProps.SetActive(value: true);
 				ModernDayScienceClub.SetActive(value: true);
@@ -1873,34 +1873,41 @@ public class StudentManagerScript : MonoBehaviour
 						students = Students;
 						foreach (StudentScript studentScript in students)
 						{
-							if (studentScript != null)
+							if (!(studentScript != null))
 							{
-								if (studentScript.Meeting)
+								continue;
+							}
+							if (studentScript.Meeting)
+							{
+								Debug.Log(studentScript.Name + " was in the middle of meeting someone when this save file was made. Attempting to update their schedule accordingly.");
+								NoteWindow.NoteLocker.StudentID = MeetStudentID;
+								NoteWindow.NoteLocker.MeetTime = MeetTime;
+								NoteWindow.NoteLocker.MeetID = MeetID;
+								NoteWindow.NoteLocker.DetermineSchedule();
+								studentScript.MeetTimer = 0f;
+								Debug.Log("Clock.HourTime is: " + Clock.HourTime + " and MeetTime is: " + MeetTime);
+								if (Clock.HourTime > MeetTime)
 								{
-									Debug.Log(studentScript.Name + " was in the middle of meeting someone when this save file was made. Attempting to update their schedule accordingly.");
-									NoteWindow.NoteLocker.StudentID = MeetStudentID;
-									NoteWindow.NoteLocker.MeetTime = MeetTime;
-									NoteWindow.NoteLocker.MeetID = MeetID;
-									NoteWindow.NoteLocker.DetermineSchedule();
-									studentScript.MeetTimer = 0f;
+									Debug.Log("Thus, student should be returning to ''Meeting'' protocol.");
+									studentScript.Routine = true;
 								}
-								if (studentScript.Schoolwear != 1)
-								{
-									studentScript.ChangeSchoolwear();
-								}
-								if (studentScript.Actions[studentScript.Phase] == StudentActionType.ClubAction && studentScript.Club == ClubType.Cooking && studentScript.ClubActivityPhase > 0)
-								{
-									studentScript.MyPlate.parent = studentScript.RightHand;
-									studentScript.MyPlate.localPosition = new Vector3(0.02f, -0.02f, -0.15f);
-									studentScript.MyPlate.localEulerAngles = new Vector3(-5f, -90f, 172.5f);
-									studentScript.IdleAnim = studentScript.PlateIdleAnim;
-									studentScript.WalkAnim = studentScript.PlateWalkAnim;
-									studentScript.LeanAnim = studentScript.PlateIdleAnim;
-									studentScript.Attempts = 0;
-									studentScript.SleuthID--;
-									studentScript.GetFoodTarget();
-									studentScript.ClubTimer = 0f;
-								}
+							}
+							if (studentScript.Schoolwear != 1)
+							{
+								studentScript.ChangeSchoolwear();
+							}
+							if (studentScript.Actions[studentScript.Phase] == StudentActionType.ClubAction && studentScript.Club == ClubType.Cooking && studentScript.ClubActivityPhase > 0)
+							{
+								studentScript.MyPlate.parent = studentScript.RightHand;
+								studentScript.MyPlate.localPosition = new Vector3(0.02f, -0.02f, -0.15f);
+								studentScript.MyPlate.localEulerAngles = new Vector3(-5f, -90f, 172.5f);
+								studentScript.IdleAnim = studentScript.PlateIdleAnim;
+								studentScript.WalkAnim = studentScript.PlateWalkAnim;
+								studentScript.LeanAnim = studentScript.PlateIdleAnim;
+								studentScript.Attempts = 0;
+								studentScript.SleuthID--;
+								studentScript.GetFoodTarget();
+								studentScript.ClubTimer = 0f;
 							}
 						}
 						if (StudentGlobals.MemorialStudents > 0)
@@ -4943,6 +4950,8 @@ public class StudentManagerScript : MonoBehaviour
 		Debug.Log("The entire loading process has been completed.");
 		Week = DateGlobals.Week;
 		CameFromLoad = true;
+		Debug.Log("End of StudentManager Load() believes that GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID);
+		Debug.Log("End of StudentManager Load() believes that RivalEliminated is: " + RivalEliminated);
 	}
 
 	public void UpdateBlood()
@@ -6141,10 +6150,13 @@ public class StudentManagerScript : MonoBehaviour
 			scheduleBlock.destination = "Hangout";
 			scheduleBlock.action = "Admire";
 			scheduleBlock.time += 0.25f;
-			scheduleBlock = Students[ID].ScheduleBlocks[7];
-			scheduleBlock.destination = "Hangout";
-			scheduleBlock.action = "Admire";
-			scheduleBlock.time += 999f;
+			if (ID > 1)
+			{
+				scheduleBlock = Students[ID].ScheduleBlocks[7];
+				scheduleBlock.destination = "Hangout";
+				scheduleBlock.action = "Admire";
+				scheduleBlock.time += 999f;
+			}
 			Students[ID].GetDestinations();
 			Students[ID].Infatuated = true;
 			Students[ID].InfatuationID = 19;

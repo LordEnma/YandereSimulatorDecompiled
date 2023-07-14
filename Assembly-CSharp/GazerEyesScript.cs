@@ -237,6 +237,7 @@ public class GazerEyesScript : MonoBehaviour
 				Target.CharacterAnimation[Target.WetAnim].weight = 0f;
 				Target.CharacterAnimation[Target.ShyAnim].weight = 0f;
 			}
+			Target.SpecialRivalDeathReaction = false;
 			Target.InvestigatingBloodPool = false;
 			Target.FocusOnYandere = false;
 			Target.EatingSnack = false;
