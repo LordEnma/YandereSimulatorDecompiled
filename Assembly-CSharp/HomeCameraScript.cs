@@ -88,6 +88,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public Transform[] Targets;
 
+	public int LastID;
+
 	public int Frame;
 
 	public int ID;
@@ -399,6 +401,10 @@ public class HomeCameraScript : MonoBehaviour
 		{
 			BasementJukebox.gameObject.SetActive(value: false);
 			RoomJukebox.gameObject.SetActive(value: false);
+		}
+		if (ID > 0)
+		{
+			LastID = ID;
 		}
 	}
 

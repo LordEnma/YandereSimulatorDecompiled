@@ -9928,7 +9928,7 @@ public class StudentScript : MonoBehaviour
 								Subtitle.UpdateLabel(LostPhoneSubtitleType, 1, 5f);
 								RealizePhoneIsMissing();
 								Phoneless = true;
-								BatheTimer = 6f;
+								BatheTimer = CharacterAnimation["f02_losingPhone_00"].length;
 								BathePhase++;
 							}
 							else
@@ -9963,7 +9963,7 @@ public class StudentScript : MonoBehaviour
 								}
 								Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 								Depressed = true;
-								BatheTimer = 6f;
+								BatheTimer = CharacterAnimation["f02_losingPhone_00"].length;
 								BathePhase++;
 							}
 							else
@@ -11154,7 +11154,7 @@ public class StudentScript : MonoBehaviour
 			MoveTowardsTarget(Pathfinding.target.position);
 			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, Pathfinding.target.rotation, 10f * Time.deltaTime);
 			PatrolTimer += Time.deltaTime * CharacterAnimation[PatrolAnim].speed;
-			if (PatrolTimer > 5f)
+			if (PatrolTimer > CharacterAnimation[DiscoverPhoneAnim].length)
 			{
 				Debug.Log(Name + " is now attempting to return to her previous routine.");
 				ScheduleBlock scheduleBlock = ScheduleBlocks[2];
@@ -11193,6 +11193,7 @@ public class StudentScript : MonoBehaviour
 				EndSearch = false;
 				Phoneless = false;
 				Routine = true;
+				Hurry = false;
 				SprintAnim = OriginalSprintAnim;
 				RunAnim = OriginalSprintAnim;
 				WalkAnim = OriginalWalkAnim;
@@ -22164,8 +22165,11 @@ public class StudentScript : MonoBehaviour
 		GetDestinations();
 		CurrentDestination = Destinations[Phase];
 		Pathfinding.target = Destinations[Phase];
-		IdleAnim = BulliedIdleAnim;
-		WalkAnim = BulliedWalkAnim;
+		if (StudentID > 1)
+		{
+			IdleAnim = BulliedIdleAnim;
+			WalkAnim = BulliedWalkAnim;
+		}
 		TargetDistance = 0.5f;
 	}
 

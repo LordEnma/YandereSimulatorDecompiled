@@ -231,8 +231,11 @@ public class DoorScript : MonoBehaviour
 				if (Prompt.Circle[0].fillAmount < 1f && Prompt.Circle[0].fillAmount > 0f)
 				{
 					Prompt.Circle[0].fillAmount = 0f;
-					Prompt.Yandere.CharacterAnimation["f02_genericInteraction_00"].time = 0f;
-					Prompt.Yandere.InteractWeight = 1f;
+					if (Prompt.Yandere.PickUp == null)
+					{
+						Prompt.Yandere.CharacterAnimation["f02_genericInteraction_00"].time = 0f;
+						Prompt.Yandere.InteractWeight = 1f;
+					}
 					if (!Locked)
 					{
 						if (!Open)

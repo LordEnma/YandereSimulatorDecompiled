@@ -116,6 +116,12 @@ public class ShoulderCameraScript : MonoBehaviour
 		{
 			bool flag = false;
 			Vector3 b = Vector3.zero;
+			if (RPGCamera.enabled)
+			{
+				ShoulderFocus.position = RPGCamera.cameraPivot.position;
+				LastPosition = base.transform.position;
+				RPGCamera.enabled = false;
+			}
 			Vector3.Distance(ShoulderFocus.position, ShoulderPOV.position);
 			ShoulderFocus.LookAt(ShoulderPOV);
 			Debug.DrawRay(ShoulderFocus.position, ShoulderFocus.forward, Color.green);
@@ -123,12 +129,6 @@ public class ShoulderCameraScript : MonoBehaviour
 			{
 				b = hitInfo.point;
 				flag = true;
-			}
-			if (RPGCamera.enabled)
-			{
-				ShoulderFocus.position = RPGCamera.cameraPivot.position;
-				LastPosition = base.transform.position;
-				RPGCamera.enabled = false;
 			}
 			if (Yandere.TargetStudent != null)
 			{

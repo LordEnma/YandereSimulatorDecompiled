@@ -91,6 +91,8 @@ public class QualityManagerScript : MonoBehaviour
 
 	public bool Eighties;
 
+	public bool OriginalFog;
+
 	public void Start()
 	{
 		Eighties = GameGlobals.Eighties;
@@ -653,8 +655,11 @@ public class QualityManagerScript : MonoBehaviour
 		}
 		if (GameGlobals.EightiesTutorial)
 		{
-			Debug.Log("The QualityManager script knows that we're in the tutorial, so it is manually enabling Fog.");
+			Debug.Log("The QualityManager script knows that we're in the tutorial.");
+			OriginalFog = OptionGlobals.Fog;
+			Debug.Log("QualityManager.OriginalFog is: " + OriginalFog);
 			OptionGlobals.Fog = true;
+			Debug.Log("QualityManager is now manually enabling fog.");
 		}
 		if (!OptionGlobals.Fog)
 		{

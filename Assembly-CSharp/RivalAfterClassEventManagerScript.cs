@@ -351,6 +351,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 				else if (EventDay == DayOfWeek.Wednesday && Rival.CharacterAnimation["f02_" + Weekday + "_3" + Suffix].time > TransferTime)
 				{
 					Rival.SmartPhone.SetActive(value: false);
+					Senpai.SmartPhone.GetComponent<Renderer>().material.mainTexture = Rival.SmartPhone.GetComponent<Renderer>().material.mainTexture;
 					Senpai.SmartPhone.SetActive(value: true);
 					Transfer = false;
 					Return = true;

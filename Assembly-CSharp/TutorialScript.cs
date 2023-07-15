@@ -132,6 +132,8 @@ public class TutorialScript : MonoBehaviour
 
 	public bool MusicSynced;
 
+	public bool FogEnabled;
+
 	public bool CanPickUp;
 
 	public bool Cutscene;
@@ -1010,11 +1012,14 @@ public class TutorialScript : MonoBehaviour
 								{
 									GameGlobals.EightiesTutorial = false;
 									GameGlobals.EightiesCutsceneID = 1;
-									OptionGlobals.Fog = false;
+									OptionGlobals.Fog = StudentManager.QualityManager.OriginalFog;
 									SceneManager.LoadScene("EightiesCutsceneScene");
 								}
 								else
 								{
+									Debug.Log("OptionGlobals.Fog is now returning to QualityManager.OriginalFog, which is: " + StudentManager.QualityManager.OriginalFog);
+									OptionGlobals.Fog = StudentManager.QualityManager.OriginalFog;
+									GameGlobals.EightiesTutorial = false;
 									SceneManager.LoadScene("NewTitleScene");
 								}
 							}

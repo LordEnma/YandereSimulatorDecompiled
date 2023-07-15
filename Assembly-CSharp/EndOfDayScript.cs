@@ -2647,7 +2647,7 @@ public class EndOfDayScript : MonoBehaviour
 		CounselorGlobals.ReportedCheating = Counselor.ReportedCheating;
 		for (int j = 1; j < WeaponManager.BroughtWeapons.Length; j++)
 		{
-			if (WeaponManager.BroughtWeapons[j] == null)
+			if (WeaponManager.BroughtWeapons[j] == null || WeaponManager.BroughtWeapons[j].Disposed)
 			{
 				PlayerGlobals.SetCannotBringItem(j, value: true);
 			}

@@ -178,6 +178,10 @@ public class PortalScript : MonoBehaviour
 				Debug.Log("One of the bloody weapons is inside of the weapon bag, though, so we should subtract it from the list...");
 				num2--;
 			}
+			if (num2 < 0)
+			{
+				num2 = 0;
+			}
 			if ((!BypassWarning && Police.Corpses - Police.HiddenCorpses > 0) || (!BypassWarning && num > 0) || (!BypassWarning && Police.BloodParent.childCount > 0) || (!BypassWarning && Police.BloodyClothing > 0) || (!BypassWarning && num2 > 0))
 			{
 				string text = "";
@@ -208,7 +212,7 @@ public class PortalScript : MonoBehaviour
 				{
 					CheckForPoison();
 				}
-				if (Police.PoisonScene || (Police.SuicideScene && Police.Corpses - Police.HiddenCorpses > 0) || Police.Corpses - Police.HiddenCorpses > 0 || Police.BloodParent.childCount > 0 || Reputation.Reputation <= -100f)
+				if (Police.PoisonScene || (Police.SuicideScene && Police.Corpses - Police.HiddenCorpses > 0) || Police.Corpses - Police.HiddenCorpses > 0 || Police.BloodParent.childCount > 0 || Police.BloodyClothing > 0 || Reputation.Reputation <= -100f)
 				{
 					EndDay();
 				}

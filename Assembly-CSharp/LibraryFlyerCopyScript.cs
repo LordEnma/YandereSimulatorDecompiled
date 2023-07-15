@@ -8,6 +8,8 @@ public class LibraryFlyerCopyScript : MonoBehaviour
 
 	public Transform Destination;
 
+	public AudioSource MyAudio;
+
 	public bool Animate;
 
 	public float Timer;
@@ -22,6 +24,10 @@ public class LibraryFlyerCopyScript : MonoBehaviour
 			Prompt.Hide();
 			Prompt.Yandere.CanMove = false;
 			Animate = true;
+			if (MyAudio != null)
+			{
+				MyAudio.Play();
+			}
 		}
 		if (!Animate)
 		{

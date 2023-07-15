@@ -24,6 +24,8 @@ public class HomeDarknessScript : MonoBehaviour
 
 	public bool GoWatchAnime;
 
+	public bool ReadingManga;
+
 	public bool Disposing;
 
 	public bool FadeSlow;
@@ -52,6 +54,11 @@ public class HomeDarknessScript : MonoBehaviour
 			}
 			HomeCamera.Profile.bloom.enabled = HomeCamera.RestoreBloom;
 			HomeCamera.Profile.depthOfField.enabled = HomeCamera.RestoreDOF;
+			if (HomeCamera.ID == 0)
+			{
+				Debug.Log("Cheeky player stepped out of a trigger...");
+				HomeCamera.ID = HomeCamera.LastID;
+			}
 			if (HomeCamera.ID != 2)
 			{
 				if (HomeCamera.ID == 3)
@@ -87,7 +94,7 @@ public class HomeDarknessScript : MonoBehaviour
 						SceneManager.LoadScene("MiyukiTitleScene");
 					}
 				}
-				else if (HomeCamera.ID == 9)
+				else if (HomeCamera.ID == 9 || ReadingManga)
 				{
 					Debug.Log("Exiting home via manga.");
 					if (!HomeGlobals.Night)

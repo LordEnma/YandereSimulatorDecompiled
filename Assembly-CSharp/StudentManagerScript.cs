@@ -3073,6 +3073,7 @@ public class StudentManagerScript : MonoBehaviour
 							}
 							studentScript.ShoeRemoval.PutOnShoes();
 						}
+						studentScript.ChangingShoes = false;
 						studentScript.transform.position = studentScript.Seat.position + Vector3.up * 0.01f;
 						studentScript.transform.rotation = studentScript.Seat.rotation;
 						studentScript.CharacterAnimation.Play(studentScript.SitAnim);
