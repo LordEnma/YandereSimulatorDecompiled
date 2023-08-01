@@ -14,7 +14,7 @@ public class BugScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (GameGlobals.Eighties || GameGlobals.KokonaTutorial)
+		if (GameGlobals.Eighties || GameGlobals.KokonaTutorial || ChallengeGlobals.NoInfo)
 		{
 			Prompt.Hide();
 			Prompt.enabled = false;

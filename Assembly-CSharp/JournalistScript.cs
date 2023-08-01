@@ -192,7 +192,8 @@ public class JournalistScript : MonoBehaviour
 					MyAnimation.CrossFade("idleTough_00");
 					Pathfinding.canSearch = false;
 					Pathfinding.canMove = false;
-					targetRotation = Quaternion.LookRotation(Yandere.transform.position - base.transform.position);
+					Vector3 vector = new Vector3(Yandere.transform.position.x, 0f, Yandere.transform.position.z);
+					targetRotation = Quaternion.LookRotation(vector - base.transform.position);
 					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
 					SpeechCheck();
 				}
@@ -201,7 +202,8 @@ public class JournalistScript : MonoBehaviour
 					MyAnimation.CrossFade("idleTough_00");
 					Pathfinding.canSearch = false;
 					Pathfinding.canMove = false;
-					targetRotation = Quaternion.LookRotation(Yandere.transform.position - base.transform.position);
+					Vector3 vector2 = new Vector3(Yandere.transform.position.x, 0f, Yandere.transform.position.z);
+					targetRotation = Quaternion.LookRotation(vector2 - base.transform.position);
 					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
 				}
 				else if (DistanceToDestination < 1f)

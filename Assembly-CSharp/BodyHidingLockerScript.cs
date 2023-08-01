@@ -117,7 +117,10 @@ public class BodyHidingLockerScript : MonoBehaviour
 					Corpse.Head.transform.localScale = Vector3.zero;
 				}
 				Rotation = -180f;
-				Outline.color = new Color(1f, 0.5f, 0f, 1f);
+				if (Outline != null)
+				{
+					Outline.color = new Color(1f, 0.5f, 0f, 1f);
+				}
 			}
 			else if (Prompt.enabled)
 			{

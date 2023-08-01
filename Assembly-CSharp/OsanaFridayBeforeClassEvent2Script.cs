@@ -70,7 +70,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
-		if (DateGlobals.Weekday != EventDay || StudentGlobals.GetStudentKidnapped(RivalID) || StudentGlobals.StudentSlave == RivalID || StudentGlobals.StudentSlave == 81 || StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentKidnapped(81) || StudentGlobals.GetStudentArrested(81) || StudentGlobals.GetStudentExpelled(81) || (float)StudentGlobals.GetStudentReputation(81) < -33.33333f || GameGlobals.Eighties)
+		if (DateGlobals.Weekday != EventDay || GameGlobals.RivalEliminationID > 0 || StudentGlobals.GetStudentKidnapped(RivalID) || StudentGlobals.StudentSlave == RivalID || StudentGlobals.StudentSlave == 81 || StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentKidnapped(81) || StudentGlobals.GetStudentArrested(81) || StudentGlobals.GetStudentExpelled(81) || (float)StudentGlobals.GetStudentReputation(81) < -33.33333f || GameGlobals.Eighties)
 		{
 			base.enabled = false;
 		}

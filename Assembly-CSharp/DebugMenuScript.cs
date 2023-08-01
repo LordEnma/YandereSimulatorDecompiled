@@ -457,9 +457,12 @@ public class DebugMenuScript : MonoBehaviour
 					}
 					else if (Input.GetKeyDown(KeyCode.S))
 					{
-						Yandere.Class.PhysicalGrade = 5;
+						PlayerGlobals.Numbness = 5;
+						Yandere.Class.Numbness = 5;
+						PlayerGlobals.Seduction = 5;
 						Yandere.Class.Seduction = 5;
-						ClassGlobals.PsychologyGrade = 5;
+						ClassGlobals.PhysicalGrade = 5;
+						Yandere.Class.PhysicalGrade = 5;
 						StudentManager.Police.UpdateCorpses();
 						for (ID = 1; ID < 101; ID++)
 						{
@@ -467,6 +470,7 @@ public class DebugMenuScript : MonoBehaviour
 							StudentManager.StudentPhotographed[ID] = true;
 							if (StudentManager.Students[ID] != null)
 							{
+								PlayerGlobals.SetStudentFriend(ID, value: true);
 								StudentManager.Students[ID].Friend = true;
 							}
 						}

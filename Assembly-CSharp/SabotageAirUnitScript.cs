@@ -8,6 +8,8 @@ public class SabotageAirUnitScript : MonoBehaviour
 
 	public Transform SabotageSpot;
 
+	public AudioSource MyAudio;
+
 	public PromptScript Prompt;
 
 	public float Timer;
@@ -29,6 +31,7 @@ public class SabotageAirUnitScript : MonoBehaviour
 				Prompt.Yandere.PromptBar.Show = true;
 				Prompt.Yandere.PromptBar.Label[1].text = "Death Cam";
 				Prompt.Yandere.PromptBar.UpdateButtons();
+				MyAudio.Play();
 			}
 			else
 			{
@@ -43,7 +46,7 @@ public class SabotageAirUnitScript : MonoBehaviour
 			{
 				AirUnit.transform.localEulerAngles += new Vector3(Time.deltaTime * 36f, 0f, 0f);
 			}
-			if (Timer == 0f)
+			if (Timer == 0f || Timer < 0.0001f)
 			{
 				AirUnit.gameObject.transform.parent = null;
 				Rotation.enabled = false;

@@ -6,6 +6,8 @@ public class EvilPhotographerScript : MonoBehaviour
 
 	public DetectionMarkerScript Marker;
 
+	public AddictVoiceScript AddictVoice;
+
 	public AudioClip ShockedGameOverLine;
 
 	public AudioClip GameOverSound;
@@ -88,6 +90,8 @@ public class EvilPhotographerScript : MonoBehaviour
 
 	public int SpeechPhase;
 
+	public bool Photographer;
+
 	public bool Searching;
 
 	public bool GameOver;
@@ -130,29 +134,49 @@ public class EvilPhotographerScript : MonoBehaviour
 					{
 						if (!Started)
 						{
-							Subtitle.text = SpeechText[0];
-							MyAudio.Play();
+							if (Photographer)
+							{
+								Subtitle.text = SpeechText[0];
+								MyAudio.Play();
+							}
+							else
+							{
+								AddictVoice.PlayVoice(MyAudio);
+							}
 							Started = true;
 						}
 						else
 						{
 							MyAudio.pitch = Time.timeScale;
-							if (SpeechPhase < SpeechTime.Length)
+							if (Photographer)
+							{
+								if (SpeechPhase < SpeechTime.Length)
+								{
+									SpeechTimer += Time.deltaTime;
+									if (SpeechTimer > SpeechTime[SpeechPhase])
+									{
+										Subtitle.text = SpeechText[SpeechPhase];
+										MyAudio.clip = SpeechClip[SpeechPhase];
+										MyAudio.Play();
+										SpeechPhase++;
+										if (Shocked && SpeechPhase > 3)
+										{
+											WaitAnim = "guardCorpse_00";
+											Node = PanicNode;
+											Searching = true;
+											Shocked = false;
+										}
+									}
+								}
+							}
+							else if (!MyAudio.isPlaying)
 							{
 								SpeechTimer += Time.deltaTime;
-								if (SpeechTimer > SpeechTime[SpeechPhase])
+								Subtitle.text = "";
+								if (SpeechTimer > 5f)
 								{
-									Subtitle.text = SpeechText[SpeechPhase];
-									MyAudio.clip = SpeechClip[SpeechPhase];
-									MyAudio.Play();
-									SpeechPhase++;
-									if (Shocked && SpeechPhase > 3)
-									{
-										WaitAnim = "guardCorpse_00";
-										Node = PanicNode;
-										Searching = true;
-										Shocked = false;
-									}
+									SpeechTimer = 0f;
+									AddictVoice.PlayVoice(MyAudio);
 								}
 							}
 							Scale = Mathf.Abs(1f - (Distance - 5f) / MinimumDistance);
@@ -299,6 +323,10 @@ public class EvilPhotographerScript : MonoBehaviour
 
 	private void TransitionToGameOver()
 	{
+		if (Yandere.PreparingThrow)
+		{
+			Yandere.StopAiming();
+		}
 		if (Fire != null)
 		{
 			Fire.SetActive(value: false);

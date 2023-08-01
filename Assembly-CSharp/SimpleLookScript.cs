@@ -91,7 +91,7 @@ public class SimpleLookScript : MonoBehaviour
 				if (Mathf.Abs(Vector3.Angle(-base.transform.forward, Yandere.transform.position - base.transform.position)) >= 90f && Student.DistanceToPlayer < 2f && !Ignore)
 				{
 					LookTimer += Time.deltaTime;
-					if (!ReactedToFriend && Student.Friend && Student.Yandere.Mask == null && !Student.Emetic && !Student.Lethal && !Student.Sedated && !Student.Headache && !Student.Grudge && !Student.Dying && Student.CurrentAction != StudentActionType.Sunbathe && Student.CurrentAction != StudentActionType.Gaming && Student.CurrentAction != StudentActionType.Mourn && LookTimer > 1f)
+					if (!ReactedToFriend && Student.Friend && Student.Yandere.Mask == null && !Student.Emetic && !Student.Lethal && !Student.Sedated && !Student.Headache && !Student.Grudge && !Student.Dying && Student.CurrentAction != StudentActionType.Sunbathe && Student.CurrentAction != StudentActionType.Gaming && Student.CurrentAction != StudentActionType.Mourn && Student.StudentID > 1 && LookTimer > 1f)
 					{
 						if (!Student.Male)
 						{

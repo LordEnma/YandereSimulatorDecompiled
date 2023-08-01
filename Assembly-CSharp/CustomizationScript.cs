@@ -216,6 +216,8 @@ public class CustomizationScript : MonoBehaviour
 
 	public Shader NewShader;
 
+	public InputDeviceScript InputDevice;
+
 	public bool OriginalDOFStatus;
 
 	private static readonly KeyValuePair<Color, string>[] ColorPairs = new KeyValuePair<Color, string>[11]
@@ -416,7 +418,13 @@ public class CustomizationScript : MonoBehaviour
 		}
 		else if (Phase == 3)
 		{
-			Adjustment += Input.GetAxis("Mouse X") * Time.deltaTime * 10f;
+			string axisName = "Mouse X";
+			if (InputDevice.Type == InputDeviceType.Gamepad)
+			{
+				axisName = InputNames.Xbox_JoyX;
+				_ = InputNames.Xbox_JoyY;
+			}
+			Adjustment += Input.GetAxis(axisName) * Time.deltaTime * 10f;
 			if (Adjustment > 3f)
 			{
 				Adjustment = 3f;

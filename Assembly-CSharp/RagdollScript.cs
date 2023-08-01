@@ -1222,7 +1222,6 @@ public class RagdollScript : MonoBehaviour
 		}
 		Student.Armband.SetActive(value: false);
 		BloodPoolSpawner.enabled = false;
-		_ = Yandere.PickUp != null;
 		if (Student.BikiniAttacher != null && Student.BikiniAttacher.newRenderer != null)
 		{
 			Student.BikiniAttacher.newRenderer.enabled = false;

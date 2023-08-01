@@ -36,6 +36,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public Transform RightArm;
 
+	public Transform Locker;
+
 	public Transform Object;
 
 	public Transform Hips;
@@ -59,6 +61,8 @@ public class StalkerYandereScript : MonoBehaviour
 	public bool Running;
 
 	public bool NoChangeClothing;
+
+	public bool HidingInLocker;
 
 	public bool Invisible;
 
@@ -99,6 +103,8 @@ public class StalkerYandereScript : MonoBehaviour
 	public float Intensity = 0.45f;
 
 	public int InstructionPhase = 1;
+
+	public int LockerPhase;
 
 	public int ClimbPhase;
 
@@ -426,6 +432,30 @@ public class StalkerYandereScript : MonoBehaviour
 					Quaternion b = Quaternion.LookRotation(Stalker.transform.position - base.transform.position);
 					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, b, 10f * Time.deltaTime);
 				}
+				else if (HidingInLocker)
+				{
+					if (LockerPhase == 1)
+					{
+						MoveTowardsTarget(Locker.position + Locker.forward * 0.5f);
+						base.transform.LookAt(Locker.position);
+						MyAnimation.CrossFade("f02_enterLocker_00");
+						if (MyAnimation["f02_enterLocker_00"].time >= MyAnimation["f02_enterLocker_00"].length)
+						{
+							MyAnimation.CrossFade("f02_idleLocker_00");
+							LockerPhase = 2;
+						}
+					}
+					else if (LockerPhase == 3)
+					{
+						MyAnimation.CrossFade("f02_exitLocker_00");
+						if (MyAnimation["f02_exitLocker_00"].time >= MyAnimation["f02_exitLocker_00"].length)
+						{
+							MyAnimation.CrossFade(IdleAnim);
+							HidingInLocker = false;
+							CanMove = true;
+						}
+					}
+				}
 			}
 			UpdateThrow();
 		}
@@ -489,6 +519,8 @@ public class StalkerYandereScript : MonoBehaviour
 			PrepareThrowTimer = 0f;
 			RPGCamera.enabled = false;
 			ShoulderCamera.SetActive(value: true);
+			MainCamera.transform.position = Vector3.zero;
+			MainCamera.transform.eulerAngles = Vector3.zero;
 			if (Input.GetAxis(InputNames.Xbox_LT) > 0.5f)
 			{
 				UsingController = true;
@@ -700,13 +732,18 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			MyAnimation.CrossFade(IdleAnim);
 		}
+		string axisName = "Mouse X";
+		if (InputDevice.Type == InputDeviceType.Gamepad)
+		{
+			axisName = InputNames.Xbox_JoyX;
+		}
 		if (!RPGCamera.invertAxisX)
 		{
-			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
+			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y + Input.GetAxis(axisName) * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
 		}
 		else
 		{
-			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y - Input.GetAxis("Mouse X") * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
+			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y - Input.GetAxis(axisName) * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
 		}
 	}
 

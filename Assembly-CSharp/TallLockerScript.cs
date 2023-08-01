@@ -390,7 +390,9 @@ public class TallLockerScript : MonoBehaviour
 		{
 			if (!YandereLocker && Student != null)
 			{
+				Debug.Log(base.gameObject.name + " is now releasing this student from the change-clothing routine.");
 				Student.BathePhase++;
+				Student = null;
 			}
 			SteamCountdown = false;
 			Phase = 1;

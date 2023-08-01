@@ -235,15 +235,22 @@ public class StreetShopScript : MonoBehaviour
 		}
 		if (Binoculars && BinocularCamera.gameObject.activeInHierarchy)
 		{
+			string axisName = "Mouse X";
+			string axisName2 = "Mouse Y";
+			if (InputDevice.Type == InputDeviceType.Gamepad)
+			{
+				axisName = InputNames.Xbox_JoyX;
+				axisName2 = InputNames.Xbox_JoyY;
+			}
 			if (InputDevice.Type == InputDeviceType.MouseAndKeyboard)
 			{
-				RotationX -= Input.GetAxis("Mouse Y") * (BinocularCamera.fieldOfView / 60f);
-				RotationY += Input.GetAxis("Mouse X") * (BinocularCamera.fieldOfView / 60f);
+				RotationX -= Input.GetAxis(axisName2) * (BinocularCamera.fieldOfView / 60f);
+				RotationY += Input.GetAxis(axisName) * (BinocularCamera.fieldOfView / 60f);
 			}
 			else
 			{
-				RotationX -= Input.GetAxis("Mouse Y") * (BinocularCamera.fieldOfView / 60f);
-				RotationY += Input.GetAxis("Mouse X") * (BinocularCamera.fieldOfView / 60f);
+				RotationX -= Input.GetAxis(axisName2) * (BinocularCamera.fieldOfView / 60f);
+				RotationY += Input.GetAxis(axisName) * (BinocularCamera.fieldOfView / 60f);
 			}
 			BinocularCamera.transform.eulerAngles = new Vector3(RotationX, RotationY + 90f, 0f);
 			if (RotationX > 45f)

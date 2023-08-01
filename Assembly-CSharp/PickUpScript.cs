@@ -4,6 +4,8 @@ public class PickUpScript : MonoBehaviour
 {
 	public RigidbodyConstraints OriginalConstraints;
 
+	public FoldedUniformScript FoldedUniform;
+
 	public BloodCleanerScript BloodCleaner;
 
 	public IncineratorScript Incinerator;
@@ -374,8 +376,11 @@ public class PickUpScript : MonoBehaviour
 		{
 			if (base.transform.position.y < 0f)
 			{
+				Debug.Log(base.gameObject.name + "  fell through the ground!");
 				base.transform.eulerAngles = OriginalRotation;
 				base.transform.position = new Vector3(base.transform.position.x, 0.025f, base.transform.position.z);
+				MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+				MyRigidbody.velocity = Vector3.zero;
 			}
 			if (!KeepGravity)
 			{

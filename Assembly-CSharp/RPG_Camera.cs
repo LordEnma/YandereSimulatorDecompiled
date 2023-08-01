@@ -14,6 +14,8 @@ public class RPG_Camera : MonoBehaviour
 		public Vector3 LowerRight;
 	}
 
+	public InputDeviceScript InputDevice;
+
 	public static RPG_Camera instance;
 
 	public static Camera MainCamera;
@@ -155,43 +157,50 @@ public class RPG_Camera : MonoBehaviour
 			camBottom = Physics.Linecast(base.transform.position, base.transform.position - Vector3.up * camBottomDistance);
 		}
 		bool num = camBottom && base.transform.position.y - cameraPivot.transform.position.y <= 0f;
+		string axisName = "Mouse X";
+		string axisName2 = "Mouse Y";
+		if (InputDevice.Type == InputDeviceType.Gamepad)
+		{
+			axisName = InputNames.Xbox_JoyX;
+			axisName2 = InputNames.Xbox_JoyY;
+		}
 		if (!invertAxisX)
 		{
-			mouseX += Input.GetAxis("Mouse X") * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
+			mouseX += Input.GetAxis(axisName) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
 		}
 		else
 		{
-			mouseX -= Input.GetAxis("Mouse X") * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
+			mouseX -= Input.GetAxis(axisName) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
 		}
 		if (num)
 		{
-			if (Input.GetAxis("Mouse Y") < 0f)
+			if (Input.GetAxis(axisName2) < 0f)
 			{
 				if (!invertAxisY)
 				{
-					mouseY -= Input.GetAxis("Mouse Y") * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
+					mouseY -= Input.GetAxis(axisName2) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
 				}
 				else
 				{
-					mouseY += Input.GetAxis("Mouse Y") * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
+					mouseY += Input.GetAxis(axisName2) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
 				}
 			}
 			else if (!invertAxisY)
 			{
-				mouseY -= Input.GetAxis("Mouse Y") * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
+				mouseY -= Input.GetAxis(axisName2) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
 			}
 			else
 			{
-				mouseY += Input.GetAxis("Mouse Y") * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
+				mouseY += Input.GetAxis(axisName2) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
 			}
 		}
 		else if (!invertAxisY)
 		{
-			mouseY -= Input.GetAxis("Mouse Y") * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
+			mouseY -= Input.GetAxis(axisName2) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
 		}
 		else
 		{
-			mouseY += Input.GetAxis("Mouse Y") * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
+			mouseY += Input.GetAxis(axisName2) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f;
 		}
 		mouseY = ClampAngle(mouseY, -89.5f, 89.5f);
 		mouseXSmooth = Mathf.SmoothDamp(mouseXSmooth, mouseX, ref mouseXVel, mouseSmoothingFactor);

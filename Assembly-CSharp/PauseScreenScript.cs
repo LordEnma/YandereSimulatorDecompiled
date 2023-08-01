@@ -917,7 +917,10 @@ public class PauseScreenScript : MonoBehaviour
 		Show = true;
 		PromptBar.ClearButtons();
 		PromptBar.Label[1].text = "Back";
-		PromptBar.Label[2].text = "View Schemes";
+		if (!ChallengeGlobals.NoInfo)
+		{
+			PromptBar.Label[2].text = "View Schemes";
+		}
 		PromptBar.Label[3].text = (Hint.enabled ? "Disable Hints" : "Enable Hints");
 		PromptBar.Label[6].text = "Change Day";
 		PromptBar.UpdateButtons();
@@ -1049,6 +1052,11 @@ public class PauseScreenScript : MonoBehaviour
 				{
 					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 					Reason = "You cannot save the game while a student is posing for a photograph.";
+				}
+				if (Yandere.StudentManager.Students[i].SearchingForPhone)
+				{
+					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+					Reason = "You cannot save the game while a student is searching for a lost phone.";
 				}
 				if (Yandere.StudentManager.Police.LimbParent.childCount > 0)
 				{

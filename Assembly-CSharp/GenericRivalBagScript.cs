@@ -52,6 +52,8 @@ public class GenericRivalBagScript : MonoBehaviour
 
 	public bool Narcotics;
 
+	public bool StolenProperty;
+
 	public bool ShowMagazine;
 
 	public bool BentoStolen;
@@ -370,34 +372,47 @@ public class GenericRivalBagScript : MonoBehaviour
 					{
 						Prompt.Yandere.Inventory.Sake = false;
 						Alcohol = true;
+						Menu = 1;
+						UpdateMenuLabels();
 					}
 					else if (Selected == 2)
 					{
 						Prompt.Yandere.Inventory.Condoms = false;
 						Condoms = true;
+						Menu = 1;
+						UpdateMenuLabels();
 					}
 					else if (Selected == 3)
 					{
 						Prompt.Yandere.Inventory.Cigs = false;
 						Cigarettes = true;
+						Menu = 1;
+						UpdateMenuLabels();
 					}
 					else if (Selected == 4)
 					{
-						Prompt.Yandere.Inventory.Ring = false;
-						StolenRing = true;
+						Menu = 7;
+						UpdateMenuLabels();
 					}
 					else if (Selected == 5)
 					{
 						Prompt.Yandere.Inventory.AnswerSheet = false;
 						AnswerSheet = true;
+						Menu = 1;
+						UpdateMenuLabels();
 					}
 					else if (Selected == 6)
 					{
 						Prompt.Yandere.Inventory.Narcotics = false;
 						Narcotics = true;
+						Menu = 1;
+						UpdateMenuLabels();
 					}
-					Menu = 1;
-					UpdateMenuLabels();
+					else
+					{
+						Menu = 1;
+						UpdateMenuLabels();
+					}
 				}
 			}
 			else if (Menu == 5)
@@ -416,6 +431,37 @@ public class GenericRivalBagScript : MonoBehaviour
 				Diary.gameObject.SetActive(value: true);
 				DiaryButton.SetActive(value: false);
 				ShowDiary = true;
+			}
+			else if (Menu == 7 && Label[Selected].color.a == 1f)
+			{
+				if (Selected == 1)
+				{
+					Prompt.Yandere.Inventory.Ring = false;
+					StolenRing = true;
+				}
+				else if (Selected == 2)
+				{
+					Prompt.Yandere.Inventory.CaseKey = false;
+					StolenProperty = true;
+				}
+				else if (Selected == 3)
+				{
+					Debug.Log("Just put the safe key into the rival's bag.");
+					Prompt.Yandere.Inventory.SafeKey = false;
+					StolenProperty = true;
+				}
+				else if (Selected == 4)
+				{
+					Prompt.Yandere.Inventory.ShedKey = false;
+					StolenProperty = true;
+				}
+				else if (Selected == 5)
+				{
+					Prompt.Yandere.Inventory.IDCard = false;
+					StolenProperty = true;
+				}
+				Menu = 4;
+				UpdateMenuLabels();
 			}
 		}
 		else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -622,7 +668,7 @@ public class GenericRivalBagScript : MonoBehaviour
 			Label[1].text = "PUT ALCOHOL INTO BAG";
 			Label[2].text = "PUT CONDOMS INTO BAG";
 			Label[3].text = "PUT CIGARETTES INTO BAG";
-			Label[4].text = "PUT STOLEN RING INTO BAG";
+			Label[4].text = "PUT STOLEN PROPERTY INTO BAG";
 			Label[5].text = "PUT ANSWER SHEET INTO BAG";
 			Label[6].text = "PUT NARCOTICS INTO BAG";
 			Label[7].text = "BACK";
@@ -638,7 +684,7 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				Label[3].color = new Color(1f, 1f, 1f, 0.5f);
 			}
-			if (!Prompt.Yandere.Inventory.Ring)
+			if (!Prompt.Yandere.Inventory.Ring && !Prompt.Yandere.Inventory.CabinetKey && !Prompt.Yandere.Inventory.CaseKey && !Prompt.Yandere.Inventory.SafeKey && !Prompt.Yandere.Inventory.ShedKey && !Prompt.Yandere.Inventory.IDCard)
 			{
 				Label[4].color = new Color(1f, 1f, 1f, 0.5f);
 			}
@@ -661,6 +707,36 @@ public class GenericRivalBagScript : MonoBehaviour
 			Label[8].text = "You find a diary in your rival's bookbag.\n\nBy reading your rival's diary, you will be able to learn her likes and dislikes,\n\nembarassing secrets that will allow you to spread gossip about her,\n\nand personal problems that you can discuss with her by leaving a note in her locker.\n\nTo look inside the diary, press:\n\n";
 			Prompt.Yandere.Police.EndOfDay.LearnedAboutPhotographer = true;
 			Prompt.Yandere.StudentManager.EmbarassingSecret = true;
+		}
+		else if (Menu == 7)
+		{
+			Label[1].text = "PUT STOLEN RING INTO BAG";
+			Label[2].text = "PUT KATANA CASE KEY INTO BAG";
+			Label[3].text = "PUT HEADMASTER SAFE KEY INTO BAG";
+			Label[4].text = "PUT GARDENING SHED KEY INTO BAG";
+			Label[5].text = "PUT FACULTY KEY CARD INTO BAG";
+			Label[6].text = "BACK";
+			if (!Prompt.Yandere.Inventory.Ring)
+			{
+				Label[1].color = new Color(1f, 1f, 1f, 0.5f);
+			}
+			if (!Prompt.Yandere.Inventory.CaseKey)
+			{
+				Label[2].color = new Color(1f, 1f, 1f, 0.5f);
+			}
+			if (!Prompt.Yandere.Inventory.SafeKey)
+			{
+				Label[3].color = new Color(1f, 1f, 1f, 0.5f);
+			}
+			if (!Prompt.Yandere.Inventory.ShedKey)
+			{
+				Label[4].color = new Color(1f, 1f, 1f, 0.5f);
+			}
+			if (!Prompt.Yandere.Inventory.IDCard)
+			{
+				Label[5].color = new Color(1f, 1f, 1f, 0.5f);
+			}
+			Limit = 6;
 		}
 	}
 

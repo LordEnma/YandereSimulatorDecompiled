@@ -175,7 +175,7 @@ public class AlphabetScript : MonoBehaviour
 		}
 		LocalArrow.LookAt(StudentManager.Students[IDs[CurrentTarget]].transform.position);
 		base.transform.eulerAngles = LocalArrow.eulerAngles - new Vector3(0f, StudentManager.MainCamera.transform.eulerAngles.y, 0f);
-		if ((StudentManager.Yandere.Attacking && StudentManager.Yandere.TargetStudent.StudentID != IDs[CurrentTarget]) || (StudentManager.Yandere.Struggling && StudentManager.Yandere.TargetStudent.StudentID != IDs[CurrentTarget]) || StudentManager.Police.Show || StudentManager.Yandere.Noticed)
+		if ((StudentManager.Yandere.Attacking && StudentManager.Yandere.TargetStudent.StudentID != IDs[CurrentTarget]) || (StudentManager.Yandere.Struggling && StudentManager.Yandere.TargetStudent.StudentID != IDs[CurrentTarget]) || StudentManager.Police.Show || StudentManager.Yandere.Noticed || StudentManager.Students[1].Fleeing)
 		{
 			ChallengeFailed.enabled = true;
 		}
@@ -212,30 +212,38 @@ public class AlphabetScript : MonoBehaviour
 	public void UpdateText()
 	{
 		TargetLabel.text = "(" + CurrentTarget + "/" + Limit + ") Current Target: " + StudentManager.JSON.Students[IDs[CurrentTarget]].Name;
-		if (RemainingBombs <= 0)
+		if (RemainingBombs > 0)
 		{
-			return;
+			BombLabel.transform.parent.gameObject.SetActive(value: true);
+			BombLabel.text = RemainingBombs.ToString() ?? "";
+			if (BombTexture.color.a < 1f)
+			{
+				if (Inventory.StinkBomb)
+				{
+					BombTexture.color = new Color(0f, 0.5f, 0f, 1f);
+				}
+				else if (Inventory.AmnesiaBomb)
+				{
+					BombTexture.color = new Color(1f, 0.5f, 1f, 1f);
+				}
+				else
+				{
+					BombTexture.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				}
+			}
 		}
-		BombLabel.transform.parent.gameObject.SetActive(value: true);
-		if (BombTexture.color.a < 1f)
-		{
-			if (Inventory.StinkBomb)
-			{
-				BombTexture.color = new Color(0f, 0.5f, 0f, 1f);
-			}
-			else if (Inventory.AmnesiaBomb)
-			{
-				BombTexture.color = new Color(1f, 0.5f, 1f, 1f);
-			}
-			else
-			{
-				BombTexture.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-			}
-		}
+		UpdateDifficultyLabel();
 	}
 
 	public void UpdateDifficultyLabel()
 	{
-		DifficultyLabel.text = "Difficulty: " + DifficultyText[Cheats];
+		if (Cheats < DifficultyText.Length)
+		{
+			DifficultyLabel.text = "Difficulty: " + DifficultyText[Cheats];
+		}
+		else
+		{
+			Debug.Log("Can't update Difficulty Label.");
+		}
 	}
 }

@@ -203,14 +203,18 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 		else if (Phase == 2)
 		{
 			Speed += Time.deltaTime * 3f;
-			Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * Speed);
+			Rotation = Mathf.Lerp(Rotation, 15f, Time.deltaTime * Speed);
 			MainCamera.transform.localEulerAngles = new Vector3(Rotation, 0f, 0f);
 		}
 		else if (Phase > 2 && Phase < Text.Length)
 		{
+			if (Rotation > 0f)
+			{
+				Rotation = 0f;
+			}
 			Speed += Time.deltaTime;
 			Rotation = Mathf.Lerp(Rotation, -180f, Time.deltaTime * Speed);
-			MainCamera.transform.localEulerAngles = new Vector3(0f, Rotation, 0f);
+			MainCamera.transform.localEulerAngles = new Vector3(15f, Rotation, 0f);
 		}
 		_ = Phase;
 		_ = 1;

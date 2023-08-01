@@ -276,6 +276,8 @@ public class TalkingScript : MonoBehaviour
 						S.Reputation.PendingRep -= 1f;
 						S.PendingRep -= 1f;
 					}
+					Debug.Log("Attempting to log the fact that the player has discussed topic #" + topicSelected + " with Student #" + S.StudentID);
+					S.StudentManager.SetTopicDiscussedWithStudent(topicSelected, S.StudentID, boolean: true);
 				}
 				else
 				{
@@ -1639,7 +1641,11 @@ public class TalkingScript : MonoBehaviour
 				{
 					if (S.StudentManager.Eighties)
 					{
-						if (S.Clock.Period > 2 && S.StudentManager.RivalBookBag.BentoStolen)
+						if (S.StudentID == 14 || S.StudentID == 15 || S.StudentID == 19)
+						{
+							flag11 = true;
+						}
+						else if (S.Clock.Period > 2 && S.StudentManager.RivalBookBag.BentoStolen)
 						{
 							S.Hungry = true;
 							S.Fed = false;
@@ -1675,7 +1681,22 @@ public class TalkingScript : MonoBehaviour
 					{
 						if (S.StudentManager.Eighties)
 						{
-							S.Subtitle.CustomText = "No thanks, I brought my own lunch to school today!";
+							if (S.StudentID == 14)
+							{
+								S.Subtitle.CustomText = "No offense, but I don't eat junk food. Sorry!";
+							}
+							else if (S.StudentID == 15)
+							{
+								S.Subtitle.CustomText = "I refuse to put something that inexpensive in my mouth!";
+							}
+							else if (S.StudentID == 19)
+							{
+								S.Subtitle.CustomText = "I can't eat that - it would ruin my figure! Sorry!";
+							}
+							else
+							{
+								S.Subtitle.CustomText = "No thanks, I brought my own lunch to school today!";
+							}
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 						}
 						else
@@ -1829,7 +1850,12 @@ public class TalkingScript : MonoBehaviour
 				if (!flag13)
 				{
 					Refuse = false;
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || S.Schoolwear == 2)
+					bool flag14 = true;
+					if (S.Club == ClubType.Delinquent)
+					{
+						flag14 = true;
+					}
+					if ((!flag14 && S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (flag14 && S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || S.Schoolwear == 2)
 					{
 						if (S.Schoolwear == 2)
 						{

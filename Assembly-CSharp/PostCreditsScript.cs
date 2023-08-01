@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class PostCreditsScript : MonoBehaviour
 {
+	public Animation HeadmasterAnim;
+
 	public GameObject LovesickLogo;
 
 	public UITexture Logo;
@@ -16,6 +18,10 @@ public class PostCreditsScript : MonoBehaviour
 	public AudioSource Buzzing;
 
 	public AudioClip CinematicHit;
+
+	public Transform HeadmasterParent;
+
+	public Transform CameraTarget;
 
 	public Transform Destination;
 
@@ -47,6 +53,7 @@ public class PostCreditsScript : MonoBehaviour
 
 	private void Start()
 	{
+		HeadmasterAnim["HeadmasterPhoneCall"].speed = 0f;
 		Darkness.color = new Color(0f, 0f, 0f, 1f);
 		Subtitle.text = "";
 		Time.timeScale = 1f;
@@ -98,10 +105,9 @@ public class PostCreditsScript : MonoBehaviour
 		{
 			Time.timeScale -= 1f;
 		}
-		Speed += Time.deltaTime * 0.001f;
+		Speed += Time.deltaTime * 0.0015f;
 		base.transform.position = Vector3.Lerp(base.transform.position, Destination.position, Time.deltaTime * Speed);
-		Rotation = Mathf.Lerp(Rotation, -45f, Time.deltaTime * Speed);
-		base.transform.eulerAngles = new Vector3(0f, Rotation, 0f);
+		base.transform.LookAt(CameraTarget);
 		if (Headmaster.time > 69f)
 		{
 			Jukebox.volume -= Time.deltaTime * 0.2f;
@@ -117,6 +123,9 @@ public class PostCreditsScript : MonoBehaviour
 			if (Alpha == 0f)
 			{
 				Subtitle.text = Lines[SpeechID];
+				HeadmasterAnim["HeadmasterPhoneCall"].speed = 1f;
+				HeadmasterAnim["HeadmasterPhoneCall"].time = 0f;
+				HeadmasterAnim.Play();
 				Headmaster.Play();
 				SpeechID++;
 				Phase++;

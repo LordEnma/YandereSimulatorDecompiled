@@ -26,6 +26,8 @@ public class TopicInterfaceScript : MonoBehaviour
 
 	public UISprite[] OpinionIcons;
 
+	public UISprite[] TopicIcons;
+
 	public UILabel EmbarassingLabel;
 
 	public UILabel Label;
@@ -75,6 +77,7 @@ public class TopicInterfaceScript : MonoBehaviour
 
 	private void Update()
 	{
+		Time.timeScale = 0.0001f;
 		if (InputManager.TappedUp)
 		{
 			Row--;
@@ -102,22 +105,36 @@ public class TopicInterfaceScript : MonoBehaviour
 			{
 				flag = true;
 			}
-			if (!flag)
+			if (flag)
 			{
-				if (Socializing)
-				{
-					Yandere.Interaction = YandereInteractionType.Compliment;
-					Yandere.TalkTimer = 5f;
-				}
-				else
-				{
-					Yandere.Interaction = YandereInteractionType.Gossip;
-					Yandere.TalkTimer = 5f;
-				}
-				Yandere.PromptBar.Show = false;
-				base.gameObject.SetActive(value: false);
-				Time.timeScale = 1f;
+				return;
 			}
+			if (Socializing)
+			{
+				if (TopicIcons[TopicSelected].alpha != 1f)
+				{
+					if (Yandere.TargetStudent.Male)
+					{
+						Yandere.NotificationManager.CustomText = "You already discussed that topic with him.";
+					}
+					else
+					{
+						Yandere.NotificationManager.CustomText = "You already discussed that topic with her.";
+					}
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					return;
+				}
+				Yandere.Interaction = YandereInteractionType.Compliment;
+				Yandere.TalkTimer = 5f;
+			}
+			else
+			{
+				Yandere.Interaction = YandereInteractionType.Gossip;
+				Yandere.TalkTimer = 5f;
+			}
+			Yandere.PromptBar.Show = false;
+			base.gameObject.SetActive(value: false);
+			Time.timeScale = 1f;
 		}
 		else if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
@@ -196,16 +213,28 @@ public class TopicInterfaceScript : MonoBehaviour
 
 	public void UpdateOpinions()
 	{
+		Debug.Log("Firing the UpdateOpinions() function.");
 		for (int i = 1; i <= 25; i++)
 		{
 			UISprite uISprite = OpinionIcons[i];
 			if (!StudentManager.GetTopicLearnedByStudent(i, StudentID))
 			{
 				uISprite.spriteName = "Unknown";
-				continue;
 			}
-			int[] topics = JSON.Topics[StudentID].Topics;
-			uISprite.spriteName = OpinionSpriteNames[topics[i]];
+			else
+			{
+				int[] topics = JSON.Topics[StudentID].Topics;
+				uISprite.spriteName = OpinionSpriteNames[topics[i]];
+			}
+			if (StudentManager.GetTopicDiscussedWithStudent(i, StudentID))
+			{
+				Debug.Log("The student has already discussed topic #" + i + " with Student #" + StudentID);
+				TopicIcons[i].alpha = 0.5f;
+			}
+			else
+			{
+				TopicIcons[i].alpha = 1f;
+			}
 		}
 	}
 

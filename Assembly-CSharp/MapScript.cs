@@ -65,7 +65,7 @@ public class MapScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown(InputNames.Xbox_Back) && Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial)
+		if ((Input.GetButtonDown(InputNames.Xbox_Back) || Input.GetKeyDown(KeyCode.Space)) && Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial)
 		{
 			if (!Show)
 			{
@@ -129,7 +129,7 @@ public class MapScript : MonoBehaviour
 				num = Input.GetAxis("Vertical");
 				num2 = Input.GetAxis("Horizontal");
 				base.transform.position += new Vector3(num2 * Time.unscaledDeltaTime * 100f, 0f, num * Time.unscaledDeltaTime * 100f);
-				MyCamera.orthographicSize -= Input.GetAxis("Mouse Y") * Time.unscaledDeltaTime * 100f;
+				MyCamera.orthographicSize -= Input.GetAxis(InputNames.Xbox_JoyY) * Time.unscaledDeltaTime * 100f;
 				UpdateLabelSizes();
 			}
 			if (MyCamera.orthographicSize < 4f)
@@ -191,11 +191,17 @@ public class MapScript : MonoBehaviour
 				base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y, VerticalLimit * -1f);
 			}
 			YandereMapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
+			YandereMapMarker.eulerAngles = new Vector3(90f, 0f, 0f);
 			PortalMapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
 			if (StudentManager.Students[1] != null)
 			{
 				StudentManager.Students[1].MapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
 				StudentManager.Students[1].MapMarker.eulerAngles = new Vector3(90f, 0f, 0f);
+			}
+			if (StudentManager.Students[StudentManager.RivalID] != null)
+			{
+				StudentManager.Students[StudentManager.RivalID].MapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
+				StudentManager.Students[StudentManager.RivalID].MapMarker.eulerAngles = new Vector3(90f, 0f, 0f);
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
@@ -235,7 +241,6 @@ public class MapScript : MonoBehaviour
 
 	private void UpdateLabelSizes()
 	{
-		Debug.Log("Resizing now.");
 		float num = YandereMapMarker.localScale.x * 0.2f;
 		Transform[] allLabels = AllLabels;
 		for (int i = 0; i < allLabels.Length; i++)

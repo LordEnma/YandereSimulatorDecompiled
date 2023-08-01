@@ -164,6 +164,7 @@ public class ResolutionScript : MonoBehaviour
 			Rs++;
 			if (Rs == 10)
 			{
+				Debug.Log("Wiping all PlayerPrefs.");
 				PlayerPrefs.DeleteAll();
 				Screen.SetResolution(1280, 720, fullscreen: false);
 				SceneManager.LoadScene("ResolutionScene");
@@ -209,8 +210,9 @@ public class ResolutionScript : MonoBehaviour
 	{
 		if (OptionGlobals.SubtitleSize < 1)
 		{
-			Debug.Log("We are now initializing the OptionGlobals for the first time.");
+			Debug.Log("We are now initializing the OptionGlobals for the first time...probably.");
 			OptionGlobals.SubtitleSize = 2;
+			OptionGlobals.Sensitivity = 3;
 			OptionGlobals.DepthOfField = true;
 			OptionGlobals.DisableScanlines = true;
 		}

@@ -10,16 +10,6 @@ public class TaskTapePlayerScript : MonoBehaviour
 
 	public int NotesRecorded;
 
-	private void Start()
-	{
-		if (!GameGlobals.Eighties)
-		{
-			Prompt.Hide();
-			Prompt.enabled = false;
-			base.gameObject.SetActive(value: false);
-		}
-	}
-
 	private void Update()
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)

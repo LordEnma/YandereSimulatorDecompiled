@@ -18,6 +18,8 @@ public class TapePlayerScript : MonoBehaviour
 
 	public Transform[] Rolls;
 
+	public GameObject TaskTapePlayer;
+
 	public GameObject NoteWindow;
 
 	public GameObject Tape;
@@ -57,6 +59,7 @@ public class TapePlayerScript : MonoBehaviour
 				base.gameObject.SetActive(value: false);
 				Prompt.Hide();
 				Prompt.enabled = false;
+				TaskTapePlayer.SetActive(value: true);
 			}
 			else
 			{

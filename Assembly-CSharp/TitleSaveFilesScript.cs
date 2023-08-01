@@ -285,10 +285,14 @@ public class TitleSaveFilesScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 			}
 		}
-		else if (Input.anyKeyDown)
+		else if (Input.GetKeyDown("e"))
 		{
 			PlayerPrefs.DeleteAll();
 			Debug.Log("All player prefs deleted...");
+			Application.Quit();
+		}
+		else if (Input.GetKeyDown("q"))
+		{
 			Application.Quit();
 		}
 	}

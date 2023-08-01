@@ -93,6 +93,10 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 
 	public bool Listening;
 
+	public string LongAnimA;
+
+	public string LongAnimB;
+
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
@@ -155,6 +159,8 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 							SpeechTime = InterruptedTime;
 							EventAnim = InterruptedAnim;
 							Speaker = InterruptedSpeaker;
+							LongAnimA = InterruptedAnim[0];
+							LongAnimB = InterruptedAnim[1];
 						}
 						bool flag = false;
 						if (StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentKidnapped(81) || StudentGlobals.GetStudentArrested(81) || StudentGlobals.GetStudentExpelled(81) || StudentGlobals.GetStudentBroken(81) || StudentGlobals.StudentSlave == 81 || (float)StudentGlobals.GetStudentReputation(81) < -33.33333f)
@@ -201,7 +207,16 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 			{
 				AudioClipPlayer.Play(SpeechClip, Friend.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
 				EventSubtitle.text = SpeechText[SpeechPhase];
-				PlayRelevantAnim();
+				if (LongAnimA == "")
+				{
+					PlayRelevantAnim();
+				}
+				else
+				{
+					Debug.Log("Should be playing unique animations for this event.");
+					Rival.CharacterAnimation.CrossFade(LongAnimA);
+					Friend.CharacterAnimation.CrossFade(LongAnimB);
+				}
 				Rival.Pathfinding.canSearch = false;
 				Rival.Pathfinding.canMove = false;
 				Rival.Obstacle.enabled = true;
@@ -233,7 +248,14 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 			}
 			SettleRival();
 			SettleFriend();
-			if (Timer > SpeechClip.length)
+			if (LongAnimA == "")
+			{
+				if (Timer > SpeechClip.length)
+				{
+					EndEvent();
+				}
+			}
+			else if (Timer > Rival.CharacterAnimation[LongAnimA].length)
 			{
 				EndEvent();
 			}
@@ -324,7 +346,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		{
 			AudioData.MyAudioSource = null;
 		}
-		if (AudioData.MyAudioSource != null)
+		if (AudioData != null && AudioData.MyAudioSource != null && CurrentSpeaker != null)
 		{
 			CurrentSpeaker.Jaw.transform.localEulerAngles += new Vector3(0f, 0f, AudioData.g[1].transform.position.y);
 		}
@@ -444,17 +466,20 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 
 	private void PlayRelevantAnim()
 	{
-		if (Speaker[SpeechPhase] == 1)
+		if (LongAnimA == "")
 		{
-			Rival.CharacterAnimation.CrossFade(EventAnim[SpeechPhase]);
-			Friend.CharacterAnimation.CrossFade(Friend.IdleAnim);
-			CurrentSpeaker = Rival;
-		}
-		else
-		{
-			Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
-			Friend.CharacterAnimation.CrossFade(EventAnim[SpeechPhase]);
-			CurrentSpeaker = Friend;
+			if (Speaker[SpeechPhase] == 1)
+			{
+				Rival.CharacterAnimation.CrossFade(EventAnim[SpeechPhase]);
+				Friend.CharacterAnimation.CrossFade(Friend.IdleAnim);
+				CurrentSpeaker = Rival;
+			}
+			else
+			{
+				Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
+				Friend.CharacterAnimation.CrossFade(EventAnim[SpeechPhase]);
+				CurrentSpeaker = Friend;
+			}
 		}
 	}
 }

@@ -68,6 +68,8 @@ public class ConfessionSceneScript : MonoBehaviour
 
 	public float Timer;
 
+	public Texture BlushTexture;
+
 	private void Start()
 	{
 		if (Clock.TimeSkip)
@@ -101,6 +103,7 @@ public class ConfessionSceneScript : MonoBehaviour
 					Rival = StudentManager.Students[LoveManager.RivalID];
 					Rival.transform.position = RivalSpot.position;
 					Rival.transform.eulerAngles = RivalSpot.eulerAngles;
+					Suitor.Cosmetic.MyRenderer.materials[Suitor.Cosmetic.FaceID].SetTexture("_OverlayTex", BlushTexture);
 					Suitor.Cosmetic.MyRenderer.materials[Suitor.Cosmetic.FaceID].SetFloat("_BlendAmount", 1f);
 					Suitor.transform.eulerAngles = StudentManager.SuitorConfessionSpot.eulerAngles;
 					Suitor.transform.position = StudentManager.SuitorConfessionSpot.position;

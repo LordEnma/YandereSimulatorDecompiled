@@ -695,10 +695,8 @@ public class CourtroomScript : MonoBehaviour
 		{
 			return;
 		}
-		Debug.Log("MyAudio is playing.");
 		if (MyAudio.clip != null)
 		{
-			Debug.Log("MyAudio clip is not null.");
 			if (AudioData.MyAudioSource == null)
 			{
 				Debug.Log("AudioData's AudioSource is now MyAudio.");
@@ -714,7 +712,6 @@ public class CourtroomScript : MonoBehaviour
 		{
 			return;
 		}
-		Debug.Log("AudioData's AudioSource is not null. Rotating the jaw.");
 		if (base.transform.position == RyobaVantage.position)
 		{
 			RyobaJaw.localEulerAngles += new Vector3(0f, 0f, AudioData.g[1].transform.position.y);

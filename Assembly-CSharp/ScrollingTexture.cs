@@ -4,6 +4,8 @@ public class ScrollingTexture : MonoBehaviour
 {
 	public Renderer MyRenderer;
 
+	public int MaterialID;
+
 	public float Offset;
 
 	public float Speed;
@@ -16,6 +18,6 @@ public class ScrollingTexture : MonoBehaviour
 	private void Update()
 	{
 		Offset += Time.deltaTime * Speed;
-		MyRenderer.material.SetTextureOffset("_MainTex", new Vector2(Offset, Offset));
+		MyRenderer.materials[MaterialID].SetTextureOffset("_MainTex", new Vector2(Offset, Offset));
 	}
 }

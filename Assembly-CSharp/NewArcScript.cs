@@ -69,20 +69,25 @@ public class NewArcScript : MonoBehaviour
 			Max = 20 + Strength;
 			Min = 10;
 		}
+		string axisName = "Mouse Y";
 		if (InputDevice.Type == InputDeviceType.Gamepad)
 		{
-			if (Input.GetAxis("Mouse Y") > 0f)
+			axisName = InputNames.Xbox_JoyY;
+		}
+		if (InputDevice.Type == InputDeviceType.Gamepad)
+		{
+			if (Input.GetAxis(axisName) > 0f)
 			{
-				ForwardMomentum = Mathf.MoveTowards(ForwardMomentum, Max, Input.GetAxis("Mouse Y") * Time.deltaTime * 10f);
+				ForwardMomentum = Mathf.MoveTowards(ForwardMomentum, Max, Input.GetAxis(axisName) * Time.deltaTime * 10f);
 			}
-			else if (Input.GetAxis("Mouse Y") < 0f)
+			else if (Input.GetAxis(axisName) < 0f)
 			{
-				ForwardMomentum = Mathf.MoveTowards(ForwardMomentum, Min, Input.GetAxis("Mouse Y") * Time.deltaTime * -1f * 10f);
+				ForwardMomentum = Mathf.MoveTowards(ForwardMomentum, Min, Input.GetAxis(axisName) * Time.deltaTime * -1f * 10f);
 			}
 		}
 		else
 		{
-			ForwardMomentum += Input.GetAxis("Mouse ScrollWheel");
+			ForwardMomentum += Input.GetAxis("Mouse ScrollWheel") * 10f;
 		}
 		ForwardMomentum = Mathf.Clamp(ForwardMomentum, Min, Max);
 		if (_position != base.transform.position || _rotation != base.transform.eulerAngles || _scale != base.transform.localScale || (int)ArcParticles.collision.collidesWith != (int)CollisionLayers || ArcParticles.main.startSpeedMultiplier != ForwardMomentum || ArcParticles.main.gravityModifierMultiplier != GravityFactor)

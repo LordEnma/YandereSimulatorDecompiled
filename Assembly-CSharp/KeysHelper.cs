@@ -32,7 +32,14 @@ public static class KeysHelper
 		for (int i = 0; i < array.Length; i++)
 		{
 			string[] array3 = array[i].Split('^');
-			array2[i] = new KeyValuePair<T, U>((T)(object)int.Parse(array3[0]), (U)(object)int.Parse(array3[1]));
+			if (array3.Length > 1)
+			{
+				array2[i] = new KeyValuePair<T, U>((T)(object)int.Parse(array3[0]), (U)(object)int.Parse(array3[1]));
+			}
+			else
+			{
+				Debug.Log("Uh oh. keyStringPair.Length was: " + array3.Length);
+			}
 		}
 		return array2;
 	}

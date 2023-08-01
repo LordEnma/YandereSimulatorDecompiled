@@ -676,7 +676,21 @@ public class PoliceScript : MonoBehaviour
 							}
 							else
 							{
-								ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of a corpse.";
+								Debug.Log("Yo, we got to this part of the code.");
+								BloodyClothing -= RedPaintClothing;
+								if (BloodyClothing > 0)
+								{
+									ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of bloody clothing.";
+								}
+								else if (RedPaintClothing > 0)
+								{
+									ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of clothing that was stained with red paint.";
+								}
+								else
+								{
+									ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of a corpse.";
+								}
+								BloodyClothing += RedPaintClothing;
 							}
 						}
 						else if (Yandere.Resting && Corpses > 0)
@@ -821,6 +835,15 @@ public class PoliceScript : MonoBehaviour
 								}
 								GameOver = true;
 								Heartbroken.Counselor.Expelled = true;
+							}
+							else if (RedPaintClothing > 0)
+							{
+								ResultsLabels[1].text = "While walking around the school, a faculty member discovers the clothing.";
+								ResultsLabels[2].text = "The faculty member believes that the red paint is blood.";
+								ResultsLabels[3].text = "The faculty member immediately calls the police.";
+								ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
+								TeacherReport = true;
+								Show = true;
 							}
 							else if (DateGlobals.Weekday == DayOfWeek.Friday)
 							{

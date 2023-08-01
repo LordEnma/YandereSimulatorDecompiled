@@ -512,7 +512,7 @@ public static class AnimNames
 
 	public const string LockerTossNote = "lockerTossNote";
 
-	public const string MaleExhausted = "exhausted_00";
+	public const string MaleExhausted = "exhausted_01";
 
 	public const string MaleHeadacheIdle = "headacheIdle_00";
 

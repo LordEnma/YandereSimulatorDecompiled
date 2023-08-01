@@ -369,7 +369,7 @@ public class WeaponScript : MonoBehaviour
 		{
 			if (base.transform.position.y < 0f)
 			{
-				Debug.Log("Allegedly, this weapon just fell beneath y 0?");
+				Debug.Log("Allegedly, a weapon named " + Name + " just fell beneath y 0?");
 				base.transform.position = new Vector3(base.transform.position.x, 0.025f, base.transform.position.z);
 			}
 			KinematicTimer = Mathf.MoveTowards(KinematicTimer, 5f, Time.deltaTime);

@@ -304,6 +304,7 @@ public class WeaponMenuScript : MonoBehaviour
 		{
 			return;
 		}
+		Debug.Log("This is where we call the equip function?");
 		Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
 		Yandere.ReachWeight = 1f;
 		if (Yandere.PickUp != null)

@@ -39,6 +39,16 @@ public class GenericBentoScript : MonoBehaviour
 		{
 			return;
 		}
+		if (Vector3.Distance(base.transform.position, Prompt.Yandere.StudentManager.Students[StudentID].transform.position) < 1.5f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			Prompt.Circle[1].fillAmount = 1f;
+			Prompt.Circle[2].fillAmount = 1f;
+			Prompt.Circle[3].fillAmount = 1f;
+			Prompt.Yandere.NotificationManager.CustomText = "No! You'll be noticed!";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			return;
+		}
 		Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
 		if (!Prompt.Yandere.StudentManager.YandereVisible)
 		{

@@ -26,6 +26,14 @@ public class ConversationSaveData
 				conversationSaveData.topicLearnedByStudent.Add(intAndIntPair);
 			}
 		}
+		array2 = ConversationGlobals.KeysOfTopicDiscussedWithStudent();
+		foreach (IntAndIntPair intAndIntPair2 in array2)
+		{
+			if (ConversationGlobals.GetTopicDiscussedWithStudent(intAndIntPair2.first, intAndIntPair2.second))
+			{
+				conversationSaveData.topicLearnedByStudent.Add(intAndIntPair2);
+			}
+		}
 		return conversationSaveData;
 	}
 

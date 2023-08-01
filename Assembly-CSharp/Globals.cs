@@ -9,6 +9,7 @@ public static class Globals
 
 	public static void DeleteAll()
 	{
+		Debug.Log("Globals.DeleteAll() has just been called.");
 		int profile = GameGlobals.Profile;
 		ClassGlobals.DeleteAll();
 		ClubGlobals.DeleteAll();

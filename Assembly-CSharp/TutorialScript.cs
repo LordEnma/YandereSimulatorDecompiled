@@ -252,7 +252,7 @@ public class TutorialScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown(InputNames.Xbox_Start))
+		if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown(InputNames.Xbox_Start)) && !ReturnToTitleScreen)
 		{
 			TogglePauseScreen();
 		}
@@ -421,8 +421,15 @@ public class TutorialScript : MonoBehaviour
 						{
 							float axis = Input.GetAxis("Vertical");
 							float axis2 = Input.GetAxis("Horizontal");
-							float axis3 = Input.GetAxis("Mouse X");
-							float axis4 = Input.GetAxis("Mouse Y");
+							string axisName = "Mouse X";
+							string axisName2 = "Mouse Y";
+							if (InputDevice.Type == InputDeviceType.Gamepad)
+							{
+								axisName = InputNames.Xbox_JoyX;
+								axisName2 = InputNames.Xbox_JoyY;
+							}
+							float axis3 = Input.GetAxis(axisName);
+							float axis4 = Input.GetAxis(axisName2);
 							if (!CameraProgress && (axis != 0f || axis2 != 0f))
 							{
 								CameraProgress = true;
@@ -1019,7 +1026,6 @@ public class TutorialScript : MonoBehaviour
 								{
 									Debug.Log("OptionGlobals.Fog is now returning to QualityManager.OriginalFog, which is: " + StudentManager.QualityManager.OriginalFog);
 									OptionGlobals.Fog = StudentManager.QualityManager.OriginalFog;
-									GameGlobals.EightiesTutorial = false;
 									SceneManager.LoadScene("NewTitleScene");
 								}
 							}

@@ -2,6 +2,8 @@ using System.Collections;
 using HighlightingSystem;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 using XInputDotNetPure;
 
 public class YandereScript : MonoBehaviour
@@ -443,6 +445,8 @@ public class YandereScript : MonoBehaviour
 	public float InteractWeight;
 
 	public float LaughIntensity;
+
+	public float ReachBagWeight;
 
 	public float TimeSkipHeight;
 
@@ -1760,6 +1764,10 @@ public class YandereScript : MonoBehaviour
 			PreviousSanity = sanity;
 			Hairstyles[2].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, Sanity);
 			SanityReverb.maxDistance = 5f - Sanity / 100f * 5f;
+			if (Gamepad.current is DualShockGamepad dualShockGamepad)
+			{
+				dualShockGamepad.SetLightBarColor(new Color(1f, 0f, Sanity * 0.1f, 1f));
+			}
 		}
 	}
 
@@ -2202,29 +2210,33 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation.Play("f02_reachForWeapon_00");
 		CharacterAnimation["f02_reachForWeapon_00"].weight = 0f;
 		CharacterAnimation["f02_reachForWeapon_00"].speed = 2f;
-		CharacterAnimation["f02_genericInteraction_00"].layer = 36;
+		CharacterAnimation["f02_reachIntoWeaponBag_00"].layer = 36;
+		CharacterAnimation.Play("f02_reachIntoWeaponBag_00");
+		CharacterAnimation["f02_reachIntoWeaponBag_00"].weight = 0f;
+		CharacterAnimation["f02_reachIntoWeaponBag_00"].speed = 2f;
+		CharacterAnimation["f02_genericInteraction_00"].layer = 37;
 		CharacterAnimation.Play("f02_genericInteraction_00");
 		CharacterAnimation["f02_genericInteraction_00"].weight = 0f;
-		CharacterAnimation["f02_genericInteraction_00"].speed = 2f;
-		CharacterAnimation["f02_gutsEye_00"].layer = 37;
+		CharacterAnimation["f02_genericInteraction_00"].speed = 1f;
+		CharacterAnimation["f02_gutsEye_00"].layer = 38;
 		CharacterAnimation.Play("f02_gutsEye_00");
 		CharacterAnimation["f02_gutsEye_00"].weight = 0f;
-		CharacterAnimation["f02_fingerSnap_00"].layer = 38;
+		CharacterAnimation["f02_fingerSnap_00"].layer = 39;
 		CharacterAnimation.Play("f02_fingerSnap_00");
 		CharacterAnimation["f02_fingerSnap_00"].weight = 0f;
-		CharacterAnimation["f02_sadEyebrows_00"].layer = 39;
+		CharacterAnimation["f02_sadEyebrows_00"].layer = 40;
 		CharacterAnimation.Play("f02_sadEyebrows_00");
 		CharacterAnimation["f02_sadEyebrows_00"].weight = 0f;
-		CharacterAnimation["f02_phonePose_00"].layer = 40;
+		CharacterAnimation["f02_phonePose_00"].layer = 41;
 		CharacterAnimation.Play("f02_phonePose_00");
 		CharacterAnimation["f02_phonePose_00"].weight = 0f;
-		CharacterAnimation["f02_prepareThrow_00"].layer = 41;
+		CharacterAnimation["f02_prepareThrow_00"].layer = 42;
 		CharacterAnimation.Play("f02_prepareThrow_00");
 		CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
-		CharacterAnimation["f02_subtleThrowIdle_00"].layer = 42;
+		CharacterAnimation["f02_subtleThrowIdle_00"].layer = 43;
 		CharacterAnimation.Play("f02_subtleThrowIdle_00");
 		CharacterAnimation["f02_subtleThrowIdle_00"].weight = 0f;
-		CharacterAnimation["f02_obviousThrowIdle_00"].layer = 43;
+		CharacterAnimation["f02_obviousThrowIdle_00"].layer = 44;
 		CharacterAnimation.Play("f02_obviousThrowIdle_00");
 		CharacterAnimation["f02_obviousThrowIdle_00"].weight = 0f;
 		CharacterAnimation["f02_dipping_00"].speed = 2f;
@@ -2534,13 +2546,20 @@ public class YandereScript : MonoBehaviour
 				{
 					CharacterAnimation.CrossFade(IdleAnim);
 				}
+				string axisName = "Mouse X";
+				string axisName2 = "Mouse Y";
+				if (InputDevice.Type == InputDeviceType.Gamepad)
+				{
+					axisName = InputNames.Xbox_JoyX;
+					axisName2 = InputNames.Xbox_JoyY;
+				}
 				if (!RPGCamera.invertAxisY)
 				{
-					Bend += Input.GetAxis("Mouse Y") * RPGCamera.sensitivity * 72f * Time.deltaTime;
+					Bend += Input.GetAxis(axisName2) * RPGCamera.sensitivity * 72f * Time.deltaTime;
 				}
 				else
 				{
-					Bend -= Input.GetAxis("Mouse Y") * RPGCamera.sensitivity * 72f * Time.deltaTime;
+					Bend -= Input.GetAxis(axisName2) * RPGCamera.sensitivity * 72f * Time.deltaTime;
 				}
 				if (Stance.Current == StanceType.Crawling)
 				{
@@ -2566,11 +2585,11 @@ public class YandereScript : MonoBehaviour
 				}
 				if (!RPGCamera.invertAxisX)
 				{
-					base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y + Input.GetAxis("Mouse X") * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
+					base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y + Input.GetAxis(axisName) * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
 				}
 				else
 				{
-					base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y - Input.GetAxis("Mouse X") * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
+					base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y - Input.GetAxis(axisName) * RPGCamera.sensitivity * 72f * Time.deltaTime, base.transform.localEulerAngles.z);
 				}
 			}
 			if (!NearSenpai)
@@ -3538,6 +3557,12 @@ public class YandereScript : MonoBehaviour
 			}
 			return;
 		}
+		if (YandereVision)
+		{
+			YandereVision = false;
+			Time.timeScale = 1f;
+			UpdateEffects();
+		}
 		if (Egg && TitanSword[0].activeInHierarchy)
 		{
 			UpdateODM();
@@ -3948,6 +3973,11 @@ public class YandereScript : MonoBehaviour
 			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, StudentManager.YandereStripSpot.rotation, 10f * Time.deltaTime);
 			if (CharacterAnimation["f02_stripping_00"].time >= CharacterAnimation["f02_stripping_00"].length)
 			{
+				Debug.Log("This is the moment the player regains control of the protagonist after changing clothes.");
+				if (EightiesBikiniAttacher.newRenderer != null)
+				{
+					EightiesBikiniAttacher.newRenderer.updateWhenOffscreen = true;
+				}
 				Stripping = false;
 				CanMove = true;
 				MyLocker.UpdateSchoolwear();
@@ -5362,8 +5392,10 @@ public class YandereScript : MonoBehaviour
 				{
 					if (Container.TrashCan.Item != null)
 					{
-						CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
-						ReachWeight = 1f;
+						Debug.Log("Should be performing the ''reach into weapon bag'' animation now.");
+						CharacterAnimation["f02_reachIntoWeaponBag_00"].time = 0f;
+						CharacterAnimation.Play("f02_reachIntoWeaponBag_00");
+						ReachBagWeight = 1f;
 						Container.TrashCan.RemoveContents();
 					}
 					else if (Armed)
@@ -5375,6 +5407,9 @@ public class YandereScript : MonoBehaviour
 						}
 						else
 						{
+							CharacterAnimation["f02_reachIntoWeaponBag_00"].time = 0f;
+							CharacterAnimation.Play("f02_reachIntoWeaponBag_00");
+							ReachBagWeight = 1f;
 							Container.TrashCan.StashItem();
 							UpdateConcealedWeaponStatus();
 						}
@@ -6010,8 +6045,9 @@ public class YandereScript : MonoBehaviour
 				Drown = false;
 				Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
 			}
+			return;
 		}
-		else if (RoofPush)
+		if (RoofPush)
 		{
 			CameraTarget.position = Vector3.MoveTowards(CameraTarget.position, new Vector3(Hips.position.x, base.transform.position.y + 1f, Hips.position.z), Time.deltaTime * 10f);
 			MoveTowardsTarget(TargetStudent.transform.position - TargetStudent.transform.forward);
@@ -6058,8 +6094,17 @@ public class YandereScript : MonoBehaviour
 			{
 				EnableSplashCamera();
 			}
+			return;
 		}
-		else if (TargetStudent.Teacher)
+		if (TargetStudent == null)
+		{
+			Debug.Log("We got to this line of code because Raibaru is countering an attack, but TargetStudent is null for some reason.");
+			if (StudentManager.Students[10] != null)
+			{
+				TargetStudent = StudentManager.Students[10];
+			}
+		}
+		if (TargetStudent.Teacher)
 		{
 			CharacterAnimation.CrossFade("f02_teacherCounterA_00");
 			if (EquippedWeapon != null)
@@ -6229,6 +6274,7 @@ public class YandereScript : MonoBehaviour
 				}
 				AudioSource.PlayClipAtPoint(Stabs[Random.Range(0, Stabs.Length)], base.transform.position + Vector3.up);
 				AttackPhase = 2;
+				Debug.Log("YandereScript calculates that we should subtract " + ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness + " from the player's Sanity.");
 				Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
 				if (EquippedWeapon.WeaponID == 8)
 				{
@@ -7039,6 +7085,16 @@ public class YandereScript : MonoBehaviour
 			{
 				ReachWeight = 0f;
 				CharacterAnimation["f02_reachForWeapon_00"].weight = 0f;
+			}
+		}
+		if (ReachBagWeight > 0f)
+		{
+			CharacterAnimation["f02_reachIntoWeaponBag_00"].weight = ReachBagWeight;
+			ReachBagWeight = Mathf.MoveTowards(ReachBagWeight, 0f, Time.deltaTime * 2f);
+			if (ReachBagWeight < 0.01f)
+			{
+				ReachBagWeight = 0f;
+				CharacterAnimation["f02_reachIntoWeaponBag_00"].weight = 0f;
 			}
 		}
 		if (InteractWeight > 0f)
@@ -8396,11 +8452,12 @@ public class YandereScript : MonoBehaviour
 		SixRaincoat.SetActive(value: true);
 		MyRenderer.sharedMesh = SixBodyMesh;
 		PantyAttacher.newRenderer.enabled = false;
+		MyRenderer.materials[0].mainTexture = SixFaceTexture;
+		MyRenderer.materials[1].mainTexture = NudeTexture;
+		MyRenderer.materials[2].mainTexture = NudeTexture;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		MyRenderer.materials[0].mainTexture = NudeTexture;
-		MyRenderer.materials[1].mainTexture = SixFaceTexture;
-		MyRenderer.materials[2].mainTexture = NudeTexture;
+		MyRenderer.materials[2].SetFloat("_BlendAmount", 0f);
 		TheDebugMenuScript.UpdateCensor();
 		SchoolGlobals.SchoolAtmosphere = 0f;
 		StudentManager.SetAtmosphere();

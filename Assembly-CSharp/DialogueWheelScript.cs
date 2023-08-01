@@ -11,6 +11,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public AdviceWindowScript AdviceWindow;
 
+	public InputDeviceScript InputDevice;
+
 	public ClubManagerScript ClubManager;
 
 	public LoveManagerScript LoveManager;
@@ -179,8 +181,15 @@ public class DialogueWheelScript : MonoBehaviour
 				Club.localScale = Vector3.Lerp(Club.localScale, Vector3.zero, Time.deltaTime * 10f);
 				Love.localScale = Vector3.Lerp(Love.localScale, Vector3.zero, Time.deltaTime * 10f);
 			}
-			MouseDelta.x += Input.GetAxis("Mouse X");
-			MouseDelta.y += Input.GetAxis("Mouse Y");
+			string axisName = "Mouse X";
+			string axisName2 = "Mouse Y";
+			if (InputDevice.Type == InputDeviceType.Gamepad)
+			{
+				axisName = InputNames.Xbox_JoyX;
+				axisName2 = InputNames.Xbox_JoyY;
+			}
+			MouseDelta.x += Input.GetAxis(axisName);
+			MouseDelta.y += Input.GetAxis(axisName2);
 			if (MouseDelta.x > 11f)
 			{
 				MouseDelta.x = 11f;

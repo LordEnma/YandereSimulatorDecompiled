@@ -210,25 +210,24 @@ public class StalkerPromptScript : MonoBehaviour
 				}
 				else if (ID == 3)
 				{
-					if (Yandere.CanMove)
+					if (!Yandere.PreparingThrow)
 					{
-						Door.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-						Yandere.transform.localScale = new Vector3(0f, 1f, 0f);
-						Yandere.Invisible = true;
-						Yandere.CanMove = false;
-						Label.text = "Exit";
-						MyAudio.clip = PowerDown;
+						if (Yandere.CanMove)
+						{
+							Yandere.Locker = base.transform.parent.parent;
+							Yandere.HidingInLocker = true;
+							Yandere.Invisible = true;
+							Yandere.CanMove = false;
+							Yandere.LockerPhase = 1;
+							Label.text = "Exit";
+						}
+						else if (Yandere.LockerPhase == 2)
+						{
+							Yandere.Invisible = false;
+							Yandere.LockerPhase = 3;
+							Label.text = "Hide";
+						}
 					}
-					else
-					{
-						Door.transform.localEulerAngles = new Vector3(0f, 135f, 0f);
-						Yandere.transform.localScale = new Vector3(1f, 1f, 1f);
-						Yandere.Invisible = false;
-						Yandere.CanMove = true;
-						Label.text = "Hide";
-						MyAudio.clip = SwingOpen;
-					}
-					MyAudio.Play();
 				}
 				else if (ID == 4)
 				{

@@ -72,6 +72,10 @@ public class HomeCameraScript : MonoBehaviour
 
 	public GameObject Victim;
 
+	public GameObject EightiesCarpet;
+
+	public GameObject ModernCarpet;
+
 	public Transform Destination;
 
 	public Transform Butsudan;
@@ -237,6 +241,8 @@ public class HomeCameraScript : MonoBehaviour
 		}
 		else
 		{
+			EightiesCarpet.SetActive(value: false);
+			ModernCarpet.SetActive(value: true);
 			Butsudan.localPosition = new Vector3(-0.2041f, 0.095f, 0.241f);
 			Butsudan.localEulerAngles = new Vector3(0f, 135f, 0f);
 			ModernDayRoom.SetActive(value: true);
@@ -484,6 +490,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	private void BecomeEighties()
 	{
+		EightiesCarpet.SetActive(value: true);
+		ModernCarpet.SetActive(value: false);
 		Butsudan.localPosition = new Vector3(0.2095f, 0.0721f, -0.25f);
 		Butsudan.localEulerAngles = new Vector3(0f, -50f, 0f);
 		Eighties = true;

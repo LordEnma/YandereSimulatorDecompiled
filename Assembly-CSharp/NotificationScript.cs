@@ -33,14 +33,14 @@ public class NotificationScript : MonoBehaviour
 	{
 		if (!Display)
 		{
-			Panel.alpha -= Time.deltaTime * ((NotificationManager.NotificationsSpawned > ID + 2) ? 3f : 1f);
+			Panel.alpha -= Time.unscaledDeltaTime * ((NotificationManager.NotificationsSpawned > ID + 2) ? 3f : 1f);
 			if (Panel.alpha <= 0f)
 			{
 				Object.Destroy(base.gameObject);
 			}
 			return;
 		}
-		Timer += Time.deltaTime;
+		Timer += Time.unscaledDeltaTime;
 		if (Timer > 4f)
 		{
 			Display = false;

@@ -87,7 +87,7 @@ public class EmergencyShowerScript : MonoBehaviour
 			{
 				return;
 			}
-			if (Yandere.Schoolwear != 2)
+			if (Yandere.Schoolwear > 0 && Yandere.Schoolwear != 2)
 			{
 				PickUpScript component;
 				if (Yandere.ClubAttire)
@@ -109,6 +109,13 @@ public class EmergencyShowerScript : MonoBehaviour
 			}
 			else
 			{
+				if (Yandere.Schoolwear == 0)
+				{
+					Yandere.NotificationManager.CustomText = "Don't report easter egg bugs to YandereDev.";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Yandere.NotificationManager.CustomText = "Are you using an easter egg right now?";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
 				Timer += 1f;
 			}
 			Phase++;

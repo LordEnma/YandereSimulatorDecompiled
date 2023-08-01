@@ -635,6 +635,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 						{
 							if (StudentManager.MissionMode)
 							{
+								Debug.Log("ID is: " + ID);
 								StudentPortraits[ID].Portrait.mainTexture = BlankPortrait;
 							}
 							else
@@ -689,7 +690,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 			{
 				StudentPortraits[ID].Friend.SetActive(PlayerGlobals.GetStudentFriend(ID));
 			}
-			if (StudentGlobals.GetStudentDying(ID) || StudentGlobals.GetStudentDead(ID) || (StudentManager.Students[ID] != null && !StudentManager.Students[ID].Alive))
+			if (StudentGlobals.GetStudentDying(ID) || StudentGlobals.GetStudentDead(ID) || (StudentManager.Students[ID] != null && !StudentManager.Students[ID].Alive) || StudentGlobals.GetStudentReputation(ID) < -100)
 			{
 				StudentPortraits[ID].DeathShadow.SetActive(value: true);
 			}

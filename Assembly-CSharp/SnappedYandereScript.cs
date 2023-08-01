@@ -617,7 +617,12 @@ public class SnappedYandereScript : MonoBehaviour
 		{
 			MyAnim.CrossFade(IdleAnim);
 		}
-		float num = Input.GetAxis("Mouse X") * (float)OptionGlobals.Sensitivity;
+		string axisName = "Mouse X";
+		if (InputDevice.Type == InputDeviceType.Gamepad)
+		{
+			axisName = InputNames.Xbox_JoyX;
+		}
+		float num = Input.GetAxis(axisName) * (float)OptionGlobals.Sensitivity;
 		if (num != 0f)
 		{
 			base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, base.transform.eulerAngles.y + num * 36f * Time.deltaTime, base.transform.eulerAngles.z);

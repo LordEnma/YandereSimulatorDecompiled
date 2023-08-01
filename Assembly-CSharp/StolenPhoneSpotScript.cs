@@ -18,6 +18,13 @@ public class StolenPhoneSpotScript : MonoBehaviour
 				return;
 			}
 			Prompt.Circle[0].fillAmount = 1f;
+			if (RivalPhone.StudentID == 0)
+			{
+				RivalPhone.StudentID = Prompt.Yandere.Inventory.RivalPhoneID;
+			}
+			Debug.Log("RivalPhone.StudentID is: " + RivalPhone.StudentID);
+			Debug.Log("this.Prompt.Yandere.StudentManager.Students[RivalPhone.StudentID] is: " + Prompt.Yandere.StudentManager.Students[RivalPhone.StudentID]);
+			Debug.Log("this.Prompt.Yandere.StudentManager.Students[RivalPhone.StudentID].Phoneless is: " + Prompt.Yandere.StudentManager.Students[RivalPhone.StudentID].Phoneless);
 			if (Prompt.Yandere.StudentManager.Students[RivalPhone.StudentID] != null && Prompt.Yandere.StudentManager.Students[RivalPhone.StudentID].Phoneless)
 			{
 				Prompt.Circle[0].fillAmount = 1f;

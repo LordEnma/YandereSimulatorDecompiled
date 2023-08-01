@@ -198,6 +198,10 @@ public class DoorScript : MonoBehaviour
 			{
 				Doors[1].transform.SetChildLayer(26);
 			}
+			if (DoorColliders[1] == null)
+			{
+				DoorColliders[1] = Doors[1].GetChild(0).gameObject.GetComponent<BoxCollider>();
+			}
 		}
 		if (!StudentManager.Eighties && RoomID == 22)
 		{
@@ -231,7 +235,7 @@ public class DoorScript : MonoBehaviour
 				if (Prompt.Circle[0].fillAmount < 1f && Prompt.Circle[0].fillAmount > 0f)
 				{
 					Prompt.Circle[0].fillAmount = 0f;
-					if (Prompt.Yandere.PickUp == null)
+					if (Prompt.Yandere.PickUp == null && !Prompt.Yandere.Carrying && Prompt.Yandere.Stance.Current == StanceType.Standing)
 					{
 						Prompt.Yandere.CharacterAnimation["f02_genericInteraction_00"].time = 0f;
 						Prompt.Yandere.InteractWeight = 1f;

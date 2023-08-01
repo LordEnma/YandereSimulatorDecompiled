@@ -273,7 +273,6 @@ public class MissionModeScript : MonoBehaviour
 		MissionModeHUD.SetActive(value: false);
 		SpottedWindow.SetActive(value: false);
 		ExitPortal.SetActive(value: false);
-		Safe.SetActive(value: false);
 		if (GameGlobals.Eighties)
 		{
 			StudentManager.EightiesifyLabel(Watermark);

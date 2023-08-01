@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class RivalBagScript : MonoBehaviour
 {
+	public CounselorScript Counselor;
+
 	public SchemesScript Schemes;
 
 	public ClockScript Clock;
@@ -25,44 +27,58 @@ public class RivalBagScript : MonoBehaviour
 		{
 			Prompt.HideButton[0] = true;
 			Prompt.HideButton[1] = true;
+			Prompt.HideButton[2] = true;
+			Prompt.HideButton[3] = true;
+			Prompt.enabled = false;
 		}
 		else
 		{
 			Prompt.HideButton[0] = !Prompt.Yandere.Inventory.Cigs;
 			Prompt.HideButton[1] = !Prompt.Yandere.Inventory.Ring;
-		}
-		if (Prompt.Yandere.Inventory.Cigs)
-		{
-			Prompt.enabled = true;
-			if (Prompt.Circle[0].fillAmount == 0f)
+			Prompt.HideButton[2] = !Prompt.Yandere.Inventory.SafeKey;
+			Prompt.HideButton[3] = !Prompt.Yandere.Inventory.IDCard;
+			if (!Prompt.HideButton[0] || !Prompt.HideButton[1] || !Prompt.HideButton[2] || !Prompt.HideButton[3])
 			{
-				if (DateGlobals.Weekday == DayOfWeek.Wednesday)
-				{
-					SchemeGlobals.SetSchemeStage(3, 4);
-				}
-				Schemes.UpdateInstructions();
-				Prompt.Yandere.Inventory.Cigs = false;
-				Prompt.enabled = false;
-				Prompt.Hide();
-				base.enabled = false;
+				Prompt.enabled = true;
 			}
 		}
-		if (!Prompt.Yandere.Inventory.Ring)
+		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			return;
+			if (DateGlobals.Weekday == DayOfWeek.Wednesday)
+			{
+				SchemeGlobals.SetSchemeStage(3, 4);
+			}
+			Prompt.Yandere.Inventory.Cigs = false;
+			Exit();
 		}
-		Prompt.enabled = true;
-		if (Prompt.Circle[1].fillAmount == 0f)
+		if (Prompt.Circle[1].fillAmount == 0f || Prompt.Circle[2].fillAmount == 0f || Prompt.Circle[3].fillAmount == 0f)
 		{
 			if (DateGlobals.Weekday == DayOfWeek.Tuesday)
 			{
 				SchemeGlobals.SetSchemeStage(2, 6);
 			}
-			Schemes.UpdateInstructions();
-			Prompt.Yandere.Inventory.Ring = false;
-			Prompt.enabled = false;
-			Prompt.Hide();
-			base.enabled = false;
+			if (Prompt.Circle[1].fillAmount == 0f)
+			{
+				Prompt.Yandere.Inventory.Ring = false;
+				Counselor.StoleRing = true;
+			}
+			else if (Prompt.Circle[2].fillAmount == 0f)
+			{
+				Prompt.Yandere.Inventory.SafeKey = false;
+			}
+			else if (Prompt.Circle[3].fillAmount == 0f)
+			{
+				Prompt.Yandere.Inventory.IDCard = false;
+			}
+			Exit();
 		}
+	}
+
+	private void Exit()
+	{
+		Schemes.UpdateInstructions();
+		Prompt.enabled = false;
+		Prompt.Hide();
+		base.enabled = false;
 	}
 }

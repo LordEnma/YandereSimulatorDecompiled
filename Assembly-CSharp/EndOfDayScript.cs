@@ -2758,6 +2758,7 @@ public class EndOfDayScript : MonoBehaviour
 		UpdatePreviousRivalFriendships();
 		ArrestStudents();
 		SaveTopicsLearned();
+		SaveTopicsDiscussed();
 		RemovableItemManager.RemoveItems();
 		if (PoliceArrived)
 		{
@@ -3059,6 +3060,18 @@ public class EndOfDayScript : MonoBehaviour
 			for (int j = 1; j < 26; j++)
 			{
 				ConversationGlobals.SetTopicLearnedByStudent(j, i, StudentManager.GetTopicLearnedByStudent(j, i));
+			}
+		}
+	}
+
+	public void SaveTopicsDiscussed()
+	{
+		Debug.Log("Attempting to save all of the ''topics discussed ''.");
+		for (int i = 1; i < 101; i++)
+		{
+			for (int j = 1; j < 26; j++)
+			{
+				ConversationGlobals.SetTopicDiscussedWithStudent(j, i, StudentManager.GetTopicDiscussedWithStudent(j, i));
 			}
 		}
 	}

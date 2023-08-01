@@ -32,12 +32,12 @@ public class InputManagerScript : MonoBehaviour
 		TappedDown = false;
 		TappedRight = false;
 		TappedLeft = false;
-		if (Input.GetAxisRaw("DpadY") > 0.5f)
+		if (Input.GetAxisRaw(InputNames.Xbox_DpadY) > 0.5f)
 		{
 			TappedUp = !DPadUp;
 			DPadUp = true;
 		}
-		else if (Input.GetAxisRaw("DpadY") < -0.5f)
+		else if (Input.GetAxisRaw(InputNames.Xbox_DpadY) < -0.5f)
 		{
 			TappedDown = !DPadDown;
 			DPadDown = true;
@@ -65,12 +65,12 @@ public class InputManagerScript : MonoBehaviour
 				StickDown = false;
 			}
 		}
-		if (Input.GetAxisRaw("DpadX") > 0.5f)
+		if (Input.GetAxisRaw(InputNames.Xbox_DpadX) > 0.5f)
 		{
 			TappedRight = !DPadRight;
 			DPadRight = true;
 		}
-		else if (Input.GetAxisRaw("DpadX") < -0.5f)
+		else if (Input.GetAxisRaw(InputNames.Xbox_DpadX) < -0.5f)
 		{
 			TappedLeft = !DPadLeft;
 			DPadLeft = true;
@@ -98,12 +98,12 @@ public class InputManagerScript : MonoBehaviour
 				StickLeft = false;
 			}
 		}
-		if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f && Input.GetAxisRaw("DpadX") < 0.5f && Input.GetAxisRaw("DpadX") > -0.5f)
+		if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f && Input.GetAxisRaw(InputNames.Xbox_DpadX) < 0.5f && Input.GetAxisRaw(InputNames.Xbox_DpadX) > -0.5f)
 		{
 			TappedRight = false;
 			TappedLeft = false;
 		}
-		if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f && Input.GetAxisRaw("DpadY") < 0.5f && Input.GetAxisRaw("DpadY") > -0.5f)
+		if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f && Input.GetAxisRaw(InputNames.Xbox_DpadY) < 0.5f && Input.GetAxisRaw(InputNames.Xbox_DpadY) > -0.5f)
 		{
 			TappedUp = false;
 			TappedDown = false;

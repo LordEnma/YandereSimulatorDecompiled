@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class LivingRoomCutsceneScript : MonoBehaviour
 {
+	public CameraFilterPack_FX_Drunk DrunkEffect;
+
 	public ColorCorrectionCurves ColorCorrection;
 
 	public CosmeticScript YandereCosmetic;
@@ -73,6 +76,12 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	public AudioSource BGM;
 
+	public GameObject YandereTeaCup;
+
+	public GameObject RivalTeaCup;
+
+	public GameObject Steam;
+
 	public GameObject WarningLabel;
 
 	public GameObject TeaSteam;
@@ -97,11 +106,17 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	public float ShakeStrength;
 
+	public float CameraSpeed;
+
 	public float AnimOffset;
 
 	public float ExitTimer;
 
 	public float EyeShrink;
+
+	public float TeaTimer;
+
+	public float Rotation;
 
 	public float xOffset;
 
@@ -119,9 +134,13 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	public bool FollowCamera;
 
+	public bool ResetSpeed;
+
 	public bool BlurVision;
 
 	public bool DruggedTea;
+
+	public bool DOFStatus;
 
 	public bool Eighties;
 
@@ -150,6 +169,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 	public Renderer PonytailRenderer;
 
 	public Texture BlondePony;
+
+	public PostProcessingProfile Profile;
 
 	public GameObject OriginalHair;
 
@@ -284,7 +305,6 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		Vignette.chromaticAberration = 1f;
 		if (EventGlobals.OsanaConversation)
 		{
-			PrologueLabel.transform.localPosition = new Vector3(0f, 125f, 0f);
 			PrologueLabel.text = "Osana is eager to report her stalker to the police.\n\nHowever, she knows that the process could take a long time, so she decides to visit Ayano's house and get her cat back before contacting the police.\n\nThe next morning, Osana arrives at Ayano's house...";
 			WarningLabel.SetActive(value: true);
 			CatStuff.SetActive(value: true);
@@ -308,6 +328,10 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			Eighties = true;
 			Debug.Log("Disabled rival cuz 80s.");
 		}
+		YandereTeaCup.gameObject.SetActive(value: false);
+		RivalTeaCup.gameObject.SetActive(value: false);
+		DOFStatus = Profile.depthOfField.enabled;
+		UpdateDOF(1f);
 	}
 
 	private void Update()
@@ -324,73 +348,22 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					SkipCircle.fillAmount = 1f;
 					if (!DecisionMade)
 					{
-						Yandere.GetComponent<Animation>()["FriendshipYandere"].time = 43f;
-						Rival.GetComponent<Animation>()["FriendshipRival"].time = 43f;
-						Yandere.GetComponent<Animation>()["FriendshipYandere"].speed = 0f;
-						Rival.GetComponent<Animation>()["FriendshipRival"].speed = 0f;
-						FriendshipCamera.gameObject.GetComponent<Animation>().Play();
-						FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].time = 43f;
-						FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].speed = 0f;
-						MyAudio.Play();
-						MyAudio.time = 43f;
-						WaitingForInput = true;
-						Timer = 43f;
-						Phase = 5;
-						ID = 17;
+						if (Phase < 5)
+						{
+							SkipIntro();
+						}
+						else if (Phase == 5)
+						{
+							SkipToTeaScene();
+						}
+					}
+					else if (Branch == 1)
+					{
+						DecideBranch();
 					}
 					else
 					{
-						if (!DruggedTea && Branch < 3)
-						{
-							Yandere.GetComponent<Animation>()["FriendshipYandere"].time = 172f;
-							Rival.GetComponent<Animation>()["FriendshipRival"].time = 172f;
-							Yandere.GetComponent<Animation>()["FriendshipYandere"].speed = 0f;
-							Rival.GetComponent<Animation>()["FriendshipRival"].speed = 0f;
-							FriendshipCamera.gameObject.GetComponent<Animation>().Play();
-							FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].time = 172f;
-							FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].speed = 0f;
-							CameraIDs = RivalData.OsanaBefriendCameraIDs;
-							Lines = RivalData.OsanaBefriendLines;
-							Times = RivalData.OsanaBefriendTimes;
-							Yandere.gameObject.SetActive(value: true);
-							MyAudio.clip = RivalData.OsanaBefriend;
-							MyAudio.Play();
-							MyAudio.time = 100f;
-							SkipPanel.alpha = 0f;
-							CutsceneLimit = 172f;
-							Timer = 172f;
-							Branch = 2;
-							Phase = 5;
-							ID = 37;
-						}
-						else
-						{
-							Rival.GetComponent<Animation>()["FriendshipRival"].speed = 1f;
-							base.transform.parent = OsanaEyes;
-							base.transform.localPosition = new Vector3(0f, 0f, 0f);
-							base.transform.LookAt(AyanoEyes);
-							Vignette.enabled = true;
-							BlurVision = true;
-							Yandere.gameObject.SetActive(value: true);
-							Yandere.GetComponent<Animation>().Play("f02_evilWitness_00");
-							Yandere.GetComponent<Animation>()["f02_evilWitness_00"].time = 2f;
-							Yandere.GetComponent<Animation>()["f02_evilWitness_00"].speed = 0.25f;
-							base.transform.parent = AyanoEyes;
-							base.transform.localPosition = new Vector3(0f, 0f, 0.5f);
-							base.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
-							FollowCamera = false;
-							CameraIDs = RivalData.OsanaBetrayCameraIDs;
-							Lines = RivalData.OsanaBetrayLines;
-							Times = RivalData.OsanaBetrayTimes;
-							MyAudio.clip = RivalData.OsanaBetray;
-							MyAudio.time = 32f;
-							MyAudio.Play();
-							CutsceneLimit = 110f;
-							Timer = 103f;
-							Branch = 3;
-							Phase = 5;
-							ID = 9;
-						}
+						Time.timeScale = 10f;
 						SkipPanel.alpha = 0f;
 						NoSkip = true;
 					}
@@ -407,18 +380,23 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			if (Timer > 1f)
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
-				if (Darkness.color.a == 0f && Input.GetButtonDown(InputNames.Xbox_A))
+				if (Darkness.color.a < 0.1f)
 				{
-					Timer = 0f;
-					Phase++;
+					Darkness.alpha = 0f;
+					if (Input.GetButtonDown(InputNames.Xbox_A))
+					{
+						Timer = 0f;
+						Phase++;
+					}
 				}
 			}
 		}
 		else if (Phase == 2)
 		{
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
-			if (Darkness.color.a == 1f)
+			if (Darkness.color.a > 0.9f)
 			{
+				Darkness.alpha = 1f;
 				Vignette.enabled = true;
 				Prologue.SetActive(value: false);
 				if (!Eighties)
@@ -453,8 +431,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					Rival.GetComponent<Animation>()["FriendshipRival"].time = 0f;
 					if (OsanaCutscene)
 					{
-						Yandere.GetComponent<Animation>()["FriendshipYandere"].speed = 0f;
-						Rival.GetComponent<Animation>()["FriendshipRival"].speed = 0f;
+						Yandere.GetComponent<Animation>()["FriendshipYandere"].speed = 1f;
+						Rival.GetComponent<Animation>()["FriendshipRival"].speed = 1f;
 					}
 					LivingRoomCamera.gameObject.GetComponent<Animation>().Play();
 					Timer = 0f;
@@ -480,6 +458,11 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				Subtitle.text = Lines[0];
 				Timer = 0f;
 				Phase++;
+				Yandere.GetComponent<Animation>().Play("OsanaBefriendBetray_A");
+				Rival.GetComponent<Animation>().Play("OsanaBefriendBetray_B");
+				Debug.Log("Attempting to teleport Yandere + Rival to correct locations now.");
+				Yandere.transform.parent.position = new Vector3(-3.2f, 0f, 3.6f);
+				Rival.transform.parent.position = new Vector3(-4.9f, 0f, 2.6f);
 			}
 		}
 		else if (Phase == 5)
@@ -557,6 +540,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 							}
 							else
 							{
+								Debug.Log("Changing camera angle to where the camera is at the " + CameraIDs[ID] + " second mark.");
 								FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].time = CameraIDs[ID];
 								FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].speed = 0f;
 							}
@@ -572,34 +556,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			}
 			else if (OsanaCutscene && Branch == 1)
 			{
-				Subtitle.text = "Here's your tea.";
-				OfferTea.SetActive(value: true);
-				Yandere.SetActive(value: true);
-				if (!DruggedTea)
-				{
-					Debug.Log("Transitioning into Befriend branch NOW.");
-					CameraIDs = RivalData.OsanaBefriendCameraIDs;
-					Lines = RivalData.OsanaBefriendLines;
-					Times = RivalData.OsanaBefriendTimes;
-					MyAudio.clip = RivalData.OsanaBefriend;
-					MyAudio.time = 0f;
-					MyAudio.Play();
-					CutsceneLimit = 172f;
-					Branch = 2;
-				}
-				else
-				{
-					Debug.Log("Transitioning into Betray branch NOW.");
-					CameraIDs = RivalData.OsanaBetrayCameraIDs;
-					Lines = RivalData.OsanaBetrayLines;
-					Times = RivalData.OsanaBetrayTimes;
-					MyAudio.clip = RivalData.OsanaBetray;
-					MyAudio.time = 0f;
-					MyAudio.Play();
-					CutsceneLimit = 110f;
-					Branch = 3;
-				}
-				ID = 1;
+				DecideBranch();
 			}
 			if (OsanaCutscene)
 			{
@@ -627,6 +584,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					}
 					else if (ID > 17 && ID < 24 && !DecisionMade)
 					{
+						Profile.depthOfField.enabled = false;
 						SkipPanel.alpha = Mathf.MoveTowards(SkipPanel.alpha, 0f, Time.deltaTime);
 						if (!TeaSet.activeInHierarchy)
 						{
@@ -638,13 +596,15 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 							TeaSet.SetActive(value: true);
 							AnimOffset += 2f;
 						}
-						if (Input.GetButtonDown(InputNames.Xbox_A))
+						if (Input.GetButtonDown(InputNames.Xbox_A) || Input.GetKeyDown("space"))
 						{
+							Profile.depthOfField.enabled = DOFStatus;
 							WaitingForInput = false;
 							DecisionMade = true;
 						}
 						if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
+							Profile.depthOfField.enabled = DOFStatus;
 							WaitingForInput = false;
 							DecisionMade = true;
 							DruggedTea = true;
@@ -661,10 +621,78 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 						}
 					}
 				}
-				else
+				else if (Branch == 2)
 				{
-					_ = Branch;
-					_ = 2;
+					TeaTimer += Time.deltaTime;
+					if (TeaTimer > 2.75f && YandereTeaCup.activeInHierarchy)
+					{
+						Debug.Log("Enabling Osana's teacup.");
+						SwapTea();
+					}
+					else if (TeaTimer > 6.25f && TeaTimer < 30f)
+					{
+						RivalTeaCup.SetActive(value: false);
+						base.transform.parent = FriendshipCamera;
+						base.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
+						Yandere.transform.parent.position = new Vector3(-3.2f, 0f, 3.7f);
+						Yandere.transform.parent.eulerAngles = new Vector3(0f, 0f, 0f);
+					}
+					else if (TeaTimer > 35f && TeaTimer < 90f)
+					{
+						Yandere.transform.parent.position = new Vector3(-3.2f, 0.1f, 3.85f);
+						Yandere.transform.parent.eulerAngles = new Vector3(0f, -15f, 0f);
+					}
+					else if (TeaTimer > 95f)
+					{
+						Yandere.transform.parent.position = new Vector3(-3.2f, 0f, 3.7f);
+						Yandere.transform.parent.eulerAngles = new Vector3(0f, 0f, 0f);
+					}
+				}
+				else if (Branch == 3)
+				{
+					TeaTimer += Time.deltaTime;
+					if (TeaTimer > 16f)
+					{
+						DrunkEffect.Fade += Time.deltaTime * 0.05f;
+						Vignette.enabled = true;
+						BlurVision = true;
+					}
+					if (TeaTimer > 3.33333f && YandereTeaCup.activeInHierarchy)
+					{
+						SwapTea();
+					}
+					else if (TeaTimer > 9f && TeaTimer < 30f)
+					{
+						CameraSpeed += Time.deltaTime * 0.1f;
+						base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(-4.6f, 0.9f, 3.1f), Time.deltaTime * CameraSpeed);
+						Yandere.transform.parent.position = new Vector3(-3.2f, 0f, 3.7f);
+						Yandere.transform.parent.eulerAngles = new Vector3(0f, 0f, 0f);
+						Rotation = 180f;
+					}
+					else if (TeaTimer > 30f)
+					{
+						if (CameraSpeed > 0f && !ResetSpeed)
+						{
+							ResetSpeed = true;
+							CameraSpeed = 0f;
+						}
+						CameraSpeed += Time.deltaTime * 0.1f;
+						base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(-6f, 0.5f, 3f), Time.deltaTime * CameraSpeed);
+						Rotation = Mathf.Lerp(Rotation, 90f, Time.deltaTime * CameraSpeed);
+						base.transform.eulerAngles = new Vector3(0f, Rotation, 0f);
+						if (TeaTimer > 37.2f)
+						{
+							Debug.Log("Screen should be black!");
+							SubDarkness.alpha = 1f;
+							Darkness.alpha = 1f;
+							BGM.volume = 0f;
+							if (TeaTimer > 40f)
+							{
+								Debug.Log("Transitioning to phase 7 here!");
+								Phase = 7;
+							}
+						}
+					}
 				}
 			}
 			if (!OsanaCutscene)
@@ -756,8 +784,9 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			if (!DecisionMade)
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
-				if (Darkness.color.a == 0f)
+				if (Darkness.color.a < 0.1f)
 				{
+					Darkness.alpha = 0f;
 					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						if (DateGlobals.Week < 10)
@@ -781,8 +810,9 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			else
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
-				if (Darkness.color.a == 1f)
+				if (Darkness.color.a > 0.9f)
 				{
+					Darkness.alpha = 1f;
 					Prologue.SetActive(value: true);
 					DecisionMade = false;
 					Phase++;
@@ -794,15 +824,19 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			if (!DecisionMade)
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
-				if (Input.GetButtonDown(InputNames.Xbox_A))
+				if (Darkness.color.a < 0.1f)
 				{
-					DecisionMade = true;
+					Darkness.alpha = 0f;
+					if (Input.GetButtonDown(InputNames.Xbox_A))
+					{
+						DecisionMade = true;
+					}
 				}
 			}
 			else
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
-				if (Darkness.color.a == 1f)
+				if (Darkness.color.a > 0.9f)
 				{
 					if (DruggedTea)
 					{
@@ -828,7 +862,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		{
 			return;
 		}
-		BGM.pitch -= Time.deltaTime * 0.05f;
+		BGM.pitch -= Time.deltaTime * 0.033333f;
 		Vignette.intensity += Time.deltaTime * BlurSpeed;
 		Vignette.blur += Time.deltaTime * BlurSpeed;
 		Vignette.chromaticAberration += Time.deltaTime * BlurSpeed;
@@ -840,8 +874,9 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		base.transform.localPosition -= new Vector3(0f, Time.deltaTime * 0.5f, 0f);
 		base.transform.localEulerAngles += new Vector3(Time.deltaTime * 180f, Time.deltaTime * 180f, Time.deltaTime * 180f);
 		BGM.volume -= Time.deltaTime;
-		if (Darkness.color.a == 1f)
+		if (Darkness.color.a > 0.9f)
 		{
+			Darkness.alpha = 1f;
 			ExitTimer += Time.deltaTime;
 			if (ExitTimer > 3f)
 			{
@@ -860,7 +895,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				{
 					if (FriendshipCamera.position.z > 2.4f)
 					{
-						base.transform.localPosition = new Vector3(-1.4f + ShakeStrength * Random.Range(-1f, 1f), ShakeStrength * Random.Range(-1f, 1f), ShakeStrength * Random.Range(-1f, 1f));
+						base.transform.localPosition = new Vector3(-1.55f + ShakeStrength * Random.Range(-1f, 1f), ShakeStrength * Random.Range(-1f, 1f), ShakeStrength * Random.Range(-1f, 1f));
 					}
 					else if (Branch != 3)
 					{
@@ -1047,5 +1082,109 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				VtuberHairs[i].SetActive(value: false);
 			}
 		}
+	}
+
+	public void UpdateDOF(float Focus)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		settings.focusDistance = Focus;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(10f);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
+		Profile.depthOfField.settings = settings;
+	}
+
+	public void SkipToTeaScene()
+	{
+		Yandere.GetComponent<Animation>()["OsanaBefriendBetray_A"].time = 43f;
+		Rival.GetComponent<Animation>()["OsanaBefriendBetray_B"].time = 43f;
+		FriendshipCamera.gameObject.GetComponent<Animation>().Play();
+		FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].time = 43f;
+		FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].speed = 0f;
+		MyAudio.Play();
+		MyAudio.time = 43f;
+		WaitingForInput = true;
+		Timer = 43f;
+		Phase = 5;
+		ID = 17;
+	}
+
+	public void SwapTea()
+	{
+		YandereTeaCup.SetActive(value: false);
+		RivalTeaCup.SetActive(value: true);
+		Steam.transform.parent = RivalTeaCup.transform;
+		Steam.transform.localPosition = new Vector3(0f, 0.05f, 0f);
+		Steam.transform.localEulerAngles = new Vector3(-90f, 0f, 0f);
+	}
+
+	public void SkipIntro()
+	{
+		Yandere.GetComponent<Animation>().Play("OsanaBefriendBetray_A");
+		Rival.GetComponent<Animation>().Play("OsanaBefriendBetray_B");
+		Darkness.color = new Color(0f, 0f, 0f, 0f);
+		Prologue.SetActive(value: false);
+		Timer += 10f;
+		Phase = 4;
+	}
+
+	public void DecideBranch()
+	{
+		YandereTeaCup.SetActive(value: true);
+		Yandere.SetActive(value: true);
+		base.transform.parent = null;
+		base.transform.position = new Vector3(-4.25f, 1f, 3.33333f);
+		base.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+		Subtitle.text = "Here's your tea.";
+		if (!DruggedTea)
+		{
+			TransitionIntoBefriendBranch();
+		}
+		else
+		{
+			TransitionIntoBetrayBranch();
+		}
+		ID = 1;
+	}
+
+	public void TransitionIntoBefriendBranch()
+	{
+		Debug.Log("Transitioning into Befriend branch NOW.");
+		Yandere.transform.parent.position = new Vector3(-3.575f, 0.0133333f, 3.6975f);
+		Yandere.transform.parent.eulerAngles = new Vector3(-10f, 0f, -10f);
+		Yandere.GetComponent<Animation>().Play("OsanaBefriend_A");
+		Rival.GetComponent<Animation>().Play("OsanaBefriend_B");
+		CameraIDs = RivalData.OsanaBefriendCameraIDs;
+		Lines = RivalData.OsanaBefriendLines;
+		Times = RivalData.OsanaBefriendTimes;
+		MyAudio.clip = RivalData.OsanaBefriend;
+		MyAudio.time = 0f;
+		MyAudio.Play();
+		CutsceneLimit = 172f;
+		Branch = 2;
+	}
+
+	public void TransitionIntoBetrayBranch()
+	{
+		Debug.Log("Transitioning into Betray branch NOW.");
+		Yandere.transform.parent.position = new Vector3(-3.766666f, -0.24f, 3.53f);
+		Yandere.transform.parent.eulerAngles = new Vector3(1f, 0f, -22.5f);
+		Yandere.GetComponent<Animation>().CrossFade("OsanaBetray_A");
+		Rival.GetComponent<Animation>().CrossFade("OsanaBetray_B");
+		CameraIDs = RivalData.OsanaBetrayCameraIDs;
+		Lines = RivalData.OsanaBetrayLines;
+		Times = RivalData.OsanaBetrayTimes;
+		MyAudio.clip = RivalData.OsanaBetray;
+		MyAudio.time = 0f;
+		MyAudio.Play();
+		CutsceneLimit = 110f;
+		Branch = 3;
 	}
 }

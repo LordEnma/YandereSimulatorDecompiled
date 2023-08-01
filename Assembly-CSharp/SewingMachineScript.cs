@@ -31,29 +31,21 @@ public class SewingMachineScript : MonoBehaviour
 	private void Start()
 	{
 		Eighties = GameGlobals.Eighties;
-		if (!Eighties)
-		{
-			if (StudentManager.TaskManager.TaskStatus[30] == 1)
-			{
-				Check = true;
-			}
-			else if (StudentManager.TaskManager.TaskStatus[30] > 2)
-			{
-				base.enabled = false;
-			}
-		}
+		Prompt.enabled = true;
+		base.enabled = true;
+		Check = true;
 	}
 
 	private void Update()
 	{
 		if (Check)
 		{
-			if ((!Eighties && Yandere.PickUp != null && Yandere.PickUp.Clothing) || (Eighties && Yandere.Inventory.PinkCloth) || (Eighties && Yandere.Inventory.Cloth > 0))
+			if ((!Eighties && Yandere.PickUp != null && Yandere.PickUp.FoldedUniform != null) || (Eighties && Yandere.Inventory.PinkCloth) || (Eighties && Yandere.Inventory.Cloth > 0))
 			{
 				Prompt.enabled = true;
 				if (!Eighties)
 				{
-					if (Yandere.PickUp.GetComponent<FoldedUniformScript>().Clean && Yandere.PickUp.GetComponent<FoldedUniformScript>().Type == 1)
+					if (Yandere.PickUp.FoldedUniform.Clean && Yandere.PickUp.FoldedUniform.Type == 1)
 					{
 						Prompt.HideButton[0] = false;
 					}
@@ -172,15 +164,11 @@ public class SewingMachineScript : MonoBehaviour
 			{
 				Prompt.Hide();
 				Prompt.enabled = false;
-				base.enabled = false;
-				Check = false;
 			}
 			if (Eighties && !Yandere.Inventory.PinkCloth && Yandere.Inventory.Cloth == 0)
 			{
 				Prompt.Hide();
 				Prompt.enabled = false;
-				base.enabled = false;
-				Check = false;
 			}
 		}
 	}

@@ -119,7 +119,7 @@ public class NotificationManagerScript : MonoBehaviour
 	{
 		if (NotificationParent.localPosition.y > 0.001f + -0.049f * (float)NotificationsSpawned)
 		{
-			NotificationParent.localPosition = new Vector3(NotificationParent.localPosition.x, Mathf.Lerp(NotificationParent.localPosition.y, -0.049f * (float)NotificationsSpawned, Time.deltaTime * 10f), NotificationParent.localPosition.z);
+			NotificationParent.localPosition = new Vector3(NotificationParent.localPosition.x, Mathf.Lerp(NotificationParent.localPosition.y, -0.049f * (float)NotificationsSpawned, Time.unscaledDeltaTime * 10f), NotificationParent.localPosition.z);
 		}
 		if (Phase == 1)
 		{
@@ -165,7 +165,7 @@ public class NotificationManagerScript : MonoBehaviour
 		}
 		if (Timer > 0f)
 		{
-			Timer = Mathf.MoveTowards(Timer, 0f, Time.deltaTime);
+			Timer = Mathf.MoveTowards(Timer, 0f, Time.unscaledDeltaTime);
 		}
 	}
 

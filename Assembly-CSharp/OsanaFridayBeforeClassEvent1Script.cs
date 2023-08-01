@@ -52,7 +52,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
-		if (DateGlobals.Weekday != EventDay || StudentGlobals.StudentSlave == RivalID || StudentManager.RivalEliminated || GameGlobals.Eighties)
+		if (DateGlobals.Weekday != EventDay || StudentGlobals.StudentSlave == RivalID || GameGlobals.RivalEliminationID > 0 || StudentManager.RivalEliminated || GameGlobals.Eighties)
 		{
 			base.enabled = false;
 		}

@@ -48,6 +48,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public OpinionsLearnedScript OpinionsLearned;
 
+	public OpinionsLearnedScript TopicsDiscussed;
+
 	public CombatMinigameScript CombatMinigame;
 
 	public DatingMinigameScript DatingMinigame;
@@ -1486,7 +1488,11 @@ public class StudentManagerScript : MonoBehaviour
 			StudentReps[RivalID] -= 50f;
 			Debug.Log("And now it is: " + StudentReps[RivalID]);
 		}
-		LoadTopicsLearned();
+		if (!TakingPortraits)
+		{
+			LoadTopicsLearned();
+			LoadTopicsDiscussed();
+		}
 		if (Police != null)
 		{
 			Police.EndOfDay.VoidGoddess.Window.parent.gameObject.SetActive(value: false);
@@ -3505,19 +3511,34 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void ComeBack()
 	{
+		Debug.Log("Telling everyone to come back.");
 		Stop = false;
 		for (ID = 1; ID < Students.Length; ID++)
 		{
 			StudentScript studentScript = Students[ID];
 			if (studentScript != null && (!Police.EndOfDay.Counselor.ExpelledDelinquents || ID <= 75 || ID >= 81))
 			{
-				if (!studentScript.Dying && !studentScript.Replaced && studentScript.Spawned && !StudentGlobals.GetStudentExpelled(ID) && !StudentGlobals.GetStudentArrested(ID) && !studentScript.Ragdoll.Disposed)
+				if (!studentScript.Ragdoll.Disposed && !studentScript.Ragdoll.Dismembered)
 				{
 					studentScript.gameObject.SetActive(value: true);
-					studentScript.Pathfinding.canSearch = true;
-					studentScript.Pathfinding.canMove = true;
-					studentScript.Pathfinding.speed = 1f;
 					studentScript.Stop = false;
+					if (studentScript.Ragdoll.Concealed)
+					{
+						studentScript.CharacterAnimation.enabled = false;
+						studentScript.MyRenderer.enabled = false;
+						studentScript.Ragdoll.EnableRigidbodies();
+					}
+					else
+					{
+						studentScript.Pathfinding.canSearch = true;
+						studentScript.Pathfinding.canMove = true;
+						studentScript.Pathfinding.speed = 1f;
+					}
+				}
+				else
+				{
+					Debug.Log(studentScript.Name + " was disposed or dismembered at the time that the game checked to see if they needed to come back.");
+					studentScript.gameObject.SetActive(value: false);
 				}
 				if (studentScript.Teacher)
 				{
@@ -3700,6 +3721,9 @@ public class StudentManagerScript : MonoBehaviour
 					studentScript.Prompt.Hide();
 					UnityEngine.Object.Destroy(studentScript.Prompt.gameObject);
 					UnityEngine.Object.Destroy(studentScript.gameObject);
+					studentScript.MyBento.Prompt.Hide();
+					UnityEngine.Object.Destroy(studentScript.MyBento.Prompt.gameObject);
+					UnityEngine.Object.Destroy(studentScript.MyBento.gameObject);
 					Students[ID] = null;
 				}
 				else
@@ -4579,7 +4603,14 @@ public class StudentManagerScript : MonoBehaviour
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
 		DialogueWheel.NoteLocker.gameObject.SetActive(value: true);
 		TaskManager.Kitten.gameObject.SetActive(value: true);
-		Workbench.BodyBags.SetActive(value: true);
+		if (Workbench.BodyBags[1] != null)
+		{
+			Workbench.BodyBags[1].SetActive(value: true);
+		}
+		if (Workbench.BodyBags[2] != null)
+		{
+			Workbench.BodyBags[2].SetActive(value: true);
+		}
 		YanSave.LoadData("Profile_" + profile + "_Slot_" + @int);
 		DialogueWheel.NoteLocker.NoteWindow.gameObject.SetActive(value: false);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
@@ -4589,9 +4620,13 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			DialogueWheel.NoteLocker.NoteWindow.InformFindStudentLocker();
 		}
-		if (Workbench.BodyBags != null)
+		if (Workbench.BodyBags[1] != null)
 		{
-			Workbench.BodyBags.SetActive(Workbench.BodyBags.GetComponent<PickUpScript>().KeepActive);
+			Workbench.BodyBags[1].SetActive(Workbench.BodyBags[1].GetComponent<PickUpScript>().KeepActive);
+		}
+		if (Workbench.BodyBags[2] != null)
+		{
+			Workbench.BodyBags[2].SetActive(Workbench.BodyBags[2].GetComponent<PickUpScript>().KeepActive);
 		}
 		Yandere.Class.gameObject.SetActive(value: false);
 		Physics.SyncTransforms();
@@ -4800,6 +4835,13 @@ public class StudentManagerScript : MonoBehaviour
 						Students[ID].CurrentAction = Students[ID].Actions[Students[ID].Phase];
 						Students[ID].CurrentDestination = Students[ID].Destinations[Students[ID].Phase];
 						Students[ID].Pathfinding.target = Students[ID].Destinations[Students[ID].Phase];
+					}
+					if (Students[ID].SearchingForPhone)
+					{
+						Students[ID].RealizePhoneIsMissing();
+						Students[ID].CurrentDestination = Students[ID].Destinations[Students[ID].Phase];
+						Students[ID].Pathfinding.target = Students[ID].Destinations[Students[ID].Phase];
+						Students[ID].Hurry = true;
 					}
 					Students[ID].CameraReacting = false;
 				}
@@ -5669,7 +5711,7 @@ public class StudentManagerScript : MonoBehaviour
 			scheduleBlock = Students[11].ScheduleBlocks[7];
 			scheduleBlock.destination = "Hangout";
 			scheduleBlock.action = "Gaming";
-			Students[11].GameAnim = "f02_observeKitten_00";
+			Students[11].GameAnim = "f02_pettingCat_00";
 			Students[11].GetDestinations();
 		}
 		if (Week > 2 && Students[12] != null)
@@ -6735,6 +6777,27 @@ public class StudentManagerScript : MonoBehaviour
 			for (int j = 1; j < 26; j++)
 			{
 				SetTopicLearnedByStudent(j, i, ConversationGlobals.GetTopicLearnedByStudent(j, i));
+			}
+		}
+	}
+
+	public void SetTopicDiscussedWithStudent(int Topic, int StudentID, bool boolean)
+	{
+		TopicsDiscussed.StudentOpinions[StudentID].Opinions[Topic] = boolean;
+	}
+
+	public bool GetTopicDiscussedWithStudent(int Topic, int StudentID)
+	{
+		return TopicsDiscussed.StudentOpinions[StudentID].Opinions[Topic];
+	}
+
+	public void LoadTopicsDiscussed()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			for (int j = 1; j < 26; j++)
+			{
+				SetTopicDiscussedWithStudent(j, i, ConversationGlobals.GetTopicDiscussedWithStudent(j, i));
 			}
 		}
 	}

@@ -11,4 +11,6 @@ public struct YanSavePlayerPrefTracker
 	public string PrefFormat;
 
 	public int RangeMax;
+
+	public int SecondRangeMax;
 }

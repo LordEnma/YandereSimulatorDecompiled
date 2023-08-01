@@ -18,8 +18,6 @@ public class WorkbenchScript : MonoBehaviour
 
 	public GameObject OutcomeCamera;
 
-	public GameObject BodyBags;
-
 	public Transform WorkbenchWindow;
 
 	public Transform Highlight;
@@ -41,6 +39,8 @@ public class WorkbenchScript : MonoBehaviour
 	public GameObject[] OutcomeModel;
 
 	public GameObject[] Checkmark;
+
+	public GameObject[] BodyBags;
 
 	public AudioClip[] LiquidSFX;
 
@@ -69,6 +69,8 @@ public class WorkbenchScript : MonoBehaviour
 	public bool Show;
 
 	public string Outcome = "";
+
+	public int BodyBagsSpawned;
 
 	public int Checkmarks;
 
@@ -143,9 +145,13 @@ public class WorkbenchScript : MonoBehaviour
 					}
 				}
 			}
-			else if (!Chemistry)
+			else
 			{
-				if (Prompt.Yandere.Inventory.MaskingTape && Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox)
+				if (Chemistry)
+				{
+					return;
+				}
+				if (Prompt.Yandere.Inventory.MaskingTape && Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox && Prompt.Yandere.PickUp.BodyBags == 0)
 				{
 					Prompt.HideButton[1] = false;
 				}
@@ -160,7 +166,14 @@ public class WorkbenchScript : MonoBehaviour
 					Prompt.Yandere.PickUp.CannotDrop = false;
 					Prompt.Yandere.EmptyHands();
 					obj.SetActive(value: false);
-					BodyBags.SetActive(value: true);
+					BodyBagsSpawned++;
+					BodyBags[BodyBagsSpawned].SetActive(value: true);
+					if (GameGlobals.EightiesTutorial)
+					{
+						Prompt.Hide();
+						Prompt.enabled = false;
+						base.enabled = false;
+					}
 				}
 			}
 			return;

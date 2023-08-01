@@ -6,6 +6,10 @@ public static class InputNames
 
 	public static int Mouse_MMB = 2;
 
+	public static string Xbox_JoyX = "Joystick X";
+
+	public static string Xbox_JoyY = "Joystick Y";
+
 	public static string Xbox_A = "A";
 
 	public static string Xbox_B = "B";

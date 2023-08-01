@@ -16,7 +16,7 @@ public class DelinquentVoicesScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (GameGlobals.Eighties)
+		if (GameGlobals.Eighties || GameGlobals.AlphabetMode)
 		{
 			base.enabled = false;
 		}

@@ -98,6 +98,8 @@ public class CalendarScript : MonoBehaviour
 
 	public int Phase = 1;
 
+	public int Ls;
+
 	public AudioClip EightiesJingle;
 
 	public UILabel CongratsConfirmLabel;
@@ -125,6 +127,7 @@ public class CalendarScript : MonoBehaviour
 	private void Start()
 	{
 		GameGlobals.AlphabetMode = false;
+		Debug.Log("At this moment, ConversationGlobals.GetTopicDiscussedWithStudent(1, 2) is: " + ConversationGlobals.GetTopicDiscussedWithStudent(1, 2));
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
@@ -606,45 +609,55 @@ public class CalendarScript : MonoBehaviour
 		{
 			Highlight.localPosition = new Vector3(Mathf.Lerp(Highlight.localPosition.x, -750f + Offset + Target, Time.deltaTime * 10f), Highlight.localPosition.y, Highlight.localPosition.z);
 		}
-		if (!Switch)
+		if (Switch)
 		{
-			return;
-		}
-		if (!ViewingStats)
-		{
-			if (Phase == 1)
+			if (!ViewingStats)
 			{
-				CalendarPanel.alpha = Mathf.MoveTowards(CalendarPanel.alpha, 0f, Time.deltaTime * 5f);
-				if (CalendarPanel.alpha <= 0f)
+				if (Phase == 1)
+				{
+					CalendarPanel.alpha = Mathf.MoveTowards(CalendarPanel.alpha, 0f, Time.deltaTime * 5f);
+					if (CalendarPanel.alpha <= 0f)
+					{
+						Phase++;
+					}
+				}
+				else
+				{
+					ChallengePanel.alpha = Mathf.MoveTowards(ChallengePanel.alpha, 1f, Time.deltaTime * 5f);
+					if (ChallengePanel.alpha >= 1f)
+					{
+						ViewingStats = true;
+						Switch = false;
+						Phase = 1;
+					}
+				}
+			}
+			else if (Phase == 1)
+			{
+				ChallengePanel.alpha = Mathf.MoveTowards(ChallengePanel.alpha, 0f, Time.deltaTime * 5f);
+				if (ChallengePanel.alpha <= 0f)
 				{
 					Phase++;
 				}
-				return;
 			}
-			ChallengePanel.alpha = Mathf.MoveTowards(ChallengePanel.alpha, 1f, Time.deltaTime * 5f);
-			if (ChallengePanel.alpha >= 1f)
+			else
 			{
-				ViewingStats = true;
-				Switch = false;
-				Phase = 1;
-			}
-		}
-		else if (Phase == 1)
-		{
-			ChallengePanel.alpha = Mathf.MoveTowards(ChallengePanel.alpha, 0f, Time.deltaTime * 5f);
-			if (ChallengePanel.alpha <= 0f)
-			{
-				Phase++;
+				CalendarPanel.alpha = Mathf.MoveTowards(CalendarPanel.alpha, 1f, Time.deltaTime * 5f);
+				if (CalendarPanel.alpha >= 1f)
+				{
+					ViewingStats = false;
+					Switch = false;
+					Phase = 1;
+				}
 			}
 		}
-		else
+		if (Input.GetKeyDown(KeyCode.L))
 		{
-			CalendarPanel.alpha = Mathf.MoveTowards(CalendarPanel.alpha, 1f, Time.deltaTime * 5f);
-			if (CalendarPanel.alpha >= 1f)
+			Ls++;
+			if (Ls == 10)
 			{
-				ViewingStats = false;
-				Switch = false;
-				Phase = 1;
+				GameGlobals.LoveSick = !GameGlobals.LoveSick;
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			}
 		}
 	}

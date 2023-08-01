@@ -55,6 +55,8 @@ public class CounselorScript : MonoBehaviour
 
 	public bool MustReturnStolenRing;
 
+	public bool StoleRing;
+
 	public string RivalName;
 
 	private string[] CounselorGreetingText = new string[3] { "", "What can I help you with?", "Can I help you?" };
@@ -852,6 +854,7 @@ public class CounselorScript : MonoBehaviour
 								Yandere.MainCamera.gameObject.SetActive(value: true);
 								Yandere.gameObject.SetActive(value: true);
 								SpawnDelinquents();
+								Debug.Log("Now returning to gameplay from the counselor.");
 								StudentManager.ComeBack();
 								StudentManager.Students[StudentManager.RivalID].IdleAnim = StudentManager.Students[StudentManager.RivalID].BulliedIdleAnim;
 								StudentManager.Students[StudentManager.RivalID].WalkAnim = StudentManager.Students[StudentManager.RivalID].BulliedWalkAnim;
@@ -888,7 +891,10 @@ public class CounselorScript : MonoBehaviour
 								}
 								else if (LectureID == 2)
 								{
-									MustReturnStolenRing = true;
+									if (StoleRing)
+									{
+										MustReturnStolenRing = true;
+									}
 								}
 								else if (LectureID == 6 && StudentManager.RivalID == 11 && StudentManager.Students[10] != null)
 								{
@@ -1040,7 +1046,7 @@ public class CounselorScript : MonoBehaviour
 		{
 			Labels[3].alpha = 1f;
 		}
-		if (StudentManager.RivalBookBag.StolenRing && !ReportedTheft)
+		if ((StudentManager.RivalBookBag.StolenRing && !ReportedTheft) || (StudentManager.RivalBookBag.StolenProperty && !ReportedTheft))
 		{
 			Labels[4].alpha = 1f;
 		}

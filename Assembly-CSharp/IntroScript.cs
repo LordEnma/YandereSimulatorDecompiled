@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 using XInputDotNetPure;
@@ -313,6 +315,10 @@ public class IntroScript : MonoBehaviour
 			{
 				GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
 				VibrationCheck = false;
+				if (Gamepad.current is DualShockGamepad dualShockGamepad)
+				{
+					dualShockGamepad.SetMotorSpeeds(0f, 0f);
+				}
 			}
 		}
 		if (Input.GetButton(InputNames.Xbox_X))
@@ -432,6 +438,10 @@ public class IntroScript : MonoBehaviour
 				Profile.bloom.settings = settings2;
 				Profile.bloom.enabled = true;
 				GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
+				if (Gamepad.current is DualShockGamepad dualShockGamepad2)
+				{
+					dualShockGamepad2.SetMotorSpeeds(1f, 1f);
+				}
 				VibrationCheck = true;
 				VibrationTimer = 0.1f;
 			}
@@ -449,6 +459,10 @@ public class IntroScript : MonoBehaviour
 				LoveSickLogo.gameObject.SetActive(value: false);
 				Logo.gameObject.SetActive(value: false);
 				GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
+				if (Gamepad.current is DualShockGamepad dualShockGamepad3)
+				{
+					dualShockGamepad3.SetMotorSpeeds(1f, 1f);
+				}
 				VibrationCheck = true;
 				VibrationTimer = 0.1f;
 			}
@@ -512,6 +526,10 @@ public class IntroScript : MonoBehaviour
 			}
 			VibrationIntensity += Time.deltaTime * 0.2f;
 			GamePad.SetVibration(PlayerIndex.One, VibrationIntensity, VibrationIntensity);
+			if (Gamepad.current is DualShockGamepad dualShockGamepad4)
+			{
+				dualShockGamepad4.SetMotorSpeeds(VibrationIntensity, VibrationIntensity);
+			}
 			VibrationCheck = true;
 			VibrationTimer = 0.1f;
 		}
@@ -598,6 +616,10 @@ public class IntroScript : MonoBehaviour
 			{
 				VibrationIntensity += Time.deltaTime * 0.05f;
 				GamePad.SetVibration(PlayerIndex.One, VibrationIntensity, VibrationIntensity);
+				if (Gamepad.current is DualShockGamepad dualShockGamepad5)
+				{
+					dualShockGamepad5.SetMotorSpeeds(VibrationIntensity, VibrationIntensity);
+				}
 				VibrationCheck = true;
 				VibrationTimer = 0.1f;
 			}
@@ -640,6 +662,10 @@ public class IntroScript : MonoBehaviour
 					AttackPair[2].SetActive(value: false);
 					AttackPair[3].SetActive(value: true);
 					GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
+					if (Gamepad.current is DualShockGamepad dualShockGamepad6)
+					{
+						dualShockGamepad6.SetMotorSpeeds(1f, 1f);
+					}
 					VibrationCheck = true;
 					VibrationTimer = 0.2f;
 					Alpha = 0f;
@@ -653,6 +679,10 @@ public class IntroScript : MonoBehaviour
 					AttackPair[1].SetActive(value: false);
 					AttackPair[2].SetActive(value: true);
 					GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
+					if (Gamepad.current is DualShockGamepad dualShockGamepad7)
+					{
+						dualShockGamepad7.SetMotorSpeeds(1f, 1f);
+					}
 					VibrationCheck = true;
 					VibrationTimer = 0.2f;
 					Alpha = 0f;
@@ -673,6 +703,10 @@ public class IntroScript : MonoBehaviour
 					Quad.SetActive(value: true);
 					AttackPair[1].SetActive(value: true);
 					GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
+					if (Gamepad.current is DualShockGamepad dualShockGamepad8)
+					{
+						dualShockGamepad8.SetMotorSpeeds(1f, 1f);
+					}
 					VibrationCheck = true;
 					VibrationTimer = 0.2f;
 					Noise.enabled = true;

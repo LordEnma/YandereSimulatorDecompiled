@@ -183,6 +183,7 @@ public class StudentInfoScript : MonoBehaviour
 		num2 = StudentManager.SuitorID;
 		if (Matchmade)
 		{
+			Debug.Log("This character has been matchmade.");
 			LeftCrushLabel.text = "Relationship";
 			CrushLabel.text = JSON.Students[studentJson.Crush].Name;
 			CrushLabel.text = PartnerName;
@@ -194,10 +195,12 @@ public class StudentInfoScript : MonoBehaviour
 			{
 				if (CurrentStudent == StudentManager.RivalID)
 				{
+					Debug.Log("This character is the current rival.");
 					CrushLabel.text = JSON.Students[studentJson.Crush].Name;
 				}
 				else
 				{
+					Debug.Log("This character was the rival.");
 					CrushLabel.text = "None Anymore";
 				}
 			}
@@ -842,11 +845,11 @@ public class StudentInfoScript : MonoBehaviour
 				}
 				else if (CurrentStudent == 13)
 				{
-					PartnerName = JSON.Students[28].Name;
+					PartnerName = JSON.Students[32].Name;
 				}
 				else if (CurrentStudent == 14)
 				{
-					PartnerName = JSON.Students[32].Name;
+					PartnerName = JSON.Students[37].Name;
 				}
 				else if (CurrentStudent == 15)
 				{
@@ -911,6 +914,10 @@ public class StudentInfoScript : MonoBehaviour
 				else if (CurrentStudent == 72)
 				{
 					PartnerName = JSON.Students[20].Name;
+				}
+				if (CurrentStudent == 14)
+				{
+					Debug.Log("This is student #14! PartnerName should be JSON.Students[32].Name which is: " + JSON.Students[32].Name);
 				}
 			}
 			return;

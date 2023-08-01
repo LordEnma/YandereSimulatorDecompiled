@@ -20,6 +20,8 @@ public class DatingMinigameScript : MonoBehaviour
 
 	public JsonScript JSON;
 
+	public Transform FriendWaitSpot;
+
 	public Transform AffectionSet;
 
 	public Transform OptionSet;
@@ -828,6 +830,7 @@ public class DatingMinigameScript : MonoBehaviour
 				Suitor.Pushable = false;
 				Suitor.Meeting = false;
 				Suitor.Routine = true;
+				Suitor.Hurry = false;
 				Suitor.MeetTimer = 0f;
 				Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 0f);
 				Rival.CurrentDestination = Rival.Destinations[Rival.Phase];
@@ -840,6 +843,7 @@ public class DatingMinigameScript : MonoBehaviour
 				Rival.Pushable = false;
 				Rival.Meeting = false;
 				Rival.Routine = true;
+				Rival.Hurry = false;
 				Rival.MeetTimer = 0f;
 				StudentManager.Clock.StopTime = false;
 				Yandere.RPGCamera.enabled = true;

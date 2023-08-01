@@ -352,40 +352,43 @@ public static class YanSave
 				YanSavePlayerPrefsType prefType = prefTracker.PrefType;
 				for (int l = 0; l < prefTracker.RangeMax + 1; l++)
 				{
-					for (int m = 0; m < prefTracker.PrefFormatValues.Count; m++)
+					for (int m = 0; m < prefTracker.SecondRangeMax + 1; m++)
 					{
-						string text2 = prefTracker.PrefFormatValues[m];
-						int num = text2.LastIndexOf('.');
-						Type type3 = YanSaveHelpers.GrabType(text2.Substring(0, num));
-						string newValue = string.Empty;
-						FieldInfo field = type3.GetField(text2.Substring(num + 1));
-						PropertyInfo property = type3.GetProperty(text2.Substring(num + 1));
-						if (property != null)
+						for (int n = 0; n < prefTracker.PrefFormatValues.Count; n++)
 						{
-							newValue = property.GetValue(null, null).ToString();
+							string text2 = prefTracker.PrefFormatValues[n];
+							int num = text2.LastIndexOf('.');
+							Type type3 = YanSaveHelpers.GrabType(text2.Substring(0, num));
+							string newValue = string.Empty;
+							FieldInfo field = type3.GetField(text2.Substring(num + 1));
+							PropertyInfo property = type3.GetProperty(text2.Substring(num + 1));
+							if (property != null)
+							{
+								newValue = property.GetValue(null, null).ToString();
+							}
+							else if (field != null)
+							{
+								newValue = field.GetValue(null).ToString();
+							}
+							else
+							{
+								Debug.Log("Couldn't grab replacement value of '" + text2 + "'");
+							}
+							text = text.Replace($"{{{n}}}", newValue);
 						}
-						else if (field != null)
+						string key = text.Replace("{i}", l.ToString()).Replace("{x}", m.ToString());
+						switch (prefType)
 						{
-							newValue = field.GetValue(null).ToString();
+						case YanSavePlayerPrefsType.Float:
+							valueDict.Add(key, PlayerPrefs.GetFloat(key));
+							break;
+						case YanSavePlayerPrefsType.Int:
+							valueDict.Add(key, PlayerPrefs.GetInt(key));
+							break;
+						case YanSavePlayerPrefsType.String:
+							valueDict.Add(key, PlayerPrefs.GetString(key));
+							break;
 						}
-						else
-						{
-							Debug.Log("Couldn't grab replacement value of '" + text2 + "'");
-						}
-						text = text.Replace($"{{{m}}}", newValue);
-					}
-					string key = text.Replace("{i}", l.ToString());
-					switch (prefType)
-					{
-					case YanSavePlayerPrefsType.Float:
-						valueDict.Add(key, PlayerPrefs.GetFloat(key));
-						break;
-					case YanSavePlayerPrefsType.Int:
-						valueDict.Add(key, PlayerPrefs.GetInt(key));
-						break;
-					case YanSavePlayerPrefsType.String:
-						valueDict.Add(key, PlayerPrefs.GetString(key));
-						break;
 					}
 				}
 			}
@@ -409,6 +412,33 @@ public static class YanSave
 		}
 		File.WriteAllText(Path.Combine(SaveDataPath, targetSave + ".yansave"), contents);
 		OnSave?.Invoke();
+	}
+
+	private static string Iterate(YanSavePlayerPrefTracker prefTracker, int i, string name, int? x = null)
+	{
+		for (int j = 0; j < prefTracker.PrefFormatValues.Count; j++)
+		{
+			string text = prefTracker.PrefFormatValues[j];
+			int num = text.LastIndexOf('.');
+			Type type = YanSaveHelpers.GrabType(text.Substring(0, num));
+			string newValue = string.Empty;
+			FieldInfo field = type.GetField(text.Substring(num + 1));
+			PropertyInfo property = type.GetProperty(text.Substring(num + 1));
+			if (property != null)
+			{
+				newValue = property.GetValue(null, null).ToString();
+			}
+			else if (field != null)
+			{
+				newValue = field.GetValue(null).ToString();
+			}
+			else
+			{
+				Debug.Log("Couldn't grab replacement value of '" + text + "'");
+			}
+			name = name.Replace($"{{{j}}}", newValue);
+		}
+		return name.Replace("{i}", i.ToString());
 	}
 
 	public static void LoadData(string targetSave, bool recreateMissing = false)
