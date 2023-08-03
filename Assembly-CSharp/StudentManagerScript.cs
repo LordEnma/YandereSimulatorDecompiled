@@ -5074,7 +5074,7 @@ public class StudentManagerScript : MonoBehaviour
 		StudentScript[] students = Students;
 		foreach (StudentScript studentScript in students)
 		{
-			if (!(studentScript != null) || studentScript.StudentID <= 1)
+			if (!(studentScript != null) || studentScript.StudentID <= 1 || studentScript.Burning)
 			{
 				continue;
 			}

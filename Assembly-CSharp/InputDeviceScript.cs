@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputDeviceScript : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class InputDeviceScript : MonoBehaviour
 
 	public int PreviousLength;
 
+	public Type LastGamepadType;
+
 	private void Start()
 	{
 		joystickNames = new string[20];
@@ -31,8 +34,7 @@ public class InputDeviceScript : MonoBehaviour
 		MouseDelta = Input.mousePosition - MousePrevious;
 		MousePrevious = Input.mousePosition;
 		InputDeviceType type = Type;
-		int num = Input.GetJoystickNames().Length;
-		if ((num == 0 && Input.anyKey) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || MouseDelta != Vector3.zero)
+		if ((Input.GetJoystickNames().Length == 0 && Input.anyKey) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || MouseDelta != Vector3.zero)
 		{
 			Type = InputDeviceType.MouseAndKeyboard;
 		}
@@ -54,7 +56,12 @@ public class InputDeviceScript : MonoBehaviour
 				Type = InputDeviceType.Gamepad;
 			}
 		}
-		if (Type != type)
+		bool flag4 = false;
+		if (Gamepad.current != null && Gamepad.current.GetType() != LastGamepadType)
+		{
+			flag4 = true;
+		}
+		if (Type != type || flag4)
 		{
 			PromptSwapScript[] array = Resources.FindObjectsOfTypeAll<PromptSwapScript>();
 			for (int j = 0; j < array.Length; j++)
@@ -64,6 +71,5 @@ public class InputDeviceScript : MonoBehaviour
 		}
 		Horizontal = Input.GetAxis("Horizontal");
 		Vertical = Input.GetAxis("Vertical");
-		PreviousLength = num;
 	}
 }

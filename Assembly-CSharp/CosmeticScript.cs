@@ -538,6 +538,10 @@ public class CosmeticScript : MonoBehaviour
 			OriginalStockings = Stockings;
 			Initialized = true;
 		}
+		if (Cutscene && EventGlobals.OsanaConversation)
+		{
+			EyeType = "";
+		}
 		if (Medibang)
 		{
 			Accessory = 0;

@@ -4302,12 +4302,17 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (Actions[Phase] == StudentActionType.Follow)
 				{
+					Debug.Log("Raibaru-specific code that runs if current phase's action is Follow.");
 					TargetDistance = 0.5f;
 					if (FollowTarget != null && !FollowTarget.Alive && !WitnessedCorpse)
 					{
 						if (FollowTarget.CurrentAction == StudentActionType.Clean)
 						{
 							FollowTarget.FollowTargetDestination.localPosition = new Vector3(-1f, 0f, -1f);
+						}
+						else if (FollowTarget.Meeting)
+						{
+							FollowTarget.FollowTargetDestination.localPosition = new Vector3(-1f, 0f, 0f);
 						}
 						else
 						{
@@ -8282,7 +8287,11 @@ public class StudentScript : MonoBehaviour
 			if (Follower != null)
 			{
 				Debug.Log("Osana is now repositioning her own FollowTargetDestination.");
-				if (CurrentAction == StudentActionType.Clean)
+				if (Meeting)
+				{
+					FollowTargetDestination.localPosition = new Vector3(-1f, 0f, 0f);
+				}
+				else if (CurrentAction == StudentActionType.Clean)
 				{
 					FollowTargetDestination.localPosition = new Vector3(-1f, 0f, -1f);
 				}

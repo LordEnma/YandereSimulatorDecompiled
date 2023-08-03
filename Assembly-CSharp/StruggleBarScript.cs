@@ -106,7 +106,10 @@ public class StruggleBarScript : MonoBehaviour
 			if (Student.TooCloseToWall)
 			{
 				Debug.Log("The character that Yandere-chan is struggling with is way too close to a wall. Let's push them away.");
-				Student.MyController.Move(Student.transform.right * Time.deltaTime * -1f);
+				if (Student.MyController != null)
+				{
+					Student.MyController.Move(Student.transform.right * Time.deltaTime * -1f);
+				}
 			}
 			return;
 		}

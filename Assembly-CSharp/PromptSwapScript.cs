@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 
 public class PromptSwapScript : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class PromptSwapScript : MonoBehaviour
 	public string KeyboardName = string.Empty;
 
 	public string GamepadName = string.Empty;
+
+	public string SonyName = string.Empty;
 
 	public bool DisableButton;
 
@@ -41,7 +45,14 @@ public class PromptSwapScript : MonoBehaviour
 		}
 		if (deviceType == InputDeviceType.Gamepad)
 		{
-			MySprite.spriteName = GamepadName;
+			if (Gamepad.current is DualShockGamepad && SonyName != "")
+			{
+				MySprite.spriteName = SonyName;
+			}
+			else
+			{
+				MySprite.spriteName = GamepadName;
+			}
 			if (MyLetter != null)
 			{
 				MyLetter.text = "";
