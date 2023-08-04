@@ -110,6 +110,10 @@ public class PromptScript : MonoBehaviour
 
 	public bool Door;
 
+	public float WaitTimer;
+
+	public bool Wait;
+
 	public bool Hidden;
 
 	private void Awake()
@@ -276,6 +280,15 @@ public class PromptScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (Wait)
+		{
+			WaitTimer = Mathf.MoveTowards(WaitTimer, 0f, Time.deltaTime);
+			if (WaitTimer != 0f)
+			{
+				return;
+			}
+			Wait = false;
+		}
 		if (!PauseScreen.Show)
 		{
 			if (InView)
@@ -557,6 +570,8 @@ public class PromptScript : MonoBehaviour
 				}
 				else
 				{
+					WaitTimer = Mathf.Sqrt(DistanceSqr) / Yandere.RunSpeed * 0.75f;
+					Wait = true;
 					Hide();
 				}
 			}

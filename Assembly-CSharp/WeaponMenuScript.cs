@@ -64,6 +64,7 @@ public class WeaponMenuScript : MonoBehaviour
 			{
 				if ((IM.DPadUp && IM.TappedUp) || (IM.DPadDown && IM.TappedDown) || (IM.DPadLeft && IM.TappedLeft) || (IM.DPadRight && IM.TappedRight))
 				{
+					Debug.Log("Drapped a direction on the Dpad.");
 					Yandere.EmptyHands();
 					if (IM.DPadLeft)
 					{

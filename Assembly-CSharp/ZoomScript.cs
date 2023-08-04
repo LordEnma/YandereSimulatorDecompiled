@@ -32,48 +32,56 @@ public class ZoomScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Yandere.FollowHips)
-		{
-			base.transform.position = new Vector3(Mathf.MoveTowards(base.transform.position.x, Yandere.Hips.position.x, Time.deltaTime), base.transform.position.y, Mathf.MoveTowards(base.transform.position.z, Yandere.Hips.position.z, Time.deltaTime));
-		}
 		if (Yandere.Stance.Current == StanceType.Crawling)
 		{
 			Height = 0.2f;
-		}
-		else if (Yandere.Stance.Current == StanceType.Crouching)
-		{
-			Height = 0.6f;
+			if (TargetZoom > 0.3f)
+			{
+				TargetZoom = 0.3f;
+			}
 		}
 		else
 		{
-			Height = 1f;
-		}
-		if (!Yandere.FollowHips)
-		{
-			if (Yandere.FlameDemonic)
+			if (Yandere.Stance.Current == StanceType.Crouching)
 			{
-				base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.MoveTowards(base.transform.localPosition.y, Height + Zoom + 0.4f, Time.deltaTime), base.transform.localPosition.z);
-			}
-			else if (Yandere.Slender)
-			{
-				base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.MoveTowards(base.transform.localPosition.y, Height + Zoom + Slender, Time.deltaTime), base.transform.localPosition.z);
-			}
-			else if (Yandere.Stand.Stand.activeInHierarchy)
-			{
-				base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.MoveTowards(base.transform.localPosition.y, Height - Zoom * 0.5f + Slender * 0.5f, Time.deltaTime), base.transform.localPosition.z);
+				Height = 0.6f;
 			}
 			else
 			{
-				base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.Lerp(base.transform.localPosition.y, Height + Zoom, Time.deltaTime * 5f), base.transform.localPosition.z);
+				Height = 1f;
+			}
+			if (TargetZoom > 0.4f)
+			{
+				TargetZoom = 0.4f;
 			}
 		}
-		else if (!Yandere.SithLord)
+		if (Yandere.FollowHips)
 		{
-			base.transform.position = new Vector3(base.transform.position.x, Mathf.MoveTowards(base.transform.position.y, Yandere.Hips.position.y + Zoom, Time.deltaTime), base.transform.position.z);
+			base.transform.position = new Vector3(Mathf.MoveTowards(base.transform.position.x, Yandere.Hips.position.x, Time.deltaTime), base.transform.position.y, Mathf.MoveTowards(base.transform.position.z, Yandere.Hips.position.z, Time.deltaTime));
+			if (!Yandere.SithLord)
+			{
+				base.transform.position = new Vector3(base.transform.position.x, Mathf.MoveTowards(base.transform.position.y, Yandere.Hips.position.y + Zoom, Time.deltaTime), base.transform.position.z);
+			}
+			else
+			{
+				base.transform.position = new Vector3(base.transform.position.x, Mathf.MoveTowards(base.transform.position.y, Yandere.Hips.position.y, Time.deltaTime), base.transform.position.z);
+			}
+		}
+		else if (Yandere.FlameDemonic)
+		{
+			base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.MoveTowards(base.transform.localPosition.y, Height + Zoom + 0.4f, Time.deltaTime), base.transform.localPosition.z);
+		}
+		else if (Yandere.Slender)
+		{
+			base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.MoveTowards(base.transform.localPosition.y, Height + Zoom + Slender, Time.deltaTime), base.transform.localPosition.z);
+		}
+		else if (Yandere.Stand.Stand.activeInHierarchy)
+		{
+			base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.MoveTowards(base.transform.localPosition.y, Height - Zoom * 0.5f + Slender * 0.5f, Time.deltaTime), base.transform.localPosition.z);
 		}
 		else
 		{
-			base.transform.position = new Vector3(base.transform.position.x, Mathf.MoveTowards(base.transform.position.y, Yandere.Hips.position.y, Time.deltaTime), base.transform.position.z);
+			base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.Lerp(base.transform.localPosition.y, Height + Zoom, Time.deltaTime * 5f), base.transform.localPosition.z);
 		}
 		if (!Yandere.Aiming && Yandere.CanMove && !Yandere.PauseScreen.Show && !Yandere.PreparingThrow && !Yandere.Throwing)
 		{
@@ -87,24 +95,13 @@ public class ZoomScript : MonoBehaviour
 		{
 			Slender = Mathf.Lerp(Slender, 0.5f, Time.deltaTime);
 		}
-		else
+		else if (Slender > 0f)
 		{
 			Slender = Mathf.Lerp(Slender, 0f, Time.deltaTime);
 		}
 		if (TargetZoom < 0f)
 		{
 			TargetZoom = 0f;
-		}
-		if (Yandere.Stance.Current == StanceType.Crawling)
-		{
-			if (TargetZoom > 0.3f)
-			{
-				TargetZoom = 0.3f;
-			}
-		}
-		else if (TargetZoom > 0.4f)
-		{
-			TargetZoom = 0.4f;
 		}
 		if (Zoom != TargetZoom)
 		{
@@ -146,7 +143,7 @@ public class ZoomScript : MonoBehaviour
 		{
 			base.transform.position = new Vector3(Mathf.MoveTowards(base.transform.position.x, Yandere.Hips.position.x, Time.deltaTime * 10f), base.transform.position.y, Mathf.MoveTowards(base.transform.position.z, Yandere.Hips.position.z, Time.deltaTime * 10f));
 		}
-		else
+		else if (base.transform.localPosition != Target)
 		{
 			base.transform.localPosition = Vector3.MoveTowards(base.transform.localPosition, Target, Time.deltaTime * ShakeStrength * 0.1f);
 		}

@@ -20,6 +20,8 @@ public class ClockScript : MonoBehaviour
 
 	public CameraEffectsScript CameraEffects;
 
+	public GrandfatherScript Grandfather;
+
 	public LoveManagerScript LoveManager;
 
 	public YandereScript Yandere;
@@ -380,9 +382,12 @@ public class ClockScript : MonoBehaviour
 		if (Minute != LastMinute)
 		{
 			UpdateClock();
+			UpdateClockHands();
+			if (!Horror)
+			{
+				UpdateLighting();
+			}
 		}
-		MinuteHand.localEulerAngles = new Vector3(MinuteHand.localEulerAngles.x, MinuteHand.localEulerAngles.y, Minute * 6f);
-		HourHand.localEulerAngles = new Vector3(HourHand.localEulerAngles.x, HourHand.localEulerAngles.y, Hour * 30f);
 		if (LateStudent && HourTime > 7.9f)
 		{
 			ActivateLateStudent();
@@ -479,7 +484,6 @@ public class ClockScript : MonoBehaviour
 			StudentManager.SleuthPhase = 3;
 			StudentManager.UpdateSleuths();
 		}
-		Sun.eulerAngles = new Vector3(Sun.eulerAngles.x, Sun.eulerAngles.y, -45f + 90f * (PresentTime - 420f) / 660f);
 		if (!Horror)
 		{
 			if (StudentManager.WestBathroomArea.bounds.Contains(Yandere.transform.position) || StudentManager.EastBathroomArea.bounds.Contains(Yandere.transform.position))
@@ -506,19 +510,6 @@ public class ClockScript : MonoBehaviour
 			if (BathroomDimSprite.alpha != BathroomDim)
 			{
 				BathroomDimSprite.alpha = Mathf.MoveTowards(BathroomDimSprite.alpha, BathroomDim, Time.deltaTime * 10f);
-			}
-			AmbientLightDim = 0.75f;
-			if (PresentTime > 930f)
-			{
-				DayProgress = (PresentTime - 930f) / 150f;
-				MainLight.color = new Color(1f - 0.1490196f * DayProgress, 1f - 0.40392154f * DayProgress, 1f - 0.70980394f * DayProgress);
-				RenderSettings.ambientLight = new Color(1f - 0.1490196f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 0.40392154f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 0.70980394f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress));
-				SkyboxColor = new Color(1f - 0.1490196f * DayProgress - 0.5f * (1f - DayProgress), 1f - 0.40392154f * DayProgress - 0.5f * (1f - DayProgress), 1f - 0.70980394f * DayProgress - 0.5f * (1f - DayProgress));
-				RenderSettings.skybox.SetColor("_Tint", new Color(SkyboxColor.r, SkyboxColor.g, SkyboxColor.b));
-			}
-			else
-			{
-				RenderSettings.ambientLight = new Color(AmbientLightDim, AmbientLightDim, AmbientLightDim);
 			}
 		}
 		if (!TimeSkip)
@@ -705,6 +696,31 @@ public class ClockScript : MonoBehaviour
 		}
 		TimeText = HourNumber + ":" + MinuteNumber + ((Hour < 12f) ? " AM" : " PM");
 		TimeLabel.text = TimeText;
+	}
+
+	public void UpdateClockHands()
+	{
+		MinuteHand.localEulerAngles = new Vector3(MinuteHand.localEulerAngles.x, MinuteHand.localEulerAngles.y, Minute * 6f);
+		HourHand.localEulerAngles = new Vector3(HourHand.localEulerAngles.x, HourHand.localEulerAngles.y, Hour * 30f);
+		Grandfather.UpdateClockHands();
+	}
+
+	public void UpdateLighting()
+	{
+		Sun.eulerAngles = new Vector3(Sun.eulerAngles.x, Sun.eulerAngles.y, -45f + 90f * (PresentTime - 420f) / 660f);
+		AmbientLightDim = 0.75f;
+		if (PresentTime > 930f)
+		{
+			DayProgress = (PresentTime - 930f) / 150f;
+			MainLight.color = new Color(1f - 0.1490196f * DayProgress, 1f - 0.40392154f * DayProgress, 1f - 0.70980394f * DayProgress);
+			RenderSettings.ambientLight = new Color(1f - 0.1490196f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 0.40392154f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 0.70980394f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress));
+			SkyboxColor = new Color(1f - 0.1490196f * DayProgress - 0.5f * (1f - DayProgress), 1f - 0.40392154f * DayProgress - 0.5f * (1f - DayProgress), 1f - 0.70980394f * DayProgress - 0.5f * (1f - DayProgress));
+			RenderSettings.skybox.SetColor("_Tint", new Color(SkyboxColor.r, SkyboxColor.g, SkyboxColor.b));
+		}
+		else
+		{
+			RenderSettings.ambientLight = new Color(AmbientLightDim, AmbientLightDim, AmbientLightDim);
+		}
 	}
 
 	public void BecomeEighties()

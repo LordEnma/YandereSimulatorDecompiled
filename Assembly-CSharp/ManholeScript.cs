@@ -42,6 +42,7 @@ public class ManholeScript : MonoBehaviour
 					}
 					if (Prompt.Circle[0].fillAmount == 0f)
 					{
+						Prompt.Circle[0].fillAmount = 1f;
 						Prompt.Text[0] = "Dump Body";
 						AudioSource.PlayClipAtPoint(MoveCover, base.transform.position);
 						AnimateTimer = 1f;
@@ -116,6 +117,7 @@ public class ManholeScript : MonoBehaviour
 			Prompt.HideButton[0] = false;
 			if (Prompt.Circle[0].fillAmount == 0f)
 			{
+				Prompt.Circle[0].fillAmount = 1f;
 				Debug.Log("The player has just dumped a corpse.");
 				Corpse = Prompt.Yandere.Ragdoll.GetComponent<RagdollScript>();
 				Prompt.Yandere.EmptyHands();
@@ -144,6 +146,7 @@ public class ManholeScript : MonoBehaviour
 			{
 				return;
 			}
+			Prompt.Circle[0].fillAmount = 1f;
 			if (Prompt.Yandere.Armed)
 			{
 				Debug.Log("Attempting to dispose of weapon.");
@@ -153,6 +156,7 @@ public class ManholeScript : MonoBehaviour
 				Prompt.Yandere.Police.BloodyWeapons--;
 				equippedWeapon.Disposed = true;
 				equippedWeapon.gameObject.SetActive(value: false);
+				Prompt.Yandere.DropSpecifically = false;
 				return;
 			}
 			PickUpScript pickUp = Prompt.Yandere.PickUp;

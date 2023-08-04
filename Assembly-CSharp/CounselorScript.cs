@@ -1428,29 +1428,45 @@ public class CounselorScript : MonoBehaviour
 			{
 				Reticle.SetActive(value: true);
 				Cursor.visible = false;
-				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 20f, Input.GetAxis("Vertical") * 20f, 0f);
-				if (Reticle.transform.localPosition.x > 975f)
-				{
-					Reticle.transform.localPosition = new Vector3(975f, Reticle.transform.localPosition.y, Reticle.transform.localPosition.z);
-				}
-				if (Reticle.transform.localPosition.x < -975f)
-				{
-					Reticle.transform.localPosition = new Vector3(-975f, Reticle.transform.localPosition.y, Reticle.transform.localPosition.z);
-				}
-				if (Reticle.transform.localPosition.y > 525f)
-				{
-					Reticle.transform.localPosition = new Vector3(Reticle.transform.localPosition.x, 525f, Reticle.transform.localPosition.z);
-				}
-				if (Reticle.transform.localPosition.y < -525f)
-				{
-					Reticle.transform.localPosition = new Vector3(Reticle.transform.localPosition.x, -525f, Reticle.transform.localPosition.z);
-				}
+				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 1000f * Time.deltaTime, Input.GetAxis("Vertical") * 1000f * Time.deltaTime, 0f);
 			}
 			else
 			{
 				Reticle.SetActive(value: true);
 				Cursor.visible = true;
-				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 20f, Input.GetAxis("Vertical") * 20f, 0f);
+				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 1000f * Time.deltaTime, Input.GetAxis("Vertical") * 1000f * Time.deltaTime, 0f);
+				if (Input.GetKey("up"))
+				{
+					Reticle.transform.localPosition += new Vector3(0f, 1000f * Time.deltaTime, 0f);
+				}
+				if (Input.GetKey("down"))
+				{
+					Reticle.transform.localPosition -= new Vector3(0f, 1000f * Time.deltaTime, 0f);
+				}
+				if (Input.GetKey("right"))
+				{
+					Reticle.transform.localPosition += new Vector3(1000f * Time.deltaTime, 0f, 0f);
+				}
+				if (Input.GetKey("left"))
+				{
+					Reticle.transform.localPosition -= new Vector3(1000f * Time.deltaTime, 0f, 0f);
+				}
+			}
+			if (Reticle.transform.localPosition.x > 975f)
+			{
+				Reticle.transform.localPosition = new Vector3(975f, Reticle.transform.localPosition.y, Reticle.transform.localPosition.z);
+			}
+			if (Reticle.transform.localPosition.x < -975f)
+			{
+				Reticle.transform.localPosition = new Vector3(-975f, Reticle.transform.localPosition.y, Reticle.transform.localPosition.z);
+			}
+			if (Reticle.transform.localPosition.y > 525f)
+			{
+				Reticle.transform.localPosition = new Vector3(Reticle.transform.localPosition.x, 525f, Reticle.transform.localPosition.z);
+			}
+			if (Reticle.transform.localPosition.y < -525f)
+			{
+				Reticle.transform.localPosition = new Vector3(Reticle.transform.localPosition.x, -525f, Reticle.transform.localPosition.z);
 			}
 			for (int j = 1; j < 7; j++)
 			{

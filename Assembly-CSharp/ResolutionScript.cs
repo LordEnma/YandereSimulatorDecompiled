@@ -42,6 +42,8 @@ public class ResolutionScript : MonoBehaviour
 
 	public int Rs;
 
+	public int Ts;
+
 	public int ID = 1;
 
 	private void Start()
@@ -168,6 +170,14 @@ public class ResolutionScript : MonoBehaviour
 				PlayerPrefs.DeleteAll();
 				Screen.SetResolution(1280, 720, fullscreen: false);
 				SceneManager.LoadScene("ResolutionScene");
+			}
+		}
+		if (Input.GetKeyDown("t"))
+		{
+			Ts++;
+			if (Ts == 10)
+			{
+				SceneManager.LoadScene("StreetScene");
 			}
 		}
 		if (Input.GetKeyDown(KeyCode.KeypadEnter))

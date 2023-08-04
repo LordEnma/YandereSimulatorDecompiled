@@ -2377,7 +2377,10 @@ public class YandereScript : MonoBehaviour
 			{
 				Running = !Running;
 			}
-			MyController.Move(Physics.gravity * Time.deltaTime);
+			if (base.transform.position.y > 0f)
+			{
+				MyController.Move(Physics.gravity * Time.deltaTime);
+			}
 			v = Input.GetAxis("Vertical");
 			h = Input.GetAxis("Horizontal");
 			FlapSpeed = Mathf.Abs(v) + Mathf.Abs(h);
@@ -2963,7 +2966,7 @@ public class YandereScript : MonoBehaviour
 											{
 												if (!CirnoHair.activeInHierarchy && !TornadoHair.activeInHierarchy && !BladeHair.activeInHierarchy)
 												{
-													LaughAnim = "f02_laugh_01";
+													LaughAnim = "f02_giggle_02";
 													LaughClip = Laugh1;
 													LaughIntensity += 1f;
 													MyAudio.clip = LaughClip;
@@ -2979,6 +2982,10 @@ public class YandereScript : MonoBehaviour
 												Mopping = false;
 												CanMove = false;
 												Teeth.SetActive(value: false);
+												if (StudentManager.Eighties)
+												{
+													LoseGentleEyes();
+												}
 											}
 											else
 											{
@@ -3885,19 +3892,19 @@ public class YandereScript : MonoBehaviour
 				LaughIntensity += 1f;
 				if (LaughIntensity <= 5f)
 				{
-					LaughAnim = "f02_laugh_01";
+					LaughAnim = "f02_giggle_02";
 					LaughClip = Laugh1;
 					LaughTimer = 0.5f;
 				}
 				else if (LaughIntensity <= 10f)
 				{
-					LaughAnim = "f02_laugh_02";
+					LaughAnim = "f02_giggle_01";
 					LaughClip = Laugh2;
 					LaughTimer = 1f;
 				}
 				else if (LaughIntensity <= 15f)
 				{
-					LaughAnim = "f02_laugh_03";
+					LaughAnim = "f02_giggle_03";
 					LaughClip = Laugh3;
 					LaughTimer = 1.5f;
 				}
@@ -7419,18 +7426,22 @@ public class YandereScript : MonoBehaviour
 
 	public void EmptyHands()
 	{
+		Debug.Log("Yandere-chan has been told to empty her hands.");
 		if (Carrying || HeavyWeight)
 		{
 			StopCarrying();
 		}
 		if (Armed)
 		{
+			Debug.Log("Yandere-chan was armed at the time.");
 			if (DropSpecifically)
 			{
+				Debug.Log("The ''DropSpecifically'' variable was true.");
 				EquippedWeapon.Drop();
 			}
 			else
 			{
+				Debug.Log("The ''DropSpecifically'' variable was false.");
 				Unequip();
 			}
 		}

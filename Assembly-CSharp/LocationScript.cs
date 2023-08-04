@@ -10,29 +10,24 @@ public class LocationScript : MonoBehaviour
 
 	private void Start()
 	{
-		Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, 0f);
-		BG.color = new Color(BG.color.r, BG.color.g, BG.color.b, 0f);
+		BG.alpha = 0f;
+		Label.alpha = 0f;
 	}
 
 	private void Update()
 	{
 		if (Show)
 		{
-			BG.color = new Color(BG.color.r, BG.color.g, BG.color.b, BG.color.a + Time.deltaTime * 10f);
-			if (BG.color.a > 1f)
+			if (BG.alpha < 1f)
 			{
-				BG.color = new Color(BG.color.r, BG.color.g, BG.color.b, 1f);
+				BG.alpha = Mathf.MoveTowards(BG.alpha, 1f, Time.deltaTime * 10f);
+				Label.alpha = BG.alpha;
 			}
-			Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, BG.color.a);
 		}
-		else
+		else if (BG.alpha > 0f)
 		{
-			BG.color = new Color(BG.color.r, BG.color.g, BG.color.b, BG.color.a - Time.deltaTime * 10f);
-			if (BG.color.a < 0f)
-			{
-				BG.color = new Color(BG.color.r, BG.color.g, BG.color.b, 0f);
-			}
-			Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, BG.color.a);
+			BG.alpha = Mathf.MoveTowards(BG.alpha, 0f, Time.deltaTime * 10f);
+			Label.alpha = BG.alpha;
 		}
 	}
 }

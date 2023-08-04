@@ -1316,8 +1316,11 @@ public class CosmeticScript : MonoBehaviour
 		{
 			if (!Teacher)
 			{
-				FemaleHair[Hairstyle].SetActive(value: true);
-				HairRenderer = FemaleHairRenderers[Hairstyle];
+				if (Hairstyle < FemaleHair.Length)
+				{
+					FemaleHair[Hairstyle].SetActive(value: true);
+					HairRenderer = FemaleHairRenderers[Hairstyle];
+				}
 				SetFemaleUniform();
 			}
 			else

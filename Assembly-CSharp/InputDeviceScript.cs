@@ -60,6 +60,7 @@ public class InputDeviceScript : MonoBehaviour
 		if (Gamepad.current != null && Gamepad.current.GetType() != LastGamepadType)
 		{
 			flag4 = true;
+			LastGamepadType = Gamepad.current.GetType();
 		}
 		if (Type != type || flag4)
 		{

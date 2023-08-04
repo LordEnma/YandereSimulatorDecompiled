@@ -232,11 +232,11 @@ public static class AnimNames
 
 	public const string FemaleKnifeLowSanityB = "f02_knifeLowSanityB_00";
 
-	public const string FemaleLaugh01 = "f02_laugh_01";
+	public const string FemaleLaugh01 = "f02_giggle_02";
 
-	public const string FemaleLaugh02 = "f02_laugh_02";
+	public const string FemaleLaugh02 = "f02_giggle_01";
 
-	public const string FemaleLaugh03 = "f02_laugh_03";
+	public const string FemaleLaugh03 = "f02_giggle_03";
 
 	public const string FemaleLaugh04 = "f02_laugh_04";
 
