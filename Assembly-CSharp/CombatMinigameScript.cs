@@ -665,6 +665,7 @@ public class CombatMinigameScript : MonoBehaviour
 				Yandere.DelinquentFighting = false;
 				Yandere.RPGCamera.enabled = true;
 				Yandere.CannotRecover = false;
+				Yandere.ChaseTimer = 0f;
 				Yandere.CanMove = true;
 				Yandere.Chased = false;
 				Delinquent.Threatened = false;
@@ -850,6 +851,7 @@ public class CombatMinigameScript : MonoBehaviour
 		Yandere.DelinquentFighting = false;
 		Yandere.RPGCamera.enabled = true;
 		Yandere.CannotRecover = false;
+		Yandere.ChaseTimer = 0f;
 		Yandere.CanMove = true;
 		Yandere.Chased = false;
 		CombatPanel.alpha = 0f;

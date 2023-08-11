@@ -307,12 +307,23 @@ public class GenericRivalBagScript : MonoBehaviour
 						PromptBar.UpdateButtons();
 						Menu = 6;
 						UpdateMenuLabels();
+						bool flag = false;
 						for (int i = 1; i < 26; i++)
 						{
-							Prompt.Yandere.StudentManager.SetTopicLearnedByStudent(i, Prompt.Yandere.StudentManager.RivalID, boolean: true);
+							if (!Prompt.Yandere.StudentManager.GetTopicLearnedByStudent(i, Prompt.Yandere.StudentManager.RivalID))
+							{
+								flag = true;
+							}
 						}
-						Prompt.Yandere.NotificationManager.CustomText = "Learned the rival's likes & dislikes";
-						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						if (flag)
+						{
+							Prompt.Yandere.NotificationManager.CustomText = "Learned the rival's likes & dislikes";
+							Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
+						for (int j = 1; j < 26; j++)
+						{
+							Prompt.Yandere.StudentManager.SetTopicLearnedByStudent(j, Prompt.Yandere.StudentManager.RivalID, boolean: true);
+						}
 					}
 					else if (Selected == 4)
 					{

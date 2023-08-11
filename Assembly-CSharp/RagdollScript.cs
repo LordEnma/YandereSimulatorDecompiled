@@ -395,7 +395,7 @@ public class RagdollScript : MonoBehaviour
 									Yandere.ResetYandereEffects();
 									Yandere.YandereVision = false;
 								}
-								Yandere.CharacterAnimation.CrossFade("f02_dismember_00");
+								Yandere.CharacterAnimation.CrossFade("f02_wrapCorpse_00");
 								Yandere.transform.LookAt(new Vector3(Student.Hips.transform.position.x, Yandere.transform.position.y, Student.Hips.transform.position.z));
 								Yandere.RPGCamera.transform.position = Yandere.DismemberSpot.position;
 								Yandere.RPGCamera.transform.eulerAngles = Yandere.DismemberSpot.eulerAngles;

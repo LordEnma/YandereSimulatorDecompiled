@@ -54,7 +54,6 @@ public class TrashCanScript : MonoBehaviour
 			{
 				if (Yandere.Armed)
 				{
-					Debug.Log("Player just armed themself, so containers need to update their prompts now.");
 					UpdatePrompt();
 				}
 			}

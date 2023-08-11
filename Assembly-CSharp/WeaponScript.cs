@@ -132,6 +132,8 @@ public class WeaponScript : MonoBehaviour
 
 	public Color OriginalColor;
 
+	public float TargetWeaponDistance = 1.2f;
+
 	public float OriginalOffset;
 
 	public float KinematicTimer;
@@ -245,6 +247,10 @@ public class WeaponScript : MonoBehaviour
 			}
 		}
 		Innocent = !Suspicious;
+		if (WeaponID == 7 || WeaponID == 10 || WeaponID == 13)
+		{
+			TargetWeaponDistance = 5f;
+		}
 	}
 
 	public string GetTypePrefix()

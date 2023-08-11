@@ -430,6 +430,7 @@ public class ClassScript : MonoBehaviour
 				else if (!Portal.FadeOut)
 				{
 					Portal.Yandere.PhysicalGrade = PhysicalGrade;
+					Portal.Yandere.CharacterAnimation["f02_wrapCorpse_00"].speed = 1f + (float)Portal.Yandere.PhysicalGrade * 0.2f;
 					Portal.Yandere.CameraEffects.UpdateDOF(Portal.OriginalDOF);
 					Portal.ClassDarkness.alpha = 1f;
 					Portal.Transition = true;

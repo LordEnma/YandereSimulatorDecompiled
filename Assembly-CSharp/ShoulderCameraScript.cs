@@ -711,6 +711,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			{
 				Yandere.CanMove = true;
 			}
+			Yandere.ChaseTimer = 0f;
 			Yandere.Pursuer = null;
 			Yandere.Chased = false;
 			Yandere.Won = false;

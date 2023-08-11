@@ -406,6 +406,8 @@ public class YandereScript : MonoBehaviour
 
 	public float WeaponTimer;
 
+	public float ChaseTimer;
+
 	public float CrawlTimer;
 
 	public float GloveTimer;
@@ -1966,6 +1968,7 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation["f02_sithAttackHard_01"].speed = 1.5f;
 		CharacterAnimation["f02_sithAttackHard_02"].speed = 1.5f;
 		CharacterAnimation["f02_nierRun_00"].speed = 1.5f;
+		CharacterAnimation["f02_wrapCorpse_00"].speed = 1f + (float)PhysicalGrade * 0.2f;
 		AssignFilters();
 		ResetYandereEffects();
 		ResetSenpaiEffects();
@@ -4256,7 +4259,7 @@ public class YandereScript : MonoBehaviour
 		{
 			StopDismembering();
 		}
-		if (WrappingCorpse && CharacterAnimation["f02_dismember_00"].time >= CharacterAnimation["f02_dismember_00"].length)
+		if (WrappingCorpse && CharacterAnimation["f02_wrapCorpse_00"].time >= CharacterAnimation["f02_wrapCorpse_00"].length)
 		{
 			StopWrappingCorpse();
 		}
@@ -7138,24 +7141,15 @@ public class YandereScript : MonoBehaviour
 			}
 			SanityLabel.text = (100f - a * 100f).ToString("0") + "%";
 		}
-		if (CanMove)
+		if (CanMove && sanity < 33.333f && !NearSenpai && NearestPrompt == null)
 		{
-			if (sanity < 33.333f && !NearSenpai && NearestPrompt == null)
+			GiggleTimer += Time.deltaTime * (1f - sanity / 33.333f);
+			if (GiggleTimer > 10f)
 			{
-				GiggleTimer += Time.deltaTime * (1f - sanity / 33.333f);
-				if (GiggleTimer > 10f)
-				{
-					Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
-					AudioSource.PlayClipAtPoint(CreepyGiggles[Random.Range(0, CreepyGiggles.Length)], base.transform.position);
-					InsaneLines.Play();
-					GiggleTimer = 0f;
-				}
-			}
-			if (Chased || Pursuer != null)
-			{
-				Debug.Log("CanMove was true, but Chased was true or Pursuer was not null...");
-				CanMove = false;
-				Chased = true;
+				Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
+				AudioSource.PlayClipAtPoint(CreepyGiggles[Random.Range(0, CreepyGiggles.Length)], base.transform.position);
+				InsaneLines.Play();
+				GiggleTimer = 0f;
 			}
 		}
 		if (FightHasBrokenUp)

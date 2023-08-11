@@ -990,6 +990,8 @@ public class StudentScript : MonoBehaviour
 
 	public bool Ignoring;
 
+	public bool Pursuing;
+
 	public bool Spraying;
 
 	public bool Tripping;
@@ -1082,6 +1084,8 @@ public class StudentScript : MonoBehaviour
 
 	public float PatrolTimer;
 
+	public float PursueTimer;
+
 	public float ReportTimer;
 
 	public float SplashTimer;
@@ -1127,6 +1131,8 @@ public class StudentScript : MonoBehaviour
 	public float WaitTimer;
 
 	public float SewTimer;
+
+	public float TargetWeaponDistance;
 
 	public float OriginalYPosition;
 
@@ -8504,9 +8510,18 @@ public class StudentScript : MonoBehaviour
 							}
 							Pathfinding.canSearch = true;
 							Pathfinding.canMove = true;
+							if (Pursuing && Yandere.CanMove)
+							{
+								Debug.Log("a character is pursuing Yandere, yet Yandere can move?");
+								PursueTimer += Time.deltaTime;
+								if (PursueTimer > 1f)
+								{
+									Yandere.CanMove = false;
+								}
+							}
 							if (Yandere.Chased && Yandere.Pursuer == this)
 							{
-								Debug.Log(Name + " is chasing Yandere-chan.");
+								Debug.Log(Name + " is now chasing Yandere-chan.");
 								Pathfinding.repathRate = 0f;
 								Pathfinding.speed = 5f;
 								ChaseTimer += Time.deltaTime;
@@ -12115,13 +12130,14 @@ public class StudentScript : MonoBehaviour
 					Pathfinding.canMove = true;
 					Pathfinding.speed = WalkSpeed;
 					Hurry = false;
+					TargetWeaponDistance = BloodPool.GetComponent<WeaponScript>().TargetWeaponDistance;
 					ReturningMisplacedWeaponPhase++;
 				}
 			}
 			else
 			{
 				CharacterAnimation.CrossFade(WalkAnim);
-				if (DistanceToDestination < 1.2f)
+				if (DistanceToDestination < TargetWeaponDistance)
 				{
 					ReturnMisplacedWeapon();
 				}
@@ -17109,6 +17125,7 @@ public class StudentScript : MonoBehaviour
 		}
 		TargetDistance = 1f;
 		AlarmTimer = 0f;
+		Pursuing = true;
 		Chasing = false;
 		Fleeing = false;
 		StudentManager.UpdateStudents();
