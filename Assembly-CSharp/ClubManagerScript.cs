@@ -1038,7 +1038,7 @@ public class ClubManagerScript : MonoBehaviour
 		}
 		else if (Yandere.Club == ClubType.Sports)
 		{
-			Yandere.RunSpeed += 1f;
+			Yandere.ClubSpeedBonus = 1f;
 			if (Yandere.Armed)
 			{
 				Yandere.EquippedWeapon.SuspicionCheck();
@@ -1147,7 +1147,7 @@ public class ClubManagerScript : MonoBehaviour
 				}
 				else if (Yandere.Club == ClubType.Sports)
 				{
-					Yandere.RunSpeed -= 1f;
+					Yandere.ClubSpeedBonus = 0f;
 					if (Yandere.Armed)
 					{
 						Yandere.Club = ClubType.None;

@@ -127,7 +127,6 @@ public class CalendarScript : MonoBehaviour
 	private void Start()
 	{
 		GameGlobals.AlphabetMode = false;
-		Debug.Log("At this moment, ConversationGlobals.GetTopicDiscussedWithStudent(1, 2) is: " + ConversationGlobals.GetTopicDiscussedWithStudent(1, 2));
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;

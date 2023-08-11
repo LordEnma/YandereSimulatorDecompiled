@@ -33,7 +33,7 @@ public class LibraryFlyerCopyScript : MonoBehaviour
 		{
 			return;
 		}
-		Prompt.Yandere.CharacterAnimation.CrossFade("f02_rummage_00");
+		Prompt.Yandere.CharacterAnimation.CrossFade("f02_usingPrinter_00");
 		Prompt.Yandere.transform.rotation = Quaternion.Slerp(Prompt.Yandere.transform.rotation, Destination.rotation, Time.deltaTime * 10f);
 		Prompt.Yandere.MoveTowardsTarget(Destination.position);
 		Timer += Time.deltaTime;

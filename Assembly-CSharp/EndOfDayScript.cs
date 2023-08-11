@@ -243,6 +243,7 @@ public class EndOfDayScript : MonoBehaviour
 	public void Start()
 	{
 		Debug.Log("The End-of-Day GameObject has just fired its Start() function.");
+		StudentManager.PlazaOccluder.gameObject.SetActive(value: false);
 		VoidGoddess.Start();
 		GameGlobals.PoliceYesterday = false;
 		YandereInitialPosition = Yandere.transform.position;
@@ -2621,6 +2622,7 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			StudentManager.DialogueWheel.AdviceWindow.SaveGiftStatus();
 		}
+		Debug.Log("Right here, at the End of Day Results Screen, SchemeGlobals.GetSchemeStage(6) is: " + SchemeGlobals.GetSchemeStage(6));
 		if (SchemeGlobals.GetSchemeStage(6) == 8)
 		{
 			SchemeGlobals.SetSchemeStage(6, 9);

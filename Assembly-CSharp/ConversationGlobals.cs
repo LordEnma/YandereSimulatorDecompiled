@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public static class ConversationGlobals
 {
@@ -78,16 +77,13 @@ public static class ConversationGlobals
 
 	public static void DeleteAll()
 	{
-		Debug.Log("Deleting all conversation globals now.");
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_TopicDiscovered_", KeysOfTopicDiscovered());
-		Debug.Log("Deleting KeysOfTopicLearnedByStudent() now.");
 		IntAndIntPair[] array = KeysOfTopicLearnedByStudent();
 		foreach (IntAndIntPair intAndIntPair in array)
 		{
 			Globals.Delete("Profile_" + GameGlobals.Profile + "_TopicLearnedByStudent_" + intAndIntPair.first + "_" + intAndIntPair.second);
 		}
 		KeysHelper.Delete("Profile_" + GameGlobals.Profile + "_TopicLearnedByStudent_");
-		Debug.Log("Deleting KeysOfTopicDiscussedWithStudent() now.");
 		array = KeysOfTopicDiscussedWithStudent();
 		foreach (IntAndIntPair intAndIntPair2 in array)
 		{

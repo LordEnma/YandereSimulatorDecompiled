@@ -51,6 +51,10 @@ public class InputDeviceScript : MonoBehaviour
 			}
 			bool flag2 = Math.Abs(Input.GetAxis("DpadX")) > 0.5f || Math.Abs(Input.GetAxis("DpadY")) > 0.5f;
 			bool flag3 = Mathf.Abs(Input.GetAxis("Vertical")) == 1f || Mathf.Abs(Input.GetAxis("Horizontal")) == 1f;
+			if (!flag3 && (Mathf.Abs(Input.GetAxis(InputNames.Xbox_JoyX)) == 1f || Mathf.Abs(Input.GetAxis(InputNames.Xbox_JoyY)) == 1f))
+			{
+				flag3 = true;
+			}
 			if (flag || flag2 || flag3)
 			{
 				Type = InputDeviceType.Gamepad;

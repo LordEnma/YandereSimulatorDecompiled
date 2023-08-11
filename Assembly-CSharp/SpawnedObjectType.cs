@@ -7,5 +7,6 @@ public enum SpawnedObjectType
 	BangSnaps = 4,
 	StinkBombs = 5,
 	SaltySnack = 6,
-	CleanUniform = 7
+	CleanUniform = 7,
+	TarpBag = 8
 }

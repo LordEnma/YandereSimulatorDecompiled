@@ -170,6 +170,8 @@ public class SmokeBombScript : MonoBehaviour
 			}
 			Student.FocusOnYandere = false;
 			Student.Distracted = true;
+			Student.Drownable = false;
+			Student.Pushable = false;
 			Student.Alarmed = false;
 			Student.Routine = false;
 			if (BigStink)

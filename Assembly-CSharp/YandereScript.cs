@@ -442,6 +442,8 @@ public class YandereScript : MonoBehaviour
 
 	public float SenpaiThreshold;
 
+	public float ClubSpeedBonus;
+
 	public float InteractWeight;
 
 	public float LaughIntensity;
@@ -499,6 +501,8 @@ public class YandereScript : MonoBehaviour
 	public int PreviousSchoolwear;
 
 	public int NearestCorpseID;
+
+	public int PantySpeedBonus;
 
 	public int VendingMachines;
 
@@ -1939,7 +1943,6 @@ public class YandereScript : MonoBehaviour
 		}
 		SenpaiThreshold = 1f - (float)PlayerGlobals.ShrineItems * 0.1f;
 		PhysicalGrade = ClassGlobals.PhysicalGrade;
-		SpeedBonus = PlayerGlobals.SpeedBonus;
 		Friends = PlayerGlobals.Friends;
 		Club = ClubGlobals.Club;
 		SanitySmudges.color = new Color(1f, 1f, 1f, 0f);
@@ -2060,7 +2063,7 @@ public class YandereScript : MonoBehaviour
 		}
 		if (PlayerGlobals.PantiesEquipped == 5)
 		{
-			RunSpeed += 1f;
+			PantySpeedBonus++;
 		}
 		if (PlayerGlobals.Headset)
 		{
@@ -2429,8 +2432,9 @@ public class YandereScript : MonoBehaviour
 						}
 						else if (!Dragging && !Mopping)
 						{
+							float num = RunSpeed + ClubSpeedBonus + (float)PantySpeedBonus + (float)PhysicalGrade * 0.2f;
 							CharacterAnimation.CrossFade(RunAnim);
-							MyController.Move(base.transform.forward * (RunSpeed + (float)(PhysicalGrade + SpeedBonus) * 0.25f) * Time.deltaTime);
+							MyController.Move(base.transform.forward * num * Time.deltaTime);
 						}
 						else if (Mopping)
 						{
@@ -7134,15 +7138,24 @@ public class YandereScript : MonoBehaviour
 			}
 			SanityLabel.text = (100f - a * 100f).ToString("0") + "%";
 		}
-		if (CanMove && sanity < 33.333f && !NearSenpai && NearestPrompt == null)
+		if (CanMove)
 		{
-			GiggleTimer += Time.deltaTime * (1f - sanity / 33.333f);
-			if (GiggleTimer > 10f)
+			if (sanity < 33.333f && !NearSenpai && NearestPrompt == null)
 			{
-				Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
-				AudioSource.PlayClipAtPoint(CreepyGiggles[Random.Range(0, CreepyGiggles.Length)], base.transform.position);
-				InsaneLines.Play();
-				GiggleTimer = 0f;
+				GiggleTimer += Time.deltaTime * (1f - sanity / 33.333f);
+				if (GiggleTimer > 10f)
+				{
+					Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
+					AudioSource.PlayClipAtPoint(CreepyGiggles[Random.Range(0, CreepyGiggles.Length)], base.transform.position);
+					InsaneLines.Play();
+					GiggleTimer = 0f;
+				}
+			}
+			if (Chased || Pursuer != null)
+			{
+				Debug.Log("CanMove was true, but Chased was true or Pursuer was not null...");
+				CanMove = false;
+				Chased = true;
 			}
 		}
 		if (FightHasBrokenUp)
@@ -7217,6 +7230,8 @@ public class YandereScript : MonoBehaviour
 			if ((Gloved || WearingRaincoat) && !Gloves.Blood.enabled)
 			{
 				GloveAttacher.newRenderer.material.mainTexture = BloodyGloveTexture;
+				Gloves.Blood.material.SetColor("_TintColor", new Color(0.25f, 0.25f, 0.25f, 1f));
+				Gloves.Blood.material.mainTexture = BloodTextures[5];
 				Gloves.PickUp.Evidence = true;
 				Gloves.Blood.enabled = true;
 				GloveBlood = 1;
@@ -7426,7 +7441,6 @@ public class YandereScript : MonoBehaviour
 
 	public void EmptyHands()
 	{
-		Debug.Log("Yandere-chan has been told to empty her hands.");
 		if (Carrying || HeavyWeight)
 		{
 			StopCarrying();
@@ -7674,6 +7688,8 @@ public class YandereScript : MonoBehaviour
 	{
 		if (Bloodiness > 0f && !Gloves.Blood.enabled)
 		{
+			Gloves.Blood.material.SetColor("_TintColor", new Color(0.25f, 0.25f, 0.25f, 1f));
+			Gloves.Blood.material.mainTexture = BloodTextures[5];
 			Gloves.PickUp.Evidence = true;
 			Gloves.Blood.enabled = true;
 		}
@@ -9534,6 +9550,7 @@ public class YandereScript : MonoBehaviour
 	{
 		PauseScreen.NewSettings.QualityManager.UpdateYandereChan();
 		SetUniform();
+		ChangeSchoolwear();
 		MyRenderer.materials[0].color = Color.white;
 		MyRenderer.materials[1].color = Color.white;
 		MyRenderer.materials[2].color = Color.white;
@@ -9690,6 +9707,8 @@ public class YandereScript : MonoBehaviour
 		Gloves.gameObject.SetActive(value: true);
 		if (Gloves.Blood.enabled)
 		{
+			Gloves.Blood.material.SetColor("_TintColor", new Color(0.25f, 0.25f, 0.25f, 1f));
+			Gloves.Blood.material.mainTexture = BloodTextures[5];
 			OutlineScript component = Gloves.GetComponent<OutlineScript>();
 			if (component != null)
 			{

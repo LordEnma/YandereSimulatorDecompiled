@@ -20,6 +20,8 @@ public class PaintBucketScript : MonoBehaviour
 				Prompt.Yandere.RedPaint = true;
 				if (Prompt.Yandere.Gloves != null)
 				{
+					Prompt.Yandere.Gloves.Blood.material.SetColor("_TintColor", new Color(0.25f, 0.25f, 0.25f, 1f));
+					Prompt.Yandere.Gloves.Blood.material.mainTexture = Prompt.Yandere.BloodTextures[5];
 					Prompt.Yandere.Gloves.PickUp.RedPaint = true;
 					Prompt.Yandere.Gloves.Blood.enabled = true;
 				}

@@ -354,8 +354,9 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			Rival.Prompt.enabled = true;
 			Rival.InEvent = false;
 			Rival.Private = false;
-			if (Friend != null)
+			if (Friend != null && !Friend.FightingSlave)
 			{
+				Debug.Log("Releasing Raibaru from ''watching Osana talk with Senpai'' status.");
 				if (!Friend.Alarmed && !Friend.DramaticReaction)
 				{
 					Friend.Pathfinding.canSearch = true;

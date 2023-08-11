@@ -102,7 +102,6 @@ public class PlayerSaveData
 		}
 		playerSaveData.senpaiShots = PlayerGlobals.SenpaiShots;
 		playerSaveData.socialBonus = PlayerGlobals.SocialBonus;
-		playerSaveData.speedBonus = PlayerGlobals.SpeedBonus;
 		playerSaveData.stealthBonus = PlayerGlobals.StealthBonus;
 		array = PlayerGlobals.KeysOfStudentFriend();
 		foreach (int num6 in array)
@@ -160,7 +159,6 @@ public class PlayerSaveData
 		}
 		PlayerGlobals.SenpaiShots = data.senpaiShots;
 		PlayerGlobals.SocialBonus = data.socialBonus;
-		PlayerGlobals.SpeedBonus = data.speedBonus;
 		PlayerGlobals.StealthBonus = data.stealthBonus;
 		foreach (int item6 in data.studentFriend)
 		{

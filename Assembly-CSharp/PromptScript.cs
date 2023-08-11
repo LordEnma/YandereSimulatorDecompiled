@@ -570,7 +570,7 @@ public class PromptScript : MonoBehaviour
 				}
 				else
 				{
-					WaitTimer = Mathf.Sqrt(DistanceSqr) / Yandere.RunSpeed * 0.75f;
+					WaitTimer = Mathf.Sqrt(DistanceSqr) / ((Yandere.RunSpeed + Yandere.ClubSpeedBonus + (float)Yandere.PantySpeedBonus + (float)Yandere.PhysicalGrade * 0.2f) * 1.1f);
 					Wait = true;
 					Hide();
 				}

@@ -39,13 +39,17 @@ public class GenericBentoScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Vector3.Distance(base.transform.position, Prompt.Yandere.StudentManager.Students[StudentID].transform.position) < 1.5f)
+		if (Vector3.Distance(base.transform.position, Prompt.Yandere.StudentManager.Students[StudentID].transform.position) < 1.5f && StudentID != 10)
 		{
 			Prompt.Circle[0].fillAmount = 1f;
 			Prompt.Circle[1].fillAmount = 1f;
 			Prompt.Circle[2].fillAmount = 1f;
 			Prompt.Circle[3].fillAmount = 1f;
-			Prompt.Yandere.NotificationManager.CustomText = "No! You'll be noticed!";
+			Prompt.Yandere.NotificationManager.CustomText = "Back up a bit!";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Prompt.Yandere.NotificationManager.CustomText = Prompt.Yandere.StudentManager.Students[StudentID].Name + "!";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Prompt.Yandere.NotificationManager.CustomText = "You're standing too close to ";
 			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			return;
 		}
@@ -88,7 +92,9 @@ public class GenericBentoScript : MonoBehaviour
 			Prompt.Circle[1].fillAmount = 1f;
 			Prompt.Circle[2].fillAmount = 1f;
 			Prompt.Circle[3].fillAmount = 1f;
-			Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
+			Prompt.Yandere.NotificationManager.CustomText = Prompt.Yandere.StudentManager.SeerName + " can see you!";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Prompt.Yandere.NotificationManager.CustomText = "You can't do that!";
 			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		}
 	}

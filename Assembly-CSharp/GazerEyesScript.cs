@@ -288,5 +288,9 @@ public class GazerEyesScript : MonoBehaviour
 			Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Yandere.Numbness;
 		}
 		Target.HipCollider.enabled = true;
+		if (!Target.Male)
+		{
+			Target.HorudaCollider.transform.localScale = Vector3.zero;
+		}
 	}
 }

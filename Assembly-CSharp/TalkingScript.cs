@@ -2080,12 +2080,12 @@ public class TalkingScript : MonoBehaviour
 				RejectGossip = true;
 			}
 		}
-		else if (S.StudentID > 1 && S.DialogueWheel.Victim < 6)
+		else if (S.StudentID > 1 && S.StudentID < 6 && S.DialogueWheel.Victim < 6)
 		{
 			RejectGossipLine = "Hey! She's my friend! Don't say anything weird about her!";
 			RejectGossip = true;
 		}
-		else if (S.StudentID > 5 && S.DialogueWheel.Victim < 11)
+		else if (S.StudentID > 5 && S.StudentID < 11 && S.DialogueWheel.Victim < 11)
 		{
 			RejectGossipLine = "Hey! He's my friend! Don't say anything weird about him!";
 			RejectGossip = true;

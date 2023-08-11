@@ -16,8 +16,11 @@ public class CraftableItemScript : MonoBehaviour
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			Prompt.Yandere.NotificationManager.CustomText = "Grabbed some " + Name + "!";
-			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			if (!Input.GetKeyDown("z"))
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Grabbed some " + Name + "!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
 			Prompt.Circle[0].fillAmount = 1f;
 			switch (ID)
 			{

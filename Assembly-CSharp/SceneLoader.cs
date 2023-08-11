@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 using XInputDotNetPure;
@@ -19,7 +21,9 @@ public class SceneLoader : MonoBehaviour
 
 	private float timer;
 
-	public UILabel[] ControllerText;
+	public UILabel[] ControllerTextSony;
+
+	public UILabel[] ControllerTextXbox;
 
 	public UILabel[] KeyboardText;
 
@@ -31,11 +35,15 @@ public class SceneLoader : MonoBehaviour
 
 	public GameObject DarkAnimation1989;
 
+	public GameObject GamepadSony;
+
+	public GameObject GamepadXbox;
+
 	public GameObject Keyboard;
 
-	public GameObject Gamepad;
+	public UITexture ControllerLinesSony;
 
-	public UITexture ControllerLines;
+	public UITexture ControllerLinesXbox;
 
 	public UITexture KeyboardGraphic;
 
@@ -81,7 +89,8 @@ public class SceneLoader : MonoBehaviour
 			loadingText.color = new Color(1f, 0f, 0f, 1f);
 			crashText.color = new Color(1f, 0f, 0f, 1f);
 			KeyboardGraphic.color = new Color(1f, 0f, 0f, 1f);
-			ControllerLines.color = new Color(1f, 0f, 0f, 1f);
+			ControllerLinesSony.color = new Color(1f, 0f, 0f, 1f);
+			ControllerLinesXbox.color = new Color(1f, 0f, 0f, 1f);
 			if (GameGlobals.Eighties)
 			{
 				LightAnimation1989.SetActive(value: false);
@@ -92,24 +101,36 @@ public class SceneLoader : MonoBehaviour
 				LightAnimation.SetActive(value: false);
 				DarkAnimation.SetActive(value: true);
 			}
-			for (int i = 1; i < ControllerText.Length; i++)
+			for (int i = 1; i < ControllerTextSony.Length; i++)
 			{
-				ControllerText[i].color = new Color(1f, 0f, 0f, 1f);
+				ControllerTextSony[i].color = new Color(1f, 0f, 0f, 1f);
+			}
+			for (int i = 1; i < ControllerTextXbox.Length; i++)
+			{
+				ControllerTextXbox[i].color = new Color(1f, 0f, 0f, 1f);
 			}
 			for (int i = 1; i < KeyboardText.Length; i++)
 			{
 				KeyboardText[i].color = new Color(1f, 0f, 0f, 1f);
 			}
 		}
+		GamepadSony.SetActive(value: false);
+		GamepadXbox.SetActive(value: false);
+		Keyboard.SetActive(value: false);
 		if (PlayerGlobals.UsingGamepad)
 		{
-			Keyboard.SetActive(value: false);
-			Gamepad.SetActive(value: true);
+			if (Gamepad.current is DualShockGamepad)
+			{
+				GamepadSony.SetActive(value: true);
+			}
+			else
+			{
+				GamepadXbox.SetActive(value: true);
+			}
 		}
 		else
 		{
 			Keyboard.SetActive(value: true);
-			Gamepad.SetActive(value: false);
 		}
 		Debugging = false;
 		GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
@@ -117,11 +138,14 @@ public class SceneLoader : MonoBehaviour
 
 	private void Update()
 	{
-		if (Timer == 10f)
+		if (!Debugging)
 		{
-			StartCoroutine(LoadNewScene());
+			if (Timer == 10f)
+			{
+				StartCoroutine(LoadNewScene());
+			}
+			Timer += 1f;
 		}
-		Timer += 1f;
 	}
 
 	private IEnumerator LoadNewScene()

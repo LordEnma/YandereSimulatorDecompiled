@@ -323,6 +323,8 @@ public class WeaponScript : MonoBehaviour
 					DismemberPhase++;
 					if (Yandere.Gloved && !Yandere.Gloves.Blood.enabled)
 					{
+						Yandere.Gloves.Blood.material.SetColor("_TintColor", new Color(0.25f, 0.25f, 0.25f, 1f));
+						Yandere.Gloves.Blood.material.mainTexture = Yandere.BloodTextures[5];
 						Yandere.Gloves.PickUp.Evidence = true;
 						Yandere.Gloves.Blood.enabled = true;
 						Yandere.GloveBlood = 1;
@@ -937,7 +939,6 @@ public class WeaponScript : MonoBehaviour
 
 	public void RemoveBlood()
 	{
-		Debug.Log("My name is: " + base.gameObject.name);
 		if (MyRenderer.materials.Length > 1)
 		{
 			MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);

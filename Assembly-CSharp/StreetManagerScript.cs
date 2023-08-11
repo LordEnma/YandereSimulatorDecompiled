@@ -31,6 +31,8 @@ public class StreetManagerScript : MonoBehaviour
 
 	public Animation Gossip2;
 
+	public GameObject InvertedSphere;
+
 	public GameObject MaidPrompt;
 
 	public GameObject MaidLabel;
@@ -111,9 +113,10 @@ public class StreetManagerScript : MonoBehaviour
 			Day = true;
 			MaidLabel.SetActive(value: false);
 			MaidPrompt.SetActive(value: false);
+			InvertedSphere.SetActive(value: false);
+			Yakuza.transform.parent.gameObject.SetActive(value: false);
 			Clock.HourLabel.text = "6:00 AM";
 			Sunlight.shadows = LightShadows.Soft;
-			Yakuza.transform.parent.gameObject.SetActive(value: false);
 			if (DateGlobals.Weekday == DayOfWeek.Sunday)
 			{
 				MaidLabel.SetActive(value: true);

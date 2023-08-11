@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SabotageAirUnitScript : MonoBehaviour
 {
+	public GameObject BucketPourObject;
+
 	public FallingObjectScript AirUnit;
 
 	public SM_rotateThis Rotation;
@@ -11,6 +13,8 @@ public class SabotageAirUnitScript : MonoBehaviour
 	public AudioSource MyAudio;
 
 	public PromptScript Prompt;
+
+	public Collider MyCollider;
 
 	public float Timer;
 
@@ -51,6 +55,8 @@ public class SabotageAirUnitScript : MonoBehaviour
 				AirUnit.gameObject.transform.parent = null;
 				Rotation.enabled = false;
 				AirUnit.enabled = true;
+				BucketPourObject.SetActive(value: true);
+				MyCollider.enabled = false;
 				Prompt.enabled = false;
 				Prompt.Hide();
 				base.enabled = false;

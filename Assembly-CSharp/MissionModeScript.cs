@@ -939,7 +939,7 @@ public class MissionModeScript : MonoBehaviour
 			{
 				if (!Yandere.PauseScreen.Show)
 				{
-					TimeRemaining = Mathf.MoveTowards(TimeRemaining, 0f, Time.deltaTime);
+					TimeRemaining = Mathf.MoveTowards(TimeRemaining, 0f, Time.unscaledDeltaTime);
 				}
 				int num3 = Mathf.CeilToInt(TimeRemaining);
 				int num4 = num3 / 60;

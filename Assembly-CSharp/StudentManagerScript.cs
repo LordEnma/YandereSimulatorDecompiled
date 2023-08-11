@@ -945,6 +945,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public int DoorID;
 
+	public string SeerName;
+
 	private int OpenedDoors;
 
 	private int SnappedStudents = 1;
@@ -1284,9 +1286,11 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (ClubGlobals.GetClubClosed(ClubType.Gardening))
 		{
+			Debug.Log("Blocking entrance to Gardening Club, adjusting Gardening Club patrols.");
 			GardenBlockade.SetActive(value: true);
 			Patrols.List[71].localPosition = new Vector3(51.5f, 0f, 24f);
 			Patrols.List[71].localEulerAngles = new Vector3(0f, 90f, 0f);
+			Patrols.List[71].localScale = new Vector3(1.15f, 1.15f, 1.15f);
 			Patrols.List[72].localScale = new Vector3(0.985f, 1f, 1f);
 			Patrols.List[73].localScale = new Vector3(0.985f, 1f, 1f);
 			Patrols.List[74].localScale = new Vector3(0.985f, 1f, 1f);
@@ -4580,6 +4584,7 @@ public class StudentManagerScript : MonoBehaviour
 		PlayerPrefs.SetInt("Profile_" + profile + "_Slot_" + @int + "_MemorialStudents", StudentGlobals.MemorialStudents);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
 		Debug.Log("At the time of saving, StudentManager's GloveID was: " + GloveID);
+		Debug.Log("At the time that the save was made, SchemeGlobals.GetSchemeStage(6) was: " + SchemeGlobals.GetSchemeStage(6));
 	}
 
 	public void Load()
@@ -4995,6 +5000,7 @@ public class StudentManagerScript : MonoBehaviour
 		CameFromLoad = true;
 		Debug.Log("End of StudentManager Load() believes that GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID);
 		Debug.Log("End of StudentManager Load() believes that RivalEliminated is: " + RivalEliminated);
+		Debug.Log("End of StudentManager Load() believes that SchemeGlobals.GetSchemeStage(6) is: " + SchemeGlobals.GetSchemeStage(6));
 	}
 
 	public void UpdateBlood()
@@ -5034,6 +5040,7 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			if (studentScript != null && studentScript.gameObject.activeInHierarchy && studentScript.Alive && studentScript.CanSeeObject(studentScript.Yandere.gameObject, studentScript.Yandere.HeadPosition))
 			{
+				SeerName = Students[studentScript.StudentID].Name;
 				Debug.Log("Student #" + studentScript.StudentID + ", " + studentScript.Name + ", can see Yandere-chan right now.");
 				YandereVisible = true;
 				break;

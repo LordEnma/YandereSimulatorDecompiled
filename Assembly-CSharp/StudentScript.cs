@@ -1618,6 +1618,8 @@ public class StudentScript : MonoBehaviour
 
 	public string PinDownAnim = string.Empty;
 
+	public string WaveAnim = string.Empty;
+
 	public string[] AdmireAnims;
 
 	public string[] CleanAnims;
@@ -2970,6 +2972,10 @@ public class StudentScript : MonoBehaviour
 				{
 					GuardID = 20;
 				}
+			}
+			if (!Male)
+			{
+				WaveAnim = "f02_casualWave_00";
 			}
 			OriginalWalkAnim = WalkAnim;
 			if (StudentGlobals.GetStudentGrudge(StudentID))
@@ -8412,6 +8418,7 @@ public class StudentScript : MonoBehaviour
 						CharacterAnimation.CrossFade(ScaredAnim);
 						if (AlarmTimer == 0f)
 						{
+							Debug.Log("Alarmed is being set to false from here.");
 							WalkBack = false;
 							Alarmed = false;
 						}
@@ -9832,7 +9839,14 @@ public class StudentScript : MonoBehaviour
 			}
 			else
 			{
-				FollowCountdown.Sprite.fillAmount = Mathf.MoveTowards(FollowCountdown.Sprite.fillAmount, 0f, Time.deltaTime * 0.1f);
+				if (StudentManager.TranqArea.bounds.Contains(Yandere.transform.position))
+				{
+					FollowCountdown.Sprite.fillAmount = Mathf.MoveTowards(FollowCountdown.Sprite.fillAmount, 0f, Time.deltaTime * 0.01f);
+				}
+				else
+				{
+					FollowCountdown.Sprite.fillAmount = Mathf.MoveTowards(FollowCountdown.Sprite.fillAmount, 0f, Time.deltaTime * 0.1f);
+				}
 				CharacterAnimation.CrossFade(IdleAnim);
 				Pathfinding.canMove = false;
 				Obstacle.enabled = true;
@@ -12872,7 +12886,7 @@ public class StudentScript : MonoBehaviour
 						{
 							UpdateVisibleLimbs();
 						}
-						if (BloodPool == null && (Police.BloodyWeapons > 0 || Yandere.WeaponManager.MisplacedWeapons > 0) && !InvestigatingPossibleLimb && !TakingOutTrash && !Alarmed && !InEvent && !Distracted && !InvestigatingPossibleBlood && !ChangingShoes && Persona != PersonaType.Violent && (MyPlate == null || (MyPlate != null && MyPlate.parent != RightHand)))
+						if (BloodPool == null && (Police.BloodyWeapons > 0 || Yandere.WeaponManager.MisplacedWeapons > 0) && !InvestigatingPossibleLimb && !TakingOutTrash && !Alarmed && !InEvent && !Distracted && !InvestigatingPossibleBlood && !ChangingShoes && !EatingSnack && Persona != PersonaType.Violent && (MyPlate == null || (MyPlate != null && MyPlate.parent != RightHand)))
 						{
 							UpdateVisibleWeapons();
 						}
@@ -13462,9 +13476,11 @@ public class StudentScript : MonoBehaviour
 				}
 				else
 				{
+					Debug.Log(Name + " was alarmed by something, but didn't see what it was. DiscCheck is being set to true.");
 					Witnessed = StudentWitnessType.None;
 					DiscCheck = true;
 					Witness = false;
+					AlarmTimer = 0f;
 				}
 			}
 			else
@@ -13515,6 +13531,10 @@ public class StudentScript : MonoBehaviour
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
 			Debug.Log("The player is attempting to talk to a student.");
+			if (!Alarmed)
+			{
+				AlarmTimer = 0f;
+			}
 			bool flag = false;
 			if (!StudentManager.EmptyDemon)
 			{
@@ -13546,33 +13566,50 @@ public class StudentScript : MonoBehaviour
 						EndAlarm();
 					}
 				}
-				if ((Alarm > 0f || AlarmTimer > 0f || Yandere.Armed || Yandere.Shoved || Stripping || Waiting || InEvent || SentHome || Threatened || Guarding || VisitSenpaiDesk || (Distracted && !Drownable) || (StudentID == 1 && !flag2) || Yandere.YandereVision || TakingOutTrash) && ((!Slave && !BadTime && !Yandere.Gazing && !FightingSlave) || Yandere.YandereVision || Stripping))
+				if (Alarm > 0f || AlarmTimer > 0f || Yandere.Armed || Yandere.Shoved || Stripping || Waiting || InEvent || SentHome || Threatened || Guarding || VisitSenpaiDesk || (Distracted && !Drownable) || (StudentID == 1 && !flag2) || Yandere.YandereVision || TakingOutTrash)
 				{
-					if (InEvent || VisitSenpaiDesk)
+					if (Alarm > 0f)
 					{
-						string text = "She";
-						if (Male)
-						{
-							text = "He";
-						}
-						Yandere.NotificationManager.CustomText = text + " is busy with an event right now!";
-						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						Debug.Log("Alarm was above zero.");
 					}
-					else if (Guarding)
+					if (AlarmTimer > 0f)
 					{
-						string text2 = "She";
-						if (Male)
-						{
-							text2 = "He";
-						}
-						Yandere.NotificationManager.CustomText = text2 + " is too scared to talk right now!";
-						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						Debug.Log("AlarmTimer was above zero.");
 					}
-					Prompt.Circle[0].fillAmount = 1f;
+					if (Stripping)
+					{
+						Debug.Log("Stripping was true.");
+					}
+					if ((!Slave && !BadTime && !Yandere.Gazing && !FightingSlave) || Yandere.YandereVision || Stripping)
+					{
+						Debug.Log("Met criteria for not being allowed to talk to a student.");
+						if (InEvent || VisitSenpaiDesk)
+						{
+							string text = "She";
+							if (Male)
+							{
+								text = "He";
+							}
+							Yandere.NotificationManager.CustomText = text + " is busy with an event right now!";
+							Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
+						else if (Guarding)
+						{
+							string text2 = "She";
+							if (Male)
+							{
+								text2 = "He";
+							}
+							Yandere.NotificationManager.CustomText = text2 + " is too scared to talk right now!";
+							Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
+						Prompt.Circle[0].fillAmount = 1f;
+					}
 				}
 			}
 			if (Prompt.Circle[0].fillAmount == 0f)
 			{
+				Debug.Log("The player is attempting to speak to a student right now.");
 				bool flag3 = false;
 				if (StudentID < 86 && Armband.activeInHierarchy && (Actions[Phase] == StudentActionType.ClubAction || Actions[Phase] == StudentActionType.SitAndSocialize || Actions[Phase] == StudentActionType.Socializing || Actions[Phase] == StudentActionType.Sleuth || Actions[Phase] == StudentActionType.Lyrics || Actions[Phase] == StudentActionType.Patrol || Actions[Phase] == StudentActionType.Rehearse || Actions[Phase] == StudentActionType.SitAndEatBento || Actions[Phase] == StudentActionType.Paint))
 				{
@@ -16352,6 +16389,7 @@ public class StudentScript : MonoBehaviour
 		}
 		if (HorudaCollider != null)
 		{
+			Debug.Log("Seeing HorudaCollider to False...");
 			HorudaCollider.gameObject.SetActive(value: false);
 		}
 		BountyCollider.SetActive(value: false);
@@ -21141,6 +21179,7 @@ public class StudentScript : MonoBehaviour
 
 	private void ReturnToRoutine()
 	{
+		Debug.Log(Name + " is now calling ReturnToRoutine.");
 		if (Actions[Phase] == StudentActionType.Patrol || (Actions[Phase] == StudentActionType.ClubAction && Club == ClubType.Gardening))
 		{
 			CurrentDestination = StudentManager.Patrols.List[StudentID].GetChild(PatrolID);
@@ -21295,6 +21334,10 @@ public class StudentScript : MonoBehaviour
 		{
 			CharacterAnimation[StripAnim].speed = 1.5f;
 			CharacterAnimation[GameAnim].speed = 2f;
+			CharacterAnimation["f02_casualWave_00"].layer = 11;
+			CharacterAnimation["f02_casualWave_00"].weight = 0f;
+			CharacterAnimation["f02_friendWave_00"].layer = 10;
+			CharacterAnimation["f02_friendWave_00"].weight = 0f;
 			CharacterAnimation["f02_moLipSync_00"].layer = 9;
 			CharacterAnimation.Play("f02_moLipSync_00");
 			CharacterAnimation["f02_moLipSync_00"].weight = 0f;
@@ -21320,13 +21363,13 @@ public class StudentScript : MonoBehaviour
 			CharacterAnimation[AngryFaceAnim].weight = 0f;
 			CharacterAnimation["f02_wetIdle_00"].speed = 1.25f;
 			CharacterAnimation["f02_sleuthScan_00"].speed = 1.4f;
-			CharacterAnimation["f02_friendWave_00"].layer = 10;
-			CharacterAnimation["f02_friendWave_00"].weight = 0f;
 			BoobsResized = false;
 		}
 		else
 		{
 			CharacterAnimation[ConfusedSitAnim].speed *= -1f;
+			CharacterAnimation["friendWave_00"].layer = 8;
+			CharacterAnimation["friendWave_00"].weight = 0f;
 			CharacterAnimation[ToughFaceAnim].layer = 7;
 			CharacterAnimation.Play(ToughFaceAnim);
 			CharacterAnimation[ToughFaceAnim].weight = 0f;
@@ -21345,8 +21388,6 @@ public class StudentScript : MonoBehaviour
 			CharacterAnimation[AngryFaceAnim].layer = 2;
 			CharacterAnimation.Play(AngryFaceAnim);
 			CharacterAnimation[AngryFaceAnim].weight = 0f;
-			CharacterAnimation["friendWave_00"].layer = 10;
-			CharacterAnimation["friendWave_00"].weight = 0f;
 			CharacterAnimation["sleuthScan_00"].speed = 1.4f;
 		}
 		if (Persona == PersonaType.Sleuth)
@@ -21779,7 +21820,7 @@ public class StudentScript : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log(Name + " was alarmed by something, but didn't see what it was...");
+				Debug.Log(Name + " was alarmed by something, but didn't see what it was. DiscCheck is being set to true.");
 				Witnessed = StudentWitnessType.None;
 				DiscCheck = true;
 				Witness = false;

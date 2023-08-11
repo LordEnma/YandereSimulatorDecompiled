@@ -232,10 +232,6 @@ public class ClassScript : MonoBehaviour
 		Seduction = PlayerGlobals.Seduction;
 		Numbness = PlayerGlobals.Numbness;
 		Enlightenment = PlayerGlobals.Enlightenment;
-		if (SpeedBonus == 0)
-		{
-			SpeedBonus = PlayerGlobals.SpeedBonus;
-		}
 		if (SocialBonus == 0)
 		{
 			SocialBonus = PlayerGlobals.SocialBonus;

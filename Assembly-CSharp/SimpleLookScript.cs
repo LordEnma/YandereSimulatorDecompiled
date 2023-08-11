@@ -72,14 +72,7 @@ public class SimpleLookScript : MonoBehaviour
 	{
 		if (Input.GetKeyDown("z"))
 		{
-			if (!Student.Male)
-			{
-				Student.CharacterAnimation["f02_friendWave_00"].time = 0f;
-			}
-			else
-			{
-				Student.CharacterAnimation["friendWave_00"].time = 0f;
-			}
+			Student.CharacterAnimation[Student.WaveAnim].time = 0f;
 			ReactedToFriend = false;
 			LookTimer = 0f;
 			WaveTimer = 0f;
@@ -93,18 +86,9 @@ public class SimpleLookScript : MonoBehaviour
 					LookTimer += Time.deltaTime;
 					if (!ReactedToFriend && Student.Friend && Student.Yandere.Mask == null && !Student.Emetic && !Student.Lethal && !Student.Sedated && !Student.Headache && !Student.Grudge && !Student.Dying && Student.CurrentAction != StudentActionType.Sunbathe && Student.CurrentAction != StudentActionType.Gaming && Student.CurrentAction != StudentActionType.Mourn && Student.StudentID > 1 && LookTimer > 1f)
 					{
-						if (!Student.Male)
-						{
-							Student.CharacterAnimation["f02_friendWave_00"].weight = 0f;
-							Student.CharacterAnimation.CrossFade("f02_friendWave_00");
-							Student.CharacterAnimation["f02_friendWave_00"].weight = 0f;
-						}
-						else
-						{
-							Student.CharacterAnimation["friendWave_00"].weight = 0f;
-							Student.CharacterAnimation.CrossFade("friendWave_00");
-							Student.CharacterAnimation["friendWave_00"].weight = 0f;
-						}
+						Student.CharacterAnimation[Student.WaveAnim].weight = 0f;
+						Student.CharacterAnimation.CrossFade(Student.WaveAnim);
+						Student.CharacterAnimation[Student.WaveAnim].weight = 0f;
 						ReactedToFriend = true;
 						Waving = true;
 					}
@@ -191,40 +175,20 @@ public class SimpleLookScript : MonoBehaviour
 		{
 			base.enabled = false;
 		}
-		if (!Waving)
+		if (Waving)
 		{
-			return;
-		}
-		WaveTimer += Time.deltaTime;
-		if (!Student.Male)
-		{
-			if (WaveTimer < Student.CharacterAnimation["f02_friendWave_00"].length - 1f)
+			WaveTimer += Time.deltaTime;
+			if (WaveTimer < Student.CharacterAnimation[Student.WaveAnim].length - 1f)
 			{
-				Student.CharacterAnimation["f02_friendWave_00"].weight = Mathf.MoveTowards(Student.CharacterAnimation["f02_friendWave_00"].weight, 1f, Time.deltaTime);
+				Student.CharacterAnimation[Student.WaveAnim].weight = Mathf.MoveTowards(Student.CharacterAnimation[Student.WaveAnim].weight, 1f, Time.deltaTime);
 			}
 			else
 			{
-				Student.CharacterAnimation["f02_friendWave_00"].weight = Mathf.MoveTowards(Student.CharacterAnimation["f02_friendWave_00"].weight, 0f, Time.deltaTime);
+				Student.CharacterAnimation[Student.WaveAnim].weight = Mathf.MoveTowards(Student.CharacterAnimation[Student.WaveAnim].weight, 0f, Time.deltaTime);
 			}
-			if (WaveTimer >= Student.CharacterAnimation["f02_friendWave_00"].length)
+			if (WaveTimer >= Student.CharacterAnimation[Student.WaveAnim].length)
 			{
-				Student.CharacterAnimation["f02_friendWave_00"].weight = 0f;
-				Waving = false;
-			}
-		}
-		else
-		{
-			if (WaveTimer < Student.CharacterAnimation["friendWave_00"].length - 1f)
-			{
-				Student.CharacterAnimation["friendWave_00"].weight = Mathf.MoveTowards(Student.CharacterAnimation["friendWave_00"].weight, 1f, Time.deltaTime);
-			}
-			else
-			{
-				Student.CharacterAnimation["friendWave_00"].weight = Mathf.MoveTowards(Student.CharacterAnimation["friendWave_00"].weight, 0f, Time.deltaTime);
-			}
-			if (WaveTimer >= Student.CharacterAnimation["friendWave_00"].length)
-			{
-				Student.CharacterAnimation["friendWave_00"].weight = 0f;
+				Student.CharacterAnimation[Student.WaveAnim].weight = 0f;
 				Waving = false;
 			}
 		}

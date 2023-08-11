@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 using UnityEngine.SceneManagement;
 
 public class PauseScreenScript : MonoBehaviour
@@ -89,9 +91,11 @@ public class PauseScreenScript : MonoBehaviour
 
 	public GameObject MainMenu;
 
-	public GameObject Keyboard;
+	public GameObject GamepadSony;
 
-	public GameObject Gamepad;
+	public GameObject GamepadXbox;
+
+	public GameObject Keyboard;
 
 	public GameObject Notepad;
 
@@ -672,15 +676,23 @@ public class PauseScreenScript : MonoBehaviour
 						}
 						else if (Selected == 12)
 						{
+							GamepadSony.SetActive(value: false);
+							GamepadXbox.SetActive(value: false);
+							Keyboard.SetActive(value: false);
 							if (InputDevice.Type == InputDeviceType.Gamepad)
 							{
-								Keyboard.SetActive(value: false);
-								Gamepad.SetActive(value: true);
+								if (Gamepad.current is DualShockGamepad)
+								{
+									GamepadSony.SetActive(value: true);
+								}
+								else
+								{
+									GamepadXbox.SetActive(value: true);
+								}
 							}
 							else
 							{
 								Keyboard.SetActive(value: true);
-								Gamepad.SetActive(value: false);
 							}
 							ControlMenu.SetActive(value: false);
 							ControlMenu.SetActive(value: true);
@@ -810,15 +822,23 @@ public class PauseScreenScript : MonoBehaviour
 			}
 			if (ViewingControlMenu)
 			{
+				GamepadSony.SetActive(value: false);
+				GamepadXbox.SetActive(value: false);
+				Keyboard.SetActive(value: false);
 				if (InputDevice.Type == InputDeviceType.Gamepad)
 				{
-					Keyboard.SetActive(value: false);
-					Gamepad.SetActive(value: true);
+					if (Gamepad.current is DualShockGamepad)
+					{
+						GamepadSony.SetActive(value: true);
+					}
+					else
+					{
+						GamepadXbox.SetActive(value: true);
+					}
 				}
 				else
 				{
 					Keyboard.SetActive(value: true);
-					Gamepad.SetActive(value: false);
 				}
 				if (Input.GetButtonDown(InputNames.Xbox_B))
 				{

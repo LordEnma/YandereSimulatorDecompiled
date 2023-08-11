@@ -127,59 +127,66 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 				{
 					Rival = StudentManager.Students[RivalID];
 				}
-				if (Clock.Period == 1 && !StudentManager.Students[1].Alarmed && !Friend.DramaticReaction && !Friend.Alarmed && !Rival.Alarmed && Rival.enabled && !Rival.Talking && Rival.Alive && !Friend.Hunted && !OtherEvent.enabled)
+				if (Clock.Period == 1)
 				{
-					Debug.Log("Osana's ''talk with friend before going to the lockers'' event has begun.");
-					Friend.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-					Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-					Friend.CharacterAnimation.CrossFade(Friend.WalkAnim);
-					Friend.Pathfinding.target = Location[1];
-					Friend.CurrentDestination = Location[1];
-					Friend.Pathfinding.canSearch = true;
-					Friend.Pathfinding.canMove = true;
-					Friend.Pathfinding.maxSpeed = 1f;
-					Friend.Routine = false;
-					Friend.InEvent = true;
-					Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
-					Rival.Pathfinding.target = Location[2];
-					Rival.CurrentDestination = Location[2];
-					Rival.Pathfinding.canSearch = true;
-					Rival.Pathfinding.canMove = true;
-					Rival.Routine = false;
-					Rival.InEvent = true;
-					Spy.Prompt.enabled = true;
-					if (!LosingFriend)
+					if (Friend.FightingSlave)
 					{
-						Friend.Private = true;
-						Rival.Private = true;
-						if (!OtherEvent.NaturalEnd)
-						{
-							SpeechClip = InterruptedClip;
-							SpeechText = InterruptedSpeech;
-							SpeechTime = InterruptedTime;
-							EventAnim = InterruptedAnim;
-							Speaker = InterruptedSpeaker;
-							LongAnimA = InterruptedAnim[0];
-							LongAnimB = InterruptedAnim[1];
-						}
-						bool flag = false;
-						if (StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentKidnapped(81) || StudentGlobals.GetStudentArrested(81) || StudentGlobals.GetStudentExpelled(81) || StudentGlobals.GetStudentBroken(81) || StudentGlobals.StudentSlave == 81 || (float)StudentGlobals.GetStudentReputation(81) < -33.33333f)
-						{
-							Debug.Log("Musume's unavailable.");
-							flag = true;
-						}
-						if (DateGlobals.Weekday == DayOfWeek.Friday && flag && OtherEvent.NaturalEnd)
-						{
-							SpeechClip = AltSpeechClip;
-							SpeechText = AltSpeechText;
-							SpeechTime = AltSpeechTime;
-							EventAnim = AltEventAnim;
-							Speaker = AltSpeaker;
-						}
+						EndEvent();
 					}
-					Yandere.PauseScreen.Hint.Show = true;
-					Yandere.PauseScreen.Hint.QuickID = 12;
-					Phase++;
+					else if (!StudentManager.Students[1].Alarmed && !Friend.DramaticReaction && !Friend.Alarmed && !Rival.Alarmed && Rival.enabled && !Rival.Talking && Rival.Alive && !Friend.Hunted && !OtherEvent.enabled)
+					{
+						Debug.Log("Osana's ''talk with friend before going to the lockers'' event has begun.");
+						Friend.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+						Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+						Friend.CharacterAnimation.CrossFade(Friend.WalkAnim);
+						Friend.Pathfinding.target = Location[1];
+						Friend.CurrentDestination = Location[1];
+						Friend.Pathfinding.canSearch = true;
+						Friend.Pathfinding.canMove = true;
+						Friend.Pathfinding.maxSpeed = 1f;
+						Friend.Routine = false;
+						Friend.InEvent = true;
+						Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
+						Rival.Pathfinding.target = Location[2];
+						Rival.CurrentDestination = Location[2];
+						Rival.Pathfinding.canSearch = true;
+						Rival.Pathfinding.canMove = true;
+						Rival.Routine = false;
+						Rival.InEvent = true;
+						Spy.Prompt.enabled = true;
+						if (!LosingFriend)
+						{
+							Friend.Private = true;
+							Rival.Private = true;
+							if (!OtherEvent.NaturalEnd)
+							{
+								SpeechClip = InterruptedClip;
+								SpeechText = InterruptedSpeech;
+								SpeechTime = InterruptedTime;
+								EventAnim = InterruptedAnim;
+								Speaker = InterruptedSpeaker;
+								LongAnimA = InterruptedAnim[0];
+								LongAnimB = InterruptedAnim[1];
+							}
+							bool flag = false;
+							if (StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentKidnapped(81) || StudentGlobals.GetStudentArrested(81) || StudentGlobals.GetStudentExpelled(81) || StudentGlobals.GetStudentBroken(81) || StudentGlobals.StudentSlave == 81 || (float)StudentGlobals.GetStudentReputation(81) < -33.33333f)
+							{
+								Debug.Log("Musume's unavailable.");
+								flag = true;
+							}
+							if (DateGlobals.Weekday == DayOfWeek.Friday && flag && OtherEvent.NaturalEnd)
+							{
+								SpeechClip = AltSpeechClip;
+								SpeechText = AltSpeechText;
+								SpeechTime = AltSpeechTime;
+								EventAnim = AltEventAnim;
+								Speaker = AltSpeaker;
+							}
+						}
+						Yandere.PauseScreen.Hint.Show = true;
+						Yandere.PauseScreen.Hint.QuickID = 12;
+						Phase++;
+					}
 				}
 			}
 			Frame++;
@@ -385,8 +392,9 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 			Rival.InEvent = false;
 			Rival.Private = false;
 		}
-		if (Friend != null)
+		if (Friend != null && !Friend.FightingSlave)
 		{
+			Debug.Log("Releasing Raibaru from ''talking with Osana outside of school'' status.");
 			if (!LosingFriend)
 			{
 				Friend.CurrentDestination = Rival.FollowTargetDestination;

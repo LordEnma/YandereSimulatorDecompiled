@@ -21,12 +21,12 @@ public class CautionScript : MonoBehaviour
 		{
 			if (Sprite.alpha < 1f)
 			{
-				Sprite.alpha = Mathf.MoveTowards(Sprite.alpha, 1f, Time.deltaTime);
+				Sprite.alpha = Mathf.MoveTowards(Sprite.alpha, 1f, Time.deltaTime * 10f);
 			}
 		}
-		else if (Sprite.alpha < 0f)
+		else if (Sprite.alpha > 0f)
 		{
-			Sprite.alpha = Mathf.MoveTowards(Sprite.alpha, 0f, Time.deltaTime);
+			Sprite.alpha = Mathf.MoveTowards(Sprite.alpha, 0f, Time.deltaTime * 10f);
 		}
 	}
 }

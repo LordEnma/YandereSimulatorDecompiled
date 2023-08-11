@@ -26,6 +26,8 @@ public class SpawnedObjectManagerScript : MonoBehaviour
 
 	public GameObject SmokeBomb;
 
+	public GameObject TarpBag;
+
 	public int ObjectsSpawned;
 
 	public void RememberObjects()
@@ -73,6 +75,10 @@ public class SpawnedObjectManagerScript : MonoBehaviour
 			else if (SpawnedObjectList[i] == SpawnedObjectType.CleanUniform)
 			{
 				gameObject = Object.Instantiate(CleanUniform, SpawnedPositions[i], Quaternion.identity);
+			}
+			else if (SpawnedObjectList[i] == SpawnedObjectType.TarpBag)
+			{
+				gameObject = Object.Instantiate(TarpBag, SpawnedPositions[i], Quaternion.identity);
 			}
 			if (SpawnedInBags[i])
 			{

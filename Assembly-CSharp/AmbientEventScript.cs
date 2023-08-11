@@ -146,6 +146,13 @@ public class AmbientEventScript : MonoBehaviour
 			EndEvent();
 			return;
 		}
+		if (EventStudent[1].Pathfinding.target != EventLocation[1])
+		{
+			EventStudent[1].CurrentDestination = EventLocation[1];
+			EventStudent[1].Pathfinding.target = EventLocation[1];
+			EventStudent[2].CurrentDestination = EventLocation[2];
+			EventStudent[2].Pathfinding.target = EventLocation[2];
+		}
 		for (int j = 1; j < 3; j++)
 		{
 			if (!EventStudent[j].Pathfinding.canMove && !EventStudent[j].Private)
