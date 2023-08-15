@@ -434,7 +434,7 @@ public class TalkingScript : MonoBehaviour
 		{
 			if (S.TalkTimer == 100f)
 			{
-				bool flag = true;
+				bool flag = false;
 				bool flag2 = true;
 				if (S.Subtitle.TaskRequirements[S.StudentID] != "")
 				{
