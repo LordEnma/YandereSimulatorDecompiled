@@ -743,11 +743,8 @@ public class AttackManagerScript : MonoBehaviour
 				case SanityType.High:
 					if (EffectPhase == 0 && YandereAnim[AnimName].time > 2f / 3f)
 					{
-						if (!weapon.Blunt)
-						{
-							Yandere.Bloodiness += 20f;
-							Yandere.StainWeapon();
-						}
+						Yandere.Bloodiness += 20f;
+						Yandere.StainWeapon();
 						UnityEngine.Object.Instantiate(BloodEffect, weapon.transform.position + weapon.transform.forward * 0.1f, Quaternion.identity);
 						EffectPhase++;
 					}
@@ -757,11 +754,8 @@ public class AttackManagerScript : MonoBehaviour
 					{
 						if (YandereAnim[AnimName].time > 1f)
 						{
-							if (!weapon.Blunt)
-							{
-								Yandere.Bloodiness += 20f;
-								Yandere.StainWeapon();
-							}
+							Yandere.Bloodiness += 20f;
+							Yandere.StainWeapon();
 							UnityEngine.Object.Instantiate(BloodEffect, weapon.transform.position + weapon.transform.forward * 0.1f, Quaternion.identity);
 							EffectPhase++;
 						}
@@ -777,11 +771,8 @@ public class AttackManagerScript : MonoBehaviour
 				{
 					if (YandereAnim[AnimName].time > 2.1666667f)
 					{
-						if (!weapon.Blunt)
-						{
-							Yandere.Bloodiness += 20f;
-							Yandere.StainWeapon();
-						}
+						Yandere.Bloodiness += 20f;
+						Yandere.StainWeapon();
 						UnityEngine.Object.Instantiate(BloodEffect, weapon.transform.position + weapon.transform.forward * 0.1f, Quaternion.identity);
 						EffectPhase++;
 					}

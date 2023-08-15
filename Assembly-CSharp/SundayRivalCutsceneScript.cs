@@ -11,17 +11,25 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 
 	public PhoneScript Phone;
 
+	public GameObject SmartphoneScreen;
+
 	public GameObject InfoTextConvo;
 
 	public GameObject InfoTextPanel;
+
+	public GameObject SenpaiLight;
+
+	public GameObject GrabbyHand;
+
+	public GameObject HomeClock;
 
 	public AudioClip YoureSafeNow;
 
 	public AudioSource Vibration;
 
-	public GameObject GrabbyHand;
+	public Transform Smartphone;
 
-	public GameObject HomeClock;
+	public Transform RightHand;
 
 	public UISprite SkipCircle;
 
@@ -64,15 +72,21 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 			UnityEngine.Object.Destroy(HomeYandere.HomeCamera.PauseScreen.gameObject);
 			HomeYandere.HomeCamera.HomeSenpaiShrine.RightDoor.localEulerAngles = new Vector3(HomeYandere.HomeCamera.HomeSenpaiShrine.RightDoor.localEulerAngles.x, 135f, HomeYandere.HomeCamera.HomeSenpaiShrine.RightDoor.localEulerAngles.z);
 			HomeYandere.HomeCamera.HomeSenpaiShrine.LeftDoor.localEulerAngles = new Vector3(HomeYandere.HomeCamera.HomeSenpaiShrine.LeftDoor.localEulerAngles.x, -135f, HomeYandere.HomeCamera.HomeSenpaiShrine.LeftDoor.localEulerAngles.z);
-			HomeYandere.transform.position = new Vector3(-1.655f, 0f, 1.93f);
+			HomeYandere.transform.position = new Vector3(-1.65636f, 0f, 2.01636f);
 			HomeYandere.transform.eulerAngles = new Vector3(0f, -45f, 0f);
-			HomeYandere.HomeCamera.transform.position = new Vector3(-1.905f, 1.48f, 2.15f);
-			HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(0f, -22.5f, 0f);
+			HomeYandere.HomeCamera.transform.position = new Vector3(-1.82f, 1.25f, 1f);
+			HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(0f, 0f, 0f);
 			if (HomeYandere.HomeCamera.Profile.depthOfField.enabled)
 			{
 				RestoreDOF = true;
 			}
 			HomeYandere.HomeCamera.Profile.depthOfField.enabled = false;
+			HomeYandere.CharacterAnimation["f02_postOsana_00"].speed = 1.5f;
+			HomeYandere.CharacterAnimation.Play("f02_postOsana_00");
+			HomeYandere.HomeCamera.Profile.depthOfField.enabled = true;
+			HomeYandere.HomeCamera.UpdateDOF(1f);
+			SmartphoneScreen.SetActive(value: false);
+			SenpaiLight.SetActive(value: true);
 		}
 		else
 		{
@@ -104,9 +118,9 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 				SkipCircle.fillAmount = 1f;
 			}
 		}
-		if (Phase < 4)
+		if (Phase < 5)
 		{
-			HomeYandere.HomeCamera.transform.Translate(Vector3.forward * Time.deltaTime * -0.01f, Space.Self);
+			HomeYandere.HomeCamera.transform.Translate(Vector3.forward * Time.deltaTime * 0.01f, Space.Self);
 		}
 		if (Phase == 0)
 		{
@@ -122,7 +136,6 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 1f)
 			{
-				HomeYandere.Character.GetComponent<Animation>().Play("f02_caressPhoto_00");
 				Timer = 0f;
 				Phase++;
 			}
@@ -132,6 +145,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 2.5f)
 			{
+				HomeYandere.CharacterAnimation["f02_postOsana_00"].speed = 0.8f;
 				Vibration.PlayOneShot(YoureSafeNow);
 				Timer = 0f;
 				Phase++;
@@ -142,13 +156,12 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 3f && !Vibration.isPlaying)
 			{
+				HomeYandere.CharacterAnimation["f02_postOsana_00"].speed = 1.5f;
+				SmartphoneScreen.SetActive(value: true);
 				Vibration.Play();
 			}
 			if (Timer > 4f)
 			{
-				X = 0f;
-				Y = -22.5f;
-				Z = 0f;
 				Timer = 0f;
 				Phase++;
 			}
@@ -157,25 +170,15 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		{
 			Timer += Time.deltaTime;
 			Speed += Time.deltaTime;
-			HomeYandere.HomeCamera.transform.position = Vector3.Lerp(HomeYandere.HomeCamera.transform.position, new Vector3(-2.055f, 1.075f, 1.99f), Time.deltaTime * Speed);
-			X = Mathf.Lerp(X, 67.5f, Time.deltaTime * Speed);
-			Y = Mathf.Lerp(Y, -22.5f, Time.deltaTime * Speed);
-			Z = Mathf.Lerp(Z, 0f, Time.deltaTime * Speed);
-			HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(X, Y, Z);
-			if (Timer > 2f)
+			if (Timer > 3.66666f)
 			{
-				HomeYandere.gameObject.SetActive(value: false);
+				Smartphone.parent = RightHand;
+				Smartphone.transform.localPosition = new Vector3(0.025f, 0.0075f, 0.05f);
+				Smartphone.transform.localEulerAngles = new Vector3(0f, 180f, 180f);
 			}
-			if (Timer > 2.5f)
+			if (HomeYandere.CharacterAnimation["f02_postOsana_00"].time >= HomeYandere.CharacterAnimation["f02_postOsana_00"].length)
 			{
-				GrabbyHand.SetActive(value: true);
-			}
-			if (Timer > 4.5f)
-			{
-				HomeYandere.HomeCamera.transform.position = new Vector3(-1.638197f, 1.4925f, 2f);
-				HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(0f, -45f, 0f);
-				HomeYandere.gameObject.SetActive(value: false);
-				GrabbyHand.SetActive(value: false);
+				HomeYandere.CharacterAnimation.CrossFade("f02_postOsanaLoop_00", 1f);
 				InfoTextConvo.SetActive(value: true);
 				Timer = 0f;
 				Phase++;
@@ -187,6 +190,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 			{
 				return;
 			}
+			HomeYandere.HomeCamera.UpdateDOF(0f);
 			Timer += Time.deltaTime;
 			InfoTextPanel.transform.localPosition = Vector3.Lerp(InfoTextPanel.transform.localPosition, new Vector3(0f, 0f, 1f), Time.deltaTime * 10f);
 			if (Timer > 1f)

@@ -412,6 +412,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				}
 				else
 				{
+					UpdateAperture(32f);
 					base.transform.position = TeaCamera.position;
 					base.transform.rotation = TeaCamera.rotation;
 					TeaSet.SetActive(value: true);

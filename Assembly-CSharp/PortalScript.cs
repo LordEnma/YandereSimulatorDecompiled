@@ -420,6 +420,7 @@ public class PortalScript : MonoBehaviour
 						Clock.PresentTime = 930f;
 					}
 					Clock.HourTime = Clock.PresentTime / 60f;
+					Clock.UpdateClock();
 					StudentManager.AttendClass();
 				}
 				ClassDarkness.alpha = Mathf.MoveTowards(ClassDarkness.alpha, 0f, Time.deltaTime);

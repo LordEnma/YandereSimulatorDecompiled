@@ -135,7 +135,7 @@ public class HomeYandereScript : MonoBehaviour
 				}
 				if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday && GameGlobals.CorkboardScene)
 				{
-					Nude();
+					WearPajamas();
 				}
 				else if (!HomeGlobals.Night)
 				{

@@ -186,6 +186,10 @@ public class WeaponScript : MonoBehaviour
 
 	public Vector3 CustomRotation;
 
+	public GameObject EightiesObject;
+
+	public GameObject ModernObject;
+
 	public bool DoNotRelocate;
 
 	public GameObject HeartBurst;
@@ -240,6 +244,11 @@ public class WeaponScript : MonoBehaviour
 				MyMeshFilter.mesh = EightiesCircularSaw;
 				MyRenderer.material.mainTexture = EightiesCircularSawTexture;
 				MyRenderer.transform.localPosition = new Vector3(0.005f, 0.045f, -0.0075f);
+			}
+			else if (WeaponID == 14)
+			{
+				EightiesObject.SetActive(value: true);
+				ModernObject.SetActive(value: false);
 			}
 			else if (EightiesCircularSawTexture != null)
 			{

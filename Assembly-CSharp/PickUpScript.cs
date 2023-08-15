@@ -178,6 +178,8 @@ public class PickUpScript : MonoBehaviour
 
 	public bool Empty = true;
 
+	public bool Plate;
+
 	public bool Radio;
 
 	public bool Salty;

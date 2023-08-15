@@ -40,6 +40,8 @@ public class TaskManagerScript : MonoBehaviour
 
 	public bool Mentored;
 
+	public bool Impossible;
+
 	public bool Proceed;
 
 	public void GetTaskStatus()
@@ -515,6 +517,7 @@ public class TaskManagerScript : MonoBehaviour
 
 	public void CheckTaskRequirement(int StudentID)
 	{
+		Impossible = false;
 		Proceed = false;
 		if (!Eighties)
 		{
@@ -556,6 +559,10 @@ public class TaskManagerScript : MonoBehaviour
 				{
 					Proceed = true;
 				}
+				if (StudentManager.Students[6] == null && StudentManager.Students[7] == null && StudentManager.Students[8] == null && StudentManager.Students[9] == null && StudentManager.Students[10] == null)
+				{
+					Impossible = true;
+				}
 				break;
 			}
 			case 13:
@@ -580,6 +587,10 @@ public class TaskManagerScript : MonoBehaviour
 				if (Yandere.Club == ClubType.LightMusic)
 				{
 					Proceed = true;
+				}
+				if (ClubGlobals.GetClubClosed(ClubType.LightMusic))
+				{
+					Impossible = true;
 				}
 				break;
 			case 17:

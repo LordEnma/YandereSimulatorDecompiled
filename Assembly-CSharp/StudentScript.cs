@@ -5044,7 +5044,7 @@ public class StudentScript : MonoBehaviour
 					}
 					else if (Actions[Phase] == StudentActionType.Sleuth || Actions[Phase] == StudentActionType.Stalk)
 					{
-						targetRotation = Quaternion.LookRotation(SleuthTarget.position - base.transform.position);
+						targetRotation = Quaternion.LookRotation(new Vector3(SleuthTarget.transform.position.x, base.transform.position.y, SleuthTarget.transform.position.z) - base.transform.position);
 					}
 					else if (Actions[Phase] == StudentActionType.Guard)
 					{
@@ -14291,6 +14291,7 @@ public class StudentScript : MonoBehaviour
 		{
 			return;
 		}
+		Debug.Log(Name + " is being killed right now.");
 		if (!Teacher)
 		{
 			if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache)
@@ -14351,6 +14352,11 @@ public class StudentScript : MonoBehaviour
 				}
 				else
 				{
+					Vector3 vector = Yandere.transform.position + Yandere.transform.forward * Yandere.AttackManager.Distance;
+					if (Vector3.Distance(vector, base.transform.position) > 0.5f)
+					{
+						base.transform.position = vector;
+					}
 					MoveTowardsTarget(Yandere.transform.position + Yandere.transform.forward * Yandere.AttackManager.Distance);
 					if (!Yandere.AttackManager.Stealth)
 					{
@@ -21470,6 +21476,7 @@ public class StudentScript : MonoBehaviour
 				CharacterAnimation.Play("f02_carryDisposeB_00");
 				CharacterAnimation["f02_carryDisposeB_00"].time = CharacterAnimation["f02_carryDisposeB_00"].length;
 			}
+			base.gameObject.SetActive(value: false);
 		}
 	}
 

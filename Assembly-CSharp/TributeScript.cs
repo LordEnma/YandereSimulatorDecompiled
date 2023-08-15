@@ -129,7 +129,7 @@ public class TributeScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
-			if (Yandere.Armed && Yandere.EquippedWeapon.WeaponID == 14 && Input.GetKeyDown(MiyukiLetters[MiyukiID]))
+			if (Yandere.Armed && Yandere.EquippedWeapon.WeaponID == 14 && !Yandere.StudentManager.Eighties && Input.GetKeyDown(MiyukiLetters[MiyukiID]))
 			{
 				MiyukiID++;
 				if (MiyukiID == MiyukiLetters.Length)

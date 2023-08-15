@@ -127,6 +127,10 @@ public class ReputationScript : MonoBehaviour
 
 	public void UpdateRep()
 	{
+		if (MissionMode)
+		{
+			return;
+		}
 		Reputation += PendingRep;
 		PendingRep = 0f;
 		CheckedRep++;

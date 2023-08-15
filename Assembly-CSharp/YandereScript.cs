@@ -2268,7 +2268,7 @@ public class YandereScript : MonoBehaviour
 			{
 				MyAudio.volume -= Time.deltaTime * 2f;
 			}
-			else if (PickUp != null && !PickUp.Clothing && !PickUp.LeftHand)
+			else if (PickUp != null && !PickUp.Clothing && !PickUp.Plate && !PickUp.LeftHand)
 			{
 				CharacterAnimation[CarryAnims[1]].weight = Mathf.Lerp(CharacterAnimation[CarryAnims[1]].weight, 1f, Time.deltaTime * 10f);
 			}
@@ -2758,6 +2758,7 @@ public class YandereScript : MonoBehaviour
 								CharacterAnimation.CrossFade("f02_LoveLoveBeam_00");
 								ShootingBeam = true;
 								CanMove = false;
+								Debug.Log("CanMove is now false.");
 							}
 						}
 						else if (BlackRobe.activeInHierarchy)
@@ -2780,6 +2781,7 @@ public class YandereScript : MonoBehaviour
 								SithBeam[2].Damage = 10f;
 								SithAttacking = true;
 								CanMove = false;
+								Debug.Log("CanMove is now false.");
 								SithPrefix = "";
 								AttackPrefix = "sith";
 							}
@@ -2791,6 +2793,7 @@ public class YandereScript : MonoBehaviour
 								SithBeam[2].Damage = 20f;
 								SithAttacking = true;
 								CanMove = false;
+								Debug.Log("CanMove is now false.");
 								SithPrefix = "Hard";
 								AttackPrefix = "sith";
 							}
@@ -2845,6 +2848,7 @@ public class YandereScript : MonoBehaviour
 								SummonBones = true;
 								YandereTimer = 0f;
 								CanMove = false;
+								Debug.Log("CanMove is now false.");
 							}
 						}
 					}
@@ -2874,6 +2878,7 @@ public class YandereScript : MonoBehaviour
 						{
 							Invisible = !Invisible;
 							Debug.Log("Invisibility is: " + Invisible);
+							bool canMove = CanMove;
 							if (Invisible)
 							{
 								Cloak();
@@ -2882,6 +2887,7 @@ public class YandereScript : MonoBehaviour
 							{
 								Decloak();
 							}
+							CanMove = canMove;
 						}
 						if (Stance.Current != StanceType.Crouching && Stance.Current != StanceType.Crawling)
 						{
@@ -2905,6 +2911,7 @@ public class YandereScript : MonoBehaviour
 									GlowEffect.Play();
 									Blasting = true;
 									CanMove = false;
+									Debug.Log("CanMove is now false.");
 								}
 								else if (!BlackRobe.activeInHierarchy)
 								{
@@ -2930,6 +2937,7 @@ public class YandereScript : MonoBehaviour
 										}
 										Snapping = true;
 										CanMove = false;
+										Debug.Log("CanMove is now false.");
 									}
 									else if (WitchMode)
 									{
@@ -2947,6 +2955,7 @@ public class YandereScript : MonoBehaviour
 											Freezing = !InvertSphere.gameObject.activeInHierarchy;
 											StoppingTime = true;
 											CanMove = false;
+											Debug.Log("CanMove is now false.");
 											MyAudio.Stop();
 											Egg = true;
 										}
@@ -2958,6 +2967,7 @@ public class YandereScript : MonoBehaviour
 										PromptBar.Show = true;
 										Blur.enabled = true;
 										CanMove = false;
+										Debug.Log("CanMove is now false.");
 										Time.timeScale = 0.0001f;
 										HUD.alpha = 0f;
 										PromptBar.Label[0].text = "Confirm";
@@ -2988,6 +2998,7 @@ public class YandereScript : MonoBehaviour
 												Laughing = true;
 												Mopping = false;
 												CanMove = false;
+												Debug.Log("CanMove is now false.");
 												Teeth.SetActive(value: false);
 												if (StudentManager.Eighties)
 												{
@@ -3040,6 +3051,7 @@ public class YandereScript : MonoBehaviour
 										}
 										Punching = true;
 										CanMove = false;
+										Debug.Log("CanMove is now false.");
 									}
 								}
 							}
@@ -3197,6 +3209,7 @@ public class YandereScript : MonoBehaviour
 						PauseScreen.CorrectingTime = false;
 						Time.timeScale = 0.0001f;
 						CanMove = false;
+						Debug.Log("CanMove is now false.");
 						Shutter.Snap();
 					}
 				}
@@ -3259,6 +3272,7 @@ public class YandereScript : MonoBehaviour
 					PreparingThrow = false;
 					Throwing = true;
 					CanMove = false;
+					Debug.Log("CanMove is now false.");
 					NewArc.gameObject.SetActive(value: false);
 				}
 				else if ((UsingController && Input.GetAxis(InputNames.Xbox_LT) < 0.5f) || (!UsingController && !Input.GetMouseButton(InputNames.Mouse_RMB)))
@@ -3283,6 +3297,7 @@ public class YandereScript : MonoBehaviour
 								CharacterAnimation.CrossFade("f02_removeGloves_00");
 								Degloving = true;
 								CanMove = false;
+								Debug.Log("CanMove is now false.");
 							}
 						}
 						else
@@ -3301,6 +3316,7 @@ public class YandereScript : MonoBehaviour
 							CharacterAnimation.CrossFade("f02_removeGloves_00");
 							Degloving = true;
 							CanMove = false;
+							Debug.Log("CanMove is now false.");
 						}
 					}
 					else
@@ -3389,7 +3405,7 @@ public class YandereScript : MonoBehaviour
 					Object.Destroy(NewTrail);
 				}
 			}
-			if (Input.GetButton(InputNames.Xbox_LS) || Input.GetKey(KeyCode.T))
+			if ((Input.GetButton(InputNames.Xbox_LS) || Input.GetKey(KeyCode.T)) && !StudentManager.EightiesTutorial)
 			{
 				TrailTimer += Time.deltaTime;
 				if (TrailTimer >= 1f)
@@ -3465,6 +3481,7 @@ public class YandereScript : MonoBehaviour
 			{
 				PreparedForStruggle = true;
 				CanMove = false;
+				Debug.Log("CanMove is now false.");
 			}
 			if (!Egg)
 			{
@@ -3508,6 +3525,7 @@ public class YandereScript : MonoBehaviour
 					CharacterAnimation.Play("f02_nierAttack_00");
 					SithAttacking = true;
 					CanMove = false;
+					Debug.Log("CanMove is now false.");
 					SithBeam[1].Damage = 10f;
 					NierDamage = 10f;
 					SithPrefix = "";
@@ -3524,6 +3542,7 @@ public class YandereScript : MonoBehaviour
 					CharacterAnimation.Play("f02_nierAttackHard_00");
 					SithAttacking = true;
 					CanMove = false;
+					Debug.Log("CanMove is now false.");
 					SithBeam[1].Damage = 20f;
 					NierDamage = 20f;
 					SithPrefix = "Hard";
@@ -3537,6 +3556,7 @@ public class YandereScript : MonoBehaviour
 				CharacterAnimation.CrossFade(IdleAnim);
 				Snapping = true;
 				CanMove = false;
+				Debug.Log("CanMove is now false.");
 			}
 			if (Armor[20].activeInHierarchy && Armor[20].transform.parent == ItemParent && (Input.GetButtonDown(InputNames.Xbox_X) || Input.GetButtonDown(InputNames.Xbox_Y)))
 			{
@@ -3544,6 +3564,7 @@ public class YandereScript : MonoBehaviour
 				CharacterAnimation.Play("f02_nierAttackHard_00");
 				SithAttacking = true;
 				CanMove = false;
+				Debug.Log("CanMove is now false.");
 				SithBeam[1].Damage = 20f;
 				NierDamage = 20f;
 				SithPrefix = "Hard";
@@ -3564,6 +3585,7 @@ public class YandereScript : MonoBehaviour
 				CharacterAnimation.Play("f02_sithAttack_0" + SwipeID);
 				Swiping = true;
 				CanMove = false;
+				Debug.Log("CanMove is now false.");
 			}
 			if (TitanSword[0].activeInHierarchy)
 			{
@@ -5231,6 +5253,7 @@ public class YandereScript : MonoBehaviour
 						if (Pursuer != null)
 						{
 							CanMove = false;
+							Debug.Log("CanMove is now false.");
 						}
 					}
 					Stance.Current = StanceType.Standing;
@@ -5400,6 +5423,7 @@ public class YandereScript : MonoBehaviour
 					YandereVision = false;
 					SneakingShot = true;
 					CanMove = false;
+					Debug.Log("CanMove is now false.");
 					Lewd = true;
 				}
 				else if (ConcealedWeaponLabel.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_Y))
@@ -7544,6 +7568,7 @@ public class YandereScript : MonoBehaviour
 			BanchoFlurry.MyCollider.enabled = false;
 			Finisher = true;
 			CanMove = false;
+			Debug.Log("CanMove is now false.");
 		}
 		if (StudentManager.Eighties)
 		{
@@ -7931,6 +7956,7 @@ public class YandereScript : MonoBehaviour
 		WalkAnim = "f02_jojoWalk_00";
 		EasterEggMenu.SetActive(value: false);
 		CanMove = false;
+		Debug.Log("CanMove is now false.");
 		Egg = true;
 		CharacterAnimation.CrossFade("f02_summonStand_00");
 		Laugh1 = YanYan;
@@ -8963,6 +8989,7 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.materials[2].mainTexture = FaceTexture;
 		}
 		CanMove = false;
+		Debug.Log("CanMove is now false.");
 		Outline.h.ReinitMaterials();
 		ClubAccessory();
 	}

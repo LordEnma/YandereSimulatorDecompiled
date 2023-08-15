@@ -22,6 +22,25 @@ public class PromptSwapScript : MonoBehaviour
 
 	private void Awake()
 	{
+		if (SonyName == string.Empty)
+		{
+			if (GamepadName == "A")
+			{
+				SonyName = "CrossButton";
+			}
+			else if (GamepadName == "B")
+			{
+				SonyName = "CircleButton";
+			}
+			else if (GamepadName == "X")
+			{
+				SonyName = "SquareButton";
+			}
+			else if (GamepadName == "Y")
+			{
+				SonyName = "TriangleButton";
+			}
+		}
 		if (InputDevice == null)
 		{
 			InputDevice = Object.FindObjectOfType<InputDeviceScript>();

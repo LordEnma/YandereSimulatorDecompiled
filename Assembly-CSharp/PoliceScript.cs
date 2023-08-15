@@ -810,116 +810,106 @@ public class PoliceScript : MonoBehaviour
 									ResultsLabels[4].text = Protagonist + " returns home.";
 								}
 							}
+							else if ((!StudentManager.Eighties && StudentManager.Students[2] != null && StudentManager.Students[2].Alive && Yandere.Inventory.Ring) || (StudentManager.Eighties && StudentManager.Students[30] != null && StudentManager.Students[30].Alive && Yandere.Inventory.Ring) || (Yandere.Inventory.RivalPhone && StudentManager.CommunalLocker.RivalPhone.StudentID == StudentManager.RivalID && !StudentManager.RivalEliminated) || (Yandere.Inventory.RivalPhone && StudentManager.CommunalLocker.RivalPhone.StudentID > 0 && StudentManager.CommunalLocker.RivalPhone.StudentID != StudentManager.RivalID && StudentManager.Students[StudentManager.CommunalLocker.RivalPhone.StudentID].Alive))
+							{
+								if (Yandere.Inventory.Ring)
+								{
+									ResultsLabels[1].text = "A student tells the faculty that her ring is missing.";
+									ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
+									ResultsLabels[3].text = "The stolen ring is found on " + Protagonist + "'s person.";
+									ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
+								}
+								else if (StudentManager.CommunalLocker.RivalPhone.StudentID == StudentManager.RivalID)
+								{
+									ResultsLabels[1].text = "Osana tells the faculty that her phone is missing.";
+									ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
+									ResultsLabels[3].text = "Osana's stolen phone is found on " + Protagonist + "'s person.";
+									ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
+								}
+								else
+								{
+									ResultsLabels[1].text = "A student tells the faculty that her phone is missing.";
+									ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
+									ResultsLabels[3].text = "The student's stolen phone is found on " + Protagonist + "'s person.";
+									ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
+								}
+								GameOver = true;
+								Heartbroken.Counselor.Expelled = true;
+							}
+							else if (RedPaintClothing > 0)
+							{
+								ResultsLabels[1].text = "While walking around the school, a faculty member discovers the clothing.";
+								ResultsLabels[2].text = "The faculty member believes that the red paint is blood.";
+								ResultsLabels[3].text = "The faculty member immediately calls the police.";
+								ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
+								TeacherReport = true;
+								Show = true;
+							}
+							else if (DateGlobals.Weekday == DayOfWeek.Friday)
+							{
+								if (StudentManager.RivalEliminated || StudentManager.SabotageProgress == 5 || StudentManager.LoveManager.ConfessToSuitor)
+								{
+									if (!StudentManager.RivalEliminated)
+									{
+										if (StudentManager.LoveManager.ConfessToSuitor)
+										{
+											StudentManager.RivalEliminated = true;
+											EndOfDay.RivalEliminationMethod = RivalEliminationType.Matchmade;
+										}
+										else if (StudentManager.SabotageProgress == 5)
+										{
+											StudentManager.RivalEliminated = true;
+											EndOfDay.RivalEliminationMethod = RivalEliminationType.Rejected;
+										}
+									}
+									ResultsLabels[0].text = Protagonist + "'s rival is no longer a threat.";
+									ResultsLabels[1].text = Protagonist + " considers confessing her love to Senpai...";
+									ResultsLabels[2].text = "...but she cannot build up the courage to speak to him.";
+									ResultsLabels[3].text = Protagonist + " follows Senpai out of school and watches him from a distance until he has returned to his home.";
+									ResultsLabels[4].text = "Then, " + Protagonist + " returns to her own home, and considers what she should do next...";
+								}
+								else
+								{
+									ResultsLabels[0].text = "It is 6:00 PM on Friday.";
+									ResultsLabels[1].text = Protagonist + "'s rival asks Senpai to meet her under the cherry tree behind the school.";
+									ResultsLabels[2].text = "As cherry blossoms fall around them...";
+									ResultsLabels[3].text = "...she confesses her feelings for Senpai.";
+									ResultsLabels[4].text = Protagonist + " watches from a short distance away...";
+									BeginConfession = true;
+								}
+							}
 							else
 							{
-								Debug.Log(StudentManager);
-								Debug.Log(StudentManager.Students[2]);
-								Debug.Log(Yandere);
-								Debug.Log(Yandere.Inventory);
-								Debug.Log(StudentManager.CommunalLocker);
-								Debug.Log(StudentManager.CommunalLocker.RivalPhone);
-								Debug.Log(StudentManager.CommunalLocker.RivalPhone.StudentID);
-								if ((!StudentManager.Eighties && StudentManager.Students[2] != null && StudentManager.Students[2].Alive && Yandere.Inventory.Ring) || (StudentManager.Eighties && StudentManager.Students[30] != null && StudentManager.Students[30].Alive && Yandere.Inventory.Ring) || (Yandere.Inventory.RivalPhone && StudentManager.CommunalLocker.RivalPhone.StudentID == StudentManager.RivalID && !StudentManager.RivalEliminated) || (Yandere.Inventory.RivalPhone && StudentManager.CommunalLocker.RivalPhone.StudentID > 0 && StudentManager.CommunalLocker.RivalPhone.StudentID != StudentManager.RivalID && StudentManager.Students[StudentManager.CommunalLocker.RivalPhone.StudentID].Alive))
+								if (Clock.HourTime < 18f)
 								{
-									if (Yandere.Inventory.Ring)
+									if (Yandere.Senpai.position.z > -75f)
 									{
-										ResultsLabels[1].text = "A student tells the faculty that her ring is missing.";
-										ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
-										ResultsLabels[3].text = "The stolen ring is found on " + Protagonist + "'s person.";
-										ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
-									}
-									else if (StudentManager.CommunalLocker.RivalPhone.StudentID == StudentManager.RivalID)
-									{
-										ResultsLabels[1].text = "Osana tells the faculty that her phone is missing.";
-										ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
-										ResultsLabels[3].text = "Osana's stolen phone is found on " + Protagonist + "'s person.";
-										ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
+										ResultsLabels[1].text = "However, she can't bring herself to leave before Senpai does.";
+										ResultsLabels[2].text = Protagonist + " waits at the school's entrance until Senpai eventually appears.";
+										ResultsLabels[3].text = "She follows him and watches him from a distance until he has returned to his home.";
+										ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
 									}
 									else
 									{
-										ResultsLabels[1].text = "A student tells the faculty that her phone is missing.";
-										ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
-										ResultsLabels[3].text = "The student's stolen phone is found on " + Protagonist + "'s person.";
-										ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
-									}
-									GameOver = true;
-									Heartbroken.Counselor.Expelled = true;
-								}
-								else if (RedPaintClothing > 0)
-								{
-									ResultsLabels[1].text = "While walking around the school, a faculty member discovers the clothing.";
-									ResultsLabels[2].text = "The faculty member believes that the red paint is blood.";
-									ResultsLabels[3].text = "The faculty member immediately calls the police.";
-									ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
-									TeacherReport = true;
-									Show = true;
-								}
-								else if (DateGlobals.Weekday == DayOfWeek.Friday)
-								{
-									if (StudentManager.RivalEliminated || StudentManager.SabotageProgress == 5 || StudentManager.LoveManager.ConfessToSuitor)
-									{
-										if (!StudentManager.RivalEliminated)
-										{
-											if (StudentManager.LoveManager.ConfessToSuitor)
-											{
-												StudentManager.RivalEliminated = true;
-												EndOfDay.RivalEliminationMethod = RivalEliminationType.Matchmade;
-											}
-											else if (StudentManager.SabotageProgress == 5)
-											{
-												StudentManager.RivalEliminated = true;
-												EndOfDay.RivalEliminationMethod = RivalEliminationType.Rejected;
-											}
-										}
-										ResultsLabels[0].text = Protagonist + "'s rival is no longer a threat.";
-										ResultsLabels[1].text = Protagonist + " considers confessing her love to Senpai...";
-										ResultsLabels[2].text = "...but she cannot build up the courage to speak to him.";
-										ResultsLabels[3].text = Protagonist + " follows Senpai out of school and watches him from a distance until he has returned to his home.";
-										ResultsLabels[4].text = "Then, " + Protagonist + " returns to her own home, and considers what she should do next...";
-									}
-									else
-									{
-										ResultsLabels[0].text = "It is 6:00 PM on Friday.";
-										ResultsLabels[1].text = Protagonist + "'s rival asks Senpai to meet her under the cherry tree behind the school.";
-										ResultsLabels[2].text = "As cherry blossoms fall around them...";
-										ResultsLabels[3].text = "...she confesses her feelings for Senpai.";
-										ResultsLabels[4].text = Protagonist + " watches from a short distance away...";
-										BeginConfession = true;
+										ResultsLabels[1].text = Protagonist + " quickly runs out of school, determined to catch a glimpse of Senpai as he walks home.";
+										ResultsLabels[2].text = "Eventually, she catches up to him.";
+										ResultsLabels[3].text = Protagonist + " follows Senpai and watches him from a distance until he has returned to his home.";
+										ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
 									}
 								}
 								else
 								{
-									if (Clock.HourTime < 18f)
-									{
-										if (Yandere.Senpai.position.z > -75f)
-										{
-											ResultsLabels[1].text = "However, she can't bring herself to leave before Senpai does.";
-											ResultsLabels[2].text = Protagonist + " waits at the school's entrance until Senpai eventually appears.";
-											ResultsLabels[3].text = "She follows him and watches him from a distance until he has returned to his home.";
-											ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
-										}
-										else
-										{
-											ResultsLabels[1].text = Protagonist + " quickly runs out of school, determined to catch a glimpse of Senpai as he walks home.";
-											ResultsLabels[2].text = "Eventually, she catches up to him.";
-											ResultsLabels[3].text = Protagonist + " follows Senpai and watches him from a distance until he has returned to his home.";
-											ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
-										}
-									}
-									else
-									{
-										ResultsLabels[1].text = "Like all other students, " + Protagonist + " is instructed to leave school.";
-										ResultsLabels[2].text = "After exiting school, " + Protagonist + " locates Senpai.";
-										ResultsLabels[3].text = Protagonist + " follows Senpai and watches him from a distance until he has returned to his home.";
-										ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
-									}
-									if (GameGlobals.SenpaiMourning)
-									{
-										ResultsLabels[1].text = "Like all other students, " + Protagonist + " is instructed to leave school.";
-										ResultsLabels[2].text = Protagonist + " leaves school.";
-										ResultsLabels[3].text = Protagonist + " returns to her home.";
-										ResultsLabels[4].text = "Her heart aches as she thinks of Senpai.";
-									}
+									ResultsLabels[1].text = "Like all other students, " + Protagonist + " is instructed to leave school.";
+									ResultsLabels[2].text = "After exiting school, " + Protagonist + " locates Senpai.";
+									ResultsLabels[3].text = Protagonist + " follows Senpai and watches him from a distance until he has returned to his home.";
+									ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
+								}
+								if (GameGlobals.SenpaiMourning)
+								{
+									ResultsLabels[1].text = "Like all other students, " + Protagonist + " is instructed to leave school.";
+									ResultsLabels[2].text = Protagonist + " leaves school.";
+									ResultsLabels[3].text = Protagonist + " returns to her home.";
+									ResultsLabels[4].text = "Her heart aches as she thinks of Senpai.";
 								}
 							}
 						}
@@ -1209,6 +1199,7 @@ public class PoliceScript : MonoBehaviour
 					{
 						PlayerGlobals.CorpsesDiscovered++;
 						SchoolGlobals.SchoolAtmosphere -= 0.1f;
+						Debug.Log("Decrementing School Atmosphere because of limbs on school grounds.");
 						if (StudentGlobals.MemorialStudents < 9)
 						{
 							Debug.Log("''MemorialStudents'' is being incremented upwards.");

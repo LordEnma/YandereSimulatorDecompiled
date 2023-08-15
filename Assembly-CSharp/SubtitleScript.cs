@@ -170,6 +170,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] ScrapReactions;
 
+	public string[] MakeshiftReactions;
+
 	public string[] WeaponBloodApologies;
 
 	public string[] WeaponApologies;
@@ -2215,6 +2217,9 @@ public class SubtitleScript : MonoBehaviour
 					break;
 				case 28:
 					Label.text = GetRandomString(ScrapReactions);
+					break;
+				case 30:
+					Label.text = GetRandomString(MakeshiftReactions);
 					break;
 				}
 				break;
