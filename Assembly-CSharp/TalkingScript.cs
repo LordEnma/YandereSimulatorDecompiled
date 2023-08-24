@@ -1649,7 +1649,7 @@ public class TalkingScript : MonoBehaviour
 			if (S.TalkTimer == 5f)
 			{
 				bool flag12 = false;
-				if (S.StudentID == S.StudentManager.RivalID)
+				if (S.StudentID == S.StudentManager.RivalID && !S.StudentManager.MissionMode)
 				{
 					if (S.StudentManager.Eighties)
 					{

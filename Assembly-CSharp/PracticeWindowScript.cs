@@ -162,7 +162,7 @@ public class PracticeWindowScript : MonoBehaviour
 						StudentManager.Students[46].Hearts.Stop();
 						for (int k = 1; k < 5; k++)
 						{
-							if (StudentManager.Students[46 + k] != null && StudentManager.Students[46 + k].Alive && StudentManager.Students[46 + k].Routine && StudentManager.Students[46 + k].ClubAttire && !StudentManager.Students[46 + k].Alarmed && !StudentManager.Students[46 + k].InvestigatingBloodPool && !StudentManager.Students[46 + k].ReturningMisplacedWeapon)
+							if (StudentManager.Students[46 + k] != null && StudentManager.Students[46 + k].Alive && StudentManager.Students[46 + k].Routine && StudentManager.Students[46 + k].ClubAttire && !StudentManager.Students[46 + k].Alarmed && !StudentManager.Students[46 + k].Distracted && !StudentManager.Students[46 + k].TargetedForDistraction && !StudentManager.Students[46 + k].InvestigatingBloodPool && !StudentManager.Students[46 + k].ReturningMisplacedWeapon)
 							{
 								StudentManager.Students[46 + k].transform.position = KneelSpot[k].position;
 								StudentManager.Students[46 + k].transform.eulerAngles = KneelSpot[k].eulerAngles;
@@ -368,7 +368,7 @@ public class PracticeWindowScript : MonoBehaviour
 				Label[ID].text = StudentManager.JSON.Students[ClubID - ID].Name + "\n" + Difficulties[ID];
 				if (StudentManager.Students[ClubID - ID] != null)
 				{
-					if (!StudentManager.Students[ClubID - ID].Routine || !StudentManager.Students[ClubID - ID].ClubAttire)
+					if (!StudentManager.Students[ClubID - ID].Routine || !StudentManager.Students[ClubID - ID].ClubAttire || !StudentManager.Students[ClubID - ID].Distracted || !StudentManager.Students[ClubID - ID].TargetedForDistraction)
 					{
 						Debug.Log("Student #" + (ClubID - ID) + " is not doing their routine or not in their club attire.");
 						Texture[ID].color = new Color(0.5f, 0.5f, 0.5f, 1f);

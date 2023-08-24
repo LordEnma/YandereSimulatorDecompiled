@@ -1428,28 +1428,28 @@ public class CounselorScript : MonoBehaviour
 			{
 				Reticle.SetActive(value: true);
 				Cursor.visible = false;
-				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 1000f * Time.deltaTime, Input.GetAxis("Vertical") * 1000f * Time.deltaTime, 0f);
+				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 1500f * Time.deltaTime, Input.GetAxis("Vertical") * 1500f * Time.deltaTime, 0f);
 			}
 			else
 			{
 				Reticle.SetActive(value: true);
 				Cursor.visible = true;
-				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 1000f * Time.deltaTime, Input.GetAxis("Vertical") * 1000f * Time.deltaTime, 0f);
+				Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 1500f * Time.deltaTime, Input.GetAxis("Vertical") * 1500f * Time.deltaTime, 0f);
 				if (Input.GetKey("up"))
 				{
-					Reticle.transform.localPosition += new Vector3(0f, 1000f * Time.deltaTime, 0f);
+					Reticle.transform.localPosition += new Vector3(0f, 1500f * Time.deltaTime, 0f);
 				}
 				if (Input.GetKey("down"))
 				{
-					Reticle.transform.localPosition -= new Vector3(0f, 1000f * Time.deltaTime, 0f);
+					Reticle.transform.localPosition -= new Vector3(0f, 1500f * Time.deltaTime, 0f);
 				}
 				if (Input.GetKey("right"))
 				{
-					Reticle.transform.localPosition += new Vector3(1000f * Time.deltaTime, 0f, 0f);
+					Reticle.transform.localPosition += new Vector3(1500f * Time.deltaTime, 0f, 0f);
 				}
 				if (Input.GetKey("left"))
 				{
-					Reticle.transform.localPosition -= new Vector3(1000f * Time.deltaTime, 0f, 0f);
+					Reticle.transform.localPosition -= new Vector3(1500f * Time.deltaTime, 0f, 0f);
 				}
 			}
 			if (Reticle.transform.localPosition.x > 975f)

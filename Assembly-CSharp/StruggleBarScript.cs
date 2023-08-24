@@ -179,19 +179,19 @@ public class StruggleBarScript : MonoBehaviour
 		}
 		if (ButtonID == 1)
 		{
-			CurrentButton = "A";
+			CurrentButton = InputNames.Xbox_A;
 		}
 		else if (ButtonID == 2)
 		{
-			CurrentButton = "B";
+			CurrentButton = InputNames.Xbox_B;
 		}
 		else if (ButtonID == 3)
 		{
-			CurrentButton = "X";
+			CurrentButton = InputNames.Xbox_X;
 		}
 		else if (ButtonID == 4)
 		{
-			CurrentButton = "Y";
+			CurrentButton = InputNames.Xbox_Y;
 		}
 		ButtonPrompts[ButtonID].enabled = true;
 	}

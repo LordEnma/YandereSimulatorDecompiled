@@ -90,7 +90,7 @@ namespace MaidDereMinigame
 		{
 			rightButton = false;
 			leftButton = false;
-			if (Input.GetAxisRaw("Horizontal") > 0f || Input.GetKey("right") || Input.GetAxis("DpadX") > 0.5f)
+			if (Input.GetAxisRaw("Horizontal") > 0f || Input.GetKey("right") || Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f)
 			{
 				if (!rightButtonPast)
 				{
@@ -98,7 +98,7 @@ namespace MaidDereMinigame
 					rightButton = true;
 				}
 			}
-			else if (Input.GetAxisRaw("Horizontal") < 0f || Input.GetKey("left") || Input.GetAxis("DpadX") < -0.5f)
+			else if (Input.GetAxisRaw("Horizontal") < 0f || Input.GetKey("left") || Input.GetAxis(InputNames.Xbox_DpadX) < -0.5f)
 			{
 				if (!leftButtonPast)
 				{

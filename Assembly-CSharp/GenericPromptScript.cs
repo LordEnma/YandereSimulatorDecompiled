@@ -461,33 +461,36 @@ public class GenericPromptScript : MonoBehaviour
 			{
 				return;
 			}
-			Rotation = Mathf.MoveTowards(Rotation, TargetRotation, Time.deltaTime * 360f);
-			base.transform.parent.localEulerAngles = new Vector3(0f, 0f, Rotation);
-			base.transform.parent.localPosition = Vector3.MoveTowards(base.transform.parent.localPosition, new Vector3(6f, 3.75f, 3f), Time.deltaTime);
-			if (Rotation == TargetRotation)
+			if (Rotation != TargetRotation)
 			{
-				if (!SpawnedEffect)
-				{
-					UnityEngine.Object.Instantiate(Effect, base.transform.position, Quaternion.identity).transform.eulerAngles = new Vector3(-90f, 0f, 0f);
-					Prompt.Yandere.StudentManager.Students[15].transform.parent = base.transform;
-					SpawnedEffect = true;
-				}
-				base.transform.position -= new Vector3(0f, Time.deltaTime, 0f);
-				if (base.transform.localPosition.y > 3.1537f)
-				{
-					StudentScript obj3 = Prompt.Yandere.StudentManager.Students[15];
-					obj3.Drowned = true;
-					obj3.BecomeRagdoll();
-					obj3.Ragdoll.Zs.SetActive(value: false);
-					obj3.Ragdoll.DestroyRigidbodies();
-					obj3.DeathType = DeathType.Drowning;
-					obj3.CharacterAnimation.enabled = true;
-					obj3.CharacterAnimation.Play("f02_sunbatheSleep_00");
-					PerformingAction = false;
-					Prompt.enabled = false;
-					Prompt.Hide();
-					base.enabled = false;
-				}
+				Rotation = Mathf.MoveTowards(Rotation, TargetRotation, Time.deltaTime * 360f);
+				base.transform.parent.localEulerAngles = new Vector3(0f, 0f, Rotation);
+				base.transform.parent.localPosition = Vector3.MoveTowards(base.transform.parent.localPosition, new Vector3(6f, 3.75f, 3f), Time.deltaTime);
+				return;
+			}
+			if (!SpawnedEffect)
+			{
+				UnityEngine.Object.Instantiate(Effect, base.transform.position, Quaternion.identity).transform.eulerAngles = new Vector3(-90f, 0f, 0f);
+				Prompt.Yandere.StudentManager.Students[15].transform.parent = base.transform;
+				SpawnedEffect = true;
+			}
+			base.transform.parent.position -= new Vector3(0f, Time.deltaTime, 0f);
+			Debug.Log("Now lowering pool chair.");
+			if (base.transform.parent.position.y < 0.6f)
+			{
+				Debug.Log("Pool chair is now lowered?");
+				StudentScript obj3 = Prompt.Yandere.StudentManager.Students[15];
+				obj3.Drowned = true;
+				obj3.BecomeRagdoll();
+				obj3.Ragdoll.Zs.SetActive(value: false);
+				obj3.Ragdoll.DestroyRigidbodies();
+				obj3.DeathType = DeathType.Drowning;
+				obj3.CharacterAnimation.enabled = true;
+				obj3.CharacterAnimation.Play("f02_sunbatheSleep_00");
+				PerformingAction = false;
+				Prompt.enabled = false;
+				Prompt.Hide();
+				base.enabled = false;
 			}
 		}
 	}

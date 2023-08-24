@@ -10,9 +10,11 @@ public class VoidGoddessScript : MonoBehaviour
 
 	public GameObject BloodyUniform;
 
+	public GameObject NewPortrait;
+
 	public GameObject SeveredLimb;
 
-	public GameObject NewPortrait;
+	public GameObject WaterPuddle;
 
 	public GameObject BloodPool;
 
@@ -53,6 +55,10 @@ public class VoidGoddessScript : MonoBehaviour
 	public Texture Counselor;
 
 	public Texture Infochan;
+
+	public int CurrentTarget = 2;
+
+	public Transform RightAngle;
 
 	public void Start()
 	{

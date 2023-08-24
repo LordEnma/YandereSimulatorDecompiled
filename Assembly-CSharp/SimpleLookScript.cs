@@ -87,8 +87,8 @@ public class SimpleLookScript : MonoBehaviour
 					if (!ReactedToFriend && Student.Friend && Student.Yandere.Mask == null && !Student.Emetic && !Student.Lethal && !Student.Sedated && !Student.Headache && !Student.Grudge && !Student.Dying && Student.CurrentAction != StudentActionType.Sunbathe && Student.CurrentAction != StudentActionType.Gaming && Student.CurrentAction != StudentActionType.Mourn && Student.StudentID > 1 && LookTimer > 1f)
 					{
 						Student.CharacterAnimation[Student.WaveAnim].weight = 0f;
+						Student.CharacterAnimation[Student.WaveAnim].time = 0f;
 						Student.CharacterAnimation.CrossFade(Student.WaveAnim);
-						Student.CharacterAnimation[Student.WaveAnim].weight = 0f;
 						ReactedToFriend = true;
 						Waving = true;
 					}

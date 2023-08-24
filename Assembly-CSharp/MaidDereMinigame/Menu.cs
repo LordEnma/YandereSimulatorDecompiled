@@ -43,11 +43,11 @@ namespace MaidDereMinigame
 				activeMenuButton.DoClick();
 			}
 			float num = Input.GetAxisRaw("Vertical") * -1f;
-			if (Input.GetKeyDown("up") || Input.GetAxis("DpadY") > 0.5f)
+			if (Input.GetKeyDown("up") || Input.GetAxis(InputNames.Xbox_DpadY) > 0.5f)
 			{
 				num = -1f;
 			}
-			else if (Input.GetKeyDown("down") || Input.GetAxis("DpadY") < -0.5f)
+			else if (Input.GetKeyDown("down") || Input.GetAxis(InputNames.Xbox_DpadY) < -0.5f)
 			{
 				num = 1f;
 			}

@@ -8,6 +8,8 @@ public class DebugEnablerScript : MonoBehaviour
 
 	public GameObject MurderKit;
 
+	public GameObject Llama;
+
 	public GameObject Memes;
 
 	public GameObject Keys;
@@ -63,6 +65,7 @@ public class DebugEnablerScript : MonoBehaviour
 		StandWeapons.SetActive(value: true);
 		VoidGoddess.SetActive(value: true);
 		MurderKit.SetActive(value: true);
+		Llama.SetActive(value: true);
 		Memes.SetActive(value: true);
 		if (!GameGlobals.Eighties)
 		{

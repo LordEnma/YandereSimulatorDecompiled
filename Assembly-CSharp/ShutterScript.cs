@@ -273,7 +273,8 @@ public class ShutterScript : MonoBehaviour
 									PenaltyTimer += Time.deltaTime;
 									if (PenaltyTimer > 1f)
 									{
-										FaceStudent.Reputation.PendingRep -= -10f;
+										Debug.Log("Awareness penalty!");
+										FaceStudent.Reputation.PendingRep -= 10f;
 										PenaltyTimer = 0f;
 									}
 								}
@@ -1019,10 +1020,11 @@ public class ShutterScript : MonoBehaviour
 				}
 				else
 				{
+					Debug.Log("Penalizing the player!");
 					FaceStudent.RepDeduction = 0f;
 					FaceStudent.RepLoss = 20f;
-					FaceStudent.Reputation.PendingRep -= FaceStudent.RepLoss * FaceStudent.Paranoia;
-					FaceStudent.PendingRep -= FaceStudent.RepLoss * FaceStudent.Paranoia;
+					FaceStudent.Reputation.PendingRep += FaceStudent.RepLoss * FaceStudent.Paranoia;
+					FaceStudent.PendingRep += FaceStudent.RepLoss * FaceStudent.Paranoia;
 				}
 			}
 			else

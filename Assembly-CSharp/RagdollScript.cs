@@ -395,7 +395,9 @@ public class RagdollScript : MonoBehaviour
 									Yandere.ResetYandereEffects();
 									Yandere.YandereVision = false;
 								}
-								Yandere.CharacterAnimation.CrossFade("f02_wrapCorpse_00");
+								Yandere.ConcealAnim = "f02_wrapCorpse_00";
+								Yandere.CharacterAnimation.CrossFade(Yandere.ConcealAnim);
+								Yandere.CharacterAnimation[Yandere.ConcealAnim].speed = 1f + (float)Yandere.Class.PhysicalGrade * 0.2f;
 								Yandere.transform.LookAt(new Vector3(Student.Hips.transform.position.x, Yandere.transform.position.y, Student.Hips.transform.position.z));
 								Yandere.RPGCamera.transform.position = Yandere.DismemberSpot.position;
 								Yandere.RPGCamera.transform.eulerAngles = Yandere.DismemberSpot.eulerAngles;
@@ -408,7 +410,8 @@ public class RagdollScript : MonoBehaviour
 								Yandere.PickUp.transform.parent = Yandere.LeftHand;
 								Yandere.PickUp.transform.localPosition = Vector3.zero;
 								Yandere.PickUp.transform.localEulerAngles = Vector3.zero;
-								AudioSource.PlayClipAtPoint(Yandere.PickUp.WrappingCorpse, Yandere.RPGCamera.transform.position);
+								Debug.Log("this.Yandere.CharacterAnimation[''Yandere.ConcealAnim''].speed is now: " + Yandere.CharacterAnimation[Yandere.ConcealAnim].speed);
+								AudioManager.PlayAudio(AudioType.Effect, Yandere.PickUp.WrappingCorpse, Yandere.CharacterAnimation[Yandere.ConcealAnim].speed);
 							}
 							else
 							{

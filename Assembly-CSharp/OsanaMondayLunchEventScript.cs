@@ -390,7 +390,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Clock.Period > 3 || Senpai.Alarmed || Rival.Alarmed || Rival.Wet || Rival.GoAway || Senpai.GoAway)
+		if (Clock.Period > 3 || Senpai.Alarmed || Rival.Alarmed || Rival.Wet || Rival.GoAway || Senpai.GoAway || Clock.Police.ShowResults)
 		{
 			if (Senpai.Alarmed || (Rival.Alarmed && !Rival.Wet))
 			{

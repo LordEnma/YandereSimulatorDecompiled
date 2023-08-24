@@ -900,6 +900,8 @@ public class YandereScript : MonoBehaviour
 
 	public string LockPickAnim = string.Empty;
 
+	public string ConcealAnim = string.Empty;
+
 	public string CleanAnim = string.Empty;
 
 	public string DrownAnim = string.Empty;
@@ -3182,7 +3184,7 @@ public class YandereScript : MonoBehaviour
 							}
 						}
 					}
-					if (ClubAccessories[7].activeInHierarchy && (Input.GetAxis("DpadY") != 0f || Input.GetAxis("Mouse ScrollWheel") != 0f || Input.GetKey(KeyCode.Tab) || Input.GetKey(KeyCode.LeftShift)))
+					if (ClubAccessories[7].activeInHierarchy && (Input.GetAxis(InputNames.Xbox_DpadY) != 0f || Input.GetAxis("Mouse ScrollWheel") != 0f || Input.GetKey(KeyCode.Tab) || Input.GetKey(KeyCode.LeftShift)))
 					{
 						if (Input.GetKey(KeyCode.Tab))
 						{
@@ -3192,7 +3194,7 @@ public class YandereScript : MonoBehaviour
 						{
 							Smartphone.fieldOfView += Time.deltaTime * 100f;
 						}
-						Smartphone.fieldOfView -= Input.GetAxis("DpadY");
+						Smartphone.fieldOfView -= Input.GetAxis(InputNames.Xbox_DpadY);
 						Smartphone.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * 10f;
 						if (Smartphone.fieldOfView > 60f)
 						{
@@ -3286,7 +3288,7 @@ public class YandereScript : MonoBehaviour
 				{
 					if (InputDevice.Type == InputDeviceType.Gamepad)
 					{
-						if (Input.GetAxis("DpadY") < -0.5f)
+						if (Input.GetAxis(InputNames.Xbox_DpadY) < -0.5f)
 						{
 							if (CharacterAnimation["f02_removeGloves_00"].time == 0f)
 							{
@@ -3333,7 +3335,7 @@ public class YandereScript : MonoBehaviour
 			{
 				if (InputDevice.Type == InputDeviceType.Gamepad)
 				{
-					if (Input.GetAxis("DpadX") < -0.5f)
+					if (Input.GetAxis(InputNames.Xbox_DpadX) < -0.5f)
 					{
 						DropWeapon(1);
 					}
@@ -3355,7 +3357,7 @@ public class YandereScript : MonoBehaviour
 			{
 				if (InputDevice.Type == InputDeviceType.Gamepad)
 				{
-					if (Input.GetAxis("DpadX") > 0.5f)
+					if (Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f)
 					{
 						DropWeapon(2);
 					}
@@ -3991,11 +3993,11 @@ public class YandereScript : MonoBehaviour
 		}
 		if (DumpsterGrabbing)
 		{
-			if (Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("DpadX") > 0.5f || Input.GetKey("right"))
+			if (Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f || Input.GetKey("right"))
 			{
 				CharacterAnimation.CrossFade((DumpsterHandle.Direction == -1f) ? "f02_dumpsterPull_00" : "f02_dumpsterPush_00");
 			}
-			else if (Input.GetAxis("Horizontal") < -0.5f || Input.GetAxis("DpadX") < -0.5f || Input.GetKey("left"))
+			else if (Input.GetAxis("Horizontal") < -0.5f || Input.GetAxis(InputNames.Xbox_DpadX) < -0.5f || Input.GetKey("left"))
 			{
 				CharacterAnimation.CrossFade((DumpsterHandle.Direction == -1f) ? "f02_dumpsterPush_00" : "f02_dumpsterPull_00");
 			}
@@ -4055,7 +4057,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (InputDevice.Type == InputDeviceType.Gamepad)
 			{
-				if (Input.GetAxis("DpadY") > -0.5f)
+				if (Input.GetAxis(InputNames.Xbox_DpadY) > -0.5f)
 				{
 					Degloving = false;
 					CanMove = true;
@@ -4281,7 +4283,7 @@ public class YandereScript : MonoBehaviour
 		{
 			StopDismembering();
 		}
-		if (WrappingCorpse && CharacterAnimation["f02_wrapCorpse_00"].time >= CharacterAnimation["f02_wrapCorpse_00"].length)
+		if (WrappingCorpse && CharacterAnimation[ConcealAnim].time >= CharacterAnimation[ConcealAnim].length)
 		{
 			StopWrappingCorpse();
 		}
@@ -8989,7 +8991,6 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.materials[2].mainTexture = FaceTexture;
 		}
 		CanMove = false;
-		Debug.Log("CanMove is now false.");
 		Outline.h.ReinitMaterials();
 		ClubAccessory();
 	}

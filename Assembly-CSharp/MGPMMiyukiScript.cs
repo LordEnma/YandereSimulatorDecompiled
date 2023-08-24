@@ -74,6 +74,8 @@ public class MGPMMiyukiScript : MonoBehaviour
 
 	public bool Gameplay;
 
+	public bool Flicker;
+
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -320,6 +322,15 @@ public class MGPMMiyukiScript : MonoBehaviour
 		if (Invincibility > 0f)
 		{
 			Invincibility = Mathf.MoveTowards(Invincibility, 0f, Time.deltaTime);
+			Debug.Log("Invincibility is now " + Invincibility);
+			if (MyRenderer.material.GetColor("_EmissionColor").a == 1f)
+			{
+				MyRenderer.material.SetColor("_EmissionColor", new Color(0f, 0f, 0f, 0f));
+			}
+			else
+			{
+				MyRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f, 1f));
+			}
 			if (Invincibility == 0f)
 			{
 				MyRenderer.material.SetColor("_EmissionColor", new Color(0f, 0f, 0f, 0f));
@@ -331,10 +342,17 @@ public class MGPMMiyukiScript : MonoBehaviour
 	{
 		if (collision.gameObject.layer == 9)
 		{
+			Debug.Log("Just collided with an object on layer 9.");
 			if (Invincibility == 0f)
 			{
+				Debug.Log("Invincibility was 0 at the time.");
 				Health--;
 				if (GameGlobals.EasyMode)
+				{
+					MyRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f, 1f));
+					Invincibility = 5f;
+				}
+				else
 				{
 					MyRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f, 1f));
 					Invincibility = 1f;

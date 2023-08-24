@@ -170,7 +170,7 @@ public class WeaponMenuScript : MonoBehaviour
 			{
 				if (!Show)
 				{
-					if (Input.GetAxis("DpadY") < -0.5f)
+					if (Input.GetAxis(InputNames.Xbox_DpadY) < -0.5f)
 					{
 						if (Yandere.Equipped > 0)
 						{

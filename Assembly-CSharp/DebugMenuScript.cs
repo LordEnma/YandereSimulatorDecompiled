@@ -476,6 +476,7 @@ public class DebugMenuScript : MonoBehaviour
 						}
 						StudentManager.Students[46].Friend = false;
 						Window.SetActive(value: false);
+						Debug.Log("Yandere.Class.PhysicalGrade is now: " + Yandere.Class.PhysicalGrade);
 					}
 					else if (Input.GetKeyDown(KeyCode.T))
 					{

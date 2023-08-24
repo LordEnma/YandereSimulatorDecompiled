@@ -2163,7 +2163,7 @@ public class StudentManagerScript : MonoBehaviour
 			}
 			if (PinPhase == 1)
 			{
-				if (!Yandere.Attacking && !Yandere.Struggling)
+				if (!Yandere.Attacking && !Yandere.Struggling && !Yandere.Noticed)
 				{
 					Yandere.CharacterAnimation.CrossFade("f02_pinDownPanic_00");
 					PinTimer += Time.deltaTime;
@@ -3955,7 +3955,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void PinDownCheck()
 	{
-		if (PinningDown || Witnesses <= 3)
+		if (PinningDown || Yandere.Noticed || Witnesses <= 3)
 		{
 			return;
 		}

@@ -302,7 +302,7 @@ public class ClassScript : MonoBehaviour
 					{
 						SubtractStudyPoints();
 					}
-					if (Input.GetAxisRaw("DpadX") > 0.5f || Input.GetAxisRaw("Horizontal") > 0.5f)
+					if (Input.GetAxisRaw(InputNames.Xbox_DpadX) > 0.5f || Input.GetAxisRaw("Horizontal") > 0.5f)
 					{
 						HoldRightTimer += Time.deltaTime;
 						if (HoldRightTimer > 0.5f)
@@ -314,7 +314,7 @@ public class ClassScript : MonoBehaviour
 					{
 						HoldRightTimer = 0f;
 					}
-					if (Input.GetAxisRaw("DpadX") < -0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+					if (Input.GetAxisRaw(InputNames.Xbox_DpadX) < -0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
 					{
 						HoldLeftTimer += Time.deltaTime;
 						if (HoldLeftTimer > 0.5f)

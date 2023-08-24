@@ -67,7 +67,7 @@ public class InputDeviceScript : MonoBehaviour
 					break;
 				}
 			}
-			bool flag2 = Math.Abs(Input.GetAxis("DpadX")) > 0.5f || Math.Abs(Input.GetAxis("DpadX")) < -0.5f || Math.Abs(Input.GetAxis("DpadY")) > 0.5f || Math.Abs(Input.GetAxis("DpadY")) < -0.5f;
+			bool flag2 = Math.Abs(Input.GetAxis(InputNames.Xbox_DpadX)) > 0.5f || Math.Abs(Input.GetAxis(InputNames.Xbox_DpadX)) < -0.5f || Math.Abs(Input.GetAxis(InputNames.Xbox_DpadY)) > 0.5f || Math.Abs(Input.GetAxis(InputNames.Xbox_DpadY)) < -0.5f;
 			if (InputManager != null && (InputManager.DPadUp || InputManager.DPadDown || InputManager.DPadLeft || InputManager.DPadRight))
 			{
 				flag2 = true;

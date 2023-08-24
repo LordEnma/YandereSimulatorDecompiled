@@ -872,6 +872,13 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			UISprite uISprite11 = Shadow[6];
 			uISprite11.color = new Color(uISprite11.color.r, uISprite11.color.g, uISprite11.color.b, 0.75f);
+			if (!Yandere.TargetStudent.Indoors && ((Yandere.TargetStudent.Male && Yandere.Class.Seduction + Yandere.Class.SeductionBonus > 3) || Yandere.Class.Seduction + Yandere.Class.SeductionBonus > 4 || Yandere.Club == ClubType.Delinquent))
+			{
+				Yandere.NotificationManager.CustomText = "...until they have changed shoes.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Yandere.NotificationManager.CustomText = "Students will not perform favors...";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
 		}
 		else
 		{

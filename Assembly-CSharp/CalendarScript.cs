@@ -98,6 +98,8 @@ public class CalendarScript : MonoBehaviour
 
 	public int Phase = 1;
 
+	public int As;
+
 	public int Ls;
 
 	public AudioClip EightiesJingle;
@@ -648,6 +650,16 @@ public class CalendarScript : MonoBehaviour
 					Switch = false;
 					Phase = 1;
 				}
+			}
+		}
+		if (Input.GetKeyDown(KeyCode.A) && !Eighties)
+		{
+			As++;
+			if (As == 10)
+			{
+				DateGlobals.Weekday = DayOfWeek.Sunday;
+				DateGlobals.Week = 2;
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			}
 		}
 		if (Input.GetKeyDown(KeyCode.L))

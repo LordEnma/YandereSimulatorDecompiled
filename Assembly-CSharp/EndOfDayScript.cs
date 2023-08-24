@@ -1122,6 +1122,7 @@ public class EndOfDayScript : MonoBehaviour
 				return;
 			}
 			Senpai.enabled = false;
+			Senpai.Pathfinding.enabled = false;
 			Senpai.transform.parent = base.transform;
 			Senpai.gameObject.SetActive(value: true);
 			Senpai.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -1196,6 +1197,7 @@ public class EndOfDayScript : MonoBehaviour
 		else if (Phase == 13)
 		{
 			Senpai.enabled = false;
+			Senpai.Pathfinding.enabled = false;
 			Senpai.transform.parent = base.transform;
 			Senpai.gameObject.SetActive(value: true);
 			Senpai.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -1783,6 +1785,7 @@ public class EndOfDayScript : MonoBehaviour
 				Patsy.transform.parent = base.transform;
 				Patsy.transform.localPosition = new Vector3(0f, 0f, 0f);
 				Patsy.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+				Patsy.Pathfinding.enabled = false;
 				Patsy.ShoeRemoval.enabled = false;
 				if (StudentManager.Students[fingerprintID2].Male)
 				{
@@ -2726,6 +2729,10 @@ public class EndOfDayScript : MonoBehaviour
 		else if (ArticleID == 3)
 		{
 			SchoolGlobals.SchoolAtmosphere += 20f * (1f + (float)ClassGlobals.LanguageGrade * 0.2f);
+		}
+		if (PlayerGlobals.Reputation > 100f)
+		{
+			PlayerGlobals.Reputation = 100f;
 		}
 		if (HeardMegami)
 		{

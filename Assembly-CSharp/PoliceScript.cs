@@ -357,10 +357,29 @@ public class PoliceScript : MonoBehaviour
 				Yandere.NotificationManager.NotificationParent.localPosition = new Vector3(0.15f, Yandere.NotificationManager.NotificationParent.localPosition.y, Yandere.NotificationManager.NotificationParent.localPosition.z);
 			}
 		}
-		else if (Deaths > 86 && !Invalid && !Yandere.Egg && Clock.Weekday == 1 && StudentManager.Students[1].gameObject.activeInHierarchy && !StudentManager.Students[1].Fleeing)
+		else if (Deaths > 86)
 		{
-			GenocideEnding = true;
-			BeginFadingOut();
+			if (Invalid)
+			{
+				Debug.Log("Invalid Genocide Run. Debug Commands or Easter Eggs were used.");
+			}
+			else if (Yandere.Egg)
+			{
+				Debug.Log("Invalid Genocide Run. Easter Eggs were used.");
+			}
+			else if (Clock.Weekday != 1)
+			{
+				Debug.Log("Invalid Genocide Run. It's not Monday of Week 1.");
+			}
+			else if (!StudentManager.Students[1].gameObject.activeInHierarchy || StudentManager.Students[1].Fleeing)
+			{
+				Debug.Log("Invalid Genocide Run. Senpai was alarmed.");
+			}
+			else
+			{
+				GenocideEnding = true;
+				BeginFadingOut();
+			}
 		}
 		if (FadeOut)
 		{

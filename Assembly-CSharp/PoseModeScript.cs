@@ -278,7 +278,7 @@ public class PoseModeScript : MonoBehaviour
 			}
 			else if (Posing)
 			{
-				if (Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Horizontal") < -0.5f || Input.GetAxis("DpadX") > 0.5f || Input.GetAxis("DpadX") < -0.5f || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+				if (Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Horizontal") < -0.5f || Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f || Input.GetAxis(InputNames.Xbox_DpadX) < -0.5f || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
 				{
 					CalculateValue();
 					if (Selected == 1)
@@ -522,7 +522,7 @@ public class PoseModeScript : MonoBehaviour
 						UpdateLabels();
 					}
 				}
-				else if (Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Horizontal") < -0.5f || Input.GetAxis("DpadX") > 0.5f || Input.GetAxis("DpadX") < -0.5f || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+				else if (Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Horizontal") < -0.5f || Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f || Input.GetAxis(InputNames.Xbox_DpadX) < -0.5f || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
 				{
 					CalculateValue();
 					Material material = Student.Cosmetic.HairRenderer.material;
@@ -1109,9 +1109,9 @@ public class PoseModeScript : MonoBehaviour
 				Value = -1;
 			}
 		}
-		else if (Input.GetAxis("DpadX") > 0.5f || Input.GetAxis("DpadX") < -0.5f)
+		else if (Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f || Input.GetAxis(InputNames.Xbox_DpadX) < -0.5f)
 		{
-			if (Input.GetAxis("DpadX") > 0.5f)
+			if (Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f)
 			{
 				Value = 1;
 			}

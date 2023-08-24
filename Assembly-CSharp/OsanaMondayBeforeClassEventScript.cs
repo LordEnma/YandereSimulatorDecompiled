@@ -94,6 +94,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 								Rival.Follower.InEvent = true;
 								Rival.Follower.CurrentDestination = Rival.FollowTargetDestination;
 								Rival.Follower.Pathfinding.target = Rival.FollowTargetDestination;
+								Rival.Follower.SmartPhone.SetActive(value: false);
 							}
 							if (!HintGiven)
 							{

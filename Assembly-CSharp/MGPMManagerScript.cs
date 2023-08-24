@@ -56,6 +56,8 @@ public class MGPMManagerScript : MonoBehaviour
 
 	public Texture[] Stars;
 
+	public UILabel NGUIScoreLabel;
+
 	public Text ScoreLabel;
 
 	public Renderer Black;
@@ -116,7 +118,9 @@ public class MGPMManagerScript : MonoBehaviour
 			Miyuki.MagicBar.transform.parent.localScale = new Vector3(132f, 10f, 1f);
 			Border.material.mainTexture = WhiteBorder;
 			ScoreLabel.color = new Color(1f, 1f, 1f, 1f);
+			ScoreLabel.enabled = true;
 			ScoreLabel.font = VCR;
+			NGUIScoreLabel.enabled = false;
 			GameOverMusic = EightiesGameOverMusic;
 			VictoryMusic = EightiesVictoryMusic;
 			Jukebox.clip = EightiesIntroJingle;
@@ -125,6 +129,11 @@ public class MGPMManagerScript : MonoBehaviour
 			Water[1].Sprite = Stars;
 			Water[2].Sprite = Stars;
 			Eighties = true;
+		}
+		else
+		{
+			NGUIScoreLabel.enabled = true;
+			ScoreLabel.enabled = false;
 		}
 		Miyuki.transform.localPosition = new Vector3(0f, -300f, 0f);
 		Black.material.color = new Color(0f, 0f, 0f, 1f);
@@ -139,6 +148,7 @@ public class MGPMManagerScript : MonoBehaviour
 
 	private void Update()
 	{
+		NGUIScoreLabel.text = "Score: " + Score * Miyuki.Health;
 		ScoreLabel.text = "Score: " + Score * Miyuki.Health;
 		if (StageClear)
 		{

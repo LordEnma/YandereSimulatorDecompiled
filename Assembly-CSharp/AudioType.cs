@@ -1,6 +1,6 @@
 public enum AudioType
 {
-	Voice = 0,
+	Effect = 0,
 	Music = 1,
-	SFX = 2
+	Voice = 2
 }

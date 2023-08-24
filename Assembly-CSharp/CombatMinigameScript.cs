@@ -160,7 +160,7 @@ public class CombatMinigameScript : MonoBehaviour
 		{
 			Timer += Time.deltaTime;
 			Circle.fillAmount = 1f - Timer / 0.33333f;
-			if ((Input.GetButtonDown(InputNames.Xbox_A) && CurrentButton != "A") || (Input.GetButtonDown(InputNames.Xbox_B) && CurrentButton != "B") || (Input.GetButtonDown(InputNames.Xbox_X) && CurrentButton != "X") || (Input.GetButtonDown(InputNames.Xbox_Y) && CurrentButton != "Y"))
+			if ((Input.GetButtonDown(InputNames.Xbox_A) && CurrentButton != InputNames.Xbox_A) || (Input.GetButtonDown(InputNames.Xbox_B) && CurrentButton != InputNames.Xbox_B) || (Input.GetButtonDown(InputNames.Xbox_X) && CurrentButton != InputNames.Xbox_X) || (Input.GetButtonDown(InputNames.Xbox_Y) && CurrentButton != InputNames.Xbox_Y))
 			{
 				Time.timeScale = 1f;
 				MyVocals.pitch = 1f;
@@ -759,19 +759,19 @@ public class CombatMinigameScript : MonoBehaviour
 		}
 		if (ButtonID == 1)
 		{
-			CurrentButton = "A";
+			CurrentButton = InputNames.Xbox_A;
 		}
 		else if (ButtonID == 2)
 		{
-			CurrentButton = "B";
+			CurrentButton = InputNames.Xbox_B;
 		}
 		else if (ButtonID == 3)
 		{
-			CurrentButton = "X";
+			CurrentButton = InputNames.Xbox_X;
 		}
 		else if (ButtonID == 4)
 		{
-			CurrentButton = "Y";
+			CurrentButton = InputNames.Xbox_Y;
 		}
 		ButtonPrompts[ButtonID].enabled = true;
 		ButtonPrompts[ButtonID].alpha = 1f;

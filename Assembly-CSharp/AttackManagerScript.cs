@@ -214,7 +214,7 @@ public class AttackManagerScript : MonoBehaviour
 		WeaponScript equippedWeapon = Yandere.EquippedWeapon;
 		SanityType sanityType = Yandere.SanityType;
 		AttackTimer += Time.deltaTime;
-		if (Yandere.TargetStudent.StudentID == Yandere.StudentManager.RivalID && !Yandere.CanTranq && !Yandere.StudentManager.DisableRivalDeathSloMo)
+		if (Yandere.TargetStudent.StudentID == Yandere.StudentManager.RivalID && !Yandere.CanTranq && !Yandere.StudentManager.DisableRivalDeathSloMo && !Yandere.Noticed)
 		{
 			if (AttackTimer < 1.5f)
 			{
@@ -224,6 +224,11 @@ public class AttackManagerScript : MonoBehaviour
 			{
 				Time.timeScale = Mathf.MoveTowards(Time.timeScale, 1f, Time.unscaledDeltaTime * 2f);
 			}
+			equippedWeapon.MyAudio.pitch = Time.timeScale;
+		}
+		else
+		{
+			Time.timeScale = Mathf.MoveTowards(Time.timeScale, 1f, Time.unscaledDeltaTime * 2f);
 			equippedWeapon.MyAudio.pitch = Time.timeScale;
 		}
 		SpecialEffect(equippedWeapon, sanityType);
@@ -995,7 +1000,7 @@ public class AttackManagerScript : MonoBehaviour
 		RaycastOrigin = Yandere.Zoom.transform;
 		Vector3 vector = RaycastOrigin.TransformDirection(Yandere.transform.forward);
 		Debug.DrawRay(RaycastOrigin.position, vector, Color.green);
-		if (Physics.Raycast(RaycastOrigin.position, vector, out hit, 2f, OnlyDefault))
+		if (Physics.Raycast(maxDistance: (Yandere.EquippedWeapon.Type != WeaponType.Garrote) ? 2f : 2f, origin: RaycastOrigin.position, direction: vector, hitInfo: out hit, layerMask: OnlyDefault))
 		{
 			Yandere.MyController.Move(base.transform.forward * -1f * Time.deltaTime);
 		}
