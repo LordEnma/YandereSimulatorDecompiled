@@ -162,6 +162,8 @@ public class RagdollScript : MonoBehaviour
 
 	public float AnimStartTime;
 
+	public float RemoveTimer;
+
 	public float SettleTimer;
 
 	public float BreastSize;
@@ -395,7 +397,7 @@ public class RagdollScript : MonoBehaviour
 									Yandere.ResetYandereEffects();
 									Yandere.YandereVision = false;
 								}
-								Yandere.ConcealAnim = "f02_wrapCorpse_00";
+								Yandere.ConcealAnim = "f02_concealInBodyBag_00";
 								Yandere.CharacterAnimation.CrossFade(Yandere.ConcealAnim);
 								Yandere.CharacterAnimation[Yandere.ConcealAnim].speed = 1f + (float)Yandere.Class.PhysicalGrade * 0.2f;
 								Yandere.transform.LookAt(new Vector3(Student.Hips.transform.position.x, Yandere.transform.position.y, Student.Hips.transform.position.z));
@@ -651,7 +653,7 @@ public class RagdollScript : MonoBehaviour
 				}
 				Student.CharacterAnimation.CrossFade(DumpedAnim);
 				DumpTimer += Time.deltaTime;
-				if (Student.CharacterAnimation[DumpedAnim].time >= Student.CharacterAnimation[DumpedAnim].length)
+				if (Student.CharacterAnimation[DumpedAnim].time >= Student.CharacterAnimation[DumpedAnim].length && RemoveTimer == 0f)
 				{
 					WoodChipper = Yandere.WoodChipper;
 					Debug.Log("Student #" + StudentID + " is now updating " + WoodChipper.gameObject.name + " with an ID number.");
@@ -661,8 +663,16 @@ public class RagdollScript : MonoBehaviour
 						InsideWoodchipper = true;
 					}
 					WoodChipper.VictimID = StudentID;
-					Remove();
-					base.enabled = false;
+					if (WoodChipper.Kiln)
+					{
+						base.transform.parent = WoodChipper.Slab;
+						RemoveTimer = 1f;
+					}
+					else
+					{
+						Remove();
+						base.enabled = false;
+					}
 				}
 			}
 		}
@@ -724,6 +734,14 @@ public class RagdollScript : MonoBehaviour
 				component.newRenderer.gameObject.GetComponent<OutlineScript>().enabled = true;
 				AddedOutline = true;
 				ColoredOutline = true;
+			}
+		}
+		if (RemoveTimer > 0f)
+		{
+			RemoveTimer = Mathf.MoveTowards(RemoveTimer, 0f, Time.deltaTime);
+			if (RemoveTimer == 0f)
+			{
+				Remove();
 			}
 		}
 	}

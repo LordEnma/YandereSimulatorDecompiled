@@ -45,6 +45,7 @@ public class LowRepGameOverScript : MonoBehaviour
 		Yandere.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 		Yandere.CharacterAnimation.Play("f02_LowRepGO_A");
 		Yandere.LifeNotePen.SetActive(value: false);
+		Yandere.LoseGentleEyes();
 		MyCamera.eulerAngles = CameraPosition[0].eulerAngles;
 		MyCamera.position = CameraPosition[0].position;
 		Senpai.Chopsticks[0].SetActive(value: false);

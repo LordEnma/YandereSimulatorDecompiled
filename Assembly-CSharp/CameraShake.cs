@@ -25,7 +25,7 @@ public class CameraShake : MonoBehaviour
 		originalPos = camTransform.localPosition;
 	}
 
-	private void Update()
+	private void LateUpdate()
 	{
 		if (shake > 0f)
 		{

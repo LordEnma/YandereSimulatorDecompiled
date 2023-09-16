@@ -58,7 +58,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
-		if (GameGlobals.Eighties)
+		if (GameGlobals.Eighties || MissionModeGlobals.MissionMode)
 		{
 			base.enabled = false;
 		}

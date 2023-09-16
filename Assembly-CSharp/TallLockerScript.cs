@@ -24,6 +24,8 @@ public class TallLockerScript : MonoBehaviour
 
 	public RingTheftScript Rings;
 
+	public DoorGapScript DoorGap;
+
 	public StudentScript Student;
 
 	public YandereScript Yandere;
@@ -352,7 +354,7 @@ public class TallLockerScript : MonoBehaviour
 					Debug.Log("Checking if something needs to appear at this student's locker...");
 					if (!StudentManager.Eighties)
 					{
-						if (!RivalPhone.gameObject.activeInHierarchy && !Yandere.Inventory.RivalPhone)
+						if (!RivalPhone.gameObject.activeInHierarchy && !Yandere.Inventory.RivalPhone && !DoorGap.Papers[1].gameObject.activeInHierarchy)
 						{
 							Debug.Log(Student?.ToString() + " just left her smartphone in the locker room!");
 							RivalPhone.transform.parent = StudentManager.StrippingPositions[Student.GirlID];
@@ -362,6 +364,10 @@ public class TallLockerScript : MonoBehaviour
 							RivalPhone.gameObject.SetActive(value: true);
 							RivalPhone.StudentID = Student.StudentID;
 							RivalPhone.MyRenderer.material.mainTexture = Student.SmartPhone.GetComponent<Renderer>().material.mainTexture;
+						}
+						else
+						{
+							Debug.Log(Student?.ToString() + " did NOT leave her smartphone in the locker room, since it would have caused a bug.");
 						}
 						if (Student.StudentID == 2 && Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory].activeInHierarchy)
 						{

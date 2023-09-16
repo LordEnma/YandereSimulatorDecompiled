@@ -18,6 +18,8 @@ public class AlarmDiscScript : MonoBehaviour
 
 	public StudentScript Student;
 
+	public bool FarTargetDistance;
+
 	public bool FocusOnYandere;
 
 	public bool StudentIsBusy;
@@ -256,8 +258,9 @@ public class AlarmDiscScript : MonoBehaviour
 									Student.Routine = false;
 									Student.GoAway = false;
 									bool flag = false;
-									if (Student.CurrentAction == StudentActionType.SitAndEatBento && Student.Bento.activeInHierarchy && Student.StudentID > 1)
+									if (Student.Bento.activeInHierarchy && Student.StudentID > 1 && (Student.CurrentAction == StudentActionType.SitAndEatBento || Student.Chopsticks[0].gameObject.activeInHierarchy))
 									{
+										Debug.Log(Student.Name + " was eating a bento at the time.");
 										flag = true;
 									}
 									Student.EmptyHands();
@@ -273,6 +276,7 @@ public class AlarmDiscScript : MonoBehaviour
 									}
 									if (flag)
 									{
+										Debug.Log(Student.Name + " was eating, so...");
 										if (!Student.MyBento.Tampered)
 										{
 											Student.MyBento.enabled = true;
@@ -381,6 +385,15 @@ public class AlarmDiscScript : MonoBehaviour
 				Student.HeardScream = true;
 				Student.Drownable = false;
 				Student.StudentManager.UpdateMe(Student.StudentID);
+				if (FarTargetDistance)
+				{
+					Debug.Log(Student.Name + " InvestigationDistance should now be 5...");
+					Student.InvestigationDistance = 5f;
+				}
+				else
+				{
+					Student.InvestigationDistance = 0.8f;
+				}
 			}
 		}
 		else

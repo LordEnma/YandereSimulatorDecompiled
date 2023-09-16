@@ -22,7 +22,19 @@ public class WoodChipperScript : MonoBehaviour
 
 	public Transform DumpPoint;
 
+	public Transform Corpse;
+
+	public Transform Slab;
+
 	public Transform Lid;
+
+	public UILabel TimeLabel;
+
+	public GameObject Panel;
+
+	public UISprite Circle;
+
+	public float BurnTimer;
 
 	public float Rotation;
 
@@ -32,7 +44,11 @@ public class WoodChipperScript : MonoBehaviour
 
 	public bool Occupied;
 
+	public bool Burning;
+
 	public bool Acid;
+
+	public bool Kiln;
 
 	public bool Open;
 
@@ -55,11 +71,28 @@ public class WoodChipperScript : MonoBehaviour
 	private void Start()
 	{
 		MyAudio = GetComponent<AudioSource>();
+		if (Kiln)
+		{
+			Panel.SetActive(value: false);
+		}
 	}
 
 	private void Update()
 	{
-		if (!Acid)
+		if (BurnTimer > 0f)
+		{
+			BurnTimer = Mathf.MoveTowards(BurnTimer, 0f, Time.deltaTime * 0.1f);
+			Circle.fillAmount = 1f - BurnTimer / 60f;
+			float num = Mathf.CeilToInt(BurnTimer * 60f);
+			float num2 = Mathf.Floor(num / 60f);
+			float num3 = Mathf.RoundToInt(num % 60f);
+			TimeLabel.text = $"{num2:00}:{num3:00}";
+			if (BurnTimer == 0f)
+			{
+				Panel.SetActive(value: false);
+			}
+		}
+		if (!Acid && !Kiln)
 		{
 			if (Yandere.PickUp != null)
 			{
@@ -126,71 +159,122 @@ public class WoodChipperScript : MonoBehaviour
 				}
 			}
 		}
-		else if (Prompt.enabled)
+		else if (Acid)
 		{
-			if (Yandere.Ragdoll == null)
+			if (Prompt.enabled)
 			{
-				Prompt.HideButton[3] = true;
-			}
-			else
-			{
-				Prompt.HideButton[3] = false;
-			}
-			if ((Yandere.Armed && Yandere.EquippedWeapon.Evidence) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (Yandere.Armed && Yandere.EquippedWeapon.MurderWeapon) || (Yandere.PickUp != null && Yandere.PickUp.Evidence) || (Yandere.PickUp != null && Yandere.PickUp.ConcealedBodyPart))
-			{
-				Prompt.HideButton[1] = false;
-			}
-			else
-			{
-				Prompt.HideButton[1] = true;
+				if (Yandere.Ragdoll == null)
+				{
+					Prompt.HideButton[3] = true;
+				}
+				else
+				{
+					Prompt.HideButton[3] = false;
+				}
+				if ((Yandere.Armed && Yandere.EquippedWeapon.Evidence) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (Yandere.Armed && Yandere.EquippedWeapon.MurderWeapon) || (Yandere.PickUp != null && Yandere.PickUp.Evidence) || (Yandere.PickUp != null && Yandere.PickUp.ConcealedBodyPart))
+				{
+					Prompt.HideButton[1] = false;
+				}
+				else
+				{
+					Prompt.HideButton[1] = true;
+				}
 			}
 		}
-		if (!Open)
+		else if (Yandere.Ragdoll == null)
+		{
+			Prompt.HideButton[3] = true;
+		}
+		else
+		{
+			Prompt.HideButton[3] = false;
+		}
+		if (!Kiln)
+		{
+			if (!Open)
+			{
+				Rotation = Mathf.MoveTowards(Rotation, 0f, Time.deltaTime * 360f);
+				if (Rotation > -36f)
+				{
+					if (Rotation < 0f)
+					{
+						MyAudio.clip = CloseAudio;
+						MyAudio.Play();
+					}
+					Rotation = 0f;
+				}
+				Lid.transform.localEulerAngles = new Vector3(Rotation, Lid.transform.localEulerAngles.y, Lid.transform.localEulerAngles.z);
+			}
+			else
+			{
+				if (Lid.transform.localEulerAngles.x == 0f)
+				{
+					MyAudio.clip = OpenAudio;
+					MyAudio.Play();
+				}
+				Rotation = Mathf.MoveTowards(Rotation, -90f, Time.deltaTime * 360f);
+				Lid.transform.localEulerAngles = new Vector3(Rotation, Lid.transform.localEulerAngles.y, Lid.transform.localEulerAngles.z);
+			}
+		}
+		else if (!Open)
 		{
 			Rotation = Mathf.MoveTowards(Rotation, 0f, Time.deltaTime * 360f);
-			if (Rotation > -36f)
+			if (Rotation < 36f)
 			{
-				if (Rotation < 0f)
+				if (Rotation > 0f)
 				{
 					MyAudio.clip = CloseAudio;
 					MyAudio.Play();
 				}
 				Rotation = 0f;
 			}
-			Lid.transform.localEulerAngles = new Vector3(Rotation, Lid.transform.localEulerAngles.y, Lid.transform.localEulerAngles.z);
+			Lid.transform.localEulerAngles = new Vector3(Lid.transform.localEulerAngles.x, Rotation, Lid.transform.localEulerAngles.z);
+			Slab.localPosition = Vector3.Lerp(Slab.localPosition, Vector3.zero, Time.deltaTime * 10f);
 		}
 		else
 		{
-			if (Lid.transform.localEulerAngles.x == 0f)
+			if (Rotation == 0f)
 			{
 				MyAudio.clip = OpenAudio;
 				MyAudio.Play();
 			}
-			Rotation = Mathf.MoveTowards(Rotation, -90f, Time.deltaTime * 360f);
-			Lid.transform.localEulerAngles = new Vector3(Rotation, Lid.transform.localEulerAngles.y, Lid.transform.localEulerAngles.z);
+			Rotation = Mathf.MoveTowards(Rotation, 180f, Time.deltaTime * 360f);
+			Lid.transform.localEulerAngles = new Vector3(Lid.transform.localEulerAngles.x, Rotation, Lid.transform.localEulerAngles.z);
+			Slab.localPosition = Vector3.Lerp(Slab.localPosition, new Vector3(0f, 0f, 1f), Time.deltaTime * 10f);
 		}
 		if (Prompt.Circle[3].fillAmount == 0f)
 		{
-			Debug.Log("As of now, Yandere-chan's ''Woodchipper'' is being set to: " + base.gameObject.name);
-			Yandere.WoodChipper = this;
-			Time.timeScale = 1f;
-			if (Yandere.Ragdoll != null)
+			Prompt.Circle[3].fillAmount = 1f;
+			if (BurnTimer == 0f)
 			{
-				if (!Yandere.Carrying)
+				Debug.Log("As of now, Yandere-chan's ''Woodchipper'' is being set to: " + base.gameObject.name);
+				Yandere.WoodChipper = this;
+				Time.timeScale = 1f;
+				if (Yandere.Ragdoll != null)
 				{
-					Yandere.CharacterAnimation.CrossFade("f02_dragIdle_00");
+					if (!Yandere.Carrying)
+					{
+						Yandere.CharacterAnimation.CrossFade("f02_dragIdle_00");
+					}
+					else
+					{
+						Yandere.CharacterAnimation.CrossFade("f02_carryIdleA_00");
+					}
+					Yandere.YandereVision = false;
+					Yandere.Chipping = true;
+					Yandere.CanMove = false;
+					Victims++;
+					VictimList[Victims] = Yandere.Ragdoll.GetComponent<RagdollScript>().StudentID;
+					Open = true;
+					if (!Acid)
+					{
+					}
 				}
-				else
-				{
-					Yandere.CharacterAnimation.CrossFade("f02_carryIdleA_00");
-				}
-				Yandere.YandereVision = false;
-				Yandere.Chipping = true;
-				Yandere.CanMove = false;
-				Victims++;
-				VictimList[Victims] = Yandere.Ragdoll.GetComponent<RagdollScript>().StudentID;
-				Open = true;
-				_ = Acid;
+			}
+			else
+			{
+				Yandere.NotificationManager.CustomText = "It's not done burning yet!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
 		}
 		if (Acid && Prompt.Circle[1].fillAmount == 0f)
@@ -225,7 +309,7 @@ public class WoodChipperScript : MonoBehaviour
 			MyAudio.clip = ShredAudio;
 			MyAudio.Play();
 		}
-		if ((Acid && Occupied && VictimID > 0) || Prompt.Circle[0].fillAmount == 0f)
+		if ((Acid && Occupied && VictimID > 0) || (Kiln && Occupied && VictimID > 0 && Rotation == 0f) || Prompt.Circle[0].fillAmount == 0f)
 		{
 			Debug.Log(base.gameObject.name + " is now disposing of a corpse.");
 			if (!Acid)
@@ -280,6 +364,11 @@ public class WoodChipperScript : MonoBehaviour
 			Yandere.StudentManager.UpdateStudents();
 			HiddenCorpses = 0;
 			VictimID = 0;
+			if (Kiln)
+			{
+				Panel.SetActive(value: true);
+				BurnTimer = 60f;
+			}
 		}
 		if (!Shredding)
 		{

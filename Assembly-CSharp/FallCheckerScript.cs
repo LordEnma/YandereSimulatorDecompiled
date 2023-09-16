@@ -42,7 +42,9 @@ public class FallCheckerScript : MonoBehaviour
 			else
 			{
 				Debug.Log("A student who was shoved from the school rooftop just landed in a dumpster.");
-				Object.Instantiate(Ragdoll.Student.AlarmDisc, Dumpster.SlideLocation.position + new Vector3(0f, 1f, 0f), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
+				GameObject obj = Object.Instantiate(Ragdoll.Student.AlarmDisc, Dumpster.SlideLocation.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+				obj.transform.localScale = new Vector3(1000f, 1f, 1000f);
+				obj.GetComponent<AlarmDiscScript>().FarTargetDistance = true;
 				GetComponent<AudioSource>().Play();
 				Dumpster.Slide = true;
 				Ragdoll = null;

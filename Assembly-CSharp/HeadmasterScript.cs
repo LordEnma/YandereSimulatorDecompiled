@@ -534,7 +534,9 @@ public class HeadmasterScript : MonoBehaviour
 		Yandere.RPGCamera.enabled = false;
 		Yandere.FakingReaction = false;
 		Yandere.TargetStudent = null;
+		Yandere.Degloving = false;
 		Yandere.Attacked = true;
+		Yandere.GloveTimer = 0f;
 		Heartbroken.Headmaster = true;
 		Jukebox.Volume = 0f;
 		Shooting = false;

@@ -550,11 +550,13 @@ public class YandereScript : MonoBehaviour
 
 	public int SelfieID;
 
-	public int Friends;
-
 	public int Chasers;
 
 	public int Costume;
+
+	public int Friends;
+
+	public int Panties;
 
 	public int Alerts;
 
@@ -605,6 +607,8 @@ public class YandereScript : MonoBehaviour
 	public bool SubtleStabbing;
 
 	public bool TranquilHiding;
+
+	public bool BreakingGlass;
 
 	public bool CrushingPhone;
 
@@ -901,6 +905,8 @@ public class YandereScript : MonoBehaviour
 	public string LockPickAnim = string.Empty;
 
 	public string ConcealAnim = string.Empty;
+
+	public string BreakAnim = string.Empty;
 
 	public string CleanAnim = string.Empty;
 
@@ -2066,7 +2072,8 @@ public class YandereScript : MonoBehaviour
 		{
 			BanchoAccessories[ID].SetActive(value: false);
 		}
-		if (PlayerGlobals.PantiesEquipped == 5)
+		Panties = PlayerGlobals.PantiesEquipped;
+		if (Panties == 5)
 		{
 			PantySpeedBonus++;
 		}
@@ -3663,8 +3670,15 @@ public class YandereScript : MonoBehaviour
 		}
 		if (Chipping)
 		{
-			targetRotation = Quaternion.LookRotation(WoodChipper.gameObject.transform.position - base.transform.position);
-			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
+			if (WoodChipper.Kiln)
+			{
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, WoodChipper.DumpPoint.rotation, Time.deltaTime * 10f);
+			}
+			else
+			{
+				targetRotation = Quaternion.LookRotation(WoodChipper.gameObject.transform.position - base.transform.position);
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
+			}
 			MoveTowardsTarget(WoodChipper.DumpPoint.position);
 			if (DumpTimer == 0f && Carrying)
 			{
@@ -3683,6 +3697,10 @@ public class YandereScript : MonoBehaviour
 					WoodChipper.MyAudio.clip = WoodChipper.ShredAudio;
 					WoodChipper.MyAudio.Play();
 				}
+				if (WoodChipper.Kiln && CharacterAnimation["f02_carryDisposeA_00"].time >= 4.5f)
+				{
+					Ragdoll.transform.position = Vector3.MoveTowards(Ragdoll.transform.position, base.transform.position + Vector3.up * 0.1f, Time.deltaTime);
+				}
 				if (CharacterAnimation["f02_carryDisposeA_00"].time >= CharacterAnimation["f02_carryDisposeA_00"].length)
 				{
 					if (!WoodChipper.Acid)
@@ -3692,6 +3710,10 @@ public class YandereScript : MonoBehaviour
 					WoodChipper.Prompt.HideButton[3] = true;
 					WoodChipper.Occupied = true;
 					WoodChipper.Open = false;
+					if (WoodChipper.Kiln)
+					{
+						Ragdoll.transform.parent = WoodChipper.Slab;
+					}
 					Dragging = false;
 					Chipping = false;
 					CanMove = true;
@@ -4104,7 +4126,7 @@ public class YandereScript : MonoBehaviour
 						TargetStudent.DeathCause = EquippedWeapon.WeaponID;
 						Object.Instantiate(TargetStudent.StabBloodEffect, TargetStudent.Teacher ? EquippedWeapon.transform.position : TargetStudent.Head.position, Quaternion.identity);
 						Bloodiness += 20f;
-						Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
+						Sanity -= ((Panties == 10) ? 10f : 20f) * Numbness;
 						StainWeapon();
 						StrugglePhase++;
 					}
@@ -4360,7 +4382,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (CharacterAnimation["f02_bucketDrop_00"].time >= 1f && PickUp != null)
 			{
-				Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
+				Sanity -= ((Panties == 10) ? 10f : 20f) * Numbness;
 				GameObjectUtils.SetLayerRecursively(PickUp.Bucket.gameObject, 0);
 				PickUp.Bucket.UpdateAppearance = true;
 				PickUp.Bucket.Dropped = true;
@@ -4677,6 +4699,7 @@ public class YandereScript : MonoBehaviour
 			{
 				EnableSplashCamera();
 			}
+			Sanity -= ((Panties == 10) ? Time.deltaTime : (Time.deltaTime * 2f)) * Numbness;
 			if (CharacterAnimation["f02_sabotageAirUnit_00"].time >= CharacterAnimation["f02_sabotageAirUnit_00"].length)
 			{
 				EquippedWeapon.Flip = false;
@@ -4685,6 +4708,16 @@ public class YandereScript : MonoBehaviour
 				CanMove = true;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
+			}
+		}
+		if (BreakingGlass)
+		{
+			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, LockpickTarget.rotation, Time.deltaTime * 10f);
+			MoveTowardsTarget(new Vector3(LockpickTarget.position.x, base.transform.position.y, LockpickTarget.position.z));
+			if (CharacterAnimation[BreakAnim].time >= CharacterAnimation[BreakAnim].length)
+			{
+				BreakingGlass = false;
+				CanMove = true;
 			}
 		}
 		if (CanMoveTimer > 0f)
@@ -6083,7 +6116,7 @@ public class YandereScript : MonoBehaviour
 					CanMove = true;
 				}
 				Drown = false;
-				Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
+				Sanity -= ((Panties == 10) ? 10f : 20f) * Numbness;
 			}
 			return;
 		}
@@ -6126,7 +6159,7 @@ public class YandereScript : MonoBehaviour
 				Attacking = false;
 				RoofPush = false;
 				CanMove = true;
-				Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
+				Sanity -= ((Panties == 10) ? 10f : 20f) * Numbness;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
 			}
@@ -6229,7 +6262,7 @@ public class YandereScript : MonoBehaviour
 					MyController.radius = 0.2f;
 					Attacking = false;
 					AttackPhase = 1;
-					Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
+					Sanity -= ((Panties == 10) ? 10f : 20f) * Numbness;
 					TargetStudent.DeathType = DeathType.Weapon;
 					TargetStudent.BecomeRagdoll();
 					if (!Noticed)
@@ -6259,7 +6292,7 @@ public class YandereScript : MonoBehaviour
 						AttackPhase = 2;
 						Bloodiness += 20f;
 						StainWeapon();
-						Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
+						Sanity -= ((Panties == 10) ? 10f : 20f) * Numbness;
 					}
 				}
 				else if (CharacterAnimation["f02_swingA_00"].time >= CharacterAnimation["f02_swingA_00"].length * 0.9f)
@@ -6314,8 +6347,8 @@ public class YandereScript : MonoBehaviour
 				}
 				AudioSource.PlayClipAtPoint(Stabs[Random.Range(0, Stabs.Length)], base.transform.position + Vector3.up);
 				AttackPhase = 2;
-				Debug.Log("YandereScript calculates that we should subtract " + ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness + " from the player's Sanity.");
-				Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Numbness;
+				Debug.Log("YandereScript calculates that we should subtract " + ((Panties == 10) ? 10f : 20f) * Numbness + " from the player's Sanity.");
+				Sanity -= ((Panties == 10) ? 10f : 20f) * Numbness;
 				if (EquippedWeapon.WeaponID == 8)
 				{
 					TargetStudent.Ragdoll.Sacrifice = true;
@@ -7406,7 +7439,14 @@ public class YandereScript : MonoBehaviour
 			Ragdoll.transform.LookAt(TranqCase.transform.position);
 			break;
 		case RagdollDumpType.WoodChipper:
-			Ragdoll.transform.LookAt(WoodChipper.transform.position);
+			if (WoodChipper.Kiln)
+			{
+				Ragdoll.transform.rotation = WoodChipper.DumpPoint.rotation;
+			}
+			else
+			{
+				Ragdoll.transform.LookAt(WoodChipper.transform.position);
+			}
 			break;
 		}
 		RagdollScript component = Ragdoll.GetComponent<RagdollScript>();
@@ -7510,7 +7550,7 @@ public class YandereScript : MonoBehaviour
 		{
 			RightFootprintSpawner.StudentBloodID = other.GetComponent<BloodPoolScript>().StudentBloodID;
 			LeftFootprintSpawner.StudentBloodID = RightFootprintSpawner.StudentBloodID;
-			if (PlayerGlobals.PantiesEquipped == 8)
+			if (Panties == 8)
 			{
 				RightFootprintSpawner.Bloodiness = 5;
 				LeftFootprintSpawner.Bloodiness = 5;

@@ -16,7 +16,7 @@ public class ClothScript : MonoBehaviour
 
 	public void Start()
 	{
-		if (!GameGlobals.Eighties)
+		if (!GameGlobals.Eighties || GameGlobals.EightiesTutorial)
 		{
 			Prompt.enabled = false;
 			Prompt.Hide();

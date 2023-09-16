@@ -54,7 +54,14 @@ public class InterestManagerScript : MonoBehaviour
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 				Yandere.NotificationManager.TopicName = "Cosplay";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				Yandere.NotificationManager.TopicName = "Memes";
+				if (!StudentManager.Eighties)
+				{
+					Yandere.NotificationManager.TopicName = "Memes";
+				}
+				else
+				{
+					Yandere.NotificationManager.TopicName = "Jokes";
+				}
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 				ConversationGlobals.SetTopicDiscovered(11, value: true);
 				ConversationGlobals.SetTopicDiscovered(12, value: true);
@@ -67,7 +74,14 @@ public class InterestManagerScript : MonoBehaviour
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
 			Yandere.NotificationManager.TopicName = "Cosplay";
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-			Yandere.NotificationManager.TopicName = "Memes";
+			if (!StudentManager.Eighties)
+			{
+				Yandere.NotificationManager.TopicName = "Memes";
+			}
+			else
+			{
+				Yandere.NotificationManager.TopicName = "Jokes";
+			}
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
 			StudentManager.SetTopicLearnedByStudent(11, FollowerID, boolean: true);
 			StudentManager.SetTopicLearnedByStudent(12, FollowerID, boolean: true);

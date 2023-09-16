@@ -97,14 +97,6 @@ public class PostCreditsScript : MonoBehaviour
 		{
 			SkipCircle.fillAmount = 1f;
 		}
-		if (Input.GetKeyDown("="))
-		{
-			Time.timeScale += 1f;
-		}
-		if (Input.GetKeyDown("-"))
-		{
-			Time.timeScale -= 1f;
-		}
 		Speed += Time.deltaTime * 0.0015f;
 		base.transform.position = Vector3.Lerp(base.transform.position, Destination.position, Time.deltaTime * Speed);
 		base.transform.LookAt(CameraTarget);
@@ -114,10 +106,6 @@ public class PostCreditsScript : MonoBehaviour
 		}
 		if (Phase == 0)
 		{
-			if (Input.GetKeyDown("space"))
-			{
-				Alpha = 0f;
-			}
 			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.2f);
 			Darkness.color = new Color(0f, 0f, 0f, Alpha);
 			if (Alpha == 0f)
@@ -133,10 +121,6 @@ public class PostCreditsScript : MonoBehaviour
 		}
 		else if (Phase == 1)
 		{
-			if (Input.GetKeyDown("space"))
-			{
-				Headmaster.time = 68f;
-			}
 			Headmaster.pitch = Time.timeScale;
 			if (Headmaster.time >= Times[SpeechID])
 			{

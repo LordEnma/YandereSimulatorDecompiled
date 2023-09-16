@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 using UnityEngine.SceneManagement;
 
 public class KokonaTutorialScript : MonoBehaviour
@@ -146,9 +148,9 @@ public class KokonaTutorialScript : MonoBehaviour
 
 	public UISprite ExitGroup;
 
-	public InputDeviceType PreviousInputDevice;
-
 	public InputDeviceScript InputDevice;
+
+	public Type LastGamepadType;
 
 	public AudioClip NextClip;
 
@@ -159,206 +161,212 @@ public class KokonaTutorialScript : MonoBehaviour
 		{
 			Window.gameObject.SetActive(value: false);
 			base.gameObject.SetActive(value: false);
-			return;
 		}
-		Window.gameObject.SetActive(value: true);
-		Yandere.StudentManager.Atmosphere = 1f;
-		Yandere.StudentManager.SetAtmosphere();
-		EightiesTutorialGraphics.SetActive(value: false);
-		GameGlobals.EightiesTutorial = false;
-		GameGlobals.Eighties = false;
-		Yandere.NotificationManager.transform.localPosition = new Vector3(0f, 100f, 0f);
-		Yandere.YandereVisionPanel.transform.localPosition = new Vector3(0f, 0f, 0f);
-		Yandere.transform.eulerAngles = YandereSpawnPoints[0].eulerAngles;
-		Yandere.CameraEffects.UpdateDOF(2f - Yandere.Zoom.Zoom * 3.75f);
-		Yandere.transform.position = YandereSpawnPoints[0].position;
-		Yandere.NotificationManager.NotificationLimit = 0;
-		Yandere.PauseScreen.gameObject.SetActive(value: false);
-		Yandere.Jukebox.gameObject.SetActive(value: false);
-		Yandere.Shutter.PhotographedKokona = false;
-		Yandere.WeaponManager.DisableAllWeapons();
-		Yandere.Inventory.MaskingTape = false;
-		Yandere.Inventory.SedativePoisons = 0;
-		Yandere.Inventory.EmeticPoisons = 0;
-		Yandere.HeartCamera.enabled = false;
-		Yandere.RPGCamera.enabled = false;
-		Yandere.Inventory.String = false;
-		Yandere.Class.BiologyGrade = 1;
-		Yandere.MyLocker.Open = false;
-		Yandere.Trespassing = false;
-		Yandere.Attacked = false;
-		Yandere.CannotAim = true;
-		Yandere.CanMove = false;
-		Yandere.enabled = true;
-		Yandere.Bloodiness = 0f;
-		Yandere.NearBodies = 0;
-		Yandere.Followers = 0;
-		Yandere.Sanity = 100f;
-		Yandere.Alerts = 0;
-		Yandere.Kills = 0;
-		WaterCooler.gameObject.transform.position = new Vector3(0f, 0f, 0f);
-		CarBattery.gameObject.transform.position = new Vector3(0f, 0f, 0f);
-		Raincoat.gameObject.transform.position = new Vector3(0f, 0f, 0f);
-		JerryCan.gameObject.transform.position = new Vector3(0f, 0f, 0f);
-		Candle.gameObject.transform.position = new Vector3(0f, 0f, 0f);
-		Tarp.gameObject.transform.position = new Vector3(0f, 0f, 0f);
-		Incinerator.gameObject.SetActive(value: false);
-		RatPoison.gameObject.SetActive(value: false);
-		Sedative.gameObject.SetActive(value: false);
-		Incinerator.Contents = 0;
-		CarBattery.Smoke.Clear();
-		CarBattery.Smoke.Stop();
-		WaterCooler.Timer = 1f;
-		WaterCooler.Empty = true;
-		WaterCooler.UpdateCylinderColor();
-		WaterCooler.TripwireTrap.SetActive(value: false);
-		WaterCooler.PickUp.enabled = true;
-		WaterCooler.TrapSet = false;
-		TranqCase.Detector.StopChecking = false;
-		TranqCase.Detector.enabled = true;
-		TranqCase.Occupied = false;
-		if (Yandere.MyLocker.NewestUniform != null)
+		else
 		{
-			UnityEngine.Object.Destroy(Yandere.MyLocker.NewestUniform);
-		}
-		if (StudentManager.Reputation.Portal.WashingMachine.Washing)
-		{
-			StudentManager.Reputation.Portal.WashingMachine.Finish();
-		}
-		if (StudentManager.Reputation.Portal.WashingMachine.NewestUniform != null)
-		{
-			UnityEngine.Object.Destroy(StudentManager.Reputation.Portal.WashingMachine.NewestUniform);
-		}
-		if (SpawnedClothing != null)
-		{
-			UnityEngine.Object.Destroy(SpawnedClothing);
-		}
-		if (SpawnedTarp != null)
-		{
-			UnityEngine.Object.Destroy(SpawnedTarp);
-		}
-		if (Yandere.Schoolwear != 1)
-		{
-			Yandere.Schoolwear = 1;
-			Yandere.ChangeSchoolwear();
-		}
-		foreach (Transform item in Yandere.Police.BloodParent.transform)
-		{
-			UnityEngine.Object.Destroy(item.gameObject);
-		}
-		foreach (Transform item2 in Yandere.StudentManager.PuddleParent.transform)
-		{
-			UnityEngine.Object.Destroy(item2.gameObject);
-		}
-		GameObject[] tutorialWall = TutorialWall;
-		foreach (GameObject gameObject in tutorialWall)
-		{
-			if (gameObject != null)
+			Window.gameObject.SetActive(value: true);
+			Yandere.StudentManager.Atmosphere = 1f;
+			Yandere.StudentManager.SetAtmosphere();
+			EightiesTutorialGraphics.SetActive(value: false);
+			GameGlobals.EightiesTutorial = false;
+			GameGlobals.Eighties = false;
+			Yandere.NotificationManager.transform.localPosition = new Vector3(0f, 100f, 0f);
+			Yandere.YandereVisionPanel.transform.localPosition = new Vector3(0f, 0f, 0f);
+			Yandere.transform.eulerAngles = YandereSpawnPoints[0].eulerAngles;
+			Yandere.CameraEffects.UpdateDOF(2f - Yandere.Zoom.Zoom * 3.75f);
+			Yandere.transform.position = YandereSpawnPoints[0].position;
+			Yandere.NotificationManager.NotificationLimit = 0;
+			Yandere.PauseScreen.gameObject.SetActive(value: false);
+			Yandere.Jukebox.gameObject.SetActive(value: false);
+			Yandere.Shutter.PhotographedKokona = false;
+			Yandere.WeaponManager.DisableAllWeapons();
+			Yandere.Inventory.MaskingTape = false;
+			Yandere.Inventory.SedativePoisons = 0;
+			Yandere.Inventory.EmeticPoisons = 0;
+			Yandere.HeartCamera.enabled = false;
+			Yandere.RPGCamera.enabled = false;
+			Yandere.Inventory.String = false;
+			Yandere.Class.BiologyGrade = 1;
+			Yandere.MyLocker.Open = false;
+			Yandere.Trespassing = false;
+			Yandere.Attacked = false;
+			Yandere.CannotAim = true;
+			Yandere.CanMove = false;
+			Yandere.enabled = true;
+			Yandere.Bloodiness = 0f;
+			Yandere.NearBodies = 0;
+			Yandere.Followers = 0;
+			Yandere.Sanity = 100f;
+			Yandere.Alerts = 0;
+			Yandere.Kills = 0;
+			WaterCooler.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+			CarBattery.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+			Raincoat.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+			JerryCan.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+			Candle.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+			Tarp.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+			Incinerator.gameObject.SetActive(value: false);
+			RatPoison.gameObject.SetActive(value: false);
+			Sedative.gameObject.SetActive(value: false);
+			Incinerator.Contents = 0;
+			CarBattery.Smoke.Clear();
+			CarBattery.Smoke.Stop();
+			WaterCooler.Timer = 1f;
+			WaterCooler.Empty = true;
+			WaterCooler.UpdateCylinderColor();
+			WaterCooler.TripwireTrap.SetActive(value: false);
+			WaterCooler.PickUp.enabled = true;
+			WaterCooler.TrapSet = false;
+			TranqCase.Detector.StopChecking = false;
+			TranqCase.Detector.enabled = true;
+			TranqCase.Occupied = false;
+			if (Yandere.MyLocker.NewestUniform != null)
 			{
-				gameObject.SetActive(value: false);
+				UnityEngine.Object.Destroy(Yandere.MyLocker.NewestUniform);
 			}
-		}
-		foreach (Transform item3 in Yandere.DetectionPanel.transform)
-		{
-			UnityEngine.Object.Destroy(item3.gameObject);
-		}
-		T.Clock.CameraEffects.UpdateBloomKnee(0.75f);
-		T.Clock.CameraEffects.UpdateBloomRadius(4f);
-		T.Clock.CameraEffects.UpdateBloom(1f);
-		T.Clock.StopTime = true;
-		Darkness.color = new Color(1f, 1f, 1f, 1f);
-		Darkness.enabled = true;
-		MainCamera.farClipPlane = 50f;
-		InstructionLabel.text = "";
-		SubtitleLabel.text = "";
-		InstructionLabel.alpha = 0f;
-		SubtitleLabel.alpha = 0f;
-		ExitGroup.alpha = 0f;
-		T.ReputationHUD.alpha = 0f;
-		T.SanityHUD.alpha = 0f;
-		T.ClockHUD.alpha = 0f;
-		T.FPSBG.SetActive(value: false);
-		T.FPS.SetActive(value: false);
-		TutorialPhase = 1;
-		TutorialTimer = 0f;
-		Incinerator.Finish();
-		Mop.Bleached = false;
-		Mop.Bloodiness = 0f;
-		Mop.Sparkles.Stop();
-		Mop.UpdateBlood();
-		if (Bucket.Full)
-		{
-			Bucket.Empty();
-		}
-		Bleach.transform.parent = TutorialSets[3].transform;
-		Bucket.transform.parent = TutorialSets[3].transform;
-		Mop.transform.parent = TutorialSets[3].transform;
-		if (Bucket.PickUp.OriginalPosition != Vector3.zero)
-		{
-			Bucket.transform.eulerAngles = Bucket.PickUp.OriginalRotation;
-			Bucket.transform.position = Bucket.PickUp.OriginalPosition;
-		}
-		if (Mop.PickUp.OriginalPosition != Vector3.zero)
-		{
-			Mop.transform.eulerAngles = Mop.PickUp.OriginalRotation;
-			Mop.transform.position = Mop.PickUp.OriginalPosition;
-		}
-		if (Bleach.OriginalPosition != Vector3.zero)
-		{
-			Bleach.transform.eulerAngles = Bleach.OriginalRotation;
-			Bleach.transform.position = Bleach.OriginalPosition;
-		}
-		DoorScript[] doors = StudentManager.Doors;
-		foreach (DoorScript doorScript in doors)
-		{
-			if (doorScript != null)
+			if (StudentManager.Reputation.Portal.WashingMachine.Washing)
 			{
-				doorScript.Prompt.Hide();
-				doorScript.Prompt.enabled = false;
-				doorScript.enabled = false;
+				StudentManager.Reputation.Portal.WashingMachine.Finish();
 			}
-		}
-		tutorialWall = TutorialSets;
-		foreach (GameObject gameObject2 in tutorialWall)
-		{
-			if (gameObject2 != null)
+			if (StudentManager.Reputation.Portal.WashingMachine.NewestUniform != null)
 			{
-				gameObject2.transform.localPosition = new Vector3(0f, 0f, 0f);
-				gameObject2.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-				gameObject2.SetActive(value: false);
+				UnityEngine.Object.Destroy(StudentManager.Reputation.Portal.WashingMachine.NewestUniform);
 			}
+			if (SpawnedClothing != null)
+			{
+				UnityEngine.Object.Destroy(SpawnedClothing);
+			}
+			if (SpawnedTarp != null)
+			{
+				UnityEngine.Object.Destroy(SpawnedTarp);
+			}
+			if (Yandere.Schoolwear != 1)
+			{
+				Yandere.Schoolwear = 1;
+				Yandere.ChangeSchoolwear();
+			}
+			foreach (Transform item in Yandere.Police.BloodParent.transform)
+			{
+				UnityEngine.Object.Destroy(item.gameObject);
+			}
+			foreach (Transform item2 in Yandere.StudentManager.PuddleParent.transform)
+			{
+				UnityEngine.Object.Destroy(item2.gameObject);
+			}
+			GameObject[] tutorialWall = TutorialWall;
+			foreach (GameObject gameObject in tutorialWall)
+			{
+				if (gameObject != null)
+				{
+					gameObject.SetActive(value: false);
+				}
+			}
+			foreach (Transform item3 in Yandere.DetectionPanel.transform)
+			{
+				UnityEngine.Object.Destroy(item3.gameObject);
+			}
+			T.Clock.CameraEffects.UpdateBloomKnee(0.75f);
+			T.Clock.CameraEffects.UpdateBloomRadius(4f);
+			T.Clock.CameraEffects.UpdateBloom(1f);
+			T.Clock.StopTime = true;
+			Darkness.color = new Color(1f, 1f, 1f, 1f);
+			Darkness.enabled = true;
+			MainCamera.farClipPlane = 50f;
+			InstructionLabel.text = "";
+			SubtitleLabel.text = "";
+			InstructionLabel.alpha = 0f;
+			SubtitleLabel.alpha = 0f;
+			ExitGroup.alpha = 0f;
+			T.ReputationHUD.alpha = 0f;
+			T.SanityHUD.alpha = 0f;
+			T.ClockHUD.alpha = 0f;
+			T.FPSBG.SetActive(value: false);
+			T.FPS.SetActive(value: false);
+			TutorialPhase = 1;
+			TutorialTimer = 0f;
+			Incinerator.Finish();
+			Mop.Bleached = false;
+			Mop.Bloodiness = 0f;
+			Mop.Sparkles.Stop();
+			Mop.UpdateBlood();
+			if (Bucket.Full)
+			{
+				Bucket.Empty();
+			}
+			Bleach.transform.parent = TutorialSets[3].transform;
+			Bucket.transform.parent = TutorialSets[3].transform;
+			Mop.transform.parent = TutorialSets[3].transform;
+			if (Bucket.PickUp.OriginalPosition != Vector3.zero)
+			{
+				Bucket.transform.eulerAngles = Bucket.PickUp.OriginalRotation;
+				Bucket.transform.position = Bucket.PickUp.OriginalPosition;
+			}
+			if (Mop.PickUp.OriginalPosition != Vector3.zero)
+			{
+				Mop.transform.eulerAngles = Mop.PickUp.OriginalRotation;
+				Mop.transform.position = Mop.PickUp.OriginalPosition;
+			}
+			if (Bleach.OriginalPosition != Vector3.zero)
+			{
+				Bleach.transform.eulerAngles = Bleach.OriginalRotation;
+				Bleach.transform.position = Bleach.OriginalPosition;
+			}
+			DoorScript[] doors = StudentManager.Doors;
+			foreach (DoorScript doorScript in doors)
+			{
+				if (doorScript != null)
+				{
+					doorScript.Prompt.Hide();
+					doorScript.Prompt.enabled = false;
+					doorScript.enabled = false;
+				}
+			}
+			tutorialWall = TutorialSets;
+			foreach (GameObject gameObject2 in tutorialWall)
+			{
+				if (gameObject2 != null)
+				{
+					gameObject2.transform.localPosition = new Vector3(0f, 0f, 0f);
+					gameObject2.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+					gameObject2.SetActive(value: false);
+				}
+			}
+			WeaponManager.Weapons[2].transform.position = new Vector3(0f, 0f, 0f);
+			WeaponManager.Weapons[0].transform.position = new Vector3(0f, 0f, 0f);
+			WeaponManager.Weapons[0].Undroppable = false;
+			PoliceIcons[0].SetActive(value: false);
+			PoliceIcons[1].SetActive(value: false);
+			PoliceIcons[2].SetActive(value: false);
+			MainCamera.transform.position = CameraStartPoint.position;
+			MainCamera.transform.eulerAngles = CameraStartPoint.eulerAngles;
+			StudentSpawnPoints = TutorialIntroPoints;
+			StudentManager.Yandere.Police.StudentFoundCorpse = false;
+			StudentManager.DialogueWheel.KokonaTutorialPhase = 0;
+			StudentManager.StudentPhotographed[30] = false;
+			StudentManager.OriginalUniforms = 99;
+			StudentManager.BloodReporter = null;
+			StudentManager.NewUniforms = 99;
+			StudentManager.DespawnAllStudents();
+			EnableAttacking = false;
+			EnableMovement = false;
+			EnableTalking = false;
+			EnableEating = false;
+			EnablePatrol = false;
+			SpawnStudent(26);
+			SpawnStudent(27);
+			SpawnStudent(28);
+			SpawnStudent(29);
+			SpawnStudent(30);
+			StudentManager.Students[26].MyController.enabled = false;
+			StudentManager.Students[27].MyController.enabled = false;
+			StudentManager.Students[28].MyController.enabled = false;
+			StudentManager.Students[29].MyController.enabled = false;
+			StudentManager.Students[30].MyController.enabled = false;
 		}
-		WeaponManager.Weapons[2].transform.position = new Vector3(0f, 0f, 0f);
-		WeaponManager.Weapons[0].transform.position = new Vector3(0f, 0f, 0f);
-		WeaponManager.Weapons[0].Undroppable = false;
-		PoliceIcons[0].SetActive(value: false);
-		PoliceIcons[1].SetActive(value: false);
-		PoliceIcons[2].SetActive(value: false);
-		MainCamera.transform.position = CameraStartPoint.position;
-		MainCamera.transform.eulerAngles = CameraStartPoint.eulerAngles;
-		StudentSpawnPoints = TutorialIntroPoints;
-		StudentManager.Yandere.Police.StudentFoundCorpse = false;
-		StudentManager.DialogueWheel.KokonaTutorialPhase = 0;
-		StudentManager.StudentPhotographed[30] = false;
-		StudentManager.OriginalUniforms = 99;
-		StudentManager.BloodReporter = null;
-		StudentManager.NewUniforms = 99;
-		StudentManager.DespawnAllStudents();
-		EnableAttacking = false;
-		EnableMovement = false;
-		EnableTalking = false;
-		EnableEating = false;
-		EnablePatrol = false;
-		SpawnStudent(26);
-		SpawnStudent(27);
-		SpawnStudent(28);
-		SpawnStudent(29);
-		SpawnStudent(30);
-		StudentManager.Students[26].MyController.enabled = false;
-		StudentManager.Students[27].MyController.enabled = false;
-		StudentManager.Students[28].MyController.enabled = false;
-		StudentManager.Students[29].MyController.enabled = false;
-		StudentManager.Students[30].MyController.enabled = false;
+		if (Gamepad.current is DualShockGamepad)
+		{
+			UseSonyInputs();
+		}
 	}
 
 	private void SpawnStudent(int ID)
@@ -1630,11 +1638,22 @@ public class KokonaTutorialScript : MonoBehaviour
 		if (InputDevice.Type == InputDeviceType.MouseAndKeyboard)
 		{
 			InstructionLabel.text = KeyboardInstructions[Selected].Text[TutorialPhase];
+			return;
 		}
-		else
+		if (Gamepad.current != null && Gamepad.current.GetType() != LastGamepadType)
 		{
-			InstructionLabel.text = GamepadInstructions[Selected].Text[TutorialPhase];
+			Debug.Log("Kokona tutorial acknowledges that we just switched gamepads!");
+			if (Gamepad.current is DualShockGamepad)
+			{
+				UseSonyInputs();
+			}
+			else
+			{
+				UseXboxInputs();
+			}
+			LastGamepadType = Gamepad.current.GetType();
 		}
+		InstructionLabel.text = GamepadInstructions[Selected].Text[TutorialPhase];
 	}
 
 	private void PlayKokonaVoice()
@@ -1966,5 +1985,39 @@ public class KokonaTutorialScript : MonoBehaviour
 		PoliceLabels[3].text = "Wash Circular Saw";
 		AStar.OnEnable();
 		Physics.SyncTransforms();
+	}
+
+	public void UseSonyInputs()
+	{
+		Debug.Log("Updating all text to display Sony button names.");
+		for (int i = 1; i < GamepadInstructions.Length; i++)
+		{
+			for (int j = 1; j < GamepadInstructions[i].Text.Length; j++)
+			{
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'A'", "'Cross'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'B'", "'Circle'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'X'", "'Square'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'Y'", "'Triangle'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'RB'", "'R1'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'LB'", "'L1'");
+			}
+		}
+	}
+
+	public void UseXboxInputs()
+	{
+		Debug.Log("Updating all text to display Microsoft button names.");
+		for (int i = 1; i < GamepadInstructions.Length; i++)
+		{
+			for (int j = 1; j < GamepadInstructions[i].Text.Length; j++)
+			{
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'Cross'", "'A'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'Circle'", "'B'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'Square'", "'X'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'Triangle'", "'Y'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'R1'", "'RB'");
+				GamepadInstructions[i].Text[j] = GamepadInstructions[i].Text[j].Replace("'L1'", "'LB'");
+			}
+		}
 	}
 }

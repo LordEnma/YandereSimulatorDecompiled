@@ -385,6 +385,7 @@ public class WeaponManagerScript : MonoBehaviour
 
 	public void PutWeaponInBag()
 	{
+		Debug.Log("Checking whether or not a weapon was in the weapon bag at the time of saving.");
 		for (int i = 1; i < Weapons.Length; i++)
 		{
 			if (Weapons[i].InBag)

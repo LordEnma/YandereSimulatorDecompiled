@@ -87,6 +87,20 @@ public class GenericEightiesTaskScript : MonoBehaviour
 							Prompt.Yandere.Inventory.Cloth--;
 						}
 					}
+					if (Type == 4)
+					{
+						int num = 0;
+						while (num < 100)
+						{
+							num++;
+							if (MyStudent.StudentManager.Students[num] != null && MyStudent.StudentManager.Students[num].SeekingMedicine)
+							{
+								Prompt.Yandere.NotificationManager.CustomText = "She's busy! Wait a moment!";
+								Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+								flag = true;
+							}
+						}
+					}
 					if (!flag)
 					{
 						if (!Animation)

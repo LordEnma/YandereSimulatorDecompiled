@@ -19,11 +19,15 @@ public class PracticeWindowScript : MonoBehaviour
 
 	public Texture[] DelinquentDificultyIcons;
 
+	public Texture[] GardeningIcons;
+
 	public Texture[] AlbumCovers;
 
 	public Transform[] KneelSpot;
 
 	public Transform[] SparSpot;
+
+	public string[] GardeningNames;
 
 	public string[] Difficulties;
 
@@ -48,6 +52,8 @@ public class PracticeWindowScript : MonoBehaviour
 	public bool PlayedRhythmMinigame;
 
 	public bool DefeatedSho;
+
+	public bool OutOfSeeds;
 
 	public bool ButtonUp;
 
@@ -80,7 +86,7 @@ public class PracticeWindowScript : MonoBehaviour
 			{
 				if (Input.GetButtonDown("A"))
 				{
-					if (Texture[Selected].color.r == 1f)
+					if (Texture[Selected].color.r == 1f || Yandere.TargetStudent.Club == ClubType.Gardening)
 					{
 						Yandere.TargetStudent.Interaction = StudentInteractionType.ClubPractice;
 						Yandere.TargetStudent.TalkTimer = 100f;
@@ -88,6 +94,30 @@ public class PracticeWindowScript : MonoBehaviour
 						if (Club == ClubType.MartialArts)
 						{
 							StudentManager.Students[ClubID - Selected].Distracted = true;
+						}
+						else if (Club == ClubType.Gardening)
+						{
+							OutOfSeeds = true;
+							if (Selected == 1)
+							{
+								Yandere.Inventory.LethalSeeds = true;
+							}
+							else if (Selected == 2)
+							{
+								Yandere.Inventory.EmeticSeeds = true;
+							}
+							else if (Selected == 3)
+							{
+								Yandere.Inventory.SedativeSeeds = true;
+							}
+							else if (Selected == 4)
+							{
+								Yandere.Inventory.HeadacheSeeds = true;
+							}
+							else if (Selected == 5)
+							{
+								Yandere.Inventory.GrowthStimulant = true;
+							}
 						}
 						PromptBar.ClearButtons();
 						PromptBar.Show = false;
@@ -162,8 +192,13 @@ public class PracticeWindowScript : MonoBehaviour
 						StudentManager.Students[46].Hearts.Stop();
 						for (int k = 1; k < 5; k++)
 						{
-							if (StudentManager.Students[46 + k] != null && StudentManager.Students[46 + k].Alive && StudentManager.Students[46 + k].Routine && StudentManager.Students[46 + k].ClubAttire && !StudentManager.Students[46 + k].Alarmed && !StudentManager.Students[46 + k].Distracted && !StudentManager.Students[46 + k].TargetedForDistraction && !StudentManager.Students[46 + k].InvestigatingBloodPool && !StudentManager.Students[46 + k].ReturningMisplacedWeapon)
+							if (!(StudentManager.Students[46 + k] != null))
 							{
+								continue;
+							}
+							if (StudentManager.Students[46 + k].Alive && StudentManager.Students[46 + k].Routine && StudentManager.Students[46 + k].ClubAttire && !StudentManager.Students[46 + k].Alarmed && !StudentManager.Students[46 + k].TargetedForDistraction && !StudentManager.Students[46 + k].InvestigatingBloodPool && !StudentManager.Students[46 + k].ReturningMisplacedWeapon)
+							{
+								Debug.Log(StudentManager.Students[46 + k].Name + " is now becoming a spectator in the combat minigame.");
 								StudentManager.Students[46 + k].transform.position = KneelSpot[k].position;
 								StudentManager.Students[46 + k].transform.eulerAngles = KneelSpot[k].eulerAngles;
 								StudentManager.Students[46 + k].Pathfinding.canSearch = false;
@@ -179,12 +214,47 @@ public class PracticeWindowScript : MonoBehaviour
 								{
 									StudentManager.Students[46 + k].CharacterAnimation.CrossFade("f02_sit_05");
 								}
+								continue;
+							}
+							Debug.Log(StudentManager.Students[46 + k].Name + " was NOT available to become a spectator in the combat minigame, because: ");
+							if (!StudentManager.Students[46 + k].Alive)
+							{
+								Debug.Log("Not alive.");
+							}
+							if (!StudentManager.Students[46 + k].Routine)
+							{
+								Debug.Log("Not in routine.");
+							}
+							if (!StudentManager.Students[46 + k].ClubAttire)
+							{
+								Debug.Log("Not wearing club attire.");
+							}
+							if (StudentManager.Students[46 + k].Alarmed)
+							{
+								Debug.Log("Alarmed");
+							}
+							if (StudentManager.Students[46 + k].Distracted)
+							{
+								Debug.Log("Distracted.");
+							}
+							if (StudentManager.Students[46 + k].TargetedForDistraction)
+							{
+								Debug.Log("Targeted for distraction.");
+							}
+							if (StudentManager.Students[46 + k].InvestigatingBloodPool)
+							{
+								Debug.Log("Investigating blood pool.");
+							}
+							if (StudentManager.Students[46 + k].ReturningMisplacedWeapon)
+							{
+								Debug.Log("Returning misplaced weapon.");
 							}
 						}
 						Yandere.transform.eulerAngles = SparSpot[1].eulerAngles;
 						Yandere.transform.position = SparSpot[1].position;
 						Yandere.CanMove = false;
 						SparringPartner = StudentManager.Students[ClubID - Selected];
+						Debug.Log("Selected was " + Selected + " so SparringPartner will be " + SparringPartner.Name);
 						SparringPartner.CharacterAnimation.CrossFade(SparringPartner.IdleAnim);
 						SparringPartner.transform.eulerAngles = SparSpot[2].eulerAngles;
 						SparringPartner.transform.position = SparSpot[2].position;
@@ -332,6 +402,11 @@ public class PracticeWindowScript : MonoBehaviour
 		PromptBar.Label[4].text = "Choose";
 		PromptBar.UpdateButtons();
 		PromptBar.Show = true;
+		Texture[1].color = Color.white;
+		Texture[2].color = Color.white;
+		Texture[3].color = Color.white;
+		Texture[4].color = Color.white;
+		Texture[5].color = Color.white;
 		if (Club == ClubType.LightMusic)
 		{
 			Texture[1].mainTexture = AlbumCovers[1];
@@ -368,9 +443,9 @@ public class PracticeWindowScript : MonoBehaviour
 				Label[ID].text = StudentManager.JSON.Students[ClubID - ID].Name + "\n" + Difficulties[ID];
 				if (StudentManager.Students[ClubID - ID] != null)
 				{
-					if (!StudentManager.Students[ClubID - ID].Routine || !StudentManager.Students[ClubID - ID].ClubAttire || !StudentManager.Students[ClubID - ID].Distracted || !StudentManager.Students[ClubID - ID].TargetedForDistraction)
+					if (!StudentManager.Students[ClubID - ID].Routine || !StudentManager.Students[ClubID - ID].ClubAttire || StudentManager.Students[ClubID - ID].Distracted || StudentManager.Students[ClubID - ID].TargetedForDistraction)
 					{
-						Debug.Log("Student #" + (ClubID - ID) + " is not doing their routine or not in their club attire.");
+						Debug.Log("Student #" + (ClubID - ID) + " is not doing their routine, is not in their club attire, is distracted, or is targeted for distraction.");
 						Texture[ID].color = new Color(0.5f, 0.5f, 0.5f, 1f);
 						Label[ID].color = new Color(0f, 0f, 0f, 0.5f);
 					}
@@ -388,6 +463,22 @@ public class PracticeWindowScript : MonoBehaviour
 			}
 			Texture[5].color = new Color(1f, 1f, 1f, 1f);
 			Label[5].color = new Color(0f, 0f, 0f, 1f);
+		}
+		else if (Club == ClubType.Gardening)
+		{
+			Texture[1].mainTexture = GardeningIcons[1];
+			Texture[2].mainTexture = GardeningIcons[2];
+			Texture[3].mainTexture = GardeningIcons[3];
+			Texture[4].mainTexture = GardeningIcons[4];
+			Texture[5].mainTexture = GardeningIcons[5];
+			Texture[1].color = Color.red;
+			Texture[2].color = Color.green;
+			Texture[3].color = new Color(0.5f, 0.5f, 1f, 1f);
+			Label[1].text = GardeningNames[1] ?? "";
+			Label[2].text = GardeningNames[2] ?? "";
+			Label[3].text = GardeningNames[3] ?? "";
+			Label[4].text = GardeningNames[4] ?? "";
+			Label[5].text = GardeningNames[5] ?? "";
 		}
 		else if (Club == ClubType.Delinquent)
 		{

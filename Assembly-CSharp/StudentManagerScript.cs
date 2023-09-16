@@ -354,6 +354,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform[] PopularGirlSpots;
 
+	public Transform[] AltShockedSpots;
+
 	public Transform[] LockerPositions;
 
 	public Transform[] MaleCoupleSpots;
@@ -514,8 +516,6 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform FastBatheSpot;
 
-	public Transform InfirmarySeat;
-
 	public Transform MaleBatheSpot;
 
 	public Transform MaleStalkSpot;
@@ -565,6 +565,8 @@ public class StudentManagerScript : MonoBehaviour
 	public Transform Exit;
 
 	public Transform[] FemaleRestSpots;
+
+	public Transform[] InfirmarySeats;
 
 	public Transform[] MaleRestSpots;
 
@@ -635,6 +637,8 @@ public class StudentManagerScript : MonoBehaviour
 	public int LowDetailThreshold;
 
 	public int FarAnimThreshold;
+
+	public int HeadacheStudents;
 
 	public int MartialArtsPhase;
 
@@ -1219,6 +1223,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (PlayerPrefs.GetInt("LoadingSave") == 1)
 		{
+			Debug.Log("StudentManager knows that we are loading a save.");
 			ReturnedFromSave = true;
 		}
 		if (GameGlobals.RivalEliminationID > 0)
@@ -1943,8 +1948,9 @@ public class StudentManagerScript : MonoBehaviour
 					{
 						UpdateExteriorStudents();
 					}
-					if (Eighties && !RivalEliminated)
+					if (Eighties && !RivalEliminated && !ReturnedFromSave && !CameFromLoad)
 					{
+						Debug.Log("The delinquents are now being teleported to where they belong.");
 						if (GameGlobals.AlphabetMode)
 						{
 							UpdateExteriorEightiesStudents();
@@ -4578,10 +4584,12 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			morningEvents[i].SaveAnimationTime();
 		}
+		Yandere.Class.gameObject.SetActive(value: true);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
 		ServicesPurchased = Yandere.PauseScreen.ServiceMenu.ServicePurchased;
 		YanSave.SaveData("Profile_" + profile + "_Slot_" + @int);
 		PlayerPrefs.SetInt("Profile_" + profile + "_Slot_" + @int + "_MemorialStudents", StudentGlobals.MemorialStudents);
+		Yandere.Class.gameObject.SetActive(value: false);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
 		Debug.Log("At the time of saving, StudentManager's GloveID was: " + GloveID);
 		Debug.Log("At the time that the save was made, SchemeGlobals.GetSchemeStage(6) was: " + SchemeGlobals.GetSchemeStage(6));
@@ -4847,6 +4855,10 @@ public class StudentManagerScript : MonoBehaviour
 						Students[ID].CurrentDestination = Students[ID].Destinations[Students[ID].Phase];
 						Students[ID].Pathfinding.target = Students[ID].Destinations[Students[ID].Phase];
 						Students[ID].Hurry = true;
+					}
+					if (Students[ID].SitInInfirmary)
+					{
+						Students[ID].GoSitInInfirmary();
 					}
 					Students[ID].CameraReacting = false;
 				}
@@ -5939,7 +5951,7 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			RepositionSomeStudentsAfterRivalRises = true;
 			StudentsToReposition = 1;
-			WitnessBonus = 36;
+			WitnessBonus = 38;
 		}
 	}
 
@@ -6098,6 +6110,7 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		if (Students[ID] != null && !Students[ID].Slave)
 		{
+			Debug.Log("StudentManager is now designating Student #" + ID + " as a Sleuth.");
 			Students[ID].Persona = PersonaType.Sleuth;
 			Students[ID].BecomeSleuth();
 			Students[ID].GetDestinations();
@@ -6277,7 +6290,7 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				break;
 			}
-			if (GarbageBagList[j] != null)
+			if (GarbageBagList[j] != null && GarbageBagList[j].gameObject.activeInHierarchy)
 			{
 				if (i > 9 && i < 21)
 				{
@@ -6647,7 +6660,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void CheckSelfReportStatus(StudentScript student)
 	{
-		if (Yandere.Bloodiness == 0f && (double)Yandere.Sanity > 66.66666 && !Yandere.StudentManager.WitnessCamera.Show && Yandere.StudentManager.ChaseCamera == null && !MurderTakingPlace)
+		if (Yandere.Bloodiness == 0f && (double)Yandere.Sanity > 66.66666 && !Yandere.StudentManager.WitnessCamera.Show && Yandere.StudentManager.ChaseCamera == null && !MurderTakingPlace && !MissionMode)
 		{
 			if (Police.Corpses > 0 || Police.LimbParent.childCount > 0 || Police.BloodParent.childCount > 0 || Police.BloodyClothing > 0 || Police.BloodyWeapons > 0)
 			{

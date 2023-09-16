@@ -382,7 +382,7 @@ public class WeaponScript : MonoBehaviour
 				}
 			}
 		}
-		else if (!MyRigidbody.isKinematic)
+		else if (!MyRigidbody.isKinematic && Yandere.Police.EndOfDay.Phase == 1)
 		{
 			if (base.transform.position.y < 0f)
 			{

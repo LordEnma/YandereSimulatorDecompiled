@@ -22,6 +22,14 @@ public class BodyHidingLockerScript : MonoBehaviour
 
 	public int StudentID;
 
+	public bool Locker = true;
+
+	public bool Freezer;
+
+	public bool Coffin;
+
+	public bool Chest;
+
 	public bool ABC;
 
 	private void Start()
@@ -31,11 +39,89 @@ public class BodyHidingLockerScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Rotation != 0f)
+		if (Locker)
+		{
+			if (Rotation != 0f)
+			{
+				Speed += Time.deltaTime * 100f;
+				Rotation = Mathf.MoveTowards(Rotation, 0f, Speed * Time.deltaTime);
+				if (Rotation > -1f)
+				{
+					AudioSource.PlayClipAtPoint(LockerClose, Prompt.Yandere.MainCamera.transform.position);
+					if (Corpse != null)
+					{
+						Corpse.gameObject.SetActive(value: false);
+					}
+					Prompt.enabled = true;
+					Rotation = 0f;
+					Speed = 0f;
+					if (ABC)
+					{
+						Prompt.Hide();
+						Prompt.enabled = false;
+						base.enabled = false;
+					}
+				}
+				Door.transform.localEulerAngles = new Vector3(0f, Rotation, 0f);
+			}
+		}
+		else if (Coffin)
+		{
+			if (Rotation != -90f)
+			{
+				Door.transform.localEulerAngles = new Vector3(Rotation, 90f, 90f);
+				Speed += Time.deltaTime * 2f;
+				Rotation = Mathf.Lerp(Rotation, -90f, Speed * Time.deltaTime);
+				if (Rotation < -89.9f)
+				{
+					if (Corpse != null)
+					{
+						Corpse.gameObject.SetActive(value: false);
+					}
+					Prompt.enabled = true;
+					Rotation = -90f;
+					Speed = 0f;
+					if (ABC)
+					{
+						Prompt.Hide();
+						Prompt.enabled = false;
+						base.enabled = false;
+					}
+				}
+				Door.transform.localEulerAngles = new Vector3(Rotation, 90f, 90f);
+			}
+		}
+		else if (Chest)
+		{
+			if (Rotation != -90f)
+			{
+				Speed += Time.deltaTime * 100f;
+				Rotation = Mathf.MoveTowards(Rotation, -90f, Speed * Time.deltaTime);
+				if (Rotation < -89.9f)
+				{
+					AudioSource.PlayClipAtPoint(LockerClose, Prompt.Yandere.MainCamera.transform.position);
+					if (Corpse != null)
+					{
+						Corpse.gameObject.SetActive(value: false);
+					}
+					Prompt.enabled = true;
+					Rotation = -90f;
+					Speed = 0f;
+					if (ABC)
+					{
+						Prompt.Hide();
+						Prompt.enabled = false;
+						base.enabled = false;
+					}
+				}
+				Door.transform.localEulerAngles = new Vector3(Rotation, -90f, -90f);
+			}
+		}
+		else if (Freezer && Rotation < 0f)
 		{
 			Speed += Time.deltaTime * 100f;
 			Rotation = Mathf.MoveTowards(Rotation, 0f, Speed * Time.deltaTime);
-			if (Rotation > -1f)
+			if (Rotation > -0.1f)
 			{
 				AudioSource.PlayClipAtPoint(LockerClose, Prompt.Yandere.MainCamera.transform.position);
 				if (Corpse != null)
@@ -52,7 +138,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
-			Door.transform.localEulerAngles = new Vector3(0f, Rotation, 0f);
+			Door.transform.localEulerAngles = new Vector3(Rotation, 0f, 0f);
 		}
 		if (Corpse == null)
 		{
@@ -63,6 +149,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 				{
 					return;
 				}
+				Debug.Log("Putting corpse into container now.");
 				Prompt.Circle[0].fillAmount = 1f;
 				AudioSource.PlayClipAtPoint(LockerOpen, Prompt.Yandere.MainCamera.transform.position);
 				if (Prompt.Yandere.Carrying)
@@ -86,8 +173,6 @@ public class BodyHidingLockerScript : MonoBehaviour
 				Prompt.Yandere.CorpseWarning = false;
 				Prompt.Yandere.StudentManager.UpdateStudents();
 				Corpse.transform.parent = base.transform;
-				Corpse.transform.position = base.transform.position + new Vector3(0f, 0.1f, 0f);
-				Corpse.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
 				if (!Corpse.Concealed)
 				{
 					if (Corpse.Police == null)
@@ -111,12 +196,41 @@ public class BodyHidingLockerScript : MonoBehaviour
 					Corpse.DisableRigidbodies();
 				}
 				Corpse.Student.CharacterAnimation.enabled = true;
-				Corpse.Student.CharacterAnimation.Play("f02_lockerPose_00");
 				if (Corpse.Decapitated)
 				{
 					Corpse.Head.transform.localScale = Vector3.zero;
 				}
-				Rotation = -180f;
+				if (Locker)
+				{
+					Corpse.transform.position = base.transform.position + new Vector3(0f, 0.1f, 0f);
+					Corpse.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
+					Corpse.Student.CharacterAnimation.Play("f02_lockerPose_00");
+					Rotation = -180f;
+				}
+				else if (Coffin)
+				{
+					Corpse.transform.localPosition = new Vector3(0f, 0.01433333f, 0f);
+					Corpse.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
+					Corpse.Student.CharacterAnimation.Play("f02_hidden_00");
+					Rotation = -35f;
+					Door.transform.localEulerAngles = new Vector3(-35f, 90f, 90f);
+				}
+				else if (Chest)
+				{
+					Corpse.transform.localPosition = new Vector3(-0.01436667f, 0f, -0.001f);
+					Corpse.transform.localEulerAngles = new Vector3(0f, 90f, 90f);
+					Corpse.Student.CharacterAnimation.Play("f02_hidden_00");
+					Rotation = -45f;
+					Door.transform.localEulerAngles = new Vector3(-45f, -90f, -90f);
+				}
+				else if (Freezer)
+				{
+					Corpse.transform.localPosition = new Vector3(0f, -0.0085f, -0.000365f);
+					Corpse.transform.localEulerAngles = new Vector3(-90f, 180f, 0f);
+					Corpse.Student.CharacterAnimation.Play("f02_hidden_00");
+					Rotation = -52f;
+					Door.transform.localEulerAngles = new Vector3(-52f, 0f, 0f);
+				}
 				if (Outline != null)
 				{
 					Outline.color = new Color(1f, 0.5f, 0f, 1f);
@@ -137,9 +251,6 @@ public class BodyHidingLockerScript : MonoBehaviour
 			Corpse.enabled = true;
 			Corpse.gameObject.SetActive(value: true);
 			Corpse.CharacterAnimation.enabled = false;
-			Corpse.transform.localPosition = new Vector3(0f, 0f, 0.5f);
-			Corpse.transform.localEulerAngles = new Vector3(0f, -90f, 0.5f);
-			Corpse.transform.parent = null;
 			Corpse.BloodSpawnerCollider.enabled = true;
 			Corpse.Prompt.MyCollider.enabled = true;
 			Corpse.BloodPoolSpawner.NearbyBlood = 0;
@@ -153,8 +264,41 @@ public class BodyHidingLockerScript : MonoBehaviour
 			{
 				Corpse.Student.FireEmitters[i].gameObject.SetActive(value: false);
 			}
+			if (Locker)
+			{
+				Corpse.transform.localPosition = new Vector3(0f, 0f, 0.5f);
+				Corpse.transform.localEulerAngles = new Vector3(0f, -90f, 0.5f);
+				Corpse.transform.parent = null;
+				Rotation = -180f;
+			}
+			else if (Coffin)
+			{
+				Corpse.transform.parent = null;
+				Corpse.transform.position = base.transform.position + new Vector3(-1f, 0f, 0f);
+				Corpse.Student.Hips.position = base.transform.position + new Vector3(-1f, 0.5f, 0f);
+				Corpse.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+				Rotation = -35f;
+				Door.transform.localEulerAngles = new Vector3(-35f, 90f, 90f);
+			}
+			else if (Chest)
+			{
+				Corpse.transform.parent = null;
+				Corpse.transform.position = Prompt.Yandere.transform.position;
+				Corpse.Student.Hips.position = Prompt.Yandere.transform.position + new Vector3(0f, 0.5f, 0f);
+				Corpse.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+				Rotation = -45f;
+				Door.transform.localEulerAngles = new Vector3(-45f, -90f, -90f);
+			}
+			else if (Freezer)
+			{
+				Corpse.transform.parent = null;
+				Corpse.transform.position = Prompt.Yandere.transform.position;
+				Corpse.Student.Hips.position = Prompt.Yandere.transform.position + new Vector3(0f, 0.5f, 0f);
+				Corpse.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+				Rotation = -52f;
+				Door.transform.localEulerAngles = new Vector3(-52f, 0f, 0f);
+			}
 			Corpse = null;
-			Rotation = -180f;
 			Outline.color = new Color(0f, 1f, 1f, 1f);
 			StudentID = 0;
 		}

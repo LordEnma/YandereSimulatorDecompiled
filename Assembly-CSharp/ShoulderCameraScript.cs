@@ -688,6 +688,10 @@ public class ShoulderCameraScript : MonoBehaviour
 			{
 				return;
 			}
+			if (Yandere.Won)
+			{
+				Yandere.CameraEffects.UpdateDOF(Yandere.StruggleBar.OriginalDOF);
+			}
 			Timer += Time.deltaTime;
 			if (Timer < 0.5f)
 			{

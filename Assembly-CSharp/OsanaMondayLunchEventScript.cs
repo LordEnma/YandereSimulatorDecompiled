@@ -140,6 +140,10 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 		else if (Phase == 1)
 		{
+			if (Rival == null)
+			{
+				Rival = StudentManager.Students[StudentManager.RivalID];
+			}
 			if (Rival.DistanceToDestination < 0.5f)
 			{
 				EventSubtitle.text = SpeechText[SpeechPhase];
@@ -392,6 +396,10 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 		if (Clock.Period > 3 || Senpai.Alarmed || Rival.Alarmed || Rival.Wet || Rival.GoAway || Senpai.GoAway || Clock.Police.ShowResults)
 		{
+			if (Senpai == null)
+			{
+				Senpai = StudentManager.Students[1];
+			}
 			if (Senpai.Alarmed || (Rival.Alarmed && !Rival.Wet))
 			{
 				UnityEngine.Object.Instantiate(AlarmDisc, Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;

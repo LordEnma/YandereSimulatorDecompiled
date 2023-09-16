@@ -321,6 +321,7 @@ public class CalendarScript : MonoBehaviour
 						}
 						while (flag || (DateGlobals.PassDays > 0 && DateGlobals.Weekday != DayOfWeek.Saturday && DateGlobals.Weekday != 0))
 						{
+							UpdateSeeds();
 							DateGlobals.GameplayDay++;
 							DateGlobals.PassDays--;
 							DateGlobals.Weekday++;
@@ -331,6 +332,7 @@ public class CalendarScript : MonoBehaviour
 					}
 					else if (!CameFromTitleScreen)
 					{
+						UpdateSeeds();
 						DateGlobals.GameplayDay++;
 						DateGlobals.PassDays--;
 						DateGlobals.Weekday++;
@@ -444,6 +446,7 @@ public class CalendarScript : MonoBehaviour
 								Debug.Log("Skipping day. Not Saturday or Sunday. Awarding 10 bonus study points.");
 								ClassGlobals.BonusStudyPoints += 10;
 							}
+							UpdateSeeds();
 							GameGlobals.SenpaiMourning = false;
 							GameGlobals.ShowAbduction = false;
 							DateGlobals.Weekday++;
@@ -473,6 +476,7 @@ public class CalendarScript : MonoBehaviour
 					{
 						if (Input.GetButtonDown(InputNames.Xbox_A))
 						{
+							UpdateSeeds();
 							AmaiButton.SetActive(value: false);
 							AmaiWindow.SetActive(value: false);
 							DateGlobals.Weekday++;
@@ -1116,6 +1120,18 @@ public class CalendarScript : MonoBehaviour
 		else
 		{
 			Debug.Log("Nope, not kicked out of the Cooking Club...");
+		}
+	}
+
+	public void UpdateSeeds()
+	{
+		if (SchoolGlobals.Seeds > 0)
+		{
+			SchoolGlobals.SeedProgress++;
+		}
+		if (SchoolGlobals.BiologySeeds > 0)
+		{
+			SchoolGlobals.BiologySeedProgress++;
 		}
 	}
 }

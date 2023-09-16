@@ -342,16 +342,27 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 
 	public void LateUpdate()
 	{
-		if (VoiceClip != null)
+		if (Phase <= 1)
 		{
-			if (AudioData.MyAudioSource == null)
+			return;
+		}
+		if (AudioData != null)
+		{
+			if (VoiceClip != null)
 			{
-				AudioData.MyAudioSource = VoiceClip.GetComponent<AudioSource>();
+				if (AudioData.MyAudioSource == null)
+				{
+					AudioData.MyAudioSource = VoiceClip.GetComponent<AudioSource>();
+				}
+			}
+			else
+			{
+				AudioData.MyAudioSource = null;
 			}
 		}
 		else
 		{
-			AudioData.MyAudioSource = null;
+			Debug.Log("Hey, AudioData is null. Is this a big deal?");
 		}
 		if (AudioData != null && AudioData.MyAudioSource != null && CurrentSpeaker != null)
 		{
@@ -448,13 +459,19 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 				ScheduleBlock obj = Rival.ScheduleBlocks[2];
 				obj.destination = "Patrol";
 				obj.action = "Patrol";
-				ScheduleBlock obj2 = Rival.ScheduleBlocks[7];
-				obj2.destination = "Patrol";
-				obj2.action = "Patrol";
+				if (Rival.ScheduleBlocks.Length > 7)
+				{
+					ScheduleBlock obj2 = Rival.ScheduleBlocks[7];
+					obj2.destination = "Patrol";
+					obj2.action = "Patrol";
+				}
 				Rival.GetDestinations();
 			}
 		}
-		AudioData.MyAudioSource = null;
+		if (AudioData != null)
+		{
+			AudioData.MyAudioSource = null;
+		}
 	}
 
 	private void SettleRival()

@@ -250,6 +250,11 @@ public class MissionModeMenuScript : MonoBehaviour
 		CustomPopulationLabel.text = "";
 		PopulationLabel.text = "";
 		ChangeFont();
+		for (int m = 0; m < 11; m++)
+		{
+			PlayerPrefs.SetInt("MissionModeTarget" + m, 0);
+			PlayerPrefs.SetInt("MissionModeMethod" + m, 0);
+		}
 	}
 
 	private void Update()

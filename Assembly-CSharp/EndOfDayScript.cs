@@ -60,7 +60,11 @@ public class EndOfDayScript : MonoBehaviour
 
 	public ClockScript Clock;
 
+	public PlantScript Plant;
+
 	public JsonScript JSON;
+
+	public GrowStationScript[] GrowStations;
 
 	public GardenHoleScript[] GardenHoles;
 
@@ -2636,8 +2640,8 @@ public class EndOfDayScript : MonoBehaviour
 		Yandere.CameraEffects.UpdateBloomRadius(4f);
 		DatingGlobals.RivalSabotaged = StudentManager.SabotageProgress;
 		PlayerGlobals.PersonaID = Yandere.PersonaID;
+		Police.Corpses += Police.DrownVictims;
 		PlayerGlobals.CorpsesDiscovered += Police.Corpses;
-		PlayerGlobals.CorpsesDiscovered += Police.DrownVictims;
 		ClassGlobals.BonusStudyPoints = Class.StudyPoints + Class.BonusPoints;
 		HomeGlobals.LateForSchool = false;
 		PlayerGlobals.ShrineItems += ShrineItemsCollected;
@@ -2780,6 +2784,9 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		Yandere.PauseScreen.PhotoGallery.SavePhotosTaken();
 		SchoolManga.SaveMangaProgress();
+		GrowStations[1].SaveSeeds();
+		GrowStations[2].SaveSeeds();
+		Plant.SavePlantProgress();
 		Yandere.CameraEffects.UpdateVignette(0f);
 		GrantAchievement();
 	}

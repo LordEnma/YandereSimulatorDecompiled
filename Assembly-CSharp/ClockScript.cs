@@ -12,13 +12,13 @@ public class ClockScript : MonoBehaviour
 
 	public Collider[] TrespassZones;
 
-	public PostProcessingProfile Profile;
+	public StudentManagerScript StudentManager;
 
 	public RetroMinigameScript RetroMinigame;
 
-	public StudentManagerScript StudentManager;
-
 	public CameraEffectsScript CameraEffects;
+
+	public PostProcessingProfile Profile;
 
 	public GrandfatherScript Grandfather;
 
@@ -31,6 +31,8 @@ public class ClockScript : MonoBehaviour
 	public ClockScript Clock;
 
 	public MotionBlur Blur;
+
+	public ClockFaceScript[] ClockFaces;
 
 	public Vector3 OriginalPosition;
 
@@ -703,6 +705,7 @@ public class ClockScript : MonoBehaviour
 		MinuteHand.localEulerAngles = new Vector3(MinuteHand.localEulerAngles.x, MinuteHand.localEulerAngles.y, Minute * 6f);
 		HourHand.localEulerAngles = new Vector3(HourHand.localEulerAngles.x, HourHand.localEulerAngles.y, Hour * 30f);
 		Grandfather.UpdateClockHands();
+		ClockFaces[1].UpdateClockHands();
 	}
 
 	public void UpdateLighting()

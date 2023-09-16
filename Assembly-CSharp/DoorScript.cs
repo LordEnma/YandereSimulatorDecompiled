@@ -701,7 +701,7 @@ public class DoorScript : MonoBehaviour
 			Sign.material.mainTextureOffset = new Vector2(0.25f, 0.5f);
 			break;
 		case 23:
-			Sign.material.mainTexture = Plates[2];
+			Sign.material.mainTexture = Plates[3];
 			Sign.material.mainTextureOffset = new Vector2(0.25f, 0.25f);
 			break;
 		case 24:
@@ -807,7 +807,6 @@ public class DoorScript : MonoBehaviour
 				{
 					Yandere.NotificationManager.TopicName = "Jokes";
 				}
-				Yandere.NotificationManager.TopicName = "Memes";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
 			break;

@@ -75,6 +75,16 @@ public class InventoryScript : MonoBehaviour
 
 	public bool ShedKey;
 
+	public bool LethalSeeds;
+
+	public bool EmeticSeeds;
+
+	public bool SedativeSeeds;
+
+	public bool HeadacheSeeds;
+
+	public bool GrowthStimulant;
+
 	public bool Ammonium;
 
 	public bool Balloons;

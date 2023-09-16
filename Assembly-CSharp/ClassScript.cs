@@ -196,61 +196,62 @@ public class ClassScript : MonoBehaviour
 	{
 		if (!Initialized)
 		{
+			Debug.Log("The Class script just updated its variables to match ClassGlobals.");
 			BonusPoints += ClassGlobals.BonusStudyPoints;
 			Initialized = true;
-		}
-		Biology = ClassGlobals.Biology;
-		Chemistry = ClassGlobals.Chemistry;
-		Language = ClassGlobals.Language;
-		Physical = ClassGlobals.Physical;
-		Psychology = ClassGlobals.Psychology;
-		BiologyGrade = ClassGlobals.BiologyGrade;
-		ChemistryGrade = ClassGlobals.ChemistryGrade;
-		LanguageGrade = ClassGlobals.LanguageGrade;
-		PhysicalGrade = ClassGlobals.PhysicalGrade;
-		PsychologyGrade = ClassGlobals.PsychologyGrade;
-		if (BiologyBonus == 0)
-		{
-			BiologyBonus = ClassGlobals.BiologyBonus;
-		}
-		if (ChemistryBonus == 0)
-		{
-			ChemistryBonus = ClassGlobals.ChemistryBonus;
-		}
-		if (LanguageBonus == 0)
-		{
-			LanguageBonus = ClassGlobals.LanguageBonus;
-		}
-		if (PhysicalBonus == 0)
-		{
-			PhysicalBonus = ClassGlobals.PhysicalBonus;
-		}
-		if (PsychologyBonus == 0)
-		{
-			PsychologyBonus = ClassGlobals.PsychologyBonus;
-		}
-		Seduction = PlayerGlobals.Seduction;
-		Numbness = PlayerGlobals.Numbness;
-		Enlightenment = PlayerGlobals.Enlightenment;
-		if (SocialBonus == 0)
-		{
-			SocialBonus = PlayerGlobals.SocialBonus;
-		}
-		if (StealthBonus == 0)
-		{
-			StealthBonus = PlayerGlobals.StealthBonus;
-		}
-		if (SeductionBonus == 0)
-		{
-			SeductionBonus = PlayerGlobals.SeductionBonus;
-		}
-		if (NumbnessBonus == 0)
-		{
-			NumbnessBonus = PlayerGlobals.NumbnessBonus;
-		}
-		if (EnlightenmentBonus == 0)
-		{
-			EnlightenmentBonus = PlayerGlobals.EnlightenmentBonus;
+			Biology = ClassGlobals.Biology;
+			Chemistry = ClassGlobals.Chemistry;
+			Language = ClassGlobals.Language;
+			Physical = ClassGlobals.Physical;
+			Psychology = ClassGlobals.Psychology;
+			BiologyGrade = ClassGlobals.BiologyGrade;
+			ChemistryGrade = ClassGlobals.ChemistryGrade;
+			LanguageGrade = ClassGlobals.LanguageGrade;
+			PhysicalGrade = ClassGlobals.PhysicalGrade;
+			PsychologyGrade = ClassGlobals.PsychologyGrade;
+			if (BiologyBonus == 0)
+			{
+				BiologyBonus = ClassGlobals.BiologyBonus;
+			}
+			if (ChemistryBonus == 0)
+			{
+				ChemistryBonus = ClassGlobals.ChemistryBonus;
+			}
+			if (LanguageBonus == 0)
+			{
+				LanguageBonus = ClassGlobals.LanguageBonus;
+			}
+			if (PhysicalBonus == 0)
+			{
+				PhysicalBonus = ClassGlobals.PhysicalBonus;
+			}
+			if (PsychologyBonus == 0)
+			{
+				PsychologyBonus = ClassGlobals.PsychologyBonus;
+			}
+			Seduction = PlayerGlobals.Seduction;
+			Numbness = PlayerGlobals.Numbness;
+			Enlightenment = PlayerGlobals.Enlightenment;
+			if (SocialBonus == 0)
+			{
+				SocialBonus = PlayerGlobals.SocialBonus;
+			}
+			if (StealthBonus == 0)
+			{
+				StealthBonus = PlayerGlobals.StealthBonus;
+			}
+			if (SeductionBonus == 0)
+			{
+				SeductionBonus = PlayerGlobals.SeductionBonus;
+			}
+			if (NumbnessBonus == 0)
+			{
+				NumbnessBonus = PlayerGlobals.NumbnessBonus;
+			}
+			if (EnlightenmentBonus == 0)
+			{
+				EnlightenmentBonus = PlayerGlobals.EnlightenmentBonus;
+			}
 		}
 	}
 

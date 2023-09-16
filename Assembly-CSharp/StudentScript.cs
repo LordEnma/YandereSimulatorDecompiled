@@ -638,6 +638,8 @@ public class StudentScript : MonoBehaviour
 
 	public bool RepeatReaction;
 
+	public bool SitInInfirmary;
+
 	public bool StalkerFleeing;
 
 	public bool YandereVisible;
@@ -1025,6 +1027,8 @@ public class StudentScript : MonoBehaviour
 	public bool Dying;
 
 	public float DistanceToDestination;
+
+	public float InvestigationDistance;
 
 	public float FollowTargetDistance;
 
@@ -1801,6 +1805,8 @@ public class StudentScript : MonoBehaviour
 	public float ChameleonBonus;
 
 	public bool Chameleon;
+
+	public bool SleuthInitialized;
 
 	public int TeacherID = 90;
 
@@ -3012,7 +3018,16 @@ public class StudentScript : MonoBehaviour
 			{
 				if (SchoolGlobals.SchoolAtmosphere <= 0.8f || Grudge)
 				{
-					BecomeSleuth();
+					bool flag = false;
+					if (StudentManager.Eighties && ClubLeader)
+					{
+						Debug.Log("Student #" + StudentID + " is a club leader, so they shouldn't become a Sleuth...");
+						flag = true;
+					}
+					if (!flag)
+					{
+						BecomeSleuth();
+					}
 				}
 				else if (SchoolGlobals.SchoolAtmosphere <= 0.9f)
 				{
@@ -3087,7 +3102,7 @@ public class StudentScript : MonoBehaviour
 					TaskAnims[3] = text + "delinquentTalk_03";
 					TaskAnims[4] = text + "delinquentTalk_00";
 					TaskAnims[5] = text + "delinquentTalk_03";
-					WaveAnim = "f02_casualWave_00";
+					WaveAnim = "f02_casualWave_02";
 				}
 			}
 			else
@@ -3142,7 +3157,7 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (Club == ClubType.Occult)
 			{
-				WaveAnim = "f02_casualWave_00";
+				WaveAnim = "f02_casualWave_02";
 				CharacterAnimation[PatrolAnim].speed = 0.2f;
 			}
 			else if (Club == ClubType.Gaming)
@@ -3667,7 +3682,7 @@ public class StudentScript : MonoBehaviour
 		}
 		if (OriginalClub == ClubType.Occult || OriginalClub == ClubType.Delinquent || (!StudentManager.Eighties && StudentID == 4) || (!StudentManager.Eighties && StudentID == 36) || (!StudentManager.Eighties && StudentID == 41) || (!StudentManager.Eighties && StudentID == 42) || (!StudentManager.Eighties && StudentID == 66))
 		{
-			WaveAnim = "f02_casualWave_00";
+			WaveAnim = "f02_casualWave_02";
 		}
 		CharacterAnimation.Sample();
 	}
@@ -4112,6 +4127,7 @@ public class StudentScript : MonoBehaviour
 				{
 					StopVomitting();
 				}
+				SitInInfirmary = false;
 				Pushable = false;
 				Headache = false;
 				Sedated = false;
@@ -6940,7 +6956,6 @@ public class StudentScript : MonoBehaviour
 							}
 							else if (Actions[Phase] == StudentActionType.SearchPatrol)
 							{
-								Debug.Log(Name + " is search patrolling.");
 								if (PatrolID == 0 && StudentManager.CommunalLocker.RivalPhone.gameObject.activeInHierarchy && !EndSearch)
 								{
 									if (Rival)
@@ -6964,7 +6979,6 @@ public class StudentScript : MonoBehaviour
 								if (!EndSearch)
 								{
 									PatrolTimer += Time.deltaTime * CharacterAnimation[SearchPatrolAnim].speed;
-									Debug.Log("PatrolTimer is: " + PatrolTimer);
 									CharacterAnimation.CrossFade(SearchPatrolAnim);
 									if (PatrolTimer >= CharacterAnimation[SearchPatrolAnim].length)
 									{
@@ -7593,7 +7607,7 @@ public class StudentScript : MonoBehaviour
 								}
 								else if (StudentManager.Students[36].Routine && StudentManager.Students[36].DistanceToDestination < 1f)
 								{
-									if (!StudentManager.GamingDoor.Open)
+									if (!StudentManager.GamingDoor.Locked && !StudentManager.GamingDoor.Open)
 									{
 										StudentManager.GamingDoor.OpenDoor();
 									}
@@ -7607,7 +7621,14 @@ public class StudentScript : MonoBehaviour
 										emission2.enabled = true;
 										Hearts.Play();
 									}
-									CharacterAnimation.CrossFade("f02_peeking_0" + (StudentID - 80));
+									if (!StudentManager.GamingDoor.Locked)
+									{
+										CharacterAnimation.CrossFade("f02_peeking_0" + (StudentID - 80));
+									}
+									else
+									{
+										CharacterAnimation.CrossFade(AdmireAnim);
+									}
 								}
 								else
 								{
@@ -8496,6 +8517,8 @@ public class StudentScript : MonoBehaviour
 								if (Yandere.Chased && Yandere.Pursuer == this)
 								{
 									Debug.Log(Name + " is now chasing Yandere-chan.");
+									FocusOnYandere = false;
+									CharacterAnimation.CrossFade(SprintAnim);
 									Pathfinding.repathRate = 0f;
 									Pathfinding.speed = 5f;
 									ChaseTimer += Time.deltaTime;
@@ -9146,6 +9169,7 @@ public class StudentScript : MonoBehaviour
 												Yandere.Police.EndOfDay.Heartbroken.Exposed = true;
 												Yandere.CharacterAnimation.CrossFade("f02_down_22");
 												Yandere.Collapse = true;
+												StudentManager.LovestruckCamera.SetActive(value: false);
 												StudentManager.StopMoving();
 												ReportPhase++;
 											}
@@ -11166,11 +11190,11 @@ public class StudentScript : MonoBehaviour
 					{
 						if (Male)
 						{
-							CharacterAnimation.CrossFade(IdleAnim);
+							CharacterAnimation.CrossFade("heardSuspiciousNoise_00");
 						}
 						else
 						{
-							CharacterAnimation.CrossFade("f02_heardSuspiciousNoise_01");
+							CharacterAnimation.CrossFade("f02_heardSuspiciousNoise_02");
 						}
 						Pathfinding.canSearch = false;
 						Pathfinding.canMove = false;
@@ -11211,7 +11235,11 @@ public class StudentScript : MonoBehaviour
 				{
 					Pathfinding.canSearch = true;
 					Pathfinding.canMove = true;
-					if (DistanceToDestination > 0.8f)
+					if (InvestigationDistance == 0f)
+					{
+						InvestigationDistance = 0.8f;
+					}
+					if (DistanceToDestination > InvestigationDistance)
 					{
 						if ((Persona == PersonaType.Heroic && HeardScream) || Persona == PersonaType.Protective || Hurry || WalkSpeed == 4f || Pathfinding.speed == 4f)
 						{
@@ -11645,18 +11673,7 @@ public class StudentScript : MonoBehaviour
 					}
 					else if (SeekMedicinePhase == 5)
 					{
-						Pathfinding.canSearch = true;
-						Pathfinding.canMove = true;
-						ScheduleBlock obj26 = ScheduleBlocks[Phase];
-						obj26.destination = "InfirmarySeat";
-						obj26.action = "Relax";
-						GetDestinations();
-						CurrentDestination = Destinations[Phase];
-						Pathfinding.target = Destinations[Phase];
-						Pathfinding.speed = 2f;
-						RelaxAnim = HeadacheSitAnim;
-						SeekingMedicine = false;
-						Routine = true;
+						GoSitInInfirmary();
 					}
 				}
 			}
@@ -11755,7 +11772,7 @@ public class StudentScript : MonoBehaviour
 					{
 						UnityEngine.Object.Destroy(BagOfChips);
 						bool flag4 = false;
-						if (!StudentManager.Eighties && StudentID == 11)
+						if (!StudentManager.Eighties && !StudentManager.MissionMode && StudentID == 11)
 						{
 							flag4 = true;
 						}
@@ -13223,6 +13240,8 @@ public class StudentScript : MonoBehaviour
 			if ((Persona == PersonaType.PhoneAddict && !Phoneless && !flag) || Persona == PersonaType.Sleuth || StudentID == 20)
 			{
 				SmartPhone.SetActive(value: true);
+				Scrubber.SetActive(value: false);
+				Eraser.SetActive(value: false);
 			}
 			if (Club == ClubType.Cooking && Actions[Phase] == StudentActionType.ClubAction && ClubActivityPhase == 1 && !WitnessedCorpse)
 			{
@@ -14494,12 +14513,8 @@ public class StudentScript : MonoBehaviour
 				PersonaReaction();
 				AlarmTimer = 0f;
 			}
-			else
+			else if (AlarmTimer > 1f && !Reacted)
 			{
-				if (!(AlarmTimer > 1f) || Reacted)
-				{
-					return;
-				}
 				if (StudentID > 1 || Yandere.Mask != null)
 				{
 					if (StudentID == 1)
@@ -14557,6 +14572,10 @@ public class StudentScript : MonoBehaviour
 					Stop = true;
 				}
 				Reacted = true;
+			}
+			if (!Male)
+			{
+				CharacterAnimation[ShyAnim].weight = Mathf.Lerp(CharacterAnimation[ShyAnim].weight, 0f, Time.deltaTime);
 			}
 		}
 	}
@@ -15975,7 +15994,10 @@ public class StudentScript : MonoBehaviour
 					Distracted = false;
 				}
 				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, CurrentDestination.rotation, Time.deltaTime * 10f);
-				CharacterAnimation[ShyAnim].weight = Mathf.Lerp(CharacterAnimation[ShyAnim].weight, 1f, Time.deltaTime);
+				if (!Alarmed)
+				{
+					CharacterAnimation[ShyAnim].weight = Mathf.Lerp(CharacterAnimation[ShyAnim].weight, 1f, Time.deltaTime);
+				}
 				MoveTowardsTarget(CurrentDestination.position);
 			}
 		}
@@ -16872,6 +16894,7 @@ public class StudentScript : MonoBehaviour
 		Routine = false;
 		Alarmed = true;
 		NoTalk = false;
+		Shy = false;
 		Wet = false;
 		if (OriginalPersona != PersonaType.Violent && Persona != OriginalPersona)
 		{
@@ -17862,6 +17885,7 @@ public class StudentScript : MonoBehaviour
 		{
 			Yandere.EquippedWeapon.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
 		}
+		Yandere.StruggleBar.OriginalDOF = CameraEffects.GetDOF();
 		Yandere.StruggleBar.Strength = Strength;
 		Yandere.StruggleBar.Struggling = true;
 		Yandere.StruggleBar.Student = this;
@@ -17905,6 +17929,7 @@ public class StudentScript : MonoBehaviour
 		TargetDistance = 100f;
 		AlarmTimer = 0f;
 		SpawnAlarmDisc();
+		CameraEffects.UpdateDOF(1f);
 	}
 
 	public void GetDestinations()
@@ -18133,7 +18158,14 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.destination == "Shock")
 			{
-				Destinations[ID] = StudentManager.ShockedSpots[StudentID - 80];
+				if (ClubGlobals.GetClubClosed(ClubType.Gaming))
+				{
+					Destinations[ID] = StudentManager.AltShockedSpots[StudentID - 80];
+				}
+				else
+				{
+					Destinations[ID] = StudentManager.ShockedSpots[StudentID - 80];
+				}
 			}
 			else if (scheduleBlock.destination == "Miyuki")
 			{
@@ -18163,7 +18195,8 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.destination == "InfirmarySeat")
 			{
-				Destinations[ID] = StudentManager.InfirmarySeat;
+				Destinations[ID] = StudentManager.InfirmarySeats[StudentManager.HeadacheStudents];
+				StudentManager.HeadacheStudents++;
 			}
 			else if (scheduleBlock.destination == "Paint")
 			{
@@ -20039,6 +20072,7 @@ public class StudentScript : MonoBehaviour
 				Pathfinding.target = StudentManager.SunbatheSpots[StudentID];
 			}
 		}
+		InvestigationDistance = 0.8f;
 		InvestigationTimer = 0f;
 		InvestigationPhase = 0;
 		if (!Hurry)
@@ -20209,6 +20243,11 @@ public class StudentScript : MonoBehaviour
 	public void DetermineSenpaiReaction()
 	{
 		Debug.Log("We are now determining Senpai's reaction to Yandere-chan's behavior.");
+		if (StudentManager.ChallengeManager.NoAlerts)
+		{
+			Subtitle.CustomText = "You alarmed a student! You have failed the ''NO ALERTS'' Challenge.";
+			Subtitle.UpdateLabel(SubtitleType.Custom, 1, 4.5f);
+		}
 		if (Witnessed == StudentWitnessType.WeaponAndBloodAndInsanity)
 		{
 			Subtitle.UpdateLabel(SubtitleType.SenpaiInsanityReaction, 1, 4.5f);
@@ -20725,7 +20764,7 @@ public class StudentScript : MonoBehaviour
 		{
 			StudentManager.BloodLocation.position = BloodPool.transform.position;
 			StudentManager.BloodLocation.LookAt(new Vector3(base.transform.position.x, StudentManager.BloodLocation.position.y, base.transform.position.z));
-			StudentManager.BloodLocation.Translate(StudentManager.BloodLocation.forward);
+			StudentManager.BloodLocation.Translate(StudentManager.BloodLocation.forward, Space.World);
 			StudentManager.LowerBloodPosition();
 		}
 	}
@@ -20961,6 +21000,11 @@ public class StudentScript : MonoBehaviour
 
 	public void GetSleuthTarget()
 	{
+		if (!SleuthInitialized)
+		{
+			SleuthInitialized = true;
+			GetInitialSleuthTarget();
+		}
 		WalkAnim = SleuthWalkAnim;
 		TargetDistance = 2f;
 		SleuthID++;
@@ -21347,8 +21391,8 @@ public class StudentScript : MonoBehaviour
 		{
 			CharacterAnimation[StripAnim].speed = 1.5f;
 			CharacterAnimation[GameAnim].speed = 2f;
-			CharacterAnimation["f02_casualWave_00"].layer = 11;
-			CharacterAnimation["f02_casualWave_00"].weight = 0f;
+			CharacterAnimation["f02_casualWave_02"].layer = 11;
+			CharacterAnimation["f02_casualWave_02"].weight = 0f;
 			CharacterAnimation["f02_friendWave_00"].layer = 10;
 			CharacterAnimation["f02_friendWave_00"].weight = 0f;
 			CharacterAnimation["f02_moLipSync_00"].layer = 9;
@@ -21381,8 +21425,8 @@ public class StudentScript : MonoBehaviour
 		else
 		{
 			CharacterAnimation[ConfusedSitAnim].speed *= -1f;
-			CharacterAnimation["f02_casualWave_00"].layer = 9;
-			CharacterAnimation["f02_casualWave_00"].weight = 0f;
+			CharacterAnimation["f02_casualWave_02"].layer = 9;
+			CharacterAnimation["f02_casualWave_02"].weight = 0f;
 			CharacterAnimation["friendWave_00"].layer = 8;
 			CharacterAnimation["friendWave_00"].weight = 0f;
 			CharacterAnimation[ToughFaceAnim].layer = 7;
@@ -22655,16 +22699,70 @@ public class StudentScript : MonoBehaviour
 		CurrentAction = Actions[Phase];
 	}
 
+	public void GetInitialSleuthTarget()
+	{
+		if (StudentID == 37)
+		{
+			SleuthID = 1;
+		}
+		else if (StudentID == 38)
+		{
+			SleuthID = 20;
+		}
+		else if (StudentID == 39)
+		{
+			SleuthID = 30;
+		}
+		else if (StudentID == 40)
+		{
+			SleuthID = 40;
+		}
+		else if (StudentID != 56)
+		{
+			if (StudentID == 57)
+			{
+				SleuthID = 50;
+			}
+			else if (StudentID == 58)
+			{
+				SleuthID = 60;
+			}
+			else if (StudentID == 59)
+			{
+				SleuthID = 70;
+			}
+			else if (StudentID == 60)
+			{
+				SleuthID = 80;
+			}
+		}
+	}
+
 	public void BecomeSleuth()
 	{
+		if (!SleuthInitialized)
+		{
+			SleuthInitialized = true;
+			GetInitialSleuthTarget();
+		}
 		if (Club != ClubType.Newspaper && Club != ClubType.Photography)
 		{
 			_ = Club;
 		}
+		bool flag = false;
 		if (StudentManager.Eighties)
 		{
 			CameraFlash = RetroCameraFlash;
 			SmartPhone = RetroCamera;
+			if (StudentID == 56)
+			{
+				Debug.Log("Student #" + StudentID + " is the Photography Club leader, so he shouldn't become a Sleuth...");
+				flag = true;
+			}
+		}
+		if (flag)
+		{
+			return;
 		}
 		Indoors = true;
 		Spawned = true;
@@ -22713,7 +22811,6 @@ public class StudentScript : MonoBehaviour
 			if (Club == ClubType.None || Club == ClubType.Newspaper)
 			{
 				StudentManager.SleuthPhase = 3;
-				SleuthID = StudentID;
 				GetSleuthTarget();
 			}
 			else
@@ -22855,6 +22952,7 @@ public class StudentScript : MonoBehaviour
 				ScheduleBlock obj2 = StudentManager.Students[80 + i].ScheduleBlocks[4];
 				obj2.destination = "Shock";
 				obj2.action = "Shock";
+				StudentManager.Students[80 + i].AdmireAnim = StudentManager.Students[80 + i].AdmireAnims[UnityEngine.Random.Range(0, 3)];
 				StudentManager.Students[80 + i].GetDestinations();
 				StudentManager.Students[80 + i].CurrentDestination = StudentManager.Students[80 + i].Destinations[StudentManager.Students[80 + i].Phase];
 				StudentManager.Students[80 + i].Pathfinding.target = StudentManager.Students[80 + i].Destinations[StudentManager.Students[80 + i].Phase];
@@ -23135,5 +23233,22 @@ public class StudentScript : MonoBehaviour
 		RightEye.localPosition = new Vector3(RightEye.localPosition.x, RightEye.localPosition.y, RightEyeOrigin.z + EyeShrink * 0.01f);
 		LeftEye.localScale = new Vector3(1f - EyeShrink * 0.5f, 1f - EyeShrink * 0.5f, LeftEye.localScale.z);
 		RightEye.localScale = new Vector3(1f - EyeShrink * 0.5f, 1f - EyeShrink * 0.5f, RightEye.localScale.z);
+	}
+
+	public void GoSitInInfirmary()
+	{
+		Pathfinding.canSearch = true;
+		Pathfinding.canMove = true;
+		ScheduleBlock obj = ScheduleBlocks[Phase];
+		obj.destination = "InfirmarySeat";
+		obj.action = "Relax";
+		GetDestinations();
+		CurrentDestination = Destinations[Phase];
+		Pathfinding.target = Destinations[Phase];
+		Pathfinding.speed = 2f;
+		RelaxAnim = HeadacheSitAnim;
+		SeekingMedicine = false;
+		SitInInfirmary = true;
+		Routine = true;
 	}
 }

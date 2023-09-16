@@ -30,10 +30,19 @@ public class SewingMachineScript : MonoBehaviour
 
 	private void Start()
 	{
-		Eighties = GameGlobals.Eighties;
-		Prompt.enabled = true;
-		base.enabled = true;
-		Check = true;
+		if (GameGlobals.EightiesTutorial)
+		{
+			Prompt.enabled = false;
+			Prompt.Hide();
+			base.enabled = false;
+		}
+		else
+		{
+			Eighties = GameGlobals.Eighties;
+			Prompt.enabled = true;
+			base.enabled = true;
+			Check = true;
+		}
 	}
 
 	private void Update()

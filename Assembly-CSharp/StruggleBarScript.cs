@@ -24,6 +24,8 @@ public class StruggleBarScript : MonoBehaviour
 
 	public float ButtonTimer;
 
+	public float OriginalDOF;
+
 	public float Intensity;
 
 	public float Strength = 1f;

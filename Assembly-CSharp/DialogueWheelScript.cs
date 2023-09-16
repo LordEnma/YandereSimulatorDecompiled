@@ -57,11 +57,13 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public Transform Love;
 
-	public UISprite TaskIcon;
+	public UILabel PracticeLabel;
+
+	public UILabel CenterLabel;
 
 	public UISprite Impatience;
 
-	public UILabel CenterLabel;
+	public UISprite TaskIcon;
 
 	public UISprite[] Segment;
 
@@ -256,7 +258,24 @@ public class DialogueWheelScript : MonoBehaviour
 				}
 				else
 				{
-					CenterLabel.text = ClubText[Selected];
+					Debug.Log("Talking to a club leader.");
+					if (Yandere.TargetStudent.Club == ClubType.Gardening)
+					{
+						PracticeLabel.text = "Seeds";
+					}
+					else
+					{
+						PracticeLabel.text = "Practice";
+					}
+					if (Selected == 6 && Yandere.Club == ClubType.Gardening)
+					{
+						Debug.Log("Talking to Uekiya about Seeds.");
+						CenterLabel.text = "Seeds";
+					}
+					else
+					{
+						CenterLabel.text = ClubText[Selected];
+					}
 				}
 			}
 			else
@@ -941,6 +960,10 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			UISprite uISprite17 = ClubShadow[6];
 			uISprite17.color = new Color(uISprite17.color.r, uISprite17.color.g, uISprite17.color.b, 0.75f);
+		}
+		if (Yandere.TargetStudent.Club == ClubType.Gardening && Yandere.Club == ClubType.Gardening && !PracticeWindow.OutOfSeeds)
+		{
+			ClubShadow[6].alpha = 0f;
 		}
 		if (Yandere.TargetStudent.StudentID == 51 || Yandere.TargetStudent.StudentID == 76)
 		{

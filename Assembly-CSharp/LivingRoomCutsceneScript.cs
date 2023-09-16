@@ -110,11 +110,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	public float AnimOffset;
 
-	public float ExitTimer;
-
 	public float EyeShrink;
-
-	public float TeaTimer;
 
 	public float Rotation;
 
@@ -122,9 +118,15 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	public float zOffset;
 
-	public float Timer;
-
 	public float Speed;
+
+	public float ExitTimer;
+
+	public float EndTimer;
+
+	public float TeaTimer;
+
+	public float Timer;
 
 	public bool WaitingForInput;
 
@@ -332,6 +334,12 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		RivalTeaCup.gameObject.SetActive(value: false);
 		DOFStatus = Profile.depthOfField.enabled;
 		UpdateDOF(1f);
+		Yandere.GetComponent<Animation>()["OsanaBefriendBetray_A_00"].speed = 1f;
+		Yandere.GetComponent<Animation>()["OsanaBefriend_A_00"].speed = 1f;
+		Yandere.GetComponent<Animation>()["OsanaBetray_A_00"].speed = 1f;
+		Rival.GetComponent<Animation>()["OsanaBefriendBetray_B_00"].speed = 1f;
+		Rival.GetComponent<Animation>()["OsanaBefriend_B_00"].speed = 1f;
+		Rival.GetComponent<Animation>()["OsanaBetray_B_00"].speed = 1f;
 	}
 
 	private void Update()
@@ -459,8 +467,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				Subtitle.text = Lines[0];
 				Timer = 0f;
 				Phase++;
-				Yandere.GetComponent<Animation>().Play("OsanaBefriendBetray_A");
-				Rival.GetComponent<Animation>().Play("OsanaBefriendBetray_B");
+				Yandere.GetComponent<Animation>().Play("OsanaBefriendBetray_A_00");
+				Rival.GetComponent<Animation>().Play("OsanaBefriendBetray_B_00");
 				Debug.Log("Attempting to teleport Yandere + Rival to correct locations now.");
 				Yandere.transform.parent.position = new Vector3(-3.2f, 0f, 3.6f);
 				Rival.transform.parent.position = new Vector3(-4.9f, 0f, 2.6f);
@@ -487,6 +495,10 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			{
 				if (MyAudio.time > Times[ID] || !MyAudio.isPlaying)
 				{
+					if (!MyAudio.isPlaying)
+					{
+						Debug.Log("MyAudio stopped playing. Something's going to happen.");
+					}
 					if (OsanaCutscene)
 					{
 						if (Branch == 1)
@@ -632,6 +644,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					}
 					else if (TeaTimer > 6.25f && TeaTimer < 30f)
 					{
+						Debug.Log("Ayano is being teleported here.");
 						RivalTeaCup.SetActive(value: false);
 						base.transform.parent = FriendshipCamera;
 						base.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
@@ -645,6 +658,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					}
 					else if (TeaTimer > 95f)
 					{
+						Debug.Log("Ayano is being teleported here, too.");
 						Yandere.transform.parent.position = new Vector3(-3.2f, 0f, 3.7f);
 						Yandere.transform.parent.eulerAngles = new Vector3(0f, 0f, 0f);
 					}
@@ -718,14 +732,14 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					IncreaseYandereEffects();
 				}
 			}
-			if (Timer > CutsceneLimit)
+			if (Timer > CutsceneLimit && !MyAudio.isPlaying)
 			{
-				Animation component = Yandere.GetComponent<Animation>();
-				component["FriendshipYandere"].speed = -0.2f;
-				component.Play("FriendshipYandere");
-				component["FriendshipYandere"].time = component["FriendshipYandere"].length;
-				Subtitle.text = string.Empty;
-				Phase = 10;
+				EndTimer += Time.deltaTime;
+				if (EndTimer > 1f)
+				{
+					Subtitle.text = string.Empty;
+					Phase = 10;
+				}
 			}
 		}
 		else if (Phase == 6)
@@ -767,7 +781,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 		else if (Phase == 10)
 		{
-			BGM.volume = 0f;
+			Debug.Log("Reached end of Befriend branch. Fading out now.");
+			BGM.volume -= Time.deltaTime * 0.02f;
 			SubDarkness.color = new Color(SubDarkness.color.r, SubDarkness.color.g, SubDarkness.color.b, Mathf.MoveTowards(SubDarkness.color.a, 1f, Time.deltaTime * 0.2f));
 			if (SubDarkness.color.a == 1f)
 			{
@@ -1104,8 +1119,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	public void SkipToTeaScene()
 	{
-		Yandere.GetComponent<Animation>()["OsanaBefriendBetray_A"].time = 43f;
-		Rival.GetComponent<Animation>()["OsanaBefriendBetray_B"].time = 43f;
+		Yandere.GetComponent<Animation>()["OsanaBefriendBetray_A_00"].time = 43f;
+		Rival.GetComponent<Animation>()["OsanaBefriendBetray_B_00"].time = 43f;
 		FriendshipCamera.gameObject.GetComponent<Animation>().Play();
 		FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].time = 43f;
 		FriendshipCamera.gameObject.GetComponent<Animation>()["FriendshipCameraFlat"].speed = 0f;
@@ -1128,8 +1143,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	public void SkipIntro()
 	{
-		Yandere.GetComponent<Animation>().Play("OsanaBefriendBetray_A");
-		Rival.GetComponent<Animation>().Play("OsanaBefriendBetray_B");
+		Yandere.GetComponent<Animation>().Play("OsanaBefriendBetray_A_00");
+		Rival.GetComponent<Animation>().Play("OsanaBefriendBetray_B_00");
 		Darkness.color = new Color(0f, 0f, 0f, 0f);
 		Prologue.SetActive(value: false);
 		Timer += 10f;
@@ -1160,8 +1175,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		Debug.Log("Transitioning into Befriend branch NOW.");
 		Yandere.transform.parent.position = new Vector3(-3.575f, 0.0133333f, 3.6975f);
 		Yandere.transform.parent.eulerAngles = new Vector3(-10f, 0f, -10f);
-		Yandere.GetComponent<Animation>().Play("OsanaBefriend_A");
-		Rival.GetComponent<Animation>().Play("OsanaBefriend_B");
+		Yandere.GetComponent<Animation>().Play("OsanaBefriend_A_00");
+		Rival.GetComponent<Animation>().Play("OsanaBefriend_B_00");
 		CameraIDs = RivalData.OsanaBefriendCameraIDs;
 		Lines = RivalData.OsanaBefriendLines;
 		Times = RivalData.OsanaBefriendTimes;
@@ -1177,8 +1192,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		Debug.Log("Transitioning into Betray branch NOW.");
 		Yandere.transform.parent.position = new Vector3(-3.766666f, -0.24f, 3.53f);
 		Yandere.transform.parent.eulerAngles = new Vector3(1f, 0f, -22.5f);
-		Yandere.GetComponent<Animation>().CrossFade("OsanaBetray_A");
-		Rival.GetComponent<Animation>().CrossFade("OsanaBetray_B");
+		Yandere.GetComponent<Animation>().CrossFade("OsanaBetray_A_00");
+		Rival.GetComponent<Animation>().CrossFade("OsanaBetray_B_00");
 		CameraIDs = RivalData.OsanaBetrayCameraIDs;
 		Lines = RivalData.OsanaBetrayLines;
 		Times = RivalData.OsanaBetrayTimes;

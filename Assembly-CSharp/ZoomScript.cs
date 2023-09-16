@@ -22,8 +22,6 @@ public class ZoomScript : MonoBehaviour
 
 	public float Timer;
 
-	public Vector3 Target;
-
 	public bool OverShoulder;
 
 	public bool MoveCamera;
@@ -123,47 +121,35 @@ public class ZoomScript : MonoBehaviour
 			CameraScript.distance = 5f;
 			CameraScript.distanceMax = 5f;
 		}
-		if (!Yandere.TimeSkipping)
-		{
-			Timer += Time.deltaTime;
-			ShakeStrength = Mathf.Lerp(ShakeStrength, 1f - Yandere.Sanity * 0.01f, Time.deltaTime);
-			if (Timer > 0.1f + Yandere.Sanity * 0.01f)
-			{
-				Target.x = Random.Range(0f - ShakeStrength, ShakeStrength);
-				Target.y = base.transform.localPosition.y;
-				Target.z = Random.Range(0f - ShakeStrength, ShakeStrength);
-				Timer = 0f;
-			}
-		}
-		else
-		{
-			Target = new Vector3(0f, base.transform.localPosition.y, 0f);
-		}
-		if (Yandere.RoofPush)
-		{
-			base.transform.position = new Vector3(Mathf.MoveTowards(base.transform.position.x, Yandere.Hips.position.x, Time.deltaTime * 10f), base.transform.position.y, Mathf.MoveTowards(base.transform.position.z, Yandere.Hips.position.z, Time.deltaTime * 10f));
-		}
-		else if (base.transform.localPosition != Target)
-		{
-			base.transform.localPosition = Vector3.MoveTowards(base.transform.localPosition, Target, Time.deltaTime * ShakeStrength * 0.1f);
-		}
 	}
 
 	public void LateUpdate()
 	{
+		if (Input.GetKeyDown("z"))
+		{
+			ShakeStrength = 1f;
+		}
 		base.transform.eulerAngles = Vector3.zero;
 		if (OverShoulder)
 		{
 			Vector3 lhs = Yandere.MainCamera.transform.TransformDirection(Vector3.forward);
 			base.transform.position = new Vector3(Yandere.transform.position.x + midOffset * Vector3.Dot(lhs, Vector3.forward), base.transform.position.y, Yandere.transform.position.z + midOffset * Vector3.Dot(lhs, -Vector3.right));
+			return;
 		}
-		else if (Yandere.FollowHips)
+		if (Yandere.FollowHips)
 		{
 			base.transform.position = new Vector3(Mathf.MoveTowards(base.transform.position.x, Yandere.Hips.position.x, Time.deltaTime), base.transform.position.y, Mathf.MoveTowards(base.transform.position.z, Yandere.Hips.position.z, Time.deltaTime));
+			return;
 		}
-		else
+		base.transform.localPosition = new Vector3(0f, base.transform.localPosition.y, 0f);
+		if (ShakeStrength > 0f)
 		{
-			base.transform.localPosition = new Vector3(0f, base.transform.localPosition.y, 0f);
+			ShakeStrength = Mathf.Lerp(ShakeStrength, 0f, Time.deltaTime * 10f);
+			base.transform.localPosition += new Vector3(Random.Range(ShakeStrength * -1f, ShakeStrength * 1f), Random.Range(ShakeStrength * -0.1f, ShakeStrength * 0.1f), Random.Range(ShakeStrength * -1f, ShakeStrength * 1f));
+			if (ShakeStrength < 0.01f)
+			{
+				ShakeStrength = 0f;
+			}
 		}
 	}
 

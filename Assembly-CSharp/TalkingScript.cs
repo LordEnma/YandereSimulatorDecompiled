@@ -1331,8 +1331,15 @@ public class TalkingScript : MonoBehaviour
 				else if (S.ClubPhase == 2)
 				{
 					S.DialogueWheel.PracticeWindow.Club = S.Club;
-					S.DialogueWheel.PracticeWindow.FadeOut = true;
-					S.DialogueWheel.PracticeWindow.FadeIn = false;
+					if (S.Club == ClubType.Gardening)
+					{
+						S.DialogueWheel.End();
+					}
+					else
+					{
+						S.DialogueWheel.PracticeWindow.FadeOut = true;
+						S.DialogueWheel.PracticeWindow.FadeIn = false;
+					}
 					S.Subtitle.Label.text = string.Empty;
 					S.Interaction = StudentInteractionType.Idle;
 				}
@@ -2079,9 +2086,13 @@ public class TalkingScript : MonoBehaviour
 		RejectGossip = false;
 		if (!Eighties)
 		{
-			if ((S.StudentID == 2 && S.DialogueWheel.Victim == 3) || (S.StudentID == 3 && S.DialogueWheel.Victim == 2) || (S.StudentID == 10 && S.DialogueWheel.Victim == 11) || (S.StudentID == 11 && S.DialogueWheel.Victim == 10) || (S.StudentID == 25 && S.DialogueWheel.Victim == 30) || (S.StudentID == 30 && S.DialogueWheel.Victim == 25))
+			if ((S.StudentID == 2 && S.DialogueWheel.Victim == 3) || (S.StudentID == 3 && S.DialogueWheel.Victim == 2) || (S.StudentID == 10 && S.DialogueWheel.Victim == 11) || (S.StudentID == 11 && S.DialogueWheel.Victim == 10) || (S.StudentID == 25 && S.DialogueWheel.Victim == 30) || (S.StudentID == 30 && S.DialogueWheel.Victim == 25) || (S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10))
 			{
-				if (S.DialogueWheel.Victim < 4)
+				if (S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10)
+				{
+					RejectGossipLine = "Hey! I have a lot of respect for her! Don't say anything weird about her!";
+				}
+				else if (S.DialogueWheel.Victim < 4)
 				{
 					RejectGossipLine = "Hey! She's my sister! Don't say anything weird about her!";
 				}

@@ -282,6 +282,10 @@ public class BucketScript : MonoBehaviour
 					flag2 = true;
 				}
 			}
+			else
+			{
+				Prompt.HideButton[0] = true;
+			}
 		}
 		if (Yandere.Mop != null && Dippable && Prompt.Circle[3].fillAmount == 0f)
 		{

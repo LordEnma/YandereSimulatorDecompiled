@@ -24,6 +24,16 @@ public static class SchoolGlobals
 
 	private const string Str_HighSecurity = "HighSecurity";
 
+	private const string Str_Seeds = "Seeds";
+
+	private const string Str_SeedProgress = "SeedProgress";
+
+	private const string Str_BiologySeeds = "BiologySeeds";
+
+	private const string Str_BiologySeedProgress = "BiologySeedProgress";
+
+	private const string Str_PlantProgress = "PlantProgress";
+
 	public static int KidnapVictim
 	{
 		get
@@ -132,6 +142,66 @@ public static class SchoolGlobals
 		}
 	}
 
+	public static int Seeds
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_Seeds");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_Seeds", value);
+		}
+	}
+
+	public static int SeedProgress
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_SeedProgress");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_SeedProgress", value);
+		}
+	}
+
+	public static int BiologySeeds
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_BiologySeeds");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_BiologySeeds", value);
+		}
+	}
+
+	public static int BiologySeedProgress
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_BiologySeedProgress");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_BiologySeedProgress", value);
+		}
+	}
+
+	public static int PlantProgress
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_PlantProgress");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_PlantProgress", value);
+		}
+	}
+
 	public static bool GetDemonActive(int demonID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_DemonActive_" + demonID);
@@ -179,5 +249,10 @@ public static class SchoolGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_ReactedToGameLeader");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_HighSecurity");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_SCP");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_Seeds");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SeedProgress");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_BiologySeeds");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_BiologySeedProgress");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_PlantProgress");
 	}
 }
