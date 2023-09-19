@@ -26,6 +26,8 @@ public class PickUpScript : MonoBehaviour
 
 	public Texture EightiesTexture;
 
+	public PoolSignScript PoolSign;
+
 	public YandereScript Yandere;
 
 	public MeshFilter MyRenderer;
@@ -774,6 +776,7 @@ public class PickUpScript : MonoBehaviour
 		{
 			if (Clock.Period < 3 && PoolClosureCollider.bounds.Contains(base.transform.position))
 			{
+				PoolSign.enabled = true;
 				Debug.Log("Attempting to make students avoid the pool...");
 				Yandere.NotificationManager.CustomText = "Students will now avoid the pool";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

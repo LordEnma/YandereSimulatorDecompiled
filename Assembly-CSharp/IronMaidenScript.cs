@@ -60,11 +60,11 @@ public class IronMaidenScript : MonoBehaviour
 				{
 					if (Prompt.Yandere.Followers > 0 && Prompt.Yandere.Follower.DistanceToPlayer < 1f)
 					{
+						Prompt.Yandere.Sanity -= (float)((Prompt.Yandere.Panties == 10) ? 10 : 20) * Prompt.Yandere.Numbness;
 						Prompt.Yandere.CanMove = false;
 						Prompt.Yandere.Follower.CharacterAnimation.CrossFade(Prompt.Yandere.Follower.IdleAnim);
 						Prompt.Yandere.Follower.Pathfinding.canSearch = false;
 						Prompt.Yandere.Follower.Pathfinding.canMove = false;
-						Prompt.Yandere.MurderousActionTimer = 5f;
 						Prompt.Yandere.Follower.enabled = false;
 						ExteriorColliders.SetActive(value: false);
 						InteriorColliders.SetActive(value: false);
@@ -112,7 +112,15 @@ public class IronMaidenScript : MonoBehaviour
 					}
 					MyAudio.Play();
 					Prompt.Yandere.CharacterAnimation.CrossFade("f02_bookcasePush_00");
-					Prompt.Yandere.Follower.CharacterAnimation.CrossFade("f02_roofPushB_00");
+					Prompt.Yandere.MurderousActionTimer = 1f;
+					if (!Prompt.Yandere.Follower.Male)
+					{
+						Prompt.Yandere.Follower.CharacterAnimation.CrossFade("f02_roofPushB_00");
+					}
+					else
+					{
+						Prompt.Yandere.Follower.CharacterAnimation.CrossFade("roofPushB_00");
+					}
 					ShoveTimer = 0f;
 					ShovePhase++;
 				}
@@ -178,6 +186,7 @@ public class IronMaidenScript : MonoBehaviour
 	{
 		Corpse = Prompt.Yandere.Follower.Ragdoll;
 		Corpse.Student.BecomeRagdoll();
+		Corpse.Student.DeathType = DeathType.Weight;
 		Corpse.Student.LiquidProjector.material = Corpse.Student.BloodMaterial;
 		Corpse.Student.LiquidProjector.gameObject.SetActive(value: true);
 		Corpse.Student.LiquidProjector.enabled = true;
@@ -191,7 +200,7 @@ public class IronMaidenScript : MonoBehaviour
 		Prompt.Yandere.StudentManager.UpdateStudents();
 		Corpse.transform.parent = base.transform;
 		Corpse.transform.position = base.transform.position + new Vector3(0f, 0f, 0f);
-		Corpse.transform.localEulerAngles = new Vector3(-90f, 0f, 0f);
+		Corpse.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
 		if (Corpse.Police == null)
 		{
 			Corpse.Police = Corpse.Student.Police;

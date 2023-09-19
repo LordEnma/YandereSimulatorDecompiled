@@ -917,13 +917,20 @@ public class WeaponScript : MonoBehaviour
 				Suspicious = true;
 			}
 		}
-		else if ((WeaponID == 9 && Yandere.Club == ClubType.Sports) || (WeaponID == 10 && Yandere.Club == ClubType.Gardening) || (WeaponID == 12 && Yandere.Club == ClubType.Sports) || (WeaponID == 14 && Yandere.Club == ClubType.Drama) || (WeaponID == 16 && Yandere.Club == ClubType.Drama) || (WeaponID == 22 && Yandere.Club == ClubType.Drama) || (WeaponID == 25 && Yandere.Club == ClubType.LightMusic))
-		{
-			Suspicious = false;
-		}
 		else
 		{
-			Suspicious = true;
+			if (Yandere == null)
+			{
+				Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+			}
+			if ((WeaponID == 9 && Yandere.Club == ClubType.Sports) || (WeaponID == 10 && Yandere.Club == ClubType.Gardening) || (WeaponID == 12 && Yandere.Club == ClubType.Sports) || (WeaponID == 14 && Yandere.Club == ClubType.Drama) || (WeaponID == 16 && Yandere.Club == ClubType.Drama) || (WeaponID == 22 && Yandere.Club == ClubType.Drama) || (WeaponID == 25 && Yandere.Club == ClubType.LightMusic))
+			{
+				Suspicious = false;
+			}
+			else
+			{
+				Suspicious = true;
+			}
 		}
 		if (Bloody)
 		{

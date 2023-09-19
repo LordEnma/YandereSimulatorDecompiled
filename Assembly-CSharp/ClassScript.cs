@@ -196,7 +196,6 @@ public class ClassScript : MonoBehaviour
 	{
 		if (!Initialized)
 		{
-			Debug.Log("The Class script just updated its variables to match ClassGlobals.");
 			BonusPoints += ClassGlobals.BonusStudyPoints;
 			Initialized = true;
 			Biology = ClassGlobals.Biology;

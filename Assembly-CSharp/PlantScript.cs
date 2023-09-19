@@ -18,6 +18,8 @@ public class PlantScript : MonoBehaviour
 
 	public int Progress;
 
+	public int VictimID;
+
 	private void Start()
 	{
 		Plant.localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -27,6 +29,10 @@ public class PlantScript : MonoBehaviour
 		{
 			Progress = SchoolGlobals.PlantProgress;
 			Initialized = true;
+		}
+		if (MissionModeGlobals.MissionMode)
+		{
+			Progress = 5;
 		}
 		if (Progress == 1)
 		{
@@ -108,7 +114,10 @@ public class PlantScript : MonoBehaviour
 					currentRagdoll.Student.gameObject.SetActive(value: false);
 					currentRagdoll.Disposed = true;
 					Prompt.Yandere.Police.Corpses--;
+					Prompt.Yandere.NearBodies--;
+					VictimID = currentRagdoll.StudentID;
 				}
+				Prompt.Yandere.CharacterAnimation.CrossFade(Prompt.Yandere.IdleAnim);
 				FadeOut = false;
 				FadeIn = true;
 				MyAudio.Play();
@@ -116,7 +125,6 @@ public class PlantScript : MonoBehaviour
 		}
 		if (FadeIn && !MyAudio.isPlaying)
 		{
-			Prompt.Yandere.CharacterAnimation.CrossFade(Prompt.Yandere.IdleAnim);
 			Prompt.Yandere.Police.Darkness.alpha = Mathf.MoveTowards(Prompt.Yandere.Police.Darkness.alpha, 0f, Time.deltaTime);
 			if (Prompt.Yandere.Police.Darkness.alpha == 0f)
 			{

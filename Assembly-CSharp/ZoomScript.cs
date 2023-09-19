@@ -125,10 +125,6 @@ public class ZoomScript : MonoBehaviour
 
 	public void LateUpdate()
 	{
-		if (Input.GetKeyDown("z"))
-		{
-			ShakeStrength = 1f;
-		}
 		base.transform.eulerAngles = Vector3.zero;
 		if (OverShoulder)
 		{

@@ -159,8 +159,10 @@ public class StalkerIntroScript : MonoBehaviour
 			SkipCircle.fillAmount -= Time.deltaTime;
 			if (SkipCircle.fillAmount == 0f)
 			{
+				Alpha = 0f;
 				Phase = 2;
 				Speed = 100f;
+				Darkness.material.color = new Color(0f, 0f, 0f, Alpha);
 				Yandere.MyAnimation.Play("f02_stealthIdle_00");
 			}
 		}

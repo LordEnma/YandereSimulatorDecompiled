@@ -23,13 +23,9 @@ public class MissionModeScript : MonoBehaviour
 
 	public IncineratorScript Incinerator;
 
-	public WoodChipperScript WoodChipper;
-
 	public AlphabetScript AlphabetArrow;
 
 	public ReputationScript Reputation;
-
-	public WoodChipperScript AcidVat;
 
 	public GrayscaleEffect Grayscale;
 
@@ -48,6 +44,14 @@ public class MissionModeScript : MonoBehaviour
 	public PoliceScript Police;
 
 	public ClockScript Clock;
+
+	public PlantScript Plant;
+
+	public WoodChipperScript WoodChipper;
+
+	public WoodChipperScript AcidVat;
+
+	public WoodChipperScript Kiln;
 
 	public UILabel EventSubtitleLabel;
 
@@ -753,6 +757,7 @@ public class MissionModeScript : MonoBehaviour
 			}
 			if (RequiredWeaponID > 0 && StudentManager.Students[TargetID] != null && !StudentManager.Students[TargetID].Alive && StudentManager.Students[TargetID].DeathCause != RequiredWeaponID)
 			{
+				Debug.Log("Required Weapon was " + RequiredWeaponID + " and player used something else...supposedly.");
 				Chastise = true;
 				GameOverID = 2;
 				GameOver();
@@ -833,6 +838,29 @@ public class MissionModeScript : MonoBehaviour
 					{
 						DisposalMethod = 5;
 					}
+				}
+				for (ID = 1; ID < Kiln.Victims + 1; ID++)
+				{
+					if (Kiln.VictimList[ID] == TargetID)
+					{
+						DisposalMethod = 6;
+					}
+				}
+				int num3 = 0;
+				for (ID = 1; ID < Kiln.Limbs + 1; ID++)
+				{
+					if (Kiln.LimbList[ID] == TargetID)
+					{
+						num3++;
+					}
+					if (num3 == 6)
+					{
+						DisposalMethod = 6;
+					}
+				}
+				if (Plant.VictimID == TargetID)
+				{
+					DisposalMethod = 7;
 				}
 				if (DisposalMethod > 0)
 				{
@@ -941,10 +969,10 @@ public class MissionModeScript : MonoBehaviour
 				{
 					TimeRemaining = Mathf.MoveTowards(TimeRemaining, 0f, Time.unscaledDeltaTime);
 				}
-				int num3 = Mathf.CeilToInt(TimeRemaining);
-				int num4 = num3 / 60;
-				int num5 = num3 % 60;
-				TimeLabel.text = $"{num4:00}:{num5:00}";
+				int num4 = Mathf.CeilToInt(TimeRemaining);
+				int num5 = num4 / 60;
+				int num6 = num4 % 60;
+				TimeLabel.text = $"{num5:00}:{num6:00}";
 				if (TimeRemaining == 0f)
 				{
 					Chastise = true;

@@ -3569,6 +3569,13 @@ public class StudentManagerScript : MonoBehaviour
 				{
 					studentScript.Stop = false;
 				}
+				if (studentScript.WalkAnim == studentScript.PlateWalkAnim)
+				{
+					studentScript.MyPlate.gameObject.SetActive(value: true);
+					studentScript.MyPlate.parent = studentScript.RightHand;
+					studentScript.MyPlate.localPosition = new Vector3(0.02f, -0.02f, -0.15f);
+					studentScript.MyPlate.localEulerAngles = new Vector3(-5f, -90f, 172.5f);
+				}
 			}
 		}
 		UpdateAllAnimLayers();
@@ -6354,17 +6361,6 @@ public class StudentManagerScript : MonoBehaviour
 			obj.action = "Eat";
 			Students[i].Actions[4] = StudentActionType.SitAndEatBento;
 			Students[i].GetDestinations();
-		}
-		if (Eighties)
-		{
-			Debug.Log("A bunch of girls are now being instructed to forget about sunbathing.");
-			ForgetAboutSunbathing(45);
-			ForgetAboutSunbathing(50);
-			ForgetAboutSunbathing(55);
-			ForgetAboutSunbathing(60);
-			ForgetAboutSunbathing(65);
-			ForgetAboutSunbathing(70);
-			ForgetAboutSunbathing(75);
 		}
 	}
 

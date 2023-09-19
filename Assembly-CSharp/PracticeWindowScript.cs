@@ -471,9 +471,6 @@ public class PracticeWindowScript : MonoBehaviour
 			Texture[3].mainTexture = GardeningIcons[3];
 			Texture[4].mainTexture = GardeningIcons[4];
 			Texture[5].mainTexture = GardeningIcons[5];
-			Texture[1].color = Color.red;
-			Texture[2].color = Color.green;
-			Texture[3].color = new Color(0.5f, 0.5f, 1f, 1f);
 			Label[1].text = GardeningNames[1] ?? "";
 			Label[2].text = GardeningNames[2] ?? "";
 			Label[3].text = GardeningNames[3] ?? "";
