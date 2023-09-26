@@ -208,6 +208,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 			}
 			else if (Rival.CharacterAnimation["f02_pondering_00"].time > Rival.CharacterAnimation["f02_pondering_00"].length || Timer > 20f)
 			{
+				Debug.Log("Osana's ''put bentos on desk'' event has ended.");
 				EndEvent();
 			}
 			if (Rival.Alarmed || Rival.Splashed || Rival.GoAway || (Rival.Follower != null && Rival.Follower.DramaticReaction))
@@ -271,7 +272,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 
 	public void EndEvent()
 	{
-		Debug.Log("Osana's before class event ended.");
+		Debug.Log("Osana's ''put bentos on desk'' event ended.");
 		Bentos[1].GetComponent<BentoScript>().enabled = true;
 		Bentos[2].GetComponent<BentoScript>().enabled = true;
 		Bentos[1].GetComponent<PromptScript>().enabled = true;

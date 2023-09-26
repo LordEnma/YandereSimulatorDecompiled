@@ -504,6 +504,8 @@ public class TalkingScript : MonoBehaviour
 					S.Yandere.Friends++;
 					S.Interaction = StudentInteractionType.Idle;
 					S.Friend = true;
+					Debug.Log("Now attempting to turn the student's outlines green.");
+					S.TurnOutlinesGreen();
 					if (S.Club != ClubType.Delinquent)
 					{
 						CalculateRepBonus();

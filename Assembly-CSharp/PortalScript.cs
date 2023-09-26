@@ -667,6 +667,7 @@ public class PortalScript : MonoBehaviour
 
 	public void EndEvents()
 	{
+		Debug.Log("The portal script is now calling EndEvent() on Osana's morning events.");
 		for (int i = 0; i < MorningEvents.Length; i++)
 		{
 			if (MorningEvents[i].enabled)

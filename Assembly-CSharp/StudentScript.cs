@@ -3455,14 +3455,17 @@ public class StudentScript : MonoBehaviour
 					base.gameObject.SetActive(value: false);
 				}
 			}
-			else if (!StudentManager.StudentPhotographed[StudentID] && !Rival)
+			else if (StudentManager.StudentPhotographed[StudentID] && !Rival)
+			{
+				TurnOutlinesGreen();
+			}
+			else
 			{
 				for (ID = 0; ID < Outlines.Length; ID++)
 				{
 					if (Outlines[ID] != null)
 					{
 						Outlines[ID].enabled = false;
-						Outlines[ID].color = new Color(0f, 1f, 0f);
 					}
 				}
 			}
@@ -4109,6 +4112,10 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (Phase < ScheduleBlocks.Length - 1 && Clock.HourTime >= ScheduleBlocks[Phase].time && !InEvent && !Meeting && ClubActivityPhase < 16 && !Ragdoll.Zs.activeInHierarchy && !Dying)
 			{
+				if (Schoolwear == 2)
+				{
+					Debug.Log(Name + ", a student wearing a swimsuit, is now advancing their phase.");
+				}
 				if (Actions[Phase] == StudentActionType.Clean && Pushable && !Meeting)
 				{
 					Pushable = false;
@@ -4573,10 +4580,6 @@ public class StudentScript : MonoBehaviour
 					ClubActivityPhase = 15;
 					Destinations[Phase] = StudentManager.Clubs.List[StudentID].GetChild(ClubActivityPhase);
 				}
-				if (StudentID == 19)
-				{
-					Debug.Log("Time to decide what to do about Chigusa...");
-				}
 				if (CurrentAction == StudentActionType.GravurePose && WearingBikini)
 				{
 					Debug.Log("She's already in her bikini. Telling her to go pose!");
@@ -4592,6 +4595,12 @@ public class StudentScript : MonoBehaviour
 				}
 				CharacterAnimation[SitAnim].weight = 0f;
 				CharacterAnimation[SocialSitAnim].weight = 0f;
+				if (MustChangeClothing && Schoolwear == 2)
+				{
+					Debug.Log("This character really ought to change their clothing before they proceed with their routine.");
+					CurrentDestination = StudentManager.StrippingPositions[GirlID];
+					Pathfinding.target = StudentManager.StrippingPositions[GirlID];
+				}
 			}
 			if (MeetTime > 0f)
 			{
@@ -5160,7 +5169,7 @@ public class StudentScript : MonoBehaviour
 							{
 								if (MustChangeClothing)
 								{
-									Debug.Log("Calling ChangeClothing() from here, specifically.");
+									Debug.Log(Name + " is calling ChangeClothing() from here, specifically.");
 									ChangeClothing();
 								}
 								else
@@ -7543,7 +7552,7 @@ public class StudentScript : MonoBehaviour
 									{
 										if (Schoolwear != 2)
 										{
-											Debug.Log(Name + "is calling ChangeSchoolwear() from here, specifically.");
+											Debug.Log(Name + " is calling ChangeSchoolwear() from here, specifically.");
 											Schoolwear = 2;
 											ChangeSchoolwear();
 										}
@@ -8904,7 +8913,7 @@ public class StudentScript : MonoBehaviour
 													concealedWeapon.gameObject.SetActive(value: true);
 												}
 											}
-											if (!Yandere.Armed || !Yandere.EquippedWeapon.Concealable || Yandere.EquippedWeapon.Type == WeaponType.Garrote)
+											if ((!Yandere.Armed || !Yandere.EquippedWeapon.Concealable || Yandere.EquippedWeapon.Type == WeaponType.Garrote) && !Yandere.Lost)
 											{
 												BeginStruggle();
 												Yandere.StruggleBar.HeroWins();
@@ -16140,10 +16149,6 @@ public class StudentScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (Input.GetKeyDown("z"))
-		{
-			GetDestinations();
-		}
 		if (StudentManager.DisableFarAnims && DistanceToPlayer >= (float)StudentManager.FarAnimThreshold && CharacterAnimation.cullingType != 0 && !WitnessCamera.Show && !ClubActivity)
 		{
 			CharacterAnimation.enabled = false;
@@ -16194,17 +16199,6 @@ public class StudentScript : MonoBehaviour
 					LeftBreast.gameObject.name = "LeftBreastRENAMED";
 				}
 				BoobsResized = true;
-			}
-			if (Following)
-			{
-				if (Gush)
-				{
-					Neck.LookAt(GushTarget);
-				}
-				else
-				{
-					Neck.LookAt(DefaultTarget);
-				}
 			}
 			if (StudentManager.Egg && SecurityCamera.activeInHierarchy)
 			{
@@ -16322,6 +16316,11 @@ public class StudentScript : MonoBehaviour
 			{
 				Debug.Log("Phase is " + Phase + ". Changing " + Name + "'s CurrentDestination to: " + Destinations[Phase]);
 			}
+		}
+		if (Shoving && CharacterAnimation[ShoveAnim].time < CharacterAnimation[ShoveAnim].length * 0.5f)
+		{
+			float num = 1f - CharacterAnimation[ShoveAnim].time / (CharacterAnimation[ShoveAnim].length * 0.5f);
+			MyController.Move(base.transform.forward * (Time.deltaTime * -1f * num));
 		}
 	}
 
@@ -16778,6 +16777,7 @@ public class StudentScript : MonoBehaviour
 		Yandere.Shutter.Blocked = false;
 		Yandere.CleaningWeapon = false;
 		Yandere.FakingReaction = false;
+		Yandere.BreakingGlass = false;
 		Yandere.YandereVision = false;
 		Yandere.CannotRecover = true;
 		Yandere.SneakingShot = false;
@@ -17929,6 +17929,7 @@ public class StudentScript : MonoBehaviour
 		TargetDistance = 100f;
 		AlarmTimer = 0f;
 		SpawnAlarmDisc();
+		Debug.Log("Manually setting DOF to 1 from here.");
 		CameraEffects.UpdateDOF(1f);
 	}
 
@@ -20449,6 +20450,7 @@ public class StudentScript : MonoBehaviour
 	{
 		if (!Yandere.Shoved && !Dying && !Yandere.Egg && !Yandere.Lifting && !Yandere.SneakingShot && !ShoeRemoval.enabled && !Yandere.Talking && !SentToLocker)
 		{
+			Debug.Log("Persistently shoving?");
 			if (Giggle != null)
 			{
 				ForgetGiggle();
@@ -21731,7 +21733,7 @@ public class StudentScript : MonoBehaviour
 				{
 					AnnoyedByGiggles++;
 				}
-				if (Yandere.Laughing && Yandere.LaughIntensity > 15f)
+				if ((Yandere.Laughing && Yandere.LaughIntensity > 15f) || Yandere.BreakingGlass)
 				{
 					Concern = 5;
 				}
@@ -23084,7 +23086,7 @@ public class StudentScript : MonoBehaviour
 		if (ChangeClothingPhase == 0)
 		{
 			Debug.Log(Name + " is changing clothing right now.");
-			UnityEngine.Object.Instantiate(StudentManager.CommunalLocker.SteamCloud, base.transform.position + Vector3.up * 0.81f, Quaternion.identity);
+			UnityEngine.Object.Instantiate(StudentManager.CommunalLocker.SteamCloud, base.transform.position + Vector3.up * 0.81f, Quaternion.identity).transform.parent = base.transform;
 			CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 			ChangeClothingPhase++;
 		}
@@ -23250,5 +23252,17 @@ public class StudentScript : MonoBehaviour
 		SeekingMedicine = false;
 		SitInInfirmary = true;
 		Routine = true;
+	}
+
+	public void TurnOutlinesGreen()
+	{
+		for (ID = 0; ID < Outlines.Length; ID++)
+		{
+			if (Outlines[ID] != null)
+			{
+				Outlines[ID].enabled = true;
+				Outlines[ID].color = new Color(0f, 1f, 0f);
+			}
+		}
 	}
 }

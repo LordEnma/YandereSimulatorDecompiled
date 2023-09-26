@@ -2389,7 +2389,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (BehindSchoolOccluder != null)
 		{
-			if (Yandere.transform.position.z > 50f)
+			if (Yandere.transform.position.z > 58f)
 			{
 				BehindSchoolOccluder.open = false;
 			}
@@ -6262,29 +6262,41 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void ForgetAboutSunbathing(int ID)
 	{
-		if (Students[ID] != null)
+		if (!(Students[ID] != null))
 		{
-			if (Students[ID].Actions[2] == StudentActionType.Sunbathe)
+			return;
+		}
+		if (Students[ID].Actions[2] == StudentActionType.Sunbathe)
+		{
+			Students[ID].DressCode = false;
+			scheduleBlock = Students[ID].ScheduleBlocks[2];
+			scheduleBlock.destination = "Hangout";
+			scheduleBlock.action = "Socialize";
+			scheduleBlock = Students[ID].ScheduleBlocks[6];
+			scheduleBlock.destination = "Locker";
+			scheduleBlock.action = "Shoes";
+			scheduleBlock = Students[ID].ScheduleBlocks[7];
+			scheduleBlock.destination = "Locker";
+			scheduleBlock.action = "Shoes";
+			if (Students[ID].ScheduleBlocks.Length > 8)
 			{
-				Students[ID].DressCode = false;
-				scheduleBlock = Students[ID].ScheduleBlocks[2];
-				scheduleBlock.destination = "Hangout";
-				scheduleBlock.action = "Socialize";
-				scheduleBlock = Students[ID].ScheduleBlocks[6];
-				scheduleBlock.destination = "Hangout";
-				scheduleBlock.action = "Socialize";
-				scheduleBlock = Students[ID].ScheduleBlocks[7];
-				scheduleBlock.destination = "Hangout";
-				scheduleBlock.action = "Socialize";
-				Students[ID].GetDestinations();
-				Students[ID].CurrentDestination = Students[ID].Destinations[Students[ID].Phase];
-				Students[ID].Pathfinding.target = Students[ID].Destinations[Students[ID].Phase];
+				Debug.Log(Students[ID].Name + " actually had more than 7 schedule blocks...");
+				scheduleBlock = Students[ID].ScheduleBlocks[8];
+				scheduleBlock.destination = "Locker";
+				scheduleBlock.action = "Shoes";
 			}
-			if (Students[ID].Schoolwear == 2)
-			{
-				Debug.Log("Student #" + ID + " was wearing a swimsuit at the moment she learned the pool was off-limits.");
-				Students[ID].Phase++;
-			}
+			Students[ID].GetDestinations();
+			Students[ID].CurrentDestination = Students[ID].Destinations[Students[ID].Phase];
+			Students[ID].Pathfinding.target = Students[ID].Destinations[Students[ID].Phase];
+		}
+		if (Students[ID].Schoolwear == 2)
+		{
+			Debug.Log("Student #" + ID + " was wearing a swimsuit at the moment she learned the pool was off-limits.");
+			Students[ID].CurrentDestination = StrippingPositions[Students[ID].GirlID];
+			Students[ID].Pathfinding.target = StrippingPositions[Students[ID].GirlID];
+			Students[ID].MustChangeClothing = true;
+			Students[ID].ChangeClothingPhase = 0;
+			Students[ID].Phase++;
 		}
 	}
 

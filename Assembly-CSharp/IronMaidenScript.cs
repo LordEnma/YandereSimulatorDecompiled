@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class IronMaidenScript : MonoBehaviour
 {
+	public StudentManagerScript StudentManager;
+
+	public RagdollScript Corpse;
+
+	public StudentScript Victim;
+
+	public PromptScript Prompt;
+
 	public GameObject KeepInsideCollider;
 
 	public GameObject ExteriorColliders;
@@ -24,10 +32,6 @@ public class IronMaidenScript : MonoBehaviour
 
 	public Transform[] Door;
 
-	public RagdollScript Corpse;
-
-	public PromptScript Prompt;
-
 	public AudioSource MyAudio;
 
 	public float[] Rotation;
@@ -38,11 +42,19 @@ public class IronMaidenScript : MonoBehaviour
 
 	public int ShovePhase;
 
+	public bool Bloody;
+
 	public bool Shut;
 
 	public bool Open;
 
 	public bool ABC;
+
+	public UISprite CleanUpDarkness;
+
+	public bool FadeOut;
+
+	public bool FadeIn;
 
 	private void Start()
 	{
@@ -58,20 +70,28 @@ public class IronMaidenScript : MonoBehaviour
 			{
 				if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
 				{
-					if (Prompt.Yandere.Followers > 0 && Prompt.Yandere.Follower.DistanceToPlayer < 1f)
+					for (int i = 2; i < 101; i++)
 					{
-						Prompt.Yandere.Sanity -= (float)((Prompt.Yandere.Panties == 10) ? 10 : 20) * Prompt.Yandere.Numbness;
-						Prompt.Yandere.CanMove = false;
-						Prompt.Yandere.Follower.CharacterAnimation.CrossFade(Prompt.Yandere.Follower.IdleAnim);
-						Prompt.Yandere.Follower.Pathfinding.canSearch = false;
-						Prompt.Yandere.Follower.Pathfinding.canMove = false;
-						Prompt.Yandere.Follower.enabled = false;
-						ExteriorColliders.SetActive(value: false);
-						InteriorColliders.SetActive(value: false);
-						ShovePhase = 1;
-						ShoveTimer = 0f;
+						if (!(Victim == null))
+						{
+							break;
+						}
+						if (StudentManager.Students[i] != null && Vector3.Distance(StudentManager.Students[i].transform.position, Prompt.Yandere.transform.position) < 1f)
+						{
+							Prompt.Yandere.Sanity -= (float)((Prompt.Yandere.Panties == 10) ? 10 : 20) * Prompt.Yandere.Numbness;
+							Prompt.Yandere.CanMove = false;
+							Victim = StudentManager.Students[i];
+							Victim.CharacterAnimation.CrossFade(Victim.IdleAnim);
+							Victim.Pathfinding.canSearch = false;
+							Victim.Pathfinding.canMove = false;
+							Victim.enabled = false;
+							ExteriorColliders.SetActive(value: false);
+							InteriorColliders.SetActive(value: false);
+							ShovePhase = 1;
+							ShoveTimer = 0f;
+						}
 					}
-					else
+					if (Victim == null)
 					{
 						Prompt.Yandere.NotificationManager.CustomText = "Bring a victim here first.";
 						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -96,13 +116,13 @@ public class IronMaidenScript : MonoBehaviour
 			if (ShovePhase == 1)
 			{
 				Prompt.Yandere.MoveTowardsTarget(YandereSpot.position);
-				Prompt.Yandere.Follower.MoveTowardsTarget(VictimSpot.position);
 				Prompt.Yandere.transform.rotation = Quaternion.Slerp(Prompt.Yandere.transform.rotation, YandereSpot.rotation, Time.deltaTime * 10f);
-				Prompt.Yandere.Follower.transform.rotation = Quaternion.Slerp(Prompt.Yandere.Follower.transform.rotation, YandereSpot.rotation, Time.deltaTime * 10f);
+				Victim.MoveTowardsTarget(VictimSpot.position);
+				Victim.transform.rotation = Quaternion.Slerp(Victim.transform.rotation, YandereSpot.rotation, Time.deltaTime * 10f);
 				ShoveTimer += Time.deltaTime;
 				if (ShoveTimer >= 1f)
 				{
-					if (Prompt.Yandere.Follower.Male)
+					if (Victim.Male)
 					{
 						MyAudio.clip = MaleVoice;
 					}
@@ -111,15 +131,15 @@ public class IronMaidenScript : MonoBehaviour
 						MyAudio.clip = FemaleVoice;
 					}
 					MyAudio.Play();
-					Prompt.Yandere.CharacterAnimation.CrossFade("f02_bookcasePush_00");
+					Prompt.Yandere.CharacterAnimation.CrossFade("f02_pushIntoIronMaiden_00_A");
 					Prompt.Yandere.MurderousActionTimer = 1f;
-					if (!Prompt.Yandere.Follower.Male)
+					if (!Victim.Male)
 					{
-						Prompt.Yandere.Follower.CharacterAnimation.CrossFade("f02_roofPushB_00");
+						Victim.CharacterAnimation.CrossFade("f02_pushIntoIronMaiden_00_B");
 					}
 					else
 					{
-						Prompt.Yandere.Follower.CharacterAnimation.CrossFade("roofPushB_00");
+						Victim.CharacterAnimation.CrossFade("pushIntoIronMaiden_01_B");
 					}
 					ShoveTimer = 0f;
 					ShovePhase++;
@@ -128,16 +148,15 @@ public class IronMaidenScript : MonoBehaviour
 			else if (ShovePhase == 2)
 			{
 				Prompt.Yandere.MoveTowardsTarget(YandereSpot.position);
-				Prompt.Yandere.Follower.MoveTowardsTarget(VictimSpot.position);
+				Victim.MoveTowardsTarget(VictimSpot.position);
 				Prompt.Yandere.transform.rotation = Quaternion.Slerp(Prompt.Yandere.transform.rotation, YandereSpot.rotation, Time.deltaTime * 10f);
-				Prompt.Yandere.Follower.transform.rotation = Quaternion.Slerp(Prompt.Yandere.Follower.transform.rotation, YandereSpot.rotation, Time.deltaTime * 10f);
+				Victim.transform.rotation = Quaternion.Slerp(Victim.transform.rotation, YandereSpot.rotation, Time.deltaTime * 10f);
 				ShoveTimer += Time.deltaTime;
-				if (ShoveTimer >= 1f)
+				if (ShoveTimer >= 2f)
 				{
 					MyAudio.clip = DoorSlam;
 					MyAudio.Play();
-					Prompt.Yandere.CharacterAnimation.CrossFade(Prompt.Yandere.IdleAnim);
-					Prompt.Yandere.Follower.CharacterAnimation.CrossFade(Prompt.Yandere.Follower.IdleAnim);
+					Victim.CharacterAnimation.CrossFade(Victim.IdleAnim);
 					ShoveTimer = 0f;
 					ShovePhase++;
 				}
@@ -145,7 +164,7 @@ public class IronMaidenScript : MonoBehaviour
 			else if (ShovePhase == 3)
 			{
 				Prompt.Yandere.MoveTowardsTarget(YandereSpot.position);
-				Prompt.Yandere.Follower.MoveTowardsTarget(base.transform.position);
+				Victim.MoveTowardsTarget(base.transform.position);
 				Rotation[0] = Mathf.MoveTowards(Rotation[0], 0f, Time.deltaTime * 360f);
 				Rotation[1] = Mathf.MoveTowards(Rotation[1], 0f, Time.deltaTime * 360f);
 				Door[0].transform.localEulerAngles = new Vector3(0f, 6.5f, Rotation[0]);
@@ -157,34 +176,83 @@ public class IronMaidenScript : MonoBehaviour
 					Blood[0].SetActive(value: true);
 					Blood[1].SetActive(value: true);
 					Blood[2].SetActive(value: true);
-					TurnFollowerIntoCorpse();
-					Prompt.Yandere.CanMove = true;
+					Bloody = true;
+					TurnVictimIntoCorpse();
 					Prompt.Yandere.Zoom.ShakeStrength = 1f;
-					ShovePhase = 0;
+					Prompt.HideButton[0] = true;
 					ShoveTimer = 0f;
 					Shut = true;
+					ShovePhase++;
 				}
+			}
+			else if (ShovePhase == 4 && Prompt.Yandere.CharacterAnimation["f02_pushIntoIronMaiden_00_A"].time >= Prompt.Yandere.CharacterAnimation["f02_pushIntoIronMaiden_00_A"].length)
+			{
+				Prompt.Yandere.CanMove = true;
+				Victim = null;
 			}
 		}
 		if (Open)
 		{
 			Rotation[0] = Mathf.Lerp(Rotation[0], -45f, Time.deltaTime);
 			Rotation[1] = Mathf.Lerp(Rotation[1], 45f, Time.deltaTime);
-			Door[0].transform.localEulerAngles = new Vector3(0f, 6.5f, Rotation[0]);
-			Door[1].transform.localEulerAngles = new Vector3(0f, -6.5f, Rotation[1]);
 			if (Rotation[0] < -44f)
 			{
 				Prompt.Label[2].text = "     Push Victim Inside";
 				InteriorColliders.SetActive(value: false);
+				Rotation[0] = -45f;
 				Open = false;
 				Shut = false;
 			}
+			Door[0].transform.localEulerAngles = new Vector3(0f, 6.5f, Rotation[0]);
+			Door[1].transform.localEulerAngles = new Vector3(0f, -6.5f, Rotation[1]);
+		}
+		if (!Bloody || Rotation[0] != -45f)
+		{
+			return;
+		}
+		if (Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.Mop != null && Prompt.Yandere.PickUp.Mop.Bleached)
+		{
+			Prompt.HideButton[0] = false;
+			if (Prompt.Circle[0].fillAmount == 0f)
+			{
+				Prompt.Yandere.CanMove = false;
+				FadeOut = true;
+			}
+			if (FadeOut)
+			{
+				CleanUpDarkness.alpha = Mathf.MoveTowards(CleanUpDarkness.alpha, 1f, Time.deltaTime);
+				if (CleanUpDarkness.alpha == 1f)
+				{
+					Prompt.Yandere.PickUp.Mop.Bloodiness = 100f;
+					Prompt.Yandere.PickUp.Mop.UpdateBlood();
+					Blood[0].SetActive(value: false);
+					Blood[1].SetActive(value: false);
+					Blood[2].SetActive(value: false);
+					FadeOut = false;
+					FadeIn = true;
+				}
+			}
+			if (FadeIn)
+			{
+				CleanUpDarkness.alpha = Mathf.MoveTowards(CleanUpDarkness.alpha, 0f, Time.deltaTime);
+				if (CleanUpDarkness.alpha == 0f)
+				{
+					Prompt.Hide();
+					Prompt.Yandere.CanMove = true;
+					Prompt.HideButton[0] = true;
+					Bloody = false;
+				}
+			}
+		}
+		else
+		{
+			Prompt.HideButton[0] = true;
 		}
 	}
 
-	public void TurnFollowerIntoCorpse()
+	public void TurnVictimIntoCorpse()
 	{
-		Corpse = Prompt.Yandere.Follower.Ragdoll;
+		Corpse = Victim.Ragdoll;
 		Corpse.Student.BecomeRagdoll();
 		Corpse.Student.DeathType = DeathType.Weight;
 		Corpse.Student.LiquidProjector.material = Corpse.Student.BloodMaterial;

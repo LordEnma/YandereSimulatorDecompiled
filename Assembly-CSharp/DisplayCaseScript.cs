@@ -58,10 +58,12 @@ public class DisplayCaseScript : MonoBehaviour
 			Prompt.Yandere.CanMove = false;
 			if (Type == 1 || Type == 3)
 			{
+				Prompt.Yandere.SuspiciousActionTimer = 1.5f;
 				BreakTimer = 0.66666f;
 			}
 			else if (Type == 2)
 			{
+				Prompt.Yandere.SuspiciousActionTimer = 3f;
 				BreakTimer = 1.33333f;
 			}
 		}

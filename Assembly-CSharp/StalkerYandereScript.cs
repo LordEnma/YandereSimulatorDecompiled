@@ -226,6 +226,7 @@ public class StalkerYandereScript : MonoBehaviour
 			MyRenderer.sharedMesh = HeadOnlyMesh;
 			PonytailRenderer.gameObject.SetActive(value: false);
 			RyobaHair.SetActive(value: true);
+			Debug.Log("Setting Ryoba blendshapes.");
 			MyRenderer.SetBlendShapeWeight(0, 50f);
 			MyRenderer.SetBlendShapeWeight(5, 25f);
 			MyRenderer.SetBlendShapeWeight(8, 0f);
@@ -275,6 +276,7 @@ public class StalkerYandereScript : MonoBehaviour
 			MyAnimation.Play("f02_prepareThrow_00");
 			MyAnimation["f02_prepareThrow_00"].weight = 0f;
 		}
+		UpdateBlendshapes = true;
 	}
 
 	private void Update()
@@ -314,12 +316,30 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 		if (UpdateBlendshapes)
 		{
-			Debug.Log("Setting Ryoba Blendshapes 2");
-			MyRenderer = EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
-			MyRenderer.SetBlendShapeWeight(0, 50f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(8, 0f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
+			if (Eighties)
+			{
+				Debug.Log("Setting Ryoba Blendshapes 2");
+				if (!Asylum)
+				{
+					MyRenderer = EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+				}
+				else
+				{
+					MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+				}
+				if (!Street)
+				{
+					MyRenderer.SetBlendShapeWeight(0, 50f);
+					MyRenderer.SetBlendShapeWeight(5, 25f);
+					MyRenderer.SetBlendShapeWeight(8, 0f);
+					MyRenderer.SetBlendShapeWeight(12, 100f);
+				}
+			}
+			else if (!Street)
+			{
+				MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+				MyRenderer.SetBlendShapeWeight(8, 50f);
+			}
 			UpdateBlendshapes = false;
 		}
 		if (Input.GetKeyDown("m") && Jukebox != null)

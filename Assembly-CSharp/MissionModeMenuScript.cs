@@ -1219,9 +1219,10 @@ public class MissionModeMenuScript : MonoBehaviour
 			switch (num)
 			{
 			case 1:
-				RequiredWeaponID = 11;
-				while (RequiredWeaponID == 11 || RequiredWeaponID == 17 || RequiredWeaponID == 26 || RequiredWeaponID == 32)
+				RequiredWeaponID = 0;
+				while (WeaponNames[RequiredWeaponID] == "")
 				{
+					Debug.Log("Selected Weapons #" + RequiredWeaponID + ", but it was ineligible, so selecting a different weapon.");
 					RequiredWeaponID = Random.Range(1, WeaponNames.Length);
 				}
 				Descs[Difficulty].text = ConditionDescs[num] + " " + WeaponNames[RequiredWeaponID];
