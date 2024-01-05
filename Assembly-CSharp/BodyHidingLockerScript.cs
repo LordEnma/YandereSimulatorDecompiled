@@ -249,7 +249,6 @@ public class BodyHidingLockerScript : MonoBehaviour
 			Prompt.Label[0].text = "     Hide Corpse";
 			AudioSource.PlayClipAtPoint(LockerOpen, Prompt.Yandere.MainCamera.transform.position);
 			Corpse.enabled = true;
-			Corpse.gameObject.SetActive(value: true);
 			Corpse.CharacterAnimation.enabled = false;
 			Corpse.BloodSpawnerCollider.enabled = true;
 			Corpse.Prompt.MyCollider.enabled = true;
@@ -298,6 +297,8 @@ public class BodyHidingLockerScript : MonoBehaviour
 				Rotation = -52f;
 				Door.transform.localEulerAngles = new Vector3(-52f, 0f, 0f);
 			}
+			Corpse.transform.localScale = new Vector3(1f, 1f, 1f);
+			Corpse.gameObject.SetActive(value: true);
 			Corpse = null;
 			Outline.color = new Color(0f, 1f, 1f, 1f);
 			StudentID = 0;

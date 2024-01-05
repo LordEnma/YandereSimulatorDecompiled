@@ -112,6 +112,8 @@ public class WeaponScript : MonoBehaviour
 
 	public bool Bloody;
 
+	public bool Broken;
+
 	public bool Dumped;
 
 	public bool Heated;
@@ -764,9 +766,12 @@ public class WeaponScript : MonoBehaviour
 		}
 		base.gameObject.SetActive(value: true);
 		base.transform.parent = null;
-		MyRigidbody.constraints = RigidbodyConstraints.None;
-		MyRigidbody.isKinematic = false;
-		MyRigidbody.useGravity = true;
+		if (MyRigidbody != null)
+		{
+			MyRigidbody.constraints = RigidbodyConstraints.None;
+			MyRigidbody.isKinematic = false;
+			MyRigidbody.useGravity = true;
+		}
 		MyCollider.isTrigger = false;
 		if (SecondaryCollider != null)
 		{
@@ -797,7 +802,7 @@ public class WeaponScript : MonoBehaviour
 		{
 			Yandere.Police.BloodyWeapons++;
 		}
-		if (Vector3.Distance(StartingPosition, base.transform.position) > 2f && Vector3.Distance(base.transform.position, Yandere.StudentManager.WeaponBoxSpot.parent.position) > 1f)
+		if (Vector3.Distance(StartingPosition, base.transform.position) > 2f && Vector3.Distance(base.transform.position, Yandere.StudentManager.WeaponBoxSpot.parent.position) > 2f)
 		{
 			if (!Misplaced)
 			{

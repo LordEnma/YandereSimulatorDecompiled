@@ -277,6 +277,10 @@ public class PickUpScript : MonoBehaviour
 			MainModel.SetActive(value: false);
 			AltModel.SetActive(value: true);
 		}
+		if (GarbageBagBox && !DifficultyGlobals.CraftBodybags)
+		{
+			BodyBags = 100;
+		}
 		if (BodyBags > 0 && GameGlobals.EightiesTutorial)
 		{
 			Prompt.Text[3] = "Makeshift Body Bag";
@@ -378,9 +382,9 @@ public class PickUpScript : MonoBehaviour
 		}
 		if (Yandere.PickUp != this && !MyRigidbody.isKinematic)
 		{
-			if (base.transform.position.y < 0f)
+			if (base.transform.position.y < -0.1f)
 			{
-				Debug.Log(base.gameObject.name + "  fell through the ground!");
+				Debug.Log("A " + base.gameObject.name + " fell through the ground!");
 				base.transform.eulerAngles = OriginalRotation;
 				base.transform.position = new Vector3(base.transform.position.x, 0.025f, base.transform.position.z);
 				MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;

@@ -8,6 +8,8 @@ public class ResolutionScript : MonoBehaviour
 {
 	public InputManagerScript InputManager;
 
+	public InputDeviceScript InputDevice;
+
 	public PostProcessingProfile Profile;
 
 	public UILabel ResolutionLabel;
@@ -77,6 +79,7 @@ public class ResolutionScript : MonoBehaviour
 			Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime);
 			if (Alpha == 1f)
 			{
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				SceneManager.LoadScene("WelcomeScene");
 			}
 		}

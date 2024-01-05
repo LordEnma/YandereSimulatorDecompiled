@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class KokonaTutorialIntroScript : MonoBehaviour
 {
+	public InputDeviceScript InputDevice;
+
 	public AudioSource MyAudioSource;
 
 	public AudioSource Jukebox;
@@ -244,6 +246,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 			if (Darkness.alpha == 1f || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				GameGlobals.KokonaTutorial = true;
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				SceneManager.LoadScene("LoadingScene");
 			}
 		}
@@ -270,6 +273,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 			if (Darkness.alpha == 1f || (Debug && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				GameGlobals.KokonaTutorial = false;
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				SceneManager.LoadScene("PhoneScene");
 			}
 		}

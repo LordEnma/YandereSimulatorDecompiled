@@ -77,7 +77,7 @@ public class JournalistScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (!GameGlobals.Eighties || GameGlobals.EightiesTutorial || DateGlobals.Week > 10)
+		if (!GameGlobals.Eighties || GameGlobals.EightiesTutorial || DateGlobals.Week > 10 || MissionModeGlobals.MissionMode || GameGlobals.AlternateTimeline || GameGlobals.NoJournalist)
 		{
 			base.gameObject.SetActive(value: false);
 		}

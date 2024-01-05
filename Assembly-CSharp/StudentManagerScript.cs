@@ -30,11 +30,13 @@ public class StudentManagerScript : MonoBehaviour
 
 	public KokonaTutorialScript KokonaTutorialObject;
 
-	public ChallengeMangerScript ChallengeManager;
+	public SenpaiLoveWindowScript SenpaiLoveWindow;
 
 	public ReputationSetterScript ReputationSetter;
 
 	public SkinnedMeshRenderer FemaleShowerCurtain;
+
+	public ChallengeMangerScript ChallengeManager;
 
 	public CleaningManagerScript CleaningManager;
 
@@ -304,6 +306,14 @@ public class StudentManagerScript : MonoBehaviour
 
 	public ListScript EightiesClubs;
 
+	public ListScript ValidHangouts;
+
+	public ListScript ValidPatrols;
+
+	public ListScript CustomHangouts;
+
+	public ListScript CustomPatrols;
+
 	public BodyHidingLockerScript[] BodyHidingLockers;
 
 	public ChangingBoothScript[] ChangingBooths;
@@ -535,6 +545,8 @@ public class StudentManagerScript : MonoBehaviour
 	public Transform SenpaiLocker;
 
 	public Transform SuitorLocker;
+
+	public Transform TitanRandoms;
 
 	public Transform RomanceSpot;
 
@@ -796,6 +808,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public bool YandereLate;
 
+	public bool CustomMode;
+
 	public bool EmptyDemon;
 
 	public bool ForceSpawn;
@@ -922,6 +936,10 @@ public class StudentManagerScript : MonoBehaviour
 	public PickUpScript[] AllPickUps;
 
 	public int PickUpID;
+
+	public int[] Widths;
+
+	public int[] Heights;
 
 	public RadioScript Radio;
 
@@ -1135,6 +1153,7 @@ public class StudentManagerScript : MonoBehaviour
 		EightiesTutorial = GameGlobals.EightiesTutorial;
 		MissionMode = MissionModeGlobals.MissionMode;
 		KokonaTutorial = GameGlobals.KokonaTutorial;
+		CustomMode = GameGlobals.CustomMode;
 		EmptyDemon = GameGlobals.EmptyDemon;
 		Week = DateGlobals.Week;
 		if (GameGlobals.Eighties)
@@ -1256,7 +1275,7 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			SpawnPositions[51].position = new Vector3(3f, 0f, -95f);
 		}
-		if (Eighties && Week > 1)
+		if (!TakingPortraits && Eighties && Week > 1)
 		{
 			SpawnPositions[94].position = FacultyDesks[1].Chair.position;
 			SpawnPositions[94].rotation = FacultyDesks[1].Chair.rotation;
@@ -1340,8 +1359,16 @@ public class StudentManagerScript : MonoBehaviour
 			}
 			if (MissionMode)
 			{
-				StudentGlobals.FemaleUniform = 5;
-				StudentGlobals.MaleUniform = 5;
+				if (Eighties)
+				{
+					StudentGlobals.FemaleUniform = 6;
+					StudentGlobals.MaleUniform = 1;
+				}
+				else
+				{
+					StudentGlobals.FemaleUniform = 5;
+					StudentGlobals.MaleUniform = 5;
+				}
 				RedString.gameObject.SetActive(value: false);
 			}
 			SetAtmosphere();
@@ -1473,7 +1500,10 @@ public class StudentManagerScript : MonoBehaviour
 		if (PlayerGlobals.PersonaID > 0)
 		{
 			Yandere.PersonaID = PlayerGlobals.PersonaID;
-			Mirror.UpdatePersona();
+			if (Mirror != null)
+			{
+				Mirror.UpdatePersona();
+			}
 		}
 		LoadFriends();
 		LoadPantyshots();
@@ -1554,6 +1584,11 @@ public class StudentManagerScript : MonoBehaviour
 		if (Yandere != null)
 		{
 			Yandere.GreyTarget = num;
+		}
+		if (CustomMode && !TakingPortraits)
+		{
+			GenerateRandomLocations();
+			GenerateCustomLocations();
 		}
 	}
 
@@ -1685,7 +1720,7 @@ public class StudentManagerScript : MonoBehaviour
 					else
 					{
 						IdolStage.SetActive(value: false);
-						if (Students[RivalID] != null)
+						if (!CustomMode && Students[RivalID] != null)
 						{
 							if (Clock.Weekday == 5)
 							{
@@ -1950,7 +1985,6 @@ public class StudentManagerScript : MonoBehaviour
 					}
 					if (Eighties && !RivalEliminated && !ReturnedFromSave && !CameFromLoad)
 					{
-						Debug.Log("The delinquents are now being teleported to where they belong.");
 						if (GameGlobals.AlphabetMode)
 						{
 							UpdateExteriorEightiesStudents();
@@ -2111,6 +2145,12 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Portraits" + EightiesPrefix + "/Student_" + NPCsSpawned + ".png");
 				base.gameObject.SetActive(value: false);
+				if (GameGlobals.CustomMode)
+				{
+					GameGlobals.EightiesCutsceneID = 1;
+					Screen.SetResolution(Widths[OptionGlobals.ResolutionID], Heights[OptionGlobals.ResolutionID], OptionGlobals.WindowedMode);
+					SceneManager.LoadScene("EightiesCutsceneScene");
+				}
 			}
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
@@ -2488,6 +2528,7 @@ public class StudentManagerScript : MonoBehaviour
 			RepositionSomeStudentsAfterRivalRises = false;
 			if (Week == 9 && Clock.Weekday == 5)
 			{
+				Debug.Log("Just ran the code for repositioning students on Friday of Week 9.");
 				RepositionAfterPhotoshootLater = true;
 				RepositionAfterPhotoshoot = true;
 			}
@@ -2762,6 +2803,28 @@ public class StudentManagerScript : MonoBehaviour
 								else
 								{
 									studentScript.Prompt.Label[0].text = "     Talk";
+								}
+							}
+							else if (Yandere.Succubus)
+							{
+								if (studentScript.Male)
+								{
+									if (!studentScript.Following)
+									{
+										studentScript.Prompt.Label[0].text = "     Seduce";
+									}
+									else
+									{
+										studentScript.Prompt.Label[0].text = "     Stop";
+									}
+								}
+								else if (Yandere.Followers > 0)
+								{
+									studentScript.Prompt.Label[0].text = "     Kill";
+								}
+								else
+								{
+									studentScript.Prompt.Label[0].text = "     Cannot Interact";
 								}
 							}
 							else if (!studentScript.Following)
@@ -3222,7 +3285,6 @@ public class StudentManagerScript : MonoBehaviour
 				ShrineCollectibles[i].SetActive(value: true);
 			}
 		}
-		Gift.SetActive(value: false);
 	}
 
 	public void SkipTo8()
@@ -3362,9 +3424,12 @@ public class StudentManagerScript : MonoBehaviour
 						studentScript.ClubAttire = true;
 					}
 					studentScript.AltTeleportToDestination();
-					studentScript.AltTeleportToDestination();
+					if (!Eighties || !MissionMode || MissionModeGlobals.NemesisDifficulty <= 0)
+					{
+						studentScript.AltTeleportToDestination();
+					}
 				}
-				else
+				else if (!Eighties || !MissionMode || MissionModeGlobals.NemesisDifficulty <= 0)
 				{
 					studentScript.AltTeleportToDestination();
 					studentScript.AltTeleportToDestination();
@@ -3397,7 +3462,7 @@ public class StudentManagerScript : MonoBehaviour
 		for (ID = 1; ID < Students.Length; ID++)
 		{
 			StudentScript studentScript = Students[ID];
-			if (studentScript != null && studentScript.Persona == PersonaType.Sleuth)
+			if (studentScript != null && !studentScript.Teacher && studentScript.Persona == PersonaType.Sleuth)
 			{
 				if (!studentScript.Male)
 				{
@@ -3525,6 +3590,10 @@ public class StudentManagerScript : MonoBehaviour
 		Stop = false;
 		for (ID = 1; ID < Students.Length; ID++)
 		{
+			if (ID == 1 && MissionMode)
+			{
+				ID++;
+			}
 			StudentScript studentScript = Students[ID];
 			if (studentScript != null && (!Police.EndOfDay.Counselor.ExpelledDelinquents || ID <= 75 || ID >= 81))
 			{
@@ -6044,7 +6113,7 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			RepositionSomeStudentsAfterRivalRises = true;
 			StudentsToReposition = 6;
-			WitnessBonus = 19;
+			WitnessBonus = 21;
 		}
 	}
 
@@ -6440,14 +6509,86 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	public void RandomizeRoutines()
+	public void GenerateRandomLocations()
 	{
 		for (ID = 1; ID < 101; ID++)
 		{
 			GameObject gameObject = UnityEngine.Object.Instantiate(EmptyObject, base.transform.position, Quaternion.identity);
 			RandomSpots[ID] = gameObject.transform;
 			gameObject.transform.position = PossibleRandomSpots[UnityEngine.Random.Range(1, 11)].position;
+			gameObject.transform.parent = TitanRandoms;
 		}
+	}
+
+	public void GenerateCustomLocations()
+	{
+		ValidHangouts.Start();
+		ValidPatrols.Start();
+		for (ID = 1; ID < 101; ID++)
+		{
+			GameObject gameObject = UnityEngine.Object.Instantiate(EmptyObject, base.transform.position, Quaternion.identity);
+			gameObject.name = "CustomHangout #" + ID;
+			gameObject.transform.parent = CustomHangouts.transform;
+			if (JSON.Misc.HangoutPosX[ID] == 0f && JSON.Misc.HangoutPosY[ID] == 0f && JSON.Misc.HangoutPosZ[ID] == 0f)
+			{
+				gameObject.transform.position = ValidHangouts.List[ID].position;
+				gameObject.transform.eulerAngles = ValidHangouts.List[ID].eulerAngles;
+			}
+			else
+			{
+				gameObject.transform.position = new Vector3(JSON.Misc.HangoutPosX[ID] * 0.01f, SnapHeight(JSON.Misc.HangoutPosY[ID] * 0.01f), JSON.Misc.HangoutPosZ[ID] * 0.01f);
+				gameObject.transform.eulerAngles = new Vector3(0f, JSON.Misc.HangoutRotZ[ID], 0f);
+			}
+			CustomHangouts.List[ID] = gameObject.transform;
+			gameObject = UnityEngine.Object.Instantiate(EmptyObject, base.transform.position, Quaternion.identity);
+			gameObject.name = "CustomPatrol1 #" + ID;
+			gameObject.transform.parent = CustomPatrols.List[ID];
+			if (JSON.Misc.Patrol1PosX[ID] == 0f && JSON.Misc.Patrol1PosY[ID] == 0f && JSON.Misc.Patrol1PosZ[ID] == 0f)
+			{
+				gameObject.transform.position = ValidPatrols.List[ID].GetChild(0).position;
+				gameObject.transform.eulerAngles = ValidPatrols.List[ID].GetChild(0).eulerAngles;
+			}
+			else
+			{
+				gameObject.transform.position = new Vector3(JSON.Misc.Patrol1PosX[ID] * 0.01f, SnapHeight(JSON.Misc.Patrol1PosY[ID] * 0.01f), JSON.Misc.Patrol1PosZ[ID] * 0.01f);
+				gameObject.transform.eulerAngles = new Vector3(0f, JSON.Misc.Patrol1RotZ[ID], 0f);
+			}
+			gameObject = UnityEngine.Object.Instantiate(EmptyObject, base.transform.position, Quaternion.identity);
+			gameObject.name = "CustomPatrol2 #" + ID;
+			gameObject.transform.parent = CustomPatrols.List[ID];
+			if (JSON.Misc.Patrol2PosX[ID] == 0f && JSON.Misc.Patrol2PosY[ID] == 0f && JSON.Misc.Patrol2PosZ[ID] == 0f)
+			{
+				gameObject.transform.position = ValidPatrols.List[ID].GetChild(1).position;
+				gameObject.transform.eulerAngles = ValidPatrols.List[ID].GetChild(1).eulerAngles;
+			}
+			else
+			{
+				gameObject.transform.position = new Vector3(JSON.Misc.Patrol2PosX[ID] * 0.01f, SnapHeight(JSON.Misc.Patrol2PosY[ID] * 0.01f), JSON.Misc.Patrol2PosZ[ID] * 0.01f);
+				gameObject.transform.eulerAngles = new Vector3(0f, JSON.Misc.Patrol2RotZ[ID], 0f);
+			}
+		}
+	}
+
+	public int SnapHeight(float ID)
+	{
+		if (ID < 4f)
+		{
+			return 0;
+		}
+		if (ID < 8f)
+		{
+			return 4;
+		}
+		if (ID < 12f)
+		{
+			return 8;
+		}
+		return 12;
+	}
+
+	public void RandomizeRoutines()
+	{
+		GenerateRandomLocations();
 		for (ID = 1; ID < 97; ID++)
 		{
 			StudentScript studentScript = Students[ID];
@@ -6526,6 +6667,10 @@ public class StudentManagerScript : MonoBehaviour
 			PortraitChan = StudentChan;
 			PortraitKun = StudentKun;
 			EightiesPrefix = "1989";
+			if (GameGlobals.CustomMode)
+			{
+				EightiesPrefix = "Custom";
+			}
 			return;
 		}
 		Yandere.HeartCamera.enabled = false;
@@ -6551,11 +6696,17 @@ public class StudentManagerScript : MonoBehaviour
 		PracticeSpots[1].localEulerAngles = new Vector3(0f, -90f, 0f);
 		for (int i = 1; i < ModernDayProps.Length; i++)
 		{
-			ModernDayProps[i].SetActive(value: false);
+			if (ModernDayProps[i] != null)
+			{
+				ModernDayProps[i].SetActive(value: false);
+			}
 		}
 		for (int i = 1; i < EightiesProps.Length; i++)
 		{
-			EightiesProps[i].SetActive(value: true);
+			if (EightiesProps[i] != null)
+			{
+				EightiesProps[i].SetActive(value: true);
+			}
 		}
 		LunchSpots = EightiesLunchSpots;
 		Hangouts = EightiesHangouts;
@@ -6884,12 +7035,51 @@ public class StudentManagerScript : MonoBehaviour
 		StudentScript[] students = Students;
 		foreach (StudentScript studentScript in students)
 		{
-			if (studentScript != null)
+			if (studentScript != null && studentScript.CurrentDestination != null)
 			{
 				studentScript.transform.position = studentScript.CurrentDestination.position;
 			}
 		}
 		Physics.SyncTransforms();
+	}
+
+	public void ChangeIntoTeachersPet()
+	{
+		Debug.Log("Firing ChangeIntoTeachersPet()");
+		StudentScript[] students = Students;
+		foreach (StudentScript studentScript in students)
+		{
+			if (studentScript != null && studentScript.Persona != PersonaType.Heroic && studentScript.Club != ClubType.Delinquent && studentScript.Club != ClubType.Council && !studentScript.Teacher)
+			{
+				studentScript.Persona = PersonaType.TeachersPet;
+				studentScript.OriginalPersona = PersonaType.TeachersPet;
+			}
+			if (studentScript != null && studentScript.Persona == PersonaType.Dangerous)
+			{
+				studentScript.Persona = PersonaType.Heroic;
+				studentScript.OriginalPersona = PersonaType.Heroic;
+			}
+		}
+	}
+
+	public void SkipShoePhase()
+	{
+		StudentScript[] students = Students;
+		foreach (StudentScript studentScript in students)
+		{
+			if (studentScript != null && !studentScript.Teacher)
+			{
+				studentScript.Indoors = true;
+				studentScript.Spawned = true;
+				studentScript.Paired = false;
+				studentScript.Phase++;
+				if (studentScript.ShoeRemoval.Locker == null)
+				{
+					studentScript.ShoeRemoval.Start();
+				}
+				studentScript.ShoeRemoval.PutOnShoes();
+			}
+		}
 	}
 
 	public void CheckStudentProximity()
@@ -7102,6 +7292,17 @@ public class StudentManagerScript : MonoBehaviour
 			if (Students[i] != null)
 			{
 				Students[i].EnableOutlines();
+			}
+		}
+	}
+
+	public void BlindEveryone()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			if (Students[i] != null)
+			{
+				Students[i].Blind = true;
 			}
 		}
 	}

@@ -196,6 +196,10 @@ public class ClubManagerScript : MonoBehaviour
 	private void Start()
 	{
 		NoBag = ChallengeGlobals.NoBag;
+		if (!NoBag)
+		{
+			NoBag = DifficultyGlobals.NoCase;
+		}
 		LearnKickedClubs();
 		ActivitiesAttended = ClubGlobals.ActivitiesAttended;
 		MyAudio = GetComponent<AudioSource>();
@@ -215,7 +219,6 @@ public class ClubManagerScript : MonoBehaviour
 			{
 				Debug.Log("The game recognizes that Club #" + ID + ", the " + ClubArray[ID].ToString() + " Club, should be closed!");
 				ClubPosters[ID].SetActive(value: false);
-				ClubStands[ID].SetActive(value: false);
 				if (ClubArray[ID] == ClubType.Gardening)
 				{
 					ClubPatrolPoints[ID].transform.position = new Vector3(-36f, ClubPatrolPoints[ID].transform.position.y, ClubPatrolPoints[ID].transform.position.z);
@@ -270,7 +273,7 @@ public class ClubManagerScript : MonoBehaviour
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
 			}
-			if (Darkness.color.a == 0f)
+			if (Darkness.color.a < 0.0001f)
 			{
 				if (Phase == 1)
 				{

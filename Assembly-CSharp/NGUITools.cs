@@ -1633,7 +1633,7 @@ public static class NGUITools
 	public static T AddMissingComponent<T>(this GameObject go) where T : Component
 	{
 		T val = go.GetComponent<T>();
-		if ((UnityEngine.Object)val == (UnityEngine.Object)null)
+		if (val == null)
 		{
 			val = go.AddComponent<T>();
 		}

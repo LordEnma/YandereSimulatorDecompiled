@@ -505,12 +505,20 @@ public class TaskManagerScript : MonoBehaviour
 		if (TaskStatus[79] == 1 && StudentManager.Students[79] != null)
 		{
 			Debug.Log("Telling Yakuza's litle brother to change his destination.");
-			ScheduleBlock obj = StudentManager.Students[79].ScheduleBlocks[6];
-			obj.destination = "Wait";
-			obj.action = "Wait";
-			ScheduleBlock obj2 = StudentManager.Students[79].ScheduleBlocks[7];
-			obj2.destination = "Wait";
-			obj2.action = "Wait";
+			Debug.Log("StudentManager.Students[79].ScheduleBlocks.Length is: " + StudentManager.Students[79].ScheduleBlocks.Length);
+			if (StudentManager.Students[79].ScheduleBlocks.Length >= 8)
+			{
+				ScheduleBlock obj = StudentManager.Students[79].ScheduleBlocks[6];
+				obj.destination = "Wait";
+				obj.action = "Wait";
+				ScheduleBlock obj2 = StudentManager.Students[79].ScheduleBlocks[7];
+				obj2.destination = "Wait";
+				obj2.action = "Wait";
+			}
+			else
+			{
+				Debug.Log("Uh, there was a problem! Yakuza bro's scheduleblock length is too low?!");
+			}
 			StudentManager.Students[79].GetDestinations();
 		}
 	}

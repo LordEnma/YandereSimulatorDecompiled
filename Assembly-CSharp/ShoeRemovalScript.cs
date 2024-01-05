@@ -77,7 +77,10 @@ public class ShoeRemovalScript : MonoBehaviour
 		if (Locker == null)
 		{
 			GetHeight(Student.StudentID);
-			Locker = Student.StudentManager.Lockers.List[Student.StudentID];
+			if (Student.StudentID < Student.StudentManager.Lockers.List.Length)
+			{
+				Locker = Student.StudentManager.Lockers.List[Student.StudentID];
+			}
 			GameObject gameObject = Object.Instantiate(NewPairOfShoes, base.transform.position, Quaternion.identity);
 			gameObject.transform.parent = Locker;
 			gameObject.transform.localEulerAngles = new Vector3(0f, -180f, 0f);

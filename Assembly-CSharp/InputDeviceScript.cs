@@ -45,6 +45,11 @@ public class InputDeviceScript : MonoBehaviour
 		joystickNames[17] = "Sony RS";
 		joystickNames[18] = "Sony Start";
 		joystickNames[19] = "Sony Select";
+		if (GameGlobals.LastInputType == 1)
+		{
+			Type = InputDeviceType.Gamepad;
+			UpdateAllButtons();
+		}
 	}
 
 	private void Update()
@@ -52,8 +57,9 @@ public class InputDeviceScript : MonoBehaviour
 		MouseDelta = Input.mousePosition - MousePrevious;
 		MousePrevious = Input.mousePosition;
 		InputDeviceType type = Type;
-		if ((Input.GetJoystickNames().Length == 0 && Input.anyKey) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.T) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Alpha4) || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || MouseDelta != Vector3.zero)
+		if ((Input.GetJoystickNames().Length == 0 && Input.anyKey) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.T) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Alpha4) || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
 		{
+			_ = MouseDelta != Vector3.zero;
 			Type = InputDeviceType.MouseAndKeyboard;
 		}
 		else

@@ -68,30 +68,49 @@ public class IronMaidenScript : MonoBehaviour
 			Prompt.Circle[2].fillAmount = 1f;
 			if (!Shut)
 			{
-				if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
+				if (Prompt.Yandere.Class.PhysicalGrade + Prompt.Yandere.Class.PhysicalBonus > 0)
 				{
-					for (int i = 2; i < 101; i++)
+					if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
 					{
-						if (!(Victim == null))
+						for (int i = 2; i < 101; i++)
 						{
-							break;
+							if (!(Victim == null))
+							{
+								break;
+							}
+							if (StudentManager.Students[i] != null && StudentManager.Students[i].Alive && Vector3.Distance(StudentManager.Students[i].transform.position, Prompt.Yandere.transform.position) < 1f)
+							{
+								if (i == 1)
+								{
+									Prompt.Yandere.NotificationManager.CustomText = "You would never do that!";
+									Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+									continue;
+								}
+								if (StudentManager.Students[i].Strength == 9 || StudentManager.Students[i].Teacher)
+								{
+									StudentManager.Students[i].AttackReaction();
+									continue;
+								}
+								Prompt.Yandere.Sanity -= (float)((Prompt.Yandere.Panties == 10) ? 10 : 20) * Prompt.Yandere.Numbness;
+								Prompt.Yandere.CanMove = false;
+								Victim = StudentManager.Students[i];
+								Victim.CharacterAnimation.CrossFade(Victim.IdleAnim);
+								Victim.Pathfinding.canSearch = false;
+								Victim.Pathfinding.canMove = false;
+								Victim.enabled = false;
+								ExteriorColliders.SetActive(value: false);
+								InteriorColliders.SetActive(value: false);
+								ShovePhase = 1;
+								ShoveTimer = 0f;
+							}
 						}
-						if (StudentManager.Students[i] != null && Vector3.Distance(StudentManager.Students[i].transform.position, Prompt.Yandere.transform.position) < 1f)
+						if (Victim == null)
 						{
-							Prompt.Yandere.Sanity -= (float)((Prompt.Yandere.Panties == 10) ? 10 : 20) * Prompt.Yandere.Numbness;
-							Prompt.Yandere.CanMove = false;
-							Victim = StudentManager.Students[i];
-							Victim.CharacterAnimation.CrossFade(Victim.IdleAnim);
-							Victim.Pathfinding.canSearch = false;
-							Victim.Pathfinding.canMove = false;
-							Victim.enabled = false;
-							ExteriorColliders.SetActive(value: false);
-							InteriorColliders.SetActive(value: false);
-							ShovePhase = 1;
-							ShoveTimer = 0f;
+							Prompt.Yandere.NotificationManager.CustomText = "Bring a victim here first.";
+							Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 						}
 					}
-					if (Victim == null)
+					else
 					{
 						Prompt.Yandere.NotificationManager.CustomText = "Bring a victim here first.";
 						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -99,15 +118,18 @@ public class IronMaidenScript : MonoBehaviour
 				}
 				else
 				{
-					Prompt.Yandere.NotificationManager.CustomText = "Bring a victim here first.";
+					Prompt.Yandere.NotificationManager.CustomText = "You lack the physical strength";
 					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				}
 			}
 			else
 			{
-				MyAudio.clip = DoorOpen;
-				MyAudio.Play();
-				Open = true;
+				if (!Open)
+				{
+					MyAudio.clip = DoorOpen;
+					MyAudio.Play();
+					Open = true;
+				}
 				SpitCorpseOut();
 			}
 		}
@@ -276,17 +298,10 @@ public class IronMaidenScript : MonoBehaviour
 		Corpse.Police.HiddenCorpses++;
 		Corpse.enabled = false;
 		Corpse.Hidden = true;
-		if (ABC)
-		{
-			Corpse.DestroyRigidbodies();
-		}
-		else
-		{
-			Corpse.BloodSpawnerCollider.enabled = false;
-			Corpse.Prompt.MyCollider.enabled = false;
-			Corpse.BloodPoolSpawner.enabled = false;
-			Corpse.DisableRigidbodies();
-		}
+		Corpse.BloodSpawnerCollider.enabled = false;
+		Corpse.Prompt.MyCollider.enabled = false;
+		Corpse.BloodPoolSpawner.enabled = false;
+		Corpse.DisableRigidbodies();
 		Corpse.Student.CharacterAnimation.enabled = true;
 		Corpse.Student.CharacterAnimation.Play("f02_lockerPose_00");
 		if (Corpse.Decapitated)
@@ -297,26 +312,34 @@ public class IronMaidenScript : MonoBehaviour
 
 	public void SpitCorpseOut()
 	{
-		KeepInsideCollider.SetActive(value: false);
-		Corpse.enabled = true;
-		Corpse.gameObject.SetActive(value: true);
-		Corpse.CharacterAnimation.enabled = false;
-		Corpse.transform.position = base.transform.position;
-		Corpse.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-		Corpse.transform.parent = null;
-		Corpse.BloodSpawnerCollider.enabled = true;
-		Corpse.Prompt.MyCollider.enabled = true;
-		Corpse.BloodPoolSpawner.NearbyBlood = 0;
-		Corpse.AddingToCount = false;
-		Corpse.EnableRigidbodies();
-		if (!Corpse.Cauterized && !Corpse.Concealed)
+		if (Corpse != null)
 		{
-			Corpse.BloodPoolSpawner.enabled = true;
+			KeepInsideCollider.SetActive(value: false);
+			Corpse.enabled = true;
+			Corpse.gameObject.SetActive(value: true);
+			Corpse.CharacterAnimation.enabled = false;
+			Corpse.transform.position = base.transform.position;
+			Corpse.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+			Corpse.transform.parent = null;
+			Corpse.BloodSpawnerCollider.enabled = true;
+			Corpse.Prompt.MyCollider.enabled = true;
+			Corpse.BloodPoolSpawner.NearbyBlood = 0;
+			Corpse.AddingToCount = false;
+			Corpse.EnableRigidbodies();
+			if (!Corpse.Cauterized && !Corpse.Concealed)
+			{
+				Corpse.BloodPoolSpawner.enabled = true;
+			}
+			for (int i = 0; i < Corpse.Student.FireEmitters.Length; i++)
+			{
+				Corpse.Student.FireEmitters[i].gameObject.SetActive(value: false);
+			}
+			Corpse = null;
 		}
-		for (int i = 0; i < Corpse.Student.FireEmitters.Length; i++)
+		else
 		{
-			Corpse.Student.FireEmitters[i].gameObject.SetActive(value: false);
+			Prompt.Yandere.NotificationManager.CustomText = "The doors aren't open yet.";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		}
-		Corpse = null;
 	}
 }

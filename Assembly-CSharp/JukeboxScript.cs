@@ -10,6 +10,8 @@ public class JukeboxScript : MonoBehaviour
 
 	public AudioSource AttackOnTitan;
 
+	public AudioSource LunarScythe;
+
 	public AudioSource Megalovania;
 
 	public AudioSource MissionMode;
@@ -218,6 +220,8 @@ public class JukeboxScript : MonoBehaviour
 
 	public AudioClip EightiesMusicClubTheme;
 
+	public GameObject YakuzaMusic;
+
 	public void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -363,38 +367,30 @@ public class JukeboxScript : MonoBehaviour
 					NoSanity.Play();
 					StartMusic = true;
 				}
-				if (!ClubTheme.isPlaying)
+				if (Yandere.Sanity >= 66.666664f)
 				{
-					if (Yandere.Sanity >= 66.666664f)
-					{
-						FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
-						HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, 0f, 1f / 60f * FadeSpeed);
-						NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
-					}
-					else if (Yandere.Sanity >= 33.333332f)
-					{
-						FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, 0f, 1f / 60f * FadeSpeed);
-						HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
-						NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
-					}
-					else
-					{
-						FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, 0f, 1f / 60f * FadeSpeed);
-						HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, 0f, 1f / 60f * FadeSpeed);
-						NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
-					}
+					FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
+					HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, 0f, 1f / 60f * FadeSpeed);
+					NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
+				}
+				else if (Yandere.Sanity >= 33.333332f)
+				{
+					FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, 0f, 1f / 60f * FadeSpeed);
+					HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
+					NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
 				}
 				else
 				{
 					FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, 0f, 1f / 60f * FadeSpeed);
 					HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, 0f, 1f / 60f * FadeSpeed);
-					NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
+					NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
 				}
 			}
 		}
 		else
 		{
 			AttackOnTitan.volume = Mathf.MoveTowards(AttackOnTitan.volume, Volume * Dip, 1f / 6f);
+			LunarScythe.volume = Mathf.MoveTowards(LunarScythe.volume, Volume * Dip, 1f / 6f);
 			Megalovania.volume = Mathf.MoveTowards(Megalovania.volume, Volume * Dip, 1f / 6f);
 			MissionMode.volume = Mathf.MoveTowards(MissionMode.volume, Volume * Dip, 1f / 6f);
 			Skeletons.volume = Mathf.MoveTowards(Skeletons.volume, Volume * Dip, 1f / 6f);
@@ -621,6 +617,13 @@ public class JukeboxScript : MonoBehaviour
 		Miyuki.enabled = true;
 	}
 
+	public void LunarScytheMusic()
+	{
+		Egg = true;
+		KillVolume();
+		LunarScythe.enabled = true;
+	}
+
 	public void KillVolume()
 	{
 		FullSanity.volume = 0f;
@@ -632,6 +635,7 @@ public class JukeboxScript : MonoBehaviour
 	public void GameOver()
 	{
 		AttackOnTitan.Stop();
+		LunarScythe.Stop();
 		Megalovania.Stop();
 		MissionMode.Stop();
 		Skeletons.Stop();

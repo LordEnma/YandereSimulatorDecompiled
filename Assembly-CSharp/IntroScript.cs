@@ -17,6 +17,8 @@ public class IntroScript : MonoBehaviour
 
 	public GlassShardSpawnerScript GlassShardSpawner;
 
+	public InputDeviceScript InputDevice;
+
 	public GameObject[] AttackPair;
 
 	public GameObject MontagePrefab;
@@ -360,6 +362,7 @@ public class IntroScript : MonoBehaviour
 			Narration.volume = FadeOutDarkness.color.a;
 			if (FadeOutDarkness.color.a == 1f)
 			{
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				SceneManager.LoadScene("KokonaTutorialScene");
 			}
 		}
@@ -395,6 +398,7 @@ public class IntroScript : MonoBehaviour
 			}
 			if (Narration.time > 159.898f)
 			{
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				SceneManager.LoadScene("KokonaTutorialScene");
 			}
 		}
@@ -452,6 +456,7 @@ public class IntroScript : MonoBehaviour
 			Speed += Time.deltaTime;
 			if (Speed > 11f)
 			{
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				SceneManager.LoadScene("KokonaTutorialScene");
 			}
 			else if (Speed > 5f && (Logo.gameObject.activeInHierarchy || LoveSickLogo.gameObject.activeInHierarchy))

@@ -76,8 +76,9 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 	{
 		if (!HomeYandere.CanMove && !PauseScreen.Show)
 		{
-			if (HomeCamera.ID == 6)
+			if (HomeCamera.ID == 6 || (HomeCamera.LastID == 6 && !HomeYandere.gameObject.activeInHierarchy))
 			{
+				HomeCamera.Profile.depthOfField.enabled = false;
 				Rotation = Mathf.Lerp(Rotation, 135f, Time.deltaTime * 10f);
 				RightDoor.localEulerAngles = new Vector3(RightDoor.localEulerAngles.x, Rotation, RightDoor.localEulerAngles.z);
 				LeftDoor.localEulerAngles = new Vector3(LeftDoor.localEulerAngles.x, 0f - Rotation, LeftDoor.localEulerAngles.z);
@@ -116,6 +117,10 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 					HomeYandere.gameObject.SetActive(value: true);
 					HomeWindow.Show = false;
 					AudioSource.PlayClipAtPoint(ShrineClose, HomeCamera.transform.position);
+					if (HomeCamera.RestoreDOF)
+					{
+						HomeCamera.Profile.depthOfField.enabled = true;
+					}
 				}
 			}
 		}

@@ -21,7 +21,17 @@ public class TopicJson : JsonData
 		}
 	}
 
-	public int[] Topics => topics;
+	public int[] Topics
+	{
+		get
+		{
+			return topics;
+		}
+		set
+		{
+			topics = value;
+		}
+	}
 
 	public static TopicJson[] LoadFromJson(string path)
 	{

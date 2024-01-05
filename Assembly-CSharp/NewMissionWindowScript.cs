@@ -20,6 +20,8 @@ public class NewMissionWindowScript : MonoBehaviour
 
 	public bool ChangingDifficulty;
 
+	public bool Eighties;
+
 	public int[] UnsafeNumbers;
 
 	public int[] Target;
@@ -42,6 +44,8 @@ public class NewMissionWindowScript : MonoBehaviour
 
 	public Font Arial;
 
+	public UILabel MultiMissionDifficultyOptionsLabel;
+
 	public int NemesisDifficulty;
 
 	public bool NemesisAggression;
@@ -58,6 +62,7 @@ public class NewMissionWindowScript : MonoBehaviour
 
 	private void Start()
 	{
+		Eighties = GameGlobals.Eighties;
 		UpdateHighlight();
 		for (int i = 1; i < 11; i++)
 		{
@@ -67,6 +72,10 @@ public class NewMissionWindowScript : MonoBehaviour
 			DeathSkulls[i].SetActive(value: false);
 		}
 		DifficultyOptions.localScale = new Vector3(0f, 0f, 0f);
+		if (Eighties)
+		{
+			MultiMissionDifficultyOptionsLabel.text = "Yakuza Mode: Off";
+		}
 	}
 
 	private void ChangeFont(UILabel Text)
@@ -145,13 +154,29 @@ public class NewMissionWindowScript : MonoBehaviour
 					}
 					else if (Column == 3)
 					{
-						ChangingDifficulty = true;
-						MissionModeMenu.PromptBar.ClearButtons();
-						MissionModeMenu.PromptBar.Label[0].text = "Change";
-						MissionModeMenu.PromptBar.Label[1].text = "Back";
-						MissionModeMenu.PromptBar.Label[2].text = "Aggression";
-						MissionModeMenu.PromptBar.UpdateButtons();
-						MissionModeMenu.PromptBar.Show = true;
+						if (Eighties)
+						{
+							if (NemesisDifficulty == 0)
+							{
+								NemesisDifficulty = 1;
+								MultiMissionDifficultyOptionsLabel.text = "Yakuza Mode: On";
+							}
+							else
+							{
+								NemesisDifficulty = 0;
+								MultiMissionDifficultyOptionsLabel.text = "Yakuza Mode: Off";
+							}
+						}
+						else
+						{
+							ChangingDifficulty = true;
+							MissionModeMenu.PromptBar.ClearButtons();
+							MissionModeMenu.PromptBar.Label[0].text = "Change";
+							MissionModeMenu.PromptBar.Label[1].text = "Back";
+							MissionModeMenu.PromptBar.Label[2].text = "Aggression";
+							MissionModeMenu.PromptBar.UpdateButtons();
+							MissionModeMenu.PromptBar.Show = true;
+						}
 					}
 				}
 			}
@@ -335,7 +360,10 @@ public class NewMissionWindowScript : MonoBehaviour
 		{
 			NameLabel[Column + Number].text = "Kill: " + JSON.Students[Target[Column + Number]].Name;
 		}
-		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + Target[Column + Number] + ".png");
+		Eighties = GameGlobals.Eighties;
+		string text = "";
+		text = ((!Eighties) ? ("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + Target[Column + Number] + ".png") : ("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + Target[Column + Number] + ".png"));
+		WWW wWW = new WWW(text);
 		if (Target[Column + Number] > 0)
 		{
 			Portrait[Column + Number].mainTexture = wWW.texture;
@@ -373,7 +401,10 @@ public class NewMissionWindowScript : MonoBehaviour
 		{
 			NameLabel[Column + Number].text = "Kill: " + JSON.Students[Target[Column + Number]].Name;
 		}
-		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + Target[Column + Number] + ".png");
+		Eighties = GameGlobals.Eighties;
+		string text = "";
+		text = ((!Eighties) ? ("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + Target[Column + Number] + ".png") : ("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + Target[Column + Number] + ".png"));
+		WWW wWW = new WWW(text);
 		Debug.Log("Updating portraits in Decrement() function.");
 		if (Target[Column + Number] > 0)
 		{
@@ -477,7 +508,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		}
 		else
 		{
-			MissionModeMenu.PromptBar.Label[0].text = "";
+			MissionModeMenu.PromptBar.Label[0].text = "Confirm";
 		}
 		MissionModeMenu.PromptBar.UpdateButtons();
 	}
@@ -501,7 +532,10 @@ public class NewMissionWindowScript : MonoBehaviour
 			ChangeFont(MethodLabel[i]);
 			Target[i] = PlayerPrefs.GetInt("MissionModeTarget" + i);
 			Method[i] = PlayerPrefs.GetInt("MissionModeMethod" + i);
-			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + Target[i] + ".png");
+			Eighties = GameGlobals.Eighties;
+			string text = "";
+			text = ((!Eighties) ? ("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + Target[i] + ".png") : ("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + Target[i] + ".png"));
+			WWW wWW = new WWW(text);
 			if (Target[i] == 0)
 			{
 				NameLabel[i].text = "Kill: Nobody";

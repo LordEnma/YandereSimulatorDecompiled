@@ -113,6 +113,18 @@ public class HomeYandereScript : MonoBehaviour
 
 	public bool Vtuber;
 
+	public YandereScript YandereHairHost;
+
+	public YandereScript Yandere;
+
+	public JsonScript JSON;
+
+	public string[] FemaleIdles;
+
+	public string[] FemaleWalks;
+
+	public Transform Head;
+
 	public void Start()
 	{
 		VtuberCheck();
@@ -254,12 +266,36 @@ public class HomeYandereScript : MonoBehaviour
 			CannotAlphabet = true;
 		}
 		PlayerGlobals.BringingItem = 0;
+		if (!GameGlobals.CustomMode)
+		{
+			return;
+		}
+		RyobaLongHair.SetActive(value: false);
+		RyobaHair.SetActive(value: false);
+		Hairstyle = 0;
+		UpdateHair();
+		for (int i = 0; i < YandereHairHost.Hairstyles.Length; i++)
+		{
+			if (YandereHairHost.Hairstyles[i] != null)
+			{
+				YandereHairHost.Hairstyles[i].SetActive(value: false);
+				YandereHairHost.Hairstyles[i].transform.parent = Head;
+			}
+		}
+		string hairstyle = JSON.Students[0].Hairstyle;
+		YandereHairHost.Hairstyles[int.Parse(hairstyle)].SetActive(value: true);
+		Yandere.Hairstyles = YandereHairHost.Hairstyles;
+		if (!HomeGlobals.Night)
+		{
+			Customize();
+		}
 	}
 
 	private void Update()
 	{
 		if (UpdateFace && Pajamas.newRenderer != null)
 		{
+			Yandere.MyRenderer = Pajamas.newRenderer;
 			if (!Vtuber)
 			{
 				Pajamas.newRenderer.SetBlendShapeWeight(0, 50f);
@@ -277,6 +313,10 @@ public class HomeYandereScript : MonoBehaviour
 				Pajamas.newRenderer.SetBlendShapeWeight(9, 100f);
 				Pajamas.newRenderer.materials[1].mainTexture = FaceTexture;
 				Debug.Log("Updating pajama mesh with Vtuber face.");
+			}
+			if (GameGlobals.CustomMode)
+			{
+				Customize();
 			}
 			UpdateFace = false;
 		}
@@ -441,42 +481,42 @@ public class HomeYandereScript : MonoBehaviour
 	{
 		if (StudentGlobals.FemaleUniform == 1)
 		{
-			WWW CustomUniform4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomUniform.png");
-			yield return CustomUniform4;
-			if (CustomUniform4.error == null)
+			WWW CustomUniform = new WWW("file:///" + Application.streamingAssetsPath + "/CustomUniform.png");
+			yield return CustomUniform;
+			if (CustomUniform.error == null)
 			{
-				MyRenderer.materials[0].mainTexture = CustomUniform4.texture;
-				MyRenderer.materials[1].mainTexture = CustomUniform4.texture;
+				MyRenderer.materials[0].mainTexture = CustomUniform.texture;
+				MyRenderer.materials[1].mainTexture = CustomUniform.texture;
 			}
 		}
 		else if (StudentGlobals.FemaleUniform == 2)
 		{
-			WWW CustomUniform4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomLong.png");
-			yield return CustomUniform4;
-			if (CustomUniform4.error == null)
+			WWW CustomUniform = new WWW("file:///" + Application.streamingAssetsPath + "/CustomLong.png");
+			yield return CustomUniform;
+			if (CustomUniform.error == null)
 			{
-				MyRenderer.materials[0].mainTexture = CustomUniform4.texture;
-				MyRenderer.materials[1].mainTexture = CustomUniform4.texture;
+				MyRenderer.materials[0].mainTexture = CustomUniform.texture;
+				MyRenderer.materials[1].mainTexture = CustomUniform.texture;
 			}
 		}
 		else if (StudentGlobals.FemaleUniform == 3)
 		{
-			WWW CustomUniform4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomSweater.png");
-			yield return CustomUniform4;
-			if (CustomUniform4.error == null)
+			WWW CustomUniform = new WWW("file:///" + Application.streamingAssetsPath + "/CustomSweater.png");
+			yield return CustomUniform;
+			if (CustomUniform.error == null)
 			{
-				MyRenderer.materials[0].mainTexture = CustomUniform4.texture;
-				MyRenderer.materials[1].mainTexture = CustomUniform4.texture;
+				MyRenderer.materials[0].mainTexture = CustomUniform.texture;
+				MyRenderer.materials[1].mainTexture = CustomUniform.texture;
 			}
 		}
 		else if (StudentGlobals.FemaleUniform == 4 || StudentGlobals.FemaleUniform == 5)
 		{
-			WWW CustomUniform4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomBlazer.png");
-			yield return CustomUniform4;
-			if (CustomUniform4.error == null)
+			WWW CustomUniform = new WWW("file:///" + Application.streamingAssetsPath + "/CustomBlazer.png");
+			yield return CustomUniform;
+			if (CustomUniform.error == null)
 			{
-				MyRenderer.materials[0].mainTexture = CustomUniform4.texture;
-				MyRenderer.materials[1].mainTexture = CustomUniform4.texture;
+				MyRenderer.materials[0].mainTexture = CustomUniform.texture;
+				MyRenderer.materials[1].mainTexture = CustomUniform.texture;
 			}
 		}
 		StartCoroutine(ApplyCustomFace());
@@ -525,5 +565,12 @@ public class HomeYandereScript : MonoBehaviour
 		{
 			VtuberHairs[1].SetActive(value: false);
 		}
+	}
+
+	private void Customize()
+	{
+		Yandere.Customize();
+		IdleAnim = FemaleIdles[JSON.Misc.AnimSet[0]];
+		WalkAnim = FemaleWalks[JSON.Misc.AnimSet[0]];
 	}
 }

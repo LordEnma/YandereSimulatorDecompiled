@@ -35,6 +35,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public SocialScript Social;
+
 	public ClockScript Clock;
 
 	public UIPanel Panel;
@@ -245,7 +247,7 @@ public class DialogueWheelScript : MonoBehaviour
 				{
 					if (Selected == 5)
 					{
-						if (Yandere.TargetStudent.Friend)
+						if (TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 3)
 						{
 							CenterLabel.text = "Love";
 						}
@@ -538,11 +540,17 @@ public class DialogueWheelScript : MonoBehaviour
 						TopicInterface.Student = Yandere.TargetStudent;
 						TopicInterface.UpdateOpinions();
 						TopicInterface.UpdateTopicHighlight();
-						TopicInterface.gameObject.SetActive(value: true);
+						Social.StudentID = Yandere.TargetStudent.StudentID;
+						Social.DialogueLabel.text = Social.Dialogue[0];
+						Social.Student = Yandere.TargetStudent;
+						Social.UpdateButtons();
+						Social.enabled = true;
+						Social.Show = true;
+						Yandere.HUD.alpha = 0f;
+						Yandere.ShoulderCamera.enabled = false;
 						PromptBar.ClearButtons();
-						PromptBar.Label[0].text = "Speak";
-						PromptBar.Label[1].text = "Back";
-						PromptBar.Label[2].text = "Positive/Negative";
+						PromptBar.Label[0].text = "Confirm";
+						PromptBar.Label[4].text = "Change Selection";
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
 						base.transform.localScale = Vector3.zero;
@@ -579,7 +587,7 @@ public class DialogueWheelScript : MonoBehaviour
 					}
 					else if (Selected == 5)
 					{
-						if (!Yandere.TargetStudent.Friend)
+						if (TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] != 3)
 						{
 							CheckTaskCompletion();
 							Show = false;
@@ -709,7 +717,14 @@ public class DialogueWheelScript : MonoBehaviour
 			_ = Clock.Period;
 			_ = 5;
 		}
-		TaskIcon.spriteName = (Yandere.TargetStudent.Friend ? "Heart" : "Task");
+		if (TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 3)
+		{
+			TaskIcon.spriteName = "Heart";
+		}
+		else
+		{
+			TaskIcon.spriteName = "Task";
+		}
 		Impatience.fillAmount = 0f;
 		for (int i = 1; i < 7; i++)
 		{
@@ -763,7 +778,7 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
-		else if (!Yandere.TargetStudent.Friend)
+		else if (TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] != 3)
 		{
 			bool flag = false;
 			if (Yandere.StudentManager.Eighties)
@@ -1035,7 +1050,7 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			for (int num3 = 1; num3 < 7; num3++)
 			{
-				if (num3 != 2)
+				if (num3 != 2 && num3 != 4)
 				{
 					UISprite uISprite26 = Shadow[num3];
 					uISprite26.color = new Color(uISprite26.color.r, uISprite26.color.g, uISprite26.color.b, 0.75f);

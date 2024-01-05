@@ -262,44 +262,54 @@ public class DoorScript : MonoBehaviour
 					Prompt.Circle[1].fillAmount = 1f;
 					if (!BucketSet)
 					{
-						if (SchemeGlobals.GetSchemeStage(1) == 2)
+						bool flag = false;
+						if (DifficultyGlobals.MudRequired && Yandere.PickUp.Bucket.Bloodiness < 50f && !Yandere.PickUp.Bucket.Gasoline && !Yandere.PickUp.Bucket.DyedBrown)
 						{
-							SchemeGlobals.SetSchemeStage(1, 3);
-							Yandere.PauseScreen.Schemes.UpdateInstructions();
+							Yandere.NotificationManager.CustomText = "Put blood, gasoline, or brown paint in the bucket.";
+							Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							flag = true;
 						}
-						Bucket = Yandere.PickUp.Bucket;
-						Yandere.EmptyHands();
-						Bucket.transform.parent = base.transform;
-						Bucket.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-						Bucket.Trap = true;
-						Bucket.Prompt.Hide();
-						Bucket.Prompt.enabled = false;
-						CheckDirection();
-						if (North)
+						if (!flag)
 						{
-							Bucket.transform.localPosition = new Vector3(0f, 2.25f, 0.2975f);
+							if (SchemeGlobals.GetSchemeStage(1) == 2)
+							{
+								SchemeGlobals.SetSchemeStage(1, 3);
+								Yandere.PauseScreen.Schemes.UpdateInstructions();
+							}
+							Bucket = Yandere.PickUp.Bucket;
+							Yandere.EmptyHands();
+							Bucket.transform.parent = base.transform;
+							Bucket.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+							Bucket.Trap = true;
+							Bucket.Prompt.Hide();
+							Bucket.Prompt.enabled = false;
+							CheckDirection();
+							if (North)
+							{
+								Bucket.transform.localPosition = new Vector3(0f, 2.25f, 0.2975f);
+							}
+							else
+							{
+								Bucket.transform.localPosition = new Vector3(0f, 2.25f, -0.2975f);
+							}
+							Bucket.GetComponent<Rigidbody>().isKinematic = true;
+							Bucket.GetComponent<Rigidbody>().useGravity = false;
+							if (Open)
+							{
+								DoorColliders[0].isTrigger = true;
+								DoorColliders[1].isTrigger = true;
+							}
+							Prompt.Label[1].text = "     Remove Bucket";
+							Prompt.Label[1].color = Color.white;
+							Prompt.HideButton[0] = true;
+							CanSetBucket = false;
+							BucketSet = true;
+							Open = false;
+							Timer = 0f;
+							Debug.Log("CreatingBucketTrap should be true for the next second...");
+							Yandere.SuspiciousActionTimer = 1f;
+							Yandere.CreatingBucketTrap = true;
 						}
-						else
-						{
-							Bucket.transform.localPosition = new Vector3(0f, 2.25f, -0.2975f);
-						}
-						Bucket.GetComponent<Rigidbody>().isKinematic = true;
-						Bucket.GetComponent<Rigidbody>().useGravity = false;
-						if (Open)
-						{
-							DoorColliders[0].isTrigger = true;
-							DoorColliders[1].isTrigger = true;
-						}
-						Prompt.Label[1].text = "     Remove Bucket";
-						Prompt.Label[1].color = Color.white;
-						Prompt.HideButton[0] = true;
-						CanSetBucket = false;
-						BucketSet = true;
-						Open = false;
-						Timer = 0f;
-						Debug.Log("CreatingBucketTrap should be true for the next second...");
-						Yandere.SuspiciousActionTimer = 1f;
-						Yandere.CreatingBucketTrap = true;
 					}
 					else
 					{

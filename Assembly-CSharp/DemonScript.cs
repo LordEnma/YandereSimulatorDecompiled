@@ -22,7 +22,13 @@ public class DemonScript : MonoBehaviour
 
 	public string[] Lines;
 
+	public AudioClip[] AltClips;
+
+	public string[] AltLines;
+
 	public bool Communing;
+
+	public bool Ready;
 
 	public bool Open;
 
@@ -38,6 +44,22 @@ public class DemonScript : MonoBehaviour
 
 	public int ID;
 
+	private void Start()
+	{
+		if (DemonID == 2 && (PlayerGlobals.Enlightenment + Yandere.Class.EnlightenmentBonus >= 5 || YancordGlobals.CurrentConversation == 6))
+		{
+			Ready = true;
+			Clips = AltClips;
+			Lines = AltLines;
+		}
+		if (DemonID == 5 && PlayerGlobals.Seduction == 5)
+		{
+			Ready = true;
+			Clips = AltClips;
+			Lines = AltLines;
+		}
+	}
+
 	private void Update()
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
@@ -46,7 +68,7 @@ public class DemonScript : MonoBehaviour
 			Yandere.CanMove = false;
 			Communing = true;
 		}
-		if (DemonID == 1)
+		if (DemonID == 4)
 		{
 			if ((double)Vector3.Distance(Yandere.transform.position, base.transform.position) < 2.5)
 			{
@@ -124,11 +146,26 @@ public class DemonScript : MonoBehaviour
 					component.clip = Clips[ID];
 					component.Play();
 				}
+				return;
 			}
-			else
+			if (Ready)
 			{
-				Phase++;
+				if (DemonID == 2)
+				{
+					Yandere.transform.position = new Vector3(0f, 0f, -75f);
+					Yandere.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+					Physics.SyncTransforms();
+					Yandere.Luna();
+				}
+				else if (DemonID == 5)
+				{
+					Yandere.transform.position = new Vector3(12f, 0f, 26f);
+					Yandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+					Physics.SyncTransforms();
+					Yandere.Succ();
+				}
 			}
+			Phase++;
 		}
 		else
 		{
@@ -140,9 +177,6 @@ public class DemonScript : MonoBehaviour
 				Communing = false;
 				Phase = 1;
 				ID = 0;
-				SchoolGlobals.SetDemonActive(DemonID, value: true);
-				StudentGlobals.FemaleUniform = 1;
-				StudentGlobals.MaleUniform = 1;
 				GameGlobals.Paranormal = true;
 			}
 		}

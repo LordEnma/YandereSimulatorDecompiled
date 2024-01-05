@@ -12,6 +12,14 @@ public class YandereShoeLockerScript : MonoBehaviour
 
 	public int Frame;
 
+	private void Start()
+	{
+		if (GameGlobals.Eighties && MissionModeGlobals.MissionMode && MissionModeGlobals.NemesisDifficulty > 0)
+		{
+			base.enabled = false;
+		}
+	}
+
 	private void Update()
 	{
 		Frame++;

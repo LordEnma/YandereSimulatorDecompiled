@@ -109,10 +109,11 @@ public class TimelineScript : MonoBehaviour
 		SpawnYear(1979);
 		SpawnSaikouData("Saikou Corp releases the world's first portable cassette tape player.");
 		Height -= 150;
-		SpawnSaikouData("Saisho Saikou's son is born. He is named Ichirou.");
-		Height -= 150;
 		SpawnYear(1981);
 		SpawnSaikouData("Saikou Corp releases the world's first compact disc player.");
+		Height -= 150;
+		SpawnYear(1983);
+		SpawnSaikouData("Saisho Saikou's son is born. He is named Ichirou.");
 		Height -= 150;
 		SpawnYear(1984);
 		SpawnSaikouData("Saisho Saikou orders the construction of a post-highschool academy near Buraza Town.");
@@ -165,7 +166,7 @@ public class TimelineScript : MonoBehaviour
 		SpawnAishiData("Ryoba's sister eliminates every girl who seeks to enter a relationship with her Senpai.");
 		Height -= 200;
 		SpawnAishiData("Ryoba's sister marries her Senpai.");
-		Height -= 150;
+		Height -= 100;
 		SpawnYear(1999);
 		SpawnMiscData("Kocho Shuyona observes Ryoba entering the office of Saisho Saikou.");
 		SpawnSaikouData("Ichirou Saikou enrolls in Akademi.");

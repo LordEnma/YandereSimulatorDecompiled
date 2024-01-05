@@ -54,6 +54,20 @@ public class ChallengeMangerScript : MonoBehaviour
 
 	public float GameOverTimer;
 
+	public bool InvincibleRaibaru;
+
+	public bool TransparentFence;
+
+	public bool MustStrangle;
+
+	public bool MudRequired;
+
+	public bool CraftBodybags;
+
+	public bool WeaponsBreak;
+
+	public GameObject[] IncineratorWalls;
+
 	private void Start()
 	{
 		if (!GameGlobals.EightiesTutorial && !GameGlobals.KokonaTutorial)
@@ -66,6 +80,23 @@ public class ChallengeMangerScript : MonoBehaviour
 			NoInfo = ChallengeGlobals.NoInfo;
 			NoLaugh = ChallengeGlobals.NoLaugh;
 			RivalsOnly = ChallengeGlobals.RivalsOnly;
+			if (!NoBag)
+			{
+				NoBag = DifficultyGlobals.NoCase;
+			}
+			InvincibleRaibaru = DifficultyGlobals.InvincibleRaibaru;
+			TransparentFence = DifficultyGlobals.TransparentFence;
+			MustStrangle = DifficultyGlobals.MustStrangle;
+			MudRequired = DifficultyGlobals.MudRequired;
+			CraftBodybags = DifficultyGlobals.CraftBodybags;
+			WeaponsBreak = DifficultyGlobals.WeaponsBreak;
+			if (TransparentFence)
+			{
+				for (int i = 1; i < IncineratorWalls.Length; i++)
+				{
+					IncineratorWalls[i].layer = 1;
+				}
+			}
 		}
 		UpdateIcons();
 	}

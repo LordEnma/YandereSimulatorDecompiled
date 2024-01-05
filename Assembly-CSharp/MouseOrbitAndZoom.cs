@@ -15,17 +15,21 @@ public class MouseOrbitAndZoom : MonoBehaviour
 
 	public float zSpeed = -100f;
 
-	public float zMaxLimit = 10f;
+	public float xMinLimit;
 
-	public float zMinLimit = 0.5f;
+	public float xMaxLimit;
 
 	public float yMinLimit = -20f;
 
 	public float yMaxLimit = 80f;
 
-	private float x;
+	public float zMaxLimit = 10f;
 
-	private float y;
+	public float zMinLimit = 0.5f;
+
+	public float x;
+
+	public float y;
 
 	private void Start()
 	{
@@ -52,6 +56,10 @@ public class MouseOrbitAndZoom : MonoBehaviour
 			}
 			x += Input.GetAxis(axisName) * xSpeed * 0.02f;
 			y -= Input.GetAxis(axisName2) * ySpeed * 0.02f;
+			if (xMinLimit != 0f)
+			{
+				x = ClampAngle(x, xMinLimit, xMaxLimit);
+			}
 			y = ClampAngle(y, yMinLimit, yMaxLimit);
 			distance += Input.GetAxis("Mouse ScrollWheel") * zSpeed * 0.02f;
 			distance = ClampAngle(distance, zMinLimit, zMaxLimit);

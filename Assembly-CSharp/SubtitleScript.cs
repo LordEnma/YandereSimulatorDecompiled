@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SubtitleScript : MonoBehaviour
 {
+	public StudentManagerScript StudentManager;
+
 	public JukeboxScript Jukebox;
 
 	public Transform Yandere;
@@ -301,6 +303,8 @@ public class SubtitleScript : MonoBehaviour
 	public string[] SenpaiViolenceReactions;
 
 	public string[] SenpaiRivalDeathReactions;
+
+	public string[] SlaveReactions;
 
 	public string[] RaibaruRivalDeathReactions;
 
@@ -1116,6 +1120,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public AudioClip[] CouncilCounselorClips;
 
+	public AudioClip[] SlaveReactionClips;
+
 	private SubtitleTypeAndAudioClipArrayDictionary SubtitleClipArrays;
 
 	public GameObject CurrentClip;
@@ -1611,6 +1617,10 @@ public class SubtitleScript : MonoBehaviour
 			{
 				SubtitleType.SenpaiRivalDeathReaction,
 				new AudioClipArrayWrapper(SenpaiRivalDeathReactionClips)
+			},
+			{
+				SubtitleType.SlaveReaction,
+				new AudioClipArrayWrapper(SlaveReactionClips)
 			},
 			{
 				SubtitleType.RaibaruRivalDeathReaction,
@@ -2688,6 +2698,10 @@ public class SubtitleScript : MonoBehaviour
 			Label.text = LovestruckDeathReactions[ID];
 			break;
 		case SubtitleType.LovestruckMurderReport:
+			if (StudentManager.CustomMode)
+			{
+				LovestruckMurderReports[0] = "Help! " + StudentManager.JSON.Students[0].Name + " from class 2-1 just killed someone!";
+			}
 			Label.text = LovestruckMurderReports[ID];
 			break;
 		case SubtitleType.LovestruckCorpseReport:
@@ -2980,6 +2994,13 @@ public class SubtitleScript : MonoBehaviour
 			if (subtitleType == SubtitleType.SenpaiRivalDeathReaction)
 			{
 				Label.text = SenpaiRivalDeathReactions[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			}
+			if (subtitleType == SubtitleType.SlaveReaction)
+			{
+				RandomID = Random.Range(0, SlaveReactions.Length);
+				Label.text = SlaveReactions[RandomID];
 				PlayVoice(subtitleType, ID);
 				break;
 			}
@@ -3565,7 +3586,7 @@ public class SubtitleScript : MonoBehaviour
 	{
 		Jukebox.Dip = 0.5f;
 		SubtitleClipArrays.TryGetValue(subtitleType, out var value);
-		if (CurrentClip != null && ID <= value.Length && value[ID] != HmmClips[0])
+		if (CurrentClip != null && ID <= value.Length && value[ID] != null && value[ID] != HmmClips[0])
 		{
 			Object.Destroy(CurrentClip);
 		}

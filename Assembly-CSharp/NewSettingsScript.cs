@@ -503,6 +503,7 @@ public class NewSettingsScript : MonoBehaviour
 				else
 				{
 					QualityManagerUpdateGraphics();
+					QualityManager.UpdateHair();
 				}
 				UpdateLabels();
 			}
@@ -528,6 +529,7 @@ public class NewSettingsScript : MonoBehaviour
 				else
 				{
 					QualityManagerUpdateGraphics();
+					QualityManager.UpdateHair();
 				}
 				UpdateLabels();
 			}

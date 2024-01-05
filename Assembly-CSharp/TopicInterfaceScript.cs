@@ -12,6 +12,8 @@ public class TopicInterfaceScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public SocialScript Social;
+
 	public JsonScript JSON;
 
 	public GameObject NegativeRemark;
@@ -136,21 +138,27 @@ public class TopicInterfaceScript : MonoBehaviour
 			base.gameObject.SetActive(value: false);
 			Time.timeScale = 1f;
 		}
-		else if (Input.GetButtonDown(InputNames.Xbox_X))
-		{
-			if (!Yandere.StudentManager.KokonaTutorial)
-			{
-				Positive = !Positive;
-				UpdateTopicHighlight();
-			}
-		}
 		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
-			Yandere.Interaction = YandereInteractionType.Bye;
-			Yandere.TalkTimer = 2f;
-			Yandere.PromptBar.Show = false;
-			base.gameObject.SetActive(value: false);
-			Time.timeScale = 1f;
+			if (!Socializing)
+			{
+				Yandere.Interaction = YandereInteractionType.Bye;
+				Yandere.TalkTimer = 2f;
+				Yandere.PromptBar.Show = false;
+				base.gameObject.SetActive(value: false);
+				Time.timeScale = 1f;
+			}
+			else
+			{
+				Yandere.PromptBar.ClearButtons();
+				Yandere.PromptBar.Label[0].text = "Confirm";
+				Yandere.PromptBar.Label[4].text = "Change Selection";
+				Yandere.PromptBar.UpdateButtons();
+				Yandere.PromptBar.Show = true;
+				Social.gameObject.SetActive(value: true);
+				base.gameObject.SetActive(value: false);
+				Yandere.HUD.alpha = 0f;
+			}
 		}
 	}
 

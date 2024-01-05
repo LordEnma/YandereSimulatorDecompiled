@@ -14,6 +14,8 @@ public class TitleSaveFilesScript : MonoBehaviour
 
 	public GameObject ConfirmationWindow;
 
+	public GameObject DifficultyWindow;
+
 	public GameObject ChallengeWindow;
 
 	public GameObject ErrorWindow;
@@ -62,6 +64,28 @@ public class TitleSaveFilesScript : MonoBehaviour
 
 	public Texture[] ModernIcons;
 
+	public Transform[] DifficultyHighlight;
+
+	public bool[] DifficultySettings;
+
+	public Transform DifficultArrow;
+
+	public UITexture DifficultyIcon;
+
+	public UILabel DifficultyLabel;
+
+	public Texture[] DifficultyIcons;
+
+	public string[] DifficultyNames;
+
+	public int DifficultyID;
+
+	public int Difficulty;
+
+	public int TopLimit;
+
+	public UILabel[] RaibaruLabel;
+
 	private void Start()
 	{
 		ConfirmationWindow.SetActive(value: false);
@@ -94,7 +118,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 			}
 			Started = false;
 		}
-		if (!ConfirmationWindow.activeInHierarchy && !ChallengeWindow.activeInHierarchy && !ErrorWindow.activeInHierarchy)
+		if (!DifficultyWindow.activeInHierarchy && !ConfirmationWindow.activeInHierarchy && !ChallengeWindow.activeInHierarchy && !ErrorWindow.activeInHierarchy)
 		{
 			if (InputManager.TappedDown)
 			{
@@ -115,185 +139,287 @@ public class TitleSaveFilesScript : MonoBehaviour
 				UpdateHighlight();
 			}
 		}
-		if (!ErrorWindow.activeInHierarchy)
+		if (!DifficultyWindow.activeInHierarchy)
 		{
-			if (!ChallengeWindow.activeInHierarchy)
+			if (!ErrorWindow.activeInHierarchy)
 			{
-				if (!ConfirmationWindow.activeInHierarchy)
+				if (!ChallengeWindow.activeInHierarchy)
 				{
-					if (!PromptBar.Show)
+					if (!ConfirmationWindow.activeInHierarchy)
 					{
-						PromptBar.ClearButtons();
-						if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
+						if (!PromptBar.Show)
 						{
-							PromptBar.Label[0].text = "New Game";
-						}
-						else
-						{
-							PromptBar.Label[0].text = "Load Game";
-						}
-						PromptBar.Label[1].text = "Go Back";
-						PromptBar.Label[4].text = "Change Selection";
-						UpdateHighlight();
-						PromptBar.UpdateButtons();
-						PromptBar.Show = true;
-					}
-					if (Input.GetButtonDown(InputNames.Xbox_A) || (PromptBar.Label[3].text != "" && Input.GetButtonDown(InputNames.Xbox_Y)))
-					{
-						if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
-						{
-							StartNewGame();
-						}
-						else
-						{
-							Debug.Log("The game believed that Profile " + (EightiesPrefix + ID) + " already existed, so that profile is now being loaded.");
-							GameGlobals.Profile = EightiesPrefix + ID;
-							GameGlobals.Eighties = NewTitleScreen.Eighties;
-						}
-						NewTitleScreen.FadeOut = true;
-						if (Input.GetButtonDown(InputNames.Xbox_Y))
-						{
-							if (!NewTitleScreen.Eighties)
+							PromptBar.ClearButtons();
+							if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
 							{
-								NewTitleScreen.QuickStart = true;
+								PromptBar.Label[0].text = "New Game";
 							}
 							else
 							{
-								NewTitleScreen.WeekSelect = true;
+								PromptBar.Label[0].text = "Load Game";
+							}
+							PromptBar.Label[1].text = "Go Back";
+							PromptBar.Label[4].text = "Change Selection";
+							UpdateHighlight();
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+						}
+						if (Input.GetButtonDown(InputNames.Xbox_A) || (PromptBar.Label[3].text != "" && Input.GetButtonDown(InputNames.Xbox_Y)))
+						{
+							if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
+							{
+								DifficultyWindow.SetActive(value: true);
+								PromptBar.Label[2].text = "";
+								PromptBar.Label[5].text = "Change Difficulty";
+								PromptBar.UpdateButtons();
+							}
+							else
+							{
+								Debug.Log("The game believed that Profile " + (EightiesPrefix + ID) + " already existed, so that profile is now being loaded.");
+								GameGlobals.Profile = EightiesPrefix + ID;
+								GameGlobals.Eighties = NewTitleScreen.Eighties;
+								NewTitleScreen.FadeOut = true;
+							}
+							if (Input.GetButtonDown(InputNames.Xbox_Y))
+							{
+								if (!NewTitleScreen.Eighties)
+								{
+									NewTitleScreen.QuickStart = true;
+								}
+								else
+								{
+									NewTitleScreen.WeekSelect = true;
+								}
 							}
 						}
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_B))
-					{
-						NewTitleScreen.Speed = 0f;
-						NewTitleScreen.Phase = 2;
-						PromptBar.Show = false;
-						base.enabled = false;
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_X))
-					{
-						if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 1)
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
-							ConfirmationWindow.SetActive(value: true);
-							return;
+							NewTitleScreen.Speed = 0f;
+							NewTitleScreen.Phase = 2;
+							PromptBar.Show = false;
+							base.enabled = false;
 						}
-						PromptBar.Label[0].text = "Enable/Disable";
-						PromptBar.Label[2].text = "";
-						PromptBar.UpdateButtons();
-						ChallengeWindow.SetActive(value: true);
+						else if (Input.GetButtonDown(InputNames.Xbox_X))
+						{
+							if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 1)
+							{
+								ConfirmationWindow.SetActive(value: true);
+								return;
+							}
+							PromptBar.Label[0].text = "Enable/Disable";
+							PromptBar.Label[2].text = "";
+							PromptBar.UpdateButtons();
+							ChallengeWindow.SetActive(value: true);
+						}
+						else if (PromptBar.Label[6].text != "" && Input.GetButtonDown(InputNames.Xbox_LB))
+						{
+							StartNewGame();
+							NewTitleScreen.CustomMode = true;
+							NewTitleScreen.FadeOut = true;
+						}
 					}
-				}
-				else
-				{
-					PromptBar.Show = false;
-					if (Input.GetButtonDown(InputNames.Xbox_A))
+					else
 					{
-						PlayerPrefs.SetInt("ProfileCreated_" + (EightiesPrefix + ID), 0);
-						ConfirmationWindow.SetActive(value: false);
-						SaveDatas[ID].Start();
+						PromptBar.Show = false;
+						if (Input.GetButtonDown(InputNames.Xbox_A))
+						{
+							PlayerPrefs.SetInt("ProfileCreated_" + (EightiesPrefix + ID), 0);
+							ConfirmationWindow.SetActive(value: false);
+							SaveDatas[ID].Start();
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
+						{
+							ConfirmationWindow.SetActive(value: false);
+						}
 					}
-					else if (Input.GetButtonDown(InputNames.Xbox_B))
-					{
-						ConfirmationWindow.SetActive(value: false);
-					}
-				}
-				return;
-			}
-			if (InputManager.TappedDown)
-			{
-				ChallengeRow++;
-				if (ChallengeRow > 3)
-				{
-					ChallengeRow = 1;
-				}
-				UpdateChallengeHighlight();
-			}
-			if (InputManager.TappedUp)
-			{
-				ChallengeRow--;
-				if (ChallengeRow < 1)
-				{
-					ChallengeRow = 3;
-				}
-				UpdateChallengeHighlight();
-			}
-			if (InputManager.TappedRight)
-			{
-				ChallengeColumn++;
-				if (ChallengeColumn > 4)
-				{
-					ChallengeColumn = 1;
-				}
-				UpdateChallengeHighlight();
-			}
-			if (InputManager.TappedLeft)
-			{
-				ChallengeColumn--;
-				if (ChallengeColumn < 1)
-				{
-					ChallengeColumn = 4;
-				}
-				UpdateChallengeHighlight();
-			}
-			if (Input.GetButtonDown(InputNames.Xbox_A))
-			{
-				if (ChallengeID < 9)
-				{
-					ChallengeCheckmarks[ChallengeID].enabled = !ChallengeCheckmarks[ChallengeID].enabled;
 					return;
 				}
-				StartNewGame();
-				if (ChallengeCheckmarks[1].enabled)
+				if (InputManager.TappedDown)
 				{
-					ChallengeGlobals.KnifeOnly = true;
+					ChallengeRow++;
+					if (ChallengeRow > 3)
+					{
+						ChallengeRow = 1;
+					}
+					UpdateChallengeHighlight();
 				}
-				if (ChallengeCheckmarks[2].enabled)
+				if (InputManager.TappedUp)
 				{
-					ChallengeGlobals.NoAlerts = true;
+					ChallengeRow--;
+					if (ChallengeRow < 1)
+					{
+						ChallengeRow = 3;
+					}
+					UpdateChallengeHighlight();
 				}
-				if (ChallengeCheckmarks[3].enabled)
+				if (InputManager.TappedRight)
 				{
-					ChallengeGlobals.NoBag = true;
+					ChallengeColumn++;
+					if (ChallengeColumn > 4)
+					{
+						ChallengeColumn = 1;
+					}
+					UpdateChallengeHighlight();
 				}
-				if (ChallengeCheckmarks[4].enabled)
+				if (InputManager.TappedLeft)
 				{
-					ChallengeGlobals.NoFriends = true;
+					ChallengeColumn--;
+					if (ChallengeColumn < 1)
+					{
+						ChallengeColumn = 4;
+					}
+					UpdateChallengeHighlight();
 				}
-				if (ChallengeCheckmarks[5].enabled)
+				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
-					ChallengeGlobals.NoGaming = true;
+					if (ChallengeID < 9)
+					{
+						ChallengeCheckmarks[ChallengeID].enabled = !ChallengeCheckmarks[ChallengeID].enabled;
+						return;
+					}
+					StartNewGame();
+					if (ChallengeCheckmarks[1].enabled)
+					{
+						ChallengeGlobals.KnifeOnly = true;
+					}
+					if (ChallengeCheckmarks[2].enabled)
+					{
+						ChallengeGlobals.NoAlerts = true;
+					}
+					if (ChallengeCheckmarks[3].enabled)
+					{
+						ChallengeGlobals.NoBag = true;
+					}
+					if (ChallengeCheckmarks[4].enabled)
+					{
+						ChallengeGlobals.NoFriends = true;
+					}
+					if (ChallengeCheckmarks[5].enabled)
+					{
+						ChallengeGlobals.NoGaming = true;
+					}
+					if (ChallengeCheckmarks[6].enabled)
+					{
+						ChallengeGlobals.NoInfo = true;
+					}
+					if (ChallengeCheckmarks[7].enabled)
+					{
+						ChallengeGlobals.NoLaugh = true;
+					}
+					if (ChallengeCheckmarks[8].enabled)
+					{
+						ChallengeGlobals.RivalsOnly = true;
+					}
+					NewTitleScreen.FadeOut = true;
 				}
-				if (ChallengeCheckmarks[6].enabled)
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
-					ChallengeGlobals.NoInfo = true;
+					ChallengeWindow.SetActive(value: false);
+					PromptBar.Label[0].text = "New Game";
+					PromptBar.Label[2].text = "Challenges";
+					PromptBar.UpdateButtons();
 				}
-				if (ChallengeCheckmarks[7].enabled)
-				{
-					ChallengeGlobals.NoLaugh = true;
-				}
-				if (ChallengeCheckmarks[8].enabled)
-				{
-					ChallengeGlobals.RivalsOnly = true;
-				}
-				NewTitleScreen.FadeOut = true;
 			}
-			else if (Input.GetButtonDown(InputNames.Xbox_B))
+			else if (Input.GetKeyDown("e"))
 			{
-				ChallengeWindow.SetActive(value: false);
-				PromptBar.Label[0].text = "New Game";
-				PromptBar.Label[2].text = "Challenges";
-				PromptBar.UpdateButtons();
+				PlayerPrefs.DeleteAll();
+				Debug.Log("All player prefs deleted...");
+				Application.Quit();
+			}
+			else if (Input.GetKeyDown("q"))
+			{
+				Application.Quit();
+			}
+			return;
+		}
+		if (NewTitleScreen.Eighties)
+		{
+			RaibaruLabel[0].enabled = false;
+			RaibaruLabel[1].enabled = false;
+			TopLimit = 2;
+			if (DifficultyID < TopLimit)
+			{
+				DifficultyID = TopLimit;
+				DifficultArrow.localPosition = new Vector3(-700f, 500 - 150 * DifficultyID, 0f);
 			}
 		}
-		else if (Input.GetKeyDown("e"))
+		else
 		{
-			PlayerPrefs.DeleteAll();
-			Debug.Log("All player prefs deleted...");
-			Application.Quit();
+			RaibaruLabel[0].enabled = true;
+			RaibaruLabel[1].enabled = true;
+			TopLimit = 1;
 		}
-		else if (Input.GetKeyDown("q"))
+		if (InputManager.TappedDown)
 		{
-			Application.Quit();
+			DifficultyID++;
+			if (DifficultyID > 7)
+			{
+				DifficultyID = TopLimit;
+			}
+			DifficultArrow.localPosition = new Vector3(-700f, 500 - 150 * DifficultyID, 0f);
+		}
+		if (InputManager.TappedUp)
+		{
+			DifficultyID--;
+			if (DifficultyID < TopLimit)
+			{
+				DifficultyID = 7;
+			}
+			DifficultArrow.localPosition = new Vector3(-700f, 500 - 150 * DifficultyID, 0f);
+		}
+		if (InputManager.TappedRight || InputManager.TappedLeft)
+		{
+			DifficultySettings[DifficultyID] = !DifficultySettings[DifficultyID];
+			if (!DifficultySettings[DifficultyID])
+			{
+				DifficultyHighlight[DifficultyID].localPosition = new Vector3(-300f, DifficultyHighlight[DifficultyID].localPosition.y, DifficultyHighlight[DifficultyID].localPosition.z);
+			}
+			else
+			{
+				DifficultyHighlight[DifficultyID].localPosition = new Vector3(400f, DifficultyHighlight[DifficultyID].localPosition.y, DifficultyHighlight[DifficultyID].localPosition.z);
+			}
+			DetermineDifficulty();
+		}
+		if (Input.GetButtonDown(InputNames.Xbox_A))
+		{
+			DifficultyWindow.SetActive(value: false);
+			StartNewGame();
+			if (DifficultySettings[1])
+			{
+				DifficultyGlobals.InvincibleRaibaru = true;
+			}
+			if (DifficultySettings[2])
+			{
+				DifficultyGlobals.NoCase = true;
+			}
+			if (DifficultySettings[3])
+			{
+				DifficultyGlobals.TransparentFence = true;
+			}
+			if (DifficultySettings[4])
+			{
+				DifficultyGlobals.MustStrangle = true;
+			}
+			if (DifficultySettings[5])
+			{
+				DifficultyGlobals.MudRequired = true;
+			}
+			if (DifficultySettings[6])
+			{
+				DifficultyGlobals.CraftBodybags = true;
+			}
+			if (DifficultySettings[7])
+			{
+				DifficultyGlobals.WeaponsBreak = true;
+			}
+			NewTitleScreen.FadeOut = true;
+		}
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
+		{
+			DifficultyWindow.SetActive(value: false);
+			PromptBar.Label[2].text = "Challenges";
+			PromptBar.Label[5].text = "";
+			PromptBar.UpdateButtons();
 		}
 	}
 
@@ -319,6 +445,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 			else
 			{
 				PromptBar.Label[3].text = "Week Select";
+				PromptBar.Label[6].text = "Custom Mode";
 			}
 		}
 		PromptBar.UpdateButtons();
@@ -393,5 +520,19 @@ public class TitleSaveFilesScript : MonoBehaviour
 	{
 		ChallengeIcons[5].mainTexture = ModernIcons[5];
 		ChallengeIcons[6].mainTexture = ModernIcons[6];
+	}
+
+	public void DetermineDifficulty()
+	{
+		Difficulty = 0;
+		for (int i = 1; i < DifficultySettings.Length; i++)
+		{
+			if (DifficultySettings[i])
+			{
+				Difficulty++;
+			}
+		}
+		DifficultyLabel.text = DifficultyNames[Difficulty];
+		DifficultyIcon.mainTexture = DifficultyIcons[Difficulty];
 	}
 }

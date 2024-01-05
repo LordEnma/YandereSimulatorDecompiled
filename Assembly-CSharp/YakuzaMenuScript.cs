@@ -10,6 +10,8 @@ public class YakuzaMenuScript : MonoBehaviour
 
 	public PromptBarScript PromptBar;
 
+	public JsonScript JSON;
+
 	public UISprite AssassinationMenu;
 
 	public UISprite ContrabandMenu;
@@ -188,50 +190,71 @@ public class YakuzaMenuScript : MonoBehaviour
 		UpdateCrosshair();
 		UpdateBullet();
 		UpdateItem();
-		int i = 1;
-		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_1.png");
-		for (; i < 11; i++)
+		string text = "1989";
+		if (GameGlobals.CustomMode)
 		{
-			wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + (i + 10) + ".png");
-			RivalPortraits[i].mainTexture = wWW.texture;
-			if (StudentGlobals.GetStudentDead(10 + i) || StudentGlobals.GetStudentKidnapped(10 + i) || StudentGlobals.GetStudentArrested(10 + i))
+			text = "Custom";
+			for (int i = 1; i < 11; i++)
 			{
-				RivalPortraits[i].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				RivalNames[i] = JSON.Students[i + 10].Name;
 			}
-			RivalNameLabels[i].text = RivalNames[i];
-			RivalPortraits[i].transform.parent.localEulerAngles = new Vector3(0f, 0f, Random.Range(-5f, 5f));
 		}
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_30.png");
-		RansomPortrait[30].mainTexture = wWW.texture;
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_35.png");
-		RansomPortrait[35].mainTexture = wWW.texture;
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_40.png");
-		RansomPortrait[40].mainTexture = wWW.texture;
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_45.png");
-		RansomPortrait[45].mainTexture = wWW.texture;
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_50.png");
-		RansomPortrait[50].mainTexture = wWW.texture;
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_55.png");
-		RansomPortrait[55].mainTexture = wWW.texture;
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_60.png");
-		RansomPortrait[60].mainTexture = wWW.texture;
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_65.png");
-		RansomPortrait[65].mainTexture = wWW.texture;
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_70.png");
-		RansomPortrait[70].mainTexture = wWW.texture;
-		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_75.png");
-		RansomPortrait[75].mainTexture = wWW.texture;
-		for (i = DateGlobals.Week + 1; i < 11; i++)
+		string text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_1.png";
+		Debug.Log("Path is: " + text2);
+		WWW wWW = new WWW(text2);
+		for (int j = 1; j < 11; j++)
 		{
-			RivalPortraits[i].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-			RivalPortraits[i].mainTexture = BlankPortrait;
-			RivalNameLabels[i].text = "?????";
+			text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_" + (j + 10) + ".png";
+			wWW = new WWW(text2);
+			RivalPortraits[j].mainTexture = wWW.texture;
+			if (StudentGlobals.GetStudentDead(10 + j) || StudentGlobals.GetStudentKidnapped(10 + j) || StudentGlobals.GetStudentArrested(10 + j))
+			{
+				RivalPortraits[j].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			}
+			RivalNameLabels[j].text = RivalNames[j];
+			RivalPortraits[j].transform.parent.localEulerAngles = new Vector3(0f, 0f, Random.Range(-5f, 5f));
+		}
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_30.png";
+		wWW = new WWW(text2);
+		RansomPortrait[30].mainTexture = wWW.texture;
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_35.png";
+		wWW = new WWW(text2);
+		RansomPortrait[35].mainTexture = wWW.texture;
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_40.png";
+		wWW = new WWW(text2);
+		RansomPortrait[40].mainTexture = wWW.texture;
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_45.png";
+		wWW = new WWW(text2);
+		RansomPortrait[45].mainTexture = wWW.texture;
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_50.png";
+		wWW = new WWW(text2);
+		RansomPortrait[50].mainTexture = wWW.texture;
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_55.png";
+		wWW = new WWW(text2);
+		RansomPortrait[55].mainTexture = wWW.texture;
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_60.png";
+		wWW = new WWW(text2);
+		RansomPortrait[60].mainTexture = wWW.texture;
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_65.png";
+		wWW = new WWW(text2);
+		RansomPortrait[65].mainTexture = wWW.texture;
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_70.png";
+		wWW = new WWW(text2);
+		RansomPortrait[70].mainTexture = wWW.texture;
+		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_75.png";
+		wWW = new WWW(text2);
+		RansomPortrait[75].mainTexture = wWW.texture;
+		for (int j = DateGlobals.Week + 1; j < 11; j++)
+		{
+			RivalPortraits[j].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			RivalPortraits[j].mainTexture = BlankPortrait;
+			RivalNameLabels[j].text = "?????";
 		}
 		Panel.alpha = 0f;
 		Alpha = 0f;
-		for (int j = 1; j < Scales.Length; j++)
+		for (int k = 1; k < Scales.Length; k++)
 		{
-			Scales[j].material.color = new Color(1f, 0f, 0f, Alpha);
+			Scales[k].material.color = new Color(1f, 0f, 0f, Alpha);
 		}
 		Background.material.color = new Color(1f, 0f, 0f, 0f);
 		if (GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night || StudentGlobals.GetStudentDead(79) || ChallengeGlobals.NoInfo)

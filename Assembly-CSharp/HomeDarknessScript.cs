@@ -52,6 +52,7 @@ public class HomeDarknessScript : MonoBehaviour
 			{
 				return;
 			}
+			GameGlobals.LastInputType = (int)InputDevice.Type;
 			HomeCamera.Profile.bloom.enabled = HomeCamera.RestoreBloom;
 			HomeCamera.Profile.depthOfField.enabled = HomeCamera.RestoreDOF;
 			if (HomeCamera.ID == 0)
@@ -240,7 +241,15 @@ public class HomeDarknessScript : MonoBehaviour
 				{
 					DateGlobals.PassDays = 1;
 				}
-				SceneManager.LoadScene("CalendarScene");
+				if (GameGlobals.Dream == 0)
+				{
+					SceneManager.LoadScene("CalendarScene");
+				}
+				else if (GameGlobals.Dream == 1)
+				{
+					GameGlobals.Dream = 0;
+					SceneManager.LoadScene("OriginDreamScene");
+				}
 			}
 			else
 			{
@@ -272,6 +281,7 @@ public class HomeDarknessScript : MonoBehaviour
 		{
 			PlayerGlobals.UsingGamepad = false;
 		}
+		GameGlobals.LastInputType = (int)InputDevice.Type;
 		int buildIndexByScenePath = SceneUtility.GetBuildIndexByScenePath("WalkToSchoolScene");
 		if (!GameGlobals.Eighties && GameGlobals.RivalEliminationID == 0 && !StudentGlobals.GetStudentKidnapped(11) && StudentGlobals.StudentSlave != 11 && DateGlobals.Weekday == DayOfWeek.Thursday && !HomeGlobals.LateForSchool && StudentGlobals.GetStudentReputation(11) > -100 && buildIndexByScenePath > -1)
 		{

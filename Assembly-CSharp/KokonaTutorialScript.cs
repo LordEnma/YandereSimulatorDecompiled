@@ -340,6 +340,9 @@ public class KokonaTutorialScript : MonoBehaviour
 			MainCamera.transform.position = CameraStartPoint.position;
 			MainCamera.transform.eulerAngles = CameraStartPoint.eulerAngles;
 			StudentSpawnPoints = TutorialIntroPoints;
+			StudentManager.SetTopicDiscussedWithStudent(2, 30, boolean: false);
+			StudentManager.SetTopicDiscussedWithStudent(20, 30, boolean: false);
+			StudentManager.DialogueWheel.Social.SpokePositive[30] = false;
 			StudentManager.Yandere.Police.StudentFoundCorpse = false;
 			StudentManager.DialogueWheel.KokonaTutorialPhase = 0;
 			StudentManager.StudentPhotographed[30] = false;
@@ -684,6 +687,7 @@ public class KokonaTutorialScript : MonoBehaviour
 					{
 						DateGlobals.Weekday = DayOfWeek.Sunday;
 						GameGlobals.KokonaTutorial = false;
+						GameGlobals.LastInputType = (int)InputDevice.Type;
 						SceneManager.LoadScene("PhoneScene");
 					}
 				}
@@ -1127,6 +1131,14 @@ public class KokonaTutorialScript : MonoBehaviour
 			}
 			else if (TutorialPhase == 3)
 			{
+				if (StudentManager.DialogueWheel.Social.enabled)
+				{
+					InstructionLabel.transform.localPosition = new Vector3(0f, 400f, 0f);
+				}
+				else
+				{
+					InstructionLabel.transform.localPosition = new Vector3(0f, 500f, 0f);
+				}
 				if (StudentManager.DialogueWheel.TopicInterface.gameObject.activeInHierarchy)
 				{
 					TutorialPhase++;
@@ -1139,11 +1151,15 @@ public class KokonaTutorialScript : MonoBehaviour
 				{
 					InstructionLabel.transform.localPosition = new Vector3(0f, 270f, 0f);
 				}
+				else if (StudentManager.DialogueWheel.Social.enabled)
+				{
+					InstructionLabel.transform.localPosition = new Vector3(0f, 400f, 0f);
+				}
 				else
 				{
 					InstructionLabel.transform.localPosition = new Vector3(0f, 500f, 0f);
 				}
-				if (StudentManager.Students[30].Complimented && Yandere.CanMove)
+				if (StudentManager.DialogueWheel.Social.SpokePositive[30] && Yandere.CanMove)
 				{
 					StudentManager.Students[30].Prompt.enabled = false;
 					StudentManager.Students[30].Prompt.Hide();

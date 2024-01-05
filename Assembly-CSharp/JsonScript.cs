@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,13 +15,50 @@ public class JsonScript : MonoBehaviour
 	[SerializeField]
 	private TopicJson[] topics;
 
-	public StudentJson[] Students => students;
+	[SerializeField]
+	private MiscJson misc;
+
+	protected static string FolderPath => Path.Combine(Application.streamingAssetsPath, "JSON");
+
+	public StudentJson[] Students
+	{
+		get
+		{
+			return students;
+		}
+		set
+		{
+			students = value;
+		}
+	}
 
 	public CreditJson[] Credits => credits;
 
-	public TopicJson[] Topics => topics;
+	public TopicJson[] Topics
+	{
+		get
+		{
+			return topics;
+		}
+		set
+		{
+			topics = value;
+		}
+	}
 
-	private void Start()
+	public MiscJson Misc
+	{
+		get
+		{
+			return misc;
+		}
+		set
+		{
+			misc = value;
+		}
+	}
+
+	public void Start()
 	{
 		students = StudentJson.LoadFromJson(StudentJson.FilePath);
 		topics = TopicJson.LoadFromJson(TopicJson.FilePath);
@@ -30,6 +70,15 @@ public class JsonScript : MonoBehaviour
 		else if (SceneManager.GetActiveScene().name == "CreditsScene")
 		{
 			credits = CreditJson.LoadFromJson(CreditJson.FilePath);
+		}
+		if (GameGlobals.CustomMode)
+		{
+			StudentJson[] array = JsonConvert.DeserializeObject<StudentJson[]>(File.ReadAllText(Path.Combine(FolderPath, "Custom.json")));
+			Students = array;
+			TopicJson[] array2 = JsonConvert.DeserializeObject<TopicJson[]>(File.ReadAllText(Path.Combine(FolderPath, "CustomTopics.json")));
+			Topics = array2;
+			MiscJson miscJson = JsonConvert.DeserializeObject<MiscJson>(File.ReadAllText(Path.Combine(FolderPath, "Misc.json")));
+			Misc = miscJson;
 		}
 	}
 
@@ -75,5 +124,25 @@ public class JsonScript : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public static Dictionary<string, string>[] TopicAdapter(TopicJson[] topics)
+	{
+		List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
+		for (int i = 0; i < topics.Length; i++)
+		{
+			TopicJson topicJson = topics[i];
+			if (topicJson != null && topicJson.Topics != null)
+			{
+				Dictionary<string, string> dictionary = new Dictionary<string, string>();
+				dictionary["ID"] = i.ToString();
+				for (int j = 0; j < topicJson.Topics.Length; j++)
+				{
+					dictionary[j.ToString()] = topicJson.Topics[j].ToString();
+				}
+				list.Add(dictionary);
+			}
+		}
+		return list.ToArray();
 	}
 }

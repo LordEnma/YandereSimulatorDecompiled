@@ -6,6 +6,8 @@ public class PhoneScript : MonoBehaviour
 {
 	public OsanaTextMessageScript OsanaMessages;
 
+	public InputDeviceScript InputDevice;
+
 	public GameObject[] RightMessage;
 
 	public GameObject[] LeftMessage;
@@ -263,6 +265,7 @@ public class PhoneScript : MonoBehaviour
 			Jukebox.volume = 0.25f - Darkness.color.a * 0.25f;
 			if (Darkness.color.a >= 1f)
 			{
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				if (DateGlobals.Week == 2)
 				{
 					GameGlobals.TransitionToPostCredits = true;

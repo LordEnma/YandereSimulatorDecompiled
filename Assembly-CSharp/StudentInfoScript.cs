@@ -298,6 +298,10 @@ public class StudentInfoScript : MonoBehaviour
 		if (Eighties)
 		{
 			text2 = "1989";
+			if (GameGlobals.CustomMode)
+			{
+				text2 = "Custom";
+			}
 		}
 		if (ID < 98)
 		{

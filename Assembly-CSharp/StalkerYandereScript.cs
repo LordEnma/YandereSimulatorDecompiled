@@ -136,6 +136,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public bool UpdateBlendshapes;
 
+	public bool ThanksForPlaying;
+
 	public bool LethalPoison;
 
 	public bool Initialized;
@@ -321,7 +323,10 @@ public class StalkerYandereScript : MonoBehaviour
 				Debug.Log("Setting Ryoba Blendshapes 2");
 				if (!Asylum)
 				{
-					MyRenderer = EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+					if (EightiesAttacher != null)
+					{
+						MyRenderer = EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+					}
 				}
 				else
 				{
@@ -335,7 +340,7 @@ public class StalkerYandereScript : MonoBehaviour
 					MyRenderer.SetBlendShapeWeight(12, 100f);
 				}
 			}
-			else if (!Street)
+			else if (HomeGlobals.Night && !ThanksForPlaying)
 			{
 				MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
 				MyRenderer.SetBlendShapeWeight(8, 50f);

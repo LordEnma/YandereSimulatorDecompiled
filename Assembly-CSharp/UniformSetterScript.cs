@@ -22,6 +22,8 @@ public class UniformSetterScript : MonoBehaviour
 
 	public Texture OsanaFace;
 
+	public Texture Nude;
+
 	public int FaceID;
 
 	public int SkinID;
@@ -125,6 +127,10 @@ public class UniformSetterScript : MonoBehaviour
 		else if (StudentID == 1)
 		{
 			MyRenderer.materials[2].mainTexture = AyanoFace;
+			if (Ryoba)
+			{
+				MyRenderer.materials[0].mainTexture = Nude;
+			}
 		}
 		else
 		{

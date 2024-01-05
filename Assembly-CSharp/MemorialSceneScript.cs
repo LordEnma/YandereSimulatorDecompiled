@@ -67,6 +67,10 @@ public class MemorialSceneScript : MonoBehaviour
 			StudentManager.IdolStage.SetActive(value: false);
 			text = "1989";
 			TurnYoung();
+			if (GameGlobals.CustomMode)
+			{
+				text = "Custom";
+			}
 		}
 		else
 		{

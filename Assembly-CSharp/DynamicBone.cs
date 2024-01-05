@@ -123,7 +123,7 @@ public class DynamicBone : MonoBehaviour
 
 	private void Start()
 	{
-		if (SceneManager.GetActiveScene().name == "PortraitScene")
+		if (SceneManager.GetActiveScene().name == "PortraitScene" || SceneManager.GetActiveScene().name == "CustomModeScene")
 		{
 			base.enabled = false;
 			return;

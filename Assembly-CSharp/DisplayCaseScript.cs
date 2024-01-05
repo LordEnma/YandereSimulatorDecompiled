@@ -50,21 +50,29 @@ public class DisplayCaseScript : MonoBehaviour
 		if (Prompt.Circle[1].fillAmount == 0f)
 		{
 			Prompt.Circle[1].fillAmount = 1f;
-			Prompt.Yandere.SuspiciousActionTimer = Prompt.Yandere.CharacterAnimation[BreakAnimName].time;
-			Prompt.Yandere.CharacterAnimation.CrossFade(BreakAnimName);
-			Prompt.Yandere.LockpickTarget = BreakSpot;
-			Prompt.Yandere.BreakAnim = BreakAnimName;
-			Prompt.Yandere.BreakingGlass = true;
-			Prompt.Yandere.CanMove = false;
-			if (Type == 1 || Type == 3)
+			if (Prompt.Yandere.Class.PhysicalGrade + Prompt.Yandere.Class.PhysicalBonus > 0)
 			{
-				Prompt.Yandere.SuspiciousActionTimer = 1.5f;
-				BreakTimer = 0.66666f;
+				Prompt.Yandere.SuspiciousActionTimer = Prompt.Yandere.CharacterAnimation[BreakAnimName].time;
+				Prompt.Yandere.CharacterAnimation.CrossFade(BreakAnimName);
+				Prompt.Yandere.LockpickTarget = BreakSpot;
+				Prompt.Yandere.BreakAnim = BreakAnimName;
+				Prompt.Yandere.BreakingGlass = true;
+				Prompt.Yandere.CanMove = false;
+				if (Type == 1 || Type == 3)
+				{
+					Prompt.Yandere.SuspiciousActionTimer = 1.5f;
+					BreakTimer = 0.66666f;
+				}
+				else if (Type == 2)
+				{
+					Prompt.Yandere.SuspiciousActionTimer = 3f;
+					BreakTimer = 1.33333f;
+				}
 			}
-			else if (Type == 2)
+			else
 			{
-				Prompt.Yandere.SuspiciousActionTimer = 3f;
-				BreakTimer = 1.33333f;
+				Prompt.Yandere.NotificationManager.CustomText = "You lack the physical strength to break it";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
 		}
 		if (Open)

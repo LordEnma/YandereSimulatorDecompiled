@@ -18,8 +18,12 @@ public class SplashCameraScript : MonoBehaviour
 	{
 		if (Show)
 		{
-			MyCamera.rect = new Rect(MyCamera.rect.x, MyCamera.rect.y, Mathf.Lerp(MyCamera.rect.width, 0.4f, Time.deltaTime * 10f), Mathf.Lerp(MyCamera.rect.height, 0.71104f, Time.deltaTime * 10f));
-			Timer += Time.deltaTime;
+			MyCamera.rect = new Rect(MyCamera.rect.x, MyCamera.rect.y, Mathf.Lerp(MyCamera.rect.width, 0.4f, Time.unscaledDeltaTime * 10f), Mathf.Lerp(MyCamera.rect.height, 0.71104f, Time.unscaledDeltaTime * 10f));
+			if (Time.timeScale < 0.5f)
+			{
+				Timer = 15f;
+			}
+			Timer += Time.unscaledDeltaTime;
 			if (Timer > 15f)
 			{
 				Show = false;
@@ -28,7 +32,7 @@ public class SplashCameraScript : MonoBehaviour
 		}
 		else
 		{
-			MyCamera.rect = new Rect(MyCamera.rect.x, MyCamera.rect.y, Mathf.Lerp(MyCamera.rect.width, 0f, Time.deltaTime * 10f), Mathf.Lerp(MyCamera.rect.height, 0f, Time.deltaTime * 10f));
+			MyCamera.rect = new Rect(MyCamera.rect.x, MyCamera.rect.y, Mathf.Lerp(MyCamera.rect.width, 0f, Time.unscaledDeltaTime * 10f), Mathf.Lerp(MyCamera.rect.height, 0f, Time.unscaledDeltaTime * 10f));
 			if (MyCamera.enabled && MyCamera.rect.width < 0.1f)
 			{
 				MyCamera.enabled = false;

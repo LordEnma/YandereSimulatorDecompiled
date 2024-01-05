@@ -8,6 +8,7 @@ public class BlendShapeRemover : MonoBehaviour
 	{
 		if (!SystemInfo.supportsComputeShaders)
 		{
+			Debug.Log("Removing blendshapes.");
 			SelectedMesh.sharedMesh.ClearBlendShapes();
 		}
 	}

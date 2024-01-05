@@ -225,6 +225,10 @@ public class PoliceScript : MonoBehaviour
 			TargetX = 25f;
 			TargetY = -25f;
 		}
+		if (GameGlobals.CustomMode)
+		{
+			Protagonist = JSON.Students[0].Name;
+		}
 	}
 
 	private void Update()

@@ -105,9 +105,13 @@ public class PauseScreenScript : MonoBehaviour
 
 	public Transform PromptParent;
 
+	public UISprite[] PhoneIcons;
+
+	public UISprite[] PhoneShadows;
+
 	public UITexture[] EightiesPhoneIcons;
 
-	public UISprite[] PhoneIcons;
+	public UITexture[] EightiesPhoneShadows;
 
 	public string[] SelectionNames;
 
@@ -196,7 +200,9 @@ public class PauseScreenScript : MonoBehaviour
 			for (int i = 1; i < 19; i++)
 			{
 				EightiesPhoneIcons[i].enabled = true;
+				EightiesPhoneShadows[i].enabled = true;
 				PhoneIcons[i].enabled = false;
+				PhoneShadows[i].enabled = false;
 				EightiesPhoneIcons[i].color = PhoneIcons[i].color;
 			}
 			SelectionNames[5] = "Ideas";
@@ -208,6 +214,11 @@ public class PauseScreenScript : MonoBehaviour
 		}
 		else
 		{
+			for (int j = 1; j < 19; j++)
+			{
+				EightiesPhoneIcons[j].enabled = false;
+				EightiesPhoneShadows[j].enabled = false;
+			}
 			NoInfo = ChallengeGlobals.NoInfo;
 		}
 		if (!(SceneManager.GetActiveScene().name == "SchoolScene"))
@@ -712,6 +723,7 @@ public class PauseScreenScript : MonoBehaviour
 							Sideways = true;
 							PromptBar.ClearButtons();
 							PromptBar.Label[1].text = "Back";
+							PromptBar.Label[5].text = "Change Category";
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
 						}

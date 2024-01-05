@@ -59,6 +59,7 @@ public class LifeNoteScript : MonoBehaviour
 		BackgroundArt.localPosition = new Vector3(0f, -540f, 0f);
 		BackgroundArt.localScale = new Vector3(2.5f, 2.5f, 1f);
 		TextWindow.color = new Color(1f, 1f, 1f, 0f);
+		GameGlobals.WatchedAnime = true;
 	}
 
 	private void Update()

@@ -92,6 +92,8 @@ public class RagdollScript : MonoBehaviour
 
 	public bool TeleportNextFrame;
 
+	public bool BodybagRequired;
+
 	public bool ColoredOutline;
 
 	public bool AddingToCount;
@@ -926,6 +928,8 @@ public class RagdollScript : MonoBehaviour
 		{
 			Student.Cosmetic.BurlapSack.newRenderer.updateWhenOffscreen = true;
 		}
+		Student.EyeShrink = 0f;
+		Student.ResetEyes();
 	}
 
 	public void QuickDismember()
@@ -1150,6 +1154,7 @@ public class RagdollScript : MonoBehaviour
 
 	public void DestroyRigidbodies()
 	{
+		Debug.Log("DestroyRigidbodies() was just called.");
 		BloodPoolSpawner.gameObject.SetActive(value: false);
 		for (int i = 0; i < AllRigidbodies.Length; i++)
 		{
@@ -1299,6 +1304,11 @@ public class RagdollScript : MonoBehaviour
 
 	private void SpawnAlarmDisc()
 	{
-		Object.Instantiate(Student.AlarmDisc, new Vector3(Student.Hips.position.x, 1f, Student.Hips.position.z), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
+		GameObject gameObject = Object.Instantiate(Student.AlarmDisc, new Vector3(Student.Hips.position.x, 1f, Student.Hips.position.z), Quaternion.identity);
+		gameObject.transform.localScale = new Vector3(1000f, 1f, 1000f);
+		if (Pushed)
+		{
+			gameObject.GetComponent<AlarmDiscScript>().FarTargetDistance = true;
+		}
 	}
 }

@@ -19,6 +19,10 @@ public class LeaveGiftScript : MonoBehaviour
 		{
 			Prompt.HideButton[1] = true;
 		}
+		else
+		{
+			Debug.Log("CollectibleGlobals.SenpaiGifts is: " + CollectibleGlobals.SenpaiGifts);
+		}
 	}
 
 	private void Update()
@@ -38,7 +42,6 @@ public class LeaveGiftScript : MonoBehaviour
 			else if (Prompt.Circle[1].fillAmount == 0f)
 			{
 				Prompt.HideButton[1] = true;
-				EndOfDay.SenpaiGifts--;
 				Box.SetActive(value: true);
 				CheckForDisable();
 			}

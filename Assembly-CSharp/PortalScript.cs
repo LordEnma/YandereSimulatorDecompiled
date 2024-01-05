@@ -42,6 +42,8 @@ public class PortalScript : MonoBehaviour
 
 	public PromptBarScript PromptBar;
 
+	public WoodChipperScript Kiln;
+
 	public YandereScript Yandere;
 
 	public PoliceScript Police;
@@ -205,6 +207,10 @@ public class PortalScript : MonoBehaviour
 			}
 			else
 			{
+				if (StudentManager.Eighties && StudentManager.Week == 9 && StudentManager.Students[19] != null && !StudentManager.Students[19].Alive)
+				{
+					StudentManager.RevertEightiesWeek9RoutineAdjustments();
+				}
 				CheckForLateness();
 				Reputation.UpdateRep();
 				bool flag2 = false;
@@ -411,12 +417,14 @@ public class PortalScript : MonoBehaviour
 							StudentManager.UpdateGraffiti();
 						}
 						Yandere.Incinerator.Timer -= 780f - Clock.PresentTime;
+						Kiln.BurnTimer -= 780f - Clock.PresentTime;
 						DelinquentManager.CheckTime();
 						Clock.PresentTime = 780f;
 					}
 					else
 					{
 						Yandere.Incinerator.Timer -= 930f - Clock.PresentTime;
+						Kiln.BurnTimer -= 900f - Clock.PresentTime;
 						DelinquentManager.CheckTime();
 						Clock.PresentTime = 930f;
 					}
@@ -459,6 +467,7 @@ public class PortalScript : MonoBehaviour
 			}
 			else
 			{
+				Yandere.transform.position = new Vector3(-9.62f, 4f, -26f);
 				Yandere.CharacterAnimation.CrossFade("f02_takingNotes_00");
 				ClassDarkness.alpha = Mathf.MoveTowards(ClassDarkness.alpha, 0f, Time.deltaTime);
 			}
@@ -586,10 +595,7 @@ public class PortalScript : MonoBehaviour
 		if (Clock.HourTime < 15.5f)
 		{
 			Debug.Log("It's before 3:30 PM.");
-			if (!Police.SelfReported)
-			{
-				Yandere.transform.position = new Vector3(-9.62f, 4f, -26f);
-			}
+			_ = Police.SelfReported;
 		}
 		Police.Darkness.enabled = true;
 		Police.FadeOut = true;

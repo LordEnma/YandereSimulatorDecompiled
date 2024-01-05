@@ -44,26 +44,34 @@ public class SmokeBombScript : MonoBehaviour
 			return;
 		}
 		StudentScript component = other.gameObject.GetComponent<StudentScript>();
-		if (!(component != null))
+		if (component != null)
 		{
-			return;
-		}
-		if (Stink)
-		{
-			if (component != null && !component.Yandere.Noticed && !component.Guarding && !component.Fleeing)
+			if (Stink)
 			{
-				GoAway(component);
+				if (component != null && !component.Yandere.Noticed && !component.Guarding && !component.Fleeing)
+				{
+					GoAway(component);
+				}
+				return;
 			}
-			return;
+			if (Amnesia && !component.Chasing)
+			{
+				component.ReturnToNormal();
+			}
+			Debug.Log(component.Name + " has been blinded.");
+			Students[ID] = component;
+			component.Blind = true;
+			ID++;
 		}
-		if (Amnesia && !component.Chasing)
+		else
 		{
-			component.ReturnToNormal();
+			WitnessChanScript component2 = other.gameObject.GetComponent<WitnessChanScript>();
+			if (component2 != null)
+			{
+				component2.Pathfinding.enabled = true;
+				component2.Fleeing = true;
+			}
 		}
-		Debug.Log(component.Name + " has been blinded.");
-		Students[ID] = component;
-		component.Blind = true;
-		ID++;
 	}
 
 	private void OnTriggerStay(Collider other)

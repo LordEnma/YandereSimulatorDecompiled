@@ -1968,6 +1968,7 @@ public class CounselorScript : MonoBehaviour
 		}
 		else if (InterrogationPhase == 11 && (Timer > MyAudio.clip.length + 0.5f || Input.GetButtonDown(InputNames.Xbox_A)) && !Yandere.Police.FadeOut)
 		{
+			PromptBar.Show = false;
 			CounselorPunishments++;
 			Yandere.Police.Darkness.color = new Color(0f, 0f, 0f, 0f);
 			Yandere.Police.SuspensionLength = Mathf.Abs(Patience);

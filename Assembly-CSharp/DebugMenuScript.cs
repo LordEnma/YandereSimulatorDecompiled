@@ -463,6 +463,7 @@ public class DebugMenuScript : MonoBehaviour
 						Yandere.Class.Seduction = 5;
 						ClassGlobals.PhysicalGrade = 5;
 						Yandere.Class.PhysicalGrade = 5;
+						Yandere.PhysicalGrade = 5;
 						StudentManager.Police.UpdateCorpses();
 						for (ID = 1; ID < 101; ID++)
 						{
@@ -933,7 +934,6 @@ public class DebugMenuScript : MonoBehaviour
 			}
 			if (Yandere.MyRenderer.sharedMesh == Yandere.Uniforms[2])
 			{
-				Debug.Log("Long-sleeved school uniform. Changing which variable get set to 0.");
 				Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
 			}
 			EasterEggCheck();
@@ -954,10 +954,8 @@ public class DebugMenuScript : MonoBehaviour
 
 	public void EasterEggCheck()
 	{
-		Debug.Log("Checking for easter eggs.");
-		if (Yandere.BanchoActive || Yandere.Sans || (Yandere.RaincoatAttacher.newRenderer != null && Yandere.RaincoatAttacher.newRenderer.enabled) || Yandere.KLKSword.activeInHierarchy || Yandere.Gazing || Yandere.Ninja || Yandere.ClubAttire || Yandere.LifeNotebook.activeInHierarchy || Yandere.FalconHelmet.activeInHierarchy || Yandere.WearingRaincoat || Yandere.MyRenderer.sharedMesh == Yandere.NudeMesh || Yandere.MyRenderer.sharedMesh == Yandere.SchoolSwimsuit)
+		if (Yandere.BanchoActive || Yandere.Sans || (Yandere.RaincoatAttacher.newRenderer != null && Yandere.RaincoatAttacher.newRenderer.enabled) || Yandere.KLKSword.activeInHierarchy || Yandere.Gazing || Yandere.Ninja || Yandere.ClubAttire || Yandere.LunaAttacher.activeInHierarchy || Yandere.LifeNotebook.activeInHierarchy || Yandere.FalconHelmet.activeInHierarchy || Yandere.WearingRaincoat || Yandere.MyRenderer.sharedMesh == Yandere.NudeMesh || Yandere.MyRenderer.sharedMesh == Yandere.SchoolSwimsuit)
 		{
-			Debug.Log("A pants-wearing easter egg is active, so we're going to disable all shadows and panties.");
 			Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 			Yandere.MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 			Yandere.MyRenderer.materials[2].SetFloat("_BlendAmount", 0f);

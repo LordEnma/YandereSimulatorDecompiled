@@ -115,11 +115,7 @@ public class TrueEndingScript : MonoBehaviour
 				Logo.alpha = Mathf.MoveTowards(Logo.alpha, 0f, Time.deltaTime * 0.33333f);
 				if (Logo.alpha == 0f)
 				{
-					base.transform.position = new Vector3(0f, -3f, 0f);
-					base.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-					TrueEndingPanel.SetActive(value: false);
-					TimelinePanel.SetActive(value: true);
-					base.enabled = false;
+					End();
 				}
 			}
 			else
@@ -263,5 +259,14 @@ public class TrueEndingScript : MonoBehaviour
 		settings.aperture = Aperture * num;
 		settings.focalLength = 50f;
 		Profile.depthOfField.settings = settings;
+	}
+
+	public void End()
+	{
+		base.transform.position = new Vector3(0f, -3f, 0f);
+		base.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+		TrueEndingPanel.SetActive(value: false);
+		TimelinePanel.SetActive(value: true);
+		base.enabled = false;
 	}
 }

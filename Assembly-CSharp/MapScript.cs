@@ -38,6 +38,10 @@ public class MapScript : MonoBehaviour
 
 	public float H;
 
+	public bool AcceptingInput = true;
+
+	public bool CustomMode;
+
 	public bool Show;
 
 	public Texture RyobaFace;
@@ -50,7 +54,10 @@ public class MapScript : MonoBehaviour
 	{
 		if (GameGlobals.Eighties)
 		{
-			YandereMapMarker.GetComponent<Renderer>().material.mainTexture = RyobaFace;
+			if (!CustomMode)
+			{
+				YandereMapMarker.GetComponent<Renderer>().material.mainTexture = RyobaFace;
+			}
 			Labels[0].text = "Newspaper Club";
 			Labels[1].text = "Sociology Classroom";
 			if (DateGlobals.Week > 10)
@@ -65,7 +72,7 @@ public class MapScript : MonoBehaviour
 
 	private void Update()
 	{
-		if ((Input.GetButtonDown(InputNames.Xbox_Back) || Input.GetKeyDown(KeyCode.Space)) && Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial)
+		if (((!CustomMode && Input.GetButtonDown(InputNames.Xbox_Back)) || (!CustomMode && Input.GetKeyDown(KeyCode.Space))) && Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial)
 		{
 			if (!Show)
 			{
@@ -105,32 +112,46 @@ public class MapScript : MonoBehaviour
 		if (Show)
 		{
 			Border.transform.localScale = Vector3.Lerp(Border.transform.localScale, new Vector3(1.3f, 1.315f, 1.3f), Time.unscaledDeltaTime * 10f);
-			X = Mathf.Lerp(X, 0.1f, Time.unscaledDeltaTime * 10f);
-			Y = Mathf.Lerp(Y, 0.1f, Time.unscaledDeltaTime * 10f);
-			W = Mathf.Lerp(W, 0.8f, Time.unscaledDeltaTime * 10f);
-			H = Mathf.Lerp(H, 0.8f, Time.unscaledDeltaTime * 10f);
-			MyCamera.rect = new Rect(X, Y, W, H);
+			if (!CustomMode)
+			{
+				X = Mathf.Lerp(X, 0.1f, Time.unscaledDeltaTime * 10f);
+				Y = Mathf.Lerp(Y, 0.1f, Time.unscaledDeltaTime * 10f);
+				W = Mathf.Lerp(W, 0.8f, Time.unscaledDeltaTime * 10f);
+				H = Mathf.Lerp(H, 0.8f, Time.unscaledDeltaTime * 10f);
+				MyCamera.rect = new Rect(X, Y, W, H);
+			}
+			else
+			{
+				X = Mathf.Lerp(X, 0.192f, Time.unscaledDeltaTime * 10f);
+				Y = Mathf.Lerp(Y, 0.1f, Time.unscaledDeltaTime * 10f);
+				W = Mathf.Lerp(W, 0.8f, Time.unscaledDeltaTime * 10f);
+				H = Mathf.Lerp(H, 0.8f, Time.unscaledDeltaTime * 10f);
+				MyCamera.rect = new Rect(X, Y, W, H);
+			}
 			if (!(Border.transform.localScale.x > 1.2f))
 			{
 				return;
 			}
 			float num = 0f;
 			float num2 = 0f;
-			if (InputDevice.Type == InputDeviceType.MouseAndKeyboard)
+			if (AcceptingInput)
 			{
-				num = Input.GetAxis("Mouse Y");
-				num2 = Input.GetAxis("Mouse X");
-				base.transform.position += new Vector3(num2 * Time.unscaledDeltaTime * 50f, 0f, num * Time.unscaledDeltaTime * 50f);
-				MyCamera.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.unscaledDeltaTime * 1000f;
-				UpdateLabelSizes();
-			}
-			else
-			{
-				num = Input.GetAxis("Vertical");
-				num2 = Input.GetAxis("Horizontal");
-				base.transform.position += new Vector3(num2 * Time.unscaledDeltaTime * 100f, 0f, num * Time.unscaledDeltaTime * 100f);
-				MyCamera.orthographicSize -= Input.GetAxis(InputNames.Xbox_JoyY) * Time.unscaledDeltaTime * 100f;
-				UpdateLabelSizes();
+				if (InputDevice.Type == InputDeviceType.MouseAndKeyboard)
+				{
+					num = Input.GetAxis("Mouse Y");
+					num2 = Input.GetAxis("Mouse X");
+					base.transform.position += new Vector3(num2 * Time.unscaledDeltaTime * 50f, 0f, num * Time.unscaledDeltaTime * 50f);
+					MyCamera.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.unscaledDeltaTime * 1000f;
+					UpdateLabelSizes();
+				}
+				else
+				{
+					num = Input.GetAxis("Vertical");
+					num2 = Input.GetAxis("Horizontal");
+					base.transform.position += new Vector3(num2 * Time.unscaledDeltaTime * 100f, 0f, num * Time.unscaledDeltaTime * 100f);
+					MyCamera.orthographicSize -= Input.GetAxis(InputNames.Xbox_JoyY) * Time.unscaledDeltaTime * 100f;
+					UpdateLabelSizes();
+				}
 			}
 			if (MyCamera.orthographicSize < 4f)
 			{
@@ -192,34 +213,44 @@ public class MapScript : MonoBehaviour
 			}
 			YandereMapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
 			YandereMapMarker.eulerAngles = new Vector3(90f, 0f, 0f);
-			PortalMapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
-			if (StudentManager.Students[1] != null)
+			if (!CustomMode)
 			{
-				StudentManager.Students[1].MapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
-				StudentManager.Students[1].MapMarker.eulerAngles = new Vector3(90f, 0f, 0f);
-			}
-			if (StudentManager.Students[StudentManager.RivalID] != null)
-			{
-				StudentManager.Students[StudentManager.RivalID].MapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
-				StudentManager.Students[StudentManager.RivalID].MapMarker.eulerAngles = new Vector3(90f, 0f, 0f);
-			}
-			if (Input.GetButtonDown(InputNames.Xbox_B))
-			{
-				ElevationLabel.enabled = false;
-				Compass.SetActive(value: false);
-				PauseScreen.Show = false;
-				Yandere.Blur.enabled = false;
-				Time.timeScale = 1f;
-				PromptBar.ClearButtons();
-				PromptBar.Show = false;
-				Yandere.RPGCamera.enabled = true;
-				Show = false;
+				PortalMapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
+				if (StudentManager.Students[1] != null)
+				{
+					StudentManager.Students[1].MapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
+					StudentManager.Students[1].MapMarker.eulerAngles = new Vector3(90f, 0f, 0f);
+				}
+				if (StudentManager.Students[StudentManager.RivalID] != null)
+				{
+					StudentManager.Students[StudentManager.RivalID].MapMarker.localScale = new Vector3(MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f, MyCamera.orthographicSize / 40.75f * 10f);
+					StudentManager.Students[StudentManager.RivalID].MapMarker.eulerAngles = new Vector3(90f, 0f, 0f);
+				}
+				if (Input.GetButtonDown(InputNames.Xbox_B))
+				{
+					ElevationLabel.enabled = false;
+					Compass.SetActive(value: false);
+					PauseScreen.Show = false;
+					Yandere.Blur.enabled = false;
+					Time.timeScale = 1f;
+					PromptBar.ClearButtons();
+					PromptBar.Show = false;
+					Yandere.RPGCamera.enabled = true;
+					Show = false;
+				}
 			}
 		}
 		else if (MyCamera.enabled)
 		{
 			Border.transform.localScale = Vector3.Lerp(Border.transform.localScale, new Vector3(0f, 0f, 0f), Time.unscaledDeltaTime * 10f);
-			X = Mathf.Lerp(X, 0.5f, Time.unscaledDeltaTime * 10f);
+			if (CustomMode)
+			{
+				X = Mathf.Lerp(X, 0.5925f, Time.unscaledDeltaTime * 10f);
+			}
+			else
+			{
+				X = Mathf.Lerp(X, 0.5f, Time.unscaledDeltaTime * 10f);
+			}
 			Y = Mathf.Lerp(Y, 0.5f, Time.unscaledDeltaTime * 10f);
 			W = Mathf.Lerp(W, 0f, Time.unscaledDeltaTime * 10f);
 			H = Mathf.Lerp(H, 0f, Time.unscaledDeltaTime * 10f);
@@ -247,5 +278,20 @@ public class MapScript : MonoBehaviour
 		{
 			allLabels[i].localScale = new Vector3(1f + num, 1f + num, 1f + num);
 		}
+	}
+
+	public void ShowMap()
+	{
+		ElevationLabel.enabled = true;
+		MapParent.SetActive(value: true);
+		MyCamera.enabled = true;
+		Show = true;
+	}
+
+	public void HideMap()
+	{
+		ElevationLabel.enabled = true;
+		MapParent.SetActive(value: false);
+		Show = false;
 	}
 }

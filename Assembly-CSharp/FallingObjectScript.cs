@@ -8,6 +8,8 @@ public class FallingObjectScript : MonoBehaviour
 
 	public float Timer;
 
+	public bool Nonlethal;
+
 	public int Frame;
 
 	public Rigidbody MyRigidbody;
@@ -27,15 +29,22 @@ public class FallingObjectScript : MonoBehaviour
 			{
 				Debug.Log("Struck the ground or a person on this frame.");
 				GetComponent<AudioSource>().Play();
+				Nonlethal = true;
 			}
-			if (MyRigidbody.velocity == Vector3.zero)
+			if (Nonlethal)
+			{
+				Timer += Time.deltaTime;
+			}
+			if (MyRigidbody.velocity == Vector3.zero || (Nonlethal && Timer > 5f))
 			{
 				MyRigidbody.useGravity = false;
 				MyRigidbody.isKinematic = true;
+				Nonlethal = false;
 				base.enabled = false;
 				base.gameObject.layer = 15;
 				Velocity = 0f;
 				Frame = 0;
+				Timer = 0f;
 			}
 			PreviousVelocity = Velocity;
 		}
@@ -43,7 +52,7 @@ public class FallingObjectScript : MonoBehaviour
 
 	private void OnCollisionEnter(Collision other)
 	{
-		if (!(PreviousVelocity > 10f))
+		if (!(PreviousVelocity > 5f) || Nonlethal)
 		{
 			return;
 		}
@@ -54,7 +63,7 @@ public class FallingObjectScript : MonoBehaviour
 		}
 		if (component.StudentID == 1)
 		{
-			Debug.Log(component.Name + " just dodged a falling air conditioner.");
+			Debug.Log(component.Name + " just dodged a falling object.");
 			if (component.Investigating)
 			{
 				component.StopInvestigating();
@@ -98,6 +107,7 @@ public class FallingObjectScript : MonoBehaviour
 			component.MapMarker.gameObject.layer = 10;
 			Debug.Log(component.Name + "'s ''Alive'' variable is: " + component.Alive);
 			Object.Instantiate(component.AlarmDisc, new Vector3(component.Hips.position.x, 1f, component.Hips.position.z), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
+			Nonlethal = true;
 		}
 	}
 }

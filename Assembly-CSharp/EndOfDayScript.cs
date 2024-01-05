@@ -110,6 +110,8 @@ public class EndOfDayScript : MonoBehaviour
 
 	public bool StopMourning;
 
+	public bool FunGameOver;
+
 	public bool HeardMegami;
 
 	public bool ClubClosed;
@@ -468,6 +470,14 @@ public class EndOfDayScript : MonoBehaviour
 				{
 					Protagonist = VtuberNames[Yandere.VtuberID];
 				}
+				if (Yandere.Mop != null)
+				{
+					Yandere.EmptyHands();
+				}
+			}
+			if (StudentManager.CustomMode)
+			{
+				Protagonist = JSON.Students[0].Name;
 			}
 		}
 		else
@@ -1445,6 +1455,10 @@ public class EndOfDayScript : MonoBehaviour
 					{
 						Protagonist = "Ryoba";
 					}
+					if (StudentManager.CustomMode)
+					{
+						Protagonist = JSON.Students[0].Name;
+					}
 					if (ClubManager.LeaderGrudge)
 					{
 						EODCamera.position = ClubManager.ClubVantages[ClubID].position;
@@ -1490,6 +1504,10 @@ public class EndOfDayScript : MonoBehaviour
 				if (StudentManager.Eighties)
 				{
 					Protagonist = "Ryoba";
+				}
+				if (StudentManager.CustomMode)
+				{
+					Protagonist = JSON.Students[0].Name;
 				}
 				Label.text = Protagonist + " waits until midnight, sneaks into school, and returns to the musical instrument case that contains her unconscious victim. She pushes the case back to her house and ties the victim to a chair in her basement.";
 				if (TranqCase.VictimID == StudentManager.RivalID)
@@ -1632,6 +1650,10 @@ public class EndOfDayScript : MonoBehaviour
 				if (StudentManager.Eighties)
 				{
 					Protagonist = "Ryoba";
+				}
+				if (StudentManager.CustomMode)
+				{
+					Protagonist = JSON.Students[0].Name;
 				}
 				Label.text = Protagonist + " did not participate in any activities with her club this week. She has been kicked out of the club.";
 				ClubGlobals.SetClubKicked(Yandere.Club, value: true);
@@ -2414,7 +2436,21 @@ public class EndOfDayScript : MonoBehaviour
 			Debug.Log("Rival is already eliminated; we don't need to go to the sabotage progress screen.");
 			flag = false;
 		}
-		if (!TranqCase.Occupied)
+		SenpaiGifts -= StudentManager.SenpaiLoveWindow.GiftsToSubtract;
+		if (StudentManager.SenpaiLoveWindow.Updated)
+		{
+			GameGlobals.SenpaiLove = StudentManager.SenpaiLoveWindow.SenpaiLove;
+		}
+		Debug.Log("CollectibleGlobals.SenpaiGifts is now: " + CollectibleGlobals.SenpaiGifts);
+		if (GameGlobals.AlternateTimeline)
+		{
+			FunCheck();
+		}
+		if (FunGameOver)
+		{
+			SceneManager.LoadScene("FunGameOverScene");
+		}
+		else if (!TranqCase.Occupied)
 		{
 			if (GoToSuicideScene)
 			{
@@ -2772,6 +2808,7 @@ public class EndOfDayScript : MonoBehaviour
 		ArrestStudents();
 		SaveTopicsLearned();
 		SaveTopicsDiscussed();
+		StudentManager.DialogueWheel.Social.SaveFriendships();
 		RemovableItemManager.RemoveItems();
 		if (PoliceArrived)
 		{
@@ -3112,6 +3149,24 @@ public class EndOfDayScript : MonoBehaviour
 		if (Yandere.LookAt.enabled)
 		{
 			Yandere.Head.LookAt(Yandere.LookAt.target);
+		}
+	}
+
+	public void FunCheck()
+	{
+		if (Yandere.Kills > 0 || Police.Deaths > 0)
+		{
+			Debug.Log("The player killed someone.");
+			FunGameOver = true;
+		}
+		if (DateGlobals.Week == 9 && DateGlobals.Weekday == DayOfWeek.Friday)
+		{
+			Debug.Log("GameGlobals.SenpaiLove is: " + GameGlobals.SenpaiLove);
+			Debug.Log("Reputation.Reputation + Reputation.PendingRep is: " + (Reputation.Reputation + Reputation.PendingRep));
+			if (GameGlobals.SenpaiLove < 100 || Reputation.Reputation + Reputation.PendingRep < 100f)
+			{
+				FunGameOver = true;
+			}
 		}
 	}
 }

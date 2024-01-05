@@ -68,6 +68,7 @@ public class CreditsScript : MonoBehaviour
 
 	private void Start()
 	{
+		Debug.Log("Upon arriving at the credits scene, DarkEnding was: " + GameGlobals.DarkEnding);
 		if (GameGlobals.TransitionToPostCredits || GameGlobals.DarkEnding)
 		{
 			GameGlobals.DarkEnding = false;
@@ -121,7 +122,12 @@ public class CreditsScript : MonoBehaviour
 			Jukebox.volume -= Time.deltaTime;
 			if (Darkness.color.a == 1f)
 			{
-				if (GameGlobals.TransitionToPostCredits)
+				if (GameGlobals.AlternateTimeline)
+				{
+					DateGlobals.Week = 11;
+					SceneManager.LoadScene("FunGameOverScene");
+				}
+				else if (GameGlobals.TransitionToPostCredits)
 				{
 					SceneManager.LoadScene("PostCreditsScene");
 				}
@@ -159,13 +165,13 @@ public class CreditsScript : MonoBehaviour
 		gameObject.transform.parent = Panel;
 		gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
 		gameObject.GetComponent<UILabel>().text = creditJson.Name;
-		if (Eighties)
-		{
-			gameObject.GetComponent<UILabel>().color = new Color(0.8235294f, 0.6431373f, 1f, 1f);
-		}
-		else if (Dark)
+		if (Dark)
 		{
 			gameObject.GetComponent<UILabel>().color = new Color(0.5f, 0f, 0f, 1f);
+		}
+		else
+		{
+			gameObject.GetComponent<UILabel>().color = new Color(1f, 0.5f, 1f, 1f);
 		}
 		ID++;
 	}

@@ -101,4 +101,12 @@ public static class SceneNames
 	public const string WeekLimitScene = "WeekLimitScene";
 
 	public const string KokonaTutorialScene = "KokonaTutorialScene";
+
+	public const string CustomModeScene = "CustomModeScene";
+
+	public const string ConfessionScene = "ConfessionScene";
+
+	public const string FunGameOverScene = "FunGameOverScene";
+
+	public const string OriginDreamScene = "OriginDreamScene";
 }

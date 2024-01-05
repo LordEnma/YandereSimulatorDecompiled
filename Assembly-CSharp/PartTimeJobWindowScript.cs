@@ -69,18 +69,30 @@ public class PartTimeJobWindowScript : MonoBehaviour
 			HomeExit.HomeWindow.Show = true;
 			HomeWindow.Show = false;
 		}
-		if (Input.GetButtonDown(InputNames.Xbox_X))
+		if (!Input.GetButtonDown(InputNames.Xbox_X))
 		{
-			PlayerGlobals.Money += 100f + 20f * Multiplier;
-			if (DateGlobals.PassDays == 0)
-			{
-				DateGlobals.PassDays++;
-			}
-			HomeExit.HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
-			HomeExit.HomeDarkness.FadeOut = true;
-			HomeWindow.Show = false;
-			base.enabled = false;
+			return;
 		}
+		PlayerGlobals.Money += 100f + 20f * Multiplier;
+		if (PlayerGlobals.Money > 1000f)
+		{
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("RichGirl", 1);
+			}
+			if (!GameGlobals.Debug)
+			{
+				PlayerPrefs.SetInt("a", 1);
+			}
+		}
+		if (DateGlobals.PassDays == 0)
+		{
+			DateGlobals.PassDays++;
+		}
+		HomeExit.HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+		HomeExit.HomeDarkness.FadeOut = true;
+		HomeWindow.Show = false;
+		base.enabled = false;
 	}
 
 	private void CalculatePayout()

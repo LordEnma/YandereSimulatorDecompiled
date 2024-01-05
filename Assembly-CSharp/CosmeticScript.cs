@@ -139,6 +139,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Texture[] EightiesApronTextures;
 
+	public Texture[] EightiesCanTextures;
+
 	public Texture[] ApronTextures;
 
 	public Texture[] CanTextures;
@@ -297,6 +299,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Texture TanGymTexture;
 
+	public Texture GrayscaleEyeTexture;
+
 	public Texture WaifuIrisTexture;
 
 	public Texture WaifuEyeTexture;
@@ -439,6 +443,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Material[] EightiesNurseMaterials;
 
+	public Material[] DefaultMaterials;
+
 	public Material[] NurseMaterials;
 
 	public GameObject CardiganPrefab;
@@ -467,6 +473,7 @@ public class CosmeticScript : MonoBehaviour
 
 	public void Start()
 	{
+		DefaultMaterials = MyRenderer.materials;
 		if (Kidnapped && FemaleHair[20] == null)
 		{
 			FemaleHair[20] = BackupOsanaHair;
@@ -480,18 +487,22 @@ public class CosmeticScript : MonoBehaviour
 		{
 			Eighties = GameGlobals.Eighties;
 		}
-		if (Eighties && Male)
+		if (Eighties)
 		{
-			MaleUniformTextures[1] = EightiesMaleCasualTexture;
-			MaleCasualTextures[1] = EightiesMaleUniformTexture;
-			MaleSocksTextures[1] = EightiesMaleSocksTexture;
-			int num = 66;
-			while (num < Trunks.Length)
+			CanTextures = EightiesCanTextures;
+			if (Male)
 			{
-				if (Trunks[num] != null)
+				MaleUniformTextures[1] = EightiesMaleCasualTexture;
+				MaleCasualTextures[1] = EightiesMaleUniformTexture;
+				MaleSocksTextures[1] = EightiesMaleSocksTexture;
+				int num = 66;
+				while (num < Trunks.Length)
 				{
-					Trunks[num] = Trunks[0];
-					num++;
+					if (Trunks[num] != null)
+					{
+						Trunks[num] = Trunks[0];
+						num++;
+					}
 				}
 			}
 		}
@@ -505,6 +516,8 @@ public class CosmeticScript : MonoBehaviour
 			LeftShoe.SetActive(value: false);
 		}
 		ColorValue = new Color(1f, 1f, 1f, 1f);
+		RightEyeRenderer.material.color = ColorValue;
+		LeftEyeRenderer.material.color = ColorValue;
 		if (JSON == null)
 		{
 			JSON = Student.JSON;
@@ -525,6 +538,11 @@ public class CosmeticScript : MonoBehaviour
 			EyeColor = JSON.Students[StudentID].Eyes;
 			Club = JSON.Students[StudentID].Club;
 			Name = JSON.Students[StudentID].Name;
+			if (GameGlobals.CustomMode)
+			{
+				EyewearID = JSON.Misc.EyeWear[StudentID];
+				SkinColor = JSON.Misc.SkinColor[StudentID];
+			}
 			if (Yandere)
 			{
 				Accessory = 0;
@@ -559,11 +577,20 @@ public class CosmeticScript : MonoBehaviour
 			Accessory = 0;
 			EyewearID = 0;
 		}
+		if (Club == ClubType.Gardening && !TakingPortrait && !Kidnapped)
+		{
+			CanRenderer.material.mainTexture = CanTextures[StudentID];
+		}
 		if (!Eighties)
 		{
 			if (StudentID == 11)
 			{
 				if (DateGlobals.Week > 1 && !Kidnapped && !Student.Slave)
+				{
+					GameGlobals.OsanaHaircut = true;
+					Hairstyle = 54;
+				}
+				if (GameGlobals.OsanaHaircut)
 				{
 					Hairstyle = 54;
 				}
@@ -659,6 +686,10 @@ public class CosmeticScript : MonoBehaviour
 		if (!Male)
 		{
 			FemaleUniformID = StudentGlobals.FemaleUniform;
+			if (Eighties && Club == ClubType.Delinquent && FemaleUniformID < 6)
+			{
+				FemaleUniformID = 2;
+			}
 			if (Empty)
 			{
 				FemaleUniformID = 1;
@@ -774,10 +805,6 @@ public class CosmeticScript : MonoBehaviour
 						Fingernails[k].material.mainTexture = GanguroNailTextures[StudentID];
 						Fingernails[k].gameObject.SetActive(value: true);
 					}
-				}
-				if (Club == ClubType.Gardening && !TakingPortrait && !Kidnapped)
-				{
-					CanRenderer.material.mainTexture = CanTextures[StudentID];
 				}
 			}
 			if (!Kidnapped && SceneManager.GetActiveScene().name == "PortraitScene")
@@ -1120,13 +1147,16 @@ public class CosmeticScript : MonoBehaviour
 			}
 			else if (!Student.Posing)
 			{
-				if (Club == ClubType.Delinquent)
+				if (TakingPortrait)
 				{
-					base.transform.position = new Vector3(0.005f, 0.03f, 0f);
-				}
-				else
-				{
-					base.transform.position = new Vector3(0.005f, 0f, 0f);
+					if (Club == ClubType.Delinquent)
+					{
+						base.transform.position = new Vector3(0.005f, 0.03f, 0f);
+					}
+					else
+					{
+						base.transform.position = new Vector3(0.005f, 0f, 0f);
+					}
 				}
 				if (Eighties)
 				{
@@ -1535,6 +1565,10 @@ public class CosmeticScript : MonoBehaviour
 				{
 					CorrectColor = new Color(0.5f, 0.5f, 0.5f);
 				}
+				else if (HairColor == "SolidBlack")
+				{
+					ColorValue = new Color(0.0001f, 0.0001f, 0.0001f);
+				}
 				else if (EyeColor == "Red")
 				{
 					CorrectColor = new Color(1f, 0f, 0f);
@@ -1577,10 +1611,16 @@ public class CosmeticScript : MonoBehaviour
 					CorrectColor.g *= 0.5f;
 					CorrectColor.b *= 0.5f;
 				}
+				CustomEyes = false;
 				if (CorrectColor != new Color(0f, 0f, 0f))
 				{
+					CustomEyes = true;
+					RightEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
+					LeftEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
 					RightEyeRenderer.material.color = CorrectColor;
 					LeftEyeRenderer.material.color = CorrectColor;
+					RightIrisLight.SetActive(value: true);
+					LeftIrisLight.SetActive(value: true);
 				}
 			}
 		}
@@ -1641,8 +1681,11 @@ public class CosmeticScript : MonoBehaviour
 			else
 			{
 				ColorValue = new Color(0f, 0f, 0f);
-				RightIrisLight.SetActive(value: false);
-				LeftIrisLight.SetActive(value: false);
+				if (!CustomEyes)
+				{
+					RightIrisLight.SetActive(value: false);
+					LeftIrisLight.SetActive(value: false);
+				}
 			}
 			if (StudentID > 90 && StudentID < 97)
 			{
@@ -1654,8 +1697,14 @@ public class CosmeticScript : MonoBehaviour
 			{
 				if (HairRenderer != null)
 				{
-					RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
-					LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+					HairRenderer.material.color = Color.white;
+					HairRenderer.material.SetFloat("_Saturation", 1f);
+					if (!CustomEyes)
+					{
+						RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+						LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+					}
+					DoNotChangeFace = SkinColor > 0;
 					if (!DoNotChangeFace)
 					{
 						FaceTexture = HairRenderer.material.mainTexture;
@@ -1666,6 +1715,23 @@ public class CosmeticScript : MonoBehaviour
 					FaceTexture = GrayFace;
 				}
 				CustomHair = true;
+			}
+			else
+			{
+				HairRenderer.material.shader = StartShader;
+				HairRenderer.material.SetFloat("_Saturation", 0f);
+				HairRenderer.material.color = ColorValue;
+				RightEyeRenderer.gameObject.SetActive(value: true);
+				LeftEyeRenderer.gameObject.SetActive(value: true);
+				RightIrisLight.SetActive(value: true);
+				LeftIrisLight.SetActive(value: true);
+				RightEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
+				LeftEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
+				DoNotChangeFace = SkinColor > 0;
+				if (!DoNotChangeFace)
+				{
+					FaceTexture = DefaultFaceTexture;
+				}
 			}
 			if (!CustomHair)
 			{
@@ -1876,7 +1942,8 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else
 		{
-			if (CustomHair)
+			DoNotChangeFace = SkinColor > 0;
+			if (CustomHair || DoNotChangeFace)
 			{
 				FaceTexture = FaceTextures[SkinColor];
 			}
@@ -1968,11 +2035,24 @@ public class CosmeticScript : MonoBehaviour
 				SocksTexture = EightiesDelinquentSocksTexture;
 			}
 		}
-		if (!Eighties && StudentID == 58)
+		if (!DoNotChangeFace)
 		{
-			SkinColor = 6;
-			Student.TowelTexture = TanTowelTexture;
-			Student.SwimsuitTexture = TanSwimsuitTexture;
+			if (!Eighties)
+			{
+				if (StudentID == 58)
+				{
+					SkinColor = 6;
+					Student.TowelTexture = TanTowelTexture;
+					Student.SwimsuitTexture = TanSwimsuitTexture;
+				}
+			}
+			else if (StudentID == 87)
+			{
+				UniformTexture = TanCouncilUniform;
+				CasualTexture = TanCouncilUniform;
+				SocksTexture = TanCouncilUniform;
+				SkinColor = 7;
+			}
 		}
 		if (Empty)
 		{
@@ -1980,7 +2060,7 @@ public class CosmeticScript : MonoBehaviour
 			CasualTexture = MaleCasualTextures[7];
 			SocksTexture = MaleSocksTextures[7];
 			FaceTexture = GrayFace;
-			SkinColor = 7;
+			SkinColor = 8;
 		}
 		if (Club == ClubType.Council)
 		{
@@ -1989,13 +2069,6 @@ public class CosmeticScript : MonoBehaviour
 			UniformTexture = MaleUniformTextures[8];
 			CasualTexture = MaleCasualTextures[8];
 			SocksTexture = MaleSocksTextures[8];
-			if (StudentID == 87)
-			{
-				UniformTexture = TanCouncilUniform;
-				CasualTexture = TanCouncilUniform;
-				SocksTexture = TanCouncilUniform;
-				SkinColor = 8;
-			}
 		}
 		if (!Student.Indoors)
 		{
@@ -2113,7 +2186,10 @@ public class CosmeticScript : MonoBehaviour
 		{
 			FaceTexture = BlackBody;
 		}
-		MyRenderer.materials[2].mainTexture = FaceTexture;
+		if (MyRenderer.materials.Length > 2)
+		{
+			MyRenderer.materials[2].mainTexture = FaceTexture;
+		}
 		if (!TakingPortrait && Student != null && Student.StudentManager != null && GameGlobals.CensorPanties)
 		{
 			CensorPanties();
@@ -2181,7 +2257,7 @@ public class CosmeticScript : MonoBehaviour
 
 	private void TurnOnCheck()
 	{
-		if (!TurnedOn && !TakingPortrait && !StudentManager.KokonaTutorial && Male)
+		if (!TurnedOn && !TakingPortrait && !StudentManager.KokonaTutorial && Male && LoveManager.TotalTargets < LoveManager.Targets.Length)
 		{
 			if (Hairstyle == 46 || Hairstyle == 48 || Hairstyle == 49)
 			{
@@ -2449,101 +2525,101 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else if (Stockings == "Custom1")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings1.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings1.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[1] = NewCustomStockings10.texture;
+				CustomStockings[1] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[1];
 		}
 		else if (Stockings == "Custom2")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings2.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings2.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[2] = NewCustomStockings10.texture;
+				CustomStockings[2] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[2];
 		}
 		else if (Stockings == "Custom3")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings3.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings3.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[3] = NewCustomStockings10.texture;
+				CustomStockings[3] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[3];
 		}
 		else if (Stockings == "Custom4")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings4.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings4.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[4] = NewCustomStockings10.texture;
+				CustomStockings[4] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[4];
 		}
 		else if (Stockings == "Custom5")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings5.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings5.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[5] = NewCustomStockings10.texture;
+				CustomStockings[5] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[5];
 		}
 		else if (Stockings == "Custom6")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings6.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings6.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[6] = NewCustomStockings10.texture;
+				CustomStockings[6] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[6];
 		}
 		else if (Stockings == "Custom7")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings7.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings7.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[7] = NewCustomStockings10.texture;
+				CustomStockings[7] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[7];
 		}
 		else if (Stockings == "Custom8")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings8.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings8.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[8] = NewCustomStockings10.texture;
+				CustomStockings[8] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[8];
 		}
 		else if (Stockings == "Custom9")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings9.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings9.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[9] = NewCustomStockings10.texture;
+				CustomStockings[9] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[9];
 		}
 		else if (Stockings == "Custom10")
 		{
-			WWW NewCustomStockings10 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings10.png");
-			yield return NewCustomStockings10;
-			if (NewCustomStockings10.error == null)
+			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings10.png");
+			yield return NewCustomStockings;
+			if (NewCustomStockings.error == null)
 			{
-				CustomStockings[10] = NewCustomStockings10.texture;
+				CustomStockings[10] = NewCustomStockings.texture;
 			}
 			MyStockings = CustomStockings[10];
 		}
@@ -2823,6 +2899,13 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(10, 5f);
 			MyRenderer.SetBlendShapeWeight(12, 50f);
 		}
+		else if (EyeType == "Ryoba")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(8, 0f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
 		if (!Modified)
 		{
 			if ((EyeType == "Thin" && StudentManager.Thins > 1) || (EyeType == "Serious" && StudentManager.Seriouses > 1) || (EyeType == "Round" && StudentManager.Rounds > 1) || (EyeType == "Sad" && StudentManager.Sads > 1) || (EyeType == "Mean" && StudentManager.Means > 1) || (EyeType == "Smug" && StudentManager.Smugs > 1) || (EyeType == "Gentle" && StudentManager.Gentles > 1))
@@ -2854,7 +2937,10 @@ public class CosmeticScript : MonoBehaviour
 			RightWristband.SetActive(value: true);
 			LeftWristband.SetActive(value: true);
 		}
-		Bookbag.SetActive(value: true);
+		if (!TakingPortrait)
+		{
+			Bookbag.SetActive(value: true);
+		}
 		Hoodie.SetActive(value: true);
 	}
 
@@ -3203,5 +3289,13 @@ public class CosmeticScript : MonoBehaviour
 			}
 		}
 		PickedAnim = true;
+	}
+
+	public void ResetBlendshapes()
+	{
+		for (int i = 0; i < MyRenderer.sharedMesh.blendShapeCount; i++)
+		{
+			MyRenderer.SetBlendShapeWeight(i, 0f);
+		}
 	}
 }

@@ -708,6 +708,7 @@ public class CustomizationScript : MonoBehaviour
 				StudentGlobals.MaleUniform = Data.maleUniform.Value;
 				StudentGlobals.FemaleUniform = Data.femaleUniform.Value;
 				Profile.depthOfField.enabled = OriginalDOFStatus;
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				if (SkipToCalendar)
 				{
 					SceneManager.LoadScene("CalendarScene");

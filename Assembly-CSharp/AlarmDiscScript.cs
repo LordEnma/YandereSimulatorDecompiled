@@ -36,6 +36,8 @@ public class AlarmDiscScript : MonoBehaviour
 
 	public bool Radio;
 
+	public bool Slave;
+
 	public bool Loud;
 
 	public bool Male;
@@ -219,6 +221,10 @@ public class AlarmDiscScript : MonoBehaviour
 							{
 								Student.DialogueWheel.End();
 							}
+							if (Slave)
+							{
+								Student.WitnessedSlave = true;
+							}
 						}
 					}
 				}
@@ -283,17 +289,20 @@ public class AlarmDiscScript : MonoBehaviour
 											Student.MyBento.Prompt.enabled = true;
 										}
 										Student.Bento.SetActive(value: true);
-										Student.Bento.transform.parent = Student.transform;
-										if (Student.Male)
+										if (Student.Bento.transform.parent != null)
 										{
-											Student.Bento.transform.localPosition = new Vector3(0f, 0.4266666f, -0.075f);
+											Student.Bento.transform.parent = Student.transform;
+											if (Student.Male)
+											{
+												Student.Bento.transform.localPosition = new Vector3(0f, 0.4266666f, -0.075f);
+											}
+											else
+											{
+												Debug.Log("This female student was distracted by a giggle, so her bento has teleported.");
+												Student.Bento.transform.localPosition = new Vector3(0f, 0.461f, -0.075f);
+											}
+											Student.Bento.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 										}
-										else
-										{
-											Debug.Log("This female student was distracted by a giggle, so her bento has teleported.");
-											Student.Bento.transform.localPosition = new Vector3(0f, 0.461f, -0.075f);
-										}
-										Student.Bento.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 										Student.Bento.transform.parent = null;
 									}
 									Student.SpeechLines.Stop();

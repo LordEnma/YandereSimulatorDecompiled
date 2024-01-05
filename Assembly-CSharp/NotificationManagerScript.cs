@@ -32,6 +32,8 @@ public class NotificationManagerScript : MonoBehaviour
 
 	public float Timer;
 
+	public bool OnlyOne;
+
 	private void Awake()
 	{
 		NotificationMessages = new NotificationTypeAndStringDictionary
@@ -174,6 +176,13 @@ public class NotificationManagerScript : MonoBehaviour
 		if (Yandere.Egg)
 		{
 			return;
+		}
+		if (OnlyOne && NotificationParent.childCount > 0)
+		{
+			foreach (Transform item in NotificationParent)
+			{
+				Object.Destroy(item.gameObject);
+			}
 		}
 		GameObject obj = Object.Instantiate(Notification);
 		NotificationScript component = obj.GetComponent<NotificationScript>();

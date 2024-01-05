@@ -404,6 +404,10 @@ public class OfferHelpScript : MonoBehaviour
 		else
 		{
 			Prompt.Circle[0].fillAmount = 1f;
+			if (StudentManager.Students[EventStudentID] != null && (StudentManager.Students[EventStudentID].Pushed || !StudentManager.Students[EventStudentID].Alive))
+			{
+				base.gameObject.SetActive(value: false);
+			}
 		}
 	}
 

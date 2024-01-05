@@ -11,6 +11,8 @@ public class HenshinScript : MonoBehaviour
 
 	public Renderer MiyukiHairRenderer;
 
+	public Renderer MyRenderer;
+
 	public Renderer White;
 
 	public Animation WhiteMiyukiAnim;
@@ -156,6 +158,7 @@ public class HenshinScript : MonoBehaviour
 		if (TransformingYandere || Vector3.Distance(Yandere.transform.position, TV.position) < 15f)
 		{
 			MiyukiCamera.enabled = true;
+			MyRenderer.enabled = true;
 			if (Phase < 3)
 			{
 				Wand.localPosition = Vector3.Lerp(Wand.localPosition, new Vector3(0f, -0.2833333f, 1f), Time.deltaTime);
@@ -332,6 +335,7 @@ public class HenshinScript : MonoBehaviour
 		{
 			PostProcessing.enabled = false;
 			MiyukiCamera.enabled = false;
+			MyRenderer.enabled = false;
 		}
 	}
 }

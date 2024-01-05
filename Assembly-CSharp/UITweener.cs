@@ -373,7 +373,7 @@ public abstract class UITweener : MonoBehaviour
 	public static T Begin<T>(GameObject go, float duration, float delay = 0f) where T : UITweener
 	{
 		T val = go.GetComponent<T>();
-		if ((UnityEngine.Object)val != (UnityEngine.Object)null && val.tweenGroup != 0)
+		if (val != null && val.tweenGroup != 0)
 		{
 			val = null;
 			T[] components = go.GetComponents<T>();
@@ -381,17 +381,17 @@ public abstract class UITweener : MonoBehaviour
 			for (int num = components.Length; i < num; i++)
 			{
 				val = components[i];
-				if ((UnityEngine.Object)val != (UnityEngine.Object)null && val.tweenGroup == 0)
+				if (val != null && val.tweenGroup == 0)
 				{
 					break;
 				}
 				val = null;
 			}
 		}
-		if ((UnityEngine.Object)val == (UnityEngine.Object)null)
+		if (val == null)
 		{
 			val = go.AddComponent<T>();
-			if ((UnityEngine.Object)val == (UnityEngine.Object)null)
+			if (val == null)
 			{
 				Debug.LogError("Unable to add " + typeof(T)?.ToString() + " to " + NGUITools.GetHierarchy(go), go);
 				return null;

@@ -424,6 +424,10 @@ public class ClockScript : MonoBehaviour
 				DeactivateTrespassZones();
 				ChangePeriod();
 				Period++;
+				if (StudentManager.WednesdayGiftBox.activeInHierarchy)
+				{
+					Debug.Log("Clock thinks that a event-related gift box was active.");
+				}
 				StudentManager.WednesdayGiftBox.SetActive(value: false);
 				StudentManager.FridayTestNotes.SetActive(value: false);
 				StudentManager.MondayBento.SetActive(value: false);
@@ -474,7 +478,7 @@ public class ClockScript : MonoBehaviour
 			StudentManager.UpdateDrama();
 			ChangePeriod();
 			Period++;
-			if (StudentManager.Week == 2)
+			if (StudentManager.Week == 2 && StudentManager.Students[12] != null)
 			{
 				StudentManager.RainbowBoysHangoutParent.transform.position = new Vector3(0f, 4f, -22f);
 				StudentManager.EightiesHangouts.List[12].transform.position = new Vector3(-1f, 4f, -22f);

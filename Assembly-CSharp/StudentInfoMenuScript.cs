@@ -591,6 +591,10 @@ public class StudentInfoMenuScript : MonoBehaviour
 		if (PauseScreen.Eighties)
 		{
 			EightiesPrefix = "1989";
+			if (GameGlobals.CustomMode)
+			{
+				EightiesPrefix = "Custom";
+			}
 		}
 		for (int ID = 1; ID < 101; ID++)
 		{

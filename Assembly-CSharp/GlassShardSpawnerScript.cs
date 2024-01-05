@@ -12,6 +12,20 @@ public class GlassShardSpawnerScript : MonoBehaviour
 
 	public Vector3[] ShardOrigins;
 
+	public float minX = -5f;
+
+	public float maxX = 5f;
+
+	public float minY;
+
+	public float maxY = 5f;
+
+	public float minZ = 2.5f;
+
+	public float maxZ = 7.5f;
+
+	public bool Dream;
+
 	public float FallTimer;
 
 	public bool Fall;
@@ -26,10 +40,17 @@ public class GlassShardSpawnerScript : MonoBehaviour
 		for (int j = 0; j < SpawnedShards.Length; j++)
 		{
 			GameObject gameObject = Object.Instantiate(Shards[Random.Range(1, Shards.Length)], base.transform.position, Quaternion.identity);
-			gameObject.transform.position = new Vector3(0f, 0f, 1f) + new Vector3(Random.Range(-5f, 5f), Random.Range(0f, 5f), Random.Range(-2.5f, 7.5f));
+			gameObject.transform.position = new Vector3(0f, 0f, 1f) + new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), Random.Range(minZ, maxZ));
 			while (gameObject.transform.position.z < 1f && gameObject.transform.position.x > -1f && gameObject.transform.position.x < 1f)
 			{
-				gameObject.transform.position = new Vector3(0f, 0f, 1f) + new Vector3(Random.Range(-5f, 5f), Random.Range(0f, 5f), Random.Range(-2.5f, 7.5f));
+				gameObject.transform.position = new Vector3(0f, 0f, 1f) + new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), Random.Range(minZ, maxZ));
+			}
+			if (Dream)
+			{
+				while (gameObject.transform.position.x > -1f && gameObject.transform.position.x < 1f)
+				{
+					gameObject.transform.position = new Vector3(0f, 0f, 1f) + new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), Random.Range(minZ, maxZ));
+				}
 			}
 			gameObject.transform.eulerAngles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
 			gameObject.transform.localScale = new Vector3(50f, 50f, 50f);

@@ -10,9 +10,13 @@ public class CalendarScript : MonoBehaviour
 
 	public SelectiveGrayscale GrayscaleEffect;
 
+	public InputDeviceScript InputDevice;
+
 	public ChallengeScript Challenge;
 
 	public Vignetting Vignette;
+
+	public JsonScript JSON;
 
 	public GameObject SkipConfirmationWindow;
 
@@ -26,6 +30,8 @@ public class CalendarScript : MonoBehaviour
 
 	public GameObject ClubKickWindow;
 
+	public GameObject GameOverWindow;
+
 	public GameObject AmaiWindow;
 
 	public GameObject DeadlineLabel;
@@ -37,6 +43,8 @@ public class CalendarScript : MonoBehaviour
 	public GameObject AmaiButton;
 
 	public GameObject SkipButton;
+
+	public UILabel EliminationNameLabel;
 
 	public UILabel AtmosphereLabel;
 
@@ -112,6 +120,8 @@ public class CalendarScript : MonoBehaviour
 
 	public UISprite CongratsBG;
 
+	public string[] EliminationNames;
+
 	public UILabel[] Labels;
 
 	public GameObject SundayLabel;
@@ -144,45 +154,48 @@ public class CalendarScript : MonoBehaviour
 		}
 		else if (GameGlobals.Eighties)
 		{
-			if (DateGlobals.Week == 1)
+			if (!GameGlobals.CustomMode)
 			{
-				Debug.Log("Rival is cute.");
-			}
-			else if (DateGlobals.Week == 2)
-			{
-				Debug.Log("Rival is pryomaniac.");
-			}
-			else if (DateGlobals.Week == 3)
-			{
-				Debug.Log("Rival is bookworm.");
-			}
-			else if (DateGlobals.Week == 4)
-			{
-				Debug.Log("Rival is sporty.");
-			}
-			else if (DateGlobals.Week == 5)
-			{
-				Debug.Log("Rival is rich.");
-			}
-			else if (DateGlobals.Week == 6)
-			{
-				Debug.Log("Rival is idol.");
-			}
-			else if (DateGlobals.Week == 7)
-			{
-				Debug.Log("Rival is prodigy.");
-			}
-			else if (DateGlobals.Week == 8)
-			{
-				Debug.Log("Rival is traditional.");
-			}
-			else if (DateGlobals.Week == 9)
-			{
-				Debug.Log("Rival is gravure.");
-			}
-			else if (DateGlobals.Week == 10)
-			{
-				Debug.Log("Rival is investigator.");
+				if (DateGlobals.Week == 1)
+				{
+					Debug.Log("Rival is cute.");
+				}
+				else if (DateGlobals.Week == 2)
+				{
+					Debug.Log("Rival is pryomaniac.");
+				}
+				else if (DateGlobals.Week == 3)
+				{
+					Debug.Log("Rival is bookworm.");
+				}
+				else if (DateGlobals.Week == 4)
+				{
+					Debug.Log("Rival is sporty.");
+				}
+				else if (DateGlobals.Week == 5)
+				{
+					Debug.Log("Rival is rich.");
+				}
+				else if (DateGlobals.Week == 6)
+				{
+					Debug.Log("Rival is idol.");
+				}
+				else if (DateGlobals.Week == 7)
+				{
+					Debug.Log("Rival is prodigy.");
+				}
+				else if (DateGlobals.Week == 8)
+				{
+					Debug.Log("Rival is traditional.");
+				}
+				else if (DateGlobals.Week == 9)
+				{
+					Debug.Log("Rival is gravure.");
+				}
+				else if (DateGlobals.Week == 10)
+				{
+					Debug.Log("Rival is investigator.");
+				}
 			}
 			for (int i = 1; i < 11; i++)
 			{
@@ -280,6 +293,31 @@ public class CalendarScript : MonoBehaviour
 		{
 			YanSave.SaveData("Profile_" + GameGlobals.Profile + "_Slot_" + 11);
 		}
+		CollectibleGlobals.SetGiftPurchased(1, value: false);
+		CollectibleGlobals.SetGiftPurchased(2, value: false);
+		CollectibleGlobals.SetGiftPurchased(3, value: false);
+		CollectibleGlobals.SetGiftPurchased(4, value: false);
+		CollectibleGlobals.SetGiftPurchased(5, value: false);
+		if (GameGlobals.ForceCanonEliminations)
+		{
+			EliminationNameLabel.transform.parent.gameObject.SetActive(value: true);
+			EliminationNameLabel.text = EliminationNames[JSON.Misc.CanonEliminations[DateGlobals.Week]];
+			if (GameGlobals.RivalEliminationID > 0)
+			{
+				if (GameGlobals.SpecificEliminationID != JSON.Misc.CanonEliminations[DateGlobals.Week])
+				{
+					GameOverWindow.SetActive(value: true);
+				}
+				else
+				{
+					EliminationNameLabel.transform.parent.gameObject.SetActive(value: false);
+				}
+			}
+		}
+		else
+		{
+			EliminationNameLabel.transform.parent.gameObject.SetActive(value: false);
+		}
 	}
 
 	private void Update()
@@ -294,244 +332,282 @@ public class CalendarScript : MonoBehaviour
 			}
 			if (Timer > 1f)
 			{
-				if (!Incremented)
+				if (GameOverWindow.activeInHierarchy)
 				{
-					if (DateGlobals.PassDays > 0)
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						if (Eighties)
+						int num = GameGlobals.Profile;
+						int num2 = 11;
+						Debug.Log("We've been instructed to reset the week. We're currently on Profile #" + num);
+						if (Eighties && num < 11)
 						{
-							GetComponent<AudioSource>().clip = EightiesJingle;
-							GetComponent<AudioSource>().volume = 0.25f;
+							Debug.Log("...but we're in the 80s! Let's adjust that!");
+							num += 10;
 						}
-						GetComponent<AudioSource>().pitch = 1f - (0.8f - SchoolGlobals.SchoolAtmosphere * 0.8f);
-						GetComponent<AudioSource>().Play();
+						if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + num + "_Slot_" + num2 + ".yansave"))
+						{
+							FadeOut = true;
+							ResetWeek = true;
+						}
+						else
+						{
+							ErrorLabel.text = "[c][ff0000]COULD NOT LOAD RESET WEEK SAVE DATA.[-][/c]\n\nThe game searched for this file: \n\n" + Application.streamingAssetsPath + "/SaveFiles/Profile_" + num + "_Slot_" + num2 + ".yansave\n\nHowever, the file was not found.\n\nThis may be happening because you recently updated to a new build of Yandere Sim.\n\nTo retrieve your ''Reset Week'' save data, you'll have to look in the StreamingAssets directory of the previous version of Yandere Sim that you played.\n\nYou must find the file named above, and put that file into the StreamingAssets/SaveFiles directory of the version of Yandere Sim that you are currently playing.";
+							ResetWeekErrorWindow.SetActive(value: true);
+							GameOverWindow.SetActive(value: false);
+							Debug.Log("An error message must be displayed.");
+						}
 					}
-					if (DateGlobals.Weekday != DayOfWeek.Friday || Skipping)
+				}
+				else
+				{
+					if (!Incremented)
 					{
-						bool flag = false;
-						if ((DateGlobals.Week == 1 && DateGlobals.Weekday == DayOfWeek.Sunday) || DateGlobals.ForceSkip)
+						if (DateGlobals.PassDays > 0)
 						{
-							if (DateGlobals.ForceSkip)
+							if (Eighties)
 							{
-								Debug.Log("DateGlobals.ForceSkip was true.");
+								GetComponent<AudioSource>().clip = EightiesJingle;
+								GetComponent<AudioSource>().volume = 0.25f;
 							}
-							DateGlobals.ForceSkip = false;
-							SundayLabel.SetActive(value: false);
-							flag = true;
+							GetComponent<AudioSource>().pitch = 1f - (0.8f - SchoolGlobals.SchoolAtmosphere * 0.8f);
+							GetComponent<AudioSource>().Play();
 						}
-						while (flag || (DateGlobals.PassDays > 0 && DateGlobals.Weekday != DayOfWeek.Saturday && DateGlobals.Weekday != 0))
+						if (DateGlobals.Weekday != DayOfWeek.Friday || Skipping)
+						{
+							bool flag = false;
+							if ((DateGlobals.Week == 1 && DateGlobals.Weekday == DayOfWeek.Sunday) || DateGlobals.ForceSkip)
+							{
+								if (DateGlobals.ForceSkip)
+								{
+									Debug.Log("DateGlobals.ForceSkip was true.");
+								}
+								DateGlobals.ForceSkip = false;
+								SundayLabel.SetActive(value: false);
+								flag = true;
+							}
+							while (flag || (DateGlobals.PassDays > 0 && DateGlobals.Weekday != DayOfWeek.Saturday && DateGlobals.Weekday != 0))
+							{
+								UpdateSeeds();
+								DateGlobals.GameplayDay++;
+								DateGlobals.PassDays--;
+								DateGlobals.Weekday++;
+								ChangeDayColor();
+								flag = false;
+							}
+							Skipping = false;
+						}
+						else if (!CameFromTitleScreen)
 						{
 							UpdateSeeds();
 							DateGlobals.GameplayDay++;
 							DateGlobals.PassDays--;
 							DateGlobals.Weekday++;
 							ChangeDayColor();
-							flag = false;
+							Debug.Log("It is Friday, and CameFromTitleScreen is apparently false. Passed one day. " + DateGlobals.PassDays + " days remaining.");
 						}
-						Skipping = false;
-					}
-					else if (!CameFromTitleScreen)
-					{
-						UpdateSeeds();
-						DateGlobals.GameplayDay++;
-						DateGlobals.PassDays--;
-						DateGlobals.Weekday++;
+						Target = 250f * (float)DateGlobals.Weekday + (float)Adjustment;
+						if (DateGlobals.Weekday > DayOfWeek.Saturday)
+						{
+							Darkness.color = new Color(0f, 0f, 0f, 0f);
+							DateGlobals.Weekday = DayOfWeek.Sunday;
+							Target = Adjustment;
+						}
+						if (!GameOverWindow.activeInHierarchy && DateGlobals.Weekday != 0 && DateGlobals.Weekday < DayOfWeek.Saturday && GameGlobals.RivalEliminationID > 0 && !GameGlobals.InformedAboutSkipping && DateGlobals.Week < 2)
+						{
+							GameGlobals.InformedAboutSkipping = true;
+							CongratulationsWindow.SetActive(value: true);
+						}
+						Incremented = true;
 						ChangeDayColor();
-						Debug.Log("It is Friday, and CameFromTitleScreen is apparently false. Passed one day. " + DateGlobals.PassDays + " days remaining.");
-					}
-					Target = 250f * (float)DateGlobals.Weekday + (float)Adjustment;
-					if (DateGlobals.Weekday > DayOfWeek.Saturday)
-					{
-						Darkness.color = new Color(0f, 0f, 0f, 0f);
-						DateGlobals.Weekday = DayOfWeek.Sunday;
-						Target = Adjustment;
-					}
-					if (DateGlobals.Weekday != 0 && DateGlobals.Weekday < DayOfWeek.Saturday && GameGlobals.RivalEliminationID > 0 && !GameGlobals.InformedAboutSkipping && DateGlobals.Week < 2)
-					{
-						GameGlobals.InformedAboutSkipping = true;
-						CongratulationsWindow.SetActive(value: true);
-					}
-					Incremented = true;
-					ChangeDayColor();
-					if (DateGlobals.Weekday == DayOfWeek.Saturday)
-					{
-						ResetButton.SetActive(value: false);
-					}
-				}
-				Continue.localPosition = new Vector3(Continue.localPosition.x, Mathf.Lerp(Continue.localPosition.y, -500f, Time.deltaTime * 10f), Continue.localPosition.z);
-				if (!Switch)
-				{
-					if (ViewingStats)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_B))
+						if (DateGlobals.Weekday == DayOfWeek.Saturday)
 						{
-							Switch = true;
+							ResetButton.SetActive(value: false);
 						}
 					}
-					else if (CongratulationsWindow.activeInHierarchy)
+					Continue.localPosition = new Vector3(Continue.localPosition.x, Mathf.Lerp(Continue.localPosition.y, -500f, Time.deltaTime * 10f), Continue.localPosition.z);
+					if (!Switch)
 					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
+						if (ViewingStats)
 						{
-							CongratulationsWindow.SetActive(value: false);
-						}
-					}
-					else if (ResetWeekWindow.activeInHierarchy)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							int num = GameGlobals.Profile;
-							int num2 = 11;
-							Debug.Log("We've been instructed to reset the week. We're currently on Profile #" + num);
-							if (Eighties && num < 11)
+							if (Input.GetButtonDown(InputNames.Xbox_B))
 							{
-								Debug.Log("...but we're in the 80s! Let's adjust that!");
-								num += 10;
+								Switch = true;
 							}
-							if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + num + "_Slot_" + num2 + ".yansave"))
+						}
+						else if (CongratulationsWindow.activeInHierarchy)
+						{
+							if (Input.GetButtonDown(InputNames.Xbox_A))
+							{
+								CongratulationsWindow.SetActive(value: false);
+							}
+						}
+						else if (ResetWeekWindow.activeInHierarchy)
+						{
+							if (Input.GetButtonDown(InputNames.Xbox_A))
+							{
+								int num3 = GameGlobals.Profile;
+								int num4 = 11;
+								Debug.Log("We've been instructed to reset the week. We're currently on Profile #" + num3);
+								if (Eighties && num3 < 11)
+								{
+									Debug.Log("...but we're in the 80s! Let's adjust that!");
+									num3 += 10;
+								}
+								if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + num3 + "_Slot_" + num4 + ".yansave"))
+								{
+									FadeOut = true;
+									ResetWeek = true;
+								}
+								else
+								{
+									ErrorLabel.text = "[c][ff0000]COULD NOT LOAD RESET WEEK SAVE DATA.[-][/c]\n\nThe game searched for this file: \n\n" + Application.streamingAssetsPath + "/SaveFiles/Profile_" + num3 + "_Slot_" + num4 + ".yansave\n\nHowever, the file was not found.\n\nThis may be happening because you recently updated to a new build of Yandere Sim.\n\nTo retrieve your ''Reset Week'' save data, you'll have to look in the StreamingAssets directory of the previous version of Yandere Sim that you played.\n\nYou must find the file named above, and put that file into the StreamingAssets/SaveFiles directory of the version of Yandere Sim that you are currently playing.";
+									ResetWeekErrorWindow.SetActive(value: true);
+									ResetWeekWindow.SetActive(value: false);
+									Debug.Log("An error message must be displayed.");
+								}
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								ResetWeekWindow.SetActive(value: false);
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_X))
+							{
+								ConfirmationWindow.SetActive(value: true);
+								ResetWeekWindow.SetActive(value: false);
+							}
+						}
+						else if (ConfirmationWindow.activeInHierarchy)
+						{
+							if (Input.GetButtonDown(InputNames.Xbox_A))
 							{
 								FadeOut = true;
-								ResetWeek = true;
+								Reset = true;
 							}
-							else
+							if (Input.GetButtonDown(InputNames.Xbox_B))
 							{
-								ErrorLabel.text = "[c][ff0000]COULD NOT LOAD RESET WEEK SAVE DATA.[-][/c]\n\nThe game searched for this file: \n\n" + Application.streamingAssetsPath + "/SaveFiles/Profile_" + num + "_Slot_" + num2 + ".yansave\n\nHowever, the file was not found.\n\nThis may be happening because you recently updated to a new build of Yandere Sim.\n\nTo retrieve your ''Reset Week'' save data, you'll have to look in the StreamingAssets directory of the previous version of Yandere Sim that you played.\n\nYou must find the file named above, and put that file into the StreamingAssets/SaveFiles directory of the version of Yandere Sim that you are currently playing.";
-								ResetWeekErrorWindow.SetActive(value: true);
-								ResetWeekWindow.SetActive(value: false);
-								Debug.Log("An error message must be displayed.");
+								ConfirmationWindow.SetActive(value: false);
 							}
 						}
-						else if (Input.GetButtonDown(InputNames.Xbox_B))
+						else if (SkipConfirmationWindow.activeInHierarchy)
 						{
-							ResetWeekWindow.SetActive(value: false);
-						}
-						else if (Input.GetButtonDown(InputNames.Xbox_X))
-						{
-							ConfirmationWindow.SetActive(value: true);
-							ResetWeekWindow.SetActive(value: false);
-						}
-					}
-					else if (ConfirmationWindow.activeInHierarchy)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							FadeOut = true;
-							Reset = true;
-						}
-						if (Input.GetButtonDown(InputNames.Xbox_B))
-						{
-							ConfirmationWindow.SetActive(value: false);
-						}
-					}
-					else if (SkipConfirmationWindow.activeInHierarchy)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							SundayLabel.SetActive(value: false);
-							if (StudentGlobals.MemorialStudents > 0)
+							if (Input.GetButtonDown(InputNames.Xbox_A))
 							{
-								StudentGlobals.MemorialStudents = 0;
-								StudentGlobals.MemorialStudent1 = 0;
-								StudentGlobals.MemorialStudent2 = 0;
-								StudentGlobals.MemorialStudent3 = 0;
-								StudentGlobals.MemorialStudent4 = 0;
-								StudentGlobals.MemorialStudent5 = 0;
-								StudentGlobals.MemorialStudent6 = 0;
-								StudentGlobals.MemorialStudent7 = 0;
-								StudentGlobals.MemorialStudent8 = 0;
-								StudentGlobals.MemorialStudent9 = 0;
-							}
-							SkipConfirmationWindow.SetActive(value: false);
-							if (DateGlobals.Weekday != 0 && DateGlobals.Weekday != DayOfWeek.Saturday)
-							{
-								Debug.Log("Skipping day. Not Saturday or Sunday. Awarding 10 bonus study points.");
-								ClassGlobals.BonusStudyPoints += 10;
-							}
-							UpdateSeeds();
-							GameGlobals.SenpaiMourning = false;
-							GameGlobals.ShowAbduction = false;
-							DateGlobals.Weekday++;
-							Incremented = false;
-							Skipping = true;
-							if (!SchoolGlobals.HighSecurity && SchoolGlobals.SchoolAtmosphere >= SchoolGlobals.PreviousSchoolAtmosphere)
-							{
-								SchoolGlobals.SchoolAtmosphere += 0.05f;
-							}
-							ReducePrisonerHealth();
-							ImproveSchoolAtmosphere();
-							if ((GameGlobals.RivalEliminationID == 0 && DateGlobals.Weekday == DayOfWeek.Friday) || DateGlobals.Weekday > DayOfWeek.Friday)
-							{
-								SkipButton.SetActive(value: false);
-								if (Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
+								SundayLabel.SetActive(value: false);
+								if (StudentGlobals.MemorialStudents > 0)
 								{
-									SkipButton.SetActive(value: true);
+									StudentGlobals.MemorialStudents = 0;
+									StudentGlobals.MemorialStudent1 = 0;
+									StudentGlobals.MemorialStudent2 = 0;
+									StudentGlobals.MemorialStudent3 = 0;
+									StudentGlobals.MemorialStudent4 = 0;
+									StudentGlobals.MemorialStudent5 = 0;
+									StudentGlobals.MemorialStudent6 = 0;
+									StudentGlobals.MemorialStudent7 = 0;
+									StudentGlobals.MemorialStudent8 = 0;
+									StudentGlobals.MemorialStudent9 = 0;
+								}
+								SkipConfirmationWindow.SetActive(value: false);
+								if (DateGlobals.Weekday != 0 && DateGlobals.Weekday != DayOfWeek.Saturday)
+								{
+									Debug.Log("Skipping day. Not Saturday or Sunday. Awarding 10 bonus study points.");
+									ClassGlobals.BonusStudyPoints += 10;
+								}
+								UpdateSeeds();
+								GameGlobals.SenpaiMourning = false;
+								GameGlobals.ShowAbduction = false;
+								DateGlobals.Weekday++;
+								Incremented = false;
+								Skipping = true;
+								if (!SchoolGlobals.HighSecurity && SchoolGlobals.SchoolAtmosphere >= SchoolGlobals.PreviousSchoolAtmosphere)
+								{
+									SchoolGlobals.SchoolAtmosphere += 0.05f;
+								}
+								ReducePrisonerHealth();
+								ImproveSchoolAtmosphere();
+								Debug.Log("Deciding whether or not to permit the Skip button.");
+								Debug.Log("GameGlobals.AlternateTimeline is: " + GameGlobals.AlternateTimeline);
+								Debug.Log("DateGlobals.Weekday is: " + DateGlobals.Weekday);
+								Debug.Log("DateGlobals.Week is: " + DateGlobals.Week);
+								if ((GameGlobals.RivalEliminationID == 0 && DateGlobals.Weekday == DayOfWeek.Friday) || (GameGlobals.AlternateTimeline && DateGlobals.Weekday == DayOfWeek.Friday && DateGlobals.Week == 9) || DateGlobals.Weekday > DayOfWeek.Friday)
+								{
+									Debug.Log("This code ran.");
+									if (GameGlobals.AlternateTimeline && DateGlobals.Weekday == DayOfWeek.Friday && DateGlobals.Week == 9)
+									{
+										DeadlineLabel.GetComponent<UILabel>().text = "CANNOT SKIP";
+									}
+									SkipButton.SetActive(value: false);
+									if (Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
+									{
+										SkipButton.SetActive(value: true);
+									}
 								}
 							}
-						}
-						if (Input.GetButtonDown(InputNames.Xbox_B))
-						{
-							SkipConfirmationWindow.SetActive(value: false);
-						}
-					}
-					else if (AmaiWindow.activeInHierarchy)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							UpdateSeeds();
-							AmaiButton.SetActive(value: false);
-							AmaiWindow.SetActive(value: false);
-							DateGlobals.Weekday++;
-							Incremented = false;
-							if (!SchoolGlobals.HighSecurity)
+							if (Input.GetButtonDown(InputNames.Xbox_B))
 							{
-								SchoolGlobals.SchoolAtmosphere += 0.05f;
-							}
-							ReducePrisonerHealth();
-							ImproveSchoolAtmosphere();
-							AmaiWindow.SetActive(value: false);
-						}
-						if (Input.GetButtonDown(InputNames.Xbox_B))
-						{
-							AmaiWindow.SetActive(value: false);
-						}
-					}
-					else if (ResetWeekErrorWindow.activeInHierarchy)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_B))
-						{
-							ResetWeekErrorWindow.SetActive(value: false);
-						}
-					}
-					else
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							FadeOut = true;
-						}
-						else if (Input.GetButtonDown(InputNames.Xbox_B))
-						{
-							if (ResetButton.activeInHierarchy)
-							{
-								ResetWeekWindow.SetActive(value: true);
+								SkipConfirmationWindow.SetActive(value: false);
 							}
 						}
-						else if (Input.GetButtonDown(InputNames.Xbox_X) && Eighties)
+						else if (AmaiWindow.activeInHierarchy)
 						{
-							Switch = true;
-						}
-						if (SkipButton.activeInHierarchy)
-						{
-							if (Input.GetButtonDown(InputNames.Xbox_Y))
+							if (Input.GetButtonDown(InputNames.Xbox_A))
 							{
-								SkipConfirmationWindow.SetActive(value: true);
-								if (DateGlobals.Weekday > DayOfWeek.Sunday && ClubGlobals.Club != 0 && ClubGlobals.ActivitiesAttended == 0)
+								UpdateSeeds();
+								AmaiButton.SetActive(value: false);
+								AmaiWindow.SetActive(value: false);
+								DateGlobals.Weekday++;
+								Incremented = false;
+								if (!SchoolGlobals.HighSecurity)
 								{
-									ClubKickWindow.SetActive(value: true);
+									SchoolGlobals.SchoolAtmosphere += 0.05f;
+								}
+								ReducePrisonerHealth();
+								ImproveSchoolAtmosphere();
+								AmaiWindow.SetActive(value: false);
+							}
+							if (Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								AmaiWindow.SetActive(value: false);
+							}
+						}
+						else if (ResetWeekErrorWindow.activeInHierarchy)
+						{
+							if (Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								ResetWeekErrorWindow.SetActive(value: false);
+							}
+						}
+						else
+						{
+							if (Input.GetButtonDown(InputNames.Xbox_A))
+							{
+								FadeOut = true;
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								if (ResetButton.activeInHierarchy)
+								{
+									ResetWeekWindow.SetActive(value: true);
 								}
 							}
-						}
-						else if (AmaiButton.activeInHierarchy && Input.GetButtonDown(InputNames.Xbox_Y))
-						{
-							AmaiWindow.SetActive(value: true);
+							else if (Input.GetButtonDown(InputNames.Xbox_X) && Eighties)
+							{
+								Switch = true;
+							}
+							if (SkipButton.activeInHierarchy)
+							{
+								if (Input.GetButtonDown(InputNames.Xbox_Y))
+								{
+									SkipConfirmationWindow.SetActive(value: true);
+									if (DateGlobals.Weekday > DayOfWeek.Sunday && ClubGlobals.Club != 0 && ClubGlobals.ActivitiesAttended == 0)
+									{
+										ClubKickWindow.SetActive(value: true);
+									}
+								}
+							}
+							else if (AmaiButton.activeInHierarchy && Input.GetButtonDown(InputNames.Xbox_Y))
+							{
+								AmaiWindow.SetActive(value: true);
+							}
 						}
 					}
 				}
@@ -543,28 +619,29 @@ public class CalendarScript : MonoBehaviour
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Darkness.color.a + Time.deltaTime);
 			if (Darkness.color.a >= 1f)
 			{
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				if (ResetWeek)
 				{
-					int num3 = GameGlobals.Profile;
-					int num4 = 11;
+					int num5 = GameGlobals.Profile;
+					int num6 = 11;
 					int femaleUniform = StudentGlobals.FemaleUniform;
 					int maleUniform = StudentGlobals.MaleUniform;
 					Debug.Log("We've been instructed to reset the week.");
-					Debug.Log("We're currently on Profile #" + num3);
-					if (Eighties && num3 < 11)
+					Debug.Log("We're currently on Profile #" + num5);
+					if (Eighties && num5 < 11)
 					{
 						Debug.Log("...but we're in the 80s! Let's adjust that!");
-						num3 += 10;
+						num5 += 10;
 					}
-					if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + num3 + "_Slot_" + num4 + ".yansave"))
+					if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + num5 + "_Slot_" + num6 + ".yansave"))
 					{
-						YanSave.LoadData("Profile_" + num3 + "_Slot_" + num4);
-						YanSave.LoadPrefs("Profile_" + num3 + "_Slot_" + num4);
-						Debug.Log("Successfully loaded the save in Slot #" + num4);
+						YanSave.LoadData("Profile_" + num5 + "_Slot_" + num6);
+						YanSave.LoadPrefs("Profile_" + num5 + "_Slot_" + num6);
+						Debug.Log("Successfully loaded the save in Slot #" + num6);
 					}
 					else
 					{
-						Debug.Log("Attempted to load a save from Slot #" + num4 + ", but apparently it didn't exist.");
+						Debug.Log("Attempted to load a save from Slot #" + num6 + ", but apparently it didn't exist.");
 					}
 					StudentGlobals.FemaleUniform = femaleUniform;
 					StudentGlobals.MaleUniform = maleUniform;
@@ -656,22 +733,13 @@ public class CalendarScript : MonoBehaviour
 				}
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.A) && !Eighties)
-		{
-			As++;
-			if (As == 10)
-			{
-				DateGlobals.Weekday = DayOfWeek.Sunday;
-				DateGlobals.Week = 2;
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-			}
-		}
 		if (Input.GetKeyDown(KeyCode.L))
 		{
 			Ls++;
 			if (Ls == 10)
 			{
 				GameGlobals.LoveSick = !GameGlobals.LoveSick;
+				GameGlobals.LastInputType = (int)InputDevice.Type;
 				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			}
 		}
@@ -692,6 +760,11 @@ public class CalendarScript : MonoBehaviour
 		if ((GameGlobals.RivalEliminationID == 0 && DateGlobals.Weekday < DayOfWeek.Friday) || (GameGlobals.RivalEliminationID > 0 && DateGlobals.Weekday < DayOfWeek.Saturday))
 		{
 			SkipButton.SetActive(value: true);
+			if (GameGlobals.AlternateTimeline && DateGlobals.Weekday == DayOfWeek.Friday && DateGlobals.Week == 9)
+			{
+				DeadlineLabel.GetComponent<UILabel>().text = "CANNOT SKIP";
+				SkipButton.SetActive(value: false);
+			}
 		}
 		else
 		{
@@ -776,8 +849,11 @@ public class CalendarScript : MonoBehaviour
 	private void BecomeEighties()
 	{
 		Vignette.enabled = false;
-		StudentGlobals.FemaleUniform = 6;
-		StudentGlobals.MaleUniform = 1;
+		if (!GameGlobals.CustomMode)
+		{
+			StudentGlobals.FemaleUniform = 6;
+			StudentGlobals.MaleUniform = 1;
+		}
 		if (DateGlobals.Week > 1 && DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
 			SundayLabel.SetActive(value: true);
@@ -1018,6 +1094,7 @@ public class CalendarScript : MonoBehaviour
 		}
 		GameGlobals.CorkboardScene = true;
 		YanSave.SaveData("Profile_" + num + "_Slot_" + 11);
+		GameGlobals.LastInputType = (int)InputDevice.Type;
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 

@@ -200,6 +200,7 @@ public class GazerEyesScript : MonoBehaviour
 		}
 		if (Target.Vomiting)
 		{
+			Target.VomitEmitter.gameObject.SetActive(value: false);
 			Target.Vomiting = false;
 			Target.VomitPhase = 0;
 		}
@@ -239,10 +240,13 @@ public class GazerEyesScript : MonoBehaviour
 			}
 			Target.SpecialRivalDeathReaction = false;
 			Target.InvestigatingBloodPool = false;
+			Target.SearchingForPhone = false;
 			Target.FocusOnYandere = false;
+			Target.SolvingPuzzle = false;
 			Target.EatingSnack = false;
 			Target.Confessing = false;
 			Target.Electrified = true;
+			Target.EndSearch = false;
 			Target.Attacked = false;
 			Target.Vomiting = false;
 			Target.Fleeing = false;
@@ -256,7 +260,6 @@ public class GazerEyesScript : MonoBehaviour
 			Target.tag = "Blood";
 			Target.Ragdoll.ElectrocutionAnimation = true;
 			Target.Ragdoll.Disturbing = true;
-			Target.MurderSuicidePhase = 100;
 			Target.SpawnAlarmDisc();
 			GameObject obj = Object.Instantiate(StudentManager.LightSwitch.Electricity, Target.transform.position, Quaternion.identity);
 			obj.transform.parent = Target.BoneSets.RightArm;

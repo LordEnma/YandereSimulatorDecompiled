@@ -93,6 +93,8 @@ public class ShutterScript : MonoBehaviour
 
 	public bool KittenShot;
 
+	public bool RestoreFPS;
+
 	public bool OsanaShot;
 
 	public bool FreeSpace;
@@ -167,6 +169,12 @@ public class ShutterScript : MonoBehaviour
 		_ = Yandere.Selfie;
 		if (Snapping)
 		{
+			if (StudentManager.FPSDisplay.activeInHierarchy)
+			{
+				StudentManager.FPSDisplayBG.SetActive(value: false);
+				StudentManager.FPSDisplay.SetActive(value: false);
+				RestoreFPS = true;
+			}
 			if (Yandere.Noticed)
 			{
 				ResumeGameplay();
@@ -938,6 +946,12 @@ public class ShutterScript : MonoBehaviour
 
 	public void ResumeGameplay()
 	{
+		if (RestoreFPS)
+		{
+			StudentManager.FPSDisplayBG.SetActive(value: true);
+			StudentManager.FPSDisplay.SetActive(value: true);
+			RestoreFPS = true;
+		}
 		ErrorWindow.transform.localScale = Vector3.zero;
 		SmartphoneCamera.targetTexture = SmartphoneScreen;
 		StudentManager.GhostChan.gameObject.SetActive(value: false);

@@ -69,7 +69,12 @@ public class PickpocketScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
-			if (Student.Routine)
+			bool flag = false;
+			if (Student.MyBento.Tampered && (Student.Emetic || Student.Lethal || Student.Sedated || Student.Headache))
+			{
+				flag = true;
+			}
+			if (Student.Routine && !flag)
 			{
 				if (Student.DistanceToDestination > 0.5f)
 				{

@@ -10,11 +10,13 @@ public class TutorialScript : MonoBehaviour
 
 	public InputDeviceType PreviousInputDevice;
 
-	public GameObject CleaningItemBlocker;
-
 	public PostProcessingProfile Profile;
 
 	public InputDeviceScript InputDevice;
+
+	public RotaryPhoneScript RotaryPhone;
+
+	public WitnessChanScript WitnessChan;
 
 	public WeaponMenuScript WeaponMenu;
 
@@ -100,6 +102,8 @@ public class TutorialScript : MonoBehaviour
 
 	public AudioClip ReversePianoNote;
 
+	public GameObject CleaningItemBlocker;
+
 	public GameObject PhantomGirlOutline;
 
 	public GameObject HeartbeatCamera;
@@ -124,9 +128,13 @@ public class TutorialScript : MonoBehaviour
 
 	public bool ReturnToTitleScreen;
 
+	public bool AlternateTimeline;
+
 	public bool FadeInstructions;
 
 	public bool MovementProgress;
+
+	public bool RemovingWitness;
 
 	public bool CameraProgress;
 
@@ -135,6 +143,8 @@ public class TutorialScript : MonoBehaviour
 	public bool FogEnabled;
 
 	public bool CanPickUp;
+
+	public bool NoWitness;
 
 	public bool Cutscene;
 
@@ -203,6 +213,7 @@ public class TutorialScript : MonoBehaviour
 		PhantomGirlOutline.SetActive(value: false);
 		StudentManager.Graffiti[1].transform.parent.gameObject.SetActive(value: false);
 		StudentManager.Headmaster.gameObject.SetActive(value: false);
+		WitnessChan.gameObject.SetActive(value: true);
 		HeartbeatCamera.SetActive(value: false);
 		OutOfOrderSign.SetActive(value: false);
 		PauseScreen.SetActive(value: false);
@@ -275,6 +286,7 @@ public class TutorialScript : MonoBehaviour
 			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				Phase = KeyboardInstructions.Length - 1;
+				RemovingWitness = false;
 				TogglePauseScreen();
 				Time.timeScale = 5f;
 			}
@@ -290,7 +302,17 @@ public class TutorialScript : MonoBehaviour
 				TogglePauseScreen();
 			}
 		}
-		if (!Clock.UpdateBloom)
+		if (RemovingWitness)
+		{
+			if (WitnessChan.Fleeing)
+			{
+				FadeInstructions = true;
+				RemovingWitness = false;
+				NoWitness = true;
+				Phase--;
+			}
+		}
+		else if (!Clock.UpdateBloom)
 		{
 			if (!Cutscene)
 			{
@@ -397,14 +419,7 @@ public class TutorialScript : MonoBehaviour
 						{
 							FadeInstructions = false;
 							Phase++;
-							if (InputDevice.Type == InputDeviceType.Gamepad)
-							{
-								InstructionLabel.text = GamepadInstructions[Phase];
-							}
-							else
-							{
-								InstructionLabel.text = KeyboardInstructions[Phase];
-							}
+							UpdateInstructionText();
 						}
 						else
 						{
@@ -480,9 +495,13 @@ public class TutorialScript : MonoBehaviour
 							if (Vector3.Distance(Yandere.transform.position, Destination[Phase].position) < 0.5f)
 							{
 								Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+								WitnessChan.gameObject.SetActive(value: false);
 								Knife.Prompt.enabled = true;
 								FadeInstructions = true;
 								Yandere.Frozen = true;
+								RotaryPhone.Prompt.Hide();
+								RotaryPhone.Prompt.enabled = false;
+								RotaryPhone.enabled = false;
 							}
 						}
 						else if (Phase == 6)
@@ -905,33 +924,42 @@ public class TutorialScript : MonoBehaviour
 						{
 							if (Yandere.Sanity == 100f)
 							{
-								if (StudentManager.Students[2] != null)
+								if (AlternateTimeline)
 								{
-									Object.Destroy(StudentManager.Students[2].gameObject);
-									StudentManager.Students[2] = null;
+									FadeInstructions = true;
+									Yandere.Frozen = false;
+									Phase = 58;
 								}
-								StudentManager.ForceSpawn = true;
-								StudentManager.SpawnPositions[25] = Destination[Phase + 1].transform;
-								StudentManager.SpawnID = 25;
-								StudentManager.SpawnStudent(25);
-								StudentManager.Students[25].FocusOnYandere = true;
-								StudentManager.Students[25].Blind = true;
-								StudentManager.Students[25].enabled = true;
-								StudentManager.Students[25].Start();
-								StudentManager.Students[25].OriginalIdleAnim = "f02_idleShort_01";
-								StudentManager.Students[25].IdleAnim = "f02_idleShort_01";
-								StudentManager.Students[25].transform.eulerAngles = new Vector3(0f, 90f, 0f);
-								StudentManager.Students[25].Indoors = true;
-								StudentManager.Students[25].Spawned = true;
-								if (StudentManager.Students[25].ShoeRemoval.Locker == null)
+								else
 								{
-									StudentManager.Students[25].ShoeRemoval.Start();
+									if (StudentManager.Students[2] != null)
+									{
+										Object.Destroy(StudentManager.Students[2].gameObject);
+										StudentManager.Students[2] = null;
+									}
+									StudentManager.ForceSpawn = true;
+									StudentManager.SpawnPositions[25] = Destination[Phase + 1].transform;
+									StudentManager.SpawnID = 25;
+									StudentManager.SpawnStudent(25);
+									StudentManager.Students[25].FocusOnYandere = true;
+									StudentManager.Students[25].Blind = true;
+									StudentManager.Students[25].enabled = true;
+									StudentManager.Students[25].Start();
+									StudentManager.Students[25].OriginalIdleAnim = "f02_idleShort_01";
+									StudentManager.Students[25].IdleAnim = "f02_idleShort_01";
+									StudentManager.Students[25].transform.eulerAngles = new Vector3(0f, 90f, 0f);
+									StudentManager.Students[25].Indoors = true;
+									StudentManager.Students[25].Spawned = true;
+									if (StudentManager.Students[25].ShoeRemoval.Locker == null)
+									{
+										StudentManager.Students[25].ShoeRemoval.Start();
+									}
+									StudentManager.Students[25].ShoeRemoval.PutOnShoes();
+									StudentManager.StayInOneSpot(25);
+									Blocker[7].SetActive(value: true);
+									FadeInstructions = true;
+									Yandere.Frozen = false;
 								}
-								StudentManager.Students[25].ShoeRemoval.PutOnShoes();
-								StudentManager.StayInOneSpot(25);
-								Blocker[7].SetActive(value: true);
-								FadeInstructions = true;
-								Yandere.Frozen = false;
 							}
 						}
 						else if (Phase == 54)
@@ -976,13 +1004,16 @@ public class TutorialScript : MonoBehaviour
 						}
 						else if (Phase == 58)
 						{
-							if (StudentManager.Students[25].Forgave && !Yandere.Talking)
+							if ((StudentManager.Students[25].Forgave && !Yandere.Talking) || AlternateTimeline)
 							{
-								StudentManager.Students[25].Reputation.PendingRep = 0f;
+								if (StudentManager.Students[25] != null)
+								{
+									StudentManager.Students[25].Reputation.PendingRep = 0f;
+									StudentManager.Students[25].gameObject.SetActive(value: false);
+								}
 								Yandere.RPGCamera.enabled = false;
 								MainCamera.transform.position = new Vector3(0f, 14f, -38.566666f);
 								MainCamera.transform.eulerAngles = Vector3.zero;
-								StudentManager.Students[25].gameObject.SetActive(value: false);
 								Blocker[7].SetActive(value: false);
 								MainCamera.clearFlags = CameraClearFlags.Skybox;
 								MainCamera.farClipPlane = 350f;
@@ -1017,6 +1048,10 @@ public class TutorialScript : MonoBehaviour
 							{
 								if (!ReturnToTitleScreen)
 								{
+									if (AlternateTimeline)
+									{
+										GameGlobals.AlternateTimeline = true;
+									}
 									GameGlobals.EightiesTutorial = false;
 									GameGlobals.EightiesCutsceneID = 1;
 									OptionGlobals.Fog = StudentManager.QualityManager.OriginalFog;
@@ -1137,6 +1172,7 @@ public class TutorialScript : MonoBehaviour
 				{
 					BGM[2].volume = Mathf.MoveTowards(BGM[2].volume, 0f, Time.deltaTime * 0.2f);
 					BGM[3].volume = Mathf.MoveTowards(BGM[3].volume, 0f, Time.deltaTime * 0.2f);
+					BGM[4].volume = Mathf.MoveTowards(BGM[4].volume, 0f, Time.deltaTime * 0.2f);
 					Yandere.MainCamera.transform.position = new Vector3(30f, 9.366666f, -28.5f);
 					Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, -90f, 0f);
 					VictimGirl.transform.eulerAngles = new Vector3(0f, 90f, 0f);
@@ -1162,6 +1198,7 @@ public class TutorialScript : MonoBehaviour
 						MyAudio.Play();
 						BGM[2].volume = 0f;
 						BGM[3].volume = 0f;
+						BGM[4].volume = 0f;
 						Darkness.alpha = 1f;
 						CutscenePhase++;
 					}
@@ -1205,6 +1242,10 @@ public class TutorialScript : MonoBehaviour
 						MainCamera.backgroundColor = new Color(0f, 0f, 0f, 1f);
 						RenderSettings.fogColor = new Color(0f, 0f, 0f, 1f);
 						BGM[3].volume = 0.5f;
+						if (AlternateTimeline)
+						{
+							BGM[4].volume = 0.5f;
+						}
 						Knife.Blood.enabled = true;
 						Knife.MurderWeapon = true;
 						Knife.StainWithBlood();
@@ -1277,6 +1318,11 @@ public class TutorialScript : MonoBehaviour
 
 	private void UpdateInstructionText()
 	{
+		if (RemovingWitness)
+		{
+			InstructionLabel.text = "Obtain ammonium, obtain balloons, craft a stink bomb, and throw it at Ui Tunesu.";
+			return;
+		}
 		PreviousInputDevice = InputDevice.Type;
 		if (InputDevice.Type == InputDeviceType.Gamepad)
 		{
@@ -1326,5 +1372,22 @@ public class TutorialScript : MonoBehaviour
 		cosmetic.RightEyeRenderer.material.mainTexture = cosmetic.FaceTexture;
 		cosmetic.LeftEyeRenderer.material.mainTexture = cosmetic.FaceTexture;
 		Yandere.RPGCamera.enabled = true;
+	}
+
+	public void SwitchTimelines()
+	{
+		Blocker[1].SetActive(value: false);
+		Blocker[2].SetActive(value: false);
+		Blocker[3].SetActive(value: false);
+		Blocker[4].SetActive(value: false);
+		Blocker[5].SetActive(value: false);
+		Blocker[6].SetActive(value: false);
+		Blocker[7].SetActive(value: false);
+		InstructionLabel.text = "Obtain ammonium, obtain balloons, craft a stink bomb, and throw it at Ui Tunesu.";
+		Workbench.Prompt.HideButton[0] = false;
+		Workbench.EightiesTutorial = false;
+		Workbench.Prompt.enabled = true;
+		AlternateTimeline = true;
+		RemovingWitness = true;
 	}
 }

@@ -126,19 +126,14 @@ public class StreetShopScript : MonoBehaviour
 				Products[8] = "Enchanting Petals Volume 3";
 				Products[9] = "Enchanting Petals Volume 4";
 				Products[10] = "Enchanting Petals Volume 5";
-				AdultProducts[6] = false;
-				AdultProducts[7] = false;
-				AdultProducts[8] = false;
-				AdultProducts[9] = false;
-				AdultProducts[10] = false;
 			}
 			else if (StoreType == ShopType.Games)
 			{
 				Products[1] = "Yanvania III: Dracula-chan's Curse";
 				Products[2] = "Sammy the Witch";
-				Products[3] = "Super Kubz Land";
-				Products[4] = "Scrub Tales";
-				Products[5] = "Razztris";
+				Products[3] = "Super Maria Land";
+				Products[4] = "Quack Tales";
+				Products[5] = "Tetromino Tennis";
 				Costs[1] = 49.99f;
 				Costs[2] = 49.99f;
 				Costs[3] = 49.99f;

@@ -256,7 +256,6 @@ public class TalkingScript : MonoBehaviour
 				if (S.Club != ClubType.Delinquent)
 				{
 					S.CharacterAnimation.CrossFade(S.LookDownAnim);
-					CalculateRepBonus();
 					int topicSelected = S.StudentManager.DialogueWheel.TopicInterface.TopicSelected;
 					if (!S.StudentManager.GetTopicLearnedByStudent(topicSelected, S.StudentID))
 					{
@@ -266,6 +265,7 @@ public class TalkingScript : MonoBehaviour
 					}
 					if (S.DialogueWheel.TopicInterface.Success)
 					{
+						CalculateRepBonus();
 						S.Subtitle.PersonaSubtitle.UpdateLabel(PersonaType.Nemesis, S.Reputation.Reputation, 5f);
 						S.Reputation.PendingRep += 1f + (float)S.RepBonus;
 						S.PendingRep += 1f + (float)S.RepBonus;
@@ -283,7 +283,6 @@ public class TalkingScript : MonoBehaviour
 				{
 					S.Subtitle.UpdateLabel(SubtitleType.Dismissive, 1, 3f);
 				}
-				S.Complimented = true;
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
@@ -292,7 +291,25 @@ public class TalkingScript : MonoBehaviour
 			S.TalkTimer -= Time.deltaTime;
 			if (S.TalkTimer <= 0f)
 			{
-				S.DialogueWheel.End();
+				S.DialogueWheel.PromptBar.ClearButtons();
+				S.DialogueWheel.PromptBar.Label[0].text = "Confirm";
+				S.DialogueWheel.PromptBar.Label[4].text = "Change Selection";
+				S.DialogueWheel.PromptBar.UpdateButtons();
+				S.DialogueWheel.PromptBar.Show = true;
+				S.DialogueWheel.Social.gameObject.SetActive(value: true);
+				S.Interaction = StudentInteractionType.Idle;
+				if (S.DialogueWheel.TopicInterface.Positive)
+				{
+					S.DialogueWheel.Social.SpokePositive[S.StudentID] = true;
+				}
+				else
+				{
+					S.DialogueWheel.Social.SpokeNegative[S.StudentID] = true;
+				}
+				S.DialogueWheel.Social.DialogueLabel.text = S.DialogueWheel.Social.Dialogue[1];
+				S.DialogueWheel.Social.UpdateButtons();
+				S.Yandere.HUD.alpha = 0f;
+				Time.timeScale = 0.0001f;
 			}
 		}
 		else if (S.Interaction == StudentInteractionType.Gossiping)
@@ -499,13 +516,9 @@ public class TalkingScript : MonoBehaviour
 					}
 					S.DialogueWheel.TaskWindow.TaskComplete = true;
 					S.StudentManager.TaskManager.TaskStatus[S.StudentID] = 3;
-					S.StudentManager.StudentBefriended[S.StudentID] = true;
-					S.Police.EndOfDay.NewFriends++;
-					S.Yandere.Friends++;
 					S.Interaction = StudentInteractionType.Idle;
-					S.Friend = true;
-					Debug.Log("Now attempting to turn the student's outlines green.");
-					S.TurnOutlinesGreen();
+					S.DialogueWheel.Social.StudentFriendships[S.StudentID] += 50;
+					S.DialogueWheel.Social.CheckFriendStatus();
 					if (S.Club != ClubType.Delinquent)
 					{
 						CalculateRepBonus();
@@ -566,26 +579,7 @@ public class TalkingScript : MonoBehaviour
 						{
 							flag3 = true;
 						}
-						if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
-						{
-							Debug.Log("Reputation + PendingRep is: " + (S.Reputation.Reputation + S.Reputation.PendingRep));
-							if (S.Reputation.Reputation + S.Reputation.PendingRep >= (float)(DateGlobals.Week * 10))
-							{
-								if (S.Clock.Period < 5)
-								{
-									S.Yandere.NotificationManager.CustomText = "Your rep will update after you attend class.";
-								}
-								else
-								{
-									S.Yandere.NotificationManager.CustomText = "Your rep will update tomorrow.";
-								}
-								S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-							}
-							S.Yandere.NotificationManager.CustomText = "You need at least " + DateGlobals.Week * 10 + " Reputation Points";
-							S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-							flag5 = true;
-						}
-						else if (S.CurrentAction == StudentActionType.SitAndEatBento)
+						if (S.CurrentAction == StudentActionType.SitAndEatBento)
 						{
 							flag4 = true;
 						}
@@ -723,31 +717,9 @@ public class TalkingScript : MonoBehaviour
 				{
 					bool flag6 = false;
 					bool flag7 = false;
-					if (S.StudentID == S.StudentManager.RivalID)
+					if (S.StudentID == S.StudentManager.RivalID && S.CurrentAction == StudentActionType.SitAndEatBento)
 					{
-						if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
-						{
-							Debug.Log("Reputation + PendingRep is: " + (S.Reputation.Reputation + S.Reputation.PendingRep));
-							if (S.Reputation.Reputation + S.Reputation.PendingRep >= (float)(DateGlobals.Week * 10))
-							{
-								if (S.Clock.Period < 5)
-								{
-									S.Yandere.NotificationManager.CustomText = "Your rep will update after you attend class.";
-								}
-								else
-								{
-									S.Yandere.NotificationManager.CustomText = "Your rep will update tomorrow.";
-								}
-								S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-							}
-							S.Yandere.NotificationManager.CustomText = "You need at least " + DateGlobals.Week * 10 + " Reputation Points";
-							S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-							flag7 = true;
-						}
-						else if (S.CurrentAction == StudentActionType.SitAndEatBento)
-						{
-							flag6 = true;
-						}
+						flag6 = true;
 					}
 					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag7))
 					{
@@ -826,31 +798,9 @@ public class TalkingScript : MonoBehaviour
 				{
 					bool flag8 = false;
 					bool flag9 = false;
-					if (S.StudentID == S.StudentManager.RivalID)
+					if (S.StudentID == S.StudentManager.RivalID && S.CurrentAction == StudentActionType.SitAndEatBento)
 					{
-						if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
-						{
-							Debug.Log("Reputation + PendingRep is: " + (S.Reputation.Reputation + S.Reputation.PendingRep));
-							if (S.Reputation.Reputation + S.Reputation.PendingRep >= (float)(DateGlobals.Week * 10))
-							{
-								if (S.Clock.Period < 5)
-								{
-									S.Yandere.NotificationManager.CustomText = "Your rep will update after you attend class.";
-								}
-								else
-								{
-									S.Yandere.NotificationManager.CustomText = "Your rep will update tomorrow.";
-								}
-								S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-							}
-							S.Yandere.NotificationManager.CustomText = "You need at least " + DateGlobals.Week * 10 + " Reputation Points";
-							S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-							flag9 = true;
-						}
-						else if (S.CurrentAction == StudentActionType.SitAndEatBento)
-						{
-							flag8 = true;
-						}
+						flag8 = true;
 					}
 					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag8) || (S.StudentID == S.StudentManager.RivalID && flag9))
 					{
@@ -1421,26 +1371,7 @@ public class TalkingScript : MonoBehaviour
 			{
 				bool flag10 = false;
 				bool flag11 = false;
-				if (S.Reputation.Reputation < (float)(DateGlobals.Week * 10))
-				{
-					Debug.Log("Reputation + PendingRep is: " + (S.Reputation.Reputation + S.Reputation.PendingRep));
-					if (S.Reputation.Reputation + S.Reputation.PendingRep >= (float)(DateGlobals.Week * 10))
-					{
-						if (S.Clock.Period < 5)
-						{
-							S.Yandere.NotificationManager.CustomText = "Your rep will update after you attend class.";
-						}
-						else
-						{
-							S.Yandere.NotificationManager.CustomText = "Your rep will update tomorrow.";
-						}
-						S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					}
-					S.Yandere.NotificationManager.CustomText = "You need at least " + DateGlobals.Week * 10 + " Reputation Points";
-					S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					flag11 = true;
-				}
-				else if (S.CurrentAction == StudentActionType.SitAndEatBento)
+				if (S.CurrentAction == StudentActionType.SitAndEatBento)
 				{
 					flag10 = true;
 				}
@@ -2153,7 +2084,7 @@ public class TalkingScript : MonoBehaviour
 		}
 	}
 
-	private void CalculateRepBonus()
+	public void CalculateRepBonus()
 	{
 		S.RepBonus = 0;
 		if (PlayerGlobals.PantiesEquipped == 3)
@@ -2174,6 +2105,13 @@ public class TalkingScript : MonoBehaviour
 			S.RepBonus++;
 		}
 		S.RepBonus += S.Yandere.Class.PsychologyGrade + S.Yandere.Class.PsychologyBonus;
+		Debug.Log("''RepBonus'' is: " + S.RepBonus);
+		Debug.Log("Reputation will go up by " + (S.RepBonus + 1) + " and Friendship will go up by " + (S.RepBonus + 1));
+		S.DialogueWheel.Social.Student = S;
+		S.DialogueWheel.Social.StudentID = S.StudentID;
+		S.DialogueWheel.Social.StudentFriendships[S.StudentID] += 1 + S.RepBonus;
+		S.DialogueWheel.Social.CheckFriendStatus();
+		S.DialogueWheel.Social.UpdateButtons();
 	}
 
 	private void LateUpdate()

@@ -22,21 +22,18 @@ public class GrandfatherScript : MonoBehaviour
 	{
 		if (!Flip)
 		{
-			if ((double)Force < 0.1)
-			{
-				Force += Time.deltaTime * 0.1f * Speed;
-			}
+			Force = Mathf.MoveTowards(Force, 1f, Speed * Time.deltaTime);
 		}
-		else if ((double)Force > -0.1)
+		else
 		{
-			Force -= Time.deltaTime * 0.1f * Speed;
+			Force = Mathf.MoveTowards(Force, -1f, Speed * Time.deltaTime);
 		}
-		Rotation += Force;
-		if (Rotation > 1f)
+		Rotation += Force * Time.deltaTime * 10f;
+		if (Rotation > 3f)
 		{
 			Flip = true;
 		}
-		else if (Rotation < -1f)
+		else if (Rotation < -3f)
 		{
 			Flip = false;
 		}

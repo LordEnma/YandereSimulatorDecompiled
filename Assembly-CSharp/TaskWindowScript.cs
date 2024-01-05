@@ -225,6 +225,10 @@ public class TaskWindowScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			text = "1989";
+			if (GameGlobals.CustomMode)
+			{
+				text = "Custom";
+			}
 		}
 		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_" + ID + ".png");
 		Portrait.mainTexture = wWW.texture;

@@ -82,6 +82,8 @@ public class StreetShopInterfaceScript : MonoBehaviour
 
 	public bool ShowMaid;
 
+	public bool Eaten;
+
 	public bool Show;
 
 	public ShopType CurrentStore;
@@ -151,7 +153,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 					Patronized = false;
 					Show = false;
 				}
-				if (Timer > 0.5f && Input.GetButtonUp(InputNames.Xbox_A) && Icons[Selected].spriteName != "Yes")
+				if (Timer > 0.5f && Input.GetButtonUp(InputNames.Xbox_A) && Icons[Selected].spriteName != "Yes" && PricesLabel[Selected].text != "Not Hungry" && PricesLabel[Selected].text != "Sold Out")
 				{
 					CheckStore();
 					UpdateIcons();
@@ -388,7 +390,12 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		case ShopType.Salon:
 			PurchaseEffect();
 			CollectibleGlobals.SetAdvicePurchased(Selected, value: true);
-			Timer = 1f;
+			break;
+		case ShopType.Ramen:
+			PurchaseEffect();
+			GameGlobals.Dream = Selected;
+			Eaten = true;
+			UpdateIcons();
 			break;
 		case ShopType.Hardware:
 		case ShopType.Maid:
@@ -545,6 +552,20 @@ public class StreetShopInterfaceScript : MonoBehaviour
 					Icons[i].spriteName = "Yes";
 					PricesLabel[i].text = "Bought";
 				}
+			}
+			break;
+		}
+		case ShopType.Ramen:
+		{
+			if (Eaten)
+			{
+				PricesLabel[1].text = "Not Hungry";
+				Icons[1].spriteName = "Yes";
+				break;
+			}
+			for (int i = 2; i < 6; i++)
+			{
+				PricesLabel[i].text = "Sold Out";
 			}
 			break;
 		}

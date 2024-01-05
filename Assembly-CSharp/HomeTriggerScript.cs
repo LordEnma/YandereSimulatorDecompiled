@@ -36,6 +36,11 @@ public class HomeTriggerScript : MonoBehaviour
 	private void Update()
 	{
 		Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, Mathf.MoveTowards(Label.color.a, FadeIn ? 1f : 0f, Time.deltaTime * 10f));
+		if (FadeIn && !HomeCamera.HomeYandere.gameObject.activeInHierarchy)
+		{
+			HomeCamera.ID = 0;
+			FadeIn = false;
+		}
 	}
 
 	public void Disable()

@@ -76,6 +76,8 @@ public static class StudentGlobals
 
 	private const string Str_StudentHealth = "StudentHealth_";
 
+	private const string Str_StudentFriendship = "StudentFriendship_";
+
 	private const string Str_MemorialStudents = "MemorialStudents";
 
 	private const string Str_MemorialStudent1 = "MemorialStudent1";
@@ -951,6 +953,23 @@ public static class StudentGlobals
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_StudentHealth_");
 	}
 
+	public static int GetStudentFriendship(int studentID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_StudentFriendship_" + studentID);
+	}
+
+	public static void SetStudentFriendship(int studentID, int value)
+	{
+		string text = studentID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_StudentFriendship_", text);
+		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_StudentFriendship_" + text, value);
+	}
+
+	public static int[] KeysOfStudentFriendship()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_StudentFriendship_");
+	}
+
 	public static Vector3 GetReputationTriangle(int studentID)
 	{
 		return GlobalsHelper.GetVector3("Profile_" + GameGlobals.Profile + "_Student_" + studentID + "_ReputatonTriangle");
@@ -1016,7 +1035,8 @@ public static class StudentGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentReputation_", KeysOfStudentReputation());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentSanity_", KeysOfStudentSanity());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentRansomed_", KeysOfStudentRansomed());
-		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentRansomed_", KeysOfStudentHealth());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentHealth_", KeysOfStudentHealth());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentFriendship_", KeysOfStudentFriendship());
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_MemorialStudents");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_MemorialStudent1");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_MemorialStudent2");

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +9,8 @@ public class EightiesCutsceneScript : MonoBehaviour
 	public GameObject SkipTutorialButton;
 
 	public GameObject SkipTutorialWindow;
+
+	public GameObject FunChan;
 
 	public GameObject Panel;
 
@@ -152,6 +156,10 @@ public class EightiesCutsceneScript : MonoBehaviour
 
 	public bool SkipTutorial;
 
+	public string[] AlternateLines;
+
+	public AudioClip[] AlternateClips;
+
 	private void Start()
 	{
 		GameGlobals.Eighties = true;
@@ -164,6 +172,14 @@ public class EightiesCutsceneScript : MonoBehaviour
 			Darkness.color = new Color(0.1f, 0.1f, 0.1f, 1f);
 		}
 		Typewriter.gameObject.SetActive(value: false);
+		if (GameGlobals.AlternateTimeline)
+		{
+			FunChan.SetActive(value: true);
+			if (GameGlobals.EightiesCutsceneID == 10)
+			{
+				GameGlobals.EightiesCutsceneID = 11;
+			}
+		}
 		if (GameGlobals.EightiesCutsceneID == 0)
 		{
 			DarkLine = 13;
@@ -297,6 +313,62 @@ public class EightiesCutsceneScript : MonoBehaviour
 			SkipTutorialButton.SetActive(value: false);
 		}
 		Time.timeScale = 1f;
+		if (GameGlobals.AlternateTimeline && GameGlobals.EightiesCutsceneID < 11)
+		{
+			Lines = AlternateLines;
+			Clips = AlternateClips;
+			DarkLine = 99;
+			RivalLine = 1;
+			Renders = Rival1Renders;
+			Nexts = Rival1Nexts;
+			Silhouette.mainTexture = null;
+			if (GameGlobals.EightiesCutsceneID < 11)
+			{
+				Silhouette.mainTexture = RivalSilhouettes[GameGlobals.EightiesCutsceneID];
+			}
+		}
+		else
+		{
+			if (!GameGlobals.CustomMode)
+			{
+				return;
+			}
+			int eightiesCutsceneID = GameGlobals.EightiesCutsceneID;
+			string[] array = File.ReadAllLines(Application.streamingAssetsPath + "/CustomMode/Cutscenes/" + eightiesCutsceneID + "/Script.txt");
+			for (int i = 0; i < Lines.Length; i++)
+			{
+				Clips[i] = Clips[0];
+				Nexts[i] = false;
+				Lines[i] = "";
+			}
+			for (int i = 0; i < array.Length; i++)
+			{
+				Lines[i + 1] = array[i];
+				if (Lines[i + 1].Contains("[image]"))
+				{
+					Nexts[i + 1] = true;
+					Lines[i + 1] = Lines[i + 1].Replace("[image]", "");
+				}
+				WWW wWW = new WWW(Application.streamingAssetsPath + "/CustomMode/Cutscenes/" + eightiesCutsceneID + "/" + i + ".png");
+				Renders[i] = wWW.texture;
+			}
+			DarkLine = 99;
+			RivalLine = 99;
+			CurrentRender = 1;
+			Render.mainTexture = Renders[1];
+			for (int i = 1; i < Lines.Length; i++)
+			{
+				StartCoroutine(DownloadCoroutine(eightiesCutsceneID, i));
+			}
+			Label.transform.localPosition = new Vector3(-666.666f, -100f, 0f);
+		}
+	}
+
+	private IEnumerator DownloadCoroutine(int CutsceneID, int ClipID)
+	{
+		WWW CurrentDownload = new WWW("File:///" + Application.streamingAssetsPath + "/CustomMode/Cutscenes/" + CutsceneID + "/" + ClipID + ".wav");
+		yield return CurrentDownload;
+		Clips[ClipID] = CurrentDownload.GetAudioClipCompressed();
 	}
 
 	private void Update()
@@ -316,6 +388,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 		if (RivalLine > 0 && ID >= RivalLine)
 		{
 			Speed += Time.deltaTime;
+			Label.transform.localPosition = Vector3.Lerp(Label.transform.localPosition, new Vector3(-900f, 250f, 0f), Time.deltaTime * Speed);
 			Silhouette.alpha = Mathf.MoveTowards(Silhouette.alpha, 1f, Time.deltaTime);
 		}
 		if (Render.alpha < 1f)
@@ -348,7 +421,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 						return;
 					}
 					ID++;
-					if (ID < Lines.Length)
+					if (ID < Lines.Length && Lines[ID] != "")
 					{
 						if (Nexts[ID])
 						{
@@ -488,14 +561,29 @@ public class EightiesCutsceneScript : MonoBehaviour
 				DateGlobals.PassDays = 1;
 			}
 			ClubGlobals.ActivitiesAttended = 0;
-			if (DateGlobals.Week < 11)
+			if (GameGlobals.AlternateTimeline && GameGlobals.EightiesCutsceneID == 11)
+			{
+				SceneManager.LoadScene("ConfessionScene");
+			}
+			else if (DateGlobals.Week < 11)
 			{
 				Save();
 				SceneManager.LoadScene("CalendarScene");
 			}
 			else if (GameGlobals.EightiesCutsceneID == 12)
 			{
-				SceneManager.LoadScene("GenocideScene");
+				if (GameGlobals.CustomMode)
+				{
+					SceneManager.LoadScene("CreditsScene");
+				}
+				else
+				{
+					SceneManager.LoadScene("GenocideScene");
+				}
+			}
+			else if (GameGlobals.CustomMode)
+			{
+				SceneManager.LoadScene("ConfessionScene");
 			}
 			else
 			{

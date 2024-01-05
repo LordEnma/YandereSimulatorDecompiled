@@ -103,6 +103,8 @@ public class WeekSelectScript : MonoBehaviour
 							if (GameGlobals.GetSpecificEliminations(i) == 3)
 							{
 								Debug.Log("Rival #" + i + " was betrayed, so she will appear in the basement as a prisoner.");
+								StudentGlobals.SetStudentKidnapped(i + 10, value: true);
+								StudentGlobals.SetStudentHealth(i + 10, 100);
 								StudentGlobals.Prisoners++;
 								AssignPrisoner(i);
 							}

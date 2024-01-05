@@ -18,18 +18,17 @@ public class MirrorScript : MonoBehaviour
 	{
 		Started = true;
 		Limit = Idles.Length - 1;
+		if (GameGlobals.Eighties)
+		{
+			Prompt.Yandere.PersonaID = 1;
+		}
 		if (Prompt.Yandere.Club == ClubType.Delinquent)
 		{
-			Prompt.Yandere.PersonaID = 10;
+			Prompt.Yandere.PersonaID = 13;
 			if (Prompt.Yandere.Persona != YanderePersonaType.Tough)
 			{
 				UpdatePersona();
 			}
-		}
-		if (GameGlobals.Eighties)
-		{
-			Idles[0] = "f02_ryobaIdle_00";
-			Walks[0] = "f02_ryobaWalk_00";
 		}
 	}
 

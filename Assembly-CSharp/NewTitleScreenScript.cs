@@ -114,6 +114,8 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public bool FadeQuestion;
 
+	public bool CustomMode;
+
 	public bool QuickStart;
 
 	public bool WeekSelect;
@@ -123,6 +125,14 @@ public class NewTitleScreenScript : MonoBehaviour
 	public bool ForVideo;
 
 	public bool FadeOut;
+
+	public float FunTimer;
+
+	public GameObject FunGirl;
+
+	public int FunPhase = 1;
+
+	public bool Fun;
 
 	public AudioClip MakeSelection;
 
@@ -201,6 +211,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		UpdateBloom(BloomIntensity, BloomRadius);
 		UpdateDOF(DepthFocus);
 		ResetVignette();
+		TitleSaveFiles.DifficultyWindow.SetActive(value: false);
 		ModeSelection.alpha = 0f;
 		DemoChecklist.alpha = 0f;
 		ExtrasMenu.alpha = 0f;
@@ -254,6 +265,10 @@ public class NewTitleScreenScript : MonoBehaviour
 			QualitySettings.vSyncCount = 1;
 		}
 		VtuberHairs[1].SetActive(value: false);
+		if (PlayerPrefs.GetInt("FunTimeline") == 1)
+		{
+			Fun = true;
+		}
 	}
 
 	private void Update()
@@ -513,7 +528,7 @@ public class NewTitleScreenScript : MonoBehaviour
 										PromptBar.Show = true;
 									}
 								}
-								else if ((Selection == 3 && !Eighties) || Selection == 6 || Selection == 8)
+								else if (Selection == 3 || Selection == 6 || Selection == 8)
 								{
 									FadeOut = true;
 								}
@@ -635,7 +650,14 @@ public class NewTitleScreenScript : MonoBehaviour
 						DateGlobals.Weekday = DayOfWeek.Sunday;
 						DateGlobals.PassDays = 1;
 						UpdateDOF(2f);
-						if (WeekSelect)
+						if (CustomMode)
+						{
+							SetEightiesVariables();
+							GameGlobals.EightiesTutorial = false;
+							GameGlobals.CustomMode = true;
+							SceneManager.LoadScene("CustomModeScene");
+						}
+						else if (WeekSelect)
 						{
 							SetEightiesVariables();
 							GameGlobals.EightiesTutorial = false;
@@ -655,6 +677,7 @@ public class NewTitleScreenScript : MonoBehaviour
 						{
 							StudentGlobals.FemaleUniform = 1;
 							StudentGlobals.MaleUniform = 1;
+							GameGlobals.LastInputType = (int)InputDevice.Type;
 							SceneManager.LoadScene("SenpaiScene");
 						}
 					}
@@ -697,6 +720,32 @@ public class NewTitleScreenScript : MonoBehaviour
 			}
 		}
 		base.transform.LookAt(LookAtTarget);
+		if (!Fun)
+		{
+			return;
+		}
+		if (FunPhase == 1)
+		{
+			FunTimer += Time.unscaledDeltaTime;
+			if (FunTimer >= 10f)
+			{
+				FunGirl.transform.position = new Vector3(UnityEngine.Random.Range(0f, 17.5f), 0f, UnityEngine.Random.Range(0f, 5f));
+				FunGirl.transform.position = new Vector3(FunGirl.transform.position.x, UnityEngine.Random.Range(0.6f, 0.6f + (FunGirl.transform.position.x + FunGirl.transform.position.z) * 0.4f), FunGirl.transform.position.z);
+				FunGirl.SetActive(value: true);
+				FunPhase = 2;
+				FunTimer = 0f;
+			}
+		}
+		else
+		{
+			FunTimer += Time.unscaledDeltaTime;
+			if (FunTimer >= 1f)
+			{
+				FunGirl.SetActive(value: false);
+				FunPhase = 1;
+				FunTimer = 0f;
+			}
+		}
 	}
 
 	private void UpdateBloom(float Intensity, float Radius)
@@ -764,7 +813,6 @@ public class NewTitleScreenScript : MonoBehaviour
 		CurrentJukebox = EightiesJukebox;
 		EightiesJukebox.volume = 0.5f;
 		Jukebox.volume = 0f;
-		MissionModeLabel.alpha = 0.5f;
 		EightiesLogo.gameObject.SetActive(value: true);
 		Osana.gameObject.SetActive(value: false);
 		NormalLogo.SetActive(value: false);

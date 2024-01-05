@@ -164,7 +164,6 @@ public class FootprintSpawnerScript : MonoBehaviour
 				}
 				if (CanSpawn)
 				{
-					Debug.Log("Height is: " + Height);
 					GameObject gameObject = Object.Instantiate(BloodyFootprint, new Vector3(base.transform.position.x, Height + 0.013f, base.transform.position.z), Quaternion.identity);
 					gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, base.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
 					FootprintScript component = gameObject.transform.GetChild(0).GetComponent<FootprintScript>();

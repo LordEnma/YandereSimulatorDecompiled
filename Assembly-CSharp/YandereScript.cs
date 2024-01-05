@@ -768,6 +768,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool WitchMode;
 
+	public bool AtSchool;
+
 	public bool Attacked;
 
 	public bool CanCloak;
@@ -816,6 +818,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool Shoved;
 
+	public bool Yakuza;
+
 	public bool Drown;
 
 	public bool Xtan;
@@ -835,6 +839,10 @@ public class YandereScript : MonoBehaviour
 	public bool DK;
 
 	public bool PK;
+
+	public Texture[] StandardUniformTextures;
+
+	public Texture[] StandardCasualTextures;
 
 	public Texture[] UniformTextures;
 
@@ -1602,6 +1610,8 @@ public class YandereScript : MonoBehaviour
 
 	public Texture TowelTexture;
 
+	public Texture YakuzaUniform;
+
 	public bool Casual = true;
 
 	public Mesh JudoGiMesh;
@@ -1680,6 +1690,22 @@ public class YandereScript : MonoBehaviour
 
 	public bool MaidCheck;
 
+	public Texture SuccubusBody;
+
+	public Texture SuccubusFace;
+
+	public bool Succubus;
+
+	public StudentScript[] FollowerList;
+
+	public GameObject FloatingWindow;
+
+	public GameObject LunaAttacher;
+
+	public GameObject RightSleeve;
+
+	public GameObject LeftSleeve;
+
 	public Texture[] VtuberFaces;
 
 	public int VtuberID;
@@ -1717,6 +1743,28 @@ public class YandereScript : MonoBehaviour
 	public AudioSource YandereVisionDrone;
 
 	public MiniMapComponent MiniMapIcon;
+
+	public string EyeType;
+
+	public Renderer RightEyeRenderer;
+
+	public Renderer LeftEyeRenderer;
+
+	public string EyeColor;
+
+	public string Stockings;
+
+	public Texture MyStockings;
+
+	public Texture[] StockingList;
+
+	public string[] Idles;
+
+	public string[] Walks;
+
+	public bool Home;
+
+	public Color ColorValue;
 
 	public float Sanity
 	{
@@ -1959,6 +2007,12 @@ public class YandereScript : MonoBehaviour
 		SpiderLegs.SetActive(GameGlobals.EmptyDemon);
 		MyRenderer.materials[2].SetFloat("_BlendAmount1", 0f);
 		SetAnimationLayers();
+		if (!Class.Initialized)
+		{
+			Debug.Log("YandereScript is now calling UpdateNumbness() for the first time in the day.");
+			Debug.Log("Oops, wait. ClassScript was not initialized, so we're initializing it before YandereScript determines the correct numbness value.");
+			Class.GetStats();
+		}
 		UpdateNumbness();
 		RightEyeOrigin = RightEye.localPosition;
 		LeftEyeOrigin = LeftEye.localPosition;
@@ -1986,6 +2040,8 @@ public class YandereScript : MonoBehaviour
 		EasterEggMenu.transform.localPosition = new Vector3(EasterEggMenu.transform.localPosition.x, 0f, EasterEggMenu.transform.localPosition.z);
 		ProgressBar.transform.parent.gameObject.SetActive(value: false);
 		Smartphone.transform.parent.gameObject.SetActive(value: false);
+		RightEyeRenderer.gameObject.SetActive(value: false);
+		LeftEyeRenderer.gameObject.SetActive(value: false);
 		ObstacleDetector.gameObject.SetActive(value: false);
 		SithBeam[1].gameObject.SetActive(value: false);
 		SithBeam[2].gameObject.SetActive(value: false);
@@ -2102,6 +2158,11 @@ public class YandereScript : MonoBehaviour
 		}
 		SetUniform();
 		HandCamera.gameObject.SetActive(value: false);
+		if (GameGlobals.CustomMode)
+		{
+			Debug.Log("Apparently, the game believes that we're in Custom Mode right now.");
+			Customize();
+		}
 		CharacterAnimation.Sample();
 	}
 
@@ -2265,10 +2326,6 @@ public class YandereScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (!StudentManager.Eighties && !NoDebug && Input.GetKeyDown(KeyCode.LeftAlt))
-		{
-			CinematicCamera.SetActive(value: false);
-		}
 		if (!PauseScreen.Show)
 		{
 			UpdateMovement();
@@ -2298,7 +2355,7 @@ public class YandereScript : MonoBehaviour
 				for (ID = 0; ID < CarryAnims.Length; ID++)
 				{
 					string text = CarryAnims[ID];
-					if (PickUp != null && CarryAnimID == ID && !Mopping && !Dipping && !Pouring && !BucketDropping && !Digging && !Burying && !WritingName)
+					if (PickUp != null && CarryAnimID == ID && !Mopping && !Dipping && !Pouring && !BucketDropping && !Digging && !Burying && !WritingName && !WrappingCorpse)
 					{
 						CharacterAnimation[text].weight = Mathf.Lerp(CharacterAnimation[text].weight, 1f, Time.deltaTime * 10f);
 					}
@@ -3007,7 +3064,6 @@ public class YandereScript : MonoBehaviour
 												Laughing = true;
 												Mopping = false;
 												CanMove = false;
-												Debug.Log("CanMove is now false.");
 												Teeth.SetActive(value: false);
 												if (StudentManager.Eighties)
 												{
@@ -3414,7 +3470,7 @@ public class YandereScript : MonoBehaviour
 					Object.Destroy(NewTrail);
 				}
 			}
-			if ((Input.GetButton(InputNames.Xbox_LS) || Input.GetKey(KeyCode.T)) && !StudentManager.EightiesTutorial)
+			if (!YandereVision && (Input.GetButton(InputNames.Xbox_LS) || Input.GetKey(KeyCode.T)) && !StudentManager.EightiesTutorial)
 			{
 				TrailTimer += Time.deltaTime;
 				if (TrailTimer >= 1f)
@@ -3489,8 +3545,15 @@ public class YandereScript : MonoBehaviour
 			if (Chased)
 			{
 				PreparedForStruggle = true;
-				CanMove = false;
-				Debug.Log("CanMove is now false.");
+				if (Yakuza)
+				{
+					Debug.Log("Yakuza Mode! The player can run!");
+				}
+				else
+				{
+					CanMove = false;
+					Debug.Log("CanMove is now false.");
+				}
 			}
 			if (!Egg)
 			{
@@ -4511,7 +4574,7 @@ public class YandereScript : MonoBehaviour
 				{
 					Police.Darkness.enabled = true;
 					Police.Darkness.color = new Color(0f, 0f, 0f, Mathf.MoveTowards(Police.Darkness.color.a, 1f, Time.deltaTime));
-					if (Police.Darkness.color.a == 1f)
+					if (Police.Darkness.color.a > 0.999f)
 					{
 						SprayTimer += Time.deltaTime;
 						if (SprayTimer > 1f)
@@ -4530,7 +4593,7 @@ public class YandereScript : MonoBehaviour
 			else if (SprayPhase == 1)
 			{
 				Police.Darkness.color = new Color(0f, 0f, 0f, Mathf.MoveTowards(Police.Darkness.color.a, 0f, Time.deltaTime));
-				if (Police.Darkness.color.a == 0f)
+				if (Police.Darkness.color.a < 0.0001f)
 				{
 					SprayTimer += Time.deltaTime;
 					if (SprayTimer > 1f)
@@ -5581,7 +5644,7 @@ public class YandereScript : MonoBehaviour
 		{
 			if (TargetStudent != null && !TargetStudent.Counselor)
 			{
-				CharacterAnimation.CrossFade(IdleAnim);
+				CharacterAnimation.CrossFade("f02_idleShort_00");
 			}
 		}
 		else if (Interaction == YandereInteractionType.Apologizing)
@@ -6475,48 +6538,8 @@ public class YandereScript : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.P))
 			{
-				CyborgParts[1].SetActive(value: false);
-				MemeGlasses.SetActive(value: false);
-				KONGlasses.SetActive(value: false);
-				EyepatchR.SetActive(value: false);
-				EyepatchL.SetActive(value: false);
 				EyewearID++;
-				if (EyewearID == 1)
-				{
-					EyepatchR.SetActive(value: true);
-				}
-				else if (EyewearID == 2)
-				{
-					EyepatchL.SetActive(value: true);
-				}
-				else if (EyewearID == 3)
-				{
-					EyepatchR.SetActive(value: true);
-					EyepatchL.SetActive(value: true);
-				}
-				else if (EyewearID == 4)
-				{
-					KONGlasses.SetActive(value: true);
-				}
-				else if (EyewearID == 5)
-				{
-					MemeGlasses.SetActive(value: true);
-				}
-				else if (EyewearID == 6)
-				{
-					if (CyborgParts[2].activeInHierarchy)
-					{
-						CyborgParts[1].SetActive(value: true);
-					}
-					else
-					{
-						EyewearID = 0;
-					}
-				}
-				else
-				{
-					EyewearID = 0;
-				}
+				UpdateEyewear();
 			}
 			if (Input.GetKeyDown(KeyCode.H))
 			{
@@ -6593,8 +6616,7 @@ public class YandereScript : MonoBehaviour
 				{
 					BreastSize = 2f;
 				}
-				RightBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
-				LeftBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
+				UpdateBust();
 			}
 			if (Input.GetKey(KeyCode.Comma))
 			{
@@ -6603,8 +6625,7 @@ public class YandereScript : MonoBehaviour
 				{
 					BreastSize = 0.5f;
 				}
-				RightBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
-				LeftBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
+				UpdateBust();
 			}
 		}
 		if (CanMove)
@@ -7186,17 +7207,20 @@ public class YandereScript : MonoBehaviour
 			a = Mathf.MoveTowards(a, 1f - sanity / 100f, Time.deltaTime);
 			SanitySmudges.color = new Color(1f, 1f, 1f, a);
 			StudentManager.SelectiveGreyscale.desaturation = 1f - StudentManager.Atmosphere + a;
-			if (a > 0.66666f)
+			if (!StudentManager.CustomMode)
 			{
-				float faces = 1f - (1f - a) / 0.33333f;
-				if (!StudentManager.Randomize)
+				if (a > 0.66666f)
 				{
-					StudentManager.SetFaces(faces);
+					float faces = 1f - (1f - a) / 0.33333f;
+					if (!StudentManager.Randomize)
+					{
+						StudentManager.SetFaces(faces);
+					}
 				}
-			}
-			else
-			{
-				StudentManager.SetFaces(0f);
+				else
+				{
+					StudentManager.SetFaces(0f);
+				}
 			}
 			SanityLabel.text = (100f - a * 100f).ToString("0") + "%";
 		}
@@ -7622,14 +7646,25 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	private void SetUniform()
+	public void SetUniform()
 	{
 		if (StudentGlobals.FemaleUniform == 0)
 		{
 			StudentGlobals.FemaleUniform = 1;
 		}
 		MyRenderer.sharedMesh = Uniforms[StudentGlobals.FemaleUniform];
-		if (Casual)
+		if (GameGlobals.CustomMode)
+		{
+			if (Casual)
+			{
+				TextureToUse = StandardCasualTextures[StudentGlobals.FemaleUniform];
+			}
+			else
+			{
+				TextureToUse = StandardUniformTextures[StudentGlobals.FemaleUniform];
+			}
+		}
+		else if (Casual)
 		{
 			TextureToUse = UniformTextures[StudentGlobals.FemaleUniform];
 		}
@@ -7640,49 +7675,52 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].mainTexture = TextureToUse;
 		MyRenderer.materials[1].mainTexture = TextureToUse;
 		MyRenderer.materials[2].mainTexture = FaceTexture;
-		StartCoroutine(ApplyCustomCostume());
+		if (base.gameObject.activeInHierarchy)
+		{
+			StartCoroutine(ApplyCustomCostume());
+		}
 	}
 
 	private IEnumerator ApplyCustomCostume()
 	{
 		if (StudentGlobals.FemaleUniform == 1)
 		{
-			WWW CustomUniform4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomUniform.png");
-			yield return CustomUniform4;
-			if (CustomUniform4.error == null)
+			WWW CustomUniform = new WWW("file:///" + Application.streamingAssetsPath + "/CustomUniform.png");
+			yield return CustomUniform;
+			if (CustomUniform.error == null)
 			{
-				MyRenderer.materials[0].mainTexture = CustomUniform4.texture;
-				MyRenderer.materials[1].mainTexture = CustomUniform4.texture;
+				MyRenderer.materials[0].mainTexture = CustomUniform.texture;
+				MyRenderer.materials[1].mainTexture = CustomUniform.texture;
 			}
 		}
 		else if (StudentGlobals.FemaleUniform == 2)
 		{
-			WWW CustomUniform4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomLong.png");
-			yield return CustomUniform4;
-			if (CustomUniform4.error == null)
+			WWW CustomUniform = new WWW("file:///" + Application.streamingAssetsPath + "/CustomLong.png");
+			yield return CustomUniform;
+			if (CustomUniform.error == null)
 			{
-				MyRenderer.materials[0].mainTexture = CustomUniform4.texture;
-				MyRenderer.materials[1].mainTexture = CustomUniform4.texture;
+				MyRenderer.materials[0].mainTexture = CustomUniform.texture;
+				MyRenderer.materials[1].mainTexture = CustomUniform.texture;
 			}
 		}
 		else if (StudentGlobals.FemaleUniform == 3)
 		{
-			WWW CustomUniform4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomSweater.png");
-			yield return CustomUniform4;
-			if (CustomUniform4.error == null)
+			WWW CustomUniform = new WWW("file:///" + Application.streamingAssetsPath + "/CustomSweater.png");
+			yield return CustomUniform;
+			if (CustomUniform.error == null)
 			{
-				MyRenderer.materials[0].mainTexture = CustomUniform4.texture;
-				MyRenderer.materials[1].mainTexture = CustomUniform4.texture;
+				MyRenderer.materials[0].mainTexture = CustomUniform.texture;
+				MyRenderer.materials[1].mainTexture = CustomUniform.texture;
 			}
 		}
 		else if (StudentGlobals.FemaleUniform == 4 || StudentGlobals.FemaleUniform == 5)
 		{
-			WWW CustomUniform4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomBlazer.png");
-			yield return CustomUniform4;
-			if (CustomUniform4.error == null)
+			WWW CustomUniform = new WWW("file:///" + Application.streamingAssetsPath + "/CustomBlazer.png");
+			yield return CustomUniform;
+			if (CustomUniform.error == null)
 			{
-				MyRenderer.materials[0].mainTexture = CustomUniform4.texture;
-				MyRenderer.materials[1].mainTexture = CustomUniform4.texture;
+				MyRenderer.materials[0].mainTexture = CustomUniform.texture;
+				MyRenderer.materials[1].mainTexture = CustomUniform.texture;
 			}
 		}
 		WWW CustomFace = new WWW("file:///" + Application.streamingAssetsPath + "/CustomFace.png");
@@ -8202,10 +8240,7 @@ public class YandereScript : MonoBehaviour
 		}
 		if (StudentManager.Eighties && !flag)
 		{
-			for (int i = 0; i < 13; i++)
-			{
-				MyRenderer.SetBlendShapeWeight(i, 0f);
-			}
+			ClearBlendShapes();
 		}
 		ClubAccessory();
 	}
@@ -8906,6 +8941,12 @@ public class YandereScript : MonoBehaviour
 
 	public void ChangeSchoolwear()
 	{
+		int num = StudentGlobals.FemaleUniform;
+		if (StudentManager.MissionMode && MissionModeGlobals.NemesisDifficulty > 0)
+		{
+			num = 1;
+			UniformTextures[1] = YakuzaUniform;
+		}
 		if (StudentManager.Eighties)
 		{
 			RestoreGentleEyes();
@@ -8925,13 +8966,24 @@ public class YandereScript : MonoBehaviour
 		{
 			CensorSteam[ID].SetActive(value: false);
 		}
-		if (Casual)
+		if (StudentManager.CustomMode)
 		{
-			TextureToUse = UniformTextures[StudentGlobals.FemaleUniform];
+			if (Casual)
+			{
+				TextureToUse = StandardUniformTextures[num];
+			}
+			else
+			{
+				TextureToUse = StandardCasualTextures[num];
+			}
+		}
+		else if (Casual)
+		{
+			TextureToUse = UniformTextures[num];
 		}
 		else
 		{
-			TextureToUse = CasualTextures[StudentGlobals.FemaleUniform];
+			TextureToUse = CasualTextures[num];
 		}
 		if (!Egg)
 		{
@@ -8981,7 +9033,7 @@ public class YandereScript : MonoBehaviour
 		else if (Schoolwear == 1)
 		{
 			PantyAttacher.newRenderer.enabled = true;
-			MyRenderer.sharedMesh = Uniforms[StudentGlobals.FemaleUniform];
+			MyRenderer.sharedMesh = Uniforms[num];
 			MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
 			MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
 			if (GameGlobals.CensorPanties)
@@ -9189,6 +9241,10 @@ public class YandereScript : MonoBehaviour
 
 	public void UpdateAccessory()
 	{
+		for (ID = 1; ID < Accessories.Length; ID++)
+		{
+			Accessories[ID].SetActive(value: false);
+		}
 		if (AccessoryGroup != null)
 		{
 			AccessoryGroup.SetPartsActive(active: false);
@@ -9450,7 +9506,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	private void BecomeRyoba()
+	public void BecomeRyoba()
 	{
 		if (VtuberID == 0)
 		{
@@ -9458,7 +9514,14 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(5, 25f);
 			MyRenderer.SetBlendShapeWeight(8, 0f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
-			Hairstyle = 203;
+			if (AtSchool && GameGlobals.CustomMode)
+			{
+				Hairstyle = int.Parse(StudentManager.JSON.Students[0].Hairstyle);
+			}
+			else
+			{
+				Hairstyle = 203;
+			}
 			UpdateHair();
 		}
 		OriginalIdleAnim = "f02_ryobaIdle_00";
@@ -9468,10 +9531,12 @@ public class YandereScript : MonoBehaviour
 		OriginalRunAnim = "f02_ryobaRun_00";
 		RunAnim = "f02_ryobaRun_00";
 		BreastSize = 1.5f;
-		RightBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
-		LeftBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
-		SneakShotButton.alpha = 0.5f;
-		SneakShotLabel.alpha = 0f;
+		UpdateBust();
+		if (SneakShotButton != null)
+		{
+			SneakShotButton.alpha = 0.5f;
+			SneakShotLabel.alpha = 0f;
+		}
 		Phone = PolaroidOfSenpai;
 		Laugh1 = EightiesLaughs[1];
 		Laugh2 = EightiesLaughs[2];
@@ -9497,6 +9562,58 @@ public class YandereScript : MonoBehaviour
 			Accessories[ID].SetActive(value: false);
 		}
 		MyRenderer.enabled = false;
+	}
+
+	public void Succ()
+	{
+		Debug.Log("Become Succubus.");
+		Bloodiness = 0f;
+		Sanity = 100f;
+		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
+		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
+		MyRenderer.sharedMesh = NudeMesh;
+		MyRenderer.materials[0].mainTexture = SuccubusFace;
+		MyRenderer.materials[1].mainTexture = SuccubusBody;
+		MyRenderer.materials[2].mainTexture = SuccubusBody;
+		PantyAttacher.newRenderer.enabled = false;
+		Schoolwear = 0;
+		IdleAnim = "f02_gazerIdle_00";
+		WalkAnim = "f02_gazerWalk_00";
+		RunAnim = "f02_gazerRun_00";
+		OriginalIdleAnim = IdleAnim;
+		OriginalWalkAnim = WalkAnim;
+		OriginalRunAnim = RunAnim;
+		Succubus = true;
+		Egg = true;
+		DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
+		StudentManager.BlindEveryone();
+		StudentManager.UpdateStudents();
+	}
+
+	public void Luna()
+	{
+		Debug.Log("Become Luna.");
+		Bloodiness = 0f;
+		Sanity = 100f;
+		PantyAttacher.newRenderer.enabled = false;
+		IdleAnim = "f02_heroicIdle_00";
+		WalkAnim = "f02_walkConfident_00";
+		OriginalIdleAnim = IdleAnim;
+		OriginalWalkAnim = WalkAnim;
+		OriginalRunAnim = RunAnim;
+		FloatingWindow.SetActive(value: true);
+		LunaAttacher.SetActive(value: true);
+		RightSleeve.SetActive(value: true);
+		LeftSleeve.SetActive(value: true);
+		Hairstyle = 212;
+		UpdateHair();
+		MyRenderer.enabled = false;
+		Egg = true;
+		DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
+		StudentManager.BlindEveryone();
+		Jukebox.LunarScytheMusic();
+		WeaponManager.Weapons[66].gameObject.SetActive(value: true);
+		WeaponManager.Weapons[66].Equip();
 	}
 
 	public void LoseGentleEyes()
@@ -9831,5 +9948,585 @@ public class YandereScript : MonoBehaviour
 		SplashCamera.transform.localEulerAngles = new Vector3(0f, -135f, 0f);
 		SplashCamera.Show = true;
 		SplashCamera.MyCamera.enabled = true;
+	}
+
+	public void ClearBlendShapes()
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			MyRenderer.SetBlendShapeWeight(i, 0f);
+		}
+	}
+
+	public void UpdateEyeType()
+	{
+		ClearBlendShapes();
+		if (EyeType == "Thin")
+		{
+			MyRenderer.SetBlendShapeWeight(8, 100f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+		}
+		else if (EyeType == "Serious")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 50f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+		}
+		else if (EyeType == "Round")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 15f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+		}
+		else if (EyeType == "Sad")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 15f);
+			MyRenderer.SetBlendShapeWeight(6, 50f);
+			MyRenderer.SetBlendShapeWeight(8, 50f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+		}
+		else if (EyeType == "Mean")
+		{
+			MyRenderer.SetBlendShapeWeight(10, 100f);
+		}
+		else if (EyeType == "Smug")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+		}
+		else if (EyeType == "Gentle")
+		{
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "MO")
+		{
+			MyRenderer.SetBlendShapeWeight(8, 50f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "Rival1")
+		{
+			MyRenderer.SetBlendShapeWeight(8, 5f);
+			MyRenderer.SetBlendShapeWeight(9, 20f);
+			MyRenderer.SetBlendShapeWeight(10, 50f);
+			MyRenderer.SetBlendShapeWeight(11, 50f);
+			MyRenderer.SetBlendShapeWeight(12, 10f);
+		}
+		else if (EyeType == "Eighties1")
+		{
+			MyRenderer.SetBlendShapeWeight(6, 15f);
+			MyRenderer.SetBlendShapeWeight(8, 5f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(10, 15f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "Eighties2")
+		{
+			MyRenderer.SetBlendShapeWeight(1, 15f);
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(8, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(11, 25f);
+			MyRenderer.SetBlendShapeWeight(12, 15f);
+		}
+		else if (EyeType == "Eighties3")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(6, 75f);
+			MyRenderer.SetBlendShapeWeight(8, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 75f);
+			MyRenderer.SetBlendShapeWeight(11, 15f);
+			MyRenderer.SetBlendShapeWeight(12, 15f);
+		}
+		else if (EyeType == "Eighties4")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(9, 10f);
+			MyRenderer.SetBlendShapeWeight(10, 25f);
+			MyRenderer.SetBlendShapeWeight(11, 25f);
+			MyRenderer.SetBlendShapeWeight(12, 50f);
+		}
+		else if (EyeType == "Eighties5")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(6, 20f);
+			MyRenderer.SetBlendShapeWeight(8, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 25f);
+			MyRenderer.SetBlendShapeWeight(10, 15f);
+			MyRenderer.SetBlendShapeWeight(11, 50f);
+			MyRenderer.SetBlendShapeWeight(12, 10f);
+		}
+		else if (EyeType == "Eighties6")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(8, 15f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(10, 10f);
+			MyRenderer.SetBlendShapeWeight(12, 25f);
+		}
+		else if (EyeType == "Eighties7")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 20f);
+			MyRenderer.SetBlendShapeWeight(5, 20f);
+			MyRenderer.SetBlendShapeWeight(6, 25f);
+			MyRenderer.SetBlendShapeWeight(8, 35f);
+			MyRenderer.SetBlendShapeWeight(9, 50f);
+			MyRenderer.SetBlendShapeWeight(11, 15f);
+			MyRenderer.SetBlendShapeWeight(12, 25f);
+		}
+		else if (EyeType == "Eighties8")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(6, 20f);
+			MyRenderer.SetBlendShapeWeight(8, 50f);
+			MyRenderer.SetBlendShapeWeight(9, 40f);
+			MyRenderer.SetBlendShapeWeight(10, 20f);
+			MyRenderer.SetBlendShapeWeight(11, 15f);
+			MyRenderer.SetBlendShapeWeight(12, 10f);
+		}
+		else if (EyeType == "Eighties9")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(6, 20f);
+			MyRenderer.SetBlendShapeWeight(8, 50f);
+			MyRenderer.SetBlendShapeWeight(9, 40f);
+			MyRenderer.SetBlendShapeWeight(10, 20f);
+			MyRenderer.SetBlendShapeWeight(11, 15f);
+			MyRenderer.SetBlendShapeWeight(12, 10f);
+		}
+		else if (EyeType == "Eighties10")
+		{
+			MyRenderer.SetBlendShapeWeight(1, 10f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(8, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 75f);
+			MyRenderer.SetBlendShapeWeight(10, 30f);
+			MyRenderer.SetBlendShapeWeight(11, 15f);
+			MyRenderer.SetBlendShapeWeight(12, 25f);
+		}
+		else if (EyeType == "Witness")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 15f);
+			MyRenderer.SetBlendShapeWeight(6, 25f);
+			MyRenderer.SetBlendShapeWeight(8, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 50f);
+			MyRenderer.SetBlendShapeWeight(10, 5f);
+			MyRenderer.SetBlendShapeWeight(12, 50f);
+		}
+		else if (EyeType == "Ayano")
+		{
+			MyRenderer.SetBlendShapeWeight(8, 50f);
+		}
+		else if (EyeType == "Ryoba")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(8, 0f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+	}
+
+	public void UpdateEyeColor()
+	{
+		RightEyeRenderer.gameObject.SetActive(value: false);
+		LeftEyeRenderer.gameObject.SetActive(value: false);
+		Color color = Color.white;
+		if (EyeColor == "Black")
+		{
+			color = new Color(0.5f, 0.5f, 0.5f);
+		}
+		else if (EyeColor == "Red")
+		{
+			color = new Color(1f, 0f, 0f);
+		}
+		else if (EyeColor == "Yellow")
+		{
+			color = new Color(1f, 1f, 0f);
+		}
+		else if (EyeColor == "Green")
+		{
+			color = new Color(0f, 1f, 0f);
+		}
+		else if (EyeColor == "Cyan")
+		{
+			color = new Color(0f, 1f, 1f);
+		}
+		else if (EyeColor == "Blue")
+		{
+			color = new Color(0f, 0f, 1f);
+		}
+		else if (EyeColor == "Purple")
+		{
+			color = new Color(1f, 0f, 1f);
+		}
+		else if (EyeColor == "Orange")
+		{
+			color = new Color(1f, 0.5f, 0f);
+		}
+		else if (EyeColor == "Brown")
+		{
+			color = new Color(0.5f, 0.25f, 0f);
+		}
+		if (color != Color.white)
+		{
+			RightEyeRenderer.gameObject.SetActive(value: true);
+			LeftEyeRenderer.gameObject.SetActive(value: true);
+			RightEyeRenderer.material.color = color;
+			LeftEyeRenderer.material.color = color;
+		}
+	}
+
+	public void UpdateEyewear()
+	{
+		CyborgParts[1].SetActive(value: false);
+		MemeGlasses.SetActive(value: false);
+		KONGlasses.SetActive(value: false);
+		EyepatchR.SetActive(value: false);
+		EyepatchL.SetActive(value: false);
+		if (EyewearID == 1)
+		{
+			EyepatchR.SetActive(value: true);
+		}
+		else if (EyewearID == 2)
+		{
+			EyepatchL.SetActive(value: true);
+		}
+		else if (EyewearID == 3)
+		{
+			EyepatchR.SetActive(value: true);
+			EyepatchL.SetActive(value: true);
+		}
+		else if (EyewearID == 4)
+		{
+			KONGlasses.SetActive(value: true);
+		}
+		else if (EyewearID == 5)
+		{
+			MemeGlasses.SetActive(value: true);
+		}
+		else if (EyewearID == 6)
+		{
+			if (CyborgParts[2].activeInHierarchy)
+			{
+				CyborgParts[1].SetActive(value: true);
+			}
+			else
+			{
+				EyewearID = 0;
+			}
+		}
+		else
+		{
+			EyewearID = 0;
+		}
+	}
+
+	public void UpdateBust()
+	{
+		RightBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
+		LeftBreast.localScale = new Vector3(BreastSize, BreastSize, BreastSize);
+	}
+
+	public void UpdateStockings()
+	{
+		MyStockings = null;
+		MyRenderer.materials[2].mainTexture = FaceTexture;
+		if (Stockings == string.Empty || Stockings == "Default" || Stockings == "None")
+		{
+			MyRenderer.materials[0].mainTexture = TextureToUse;
+			MyRenderer.materials[1].mainTexture = TextureToUse;
+			MyStockings = null;
+		}
+		else
+		{
+			if (Casual)
+			{
+				TextureToUse = StandardUniformTextures[StudentGlobals.FemaleUniform];
+			}
+			else
+			{
+				TextureToUse = StandardCasualTextures[StudentGlobals.FemaleUniform];
+			}
+			MyRenderer.materials[0].mainTexture = TextureToUse;
+			MyRenderer.materials[1].mainTexture = TextureToUse;
+			if (Stockings == "Red")
+			{
+				MyStockings = StockingList[1];
+			}
+			else if (Stockings == "Yellow")
+			{
+				MyStockings = StockingList[2];
+			}
+			else if (Stockings == "Green")
+			{
+				MyStockings = StockingList[3];
+			}
+			else if (Stockings == "Cyan")
+			{
+				MyStockings = StockingList[4];
+			}
+			else if (Stockings == "Blue")
+			{
+				MyStockings = StockingList[5];
+			}
+			else if (Stockings == "Purple")
+			{
+				MyStockings = StockingList[6];
+			}
+			else if (Stockings == "ShortGreen")
+			{
+				MyStockings = StockingList[7];
+			}
+			else if (Stockings == "ShortRed")
+			{
+				MyStockings = StockingList[8];
+			}
+			else if (Stockings == "ShortBlue")
+			{
+				MyStockings = StockingList[9];
+			}
+			else if (Stockings == "ShortYellow")
+			{
+				MyStockings = StockingList[10];
+			}
+			else if (Stockings == "ShortBlack")
+			{
+				MyStockings = StockingList[11];
+			}
+			else if (Stockings == "ShortPurple")
+			{
+				MyStockings = StockingList[12];
+			}
+			else if (Stockings == "ShortCyan")
+			{
+				MyStockings = StockingList[13];
+			}
+			else if (Stockings == "ShortPink")
+			{
+				MyStockings = StockingList[14];
+			}
+			else if (Stockings == "Black")
+			{
+				MyStockings = StockingList[15];
+			}
+			else if (Stockings == "Dafuni")
+			{
+				MyStockings = (MyStockings = StockingList[16]);
+			}
+			else if (Stockings == "Council1")
+			{
+				MyStockings = (MyStockings = StockingList[17]);
+			}
+			else if (Stockings == "Council2")
+			{
+				MyStockings = (MyStockings = StockingList[18]);
+			}
+			else if (Stockings == "Council3")
+			{
+				MyStockings = (MyStockings = StockingList[19]);
+			}
+			else if (Stockings == "Council4")
+			{
+				MyStockings = (MyStockings = StockingList[20]);
+			}
+			else if (Stockings == "Music1")
+			{
+				MyStockings = StockingList[21];
+			}
+			else if (Stockings == "Music2")
+			{
+				MyStockings = StockingList[22];
+			}
+			else if (Stockings == "Music3")
+			{
+				MyStockings = StockingList[23];
+			}
+			else if (Stockings == "Music4")
+			{
+				MyStockings = StockingList[24];
+			}
+			else if (Stockings == "Music5")
+			{
+				MyStockings = StockingList[25];
+			}
+			else if (Stockings == "Music6")
+			{
+				MyStockings = StockingList[26];
+			}
+			else if (Stockings == "Sakyu")
+			{
+				MyStockings = StockingList[27];
+			}
+			else if (Stockings == "Inkyu")
+			{
+				MyStockings = StockingList[28];
+			}
+			else if (Stockings == "Socks")
+			{
+				MyStockings = StockingList[29];
+			}
+			else if (Stockings == "Rival1")
+			{
+				MyStockings = StockingList[30];
+			}
+			else if (Stockings == "Rival2")
+			{
+				MyStockings = StockingList[31];
+			}
+			else if (Stockings == "Rival3")
+			{
+				MyStockings = StockingList[32];
+			}
+			else if (Stockings == "Rival4")
+			{
+				MyStockings = StockingList[33];
+			}
+			else if (Stockings == "Rival5")
+			{
+				MyStockings = StockingList[34];
+			}
+			else if (Stockings == "Rival6")
+			{
+				MyStockings = StockingList[35];
+			}
+			else if (Stockings == "Rival7")
+			{
+				MyStockings = StockingList[36];
+			}
+			else if (Stockings == "Rival8")
+			{
+				MyStockings = StockingList[37];
+			}
+			else if (Stockings == "Rival9")
+			{
+				MyStockings = StockingList[38];
+			}
+			else if (Stockings == "Rival10")
+			{
+				MyStockings = StockingList[39];
+			}
+			else if (Stockings == "Loose")
+			{
+				MyStockings = null;
+			}
+			else if (Stockings == "Osana")
+			{
+				MyStockings = (MyStockings = StockingList[41]);
+			}
+			else if (Stockings == "Amai")
+			{
+				MyStockings = (MyStockings = StockingList[42]);
+			}
+			else if (Stockings == "Kizana")
+			{
+				MyStockings = (MyStockings = StockingList[43]);
+			}
+		}
+		if (MyStockings != null)
+		{
+			MyRenderer.materials[0].SetTexture("_OverlayTex", MyStockings);
+			MyRenderer.materials[1].SetTexture("_OverlayTex", MyStockings);
+			MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
+			MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
+		}
+		else
+		{
+			MyRenderer.materials[0].SetTexture("_OverlayTex", null);
+			MyRenderer.materials[1].SetTexture("_OverlayTex", null);
+			MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
+			MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
+		}
+	}
+
+	public void Customize()
+	{
+		Hairstyle = int.Parse(StudentManager.JSON.Students[0].Hairstyle);
+		UpdateHair();
+		EyeType = StudentManager.JSON.Students[0].EyeType;
+		UpdateEyeType();
+		EyeColor = StudentManager.JSON.Students[0].Eyes;
+		UpdateEyeColor();
+		if (!Home)
+		{
+			EyewearID = StudentManager.JSON.Misc.PlayerEyewear;
+			UpdateEyewear();
+			AccessoryID = int.Parse(StudentManager.JSON.Students[0].Accessory);
+			UpdateAccessory();
+		}
+		BreastSize = StudentManager.JSON.Students[0].BreastSize;
+		UpdateBust();
+		if (!HomeGlobals.Night)
+		{
+			Stockings = StudentManager.JSON.Students[0].Stockings;
+			UpdateStockings();
+		}
+		GetColorValue(StudentManager.JSON.Students[0].Color);
+		if (Hairstyles[Hairstyle] != null)
+		{
+			Renderer renderer = Hairstyles[Hairstyle].GetComponent<Renderer>();
+			if (renderer == null)
+			{
+				renderer = Hairstyles[Hairstyle].GetComponentInChildren<Renderer>();
+			}
+			if (renderer != null)
+			{
+				renderer.material.shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
+				if (StudentManager.JSON.Students[0].Color == "Default")
+				{
+					renderer.material.SetFloat("_Saturation", 1f);
+				}
+				else
+				{
+					renderer.material.SetFloat("_Saturation", 0f);
+				}
+				renderer.material.color = ColorValue;
+			}
+		}
+		IdleAnim = Idles[StudentManager.JSON.Misc.AnimSet[0]];
+		WalkAnim = Walks[StudentManager.JSON.Misc.AnimSet[0]];
+		RunAnim = "f02_newSprint_00";
+		OriginalIdleAnim = IdleAnim;
+		OriginalWalkAnim = WalkAnim;
+		OriginalRunAnim = "f02_newSprint_00";
+	}
+
+	private void GetColorValue(string HairColor)
+	{
+		switch (HairColor)
+		{
+		case "Default":
+			ColorValue = new Color(1f, 1f, 1f);
+			break;
+		case "Black":
+			ColorValue = new Color(0.5f, 0.5f, 0.5f);
+			break;
+		case "SolidBlack":
+			ColorValue = new Color(0.0001f, 0.0001f, 0.0001f);
+			break;
+		case "Red":
+			ColorValue = new Color(1f, 0f, 0f);
+			break;
+		case "Yellow":
+			ColorValue = new Color(1f, 1f, 0f);
+			break;
+		case "Green":
+			ColorValue = new Color(0f, 1f, 0f);
+			break;
+		case "Cyan":
+			ColorValue = new Color(0f, 1f, 1f);
+			break;
+		case "Blue":
+			ColorValue = new Color(0f, 0f, 1f);
+			break;
+		case "Purple":
+			ColorValue = new Color(1f, 0f, 1f);
+			break;
+		case "Orange":
+			ColorValue = new Color(1f, 0.5f, 0f);
+			break;
+		case "Brown":
+			ColorValue = new Color(0.5f, 0.25f, 0f);
+			break;
+		}
 	}
 }

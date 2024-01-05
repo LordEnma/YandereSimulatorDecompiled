@@ -52,7 +52,14 @@ public class TitleSaveDataScript : MonoBehaviour
 			{
 				if (Eighties)
 				{
-					Rival.text = "Rival: " + TitleSaveFiles.NewTitleScreen.EightiesRivalNames[DateGlobals.Week];
+					if (GameGlobals.CustomMode)
+					{
+						Rival.text = "Rival: Custom";
+					}
+					else
+					{
+						Rival.text = "Rival: " + TitleSaveFiles.NewTitleScreen.EightiesRivalNames[DateGlobals.Week];
+					}
 				}
 				else
 				{

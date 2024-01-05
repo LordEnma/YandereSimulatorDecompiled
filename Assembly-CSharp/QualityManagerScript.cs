@@ -23,6 +23,8 @@ public class QualityManagerScript : MonoBehaviour
 
 	public Bloom BloomEffect;
 
+	public GameObject Clouds;
+
 	public GameObject Grass;
 
 	public Light Sun;
@@ -572,7 +574,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 		StudentManager.LowDetailThreshold = OptionGlobals.LowDetailStudents * 10;
 		bool flag = false;
-		flag = (float)StudentManager.LowDetailThreshold > 0f;
+		flag = (((float)StudentManager.LowDetailThreshold > 0f) ? true : false);
 		if (StudentManager.Students[1] != null)
 		{
 			StudentManager.Students[1].LowPoly.MyMesh.enabled = false;
@@ -632,6 +634,14 @@ public class QualityManagerScript : MonoBehaviour
 			Camera.main.farClipPlane = OptionGlobals.DrawDistance;
 			RenderSettings.fogEndDistance = OptionGlobals.DrawDistance;
 			Yandere.Smartphone.farClipPlane = OptionGlobals.DrawDistance;
+			if (OptionGlobals.DrawDistance < 250)
+			{
+				Clouds.SetActive(value: false);
+			}
+			else
+			{
+				Clouds.SetActive(value: true);
+			}
 		}
 	}
 

@@ -68,36 +68,51 @@ public class WaterCoolerScript : MonoBehaviour
 					Prompt.HideButton[0] = false;
 					if (Prompt.Circle[0].fillAmount == 0f)
 					{
+						Prompt.Circle[0].fillAmount = 1f;
 						if (Yandere.PickUp.Bucket == null)
 						{
 							BrownPaint = Yandere.PickUp.BrownPaint;
 							Gasoline = Yandere.PickUp.JerryCan;
 							UpdateCylinderColor();
+							Empty = false;
+							Timer = 1f;
+							Prompt.HideButton[0] = true;
 						}
 						else
 						{
-							if (Yandere.PickUp.Bucket.DyedBrown)
+							bool flag = false;
+							if (DifficultyGlobals.MudRequired && Yandere.PickUp.Bucket.Bloodiness < 50f && !Yandere.PickUp.Bucket.Gasoline && !Yandere.PickUp.Bucket.DyedBrown)
 							{
-								BrownPaint = true;
+								Yandere.NotificationManager.CustomText = "Put blood, gasoline, or brown paint in the bucket.";
+								Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+								Debug.Log("Mud check FAILED!");
+								flag = true;
 							}
-							else if (Yandere.PickUp.Bucket.Bloodiness > 50f)
+							if (!flag)
 							{
-								Blood = true;
+								if (Yandere.PickUp.Bucket.DyedBrown)
+								{
+									BrownPaint = true;
+								}
+								else if (Yandere.PickUp.Bucket.Bloodiness >= 50f)
+								{
+									Blood = true;
+								}
+								else if (Yandere.PickUp.Bucket.Gasoline)
+								{
+									Gasoline = true;
+								}
+								else
+								{
+									Water = true;
+								}
+								UpdateCylinderColor();
+								Yandere.PickUp.Bucket.Empty();
+								Empty = false;
+								Timer = 1f;
+								Prompt.HideButton[0] = true;
 							}
-							else if (Yandere.PickUp.Bucket.Gasoline)
-							{
-								Gasoline = true;
-							}
-							else
-							{
-								Water = true;
-							}
-							UpdateCylinderColor();
-							Yandere.PickUp.Bucket.Empty();
 						}
-						Empty = false;
-						Timer = 1f;
-						Prompt.HideButton[0] = true;
 					}
 				}
 				else
@@ -115,12 +130,12 @@ public class WaterCoolerScript : MonoBehaviour
 		{
 			if (!TrapSet)
 			{
-				bool flag = false;
+				bool flag2 = false;
 				if ((Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Knife) || (Yandere.Weapon[1] != null && Yandere.Weapon[1].Type == WeaponType.Knife) || (Yandere.Weapon[2] != null && Yandere.Weapon[2].Type == WeaponType.Knife))
 				{
-					flag = true;
+					flag2 = true;
 				}
-				if (Yandere.Inventory.String && Yandere.Inventory.MaskingTape && flag)
+				if (Yandere.Inventory.String && Yandere.Inventory.MaskingTape && flag2)
 				{
 					Prompt.HideButton[1] = false;
 					Prompt.Label[1].applyGradient = false;
@@ -199,12 +214,12 @@ public class WaterCoolerScript : MonoBehaviour
 					Yandere.PauseScreen.Schemes.UpdateInstructions();
 				}
 			}
-			bool flag2 = false;
+			bool flag3 = false;
 			if ((Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Knife) || (Yandere.Weapon[1] != null && Yandere.Weapon[1].Type == WeaponType.Knife) || (Yandere.Weapon[2] != null && Yandere.Weapon[2].Type == WeaponType.Knife))
 			{
-				flag2 = true;
+				flag3 = true;
 			}
-			WeaponCheckmark.spriteName = (flag2 ? "Yes" : "No");
+			WeaponCheckmark.spriteName = (flag3 ? "Yes" : "No");
 			TapeCheckmark.spriteName = (Yandere.Inventory.MaskingTape ? "Yes" : "No");
 			ThreadCheckmark.spriteName = (Yandere.Inventory.String ? "Yes" : "No");
 			LiquidCheckmark.spriteName = ((!Empty) ? "Yes" : "No");

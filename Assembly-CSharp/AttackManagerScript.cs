@@ -17,6 +17,10 @@ public class AttackManagerScript : MonoBehaviour
 
 	private string AnimName = string.Empty;
 
+	public bool StainBluntWeapons;
+
+	public bool BreakWeapon;
+
 	public bool PingPong;
 
 	public bool Stealth;
@@ -58,6 +62,8 @@ public class AttackManagerScript : MonoBehaviour
 	{
 		Censor = GameGlobals.CensorKillingAnims;
 		OriginalBloodEffect = BloodEffect;
+		StainBluntWeapons = DifficultyGlobals.MustStrangle;
+		BreakWeapon = DifficultyGlobals.WeaponsBreak;
 	}
 
 	public bool IsAttacking()
@@ -299,6 +305,12 @@ public class AttackManagerScript : MonoBehaviour
 				Yandere.EquippedWeapon.MurderWeapon = true;
 				Yandere.CanMove = true;
 				Yandere.Kills++;
+				if (BreakWeapon && (Yandere.EquippedWeapon.Type == WeaponType.Knife || Yandere.EquippedWeapon.Type == WeaponType.Syringe))
+				{
+					Yandere.EquippedWeapon.Broken = true;
+					Yandere.NotificationManager.CustomText = "The weapon broke!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
 			}
 			else
 			{
@@ -609,6 +621,13 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			else
 			{
+				if (StainBluntWeapons && EffectPhase == 0 && YandereAnim[AnimName].time > 1f)
+				{
+					Yandere.Bloodiness += 20f;
+					Yandere.StainWeapon();
+					UnityEngine.Object.Instantiate(BloodEffect, weapon.transform.position + weapon.transform.forward * 0.5f, Quaternion.identity);
+					EffectPhase++;
+				}
 				Yandere.TargetStudent.Ragdoll.NeckSnapped = true;
 				Yandere.TargetStudent.NeckSnapped = true;
 			}
@@ -798,6 +817,13 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			else
 			{
+				if (StainBluntWeapons && EffectPhase == 0 && YandereAnim[AnimName].time > 1.2f)
+				{
+					Yandere.Bloodiness += 20f;
+					Yandere.StainWeapon();
+					UnityEngine.Object.Instantiate(BloodEffect, weapon.transform.position + weapon.transform.forward * 0.1f, Quaternion.identity);
+					EffectPhase++;
+				}
 				Yandere.TargetStudent.Ragdoll.NeckSnapped = true;
 				Yandere.TargetStudent.NeckSnapped = true;
 			}

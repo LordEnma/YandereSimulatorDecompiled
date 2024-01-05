@@ -60,6 +60,8 @@ public class WorkbenchScript : MonoBehaviour
 
 	public bool CraftingSequence;
 
+	public bool EightiesTutorial;
+
 	public bool Chemistry;
 
 	public bool Triple;
@@ -89,6 +91,7 @@ public class WorkbenchScript : MonoBehaviour
 		if (GameGlobals.EightiesTutorial)
 		{
 			Prompt.HideButton[0] = true;
+			EightiesTutorial = true;
 		}
 	}
 
@@ -151,7 +154,7 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					return;
 				}
-				if (Prompt.Yandere.Inventory.MaskingTape && Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox && Prompt.Yandere.PickUp.BodyBags == 0)
+				if ((Prompt.Yandere.Inventory.MaskingTape && Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox && Prompt.Yandere.PickUp.BodyBags == 0) || EightiesTutorial)
 				{
 					Prompt.HideButton[1] = false;
 				}
@@ -180,7 +183,6 @@ public class WorkbenchScript : MonoBehaviour
 		}
 		if (MakeshiftKnife != null)
 		{
-			Debug.Log("Telling the damn knife to use gravity.");
 			MakeshiftKnife.MyRigidbody.useGravity = true;
 			MakeshiftKnife.MyRigidbody.isKinematic = false;
 			MakeshiftKnife = null;
@@ -306,6 +308,11 @@ public class WorkbenchScript : MonoBehaviour
 					obj2.GetComponent<Rigidbody>().useGravity = true;
 					obj2.GetComponent<Rigidbody>().isKinematic = false;
 					obj2.name = "Stink Bombs";
+					if (GameGlobals.EightiesTutorial)
+					{
+						Prompt.HideButton[0] = true;
+						EightiesTutorial = true;
+					}
 				}
 				else if (OutcomeID == 2)
 				{
@@ -334,7 +341,7 @@ public class WorkbenchScript : MonoBehaviour
 					Inventory.Glass = false;
 					MakeshiftKnife = Prompt.Yandere.WeaponManager.Weapons[45];
 					MakeshiftKnife.gameObject.SetActive(value: true);
-					MakeshiftKnife.transform.position = Prompt.Yandere.transform.position + new Vector3(0f, 1f, 0.5f);
+					MakeshiftKnife.transform.position = Prompt.Yandere.transform.position + new Vector3(0f, 0.005f, 0.5f);
 					MakeshiftKnife.Start();
 					MakeshiftKnife.MyRigidbody.useGravity = true;
 					MakeshiftKnife.MyRigidbody.isKinematic = false;

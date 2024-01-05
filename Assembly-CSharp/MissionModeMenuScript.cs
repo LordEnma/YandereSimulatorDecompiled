@@ -58,6 +58,8 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	public Transform MissionWindow;
 
+	public Transform YakuzaWindow;
+
 	public Transform InfoChan;
 
 	public Transform Options;
@@ -118,11 +120,15 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	public int TargetID;
 
+	public int Frame;
+
 	public int Phase;
 
 	public int Column = 1;
 
 	public int Row = 1;
+
+	public float CameraRotation;
 
 	public float Rotation;
 
@@ -134,15 +140,37 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	public AudioSource MyAudio;
 
+	public AudioClip YakuzaBGM;
+
+	public AudioClip[] YakuzaGreet;
+
+	public AudioClip[] YakuzaLines;
+
 	public AudioClip[] InfoLines;
 
 	public bool[] InfoSpoke;
 
 	public bool NemesisAggression;
 
+	public bool Eighties;
+
 	public bool Toggling;
 
 	public bool Valid;
+
+	public GameObject YakuzaSet;
+
+	public GameObject InfoSet;
+
+	public GameObject NemesisObjectiveWindow;
+
+	public GameObject ToggleYakuzaWindow;
+
+	public GameObject CustomNemesisWindow;
+
+	public GameObject CustomYakuzaWindow;
+
+	public GameObject[] InvalidOptions;
 
 	public int TargetNumber;
 
@@ -178,6 +206,14 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	public int Condition15Number;
 
+	public Transform YakuzaEyeL;
+
+	public Transform YakuzaEyeR;
+
+	public MusicTest AudioData;
+
+	public Transform YakuzaJaw;
+
 	public string TargetString = string.Empty;
 
 	public string WeaponString = string.Empty;
@@ -193,6 +229,14 @@ public class MissionModeMenuScript : MonoBehaviour
 	public UILabel MissionIDLabel;
 
 	public Font Arial;
+
+	public UISprite[] Borders;
+
+	public UISprite[] BGs;
+
+	public UILabel[] Labels;
+
+	public Font VCR;
 
 	private void Start()
 	{
@@ -255,6 +299,37 @@ public class MissionModeMenuScript : MonoBehaviour
 			PlayerPrefs.SetInt("MissionModeTarget" + m, 0);
 			PlayerPrefs.SetInt("MissionModeMethod" + m, 0);
 		}
+		if (GameGlobals.Eighties)
+		{
+			Eighties = true;
+			InfoSet.SetActive(value: false);
+			YakuzaSet.SetActive(value: true);
+			ToggleYakuzaWindow.SetActive(value: true);
+			NemesisObjectiveWindow.SetActive(value: false);
+			CustomYakuzaWindow.SetActive(value: true);
+			CustomNemesisWindow.SetActive(value: false);
+			RenderSettings.ambientSkyColor = new Color(0.75f, 0.75f, 0.75f, 1f);
+			Jukebox.clip = YakuzaBGM;
+			Jukebox.Play();
+			InfoLines = YakuzaLines;
+			InfoLines[0] = YakuzaGreet[Random.Range(1, 4)];
+			CustomObjectives[2].alpha = 0f;
+			CustomObjectives[3].alpha = 0f;
+			CustomObjectives[9].alpha = 0f;
+			EightiesifyAllLabels();
+		}
+		else
+		{
+			InfoSet.SetActive(value: true);
+			YakuzaSet.SetActive(value: false);
+			YakuzaWindow.gameObject.SetActive(value: false);
+			ToggleYakuzaWindow.SetActive(value: true);
+			NemesisObjectiveWindow.SetActive(value: false);
+			CustomYakuzaWindow.SetActive(value: false);
+			CustomNemesisWindow.SetActive(value: true);
+			RenderSettings.ambientSkyColor = new Color(0.2f, 0.2f, 0.2f, 1f);
+		}
+		NowLoading.SetActive(value: false);
 	}
 
 	private void Update()
@@ -266,12 +341,18 @@ public class MissionModeMenuScript : MonoBehaviour
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime / 3f));
 			if (Speed > 1f)
 			{
+				if (Eighties)
+				{
+					CameraRotation = Mathf.Lerp(CameraRotation, -15f, Time.deltaTime * (Speed - 1f) * 0.5f);
+					base.transform.localEulerAngles = new Vector3(0f, CameraRotation, 0f);
+				}
 				Header.color = new Color(Header.color.r, Header.color.g, Header.color.b, Mathf.MoveTowards(Header.color.a, 1f, Time.deltaTime));
 				if (Speed > 3f)
 				{
 					if (!InfoSpoke[0])
 					{
-						MyAudio.PlayOneShot(InfoLines[0]);
+						MyAudio.clip = InfoLines[0];
+						MyAudio.Play();
 						InfoSpoke[0] = true;
 					}
 					InfoChan.localEulerAngles = new Vector3(InfoChan.localEulerAngles.x, Mathf.Lerp(InfoChan.localEulerAngles.y, 180f, Time.deltaTime * (Speed - 3f)), InfoChan.localEulerAngles.z);
@@ -311,7 +392,8 @@ public class MissionModeMenuScript : MonoBehaviour
 			{
 				if (!InfoSpoke[0])
 				{
-					MyAudio.PlayOneShot(InfoLines[0]);
+					MyAudio.clip = InfoLines[0];
+					MyAudio.Play();
 					InfoSpoke[0] = true;
 				}
 				InfoChan.localEulerAngles = new Vector3(InfoChan.localEulerAngles.x, 180f, InfoChan.localEulerAngles.z);
@@ -323,6 +405,11 @@ public class MissionModeMenuScript : MonoBehaviour
 				{
 					Transform transform6 = Option[i];
 					transform6.localPosition = new Vector3(0f, transform6.localPosition.y, transform6.localPosition.z);
+				}
+				if (Eighties)
+				{
+					CameraRotation = -15f;
+					base.transform.localEulerAngles = new Vector3(0f, -15f, 0f);
 				}
 				PromptBar.Label[0].text = "Accept";
 				PromptBar.Label[4].text = "Choose";
@@ -337,12 +424,16 @@ public class MissionModeMenuScript : MonoBehaviour
 			Header.color = new Color(Header.color.r, Header.color.g, Header.color.b, Mathf.MoveTowards(Header.color.a, 1f, Time.deltaTime * 10f));
 			InfoChan.localEulerAngles = new Vector3(InfoChan.localEulerAngles.x, Mathf.Lerp(InfoChan.localEulerAngles.y, 180f, Time.deltaTime * (Speed - 3f)), InfoChan.localEulerAngles.z);
 			base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y, Mathf.Lerp(base.transform.position.z, 2f, Speed * Time.deltaTime * 0.25f));
+			if (Eighties)
+			{
+				CameraRotation = Mathf.Lerp(CameraRotation, -15f, Time.deltaTime * (Speed - 1f) * 0.5f);
+				base.transform.localEulerAngles = new Vector3(0f, CameraRotation, 0f);
+			}
 			CustomMissionWindow.localScale = Vector3.Lerp(CustomMissionWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
 			LoadMissionWindow.localScale = Vector3.Lerp(LoadMissionWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
 			MissionWindow.localScale = Vector3.Lerp(MissionWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
 			MultiMissionWindow.localScale = Vector3.Lerp(MultiMissionWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
 			Options.localPosition = new Vector3(Mathf.Lerp(Options.localPosition.x, -700f, Time.deltaTime * 10f), Options.localPosition.y, Options.localPosition.z);
-			base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y, Mathf.Lerp(base.transform.position.z, 2f, Speed * Time.deltaTime * 0.25f));
 			if (InputManager.TappedUp)
 			{
 				Selected--;
@@ -371,7 +462,8 @@ public class MissionModeMenuScript : MonoBehaviour
 			}
 			if (!InfoSpoke[Selected])
 			{
-				MyAudio.PlayOneShot(InfoLines[Selected]);
+				MyAudio.clip = InfoLines[Selected];
+				MyAudio.Play();
 				InfoSpoke[Selected] = true;
 			}
 			if (Selected == 1)
@@ -381,7 +473,14 @@ public class MissionModeMenuScript : MonoBehaviour
 				PromptBar.Label[1].text = "Return";
 				PromptBar.Label[2].text = "Generate";
 				PromptBar.Label[3].text = "";
-				PromptBar.Label[4].text = "Nemesis";
+				if (!Eighties)
+				{
+					PromptBar.Label[4].text = "Nemesis";
+				}
+				else
+				{
+					PromptBar.Label[4].text = "Yakuza";
+				}
 				PromptBar.Label[5].text = "Change Difficulty";
 				PromptBar.UpdateButtons();
 				for (int k = 1; k < Conditions.Length; k++)
@@ -416,6 +515,13 @@ public class MissionModeMenuScript : MonoBehaviour
 				CustomDescs[2].text = ConditionDescs[1] + " " + WeaponNames[1];
 				CustomDescs[3].text = ConditionDescs[2] + " " + ClothingNames[1];
 				CustomDescs[4].text = ConditionDescs[3] + " " + DisposalNames[1];
+				if (Eighties)
+				{
+					CustomObjectives[2].alpha = 0f;
+					CustomObjectives[3].alpha = 0f;
+					CustomObjectives[9].alpha = 0f;
+					CustomObjectives[10].alpha = 0f;
+				}
 				UpdateObjectiveHighlight();
 				UpdateDifficultyLabel();
 				RequiredClothingID = 1;
@@ -493,40 +599,51 @@ public class MissionModeMenuScript : MonoBehaviour
 				Transform obj = Objectives[l];
 				obj.localScale = Vector3.Lerp(obj.localScale, (l > Difficulty) ? Vector3.zero : Vector3.one, Time.deltaTime * 10f);
 			}
-			if (NemesisDifficulty == 0)
+			if (!Eighties)
 			{
-				NemesisPortrait.transform.parent.localScale = Vector3.Lerp(NemesisPortrait.transform.parent.localScale, Vector3.zero, Time.deltaTime * 10f);
-				NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, Vector3.zero, Time.deltaTime * 10f);
-				NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
-				NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
+				if (NemesisDifficulty == 0)
+				{
+					NemesisPortrait.transform.parent.localScale = Vector3.Lerp(NemesisPortrait.transform.parent.localScale, Vector3.zero, Time.deltaTime * 10f);
+					NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, Vector3.zero, Time.deltaTime * 10f);
+					NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
+					NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
+				}
+				else
+				{
+					NemesisPortrait.transform.parent.localScale = Vector3.Lerp(NemesisPortrait.transform.parent.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+				if (NemesisDifficulty == 1)
+				{
+					NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
+					NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
+				}
+				else if (NemesisDifficulty == 2)
+				{
+					NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
+				}
+				else if (NemesisDifficulty == 3)
+				{
+					NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
+					NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+				else if (NemesisDifficulty == 4)
+				{
+					NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+			}
+			else if (NemesisDifficulty == 0)
+			{
+				YakuzaWindow.localScale = Vector3.Lerp(YakuzaWindow.localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
 			}
 			else
 			{
-				NemesisPortrait.transform.parent.localScale = Vector3.Lerp(NemesisPortrait.transform.parent.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-			}
-			if (NemesisDifficulty == 1)
-			{
-				NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
-				NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
-			}
-			else if (NemesisDifficulty == 2)
-			{
-				NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
-			}
-			else if (NemesisDifficulty == 3)
-			{
-				NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
-				NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-			}
-			else if (NemesisDifficulty == 4)
-			{
-				NemesisObjectives[1].localScale = Vector3.Lerp(NemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				NemesisObjectives[2].localScale = Vector3.Lerp(NemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				NemesisObjectives[3].localScale = Vector3.Lerp(NemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				YakuzaWindow.localScale = Vector3.Lerp(YakuzaWindow.localScale, new Vector3(0.75f, 0.75f, 0.75f), Time.deltaTime * 10f);
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
@@ -580,14 +697,19 @@ public class MissionModeMenuScript : MonoBehaviour
 			base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y, base.transform.position.z - Speed * Time.deltaTime);
 			Jukebox.volume -= Time.deltaTime;
 			Header.color = new Color(Header.color.r, Header.color.g, Header.color.b, Header.color.a - Time.deltaTime);
-			if (Darkness.color.a == 1f)
+			if (!(Darkness.color.a >= 0.999f))
 			{
-				if (TargetID == 0 && !MissionModeGlobals.MultiMission)
-				{
-					SceneManager.LoadScene("NewTitleScene");
-					return;
-				}
-				NowLoading.SetActive(value: true);
+				return;
+			}
+			if (TargetID == 0 && !MissionModeGlobals.MultiMission)
+			{
+				SceneManager.LoadScene("NewTitleScene");
+				return;
+			}
+			NowLoading.SetActive(value: true);
+			Frame++;
+			if (Frame > 1)
+			{
 				SceneManager.LoadScene("SchoolScene");
 			}
 		}
@@ -662,20 +784,28 @@ public class MissionModeMenuScript : MonoBehaviour
 				}
 				if (Toggling)
 				{
-					if (CustomObjectives[CustomSelected].alpha == 0.5f)
+					bool flag = false;
+					if (Eighties && (CustomSelected == 2 || CustomSelected == 3 || CustomSelected == 9 || CustomSelected == 10))
 					{
-						if (Difficulty < 10)
-						{
-							Difficulty++;
-							UpdateDifficultyLabel();
-							CustomObjectives[CustomSelected].alpha = 1f;
-						}
+						flag = true;
 					}
-					else
+					if (!flag)
 					{
-						Difficulty--;
-						UpdateDifficultyLabel();
-						CustomObjectives[CustomSelected].alpha = 0.5f;
+						if (CustomObjectives[CustomSelected].alpha == 0.5f)
+						{
+							if (Difficulty < 10)
+							{
+								Difficulty++;
+								UpdateDifficultyLabel();
+								CustomObjectives[CustomSelected].alpha = 1f;
+							}
+						}
+						else
+						{
+							Difficulty--;
+							UpdateDifficultyLabel();
+							CustomObjectives[CustomSelected].alpha = 0.5f;
+						}
 					}
 				}
 				CalculateMissionID();
@@ -747,39 +877,50 @@ public class MissionModeMenuScript : MonoBehaviour
 				}
 				CalculateMissionID();
 			}
-			else if (Input.GetButtonDown(InputNames.Xbox_Y) && CustomSelected == 12)
+			else if (Input.GetButtonDown(InputNames.Xbox_Y) && !Eighties && CustomSelected == 12)
 			{
 				NemesisAggression = !NemesisAggression;
 			}
-			if (NemesisDifficulty == 0)
+			if (!Eighties)
 			{
-				CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, Vector3.zero, Time.deltaTime * 10f);
-				CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
-				CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
+				if (NemesisDifficulty == 0)
+				{
+					CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, Vector3.zero, Time.deltaTime * 10f);
+					CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
+					CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
+				}
+				else if (NemesisDifficulty == 1)
+				{
+					CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
+					CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
+				}
+				else if (NemesisDifficulty == 2)
+				{
+					CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
+				}
+				else if (NemesisDifficulty == 3)
+				{
+					CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
+					CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+				else if (NemesisDifficulty == 4)
+				{
+					CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+					CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				}
+			}
+			else if (NemesisDifficulty == 0)
+			{
+				CustomYakuzaWindow.transform.localScale = Vector3.Lerp(CustomYakuzaWindow.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
 			}
 			else if (NemesisDifficulty == 1)
 			{
-				CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
-				CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
-			}
-			else if (NemesisDifficulty == 2)
-			{
-				CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, Vector3.zero, Time.deltaTime * 10f);
-			}
-			else if (NemesisDifficulty == 3)
-			{
-				CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, Vector3.zero, Time.deltaTime * 10f);
-				CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-			}
-			else if (NemesisDifficulty == 4)
-			{
-				CustomNemesisObjectives[1].localScale = Vector3.Lerp(CustomNemesisObjectives[1].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				CustomNemesisObjectives[2].localScale = Vector3.Lerp(CustomNemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				CustomNemesisObjectives[3].localScale = Vector3.Lerp(CustomNemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+				CustomYakuzaWindow.transform.localScale = Vector3.Lerp(CustomYakuzaWindow.transform.localScale, new Vector3(0.75f, 0.75f, 0.75f), Time.deltaTime * 10f);
 			}
 			if (NemesisAggression)
 			{
@@ -823,10 +964,10 @@ public class MissionModeMenuScript : MonoBehaviour
 				{
 					Valid = false;
 					GetNumbers();
-					bool flag = false;
+					bool flag2 = false;
 					if ((TargetNumber > 11 && TargetNumber < 21) || TargetNumber > 89)
 					{
-						flag = true;
+						flag2 = true;
 					}
 					if (TargetNumber == 0)
 					{
@@ -838,7 +979,7 @@ public class MissionModeMenuScript : MonoBehaviour
 						ErrorLabel.text = "Invalid Mission ID (Target cannot be Senpai)";
 						return;
 					}
-					if (flag)
+					if (flag2)
 					{
 						ErrorLabel.text = "Invalid Mission ID (That student has not been implemented yet)";
 						return;
@@ -848,7 +989,7 @@ public class MissionModeMenuScript : MonoBehaviour
 						ErrorLabel.text = "Invalid Mission ID (Weapon does not apply to Mission Mode)";
 						return;
 					}
-					if (WeaponNumber > 31)
+					if (WeaponNumber > WeaponNames.Length)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Weapon does not exist)";
 						return;
@@ -858,7 +999,7 @@ public class MissionModeMenuScript : MonoBehaviour
 						ErrorLabel.text = "Invalid Mission ID (Clothing does not exist)";
 						return;
 					}
-					if (DisposalNumber > 5)
+					if (DisposalNumber >= DisposalNames.Length)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Disposal method does not exist)";
 						return;
@@ -1053,11 +1194,31 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
+		if (MyAudio.isPlaying)
+		{
+			if (MyAudio.clip != null)
+			{
+				if (AudioData.MyAudioSource == null)
+				{
+					AudioData.MyAudioSource = MyAudio;
+				}
+			}
+			else
+			{
+				AudioData.MyAudioSource = null;
+			}
+			if (AudioData.MyAudioSource != null)
+			{
+				YakuzaJaw.localEulerAngles = new Vector3(0f, 0f, 40f + AudioData.g[1].transform.position.y);
+			}
+		}
 		if (Speed > 3f)
 		{
 			Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * (Speed - 3f));
 		}
 		Neck.transform.localEulerAngles = new Vector3(Neck.transform.localEulerAngles.x + Rotation, Neck.transform.localEulerAngles.y, Neck.transform.localEulerAngles.z);
+		YakuzaEyeL.transform.localEulerAngles = new Vector3(12f, Mathf.SmoothStep(-95f, -85f, Mathf.PingPong(Time.time / 10f, 1f)), 0f);
+		YakuzaEyeR.transform.localEulerAngles = new Vector3(-12f, Mathf.SmoothStep(85f, 95f, Mathf.PingPong(Time.time / 10f, 1f)), 180f);
 	}
 
 	private void UpdateHighlight()
@@ -1105,7 +1266,10 @@ public class MissionModeMenuScript : MonoBehaviour
 				TargetID = 89;
 			}
 		}
-		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + TargetID + ".png");
+		Eighties = GameGlobals.Eighties;
+		string text = "";
+		text = ((!Eighties) ? ("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + TargetID + ".png") : ("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + TargetID + ".png"));
+		WWW wWW = new WWW(text);
 		if (TargetNumber > 11 && TargetNumber < 21)
 		{
 			TargetPortrait.mainTexture = BlankPortrait;
@@ -1163,7 +1327,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		string empty = string.Empty;
 		string empty2 = string.Empty;
 		string empty3 = string.Empty;
-		empty = ((RequiredWeaponID != 0) ? ("You must kill the target with a " + WeaponNames[RequiredWeaponID]) : "You can kill the target with any weapon.");
+		empty = ((RequiredWeaponID != 0) ? ("You must kill the target with " + WeaponNames[RequiredWeaponID]) : "You can kill the target with any weapon.");
 		empty2 = ((RequiredClothingID != 0) ? ("You must kill the target while wearing " + ClothingNames[RequiredClothingID]) : "You can kill the target wearing any clothing.");
 		empty3 = ((RequiredDisposalID != 0) ? ("You must dispose of the target's corpse by " + DisposalNames[RequiredDisposalID]) : "It is not necessary to dispose of the target's corpse.");
 		DescriptionLabel.text = text + "\n\n" + empty + "\n\n" + empty2 + "\n\n" + empty3;
@@ -1171,24 +1335,48 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	private void UpdateNemesisDifficulty()
 	{
-		if (NemesisDifficulty < 0)
+		if (!Eighties)
 		{
-			NemesisDifficulty = 4;
-		}
-		else if (NemesisDifficulty > 4)
-		{
-			NemesisDifficulty = 0;
-		}
-		if (NemesisDifficulty == 0)
-		{
-			CustomNemesisLabel.text = "Nemesis: Off";
-			NemesisLabel.text = "Nemesis: Off";
+			if (NemesisDifficulty < 0)
+			{
+				NemesisDifficulty = 4;
+			}
+			else if (NemesisDifficulty > 4)
+			{
+				NemesisDifficulty = 0;
+			}
+			if (NemesisDifficulty == 0)
+			{
+				CustomNemesisLabel.text = "Nemesis: Off";
+				NemesisLabel.text = "Nemesis: Off";
+			}
+			else
+			{
+				CustomNemesisLabel.text = "Nemesis: On";
+				NemesisLabel.text = "Nemesis: On";
+				NemesisPortrait.mainTexture = ((NemesisDifficulty > 2) ? BlankPortrait : NemesisGraphic);
+			}
 		}
 		else
 		{
-			CustomNemesisLabel.text = "Nemesis: On";
-			NemesisLabel.text = "Nemesis: On";
-			NemesisPortrait.mainTexture = ((NemesisDifficulty > 2) ? BlankPortrait : NemesisGraphic);
+			if (NemesisDifficulty < 0)
+			{
+				NemesisDifficulty = 1;
+			}
+			else if (NemesisDifficulty > 1)
+			{
+				NemesisDifficulty = 0;
+			}
+			if (NemesisDifficulty == 0)
+			{
+				CustomNemesisLabel.text = "Yakuza Mode: Off";
+				NemesisLabel.text = "Yakuza Mode: Off";
+			}
+			else
+			{
+				CustomNemesisLabel.text = "Yakuza Mode: On";
+				NemesisLabel.text = "Yakuza Mode: On";
+			}
 		}
 	}
 
@@ -1205,6 +1393,10 @@ public class MissionModeMenuScript : MonoBehaviour
 			{
 				flag = true;
 			}
+		}
+		if (Eighties && (num == 1 || num == 2 || num == 7))
+		{
+			flag = true;
 		}
 		if (flag)
 		{
@@ -1268,7 +1460,10 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 		else
 		{
-			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + MissionModeGlobals.MissionTarget + ".png");
+			Eighties = GameGlobals.Eighties;
+			string text = "";
+			text = ((!Eighties) ? ("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + MissionModeGlobals.MissionTarget + ".png") : ("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + MissionModeGlobals.MissionTarget + ".png"));
+			WWW wWW = new WWW(text);
 			Icons[1].mainTexture = wWW.texture;
 			TargetName = JSON.Students[MissionModeGlobals.MissionTarget].Name;
 		}
@@ -1374,13 +1569,21 @@ public class MissionModeMenuScript : MonoBehaviour
 		{
 			PromptBar.Label[2].text = "Change";
 		}
-		if (CustomSelected == 12)
+		if (!Eighties)
 		{
-			PromptBar.Label[3].text = "Aggression";
+			if (CustomSelected == 12)
+			{
+				PromptBar.Label[3].text = "Aggression";
+			}
+			else
+			{
+				PromptBar.Label[3].text = "";
+			}
 		}
-		else
+		if (Eighties && (CustomSelected == 2 || CustomSelected == 3 || CustomSelected == 9))
 		{
-			PromptBar.Label[3].text = "";
+			PromptBar.Label[0].text = "";
+			PromptBar.Label[2].text = "";
 		}
 		PromptBar.UpdateButtons();
 	}
@@ -1411,7 +1614,8 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	private void StartMission()
 	{
-		MyAudio.PlayOneShot(InfoLines[6]);
+		MyAudio.clip = InfoLines[6];
+		MyAudio.Play();
 		Debug.Log("Switching GameGlobals.Profile to 4, since we are beginning a Mission Mode mission, and nothing we do in here should carry over to any of the player's other save files.");
 		GameGlobals.Profile = 4;
 		Globals.DeleteAll();
@@ -1448,6 +1652,15 @@ public class MissionModeMenuScript : MonoBehaviour
 				MissionModeGlobals.SetMissionCondition(i, Conditions[i]);
 			}
 		}
+		if (Eighties)
+		{
+			for (int j = 1; j < 101; j++)
+			{
+				StudentGlobals.SetStudentPhotographed(j, value: true);
+			}
+			StudentGlobals.FemaleUniform = 6;
+			StudentGlobals.MaleUniform = 1;
+		}
 		PromptBar.Show = false;
 		Speed = 0f;
 		Phase = 4;
@@ -1470,5 +1683,26 @@ public class MissionModeMenuScript : MonoBehaviour
 	private void ChangeLabel(UILabel Text)
 	{
 		Text.trueTypeFont = Arial;
+	}
+
+	public void EightiesifyAllLabels()
+	{
+		Labels = Object.FindSceneObjectsOfType(typeof(UILabel)) as UILabel[];
+		for (int i = 0; i < Labels.Length; i++)
+		{
+			if (Labels[i].gameObject.layer != 25)
+			{
+				EightiesifyLabel(Labels[i]);
+			}
+		}
+	}
+
+	public void EightiesifyLabel(UILabel Label)
+	{
+		Label.trueTypeFont = VCR;
+		Label.applyGradient = false;
+		Label.color = new Color(1f, 1f, 1f, 1f);
+		Label.effectStyle = UILabel.Effect.Outline8;
+		Label.effectColor = new Color(0f, 0f, 0f, 1f);
 	}
 }

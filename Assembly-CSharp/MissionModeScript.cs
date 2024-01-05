@@ -221,7 +221,11 @@ public class MissionModeScript : MonoBehaviour
 
 	public bool TargetDead;
 
+	public bool YakuzaMode;
+
 	public bool Chastise;
+
+	public bool Eighties;
 
 	public bool FadeOut;
 
@@ -251,6 +255,10 @@ public class MissionModeScript : MonoBehaviour
 
 	public AudioClip GameOverSound;
 
+	public AudioClip YakuzaSuccess;
+
+	public AudioClip Silence;
+
 	public AudioSource MyAudio;
 
 	public Camera MainCamera;
@@ -259,6 +267,8 @@ public class MissionModeScript : MonoBehaviour
 
 	public Font Arial;
 
+	public AudioClip Failure;
+
 	public int Frame;
 
 	public UILabel DiscordCodeLabel;
@@ -266,6 +276,8 @@ public class MissionModeScript : MonoBehaviour
 	public float RandomNumber;
 
 	public bool Valid;
+
+	public string Title;
 
 	private void Start()
 	{
@@ -285,6 +297,12 @@ public class MissionModeScript : MonoBehaviour
 			{
 				Watermark.gameObject.SetActive(value: false);
 			}
+			Eighties = true;
+			InfoAccomplished = YakuzaSuccess;
+			InfoExfiltrate = Silence;
+			InfoObjective = Silence;
+			InfoFailure = Silence;
+			Yandere.CharacterAnimation.Play("f02_ryobaIdle_00");
 		}
 		if (GameGlobals.LoveSick)
 		{
@@ -387,6 +405,10 @@ public class MissionModeScript : MonoBehaviour
 			NemesisDifficulty = MissionModeGlobals.NemesisDifficulty;
 			Difficulty = MissionModeGlobals.MissionDifficulty;
 			TargetID = MissionModeGlobals.MissionTarget;
+			if (Eighties && NemesisDifficulty > 0)
+			{
+				YakuzaMode = true;
+			}
 			ClassGlobals.BiologyGrade = 1;
 			ClassGlobals.ChemistryGrade = 1;
 			ClassGlobals.LanguageGrade = 1;
@@ -491,7 +513,7 @@ public class MissionModeScript : MonoBehaviour
 			{
 				CorpseDisposed = true;
 			}
-			if (NemesisDifficulty > 0)
+			if (NemesisDifficulty > 0 && !YakuzaMode)
 			{
 				Nemesis.SetActive(value: true);
 			}
@@ -505,8 +527,20 @@ public class MissionModeScript : MonoBehaviour
 			}
 			Jukebox.Egg = true;
 			Jukebox.KillVolume();
-			Jukebox.MissionMode.enabled = true;
-			Jukebox.MissionMode.volume = 0f;
+			if (Eighties)
+			{
+				Jukebox.MissionMode.clip = StealthMusic[0];
+			}
+			if (!YakuzaMode)
+			{
+				Jukebox.MissionMode.enabled = true;
+				Jukebox.MissionMode.volume = 0f;
+				Jukebox.MissionMode.Play();
+			}
+			else
+			{
+				Jukebox.YakuzaMusic.SetActive(value: true);
+			}
 			Yandere.FixCamera();
 			MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, 6.51505f, -76.9222f);
 			MainCamera.transform.eulerAngles = new Vector3(15f, MainCamera.transform.eulerAngles.y, MainCamera.transform.eulerAngles.z);
@@ -554,6 +588,54 @@ public class MissionModeScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (YakuzaMode)
+		{
+			Frame++;
+			if (Frame == 5 || Input.GetKeyDown("z"))
+			{
+				StudentManager.SkipTo730();
+				StudentManager.Students[97].AltTeleportToDestination();
+				StudentManager.ChangeIntoTeachersPet();
+				StudentManager.TeleportEveryoneToDestination();
+				Yandere.IdleAnim = "f02_heroicIdle_00";
+				Yandere.WalkAnim = "f02_walkConfident_00";
+				Yandere.RunAnim = "f02_stealthRun_00";
+				Yandere.OriginalIdleAnim = "f02_heroicIdle_00";
+				Yandere.OriginalWalkAnim = "f02_walkConfident_00";
+				Yandere.OriginalRunAnim = "f02_stealthRun_00";
+				Yandere.CharacterAnimation.Play(Yandere.IdleAnim);
+				Yandere.CharacterAnimation[Yandere.RunAnim].speed = 2f;
+				Yandere.Yakuza = true;
+				if (WeaponManager.Weapons[1].AnimID != 0)
+				{
+					WeaponManager.Weapons[1].AnimID = 0;
+					WeaponManager.Weapons[1].Equip();
+				}
+				if (StudentManager.Students[1] != null)
+				{
+					StudentManager.Students[1].transform.position = Vector3.zero;
+				}
+				RequiredWeaponID = 2;
+				Physics.SyncTransforms();
+				Yandere.Subtitle.MurderReactions[0] = "Who are you?! You shouldn't be here!";
+				Yandere.Subtitle.PetMurderReports[2] = "A dangerous-looking person is in the school!";
+				Yandere.Subtitle.PetMurderReports[3] = "What?! But she was right here! Where did she go...?";
+				Yandere.Subtitle.TeacherReportReactions[0] = "An intruder?! Lead me to them!";
+				Yandere.Subtitle.TeacherReportClips[0] = Yandere.Subtitle.LongestSilence;
+				Yandere.Subtitle.TeacherMurderReactions[1] = "An intruder at school?!";
+				Yandere.Subtitle.TeacherMurderReactions[2] = "An intruder at school?!";
+				Yandere.Subtitle.TeacherMurderReactions[3] = "An intruder at school?!";
+				Yandere.Subtitle.TeacherMurderReactions[4] = "An intruder at school?!";
+				Yandere.Subtitle.TeacherMurderClips[1] = Yandere.Subtitle.LongestSilence;
+				Yandere.Subtitle.TeacherMurderClips[2] = Yandere.Subtitle.LongestSilence;
+				Yandere.Subtitle.TeacherMurderClips[3] = Yandere.Subtitle.LongestSilence;
+				Yandere.Subtitle.TeacherMurderClips[4] = Yandere.Subtitle.LongestSilence;
+			}
+			if (WeaponManager.Weapons[1] != null)
+			{
+				WeaponManager.Weapons[1].Prompt.WaitTimer = 0f;
+			}
+		}
 		if (Phase == 1)
 		{
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime / 1f));
@@ -902,13 +984,18 @@ public class MissionModeScript : MonoBehaviour
 				{
 					if (StudentManager.Students[ID] != null && StudentManager.Students[ID].WitnessedMurder && !Yandere.DelinquentFighting)
 					{
-						SpottedLabel.text = StudentManager.Students[ID].Name;
+						GetTitle();
+						SpottedLabel.text = Title + " " + StudentManager.Students[ID].Name;
 						SpottedWindow.SetActive(value: true);
 						Chastise = true;
 						GameOverID = 6;
 						if (Yandere.Mopping)
 						{
 							GameOverID = 20;
+						}
+						if (Yandere.Yakuza)
+						{
+							GameOverID = 22;
 						}
 						GameOver();
 						Phase = 4;
@@ -919,9 +1006,10 @@ public class MissionModeScript : MonoBehaviour
 			{
 				for (ID = 1; ID < StudentManager.Students.Length; ID++)
 				{
-					if (StudentManager.Students[ID] != null && (StudentManager.Students[ID].WitnessedCorpse || StudentManager.Students[ID].WitnessedMurder))
+					if (StudentManager.Students[ID] != null && (StudentManager.Students[ID].WitnessedCorpse || (StudentManager.Students[ID].WitnessedMurder && !StudentManager.Students[ID].SpottedYakuza)))
 					{
-						SpottedLabel.text = StudentManager.Students[ID].Name;
+						GetTitle();
+						SpottedLabel.text = Title + " " + StudentManager.Students[ID].Name;
 						SpottedWindow.SetActive(value: true);
 						Chastise = true;
 						if (Yandere.DelinquentFighting)
@@ -1037,25 +1125,44 @@ public class MissionModeScript : MonoBehaviour
 					ExitPortalPrompt.Label[0].text = "     Exfiltrate";
 					if (ExitPortalPrompt.Circle[0].fillAmount == 0f)
 					{
-						Yandere.EmptyHands();
-						StudentManager.DisableChaseCameras();
-						MainCamera.transform.position = new Vector3(0.5f, 2.25f, -100.5f);
-						MainCamera.transform.eulerAngles = Vector3.zero;
-						Yandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-						Yandere.transform.position = new Vector3(0f, 0f, -94.5f);
-						Yandere.Character.GetComponent<Animation>().Play(Yandere.WalkAnim);
-						Yandere.RPGCamera.enabled = false;
-						Yandere.HUD.gameObject.SetActive(value: false);
-						Yandere.ResetYandereEffects();
-						Yandere.YandereVision = false;
-						Yandere.CanMove = false;
-						Jukebox.MissionMode.clip = StealthMusic[10];
-						Jukebox.MissionMode.loop = false;
-						Jukebox.MissionMode.Play();
-						MyAudio.PlayOneShot(InfoAccomplished);
-						HeartbeatCamera.SetActive(value: false);
-						Boundary.enabled = false;
-						Phase++;
+						ExitPortalPrompt.Circle[0].fillAmount = 1f;
+						if ((YakuzaMode && Yandere.EquippedWeapon == null) || (YakuzaMode && Yandere.EquippedWeapon != WeaponManager.Weapons[1]))
+						{
+							NotificationManager.CustomText = "Can't leave without katana!";
+							NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
+						else
+						{
+							if (!YakuzaMode)
+							{
+								Yandere.EmptyHands();
+							}
+							StudentManager.DisableChaseCameras();
+							MainCamera.transform.position = new Vector3(0.5f, 2.25f, -100.5f);
+							MainCamera.transform.eulerAngles = Vector3.zero;
+							Yandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+							Yandere.transform.position = new Vector3(0f, 0f, -94.5f);
+							Yandere.Character.GetComponent<Animation>().Play(Yandere.WalkAnim);
+							Yandere.RPGCamera.enabled = false;
+							Yandere.HUD.gameObject.SetActive(value: false);
+							Yandere.ResetYandereEffects();
+							Yandere.YandereVision = false;
+							Yandere.CanMove = false;
+							if (YakuzaMode)
+							{
+								Jukebox.YakuzaMusic.SetActive(value: false);
+								Jukebox.MissionMode.enabled = true;
+								Jukebox.MissionMode.volume = 1f;
+							}
+							Jukebox.MissionMode.clip = StealthMusic[10];
+							Jukebox.MissionMode.loop = false;
+							Jukebox.MissionMode.Play();
+							MyAudio.PlayOneShot(InfoAccomplished);
+							Yandere.MyLocker.gameObject.SetActive(value: false);
+							HeartbeatCamera.SetActive(value: false);
+							Boundary.enabled = false;
+							Phase++;
+						}
 					}
 				}
 			}
@@ -1182,7 +1289,7 @@ public class MissionModeScript : MonoBehaviour
 			}
 			else if (GameOverPhase == 2 && Timer > 7.5f)
 			{
-				Jukebox.MissionMode.clip = StealthMusic[0];
+				Jukebox.MissionMode.clip = Failure;
 				Jukebox.MissionMode.Play();
 				Jukebox.Volume = 0.5f;
 				GameOverPhase++;
@@ -1214,6 +1321,7 @@ public class MissionModeScript : MonoBehaviour
 		Time.timeScale = 0.0001f;
 		GameOverPhase = 1;
 		Jukebox.MissionMode.Stop();
+		Jukebox.YakuzaMusic.SetActive(value: false);
 	}
 
 	private void Success()
@@ -1251,7 +1359,14 @@ public class MissionModeScript : MonoBehaviour
 		MusicID++;
 		if (MusicID > 9)
 		{
-			MusicID = 1;
+			if (Eighties)
+			{
+				MusicID = 0;
+			}
+			else
+			{
+				MusicID = 1;
+			}
 		}
 		Jukebox.MissionMode.clip = StealthMusic[MusicID];
 		Jukebox.MissionMode.Play();
@@ -1348,6 +1463,26 @@ public class MissionModeScript : MonoBehaviour
 		for (int i = 1; i < CardboardBoxes.Length; i++)
 		{
 			CardboardBoxes[i].SetActive(value: false);
+		}
+	}
+
+	public void GetTitle()
+	{
+		if (ID == 90)
+		{
+			Title = "Nurse";
+		}
+		else if (ID == 97)
+		{
+			Title = "Coach";
+		}
+		else if (StudentManager.Students[ID].Teacher)
+		{
+			Title = "Teacher";
+		}
+		else
+		{
+			Title = "Student";
 		}
 	}
 }

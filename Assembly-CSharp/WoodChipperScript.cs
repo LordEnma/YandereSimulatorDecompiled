@@ -79,7 +79,7 @@ public class WoodChipperScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (BurnTimer > 0f)
+		if (BurnTimer != 0f)
 		{
 			BurnTimer = Mathf.MoveTowards(BurnTimer, 0f, Time.deltaTime * 0.1f);
 			Circle.fillAmount = 1f - BurnTimer / 60f;
@@ -87,7 +87,7 @@ public class WoodChipperScript : MonoBehaviour
 			float num2 = Mathf.Floor(num / 60f);
 			float num3 = Mathf.RoundToInt(num % 60f);
 			TimeLabel.text = $"{num2:00}:{num3:00}";
-			if (BurnTimer == 0f)
+			if (BurnTimer <= 0f)
 			{
 				Panel.SetActive(value: false);
 			}

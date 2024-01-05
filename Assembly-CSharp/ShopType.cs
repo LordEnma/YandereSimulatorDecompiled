@@ -9,5 +9,6 @@ public enum ShopType
 	Convenience = 6,
 	Games = 7,
 	Electronics = 8,
-	Lingerie = 9
+	Lingerie = 9,
+	Ramen = 10
 }

@@ -100,6 +100,34 @@ public static class GameGlobals
 
 	private const string Str_CorkboardScene = "CorkboardScene";
 
+	private const string Str_WatchedAnime = "WatchedAnime";
+
+	private const string Str_LastInputType = "LastInputType";
+
+	private const string Str_CustomMode = "CustomMode";
+
+	private const string Str_CustomAnimSet = "CustomAnimSet";
+
+	private const string Str_CustomSkinColor = "CustomSkinColor";
+
+	private const string Str_CustomEyeWear = "CustomEyeWear";
+
+	private const string Str_AlternateTimeline = "AlternateTimeline";
+
+	private const string Str_SenpaiLove = "SenpaiLove";
+
+	private const string Str_SenpaiSanity = "SenpaiSanity";
+
+	private const string Str_OsanaHaircut = "OsanaHaircut";
+
+	private const string Str_Dream = "Dream";
+
+	private const string Str_NoCouncilShove = "NoCouncilShove";
+
+	private const string Str_NoJournalist = "NoJournalist";
+
+	private const string Str_ForceCanonEliminations = "ForceCanonEliminations";
+
 	public static int Profile
 	{
 		get
@@ -652,6 +680,138 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool WatchedAnime
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_WatchedAnime");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_WatchedAnime", value);
+		}
+	}
+
+	public static bool CustomMode
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_CustomMode");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_CustomMode", value);
+		}
+	}
+
+	public static int LastInputType
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("LastInputType");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("LastInputType", value);
+		}
+	}
+
+	public static bool AlternateTimeline
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_AlternateTimeline");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_AlternateTimeline", value);
+		}
+	}
+
+	public static int SenpaiLove
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_SenpaiLove");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + Profile + "_SenpaiLove", value);
+		}
+	}
+
+	public static int SenpaiSanity
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_SenpaiSanity");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + Profile + "_SenpaiSanity", value);
+		}
+	}
+
+	public static bool OsanaHaircut
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_OsanaHaircut");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_OsanaHaircut", value);
+		}
+	}
+
+	public static int Dream
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Dream");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Dream", value);
+		}
+	}
+
+	public static bool NoCouncilShove
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_NoCouncilShove");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_NoCouncilShove", value);
+		}
+	}
+
+	public static bool NoJournalist
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_NoJournalist");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_NoJournalist", value);
+		}
+	}
+
+	public static bool ForceCanonEliminations
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_ForceCanonEliminations");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_ForceCanonEliminations", value);
+		}
+	}
+
 	public static int GetRivalEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminations" + elimID);
@@ -701,6 +861,57 @@ public static class GameGlobals
 	public static int[] KeysOfItemRemoved()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_ItemRemoved");
+	}
+
+	public static int GetAnimSet(int animID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + Profile + "_CustomAnimSet" + animID);
+	}
+
+	public static void SetAnimSet(int animID, int value)
+	{
+		string text = animID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + Profile + "_CustomAnimSet", text);
+		PlayerPrefs.SetInt("Profile_" + Profile + "_CustomAnimSet" + text, value);
+	}
+
+	public static int[] KeysOfAnimSet()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_CustomAnimSet");
+	}
+
+	public static int GetSkinColor(int animID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + Profile + "_CustomSkinColor" + animID);
+	}
+
+	public static void SetSkinColor(int animID, int value)
+	{
+		string text = animID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + Profile + "_CustomSkinColor", text);
+		PlayerPrefs.SetInt("Profile_" + Profile + "_CustomSkinColor" + text, value);
+	}
+
+	public static int[] KeysOfSkinColor()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_CustomSkinColor");
+	}
+
+	public static int GetEyeWear(int animID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + Profile + "_CustomEyeWear" + animID);
+	}
+
+	public static void SetEyeWear(int animID, int value)
+	{
+		string text = animID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + Profile + "_CustomEyeWear", text);
+		PlayerPrefs.SetInt("Profile_" + Profile + "_CustomEyeWear" + text, value);
+	}
+
+	public static int[] KeysOfEyeWear()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_CustomEyeWear");
 	}
 
 	public static void DeleteAll()
@@ -756,6 +967,20 @@ public static class GameGlobals
 		Globals.DeleteCollection("Profile_" + Profile + "_RivalEliminations", KeysOfRivalEliminations());
 		Globals.DeleteCollection("Profile_" + Profile + "_SpecificEliminations", KeysOfSpecificEliminations());
 		Globals.DeleteCollection("Profile_" + Profile + "_ItemRemoved", KeysOfItemRemoved());
-		Globals.Delete("Profile_" + Profile + "_" + CorkboardScene);
+		Globals.DeleteCollection("Profile_" + Profile + "_CustomAnimSet", KeysOfAnimSet());
+		Globals.DeleteCollection("Profile_" + Profile + "_CustomSkinColor", KeysOfSkinColor());
+		Globals.DeleteCollection("Profile_" + Profile + "_CustomEyeWear", KeysOfEyeWear());
+		Globals.Delete("Profile_" + Profile + "_CorkboardScene");
+		Globals.Delete("Profile_" + Profile + "_WatchedAnime");
+		Globals.Delete("Profile_" + Profile + "_LastInputType");
+		Globals.Delete("Profile_" + Profile + "_CustomMode");
+		Globals.Delete("Profile_" + Profile + "_AlternateTimeline");
+		Globals.Delete("Profile_" + Profile + "_SenpaiLove");
+		Globals.Delete("Profile_" + Profile + "_SenpaiSanity");
+		Globals.Delete("Profile_" + Profile + "_OsanaHaircut");
+		Globals.Delete("Profile_" + Profile + "_Dream");
+		Globals.Delete("Profile_" + Profile + "_NoCouncilShove");
+		Globals.Delete("Profile_" + Profile + "_NoJournalist");
+		Globals.Delete("Profile_" + Profile + "_ForceCanonEliminations");
 	}
 }

@@ -53,5 +53,8 @@ public enum StudentActionType
 	Admire = 50,
 	Rehearse = 51,
 	Stretch = 52,
-	Random = 53
+	Random = 53,
+	CustomHangout = 54,
+	CustomPatrol = 55,
+	RandomPatrol = 56
 }

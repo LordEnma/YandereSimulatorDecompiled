@@ -189,7 +189,7 @@ public class UICamera : MonoBehaviour
 			mTouchIDs.Add(id);
 			return mouseOrTouch;
 		}
-		return null;
+		return (MouseOrTouch)null;
 	};
 
 	public static RemoveTouchDelegate RemoveTouch = delegate(int id)

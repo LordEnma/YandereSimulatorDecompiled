@@ -100,7 +100,17 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public int Gender => gender;
+	public int Gender
+	{
+		get
+		{
+			return gender;
+		}
+		set
+		{
+			gender = value;
+		}
+	}
 
 	public int Class
 	{
@@ -126,7 +136,17 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public ClubType Club => club;
+	public ClubType Club
+	{
+		get
+		{
+			return club;
+		}
+		set
+		{
+			club = value;
+		}
+	}
 
 	public PersonaType Persona
 	{
@@ -140,7 +160,17 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public int Crush => crush;
+	public int Crush
+	{
+		get
+		{
+			return crush;
+		}
+		set
+		{
+			crush = value;
+		}
+	}
 
 	public float BreastSize
 	{
@@ -178,13 +208,53 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public string Color => color;
+	public string Color
+	{
+		get
+		{
+			return color;
+		}
+		set
+		{
+			color = value;
+		}
+	}
 
-	public string Eyes => eyes;
+	public string Eyes
+	{
+		get
+		{
+			return eyes;
+		}
+		set
+		{
+			eyes = value;
+		}
+	}
 
-	public string EyeType => eyeType;
+	public string EyeType
+	{
+		get
+		{
+			return eyeType;
+		}
+		set
+		{
+			eyeType = value;
+		}
+	}
 
-	public string Stockings => stockings;
+	public string Stockings
+	{
+		get
+		{
+			return stockings;
+		}
+		set
+		{
+			stockings = value;
+		}
+	}
 
 	public string Accessory
 	{
@@ -198,9 +268,29 @@ public class StudentJson : JsonData
 		}
 	}
 
-	public string Info => info;
+	public string Info
+	{
+		get
+		{
+			return info;
+		}
+		set
+		{
+			info = value;
+		}
+	}
 
-	public ScheduleBlock[] ScheduleBlocks => scheduleBlocks;
+	public ScheduleBlock[] ScheduleBlocks
+	{
+		get
+		{
+			return scheduleBlocks;
+		}
+		set
+		{
+			scheduleBlocks = value;
+		}
+	}
 
 	public bool Success => success;
 

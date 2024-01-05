@@ -18,6 +18,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	public NoiseAndGrain Noise;
 
+	public JsonScript JSON;
+
 	public UISprite SkipCircle;
 
 	public UIPanel SkipPanel;
@@ -173,6 +175,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 	public Texture BlondePony;
 
 	public PostProcessingProfile Profile;
+
+	public string ProtagonistName;
 
 	public GameObject OriginalHair;
 
@@ -340,6 +344,12 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		Rival.GetComponent<Animation>()["OsanaBefriendBetray_B_00"].speed = 1f;
 		Rival.GetComponent<Animation>()["OsanaBefriend_B_00"].speed = 1f;
 		Rival.GetComponent<Animation>()["OsanaBetray_B_00"].speed = 1f;
+		ProtagonistName = "Ryoba";
+		if (GameGlobals.CustomMode)
+		{
+			ProtagonistName = JSON.Students[0].Name;
+			EightiesLabel.text = "Before " + ProtagonistName + " burned the pictures, she grabbed one photograph to keep with her as proof that she was in the asylum.\n\n" + ProtagonistName + " returns home, calls her rival, and informs her that the pictures have been destroyed. She also invites the girl over to her house to see the proof.\n\n" + ProtagonistName + "'s rival arrives at her home. When she sees the photograph, she knows that " + ProtagonistName + " is telling the truth. " + ProtagonistName + " lets the girl burn the photo so that she can put this dark chapter of her life behind her.\n\nThen, " + ProtagonistName + " offers her rival some tea...";
+		}
 	}
 
 	private void Update()
@@ -805,9 +815,9 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					Darkness.alpha = 0f;
 					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						if (DateGlobals.Week < 10)
+						if (DateGlobals.Week < 10 && !GameGlobals.CustomMode)
 						{
-							EightiesLabel.text = "Over a cup of tea, Ryoba describes the deep feelings she has for her Senpai, and explains how heartbroken she would feel if anyone took the boy away from her. She asks the girl to stay away from her Senpai.\n\nRyoba's rival cannot bring herself to compete romantically with someone who entered a life-threatening situation to help her out. She agrees to stay away from Ryoba's Senpai.\n\nRyoba's rival is no longer a threat, and the two girls are now the best of friends!";
+							EightiesLabel.text = "Over a cup of tea, " + ProtagonistName + " describes the deep feelings she has for her Senpai, and explains how heartbroken she would feel if anyone took the boy away from her. She asks the girl to stay away from her Senpai.\n\n" + ProtagonistName + "'s rival cannot bring herself to compete romantically with someone who entered a life-threatening situation to help her out. She agrees to stay away from " + ProtagonistName + "'s Senpai.\n\n" + ProtagonistName + "'s rival is no longer a threat, and the two girls are now the best of friends!";
 						}
 						else
 						{
@@ -817,7 +827,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					}
 					if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
-						EightiesLabel.text = "Ryoba's rival drinks the drugged tea and passes out. When she wakes up...";
+						EightiesLabel.text = ProtagonistName + "'s rival drinks the drugged tea and passes out. When she wakes up...";
 						DecisionMade = true;
 						DruggedTea = true;
 					}
