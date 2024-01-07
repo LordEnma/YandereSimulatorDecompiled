@@ -3747,6 +3747,10 @@ public class StudentScript : MonoBehaviour
 			{
 				CustomPatrolAnim = ThinkAnim;
 			}
+			if (CustomHangoutAnim == "")
+			{
+				CustomHangoutAnim = ThinkAnim;
+			}
 		}
 		CharacterAnimation.Sample();
 	}
@@ -14890,7 +14894,7 @@ public class StudentScript : MonoBehaviour
 						{
 							AlarmTimer = 0f;
 							ThreatTimer += Time.deltaTime;
-							if (ThreatTimer > 5f && !Yandere.Struggling && !Yandere.DelinquentFighting && Prompt.InSight)
+							if (ThreatTimer > 5f && !Yandere.Struggling && !Yandere.DelinquentFighting && !Yandere.Chased && Yandere.Chasers == 0 && Prompt.InSight)
 							{
 								ThreatTimer = 0f;
 								Shove();
@@ -15526,7 +15530,7 @@ public class StudentScript : MonoBehaviour
 			}
 			if (((Club == ClubType.Council && !DoNotShove) || Shovey) && DistanceToPlayer < 1.1f && !Yandere.Invisible && (Yandere.Armed || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed)) && Prompt.InSight)
 			{
-				if (Yandere.Armed && !Yandere.EquippedWeapon.Suspicious && !WitnessedMurder && !WitnessedCorpse)
+				if (Yandere.Armed && !Yandere.EquippedWeapon.Suspicious && !WitnessedMurder && !WitnessedCorpse && !Yandere.Chased && Yandere.Chasers == 0)
 				{
 					Debug.Log(Name + " is shoving the player from this place in the code. 1");
 					Shove();
@@ -16339,7 +16343,7 @@ public class StudentScript : MonoBehaviour
 				}
 				if (DistanceToPlayer < 1.1f && !Yandere.Invisible && Mathf.Abs(Vector3.Angle(-base.transform.forward, Yandere.transform.position - base.transform.position)) > 45f && (Yandere.Armed || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed)) && Prompt.InSight)
 				{
-					if (Yandere.Armed && !Yandere.EquippedWeapon.Suspicious && !WitnessedMurder)
+					if (Yandere.Armed && !Yandere.EquippedWeapon.Suspicious && !WitnessedMurder && !Yandere.Chased && Yandere.Chasers == 0)
 					{
 						Debug.Log(Name + " is shoving the player from this place in the code. 2");
 						Shove();
@@ -16351,7 +16355,7 @@ public class StudentScript : MonoBehaviour
 					}
 				}
 			}
-			if (((Club == ClubType.Council && !Spraying && !DoNotShove) || (Club == ClubType.Delinquent && !Injured && !RespectEarned && !Vomiting && !Emetic && !Headache && !Sedated && !Lethal) || (Shovey && !Spraying && !Following && !Meeting)) && (double)DistanceToPlayer < 0.5 && Yandere.CanMove && !Yandere.Invisible && (Yandere.h != 0f || Yandere.v != 0f))
+			if (((Club == ClubType.Council && !Spraying && !DoNotShove) || (Club == ClubType.Delinquent && !Injured && !RespectEarned && !Vomiting && !Emetic && !Headache && !Sedated && !Lethal) || (Shovey && !Spraying && !Following && !Meeting)) && (double)DistanceToPlayer < 0.5 && Yandere.CanMove && !Yandere.Invisible && (Yandere.h != 0f || Yandere.v != 0f) && !Yandere.Chased && Yandere.Chasers == 0)
 			{
 				if (Club == ClubType.Delinquent)
 				{
@@ -16365,7 +16369,7 @@ public class StudentScript : MonoBehaviour
 		else if (((Club == ClubType.Council && !DoNotShove) || Shovey) && DistanceToPlayer < 1.1f && !Yandere.Invisible && Mathf.Abs(Vector3.Angle(-base.transform.forward, Yandere.transform.position - base.transform.position)) > 45f && ((!IgnoringPettyActions && Yandere.Armed && Yandere.EquippedWeapon.Suspicious) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed)) && Prompt.InSight)
 		{
 			Debug.Log(Name + " will now decide whether to spray or shove the protagonist.");
-			if (Yandere.Armed && !Yandere.EquippedWeapon.Suspicious && !WitnessedMurder)
+			if (Yandere.Armed && !Yandere.EquippedWeapon.Suspicious && !WitnessedMurder && !Yandere.Chased && Yandere.Chasers == 0)
 			{
 				Debug.Log(Name + " is shoving the player from this place in the code. 4");
 				Shove();

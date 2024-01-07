@@ -139,6 +139,14 @@ public class CalendarScript : MonoBehaviour
 	private void Start()
 	{
 		GameGlobals.AlphabetMode = false;
+		if (!GameGlobals.Eighties)
+		{
+			GameGlobals.CustomMode = false;
+		}
+		if (GameGlobals.CustomMode)
+		{
+			Debug.Log("The game believes that we're in Custom Mode.");
+		}
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;

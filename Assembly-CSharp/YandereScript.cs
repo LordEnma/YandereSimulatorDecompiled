@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using HighlightingSystem;
 using Pathfinding;
@@ -1758,6 +1759,10 @@ public class YandereScript : MonoBehaviour
 
 	public Texture[] StockingList;
 
+	public GameObject[] LooseSocks;
+
+	public Texture TransparentPixel;
+
 	public string[] Idles;
 
 	public string[] Walks;
@@ -2052,11 +2057,13 @@ public class YandereScript : MonoBehaviour
 		CensorSteam[1].SetActive(value: false);
 		CensorSteam[2].SetActive(value: false);
 		CensorSteam[3].SetActive(value: false);
-		FloatingShovel.SetActive(value: false);
-		BlackEyePatch.SetActive(value: false);
-		EasterEggMenu.SetActive(value: false);
 		FalconKneepad1.SetActive(value: false);
 		FalconKneepad2.SetActive(value: false);
+		FloatingShovel.SetActive(value: false);
+		LooseSocks[0].SetActive(value: false);
+		LooseSocks[1].SetActive(value: false);
+		BlackEyePatch.SetActive(value: false);
+		EasterEggMenu.SetActive(value: false);
 		PunishedScarf.SetActive(value: false);
 		FalconBuckle.SetActive(value: false);
 		FalconHelmet.SetActive(value: false);
@@ -2966,7 +2973,7 @@ public class YandereScript : MonoBehaviour
 									{
 										BlasterStage = 1;
 									}
-									GameObject obj = Object.Instantiate(BlasterSet[BlasterStage], base.transform.position, Quaternion.identity);
+									GameObject obj = UnityEngine.Object.Instantiate(BlasterSet[BlasterStage], base.transform.position, Quaternion.identity);
 									obj.transform.position = base.transform.position;
 									obj.transform.rotation = base.transform.rotation;
 									AudioSource.PlayClipAtPoint(BlasterClip, base.transform.position + Vector3.up);
@@ -3057,7 +3064,7 @@ public class YandereScript : MonoBehaviour
 													MyAudio.Play();
 												}
 												GiggleLines.Play();
-												Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
+												UnityEngine.Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
 												AnnoyingGiggleTimer = 1f;
 												MyAudio.volume = 1f;
 												LaughTimer = 0.5f;
@@ -3097,7 +3104,7 @@ public class YandereScript : MonoBehaviour
 									{
 										if (FalconHelmet.activeInHierarchy)
 										{
-											GameObject obj2 = Object.Instantiate(FalconWindUp);
+											GameObject obj2 = UnityEngine.Object.Instantiate(FalconWindUp);
 											obj2.transform.parent = ItemParent;
 											obj2.transform.localPosition = Vector3.zero;
 											AudioClipPlayer.PlayAttached(FalconPunchVoice, MainCamera.transform, 5f, 10f);
@@ -3107,10 +3114,10 @@ public class YandereScript : MonoBehaviour
 										}
 										else
 										{
-											GameObject obj3 = Object.Instantiate(FalconWindUp);
+											GameObject obj3 = UnityEngine.Object.Instantiate(FalconWindUp);
 											obj3.transform.parent = ItemParent;
 											obj3.transform.localPosition = Vector3.zero;
-											AudioSource.PlayClipAtPoint(OnePunchVoices[Random.Range(0, OnePunchVoices.Length)], base.transform.position + Vector3.up);
+											AudioSource.PlayClipAtPoint(OnePunchVoices[UnityEngine.Random.Range(0, OnePunchVoices.Length)], base.transform.position + Vector3.up);
 											CharacterAnimation["f02_onePunch_00"].time = 0f;
 											CharacterAnimation.CrossFade("f02_onePunch_00", 0.15f);
 										}
@@ -3130,7 +3137,7 @@ public class YandereScript : MonoBehaviour
 								MyAudio.time = 0f;
 								MyAudio.Play();
 								GiggleLines.Play();
-								Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
+								UnityEngine.Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
 								AnnoyingGiggleTimer = 1f;
 							}
 							if (NoLaugh)
@@ -3313,7 +3320,7 @@ public class YandereScript : MonoBehaviour
 					PrepareThrowTimer = 0f;
 					Obvious = !Obvious;
 				}
-				if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB))
+				if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB) || Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
 					CharacterAnimation["f02_subtleThrowIdle_00"].weight = 0f;
@@ -3443,9 +3450,9 @@ public class YandereScript : MonoBehaviour
 				TrailTimer = 0f;
 				if (NewTrail != null)
 				{
-					Object.Destroy(NewTrail);
+					UnityEngine.Object.Destroy(NewTrail);
 				}
-				NewTrail = Object.Instantiate(Trail, base.transform.position + base.transform.forward * 0.5f + Vector3.up * 0.1f, Quaternion.identity);
+				NewTrail = UnityEngine.Object.Instantiate(Trail, base.transform.position + base.transform.forward * 0.5f + Vector3.up * 0.1f, Quaternion.identity);
 				if (SchemeGlobals.CurrentScheme == 0)
 				{
 					if (StudentManager.Tutorial != null && StudentManager.Tutorial.isActiveAndEnabled)
@@ -3467,7 +3474,7 @@ public class YandereScript : MonoBehaviour
 				}
 				else
 				{
-					Object.Destroy(NewTrail);
+					UnityEngine.Object.Destroy(NewTrail);
 				}
 			}
 			if (!YandereVision && (Input.GetButton(InputNames.Xbox_LS) || Input.GetKey(KeyCode.T)) && !StudentManager.EightiesTutorial)
@@ -3880,25 +3887,25 @@ public class YandereScript : MonoBehaviour
 				{
 					ParticleSystem.MainModule main = PickUp.Bucket.PourEffect.main;
 					main.startColor = new Color(1f, 1f, 0f, 0.5f);
-					Object.Instantiate(PickUp.Bucket.GasCollider, PickUp.Bucket.PourEffect.transform.position + PourDistance * base.transform.forward, Quaternion.identity);
+					UnityEngine.Object.Instantiate(PickUp.Bucket.GasCollider, PickUp.Bucket.PourEffect.transform.position + PourDistance * base.transform.forward, Quaternion.identity);
 				}
 				else if (PickUp.Bucket.DyedBrown)
 				{
 					ParticleSystem.MainModule main2 = PickUp.Bucket.PourEffect.main;
 					main2.startColor = new Color(0.25f, 0.125f, 0f, 0.5f);
-					Object.Instantiate(PickUp.Bucket.BrownPaintCollider, PickUp.Bucket.PourEffect.transform.position + PourDistance * base.transform.forward, Quaternion.identity);
+					UnityEngine.Object.Instantiate(PickUp.Bucket.BrownPaintCollider, PickUp.Bucket.PourEffect.transform.position + PourDistance * base.transform.forward, Quaternion.identity);
 				}
 				else if (PickUp.Bucket.Bloodiness < 50f)
 				{
 					ParticleSystem.MainModule main3 = PickUp.Bucket.PourEffect.main;
 					main3.startColor = new Color(0f, 1f, 1f, 0.5f);
-					Object.Instantiate(PickUp.Bucket.WaterCollider, PickUp.Bucket.PourEffect.transform.position + PourDistance * base.transform.forward, Quaternion.identity);
+					UnityEngine.Object.Instantiate(PickUp.Bucket.WaterCollider, PickUp.Bucket.PourEffect.transform.position + PourDistance * base.transform.forward, Quaternion.identity);
 				}
 				else
 				{
 					ParticleSystem.MainModule main4 = PickUp.Bucket.PourEffect.main;
 					main4.startColor = new Color(0.5f, 0f, 0f, 0.5f);
-					Object.Instantiate(PickUp.Bucket.BloodCollider, PickUp.Bucket.PourEffect.transform.position + PourDistance * base.transform.forward, Quaternion.identity);
+					UnityEngine.Object.Instantiate(PickUp.Bucket.BloodCollider, PickUp.Bucket.PourEffect.transform.position + PourDistance * base.transform.forward, Quaternion.identity);
 				}
 				PickUp.Bucket.PourEffect.Play();
 				PickUp.Bucket.Poured = true;
@@ -3942,8 +3949,8 @@ public class YandereScript : MonoBehaviour
 				CirnoTimer -= Time.deltaTime;
 				if (CirnoTimer < 0f)
 				{
-					Object.Instantiate(Fireball, RightHand.position, base.transform.rotation).transform.localEulerAngles += new Vector3(Random.Range(0f, 22.5f), Random.Range(-22.5f, 22.5f), Random.Range(-22.5f, 22.5f));
-					Object.Instantiate(Fireball, LeftHand.position, base.transform.rotation).transform.localEulerAngles += new Vector3(Random.Range(0f, 22.5f), Random.Range(-22.5f, 22.5f), Random.Range(-22.5f, 22.5f));
+					UnityEngine.Object.Instantiate(Fireball, RightHand.position, base.transform.rotation).transform.localEulerAngles += new Vector3(UnityEngine.Random.Range(0f, 22.5f), UnityEngine.Random.Range(-22.5f, 22.5f), UnityEngine.Random.Range(-22.5f, 22.5f));
+					UnityEngine.Object.Instantiate(Fireball, LeftHand.position, base.transform.rotation).transform.localEulerAngles += new Vector3(UnityEngine.Random.Range(0f, 22.5f), UnityEngine.Random.Range(-22.5f, 22.5f), UnityEngine.Random.Range(-22.5f, 22.5f));
 					CirnoTimer = 0.1f;
 				}
 			}
@@ -3965,7 +3972,7 @@ public class YandereScript : MonoBehaviour
 				CirnoTimer -= Time.deltaTime;
 				if (CirnoTimer < 0f)
 				{
-					Object.Instantiate(CirnoIceAttack, base.transform.position + base.transform.up * 1.4f, base.transform.rotation).transform.localEulerAngles += new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-5f, 5f));
+					UnityEngine.Object.Instantiate(CirnoIceAttack, base.transform.position + base.transform.up * 1.4f, base.transform.rotation).transform.localEulerAngles += new Vector3(UnityEngine.Random.Range(-5f, 5f), UnityEngine.Random.Range(-5f, 5f), UnityEngine.Random.Range(-5f, 5f));
 					MyAudio.PlayOneShot(CirnoIceClip);
 					CirnoTimer = 0.1f;
 				}
@@ -3976,10 +3983,10 @@ public class YandereScript : MonoBehaviour
 				CirnoTimer -= Time.deltaTime;
 				if (CirnoTimer < 0f)
 				{
-					GameObject gameObject = Object.Instantiate(TornadoAttack, base.transform.forward * 5f + new Vector3(base.transform.position.x + Random.Range(-5f, 5f), base.transform.position.y, base.transform.position.z + Random.Range(-5f, 5f)), base.transform.rotation);
+					GameObject gameObject = UnityEngine.Object.Instantiate(TornadoAttack, base.transform.forward * 5f + new Vector3(base.transform.position.x + UnityEngine.Random.Range(-5f, 5f), base.transform.position.y, base.transform.position.z + UnityEngine.Random.Range(-5f, 5f)), base.transform.rotation);
 					while (Vector3.Distance(base.transform.position, gameObject.transform.position) < 1f)
 					{
-						gameObject.transform.position = base.transform.forward * 5f + new Vector3(base.transform.position.x + Random.Range(-5f, 5f), base.transform.position.y, base.transform.position.z + Random.Range(-5f, 5f));
+						gameObject.transform.position = base.transform.forward * 5f + new Vector3(base.transform.position.x + UnityEngine.Random.Range(-5f, 5f), base.transform.position.y, base.transform.position.z + UnityEngine.Random.Range(-5f, 5f));
 					}
 					CirnoTimer = 0.1f;
 				}
@@ -4026,7 +4033,7 @@ public class YandereScript : MonoBehaviour
 				}
 				else if (LaughIntensity <= 20f)
 				{
-					Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
+					UnityEngine.Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
 					if (StudentManager.Eighties)
 					{
 						LaughAnim = "f02_evilLaugh_00";
@@ -4041,7 +4048,7 @@ public class YandereScript : MonoBehaviour
 				}
 				else
 				{
-					Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
+					UnityEngine.Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
 					if (StudentManager.Eighties)
 					{
 						LaughAnim = "f02_evilLaugh_00";
@@ -4187,7 +4194,7 @@ public class YandereScript : MonoBehaviour
 					{
 						Debug.Log("Yandere-chan just killed " + TargetStudent.Name + " as a result of winning a struggling against them.");
 						TargetStudent.DeathCause = EquippedWeapon.WeaponID;
-						Object.Instantiate(TargetStudent.StabBloodEffect, TargetStudent.Teacher ? EquippedWeapon.transform.position : TargetStudent.Head.position, Quaternion.identity);
+						UnityEngine.Object.Instantiate(TargetStudent.StabBloodEffect, TargetStudent.Teacher ? EquippedWeapon.transform.position : TargetStudent.Head.position, Quaternion.identity);
 						Bloodiness += 20f;
 						Sanity -= ((Panties == 10) ? 10f : 20f) * Numbness;
 						StainWeapon();
@@ -4198,13 +4205,13 @@ public class YandereScript : MonoBehaviour
 				{
 					if (TargetStudent.Teacher && CharacterAnimation["f02_teacherStruggleWinA_00"].time > 1.3f)
 					{
-						Object.Instantiate(TargetStudent.StabBloodEffect, EquippedWeapon.transform.position, Quaternion.identity);
+						UnityEngine.Object.Instantiate(TargetStudent.StabBloodEffect, EquippedWeapon.transform.position, Quaternion.identity);
 						StrugglePhase++;
 					}
 				}
 				else if (StrugglePhase == 2 && TargetStudent.Teacher && CharacterAnimation["f02_teacherStruggleWinA_00"].time > 2.1f)
 				{
-					Object.Instantiate(TargetStudent.StabBloodEffect, EquippedWeapon.transform.position, Quaternion.identity);
+					UnityEngine.Object.Instantiate(TargetStudent.StabBloodEffect, EquippedWeapon.transform.position, Quaternion.identity);
 					StrugglePhase++;
 				}
 				if (TargetStudent.Teacher && CharacterAnimation["f02_teacherStruggleWinA_00"].time > 2.75f)
@@ -4634,7 +4641,7 @@ public class YandereScript : MonoBehaviour
 			if (CharacterAnimation["f02_phoneCrush_00"].time >= 0.5f && PhoneToCrush.enabled)
 			{
 				PhoneToCrush.transform.localEulerAngles = new Vector3(PhoneToCrush.transform.localEulerAngles.x, PhoneToCrush.transform.localEulerAngles.y, 0f);
-				Object.Instantiate(PhoneToCrush.PhoneSmash, PhoneToCrush.transform.position, Quaternion.identity);
+				UnityEngine.Object.Instantiate(PhoneToCrush.PhoneSmash, PhoneToCrush.transform.position, Quaternion.identity);
 				Police.PhotoEvidence--;
 				PhoneToCrush.MyRenderer.material.mainTexture = PhoneToCrush.SmashedTexture;
 				PhoneToCrush.MyMesh.mesh = PhoneToCrush.SmashedMesh;
@@ -4689,7 +4696,7 @@ public class YandereScript : MonoBehaviour
 					SneakShotTimer += Time.deltaTime;
 					CameraFlash.SetActive(value: true);
 					StudentManager.UpdatePanties(Status: true);
-					Object.Instantiate(PantyDetector, SneakShotPhone.transform.position, base.transform.rotation).GetComponent<PantyDetectorScript>().Yandere = this;
+					UnityEngine.Object.Instantiate(PantyDetector, SneakShotPhone.transform.position, base.transform.rotation).GetComponent<PantyDetectorScript>().Yandere = this;
 				}
 			}
 			else
@@ -4811,7 +4818,7 @@ public class YandereScript : MonoBehaviour
 				{
 					if (NewFalconPunch == null)
 					{
-						NewFalconPunch = Object.Instantiate(FalconPunch);
+						NewFalconPunch = UnityEngine.Object.Instantiate(FalconPunch);
 						NewFalconPunch.transform.parent = ItemParent;
 						NewFalconPunch.transform.localPosition = Vector3.zero;
 					}
@@ -4828,7 +4835,7 @@ public class YandereScript : MonoBehaviour
 			{
 				if (CharacterAnimation["f02_onePunch_00"].time >= 0.833333f && CharacterAnimation["f02_onePunch_00"].time <= 1f && NewOnePunch == null)
 				{
-					NewOnePunch = Object.Instantiate(OnePunch);
+					NewOnePunch = UnityEngine.Object.Instantiate(OnePunch);
 					NewOnePunch.transform.parent = ItemParent;
 					NewOnePunch.transform.localPosition = Vector3.zero;
 				}
@@ -4882,7 +4889,7 @@ public class YandereScript : MonoBehaviour
 			CharacterAnimation.CrossFade("f02_sansBones_00");
 			if (BoneTimer == 0f)
 			{
-				Object.Instantiate(Bone, base.transform.position + base.transform.right * Random.Range(-2.5f, 2.5f) + base.transform.up * -2f + base.transform.forward * Random.Range(1f, 6f), Quaternion.identity);
+				UnityEngine.Object.Instantiate(Bone, base.transform.position + base.transform.right * UnityEngine.Random.Range(-2.5f, 2.5f) + base.transform.up * -2f + base.transform.forward * UnityEngine.Random.Range(1f, 6f), Quaternion.identity);
 			}
 			BoneTimer += Time.deltaTime;
 			if (BoneTimer > 0.1f)
@@ -4941,7 +4948,7 @@ public class YandereScript : MonoBehaviour
 				{
 					if (SithAttacks == 0 && CharacterAnimation["f02_" + AttackPrefix + "Attack" + SithPrefix + "_0" + SithCombo].time >= SithSpawnTime[SithCombo])
 					{
-						Object.Instantiate(SithHitbox, base.transform.position + base.transform.forward * 1f + base.transform.up, base.transform.rotation);
+						UnityEngine.Object.Instantiate(SithHitbox, base.transform.position + base.transform.forward * 1f + base.transform.up, base.transform.rotation);
 						SithAttacks++;
 					}
 				}
@@ -4949,11 +4956,11 @@ public class YandereScript : MonoBehaviour
 				{
 					if (CharacterAnimation["f02_" + AttackPrefix + "Attack" + SithPrefix + "_0" + SithCombo].time >= SithHardSpawnTime1[SithCombo] && SithAttacks == 0)
 					{
-						Object.Instantiate(BerserkHitbox, base.transform.position + base.transform.forward * 1.5f + base.transform.up, base.transform.rotation).GetComponent<SithBeamScript>().Damage = 20f;
+						UnityEngine.Object.Instantiate(BerserkHitbox, base.transform.position + base.transform.forward * 1.5f + base.transform.up, base.transform.rotation).GetComponent<SithBeamScript>().Damage = 20f;
 						SithAttacks++;
 						if (SithCombo < 2)
 						{
-							Object.Instantiate(GroundImpact, base.transform.position + base.transform.forward * 1.5f, base.transform.rotation).transform.localScale = new Vector3(2f, 2f, 2f);
+							UnityEngine.Object.Instantiate(GroundImpact, base.transform.position + base.transform.forward * 1.5f, base.transform.rotation).transform.localScale = new Vector3(2f, 2f, 2f);
 						}
 					}
 				}
@@ -4961,7 +4968,7 @@ public class YandereScript : MonoBehaviour
 				{
 					if (CharacterAnimation["f02_" + AttackPrefix + "Attack" + SithPrefix + "_0" + SithCombo].time >= SithHardSpawnTime1[SithCombo])
 					{
-						Object.Instantiate(SithHardHitbox, base.transform.position + base.transform.forward * 1f + base.transform.up, base.transform.rotation);
+						UnityEngine.Object.Instantiate(SithHardHitbox, base.transform.position + base.transform.forward * 1f + base.transform.up, base.transform.rotation);
 						SithAttacks++;
 					}
 				}
@@ -4969,13 +4976,13 @@ public class YandereScript : MonoBehaviour
 				{
 					if (CharacterAnimation["f02_" + AttackPrefix + "Attack" + SithPrefix + "_0" + SithCombo].time >= SithHardSpawnTime2[SithCombo])
 					{
-						Object.Instantiate(SithHardHitbox, base.transform.position + base.transform.forward * 1f + base.transform.up, base.transform.rotation);
+						UnityEngine.Object.Instantiate(SithHardHitbox, base.transform.position + base.transform.forward * 1f + base.transform.up, base.transform.rotation);
 						SithAttacks++;
 					}
 				}
 				else if (SithAttacks == 2 && SithCombo == 1 && CharacterAnimation["f02_" + AttackPrefix + "Attack" + SithPrefix + "_0" + SithCombo].time >= 14f / 15f)
 				{
-					Object.Instantiate(SithHardHitbox, base.transform.position + base.transform.forward * 1f + base.transform.up, base.transform.rotation);
+					UnityEngine.Object.Instantiate(SithHardHitbox, base.transform.position + base.transform.forward * 1f + base.transform.up, base.transform.rotation);
 					SithAttacks++;
 				}
 				SithSoundCheck();
@@ -5045,7 +5052,7 @@ public class YandereScript : MonoBehaviour
 			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
 			if (CharacterAnimation["f02_sixEat_00"].time > BloodTimes[EatPhase])
 			{
-				Object.Instantiate(TargetStudent.StabBloodEffect, Mouth.position, Quaternion.identity).GetComponent<RandomStabScript>().Biting = true;
+				UnityEngine.Object.Instantiate(TargetStudent.StabBloodEffect, Mouth.position, Quaternion.identity).GetComponent<RandomStabScript>().Biting = true;
 				Bloodiness += 20f;
 				EatPhase++;
 			}
@@ -5088,7 +5095,7 @@ public class YandereScript : MonoBehaviour
 					if (CharacterAnimation["f02_fingerSnap_00"].time >= 1f)
 					{
 						AudioSource.PlayClipAtPoint(FingerSnap, base.transform.position + Vector3.up);
-						Object.Instantiate(KnifeArray, base.transform.position, base.transform.rotation).GetComponent<KnifeArrayScript>().GlobalKnifeArray = GlobalKnifeArray;
+						UnityEngine.Object.Instantiate(KnifeArray, base.transform.position, base.transform.rotation).GetComponent<KnifeArrayScript>().GlobalKnifeArray = GlobalKnifeArray;
 						SnapPhase++;
 					}
 				}
@@ -5096,7 +5103,7 @@ public class YandereScript : MonoBehaviour
 				{
 					if (CharacterAnimation["f02_shipGirlSnap_00"].time >= 1f)
 					{
-						Object.Instantiate(Shell, Guns[1].position, base.transform.rotation);
+						UnityEngine.Object.Instantiate(Shell, Guns[1].position, base.transform.rotation);
 						ShotsFired++;
 					}
 				}
@@ -5104,7 +5111,7 @@ public class YandereScript : MonoBehaviour
 				{
 					if (CharacterAnimation["f02_shipGirlSnap_00"].time >= 1.2f)
 					{
-						Object.Instantiate(Shell, Guns[2].position, base.transform.rotation);
+						UnityEngine.Object.Instantiate(Shell, Guns[2].position, base.transform.rotation);
 						ShotsFired++;
 					}
 				}
@@ -5112,13 +5119,13 @@ public class YandereScript : MonoBehaviour
 				{
 					if (CharacterAnimation["f02_shipGirlSnap_00"].time >= 1.4f)
 					{
-						Object.Instantiate(Shell, Guns[3].position, base.transform.rotation);
+						UnityEngine.Object.Instantiate(Shell, Guns[3].position, base.transform.rotation);
 						ShotsFired++;
 					}
 				}
 				else if (ShotsFired < 4 && CharacterAnimation["f02_shipGirlSnap_00"].time >= 1.6f)
 				{
-					Object.Instantiate(Shell, Guns[4].position, base.transform.rotation);
+					UnityEngine.Object.Instantiate(Shell, Guns[4].position, base.transform.rotation);
 					ShotsFired++;
 					SnapPhase++;
 				}
@@ -5196,7 +5203,7 @@ public class YandereScript : MonoBehaviour
 			CharacterAnimation.CrossFade("f02_LoveLoveBeam_00");
 			if (CharacterAnimation["f02_LoveLoveBeam_00"].time >= 1.5f && BeamPhase == 0)
 			{
-				Object.Instantiate(LoveLoveBeam, base.transform.position, base.transform.rotation);
+				UnityEngine.Object.Instantiate(LoveLoveBeam, base.transform.position, base.transform.rotation);
 				BeamPhase++;
 			}
 			if (CharacterAnimation["f02_LoveLoveBeam_00"].time >= CharacterAnimation["f02_LoveLoveBeam_00"].length - 1f)
@@ -5285,7 +5292,7 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (CharacterAnimation["f02_sithAttack_0" + SwipeID].time >= CharacterAnimation["f02_sithAttack_0" + SwipeID].length * 0.25f && !Finisher)
 			{
-				Object.Instantiate(DemonSlash, base.transform.position + base.transform.up + base.transform.forward * 2f, Quaternion.identity);
+				UnityEngine.Object.Instantiate(DemonSlash, base.transform.position + base.transform.up + base.transform.forward * 2f, Quaternion.identity);
 				Finisher = true;
 			}
 		}
@@ -6192,7 +6199,7 @@ public class YandereScript : MonoBehaviour
 			{
 				if (Shoes[0].activeInHierarchy)
 				{
-					Object.Instantiate(ShoePair, base.transform.position + new Vector3(0f, 0.045f, 0f) + base.transform.forward * 1.6f, Quaternion.identity).transform.eulerAngles = base.transform.eulerAngles;
+					UnityEngine.Object.Instantiate(ShoePair, base.transform.position + new Vector3(0f, 0.045f, 0f) + base.transform.forward * 1.6f, Quaternion.identity).transform.eulerAngles = base.transform.eulerAngles;
 					Shoes[0].SetActive(value: false);
 					Shoes[1].SetActive(value: false);
 				}
@@ -6350,7 +6357,7 @@ public class YandereScript : MonoBehaviour
 						{
 							StudentManager.Reporter = null;
 						}
-						Object.Destroy(TargetStudent.DeathScream);
+						UnityEngine.Object.Destroy(TargetStudent.DeathScream);
 						EquippedWeapon.Effect();
 						AttackPhase = 2;
 						Bloodiness += 20f;
@@ -6408,7 +6415,7 @@ public class YandereScript : MonoBehaviour
 				{
 					StudentManager.Reporter = null;
 				}
-				AudioSource.PlayClipAtPoint(Stabs[Random.Range(0, Stabs.Length)], base.transform.position + Vector3.up);
+				AudioSource.PlayClipAtPoint(Stabs[UnityEngine.Random.Range(0, Stabs.Length)], base.transform.position + Vector3.up);
 				AttackPhase = 2;
 				Debug.Log("YandereScript calculates that we should subtract " + ((Panties == 10) ? 10f : 20f) * Numbness + " from the player's Sanity.");
 				Sanity -= ((Panties == 10) ? 10f : 20f) * Numbness;
@@ -6478,8 +6485,8 @@ public class YandereScript : MonoBehaviour
 			TwitchTimer += Time.deltaTime;
 			if (TwitchTimer > NextTwitch)
 			{
-				Twitch = new Vector3((1f - Sanity / 100f) * Random.Range(-10f, 10f), (1f - Sanity / 100f) * Random.Range(-10f, 10f), (1f - Sanity / 100f) * Random.Range(-10f, 10f));
-				NextTwitch = Random.Range(0f, 1f);
+				Twitch = new Vector3((1f - Sanity / 100f) * UnityEngine.Random.Range(-10f, 10f), (1f - Sanity / 100f) * UnityEngine.Random.Range(-10f, 10f), (1f - Sanity / 100f) * UnityEngine.Random.Range(-10f, 10f));
+				NextTwitch = UnityEngine.Random.Range(0f, 1f);
 				TwitchTimer = 0f;
 			}
 			Twitch = Vector3.Lerp(Twitch, Vector3.zero, Time.deltaTime * 10f);
@@ -7056,7 +7063,7 @@ public class YandereScript : MonoBehaviour
 					}
 					if (KagunePhase == 0 && KaguneRotation[0].y == 180f)
 					{
-						Object.Instantiate(DemonSlash, base.transform.position + base.transform.up + base.transform.forward, Quaternion.identity);
+						UnityEngine.Object.Instantiate(DemonSlash, base.transform.position + base.transform.up + base.transform.forward, Quaternion.identity);
 						KagunePhase = 1;
 					}
 					if (KaguneRotation[0] == new Vector3(15f, 180f, 500f))
@@ -7229,8 +7236,8 @@ public class YandereScript : MonoBehaviour
 			GiggleTimer += Time.deltaTime * (1f - sanity / 33.333f);
 			if (GiggleTimer > 10f)
 			{
-				Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
-				AudioSource.PlayClipAtPoint(CreepyGiggles[Random.Range(0, CreepyGiggles.Length)], base.transform.position);
+				UnityEngine.Object.Instantiate(GiggleDisc, base.transform.position + Vector3.up, Quaternion.identity);
+				AudioSource.PlayClipAtPoint(CreepyGiggles[UnityEngine.Random.Range(0, CreepyGiggles.Length)], base.transform.position);
 				InsaneLines.Play();
 				GiggleTimer = 0f;
 			}
@@ -8601,7 +8608,11 @@ public class YandereScript : MonoBehaviour
 		HairstyleBeforeRaincoat = Hairstyle;
 		if (VtuberID == 0)
 		{
-			if (!StudentManager.Eighties)
+			if (StudentManager.CustomMode)
+			{
+				Hairstyle = 0;
+			}
+			else if (!StudentManager.Eighties)
 			{
 				Hairstyle = 200;
 			}
@@ -9349,7 +9360,7 @@ public class YandereScript : MonoBehaviour
 		{
 			if (SithSounds == 0 && CharacterAnimation["f02_" + AttackPrefix + "Attack" + SithPrefix + "_0" + SithCombo].time >= SithSpawnTime[SithCombo] - 0.1f)
 			{
-				SithAudio.pitch = Random.Range(0.9f, 1.1f);
+				SithAudio.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
 				SithAudio.Play();
 				SithSounds++;
 			}
@@ -9358,7 +9369,7 @@ public class YandereScript : MonoBehaviour
 		{
 			if (CharacterAnimation["f02_" + AttackPrefix + "Attack" + SithPrefix + "_0" + SithCombo].time >= SithHardSpawnTime1[SithCombo] - 0.1f)
 			{
-				SithAudio.pitch = Random.Range(0.9f, 1.1f);
+				SithAudio.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
 				SithAudio.Play();
 				SithSounds++;
 			}
@@ -9367,14 +9378,14 @@ public class YandereScript : MonoBehaviour
 		{
 			if (CharacterAnimation["f02_" + AttackPrefix + "Attack" + SithPrefix + "_0" + SithCombo].time >= SithHardSpawnTime2[SithCombo] - 0.1f)
 			{
-				SithAudio.pitch = Random.Range(0.9f, 1.1f);
+				SithAudio.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
 				SithAudio.Play();
 				SithSounds++;
 			}
 		}
 		else if (SithSounds == 2 && SithCombo == 1 && CharacterAnimation["f02_" + AttackPrefix + "Attack" + SithPrefix + "_0" + SithCombo].time >= 5f / 6f)
 		{
-			SithAudio.pitch = Random.Range(0.9f, 1.1f);
+			SithAudio.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
 			SithAudio.Play();
 			SithSounds++;
 		}
@@ -9454,7 +9465,7 @@ public class YandereScript : MonoBehaviour
 			if (Input.GetButtonDown(InputNames.Xbox_X) && (CharacterAnimation["ODM_Slash"].time == 0f || CharacterAnimation["ODM_Slash"].time >= CharacterAnimation["ODM_Slash"].length))
 			{
 				AudioSource.PlayClipAtPoint(Swoosh, base.transform.position + Vector3.up);
-				GameObject obj = Object.Instantiate(TitanSlash, base.transform.position, Quaternion.identity);
+				GameObject obj = UnityEngine.Object.Instantiate(TitanSlash, base.transform.position, Quaternion.identity);
 				obj.name = "0";
 				obj.transform.parent = Hips;
 				obj.transform.localPosition = Vector3.zero;
@@ -9952,6 +9963,11 @@ public class YandereScript : MonoBehaviour
 
 	public void ClearBlendShapes()
 	{
+		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday)
+		{
+			Debug.Log("We're wearing pajamas in the daytime; don't call this function.");
+			return;
+		}
 		for (int i = 0; i < 13; i++)
 		{
 			MyRenderer.SetBlendShapeWeight(i, 0f);
@@ -9960,6 +9976,12 @@ public class YandereScript : MonoBehaviour
 
 	public void UpdateEyeType()
 	{
+		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday)
+		{
+			Debug.Log("We're wearing pajamas in the daytime; don't call this function.");
+			return;
+		}
+		Debug.Log("Calling ClearBlendshapes() from here, specifically.");
 		ClearBlendShapes();
 		if (EyeType == "Thin")
 		{
@@ -10229,6 +10251,13 @@ public class YandereScript : MonoBehaviour
 
 	public void UpdateStockings()
 	{
+		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday)
+		{
+			Debug.Log("We're wearing pajamas in the daytime; don't call this function.");
+			return;
+		}
+		LooseSocks[0].SetActive(value: false);
+		LooseSocks[1].SetActive(value: false);
 		MyStockings = null;
 		MyRenderer.materials[2].mainTexture = FaceTexture;
 		if (Stockings == string.Empty || Stockings == "Default" || Stockings == "None")
@@ -10407,7 +10436,10 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (Stockings == "Loose")
 			{
-				MyStockings = null;
+				Debug.Log("Attempting to activate loose socks.");
+				MyStockings = TransparentPixel;
+				LooseSocks[0].SetActive(value: true);
+				LooseSocks[1].SetActive(value: true);
 			}
 			else if (Stockings == "Osana")
 			{
@@ -10440,6 +10472,7 @@ public class YandereScript : MonoBehaviour
 
 	public void Customize()
 	{
+		Debug.Log("YandereScript is now calling Customize().");
 		Hairstyle = int.Parse(StudentManager.JSON.Students[0].Hairstyle);
 		UpdateHair();
 		EyeType = StudentManager.JSON.Students[0].EyeType;

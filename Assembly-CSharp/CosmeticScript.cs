@@ -367,6 +367,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public bool DoNotChangeFace;
 
+	public bool CustomModeMenu;
+
 	public bool TakingPortrait;
 
 	public bool Initialized;
@@ -786,7 +788,10 @@ public class CosmeticScript : MonoBehaviour
 					RightWristband.SetActive(value: true);
 					LeftWristband.SetActive(value: true);
 				}
-				Bookbag.SetActive(value: true);
+				if (!TakingPortrait)
+				{
+					Bookbag.SetActive(value: true);
+				}
 				Hoodie.SetActive(value: true);
 				for (int j = 0; j < 10; j++)
 				{
@@ -1183,15 +1188,18 @@ public class CosmeticScript : MonoBehaviour
 							CharacterAnimation.Play("delinquentPoseE");
 						}
 					}
-					if (Club == ClubType.Council)
+					if (!GameGlobals.CustomMode && !CustomModeMenu)
 					{
-						CouncilBrows[StudentID - 85].SetActive(value: true);
-					}
-					if (StudentID == 86)
-					{
-						CharacterAnimation["toughFace_00"].layer = 1;
-						CharacterAnimation.Play("toughFace_00");
-						CharacterAnimation["toughFace_00"].weight = 1f;
+						if (Club == ClubType.Council)
+						{
+							CouncilBrows[StudentID - 85].SetActive(value: true);
+						}
+						if (StudentID == 86)
+						{
+							CharacterAnimation["toughFace_00"].layer = 1;
+							CharacterAnimation.Play("toughFace_00");
+							CharacterAnimation["toughFace_00"].weight = 1f;
+						}
 					}
 				}
 			}
@@ -1331,6 +1339,7 @@ public class CosmeticScript : MonoBehaviour
 			HairRenderer = MaleHairRenderers[Hairstyle];
 			if (StartShader != null)
 			{
+				Debug.Log("Attempting to give Senpai's hair the shader that can change colors.");
 				HairRenderer.material.shader = StartShader;
 			}
 			if (SenpaiGlobals.SenpaiEyeWear > 0)
@@ -1408,6 +1417,7 @@ public class CosmeticScript : MonoBehaviour
 				{
 					if (StartShader != null)
 					{
+						Debug.Log("Again, attempting to give Senpai's hair the shader that can change colors.");
 						HairRenderer.material.shader = StartShader;
 					}
 					HairRenderer.material.SetFloat("_Saturation", 0f);
@@ -1718,6 +1728,10 @@ public class CosmeticScript : MonoBehaviour
 			}
 			else
 			{
+				if (StudentID == 1)
+				{
+					Debug.Log("Once again, attempting to give Senpai's hair the shader that can change colors.");
+				}
 				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.SetFloat("_Saturation", 0f);
 				HairRenderer.material.color = ColorValue;
@@ -2070,6 +2084,8 @@ public class CosmeticScript : MonoBehaviour
 			CasualTexture = MaleCasualTextures[8];
 			SocksTexture = MaleSocksTextures[8];
 		}
+		_ = StudentID;
+		_ = 1;
 		if (!Student.Indoors)
 		{
 			MyRenderer.materials[FaceID].mainTexture = FaceTexture;

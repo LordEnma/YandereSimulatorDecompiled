@@ -145,6 +145,16 @@ public class NewMissionWindowScript : MonoBehaviour
 							MissionModeMenu.PromptBar.Show = false;
 							MissionModeMenu.Speed = 0f;
 							MissionModeMenu.Phase = 4;
+							if (Eighties)
+							{
+								DateGlobals.Week = 10;
+								for (int j = 1; j < 101; j++)
+								{
+									StudentGlobals.SetStudentPhotographed(j, value: true);
+								}
+								StudentGlobals.FemaleUniform = 6;
+								StudentGlobals.MaleUniform = 1;
+							}
 							base.enabled = false;
 						}
 					}
@@ -195,9 +205,9 @@ public class NewMissionWindowScript : MonoBehaviour
 			{
 				if (Row == 1)
 				{
-					for (int j = 1; j < 11; j++)
+					for (int k = 1; k < 11; k++)
 					{
-						UnsafeNumbers[j] = Target[j];
+						UnsafeNumbers[k] = Target[k];
 					}
 					Increment(0);
 					if (Target[Column] != 0)
@@ -220,9 +230,9 @@ public class NewMissionWindowScript : MonoBehaviour
 				}
 				else if (Row == 3)
 				{
-					for (int k = 1; k < 11; k++)
+					for (int l = 1; l < 11; l++)
 					{
-						UnsafeNumbers[k] = Target[k];
+						UnsafeNumbers[l] = Target[l];
 					}
 					Increment(5);
 					if (Target[Column + 5] != 0)
@@ -248,9 +258,9 @@ public class NewMissionWindowScript : MonoBehaviour
 			{
 				if (Row == 1)
 				{
-					for (int l = 1; l < 11; l++)
+					for (int m = 1; m < 11; m++)
 					{
-						UnsafeNumbers[l] = Target[l];
+						UnsafeNumbers[m] = Target[m];
 					}
 					Decrement(0);
 					if (Target[Column] != 0)
@@ -274,9 +284,9 @@ public class NewMissionWindowScript : MonoBehaviour
 				}
 				else if (Row == 3)
 				{
-					for (int m = 1; m < 11; m++)
+					for (int n = 1; n < 11; n++)
 					{
-						UnsafeNumbers[m] = Target[m];
+						UnsafeNumbers[n] = Target[n];
 					}
 					Decrement(5);
 					if (Target[Column + 5] != 0)
@@ -344,7 +354,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		{
 			Target[Column + Number] = 2;
 		}
-		else if (Target[Column + Number] == 12)
+		else if (Target[Column + Number] == 12 && !Eighties)
 		{
 			Target[Column + Number] = 21;
 		}
@@ -383,7 +393,7 @@ public class NewMissionWindowScript : MonoBehaviour
 			Target[Column + Number] = 0;
 			Debug.Log("Correcting to 0.");
 		}
-		else if (Target[Column + Number] == 20)
+		else if (Target[Column + Number] == 20 && !Eighties)
 		{
 			Target[Column + Number] = 11;
 			Debug.Log("Correcting to 11.");
@@ -433,7 +443,7 @@ public class NewMissionWindowScript : MonoBehaviour
 			{
 				UnsafeNumbers[j] = Target[j];
 			}
-			while (Target[i] == UnsafeNumbers[1] || Target[i] == UnsafeNumbers[2] || Target[i] == UnsafeNumbers[3] || Target[i] == UnsafeNumbers[4] || Target[i] == UnsafeNumbers[5] || Target[i] == UnsafeNumbers[6] || Target[i] == UnsafeNumbers[7] || Target[i] == UnsafeNumbers[8] || Target[i] == UnsafeNumbers[9] || Target[i] == UnsafeNumbers[10] || Target[i] == 0 || (Target[i] > 11 && Target[i] < 21))
+			while (Target[i] == UnsafeNumbers[1] || Target[i] == UnsafeNumbers[2] || Target[i] == UnsafeNumbers[3] || Target[i] == UnsafeNumbers[4] || Target[i] == UnsafeNumbers[5] || Target[i] == UnsafeNumbers[6] || Target[i] == UnsafeNumbers[7] || Target[i] == UnsafeNumbers[8] || Target[i] == UnsafeNumbers[9] || Target[i] == UnsafeNumbers[10] || Target[i] == 0 || (!Eighties && Target[i] > 11 && Target[i] < 21))
 			{
 				Increment(i);
 			}

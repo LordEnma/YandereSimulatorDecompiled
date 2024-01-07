@@ -125,7 +125,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 		UpdatedOnce = true;
 		StudentJson studentJson = JSON.Students[ID];
-		if (studentJson.RealName == "")
+		if (studentJson.RealName == "" || GameGlobals.CustomMode)
 		{
 			NameLabel.transform.localPosition = new Vector3(-228f, 195f, 0f);
 			RealNameLabel.text = "";
@@ -398,7 +398,6 @@ public class StudentInfoScript : MonoBehaviour
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "Speak";
 				PromptBar.Label[1].text = "Back";
-				PromptBar.Label[2].text = "Positive/Negative";
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 			}

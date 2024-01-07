@@ -1028,6 +1028,7 @@ public class TutorialScript : MonoBehaviour
 							{
 								ExitPortal.gameObject.SetActive(value: true);
 								Yandere.RPGCamera.enabled = true;
+								Clock.PresentTime = 1079f;
 								FadeInstructions = true;
 								Yandere.Frozen = false;
 							}
@@ -1037,6 +1038,7 @@ public class TutorialScript : MonoBehaviour
 							if (ExitPortal.Circle[0].fillAmount == 0f)
 							{
 								InstructionLabel.gameObject.SetActive(value: false);
+								Clock.PresentTime = 1079f;
 								Yandere.Frozen = true;
 								Phase++;
 							}

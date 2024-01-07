@@ -44,6 +44,8 @@ public class UniformSetterScript : MonoBehaviour
 
 	public int ForceUniform;
 
+	public bool Street;
+
 	public bool Ryoba;
 
 	public Texture RyobaTexture;
@@ -108,6 +110,10 @@ public class UniformSetterScript : MonoBehaviour
 	public void SetFemaleUniform()
 	{
 		int num = StudentGlobals.FemaleUniform;
+		if (Ryoba && Street)
+		{
+			ForceUniform = 6;
+		}
 		if (ForceUniform > 0)
 		{
 			num = ForceUniform;

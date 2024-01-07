@@ -710,6 +710,10 @@ public class MissionModeMenuScript : MonoBehaviour
 			Frame++;
 			if (Frame > 1)
 			{
+				if (Eighties)
+				{
+					DateGlobals.Week = 10;
+				}
 				SceneManager.LoadScene("SchoolScene");
 			}
 		}
@@ -1238,7 +1242,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		if (Phase != 5)
 		{
 			TargetID = Random.Range(2, 90);
-			if (TargetNumber > 11 && TargetNumber < 21)
+			if (!Eighties && TargetNumber > 11 && TargetNumber < 21)
 			{
 				ChooseTarget();
 			}
@@ -1289,7 +1293,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 		CustomDescs[1].text = "Kill " + TargetName + ".";
 		Descs[1].text = "Kill " + TargetName + ".";
-		if (TargetID > 11 && TargetID < 21)
+		if (!Eighties && TargetID > 11 && TargetID < 21)
 		{
 			if (Phase == 5)
 			{

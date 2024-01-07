@@ -815,7 +815,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					Darkness.alpha = 0f;
 					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						if (DateGlobals.Week < 10 && !GameGlobals.CustomMode)
+						if (DateGlobals.Week < 10 || GameGlobals.CustomMode)
 						{
 							EightiesLabel.text = "Over a cup of tea, " + ProtagonistName + " describes the deep feelings she has for her Senpai, and explains how heartbroken she would feel if anyone took the boy away from her. She asks the girl to stay away from her Senpai.\n\n" + ProtagonistName + "'s rival cannot bring herself to compete romantically with someone who entered a life-threatening situation to help her out. She agrees to stay away from " + ProtagonistName + "'s Senpai.\n\n" + ProtagonistName + "'s rival is no longer a threat, and the two girls are now the best of friends!";
 						}

@@ -1720,84 +1720,101 @@ public class StudentManagerScript : MonoBehaviour
 					else
 					{
 						IdolStage.SetActive(value: false);
-						if (!CustomMode && Students[RivalID] != null)
+						if (!CustomMode && !MissionMode)
 						{
-							if (Clock.Weekday == 5)
+							if (Students[RivalID] != null)
 							{
-								SendArtClubToTree();
-							}
-							IdentifyAvailableWitnesses();
-							if (Week > 1)
-							{
-								RivalPostWeekRoutineAdjustments();
-							}
-							if (Week == 2)
-							{
-								EightiesWeek2RoutineAdjustments();
-							}
-							if (Week == 3)
-							{
-								EightiesWeek3RoutineAdjustments();
-							}
-							else if (Week == 4)
-							{
-								EightiesWeek4RoutineAdjustments();
-							}
-							else if (Week == 5)
-							{
-								EightiesWeek5RoutineAdjustments();
-							}
-							else if (Week == 6)
-							{
-								EightiesWeek6RoutineAdjustments();
-								IdolStage.SetActive(value: true);
-							}
-							else if (Week == 7)
-							{
-								EightiesWeek3RoutineAdjustments();
-								EightiesWeek7RoutineAdjustments();
-							}
-							else if (Week == 8)
-							{
-								EightiesWeek8RoutineAdjustments();
-							}
-							else if (Week == 9)
-							{
-								Debug.Log("Adjusting everyone's routine because of the gravure rival.");
-								EightiesWeek9RoutineAdjustments();
-								for (int j = 57; j < 61; j++)
+								if (Clock.Weekday == 5)
 								{
-									if (Students[j] != null && !Students[j].Grudge)
+									SendArtClubToTree();
+								}
+								IdentifyAvailableWitnesses();
+								if (Week > 1)
+								{
+									RivalPostWeekRoutineAdjustments();
+								}
+								if (Week == 2)
+								{
+									EightiesWeek2RoutineAdjustments();
+								}
+								if (Week == 3)
+								{
+									EightiesWeek3RoutineAdjustments();
+								}
+								else if (Week == 4)
+								{
+									EightiesWeek4RoutineAdjustments();
+								}
+								else if (Week == 5)
+								{
+									EightiesWeek5RoutineAdjustments();
+								}
+								else if (Week == 6)
+								{
+									EightiesWeek6RoutineAdjustments();
+									IdolStage.SetActive(value: true);
+								}
+								else if (Week == 7)
+								{
+									EightiesWeek3RoutineAdjustments();
+									EightiesWeek7RoutineAdjustments();
+								}
+								else if (Week == 8)
+								{
+									EightiesWeek8RoutineAdjustments();
+								}
+								else if (Week == 9)
+								{
+									Debug.Log("Adjusting everyone's routine because of the gravure rival.");
+									EightiesWeek9RoutineAdjustments();
+									for (int j = 57; j < 61; j++)
 									{
-										Photographers++;
+										if (Students[j] != null && !Students[j].Grudge)
+										{
+											Photographers++;
+										}
+									}
+									if (SchoolGlobals.SchoolAtmosphere > 0.8f && Photographers > 0)
+									{
+										PhotoshootRoutineAdjustments();
+										PoolPhotoShootCameras.SetActive(value: true);
+									}
+									else if (Students[19] != null)
+									{
+										Debug.Log("Changing Gravure Idol's routine.");
+										scheduleBlock = Students[19].ScheduleBlocks[7];
+										scheduleBlock.destination = "Patrol";
+										scheduleBlock.action = "Patrol";
+										Students[19].GetDestinations();
 									}
 								}
-								if (SchoolGlobals.SchoolAtmosphere > 0.8f && Photographers > 0)
+								else if (Week == 10)
 								{
-									PhotoshootRoutineAdjustments();
-									PoolPhotoShootCameras.SetActive(value: true);
+									EightiesWeek10RoutineAdjustments();
 								}
-								else if (Students[19] != null)
+								if (!RivalEliminated)
 								{
-									Debug.Log("Changing Gravure Idol's routine.");
-									scheduleBlock = Students[19].ScheduleBlocks[7];
-									scheduleBlock.destination = "Patrol";
-									scheduleBlock.action = "Patrol";
-									Students[19].GetDestinations();
+									CleaningManager.Floors[34 + Week] = CleaningManager.Floors[46];
+									CleaningManager.GetRole(RivalID);
+									Students[RivalID].CleaningSpot = CleaningManager.Spot;
+									Students[RivalID].CleaningRole = CleaningManager.Role;
+									Students[RivalID].GetDestinations();
 								}
 							}
-							else if (Week == 10)
-							{
-								EightiesWeek10RoutineAdjustments();
-							}
-							if (!RivalEliminated)
-							{
-								CleaningManager.Floors[34 + Week] = CleaningManager.Floors[46];
-								CleaningManager.GetRole(RivalID);
-								Students[RivalID].CleaningSpot = CleaningManager.Spot;
-								Students[RivalID].CleaningRole = CleaningManager.Role;
-								Students[RivalID].GetDestinations();
-							}
+						}
+						else if (MissionMode)
+						{
+							Debug.Log("Changing Detective Rival's routine for Mission Mode.");
+							scheduleBlock = Students[20].ScheduleBlocks[2];
+							scheduleBlock.destination = "Patrol";
+							scheduleBlock.action = "Patrol";
+							scheduleBlock = Students[20].ScheduleBlocks[6];
+							scheduleBlock.destination = "Patrol";
+							scheduleBlock.action = "Patrol";
+							scheduleBlock = Students[20].ScheduleBlocks[7];
+							scheduleBlock.destination = "Patrol";
+							scheduleBlock.action = "Patrol";
+							Students[20].GetDestinations();
 						}
 						if (Students[RivalID] != null && Students[SuitorID] != null)
 						{

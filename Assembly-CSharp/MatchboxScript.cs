@@ -48,17 +48,17 @@ public class MatchboxScript : MonoBehaviour
 			{
 				if (Prompt.Yandere.InputDevice.Type == InputDeviceType.MouseAndKeyboard)
 				{
-					Prompt.Text[0] = "Click LMB to Throw";
+					Prompt.Text[0] = "E or RMB to Throw";
 					Prompt.Label[0].text = "     " + Prompt.Text[0];
 				}
 				else
 				{
-					Prompt.Text[0] = "Pull RT to Throw";
+					Prompt.Text[0] = "A or RT to Throw";
 					Prompt.Label[0].text = "     " + Prompt.Text[0];
 				}
 				LabelUpdated = true;
 			}
-			if ((Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB)) && ((Prompt.Yandere.PreparingThrow && !Throwing) || (Prompt.Yandere.Throwing && !Throwing)))
+			if ((Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB) || Input.GetButtonDown(InputNames.Xbox_A)) && ((Prompt.Yandere.PreparingThrow && !Throwing) || (Prompt.Yandere.Throwing && !Throwing)))
 			{
 				ThrowTimer = 0.1f;
 				Throwing = true;

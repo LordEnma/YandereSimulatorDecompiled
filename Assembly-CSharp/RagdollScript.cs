@@ -1277,6 +1277,7 @@ public class RagdollScript : MonoBehaviour
 		if (!Student.Male)
 		{
 			Student.Cosmetic.DisableFingernails();
+			Student.BookBag.SetActive(value: false);
 		}
 		if (Student.Yandere.PickUp != null && Student.Yandere.PickUp.BodyBags > 0)
 		{

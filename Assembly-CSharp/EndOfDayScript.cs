@@ -460,6 +460,10 @@ public class EndOfDayScript : MonoBehaviour
 					{
 						Protagonist = "Ryoba";
 						RivalName = EightiesRivalNames[DateGlobals.Week];
+						if (StudentManager.CustomMode)
+						{
+							RivalName = JSON.Students[10 + DateGlobals.Week].Name;
+						}
 					}
 					else
 					{
@@ -1590,6 +1594,10 @@ public class EndOfDayScript : MonoBehaviour
 				if (StudentManager.Eighties)
 				{
 					RivalName = EightiesRivalNames[DateGlobals.Week];
+					if (StudentManager.CustomMode)
+					{
+						RivalName = JSON.Students[10 + DateGlobals.Week].Name;
+					}
 				}
 				else
 				{

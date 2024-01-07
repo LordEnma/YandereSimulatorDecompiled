@@ -1115,7 +1115,7 @@ public class MissionModeScript : MonoBehaviour
 			}
 			if (ExitPortal.activeInHierarchy)
 			{
-				if (Yandere.Chased || Yandere.Chasers > 0)
+				if ((!YakuzaMode && Yandere.Chased) || (!YakuzaMode && Yandere.Chasers > 0))
 				{
 					ExitPortalPrompt.Label[0].text = "     Cannot Exfiltrate!";
 					ExitPortalPrompt.Circle[0].fillAmount = 1f;
@@ -1142,12 +1142,14 @@ public class MissionModeScript : MonoBehaviour
 							MainCamera.transform.eulerAngles = Vector3.zero;
 							Yandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
 							Yandere.transform.position = new Vector3(0f, 0f, -94.5f);
-							Yandere.Character.GetComponent<Animation>().Play(Yandere.WalkAnim);
+							Yandere.CharacterAnimation.Play(Yandere.WalkAnim);
 							Yandere.RPGCamera.enabled = false;
 							Yandere.HUD.gameObject.SetActive(value: false);
 							Yandere.ResetYandereEffects();
 							Yandere.YandereVision = false;
 							Yandere.CanMove = false;
+							Yandere.Chased = false;
+							Yandere.Chasers = 0;
 							if (YakuzaMode)
 							{
 								Jukebox.YakuzaMusic.SetActive(value: false);
@@ -1251,6 +1253,14 @@ public class MissionModeScript : MonoBehaviour
 						{
 							LoadingLabel.enabled = true;
 							ResetGlobals();
+							for (int j = 1; j < 101; j++)
+							{
+								StudentGlobals.SetStudentPhotographed(j, value: true);
+							}
+							if (Eighties)
+							{
+								DateGlobals.Week = 10;
+							}
 							SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 						}
 						else if (Destination == 2)

@@ -363,6 +363,8 @@ public class CustomModeScript : MonoBehaviour
 
 	private void Start()
 	{
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
 		StudentManager.Eighties = GameGlobals.Eighties;
 		GameGlobals.CustomMode = false;
 		FemaleUniform = StudentGlobals.FemaleUniform;
@@ -586,6 +588,8 @@ public class CustomModeScript : MonoBehaviour
 			{
 				return;
 			}
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
 			if (Initializing)
 			{
 				GameGlobals.CustomMode = false;
@@ -901,9 +905,13 @@ public class CustomModeScript : MonoBehaviour
 						{
 							int num = int.Parse(JSON.Students[Selected].Hairstyle);
 							num++;
+							if (JSON.Students[Selected].Gender == 0 && num == 20)
+							{
+								num++;
+							}
 							if (num >= HairstyleLimit)
 							{
-								num = 0;
+								num = 1;
 							}
 							JSON.Students[Selected].Hairstyle = num.ToString() ?? "";
 						}
@@ -1012,7 +1020,11 @@ public class CustomModeScript : MonoBehaviour
 						{
 							int num4 = int.Parse(JSON.Students[Selected].Hairstyle);
 							num4--;
-							if (num4 < 0)
+							if (JSON.Students[Selected].Gender == 0 && num4 == 20)
+							{
+								num4--;
+							}
+							if (num4 < 1)
 							{
 								num4 = HairstyleLimit - 1;
 							}
@@ -2185,6 +2197,7 @@ public class CustomModeScript : MonoBehaviour
 			UsedFemaleHairs[maleUniform] = false;
 			UsedTeacherHairs[maleUniform] = false;
 		}
+		UsedFemaleHairs[20] = true;
 		for (maleUniform = 0; maleUniform < 98; maleUniform++)
 		{
 			if (maleUniform == 0 || JSON.Students[maleUniform].Gender == 0)
@@ -2201,6 +2214,10 @@ public class CustomModeScript : MonoBehaviour
 
 	private void RandomizeGirl(int ID)
 	{
+		if (ID > 0)
+		{
+			UsedFemaleHairs[int.Parse(JSON.Students[ID].Hairstyle)] = false;
+		}
 		int num = 0;
 		int num2 = 0;
 		while (UsedFemaleNames[num2] && num < 100)
