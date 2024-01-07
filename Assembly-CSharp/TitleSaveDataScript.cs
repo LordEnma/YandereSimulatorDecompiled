@@ -66,6 +66,10 @@ public class TitleSaveDataScript : MonoBehaviour
 					Rival.text = "Rival: " + TitleSaveFiles.NewTitleScreen.RivalNames[DateGlobals.Week];
 				}
 			}
+			else if (GameGlobals.CustomMode)
+			{
+				Rival.text = "Rival: None";
+			}
 			else
 			{
 				Rival.text = "Rival: ?????";

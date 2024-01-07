@@ -1776,7 +1776,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						flag2 = true;
 					}
-					if (flag2 && !Rival.InEvent)
+					if (flag2 && !Rival.InEvent && Rival.CurrentAction != StudentActionType.Sleep)
 					{
 						Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 						Rival.Pathfinding.target = Location[2];
@@ -2032,13 +2032,17 @@ public class GenericRivalEventScript : MonoBehaviour
 			if (DateGlobals.Weekday == DayOfWeek.Monday)
 			{
 				Senpai.ExtraBento = true;
+				ScheduleBlock obj = Senpai.ScheduleBlocks[2];
+				obj.destination = "Patrol";
+				obj.action = "Patrol";
+				Senpai.GetDestinations();
 			}
 			else if (DateGlobals.Weekday == DayOfWeek.Tuesday)
 			{
 				StudentManager.RivalBookBag.BorrowedBook = true;
-				ScheduleBlock obj = Rival.ScheduleBlocks[4];
-				obj.destination = "LunchSpot";
-				obj.action = "Read";
+				ScheduleBlock obj2 = Rival.ScheduleBlocks[4];
+				obj2.destination = "LunchSpot";
+				obj2.action = "Read";
 				Rival.GetDestinations();
 			}
 			else if (DateGlobals.Weekday == DayOfWeek.Wednesday)
@@ -2048,20 +2052,20 @@ public class GenericRivalEventScript : MonoBehaviour
 			else if (DateGlobals.Weekday == DayOfWeek.Thursday)
 			{
 				Debug.Log("Thursday-specific ''Rival going to sleep'' code just fired.");
-				ScheduleBlock obj2 = Rival.ScheduleBlocks[6];
-				obj2.destination = "SleepSpot";
-				obj2.action = "Sleep";
+				ScheduleBlock obj3 = Rival.ScheduleBlocks[6];
+				obj3.destination = "SleepSpot";
+				obj3.action = "Sleep";
 				if (Rival.Sedated && Rival.StudentID != 15 && Rival.ScheduleBlocks.Length == 10)
 				{
-					ScheduleBlock obj3 = Rival.ScheduleBlocks[7];
-					obj3.destination = "SleepSpot";
-					obj3.action = "Sleep";
-					ScheduleBlock obj4 = Rival.ScheduleBlocks[8];
+					ScheduleBlock obj4 = Rival.ScheduleBlocks[7];
 					obj4.destination = "SleepSpot";
 					obj4.action = "Sleep";
-					ScheduleBlock obj5 = Rival.ScheduleBlocks[9];
+					ScheduleBlock obj5 = Rival.ScheduleBlocks[8];
 					obj5.destination = "SleepSpot";
 					obj5.action = "Sleep";
+					ScheduleBlock obj6 = Rival.ScheduleBlocks[9];
+					obj6.destination = "SleepSpot";
+					obj6.action = "Sleep";
 				}
 				Rival.GetDestinations();
 			}

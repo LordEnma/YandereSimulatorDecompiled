@@ -584,7 +584,7 @@ public class TalkingScript : MonoBehaviour
 							flag4 = true;
 						}
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag5) || (S.StudentID == S.StudentManager.RivalID && flag4) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag5) || (S.StudentID == S.StudentManager.RivalID && flag4) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.Schoolwear == 2)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						NegativeResponse = true;

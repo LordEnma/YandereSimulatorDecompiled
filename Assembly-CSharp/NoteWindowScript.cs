@@ -258,7 +258,7 @@ public class NoteWindowScript : MonoBehaviour
 							NoteLocker.Success = true;
 						}
 					}
-					if (NoteLocker.Student.StudentID == Yandere.StudentManager.RivalID)
+					if (NoteLocker.Student.StudentID == Yandere.StudentManager.RivalID || (Yandere.StudentManager.MissionMode && NoteLocker.Student.StudentID > 10 && NoteLocker.Student.StudentID < 21))
 					{
 						if (DateGlobals.Weekday == DayOfWeek.Friday && TimeID == 17f)
 						{
@@ -440,6 +440,10 @@ public class NoteWindowScript : MonoBehaviour
 				UILabel uILabel = SubLabels[ID];
 				uILabel.text = Subjects[ID];
 				uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 1f);
+			}
+			if (MissionModeGlobals.MissionMode)
+			{
+				return;
 			}
 			if (!EventGlobals.Event1)
 			{

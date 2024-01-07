@@ -695,6 +695,10 @@ public class NewTitleScreenScript : MonoBehaviour
 								SceneManager.LoadScene("CalendarScene");
 							}
 						}
+						else if (GameGlobals.CustomMode)
+						{
+							SceneManager.LoadScene("ConfessionScene");
+						}
 						else
 						{
 							SceneManager.LoadScene("LoadingScene");

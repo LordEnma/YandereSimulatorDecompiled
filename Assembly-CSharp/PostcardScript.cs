@@ -58,13 +58,27 @@ public class PostcardScript : MonoBehaviour
 		if (Show)
 		{
 			Postcard.transform.localPosition = Vector3.Lerp(Postcard.transform.localPosition, new Vector3(0f, 0.05f, 1f), Time.deltaTime * 10f);
-			if (Input.GetAxis("Horizontal") > 0f)
+			if (Input.GetAxis("Horizontal") > 0f || Input.GetKey("right"))
 			{
-				Postcard.transform.localEulerAngles += new Vector3(0f, 0f, Time.deltaTime * 360f * Input.GetAxis("Horizontal"));
+				if (Input.GetAxis("Horizontal") > 0f)
+				{
+					Postcard.transform.localEulerAngles += new Vector3(0f, 0f, Time.deltaTime * 360f * Input.GetAxis("Horizontal"));
+				}
+				else
+				{
+					Postcard.transform.localEulerAngles += new Vector3(0f, 0f, Time.deltaTime * 360f);
+				}
 			}
-			else if (Input.GetAxis("Horizontal") < 0f)
+			else if (Input.GetAxis("Horizontal") < 0f || Input.GetKey("left"))
 			{
-				Postcard.transform.localEulerAngles += new Vector3(0f, 0f, Time.deltaTime * 360f * Input.GetAxis("Horizontal"));
+				if (Input.GetAxis("Horizontal") < 0f)
+				{
+					Postcard.transform.localEulerAngles += new Vector3(0f, 0f, Time.deltaTime * 360f * Input.GetAxis("Horizontal"));
+				}
+				else
+				{
+					Postcard.transform.localEulerAngles -= new Vector3(0f, 0f, Time.deltaTime * 360f);
+				}
 			}
 			if (Postcard.transform.localEulerAngles.z > 225f && Postcard.transform.localEulerAngles.z < 315f)
 			{

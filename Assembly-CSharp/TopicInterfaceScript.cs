@@ -138,6 +138,14 @@ public class TopicInterfaceScript : MonoBehaviour
 			base.gameObject.SetActive(value: false);
 			Time.timeScale = 1f;
 		}
+		else if (Input.GetButtonDown(InputNames.Xbox_X))
+		{
+			if (!Yandere.StudentManager.KokonaTutorial && !Socializing)
+			{
+				Positive = !Positive;
+				UpdateTopicHighlight();
+			}
+		}
 		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			if (!Socializing)

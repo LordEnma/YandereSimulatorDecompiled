@@ -2464,15 +2464,18 @@ public class StudentManagerScript : MonoBehaviour
 					Debug.Log("Repositioning all students who were on Floor 1.");
 					for (int num2 = 1; num2 < 7; num2++)
 					{
-						StudentScript studentScript12 = AvailableWitnessList[num2];
-						if (studentScript12 != null)
+						if (Week != 4 || DateGlobals.Weekday != DayOfWeek.Friday || Clock.Period != 1 || num2 >= 6)
 						{
-							studentScript12.WitnessBonus = 24;
-							studentScript12.GetDestinations();
-							studentScript12.CurrentDestination = studentScript12.Destinations[studentScript12.Phase];
-							studentScript12.Pathfinding.target = studentScript12.Destinations[studentScript12.Phase];
-							studentScript12.DistanceToDestination = 100f;
-							studentScript12.ReadPhase = 0;
+							StudentScript studentScript12 = AvailableWitnessList[num2];
+							if (studentScript12 != null)
+							{
+								studentScript12.WitnessBonus = 24;
+								studentScript12.GetDestinations();
+								studentScript12.CurrentDestination = studentScript12.Destinations[studentScript12.Phase];
+								studentScript12.Pathfinding.target = studentScript12.Destinations[studentScript12.Phase];
+								studentScript12.DistanceToDestination = 100f;
+								studentScript12.ReadPhase = 0;
+							}
 						}
 					}
 					Floor1Repositioned = true;

@@ -656,6 +656,10 @@ public class AlternateConfessionScript : MonoBehaviour
 		}
 		else if (Phase == 8)
 		{
+			for (int num = 1; num < OutcomeLabels.Length; num++)
+			{
+				OutcomeLabels[num].alpha = 0f;
+			}
 			if (Timer > 2f)
 			{
 				ConfessionCamera.eulerAngles = AcceptedPOV.eulerAngles;
@@ -715,19 +719,19 @@ public class AlternateConfessionScript : MonoBehaviour
 			}
 			if (Timer < 15f)
 			{
-				for (int num = 1; num < OutcomeLabels.Length; num++)
+				for (int num2 = 1; num2 < OutcomeLabels.Length; num2++)
 				{
-					if (Timer > OutcomeTimes[num])
+					if (Timer > OutcomeTimes[num2])
 					{
-						OutcomeLabels[num].alpha = Mathf.MoveTowards(OutcomeLabels[num].alpha, 1f, Time.deltaTime);
+						OutcomeLabels[num2].alpha = Mathf.MoveTowards(OutcomeLabels[num2].alpha, 1f, Time.deltaTime);
 					}
 				}
 			}
 			else
 			{
-				for (int num2 = 1; num2 < OutcomeLabels.Length; num2++)
+				for (int num3 = 1; num3 < OutcomeLabels.Length; num3++)
 				{
-					OutcomeLabels[num2].alpha = Mathf.MoveTowards(OutcomeLabels[num2].alpha, 0f, Time.deltaTime);
+					OutcomeLabels[num3].alpha = Mathf.MoveTowards(OutcomeLabels[num3].alpha, 0f, Time.deltaTime);
 				}
 			}
 			if (Timer > 20f)
@@ -752,19 +756,19 @@ public class AlternateConfessionScript : MonoBehaviour
 			}
 			if (Timer < 48f)
 			{
-				for (int num3 = 1; num3 < OutcomeLabels.Length; num3++)
+				for (int num4 = 1; num4 < OutcomeLabels.Length; num4++)
 				{
-					if (Timer > OutcomeTimes[num3])
+					if (Timer > OutcomeTimes[num4])
 					{
-						OutcomeLabels[num3].alpha = Mathf.MoveTowards(OutcomeLabels[num3].alpha, 1f, Time.deltaTime);
+						OutcomeLabels[num4].alpha = Mathf.MoveTowards(OutcomeLabels[num4].alpha, 1f, Time.deltaTime);
 					}
 				}
 			}
 			else
 			{
-				for (int num4 = 1; num4 < OutcomeLabels.Length; num4++)
+				for (int num5 = 1; num5 < OutcomeLabels.Length; num5++)
 				{
-					OutcomeLabels[num4].alpha = Mathf.MoveTowards(OutcomeLabels[num4].alpha, 0f, Time.deltaTime);
+					OutcomeLabels[num5].alpha = Mathf.MoveTowards(OutcomeLabels[num5].alpha, 0f, Time.deltaTime);
 				}
 			}
 			if (Timer > 40f)
@@ -793,6 +797,10 @@ public class AlternateConfessionScript : MonoBehaviour
 			RotateSpeed += Time.deltaTime * 0.01f;
 			ConfessionCamera.eulerAngles = new Vector3(ConfessionCamera.eulerAngles.x, ConfessionCamera.eulerAngles.y - RotateSpeed * 2f, ConfessionCamera.eulerAngles.z);
 			ConfessionCamera.position = new Vector3(ConfessionCamera.position.x, ConfessionCamera.position.y, ConfessionCamera.position.z - RotateSpeed * 0.05f);
+			for (int num6 = 1; num6 < OutcomeLabels.Length; num6++)
+			{
+				OutcomeLabels[num6].alpha = Mathf.MoveTowards(OutcomeLabels[num6].alpha, 0f, Time.deltaTime);
+			}
 			if (Timer > 2f)
 			{
 				ConfessionCamera.eulerAngles = OriginalPOV.eulerAngles;

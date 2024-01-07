@@ -1341,6 +1341,7 @@ public class CosmeticScript : MonoBehaviour
 			{
 				Debug.Log("Attempting to give Senpai's hair the shader that can change colors.");
 				HairRenderer.material.shader = StartShader;
+				HairRenderer.material.SetFloat("_BlendAmount", 0f);
 			}
 			if (SenpaiGlobals.SenpaiEyeWear > 0)
 			{
@@ -1421,6 +1422,7 @@ public class CosmeticScript : MonoBehaviour
 						HairRenderer.material.shader = StartShader;
 					}
 					HairRenderer.material.SetFloat("_Saturation", 0f);
+					HairRenderer.material.SetFloat("_BlendAmount", 0f);
 				}
 			}
 			if (FacialHairstyle > 0)
@@ -1734,6 +1736,7 @@ public class CosmeticScript : MonoBehaviour
 				}
 				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.SetFloat("_Saturation", 0f);
+				HairRenderer.material.SetFloat("_BlendAmount", 0f);
 				HairRenderer.material.color = ColorValue;
 				RightEyeRenderer.gameObject.SetActive(value: true);
 				LeftEyeRenderer.gameObject.SetActive(value: true);

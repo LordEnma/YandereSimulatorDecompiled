@@ -557,6 +557,10 @@ public class PortalScript : MonoBehaviour
 					{
 						Yandere.NotificationManager.CustomText = "Murder taking place";
 					}
+					else if (Yandere.PauseScreen.MissionMode.YakuzaMode)
+					{
+						Yandere.NotificationManager.CustomText = "Intruders can't attend class!";
+					}
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					Yandere.NotificationManager.CustomText = "Cannot attend class. Reason:";
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

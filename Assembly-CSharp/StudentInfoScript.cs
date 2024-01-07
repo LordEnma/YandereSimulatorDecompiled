@@ -398,6 +398,7 @@ public class StudentInfoScript : MonoBehaviour
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "Speak";
 				PromptBar.Label[1].text = "Back";
+				PromptBar.Label[2].text = "Positive/Negative";
 				PromptBar.UpdateButtons();
 				PromptBar.Show = true;
 			}

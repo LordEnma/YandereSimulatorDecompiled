@@ -10,9 +10,16 @@ public class PassTimeBookScript : MonoBehaviour
 
 	public bool TimeSkipping;
 
+	public bool MissionMode;
+
 	public bool FadeOut;
 
 	public float CooldownTimer;
+
+	private void Start()
+	{
+		MissionMode = MissionModeGlobals.MissionMode;
+	}
 
 	private void Update()
 	{
@@ -29,7 +36,7 @@ public class PassTimeBookScript : MonoBehaviour
 				Yandere.NotificationManager.CustomText = "Not when police are coming!";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
-			else if (Yandere.StudentManager.Clock.HourTime < 15.5f)
+			else if (!MissionMode && Yandere.StudentManager.Clock.HourTime < 15.5f)
 			{
 				Yandere.NotificationManager.CustomText = "Only available after 3:30 PM";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -92,6 +99,10 @@ public class PassTimeBookScript : MonoBehaviour
 		else
 		{
 			CooldownTimer = Mathf.MoveTowards(CooldownTimer, 0f, Time.deltaTime);
+			if (MissionMode)
+			{
+				CooldownTimer = 0f;
+			}
 		}
 	}
 

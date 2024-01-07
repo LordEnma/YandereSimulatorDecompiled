@@ -59,21 +59,49 @@ public class RotaryPhoneScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Input.GetAxis("Horizontal") > 0f)
+		if (Input.GetAxis("Horizontal") > 0f || Input.GetKey("right"))
 		{
-			Reticle.localPosition += new Vector3(Time.deltaTime * Input.GetAxis("Horizontal") * 0.1f, 0f, 0f);
+			if (Input.GetAxis("Horizontal") > 0f)
+			{
+				Reticle.localPosition += new Vector3(Time.deltaTime * Input.GetAxis("Horizontal") * 0.1f, 0f, 0f);
+			}
+			else
+			{
+				Reticle.localPosition += new Vector3(Time.deltaTime * 0.1f, 0f, 0f);
+			}
 		}
-		else if (Input.GetAxis("Horizontal") < 0f)
+		else if (Input.GetAxis("Horizontal") < 0f || Input.GetKey("left"))
 		{
-			Reticle.localPosition += new Vector3(Time.deltaTime * Input.GetAxis("Horizontal") * 0.1f, 0f, 0f);
+			if (Input.GetAxis("Horizontal") < 0f)
+			{
+				Reticle.localPosition += new Vector3(Time.deltaTime * Input.GetAxis("Horizontal") * 0.1f, 0f, 0f);
+			}
+			else
+			{
+				Reticle.localPosition -= new Vector3(Time.deltaTime * 0.1f, 0f, 0f);
+			}
 		}
-		if (Input.GetAxis("Vertical") > 0f)
+		if (Input.GetAxis("Vertical") > 0f || Input.GetKey("up"))
 		{
-			Reticle.localPosition += new Vector3(0f, 0f, Time.deltaTime * Input.GetAxis("Vertical") * 0.1f);
+			if (Input.GetAxis("Vertical") > 0f)
+			{
+				Reticle.localPosition += new Vector3(0f, 0f, Time.deltaTime * Input.GetAxis("Vertical") * 0.1f);
+			}
+			else
+			{
+				Reticle.localPosition += new Vector3(0f, 0f, Time.deltaTime * 0.1f);
+			}
 		}
-		else if (Input.GetAxis("Vertical") < 0f)
+		else if (Input.GetAxis("Vertical") < 0f || Input.GetKey("down"))
 		{
-			Reticle.localPosition += new Vector3(0f, 0f, Time.deltaTime * Input.GetAxis("Vertical") * 0.1f);
+			if (Input.GetAxis("Vertical") < 0f)
+			{
+				Reticle.localPosition += new Vector3(0f, 0f, Time.deltaTime * Input.GetAxis("Vertical") * 0.1f);
+			}
+			else
+			{
+				Reticle.localPosition -= new Vector3(0f, 0f, Time.deltaTime * 0.1f);
+			}
 		}
 		if (Reticle.localPosition.x > 0.025f)
 		{

@@ -561,7 +561,6 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			{
 				PricesLabel[1].text = "Not Hungry";
 				Icons[1].spriteName = "Yes";
-				break;
 			}
 			for (int i = 2; i < 6; i++)
 			{

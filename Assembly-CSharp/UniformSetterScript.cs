@@ -110,7 +110,7 @@ public class UniformSetterScript : MonoBehaviour
 	public void SetFemaleUniform()
 	{
 		int num = StudentGlobals.FemaleUniform;
-		if (Ryoba && Street)
+		if (Ryoba && Street && !GameGlobals.CustomMode)
 		{
 			ForceUniform = 6;
 		}
@@ -121,7 +121,7 @@ public class UniformSetterScript : MonoBehaviour
 		MyRenderer.sharedMesh = FemaleUniforms[num];
 		MyRenderer.materials[0].mainTexture = FemaleUniformTextures[num];
 		MyRenderer.materials[1].mainTexture = FemaleUniformTextures[num];
-		if (Ryoba)
+		if (Ryoba && !GameGlobals.CustomMode)
 		{
 			MyRenderer.materials[0].mainTexture = RyobaTexture;
 			MyRenderer.materials[1].mainTexture = RyobaTexture;
@@ -133,7 +133,7 @@ public class UniformSetterScript : MonoBehaviour
 		else if (StudentID == 1)
 		{
 			MyRenderer.materials[2].mainTexture = AyanoFace;
-			if (Ryoba)
+			if (Ryoba && !GameGlobals.CustomMode)
 			{
 				MyRenderer.materials[0].mainTexture = Nude;
 			}

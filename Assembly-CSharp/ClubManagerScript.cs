@@ -255,10 +255,13 @@ public class ClubManagerScript : MonoBehaviour
 		ID = 0;
 		EmergencyShower.Prompt.enabled = false;
 		EmergencyShower.Prompt.Hide();
-		AcidVats[1].Prompt.enabled = false;
-		AcidVats[1].Prompt.Hide();
-		AcidVats[2].Prompt.enabled = false;
-		AcidVats[2].Prompt.Hide();
+		if (!StudentManager.MissionMode)
+		{
+			AcidVats[1].Prompt.enabled = false;
+			AcidVats[1].Prompt.Hide();
+			AcidVats[2].Prompt.enabled = false;
+			AcidVats[2].Prompt.Hide();
+		}
 		if (ClubGlobals.Club != 0 && DateGlobals.Weekday == DayOfWeek.Friday && ClubGlobals.ActivitiesAttended == 0)
 		{
 			ClubActivityReminder = true;

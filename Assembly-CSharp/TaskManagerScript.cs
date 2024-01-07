@@ -44,6 +44,21 @@ public class TaskManagerScript : MonoBehaviour
 
 	public bool Proceed;
 
+	public void Start()
+	{
+		if (!GameGlobals.EightiesTutorial)
+		{
+			return;
+		}
+		for (int i = 1; i < TaskObjects.Length; i++)
+		{
+			if (TaskObjects[i] != null)
+			{
+				TaskObjects[i].SetActive(value: false);
+			}
+		}
+	}
+
 	public void GetTaskStatus()
 	{
 		if (!Initialized)

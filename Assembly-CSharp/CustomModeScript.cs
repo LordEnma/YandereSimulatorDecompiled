@@ -31,6 +31,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public AudioSource Jukebox;
+
 	public Renderer MapShadow;
 
 	public JsonScript JSON;
@@ -285,6 +287,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public int[] EyeWear;
 
+	public AudioClip[] BGM;
+
 	public string[] Surnames;
 
 	public string[] MaleNames;
@@ -442,6 +446,7 @@ public class CustomModeScript : MonoBehaviour
 		UpdateDOF(2f);
 		Initializing = true;
 		UpdateHeader();
+		White.alpha = 1f;
 	}
 
 	private void UpdateHeader()
@@ -572,6 +577,18 @@ public class CustomModeScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (Input.GetKeyDown("m"))
+		{
+			if (Jukebox.clip == BGM[1])
+			{
+				Jukebox.clip = BGM[2];
+			}
+			else
+			{
+				Jukebox.clip = BGM[1];
+			}
+			Jukebox.Play();
+		}
 		int i;
 		for (i = 0; i < EditableLabels.Length; i++)
 		{
@@ -584,6 +601,7 @@ public class CustomModeScript : MonoBehaviour
 		if (FadeOut)
 		{
 			White.alpha = Mathf.MoveTowards(White.alpha, 1f, Time.deltaTime);
+			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 0f, Time.deltaTime);
 			if (!(White.alpha > 0.999f))
 			{
 				return;
@@ -615,6 +633,7 @@ public class CustomModeScript : MonoBehaviour
 		}
 		else if (!PlayerIsTyping)
 		{
+			White.alpha = Mathf.MoveTowards(White.alpha, 0f, Time.deltaTime);
 			if (InputManager.DPadUp || InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
 			{
 				HeldUp += Time.unscaledDeltaTime;
