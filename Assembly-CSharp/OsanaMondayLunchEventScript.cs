@@ -558,7 +558,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 
 	private void MakeRaibaruEatLunch()
 	{
-		if (!Friend.Electrified)
+		if (!Friend.Electrified && !Friend.Fleeing)
 		{
 			if (!Friend.Alarmed)
 			{

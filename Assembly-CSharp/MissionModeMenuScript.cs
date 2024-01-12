@@ -24,6 +24,8 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	public UILabel CustomNemesisLabel;
 
+	public UITexture StartMissionIcon;
+
 	public UITexture NemesisPortrait;
 
 	public UITexture TargetPortrait;
@@ -105,6 +107,8 @@ public class MissionModeMenuScript : MonoBehaviour
 	public Texture NemesisGraphic;
 
 	public Texture BlankPortrait;
+
+	public Texture YakuzaIcon;
 
 	public string MissionIDString = string.Empty;
 
@@ -317,6 +321,7 @@ public class MissionModeMenuScript : MonoBehaviour
 			CustomObjectives[3].alpha = 0f;
 			CustomObjectives[9].alpha = 0f;
 			EightiesifyAllLabels();
+			StartMissionIcon.mainTexture = YakuzaIcon;
 		}
 		else
 		{

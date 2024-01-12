@@ -268,7 +268,7 @@ public class HomeYandereScript : MonoBehaviour
 		PlayerGlobals.BringingItem = 0;
 		if (GameGlobals.CustomMode)
 		{
-			Debug.Log("The game believes that we are currently in Custom Mode.");
+			Debug.Log("Home Screen. The game believes that we're in Custom Mode.");
 			RyobaLongHair.SetActive(value: false);
 			RyobaHair.SetActive(value: false);
 			Hairstyle = 0;
@@ -573,7 +573,6 @@ public class HomeYandereScript : MonoBehaviour
 
 	private void Customize()
 	{
-		Debug.Log("HomeYandereScript is now going to fire Yandere.Customize()");
 		Yandere.Customize();
 		IdleAnim = FemaleIdles[JSON.Misc.AnimSet[0]];
 		WalkAnim = FemaleWalks[JSON.Misc.AnimSet[0]];

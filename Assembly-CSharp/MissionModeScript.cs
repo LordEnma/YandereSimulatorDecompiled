@@ -229,6 +229,8 @@ public class MissionModeScript : MonoBehaviour
 
 	public bool FadeOut;
 
+	public bool Run;
+
 	public bool Enabled;
 
 	public bool[] Checking;
@@ -408,6 +410,10 @@ public class MissionModeScript : MonoBehaviour
 			if (Eighties && NemesisDifficulty > 0)
 			{
 				YakuzaMode = true;
+			}
+			else
+			{
+				YakuzaMode = false;
 			}
 			ClassGlobals.BiologyGrade = 1;
 			ClassGlobals.ChemistryGrade = 1;
@@ -1126,7 +1132,13 @@ public class MissionModeScript : MonoBehaviour
 					if (ExitPortalPrompt.Circle[0].fillAmount == 0f)
 					{
 						ExitPortalPrompt.Circle[0].fillAmount = 1f;
-						if ((YakuzaMode && Yandere.EquippedWeapon == null) || (YakuzaMode && Yandere.EquippedWeapon != WeaponManager.Weapons[1]))
+						bool flag = false;
+						if (Yandere.Container != null && Yandere.Container.TrashCan.Item != null && Yandere.Container.TrashCan.Item == WeaponManager.Weapons[1].gameObject)
+						{
+							flag = true;
+							Debug.Log("Katana is in possession!");
+						}
+						if ((!flag && YakuzaMode && Yandere.EquippedWeapon == null) || (!flag && YakuzaMode && Yandere.EquippedWeapon != WeaponManager.Weapons[1]))
 						{
 							NotificationManager.CustomText = "Can't leave without katana!";
 							NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -1142,7 +1154,15 @@ public class MissionModeScript : MonoBehaviour
 							MainCamera.transform.eulerAngles = Vector3.zero;
 							Yandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
 							Yandere.transform.position = new Vector3(0f, 0f, -94.5f);
-							Yandere.CharacterAnimation.Play(Yandere.WalkAnim);
+							if (Yandere.Chased || Yandere.Chasers > 0)
+							{
+								Yandere.CharacterAnimation.Play(Yandere.RunAnim);
+								Run = true;
+							}
+							else
+							{
+								Yandere.CharacterAnimation.Play(Yandere.WalkAnim);
+							}
 							Yandere.RPGCamera.enabled = false;
 							Yandere.HUD.gameObject.SetActive(value: false);
 							Yandere.ResetYandereEffects();
@@ -1164,6 +1184,10 @@ public class MissionModeScript : MonoBehaviour
 							HeartbeatCamera.SetActive(value: false);
 							Boundary.enabled = false;
 							Phase++;
+							if (Run)
+							{
+								Yandere.enabled = false;
+							}
 						}
 					}
 				}
@@ -1197,7 +1221,14 @@ public class MissionModeScript : MonoBehaviour
 		{
 			Timer += Time.deltaTime;
 			MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y - Time.deltaTime * 0.2f, MainCamera.transform.position.z);
-			Yandere.transform.position = new Vector3(Yandere.transform.position.x, Yandere.transform.position.y, Yandere.transform.position.z - Time.deltaTime);
+			if (Run)
+			{
+				Yandere.transform.position = new Vector3(Yandere.transform.position.x, Yandere.transform.position.y, Yandere.transform.position.z - Time.deltaTime * 5f);
+			}
+			else
+			{
+				Yandere.transform.position = new Vector3(Yandere.transform.position.x, Yandere.transform.position.y, Yandere.transform.position.z - Time.deltaTime);
+			}
 			if (Timer > 5f)
 			{
 				Success();

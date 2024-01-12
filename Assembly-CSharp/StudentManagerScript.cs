@@ -14,6 +14,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public OsanaThursdayAfterClassEventScript OsanaThursdayAfterClassEvent;
 
+	public OsanaMondayBeforeClassEventScript OsanaMondayBeforeClassEvent;
+
 	public FollowPrimaryLookSecondaryScript FollowPrimaryLookSecondary;
 
 	public SpawnedObjectManagerScript SpawnedObjectManager;
@@ -985,6 +987,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Renderer Window;
 
+	public float SenpaiLoveTimer;
+
 	private ScheduleBlock scheduleBlock;
 
 	public OsanaPoolEventScript OsanaPoolEvent;
@@ -1499,6 +1503,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (PlayerGlobals.PersonaID > 0)
 		{
+			Debug.Log("Player's PersonaID is: " + PlayerGlobals.PersonaID);
 			Yandere.PersonaID = PlayerGlobals.PersonaID;
 			if (Mirror != null)
 			{
@@ -1587,6 +1592,12 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (CustomMode && !TakingPortraits)
 		{
+			if (Students[Week] != null)
+			{
+				RivalGuardSpots[0].parent = Students[Week].transform;
+			}
+			RivalGuardSpots[0].localPosition = new Vector3(0f, 0f, 0f);
+			RivalGuardSpots[0].localEulerAngles = new Vector3(0f, 0f, 0f);
 			GenerateRandomLocations();
 			GenerateCustomLocations();
 		}
@@ -5023,6 +5034,10 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		BloodParent.RestoreAllBlood();
 		PuddleParent.RestoreAllPuddles();
+		if (OsanaMondayBeforeClassEvent.Finished)
+		{
+			OsanaMondayBeforeClassEvent.EnableBentos();
+		}
 		if (OsanaThursdayAfterClassEvent.Phase > 0)
 		{
 			OsanaThursdayAfterClassEvent.ReturningFromSave = true;
@@ -5406,6 +5421,23 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				WindowOccluder.open = true;
 			}
+		}
+		if (!(SenpaiLoveWindow != null))
+		{
+			return;
+		}
+		if (SenpaiLoveWindow.ShowWhenReady && Yandere.CanMove)
+		{
+			SenpaiLoveTimer += Time.deltaTime;
+			if (SenpaiLoveTimer > 1f)
+			{
+				SenpaiLoveWindow.gameObject.SetActive(value: true);
+				Time.timeScale = 0.0001f;
+			}
+		}
+		else
+		{
+			SenpaiLoveTimer = 0f;
 		}
 	}
 

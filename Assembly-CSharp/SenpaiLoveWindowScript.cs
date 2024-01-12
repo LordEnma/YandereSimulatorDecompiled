@@ -12,6 +12,10 @@ public class SenpaiLoveWindowScript : MonoBehaviour
 
 	public Transform SenpaiHead;
 
+	public UITexture SenpaiIcon;
+
+	public Texture ModernSenpai;
+
 	public UILabel ThoughtLabel;
 
 	public UILabel NumberLabel;
@@ -25,6 +29,8 @@ public class SenpaiLoveWindowScript : MonoBehaviour
 	public int SenpaiLove;
 
 	public float Timer;
+
+	public bool ShowWhenReady;
 
 	public bool Updated;
 
@@ -96,9 +102,12 @@ public class SenpaiLoveWindowScript : MonoBehaviour
 			Heart[0].SetActive(value: true);
 			Heart[1].SetActive(value: true);
 		}
-		base.gameObject.SetActive(value: true);
-		Time.timeScale = 0.0001f;
+		ShowWhenReady = true;
 		Updated = true;
+		if (!GameGlobals.Eighties)
+		{
+			SenpaiIcon.mainTexture = ModernSenpai;
+		}
 	}
 
 	public void Update()
@@ -124,6 +133,7 @@ public class SenpaiLoveWindowScript : MonoBehaviour
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
 				base.gameObject.SetActive(value: false);
+				ShowWhenReady = false;
 				Timer = 0f;
 				Time.timeScale = 1f;
 			}

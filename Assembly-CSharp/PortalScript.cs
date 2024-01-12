@@ -163,9 +163,6 @@ public class PortalScript : MonoBehaviour
 				}
 			}
 			int num2 = Police.BloodyWeapons - Police.IncineratedWeapons;
-			Debug.Log("Counting bloody weapons.");
-			Debug.Log("Police.BloodyWeapons is: " + Police.BloodyWeapons + " and Police.IncineratedWeapons is: " + Police.IncineratedWeapons);
-			Debug.Log("Therefore, Police.BloodyWeapons is: " + (Police.BloodyWeapons - Police.IncineratedWeapons));
 			TrashCanScript[] trashCans = StudentManager.TrashCans;
 			foreach (TrashCanScript trashCanScript in trashCans)
 			{
@@ -583,7 +580,7 @@ public class PortalScript : MonoBehaviour
 	public void CheckForProblems()
 	{
 		StudentScript studentScript = StudentManager.Students[StudentManager.RivalID];
-		if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Schoolwear == 2 || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || Yandere.Mask != null || Yandere.WearingRaincoat || (StudentManager.Reporter != null && !Police.Show) || StudentManager.MurderTakingPlace || (studentScript != null && studentScript.Fleeing && studentScript.CurrentDestination == StudentManager.Students[studentScript.LovestruckTarget].transform))
+		if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Schoolwear == 2 || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || Yandere.Mask != null || Yandere.WearingRaincoat || (StudentManager.Reporter != null && !Police.Show) || StudentManager.MurderTakingPlace || Yandere.PauseScreen.MissionMode.YakuzaMode || (studentScript != null && studentScript.Fleeing && studentScript.CurrentDestination == StudentManager.Students[studentScript.LovestruckTarget].transform))
 		{
 			CanAttendClass = false;
 		}

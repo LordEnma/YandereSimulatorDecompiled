@@ -3586,9 +3586,13 @@ public class SubtitleScript : MonoBehaviour
 	{
 		Jukebox.Dip = 0.5f;
 		SubtitleClipArrays.TryGetValue(subtitleType, out var value);
-		if (CurrentClip != null && ID <= value.Length && value[ID] != null && value[ID] != HmmClips[0])
+		if (CurrentClip != null)
 		{
-			Object.Destroy(CurrentClip);
+			Debug.Log("A voice clip was already playing. ID was apparently: " + ID);
+			if (ID <= value.Length - 1 && value[ID] != null && value[ID] != HmmClips[0])
+			{
+				Object.Destroy(CurrentClip);
+			}
 		}
 		if (ID < value.Length)
 		{

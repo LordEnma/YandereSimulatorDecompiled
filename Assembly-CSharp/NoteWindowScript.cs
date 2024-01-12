@@ -329,7 +329,7 @@ public class NoteWindowScript : MonoBehaviour
 							NoteLocker.Success = true;
 						}
 					}
-					else if (NoteLocker.Student.Persona == PersonaType.LandlineUser && (NoteSubject == NoteSubjectType.Bullying || NoteSubject == NoteSubjectType.FightingEvil || NoteSubject == NoteSubjectType.SuspiciousActivity))
+					else if ((NoteLocker.Student.Persona == PersonaType.LandlineUser || NoteLocker.Student.Club == ClubType.Council) && (NoteSubject == NoteSubjectType.Bullying || NoteSubject == NoteSubjectType.FightingEvil || NoteSubject == NoteSubjectType.SuspiciousActivity))
 					{
 						NoteLocker.Success = true;
 					}

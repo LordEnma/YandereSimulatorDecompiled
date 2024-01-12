@@ -1418,7 +1418,6 @@ public class CosmeticScript : MonoBehaviour
 				{
 					if (StartShader != null)
 					{
-						Debug.Log("Again, attempting to give Senpai's hair the shader that can change colors.");
 						HairRenderer.material.shader = StartShader;
 					}
 					HairRenderer.material.SetFloat("_Saturation", 0f);
@@ -1730,10 +1729,6 @@ public class CosmeticScript : MonoBehaviour
 			}
 			else
 			{
-				if (StudentID == 1)
-				{
-					Debug.Log("Once again, attempting to give Senpai's hair the shader that can change colors.");
-				}
 				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.SetFloat("_Saturation", 0f);
 				HairRenderer.material.SetFloat("_BlendAmount", 0f);

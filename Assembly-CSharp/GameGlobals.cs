@@ -128,6 +128,8 @@ public static class GameGlobals
 
 	private const string Str_ForceCanonEliminations = "ForceCanonEliminations";
 
+	private const string Str_CanBefriendCouncil = "CanBefriendCouncil";
+
 	public static int Profile
 	{
 		get
@@ -812,6 +814,18 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool CanBefriendCouncil
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_CanBefriendCouncil");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_CanBefriendCouncil", value);
+		}
+	}
+
 	public static int GetRivalEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminations" + elimID);
@@ -982,5 +996,6 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_NoCouncilShove");
 		Globals.Delete("Profile_" + Profile + "_NoJournalist");
 		Globals.Delete("Profile_" + Profile + "_ForceCanonEliminations");
+		Globals.Delete("Profile_" + Profile + "_CanBefriendCouncil");
 	}
 }

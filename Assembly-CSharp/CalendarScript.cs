@@ -145,7 +145,7 @@ public class CalendarScript : MonoBehaviour
 		}
 		if (GameGlobals.CustomMode)
 		{
-			Debug.Log("The game believes that we're in Custom Mode.");
+			Debug.Log("Calendar Screen. The game believes that we're in Custom Mode.");
 		}
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();

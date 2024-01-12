@@ -367,23 +367,32 @@ public class JukeboxScript : MonoBehaviour
 					NoSanity.Play();
 					StartMusic = true;
 				}
-				if (Yandere.Sanity >= 66.666664f)
+				if (!ClubTheme.isPlaying)
 				{
-					FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
-					HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, 0f, 1f / 60f * FadeSpeed);
-					NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
-				}
-				else if (Yandere.Sanity >= 33.333332f)
-				{
-					FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, 0f, 1f / 60f * FadeSpeed);
-					HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
-					NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
+					if (Yandere.Sanity >= 66.666664f)
+					{
+						FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
+						HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, 0f, 1f / 60f * FadeSpeed);
+						NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
+					}
+					else if (Yandere.Sanity >= 33.333332f)
+					{
+						FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, 0f, 1f / 60f * FadeSpeed);
+						HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
+						NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
+					}
+					else
+					{
+						FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, 0f, 1f / 60f * FadeSpeed);
+						HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, 0f, 1f / 60f * FadeSpeed);
+						NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
+					}
 				}
 				else
 				{
 					FullSanity.volume = Mathf.MoveTowards(FullSanity.volume, 0f, 1f / 60f * FadeSpeed);
 					HalfSanity.volume = Mathf.MoveTowards(HalfSanity.volume, 0f, 1f / 60f * FadeSpeed);
-					NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, Volume * Dip - ClubDip, 1f / 60f * FadeSpeed);
+					NoSanity.volume = Mathf.MoveTowards(NoSanity.volume, 0f, 1f / 60f * FadeSpeed);
 				}
 			}
 		}

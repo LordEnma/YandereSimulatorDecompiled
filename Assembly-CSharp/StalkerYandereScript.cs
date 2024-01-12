@@ -8,6 +8,8 @@ public class StalkerYandereScript : MonoBehaviour
 {
 	public StalkerPromptScript StalkerDoorPrompt;
 
+	public GameObject StealthClothingAttacher;
+
 	public UniformSetterScript UniformSetter;
 
 	public CharacterController MyController;
@@ -21,6 +23,8 @@ public class StalkerYandereScript : MonoBehaviour
 	public UILabel InstructionLabel;
 
 	public StalkerScript Stalker;
+
+	public JsonScript JSON;
 
 	public ArcScript Arc;
 
@@ -231,7 +235,18 @@ public class StalkerYandereScript : MonoBehaviour
 				RyobaHair.SetActive(value: false);
 			}
 		}
-		if (GameGlobals.Eighties && EightiesAttacher != null)
+		if (Street && GameGlobals.CustomMode)
+		{
+			float breastSize = JSON.Students[0].BreastSize;
+			BreastL.transform.localScale = new Vector3(breastSize, breastSize, breastSize);
+			BreastR.transform.localScale = new Vector3(breastSize, breastSize, breastSize);
+			StealthClothingAttacher.SetActive(value: true);
+			MyRenderer.enabled = false;
+			Beanie.SetActive(value: true);
+			Shades.SetActive(value: true);
+			Mask.SetActive(value: true);
+		}
+		else if (GameGlobals.Eighties && EightiesAttacher != null)
 		{
 			if (HomeGlobals.Night || DateGlobals.Weekday == DayOfWeek.Sunday || DateGlobals.Weekday == DayOfWeek.Saturday)
 			{
@@ -244,24 +259,15 @@ public class StalkerYandereScript : MonoBehaviour
 			}
 			MyRenderer.sharedMesh = HeadOnlyMesh;
 			PonytailRenderer.transform.parent.gameObject.SetActive(value: false);
-			if (GameGlobals.CustomMode)
-			{
-				Beanie.SetActive(value: true);
-				Shades.SetActive(value: true);
-				Mask.SetActive(value: true);
-			}
-			else
-			{
-				RyobaHair.SetActive(value: true);
-				Debug.Log("Setting Ryoba blendshapes.");
-				MyRenderer.SetBlendShapeWeight(0, 50f);
-				MyRenderer.SetBlendShapeWeight(5, 25f);
-				MyRenderer.SetBlendShapeWeight(8, 0f);
-				MyRenderer.SetBlendShapeWeight(12, 100f);
-				IdleAnim = "f02_ryobaIdle_00";
-				WalkAnim = "f02_ryobaWalk_00";
-				RunAnim = "f02_ryobaRun_00";
-			}
+			RyobaHair.SetActive(value: true);
+			Debug.Log("Setting Ryoba blendshapes.");
+			MyRenderer.SetBlendShapeWeight(0, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(8, 0f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+			IdleAnim = "f02_ryobaIdle_00";
+			WalkAnim = "f02_ryobaWalk_00";
+			RunAnim = "f02_ryobaRun_00";
 			MyRenderer.materials[0].mainTexture = MyRenderer.materials[2].mainTexture;
 			Eighties = true;
 			if (Street)
@@ -380,13 +386,14 @@ public class StalkerYandereScript : MonoBehaviour
 					MyRenderer.SetBlendShapeWeight(8, 0f);
 					MyRenderer.SetBlendShapeWeight(12, 100f);
 				}
+				UpdateBlendshapes = false;
 			}
-			else if (HomeGlobals.Night && !ThanksForPlaying)
+			else if (HomeGlobals.Night && !ThanksForPlaying && ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
 			{
 				MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
 				MyRenderer.SetBlendShapeWeight(8, 50f);
+				UpdateBlendshapes = false;
 			}
-			UpdateBlendshapes = false;
 		}
 		if (Input.GetKeyDown("m") && Jukebox != null)
 		{

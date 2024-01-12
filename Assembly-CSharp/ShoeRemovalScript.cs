@@ -143,6 +143,7 @@ public class ShoeRemovalScript : MonoBehaviour
 			Student.CharacterAnimation.CrossFade(RemovalAnim);
 			if (Phase == 1)
 			{
+				Student.CharacterAnimation.CrossFade(RemovalAnim);
 				if (!(Student.CharacterAnimation[RemovalAnim].time >= 0.833333f))
 				{
 					return;
@@ -306,7 +307,7 @@ public class ShoeRemovalScript : MonoBehaviour
 				Student.Leaving = true;
 				Student.Phase++;
 				base.enabled = false;
-				Phase++;
+				Phase = 0;
 			}
 		}
 		else

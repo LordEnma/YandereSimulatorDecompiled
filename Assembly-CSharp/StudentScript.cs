@@ -1880,6 +1880,10 @@ public class StudentScript : MonoBehaviour
 
 	public float SavePositionZ;
 
+	public string ReturnDestination;
+
+	public string ReturnAction;
+
 	public bool Alive => DeathType == DeathType.None;
 
 	private SubtitleType LostPhoneSubtitleType
@@ -3744,6 +3748,21 @@ public class StudentScript : MonoBehaviour
 			}
 			idleAnim = IdleAnim;
 			OriginalWalkAnim = WalkAnim;
+			if (ClubAnim == "")
+			{
+				ClubAnim = ThinkAnim;
+			}
+			if (GuardAnim == "")
+			{
+				if (Male)
+				{
+					GuardAnim = "guardCorpse_00";
+				}
+				else
+				{
+					GuardAnim = "f02_guardCorpse_00";
+				}
+			}
 			if (CustomPatrolAnim == "")
 			{
 				CustomPatrolAnim = ThinkAnim;
@@ -6872,12 +6891,16 @@ public class StudentScript : MonoBehaviour
 									}
 									else if (StudentManager.CustomMode)
 									{
-										Debug.Log("Senpai should now be switching to his custom routine...");
+										Debug.Log("Attempting to update Senpai's routine to whatever his Custom Mode routine is supposed to be.");
 										ScheduleBlock obj9 = ScheduleBlocks[Phase];
 										ScheduleBlock scheduleBlock = OriginalScheduleBlocks[Phase];
 										obj9.destination = scheduleBlock.destination;
 										obj9.action = scheduleBlock.action;
+										obj9.destination = ReturnDestination;
+										obj9.action = ReturnAction;
 										GetDestinations();
+										CurrentDestination = Destinations[Phase];
+										Pathfinding.target = Destinations[Phase];
 									}
 								}
 								PatrolTimer += Time.deltaTime * CharacterAnimation[PatrolAnim].speed;
@@ -8640,6 +8663,10 @@ public class StudentScript : MonoBehaviour
 								}
 								if (Yandere.Chased && Yandere.Pursuer == this)
 								{
+									if (Persona == PersonaType.Protective && !StudentManager.ChallengeManager.InvincibleRaibaru && Yandere.PhysicalGrade > 0)
+									{
+										Persona = PersonaType.Heroic;
+									}
 									Debug.Log(Name + " is now chasing Yandere-chan.");
 									FocusOnYandere = false;
 									CharacterAnimation.CrossFade(SprintAnim);
@@ -9000,6 +9027,8 @@ public class StudentScript : MonoBehaviour
 												}
 												Frame++;
 											}
+											Debug.Log(Name + " is currently engaged in a stuggle.");
+											CharacterAnimation.CrossFade(StruggleAnim);
 											if (!Teacher)
 											{
 												CharacterAnimation[StruggleAnim].time = Yandere.CharacterAnimation["f02_struggleA_00"].time;
@@ -10954,7 +10983,7 @@ public class StudentScript : MonoBehaviour
 									{
 										if (CharacterAnimation[MurderSuicideAnim].time >= 3.3f)
 										{
-											GameObject obj24 = UnityEngine.Object.Instantiate(Ragdoll.BloodPoolSpawner.BloodPool, base.transform.position + base.transform.up * 0.012f + base.transform.forward, Quaternion.identity);
+											GameObject obj24 = UnityEngine.Object.Instantiate(Ragdoll.BloodPoolSpawner.BloodPool, base.transform.position + base.transform.up * 0.021f + base.transform.forward, Quaternion.identity);
 											obj24.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
 											obj24.transform.parent = Police.BloodParent;
 											MyWeapon.Victims[HuntTarget.StudentID] = true;
@@ -13857,10 +13886,17 @@ public class StudentScript : MonoBehaviour
 				flag6 = StudentManager.Students[78] != null && StudentManager.Students[78].Friend;
 				flag7 = StudentManager.Students[79] != null && StudentManager.Students[79].Friend;
 				flag8 = StudentManager.Students[80] != null && StudentManager.Students[80].Friend;
+				Debug.Log("Yandere.PersonaID is: " + Yandere.PersonaID);
+				Debug.Log("Yandere.Persona is: " + Yandere.Persona);
 				if ((StudentID == 76 && GameGlobals.BlondeHair && Reputation.Reputation < -33.33333f && Yandere.Persona == YanderePersonaType.Tough && flag4 && flag5 && flag6 && flag7 && flag8) || (StudentID == 76 && Yandere.Club == ClubType.Delinquent))
 				{
+					Debug.Log("Yandere-chan meets the criteria to talk to the delinquent leader about joining.");
 					flag3 = true;
 					Warned = false;
+				}
+				else
+				{
+					Debug.Log("Yandere-chan does not meet the criteria to talk to the delinquent leader about joining.");
 				}
 				bool flag9 = false;
 				if (Yandere.PickUp != null && Yandere.PickUp.Salty && !Indoors)
@@ -14248,6 +14284,8 @@ public class StudentScript : MonoBehaviour
 									}
 									Subtitle.UpdateLabel(SubtitleType.ClubGreeting, (int)(Club + num), 4f);
 									DialogueWheel.ClubLeader = true;
+									Yandere.Jukebox.ClubTheme.clip = Yandere.Jukebox.ClubThemes[(int)Club];
+									Yandere.Jukebox.ClubTheme.Play();
 								}
 								else
 								{
@@ -14498,8 +14536,11 @@ public class StudentScript : MonoBehaviour
 					CharacterAnimation.CrossFade("f02_dramaticStealth_00");
 				}
 				Yandere.CharacterAnimation.CrossFade("f02_readyToFight_00");
-				Yandere.Invisible = true;
 				Yandere.CanMove = false;
+				if (StudentManager.ChallengeManager.InvincibleRaibaru || Yandere.PhysicalGrade <= 0)
+				{
+					Yandere.Invisible = true;
+				}
 				DramaticCamera.enabled = true;
 				DramaticCamera.rect = new Rect(0f, 0.5f, 1f, 0f);
 				DramaticCamera.gameObject.SetActive(value: true);
@@ -14552,7 +14593,7 @@ public class StudentScript : MonoBehaviour
 					Police.Show = false;
 				}
 				CharacterAnimation.CrossFade("f02_moCounterB_00");
-				if (!WitnessedMurder && CharacterAnimation["f02_moLipSync_00"].weight == 0f)
+				if (!WitnessedMurder && !Male && CharacterAnimation["f02_moLipSync_00"].weight == 0f)
 				{
 					CharacterAnimation["f02_moLipSync_00"].weight = 1f;
 					CharacterAnimation["f02_moLipSync_00"].time = 0f;
@@ -16667,7 +16708,6 @@ public class StudentScript : MonoBehaviour
 		}
 		if (HorudaCollider != null)
 		{
-			Debug.Log("Seeing HorudaCollider to False...");
 			HorudaCollider.gameObject.SetActive(value: false);
 		}
 		BountyCollider.SetActive(value: false);
@@ -16821,11 +16861,14 @@ public class StudentScript : MonoBehaviour
 		}
 		else if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache)
 		{
+			Debug.Log("Time to decide how Raibaru should react.");
 			if (!StudentManager.ChallengeManager.InvincibleRaibaru && Yandere.PhysicalGrade > 0)
 			{
+				Debug.Log("Player meets the criteria to have a physical struggle with Raibaru.");
 				Pathfinding.target = Yandere.transform;
 				CurrentDestination = Yandere.transform;
 				Yandere.Attacking = false;
+				FocusOnYandere = false;
 				Attacked = false;
 				Fleeing = true;
 				Dying = false;
@@ -16834,6 +16877,7 @@ public class StudentScript : MonoBehaviour
 			}
 			else
 			{
+				Debug.Log("Player does not meet the criteria to have a physical struggle with Raibaru.");
 				if (!WitnessedMurder)
 				{
 					Subtitle.UpdateLabel(SubtitleType.ObstacleMurderReaction, 3, 11f);
@@ -18144,6 +18188,7 @@ public class StudentScript : MonoBehaviour
 
 	private void BeginStruggle()
 	{
+		Debug.Log(Name + " has begun a struggle with Yandere-chan.");
 		if (Yandere.Hiding)
 		{
 			Yandere.Hiding = false;
@@ -18529,13 +18574,21 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.destination == "Guard")
 			{
-				if (StudentID == 20)
+				if (StudentID == 20 || Rival)
 				{
 					Destinations[ID] = StudentManager.Students[1].transform;
 				}
-				else
+				else if (StudentManager.RivalGuardSpots[StudentID] != null)
 				{
 					Destinations[ID] = StudentManager.RivalGuardSpots[StudentID].transform;
+				}
+				else if (StudentManager.Students[StudentManager.RivalID] != null)
+				{
+					Destinations[ID] = StudentManager.Students[StudentManager.RivalID].transform;
+				}
+				else
+				{
+					Destinations[ID] = Seat;
 				}
 			}
 			else if (scheduleBlock.destination == "WitnessSpot")
@@ -21206,7 +21259,6 @@ public class StudentScript : MonoBehaviour
 		Chameleon = false;
 		if (Yandere != null && ((Yandere.Persona == YanderePersonaType.Scholarly && Persona == PersonaType.TeachersPet) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Science) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Art) || (Yandere.Persona == YanderePersonaType.Chill && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Photography) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Gaming) || (Yandere.Persona == YanderePersonaType.Confident && Persona == PersonaType.Heroic) || (Yandere.Persona == YanderePersonaType.Confident && Club == ClubType.MartialArts) || (Yandere.Persona == YanderePersonaType.Elegant && Club == ClubType.Drama) || (Yandere.Persona == YanderePersonaType.Girly && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Girly && Club == ClubType.Cooking) || (Yandere.Persona == YanderePersonaType.Graceful && Club == ClubType.Gardening) || (Yandere.Persona == YanderePersonaType.Haughty && Club == ClubType.Bully) || (Yandere.Persona == YanderePersonaType.Lively && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.LightMusic) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.Sports) || (Yandere.Persona == YanderePersonaType.Shy && Persona == PersonaType.Loner) || (Yandere.Persona == YanderePersonaType.Shy && Club == ClubType.Occult) || (Yandere.Persona == YanderePersonaType.Tough && Persona == PersonaType.Spiteful) || (Yandere.Persona == YanderePersonaType.Tough && Club == ClubType.Delinquent)))
 		{
-			Debug.Log("Chameleon is true!");
 			ChameleonBonus = VisionDistance * 0.5f;
 			Chameleon = true;
 		}
@@ -21589,6 +21641,10 @@ public class StudentScript : MonoBehaviour
 		else
 		{
 			SetOutlinesOrange();
+		}
+		if (Yandere.Pursuer == this)
+		{
+			Yandere.Pursuer = null;
 		}
 		BreakingUpFight = false;
 		WitnessedMurder = false;

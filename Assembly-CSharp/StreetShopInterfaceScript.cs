@@ -526,7 +526,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 				if (CollectibleGlobals.GetGiftPurchased(i))
 				{
 					Icons[i].spriteName = "Yes";
-					PricesLabel[i].text = "Owned";
+					PricesLabel[i].text = "Sold Out";
 				}
 			}
 			break;

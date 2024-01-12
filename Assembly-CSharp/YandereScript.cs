@@ -2167,7 +2167,6 @@ public class YandereScript : MonoBehaviour
 		HandCamera.gameObject.SetActive(value: false);
 		if (GameGlobals.CustomMode)
 		{
-			Debug.Log("Apparently, the game believes that we're in Custom Mode right now.");
 			Customize();
 		}
 		CharacterAnimation.Sample();
@@ -3072,10 +3071,6 @@ public class YandereScript : MonoBehaviour
 												Mopping = false;
 												CanMove = false;
 												Teeth.SetActive(value: false);
-												if (StudentManager.Eighties)
-												{
-													LoseGentleEyes();
-												}
 											}
 											else
 											{
@@ -7487,7 +7482,6 @@ public class YandereScript : MonoBehaviour
 
 	public void Unequip()
 	{
-		Debug.Log("Yandere-chan has been told to de-equip whatever she currently has equipped - *if* she has anything equipped right now.");
 		if (CanMove || Noticed || BypassRequirement)
 		{
 			Debug.Log("Yandere-chan has now de-equipped her weapon.");
@@ -7538,15 +7532,12 @@ public class YandereScript : MonoBehaviour
 		}
 		if (Armed)
 		{
-			Debug.Log("Yandere-chan was armed at the time.");
 			if (DropSpecifically)
 			{
-				Debug.Log("The ''DropSpecifically'' variable was true.");
 				EquippedWeapon.Drop();
 			}
 			else
 			{
-				Debug.Log("The ''DropSpecifically'' variable was false.");
 				Unequip();
 			}
 		}
@@ -8953,7 +8944,7 @@ public class YandereScript : MonoBehaviour
 	public void ChangeSchoolwear()
 	{
 		int num = StudentGlobals.FemaleUniform;
-		if (StudentManager.MissionMode && MissionModeGlobals.NemesisDifficulty > 0)
+		if (StudentManager.MissionMode && StudentManager.Eighties && MissionModeGlobals.NemesisDifficulty > 0)
 		{
 			num = 1;
 			UniformTextures[1] = YakuzaUniform;
@@ -9310,48 +9301,7 @@ public class YandereScript : MonoBehaviour
 
 	public void UpdatePersona(int NewPersona)
 	{
-		switch (NewPersona)
-		{
-		case 0:
-			Persona = YanderePersonaType.Default;
-			break;
-		case 1:
-			Persona = YanderePersonaType.Chill;
-			break;
-		case 2:
-			Persona = YanderePersonaType.Confident;
-			break;
-		case 3:
-			Persona = YanderePersonaType.Elegant;
-			break;
-		case 4:
-			Persona = YanderePersonaType.Girly;
-			break;
-		case 5:
-			Persona = YanderePersonaType.Graceful;
-			break;
-		case 6:
-			Persona = YanderePersonaType.Haughty;
-			break;
-		case 7:
-			Persona = YanderePersonaType.Lively;
-			break;
-		case 8:
-			Persona = YanderePersonaType.Scholarly;
-			break;
-		case 9:
-			Persona = YanderePersonaType.Shy;
-			break;
-		case 10:
-			Persona = YanderePersonaType.Tough;
-			break;
-		case 11:
-			Persona = YanderePersonaType.Aggressive;
-			break;
-		case 12:
-			Persona = YanderePersonaType.Grunt;
-			break;
-		}
+		Persona = (YanderePersonaType)NewPersona;
 	}
 
 	private void SithSoundCheck()
@@ -9651,6 +9601,11 @@ public class YandereScript : MonoBehaviour
 		}
 		if (!Egg && !flag && VtuberID == 0)
 		{
+			if (StudentManager.CustomMode)
+			{
+				UpdateEyeType();
+				return;
+			}
 			MyRenderer.SetBlendShapeWeight(0, 50f);
 			MyRenderer.SetBlendShapeWeight(5, 25f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
@@ -9981,7 +9936,6 @@ public class YandereScript : MonoBehaviour
 			Debug.Log("We're wearing pajamas in the daytime; don't call this function.");
 			return;
 		}
-		Debug.Log("Calling ClearBlendshapes() from here, specifically.");
 		ClearBlendShapes();
 		if (EyeType == "Thin")
 		{
@@ -10472,7 +10426,6 @@ public class YandereScript : MonoBehaviour
 
 	public void Customize()
 	{
-		Debug.Log("YandereScript is now calling Customize().");
 		Hairstyle = int.Parse(StudentManager.JSON.Students[0].Hairstyle);
 		UpdateHair();
 		EyeType = StudentManager.JSON.Students[0].EyeType;

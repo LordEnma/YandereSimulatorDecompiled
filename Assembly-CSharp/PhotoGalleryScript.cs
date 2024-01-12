@@ -79,6 +79,8 @@ public class PhotoGalleryScript : MonoBehaviour
 
 	public bool Reset;
 
+	public bool Home;
+
 	public int StringPhase;
 
 	public int Strings;
@@ -667,7 +669,10 @@ public class PhotoGalleryScript : MonoBehaviour
 		{
 			PauseScreen.Sideways = true;
 		}
-		UpdateButtonPrompts();
+		if (!Home)
+		{
+			UpdateButtonPrompts();
+		}
 		base.enabled = true;
 		base.gameObject.SetActive(value: true);
 		GotPhotos = true;

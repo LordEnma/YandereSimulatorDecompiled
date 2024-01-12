@@ -50,6 +50,11 @@ public class InputDeviceScript : MonoBehaviour
 			Type = InputDeviceType.Gamepad;
 			UpdateAllButtons();
 		}
+		else
+		{
+			Type = InputDeviceType.MouseAndKeyboard;
+			UpdateAllButtons();
+		}
 	}
 
 	private void Update()

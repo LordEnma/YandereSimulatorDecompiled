@@ -10,6 +10,8 @@ public class ConvoManagerScript : MonoBehaviour
 
 	public bool Eighties;
 
+	public bool Custom;
+
 	public string[] FemaleCombatAnims;
 
 	public string[] MaleCombatAnims;
@@ -35,10 +37,16 @@ public class ConvoManagerScript : MonoBehaviour
 			Week = 1;
 		}
 		Eighties = GameGlobals.Eighties;
+		Custom = GameGlobals.CustomMode;
 	}
 
 	public void CheckMe(int StudentID)
 	{
+		if (Custom)
+		{
+			CheckGroup(StudentID, 1, 101);
+			return;
+		}
 		if (StudentID > 20 && StudentID < 26)
 		{
 			CheckGroup(StudentID, 21, 26);

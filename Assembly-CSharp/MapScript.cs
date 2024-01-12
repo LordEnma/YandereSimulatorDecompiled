@@ -194,6 +194,10 @@ public class MapScript : MonoBehaviour
 				ElevationLabel.text = "The Rooftop";
 			}
 			HorizontalLimit = 70.72f - MyCamera.orthographicSize / 40.75f * 70.72f;
+			if (CustomMode)
+			{
+				HorizontalLimit = 71.33333f;
+			}
 			if (base.transform.position.x > HorizontalLimit)
 			{
 				base.transform.position = new Vector3(HorizontalLimit, base.transform.position.y, base.transform.position.z);

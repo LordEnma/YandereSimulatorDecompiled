@@ -782,7 +782,6 @@ public class ClassScript : MonoBehaviour
 			GradeUp = true;
 			Grade = 5;
 		}
-		Debug.Log("Now updating Numbness from the Class Portal.");
 		Portal.Yandere.UpdateNumbness();
 	}
 

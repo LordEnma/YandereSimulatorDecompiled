@@ -22,9 +22,9 @@ public class YakuzaMusicScript : MonoBehaviour
 		{
 			Phase = 1;
 		}
-		for (int i = 86; i < 98; i++)
+		for (int i = 2; i < 98; i++)
 		{
-			if (StudentManager.Students[i] != null && StudentManager.Students[i].Alive && (StudentManager.Students[i].Chasing || StudentManager.Students[i].Pursuing))
+			if (StudentManager.Students[i] != null && StudentManager.Students[i].Alive && (StudentManager.Students[i].Chasing || StudentManager.Students[i].Pursuing || (StudentManager.Students[i].Persona == PersonaType.Heroic && StudentManager.Students[i].SpottedYakuza)))
 			{
 				Phase = 6;
 			}

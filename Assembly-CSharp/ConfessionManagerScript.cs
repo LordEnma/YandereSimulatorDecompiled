@@ -540,7 +540,6 @@ public class ConfessionManagerScript : MonoBehaviour
 			{
 				RotateSpeed += Time.deltaTime * 0.5f;
 				ConfessionCamera.position = Vector3.Lerp(ConfessionCamera.position, new Vector3(4f, 7f, 119f), Time.deltaTime * RotateSpeed);
-				Debug.Log("Timer is: " + Timer);
 				if (Timer > 5f)
 				{
 					FadeOut = true;

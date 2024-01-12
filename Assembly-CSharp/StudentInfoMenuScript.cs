@@ -439,7 +439,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.UpdateButtons();
 		}
-		if (FindingLocker && (StudentID == 1 || StudentID > 89 || StudentManager.Students[StudentID] == null || (StudentManager.Students[StudentID] != null && StudentManager.Students[StudentID].Club == ClubType.Council) || StudentGlobals.GetStudentDead(StudentID)))
+		if (FindingLocker && (StudentID == 1 || StudentID > 89 || StudentManager.Students[StudentID] == null || (!StudentManager.MissionMode && StudentManager.Students[StudentID] != null && StudentManager.Students[StudentID].Club == ClubType.Council) || StudentGlobals.GetStudentDead(StudentID)))
 		{
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.UpdateButtons();

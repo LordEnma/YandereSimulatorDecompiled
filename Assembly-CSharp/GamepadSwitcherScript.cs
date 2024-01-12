@@ -59,7 +59,6 @@ public class GamepadSwitcherScript : MonoBehaviour
 
 	private void UseXboxInputs()
 	{
-		Debug.Log("We just switched to Xbox input.");
 		InputNames.Xbox_JoyX = "Joystick X";
 		InputNames.Xbox_JoyY = "Joystick Y";
 		InputNames.Xbox_A = "A";

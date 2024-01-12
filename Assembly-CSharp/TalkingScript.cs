@@ -1823,7 +1823,7 @@ public class TalkingScript : MonoBehaviour
 							Refuse = true;
 						}
 					}
-					else if (S.Club == ClubType.Council)
+					else if (!S.StudentManager.MissionMode && S.Club == ClubType.Council)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						S.Subtitle.UpdateLabel(SubtitleType.SendToLocker, 3, 5f);

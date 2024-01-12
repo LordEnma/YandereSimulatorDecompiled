@@ -406,7 +406,12 @@ public class DoorScript : MonoBehaviour
 			if (Yandere.Inventory.LockPick)
 			{
 				Prompt.HideButton[2] = false;
-				if (Prompt.Circle[2].fillAmount == 0f)
+				if (Prompt.Circle[2] == null)
+				{
+					Debug.Log("An error occured when loading the same that caused one door to mistake itself for another door.");
+					Locked = false;
+				}
+				else if (Prompt.Circle[2].fillAmount == 0f)
 				{
 					Debug.Log("Commence lockpicking.");
 					Prompt.Yandere.Inventory.LockPick = false;

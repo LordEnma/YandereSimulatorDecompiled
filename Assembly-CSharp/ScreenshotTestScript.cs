@@ -15,7 +15,11 @@ public class ScreenshotTestScript : MonoBehaviour
 
 	public UITexture BG;
 
+	public int StartFrame;
+
 	public int Frames;
+
+	public string PortraitName = "SenpaiPortrait";
 
 	private void Start()
 	{
@@ -29,25 +33,18 @@ public class ScreenshotTestScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (Frames > 0)
+		if (Frames > StartFrame)
 		{
 			if (!HomeGlobals.Night)
 			{
 				OnPostRenderCallback(SenpaiCamera);
 			}
-			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/SenpaiPortrait.png");
+			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/" + PortraitName + ".png");
 			Target.materials[0].mainTexture = wWW.texture;
+			base.gameObject.SetActive(value: false);
 			base.enabled = false;
 		}
 		Frames++;
-	}
-
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			OnPostRenderCallback(SenpaiCamera);
-		}
 	}
 
 	private void OnPostRenderCallback(Camera cam)
@@ -59,6 +56,6 @@ public class ScreenshotTestScript : MonoBehaviour
 		texture2D.ReadPixels(new Rect(0f, 0f, 512f, 512f), 0, 0);
 		RenderTexture.active = null;
 		byte[] bytes = texture2D.EncodeToPNG();
-		File.WriteAllBytes(Application.streamingAssetsPath + "/SenpaiPortrait.png", bytes);
+		File.WriteAllBytes(Application.streamingAssetsPath + "/" + PortraitName + ".png", bytes);
 	}
 }

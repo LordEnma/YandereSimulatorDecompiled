@@ -180,6 +180,12 @@ public class BeatEmUpScript : MonoBehaviour
 
 	public GameObject StreetScene;
 
+	public GameObject Beanie;
+
+	public GameObject Shades;
+
+	public GameObject Mask;
+
 	public SkinnedMeshRenderer MyRenderer;
 
 	public Texture[] UniformTextures;
@@ -233,6 +239,13 @@ public class BeatEmUpScript : MonoBehaviour
 			RightBreast.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			LeftBreast.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			Eighties = true;
+			if (GameGlobals.CustomMode)
+			{
+				RyobaHair.transform.parent.gameObject.SetActive(value: false);
+				Beanie.SetActive(value: true);
+				Shades.SetActive(value: true);
+				Mask.SetActive(value: true);
+			}
 		}
 		else
 		{
@@ -257,7 +270,7 @@ public class BeatEmUpScript : MonoBehaviour
 		MyRenderer.materials[0].mainTexture = UniformTextures[StudentGlobals.FemaleUniform];
 		MyRenderer.materials[1].mainTexture = UniformTextures[StudentGlobals.FemaleUniform];
 		MyRenderer.materials[2].mainTexture = FaceTexture;
-		if (Eighties)
+		if (Eighties && !GameGlobals.CustomMode)
 		{
 			MyRenderer.materials[0].mainTexture = EightiesUniformTexture;
 		}

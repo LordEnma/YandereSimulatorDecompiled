@@ -273,10 +273,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 	public void EndEvent()
 	{
 		Debug.Log("Osana's ''put bentos on desk'' event ended.");
-		Bentos[1].GetComponent<BentoScript>().enabled = true;
-		Bentos[2].GetComponent<BentoScript>().enabled = true;
-		Bentos[1].GetComponent<PromptScript>().enabled = true;
-		Bentos[2].GetComponent<PromptScript>().enabled = true;
+		EnableBentos();
 		if (VoiceClip != null)
 		{
 			UnityEngine.Object.Destroy(VoiceClip);
@@ -317,5 +314,15 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		NextEvent.enabled = true;
 		base.enabled = false;
 		Finished = true;
+	}
+
+	public void EnableBentos()
+	{
+		Bentos[1].SetActive(value: true);
+		Bentos[2].SetActive(value: true);
+		Bentos[1].GetComponent<BentoScript>().enabled = true;
+		Bentos[2].GetComponent<BentoScript>().enabled = true;
+		Bentos[1].GetComponent<PromptScript>().enabled = true;
+		Bentos[2].GetComponent<PromptScript>().enabled = true;
 	}
 }

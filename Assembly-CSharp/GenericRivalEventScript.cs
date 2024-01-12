@@ -1748,7 +1748,6 @@ public class GenericRivalEventScript : MonoBehaviour
 					}
 					if (flag && !Senpai.InEvent)
 					{
-						Debug.Log(base.gameObject.name + " has begun.");
 						Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 						Senpai.CharacterAnimation.CrossFade(Senpai.WalkAnim);
 						Senpai.Pathfinding.target = Location[1];
@@ -1836,6 +1835,10 @@ public class GenericRivalEventScript : MonoBehaviour
 							EndEvent();
 						}
 					}
+					else if (!Senpai.ShoeRemoval.enabled && !Senpai.Alarmed)
+					{
+						Senpai.CharacterAnimation.CrossFade(Senpai.WalkAnim);
+					}
 					if (Rival.CurrentDestination == Location[2] && Rival.DistanceToDestination < 0.5f)
 					{
 						Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
@@ -1857,6 +1860,10 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 		if (Phase == 1)
 		{
+			Rival.MoveTowardsTarget(Rival.CurrentDestination.position);
+			Rival.transform.rotation = Quaternion.Slerp(Rival.transform.rotation, Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
+			Senpai.MoveTowardsTarget(Senpai.CurrentDestination.position);
+			Senpai.transform.rotation = Quaternion.Slerp(Senpai.transform.rotation, Senpai.CurrentDestination.rotation, 10f * Time.deltaTime);
 			Timer += Time.deltaTime;
 			if (Timer > 1f)
 			{
@@ -2029,20 +2036,24 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 		if (Teleport && NaturalEnd)
 		{
+			ScheduleBlock scheduleBlock = Senpai.ScheduleBlocks[2];
+			Senpai.ReturnDestination = scheduleBlock.destination;
+			Senpai.ReturnAction = scheduleBlock.action;
+			Senpai.OriginalScheduleBlocks = Senpai.ScheduleBlocks;
 			if (DateGlobals.Weekday == DayOfWeek.Monday)
 			{
 				Senpai.ExtraBento = true;
-				ScheduleBlock obj = Senpai.ScheduleBlocks[2];
-				obj.destination = "Patrol";
-				obj.action = "Patrol";
+				scheduleBlock = Senpai.ScheduleBlocks[2];
+				scheduleBlock.destination = "Patrol";
+				scheduleBlock.action = "Patrol";
 				Senpai.GetDestinations();
 			}
 			else if (DateGlobals.Weekday == DayOfWeek.Tuesday)
 			{
 				StudentManager.RivalBookBag.BorrowedBook = true;
-				ScheduleBlock obj2 = Rival.ScheduleBlocks[4];
-				obj2.destination = "LunchSpot";
-				obj2.action = "Read";
+				scheduleBlock = Rival.ScheduleBlocks[4];
+				scheduleBlock.destination = "LunchSpot";
+				scheduleBlock.action = "Read";
 				Rival.GetDestinations();
 			}
 			else if (DateGlobals.Weekday == DayOfWeek.Wednesday)
@@ -2052,20 +2063,20 @@ public class GenericRivalEventScript : MonoBehaviour
 			else if (DateGlobals.Weekday == DayOfWeek.Thursday)
 			{
 				Debug.Log("Thursday-specific ''Rival going to sleep'' code just fired.");
-				ScheduleBlock obj3 = Rival.ScheduleBlocks[6];
-				obj3.destination = "SleepSpot";
-				obj3.action = "Sleep";
+				scheduleBlock = Rival.ScheduleBlocks[6];
+				scheduleBlock.destination = "SleepSpot";
+				scheduleBlock.action = "Sleep";
 				if (Rival.Sedated && Rival.StudentID != 15 && Rival.ScheduleBlocks.Length == 10)
 				{
-					ScheduleBlock obj4 = Rival.ScheduleBlocks[7];
-					obj4.destination = "SleepSpot";
-					obj4.action = "Sleep";
-					ScheduleBlock obj5 = Rival.ScheduleBlocks[8];
-					obj5.destination = "SleepSpot";
-					obj5.action = "Sleep";
-					ScheduleBlock obj6 = Rival.ScheduleBlocks[9];
-					obj6.destination = "SleepSpot";
-					obj6.action = "Sleep";
+					scheduleBlock = Rival.ScheduleBlocks[7];
+					scheduleBlock.destination = "SleepSpot";
+					scheduleBlock.action = "Sleep";
+					scheduleBlock = Rival.ScheduleBlocks[8];
+					scheduleBlock.destination = "SleepSpot";
+					scheduleBlock.action = "Sleep";
+					scheduleBlock = Rival.ScheduleBlocks[9];
+					scheduleBlock.destination = "SleepSpot";
+					scheduleBlock.action = "Sleep";
 				}
 				Rival.GetDestinations();
 			}

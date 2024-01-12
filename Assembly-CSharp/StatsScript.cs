@@ -110,6 +110,11 @@ public class StatsScript : MonoBehaviour
 			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/CustomPortrait.png");
 			Portrait.mainTexture = wWW.texture;
 		}
+		if (GameGlobals.CustomMode)
+		{
+			WWW wWW2 = new WWW("file:///" + Application.streamingAssetsPath + "/YanderePortrait.png");
+			Portrait.mainTexture = wWW2.texture;
+		}
 	}
 
 	private void Update()

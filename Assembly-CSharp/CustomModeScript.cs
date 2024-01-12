@@ -85,6 +85,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public Transform ZoomTarget;
 
+	public UIPanel ConfirmRandomPanel;
+
 	public UIPanel MiscellaneousPanel;
 
 	public UIPanel StudentInfoPanel;
@@ -263,13 +265,17 @@ public class CustomModeScript : MonoBehaviour
 
 	public Texture[] LocationScreenshots;
 
-	public bool[] MiscellaneousOptions;
+	public string[] DestinationExplanations;
 
-	public bool[] StudentGenders;
+	public string[] ActionExplanations;
 
 	public string[] TimeExplanations;
 
 	public string[] DescText;
+
+	public bool[] MiscellaneousOptions;
+
+	public bool[] StudentGenders;
 
 	public string[] EliminationNames;
 
@@ -288,6 +294,8 @@ public class CustomModeScript : MonoBehaviour
 	public int[] EyeWear;
 
 	public AudioClip[] BGM;
+
+	public int CurrentBGM;
 
 	public string[] Surnames;
 
@@ -383,6 +391,8 @@ public class CustomModeScript : MonoBehaviour
 		StudentChan.GetComponent<StudentScript>().DisableProps();
 		StudentChan.GetComponent<StudentScript>().DisableFemaleProps();
 		StudentChan.GetComponent<StudentScript>().SetSplashes(Bool: false);
+		DestroyComponentsInChildren(StudentKun.transform);
+		DestroyComponentsInChildren(StudentChan.transform);
 		for (int i = 0; i < 101; i++)
 		{
 			GameObject obj = UnityEngine.Object.Instantiate(NumberBubble, base.transform.position, Quaternion.identity);
@@ -432,6 +442,7 @@ public class CustomModeScript : MonoBehaviour
 		PromptBar.Label[4].text = "Change Selection";
 		PromptBar.UpdateButtons();
 		PromptBar.Show = true;
+		ConfirmRandomPanel.alpha = 0f;
 		MiscellaneousPanel.alpha = 0f;
 		StudentListPanel.alpha = 0f;
 		StudentInfoPanel.alpha = 0f;
@@ -577,18 +588,6 @@ public class CustomModeScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown("m"))
-		{
-			if (Jukebox.clip == BGM[1])
-			{
-				Jukebox.clip = BGM[2];
-			}
-			else
-			{
-				Jukebox.clip = BGM[1];
-			}
-			Jukebox.Play();
-		}
 		int i;
 		for (i = 0; i < EditableLabels.Length; i++)
 		{
@@ -597,6 +596,16 @@ public class CustomModeScript : MonoBehaviour
 				EditedLabel = EditableLabels[i];
 				PlayerIsTyping = true;
 			}
+		}
+		if (!PlayerIsTyping && Input.GetKeyDown("m"))
+		{
+			CurrentBGM++;
+			if (CurrentBGM >= BGM.Length)
+			{
+				CurrentBGM = 0;
+			}
+			Jukebox.clip = BGM[CurrentBGM];
+			Jukebox.Play();
 		}
 		if (FadeOut)
 		{
@@ -624,6 +633,7 @@ public class CustomModeScript : MonoBehaviour
 				GameGlobals.YakuzaPhase = 100;
 			}
 			GameGlobals.ForceCanonEliminations = JSON.Misc.Misc[4];
+			GameGlobals.CanBefriendCouncil = JSON.Misc.Misc[5];
 			StudentGlobals.FemaleUniform = JSON.Misc.FemaleUniform;
 			StudentGlobals.MaleUniform = JSON.Misc.MaleUniform;
 			GameGlobals.CustomMode = true;
@@ -761,115 +771,127 @@ public class CustomModeScript : MonoBehaviour
 			}
 			else if (ViewingStudents)
 			{
-				StudentListPanel.alpha = Mathf.MoveTowards(StudentListPanel.alpha, 1f, Time.deltaTime * 10f);
-				StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 1f, Time.deltaTime * 10f);
-				CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 0f, Time.deltaTime * 10f);
-				OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
-				InitialPanel.alpha = Mathf.MoveTowards(InitialPanel.alpha, 0f, Time.deltaTime * 10f);
-				RivalPanel.alpha = Mathf.MoveTowards(RivalPanel.alpha, 0f, Time.deltaTime * 10f);
-				if (!(StudentListPanel.alpha > 0.999f))
+				if (ConfirmRandomPanel.alpha == 0f)
 				{
-					return;
-				}
-				if (InputManager.TappedDown || HeldDown > 0.5f)
-				{
-					if (HeldDown > 0.5f)
+					StudentListPanel.alpha = Mathf.MoveTowards(StudentListPanel.alpha, 1f, Time.deltaTime * 10f);
+					StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 1f, Time.deltaTime * 10f);
+					CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 0f, Time.deltaTime * 10f);
+					OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
+					InitialPanel.alpha = Mathf.MoveTowards(InitialPanel.alpha, 0f, Time.deltaTime * 10f);
+					RivalPanel.alpha = Mathf.MoveTowards(RivalPanel.alpha, 0f, Time.deltaTime * 10f);
+					if (!(StudentListPanel.alpha > 0.999f))
 					{
-						HeldDown = 0.45f;
+						return;
 					}
-					Selected++;
-					if (Selected > 100)
+					if (InputManager.TappedDown || HeldDown > 0.5f)
 					{
-						StudentList.localPosition = new Vector3(0f, 0f, 0f);
-						Selected = 0;
+						if (HeldDown > 0.5f)
+						{
+							HeldDown = 0.45f;
+						}
+						Selected++;
+						if (Selected > 100)
+						{
+							StudentList.localPosition = new Vector3(0f, 0f, 0f);
+							Selected = 0;
+						}
+						UpdateStudent();
 					}
-					UpdateStudent();
-				}
-				if (InputManager.TappedUp || HeldUp > 0.5f)
-				{
-					if (HeldUp > 0.5f)
+					if (InputManager.TappedUp || HeldUp > 0.5f)
 					{
-						HeldUp = 0.45f;
+						if (HeldUp > 0.5f)
+						{
+							HeldUp = 0.45f;
+						}
+						Selected--;
+						if (Selected < 0)
+						{
+							StudentList.localPosition = new Vector3(0f, 9000f, 0f);
+							Selected = 100;
+						}
+						UpdateStudent();
 					}
-					Selected--;
-					if (Selected < 0)
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						StudentList.localPosition = new Vector3(0f, 9000f, 0f);
-						Selected = 100;
+						if (Selected < 98)
+						{
+							ViewingStudents = false;
+							EditingStudent = true;
+							EditingCosmetic = true;
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Next";
+							PromptBar.Label[1].text = "Previous";
+							PromptBar.Label[2].text = "Zoom";
+							PromptBar.Label[3].text = "Randomize";
+							PromptBar.Label[4].text = "Change Selection";
+							PromptBar.Label[5].text = "Rotate";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+							UpdateHeader();
+						}
 					}
-					UpdateStudent();
-				}
-				if (Input.GetButtonDown(InputNames.Xbox_A))
-				{
-					if (Selected < 98)
+					else if (Input.GetButtonDown(InputNames.Xbox_Y))
+					{
+						ConfirmRandomPanel.alpha = 1f;
+					}
+					else if (Input.GetButtonDown(InputNames.Xbox_LB))
 					{
 						ViewingStudents = false;
-						EditingStudent = true;
-						EditingCosmetic = true;
+						EditingStudent = false;
+						Initializing = true;
+						Zoom = false;
+						CharacterParent.position = new Vector3(3f, -0.85f, 2.25f);
+						InitialFemale.gameObject.SetActive(value: true);
+						InitialMale.gameObject.SetActive(value: true);
 						PromptBar.ClearButtons();
-						PromptBar.Label[0].text = "Next";
-						PromptBar.Label[1].text = "Previous";
-						PromptBar.Label[2].text = "Zoom";
-						PromptBar.Label[3].text = "Randomize";
+						PromptBar.Label[0].text = "Select";
 						PromptBar.Label[4].text = "Change Selection";
-						PromptBar.Label[5].text = "Rotate";
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
 						UpdateHeader();
 					}
+					else if (Input.GetButtonDown(InputNames.Xbox_RB))
+					{
+						ViewingStudents = false;
+						EditingStudent = false;
+						ViewingRivals = true;
+						RivalSelected = 1;
+						UpdateStudent();
+						Zoom = false;
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = "Edit";
+						PromptBar.Label[2].text = "Change Method";
+						PromptBar.Label[3].text = "Randomize Methods";
+						PromptBar.Label[4].text = "Change Selection";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+						PopulateRivalList();
+						UpdateHeader();
+					}
+					Arrow.localPosition = new Vector3(-1000f, 400 - 100 * Selected, 0f);
+					if (Arrow.position.y < -0.4f)
+					{
+						StudentList.transform.position += new Vector3(0f, 0.1f, 0f);
+					}
+					if (Arrow.position.y > 0.4f)
+					{
+						StudentList.transform.position -= new Vector3(0f, 0.1f, 0f);
+					}
+					StudentList.transform.localPosition = new Vector3(0f, Mathf.RoundToInt(StudentList.transform.localPosition.y), 0f);
+					NameList.transform.localPosition = StudentList.transform.localPosition;
 				}
-				else if (Input.GetButtonDown(InputNames.Xbox_Y))
+				else if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					RandomizeAll();
 					string action = JSON.Students[1].ScheduleBlocks[2].action;
 					NotificationManager.CustomText = "Routines: " + action;
 					NotificationManager.DisplayNotification(NotificationType.Custom);
+					ConfirmRandomPanel.alpha = 0f;
 				}
-				else if (Input.GetButtonDown(InputNames.Xbox_LB))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
-					ViewingStudents = false;
-					EditingStudent = false;
-					Initializing = true;
-					Zoom = false;
-					CharacterParent.position = new Vector3(3f, -0.85f, 2.25f);
-					InitialFemale.gameObject.SetActive(value: true);
-					InitialMale.gameObject.SetActive(value: true);
-					PromptBar.ClearButtons();
-					PromptBar.Label[0].text = "Select";
-					PromptBar.Label[4].text = "Change Selection";
-					PromptBar.UpdateButtons();
-					PromptBar.Show = true;
-					UpdateHeader();
+					ConfirmRandomPanel.alpha = 0f;
 				}
-				else if (Input.GetButtonDown(InputNames.Xbox_RB))
-				{
-					ViewingStudents = false;
-					EditingStudent = false;
-					ViewingRivals = true;
-					RivalSelected = 1;
-					UpdateStudent();
-					Zoom = false;
-					PromptBar.ClearButtons();
-					PromptBar.Label[0].text = "Edit";
-					PromptBar.Label[2].text = "Change Method";
-					PromptBar.Label[3].text = "Randomize Methods";
-					PromptBar.Label[4].text = "Change Selection";
-					PromptBar.UpdateButtons();
-					PromptBar.Show = true;
-					PopulateRivalList();
-					UpdateHeader();
-				}
-				Arrow.localPosition = new Vector3(-1000f, 400 - 100 * Selected, 0f);
-				if (Arrow.position.y < -0.4f)
-				{
-					StudentList.transform.position += new Vector3(0f, 0.1f, 0f);
-				}
-				if (Arrow.position.y > 0.4f)
-				{
-					StudentList.transform.position -= new Vector3(0f, 0.1f, 0f);
-				}
-				StudentList.transform.localPosition = new Vector3(0f, Mathf.RoundToInt(StudentList.transform.localPosition.y), 0f);
-				NameList.transform.localPosition = StudentList.transform.localPosition;
 			}
 			else if (EditingStudent)
 			{
@@ -1085,7 +1107,7 @@ public class CustomModeScript : MonoBehaviour
 							EyeColorID--;
 							if (EyeColorID <= -1)
 							{
-								EyeColorID = Colors.Length - 2;
+								EyeColorID = Colors.Length - 1;
 							}
 							JSON.Students[Selected].Eyes = Colors[EyeColorID] ?? "";
 						}
@@ -1132,7 +1154,7 @@ public class CustomModeScript : MonoBehaviour
 						{
 							int num6 = AnimSet[Selected];
 							num6--;
-							if (Selected == 1 || JSON.Students[Selected].Gender == 0)
+							if (Selected == 0 || JSON.Students[Selected].Gender == 0)
 							{
 								if (num6 < 0)
 								{
@@ -1150,7 +1172,8 @@ public class CustomModeScript : MonoBehaviour
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_Y) && CosmeticWindows[CosmeticSelected].alpha == 1f)
 					{
-						if (StudentChan.activeInHierarchy)
+						Debug.Log("Randomizing, supposedly.");
+						if (Selected == 0 || StudentChan.activeInHierarchy)
 						{
 							RandomizeGirl(Selected);
 						}
@@ -1389,7 +1412,18 @@ public class CustomModeScript : MonoBehaviour
 					}
 					num8 = 500 - Row * 100;
 					ScheduleArrow.localPosition = new Vector3(num7, num8, 0f);
-					ScheduleHelpLabel.text = TimeExplanations[Row];
+					if (Column == 1)
+					{
+						ScheduleHelpLabel.text = TimeExplanations[Row];
+					}
+					else if (Column == 2)
+					{
+						ScheduleHelpLabel.text = ActionExplanations[Array.IndexOf(Actions, JSON.Students[Selected].ScheduleBlocks[Row].action)];
+					}
+					else if (Column == 3)
+					{
+						ScheduleHelpLabel.text = DestinationExplanations[Array.IndexOf(Destinations, JSON.Students[Selected].ScheduleBlocks[Row].destination)];
+					}
 					if (Column == 2)
 					{
 						if (Input.GetButtonDown(InputNames.Xbox_A))
@@ -1401,6 +1435,7 @@ public class CustomModeScript : MonoBehaviour
 								num9 = 1;
 							}
 							JSON.Students[Selected].ScheduleBlocks[Row].action = Actions[num9];
+							ScheduleHelpLabel.text = ActionExplanations[num9];
 							UpdateStudent();
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -1412,6 +1447,7 @@ public class CustomModeScript : MonoBehaviour
 								num10 = Actions.Length - 1;
 							}
 							JSON.Students[Selected].ScheduleBlocks[Row].action = Actions[num10];
+							ScheduleHelpLabel.text = ActionExplanations[num10];
 							UpdateStudent();
 						}
 					}
@@ -1426,6 +1462,7 @@ public class CustomModeScript : MonoBehaviour
 								num11 = 1;
 							}
 							JSON.Students[Selected].ScheduleBlocks[Row].destination = Destinations[num11];
+							ScheduleHelpLabel.text = DestinationExplanations[Row];
 							UpdateStudent();
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -1437,6 +1474,7 @@ public class CustomModeScript : MonoBehaviour
 								num12 = Destinations.Length - 1;
 							}
 							JSON.Students[Selected].ScheduleBlocks[Row].destination = Destinations[num12];
+							ScheduleHelpLabel.text = DestinationExplanations[Row];
 							UpdateStudent();
 						}
 					}
@@ -1583,11 +1621,13 @@ public class CustomModeScript : MonoBehaviour
 					Patrol2Panel.transform.position -= new Vector3(1f, 0f, 0f);
 					if (Input.GetKey("right") || Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f)
 					{
-						CurrentMapIcon.ArrowParent.localEulerAngles += new Vector3(0f, 0f, 360f * Time.deltaTime);
+						CurrentMapIcon.Rotation += 360f * Time.deltaTime;
+						CurrentMapIcon.ArrowParent.localEulerAngles = new Vector3(0f, 0f, CurrentMapIcon.Rotation * -1f);
 					}
 					else if (Input.GetKey("left") || Input.GetAxis(InputNames.Xbox_DpadX) < -0.5f)
 					{
-						CurrentMapIcon.ArrowParent.localEulerAngles -= new Vector3(0f, 0f, 360f * Time.deltaTime);
+						CurrentMapIcon.Rotation -= 360f * Time.deltaTime;
+						CurrentMapIcon.ArrowParent.localEulerAngles = new Vector3(0f, 0f, CurrentMapIcon.Rotation * -1f);
 					}
 					if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
@@ -1664,8 +1704,6 @@ public class CustomModeScript : MonoBehaviour
 					EditingRivals = true;
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Edit";
-					PromptBar.Label[2].text = "Change Method";
-					PromptBar.Label[3].text = "Randomize Methods";
 					PromptBar.Label[4].text = "Change Selection";
 					PromptBar.UpdateButtons();
 					PromptBar.Show = true;
@@ -1720,6 +1758,10 @@ public class CustomModeScript : MonoBehaviour
 					if (JSON.Misc.CanonEliminations[i] == 10 || JSON.Misc.CanonEliminations[i] == 16)
 					{
 						JSON.Misc.CanonEliminations[RivalSelected]++;
+						if (JSON.Misc.CanonEliminations[RivalSelected] == 10 || JSON.Misc.CanonEliminations[RivalSelected] == 16)
+						{
+							JSON.Misc.CanonEliminations[RivalSelected]++;
+						}
 					}
 					if (JSON.Misc.CanonEliminations[RivalSelected] > EliminationNames.Length - 1)
 					{
@@ -1809,6 +1851,8 @@ public class CustomModeScript : MonoBehaviour
 					UpdateStudent();
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Edit";
+					PromptBar.Label[2].text = "Change Method";
+					PromptBar.Label[3].text = "Randomize Methods";
 					PromptBar.Label[4].text = "Change Selection";
 					PromptBar.UpdateButtons();
 					PromptBar.Show = true;
@@ -1909,6 +1953,10 @@ public class CustomModeScript : MonoBehaviour
 					CharacterParent.position = new Vector3(0f, -0.85f, 2.25f);
 					UpdateStudent();
 					PromptBar.ClearButtons();
+					PromptBar.Label[0].text = "Edit";
+					PromptBar.Label[2].text = "Change Method";
+					PromptBar.Label[3].text = "Randomize Methods";
+					PromptBar.Label[4].text = "Change Selection";
 					PromptBar.UpdateButtons();
 					PromptBar.Show = true;
 					PopulateRivalList();
@@ -2254,10 +2302,6 @@ public class CustomModeScript : MonoBehaviour
 		}
 		UsedSurnames[num3] = true;
 		JSON.Students[ID].Name = FemaleNames[num2] + " " + Surnames[num3];
-		if (ID == 0)
-		{
-			JSON.Students[0].Hairstyle = UnityEngine.Random.Range(0, Yandere.Hairstyles.Length).ToString() ?? "";
-		}
 		int num4 = 0;
 		if (ID > 89 && ID < 98)
 		{
@@ -2272,20 +2316,21 @@ public class CustomModeScript : MonoBehaviour
 		}
 		else
 		{
-			num = 0;
-			while (UsedFemaleHairs[num4] && num < 100)
-			{
-				num4 = UnityEngine.Random.Range(1, StudentChanCosmetic.FemaleHair.Length);
-				num++;
-			}
-			UsedFemaleHairs[num4] = true;
 			JSON.Students[ID].Stockings = StockingColors[UnityEngine.Random.Range(0, StockingColors.Length)];
 			if (ID > 0)
 			{
+				num = 0;
+				while (UsedFemaleHairs[num4] && num < 100)
+				{
+					num4 = UnityEngine.Random.Range(1, StudentChanCosmetic.FemaleHair.Length);
+					num++;
+				}
+				UsedFemaleHairs[num4] = true;
 				JSON.Students[ID].Accessory = UnityEngine.Random.Range(0, StudentChanCosmetic.FemaleAccessories.Length).ToString() ?? "";
 			}
 			else
 			{
+				num4 = UnityEngine.Random.Range(0, Yandere.Hairstyles.Length);
 				JSON.Students[ID].Accessory = "0";
 			}
 			JSON.Students[ID].BreastSize = UnityEngine.Random.Range(0.5f, 2f);
@@ -2519,6 +2564,11 @@ public class CustomModeScript : MonoBehaviour
 			CosmeticWindows[5].alpha = 1f;
 			CosmeticBubbles[5].alpha = 1f;
 		}
+		else if (ID > 89)
+		{
+			CosmeticWindows[8].alpha = 0.5f;
+			CosmeticBubbles[8].alpha = 0.5f;
+		}
 	}
 
 	private void GetColorValue(string HairColor)
@@ -2718,14 +2768,17 @@ public class CustomModeScript : MonoBehaviour
 		MiscellaneousLabels[2].text = "No";
 		MiscellaneousLabels[3].text = "No";
 		MiscellaneousLabels[4].text = "No";
+		MiscellaneousLabels[5].text = "No";
 		MiscellaneousOptions[1] = false;
 		MiscellaneousOptions[2] = false;
 		MiscellaneousOptions[3] = false;
 		MiscellaneousOptions[4] = false;
+		MiscellaneousOptions[5] = false;
 		JSON.Misc.Misc[1] = false;
 		JSON.Misc.Misc[2] = false;
 		JSON.Misc.Misc[3] = false;
 		JSON.Misc.Misc[4] = false;
+		JSON.Misc.Misc[5] = false;
 		JSON.Misc.CanonEliminations[1] = 18;
 		JSON.Misc.CanonEliminations[2] = 5;
 		JSON.Misc.CanonEliminations[3] = 6;
@@ -2777,19 +2830,23 @@ public class CustomModeScript : MonoBehaviour
 			JSON.Misc.HangoutPosZ[i] = HangoutIcons[i].localPosition.z;
 			JSON.Misc.HangoutRotX[i] = HangoutIcons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles.x;
 			JSON.Misc.HangoutRotY[i] = HangoutIcons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles.y;
-			JSON.Misc.HangoutRotZ[i] = HangoutIcons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles.z;
+			JSON.Misc.HangoutRotZ[i] = HangoutIcons[i].GetComponent<MapIconScript>().Rotation;
+			if (JSON.Misc.HangoutRotZ[i] > 180f)
+			{
+				JSON.Misc.HangoutRotZ[i] = (360f - JSON.Misc.HangoutRotZ[i]) * -1f;
+			}
 			JSON.Misc.Patrol1PosX[i] = Patrol1Icons[i].localPosition.x;
 			JSON.Misc.Patrol1PosY[i] = Patrol1Icons[i].localPosition.y;
 			JSON.Misc.Patrol1PosZ[i] = Patrol1Icons[i].localPosition.z;
 			JSON.Misc.Patrol1RotX[i] = Patrol1Icons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles.x;
 			JSON.Misc.Patrol1RotY[i] = Patrol1Icons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles.y;
-			JSON.Misc.Patrol1RotZ[i] = Patrol1Icons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles.z;
+			JSON.Misc.Patrol1RotZ[i] = Patrol1Icons[i].GetComponent<MapIconScript>().Rotation;
 			JSON.Misc.Patrol2PosX[i] = Patrol2Icons[i].localPosition.x;
 			JSON.Misc.Patrol2PosY[i] = Patrol2Icons[i].localPosition.y;
 			JSON.Misc.Patrol2PosZ[i] = Patrol2Icons[i].localPosition.z;
 			JSON.Misc.Patrol2RotX[i] = Patrol2Icons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles.x;
 			JSON.Misc.Patrol2RotY[i] = Patrol2Icons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles.y;
-			JSON.Misc.Patrol2RotZ[i] = Patrol2Icons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles.z;
+			JSON.Misc.Patrol2RotZ[i] = Patrol2Icons[i].GetComponent<MapIconScript>().Rotation;
 		}
 	}
 
@@ -2797,12 +2854,18 @@ public class CustomModeScript : MonoBehaviour
 	{
 		for (int i = 1; i < 101; i++)
 		{
+			MapIconScript component = HangoutIcons[i].GetComponent<MapIconScript>();
 			HangoutIcons[i].localPosition = new Vector3(JSON.Misc.HangoutPosX[i], JSON.Misc.HangoutPosY[i], JSON.Misc.HangoutPosZ[i]);
-			HangoutIcons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles = new Vector3(JSON.Misc.HangoutRotX[i], JSON.Misc.HangoutRotY[i], JSON.Misc.HangoutRotZ[i]);
+			component.Rotation = JSON.Misc.HangoutRotZ[i];
+			component.ArrowParent.localEulerAngles = new Vector3(0f, 0f, component.Rotation * -1f);
+			component = Patrol1Icons[i].GetComponent<MapIconScript>();
 			Patrol1Icons[i].localPosition = new Vector3(JSON.Misc.Patrol1PosX[i], JSON.Misc.Patrol1PosY[i], JSON.Misc.Patrol1PosZ[i]);
-			Patrol1Icons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles = new Vector3(JSON.Misc.Patrol1RotX[i], JSON.Misc.Patrol1RotY[i], JSON.Misc.Patrol1RotZ[i]);
+			component.Rotation = JSON.Misc.Patrol1RotZ[i];
+			component.ArrowParent.localEulerAngles = new Vector3(0f, 0f, component.Rotation * -1f);
+			component = Patrol2Icons[i].GetComponent<MapIconScript>();
 			Patrol2Icons[i].localPosition = new Vector3(JSON.Misc.Patrol2PosX[i], JSON.Misc.Patrol2PosY[i], JSON.Misc.Patrol2PosZ[i]);
-			Patrol2Icons[i].GetComponent<MapIconScript>().ArrowParent.localEulerAngles = new Vector3(JSON.Misc.Patrol2RotX[i], JSON.Misc.Patrol2RotY[i], JSON.Misc.Patrol2RotZ[i]);
+			component.Rotation = JSON.Misc.Patrol2RotZ[i];
+			component.ArrowParent.localEulerAngles = new Vector3(0f, 0f, component.Rotation * -1f);
 		}
 	}
 
@@ -3148,6 +3211,29 @@ public class CustomModeScript : MonoBehaviour
 			{
 				EventLocationLabels[i].text = "Location #" + ArrayToEdit[i];
 			}
+		}
+	}
+
+	private void DestroyComponentsInChildren(Transform parentTransform)
+	{
+		foreach (Transform item in parentTransform)
+		{
+			Collider component = item.GetComponent<Collider>();
+			if (component != null)
+			{
+				UnityEngine.Object.Destroy(component);
+			}
+			CharacterJoint component2 = item.GetComponent<CharacterJoint>();
+			if (component2 != null)
+			{
+				UnityEngine.Object.Destroy(component2);
+			}
+			Rigidbody component3 = item.GetComponent<Rigidbody>();
+			if (component3 != null)
+			{
+				UnityEngine.Object.Destroy(component3);
+			}
+			DestroyComponentsInChildren(item);
 		}
 	}
 }

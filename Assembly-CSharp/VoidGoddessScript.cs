@@ -82,6 +82,10 @@ public class VoidGoddessScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			text = "1989";
+			if (GameGlobals.CustomMode)
+			{
+				text = "Custom";
+			}
 		}
 		for (ID = 1; ID < 101; ID++)
 		{

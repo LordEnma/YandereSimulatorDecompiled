@@ -97,6 +97,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public int Victim;
 
+	public bool CanBefriendCouncil;
+
 	public bool AskingFavor;
 
 	public bool Matchmaking;
@@ -135,6 +137,7 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		NoFriends = ChallengeGlobals.NoFriends;
 		NoGaming = ChallengeGlobals.NoGaming;
+		CanBefriendCouncil = GameGlobals.CanBefriendCouncil;
 	}
 
 	private void Update()
@@ -260,7 +263,6 @@ public class DialogueWheelScript : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log("Talking to a club leader.");
 					if (Yandere.TargetStudent.Club == ClubType.Gardening)
 					{
 						PracticeLabel.text = "Seeds";
@@ -761,7 +763,7 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite7 = Shadow[3];
 			uISprite7.color = new Color(uISprite7.color.r, uISprite7.color.g, uISprite7.color.b, 0.75f);
 		}
-		if (Yandere.Bloodiness > 0f || Yandere.Sanity < 33.33333f || Yandere.TargetStudent.Club == ClubType.Council)
+		if (Yandere.Bloodiness > 0f || Yandere.Sanity < 33.33333f || (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council))
 		{
 			UISprite uISprite8 = Shadow[3];
 			uISprite8.color = new Color(uISprite8.color.r, uISprite8.color.g, uISprite8.color.b, 0.75f);
@@ -774,7 +776,7 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite10 = Shadow[3];
 			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.75f);
 		}
-		if (!Yandere.TargetStudent.Indoors || Yandere.TargetStudent.Club == ClubType.Council)
+		if (!Yandere.TargetStudent.Indoors || (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council))
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
@@ -902,7 +904,7 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
-		if (!Yandere.TargetStudent.Indoors || Yandere.TargetStudent.Club == ClubType.Council)
+		if (!Yandere.TargetStudent.Indoors || (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council))
 		{
 			UISprite uISprite11 = Shadow[6];
 			uISprite11.color = new Color(uISprite11.color.r, uISprite11.color.g, uISprite11.color.b, 0.75f);
