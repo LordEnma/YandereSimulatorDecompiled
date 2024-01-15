@@ -74,6 +74,8 @@ public class SocialScript : MonoBehaviour
 
 	public bool Show;
 
+	public float Patience;
+
 	private void Start()
 	{
 		ComplimentSet.SetActive(value: false);
@@ -252,8 +254,10 @@ public class SocialScript : MonoBehaviour
 			if (Selected == 6)
 			{
 				Yandere.ShoulderCamera.enabled = true;
+				Yandere.TargetStudent.TalkTimer = 0f;
 				Yandere.CameraEffects.UpdateDOF(2f);
 				Yandere.HUD.alpha = 1f;
+				DialogueWheel.Impatience.fillAmount = Patience;
 				DialogueWheel.Panel.enabled = true;
 				DialogueWheel.Panel.alpha = 1f;
 				DialogueWheel.Show = true;

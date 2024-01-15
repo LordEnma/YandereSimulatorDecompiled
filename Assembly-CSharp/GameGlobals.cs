@@ -104,6 +104,8 @@ public static class GameGlobals
 
 	private const string Str_LastInputType = "LastInputType";
 
+	private const string Str_ReturnToCustomMode = "ReturnToCustomMode";
+
 	private const string Str_CustomMode = "CustomMode";
 
 	private const string Str_CustomAnimSet = "CustomAnimSet";
@@ -129,6 +131,8 @@ public static class GameGlobals
 	private const string Str_ForceCanonEliminations = "ForceCanonEliminations";
 
 	private const string Str_CanBefriendCouncil = "CanBefriendCouncil";
+
+	private const string Str_InCutscene = "InCutscene";
 
 	public static int Profile
 	{
@@ -526,6 +530,18 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool InCutscene
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("InCutscene");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("InCutscene", value);
+		}
+	}
+
 	public static int YakuzaPhase
 	{
 		get
@@ -691,6 +707,18 @@ public static class GameGlobals
 		set
 		{
 			GlobalsHelper.SetBool("Profile_" + Profile + "_WatchedAnime", value);
+		}
+	}
+
+	public static bool ReturnToCustomMode
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_ReturnToCustomMode");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_ReturnToCustomMode", value);
 		}
 	}
 
@@ -987,6 +1015,7 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_CorkboardScene");
 		Globals.Delete("Profile_" + Profile + "_WatchedAnime");
 		Globals.Delete("Profile_" + Profile + "_LastInputType");
+		Globals.Delete("Profile_" + Profile + "_ReturnToCustomMode");
 		Globals.Delete("Profile_" + Profile + "_CustomMode");
 		Globals.Delete("Profile_" + Profile + "_AlternateTimeline");
 		Globals.Delete("Profile_" + Profile + "_SenpaiLove");
@@ -997,5 +1026,6 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_NoJournalist");
 		Globals.Delete("Profile_" + Profile + "_ForceCanonEliminations");
 		Globals.Delete("Profile_" + Profile + "_CanBefriendCouncil");
+		Globals.Delete("Profile_" + Profile + "_InCutscene");
 	}
 }

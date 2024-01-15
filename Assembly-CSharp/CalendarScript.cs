@@ -68,6 +68,8 @@ public class CalendarScript : MonoBehaviour
 
 	public UILabel[] DayLabel;
 
+	public UILabel CustomModeLabel;
+
 	public UILabel MonthLabel;
 
 	public UILabel WeekNumber;
@@ -138,6 +140,7 @@ public class CalendarScript : MonoBehaviour
 
 	private void Start()
 	{
+		GameGlobals.InCutscene = false;
 		GameGlobals.AlphabetMode = false;
 		if (!GameGlobals.Eighties)
 		{
@@ -146,6 +149,7 @@ public class CalendarScript : MonoBehaviour
 		if (GameGlobals.CustomMode)
 		{
 			Debug.Log("Calendar Screen. The game believes that we're in Custom Mode.");
+			CustomModeLabel.gameObject.SetActive(value: true);
 		}
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();

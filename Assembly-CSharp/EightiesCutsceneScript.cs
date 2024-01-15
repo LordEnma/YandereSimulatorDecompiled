@@ -162,6 +162,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 
 	private void Start()
 	{
+		GameGlobals.InCutscene = true;
 		GameGlobals.Eighties = true;
 		if (GameGlobals.EightiesCutsceneID < 2)
 		{

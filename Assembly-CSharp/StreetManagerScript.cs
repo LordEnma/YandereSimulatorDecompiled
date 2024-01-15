@@ -69,6 +69,8 @@ public class StreetManagerScript : MonoBehaviour
 
 	public float Alpha;
 
+	public GameObject[] RamenShop;
+
 	public UILabel[] HUDLabels;
 
 	public AudioClip DayStreet80s;
@@ -126,6 +128,11 @@ public class StreetManagerScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			BecomeEighties();
+			if (GameGlobals.CustomMode)
+			{
+				RamenShop[0].SetActive(value: false);
+				RamenShop[1].SetActive(value: false);
+			}
 		}
 		else
 		{

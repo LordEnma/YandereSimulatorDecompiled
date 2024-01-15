@@ -289,7 +289,7 @@ public class QualityManagerScript : MonoBehaviour
 		for (int i = 1; i < StudentManager.Students.Length; i++)
 		{
 			StudentScript studentScript = StudentManager.Students[i];
-			if (studentScript != null)
+			if (studentScript != null && !studentScript.Male)
 			{
 				if (studentScript.Cosmetic.MyStockings != null)
 				{
@@ -305,7 +305,7 @@ public class QualityManagerScript : MonoBehaviour
 					studentScript.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 					studentScript.MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 				}
-				if (!studentScript.Male && (studentScript.LabcoatAttacher.enabled || studentScript.ClubAttire))
+				if (studentScript.LabcoatAttacher.enabled || studentScript.ClubAttire)
 				{
 					studentScript.HideLabCoatPanties();
 				}
@@ -417,7 +417,11 @@ public class QualityManagerScript : MonoBehaviour
 						if (studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials.Length == 1)
 						{
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.shader = NewHairShader;
-							if (studentScript.StudentID == 1 && studentScript.StudentID == 1)
+							if (studentScript.Cosmetic.UsingDefaultHairColor)
+							{
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 1f);
+							}
+							else
 							{
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 0f);
 							}
@@ -426,7 +430,12 @@ public class QualityManagerScript : MonoBehaviour
 						{
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].shader = NewHairShader;
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].shader = NewHairShader;
-							if (studentScript.StudentID == 1 && studentScript.StudentID == 1)
+							if (studentScript.Cosmetic.UsingDefaultHairColor)
+							{
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].SetFloat("_Saturation", 1f);
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].SetFloat("_Saturation", 1f);
+							}
+							else
 							{
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].SetFloat("_Saturation", 0f);
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].SetFloat("_Saturation", 0f);
@@ -845,7 +854,11 @@ public class QualityManagerScript : MonoBehaviour
 						{
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.shader = NewBodyShader;
 							AdjustRimLight(studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material);
-							if (studentScript.StudentID == 1 && studentScript.StudentID == 1)
+							if (studentScript.Cosmetic.UsingDefaultHairColor)
+							{
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 1f);
+							}
+							else
 							{
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 0f);
 							}
@@ -856,7 +869,12 @@ public class QualityManagerScript : MonoBehaviour
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].shader = NewBodyShader;
 							AdjustRimLight(studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0]);
 							AdjustRimLight(studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1]);
-							if (studentScript.StudentID == 1 && studentScript.StudentID == 1)
+							if (studentScript.Cosmetic.UsingDefaultHairColor)
+							{
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].SetFloat("_Saturation", 1f);
+								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].SetFloat("_Saturation", 1f);
+							}
+							else
 							{
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].SetFloat("_Saturation", 0f);
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].SetFloat("_Saturation", 0f);

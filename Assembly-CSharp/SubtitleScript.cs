@@ -1232,6 +1232,13 @@ public class SubtitleScript : MonoBehaviour
 			EightiesClubDialogue.UpdateDialogue(3);
 			EightiesClubDialogue.UpdateDialogue(4);
 			TaskRequirements = TaskEightiesRequirements;
+			if (StudentManager.CustomMode)
+			{
+				for (int j = 0; j < TaskRequirements.Length; j++)
+				{
+					TaskRequirements[j] = "";
+				}
+			}
 			Shoving[1] = "Back off.";
 			Shoving[2] = "Desculpa!";
 			Shoving[3] = "Oops, sorry!";
@@ -1270,22 +1277,22 @@ public class SubtitleScript : MonoBehaviour
 			EdgyReport[3] = "What the hell?! What's going on here?!";
 			LovestruckMurderReports[0] = "Senpai! Ryoba from class 2-1 just killed someone!";
 			WeaponBloodApologies[0] = "It's not what it looks like! It's a costume and prop for an upcoming play.";
-			for (int j = 1; j < 5; j++)
+			for (int k = 1; k < 5; k++)
 			{
-				ShoveClips[j] = LongestSilence;
-				ChaseClips[j] = LongestSilence;
-				SprayClips[j] = LongestSilence;
-				BreakUpClips[j] = LongestSilence;
-				CouncilCorpseClips[j] = LongestSilence;
-				CouncilCounselorClips[j] = LongestSilence;
-				HmmClips[j] = LongestSilence;
+				ShoveClips[k] = LongestSilence;
+				ChaseClips[k] = LongestSilence;
+				SprayClips[k] = LongestSilence;
+				BreakUpClips[k] = LongestSilence;
+				CouncilCorpseClips[k] = LongestSilence;
+				CouncilCounselorClips[k] = LongestSilence;
+				HmmClips[k] = LongestSilence;
 			}
-			for (int j = 1; j < 4; j++)
+			for (int k = 1; k < 4; k++)
 			{
-				StrictReportClips[j] = LongestSilence;
-				CasualReportClips[j] = LongestSilence;
-				GraceReportClips[j] = LongestSilence;
-				EdgyReportClips[j] = LongestSilence;
+				StrictReportClips[k] = LongestSilence;
+				CasualReportClips[k] = LongestSilence;
+				GraceReportClips[k] = LongestSilence;
+				EdgyReportClips[k] = LongestSilence;
 			}
 			SenpaiRivalDeathReactions[0] = "...huh? ...are you okay?! What's wrong?! Hey!! Do you need any help?!";
 			SenpaiRivalDeathReactions[1] = "Huh?! What happened?!";

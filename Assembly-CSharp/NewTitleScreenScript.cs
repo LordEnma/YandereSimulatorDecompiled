@@ -683,7 +683,11 @@ public class NewTitleScreenScript : MonoBehaviour
 					}
 					else if (!GameGlobals.EightiesTutorial)
 					{
-						if (DateGlobals.Week < 11)
+						if (GameGlobals.InCutscene)
+						{
+							SceneManager.LoadScene("EightiesCutsceneScene");
+						}
+						else if (DateGlobals.Week < 11)
 						{
 							if (HomeGlobals.Night)
 							{

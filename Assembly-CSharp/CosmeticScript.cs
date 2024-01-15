@@ -363,6 +363,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Mesh NurseMesh;
 
+	public bool UsingDefaultHairColor;
+
 	public bool MysteriousObstacle;
 
 	public bool DoNotChangeFace;
@@ -1414,14 +1416,9 @@ public class CosmeticScript : MonoBehaviour
 			{
 				MaleHair[Hairstyle].SetActive(value: true);
 				HairRenderer = MaleHairRenderers[Hairstyle];
-				if (StudentID == 1)
+				if (StudentID == 1 && StartShader != null)
 				{
-					if (StartShader != null)
-					{
-						HairRenderer.material.shader = StartShader;
-					}
-					HairRenderer.material.SetFloat("_Saturation", 0f);
-					HairRenderer.material.SetFloat("_BlendAmount", 0f);
+					HairRenderer.material.shader = StartShader;
 				}
 			}
 			if (FacialHairstyle > 0)
@@ -1645,9 +1642,10 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (!Randomize)
 		{
-			if (HairColor == "White")
+			UsingDefaultHairColor = false;
+			if (HairColor == "White" || HairColor == "Default")
 			{
-				ColorValue = new Color(1f, 1f, 1f);
+				DefaultHair();
 			}
 			else if (HairColor == "Black")
 			{
@@ -1691,20 +1689,21 @@ public class CosmeticScript : MonoBehaviour
 			}
 			else
 			{
-				ColorValue = new Color(0f, 0f, 0f);
-				if (!CustomEyes)
-				{
-					RightIrisLight.SetActive(value: false);
-					LeftIrisLight.SetActive(value: false);
-				}
+				DefaultHair();
 			}
+			RightIrisLight.SetActive(CustomEyes);
+			LeftIrisLight.SetActive(CustomEyes);
 			if (StudentID > 90 && StudentID < 97)
 			{
 				ColorValue.r *= 0.5f;
 				ColorValue.g *= 0.5f;
 				ColorValue.b *= 0.5f;
 			}
-			if (ColorValue == new Color(0f, 0f, 0f))
+			if (ColorValue != new Color(0f, 0f, 0f, 0f))
+			{
+				CustomHair = true;
+			}
+			if (UsingDefaultHairColor)
 			{
 				if (HairRenderer != null)
 				{
@@ -1729,16 +1728,19 @@ public class CosmeticScript : MonoBehaviour
 			}
 			else
 			{
-				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.SetFloat("_Saturation", 0f);
 				HairRenderer.material.SetFloat("_BlendAmount", 0f);
+				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.color = ColorValue;
 				RightEyeRenderer.gameObject.SetActive(value: true);
 				LeftEyeRenderer.gameObject.SetActive(value: true);
-				RightIrisLight.SetActive(value: true);
-				LeftIrisLight.SetActive(value: true);
-				RightEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
-				LeftEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
+				if (CustomEyes)
+				{
+					RightEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
+					LeftEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
+					RightIrisLight.SetActive(value: true);
+					LeftIrisLight.SetActive(value: true);
+				}
 				DoNotChangeFace = SkinColor > 0;
 				if (!DoNotChangeFace)
 				{
@@ -2396,6 +2398,10 @@ public class CosmeticScript : MonoBehaviour
 
 	public IEnumerator PutOnStockings()
 	{
+		if (Male)
+		{
+			Debug.Log("A male character ran this code?");
+		}
 		RightStockings[0].SetActive(value: false);
 		LeftStockings[0].SetActive(value: false);
 		if (StudentManager != null && StudentManager.TutorialActive)
@@ -3252,6 +3258,10 @@ public class CosmeticScript : MonoBehaviour
 				BurlapSack.newRenderer.materials[0].mainTexture = SkinTextures[SkinColor];
 				BurlapSack.newRenderer.materials[1].mainTexture = HairRenderer.material.mainTexture;
 				BurlapSack.newRenderer.materials[2].mainTexture = BurlapSack.accessoryMaterials[0].mainTexture;
+				if (CustomHair)
+				{
+					BurlapSack.newRenderer.materials[1].mainTexture = SkinTextures[0];
+				}
 				UpdateSack = false;
 			}
 		}
@@ -3311,5 +3321,13 @@ public class CosmeticScript : MonoBehaviour
 		{
 			MyRenderer.SetBlendShapeWeight(i, 0f);
 		}
+	}
+
+	public void DefaultHair()
+	{
+		ColorValue = new Color(1f, 1f, 1f);
+		HairRenderer.material.SetFloat("_Saturation", 1f);
+		HairRenderer.material.SetFloat("_BlendAmount", 0f);
+		UsingDefaultHairColor = true;
 	}
 }

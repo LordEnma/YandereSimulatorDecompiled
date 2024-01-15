@@ -52,6 +52,7 @@ public class TitleSaveDataScript : MonoBehaviour
 			{
 				if (Eighties)
 				{
+					GameGlobals.CustomMode = GameGlobals.ReturnToCustomMode;
 					if (GameGlobals.CustomMode)
 					{
 						Rival.text = "Rival: Custom";

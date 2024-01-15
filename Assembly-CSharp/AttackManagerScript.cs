@@ -268,6 +268,7 @@ public class AttackManagerScript : MonoBehaviour
 				Yandere.Follower = null;
 				Yandere.Followers--;
 				equippedWeapon.Type = WeaponType.Knife;
+				Yandere.Kills--;
 			}
 			Yandere.TargetStudent.DeathCause = equippedWeapon.WeaponID;
 			Yandere.TargetStudent.BecomeRagdoll();

@@ -111,4 +111,7 @@ public class MiscJson : JsonData
 
 	[SerializeField]
 	public int[] CanonEliminations;
+
+	[SerializeField]
+	public int[] RivalTasks;
 }

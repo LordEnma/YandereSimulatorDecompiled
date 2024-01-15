@@ -191,6 +191,10 @@ public class TaskListScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			text = "1989";
+			if (GameGlobals.CustomMode)
+			{
+				text = "Custom";
+			}
 		}
 		if (TaskWindow.TaskManager.TaskStatus[ID + ListPosition] == 0)
 		{

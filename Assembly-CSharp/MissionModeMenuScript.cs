@@ -30,6 +30,8 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	public UITexture TargetPortrait;
 
+	public UILabel ToggleNemesisLabel;
+
 	public UILabel LoadMissionLabel;
 
 	public UILabel DescriptionLabel;
@@ -244,6 +246,9 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	private void Start()
 	{
+		Debug.Log("Starting.");
+		GameGlobals.CustomMode = false;
+		JSON.gameObject.SetActive(value: true);
 		base.transform.position = new Vector3(0f, 0.95f, -4.266667f);
 		ColorGradingModel.Settings settings = Profile.colorGrading.settings;
 		settings.basic.saturation = 1f;
@@ -322,6 +327,7 @@ public class MissionModeMenuScript : MonoBehaviour
 			CustomObjectives[9].alpha = 0f;
 			EightiesifyAllLabels();
 			StartMissionIcon.mainTexture = YakuzaIcon;
+			ToggleNemesisLabel.text = "Toggle Yakuza Mode";
 		}
 		else
 		{

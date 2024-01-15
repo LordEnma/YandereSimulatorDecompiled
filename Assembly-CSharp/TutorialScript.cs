@@ -294,6 +294,7 @@ public class TutorialScript : MonoBehaviour
 			{
 				ReturnToTitleScreen = true;
 				Phase = KeyboardInstructions.Length - 1;
+				RemovingWitness = false;
 				TogglePauseScreen();
 				Time.timeScale = 5f;
 			}

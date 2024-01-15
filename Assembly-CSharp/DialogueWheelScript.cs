@@ -544,6 +544,7 @@ public class DialogueWheelScript : MonoBehaviour
 						TopicInterface.UpdateTopicHighlight();
 						Social.StudentID = Yandere.TargetStudent.StudentID;
 						Social.DialogueLabel.text = Social.Dialogue[0];
+						Social.Patience = Impatience.fillAmount;
 						Social.Student = Yandere.TargetStudent;
 						Social.UpdateButtons();
 						Social.enabled = true;

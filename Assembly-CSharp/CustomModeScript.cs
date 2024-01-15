@@ -588,8 +588,7 @@ public class CustomModeScript : MonoBehaviour
 
 	private void Update()
 	{
-		int i;
-		for (i = 0; i < EditableLabels.Length; i++)
+		for (int i = 0; i < EditableLabels.Length; i++)
 		{
 			if (EditableLabels[i].color == Color.red)
 			{
@@ -636,6 +635,7 @@ public class CustomModeScript : MonoBehaviour
 			GameGlobals.CanBefriendCouncil = JSON.Misc.Misc[5];
 			StudentGlobals.FemaleUniform = JSON.Misc.FemaleUniform;
 			StudentGlobals.MaleUniform = JSON.Misc.MaleUniform;
+			GameGlobals.ReturnToCustomMode = true;
 			GameGlobals.CustomMode = true;
 			OptionGlobals.WindowedMode = Screen.fullScreen;
 			Screen.SetResolution(512, 512, fullscreen: false);
@@ -1172,7 +1172,6 @@ public class CustomModeScript : MonoBehaviour
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_Y) && CosmeticWindows[CosmeticSelected].alpha == 1f)
 					{
-						Debug.Log("Randomizing, supposedly.");
 						if (Selected == 0 || StudentChan.activeInHierarchy)
 						{
 							RandomizeGirl(Selected);
@@ -1755,13 +1754,9 @@ public class CustomModeScript : MonoBehaviour
 				else if (Input.GetButtonDown(InputNames.Xbox_X))
 				{
 					JSON.Misc.CanonEliminations[RivalSelected]++;
-					if (JSON.Misc.CanonEliminations[i] == 10 || JSON.Misc.CanonEliminations[i] == 16)
+					if (JSON.Misc.CanonEliminations[RivalSelected] == 10 || JSON.Misc.CanonEliminations[RivalSelected] == 16)
 					{
 						JSON.Misc.CanonEliminations[RivalSelected]++;
-						if (JSON.Misc.CanonEliminations[RivalSelected] == 10 || JSON.Misc.CanonEliminations[RivalSelected] == 16)
-						{
-							JSON.Misc.CanonEliminations[RivalSelected]++;
-						}
 					}
 					if (JSON.Misc.CanonEliminations[RivalSelected] > EliminationNames.Length - 1)
 					{

@@ -1956,6 +1956,10 @@ public class StudentScript : MonoBehaviour
 				{
 					flag = false;
 				}
+				if (StudentManager.CustomMode && StudentID > 10 && StudentID < 21)
+				{
+					flag = true;
+				}
 			}
 			if (StudentManager.Eighties && flag)
 			{

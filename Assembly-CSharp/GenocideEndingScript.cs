@@ -64,7 +64,15 @@ public class GenocideEndingScript : MonoBehaviour
 
 	public bool FadeOut;
 
+	public bool LockJaw;
+
 	public GameObject[] RivalHair;
+
+	public GameObject Blindfold;
+
+	public GameObject Hood;
+
+	public GameObject Jaw;
 
 	public Font Arial;
 
@@ -75,6 +83,7 @@ public class GenocideEndingScript : MonoBehaviour
 		UpdateDOF(1f);
 		Time.timeScale = 1f;
 		SkipPanel.gameObject.SetActive(value: false);
+		Hood.SetActive(value: false);
 		if (GameGlobals.EightiesCutsceneID == 12)
 		{
 			SecondDarkness.color = new Color(0.1f, 0.1f, 0.1f, 0f);
@@ -117,7 +126,16 @@ public class GenocideEndingScript : MonoBehaviour
 			if (GameGlobals.Eighties)
 			{
 				RivalHair[0].SetActive(value: false);
-				RivalHair[DateGlobals.Week].SetActive(value: true);
+				if (GameGlobals.CustomMode)
+				{
+					Blindfold.SetActive(value: false);
+					Hood.SetActive(value: true);
+					LockJaw = true;
+				}
+				else
+				{
+					RivalHair[DateGlobals.Week].SetActive(value: true);
+				}
 				YellowifyLabel(Subtitle);
 			}
 		}
@@ -268,6 +286,10 @@ public class GenocideEndingScript : MonoBehaviour
 	private void LateUpdate()
 	{
 		Neck.transform.localEulerAngles = new Vector3(0f, Neck.transform.localEulerAngles.y, Neck.transform.localEulerAngles.z);
+		if (LockJaw)
+		{
+			Jaw.transform.eulerAngles = new Vector3(0f, 0f, 40f);
+		}
 	}
 
 	public void YellowifyLabel(UILabel Label)

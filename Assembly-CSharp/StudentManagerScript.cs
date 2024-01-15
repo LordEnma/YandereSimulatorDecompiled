@@ -3260,7 +3260,7 @@ public class StudentManagerScript : MonoBehaviour
 							{
 								studentScript.Cosmetic.Goggles[studentScript.StudentID].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 0f);
 							}
-							if (!studentScript.Cosmetic.Empty && studentScript.Male && studentScript.Cosmetic.MaleHair[studentScript.Cosmetic.Hairstyle].GetComponent<SkinnedMeshRenderer>() != null)
+							if (!studentScript.Cosmetic.Empty && studentScript.Male && studentScript.Cosmetic.MaleHair[studentScript.Cosmetic.Hairstyle].GetComponent<SkinnedMeshRenderer>() != null && studentScript.Cosmetic.Hairstyle > 40 && studentScript.Cosmetic.Hairstyle < 46)
 							{
 								studentScript.Cosmetic.MaleHair[studentScript.Cosmetic.Hairstyle].GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 0f);
 							}
@@ -6758,6 +6758,14 @@ public class StudentManagerScript : MonoBehaviour
 			if (EightiesProps[i] != null)
 			{
 				EightiesProps[i].SetActive(value: true);
+			}
+		}
+		if (GameGlobals.CustomMode)
+		{
+			EightiesProps[15].SetActive(value: false);
+			for (int j = 0; j < Yandere.Subtitle.TaskRequirements.Length; j++)
+			{
+				Yandere.Subtitle.TaskRequirements[j] = "";
 			}
 		}
 		LunchSpots = EightiesLunchSpots;

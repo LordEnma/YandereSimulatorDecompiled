@@ -30,6 +30,8 @@ public class StatsScript : MonoBehaviour
 
 	public UILabel ClubLabel;
 
+	public UILabel RepLabel;
+
 	public int Grade;
 
 	public int BarID;
@@ -101,7 +103,7 @@ public class StatsScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (PauseScreen.Eighties)
+		if (GameGlobals.Eighties)
 		{
 			Portrait.mainTexture = RyobaPortrait;
 		}
@@ -115,6 +117,9 @@ public class StatsScript : MonoBehaviour
 			WWW wWW2 = new WWW("file:///" + Application.streamingAssetsPath + "/YanderePortrait.png");
 			Portrait.mainTexture = wWW2.texture;
 		}
+		string text = "";
+		text = ((PlayerGlobals.Reputation > 33.33333f) ? "High" : ((!(PlayerGlobals.Reputation < -33.33333f)) ? "Neutral" : "Low"));
+		RepLabel.text = "Reputation: " + PlayerGlobals.Reputation + " (" + text + ")";
 	}
 
 	private void Update()
@@ -292,6 +297,12 @@ public class StatsScript : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == "HomeScene")
 		{
 			club = ClubGlobals.Club;
+		}
+		if (PauseScreen.Yandere.StudentManager != null && PauseScreen.Yandere.StudentManager.Reputation != null)
+		{
+			string text = "";
+			text = ((PauseScreen.Yandere.StudentManager.Reputation.Reputation > 33.33333f) ? "High" : ((!(PauseScreen.Yandere.StudentManager.Reputation.Reputation < -33.33333f)) ? "Neutral" : "Low"));
+			RepLabel.text = "Reputation: " + PauseScreen.Yandere.StudentManager.Reputation.Reputation + " (" + text + ")";
 		}
 		ClubLabels.TryGetValue(club, out var value);
 		ClubLabel.text = "Club: " + value;

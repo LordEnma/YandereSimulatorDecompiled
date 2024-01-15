@@ -1242,6 +1242,7 @@ public class MissionModeScript : MonoBehaviour
 			{
 				return;
 			}
+			Time.timeScale = 0.0001f;
 			Timer += 1f / 60f;
 			if (Timer > 1f)
 			{
@@ -1349,6 +1350,7 @@ public class MissionModeScript : MonoBehaviour
 			Yandere.YandereVision = false;
 			Yandere.ResetYandereEffects();
 		}
+		Yandere.AttackManager.enabled = false;
 		Yandere.enabled = false;
 		GameOverReason.text = GameOverReasons[GameOverID];
 		Fire.enabled = true;
