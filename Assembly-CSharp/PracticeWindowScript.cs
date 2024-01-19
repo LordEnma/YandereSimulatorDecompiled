@@ -434,6 +434,10 @@ public class PracticeWindowScript : MonoBehaviour
 			if (GameGlobals.Eighties)
 			{
 				text = "1989";
+				if (GameGlobals.CustomMode)
+				{
+					text = "Custom";
+				}
 			}
 			ClubID = 51;
 			for (ID = 1; ID < 6; ID++)

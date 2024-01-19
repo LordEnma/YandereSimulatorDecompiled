@@ -617,7 +617,7 @@ public class CosmeticScript : MonoBehaviour
 				Hairstyle = 51;
 			}
 		}
-		else if (StudentManager != null && StudentManager.TaskManager != null && StudentID == 11 && StudentManager.TaskManager.TaskStatus[11] == 3)
+		else if (StudentManager != null && !StudentManager.CustomMode && StudentManager != null && StudentManager.TaskManager != null && StudentID == 11 && StudentManager.TaskManager.TaskStatus[11] == 3)
 		{
 			Stockings = "ShortPink";
 		}
@@ -1622,6 +1622,7 @@ public class CosmeticScript : MonoBehaviour
 				CustomEyes = false;
 				if (CorrectColor != new Color(0f, 0f, 0f))
 				{
+					Debug.Log("Changing eye texture to grayscale eye texture.");
 					CustomEyes = true;
 					RightEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
 					LeftEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
@@ -1629,6 +1630,15 @@ public class CosmeticScript : MonoBehaviour
 					LeftEyeRenderer.material.color = CorrectColor;
 					RightIrisLight.SetActive(value: true);
 					LeftIrisLight.SetActive(value: true);
+				}
+				else
+				{
+					RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+					LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+					RightEyeRenderer.material.color = Color.white;
+					LeftEyeRenderer.material.color = Color.white;
+					RightIrisLight.SetActive(value: false);
+					LeftIrisLight.SetActive(value: false);
 				}
 			}
 		}

@@ -279,7 +279,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		{
 			if (gameObject != null)
 			{
-				gameObject.SetActive(value: false);
+				gameObject.GetComponent<UISprite>().alpha = 0.5f;
 			}
 		}
 		MethodID = Column + (Row - 1) * 3;
@@ -291,7 +291,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		{
 			for (int num = MethodDifficulties[MethodID]; num > 0; num--)
 			{
-				Hearts[num].SetActive(value: true);
+				Hearts[num].GetComponent<UISprite>().alpha = 1f;
 			}
 		}
 		if (NoChangeHeight)

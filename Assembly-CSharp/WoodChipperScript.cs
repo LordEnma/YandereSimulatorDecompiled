@@ -245,7 +245,7 @@ public class WoodChipperScript : MonoBehaviour
 		if (Prompt.Circle[3].fillAmount == 0f)
 		{
 			Prompt.Circle[3].fillAmount = 1f;
-			if (BurnTimer == 0f)
+			if (BurnTimer <= 0f)
 			{
 				Debug.Log("As of now, Yandere-chan's ''Woodchipper'' is being set to: " + base.gameObject.name);
 				Yandere.WoodChipper = this;

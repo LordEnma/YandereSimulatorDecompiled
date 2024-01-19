@@ -14,9 +14,15 @@ public class FallingObjectScript : MonoBehaviour
 
 	public Rigidbody MyRigidbody;
 
+	public Collider MyCollider;
+
 	private void Start()
 	{
 		MyRigidbody.useGravity = true;
+		if (MyCollider != null)
+		{
+			MyCollider.enabled = true;
+		}
 	}
 
 	private void Update()

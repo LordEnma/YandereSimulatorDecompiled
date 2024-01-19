@@ -457,6 +457,7 @@ public class CustomModeScript : MonoBehaviour
 		UpdateDOF(2f);
 		Initializing = true;
 		UpdateHeader();
+		UpdateCanonMethodLabels();
 		White.alpha = 1f;
 	}
 
@@ -989,12 +990,15 @@ public class CustomModeScript : MonoBehaviour
 						}
 						else if (CosmeticSelected == 4)
 						{
+							Debug.Log("EyeColorID is: " + EyeColorID);
 							EyeColorID++;
+							Debug.Log("Now, it's: " + EyeColorID);
 							if (EyeColorID >= Colors.Length)
 							{
 								EyeColorID = 0;
 							}
 							JSON.Students[Selected].Eyes = Colors[EyeColorID] ?? "";
+							Debug.Log("EyeColor #" + EyeColorID + " is supposed to be: " + Colors[EyeColorID]);
 						}
 						else if (CosmeticSelected == 5)
 						{
@@ -2571,6 +2575,7 @@ public class CustomModeScript : MonoBehaviour
 		switch (HairColor)
 		{
 		case "Default":
+		case "White":
 			ColorValue = new Color(1f, 1f, 1f);
 			break;
 		case "Black":
@@ -2611,15 +2616,16 @@ public class CustomModeScript : MonoBehaviour
 		return HairColor switch
 		{
 			"Default" => 0, 
-			"Black" => 1, 
-			"Red" => 2, 
-			"Yellow" => 3, 
-			"Green" => 4, 
-			"Cyan" => 5, 
-			"Blue" => 6, 
-			"Purple" => 7, 
-			"Orange" => 8, 
-			"Brown" => 9, 
+			"White" => 1, 
+			"Black" => 2, 
+			"Red" => 3, 
+			"Yellow" => 4, 
+			"Green" => 5, 
+			"Cyan" => 6, 
+			"Blue" => 7, 
+			"Purple" => 8, 
+			"Orange" => 9, 
+			"Brown" => 10, 
 			_ => 0, 
 		};
 	}
@@ -2984,6 +2990,7 @@ public class CustomModeScript : MonoBehaviour
 			}
 		}
 		LoadAllCustomLocations();
+		UpdateCanonMethodLabels();
 		UpdateStudent();
 	}
 

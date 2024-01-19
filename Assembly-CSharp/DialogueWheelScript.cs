@@ -542,6 +542,7 @@ public class DialogueWheelScript : MonoBehaviour
 						TopicInterface.Student = Yandere.TargetStudent;
 						TopicInterface.UpdateOpinions();
 						TopicInterface.UpdateTopicHighlight();
+						Yandere.TargetStudent.CharacterAnimation[Yandere.TargetStudent.WaveAnim].weight = 0f;
 						Social.StudentID = Yandere.TargetStudent.StudentID;
 						Social.DialogueLabel.text = Social.Dialogue[0];
 						Social.Patience = Impatience.fillAmount;
@@ -790,6 +791,10 @@ public class DialogueWheelScript : MonoBehaviour
 				if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
 				{
 					flag = false;
+					if (Yandere.StudentManager.CustomMode && Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21)
+					{
+						flag = true;
+					}
 				}
 				HideTaskButtonIfNecessary();
 				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID] > 0)
@@ -1096,6 +1101,11 @@ public class DialogueWheelScript : MonoBehaviour
 			if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
 			{
 				flag = false;
+				flag = false;
+				if (Yandere.StudentManager.CustomMode && Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21)
+				{
+					flag = true;
+				}
 			}
 		}
 		else

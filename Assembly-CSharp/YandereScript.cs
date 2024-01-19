@@ -7675,7 +7675,10 @@ public class YandereScript : MonoBehaviour
 		}
 		MyRenderer.materials[0].mainTexture = TextureToUse;
 		MyRenderer.materials[1].mainTexture = TextureToUse;
-		MyRenderer.materials[2].mainTexture = FaceTexture;
+		if (MyRenderer.materials.Length > 2)
+		{
+			MyRenderer.materials[2].mainTexture = FaceTexture;
+		}
 		if (base.gameObject.activeInHierarchy)
 		{
 			StartCoroutine(ApplyCustomCostume());
@@ -10218,7 +10221,6 @@ public class YandereScript : MonoBehaviour
 		LooseSocks[0].SetActive(value: false);
 		LooseSocks[1].SetActive(value: false);
 		MyStockings = TransparentPixel;
-		MyRenderer.materials[2].mainTexture = FaceTexture;
 		if (Casual)
 		{
 			TextureToUse = StandardUniformTextures[StudentGlobals.FemaleUniform];
@@ -10229,6 +10231,7 @@ public class YandereScript : MonoBehaviour
 		}
 		MyRenderer.materials[0].mainTexture = TextureToUse;
 		MyRenderer.materials[1].mainTexture = TextureToUse;
+		MyRenderer.materials[2].mainTexture = FaceTexture;
 		if (Stockings == "Red")
 		{
 			MyStockings = StockingList[1];
@@ -10388,7 +10391,6 @@ public class YandereScript : MonoBehaviour
 		else if (Stockings == "Loose")
 		{
 			Debug.Log("Attempting to activate loose socks.");
-			MyStockings = TransparentPixel;
 			LooseSocks[0].SetActive(value: true);
 			LooseSocks[1].SetActive(value: true);
 		}

@@ -8658,7 +8658,7 @@ public class StudentScript : MonoBehaviour
 								Pathfinding.canMove = true;
 								if (Pursuing && Yandere.CanMove && !Yandere.Yakuza)
 								{
-									Debug.Log("a character is pursuing Yandere, yet Yandere can move?");
+									Debug.Log("A character is pursuing Yandere, yet Yandere can move?");
 									PursueTimer += Time.deltaTime;
 									if (PursueTimer > 1f)
 									{
@@ -17442,6 +17442,11 @@ public class StudentScript : MonoBehaviour
 
 	private void ChaseYandere()
 	{
+		if (Persona == PersonaType.Coward)
+		{
+			Debug.Log("On second thought, " + Name + " will not chase Yandere-chan. Coward Persona.");
+			return;
+		}
 		Debug.Log(Name + " has begun to chase Yandere-chan.");
 		CurrentDestination = Yandere.transform;
 		Pathfinding.target = Yandere.transform;
@@ -19833,6 +19838,7 @@ public class StudentScript : MonoBehaviour
 				MyRenderer.sharedMesh = SchoolSwimsuit;
 				if (!Male)
 				{
+					Debug.Log("A female student is now changing into a swimsuit.");
 					if (Club == ClubType.Bully)
 					{
 						MyRenderer.materials[0].mainTexture = Cosmetic.GanguroSwimsuitTextures[BullyID];
@@ -19848,6 +19854,10 @@ public class StudentScript : MonoBehaviour
 						MyRenderer.materials[1].mainTexture = SwimsuitTexture;
 					}
 					MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
+					MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
+					MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
+					MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
+					MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
 				}
 				else
 				{
@@ -20146,13 +20156,15 @@ public class StudentScript : MonoBehaviour
 					}
 					else
 					{
+						Debug.Log("A female student is now changing into a swimsuit.");
 						MyRenderer.sharedMesh = SchoolSwimsuit;
-						if (!Male)
-						{
-							MyRenderer.materials[0].mainTexture = SwimsuitTexture;
-							MyRenderer.materials[1].mainTexture = SwimsuitTexture;
-							MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
-						}
+						MyRenderer.materials[0].mainTexture = SwimsuitTexture;
+						MyRenderer.materials[1].mainTexture = SwimsuitTexture;
+						MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
+						MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
+						MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
+						MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
+						MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
 					}
 					ClubAnim = "poolDive_00";
 					ClubActivityPhase = 15;
