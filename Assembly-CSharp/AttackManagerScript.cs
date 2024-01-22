@@ -63,7 +63,10 @@ public class AttackManagerScript : MonoBehaviour
 		Censor = GameGlobals.CensorKillingAnims;
 		OriginalBloodEffect = BloodEffect;
 		StainBluntWeapons = DifficultyGlobals.MustStrangle;
-		BreakWeapon = DifficultyGlobals.WeaponsBreak;
+		if (!GameGlobals.KokonaTutorial)
+		{
+			BreakWeapon = DifficultyGlobals.WeaponsBreak;
+		}
 	}
 
 	public bool IsAttacking()

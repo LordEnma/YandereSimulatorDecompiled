@@ -1751,6 +1751,8 @@ public class YandereScript : MonoBehaviour
 
 	public Renderer LeftEyeRenderer;
 
+	public bool DefaultEyeColor;
+
 	public string EyeColor;
 
 	public string Stockings;
@@ -1768,6 +1770,8 @@ public class YandereScript : MonoBehaviour
 	public string[] Walks;
 
 	public bool Home;
+
+	public bool DefaultHairColor;
 
 	public Color ColorValue;
 
@@ -7649,6 +7653,11 @@ public class YandereScript : MonoBehaviour
 
 	public void SetUniform()
 	{
+		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday)
+		{
+			Debug.Log("We're wearing pajamas in the daytime; don't call this function.");
+			return;
+		}
 		if (StudentGlobals.FemaleUniform == 0)
 		{
 			StudentGlobals.FemaleUniform = 1;
@@ -10115,7 +10124,17 @@ public class YandereScript : MonoBehaviour
 		RightEyeRenderer.gameObject.SetActive(value: false);
 		LeftEyeRenderer.gameObject.SetActive(value: false);
 		Color color = Color.white;
-		if (EyeColor == "Black")
+		DefaultEyeColor = false;
+		if (EyeColor == "Default")
+		{
+			color = new Color(1f, 1f, 1f);
+			DefaultEyeColor = true;
+		}
+		else if (EyeColor == "White")
+		{
+			color = new Color(1f, 1f, 1f);
+		}
+		else if (EyeColor == "Black")
 		{
 			color = new Color(0.5f, 0.5f, 0.5f);
 		}
@@ -10151,7 +10170,7 @@ public class YandereScript : MonoBehaviour
 		{
 			color = new Color(0.5f, 0.25f, 0f);
 		}
-		if (color != Color.white)
+		if (!DefaultEyeColor)
 		{
 			RightEyeRenderer.gameObject.SetActive(value: true);
 			LeftEyeRenderer.gameObject.SetActive(value: true);
@@ -10449,7 +10468,7 @@ public class YandereScript : MonoBehaviour
 			if (renderer != null)
 			{
 				renderer.material.shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
-				if (StudentManager.JSON.Students[0].Color == "Default")
+				if (DefaultHairColor)
 				{
 					renderer.material.SetFloat("_Saturation", 1f);
 				}
@@ -10470,9 +10489,14 @@ public class YandereScript : MonoBehaviour
 
 	private void GetColorValue(string HairColor)
 	{
+		DefaultHairColor = false;
 		switch (HairColor)
 		{
 		case "Default":
+			ColorValue = new Color(1f, 1f, 1f);
+			DefaultHairColor = true;
+			break;
+		case "White":
 			ColorValue = new Color(1f, 1f, 1f);
 			break;
 		case "Black":

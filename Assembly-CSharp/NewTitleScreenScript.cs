@@ -719,6 +719,7 @@ public class NewTitleScreenScript : MonoBehaviour
 				}
 				else if (Selection == 6)
 				{
+					GameGlobals.CameFromTitleScreen = true;
 					SceneManager.LoadScene("CreditsScene");
 				}
 				else if (Selection == 8)

@@ -1531,7 +1531,7 @@ public class CustomModeScript : MonoBehaviour
 					SchedulePanel.alpha = Mathf.MoveTowards(SchedulePanel.alpha, 0f, Time.deltaTime * 10f);
 					if (InputDevice.Type == InputDeviceType.MouseAndKeyboard)
 					{
-						LocationInstructionLabel.text = "Use the mouse to move the map. Use the school wheel to zoom in and out.";
+						LocationInstructionLabel.text = "Use the mouse to move the map. Use the scroll wheel to zoom in and out.";
 					}
 					else
 					{
@@ -2491,6 +2491,18 @@ public class CustomModeScript : MonoBehaviour
 			JSON.Students[ID].ScheduleBlocks[9].action = "Stand";
 			JSON.Students[ID].ScheduleBlocks[9].destination = "Exit";
 			break;
+		}
+		if (ID > 21 && ID < 73)
+		{
+			string text2 = ID.ToString();
+			if (text2.EndsWith("2") || text2.EndsWith("7"))
+			{
+				int num = JSON.Students[ID].ScheduleBlocks.Length;
+				JSON.Students[ID].ScheduleBlocks[num - 2].action = "Shoes";
+				JSON.Students[ID].ScheduleBlocks[num - 2].destination = "Locker";
+				JSON.Students[ID].ScheduleBlocks[num - 1].action = "Stand";
+				JSON.Students[ID].ScheduleBlocks[num - 1].destination = "Exit";
+			}
 		}
 	}
 

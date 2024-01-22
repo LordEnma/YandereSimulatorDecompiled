@@ -549,8 +549,8 @@ public class ShoulderCameraScript : MonoBehaviour
 					Yandere.MyController.Move(Yandere.transform.right * (Time.deltaTime * 1f));
 					if (Yandere.TargetStudent != null)
 					{
-						Yandere.TargetStudent.MyController.Move(Yandere.TargetStudent.transform.forward * (Time.deltaTime * 1f));
-						Yandere.TargetStudent.MyController.Move(Yandere.TargetStudent.transform.right * (Time.deltaTime * -1f));
+						Yandere.TargetStudent.MyController.Move(Yandere.transform.forward * (Time.deltaTime * -1f));
+						Yandere.TargetStudent.MyController.Move(Yandere.transform.right * (Time.deltaTime * 1f));
 					}
 					Head.Clipping = false;
 				}

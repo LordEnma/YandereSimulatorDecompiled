@@ -416,7 +416,7 @@ public class MissionModeScript : MonoBehaviour
 				YakuzaMode = false;
 			}
 			ClassGlobals.BiologyGrade = 1;
-			ClassGlobals.ChemistryGrade = 1;
+			ClassGlobals.ChemistryGrade = 4;
 			ClassGlobals.LanguageGrade = 1;
 			ClassGlobals.PhysicalGrade = 1;
 			ClassGlobals.PsychologyGrade = 1;

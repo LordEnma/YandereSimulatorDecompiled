@@ -199,13 +199,10 @@ public class YakuzaMenuScript : MonoBehaviour
 				RivalNames[i] = JSON.Students[i + 10].Name;
 			}
 		}
-		string text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_1.png";
-		Debug.Log("Path is: " + text2);
-		WWW wWW = new WWW(text2);
+		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_1.png");
 		for (int j = 1; j < 11; j++)
 		{
-			text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_" + (j + 10) + ".png";
-			wWW = new WWW(text2);
+			wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_" + (j + 10) + ".png");
 			RivalPortraits[j].mainTexture = wWW.texture;
 			if (StudentGlobals.GetStudentDead(10 + j) || StudentGlobals.GetStudentKidnapped(10 + j) || StudentGlobals.GetStudentArrested(10 + j))
 			{
@@ -214,35 +211,25 @@ public class YakuzaMenuScript : MonoBehaviour
 			RivalNameLabels[j].text = RivalNames[j];
 			RivalPortraits[j].transform.parent.localEulerAngles = new Vector3(0f, 0f, Random.Range(-5f, 5f));
 		}
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_30.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_30.png");
 		RansomPortrait[30].mainTexture = wWW.texture;
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_35.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_35.png");
 		RansomPortrait[35].mainTexture = wWW.texture;
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_40.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_40.png");
 		RansomPortrait[40].mainTexture = wWW.texture;
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_45.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_45.png");
 		RansomPortrait[45].mainTexture = wWW.texture;
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_50.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_50.png");
 		RansomPortrait[50].mainTexture = wWW.texture;
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_55.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_55.png");
 		RansomPortrait[55].mainTexture = wWW.texture;
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_60.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_60.png");
 		RansomPortrait[60].mainTexture = wWW.texture;
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_65.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_65.png");
 		RansomPortrait[65].mainTexture = wWW.texture;
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_70.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_70.png");
 		RansomPortrait[70].mainTexture = wWW.texture;
-		text2 = "file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_75.png";
-		wWW = new WWW(text2);
+		wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_75.png");
 		RansomPortrait[75].mainTexture = wWW.texture;
 		for (int j = DateGlobals.Week + 1; j < 11; j++)
 		{

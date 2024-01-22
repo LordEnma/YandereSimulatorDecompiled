@@ -157,10 +157,28 @@ public class AmbientEventScript : MonoBehaviour
 		{
 			if (!EventStudent[j].Pathfinding.canMove && !EventStudent[j].Private)
 			{
-				EventStudent[j].Character.GetComponent<Animation>().CrossFade(EventStudent[j].IdleAnim);
+				EventStudent[j].CharacterAnimation.CrossFade(EventStudent[j].IdleAnim);
 				EventStudent[j].Private = true;
 				StudentManager.UpdateStudents();
 			}
+			if (!(Vector3.Distance(EventStudent[j].transform.position, EventLocation[j].position) < 1f))
+			{
+				continue;
+			}
+			if (EventStudent[j].Pathfinding.canMove)
+			{
+				if (Sitting)
+				{
+					EventStudent[EventSpeaker[j]].CharacterAnimation.CrossFade("f02_benchSit_00");
+				}
+				else
+				{
+					EventStudent[EventSpeaker[j]].CharacterAnimation.CrossFade(EventStudent[j].IdleAnim);
+				}
+				EventStudent[j].Pathfinding.canMove = false;
+			}
+			EventStudent[j].MoveTowardsTarget(EventStudent[j].CurrentDestination.position);
+			EventStudent[j].transform.rotation = Quaternion.Slerp(EventStudent[j].transform.rotation, EventStudent[j].CurrentDestination.rotation, 10f * Time.deltaTime);
 		}
 		if (!EventStudent[1].Pathfinding.canMove && !EventStudent[2].Pathfinding.canMove)
 		{
@@ -181,6 +199,7 @@ public class AmbientEventScript : MonoBehaviour
 			float num = Vector3.Distance(Yandere.transform.position, EventLocation[1].parent.position);
 			if (!Spoken)
 			{
+				Debug.Log("3");
 				if (Sitting)
 				{
 					EventStudent[EventSpeaker[1]].CharacterAnimation.CrossFade("f02_benchSit_00");

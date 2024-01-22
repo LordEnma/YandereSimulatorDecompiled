@@ -1137,6 +1137,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public bool[] ServicesPurchased;
 
+	public BoxCollider[] StairColliders;
+
 	private void Awake()
 	{
 		if (!TakingPortraits && !GameGlobals.Eighties && DateGlobals.Week > WeekLimit)

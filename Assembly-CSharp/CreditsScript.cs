@@ -122,7 +122,12 @@ public class CreditsScript : MonoBehaviour
 			Jukebox.volume -= Time.deltaTime;
 			if (Darkness.color.a == 1f)
 			{
-				if (GameGlobals.AlternateTimeline)
+				if (GameGlobals.CameFromTitleScreen)
+				{
+					GameGlobals.CameFromTitleScreen = false;
+					SceneManager.LoadScene("NewTitleScene");
+				}
+				else if (GameGlobals.AlternateTimeline)
 				{
 					DateGlobals.Week = 11;
 					SceneManager.LoadScene("FunGameOverScene");

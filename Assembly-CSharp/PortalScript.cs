@@ -401,8 +401,9 @@ public class PortalScript : MonoBehaviour
 						Yandere.CameraEffects.UpdateDOF(OriginalDOF);
 					}
 				}
-				if (ClassDarkness.color.a == 1f)
+				if (ClassDarkness.color.a >= 0.999f)
 				{
+					ClassDarkness.alpha = 1f;
 					HeartbeatCamera.SetActive(value: true);
 					Clock.enabled = true;
 					Yandere.FixCamera();
@@ -430,8 +431,9 @@ public class PortalScript : MonoBehaviour
 					StudentManager.AttendClass();
 				}
 				ClassDarkness.alpha = Mathf.MoveTowards(ClassDarkness.alpha, 0f, Time.deltaTime);
-				if (ClassDarkness.color.a == 0f)
+				if (ClassDarkness.color.a <= 0.0001f)
 				{
+					ClassDarkness.alpha = 0f;
 					ClassDarkness.enabled = false;
 					Clock.StopTime = false;
 					Transition = false;

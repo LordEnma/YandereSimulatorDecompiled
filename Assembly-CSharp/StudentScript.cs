@@ -1680,6 +1680,8 @@ public class StudentScript : MonoBehaviour
 
 	public int WitnessID;
 
+	public int CorpseID;
+
 	public int PatrolID;
 
 	public int SleuthID;
@@ -9066,7 +9068,7 @@ public class StudentScript : MonoBehaviour
 													concealedWeapon.gameObject.SetActive(value: true);
 												}
 											}
-											if ((!Yandere.Armed || !Yandere.EquippedWeapon.Concealable || Yandere.EquippedWeapon.Type == WeaponType.Garrote) && !Yandere.Lost)
+											if ((!Yandere.Armed || !Yandere.EquippedWeapon.Concealable || Yandere.EquippedWeapon.Broken || Yandere.EquippedWeapon.Type == WeaponType.Garrote) && !Yandere.Lost)
 											{
 												BeginStruggle();
 												Yandere.StruggleBar.HeroWins();
@@ -12489,6 +12491,12 @@ public class StudentScript : MonoBehaviour
 			}
 			if (SpecialRivalDeathReaction)
 			{
+				if (Corpse == null)
+				{
+					Corpse = StudentManager.Students[CorpseID].Ragdoll;
+				}
+				CurrentDestination = Corpse.Student.Hips;
+				Pathfinding.target = Corpse.Student.Hips;
 				if (WitnessRivalDiePhase == 1)
 				{
 					if (DistanceToDestination <= 1f)
@@ -12503,6 +12511,10 @@ public class StudentScript : MonoBehaviour
 						}
 						Pathfinding.canSearch = false;
 						Pathfinding.canMove = false;
+						if (CorpseHead == null)
+						{
+							CorpseHead = Corpse.Student.Head;
+						}
 						base.transform.LookAt(CorpseHead.position);
 						base.transform.eulerAngles = new Vector3(0f, base.transform.eulerAngles.y - 90f, 0f);
 					}
@@ -12520,6 +12532,7 @@ public class StudentScript : MonoBehaviour
 						{
 							Debug.Log("Raibaru is reacting to Osana's corpse.");
 							Subtitle.UpdateLabel(SubtitleType.RaibaruRivalDeathReaction, 2, 15f);
+							StudentToMourn = StudentManager.Students[11];
 						}
 						else if (StudentID == StudentManager.RivalID)
 						{
@@ -14479,6 +14492,10 @@ public class StudentScript : MonoBehaviour
 			return;
 		}
 		Debug.Log(Name + " was just attacked, either because the player pressed the X button, or because Yandere-chan had low sanity.");
+		if (Investigating)
+		{
+			StopInvestigating();
+		}
 		float f = Vector3.Angle(-base.transform.forward, Yandere.transform.position - base.transform.position);
 		Yandere.AttackManager.Stealth = Mathf.Abs(f) <= 45f;
 		if (Yandere.EquippedWeapon.Type == WeaponType.Garrote && !Yandere.AttackManager.Stealth)
@@ -14948,7 +14965,10 @@ public class StudentScript : MonoBehaviour
 						if (DistanceToPlayer < 1f && !Injured && ((Club == ClubType.Council && !DoNotShove) || (Club == ClubType.Delinquent && !Injured) || Shovey))
 						{
 							AlarmTimer = 0f;
-							ThreatTimer += Time.deltaTime;
+							if (Yandere.CanMove)
+							{
+								ThreatTimer += Time.deltaTime;
+							}
 							if (ThreatTimer > 5f && !Yandere.Struggling && !Yandere.DelinquentFighting && !Yandere.Chased && Yandere.Chasers == 0 && Prompt.InSight)
 							{
 								ThreatTimer = 0f;
@@ -16231,7 +16251,6 @@ public class StudentScript : MonoBehaviour
 		{
 			if (ConfessPhase == 1)
 			{
-				Debug.Log("The rival is in ConfessPhase 1 - starting to put note in locker.");
 				if (DistanceToDestination < 0.5f)
 				{
 					Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 1f);
@@ -16251,7 +16270,6 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (ConfessPhase == 2)
 			{
-				Debug.Log("The rival is in ConfessPhase 2 - putting note in locker.");
 				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, CurrentDestination.rotation, Time.deltaTime * 10f);
 				MoveTowardsTarget(CurrentDestination.position);
 				if (CharacterAnimation["f02_insertNote_00"].time >= 9f)
@@ -16262,7 +16280,6 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (ConfessPhase == 3)
 			{
-				Debug.Log("The rival is in ConfessPhase 3 - running to confession tree.");
 				if (CharacterAnimation["f02_insertNote_00"].time >= CharacterAnimation["f02_insertNote_00"].length)
 				{
 					CurrentDestination = StudentManager.RivalConfessionSpot;
@@ -16277,7 +16294,6 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (ConfessPhase == 4)
 			{
-				Debug.Log("The rival is in ConfessPhase 4 - waiting under confession tree.");
 				if (DistanceToDestination < 0.5f)
 				{
 					CharacterAnimation.CrossFade(IdleAnim);
@@ -16580,7 +16596,7 @@ public class StudentScript : MonoBehaviour
 			Spine.LookAt(Yandere.Spine[0]);
 			Head.LookAt(Yandere.Head);
 		}
-		if (DistanceToPlayer < 0.5f && !CameraReacting && !Struggling && !Yandere.Attacking && !Distracted && !Posing && CanSeeObject(Yandere.gameObject, Yandere.HeadPosition))
+		if (DistanceToPlayer < 0.5f && !CameraReacting && !Struggling && !Yandere.Attacking && !Distracted && !Posing && CanSeeObject(Yandere.gameObject, Yandere.HeadPosition) && Yandere.CanMove)
 		{
 			PersonalSpaceTimer += Time.deltaTime;
 			if (PersonalSpaceTimer > 4f)
@@ -17918,6 +17934,7 @@ public class StudentScript : MonoBehaviour
 				WitnessRivalDiePhase = 1;
 				Routine = false;
 				TargetDistance = 0.5f;
+				CorpseID = Corpse.StudentID;
 			}
 			else
 			{
@@ -23168,10 +23185,17 @@ public class StudentScript : MonoBehaviour
 		{
 			CameraFlash = RetroCameraFlash;
 			SmartPhone = RetroCamera;
-			if (StudentID == 56)
+			if (StudentID == 56 || StudentID == 36)
 			{
-				Debug.Log("Student #" + StudentID + " is the Photography Club leader, so he shouldn't become a Sleuth...");
+				Debug.Log("Student #" + StudentID + " is a Club leader, and shouldn't become a Sleuth...");
 				flag = true;
+				if (StudentManager.MissionMode)
+				{
+					ScheduleBlock obj = ScheduleBlocks[4];
+					obj.destination = "LunchSpot";
+					obj.action = "Eat";
+					GetDestinations();
+				}
 			}
 		}
 		if (flag)
@@ -23233,37 +23257,43 @@ public class StudentScript : MonoBehaviour
 			}
 			if (!Grudge)
 			{
-				ScheduleBlock obj = ScheduleBlocks[2];
-				obj.destination = "Sleuth";
-				obj.action = "Sleuth";
+				ScheduleBlock obj2 = ScheduleBlocks[2];
+				obj2.destination = "Sleuth";
+				obj2.action = "Sleuth";
 				if (!StudentManager.MissionMode)
 				{
-					ScheduleBlock obj2 = ScheduleBlocks[4];
-					obj2.destination = "Sleuth";
-					obj2.action = "Sleuth";
+					ScheduleBlock obj3 = ScheduleBlocks[4];
+					obj3.destination = "Sleuth";
+					obj3.action = "Sleuth";
+				}
+				else
+				{
+					ScheduleBlock obj4 = ScheduleBlocks[4];
+					obj4.destination = "LunchSpot";
+					obj4.action = "Eat";
 				}
 				if (ScheduleBlocks.Length > 7)
 				{
-					ScheduleBlock obj3 = ScheduleBlocks[7];
-					obj3.destination = "Sleuth";
-					obj3.action = "Sleuth";
+					ScheduleBlock obj5 = ScheduleBlocks[7];
+					obj5.destination = "Sleuth";
+					obj5.action = "Sleuth";
 				}
 			}
 			else
 			{
 				StalkTarget = Yandere.transform;
 				SleuthTarget = Yandere.transform;
-				ScheduleBlock obj4 = ScheduleBlocks[2];
-				obj4.destination = "Stalk";
-				obj4.action = "Stalk";
-				ScheduleBlock obj5 = ScheduleBlocks[4];
-				obj5.destination = "Stalk";
-				obj5.action = "Stalk";
+				ScheduleBlock obj6 = ScheduleBlocks[2];
+				obj6.destination = "Stalk";
+				obj6.action = "Stalk";
+				ScheduleBlock obj7 = ScheduleBlocks[4];
+				obj7.destination = "Stalk";
+				obj7.action = "Stalk";
 				if (ScheduleBlocks.Length > 7)
 				{
-					ScheduleBlock obj6 = ScheduleBlocks[7];
-					obj6.destination = "Stalk";
-					obj6.action = "Stalk";
+					ScheduleBlock obj8 = ScheduleBlocks[7];
+					obj8.destination = "Stalk";
+					obj8.action = "Stalk";
 				}
 			}
 		}

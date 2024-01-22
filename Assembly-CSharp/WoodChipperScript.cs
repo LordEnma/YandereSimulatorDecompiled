@@ -44,6 +44,8 @@ public class WoodChipperScript : MonoBehaviour
 
 	public bool Occupied;
 
+	public bool Animate;
+
 	public bool Burning;
 
 	public bool Acid;
@@ -79,7 +81,7 @@ public class WoodChipperScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (BurnTimer != 0f)
+		if (Panel != null && Panel.activeInHierarchy && BurnTimer != 0f)
 		{
 			BurnTimer = Mathf.MoveTowards(BurnTimer, 0f, Time.deltaTime * 0.1f);
 			Circle.fillAmount = 1f - BurnTimer / 60f;
@@ -189,58 +191,63 @@ public class WoodChipperScript : MonoBehaviour
 		{
 			Prompt.HideButton[3] = false;
 		}
-		if (!Kiln)
+		if (Animate)
 		{
-			if (!Open)
+			if (!Kiln)
+			{
+				if (!Open)
+				{
+					Rotation = Mathf.MoveTowards(Rotation, 0f, Time.deltaTime * 360f);
+					if (Rotation > -36f)
+					{
+						if (Rotation < 0f)
+						{
+							MyAudio.clip = CloseAudio;
+							MyAudio.Play();
+						}
+						Rotation = 0f;
+						Animate = false;
+					}
+					Lid.transform.localEulerAngles = new Vector3(Rotation, Lid.transform.localEulerAngles.y, Lid.transform.localEulerAngles.z);
+				}
+				else
+				{
+					if (Lid.transform.localEulerAngles.x == 0f)
+					{
+						MyAudio.clip = OpenAudio;
+						MyAudio.Play();
+					}
+					Rotation = Mathf.MoveTowards(Rotation, -90f, Time.deltaTime * 360f);
+					Lid.transform.localEulerAngles = new Vector3(Rotation, Lid.transform.localEulerAngles.y, Lid.transform.localEulerAngles.z);
+				}
+			}
+			else if (!Open)
 			{
 				Rotation = Mathf.MoveTowards(Rotation, 0f, Time.deltaTime * 360f);
-				if (Rotation > -36f)
+				if (Rotation < 36f)
 				{
-					if (Rotation < 0f)
+					if (Rotation > 0f)
 					{
 						MyAudio.clip = CloseAudio;
 						MyAudio.Play();
 					}
 					Rotation = 0f;
+					Animate = false;
 				}
-				Lid.transform.localEulerAngles = new Vector3(Rotation, Lid.transform.localEulerAngles.y, Lid.transform.localEulerAngles.z);
+				Lid.transform.localEulerAngles = new Vector3(Lid.transform.localEulerAngles.x, Rotation, Lid.transform.localEulerAngles.z);
+				Slab.localPosition = Vector3.Lerp(Slab.localPosition, Vector3.zero, Time.deltaTime * 10f);
 			}
 			else
 			{
-				if (Lid.transform.localEulerAngles.x == 0f)
+				if (Rotation == 0f)
 				{
 					MyAudio.clip = OpenAudio;
 					MyAudio.Play();
 				}
-				Rotation = Mathf.MoveTowards(Rotation, -90f, Time.deltaTime * 360f);
-				Lid.transform.localEulerAngles = new Vector3(Rotation, Lid.transform.localEulerAngles.y, Lid.transform.localEulerAngles.z);
+				Rotation = Mathf.MoveTowards(Rotation, 180f, Time.deltaTime * 360f);
+				Lid.transform.localEulerAngles = new Vector3(Lid.transform.localEulerAngles.x, Rotation, Lid.transform.localEulerAngles.z);
+				Slab.localPosition = Vector3.Lerp(Slab.localPosition, new Vector3(0f, 0f, 1f), Time.deltaTime * 10f);
 			}
-		}
-		else if (!Open)
-		{
-			Rotation = Mathf.MoveTowards(Rotation, 0f, Time.deltaTime * 360f);
-			if (Rotation < 36f)
-			{
-				if (Rotation > 0f)
-				{
-					MyAudio.clip = CloseAudio;
-					MyAudio.Play();
-				}
-				Rotation = 0f;
-			}
-			Lid.transform.localEulerAngles = new Vector3(Lid.transform.localEulerAngles.x, Rotation, Lid.transform.localEulerAngles.z);
-			Slab.localPosition = Vector3.Lerp(Slab.localPosition, Vector3.zero, Time.deltaTime * 10f);
-		}
-		else
-		{
-			if (Rotation == 0f)
-			{
-				MyAudio.clip = OpenAudio;
-				MyAudio.Play();
-			}
-			Rotation = Mathf.MoveTowards(Rotation, 180f, Time.deltaTime * 360f);
-			Lid.transform.localEulerAngles = new Vector3(Lid.transform.localEulerAngles.x, Rotation, Lid.transform.localEulerAngles.z);
-			Slab.localPosition = Vector3.Lerp(Slab.localPosition, new Vector3(0f, 0f, 1f), Time.deltaTime * 10f);
 		}
 		if (Prompt.Circle[3].fillAmount == 0f)
 		{
@@ -265,6 +272,7 @@ public class WoodChipperScript : MonoBehaviour
 					Yandere.CanMove = false;
 					Victims++;
 					VictimList[Victims] = Yandere.Ragdoll.GetComponent<RagdollScript>().StudentID;
+					Animate = true;
 					Open = true;
 					if (!Acid)
 					{

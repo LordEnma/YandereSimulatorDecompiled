@@ -208,9 +208,6 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			HomeGlobals.Night = true;
 		}
-		Debug.Log("Eighties Mode is: " + GameGlobals.Eighties);
-		Debug.Log("Custom Mode is: " + GameGlobals.CustomMode);
-		Debug.Log("Night is: " + HomeGlobals.Night);
 		if (!OptionGlobals.Vsync)
 		{
 			QualitySettings.vSyncCount = 0;
@@ -367,7 +364,6 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			if (Eighties)
 			{
-				Debug.Log("Setting Ryoba Blendshapes 2");
 				if (!Asylum)
 				{
 					if (EightiesAttacher != null)
@@ -604,7 +600,7 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB))
+		if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB) || Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			MyAnimation["f02_prepareThrow_00"].weight = 0f;
 			MyAnimation["f02_throw_00"].speed = 2f;

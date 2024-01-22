@@ -204,6 +204,14 @@ public class RagdollScript : MonoBehaviour
 
 	private void Start()
 	{
+		BoxCollider[] stairColliders = Student.StudentManager.StairColliders;
+		for (int i = 0; i < stairColliders.Length; i++)
+		{
+			if (stairColliders[i].bounds.Contains(Student.Hips.position))
+			{
+				Student.transform.position += new Vector3(0f, 1f, 0f);
+			}
+		}
 		ElectrocutionAnimation = false;
 		MurderSuicideAnimation = false;
 		BurningAnimation = false;
@@ -224,13 +232,13 @@ public class RagdollScript : MonoBehaviour
 		}
 		if (!RigidbodiesManuallyDisabled)
 		{
-			for (int i = 0; i < AllRigidbodies.Length; i++)
+			for (int j = 0; j < AllRigidbodies.Length; j++)
 			{
-				AllRigidbodies[i].isKinematic = false;
-				AllColliders[i].enabled = true;
+				AllRigidbodies[j].isKinematic = false;
+				AllColliders[j].enabled = true;
 				if (Yandere != null && Yandere.StudentManager.NoGravity)
 				{
-					AllRigidbodies[i].useGravity = false;
+					AllRigidbodies[j].useGravity = false;
 				}
 			}
 		}
@@ -601,7 +609,7 @@ public class RagdollScript : MonoBehaviour
 					Wrappable = false;
 					flag = true;
 				}
-				if ((Yandere.PickUp != null && Yandere.PickUp.Blowtorch && !Cauterized) || (Yandere.PickUp != null && Yandere.PickUp.Tarp) || (Yandere.PickUp != null && Yandere.PickUp.BodyBags > 0 && !Concealed))
+				if ((Yandere.PickUp != null && Yandere.PickUp.Blowtorch && !Cauterized && !NeckSnapped) || (Yandere.PickUp != null && Yandere.PickUp.Tarp) || (Yandere.PickUp != null && Yandere.PickUp.BodyBags > 0 && !Concealed))
 				{
 					flag = true;
 				}

@@ -376,6 +376,10 @@ public class WorkbenchScript : MonoBehaviour
 					Inventory.BariumCarbonate = false;
 					Inventory.LethalChemical = true;
 					Inventory.LethalPoisons++;
+					if (MissionModeGlobals.MissionMode)
+					{
+						Inventory.LethalPoisons += 9;
+					}
 				}
 				else if (OutcomeID == 5)
 				{

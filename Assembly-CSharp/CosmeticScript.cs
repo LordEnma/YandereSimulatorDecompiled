@@ -1341,7 +1341,6 @@ public class CosmeticScript : MonoBehaviour
 			HairRenderer = MaleHairRenderers[Hairstyle];
 			if (StartShader != null)
 			{
-				Debug.Log("Attempting to give Senpai's hair the shader that can change colors.");
 				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.SetFloat("_BlendAmount", 0f);
 			}
@@ -1622,7 +1621,6 @@ public class CosmeticScript : MonoBehaviour
 				CustomEyes = false;
 				if (CorrectColor != new Color(0f, 0f, 0f))
 				{
-					Debug.Log("Changing eye texture to grayscale eye texture.");
 					CustomEyes = true;
 					RightEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
 					LeftEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
@@ -1653,9 +1651,13 @@ public class CosmeticScript : MonoBehaviour
 		if (!Randomize)
 		{
 			UsingDefaultHairColor = false;
-			if (HairColor == "White" || HairColor == "Default")
+			if (HairColor == "Default")
 			{
 				DefaultHair();
+			}
+			else if (HairColor == "White")
+			{
+				ColorValue = new Color(1f, 1f, 1f);
 			}
 			else if (HairColor == "Black")
 			{
@@ -1738,9 +1740,9 @@ public class CosmeticScript : MonoBehaviour
 			}
 			else
 			{
+				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.SetFloat("_Saturation", 0f);
 				HairRenderer.material.SetFloat("_BlendAmount", 0f);
-				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.color = ColorValue;
 				RightEyeRenderer.gameObject.SetActive(value: true);
 				LeftEyeRenderer.gameObject.SetActive(value: true);
@@ -1921,7 +1923,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else
 		{
-			if (StudentID == 86)
+			if (!GameGlobals.CustomMode && !CustomModeMenu && StudentID == 86)
 			{
 				CharacterAnimation["moodyEyes_00"].layer = 1;
 				CharacterAnimation.Play("moodyEyes_00");
@@ -3268,7 +3270,7 @@ public class CosmeticScript : MonoBehaviour
 				BurlapSack.newRenderer.materials[0].mainTexture = SkinTextures[SkinColor];
 				BurlapSack.newRenderer.materials[1].mainTexture = HairRenderer.material.mainTexture;
 				BurlapSack.newRenderer.materials[2].mainTexture = BurlapSack.accessoryMaterials[0].mainTexture;
-				if (CustomHair)
+				if (GameGlobals.CustomMode && CustomHair)
 				{
 					BurlapSack.newRenderer.materials[1].mainTexture = SkinTextures[0];
 				}

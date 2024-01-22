@@ -318,13 +318,6 @@ public class HomePrisonerScript : MonoBehaviour
 			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 465f - (float)ID * 40f, Highlight.localPosition.z);
 			UpdateDesc();
 		}
-		if (Input.GetKeyDown(KeyCode.Z))
-		{
-			Sanity = 0;
-			StudentGlobals.SetStudentSanity(PrisonerManager.StudentID, Sanity);
-			SanityLabel.text = "Sanity: " + Sanity.ToString("f0") + "%";
-			Prisoner.UpdateSanity();
-		}
 		if (!ZoomIn)
 		{
 			if (ConfirmationWindow.activeInHierarchy)

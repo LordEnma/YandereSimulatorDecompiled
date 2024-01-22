@@ -282,7 +282,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 			Lines = CutsceneLines10;
 			Clips = CutsceneClips10;
 			DarkLine = 1;
-			RivalLine = 0;
+			RivalLine = 9;
 			Silhouette.mainTexture = RivalSilhouettes[10];
 			Renders = Rival10Renders;
 			Nexts = Rival10Nexts;

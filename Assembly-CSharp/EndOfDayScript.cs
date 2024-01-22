@@ -1588,6 +1588,8 @@ public class EndOfDayScript : MonoBehaviour
 				Rival.transform.parent = base.transform;
 				Rival.transform.localPosition = new Vector3(0f, 0f, 0f);
 				Rival.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+				Rival.Character.transform.localPosition = new Vector3(0f, 0f, 0f);
+				Rival.Character.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 				Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 				Rival.CharacterAnimation.Play(Rival.BulliedWalkAnim);
 				Rival.CharacterAnimation.enabled = true;
@@ -1624,6 +1626,7 @@ public class EndOfDayScript : MonoBehaviour
 					{
 						PlayerPrefs.SetInt("a", 1);
 					}
+					base.enabled = true;
 				}
 				else
 				{

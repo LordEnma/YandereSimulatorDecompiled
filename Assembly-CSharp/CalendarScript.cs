@@ -542,7 +542,6 @@ public class CalendarScript : MonoBehaviour
 								Debug.Log("DateGlobals.Week is: " + DateGlobals.Week);
 								if ((GameGlobals.RivalEliminationID == 0 && DateGlobals.Weekday == DayOfWeek.Friday) || (GameGlobals.AlternateTimeline && DateGlobals.Weekday == DayOfWeek.Friday && DateGlobals.Week == 9) || DateGlobals.Weekday > DayOfWeek.Friday)
 								{
-									Debug.Log("This code ran.");
 									if (GameGlobals.AlternateTimeline && DateGlobals.Weekday == DayOfWeek.Friday && DateGlobals.Week == 9)
 									{
 										DeadlineLabel.GetComponent<UILabel>().text = "CANNOT SKIP";

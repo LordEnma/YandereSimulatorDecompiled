@@ -190,533 +190,541 @@ public class DebugMenuScript : MonoBehaviour
 					DateGlobals.Weekday = DayOfWeek.Friday;
 					SceneManager.LoadScene("LoadingScene");
 				}
-				else if (!Input.GetKeyDown(KeyCode.F12))
+				else if (Input.GetKeyDown(KeyCode.F12))
 				{
-					if (Input.GetKeyDown(KeyCode.Alpha1))
+					StudentGlobals.SetStudentReputation(11, -200);
+					DatingGlobals.RivalSabotaged = 5;
+					DateGlobals.Weekday = DayOfWeek.Friday;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha1))
+				{
+					DateGlobals.Weekday = DayOfWeek.Monday;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha2))
+				{
+					DateGlobals.Weekday = DayOfWeek.Tuesday;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha3))
+				{
+					DateGlobals.Weekday = DayOfWeek.Wednesday;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha4))
+				{
+					DateGlobals.Weekday = DayOfWeek.Thursday;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha5))
+				{
+					DateGlobals.Weekday = DayOfWeek.Friday;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha6))
+				{
+					Yandere.DebugTimer = 1f;
+					Yandere.transform.position = TeleportSpot[1].position;
+					if (Yandere.Followers > 0)
 					{
-						DateGlobals.Weekday = DayOfWeek.Monday;
-						SceneManager.LoadScene("LoadingScene");
+						Yandere.Follower.transform.position = Yandere.transform.position;
 					}
-					else if (Input.GetKeyDown(KeyCode.Alpha2))
+					Physics.SyncTransforms();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha7))
+				{
+					Yandere.transform.position = TeleportSpot[2].position + new Vector3(0.75f, 0f, 0f);
+					if (Yandere.Followers > 0)
 					{
-						DateGlobals.Weekday = DayOfWeek.Tuesday;
-						SceneManager.LoadScene("LoadingScene");
+						Yandere.Follower.transform.position = Yandere.transform.position;
 					}
-					else if (Input.GetKeyDown(KeyCode.Alpha3))
+					Physics.SyncTransforms();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha8))
+				{
+					Yandere.transform.position = TeleportSpot[3].position;
+					if (Yandere.Followers > 0)
 					{
-						DateGlobals.Weekday = DayOfWeek.Wednesday;
-						SceneManager.LoadScene("LoadingScene");
+						Yandere.Follower.transform.position = Yandere.transform.position;
 					}
-					else if (Input.GetKeyDown(KeyCode.Alpha4))
+					Physics.SyncTransforms();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha9))
+				{
+					Yandere.transform.position = TeleportSpot[4].position;
+					if (Yandere.Followers > 0)
 					{
-						DateGlobals.Weekday = DayOfWeek.Thursday;
-						SceneManager.LoadScene("LoadingScene");
+						Yandere.Follower.transform.position = Yandere.transform.position;
 					}
-					else if (Input.GetKeyDown(KeyCode.Alpha5))
+					StudentScript studentScript = StudentManager.Students[39];
+					if (studentScript != null && studentScript.Alive)
 					{
-						DateGlobals.Weekday = DayOfWeek.Friday;
-						SceneManager.LoadScene("LoadingScene");
+						studentScript.ShoeRemoval.Start();
+						studentScript.ShoeRemoval.PutOnShoes();
+						studentScript.Phase = 2;
+						studentScript.ScheduleBlocks[2].action = "Stand";
+						studentScript.GetDestinations();
+						studentScript.CurrentDestination = MidoriSpot;
+						studentScript.Pathfinding.target = MidoriSpot;
+						studentScript.transform.position = MidoriSpot.position;
 					}
-					else if (Input.GetKeyDown(KeyCode.Alpha6))
+					Window.SetActive(value: false);
+					Physics.SyncTransforms();
+				}
+				else if (Input.GetKeyDown(KeyCode.Alpha0))
+				{
+					Yandere.transform.position = TeleportSpot[11].position;
+					if (Yandere.Followers > 0)
 					{
-						Yandere.DebugTimer = 1f;
-						Yandere.transform.position = TeleportSpot[1].position;
-						if (Yandere.Followers > 0)
+						Yandere.Follower.transform.position = Yandere.transform.position;
+					}
+					Window.SetActive(value: false);
+					Physics.SyncTransforms();
+				}
+				else if (Input.GetKeyDown(KeyCode.A))
+				{
+					if (SchoolAtmosphere.Type == SchoolAtmosphereType.High)
+					{
+						SchoolGlobals.SchoolAtmosphere = 0.5f;
+					}
+					else if (SchoolAtmosphere.Type == SchoolAtmosphereType.Medium)
+					{
+						SchoolGlobals.SchoolAtmosphere = 0f;
+					}
+					else
+					{
+						SchoolGlobals.SchoolAtmosphere = 1f;
+					}
+					SchoolGlobals.PreviousSchoolAtmosphere = SchoolGlobals.SchoolAtmosphere;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.C))
+				{
+					for (ID = 1; ID < 11; ID++)
+					{
+						CollectibleGlobals.SetTapeCollected(ID, value: true);
+						StudentManager.TapesCollected[ID] = true;
+					}
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.D))
+				{
+					for (ID = 0; ID < 5; ID++)
+					{
+						StudentScript studentScript2 = StudentManager.Students[76 + ID];
+						if (studentScript2 != null)
 						{
-							Yandere.Follower.transform.position = Yandere.transform.position;
-						}
-						Physics.SyncTransforms();
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.Alpha7))
-					{
-						Yandere.transform.position = TeleportSpot[2].position + new Vector3(0.75f, 0f, 0f);
-						if (Yandere.Followers > 0)
-						{
-							Yandere.Follower.transform.position = Yandere.transform.position;
-						}
-						Physics.SyncTransforms();
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.Alpha8))
-					{
-						Yandere.transform.position = TeleportSpot[3].position;
-						if (Yandere.Followers > 0)
-						{
-							Yandere.Follower.transform.position = Yandere.transform.position;
-						}
-						Physics.SyncTransforms();
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.Alpha9))
-					{
-						Yandere.transform.position = TeleportSpot[4].position;
-						if (Yandere.Followers > 0)
-						{
-							Yandere.Follower.transform.position = Yandere.transform.position;
-						}
-						StudentScript studentScript = StudentManager.Students[39];
-						if (studentScript != null && studentScript.Alive)
-						{
-							studentScript.ShoeRemoval.Start();
-							studentScript.ShoeRemoval.PutOnShoes();
-							studentScript.Phase = 2;
-							studentScript.ScheduleBlocks[2].action = "Stand";
-							studentScript.GetDestinations();
-							studentScript.CurrentDestination = MidoriSpot;
-							studentScript.Pathfinding.target = MidoriSpot;
-							studentScript.transform.position = MidoriSpot.position;
-						}
-						Window.SetActive(value: false);
-						Physics.SyncTransforms();
-					}
-					else if (Input.GetKeyDown(KeyCode.Alpha0))
-					{
-						Yandere.transform.position = TeleportSpot[11].position;
-						if (Yandere.Followers > 0)
-						{
-							Yandere.Follower.transform.position = Yandere.transform.position;
-						}
-						Window.SetActive(value: false);
-						Physics.SyncTransforms();
-					}
-					else if (Input.GetKeyDown(KeyCode.A))
-					{
-						if (SchoolAtmosphere.Type == SchoolAtmosphereType.High)
-						{
-							SchoolGlobals.SchoolAtmosphere = 0.5f;
-						}
-						else if (SchoolAtmosphere.Type == SchoolAtmosphereType.Medium)
-						{
-							SchoolGlobals.SchoolAtmosphere = 0f;
-						}
-						else
-						{
-							SchoolGlobals.SchoolAtmosphere = 1f;
-						}
-						SchoolGlobals.PreviousSchoolAtmosphere = SchoolGlobals.SchoolAtmosphere;
-						SceneManager.LoadScene("LoadingScene");
-					}
-					else if (Input.GetKeyDown(KeyCode.C))
-					{
-						for (ID = 1; ID < 11; ID++)
-						{
-							CollectibleGlobals.SetTapeCollected(ID, value: true);
-							StudentManager.TapesCollected[ID] = true;
-						}
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.D))
-					{
-						for (ID = 0; ID < 5; ID++)
-						{
-							StudentScript studentScript2 = StudentManager.Students[76 + ID];
-							if (studentScript2 != null)
+							if (studentScript2.Phase < 2)
 							{
-								if (studentScript2.Phase < 2)
-								{
-									studentScript2.ShoeRemoval.Start();
-									studentScript2.ShoeRemoval.PutOnShoes();
-									studentScript2.Phase = 2;
-									studentScript2.CurrentDestination = studentScript2.Destinations[2];
-									studentScript2.Pathfinding.target = studentScript2.Destinations[2];
-								}
-								studentScript2.transform.position = studentScript2.Destinations[2].position;
+								studentScript2.ShoeRemoval.Start();
+								studentScript2.ShoeRemoval.PutOnShoes();
+								studentScript2.Phase = 2;
+								studentScript2.CurrentDestination = studentScript2.Destinations[2];
+								studentScript2.Pathfinding.target = studentScript2.Destinations[2];
+							}
+							studentScript2.transform.position = studentScript2.Destinations[2].position;
+						}
+					}
+					Physics.SyncTransforms();
+					Window.SetActive(value: false);
+					CounselorGlobals.CounselorTape = 1;
+					CounselorGlobals.DelinquentPunishments = 5;
+				}
+				else if (Input.GetKeyDown(KeyCode.F))
+				{
+					GreenScreen.SetActive(value: true);
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.G))
+				{
+					StudentScript studentScript3 = StudentManager.Students[RooftopStudent];
+					StudentManager.MeetStudentID = RooftopStudent;
+					StudentManager.MeetTime = 7f;
+					StudentManager.MeetID = 9;
+					PlayerGlobals.SetStudentFriend(RooftopStudent, value: true);
+					StudentManager.Students[RooftopStudent].Friend = true;
+					Yandere.transform.position = RooftopSpot.position + new Vector3(1f, 0f, 0f);
+					WeaponManager.Weapons[6].transform.position = Yandere.transform.position + new Vector3(0f, 0f, 1.915f);
+					if (studentScript3 != null)
+					{
+						StudentManager.OsanaOfferHelp.UpdateLocation();
+						StudentManager.OsanaOfferHelp.enabled = true;
+						StudentManager.NoteWindow.MeetID = 9;
+						if (!studentScript3.Indoors)
+						{
+							if (studentScript3.ShoeRemoval.Locker == null)
+							{
+								studentScript3.ShoeRemoval.Start();
+							}
+							studentScript3.ShoeRemoval.PutOnShoes();
+						}
+						studentScript3.CharacterAnimation.Play(studentScript3.IdleAnim);
+						studentScript3.transform.position = RooftopSpot.position;
+						studentScript3.transform.rotation = RooftopSpot.rotation;
+						studentScript3.Prompt.Label[0].text = "     Push";
+						studentScript3.CurrentDestination = RooftopSpot;
+						studentScript3.Pathfinding.target = RooftopSpot;
+						studentScript3.Pathfinding.canSearch = false;
+						studentScript3.Pathfinding.canMove = false;
+						studentScript3.SpeechLines.Stop();
+						studentScript3.Pushable = true;
+						studentScript3.Routine = false;
+						studentScript3.Meeting = true;
+						studentScript3.MeetTime = 0f;
+					}
+					if (StudentManager.Students[10] != null)
+					{
+						StudentManager.Students[10].transform.position = new Vector3(0f, 0f, -75f);
+					}
+					if (Clock.HourTime < 7.1f)
+					{
+						Clock.PresentTime = 426f;
+					}
+					Physics.SyncTransforms();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.K))
+				{
+					StudentGlobals.Prisoner1 = KidnappedVictim;
+					StudentGlobals.StudentSlave = KidnappedVictim;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.L))
+				{
+					DatingGlobals.Affection = 100f;
+					DateGlobals.Weekday = DayOfWeek.Friday;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.M))
+				{
+					Yandere.Inventory.Money += 100f;
+					PlayerGlobals.Money += 100f;
+					Yandere.Inventory.UpdateMoney();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.O))
+				{
+					Yandere.Inventory.RivalPhone = true;
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.P))
+				{
+					for (ID = 2; ID < 93; ID++)
+					{
+						StudentScript studentScript4 = StudentManager.Students[ID];
+						if (studentScript4 != null)
+						{
+							studentScript4.Patience = 999;
+							studentScript4.Pestered = -999;
+							studentScript4.Ignoring = false;
+						}
+					}
+					Yandere.Inventory.PantyShots += 20;
+					PlayerGlobals.PantyShots += 20;
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.Q))
+				{
+					Censor();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.R))
+				{
+					Debug.Log("Attempting to update reputation.");
+					if (PlayerGlobals.Reputation == -100f)
+					{
+						PlayerGlobals.Reputation = -66.66666f;
+					}
+					else if (PlayerGlobals.Reputation == -66.66666f)
+					{
+						PlayerGlobals.Reputation = 0f;
+					}
+					else if (PlayerGlobals.Reputation == 0f)
+					{
+						PlayerGlobals.Reputation = 66.66666f;
+					}
+					else if (PlayerGlobals.Reputation == 66.66666f)
+					{
+						PlayerGlobals.Reputation = 100f;
+					}
+					else if (PlayerGlobals.Reputation == 100f)
+					{
+						PlayerGlobals.Reputation = -100f;
+					}
+					else
+					{
+						PlayerGlobals.Reputation = 0f;
+					}
+					Reputation.PreviousRep = 999f;
+					Reputation.PendingRep = PlayerGlobals.Reputation;
+					Reputation.UpdateRep();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.S))
+				{
+					PlayerGlobals.Numbness = 5;
+					Yandere.Class.Numbness = 5;
+					PlayerGlobals.Seduction = 5;
+					Yandere.Class.Seduction = 5;
+					ClassGlobals.PhysicalGrade = 5;
+					Yandere.Class.PhysicalGrade = 5;
+					Yandere.PhysicalGrade = 5;
+					StudentManager.Police.UpdateCorpses();
+					for (ID = 1; ID < 101; ID++)
+					{
+						StudentGlobals.SetStudentPhotographed(ID, value: true);
+						StudentManager.StudentPhotographed[ID] = true;
+						if (StudentManager.Students[ID] != null)
+						{
+							PlayerGlobals.SetStudentFriend(ID, value: true);
+							StudentManager.Students[ID].Friend = true;
+						}
+					}
+					StudentManager.Students[46].Friend = false;
+					Window.SetActive(value: false);
+					Debug.Log("Yandere.Class.PhysicalGrade is now: " + Yandere.Class.PhysicalGrade);
+				}
+				else if (Input.GetKeyDown(KeyCode.T))
+				{
+					Zoom.OverShoulder = !Zoom.OverShoulder;
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.U))
+				{
+					PlayerGlobals.SetStudentFriend(StudentManager.SuitorID, value: true);
+					PlayerGlobals.SetStudentFriend(StudentManager.RivalID, value: true);
+					StudentManager.Students[StudentManager.SuitorID].Friend = true;
+					StudentManager.Students[StudentManager.RivalID].Friend = true;
+					for (ID = 1; ID < 26; ID++)
+					{
+						ConversationGlobals.SetTopicDiscovered(ID, value: true);
+						StudentManager.SetTopicLearnedByStudent(ID, StudentManager.RivalID, boolean: true);
+					}
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.Z))
+				{
+					Yandere.Police.Invalid = true;
+					if (Input.GetKey(KeyCode.LeftShift))
+					{
+						for (ID = 2; ID < 55; ID++)
+						{
+							_ = StudentManager.Students[ID];
+						}
+					}
+					else
+					{
+						Debug.Log("Killing all students now.");
+						for (ID = 2; ID < 101; ID++)
+						{
+							StudentScript studentScript5 = StudentManager.Students[ID];
+							if (studentScript5 != null)
+							{
+								studentScript5.SpawnAlarmDisc();
+								studentScript5.BecomeRagdoll();
+								studentScript5.DeathType = DeathType.EasterEgg;
 							}
 						}
-						Physics.SyncTransforms();
-						Window.SetActive(value: false);
-						CounselorGlobals.CounselorTape = 1;
-						CounselorGlobals.DelinquentPunishments = 5;
 					}
-					else if (Input.GetKeyDown(KeyCode.F))
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.X))
+				{
+					TaskGlobals.SetTaskStatus(36, 3);
+					SchoolGlobals.ReactedToGameLeader = false;
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.Backspace))
+				{
+					Time.timeScale = 1f;
+					Clock.PresentTime = 1079f;
+					Clock.HourTime = Clock.PresentTime / 60f;
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.BackQuote))
+				{
+					bool debug = GameGlobals.Debug;
+					bool eighties = GameGlobals.Eighties;
+					Globals.DeleteAll();
+					GameGlobals.Debug = debug;
+					GameGlobals.Eighties = eighties;
+					StudentGlobals.FemaleUniform = 6;
+					StudentGlobals.MaleUniform = 6;
+					for (int i = 1; i < 101; i++)
 					{
-						GreenScreen.SetActive(value: true);
-						Window.SetActive(value: false);
+						StudentGlobals.SetStudentPhotographed(i, value: true);
 					}
-					else if (Input.GetKeyDown(KeyCode.G))
+					SceneManager.LoadScene("LoadingScene");
+				}
+				else if (Input.GetKeyDown(KeyCode.Space))
+				{
+					Yandere.transform.position = TeleportSpot[5].position;
+					if (Yandere.Follower != null)
 					{
-						StudentScript studentScript3 = StudentManager.Students[RooftopStudent];
-						StudentManager.MeetStudentID = RooftopStudent;
-						StudentManager.MeetTime = 7f;
-						StudentManager.MeetID = 9;
-						PlayerGlobals.SetStudentFriend(RooftopStudent, value: true);
-						StudentManager.Students[RooftopStudent].Friend = true;
-						Yandere.transform.position = RooftopSpot.position + new Vector3(1f, 0f, 0f);
-						WeaponManager.Weapons[6].transform.position = Yandere.transform.position + new Vector3(0f, 0f, 1.915f);
-						if (studentScript3 != null)
+						Yandere.Follower.transform.position = Yandere.transform.position;
+					}
+					for (int j = 46; j < 51; j++)
+					{
+						if (!(StudentManager.Students[j] != null))
 						{
-							StudentManager.OsanaOfferHelp.UpdateLocation();
-							StudentManager.OsanaOfferHelp.enabled = true;
-							StudentManager.NoteWindow.MeetID = 9;
-							if (!studentScript3.Indoors)
+							continue;
+						}
+						StudentManager.Students[j].transform.position = TeleportSpot[5].position;
+						if (!StudentManager.Students[j].Indoors)
+						{
+							if (StudentManager.Students[j].ShoeRemoval.Locker == null)
 							{
-								if (studentScript3.ShoeRemoval.Locker == null)
-								{
-									studentScript3.ShoeRemoval.Start();
-								}
-								studentScript3.ShoeRemoval.PutOnShoes();
+								StudentManager.Students[j].ShoeRemoval.Start();
 							}
-							studentScript3.CharacterAnimation.Play(studentScript3.IdleAnim);
-							studentScript3.transform.position = RooftopSpot.position;
-							studentScript3.transform.rotation = RooftopSpot.rotation;
-							studentScript3.Prompt.Label[0].text = "     Push";
-							studentScript3.CurrentDestination = RooftopSpot;
-							studentScript3.Pathfinding.target = RooftopSpot;
-							studentScript3.Pathfinding.canSearch = false;
-							studentScript3.Pathfinding.canMove = false;
-							studentScript3.SpeechLines.Stop();
-							studentScript3.Pushable = true;
-							studentScript3.Routine = false;
-							studentScript3.Meeting = true;
-							studentScript3.MeetTime = 0f;
+							StudentManager.Students[j].ShoeRemoval.PutOnShoes();
 						}
-						if (Clock.HourTime < 7.1f)
+					}
+					Clock.PresentTime = 1015f;
+					Clock.HourTime = Clock.PresentTime / 60f;
+					Window.SetActive(value: false);
+					OsanaEvent1.enabled = false;
+					OsanaEvent2.enabled = false;
+					OsanaEvent3.enabled = false;
+					Physics.SyncTransforms();
+				}
+				else if (Input.GetKeyDown(KeyCode.LeftAlt))
+				{
+					Turtle.SpawnWeapons();
+					Yandere.transform.position = TeleportSpot[6].position;
+					if (Yandere.Follower != null)
+					{
+						Yandere.Follower.transform.position = Yandere.transform.position;
+					}
+					Clock.PresentTime = 425f;
+					Clock.HourTime = Clock.PresentTime / 60f;
+					Physics.SyncTransforms();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.LeftControl))
+				{
+					Yandere.transform.position = TeleportSpot[7].position;
+					if (Yandere.Follower != null)
+					{
+						Yandere.Follower.transform.position = Yandere.transform.position;
+					}
+					Physics.SyncTransforms();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.RightControl))
+				{
+					Yandere.transform.position = TeleportSpot[8].position;
+					if (Yandere.Follower != null)
+					{
+						Yandere.Follower.transform.position = Yandere.transform.position;
+					}
+					Physics.SyncTransforms();
+					Window.SetActive(value: false);
+				}
+				else if (Input.GetKeyDown(KeyCode.Equals))
+				{
+					Clock.PresentTime += 10f;
+					Window.SetActive(value: false);
+				}
+				else if (!Input.GetKeyDown(KeyCode.Return))
+				{
+					if (Input.GetKeyDown(KeyCode.B))
+					{
+						Yandere.Inventory.Headset = true;
+						StudentManager.LoveManager.SuitorProgress = 1;
+						DatingGlobals.SuitorProgress = 1;
+						PlayerGlobals.SetStudentFriend(6, value: true);
+						PlayerGlobals.SetStudentFriend(11, value: true);
+						StudentManager.Students[6].Friend = true;
+						StudentManager.Students[11].Friend = true;
+						for (int k = 0; k < 11; k++)
 						{
-							Clock.PresentTime = 426f;
+							DatingGlobals.SetComplimentGiven(k, value: false);
 						}
+						for (ID = 1; ID < 26; ID++)
+						{
+							ConversationGlobals.SetTopicDiscovered(ID, value: true);
+							StudentManager.SetTopicLearnedByStudent(ID, 11, boolean: true);
+						}
+						StudentScript studentScript6 = StudentManager.Students[11];
+						if (studentScript6 != null)
+						{
+							studentScript6.ShoeRemoval.Start();
+							studentScript6.ShoeRemoval.PutOnShoes();
+							studentScript6.CanTalk = true;
+							studentScript6.Phase = 2;
+							studentScript6.Pestered = 0;
+							studentScript6.Patience = 999;
+							studentScript6.Ignoring = false;
+							studentScript6.CurrentDestination = studentScript6.Destinations[2];
+							studentScript6.Pathfinding.target = studentScript6.Destinations[2];
+							studentScript6.transform.position = studentScript6.Destinations[2].position;
+						}
+						StudentScript studentScript7 = StudentManager.Students[6];
+						if (studentScript7 != null)
+						{
+							studentScript7.ShoeRemoval.Start();
+							studentScript7.ShoeRemoval.PutOnShoes();
+							studentScript7.Phase = 2;
+							studentScript7.Pestered = 0;
+							studentScript7.Patience = 999;
+							studentScript7.Ignoring = false;
+							studentScript7.CurrentDestination = studentScript7.Destinations[2];
+							studentScript7.Pathfinding.target = studentScript7.Destinations[2];
+							studentScript7.transform.position = studentScript7.Destinations[2].position;
+						}
+						_ = StudentManager.Students[10];
+						if (studentScript7 != null)
+						{
+							studentScript7.transform.position = studentScript6.transform.position;
+						}
+						CollectibleGlobals.SetGiftPurchased(6, value: true);
+						CollectibleGlobals.SetGiftPurchased(7, value: true);
+						CollectibleGlobals.SetGiftPurchased(8, value: true);
+						CollectibleGlobals.SetGiftPurchased(9, value: true);
 						Physics.SyncTransforms();
 						Window.SetActive(value: false);
 					}
-					else if (Input.GetKeyDown(KeyCode.K))
+					else if (Input.GetKeyDown(KeyCode.Pause))
 					{
+						Clock.StopTime = !Clock.StopTime;
+						Window.SetActive(value: false);
+					}
+					else if (Input.GetKeyDown(KeyCode.W))
+					{
+						DateGlobals.Week++;
+						SceneManager.LoadScene("LoadingScene");
+					}
+					else if (Input.GetKeyDown(KeyCode.H))
+					{
+						StudentGlobals.FragileSlave = 5;
+						StudentGlobals.FragileTarget = 10;
 						StudentGlobals.Prisoner1 = KidnappedVictim;
 						StudentGlobals.StudentSlave = KidnappedVictim;
 						SceneManager.LoadScene("LoadingScene");
 					}
-					else if (Input.GetKeyDown(KeyCode.L))
+					else if (Input.GetKeyDown(KeyCode.I))
 					{
-						DatingGlobals.Affection = 100f;
-						DateGlobals.Weekday = DayOfWeek.Friday;
-						SceneManager.LoadScene("LoadingScene");
-					}
-					else if (Input.GetKeyDown(KeyCode.M))
-					{
-						Yandere.Inventory.Money += 100f;
-						PlayerGlobals.Money += 100f;
-						Yandere.Inventory.UpdateMoney();
+						Yandere.Invisible = !Yandere.Invisible;
 						Window.SetActive(value: false);
 					}
-					else if (Input.GetKeyDown(KeyCode.O))
+					else if (!Input.GetKeyDown(KeyCode.J))
 					{
-						Yandere.Inventory.RivalPhone = true;
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.P))
-					{
-						for (ID = 2; ID < 93; ID++)
+						if (Input.GetKeyDown(KeyCode.V))
 						{
-							StudentScript studentScript4 = StudentManager.Students[ID];
-							if (studentScript4 != null)
-							{
-								studentScript4.Patience = 999;
-								studentScript4.Pestered = -999;
-								studentScript4.Ignoring = false;
-							}
-						}
-						Yandere.Inventory.PantyShots += 20;
-						PlayerGlobals.PantyShots += 20;
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.Q))
-					{
-						Censor();
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.R))
-					{
-						Debug.Log("Attempting to update reputation.");
-						if (PlayerGlobals.Reputation == -100f)
-						{
-							PlayerGlobals.Reputation = -66.66666f;
-						}
-						else if (PlayerGlobals.Reputation == -66.66666f)
-						{
-							PlayerGlobals.Reputation = 0f;
-						}
-						else if (PlayerGlobals.Reputation == 0f)
-						{
-							PlayerGlobals.Reputation = 66.66666f;
-						}
-						else if (PlayerGlobals.Reputation == 66.66666f)
-						{
-							PlayerGlobals.Reputation = 100f;
-						}
-						else if (PlayerGlobals.Reputation == 100f)
-						{
-							PlayerGlobals.Reputation = -100f;
-						}
-						else
-						{
-							PlayerGlobals.Reputation = 0f;
-						}
-						Reputation.PreviousRep = 999f;
-						Reputation.PendingRep = PlayerGlobals.Reputation;
-						Reputation.UpdateRep();
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.S))
-					{
-						PlayerGlobals.Numbness = 5;
-						Yandere.Class.Numbness = 5;
-						PlayerGlobals.Seduction = 5;
-						Yandere.Class.Seduction = 5;
-						ClassGlobals.PhysicalGrade = 5;
-						Yandere.Class.PhysicalGrade = 5;
-						Yandere.PhysicalGrade = 5;
-						StudentManager.Police.UpdateCorpses();
-						for (ID = 1; ID < 101; ID++)
-						{
-							StudentGlobals.SetStudentPhotographed(ID, value: true);
-							StudentManager.StudentPhotographed[ID] = true;
-							if (StudentManager.Students[ID] != null)
-							{
-								PlayerGlobals.SetStudentFriend(ID, value: true);
-								StudentManager.Students[ID].Friend = true;
-							}
-						}
-						StudentManager.Students[46].Friend = false;
-						Window.SetActive(value: false);
-						Debug.Log("Yandere.Class.PhysicalGrade is now: " + Yandere.Class.PhysicalGrade);
-					}
-					else if (Input.GetKeyDown(KeyCode.T))
-					{
-						Zoom.OverShoulder = !Zoom.OverShoulder;
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.U))
-					{
-						PlayerGlobals.SetStudentFriend(StudentManager.SuitorID, value: true);
-						PlayerGlobals.SetStudentFriend(StudentManager.RivalID, value: true);
-						StudentManager.Students[StudentManager.SuitorID].Friend = true;
-						StudentManager.Students[StudentManager.RivalID].Friend = true;
-						for (ID = 1; ID < 26; ID++)
-						{
-							ConversationGlobals.SetTopicDiscovered(ID, value: true);
-							StudentManager.SetTopicLearnedByStudent(ID, StudentManager.RivalID, boolean: true);
-						}
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.Z))
-					{
-						Yandere.Police.Invalid = true;
-						if (Input.GetKey(KeyCode.LeftShift))
-						{
-							for (ID = 2; ID < 55; ID++)
-							{
-								_ = StudentManager.Students[ID];
-							}
-						}
-						else
-						{
-							Debug.Log("Killing all students now.");
-							for (ID = 2; ID < 101; ID++)
-							{
-								StudentScript studentScript5 = StudentManager.Students[ID];
-								if (studentScript5 != null)
-								{
-									studentScript5.SpawnAlarmDisc();
-									studentScript5.BecomeRagdoll();
-									studentScript5.DeathType = DeathType.EasterEgg;
-								}
-							}
-						}
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.X))
-					{
-						TaskGlobals.SetTaskStatus(36, 3);
-						SchoolGlobals.ReactedToGameLeader = false;
-						SceneManager.LoadScene("LoadingScene");
-					}
-					else if (Input.GetKeyDown(KeyCode.Backspace))
-					{
-						Time.timeScale = 1f;
-						Clock.PresentTime = 1079f;
-						Clock.HourTime = Clock.PresentTime / 60f;
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.BackQuote))
-					{
-						bool debug = GameGlobals.Debug;
-						bool eighties = GameGlobals.Eighties;
-						Globals.DeleteAll();
-						GameGlobals.Debug = debug;
-						GameGlobals.Eighties = eighties;
-						StudentGlobals.FemaleUniform = 6;
-						StudentGlobals.MaleUniform = 6;
-						for (int i = 1; i < 101; i++)
-						{
-							StudentGlobals.SetStudentPhotographed(i, value: true);
-						}
-						SceneManager.LoadScene("LoadingScene");
-					}
-					else if (Input.GetKeyDown(KeyCode.Space))
-					{
-						Yandere.transform.position = TeleportSpot[5].position;
-						if (Yandere.Follower != null)
-						{
-							Yandere.Follower.transform.position = Yandere.transform.position;
-						}
-						for (int j = 46; j < 51; j++)
-						{
-							if (!(StudentManager.Students[j] != null))
-							{
-								continue;
-							}
-							StudentManager.Students[j].transform.position = TeleportSpot[5].position;
-							if (!StudentManager.Students[j].Indoors)
-							{
-								if (StudentManager.Students[j].ShoeRemoval.Locker == null)
-								{
-									StudentManager.Students[j].ShoeRemoval.Start();
-								}
-								StudentManager.Students[j].ShoeRemoval.PutOnShoes();
-							}
-						}
-						Clock.PresentTime = 1015f;
-						Clock.HourTime = Clock.PresentTime / 60f;
-						Window.SetActive(value: false);
-						OsanaEvent1.enabled = false;
-						OsanaEvent2.enabled = false;
-						OsanaEvent3.enabled = false;
-						Physics.SyncTransforms();
-					}
-					else if (Input.GetKeyDown(KeyCode.LeftAlt))
-					{
-						Turtle.SpawnWeapons();
-						Yandere.transform.position = TeleportSpot[6].position;
-						if (Yandere.Follower != null)
-						{
-							Yandere.Follower.transform.position = Yandere.transform.position;
-						}
-						Clock.PresentTime = 425f;
-						Clock.HourTime = Clock.PresentTime / 60f;
-						Physics.SyncTransforms();
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.LeftControl))
-					{
-						Yandere.transform.position = TeleportSpot[7].position;
-						if (Yandere.Follower != null)
-						{
-							Yandere.Follower.transform.position = Yandere.transform.position;
-						}
-						Physics.SyncTransforms();
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.RightControl))
-					{
-						Yandere.transform.position = TeleportSpot[8].position;
-						if (Yandere.Follower != null)
-						{
-							Yandere.Follower.transform.position = Yandere.transform.position;
-						}
-						Physics.SyncTransforms();
-						Window.SetActive(value: false);
-					}
-					else if (Input.GetKeyDown(KeyCode.Equals))
-					{
-						Clock.PresentTime += 10f;
-						Window.SetActive(value: false);
-					}
-					else if (!Input.GetKeyDown(KeyCode.Return))
-					{
-						if (Input.GetKeyDown(KeyCode.B))
-						{
-							Yandere.Inventory.Headset = true;
-							StudentManager.LoveManager.SuitorProgress = 1;
-							DatingGlobals.SuitorProgress = 1;
-							PlayerGlobals.SetStudentFriend(6, value: true);
-							PlayerGlobals.SetStudentFriend(11, value: true);
-							StudentManager.Students[6].Friend = true;
-							StudentManager.Students[11].Friend = true;
-							for (int k = 0; k < 11; k++)
-							{
-								DatingGlobals.SetComplimentGiven(k, value: false);
-							}
-							for (ID = 1; ID < 26; ID++)
-							{
-								ConversationGlobals.SetTopicDiscovered(ID, value: true);
-								StudentManager.SetTopicLearnedByStudent(ID, 11, boolean: true);
-							}
-							StudentScript studentScript6 = StudentManager.Students[11];
-							if (studentScript6 != null)
-							{
-								studentScript6.ShoeRemoval.Start();
-								studentScript6.ShoeRemoval.PutOnShoes();
-								studentScript6.CanTalk = true;
-								studentScript6.Phase = 2;
-								studentScript6.Pestered = 0;
-								studentScript6.Patience = 999;
-								studentScript6.Ignoring = false;
-								studentScript6.CurrentDestination = studentScript6.Destinations[2];
-								studentScript6.Pathfinding.target = studentScript6.Destinations[2];
-								studentScript6.transform.position = studentScript6.Destinations[2].position;
-							}
-							StudentScript studentScript7 = StudentManager.Students[6];
-							if (studentScript7 != null)
-							{
-								studentScript7.ShoeRemoval.Start();
-								studentScript7.ShoeRemoval.PutOnShoes();
-								studentScript7.Phase = 2;
-								studentScript7.Pestered = 0;
-								studentScript7.Patience = 999;
-								studentScript7.Ignoring = false;
-								studentScript7.CurrentDestination = studentScript7.Destinations[2];
-								studentScript7.Pathfinding.target = studentScript7.Destinations[2];
-								studentScript7.transform.position = studentScript7.Destinations[2].position;
-							}
-							_ = StudentManager.Students[10];
-							if (studentScript7 != null)
-							{
-								studentScript7.transform.position = studentScript6.transform.position;
-							}
-							CollectibleGlobals.SetGiftPurchased(6, value: true);
-							CollectibleGlobals.SetGiftPurchased(7, value: true);
-							CollectibleGlobals.SetGiftPurchased(8, value: true);
-							CollectibleGlobals.SetGiftPurchased(9, value: true);
-							Physics.SyncTransforms();
+							WaitingForSabotage = true;
 							Window.SetActive(value: false);
 						}
-						else if (Input.GetKeyDown(KeyCode.Pause))
+						else if (Input.GetKeyDown(KeyCode.N))
 						{
-							Clock.StopTime = !Clock.StopTime;
-							Window.SetActive(value: false);
-						}
-						else if (Input.GetKeyDown(KeyCode.W))
-						{
-							DateGlobals.Week++;
-							SceneManager.LoadScene("LoadingScene");
-						}
-						else if (Input.GetKeyDown(KeyCode.H))
-						{
-							StudentGlobals.FragileSlave = 5;
-							StudentGlobals.FragileTarget = 10;
-							StudentGlobals.Prisoner1 = KidnappedVictim;
-							StudentGlobals.StudentSlave = KidnappedVictim;
-							SceneManager.LoadScene("LoadingScene");
-						}
-						else if (Input.GetKeyDown(KeyCode.I))
-						{
-							Yandere.Invisible = !Yandere.Invisible;
-							Window.SetActive(value: false);
-						}
-						else if (!Input.GetKeyDown(KeyCode.J))
-						{
-							if (Input.GetKeyDown(KeyCode.V))
-							{
-								WaitingForSabotage = true;
-								Window.SetActive(value: false);
-							}
-							else if (Input.GetKeyDown(KeyCode.N))
-							{
-								ElectrocutionKit[0].transform.position = Yandere.transform.position;
-								ElectrocutionKit[1].transform.position = Yandere.transform.position;
-								ElectrocutionKit[2].transform.position = Yandere.transform.position;
-								ElectrocutionKit[3].transform.position = Yandere.transform.position;
-								ElectrocutionKit[3].SetActive(value: true);
-							}
+							ElectrocutionKit[0].transform.position = Yandere.transform.position;
+							ElectrocutionKit[1].transform.position = Yandere.transform.position;
+							ElectrocutionKit[2].transform.position = Yandere.transform.position;
+							ElectrocutionKit[3].transform.position = Yandere.transform.position;
+							ElectrocutionKit[3].SetActive(value: true);
 						}
 					}
 				}

@@ -194,6 +194,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_B))
 						{
+							NewTitleScreen.WeekSelect = false;
 							NewTitleScreen.Speed = 0f;
 							NewTitleScreen.Phase = 2;
 							PromptBar.Show = false;

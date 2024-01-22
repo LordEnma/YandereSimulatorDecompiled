@@ -566,85 +566,89 @@ public class CounselorScript : MonoBehaviour
 			}
 			if (ShowWindow)
 			{
-				if (CounselorDoor.Darkness.color.a == 0f && Input.GetButtonDown(InputNames.Xbox_A))
+				if (CounselorDoor.Darkness.color.a < 0.0001f)
 				{
-					if (Selected == 7)
+					CounselorDoor.Darkness.alpha = 0f;
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						if (!CounselorDoor.Exit)
+						if (Selected == 7)
 						{
-							CounselorSubtitle.text = CounselorFarewellText;
-							MyAudio.clip = CounselorFarewellClip;
-							MyAudio.Play();
-							CounselorDoor.FadeOut = true;
-							CounselorDoor.FadeIn = false;
-							CounselorDoor.Exit = true;
-						}
-					}
-					else if (Labels[Selected].color.a == 1f)
-					{
-						if (!Eighties)
-						{
-							if (Selected == 1)
+							if (!CounselorDoor.Exit)
 							{
-								SchemeGlobals.SetSchemeStage(1, 9);
-								Schemes.UpdateInstructions();
+								CounselorSubtitle.text = CounselorFarewellText;
+								MyAudio.clip = CounselorFarewellClip;
+								MyAudio.Play();
+								CounselorDoor.FadeOut = true;
+								CounselorDoor.FadeIn = false;
+								CounselorDoor.Exit = true;
+							}
+						}
+						else if (Labels[Selected].color.a == 1f)
+						{
+							if (!Eighties)
+							{
+								if (Selected == 1)
+								{
+									SchemeGlobals.SetSchemeStage(1, 9);
+									Schemes.UpdateInstructions();
+								}
+								else if (Selected == 2)
+								{
+									Debug.Log("This code is only supposed to fire if the player was speaking to the Counselor...");
+									SchemeGlobals.SetSchemeStage(2, 7);
+									Schemes.UpdateInstructions();
+								}
+								else if (Selected == 3)
+								{
+									SchemeGlobals.SetSchemeStage(3, 5);
+									Schemes.UpdateInstructions();
+								}
+								else if (Selected == 4)
+								{
+									SchemeGlobals.SetSchemeStage(4, 8);
+									Schemes.UpdateInstructions();
+								}
+								else if (Selected == 5)
+								{
+									SchemeGlobals.SetSchemeStage(5, 10);
+									Schemes.UpdateInstructions();
+								}
+							}
+							else if (Selected == 1)
+							{
+								ReportedAlcohol = true;
 							}
 							else if (Selected == 2)
 							{
-								Debug.Log("This code is only supposed to fire if the player was speaking to the Counselor...");
-								SchemeGlobals.SetSchemeStage(2, 7);
-								Schemes.UpdateInstructions();
+								ReportedCondoms = true;
 							}
 							else if (Selected == 3)
 							{
-								SchemeGlobals.SetSchemeStage(3, 5);
-								Schemes.UpdateInstructions();
+								ReportedCigarettes = true;
 							}
 							else if (Selected == 4)
 							{
-								SchemeGlobals.SetSchemeStage(4, 8);
-								Schemes.UpdateInstructions();
+								ReportedTheft = true;
 							}
 							else if (Selected == 5)
 							{
-								SchemeGlobals.SetSchemeStage(5, 10);
-								Schemes.UpdateInstructions();
+								ReportedCheating = true;
 							}
+							else if (Selected == 6)
+							{
+								ReportedNarcotics = true;
+							}
+							CounselorSubtitle.text = CounselorReportText[Selected];
+							MyAudio.clip = CounselorReportClips[Selected];
+							MyAudio.Play();
+							ShowWindow = false;
+							Angry = true;
+							CutsceneManager.Scheme = Selected;
+							LectureID = Selected;
+							PromptBar.ClearButtons();
+							PromptBar.Show = false;
+							Busy = true;
 						}
-						else if (Selected == 1)
-						{
-							ReportedAlcohol = true;
-						}
-						else if (Selected == 2)
-						{
-							ReportedCondoms = true;
-						}
-						else if (Selected == 3)
-						{
-							ReportedCigarettes = true;
-						}
-						else if (Selected == 4)
-						{
-							ReportedTheft = true;
-						}
-						else if (Selected == 5)
-						{
-							ReportedCheating = true;
-						}
-						else if (Selected == 6)
-						{
-							ReportedNarcotics = true;
-						}
-						CounselorSubtitle.text = CounselorReportText[Selected];
-						MyAudio.clip = CounselorReportClips[Selected];
-						MyAudio.Play();
-						ShowWindow = false;
-						Angry = true;
-						CutsceneManager.Scheme = Selected;
-						LectureID = Selected;
-						PromptBar.ClearButtons();
-						PromptBar.Show = false;
-						Busy = true;
 					}
 				}
 			}
@@ -687,8 +691,9 @@ public class CounselorScript : MonoBehaviour
 			{
 				LectureLabel.text = LectureIntro[LectureID];
 				EndOfDayDarkness.color = new Color(EndOfDayDarkness.color.r, EndOfDayDarkness.color.g, EndOfDayDarkness.color.b, Mathf.MoveTowards(EndOfDayDarkness.color.a, 0f, Time.deltaTime));
-				if (EndOfDayDarkness.color.a == 0f)
+				if (EndOfDayDarkness.color.a < 0.0001f)
 				{
+					EndOfDayDarkness.alpha = 0f;
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Continue";
 					PromptBar.UpdateButtons();
@@ -704,8 +709,9 @@ public class CounselorScript : MonoBehaviour
 			else if (LecturePhase == 2)
 			{
 				LectureLabel.color = new Color(LectureLabel.color.r, LectureLabel.color.g, LectureLabel.color.b, Mathf.MoveTowards(LectureLabel.color.a, 0f, Time.deltaTime));
-				if (LectureLabel.color.a == 0f)
+				if (LectureLabel.color.a < 0.0001f)
 				{
+					LectureLabel.alpha = 0f;
 					EndOfDay.TextWindow.SetActive(value: false);
 					EndOfDay.EODCamera.GetComponent<AudioListener>().enabled = true;
 					LectureSubtitle.text = CounselorLectureText[LectureID];
