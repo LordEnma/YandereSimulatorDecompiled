@@ -28,6 +28,10 @@ public class StatsScript : MonoBehaviour
 
 	public UILabel[] Ranks;
 
+	public UILabel FriendsLabel;
+
+	public UILabel AlertsLabel;
+
 	public UILabel ClubLabel;
 
 	public UILabel RepLabel;
@@ -120,6 +124,8 @@ public class StatsScript : MonoBehaviour
 		string text = "";
 		text = ((PlayerGlobals.Reputation > 33.33333f) ? "High" : ((!(PlayerGlobals.Reputation < -33.33333f)) ? "Neutral" : "Low"));
 		RepLabel.text = "Reputation: " + PlayerGlobals.Reputation + " (" + text + ")";
+		FriendsLabel.text = "Friends: " + PlayerGlobals.Friends;
+		AlertsLabel.text = "Alerts: " + PlayerGlobals.Alerts;
 	}
 
 	private void Update()
@@ -306,5 +312,10 @@ public class StatsScript : MonoBehaviour
 		}
 		ClubLabels.TryGetValue(club, out var value);
 		ClubLabel.text = "Club: " + value;
+		if (PauseScreen.Yandere.Friends > 0)
+		{
+			FriendsLabel.text = "Friends: " + PauseScreen.Yandere.Friends;
+		}
+		AlertsLabel.text = "Alerts: " + (PlayerGlobals.Alerts + PauseScreen.Yandere.Alerts);
 	}
 }

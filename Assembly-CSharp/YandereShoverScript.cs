@@ -8,6 +8,16 @@ public class YandereShoverScript : MonoBehaviour
 
 	public bool PreventNudity;
 
+	public float Timer;
+
+	private void Update()
+	{
+		if (Timer > 0f)
+		{
+			Timer = Mathf.MoveTowards(Timer, 0f, Time.deltaTime);
+		}
+	}
+
 	private void OnTriggerStay(Collider other)
 	{
 		if (Yandere.Egg)
@@ -41,6 +51,12 @@ public class YandereShoverScript : MonoBehaviour
 				{
 					Yandere.NotificationManager.CustomText = "That's the boys' locker room!";
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				if (MaleLockerRoom && Timer == 0f)
+				{
+					Yandere.transform.position = new Vector3(-8.57f, 0f, 42f);
+					Physics.SyncTransforms();
+					Timer = 1f;
 				}
 			}
 			if (flag)

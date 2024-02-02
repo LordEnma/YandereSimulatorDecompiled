@@ -35,6 +35,7 @@ public class DeathColliderScript : MonoBehaviour
 			component.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
 			component.MapMarker.gameObject.SetActive(value: false);
 			GenericPrompt.CrushedStudent = component;
+			component.gameObject.GetComponent<NemesisScript>().enabled = false;
 		}
 		else if (other.gameObject.layer == 15 && other.gameObject.name == "Radio")
 		{

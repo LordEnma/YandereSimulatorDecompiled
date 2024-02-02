@@ -2314,7 +2314,7 @@ public class SubtitleScript : MonoBehaviour
 			Label.text = OfferSnacks[ID];
 			break;
 		case SubtitleType.AcceptFood:
-			Label.text = GetRandomString(FoodAccepts);
+			Label.text = FoodAccepts[ID];
 			break;
 		case SubtitleType.RejectFood:
 			Label.text = FoodRejects[ID];
@@ -2730,10 +2730,10 @@ public class SubtitleScript : MonoBehaviour
 			Label.text = GetRandomString(Greetings);
 			break;
 		case SubtitleType.PlayerFarewell:
-			Label.text = GetRandomString(PlayerFarewells);
+			Label.text = PlayerFarewells[ID];
 			break;
 		case SubtitleType.StudentFarewell:
-			Label.text = GetRandomString(StudentFarewells);
+			Label.text = StudentFarewells[ID];
 			break;
 		case SubtitleType.InsanityApology:
 			Label.text = GetRandomString(InsanityApologies);
@@ -3886,12 +3886,9 @@ public class SubtitleScript : MonoBehaviour
 
 	public void Silence(AudioClip[] ClipArray)
 	{
-		for (int i = 0; i < 11; i++)
+		for (int i = 0; i < ClipArray.Length; i++)
 		{
-			if (i < ClipArray.Length)
-			{
-				ClipArray[i] = LongestSilence;
-			}
+			ClipArray[i] = LongestSilence;
 		}
 	}
 }

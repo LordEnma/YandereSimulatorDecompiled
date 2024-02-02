@@ -90,8 +90,9 @@ public class ConfessionSceneScript : MonoBehaviour
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
 			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 0f, Time.deltaTime);
 			Jukebox.Volume = Mathf.MoveTowards(Jukebox.Volume, 0f, Time.deltaTime);
-			if (Darkness.color.a == 1f)
+			if (Darkness.color.a > 0.999f)
 			{
+				Darkness.alpha = 1f;
 				Timer += Time.deltaTime;
 				if (Timer > 1f)
 				{
@@ -123,13 +124,15 @@ public class ConfessionSceneScript : MonoBehaviour
 		else if (Phase == 2)
 		{
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
-			if (Darkness.color.a == 0f)
+			if (Darkness.color.a < 0.001f)
 			{
+				Darkness.alpha = 0f;
 				if (!ShowLabel)
 				{
 					Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, Mathf.MoveTowards(Label.color.a, 0f, Time.deltaTime));
-					if (Label.color.a == 0f)
+					if (Label.color.a < 0.001f)
 					{
+						Label.alpha = 0f;
 						if (TextPhase < 5)
 						{
 							MainCamera.position = CameraDestinations[TextPhase].position;
@@ -164,8 +167,9 @@ public class ConfessionSceneScript : MonoBehaviour
 				else
 				{
 					Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, Mathf.MoveTowards(Label.color.a, 1f, Time.deltaTime));
-					if (Label.color.a == 1f)
+					if (Label.color.a > 0.999f)
 					{
+						Label.alpha = 1f;
 						if (!PromptBar.Show)
 						{
 							PromptBar.ClearButtons();
@@ -199,8 +203,9 @@ public class ConfessionSceneScript : MonoBehaviour
 		else if (Phase == 4)
 		{
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
-			if (Darkness.color.a == 1f)
+			if (Darkness.color.a > 0.999f)
 			{
+				Darkness.alpha = 1f;
 				Timer += Time.deltaTime;
 				if (Timer > 1f)
 				{
@@ -222,8 +227,9 @@ public class ConfessionSceneScript : MonoBehaviour
 		{
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
 			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 1f, Time.deltaTime);
-			if (Darkness.color.a == 0f)
+			if (Darkness.color.a < 0.0001f)
 			{
+				Darkness.alpha = 0f;
 				StudentManager.ComeBack();
 				Suitor.enabled = false;
 				Suitor.Prompt.enabled = false;

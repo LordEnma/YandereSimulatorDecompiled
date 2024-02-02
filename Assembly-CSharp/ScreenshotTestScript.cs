@@ -21,6 +21,10 @@ public class ScreenshotTestScript : MonoBehaviour
 
 	public string PortraitName = "SenpaiPortrait";
 
+	public GameObject FemaleSenpai;
+
+	public GameObject MaleSenpai;
+
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -28,6 +32,16 @@ public class ScreenshotTestScript : MonoBehaviour
 			BG.mainTexture = EightiesBG;
 			Petals.SetActive(value: false);
 			Tree.SetActive(value: false);
+			if (GameGlobals.FemaleSenpai)
+			{
+				FemaleSenpai.SetActive(value: true);
+				MaleSenpai.SetActive(value: false);
+			}
+			else
+			{
+				FemaleSenpai.SetActive(value: false);
+				MaleSenpai.SetActive(value: true);
+			}
 		}
 	}
 

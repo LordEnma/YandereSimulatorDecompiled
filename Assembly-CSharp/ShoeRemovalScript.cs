@@ -310,9 +310,13 @@ public class ShoeRemovalScript : MonoBehaviour
 				Phase = 0;
 			}
 		}
-		else
+		else if (!Student.InEvent)
 		{
 			PutOnShoes();
+			if (Student.StudentID == Student.StudentManager.RivalID)
+			{
+				Debug.Log("Specifically, she did it from here.");
+			}
 			Student.Routine = false;
 		}
 	}

@@ -100,8 +100,14 @@ public class ConfessionManagerScript : MonoBehaviour
 
 	public int SubID;
 
+	public string MalePrefix;
+
 	private void Start()
 	{
+		if (GameGlobals.FemaleSenpai)
+		{
+			Senpai.transform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
+		}
 		StudentManager.Yandere.Class.Portal.EndEvents();
 		StudentManager.Students[StudentManager.RivalID].BookBag.SetActive(value: false);
 		Senpai["SenpaiConfession"].speed = 0.9f;
@@ -145,7 +151,15 @@ public class ConfessionManagerScript : MonoBehaviour
 				Tears = StudentManager.Students[StudentManager.RivalID].Tears;
 				Senpai = StudentManager.Students[1].CharacterAnimation;
 				SenpaiNeck = StudentManager.Students[1].Neck;
-				Osana[OsanaCosmetic.Student.ShyAnim].weight = 0f;
+				if (!StudentManager.Students[StudentManager.RivalID].Male)
+				{
+					Osana[OsanaCosmetic.Student.ShyAnim].weight = 0f;
+				}
+				else
+				{
+					Senpai.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+					MalePrefix = "Male";
+				}
 				Senpai["SenpaiConfession"].speed = 0.9f;
 				OriginalBlossoms.SetActive(value: false);
 				Tears.gameObject.SetActive(value: true);
@@ -160,7 +174,7 @@ public class ConfessionManagerScript : MonoBehaviour
 				Tears.materials[1].SetFloat("_TearReveal", 0f);
 				Debug.Log("The characters were told to perform their confession animations.");
 				Senpai.Play("SenpaiConfession");
-				Osana.Play("OsanaConfession");
+				Osana.Play(MalePrefix + "OsanaConfession");
 				OriginalBlossoms.SetActive(value: false);
 				HeartBeatCamera.SetActive(value: false);
 				if (!Eighties)
@@ -193,11 +207,11 @@ public class ConfessionManagerScript : MonoBehaviour
 					Timer = 0f;
 					Phase++;
 				}
-				else if (Osana["OsanaConfessionRejected"].time < 45f)
+				else if (Osana[MalePrefix + "OsanaConfessionRejected"].time < 45f)
 				{
 					Senpai.CrossFade("SenpaiConfessionRejected", 1f);
-					Osana["OsanaConfessionRejected"].time = 45f;
-					Osana.CrossFade("OsanaConfessionRejected", 1f);
+					Osana[MalePrefix + "OsanaConfessionRejected"].time = 45f;
+					Osana.CrossFade(MalePrefix + "OsanaConfessionRejected", 1f);
 				}
 			}
 			else
@@ -213,7 +227,7 @@ public class ConfessionManagerScript : MonoBehaviour
 				ConfessionCamera.eulerAngles = SenpaiPOV.eulerAngles;
 				ConfessionCamera.position = SenpaiPOV.position;
 				Senpai.gameObject.SetActive(value: false);
-				Osana["OsanaConfession"].time = 11f;
+				Osana[MalePrefix + "OsanaConfession"].time = 11f;
 				MyAudio.volume = 1f;
 				MyAudio.time = 8f;
 				FadeOut = false;
@@ -223,7 +237,7 @@ public class ConfessionManagerScript : MonoBehaviour
 		}
 		else if (Phase == 2)
 		{
-			if (SubID < ConfessTimes.Length && Osana["OsanaConfession"].time > ConfessTimes[SubID] + 3f)
+			if (SubID < ConfessTimes.Length && Osana[MalePrefix + "OsanaConfession"].time > ConfessTimes[SubID] + 3f)
 			{
 				if (!Eighties)
 				{
@@ -249,25 +263,25 @@ public class ConfessionManagerScript : MonoBehaviour
 				{
 					ConfessionCamera.eulerAngles = new Vector3(0f, 0f, 0f);
 					ConfessionCamera.position = new Vector3(0f, 7.85f, 118f);
-					Osana["OsanaConfession"].time = Osana["OsanaConfession"].length;
+					Osana[MalePrefix + "OsanaConfession"].time = Osana[MalePrefix + "OsanaConfession"].length;
 					ContinueButton.alpha = 0f;
 				}
 			}
-			if (Osana["OsanaConfession"].time >= Osana["OsanaConfession"].length)
+			if (Osana[MalePrefix + "OsanaConfession"].time >= Osana[MalePrefix + "OsanaConfession"].length)
 			{
 				ContinueButton.alpha = 0f;
-				if (StudentManager.SabotageProgress > 4)
+				if (StudentManager.SabotageProgress > 4 || StudentManager.StudentReps[StudentManager.RivalID] < -100f)
 				{
 					Reject = true;
 				}
 				if (!Reject)
 				{
-					Osana.CrossFade("OsanaConfessionAccepted");
+					Osana.CrossFade(MalePrefix + "OsanaConfessionAccepted");
 					MyAudio.clip = ConfessionAccepted;
 				}
 				else
 				{
-					Osana.CrossFade("OsanaConfessionRejected");
+					Osana.CrossFade(MalePrefix + "OsanaConfessionRejected");
 					MyAudio.clip = ConfessionRejected;
 				}
 				MyAudio.time = 0f;
@@ -288,7 +302,7 @@ public class ConfessionManagerScript : MonoBehaviour
 		{
 			if (!Reject)
 			{
-				if (SubID < AcceptTimes.Length && Osana["OsanaConfessionAccepted"].time > AcceptTimes[SubID])
+				if (SubID < AcceptTimes.Length && Osana[MalePrefix + "OsanaConfessionAccepted"].time > AcceptTimes[SubID])
 				{
 					if (!Eighties)
 					{
@@ -387,7 +401,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			}
 			else
 			{
-				if (SubID < RejectTimes.Length && Osana["OsanaConfessionRejected"].time > RejectTimes[SubID])
+				if (SubID < RejectTimes.Length && Osana[MalePrefix + "OsanaConfessionRejected"].time > RejectTimes[SubID])
 				{
 					if (!Eighties)
 					{
@@ -401,7 +415,7 @@ public class ConfessionManagerScript : MonoBehaviour
 				}
 				if (Eighties && Timer < 41f)
 				{
-					Osana["OsanaConfessionRejected"].time = 41f;
+					Osana[MalePrefix + "OsanaConfessionRejected"].time = 41f;
 					Timer = 41f;
 				}
 				if (Timer > 41f)
@@ -457,7 +471,7 @@ public class ConfessionManagerScript : MonoBehaviour
 				if (!Reject)
 				{
 					Senpai.Play("SenpaiConfessionAccepted");
-					Senpai["SenpaiConfessionAccepted"].time = Osana["OsanaConfessionAccepted"].time;
+					Senpai["SenpaiConfessionAccepted"].time = Osana[MalePrefix + "OsanaConfessionAccepted"].time;
 					Senpai.Play("SenpaiConfessionAccepted");
 					Yandere.Play("YandereConfessionAccepted");
 					StudentManager.Yandere.LoseGentleEyes();
@@ -471,15 +485,15 @@ public class ConfessionManagerScript : MonoBehaviour
 				{
 					if (Reject)
 					{
-						Osana.Play("OsanaConfessionRejected");
-						Osana["OsanaConfessionRejected"].time = 47f;
+						Osana.Play(MalePrefix + "OsanaConfessionRejected");
+						Osana[MalePrefix + "OsanaConfessionRejected"].time = 47f;
 						Senpai.Play("SenpaiConfessionRejected");
 						Senpai["SenpaiConfessionRejected"].time = 47f;
 					}
 					else
 					{
-						Osana.Play("OsanaConfessionAccepted");
-						Osana["OsanaConfessionAccepted"].time = 47f;
+						Osana.Play(MalePrefix + "OsanaConfessionAccepted");
+						Osana[MalePrefix + "OsanaConfessionAccepted"].time = 47f;
 						Senpai.Play("SenpaiConfessionAccepted");
 						Senpai["SenpaiConfessionAccepted"].time = 47f;
 					}

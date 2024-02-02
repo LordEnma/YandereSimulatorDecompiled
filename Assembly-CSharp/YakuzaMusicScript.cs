@@ -22,16 +22,24 @@ public class YakuzaMusicScript : MonoBehaviour
 		{
 			Phase = 1;
 		}
-		for (int i = 2; i < 98; i++)
+		int i = 2;
+		if (StudentManager.Yandere.Chased || StudentManager.Yandere.Chasers > 0)
 		{
-			if (StudentManager.Students[i] != null && StudentManager.Students[i].Alive && (StudentManager.Students[i].Chasing || StudentManager.Students[i].Pursuing || (StudentManager.Students[i].Persona == PersonaType.Heroic && StudentManager.Students[i].SpottedYakuza)))
+			Phase = 6;
+		}
+		else
+		{
+			for (; i < 98; i++)
 			{
-				Phase = 6;
+				if (StudentManager.Students[i] != null && StudentManager.Students[i].Alive && (StudentManager.Students[i].Chasing || StudentManager.Students[i].Pursuing || (StudentManager.Students[i].Persona == PersonaType.Heroic && StudentManager.Students[i].SpottedYakuza)))
+				{
+					Phase = 6;
+				}
 			}
 		}
 		if (Phase < 3)
 		{
-			for (int i = 86; i < 98; i++)
+			for (i = 86; i < 98; i++)
 			{
 				if (StudentManager.Students[i] != null && StudentManager.Students[i].Alive && StudentManager.Students[i].Fleeing)
 				{
@@ -41,7 +49,7 @@ public class YakuzaMusicScript : MonoBehaviour
 		}
 		if (Phase < 3)
 		{
-			for (int i = 2; i < 86; i++)
+			for (i = 2; i < 86; i++)
 			{
 				if (StudentManager.Students[i] != null && StudentManager.Students[i].Alive && StudentManager.Students[i].Fleeing && StudentManager.Students[i].ReportPhase < 3)
 				{
@@ -51,7 +59,7 @@ public class YakuzaMusicScript : MonoBehaviour
 		}
 		if (Phase < 3)
 		{
-			for (int i = 2; i < 86; i++)
+			for (i = 2; i < 86; i++)
 			{
 				if (StudentManager.Students[i] != null && StudentManager.Students[i].Alive && StudentManager.Students[i].Alarmed)
 				{
@@ -77,7 +85,7 @@ public class YakuzaMusicScript : MonoBehaviour
 				Phase = 2;
 			}
 		}
-		for (int i = 1; i < 7; i++)
+		for (i = 1; i < 7; i++)
 		{
 			if (i == Phase)
 			{

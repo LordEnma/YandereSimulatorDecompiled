@@ -34,6 +34,8 @@ public class CalendarScript : MonoBehaviour
 
 	public GameObject AmaiWindow;
 
+	public GameObject FunGirl;
+
 	public GameObject DeadlineLabel;
 
 	public GameObject ResetButton;
@@ -150,6 +152,10 @@ public class CalendarScript : MonoBehaviour
 		{
 			Debug.Log("Calendar Screen. The game believes that we're in Custom Mode.");
 			CustomModeLabel.gameObject.SetActive(value: true);
+		}
+		if (GameGlobals.AlternateTimeline)
+		{
+			FunGirl.SetActive(value: true);
 		}
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();

@@ -728,7 +728,7 @@ public class ShutterScript : MonoBehaviour
 				PhotoDescription.SetActive(value: true);
 				PhotoDescLabel.text = "Photo of: Osana Vandalizing School Property";
 			}
-			if (hit.collider.gameObject.transform.parent != null && hit.collider.gameObject.transform.parent.name == "PlushieShelf")
+			if (hit.collider.gameObject.transform.parent != null && hit.collider.gameObject.transform.parent.name == "Plushies")
 			{
 				PlushieShot = true;
 				PlushieName = hit.collider.gameObject.name;
@@ -740,6 +740,10 @@ public class ShutterScript : MonoBehaviour
 		{
 			PhotoDescLabel.text = "Photo of: Corpse";
 			ViolenceX.SetActive(value: false);
+			if (hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>() != null && hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>().Alive)
+			{
+				PhotoDescLabel.text = "Photo of: Sleeping Student";
+			}
 		}
 		if (Physics.Raycast(SmartphoneCamera.transform.position, SmartphoneCamera.transform.TransformDirection(Vector3.forward), out hit, float.PositiveInfinity, OnlyBlood) && hit.collider.gameObject.layer == 14)
 		{

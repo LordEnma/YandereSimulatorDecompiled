@@ -12,6 +12,8 @@ public class ConvoManagerScript : MonoBehaviour
 
 	public bool Custom;
 
+	public string[] FemaleDelinquentCombatAnims;
+
 	public string[] FemaleCombatAnims;
 
 	public string[] MaleCombatAnims;
@@ -346,7 +348,14 @@ public class ConvoManagerScript : MonoBehaviour
 			{
 				CombatAnimID = 1;
 			}
-			SM.Students[MartialArtist[1]].ClubAnim = MaleCombatAnims[CombatAnimID];
+			if (SM.Students[MartialArtist[1]].Male)
+			{
+				SM.Students[MartialArtist[1]].ClubAnim = MaleCombatAnims[CombatAnimID];
+			}
+			else
+			{
+				SM.Students[MartialArtist[1]].ClubAnim = FemaleDelinquentCombatAnims[CombatAnimID];
+			}
 			SM.Students[MartialArtist[2]].ClubAnim = FemaleCombatAnims[CombatAnimID];
 			SM.Students[MartialArtist[1]].GetNewAnimation = false;
 			SM.Students[MartialArtist[2]].GetNewAnimation = false;
@@ -375,15 +384,43 @@ public class ConvoManagerScript : MonoBehaviour
 					{
 						SM.Students[MartialArtist[1]].Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
 					}
-					SM.Students[MartialArtist[1]].ClubAnim = "idle_20";
-					SM.Students[MartialArtist[2]].ClubAnim = "f02_idle_20";
+					if (SM.Students[MartialArtist[1]].Male)
+					{
+						SM.Students[MartialArtist[1]].ClubAnim = "idle_20";
+					}
+					else
+					{
+						SM.Students[MartialArtist[1]].ClubAnim = "f02_idle_20";
+					}
+					if (SM.Students[MartialArtist[2]].Male)
+					{
+						SM.Students[MartialArtist[2]].ClubAnim = "idle_20";
+					}
+					else
+					{
+						SM.Students[MartialArtist[2]].ClubAnim = "f02_idle_20";
+					}
 					BothCharactersInPosition = false;
 				}
 			}
 			else
 			{
-				SM.Students[MartialArtist[1]].ClubAnim = "idle_20";
-				SM.Students[MartialArtist[2]].ClubAnim = "f02_idle_20";
+				if (SM.Students[MartialArtist[1]].Male)
+				{
+					SM.Students[MartialArtist[1]].ClubAnim = "idle_20";
+				}
+				else
+				{
+					SM.Students[MartialArtist[1]].ClubAnim = "f02_idle_20";
+				}
+				if (SM.Students[MartialArtist[2]].Male)
+				{
+					SM.Students[MartialArtist[2]].ClubAnim = "idle_20";
+				}
+				else
+				{
+					SM.Students[MartialArtist[2]].ClubAnim = "f02_idle_20";
+				}
 				BothCharactersInPosition = false;
 			}
 			return;
@@ -392,20 +429,48 @@ public class ConvoManagerScript : MonoBehaviour
 		{
 			if (studentScript.Talking || studentScript.Distracted || studentScript.TurnOffRadio)
 			{
-				studentScript.ClubAnim = "idle_20";
+				if (studentScript.Male)
+				{
+					studentScript.ClubAnim = "idle_20";
+				}
+				else
+				{
+					studentScript.ClubAnim = "f02_idle_20";
+				}
 				if (studentScript2 != null)
 				{
-					studentScript2.ClubAnim = "f02_idle_20";
+					if (studentScript2.Male)
+					{
+						studentScript2.ClubAnim = "idle_20";
+					}
+					else
+					{
+						studentScript2.ClubAnim = "f02_idle_20";
+					}
 				}
 				PatienceTimer = 0f;
 			}
 			else if (studentScript.DistanceToPlayer < 1.5f)
 			{
 				studentScript.Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
-				studentScript.ClubAnim = "idle_20";
+				if (studentScript.Male)
+				{
+					studentScript.ClubAnim = "idle_20";
+				}
+				else
+				{
+					studentScript.ClubAnim = "f02_idle_20";
+				}
 				if (studentScript2 != null)
 				{
-					studentScript2.ClubAnim = "f02_idle_20";
+					if (studentScript2.Male)
+					{
+						studentScript2.ClubAnim = "idle_20";
+					}
+					else
+					{
+						studentScript2.ClubAnim = "f02_idle_20";
+					}
 				}
 				PatienceTimer = 0f;
 			}
@@ -414,15 +479,36 @@ public class ConvoManagerScript : MonoBehaviour
 				PatienceTimer += Time.deltaTime;
 				if (PatienceTimer < 5f)
 				{
-					studentScript.ClubAnim = "idle_20";
+					if (studentScript.Male)
+					{
+						studentScript.ClubAnim = "idle_20";
+					}
+					else
+					{
+						studentScript.ClubAnim = "f02_idle_20";
+					}
 					if (studentScript2 != null)
 					{
-						studentScript2.ClubAnim = "f02_idle_20";
+						if (studentScript2.Male)
+						{
+							studentScript2.ClubAnim = "idle_20";
+						}
+						else
+						{
+							studentScript2.ClubAnim = "f02_idle_20";
+						}
 					}
 				}
 				else
 				{
-					studentScript.ClubAnim = "loopingKick";
+					if (studentScript.Male)
+					{
+						studentScript.ClubAnim = "loopingKick";
+					}
+					else
+					{
+						studentScript.ClubAnim = "f02_loopingKick";
+					}
 					if (studentScript2 != null)
 					{
 						studentScript2.ClubAnim = "f02_loopingKick";
@@ -446,10 +532,24 @@ public class ConvoManagerScript : MonoBehaviour
 		}
 		if (studentScript2.Talking || studentScript2.Distracted || studentScript2.TurnOffRadio)
 		{
-			studentScript.ClubAnim = "f02_idle_20";
+			if (studentScript2.Male)
+			{
+				studentScript2.ClubAnim = "idle_20";
+			}
+			else
+			{
+				studentScript2.ClubAnim = "f02_idle_20";
+			}
 			if (studentScript != null)
 			{
-				studentScript.ClubAnim = "idle_20";
+				if (studentScript.Male)
+				{
+					studentScript.ClubAnim = "idle_20";
+				}
+				else
+				{
+					studentScript.ClubAnim = "f02_idle_20";
+				}
 			}
 			PatienceTimer = 0f;
 			return;
@@ -457,10 +557,24 @@ public class ConvoManagerScript : MonoBehaviour
 		if (studentScript2.DistanceToPlayer < 1.5f)
 		{
 			studentScript2.Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
-			studentScript2.ClubAnim = "f02_idle_20";
+			if (studentScript2.Male)
+			{
+				studentScript2.ClubAnim = "idle_20";
+			}
+			else
+			{
+				studentScript2.ClubAnim = "f02_idle_20";
+			}
 			if (studentScript != null)
 			{
-				studentScript.ClubAnim = "idle_20";
+				if (studentScript.Male)
+				{
+					studentScript.ClubAnim = "idle_20";
+				}
+				else
+				{
+					studentScript.ClubAnim = "f02_idle_20";
+				}
 			}
 			PatienceTimer = 0f;
 			return;
@@ -468,17 +582,45 @@ public class ConvoManagerScript : MonoBehaviour
 		PatienceTimer += Time.deltaTime;
 		if (PatienceTimer < 5f)
 		{
-			studentScript2.ClubAnim = "f02_idle_20";
-			if (studentScript != null)
+			if (studentScript2.Male)
 			{
 				studentScript.ClubAnim = "idle_20";
 			}
+			else
+			{
+				studentScript2.ClubAnim = "f02_idle_20";
+			}
+			if (studentScript != null)
+			{
+				if (studentScript.Male)
+				{
+					studentScript.ClubAnim = "idle_20";
+				}
+				else
+				{
+					studentScript.ClubAnim = "f02_idle_20";
+				}
+			}
 			return;
 		}
-		studentScript2.ClubAnim = "f02_loopingKick";
+		if (studentScript2.Male)
+		{
+			studentScript2.ClubAnim = "loopingKick";
+		}
+		else
+		{
+			studentScript2.ClubAnim = "f02_loopingKick";
+		}
 		if (studentScript != null)
 		{
-			studentScript.ClubAnim = "loopingKick";
+			if (studentScript.Male)
+			{
+				studentScript.ClubAnim = "loopingKick";
+			}
+			else
+			{
+				studentScript.ClubAnim = "f02_loopingKick";
+			}
 		}
 		if (studentScript2.DistanceToDestination < 1f)
 		{

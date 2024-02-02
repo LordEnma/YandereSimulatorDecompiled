@@ -60,6 +60,8 @@ public class GenericRivalEventScript : MonoBehaviour
 
 	public bool Custom;
 
+	public bool Male = true;
+
 	public bool End;
 
 	public int SpeechPhase = 1;
@@ -94,6 +96,10 @@ public class GenericRivalEventScript : MonoBehaviour
 		if (DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
 			DateGlobals.Weekday = DayOfWeek.Monday;
+		}
+		if (GameGlobals.FemaleSenpai)
+		{
+			Male = false;
 		}
 		if (!GameGlobals.Eighties || DateGlobals.Weekday != EventDay || StudentGlobals.StudentSlave == StudentManager.RivalID || StudentGlobals.MemorialStudents > 0 || GameGlobals.RivalEliminationID > 0 || DatingGlobals.SuitorProgress == 2 || MissionModeGlobals.MissionMode || StudentManager.YandereLate || HomeGlobals.LateForSchool || GameGlobals.AlphabetMode || DateGlobals.Week > 10)
 		{
@@ -1817,7 +1823,14 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						if (!Impatient)
 						{
-							Senpai.CharacterAnimation.CrossFade("impatientWait_00");
+							if (Male)
+							{
+								Senpai.CharacterAnimation.CrossFade("impatientWait_00");
+							}
+							else
+							{
+								Senpai.CharacterAnimation.CrossFade(Senpai.IdleAnim);
+							}
 							Senpai.Pathfinding.canSearch = false;
 							Senpai.Pathfinding.canMove = false;
 							if (Clock.HourTime > 17.916666f)

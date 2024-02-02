@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HomePrisonerChanScript : MonoBehaviour
 {
@@ -96,7 +97,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 
 	public string IdleAnim;
 
-	private void Start()
+	public void Start()
 	{
 		if (PrisonerID == 1)
 		{
@@ -183,7 +184,6 @@ public class HomePrisonerChanScript : MonoBehaviour
 			{
 				if (PrisonerID == 1)
 				{
-					Debug.Log("Prisoner #" + PrisonerID + "'s Health is 0.");
 					Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
 					Character.GetComponent<Animation>()["f02_kidnapIdle_02"].speed = 0f;
 				}
@@ -192,6 +192,10 @@ public class HomePrisonerChanScript : MonoBehaviour
 					Character.GetComponent<Animation>()[IdleAnim].speed = 0f;
 				}
 				Object.Instantiate(Flies, base.transform.position, Quaternion.identity);
+				if (GameGlobals.AlternateTimeline && StudentGlobals.GetStudentHealth(StudentID) <= 0)
+				{
+					SceneManager.LoadScene("FunGameOverScene");
+				}
 			}
 			else if (PrisonerID == 1 && Sanity == 0f)
 			{

@@ -3632,15 +3632,21 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				if (!studentScript.Ragdoll.Disposed && !studentScript.Ragdoll.Dismembered)
 				{
-					studentScript.gameObject.SetActive(value: true);
+					if (studentScript.Ragdoll.Locker == null)
+					{
+						studentScript.gameObject.SetActive(value: true);
+					}
 					studentScript.Stop = false;
 					if (studentScript.Ragdoll.Concealed)
 					{
 						studentScript.CharacterAnimation.enabled = false;
 						studentScript.MyRenderer.enabled = false;
-						studentScript.Ragdoll.EnableRigidbodies();
+						if (!studentScript.Ragdoll.RigidbodiesManuallyDisabled)
+						{
+							studentScript.Ragdoll.EnableRigidbodies();
+						}
 					}
-					else
+					else if (studentScript.Alive)
 					{
 						studentScript.Pathfinding.canSearch = true;
 						studentScript.Pathfinding.canMove = true;

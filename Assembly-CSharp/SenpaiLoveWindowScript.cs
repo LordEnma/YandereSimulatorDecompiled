@@ -6,6 +6,10 @@ public class SenpaiLoveWindowScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public Texture EightiesSenpaiLove;
+
+	public Texture ModernSenpaiLove;
+
 	public GameObject RomanticNote;
 
 	public GameObject GiftBox;
@@ -80,6 +84,10 @@ public class SenpaiLoveWindowScript : MonoBehaviour
 		}
 		SenpaiHead.localPosition = new Vector3(-500f + (float)SenpaiLove * 1f / 100f * 1000f, 0f, 0f);
 		NumberLabel.text = SenpaiLove + "/100";
+		if (!GameGlobals.Eighties)
+		{
+			SenpaiIcon.mainTexture = ModernSenpai;
+		}
 		if (SenpaiLove < 25)
 		{
 			ThoughtLabel.text = "He is mildly curious about the identity of his secret admirer.";
@@ -99,15 +107,17 @@ public class SenpaiLoveWindowScript : MonoBehaviour
 		else
 		{
 			ThoughtLabel.text = "He can't stop fantasizing about meeting his secret admirer!";
-			Heart[0].SetActive(value: true);
-			Heart[1].SetActive(value: true);
+			if (GameGlobals.Eighties)
+			{
+				SenpaiIcon.mainTexture = EightiesSenpaiLove;
+			}
+			else
+			{
+				SenpaiIcon.mainTexture = ModernSenpaiLove;
+			}
 		}
 		ShowWhenReady = true;
 		Updated = true;
-		if (!GameGlobals.Eighties)
-		{
-			SenpaiIcon.mainTexture = ModernSenpai;
-		}
 	}
 
 	public void Update()

@@ -222,6 +222,10 @@ public class NewMissionWindowScript : MonoBehaviour
 				else if (Row == 2)
 				{
 					Method[Column]++;
+					if (Eighties && Method[Column] == 5)
+					{
+						Method[Column]++;
+					}
 					if (Method[Column] == MethodNames.Length)
 					{
 						Method[Column] = 0;
@@ -276,6 +280,10 @@ public class NewMissionWindowScript : MonoBehaviour
 				else if (Row == 2)
 				{
 					Method[Column]--;
+					if (Eighties && Method[Column] == 5)
+					{
+						Method[Column]--;
+					}
 					if (Method[Column] < 0)
 					{
 						Method[Column] = MethodNames.Length - 1;

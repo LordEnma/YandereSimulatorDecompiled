@@ -235,6 +235,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 				{
 					Outline.color = new Color(1f, 0.5f, 0f, 1f);
 				}
+				Corpse.Locker = this;
 			}
 			else if (Prompt.enabled)
 			{
@@ -299,6 +300,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 			}
 			Corpse.transform.localScale = new Vector3(1f, 1f, 1f);
 			Corpse.gameObject.SetActive(value: true);
+			Corpse.Locker = null;
 			Corpse = null;
 			Outline.color = new Color(0f, 1f, 1f, 1f);
 			StudentID = 0;

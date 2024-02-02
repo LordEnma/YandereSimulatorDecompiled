@@ -1002,7 +1002,7 @@ public class CosmeticScript : MonoBehaviour
 						CharacterAnimation.Play("f02_smile_00");
 						CharacterAnimation["f02_smile_00"].weight = 1f;
 					}
-					else if (StudentID != 86)
+					if (!GameGlobals.CustomMode && StudentID != 86)
 					{
 						if (StudentID == 87)
 						{
@@ -1338,7 +1338,14 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (StudentID == 1 && SenpaiGlobals.CustomSenpai)
 		{
-			HairRenderer = MaleHairRenderers[Hairstyle];
+			if (Male)
+			{
+				HairRenderer = MaleHairRenderers[Hairstyle];
+			}
+			else
+			{
+				HairRenderer = FemaleHairRenderers[Hairstyle];
+			}
 			if (StartShader != null)
 			{
 				HairRenderer.material.shader = StartShader;
@@ -1549,7 +1556,7 @@ public class CosmeticScript : MonoBehaviour
 				ClubAccessories[(int)Club].SetActive(value: false);
 			}
 		}
-		if (((Student.Rival && !Student.Male) || (StudentManager != null && !StudentManager.MissionMode && StudentID == StudentManager.RivalID)) && !TakingPortrait && !Cutscene && !Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene")
+		if (((Student.Rival && !Student.Male) || (StudentManager != null && !StudentManager.MissionMode && StudentID == StudentManager.RivalID)) && !TakingPortrait && !Cutscene && !Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene" && CatGifts.Length != 0)
 		{
 			CatGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
 			CatGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
@@ -1631,8 +1638,11 @@ public class CosmeticScript : MonoBehaviour
 				}
 				else
 				{
-					RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
-					LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+					if (HairRenderer != null)
+					{
+						RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+						LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+					}
 					RightEyeRenderer.material.color = Color.white;
 					LeftEyeRenderer.material.color = Color.white;
 					RightIrisLight.SetActive(value: false);
@@ -3274,6 +3284,7 @@ public class CosmeticScript : MonoBehaviour
 				{
 					BurlapSack.newRenderer.materials[1].mainTexture = SkinTextures[0];
 				}
+				BurlapSack.newRenderer.updateWhenOffscreen = true;
 				UpdateSack = false;
 			}
 		}

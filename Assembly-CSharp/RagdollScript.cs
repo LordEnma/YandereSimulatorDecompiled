@@ -6,6 +6,8 @@ public class RagdollScript : MonoBehaviour
 
 	public DetectionMarkerScript DetectionMarker;
 
+	public BodyHidingLockerScript Locker;
+
 	public IncineratorScript Incinerator;
 
 	public WoodChipperScript WoodChipper;

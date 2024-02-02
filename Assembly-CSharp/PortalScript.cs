@@ -76,6 +76,8 @@ public class PortalScript : MonoBehaviour
 
 	public bool BypassWarning;
 
+	public bool SlideIntoSeat;
+
 	public bool LateReport1;
 
 	public bool LateReport2;
@@ -491,12 +493,8 @@ public class PortalScript : MonoBehaviour
 				}
 			}
 		}
-		else
+		else if (!Yandere.Police.FadeOut && Vector3.Distance(Yandere.transform.position, base.transform.position) < 1.4f)
 		{
-			if (Yandere.Police.FadeOut || !(Vector3.Distance(Yandere.transform.position, base.transform.position) < 1.4f))
-			{
-				return;
-			}
 			CanAttendClass = true;
 			CheckForProblems();
 			if (!CanAttendClass)
@@ -577,6 +575,10 @@ public class PortalScript : MonoBehaviour
 				Prompt.enabled = true;
 			}
 		}
+		if (SlideIntoSeat)
+		{
+			Yandere.MoveTowardsTarget(new Vector3(-9.62f, 4f, -26f));
+		}
 	}
 
 	public void CheckForProblems()
@@ -619,6 +621,7 @@ public class PortalScript : MonoBehaviour
 			FadeOut = false;
 			Proceed = false;
 		}
+		SlideIntoSeat = true;
 	}
 
 	private void CheckForLateness()

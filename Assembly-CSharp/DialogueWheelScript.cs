@@ -1325,6 +1325,7 @@ public class DialogueWheelScript : MonoBehaviour
 		PromptBar.ClearButtons();
 		PromptBar.UpdateButtons();
 		PromptBar.Show = false;
+		Social.Socialized = false;
 	}
 
 	public void RestoreMusic()

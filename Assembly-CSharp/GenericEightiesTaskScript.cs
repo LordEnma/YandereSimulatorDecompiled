@@ -74,7 +74,11 @@ public class GenericEightiesTaskScript : MonoBehaviour
 						Prompt.Yandere.ResetYandereEffects();
 					}
 					bool flag = false;
-					if (Type == 3)
+					if (Type == 1)
+					{
+						Prompt.Yandere.LifeNotePen.SetActive(value: true);
+					}
+					else if (Type == 3)
 					{
 						if (Prompt.Yandere.Inventory.Cloth == 0)
 						{
@@ -87,7 +91,7 @@ public class GenericEightiesTaskScript : MonoBehaviour
 							Prompt.Yandere.Inventory.Cloth--;
 						}
 					}
-					if (Type == 4)
+					else if (Type == 4)
 					{
 						int num = 0;
 						while (num < 100)
@@ -207,6 +211,7 @@ public class GenericEightiesTaskScript : MonoBehaviour
 		Prompt.Yandere.SuspiciousActionTimer = 0f;
 		Animate = false;
 		TaskTimer = 0f;
+		Prompt.Yandere.LifeNotePen.SetActive(value: false);
 		Prompt.Yandere.Paintbrush.SetActive(value: false);
 		Prompt.Yandere.Palette.SetActive(value: false);
 		if (Type == 6)

@@ -50,7 +50,15 @@ public class SmokeBombScript : MonoBehaviour
 			{
 				if (component != null && !component.Yandere.Noticed && !component.Guarding && !component.Fleeing)
 				{
-					GoAway(component);
+					if (component.Actions[component.Phase] == StudentActionType.ClubAction && component.Club == ClubType.Cooking && component.ClubActivityPhase > 0)
+					{
+						component.Subtitle.CustomText = "Ew, something stinks! I want to run from the smell, but I can't run while holding this tray...";
+						component.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+					}
+					else
+					{
+						GoAway(component);
+					}
 				}
 				return;
 			}
@@ -124,6 +132,7 @@ public class SmokeBombScript : MonoBehaviour
 		if (!Student.Chasing && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Fleeing && !Student.Yandere.Noticed && !Student.Hunting && !Student.Confessing && !Student.Wet && !Student.Lethal && !Student.Emetic && !Student.Sedated && !Student.Headache && !Student.Vomiting && Student.ClubActivityPhase < 16 && !Student.EventSpecialCase && !Student.RetreivingMedicine)
 		{
 			Debug.Log(Student.Name + " just smelled a stink bomb!");
+			Student.EmptyHands();
 			Student.WasHurrying = Student.Hurry;
 			if (Student.ReturningMisplacedWeapon)
 			{

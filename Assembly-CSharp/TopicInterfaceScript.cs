@@ -128,6 +128,7 @@ public class TopicInterfaceScript : MonoBehaviour
 				}
 				Yandere.Interaction = YandereInteractionType.Compliment;
 				Yandere.TalkTimer = 5f;
+				Social.Socialized = true;
 			}
 			else
 			{

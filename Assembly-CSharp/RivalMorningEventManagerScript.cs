@@ -47,6 +47,8 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 
 	public bool Transfer;
 
+	public bool NoFriend;
+
 	public bool End;
 
 	public float TransferTime;
@@ -69,6 +71,8 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 
 	public int Frame;
 
+	public int Week = 1;
+
 	public string Weekday = string.Empty;
 
 	public float AnimationTime;
@@ -81,7 +85,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		{
 			DateGlobals.Weekday = DayOfWeek.Monday;
 		}
-		if (DateGlobals.Weekday != EventDay || HomeGlobals.LateForSchool || StudentManager.YandereLate || DatingGlobals.SuitorProgress == 2 || StudentGlobals.MemorialStudents > 0 || GameGlobals.RivalEliminationID > 0 || StudentGlobals.StudentSlave == RivalID || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week > 1 || GameGlobals.Eighties || StudentManager.RecordingVideo)
+		if (DateGlobals.Weekday != EventDay || HomeGlobals.LateForSchool || StudentManager.YandereLate || DatingGlobals.SuitorProgress == 2 || StudentGlobals.MemorialStudents > 0 || GameGlobals.RivalEliminationID > 0 || StudentGlobals.StudentSlave == RivalID || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week != Week || GameGlobals.Eighties || StudentManager.RecordingVideo)
 		{
 			Spy.Prompt.enabled = false;
 			base.enabled = false;
@@ -110,7 +114,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			if (Frame > 5 && StudentManager.Students[RivalID] != null && StudentManager.Students[1].gameObject.activeInHierarchy && StudentManager.Students[RivalID] != null)
 			{
 				Debug.Log("Osana's morning Senpai interaction event is now taking place.");
-				if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner && StudentGlobals.StudentSlave != FriendID)
+				if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner && StudentGlobals.StudentSlave != FriendID && !NoFriend)
 				{
 					Friend = StudentManager.Students[FriendID];
 					if (Friend.Investigating)

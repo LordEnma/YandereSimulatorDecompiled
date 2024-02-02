@@ -52,6 +52,7 @@ public class GenericPromptScript : MonoBehaviour
 					if (Prompt.Yandere.Inventory.EmeticPoisons > 0)
 					{
 						Prompt.Yandere.Inventory.EmeticPoisons--;
+						Prompt.Yandere.StudentManager.UpdateAllBentos();
 						flag = true;
 					}
 					else

@@ -134,6 +134,8 @@ public static class GameGlobals
 
 	private const string Str_InCutscene = "InCutscene";
 
+	private const string Str_FemaleSenpai = "FemaleSenpai";
+
 	public static int Profile
 	{
 		get
@@ -854,6 +856,18 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool FemaleSenpai
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_FemaleSenpai");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_FemaleSenpai", value);
+		}
+	}
+
 	public static int GetRivalEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminations" + elimID);
@@ -1027,5 +1041,6 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_ForceCanonEliminations");
 		Globals.Delete("Profile_" + Profile + "_CanBefriendCouncil");
 		Globals.Delete("Profile_" + Profile + "_InCutscene");
+		Globals.Delete("Profile_" + Profile + "_FemaleSenpai");
 	}
 }

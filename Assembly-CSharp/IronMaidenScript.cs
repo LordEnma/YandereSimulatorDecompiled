@@ -211,6 +211,10 @@ public class IronMaidenScript : MonoBehaviour
 			{
 				Prompt.Yandere.CanMove = true;
 				Victim = null;
+				if (Prompt.Yandere.Laughing)
+				{
+					Prompt.Yandere.StopLaughing();
+				}
 			}
 		}
 		if (Open)
@@ -254,15 +258,20 @@ public class IronMaidenScript : MonoBehaviour
 					FadeIn = true;
 				}
 			}
-			if (FadeIn)
+			if (!FadeIn)
 			{
-				CleanUpDarkness.alpha = Mathf.MoveTowards(CleanUpDarkness.alpha, 0f, Time.deltaTime);
-				if (CleanUpDarkness.alpha == 0f)
+				return;
+			}
+			CleanUpDarkness.alpha = Mathf.MoveTowards(CleanUpDarkness.alpha, 0f, Time.deltaTime);
+			if (CleanUpDarkness.alpha == 0f)
+			{
+				Prompt.Hide();
+				Prompt.Yandere.CanMove = true;
+				Prompt.HideButton[0] = true;
+				Bloody = false;
+				if (Prompt.Yandere.Laughing)
 				{
-					Prompt.Hide();
-					Prompt.Yandere.CanMove = true;
-					Prompt.HideButton[0] = true;
-					Bloody = false;
+					Prompt.Yandere.StopLaughing();
 				}
 			}
 		}

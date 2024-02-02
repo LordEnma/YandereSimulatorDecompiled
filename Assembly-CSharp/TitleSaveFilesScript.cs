@@ -212,7 +212,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 							PromptBar.UpdateButtons();
 							ChallengeWindow.SetActive(value: true);
 						}
-						else if (PromptBar.Label[6].text != "" && Input.GetButtonDown(InputNames.Xbox_LB))
+						else if (Input.GetButtonDown(InputNames.Xbox_LB) && NewTitleScreen.Eighties && PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
 						{
 							StartNewGame();
 							NewTitleScreen.CustomMode = true;

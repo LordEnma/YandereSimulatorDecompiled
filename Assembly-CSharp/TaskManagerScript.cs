@@ -22,6 +22,8 @@ public class TaskManagerScript : MonoBehaviour
 
 	public TaskKittenScript Kitten;
 
+	public PickUpScript AmaiPlate;
+
 	public ClothScript Cloth;
 
 	public bool[] GirlsQuestioned;
@@ -227,6 +229,26 @@ public class TaskManagerScript : MonoBehaviour
 			else if (TaskObjects[11] != null)
 			{
 				TaskObjects[11].SetActive(value: false);
+			}
+			if (TaskStatus[12] == 1)
+			{
+				if (StudentManager.Students[11] != null)
+				{
+					if (StudentManager.Students[12].TaskPhase == 0)
+					{
+						StudentManager.Students[12].TaskPhase = 4;
+					}
+					TaskObjects[12].SetActive(value: true);
+				}
+				if (AmaiPlate.Food == 0)
+				{
+					Debug.Log("Amai's task should be ready to turn in!");
+					StudentManager.Students[12].TaskPhase = 5;
+				}
+			}
+			else if (TaskObjects[12] != null)
+			{
+				TaskObjects[12].SetActive(value: false);
 			}
 			if (TaskStatus[25] == 1)
 			{

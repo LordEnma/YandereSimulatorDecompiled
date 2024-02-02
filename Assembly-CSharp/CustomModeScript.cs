@@ -85,6 +85,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public Transform ZoomTarget;
 
+	public UIPanel ConfirmGenderPanel;
+
 	public UIPanel ConfirmRandomPanel;
 
 	public UIPanel MiscellaneousPanel;
@@ -145,6 +147,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public bool PlayerIsTyping;
 
+	public bool CanGenderSwap;
+
 	public bool UsingMenu;
 
 	public bool FadeOut;
@@ -198,6 +202,8 @@ public class CustomModeScript : MonoBehaviour
 	public UILabel FemaleUniformLabel;
 
 	public UILabel MaleUniformLabel;
+
+	public UILabel GenderSwapLabel;
 
 	public UILabel SecondHeaderLabel;
 
@@ -442,6 +448,7 @@ public class CustomModeScript : MonoBehaviour
 		PromptBar.Label[4].text = "Change Selection";
 		PromptBar.UpdateButtons();
 		PromptBar.Show = true;
+		ConfirmGenderPanel.alpha = 0f;
 		ConfirmRandomPanel.alpha = 0f;
 		MiscellaneousPanel.alpha = 0f;
 		StudentListPanel.alpha = 0f;
@@ -639,6 +646,10 @@ public class CustomModeScript : MonoBehaviour
 			GameGlobals.ReturnToCustomMode = true;
 			GameGlobals.CustomMode = true;
 			OptionGlobals.WindowedMode = Screen.fullScreen;
+			if (JSON.Students[1].Gender == 0)
+			{
+				GameGlobals.FemaleSenpai = true;
+			}
 			Screen.SetResolution(512, 512, fullscreen: false);
 			SceneManager.LoadScene("PortraitScene");
 		}
@@ -690,85 +701,110 @@ public class CustomModeScript : MonoBehaviour
 			}
 			if (Initializing)
 			{
-				StudentListPanel.alpha = Mathf.MoveTowards(StudentListPanel.alpha, 0f, Time.deltaTime * 10f);
-				StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 0f, Time.deltaTime * 10f);
-				CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 0f, Time.deltaTime * 10f);
-				OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
-				InitialPanel.alpha = Mathf.MoveTowards(InitialPanel.alpha, 1f, Time.deltaTime * 10f);
-				if (InputManager.TappedDown || HeldDown > 0.5f)
+				if (ConfirmGenderPanel.alpha == 0f)
 				{
-					if (HeldDown > 0.5f)
+					StudentListPanel.alpha = Mathf.MoveTowards(StudentListPanel.alpha, 0f, Time.deltaTime * 10f);
+					StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 0f, Time.deltaTime * 10f);
+					CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 0f, Time.deltaTime * 10f);
+					OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
+					InitialPanel.alpha = Mathf.MoveTowards(InitialPanel.alpha, 1f, Time.deltaTime * 10f);
+					if (InputManager.TappedDown || HeldDown > 0.5f)
 					{
-						HeldDown = 0.45f;
-					}
-					InitialSelected++;
-					if (InitialSelected > 6)
-					{
-						InitialSelected = 1;
-					}
-				}
-				if (InputManager.TappedUp || HeldUp > 0.5f)
-				{
-					if (HeldUp > 0.5f)
-					{
-						HeldUp = 0.45f;
-					}
-					InitialSelected--;
-					if (InitialSelected < 1)
-					{
-						InitialSelected = 6;
-					}
-				}
-				if (Input.GetButtonDown(InputNames.Xbox_A))
-				{
-					if (InitialSelected == 1)
-					{
-						FemaleUniform++;
-						if (FemaleUniform > 6)
+						if (HeldDown > 0.5f)
 						{
-							FemaleUniform = 1;
+							HeldDown = 0.45f;
 						}
-						FemaleUniformLabel.text = FemaleUniform.ToString() ?? "";
-						JSON.Misc.FemaleUniform = FemaleUniform;
-						StudentGlobals.FemaleUniform = FemaleUniform;
-						InitialFemale.Start();
-					}
-					else if (InitialSelected == 2)
-					{
-						MaleUniform++;
-						if (MaleUniform > 6)
+						InitialSelected++;
+						if (InitialSelected > 7)
 						{
-							MaleUniform = 1;
+							InitialSelected = 1;
 						}
-						MaleUniformLabel.text = MaleUniform.ToString() ?? "";
-						JSON.Misc.MaleUniform = MaleUniform;
-						StudentGlobals.MaleUniform = MaleUniform;
-						InitialMale.Start();
 					}
-					else if (InitialSelected == 3)
+					if (InputManager.TappedUp || HeldUp > 0.5f)
 					{
-						Reset();
-						NotificationManager.CustomText = "Data has been reset.";
-						NotificationManager.DisplayNotification(NotificationType.Custom);
+						if (HeldUp > 0.5f)
+						{
+							HeldUp = 0.45f;
+						}
+						InitialSelected--;
+						if (InitialSelected < 1)
+						{
+							InitialSelected = 7;
+						}
 					}
-					else if (InitialSelected == 4)
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						Load();
+						if (InitialSelected == 1)
+						{
+							FemaleUniform++;
+							if (FemaleUniform > 6)
+							{
+								FemaleUniform = 1;
+							}
+							FemaleUniformLabel.text = FemaleUniform.ToString() ?? "";
+							JSON.Misc.FemaleUniform = FemaleUniform;
+							StudentGlobals.FemaleUniform = FemaleUniform;
+							InitialFemale.Start();
+						}
+						else if (InitialSelected == 2)
+						{
+							MaleUniform++;
+							if (MaleUniform > 6)
+							{
+								MaleUniform = 1;
+							}
+							MaleUniformLabel.text = MaleUniform.ToString() ?? "";
+							JSON.Misc.MaleUniform = MaleUniform;
+							StudentGlobals.MaleUniform = MaleUniform;
+							InitialMale.Start();
+						}
+						else if (InitialSelected == 3)
+						{
+							if (!CanGenderSwap)
+							{
+								ConfirmGenderPanel.alpha = 1f;
+							}
+							else
+							{
+								GenderSwapLabel.text = "No";
+								CanGenderSwap = false;
+							}
+						}
+						else if (InitialSelected == 4)
+						{
+							Reset();
+							NotificationManager.CustomText = "Data has been reset.";
+							NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
+						else if (InitialSelected == 5)
+						{
+							Load();
+						}
+						else if (InitialSelected == 6)
+						{
+							Save();
+						}
+						else if (InitialSelected == 7)
+						{
+							FadeOut = true;
+						}
 					}
-					else if (InitialSelected == 5)
+					else if (Input.GetButtonDown(InputNames.Xbox_RB))
 					{
-						Save();
+						EnterStudentList();
 					}
-					else if (InitialSelected == 6)
-					{
-						FadeOut = true;
-					}
+					InitialArrow.localPosition = new Vector3(-200f, 300 - 100 * InitialSelected, 0f);
 				}
-				else if (Input.GetButtonDown(InputNames.Xbox_RB))
+				else if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
-					EnterStudentList();
+					ConfirmGenderPanel.alpha = 0f;
+					GenderSwapLabel.text = "Yes";
+					CanGenderSwap = true;
 				}
-				InitialArrow.localPosition = new Vector3(-175f, 200 - 100 * InitialSelected, 0f);
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
+				{
+					ConfirmGenderPanel.alpha = 0f;
+				}
 			}
 			else if (ViewingStudents)
 			{
@@ -941,6 +977,7 @@ public class CustomModeScript : MonoBehaviour
 						CosmeticPanel.transform.position -= new Vector3(0f, 0.1f, 0f);
 					}
 					CosmeticPanel.transform.localPosition = new Vector3(0f, Mathf.RoundToInt(CosmeticPanel.transform.localPosition.y), 0f);
+					Debug.Log("Currently ''Editing Cosmetic''.");
 					if (Input.GetButtonDown(InputNames.Xbox_A) && CosmeticWindows[CosmeticSelected].alpha == 1f)
 					{
 						if (CosmeticSelected == 0)
@@ -990,15 +1027,12 @@ public class CustomModeScript : MonoBehaviour
 						}
 						else if (CosmeticSelected == 4)
 						{
-							Debug.Log("EyeColorID is: " + EyeColorID);
 							EyeColorID++;
-							Debug.Log("Now, it's: " + EyeColorID);
 							if (EyeColorID >= Colors.Length)
 							{
 								EyeColorID = 0;
 							}
 							JSON.Students[Selected].Eyes = Colors[EyeColorID] ?? "";
-							Debug.Log("EyeColor #" + EyeColorID + " is supposed to be: " + Colors[EyeColorID]);
 						}
 						else if (CosmeticSelected == 5)
 						{
@@ -1185,6 +1219,24 @@ public class CustomModeScript : MonoBehaviour
 							RandomizeBoy(Selected);
 						}
 						UpdateStudent();
+					}
+					else if (CanGenderSwap && !PlayerIsTyping && Selected > 0 && Input.GetKeyDown("g"))
+					{
+						Debug.Log("Attempting to change gender now.");
+						if (Selected < 90)
+						{
+							if (StudentGenders[Selected])
+							{
+								JSON.Students[Selected].Gender = 0;
+								StudentGenders[Selected] = false;
+							}
+							else
+							{
+								JSON.Students[Selected].Gender = 1;
+								StudentGenders[Selected] = true;
+							}
+							UpdateStudent();
+						}
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_LB))
 					{
@@ -1421,11 +1473,11 @@ public class CustomModeScript : MonoBehaviour
 					}
 					else if (Column == 2)
 					{
-						ScheduleHelpLabel.text = ActionExplanations[Array.IndexOf(Actions, JSON.Students[Selected].ScheduleBlocks[Row].action)];
+						ScheduleHelpLabel.text = "This action will cause the character to perform...\n\n" + ActionExplanations[Array.IndexOf(Actions, JSON.Students[Selected].ScheduleBlocks[Row].action)];
 					}
 					else if (Column == 3)
 					{
-						ScheduleHelpLabel.text = DestinationExplanations[Array.IndexOf(Destinations, JSON.Students[Selected].ScheduleBlocks[Row].destination)];
+						ScheduleHelpLabel.text = "This destination will cause the character to go to...\n\n" + DestinationExplanations[Array.IndexOf(Destinations, JSON.Students[Selected].ScheduleBlocks[Row].destination)];
 					}
 					if (Column == 2)
 					{

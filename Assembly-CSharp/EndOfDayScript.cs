@@ -548,9 +548,9 @@ public class EndOfDayScript : MonoBehaviour
 		if (Phase == 1)
 		{
 			Time.timeScale = 1f;
-			CopAnimation[1]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
-			CopAnimation[2]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
-			CopAnimation[3]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
+			CopAnimation[1]["newWalk_00"].speed = 1f;
+			CopAnimation[2]["newWalk_00"].speed = 0.95f;
+			CopAnimation[3]["newWalk_00"].speed = 0.9f;
 			Counselor.LectureID = 0;
 			Cops.SetActive(value: true);
 			bool flag = false;
@@ -2374,6 +2374,7 @@ public class EndOfDayScript : MonoBehaviour
 		ClubGlobals.Club = Yandere.Club;
 		StudentGlobals.MemorialStudents = 0;
 		HomeGlobals.Night = true;
+		Debug.Log("This is the part where KillStudents() SHOULD be getting called.");
 		Police.KillStudents();
 		if (Police.Suspended)
 		{
@@ -3168,6 +3169,19 @@ public class EndOfDayScript : MonoBehaviour
 		if (Yandere.Kills > 0 || Police.Deaths > 0)
 		{
 			Debug.Log("The player killed someone.");
+			FunGameOver = true;
+		}
+		for (int i = 1; i < 101; i++)
+		{
+			if (StudentManager.StudentReps[i] <= -150f || StudentGlobals.GetStudentReputation(i) <= -150)
+			{
+				Debug.Log("The player drove someone to suicide.");
+				FunGameOver = true;
+			}
+		}
+		if (Yandere.Kills > 0 || Police.Deaths > 0)
+		{
+			Debug.Log("The player drove someone to suicide.");
 			FunGameOver = true;
 		}
 		if (DateGlobals.Week == 9 && DateGlobals.Weekday == DayOfWeek.Friday)

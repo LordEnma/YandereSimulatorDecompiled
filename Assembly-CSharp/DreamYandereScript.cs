@@ -130,6 +130,10 @@ public class DreamYandereScript : MonoBehaviour
 			axisName = InputNames.Xbox_JoyX;
 		}
 		float num = Input.GetAxis(axisName) * (float)OptionGlobals.Sensitivity;
+		if (OptionGlobals.InvertAxisX)
+		{
+			num *= -1f;
+		}
 		if (num != 0f)
 		{
 			base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, base.transform.eulerAngles.y + num * 36f * Time.deltaTime, base.transform.eulerAngles.z);

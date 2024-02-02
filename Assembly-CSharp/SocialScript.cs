@@ -70,6 +70,8 @@ public class SocialScript : MonoBehaviour
 
 	public bool ShowingOff;
 
+	public bool Socialized;
+
 	public bool Tutorial;
 
 	public bool Show;
@@ -96,10 +98,18 @@ public class SocialScript : MonoBehaviour
 	{
 		if (Show)
 		{
-			Yandere.MainCamera.transform.position = Vector3.Lerp(Yandere.MainCamera.transform.position, Yandere.transform.position + new Vector3(0f, 1.4f, 0f) + Yandere.transform.forward * 0.1f, Time.unscaledDeltaTime * 10f);
-			Yandere.MainCamera.transform.eulerAngles = Vector3.Lerp(Yandere.MainCamera.transform.eulerAngles, Yandere.transform.eulerAngles, Time.unscaledDeltaTime * 10f);
-			Student.CharacterAnimation.Play(Student.IdleAnim);
-			Student.CharacterAnimation[Student.IdleAnim].time += Time.unscaledDeltaTime;
+			Yandere.MainCamera.transform.position = Vector3.Lerp(Yandere.MainCamera.transform.position, Yandere.TargetStudent.transform.position + new Vector3(0f, 1.42f, 0f) + Yandere.TargetStudent.transform.forward * 0.66666f, Time.unscaledDeltaTime * 10f);
+			Yandere.MainCamera.transform.eulerAngles = Yandere.transform.eulerAngles;
+			if (Student.Club == ClubType.Bully && Student.StudentManager.Reputation.Reputation > 33.33333f)
+			{
+				Student.CharacterAnimation.Play("f02_idleGirly_00");
+				Student.CharacterAnimation["f02_idleGirly_00"].time += Time.unscaledDeltaTime;
+			}
+			else
+			{
+				Student.CharacterAnimation.Play(Student.IdleAnim);
+				Student.CharacterAnimation[Student.IdleAnim].time += Time.unscaledDeltaTime;
+			}
 			Panel.alpha = Mathf.MoveTowards(Panel.alpha, 1f, Time.unscaledDeltaTime * 10f);
 			if (Complimenting)
 			{
@@ -156,6 +166,7 @@ public class SocialScript : MonoBehaviour
 					ReturnToMainMenu();
 					UpdateButtons();
 					Selected = 3;
+					Socialized = true;
 				}
 				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
@@ -219,6 +230,7 @@ public class SocialScript : MonoBehaviour
 					ReturnToMainMenu();
 					UpdateButtons();
 					Selected = 4;
+					Socialized = true;
 				}
 				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
@@ -324,6 +336,7 @@ public class SocialScript : MonoBehaviour
 					Student.PendingRep += 1f + (float)Student.RepBonus;
 					Gifted[StudentID] = true;
 					UpdateButtons();
+					Socialized = true;
 				}
 			}
 		}

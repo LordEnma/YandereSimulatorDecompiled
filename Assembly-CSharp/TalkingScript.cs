@@ -428,7 +428,14 @@ public class TalkingScript : MonoBehaviour
 			{
 				if (S.Club != ClubType.Delinquent)
 				{
-					S.Subtitle.UpdateLabel(SubtitleType.StudentFarewell, 0, 2f);
+					if (S.DialogueWheel.Social.Socialized)
+					{
+						S.Subtitle.UpdateLabel(SubtitleType.StudentFarewell, 1, 2f);
+					}
+					else
+					{
+						S.Subtitle.UpdateLabel(SubtitleType.StudentFarewell, 0, 2f);
+					}
 				}
 				else
 				{
@@ -443,7 +450,10 @@ public class TalkingScript : MonoBehaviour
 			S.TalkTimer -= Time.deltaTime;
 			if (S.TalkTimer <= 0f)
 			{
-				S.Pestered += 2;
+				if (!S.DialogueWheel.Social.Socialized)
+				{
+					S.Pestered += 2;
+				}
 				S.DialogueWheel.End();
 			}
 		}
@@ -1490,7 +1500,14 @@ public class TalkingScript : MonoBehaviour
 				else
 				{
 					S.CharacterAnimation.CrossFade(S.Nod2Anim);
-					S.Subtitle.UpdateLabel(SubtitleType.AcceptFood, 0, 3f);
+					if (S.Yandere.PickUp.AmaiTask)
+					{
+						S.Subtitle.UpdateLabel(SubtitleType.AcceptFood, 1, 3f);
+					}
+					else
+					{
+						S.Subtitle.UpdateLabel(SubtitleType.AcceptFood, 0, 3f);
+					}
 					CalculateRepBonus();
 					S.Reputation.PendingRep += 1f + (float)S.RepBonus;
 					S.PendingRep += 1f + (float)S.RepBonus;

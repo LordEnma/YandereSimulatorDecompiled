@@ -150,6 +150,8 @@ public class PickUpScript : MonoBehaviour
 
 	public bool SwapModel;
 
+	public bool AmaiTask;
+
 	public bool Clothing;
 
 	public bool Evidence;
@@ -214,7 +216,7 @@ public class PickUpScript : MonoBehaviour
 
 	public bool DoNotRelocate;
 
-	private void Start()
+	public void Start()
 	{
 		Yandere = Prompt.Yandere;
 		if (Yandere == null)
@@ -547,6 +549,7 @@ public class PickUpScript : MonoBehaviour
 
 	public void BePickedUp()
 	{
+		Debug.Log("BePickedUp() has just ben called.");
 		if (TaskKitten != null)
 		{
 			TaskKitten.Anim.Play("E_held");
@@ -614,15 +617,16 @@ public class PickUpScript : MonoBehaviour
 		}
 		if (Bucket != null)
 		{
-			Prompt.Label[0].text = "     Spill";
-			Prompt.OffsetY[0] = 0.125f;
+			Debug.Log("It was a bucket.");
 			if (Bucket.Full)
 			{
-				Prompt.Carried = true;
+				Debug.Log("The bucket was full.");
+				Prompt.HideButton[1] = false;
 				Usable = true;
 			}
 			else
 			{
+				Prompt.HideButton[1] = true;
 				Usable = false;
 			}
 		}
@@ -635,6 +639,7 @@ public class PickUpScript : MonoBehaviour
 		else
 		{
 			Prompt.Carried = true;
+			Prompt.enabled = true;
 		}
 		if ((PuzzleCube && !Cheated) || (SuperRobot && !Cheated))
 		{
@@ -821,9 +826,11 @@ public class PickUpScript : MonoBehaviour
 		}
 		if (Bucket != null)
 		{
-			Prompt.HideButton[0] = true;
+			if (Bucket.Full)
+			{
+				Prompt.HideButton[1] = true;
+			}
 			Prompt.HideButton[3] = false;
-			Prompt.OffsetY[0] = 0.5f;
 		}
 		if (!DoNotTeleport && (Vector3.Distance(base.transform.position, OriginalPosition) < 1f || Vector3.Distance(Yandere.transform.position, OriginalPosition) < 1f))
 		{

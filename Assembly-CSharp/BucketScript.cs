@@ -231,7 +231,7 @@ public class BucketScript : MonoBehaviour
 			}
 			if (Yandere.PickUp == PickUp && Full)
 			{
-				Prompt.HideButton[0] = false;
+				Prompt.HideButton[1] = false;
 			}
 		}
 		else
@@ -316,6 +316,7 @@ public class BucketScript : MonoBehaviour
 		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
+			Debug.Log("A button prompt was just filled?!");
 			Prompt.Circle[0].fillAmount = 1f;
 			if (flag)
 			{
@@ -357,15 +358,15 @@ public class BucketScript : MonoBehaviour
 				DyedBrown = true;
 				Fill();
 			}
-			else if (Yandere.PickUp == PickUp)
-			{
-				Spill();
-			}
 			else
 			{
 				Sparkles.Play();
 				Bleached = true;
 			}
+		}
+		else if (Prompt.Circle[1].fillAmount == 0f && Yandere.PickUp == PickUp && Full)
+		{
+			Spill();
 		}
 		if (UpdateAppearance)
 		{
@@ -425,11 +426,11 @@ public class BucketScript : MonoBehaviour
 				Prompt.HideButton[3] = true;
 				if (!Full)
 				{
-					Prompt.HideButton[0] = true;
+					Prompt.HideButton[1] = true;
 				}
 				else
 				{
-					Prompt.HideButton[0] = false;
+					Prompt.HideButton[1] = false;
 				}
 				if (!Yandere.NoDebug && Input.GetKeyDown(KeyCode.B))
 				{
@@ -546,8 +547,7 @@ public class BucketScript : MonoBehaviour
 		Gasoline = false;
 		Sparkles.Stop();
 		Full = false;
-		Prompt.HideButton[0] = true;
-		Prompt.OffsetY[0] = 0.5f;
+		Prompt.HideButton[1] = true;
 		PickUp.Usable = false;
 		PickUp.Outline[0].color = new Color(0f, 1f, 1f, 1f);
 	}
@@ -555,9 +555,6 @@ public class BucketScript : MonoBehaviour
 	public void Fill()
 	{
 		AudioSource.PlayClipAtPoint(FillBucket, base.transform.position);
-		Prompt.Label[0].text = "     Spill";
-		Prompt.HideButton[0] = false;
-		Prompt.OffsetY[0] = 0.125f;
 		Prompt.Carried = true;
 		Prompt.enabled = true;
 		PickUp.Usable = true;

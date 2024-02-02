@@ -4167,6 +4167,10 @@ public class YandereScript : MonoBehaviour
 		}
 		if (Struggling)
 		{
+			if (!TargetStudent.Teacher && EquippedWeapon != null)
+			{
+				EquippedWeapon.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+			}
 			if (!Won && !Lost)
 			{
 				CharacterAnimation.CrossFade(TargetStudent.Teacher ? "f02_teacherStruggleA_00" : "f02_struggleA_00");
@@ -5804,7 +5808,14 @@ public class YandereScript : MonoBehaviour
 			if (TalkTimer == 2f)
 			{
 				CharacterAnimation.CrossFade("f02_greet_00");
-				Subtitle.UpdateLabel(SubtitleType.PlayerFarewell, 0, 2f);
+				if (TargetStudent.DialogueWheel.Social.Socialized)
+				{
+					Subtitle.UpdateLabel(SubtitleType.PlayerFarewell, 1, 2f);
+				}
+				else
+				{
+					Subtitle.UpdateLabel(SubtitleType.PlayerFarewell, 0, 2f);
+				}
 			}
 			else
 			{

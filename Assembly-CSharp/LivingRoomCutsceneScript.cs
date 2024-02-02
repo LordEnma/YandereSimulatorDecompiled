@@ -1071,6 +1071,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 	{
 		SceneManager.LoadScene("CalendarScene");
 		GameGlobals.RivalEliminationID = 4;
+		StudentGlobals.SetStudentFriendship(10 + DateGlobals.Week, 100);
 		GameGlobals.NonlethalElimination = true;
 		GameGlobals.SpecificEliminationID = 2;
 		if (!GameGlobals.Debug)

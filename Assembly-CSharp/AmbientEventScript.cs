@@ -199,7 +199,6 @@ public class AmbientEventScript : MonoBehaviour
 			float num = Vector3.Distance(Yandere.transform.position, EventLocation[1].parent.position);
 			if (!Spoken)
 			{
-				Debug.Log("3");
 				if (Sitting)
 				{
 					EventStudent[EventSpeaker[1]].CharacterAnimation.CrossFade("f02_benchSit_00");

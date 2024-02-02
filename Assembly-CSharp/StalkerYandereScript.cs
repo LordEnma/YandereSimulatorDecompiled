@@ -285,7 +285,10 @@ public class StalkerYandereScript : MonoBehaviour
 				if ((!Asylum && HomeGlobals.Night) || DateGlobals.Weekday == DayOfWeek.Sunday || DateGlobals.Weekday == DayOfWeek.Saturday)
 				{
 					Debug.Log("This code fired.");
-					UniformSetter.Ryoba = GameGlobals.Eighties;
+					if (UniformSetter != null)
+					{
+						UniformSetter.Ryoba = GameGlobals.Eighties;
+					}
 					ClothingAttacher.SetActive(value: true);
 					MyRenderer.gameObject.SetActive(value: false);
 				}

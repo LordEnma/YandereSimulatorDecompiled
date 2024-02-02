@@ -1053,9 +1053,10 @@ public class PoliceScript : MonoBehaviour
 
 	public void KillStudents()
 	{
+		Debug.Log("KillStudents() is being called.");
 		for (int i = 1; i < 101; i++)
 		{
-			if (StudentGlobals.GetStudentDead(i) || !StudentGlobals.GetStudentKidnapped(i) || !(StudentManager.StudentReps[i] < -150f))
+			if (StudentGlobals.GetStudentDead(i) || StudentGlobals.GetStudentKidnapped(i) || !(StudentManager.StudentReps[i] < -150f))
 			{
 				continue;
 			}
