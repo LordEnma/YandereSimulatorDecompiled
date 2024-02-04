@@ -2348,15 +2348,21 @@ public class StudentScript : MonoBehaviour
 				SmartPhone.transform.localPosition = new Vector3(0.01f, 0.005f, 0.01f);
 				SmartPhone.transform.localEulerAngles = new Vector3(0f, -160f, 165f);
 				Countdown.Speed = 0.1f;
-				SprintAnim = PhoneAnims[2];
-				PatrolAnim = PhoneAnims[3];
+				if (!StudentManager.Eighties)
+				{
+					SprintAnim = PhoneAnims[2];
+					PatrolAnim = PhoneAnims[3];
+				}
 			}
 			if (Club == ClubType.Bully)
 			{
 				SkirtCollider.transform.localPosition = new Vector3(0f, 0.055f, 0f);
 				if (!StudentGlobals.GetStudentBroken(StudentID))
 				{
-					IdleAnim = PhoneAnims[0];
+					if (!StudentManager.Eighties)
+					{
+						IdleAnim = PhoneAnims[0];
+					}
 					BullyID = StudentID - 80;
 				}
 			}
@@ -4425,7 +4431,10 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (!Slave && !Phoneless)
 				{
-					IdleAnim = PhoneAnims[0];
+					if (!StudentManager.Eighties)
+					{
+						IdleAnim = PhoneAnims[0];
+					}
 					SmartPhone.SetActive(value: true);
 				}
 				Paintbrush.SetActive(value: false);
@@ -4489,7 +4498,10 @@ public class StudentScript : MonoBehaviour
 						{
 							SmartPhone.transform.localPosition = new Vector3(0.01f, 0.005f, 0.01f);
 							SmartPhone.transform.localEulerAngles = new Vector3(0f, -160f, 165f);
-							WalkAnim = PhoneAnims[1];
+							if (!StudentManager.Eighties)
+							{
+								WalkAnim = PhoneAnims[1];
+							}
 						}
 						else if (Sleuthing)
 						{
@@ -8854,10 +8866,10 @@ public class StudentScript : MonoBehaviour
 											}
 										}
 									}
-									else
+									else if (!StudentManager.Eighties)
 									{
 										SprintAnim = PhoneAnims[2];
-										if (!StudentManager.Eighties && StudentManager.ChaseCamera == null)
+										if (StudentManager.ChaseCamera == null)
 										{
 											StudentManager.ChaseCamera = ChaseCamera;
 											ChaseCamera.SetActive(value: true);
@@ -11664,7 +11676,7 @@ public class StudentScript : MonoBehaviour
 					SprintAnim = OriginalSprintAnim;
 					RunAnim = OriginalSprintAnim;
 					WalkAnim = OriginalWalkAnim;
-					if (Persona == PersonaType.PhoneAddict)
+					if (Persona == PersonaType.PhoneAddict && !StudentManager.Eighties)
 					{
 						WalkAnim = PhoneAnims[1];
 					}
@@ -17608,7 +17620,10 @@ public class StudentScript : MonoBehaviour
 				Persona = PersonaType.PhoneAddict;
 				if (!Sleuthing)
 				{
-					SprintAnim = PhoneAnims[2];
+					if (!StudentManager.Eighties)
+					{
+						SprintAnim = PhoneAnims[2];
+					}
 				}
 				else
 				{
@@ -17686,7 +17701,7 @@ public class StudentScript : MonoBehaviour
 
 	private void ChaseYandere()
 	{
-		if (Persona == PersonaType.Coward)
+		if (Persona == PersonaType.Coward || Persona == PersonaType.Evil)
 		{
 			Debug.Log("On second thought, " + Name + " will not chase Yandere-chan. Coward Persona.");
 			return;
@@ -21529,7 +21544,7 @@ public class StudentScript : MonoBehaviour
 
 	public void StopPairing()
 	{
-		if (Actions[Phase] != StudentActionType.Clean && Persona == PersonaType.PhoneAddict && !Phoneless && !LostTeacherTrust)
+		if (Actions[Phase] != StudentActionType.Clean && Persona == PersonaType.PhoneAddict && !Phoneless && !LostTeacherTrust && !StudentManager.Eighties)
 		{
 			WalkAnim = PhoneAnims[1];
 		}
@@ -21888,7 +21903,10 @@ public class StudentScript : MonoBehaviour
 			}
 			return;
 		}
-		ScaredAnim = PhoneAnims[4];
+		if (!StudentManager.Eighties)
+		{
+			ScaredAnim = PhoneAnims[4];
+		}
 		CharacterAnimation.CrossFade(ScaredAnim);
 		if (!CameraFlash.activeInHierarchy && (double)CharacterAnimation[ScaredAnim].time > 3.66666)
 		{

@@ -222,7 +222,7 @@ public class RagdollScript : MonoBehaviour
 		Yandere = Student.StudentManager.Yandere;
 		Physics.IgnoreLayerCollision(11, 13, ignore: true);
 		Zs.SetActive(Tranquil);
-		if (!Tranquil && !Poisoned && !Drowned && !Electrocuted && !Burning && !NeckSnapped)
+		if (!Tranquil && !Poisoned && !Drowned && !Electrocuted && !Burning && !NeckSnapped && !Burned)
 		{
 			Student.StudentManager.TutorialWindow.ShowPoolMessage = true;
 			BloodPoolSpawner.gameObject.SetActive(value: true);

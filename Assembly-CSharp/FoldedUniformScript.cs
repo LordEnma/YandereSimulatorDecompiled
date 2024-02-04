@@ -18,6 +18,8 @@ public class FoldedUniformScript : MonoBehaviour
 
 	public float Timer;
 
+	public ClubType ClubID;
+
 	public int Type;
 
 	public GameObject[] Uniforms;
@@ -80,6 +82,7 @@ public class FoldedUniformScript : MonoBehaviour
 		else if (ClubAttire)
 		{
 			base.gameObject.name = "Folded Club Uniform";
+			ClubID = Yandere.Club;
 		}
 		else
 		{
@@ -126,18 +129,27 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 		if (Prompt.Circle[0] != null && Prompt.Circle[0].fillAmount == 0f)
 		{
-			Yandere.PreviousSchoolwear = Yandere.Schoolwear;
-			Object.Instantiate(SteamCloud, Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
-			Yandere.CharacterAnimation.CrossFade("f02_stripping_00");
-			Yandere.CurrentUniformOrigin = 2;
-			Yandere.Stripping = true;
-			Yandere.CanMove = false;
-			if (Type > 1)
+			Prompt.Circle[0].fillAmount = 1f;
+			if (ClubAttire && ClubID != Yandere.Club)
 			{
-				Yandere.MyLocker.Bloody[Type] = false;
-				Yandere.MyLocker.UpdateButtons();
+				Yandere.NotificationManager.CustomText = "You're not in that club.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
-			Timer += Time.deltaTime;
+			else
+			{
+				Yandere.PreviousSchoolwear = Yandere.Schoolwear;
+				Object.Instantiate(SteamCloud, Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
+				Yandere.CharacterAnimation.CrossFade("f02_stripping_00");
+				Yandere.CurrentUniformOrigin = 2;
+				Yandere.Stripping = true;
+				Yandere.CanMove = false;
+				if (Type > 1)
+				{
+					Yandere.MyLocker.Bloody[Type] = false;
+					Yandere.MyLocker.UpdateButtons();
+				}
+				Timer += Time.deltaTime;
+			}
 		}
 		if (Timer > 0f)
 		{

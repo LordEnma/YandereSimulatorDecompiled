@@ -2178,6 +2178,7 @@ public class StudentManagerScript : MonoBehaviour
 				if (GameGlobals.CustomMode)
 				{
 					GameGlobals.EightiesCutsceneID = 1;
+					Debug.Log("Upon entering this screen, OptionGlobals.ResolutionID was: " + OptionGlobals.ResolutionID);
 					Screen.SetResolution(Widths[OptionGlobals.ResolutionID], Heights[OptionGlobals.ResolutionID], OptionGlobals.WindowedMode);
 					SceneManager.LoadScene("EightiesCutsceneScene");
 				}
@@ -4792,6 +4793,14 @@ public class StudentManagerScript : MonoBehaviour
 					Quaternion localRotation = Students[ID].Hips.localRotation;
 					Students[ID].Ragdoll.Yandere = Yandere;
 					Students[ID].BecomeRagdoll();
+					if (Students[ID].Ragdoll.Burned)
+					{
+						for (int j = 0; j < 3; j++)
+						{
+							Students[ID].Ragdoll.MyRenderer.materials[j].color = new Vector4(0.1f, 0.1f, 0.1f, 1f);
+						}
+						Students[ID].Cosmetic.HairRenderer.material.color = new Vector4(0.1f, 0.1f, 0.1f, 1f);
+					}
 					GameObjectUtils.SetLayerRecursively(Students[ID].gameObject, 0);
 					Students[ID].Ragdoll.UpdateNextFrame = true;
 					Students[ID].Ragdoll.NextPosition = localPosition;
@@ -4805,9 +4814,9 @@ public class StudentManagerScript : MonoBehaviour
 					if (!StudentGlobals.GetStudentDying(ID) && !Students[ID].Ragdoll.Disposed)
 					{
 						bool flag = false;
-						for (int j = 0; j < 101; j++)
+						for (int k = 0; k < 101; k++)
 						{
-							if (Police.CorpseList[j] == Students[ID].Ragdoll)
+							if (Police.CorpseList[k] == Students[ID].Ragdoll)
 							{
 								Debug.Log("No worries. " + Students[ID].Name + " is already on the Police CorpseList.");
 								flag = true;

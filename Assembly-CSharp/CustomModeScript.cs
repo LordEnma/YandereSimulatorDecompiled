@@ -2788,6 +2788,17 @@ public class CustomModeScript : MonoBehaviour
 		JSON.Students[0].BreastSize = 1.5f;
 		JSON.Students[0].Stockings = "Black";
 		JSON.Students[0].Info = "A young woman who is willing to do absolutely anything in order to prevent the boy she loves from entering a relationship with anyone other than herself.";
+		for (int j = 1; j < 90; j++)
+		{
+			if (JSON.Students[j].Gender == 1)
+			{
+				StudentGenders[j] = true;
+			}
+			else
+			{
+				StudentGenders[j] = false;
+			}
+		}
 		for (int i = 1; i < 101; i++)
 		{
 			if (JSON.Students[i].Gender == 1)
@@ -3051,6 +3062,17 @@ public class CustomModeScript : MonoBehaviour
 			else
 			{
 				MiscellaneousLabels[i].text = "Yes";
+			}
+		}
+		for (int j = 1; j < 90; j++)
+		{
+			if (JSON.Students[j].Gender == 1)
+			{
+				StudentGenders[j] = true;
+			}
+			else
+			{
+				StudentGenders[j] = false;
 			}
 		}
 		LoadAllCustomLocations();

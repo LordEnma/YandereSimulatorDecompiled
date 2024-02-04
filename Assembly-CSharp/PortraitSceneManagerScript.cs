@@ -9,6 +9,10 @@ public class PortraitSceneManagerScript : MonoBehaviour
 
 	public GameObject Tree;
 
+	public int[] Heights;
+
+	public int[] Widths;
+
 	public int X;
 
 	public int Y;
@@ -35,7 +39,7 @@ public class PortraitSceneManagerScript : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			Screen.SetResolution(X, Y, FullScreenMode.Windowed);
+			Screen.SetResolution(Widths[OptionGlobals.ResolutionID], Heights[OptionGlobals.ResolutionID], OptionGlobals.WindowedMode);
 			SceneManager.LoadScene("NewTitleScene");
 		}
 	}

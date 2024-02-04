@@ -284,7 +284,7 @@ public class ShoeRemovalScript : MonoBehaviour
 					if (Student.Persona == PersonaType.PhoneAddict || Student.Sleuthing)
 					{
 						Student.SmartPhone.SetActive(value: true);
-						if (!Student.Sleuthing)
+						if (!Student.Sleuthing && !Student.StudentManager.Eighties)
 						{
 							Student.WalkAnim = Student.PhoneAnims[1];
 						}

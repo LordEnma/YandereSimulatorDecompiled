@@ -601,6 +601,7 @@ public class PortalScript : MonoBehaviour
 		{
 			Debug.Log("It's before 3:30 PM.");
 			_ = Police.SelfReported;
+			SlideIntoSeat = true;
 		}
 		Police.Darkness.enabled = true;
 		Police.FadeOut = true;
@@ -621,7 +622,6 @@ public class PortalScript : MonoBehaviour
 			FadeOut = false;
 			Proceed = false;
 		}
-		SlideIntoSeat = true;
 	}
 
 	private void CheckForLateness()

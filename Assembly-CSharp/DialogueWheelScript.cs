@@ -1263,8 +1263,11 @@ public class DialogueWheelScript : MonoBehaviour
 				}
 				if (!Yandere.TargetStudent.Scrubber.activeInHierarchy && !flag && !Yandere.TargetStudent.Phoneless)
 				{
-					Yandere.TargetStudent.SmartPhone.SetActive(value: true);
-					Yandere.TargetStudent.WalkAnim = Yandere.TargetStudent.PhoneAnims[1];
+					if (!Yandere.StudentManager.Eighties)
+					{
+						Yandere.TargetStudent.SmartPhone.SetActive(value: true);
+						Yandere.TargetStudent.WalkAnim = Yandere.TargetStudent.PhoneAnims[1];
+					}
 				}
 				else
 				{
