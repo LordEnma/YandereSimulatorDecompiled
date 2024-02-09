@@ -90,6 +90,8 @@ public class EndOfDayScript : MonoBehaviour
 
 	public bool InvolvementNotSuspected;
 
+	public bool LearnedRivalDarkSecret;
+
 	public bool ExplosiveDeviceUsed;
 
 	public bool PreviouslyActivated;
@@ -1160,7 +1162,14 @@ public class EndOfDayScript : MonoBehaviour
 			{
 				if (!StudentManager.Eighties)
 				{
-					Senpai.CharacterAnimation.Play("kneelCry_00");
+					if (Senpai.Male)
+					{
+						Senpai.CharacterAnimation.Play("kneelCry_00");
+					}
+					else
+					{
+						Senpai.CharacterAnimation.Play("f02_kneelCry_00");
+					}
 					if (DateGlobals.Weekday != DayOfWeek.Friday)
 					{
 						text5 = "Senpai will stay home from school for one day to mourn her death.";
@@ -1179,8 +1188,16 @@ public class EndOfDayScript : MonoBehaviour
 				Senpai.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
 				if (RivalEliminationMethod == RivalEliminationType.Arrested || RivalArrested)
 				{
-					Senpai.CharacterAnimation["refuse_02"].speed = 0.5f;
-					Senpai.CharacterAnimation.Play("refuse_02");
+					if (Senpai.Male)
+					{
+						Senpai.CharacterAnimation["refuse_02"].speed = 0.5f;
+						Senpai.CharacterAnimation.Play("refuse_02");
+					}
+					else
+					{
+						Senpai.CharacterAnimation["f02_refuse_00"].speed = 0.5f;
+						Senpai.CharacterAnimation.Play("f02_refuse_00");
+					}
 					Label.text = "Senpai is disgusted to learn that " + RivalName + " would actually commit murder. He is deeply disappointed in her.";
 				}
 				else if (RivalEliminationMethod == RivalEliminationType.Befriended || RivalEliminationMethod == RivalEliminationType.Matchmade)

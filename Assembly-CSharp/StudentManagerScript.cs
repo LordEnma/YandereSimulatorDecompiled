@@ -6075,7 +6075,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		for (int i = 52; i < 56; i++)
 		{
-			if (Students[i] != null && Students[i].Club != 0)
+			if (Students[i] != null)
 			{
 				scheduleBlock = Students[i].ScheduleBlocks[2];
 				scheduleBlock.destination = "Perform";

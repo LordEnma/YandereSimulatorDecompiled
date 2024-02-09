@@ -237,10 +237,14 @@ public class CalendarScript : MonoBehaviour
 			SchoolGlobals.SchoolAtmosphereSet = true;
 			SchoolGlobals.SchoolAtmosphere = 1f;
 			PlayerGlobals.Money = 10f;
+		}
+		if (!GameGlobals.ItemsInitialized)
+		{
 			PlayerGlobals.SetCannotBringItem(4, value: true);
 			PlayerGlobals.SetCannotBringItem(5, value: true);
 			PlayerGlobals.SetCannotBringItem(6, value: true);
 			PlayerGlobals.SetCannotBringItem(7, value: true);
+			GameGlobals.ItemsInitialized = true;
 		}
 		LoveSickCheck();
 		if (DateGlobals.PassDays > 0 && !SchoolGlobals.HighSecurity && SchoolGlobals.SchoolAtmosphere >= SchoolGlobals.PreviousSchoolAtmosphere)
@@ -542,10 +546,6 @@ public class CalendarScript : MonoBehaviour
 								}
 								ReducePrisonerHealth();
 								ImproveSchoolAtmosphere();
-								Debug.Log("Deciding whether or not to permit the Skip button.");
-								Debug.Log("GameGlobals.AlternateTimeline is: " + GameGlobals.AlternateTimeline);
-								Debug.Log("DateGlobals.Weekday is: " + DateGlobals.Weekday);
-								Debug.Log("DateGlobals.Week is: " + DateGlobals.Week);
 								if ((GameGlobals.RivalEliminationID == 0 && DateGlobals.Weekday == DayOfWeek.Friday) || (GameGlobals.AlternateTimeline && DateGlobals.Weekday == DayOfWeek.Friday && DateGlobals.Week == 9) || DateGlobals.Weekday > DayOfWeek.Friday)
 								{
 									if (GameGlobals.AlternateTimeline && DateGlobals.Weekday == DayOfWeek.Friday && DateGlobals.Week == 9)

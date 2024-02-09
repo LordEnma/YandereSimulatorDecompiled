@@ -11,8 +11,9 @@ public class AudioManager : MonoBehaviour
 		if (!AudioGlobals.VolumeInitialized)
 		{
 			AudioGlobals.EffectVolume = 1f;
-			AudioGlobals.MusicVolume = 1f;
+			AudioGlobals.MusicVolume = 0.25f;
 			AudioGlobals.VoiceVolume = 1f;
+			AudioGlobals.VolumeInitialized = true;
 		}
 		if (Self != null)
 		{

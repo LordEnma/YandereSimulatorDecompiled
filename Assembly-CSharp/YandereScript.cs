@@ -2336,6 +2336,10 @@ public class YandereScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (!StudentManager.Eighties && !NoDebug && Input.GetKeyDown(KeyCode.LeftAlt))
+		{
+			CinematicCamera.SetActive(value: false);
+		}
 		if (!PauseScreen.Show)
 		{
 			UpdateMovement();
@@ -6011,7 +6015,7 @@ public class YandereScript : MonoBehaviour
 			if (TalkTimer == 5f)
 			{
 				CharacterAnimation.CrossFade("f02_greet_01");
-				if (!TargetStudent.Male)
+				if (TargetStudent.Rival)
 				{
 					Subtitle.UpdateLabel(SubtitleType.PlayerLove, 3, 5f);
 				}
@@ -9898,6 +9902,8 @@ public class YandereScript : MonoBehaviour
 		SetUniform();
 		GloveBlood = 0;
 		ClubAccessory();
+		MyRenderer.materials[2].SetFloat("_BlendAmount1", 1f - (float)Health * 1f / 10f);
+		Sanity = Sanity;
 	}
 
 	public void AssignFilters()

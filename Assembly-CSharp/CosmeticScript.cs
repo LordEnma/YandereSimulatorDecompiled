@@ -1442,7 +1442,7 @@ public class CosmeticScript : MonoBehaviour
 		{
 			if (!Teacher)
 			{
-				if (FemaleAccessories[Accessory] != null)
+				if (Accessory < FemaleAccessories.Length && FemaleAccessories[Accessory] != null)
 				{
 					FemaleAccessories[Accessory].SetActive(value: true);
 				}

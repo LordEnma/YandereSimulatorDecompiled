@@ -417,7 +417,7 @@ public class AdviceWindowScript : MonoBehaviour
 		HUDElement[3].SetActive(value: false);
 		Suitor = StudentManager.Students[StudentManager.SuitorID];
 		GenericRivalBagScript rivalBookBag = StudentManager.RivalBookBag;
-		if (Suitor.Cosmetic.MaleHair[rivalBookBag.DesiredHairstyle].activeInHierarchy)
+		if ((Suitor.Male && Suitor.Cosmetic.MaleHair[rivalBookBag.DesiredHairstyle].activeInHierarchy) || (!Suitor.Male && Suitor.Cosmetic.FemaleHair[rivalBookBag.DesiredHairstyle].activeInHierarchy))
 		{
 			AttractionText[1] = "Your rival likes her suitor's hairstyle!";
 			Multiplier++;
@@ -426,7 +426,7 @@ public class AdviceWindowScript : MonoBehaviour
 		{
 			AttractionText[1] = "Your rival might like her suitor better with a different hairstyle.";
 		}
-		if (Suitor.Cosmetic.MaleAccessories[rivalBookBag.DesiredAccessory].activeInHierarchy)
+		if ((Suitor.Male && Suitor.Cosmetic.MaleAccessories[rivalBookBag.DesiredAccessory].activeInHierarchy) || (!Suitor.Male && Suitor.Cosmetic.FemaleAccessories[rivalBookBag.DesiredAccessory].activeInHierarchy))
 		{
 			if (rivalBookBag.DesiredAccessory == 17)
 			{

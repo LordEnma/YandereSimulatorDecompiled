@@ -600,8 +600,10 @@ public class PortalScript : MonoBehaviour
 		if (Clock.HourTime < 15.5f)
 		{
 			Debug.Log("It's before 3:30 PM.");
-			_ = Police.SelfReported;
-			SlideIntoSeat = true;
+			if (!Police.SelfReported)
+			{
+				SlideIntoSeat = true;
+			}
 		}
 		Police.Darkness.enabled = true;
 		Police.FadeOut = true;

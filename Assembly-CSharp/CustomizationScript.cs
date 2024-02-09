@@ -218,6 +218,12 @@ public class CustomizationScript : MonoBehaviour
 
 	public InputDeviceScript InputDevice;
 
+	public GameObject SenpaiCustomizationWindow;
+
+	public GameObject QuickStartWindow;
+
+	public GameObject AreYouSurePanel;
+
 	public bool OriginalDOFStatus;
 
 	private static readonly KeyValuePair<Color, string>[] ColorPairs = new KeyValuePair<Color, string>[11]
@@ -382,26 +388,54 @@ public class CustomizationScript : MonoBehaviour
 				GenderPanel.alpha = Mathf.MoveTowards(GenderPanel.alpha, 1f, Time.deltaTime * 2f);
 				if (GenderPanel.alpha == 1f)
 				{
-					if (Input.GetButtonDown(InputNames.Xbox_A))
+					if (!AreYouSurePanel.activeInHierarchy)
 					{
-						Phase++;
+						if (Input.GetButtonDown(InputNames.Xbox_A))
+						{
+							Phase++;
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
+						{
+							Apologize = true;
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_X))
+						{
+							SenpaiCustomizationWindow.SetActive(value: true);
+							AreYouSurePanel.SetActive(value: true);
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_Y))
+						{
+							QuickStartWindow.SetActive(value: true);
+							AreYouSurePanel.SetActive(value: true);
+						}
 					}
-					if (Input.GetButtonDown(InputNames.Xbox_B))
+					else if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						Apologize = true;
+						if (SenpaiCustomizationWindow.activeInHierarchy)
+						{
+							SenpaiCustomizationWindow.SetActive(value: false);
+							QuickStartWindow.SetActive(value: false);
+							AreYouSurePanel.SetActive(value: false);
+							White.color = new Color(0f, 0f, 0f, 1f);
+							FadeOut = true;
+							Phase = 0;
+						}
+						else
+						{
+							SenpaiCustomizationWindow.SetActive(value: false);
+							QuickStartWindow.SetActive(value: false);
+							AreYouSurePanel.SetActive(value: false);
+							White.color = new Color(0f, 0f, 0f, 1f);
+							SkipToCalendar = true;
+							FadeOut = true;
+							Phase = 0;
+						}
 					}
-					if (Input.GetButtonDown(InputNames.Xbox_X))
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
-						White.color = new Color(0f, 0f, 0f, 1f);
-						FadeOut = true;
-						Phase = 0;
-					}
-					if (Input.GetButtonDown(InputNames.Xbox_Y))
-					{
-						White.color = new Color(0f, 0f, 0f, 1f);
-						SkipToCalendar = true;
-						FadeOut = true;
-						Phase = 0;
+						SenpaiCustomizationWindow.SetActive(value: false);
+						QuickStartWindow.SetActive(value: false);
+						AreYouSurePanel.SetActive(value: false);
 					}
 				}
 			}

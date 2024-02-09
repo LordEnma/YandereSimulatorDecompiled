@@ -2912,6 +2912,7 @@ public class StudentScript : MonoBehaviour
 					{
 						IdleAnim = "f02_idleShy_00";
 						WalkAnim = "f02_walkShy_00";
+						WaveAnim = "f02_casualWave_04";
 						if (!Rival)
 						{
 							Persona = PersonaType.Coward;
@@ -3669,6 +3670,10 @@ public class StudentScript : MonoBehaviour
 			Started = true;
 			if (Club == ClubType.Council)
 			{
+				if (GameGlobals.AlternateTimeline || GameGlobals.NoCouncilShove)
+				{
+					DoNotShove = true;
+				}
 				component.material.SetTextureOffset("_MainTex", new Vector2(0.285f, 0f));
 				Armband.SetActive(value: true);
 				Indoors = true;
@@ -3707,10 +3712,6 @@ public class StudentScript : MonoBehaviour
 				}
 				else
 				{
-					if (GameGlobals.AlternateTimeline || GameGlobals.NoCouncilShove)
-					{
-						DoNotShove = true;
-					}
 					IdleAnim = idleAnim;
 					BreakUpAnim = "delinquentTalk_03";
 					GuardAnim = ReadyToFightAnim;
@@ -3820,8 +3821,11 @@ public class StudentScript : MonoBehaviour
 		}
 		if (StudentManager.CustomMode)
 		{
-			IdleAnim = IdleAnims[StudentManager.JSON.Misc.AnimSet[StudentID]];
-			WalkAnim = WalkAnims[StudentManager.JSON.Misc.AnimSet[StudentID]];
+			if (StudentManager.JSON.Misc.AnimSet[StudentID] < IdleAnims.Length)
+			{
+				IdleAnim = IdleAnims[StudentManager.JSON.Misc.AnimSet[StudentID]];
+				WalkAnim = WalkAnims[StudentManager.JSON.Misc.AnimSet[StudentID]];
+			}
 			if (Slave)
 			{
 				IdleAnim = BrokenAnim;
@@ -4756,7 +4760,7 @@ public class StudentScript : MonoBehaviour
 					}
 					else
 					{
-						TargetDistance = 5f;
+						TargetDistance = 3.9f;
 					}
 				}
 				if (Club == ClubType.Sports && Clock.Period == 6 && !StudentManager.PoolClosed && Schoolwear == 3)
@@ -4857,7 +4861,7 @@ public class StudentScript : MonoBehaviour
 				{
 					if (CurrentDestination == StudentManager.Students[Crush].transform)
 					{
-						TargetDistance = 5f;
+						TargetDistance = 3.9f;
 					}
 				}
 				else if (Actions[Phase] == StudentActionType.Stalk && StudentManager.LockerRoomArea.bounds.Contains(Yandere.transform.position))
@@ -5140,7 +5144,7 @@ public class StudentScript : MonoBehaviour
 					}
 					else
 					{
-						TargetDistance = 5f;
+						TargetDistance = 3.9f;
 					}
 					if (StudentManager.Students[StudentManager.RivalID].Talking || StudentManager.LockerRoomArea.bounds.Contains(CurrentDestination.position) || StudentManager.EastBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.WestBathroomArea.bounds.Contains(CurrentDestination.position) || StudentManager.LockerRoomArea.bounds.Contains(StudentManager.Students[StudentManager.RivalID].transform.position) || StudentManager.EastBathroomArea.bounds.Contains(StudentManager.Students[StudentManager.RivalID].transform.position) || StudentManager.WestBathroomArea.bounds.Contains(StudentManager.Students[StudentManager.RivalID].transform.position))
 					{
@@ -5215,7 +5219,7 @@ public class StudentScript : MonoBehaviour
 							}
 							else
 							{
-								TargetDistance = 5f;
+								TargetDistance = 3.9f;
 							}
 						}
 						flag2 = true;
@@ -5647,7 +5651,7 @@ public class StudentScript : MonoBehaviour
 												Pathfinding.target = StudentManager.Students[Crush].transform;
 												CurrentDestination = StudentManager.Students[Crush].transform;
 												DistanceToDestination = 100f;
-												TargetDistance = 5f;
+												TargetDistance = 3.9f;
 												CuriosityTimer = 0f;
 												CuriosityPhase++;
 											}
@@ -8011,7 +8015,14 @@ public class StudentScript : MonoBehaviour
 							}
 							else if (Actions[Phase] == StudentActionType.Sleep)
 							{
-								CharacterAnimation.CrossFade("f02_infirmaryRest_00");
+								if (Male)
+								{
+									CharacterAnimation.CrossFade("infirmaryRest_00");
+								}
+								else
+								{
+									CharacterAnimation.CrossFade("f02_infirmaryRest_00");
+								}
 							}
 							else if (Actions[Phase] == StudentActionType.LightFire)
 							{
@@ -16458,7 +16469,8 @@ public class StudentScript : MonoBehaviour
 
 	private void UpdateConfessing()
 	{
-		if (StudentID > 1)
+		Debug.Log("Student #" + StudentID + " is now running UpdateConfessing().");
+		if (StudentID > 1 && StudentID != StudentManager.SuitorID)
 		{
 			if (ConfessPhase == 1)
 			{
@@ -23462,7 +23474,12 @@ public class StudentScript : MonoBehaviour
 		{
 			CameraFlash = RetroCameraFlash;
 			SmartPhone = RetroCamera;
-			if (StudentID == 56 || StudentID == 36)
+			if ((double)SchoolGlobals.SchoolAtmosphere < 0.8 && StudentID == 36)
+			{
+				Debug.Log("Newspaper Club girl shouldn't become a sleuth, since she needs to perform club leader activities.");
+				flag = true;
+			}
+			if (StudentID == 56 || flag)
 			{
 				Debug.Log("Student #" + StudentID + " is a Club leader, and shouldn't become a Sleuth...");
 				flag = true;

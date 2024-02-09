@@ -148,10 +148,32 @@ public class ConfessionSceneScript : MonoBehaviour
 								emission3.rateOverTime = 10f;
 								Rival.Hearts.Play();
 								Suitor.Character.transform.localScale = new Vector3(1f, 1f, 1f);
-								Suitor.CharacterAnimation.Play("kiss_00");
 								Suitor.transform.position = KissSpot.position;
-								Rival.CharacterAnimation[Rival.ShyAnim].weight = 0f;
-								Rival.CharacterAnimation.Play("f02_kiss_00");
+								if (Suitor.Male)
+								{
+									Suitor.CharacterAnimation.Play("kiss_00");
+								}
+								else
+								{
+									Suitor.CharacterAnimation.Play("f02_suitorKiss_00");
+								}
+								if (!Rival.Male)
+								{
+									if (!Suitor.Male)
+									{
+										Rival.Character.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
+									}
+									Rival.CharacterAnimation[Rival.ShyAnim].weight = 0f;
+									Rival.CharacterAnimation.Play("f02_kiss_00");
+								}
+								else
+								{
+									if (!Suitor.Male)
+									{
+										Rival.Character.transform.localScale = new Vector3(0.86f, 0.86f, 0.86f);
+									}
+									Rival.CharacterAnimation.Play("suitorKiss_00");
+								}
 								Kissing = true;
 							}
 							Label.text = Text[TextPhase];
@@ -250,20 +272,49 @@ public class ConfessionSceneScript : MonoBehaviour
 				base.enabled = false;
 				Suitor.PartnerID = LoveManager.RivalID;
 				Rival.PartnerID = LoveManager.SuitorID;
-				Suitor.CharacterAnimation.CrossFade("holdHandsLoop_00");
-				Rival.CharacterAnimation.CrossFade("f02_holdHandsLoop_00");
+				if (Suitor.Male)
+				{
+					Suitor.CharacterAnimation.CrossFade("holdHandsLoop_00");
+				}
+				else
+				{
+					Suitor.CharacterAnimation.CrossFade("f02_suitorHoldHandsLoop_00");
+				}
+				if (!Rival.Male)
+				{
+					Rival.CharacterAnimation.CrossFade("f02_holdHandsLoop_00");
+				}
+				else
+				{
+					Rival.CharacterAnimation.CrossFade("suitorHoldHandsLoop_00");
+				}
 			}
 		}
 		if (Kissing)
 		{
-			if (Suitor.CharacterAnimation["kiss_00"].time >= Suitor.CharacterAnimation["kiss_00"].length * 0.66666f)
+			Debug.Log("Checking the kiss.");
+			if ((Suitor.Male && Suitor.CharacterAnimation["kiss_00"].time >= Suitor.CharacterAnimation["kiss_00"].length * 0.66666f) || (!Suitor.Male && Suitor.CharacterAnimation["f02_suitorKiss_00"].time >= Suitor.CharacterAnimation["f02_suitorKiss_00"].length * 0.66666f))
 			{
 				Suitor.Character.transform.localScale = Vector3.Lerp(Suitor.Character.transform.localScale, new Vector3(0.94f, 0.94f, 0.94f), Time.deltaTime);
 			}
-			if (Suitor.CharacterAnimation["kiss_00"].time >= Suitor.CharacterAnimation["kiss_00"].length)
+			if ((Suitor.Male && Suitor.CharacterAnimation["kiss_00"].time >= Suitor.CharacterAnimation["kiss_00"].length) || (!Suitor.Male && Suitor.CharacterAnimation["f02_suitorKiss_00"].time >= Suitor.CharacterAnimation["f02_suitorKiss_00"].length))
 			{
-				Rival.CharacterAnimation.CrossFade("f02_introHoldHands_00");
-				Suitor.CharacterAnimation.CrossFade("introHoldHands_00");
+				if (!Rival.Male)
+				{
+					Rival.CharacterAnimation.CrossFade("f02_introHoldHands_00");
+				}
+				else
+				{
+					Rival.CharacterAnimation.CrossFade("suitorHoldHands_00");
+				}
+				if (Suitor.Male)
+				{
+					Suitor.CharacterAnimation.CrossFade("introHoldHands_00");
+				}
+				else
+				{
+					Suitor.CharacterAnimation.CrossFade("f02_suitorIntroHoldHands_00");
+				}
 				Kissing = false;
 				MoveSuitor = true;
 			}

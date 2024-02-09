@@ -977,7 +977,6 @@ public class CustomModeScript : MonoBehaviour
 						CosmeticPanel.transform.position -= new Vector3(0f, 0.1f, 0f);
 					}
 					CosmeticPanel.transform.localPosition = new Vector3(0f, Mathf.RoundToInt(CosmeticPanel.transform.localPosition.y), 0f);
-					Debug.Log("Currently ''Editing Cosmetic''.");
 					if (Input.GetButtonDown(InputNames.Xbox_A) && CosmeticWindows[CosmeticSelected].alpha == 1f)
 					{
 						if (CosmeticSelected == 0)
@@ -1208,7 +1207,7 @@ public class CustomModeScript : MonoBehaviour
 						}
 						UpdateStudent();
 					}
-					else if (Input.GetButtonDown(InputNames.Xbox_Y) && CosmeticWindows[CosmeticSelected].alpha == 1f)
+					else if (Input.GetButtonDown(InputNames.Xbox_Y))
 					{
 						if (Selected == 0 || StudentChan.activeInHierarchy)
 						{
@@ -1285,7 +1284,7 @@ public class CustomModeScript : MonoBehaviour
 							DetailSelected = 1;
 						}
 					}
-					if (Input.GetButtonDown(InputNames.Xbox_A) && CosmeticWindows[CosmeticSelected].alpha == 1f)
+					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
 						if (DetailSelected == 1)
 						{
@@ -1305,7 +1304,7 @@ public class CustomModeScript : MonoBehaviour
 						}
 						UpdateStudent();
 					}
-					else if (Input.GetButtonDown(InputNames.Xbox_B) && CosmeticWindows[CosmeticSelected].alpha == 1f)
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
 						if (DetailSelected == 1)
 						{
@@ -1325,7 +1324,7 @@ public class CustomModeScript : MonoBehaviour
 						}
 						UpdateStudent();
 					}
-					else if (Input.GetButtonDown(InputNames.Xbox_Y) && CosmeticWindows[CosmeticSelected].alpha == 1f)
+					else if (Input.GetButtonDown(InputNames.Xbox_Y))
 					{
 						if (StudentChan.activeInHierarchy)
 						{

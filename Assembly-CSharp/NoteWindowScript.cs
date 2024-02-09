@@ -101,6 +101,10 @@ public class NoteWindowScript : MonoBehaviour
 			Subjects[10] = "''Evil Photographer''";
 			Subjects[6] = "technology";
 		}
+		else if (DateGlobals.Week == 2)
+		{
+			Subjects[10] = "''New Bakery''";
+		}
 	}
 
 	public void BecomeLifeNote()
@@ -451,7 +455,14 @@ public class NoteWindowScript : MonoBehaviour
 			}
 			if (!GameGlobals.Eighties)
 			{
-				if (!Yandere.Police.EndOfDay.LearnedOsanaInfo1 || !Yandere.Police.EndOfDay.LearnedOsanaInfo2)
+				if (DateGlobals.Week == 1)
+				{
+					if (!Yandere.Police.EndOfDay.LearnedOsanaInfo1 || !Yandere.Police.EndOfDay.LearnedOsanaInfo2)
+					{
+						SubLabels[10].text = "??????????";
+					}
+				}
+				else if (!Yandere.Police.EndOfDay.LearnedRivalDarkSecret)
 				{
 					SubLabels[10].text = "??????????";
 				}

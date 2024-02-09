@@ -211,48 +211,63 @@ public class LoveManagerScript : MonoBehaviour
 
 	public void CoupleCheck()
 	{
-		if (SuitorProgress == 2)
+		if (SuitorProgress != 2)
 		{
-			Rival = StudentManager.Students[RivalID];
-			Suitor = StudentManager.Students[SuitorID];
-			if (Rival != null && Suitor != null)
+			return;
+		}
+		Rival = StudentManager.Students[RivalID];
+		Suitor = StudentManager.Students[SuitorID];
+		if (Rival != null && Suitor != null)
+		{
+			Suitor.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+			Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+			Suitor.CharacterAnimation.enabled = true;
+			Rival.CharacterAnimation.enabled = true;
+			if (Suitor.Male)
 			{
-				Suitor.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-				Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-				Suitor.CharacterAnimation.enabled = true;
-				Rival.CharacterAnimation.enabled = true;
 				Suitor.CharacterAnimation.Play("walkHands_00");
-				Suitor.transform.eulerAngles = Vector3.zero;
-				Suitor.transform.position = new Vector3(-0.25f, 0f, -90f);
-				Suitor.Pathfinding.canSearch = false;
-				Suitor.Pathfinding.canMove = false;
-				Suitor.MyController.radius = 0f;
-				Suitor.enabled = false;
-				Rival.CharacterAnimation.Play("f02_walkHands_00");
-				Rival.transform.eulerAngles = Vector3.zero;
-				Rival.transform.position = new Vector3(0.25f, 0f, -90f);
-				Rival.Pathfinding.canSearch = false;
-				Rival.Pathfinding.canMove = false;
-				Rival.MyController.radius = 0f;
-				Rival.enabled = false;
-				Physics.SyncTransforms();
-				Suitor.Cosmetic.MyRenderer.materials[Suitor.Cosmetic.FaceID].SetFloat("_BlendAmount", 1f);
-				ParticleSystem.EmissionModule emission = Suitor.Hearts.emission;
-				emission.enabled = true;
-				emission.rateOverTime = 5f;
-				Suitor.Hearts.Play();
-				Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 1f);
-				ParticleSystem.EmissionModule emission2 = Rival.Hearts.emission;
-				emission2.enabled = true;
-				emission2.rateOverTime = 5f;
-				Rival.Hearts.Play();
-				Suitor.HoldingHands = true;
-				Rival.HoldingHands = true;
-				Suitor.PartnerID = RivalID;
-				Rival.PartnerID = SuitorID;
-				HoldingHands = true;
-				Debug.Log("Students are now holding hands.");
 			}
+			else
+			{
+				Suitor.CharacterAnimation.Play("f02_suitorWalkHands_00");
+			}
+			Suitor.transform.eulerAngles = Vector3.zero;
+			Suitor.transform.position = new Vector3(-0.25f, 0f, -90f);
+			Suitor.Pathfinding.canSearch = false;
+			Suitor.Pathfinding.canMove = false;
+			Suitor.MyController.radius = 0f;
+			Suitor.enabled = false;
+			if (!Rival.Male)
+			{
+				Rival.CharacterAnimation.Play("f02_walkHands_00");
+			}
+			else
+			{
+				Rival.CharacterAnimation.Play("suitorWalkHands_00");
+			}
+			Rival.transform.eulerAngles = Vector3.zero;
+			Rival.transform.position = new Vector3(0.25f, 0f, -90f);
+			Rival.Pathfinding.canSearch = false;
+			Rival.Pathfinding.canMove = false;
+			Rival.MyController.radius = 0f;
+			Rival.enabled = false;
+			Physics.SyncTransforms();
+			Suitor.Cosmetic.MyRenderer.materials[Suitor.Cosmetic.FaceID].SetFloat("_BlendAmount", 1f);
+			ParticleSystem.EmissionModule emission = Suitor.Hearts.emission;
+			emission.enabled = true;
+			emission.rateOverTime = 5f;
+			Suitor.Hearts.Play();
+			Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 1f);
+			ParticleSystem.EmissionModule emission2 = Rival.Hearts.emission;
+			emission2.enabled = true;
+			emission2.rateOverTime = 5f;
+			Rival.Hearts.Play();
+			Suitor.HoldingHands = true;
+			Rival.HoldingHands = true;
+			Suitor.PartnerID = RivalID;
+			Rival.PartnerID = SuitorID;
+			HoldingHands = true;
+			Debug.Log("Students are now holding hands.");
 		}
 	}
 

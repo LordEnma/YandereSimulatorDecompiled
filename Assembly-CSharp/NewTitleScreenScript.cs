@@ -683,7 +683,7 @@ public class NewTitleScreenScript : MonoBehaviour
 					}
 					else if (!GameGlobals.EightiesTutorial)
 					{
-						if (GameGlobals.InCutscene)
+						if (GameGlobals.Eighties && GameGlobals.InCutscene)
 						{
 							SceneManager.LoadScene("EightiesCutsceneScene");
 						}

@@ -122,15 +122,6 @@ public class SenpaiLoveWindowScript : MonoBehaviour
 
 	public void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Z))
-		{
-			GameGlobals.SenpaiLove += 20;
-			if (GameGlobals.SenpaiLove > 100)
-			{
-				GameGlobals.SenpaiLove = 0;
-			}
-			UpdateSenpaiLove();
-		}
 		Timer += Time.unscaledDeltaTime;
 		if (Timer > 1f)
 		{

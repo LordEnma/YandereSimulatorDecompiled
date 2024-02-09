@@ -125,7 +125,16 @@ public class SuitorBoostScript : MonoBehaviour
 					YandereChair.transform.localPosition = new Vector3(YandereChair.transform.localPosition.x, YandereChair.transform.localPosition.y, -0.6f);
 					SuitorChair.transform.localPosition = new Vector3(SuitorChair.transform.localPosition.x, SuitorChair.transform.localPosition.y, -0.6f);
 					Yandere.CharacterAnimation.Play("f02_sit_01");
-					Yandere.Follower.CharacterAnimation.Play("sit_01");
+					if (Yandere.Follower.Male)
+					{
+						Yandere.Follower.CharacterAnimation.Play("sit_01");
+						Yandere.Follower.transform.position = SuitorSitSpot.position;
+					}
+					else
+					{
+						Yandere.Follower.CharacterAnimation.Play("f02_sit_01");
+						Yandere.Follower.transform.position = new Vector3(-26.45f, 4f, 16.16667f);
+					}
 					Yandere.transform.eulerAngles = Vector3.zero;
 					Yandere.Follower.transform.eulerAngles = Vector3.zero;
 					Yandere.transform.position = YandereSitSpot.position;
@@ -143,7 +152,10 @@ public class SuitorBoostScript : MonoBehaviour
 			else
 			{
 				Yandere.FixCamera();
-				Yandere.Follower.Character.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
+				if (Yandere.Follower.Male)
+				{
+					Yandere.Follower.Character.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
+				}
 				if (TraitID == 2)
 				{
 					YandereChair.transform.localPosition = new Vector3(YandereChair.transform.localPosition.x, YandereChair.transform.localPosition.y, -1f / 3f);
@@ -228,6 +240,10 @@ public class SuitorBoostScript : MonoBehaviour
 		{
 			Yandere.Head.LookAt(LookTarget);
 			Yandere.Follower.Head.LookAt(LookTarget);
+			if (!Yandere.Follower.Male)
+			{
+				Yandere.Follower.transform.position = new Vector3(-26.45f, 4f, 16.16667f);
+			}
 		}
 	}
 }

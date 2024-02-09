@@ -906,7 +906,7 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
-		else if (!Yandere.TargetStudent.Male && LoveManager.SuitorProgress == 0)
+		else if (Yandere.TargetStudent.StudentID == LoveManager.RivalID && LoveManager.SuitorProgress == 0)
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
@@ -1023,12 +1023,12 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite20 = FavorShadow[2];
 			uISprite20.color = new Color(uISprite20.color.r, uISprite20.color.g, uISprite20.color.b, 0.75f);
 		}
-		if (!Yandere.TargetStudent.Male)
+		if (Yandere.TargetStudent.StudentID == LoveManager.RivalID)
 		{
 			UISprite uISprite21 = LoveShadow[1];
 			uISprite21.color = new Color(uISprite21.color.r, uISprite21.color.g, uISprite21.color.b, 0.75f);
 		}
-		if (DatingMinigame == null || (Yandere.TargetStudent.Male && !LoveManager.RivalWaiting) || LoveManager.Courted)
+		if (DatingMinigame == null || (Yandere.TargetStudent.StudentID == LoveManager.SuitorID && !LoveManager.RivalWaiting) || LoveManager.Courted)
 		{
 			UISprite uISprite22 = LoveShadow[2];
 			uISprite22.color = new Color(uISprite22.color.r, uISprite22.color.g, uISprite22.color.b, 0.75f);

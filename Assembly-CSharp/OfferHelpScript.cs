@@ -351,7 +351,14 @@ public class OfferHelpScript : MonoBehaviour
 					}
 					else
 					{
-						characterAnimation2.CrossFade(EventAnim[EventPhase]);
+						if (!Student.Male)
+						{
+							characterAnimation2.CrossFade(EventAnim[EventPhase]);
+						}
+						else
+						{
+							characterAnimation2.CrossFade(Student.AnimationNames[0]);
+						}
 						characterAnimation.CrossFade(Yandere.IdleAnim, 1f);
 					}
 					EventSubtitle.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -374,7 +381,14 @@ public class OfferHelpScript : MonoBehaviour
 							characterAnimation.CrossFade(Yandere.IdleAnim);
 						}
 					}
-					else if (characterAnimation2[EventAnim[EventPhase]].time >= characterAnimation2[EventAnim[EventPhase]].length)
+					else if (!Student.Male)
+					{
+						if (characterAnimation2[EventAnim[EventPhase]].time >= characterAnimation2[EventAnim[EventPhase]].length)
+						{
+							characterAnimation2.CrossFade(Student.IdleAnim);
+						}
+					}
+					else if (characterAnimation2[Student.AnimationNames[0]].time >= characterAnimation2[Student.AnimationNames[0]].length)
 					{
 						characterAnimation2.CrossFade(Student.IdleAnim);
 					}

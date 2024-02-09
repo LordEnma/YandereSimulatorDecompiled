@@ -121,6 +121,7 @@ public class AudioMenuScript : MonoBehaviour
 			{
 				SubtitlesOnOffLabel.text = "Off";
 			}
+			AudioGlobals.MusicVolume = Jukebox.Volume;
 		}
 	}
 

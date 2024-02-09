@@ -814,7 +814,7 @@ public class QualityManagerScript : MonoBehaviour
 								AdjustRimLight(studentScript.Cosmetic.FemaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1]);
 							}
 						}
-						if (studentScript.Cosmetic.Accessory > 0 && studentScript.Cosmetic.FemaleAccessories[studentScript.Cosmetic.Accessory].GetComponent<Renderer>() != null)
+						if (studentScript.Cosmetic.Accessory > 0 && studentScript.Cosmetic.Accessory < studentScript.Cosmetic.FemaleAccessories.Length && studentScript.Cosmetic.FemaleAccessories[studentScript.Cosmetic.Accessory].GetComponent<Renderer>() != null)
 						{
 							studentScript.Cosmetic.FemaleAccessories[studentScript.Cosmetic.Accessory].GetComponent<Renderer>().material.shader = NewBodyShader;
 							AdjustRimLight(studentScript.Cosmetic.FemaleAccessories[studentScript.Cosmetic.Accessory].GetComponent<Renderer>().material);
@@ -905,7 +905,7 @@ public class QualityManagerScript : MonoBehaviour
 						AdjustRimLight(component2.material);
 					}
 				}
-				if (studentScript.Cosmetic.EyewearID > 0)
+				if (studentScript.Cosmetic.EyewearID > 0 && studentScript.Cosmetic.Eyewear.Length != 0)
 				{
 					studentScript.Cosmetic.Eyewear[studentScript.Cosmetic.EyewearID].GetComponent<Renderer>().material.shader = NewHairShader;
 				}

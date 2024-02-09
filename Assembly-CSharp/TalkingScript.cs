@@ -1385,12 +1385,12 @@ public class TalkingScript : MonoBehaviour
 				{
 					flag10 = true;
 				}
-				if (S.Male)
+				if (S.StudentID == S.DialogueWheel.LoveManager.SuitorID)
 				{
 					S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 3, 5f);
 					S.CharacterAnimation.CrossFade(S.Nod1Anim);
 				}
-				else if ((S.BikiniAttacher.enabled && !S.MyRenderer.enabled) || S.Schoolwear == 2)
+				else if ((!S.Male && S.BikiniAttacher.enabled && !S.MyRenderer.enabled) || S.Schoolwear == 2)
 				{
 					S.Subtitle.CustomText = "Bad timing. As you can see, I'm in a swimsuit right now. Maybe later.";
 					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 10f);
@@ -1437,7 +1437,7 @@ public class TalkingScript : MonoBehaviour
 					if (!Refuse)
 					{
 						S.MeetTime = S.Clock.HourTime - 1f;
-						if (S.Male)
+						if (S.StudentID == S.DialogueWheel.LoveManager.SuitorID)
 						{
 							S.MeetSpot = S.StudentManager.SuitorSpot;
 						}

@@ -345,7 +345,7 @@ public class JukeboxScript : MonoBehaviour
 		FullSanity.clip = FullSanities[num];
 		HalfSanity.clip = HalfSanities[num];
 		NoSanity.clip = NoSanities[num];
-		Volume = 0.25f;
+		Volume = AudioGlobals.MusicVolume;
 		FullSanity.volume = 0f;
 		Hitman.time = 26f;
 	}

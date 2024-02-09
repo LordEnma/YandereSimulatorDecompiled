@@ -22,8 +22,8 @@ public class PhotographyClubScript : MonoBehaviour
 			{
 				InvestigationPhotos.SetActive(value: true);
 				ArtsyPhotos.SetActive(value: false);
+				CrimeScene.SetActive(value: true);
 			}
-			CrimeScene.SetActive(value: true);
 			StraightTables.SetActive(value: true);
 			CrookedTables.SetActive(value: false);
 		}

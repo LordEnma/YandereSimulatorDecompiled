@@ -90,6 +90,11 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			Spy.Prompt.enabled = false;
 			base.enabled = false;
 		}
+		if (Week > 1)
+		{
+			Spy.Prompt.enabled = false;
+			base.enabled = false;
+		}
 		if (base.enabled && (float)StudentGlobals.GetStudentReputation(10) <= -33.33333f)
 		{
 			OsanaLoseFriendEvent.OtherEvent = this;

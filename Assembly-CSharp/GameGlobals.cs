@@ -124,6 +124,8 @@ public static class GameGlobals
 
 	private const string Str_Dream = "Dream";
 
+	private const string Str_ItemsInitialized = "ItemsInitialized";
+
 	private const string Str_NoCouncilShove = "NoCouncilShove";
 
 	private const string Str_NoJournalist = "NoJournalist";
@@ -808,6 +810,18 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool ItemsInitialized
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_ItemsInitialized");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_ItemsInitialized", value);
+		}
+	}
+
 	public static bool NoCouncilShove
 	{
 		get
@@ -1036,6 +1050,7 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_SenpaiSanity");
 		Globals.Delete("Profile_" + Profile + "_OsanaHaircut");
 		Globals.Delete("Profile_" + Profile + "_Dream");
+		Globals.Delete("Profile_" + Profile + "_ItemsInitialized");
 		Globals.Delete("Profile_" + Profile + "_NoCouncilShove");
 		Globals.Delete("Profile_" + Profile + "_NoJournalist");
 		Globals.Delete("Profile_" + Profile + "_ForceCanonEliminations");
