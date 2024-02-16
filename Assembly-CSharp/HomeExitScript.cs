@@ -36,10 +36,17 @@ public class HomeExitScript : MonoBehaviour
 			{
 				UILabel uILabel2 = Labels[4];
 				uILabel2.color = new Color(uILabel2.color.r, uILabel2.color.g, uILabel2.color.b, 1f);
-				uILabel2.text = "Stalker's House";
 				if (GameGlobals.Eighties)
 				{
 					Labels[4].text = "Insane Asylum";
+				}
+				else if (DateGlobals.Week == 1)
+				{
+					uILabel2.text = "Stalker's House";
+				}
+				else if (DateGlobals.Week == 2)
+				{
+					uILabel2.text = "''Dark Delights'' Bakery";
 				}
 			}
 			BringItemPrompt.SetActive(value: false);

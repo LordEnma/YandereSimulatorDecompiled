@@ -15,6 +15,12 @@ public class StalkerIntroScript : MonoBehaviour
 
 	public Renderer Darkness;
 
+	public float RotationX;
+
+	public float RotationY;
+
+	public float Aperture;
+
 	public float Alpha;
 
 	public float Speed;
@@ -24,6 +30,8 @@ public class StalkerIntroScript : MonoBehaviour
 	public float DOF;
 
 	public int Phase;
+
+	public int Week;
 
 	public GameObject[] Neighborhood;
 
@@ -35,6 +43,7 @@ public class StalkerIntroScript : MonoBehaviour
 
 	private void Start()
 	{
+		Time.timeScale = 1f;
 		if (Yandere.InstructionLabel != null)
 		{
 			Yandere.InstructionLabel.alpha = 0f;
@@ -43,15 +52,25 @@ public class StalkerIntroScript : MonoBehaviour
 		RenderSettings.ambientIntensity = 8f;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
-		base.transform.position = new Vector3(12.5f, 5f, 13f);
-		base.transform.LookAt(Moon);
-		CameraFocus.parent = base.transform;
-		CameraFocus.localPosition = new Vector3(0f, 0f, 100f);
-		CameraFocus.parent = null;
+		if (Week == 1)
+		{
+			base.transform.position = new Vector3(12.5f, 5f, 13f);
+			base.transform.LookAt(Moon);
+			CameraFocus.parent = base.transform;
+			CameraFocus.localPosition = new Vector3(0f, 0f, 100f);
+			CameraFocus.parent = null;
+			DOF = 4f;
+		}
+		else if (Week == 2)
+		{
+			base.transform.position = new Vector3(-14.56f, 9.633026f, 1.91774f);
+			base.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+			DOF = 1.5f;
+		}
 		SetVignetteBlack();
-		UpdateDOF(4f);
-		DOF = 4f;
+		UpdateDOF(DOF, 5.6f);
 		Alpha = 1f;
+		Darkness.material.color = new Color(0f, 0f, 0f, Alpha);
 		Yandere.Start();
 		SkipPanel.alpha = 0f;
 	}
@@ -62,76 +81,151 @@ public class StalkerIntroScript : MonoBehaviour
 		{
 			UpdateSkipPanel();
 		}
-		Moon.LookAt(base.transform);
-		if (Phase == 0)
+		if (Week == 1)
 		{
-			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.5f);
-			Darkness.material.color = new Color(0f, 0f, 0f, Alpha);
-			if (Alpha == 0f)
+			Moon.LookAt(base.transform);
+			if (Phase == 0)
 			{
-				Timer += Time.deltaTime;
-				if (Timer > 2f)
+				Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.5f);
+				Darkness.material.color = new Color(0f, 0f, 0f, Alpha);
+				if (Alpha == 0f)
 				{
-					Yandere.VtuberCheck();
+					Timer += Time.deltaTime;
+					if (Timer > 2f)
+					{
+						Yandere.VtuberCheck();
+						Phase++;
+					}
+				}
+			}
+			else if (Phase == 1)
+			{
+				if (Speed == 0f)
+				{
+					Yandere.MyAnimation.Play();
+				}
+				Speed += Time.deltaTime;
+				base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(11.5f, 1f, 13f), Time.deltaTime * Speed);
+				CameraFocus.position = Vector3.Lerp(CameraFocus.position, new Vector3(13.62132f, 1f, 15.12132f), Time.deltaTime * Speed);
+				DOF = Mathf.MoveTowards(DOF, 1.4f, Time.deltaTime * Speed);
+				UpdateDOF(DOF, 5.6f);
+				base.transform.LookAt(CameraFocus);
+				if (Yandere.MyAnimation["f02_jumpOverWall_00"].time > 13f)
+				{
+					Yandere.transform.position = new Vector3(13.15f, 0f, 13f);
+					base.transform.position = new Vector3(12.75f, 1.3f, 12.4f);
+					base.transform.eulerAngles = new Vector3(0f, 45f, 0f);
+					DOF = 0.5f;
+					UpdateDOF(DOF, 5.6f);
+					Speed = -1f;
 					Phase++;
 				}
 			}
-		}
-		else if (Phase == 1)
-		{
-			if (Speed == 0f)
+			else
 			{
-				Yandere.MyAnimation.Play();
-			}
-			Speed += Time.deltaTime;
-			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(11.5f, 1f, 13f), Time.deltaTime * Speed);
-			CameraFocus.position = Vector3.Lerp(CameraFocus.position, new Vector3(13.62132f, 1f, 15.12132f), Time.deltaTime * Speed);
-			DOF = Mathf.MoveTowards(DOF, 1.4f, Time.deltaTime * Speed);
-			UpdateDOF(DOF);
-			base.transform.LookAt(CameraFocus);
-			if (Yandere.MyAnimation["f02_jumpOverWall_00"].time > 13f)
-			{
-				Yandere.transform.position = new Vector3(13.15f, 0f, 13f);
-				base.transform.position = new Vector3(12.75f, 1.3f, 12.4f);
-				base.transform.eulerAngles = new Vector3(0f, 45f, 0f);
-				DOF = 0.5f;
-				UpdateDOF(DOF);
-				Speed = -1f;
-				Phase++;
+				if (Phase != 2)
+				{
+					return;
+				}
+				Speed += Time.deltaTime;
+				if (Speed > 0f)
+				{
+					Yandere.transform.position = new Vector3(13.15f, 0f, 13f);
+					base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(13.15f, 1.51515f, 14.92272f), Time.deltaTime * Speed);
+					base.transform.eulerAngles = Vector3.Lerp(base.transform.eulerAngles, new Vector3(15f, 180f, 0f), Time.deltaTime * Speed * 2f);
+					DOF = Mathf.MoveTowards(DOF, 2f, Time.deltaTime * Speed);
+					UpdateDOF(DOF, 5.6f);
+					if (Speed > 4f)
+					{
+						DOF = 2f;
+						UpdateDOF(DOF, 5.6f);
+						SkipPanel.enabled = false;
+						RPGCamera.enabled = true;
+						Yandere.enabled = true;
+						Phase++;
+					}
+				}
 			}
 		}
 		else
 		{
-			if (Phase != 2)
+			if (Week != 2)
 			{
 				return;
 			}
-			Speed += Time.deltaTime;
-			if (Speed > 0f)
+			if (Phase == 0)
 			{
-				Yandere.transform.position = new Vector3(13.15f, 0f, 13f);
-				base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(13.15f, 1.51515f, 14.92272f), Time.deltaTime * Speed);
-				base.transform.eulerAngles = Vector3.Lerp(base.transform.eulerAngles, new Vector3(15f, 180f, 0f), Time.deltaTime * Speed * 2f);
-				DOF = Mathf.MoveTowards(DOF, 2f, Time.deltaTime * Speed);
-				UpdateDOF(DOF);
-				if (Speed > 4f)
+				Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.5f);
+				Darkness.material.color = new Color(0f, 0f, 0f, Alpha);
+				if (Alpha == 0f)
 				{
-					DOF = 2f;
-					UpdateDOF(DOF);
-					SkipPanel.enabled = false;
-					RPGCamera.enabled = true;
-					Yandere.enabled = true;
+					Timer += Time.deltaTime;
+					if (Timer > 2f)
+					{
+						Yandere.MyAnimation.Play("f02_girlWalk_LookLeft_00");
+						Yandere.VtuberCheck();
+						Phase++;
+					}
+				}
+				base.transform.position -= new Vector3(Time.deltaTime * 0.1f, 0f, 0f);
+			}
+			else if (Phase == 1)
+			{
+				Speed += Time.deltaTime * 0.1f;
+				CameraFocus.position = Vector3.Lerp(CameraFocus.position, Yandere.Hips.position, Time.deltaTime * Speed);
+				DOF = Mathf.MoveTowards(DOF, 2f, Time.deltaTime * Speed);
+				UpdateDOF(DOF, 5.6f);
+				base.transform.LookAt(CameraFocus);
+				if (Yandere.MyAnimation["f02_girlWalk_LookLeft_00"].time > 5f)
+				{
+					Yandere.transform.position = new Vector3(-19f, 0f, -35f);
+					base.transform.position = new Vector3(-18.5f, 1.3f, -34.5f);
+					base.transform.eulerAngles = new Vector3(0f, -135f, 0f);
+					RotationX = 0f;
+					RotationY = -135f;
+					DOF = 0.6f;
+					Aperture = 16f;
+					UpdateDOF(DOF, Aperture);
+					Speed = -8f;
 					Phase++;
+				}
+			}
+			else
+			{
+				if (Phase != 2)
+				{
+					return;
+				}
+				Speed += Time.deltaTime;
+				if (Speed > 0f)
+				{
+					Yandere.MyAnimation.CrossFade("f02_stealthIdle_00", 2f);
+					RotationX = Mathf.Lerp(RotationX, 15f, Time.deltaTime * Speed);
+					RotationY = Mathf.Lerp(RotationY, 0f, Time.deltaTime * Speed);
+					base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(-19f, 1.51715f, -36.92219f), Time.deltaTime * Speed);
+					base.transform.eulerAngles = new Vector3(RotationX, RotationY, 0f);
+					DOF = Mathf.MoveTowards(DOF, 2f, Time.deltaTime * Speed);
+					Aperture = Mathf.MoveTowards(Aperture, 5.6f, Time.deltaTime * Speed);
+					UpdateDOF(DOF, Aperture);
+					if (Speed > 5f)
+					{
+						DOF = 2f;
+						UpdateDOF(DOF, 5.6f);
+						SkipPanel.enabled = false;
+						RPGCamera.enabled = true;
+						Yandere.enabled = true;
+						Phase++;
+					}
 				}
 			}
 		}
 	}
 
-	private void UpdateDOF(float Value)
+	private void UpdateDOF(float Value, float Aperture)
 	{
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 		settings.focusDistance = Value;
-		settings.aperture = 5.6f;
+		settings.aperture = Aperture;
 		Profile.depthOfField.settings = settings;
 	}
 

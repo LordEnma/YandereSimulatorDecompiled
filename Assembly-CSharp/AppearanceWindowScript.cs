@@ -74,7 +74,14 @@ public class AppearanceWindowScript : MonoBehaviour
 				{
 					if (!Checks[1].enabled)
 					{
-						StudentManager.LoveManager.CustomSuitorHair = 55;
+						if (Yandere.TargetStudent.Male)
+						{
+							StudentManager.LoveManager.CustomSuitorHair = 55;
+						}
+						else
+						{
+							StudentManager.LoveManager.CustomSuitorHair = 56;
+						}
 						Checks[1].enabled = true;
 						Checks[2].enabled = false;
 					}
@@ -88,7 +95,14 @@ public class AppearanceWindowScript : MonoBehaviour
 				{
 					if (!Checks[2].enabled)
 					{
-						StudentManager.LoveManager.CustomSuitorHair = 56;
+						if (Yandere.TargetStudent.Male)
+						{
+							StudentManager.LoveManager.CustomSuitorHair = 56;
+						}
+						else
+						{
+							StudentManager.LoveManager.CustomSuitorHair = 22;
+						}
 						Checks[1].enabled = false;
 						Checks[2].enabled = true;
 					}
@@ -116,7 +130,14 @@ public class AppearanceWindowScript : MonoBehaviour
 				{
 					if (!Checks[4].enabled)
 					{
-						StudentManager.LoveManager.CustomSuitorAccessory = 1;
+						if (Yandere.TargetStudent.Male)
+						{
+							StudentManager.LoveManager.CustomSuitorAccessory = 1;
+						}
+						else
+						{
+							StudentManager.LoveManager.CustomSuitorAccessory = 18;
+						}
 						Checks[3].enabled = false;
 						Checks[4].enabled = true;
 					}

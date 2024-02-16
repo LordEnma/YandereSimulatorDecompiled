@@ -426,6 +426,8 @@ public class AdviceWindowScript : MonoBehaviour
 		{
 			AttractionText[1] = "Your rival might like her suitor better with a different hairstyle.";
 		}
+		Debug.Log("RivalBag's DesiredAccessory is: " + rivalBookBag.DesiredAccessory);
+		Debug.Log("Suitor's FemaleAccessories Length is: " + Suitor.Cosmetic.FemaleAccessories.Length);
 		if ((Suitor.Male && Suitor.Cosmetic.MaleAccessories[rivalBookBag.DesiredAccessory].activeInHierarchy) || (!Suitor.Male && Suitor.Cosmetic.FemaleAccessories[rivalBookBag.DesiredAccessory].activeInHierarchy))
 		{
 			if (rivalBookBag.DesiredAccessory == 17)

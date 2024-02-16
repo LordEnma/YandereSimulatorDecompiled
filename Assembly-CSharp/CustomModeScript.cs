@@ -897,7 +897,8 @@ public class CustomModeScript : MonoBehaviour
 						Zoom = false;
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Edit";
-						PromptBar.Label[2].text = "Change Method";
+						PromptBar.Label[1].text = "Next Method";
+						PromptBar.Label[2].text = "Previous Method";
 						PromptBar.Label[3].text = "Randomize Methods";
 						PromptBar.Label[4].text = "Change Selection";
 						PromptBar.UpdateButtons();
@@ -1806,7 +1807,7 @@ public class CustomModeScript : MonoBehaviour
 					LocationPreview.mainTexture = LocationScreenshots[ArrayToEdit[EventID]];
 					UpdateHeader();
 				}
-				else if (Input.GetButtonDown(InputNames.Xbox_X))
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
 				{
 					JSON.Misc.CanonEliminations[RivalSelected]++;
 					if (JSON.Misc.CanonEliminations[RivalSelected] == 10 || JSON.Misc.CanonEliminations[RivalSelected] == 16)
@@ -1816,6 +1817,19 @@ public class CustomModeScript : MonoBehaviour
 					if (JSON.Misc.CanonEliminations[RivalSelected] > EliminationNames.Length - 1)
 					{
 						JSON.Misc.CanonEliminations[RivalSelected] = 1;
+					}
+					UpdateCanonMethodLabels();
+				}
+				else if (Input.GetButtonDown(InputNames.Xbox_X))
+				{
+					JSON.Misc.CanonEliminations[RivalSelected]--;
+					if (JSON.Misc.CanonEliminations[RivalSelected] == 10 || JSON.Misc.CanonEliminations[RivalSelected] == 16)
+					{
+						JSON.Misc.CanonEliminations[RivalSelected]--;
+					}
+					if (JSON.Misc.CanonEliminations[RivalSelected] < 1)
+					{
+						JSON.Misc.CanonEliminations[RivalSelected] = EliminationNames.Length - 1;
 					}
 					UpdateCanonMethodLabels();
 				}
@@ -1901,7 +1915,8 @@ public class CustomModeScript : MonoBehaviour
 					UpdateStudent();
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Edit";
-					PromptBar.Label[2].text = "Change Method";
+					PromptBar.Label[1].text = "Next Method";
+					PromptBar.Label[2].text = "Previous Method";
 					PromptBar.Label[3].text = "Randomize Methods";
 					PromptBar.Label[4].text = "Change Selection";
 					PromptBar.UpdateButtons();
@@ -2004,7 +2019,8 @@ public class CustomModeScript : MonoBehaviour
 					UpdateStudent();
 					PromptBar.ClearButtons();
 					PromptBar.Label[0].text = "Edit";
-					PromptBar.Label[2].text = "Change Method";
+					PromptBar.Label[1].text = "Next Method";
+					PromptBar.Label[2].text = "Previous Method";
 					PromptBar.Label[3].text = "Randomize Methods";
 					PromptBar.Label[4].text = "Change Selection";
 					PromptBar.UpdateButtons();
@@ -2050,12 +2066,29 @@ public class CustomModeScript : MonoBehaviour
 				}
 			}
 		}
-		else if (EditedLabel.gameObject.GetComponent<UIInputOnGUI>() == null)
+		else
 		{
+			if (!(EditedLabel.gameObject.GetComponent<UIInputOnGUI>() == null))
+			{
+				return;
+			}
 			EditedLabel.color = Color.white;
 			PlayerIsTyping = false;
 			JSON.Students[Selected].Name = EditableLabels[0].text;
 			JSON.Students[Selected].Info = EditableLabels[1].text;
+			if (EditedLabel == EditableLabels[2])
+			{
+				if (int.Parse(EditableLabels[2].text) < 1)
+				{
+					EditableLabels[2].text = "1";
+				}
+				else if (int.Parse(EditableLabels[2].text) > HairstyleLimit - 1)
+				{
+					EditableLabels[2].text = (HairstyleLimit - 1).ToString() ?? "";
+				}
+				JSON.Students[Selected].Hairstyle = EditableLabels[2].text;
+				UpdateStudent();
+			}
 		}
 	}
 

@@ -678,15 +678,6 @@ public class CosmeticScript : MonoBehaviour
 			}
 		}
 		DisableAccessories();
-		bool flag = false;
-		if (StudentManager != null && StudentID == StudentManager.SuitorID)
-		{
-			flag = true;
-		}
-		if (flag && StudentGlobals.CustomSuitor && StudentGlobals.CustomSuitorEyewear > 0)
-		{
-			Eyewear[StudentGlobals.CustomSuitorEyewear].SetActive(value: true);
-		}
 		if (!Male)
 		{
 			FemaleUniformID = StudentGlobals.FemaleUniform;
@@ -1023,45 +1014,6 @@ public class CosmeticScript : MonoBehaviour
 		else
 		{
 			MaleUniformID = StudentGlobals.MaleUniform;
-			GameObject[] phoneCharms = GaloAccessories;
-			for (int i = 0; i < phoneCharms.Length; i++)
-			{
-				phoneCharms[i].SetActive(value: false);
-			}
-			bool flag2 = false;
-			if (StudentManager != null && StudentID == StudentManager.SuitorID)
-			{
-				flag2 = true;
-			}
-			if (flag2 && StudentGlobals.CustomSuitor)
-			{
-				if (StudentGlobals.CustomSuitorHair > 0)
-				{
-					Hairstyle = StudentGlobals.CustomSuitorHair;
-				}
-				if (StudentGlobals.CustomSuitorAccessory > 0)
-				{
-					Accessory = StudentGlobals.CustomSuitorAccessory;
-					if (Accessory == 1)
-					{
-						Transform obj = MaleAccessories[1].transform;
-						obj.localScale = new Vector3(1.066666f, 1f, 1f);
-						obj.localPosition = new Vector3(0f, -1.525f, 0.0066666f);
-					}
-				}
-				if (StudentGlobals.CustomSuitorBlack)
-				{
-					HairColor = "SolidBlack";
-				}
-				if (StudentGlobals.CustomSuitorJewelry > 0)
-				{
-					phoneCharms = GaloAccessories;
-					for (int i = 0; i < phoneCharms.Length; i++)
-					{
-						phoneCharms[i].SetActive(value: true);
-					}
-				}
-			}
 			if (StudentManager == null || !Eighties)
 			{
 				ThickBrows.SetActive(value: false);
@@ -1206,6 +1158,49 @@ public class CosmeticScript : MonoBehaviour
 				}
 			}
 		}
+		bool flag = false;
+		if (StudentManager != null && StudentID == StudentManager.SuitorID)
+		{
+			flag = true;
+		}
+		if (flag && StudentGlobals.CustomSuitor)
+		{
+			if (StudentGlobals.CustomSuitorHair > 0)
+			{
+				Hairstyle = StudentGlobals.CustomSuitorHair;
+			}
+			if (StudentGlobals.CustomSuitorAccessory > 0)
+			{
+				Accessory = StudentGlobals.CustomSuitorAccessory;
+				if (Male && Accessory == 1)
+				{
+					Transform obj = MaleAccessories[1].transform;
+					obj.localScale = new Vector3(1.066666f, 1f, 1f);
+					obj.localPosition = new Vector3(0f, -1.525f, 0.0066666f);
+				}
+			}
+			if (StudentGlobals.CustomSuitorBlack)
+			{
+				HairColor = "SolidBlack";
+			}
+			if (StudentGlobals.CustomSuitorJewelry > 0)
+			{
+				GameObject[] phoneCharms = GaloAccessories;
+				for (int i = 0; i < phoneCharms.Length; i++)
+				{
+					phoneCharms[i].SetActive(value: true);
+				}
+			}
+		}
+		bool flag2 = false;
+		if (StudentManager != null && StudentID == StudentManager.SuitorID)
+		{
+			flag2 = true;
+		}
+		if (flag2 && StudentGlobals.CustomSuitor && StudentGlobals.CustomSuitorEyewear > 0)
+		{
+			Eyewear[StudentGlobals.CustomSuitorEyewear].SetActive(value: true);
+		}
 		if (Club == ClubType.Teacher)
 		{
 			MyRenderer.sharedMesh = TeacherMesh;
@@ -1250,8 +1245,11 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else if (Club == ClubType.Council)
 		{
-			Armband.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(0.285f, 0f));
-			Armband.SetActive(value: true);
+			if (!Kidnapped && !Student.Slave)
+			{
+				Armband.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(0.285f, 0f));
+				Armband.SetActive(value: true);
+			}
 			string text2 = "";
 			if (StudentID == 86)
 			{
@@ -2142,7 +2140,20 @@ public class CosmeticScript : MonoBehaviour
 				MyRenderer.sharedMesh = SukebanMesh;
 				Masks[StudentID].SetActive(value: true);
 			}
-			if (Club == ClubType.Bully)
+			bool flag = false;
+			if (StudentManager != null && StudentID == StudentManager.SuitorID)
+			{
+				flag = true;
+			}
+			bool flag2 = false;
+			if (flag && StudentGlobals.CustomSuitor && StudentGlobals.CustomSuitorTan)
+			{
+				SkinColor = 6;
+				DoNotChangeFace = true;
+				FaceTexture = FaceTextures[6];
+				flag2 = true;
+			}
+			if (Club == ClubType.Bully || flag2)
 			{
 				UniformTexture = GanguroUniformTextures[FemaleUniformID];
 				CasualTexture = GanguroCasualTextures[FemaleUniformID];
@@ -3223,6 +3234,11 @@ public class CosmeticScript : MonoBehaviour
 				gameObject22.SetActive(value: false);
 			}
 		}
+		femaleAccessories = GaloAccessories;
+		for (int i = 0; i < femaleAccessories.Length; i++)
+		{
+			femaleAccessories[i].SetActive(value: false);
+		}
 	}
 
 	public void WearBurlapSack()
@@ -3282,7 +3298,7 @@ public class CosmeticScript : MonoBehaviour
 				BurlapSack.newRenderer.materials[2].mainTexture = BurlapSack.accessoryMaterials[0].mainTexture;
 				if (GameGlobals.CustomMode && CustomHair)
 				{
-					BurlapSack.newRenderer.materials[1].mainTexture = SkinTextures[0];
+					BurlapSack.newRenderer.materials[1].mainTexture = DefaultFaceTexture;
 				}
 				BurlapSack.newRenderer.updateWhenOffscreen = true;
 				UpdateSack = false;

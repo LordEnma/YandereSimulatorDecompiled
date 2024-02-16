@@ -454,7 +454,7 @@ public class ClockScript : MonoBehaviour
 		{
 			if (Period < 5)
 			{
-				StudentManager.Reputation.RepUpdateLabel.text = "REP WILL UPDATE AFTER SCHOOL";
+				StudentManager.Reputation.RepUpdateLabel.text = "REP WILL UPDATE AFTER LEAVING SCHOOL";
 				if (StudentManager.Bully && StudentManager.Bullies > 0)
 				{
 					StudentManager.UpdateGraffiti();

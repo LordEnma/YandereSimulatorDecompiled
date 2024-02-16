@@ -248,8 +248,15 @@ public class ServicesScript : MonoBehaviour
 					else if (Selected == 10)
 					{
 						ServicePurchased[Selected] = true;
-						Yandere.Police.EndOfDay.LearnedOsanaInfo1 = true;
-						Yandere.Police.EndOfDay.LearnedOsanaInfo2 = true;
+						if (DateGlobals.Week == 1)
+						{
+							Yandere.Police.EndOfDay.LearnedOsanaInfo1 = true;
+							Yandere.Police.EndOfDay.LearnedOsanaInfo2 = true;
+						}
+						else
+						{
+							Yandere.Police.EndOfDay.LearnedRivalDarkSecret = true;
+						}
 						if (SchemeGlobals.GetSchemeStage(6) == 1 || SchemeGlobals.GetSchemeStage(6) == 2)
 						{
 							SchemeGlobals.SetSchemeStage(6, 3);
@@ -340,9 +347,19 @@ public class ServicesScript : MonoBehaviour
 					ServiceAvailable[ID] = true;
 				}
 			}
-			else if (ID == 10 && (!Yandere.Police.EndOfDay.LearnedOsanaInfo1 || !Yandere.Police.EndOfDay.LearnedOsanaInfo2))
+			else if (ID == 10)
 			{
-				ServiceAvailable[ID] = true;
+				if (DateGlobals.Week == 1)
+				{
+					if (!Yandere.Police.EndOfDay.LearnedOsanaInfo1 || !Yandere.Police.EndOfDay.LearnedOsanaInfo2)
+					{
+						ServiceAvailable[ID] = true;
+					}
+				}
+				else if (!Yandere.Police.EndOfDay.LearnedRivalDarkSecret)
+				{
+					ServiceAvailable[ID] = true;
+				}
 			}
 			if (StudentManager != null && StudentManager.MissionMode)
 			{
@@ -383,6 +400,7 @@ public class ServicesScript : MonoBehaviour
 
 	public void Purchase()
 	{
+		TextMessageManager.Start();
 		TextMessageManager.SpawnMessage(Selected);
 		Inventory.PantyShots -= ServiceCosts[Selected];
 		AudioSource.PlayClipAtPoint(InfoPurchase, base.transform.position);

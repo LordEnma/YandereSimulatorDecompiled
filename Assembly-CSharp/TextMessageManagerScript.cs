@@ -10,6 +10,8 @@ public class TextMessageManagerScript : MonoBehaviour
 
 	public string[] Messages;
 
+	public string[] DarkSecrets;
+
 	private GameObject NewMessage;
 
 	public GameObject Message;
@@ -17,6 +19,11 @@ public class TextMessageManagerScript : MonoBehaviour
 	public int MessageHeight;
 
 	public string MessageText = string.Empty;
+
+	public void Start()
+	{
+		Messages[10] = DarkSecrets[DateGlobals.Week];
+	}
 
 	private void Update()
 	{

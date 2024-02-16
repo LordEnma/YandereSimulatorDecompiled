@@ -20,6 +20,8 @@ public static class EventGlobals
 
 	private const string Str_LearnedAboutPhotographer = "LearnedAboutPhotographer";
 
+	private const string Str_LearnedRivalDarkSecret = "LearnedRivalDarkSecret";
+
 	public static bool BefriendConversation
 	{
 		get
@@ -140,6 +142,18 @@ public static class EventGlobals
 		}
 	}
 
+	public static bool LearnedRivalDarkSecret
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_LearnedRivalDarkSecret");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_LearnedRivalDarkSecret", value);
+		}
+	}
+
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_BefriendConversation");
@@ -152,5 +166,6 @@ public static class EventGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_Event2");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_LivingRoom");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_LearnedAboutPhotographer");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_LearnedRivalDarkSecret");
 	}
 }

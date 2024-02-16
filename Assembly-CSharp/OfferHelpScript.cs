@@ -13,6 +13,8 @@ public class OfferHelpScript : MonoBehaviour
 
 	public PromptScript Prompt;
 
+	public AudioSource MyAudio;
+
 	public Vector3 OriginalPosition;
 
 	public Vector3 OriginalRotation;
@@ -57,7 +59,13 @@ public class OfferHelpScript : MonoBehaviour
 
 	private void Start()
 	{
+		Debug.Log("This ''Offer Help'' propmt is now running its Start() function.");
+		MyAudio = GetComponent<AudioSource>();
 		Prompt.enabled = true;
+		if (EventStudentID != 5)
+		{
+			EventStudentID = StudentManager.RivalID;
+		}
 		if (!Eighties)
 		{
 			return;
@@ -363,9 +371,8 @@ public class OfferHelpScript : MonoBehaviour
 					}
 					EventSubtitle.transform.localScale = new Vector3(1f, 1f, 1f);
 					EventSubtitle.text = EventSpeech[EventPhase];
-					AudioSource component = GetComponent<AudioSource>();
-					component.clip = EventClip[EventPhase];
-					component.Play();
+					MyAudio.clip = EventClip[EventPhase];
+					MyAudio.Play();
 					Spoken = true;
 				}
 				else
@@ -454,12 +461,17 @@ public class OfferHelpScript : MonoBehaviour
 
 	public void UpdateLocation()
 	{
+		Debug.Log("An ''Offer Help'' prompt has been told to update its location.");
 		if (Eighties)
 		{
 			EventStudentID = StudentManager.RivalID;
 		}
+		else if (EventStudentID != 5)
+		{
+			EventStudentID = StudentManager.RivalID;
+		}
 		Student = StudentManager.Students[EventStudentID];
-		Debug.Log("An ''Offer Help'' prompt has been told to update its location.");
+		Debug.Log("This ''Offer Help'' prompt's EventStudentID is: " + EventStudentID);
 		if (Student.CurrentDestination == StudentManager.MeetSpots.List[7])
 		{
 			base.transform.position = Locations[1].position;
@@ -493,6 +505,7 @@ public class OfferHelpScript : MonoBehaviour
 			}
 			else
 			{
+				Prompt.Label[0].text = "     Offer Help";
 				Unable = false;
 			}
 			Prompt.MyCollider.enabled = true;
@@ -523,7 +536,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 		if (EventPhase == EventSpeech.Length - 1)
 		{
-			if (EventStudentID == 11 || (Eighties && EventStudentID > 10 && EventStudentID < 21))
+			if (EventStudentID == StudentManager.RivalID || (Eighties && EventStudentID > 10 && EventStudentID < 21))
 			{
 				StudentManager.RaibaruKnowsAboutStalker = true;
 				SchemeGlobals.SetSchemeStage(6, 8);

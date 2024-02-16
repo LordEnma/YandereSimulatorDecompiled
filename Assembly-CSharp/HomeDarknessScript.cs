@@ -203,7 +203,10 @@ public class HomeDarknessScript : MonoBehaviour
 					if (!GameGlobals.Eighties)
 					{
 						Debug.Log("Going to Stalker House Scene because HomeExit.ID was 4.");
-						SceneManager.LoadScene("StalkerHouseScene");
+						if (DateGlobals.Week == 1)
+						{
+							SceneManager.LoadScene("StalkerHouseScene");
+						}
 					}
 					else
 					{

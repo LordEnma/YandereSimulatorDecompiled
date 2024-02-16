@@ -80,6 +80,8 @@ public static class SceneNames
 
 	public const string StalkerHouseScene = "StalkerHouseScene";
 
+	public const string RivalBakeryScene = "RivalBakeryScene";
+
 	public const string GenocideScene = "GenocideScene";
 
 	public const string NewTitleScene = "NewTitleScene";

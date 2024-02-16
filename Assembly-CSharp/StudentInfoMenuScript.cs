@@ -606,7 +606,8 @@ public class StudentInfoMenuScript : MonoBehaviour
 			{
 				if (ID < 98)
 				{
-					if (PauseScreen.Eighties || (!PauseScreen.Eighties && ID < 12) || (!PauseScreen.Eighties && ID > 20))
+					int num = 12;
+					if (PauseScreen.Eighties || (!PauseScreen.Eighties && ID < num) || (!PauseScreen.Eighties && ID > 20))
 					{
 						if (StudentManager.StudentBefriended[ID] || StudentManager.StudentPhotographed[ID])
 						{

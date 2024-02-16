@@ -305,7 +305,8 @@ public class StudentInfoScript : MonoBehaviour
 		}
 		if (ID < 98)
 		{
-			if (Eighties || (!Eighties && ID < 12) || (!Eighties && ID > 20))
+			int num4 = 12;
+			if (Eighties || (!Eighties && ID < num4) || (!Eighties && ID > 20))
 			{
 				WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text2 + "/Student_" + ID + ".png");
 				if (!StudentGlobals.GetStudentReplaced(ID))
@@ -746,7 +747,11 @@ public class StudentInfoScript : MonoBehaviour
 					Strings[1] = "?????";
 					Strings[2] = "?????";
 				}
-				InfoLabel.text = Strings[1] + "\n\n" + Strings[2];
+				InfoLabel.text = "Senpai's childhood friend.\n\n" + Strings[1] + "\n\n" + Strings[2];
+				return;
+			case 12:
+				Strings[1] = (Yandere.Police.EndOfDay.LearnedRivalDarkSecret ? "Suspicious of a ''new bakery'' in town." : "You may be able to learn additional information by stalking her or buying it from Info-chan.");
+				InfoLabel.text = "The president of the Cooking Club.\n\n[c][800000]" + Strings[1] + "[-][/c]";
 				return;
 			case 51:
 				if (ClubGlobals.GetClubClosed(ClubType.LightMusic))

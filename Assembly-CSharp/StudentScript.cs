@@ -1336,6 +1336,8 @@ public class StudentScript : MonoBehaviour
 
 	public int Crush;
 
+	public int CuddlePartnerID;
+
 	public int GenericTaskID;
 
 	public int InfatuationID;
@@ -3668,7 +3670,7 @@ public class StudentScript : MonoBehaviour
 			}
 			UnityEngine.Object.Destroy(MyRigidbody);
 			Started = true;
-			if (Club == ClubType.Council)
+			if (Club == ClubType.Council && !Slave)
 			{
 				if (GameGlobals.AlternateTimeline || GameGlobals.NoCouncilShove)
 				{
@@ -3859,6 +3861,13 @@ public class StudentScript : MonoBehaviour
 			if (RelaxAnim == "")
 			{
 				RelaxAnim = ThinkAnim;
+			}
+		}
+		for (int j = 1; j < 11; j++)
+		{
+			if (StudentID == StudentManager.SuitorIDs[j])
+			{
+				CuddlePartnerID = 1;
 			}
 		}
 		CharacterAnimation.Sample();
@@ -7175,7 +7184,25 @@ public class StudentScript : MonoBehaviour
 											Cosmetic.MyRenderer.materials[Cosmetic.FaceID].SetFloat("_BlendAmount", 1f);
 										}
 									}
-									CharacterAnimation.CrossFade(CuddleAnim);
+									if (CuddlePartnerID == 1)
+									{
+										if (Male)
+										{
+											CharacterAnimation.CrossFade(CuddleAnim);
+										}
+										else
+										{
+											CharacterAnimation.CrossFade("f02_cuddle_00");
+										}
+									}
+									else if (!Male)
+									{
+										CharacterAnimation.CrossFade(CuddleAnim);
+									}
+									else
+									{
+										CharacterAnimation.CrossFade("cuddle_00");
+									}
 								}
 								else
 								{
@@ -7517,7 +7544,7 @@ public class StudentScript : MonoBehaviour
 									Debug.Log("This code is called when the bullies' victim is missing or dead.");
 									CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 									DistanceToDestination = 100f;
-									ScheduleBlock obj16 = ScheduleBlocks[4];
+									ScheduleBlock obj16 = ScheduleBlocks[Phase];
 									obj16.destination = "Patrol";
 									obj16.action = "Patrol";
 									GetDestinations();
@@ -8547,7 +8574,7 @@ public class StudentScript : MonoBehaviour
 										StudentManager.EightiesOfferHelp.Prompt.enabled = true;
 									}
 								}
-								else if (StudentID == 11)
+								else if (StudentID == StudentManager.RivalID)
 								{
 									StudentManager.OsanaOfferHelp.UpdateLocation();
 									StudentManager.OsanaOfferHelp.enabled = true;
@@ -8806,7 +8833,7 @@ public class StudentScript : MonoBehaviour
 								}
 								if (Yandere.Chased && Yandere.Pursuer == this)
 								{
-									if (Persona == PersonaType.Protective && !StudentManager.ChallengeManager.InvincibleRaibaru && Yandere.PhysicalGrade > 0)
+									if (Persona == PersonaType.Protective && !StudentManager.ChallengeManager.InvincibleRaibaru && Yandere.PhysicalGrade + Yandere.Class.PhysicalBonus > 0)
 									{
 										Persona = PersonaType.Heroic;
 									}
@@ -9163,48 +9190,61 @@ public class StudentScript : MonoBehaviour
 										{
 											if (!Yandere.Struggling && !Yandere.StruggleBar.gameObject.activeInHierarchy && Yandere.RPGCamera.enabled)
 											{
-												if (Frame > 0)
+												if (Strength == 7)
+												{
+													Debug.Log(Name + " is calling Spray() from this place in the code.");
+													Spray();
+												}
+												else if (Strength == 9)
+												{
+													Debug.Log(Name + " is calling InvincibleTakedown() from this place in the code.");
+													InvincibleTakedown();
+												}
+												else if (Frame > 0)
 												{
 													Debug.Log(Name + " is calling BeginStruggle() from this place in the code.");
 													BeginStruggle();
 												}
 												Frame++;
 											}
-											Debug.Log(Name + " is currently engaged in a stuggle.");
-											CharacterAnimation.CrossFade(StruggleAnim);
-											if (!Teacher)
+											if (!Spraying)
 											{
-												CharacterAnimation[StruggleAnim].time = Yandere.CharacterAnimation["f02_struggleA_00"].time;
-											}
-											else
-											{
-												CharacterAnimation[StruggleAnim].time = Yandere.CharacterAnimation["f02_teacherStruggleA_00"].time;
-											}
-											base.transform.rotation = Quaternion.Slerp(base.transform.rotation, Yandere.transform.rotation, 10f * Time.deltaTime);
-											if (!StopSliding)
-											{
-												MoveTowardsTarget(Yandere.transform.position + Yandere.transform.forward * 0.425f);
-											}
-											if (!Yandere.Armed)
-											{
-												CheckForKnifeInInventory();
-											}
-											if ((!Yandere.Armed || !Yandere.EquippedWeapon.Concealable || Yandere.EquippedWeapon.Broken || Yandere.EquippedWeapon.Type == WeaponType.Garrote) && !Yandere.Lost)
-											{
-												BeginStruggle();
-												Yandere.StruggleBar.HeroWins();
-											}
-											if (Lost)
-											{
-												CharacterAnimation.CrossFade(StruggleWonAnim);
-												if (CharacterAnimation[StruggleWonAnim].time > 1f)
+												Debug.Log(Name + " is currently engaged in a stuggle.");
+												CharacterAnimation.CrossFade(StruggleAnim);
+												if (!Teacher)
 												{
-													EyeShrink = 1f;
+													CharacterAnimation[StruggleAnim].time = Yandere.CharacterAnimation["f02_struggleA_00"].time;
 												}
-											}
-											else if (Won)
-											{
-												CharacterAnimation.CrossFade(StruggleLostAnim);
+												else
+												{
+													CharacterAnimation[StruggleAnim].time = Yandere.CharacterAnimation["f02_teacherStruggleA_00"].time;
+												}
+												base.transform.rotation = Quaternion.Slerp(base.transform.rotation, Yandere.transform.rotation, 10f * Time.deltaTime);
+												if (!StopSliding)
+												{
+													MoveTowardsTarget(Yandere.transform.position + Yandere.transform.forward * 0.425f);
+												}
+												if (!Yandere.Armed)
+												{
+													CheckForKnifeInInventory();
+												}
+												if ((!Yandere.Armed || !Yandere.EquippedWeapon.Concealable || Yandere.EquippedWeapon.Broken || Yandere.EquippedWeapon.Type == WeaponType.Garrote) && !Yandere.Lost)
+												{
+													BeginStruggle();
+													Yandere.StruggleBar.HeroWins();
+												}
+												if (Lost)
+												{
+													CharacterAnimation.CrossFade(StruggleWonAnim);
+													if (CharacterAnimation[StruggleWonAnim].time > 1f)
+													{
+														EyeShrink = 1f;
+													}
+												}
+												else if (Won)
+												{
+													CharacterAnimation.CrossFade(StruggleLostAnim);
+												}
 											}
 										}
 										else if (Yandere.Mask != null)
@@ -9494,9 +9534,9 @@ public class StudentScript : MonoBehaviour
 										}
 									}
 								}
-								else if (Persona == PersonaType.Dangerous)
+								else if (Persona == PersonaType.Dangerous || Strength == 7)
 								{
-									if (!Yandere.Attacking && !StudentManager.PinningDown && !Yandere.Struggling && !Yandere.Noticed && !Yandere.Invisible)
+									if (Pathfinding.target == Yandere.transform && !Yandere.Attacking && !StudentManager.PinningDown && !Yandere.Struggling && !Yandere.Noticed && !Yandere.Invisible)
 									{
 										Debug.Log("Calling ''Spray()'' from this part of the code. 1");
 										Spray();
@@ -9506,27 +9546,12 @@ public class StudentScript : MonoBehaviour
 										CharacterAnimation.CrossFade(ReadyToFightAnim);
 									}
 								}
-								else if (Persona == PersonaType.Protective)
+								else if (Persona == PersonaType.Protective || Strength == 9)
 								{
 									if (!Yandere.Dumping && !Yandere.Attacking && !Yandere.Struggling)
 									{
 										Debug.Log("A protective student is taking down Yandere-chan.");
-										if (Yandere.Aiming)
-										{
-											Yandere.StopAiming();
-										}
-										Yandere.Mopping = false;
-										Yandere.EmptyHands();
-										Subtitle.PreviousSubtitle = SubtitleType.AcceptFood;
-										Subtitle.UpdateLabel(SubtitleType.ObstacleMurderReaction, 4, 0f);
-										AttackReaction();
-										CharacterAnimation["f02_moCounterB_00"].time = 6f;
-										Yandere.CharacterAnimation["f02_moCounterA_00"].time = 6f;
-										Yandere.ShoulderCamera.ObstacleCounter = true;
-										Yandere.ShoulderCamera.Timer = 6f;
-										Police.Show = false;
-										Yandere.CameraEffects.MurderWitnessed();
-										Yandere.Jukebox.GameOver();
+										InvincibleTakedown();
 									}
 									else
 									{
@@ -11213,6 +11238,7 @@ public class StudentScript : MonoBehaviour
 											if (!Male)
 											{
 												BloodSprayCollider.SetActive(value: true);
+												BloodSprayCollider.layer = 2;
 											}
 											MurderSuicidePhase++;
 										}
@@ -13430,7 +13456,7 @@ public class StudentScript : MonoBehaviour
 											{
 												num = 5;
 											}
-											if (!Yandere.Chased && Yandere.Chasers == 0)
+											if (!Yandere.Chased && Yandere.Chasers == 0 && !Yandere.StruggleIminent)
 											{
 												if (InstantNoticeTimer > 0f)
 												{
@@ -13790,7 +13816,7 @@ public class StudentScript : MonoBehaviour
 						{
 							CameraEffects.Alarm();
 						}
-						else if (!Yandere.Struggling && !StudentManager.PinningDown)
+						else if (!Yandere.Struggling && !Yandere.StruggleIminent && !StudentManager.PinningDown)
 						{
 							SenpaiNoticed();
 							CameraEffects.MurderWitnessed();
@@ -14706,8 +14732,9 @@ public class StudentScript : MonoBehaviour
 					CharacterAnimation.CrossFade("f02_dramaticStealth_00");
 				}
 				Yandere.CharacterAnimation.CrossFade("f02_readyToFight_00");
+				Yandere.StruggleIminent = true;
 				Yandere.CanMove = false;
-				if (StudentManager.ChallengeManager.InvincibleRaibaru || Yandere.PhysicalGrade <= 0)
+				if (StudentManager.ChallengeManager.InvincibleRaibaru || Yandere.PhysicalGrade + Yandere.Class.PhysicalBonus <= 0)
 				{
 					Yandere.Invisible = true;
 				}
@@ -15012,13 +15039,16 @@ public class StudentScript : MonoBehaviour
 				{
 					Debug.Log("Senpai witnessed murder, and entered a specific murder reaction animation.");
 					MurderReaction = UnityEngine.Random.Range(1, 6);
-					CharacterAnimation.CrossFade("senpaiMurderReaction_0" + MurderReaction);
+					if (Male)
+					{
+						CharacterAnimation.CrossFade("senpaiMurderReaction_0" + MurderReaction);
+						CharacterAnimation["scaredFace_00"].weight = 0f;
+					}
 					GameOverCause = GameOverType.Murder;
 					if (!Yandere.Egg)
 					{
 						SenpaiNoticed();
 					}
-					CharacterAnimation["scaredFace_00"].weight = 0f;
 					CharacterAnimation[AngryFaceAnim].weight = 0f;
 					Yandere.ShoulderCamera.enabled = true;
 					Yandere.ShoulderCamera.Noticed = true;
@@ -17017,12 +17047,9 @@ public class StudentScript : MonoBehaviour
 				BloodPool = null;
 			}
 		}
-		if (!Male)
+		if (!Male && Following)
 		{
-			if (Club != ClubType.Council)
-			{
-				StudentManager.TranqDetector.TranqCheck();
-			}
+			StudentManager.TranqDetector.TranqCheck();
 			CharacterAnimation["f02_smile_00"].weight = 0f;
 			SmartPhone.SetActive(value: false);
 			if (CharacterAnimation[ShyAnim] != null)
@@ -17134,7 +17161,7 @@ public class StudentScript : MonoBehaviour
 		else if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache)
 		{
 			Debug.Log("Time to decide how Raibaru should react.");
-			if (!StudentManager.ChallengeManager.InvincibleRaibaru && Yandere.PhysicalGrade > 0)
+			if (!StudentManager.ChallengeManager.InvincibleRaibaru && Yandere.PhysicalGrade + Yandere.Class.PhysicalBonus > 0)
 			{
 				Debug.Log("Player meets the criteria to have a physical struggle with Raibaru.");
 				Pathfinding.target = Yandere.transform;
@@ -17597,7 +17624,10 @@ public class StudentScript : MonoBehaviour
 			CameraEffects.MurderWitnessed();
 			Yandere.ShoulderCamera.OverShoulder = false;
 			CharacterAnimation.CrossFade(ScaredAnim);
-			CharacterAnimation["scaredFace_00"].weight = 1f;
+			if (Male)
+			{
+				CharacterAnimation["scaredFace_00"].weight = 1f;
+			}
 			if (StudentID == 1)
 			{
 				Debug.Log("Senpai entered his scared animation.");
@@ -17769,6 +17799,10 @@ public class StudentScript : MonoBehaviour
 			Persona = PersonaType.Loner;
 		}
 		if (Persona == PersonaType.Vengeful)
+		{
+			Persona = PersonaType.Heroic;
+		}
+		if (Persona == PersonaType.Violent && MyWeapon == null)
 		{
 			Persona = PersonaType.Heroic;
 		}
@@ -18627,7 +18661,18 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.destination == "Graffiti")
 			{
-				Destinations[ID] = StudentManager.GraffitiSpots[BullyID];
+				if (StudentManager.GraffitiSpots[BullyID] != null)
+				{
+					Destinations[ID] = StudentManager.GraffitiSpots[BullyID];
+				}
+				else if (StudentManager.Eighties)
+				{
+					Destinations[ID] = StudentManager.EightiesHangouts.List[StudentID];
+				}
+				else
+				{
+					Destinations[ID] = StudentManager.Hangouts.List[StudentID];
+				}
 			}
 			else if (scheduleBlock.destination == "Bully")
 			{
@@ -18657,7 +18702,7 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.destination == "Cuddle")
 			{
-				if (!Male)
+				if (CuddlePartnerID == 0)
 				{
 					Destinations[ID] = StudentManager.FemaleCoupleSpots[CoupleID];
 				}
@@ -18797,8 +18842,19 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.destination == "InfirmaryBed")
 			{
-				Destinations[ID] = StudentManager.RestSpots[StudentManager.SedatedStudents];
-				StudentManager.SedatedStudents++;
+				Debug.Log("Student #" + StudentID + " is now trying to assign themself to an infirmary bed.");
+				Debug.Log("StudentManager.SedatedStudents is currently: " + StudentManager.SedatedStudents);
+				if (StudentManager.SedatedStudents < 4)
+				{
+					Destinations[ID] = StudentManager.RestSpots[StudentManager.SedatedStudents];
+					StudentManager.SedatedStudents++;
+				}
+				else
+				{
+					Debug.Log("Wait. Number of Sedated Students is too high. Someone will have to go sit in the infirmary seat, instead.");
+					Destinations[ID] = StudentManager.InfirmarySeats[StudentManager.HeadacheStudents];
+					StudentManager.HeadacheStudents++;
+				}
 			}
 			else if (scheduleBlock.destination == "InfirmarySeat")
 			{
@@ -19895,7 +19951,7 @@ public class StudentScript : MonoBehaviour
 			offerHelpScript = StudentManager.EightiesOfferHelp;
 			StudentManager.LoveManager.RivalWaiting = false;
 		}
-		else if (StudentID == 11)
+		else if (StudentID == StudentManager.RivalID)
 		{
 			offerHelpScript = StudentManager.OsanaOfferHelp;
 			StudentManager.LoveManager.RivalWaiting = false;
@@ -24051,5 +24107,25 @@ public class StudentScript : MonoBehaviour
 			concealedWeapon.Equip();
 			concealedWeapon.gameObject.SetActive(value: true);
 		}
+	}
+
+	public void InvincibleTakedown()
+	{
+		if (Yandere.Aiming)
+		{
+			Yandere.StopAiming();
+		}
+		Yandere.Mopping = false;
+		Yandere.EmptyHands();
+		Subtitle.PreviousSubtitle = SubtitleType.AcceptFood;
+		Subtitle.UpdateLabel(SubtitleType.ObstacleMurderReaction, 4, 0f);
+		AttackReaction();
+		CharacterAnimation["f02_moCounterB_00"].time = 6f;
+		Yandere.CharacterAnimation["f02_moCounterA_00"].time = 6f;
+		Yandere.ShoulderCamera.ObstacleCounter = true;
+		Yandere.ShoulderCamera.Timer = 6f;
+		Police.Show = false;
+		Yandere.CameraEffects.MurderWitnessed();
+		Yandere.Jukebox.GameOver();
 	}
 }

@@ -10,12 +10,11 @@ public class LowPolyStudentScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (Student.StudentManager == null || Student.Cosmetic.Kidnapped || Student.StudentID == 1)
+		if (Student.StudentManager == null || Student.Cosmetic.Kidnapped || Student.Slave || Student.StudentID == 1)
 		{
 			base.enabled = false;
 			if (Student.StudentID == 1)
 			{
-				Debug.Log("Senpai is currently disabling his LowPolyStudentScript.");
 				Student.MyRenderer.enabled = true;
 				MyMesh.enabled = false;
 			}

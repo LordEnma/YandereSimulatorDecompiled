@@ -449,7 +449,7 @@ public class PortalScript : MonoBehaviour
 					StudentManager.Reputation.gameObject.SetActive(value: true);
 					Yandere.SanityLabel.transform.parent.gameObject.SetActive(value: true);
 					StudentManager.ResumeMovement();
-					if (Clock.HourTime > 15f)
+					if (Clock.HourTime > 15f && !Police.EndOfDay.Incinerator.enabled)
 					{
 						StudentManager.TakeOutTheTrash();
 					}

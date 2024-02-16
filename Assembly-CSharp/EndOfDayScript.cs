@@ -2650,6 +2650,7 @@ public class EndOfDayScript : MonoBehaviour
 		EventGlobals.LearnedAboutPhotographer = LearnedAboutPhotographer;
 		EventGlobals.OsanaEvent1 = LearnedOsanaInfo1;
 		EventGlobals.OsanaEvent2 = LearnedOsanaInfo2;
+		EventGlobals.LearnedRivalDarkSecret = LearnedRivalDarkSecret;
 		CollectibleGlobals.MatchmakingGifts = MatchmakingGifts;
 		CollectibleGlobals.SenpaiGifts = SenpaiGifts;
 		PlayerGlobals.PantyShots = Yandere.Inventory.PantyShots;

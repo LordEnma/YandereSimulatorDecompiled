@@ -124,8 +124,20 @@ public class TranqDetectorScript : MonoBehaviour
 
 	public void TranqCheck()
 	{
-		if (!StopChecking && !CannotKidnap && TranquilizerIcon.spriteName == "Yes" && FollowerIcon.spriteName == "Yes" && BiologyIcon.spriteName == "Yes" && SyringeIcon.spriteName == "Yes" && DoorIcon.spriteName == "Yes")
+		Debug.Log("Now performing TranqCheck().");
+		if (StopChecking)
 		{
+			return;
+		}
+		Debug.Log("StopChecking is false.");
+		if (CannotKidnap)
+		{
+			return;
+		}
+		Debug.Log("CannotKidnap is false.");
+		if (TranquilizerIcon.spriteName == "Yes" && FollowerIcon.spriteName == "Yes" && BiologyIcon.spriteName == "Yes" && SyringeIcon.spriteName == "Yes" && DoorIcon.spriteName == "Yes")
+		{
+			Debug.Log("All of the icons said ''Yes''.");
 			AudioSource component = GetComponent<AudioSource>();
 			component.clip = TranqClips[Random.Range(0, TranqClips.Length)];
 			component.Play();

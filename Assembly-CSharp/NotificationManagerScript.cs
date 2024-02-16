@@ -68,7 +68,7 @@ public class NotificationManagerScript : MonoBehaviour
 			},
 			{
 				NotificationType.Info,
-				"Learned New Info"
+				"Learned New Info About Rival"
 			},
 			{
 				NotificationType.Topic,

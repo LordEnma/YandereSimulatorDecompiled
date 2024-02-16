@@ -1263,6 +1263,7 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			Police.EndOfDay.LearnedOsanaInfo1 = EventGlobals.OsanaEvent1;
 			Police.EndOfDay.LearnedOsanaInfo2 = EventGlobals.OsanaEvent2;
+			Police.EndOfDay.LearnedRivalDarkSecret = EventGlobals.LearnedRivalDarkSecret;
 			Police.EndOfDay.LearnedAboutPhotographer = EventGlobals.LearnedAboutPhotographer;
 		}
 		LoveSick = GameGlobals.LoveSick;
@@ -2178,7 +2179,6 @@ public class StudentManagerScript : MonoBehaviour
 				if (GameGlobals.CustomMode)
 				{
 					GameGlobals.EightiesCutsceneID = 1;
-					Debug.Log("Upon entering this screen, OptionGlobals.ResolutionID was: " + OptionGlobals.ResolutionID);
 					Screen.SetResolution(Widths[OptionGlobals.ResolutionID], Heights[OptionGlobals.ResolutionID], OptionGlobals.WindowedMode);
 					SceneManager.LoadScene("EightiesCutsceneScene");
 				}

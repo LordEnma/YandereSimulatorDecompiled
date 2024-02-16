@@ -77,6 +77,8 @@ public class StruggleBarScript : MonoBehaviour
 			if (Victory == 100f)
 			{
 				Debug.Log("Yandere-chan just won a struggle against " + Student.Name + ".");
+				Yandere.Hips.gameObject.GetComponent<Collider>().enabled = false;
+				Yandere.StruggleIminent = false;
 				Yandere.Won = true;
 				Student.Lost = true;
 				Struggling = false;

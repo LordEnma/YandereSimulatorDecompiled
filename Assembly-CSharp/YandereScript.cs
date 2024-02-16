@@ -725,9 +725,11 @@ public class YandereScript : MonoBehaviour
 
 	public bool CannotBeSprayed;
 
-	public bool UsingController;
+	public bool StruggleIminent;
 
 	public bool SeenByAuthority;
+
+	public bool UsingController;
 
 	public bool CameFromCrouch;
 
@@ -6415,7 +6417,7 @@ public class YandereScript : MonoBehaviour
 					Egg = true;
 					TargetStudent.Combust();
 				}
-				else if (CanTranq && !TargetStudent.Male && TargetStudent.Club != ClubType.Council)
+				else if (CanTranq && !TargetStudent.Male)
 				{
 					TargetStudent.Tranquil = true;
 					CanTranq = false;

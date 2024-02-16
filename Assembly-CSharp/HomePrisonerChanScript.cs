@@ -163,11 +163,6 @@ public class HomePrisonerChanScript : MonoBehaviour
 				TwintailL.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
 				Blindfold.SetActive(value: false);
 				Tripod.SetActive(value: false);
-				if (StudentID == 81 && !StudentGlobals.GetStudentBroken(81) && SchemeGlobals.HelpingKokona)
-				{
-					Blindfold.SetActive(value: true);
-					Tripod.SetActive(value: true);
-				}
 			}
 			else
 			{
