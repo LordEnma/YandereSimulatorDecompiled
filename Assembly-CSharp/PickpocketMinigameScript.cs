@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PickpocketMinigameScript : MonoBehaviour
 {
+	public EvilPhotographerScript Character;
+
 	public Transform PickpocketSpot;
 
 	public UISprite[] ButtonPrompts;
@@ -13,6 +15,8 @@ public class PickpocketMinigameScript : MonoBehaviour
 	public YandereScript Yandere;
 
 	public string CurrentButton = string.Empty;
+
+	public bool StealthMission;
 
 	public bool NotNurse;
 
@@ -180,7 +184,29 @@ public class PickpocketMinigameScript : MonoBehaviour
 		ButtonPrompts[4].alpha = 0f;
 		Circle.enabled = false;
 		BG.enabled = false;
-		Yandere.CharacterAnimation.CrossFade("f02_readyToFight_00");
+		if (Failure)
+		{
+			if (StealthMission)
+			{
+				AudioSource.PlayClipAtPoint(Character.GameOverSound, Camera.main.transform.position);
+				Character.TransitionToGameOver();
+			}
+			else
+			{
+				Yandere.CharacterAnimation.CrossFade("f02_readyToFight_00");
+			}
+		}
+		else if (StealthMission)
+		{
+			if (ID == 2)
+			{
+				Character.Bar.transform.parent.gameObject.GetComponent<UISprite>().alpha = 0f;
+				Character.Yandere.StealthInventory.GateKey = true;
+				Character.Prompt.ServedPurpose = true;
+			}
+			Character.Yandere.CanMove = true;
+		}
+		Character = null;
 		Progress = 0;
 		ButtonID = 0;
 		Show = false;

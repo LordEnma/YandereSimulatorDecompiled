@@ -251,6 +251,10 @@ public class NewMissionWindowScript : MonoBehaviour
 				else if (Row == 4)
 				{
 					Method[Column + 5]++;
+					if (Eighties && Method[Column + 5] == 5)
+					{
+						Method[Column + 5]++;
+					}
 					if (Method[Column + 5] == MethodNames.Length)
 					{
 						Method[Column + 5] = 0;
@@ -310,6 +314,10 @@ public class NewMissionWindowScript : MonoBehaviour
 				else if (Row == 4)
 				{
 					Method[Column + 5]--;
+					if (Eighties && Method[Column + 5] == 5)
+					{
+						Method[Column + 5]--;
+					}
 					if (Method[Column + 5] < 0)
 					{
 						Method[Column + 5] = MethodNames.Length - 1;
@@ -441,6 +449,10 @@ public class NewMissionWindowScript : MonoBehaviour
 		{
 			Target[i] = Random.Range(2, 89);
 			Method[i] = Random.Range(0, 7);
+			while (Eighties && Method[i] == 5)
+			{
+				Method[i] = Random.Range(0, 7);
+			}
 			MethodLabel[i].text = "By: " + MethodNames[Method[i]];
 		}
 		i = 1;

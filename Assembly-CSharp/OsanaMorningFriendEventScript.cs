@@ -100,7 +100,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
-		if (LosingFriend)
+		if (LosingFriend && !GameGlobals.Eighties)
 		{
 			if ((float)StudentGlobals.GetStudentReputation(10) > -33.33333f || StudentGlobals.StudentSlave == FriendID || StudentGlobals.StudentSlave == RivalID || PlayerGlobals.RaibaruLoner)
 			{
@@ -405,7 +405,6 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 		if (Friend != null && !Friend.FightingSlave)
 		{
-			Debug.Log("Releasing Raibaru from ''talking with Osana outside of school'' status.");
 			if (!LosingFriend)
 			{
 				Friend.CurrentDestination = Rival.FollowTargetDestination;

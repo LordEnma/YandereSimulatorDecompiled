@@ -251,6 +251,7 @@ public class WeaponScript : MonoBehaviour
 			{
 				EightiesObject.SetActive(value: true);
 				ModernObject.SetActive(value: false);
+				MyRenderer = EightiesObject.GetComponent<Renderer>();
 			}
 			else if (EightiesCircularSawTexture != null)
 			{

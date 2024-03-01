@@ -378,6 +378,8 @@ public static class AnimNames
 
 	public const string FemaleStruggleWinA = "f02_struggleWinA_00";
 
+	public const string FemaleStruggleWinB = "f02_struggleWinB_00";
+
 	public const string FemaleSuicide = "f02_suicide_00";
 
 	public const string FemaleSummonStand = "f02_summonStand_00";

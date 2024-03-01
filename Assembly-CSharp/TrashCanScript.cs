@@ -259,6 +259,7 @@ public class TrashCanScript : MonoBehaviour
 
 	public void PositionItem()
 	{
+		Debug.Log("Item is being positioned...");
 		Item.transform.parent = TrashPosition;
 		Item.GetComponent<Rigidbody>().useGravity = false;
 		Item.GetComponent<Collider>().enabled = false;
@@ -270,6 +271,11 @@ public class TrashCanScript : MonoBehaviour
 		if (ConcealedWeapon != null && ConcealedWeapon.Type != WeaponType.Bat && ConcealedWeapon.Type != WeaponType.Katana)
 		{
 			Item.transform.localScale = new Vector3(0f, 0f, 0f);
+		}
+		if (ConcealedWeapon != null && ConcealedWeapon.WeaponID == 25)
+		{
+			Debug.Log("Oh, it's the electric guitar. Special case re-positioning.");
+			Item.transform.localScale = new Vector3(0.23f, 0.23f, 0.23f);
 		}
 	}
 

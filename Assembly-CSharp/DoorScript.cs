@@ -413,6 +413,7 @@ public class DoorScript : MonoBehaviour
 				}
 				else if (Prompt.Circle[2].fillAmount == 0f)
 				{
+					Prompt.Yandere.EmptyHands();
 					Debug.Log("Commence lockpicking.");
 					Prompt.Yandere.Inventory.LockPick = false;
 					Prompt.Label[0].text = "     Open";

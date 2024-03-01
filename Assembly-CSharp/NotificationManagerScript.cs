@@ -34,6 +34,8 @@ public class NotificationManagerScript : MonoBehaviour
 
 	public bool OnlyOne;
 
+	public bool Mission;
+
 	private void Awake()
 	{
 		NotificationMessages = new NotificationTypeAndStringDictionary
@@ -123,21 +125,43 @@ public class NotificationManagerScript : MonoBehaviour
 		{
 			NotificationParent.localPosition = new Vector3(NotificationParent.localPosition.x, Mathf.Lerp(NotificationParent.localPosition.y, -0.049f * (float)NotificationsSpawned, Time.unscaledDeltaTime * 10f), NotificationParent.localPosition.z);
 		}
-		if (Phase == 1)
+		if (!Mission)
 		{
-			if (Clock.HourTime > 8.4f)
+			if (Phase == 1)
 			{
-				if (!Yandere.InClass)
+				if (Clock.HourTime > 8.4f)
 				{
-					Yandere.StudentManager.TutorialWindow.ShowClassMessage = true;
-					DisplayNotification(NotificationType.ClassSoon);
+					if (!Yandere.InClass)
+					{
+						Yandere.StudentManager.TutorialWindow.ShowClassMessage = true;
+						DisplayNotification(NotificationType.ClassSoon);
+					}
+					Phase++;
 				}
-				Phase++;
 			}
-		}
-		else if (Phase == 2)
-		{
-			if (Clock.HourTime > 8.5f)
+			else if (Phase == 2)
+			{
+				if (Clock.HourTime > 8.5f)
+				{
+					if (!Yandere.InClass)
+					{
+						DisplayNotification(NotificationType.ClassNow);
+					}
+					Phase++;
+				}
+			}
+			else if (Phase == 3)
+			{
+				if (Clock.HourTime > 13.4f)
+				{
+					if (!Yandere.InClass)
+					{
+						DisplayNotification(NotificationType.ClassSoon);
+					}
+					Phase++;
+				}
+			}
+			else if (Phase == 4 && Clock.HourTime > 13.5f)
 			{
 				if (!Yandere.InClass)
 				{
@@ -145,25 +169,6 @@ public class NotificationManagerScript : MonoBehaviour
 				}
 				Phase++;
 			}
-		}
-		else if (Phase == 3)
-		{
-			if (Clock.HourTime > 13.4f)
-			{
-				if (!Yandere.InClass)
-				{
-					DisplayNotification(NotificationType.ClassSoon);
-				}
-				Phase++;
-			}
-		}
-		else if (Phase == 4 && Clock.HourTime > 13.5f)
-		{
-			if (!Yandere.InClass)
-			{
-				DisplayNotification(NotificationType.ClassNow);
-			}
-			Phase++;
 		}
 		if (Timer > 0f)
 		{
@@ -173,7 +178,12 @@ public class NotificationManagerScript : MonoBehaviour
 
 	public void DisplayNotification(NotificationType Type)
 	{
-		if (Yandere.Egg)
+		bool flag = false;
+		if (Mission)
+		{
+			flag = true;
+		}
+		if (!flag && (flag || Yandere.Egg))
 		{
 			return;
 		}

@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class EvilPhotographerScript : MonoBehaviour
 {
+	public PickpocketMinigameScript PickpocketMinigame;
+
+	public StealthInventoryScript StealthInventory;
+
 	public StalkerYandereScript Yandere;
+
+	public StalkerPromptScript Prompt;
 
 	public DetectionMarkerScript Marker;
 
@@ -33,6 +39,8 @@ public class EvilPhotographerScript : MonoBehaviour
 	public Renderer Darkness;
 
 	public UILabel Subtitle;
+
+	public UISprite Bar;
 
 	public Transform[] PanicNode;
 
@@ -72,6 +80,8 @@ public class EvilPhotographerScript : MonoBehaviour
 
 	public float WaitTimer;
 
+	public float WaitLimit = 10f;
+
 	public float Distance;
 
 	public float Alpha;
@@ -99,6 +109,8 @@ public class EvilPhotographerScript : MonoBehaviour
 	public bool Started;
 
 	public bool Shocked;
+
+	public bool Guard;
 
 	public Vector3 DistractionPoint;
 
@@ -211,7 +223,7 @@ public class EvilPhotographerScript : MonoBehaviour
 			}
 			else if (Alpha > 0f)
 			{
-				Alpha -= Time.deltaTime;
+				Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime);
 				Marker.Tex.transform.localScale = new Vector3(1f, Alpha, 1f);
 				Marker.Tex.color = new Color(1f, 0f, 0f, Alpha);
 			}
@@ -222,8 +234,30 @@ public class EvilPhotographerScript : MonoBehaviour
 					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, Node[CurrentNode].rotation, Time.deltaTime * 10f);
 					MyAnimation.CrossFade(WaitAnim);
 					WaitTimer += Time.deltaTime;
-					if (WaitTimer > 10f && !Shocked)
+					if (Bar != null)
 					{
+						if (Distance < 5f)
+						{
+							Bar.transform.parent.gameObject.SetActive(value: true);
+							Bar.transform.localScale = new Vector3(WaitTimer / WaitLimit, 1f, 1f);
+						}
+						else
+						{
+							Bar.transform.parent.gameObject.SetActive(value: false);
+						}
+					}
+					if (WaitTimer > WaitLimit && !Shocked)
+					{
+						if (Bar != null)
+						{
+							Bar.transform.parent.gameObject.SetActive(value: false);
+						}
+						if (PickpocketMinigame != null && PickpocketMinigame.Character == this)
+						{
+							PickpocketMinigame.Failure = true;
+							PickpocketMinigame.End();
+							PickpocketMinigame.Character = null;
+						}
 						WaitTimer = 0f;
 						CurrentNode++;
 						if (CurrentNode >= Node.Length)
@@ -321,7 +355,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		return false;
 	}
 
-	private void TransitionToGameOver()
+	public void TransitionToGameOver()
 	{
 		if (Yandere.PreparingThrow)
 		{
@@ -348,11 +382,22 @@ public class EvilPhotographerScript : MonoBehaviour
 		if (!Yandere.Invisible)
 		{
 			NoticeSpeed = (MinimumDistance - Distance) * Awareness;
-			if (YandereIsInFOV())
+			if (NoticeSpeed < -1f)
 			{
-				if (YandereIsInLOS())
+				NoticeSpeed = -1f;
+			}
+			if (!Guard || (Guard && Yandere.Trespassing))
+			{
+				if (YandereIsInFOV())
 				{
-					Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * NoticeSpeed);
+					if (YandereIsInLOS())
+					{
+						Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * NoticeSpeed);
+					}
+					else
+					{
+						Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime);
+					}
 				}
 				else
 				{
@@ -373,6 +418,10 @@ public class EvilPhotographerScript : MonoBehaviour
 		else
 		{
 			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime);
+		}
+		if (Alpha < 0f)
+		{
+			Alpha = 0f;
 		}
 		Marker.Tex.transform.localScale = new Vector3(1f, Alpha, 1f);
 		Marker.Tex.color = new Color(1f, 0f, 0f, Alpha);

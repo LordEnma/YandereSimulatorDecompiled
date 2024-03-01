@@ -478,7 +478,7 @@ public class CosmeticScript : MonoBehaviour
 	public void Start()
 	{
 		DefaultMaterials = MyRenderer.materials;
-		if (Kidnapped && FemaleHair[20] == null)
+		if (!Male && FemaleHair[20] == null)
 		{
 			FemaleHair[20] = BackupOsanaHair;
 			FemaleHairRenderers[20] = BackupOsanaHairRenderer;
@@ -3365,8 +3365,15 @@ public class CosmeticScript : MonoBehaviour
 	public void DefaultHair()
 	{
 		ColorValue = new Color(1f, 1f, 1f);
-		HairRenderer.material.SetFloat("_Saturation", 1f);
-		HairRenderer.material.SetFloat("_BlendAmount", 0f);
+		if (HairRenderer != null)
+		{
+			HairRenderer.material.SetFloat("_Saturation", 1f);
+			HairRenderer.material.SetFloat("_BlendAmount", 0f);
+		}
+		else
+		{
+			Debug.Log("Psst...for some reason, HairRenderer is null here. Not sure if that's a bug.");
+		}
 		UsingDefaultHairColor = true;
 	}
 }

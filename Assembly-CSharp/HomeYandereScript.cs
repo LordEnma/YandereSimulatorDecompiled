@@ -266,32 +266,28 @@ public class HomeYandereScript : MonoBehaviour
 			CannotAlphabet = true;
 		}
 		PlayerGlobals.BringingItem = 0;
-		if (GameGlobals.CustomMode)
+		if (!GameGlobals.CustomMode)
 		{
-			Debug.Log("Home Screen. The game believes that we're in Custom Mode.");
-			RyobaLongHair.SetActive(value: false);
-			RyobaHair.SetActive(value: false);
-			Hairstyle = 0;
-			UpdateHair();
-			for (int i = 0; i < YandereHairHost.Hairstyles.Length; i++)
+			return;
+		}
+		RyobaLongHair.SetActive(value: false);
+		RyobaHair.SetActive(value: false);
+		Hairstyle = 0;
+		UpdateHair();
+		for (int i = 0; i < YandereHairHost.Hairstyles.Length; i++)
+		{
+			if (YandereHairHost.Hairstyles[i] != null)
 			{
-				if (YandereHairHost.Hairstyles[i] != null)
-				{
-					YandereHairHost.Hairstyles[i].SetActive(value: false);
-					YandereHairHost.Hairstyles[i].transform.parent = Head;
-				}
-			}
-			string hairstyle = JSON.Students[0].Hairstyle;
-			YandereHairHost.Hairstyles[int.Parse(hairstyle)].SetActive(value: true);
-			Yandere.Hairstyles = YandereHairHost.Hairstyles;
-			if (!HomeGlobals.Night)
-			{
-				Customize();
+				YandereHairHost.Hairstyles[i].SetActive(value: false);
+				YandereHairHost.Hairstyles[i].transform.parent = Head;
 			}
 		}
-		else
+		string hairstyle = JSON.Students[0].Hairstyle;
+		YandereHairHost.Hairstyles[int.Parse(hairstyle)].SetActive(value: true);
+		Yandere.Hairstyles = YandereHairHost.Hairstyles;
+		if (!HomeGlobals.Night)
 		{
-			Debug.Log("The game does NOT believe that we are currently in Custom Mode.");
+			Customize();
 		}
 	}
 

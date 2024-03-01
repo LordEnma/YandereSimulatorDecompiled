@@ -46,10 +46,8 @@ public class GiggleScript : MonoBehaviour
 		{
 			return;
 		}
-		Debug.Log(Student.Name + " should be able to hear this distracting noise...");
 		if (Student.Giggle == null)
 		{
-			Debug.Log("...and their Giggle is null right now, too.");
 			if (Student.StudentManager.LockerRoomArea.bounds.Contains(base.transform.position) || Student.StudentManager.WestBathroomArea.bounds.Contains(base.transform.position) || Student.StudentManager.EastBathroomArea.bounds.Contains(base.transform.position) || (Student.Club != ClubType.Delinquent && Student.StudentManager.IncineratorArea.bounds.Contains(base.transform.position)) || Student.StudentManager.HeadmasterArea.bounds.Contains(base.transform.position))
 			{
 				Debug.Log("Ignored because the giggle came from a bathroom/locker room.");

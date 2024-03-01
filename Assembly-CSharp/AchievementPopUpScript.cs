@@ -73,7 +73,6 @@ public class AchievementPopUpScript : MonoBehaviour
 		{
 			if (PlayerPrefs.GetInt(AchievementNames[i]) != PreviousNumber[i])
 			{
-				Debug.Log("Achievement #" + i + " was obtained. Attempting to update label and icon.");
 				PreviousNumber[i] = PlayerPrefs.GetInt(AchievementNames[i]);
 				Label.text = AchievementFancyNames[i] ?? "";
 				Icon.mainTexture = AchievementIcons[i];

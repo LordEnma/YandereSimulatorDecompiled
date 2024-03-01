@@ -38,7 +38,6 @@ public class StruggleBarScript : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log("StruggleBar fired Start()");
 		base.transform.localScale = Vector3.zero;
 		ChooseButton();
 	}
@@ -51,7 +50,7 @@ public class StruggleBarScript : MonoBehaviour
 			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			Spikes.localEulerAngles = new Vector3(Spikes.localEulerAngles.x, Spikes.localEulerAngles.y, Spikes.localEulerAngles.z - Time.deltaTime * 360f);
 			Victory -= Time.deltaTime * 5f * Strength;
-			if (Yandere.Club == ClubType.MartialArts)
+			if (Yandere.Club == ClubType.MartialArts || (Yandere.TargetStudent != null && Yandere.TargetStudent.Strength == 0))
 			{
 				Victory = 100f;
 			}
@@ -77,7 +76,10 @@ public class StruggleBarScript : MonoBehaviour
 			if (Victory == 100f)
 			{
 				Debug.Log("Yandere-chan just won a struggle against " + Student.Name + ".");
-				Yandere.Hips.gameObject.GetComponent<Collider>().enabled = false;
+				if (Yandere.Hips != null)
+				{
+					Yandere.Hips.gameObject.GetComponent<Collider>().enabled = false;
+				}
 				Yandere.StruggleIminent = false;
 				Yandere.Won = true;
 				Student.Lost = true;

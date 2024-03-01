@@ -5592,7 +5592,6 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void Week1RoutineAdjustments()
 	{
-		Debug.Log("Making Week 1 routine adjustments.");
 		UpdateWeek1Hangout(25);
 		UpdateWeek1Hangout(30);
 		UpdateWeek1Hangout(24);

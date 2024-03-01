@@ -78,7 +78,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 						}
 						else if (Rival.enabled && Rival.Indoors && !Rival.Alarmed && !Rival.WitnessedCorpse && !Rival.WitnessedMurder && !Rival.Meeting)
 						{
-							Debug.Log("Osana's before class event has begun. Putting two bento boxes on her desk.");
+							Debug.Log("Osana's before class event has begun. Preparing to put two bento boxes on her desk.");
 							Rival.CharacterAnimation["f02_pondering_00"].speed = 0.65f;
 							Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 							Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
@@ -262,7 +262,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 			}
 			if (!Yandere.NoDebug && Input.GetKeyDown(KeyCode.LeftControl))
 			{
-				Debug.Log("Ending because of debug command.");
+				Debug.Log("Event ended because of debug command.");
 				Bentos[1].SetActive(value: true);
 				Bentos[2].SetActive(value: true);
 				EndEvent();

@@ -191,7 +191,6 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 	private void Start()
 	{
 		Rival.transform.parent.gameObject.SetActive(value: true);
-		Debug.Log("Running this script.");
 		VtuberCheck();
 		SkipPanel.alpha = 0f;
 		if (BlondePony != null && GameGlobals.BlondeHair)

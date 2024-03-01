@@ -3,6 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class StalkerPromptScript : MonoBehaviour
 {
+	public NotificationManagerScript NotificationManager;
+
+	public PickpocketMinigameScript PickpocketMinigame;
+
+	public StealthInventoryScript StealthInventory;
+
+	public EvilPhotographerScript Character;
+
 	public StalkerPromptScript ExitPrompt;
 
 	public FamilyVoiceScript FatherVoice;
@@ -12,6 +20,10 @@ public class StalkerPromptScript : MonoBehaviour
 	public SmoothLookAtScript Cat;
 
 	public StalkerScript Stalker;
+
+	public GameObject ObjectToDeactivate;
+
+	public GameObject ObjectToActivate;
 
 	public GameObject DomesticDispute;
 
@@ -31,15 +43,17 @@ public class StalkerPromptScript : MonoBehaviour
 
 	public GameObject Fire;
 
-	public UILabel BagsToBurnLabel;
-
-	public UILabel Label;
+	public Transform PickpocketSpot;
 
 	public Transform KitchenDoor;
 
 	public Transform CatCage;
 
 	public Transform Door;
+
+	public UILabel BagsToBurnLabel;
+
+	public UILabel Label;
 
 	public AudioSource FireAudio;
 
@@ -53,6 +67,8 @@ public class StalkerPromptScript : MonoBehaviour
 
 	public Renderer Darkness;
 
+	public bool Pickpocketable;
+
 	public bool ServedPurpose;
 
 	public bool Eighties;
@@ -61,6 +77,8 @@ public class StalkerPromptScript : MonoBehaviour
 
 	public bool FadeOut;
 
+	public bool Bakery;
+
 	public bool Open;
 
 	public float TargetRotation = 5.5f;
@@ -68,6 +86,10 @@ public class StalkerPromptScript : MonoBehaviour
 	public float MaximumDistance = 5f;
 
 	public float MinimumDistance = 2f;
+
+	public float SpeedFactor = 1f;
+
+	public float FadeSpeed = 1f;
 
 	public float Rotation;
 
@@ -112,7 +134,21 @@ public class StalkerPromptScript : MonoBehaviour
 			{
 				if (Vector3.Distance(base.transform.position, Yandere.transform.position) < MinimumDistance)
 				{
-					Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime);
+					if (Pickpocketable)
+					{
+						if (Character.WaitTimer == 0f)
+						{
+							Alpha = 0.5f;
+						}
+						else
+						{
+							Alpha = 1f;
+						}
+					}
+					else
+					{
+						Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime);
+					}
 				}
 				else
 				{
@@ -127,7 +163,35 @@ public class StalkerPromptScript : MonoBehaviour
 			{
 				if (!Eighties)
 				{
-					if (ID == 1)
+					if (Bakery)
+					{
+						if (ID == 1)
+						{
+							if (StealthInventory.GateKey)
+							{
+								ObjectToDeactivate.SetActive(value: false);
+								ObjectToActivate.SetActive(value: true);
+								ServedPurpose = true;
+								OpenDoor = true;
+								MyAudio.Play();
+							}
+							else
+							{
+								NotificationManager.CustomText = "You must find the key.";
+								NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
+						}
+						else if (ID == 2 && Alpha == 1f)
+						{
+							PickpocketMinigame.PickpocketSpot = PickpocketSpot;
+							PickpocketMinigame.Character = Character;
+							PickpocketMinigame.Show = true;
+							PickpocketMinigame.ID = ID;
+							Yandere.MyAnimation.CrossFade("f02_pickpocketing_00");
+							Yandere.CanMove = false;
+						}
+					}
+					else if (ID == 1)
 					{
 						Yandere.MyAnimation.CrossFade("f02_climbTrellis_00");
 						CatPrompt.SetActive(value: true);
@@ -259,7 +323,7 @@ public class StalkerPromptScript : MonoBehaviour
 		}
 		else
 		{
-			if (!Eighties && (ID == 1 || ID == 6) && Yandere.transform.position.x > -11f && Yandere.transform.position.x < 11f && Yandere.transform.position.z > -11f && Yandere.transform.position.z < 11f)
+			if (!Eighties && !Bakery && (ID == 1 || ID == 6) && Yandere.transform.position.x > -11f && Yandere.transform.position.x < 11f && Yandere.transform.position.z > -11f && Yandere.transform.position.z < 11f)
 			{
 				if (ID == 1)
 				{
@@ -282,7 +346,7 @@ public class StalkerPromptScript : MonoBehaviour
 		}
 		if (OpenDoor)
 		{
-			Speed += Time.deltaTime * 0.1f;
+			Speed += Time.deltaTime * 0.1f * SpeedFactor;
 			Rotation = Mathf.Lerp(Rotation, TargetRotation, Time.deltaTime * Speed);
 			Door.transform.localEulerAngles = new Vector3(Door.transform.localEulerAngles.x, Rotation, Door.transform.localEulerAngles.z);
 			if (ID == 5)

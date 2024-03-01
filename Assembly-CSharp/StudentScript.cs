@@ -4532,7 +4532,6 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (Actions[Phase] == StudentActionType.Follow)
 				{
-					Debug.Log("Raibaru-specific code that runs if current phase's action is Follow.");
 					TargetDistance = 0.5f;
 					if (FollowTarget != null && !FollowTarget.Alive && !WitnessedCorpse)
 					{
@@ -8689,6 +8688,14 @@ public class StudentScript : MonoBehaviour
 					AwareOfMurder = true;
 					Alarm = 200f;
 				}
+				if (Struggling && Lost)
+				{
+					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, Yandere.transform.rotation, 10f * Time.deltaTime);
+					if (!StopSliding)
+					{
+						MoveTowardsTarget(Yandere.transform.position + Yandere.transform.forward * 0.425f);
+					}
+				}
 				if (!Dying && !Spraying)
 				{
 					if (!PinningDown)
@@ -9190,12 +9197,18 @@ public class StudentScript : MonoBehaviour
 										{
 											if (!Yandere.Struggling && !Yandere.StruggleBar.gameObject.activeInHierarchy && Yandere.RPGCamera.enabled)
 											{
+												bool flag3 = false;
+												if (!StudentManager.ChallengeManager.InvincibleRaibaru && Yandere.PhysicalGrade + Yandere.Class.PhysicalBonus > 0)
+												{
+													Debug.Log("Player meets the criteria to have a physical struggle with Raibaru.");
+													flag3 = true;
+												}
 												if (Strength == 7)
 												{
 													Debug.Log(Name + " is calling Spray() from this place in the code.");
 													Spray();
 												}
-												else if (Strength == 9)
+												else if (Strength == 9 && !flag3)
 												{
 													Debug.Log(Name + " is calling InvincibleTakedown() from this place in the code.");
 													InvincibleTakedown();
@@ -9550,10 +9563,19 @@ public class StudentScript : MonoBehaviour
 								{
 									if (!Yandere.Dumping && !Yandere.Attacking && !Yandere.Struggling)
 									{
-										Debug.Log("A protective student is taking down Yandere-chan.");
-										InvincibleTakedown();
+										if (Strength > 0)
+										{
+											Debug.Log("A protective student is calling InvincibleTakedown() now.");
+											InvincibleTakedown();
+										}
+										else
+										{
+											Debug.Log("This student's Strength is 0, so they should be insta-killed when trying to apprehend the player.");
+											CheckForKnifeInInventory();
+											BeginStruggle();
+										}
 									}
-									else
+									else if (!Struggling)
 									{
 										CharacterAnimation.CrossFade(ReadyToFightAnim);
 									}
@@ -9710,20 +9732,20 @@ public class StudentScript : MonoBehaviour
 												}
 												PromptScript component2 = BloodPool.GetComponent<PromptScript>();
 												WeaponScript component3 = BloodPool.GetComponent<WeaponScript>();
-												bool flag3 = false;
+												bool flag4 = false;
 												if (component3 != null)
 												{
 													if (component3.BroughtFromHome)
 													{
 														Debug.Log("This weapon was brought from home!");
-														flag3 = true;
+														flag4 = true;
 													}
 													else
 													{
 														Debug.Log("This weapon was not brought from home.");
 													}
 												}
-												if (component2 != null && !flag3)
+												if (component2 != null && !flag4)
 												{
 													Debug.Log("Disabling an object's prompt.");
 													component2.Hide();
@@ -9783,18 +9805,29 @@ public class StudentScript : MonoBehaviour
 												{
 													ReportPhase = 7;
 												}
-												else if (!Phoneless)
-												{
-													ReportPhase++;
-												}
 												else
 												{
-													ReportPhase += 2;
+													Debug.Log("A character is now checking whether or not they have a phone.");
+													if (Teacher)
+													{
+														Phoneless = false;
+													}
+													if (!Phoneless)
+													{
+														Debug.Log("This character has a phone.");
+														ReportPhase++;
+													}
+													else
+													{
+														Debug.Log("This character has no phone.");
+														ReportPhase += 2;
+													}
 												}
 											}
 										}
 										else if (ReportPhase == 4)
 										{
+											Debug.Log("A teacher is now supposed to be saying a line of dialogue about a corpse or blood.");
 											if (WitnessedCorpse)
 											{
 												Subtitle.Speaker = this;
@@ -9828,6 +9861,7 @@ public class StudentScript : MonoBehaviour
 										}
 										else if (ReportPhase == 5)
 										{
+											Debug.Log("A teacher is now supposed to be performing a ''calling police'' animation.");
 											if (Teacher)
 											{
 												CharacterAnimation.CrossFade(CallAnim);
@@ -11007,15 +11041,15 @@ public class StudentScript : MonoBehaviour
 									{
 										HuntTarget.DropMisplacedWeapon();
 									}
-									bool flag4 = false;
+									bool flag5 = false;
 									foreach (Transform item in HuntTarget.ItemParent)
 									{
 										if (item.gameObject.activeSelf)
 										{
-											flag4 = true;
+											flag5 = true;
 										}
 									}
-									if (flag4)
+									if (flag5)
 									{
 										HuntTarget.EmptyHands();
 									}
@@ -12140,12 +12174,12 @@ public class StudentScript : MonoBehaviour
 					if (SnackTimer > 10f)
 					{
 						UnityEngine.Object.Destroy(BagOfChips);
-						bool flag5 = false;
+						bool flag6 = false;
 						if (!StudentManager.Eighties && !StudentManager.MissionMode && StudentID == 11)
 						{
-							flag5 = true;
+							flag6 = true;
 						}
-						if (!flag5)
+						if (!flag6)
 						{
 							StudentManager.GetNearestFountain(this);
 							if (Persona == PersonaType.Protective)
@@ -12265,29 +12299,29 @@ public class StudentScript : MonoBehaviour
 						Distracted = true;
 						if (CharacterAnimation[InspectBloodAnim].time >= CharacterAnimation[InspectBloodAnim].length || Persona == PersonaType.Strict)
 						{
-							bool flag6 = false;
 							bool flag7 = false;
 							bool flag8 = false;
+							bool flag9 = false;
 							if ((Club == ClubType.Cooking && CurrentAction == StudentActionType.ClubAction) || (StudentID == 15 && StudentManager.Eighties))
-							{
-								flag7 = true;
-							}
-							if (CurrentAction == StudentActionType.SitAndEatBento)
 							{
 								flag8 = true;
 							}
+							if (CurrentAction == StudentActionType.SitAndEatBento)
+							{
+								flag9 = true;
+							}
 							if (WitnessedWeapon)
 							{
-								bool flag9 = false;
+								bool flag10 = false;
 								if (!Teacher && BloodPool.GetComponent<WeaponScript>().Metal && StudentManager.MetalDetectors)
 								{
-									flag9 = true;
+									flag10 = true;
 								}
 								if (Schoolwear == 2)
 								{
-									flag6 = true;
+									flag7 = true;
 								}
-								if (!WitnessedBloodyWeapon && StudentID > 1 && !flag9 && CurrentAction != StudentActionType.SitAndTakeNotes && Indoors && !flag7 && Club != ClubType.Delinquent && !flag6 && !flag8 && !BloodPool.GetComponent<WeaponScript>().Dangerous && BloodPool.GetComponent<WeaponScript>().Returner == null && BloodPool.GetComponent<WeaponScript>().Origin != null)
+								if (!WitnessedBloodyWeapon && StudentID > 1 && !flag10 && CurrentAction != StudentActionType.SitAndTakeNotes && Indoors && !flag8 && Club != ClubType.Delinquent && !flag7 && !flag9 && !BloodPool.GetComponent<WeaponScript>().Dangerous && BloodPool.GetComponent<WeaponScript>().Returner == null && BloodPool.GetComponent<WeaponScript>().Origin != null)
 								{
 									Debug.Log(Name + " is now picking up a weapon with intent to return it to its original location.");
 									CharacterAnimation[PickUpAnim].time = 0f;
@@ -12364,12 +12398,12 @@ public class StudentScript : MonoBehaviour
 										{
 											Subtitle.UpdateLabel(SubtitleType.PetWeaponReaction, 0, 3f);
 										}
-										else if (flag6)
+										else if (flag7)
 										{
 											Subtitle.CustomText = "Weird, but I'm not doing anything about it now; I'm in a swimsuit...";
 											Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 										}
-										else if (flag8)
+										else if (flag9)
 										{
 											Subtitle.CustomText = "Normally I'd put it back where it belongs, but right now I'm busy eating...";
 											Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
@@ -13581,6 +13615,10 @@ public class StudentScript : MonoBehaviour
 	public void BecomeAlarmed()
 	{
 		Debug.Log(Name + " just fired the BecomeAlarmed() function.");
+		if (Teacher && Persona == PersonaType.Violent)
+		{
+			Persona = PersonaType.Strict;
+		}
 		if (Yandere.Medusa && YandereVisible)
 		{
 			TurnToStone();
@@ -14723,13 +14761,25 @@ public class StudentScript : MonoBehaviour
 				{
 					StopFollowing();
 				}
-				if (!Yandere.AttackManager.Stealth)
+				if (!Male)
 				{
-					CharacterAnimation.CrossFade("f02_dramaticFrontal_00");
+					if (!Yandere.AttackManager.Stealth)
+					{
+						CharacterAnimation.CrossFade("f02_dramaticFrontal_00");
+					}
+					else
+					{
+						CharacterAnimation.CrossFade("f02_dramaticStealth_00");
+					}
+				}
+				else if (!Yandere.AttackManager.Stealth)
+				{
+					CharacterAnimation.CrossFade("dramaticFrontal_00");
 				}
 				else
 				{
-					CharacterAnimation.CrossFade("f02_dramaticStealth_00");
+					Debug.Log("This character should be playing the dramaticStealth_00 animation right now...");
+					CharacterAnimation.CrossFade("dramaticStealth_00");
 				}
 				Yandere.CharacterAnimation.CrossFade("f02_readyToFight_00");
 				Yandere.StruggleIminent = true;
@@ -14782,6 +14832,7 @@ public class StudentScript : MonoBehaviour
 		{
 			if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache)
 			{
+				Debug.Log("Raibaru is counter-attacking!");
 				if (!StudentManager.Stop)
 				{
 					StudentManager.StopMoving();
@@ -14789,7 +14840,14 @@ public class StudentScript : MonoBehaviour
 					SmartPhone.SetActive(value: false);
 					Police.Show = false;
 				}
-				CharacterAnimation.CrossFade("f02_moCounterB_00");
+				if (!Male)
+				{
+					CharacterAnimation.CrossFade("f02_moCounterB_00");
+				}
+				else
+				{
+					CharacterAnimation.CrossFade("moCounterB_00");
+				}
 				if (!WitnessedMurder && !Male && CharacterAnimation["f02_moLipSync_00"].weight == 0f)
 				{
 					CharacterAnimation["f02_moLipSync_00"].weight = 1f;
@@ -16499,7 +16557,6 @@ public class StudentScript : MonoBehaviour
 
 	private void UpdateConfessing()
 	{
-		Debug.Log("Student #" + StudentID + " is now running UpdateConfessing().");
 		if (StudentID > 1 && StudentID != StudentManager.SuitorID)
 		{
 			if (ConfessPhase == 1)
@@ -16891,6 +16948,10 @@ public class StudentScript : MonoBehaviour
 			if (Phase > 0)
 			{
 				Debug.Log(Name + "'s CurrentDestination became ''null'' for some reason.");
+			}
+			if (Destinations[Phase] == null)
+			{
+				Phase++;
 			}
 			CurrentDestination = Destinations[Phase];
 			Pathfinding.target = CurrentDestination;
@@ -17743,9 +17804,9 @@ public class StudentScript : MonoBehaviour
 
 	private void ChaseYandere()
 	{
-		if (Persona == PersonaType.Coward || Persona == PersonaType.Evil)
+		if (Persona == PersonaType.Coward || Persona == PersonaType.Evil || Persona == PersonaType.Fragile || Persona == PersonaType.Loner || Persona == PersonaType.LandlineUser)
 		{
-			Debug.Log("On second thought, " + Name + " will not chase Yandere-chan. Coward Persona.");
+			Debug.Log("On second thought, " + Name + " will not chase Yandere-chan. She's using one of the cowardly Personas.");
 			return;
 		}
 		Debug.Log(Name + " has begun to chase Yandere-chan.");
@@ -17767,6 +17828,10 @@ public class StudentScript : MonoBehaviour
 	private void PersonaReaction()
 	{
 		Debug.Log(Name + " just called PersonaReaction(). As of now, they are a: " + Persona.ToString() + ".");
+		if (Persona == PersonaType.Strict && !Teacher)
+		{
+			Persona = PersonaType.Heroic;
+		}
 		if (Persona == PersonaType.Sleuth)
 		{
 			if (Sleuthing)
@@ -19745,6 +19810,10 @@ public class StudentScript : MonoBehaviour
 
 	public void GetWet()
 	{
+		if (InvestigatingBloodPool)
+		{
+			ForgetAboutBloodPool();
+		}
 		if ((SchemeGlobals.GetSchemeStage(1) == 3 && Rival) || SchemeGlobals.GetSchemeStage(2) == 3 || StudentID == 2)
 		{
 			Debug.Log("A scheme-related character was just splashed with water.");
@@ -24111,6 +24180,7 @@ public class StudentScript : MonoBehaviour
 
 	public void InvincibleTakedown()
 	{
+		Debug.Log("Something just fired InvincibleTakedown()");
 		if (Yandere.Aiming)
 		{
 			Yandere.StopAiming();

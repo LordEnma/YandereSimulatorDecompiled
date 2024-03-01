@@ -4188,6 +4188,14 @@ public class YandereScript : MonoBehaviour
 				if (!TargetStudent.Teacher)
 				{
 					CharacterAnimation.CrossFade("f02_struggleWinA_00");
+					if (!TargetStudent.Male)
+					{
+						TargetStudent.CharacterAnimation.CrossFade("f02_struggleWinB_00");
+					}
+					else
+					{
+						TargetStudent.CharacterAnimation.CrossFade("struggleWinB_00");
+					}
 					if (CharacterAnimation["f02_struggleWinA_00"].time > CharacterAnimation["f02_struggleWinA_00"].length - 1f)
 					{
 						EquippedWeapon.transform.localEulerAngles = Vector3.Lerp(EquippedWeapon.transform.localEulerAngles, Vector3.zero, Time.deltaTime * 3.33333f);

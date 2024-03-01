@@ -597,7 +597,7 @@ public class MissionModeScript : MonoBehaviour
 		if (YakuzaMode)
 		{
 			Frame++;
-			if (Frame == 5 || Input.GetKeyDown("z"))
+			if (Frame == 5)
 			{
 				StudentManager.SkipTo730();
 				StudentManager.Students[97].AltTeleportToDestination();

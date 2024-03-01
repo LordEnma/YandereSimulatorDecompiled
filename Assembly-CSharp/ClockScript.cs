@@ -346,7 +346,7 @@ public class ClockScript : MonoBehaviour
 				}
 			}
 		}
-		else if (LoveManager.WaitingToConfess)
+		else if (LoveManager.WaitingToConfess && StudentManager.Students[StudentManager.RivalID] != null && StudentManager.Students[StudentManager.RivalID].Alive)
 		{
 			if (!StopTime)
 			{

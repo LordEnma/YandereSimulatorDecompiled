@@ -1042,90 +1042,94 @@ public class PauseScreenScript : MonoBehaviour
 	private void CheckIfSavePossible()
 	{
 		PhoneIcons[9].color = new Color(1f, 1f, 1f, 1f);
-		if (!AtSchool)
+		if (AtSchool)
 		{
-			return;
-		}
-		for (int i = 1; i < Yandere.StudentManager.Students.Length; i++)
-		{
-			if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Alive)
+			for (int i = 1; i < Yandere.StudentManager.Students.Length; i++)
 			{
-				if (Yandere.StudentManager.Students[i].Alarmed)
+				if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Alive)
 				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is alarmed.";
-				}
-				if (Yandere.StudentManager.Students[i].Fleeing)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is fleeing in fear.";
-				}
-				if (Yandere.StudentManager.Students[i].Guarding)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is guarding a corpse.";
-				}
-				if (Yandere.StudentManager.Students[i].Confessing)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is confessing their love.";
-				}
-				if (Yandere.StudentManager.Students[i].Hunting)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is about to commit murder.";
-				}
-				if (Yandere.StudentManager.Students[i].Investigating)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is investigating something.";
-				}
-				if (Yandere.StudentManager.Students[i].CameraReacting)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is posing for a photograph.";
-				}
-				if (Yandere.StudentManager.Students[i].SearchingForPhone)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is searching for a lost phone.";
-				}
-				if (Yandere.StudentManager.Police.LimbParent.childCount > 0)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while dismembered limbs are present at school.";
-				}
-				if (Yandere.StudentManager.Students[i].Wet)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is wet with any kind of liquid.";
-				}
-				if (Yandere.StudentManager.Students[i].Ragdoll.Zs.activeInHierarchy && Yandere.StudentManager.Police.EndOfDay.TranqCase.VictimID != i)
-				{
-					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-					Reason = "You cannot save the game while a student is tranquilized and sleeping on the ground.";
+					if (Yandere.StudentManager.Students[i].Alarmed)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is alarmed.";
+					}
+					if (Yandere.StudentManager.Students[i].Fleeing)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is fleeing in fear.";
+					}
+					if (Yandere.StudentManager.Students[i].Guarding)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is guarding a corpse.";
+					}
+					if (Yandere.StudentManager.Students[i].Confessing)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is confessing their love.";
+					}
+					if (Yandere.StudentManager.Students[i].Hunting)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is about to commit murder.";
+					}
+					if (Yandere.StudentManager.Students[i].Investigating)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is investigating something.";
+					}
+					if (Yandere.StudentManager.Students[i].CameraReacting)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is posing for a photograph.";
+					}
+					if (Yandere.StudentManager.Students[i].SearchingForPhone)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is searching for a lost phone.";
+					}
+					if (Yandere.StudentManager.Police.LimbParent.childCount > 0)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while dismembered limbs are present at school.";
+					}
+					if (Yandere.StudentManager.Students[i].Wet)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is wet with any kind of liquid.";
+					}
+					if (Yandere.StudentManager.Students[i].Ragdoll.Zs.activeInHierarchy && Yandere.StudentManager.Police.EndOfDay.TranqCase.VictimID != i)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is tranquilized and sleeping on the ground.";
+					}
 				}
 			}
+			if (Yandere.Dragging)
+			{
+				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+				Reason = "You cannot save the game while dragging a dead body.";
+			}
+			if (Yandere.StudentManager.Students[Yandere.StudentManager.RivalID] != null && Yandere.StudentManager.Students[Yandere.StudentManager.RivalID].InEvent)
+			{
+				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+				Reason = "You cannot save the game while a Rival Event is occuring.";
+			}
+			if (Yandere.PickUp != null)
+			{
+				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+				Reason = "You cannot save the game while you are holding that object.";
+			}
+			if (Police.BloodyClothing > 0)
+			{
+				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+				Reason = "You cannot save the game while bloody clothing is present at school.";
+			}
 		}
-		if (Yandere.Dragging)
+		PhoneIcons[3].alpha = 1f;
+		if (Yandere.transform.position.y > 100f || Yandere.LunaAttacher.activeInHierarchy)
 		{
-			PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-			Reason = "You cannot save the game while dragging a dead body.";
-		}
-		if (Yandere.StudentManager.Students[Yandere.StudentManager.RivalID] != null && Yandere.StudentManager.Students[Yandere.StudentManager.RivalID].InEvent)
-		{
-			PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-			Reason = "You cannot save the game while a Rival Event is occuring.";
-		}
-		if (Yandere.PickUp != null)
-		{
-			PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-			Reason = "You cannot save the game while you are holding that object.";
-		}
-		if (Police.BloodyClothing > 0)
-		{
-			PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-			Reason = "You cannot save the game while bloody clothing is present at school.";
+			PhoneIcons[3].alpha = 0.5f;
 		}
 	}
 

@@ -596,12 +596,16 @@ public class CustomModeScript : MonoBehaviour
 
 	private void Update()
 	{
-		for (int i = 0; i < EditableLabels.Length; i++)
+		if (EditingStudent)
 		{
-			if (EditableLabels[i].color == Color.red)
+			for (int i = 0; i < EditableLabels.Length; i++)
 			{
-				EditedLabel = EditableLabels[i];
-				PlayerIsTyping = true;
+				if (EditableLabels[i].color == Color.red)
+				{
+					Debug.Log("Player started typing?");
+					EditedLabel = EditableLabels[i];
+					PlayerIsTyping = true;
+				}
 			}
 		}
 		if (!PlayerIsTyping && Input.GetKeyDown("m"))
@@ -984,10 +988,7 @@ public class CustomModeScript : MonoBehaviour
 						{
 							int num = int.Parse(JSON.Students[Selected].Hairstyle);
 							num++;
-							if (JSON.Students[Selected].Gender == 0 && num == 20)
-							{
-								num++;
-							}
+							_ = JSON.Students[Selected].Gender;
 							if (num >= HairstyleLimit)
 							{
 								num = 1;
@@ -1099,10 +1100,7 @@ public class CustomModeScript : MonoBehaviour
 						{
 							int num4 = int.Parse(JSON.Students[Selected].Hairstyle);
 							num4--;
-							if (JSON.Students[Selected].Gender == 0 && num4 == 20)
-							{
-								num4--;
-							}
+							_ = JSON.Students[Selected].Gender;
 							if (num4 < 1)
 							{
 								num4 = HairstyleLimit - 1;
@@ -2068,7 +2066,7 @@ public class CustomModeScript : MonoBehaviour
 		}
 		else
 		{
-			if (!(EditedLabel.gameObject.GetComponent<UIInputOnGUI>() == null))
+			if (!PlayerIsTyping || !(EditedLabel.gameObject.GetComponent<UIInputOnGUI>() == null))
 			{
 				return;
 			}
@@ -2087,6 +2085,7 @@ public class CustomModeScript : MonoBehaviour
 					EditableLabels[2].text = (HairstyleLimit - 1).ToString() ?? "";
 				}
 				JSON.Students[Selected].Hairstyle = EditableLabels[2].text;
+				Debug.Log("We are now calling UpdateStudent() from this place in the code.");
 				UpdateStudent();
 			}
 		}
@@ -2808,18 +2807,6 @@ public class CustomModeScript : MonoBehaviour
 		JSON.Start();
 		Yandere.SetUniform();
 		Yandere.BecomeRyoba();
-		JSON.Students[0].Name = "Ryoba Aishi";
-		JSON.Students[0].Class = 21;
-		JSON.Students[0].Seat = 13;
-		JSON.Students[0].Crush = 1;
-		JSON.Students[0].Hairstyle = 203.ToString() ?? "";
-		JSON.Students[0].Accessory = "0";
-		JSON.Students[0].Color = "Default";
-		JSON.Students[0].EyeType = "Ryoba";
-		JSON.Students[0].Eyes = "Default";
-		JSON.Students[0].BreastSize = 1.5f;
-		JSON.Students[0].Stockings = "Black";
-		JSON.Students[0].Info = "A young woman who is willing to do absolutely anything in order to prevent the boy she loves from entering a relationship with anyone other than herself.";
 		for (int j = 1; j < 90; j++)
 		{
 			if (JSON.Students[j].Gender == 1)
@@ -2900,6 +2887,18 @@ public class CustomModeScript : MonoBehaviour
 		UpdateCanonMethodLabels();
 		ResetAllCustomLocations();
 		ResetAllEventLocations();
+		JSON.Students[0].Name = "Ryoba Aishi";
+		JSON.Students[0].Class = 21;
+		JSON.Students[0].Seat = 13;
+		JSON.Students[0].Crush = 1;
+		JSON.Students[0].Hairstyle = 203.ToString() ?? "";
+		JSON.Students[0].Accessory = "0";
+		JSON.Students[0].Color = "Default";
+		JSON.Students[0].EyeType = "Ryoba";
+		JSON.Students[0].Eyes = "Default";
+		JSON.Students[0].BreastSize = 1.5f;
+		JSON.Students[0].Stockings = "Black";
+		JSON.Students[0].Info = "A young woman who is willing to do absolutely anything in order to prevent the boy she loves from entering a relationship with anyone other than herself.";
 		UpdateStudent();
 	}
 

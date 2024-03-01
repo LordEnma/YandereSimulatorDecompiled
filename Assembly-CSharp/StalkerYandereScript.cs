@@ -6,6 +6,10 @@ using UnityEngine.PostProcessing;
 
 public class StalkerYandereScript : MonoBehaviour
 {
+	public NotificationManagerScript NotificationManager;
+
+	public StealthInventoryScript StealthInventory;
+
 	public StalkerPromptScript StalkerDoorPrompt;
 
 	public GameObject StealthClothingAttacher;
@@ -68,6 +72,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public bool HidingInLocker;
 
+	public bool Trespassing;
+
 	public bool Invisible;
 
 	public bool Eighties;
@@ -75,6 +81,8 @@ public class StalkerYandereScript : MonoBehaviour
 	public bool InDesert;
 
 	public bool CanMove;
+
+	public bool Bakery;
 
 	public bool Chased;
 
@@ -284,7 +292,6 @@ public class StalkerYandereScript : MonoBehaviour
 			{
 				if ((!Asylum && HomeGlobals.Night) || DateGlobals.Weekday == DayOfWeek.Sunday || DateGlobals.Weekday == DayOfWeek.Saturday)
 				{
-					Debug.Log("This code fired.");
 					if (UniformSetter != null)
 					{
 						UniformSetter.Ryoba = GameGlobals.Eighties;
@@ -555,30 +562,51 @@ public class StalkerYandereScript : MonoBehaviour
 				UpdateVignette();
 			}
 		}
-		if (!(InstructionLabel != null))
+		if (InstructionLabel != null && !Bakery)
+		{
+			if (InstructionPhase == 1)
+			{
+				if (base.transform.position.z < 11f && base.transform.position.z > -11f && base.transform.position.x > -11f && base.transform.position.x < 11f)
+				{
+					InstructionLabel.text = "Find the stalker's room on the first floor of the house.";
+					InstructionPhase++;
+				}
+			}
+			else if (InstructionPhase == 2)
+			{
+				if (StalkerDoorPrompt.OpenDoor)
+				{
+					InstructionLabel.text = "Pick up the pet carrier.";
+					InstructionPhase++;
+				}
+			}
+			else if (InstructionPhase == 3 && Object != null)
+			{
+				InstructionLabel.text = "Exit the house.";
+				InstructionPhase++;
+			}
+		}
+		if (!Bakery || !(base.transform.position.x > 10.5f))
 		{
 			return;
 		}
-		if (InstructionPhase == 1)
+		if (base.transform.position.x > 21f)
 		{
-			if (base.transform.position.z < 11f && base.transform.position.z > -11f && base.transform.position.x > -11f && base.transform.position.x < 11f)
+			if (!Trespassing)
 			{
-				InstructionLabel.text = "Find the stalker's room on the first floor of the house.";
-				InstructionPhase++;
+				NotificationManager.CustomText = "You are now trespassing!";
+				NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
+			Trespassing = true;
 		}
-		else if (InstructionPhase == 2)
+		else
 		{
-			if (StalkerDoorPrompt.OpenDoor)
+			if (Trespassing)
 			{
-				InstructionLabel.text = "Pick up the pet carrier.";
-				InstructionPhase++;
+				NotificationManager.CustomText = "You are no longer trespassing.";
+				NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
-		}
-		else if (InstructionPhase == 3 && Object != null)
-		{
-			InstructionLabel.text = "Exit the house.";
-			InstructionPhase++;
+			Trespassing = false;
 		}
 	}
 
