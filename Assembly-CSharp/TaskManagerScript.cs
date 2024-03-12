@@ -232,7 +232,7 @@ public class TaskManagerScript : MonoBehaviour
 			}
 			if (TaskStatus[12] == 1)
 			{
-				if (StudentManager.Students[11] != null)
+				if (StudentManager.Students[12] != null)
 				{
 					if (StudentManager.Students[12].TaskPhase == 0)
 					{

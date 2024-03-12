@@ -765,7 +765,12 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite7 = Shadow[3];
 			uISprite7.color = new Color(uISprite7.color.r, uISprite7.color.g, uISprite7.color.b, 0.75f);
 		}
-		if (Yandere.Bloodiness > 0f || Yandere.Sanity < 33.33333f || (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council))
+		bool flag = false;
+		if (Yandere.Club == ClubType.Art && Yandere.ClubAttire)
+		{
+			flag = true;
+		}
+		if ((Yandere.Bloodiness > 0f && !flag) || Yandere.Sanity < 33.33333f || (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council))
 		{
 			UISprite uISprite8 = Shadow[3];
 			uISprite8.color = new Color(uISprite8.color.r, uISprite8.color.g, uISprite8.color.b, 0.75f);
@@ -784,20 +789,20 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		else if (TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] != 3)
 		{
-			bool flag = false;
+			bool flag2 = false;
 			if (Yandere.StudentManager.Eighties)
 			{
-				flag = true;
+				flag2 = true;
 				if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
 				{
-					flag = false;
+					flag2 = false;
 					if (Yandere.StudentManager.CustomMode && Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21)
 					{
-						flag = true;
+						flag2 = true;
 					}
 				}
 				HideTaskButtonIfNecessary();
-				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID] > 0)
+				if (flag2 && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID] > 0)
 				{
 					Debug.Log("The player can turn in a task right now.");
 					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
@@ -807,12 +812,12 @@ public class DialogueWheelScript : MonoBehaviour
 			{
 				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 				{
-					flag = true;
+					flag2 = true;
 				}
 				if (Yandere.TargetStudent.StudentID == 6)
 				{
 					Debug.Log("Speaking to Osana's suitor.");
-					flag = false;
+					flag2 = false;
 				}
 				if (Yandere.TargetStudent.StudentID == 1 || Yandere.TargetStudent.StudentID == 10)
 				{
@@ -895,7 +900,7 @@ public class DialogueWheelScript : MonoBehaviour
 						Debug.Log("Player has the answer sheet.");
 					}
 				}
-				if (flag && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.Book)
+				if (flag2 && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.Book)
 				{
 					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
 					Debug.Log("The player has a library book.");

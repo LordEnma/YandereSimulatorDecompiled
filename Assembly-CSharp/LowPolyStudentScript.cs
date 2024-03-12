@@ -53,4 +53,11 @@ public class LowPolyStudentScript : MonoBehaviour
 			MyMesh.enabled = false;
 		}
 	}
+
+	public void Deactivate()
+	{
+		Student.MyRenderer.enabled = true;
+		MyMesh.enabled = false;
+		base.enabled = false;
+	}
 }

@@ -114,6 +114,7 @@ public class StudentInfoScript : MonoBehaviour
 		{
 			UpdateInfo(StudentInfoMenu.StudentID);
 		}
+		StudentManager.LoadTopicsLearned();
 	}
 
 	public void UpdateInfo(int ID)
@@ -543,6 +544,7 @@ public class StudentInfoScript : MonoBehaviour
 					StudentManager.Students[CurrentStudent].CameraReacting = false;
 					StudentManager.Students[CurrentStudent].SpeechLines.Stop();
 					StudentManager.Students[CurrentStudent].EmptyHands();
+					StudentManager.Students[CurrentStudent].Strength = 5;
 					StudentManager.Students[CurrentStudent].IdleAnim = StudentManager.Students[CurrentStudent].BulliedIdleAnim;
 					StudentManager.Students[CurrentStudent].WalkAnim = StudentManager.Students[CurrentStudent].BulliedWalkAnim;
 					StudentManager.Students[CurrentStudent].Armband.SetActive(value: false);

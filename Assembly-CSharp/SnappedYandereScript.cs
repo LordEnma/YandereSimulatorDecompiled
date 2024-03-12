@@ -260,7 +260,14 @@ public class SnappedYandereScript : MonoBehaviour
 				if (weaponScript != null && weaponScript.gameObject.activeInHierarchy && Vector3.Distance(base.transform.position, weaponScript.transform.position) < 1.5f)
 				{
 					weaponScript.Prompt.Circle[3].fillAmount = 0f;
-					SNAPLabel.text = "Kill him.";
+					if (!GameGlobals.FemaleSenpai)
+					{
+						SNAPLabel.text = "Kill him.";
+					}
+					else
+					{
+						SNAPLabel.text = "Kill her.";
+					}
 					StaticNoise.volume = 0f;
 					Static.Fade = 0f;
 					HurryTimer = 0f;

@@ -328,6 +328,10 @@ public class YouTubeCommandTestScript : MonoBehaviour
 		{
 			if (Yandere.Armed || Yandere.Carrying || Yandere.HeavyWeight || Yandere.PickUp != null || Yandere.Dragging)
 			{
+				if (Yandere.Armed && Yandere.EquippedWeapon != null)
+				{
+					Yandere.EquippedWeapon.Drop();
+				}
 				Yandere.EmptyHands();
 				Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made you drop it";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

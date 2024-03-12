@@ -35,6 +35,8 @@ public class StalkerIntroScript : MonoBehaviour
 
 	public GameObject[] Neighborhood;
 
+	public Animation Baker;
+
 	public UIPanel SkipPanel;
 
 	public UISprite SkipCircle;
@@ -43,6 +45,11 @@ public class StalkerIntroScript : MonoBehaviour
 
 	private void Start()
 	{
+		if (Baker != null)
+		{
+			GameGlobals.Eighties = false;
+			DateGlobals.Week = 2;
+		}
 		Time.timeScale = 1f;
 		if (Yandere.InstructionLabel != null)
 		{
@@ -63,7 +70,7 @@ public class StalkerIntroScript : MonoBehaviour
 		}
 		else if (Week == 2)
 		{
-			base.transform.position = new Vector3(-14.56f, 9.633026f, 1.91774f);
+			base.transform.position = new Vector3(-14.6f, 9.6f, 1.97f);
 			base.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 			DOF = 1.5f;
 		}
@@ -155,6 +162,8 @@ public class StalkerIntroScript : MonoBehaviour
 			}
 			if (Phase == 0)
 			{
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
 				Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.5f);
 				Darkness.material.color = new Color(0f, 0f, 0f, Alpha);
 				if (Alpha == 0f)
@@ -163,6 +172,7 @@ public class StalkerIntroScript : MonoBehaviour
 					if (Timer > 2f)
 					{
 						Yandere.MyAnimation.Play("f02_girlWalk_LookLeft_00");
+						Yandere.MyAnimation.transform.localScale = new Vector3(-1f, 1f, 1f);
 						Yandere.VtuberCheck();
 						Phase++;
 					}
@@ -171,6 +181,8 @@ public class StalkerIntroScript : MonoBehaviour
 			}
 			else if (Phase == 1)
 			{
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
 				Speed += Time.deltaTime * 0.1f;
 				CameraFocus.position = Vector3.Lerp(CameraFocus.position, Yandere.Hips.position, Time.deltaTime * Speed);
 				DOF = Mathf.MoveTowards(DOF, 2f, Time.deltaTime * Speed);
@@ -258,6 +270,8 @@ public class StalkerIntroScript : MonoBehaviour
 				Speed = 100f;
 				Darkness.material.color = new Color(0f, 0f, 0f, Alpha);
 				Yandere.MyAnimation.Play("f02_stealthIdle_00");
+				_ = Week;
+				_ = 2;
 			}
 		}
 		else

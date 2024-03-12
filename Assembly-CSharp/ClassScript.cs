@@ -259,8 +259,9 @@ public class ClassScript : MonoBehaviour
 		if (Show)
 		{
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
-			if (Darkness.alpha == 0f)
+			if (Darkness.alpha <= 0.001f)
 			{
+				Darkness.alpha = 0f;
 				if (!Portal.Yandere.NoDebug)
 				{
 					if (Input.GetKeyDown(KeyCode.Backslash))
@@ -390,10 +391,11 @@ public class ClassScript : MonoBehaviour
 			return;
 		}
 		Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
-		if (Darkness.color.a != 1f)
+		if (!(Darkness.color.a > 0.999f))
 		{
 			return;
 		}
+		Darkness.alpha = 1f;
 		if (!GradeUp)
 		{
 			if (GradeUpWindow.localScale.x > 0.1f)

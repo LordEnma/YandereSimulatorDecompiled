@@ -45,7 +45,14 @@ public class SnapStudentScript : MonoBehaviour
 						Yandere.MyAudio.Play();
 						Yandere.Speed = 0f;
 						Yandere.MyAnim.CrossFade("f02_snapKill_00");
-						MyAnim.CrossFade("snapDie_00");
+						if (!Student.Male)
+						{
+							MyAnim.CrossFade("f02_snapDie_00");
+						}
+						else
+						{
+							MyAnim.CrossFade("snapDie_00");
+						}
 						Yandere.TargetStudent = this;
 						Yandere.KillingSenpai = true;
 						Yandere.CanMove = false;

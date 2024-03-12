@@ -338,8 +338,9 @@ public class PortalScript : MonoBehaviour
 					LoveManager.Rival.transform.position = new Vector3(0f, 0f, -50f);
 				}
 				ClassDarkness.alpha = Mathf.MoveTowards(ClassDarkness.alpha, 1f, Time.deltaTime);
-				if (ClassDarkness.alpha == 1f)
+				if (ClassDarkness.alpha > 0.999f)
 				{
+					ClassDarkness.alpha = 1f;
 					if (Yandere.Resting)
 					{
 						StudentManager.Mirror.UpdatePersona();

@@ -305,6 +305,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 					StudentManager.Yandere.RPGCamera.transform.parent = StudentManager.Yandere.transform;
 					SnappedYandere.enabled = true;
 					SnappedYandere.CanMove = true;
+					StudentManager.DisableAllLowPolyStudents();
 					SnapStatic.Play();
 					SnapMusic.Play();
 					base.enabled = false;

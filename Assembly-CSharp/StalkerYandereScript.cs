@@ -32,6 +32,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public ArcScript Arc;
 
+	public Transform[] TeleportPoint;
+
 	public Transform TrellisClimbSpot;
 
 	public Transform CameraTarget;
@@ -277,8 +279,8 @@ public class StalkerYandereScript : MonoBehaviour
 			Eighties = true;
 			if (Street)
 			{
-				BreastL.transform.localScale = new Vector3(1f, 1f, 1f);
-				BreastR.transform.localScale = new Vector3(1f, 1f, 1f);
+				BreastL.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+				BreastR.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			}
 		}
 		else
@@ -562,35 +564,43 @@ public class StalkerYandereScript : MonoBehaviour
 				UpdateVignette();
 			}
 		}
-		if (InstructionLabel != null && !Bakery)
+		if (InstructionLabel != null)
 		{
-			if (InstructionPhase == 1)
+			if (!Bakery)
 			{
-				if (base.transform.position.z < 11f && base.transform.position.z > -11f && base.transform.position.x > -11f && base.transform.position.x < 11f)
+				if (InstructionPhase == 1)
 				{
-					InstructionLabel.text = "Find the stalker's room on the first floor of the house.";
+					if (base.transform.position.z < 11f && base.transform.position.z > -11f && base.transform.position.x > -11f && base.transform.position.x < 11f)
+					{
+						InstructionLabel.text = "Find the stalker's room on the first floor of the house.";
+						InstructionPhase++;
+					}
+				}
+				else if (InstructionPhase == 2)
+				{
+					if (StalkerDoorPrompt.OpenDoor)
+					{
+						InstructionLabel.text = "Pick up the pet carrier.";
+						InstructionPhase++;
+					}
+				}
+				else if (InstructionPhase == 3 && Object != null)
+				{
+					InstructionLabel.text = "Exit the house.";
 					InstructionPhase++;
 				}
 			}
-			else if (InstructionPhase == 2)
+			else if (InstructionPhase == 1 && base.transform.position.z < 10f && base.transform.position.z > -10f && base.transform.position.x > -10f && base.transform.position.x < 10f)
 			{
-				if (StalkerDoorPrompt.OpenDoor)
-				{
-					InstructionLabel.text = "Pick up the pet carrier.";
-					InstructionPhase++;
-				}
-			}
-			else if (InstructionPhase == 3 && Object != null)
-			{
-				InstructionLabel.text = "Exit the house.";
+				InstructionLabel.text = "Search the bakery for evidence of criminal activity.";
 				InstructionPhase++;
 			}
 		}
-		if (!Bakery || !(base.transform.position.x > 10.5f))
+		if (!Bakery)
 		{
 			return;
 		}
-		if (base.transform.position.x > 21f)
+		if (base.transform.position.x > 21f || (base.transform.position.x > -10.61f && base.transform.position.x < 3.365f && base.transform.position.z > 39.24f) || (base.transform.position.x > -10.4f && base.transform.position.x < 10.4f && base.transform.position.z > -10.4f && base.transform.position.z < 10.4f))
 		{
 			if (!Trespassing)
 			{
@@ -599,7 +609,7 @@ public class StalkerYandereScript : MonoBehaviour
 			}
 			Trespassing = true;
 		}
-		else
+		else if (base.transform.position.y < 1f)
 		{
 			if (Trespassing)
 			{

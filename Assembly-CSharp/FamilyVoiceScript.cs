@@ -50,6 +50,8 @@ public class FamilyVoiceScript : MonoBehaviour
 
 	public string GameOverText;
 
+	public float FudgeDistance = 1f;
+
 	public float MinimumDistance;
 
 	public float NoticeSpeed;
@@ -146,7 +148,7 @@ public class FamilyVoiceScript : MonoBehaviour
 								Subtitle.text = SpeechText[SpeechPhase];
 								SpeechPhase++;
 							}
-							Scale = Mathf.Abs(1f - (Distance - 1f) / (MinimumDistance - 1f));
+							Scale = Mathf.Abs(1f - (Distance - FudgeDistance) / (MinimumDistance - FudgeDistance));
 							if (Scale < 0f)
 							{
 								Scale = 0f;

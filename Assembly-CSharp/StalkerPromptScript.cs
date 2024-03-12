@@ -7,6 +7,8 @@ public class StalkerPromptScript : MonoBehaviour
 
 	public PickpocketMinigameScript PickpocketMinigame;
 
+	public StealthCinematicScript StealthCinematic;
+
 	public StealthInventoryScript StealthInventory;
 
 	public EvilPhotographerScript Character;
@@ -21,11 +23,15 @@ public class StalkerPromptScript : MonoBehaviour
 
 	public StalkerScript Stalker;
 
+	public GameObject[] ObjectsToActivate;
+
 	public GameObject ObjectToDeactivate;
 
 	public GameObject ObjectToActivate;
 
 	public GameObject DomesticDispute;
+
+	public GameObject SlidingObject;
 
 	public GameObject StairBlocker;
 
@@ -47,6 +53,8 @@ public class StalkerPromptScript : MonoBehaviour
 
 	public Transform KitchenDoor;
 
+	public Transform SlideTarget;
+
 	public Transform CatCage;
 
 	public Transform Door;
@@ -67,6 +75,8 @@ public class StalkerPromptScript : MonoBehaviour
 
 	public Renderer Darkness;
 
+	public bool SpecialCaseDoor;
+
 	public bool Pickpocketable;
 
 	public bool ServedPurpose;
@@ -78,6 +88,8 @@ public class StalkerPromptScript : MonoBehaviour
 	public bool FadeOut;
 
 	public bool Bakery;
+
+	public bool Slide;
 
 	public bool Open;
 
@@ -100,6 +112,8 @@ public class StalkerPromptScript : MonoBehaviour
 	public int BagsToBurn;
 
 	public int BagID;
+
+	public int Boxes;
 
 	public int ID;
 
@@ -130,7 +144,7 @@ public class StalkerPromptScript : MonoBehaviour
 		base.transform.LookAt(Yandere.MainCamera.transform);
 		if (Vector3.Distance(base.transform.position, Yandere.transform.position) < MaximumDistance)
 		{
-			if (!ServedPurpose)
+			if (!ServedPurpose && Yandere.CanMove)
 			{
 				if (Vector3.Distance(base.transform.position, Yandere.transform.position) < MinimumDistance)
 				{
@@ -181,14 +195,200 @@ public class StalkerPromptScript : MonoBehaviour
 								NotificationManager.DisplayNotification(NotificationType.Custom);
 							}
 						}
-						else if (ID == 2 && Alpha == 1f)
+						else if (ID == 2)
 						{
-							PickpocketMinigame.PickpocketSpot = PickpocketSpot;
-							PickpocketMinigame.Character = Character;
-							PickpocketMinigame.Show = true;
-							PickpocketMinigame.ID = ID;
-							Yandere.MyAnimation.CrossFade("f02_pickpocketing_00");
+							if (Alpha == 1f)
+							{
+								PickpocketMinigame.PickpocketSpot = PickpocketSpot;
+								PickpocketMinigame.Character = Character;
+								PickpocketMinigame.Show = true;
+								PickpocketMinigame.ID = ID;
+								Yandere.MyAnimation.CrossFade("f02_pickpocketing_00");
+								Yandere.CanMove = false;
+							}
+						}
+						else if (ID == 3)
+						{
+							CatPrompt.SetActive(value: true);
+							ServedPurpose = true;
+							Slide = true;
+						}
+						else if (ID == 4)
+						{
+							ObjectToDeactivate.SetActive(value: false);
+							ObjectToActivate.SetActive(value: true);
+							CatPrompt.SetActive(value: true);
+							ServedPurpose = true;
+							Slide = true;
+						}
+						else if (ID == 5)
+						{
+							if (Yandere.CanMove)
+							{
+								Yandere.transform.position = new Vector3(27.5f, 10.4f, -4.5f);
+								Yandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+								Yandere.MyAnimation.Play("f02_idleShort_00");
+								Yandere.MyAnimation.CrossFade("f02_newSprint_00");
+								Yandere.RPGCamera.enabled = false;
+								StealthCinematic.Target = StealthCinematic.ConstructTargets;
+								StealthCinematic.Times = StealthCinematic.ConstructTimes;
+								StealthCinematic.ConstructionSiteJump = true;
+								StealthCinematic.OfficeBuildingJump = false;
+								StealthCinematic.CardboardClimb = false;
+								StealthCinematic.enabled = true;
+								Yandere.CanMove = false;
+							}
+						}
+						else if (ID == 6)
+						{
+							if (StealthInventory.DoorKey)
+							{
+								ServedPurpose = true;
+								OpenDoor = true;
+								MyAudio.Play();
+							}
+							else
+							{
+								NotificationManager.CustomText = "You must find the key.";
+								NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
+						}
+						else if (ID == 7)
+						{
+							if (Alpha == 1f)
+							{
+								PickpocketMinigame.PickpocketSpot = PickpocketSpot;
+								PickpocketMinigame.Character = Character;
+								PickpocketMinigame.Show = true;
+								PickpocketMinigame.ID = ID;
+								Yandere.MyAnimation.CrossFade("f02_pickpocketing_00");
+								Yandere.CanMove = false;
+							}
+						}
+						else if (ID == 8)
+						{
+							if (Yandere.CanMove)
+							{
+								Yandere.transform.position = new Vector3(-0.475f, 4.66f, 17.5f);
+								Yandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+								Yandere.MyAnimation.Play("f02_idleShort_00");
+								Yandere.MyAnimation.CrossFade("f02_longJump_01");
+								Yandere.RPGCamera.enabled = false;
+								StealthCinematic.Target = StealthCinematic.OfficeTargets;
+								StealthCinematic.Times = StealthCinematic.OfficeTimes;
+								StealthCinematic.ConstructionSiteJump = false;
+								StealthCinematic.OfficeBuildingJump = true;
+								StealthCinematic.CardboardClimb = false;
+								StealthCinematic.enabled = true;
+								Yandere.CanMove = false;
+							}
+						}
+						else if (ID == 9)
+						{
+							if (StealthInventory.BakeryKey || Yandere.transform.position.x > base.transform.position.x)
+							{
+								Debug.Log("Can open the door.");
+								ServedPurpose = true;
+								OpenDoor = true;
+								MyAudio.Play();
+							}
+							else
+							{
+								Debug.Log("Can't open the door.");
+								NotificationManager.CustomText = "You must find the key.";
+								NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
+						}
+						else if (ID == 10)
+						{
+							if (Alpha == 1f)
+							{
+								PickpocketMinigame.PickpocketSpot = PickpocketSpot;
+								PickpocketMinigame.Character = Character;
+								PickpocketMinigame.Show = true;
+								PickpocketMinigame.ID = ID;
+								Yandere.MyAnimation.CrossFade("f02_pickpocketing_00");
+								Yandere.CanMove = false;
+							}
+						}
+						else if (ID == 11)
+						{
+							if (Boxes < 2)
+							{
+								if (StealthInventory.CardboardBox)
+								{
+									StealthInventory.CardboardBox = false;
+									Boxes++;
+									ObjectsToActivate[Boxes].SetActive(value: true);
+									if (Boxes == 1)
+									{
+										Label.text = "Stack Box (1/2)";
+									}
+									else
+									{
+										Label.text = "Climb";
+									}
+								}
+								else
+								{
+									NotificationManager.CustomText = "...and bring it here.";
+									NotificationManager.DisplayNotification(NotificationType.Custom);
+									NotificationManager.CustomText = "Locate a large cardboard box...";
+									NotificationManager.DisplayNotification(NotificationType.Custom);
+								}
+							}
+							else
+							{
+								Yandere.transform.position = new Vector3(5f, 0.25f, 10.5f);
+								Yandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+								Yandere.MyAnimation["f02_climbTrellis_00"].time = 7f;
+								Yandere.MyAnimation.Play("f02_climbTrellis_00");
+								Yandere.MyAnimation["f02_climbTrellis_00"].time = 7f;
+								Yandere.MyController.enabled = false;
+								Yandere.RPGCamera.enabled = false;
+								StealthCinematic.Target = StealthCinematic.CardboardTargets;
+								StealthCinematic.Times = StealthCinematic.CardboardTimes;
+								StealthCinematic.ConstructionSiteJump = false;
+								StealthCinematic.OfficeBuildingJump = false;
+								StealthCinematic.CardboardClimb = true;
+								StealthCinematic.enabled = true;
+								Yandere.CanMove = false;
+							}
+						}
+						else if (ID == 12)
+						{
+							if (!StealthInventory.CardboardBox)
+							{
+								StealthInventory.CardboardBox = true;
+								ServedPurpose = true;
+								ObjectToDeactivate.SetActive(value: false);
+								NotificationManager.CustomText = "...and bring it with you.";
+								NotificationManager.DisplayNotification(NotificationType.Custom);
+								NotificationManager.CustomText = "You fold up the cardboard box...";
+								NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
+							else
+							{
+								NotificationManager.CustomText = "You are already carrying one.";
+								NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
+						}
+						else if (ID == 13)
+						{
+							Label.text = "Exit the house and leave at the crosswalk you arrived from.";
+							Yandere.InstructionPhase++;
+							ObjectToActivate.SetActive(value: true);
+							ObjectToDeactivate.SetActive(value: false);
+							NotificationManager.CustomText = "Incriminating Evidence Obtained!";
+							NotificationManager.DisplayNotification(NotificationType.Custom);
+							ServedPurpose = true;
+						}
+						else if (ID == 14)
+						{
+							Yandere.MyAnimation.CrossFade(Yandere.IdleAnim);
 							Yandere.CanMove = false;
+							ServedPurpose = true;
+							FadeOut = true;
 						}
 					}
 					else if (ID == 1)
@@ -348,7 +548,14 @@ public class StalkerPromptScript : MonoBehaviour
 		{
 			Speed += Time.deltaTime * 0.1f * SpeedFactor;
 			Rotation = Mathf.Lerp(Rotation, TargetRotation, Time.deltaTime * Speed);
-			Door.transform.localEulerAngles = new Vector3(Door.transform.localEulerAngles.x, Rotation, Door.transform.localEulerAngles.z);
+			if (!SpecialCaseDoor)
+			{
+				Door.transform.localEulerAngles = new Vector3(Door.transform.localEulerAngles.x, Rotation, Door.transform.localEulerAngles.z);
+			}
+			else
+			{
+				Door.transform.localEulerAngles = new Vector3(Door.transform.localEulerAngles.x, Door.transform.localEulerAngles.y, Rotation);
+			}
 			if (ID == 5)
 			{
 				Darkness.material.color = new Color(0f, 0f, 0f, Darkness.material.color.a + Time.deltaTime * 0.33333f);
@@ -357,6 +564,15 @@ public class StalkerPromptScript : MonoBehaviour
 					EventGlobals.OsanaConversation = true;
 					SceneManager.LoadScene("PhoneScene");
 				}
+			}
+		}
+		if (Slide)
+		{
+			SlidingObject.transform.position = Vector3.Lerp(SlidingObject.transform.position, SlideTarget.position, Time.deltaTime * 2f);
+			if (Vector3.Distance(SlidingObject.transform.position, SlideTarget.position) < 0.001f)
+			{
+				SlidingObject.transform.position = SlideTarget.position;
+				Slide = false;
 			}
 		}
 		if (FadeOut)

@@ -1139,6 +1139,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public BoxCollider[] StairColliders;
 
+	public BoxCollider[] StageColliders;
+
 	private void Awake()
 	{
 		if (!TakingPortraits && !GameGlobals.Eighties && DateGlobals.Week > WeekLimit)
@@ -6608,6 +6610,7 @@ public class StudentManagerScript : MonoBehaviour
 				gameObject.transform.eulerAngles = new Vector3(0f, JSON.Misc.HangoutRotZ[ID], 0f);
 			}
 			CustomHangouts.List[ID] = gameObject.transform;
+			AdjustStageDestination(CustomHangouts.List[ID]);
 			gameObject = UnityEngine.Object.Instantiate(EmptyObject, base.transform.position, Quaternion.identity);
 			gameObject.name = "CustomPatrol1 #" + ID;
 			gameObject.transform.parent = CustomPatrols.List[ID];
@@ -6621,6 +6624,7 @@ public class StudentManagerScript : MonoBehaviour
 				gameObject.transform.position = new Vector3(JSON.Misc.Patrol1PosX[ID] * 0.01f, SnapHeight(JSON.Misc.Patrol1PosY[ID] * 0.01f), JSON.Misc.Patrol1PosZ[ID] * 0.01f);
 				gameObject.transform.eulerAngles = new Vector3(0f, JSON.Misc.Patrol1RotZ[ID], 0f);
 			}
+			AdjustStageDestination(CustomPatrols.List[ID]);
 			gameObject = UnityEngine.Object.Instantiate(EmptyObject, base.transform.position, Quaternion.identity);
 			gameObject.name = "CustomPatrol2 #" + ID;
 			gameObject.transform.parent = CustomPatrols.List[ID];
@@ -6634,6 +6638,7 @@ public class StudentManagerScript : MonoBehaviour
 				gameObject.transform.position = new Vector3(JSON.Misc.Patrol2PosX[ID] * 0.01f, SnapHeight(JSON.Misc.Patrol2PosY[ID] * 0.01f), JSON.Misc.Patrol2PosZ[ID] * 0.01f);
 				gameObject.transform.eulerAngles = new Vector3(0f, JSON.Misc.Patrol2RotZ[ID], 0f);
 			}
+			AdjustStageDestination(CustomPatrols.List[ID]);
 		}
 	}
 
@@ -7380,6 +7385,25 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				Students[i].Blind = true;
 			}
+		}
+	}
+
+	public void DisableAllLowPolyStudents()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			if (Students[i] != null)
+			{
+				Students[i].LowPoly.Deactivate();
+			}
+		}
+	}
+
+	public void AdjustStageDestination(Transform Destination)
+	{
+		if (StageColliders[0].bounds.Contains(Destination.position) || StageColliders[1].bounds.Contains(Destination.position))
+		{
+			Destination.position = new Vector3(Destination.position.x, 1.375f, Destination.position.z);
 		}
 	}
 }

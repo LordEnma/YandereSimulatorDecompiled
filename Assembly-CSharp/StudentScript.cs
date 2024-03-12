@@ -398,6 +398,8 @@ public class StudentScript : MonoBehaviour
 
 	public Collider FaceCollider;
 
+	public Collider PoolStairs;
+
 	public Collider NEStairs;
 
 	public Collider NWStairs;
@@ -547,6 +549,8 @@ public class StudentScript : MonoBehaviour
 	public bool ReturningMisplacedWeapon;
 
 	public bool SenpaiWitnessingRivalDie;
+
+	public bool ReportingMurderToSenpai;
 
 	public bool IgnoringThingsOnGround;
 
@@ -2463,6 +2467,7 @@ public class StudentScript : MonoBehaviour
 							Shy = true;
 						}
 					}
+					WaveAnim = "f02_casualWave_04";
 				}
 				else if (StudentID == 6)
 				{
@@ -2491,11 +2496,13 @@ public class StudentScript : MonoBehaviour
 					{
 						Head.gameObject.GetComponent<SphereCollider>().radius = 0.3f;
 					}
+					WaveAnim = "f02_casualWave_04";
 				}
 				else if (StudentID == 8)
 				{
 					IdleAnim = BulliedIdleAnim;
 					WalkAnim = BulliedWalkAnim;
+					WaveAnim = "f02_casualWave_04";
 				}
 				else if (StudentID == 9)
 				{
@@ -3019,6 +3026,12 @@ public class StudentScript : MonoBehaviour
 							CharacterAnimation["f02_smile_00"].weight = 1f;
 						}
 					}
+					if (StudentID > 35 && StudentID < 41 && StudentManager.MissionMode)
+					{
+						ScheduleBlock obj33 = ScheduleBlocks[4];
+						obj33.destination = "LunchSpot";
+						obj33.action = "Eat";
+					}
 				}
 				if (StudentID == 66)
 				{
@@ -3250,9 +3263,9 @@ public class StudentScript : MonoBehaviour
 				if (StudentManager.Week == 1 && DateGlobals.Weekday == DayOfWeek.Friday)
 				{
 					Debug.Log("It's Friday, so the art club is changing their club activity to painting the cherry tree.");
-					ScheduleBlock obj33 = ScheduleBlocks[7];
-					obj33.destination = "Paint";
-					obj33.action = "Paint";
+					ScheduleBlock obj34 = ScheduleBlocks[7];
+					obj34.destination = "Paint";
+					obj34.action = "Paint";
 					VisionDistance += 5f;
 				}
 				ClubMemberID = StudentID - 40;
@@ -3529,6 +3542,7 @@ public class StudentScript : MonoBehaviour
 			}
 			if (Slave)
 			{
+				PoolStairs = GameObject.Find("PoolStairs").GetComponent<Collider>();
 				NEStairs = GameObject.Find("NEStairs").GetComponent<Collider>();
 				NWStairs = GameObject.Find("NWStairs").GetComponent<Collider>();
 				SEStairs = GameObject.Find("SEStairs").GetComponent<Collider>();
@@ -3711,6 +3725,10 @@ public class StudentScript : MonoBehaviour
 					SprayAnim = "f02_sprayCouncil" + Suffix + "_00";
 					BreakUpAnim = "f02_stopCouncil" + Suffix + "_00";
 					PickUpAnim = "f02_teacherPickUp_00";
+					if (StudentID == 89)
+					{
+						MyController.radius = 0.04f;
+					}
 				}
 				else
 				{
@@ -3749,15 +3767,15 @@ public class StudentScript : MonoBehaviour
 			{
 				if (StudentID < 86)
 				{
-					ScheduleBlock obj34 = ScheduleBlocks[6];
-					obj34.destination = "Meeting";
-					obj34.action = "Meeting";
+					ScheduleBlock obj35 = ScheduleBlocks[6];
+					obj35.destination = "Meeting";
+					obj35.action = "Meeting";
 				}
 				else
 				{
-					ScheduleBlock obj35 = ScheduleBlocks[5];
-					obj35.destination = "Meeting";
-					obj35.action = "Meeting";
+					ScheduleBlock obj36 = ScheduleBlocks[5];
+					obj36.destination = "Meeting";
+					obj36.action = "Meeting";
 				}
 				GetDestinations();
 			}
@@ -3869,6 +3887,10 @@ public class StudentScript : MonoBehaviour
 			{
 				CuddlePartnerID = 1;
 			}
+		}
+		if (Yandere.PauseScreen.MissionMode.YakuzaMode && Strength == 7)
+		{
+			Strength = 5;
 		}
 		CharacterAnimation.Sample();
 	}
@@ -9458,6 +9480,7 @@ public class StudentScript : MonoBehaviour
 											StudentManager.Students[LovestruckTarget].AwareOfCorpse = true;
 											StudentManager.Students[LovestruckTarget].Routine = false;
 											StudentManager.Students[LovestruckTarget].Blind = true;
+											ReportingMurderToSenpai = true;
 											Pathfinding.enabled = false;
 											if (WitnessedMurder && !SawMask)
 											{
@@ -10959,7 +10982,7 @@ public class StudentScript : MonoBehaviour
 								Pathfinding.canSearch = true;
 								Pathfinding.canMove = true;
 							}
-							if (!NEStairs.bounds.Contains(base.transform.position) && !NWStairs.bounds.Contains(base.transform.position) && !SEStairs.bounds.Contains(base.transform.position) && !SWStairs.bounds.Contains(base.transform.position) && !NEStairs.bounds.Contains(HuntTarget.transform.position) && !NWStairs.bounds.Contains(HuntTarget.transform.position) && !SEStairs.bounds.Contains(HuntTarget.transform.position) && !SWStairs.bounds.Contains(HuntTarget.transform.position))
+							if (!NEStairs.bounds.Contains(base.transform.position) && !NWStairs.bounds.Contains(base.transform.position) && !SEStairs.bounds.Contains(base.transform.position) && !SWStairs.bounds.Contains(base.transform.position) && !PoolStairs.bounds.Contains(base.transform.position) && !NEStairs.bounds.Contains(HuntTarget.transform.position) && !NWStairs.bounds.Contains(HuntTarget.transform.position) && !SEStairs.bounds.Contains(HuntTarget.transform.position) && !SWStairs.bounds.Contains(HuntTarget.transform.position) && !PoolStairs.bounds.Contains(HuntTarget.transform.position))
 							{
 								if (Pathfinding.canMove)
 								{
@@ -10980,7 +11003,14 @@ public class StudentScript : MonoBehaviour
 									}
 									else
 									{
-										CharacterAnimation.CrossFade("f02_brokenAttackFailA_00");
+										if (!Male)
+										{
+											CharacterAnimation.CrossFade("f02_brokenAttackFailA_00");
+										}
+										else
+										{
+											CharacterAnimation.CrossFade("brokenAttackFailA_00");
+										}
 										CharacterAnimation[WetAnim].weight = 0f;
 										Police.CorpseList[Police.Corpses] = Ragdoll;
 										Police.Corpses++;
@@ -11107,7 +11137,14 @@ public class StudentScript : MonoBehaviour
 									}
 									else
 									{
-										HuntTarget.CharacterAnimation.CrossFade("f02_brokenAttackFailB_00");
+										if (!HuntTarget.Male)
+										{
+											HuntTarget.CharacterAnimation.CrossFade("f02_brokenAttackFailB_00");
+										}
+										else
+										{
+											HuntTarget.CharacterAnimation.CrossFade("brokenAttackFailB_00");
+										}
 										HuntTarget.FightingSlave = true;
 										HuntTarget.Distracted = true;
 										HuntTarget.Blind = false;
@@ -11333,8 +11370,15 @@ public class StudentScript : MonoBehaviour
 									}
 									else if (MurderSuicidePhase == 9)
 									{
-										CharacterAnimation.CrossFade("f02_brokenAttackFailA_00");
-										if (CharacterAnimation["f02_brokenAttackFailA_00"].time >= CharacterAnimation["f02_brokenAttackFailA_00"].length)
+										if (!Male)
+										{
+											CharacterAnimation.CrossFade("f02_brokenAttackFailA_00");
+										}
+										else
+										{
+											CharacterAnimation.CrossFade("brokenAttackFailA_00");
+										}
+										if ((!Male && CharacterAnimation["f02_brokenAttackFailA_00"].time >= CharacterAnimation["f02_brokenAttackFailA_00"].length) || (Male && CharacterAnimation["brokenAttackFailA_00"].time >= CharacterAnimation["brokenAttackFailA_00"].length))
 										{
 											Debug.Log("A mind-broken slave just failed to kill her target.");
 											Yandere.NearMindSlave = false;
@@ -11354,7 +11398,7 @@ public class StudentScript : MonoBehaviour
 											}
 											Debug.Log("MurderTakingPlace *should* now be false...");
 										}
-										else if (CharacterAnimation["f02_brokenAttackFailA_00"].time >= 6.5f && HuntTarget.FightingSlave)
+										else if (((!Male && CharacterAnimation["f02_brokenAttackFailA_00"].time >= 6.5f) || (Male && CharacterAnimation["brokenAttackFailA_00"].time >= 6.5f)) && HuntTarget.FightingSlave)
 										{
 											HuntTarget.FightingSlave = false;
 											StudentManager.UpdateMe(HuntTarget.StudentID);
@@ -16929,7 +16973,7 @@ public class StudentScript : MonoBehaviour
 			BecomeRagdoll();
 			Dying = true;
 		}
-		if (CameraReacting && (StudentManager.NEStairs.bounds.Contains(base.transform.position) || StudentManager.NWStairs.bounds.Contains(base.transform.position) || StudentManager.SEStairs.bounds.Contains(base.transform.position) || StudentManager.SWStairs.bounds.Contains(base.transform.position)) && Spine != null)
+		if (CameraReacting && (StudentManager.NEStairs.bounds.Contains(base.transform.position) || StudentManager.NWStairs.bounds.Contains(base.transform.position) || StudentManager.SEStairs.bounds.Contains(base.transform.position) || StudentManager.SWStairs.bounds.Contains(base.transform.position) || StudentManager.PoolStairs.bounds.Contains(base.transform.position)) && Spine != null)
 		{
 			Spine.LookAt(Yandere.Spine[0]);
 			Head.LookAt(Yandere.Head);
@@ -17048,6 +17092,10 @@ public class StudentScript : MonoBehaviour
 	public void AttackReaction()
 	{
 		Debug.Log(Name + " is being attacked.");
+		if (ReportingMurderToSenpai)
+		{
+			StudentManager.Students[LovestruckTarget].Blind = false;
+		}
 		if (SeekingMedicine)
 		{
 			Debug.Log("Student was seeking medicine at the time of death.");
@@ -18887,7 +18935,14 @@ public class StudentScript : MonoBehaviour
 			else if (scheduleBlock.destination == "Miyuki")
 			{
 				ClubMemberID = StudentID - 35;
-				Destinations[ID] = StudentManager.MiyukiSpots[ClubMemberID].transform;
+				if (ClubMemberID > 0 && ClubMemberID < 6)
+				{
+					Destinations[ID] = StudentManager.MiyukiSpots[ClubMemberID].transform;
+				}
+				else
+				{
+					Destinations[ID] = StudentManager.MiyukiSpots[1].transform;
+				}
 			}
 			else if (scheduleBlock.destination == "Practice")
 			{
@@ -21255,6 +21310,7 @@ public class StudentScript : MonoBehaviour
 			NWStairs = GameObject.Find("NWStairs").GetComponent<Collider>();
 			SEStairs = GameObject.Find("SEStairs").GetComponent<Collider>();
 			SWStairs = GameObject.Find("SWStairs").GetComponent<Collider>();
+			PoolStairs = GameObject.Find("PoolStairs").GetComponent<Collider>();
 		}
 	}
 

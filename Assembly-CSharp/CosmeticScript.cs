@@ -531,6 +531,7 @@ public class CosmeticScript : MonoBehaviour
 		{
 			if (JSON == null)
 			{
+				Debug.Log("Whoa! JSON was null?!");
 				JSON = StudentManager.JSON;
 			}
 			Accessory = int.Parse(JSON.Students[StudentID].Accessory);

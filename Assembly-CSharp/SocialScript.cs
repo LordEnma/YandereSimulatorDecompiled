@@ -156,7 +156,14 @@ public class SocialScript : MonoBehaviour
 						Student.Talk.CalculateRepBonus();
 						Student.Reputation.PendingRep += 1f + (float)Student.RepBonus;
 						Student.PendingRep += 1f + (float)Student.RepBonus;
-						DialogueLabel.text = "Thanks, I appreciate that!";
+						if (!Student.StudentManager.Eighties && Student.ID == 51)
+						{
+							DialogueLabel.text = "Oh? Thanks.";
+						}
+						else
+						{
+							DialogueLabel.text = "Thanks, I appreciate that!";
+						}
 					}
 					else
 					{
@@ -328,7 +335,14 @@ public class SocialScript : MonoBehaviour
 				}
 				else if (Selected == 5)
 				{
-					DialogueLabel.text = "Oh, wow! Thanks! That's really generous of you!";
+					if (!Student.StudentManager.Eighties && Student.ID == 51)
+					{
+						DialogueLabel.text = "Such generosity.";
+					}
+					else
+					{
+						DialogueLabel.text = "Oh, wow! Thanks! That's really generous of you!";
+					}
 					Yandere.Inventory.Money -= 5f;
 					Yandere.Inventory.UpdateMoney();
 					Student.Talk.CalculateRepBonus();

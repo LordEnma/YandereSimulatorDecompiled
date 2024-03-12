@@ -118,6 +118,8 @@ public class EvilPhotographerScript : MonoBehaviour
 
 	public bool Distracted;
 
+	public int ShutUpID;
+
 	private void Start()
 	{
 		Subtitle.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -127,7 +129,12 @@ public class EvilPhotographerScript : MonoBehaviour
 	{
 		if (!GameOver)
 		{
-			if (Yandere.transform.position.y > base.transform.position.y - 1f && Yandere.transform.position.y < base.transform.position.y + 1f)
+			bool flag = false;
+			if (ShutUpID > 0 && ShutUpID == 1 && Yandere.Trespassing)
+			{
+				flag = true;
+			}
+			if (Yandere.transform.position.y > base.transform.position.y - 1f && Yandere.transform.position.y < base.transform.position.y + 1f && !flag)
 			{
 				if (Distracted)
 				{

@@ -200,10 +200,18 @@ public class PickpocketMinigameScript : MonoBehaviour
 		{
 			if (ID == 2)
 			{
-				Character.Bar.transform.parent.gameObject.GetComponent<UISprite>().alpha = 0f;
 				Character.Yandere.StealthInventory.GateKey = true;
-				Character.Prompt.ServedPurpose = true;
 			}
+			else if (ID == 7)
+			{
+				Character.Yandere.StealthInventory.DoorKey = true;
+			}
+			else if (ID == 10)
+			{
+				Character.Yandere.StealthInventory.BakeryKey = true;
+			}
+			Character.Bar.transform.parent.gameObject.GetComponent<UISprite>().alpha = 0f;
+			Character.Prompt.ServedPurpose = true;
 			Character.Yandere.CanMove = true;
 		}
 		Character = null;

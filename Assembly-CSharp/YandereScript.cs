@@ -9735,6 +9735,7 @@ public class YandereScript : MonoBehaviour
 
 	public void Decloak()
 	{
+		Debug.Log("We are now calling Decloak()");
 		PauseScreen.NewSettings.QualityManager.UpdateYandereChan();
 		SetUniform();
 		ChangeSchoolwear();
@@ -9761,6 +9762,7 @@ public class YandereScript : MonoBehaviour
 		}
 		UpdateHair();
 		PantyAttacher.newRenderer.enabled = !Invisible;
+		CanMove = true;
 	}
 
 	public void CheckForWall()
