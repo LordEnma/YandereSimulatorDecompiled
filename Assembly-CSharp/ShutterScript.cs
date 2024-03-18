@@ -217,13 +217,20 @@ public class ShutterScript : MonoBehaviour
 					PromptBar.Label[1].text = "Delete";
 					if (!Yandere.RivalPhone)
 					{
-						PromptBar.Label[2].text = "Send";
+						if (StudentManager.Eighties)
+						{
+							PromptBar.Label[2].text = "View Info";
+						}
+						else
+						{
+							PromptBar.Label[2].text = "Send";
+						}
 					}
 					else if (PantiesX.activeInHierarchy)
 					{
 						PromptBar.Label[0].text = "";
 					}
-					if (StudentManager.Eighties || StudentManager.KokonaTutorial)
+					if ((StudentManager.Eighties && InfoX.activeInHierarchy) || StudentManager.KokonaTutorial)
 					{
 						PromptBar.Label[2].text = "";
 					}

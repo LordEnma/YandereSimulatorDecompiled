@@ -189,7 +189,10 @@ public class PickpocketMinigameScript : MonoBehaviour
 			if (StealthMission)
 			{
 				AudioSource.PlayClipAtPoint(Character.GameOverSound, Camera.main.transform.position);
+				Character.Bar.transform.parent.gameObject.SetActive(value: false);
 				Character.TransitionToGameOver();
+				Character.GameOverText = "Hey! What the hell are you doing?! Hands off!";
+				Character.GameOverLine = Character.ShockedGameOverLine;
 			}
 			else
 			{

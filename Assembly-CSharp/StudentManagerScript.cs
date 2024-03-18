@@ -58,6 +58,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public DatingMinigameScript DatingMinigame;
 
+	public SecuritySystemScript SecuritySystem;
+
 	public SnappedYandereScript SnappedYandere;
 
 	public TextureManagerScript TextureManager;
@@ -141,6 +143,8 @@ public class StudentManagerScript : MonoBehaviour
 	public TrashCanScript WeaponBag;
 
 	public AlphabetScript Alphabet;
+
+	public BakeSaleScript BakeSale;
 
 	public FanCoverScript FanCover;
 
@@ -235,6 +239,8 @@ public class StudentManagerScript : MonoBehaviour
 	public Transform CurrentRivalCleaningSpots;
 
 	public Transform RainbowBoysHangoutParent;
+
+	public Transform DelinquentHangoutParent;
 
 	public Transform SukebanHangoutParent;
 
@@ -346,6 +352,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Collider[] Limbs;
 
+	public Transform[] BakeSalePlateParents;
+
 	public Transform[] TeacherGuardLocation;
 
 	public Transform[] CorpseGuardLocation;
@@ -358,6 +366,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform[] StrippingPositions;
 
+	public Transform[] BakeSalePrepSpots;
+
 	public Transform[] FemaleCoupleSpots;
 
 	public Transform[] GardeningPatrols;
@@ -367,6 +377,8 @@ public class StudentManagerScript : MonoBehaviour
 	public Transform[] PopularGirlSpots;
 
 	public Transform[] AltShockedSpots;
+
+	public Transform[] DelinquentSpots;
 
 	public Transform[] LockerPositions;
 
@@ -378,9 +390,13 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform[] BackstageSpots;
 
+	public Transform[] BakeSalePlates;
+
 	public Transform[] RichLunchSpots;
 
 	public Transform[] SpawnPositions;
+
+	public Transform[] BakeSaleSpots;
 
 	public Transform[] GraffitiSpots;
 
@@ -442,7 +458,11 @@ public class StudentManagerScript : MonoBehaviour
 
 	public GameObject[] ShrineCollectibles;
 
+	public GameObject[] BakeSaleFoodTrays;
+
 	public GameObject[] GarbageBagList;
+
+	public GameObject[] UsualFoodTrays;
 
 	public GameObject[] Graffiti;
 
@@ -625,8 +645,6 @@ public class StudentManagerScript : MonoBehaviour
 	public GameObject StudentKun;
 
 	public GameObject RivalChan;
-
-	public GameObject BakeSale;
 
 	public GameObject Canvases;
 
@@ -1164,6 +1182,10 @@ public class StudentManagerScript : MonoBehaviour
 		CustomMode = GameGlobals.CustomMode;
 		EmptyDemon = GameGlobals.EmptyDemon;
 		Week = DateGlobals.Week;
+		if (BakeSale != null)
+		{
+			BakeSale.gameObject.SetActive(value: false);
+		}
 		if (GameGlobals.Eighties)
 		{
 			Become1989();
@@ -1722,14 +1744,16 @@ public class StudentManagerScript : MonoBehaviour
 					{
 						if (!MissionMode && !GameGlobals.AlphabetMode)
 						{
-							if (Week == 1 && Students[RivalID] != null)
+							if (Week == 1)
 							{
-								Week1RoutineAdjustments();
+								if (Students[RivalID] != null)
+								{
+									Week1RoutineAdjustments();
+								}
 							}
-							if (Week == 2)
+							else if (Week == 2)
 							{
 								Week2RoutineAdjustments();
-								BakeSale.SetActive(value: true);
 							}
 						}
 					}
@@ -2038,6 +2062,28 @@ public class StudentManagerScript : MonoBehaviour
 							}
 						}
 					}
+					else if (Week > 1 && !Eighties && !RivalEliminated && !ReturnedFromSave && !CameFromLoad)
+					{
+						if (GameGlobals.AlphabetMode)
+						{
+							RepositionDelinquents();
+						}
+						for (int n = 76; n < 81; n++)
+						{
+							if (Students[n] != null)
+							{
+								Students[n].Indoors = true;
+								Students[n].Spawned = true;
+								Students[n].Paired = false;
+								if (Students[n].ShoeRemoval.Locker == null)
+								{
+									Students[n].ShoeRemoval.Start();
+								}
+								Students[n].ShoeRemoval.PutOnShoes();
+								Students[n].transform.position = DelinquentHangoutParent.position;
+							}
+						}
+					}
 					Physics.SyncTransforms();
 					if (Screen.width < 1280 || Screen.height < 720)
 					{
@@ -2082,21 +2128,21 @@ public class StudentManagerScript : MonoBehaviour
 					if (YandereLate && !LoadedSave)
 					{
 						Debug.Log("Yandere was late. Attempting to manually force delinquents and bullies to their seats.");
-						for (int n = 76; n < 81; n++)
+						for (int num = 76; num < 81; num++)
 						{
-							if (Students[n] != null)
+							if (Students[num] != null)
 							{
-								Students[n].transform.position = Hangouts.List[n].position + Vector3.up * 0.01f;
-								Students[n].transform.rotation = Hangouts.List[n].rotation;
+								Students[num].transform.position = Hangouts.List[num].position + Vector3.up * 0.01f;
+								Students[num].transform.rotation = Hangouts.List[num].rotation;
 							}
 						}
-						for (int n = 81; n < 86; n++)
+						for (int num = 81; num < 86; num++)
 						{
-							if (Students[n] != null)
+							if (Students[num] != null)
 							{
-								Students[n].transform.position = Students[n].Seat.position + Vector3.up * 0.01f;
-								Students[n].transform.rotation = Students[n].Seat.rotation;
-								Students[n].SpeechLines.Stop();
+								Students[num].transform.position = Students[num].Seat.position + Vector3.up * 0.01f;
+								Students[num].transform.rotation = Students[num].Seat.rotation;
+								Students[num].SpeechLines.Stop();
 							}
 						}
 					}
@@ -2122,8 +2168,8 @@ public class StudentManagerScript : MonoBehaviour
 					{
 						if (Randomize)
 						{
-							int num = UnityEngine.Random.Range(0, 2);
-							NewStudent = UnityEngine.Object.Instantiate((num == 0) ? PortraitChan : PortraitKun, Vector3.zero, Quaternion.identity);
+							int num2 = UnityEngine.Random.Range(0, 2);
+							NewStudent = UnityEngine.Object.Instantiate((num2 == 0) ? PortraitChan : PortraitKun, Vector3.zero, Quaternion.identity);
 						}
 						else
 						{
@@ -2478,11 +2524,11 @@ public class StudentManagerScript : MonoBehaviour
 				if (Students[RivalID] != null && Students[RivalID].transform.position.y > 0.1f)
 				{
 					Debug.Log("Repositioning all students who were on Floor 1.");
-					for (int num2 = 1; num2 < 7; num2++)
+					for (int num3 = 1; num3 < 7; num3++)
 					{
-						if (Week != 4 || DateGlobals.Weekday != DayOfWeek.Friday || Clock.Period != 1 || num2 >= 6)
+						if (Week != 4 || DateGlobals.Weekday != DayOfWeek.Friday || Clock.Period != 1 || num3 >= 6)
 						{
-							StudentScript studentScript12 = AvailableWitnessList[num2];
+							StudentScript studentScript12 = AvailableWitnessList[num3];
 							if (studentScript12 != null)
 							{
 								studentScript12.WitnessBonus = 24;
@@ -2502,9 +2548,9 @@ public class StudentManagerScript : MonoBehaviour
 				if (Students[RivalID] != null && Students[RivalID].transform.position.y > 4.1f)
 				{
 					Debug.Log("Repositioning all students who were on Floor 2.");
-					for (int num3 = 7; num3 < 12; num3++)
+					for (int num4 = 7; num4 < 12; num4++)
 					{
-						StudentScript studentScript13 = AvailableWitnessList[num3];
+						StudentScript studentScript13 = AvailableWitnessList[num4];
 						if (studentScript13 != null)
 						{
 							studentScript13.WitnessBonus = 24;
@@ -2531,9 +2577,9 @@ public class StudentManagerScript : MonoBehaviour
 		if (SwitchSpotsAfter430 && Clock.HourTime > 16.5f)
 		{
 			AfterClassWitnessSpots = Week5ConfessionWitnessSpots;
-			for (int num4 = 1; num4 < AfterClassWitnessSpots.Length; num4++)
+			for (int num5 = 1; num5 < AfterClassWitnessSpots.Length; num5++)
 			{
-				StudentScript studentScript14 = AvailableWitnessList[num4];
+				StudentScript studentScript14 = AvailableWitnessList[num5];
 				if (studentScript14 != null)
 				{
 					studentScript14.GetDestinations();
@@ -2548,9 +2594,9 @@ public class StudentManagerScript : MonoBehaviour
 		if (RepositionSomeStudentsAfterRivalRises && Students[RivalID] != null && Students[RivalID].transform.position.y > 0.1f)
 		{
 			StudentScript studentScript15 = null;
-			for (int num5 = 1; num5 < StudentsToReposition + 1; num5++)
+			for (int num6 = 1; num6 < StudentsToReposition + 1; num6++)
 			{
-				studentScript15 = AvailableWitnessList[num5];
+				studentScript15 = AvailableWitnessList[num6];
 				if (studentScript15 != null)
 				{
 					studentScript15.WitnessBonus = WitnessBonus;
@@ -2576,10 +2622,10 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				Debug.Log("We're supposed to reposition now!");
 				StudentScript studentScript16 = null;
-				int num6 = 28;
-				for (int num7 = 28; num7 < num6 + StudentsToReposition + 1; num7++)
+				int num7 = 28;
+				for (int num8 = 28; num8 < num7 + StudentsToReposition + 1; num8++)
 				{
-					studentScript16 = AvailableWitnessList[num7];
+					studentScript16 = AvailableWitnessList[num8];
 					if (studentScript16 != null)
 					{
 						studentScript16.AfterWitnessBonus = WitnessBonus;
@@ -2597,9 +2643,9 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			WitnessSpots = Week9WitnessSpots;
 			StudentScript studentScript17 = null;
-			for (int num8 = 1; num8 < AvailableWitnessList.Length; num8++)
+			for (int num9 = 1; num9 < AvailableWitnessList.Length; num9++)
 			{
-				studentScript17 = AvailableWitnessList[num8];
+				studentScript17 = AvailableWitnessList[num9];
 				if (studentScript17 != null)
 				{
 					studentScript17.WitnessBonus = 0;
@@ -2623,10 +2669,10 @@ public class StudentManagerScript : MonoBehaviour
 				Weeks[9].StudentAvailability[88] = true;
 				Weeks[9].StudentAvailability[89] = true;
 				IdentifyAvailableWitnesses();
-				for (int num9 = 86; num9 < 90; num9++)
+				for (int num10 = 86; num10 < 90; num10++)
 				{
-					Students[num9].CurrentDestination = Students[num9].Destinations[Students[num9].Phase];
-					Students[num9].Pathfinding.target = Students[num9].Destinations[Students[num9].Phase];
+					Students[num10].CurrentDestination = Students[num10].Destinations[Students[num10].Phase];
+					Students[num10].Pathfinding.target = Students[num10].Destinations[Students[num10].Phase];
 				}
 				RepositionAfterPhotoshootLater = false;
 			}
@@ -2882,7 +2928,7 @@ public class StudentManagerScript : MonoBehaviour
 							{
 								studentScript.Prompt.HideButton[0] = true;
 								studentScript.Prompt.HideButton[2] = true;
-								if (Yandere.PickUp != null && !studentScript.Following)
+								if (Yandere.PickUp != null && !studentScript.Following && studentScript.StudentID != 12)
 								{
 									if (Yandere.PickUp.Food > 0)
 									{
@@ -3699,6 +3745,7 @@ public class StudentManagerScript : MonoBehaviour
 			Students[1].gameObject.SetActive(value: false);
 		}
 		Yandere.SetAnimationLayers();
+		UpdateStudents();
 	}
 
 	public void StopFleeing()
@@ -5137,9 +5184,13 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		FoodPlate.UpdateFood();
 		Yandere.Class.Poison.GetComponent<PoisonScript>().Start();
-		Debug.Log("The entire loading process has been completed.");
 		Week = DateGlobals.Week;
+		if (SecuritySystem.AlreadyShutDown)
+		{
+			SecuritySystem.ShutDown();
+		}
 		CameFromLoad = true;
+		Debug.Log("The entire loading process has been completed.");
 		Debug.Log("End of StudentManager Load() believes that GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID);
 		Debug.Log("End of StudentManager Load() believes that RivalEliminated is: " + RivalEliminated);
 		Debug.Log("End of StudentManager Load() believes that SchemeGlobals.GetSchemeStage(6) is: " + SchemeGlobals.GetSchemeStage(6));
@@ -5721,6 +5772,16 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
+	public void RepositionDelinquents()
+	{
+		if (Week == 0)
+		{
+			Week = DateGlobals.Week;
+		}
+		DelinquentHangoutParent.position = DelinquentSpots[Week].position;
+		DelinquentHangoutParent.eulerAngles = DelinquentSpots[Week].eulerAngles;
+	}
+
 	public void UpdateLunchtimeStudents()
 	{
 		Debug.Log("It's lunchtime during Osana's week, so certain students are having their routines adjusted.");
@@ -5780,6 +5841,9 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void Week2RoutineAdjustments()
 	{
+		BakeSale.gameObject.SetActive(value: true);
+		Podiums.List[0].transform.position = Podiums.List[1].transform.position;
+		Podiums.List[0].transform.eulerAngles = Podiums.List[1].transform.eulerAngles;
 		if (Students[11] != null)
 		{
 			Hangouts.List[11] = Week2Hangouts.List[11];
@@ -5796,7 +5860,7 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			scheduleBlock = Students[21].ScheduleBlocks[2];
 			scheduleBlock.destination = "Week2Hangout";
-			scheduleBlock.action = "Stand";
+			scheduleBlock.action = "Socialize";
 			scheduleBlock = Students[21].ScheduleBlocks[4];
 			scheduleBlock.destination = "Week2Hangout";
 			scheduleBlock.action = "Stand";
@@ -5839,11 +5903,36 @@ public class StudentManagerScript : MonoBehaviour
 		UpdateWeek2Hangout(58);
 		UpdateWeek2Hangout(59);
 		UpdateWeek2Hangout(60);
+		UpdateWeek2Hangout(76);
+		UpdateWeek2Hangout(77);
+		UpdateWeek2Hangout(78);
+		UpdateWeek2Hangout(79);
+		UpdateWeek2Hangout(80);
 		UpdateWeek2Hangout(81);
 		UpdateWeek2Hangout(82);
 		UpdateWeek2Hangout(83);
 		UpdateWeek2Hangout(84);
 		UpdateWeek2Hangout(85);
+		Students[12].MyPlate = BakeSalePlates[0];
+		for (int i = 21; i < 26; i++)
+		{
+			if (Students[i] != null)
+			{
+				Students[i].MyPlate = BakeSalePlates[Students[i].ClubMemberID];
+			}
+		}
+		for (int i = 1; i < 8; i++)
+		{
+			UsualFoodTrays[i].SetActive(value: false);
+			BakeSaleFoodTrays[i].SetActive(value: true);
+		}
+		for (int i = 0; i < Plates.Length; i++)
+		{
+			if (Plates[i] != null)
+			{
+				Plates[i].gameObject.SetActive(value: false);
+			}
+		}
 	}
 
 	public void UpdateWeek2Hangout(int StudentID)
@@ -6441,6 +6530,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void TakeOutTheTrash()
 	{
+		Debug.Log("Firing the TakeOutTheTrash() function.");
 		int i = 2;
 		for (int j = 0; j < GarbageBags; j++)
 		{
@@ -6915,7 +7005,7 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			CanSelfReport = false;
 		}
-		if (CanSelfReport)
+		if (CanSelfReport && !Yandere.Armed)
 		{
 			student.Prompt.HideButton[0] = false;
 			student.Prompt.Label[0].text = "     Report Blood/Corpse";
@@ -7038,6 +7128,14 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				SetTopicLearnedByStudent(j, i, ConversationGlobals.GetTopicLearnedByStudent(j, i));
 			}
+		}
+	}
+
+	public void LoadTopicsLearnedForOneStudent(int StudentID)
+	{
+		for (int i = 1; i < 26; i++)
+		{
+			SetTopicLearnedByStudent(i, StudentID, ConversationGlobals.GetTopicLearnedByStudent(i, StudentID));
 		}
 	}
 

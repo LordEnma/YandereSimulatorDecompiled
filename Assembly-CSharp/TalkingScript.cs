@@ -527,6 +527,8 @@ public class TalkingScript : MonoBehaviour
 					S.DialogueWheel.TaskWindow.TaskComplete = true;
 					S.StudentManager.TaskManager.TaskStatus[S.StudentID] = 3;
 					S.Interaction = StudentInteractionType.Idle;
+					S.DialogueWheel.Social.Student = S;
+					S.DialogueWheel.Social.StudentID = S.StudentID;
 					S.DialogueWheel.Social.StudentFriendships[S.StudentID] += 50;
 					S.DialogueWheel.Social.CheckFriendStatus();
 					if (S.Club != ClubType.Delinquent)
@@ -594,8 +596,9 @@ public class TalkingScript : MonoBehaviour
 							flag4 = true;
 						}
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag5) || (S.StudentID == S.StudentManager.RivalID && flag4) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.Schoolwear == 2)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag5) || (S.StudentID == S.StudentManager.RivalID && flag4) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.CurrentDestination == S.Seat || S.Schoolwear == 2 || !S.Indoors)
 					{
+						Debug.Log("Current Clock.HourTime is: " + S.Clock.HourTime);
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						NegativeResponse = true;
 						if (S.StudentID == S.StudentManager.RivalID)
@@ -628,6 +631,32 @@ public class TalkingScript : MonoBehaviour
 								S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 								S.TalkTimer = 5f;
 							}
+							else if (S.Schoolwear == 2)
+							{
+								S.Subtitle.CustomText = "Uh...I'm wearing a swimsuit right now. I can't really do that for you. Maybe later...?";
+								S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
+								S.TalkTimer = 7.5f;
+								Refuse = true;
+							}
+							else if (S.CurrentDestination == S.Seat)
+							{
+								S.Subtitle.CustomText = "Can it wait? I need to do something real quick.";
+								S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+								S.TalkTimer = 5f;
+							}
+							else if (!S.Indoors)
+							{
+								S.Subtitle.CustomText = "Sorry, it's a bit early in the day for that. At least wait until I've changed my shoes.";
+								S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+								S.TalkTimer = 5f;
+							}
+							else
+							{
+								Debug.Log("We got to THIS part of the code?!");
+								S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 0, 5f);
+								S.TalkTimer = 5f;
+								Refuse = true;
+							}
 						}
 						else if (S.Schoolwear == 2)
 						{
@@ -642,6 +671,12 @@ public class TalkingScript : MonoBehaviour
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
 							S.TalkTimer = 5f;
 							Refuse = true;
+						}
+						else if (!S.Indoors)
+						{
+							S.Subtitle.CustomText = "Sorry, it's a bit early in the day for that. At least wait until I've changed my shoes.";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							S.TalkTimer = 5f;
 						}
 						else
 						{
@@ -731,7 +766,7 @@ public class TalkingScript : MonoBehaviour
 					{
 						flag6 = true;
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag7))
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag7) || S.CurrentDestination == S.Seat || !S.Indoors)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						Refuse = true;
@@ -757,6 +792,18 @@ public class TalkingScript : MonoBehaviour
 						{
 							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
 							S.TalkTimer = 13f;
+						}
+						else if (S.CurrentDestination == S.Seat)
+						{
+							S.Subtitle.CustomText = "Can it wait? I need to do something real quick.";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							S.TalkTimer = 5f;
+						}
+						else if (!S.Indoors)
+						{
+							S.Subtitle.CustomText = "Sorry, it's a bit early in the day for that. At least wait until I've changed my shoes.";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							S.TalkTimer = 5f;
 						}
 						else
 						{
@@ -812,7 +859,7 @@ public class TalkingScript : MonoBehaviour
 					{
 						flag8 = true;
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag8) || (S.StudentID == S.StudentManager.RivalID && flag9))
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag8) || (S.StudentID == S.StudentManager.RivalID && flag9) || S.CurrentDestination == S.Seat || !S.Indoors)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						Refuse = true;
@@ -838,6 +885,18 @@ public class TalkingScript : MonoBehaviour
 						{
 							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
 							S.TalkTimer = 13f;
+						}
+						else if (S.CurrentDestination == S.Seat)
+						{
+							S.Subtitle.CustomText = "Can it wait? I need to do something real quick.";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							S.TalkTimer = 5f;
+						}
+						else if (!S.Indoors)
+						{
+							S.Subtitle.CustomText = "Sorry, it's a bit early in the day for that. At least wait until I've changed my shoes.";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							S.TalkTimer = 5f;
 						}
 						else
 						{

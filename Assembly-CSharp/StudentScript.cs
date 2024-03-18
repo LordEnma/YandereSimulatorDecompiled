@@ -1228,6 +1228,8 @@ public class StudentScript : MonoBehaviour
 
 	public int CuriosityPhase;
 
+	public int BakeSalePhase;
+
 	public int DramaticPhase;
 
 	public int GraffitiPhase;
@@ -1309,6 +1311,8 @@ public class StudentScript : MonoBehaviour
 	public int MurderReaction;
 
 	public int PhaseFromSave;
+
+	public int WarningsGiven;
 
 	public int CleaningRole;
 
@@ -1711,6 +1715,8 @@ public class StudentScript : MonoBehaviour
 	public ClubType OriginalClub;
 
 	public ClubType Club;
+
+	public Vector3 OriginalBloodPoolLocation;
 
 	public Vector3 OriginalPlatePosition;
 
@@ -2372,15 +2378,7 @@ public class StudentScript : MonoBehaviour
 					BullyID = StudentID - 80;
 				}
 			}
-			SetSplashes(Bool: false);
-			if (!Male)
-			{
-				DisableFemaleProps();
-			}
-			else
-			{
-				DisableMaleProps();
-			}
+			DisableProps();
 			if (Rival)
 			{
 				MapMarker.gameObject.SetActive(value: true);
@@ -2639,9 +2637,14 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (StudentID == 12)
 				{
+					SmartPhone.GetComponent<Renderer>().material.mainTexture = Cosmetic.SmartphoneTextures[StudentID];
+					if (!ClubGlobals.GetClubClosed(ClubType.Cooking))
+					{
+						Armband.SetActive(value: true);
+						ClubLeader = true;
+					}
 					IdleAnim = "f02_idleGirly_00";
 					WalkAnim = "f02_walkGirly_00";
-					Distracted = true;
 					CanTalk = false;
 				}
 				else if (StudentID == 24 && StudentID == 25)
@@ -2862,6 +2865,19 @@ public class StudentScript : MonoBehaviour
 					obj30.destination = "Exit";
 					obj30.action = "Exit";
 				}
+				if (Rival)
+				{
+					if (StudentID > 11 && StudentID < 21)
+					{
+						ScheduleBlock scheduleBlock = ScheduleBlocks[2];
+						OriginalDestination = scheduleBlock.destination;
+						OriginalAction = scheduleBlock.action;
+						scheduleBlock.destination = "Seat";
+						scheduleBlock.action = "PlaceBag";
+						BookBag.SetActive(value: true);
+					}
+					LovestruckTarget = 1;
+				}
 			}
 			else
 			{
@@ -2880,11 +2896,11 @@ public class StudentScript : MonoBehaviour
 				{
 					if (StudentID > 10 && StudentID < 21)
 					{
-						ScheduleBlock scheduleBlock = ScheduleBlocks[2];
-						OriginalDestination = scheduleBlock.destination;
-						OriginalAction = scheduleBlock.action;
-						scheduleBlock.destination = "Seat";
-						scheduleBlock.action = "PlaceBag";
+						ScheduleBlock scheduleBlock2 = ScheduleBlocks[2];
+						OriginalDestination = scheduleBlock2.destination;
+						OriginalAction = scheduleBlock2.action;
+						scheduleBlock2.destination = "Seat";
+						scheduleBlock2.action = "PlaceBag";
 					}
 					BookBag.SetActive(value: true);
 					LovestruckTarget = 1;
@@ -3032,6 +3048,10 @@ public class StudentScript : MonoBehaviour
 						obj33.destination = "LunchSpot";
 						obj33.action = "Eat";
 					}
+				}
+				if (StudentID == 71 && Club == ClubType.Gardening && !PickPocket.gameObject.transform.parent.gameObject.activeInHierarchy)
+				{
+					PickPocket.gameObject.transform.parent.gameObject.SetActive(value: true);
 				}
 				if (StudentID == 66)
 				{
@@ -3203,9 +3223,16 @@ public class StudentScript : MonoBehaviour
 			{
 				SleuthID = (StudentID - 21) * 20;
 				ClubAnim = PrepareFoodAnim;
-				if (StudentID > 12)
+				if (StudentID > 11)
 				{
-					ClubMemberID = StudentID - 20;
+					if (StudentID == 12)
+					{
+						ClubMemberID = 0;
+					}
+					else
+					{
+						ClubMemberID = StudentID - 20;
+					}
 					MyPlate = StudentManager.Plates[ClubMemberID];
 					OriginalPlatePosition = MyPlate.position;
 					OriginalPlateRotation = MyPlate.rotation;
@@ -3648,6 +3675,11 @@ public class StudentScript : MonoBehaviour
 			{
 				Armband.SetActive(value: true);
 				ClubLeader = true;
+				if (StudentID == 21 && StudentManager.Students[12] != null)
+				{
+					Armband.SetActive(value: false);
+					ClubLeader = false;
+				}
 				if (StudentManager.EmptyDemon)
 				{
 					IdleAnim = OriginalIdleAnim;
@@ -3763,7 +3795,7 @@ public class StudentScript : MonoBehaviour
 				ClubMemberID = StudentID - 85;
 				VisionDistance *= 2f;
 			}
-			if (!StudentManager.NoClubMeeting && Armband.activeInHierarchy && Clock.Weekday == 5)
+			if (!StudentManager.NoClubMeeting && Armband.activeInHierarchy && Clock.Weekday == 5 && !Rival)
 			{
 				if (StudentID < 86)
 				{
@@ -5419,9 +5451,18 @@ public class StudentScript : MonoBehaviour
 							}
 							else if (Actions[Phase] == StudentActionType.Socializing || (Actions[Phase] == StudentActionType.Follow && FollowTarget != null && FollowTarget.Actions[Phase] != StudentActionType.Clean && FollowTargetDistance < 1f && !FollowTarget.Alone && !FollowTarget.InEvent && !FollowTarget.Talking && !FollowTarget.Meeting && !FollowTarget.Confessing && FollowTarget.DistanceToDestination < 1f))
 							{
+								bool flag3 = false;
 								if (FollowTarget != null)
 								{
-									if (FollowTarget.Indoors && FollowTarget.CurrentAction != StudentActionType.SearchPatrol)
+									if (!FollowTarget.Alive && FollowTarget.Ragdoll.Concealed)
+									{
+										if (base.transform.position.y > -1f)
+										{
+											RaibaruCannotFindOsana();
+											flag3 = true;
+										}
+									}
+									else if (FollowTarget.Indoors && FollowTarget.CurrentAction != StudentActionType.SearchPatrol)
 									{
 										CurrentDestination = FollowTarget.FollowTargetDestination;
 										Pathfinding.target = FollowTarget.FollowTargetDestination;
@@ -5507,9 +5548,12 @@ public class StudentScript : MonoBehaviour
 										{
 											if (!Phoneless)
 											{
-												CharacterAnimation.CrossFade("f02_standTexting_00");
-												SmartPhone.SetActive(value: true);
-												SpeechLines.Stop();
+												if (!flag3)
+												{
+													CharacterAnimation.CrossFade("f02_standTexting_00");
+													SmartPhone.SetActive(value: true);
+													SpeechLines.Stop();
+												}
 											}
 											else
 											{
@@ -7576,9 +7620,16 @@ public class StudentScript : MonoBehaviour
 							}
 							else if (Actions[Phase] == StudentActionType.Follow)
 							{
+								Debug.Log("Raibaru is currently following Osana, and believes that she has reached her destination.");
 								if (FollowTarget != null)
 								{
-									if (FollowTarget.Routine && !FollowTarget.InEvent && FollowTarget.CurrentAction == StudentActionType.Clean && FollowTarget.DistanceToDestination < 1f)
+									if (StudentManager.LoveManager.RivalWaiting && FollowTarget.transform.position.x > 40f && FollowTarget.DistanceToDestination < 1f)
+									{
+										CurrentDestination = StudentManager.LoveManager.FriendWaitSpot;
+										Pathfinding.target = StudentManager.LoveManager.FriendWaitSpot;
+										CharacterAnimation.CrossFade(IdleAnim);
+									}
+									else if (FollowTarget.Routine && !FollowTarget.InEvent && FollowTarget.CurrentAction == StudentActionType.Clean && FollowTarget.DistanceToDestination < 1f)
 									{
 										FollowTarget.FollowTargetDestination.localPosition = new Vector3(-1f, 0f, -1f);
 										CurrentDestination = FollowTarget.FollowTargetDestination;
@@ -7637,12 +7688,6 @@ public class StudentScript : MonoBehaviour
 										CurrentDestination = Destinations[Phase];
 										Pathfinding.target = Destinations[Phase];
 									}
-									else if (StudentManager.LoveManager.RivalWaiting && FollowTarget.transform.position.x > 40f && FollowTarget.DistanceToDestination < 1f)
-									{
-										CurrentDestination = StudentManager.LoveManager.FriendWaitSpot;
-										Pathfinding.target = StudentManager.LoveManager.FriendWaitSpot;
-										CharacterAnimation.CrossFade(IdleAnim);
-									}
 									else if (FollowTarget.ConfessPhase == 5)
 									{
 										Debug.Log("Raibaru just changed her action to Sketch and her destination to Paint.");
@@ -7658,6 +7703,7 @@ public class StudentScript : MonoBehaviour
 									}
 									else
 									{
+										Debug.Log("Raibaru is executing this code here.");
 										CharacterAnimation.CrossFade(IdleAnim);
 										SpeechLines.Stop();
 										if (SlideIn)
@@ -8562,6 +8608,48 @@ public class StudentScript : MonoBehaviour
 									PatrolTimer = 0f;
 								}
 							}
+							else if (Actions[Phase] == StudentActionType.BakeSale)
+							{
+								if (BakeSalePhase == 0)
+								{
+									CharacterAnimation.CrossFade(PrepareFoodAnim);
+									ClubTimer += Time.deltaTime;
+									if (ClubTimer > 60f)
+									{
+										MyPlate.parent = RightHand;
+										MyPlate.localPosition = new Vector3(0.02f, -0.02f, -0.15f);
+										MyPlate.localEulerAngles = new Vector3(-5f, -90f, 172.5f);
+										IdleAnim = PlateIdleAnim;
+										WalkAnim = PlateWalkAnim;
+										LeanAnim = PlateIdleAnim;
+										CurrentDestination = StudentManager.BakeSaleSpots[StudentID];
+										Pathfinding.target = StudentManager.BakeSaleSpots[StudentID];
+										DistanceToDestination = 100f;
+										BakeSalePhase++;
+										CanTalk = false;
+										ClubTimer = 0f;
+									}
+								}
+								else if (BakeSalePhase == 1)
+								{
+									if (MyPlate != null && MyPlate.parent == RightHand)
+									{
+										MyPlate.parent = null;
+										MyPlate.position = StudentManager.BakeSalePlateParents[StudentID].position;
+										MyPlate.rotation = StudentManager.BakeSalePlateParents[StudentID].rotation;
+										IdleAnim = OriginalIdleAnim;
+										WalkAnim = OriginalWalkAnim;
+										LeanAnim = OriginalLeanAnim;
+										StudentManager.BakeSale.enabled = true;
+										BakeSalePhase++;
+										CanTalk = true;
+									}
+								}
+								else if (BakeSalePhase == 2)
+								{
+									CharacterAnimation.CrossFade(IdleAnim);
+								}
+							}
 						}
 						else
 						{
@@ -9219,18 +9307,18 @@ public class StudentScript : MonoBehaviour
 										{
 											if (!Yandere.Struggling && !Yandere.StruggleBar.gameObject.activeInHierarchy && Yandere.RPGCamera.enabled)
 											{
-												bool flag3 = false;
+												bool flag4 = false;
 												if (!StudentManager.ChallengeManager.InvincibleRaibaru && Yandere.PhysicalGrade + Yandere.Class.PhysicalBonus > 0)
 												{
 													Debug.Log("Player meets the criteria to have a physical struggle with Raibaru.");
-													flag3 = true;
+													flag4 = true;
 												}
 												if (Strength == 7)
 												{
 													Debug.Log(Name + " is calling Spray() from this place in the code.");
 													Spray();
 												}
-												else if (Strength == 9 && !flag3)
+												else if (Strength == 9 && !flag4)
 												{
 													Debug.Log(Name + " is calling InvincibleTakedown() from this place in the code.");
 													InvincibleTakedown();
@@ -9289,17 +9377,19 @@ public class StudentScript : MonoBehaviour
 											Pathfinding.canMove = false;
 											TargetDistance = 1f;
 											Yandere.CharacterAnimation.CrossFade("f02_unmasking_00");
-											CharacterAnimation.CrossFade("unmasking_00");
+											string text8 = "";
+											text8 = ((!Male) ? "f02_unmasking_01" : "unmasking_00");
+											CharacterAnimation.CrossFade(text8);
 											Yandere.CanMove = false;
 											targetRotation = Quaternion.LookRotation(Yandere.transform.position - base.transform.position);
 											base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
 											MoveTowardsTarget(Yandere.transform.position + Yandere.transform.forward * 1f);
-											if (CharacterAnimation["unmasking_00"].time == 0f)
+											if (CharacterAnimation[text8].time == 0f)
 											{
 												Yandere.ShoulderCamera.YandereNo();
 												Yandere.Jukebox.GameOver();
 											}
-											if (CharacterAnimation["unmasking_00"].time >= 0.66666f && Yandere.Mask.transform.parent != LeftHand)
+											if (CharacterAnimation[text8].time >= 0.66666f && Yandere.Mask.transform.parent != LeftHand)
 											{
 												Yandere.CanMove = true;
 												Yandere.EmptyHands();
@@ -9309,7 +9399,7 @@ public class StudentScript : MonoBehaviour
 												Yandere.Mask.transform.localEulerAngles = new Vector3(-90f, 90f, 0f);
 												Yandere.Mask.transform.localScale = new Vector3(1f, 1f, 1f);
 											}
-											if (CharacterAnimation["unmasking_00"].time >= CharacterAnimation["unmasking_00"].length)
+											if (CharacterAnimation[text8].time >= CharacterAnimation[text8].length)
 											{
 												Yandere.Unmasked = true;
 												Yandere.ShoulderCamera.GameOver();
@@ -9586,14 +9676,14 @@ public class StudentScript : MonoBehaviour
 								{
 									if (!Yandere.Dumping && !Yandere.Attacking && !Yandere.Struggling)
 									{
-										if (Strength > 0)
+										if (Strength >= 9)
 										{
 											Debug.Log("A protective student is calling InvincibleTakedown() now.");
 											InvincibleTakedown();
 										}
 										else
 										{
-											Debug.Log("This student's Strength is 0, so they should be insta-killed when trying to apprehend the player.");
+											Debug.Log("This student's Strength is less than 9, so they should enter a struggle when trying to apprehend the player.");
 											CheckForKnifeInInventory();
 											BeginStruggle();
 										}
@@ -9755,20 +9845,20 @@ public class StudentScript : MonoBehaviour
 												}
 												PromptScript component2 = BloodPool.GetComponent<PromptScript>();
 												WeaponScript component3 = BloodPool.GetComponent<WeaponScript>();
-												bool flag4 = false;
+												bool flag5 = false;
 												if (component3 != null)
 												{
 													if (component3.BroughtFromHome)
 													{
 														Debug.Log("This weapon was brought from home!");
-														flag4 = true;
+														flag5 = true;
 													}
 													else
 													{
 														Debug.Log("This weapon was not brought from home.");
 													}
 												}
-												if (component2 != null && !flag4)
+												if (component2 != null && !flag5)
 												{
 													Debug.Log("Disabling an object's prompt.");
 													component2.Hide();
@@ -10968,7 +11058,7 @@ public class StudentScript : MonoBehaviour
 								Suicide = true;
 							}
 						}
-						else if (HuntTarget.ClubActivityPhase >= 16 || HuntTarget.Shoving || HuntTarget.ChangingShoes || HuntTarget.Chasing || Yandere.Pursuer == HuntTarget || HuntTarget.SeekingMedicine || (StudentManager.CombatMinigame.Delinquent == HuntTarget && StudentManager.CombatMinigame.Path == 5) || !HuntTarget.enabled)
+						else if (HuntTarget.ClubActivityPhase >= 16 || HuntTarget.Shoving || HuntTarget.ChangingShoes || HuntTarget.Chasing || Yandere.Pursuer == HuntTarget || HuntTarget.SeekingMedicine || (StudentManager.CombatMinigame.Delinquent == HuntTarget && StudentManager.CombatMinigame.Path == 5) || !HuntTarget.enabled || HuntTarget.BreakingUpFight)
 						{
 							Debug.Log("The mind-broken slave has to wait for something...");
 							CharacterAnimation.CrossFade(IdleAnim);
@@ -10987,6 +11077,10 @@ public class StudentScript : MonoBehaviour
 								if (Pathfinding.canMove)
 								{
 									Debug.Log("Slave is attacking target!");
+									if (HuntTarget.InvestigatingBloodPool)
+									{
+										HuntTarget.ForgetAboutBloodPool();
+									}
 									if (HuntTarget.Strength == 9)
 									{
 										Debug.Log("Target is Invincible! Attack should fail!");
@@ -11071,15 +11165,15 @@ public class StudentScript : MonoBehaviour
 									{
 										HuntTarget.DropMisplacedWeapon();
 									}
-									bool flag5 = false;
+									bool flag6 = false;
 									foreach (Transform item in HuntTarget.ItemParent)
 									{
 										if (item.gameObject.activeSelf)
 										{
-											flag5 = true;
+											flag6 = true;
 										}
 									}
-									if (flag5)
+									if (flag6)
 									{
 										HuntTarget.EmptyHands();
 									}
@@ -12218,12 +12312,12 @@ public class StudentScript : MonoBehaviour
 					if (SnackTimer > 10f)
 					{
 						UnityEngine.Object.Destroy(BagOfChips);
-						bool flag6 = false;
+						bool flag7 = false;
 						if (!StudentManager.Eighties && !StudentManager.MissionMode && StudentID == 11)
 						{
-							flag6 = true;
+							flag7 = true;
 						}
-						if (!flag6)
+						if (!flag7)
 						{
 							StudentManager.GetNearestFountain(this);
 							if (Persona == PersonaType.Protective)
@@ -12343,29 +12437,29 @@ public class StudentScript : MonoBehaviour
 						Distracted = true;
 						if (CharacterAnimation[InspectBloodAnim].time >= CharacterAnimation[InspectBloodAnim].length || Persona == PersonaType.Strict)
 						{
-							bool flag7 = false;
 							bool flag8 = false;
 							bool flag9 = false;
+							bool flag10 = false;
 							if ((Club == ClubType.Cooking && CurrentAction == StudentActionType.ClubAction) || (StudentID == 15 && StudentManager.Eighties))
-							{
-								flag8 = true;
-							}
-							if (CurrentAction == StudentActionType.SitAndEatBento)
 							{
 								flag9 = true;
 							}
+							if (CurrentAction == StudentActionType.SitAndEatBento)
+							{
+								flag10 = true;
+							}
 							if (WitnessedWeapon)
 							{
-								bool flag10 = false;
+								bool flag11 = false;
 								if (!Teacher && BloodPool.GetComponent<WeaponScript>().Metal && StudentManager.MetalDetectors)
 								{
-									flag10 = true;
+									flag11 = true;
 								}
 								if (Schoolwear == 2)
 								{
-									flag7 = true;
+									flag8 = true;
 								}
-								if (!WitnessedBloodyWeapon && StudentID > 1 && !flag10 && CurrentAction != StudentActionType.SitAndTakeNotes && Indoors && !flag8 && Club != ClubType.Delinquent && !flag7 && !flag9 && !BloodPool.GetComponent<WeaponScript>().Dangerous && BloodPool.GetComponent<WeaponScript>().Returner == null && BloodPool.GetComponent<WeaponScript>().Origin != null)
+								if (!WitnessedBloodyWeapon && StudentID > 1 && !flag11 && CurrentAction != StudentActionType.SitAndTakeNotes && Indoors && !flag9 && Club != ClubType.Delinquent && !flag8 && !flag10 && !BloodPool.GetComponent<WeaponScript>().Dangerous && BloodPool.GetComponent<WeaponScript>().Returner == null && BloodPool.GetComponent<WeaponScript>().Origin != null)
 								{
 									Debug.Log(Name + " is now picking up a weapon with intent to return it to its original location.");
 									CharacterAnimation[PickUpAnim].time = 0f;
@@ -12442,12 +12536,12 @@ public class StudentScript : MonoBehaviour
 										{
 											Subtitle.UpdateLabel(SubtitleType.PetWeaponReaction, 0, 3f);
 										}
-										else if (flag7)
+										else if (flag8)
 										{
 											Subtitle.CustomText = "Weird, but I'm not doing anything about it now; I'm in a swimsuit...";
 											Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 										}
-										else if (flag9)
+										else if (flag10)
 										{
 											Subtitle.CustomText = "Normally I'd put it back where it belongs, but right now I'm busy eating...";
 											Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
@@ -12523,7 +12617,7 @@ public class StudentScript : MonoBehaviour
 								BloodPool = null;
 							}
 						}
-						if (BloodPool == null || (WitnessedWeapon && BloodPool.parent != null) || (WitnessedBloodPool && BloodPool.parent == Yandere.RightHand) || (WitnessedWeapon && (bool)BloodPool.GetComponent<WeaponScript>().Returner))
+						if (BloodPool == null || (WitnessedWeapon && BloodPool.parent != null) || (WitnessedBloodPool && BloodPool.parent == Yandere.RightHand) || BloodPool.transform.position != OriginalBloodPoolLocation || (WitnessedWeapon && (bool)BloodPool.GetComponent<WeaponScript>().Returner))
 						{
 							Debug.Log("ForgetAboutBloodPool() was called from this place in the code. 1");
 							ForgetAboutBloodPool();
@@ -12960,7 +13054,10 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (FocusOnStudent)
 			{
-				CharacterAnimation.CrossFade(LeanAnim);
+				if (!InEvent)
+				{
+					CharacterAnimation.CrossFade(LeanAnim);
+				}
 				targetRotation = Quaternion.LookRotation(new Vector3(WeirdStudent.position.x, base.transform.position.y, WeirdStudent.position.z) - base.transform.position);
 				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, 10f * Time.deltaTime);
 			}
@@ -13039,6 +13136,7 @@ public class StudentScript : MonoBehaviour
 			if (collider != null && Vector3.Distance(base.transform.position, collider.transform.position) < VisionDistance && CanSeeObject(collider.gameObject, collider.transform.position))
 			{
 				BloodPool = collider.transform;
+				OriginalBloodPoolLocation = BloodPool.transform.position;
 				WitnessedBloodPool = true;
 				if (Club != ClubType.Delinquent && StudentManager.BloodReporter == null && !Police.Called && !LostTeacherTrust)
 				{
@@ -13070,6 +13168,7 @@ public class StudentScript : MonoBehaviour
 			if (collider != null && CanSeeObject(collider.gameObject, collider.transform.position))
 			{
 				BloodPool = collider.transform;
+				OriginalBloodPoolLocation = BloodPool.transform.position;
 				WitnessedLimb = true;
 				if (Club != ClubType.Delinquent && StudentManager.BloodReporter == null && !Police.Called && !LostTeacherTrust)
 				{
@@ -13109,6 +13208,7 @@ public class StudentScript : MonoBehaviour
 						Debug.Log(Name + " has seen a dropped weapon on the ground.");
 						CheckForBento();
 						BloodPool = myCollider.transform;
+						OriginalBloodPoolLocation = BloodPool.transform.position;
 						if (Yandere.WeaponManager.Weapons[ID].Blood.enabled)
 						{
 							WitnessedBloodyWeapon = true;
@@ -13845,7 +13945,7 @@ public class StudentScript : MonoBehaviour
 				{
 					Concern = 1;
 				}
-				if (StudentID == 1 && Yandere.Mask == null && !Yandere.Egg)
+				if (StudentID == 1 && Yandere.Mask == null && !Yandere.Egg && Persona != PersonaType.Evil)
 				{
 					if (Concern == 5)
 					{
@@ -14150,38 +14250,51 @@ public class StudentScript : MonoBehaviour
 						}
 					}
 				}
-				bool flag4 = false;
-				bool flag5 = false;
-				bool flag6 = false;
-				bool flag7 = false;
-				bool flag8 = false;
-				flag4 = StudentManager.Students[76] != null && StudentManager.Students[76].Friend;
-				flag5 = StudentManager.Students[77] != null && StudentManager.Students[77].Friend;
-				flag6 = StudentManager.Students[78] != null && StudentManager.Students[78].Friend;
-				flag7 = StudentManager.Students[79] != null && StudentManager.Students[79].Friend;
-				flag8 = StudentManager.Students[80] != null && StudentManager.Students[80].Friend;
-				Debug.Log("Yandere.PersonaID is: " + Yandere.PersonaID);
-				Debug.Log("Yandere.Persona is: " + Yandere.Persona);
-				if ((StudentID == 76 && GameGlobals.BlondeHair && Reputation.Reputation < -33.33333f && Yandere.Persona == YanderePersonaType.Tough && flag4 && flag5 && flag6 && flag7 && flag8) || (StudentID == 76 && Yandere.Club == ClubType.Delinquent))
+				if (StudentID == 76)
 				{
-					flag3 = true;
-					Warned = false;
-				}
-				bool flag9 = false;
-				if (Yandere.PickUp != null && Yandere.PickUp.Salty && !Indoors)
-				{
-					flag9 = true;
+					Debug.Log("BlondeHair is: " + GameGlobals.BlondeHair + ". Yandere's Persona is: " + Yandere.Persona.ToString() + ". Friendships are: " + PlayerGlobals.GetStudentFriend(76) + ", " + PlayerGlobals.GetStudentFriend(77) + ", " + PlayerGlobals.GetStudentFriend(78) + ", " + PlayerGlobals.GetStudentFriend(79) + ", " + PlayerGlobals.GetStudentFriend(80));
+					bool flag4 = false;
+					if (Yandere.Persona == YanderePersonaType.Tough || Yandere.Persona == YanderePersonaType.Edgy)
+					{
+						flag4 = true;
+					}
+					bool flag5 = false;
+					bool flag6 = false;
+					bool flag7 = false;
+					bool flag8 = false;
+					bool flag9 = false;
+					flag5 = StudentManager.Students[76] != null && StudentManager.Students[76].Friend;
+					flag6 = StudentManager.Students[77] != null && StudentManager.Students[77].Friend;
+					flag7 = StudentManager.Students[78] != null && StudentManager.Students[78].Friend;
+					flag8 = StudentManager.Students[79] != null && StudentManager.Students[79].Friend;
+					flag9 = StudentManager.Students[80] != null && StudentManager.Students[80].Friend;
+					Debug.Log("Yandere.PersonaID is: " + Yandere.PersonaID);
+					Debug.Log("Yandere.Persona is: " + Yandere.Persona);
+					if ((GameGlobals.BlondeHair && Reputation.Reputation < -33.33333f && flag4 && flag5 && flag6 && flag7 && flag8 && flag9) || Yandere.Club == ClubType.Delinquent)
+					{
+						Debug.Log("Yandere-chan meets the criteria to talk to the delinquent leader about joining.");
+						flag3 = true;
+						Warned = false;
+					}
+					else
+					{
+						Debug.Log("Yandere-chan does not meet the criteria to talk to the delinquent leader about joining.");
+					}
 				}
 				bool flag10 = false;
-				if (Teacher && StudentManager.CanSelfReport)
+				if (Yandere.PickUp != null && Yandere.PickUp.Salty && !Indoors)
 				{
 					flag10 = true;
+				}
+				bool flag11 = false;
+				if (Teacher && StudentManager.CanSelfReport)
+				{
+					flag11 = true;
 				}
 				if (ClubGlobals.GetClubKicked(Club) && ExplainedKick)
 				{
 					flag3 = false;
 				}
-				bool flag11 = false;
 				if (StudentManager.Pose)
 				{
 					MyController.enabled = false;
@@ -14348,7 +14461,7 @@ public class StudentScript : MonoBehaviour
 				{
 					StopFollowing();
 				}
-				else if ((Clock.Period == 2 && !flag10) || (Clock.Period == 4 && !flag10) || (StudentID < 90 && CurrentDestination == Seat))
+				else if ((Clock.Period == 2 && !flag11) || (Clock.Period == 4 && !flag11))
 				{
 					Debug.Log("This character won't talk because Class is in session, or because their destination is ''seat''.");
 					if (Club != ClubType.Delinquent)
@@ -14361,7 +14474,7 @@ public class StudentScript : MonoBehaviour
 					}
 					Prompt.Circle[0].fillAmount = 1f;
 				}
-				else if (InEvent || !CanTalk || GoAway || Fleeing || (Meeting && !Drownable) || Wet || TurnOffRadio || InvestigatingBloodPool || (MyPlate != null && MyPlate.parent == RightHand) || flag9 || ReturningMisplacedWeapon || Actions[Phase] == StudentActionType.Bully || Actions[Phase] == StudentActionType.Graffiti || (CanTakeSnack && IgnoreFoodTimer > 0f) || (!StudentManager.Eighties && StudentID == 12 && !flag11) || (Rival && !Indoors) || (FollowTarget != null && FollowTarget.InEvent))
+				else if (InEvent || !CanTalk || GoAway || Fleeing || (Meeting && !Drownable) || Wet || TurnOffRadio || InvestigatingBloodPool || (MyPlate != null && MyPlate.parent == RightHand) || flag10 || ReturningMisplacedWeapon || Actions[Phase] == StudentActionType.Bully || Actions[Phase] == StudentActionType.Graffiti || (CanTakeSnack && IgnoreFoodTimer > 0f) || (FollowTarget != null && FollowTarget.InEvent))
 				{
 					Subtitle.UpdateLabel(SubtitleType.EventApology, 1, 3f);
 					Prompt.Circle[0].fillAmount = 1f;
@@ -15075,7 +15188,7 @@ public class StudentScript : MonoBehaviour
 					AlarmTimer += Time.deltaTime * (float)MurdersWitnessed;
 					if (Urgent && Yandere.CanMove)
 					{
-						if (StudentID == 1)
+						if (StudentID == 1 && Persona != PersonaType.Evil)
 						{
 							SenpaiNoticed();
 						}
@@ -15098,9 +15211,29 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (AlarmTimer > 1f && !Reacted)
 			{
-				if (StudentID > 1 || Yandere.Mask != null)
+				if (StudentID == 1 && Persona != PersonaType.Evil && Yandere.Mask == null)
 				{
-					if (StudentID == 1)
+					Debug.Log("Senpai witnessed murder, and entered a specific murder reaction animation.");
+					MurderReaction = UnityEngine.Random.Range(1, 6);
+					if (Male)
+					{
+						CharacterAnimation.CrossFade("senpaiMurderReaction_0" + MurderReaction);
+						CharacterAnimation["scaredFace_00"].weight = 0f;
+					}
+					GameOverCause = GameOverType.Murder;
+					if (!Yandere.Egg)
+					{
+						SenpaiNoticed();
+					}
+					CharacterAnimation[AngryFaceAnim].weight = 0f;
+					Yandere.ShoulderCamera.enabled = true;
+					Yandere.ShoulderCamera.Noticed = true;
+					Yandere.RPGCamera.enabled = false;
+					Stop = true;
+				}
+				else
+				{
+					if (StudentID == 1 && Persona != PersonaType.Evil)
 					{
 						Debug.Log("Senpai saw a mask.");
 						Persona = PersonaType.Heroic;
@@ -15136,26 +15269,6 @@ public class StudentScript : MonoBehaviour
 						DetermineWhatWasWitnessed();
 						DetermineTeacherSubtitle();
 					}
-				}
-				else
-				{
-					Debug.Log("Senpai witnessed murder, and entered a specific murder reaction animation.");
-					MurderReaction = UnityEngine.Random.Range(1, 6);
-					if (Male)
-					{
-						CharacterAnimation.CrossFade("senpaiMurderReaction_0" + MurderReaction);
-						CharacterAnimation["scaredFace_00"].weight = 0f;
-					}
-					GameOverCause = GameOverType.Murder;
-					if (!Yandere.Egg)
-					{
-						SenpaiNoticed();
-					}
-					CharacterAnimation[AngryFaceAnim].weight = 0f;
-					Yandere.ShoulderCamera.enabled = true;
-					Yandere.ShoulderCamera.Noticed = true;
-					Yandere.RPGCamera.enabled = false;
-					Stop = true;
 				}
 				Reacted = true;
 			}
@@ -15458,342 +15571,7 @@ public class StudentScript : MonoBehaviour
 						Stop = true;
 					}
 				}
-				else if (StudentID > 1 || Yandere.Mask != null)
-				{
-					if (StudentID == 41 && !StudentManager.Eighties)
-					{
-						Subtitle.UpdateLabel(SubtitleType.Impatience, 6, 5f);
-					}
-					else if (RepeatReaction)
-					{
-						if (!StudentManager.Eighties && StudentID == 48 && TaskPhase == 4 && Yandere.Armed && Yandere.EquippedWeapon.WeaponID == 12)
-						{
-							Subtitle.CustomText = "Is that dumbbell for me? Drop it over here!";
-							Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-						}
-						else if (!StudentManager.Eighties && StudentID == 50 && TaskPhase == 4 && Yandere.Armed && Yandere.EquippedWeapon.WeaponID == 24)
-						{
-							Subtitle.CustomText = "Are you going to use that pipe wrench to fix the training dummy?";
-							Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-						}
-						else
-						{
-							Subtitle.UpdateLabel(SubtitleType.RepeatReaction, 1, 3f);
-							RepeatReaction = false;
-						}
-					}
-					else if (Club != ClubType.Delinquent)
-					{
-						if (Witnessed == StudentWitnessType.WeaponAndBloodAndInsanity)
-						{
-							Subtitle.UpdateLabel(SubtitleType.WeaponAndBloodAndInsanityReaction, 1, 3f);
-						}
-						else if (Witnessed == StudentWitnessType.WeaponAndBlood)
-						{
-							Subtitle.UpdateLabel(SubtitleType.WeaponAndBloodReaction, 1, 3f);
-						}
-						else if (Witnessed == StudentWitnessType.WeaponAndInsanity)
-						{
-							Subtitle.UpdateLabel(SubtitleType.WeaponAndInsanityReaction, 1, 3f);
-						}
-						else if (Witnessed == StudentWitnessType.BloodAndInsanity)
-						{
-							Subtitle.UpdateLabel(SubtitleType.BloodAndInsanityReaction, 1, 3f);
-						}
-						else if (Witnessed == StudentWitnessType.Weapon)
-						{
-							Debug.Log("Witnessed a weapon. That weapon's ID is: " + WeaponWitnessed);
-							Subtitle.StudentID = StudentID;
-							if (PlayerHeldBloodyWeapon)
-							{
-								Subtitle.CustomText = "Why is that thing covered in blood?! Did you hurt someone?!";
-								Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-								PlayerHeldBloodyWeapon = false;
-							}
-							else
-							{
-								Subtitle.UpdateLabel(SubtitleType.WeaponReaction, WeaponWitnessed, 3f);
-							}
-						}
-						else if (Witnessed == StudentWitnessType.Blood)
-						{
-							if (!Bloody)
-							{
-								Subtitle.UpdateLabel(SubtitleType.BloodReaction, 1, 3f);
-							}
-							else
-							{
-								Subtitle.UpdateLabel(SubtitleType.WetBloodReaction, 1, 3f);
-								Witnessed = StudentWitnessType.None;
-								Witness = false;
-							}
-						}
-						else if (Witnessed == StudentWitnessType.Insanity)
-						{
-							Subtitle.UpdateLabel(SubtitleType.InsanityReaction, 1, 3f);
-						}
-						else if (Witnessed == StudentWitnessType.Lewd)
-						{
-							Subtitle.UpdateLabel(SubtitleType.LewdReaction, 1, 3f);
-						}
-						else if (Witnessed == StudentWitnessType.CleaningItem)
-						{
-							Subtitle.UpdateLabel(SubtitleType.SuspiciousReaction, 0, 5f);
-						}
-						else if (Witnessed == StudentWitnessType.Suspicious)
-						{
-							Subtitle.UpdateLabel(SubtitleType.SuspiciousReaction, 1, 5f);
-						}
-						else if (Witnessed == StudentWitnessType.Corpse)
-						{
-							Debug.Log(Name + " is currently reacting to the corpse of " + Corpse.Student.Name + " and is deciding what subtitle to use.");
-							if (!StudentManager.Eighties && StudentID == StudentManager.ObstacleID && Corpse.Student.Rival)
-							{
-								Subtitle.Speaker = this;
-								Subtitle.UpdateLabel(SubtitleType.RaibaruRivalDeathReaction, 1, 5f);
-								Debug.Log("Raibaru is reacting to Osana's corpse with a unique subtitle.");
-							}
-							else if (!StudentManager.Eighties && StudentID == 11 && Corpse.StudentID == StudentManager.ObstacleID)
-							{
-								Subtitle.Speaker = this;
-								Subtitle.UpdateLabel(SubtitleType.OsanaObstacleDeathReaction, 1, 5f);
-								Debug.Log("Osana is reacting to Raibaru's corpse with a unique subtitle.");
-							}
-							else if (!StudentManager.Eighties && StudentID > 1 && StudentID < 4 && Corpse.StudentID > 1 && Corpse.StudentID < 4)
-							{
-								Subtitle.Speaker = this;
-								Subtitle.CustomText = "Sister?! What's wrong?! Are you hurt?!";
-								Subtitle.UpdateLabel(SubtitleType.Custom, 1, 5f);
-								Debug.Log("A Basu sister is reacting to her sister's death with a unique subtitle.");
-							}
-							else if (Club == ClubType.Council)
-							{
-								if (StudentID == 86)
-								{
-									Subtitle.UpdateLabel(SubtitleType.CouncilCorpseReaction, 1, 5f);
-								}
-								else if (StudentID == 87)
-								{
-									Subtitle.UpdateLabel(SubtitleType.CouncilCorpseReaction, 2, 5f);
-								}
-								else if (StudentID == 88)
-								{
-									Subtitle.UpdateLabel(SubtitleType.CouncilCorpseReaction, 3, 5f);
-								}
-								else if (StudentID == 89)
-								{
-									Subtitle.UpdateLabel(SubtitleType.CouncilCorpseReaction, 4, 5f);
-								}
-							}
-							else if (Persona == PersonaType.Evil)
-							{
-								Subtitle.UpdateLabel(SubtitleType.EvilCorpseReaction, 1, 5f);
-							}
-							else if (WitnessedMindBrokenMurder)
-							{
-								Subtitle.CustomText = "This can't be happening...";
-								Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-							}
-							else if (!Corpse.Choking)
-							{
-								Subtitle.UpdateLabel(SubtitleType.CorpseReaction, 0, 5f);
-							}
-							else
-							{
-								Subtitle.UpdateLabel(SubtitleType.CorpseReaction, 1, 5f);
-							}
-						}
-						else if (Witnessed == StudentWitnessType.Interruption)
-						{
-							if (StudentID == 11)
-							{
-								Subtitle.UpdateLabel(SubtitleType.InterruptionReaction, 1, 5f);
-							}
-							else
-							{
-								Subtitle.UpdateLabel(SubtitleType.InterruptionReaction, 2, 5f);
-							}
-						}
-						else if (Witnessed == StudentWitnessType.Eavesdropping)
-						{
-							if (Rival)
-							{
-								Subtitle.UpdateLabel(SubtitleType.RivalEavesdropReaction, 0, 9f);
-								Hesitation = 0.6f;
-							}
-							else if (StudentID == 10)
-							{
-								Subtitle.UpdateLabel(SubtitleType.RivalEavesdropReaction, 1, 9f);
-								Hesitation = 0.6f;
-							}
-							else if (EventInterrupted)
-							{
-								Subtitle.UpdateLabel(SubtitleType.EventEavesdropReaction, 1, 5f);
-								EventInterrupted = false;
-							}
-							else
-							{
-								Subtitle.UpdateLabel(SubtitleType.EavesdropReaction, 1, 5f);
-							}
-						}
-						else if (Witnessed == StudentWitnessType.Pickpocketing)
-						{
-							Subtitle.UpdateLabel(PickpocketSubtitleType, 1, 5f);
-						}
-						else if (Witnessed == StudentWitnessType.Violence)
-						{
-							Subtitle.UpdateLabel(SubtitleType.ViolenceReaction, 5, 5f);
-						}
-						else if (Witnessed == StudentWitnessType.Poisoning)
-						{
-							if (Yandere.TargetBento != null)
-							{
-								if (Yandere.TargetBento.StudentID != StudentID)
-								{
-									Subtitle.UpdateLabel(SubtitleType.PoisonReaction, 1, 5f);
-								}
-								else
-								{
-									Debug.Log(Name + " witnessed their own bento being poisoned.");
-									Subtitle.UpdateLabel(SubtitleType.PoisonReaction, 2, 5f);
-									NotEating = true;
-									if (Clock.Period == 3)
-									{
-										Phase++;
-										Pathfinding.target = Destinations[Phase];
-										CurrentDestination = Destinations[Phase];
-									}
-								}
-							}
-							else
-							{
-								Debug.Log("Player was caught poisoning a bento that is a part of an event.");
-								if (StudentID == 11)
-								{
-									Debug.Log("Osana witnessed it.");
-									if (StudentManager.Portal.GetComponent<PortalScript>().OsanaEvent.Bentos[1].GetComponent<BentoScript>().BeingPoisoned)
-									{
-										Debug.Log("Osana witnessed Senpai's bento being poisoned.");
-										StudentManager.Portal.GetComponent<PortalScript>().OsanaMondayLunchEvent.enabled = false;
-										Subtitle.CustomText = "What are you doing to Senpai's bento?! Ugh, now I can't give it to him...";
-										Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-										StudentManager.Students[1].MyBento.Tampered = false;
-										StudentManager.Students[1].MyBento.Emetic = false;
-										StudentManager.Students[1].Emetic = false;
-									}
-									else if (StudentManager.Portal.GetComponent<PortalScript>().OsanaEvent.Bentos[2].GetComponent<BentoScript>().BeingPoisoned)
-									{
-										Debug.Log("Osana witnessed her own bento being poisoned.");
-										StudentManager.Portal.GetComponent<PortalScript>().OsanaMondayLunchEvent.enabled = false;
-										Subtitle.CustomText = "What are you doing to my bento?! Well, now I'm not going to eat it...";
-										Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-										Debug.Log("Osana will spend her lunchtime looking sad.");
-										ScheduleBlocks[4].action = "Shamed";
-										GetDestinations();
-									}
-								}
-								else
-								{
-									Subtitle.UpdateLabel(SubtitleType.PoisonReaction, 1, 5f);
-								}
-							}
-						}
-						else if (Witnessed == StudentWitnessType.SeveredLimb)
-						{
-							Subtitle.UpdateLabel(SubtitleType.LimbReaction, 0, 5f);
-						}
-						else if (Witnessed == StudentWitnessType.BloodyWeapon)
-						{
-							Subtitle.UpdateLabel(SubtitleType.BloodyWeaponReaction, 0, 5f);
-						}
-						else if (Witnessed == StudentWitnessType.DroppedWeapon)
-						{
-							Subtitle.UpdateLabel(SubtitleType.BloodyWeaponReaction, 0, 5f);
-						}
-						else if (Witnessed == StudentWitnessType.BloodPool)
-						{
-							Subtitle.UpdateLabel(SubtitleType.BloodPoolReaction, 0, 5f);
-						}
-						else if (Witnessed == StudentWitnessType.HoldingBloodyClothing)
-						{
-							Subtitle.UpdateLabel(SubtitleType.HoldingBloodyClothingReaction, 0, 5f);
-						}
-						else if (Witnessed == StudentWitnessType.Theft)
-						{
-							if (StudentID == 2 && RingReact)
-							{
-								Subtitle.UpdateLabel(SubtitleType.TheftReaction, 1, 5f);
-							}
-							else
-							{
-								Subtitle.UpdateLabel(SubtitleType.TheftReaction, 0, 5f);
-							}
-						}
-						else if (Witnessed == StudentWitnessType.Tutorial)
-						{
-							Subtitle.UpdateLabel(SubtitleType.TutorialReaction, 0, 10f);
-						}
-						else if (Witnessed == StudentWitnessType.Trespassing)
-						{
-							Subtitle.UpdateLabel(SubtitleType.TrespassReaction, 0, 10f);
-						}
-						else if (WitnessedSlave)
-						{
-							Subtitle.UpdateLabel(SubtitleType.SlaveReaction, 1, 3f);
-						}
-						else if (Club == ClubType.Council)
-						{
-							Subtitle.UpdateLabel(SubtitleType.HmmReaction, ClubMemberID, 3f);
-							TemporarilyBlind = false;
-						}
-						else
-						{
-							Subtitle.UpdateLabel(SubtitleType.HmmReaction, 0, 3f);
-						}
-					}
-					else if (Witnessed == StudentWitnessType.None)
-					{
-						Subtitle.Speaker = this;
-						Subtitle.UpdateLabel(SubtitleType.DelinquentHmm, 0, 5f);
-					}
-					else if (Witnessed == StudentWitnessType.Corpse)
-					{
-						if (FoundEnemyCorpse)
-						{
-							Subtitle.UpdateLabel(SubtitleType.EvilDelinquentCorpseReaction, 1, 5f);
-						}
-						else if (Corpse.Student.Club == ClubType.Delinquent)
-						{
-							Subtitle.Speaker = this;
-							Subtitle.UpdateLabel(SubtitleType.DelinquentFriendCorpseReaction, 1, 5f);
-							FoundFriendCorpse = true;
-						}
-						else
-						{
-							Subtitle.Speaker = this;
-							Subtitle.UpdateLabel(SubtitleType.DelinquentCorpseReaction, 1, 5f);
-						}
-					}
-					else if (Witnessed == StudentWitnessType.Weapon && !Injured)
-					{
-						Subtitle.Speaker = this;
-						Subtitle.UpdateLabel(SubtitleType.DelinquentWeaponReaction, 0, 3f);
-					}
-					else
-					{
-						Subtitle.Speaker = this;
-						if (WitnessedLimb || WitnessedWeapon || WitnessedBloodPool || WitnessedBloodyWeapon)
-						{
-							Subtitle.UpdateLabel(SubtitleType.LimbReaction, 0, 5f);
-						}
-						else
-						{
-							Subtitle.UpdateLabel(SubtitleType.DelinquentReaction, 0, 5f);
-							Debug.Log("A delinquent is reacting to Yandere-chan's behavior.");
-						}
-					}
-				}
-				else
+				else if (StudentID == 1 && Persona != PersonaType.Evil && Yandere.Mask == null)
 				{
 					Debug.Log("We are now determining what Senpai saw...");
 					if (Witnessed == StudentWitnessType.WeaponAndBloodAndInsanity)
@@ -15953,6 +15731,338 @@ public class StudentScript : MonoBehaviour
 						Yandere.ShoulderCamera.Noticed = true;
 						Yandere.RPGCamera.enabled = false;
 						Stop = true;
+					}
+				}
+				else if (StudentID == 41 && !StudentManager.Eighties)
+				{
+					Subtitle.UpdateLabel(SubtitleType.Impatience, 6, 5f);
+				}
+				else if (RepeatReaction)
+				{
+					if (!StudentManager.Eighties && StudentID == 48 && TaskPhase == 4 && Yandere.Armed && Yandere.EquippedWeapon.WeaponID == 12)
+					{
+						Subtitle.CustomText = "Is that dumbbell for me? Drop it over here!";
+						Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+					}
+					else if (!StudentManager.Eighties && StudentID == 50 && TaskPhase == 4 && Yandere.Armed && Yandere.EquippedWeapon.WeaponID == 24)
+					{
+						Subtitle.CustomText = "Are you going to use that pipe wrench to fix the training dummy?";
+						Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+					}
+					else
+					{
+						Subtitle.UpdateLabel(SubtitleType.RepeatReaction, 1, 3f);
+						RepeatReaction = false;
+					}
+				}
+				else if (Club != ClubType.Delinquent)
+				{
+					if (Witnessed == StudentWitnessType.WeaponAndBloodAndInsanity)
+					{
+						Subtitle.UpdateLabel(SubtitleType.WeaponAndBloodAndInsanityReaction, 1, 3f);
+					}
+					else if (Witnessed == StudentWitnessType.WeaponAndBlood)
+					{
+						Subtitle.UpdateLabel(SubtitleType.WeaponAndBloodReaction, 1, 3f);
+					}
+					else if (Witnessed == StudentWitnessType.WeaponAndInsanity)
+					{
+						Subtitle.UpdateLabel(SubtitleType.WeaponAndInsanityReaction, 1, 3f);
+					}
+					else if (Witnessed == StudentWitnessType.BloodAndInsanity)
+					{
+						Subtitle.UpdateLabel(SubtitleType.BloodAndInsanityReaction, 1, 3f);
+					}
+					else if (Witnessed == StudentWitnessType.Weapon)
+					{
+						Debug.Log("Witnessed a weapon. That weapon's ID is: " + WeaponWitnessed);
+						Subtitle.StudentID = StudentID;
+						if (PlayerHeldBloodyWeapon)
+						{
+							Subtitle.CustomText = "Why is that thing covered in blood?! Did you hurt someone?!";
+							Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							PlayerHeldBloodyWeapon = false;
+						}
+						else
+						{
+							Subtitle.UpdateLabel(SubtitleType.WeaponReaction, WeaponWitnessed, 3f);
+						}
+					}
+					else if (Witnessed == StudentWitnessType.Blood)
+					{
+						if (!Bloody)
+						{
+							Subtitle.UpdateLabel(SubtitleType.BloodReaction, 1, 3f);
+						}
+						else
+						{
+							Subtitle.UpdateLabel(SubtitleType.WetBloodReaction, 1, 3f);
+							Witnessed = StudentWitnessType.None;
+							Witness = false;
+						}
+					}
+					else if (Witnessed == StudentWitnessType.Insanity)
+					{
+						Subtitle.UpdateLabel(SubtitleType.InsanityReaction, 1, 3f);
+					}
+					else if (Witnessed == StudentWitnessType.Lewd)
+					{
+						Subtitle.UpdateLabel(SubtitleType.LewdReaction, 1, 3f);
+					}
+					else if (Witnessed == StudentWitnessType.CleaningItem)
+					{
+						Subtitle.UpdateLabel(SubtitleType.SuspiciousReaction, 0, 5f);
+					}
+					else if (Witnessed == StudentWitnessType.Suspicious)
+					{
+						Subtitle.UpdateLabel(SubtitleType.SuspiciousReaction, 1, 5f);
+					}
+					else if (Witnessed == StudentWitnessType.Corpse)
+					{
+						Debug.Log(Name + " is currently reacting to the corpse of " + Corpse.Student.Name + " and is deciding what subtitle to use.");
+						if (!StudentManager.Eighties && StudentID == StudentManager.ObstacleID && Corpse.Student.Rival)
+						{
+							Subtitle.Speaker = this;
+							Subtitle.UpdateLabel(SubtitleType.RaibaruRivalDeathReaction, 1, 5f);
+							Debug.Log("Raibaru is reacting to Osana's corpse with a unique subtitle.");
+						}
+						else if (!StudentManager.Eighties && StudentID == 11 && Corpse.StudentID == StudentManager.ObstacleID)
+						{
+							Subtitle.Speaker = this;
+							Subtitle.UpdateLabel(SubtitleType.OsanaObstacleDeathReaction, 1, 5f);
+							Debug.Log("Osana is reacting to Raibaru's corpse with a unique subtitle.");
+						}
+						else if (!StudentManager.Eighties && StudentID > 1 && StudentID < 4 && Corpse.StudentID > 1 && Corpse.StudentID < 4)
+						{
+							Subtitle.Speaker = this;
+							Subtitle.CustomText = "Sister?! What's wrong?! Are you hurt?!";
+							Subtitle.UpdateLabel(SubtitleType.Custom, 1, 5f);
+							Debug.Log("A Basu sister is reacting to her sister's death with a unique subtitle.");
+						}
+						else if (Club == ClubType.Council)
+						{
+							if (StudentID == 86)
+							{
+								Subtitle.UpdateLabel(SubtitleType.CouncilCorpseReaction, 1, 5f);
+							}
+							else if (StudentID == 87)
+							{
+								Subtitle.UpdateLabel(SubtitleType.CouncilCorpseReaction, 2, 5f);
+							}
+							else if (StudentID == 88)
+							{
+								Subtitle.UpdateLabel(SubtitleType.CouncilCorpseReaction, 3, 5f);
+							}
+							else if (StudentID == 89)
+							{
+								Subtitle.UpdateLabel(SubtitleType.CouncilCorpseReaction, 4, 5f);
+							}
+						}
+						else if (Persona == PersonaType.Evil)
+						{
+							Subtitle.UpdateLabel(SubtitleType.EvilCorpseReaction, 1, 5f);
+						}
+						else if (WitnessedMindBrokenMurder)
+						{
+							Subtitle.CustomText = "This can't be happening...";
+							Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+						}
+						else if (!Corpse.Choking)
+						{
+							Subtitle.UpdateLabel(SubtitleType.CorpseReaction, 0, 5f);
+						}
+						else
+						{
+							Subtitle.UpdateLabel(SubtitleType.CorpseReaction, 1, 5f);
+						}
+					}
+					else if (Witnessed == StudentWitnessType.Interruption)
+					{
+						if (StudentID == 11)
+						{
+							Subtitle.UpdateLabel(SubtitleType.InterruptionReaction, 1, 5f);
+						}
+						else
+						{
+							Subtitle.UpdateLabel(SubtitleType.InterruptionReaction, 2, 5f);
+						}
+					}
+					else if (Witnessed == StudentWitnessType.Eavesdropping)
+					{
+						if (StudentID == 10 || (StudentManager.Eighties && Rival))
+						{
+							Subtitle.UpdateLabel(SubtitleType.RivalEavesdropReaction, 0, 9f);
+							Hesitation = 0.6f;
+						}
+						else if (Rival)
+						{
+							Subtitle.UpdateLabel(SubtitleType.RivalEavesdropReaction, DateGlobals.Week, 9f);
+							Hesitation = 0.6f;
+						}
+						else if (EventInterrupted)
+						{
+							Subtitle.UpdateLabel(SubtitleType.EventEavesdropReaction, 1, 5f);
+							EventInterrupted = false;
+						}
+						else
+						{
+							Subtitle.UpdateLabel(SubtitleType.EavesdropReaction, 1, 5f);
+						}
+					}
+					else if (Witnessed == StudentWitnessType.Pickpocketing)
+					{
+						Subtitle.UpdateLabel(PickpocketSubtitleType, 1, 5f);
+					}
+					else if (Witnessed == StudentWitnessType.Violence)
+					{
+						Subtitle.UpdateLabel(SubtitleType.ViolenceReaction, 5, 5f);
+					}
+					else if (Witnessed == StudentWitnessType.Poisoning)
+					{
+						if (Yandere.TargetBento != null)
+						{
+							if (Yandere.TargetBento.StudentID != StudentID)
+							{
+								Subtitle.UpdateLabel(SubtitleType.PoisonReaction, 1, 5f);
+							}
+							else
+							{
+								Debug.Log(Name + " witnessed their own bento being poisoned.");
+								Subtitle.UpdateLabel(SubtitleType.PoisonReaction, 2, 5f);
+								NotEating = true;
+								if (Clock.Period == 3)
+								{
+									Phase++;
+									Pathfinding.target = Destinations[Phase];
+									CurrentDestination = Destinations[Phase];
+								}
+							}
+						}
+						else
+						{
+							Debug.Log("Player was caught poisoning a bento that is a part of an event.");
+							if (StudentID == 11)
+							{
+								Debug.Log("Osana witnessed it.");
+								if (StudentManager.Portal.GetComponent<PortalScript>().OsanaEvent.Bentos[1].GetComponent<BentoScript>().BeingPoisoned)
+								{
+									Debug.Log("Osana witnessed Senpai's bento being poisoned.");
+									StudentManager.Portal.GetComponent<PortalScript>().OsanaMondayLunchEvent.enabled = false;
+									Subtitle.CustomText = "What are you doing to Senpai's bento?! Ugh, now I can't give it to him...";
+									Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+									StudentManager.Students[1].MyBento.Tampered = false;
+									StudentManager.Students[1].MyBento.Emetic = false;
+									StudentManager.Students[1].Emetic = false;
+								}
+								else if (StudentManager.Portal.GetComponent<PortalScript>().OsanaEvent.Bentos[2].GetComponent<BentoScript>().BeingPoisoned)
+								{
+									Debug.Log("Osana witnessed her own bento being poisoned.");
+									StudentManager.Portal.GetComponent<PortalScript>().OsanaMondayLunchEvent.enabled = false;
+									Subtitle.CustomText = "What are you doing to my bento?! Well, now I'm not going to eat it...";
+									Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+									Debug.Log("Osana will spend her lunchtime looking sad.");
+									ScheduleBlocks[4].action = "Shamed";
+									GetDestinations();
+								}
+							}
+							else
+							{
+								Subtitle.UpdateLabel(SubtitleType.PoisonReaction, 1, 5f);
+							}
+						}
+					}
+					else if (Witnessed == StudentWitnessType.SeveredLimb)
+					{
+						Subtitle.UpdateLabel(SubtitleType.LimbReaction, 0, 5f);
+					}
+					else if (Witnessed == StudentWitnessType.BloodyWeapon)
+					{
+						Subtitle.UpdateLabel(SubtitleType.BloodyWeaponReaction, 0, 5f);
+					}
+					else if (Witnessed == StudentWitnessType.DroppedWeapon)
+					{
+						Subtitle.UpdateLabel(SubtitleType.BloodyWeaponReaction, 0, 5f);
+					}
+					else if (Witnessed == StudentWitnessType.BloodPool)
+					{
+						Subtitle.UpdateLabel(SubtitleType.BloodPoolReaction, 0, 5f);
+					}
+					else if (Witnessed == StudentWitnessType.HoldingBloodyClothing)
+					{
+						Subtitle.UpdateLabel(SubtitleType.HoldingBloodyClothingReaction, 0, 5f);
+					}
+					else if (Witnessed == StudentWitnessType.Theft)
+					{
+						if (StudentID == 2 && RingReact)
+						{
+							Subtitle.UpdateLabel(SubtitleType.TheftReaction, 1, 5f);
+						}
+						else
+						{
+							Subtitle.UpdateLabel(SubtitleType.TheftReaction, 0, 5f);
+						}
+					}
+					else if (Witnessed == StudentWitnessType.Tutorial)
+					{
+						Subtitle.UpdateLabel(SubtitleType.TutorialReaction, 0, 10f);
+					}
+					else if (Witnessed == StudentWitnessType.Trespassing)
+					{
+						Subtitle.UpdateLabel(SubtitleType.TrespassReaction, 0, 10f);
+					}
+					else if (WitnessedSlave)
+					{
+						Subtitle.UpdateLabel(SubtitleType.SlaveReaction, 1, 3f);
+					}
+					else if (Club == ClubType.Council)
+					{
+						Subtitle.UpdateLabel(SubtitleType.HmmReaction, ClubMemberID, 3f);
+						TemporarilyBlind = false;
+					}
+					else
+					{
+						Subtitle.UpdateLabel(SubtitleType.HmmReaction, 0, 3f);
+					}
+				}
+				else if (Witnessed == StudentWitnessType.None)
+				{
+					Subtitle.Speaker = this;
+					Subtitle.UpdateLabel(SubtitleType.DelinquentHmm, 0, 5f);
+				}
+				else if (Witnessed == StudentWitnessType.Corpse)
+				{
+					if (FoundEnemyCorpse)
+					{
+						Subtitle.UpdateLabel(SubtitleType.EvilDelinquentCorpseReaction, 1, 5f);
+					}
+					else if (Corpse.Student.Club == ClubType.Delinquent)
+					{
+						Subtitle.Speaker = this;
+						Subtitle.UpdateLabel(SubtitleType.DelinquentFriendCorpseReaction, 1, 5f);
+						FoundFriendCorpse = true;
+					}
+					else
+					{
+						Subtitle.Speaker = this;
+						Subtitle.UpdateLabel(SubtitleType.DelinquentCorpseReaction, 1, 5f);
+					}
+				}
+				else if (Witnessed == StudentWitnessType.Weapon && !Injured)
+				{
+					Subtitle.Speaker = this;
+					Subtitle.UpdateLabel(SubtitleType.DelinquentWeaponReaction, 0, 3f);
+				}
+				else
+				{
+					Subtitle.Speaker = this;
+					if (WitnessedLimb || WitnessedWeapon || WitnessedBloodPool || WitnessedBloodyWeapon)
+					{
+						Subtitle.UpdateLabel(SubtitleType.LimbReaction, 0, 5f);
+					}
+					else
+					{
+						Subtitle.UpdateLabel(SubtitleType.DelinquentReaction, 0, 5f);
+						Debug.Log("A delinquent is reacting to Yandere-chan's behavior.");
 					}
 				}
 				Reacted = true;
@@ -16978,13 +17088,24 @@ public class StudentScript : MonoBehaviour
 			Spine.LookAt(Yandere.Spine[0]);
 			Head.LookAt(Yandere.Head);
 		}
-		if (DistanceToPlayer < 0.5f && !CameraReacting && !Struggling && !Yandere.Attacking && !Distracted && !Posing && CanSeeObject(Yandere.gameObject, Yandere.HeadPosition) && Yandere.CanMove)
+		if (DistanceToPlayer < 0.5f && !CameraReacting && !Struggling && !Yandere.Attacking && !Distracted && !Posing && CanSeeObject(Yandere.gameObject, Yandere.HeadPosition) && Yandere.CanMove && CurrentDestination != Yandere.transform)
 		{
 			PersonalSpaceTimer += Time.deltaTime;
 			if (PersonalSpaceTimer > 4f)
 			{
-				Yandere.Shutter.FaceStudent = this;
-				Yandere.Shutter.Penalize();
+				Debug.Log(Name + " feels that the protagonist is invading their personal space.");
+				if (WarningsGiven > 4)
+				{
+					Yandere.Shutter.FaceStudent = this;
+					Yandere.Shutter.Penalize();
+				}
+				else
+				{
+					Subtitle.UpdateLabel(SubtitleType.HmmReaction, 0, 0f);
+					Subtitle.UpdateLabel(SubtitleType.ProximityWarning, WarningsGiven, 5f);
+					PersonalSpaceTimer = 0f;
+				}
+				WarningsGiven++;
 			}
 		}
 		if (CurrentDestination == null)
@@ -17092,6 +17213,9 @@ public class StudentScript : MonoBehaviour
 	public void AttackReaction()
 	{
 		Debug.Log(Name + " is being attacked.");
+		FocusOnStudent = false;
+		FocusOnYandere = false;
+		Blind = true;
 		if (ReportingMurderToSenpai)
 		{
 			StudentManager.Students[LovestruckTarget].Blind = false;
@@ -17687,7 +17811,26 @@ public class StudentScript : MonoBehaviour
 		{
 			Yandere.Pursuer = this;
 		}
-		if (StudentID > 1 || Yandere.Mask != null)
+		if (StudentID == 1 && Persona != PersonaType.Evil && Yandere.Mask == null)
+		{
+			if (!Yandere.Attacking && !Yandere.Struggling && !Yandere.Egg)
+			{
+				SenpaiNoticed();
+			}
+			Fleeing = false;
+			EyeShrink = 0f;
+			Yandere.Noticed = true;
+			Yandere.Talking = false;
+			CameraEffects.MurderWitnessed();
+			Yandere.ShoulderCamera.OverShoulder = false;
+			CharacterAnimation.CrossFade(ScaredAnim);
+			if (Male)
+			{
+				CharacterAnimation["scaredFace_00"].weight = 1f;
+			}
+			Debug.Log("Senpai should be entereing his scared animation right now.");
+		}
+		else
 		{
 			SetOutlinesRed();
 			SummonWitnessCamera();
@@ -17718,28 +17861,6 @@ public class StudentScript : MonoBehaviour
 			{
 				Prompt.Label[0].text = "     Talk";
 				Prompt.HideButton[0] = true;
-			}
-		}
-		else
-		{
-			if (!Yandere.Attacking && !Yandere.Struggling && !Yandere.Egg)
-			{
-				SenpaiNoticed();
-			}
-			Fleeing = false;
-			EyeShrink = 0f;
-			Yandere.Noticed = true;
-			Yandere.Talking = false;
-			CameraEffects.MurderWitnessed();
-			Yandere.ShoulderCamera.OverShoulder = false;
-			CharacterAnimation.CrossFade(ScaredAnim);
-			if (Male)
-			{
-				CharacterAnimation["scaredFace_00"].weight = 1f;
-			}
-			if (StudentID == 1)
-			{
-				Debug.Log("Senpai entered his scared animation.");
 			}
 		}
 		if (Persona == PersonaType.TeachersPet && StudentManager.Reporter == null && !Police.Called)
@@ -17792,7 +17913,7 @@ public class StudentScript : MonoBehaviour
 			AlarmTimer = 0f;
 			Alarm = 0f;
 		}
-		if (Teacher)
+		if ((Teacher && Persona == PersonaType.Strict) || Persona == PersonaType.Heroic)
 		{
 			if (!Yandere.Chased)
 			{
@@ -19094,6 +19215,17 @@ public class StudentScript : MonoBehaviour
 			{
 				Destinations[ID] = StudentManager.CustomPatrols.List[UnityEngine.Random.Range(1, 101)].GetChild(UnityEngine.Random.Range(0, 2));
 			}
+			else if (scheduleBlock.destination == "BakeSale")
+			{
+				if (BakeSalePhase == 0)
+				{
+					Destinations[ID] = StudentManager.BakeSalePrepSpots[StudentID];
+				}
+				else
+				{
+					Destinations[ID] = StudentManager.BakeSaleSpots[StudentID];
+				}
+			}
 			if (scheduleBlock.action == "Stand")
 			{
 				Actions[ID] = StudentActionType.AtLocker;
@@ -19422,6 +19554,10 @@ public class StudentScript : MonoBehaviour
 			else if (scheduleBlock.action == "RandomPatrol")
 			{
 				Actions[ID] = StudentActionType.RandomPatrol;
+			}
+			else if (scheduleBlock.action == "BakeSale")
+			{
+				Actions[ID] = StudentActionType.BakeSale;
 			}
 		}
 	}
@@ -21050,14 +21186,20 @@ public class StudentScript : MonoBehaviour
 	public void DisableEffects()
 	{
 		LiquidProjector.enabled = false;
-		ElectroSteam[0].SetActive(value: false);
-		ElectroSteam[1].SetActive(value: false);
-		ElectroSteam[2].SetActive(value: false);
-		ElectroSteam[3].SetActive(value: false);
-		CensorSteam[0].SetActive(value: false);
-		CensorSteam[1].SetActive(value: false);
-		CensorSteam[2].SetActive(value: false);
-		CensorSteam[3].SetActive(value: false);
+		if (ElectroSteam.Length != 0)
+		{
+			ElectroSteam[0].SetActive(value: false);
+			ElectroSteam[1].SetActive(value: false);
+			ElectroSteam[2].SetActive(value: false);
+			ElectroSteam[3].SetActive(value: false);
+		}
+		if (CensorSteam.Length != 0)
+		{
+			CensorSteam[0].SetActive(value: false);
+			CensorSteam[1].SetActive(value: false);
+			CensorSteam[2].SetActive(value: false);
+			CensorSteam[3].SetActive(value: false);
+		}
 		ParticleSystem[] liquidEmitters = LiquidEmitters;
 		for (int i = 0; i < liquidEmitters.Length; i++)
 		{
@@ -21080,6 +21222,7 @@ public class StudentScript : MonoBehaviour
 			SmartPhone.SetActive(value: false);
 		}
 		Note.SetActive(value: false);
+		SetSplashes(Bool: false);
 		if (!Slave)
 		{
 			UnityEngine.Object.Destroy(Broken);
@@ -21980,6 +22123,10 @@ public class StudentScript : MonoBehaviour
 				{
 					_ = StudentManager.PracticeMusic.isPlaying;
 				}
+				GetFoodTarget();
+			}
+			else if (StudentManager.LockerRoomArea.bounds.Contains(StudentManager.Students[SleuthID].transform.position) || StudentManager.MaleLockerRoomArea.bounds.Contains(StudentManager.Students[SleuthID].transform.position) || StudentManager.EastBathroomArea.bounds.Contains(StudentManager.Students[SleuthID].transform.position) || StudentManager.WestBathroomArea.bounds.Contains(StudentManager.Students[SleuthID].transform.position) || StudentManager.Students[SleuthID].transform.position.z < -100f)
+			{
 				GetFoodTarget();
 			}
 			else
@@ -23407,6 +23554,14 @@ public class StudentScript : MonoBehaviour
 				gameObject3.SetActive(value: false);
 			}
 		}
+		if (Male)
+		{
+			DisableMaleProps();
+		}
+		else
+		{
+			DisableFemaleProps();
+		}
 	}
 
 	public void DisableFemaleProps()
@@ -23457,6 +23612,7 @@ public class StudentScript : MonoBehaviour
 		{
 			liquidEmitters[i].gameObject.SetActive(value: false);
 		}
+		DisableEffects();
 	}
 
 	public void TriggerBeatEmUpMinigame()
@@ -23473,6 +23629,11 @@ public class StudentScript : MonoBehaviour
 	public void PlaceBag()
 	{
 		Debug.Log("Current rival - " + Name + " - just put her bookbag on her desk.");
+		if (!StudentManager.Eighties)
+		{
+			StudentManager.RivalBookBag.GetComponent<MeshFilter>().mesh = Cosmetic.ModernBookBagMesh;
+			StudentManager.RivalBookBag.GetComponent<Renderer>().material.mainTexture = Cosmetic.BookbagTextures[StudentID];
+		}
 		if (Seat.position.x < 0f)
 		{
 			StudentManager.RivalBookBag.transform.position = Seat.position + new Vector3(-0.33333f, 0.342f, 0.3585f);
@@ -24113,6 +24274,7 @@ public class StudentScript : MonoBehaviour
 
 	public void DropWeaponInBox()
 	{
+		Debug.Log("DropWeaponInBox() was just fired.");
 		StudentManager.BloodLocation.position = Vector3.zero;
 		BloodPool.parent = null;
 		BloodPool.position = StudentManager.WeaponBoxSpot.parent.position + new Vector3(0f, 1f, 0f);

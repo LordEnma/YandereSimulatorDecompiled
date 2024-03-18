@@ -6,6 +6,8 @@ public class PhoneScript : MonoBehaviour
 {
 	public OsanaTextMessageScript OsanaMessages;
 
+	public OsanaTextMessageScript AmaiMessages;
+
 	public InputDeviceScript InputDevice;
 
 	public GameObject[] RightMessage;
@@ -121,11 +123,14 @@ public class PhoneScript : MonoBehaviour
 		}
 		else if (EventGlobals.OsanaConversation)
 		{
-			Debug.Log("The game believes that, right now, we're supposed to be seeing Osana's text message conversation.");
-			VoiceClips = OsanaMessages.OsanaClips;
-			Speaker = OsanaMessages.OsanaSpeakers;
-			Text = OsanaMessages.OsanaTexts;
-			Height = OsanaMessages.OsanaHeights;
+			Debug.Log("The game believes that, right now, we're supposed to be seeing a text message conversation with a rival.");
+			if (DateGlobals.Week == 1)
+			{
+				VoiceClips = OsanaMessages.OsanaClips;
+				Speaker = OsanaMessages.OsanaSpeakers;
+				Text = OsanaMessages.OsanaTexts;
+				Height = OsanaMessages.OsanaHeights;
+			}
 			EventGlobals.OsanaConversation = true;
 			EventGlobals.LivingRoom = true;
 		}

@@ -21,6 +21,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public JsonScript JSON;
 
+	public GameObject[] AdditionalAccessory;
+
 	public GameObject[] TeacherAccessories;
 
 	public GameObject[] FemaleAccessories;
@@ -512,7 +514,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (Cutscene && EventGlobals.OsanaConversation)
 		{
-			StudentID = 11;
+			StudentID = 10 + DateGlobals.Week;
 		}
 		if (RightShoe != null)
 		{
@@ -602,10 +604,12 @@ public class CosmeticScript : MonoBehaviour
 			}
 			else if (StudentID == 36)
 			{
+				AdditionalAccessory[1].SetActive(value: true);
 				FacialHairstyle = 12;
 				EyewearID = 8;
 				if (StudentManager.TaskManager != null && StudentManager.TaskManager.TaskStatus[36] == 3)
 				{
+					AdditionalAccessory[1].SetActive(value: false);
 					FacialHairstyle = 0;
 					EyewearID = 9;
 					Hairstyle = 49;
@@ -1276,63 +1280,75 @@ public class CosmeticScript : MonoBehaviour
 				CharacterAnimation.Play("f02_idleCouncil" + text2 + "_00");
 			}
 		}
-		if (!ClubGlobals.GetClubClosed(Club) && (StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71))
+		if (!ClubGlobals.GetClubClosed(Club))
 		{
-			if (!Kidnapped)
+			bool flag3 = false;
+			if (!Eighties && ((StudentID > 11 && StudentID < 16) || StudentID == 20))
 			{
-				Armband.SetActive(value: true);
+				flag3 = true;
 			}
-			Renderer component = Armband.GetComponent<Renderer>();
-			if (StudentID == 21)
+			if (StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71 || flag3)
 			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0.285f, -0.145f));
-			}
-			else if (StudentID == 26)
-			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0f, -0.145f));
-			}
-			else if (StudentID == 31)
-			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0.57f, 0f));
-			}
-			else if (StudentID == 36)
-			{
-				if (!Eighties)
+				if (!Kidnapped)
 				{
-					component.material.SetTextureOffset("_MainTex", new Vector2(0.285f, -0.29f));
+					Armband.SetActive(value: true);
 				}
-				else
+				Renderer component = Armband.GetComponent<Renderer>();
+				if (Club == ClubType.Cooking)
 				{
-					component.material.SetTextureOffset("_MainTex", new Vector2(0.57f, -0.435f));
+					component.material.SetTextureOffset("_MainTex", new Vector2(0.285f, -0.145f));
 				}
-			}
-			else if (StudentID == 41)
-			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0f, -0.58f));
-			}
-			else if (StudentID == 46)
-			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0f, -0.435f));
-			}
-			else if (StudentID == 51)
-			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0.57f, -0.29f));
-			}
-			else if (StudentID == 56)
-			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0f, -0.29f));
-			}
-			else if (StudentID == 61)
-			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0f, 0f));
-			}
-			else if (StudentID == 66)
-			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0.57f, -0.145f));
-			}
-			else if (StudentID == 71)
-			{
-				component.material.SetTextureOffset("_MainTex", new Vector2(0.285f, -0.435f));
+				else if (StudentID == 26)
+				{
+					component.material.SetTextureOffset("_MainTex", new Vector2(0f, -0.145f));
+				}
+				else if (StudentID == 31)
+				{
+					component.material.SetTextureOffset("_MainTex", new Vector2(0.57f, 0f));
+				}
+				else if (StudentID == 36)
+				{
+					if (!Eighties)
+					{
+						component.material.SetTextureOffset("_MainTex", new Vector2(0.285f, -0.29f));
+					}
+					else
+					{
+						component.material.SetTextureOffset("_MainTex", new Vector2(0.57f, -0.435f));
+					}
+				}
+				else if (StudentID == 41)
+				{
+					component.material.SetTextureOffset("_MainTex", new Vector2(0f, -0.58f));
+				}
+				else if (StudentID == 46)
+				{
+					component.material.SetTextureOffset("_MainTex", new Vector2(0f, -0.435f));
+				}
+				else if (StudentID == 51)
+				{
+					component.material.SetTextureOffset("_MainTex", new Vector2(0.57f, -0.29f));
+				}
+				else if (StudentID == 56)
+				{
+					component.material.SetTextureOffset("_MainTex", new Vector2(0f, -0.29f));
+				}
+				else if (StudentID == 61)
+				{
+					component.material.SetTextureOffset("_MainTex", new Vector2(0f, 0f));
+				}
+				else if (StudentID == 66)
+				{
+					component.material.SetTextureOffset("_MainTex", new Vector2(0.57f, -0.145f));
+				}
+				else if (StudentID == 71)
+				{
+					component.material.SetTextureOffset("_MainTex", new Vector2(0.285f, -0.435f));
+				}
+				if (!Eighties && StudentID == 21 && StudentManager != null && StudentManager.Students[12] != null)
+				{
+					Armband.SetActive(value: false);
+				}
 			}
 		}
 		if (StudentID == 1 && SenpaiGlobals.CustomSenpai)
@@ -1562,7 +1578,7 @@ public class CosmeticScript : MonoBehaviour
 			CatGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
 			CatGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
 		}
-		if (!Male)
+		if (!Male && base.gameObject.activeInHierarchy)
 		{
 			StartCoroutine(PutOnStockings());
 		}
@@ -2184,6 +2200,11 @@ public class CosmeticScript : MonoBehaviour
 				{
 					Student.SwimsuitTexture = OsanaSwimsuitTexture;
 				}
+				else if (StudentID == 12 && Bookbag != null && Bookbag.GetComponent<MeshFilter>() != null)
+				{
+					Bookbag.GetComponent<MeshFilter>().mesh = ModernBookBagMesh;
+					Bookbag.GetComponent<Renderer>().material.mainTexture = BookbagTextures[StudentID];
+				}
 			}
 		}
 		else
@@ -2679,7 +2700,10 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else if (Stockings == "Rival")
 		{
-			MyStockings = EightiesRivalStockings[StudentID];
+			if (!Cutscene)
+			{
+				MyStockings = EightiesRivalStockings[StudentID];
+			}
 		}
 		else if (Stockings == "Rival1")
 		{
@@ -2782,27 +2806,20 @@ public class CosmeticScript : MonoBehaviour
 
 	public void EyeTypeCheck()
 	{
-		int num = 0;
 		if (EyeType == "Thin")
 		{
 			MyRenderer.SetBlendShapeWeight(8, 100f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
-			StudentManager.Thins++;
-			num = StudentManager.Thins;
 		}
 		else if (EyeType == "Serious")
 		{
 			MyRenderer.SetBlendShapeWeight(5, 50f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
-			StudentManager.Seriouses++;
-			num = StudentManager.Seriouses;
 		}
 		else if (EyeType == "Round")
 		{
 			MyRenderer.SetBlendShapeWeight(5, 15f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
-			StudentManager.Rounds++;
-			num = StudentManager.Rounds;
 		}
 		else if (EyeType == "Sad")
 		{
@@ -2811,36 +2828,26 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(6, 50f);
 			MyRenderer.SetBlendShapeWeight(8, 50f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
-			StudentManager.Sads++;
-			num = StudentManager.Sads;
 		}
 		else if (EyeType == "Mean")
 		{
 			MyRenderer.SetBlendShapeWeight(10, 100f);
-			StudentManager.Means++;
-			num = StudentManager.Means;
 		}
 		else if (EyeType == "Smug")
 		{
 			MyRenderer.SetBlendShapeWeight(0, 50f);
 			MyRenderer.SetBlendShapeWeight(5, 25f);
-			StudentManager.Smugs++;
-			num = StudentManager.Smugs;
 		}
 		else if (EyeType == "Gentle")
 		{
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
-			StudentManager.Gentles++;
-			num = StudentManager.Gentles;
 		}
 		else if (EyeType == "MO")
 		{
 			MyRenderer.SetBlendShapeWeight(8, 50f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
-			StudentManager.Gentles++;
-			num = StudentManager.Gentles;
 		}
 		else if (EyeType == "Rival1")
 		{
@@ -2849,8 +2856,6 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(10, 50f);
 			MyRenderer.SetBlendShapeWeight(11, 50f);
 			MyRenderer.SetBlendShapeWeight(12, 10f);
-			StudentManager.Rival1s++;
-			num = StudentManager.Rival1s;
 		}
 		else if (EyeType == "Eighties1")
 		{
@@ -2959,17 +2964,6 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(5, 25f);
 			MyRenderer.SetBlendShapeWeight(8, 0f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		if (!Modified)
-		{
-			if ((EyeType == "Thin" && StudentManager.Thins > 1) || (EyeType == "Serious" && StudentManager.Seriouses > 1) || (EyeType == "Round" && StudentManager.Rounds > 1) || (EyeType == "Sad" && StudentManager.Sads > 1) || (EyeType == "Mean" && StudentManager.Means > 1) || (EyeType == "Smug" && StudentManager.Smugs > 1) || (EyeType == "Gentle" && StudentManager.Gentles > 1))
-			{
-				MyRenderer.SetBlendShapeWeight(8, MyRenderer.GetBlendShapeWeight(8) + (float)num);
-				MyRenderer.SetBlendShapeWeight(9, MyRenderer.GetBlendShapeWeight(9) + (float)num);
-				MyRenderer.SetBlendShapeWeight(10, MyRenderer.GetBlendShapeWeight(10) + (float)num);
-				MyRenderer.SetBlendShapeWeight(12, MyRenderer.GetBlendShapeWeight(12) + (float)num);
-			}
-			Modified = true;
 		}
 	}
 

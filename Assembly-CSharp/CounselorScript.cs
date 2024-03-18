@@ -1166,8 +1166,16 @@ public class CounselorScript : MonoBehaviour
 		if (WeaponToReturn != null)
 		{
 			WeaponToReturn.Drop();
-			WeaponToReturn.transform.position = StudentManager.WeaponBoxSpot.parent.position + new Vector3(0f, 1f, 0f);
-			WeaponToReturn.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+			if (WeaponToReturn.Dangerous)
+			{
+				WeaponToReturn.transform.position = StudentManager.WeaponBoxSpot.parent.position + new Vector3(0f, 1f, 0f);
+				WeaponToReturn.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+			}
+			else
+			{
+				WeaponToReturn.transform.position = WeaponToReturn.Origin.position;
+				WeaponToReturn.transform.eulerAngles = WeaponToReturn.Origin.eulerAngles;
+			}
 			WeaponToReturn.MyRigidbody.useGravity = true;
 			WeaponToReturn.MyRigidbody.isKinematic = false;
 			WeaponToReturn = null;

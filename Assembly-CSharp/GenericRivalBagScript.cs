@@ -36,11 +36,15 @@ public class GenericRivalBagScript : MonoBehaviour
 
 	public UILabel DiaryLabelLeft;
 
-	public UILabel[] Label;
-
 	public UITexture DiaryBG;
 
+	public UISprite BG;
+
+	public Texture[] ModernDiaryTextures;
+
 	public Texture[] DiaryTextures;
+
+	public UILabel[] Label;
 
 	public bool BorrowedBook;
 
@@ -132,6 +136,8 @@ public class GenericRivalBagScript : MonoBehaviour
 
 	public bool Initialized;
 
+	public bool Eighties;
+
 	public int Page = 1;
 
 	public Vector3 CorrectPosition;
@@ -147,6 +153,8 @@ public class GenericRivalBagScript : MonoBehaviour
 	public bool LethalStatus;
 
 	public bool TamperedStatus;
+
+	public Font ModernFont;
 
 	public GameObject TanHearts;
 
@@ -186,6 +194,7 @@ public class GenericRivalBagScript : MonoBehaviour
 	{
 		if (!Initialized)
 		{
+			BG.color = new Color(1f, 0.75f, 1f, 1f);
 			GrabRivalInfo();
 			Magazine.gameObject.SetActive(value: false);
 			MagazineButton.SetActive(value: false);
@@ -200,6 +209,7 @@ public class GenericRivalBagScript : MonoBehaviour
 			Prompt.enabled = false;
 			Prompt.Hide();
 			Initialized = true;
+			Eighties = GameGlobals.Eighties;
 		}
 	}
 
@@ -238,6 +248,10 @@ public class GenericRivalBagScript : MonoBehaviour
 				{
 					Prompt.Yandere.NotificationManager.CustomText = "Can't do that! Someone is watching!";
 					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				if (!Eighties)
+				{
+					ChangeFont();
 				}
 			}
 			return;
@@ -763,99 +777,109 @@ public class GenericRivalBagScript : MonoBehaviour
 	{
 		Rival = Prompt.Yandere.StudentManager.Students[Prompt.Yandere.StudentManager.RivalID];
 		int week = DateGlobals.Week;
-		if (week >= 11)
+		if (week < 11)
 		{
-			return;
-		}
-		if (week == 4)
-		{
-			NoBento = true;
-		}
-		int num = 10 + week;
-		if (GameGlobals.CustomMode)
-		{
-			string value = File.ReadAllText(Path.Combine(FolderPath, "CustomTopics.json"));
-			TopicData = JsonConvert.DeserializeObject<TopicJson[]>(value);
-			JSON.Topics = TopicJson.LoadFromJson(Path.Combine(FolderPath, "CustomTopics.json"));
-		}
-		if (JSON.Topics[1].Topics == null)
-		{
-			Debug.Log("Something went catastrophically wrong, and JSON.Topics is empty. Filling it up with default likes and dislikes.");
-			string contents = JsonConvert.SerializeObject(JsonScript.TopicAdapter(JSON.Topics));
-			File.WriteAllText(Path.Combine(FolderPath, "EightiesTopics.json"), contents);
-		}
-		else
-		{
-			RivalOpinions = JSON.Topics[num].Topics;
-		}
-		int i = 1;
-		Likes = 1;
-		Dislikes = 1;
-		for (; i < 26; i++)
-		{
-			if (RivalOpinions[i] == 2)
+			if (week == 4)
 			{
-				RivalLikes[Likes] = Subjects[i];
-				Likes++;
+				NoBento = true;
 			}
-			else if (RivalOpinions[i] == 1)
+			int num = 10 + week;
+			if (GameGlobals.CustomMode)
 			{
-				RivalDislikes[Dislikes] = Subjects[i];
-				Dislikes++;
+				string value = File.ReadAllText(Path.Combine(FolderPath, "CustomTopics.json"));
+				TopicData = JsonConvert.DeserializeObject<TopicJson[]>(value);
+				JSON.Topics = TopicJson.LoadFromJson(Path.Combine(FolderPath, "CustomTopics.json"));
 			}
-		}
-		num -= 10;
-		DesiredHairstyle = DesiredHairstyles[num];
-		DesiredAccessory = DesiredAccessories[num];
-		DesiredEyewear = DesiredEyewears[num];
-		DesiredSkin = DesiredSkins[num];
-		DesiredHairColor = DesiredHairColors[num];
-		DesiredJewelry = DesiredJewelries[num];
-		DesiredTrait = DesiredTraits[num];
-		DiaryLabelBottom.text = DiaryEntryLeft[num];
-		if (GameGlobals.CustomMode)
-		{
-			DiaryLabelLeft.text = "My best friend asked me to name the 5 things I love the most. It was difficult, but I narrowed it down to:\n\n" + RivalLikes[1] + ", " + RivalLikes[2] + ", " + RivalLikes[3] + ", " + RivalLikes[4] + ", and " + RivalLikes[5] + ".\n\nNext, she wanted me to name my 5 least favorite things. I decided on:\n\n" + RivalDislikes[1] + ", " + RivalDislikes[2] + ", " + RivalDislikes[3] + ", " + RivalDislikes[4] + ", and " + RivalDislikes[5] + ".\n\nLast night, I had a nightmare that everyone at Akademi learned my most embarassing secret:";
-		}
-		else
-		{
-			switch (num)
+			if (JSON.Topics[1].Topics == null)
 			{
-			case 1:
-				DiaryLabelLeft.text = "[c][008000]I love cooking[-][/c] for the special people in my life, so I made a bento for the boy I have a crush on!\n \nApparently, the upcoming school play is all about combat. Well, [c][800000]I hate drama[-][/c] and [c][800000]I hate violence,[-][/c] so I'll pass.\n \nSo many people have invited me to join their clubs! So far, [c][008000]I love music[-][/c] and [c][008000]I love gardening,[-][/c] but [c][800000]I hate the occult![-][/c]\n \nWhile I was walking around the school, I saw the most adorable kitty! (^•w•^) Oh, [c][008000]I love cats[-][/c] so much!\n \nThere's a group of girls I've been trying to make friends with. I hope they accept me! [c][800000]I hate being alone![-][/c]\n \nI just hope that they don't enjoy spreading rumors. [c][008000]I love socializing,[-][/c] but [c][800000]I hate gossip![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
-			case 2:
-				DiaryLabelLeft.text = "I might audition for the school play. [c][008000]I love drama![-][/c] It has combat, which rocks, cuz [c][008000]I love violence![-][/c]\n \nMan, my parents just don't get me. I'm grateful to them for a lot of reasons, but sometimes, [c][800000]I just hate my family.[-][/c]\n \nI can't decide which club to join. [c][008000]I love martial arts[-][/c] and [c][008000]I love sports![-][/c] How can I choose just one?!\n \nMan, [c][800000]I hate school![-][/c] The teachers get mad when I crack jokes during class. I can't help it; [c][008000]I love jokes![-][/c]\n \nNormally [c][800000]I hate gossip[-][/c], but if anyone is talking smack about the gardening club or cooking club, I let it slide.\n \n[c][800000]I hate gardening[-][/c] and [c][800000]I hate cooking![-][/c] I hate all that girly stuff! It makes me wanna barf!\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
-			case 3:
-				DiaryLabelLeft.text = "[c][008000]I love reading[-][/c] about things I knew nothing about. Thanks to a fascinating book, [c][008000]I love the occult[-][/c] now!\n \nI recently learned that reading a book outdoors feels way better than reading it indoors. I guess this means that [c][008000]I love nature[-][/c]!\n \nHonestly, I'm glad the library doesn't get many visitors. [c][800000]I don't like socializing,[-][/c] anyway. [c][008000]I prefer solitude.[-][/c]\n \nI can't stand the class clowns who goof off during class instead of paying attention to the lessons. [c][800000]I hate jokes.[-][/c]\n \n[c][008000]I love school,[-][/c] but I wish the people here would stop discussing rumors. [c][800000]I hate gossip.[-][/c]\n \nI won't attend the upcoming school play. [c][800000]I don't like drama,[-][/c] and [c][800000]I don't like violence,[-][/c] either.\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
-			case 4:
-				DiaryLabelLeft.text = "[c][008000]I love sports,[-][/c] but I was really tempted to join the martial arts club, since [c][008000]I love martial arts[-][/c] a lot, too!\n \nWhat you eat is much more important than what exercises you do. That's why [c][008000]I love cooking[-][/c] healthy meals so much!\n \nWhy are people always so surprised to hear that [c][008000]I love nature[-][/c]? Do I give off completely different vibes, or something?\n \nI'm disappointed that so many people at this school play video games. [c][800000]I hate video games![-][/c] Too much TV is bad for you!\n \nThe upcoming school play is based on a super-violent anime? I'll pass. [c][800000]I hate violence[-][/c], [c][800000]I hate anime.[-][/c], and [c][800000]I hate cosplay.[-][/c]\n \n[c][008000]I love cats,[-][/c] but people keep talking trash about me because there's a cat I can't catch. Argh, [c][800000]I hate gossip![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
-			case 5:
-				DiaryLabelLeft.text = "[c][800000]I hate school![-][/c] What's the point? I'll never use the knowledge! I'm so rich that I'll never need to work a day in my life!\n \n[c][008000]I love my family![-][/c] Well, I don't love any of them individually, but I'm glad I was born into wealth! [c][008000]I LOVE MONEY![-][/c]\n \nArgh! [c][008000]I want to socialize[-][/c] in peace, but I am constantly being approached by peasants who want me to join their stupid clubs!\n \nI won't join the art club just because [c][008000]I love art![-][/c] And, no, I won't join the Cooking Club, either! [c][800000]I hate cooking![-][/c]\n \nWhy does this school have an occult club? Creepy! Do they worship death? [c][800000]I hate the occult[-][/c] and [c][800000]I hate violence![-][/c]\n \n[c][008000]I love gossip,[-][/c] so I tried to start some juicy rumors, but some goody-two shoes foiled my plans! Argh! [c][800000]I hate justice![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
-			case 6:
-				DiaryLabelLeft.text = "I've heard that the Occult Club uses blood in their rituals! Eek! Scary! [c][800000]I hate the occult![-][/c] and [c][800000]I hate violence![-][/c]\n \n Why don't they join a normal club? [c][008000]I love art[-][/c] and [c][008000]I love martial arts[-][/c] - they should try out those things instead!\n \n There are certain clubs I could never see myself joining, though. Like, for example, [c][800000]I hate sports[-][/c] and [c][800000]I hate gardening[-][/c].\n \n Why? Because, whenever I try to do outdoor activities, my allergies act up! Nature hates me, so [c][800000]I hate nature[-][/c] back!\n \n I predict that big idol trend will be performing while wearing elaborate costumes. Sounds fun! [c][008000]I love cosplay![-][/c]\n \n [c][008000]I love music[-][/c] more than anything else in the world! Well, except hanging out with my friends. [c][008000]I love socializing[-][/c], too!\n \n Last night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
-			case 7:
-				DiaryLabelLeft.text = "Why does the headmaster permit an Occult Club at this school? [c][800000]I hate the occult[-][/c] for the negative influence it has.\n \nThe upcoming school play sounds far too violent. [c][800000]I hate violence[-][/c] almost as much as [c][800000]I hate drama.[-][/c] I'll pass.\n \n[c][008000]I love school,[-][/c], but my classmates discuss rumors too much. [c][800000]I hate gossip[-][/c] and how much of a distraction it can be.\n \nI read a book outdoors and the most wonderful experience. [c][008000]I love reading [-][/c] and [c][008000]I love nature![-][/c] - they go well together!\n \nThere's a class clown in my science class. [c][800000]I hate jokes[-][/c] when they interrupt my favorite subject. [c][008000]I love science![-][/c]\n \nI haven't had any chances to practice photography recently. I hope I'll find an opportunity soon. [c][008000]I love photography![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
-			case 8:
-				DiaryLabelLeft.text = "I have feelings for someone. I prepared a bento to demonstrate that [c][008000]I love cooking,[-][/c] as a proper lady should.\n \n[c][008000]I love my family[-][/c]. My parents are very spiritual. Would it disappoint them to learn that [c][008000]I love science?[-][/c]\n \n[c][008000]I love socializing,[-][/c] but my friends only seem interested in discussing rumors. [c][800000]I hate gossip...[-][/c]\n \nI've been invited to join clubs I have no interest in. [c][800000]I hate martial arts[-][/c] and [c][800000]I hate sports.[-][/c] They're not ladylike!\n \nI'm quite frightened of the Occult Club! [c][800000]I hate the occult![-][/c] I hope they don't hurt me. [c][800000]I hate violence![-][/c]\n \nThe only club I might join is the Gardening Club. [c][008000]I love gardening![-][/c] Now, there's an good activity for a proper lady!\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
-			case 9:
-				DiaryLabelLeft.text = "For a recent photoshoot, I dressed up as a character from an anime! It was so fun! I think [c][008000]I love cosplay![-][/c]\n \nI was asked to join the school play. It was weirdly violent, so I declined. [c][800000]I hate violence[-][/c] and [c][800000]I hate drama.[-][/c]\n \nModeling bikinis pays really well, and [c][008000]I love money![-][/c] But, it makes girls talk trash about me. [c][800000]I hate gossip![-][/c]\n \nNot sure what club I'll join. [c][800000]I hate the occult,[-][/c] so that's out. However, [c][008000]I love art,[-][/c] so maybe the Art Club?\n \nI didn't expect a bunch of the boys at this school to follow me around everywhere I go. How annoying! [c][008000]I prefer solitude![-][/c]\n \n[c][800000]I hate this school,[-][/c] but there is one good thing here: an adorable stray kitten! Oh, [c][008000]I love cats![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
-			case 10:
-				DiaryLabelLeft.text = "Returning to Akademi has made me remember everything I disliked about it. [c][800000]I really hate this school.[-][/c] It's full of morons!\n \nThe students are joking around and talking about anime and video games while a killer might be lurking nearby!\n \nWell, you know what? [c][800000]I hate jokes![-][/c] [c][800000]I hate anime![-][/c] And [c][800000]I hate video games![-][/c] Why? [c][008000]Justice is more important![-][/c]\n \nAnd then there's the Drama Club. Hosting a violent play at a time like this? How tasteless! [c][800000]I hate violence![-][/c] \n \nIn terms of clubs, [c][008000]I love photography[-][/c] and [c][008000]I love martial arts[-][/c] - they've agreed to keep an eye out for the killer. \n \nPursuing justice can be tiresome, though. I would rather be alone with a good book. [c][008000]I love solitude[-][/c] and [c][008000]I love reading![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
-				break;
+				Debug.Log("Something went catastrophically wrong, and JSON.Topics is empty. Filling it up with default likes and dislikes.");
+				string contents = JsonConvert.SerializeObject(JsonScript.TopicAdapter(JSON.Topics));
+				File.WriteAllText(Path.Combine(FolderPath, "EightiesTopics.json"), contents);
+			}
+			else
+			{
+				RivalOpinions = JSON.Topics[num].Topics;
+			}
+			int i = 1;
+			Likes = 1;
+			Dislikes = 1;
+			for (; i < 26; i++)
+			{
+				if (RivalOpinions[i] == 2)
+				{
+					RivalLikes[Likes] = Subjects[i];
+					Likes++;
+				}
+				else if (RivalOpinions[i] == 1)
+				{
+					RivalDislikes[Dislikes] = Subjects[i];
+					Dislikes++;
+				}
+			}
+			num -= 10;
+			DesiredHairstyle = DesiredHairstyles[num];
+			DesiredAccessory = DesiredAccessories[num];
+			DesiredEyewear = DesiredEyewears[num];
+			DesiredSkin = DesiredSkins[num];
+			DesiredHairColor = DesiredHairColors[num];
+			DesiredJewelry = DesiredJewelries[num];
+			DesiredTrait = DesiredTraits[num];
+			DiaryLabelBottom.text = DiaryEntryLeft[num];
+			if (GameGlobals.CustomMode)
+			{
+				DiaryLabelLeft.text = "My best friend asked me to name the 5 things I love the most. It was difficult, but I narrowed it down to:\n\n" + RivalLikes[1] + ", " + RivalLikes[2] + ", " + RivalLikes[3] + ", " + RivalLikes[4] + ", and " + RivalLikes[5] + ".\n\nNext, she wanted me to name my 5 least favorite things. I decided on:\n\n" + RivalDislikes[1] + ", " + RivalDislikes[2] + ", " + RivalDislikes[3] + ", " + RivalDislikes[4] + ", and " + RivalDislikes[5] + ".\n\nLast night, I had a nightmare that everyone at Akademi learned my most embarassing secret:";
+			}
+			else
+			{
+				switch (num)
+				{
+				case 1:
+					DiaryLabelLeft.text = "[c][008000]I love cooking[-][/c] for the special people in my life, so I made a bento for the boy I have a crush on!\n \nApparently, the upcoming school play is all about combat. Well, [c][800000]I hate drama[-][/c] and [c][800000]I hate violence,[-][/c] so I'll pass.\n \nSo many people have invited me to join their clubs! So far, [c][008000]I love music[-][/c] and [c][008000]I love gardening,[-][/c] but [c][800000]I hate the occult![-][/c]\n \nWhile I was walking around the school, I saw the most adorable kitty! (^•w•^) Oh, [c][008000]I love cats[-][/c] so much!\n \nThere's a group of girls I've been trying to make friends with. I hope they accept me! [c][800000]I hate being alone![-][/c]\n \nI just hope that they don't enjoy spreading rumors. [c][008000]I love socializing,[-][/c] but [c][800000]I hate gossip![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				case 2:
+					DiaryLabelLeft.text = "I might audition for the school play. [c][008000]I love drama![-][/c] It has combat, which rocks, cuz [c][008000]I love violence![-][/c]\n \nMan, my parents just don't get me. I'm grateful to them for a lot of reasons, but sometimes, [c][800000]I just hate my family.[-][/c]\n \nI can't decide which club to join. [c][008000]I love martial arts[-][/c] and [c][008000]I love sports![-][/c] How can I choose just one?!\n \nMan, [c][800000]I hate school![-][/c] The teachers get mad when I crack jokes during class. I can't help it; [c][008000]I love jokes![-][/c]\n \nNormally [c][800000]I hate gossip[-][/c], but if anyone is talking smack about the gardening club or cooking club, I let it slide.\n \n[c][800000]I hate gardening[-][/c] and [c][800000]I hate cooking![-][/c] I hate all that girly stuff! It makes me wanna barf!\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				case 3:
+					DiaryLabelLeft.text = "[c][008000]I love reading[-][/c] about things I knew nothing about. Thanks to a fascinating book, [c][008000]I love the occult[-][/c] now!\n \nI recently learned that reading a book outdoors feels way better than reading it indoors. I guess this means that [c][008000]I love nature[-][/c]!\n \nHonestly, I'm glad the library doesn't get many visitors. [c][800000]I don't like socializing,[-][/c] anyway. [c][008000]I prefer solitude.[-][/c]\n \nI can't stand the class clowns who goof off during class instead of paying attention to the lessons. [c][800000]I hate jokes.[-][/c]\n \n[c][008000]I love school,[-][/c] but I wish the people here would stop discussing rumors. [c][800000]I hate gossip.[-][/c]\n \nI won't attend the upcoming school play. [c][800000]I don't like drama,[-][/c] and [c][800000]I don't like violence,[-][/c] either.\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				case 4:
+					DiaryLabelLeft.text = "[c][008000]I love sports,[-][/c] but I was really tempted to join the martial arts club, since [c][008000]I love martial arts[-][/c] a lot, too!\n \nWhat you eat is much more important than what exercises you do. That's why [c][008000]I love cooking[-][/c] healthy meals so much!\n \nWhy are people always so surprised to hear that [c][008000]I love nature[-][/c]? Do I give off completely different vibes, or something?\n \nI'm disappointed that so many people at this school play video games. [c][800000]I hate video games![-][/c] Too much TV is bad for you!\n \nThe upcoming school play is based on a super-violent anime? I'll pass. [c][800000]I hate violence[-][/c], [c][800000]I hate anime.[-][/c], and [c][800000]I hate cosplay.[-][/c]\n \n[c][008000]I love cats,[-][/c] but people keep talking trash about me because there's a cat I can't catch. Argh, [c][800000]I hate gossip![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				case 5:
+					DiaryLabelLeft.text = "[c][800000]I hate school![-][/c] What's the point? I'll never use the knowledge! I'm so rich that I'll never need to work a day in my life!\n \n[c][008000]I love my family![-][/c] Well, I don't love any of them individually, but I'm glad I was born into wealth! [c][008000]I LOVE MONEY![-][/c]\n \nArgh! [c][008000]I want to socialize[-][/c] in peace, but I am constantly being approached by peasants who want me to join their stupid clubs!\n \nI won't join the art club just because [c][008000]I love art![-][/c] And, no, I won't join the Cooking Club, either! [c][800000]I hate cooking![-][/c]\n \nWhy does this school have an occult club? Creepy! Do they worship death? [c][800000]I hate the occult[-][/c] and [c][800000]I hate violence![-][/c]\n \n[c][008000]I love gossip,[-][/c] so I tried to start some juicy rumors, but some goody-two shoes foiled my plans! Argh! [c][800000]I hate justice![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				case 6:
+					DiaryLabelLeft.text = "I've heard that the Occult Club uses blood in their rituals! Eek! Scary! [c][800000]I hate the occult![-][/c] and [c][800000]I hate violence![-][/c]\n \n Why don't they join a normal club? [c][008000]I love art[-][/c] and [c][008000]I love martial arts[-][/c] - they should try out those things instead!\n \n There are certain clubs I could never see myself joining, though. Like, for example, [c][800000]I hate sports[-][/c] and [c][800000]I hate gardening[-][/c].\n \n Why? Because, whenever I try to do outdoor activities, my allergies act up! Nature hates me, so [c][800000]I hate nature[-][/c] back!\n \n I predict that big idol trend will be performing while wearing elaborate costumes. Sounds fun! [c][008000]I love cosplay![-][/c]\n \n [c][008000]I love music[-][/c] more than anything else in the world! Well, except hanging out with my friends. [c][008000]I love socializing[-][/c], too!\n \n Last night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				case 7:
+					DiaryLabelLeft.text = "Why does the headmaster permit an Occult Club at this school? [c][800000]I hate the occult[-][/c] for the negative influence it has.\n \nThe upcoming school play sounds far too violent. [c][800000]I hate violence[-][/c] almost as much as [c][800000]I hate drama.[-][/c] I'll pass.\n \n[c][008000]I love school,[-][/c], but my classmates discuss rumors too much. [c][800000]I hate gossip[-][/c] and how much of a distraction it can be.\n \nI read a book outdoors and the most wonderful experience. [c][008000]I love reading [-][/c] and [c][008000]I love nature![-][/c] - they go well together!\n \nThere's a class clown in my science class. [c][800000]I hate jokes[-][/c] when they interrupt my favorite subject. [c][008000]I love science![-][/c]\n \nI haven't had any chances to practice photography recently. I hope I'll find an opportunity soon. [c][008000]I love photography![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				case 8:
+					DiaryLabelLeft.text = "I have feelings for someone. I prepared a bento to demonstrate that [c][008000]I love cooking,[-][/c] as a proper lady should.\n \n[c][008000]I love my family[-][/c]. My parents are very spiritual. Would it disappoint them to learn that [c][008000]I love science?[-][/c]\n \n[c][008000]I love socializing,[-][/c] but my friends only seem interested in discussing rumors. [c][800000]I hate gossip...[-][/c]\n \nI've been invited to join clubs I have no interest in. [c][800000]I hate martial arts[-][/c] and [c][800000]I hate sports.[-][/c] They're not ladylike!\n \nI'm quite frightened of the Occult Club! [c][800000]I hate the occult![-][/c] I hope they don't hurt me. [c][800000]I hate violence![-][/c]\n \nThe only club I might join is the Gardening Club. [c][008000]I love gardening![-][/c] Now, there's an good activity for a proper lady!\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				case 9:
+					DiaryLabelLeft.text = "For a recent photoshoot, I dressed up as a character from an anime! It was so fun! I think [c][008000]I love cosplay![-][/c]\n \nI was asked to join the school play. It was weirdly violent, so I declined. [c][800000]I hate violence[-][/c] and [c][800000]I hate drama.[-][/c]\n \nModeling bikinis pays really well, and [c][008000]I love money![-][/c] But, it makes girls talk trash about me. [c][800000]I hate gossip![-][/c]\n \nNot sure what club I'll join. [c][800000]I hate the occult,[-][/c] so that's out. However, [c][008000]I love art,[-][/c] so maybe the Art Club?\n \nI didn't expect a bunch of the boys at this school to follow me around everywhere I go. How annoying! [c][008000]I prefer solitude![-][/c]\n \n[c][800000]I hate this school,[-][/c] but there is one good thing here: an adorable stray kitten! Oh, [c][008000]I love cats![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				case 10:
+					DiaryLabelLeft.text = "Returning to Akademi has made me remember everything I disliked about it. [c][800000]I really hate this school.[-][/c] It's full of morons!\n \nThe students are joking around and talking about anime and video games while a killer might be lurking nearby!\n \nWell, you know what? [c][800000]I hate jokes![-][/c] [c][800000]I hate anime![-][/c] And [c][800000]I hate video games![-][/c] Why? [c][008000]Justice is more important![-][/c]\n \nAnd then there's the Drama Club. Hosting a violent play at a time like this? How tasteless! [c][800000]I hate violence![-][/c] \n \nIn terms of clubs, [c][008000]I love photography[-][/c] and [c][008000]I love martial arts[-][/c] - they've agreed to keep an eye out for the killer. \n \nPursuing justice can be tiresome, though. I would rather be alone with a good book. [c][008000]I love solitude[-][/c] and [c][008000]I love reading![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					break;
+				}
+			}
+			DiaryLabelBottom.text = DiaryEntryLeft[num];
+			DiaryLabelRight.text = DiaryEntryRight[num];
+			if (GameGlobals.Eighties)
+			{
+				DiaryBG.mainTexture = DiaryTextures[num];
+			}
+			else
+			{
+				DiaryBG.mainTexture = ModernDiaryTextures[num];
 			}
 		}
-		DiaryLabelBottom.text = DiaryEntryLeft[num];
-		DiaryLabelRight.text = DiaryEntryRight[num];
-		DiaryBG.mainTexture = DiaryTextures[num];
+		if (!Eighties)
+		{
+			ChangeFont();
+		}
 	}
 
 	private void HideAllHearts()
@@ -958,6 +982,22 @@ public class GenericRivalBagScript : MonoBehaviour
 			Rival.MyBento.Headache = HeadacheStatus;
 			Rival.MyBento.Lethal = LethalStatus;
 			Rival.MyBento.Tampered = TamperedStatus;
+		}
+	}
+
+	private void ChangeFont()
+	{
+		int num = 0;
+		Transform[] componentsInChildren = Window.GetComponentsInChildren<Transform>();
+		foreach (Transform obj in componentsInChildren)
+		{
+			num++;
+			UILabel component = obj.GetComponent<UILabel>();
+			if (component != null && component.trueTypeFont == StudentManager.VCR)
+			{
+				component.trueTypeFont = ModernFont;
+				component.fontSize = 75;
+			}
 		}
 	}
 }

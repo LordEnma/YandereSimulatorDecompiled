@@ -1434,6 +1434,7 @@ public class KokonaTutorialScript : MonoBehaviour
 				{
 					StudentManager.Students[28].OriginalPersona = PersonaType.Heroic;
 					StudentManager.Students[28].Persona = PersonaType.Heroic;
+					StudentManager.Students[28].Strength = 1;
 					StudentManager.Students[28].Pathfinding.canSearch = true;
 					StudentManager.Students[28].Pathfinding.canMove = true;
 					StudentManager.Students[28].Pathfinding.enabled = true;
@@ -1851,6 +1852,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			EnableTalking = true;
 			SpawnStudent(30);
 			StudentManager.Students[30].InEvent = false;
+			StudentManager.Students[30].Indoors = true;
 			StudentManager.Students[30].Friend = true;
 			StudentManager.Students[30].Phase = 2;
 			break;

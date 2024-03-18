@@ -352,7 +352,6 @@ public class PortalScript : MonoBehaviour
 						Yandere.Health = 10;
 						FadeOut = false;
 						Proceed = true;
-						ClassDarkness.alpha = 1f;
 					}
 					else
 					{
@@ -431,6 +430,7 @@ public class PortalScript : MonoBehaviour
 					}
 					Clock.HourTime = Clock.PresentTime / 60f;
 					Clock.UpdateClock();
+					Clock.UpdateLighting();
 					StudentManager.AttendClass();
 				}
 				ClassDarkness.alpha = Mathf.MoveTowards(ClassDarkness.alpha, 0f, Time.deltaTime);
@@ -450,7 +450,7 @@ public class PortalScript : MonoBehaviour
 					StudentManager.Reputation.gameObject.SetActive(value: true);
 					Yandere.SanityLabel.transform.parent.gameObject.SetActive(value: true);
 					StudentManager.ResumeMovement();
-					if (Clock.HourTime > 15f && !Police.EndOfDay.Incinerator.enabled)
+					if (Clock.HourTime > 15f && Police.EndOfDay.Incinerator.enabled)
 					{
 						StudentManager.TakeOutTheTrash();
 					}

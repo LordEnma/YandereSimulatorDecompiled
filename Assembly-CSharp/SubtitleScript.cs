@@ -140,6 +140,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] SendToLockers;
 
+	public string[] ProximityWarnings;
+
 	public string[] KnifeReactions;
 
 	public string[] ScissorsReactions;
@@ -2285,6 +2287,9 @@ public class SubtitleScript : MonoBehaviour
 			break;
 		case SubtitleType.PrankReaction:
 			Label.text = GetRandomString(PrankReactions);
+			break;
+		case SubtitleType.ProximityWarning:
+			Label.text = ProximityWarnings[ID];
 			break;
 		case SubtitleType.InterruptionReaction:
 			Label.text = InterruptReactions[ID];

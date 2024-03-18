@@ -33,11 +33,15 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 
 	public float[] SpeechTime;
 
+	public int[] Speaker;
+
 	public GameObject AlarmDisc;
 
 	public GameObject VoiceClip;
 
 	public AudioSource VoiceClipSource;
+
+	public bool WaitForAnim = true;
 
 	public bool NaturalEnd;
 
@@ -95,9 +99,24 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			Spy.Prompt.enabled = false;
 			base.enabled = false;
 		}
-		if (base.enabled && (float)StudentGlobals.GetStudentReputation(10) <= -33.33333f)
+		if (Week == 1 && base.enabled && (float)StudentGlobals.GetStudentReputation(10) <= -33.33333f)
 		{
 			OsanaLoseFriendEvent.OtherEvent = this;
+		}
+		if (!WaitForAnim)
+		{
+			SpeechTime[1] = 1f;
+			int i = 1;
+			float num = 1f;
+			for (; i < SpeechTime.Length - 1; i++)
+			{
+				SpeechTime[i + 1] = num + (float)SpeechText[i].Length * 0.1f;
+				num += (float)SpeechText[i].Length * 0.1f;
+			}
+			for (i = 0; i < SpeechText.Length - 1; i++)
+			{
+				SpeechText[i] = "";
+			}
 		}
 	}
 
@@ -118,7 +137,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		{
 			if (Frame > 5 && StudentManager.Students[RivalID] != null && StudentManager.Students[1].gameObject.activeInHierarchy && StudentManager.Students[RivalID] != null)
 			{
-				Debug.Log("Osana's morning Senpai interaction event is now taking place.");
+				Debug.Log("The morning Senpai interaction event is now taking place.");
 				if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner && StudentGlobals.StudentSlave != FriendID && !NoFriend)
 				{
 					Friend = StudentManager.Students[FriendID];
@@ -191,8 +210,16 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			if (Timer > 1f)
 			{
 				AudioClipPlayer.Play(SpeechClip, Epicenter.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
-				Rival.CharacterAnimation.CrossFade("f02_" + Weekday + "_1");
-				Senpai.CharacterAnimation.CrossFade(Weekday + "_1");
+				if (WaitForAnim)
+				{
+					Rival.CharacterAnimation.CrossFade("f02_" + Weekday + "_1");
+					Senpai.CharacterAnimation.CrossFade(Weekday + "_1");
+				}
+				else
+				{
+					Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
+					Senpai.CharacterAnimation.CrossFade(Senpai.IdleAnim);
+				}
 				Timer = 0f;
 				Phase++;
 			}
@@ -202,10 +229,18 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			if (AnimationTime > 0f)
 			{
 				Debug.Log("Attempting to restore animation.");
-				Rival.CharacterAnimation.Play("f02_" + Weekday + "_1");
-				Senpai.CharacterAnimation.Play(Weekday + "_1");
-				Rival.CharacterAnimation["f02_" + Weekday + "_1"].time = AnimationTime;
-				Senpai.CharacterAnimation[Weekday + "_1"].time = AnimationTime;
+				if (WaitForAnim)
+				{
+					Rival.CharacterAnimation.Play("f02_" + Weekday + "_1");
+					Senpai.CharacterAnimation.Play(Weekday + "_1");
+					Rival.CharacterAnimation["f02_" + Weekday + "_1"].time = AnimationTime;
+					Senpai.CharacterAnimation[Weekday + "_1"].time = AnimationTime;
+				}
+				else
+				{
+					Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
+					Senpai.CharacterAnimation.CrossFade(Senpai.IdleAnim);
+				}
 				if (VoiceClipSource != null)
 				{
 					VoiceClipSource.time = AnimationTime;
@@ -229,6 +264,19 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 					{
 						EventSubtitle.text = SpeechText[SpeechPhase];
 					}
+					if (!WaitForAnim)
+					{
+						Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
+						Senpai.CharacterAnimation.CrossFade(Senpai.IdleAnim);
+						if (Speaker[SpeechPhase] == 1)
+						{
+							Senpai.CharacterAnimation.CrossFade(Senpai.AnimationNames[2]);
+						}
+						else if (Speaker[SpeechPhase] == 2)
+						{
+							Rival.CharacterAnimation.CrossFade(Rival.AnimationNames[2]);
+						}
+					}
 					SpeechPhase++;
 				}
 			}
@@ -238,9 +286,18 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 				{
 					Senpai = StudentManager.Students[1];
 				}
-				if (Senpai.CharacterAnimation[Weekday + "_1"].time >= Senpai.CharacterAnimation[Weekday + "_1"].length)
+				if (WaitForAnim)
 				{
-					Debug.Log("This rival morning event ended naturally because the animation finished playing.");
+					if (Senpai.CharacterAnimation[Weekday + "_1"].time >= Senpai.CharacterAnimation[Weekday + "_1"].length)
+					{
+						Debug.Log("This rival morning event ended naturally because the animation finished playing.");
+						NaturalEnd = true;
+						EndEvent();
+					}
+				}
+				else if (Timer >= SpeechTime[SpeechTime.Length - 1])
+				{
+					Debug.Log("This rival morning event ended naturally because the characters finished their dialogue.");
 					NaturalEnd = true;
 					EndEvent();
 				}
@@ -325,7 +382,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 
 	public void EndEvent()
 	{
-		Debug.Log("Osana's morning ''Talk with Senpai'' event has ended.");
+		Debug.Log("A rival's morning ''Talk with Senpai'' event has ended.");
 		if (Phase > 0 && Rival.Alive)
 		{
 			if (EventDay == DayOfWeek.Tuesday)
@@ -363,6 +420,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			Rival.Prompt.enabled = true;
 			Rival.InEvent = false;
 			Rival.Private = false;
+			Rival.CanTalk = true;
 			if (Friend != null && !Friend.FightingSlave)
 			{
 				if (!Friend.Alarmed && !Friend.DramaticReaction)

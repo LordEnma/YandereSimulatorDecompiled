@@ -114,7 +114,7 @@ public class StudentInfoScript : MonoBehaviour
 		{
 			UpdateInfo(StudentInfoMenu.StudentID);
 		}
-		StudentManager.LoadTopicsLearned();
+		StudentManager.LoadTopicsLearnedForOneStudent(StudentInfoMenu.StudentID);
 	}
 
 	public void UpdateInfo(int ID)

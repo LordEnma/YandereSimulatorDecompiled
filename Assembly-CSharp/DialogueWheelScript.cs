@@ -271,7 +271,7 @@ public class DialogueWheelScript : MonoBehaviour
 					{
 						PracticeLabel.text = "Practice";
 					}
-					if (Selected == 6 && Yandere.Club == ClubType.Gardening)
+					if (Selected == 6 && Yandere.TargetStudent.Club == ClubType.Gardening && Yandere.Club == ClubType.Gardening)
 					{
 						Debug.Log("Talking to Uekiya about Seeds.");
 						CenterLabel.text = "Seeds";
@@ -783,7 +783,7 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite10 = Shadow[3];
 			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.75f);
 		}
-		if (!Yandere.TargetStudent.Indoors || (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council))
+		if (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council)
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
@@ -915,7 +915,7 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
-		if (!Yandere.TargetStudent.Indoors || (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council))
+		if (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council)
 		{
 			UISprite uISprite11 = Shadow[6];
 			uISprite11.color = new Color(uISprite11.color.r, uISprite11.color.g, uISprite11.color.b, 0.75f);

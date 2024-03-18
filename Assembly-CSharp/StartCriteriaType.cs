@@ -1,5 +1,6 @@
 public enum StartCriteriaType
 {
-	PositionZ = 0,
-	Time = 1
+	BagSet = 0,
+	PositionZ = 1,
+	Time = 2
 }

@@ -261,6 +261,8 @@ public class YandereScript : MonoBehaviour
 
 	public GameObject[] Shoes;
 
+	public float[] BlendAmount;
+
 	public float[] DropTimer;
 
 	public GameObject PhysicsActivator;
@@ -846,6 +848,8 @@ public class YandereScript : MonoBehaviour
 	public Texture[] StandardUniformTextures;
 
 	public Texture[] StandardCasualTextures;
+
+	public Texture[] OverlayTextures;
 
 	public Texture[] UniformTextures;
 
@@ -1714,6 +1718,8 @@ public class YandereScript : MonoBehaviour
 	public int VtuberID;
 
 	public float DebugTimer;
+
+	public Texture OriginalHairTexture;
 
 	public RaycastHit corpseHit;
 
@@ -3262,7 +3268,7 @@ public class YandereScript : MonoBehaviour
 							}
 						}
 					}
-					if (ClubAccessories[7].activeInHierarchy && (Input.GetAxis(InputNames.Xbox_DpadY) != 0f || Input.GetAxis("Mouse ScrollWheel") != 0f || Input.GetKey(KeyCode.Tab) || Input.GetKey(KeyCode.LeftShift)))
+					if (ClubAccessories[7].activeInHierarchy && (Input.GetAxis(InputNames.Xbox_DpadY) != 0f || Input.GetAxis("Mouse ScrollWheel") != 0f || Input.GetKey(KeyCode.Tab) || Input.GetKey(KeyCode.LeftShift)) && !StudentManager.Eighties)
 					{
 						if (Input.GetKey(KeyCode.Tab))
 						{
@@ -3712,6 +3718,12 @@ public class YandereScript : MonoBehaviour
 				}
 				Debug.Log("If the code got here, it means that Yandere-chan is being chased, but Pursuer is null.");
 				Debug.Log("This COULD mean that there was a Pursuer, who is now dead. Or, it could mean something else.");
+				if (StudentManager.Alphabet.enabled)
+				{
+					PreparedForStruggle = false;
+					CanMove = true;
+					Chased = false;
+				}
 			}
 		}
 		StopArmedAnim();
@@ -5547,6 +5559,7 @@ public class YandereScript : MonoBehaviour
 					EmptyHands();
 					YandereVision = false;
 					SneakingShot = true;
+					SneakShotTimer = 0f;
 					CanMove = false;
 					Debug.Log("CanMove is now false.");
 					Lewd = true;
@@ -9717,6 +9730,26 @@ public class YandereScript : MonoBehaviour
 
 	public void Cloak()
 	{
+		OverlayTextures[0] = MyRenderer.materials[0].GetTexture("_OverlayTex");
+		OverlayTextures[1] = MyRenderer.materials[0].GetTexture("_OverlayTex1");
+		OverlayTextures[2] = MyRenderer.materials[1].GetTexture("_OverlayTex");
+		OverlayTextures[3] = MyRenderer.materials[1].GetTexture("_OverlayTex1");
+		OverlayTextures[4] = MyRenderer.materials[2].GetTexture("_OverlayTex");
+		OverlayTextures[5] = MyRenderer.materials[2].GetTexture("_OverlayTex1");
+		BlendAmount[0] = MyRenderer.materials[0].GetFloat("_BlendAmount");
+		BlendAmount[1] = MyRenderer.materials[0].GetFloat("_BlendAmount1");
+		BlendAmount[2] = MyRenderer.materials[1].GetFloat("_BlendAmount");
+		BlendAmount[3] = MyRenderer.materials[1].GetFloat("_BlendAmount1");
+		BlendAmount[4] = MyRenderer.materials[2].GetFloat("_BlendAmount");
+		BlendAmount[5] = MyRenderer.materials[2].GetFloat("_BlendAmount1");
+		if (!StudentManager.Eighties)
+		{
+			OriginalHairTexture = PonytailRenderer.material.mainTexture;
+		}
+		else
+		{
+			OriginalHairTexture = EightiesPonytailRenderer.material.mainTexture;
+		}
 		EightiesPonytailRenderer.material = CloakMaterial;
 		PonytailRenderer.material = CloakMaterial;
 		MyRenderer.materials = CloakMaterials;
@@ -9742,16 +9775,29 @@ public class YandereScript : MonoBehaviour
 		MyRenderer.materials[0].color = Color.white;
 		MyRenderer.materials[1].color = Color.white;
 		MyRenderer.materials[2].color = Color.white;
-		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
-		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
-		MyRenderer.materials[2].SetFloat("_BlendAmount", 0f);
+		MyRenderer.materials[0].SetTexture("_OverlayTex", OverlayTextures[0]);
+		MyRenderer.materials[0].SetTexture("_OverlayTex1", OverlayTextures[1]);
+		MyRenderer.materials[1].SetTexture("_OverlayTex", OverlayTextures[2]);
+		MyRenderer.materials[1].SetTexture("_OverlayTex1", OverlayTextures[3]);
+		MyRenderer.materials[2].SetTexture("_OverlayTex", OverlayTextures[4]);
+		MyRenderer.materials[2].SetTexture("_OverlayTex1", OverlayTextures[5]);
+		MyRenderer.materials[0].SetFloat("_BlendAmount", BlendAmount[0]);
+		MyRenderer.materials[0].SetFloat("_BlendAmount1", BlendAmount[1]);
+		MyRenderer.materials[1].SetFloat("_BlendAmount", BlendAmount[2]);
+		MyRenderer.materials[1].SetFloat("_BlendAmount1", BlendAmount[3]);
+		MyRenderer.materials[2].SetFloat("_BlendAmount", BlendAmount[4]);
+		MyRenderer.materials[2].SetFloat("_BlendAmount1", BlendAmount[5]);
 		MyRenderer.materials[0].SetFloat("_Outline", 0.002f);
 		MyRenderer.materials[1].SetFloat("_Outline", 0.002f);
 		MyRenderer.materials[2].SetFloat("_Outline", 0.002f);
-		PonytailRenderer.material.color = new Color(0.25f, 0.25f, 0.25f, 1f);
+		PonytailRenderer.material.shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
+		PonytailRenderer.material.mainTexture = OriginalHairTexture;
 		PonytailRenderer.material.SetFloat("_Outline", 0.002f);
-		EightiesPonytailRenderer.material.color = new Color(0.25f, 0.25f, 0.25f, 1f);
+		PonytailRenderer.material.color = Color.white;
+		EightiesPonytailRenderer.material.shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
+		EightiesPonytailRenderer.material.mainTexture = OriginalHairTexture;
 		EightiesPonytailRenderer.material.SetFloat("_Outline", 0.002f);
+		EightiesPonytailRenderer.material.color = Color.white;
 		if (!StudentManager.Eighties)
 		{
 			Hairstyle = 1;

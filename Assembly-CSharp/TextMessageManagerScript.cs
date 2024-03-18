@@ -22,6 +22,10 @@ public class TextMessageManagerScript : MonoBehaviour
 
 	public void Start()
 	{
+		for (int i = 2; i < DarkSecrets.Length; i++)
+		{
+			DarkSecrets[i] = "This text is currently unavailable.";
+		}
 		Messages[10] = DarkSecrets[DateGlobals.Week];
 	}
 

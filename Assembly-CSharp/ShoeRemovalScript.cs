@@ -76,6 +76,10 @@ public class ShoeRemovalScript : MonoBehaviour
 	{
 		if (Locker == null)
 		{
+			if (!Student.Cosmetic.Initialized)
+			{
+				Student.Cosmetic.Start();
+			}
 			GetHeight(Student.StudentID);
 			if (Student.StudentID < Student.StudentManager.Lockers.List.Length)
 			{
@@ -158,6 +162,10 @@ public class ShoeRemovalScript : MonoBehaviour
 					else if (DateGlobals.Week == 1)
 					{
 						Student.StudentManager.UpdateExteriorStudents();
+					}
+					else if (DateGlobals.Week == 2)
+					{
+						Student.StudentManager.RepositionDelinquents();
 					}
 				}
 				ShoeParent.parent = LeftHand;
@@ -394,6 +402,10 @@ public class ShoeRemovalScript : MonoBehaviour
 			{
 				Student.StudentManager.UpdateExteriorStudents();
 			}
+			else if (DateGlobals.Week == 2)
+			{
+				Student.StudentManager.RepositionDelinquents();
+			}
 		}
 	}
 
@@ -403,6 +415,9 @@ public class ShoeRemovalScript : MonoBehaviour
 
 	public void UpdateShoes()
 	{
+		OutdoorShoes = Student.Cosmetic.CasualTexture;
+		IndoorShoes = Student.Cosmetic.UniformTexture;
+		Socks = Student.Cosmetic.SocksTexture;
 		Student.Indoors = true;
 		if (!Student.AoT)
 		{

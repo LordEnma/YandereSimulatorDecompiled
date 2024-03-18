@@ -301,6 +301,19 @@ public class StudentJson : JsonData
 		{
 			array[i] = new StudentJson();
 		}
+		array[0].Name = "Ayano Aishi";
+		array[0].Gender = 0;
+		array[0].Class = 21;
+		array[0].Seat = 13;
+		array[0].Crush = 1;
+		array[0].BreastSize = 1f;
+		array[0].Hairstyle = "1";
+		array[0].Color = "Default";
+		array[0].Eyes = "Default";
+		array[0].EyeType = "Ayano";
+		array[0].Stockings = "Black";
+		array[0].Accessory = "0";
+		array[0].Info = "";
 		Dictionary<string, object>[] array2 = JsonData.Deserialize(path);
 		foreach (Dictionary<string, object> dictionary in array2)
 		{

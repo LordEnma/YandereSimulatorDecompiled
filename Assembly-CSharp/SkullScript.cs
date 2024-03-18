@@ -140,9 +140,18 @@ public class SkullScript : MonoBehaviour
 				RitualKnife.GetComponent<WeaponScript>().Flaming = true;
 				Prompt.enabled = true;
 				Prompt.Yandere.Police.Invalid = true;
-				if (Prompt.Yandere.StudentManager.Students[10] != null)
+				for (int i = 1; i < 101; i++)
 				{
-					Prompt.Yandere.StudentManager.Students[10].Strength = 0;
+					Debug.Log("Removing all students' ability to pepper spray or fight back.");
+					if (Prompt.Yandere.StudentManager.Students[i] != null)
+					{
+						Prompt.Yandere.StudentManager.Students[i].Persona = PersonaType.Coward;
+						Prompt.Yandere.StudentManager.Students[i].Strength = 0;
+						if (Prompt.Yandere.StudentManager.Students[i].Club == ClubType.Council)
+						{
+							Prompt.Yandere.StudentManager.Students[i].Club = ClubType.None;
+						}
+					}
 				}
 				MyAudio.clip = FlameActivation;
 				MyAudio.Play();

@@ -47,6 +47,7 @@ public class HomeExitScript : MonoBehaviour
 				else if (DateGlobals.Week == 2)
 				{
 					uILabel2.text = "''Dark Delights'' Bakery";
+					uILabel2.text = "Don't click; will crash.";
 				}
 			}
 			BringItemPrompt.SetActive(value: false);

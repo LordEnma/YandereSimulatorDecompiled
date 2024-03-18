@@ -636,6 +636,7 @@ public class MissionModeScript : MonoBehaviour
 				Yandere.Subtitle.TeacherMurderClips[2] = Yandere.Subtitle.LongestSilence;
 				Yandere.Subtitle.TeacherMurderClips[3] = Yandere.Subtitle.LongestSilence;
 				Yandere.Subtitle.TeacherMurderClips[4] = Yandere.Subtitle.LongestSilence;
+				StudentManager.GloveList[2].gameObject.SetActive(value: false);
 			}
 			if (WeaponManager.Weapons[1] != null)
 			{

@@ -339,7 +339,7 @@ public class StalkerPromptScript : MonoBehaviour
 							}
 							else
 							{
-								Yandere.transform.position = new Vector3(5f, 0.25f, 10.5f);
+								Yandere.transform.position = new Vector3(5f, 0.25f, 10.6f);
 								Yandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);
 								Yandere.MyAnimation["f02_climbTrellis_00"].time = 7f;
 								Yandere.MyAnimation.Play("f02_climbTrellis_00");
@@ -593,7 +593,15 @@ public class StalkerPromptScript : MonoBehaviour
 				{
 					PlayerGlobals.SetCannotBringItem(6, value: false);
 				}
-				SceneManager.LoadScene("LivingRoomScene");
+				if (!Eighties && DateGlobals.Week == 2)
+				{
+					EventGlobals.OsanaConversation = true;
+					SceneManager.LoadScene("PhoneScene");
+				}
+				else
+				{
+					SceneManager.LoadScene("LivingRoomScene");
+				}
 			}
 		}
 		if (FireAudio != null)

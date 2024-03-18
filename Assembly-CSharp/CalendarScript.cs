@@ -569,6 +569,8 @@ public class CalendarScript : MonoBehaviour
 							if (Input.GetButtonDown(InputNames.Xbox_A))
 							{
 								UpdateSeeds();
+								GameGlobals.SpecificEliminationID = 0;
+								GameGlobals.RivalEliminationID = 0;
 								AmaiButton.SetActive(value: false);
 								AmaiWindow.SetActive(value: false);
 								DateGlobals.Weekday++;

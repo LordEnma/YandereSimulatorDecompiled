@@ -499,28 +499,37 @@ public class SocialScript : MonoBehaviour
 
 	public void CheckFriendStatus()
 	{
+		Debug.Log("Now checking the friendship status of Student #" + StudentID + ", " + Student.Name);
 		if (Student == null)
 		{
 			Debug.Log("Warning! Student was null!");
 			Student = Yandere.TargetStudent;
 		}
-		Debug.Log("Current Student is: " + Student.Name);
-		Debug.Log("Current StudentID is: " + StudentID);
 		if (StudentFriendships[StudentID] > 100)
 		{
 			StudentFriendships[StudentID] = 100;
 		}
-		if (!Student.Friend && (float)StudentFriendships[StudentID] >= 100f * StudentThresholds[StudentID])
+		if (!Student.Friend)
 		{
-			Debug.Log("Befriending student now.");
-			Yandere.NotificationManager.CustomText = "Student Befriended!";
-			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			Yandere.StudentManager.StudentBefriended[StudentID] = true;
-			Yandere.Police.EndOfDay.NewFriends++;
-			Yandere.Friends++;
-			Student.Friend = true;
-			Student.TurnOutlinesGreen();
-			DialogueWheel.HideShadows();
+			Debug.Log("This student is not a friend yet.");
+			Debug.Log("The player's relationship with this student is " + StudentFriendships[StudentID] + ".");
+			Debug.Log("This student's friendship threshold is " + StudentThresholds[StudentID] + ".");
+			if ((float)StudentFriendships[StudentID] >= 100f * StudentThresholds[StudentID])
+			{
+				Debug.Log("The criteria for befriending this student was just met!");
+				Yandere.NotificationManager.CustomText = "Student Befriended!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Yandere.StudentManager.StudentBefriended[StudentID] = true;
+				Yandere.Police.EndOfDay.NewFriends++;
+				Yandere.Friends++;
+				Student.Friend = true;
+				Student.TurnOutlinesGreen();
+				DialogueWheel.HideShadows();
+			}
+			else
+			{
+				Debug.Log("The criteria for befriending this student has not been met yet.");
+			}
 		}
 	}
 }

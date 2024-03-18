@@ -137,10 +137,12 @@ public class StreetShopInterfaceScript : MonoBehaviour
 				else if (TransitionTimer > 4f)
 				{
 					Shopkeeper.mainTexture = SalonSinister;
+					Jukebox.pitch -= Time.deltaTime * 0.1f;
 				}
 				else if (TransitionTimer > 2f)
 				{
 					Shopkeeper.mainTexture = SalonSurprise;
+					Jukebox.pitch -= Time.deltaTime * 0.1f;
 				}
 			}
 			else

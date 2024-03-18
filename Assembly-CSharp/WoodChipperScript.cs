@@ -147,17 +147,16 @@ public class WoodChipperScript : MonoBehaviour
 						Prompt.HideButton[3] = false;
 					}
 				}
-				else if (Bucket == null)
+				else if (!(Bucket == null))
 				{
-					Prompt.HideButton[0] = true;
-				}
-				else if (Bucket.Bucket.Full)
-				{
-					Prompt.HideButton[0] = true;
-				}
-				else
-				{
-					Prompt.HideButton[0] = false;
+					if (Bucket.Bucket.Full)
+					{
+						Prompt.HideButton[0] = true;
+					}
+					else
+					{
+						Prompt.HideButton[0] = false;
+					}
 				}
 			}
 		}
@@ -316,6 +315,12 @@ public class WoodChipperScript : MonoBehaviour
 			}
 			MyAudio.clip = ShredAudio;
 			MyAudio.Play();
+		}
+		if (Occupied && !Acid && Bucket == null && Prompt.Circle[0].fillAmount == 0f)
+		{
+			Prompt.Circle[0].fillAmount = 1f;
+			Yandere.NotificationManager.CustomText = "Place bucket first.";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		}
 		if ((Acid && Occupied && VictimID > 0) || (Kiln && Occupied && VictimID > 0 && Rotation == 0f) || Prompt.Circle[0].fillAmount == 0f)
 		{

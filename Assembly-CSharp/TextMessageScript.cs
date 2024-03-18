@@ -18,8 +18,16 @@ public class TextMessageScript : MonoBehaviour
 		}
 		if (Right && EventGlobals.OsanaConversation)
 		{
-			base.gameObject.GetComponent<UISprite>().color = new Color(1f, 0.5f, 0f);
-			Label.color = new Color(1f, 1f, 1f);
+			if (DateGlobals.Week == 1)
+			{
+				base.gameObject.GetComponent<UISprite>().color = new Color(1f, 0.5f, 0f);
+				Label.color = new Color(1f, 1f, 1f);
+			}
+			else
+			{
+				base.gameObject.GetComponent<UISprite>().spriteName = "MessageRightGrey";
+				base.gameObject.GetComponent<UISprite>().color = new Color(0.75f, 1f, 0.75f);
+			}
 		}
 	}
 

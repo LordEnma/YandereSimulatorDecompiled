@@ -310,9 +310,12 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		Vignette.chromaticAberration = 1f;
 		if (EventGlobals.OsanaConversation)
 		{
-			PrologueLabel.text = "Osana is eager to report her stalker to the police.\n\nHowever, she knows that the process could take a long time, so she decides to visit Ayano's house and get her cat back before contacting the police.\n\nThe next morning, Osana arrives at Ayano's house...";
+			if (DateGlobals.Week == 1)
+			{
+				PrologueLabel.text = "Osana is eager to report her stalker to the police.\n\nHowever, she knows that the process could take a long time, so she decides to visit Ayano's house and get her cat back before contacting the police.\n\nThe next morning, Osana arrives at Ayano's house...";
+				CatStuff.SetActive(value: true);
+			}
 			WarningLabel.SetActive(value: true);
-			CatStuff.SetActive(value: true);
 			OsanaCutscene = true;
 			Lines = RivalData.OsanaIntroLines;
 			Times = RivalData.OsanaIntroTimes;
@@ -333,6 +336,10 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			Eighties = true;
 			Debug.Log("Disabled rival cuz 80s.");
 		}
+		else
+		{
+			Debug.Log("The game knows that it's 202X.");
+		}
 		YandereTeaCup.gameObject.SetActive(value: false);
 		RivalTeaCup.gameObject.SetActive(value: false);
 		DOFStatus = Profile.depthOfField.enabled;
@@ -349,6 +356,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			ProtagonistName = JSON.Students[0].Name;
 			EightiesLabel.text = "Before " + ProtagonistName + " burned the pictures, she grabbed one photograph to keep with her as proof that she was in the asylum.\n\n" + ProtagonistName + " returns home, calls her rival, and informs her that the pictures have been destroyed. She also invites the girl over to her house to see the proof.\n\n" + ProtagonistName + "'s rival arrives at her home. When she sees the photograph, she knows that " + ProtagonistName + " is telling the truth. " + ProtagonistName + " lets the girl burn the photo so that she can put this dark chapter of her life behind her.\n\nThen, " + ProtagonistName + " offers her rival some tea...";
 		}
+		Rival.transform.parent.gameObject.GetComponent<CosmeticScript>().Start();
 	}
 
 	private void Update()
@@ -653,7 +661,6 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					}
 					else if (TeaTimer > 6.25f && TeaTimer < 30f)
 					{
-						Debug.Log("Ayano is being teleported here.");
 						RivalTeaCup.SetActive(value: false);
 						base.transform.parent = FriendshipCamera;
 						base.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
@@ -667,7 +674,6 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					}
 					else if (TeaTimer > 95f)
 					{
-						Debug.Log("Ayano is being teleported here, too.");
 						Yandere.transform.parent.position = new Vector3(-3.2f, 0f, 3.7f);
 						Yandere.transform.parent.eulerAngles = new Vector3(0f, 0f, 0f);
 					}
@@ -790,7 +796,6 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 		else if (Phase == 10)
 		{
-			Debug.Log("Reached end of Befriend branch. Fading out now.");
 			BGM.volume -= Time.deltaTime * 0.02f;
 			SubDarkness.color = new Color(SubDarkness.color.r, SubDarkness.color.g, SubDarkness.color.b, Mathf.MoveTowards(SubDarkness.color.a, 1f, Time.deltaTime * 0.2f));
 			if (SubDarkness.color.a == 1f)

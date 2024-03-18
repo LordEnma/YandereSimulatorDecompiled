@@ -15,6 +15,7 @@ public class CutRopeScript : MonoBehaviour
 			{
 				FallingObject.enabled = true;
 				Prompt.Hide();
+				Prompt.enabled = false;
 				base.enabled = false;
 			}
 			else

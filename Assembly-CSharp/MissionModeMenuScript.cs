@@ -328,6 +328,8 @@ public class MissionModeMenuScript : MonoBehaviour
 			EightiesifyAllLabels();
 			StartMissionIcon.mainTexture = YakuzaIcon;
 			ToggleNemesisLabel.text = "Toggle Yakuza Mode";
+			CustomNemesisLabel.text = "Yakuza Mode: Off";
+			NemesisLabel.text = "Yakuza Mode: Off";
 		}
 		else
 		{
@@ -980,7 +982,7 @@ public class MissionModeMenuScript : MonoBehaviour
 					Valid = false;
 					GetNumbers();
 					bool flag2 = false;
-					if ((TargetNumber > 11 && TargetNumber < 21) || TargetNumber > 89)
+					if (!Eighties && TargetNumber > 11 && TargetNumber < 21)
 					{
 						flag2 = true;
 					}
@@ -992,6 +994,11 @@ public class MissionModeMenuScript : MonoBehaviour
 					if (TargetNumber == 1)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Target cannot be Senpai)";
+						return;
+					}
+					if (TargetNumber > 89)
+					{
+						ErrorLabel.text = "Invalid Mission ID (Target cannot be faculty)";
 						return;
 					}
 					if (flag2)
@@ -1046,6 +1053,13 @@ public class MissionModeMenuScript : MonoBehaviour
 			{
 				if (Valid)
 				{
+					if (Eighties)
+					{
+						WeaponNumber = 0;
+						ClothingNumber = 0;
+						DisposalNumber = 0;
+						Condition10Number = 0;
+					}
 					Debug.Log("Target ID is: " + TargetNumber + " and Weapon ID is: " + WeaponNumber);
 					TargetID = TargetNumber;
 					Difficulty = 1;
@@ -1170,6 +1184,13 @@ public class MissionModeMenuScript : MonoBehaviour
 					UpdateDifficultyLabel();
 					CalculateMissionID();
 					ChooseTarget();
+					if (Eighties)
+					{
+						CustomObjectives[2].alpha = 0f;
+						CustomObjectives[3].alpha = 0f;
+						CustomObjectives[9].alpha = 0f;
+						CustomObjectives[10].alpha = 0f;
+					}
 				}
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -1595,7 +1616,7 @@ public class MissionModeMenuScript : MonoBehaviour
 				PromptBar.Label[3].text = "";
 			}
 		}
-		if (Eighties && (CustomSelected == 2 || CustomSelected == 3 || CustomSelected == 9))
+		if (Eighties && (CustomSelected == 2 || CustomSelected == 3 || CustomSelected == 9 || CustomSelected == 10))
 		{
 			PromptBar.Label[0].text = "";
 			PromptBar.Label[2].text = "";

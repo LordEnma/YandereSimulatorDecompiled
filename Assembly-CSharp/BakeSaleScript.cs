@@ -13,6 +13,8 @@ public class BakeSaleScript : MonoBehaviour
 
 	public float Timer;
 
+	public bool Poisoned;
+
 	public int ID = 46;
 
 	private void Start()

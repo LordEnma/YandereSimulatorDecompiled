@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class WeekSelectScript : MonoBehaviour
 {
+	public StudentManagerScript StudentManager;
+
 	public InputManagerScript InputManager;
 
 	public EightiesStatsScript Stats;
@@ -51,6 +53,8 @@ public class WeekSelectScript : MonoBehaviour
 
 	private void Start()
 	{
+		StudentManager.InitializeReputations();
+		GameGlobals.ReputationsInitialized = true;
 		base.transform.position = new Vector3(0f, 2.31f, 0f);
 		EditLabel.gameObject.SetActive(value: false);
 		StartLabel.text = "NEXT";
@@ -97,17 +101,20 @@ public class WeekSelectScript : MonoBehaviour
 							PlayerGlobals.SetStudentFriend(i + 10, value: true);
 							PlayerGlobals.Friends++;
 						}
-						else if (GameGlobals.GetSpecificEliminations(i) == 3 || GameGlobals.GetSpecificEliminations(i) == 4)
+						else if (GameGlobals.GetSpecificEliminations(i) == 3)
 						{
+							Debug.Log("Rival #" + i + " was betrayed, so she will appear in the basement as a prisoner.");
+							StudentGlobals.SetStudentKidnapped(i + 10, value: true);
 							StudentGlobals.SetStudentMissing(i + 10, value: true);
-							if (GameGlobals.GetSpecificEliminations(i) == 3)
-							{
-								Debug.Log("Rival #" + i + " was betrayed, so she will appear in the basement as a prisoner.");
-								StudentGlobals.SetStudentKidnapped(i + 10, value: true);
-								StudentGlobals.SetStudentHealth(i + 10, 100);
-								StudentGlobals.Prisoners++;
-								AssignPrisoner(i);
-							}
+							StudentGlobals.SetStudentHealth(i + 10, 100);
+							StudentGlobals.Prisoners++;
+							AssignPrisoner(i);
+						}
+						else if (GameGlobals.GetSpecificEliminations(i) == 4)
+						{
+							Debug.Log("Rival #" + i + " was bullied out of school, so she will not be appearing at Akademi.");
+							StudentGlobals.SetStudentMissing(i + 10, value: true);
+							StudentGlobals.SetStudentReputation(i + 10, -100);
 						}
 						else if (GameGlobals.GetSpecificEliminations(i) == 9)
 						{
@@ -121,6 +128,7 @@ public class WeekSelectScript : MonoBehaviour
 						{
 							Debug.Log("Rival #" + i + " was kidnapped, so she will appear in the basement as a prisoner.");
 							StudentGlobals.SetStudentKidnapped(i + 10, value: true);
+							StudentGlobals.SetStudentMissing(i + 10, value: true);
 							StudentGlobals.SetStudentHealth(i + 10, 100);
 							StudentGlobals.Prisoners++;
 							AssignPrisoner(i);

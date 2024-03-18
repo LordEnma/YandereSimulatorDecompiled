@@ -8,11 +8,19 @@ public class AbductionScript : MonoBehaviour
 
 	public Texture[] RivalStockings;
 
+	public GameObject MaleDarkness;
+
 	public AudioSource MyAudio;
 
 	public UISprite Darkness;
 
 	public Camera MainCamera;
+
+	public JsonScript JSON;
+
+	public Animation Anim1;
+
+	public Animator Anim2;
 
 	public float StartTimer;
 
@@ -22,14 +30,14 @@ public class AbductionScript : MonoBehaviour
 
 	public int Phase;
 
-	public Animation Anim1;
-
-	public Animator Anim2;
-
 	public PostProcessingProfile Profile;
 
 	private void Start()
 	{
+		if (JSON.Students[DateGlobals.Week + 10].Gender == 1)
+		{
+			MaleDarkness.SetActive(value: true);
+		}
 		if (SchoolGlobals.SchoolAtmosphere > 0.5f)
 		{
 			Darkness.color = new Color(1f, 1f, 1f, 1f);

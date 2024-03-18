@@ -170,6 +170,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 							{
 								DifficultyWindow.SetActive(value: true);
 								PromptBar.Label[2].text = "";
+								PromptBar.Label[3].text = "";
 								PromptBar.Label[5].text = "Change Difficulty";
 								PromptBar.UpdateButtons();
 							}
@@ -209,6 +210,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 							}
 							PromptBar.Label[0].text = "Enable/Disable";
 							PromptBar.Label[2].text = "";
+							PromptBar.Label[3].text = "";
 							PromptBar.UpdateButtons();
 							ChallengeWindow.SetActive(value: true);
 						}
@@ -318,6 +320,10 @@ public class TitleSaveFilesScript : MonoBehaviour
 					ChallengeWindow.SetActive(value: false);
 					PromptBar.Label[0].text = "New Game";
 					PromptBar.Label[2].text = "Challenges";
+					if (NewTitleScreen.Eighties)
+					{
+						PromptBar.Label[3].text = "Week Select";
+					}
 					PromptBar.UpdateButtons();
 				}
 			}
@@ -419,6 +425,10 @@ public class TitleSaveFilesScript : MonoBehaviour
 		{
 			DifficultyWindow.SetActive(value: false);
 			PromptBar.Label[2].text = "Challenges";
+			if (NewTitleScreen.Eighties)
+			{
+				PromptBar.Label[3].text = "Week Select";
+			}
 			PromptBar.Label[5].text = "";
 			PromptBar.UpdateButtons();
 		}
@@ -431,10 +441,12 @@ public class TitleSaveFilesScript : MonoBehaviour
 		PromptBar.Label[3].text = "";
 		if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) > 0)
 		{
+			PromptBar.Label[0].text = "Load Game";
 			PromptBar.Label[2].text = "Delete";
 		}
 		else
 		{
+			PromptBar.Label[0].text = "New Game";
 			PromptBar.Label[2].text = "Challenges";
 			if (!NewTitleScreen.Eighties)
 			{

@@ -26,6 +26,8 @@ public class FamilyVoiceScript : MonoBehaviour
 
 	public Transform Head;
 
+	public Transform Hips;
+
 	public AudioSource Jukebox;
 
 	public AudioSource MyAudio;
@@ -103,6 +105,10 @@ public class FamilyVoiceScript : MonoBehaviour
 		{
 			if (!Investigating)
 			{
+				if (Hips != null && Vector3.Distance(Yandere.transform.position, Hips.transform.position) < 1f)
+				{
+					TransitionToGameOver();
+				}
 				if (Yandere.transform.position.y > base.transform.position.y - 1f && Yandere.transform.position.y < base.transform.position.y + 1f)
 				{
 					Distance = Vector3.Distance(Yandere.transform.position, base.transform.position);

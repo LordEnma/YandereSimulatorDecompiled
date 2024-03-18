@@ -38,6 +38,10 @@ public class StruggleBarScript : MonoBehaviour
 
 	private void Start()
 	{
+		if (GameGlobals.KokonaTutorial)
+		{
+			Invincible = true;
+		}
 		base.transform.localScale = Vector3.zero;
 		ChooseButton();
 	}
@@ -52,6 +56,7 @@ public class StruggleBarScript : MonoBehaviour
 			Victory -= Time.deltaTime * 5f * Strength;
 			if (Yandere.Club == ClubType.MartialArts || (Yandere.TargetStudent != null && Yandere.TargetStudent.Strength == 0))
 			{
+				Debug.Log("Either player is in the martial arts club, or player's target has a Strength of 0.");
 				Victory = 100f;
 			}
 			if (Input.GetButtonDown(CurrentButton))
@@ -107,6 +112,12 @@ public class StruggleBarScript : MonoBehaviour
 					Intensity = 0f;
 				}
 			}
+			if (!(Student != null) || !(Student.Yandere != null))
+			{
+				return;
+			}
+			Student.transform.rotation = Quaternion.Slerp(Student.transform.rotation, Student.Yandere.transform.rotation, 10f * Time.deltaTime);
+			Student.MoveTowardsTarget(Student.Yandere.transform.position + Student.Yandere.transform.forward * 0.425f);
 			Student.TooCloseToWall = false;
 			Student.CheckForWallToLeft();
 			if (Student.TooCloseToWall)

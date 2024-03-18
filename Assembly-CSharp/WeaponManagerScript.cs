@@ -375,6 +375,18 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
+	public void CountBloodyWeaponsForPolice()
+	{
+		BloodyWeapons = 0;
+		for (int i = 1; i < Weapons.Length; i++)
+		{
+			if (Weapons[i] != null && Weapons[i].Bloody && !Weapons[i].Disposed)
+			{
+				BloodyWeapons++;
+			}
+		}
+	}
+
 	public void DisableAllWeapons()
 	{
 		for (int i = 1; i < Weapons.Length; i++)

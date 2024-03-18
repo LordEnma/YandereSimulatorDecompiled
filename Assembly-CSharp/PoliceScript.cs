@@ -283,7 +283,8 @@ public class PoliceScript : MonoBehaviour
 				UniformIcon.spriteName = "No";
 				UniformDisposed = false;
 			}
-			if (MurderWeapons == 0 || IncineratedWeapons == MurderWeapons)
+			Yandere.WeaponManager.CountBloodyWeaponsForPolice();
+			if (Yandere.WeaponManager.BloodyWeapons == 0)
 			{
 				if (!WeaponDisposed)
 				{

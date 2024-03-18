@@ -277,7 +277,7 @@ public class StalkerYandereScript : MonoBehaviour
 			RunAnim = "f02_ryobaRun_00";
 			MyRenderer.materials[0].mainTexture = MyRenderer.materials[2].mainTexture;
 			Eighties = true;
-			if (Street)
+			if (Street && !HomeGlobals.Night)
 			{
 				BreastL.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 				BreastR.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);

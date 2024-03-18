@@ -66,6 +66,8 @@ public class GenocideEndingScript : MonoBehaviour
 
 	public bool LockJaw;
 
+	public GameObject[] EightiesRivalHair;
+
 	public GameObject[] RivalHair;
 
 	public GameObject Blindfold;
@@ -117,7 +119,6 @@ public class GenocideEndingScript : MonoBehaviour
 			Senpai.transform.parent.gameObject.SetActive(value: false);
 			Osana.SetActive(value: true);
 			SpeechText[10] = "...huh? ...what is this? ...why am I tied to a...chair?! Why are you doing this?! This isn't funny! Lemme go! Lemme go right now!";
-			Subtitle.text = SpeechText[10];
 			MyAudio.clip = OsanaClip;
 			MyAudio.Play();
 			SpeechPhase = 10;
@@ -134,10 +135,18 @@ public class GenocideEndingScript : MonoBehaviour
 				}
 				else
 				{
-					RivalHair[DateGlobals.Week].SetActive(value: true);
+					EightiesRivalHair[DateGlobals.Week].SetActive(value: true);
 				}
 				YellowifyLabel(Subtitle);
 			}
+			else if (DateGlobals.Week == 2)
+			{
+				SpeechText[10] = "...huh...?!...am...am I...tied to a chair...?!...no...no, this can't be happening...Yan-chan?! Yan-chan, did you do this?! Why?! Please, let me go...let me go!";
+				RivalHair[DateGlobals.Week].SetActive(value: true);
+				RivalHair[0].SetActive(value: false);
+				MyAudio.volume = 0f;
+			}
+			Subtitle.text = SpeechText[10];
 		}
 		else
 		{

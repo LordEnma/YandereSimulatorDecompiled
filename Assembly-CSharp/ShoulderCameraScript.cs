@@ -253,6 +253,7 @@ public class ShoulderCameraScript : MonoBehaviour
 					}
 					else
 					{
+						Yandere.CanMove = false;
 						Yandere.CharacterAnimation["f02_sadEyebrows_00"].weight = 1f;
 						Yandere.CharacterAnimation.CrossFade("f02_whimper_00");
 						Yandere.Subtitle.UpdateLabel(SubtitleType.YandereWhimper, 1, 3.5f);

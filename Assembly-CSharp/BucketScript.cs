@@ -231,6 +231,7 @@ public class BucketScript : MonoBehaviour
 			}
 			if (Yandere.PickUp == PickUp && Full)
 			{
+				Prompt.HideButton[0] = true;
 				Prompt.HideButton[1] = false;
 			}
 		}
@@ -364,7 +365,7 @@ public class BucketScript : MonoBehaviour
 				Bleached = true;
 			}
 		}
-		else if (Prompt.Circle[1].fillAmount == 0f && Yandere.PickUp == PickUp && Full)
+		else if ((Prompt.Circle[1].fillAmount == 0f || (!Yandere.NoDebug && Input.GetKeyDown("z"))) && ((Yandere.PickUp == PickUp && Full) || (Yandere.PickUp == PickUp && !Yandere.NoDebug && Input.GetKeyDown("z"))))
 		{
 			Spill();
 		}
