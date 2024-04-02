@@ -24,6 +24,8 @@ public class SewingMachineScript : MonoBehaviour
 
 	public bool Sewing;
 
+	public bool Apron;
+
 	public bool Check;
 
 	public float Timer;
@@ -49,18 +51,26 @@ public class SewingMachineScript : MonoBehaviour
 	{
 		if (Check)
 		{
-			if ((!Eighties && Yandere.PickUp != null && Yandere.PickUp.FoldedUniform != null) || (Eighties && Yandere.Inventory.PinkCloth) || (Eighties && Yandere.Inventory.Cloth > 0))
+			if ((!Eighties && Yandere.PickUp != null && Yandere.PickUp.FoldedUniform != null) || (!Eighties && Apron) || (Eighties && Yandere.Inventory.PinkCloth) || (Eighties && Yandere.Inventory.Cloth > 0))
 			{
 				Prompt.enabled = true;
 				if (!Eighties)
 				{
-					if (Yandere.PickUp.FoldedUniform.Clean && Yandere.PickUp.FoldedUniform.Type == 1)
+					if (Yandere.PickUp != null && Yandere.PickUp.FoldedUniform.Clean && Yandere.PickUp.FoldedUniform.Type == 1)
 					{
 						Prompt.HideButton[0] = false;
 					}
 					else
 					{
 						Prompt.HideButton[0] = true;
+					}
+					if (Yandere.Inventory.PinkCloth && Apron)
+					{
+						Prompt.HideButton[1] = false;
+					}
+					else
+					{
+						Prompt.HideButton[1] = true;
 					}
 				}
 				else
@@ -107,7 +117,7 @@ public class SewingMachineScript : MonoBehaviour
 				Chair.enabled = false;
 				Sewing = true;
 				GetComponent<AudioSource>().Play();
-				if (!Eighties)
+				if (!Eighties && !Apron)
 				{
 					Uniform = Yandere.PickUp;
 					Yandere.EmptyHands();
@@ -149,6 +159,13 @@ public class SewingMachineScript : MonoBehaviour
 					Yandere.Inventory.PinkSocks = true;
 					Prompt.HideButton[1] = true;
 				}
+			}
+			else if (Apron)
+			{
+				Yandere.Inventory.PinkCloth = false;
+				Yandere.Inventory.PinkApron = true;
+				Prompt.HideButton[2] = true;
+				Apron = false;
 			}
 			else
 			{

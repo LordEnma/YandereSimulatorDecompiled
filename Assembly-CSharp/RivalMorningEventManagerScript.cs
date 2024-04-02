@@ -35,11 +35,13 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 
 	public int[] Speaker;
 
+	public AudioSource VoiceClipSource;
+
+	public GameObject ObjectToActivate;
+
 	public GameObject AlarmDisc;
 
 	public GameObject VoiceClip;
-
-	public AudioSource VoiceClipSource;
 
 	public bool WaitForAnim = true;
 
@@ -118,6 +120,10 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 				SpeechText[i] = "";
 			}
 		}
+		if (base.enabled && !GameGlobals.Eighties && Week == 2 && (EventDay == DayOfWeek.Thursday || EventDay == DayOfWeek.Friday))
+		{
+			ObjectToActivate.SetActive(value: true);
+		}
 	}
 
 	private void Update()
@@ -135,71 +141,79 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		}
 		if (Phase == 0)
 		{
-			if (Frame > 5 && StudentManager.Students[RivalID] != null && StudentManager.Students[1].gameObject.activeInHierarchy && StudentManager.Students[RivalID] != null)
+			if (Frame > 5 && StudentManager.Students[RivalID] != null)
 			{
-				Debug.Log("The morning Senpai interaction event is now taking place.");
-				if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner && StudentGlobals.StudentSlave != FriendID && !NoFriend)
+				if (Clock.Period > 1)
 				{
-					Friend = StudentManager.Students[FriendID];
-					if (Friend.Investigating)
-					{
-						Friend.StopInvestigating();
-					}
-					if ((float)StudentGlobals.GetStudentReputation(10) > -33.33333f)
-					{
-						Friend.CharacterAnimation.Play("f02_cornerPeek_00");
-						Friend.Cheer.enabled = true;
-					}
-					else
-					{
-						Friend.CharacterAnimation.Play(Friend.BulliedIdleAnim);
-					}
-					Friend.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-					Friend.transform.position = Location[3].position;
-					Friend.transform.eulerAngles = Location[3].eulerAngles;
-					Friend.Pathfinding.canSearch = false;
-					Friend.Pathfinding.canMove = false;
-					Friend.IgnoringPettyActions = true;
-					Friend.ImmuneToLaughter = true;
-					Friend.VisionDistance = 20f;
-					Friend.Routine = false;
-					Friend.InEvent = true;
-					Friend.Spawned = true;
+					base.enabled = false;
 				}
-				Senpai = StudentManager.Students[1];
-				Rival = StudentManager.Students[RivalID];
-				Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-				Senpai.CharacterAnimation.Play(Senpai.IdleAnim);
-				Senpai.transform.position = Location[1].position;
-				Senpai.transform.eulerAngles = Location[1].eulerAngles;
-				Senpai.Pathfinding.canSearch = false;
-				Senpai.Pathfinding.canMove = false;
-				Senpai.Routine = false;
-				Senpai.InEvent = true;
-				Senpai.Spawned = true;
-				Senpai.Prompt.Hide();
-				Senpai.Prompt.enabled = false;
-				if (Rival.Investigating)
+				else if (StudentManager.Students[1].gameObject.activeInHierarchy && StudentManager.Students[RivalID] != null)
 				{
-					Rival.StopInvestigating();
-				}
-				Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-				Rival.CharacterAnimation.Play(Rival.IdleAnim);
-				Rival.transform.position = Location[2].position;
-				Rival.transform.eulerAngles = Location[2].eulerAngles;
-				Rival.Pathfinding.canSearch = false;
-				Rival.Pathfinding.canMove = false;
-				Rival.Routine = false;
-				Rival.InEvent = true;
-				Rival.Spawned = true;
-				Rival.Private = true;
-				Rival.Prompt.Hide();
-				Rival.Prompt.enabled = false;
-				Spy.Prompt.enabled = true;
-				Phase++;
-				if (EventDay == DayOfWeek.Tuesday)
-				{
-					StudentManager.Students[1].EventBook.SetActive(value: true);
+					Debug.Log(base.name + " believes that Clock.Period is: " + Clock.Period);
+					Debug.Log("The morning Senpai interaction event is now taking place.");
+					if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner && StudentGlobals.StudentSlave != FriendID && !NoFriend)
+					{
+						Friend = StudentManager.Students[FriendID];
+						if (Friend.Investigating)
+						{
+							Friend.StopInvestigating();
+						}
+						if ((float)StudentGlobals.GetStudentReputation(10) > -33.33333f)
+						{
+							Friend.CharacterAnimation.Play("f02_cornerPeek_00");
+							Friend.Cheer.enabled = true;
+						}
+						else
+						{
+							Friend.CharacterAnimation.Play(Friend.BulliedIdleAnim);
+						}
+						Friend.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+						Friend.transform.position = Location[3].position;
+						Friend.transform.eulerAngles = Location[3].eulerAngles;
+						Friend.Pathfinding.canSearch = false;
+						Friend.Pathfinding.canMove = false;
+						Friend.IgnoringPettyActions = true;
+						Friend.ImmuneToLaughter = true;
+						Friend.VisionDistance = 20f;
+						Friend.Routine = false;
+						Friend.InEvent = true;
+						Friend.Spawned = true;
+					}
+					Senpai = StudentManager.Students[1];
+					Rival = StudentManager.Students[RivalID];
+					Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+					Senpai.CharacterAnimation.Play(Senpai.IdleAnim);
+					Senpai.transform.position = Location[1].position;
+					Senpai.transform.eulerAngles = Location[1].eulerAngles;
+					Senpai.Pathfinding.canSearch = false;
+					Senpai.Pathfinding.canMove = false;
+					Senpai.Routine = false;
+					Senpai.InEvent = true;
+					Senpai.Spawned = true;
+					Senpai.Prompt.Hide();
+					Senpai.Prompt.enabled = false;
+					if (Rival.Investigating)
+					{
+						Rival.StopInvestigating();
+					}
+					Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+					Rival.CharacterAnimation.Play(Rival.IdleAnim);
+					Rival.transform.position = Location[2].position;
+					Rival.transform.eulerAngles = Location[2].eulerAngles;
+					Rival.Pathfinding.canSearch = false;
+					Rival.Pathfinding.canMove = false;
+					Rival.Routine = false;
+					Rival.InEvent = true;
+					Rival.Spawned = true;
+					Rival.Private = true;
+					Rival.Prompt.Hide();
+					Rival.Prompt.enabled = false;
+					Spy.Prompt.enabled = true;
+					Phase++;
+					if (Week == 1 && EventDay == DayOfWeek.Tuesday)
+					{
+						StudentManager.Students[1].EventBook.SetActive(value: true);
+					}
 				}
 			}
 			Frame++;

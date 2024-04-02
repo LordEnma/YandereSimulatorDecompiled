@@ -67,7 +67,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
 		PushPrompt.gameObject.SetActive(value: false);
-		if (DateGlobals.Weekday != EventDay || GameGlobals.RivalEliminationID > 0 || GameGlobals.Eighties)
+		if (DateGlobals.Weekday != EventDay || GameGlobals.RivalEliminationID > 0 || GameGlobals.Eighties || DateGlobals.Week > 1)
 		{
 			base.enabled = false;
 		}

@@ -66,11 +66,11 @@ public class PhoneEventScript : MonoBehaviour
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
-		if (DateGlobals.Weekday == EventDay)
+		if (DateGlobals.Weekday == EventDay && DateGlobals.Week == 1)
 		{
 			EventCheck = true;
 		}
-		if (HomeGlobals.LateForSchool || StudentManager.YandereLate || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode)
+		if (HomeGlobals.LateForSchool || StudentManager.YandereLate || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week > 1)
 		{
 			base.enabled = false;
 		}
@@ -253,7 +253,12 @@ public class PhoneEventScript : MonoBehaviour
 					EndEvent();
 				}
 			}
-			if (Yandere.transform.position.z < -38f || Yandere.transform.position.x > -18f)
+			bool flag = false;
+			if (Yandere.transform.position.y > EventStudent.transform.position.y - 1f && Yandere.transform.position.y < EventStudent.transform.position.y + 1f)
+			{
+				flag = true;
+			}
+			if (!flag || Yandere.transform.position.z < -38f || Yandere.transform.position.x > -18f)
 			{
 				if (EventSubtitle.transform.localScale.x > 0f)
 				{

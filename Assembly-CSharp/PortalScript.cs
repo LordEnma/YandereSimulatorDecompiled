@@ -8,6 +8,10 @@ public class PortalScript : MonoBehaviour
 
 	public OsanaMondayBeforeClassEventScript OsanaEvent;
 
+	public ModernRivalEventScript[] ModernMorningEvents;
+
+	public ModernRivalEventScript[] ModernLunchEvents;
+
 	public RivalAfterClassEventManagerScript OsanaWednesdayAfterClassEvent;
 
 	public RivalAfterClassEventManagerScript OsanaTuesdayAfterClassEvent;
@@ -54,6 +58,8 @@ public class PortalScript : MonoBehaviour
 
 	public ClockScript Clock;
 
+	public CapsuleCollider DeskCollider;
+
 	public GameObject EvidenceWarning;
 
 	public GameObject HeartbeatCamera;
@@ -71,6 +77,8 @@ public class PortalScript : MonoBehaviour
 	public Transform Teacher;
 
 	public bool ReturningFromLecture;
+
+	public bool ResizeChairCollider;
 
 	public bool CanAttendClass;
 
@@ -288,6 +296,10 @@ public class PortalScript : MonoBehaviour
 						Yandere.InClass = true;
 						if (Clock.HourTime < 13f)
 						{
+							if (StudentManager.BakeSale.gameObject.activeInHierarchy)
+							{
+								StudentManager.AdvanceBakeSale();
+							}
 							EndEvents();
 						}
 						else
@@ -338,6 +350,7 @@ public class PortalScript : MonoBehaviour
 					LoveManager.Rival.transform.position = new Vector3(0f, 0f, -50f);
 				}
 				ClassDarkness.alpha = Mathf.MoveTowards(ClassDarkness.alpha, 1f, Time.deltaTime);
+				DeskCollider.radius = Mathf.MoveTowards(DeskCollider.radius, 0.175f, Time.deltaTime);
 				if (ClassDarkness.alpha > 0.999f)
 				{
 					ClassDarkness.alpha = 1f;
@@ -438,6 +451,7 @@ public class PortalScript : MonoBehaviour
 				{
 					ClassDarkness.alpha = 0f;
 					ClassDarkness.enabled = false;
+					ResizeChairCollider = true;
 					Clock.StopTime = false;
 					Transition = false;
 					Proceed = false;
@@ -580,6 +594,14 @@ public class PortalScript : MonoBehaviour
 		{
 			Yandere.MoveTowardsTarget(new Vector3(-9.62f, 4f, -26f));
 		}
+		if (ResizeChairCollider)
+		{
+			DeskCollider.radius = Mathf.MoveTowards(DeskCollider.radius, 0.5f, Time.deltaTime);
+			if (DeskCollider.radius == 0.5f)
+			{
+				ResizeChairCollider = false;
+			}
+		}
 	}
 
 	public void CheckForProblems()
@@ -682,7 +704,7 @@ public class PortalScript : MonoBehaviour
 
 	public void EndEvents()
 	{
-		Debug.Log("The portal script is now calling EndEvent() on Osana's morning events.");
+		Debug.Log("The portal script is now calling EndEvent() on all rival morning events.");
 		for (int i = 0; i < MorningEvents.Length; i++)
 		{
 			if (MorningEvents[i].enabled)

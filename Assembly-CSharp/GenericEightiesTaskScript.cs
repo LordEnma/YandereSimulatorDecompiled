@@ -231,4 +231,13 @@ public class GenericEightiesTaskScript : MonoBehaviour
 		Prompt.Yandere.NotificationManager.CustomText = CompletionText;
 		Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 	}
+
+	public void Disable()
+	{
+		Prompt.MyCollider.enabled = false;
+		Prompt.enabled = false;
+		Prompt.Hide();
+		base.gameObject.SetActive(value: false);
+		base.enabled = false;
+	}
 }

@@ -58,6 +58,11 @@ public class ChangingBoothScript : MonoBehaviour
 				Yandere.NotificationManager.CustomText = "Cannot remove club attire now.";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
+			else if (Yandere.Invisible)
+			{
+				Yandere.NotificationManager.CustomText = "Decloak first!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
 			else
 			{
 				Yandere.EmptyHands();

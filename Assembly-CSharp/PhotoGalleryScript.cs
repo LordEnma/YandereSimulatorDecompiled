@@ -415,7 +415,7 @@ public class PhotoGalleryScript : MonoBehaviour
 
 	private void UpdateCorkboardPhoto()
 	{
-		Cursor.lockState = CursorLockMode.None;
+		Cursor.lockState = CursorLockMode.Confined;
 		if (Input.GetMouseButton(InputNames.Mouse_RMB))
 		{
 			MovingPhotoRotation += MouseDelta.x;
@@ -548,6 +548,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			HomeCursor.gameObject.SetActive(value: false);
 			Adjusting = false;
 			UpdateButtonPrompts();
+			Cursor.lockState = CursorLockMode.Locked;
 		}
 		if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
@@ -602,6 +603,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 		else
 		{
+			Cursor.lockState = CursorLockMode.Confined;
 			if (Corkboard)
 			{
 				Gallery.transform.localPosition = new Vector3(Gallery.transform.localPosition.x, Mathf.Lerp(Gallery.transform.localPosition.y, 1000f, Time.deltaTime * 10f), Gallery.transform.localPosition.z);

@@ -101,6 +101,10 @@ public class StatsScript : MonoBehaviour
 			{
 				ClubType.Newspaper,
 				"Newspaper"
+			},
+			{
+				ClubType.Delinquent,
+				"Delinquent Gang"
 			}
 		};
 	}

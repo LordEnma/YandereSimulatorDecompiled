@@ -716,6 +716,10 @@ public class StudentInfoMenuScript : MonoBehaviour
 			{
 				StudentPortraits[ID].Portrait.mainTexture = UnknownPortrait;
 			}
+			if (ID == 1 && StudentManager.MissionMode)
+			{
+				StudentPortraits[1].Portrait.mainTexture = BlankPortrait;
+			}
 		}
 	}
 

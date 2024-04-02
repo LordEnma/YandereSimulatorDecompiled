@@ -2093,10 +2093,11 @@ public class GenericRivalEventScript : MonoBehaviour
 				}
 				Rival.GetDestinations();
 			}
-			else if (DateGlobals.Weekday == DayOfWeek.Friday)
-			{
-				Rival.VisitSenpaiDesk = true;
-			}
+		}
+		if (DateGlobals.Weekday == DayOfWeek.Friday)
+		{
+			Debug.Log("Rival.VisitSenpaiDesk is supposed to be true.");
+			Rival.VisitSenpaiDesk = true;
 		}
 		if (StartTime > 17f && Rival.StudentID == 19)
 		{

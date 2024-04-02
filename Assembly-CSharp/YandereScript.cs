@@ -41,6 +41,8 @@ public class YandereScript : MonoBehaviour
 
 	public ObstacleDetectorScript ObstacleDetector;
 
+	public RiggedAccessoryAttacher ApronAttacher;
+
 	public RiggedAccessoryAttacher GloveAttacher;
 
 	public RiggedAccessoryAttacher PantyAttacher;
@@ -2962,20 +2964,33 @@ public class YandereScript : MonoBehaviour
 					}
 					if (Input.GetButtonUp(InputNames.Xbox_RB))
 					{
-						if (CanCloak && !WearingRaincoat)
+						if (CanCloak)
 						{
-							Invisible = !Invisible;
-							Debug.Log("Invisibility is: " + Invisible);
-							bool canMove = CanMove;
-							if (Invisible)
+							if (WearingRaincoat)
 							{
-								Cloak();
+								NotificationManager.CustomText = "Can't cloak in raincoat!";
+								NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
+							else if (ClubAttire)
+							{
+								NotificationManager.CustomText = "Can't cloak in club attire!";
+								NotificationManager.DisplayNotification(NotificationType.Custom);
 							}
 							else
 							{
-								Decloak();
+								Invisible = !Invisible;
+								Debug.Log("Invisibility is: " + Invisible);
+								bool canMove = CanMove;
+								if (Invisible)
+								{
+									Cloak();
+								}
+								else
+								{
+									Decloak();
+								}
+								CanMove = canMove;
 							}
-							CanMove = canMove;
 						}
 						if (Stance.Current != StanceType.Crouching && Stance.Current != StanceType.Crawling)
 						{
@@ -9223,9 +9238,28 @@ public class YandereScript : MonoBehaviour
 				gameObject.SetActive(value: false);
 			}
 		}
-		if (MyRenderer.sharedMesh != Towel && !WearingRaincoat && Schoolwear != 2 && Club > ClubType.None && ClubAccessories[(int)Club] != null)
+		if (ApronAttacher.newRenderer != null)
+		{
+			ApronAttacher.newRenderer.enabled = false;
+		}
+		if (!(MyRenderer.sharedMesh != Towel) || WearingRaincoat || Schoolwear == 2 || Club <= ClubType.None)
+		{
+			return;
+		}
+		if (ClubAccessories[(int)Club] != null)
 		{
 			ClubAccessories[(int)Club].SetActive(value: true);
+		}
+		if (Club == ClubType.Cooking)
+		{
+			if (ApronAttacher.newRenderer == null)
+			{
+				ApronAttacher.enabled = true;
+			}
+			else
+			{
+				ApronAttacher.newRenderer.enabled = true;
+			}
 		}
 	}
 
@@ -9770,6 +9804,15 @@ public class YandereScript : MonoBehaviour
 	{
 		Debug.Log("We are now calling Decloak()");
 		PauseScreen.NewSettings.QualityManager.UpdateYandereChan();
+		if (ClubAttire)
+		{
+			ChangeClubwear();
+		}
+		else
+		{
+			SetUniform();
+			ChangeSchoolwear();
+		}
 		SetUniform();
 		ChangeSchoolwear();
 		MyRenderer.materials[0].color = Color.white;

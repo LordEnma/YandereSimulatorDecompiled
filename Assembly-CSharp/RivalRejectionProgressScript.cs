@@ -3,11 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class RivalRejectionProgressScript : MonoBehaviour
 {
+	public Texture[] ModernRivalHeads;
+
+	public Texture[] RivalHeads;
+
 	public UILabel PercentLabel;
 
 	public UILabel Label;
-
-	public Texture[] RivalHeads;
 
 	public UITexture RivalHead;
 
@@ -27,6 +29,10 @@ public class RivalRejectionProgressScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			RivalHead.mainTexture = RivalHeads[DateGlobals.Week];
+		}
+		else
+		{
+			RivalHead.mainTexture = ModernRivalHeads[DateGlobals.Week];
 		}
 	}
 

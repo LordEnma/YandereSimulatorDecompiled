@@ -206,7 +206,7 @@ public class HeadmasterScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Yandere.transform.position.y > base.transform.position.y - 1f && Yandere.transform.position.y < base.transform.position.y + 1f && Yandere.transform.position.x < 6f && Yandere.transform.position.x > -6f)
+		if (Yandere.transform.position.y > base.transform.position.y - 1f && Yandere.transform.position.y < base.transform.position.y + 1f && Yandere.transform.position.x < 6f && Yandere.transform.position.x > -6f && !Yandere.Invisible)
 		{
 			Distance = Vector3.Distance(base.transform.position, Yandere.transform.position);
 			if (Shooting)

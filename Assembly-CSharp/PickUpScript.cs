@@ -98,6 +98,8 @@ public class PickUpScript : MonoBehaviour
 
 	public bool ConcealedBodyPart;
 
+	public bool TooBigForBookBag;
+
 	public bool CleaningProduct;
 
 	public bool DisableAtStart;

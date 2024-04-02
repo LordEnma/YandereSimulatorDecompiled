@@ -123,7 +123,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 				EndEvent();
 			}
 		}
-		if (Rival.Alarmed || Clock.HourTime > 8f || Rival.Splashed || Rival.Dodging || Rival.GoAway || Rival.LovestruckWaiting)
+		if (Rival.Alarmed || Clock.HourTime > 8f || Rival.Splashed || Rival.Dodging || Rival.GoAway || Rival.LovestruckWaiting || Rival.Dying)
 		{
 			EndEvent();
 		}
@@ -172,7 +172,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 		}
 		if (Rival != null)
 		{
-			if (Rival.enabled && !Rival.Alarmed && !Rival.Splashed)
+			if (Rival.enabled && !Rival.Alarmed && !Rival.Splashed && !Rival.Dying)
 			{
 				Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
 				Rival.DistanceToDestination = 100f;

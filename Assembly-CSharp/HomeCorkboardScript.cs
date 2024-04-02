@@ -28,8 +28,7 @@ public class HomeCorkboardScript : MonoBehaviour
 			}
 			if (!PhotoGallery.Adjusting && !PhotoGallery.Viewing && !PhotoGallery.LoadingScreen.activeInHierarchy && Input.GetButtonDown(InputNames.Xbox_B))
 			{
-				Cursor.lockState = CursorLockMode.None;
-				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.Confined;
 				HomeCamera.Destination = HomeCamera.Destinations[0];
 				HomeCamera.Target = HomeCamera.Targets[0];
 				HomeCamera.CorkboardLabel.SetActive(value: true);

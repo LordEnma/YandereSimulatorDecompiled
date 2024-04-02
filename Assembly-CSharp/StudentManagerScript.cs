@@ -88,6 +88,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public PuddleParentScript PuddleParent;
 
+	public TallLockerScript YandereLocker;
+
 	public BloodParentScript BloodParent;
 
 	public CabinetDoorScript CabinetDoor;
@@ -143,8 +145,6 @@ public class StudentManagerScript : MonoBehaviour
 	public TrashCanScript WeaponBag;
 
 	public AlphabetScript Alphabet;
-
-	public BakeSaleScript BakeSale;
 
 	public FanCoverScript FanCover;
 
@@ -282,6 +282,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public ListScript EntranceVectors;
 
+	public ListScript Week2LunchSpots;
+
 	public ListScript WaterLowSpots;
 
 	public ListScript ShowerLockers;
@@ -352,8 +354,6 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Collider[] Limbs;
 
-	public Transform[] BakeSalePlateParents;
-
 	public Transform[] TeacherGuardLocation;
 
 	public Transform[] CorpseGuardLocation;
@@ -365,8 +365,6 @@ public class StudentManagerScript : MonoBehaviour
 	public Transform[] SleuthDestinations;
 
 	public Transform[] StrippingPositions;
-
-	public Transform[] BakeSalePrepSpots;
 
 	public Transform[] FemaleCoupleSpots;
 
@@ -390,13 +388,9 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform[] BackstageSpots;
 
-	public Transform[] BakeSalePlates;
-
 	public Transform[] RichLunchSpots;
 
 	public Transform[] SpawnPositions;
-
-	public Transform[] BakeSaleSpots;
 
 	public Transform[] GraffitiSpots;
 
@@ -419,6 +413,8 @@ public class StudentManagerScript : MonoBehaviour
 	public Transform[] FridaySpots;
 
 	public Transform[] MiyukiSpots;
+
+	public Transform[] PicnicSpots;
 
 	public Transform[] RandomSpots;
 
@@ -458,11 +454,11 @@ public class StudentManagerScript : MonoBehaviour
 
 	public GameObject[] ShrineCollectibles;
 
-	public GameObject[] BakeSaleFoodTrays;
-
 	public GameObject[] GarbageBagList;
 
 	public GameObject[] UsualFoodTrays;
+
+	public GameObject[] RivalEvents;
 
 	public GameObject[] Graffiti;
 
@@ -1081,6 +1077,10 @@ public class StudentManagerScript : MonoBehaviour
 
 	public PostProcessingProfile EightiesProfile;
 
+	public Texture TargetMapMarker;
+
+	public Texture RivalMapMarker;
+
 	public UIPanel FreeFloatingPanel;
 
 	public bool[] RivalKilledSelf;
@@ -1159,6 +1159,20 @@ public class StudentManagerScript : MonoBehaviour
 
 	public BoxCollider[] StageColliders;
 
+	public BakeSaleScript BakeSale;
+
+	public ModernRivalSabotageScript[] BakeSaleSabotageScripts;
+
+	public GameObject[] BakeSaleFoodTrays;
+
+	public Transform[] BakeSalePlateParents;
+
+	public Transform[] BakeSalePrepSpots;
+
+	public Transform[] BakeSalePlates;
+
+	public Transform[] BakeSaleSpots;
+
 	private void Awake()
 	{
 		if (!TakingPortraits && !GameGlobals.Eighties && DateGlobals.Week > WeekLimit)
@@ -1235,6 +1249,17 @@ public class StudentManagerScript : MonoBehaviour
 				EightiesScienceProps.SetActive(value: false);
 			}
 			SuitorID = 6;
+			if (RivalEvents.Length != 0)
+			{
+				if (DateGlobals.Week == 1)
+				{
+					RivalEvents[2].SetActive(value: false);
+				}
+				else
+				{
+					RivalEvents[1].SetActive(value: false);
+				}
+			}
 		}
 		if (KokonaTutorial || EightiesTutorial || Week > 10)
 		{
@@ -5492,22 +5517,26 @@ public class StudentManagerScript : MonoBehaviour
 				WindowOccluder.open = true;
 			}
 		}
-		if (!(SenpaiLoveWindow != null))
+		if (SenpaiLoveWindow != null)
 		{
-			return;
-		}
-		if (SenpaiLoveWindow.ShowWhenReady && Yandere.CanMove)
-		{
-			SenpaiLoveTimer += Time.deltaTime;
-			if (SenpaiLoveTimer > 1f)
+			if (SenpaiLoveWindow.ShowWhenReady && Yandere.CanMove)
 			{
-				SenpaiLoveWindow.gameObject.SetActive(value: true);
-				Time.timeScale = 0.0001f;
+				SenpaiLoveTimer += Time.deltaTime;
+				if (SenpaiLoveTimer > 1f)
+				{
+					SenpaiLoveWindow.gameObject.SetActive(value: true);
+					Time.timeScale = 0.0001f;
+				}
+			}
+			else
+			{
+				SenpaiLoveTimer = 0f;
 			}
 		}
-		else
+		if (!Eighties && Week == 2 && Students[12] != null && Students[12].Ragdoll.Disposed && !GameGlobals.Debug)
 		{
-			SenpaiLoveTimer = 0f;
+			PlayerPrefs.SetInt("Amai", 1);
+			PlayerPrefs.SetInt("a", 1);
 		}
 	}
 
@@ -5847,6 +5876,7 @@ public class StudentManagerScript : MonoBehaviour
 		if (Students[11] != null)
 		{
 			Hangouts.List[11] = Week2Hangouts.List[11];
+			LunchSpots.List[11] = Week2LunchSpots.List[11];
 			Students[11].GetDestinations();
 			if (Students[10] != null)
 			{
@@ -5856,32 +5886,18 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		MournSpots[10].position = Week2Hangouts.List[11].position;
 		MournSpots[10].eulerAngles = Week2Hangouts.List[11].eulerAngles;
-		if (Students[21] != null)
-		{
-			scheduleBlock = Students[21].ScheduleBlocks[2];
-			scheduleBlock.destination = "Week2Hangout";
-			scheduleBlock.action = "Socialize";
-			scheduleBlock = Students[21].ScheduleBlocks[4];
-			scheduleBlock.destination = "Week2Hangout";
-			scheduleBlock.action = "Stand";
-			scheduleBlock = Students[21].ScheduleBlocks[7];
-			scheduleBlock.destination = "Week2Hangout";
-			scheduleBlock.action = "Stand";
-			scheduleBlock = Students[21].ScheduleBlocks[8];
-			scheduleBlock.destination = "Week2Hangout";
-			scheduleBlock.action = "Stand";
-			Students[21].GetDestinations();
-		}
 		UpdateWeek2Hangout(4);
 		UpdateWeek2Hangout(5);
 		UpdateWeek2Hangout(6);
 		UpdateWeek2Hangout(7);
 		UpdateWeek2Hangout(8);
 		UpdateWeek2Hangout(9);
-		UpdateWeek2Hangout(22);
-		UpdateWeek2Hangout(23);
-		UpdateWeek2Hangout(24);
-		UpdateWeek2Hangout(25);
+		AssignBakeSaleRoutineToCookingClub(12);
+		AssignBakeSaleRoutineToCookingClub(21);
+		AssignBakeSaleRoutineToCookingClub(22);
+		AssignBakeSaleRoutineToCookingClub(23);
+		AssignBakeSaleRoutineToCookingClub(24);
+		AssignBakeSaleRoutineToCookingClub(25);
 		UpdateWeek2Hangout(27);
 		UpdateWeek2Hangout(28);
 		UpdateWeek2Hangout(29);
@@ -5948,6 +5964,50 @@ public class StudentManagerScript : MonoBehaviour
 			scheduleBlock = Students[StudentID].ScheduleBlocks[7];
 			scheduleBlock.destination = "Week2Hangout";
 			scheduleBlock.action = "Socialize";
+			Students[StudentID].GetDestinations();
+		}
+	}
+
+	public void AssignBakeSaleRoutineToCookingClub(int StudentID)
+	{
+		if (Students[StudentID] != null)
+		{
+			if (DateGlobals.Weekday == DayOfWeek.Monday)
+			{
+				scheduleBlock = Students[StudentID].ScheduleBlocks[2];
+				scheduleBlock.destination = "Week2Hangout";
+				scheduleBlock.action = "Socialize";
+			}
+			else
+			{
+				scheduleBlock = Students[StudentID].ScheduleBlocks[2];
+				scheduleBlock.destination = "BakeSale";
+				scheduleBlock.action = "BakeSale";
+			}
+			scheduleBlock = Students[StudentID].ScheduleBlocks[4];
+			scheduleBlock.destination = "BakeSale";
+			scheduleBlock.action = "BakeSale";
+			scheduleBlock = Students[StudentID].ScheduleBlocks[7];
+			scheduleBlock.destination = "BakeSale";
+			scheduleBlock.action = "BakeSale";
+			if (ClubGlobals.GetClubClosed(ClubType.Cooking))
+			{
+				scheduleBlock = Students[StudentID].ScheduleBlocks[8];
+				scheduleBlock.destination = "Week2Hangout";
+				scheduleBlock.action = "Socialize";
+			}
+			else
+			{
+				scheduleBlock = Students[StudentID].ScheduleBlocks[8];
+				scheduleBlock.destination = "Club";
+				scheduleBlock.action = "Socialize";
+			}
+			if (StudentID == RivalID)
+			{
+				scheduleBlock = Students[StudentID].ScheduleBlocks[2];
+				scheduleBlock.destination = "Seat";
+				scheduleBlock.action = "PlaceBag";
+			}
 			Students[StudentID].GetDestinations();
 		}
 	}
@@ -7502,6 +7562,36 @@ public class StudentManagerScript : MonoBehaviour
 		if (StageColliders[0].bounds.Contains(Destination.position) || StageColliders[1].bounds.Contains(Destination.position))
 		{
 			Destination.position = new Vector3(Destination.position.x, 1.375f, Destination.position.z);
+		}
+	}
+
+	public void AdvanceBakeSale()
+	{
+		BakeSale.enabled = true;
+		BakeSalePlates[0].position = BakeSalePlateParents[12].position;
+		BakeSalePlates[1].position = BakeSalePlateParents[21].position;
+		BakeSalePlates[2].position = BakeSalePlateParents[22].position;
+		BakeSalePlates[3].position = BakeSalePlateParents[23].position;
+		BakeSalePlates[4].position = BakeSalePlateParents[24].position;
+		BakeSalePlates[5].position = BakeSalePlateParents[25].position;
+		for (int i = 1; i < 26; i++)
+		{
+			if (Students[i] != null)
+			{
+				Students[i].BakeSalePhase = 2;
+			}
+		}
+		for (int i = 1; i < 101; i++)
+		{
+			if (BakeSalePrepSpots[i] != null)
+			{
+				BakeSalePrepSpots[i].position = BakeSaleSpots[i].position;
+				BakeSalePrepSpots[i].rotation = BakeSaleSpots[i].rotation;
+			}
+			if (BakeSaleSabotageScripts[i] != null)
+			{
+				BakeSaleSabotageScripts[i].Disable();
+			}
 		}
 	}
 }

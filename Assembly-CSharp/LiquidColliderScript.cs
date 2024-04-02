@@ -103,6 +103,14 @@ public class LiquidColliderScript : MonoBehaviour
 			return;
 		}
 		Debug.Log(component.Name + " just dodged some liquid.");
+		if (component.CurrentAction == StudentActionType.Sunbathe)
+		{
+			Debug.Log("Specifically, this student is dodging some liquid because they are");
+			Debug.Log("currently walking to the shower building to change clothing so");
+			Debug.Log("that they can sunbathe, and if they get splashed with");
+			Debug.Log("liquid here, it would prevent them from being able to");
+			Debug.Log("continue their routine.");
+		}
 		if (component.Investigating)
 		{
 			component.StopInvestigating();

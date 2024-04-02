@@ -96,5 +96,23 @@ public class YakuzaMusicScript : MonoBehaviour
 				BGM[i].volume = Mathf.MoveTowards(BGM[i].volume, 0f, Time.deltaTime);
 			}
 		}
+		if (Input.GetKeyDown(KeyCode.M))
+		{
+			StartStopMusic();
+		}
+	}
+
+	private void StartStopMusic()
+	{
+		for (int i = 1; i < 7; i++)
+		{
+			if (BGM[i].enabled)
+			{
+				BGM[i].enabled = false;
+				continue;
+			}
+			BGM[i].enabled = true;
+			BGM[i].Play();
+		}
 	}
 }

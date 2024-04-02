@@ -70,13 +70,13 @@ public class EventManagerScript : MonoBehaviour
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
-		if (DateGlobals.Weekday == DayOfWeek.Monday)
+		if (DateGlobals.Weekday == DayOfWeek.Monday && DateGlobals.Week == 1)
 		{
 			EventCheck = true;
 		}
 		if (OsanaID == 3)
 		{
-			if (GameGlobals.Eighties || DateGlobals.Weekday != DayOfWeek.Thursday || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode)
+			if (GameGlobals.Eighties || DateGlobals.Weekday != DayOfWeek.Thursday || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week > 1)
 			{
 				base.enabled = false;
 			}

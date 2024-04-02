@@ -32,7 +32,7 @@ public class IdolStageScript : MonoBehaviour
 		}
 		if (StudentManager.Students[16] != null)
 		{
-			if (Vector3.Distance(StudentManager.Students[16].transform.position, Spot[5].position) < 1f && StudentManager.Students[16].Routine && !StudentManager.Students[16].Alarmed)
+			if (Vector3.Distance(StudentManager.Students[16].transform.position, Spot[5].position) < 1f && StudentManager.Students[16].Routine && !StudentManager.Students[16].Alarmed && StudentManager.Students[16].Alive)
 			{
 				Music[5].volume = Mathf.MoveTowards(Music[5].volume, 1f, Time.deltaTime);
 			}

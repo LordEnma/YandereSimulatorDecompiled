@@ -709,6 +709,7 @@ public class ShoulderCameraScript : MonoBehaviour
 				}
 				return;
 			}
+			Yandere.Subtitle.Speaker = null;
 			RPGCamera.enabled = true;
 			Yandere.MyController.enabled = true;
 			Yandere.Talking = false;

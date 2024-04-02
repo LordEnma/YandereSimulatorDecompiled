@@ -181,7 +181,7 @@ public class HomeInternetScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (HomeYandere.CanMove || PauseScreen.Show)
+		if (HomeYandere.CanMove || HomeCamera.HomeDarkness.FadeOut || PauseScreen.Show)
 		{
 			return;
 		}

@@ -1475,6 +1475,13 @@ public class TalkingScript : MonoBehaviour
 					S.TalkTimer = 5f;
 					Refuse = true;
 				}
+				else if (!S.Indoors)
+				{
+					S.Subtitle.CustomText = "Sorry, it's a bit early in the day for that. At least wait until I've changed my shoes.";
+					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+					S.TalkTimer = 5f;
+					Refuse = true;
+				}
 				else
 				{
 					S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 4, 5f);
@@ -1940,6 +1947,11 @@ public class TalkingScript : MonoBehaviour
 					{
 						S.CharacterAnimation.CrossFade(S.Nod1Anim);
 						S.Subtitle.UpdateLabel(SubtitleType.SendToLocker, 2, 5f);
+						if (S.StudentID == 41 && !S.StudentManager.Eighties)
+						{
+							S.Subtitle.CustomText = "Oh? Okay.";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+						}
 					}
 				}
 				else
@@ -2196,7 +2208,7 @@ public class TalkingScript : MonoBehaviour
 		{
 			return;
 		}
-		if (S.Subtitle.CurrentClip != null)
+		if (S.Subtitle.CurrentClip != null && S.Subtitle.Speaker == S)
 		{
 			if (AudioData.MyAudioSource == null)
 			{

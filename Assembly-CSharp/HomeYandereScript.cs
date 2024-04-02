@@ -266,33 +266,38 @@ public class HomeYandereScript : MonoBehaviour
 			CannotAlphabet = true;
 		}
 		PlayerGlobals.BringingItem = 0;
-		if (GameGlobals.CustomMode)
+		if (!GameGlobals.CustomMode)
 		{
-			RyobaLongHair.SetActive(value: false);
-			RyobaHair.SetActive(value: false);
-			Hairstyle = 0;
-			UpdateHair();
-			for (int i = 0; i < YandereHairHost.Hairstyles.Length; i++)
+			return;
+		}
+		RyobaLongHair.SetActive(value: false);
+		RyobaHair.SetActive(value: false);
+		Hairstyle = 0;
+		UpdateHair();
+		for (int i = 0; i < YandereHairHost.Hairstyles.Length; i++)
+		{
+			if (YandereHairHost.Hairstyles[i] != null)
 			{
-				if (YandereHairHost.Hairstyles[i] != null)
-				{
-					YandereHairHost.Hairstyles[i].SetActive(value: false);
-					YandereHairHost.Hairstyles[i].transform.parent = Head;
-				}
-			}
-			string hairstyle = JSON.Students[0].Hairstyle;
-			YandereHairHost.Hairstyles[int.Parse(hairstyle)].SetActive(value: true);
-			Yandere.Hairstyles = YandereHairHost.Hairstyles;
-			if (!HomeGlobals.Night)
-			{
-				Customize();
+				YandereHairHost.Hairstyles[i].SetActive(value: false);
+				YandereHairHost.Hairstyles[i].transform.parent = Head;
 			}
 		}
-		Camera.main.gameObject.SetActive(value: true);
+		string hairstyle = JSON.Students[0].Hairstyle;
+		YandereHairHost.Hairstyles[int.Parse(hairstyle)].SetActive(value: true);
+		Yandere.Hairstyles = YandereHairHost.Hairstyles;
+		if (!HomeGlobals.Night)
+		{
+			Customize();
+		}
 	}
 
 	private void Update()
 	{
+		if (!HomeCamera.gameObject.activeInHierarchy)
+		{
+			HomeCamera.gameObject.SetActive(value: true);
+			CanMove = true;
+		}
 		if (UpdateFace && Pajamas.newRenderer != null)
 		{
 			Yandere.MyRenderer = Pajamas.newRenderer;

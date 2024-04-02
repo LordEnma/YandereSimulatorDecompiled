@@ -3,6 +3,7 @@ using Bayat.SaveSystem;
 using HighlightingSystem;
 using UnityEngine;
 using UnityEngine.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class StalkerYandereScript : MonoBehaviour
 {
@@ -55,6 +56,8 @@ public class StalkerYandereScript : MonoBehaviour
 	public Renderer PonytailRenderer;
 
 	public GameObject GroundImpact;
+
+	public GameObject PauseScreen;
 
 	public Animation MyAnimation;
 
@@ -277,11 +280,6 @@ public class StalkerYandereScript : MonoBehaviour
 			RunAnim = "f02_ryobaRun_00";
 			MyRenderer.materials[0].mainTexture = MyRenderer.materials[2].mainTexture;
 			Eighties = true;
-			if (Street && !HomeGlobals.Night)
-			{
-				BreastL.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-				BreastR.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-			}
 		}
 		else
 		{
@@ -596,27 +594,47 @@ public class StalkerYandereScript : MonoBehaviour
 				InstructionPhase++;
 			}
 		}
-		if (!Bakery)
+		if (Bakery)
+		{
+			if (base.transform.position.x > 21f || (base.transform.position.x > -10.61f && base.transform.position.x < 3.365f && base.transform.position.z > 39.24f) || (base.transform.position.x > -10.4f && base.transform.position.x < 10.4f && base.transform.position.z > -10.4f && base.transform.position.z < 10.4f))
+			{
+				if (!Trespassing)
+				{
+					NotificationManager.CustomText = "You are now trespassing!";
+					NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				Trespassing = true;
+			}
+			else if (base.transform.position.y < 1f)
+			{
+				if (Trespassing)
+				{
+					NotificationManager.CustomText = "You are no longer trespassing.";
+					NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				Trespassing = false;
+			}
+		}
+		if (!Street || !CanMove || !(PauseScreen != null))
 		{
 			return;
 		}
-		if (base.transform.position.x > 21f || (base.transform.position.x > -10.61f && base.transform.position.x < 3.365f && base.transform.position.z > 39.24f) || (base.transform.position.x > -10.4f && base.transform.position.x < 10.4f && base.transform.position.z > -10.4f && base.transform.position.z < 10.4f))
+		if (!PauseScreen.activeInHierarchy)
 		{
-			if (!Trespassing)
+			if (Input.GetKeyDown(KeyCode.Escape))
 			{
-				NotificationManager.CustomText = "You are now trespassing!";
-				NotificationManager.DisplayNotification(NotificationType.Custom);
+				PauseScreen.SetActive(value: true);
+				Time.timeScale = 0.0001f;
 			}
-			Trespassing = true;
 		}
-		else if (base.transform.position.y < 1f)
+		else if (Input.GetKeyDown(KeyCode.Q))
 		{
-			if (Trespassing)
-			{
-				NotificationManager.CustomText = "You are no longer trespassing.";
-				NotificationManager.DisplayNotification(NotificationType.Custom);
-			}
-			Trespassing = false;
+			SceneManager.LoadScene("NewTitleScene");
+		}
+		else if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			PauseScreen.SetActive(value: false);
+			Time.timeScale = 1f;
 		}
 	}
 

@@ -1006,14 +1006,14 @@ public class MissionModeMenuScript : MonoBehaviour
 						ErrorLabel.text = "Invalid Mission ID (That student has not been implemented yet)";
 						return;
 					}
-					if (WeaponNumber == 11 || WeaponNumber == 17 || WeaponNumber == 26 || WeaponNumber == 27)
-					{
-						ErrorLabel.text = "Invalid Mission ID (Weapon does not apply to Mission Mode)";
-						return;
-					}
-					if (WeaponNumber > WeaponNames.Length)
+					if (WeaponNumber >= WeaponNames.Length)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Weapon does not exist)";
+						return;
+					}
+					if (WeaponNames[WeaponNumber] == "")
+					{
+						ErrorLabel.text = "Invalid Mission ID (Weapon does not apply to Mission Mode)";
 						return;
 					}
 					if (ClothingNumber > 6)

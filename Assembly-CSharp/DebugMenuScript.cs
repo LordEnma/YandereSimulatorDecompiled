@@ -728,13 +728,7 @@ public class DebugMenuScript : MonoBehaviour
 						}
 					}
 				}
-				if (Input.GetKeyDown(KeyCode.Tab))
-				{
-					DatingGlobals.Affection = 100f;
-					DatingGlobals.SuitorProgress = 2;
-					DateGlobals.Weekday = DayOfWeek.Friday;
-					SceneManager.LoadScene("LoadingScene");
-				}
+				Input.GetKeyDown(KeyCode.Tab);
 				if (Input.GetKeyDown(KeyCode.CapsLock))
 				{
 					Debug.Log("The rival should be confessing to the suitor at the end of the day.");

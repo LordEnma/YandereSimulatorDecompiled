@@ -394,6 +394,7 @@ public class WoodChipperScript : MonoBehaviour
 		Timer += Time.deltaTime;
 		if (Timer >= 10f)
 		{
+			Prompt.HideButton[0] = true;
 			Prompt.enabled = true;
 			Shredding = false;
 			Occupied = false;

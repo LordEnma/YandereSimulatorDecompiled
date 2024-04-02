@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ClothScript : MonoBehaviour
@@ -21,6 +22,12 @@ public class ClothScript : MonoBehaviour
 			Prompt.enabled = false;
 			Prompt.Hide();
 			base.enabled = false;
+		}
+		if (!GameGlobals.Eighties && DateGlobals.Week == 2 && DateGlobals.Weekday == DayOfWeek.Tuesday)
+		{
+			Prompt.enabled = true;
+			PinkSockTask = true;
+			base.enabled = true;
 		}
 	}
 
@@ -49,6 +56,11 @@ public class ClothScript : MonoBehaviour
 			SewingMachine.enabled = true;
 			SewingMachine.Check = true;
 			PinkSockTask = false;
+			if (!GameGlobals.Eighties)
+			{
+				SewingMachine.Prompt.Label[1].text = "     Sew Apron";
+				SewingMachine.Apron = true;
+			}
 		}
 		if (BikiniCheck && Input.GetKeyDown(BikiniLetters[BikiniID]))
 		{

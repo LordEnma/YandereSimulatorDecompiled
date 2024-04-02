@@ -194,7 +194,7 @@ public class GenericRivalBagScript : MonoBehaviour
 	{
 		if (!Initialized)
 		{
-			BG.color = new Color(1f, 0.75f, 1f, 1f);
+			Eighties = GameGlobals.Eighties;
 			GrabRivalInfo();
 			Magazine.gameObject.SetActive(value: false);
 			MagazineButton.SetActive(value: false);
@@ -209,7 +209,6 @@ public class GenericRivalBagScript : MonoBehaviour
 			Prompt.enabled = false;
 			Prompt.Hide();
 			Initialized = true;
-			Eighties = GameGlobals.Eighties;
 		}
 	}
 
@@ -987,6 +986,7 @@ public class GenericRivalBagScript : MonoBehaviour
 
 	private void ChangeFont()
 	{
+		BG.color = new Color(1f, 0.75f, 1f, 1f);
 		int num = 0;
 		Transform[] componentsInChildren = Window.GetComponentsInChildren<Transform>();
 		foreach (Transform obj in componentsInChildren)

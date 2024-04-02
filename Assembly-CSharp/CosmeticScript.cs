@@ -2965,6 +2965,10 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(8, 0f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
+		else if (EyeType == "Ayano")
+		{
+			MyRenderer.SetBlendShapeWeight(8, 50f);
+		}
 	}
 
 	public void DeactivateBullyAccessories()

@@ -156,7 +156,7 @@ public class SocialScript : MonoBehaviour
 						Student.Talk.CalculateRepBonus();
 						Student.Reputation.PendingRep += 1f + (float)Student.RepBonus;
 						Student.PendingRep += 1f + (float)Student.RepBonus;
-						if (!Student.StudentManager.Eighties && Student.ID == 51)
+						if (!Student.StudentManager.Eighties && Student.StudentID == 41)
 						{
 							DialogueLabel.text = "Oh? Thanks.";
 						}
@@ -225,7 +225,21 @@ public class SocialScript : MonoBehaviour
 					{
 						num = Yandere.Class.PsychologyGrade + Yandere.Class.PsychologyBonus;
 					}
-					DialogueLabel.text = ShowOffDialogue[num];
+					if (!Student.StudentManager.Eighties && Student.StudentID == 41)
+					{
+						if (num > 0)
+						{
+							DialogueLabel.text = "Quite impressive.";
+						}
+						else
+						{
+							DialogueLabel.text = "Seems incorrect.";
+						}
+					}
+					else
+					{
+						DialogueLabel.text = ShowOffDialogue[num];
+					}
 					if (num > 0)
 					{
 						StudentFriendships[StudentID] += num - 1;
@@ -335,7 +349,7 @@ public class SocialScript : MonoBehaviour
 				}
 				else if (Selected == 5)
 				{
-					if (!Student.StudentManager.Eighties && Student.ID == 51)
+					if (!Student.StudentManager.Eighties && Student.StudentID == 41)
 					{
 						DialogueLabel.text = "Such generosity.";
 					}

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BakeSaleScript : MonoBehaviour
 {
@@ -15,56 +14,37 @@ public class BakeSaleScript : MonoBehaviour
 
 	public bool Poisoned;
 
-	public int ID = 46;
-
-	private void Start()
-	{
-		StudentManager.RivalEliminated = false;
-	}
+	public int ID = 2;
 
 	private void Update()
 	{
 		float hourTime = StudentManager.Clock.HourTime;
-		if (hourTime < 8f || (hourTime > 13f && (double)hourTime < 13.5) || (hourTime > 16f && hourTime < 17f))
+		if (!(hourTime < 8f) && (!(hourTime > 13f) || !((double)hourTime < 13.5)) && (!(hourTime > 16f) || !(hourTime < 17f)))
 		{
-			Timer += Time.deltaTime;
-			if (Timer > 60f && StudentManager.Students[ID] != null)
-			{
-				if (ID < 86 && StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors && !StudentManager.Students[ID].Slave)
-				{
-					Debug.Log(StudentManager.Students[ID].Name + " has decided to go to the bake sale.");
-					Timer = 0f;
-					StudentManager.Students[ID].Meeting = true;
-					StudentManager.Students[ID].BakeSale = true;
-					StudentManager.Students[ID].MeetTime = 0.0001f;
-					StudentManager.Students[ID].MeetSpot = MeetSpot;
-					IncreaseID();
-				}
-				else
-				{
-					IncreaseID();
-				}
-			}
+			return;
 		}
-		if (StudentManager.Yandere.Alerts > 0 || StudentManager.Yandere.Police.StudentFoundCorpse)
+		Timer += Time.deltaTime;
+		if (Timer > 60f && StudentManager.Students[ID] != null)
 		{
-			if (!AmaiSuccess.activeInHierarchy)
+			bool flag = false;
+			if (ID == 12 || (ID > 20 && ID < 26) || ID > 86)
 			{
-				AmaiFail.SetActive(value: true);
-				if (Input.GetKeyDown("`"))
-				{
-					SceneManager.LoadScene("LoadingScene");
-				}
+				flag = true;
 			}
-		}
-		else if (StudentManager.Students[12] != null && StudentManager.Students[12].Ragdoll.Disposed)
-		{
-			if (!AmaiSuccess.activeInHierarchy && !GameGlobals.Debug)
+			if (!flag && (StudentManager.Students[ID].Routine & StudentManager.Students[ID].Indoors) && !StudentManager.Students[ID].Slave && !StudentManager.Students[ID].BakeSale)
 			{
-				PlayerPrefs.SetInt("Amai", 1);
-				PlayerPrefs.SetInt("a", 1);
+				Debug.Log(StudentManager.Students[ID].Name + " has decided to go to the bake sale.");
+				Timer = 0f;
+				StudentManager.Students[ID].Meeting = true;
+				StudentManager.Students[ID].BakeSale = true;
+				StudentManager.Students[ID].MeetTime = 0.0001f;
+				StudentManager.Students[ID].MeetSpot = MeetSpot;
+				IncreaseID();
 			}
-			AmaiSuccess.SetActive(value: true);
+			else
+			{
+				IncreaseID();
+			}
 		}
 	}
 
@@ -73,7 +53,7 @@ public class BakeSaleScript : MonoBehaviour
 		ID++;
 		if (ID > 89)
 		{
-			ID = 46;
+			ID = 2;
 		}
 	}
 }

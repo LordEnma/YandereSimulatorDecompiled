@@ -3881,7 +3881,7 @@ public class SubtitleScript : MonoBehaviour
 			audioSource.maxDistance = 15f;
 			CurrentClip = gameObject;
 			audioSource.volume = ((Yandere.position.y < gameObject.transform.position.y - 2f) ? 0f : 1f);
-			Speaker = null;
+			Debug.Log("Setting Speaker to null now?");
 		}
 		else
 		{
