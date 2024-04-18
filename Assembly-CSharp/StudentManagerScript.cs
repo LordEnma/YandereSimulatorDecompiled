@@ -222,6 +222,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public CounselorDoorScript[] CounselorDoor;
 
+	public MaskScript[] Masks;
+
 	public ParticleSystem AltFemaleDrownSplashes;
 
 	public ParticleSystem FemaleDrownSplashes;
@@ -910,6 +912,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public float[] TargetSize;
 
+	public int[] ModernSuitorIDs;
+
 	public int[] GenericTaskIDs;
 
 	public int[] SuitorIDs;
@@ -962,6 +966,10 @@ public class StudentManagerScript : MonoBehaviour
 	public bool SeatOccupied;
 
 	public int Class = 1;
+
+	public int[] ClubLeaders;
+
+	public int SpeakerID;
 
 	public int Thins;
 
@@ -1206,6 +1214,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		else
 		{
+			SuitorIDs = ModernSuitorIDs;
 			for (int i = 2; i < 11; i++)
 			{
 				SuitorIDs[i] = 0;
@@ -1248,7 +1257,7 @@ public class StudentManagerScript : MonoBehaviour
 				EightiesScienceClub.SetActive(value: false);
 				EightiesScienceProps.SetActive(value: false);
 			}
-			SuitorID = 6;
+			SuitorID = SuitorIDs[DateGlobals.Week];
 			if (RivalEvents.Length != 0)
 			{
 				if (DateGlobals.Week == 1)
@@ -3701,6 +3710,10 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				ID++;
 			}
+			if (!Eighties && ID == 7 && Clock.HourTime < 7.9f)
+			{
+				ID++;
+			}
 			StudentScript studentScript = Students[ID];
 			if (studentScript != null && (!Police.EndOfDay.Counselor.ExpelledDelinquents || ID <= 75 || ID >= 81))
 			{
@@ -4558,19 +4571,13 @@ public class StudentManagerScript : MonoBehaviour
 		MeetingTimer += Time.deltaTime;
 		if (MeetingTimer > 5f)
 		{
-			Speaker += 5;
-			if (Speaker == 91)
+			SpeakerID++;
+			if (SpeakerID >= ClubLeaders.Length)
 			{
-				Speaker = 21;
+				SpeakerID = 0;
 			}
-			else if (Speaker == 76)
-			{
-				Speaker = 86;
-			}
-			else if (Speaker == 36)
-			{
-				Speaker = 41;
-			}
+			_ = ClubLeaders[SpeakerID];
+			Speaker = ClubLeaders[SpeakerID];
 			MeetingTimer = 0f;
 		}
 	}
@@ -5177,6 +5184,15 @@ public class StudentManagerScript : MonoBehaviour
 				{
 					BookBag.Prompt.Label[0].text = "     Retrieve " + pickUpScript.name;
 				}
+			}
+		}
+		MaskScript[] masks = Masks;
+		foreach (MaskScript maskScript in masks)
+		{
+			if (maskScript != null && maskScript.Worn)
+			{
+				Debug.Log("Attaching a mask to Yandere-chan's face.");
+				maskScript.WearMask();
 			}
 		}
 		if (WeaponBag.Worn)
@@ -6007,6 +6023,12 @@ public class StudentManagerScript : MonoBehaviour
 				scheduleBlock = Students[StudentID].ScheduleBlocks[2];
 				scheduleBlock.destination = "Seat";
 				scheduleBlock.action = "PlaceBag";
+			}
+			if (Students[StudentID].Rival && !RivalEliminated && DateGlobals.Weekday == DayOfWeek.Friday)
+			{
+				scheduleBlock = Students[StudentID].ScheduleBlocks[8];
+				scheduleBlock.destination = "Locker";
+				scheduleBlock.action = "Shoes";
 			}
 			Students[StudentID].GetDestinations();
 		}
@@ -7019,6 +7041,23 @@ public class StudentManagerScript : MonoBehaviour
 		SuitorLocker = LockerPositions[StudentID];
 	}
 
+	public void ChangeSuitorRoutineOnFriday()
+	{
+		Debug.Log("Now changing the suitor's routine and telling him to go to his locker.");
+		StudentScript obj = Students[SuitorID];
+		ScheduleBlock obj2 = obj.ScheduleBlocks[7];
+		obj2.destination = "Locker";
+		obj2.action = "Shoes";
+		obj2.time = 17.25f;
+		ScheduleBlock obj3 = obj.ScheduleBlocks[8];
+		obj3.destination = "Locker";
+		obj3.action = "Shoes";
+		obj3.time = 17.25f;
+		Students[SuitorID].GetDestinations();
+		Students[SuitorID].Pathfinding.target = Students[SuitorID].Destinations[Students[SuitorID].Phase];
+		Students[SuitorID].CurrentDestination = Students[SuitorID].Destinations[Students[SuitorID].Phase];
+	}
+
 	public void UpdateRivalEliminationDetails(int StudentID)
 	{
 		RivalKilledSelf[StudentID - 10] = true;
@@ -7555,6 +7594,39 @@ public class StudentManagerScript : MonoBehaviour
 				Students[i].LowPoly.Deactivate();
 			}
 		}
+	}
+
+	public void AttendClubLeaderMeeting()
+	{
+		if (!NoClubMeeting)
+		{
+			for (int i = 1; i < 101; i++)
+			{
+				if (Students[i] != null && Students[i].Armband.activeInHierarchy)
+				{
+					Debug.Log("My StudentID is " + i + " and I'm going to attend the club meeting.");
+					ClubLeaders[SpeakerID] = i;
+					SpeakerID++;
+					if (i < 86)
+					{
+						ScheduleBlock obj = Students[i].ScheduleBlocks[6];
+						obj.destination = "Meeting";
+						obj.action = "Meeting";
+					}
+					else
+					{
+						ScheduleBlock obj2 = Students[i].ScheduleBlocks[5];
+						obj2.destination = "Meeting";
+						obj2.action = "Meeting";
+					}
+					Students[i].GetDestinations();
+					Students[i].Pathfinding.target = Students[i].Destinations[Students[i].Phase];
+					Students[i].CurrentDestination = Students[i].Destinations[Students[i].Phase];
+					Students[i].EmptyHands();
+				}
+			}
+		}
+		SpeakerID = 0;
 	}
 
 	public void AdjustStageDestination(Transform Destination)

@@ -250,6 +250,23 @@ public class TaskManagerScript : MonoBehaviour
 			{
 				TaskObjects[12].SetActive(value: false);
 			}
+			if (TaskStatus[21] == 1)
+			{
+				int num = 0;
+				for (int i = 1; i < 26; i++)
+				{
+					if (StudentManager.OpinionsLearned.StudentOpinions[12].Opinions[i])
+					{
+						num++;
+					}
+				}
+				Debug.Log("Current number of opinions learned is: " + num);
+				if (num == 25)
+				{
+					Debug.Log("Shoko's task should be ready to turn in!");
+					StudentManager.Students[21].TaskPhase = 5;
+				}
+			}
 			if (TaskStatus[25] == 1)
 			{
 				if (StudentManager.Students[25] != null)
@@ -271,9 +288,9 @@ public class TaskManagerScript : MonoBehaviour
 				{
 					StudentManager.Students[28].TaskPhase = 4;
 				}
-				for (int i = 1; i < 26; i++)
+				for (int j = 1; j < 26; j++)
 				{
-					if (Yandere.PauseScreen.PhotoGallery.KittenPhoto[i])
+					if (Yandere.PauseScreen.PhotoGallery.KittenPhoto[j])
 					{
 						Debug.Log("Riku's Task can be turned in.");
 						StudentManager.Students[28].TaskPhase = 5;
@@ -409,9 +426,9 @@ public class TaskManagerScript : MonoBehaviour
 			else if (TaskStatus[52] == 1 && StudentManager.Students[52] != null)
 			{
 				StudentManager.Students[52].TaskPhase = 4;
-				for (int j = 1; j < 26; j++)
+				for (int k = 1; k < 26; k++)
 				{
-					if (Yandere.PauseScreen.PhotoGallery.GuitarPhoto[j])
+					if (Yandere.PauseScreen.PhotoGallery.GuitarPhoto[k])
 					{
 						StudentManager.Students[52].TaskPhase = 5;
 					}
@@ -425,9 +442,9 @@ public class TaskManagerScript : MonoBehaviour
 			{
 				StudentManager.Students[81].TaskPhase = 4;
 			}
-			for (int k = 1; k < 26; k++)
+			for (int l = 1; l < 26; l++)
 			{
-				if (Yandere.PauseScreen.PhotoGallery.HorudaPhoto[k])
+				if (Yandere.PauseScreen.PhotoGallery.HorudaPhoto[l])
 				{
 					Debug.Log("Musume's Task can be turned in.");
 					StudentManager.Students[81].TaskPhase = 5;
@@ -449,19 +466,19 @@ public class TaskManagerScript : MonoBehaviour
 		}
 		if (TaskStatus[12] == 1 && StudentManager.Students[12] != null)
 		{
-			int num = 0;
-			for (int l = 6; l < 11; l++)
+			int num2 = 0;
+			for (int m = 6; m < 11; m++)
 			{
-				for (int m = 1; m < 26; m++)
+				for (int n = 1; n < 26; n++)
 				{
-					if (StudentManager.OpinionsLearned.StudentOpinions[l].Opinions[m])
+					if (StudentManager.OpinionsLearned.StudentOpinions[m].Opinions[n])
 					{
-						num++;
+						num2++;
 					}
 				}
 			}
-			Debug.Log("Current number of opinions learned is: " + num);
-			if (num > 9)
+			Debug.Log("Current number of opinions learned is: " + num2);
+			if (num2 > 9)
 			{
 				Debug.Log("Fiery's task should be ready to turn in!");
 				StudentManager.Students[12].TaskPhase = 5;
@@ -566,7 +583,7 @@ public class TaskManagerScript : MonoBehaviour
 		Proceed = false;
 		if (!Eighties)
 		{
-			if (StudentID == 46)
+			if (StudentID != 21 && StudentID == 46)
 			{
 				bool flag = false;
 				bool flag2 = false;

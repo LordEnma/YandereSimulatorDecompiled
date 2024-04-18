@@ -39,6 +39,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public GameObject[] CouncilBrows;
 
+	public GameObject[] CupcakeGifts;
+
 	public GameObject[] PhoneCharms;
 
 	public GameObject[] TeacherHair;
@@ -371,6 +373,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public bool DoNotChangeFace;
 
+	public bool NoClubAccessory;
+
 	public bool CustomModeMenu;
 
 	public bool TakingPortrait;
@@ -482,6 +486,7 @@ public class CosmeticScript : MonoBehaviour
 		DefaultMaterials = MyRenderer.materials;
 		if (!Male && FemaleHair[20] == null)
 		{
+			Debug.Log("FemaleHair[20] is null? Why?");
 			FemaleHair[20] = BackupOsanaHair;
 			FemaleHairRenderers[20] = BackupOsanaHairRenderer;
 		}
@@ -757,6 +762,8 @@ public class CosmeticScript : MonoBehaviour
 					}
 					if (num2 == 0)
 					{
+						Student.OriginalIdleAnim = "f02_friendlyPhoneIdle_00";
+						Student.IdleAnim = "f02_friendlyPhoneIdle_00";
 						Student.Club = ClubType.None;
 						StudentManager.Bullies = 0;
 						Club = ClubType.None;
@@ -1176,7 +1183,16 @@ public class CosmeticScript : MonoBehaviour
 			}
 			if (StudentGlobals.CustomSuitorAccessory > 0)
 			{
+				GameObject[] phoneCharms = ClubAccessories;
+				foreach (GameObject gameObject2 in phoneCharms)
+				{
+					if (gameObject2 != null)
+					{
+						gameObject2.SetActive(value: false);
+					}
+				}
 				Accessory = StudentGlobals.CustomSuitorAccessory;
+				NoClubAccessory = true;
 				if (Male && Accessory == 1)
 				{
 					Transform obj = MaleAccessories[1].transform;
@@ -1471,7 +1487,7 @@ public class CosmeticScript : MonoBehaviour
 		{
 			MaleAccessories[Accessory].SetActive(value: true);
 		}
-		if ((StudentManager == null || (!Empty && !StudentManager.TutorialActive)) && !Kidnapped)
+		if ((StudentManager == null || (!Empty && !StudentManager.TutorialActive)) && !Kidnapped && !NoClubAccessory)
 		{
 			if (StudentManager == null || !Eighties)
 			{
@@ -1571,12 +1587,25 @@ public class CosmeticScript : MonoBehaviour
 				ClubAccessories[(int)Club].SetActive(value: false);
 			}
 		}
-		if (((Student.Rival && !Student.Male) || (StudentManager != null && !StudentManager.MissionMode && StudentID == StudentManager.RivalID)) && !TakingPortrait && !Cutscene && !Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene" && CatGifts.Length != 0)
+		if (!Eighties && ((Student.Rival && !Student.Male) || (StudentManager != null && !StudentManager.MissionMode && StudentID == StudentManager.RivalID)) && !TakingPortrait && !Cutscene && !Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene")
 		{
-			CatGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
-			CatGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
-			CatGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
-			CatGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
+			if (DateGlobals.Week == 1)
+			{
+				if (CatGifts.Length != 0)
+				{
+					CatGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
+					CatGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
+					CatGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
+					CatGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
+				}
+			}
+			else if (CupcakeGifts.Length != 0)
+			{
+				CupcakeGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
+				CupcakeGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
+				CupcakeGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
+				CupcakeGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
+			}
 		}
 		if (!Male && base.gameObject.activeInHierarchy)
 		{

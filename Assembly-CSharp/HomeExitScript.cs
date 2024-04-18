@@ -25,7 +25,7 @@ public class HomeExitScript : MonoBehaviour
 
 	public int ID = 1;
 
-	private void Start()
+	public void Start()
 	{
 		UILabel uILabel = Labels[1];
 		Labels[5].alpha = 0.5f;
@@ -52,12 +52,42 @@ public class HomeExitScript : MonoBehaviour
 			}
 			BringItemPrompt.SetActive(value: false);
 			Labels[5].alpha = 1f;
+			Labels[6].alpha = 0.5f;
 		}
-		else if (DateGlobals.Weekday == DayOfWeek.Sunday)
+		else
 		{
-			uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
-			Labels[5].alpha = 1f;
+			if (DateGlobals.Weekday == DayOfWeek.Sunday)
+			{
+				uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
+				Labels[5].alpha = 1f;
+			}
+			if (HomeCamera.OutOfRoom)
+			{
+				Labels[6].alpha = 0.5f;
+				if (HomeYandere.transform.position.y < -5f)
+				{
+					Labels[3].alpha = 1f;
+					Labels[6].alpha = 0.5f;
+				}
+				else
+				{
+					Labels[3].alpha = 0.5f;
+				}
+			}
+			else if (HomeYandere.transform.position.y < -5f)
+			{
+				Labels[6].alpha = 0.5f;
+			}
+			else
+			{
+				Labels[6].alpha = 1f;
+			}
+			if (GameGlobals.Eighties)
+			{
+				Labels[6].alpha = 0.5f;
+			}
 		}
+		Highlight.localPosition = new Vector3(Highlight.localPosition.x, 125f - (float)ID * 50f, Highlight.localPosition.z);
 	}
 
 	private void Update()
@@ -69,20 +99,20 @@ public class HomeExitScript : MonoBehaviour
 		if (InputManager.TappedDown)
 		{
 			ID++;
-			if (ID > 5)
+			if (ID > 6)
 			{
 				ID = 1;
 			}
-			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 100f - (float)ID * 50f, Highlight.localPosition.z);
+			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 125f - (float)ID * 50f, Highlight.localPosition.z);
 		}
 		if (InputManager.TappedUp)
 		{
 			ID--;
 			if (ID < 1)
 			{
-				ID = 5;
+				ID = 6;
 			}
-			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 100f - (float)ID * 50f, Highlight.localPosition.z);
+			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 125f - (float)ID * 50f, Highlight.localPosition.z);
 		}
 		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
@@ -94,37 +124,58 @@ public class HomeExitScript : MonoBehaviour
 			{
 				HomeBringItem.HomeWindow.Show = true;
 				HomeWindow.Show = false;
-				return;
 			}
-			if (ID == 5)
+			else if (ID == 5)
 			{
 				PartTimeJobWindow.Show = true;
 				HomeWindow.Show = false;
-				return;
 			}
-			if (ID == 2)
+			else if (ID == 6)
 			{
-				HomeDarkness.Sprite.color = new Color(1f, 1f, 1f, 0f);
+				HomeYandere.MyController.radius = 0.25f;
+				HomeCamera.Triggers[1].gameObject.transform.position = new Vector3(-4.063334f, -2.5165f, -4.0875f);
+				HomeCamera.Triggers[1].gameObject.GetComponent<BoxCollider>().size = new Vector3(2.16f, 1f, 1f);
+				HomeCamera.Triggers[1].FadeIn = false;
+				HomeCamera.Triggers[1].Label.transform.localPosition = new Vector3(-4030f, -1600f, -4562f);
+				HomeCamera.Triggers[1].Label.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+				HomeCamera.Destinations[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -2.5f);
+				HomeCamera.Targets[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -4.56265f);
+				HomeCamera.OutOfRoom = true;
+				HomeCamera.OpenDoor = true;
+				HomeCamera.ID = 0;
+				Exit();
 			}
-			else if (ID == 3)
+			else
 			{
-				HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+				if (ID == 2)
+				{
+					HomeDarkness.Sprite.color = new Color(1f, 1f, 1f, 0f);
+				}
+				else if (ID == 3)
+				{
+					HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+				}
+				else if (ID == 4)
+				{
+					HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+				}
+				HomeDarkness.FadeOut = true;
+				HomeWindow.Show = false;
+				base.enabled = false;
 			}
-			else if (ID == 4)
-			{
-				HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
-			}
-			HomeDarkness.FadeOut = true;
-			HomeWindow.Show = false;
-			base.enabled = false;
 		}
 		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
-			HomeCamera.Destination = HomeCamera.Destinations[0];
-			HomeCamera.Target = HomeCamera.Targets[0];
-			HomeYandere.CanMove = true;
-			HomeWindow.Show = false;
-			base.enabled = false;
+			Exit();
+			if (HomeCamera.OutOfRoom && HomeYandere.transform.position.y > -5f)
+			{
+				HomeCamera.Destination = HomeCamera.OutOfRoomDestinations[2];
+				HomeCamera.LastChangePoint = Vector3.zero;
+				HomeCamera.TooClose = false;
+				HomeCamera.CameraTimer = 0f;
+				HomeYandere.transform.position = new Vector3(-4.111486f, -2.994555f, -3.33333f);
+				HomeYandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+			}
 		}
 	}
 
@@ -139,6 +190,15 @@ public class HomeExitScript : MonoBehaviour
 			HomeDarkness.Sprite.color = new Color(1f, 1f, 1f, 0f);
 		}
 		HomeDarkness.FadeOut = true;
+		HomeWindow.Show = false;
+		base.enabled = false;
+	}
+
+	public void Exit()
+	{
+		HomeCamera.Destination = HomeCamera.Destinations[0];
+		HomeCamera.Target = HomeCamera.Targets[0];
+		HomeYandere.CanMove = true;
 		HomeWindow.Show = false;
 		base.enabled = false;
 	}

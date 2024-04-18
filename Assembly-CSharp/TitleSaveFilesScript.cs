@@ -443,6 +443,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		{
 			PromptBar.Label[0].text = "Load Game";
 			PromptBar.Label[2].text = "Delete";
+			PromptBar.Label[6].text = "";
 		}
 		else
 		{

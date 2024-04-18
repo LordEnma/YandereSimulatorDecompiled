@@ -95,8 +95,8 @@ public class LoveManagerScript : MonoBehaviour
 		}
 		else
 		{
-			SuitorID = 6;
-			RivalID = 11;
+			SuitorID = StudentManager.ModernSuitorIDs[week];
+			RivalID = 10 + week;
 			if (DatingGlobals.Affection == 100f)
 			{
 				ConfessToSuitor = true;

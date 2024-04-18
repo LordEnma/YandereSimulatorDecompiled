@@ -22,6 +22,10 @@ public class EmergencyShowerScript : MonoBehaviour
 
 	public int Phase = 1;
 
+	public int Type;
+
+	public bool GymUniform;
+
 	public bool Bathing;
 
 	public AudioSource MyAudio;
@@ -31,6 +35,16 @@ public class EmergencyShowerScript : MonoBehaviour
 	public AudioClip CurtainOpen;
 
 	public AudioClip ClothRustle;
+
+	private void Start()
+	{
+		if (MissionModeGlobals.MissionMode && MissionModeGlobals.NemesisDifficulty > 0)
+		{
+			Prompt.Hide();
+			Prompt.enabled = false;
+			base.enabled = false;
+		}
+	}
 
 	private void Update()
 	{
@@ -42,6 +56,7 @@ public class EmergencyShowerScript : MonoBehaviour
 				Prompt.Circle[0].fillAmount = 1f;
 				if (!Yandere.Chased && Yandere.Chasers == 0)
 				{
+					Type = Yandere.PickUp.GetComponent<FoldedUniformScript>().Type;
 					Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 					Yandere.CannotBeSprayed = true;
 					Yandere.CanMove = false;
@@ -139,7 +154,7 @@ public class EmergencyShowerScript : MonoBehaviour
 					Object.Destroy(CleanUniform.gameObject);
 					Yandere.StudentManager.NewUniforms--;
 					Yandere.ClubAttire = false;
-					Yandere.Schoolwear = 1;
+					Yandere.Schoolwear = Type;
 					Yandere.ChangeSchoolwear();
 					AudioSource.PlayClipAtPoint(ClothRustle, base.transform.position);
 				}

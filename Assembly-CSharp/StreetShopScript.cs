@@ -158,9 +158,19 @@ public class StreetShopScript : MonoBehaviour
 				}
 			}
 		}
-		else if (StoreType == ShopType.Salon)
+		else
 		{
-			StoreType = ShopType.Nonfunctional;
+			if (StoreType == ShopType.Salon)
+			{
+				StoreType = ShopType.Nonfunctional;
+			}
+			if (StoreType == ShopType.Gift && DateGlobals.Week == 2)
+			{
+				Products[6] = "Cupcake Bracelet";
+				Products[7] = "Cupcake Hair Clip";
+				Products[8] = "Cupcake Necklace";
+				Products[9] = "Cupcake Ring";
+			}
 		}
 	}
 

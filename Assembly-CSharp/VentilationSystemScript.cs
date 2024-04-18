@@ -10,6 +10,8 @@ public class VentilationSystemScript : MonoBehaviour
 
 	public GameObject Window;
 
+	public ModernRivalSabotageScript Stove;
+
 	public PromptBarScript PromptBar;
 
 	public UILabel ExplanationLabel;
@@ -77,6 +79,7 @@ public class VentilationSystemScript : MonoBehaviour
 			Window.SetActive(value: true);
 			Show = true;
 			CheckForStinkBombs();
+			UpdateHighlight();
 		}
 		if (!Show)
 		{
@@ -110,6 +113,14 @@ public class VentilationSystemScript : MonoBehaviour
 				Floor = 1;
 			}
 			UpdateRoomNameLabels();
+		}
+		if (Floor == 1 && RoomID == 20 && Input.GetButtonDown(InputNames.Xbox_Y))
+		{
+			Prompt.Yandere.NotificationManager.CustomText = "Disabled the gas vent!";
+			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Stove.SabotageCriteria[2] = true;
+			Stove.CheckForSabotageSuccess();
+			UpdateHighlight();
 		}
 		if (Prompt.Yandere.PauseScreen.InputManager.TappedRight)
 		{
@@ -258,6 +269,15 @@ public class VentilationSystemScript : MonoBehaviour
 		Highlight.localPosition = new Vector3(-540 + 180 * Column, 540 - 180 * Row, 0f);
 		RoomID = Column + (Row - 1) * 5;
 		CheckForStinkBombs();
+		if (Floor == 1 && RoomID == 20 && !Stove.SabotageCriteria[2])
+		{
+			PromptBar.Label[3].text = "Disable Gas Vent";
+		}
+		else
+		{
+			PromptBar.Label[3].text = "";
+		}
+		PromptBar.UpdateButtons();
 	}
 
 	public void UpdateRoomNameLabels()

@@ -541,4 +541,26 @@ public class HeadmasterScript : MonoBehaviour
 		Jukebox.Volume = 0f;
 		Shooting = false;
 	}
+
+	public void Kill()
+	{
+		if (Yandere.CanMove)
+		{
+			StudentManager.YandereDying = true;
+			Yandere.StopAiming();
+			Yandere.StopLaughing();
+			StudentManager.StopMoving();
+			Yandere.EmptyHands();
+			Yandere.CanMove = false;
+		}
+		Yandere.CharacterAnimation.CrossFade("f02_swingB_00");
+		Yandere.CharacterAnimation["f02_swingB_00"].time = 0.5f;
+		Yandere.RPGCamera.enabled = false;
+		Yandere.TargetStudent = null;
+		Yandere.Degloving = false;
+		Yandere.Attacked = true;
+		Yandere.GloveTimer = 0f;
+		Heartbroken.Dead = true;
+		Jukebox.Volume = 0f;
+	}
 }

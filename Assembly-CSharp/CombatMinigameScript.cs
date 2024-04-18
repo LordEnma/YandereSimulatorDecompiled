@@ -115,10 +115,14 @@ public class CombatMinigameScript : MonoBehaviour
 		if (!Practice)
 		{
 			Difficulty = 1f;
-			return;
 		}
-		Delinquent.MyWeapon.GetComponent<Rigidbody>().isKinematic = true;
-		Delinquent.MyWeapon.GetComponent<Rigidbody>().useGravity = false;
+		else
+		{
+			Delinquent.MyWeapon.GetComponent<Rigidbody>().isKinematic = true;
+			Delinquent.MyWeapon.GetComponent<Rigidbody>().useGravity = false;
+		}
+		Difficulty -= (float)(Yandere.PhysicalGrade + Yandere.Class.PhysicalBonus) * 0.1f;
+		Debug.Log("Difficulty is: " + Difficulty);
 	}
 
 	private void Update()

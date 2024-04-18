@@ -329,23 +329,23 @@ public class PracticeWindowScript : MonoBehaviour
 			{
 				if (Selected == 1)
 				{
-					StudentManager.CombatMinigame.Difficulty = 0.5f;
+					StudentManager.CombatMinigame.Difficulty = 0.6f;
 				}
 				else if (Selected == 2)
 				{
-					StudentManager.CombatMinigame.Difficulty = 0.75f;
+					StudentManager.CombatMinigame.Difficulty = 0.7f;
 				}
 				else if (Selected == 3)
 				{
-					StudentManager.CombatMinigame.Difficulty = 1f;
+					StudentManager.CombatMinigame.Difficulty = 0.8f;
 				}
 				else if (Selected == 4)
 				{
-					StudentManager.CombatMinigame.Difficulty = 1.5f;
+					StudentManager.CombatMinigame.Difficulty = 0.9f;
 				}
 				else if (Selected == 5)
 				{
-					StudentManager.CombatMinigame.Difficulty = 2f;
+					StudentManager.CombatMinigame.Difficulty = 1f;
 				}
 				StudentManager.Students[ClubID - Selected].Threatened = true;
 				StudentManager.Students[ClubID - Selected].Alarmed = true;

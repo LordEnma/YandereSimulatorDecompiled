@@ -55,6 +55,8 @@ public class BucketScript : MonoBehaviour
 
 	public float Bloodiness;
 
+	public float SpillTimer;
+
 	public float FillSpeed = 1f;
 
 	public float Timer;
@@ -69,7 +71,11 @@ public class BucketScript : MonoBehaviour
 
 	public int Dumbbells;
 
+	public int Puddles;
+
 	public bool UpdateAppearance;
+
+	public bool EmptySlowly;
 
 	public bool DyedBrown;
 
@@ -78,6 +84,8 @@ public class BucketScript : MonoBehaviour
 	public bool Dippable;
 
 	public bool Gasoline;
+
+	public bool Spilling;
 
 	public bool Dropped;
 
@@ -94,6 +102,8 @@ public class BucketScript : MonoBehaviour
 	public AudioClip FillBucket;
 
 	public AudioClip CrackSkull;
+
+	public Vector3 LastSpillPosition;
 
 	private void Start()
 	{
@@ -367,6 +377,13 @@ public class BucketScript : MonoBehaviour
 		}
 		else if ((Prompt.Circle[1].fillAmount == 0f || (!Yandere.NoDebug && Input.GetKeyDown("z"))) && ((Yandere.PickUp == PickUp && Full) || (Yandere.PickUp == PickUp && !Yandere.NoDebug && Input.GetKeyDown("z"))))
 		{
+			UpdateAppearance = true;
+			EmptySlowly = true;
+			Spilling = true;
+			Full = false;
+			SpillTimer = 0f;
+			Puddles = 0;
+			Timer = 0f;
 			Spill();
 		}
 		if (UpdateAppearance)
@@ -394,14 +411,33 @@ public class BucketScript : MonoBehaviour
 			}
 			else
 			{
-				Water.transform.localScale = Vector3.Lerp(Water.transform.localScale, new Vector3(0.9f, 1f, 0.9f), Time.deltaTime * 5f);
-				Water.transform.localPosition = new Vector3(Water.transform.localPosition.x, Mathf.Lerp(Water.transform.localPosition.y, 0f, Time.deltaTime * 5f), Water.transform.localPosition.z);
-				Water.material.color = new Color(Water.material.color.r, Water.material.color.g, Water.material.color.b, Mathf.Lerp(Water.material.color.a, 0f, Time.deltaTime * 5f));
-				Gas.transform.localScale = Vector3.Lerp(Gas.transform.localScale, new Vector3(0.9f, 1f, 0.9f), Time.deltaTime * 5f);
-				Gas.transform.localPosition = new Vector3(Gas.transform.localPosition.x, Mathf.Lerp(Gas.transform.localPosition.y, 0f, Time.deltaTime * 5f), Gas.transform.localPosition.z);
-				Gas.material.color = new Color(Gas.material.color.r, Gas.material.color.g, Gas.material.color.b, Mathf.Lerp(Gas.material.color.a, 0f, Time.deltaTime * 5f));
-				Brown.transform.localPosition = new Vector3(Brown.transform.localPosition.x, Mathf.Lerp(Brown.transform.localPosition.y, 0f, Time.deltaTime * 5f), Brown.transform.localPosition.z);
-				Brown.material.color = new Color(Brown.material.color.r, Brown.material.color.g, Brown.material.color.b, Mathf.Lerp(Brown.material.color.a, 0f, Time.deltaTime * 5f));
+				float num = 5f;
+				if (EmptySlowly)
+				{
+					SpillTimer += Time.deltaTime;
+					if (SpillTimer > 0.5f || Vector3.Distance(Yandere.transform.position, LastSpillPosition) > 0.75f)
+					{
+						SpillTimer = 0f;
+						Puddles++;
+						Spill();
+					}
+					if (Puddles == 9)
+					{
+						EmptySlowly = false;
+					}
+					else
+					{
+						num = 0.5f;
+					}
+				}
+				Water.transform.localScale = Vector3.Lerp(Water.transform.localScale, new Vector3(0.9f, 1f, 0.9f), Time.deltaTime * num);
+				Water.transform.localPosition = new Vector3(Water.transform.localPosition.x, Mathf.Lerp(Water.transform.localPosition.y, 0f, Time.deltaTime * num), Water.transform.localPosition.z);
+				Water.material.color = new Color(Water.material.color.r, Water.material.color.g, Water.material.color.b, Mathf.Lerp(Water.material.color.a, 0f, Time.deltaTime * num));
+				Gas.transform.localScale = Vector3.Lerp(Gas.transform.localScale, new Vector3(0.9f, 1f, 0.9f), Time.deltaTime * num);
+				Gas.transform.localPosition = new Vector3(Gas.transform.localPosition.x, Mathf.Lerp(Gas.transform.localPosition.y, 0f, Time.deltaTime * num), Gas.transform.localPosition.z);
+				Gas.material.color = new Color(Gas.material.color.r, Gas.material.color.g, Gas.material.color.b, Mathf.Lerp(Gas.material.color.a, 0f, Time.deltaTime * num));
+				Brown.transform.localPosition = new Vector3(Brown.transform.localPosition.x, Mathf.Lerp(Brown.transform.localPosition.y, 0f, Time.deltaTime * num), Brown.transform.localPosition.z);
+				Brown.material.color = new Color(Brown.material.color.r, Brown.material.color.g, Brown.material.color.b, Mathf.Lerp(Brown.material.color.a, 0f, Time.deltaTime * num));
 			}
 			Blood.material.color = new Color(Blood.material.color.r, Blood.material.color.g, Blood.material.color.b, Mathf.Lerp(Blood.material.color.a, Bloodiness / 100f, Time.deltaTime));
 			Blood.transform.localPosition = new Vector3(Blood.transform.localPosition.x, Water.transform.localPosition.y + 0.001f, Blood.transform.localPosition.z);
@@ -418,6 +454,10 @@ public class BucketScript : MonoBehaviour
 				}
 				UpdateAppearance = false;
 				Timer = 0f;
+				if (Spilling)
+				{
+					Empty();
+				}
 			}
 		}
 		if (Yandere.PickUp != null)
@@ -536,18 +576,23 @@ public class BucketScript : MonoBehaviour
 			SchemeGlobals.SetSchemeStage(1, 1);
 			Yandere.PauseScreen.Schemes.UpdateInstructions();
 		}
-		if (!Yandere.StudentManager.KokonaTutorial)
+		if (!Yandere.StudentManager.KokonaTutorial && !Spilling)
 		{
 			AudioSource.PlayClipAtPoint(EmptyBucket, base.transform.position);
 		}
-		UpdateAppearance = true;
+		if (!Spilling)
+		{
+			UpdateAppearance = true;
+		}
 		StudentBloodID = 0;
 		Bloodiness = 0f;
+		EmptySlowly = false;
 		DyedBrown = false;
 		Bleached = false;
 		Gasoline = false;
-		Sparkles.Stop();
+		Spilling = false;
 		Full = false;
+		Sparkles.Stop();
 		Prompt.HideButton[1] = true;
 		PickUp.Usable = false;
 		PickUp.Outline[0].color = new Color(0f, 1f, 1f, 1f);
@@ -653,8 +698,8 @@ public class BucketScript : MonoBehaviour
 		GameObject gameObject = null;
 		GameObject gameObject2 = null;
 		gameObject = (DyedBrown ? Yandere.StudentManager.WaterCooler.Tripwire.BrownPaintPuddle : ((Bloodiness > 50f) ? Yandere.StudentManager.WaterCooler.Tripwire.BloodPuddle : ((!Gasoline) ? Yandere.StudentManager.WaterCooler.Tripwire.WaterPuddle : Yandere.StudentManager.WaterCooler.Tripwire.GasolinePuddle)));
-		gameObject2 = Object.Instantiate(gameObject, Yandere.transform.position + Yandere.transform.forward * 0.5f + new Vector3(0f, 0.001f, 0f), Quaternion.identity);
-		gameObject2.transform.eulerAngles = new Vector3(90f, 0f, 0f);
+		gameObject2 = Object.Instantiate(gameObject, Yandere.transform.position + Yandere.transform.forward * 0.66666f + new Vector3(0f, 0.001f, 0f), Quaternion.identity);
+		gameObject2.transform.eulerAngles = new Vector3(90f, Random.Range(0f, 360f), 0f);
 		if (Bloodiness > 50f)
 		{
 			gameObject2.transform.parent = Yandere.StudentManager.BloodParent.transform;
@@ -663,8 +708,8 @@ public class BucketScript : MonoBehaviour
 		{
 			gameObject2.transform.parent = Yandere.StudentManager.PuddleParent.transform;
 		}
-		Empty();
 		Yandere.SuspiciousActionTimer = 1f;
+		LastSpillPosition = Yandere.transform.position;
 		NewestPuddle = gameObject2;
 	}
 }

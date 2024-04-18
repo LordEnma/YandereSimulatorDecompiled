@@ -770,13 +770,17 @@ public class ShutterScript : MonoBehaviour
 		{
 			PhotoDescLabel.text = "Photo of: Corpse";
 			ViolenceX.SetActive(value: false);
-			if (hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>().Hunting || hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>().Hunted)
+			StudentScript component = hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>();
+			if (component != null)
 			{
-				PhotoDescLabel.text = "Photo of: Murder-suicide taking place";
-			}
-			else if (hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>() != null && hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>().Alive)
-			{
-				PhotoDescLabel.text = "Photo of: Sleeping Student";
+				if (component.Hunting || component.Hunted)
+				{
+					PhotoDescLabel.text = "Photo of: Murder-suicide taking place";
+				}
+				else if (component.Ragdoll.Zs.activeInHierarchy)
+				{
+					PhotoDescLabel.text = "Photo of: Sleeping Student";
+				}
 			}
 		}
 		if (Physics.Raycast(SmartphoneCamera.transform.position, SmartphoneCamera.transform.TransformDirection(Vector3.forward), out hit, float.PositiveInfinity, OnlyBlood) && hit.collider.gameObject.layer == 14)

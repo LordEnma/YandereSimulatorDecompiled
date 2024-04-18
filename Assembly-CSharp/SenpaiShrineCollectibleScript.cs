@@ -8,7 +8,7 @@ public class SenpaiShrineCollectibleScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (PlayerGlobals.GetShrineCollectible(ID))
+		if (PlayerGlobals.GetShrineCollectible(ID) && ID != 9)
 		{
 			Object.Destroy(base.gameObject);
 		}

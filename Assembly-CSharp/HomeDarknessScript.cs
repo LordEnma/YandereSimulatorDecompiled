@@ -55,7 +55,7 @@ public class HomeDarknessScript : MonoBehaviour
 			GameGlobals.LastInputType = (int)InputDevice.Type;
 			HomeCamera.Profile.bloom.enabled = HomeCamera.RestoreBloom;
 			HomeCamera.Profile.depthOfField.enabled = HomeCamera.RestoreDOF;
-			if (HomeCamera.ID == 0)
+			if (HomeCamera.ID == 0 && !HomeCamera.OutOfRoom)
 			{
 				Debug.Log("Cheeky player stepped out of a trigger...");
 				HomeCamera.ID = HomeCamera.LastID;
@@ -181,13 +181,26 @@ public class HomeDarknessScript : MonoBehaviour
 						Physics.SyncTransforms();
 						return;
 					}
-					HomeYandere.transform.position = new Vector3(-1.6f, 0f, -1.6f);
-					HomeYandere.transform.eulerAngles = new Vector3(0f, 45f, 0f);
+					Debug.Log("Teleporting out of basement now.");
+					if (HomeCamera.OutOfRoom)
+					{
+						HomeCamera.Destination = HomeCamera.OutOfRoomDestinations[2];
+						HomeCamera.LastChangePoint = Vector3.zero;
+						HomeCamera.TooClose = false;
+						HomeCamera.CameraTimer = 0f;
+						HomeYandere.transform.position = new Vector3(-3.306057f, -2.892705f, 0f);
+						HomeYandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+					}
+					else
+					{
+						HomeCamera.Destinations[0].position = new Vector3(-2.0615f, 1.5f, 2.418f);
+						HomeCamera.Destination = HomeCamera.Destinations[0];
+						HomeCamera.transform.position = HomeCamera.Destination.position;
+						HomeYandere.transform.position = new Vector3(-1.6f, 0f, -1.6f);
+						HomeYandere.transform.eulerAngles = new Vector3(0f, 45f, 0f);
+					}
 					HomeYandere.CanMove = true;
 					FadeOut = false;
-					HomeCamera.Destinations[0].position = new Vector3(-2.0615f, 1.5f, 2.418f);
-					HomeCamera.Destination = HomeCamera.Destinations[0];
-					HomeCamera.transform.position = HomeCamera.Destination.position;
 					HomeCamera.Target = HomeCamera.Targets[0];
 					HomeCamera.Focus.position = HomeCamera.Target.position;
 					BasementLabel.text = "Basement";
@@ -285,7 +298,9 @@ public class HomeDarknessScript : MonoBehaviour
 		}
 		GameGlobals.LastInputType = (int)InputDevice.Type;
 		int buildIndexByScenePath = SceneUtility.GetBuildIndexByScenePath("WalkToSchoolScene");
-		if (!GameGlobals.Eighties && GameGlobals.RivalEliminationID == 0 && !StudentGlobals.GetStudentKidnapped(11) && StudentGlobals.StudentSlave != 11 && DateGlobals.Weekday == DayOfWeek.Thursday && !HomeGlobals.LateForSchool && StudentGlobals.GetStudentReputation(11) > -100 && buildIndexByScenePath > -1)
+		bool flag = false;
+		int num = 10 + DateGlobals.Week;
+		if (!GameGlobals.Eighties && GameGlobals.RivalEliminationID == 0 && !StudentGlobals.GetStudentKidnapped(num) && StudentGlobals.StudentSlave != num && DateGlobals.Weekday == DayOfWeek.Thursday && !HomeGlobals.LateForSchool && StudentGlobals.GetStudentReputation(num) > -100 && buildIndexByScenePath > -1 && !flag)
 		{
 			SceneManager.LoadScene("WalkToSchoolScene");
 		}

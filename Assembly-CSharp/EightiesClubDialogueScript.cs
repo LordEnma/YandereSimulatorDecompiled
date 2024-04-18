@@ -4,7 +4,7 @@ public class EightiesClubDialogueScript : MonoBehaviour
 {
 	public SubtitleScript Subtitle;
 
-	public void UpdateDialogue(int ClubID)
+	public void UpdateEightiesDialogue(int ClubID)
 	{
 		switch (ClubID)
 		{
@@ -77,6 +77,53 @@ public class EightiesClubDialogueScript : MonoBehaviour
 			Subtitle.ClubYeses[ClubID] = "Bien, bien! Let's begin!";
 			Subtitle.ClubNoes[ClubID] = "Take your time to find your muse, mon cheri. But, we can't wait past 5:30.";
 			break;
+		}
+	}
+
+	public void UpdateDialogue(int ClubID)
+	{
+		if (ClubID == 1)
+		{
+			Subtitle.ClubGreetings[ClubID] = "Oh, hello there! Did you want to talk with me about the Cooking Club?";
+			Subtitle.Club2Info[1] = "Well, like our name suggests, everyone in this club loves to prepare food! And all of us share a common desire to make people smile by serving them delicious treats!";
+			Subtitle.Club2Info[2] = "You'll find a wide range of appetites here! Some of us are health nuts who prioritize nutrition, while others have a sweet tooth and want to eat dessert for every meal, haha!";
+			Subtitle.Club2Info[3] = "If you join our club, you'll have access to all of our tasty ingredients, and you'll be able to make meals for others! Serving someone a yummy snack is a great way to make friends fast, you know!";
+			Subtitle.ClubJoins[ClubID] = "Oh! Are you interested in joining our club?";
+			Subtitle.ClubAccepts[ClubID] = "How wonderful! You are now an official member of the Cooking Club! I hope you enjoy your time with us!";
+			Subtitle.ClubRefuses[ClubID] = "Aww, that's okay, I understand! Choosing a club is a big decision, after all. If you ever change your mind, we'll be right here!";
+			Subtitle.ClubExclusives[ClubID] = "Oh, gosh! Um, I know this isn't what you'd like to hear, but you can't be a member of two clubs at the same time. If you want to join us, you'd have to quit your current club. I'm sorry about that!";
+			Subtitle.ClubQuits[ClubID] = "Uh-oh...is something wrong? Do you need to...leave our club?";
+			Subtitle.ClubConfirms[ClubID] = "Oh, no...is that really how you feel? I'm so sorry to hear that...but...I understand. I'm sad to see you go, but I wish you the best of luck in the future!";
+			Subtitle.ClubDenies[ClubID] = "Phew! For a second there, I was afraid you were about to leave us! I'm so glad you're going to stay!";
+			Subtitle.ClubEarlies[ClubID] = "We're all going to get together between 5:00 and 5:30 to prepare a yummy meal! I really hope hope that we'll see you there!";
+			Subtitle.ClubLates[ClubID] = "Oh, dear...I'm so sorry! We already finished the meal that we were preparing! Um, next time, please try to join us before 5:30, okay...?";
+			Subtitle.ClubActivities[ClubID] = "It's so good to see you! We're about to begin cooking a meal! Would you like to join us?";
+			Subtitle.ClubYeses[ClubID] = "Yay! Let's get started right away!";
+			Subtitle.ClubNoes[ClubID] = "Oh! Um, okay! We'll wait for you, but...we can't wait any longer than 5:30, alright...?";
+			Subtitle.ClubRejoins[ClubID] = "...I'm so sorry...it's...kinda hard to consider letting you join the club again, since...you might just leave us again. That would be really sad, so...we just...can't let you back in...again, I'm sorry...";
+			Subtitle.ClubKicks[ClubID] = "...um...it's...not really easy to find the right words to say this...but...well...you're just...not a good fit for our club, and...I...have to ask you to leave...I'm very sorry...please don't take offense...";
+			Subtitle.ClubUnwelcomes[ClubID] = "...y...you killed someone. Are you just...trying to pretend that it didn't happen?! I saw it. I...saw...it. I can't just...forget that. Look...I don't want to make a scene, so...please...leave. Just...leave.";
+			Subtitle.ClubGrudges[ClubID] = "...oh, gosh...this is...really awkward...um...okay, so...one of my clubmembers...well...I'm sorry, but, they have a big problem with you, so...I can't let you join the club. I'm sorry...I'm very sorry!";
+			Subtitle.ClubFarewells[ClubID] = "Bye bye for now! Hope to see you later!";
+			Subtitle.ClubGreetingClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubUnwelcomeClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubKickClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubJoinClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubAcceptClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubRefuseClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubRejoinClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubExclusiveClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubGrudgeClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubQuitClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubConfirmClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubDenyClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubFarewellClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubActivityClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubEarlyClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubLateClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubYesClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.ClubNoClips[ClubID] = Subtitle.LongestSilence;
+			Subtitle.Silence(Subtitle.Club1Clips);
 		}
 	}
 }

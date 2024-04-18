@@ -293,11 +293,7 @@ public class ClockScript : MonoBehaviour
 				{
 					GivePlayerBroughtWeapon();
 				}
-				if (!StudentManager.KokonaTutorial)
-				{
-					Yandere.RPGCamera.ZeroEverything();
-					Yandere.FixCamera();
-				}
+				_ = StudentManager.KokonaTutorial;
 			}
 		}
 		if (PresentTime < 1080f)
@@ -346,7 +342,7 @@ public class ClockScript : MonoBehaviour
 				}
 			}
 		}
-		else if (LoveManager.WaitingToConfess && StudentManager.Students[StudentManager.RivalID] != null && StudentManager.Students[StudentManager.RivalID].Alive)
+		else if (LoveManager.WaitingToConfess && StudentManager.Students[StudentManager.RivalID] != null && StudentManager.Students[StudentManager.RivalID].Alive && !StudentManager.Students[StudentManager.RivalID].Fleeing)
 		{
 			if (!StopTime)
 			{
@@ -454,6 +450,10 @@ public class ClockScript : MonoBehaviour
 		{
 			if (Period < 5)
 			{
+				if (Weekday == 5)
+				{
+					StudentManager.AttendClubLeaderMeeting();
+				}
 				StudentManager.Reputation.RepUpdateLabel.text = "REP WILL UPDATE AFTER LEAVING SCHOOL";
 				if (StudentManager.Bully && StudentManager.Bullies > 0)
 				{

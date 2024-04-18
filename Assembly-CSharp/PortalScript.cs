@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class PortalScript : MonoBehaviour
 {
@@ -249,6 +250,9 @@ public class PortalScript : MonoBehaviour
 							Yandere.RPGCamera.enabled = false;
 							Yandere.ShoulderCamera.Scolding = true;
 							Yandere.ShoulderCamera.Teacher = Teacher;
+							OriginalDOF = Yandere.CameraEffects.Profile.depthOfField.settings.focusDistance;
+							Debug.Log("Now saving the original DOF, which was " + OriginalDOF + ".");
+							Yandere.CameraEffects.UpdateDOF(0.75f);
 						}
 						else
 						{
@@ -378,7 +382,12 @@ public class PortalScript : MonoBehaviour
 						Yandere.RPGCamera.enabled = false;
 						Yandere.MainCamera.transform.position = new Vector3(-10.25f, 5f, -26.5f);
 						Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, 45f, 0f);
-						OriginalDOF = Yandere.CameraEffects.Profile.depthOfField.settings.focusDistance;
+						DepthOfFieldModel.Settings settings = Yandere.CameraEffects.Profile.depthOfField.settings;
+						if (OriginalDOF == 0f)
+						{
+							OriginalDOF = settings.focusDistance;
+							Debug.Log("Now saving the original DOF, which was " + OriginalDOF + ".");
+						}
 						Yandere.CameraEffects.UpdateDOF(0.6f);
 						Clock.gameObject.SetActive(value: false);
 						StudentManager.Reputation.gameObject.SetActive(value: false);
@@ -414,6 +423,7 @@ public class PortalScript : MonoBehaviour
 					if (!Yandere.Resting)
 					{
 						Yandere.CameraEffects.UpdateDOF(OriginalDOF);
+						OriginalDOF = 0f;
 					}
 				}
 				if (ClassDarkness.color.a >= 0.999f)
@@ -516,7 +526,15 @@ public class PortalScript : MonoBehaviour
 			{
 				if (Timer == 0f)
 				{
-					StudentScript studentScript = StudentManager.Students[StudentManager.RivalID];
+					StudentScript[] students = StudentManager.Students;
+					foreach (StudentScript studentScript in students)
+					{
+						if (studentScript != null && studentScript.Fleeing && studentScript.PhotoEvidence)
+						{
+							Yandere.NotificationManager.CustomText = "Murder being reported";
+						}
+					}
+					StudentScript studentScript2 = StudentManager.Students[StudentManager.RivalID];
 					if (Yandere.Armed)
 					{
 						Yandere.NotificationManager.CustomText = "Carrying Weapon";
@@ -561,9 +579,13 @@ public class PortalScript : MonoBehaviour
 					{
 						Yandere.NotificationManager.CustomText = "Murder being reported";
 					}
-					else if (studentScript != null && studentScript.Fleeing && studentScript.CurrentDestination == StudentManager.Students[studentScript.LovestruckTarget].transform)
+					else if (studentScript2 != null && studentScript2.Fleeing && studentScript2.CurrentDestination == StudentManager.Students[studentScript2.LovestruckTarget].transform)
 					{
 						Yandere.NotificationManager.CustomText = "Murder being reported";
+					}
+					else if (StudentManager.WitnessCamera.Show)
+					{
+						Yandere.NotificationManager.CustomText = "Someone is reacting to a death";
 					}
 					else if (StudentManager.MurderTakingPlace)
 					{
@@ -607,7 +629,15 @@ public class PortalScript : MonoBehaviour
 	public void CheckForProblems()
 	{
 		StudentScript studentScript = StudentManager.Students[StudentManager.RivalID];
-		if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Schoolwear == 2 || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || Yandere.Mask != null || Yandere.WearingRaincoat || (StudentManager.Reporter != null && !Police.Show) || StudentManager.MurderTakingPlace || Yandere.PauseScreen.MissionMode.YakuzaMode || (studentScript != null && studentScript.Fleeing && studentScript.CurrentDestination == StudentManager.Students[studentScript.LovestruckTarget].transform))
+		StudentScript[] students = StudentManager.Students;
+		foreach (StudentScript studentScript2 in students)
+		{
+			if (studentScript2 != null && studentScript2.Fleeing && studentScript2.PhotoEvidence)
+			{
+				CanAttendClass = false;
+			}
+		}
+		if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Schoolwear == 2 || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || Yandere.Mask != null || Yandere.WearingRaincoat || (StudentManager.Reporter != null && !Police.Show) || StudentManager.MurderTakingPlace || Yandere.PauseScreen.MissionMode.YakuzaMode || StudentManager.WitnessCamera.Show || (studentScript != null && studentScript.Fleeing && studentScript.CurrentDestination == StudentManager.Students[studentScript.LovestruckTarget].transform))
 		{
 			CanAttendClass = false;
 		}

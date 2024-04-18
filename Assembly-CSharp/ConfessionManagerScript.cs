@@ -12,6 +12,8 @@ public class ConfessionManagerScript : MonoBehaviour
 
 	public CosmeticScript OsanaCosmetic;
 
+	public ConfessionDataScript[] ConfessionData;
+
 	public AudioClip ConfessionAccepted;
 
 	public AudioClip ConfessionRejected;
@@ -104,6 +106,7 @@ public class ConfessionManagerScript : MonoBehaviour
 
 	private void Start()
 	{
+		ConfessionCamera.gameObject.SetActive(value: false);
 		if (GameGlobals.FemaleSenpai)
 		{
 			Senpai.transform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
@@ -111,8 +114,9 @@ public class ConfessionManagerScript : MonoBehaviour
 		StudentManager.Yandere.Class.Portal.EndEvents();
 		StudentManager.Students[StudentManager.RivalID].BookBag.SetActive(value: false);
 		Senpai["SenpaiConfession"].speed = 0.9f;
+		Debug.Log("At this moment, Darkness.color.alpha is being set to 0.");
 		TimelessDarkness.color = new Color(0f, 0f, 0f, 0f);
-		Darkness.color = new Color(0f, 0f, 0f, 1f);
+		Darkness.color = new Color(0f, 0f, 0f, 0f);
 		SubtitleLabel.text = "";
 		Eighties = StudentManager.Eighties;
 		ContinueButton.alpha = 0f;
@@ -129,6 +133,15 @@ public class ConfessionManagerScript : MonoBehaviour
 			ContinueButton.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 			ContinueLabel.transform.localPosition = new Vector3(-30f, 2.5f, 0f);
 		}
+		if (DateGlobals.Week > 1)
+		{
+			ConfessSubs = ConfessionData[DateGlobals.Week].ConfessSubs;
+			AcceptSubs = ConfessionData[DateGlobals.Week].AcceptSubs;
+			RejectSubs = ConfessionData[DateGlobals.Week].RejectSubs;
+			MyAudio.clip = ConfessionData[DateGlobals.Week].ConfessionSpeech;
+			ConfessionAccepted = ConfessionData[DateGlobals.Week].ConfessionAccepted;
+			ConfessionRejected = ConfessionData[DateGlobals.Week].ConfessionRejected;
+		}
 		Time.timeScale = 1f;
 	}
 
@@ -144,6 +157,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			{
 				TimelessDarkness.color = new Color(0f, 0f, 0f, 0f);
 				Darkness.color = new Color(0f, 0f, 0f, 1f);
+				Debug.Log("This is the exact moment that the main camera should be disabled and the confession camera should be enabled.");
 				ConfessionCamera.gameObject.SetActive(value: true);
 				MainCamera.SetActive(value: false);
 				OsanaCosmetic = StudentManager.Students[StudentManager.RivalID].Cosmetic;
@@ -468,6 +482,10 @@ public class ConfessionManagerScript : MonoBehaviour
 				ConfessionCamera.eulerAngles = OriginalPOV.eulerAngles;
 				ConfessionCamera.position = OriginalPOV.position;
 				Senpai.gameObject.SetActive(value: true);
+				if (!GameGlobals.CustomMode)
+				{
+					Senpai.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
+				}
 				if (!Reject)
 				{
 					Senpai.Play("SenpaiConfessionAccepted");

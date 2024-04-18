@@ -30,6 +30,8 @@ public class SimpleLookScript : MonoBehaviour
 
 	public Transform Yandere;
 
+	public float BlendAmount;
+
 	public float PreviousEye;
 
 	public float PreviousHead;
@@ -54,6 +56,8 @@ public class SimpleLookScript : MonoBehaviour
 
 	public bool Ignore;
 
+	public bool Suitor;
+
 	public bool Waving;
 
 	public bool Look;
@@ -66,6 +70,16 @@ public class SimpleLookScript : MonoBehaviour
 		SpineLookAt.enabled = false;
 		Yandere = Student.Yandere.transform;
 		YandereHead = Student.Yandere.Head;
+		if (Student.StudentID == Student.StudentManager.SuitorID && Student.StudentManager.Students[Student.StudentManager.RivalID] != null)
+		{
+			Ignore = true;
+			Suitor = true;
+			Yandere = Student.StudentManager.Students[Student.StudentManager.RivalID].transform;
+			YandereHead = Student.StudentManager.Students[Student.StudentManager.RivalID].Head.transform;
+			Student.Cosmetic.MyRenderer.materials[Student.Cosmetic.FaceID].SetTexture("_OverlayTex", Student.StudentManager.LoveManager.ConfessionScene.BlushTexture);
+			Student.Cosmetic.MyRenderer.materials[Student.Cosmetic.FaceID].SetFloat("_BlendAmount", 0f);
+			Student.Hearts.Stop();
+		}
 	}
 
 	private void LateUpdate()
@@ -79,9 +93,11 @@ public class SimpleLookScript : MonoBehaviour
 		}
 		if (Student.Routine)
 		{
-			if (Student.DistanceToPlayer < 2f || Look)
+			float num = 0f;
+			num = (Suitor ? Vector3.Distance(Student.transform.position, Yandere.transform.position) : Student.DistanceToPlayer);
+			if (num < 2f || Look)
 			{
-				if (Mathf.Abs(Vector3.Angle(-base.transform.forward, Yandere.transform.position - base.transform.position)) >= 90f && Student.DistanceToPlayer < 2f && !Ignore)
+				if (Mathf.Abs(Vector3.Angle(-base.transform.forward, Yandere.transform.position - base.transform.position)) >= 90f && num < 2f && !Ignore)
 				{
 					LookTimer += Time.deltaTime;
 					if (!ReactedToFriend && Student.Friend && Student.Yandere.Mask == null && !Student.Emetic && !Student.Lethal && !Student.Sedated && !Student.Headache && !Student.Grudge && !Student.Dying && Student.CurrentAction != StudentActionType.Sunbathe && Student.CurrentAction != StudentActionType.Gaming && Student.CurrentAction != StudentActionType.Mourn && Student.StudentID > 1 && LookTimer > 1f)
@@ -129,20 +145,22 @@ public class SimpleLookScript : MonoBehaviour
 		}
 		if (Look)
 		{
+			float num2 = 0f;
+			num2 = (Suitor ? Vector3.Distance(Student.transform.position, Yandere.transform.position) : Student.DistanceToPlayer);
 			float f = Vector3.Angle(base.transform.forward, Yandere.transform.position - base.transform.position);
 			Vector3 vector = YandereHead.transform.position - MyHead.transform.position;
-			float num = Vector3.Angle(base.transform.right, new Vector3(vector.x, 0f, vector.z));
-			if (Mathf.Abs(f) <= 90f && Student.DistanceToPlayer < 2f && !Ignore)
+			float num3 = Vector3.Angle(base.transform.right, new Vector3(vector.x, 0f, vector.z));
+			if (Mathf.Abs(f) <= 90f && num2 < 2f && !Ignore)
 			{
-				if (num <= 90f)
+				if (num3 <= 90f)
 				{
-					float num2 = (90f - num) / 90f;
-					Rotation = Mathf.Lerp(Rotation, 10f * num2, Time.deltaTime * 3.6f);
+					float num4 = (90f - num3) / 90f;
+					Rotation = Mathf.Lerp(Rotation, 10f * num4, Time.deltaTime * 3.6f);
 				}
 				else
 				{
-					float num3 = (90f - (180f - num)) / 90f;
-					Rotation = Mathf.Lerp(Rotation, -10f * num3, Time.deltaTime * 3.6f);
+					float num5 = (90f - (180f - num3)) / 90f;
+					Rotation = Mathf.Lerp(Rotation, -10f * num5, Time.deltaTime * 3.6f);
 				}
 			}
 			else
@@ -170,6 +188,36 @@ public class SimpleLookScript : MonoBehaviour
 			PreviousHead = Head.localEulerAngles.y;
 			PreviousNeck = Neck.localEulerAngles.y;
 			PreviousSpine = Spine.localEulerAngles.y;
+		}
+		if (Suitor)
+		{
+			if (Ignore)
+			{
+				if (BlendAmount > 0f)
+				{
+					BlendAmount = Mathf.MoveTowards(BlendAmount, 0f, Time.deltaTime);
+					Student.Cosmetic.MyRenderer.materials[Student.Cosmetic.FaceID].SetFloat("_BlendAmount", BlendAmount);
+				}
+			}
+			else if (BlendAmount < 1f)
+			{
+				if (BlendAmount == 0f)
+				{
+					ParticleSystem.EmissionModule emission = Student.Hearts.emission;
+					emission.rateOverTime = 10f;
+					emission.enabled = true;
+					ParticleSystem.MainModule main = Student.Hearts.main;
+					main.startLifetime = 5f;
+					main.loop = false;
+					if (!Student.Hearts.isEmitting)
+					{
+						main.duration = 4f;
+					}
+					Student.Hearts.Play();
+				}
+				BlendAmount = Mathf.MoveTowards(BlendAmount, 1f, Time.deltaTime);
+				Student.Cosmetic.MyRenderer.materials[Student.Cosmetic.FaceID].SetFloat("_BlendAmount", BlendAmount);
+			}
 		}
 		if (!Student.Alive || Student.Slave)
 		{

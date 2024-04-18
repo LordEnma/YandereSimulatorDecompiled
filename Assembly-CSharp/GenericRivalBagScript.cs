@@ -102,9 +102,15 @@ public class GenericRivalBagScript : MonoBehaviour
 
 	public int[] DesiredTraits;
 
+	public int[] ModernDesiredTraits;
+
 	public string[] DiaryEntryLeft;
 
 	public string[] DiaryEntryRight;
+
+	public string[] ModernDiaryEntryLeft;
+
+	public string[] ModernDiaryEntryRight;
 
 	public int DesiredHairstyle;
 
@@ -208,6 +214,12 @@ public class GenericRivalBagScript : MonoBehaviour
 			Window.SetActive(value: false);
 			Prompt.enabled = false;
 			Prompt.Hide();
+			if (!Eighties)
+			{
+				DesiredTraits = ModernDesiredTraits;
+				Prompt.enabled = false;
+				Prompt.Hide();
+			}
 			Initialized = true;
 		}
 	}
@@ -823,12 +835,21 @@ public class GenericRivalBagScript : MonoBehaviour
 			DesiredHairColor = DesiredHairColors[num];
 			DesiredJewelry = DesiredJewelries[num];
 			DesiredTrait = DesiredTraits[num];
-			DiaryLabelBottom.text = DiaryEntryLeft[num];
+			if (!Eighties && num == 1)
+			{
+				DesiredHairstyle = 55;
+				DesiredAccessory = 17;
+				DesiredEyewear = 6;
+				DesiredSkin = 6;
+				DesiredHairColor = "";
+				DesiredJewelry = false;
+				DesiredTrait = 2;
+			}
 			if (GameGlobals.CustomMode)
 			{
 				DiaryLabelLeft.text = "My best friend asked me to name the 5 things I love the most. It was difficult, but I narrowed it down to:\n\n" + RivalLikes[1] + ", " + RivalLikes[2] + ", " + RivalLikes[3] + ", " + RivalLikes[4] + ", and " + RivalLikes[5] + ".\n\nNext, she wanted me to name my 5 least favorite things. I decided on:\n\n" + RivalDislikes[1] + ", " + RivalDislikes[2] + ", " + RivalDislikes[3] + ", " + RivalDislikes[4] + ", and " + RivalDislikes[5] + ".\n\nLast night, I had a nightmare that everyone at Akademi learned my most embarassing secret:";
 			}
-			else
+			else if (Eighties)
 			{
 				switch (num)
 				{
@@ -864,8 +885,20 @@ public class GenericRivalBagScript : MonoBehaviour
 					break;
 				}
 			}
-			DiaryLabelBottom.text = DiaryEntryLeft[num];
-			DiaryLabelRight.text = DiaryEntryRight[num];
+			else if (num == 2)
+			{
+				DiaryLabelLeft.text = "[c][008000]I really wish that I could have a pet cat,[-][/c] but I can't, because of the risk of cat hair getting into the food that my family bakes.\n \n[c][008000]I'm really proud of the meals I cook,[-][/c] and I simply can't risk any animal hair contaminating it. I'm so sorry, kitties!\n \n[c][800000]I try to avoid gossip at all costs,[-][/c] so I'll never say it out loud, but [c][800000]I really don't like the Occult Club.[-][/c] They scare me!\n \nIf I wasn't allowed to cook at school, I'd either be in the [c][008000]Art Club[-][/c] or the [c][008000]Gardening Club.[-][/c] They look like so much fun!\n \nI'm really glad that I cut [c][800000]video games[-][/c] and [c][800000]anime[-][/c] out of my life. They were starting to eat up way too much of my time...\n \n[c][800000]I oppose all forms of violence,[-][/c] but I'd do anything to put a stop to the people causing problems for [c][008000]my beloved family![-][/c]\n \nI can't stop thinking about something from my past that I'm really ashamed of...";
+			}
+			if (Eighties)
+			{
+				DiaryLabelBottom.text = DiaryEntryLeft[num];
+				DiaryLabelRight.text = DiaryEntryRight[num];
+			}
+			else
+			{
+				DiaryLabelBottom.text = ModernDiaryEntryLeft[num];
+				DiaryLabelRight.text = ModernDiaryEntryRight[num];
+			}
 			if (GameGlobals.Eighties)
 			{
 				DiaryBG.mainTexture = DiaryTextures[num];

@@ -149,8 +149,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 				}
 				else if (StudentManager.Students[1].gameObject.activeInHierarchy && StudentManager.Students[RivalID] != null)
 				{
-					Debug.Log(base.name + " believes that Clock.Period is: " + Clock.Period);
-					Debug.Log("The morning Senpai interaction event is now taking place.");
+					Debug.Log(base.name + " is now taking place.");
 					if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner && StudentGlobals.StudentSlave != FriendID && !NoFriend)
 					{
 						Friend = StudentManager.Students[FriendID];

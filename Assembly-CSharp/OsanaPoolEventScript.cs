@@ -324,16 +324,25 @@ public class OsanaPoolEventScript : MonoBehaviour
 		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			Prompt.Hide();
-			Prompt.gameObject.SetActive(value: false);
-			Murdering = true;
-			Rival.Blind = true;
-			Yandere.CanMove = false;
-			Rival.Distracted = true;
-			Rival.Ragdoll.Zs.SetActive(value: false);
-			Yandere.CharacterAnimation.CrossFade("f02_" + EventAnim[5]);
-			Rival.CharacterAnimation.CrossFade("f02_" + EventAnim[6]);
-			Rival.OsanaHair.GetComponent<Animation>().CrossFade("Hair_" + EventAnim[6]);
+			if (Friend != null && Vector3.Distance(Friend.transform.position, Rival.transform.position) < 5f)
+			{
+				Prompt.Circle[0].fillAmount = 1f;
+				Prompt.Yandere.NotificationManager.CustomText = "Get rid of Raibaru first.";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else
+			{
+				Prompt.Hide();
+				Prompt.gameObject.SetActive(value: false);
+				Murdering = true;
+				Rival.Blind = true;
+				Yandere.CanMove = false;
+				Rival.Distracted = true;
+				Rival.Ragdoll.Zs.SetActive(value: false);
+				Yandere.CharacterAnimation.CrossFade("f02_" + EventAnim[5]);
+				Rival.CharacterAnimation.CrossFade("f02_" + EventAnim[6]);
+				Rival.OsanaHair.GetComponent<Animation>().CrossFade("Hair_" + EventAnim[6]);
+			}
 		}
 		if (Murdering)
 		{

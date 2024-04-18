@@ -1011,7 +1011,7 @@ public class MissionModeMenuScript : MonoBehaviour
 						ErrorLabel.text = "Invalid Mission ID (Weapon does not exist)";
 						return;
 					}
-					if (WeaponNames[WeaponNumber] == "")
+					if (WeaponNumber > 0 && WeaponNames[WeaponNumber] == "")
 					{
 						ErrorLabel.text = "Invalid Mission ID (Weapon does not apply to Mission Mode)";
 						return;

@@ -114,6 +114,7 @@ public class SuitorBoostScript : MonoBehaviour
 				Yandere.Follower.Character.transform.localScale = new Vector3(1f, 1f, 1f);
 				if (TraitID == 1)
 				{
+					Debug.Log("Here.");
 					Yandere.Follower.CharacterAnimation.Play("paranoidIdle_00");
 					Yandere.transform.position = YandereSpot.position;
 					Yandere.transform.eulerAngles = YandereSpot.eulerAngles;

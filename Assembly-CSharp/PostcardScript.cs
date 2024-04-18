@@ -4,13 +4,29 @@ public class PostcardScript : MonoBehaviour
 {
 	public HomeYandereScript HomeYandere;
 
+	public PostcardScript OtherPostcard;
+
 	public PromptBarScript PromptBar;
 
 	public PromptScript Prompt;
 
 	public Transform Postcard;
 
+	public Renderer Front;
+
+	public Renderer Back;
+
+	public UILabel Label;
+
 	public UIPanel Text;
+
+	public GameObject[] HiddenMoney;
+
+	public Texture[] Fronts;
+
+	public Texture[] Backs;
+
+	public string[] Texts;
 
 	public bool CanAdvance;
 
@@ -24,12 +40,18 @@ public class PostcardScript : MonoBehaviour
 		{
 			base.gameObject.SetActive(value: false);
 		}
+		else if (base.transform.position.y > -5f && DateGlobals.Week == 1)
+		{
+			Prompt.Label[0].text = "     Note from Mom";
+		}
 	}
 
 	private void Update()
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
+			OtherPostcard.enabled = false;
+			UpdatePostcard();
 			Postcard.transform.localEulerAngles = new Vector3(-75f, -90f, 90f);
 			HomeYandere.CharacterAnimation.CrossFade(HomeYandere.IdleAnim);
 			HomeYandere.CanMove = false;
@@ -99,9 +121,14 @@ public class PostcardScript : MonoBehaviour
 				PromptBar.Label[5].text = "";
 				PromptBar.UpdateButtons();
 				ShowText = true;
+				if (HomeYandere.transform.position.y > -5f && HiddenMoney[DateGlobals.Week] != null)
+				{
+					HiddenMoney[DateGlobals.Week].SetActive(value: true);
+				}
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
+				OtherPostcard.enabled = true;
 				HomeYandere.CanMove = true;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
@@ -111,7 +138,33 @@ public class PostcardScript : MonoBehaviour
 		}
 		else
 		{
-			Postcard.transform.localPosition = Vector3.Lerp(Postcard.transform.localPosition, new Vector3(0f, -1.1f, 1f), Time.deltaTime * 10f);
+			Postcard.transform.localPosition = Vector3.Lerp(Postcard.transform.localPosition, new Vector3(0f, -1.1f, 1f), Time.deltaTime * 5f);
 		}
+	}
+
+	private void UpdatePostcard()
+	{
+		if (base.transform.position.y > -5f)
+		{
+			if (DateGlobals.Week == 1)
+			{
+				Postcard.localScale = new Vector3(0.5f, 0.725f, 0.725f);
+			}
+			Front.material.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			Back.material.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			Front.material.mainTexture = Fronts[DateGlobals.Week];
+			Back.material.mainTexture = Backs[DateGlobals.Week];
+			Label.text = Texts[DateGlobals.Week];
+		}
+		else
+		{
+			Postcard.localScale = new Vector3(0.725f, 0.725f, 0.725f);
+			Front.material.color = new Color(1f, 1f, 1f, 1f);
+			Back.material.color = new Color(1f, 1f, 1f, 1f);
+			Front.material.mainTexture = Fronts[0];
+			Back.material.mainTexture = Backs[0];
+			Label.text = Texts[0];
+		}
+		Label.text = Label.text.Replace('@', '\n');
 	}
 }

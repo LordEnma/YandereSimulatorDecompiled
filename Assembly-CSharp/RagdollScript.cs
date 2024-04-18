@@ -532,48 +532,56 @@ public class RagdollScript : MonoBehaviour
 					Prompt.Circle[3].fillAmount = 1f;
 					if (!Student.FireEmitters[1].isPlaying)
 					{
-						Yandere.EmptyHands();
-						Prompt.Label[1].text = "     Drop";
-						Prompt.HideButton[1] = true;
-						Prompt.HideButton[3] = true;
-						Prompt.enabled = false;
-						Prompt.Hide();
-						for (int l = 0; l < AllRigidbodies.Length; l++)
+						if (Yandere.Chased || Yandere.Chasers > 0 || Yandere.Pursuer != null)
 						{
-							AllRigidbodies[l].isKinematic = true;
-							AllColliders[l].enabled = false;
-						}
-						if (Male)
-						{
-							Rigidbody rigidbody = AllRigidbodies[0];
-							rigidbody.transform.parent.transform.localPosition = new Vector3(rigidbody.transform.parent.transform.localPosition.x, 0.2f, rigidbody.transform.parent.transform.localPosition.z);
-						}
-						if (Yandere.StudentManager.KokonaTutorial)
-						{
-							Yandere.CharacterAnimation["f02_carryLiftA_00"].speed = 2f;
+							Yandere.NotificationManager.CustomText = "You are being chased!";
+							Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 						}
 						else
 						{
-							Yandere.CharacterAnimation["f02_carryLiftA_00"].speed = 1f + (float)(Yandere.Class.PhysicalGrade + Yandere.Class.PhysicalBonus) * 0.2f;
+							Yandere.EmptyHands();
+							Prompt.Label[1].text = "     Drop";
+							Prompt.HideButton[1] = true;
+							Prompt.HideButton[3] = true;
+							Prompt.enabled = false;
+							Prompt.Hide();
+							for (int l = 0; l < AllRigidbodies.Length; l++)
+							{
+								AllRigidbodies[l].isKinematic = true;
+								AllColliders[l].enabled = false;
+							}
+							if (Male)
+							{
+								Rigidbody rigidbody = AllRigidbodies[0];
+								rigidbody.transform.parent.transform.localPosition = new Vector3(rigidbody.transform.parent.transform.localPosition.x, 0.2f, rigidbody.transform.parent.transform.localPosition.z);
+							}
+							if (Yandere.StudentManager.KokonaTutorial)
+							{
+								Yandere.CharacterAnimation["f02_carryLiftA_00"].speed = 2f;
+							}
+							else
+							{
+								Yandere.CharacterAnimation["f02_carryLiftA_00"].speed = 1f + (float)(Yandere.Class.PhysicalGrade + Yandere.Class.PhysicalBonus) * 0.2f;
+							}
+							Student.CharacterAnimation[LiftAnim].speed = Yandere.CharacterAnimation["f02_carryLiftA_00"].speed;
+							Yandere.CharacterAnimation.Play("f02_carryLiftA_00");
+							Student.CharacterAnimation.enabled = true;
+							Student.CharacterAnimation.Play(LiftAnim);
+							BloodSpawnerCollider.enabled = false;
+							PelvisRoot.localEulerAngles = new Vector3(PelvisRoot.localEulerAngles.x, 0f, PelvisRoot.localEulerAngles.z);
+							Prompt.MyCollider.enabled = false;
+							PelvisRoot.localPosition = new Vector3(PelvisRoot.localPosition.x, PelvisRoot.localPosition.y, 0f);
+							Yandere.Ragdoll = base.gameObject;
+							Yandere.CurrentRagdoll = this;
+							Yandere.CanMove = false;
+							Yandere.Lifting = true;
+							StopAnimation = false;
+							Carried = true;
+							Falling = false;
+							FallTimer = 0f;
+							RigidbodiesManuallyDisabled = false;
+							TeleportNextFrame = false;
 						}
-						Student.CharacterAnimation[LiftAnim].speed = Yandere.CharacterAnimation["f02_carryLiftA_00"].speed;
-						Yandere.CharacterAnimation.Play("f02_carryLiftA_00");
-						Student.CharacterAnimation.enabled = true;
-						Student.CharacterAnimation.Play(LiftAnim);
-						BloodSpawnerCollider.enabled = false;
-						PelvisRoot.localEulerAngles = new Vector3(PelvisRoot.localEulerAngles.x, 0f, PelvisRoot.localEulerAngles.z);
-						Prompt.MyCollider.enabled = false;
-						PelvisRoot.localPosition = new Vector3(PelvisRoot.localPosition.x, PelvisRoot.localPosition.y, 0f);
-						Yandere.Ragdoll = base.gameObject;
-						Yandere.CurrentRagdoll = this;
-						Yandere.CanMove = false;
-						Yandere.Lifting = true;
-						StopAnimation = false;
-						Carried = true;
-						Falling = false;
-						FallTimer = 0f;
-						RigidbodiesManuallyDisabled = false;
-						TeleportNextFrame = false;
 					}
 					else
 					{

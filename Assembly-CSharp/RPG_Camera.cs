@@ -84,6 +84,8 @@ public class RPG_Camera : MonoBehaviour
 
 	private static float halfPlaneWidth;
 
+	public float Timer;
+
 	private void Awake()
 	{
 		instance = this;
@@ -108,7 +110,10 @@ public class RPG_Camera : MonoBehaviour
 
 	public void UpdateRotation()
 	{
-		mouseX = cameraPivot.transform.parent.eulerAngles.y;
+		if (Timer > -1f)
+		{
+			mouseX = cameraPivot.transform.parent.eulerAngles.y;
+		}
 		mouseY = 15f;
 	}
 
@@ -143,6 +148,7 @@ public class RPG_Camera : MonoBehaviour
 				cameraPivot = GameObject.Find("CameraPivot").transform;
 				return;
 			}
+			Timer += 1f;
 			GetInput();
 			GetDesiredPosition();
 			PositionUpdate();
@@ -372,12 +378,14 @@ public class RPG_Camera : MonoBehaviour
 
 	public void RotateWithCharacter()
 	{
+		Debug.Log("The RotateWithCharacter() function was just called.");
 		float num = Input.GetAxis("Horizontal") * RPG_Controller.instance.turnSpeed;
 		mouseX += num;
 	}
 
 	public void ZeroEverything()
 	{
+		Debug.Log("The ZeroEverything() function was just called.");
 		mouseX = 0f;
 		mouseXSmooth = 0f;
 		mouseY = 0f;

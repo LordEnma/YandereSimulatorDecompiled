@@ -106,6 +106,7 @@ public class VandalizeCakeMinigameScript : MonoBehaviour
 		Prompt.Yandere.CameraEffects.UpdateDOF(2f);
 		Prompt.Yandere.PromptBar.ClearButtons();
 		Prompt.Yandere.PromptBar.Show = false;
+		DollopParent.parent = base.transform.parent;
 		base.gameObject.SetActive(value: false);
 	}
 }

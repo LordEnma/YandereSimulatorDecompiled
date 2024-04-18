@@ -138,6 +138,8 @@ public static class GameGlobals
 
 	private const string Str_FemaleSenpai = "FemaleSenpai";
 
+	private const string Str_HiddenMoney = "HiddenMoney";
+
 	public static int Profile
 	{
 		get
@@ -984,6 +986,23 @@ public static class GameGlobals
 		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_CustomEyeWear");
 	}
 
+	public static int GetHiddenMoney(int animID)
+	{
+		return PlayerPrefs.GetInt("Profile_" + Profile + "_HiddenMoney" + animID);
+	}
+
+	public static void SetHiddenMoney(int animID, int value)
+	{
+		string text = animID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + Profile + "_HiddenMoney", text);
+		PlayerPrefs.SetInt("Profile_" + Profile + "_HiddenMoney" + text, value);
+	}
+
+	public static int[] KeysOfHiddenMoney()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_HiddenMoney");
+	}
+
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + Profile + "_LoveSick");
@@ -1040,6 +1059,7 @@ public static class GameGlobals
 		Globals.DeleteCollection("Profile_" + Profile + "_CustomAnimSet", KeysOfAnimSet());
 		Globals.DeleteCollection("Profile_" + Profile + "_CustomSkinColor", KeysOfSkinColor());
 		Globals.DeleteCollection("Profile_" + Profile + "_CustomEyeWear", KeysOfEyeWear());
+		Globals.DeleteCollection("Profile_" + Profile + "_HiddenMoney", KeysOfHiddenMoney());
 		Globals.Delete("Profile_" + Profile + "_CorkboardScene");
 		Globals.Delete("Profile_" + Profile + "_WatchedAnime");
 		Globals.Delete("Profile_" + Profile + "_LastInputType");

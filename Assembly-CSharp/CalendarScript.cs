@@ -568,6 +568,7 @@ public class CalendarScript : MonoBehaviour
 						{
 							if (Input.GetButtonDown(InputNames.Xbox_A))
 							{
+								ResetRivalStatus();
 								UpdateSeeds();
 								GameGlobals.SpecificEliminationID = 0;
 								GameGlobals.RivalEliminationID = 0;
@@ -1229,5 +1230,51 @@ public class CalendarScript : MonoBehaviour
 		{
 			SchoolGlobals.BiologySeedProgress++;
 		}
+	}
+
+	public void ResetRivalStatus()
+	{
+		EventGlobals.LearnedAboutPhotographer = false;
+		EventGlobals.LearnedRivalDarkSecret = false;
+		SchemeGlobals.EmbarassingSecret = false;
+		CounselorGlobals.ReportedAlcohol = false;
+		CounselorGlobals.ReportedCheating = false;
+		CounselorGlobals.ReportedCigarettes = false;
+		CounselorGlobals.ReportedCondoms = false;
+		CounselorGlobals.ReportedTheft = false;
+		SchemeGlobals.SetSchemeStage(6, 0);
+		StudentGlobals.ExpelProgress = 0;
+		DatingGlobals.RivalSabotaged = 0;
+		DatingGlobals.SuitorProgress = 0;
+		DatingGlobals.Affection = 0f;
+		StudentGlobals.CustomSuitor = false;
+		StudentGlobals.CustomSuitorHair = 0;
+		StudentGlobals.CustomSuitorAccessory = 0;
+		StudentGlobals.CustomSuitorBlack = false;
+		StudentGlobals.CustomSuitorJewelry = 0;
+		StudentGlobals.CustomSuitorEyewear = 0;
+		StudentGlobals.CustomSuitorTan = false;
+		for (int i = 1; i < 26; i++)
+		{
+			DatingGlobals.SetTopicDiscussed(i, value: false);
+		}
+		for (int j = 1; j < 11; j++)
+		{
+			DatingGlobals.SetComplimentGiven(j, value: false);
+		}
+		for (int k = 1; k < 11; k++)
+		{
+			DatingGlobals.SetSuitorCheck(k, value: false);
+		}
+		for (int l = 1; l < 4; l++)
+		{
+			DatingGlobals.SetTraitDemonstrated(l, 0);
+			DatingGlobals.SetSuitorTrait(l, 0);
+		}
+		for (int m = 1; m < 5; m++)
+		{
+			CollectibleGlobals.SetGiftGiven(m, value: false);
+		}
+		ClubGlobals.ActivitiesAttended = 0;
 	}
 }

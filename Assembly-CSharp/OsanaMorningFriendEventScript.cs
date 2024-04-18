@@ -403,7 +403,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 			Rival.InEvent = false;
 			Rival.Private = false;
 		}
-		if (Friend != null && !Friend.FightingSlave)
+		if (Friend != null && !Friend.FightingSlave && !Friend.Electrocuted && !Friend.Electrified)
 		{
 			if (!LosingFriend)
 			{

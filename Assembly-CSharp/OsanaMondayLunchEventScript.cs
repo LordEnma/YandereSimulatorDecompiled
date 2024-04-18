@@ -488,7 +488,10 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 			Rival.Pathfinding.canMove = false;
 		}
 		Rival.TargetDistance = 1f;
-		Rival.Routine = !Rival.Splashed;
+		if (!Rival.Splashed && !Rival.Electrified && !Rival.Electrocuted)
+		{
+			Rival.Routine = true;
+		}
 		if (Rival.Alarmed || Senpai.Alarmed)
 		{
 			Senpai.Pathfinding.canSearch = false;

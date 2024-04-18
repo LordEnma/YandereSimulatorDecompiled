@@ -708,7 +708,7 @@ public class DebugMenuScript : MonoBehaviour
 					}
 					else if (Input.GetKeyDown(KeyCode.I))
 					{
-						Yandere.Invisible = !Yandere.Invisible;
+						Yandere.CanCloak = true;
 						Window.SetActive(value: false);
 					}
 					else if (!Input.GetKeyDown(KeyCode.J))
@@ -728,7 +728,17 @@ public class DebugMenuScript : MonoBehaviour
 						}
 					}
 				}
-				Input.GetKeyDown(KeyCode.Tab);
+				if (Input.GetKeyDown(KeyCode.Tab))
+				{
+					CollectibleGlobals.SetGiftGiven(1, value: true);
+					CollectibleGlobals.SetGiftGiven(2, value: true);
+					CollectibleGlobals.SetGiftGiven(3, value: true);
+					CollectibleGlobals.SetGiftGiven(4, value: true);
+					DatingGlobals.Affection = 100f;
+					DatingGlobals.SuitorProgress = 2;
+					DateGlobals.Weekday = DayOfWeek.Friday;
+					SceneManager.LoadScene("LoadingScene");
+				}
 				if (Input.GetKeyDown(KeyCode.CapsLock))
 				{
 					Debug.Log("The rival should be confessing to the suitor at the end of the day.");

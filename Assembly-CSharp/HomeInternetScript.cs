@@ -19,6 +19,8 @@ public class HomeInternetScript : MonoBehaviour
 
 	public HomeWindowScript HomeWindow;
 
+	public UILabel NewPostTextLabel;
+
 	public UILabel YanderePostLabel;
 
 	public UILabel YancordLabel;
@@ -72,6 +74,8 @@ public class HomeInternetScript : MonoBehaviour
 	public UISprite[] Highlights;
 
 	public UILabel[] PostLabels;
+
+	public UILabel[] ReplyLabels;
 
 	public UILabel[] MenuLabels;
 
@@ -176,6 +180,15 @@ public class HomeInternetScript : MonoBehaviour
 		{
 			YancordLabel.color = new Color(1f, 1f, 1f, 0.2f);
 			YancordLogo.color = new Color(1f, 1f, 1f, 0.2f);
+		}
+		if (DateGlobals.Week == 2)
+		{
+			NewPostTextLabel.text = "Did you know that _______________ used to ____________________  in       ______________________________?";
+			ReplyLabels[1].text = "omg really??? i thought i just imagined it";
+			ReplyLabels[2].text = "YOU LITERALLY SAW IT WITH YOUR OWN EYES???";
+			ReplyLabels[3].text = "lol dis is gettin gud";
+			ReplyLabels[4].text = "who is ever going 2 eat at her bakery after this???";
+			ReplyLabels[5].text = "time to review bomb her fam's nasty-ass bakery";
 		}
 	}
 
@@ -389,6 +402,10 @@ public class HomeInternetScript : MonoBehaviour
 					PostSequence = true;
 					Posted = true;
 					if (Student == 11 && Location == 10 && Action == 10)
+					{
+						Success = true;
+					}
+					else if (Student == 12 && Location == 9 && Action == 9)
 					{
 						Success = true;
 					}

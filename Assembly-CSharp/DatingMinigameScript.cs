@@ -6,6 +6,8 @@ public class DatingMinigameScript : MonoBehaviour
 
 	public InputManagerScript InputManager;
 
+	public GenericRivalBagScript RivalBag;
+
 	public LoveManagerScript LoveManager;
 
 	public PromptBarScript PromptBar;
@@ -27,6 +29,8 @@ public class DatingMinigameScript : MonoBehaviour
 	public Transform OptionSet;
 
 	public GameObject HeartbeatCamera;
+
+	public GameObject PsychologyIcon;
 
 	public GameObject SeductionIcon;
 
@@ -64,15 +68,21 @@ public class DatingMinigameScript : MonoBehaviour
 
 	public UILabel MultiplierLabel;
 
+	public UILabel PsychologyLabel;
+
 	public UILabel SeductionLabel;
 
 	public UILabel TopicNameLabel;
 
 	public UILabel DialogueLabel;
 
-	public UIPanel DatingSimHUD;
+	public UILabel StrengthLabel;
 
 	public UILabel WisdomLabel;
+
+	public UILabel CourageLabel;
+
+	public UIPanel DatingSimHUD;
 
 	public UIPanel Panel;
 
@@ -101,6 +111,12 @@ public class DatingMinigameScript : MonoBehaviour
 	public string[] Positives;
 
 	public string[] ShowOffs;
+
+	public string[] ShowOffCourageReactions;
+
+	public string[] ShowOffWisdomReactions;
+
+	public string[] ShowOffStrengthReactions;
 
 	public bool[] ComplimentsGiven;
 
@@ -154,6 +170,8 @@ public class DatingMinigameScript : MonoBehaviour
 
 	public int TopicSelected = 1;
 
+	public int DesiredTrait = 2;
+
 	public int GiftSelected = 1;
 
 	public int Selected = 1;
@@ -199,6 +217,8 @@ public class DatingMinigameScript : MonoBehaviour
 	public Color OriginalColor;
 
 	public Camera MainCamera;
+
+	public Texture[] AmaiGifts;
 
 	public void Start()
 	{
@@ -251,6 +271,34 @@ public class DatingMinigameScript : MonoBehaviour
 		Trait[1] = CourageTrait;
 		Trait[2] = WisdomTrait;
 		Trait[3] = StrengthTrait;
+		DesiredTrait = StudentManager.RivalBookBag.DesiredTrait;
+		if (DateGlobals.Week == 2)
+		{
+			GiftIcons[1].mainTexture = AmaiGifts[1];
+			GiftIcons[1].mainTexture = AmaiGifts[2];
+			GiftIcons[2].mainTexture = AmaiGifts[3];
+			GiftIcons[3].mainTexture = AmaiGifts[4];
+			ComplimentLabels[1].text = "You're very nice!";
+			Compliments[1] = "Aww! Why, thank you! I always try my best to bring a smiile to everyone around me!";
+			ComplimentLabels[2].text = "You're very sexy!";
+			Compliments[2] = "...uh...um...well...can we change the subject...?...";
+			ComplimentLabels[3].text = "Long hair would suit you!";
+			Compliments[3] = "Oh, no...do you really think so? But, I love my short hair...";
+			ComplimentLabels[4].text = "Short hair suits you!";
+			Compliments[4] = "Thanks, I'm glad you think so! I like to keep it short so it doesn't get in the way while I'm cooking!";
+			ComplimentLabels[5].text = "I love cooking!";
+			Compliments[5] = "Yeah! Me too! Cooking is probably the one thing I could absolutely never get tired of!";
+			ComplimentLabels[6].text = "I'm tired of cooking!";
+			Compliments[6] = "...wh...what...?...you are...?...I'm sorry to hear that...";
+			ComplimentLabels[7].text = "Your mom is hot!";
+			Compliments[7] = "...uh...I'm not...really sure...what I'm supposed to do with that piece of information...";
+			ComplimentLabels[8].text = "Your mom's pastries are great!";
+			Compliments[8] = "I know, right?! As far as I'm concerned, she may as well be a goddess of cooking!";
+			ComplimentLabels[9].text = "I love your striped stockings!";
+			Compliments[9] = "Oh, really? Thanks for saying so! Sometimes I wonder if it looks silly, haha!";
+			ComplimentLabels[10].text = "I love your striped panties!";
+			Compliments[10] = "...uh...wh...what...?...but...how do you even know...look, please don't say that sort of thing...";
+		}
 		Initialized = true;
 	}
 
@@ -365,7 +413,9 @@ public class DatingMinigameScript : MonoBehaviour
 				Yandere.CharacterAnimation.Play("f02_treePeeking_00");
 				MainCamera.transform.position = new Vector3(48f, 3f, -44f);
 				MainCamera.transform.eulerAngles = new Vector3(15f, 90f, 0f);
+				StrengthLabel.text = "Strength: " + StrengthTrait;
 				WisdomLabel.text = "Wisdom: " + WisdomTrait;
+				CourageLabel.text = "Courage: " + CourageTrait;
 				GiftIcons[1].enabled = CollectibleGlobals.GetGiftPurchased(6);
 				GiftIcons[2].enabled = CollectibleGlobals.GetGiftPurchased(7);
 				GiftIcons[3].enabled = CollectibleGlobals.GetGiftPurchased(8);
@@ -698,23 +748,46 @@ public class DatingMinigameScript : MonoBehaviour
 					UILabel uILabel4 = Labels[4];
 					uILabel4.color = new Color(uILabel4.color.r, uILabel4.color.g, uILabel4.color.b, 0.5f);
 					ShowingOff = false;
-					if (TraitSelected == 2)
+					if (TraitSelected == DesiredTrait)
 					{
-						Debug.Log("Wisdom trait is " + WisdomTrait + ". Wisdom Demonstrated is " + WisdomTraitDemonstrated + ".");
-						if (WisdomTrait > WisdomTraitDemonstrated)
+						int num = 0;
+						if (TraitSelected == 1)
 						{
-							WisdomTraitDemonstrated++;
-							DialogueLabel.text = ShowOffs[AffectionLevel];
+							num = CourageTrait;
+						}
+						else if (TraitSelected == 2)
+						{
+							num = WisdomTrait;
+						}
+						else if (TraitSelected == 3)
+						{
+							num = StrengthTrait;
+						}
+						if (num > TraitDemonstrated[TraitSelected])
+						{
+							TraitDemonstrated[TraitSelected]++;
+							if (DesiredTrait == 1)
+							{
+								DialogueLabel.text = ShowOffCourageReactions[AffectionLevel];
+							}
+							else if (DesiredTrait == 2)
+							{
+								DialogueLabel.text = ShowOffWisdomReactions[AffectionLevel];
+							}
+							else if (DesiredTrait == 3)
+							{
+								DialogueLabel.text = ShowOffStrengthReactions[AffectionLevel];
+							}
 							Rival.CharacterAnimation.CrossFade("f02_lookdown_00");
 							CurrentAnim = "f02_lookdown_00";
 							Affection += Multiplier;
 							CalculateAffection();
 						}
-						else if (WisdomTrait == 0)
+						else if (num == 0)
 						{
-							DialogueLabel.text = "Uh...that doesn't sound correct...";
+							DialogueLabel.text = "Uh...well...okay...I guess...";
 						}
-						else if (WisdomTrait == WisdomTraitDemonstrated)
+						else if (num == TraitDemonstrated[TraitSelected])
 						{
 							DialogueLabel.text = "Uh...you already told me about that...";
 						}
@@ -923,34 +996,56 @@ public class DatingMinigameScript : MonoBehaviour
 		}
 	}
 
-	private void LateUpdate()
-	{
-		_ = Phase;
-		_ = 4;
-	}
-
 	private void CalculateMultiplier()
 	{
-		Multiplier = 5;
-		if (!Suitor.Cosmetic.MaleHair[55].activeInHierarchy)
+		Multiplier = 1;
+		if (Suitor.Cosmetic.MaleHair[RivalBag.DesiredHairstyle].activeInHierarchy)
+		{
+			Multiplier++;
+		}
+		else
 		{
 			MultiplierIcons[1].mainTexture = X;
-			Multiplier--;
 		}
-		if (!Suitor.Cosmetic.MaleAccessories[17].activeInHierarchy)
+		if (Suitor.Cosmetic.MaleAccessories[RivalBag.DesiredAccessory].activeInHierarchy)
+		{
+			Multiplier++;
+		}
+		else
 		{
 			MultiplierIcons[2].mainTexture = X;
-			Multiplier--;
 		}
-		if (!Suitor.Cosmetic.Eyewear[6].activeInHierarchy)
+		if (Suitor.Cosmetic.Eyewear[RivalBag.DesiredEyewear].activeInHierarchy)
+		{
+			Multiplier++;
+		}
+		else
 		{
 			MultiplierIcons[3].mainTexture = X;
-			Multiplier--;
 		}
-		if (Suitor.Cosmetic.SkinColor != 6)
+		if (Suitor.Cosmetic.SkinColor == RivalBag.DesiredSkin)
+		{
+			Multiplier++;
+		}
+		else
 		{
 			MultiplierIcons[4].mainTexture = X;
-			Multiplier--;
+		}
+		if (Suitor.Cosmetic.HairColor == RivalBag.DesiredHairColor)
+		{
+			Multiplier++;
+		}
+		else
+		{
+			MultiplierIcons[5].mainTexture = X;
+		}
+		if (Suitor.Cosmetic.GaloAccessories[0].activeInHierarchy == RivalBag.DesiredJewelry)
+		{
+			Multiplier++;
+		}
+		else
+		{
+			MultiplierIcons[6].mainTexture = X;
 		}
 		if (PlayerGlobals.PantiesEquipped == 2)
 		{
@@ -971,7 +1066,16 @@ public class DatingMinigameScript : MonoBehaviour
 		{
 			SeductionIcon.SetActive(value: false);
 		}
-		Multiplier += Yandere.Class.PsychologyGrade + Yandere.Class.PsychologyBonus;
+		if (Yandere.Class.PsychologyGrade + Yandere.Class.PsychologyBonus > 0)
+		{
+			PsychologyLabel.text = (Yandere.Class.PsychologyGrade + Yandere.Class.PsychologyBonus).ToString();
+			Multiplier += Yandere.Class.PsychologyGrade + Yandere.Class.PsychologyBonus;
+			PsychologyIcon.SetActive(value: true);
+		}
+		else
+		{
+			PsychologyIcon.SetActive(value: false);
+		}
 		MultiplierLabel.text = "Multiplier: " + Multiplier + "x";
 	}
 

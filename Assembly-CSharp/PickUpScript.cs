@@ -363,6 +363,11 @@ public class PickUpScript : MonoBehaviour
 		{
 			base.transform.localPosition = HoldPosition;
 			base.transform.localEulerAngles = HoldRotation;
+			if (Bucket != null && Bucket.Spilling)
+			{
+				base.transform.localPosition = new Vector3(-0.1f, -0.215f, 0f);
+				base.transform.localEulerAngles = new Vector3(0f, 180f, 110f);
+			}
 		}
 		if (Dumped)
 		{
@@ -672,6 +677,7 @@ public class PickUpScript : MonoBehaviour
 
 	public void Drop()
 	{
+		Debug.Log("Drop() has just been called.");
 		if (!DoNotRelocate && Yandere.PersonaID == 4)
 		{
 			base.transform.position = Yandere.transform.position + new Vector3(0f, 1f, 0f);

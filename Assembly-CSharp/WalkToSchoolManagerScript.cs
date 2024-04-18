@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class WalkToSchoolManagerScript : MonoBehaviour
 {
+	public WalkToSchoolDataScript AmaiDialogueData;
+
 	public PromptBarScript PromptBar;
 
 	public CosmeticScript Yandere;
@@ -123,6 +125,8 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 
 	public Texture BlondePony;
 
+	public string RivalName = "Osana";
+
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
@@ -135,7 +139,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 			Darkness.color = new Color(1f, 1f, 1f, 1f);
 		}
 		Window.localScale = new Vector3(0f, 0f, 0f);
-		Yandere.Character.GetComponent<Animation>()["f02_newWalk_00"].time = Random.Range(0f, Yandere.Character.GetComponent<Animation>()["f02_newWalk_00"].length);
+		Yandere.CharacterAnimation["f02_newWalk_00"].time = Random.Range(0f, Yandere.Character.GetComponent<Animation>()["f02_newWalk_00"].length);
 		Yandere.WearOutdoorShoes();
 		Senpai.WearOutdoorShoes();
 		Rival.WearOutdoorShoes();
@@ -143,10 +147,37 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		{
 			PonytailRenderer.material.mainTexture = BlondePony;
 		}
+		Debug.Log("WalkToSchoolManagerScript is now firing the Start() function.");
+		Rival.Student.StudentID = 10 + DateGlobals.Week;
+		Rival.StudentID = 10 + DateGlobals.Week;
+		Rival.Initialized = false;
+		if (DateGlobals.Week == 1)
+		{
+			GameGlobals.OsanaHaircut = false;
+		}
+		else if (DateGlobals.Week == 2)
+		{
+			Lines = AmaiDialogueData.Lines;
+			Speech = AmaiDialogueData.Speech;
+			Speakers = AmaiDialogueData.Speakers;
+			RivalName = AmaiDialogueData.RivalName;
+			SceneManager.LoadScene("LoadingScene");
+		}
+		Rival.Start();
 	}
 
 	private void Update()
 	{
+		if (Input.GetKeyDown("1"))
+		{
+			DateGlobals.Week = 1;
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
+		if (Input.GetKeyDown("2"))
+		{
+			DateGlobals.Week = 2;
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 		for (int i = 1; i < 3; i++)
 		{
 			Transform transform = Neighborhood[i];
@@ -360,11 +391,11 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 	{
 		if (Speakers[ID])
 		{
-			NameLabel.text = "Osana-chan";
+			NameLabel.text = RivalName;
 		}
 		else
 		{
-			NameLabel.text = "Senpai-kun";
+			NameLabel.text = "Taro";
 		}
 	}
 

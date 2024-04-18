@@ -1063,6 +1063,11 @@ public class PauseScreenScript : MonoBehaviour
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is guarding a corpse.";
 					}
+					if (Yandere.StudentManager.Students[i].Electrocuted || Yandere.StudentManager.Students[i].Electrified)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is being electrocuted.";
+					}
 					if (Yandere.StudentManager.Students[i].Confessing)
 					{
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);

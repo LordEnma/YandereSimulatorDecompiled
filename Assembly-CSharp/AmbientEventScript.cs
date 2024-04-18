@@ -45,6 +45,8 @@ public class AmbientEventScript : MonoBehaviour
 
 	public int EventPhase;
 
+	public int EventWeek = 1;
+
 	public float StartTime = 13.001f;
 
 	public float Delay = 0.5f;
@@ -73,7 +75,7 @@ public class AmbientEventScript : MonoBehaviour
 	{
 		if (Sitting)
 		{
-			if (DateGlobals.Weekday != EventDay || GameGlobals.Eighties)
+			if (DateGlobals.Week > EventWeek || DateGlobals.Weekday != EventDay || GameGlobals.Eighties)
 			{
 				base.gameObject.SetActive(value: false);
 				base.enabled = false;

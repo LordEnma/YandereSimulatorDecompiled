@@ -36,6 +36,8 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 
 	public Material[] MaterialSet3;
 
+	public Material[] EightiesMaterials;
+
 	public bool UpdateBounds;
 
 	public bool Initialized;
@@ -43,6 +45,8 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 	public bool CookingClub;
 
 	public bool ScienceClub;
+
+	public bool CheckForAlt;
 
 	public bool ArtClub;
 
@@ -126,6 +130,10 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		{
 			accessory = Panties[PantyID];
 			accessoryMaterials[0] = PantyMaterials[PantyID];
+		}
+		if (CheckForAlt && EightiesMaterials.Length != 0 && GameGlobals.Eighties)
+		{
+			accessoryMaterials = EightiesMaterials;
 		}
 		AttachAccessory();
 	}

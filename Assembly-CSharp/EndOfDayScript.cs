@@ -251,6 +251,11 @@ public class EndOfDayScript : MonoBehaviour
 	public void Start()
 	{
 		Debug.Log("The End-of-Day GameObject has just fired its Start() function.");
+		if (Yandere.Schoolwear == 0)
+		{
+			Yandere.Schoolwear = 1;
+			Yandere.ChangeSchoolwear();
+		}
 		StudentManager.PlazaOccluder.gameObject.SetActive(value: false);
 		VoidGoddess.Start();
 		GameGlobals.PoliceYesterday = false;

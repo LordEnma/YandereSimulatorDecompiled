@@ -190,8 +190,8 @@ public class PhoneEventScript : MonoBehaviour
 				if (Timer > 1.5f)
 				{
 					EventStudent.SmartPhone.SetActive(value: true);
-					EventStudent.SmartPhone.transform.localPosition = new Vector3(0.01f, -0.005f, -0.025f);
-					EventStudent.SmartPhone.transform.localEulerAngles = new Vector3(0f, -150f, 165f);
+					EventStudent.SmartPhone.transform.localPosition = new Vector3(0.025f, 0.0075f, 0.05f);
+					EventStudent.SmartPhone.transform.localEulerAngles = new Vector3(15f, -150f, 180f);
 				}
 				if (Timer > 2f)
 				{
@@ -206,7 +206,7 @@ public class PhoneEventScript : MonoBehaviour
 				Timer += Time.deltaTime;
 				if (Timer > CurrentClipLength)
 				{
-					EventStudent.Character.GetComponent<Animation>().CrossFade(EventStudent.RunAnim);
+					EventStudent.CharacterAnimation.CrossFade(EventStudent.RunAnim);
 					EventStudent.CurrentDestination = EventLocation;
 					EventStudent.Pathfinding.target = EventLocation;
 					EventStudent.Pathfinding.canSearch = true;
@@ -224,8 +224,10 @@ public class PhoneEventScript : MonoBehaviour
 				{
 					DumpPoint.enabled = true;
 				}
+				EventStudent.SmartPhone.transform.localPosition = new Vector3(-0.005f, -0.0075f, 0f);
+				EventStudent.SmartPhone.transform.localEulerAngles = new Vector3(15f, -150f, 180f);
 				EventStudent.Private = true;
-				EventStudent.Character.GetComponent<Animation>().CrossFade(EventAnim[2]);
+				EventStudent.CharacterAnimation.CrossFade(EventAnim[2]);
 				AudioClipPlayer.Play(EventClip[2], EventStudent.transform.position, 5f, 10f, out VoiceClip, out CurrentClipLength);
 				EventPhase++;
 			}
@@ -234,7 +236,7 @@ public class PhoneEventScript : MonoBehaviour
 				if (VoiceClip != null)
 				{
 					VoiceClip.GetComponent<AudioSource>().pitch = Time.timeScale;
-					EventStudent.Character.GetComponent<Animation>()[EventAnim[2]].time = VoiceClip.GetComponent<AudioSource>().time;
+					EventStudent.CharacterAnimation[EventAnim[2]].time = VoiceClip.GetComponent<AudioSource>().time;
 					if (VoiceClip.GetComponent<AudioSource>().time > SpeechTimes[EventPhase - 3])
 					{
 						EventSubtitle.text = EventSpeech[EventPhase - 3];
@@ -244,11 +246,11 @@ public class PhoneEventScript : MonoBehaviour
 			}
 			else
 			{
-				if (EventStudent.Character.GetComponent<Animation>()[EventAnim[2]].time >= EventStudent.Character.GetComponent<Animation>()[EventAnim[2]].length * 90.33333f)
+				if (EventStudent.CharacterAnimation[EventAnim[2]].time >= EventStudent.CharacterAnimation[EventAnim[2]].length * 90.33333f)
 				{
 					EventStudent.SmartPhone.SetActive(value: true);
 				}
-				if (EventStudent.Character.GetComponent<Animation>()[EventAnim[2]].time >= EventStudent.Character.GetComponent<Animation>()[EventAnim[2]].length)
+				if (EventStudent.CharacterAnimation[EventAnim[2]].time >= EventStudent.CharacterAnimation[EventAnim[2]].length)
 				{
 					EndEvent();
 				}
@@ -328,7 +330,7 @@ public class PhoneEventScript : MonoBehaviour
 		}
 		else
 		{
-			EventStudent.Character.GetComponent<Animation>().CrossFade(EventStudent.RunAnim);
+			EventStudent.CharacterAnimation.CrossFade(EventStudent.RunAnim);
 			EventStudent.Pathfinding.speed = 4f;
 		}
 		if ((!EventStudent.Pathfinding.canMove && EventPhase <= 3) || !(EventFriend != null) || EventFriend.CurrentAction != StudentActionType.Follow || !EventFriend.InEvent || !EventFriend.Alive || EventFriend.Electrified || EventFriend.Electrocuted || EventPhase <= 3)

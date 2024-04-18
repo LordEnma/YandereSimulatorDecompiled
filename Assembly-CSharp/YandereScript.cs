@@ -1687,7 +1687,7 @@ public class YandereScript : MonoBehaviour
 
 	public Renderer EightiesPonytailRenderer;
 
-	public Mesh EightiesKerchiefMesh;
+	public GameObject EightiesKerchief;
 
 	public GameObject MaidAttacher;
 
@@ -3310,7 +3310,6 @@ public class YandereScript : MonoBehaviour
 						PauseScreen.CorrectingTime = false;
 						Time.timeScale = 0.0001f;
 						CanMove = false;
-						Debug.Log("CanMove is now false.");
 						Shutter.Snap();
 					}
 				}
@@ -9596,7 +9595,11 @@ public class YandereScript : MonoBehaviour
 		CasualTextures[6] = EightiesCasual;
 		ModernCamera.localScale = new Vector3(0f, 0f, 0f);
 		EightiesCamera.SetActive(value: true);
-		ClubAccessories[1].GetComponent<MeshFilter>().mesh = EightiesKerchiefMesh;
+		if (EightiesKerchief != null)
+		{
+			ClubAccessories[1].SetActive(value: false);
+			ClubAccessories[1] = EightiesKerchief;
+		}
 	}
 
 	public void Maid()
@@ -10599,10 +10602,17 @@ public class YandereScript : MonoBehaviour
 		}
 		IdleAnim = Idles[StudentManager.JSON.Misc.AnimSet[0]];
 		WalkAnim = Walks[StudentManager.JSON.Misc.AnimSet[0]];
-		RunAnim = "f02_newSprint_00";
+		if (StudentManager.JSON.Misc.AnimSet[0] != 1)
+		{
+			RunAnim = "f02_newSprint_00";
+		}
+		else
+		{
+			RunAnim = "f02_ryobaRun_00";
+		}
 		OriginalIdleAnim = IdleAnim;
 		OriginalWalkAnim = WalkAnim;
-		OriginalRunAnim = "f02_newSprint_00";
+		OriginalRunAnim = RunAnim;
 	}
 
 	private void GetColorValue(string HairColor)

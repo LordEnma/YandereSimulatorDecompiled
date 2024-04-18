@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UnityEngine;
 
 public class ModernRivalSabotageScript : MonoBehaviour
@@ -24,6 +26,14 @@ public class ModernRivalSabotageScript : MonoBehaviour
 
 	public Material TransMat;
 
+	public UIPanel SabotageChecklist;
+
+	public UISprite[] SabotageCheckmark;
+
+	public Texture OriginalTexture;
+
+	public bool[] SabotageCriteria;
+
 	public bool Animate;
 
 	public float Timer;
@@ -37,6 +47,11 @@ public class ModernRivalSabotageScript : MonoBehaviour
 		if (ID == 4)
 		{
 			ObjectToDisable.SetActive(value: false);
+		}
+		else if (ID == 6 && (DateGlobals.Week != 2 || DateGlobals.Weekday != DayOfWeek.Thursday))
+		{
+			Prompt.Hide();
+			base.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -191,40 +206,137 @@ public class ModernRivalSabotageScript : MonoBehaviour
 					Animate = true;
 				}
 			}
-		}
-		if (!Animate || ID != 5)
-		{
-			return;
-		}
-		Prompt.Yandere.MoveTowardsTarget(new Vector3(28.37667f, 0f, -15f));
-		Timer += Time.deltaTime;
-		if (Timer >= Prompt.Yandere.CharacterAnimation["f02_Wednesday_2_TakePicture"].length)
-		{
-			Prompt.Yandere.NotificationManager.CustomText = "Put your rival's phone on her desk!";
-			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			Prompt.Yandere.CanMove = true;
-			if (Prompt.Yandere.StudentManager.Students[Prompt.Yandere.StudentManager.RivalID] != null)
+			else if (ID == 6)
 			{
-				Prompt.Yandere.StudentManager.Students[Prompt.Yandere.StudentManager.RivalID].EventToSabotage = SabotagedEvent;
+				Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+				if (Prompt.Yandere.StudentManager.YandereVisible)
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "Can't do that! Someone can see you!";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				else
+				{
+					bool flag = false;
+					if (Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.WeaponID == 6)
+					{
+						flag = true;
+					}
+					if (!flag)
+					{
+						Prompt.Yandere.NotificationManager.CustomText = "Acquire a screwdriver first!";
+						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					}
+					else
+					{
+						Prompt.Yandere.NotificationManager.CustomText = "Disabled the flame sensor!";
+						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						Prompt.HideButton[0] = true;
+						SabotageCriteria[0] = true;
+						CheckForSabotageSuccess();
+					}
+				}
 			}
-			NormalEvent.gameObject.SetActive(value: false);
-			Disable();
 		}
-		else if (Timer > 6.66666f)
+		if (Prompt.ButtonActive[1] && Prompt.Circle[1].fillAmount == 0f)
 		{
-			Prompt.Yandere.Phone.SetActive(value: false);
+			Prompt.Circle[1].fillAmount = 1f;
+			if (ID == 6)
+			{
+				Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+				if (Prompt.Yandere.StudentManager.YandereVisible)
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "Can't do that! Someone can see you!";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				else
+				{
+					bool flag2 = false;
+					if (Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.WeaponID == 24)
+					{
+						flag2 = true;
+					}
+					if (!flag2)
+					{
+						Prompt.Yandere.NotificationManager.CustomText = "Acquire a pipe wrench first!";
+						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					}
+					else
+					{
+						Prompt.Yandere.NotificationManager.CustomText = "Swapped gas knob with ignition knob!";
+						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						Prompt.HideButton[1] = true;
+						SabotageCriteria[1] = true;
+						CheckForSabotageSuccess();
+					}
+				}
+			}
 		}
-		else if (Timer > 5.33333f)
+		if (Animate && ID == 5)
 		{
-			Prompt.Yandere.CameraFlash.SetActive(value: true);
+			Prompt.Yandere.MoveTowardsTarget(new Vector3(28.37667f, 0f, -15f));
+			Timer += Time.deltaTime;
+			if (Timer >= Prompt.Yandere.CharacterAnimation["f02_Wednesday_2_TakePicture"].length)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Put your rival's phone on her desk!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Prompt.Yandere.CanMove = true;
+				if (Prompt.Yandere.StudentManager.Students[Prompt.Yandere.StudentManager.RivalID] != null)
+				{
+					Prompt.Yandere.StudentManager.Students[Prompt.Yandere.StudentManager.RivalID].EventToSabotage = SabotagedEvent;
+				}
+				NormalEvent.gameObject.SetActive(value: false);
+				Disable();
+			}
+			else if (Timer > 6.66666f)
+			{
+				Prompt.Yandere.Phone.SetActive(value: false);
+				Prompt.Yandere.Phone.GetComponent<Renderer>().material.mainTexture = OriginalTexture;
+			}
+			else if (Timer > 5.33333f)
+			{
+				Prompt.Yandere.CameraFlash.SetActive(value: true);
+			}
+			else if (Timer > 1.25f)
+			{
+				Prompt.Yandere.Phone.transform.localPosition = new Vector3(-0.02f, -0.0025f, 0.025f);
+				Prompt.Yandere.Phone.transform.localEulerAngles = new Vector3(0f, 180f, 180f);
+				Prompt.Yandere.Phone.transform.localPosition = new Vector3(0f, 0.005f, -0.01f);
+				Prompt.Yandere.Phone.transform.localEulerAngles = new Vector3(7.33333f, -154f, 173.66666f);
+				int rivalID = Prompt.Yandere.StudentManager.RivalID;
+				OriginalTexture = Prompt.Yandere.Phone.GetComponent<Renderer>().material.mainTexture;
+				Prompt.Yandere.Phone.GetComponent<Renderer>().material.mainTexture = Prompt.Yandere.StudentManager.Students[rivalID].SmartPhone.GetComponent<Renderer>().material.mainTexture;
+				Prompt.Yandere.Phone.SetActive(value: true);
+			}
 		}
-		else if (Timer > 1.25f)
+		if (SabotageChecklist != null)
 		{
-			Prompt.Yandere.Phone.transform.localPosition = new Vector3(-0.02f, -0.0025f, 0.025f);
-			Prompt.Yandere.Phone.transform.localEulerAngles = new Vector3(0f, 180f, 180f);
-			Prompt.Yandere.Phone.transform.localPosition = new Vector3(0f, 0.005f, -0.01f);
-			Prompt.Yandere.Phone.transform.localEulerAngles = new Vector3(7.33333f, -154f, 173.66666f);
-			Prompt.Yandere.Phone.SetActive(value: true);
+			if (Vector3.Distance(Prompt.Yandere.transform.position, base.transform.position) < 2f)
+			{
+				SabotageChecklist.alpha = Mathf.MoveTowards(SabotageChecklist.alpha, 1f, Time.deltaTime);
+			}
+			else
+			{
+				SabotageChecklist.alpha = Mathf.MoveTowards(SabotageChecklist.alpha, 0f, Time.deltaTime);
+			}
+		}
+	}
+
+	public void CheckForSabotageSuccess()
+	{
+		if (ID == 6)
+		{
+			for (int i = 0; i < SabotageCheckmark.Length; i++)
+			{
+				SabotageCheckmark[i].spriteName = (SabotageCriteria[i] ? "Yes" : "No");
+			}
+			if (SabotageCriteria.All((bool x) => x))
+			{
+				SabotagedEvent.gameObject.SetActive(value: true);
+				NormalEvent.gameObject.SetActive(value: false);
+				ObjectToEnable.SetActive(value: true);
+				SabotageChecklist.alpha = 0f;
+				Disable();
+			}
 		}
 	}
 

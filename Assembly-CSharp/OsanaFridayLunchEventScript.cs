@@ -108,7 +108,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 		EventSubtitle.transform.localScale = Vector3.zero;
 		Spy.Prompt.enabled = false;
 		Spy.Prompt.Hide();
-		if (DateGlobals.Weekday != EventDay || GameGlobals.RivalEliminationID > 0 || GameGlobals.Eighties)
+		if (DateGlobals.Weekday != EventDay || GameGlobals.RivalEliminationID > 0 || GameGlobals.Eighties || DateGlobals.Week > 1)
 		{
 			base.enabled = false;
 		}

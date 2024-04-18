@@ -46,6 +46,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public GameObject CyberstalkWindow;
 
+	public GameObject StairwayBlocker;
+
 	public GameObject ComputerScreen;
 
 	public GameObject CorkboardLabel;
@@ -76,6 +78,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public GameObject ModernCarpet;
 
+	public Transform BedroomDoor;
+
 	public Transform Destination;
 
 	public Transform Butsudan;
@@ -84,6 +88,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public Transform Focus;
 
+	public Transform[] OutOfRoomDestinations;
+
 	public Transform[] EightiesDestinations;
 
 	public Transform[] EightiesTargets;
@@ -91,6 +97,12 @@ public class HomeCameraScript : MonoBehaviour
 	public Transform[] Destinations;
 
 	public Transform[] Targets;
+
+	public float CooldownTimer;
+
+	public float CameraTimer;
+
+	public float Rotation;
 
 	public int LastID;
 
@@ -108,13 +120,21 @@ public class HomeCameraScript : MonoBehaviour
 
 	public AudioClip HomeLoveSick;
 
+	public bool CameFromBasement;
+
 	public bool RestoreBloom;
 
 	public bool RestoreDOF;
 
+	public bool OutOfRoom;
+
 	public bool Torturing;
 
 	public bool Eighties;
+
+	public bool OpenDoor;
+
+	public bool TooClose;
 
 	public CosmeticScript SenpaiCosmetic;
 
@@ -125,6 +145,8 @@ public class HomeCameraScript : MonoBehaviour
 	public AudioClip OpenDrawer;
 
 	public SkinnedMeshRenderer BedroomRenderer;
+
+	public Vector3 LastChangePoint;
 
 	private int Is;
 
@@ -264,13 +286,98 @@ public class HomeCameraScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (HomeYandere.transform.position.y > -5f)
+		if (CooldownTimer == 0f)
 		{
-			Transform transform = Destinations[0];
-			transform.position = new Vector3(0f - HomeYandere.transform.position.x, transform.position.y, transform.position.z);
+			if (HomeYandere.CanMove)
+			{
+				if (HomeYandere.transform.position.y > -0.1f && HomeYandere.Yandere.transform.position.x > -2.56f && HomeYandere.Yandere.transform.position.z < 2.914333f)
+				{
+					if (!TooClose && CameraTimer == 0f && Destination != Destinations[0])
+					{
+						Destination = Destinations[0];
+						LastChangePoint = HomeYandere.transform.position;
+						base.transform.position = Destination.position;
+						CameraTimer = 1f;
+						TooClose = true;
+					}
+					Destinations[0].position = new Vector3(0f - HomeYandere.transform.position.x, Destinations[0].position.y, Destinations[0].position.z);
+					if (HomeYandere.transform.position.y > -5f && Destinations[0].transform.position.y < 0f)
+					{
+						Destinations[0].transform.position = new Vector3(Destinations[0].transform.position.x, 1.5f, 2.4185f);
+						base.transform.position = new Vector3(base.transform.position.x, 1.5f, 2.4185f);
+					}
+					base.transform.position = Vector3.Lerp(base.transform.position, Destination.position, Time.deltaTime * 10f);
+				}
+				else if (HomeYandere.transform.position.y < -5f)
+				{
+					Destinations[0].position = new Vector3(2.425f, -8.5f, 0f);
+					Destination = Destinations[0];
+					base.transform.position = Vector3.Lerp(base.transform.position, Destination.position, Time.deltaTime * 10f);
+				}
+				else if (HomeYandere.transform.position.y < -2.8f)
+				{
+					if (HomeYandere.transform.position.z < 7.269f)
+					{
+						base.transform.position = Destination.position;
+						if (!TooClose && CameraTimer == 0f)
+						{
+							if (Destination != OutOfRoomDestinations[2])
+							{
+								Destination = OutOfRoomDestinations[2];
+								LastChangePoint = HomeYandere.transform.position;
+								CameraTimer = 1f;
+								TooClose = true;
+							}
+							float num = 0f;
+							if (HomeYandere.transform.position.z < Destination.position.z)
+							{
+								num = (Destination.position.z - HomeYandere.transform.position.z) * 0.4f;
+							}
+							float num2 = 0f;
+							base.transform.position = new Vector3(base.transform.position.x + num, base.transform.position.y, base.transform.position.z + num2);
+						}
+					}
+					else
+					{
+						if (!TooClose && CameraTimer == 0f && Destination != OutOfRoomDestinations[3])
+						{
+							Destination = OutOfRoomDestinations[3];
+							LastChangePoint = HomeYandere.transform.position;
+							CameraTimer = 1f;
+							TooClose = true;
+						}
+						base.transform.position = Destination.position;
+					}
+				}
+				else if (HomeYandere.transform.position.y > 0f)
+				{
+					if (!TooClose && CameraTimer == 0f && Destination != OutOfRoomDestinations[0])
+					{
+						Destination = OutOfRoomDestinations[0];
+						LastChangePoint = HomeYandere.transform.position;
+						CameraTimer = 1f;
+						TooClose = true;
+					}
+					base.transform.position = Destination.position;
+				}
+				else
+				{
+					if (!TooClose && CameraTimer == 0f && Destination != OutOfRoomDestinations[1])
+					{
+						Destination = OutOfRoomDestinations[1];
+						LastChangePoint = HomeYandere.transform.position;
+						CameraTimer = 1f;
+						TooClose = true;
+					}
+					base.transform.position = Destination.position;
+				}
+			}
+			else
+			{
+				base.transform.position = Vector3.Lerp(base.transform.position, Destination.position, Time.deltaTime * 10f);
+			}
 		}
 		Focus.position = Vector3.Lerp(Focus.position, Target.position, Time.deltaTime * 10f);
-		base.transform.position = Vector3.Lerp(base.transform.position, Destination.position, Time.deltaTime * 10f);
 		base.transform.LookAt(Focus.position);
 		if (HomeYandere.CanMove)
 		{
@@ -297,7 +404,7 @@ public class HomeCameraScript : MonoBehaviour
 				Profile.depthOfField.enabled = false;
 			}
 		}
-		if (ID != 11 && Input.GetButtonDown(InputNames.Xbox_A) && HomeYandere.CanMove && ID != 0)
+		if (ID != 11 && Input.GetButtonDown(InputNames.Xbox_A) && HomeYandere.CanMove && ID != 0 && CooldownTimer == 0f)
 		{
 			Destination = Destinations[ID];
 			Target = Targets[ID];
@@ -305,6 +412,7 @@ public class HomeCameraScript : MonoBehaviour
 			HomeYandere.CanMove = false;
 			if (ID == 1 || ID == 8)
 			{
+				HomeExit.Start();
 				HomeExit.enabled = true;
 			}
 			else if (ID == 2)
@@ -393,24 +501,41 @@ public class HomeCameraScript : MonoBehaviour
 			BasementJukebox.volume = Mathf.MoveTowards(BasementJukebox.volume, 0f, Time.deltaTime);
 			RoomJukebox.volume = Mathf.MoveTowards(RoomJukebox.volume, 0f, Time.deltaTime);
 		}
-		else if (HomeYandere.transform.position.y > -1f)
-		{
-			BasementJukebox.volume = Mathf.MoveTowards(BasementJukebox.volume, 0f, Time.deltaTime);
-			RoomJukebox.volume = Mathf.MoveTowards(RoomJukebox.volume, 0.5f, Time.deltaTime);
-		}
-		else if (!Torturing)
+		else if (HomeYandere.transform.position.y < -7.5f)
 		{
 			BasementJukebox.volume = Mathf.MoveTowards(BasementJukebox.volume, 0.5f, Time.deltaTime);
 			RoomJukebox.volume = Mathf.MoveTowards(RoomJukebox.volume, 0f, Time.deltaTime);
+		}
+		else if (!Torturing)
+		{
+			BasementJukebox.volume = Mathf.MoveTowards(BasementJukebox.volume, 0f, Time.deltaTime);
+			RoomJukebox.volume = Mathf.MoveTowards(RoomJukebox.volume, 0.5f, Time.deltaTime);
 		}
 		if (Input.GetKeyDown(KeyCode.M))
 		{
 			BasementJukebox.gameObject.SetActive(value: false);
 			RoomJukebox.gameObject.SetActive(value: false);
 		}
+		if (OpenDoor)
+		{
+			Rotation = Mathf.Lerp(Rotation, -127.5f, Time.deltaTime);
+			BedroomDoor.localEulerAngles = new Vector3(-90f, Rotation, 0f);
+		}
 		if (ID > 0)
 		{
 			LastID = ID;
+		}
+		if (CooldownTimer > 0f)
+		{
+			CooldownTimer = Mathf.MoveTowards(CooldownTimer, 0f, Time.deltaTime);
+		}
+		if (CameraTimer > 0f)
+		{
+			CameraTimer = Mathf.MoveTowards(CameraTimer, 0f, Time.deltaTime);
+		}
+		if (TooClose && Vector3.Distance(HomeYandere.transform.position, LastChangePoint) > 1f)
+		{
+			TooClose = false;
 		}
 	}
 

@@ -444,6 +444,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] Task20Lines;
 
+	public string[] Task21Lines;
+
 	public string[] Task25Lines;
 
 	public string[] Task28Lines;
@@ -781,6 +783,8 @@ public class SubtitleScript : MonoBehaviour
 	public AudioClip[] Task19Clips;
 
 	public AudioClip[] Task20Clips;
+
+	public AudioClip[] Task21Clips;
 
 	public AudioClip[] Task25Clips;
 
@@ -1230,9 +1234,9 @@ public class SubtitleScript : MonoBehaviour
 				ClubYesClips[i] = LongestSilence;
 				ClubNoClips[i] = LongestSilence;
 			}
-			EightiesClubDialogue.UpdateDialogue(2);
-			EightiesClubDialogue.UpdateDialogue(3);
-			EightiesClubDialogue.UpdateDialogue(4);
+			EightiesClubDialogue.UpdateEightiesDialogue(2);
+			EightiesClubDialogue.UpdateEightiesDialogue(3);
+			EightiesClubDialogue.UpdateEightiesDialogue(4);
 			TaskRequirements = TaskEightiesRequirements;
 			if (StudentManager.CustomMode)
 			{
@@ -1710,6 +1714,10 @@ public class SubtitleScript : MonoBehaviour
 			{
 				SubtitleType.Task20Line,
 				new AudioClipArrayWrapper(Task20Clips)
+			},
+			{
+				SubtitleType.Task21Line,
+				new AudioClipArrayWrapper(Task21Clips)
 			},
 			{
 				SubtitleType.Task25Line,
@@ -3132,6 +3140,10 @@ public class SubtitleScript : MonoBehaviour
 				Label.text = Task20Lines[ID];
 				PlayVoice(subtitleType, ID);
 				break;
+			case SubtitleType.Task21Line:
+				Label.text = Task21Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
 			case SubtitleType.Task25Line:
 				Label.text = Task25Lines[ID];
 				PlayVoice(subtitleType, ID);
@@ -3649,6 +3661,8 @@ public class SubtitleScript : MonoBehaviour
 				return Task19Clips[TaskPhase].length;
 			case 20:
 				return Task20Clips[TaskPhase].length;
+			case 21:
+				return Task21Clips[TaskPhase].length;
 			case 25:
 				return Task25Clips[TaskPhase].length;
 			case 28:
@@ -3716,12 +3730,16 @@ public class SubtitleScript : MonoBehaviour
 		case 19:
 			return Task19Clips[TaskPhase].length;
 		case 20:
-			if (StudentID == 20)
+			switch (StudentID)
 			{
+			case 20:
 				return Task20Clips[TaskPhase].length;
+			case 21:
+				return Task21Clips[TaskPhase].length;
+			default:
+				Debug.Log("This code is returning null, which is bad.");
+				return 1f;
 			}
-			Debug.Log("This code is returning null, which is bad.");
-			return 1f;
 		default:
 			if (StudentID == 79)
 			{
@@ -3881,7 +3899,6 @@ public class SubtitleScript : MonoBehaviour
 			audioSource.maxDistance = 15f;
 			CurrentClip = gameObject;
 			audioSource.volume = ((Yandere.position.y < gameObject.transform.position.y - 2f) ? 0f : 1f);
-			Debug.Log("Setting Speaker to null now?");
 		}
 		else
 		{

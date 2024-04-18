@@ -752,7 +752,14 @@ public class StudentInfoScript : MonoBehaviour
 				InfoLabel.text = "Senpai's childhood friend.\n\n" + Strings[1] + "\n\n" + Strings[2];
 				return;
 			case 12:
-				Strings[1] = (Yandere.Police.EndOfDay.LearnedRivalDarkSecret ? "Suspicious of a ''new bakery'' in town." : "You may be able to learn additional information by stalking her or buying it from Info-chan.");
+				if (Yandere == null)
+				{
+					Strings[1] = (EventGlobals.LearnedRivalDarkSecret ? "Suspicious of a ''new bakery'' in town." : "You may be able to learn additional information by stalking her or buying it from Info-chan.");
+				}
+				else
+				{
+					Strings[1] = (Yandere.Police.EndOfDay.LearnedRivalDarkSecret ? "Suspicious of a ''new bakery'' in town." : "You may be able to learn additional information by stalking her or buying it from Info-chan.");
+				}
 				InfoLabel.text = "The president of the Cooking Club.\n\n[c][800000]" + Strings[1] + "[-][/c]";
 				return;
 			case 51:

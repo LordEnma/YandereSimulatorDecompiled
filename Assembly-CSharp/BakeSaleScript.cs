@@ -33,7 +33,6 @@ public class BakeSaleScript : MonoBehaviour
 			}
 			if (!flag && (StudentManager.Students[ID].Routine & StudentManager.Students[ID].Indoors) && !StudentManager.Students[ID].Slave && !StudentManager.Students[ID].BakeSale)
 			{
-				Debug.Log(StudentManager.Students[ID].Name + " has decided to go to the bake sale.");
 				Timer = 0f;
 				StudentManager.Students[ID].Meeting = true;
 				StudentManager.Students[ID].BakeSale = true;
