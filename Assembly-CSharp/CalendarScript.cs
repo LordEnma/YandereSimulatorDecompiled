@@ -157,6 +157,7 @@ public class CalendarScript : MonoBehaviour
 		{
 			FunGirl.SetActive(value: true);
 		}
+		StudentGlobals.SetStudentPhotographed(10 + DateGlobals.Week, value: true);
 		NewTitleScreenProfile.colorGrading.enabled = false;
 		SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
@@ -220,7 +221,7 @@ public class CalendarScript : MonoBehaviour
 				PlayerGlobals.SetShrineCollectible(i, value: true);
 			}
 		}
-		else if (DateGlobals.Week > 2)
+		else if (DateGlobals.Week > 3)
 		{
 			Debug.Log("Save file had to be deleted because 80s and 202X got mixed up.");
 			ResetSaveFile();
@@ -278,26 +279,36 @@ public class CalendarScript : MonoBehaviour
 			SkipButton.transform.localPosition = new Vector3(-120f, -500f, 0f);
 			if (DateGlobals.Week == 1)
 			{
-				DayNumber[1].text = "6";
-				DayNumber[2].text = "7";
-				DayNumber[3].text = "8";
-				DayNumber[4].text = "9";
-				DayNumber[5].text = "10";
-				DayNumber[6].text = "11";
-				DayNumber[7].text = "12";
+				DayNumber[1].text = "5";
+				DayNumber[2].text = "6";
+				DayNumber[3].text = "7";
+				DayNumber[4].text = "8";
+				DayNumber[5].text = "9";
+				DayNumber[6].text = "10";
+				DayNumber[7].text = "11";
 				Adjustment = -50;
 			}
 			else if (DateGlobals.Week == 2)
 			{
-				DayNumber[1].text = "13";
-				DayNumber[2].text = "14";
-				DayNumber[3].text = "15";
-				DayNumber[4].text = "16";
-				DayNumber[5].text = "17";
-				DayNumber[6].text = "18";
-				DayNumber[7].text = "19";
+				DayNumber[1].text = "12";
+				DayNumber[2].text = "13";
+				DayNumber[3].text = "14";
+				DayNumber[4].text = "15";
+				DayNumber[5].text = "16";
+				DayNumber[6].text = "17";
+				DayNumber[7].text = "18";
 				Adjustment = -50;
-				AmaiButton.SetActive(value: true);
+			}
+			else if (DateGlobals.Week == 3)
+			{
+				DayNumber[1].text = "19";
+				DayNumber[2].text = "20";
+				DayNumber[3].text = "21";
+				DayNumber[4].text = "22";
+				DayNumber[5].text = "23";
+				DayNumber[6].text = "24";
+				DayNumber[7].text = "25";
+				Adjustment = -50;
 			}
 		}
 		Highlight.localPosition = new Vector3(-750f + Offset + 250f * (float)DateGlobals.Weekday + (float)Adjustment, Highlight.localPosition.y, Highlight.localPosition.z);
@@ -339,6 +350,24 @@ public class CalendarScript : MonoBehaviour
 		else
 		{
 			EliminationNameLabel.transform.parent.gameObject.SetActive(value: false);
+		}
+		if (Eighties || DateGlobals.Week <= 1)
+		{
+			return;
+		}
+		if (DateGlobals.Weekday == DayOfWeek.Sunday)
+		{
+			ResetButton.SetActive(value: false);
+			SkipButton.SetActive(value: false);
+			ResetRivalStatus();
+			if (DateGlobals.ForceSkip)
+			{
+				Save();
+			}
+		}
+		else if (DateGlobals.Weekday == DayOfWeek.Monday && DateGlobals.PassDays == 0)
+		{
+			Save();
 		}
 	}
 
@@ -443,6 +472,7 @@ public class CalendarScript : MonoBehaviour
 						ChangeDayColor();
 						if (DateGlobals.Weekday == DayOfWeek.Saturday)
 						{
+							Debug.Log("Disabling the Reset Week button because it's Saturday.");
 							ResetButton.SetActive(value: false);
 						}
 					}
@@ -558,6 +588,7 @@ public class CalendarScript : MonoBehaviour
 										SkipButton.SetActive(value: true);
 									}
 								}
+								UpdateMonthLabel();
 							}
 							if (Input.GetButtonDown(InputNames.Xbox_B))
 							{
@@ -666,6 +697,7 @@ public class CalendarScript : MonoBehaviour
 					StudentGlobals.FemaleUniform = femaleUniform;
 					StudentGlobals.MaleUniform = maleUniform;
 					GameGlobals.CorkboardScene = true;
+					DateGlobals.PassDays--;
 					SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				}
 				else if (Reset)
@@ -795,6 +827,18 @@ public class CalendarScript : MonoBehaviour
 			}
 		}
 		if (!Eighties && DateGlobals.Week == 2)
+		{
+			if (DateGlobals.Weekday == DayOfWeek.Sunday)
+			{
+				ResetButton.SetActive(value: false);
+				SkipButton.SetActive(value: false);
+			}
+			else if (DateGlobals.Weekday != DayOfWeek.Saturday)
+			{
+				ResetButton.SetActive(value: true);
+			}
+		}
+		if (!Eighties && DateGlobals.Week > 2)
 		{
 			SkipButton.SetActive(value: false);
 		}
@@ -1015,6 +1059,15 @@ public class CalendarScript : MonoBehaviour
 			DayNumber[6].text = "16";
 			DayNumber[7].text = "17";
 		}
+		UpdateMonthLabel();
+		if (SchoolGlobals.SchoolAtmosphere <= 0.5f)
+		{
+			AtmosphereLabel.color = new Color(1f, 1f, 1f);
+		}
+	}
+
+	public void UpdateMonthLabel()
+	{
 		if ((DateGlobals.Week == 9 && DateGlobals.Weekday > DayOfWeek.Wednesday) || DateGlobals.Week > 9)
 		{
 			MonthLabel.text = "JUNE";
@@ -1022,10 +1075,6 @@ public class CalendarScript : MonoBehaviour
 		else if ((DateGlobals.Week == 5 && DateGlobals.Weekday > DayOfWeek.Sunday) || DateGlobals.Week > 5)
 		{
 			MonthLabel.text = "MAY";
-		}
-		if (SchoolGlobals.SchoolAtmosphere <= 0.5f)
-		{
-			AtmosphereLabel.color = new Color(1f, 1f, 1f);
 		}
 	}
 
@@ -1234,6 +1283,8 @@ public class CalendarScript : MonoBehaviour
 
 	public void ResetRivalStatus()
 	{
+		GameGlobals.RivalEliminationID = 0;
+		GameGlobals.SpecificEliminationID = 0;
 		EventGlobals.LearnedAboutPhotographer = false;
 		EventGlobals.LearnedRivalDarkSecret = false;
 		SchemeGlobals.EmbarassingSecret = false;
@@ -1276,5 +1327,15 @@ public class CalendarScript : MonoBehaviour
 			CollectibleGlobals.SetGiftGiven(m, value: false);
 		}
 		ClubGlobals.ActivitiesAttended = 0;
+		GameGlobals.CorkboardScene = true;
+	}
+
+	private void Save()
+	{
+		int profile = GameGlobals.Profile;
+		int num = 11;
+		Debug.Log("Current profile is: " + profile);
+		YanSave.SaveData("Profile_" + profile + "_Slot_" + num);
+		Debug.Log("Saved current state of the game to Slot #" + num);
 	}
 }

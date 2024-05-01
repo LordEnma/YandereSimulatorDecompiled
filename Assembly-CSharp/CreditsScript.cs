@@ -122,7 +122,11 @@ public class CreditsScript : MonoBehaviour
 			Jukebox.volume -= Time.deltaTime;
 			if (Darkness.color.a == 1f)
 			{
-				if (GameGlobals.CameFromTitleScreen)
+				if (!Eighties && DateGlobals.Week == 3)
+				{
+					SceneManager.LoadScene("NewTitleScene");
+				}
+				else if (GameGlobals.CameFromTitleScreen)
 				{
 					GameGlobals.CameFromTitleScreen = false;
 					SceneManager.LoadScene("NewTitleScene");
@@ -131,10 +135,6 @@ public class CreditsScript : MonoBehaviour
 				{
 					DateGlobals.Week = 11;
 					SceneManager.LoadScene("FunGameOverScene");
-				}
-				else if (GameGlobals.TransitionToPostCredits)
-				{
-					SceneManager.LoadScene("PostCreditsScene");
 				}
 				else if (GameGlobals.TrueEnding)
 				{

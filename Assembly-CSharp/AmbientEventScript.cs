@@ -5,6 +5,8 @@ public class AmbientEventScript : MonoBehaviour
 {
 	public StudentManagerScript StudentManager;
 
+	public SisterScriptsScript SisterScripts;
+
 	public AmbientEventScript GrudgeReaction;
 
 	public AmbientEventScript PoliceReaction;
@@ -75,7 +77,7 @@ public class AmbientEventScript : MonoBehaviour
 	{
 		if (Sitting)
 		{
-			if (DateGlobals.Week > EventWeek || DateGlobals.Weekday != EventDay || GameGlobals.Eighties)
+			if (DateGlobals.Weekday != EventDay || GameGlobals.Eighties)
 			{
 				base.gameObject.SetActive(value: false);
 				base.enabled = false;
@@ -93,8 +95,33 @@ public class AmbientEventScript : MonoBehaviour
 				EventSpeech = PoliceReaction.EventSpeech;
 				EventSpeaker = PoliceReaction.EventSpeaker;
 			}
+			else if (DateGlobals.Week > 1)
+			{
+				if (EventDay == DayOfWeek.Monday)
+				{
+					EventSpeech = SisterScripts.Week2Day1;
+				}
+				else if (EventDay == DayOfWeek.Tuesday)
+				{
+					EventSpeech = SisterScripts.Week2Day2;
+				}
+				else if (EventDay == DayOfWeek.Wednesday)
+				{
+					EventSpeech = SisterScripts.Week2Day3;
+				}
+				else if (EventDay == DayOfWeek.Thursday)
+				{
+					EventSpeech = SisterScripts.Week2Day4;
+				}
+				else if (EventDay == DayOfWeek.Friday)
+				{
+					EventSpeech = SisterScripts.Week2Day5;
+				}
+				EventClip = SisterScripts.Clips;
+				EventSpeaker = SisterScripts.Speakers;
+			}
 		}
-		else if (DateGlobals.Weekday != EventDay || GameGlobals.Eighties)
+		else if (DateGlobals.Week > EventWeek || DateGlobals.Weekday != EventDay || GameGlobals.Eighties)
 		{
 			base.gameObject.SetActive(value: false);
 			base.enabled = false;

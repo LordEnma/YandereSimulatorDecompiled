@@ -122,6 +122,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public bool CameFromBasement;
 
+	public bool RecentlyMoved;
+
 	public bool RestoreBloom;
 
 	public bool RestoreDOF;
@@ -299,6 +301,7 @@ public class HomeCameraScript : MonoBehaviour
 						base.transform.position = Destination.position;
 						CameraTimer = 1f;
 						TooClose = true;
+						RecentlyMoved = true;
 					}
 					Destinations[0].position = new Vector3(0f - HomeYandere.transform.position.x, Destinations[0].position.y, Destinations[0].position.z);
 					if (HomeYandere.transform.position.y > -5f && Destinations[0].transform.position.y < 0f)
@@ -327,6 +330,7 @@ public class HomeCameraScript : MonoBehaviour
 								LastChangePoint = HomeYandere.transform.position;
 								CameraTimer = 1f;
 								TooClose = true;
+								RecentlyMoved = true;
 							}
 							float num = 0f;
 							if (HomeYandere.transform.position.z < Destination.position.z)
@@ -345,6 +349,7 @@ public class HomeCameraScript : MonoBehaviour
 							LastChangePoint = HomeYandere.transform.position;
 							CameraTimer = 1f;
 							TooClose = true;
+							RecentlyMoved = true;
 						}
 						base.transform.position = Destination.position;
 					}
@@ -357,6 +362,7 @@ public class HomeCameraScript : MonoBehaviour
 						LastChangePoint = HomeYandere.transform.position;
 						CameraTimer = 1f;
 						TooClose = true;
+						RecentlyMoved = true;
 					}
 					base.transform.position = Destination.position;
 				}
@@ -368,6 +374,7 @@ public class HomeCameraScript : MonoBehaviour
 						LastChangePoint = HomeYandere.transform.position;
 						CameraTimer = 1f;
 						TooClose = true;
+						RecentlyMoved = true;
 					}
 					base.transform.position = Destination.position;
 				}
@@ -586,6 +593,16 @@ public class HomeCameraScript : MonoBehaviour
 		Focus *= ((float)Screen.width / 1280f + (float)Screen.height / 720f) * 0.5f;
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 		settings.focusDistance = Focus;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(5.6f);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
 		Profile.depthOfField.settings = settings;
 	}
 

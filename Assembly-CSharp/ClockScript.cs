@@ -92,11 +92,11 @@ public class ClockScript : MonoBehaviour
 
 	public PhaseOfDay Phase;
 
+	public int GameplayDay = 1;
+
 	public int Weekday;
 
 	public int Period;
-
-	public int Day = 1;
 
 	public int ID;
 
@@ -197,7 +197,7 @@ public class ClockScript : MonoBehaviour
 		{
 			Weekday = 5;
 		}
-		Day = Weekday + (DateGlobals.Week - 1) * 5;
+		GameplayDay = Weekday + (DateGlobals.Week - 1) * 5;
 		if (DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
 			DateGlobals.Weekday = DayOfWeek.Monday;
@@ -429,9 +429,9 @@ public class ClockScript : MonoBehaviour
 				StudentManager.MondayBento.SetActive(value: false);
 				StudentManager.RivalBookBag.NoBento = true;
 				StudentManager.Unstop();
-				if (!GameGlobals.Eighties && DateGlobals.Week == 1 && !StudentManager.MissionMode)
+				if (!GameGlobals.Eighties && DateGlobals.Week == 1)
 				{
-					StudentManager.UpdateLunchtimeStudents();
+					_ = StudentManager.MissionMode;
 				}
 				UpdateClock();
 			}

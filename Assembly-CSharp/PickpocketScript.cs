@@ -232,6 +232,10 @@ public class PickpocketScript : MonoBehaviour
 			Student.ClubManager.Padlock.SetActive(value: false);
 			Student.Yandere.Inventory.ShedKey = true;
 			Student.KeyStolen = true;
+			if (Student.Clock.GameplayDay == 9)
+			{
+				Student.BountyCollider.SetActive(value: true);
+			}
 		}
 		else
 		{

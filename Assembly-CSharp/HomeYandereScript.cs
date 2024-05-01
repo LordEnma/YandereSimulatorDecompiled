@@ -79,6 +79,14 @@ public class HomeYandereScript : MonoBehaviour
 
 	public Transform BreastL;
 
+	public float PreviousH;
+
+	public float PreviousV;
+
+	public Vector3 PreviousForward;
+
+	public Vector3 Forward;
+
 	private int Kidnap;
 
 	public int AlphabetID;
@@ -342,19 +350,39 @@ public class HomeYandereScript : MonoBehaviour
 					Running = !Running;
 				}
 				MyController.Move(Physics.gravity * 0.01f);
-				float axis = Input.GetAxis("Vertical");
-				float axis2 = Input.GetAxis("Horizontal");
-				Vector3 vector = Camera.main.transform.TransformDirection(Vector3.forward);
-				vector.y = 0f;
-				vector = vector.normalized;
-				Vector3 vector2 = new Vector3(vector.z, 0f, 0f - vector.x);
-				Vector3 vector3 = axis2 * vector2 + axis * vector;
-				if (vector3 != Vector3.zero)
+				float num = Input.GetAxis("Vertical");
+				float num2 = Input.GetAxis("Horizontal");
+				Forward = Camera.main.transform.TransformDirection(Vector3.forward);
+				if (!HomeCamera.RecentlyMoved)
 				{
-					Quaternion b = Quaternion.LookRotation(vector3);
+					PreviousForward = Forward;
+					PreviousV = num;
+					PreviousH = num2;
+				}
+				else if (Mathf.Abs(num - PreviousV) > 0.1f)
+				{
+					HomeCamera.RecentlyMoved = false;
+				}
+				else if (Mathf.Abs(num2 - PreviousH) > 0.1f)
+				{
+					HomeCamera.RecentlyMoved = false;
+				}
+				else
+				{
+					Forward = PreviousForward;
+					num = PreviousV;
+					num2 = PreviousH;
+				}
+				Forward.y = 0f;
+				Forward = Forward.normalized;
+				Vector3 vector = new Vector3(Forward.z, 0f, 0f - Forward.x);
+				Vector3 vector2 = num2 * vector + num * Forward;
+				if (vector2 != Vector3.zero)
+				{
+					Quaternion b = Quaternion.LookRotation(vector2);
 					base.transform.rotation = Quaternion.Lerp(base.transform.rotation, b, Time.deltaTime * 10f);
 				}
-				if (axis != 0f || axis2 != 0f)
+				if (num != 0f || num2 != 0f)
 				{
 					if (Running)
 					{

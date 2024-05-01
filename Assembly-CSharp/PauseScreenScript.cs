@@ -256,11 +256,13 @@ public class PauseScreenScript : MonoBehaviour
 			uISprite11.color = new Color(uISprite11.color.r, uISprite11.color.g, uISprite11.color.b, 0.5f);
 			UISprite uISprite12 = PhoneIcons[10];
 			uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 1f);
+			UISprite uISprite13 = PhoneIcons[17];
+			uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 0.5f);
 		}
 		if (NoInfo)
 		{
-			UISprite uISprite13 = PhoneIcons[5];
-			uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 0.5f);
+			UISprite uISprite14 = PhoneIcons[5];
+			uISprite14.color = new Color(uISprite14.color.r, uISprite14.color.g, uISprite14.color.b, 0.5f);
 		}
 		UpdateSelection();
 		CorrectingTime = false;

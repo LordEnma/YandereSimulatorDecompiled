@@ -583,7 +583,15 @@ public class TaskManagerScript : MonoBehaviour
 		Proceed = false;
 		if (!Eighties)
 		{
-			if (StudentID != 21 && StudentID == 46)
+			switch (StudentID)
+			{
+			case 21:
+				if (DateGlobals.Week == 2)
+				{
+					Proceed = true;
+				}
+				break;
+			case 46:
 			{
 				bool flag = false;
 				bool flag2 = false;
@@ -600,6 +608,8 @@ public class TaskManagerScript : MonoBehaviour
 				{
 					Proceed = true;
 				}
+				break;
+			}
 			}
 		}
 		else

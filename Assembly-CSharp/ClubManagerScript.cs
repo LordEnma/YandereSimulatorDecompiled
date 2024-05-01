@@ -266,6 +266,7 @@ public class ClubManagerScript : MonoBehaviour
 		{
 			ClubActivityReminder = true;
 		}
+		Physics.IgnoreCollision(Container.gameObject.GetComponent<Collider>(), Yandere.MyController);
 	}
 
 	private void Update()
@@ -401,10 +402,10 @@ public class ClubManagerScript : MonoBehaviour
 		}
 		else if (Club == ClubType.Drama)
 		{
+			StudentManager.DramaPhase = 1;
+			StudentManager.UpdateDrama();
 			for (ID = 0; ID < Club2Students.Length; ID++)
 			{
-				StudentManager.DramaPhase = 1;
-				StudentManager.UpdateDrama();
 				StudentScript studentScript2 = StudentManager.Students[Club2Students[ID]];
 				if (studentScript2 != null && !studentScript2.Tranquil && studentScript2.Alive)
 				{
@@ -424,8 +425,17 @@ public class ClubManagerScript : MonoBehaviour
 			Yandere.ClubActivity = true;
 			if (!StudentManager.MemorialScene.gameObject.activeInHierarchy)
 			{
-				Yandere.transform.position = new Vector3(42f, 1.3775f, 72f);
-				Yandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+				if (GameGlobals.Eighties && DateGlobals.Week == 4)
+				{
+					MainCamera.transform.position = new Vector3(20f, 4f, 65f);
+					Yandere.transform.position = new Vector3(24.5f, 0f, 72f);
+					Yandere.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+				}
+				else
+				{
+					Yandere.transform.position = new Vector3(42f, 1.3775f, 72f);
+					Yandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+				}
 			}
 		}
 		else if (Club == ClubType.Occult)

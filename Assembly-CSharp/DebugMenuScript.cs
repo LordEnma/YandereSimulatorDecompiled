@@ -309,6 +309,10 @@ public class DebugMenuScript : MonoBehaviour
 						CollectibleGlobals.SetTapeCollected(ID, value: true);
 						StudentManager.TapesCollected[ID] = true;
 					}
+					for (ID = 1; ID < 26; ID++)
+					{
+						StudentManager.SetTopicLearnedByStudent(ID, StudentManager.RivalID, boolean: true);
+					}
 					Window.SetActive(value: false);
 				}
 				else if (Input.GetKeyDown(KeyCode.D))
@@ -701,7 +705,7 @@ public class DebugMenuScript : MonoBehaviour
 					else if (Input.GetKeyDown(KeyCode.H))
 					{
 						StudentGlobals.FragileSlave = 5;
-						StudentGlobals.FragileTarget = 10;
+						StudentGlobals.FragileTarget = 12;
 						StudentGlobals.Prisoner1 = KidnappedVictim;
 						StudentGlobals.StudentSlave = KidnappedVictim;
 						SceneManager.LoadScene("LoadingScene");

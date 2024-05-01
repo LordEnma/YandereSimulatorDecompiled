@@ -251,6 +251,8 @@ public class EndOfDayScript : MonoBehaviour
 	public void Start()
 	{
 		Debug.Log("The End-of-Day GameObject has just fired its Start() function.");
+		StudentManager.RivalEvents[1].SetActive(value: false);
+		StudentManager.RivalEvents[2].SetActive(value: false);
 		if (Yandere.Schoolwear == 0)
 		{
 			Yandere.Schoolwear = 1;
@@ -535,10 +537,8 @@ public class EndOfDayScript : MonoBehaviour
 			}
 			if (!WeaponsChecked)
 			{
-				Debug.Log("We're counting the number of bloody weapons at school right now...");
 				WeaponManager.CheckWeapons();
 				WeaponsChecked = true;
-				Debug.Log(WeaponManager.MurderWeapons + " bloody weapons were found.");
 			}
 			for (ID = 0; ID < WeaponManager.Weapons.Length; ID++)
 			{
@@ -1180,7 +1180,14 @@ public class EndOfDayScript : MonoBehaviour
 						text5 = "Senpai will stay home from school for one day to mourn her death.";
 						GameGlobals.SenpaiMourning = true;
 					}
-					Label.text = "Senpai is absolutely devastated by the death of his childhood friend. His mental stability has been greatly affected." + text5;
+					if (DateGlobals.Week == 1)
+					{
+						Label.text = "Senpai is absolutely devastated by the death of his childhood friend. His mental stability has been greatly affected. " + text5;
+					}
+					else
+					{
+						Label.text = "Senpai is devastated by the death of his new friend. His mental stability has been affected. " + text5;
+					}
 				}
 				else
 				{
@@ -1212,7 +1219,7 @@ public class EndOfDayScript : MonoBehaviour
 				}
 				else if (RivalEliminationMethod == RivalEliminationType.Expelled)
 				{
-					Senpai.CharacterAnimation.Play("surprisedPose_00");
+					Senpai.CharacterAnimation.Play("surprised_00");
 					Label.text = "Senpai is shocked to learn that " + RivalName + " has been expelled. He is deeply disappointed in her.";
 				}
 				else if (RivalEliminationMethod == RivalEliminationType.Ruined)
@@ -1522,7 +1529,6 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 18)
 		{
-			Debug.Log("The EoD sequence is now checking the TranqCase.");
 			if (TranqCase.Occupied)
 			{
 				ClosedTranqCase.SetActive(value: true);
@@ -1596,7 +1602,6 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 21)
 		{
-			Debug.Log("The EoD sequence is now checking the rival's reputation.");
 			Rival = StudentManager.Students[StudentManager.RivalID];
 			if (ArticleID == 2)
 			{
@@ -1605,7 +1610,6 @@ public class EndOfDayScript : MonoBehaviour
 			}
 			if (Rival != null && Rival.Alive && !Rival.Tranquil && StudentManager.StudentReps[StudentManager.RivalID] <= -100f)
 			{
-				Debug.Log("The rival is not null, the rival is alive, and the rival's reputation is below -100.");
 				Rival.gameObject.SetActive(value: true);
 				Rival.transform.parent = base.transform;
 				Rival.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -2392,11 +2396,15 @@ public class EndOfDayScript : MonoBehaviour
 			}
 			CheckForNatureOfDeath();
 		}
+		if (!StudentManager.Eighties && StudentManager.Week == 2 && GameGlobals.RivalEliminationID > 0 && !GameGlobals.Debug)
+		{
+			PlayerPrefs.SetInt("Amai", 1);
+			PlayerPrefs.SetInt("a", 1);
+		}
 		PlayerGlobals.Reputation = Reputation.Reputation;
 		ClubGlobals.Club = Yandere.Club;
 		StudentGlobals.MemorialStudents = 0;
 		HomeGlobals.Night = true;
-		Debug.Log("This is the part where KillStudents() SHOULD be getting called.");
 		Police.KillStudents();
 		if (Police.Suspended)
 		{
@@ -2467,7 +2475,6 @@ public class EndOfDayScript : MonoBehaviour
 		bool flag = DateGlobals.Weekday != DayOfWeek.Friday && StudentManager.SabotageProgress > StudentManager.InitialSabotageProgress;
 		if (StudentManager.RivalEliminated || GameGlobals.GetRivalEliminations(DateGlobals.Week) > 0)
 		{
-			Debug.Log("Rival is already eliminated; we don't need to go to the sabotage progress screen.");
 			flag = false;
 		}
 		SenpaiGifts -= StudentManager.SenpaiLoveWindow.GiftsToSubtract;
@@ -2475,7 +2482,6 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			GameGlobals.SenpaiLove = StudentManager.SenpaiLoveWindow.SenpaiLove;
 		}
-		Debug.Log("CollectibleGlobals.SenpaiGifts is now: " + CollectibleGlobals.SenpaiGifts);
 		if (GameGlobals.AlternateTimeline)
 		{
 			FunCheck();
@@ -2494,9 +2500,9 @@ public class EndOfDayScript : MonoBehaviour
 			{
 				SceneManager.LoadScene("RivalRejectionProgressScene");
 			}
-			else if (!StudentManager.Eighties && DateGlobals.Week > 1)
+			else if (!StudentManager.Eighties && DateGlobals.Week > 2)
 			{
-				SceneManager.LoadScene("WeekLimitScene");
+				SceneManager.LoadScene("FunScene");
 			}
 			else
 			{
@@ -2618,10 +2624,6 @@ public class EndOfDayScript : MonoBehaviour
 			Debug.Log("PlayerGlobals.Alerts is being incremented!");
 			PlayerGlobals.Alerts += Yandere.Alerts;
 		}
-		else
-		{
-			Debug.Log("PlayerGlobals.Alerts is not being incremented!");
-		}
 		if (Arrests > 0)
 		{
 			Debug.Log("Increasing Atmosphere by 50% because a culprit was arrested.");
@@ -2700,7 +2702,6 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			StudentManager.DialogueWheel.AdviceWindow.SaveGiftStatus();
 		}
-		Debug.Log("Right here, at the End of Day Results Screen, SchemeGlobals.GetSchemeStage(6) is: " + SchemeGlobals.GetSchemeStage(6));
 		if (SchemeGlobals.GetSchemeStage(6) == 8)
 		{
 			SchemeGlobals.SetSchemeStage(6, 9);
@@ -2839,6 +2840,7 @@ public class EndOfDayScript : MonoBehaviour
 		ClubManager.UpdateKickedClubs();
 		StudentGlobals.UpdateRivalReputation = false;
 		ClubGlobals.ActivitiesAttended = ClubManager.ActivitiesAttended;
+		DatingGlobals.SuitorProgress = LoveManager.SuitorProgress;
 		UpdatePreviousRivalFriendships();
 		ArrestStudents();
 		SaveTopicsLearned();
@@ -3154,7 +3156,6 @@ public class EndOfDayScript : MonoBehaviour
 
 	public void SaveTopicsDiscussed()
 	{
-		Debug.Log("Attempting to save all of the ''topics discussed ''.");
 		for (int i = 1; i < 101; i++)
 		{
 			for (int j = 1; j < 26; j++)

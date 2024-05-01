@@ -596,7 +596,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 		if (Bakery)
 		{
-			if (base.transform.position.x > 21f || (base.transform.position.x > -10.61f && base.transform.position.x < 3.365f && base.transform.position.z > 39.24f) || (base.transform.position.x > -10.4f && base.transform.position.x < 10.4f && base.transform.position.z > -10.4f && base.transform.position.z < 10.4f))
+			if (base.transform.position.x > 21f || (base.transform.position.x > -10.61f && base.transform.position.x < 3.365f && base.transform.position.z > 39.24f) || (base.transform.position.x > -10.3f && base.transform.position.x < 10.3f && base.transform.position.z > -10.3f && base.transform.position.z < 10.3f))
 			{
 				if (!Trespassing)
 				{

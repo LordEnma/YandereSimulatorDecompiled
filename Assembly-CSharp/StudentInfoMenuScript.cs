@@ -606,7 +606,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 			{
 				if (ID < 98)
 				{
-					int num = 12;
+					int num = 11 + DateGlobals.Week;
 					if (PauseScreen.Eighties || (!PauseScreen.Eighties && ID < num) || (!PauseScreen.Eighties && ID > 20))
 					{
 						if (StudentManager.StudentBefriended[ID] || StudentManager.StudentPhotographed[ID])

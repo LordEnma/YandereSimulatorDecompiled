@@ -24,14 +24,13 @@ public class BakeSaleScript : MonoBehaviour
 			return;
 		}
 		Timer += Time.deltaTime;
-		if (Timer > 60f && StudentManager.Students[ID] != null)
+		if (Timer > 30f && StudentManager.Students[ID] != null)
 		{
-			bool flag = false;
-			if (ID == 12 || (ID > 20 && ID < 26) || ID > 86)
+			while ((ID > 9 && ID < 26) || ID > 86 || StudentManager.Students[ID] == null)
 			{
-				flag = true;
+				IncreaseID();
 			}
-			if (!flag && (StudentManager.Students[ID].Routine & StudentManager.Students[ID].Indoors) && !StudentManager.Students[ID].Slave && !StudentManager.Students[ID].BakeSale)
+			if (StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors && !StudentManager.Students[ID].Slave)
 			{
 				Timer = 0f;
 				StudentManager.Students[ID].Meeting = true;

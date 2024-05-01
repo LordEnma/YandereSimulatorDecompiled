@@ -66,6 +66,10 @@ public class GiggleScript : MonoBehaviour
 			{
 				StudentIsBusy = true;
 			}
+			if (Student.MyPlate != null && Student.MyPlate.parent == Student.RightHand)
+			{
+				StudentIsBusy = true;
+			}
 			if (Student.StudentID == Student.StudentManager.RivalID || Student.StudentID == 1)
 			{
 				_ = Student.CurrentAction;

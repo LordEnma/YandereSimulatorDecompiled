@@ -97,6 +97,8 @@ public class CounselorScript : MonoBehaviour
 
 	public UILabel LectureLabel;
 
+	public bool NewExpulsionSystem;
+
 	public bool ShowWindow;
 
 	public bool Lecturing;
@@ -492,24 +494,12 @@ public class CounselorScript : MonoBehaviour
 			OriginalMesh[3].SetActive(value: false);
 			EightiesMesh[1].SetActive(value: true);
 			Countdown = EightiesCountdown;
-			Labels[1].text = "Report Alcohol";
-			Labels[2].text = "Report Condoms";
-			Labels[3].text = "Report Cigarettes";
-			Labels[4].text = "Report Theft";
-			Labels[5].text = "Report Cheating";
-			Labels[6].text = "Report Narcotics";
-			CounselorReportText = EightiesCounselorReportText;
-			CounselorReportClips = EightiesCounselorReportClips;
-			CounselorLectureText = EightiesCounselorLectureText;
-			CounselorLectureClips = EightiesCounselorLectureClips;
-			RivalText = EightiesRivalText;
-			RivalClips = EightiesRivalClips;
+			SwitchToEightiesExpulsionText();
 			ChibiTexture.mainTexture = EightiesRivalHeads[week];
-			ReportedAlcohol = CounselorGlobals.ReportedAlcohol;
-			ReportedCigarettes = CounselorGlobals.ReportedCigarettes;
-			ReportedCondoms = CounselorGlobals.ReportedCondoms;
-			ReportedTheft = CounselorGlobals.ReportedTheft;
-			ReportedCheating = CounselorGlobals.ReportedCheating;
+			if (GameGlobals.CustomMode)
+			{
+				ChibiTexture.mainTexture = EightiesRivalHeads[0];
+			}
 			SadMouthID = 4;
 			MadBrowID = 5;
 			SadBrowID = 3;
@@ -521,14 +511,42 @@ public class CounselorScript : MonoBehaviour
 			LewdLectureClips[1] = LongSilence;
 			LewdLectures[0] = "You've been caught aiming a camera at a student's unmentionables. Start talking.";
 			LewdLectures[1] = "Once again, you're here because you stuck a camera up someone's skirt. Oh, I can't wait to hear your excuse this time.";
+			NewExpulsionSystem = true;
 		}
 		else
 		{
+			ChibiTexture.mainTexture = RivalHeads[week];
 			ModernAttacher.gameObject.SetActive(value: true);
 			OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().enabled = false;
 			OriginalMesh[2].SetActive(value: false);
 			OriginalMesh[3].SetActive(value: false);
+			if (week > 1)
+			{
+				SwitchToEightiesExpulsionText();
+				NewExpulsionSystem = true;
+			}
 		}
+	}
+
+	private void SwitchToEightiesExpulsionText()
+	{
+		Labels[1].text = "Report Alcohol";
+		Labels[2].text = "Report Condoms";
+		Labels[3].text = "Report Cigarettes";
+		Labels[4].text = "Report Theft";
+		Labels[5].text = "Report Cheating";
+		Labels[6].text = "Report Narcotics";
+		CounselorReportText = EightiesCounselorReportText;
+		CounselorReportClips = EightiesCounselorReportClips;
+		CounselorLectureText = EightiesCounselorLectureText;
+		CounselorLectureClips = EightiesCounselorLectureClips;
+		RivalText = EightiesRivalText;
+		RivalClips = EightiesRivalClips;
+		ReportedAlcohol = CounselorGlobals.ReportedAlcohol;
+		ReportedCigarettes = CounselorGlobals.ReportedCigarettes;
+		ReportedCondoms = CounselorGlobals.ReportedCondoms;
+		ReportedTheft = CounselorGlobals.ReportedTheft;
+		ReportedCheating = CounselorGlobals.ReportedCheating;
 	}
 
 	private void Update()
@@ -549,7 +567,7 @@ public class CounselorScript : MonoBehaviour
 			if (InputManager.TappedUp)
 			{
 				Selected--;
-				if (!Eighties && Selected == 6)
+				if (!NewExpulsionSystem && Selected == 6)
 				{
 					Selected = 5;
 				}
@@ -558,7 +576,7 @@ public class CounselorScript : MonoBehaviour
 			if (InputManager.TappedDown)
 			{
 				Selected++;
-				if (!Eighties && Selected == 6)
+				if (!NewExpulsionSystem && Selected == 6)
 				{
 					Selected = 7;
 				}
@@ -566,7 +584,7 @@ public class CounselorScript : MonoBehaviour
 			}
 			if (ShowWindow)
 			{
-				if (CounselorDoor.Darkness.color.a < 0.0001f)
+				if (CounselorDoor.Darkness.color.a < 0.001f)
 				{
 					CounselorDoor.Darkness.alpha = 0f;
 					if (Input.GetButtonDown(InputNames.Xbox_A))
@@ -585,7 +603,7 @@ public class CounselorScript : MonoBehaviour
 						}
 						else if (Labels[Selected].color.a == 1f)
 						{
-							if (!Eighties)
+							if (!NewExpulsionSystem)
 							{
 								if (Selected == 1)
 								{
@@ -691,7 +709,7 @@ public class CounselorScript : MonoBehaviour
 			{
 				LectureLabel.text = LectureIntro[LectureID];
 				EndOfDayDarkness.color = new Color(EndOfDayDarkness.color.r, EndOfDayDarkness.color.g, EndOfDayDarkness.color.b, Mathf.MoveTowards(EndOfDayDarkness.color.a, 0f, Time.deltaTime));
-				if (EndOfDayDarkness.color.a < 0.0001f)
+				if (EndOfDayDarkness.color.a < 0.001f)
 				{
 					EndOfDayDarkness.alpha = 0f;
 					PromptBar.ClearButtons();
@@ -864,35 +882,50 @@ public class CounselorScript : MonoBehaviour
 								StudentManager.ComeBack();
 								StudentManager.Students[StudentManager.RivalID].IdleAnim = StudentManager.Students[StudentManager.RivalID].BulliedIdleAnim;
 								StudentManager.Students[StudentManager.RivalID].WalkAnim = StudentManager.Students[StudentManager.RivalID].BulliedWalkAnim;
-								if (Eighties)
+								if (NewExpulsionSystem)
 								{
-									if (LectureID == 4)
+									if (Eighties)
 									{
-										if (StudentManager.Students[30] != null)
+										if (LectureID == 4)
 										{
-											Debug.Log("Attempting to update Himedere's routine...");
-											StudentManager.Students[30].Cosmetic.EnableRings();
-											StudentManager.Students[30].Depressed = false;
+											if (StudentManager.Students[30] != null)
+											{
+												Debug.Log("Attempting to update Himedere's routine...");
+												StudentManager.Students[30].Cosmetic.EnableRings();
+												StudentManager.Students[30].Depressed = false;
+											}
+										}
+										else if (LectureID == 6)
+										{
+											Debug.Log("Disabling the rival and her bag, since she was expelled.");
+											StudentManager.Students[StudentManager.RivalID].gameObject.SetActive(value: false);
+											if (StudentManager.Students[StudentManager.SuitorID] != null)
+											{
+												Debug.Log("Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
+												StudentManager.Students[StudentManager.SuitorID].Curious = false;
+											}
+										}
+										if (StudentManager.Students[StudentManager.RivalID] != null && !StudentManager.Students[StudentManager.RivalID].gameObject.activeInHierarchy)
+										{
+											Debug.Log("Disabling the rival's bag, since she was expelled.");
+											StudentManager.GenericRivalBag.gameObject.SetActive(value: false);
+											if (StudentManager.RivalID == 19)
+											{
+												StudentManager.RevertEightiesWeek9RoutineAdjustments();
+											}
+										}
+									}
+									else if (LectureID == 4)
+									{
+										if (StoleRing)
+										{
+											MustReturnStolenRing = true;
 										}
 									}
 									else if (LectureID == 6)
 									{
 										Debug.Log("Disabling the rival and her bag, since she was expelled.");
 										StudentManager.Students[StudentManager.RivalID].gameObject.SetActive(value: false);
-										if (StudentManager.Students[StudentManager.SuitorID] != null)
-										{
-											Debug.Log("Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
-											StudentManager.Students[StudentManager.SuitorID].Curious = false;
-										}
-									}
-									if (StudentManager.Students[StudentManager.RivalID] != null && !StudentManager.Students[StudentManager.RivalID].gameObject.activeInHierarchy)
-									{
-										Debug.Log("Disabling the rival's bag, since she was expelled.");
-										StudentManager.GenericRivalBag.gameObject.SetActive(value: false);
-										if (StudentManager.RivalID == 19)
-										{
-											StudentManager.RevertEightiesWeek9RoutineAdjustments();
-										}
 									}
 								}
 								else if (LectureID == 2)
@@ -991,7 +1024,7 @@ public class CounselorScript : MonoBehaviour
 		{
 			return;
 		}
-		if (!Eighties)
+		if (!NewExpulsionSystem)
 		{
 			if (SchemeGlobals.GetSchemeStage(1) == 8)
 			{

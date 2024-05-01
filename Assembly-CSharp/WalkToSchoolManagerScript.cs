@@ -161,7 +161,6 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 			Speech = AmaiDialogueData.Speech;
 			Speakers = AmaiDialogueData.Speakers;
 			RivalName = AmaiDialogueData.RivalName;
-			SceneManager.LoadScene("LoadingScene");
 		}
 		Rival.Start();
 	}

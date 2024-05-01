@@ -166,6 +166,7 @@ public class HomeDarknessScript : MonoBehaviour
 				{
 					if (HomeYandere.transform.position.y > -5f)
 					{
+						Debug.Log("Teleporting to basement.");
 						HomeYandere.transform.position = new Vector3(-2f, -10f, -2.75f);
 						HomeYandere.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 						HomeYandere.CanMove = true;
@@ -218,6 +219,10 @@ public class HomeDarknessScript : MonoBehaviour
 						if (DateGlobals.Week == 1)
 						{
 							SceneManager.LoadScene("StalkerHouseScene");
+						}
+						else
+						{
+							SceneManager.LoadScene("RivalBakeryScene");
 						}
 					}
 					else
@@ -298,9 +303,8 @@ public class HomeDarknessScript : MonoBehaviour
 		}
 		GameGlobals.LastInputType = (int)InputDevice.Type;
 		int buildIndexByScenePath = SceneUtility.GetBuildIndexByScenePath("WalkToSchoolScene");
-		bool flag = false;
 		int num = 10 + DateGlobals.Week;
-		if (!GameGlobals.Eighties && GameGlobals.RivalEliminationID == 0 && !StudentGlobals.GetStudentKidnapped(num) && StudentGlobals.StudentSlave != num && DateGlobals.Weekday == DayOfWeek.Thursday && !HomeGlobals.LateForSchool && StudentGlobals.GetStudentReputation(num) > -100 && buildIndexByScenePath > -1 && !flag)
+		if (!GameGlobals.Eighties && GameGlobals.RivalEliminationID == 0 && !StudentGlobals.GetStudentKidnapped(num) && StudentGlobals.StudentSlave != num && DateGlobals.Weekday == DayOfWeek.Thursday && !HomeGlobals.LateForSchool && StudentGlobals.GetStudentReputation(num) > -100 && buildIndexByScenePath > -1)
 		{
 			SceneManager.LoadScene("WalkToSchoolScene");
 		}

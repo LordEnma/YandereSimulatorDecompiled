@@ -22,6 +22,8 @@ public class FavorMenuScript : MonoBehaviour
 
 	public GameObject Panel;
 
+	public UILabel SchemesLabel;
+
 	public Transform Highlight;
 
 	public UITexture Portrait;
@@ -31,6 +33,14 @@ public class FavorMenuScript : MonoBehaviour
 	public float Timer;
 
 	public int ID = 1;
+
+	private void Start()
+	{
+		if (DateGlobals.Week > 1)
+		{
+			SchemesLabel.alpha = 0.5f;
+		}
+	}
 
 	private void Update()
 	{
@@ -68,11 +78,14 @@ public class FavorMenuScript : MonoBehaviour
 				PromptBar.UpdateButtons();
 				if (ID == 1)
 				{
-					SchemesMenu.UpdatePantyCount();
-					SchemesMenu.UpdateSchemeList();
-					SchemesMenu.UpdateSchemeInfo();
-					SchemesMenu.gameObject.SetActive(value: true);
-					base.gameObject.SetActive(value: false);
+					if (SchemesLabel.alpha > 0.5f)
+					{
+						SchemesMenu.UpdatePantyCount();
+						SchemesMenu.UpdateSchemeList();
+						SchemesMenu.UpdateSchemeInfo();
+						SchemesMenu.gameObject.SetActive(value: true);
+						base.gameObject.SetActive(value: false);
+					}
 				}
 				else if (ID == 2)
 				{

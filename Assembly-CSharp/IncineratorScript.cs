@@ -92,13 +92,6 @@ public class IncineratorScript : MonoBehaviour
 	{
 		Panel.SetActive(value: false);
 		Prompt.enabled = true;
-		if (!GameGlobals.Eighties && DateGlobals.Week == 2)
-		{
-			OutOfOrderSign.SetActive(value: true);
-			Prompt.enabled = false;
-			Prompt.Hide();
-			base.enabled = false;
-		}
 		MyAudio = GetComponent<AudioSource>();
 	}
 

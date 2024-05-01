@@ -596,16 +596,13 @@ public class PoliceScript : MonoBehaviour
 
 	private void DetermineResults()
 	{
-		Debug.Log("DetermineResults() has been called.");
 		if (Yandere.VtuberID > 0)
 		{
 			Protagonist = VtuberNames[Yandere.VtuberID];
 		}
 		ResultsLabels[0].transform.parent.gameObject.SetActive(value: true);
-		Debug.Log("Police.Show is: " + Show + " and Police.Called is: " + Called);
 		if (Show)
 		{
-			Debug.Log("The police were called.");
 			Yandere.MyListener.enabled = false;
 			EndOfDay.PoliceArrived = true;
 			EndOfDay.gameObject.SetActive(value: true);
@@ -620,424 +617,420 @@ public class PoliceScript : MonoBehaviour
 				ResultsLabels[i].text = string.Empty;
 			}
 		}
+		else if (Yandere.ShoulderCamera.GoingToCounselor && !EndOfDay.Counselor.Expelled)
+		{
+			Debug.Log("Yandere-chan was being sent to the guidance counselor at the time that end-of-day was triggered.");
+			if (Yandere.Police.Corpses - Yandere.Police.HiddenCorpses > 0)
+			{
+				ResultsLabels[0].text = "While " + Protagonist + " was in the counselor's office,";
+				ResultsLabels[1].text = "a corpse was discovered on school grounds.";
+				ResultsLabels[2].text = "The school faculty was informed of the corpse,";
+				ResultsLabels[3].text = "and the police were called to the school.";
+				ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
+			}
+			else if (WasHoldingBloodyWeapon)
+			{
+				ResultsLabels[0].text = "When " + Protagonist + " was caught,";
+				ResultsLabels[1].text = "a blood-stained weapon was found in her possession.";
+				ResultsLabels[2].text = "The school faculty was informed of the weapon,";
+				ResultsLabels[3].text = "and the police were called to the school.";
+				ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
+			}
+			else if (Yandere.Police.BloodyWeapons > 0)
+			{
+				ResultsLabels[0].text = "While " + Protagonist + " was in the counselor's office,";
+				ResultsLabels[1].text = "a faculty member discovered a mysterious bloody weapon.";
+				ResultsLabels[2].text = "The school faculty was informed of the weapon,";
+				ResultsLabels[3].text = "and the police were called to the school.";
+				ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
+			}
+			else if (Yandere.Police.LimbParent.childCount > 0)
+			{
+				ResultsLabels[0].text = "While " + Protagonist + " was in the counselor's office,";
+				ResultsLabels[1].text = "a faculty member discovered a severed limb on school grounds.";
+				ResultsLabels[2].text = "The school faculty was informed of the severed limb,";
+				ResultsLabels[3].text = "and the police were called to the school.";
+				ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
+			}
+			else if (Yandere.Police.BloodParent.childCount > 0)
+			{
+				ResultsLabels[0].text = "While " + Protagonist + " was in the counselor's office,";
+				ResultsLabels[1].text = "a faculty member discovered a puddle of blood on school grounds.";
+				ResultsLabels[2].text = "The school faculty was informed of the severed blood,";
+				ResultsLabels[3].text = "and the police were called to the school.";
+				ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
+			}
+			TeacherReport = true;
+			Show = true;
+		}
+		else if (Reputation.Reputation <= -100f)
+		{
+			ResultsLabels[0].text = Protagonist + "'s bizarre conduct has been observed and discussed by many people.";
+			ResultsLabels[1].text = "Word of " + Protagonist + "'s strange behavior has reached Senpai.";
+			ResultsLabels[2].text = "Senpai is now aware that " + Protagonist + " is a deranged person.";
+			ResultsLabels[3].text = "From this day forward, Senpai will fear and avoid " + Protagonist + ".";
+			ResultsLabels[4].text = Protagonist + " will never have her Senpai's love.";
+			LowRep = true;
+		}
 		else
 		{
-			Debug.Log("The police were not called.");
-			if (Yandere.ShoulderCamera.GoingToCounselor && !EndOfDay.Counselor.Expelled)
+			bool flag = false;
+			if (EndOfDay.Counselor.CounselorPunishments > 5 || EndOfDay.Counselor.Expelled)
 			{
-				Debug.Log("Yandere-chan was being sent to the guidance counselor at the time that end-of-day was triggered.");
-				if (Yandere.Police.Corpses - Yandere.Police.HiddenCorpses > 0)
-				{
-					ResultsLabels[0].text = "While " + Protagonist + " was in the counselor's office,";
-					ResultsLabels[1].text = "a corpse was discovered on school grounds.";
-					ResultsLabels[2].text = "The school faculty was informed of the corpse,";
-					ResultsLabels[3].text = "and the police were called to the school.";
-					ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
-				}
-				else if (WasHoldingBloodyWeapon)
-				{
-					ResultsLabels[0].text = "When " + Protagonist + " was caught,";
-					ResultsLabels[1].text = "a blood-stained weapon was found in her possession.";
-					ResultsLabels[2].text = "The school faculty was informed of the weapon,";
-					ResultsLabels[3].text = "and the police were called to the school.";
-					ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
-				}
-				else if (Yandere.Police.BloodyWeapons > 0)
-				{
-					ResultsLabels[0].text = "While " + Protagonist + " was in the counselor's office,";
-					ResultsLabels[1].text = "a faculty member discovered a mysterious bloody weapon.";
-					ResultsLabels[2].text = "The school faculty was informed of the weapon,";
-					ResultsLabels[3].text = "and the police were called to the school.";
-					ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
-				}
-				else if (Yandere.Police.LimbParent.childCount > 0)
-				{
-					ResultsLabels[0].text = "While " + Protagonist + " was in the counselor's office,";
-					ResultsLabels[1].text = "a faculty member discovered a severed limb on school grounds.";
-					ResultsLabels[2].text = "The school faculty was informed of the severed limb,";
-					ResultsLabels[3].text = "and the police were called to the school.";
-					ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
-				}
-				else if (Yandere.Police.BloodParent.childCount > 0)
-				{
-					ResultsLabels[0].text = "While " + Protagonist + " was in the counselor's office,";
-					ResultsLabels[1].text = "a faculty member discovered a puddle of blood on school grounds.";
-					ResultsLabels[2].text = "The school faculty was informed of the severed blood,";
-					ResultsLabels[3].text = "and the police were called to the school.";
-					ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
-				}
-				TeacherReport = true;
-				Show = true;
+				Debug.Log("We should expel the player without worrying about anything else.");
+				flag = true;
+				PoisonScene = false;
+				Suicide = false;
 			}
-			else if (Reputation.Reputation <= -100f)
+			if (!Suicide && !PoisonScene)
 			{
-				ResultsLabels[0].text = Protagonist + "'s bizarre conduct has been observed and discussed by many people.";
-				ResultsLabels[1].text = "Word of " + Protagonist + "'s strange behavior has reached Senpai.";
-				ResultsLabels[2].text = "Senpai is now aware that " + Protagonist + " is a deranged person.";
-				ResultsLabels[3].text = "From this day forward, Senpai will fear and avoid " + Protagonist + ".";
-				ResultsLabels[4].text = Protagonist + " will never have her Senpai's love.";
-				LowRep = true;
-			}
-			else
-			{
-				bool flag = false;
-				if (EndOfDay.Counselor.CounselorPunishments > 5 || EndOfDay.Counselor.Expelled)
+				if (Clock.HourTime < 18f)
 				{
-					Debug.Log("We should expel the player without worrying about anything else.");
-					flag = true;
-					PoisonScene = false;
-					Suicide = false;
-				}
-				if (!Suicide && !PoisonScene)
-				{
-					if (Clock.HourTime < 18f)
+					if (Yandere.InClass)
 					{
-						if (Yandere.InClass)
+						if (SkippingPastPoison)
 						{
-							if (SkippingPastPoison)
-							{
-								ResultsLabels[0].text = "A student has died from eating poisoned food.";
-							}
-							else
-							{
-								Debug.Log("Yo, we got to this part of the code.");
-								BloodyClothing -= RedPaintClothing;
-								if (BloodyClothing > 0)
-								{
-									ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of bloody clothing.";
-								}
-								else if (RedPaintClothing > 0)
-								{
-									ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of clothing that was stained with red paint.";
-								}
-								else
-								{
-									ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of a corpse.";
-								}
-								BloodyClothing += RedPaintClothing;
-							}
-						}
-						else if (Yandere.Resting && Corpses > 0)
-						{
-							ResultsLabels[0].text = Protagonist + " rests without disposing of a corpse.";
-						}
-						else if (Yandere.Resting)
-						{
-							if (GameGlobals.SenpaiMourning)
-							{
-								ResultsLabels[0].text = Protagonist + " recovers from her injuries, and is ready to leave school.";
-							}
-							else
-							{
-								ResultsLabels[0].text = Protagonist + " recovers from her injuries, and is ready to leave school.";
-							}
-						}
-						else if (GameGlobals.SenpaiMourning)
-						{
-							ResultsLabels[0].text = Protagonist + " is ready to leave school.";
+							ResultsLabels[0].text = "A student has died from eating poisoned food.";
 						}
 						else
 						{
-							ResultsLabels[0].text = Protagonist + " is ready to leave school.";
-						}
-					}
-					else
-					{
-						ResultsLabels[0].text = "The school day has ended. Faculty members must walk through the school and tell any lingering students to leave.";
-					}
-					if (Suspended || flag)
-					{
-						Yandere.Class.Portal.EndFinalEvents();
-						if (Clock.Weekday == 1)
-						{
-							RemainingDays = 5;
-						}
-						else if (Clock.Weekday == 2)
-						{
-							RemainingDays = 4;
-						}
-						else if (Clock.Weekday == 3)
-						{
-							RemainingDays = 3;
-						}
-						else if (Clock.Weekday == 4)
-						{
-							RemainingDays = 2;
-						}
-						else if (Clock.Weekday == 5)
-						{
-							RemainingDays = 1;
-						}
-						if (EndOfDay.Counselor.CounselorPunishments > 5 || EndOfDay.Counselor.Expelled)
-						{
-							ResultsLabels[0].text = Protagonist + " is no longer allowed";
-							ResultsLabels[1].text = "to attend Akademi.";
-							ResultsLabels[2].text = "This means that she will";
-							ResultsLabels[3].text = "never be able to confess";
-							ResultsLabels[4].text = "her love to her Senpai.";
-							GameOver = true;
-						}
-						else if (RemainingDays - SuspensionLength <= 0 && !StudentManager.RivalEliminated)
-						{
-							ResultsLabels[0].text = "Due to her suspension,";
-							ResultsLabels[1].text = Protagonist + " will be unable";
-							ResultsLabels[2].text = "to prevent her rival";
-							ResultsLabels[3].text = "from confessing to Senpai.";
-							ResultsLabels[4].text = Protagonist + " will never have Senpai.";
-							GameOver = true;
-						}
-						else if (SuspensionLength == 1)
-						{
-							ResultsLabels[0].text = Protagonist + " has been sent home early.";
-							ResultsLabels[1].text = "";
-							ResultsLabels[2].text = "She won't be able to see Senpai again until tomorrow.";
-							ResultsLabels[3].text = "";
-							ResultsLabels[4].text = Protagonist + "'s heart aches as she thinks of Senpai.";
-						}
-						else
-						{
-							ResultsLabels[0].text = Protagonist + " has been sent home early.";
-							ResultsLabels[1].text = "";
-							ResultsLabels[2].text = "She will have to wait " + SuspensionLength + " days before returning to school.";
-							ResultsLabels[3].text = "";
-							ResultsLabels[4].text = Protagonist + "'s heart aches as she thinks of Senpai.";
-						}
-					}
-					else
-					{
-						BloodyClothing -= RedPaintClothing;
-						int num = 0;
-						foreach (Transform item in LimbParent)
-						{
-							if (item.gameObject.activeInHierarchy)
+							Debug.Log("Yo, we got to this part of the code.");
+							BloodyClothing -= RedPaintClothing;
+							if (BloodyClothing > 0)
 							{
-								num++;
-							}
-						}
-						if (Corpses == 0 && num == 0 && BloodParent.childCount == 0 && BloodyWeapons == 0 && BloodyClothing == 0 && !SuicideScene)
-						{
-							if (Yandere.Sanity < 66.66666f || (Yandere.Bloodiness > 0f && !Yandere.RedPaint))
-							{
-								ResultsLabels[1].text = Protagonist + " is approached by a faculty member.";
-								if (Yandere.Bloodiness > 0f)
-								{
-									ResultsLabels[2].text = "The faculty member immediately notices the blood staining her clothing.";
-									ResultsLabels[3].text = Protagonist + " is not able to convince the faculty member that nothing is wrong.";
-									ResultsLabels[4].text = "The faculty member calls the police.";
-									TeacherReport = true;
-									Show = true;
-								}
-								else
-								{
-									ResultsLabels[2].text = Protagonist + " exhibited extremely erratic behavior, frightening the faculty member.";
-									ResultsLabels[3].text = "The faculty member becomes angry with " + Protagonist + ", but " + Protagonist + " leaves before the situation gets worse.";
-									ResultsLabels[4].text = Protagonist + " returns home.";
-								}
-							}
-							else if ((!StudentManager.Eighties && StudentManager.Students[2] != null && StudentManager.Students[2].Alive && Yandere.Inventory.Ring) || (StudentManager.Eighties && StudentManager.Students[30] != null && StudentManager.Students[30].Alive && Yandere.Inventory.Ring) || (Yandere.Inventory.RivalPhone && StudentManager.CommunalLocker.RivalPhone.StudentID == StudentManager.RivalID && !StudentManager.RivalEliminated) || (Yandere.Inventory.RivalPhone && StudentManager.CommunalLocker.RivalPhone.StudentID > 0 && StudentManager.CommunalLocker.RivalPhone.StudentID != StudentManager.RivalID && StudentManager.Students[StudentManager.CommunalLocker.RivalPhone.StudentID].Alive))
-							{
-								if (Yandere.Inventory.Ring)
-								{
-									ResultsLabels[1].text = "A student tells the faculty that her ring is missing.";
-									ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
-									ResultsLabels[3].text = "The stolen ring is found on " + Protagonist + "'s person.";
-									ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
-								}
-								else if (StudentManager.CommunalLocker.RivalPhone.StudentID == StudentManager.RivalID)
-								{
-									ResultsLabels[1].text = "Osana tells the faculty that her phone is missing.";
-									ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
-									ResultsLabels[3].text = "Osana's stolen phone is found on " + Protagonist + "'s person.";
-									ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
-								}
-								else
-								{
-									ResultsLabels[1].text = "A student tells the faculty that her phone is missing.";
-									ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
-									ResultsLabels[3].text = "The student's stolen phone is found on " + Protagonist + "'s person.";
-									ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
-								}
-								GameOver = true;
-								Heartbroken.Counselor.Expelled = true;
+								ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of bloody clothing.";
 							}
 							else if (RedPaintClothing > 0)
 							{
-								ResultsLabels[1].text = "While walking around the school, a faculty member discovers the clothing.";
-								ResultsLabels[2].text = "The faculty member believes that the red paint is blood.";
-								ResultsLabels[3].text = "The faculty member immediately calls the police.";
-								ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
-								TeacherReport = true;
-								Show = true;
-							}
-							else if (DateGlobals.Weekday == DayOfWeek.Friday)
-							{
-								if (StudentManager.RivalEliminated || StudentManager.SabotageProgress == 5 || StudentManager.LoveManager.ConfessToSuitor)
-								{
-									if (!StudentManager.RivalEliminated)
-									{
-										if (StudentManager.LoveManager.ConfessToSuitor)
-										{
-											StudentManager.RivalEliminated = true;
-											EndOfDay.RivalEliminationMethod = RivalEliminationType.Matchmade;
-										}
-										else if (StudentManager.SabotageProgress == 5)
-										{
-											StudentManager.RivalEliminated = true;
-											EndOfDay.RivalEliminationMethod = RivalEliminationType.Rejected;
-										}
-									}
-									ResultsLabels[0].text = Protagonist + "'s rival is no longer a threat.";
-									ResultsLabels[1].text = Protagonist + " considers confessing her love to Senpai...";
-									ResultsLabels[2].text = "...but she cannot build up the courage to speak to him.";
-									ResultsLabels[3].text = Protagonist + " follows Senpai out of school and watches him from a distance until he has returned to his home.";
-									ResultsLabels[4].text = "Then, " + Protagonist + " returns to her own home, and considers what she should do next...";
-								}
-								else
-								{
-									ResultsLabels[0].text = "It is 6:00 PM on Friday.";
-									ResultsLabels[1].text = Protagonist + "'s rival asks Senpai to meet her under the cherry tree behind the school.";
-									ResultsLabels[2].text = "As cherry blossoms fall around them...";
-									ResultsLabels[3].text = "...she confesses her feelings for Senpai.";
-									ResultsLabels[4].text = Protagonist + " watches from a short distance away...";
-									BeginConfession = true;
-								}
+								ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of clothing that was stained with red paint.";
 							}
 							else
 							{
-								if (Clock.HourTime < 18f)
+								ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of a corpse.";
+							}
+							BloodyClothing += RedPaintClothing;
+						}
+					}
+					else if (Yandere.Resting && Corpses > 0)
+					{
+						ResultsLabels[0].text = Protagonist + " rests without disposing of a corpse.";
+					}
+					else if (Yandere.Resting)
+					{
+						if (GameGlobals.SenpaiMourning)
+						{
+							ResultsLabels[0].text = Protagonist + " recovers from her injuries, and is ready to leave school.";
+						}
+						else
+						{
+							ResultsLabels[0].text = Protagonist + " recovers from her injuries, and is ready to leave school.";
+						}
+					}
+					else if (GameGlobals.SenpaiMourning)
+					{
+						ResultsLabels[0].text = Protagonist + " is ready to leave school.";
+					}
+					else
+					{
+						ResultsLabels[0].text = Protagonist + " is ready to leave school.";
+					}
+				}
+				else
+				{
+					ResultsLabels[0].text = "The school day has ended. Faculty members must walk through the school and tell any lingering students to leave.";
+				}
+				if (Suspended || flag)
+				{
+					Yandere.Class.Portal.EndFinalEvents();
+					if (Clock.Weekday == 1)
+					{
+						RemainingDays = 5;
+					}
+					else if (Clock.Weekday == 2)
+					{
+						RemainingDays = 4;
+					}
+					else if (Clock.Weekday == 3)
+					{
+						RemainingDays = 3;
+					}
+					else if (Clock.Weekday == 4)
+					{
+						RemainingDays = 2;
+					}
+					else if (Clock.Weekday == 5)
+					{
+						RemainingDays = 1;
+					}
+					if (EndOfDay.Counselor.CounselorPunishments > 5 || EndOfDay.Counselor.Expelled)
+					{
+						ResultsLabels[0].text = Protagonist + " is no longer allowed";
+						ResultsLabels[1].text = "to attend Akademi.";
+						ResultsLabels[2].text = "This means that she will";
+						ResultsLabels[3].text = "never be able to confess";
+						ResultsLabels[4].text = "her love to her Senpai.";
+						GameOver = true;
+					}
+					else if (RemainingDays - SuspensionLength <= 0 && !StudentManager.RivalEliminated)
+					{
+						ResultsLabels[0].text = "Due to her suspension,";
+						ResultsLabels[1].text = Protagonist + " will be unable";
+						ResultsLabels[2].text = "to prevent her rival";
+						ResultsLabels[3].text = "from confessing to Senpai.";
+						ResultsLabels[4].text = Protagonist + " will never have Senpai.";
+						GameOver = true;
+					}
+					else if (SuspensionLength == 1)
+					{
+						ResultsLabels[0].text = Protagonist + " has been sent home early.";
+						ResultsLabels[1].text = "";
+						ResultsLabels[2].text = "She won't be able to see Senpai again until tomorrow.";
+						ResultsLabels[3].text = "";
+						ResultsLabels[4].text = Protagonist + "'s heart aches as she thinks of Senpai.";
+					}
+					else
+					{
+						ResultsLabels[0].text = Protagonist + " has been sent home early.";
+						ResultsLabels[1].text = "";
+						ResultsLabels[2].text = "She will have to wait " + SuspensionLength + " days before returning to school.";
+						ResultsLabels[3].text = "";
+						ResultsLabels[4].text = Protagonist + "'s heart aches as she thinks of Senpai.";
+					}
+				}
+				else
+				{
+					BloodyClothing -= RedPaintClothing;
+					int num = 0;
+					foreach (Transform item in LimbParent)
+					{
+						if (item.gameObject.activeInHierarchy)
+						{
+							num++;
+						}
+					}
+					if (Corpses == 0 && num == 0 && BloodParent.childCount == 0 && BloodyWeapons == 0 && BloodyClothing == 0 && !SuicideScene)
+					{
+						if (Yandere.Sanity < 66.66666f || (Yandere.Bloodiness > 0f && !Yandere.RedPaint))
+						{
+							ResultsLabels[1].text = Protagonist + " is approached by a faculty member.";
+							if (Yandere.Bloodiness > 0f)
+							{
+								ResultsLabels[2].text = "The faculty member immediately notices the blood staining her clothing.";
+								ResultsLabels[3].text = Protagonist + " is not able to convince the faculty member that nothing is wrong.";
+								ResultsLabels[4].text = "The faculty member calls the police.";
+								TeacherReport = true;
+								Show = true;
+							}
+							else
+							{
+								ResultsLabels[2].text = Protagonist + " exhibited extremely erratic behavior, frightening the faculty member.";
+								ResultsLabels[3].text = "The faculty member becomes angry with " + Protagonist + ", but " + Protagonist + " leaves before the situation gets worse.";
+								ResultsLabels[4].text = Protagonist + " returns home.";
+							}
+						}
+						else if ((!StudentManager.Eighties && StudentManager.Students[2] != null && StudentManager.Students[2].Alive && Yandere.Inventory.Ring) || (StudentManager.Eighties && StudentManager.Students[30] != null && StudentManager.Students[30].Alive && Yandere.Inventory.Ring) || (Yandere.Inventory.RivalPhone && StudentManager.CommunalLocker.RivalPhone.StudentID == StudentManager.RivalID && !StudentManager.RivalEliminated) || (Yandere.Inventory.RivalPhone && StudentManager.CommunalLocker.RivalPhone.StudentID > 0 && StudentManager.CommunalLocker.RivalPhone.StudentID != StudentManager.RivalID && StudentManager.Students[StudentManager.CommunalLocker.RivalPhone.StudentID].Alive))
+						{
+							if (Yandere.Inventory.Ring)
+							{
+								ResultsLabels[1].text = "A student tells the faculty that her ring is missing.";
+								ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
+								ResultsLabels[3].text = "The stolen ring is found on " + Protagonist + "'s person.";
+								ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
+							}
+							else if (StudentManager.CommunalLocker.RivalPhone.StudentID == StudentManager.RivalID)
+							{
+								ResultsLabels[1].text = "Osana tells the faculty that her phone is missing.";
+								ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
+								ResultsLabels[3].text = "Osana's stolen phone is found on " + Protagonist + "'s person.";
+								ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
+							}
+							else
+							{
+								ResultsLabels[1].text = "A student tells the faculty that her phone is missing.";
+								ResultsLabels[2].text = "Suspecting theft, the faculty check all students' belongings before they are allowed to leave school.";
+								ResultsLabels[3].text = "The student's stolen phone is found on " + Protagonist + "'s person.";
+								ResultsLabels[4].text = Protagonist + " is expelled from school for stealing from another student.";
+							}
+							GameOver = true;
+							Heartbroken.Counselor.Expelled = true;
+						}
+						else if (RedPaintClothing > 0)
+						{
+							ResultsLabels[1].text = "While walking around the school, a faculty member discovers the clothing.";
+							ResultsLabels[2].text = "The faculty member believes that the red paint is blood.";
+							ResultsLabels[3].text = "The faculty member immediately calls the police.";
+							ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
+							TeacherReport = true;
+							Show = true;
+						}
+						else if (DateGlobals.Weekday == DayOfWeek.Friday)
+						{
+							if (StudentManager.RivalEliminated || StudentManager.SabotageProgress == 5 || StudentManager.LoveManager.ConfessToSuitor)
+							{
+								if (!StudentManager.RivalEliminated)
 								{
-									if (Yandere.Senpai.position.z > -75f)
+									if (StudentManager.LoveManager.ConfessToSuitor)
 									{
-										ResultsLabels[1].text = "However, she can't bring herself to leave before Senpai does.";
-										ResultsLabels[2].text = Protagonist + " waits at the school's entrance until Senpai eventually appears.";
-										ResultsLabels[3].text = "She follows him and watches him from a distance until he has returned to his home.";
-										ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
+										StudentManager.RivalEliminated = true;
+										EndOfDay.RivalEliminationMethod = RivalEliminationType.Matchmade;
 									}
-									else
+									else if (StudentManager.SabotageProgress == 5)
 									{
-										ResultsLabels[1].text = Protagonist + " quickly runs out of school, determined to catch a glimpse of Senpai as he walks home.";
-										ResultsLabels[2].text = "Eventually, she catches up to him.";
-										ResultsLabels[3].text = Protagonist + " follows Senpai and watches him from a distance until he has returned to his home.";
-										ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
+										StudentManager.RivalEliminated = true;
+										EndOfDay.RivalEliminationMethod = RivalEliminationType.Rejected;
 									}
 								}
-								else
-								{
-									ResultsLabels[1].text = "Like all other students, " + Protagonist + " is instructed to leave school.";
-									ResultsLabels[2].text = "After exiting school, " + Protagonist + " locates Senpai.";
-									ResultsLabels[3].text = Protagonist + " follows Senpai and watches him from a distance until he has returned to his home.";
-									ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
-								}
-								if (GameGlobals.SenpaiMourning)
-								{
-									ResultsLabels[1].text = "Like all other students, " + Protagonist + " is instructed to leave school.";
-									ResultsLabels[2].text = Protagonist + " leaves school.";
-									ResultsLabels[3].text = Protagonist + " returns to her home.";
-									ResultsLabels[4].text = "Her heart aches as she thinks of Senpai.";
-								}
+								ResultsLabels[0].text = Protagonist + "'s rival is no longer a threat.";
+								ResultsLabels[1].text = Protagonist + " considers confessing her love to Senpai...";
+								ResultsLabels[2].text = "...but she cannot build up the courage to speak to him.";
+								ResultsLabels[3].text = Protagonist + " follows Senpai out of school and watches him from a distance until he has returned to his home.";
+								ResultsLabels[4].text = "Then, " + Protagonist + " returns to her own home, and considers what she should do next...";
+							}
+							else
+							{
+								ResultsLabels[0].text = "It is 6:00 PM on Friday.";
+								ResultsLabels[1].text = Protagonist + "'s rival asks Senpai to meet her under the cherry tree behind the school.";
+								ResultsLabels[2].text = "As cherry blossoms fall around them...";
+								ResultsLabels[3].text = "...she confesses her feelings for Senpai.";
+								ResultsLabels[4].text = Protagonist + " watches from a short distance away...";
+								BeginConfession = true;
 							}
 						}
 						else
 						{
-							if (Corpses > 0)
+							if (Clock.HourTime < 18f)
 							{
-								ResultsLabels[1].text = "While walking around the school, a faculty member discovers a corpse.";
-								ResultsLabels[2].text = "The faculty member immediately calls the police.";
-								ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
-								ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
-								TeacherReport = true;
-								Show = true;
-							}
-							else if (num > 0)
-							{
-								ResultsLabels[1].text = "While walking around the school, a faculty member discovers a dismembered body part.";
-								ResultsLabels[2].text = "The faculty member decides to call the police.";
-								ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
-								ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
-								TeacherReport = true;
-								Show = true;
-							}
-							else if (BloodParent.childCount > 0 || BloodyClothing > 0)
-							{
-								ResultsLabels[1].text = "While walking around the school, a faculty member discovers a mysterious blood stain.";
-								ResultsLabels[2].text = "The faculty member decides to call the police.";
-								ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
-								ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
-								TeacherReport = true;
-								Show = true;
-							}
-							else if (BloodyWeapons > 0)
-							{
-								ResultsLabels[1].text = "While walking around the school, a faculty member discovers a mysterious bloody weapon.";
-								ResultsLabels[2].text = "The faculty member decides to call the police.";
-								ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
-								ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
-								TeacherReport = true;
-								Show = true;
-							}
-							else if (SuicideScene)
-							{
-								ResultsLabels[1].text = "While walking around the school, a faculty member discovers a pair of shoes on the rooftop.";
-								ResultsLabels[2].text = "The faculty member fears that there has been a suicide, but cannot find a corpse anywhere. The faculty member does not take any action.";
-								ResultsLabels[3].text = Protagonist + " leaves school and follows Senpai, watching him as he walks home.";
-								ResultsLabels[4].text = "Once he is safely home, " + Protagonist + " returns to her own home.";
-								if (GameGlobals.SenpaiMourning)
+								if (Yandere.Senpai.position.z > -75f)
 								{
-									ResultsLabels[3].text = Protagonist + " leaves school.";
-									ResultsLabels[4].text = Protagonist + " returns home.";
+									ResultsLabels[1].text = "However, she can't bring herself to leave before Senpai does.";
+									ResultsLabels[2].text = Protagonist + " waits at the school's entrance until Senpai eventually appears.";
+									ResultsLabels[3].text = "She follows him and watches him from a distance until he has returned to his home.";
+									ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
+								}
+								else
+								{
+									ResultsLabels[1].text = Protagonist + " quickly runs out of school, determined to catch a glimpse of Senpai as he walks home.";
+									ResultsLabels[2].text = "Eventually, she catches up to him.";
+									ResultsLabels[3].text = Protagonist + " follows Senpai and watches him from a distance until he has returned to his home.";
+									ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
 								}
 							}
-							if (SelfReported)
+							else
 							{
-								ResultsLabels[0].text = Protagonist + " informs a faculty member that something alarming is present at school.";
-								ResultsLabels[1].text = "The faculty member confirms that " + Protagonist + " is telling the truth.";
+								ResultsLabels[1].text = "Like all other students, " + Protagonist + " is instructed to leave school.";
+								ResultsLabels[2].text = "After exiting school, " + Protagonist + " locates Senpai.";
+								ResultsLabels[3].text = Protagonist + " follows Senpai and watches him from a distance until he has returned to his home.";
+								ResultsLabels[4].text = "Then, " + Protagonist + " returns to her house.";
+							}
+							if (GameGlobals.SenpaiMourning)
+							{
+								ResultsLabels[1].text = "Like all other students, " + Protagonist + " is instructed to leave school.";
+								ResultsLabels[2].text = Protagonist + " leaves school.";
+								ResultsLabels[3].text = Protagonist + " returns to her home.";
+								ResultsLabels[4].text = "Her heart aches as she thinks of Senpai.";
 							}
 						}
 					}
-				}
-				else if (Suicide)
-				{
-					if (!Yandere.InClass)
-					{
-						ResultsLabels[0].text = "The school day has ended. Faculty members must walk through the school and tell any lingering students to leave.";
-					}
-					else if (Corpses > 0)
-					{
-						ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of a corpse.";
-					}
 					else
 					{
-						ResultsLabels[0].text = Protagonist + " attempts to attend class without cleaning up some blood.";
-					}
-					ResultsLabels[1].text = "While walking around the school, a faculty member discovers a corpse.";
-					if (SuicideNote)
-					{
-						ResultsLabels[2].text = "It appears as though a student has committed suicide.";
-					}
-					else
-					{
-						ResultsLabels[2].text = "It appears as though a student has fallen from the school rooftop.";
-					}
-					ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
-					ResultsLabels[4].text = "The faculty members agree to call the police and report the student's death.";
-					TeacherReport = true;
-					Show = true;
-					if (SelfReported)
-					{
-						ResultsLabels[0].text = Protagonist + " informs a faculty member that something alarming is present at school.";
-						ResultsLabels[1].text = "The faculty member confirms that " + Protagonist + " is telling the truth.";
+						if (Corpses > 0)
+						{
+							ResultsLabels[1].text = "While walking around the school, a faculty member discovers a corpse.";
+							ResultsLabels[2].text = "The faculty member immediately calls the police.";
+							ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
+							ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
+							TeacherReport = true;
+							Show = true;
+						}
+						else if (num > 0)
+						{
+							ResultsLabels[1].text = "While walking around the school, a faculty member discovers a dismembered body part.";
+							ResultsLabels[2].text = "The faculty member decides to call the police.";
+							ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
+							ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
+							TeacherReport = true;
+							Show = true;
+						}
+						else if (BloodParent.childCount > 0 || BloodyClothing > 0)
+						{
+							ResultsLabels[1].text = "While walking around the school, a faculty member discovers a mysterious blood stain.";
+							ResultsLabels[2].text = "The faculty member decides to call the police.";
+							ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
+							ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
+							TeacherReport = true;
+							Show = true;
+						}
+						else if (BloodyWeapons > 0)
+						{
+							ResultsLabels[1].text = "While walking around the school, a faculty member discovers a mysterious bloody weapon.";
+							ResultsLabels[2].text = "The faculty member decides to call the police.";
+							ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
+							ResultsLabels[4].text = "The faculty do not allow any students to leave the school until a police investigation has taken place.";
+							TeacherReport = true;
+							Show = true;
+						}
+						else if (SuicideScene)
+						{
+							ResultsLabels[1].text = "While walking around the school, a faculty member discovers a pair of shoes on the rooftop.";
+							ResultsLabels[2].text = "The faculty member fears that there has been a suicide, but cannot find a corpse anywhere. The faculty member does not take any action.";
+							ResultsLabels[3].text = Protagonist + " leaves school and follows Senpai, watching him as he walks home.";
+							ResultsLabels[4].text = "Once he is safely home, " + Protagonist + " returns to her own home.";
+							if (GameGlobals.SenpaiMourning)
+							{
+								ResultsLabels[3].text = Protagonist + " leaves school.";
+								ResultsLabels[4].text = Protagonist + " returns home.";
+							}
+						}
+						if (SelfReported)
+						{
+							ResultsLabels[0].text = Protagonist + " informs a faculty member that something alarming is present at school.";
+							ResultsLabels[1].text = "The faculty member confirms that " + Protagonist + " is telling the truth.";
+						}
 					}
 				}
-				else if (PoisonScene)
+			}
+			else if (Suicide)
+			{
+				if (!Yandere.InClass)
 				{
-					ResultsLabels[0].text = "A faculty member discovers the student who " + Protagonist + " poisoned.";
-					ResultsLabels[1].text = "The faculty member calls for an ambulance immediately.";
-					ResultsLabels[2].text = "The faculty member suspects that the student's death was a murder.";
-					ResultsLabels[3].text = "The faculty member also calls for the police.";
-					ResultsLabels[4].text = "The school's students are not allowed to leave until a police investigation has taken place.";
-					TeacherReport = true;
-					Show = true;
+					ResultsLabels[0].text = "The school day has ended. Faculty members must walk through the school and tell any lingering students to leave.";
 				}
+				else if (Corpses > 0)
+				{
+					ResultsLabels[0].text = Protagonist + " attempts to attend class without disposing of a corpse.";
+				}
+				else
+				{
+					ResultsLabels[0].text = Protagonist + " attempts to attend class without cleaning up some blood.";
+				}
+				ResultsLabels[1].text = "While walking around the school, a faculty member discovers a corpse.";
+				if (SuicideNote)
+				{
+					ResultsLabels[2].text = "It appears as though a student has committed suicide.";
+				}
+				else
+				{
+					ResultsLabels[2].text = "It appears as though a student has fallen from the school rooftop.";
+				}
+				ResultsLabels[3].text = "The faculty member informs the rest of the faculty about her discovery.";
+				ResultsLabels[4].text = "The faculty members agree to call the police and report the student's death.";
+				TeacherReport = true;
+				Show = true;
+				if (SelfReported)
+				{
+					ResultsLabels[0].text = Protagonist + " informs a faculty member that something alarming is present at school.";
+					ResultsLabels[1].text = "The faculty member confirms that " + Protagonist + " is telling the truth.";
+				}
+			}
+			else if (PoisonScene)
+			{
+				ResultsLabels[0].text = "A faculty member discovers the student who " + Protagonist + " poisoned.";
+				ResultsLabels[1].text = "The faculty member calls for an ambulance immediately.";
+				ResultsLabels[2].text = "The faculty member suspects that the student's death was a murder.";
+				ResultsLabels[3].text = "The faculty member also calls for the police.";
+				ResultsLabels[4].text = "The school's students are not allowed to leave until a police investigation has taken place.";
+				TeacherReport = true;
+				Show = true;
 			}
 		}
 		if (ChallengeGlobals.NoAlerts && Show)
@@ -1054,7 +1047,6 @@ public class PoliceScript : MonoBehaviour
 
 	public void KillStudents()
 	{
-		Debug.Log("KillStudents() is being called.");
 		for (int i = 1; i < 101; i++)
 		{
 			if (StudentGlobals.GetStudentDead(i) || StudentGlobals.GetStudentKidnapped(i) || !(StudentManager.StudentReps[i] < -150f))
@@ -1105,7 +1097,6 @@ public class PoliceScript : MonoBehaviour
 				}
 			}
 		}
-		Debug.Log("Deaths is " + Deaths + ", Corpses is " + Corpses + ".");
 		if (Deaths > 0)
 		{
 			PlayerGlobals.Kills += Deaths;

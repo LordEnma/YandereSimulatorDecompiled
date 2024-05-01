@@ -29,6 +29,10 @@ public class RivalRejectionProgressScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			RivalHead.mainTexture = RivalHeads[DateGlobals.Week];
+			if (GameGlobals.CustomMode)
+			{
+				RivalHead.mainTexture = RivalHeads[0];
+			}
 		}
 		else
 		{

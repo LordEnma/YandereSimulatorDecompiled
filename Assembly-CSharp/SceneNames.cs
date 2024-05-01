@@ -111,4 +111,6 @@ public static class SceneNames
 	public const string FunGameOverScene = "FunGameOverScene";
 
 	public const string OriginDreamScene = "OriginDreamScene";
+
+	public const string VisualNovelScene = "VisualNovelScene";
 }

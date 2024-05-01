@@ -217,8 +217,6 @@ public class GenericRivalBagScript : MonoBehaviour
 			if (!Eighties)
 			{
 				DesiredTraits = ModernDesiredTraits;
-				Prompt.enabled = false;
-				Prompt.Hide();
 			}
 			Initialized = true;
 		}

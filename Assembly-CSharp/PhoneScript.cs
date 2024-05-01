@@ -102,6 +102,16 @@ public class PhoneScript : MonoBehaviour
 		if (DateGlobals.Week > 1 && DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
 			Darkness.color = new Color(0f, 0f, 0f, 0f);
+			if (DateGlobals.Week == 3)
+			{
+				VoiceClips = AmaiMessages.OsanaClips;
+				Speaker = AmaiMessages.OsanaSpeakers;
+				Text = AmaiMessages.OsanaTexts;
+				Height = AmaiMessages.OsanaHeights;
+				NonlethalClip = AmaiMessages.AltClips;
+				NonlethalText = AmaiMessages.AltTexts;
+				NonlethalHeight = AmaiMessages.AltHeights;
+			}
 		}
 		if (EventGlobals.KidnapConversation)
 		{
@@ -126,10 +136,19 @@ public class PhoneScript : MonoBehaviour
 			Debug.Log("The game believes that, right now, we're supposed to be seeing a text message conversation with a rival.");
 			if (DateGlobals.Week == 1)
 			{
+				Debug.Log("It's Week 1, so we should be having a conversation with Osana about her cat...");
 				VoiceClips = OsanaMessages.OsanaClips;
 				Speaker = OsanaMessages.OsanaSpeakers;
 				Text = OsanaMessages.OsanaTexts;
 				Height = OsanaMessages.OsanaHeights;
+			}
+			else if (DateGlobals.Week == 2)
+			{
+				Debug.Log("It's Week 2, so we should be having a conversation with Amai about rats...");
+				VoiceClips = AmaiMessages.OsanaClips;
+				Speaker = AmaiMessages.OsanaSpeakers;
+				Text = AmaiMessages.OsanaTexts;
+				Height = AmaiMessages.OsanaHeights;
 			}
 			EventGlobals.OsanaConversation = true;
 			EventGlobals.LivingRoom = true;
@@ -271,9 +290,13 @@ public class PhoneScript : MonoBehaviour
 			if (Darkness.color.a >= 1f)
 			{
 				GameGlobals.LastInputType = (int)InputDevice.Type;
-				if (DateGlobals.Week == 2)
+				if (!EventGlobals.OsanaConversation && DateGlobals.Week == 2)
 				{
-					GameGlobals.TransitionToPostCredits = true;
+					SceneManager.LoadScene("PostCreditsScene");
+				}
+				else if (!EventGlobals.OsanaConversation && DateGlobals.Week == 3)
+				{
+					GameGlobals.DarkEnding = true;
 					SceneManager.LoadScene("CreditsScene");
 				}
 				else if (DateGlobals.Weekday == DayOfWeek.Sunday)
@@ -292,7 +315,14 @@ public class PhoneScript : MonoBehaviour
 				}
 				else if (EventGlobals.LivingRoom)
 				{
-					SceneManager.LoadScene("LivingRoomScene");
+					if (DateGlobals.Week == 1)
+					{
+						SceneManager.LoadScene("LivingRoomScene");
+					}
+					else
+					{
+						SceneManager.LoadScene("VisualNovelScene");
+					}
 				}
 				else
 				{

@@ -41,6 +41,12 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 
 	public float Timer;
 
+	public float RotX;
+
+	public float RotY;
+
+	public float RotZ;
+
 	public float X;
 
 	public float Y;
@@ -51,8 +57,14 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 
 	public bool RestoreDOF;
 
+	private void Awake()
+	{
+		Time.timeScale = 1f;
+	}
+
 	private void Start()
 	{
+		Time.timeScale = 1f;
 		if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday && GameGlobals.CorkboardScene)
 		{
 			Debug.Log("The Sunday Rival Cutscene thinks that it's time to play.");
@@ -87,6 +99,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 			HomeYandere.HomeCamera.UpdateDOF(1f);
 			SmartphoneScreen.SetActive(value: false);
 			SenpaiLight.SetActive(value: true);
+			EventGlobals.OsanaConversation = false;
 		}
 		else
 		{
@@ -170,11 +183,19 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		{
 			Timer += Time.deltaTime;
 			Speed += Time.deltaTime;
-			if (Timer > 3.66666f)
+			if (HomeYandere.CharacterAnimation["f02_postOsana_00"].time >= 20.65453f)
 			{
-				Smartphone.parent = RightHand;
-				Smartphone.transform.localPosition = new Vector3(0.025f, 0.0075f, 0.05f);
-				Smartphone.transform.localEulerAngles = new Vector3(0f, 180f, 180f);
+				if (Smartphone.parent != RightHand)
+				{
+					Smartphone.parent = RightHand;
+					RotX = -0.6626282f;
+					RotY = -179.8724f;
+					RotZ = -169.0661f;
+				}
+				Smartphone.transform.localPosition = Vector3.Lerp(Smartphone.transform.localPosition, new Vector3(0.025f, 0.0075f, 0.05f), Time.deltaTime * 10f);
+				RotX = Mathf.Lerp(RotX, 0f, Time.deltaTime);
+				RotY = Mathf.Lerp(RotY, -180f, Time.deltaTime);
+				RotZ = Mathf.Lerp(RotZ, -180f, Time.deltaTime);
 			}
 			if (HomeYandere.CharacterAnimation["f02_postOsana_00"].time >= HomeYandere.CharacterAnimation["f02_postOsana_00"].length)
 			{

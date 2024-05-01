@@ -37,9 +37,13 @@ public class BusStopScript : MonoBehaviour
 
 	public Animation BakerySenpai;
 
+	public Animation SecondKizana;
+
 	public Animation BakeryAmai;
 
 	public Animation SecondAmai;
+
+	public Animation FirstAmai;
 
 	public Animation ThirdAmai;
 
@@ -83,6 +87,8 @@ public class BusStopScript : MonoBehaviour
 
 	public int Phase = 1;
 
+	public int Week;
+
 	public float BakeryFocus;
 
 	public float ExtraTimer;
@@ -125,9 +131,35 @@ public class BusStopScript : MonoBehaviour
 
 	public AudioSource Audio;
 
+	public AudioClip Sigh;
+
 	public string[] EliminationDescriptions;
 
 	public string[] Subtitles;
+
+	public GameObject KizanaClothing;
+
+	public GameObject KizanaChoker;
+
+	public GameObject KizanaHair;
+
+	public GameObject AmaiClothing;
+
+	public GameObject AmaiCupcakes;
+
+	public GameObject AmaiHair;
+
+	public GameObject BakeryKizanaClothing;
+
+	public GameObject BakeryKizanaChoker;
+
+	public GameObject BakeryKizanaHair;
+
+	public GameObject BakeryAmaiClothing;
+
+	public GameObject BakeryAmaiHair;
+
+	public GameObject Environment;
 
 	public bool Smile;
 
@@ -140,6 +172,7 @@ public class BusStopScript : MonoBehaviour
 		Renderer.material.color = new Color(0f, 0f, 0f, 1f);
 		base.transform.position = new Vector3(0.375f, 0.5f, 2.5f);
 		base.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+		SecondKizana.gameObject.SetActive(value: false);
 		SecondAmai.gameObject.SetActive(value: false);
 		ThirdAmai.gameObject.SetActive(value: false);
 		SenpaiAnim["sadFace_00"].layer = 1;
@@ -148,6 +181,7 @@ public class BusStopScript : MonoBehaviour
 		settings.focusDistance = 1.2f;
 		settings.aperture = 5.6f;
 		Profile.depthOfField.settings = settings;
+		Week = DateGlobals.Week;
 		Subtitle.text = "";
 		if (GameGlobals.RivalEliminationID == 0)
 		{
@@ -162,6 +196,37 @@ public class BusStopScript : MonoBehaviour
 		}
 		Time.timeScale = 1f;
 		Debug.Log("GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID + ", and this cutscene's RivalEliminationID is: " + RivalEliminationID);
+		if (DateGlobals.Week > 1)
+		{
+			Subtitles[0] = "...(sigh)...";
+			Speech[0] = Sigh;
+			FirstAmai.Play("f02_walkElegant_00");
+			KizanaClothing.SetActive(value: true);
+			KizanaChoker.SetActive(value: true);
+			KizanaHair.SetActive(value: true);
+			AmaiClothing.SetActive(value: false);
+			AmaiCupcakes.SetActive(value: false);
+			AmaiHair.SetActive(value: false);
+			if (GameGlobals.SenpaiMeetsNewRival)
+			{
+				Environment.transform.position = new Vector3(0f, -2.975f, 1f);
+				Environment.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+				BakeryAmai.GetComponent<Animation>()["f02_smugEyes_00"].layer = 2;
+				BakeryAmai.GetComponent<Animation>().Play("f02_smugEyes_00");
+				BakeryAmai.GetComponent<Animation>()["f02_smugEyes_00"].weight = 1f;
+				BakeryKizanaClothing.SetActive(value: true);
+				BakeryKizanaChoker.SetActive(value: true);
+				BakeryKizanaHair.SetActive(value: true);
+				BakeryAmaiClothing.SetActive(value: false);
+				BakeryAmaiHair.SetActive(value: false);
+				Phase = 20;
+			}
+		}
+		else
+		{
+			Attacher.gameObject.SetActive(value: true);
+			BakerAttacher.gameObject.SetActive(value: true);
+		}
 	}
 
 	private void Update()
@@ -231,54 +296,62 @@ public class BusStopScript : MonoBehaviour
 					}
 				}
 			}
-			if (SenpaiRenderer.sharedMesh != CasualMesh)
-			{
-				SenpaiRenderer.sharedMesh = CasualMesh;
-				SenpaiRenderer.materials[0].mainTexture = CasualClothes;
-				SenpaiRenderer.materials[1].mainTexture = Cosmetic.FaceTextures[Cosmetic.SkinColor];
-				SenpaiRenderer.materials[2].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
-			}
-			if (NewSenpaiRenderer.sharedMesh != CasualMesh)
-			{
-				NewSenpaiRenderer.sharedMesh = CasualMesh;
-				NewSenpaiRenderer.materials[0].mainTexture = CasualClothes;
-				NewSenpaiRenderer.materials[1].mainTexture = Cosmetic.FaceTextures[Cosmetic.SkinColor];
-				NewSenpaiRenderer.materials[2].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
-			}
-			if (BakerSenpaiRenderer.sharedMesh != CasualMesh)
-			{
-				BakerSenpaiRenderer.sharedMesh = CasualMesh;
-				BakerSenpaiRenderer.materials[0].mainTexture = CasualClothes;
-				BakerSenpaiRenderer.materials[1].mainTexture = Cosmetic.FaceTextures[Cosmetic.SkinColor];
-				BakerSenpaiRenderer.materials[2].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
-			}
+			SenpaiRendererCheck();
 			base.transform.position += new Vector3(0f, 0f, Speed * Time.deltaTime);
 			Amai.transform.position -= new Vector3(1f * Time.deltaTime, 0f, 0f);
 			if (Amai.transform.position.x < -2f)
 			{
-				SecondAmai.gameObject.SetActive(value: true);
-				if (SecondAmai["f02_motherRecipe_00"].speed == 1f)
+				if (Week == 1)
 				{
-					SecondAmai["f02_motherRecipe_00"].speed = 0.66666f;
-					SecondAmai["f02_motherRecipe_00"].time = 16f;
-					SecondAmai["f02_carry_00"].layer = 1;
-					SecondAmai.Play("f02_carry_00");
+					SecondAmai.gameObject.SetActive(value: true);
+					if (SecondAmai["f02_motherRecipe_00"].speed == 1f)
+					{
+						SecondAmai["f02_motherRecipe_00"].speed = 0.66666f;
+						SecondAmai["f02_motherRecipe_00"].time = 16f;
+						SecondAmai["f02_carry_00"].layer = 1;
+						SecondAmai.Play("f02_carry_00");
+					}
+				}
+				else
+				{
+					SecondKizana.gameObject.SetActive(value: true);
 				}
 			}
-			if (Amai.transform.position.x < -10f)
+			if (Week == 1)
 			{
-				UpdateDOF(1f);
-				base.transform.position = new Vector3(0.55f, 1f, 1.55f);
-				base.transform.eulerAngles = new Vector3(0f, -135f, 0f);
-				SenpaiAnim.transform.parent.gameObject.SetActive(value: false);
-				SecondAmai.gameObject.SetActive(value: false);
-				NewSenpaiAnim.gameObject.SetActive(value: true);
-				NewAmaiAnim.gameObject.SetActive(value: true);
-				Amai.gameObject.SetActive(value: false);
-				Rotation = -125f;
-				SpeechID = 0;
-				Timer = 0f;
-				Phase++;
+				if (Amai.transform.position.x < -10f)
+				{
+					UpdateDOF(1f);
+					base.transform.position = new Vector3(0.55f, 1f, 1.55f);
+					base.transform.eulerAngles = new Vector3(0f, -135f, 0f);
+					SenpaiAnim.transform.parent.gameObject.SetActive(value: false);
+					SecondAmai.gameObject.SetActive(value: false);
+					NewSenpaiAnim.gameObject.SetActive(value: true);
+					NewAmaiAnim.gameObject.SetActive(value: true);
+					Amai.gameObject.SetActive(value: false);
+					Rotation = -125f;
+					SpeechID = 0;
+					Timer = 0f;
+					Phase++;
+				}
+			}
+			else
+			{
+				if (Amai.transform.position.x < -7.5f)
+				{
+					Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime * 0.5f);
+					SkipPanel.alpha -= Time.deltaTime;
+					Renderer.material.color = new Color(0f, 0f, 0f, Alpha);
+					if (Alpha > 0.999f)
+					{
+						GameGlobals.SenpaiMeetsNewRival = true;
+						SceneManager.LoadScene("VisualNovelScene");
+					}
+				}
+				if (Amai.transform.position.x < -5f)
+				{
+					SecondKizana["f02_girlWalk_LookLeft_00"].speed = Mathf.MoveTowards(SecondKizana["f02_girlWalk_LookLeft_00"].speed, 0f, Time.deltaTime * 0.11f);
+				}
 			}
 		}
 		else if (Phase == 2)
@@ -678,6 +751,7 @@ public class BusStopScript : MonoBehaviour
 		}
 		else if (Phase == 20)
 		{
+			SenpaiRendererCheck();
 			base.transform.position = new Vector3(-0.75f, 1.1f, 7.75f);
 			base.transform.eulerAngles = new Vector3(0f, 30f, 0f);
 			Renderer.material.color = new Color(0f, 0f, 0f, 1f);
@@ -696,7 +770,18 @@ public class BusStopScript : MonoBehaviour
 		}
 		else if (Phase == 21)
 		{
-			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.5f);
+			if (!EndEarly)
+			{
+				Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.5f);
+			}
+			else
+			{
+				Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime);
+				if (Alpha > 0.999f)
+				{
+					ExitCutscene();
+				}
+			}
 			Renderer.material.color = new Color(0f, 0f, 0f, Alpha);
 			Timer += Time.deltaTime;
 			if (Timer > 13.5f)
@@ -754,6 +839,31 @@ public class BusStopScript : MonoBehaviour
 		}
 	}
 
+	private void SenpaiRendererCheck()
+	{
+		if (SenpaiRenderer.sharedMesh != CasualMesh)
+		{
+			SenpaiRenderer.sharedMesh = CasualMesh;
+			SenpaiRenderer.materials[0].mainTexture = CasualClothes;
+			SenpaiRenderer.materials[1].mainTexture = Cosmetic.FaceTextures[Cosmetic.SkinColor];
+			SenpaiRenderer.materials[2].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+		}
+		if (NewSenpaiRenderer.sharedMesh != CasualMesh)
+		{
+			NewSenpaiRenderer.sharedMesh = CasualMesh;
+			NewSenpaiRenderer.materials[0].mainTexture = CasualClothes;
+			NewSenpaiRenderer.materials[1].mainTexture = Cosmetic.FaceTextures[Cosmetic.SkinColor];
+			NewSenpaiRenderer.materials[2].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+		}
+		if (BakerSenpaiRenderer.sharedMesh != CasualMesh)
+		{
+			BakerSenpaiRenderer.sharedMesh = CasualMesh;
+			BakerSenpaiRenderer.materials[0].mainTexture = CasualClothes;
+			BakerSenpaiRenderer.materials[1].mainTexture = Cosmetic.FaceTextures[Cosmetic.SkinColor];
+			BakerSenpaiRenderer.materials[2].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+		}
+	}
+
 	private void UpdateDOF(float Focus)
 	{
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
@@ -779,9 +889,18 @@ public class BusStopScript : MonoBehaviour
 
 	private void ExitCutscene()
 	{
-		DateGlobals.Week = 2;
-		DateGlobals.PassDays = 0;
-		DateGlobals.Weekday = DayOfWeek.Sunday;
-		SceneManager.LoadScene("CalendarScene");
+		if (GameGlobals.SenpaiMeetsNewRival || DateGlobals.Week == 1)
+		{
+			DateGlobals.Week++;
+			DateGlobals.PassDays = 0;
+			DateGlobals.Weekday = DayOfWeek.Sunday;
+			GameGlobals.SenpaiMeetsNewRival = false;
+			SceneManager.LoadScene("CalendarScene");
+		}
+		else
+		{
+			GameGlobals.SenpaiMeetsNewRival = true;
+			SceneManager.LoadScene("VisualNovelScene");
+		}
 	}
 }

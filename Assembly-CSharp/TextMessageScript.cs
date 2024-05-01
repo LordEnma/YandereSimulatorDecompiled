@@ -10,11 +10,22 @@ public class TextMessageScript : MonoBehaviour
 
 	public bool Right;
 
+	public UITexture AttachmentTexture;
+
+	public Texture[] RivalPhotos;
+
 	private void Start()
 	{
-		if (!Attachment && Image != null)
+		if (!Attachment)
 		{
-			Image.SetActive(value: false);
+			if (Image != null)
+			{
+				Image.SetActive(value: false);
+			}
+		}
+		else if (DateGlobals.Week > 2)
+		{
+			AttachmentTexture.mainTexture = RivalPhotos[DateGlobals.Week];
 		}
 		if (Right && EventGlobals.OsanaConversation)
 		{

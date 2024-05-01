@@ -36,6 +36,8 @@ public class ModernRivalSabotageScript : MonoBehaviour
 
 	public bool Animate;
 
+	public float TimeLimit;
+
 	public float Timer;
 
 	public int Phase;
@@ -318,6 +320,10 @@ public class ModernRivalSabotageScript : MonoBehaviour
 			{
 				SabotageChecklist.alpha = Mathf.MoveTowards(SabotageChecklist.alpha, 0f, Time.deltaTime);
 			}
+			if (Prompt.Yandere.StudentManager.Clock.HourTime > TimeLimit)
+			{
+				Disable();
+			}
 		}
 	}
 
@@ -342,6 +348,10 @@ public class ModernRivalSabotageScript : MonoBehaviour
 
 	public void Disable()
 	{
+		if (SabotageChecklist != null)
+		{
+			SabotageChecklist.alpha = 0f;
+		}
 		Prompt.Hide();
 		Prompt.enabled = false;
 		base.enabled = false;

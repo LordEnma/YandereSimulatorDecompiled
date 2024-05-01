@@ -839,6 +839,10 @@ public class PickUpScript : MonoBehaviour
 				Prompt.HideButton[1] = true;
 			}
 			Prompt.HideButton[3] = false;
+			if (Bucket.Spilling)
+			{
+				Bucket.Empty();
+			}
 		}
 		if (!DoNotTeleport && (Vector3.Distance(base.transform.position, OriginalPosition) < 1f || Vector3.Distance(Yandere.transform.position, OriginalPosition) < 1f))
 		{

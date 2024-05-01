@@ -275,9 +275,9 @@ public class DatingMinigameScript : MonoBehaviour
 		if (DateGlobals.Week == 2)
 		{
 			GiftIcons[1].mainTexture = AmaiGifts[1];
-			GiftIcons[1].mainTexture = AmaiGifts[2];
-			GiftIcons[2].mainTexture = AmaiGifts[3];
-			GiftIcons[3].mainTexture = AmaiGifts[4];
+			GiftIcons[2].mainTexture = AmaiGifts[2];
+			GiftIcons[3].mainTexture = AmaiGifts[3];
+			GiftIcons[4].mainTexture = AmaiGifts[4];
 			ComplimentLabels[1].text = "You're very nice!";
 			Compliments[1] = "Aww! Why, thank you! I always try my best to bring a smiile to everyone around me!";
 			ComplimentLabels[2].text = "You're very sexy!";
@@ -840,7 +840,14 @@ public class DatingMinigameScript : MonoBehaviour
 						GiftStatusNeedsSaving = true;
 						GiftsPurchased[GiftSelected] = false;
 						GiftsGiven[GiftSelected] = true;
-						Rival.Cosmetic.CatGifts[GiftSelected].SetActive(value: true);
+						if (StudentManager.Week == 1)
+						{
+							Rival.Cosmetic.CatGifts[GiftSelected].SetActive(value: true);
+						}
+						else
+						{
+							Rival.Cosmetic.CupcakeGifts[GiftSelected].SetActive(value: true);
+						}
 						UILabel uILabel5 = Labels[5];
 						uILabel5.color = new Color(uILabel5.color.r, uILabel5.color.g, uILabel5.color.b, 0.5f);
 						GivingGift = false;

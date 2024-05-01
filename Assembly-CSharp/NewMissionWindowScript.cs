@@ -370,7 +370,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		{
 			Target[Column + Number] = 2;
 		}
-		else if (Target[Column + Number] == 12 && !Eighties)
+		else if (Target[Column + Number] == 13 && !Eighties)
 		{
 			Target[Column + Number] = 21;
 		}
@@ -411,8 +411,8 @@ public class NewMissionWindowScript : MonoBehaviour
 		}
 		else if (Target[Column + Number] == 20 && !Eighties)
 		{
-			Target[Column + Number] = 11;
-			Debug.Log("Correcting to 11.");
+			Target[Column + Number] = 12;
+			Debug.Log("Correcting to 12.");
 		}
 		else if (Target[Column + Number] == -1)
 		{
@@ -463,7 +463,7 @@ public class NewMissionWindowScript : MonoBehaviour
 			{
 				UnsafeNumbers[j] = Target[j];
 			}
-			while (Target[i] == UnsafeNumbers[1] || Target[i] == UnsafeNumbers[2] || Target[i] == UnsafeNumbers[3] || Target[i] == UnsafeNumbers[4] || Target[i] == UnsafeNumbers[5] || Target[i] == UnsafeNumbers[6] || Target[i] == UnsafeNumbers[7] || Target[i] == UnsafeNumbers[8] || Target[i] == UnsafeNumbers[9] || Target[i] == UnsafeNumbers[10] || Target[i] == 0 || (!Eighties && Target[i] > 11 && Target[i] < 21))
+			while (Target[i] == UnsafeNumbers[1] || Target[i] == UnsafeNumbers[2] || Target[i] == UnsafeNumbers[3] || Target[i] == UnsafeNumbers[4] || Target[i] == UnsafeNumbers[5] || Target[i] == UnsafeNumbers[6] || Target[i] == UnsafeNumbers[7] || Target[i] == UnsafeNumbers[8] || Target[i] == UnsafeNumbers[9] || Target[i] == UnsafeNumbers[10] || Target[i] == 0 || (!Eighties && Target[i] > 12 && Target[i] < 21))
 			{
 				Increment(i);
 			}

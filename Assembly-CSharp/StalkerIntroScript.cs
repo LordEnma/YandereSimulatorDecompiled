@@ -237,7 +237,16 @@ public class StalkerIntroScript : MonoBehaviour
 	{
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 		settings.focusDistance = Value;
-		settings.aperture = Aperture;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(Aperture);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
 		Profile.depthOfField.settings = settings;
 	}
 

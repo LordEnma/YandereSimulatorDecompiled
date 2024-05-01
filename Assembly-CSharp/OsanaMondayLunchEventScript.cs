@@ -394,7 +394,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Clock.Period > 3 || Senpai.Alarmed || Rival.Alarmed || Rival.Wet || Rival.GoAway || Senpai.GoAway || Clock.Police.ShowResults)
+		if (Clock.Period > 3 || Senpai.Alarmed || Rival.Attacked || Rival.Alarmed || Rival.Wet || Rival.GoAway || Senpai.GoAway || Clock.Police.ShowResults)
 		{
 			if (Senpai == null)
 			{
@@ -477,7 +477,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		Rival.Prompt.enabled = true;
 		Rival.InEvent = false;
 		Rival.Private = false;
-		if (!Rival.Splashed)
+		if (!Rival.Splashed && !Rival.Attacked)
 		{
 			Rival.Pathfinding.canSearch = true;
 			Rival.Pathfinding.canMove = true;

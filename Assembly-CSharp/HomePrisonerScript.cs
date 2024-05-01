@@ -368,6 +368,7 @@ public class HomePrisonerScript : MonoBehaviour
 					StudentGlobals.Prisoners--;
 					HomeCamera.HomeDarkness.Disposing = true;
 					HomeCamera.HomeDarkness.FadeOut = true;
+					HomeCamera.OutOfRoom = false;
 					base.gameObject.SetActive(value: false);
 				}
 				else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -411,6 +412,8 @@ public class HomePrisonerScript : MonoBehaviour
 				}
 				else
 				{
+					Debug.Log("Now bringing a prisoner to school.");
+					HomeCamera.OutOfRoom = false;
 					Darkness.FadeOut = true;
 				}
 				HomeWindow.Show = false;

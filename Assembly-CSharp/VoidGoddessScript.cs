@@ -50,6 +50,8 @@ public class VoidGoddessScript : MonoBehaviour
 
 	public int ID;
 
+	public Texture BlankPortrait;
+
 	public Texture Headmaster;
 
 	public Texture Counselor;
@@ -94,7 +96,7 @@ public class VoidGoddessScript : MonoBehaviour
 			NewPortrait.transform.localScale = new Vector3(1f, 1f, 1f);
 			NewPortrait.transform.localPosition = new Vector3(-450 + Column * 100, 450 - Row * 100, 0f);
 			Portraits[ID] = NewPortrait.GetComponent<UITexture>();
-			if (!StudentManager.Eighties && ID > 11 && ID < 21)
+			if (!StudentManager.Eighties && ID > 12 && ID < 21)
 			{
 				NewPortrait.GetComponent<UITexture>().mainTexture = Prompt.Yandere.PauseScreen.StudentInfoMenu.RivalPortraits[ID];
 			}

@@ -140,6 +140,8 @@ public static class GameGlobals
 
 	private const string Str_HiddenMoney = "HiddenMoney";
 
+	private const string Str_SenpaiMeetsNewRival = "SenpaiMeetsNewRival";
+
 	public static int Profile
 	{
 		get
@@ -884,6 +886,18 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool SenpaiMeetsNewRival
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_SenpaiMeetsNewRival");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_SenpaiMeetsNewRival", value);
+		}
+	}
+
 	public static int GetRivalEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminations" + elimID);
@@ -1077,5 +1091,6 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_CanBefriendCouncil");
 		Globals.Delete("Profile_" + Profile + "_InCutscene");
 		Globals.Delete("Profile_" + Profile + "_FemaleSenpai");
+		Globals.Delete("Profile_" + Profile + "_SenpaiMeetsNewRival");
 	}
 }

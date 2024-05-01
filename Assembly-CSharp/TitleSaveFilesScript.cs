@@ -172,6 +172,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 								PromptBar.Label[2].text = "";
 								PromptBar.Label[3].text = "";
 								PromptBar.Label[5].text = "Change Difficulty";
+								PromptBar.Label[6].text = "";
 								PromptBar.UpdateButtons();
 							}
 							else
@@ -323,6 +324,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 					if (NewTitleScreen.Eighties)
 					{
 						PromptBar.Label[3].text = "Week Select";
+						PromptBar.Label[6].text = "Custom Mode";
 					}
 					PromptBar.UpdateButtons();
 				}
@@ -428,6 +430,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 			if (NewTitleScreen.Eighties)
 			{
 				PromptBar.Label[3].text = "Week Select";
+				PromptBar.Label[6].text = "Custom Mode";
 			}
 			PromptBar.Label[5].text = "";
 			PromptBar.UpdateButtons();

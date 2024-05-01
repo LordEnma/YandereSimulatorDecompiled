@@ -9,4 +9,10 @@ public class OsanaTextMessageScript : MonoBehaviour
 	public string[] OsanaTexts;
 
 	public int[] OsanaHeights;
+
+	public AudioClip[] AltClips;
+
+	public string[] AltTexts;
+
+	public int[] AltHeights;
 }

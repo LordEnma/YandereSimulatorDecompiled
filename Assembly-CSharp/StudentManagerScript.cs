@@ -200,6 +200,10 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Collider HeadmasterArea;
 
+	public Collider EastGazebo;
+
+	public Collider WestGazebo;
+
 	public Collider GardenArea;
 
 	public Collider PoolStairs;
@@ -756,6 +760,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public bool RaibaruKnowsAboutStalker;
 
+	public bool AlphabetKillerChallenge;
+
 	public bool DisableRivalDeathSloMo;
 
 	public bool ReplaceSparringPartner;
@@ -769,6 +775,8 @@ public class StudentManagerScript : MonoBehaviour
 	public bool Floor2Repositioned;
 
 	public bool UnequipImmediately;
+
+	public bool AlternateTimeline;
 
 	public bool EmbarassingSecret;
 
@@ -991,6 +999,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public int DoorID;
 
+	public bool MorningEventOver;
+
 	public string SeerName;
 
 	private int OpenedDoors;
@@ -1010,6 +1020,8 @@ public class StudentManagerScript : MonoBehaviour
 	public Renderer Window;
 
 	public float SenpaiLoveTimer;
+
+	public float AlphabetTimer;
 
 	private ScheduleBlock scheduleBlock;
 
@@ -1181,13 +1193,35 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Transform[] BakeSaleSpots;
 
+	public Transform[] MorningRivalWitnessSpots;
+
+	public Transform[] LunchRivalWitnessSpots;
+
+	public Transform[] AfterRivalWitnessSpots;
+
+	public int MorningRivalWitnesses;
+
+	public int LunchRivalWitnesses;
+
+	public int AfterRivalWitnesses;
+
+	public int[] RivalWitnessIDs;
+
 	private void Awake()
 	{
-		if (!TakingPortraits && !GameGlobals.Eighties && DateGlobals.Week > WeekLimit)
+		WeekLimit = 3;
+		if (!TakingPortraits && !GameGlobals.Eighties)
 		{
-			Debug.Log("We're not in 1980s Mode and Week is " + DateGlobals.Week + " so we're resetting the week to ''0'' and booting the player out.");
-			DateGlobals.Week = 0;
-			SceneManager.LoadScene("VeryFunScene");
+			if (DateGlobals.Week > WeekLimit)
+			{
+				Debug.Log("We're not in 1980s Mode and Week is " + DateGlobals.Week + " so we're resetting the week to ''0'' and booting the player out.");
+				DateGlobals.Week = 0;
+				SceneManager.LoadScene("VeryFunScene");
+			}
+			else if (DateGlobals.Week > WeekLimit && DateGlobals.Weekday > DayOfWeek.Sunday)
+			{
+				DateGlobals.Weekday = DayOfWeek.Sunday;
+			}
 		}
 		if (TakingPortraits)
 		{
@@ -1198,6 +1232,7 @@ public class StudentManagerScript : MonoBehaviour
 	private void Start()
 	{
 		DisableRivalDeathSloMo = OptionGlobals.RivalDeathSlowMo;
+		AlternateTimeline = GameGlobals.AlternateTimeline;
 		EightiesTutorial = GameGlobals.EightiesTutorial;
 		MissionMode = MissionModeGlobals.MissionMode;
 		KokonaTutorial = GameGlobals.KokonaTutorial;
@@ -1215,9 +1250,12 @@ public class StudentManagerScript : MonoBehaviour
 		else
 		{
 			SuitorIDs = ModernSuitorIDs;
-			for (int i = 2; i < 11; i++)
+			if (SuitorIDs.Length != 0)
 			{
-				SuitorIDs[i] = 0;
+				for (int i = 3; i < 11; i++)
+				{
+					SuitorIDs[i] = 0;
+				}
 			}
 			PortraitChan = StudentChan;
 			PortraitKun = StudentKun;
@@ -1257,7 +1295,10 @@ public class StudentManagerScript : MonoBehaviour
 				EightiesScienceClub.SetActive(value: false);
 				EightiesScienceProps.SetActive(value: false);
 			}
-			SuitorID = SuitorIDs[DateGlobals.Week];
+			if (SuitorIDs.Length != 0)
+			{
+				SuitorID = SuitorIDs[DateGlobals.Week];
+			}
 			if (RivalEvents.Length != 0)
 			{
 				if (DateGlobals.Week == 1)
@@ -1313,6 +1354,10 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			ModernRivalBookBag.SetActive(value: false);
 			RivalEliminated = true;
+			if (!Eighties)
+			{
+				RivalEvents[Week].SetActive(value: false);
+			}
 		}
 		RivalID = Week + 10;
 		StudentGlobals.SetStudentPhotographed(RivalID, value: true);
@@ -1340,10 +1385,11 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			SpawnPositions[51].position = new Vector3(3f, 0f, -95f);
 		}
-		if (!TakingPortraits && Eighties && Week > 1)
+		if (!TakingPortraits && Week > 1)
 		{
 			SpawnPositions[94].position = FacultyDesks[1].Chair.position;
 			SpawnPositions[94].rotation = FacultyDesks[1].Chair.rotation;
+			EightiesProps[20].SetActive(value: true);
 		}
 		if (HomeGlobals.LateForSchool)
 		{
@@ -1520,6 +1566,7 @@ public class StudentManagerScript : MonoBehaviour
 				Yandere.transform.position = Portal.transform.position + new Vector3(1f, 0f, 0f);
 				Clock.StopTime = true;
 				SkipTo730();
+				AlphabetKillerChallenge = true;
 			}
 			if (!TakingPortraits && !RecordingVideo && !SpawnNobody)
 			{
@@ -1776,19 +1823,21 @@ public class StudentManagerScript : MonoBehaviour
 					Eighties = GameGlobals.Eighties;
 					if (!Eighties)
 					{
-						if (!MissionMode && !GameGlobals.AlphabetMode)
+						if (!MissionMode && !GameGlobals.AlphabetMode && Students[RivalID] != null && !Students[RivalID].Slave && Week != 1 && Week == 2)
 						{
-							if (Week == 1)
-							{
-								if (Students[RivalID] != null)
-								{
-									Week1RoutineAdjustments();
-								}
-							}
-							else if (Week == 2)
-							{
-								Week2RoutineAdjustments();
-							}
+							Week2RoutineAdjustments();
+						}
+						if (Week > 1 && !RivalEliminated)
+						{
+							CleaningManager.Floors[34 + Week] = CleaningManager.Floors[46];
+							CleaningManager.GetRole(RivalID);
+							Students[RivalID].CleaningSpot = CleaningManager.Spot;
+							Students[RivalID].CleaningRole = CleaningManager.Role;
+							Students[RivalID].GetDestinations();
+						}
+						if (Clock.Weekday == 5)
+						{
+							SendArtClubToTree();
 						}
 					}
 					else
@@ -2031,6 +2080,7 @@ public class StudentManagerScript : MonoBehaviour
 								{
 									Debug.Log("Thus, student should be returning to ''Meeting'' protocol.");
 									studentScript.Routine = true;
+									Debug.Log(studentScript.Name + "'s destination is " + studentScript.CurrentDestination?.ToString() + " at this point in the code.");
 								}
 							}
 							if (studentScript.Schoolwear != 1)
@@ -2050,6 +2100,10 @@ public class StudentManagerScript : MonoBehaviour
 								studentScript.GetFoodTarget();
 								studentScript.ClubTimer = 0f;
 							}
+							if (studentScript.Meeting)
+							{
+								Debug.Log("And, as of now, " + studentScript.Name + "'s destination is " + studentScript.CurrentDestination?.ToString() + ".");
+							}
 						}
 						if (StudentGlobals.MemorialStudents > 0)
 						{
@@ -2067,12 +2121,16 @@ public class StudentManagerScript : MonoBehaviour
 						{
 							studentScript2.SetOriginalScheduleBlocks();
 							studentScript2.SetOriginalActions();
+							if (studentScript2.Meeting)
+							{
+								Debug.Log("Later, as of now, " + studentScript2.Name + "'s destination is " + studentScript2.CurrentDestination?.ToString() + ".");
+							}
 						}
 					}
 					Eighties = GameGlobals.Eighties;
-					if (!GameGlobals.AlphabetMode && !Eighties && Students[RivalID] != null && Students[RivalID].Indoors)
+					if (!GameGlobals.AlphabetMode && !Eighties && Students[RivalID] != null)
 					{
-						UpdateExteriorStudents();
+						_ = Students[RivalID].Indoors;
 					}
 					if (Eighties && !RivalEliminated && !ReturnedFromSave && !CameFromLoad)
 					{
@@ -2962,7 +3020,7 @@ public class StudentManagerScript : MonoBehaviour
 							{
 								studentScript.Prompt.HideButton[0] = true;
 								studentScript.Prompt.HideButton[2] = true;
-								if (Yandere.PickUp != null && !studentScript.Following && studentScript.StudentID != 12)
+								if (Yandere.PickUp != null && !studentScript.Following)
 								{
 									if (Yandere.PickUp.Food > 0)
 									{
@@ -3609,6 +3667,10 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				if (!studentScript.Dying && !studentScript.PinningDown && !studentScript.Spraying && !studentScript.Struggling && !studentScript.Drowned)
 				{
+					if (studentScript.CheckingNote)
+					{
+						NoteWindow.NoteLocker.Finish();
+					}
 					if (YandereDying && studentScript.Club != ClubType.Council)
 					{
 						studentScript.IdleAnim = studentScript.ScaredAnim;
@@ -5140,6 +5202,17 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			OsanaThursdayAfterClassEvent.ReturningFromSave = true;
 		}
+		Debug.Log("Now checking whether or not Osana's morning events were finished at the time the save was made...");
+		PortalScript component = Portal.GetComponent<PortalScript>();
+		for (int l = 0; l < component.MorningEvents.Length; l++)
+		{
+			Debug.Log("Checking #" + l);
+			if (component.MorningEvents[l].Finished || MorningEventOver)
+			{
+				Debug.Log(component.MorningEvents[l].gameObject.name + " was finished when the save was created...");
+				component.MorningEvents[l].enabled = false;
+			}
+		}
 		if (Students[10] != null && Students[10].Cheer != null)
 		{
 			Students[10].Cheer.enabled = false;
@@ -5164,6 +5237,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (WaterCooler.TrapSet)
 		{
+			WaterCooler.RememberStringLength();
 			WaterCooler.UpdateCylinderColor();
 			WaterCooler.SetTrap();
 			WaterCooler.Timer = 1f;
@@ -5549,10 +5623,24 @@ public class StudentManagerScript : MonoBehaviour
 				SenpaiLoveTimer = 0f;
 			}
 		}
-		if (!Eighties && Week == 2 && Students[12] != null && Students[12].Ragdoll.Disposed && !GameGlobals.Debug)
+		if (AlphabetKillerChallenge)
 		{
-			PlayerPrefs.SetInt("Amai", 1);
-			PlayerPrefs.SetInt("a", 1);
+			AlphabetTimer += Time.deltaTime;
+			_ = AlphabetTimer;
+			_ = 10f;
+		}
+	}
+
+	public void PreventOOB()
+	{
+		StudentScript[] students = Students;
+		foreach (StudentScript studentScript in students)
+		{
+			if (studentScript != null && (studentScript.transform.position.x < -72.5f || studentScript.transform.position.x > 72.5f || studentScript.transform.position.z > 142f))
+			{
+				studentScript.transform.position = new Vector3(0f, 0f, -2.5f);
+				Physics.SyncTransforms();
+			}
 		}
 	}
 
@@ -5743,6 +5831,7 @@ public class StudentManagerScript : MonoBehaviour
 			Students[StudentID].GetDestinations();
 			if (DateGlobals.Weekday == DayOfWeek.Friday && Students[StudentID].Club == ClubType.Art)
 			{
+				Debug.Log("It's Friday, so " + Students[StudentID].Name + " is changing their club activity to painting the cherry tree and gaining extra vision.");
 				ScheduleBlock obj = Students[StudentID].ScheduleBlocks[7];
 				obj.destination = "Paint";
 				obj.action = "Paint";
@@ -5902,50 +5991,22 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		MournSpots[10].position = Week2Hangouts.List[11].position;
 		MournSpots[10].eulerAngles = Week2Hangouts.List[11].eulerAngles;
-		UpdateWeek2Hangout(4);
-		UpdateWeek2Hangout(5);
-		UpdateWeek2Hangout(6);
-		UpdateWeek2Hangout(7);
-		UpdateWeek2Hangout(8);
-		UpdateWeek2Hangout(9);
 		AssignBakeSaleRoutineToCookingClub(12);
 		AssignBakeSaleRoutineToCookingClub(21);
 		AssignBakeSaleRoutineToCookingClub(22);
 		AssignBakeSaleRoutineToCookingClub(23);
 		AssignBakeSaleRoutineToCookingClub(24);
 		AssignBakeSaleRoutineToCookingClub(25);
-		UpdateWeek2Hangout(27);
-		UpdateWeek2Hangout(28);
-		UpdateWeek2Hangout(29);
-		UpdateWeek2Hangout(30);
-		UpdateWeek2Hangout(32);
-		UpdateWeek2Hangout(33);
-		UpdateWeek2Hangout(34);
-		UpdateWeek2Hangout(35);
-		UpdateWeek2Hangout(37);
-		UpdateWeek2Hangout(38);
-		UpdateWeek2Hangout(39);
-		UpdateWeek2Hangout(40);
-		UpdateWeek2Hangout(42);
-		UpdateWeek2Hangout(43);
-		UpdateWeek2Hangout(44);
-		UpdateWeek2Hangout(45);
-		UpdateWeek2Hangout(56);
-		UpdateWeek2Hangout(57);
-		UpdateWeek2Hangout(58);
-		UpdateWeek2Hangout(59);
-		UpdateWeek2Hangout(60);
 		UpdateWeek2Hangout(76);
 		UpdateWeek2Hangout(77);
 		UpdateWeek2Hangout(78);
 		UpdateWeek2Hangout(79);
 		UpdateWeek2Hangout(80);
-		UpdateWeek2Hangout(81);
-		UpdateWeek2Hangout(82);
-		UpdateWeek2Hangout(83);
-		UpdateWeek2Hangout(84);
-		UpdateWeek2Hangout(85);
-		Students[12].MyPlate = BakeSalePlates[0];
+		AssignRivalWitnesses();
+		if (Students[12] != null)
+		{
+			Students[12].MyPlate = BakeSalePlates[0];
+		}
 		for (int i = 21; i < 26; i++)
 		{
 			if (Students[i] != null)
@@ -6000,9 +6061,12 @@ public class StudentManagerScript : MonoBehaviour
 				scheduleBlock.destination = "BakeSale";
 				scheduleBlock.action = "BakeSale";
 			}
-			scheduleBlock = Students[StudentID].ScheduleBlocks[4];
-			scheduleBlock.destination = "BakeSale";
-			scheduleBlock.action = "BakeSale";
+			if (StudentID != RivalID)
+			{
+				scheduleBlock = Students[StudentID].ScheduleBlocks[4];
+				scheduleBlock.destination = "BakeSale";
+				scheduleBlock.action = "BakeSale";
+			}
 			scheduleBlock = Students[StudentID].ScheduleBlocks[7];
 			scheduleBlock.destination = "BakeSale";
 			scheduleBlock.action = "BakeSale";
@@ -6031,6 +6095,40 @@ public class StudentManagerScript : MonoBehaviour
 				scheduleBlock.action = "Shoes";
 			}
 			Students[StudentID].GetDestinations();
+		}
+	}
+
+	public void AssignRivalWitnesses()
+	{
+		for (int i = 0; i < RivalWitnessIDs.Length; i++)
+		{
+			if (Students[RivalWitnessIDs[i]] != null)
+			{
+				StudentScript studentScript = Students[RivalWitnessIDs[i]];
+				if (MorningRivalWitnesses < MorningRivalWitnessSpots.Length)
+				{
+					scheduleBlock = studentScript.ScheduleBlocks[2];
+					scheduleBlock.destination = "MorningRivalWitnessSpot";
+					scheduleBlock.action = "Read";
+					scheduleBlock.time += 0.25f;
+				}
+				if (LunchRivalWitnesses < LunchRivalWitnessSpots.Length)
+				{
+					scheduleBlock = studentScript.ScheduleBlocks[4];
+					scheduleBlock.destination = "LunchRivalWitnessSpot";
+					scheduleBlock.time += 0.125f;
+				}
+				if (AfterRivalWitnesses < AfterRivalWitnessSpots.Length)
+				{
+					scheduleBlock = studentScript.ScheduleBlocks[6];
+					scheduleBlock.time -= 0.25f;
+					scheduleBlock = studentScript.ScheduleBlocks[7];
+					scheduleBlock.destination = "AfterRivalWitnessSpot";
+					scheduleBlock.action = "Read";
+					scheduleBlock.time += 0.25f;
+				}
+				studentScript.GetDestinations();
+			}
 		}
 	}
 

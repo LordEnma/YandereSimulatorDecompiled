@@ -10,6 +10,8 @@ public class TextMessageManagerScript : MonoBehaviour
 
 	public string[] Messages;
 
+	public string[] EmbarassingSecrets;
+
 	public string[] DarkSecrets;
 
 	private GameObject NewMessage;
@@ -22,10 +24,7 @@ public class TextMessageManagerScript : MonoBehaviour
 
 	public void Start()
 	{
-		for (int i = 2; i < DarkSecrets.Length; i++)
-		{
-			DarkSecrets[i] = "This text is currently unavailable.";
-		}
+		Messages[4] = EmbarassingSecrets[DateGlobals.Week];
 		Messages[10] = DarkSecrets[DateGlobals.Week];
 	}
 

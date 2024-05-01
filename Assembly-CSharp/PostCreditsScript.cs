@@ -80,7 +80,12 @@ public class PostCreditsScript : MonoBehaviour
 			Subtitle.text = "";
 			if (Alpha == 1f)
 			{
-				SceneManager.LoadScene("ThanksForPlayingScene");
+				if (DateGlobals.PassDays == 0)
+				{
+					DateGlobals.PassDays++;
+				}
+				DateGlobals.ForceSkip = true;
+				SceneManager.LoadScene("CalendarScene");
 			}
 		}
 		else if (Input.GetButton(InputNames.Xbox_X))
@@ -140,12 +145,23 @@ public class PostCreditsScript : MonoBehaviour
 				}
 			}
 		}
-		else if (Phase == 2)
+		else
 		{
+			if (Phase != 2)
+			{
+				return;
+			}
 			Timer += Time.deltaTime;
 			if (Timer > 13f)
 			{
-				SceneManager.LoadScene("ThanksForPlayingScene");
+				Time.timeScale = 1f;
+				Debug.Log("DateGlobals.PassDays was: " + DateGlobals.PassDays);
+				if (DateGlobals.PassDays == 0)
+				{
+					DateGlobals.PassDays++;
+				}
+				DateGlobals.ForceSkip = true;
+				SceneManager.LoadScene("CalendarScene");
 			}
 			else if (Timer > 5f)
 			{

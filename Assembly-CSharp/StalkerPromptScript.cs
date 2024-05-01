@@ -595,6 +595,7 @@ public class StalkerPromptScript : MonoBehaviour
 				}
 				if (!Eighties && DateGlobals.Week == 2)
 				{
+					Debug.Log("We should be heading into a text message conversation with Amai.");
 					EventGlobals.OsanaConversation = true;
 					SceneManager.LoadScene("PhoneScene");
 				}

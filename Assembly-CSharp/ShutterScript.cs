@@ -719,31 +719,51 @@ public class ShutterScript : MonoBehaviour
 			{
 				HorudaShot = true;
 				PhotoDescription.SetActive(value: true);
-				PhotoDescLabel.text = "Photo of: Horuda's Hiding Spot";
+				PhotoDescLabel.text = "Photo of: Horuda Covered in Brown Paint";
 			}
 			if (hit.collider.gameObject.name == "Bounty")
 			{
 				BountyShot = true;
 				PhotoDescription.SetActive(value: true);
-				if (StudentManager.Clock.Day == 1)
+				if (StudentManager.Clock.GameplayDay == 1)
 				{
-					PhotoDescLabel.text = "Photo of: Ryuto Gaming At School";
+					PhotoDescLabel.text = "Photo of: Horuda Drawing Gore";
 				}
-				else if (StudentManager.Clock.Day == 2)
+				else if (StudentManager.Clock.GameplayDay == 2)
+				{
+					PhotoDescLabel.text = "Photo of: Kyuji Stalking Osana";
+				}
+				else if (StudentManager.Clock.GameplayDay == 3)
 				{
 					PhotoDescLabel.text = "Photo of: Otohiko Falling Down";
 				}
-				else if (StudentManager.Clock.Day == 3)
+				else if (StudentManager.Clock.GameplayDay == 4)
 				{
-					PhotoDescLabel.text = "Photo of: Fureddo Goofing Off";
+					PhotoDescLabel.text = "Photo of: Hazu Sewing Clothes";
 				}
-				else if (StudentManager.Clock.Day == 4)
+				else if (StudentManager.Clock.GameplayDay == 5)
 				{
-					PhotoDescLabel.text = "Photo of: Umeji Sulking In Defeat";
+					PhotoDescLabel.text = "Photo of: Toga Peeking";
 				}
-				else if (StudentManager.Clock.Day == 5)
+				else if (StudentManager.Clock.GameplayDay == 6)
 				{
-					PhotoDescLabel.text = "Photo of: Kashiko Ignoring Duties";
+					PhotoDescLabel.text = "Photo of: Ryuto Gaming at School";
+				}
+				else if (StudentManager.Clock.GameplayDay == 7)
+				{
+					PhotoDescLabel.text = "Photo of: Fureddo Slacking Off";
+				}
+				else if (StudentManager.Clock.GameplayDay == 8)
+				{
+					PhotoDescLabel.text = "Photo of: Horo's Pervy Holograms";
+				}
+				else if (StudentManager.Clock.GameplayDay == 9)
+				{
+					PhotoDescLabel.text = "Photo of: Uekiya Missing Keys";
+				}
+				else if (StudentManager.Clock.GameplayDay == 10)
+				{
+					PhotoDescLabel.text = "Photo of: Umeji Sulking in Defeat";
 				}
 			}
 			if (hit.collider.gameObject.tag == "Bully")

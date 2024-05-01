@@ -205,9 +205,9 @@ public class StudentInfoScript : MonoBehaviour
 					CrushLabel.text = "None Anymore";
 				}
 			}
-			if (CurrentStudent == num2)
+			else if (CurrentStudent == num2)
 			{
-				if ((StudentManager.LoveManager != null && StudentManager.LoveManager.SuitorProgress == 0) || DatingGlobals.SuitorProgress == 0)
+				if (StudentManager.LoveManager != null && StudentManager.LoveManager.SuitorProgress == 0)
 				{
 					CrushLabel.text = "Unknown";
 				}
@@ -306,7 +306,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 		if (ID < 98)
 		{
-			int num4 = 12;
+			int num4 = 11 + DateGlobals.Week;
 			if (Eighties || (!Eighties && ID < num4) || (!Eighties && ID > 20))
 			{
 				WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text2 + "/Student_" + ID + ".png");

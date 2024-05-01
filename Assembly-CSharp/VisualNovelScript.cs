@@ -55,6 +55,8 @@ public class VisualNovelScript : MonoBehaviour
 
 	public Color[] Colors;
 
+	public Renderer Backdrop;
+
 	public bool DrunkEffect;
 
 	public bool ShowOption;
@@ -67,8 +69,67 @@ public class VisualNovelScript : MonoBehaviour
 
 	public int ID;
 
+	public VisualNovelDataScript KizanaMeetData;
+
+	public SkinnedMeshRenderer MaleRenderer;
+
+	public StudentScript MaleCharacter;
+
+	public GameObject KizanaClothing;
+
+	public Texture CasualClothes;
+
+	public Transform EyeTarget;
+
+	public Renderer Painting;
+
+	public Mesh CasualMesh;
+
+	public bool ShowPainting;
+
+	public bool MeetingRival;
+
 	private void Start()
 	{
+		if (GameGlobals.SenpaiMeetsNewRival)
+		{
+			MeetingRival = true;
+			Debug.Log("Now attempting to turn the characters into Taro and Kizana.");
+			Dialogue = KizanaMeetData.Dialogue;
+			Anims = KizanaMeetData.Anims;
+			IdleAnims = KizanaMeetData.IdleAnims;
+			SpecialCase = KizanaMeetData.SpecialCase;
+			Speaker = KizanaMeetData.Speaker;
+			CurrentIdleAnim = KizanaMeetData.CurrentIdleAnim;
+			Names = KizanaMeetData.Names;
+			Colors = KizanaMeetData.Colors;
+			Backdrop.material.mainTexture = KizanaMeetData.Backdrop;
+			Character[1].gameObject.SetActive(value: false);
+			Character[1] = MaleCharacter;
+			CharAnim[1] = Character[1].CharacterAnimation;
+			MaleRenderer.sharedMesh = CasualMesh;
+			MaleRenderer.materials[0].mainTexture = CasualClothes;
+			MaleRenderer.materials[1].mainTexture = Character[1].Cosmetic.FaceTextures[Character[1].Cosmetic.SkinColor];
+			MaleRenderer.materials[2].mainTexture = Character[1].Cosmetic.SkinTextures[Character[1].Cosmetic.SkinColor];
+			Character[2].Cosmetic.StudentID = 13;
+			Character[2].StudentID = 13;
+			Character[2].Cosmetic.Initialized = false;
+			Character[2].Cosmetic.Start();
+			Character[2].Cosmetic.RightEyeRenderer.gameObject.SetActive(value: false);
+			Character[2].Cosmetic.LeftEyeRenderer.gameObject.SetActive(value: false);
+			Character[2].MyRenderer.enabled = false;
+			Character[2].CharacterAnimation["f02_smile_01"].layer = 1;
+			Character[2].CharacterAnimation.Play("f02_smile_01");
+			Character[2].CharacterAnimation["f02_smile_01"].weight = 1f;
+			Character[2].CharacterAnimation["f02_smugEyes_00"].layer = 2;
+			Character[2].CharacterAnimation.Play("f02_smugEyes_00");
+			Character[2].CharacterAnimation["f02_smugEyes_00"].weight = 1f;
+			KizanaClothing.SetActive(value: true);
+		}
+		else
+		{
+			MaleCharacter.gameObject.SetActive(value: false);
+		}
 		DialogueLabel.gameObject.SetActive(value: false);
 		DestroyComponentsInChildren(Character[1].transform);
 		DestroyComponentsInChildren(Character[2].transform);
@@ -87,179 +148,203 @@ public class VisualNovelScript : MonoBehaviour
 		if (!FadeOut)
 		{
 			FadeTimer += Time.deltaTime;
-			if (!(FadeTimer > 1f))
+			if (FadeTimer > 1f)
 			{
-				return;
-			}
-			if (!Jukebox.isPlaying)
-			{
-				Jukebox.Play();
-			}
-			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
-			Jukebox.volume = 1f - Darkness.alpha;
-			if (!(Darkness.alpha < 0.0001f))
-			{
-				return;
-			}
-			VisualNovelPanel.alpha = Mathf.MoveTowards(VisualNovelPanel.alpha, 1f, Time.deltaTime);
-			if (!(VisualNovelPanel.alpha > 0.999f))
-			{
-				return;
-			}
-			if (!DialogueLabel.gameObject.activeInHierarchy)
-			{
-				DialogueLabel.gameObject.SetActive(value: true);
-				DialogueLabel.alpha = 0f;
-				CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
-				CharAnim[2].CrossFade(CurrentIdleAnim[2], 1f);
-				CharAnim[Speaker[ID]].CrossFade(Anims[ID], 1f);
-			}
-			else
-			{
-				DialogueLabel.alpha = 1f;
-			}
-			if (Speaker[ID] > 0 && CharAnim[Speaker[ID]][Anims[ID]].time >= CharAnim[Speaker[ID]][Anims[ID]].length - 0.5f)
-			{
-				CharAnim[Speaker[ID]].CrossFade(CurrentIdleAnim[Speaker[ID]], 0.5f);
-			}
-			CharacterParent[1].position = Vector3.Lerp(CharacterParent[1].position, CharacterTarget[1].position, Time.deltaTime * 10f);
-			if (ShowOption)
-			{
-				OptionPanel.alpha = Mathf.MoveTowards(OptionPanel.alpha, 1f, Time.deltaTime * 10f);
-				if (OptionPanel.alpha > 0.999f && Input.GetButtonDown(InputNames.Xbox_B))
+				if (!Jukebox.isPlaying)
 				{
-					for (int i = 28; i < 33; i++)
+					Character[2].Cosmetic.Armband.SetActive(value: false);
+					Jukebox.Play();
+				}
+				Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
+				Jukebox.volume = 1f - Darkness.alpha;
+				if (Darkness.alpha < 0.0001f)
+				{
+					VisualNovelPanel.alpha = Mathf.MoveTowards(VisualNovelPanel.alpha, 1f, Time.deltaTime);
+					if (VisualNovelPanel.alpha > 0.999f)
 					{
-						SpecialCase[i] = AltSpecialCase[i];
-						IdleAnims[i] = AltIdleAnims[i];
-						Dialogue[i] = AltDialogue[i];
-						Speaker[i] = AltSpeaker[i];
-						Anims[i] = AltAnims[i];
-					}
-					ShowOption = false;
-					Betrayed = true;
-				}
-			}
-			else
-			{
-				OptionPanel.alpha = Mathf.MoveTowards(OptionPanel.alpha, 0f, Time.deltaTime * 10f);
-			}
-			if (DrunkEffect)
-			{
-				Drunk.Fade = Mathf.MoveTowards(Drunk.Fade, 1f, Time.deltaTime);
-			}
-			bool flag = false;
-			if (Input.GetButtonDown(InputNames.Xbox_X))
-			{
-				if (ID < 12)
-				{
-					ID = 12;
-				}
-				else if (ID < 22)
-				{
-					ID = 22;
-				}
-				else
-				{
-					ID = Dialogue.Length;
-				}
-				Typewriter.ResetToBeginning();
-				Typewriter.Finish();
-				flag = true;
-			}
-			if (!(Input.GetButtonDown(InputNames.Xbox_A) || flag))
-			{
-				return;
-			}
-			if (ID < Dialogue.Length)
-			{
-				if (Typewriter.mCurrentOffset < Typewriter.mFullText.Length)
-				{
-					Typewriter.ResetToBeginning();
-					Typewriter.Finish();
-					return;
-				}
-				ID++;
-				if (ID < Dialogue.Length)
-				{
-					Typewriter.ResetToBeginning();
-					Typewriter.mFullText = Dialogue[ID];
-					if (Speaker[ID] > 0)
-					{
-						if (Speaker[ID] == 1)
+						if (!DialogueLabel.gameObject.activeInHierarchy)
 						{
+							DialogueLabel.gameObject.SetActive(value: true);
+							DialogueLabel.alpha = 0f;
+							CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
 							CharAnim[2].CrossFade(CurrentIdleAnim[2], 1f);
+							CharAnim[Speaker[ID]].CrossFade(Anims[ID], 1f);
 						}
 						else
 						{
-							CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
+							DialogueLabel.alpha = 1f;
 						}
-						CharAnim[Speaker[ID]].CrossFade(Anims[ID]);
-						CurrentIdleAnim[Speaker[ID]] = IdleAnims[ID];
+						if (Speaker[ID] > 0 && CharAnim[Speaker[ID]][Anims[ID]].time >= CharAnim[Speaker[ID]][Anims[ID]].length - 0.5f)
+						{
+							CharAnim[Speaker[ID]].CrossFade(CurrentIdleAnim[Speaker[ID]], 0.5f);
+						}
+						CharacterParent[1].position = Vector3.Lerp(CharacterParent[1].position, CharacterTarget[1].position, Time.deltaTime * 10f);
+						if (ShowOption)
+						{
+							OptionPanel.alpha = Mathf.MoveTowards(OptionPanel.alpha, 1f, Time.deltaTime * 10f);
+							if (OptionPanel.alpha > 0.999f && Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								for (int i = 28; i < 33; i++)
+								{
+									SpecialCase[i] = AltSpecialCase[i];
+									IdleAnims[i] = AltIdleAnims[i];
+									Dialogue[i] = AltDialogue[i];
+									Speaker[i] = AltSpeaker[i];
+									Anims[i] = AltAnims[i];
+								}
+								ShowOption = false;
+								Betrayed = true;
+							}
+						}
+						else
+						{
+							OptionPanel.alpha = Mathf.MoveTowards(OptionPanel.alpha, 0f, Time.deltaTime * 10f);
+						}
+						if (DrunkEffect)
+						{
+							Drunk.Fade = Mathf.MoveTowards(Drunk.Fade, 1f, Time.deltaTime);
+						}
+						bool flag = false;
+						if (Input.GetButtonDown(InputNames.Xbox_X))
+						{
+							if (ID < 12)
+							{
+								ID = 12;
+							}
+							else if (ID < 22)
+							{
+								ID = 22;
+							}
+							else
+							{
+								ID = Dialogue.Length;
+							}
+							Typewriter.ResetToBeginning();
+							Typewriter.Finish();
+							flag = true;
+						}
+						if (Input.GetButtonDown(InputNames.Xbox_A) || flag)
+						{
+							if (ID < Dialogue.Length)
+							{
+								if (Typewriter.mCurrentOffset < Typewriter.mFullText.Length)
+								{
+									Typewriter.ResetToBeginning();
+									Typewriter.Finish();
+								}
+								else
+								{
+									ID++;
+									if (ID < Dialogue.Length)
+									{
+										Typewriter.ResetToBeginning();
+										Typewriter.mFullText = Dialogue[ID];
+										if (Speaker[ID] > 0)
+										{
+											if (Speaker[ID] == 1)
+											{
+												CharAnim[2].CrossFade(CurrentIdleAnim[2], 1f);
+											}
+											else
+											{
+												CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
+											}
+											CharAnim[Speaker[ID]].CrossFade(Anims[ID]);
+											CurrentIdleAnim[Speaker[ID]] = IdleAnims[ID];
+										}
+										else
+										{
+											CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
+											CharAnim[2].CrossFade(CurrentIdleAnim[2], 1f);
+										}
+										if (SpecialCase[ID] > 0)
+										{
+											if (SpecialCase[ID] == 1)
+											{
+												CharacterTarget[1].position = new Vector3(-1.4f, -1.25f, 1f);
+												ShowOption = true;
+											}
+											else if (SpecialCase[ID] == 2)
+											{
+												CharacterTarget[1].position = new Vector3(-0.5f, -1.25f, 1f);
+												ShowOption = false;
+											}
+											else if (SpecialCase[ID] == 3)
+											{
+												DrunkEffect = true;
+											}
+											else if (SpecialCase[ID] == 4)
+											{
+												CurrentIdleAnim[1] = "f02_evilWitnessIdle_00";
+												CurrentIdleAnim[2] = "f02_down_23";
+												CharAnim[1].CrossFade("f02_evilWitness_00", 1f);
+												CharAnim[2].CrossFade("f02_down_22", 1f);
+											}
+											else if (SpecialCase[ID] == 5)
+											{
+												FadeOut = true;
+											}
+											else if (SpecialCase[ID] == 6)
+											{
+												ShowPainting = true;
+											}
+											else if (SpecialCase[ID] == 7)
+											{
+												ShowPainting = false;
+											}
+										}
+										UpdateLabels();
+									}
+									else
+									{
+										FadeOut = true;
+									}
+								}
+							}
+							else
+							{
+								FadeOut = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			VisualNovelPanel.alpha = Mathf.MoveTowards(VisualNovelPanel.alpha, 0f, Time.deltaTime);
+			if (VisualNovelPanel.alpha < 0.0001f)
+			{
+				Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
+				Jukebox.volume = 1f - Darkness.alpha;
+				if (Darkness.alpha > 0.999f)
+				{
+					if (MeetingRival)
+					{
+						SceneManager.LoadScene("BusStopScene");
+					}
+					else if (!Betrayed)
+					{
+						BefriendRival();
 					}
 					else
 					{
-						CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
-						CharAnim[2].CrossFade(CurrentIdleAnim[2], 1f);
+						BetrayRival();
 					}
-					if (SpecialCase[ID] > 0)
-					{
-						if (SpecialCase[ID] == 1)
-						{
-							CharacterTarget[1].position = new Vector3(-1.4f, -1.25f, 1f);
-							ShowOption = true;
-						}
-						else if (SpecialCase[ID] == 2)
-						{
-							CharacterTarget[1].position = new Vector3(-0.5f, -1.25f, 1f);
-							ShowOption = false;
-						}
-						else if (SpecialCase[ID] == 3)
-						{
-							DrunkEffect = true;
-						}
-						else if (SpecialCase[ID] == 4)
-						{
-							CurrentIdleAnim[1] = "f02_evilWitnessIdle_00";
-							CurrentIdleAnim[2] = "f02_down_23";
-							CharAnim[1].CrossFade("f02_evilWitness_00", 1f);
-							CharAnim[2].CrossFade("f02_down_22", 1f);
-						}
-						else if (SpecialCase[ID] == 5)
-						{
-							FadeOut = true;
-						}
-					}
-					UpdateLabels();
-				}
-				else
-				{
-					FadeOut = true;
 				}
 			}
-			else
-			{
-				FadeOut = true;
-			}
-			return;
 		}
-		VisualNovelPanel.alpha = Mathf.MoveTowards(VisualNovelPanel.alpha, 0f, Time.deltaTime);
-		if (!(VisualNovelPanel.alpha < 0.0001f))
+		if (ShowPainting)
 		{
-			return;
+			float a = Painting.material.color.a;
+			a = Mathf.MoveTowards(a, 1f, Time.deltaTime);
+			Painting.material.color = new Color(1f, 1f, 1f, a);
 		}
-		Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
-		Jukebox.volume = 1f - Darkness.alpha;
-		if (Darkness.alpha > 0.999f)
+		else
 		{
-			if (!Betrayed)
-			{
-				BefriendRival();
-			}
-			else
-			{
-				BetrayRival();
-			}
+			float a2 = Painting.material.color.a;
+			a2 = Mathf.MoveTowards(a2, 0f, Time.deltaTime);
+			Painting.material.color = new Color(1f, 1f, 1f, a2);
 		}
 	}
 
@@ -313,6 +398,7 @@ public class VisualNovelScript : MonoBehaviour
 			PlayerPrefs.SetInt("a", 1);
 		}
 		SceneManager.LoadScene("CalendarScene");
+		EventGlobals.OsanaConversation = false;
 	}
 
 	private void BetrayRival()

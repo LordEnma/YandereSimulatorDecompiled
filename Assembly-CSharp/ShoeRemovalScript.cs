@@ -159,11 +159,7 @@ public class ShoeRemovalScript : MonoBehaviour
 					{
 						Student.StudentManager.UpdateExteriorEightiesStudents();
 					}
-					else if (DateGlobals.Week == 1)
-					{
-						Student.StudentManager.UpdateExteriorStudents();
-					}
-					else if (DateGlobals.Week == 2)
+					else if (DateGlobals.Week != 1 && DateGlobals.Week == 2)
 					{
 						Student.StudentManager.RepositionDelinquents();
 					}
@@ -398,11 +394,7 @@ public class ShoeRemovalScript : MonoBehaviour
 			{
 				Student.StudentManager.UpdateExteriorEightiesStudents();
 			}
-			else if (DateGlobals.Week == 1)
-			{
-				Student.StudentManager.UpdateExteriorStudents();
-			}
-			else if (DateGlobals.Week == 2)
+			else if (DateGlobals.Week != 1 && DateGlobals.Week == 2)
 			{
 				Student.StudentManager.RepositionDelinquents();
 			}

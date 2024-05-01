@@ -585,6 +585,7 @@ public class TalkingScript : MonoBehaviour
 					bool flag3 = false;
 					bool flag4 = false;
 					bool flag5 = false;
+					bool flag6 = false;
 					if (S.StudentID == S.StudentManager.RivalID)
 					{
 						if (S.Follower != null && S.Follower.CurrentAction == StudentActionType.Follow && !S.Follower.Distracting && !S.Follower.GoAway && !S.Follower.EatingSnack && S.gameObject.activeInHierarchy)
@@ -593,10 +594,14 @@ public class TalkingScript : MonoBehaviour
 						}
 						if (S.CurrentAction == StudentActionType.SitAndEatBento)
 						{
+							flag5 = true;
+						}
+						else if (S.CurrentAction == StudentActionType.BakeSale)
+						{
 							flag4 = true;
 						}
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag5) || (S.StudentID == S.StudentManager.RivalID && flag4) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.CurrentDestination == S.Seat || S.Schoolwear == 2 || !S.Indoors)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag5) || (S.StudentID == S.StudentManager.RivalID && flag4) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.CurrentDestination == S.Seat || S.Schoolwear == 2 || !S.Indoors)
 					{
 						Debug.Log("Current Clock.HourTime is: " + S.Clock.HourTime);
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
@@ -614,14 +619,20 @@ public class TalkingScript : MonoBehaviour
 								S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 2, 5f);
 								S.TalkTimer = 5f;
 							}
-							else if (flag5)
+							else if (flag6)
 							{
 								S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
 								S.TalkTimer = 13f;
 							}
-							else if (flag4)
+							else if (flag5)
 							{
 								S.Subtitle.CustomText = "Now? I'm busy eating...can you show me later, instead?";
+								S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+								S.TalkTimer = 5f;
+							}
+							else if (flag4)
+							{
+								S.Subtitle.CustomText = "I'm so sorry...I'm busy with my bake sale right now. Maybe later?";
 								S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 								S.TalkTimer = 5f;
 							}
@@ -760,13 +771,13 @@ public class TalkingScript : MonoBehaviour
 			{
 				if (S.Club != ClubType.Delinquent)
 				{
-					bool flag6 = false;
 					bool flag7 = false;
+					bool flag8 = false;
 					if (S.StudentID == S.StudentManager.RivalID && S.CurrentAction == StudentActionType.SitAndEatBento)
 					{
-						flag6 = true;
+						flag7 = true;
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag7) || S.CurrentDestination == S.Seat || !S.Indoors)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag7) || (S.StudentID == S.StudentManager.RivalID && flag8) || S.CurrentDestination == S.Seat || !S.Indoors)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						Refuse = true;
@@ -782,13 +793,13 @@ public class TalkingScript : MonoBehaviour
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
 							S.TalkTimer = 7.5f;
 						}
-						else if (flag6)
+						else if (flag7)
 						{
 							S.Subtitle.CustomText = "Ugh...now? Seriously? I'm busy eating...can it wait?";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
 							S.TalkTimer = 7.5f;
 						}
-						else if (flag7)
+						else if (flag8)
 						{
 							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
 							S.TalkTimer = 13f;
@@ -853,13 +864,13 @@ public class TalkingScript : MonoBehaviour
 			{
 				if (S.Club != ClubType.Delinquent)
 				{
-					bool flag8 = false;
 					bool flag9 = false;
+					bool flag10 = false;
 					if (S.StudentID == S.StudentManager.RivalID && S.CurrentAction == StudentActionType.SitAndEatBento)
 					{
-						flag8 = true;
+						flag9 = true;
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag8) || (S.StudentID == S.StudentManager.RivalID && flag9) || S.CurrentDestination == S.Seat || !S.Indoors)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag9) || (S.StudentID == S.StudentManager.RivalID && flag10) || S.CurrentDestination == S.Seat || !S.Indoors)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						Refuse = true;
@@ -875,13 +886,13 @@ public class TalkingScript : MonoBehaviour
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
 							S.TalkTimer = 7.5f;
 						}
-						else if (flag8)
+						else if (flag9)
 						{
 							S.Subtitle.CustomText = "I'm sorry, but could I please do it later? I'm eating a meal right now...";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
 							S.TalkTimer = 7.5f;
 						}
-						else if (flag9)
+						else if (flag10)
 						{
 							S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
 							S.TalkTimer = 13f;
@@ -1438,11 +1449,11 @@ public class TalkingScript : MonoBehaviour
 		{
 			if (S.TalkTimer == 3f)
 			{
-				bool flag10 = false;
 				bool flag11 = false;
+				bool flag12 = false;
 				if (S.CurrentAction == StudentActionType.SitAndEatBento)
 				{
-					flag10 = true;
+					flag11 = true;
 				}
 				if (S.StudentID == S.DialogueWheel.LoveManager.SuitorID)
 				{
@@ -1462,13 +1473,13 @@ public class TalkingScript : MonoBehaviour
 					S.CharacterAnimation.CrossFade(S.GossipAnim);
 					Refuse = true;
 				}
-				else if (flag11)
+				else if (flag12)
 				{
 					S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
 					S.TalkTimer = 13f;
 					Refuse = true;
 				}
-				else if (flag10)
+				else if (flag11)
 				{
 					S.Subtitle.CustomText = "Ugh...now? Seriously? I'm busy eating...can it wait?";
 					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
@@ -1671,14 +1682,14 @@ public class TalkingScript : MonoBehaviour
 			Debug.Log(S.Name + " is reacting to being offered a snack.");
 			if (S.TalkTimer == 5f)
 			{
-				bool flag12 = false;
+				bool flag13 = false;
 				if (S.StudentID == S.StudentManager.RivalID && !S.StudentManager.MissionMode)
 				{
 					if (S.StudentManager.Eighties)
 					{
 						if (S.StudentID == 14 || S.StudentID == 15 || S.StudentID == 19)
 						{
-							flag12 = true;
+							flag13 = true;
 						}
 						else if (S.Clock.Period > 2 && S.StudentManager.RivalBookBag.BentoStolen)
 						{
@@ -1687,13 +1698,18 @@ public class TalkingScript : MonoBehaviour
 						}
 						else
 						{
-							flag12 = true;
+							flag13 = true;
 						}
+					}
+					else if (S.StudentID == 12)
+					{
+						Debug.Log("Amai will always refuse snacks.");
+						flag13 = true;
 					}
 					else if (!S.Hungry)
 					{
 						Debug.Log("The rival is not hungry, so she is going to refuse the snack.");
-						flag12 = true;
+						flag13 = true;
 					}
 					else
 					{
@@ -1706,7 +1722,7 @@ public class TalkingScript : MonoBehaviour
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 1, 3f);
 					S.IgnoreFoodTimer = 10f;
 				}
-				else if (S.Fed || S.Club == ClubType.Council || flag12 || S.StudentID == 22)
+				else if (S.Fed || S.Club == ClubType.Council || flag13 || S.StudentID == 22)
 				{
 					S.CharacterAnimation.CrossFade(S.GossipAnim);
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 0, 3f);
@@ -1732,6 +1748,11 @@ public class TalkingScript : MonoBehaviour
 							{
 								S.Subtitle.CustomText = "No thanks, I brought my own lunch to school today!";
 							}
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+						}
+						else if (S.StudentID == 12)
+						{
+							S.Subtitle.CustomText = "Oh...it's very nice of you to offer, but...I don't eat that type of food. I'm sorry!";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 						}
 						else
@@ -1765,12 +1786,12 @@ public class TalkingScript : MonoBehaviour
 			S.TalkTimer -= Time.deltaTime;
 			if (S.TalkTimer <= 0f)
 			{
-				bool flag13 = false;
+				bool flag14 = false;
 				if (S.Club == ClubType.Delinquent && !S.StudentManager.MissionMode)
 				{
-					flag13 = true;
+					flag14 = true;
 				}
-				if (!S.Fed && !flag13)
+				if (!S.Fed && !flag14)
 				{
 					if (S.StudentID == S.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(4) == 5)
 					{
@@ -1871,26 +1892,26 @@ public class TalkingScript : MonoBehaviour
 		}
 		else if (S.Interaction == StudentInteractionType.SentToLocker)
 		{
-			bool flag14 = false;
+			bool flag15 = false;
 			if (S.Club == ClubType.Delinquent && !S.StudentManager.MissionMode)
 			{
-				flag14 = true;
+				flag15 = true;
 			}
 			if (S.Friend)
 			{
-				flag14 = false;
+				flag15 = false;
 			}
 			if (S.TalkTimer == 5f)
 			{
-				if (!flag14)
+				if (!flag15)
 				{
 					Refuse = false;
-					bool flag15 = true;
+					bool flag16 = true;
 					if (S.Club == ClubType.Delinquent)
 					{
-						flag15 = true;
+						flag16 = true;
 					}
-					if ((!flag15 && S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (flag15 && S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || S.Schoolwear == 2)
+					if ((!flag16 && S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (flag16 && S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || S.Schoolwear == 2)
 					{
 						if (S.Schoolwear == 2)
 						{
@@ -1973,7 +1994,7 @@ public class TalkingScript : MonoBehaviour
 				{
 					if (!Refuse)
 					{
-						if (!flag14)
+						if (!flag15)
 						{
 							S.Pathfinding.speed = 4f;
 							S.TargetDistance = 1f;

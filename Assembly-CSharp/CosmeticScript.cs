@@ -801,6 +801,7 @@ public class CosmeticScript : MonoBehaviour
 				for (int j = 0; j < 10; j++)
 				{
 					Fingernails[j].material.mainTexture = GanguroNailTextures[StudentID];
+					Fingernails[j].gameObject.SetActive(value: true);
 				}
 				Student.GymTexture = TanGymTexture;
 				Student.TowelTexture = TanTowelTexture;
@@ -1305,7 +1306,7 @@ public class CosmeticScript : MonoBehaviour
 			}
 			if (StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71 || flag3)
 			{
-				if (!Kidnapped)
+				if (!Kidnapped && !Student.Slave)
 				{
 					Armband.SetActive(value: true);
 				}
@@ -1589,8 +1590,10 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (!Eighties && ((Student.Rival && !Student.Male) || (StudentManager != null && !StudentManager.MissionMode && StudentID == StudentManager.RivalID)) && !TakingPortrait && !Cutscene && !Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene")
 		{
+			Debug.Log("The rival, at school, is now deciding what suitor gift accessories to enable.");
 			if (DateGlobals.Week == 1)
 			{
+				Debug.Log("It's Week 1.");
 				if (CatGifts.Length != 0)
 				{
 					CatGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
@@ -1599,12 +1602,16 @@ public class CosmeticScript : MonoBehaviour
 					CatGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
 				}
 			}
-			else if (CupcakeGifts.Length != 0)
+			else
 			{
-				CupcakeGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
-				CupcakeGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
-				CupcakeGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
-				CupcakeGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
+				Debug.Log("It's Week 2.");
+				if (CupcakeGifts.Length != 0)
+				{
+					CupcakeGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
+					CupcakeGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
+					CupcakeGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
+					CupcakeGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
+				}
 			}
 		}
 		if (!Male && base.gameObject.activeInHierarchy)
@@ -2780,7 +2787,7 @@ public class CosmeticScript : MonoBehaviour
 			RightStockings[0].SetActive(value: true);
 			LeftStockings[0].SetActive(value: true);
 		}
-		else if (!Kidnapped && !Teacher && StudentManager.PantyList != null)
+		else if (!Kidnapped && !Teacher && StudentManager != null && StudentManager.PantyList != null)
 		{
 			if (Eighties)
 			{

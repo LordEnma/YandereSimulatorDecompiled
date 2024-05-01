@@ -1,8 +1,19 @@
+using System;
 using UnityEngine;
 
 public class HologramScript : MonoBehaviour
 {
 	public GameObject[] Holograms;
+
+	public void Start()
+	{
+		if (DateGlobals.Week == 2 && DateGlobals.Weekday == DayOfWeek.Wednesday)
+		{
+			Holograms[8].GetComponent<MeshRenderer>().enabled = false;
+			Holograms[10].GetComponent<MeshRenderer>().enabled = true;
+			Holograms[10].GetComponent<BoxCollider>().enabled = true;
+		}
+	}
 
 	public void UpdateHolograms()
 	{
@@ -15,7 +26,7 @@ public class HologramScript : MonoBehaviour
 
 	private bool TrueFalse()
 	{
-		if (Random.value >= 0.5f)
+		if (UnityEngine.Random.value >= 0.5f)
 		{
 			return true;
 		}

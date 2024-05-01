@@ -176,7 +176,7 @@ public class HomeInternetScript : MonoBehaviour
 			GetPortrait(86 - ID);
 			Portraits[ID].mainTexture = CurrentPortrait;
 		}
-		if (!DateGlobals.DayPassed)
+		if (!DateGlobals.DayPassed || YancordGlobals.CurrentConversation == 6)
 		{
 			YancordLabel.color = new Color(1f, 1f, 1f, 0.2f);
 			YancordLogo.color = new Color(1f, 1f, 1f, 0.2f);

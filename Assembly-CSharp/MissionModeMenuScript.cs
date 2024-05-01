@@ -982,7 +982,7 @@ public class MissionModeMenuScript : MonoBehaviour
 					Valid = false;
 					GetNumbers();
 					bool flag2 = false;
-					if (!Eighties && TargetNumber > 11 && TargetNumber < 21)
+					if (!Eighties && TargetNumber > 12 && TargetNumber < 21)
 					{
 						flag2 = true;
 					}
@@ -1274,14 +1274,14 @@ public class MissionModeMenuScript : MonoBehaviour
 		if (Phase != 5)
 		{
 			TargetID = Random.Range(2, 90);
-			if (!Eighties && TargetNumber > 11 && TargetNumber < 21)
+			if (!Eighties && TargetNumber > 12 && TargetNumber < 21)
 			{
 				ChooseTarget();
 			}
 		}
 		else
 		{
-			if (TargetNumber > 11 && TargetNumber < 21)
+			if (TargetNumber > 12 && TargetNumber < 21)
 			{
 				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
@@ -1306,7 +1306,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		string text = "";
 		text = ((!Eighties) ? ("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + TargetID + ".png") : ("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + TargetID + ".png"));
 		WWW wWW = new WWW(text);
-		if (TargetNumber > 11 && TargetNumber < 21)
+		if (TargetNumber > 12 && TargetNumber < 21)
 		{
 			TargetPortrait.mainTexture = BlankPortrait;
 		}
@@ -1325,7 +1325,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 		CustomDescs[1].text = "Kill " + TargetName + ".";
 		Descs[1].text = "Kill " + TargetName + ".";
-		if (!Eighties && TargetID > 11 && TargetID < 21)
+		if (!Eighties && TargetID > 12 && TargetID < 21)
 		{
 			if (Phase == 5)
 			{
@@ -1489,7 +1489,7 @@ public class MissionModeMenuScript : MonoBehaviour
 	public void UpdateGraphics()
 	{
 		TargetID = MissionModeGlobals.MissionTarget;
-		if (TargetNumber > 11 && TargetNumber < 21)
+		if (TargetNumber > 12 && TargetNumber < 21)
 		{
 			TargetPortrait.mainTexture = BlankPortrait;
 			TargetName = MissionModeGlobals.MissionTargetName;

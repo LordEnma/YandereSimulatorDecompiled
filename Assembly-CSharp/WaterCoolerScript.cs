@@ -48,6 +48,8 @@ public class WaterCoolerScript : MonoBehaviour
 
 	public bool TooCloseToWall;
 
+	public float StripTrapParentSize;
+
 	private void Start()
 	{
 		Cylinder.localScale = new Vector3(1f, 0f, 1f);
@@ -282,6 +284,7 @@ public class WaterCoolerScript : MonoBehaviour
 			{
 				TooCloseToWall = true;
 			}
+			StripTrapParentSize = StringTrapParent.localScale.z;
 		}
 	}
 
@@ -310,5 +313,10 @@ public class WaterCoolerScript : MonoBehaviour
 		Prompt.HideButton[3] = false;
 		PickUp.enabled = true;
 		MyRigidbody.isKinematic = false;
+	}
+
+	public void RememberStringLength()
+	{
+		StringTrapParent.localScale = new Vector3(1f, 1f, StripTrapParentSize);
 	}
 }

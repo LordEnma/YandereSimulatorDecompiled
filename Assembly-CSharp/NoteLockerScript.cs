@@ -280,6 +280,11 @@ public class NoteLockerScript : MonoBehaviour
 		}
 		if (Success)
 		{
+			Debug.Log(Student.Name + " accepted the note, and is planning to go to the meeting spot.");
+			if (Student.MeetSpot == null)
+			{
+				DetermineSchedule();
+			}
 			if (Student.Clock.HourTime > Student.MeetTime)
 			{
 				Student.CurrentDestination = Student.MeetSpot;

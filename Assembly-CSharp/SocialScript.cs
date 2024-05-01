@@ -528,7 +528,7 @@ public class SocialScript : MonoBehaviour
 			Debug.Log("This student is not a friend yet.");
 			Debug.Log("The player's relationship with this student is " + StudentFriendships[StudentID] + ".");
 			Debug.Log("This student's friendship threshold is " + StudentThresholds[StudentID] + ".");
-			if ((float)StudentFriendships[StudentID] >= 100f * StudentThresholds[StudentID])
+			if ((float)StudentFriendships[StudentID] >= 100f * StudentThresholds[StudentID] * 0.999f)
 			{
 				Debug.Log("The criteria for befriending this student was just met!");
 				Yandere.NotificationManager.CustomText = "Student Befriended!";

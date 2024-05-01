@@ -1392,6 +1392,17 @@ public class SubtitleScript : MonoBehaviour
 			ClubLateClips[3] = ClubLateClips[13];
 			ClubYesClips[3] = ClubYesClips[13];
 			ClubNoClips[3] = ClubNoClips[13];
+			if (DateGlobals.Week > 1)
+			{
+				SenpaiRivalDeathReactions[0] = "...huh? ...are you okay?! What's wrong?! Hey!! Do you need any help?!";
+				SenpaiRivalDeathReactions[1] = "Huh?! What happened?!";
+				SenpaiRivalDeathReactions[2] = "Oh my god!! No!! Please, say something!! Answer me!! Wake up, please, wake up!! Don't do this!! Oh, god!! This can't be happening!! NO!! ...no...";
+				SenpaiRivalDeathReactions[4] = "No...no...(Sobbing)...no, no, no...no...no...";
+				SenpaiRivalDeathReactionClips[0] = LongestSilence;
+				SenpaiRivalDeathReactionClips[1] = LongestSilence;
+				SenpaiRivalDeathReactionClips[2] = LongestSilence;
+				SenpaiRivalDeathReactionClips[4] = LongestSilence;
+			}
 		}
 		SubtitleClipArrays = new SubtitleTypeAndAudioClipArrayDictionary
 		{

@@ -445,6 +445,11 @@ public class RagdollScript : MonoBehaviour
 							Yandere.PickUp.GetComponent<BlowtorchScript>().enabled = true;
 							Yandere.PickUp.GetComponent<AudioSource>().Play();
 						}
+						else if (Yandere.StudentManager.EastGazebo.bounds.Contains(Student.Hips.position) || Yandere.StudentManager.WestGazebo.bounds.Contains(Student.Hips.position) || Yandere.StudentManager.EastGazebo.bounds.Contains(Yandere.transform.position) || Yandere.StudentManager.WestGazebo.bounds.Contains(Yandere.transform.position))
+						{
+							Yandere.NotificationManager.CustomText = "Find a better spot to do this.";
+							Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
 						else if (Yandere.StudentManager.OriginalUniforms + Yandere.StudentManager.NewUniforms > 0)
 						{
 							if (Yandere.YandereVision)

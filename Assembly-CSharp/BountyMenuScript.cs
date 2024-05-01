@@ -14,8 +14,8 @@ public class BountyMenuScript : MonoBehaviour
 
 	private void Start()
 	{
-		DescLabel.text = Descriptions[Clock.Day];
-		GetPortrait(StudentIDs[Clock.Day]);
+		DescLabel.text = Descriptions[Clock.GameplayDay];
+		GetPortrait(StudentIDs[Clock.GameplayDay]);
 	}
 
 	private void Update()

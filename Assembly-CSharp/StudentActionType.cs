@@ -58,5 +58,6 @@ public enum StudentActionType
 	CustomPatrol = 55,
 	RandomPatrol = 56,
 	BakeSale = 57,
-	Picnic = 58
+	Picnic = 58,
+	DeskDraw = 59
 }

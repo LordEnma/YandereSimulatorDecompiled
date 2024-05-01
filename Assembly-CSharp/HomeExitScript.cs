@@ -47,7 +47,6 @@ public class HomeExitScript : MonoBehaviour
 				else if (DateGlobals.Week == 2)
 				{
 					uILabel2.text = "''Dark Delights'' Bakery";
-					uILabel2.text = "Don't click; will crash.";
 				}
 			}
 			BringItemPrompt.SetActive(value: false);
@@ -136,7 +135,7 @@ public class HomeExitScript : MonoBehaviour
 				HomeCamera.Triggers[1].gameObject.transform.position = new Vector3(-4.063334f, -2.5165f, -4.0875f);
 				HomeCamera.Triggers[1].gameObject.GetComponent<BoxCollider>().size = new Vector3(2.16f, 1f, 1f);
 				HomeCamera.Triggers[1].FadeIn = false;
-				HomeCamera.Triggers[1].Label.transform.localPosition = new Vector3(-4030f, -1600f, -4562f);
+				HomeCamera.Triggers[1].Label.transform.localPosition = new Vector3(-4067.5f, -1450f, -4541f);
 				HomeCamera.Triggers[1].Label.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
 				HomeCamera.Destinations[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -2.5f);
 				HomeCamera.Targets[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -4.56265f);

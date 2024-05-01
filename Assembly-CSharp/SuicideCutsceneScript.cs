@@ -27,6 +27,10 @@ public class SuicideCutsceneScript : MonoBehaviour
 
 	public GameObject[] EightiesHair;
 
+	public Renderer Pajamas;
+
+	public Texture[] RivalPajamas;
+
 	private void Start()
 	{
 		PointLight.color = new Color(0.1f, 0.1f, 0.1f, 1f);
@@ -36,6 +40,13 @@ public class SuicideCutsceneScript : MonoBehaviour
 			MyAudio.clip = EightiesMother;
 			RivalHair[1].SetActive(value: false);
 			EightiesHair[DateGlobals.Week].SetActive(value: true);
+		}
+		else if (DateGlobals.Week > 1)
+		{
+			MyAudio.clip = EightiesMother;
+			RivalHair[1].SetActive(value: false);
+			RivalHair[DateGlobals.Week].SetActive(value: true);
+			Pajamas.material.mainTexture = RivalPajamas[DateGlobals.Week];
 		}
 	}
 

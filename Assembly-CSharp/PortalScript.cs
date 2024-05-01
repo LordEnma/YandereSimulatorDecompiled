@@ -386,7 +386,6 @@ public class PortalScript : MonoBehaviour
 						if (OriginalDOF == 0f)
 						{
 							OriginalDOF = settings.focusDistance;
-							Debug.Log("Now saving the original DOF, which was " + OriginalDOF + ".");
 						}
 						Yandere.CameraEffects.UpdateDOF(0.6f);
 						Clock.gameObject.SetActive(value: false);
@@ -742,6 +741,13 @@ public class PortalScript : MonoBehaviour
 				MorningEvents[i].EndEvent();
 			}
 		}
+		for (int i = 0; i < ModernMorningEvents.Length; i++)
+		{
+			if (ModernMorningEvents[i].enabled)
+			{
+				ModernMorningEvents[i].EndEvent();
+			}
+		}
 		for (int i = 0; i < FriendEvents.Length; i++)
 		{
 			if (FriendEvents[i].enabled)
@@ -811,6 +817,18 @@ public class PortalScript : MonoBehaviour
 				LunchGenericEvents[i].EndEvent();
 			}
 		}
+		for (int i = 0; i < ModernLunchEvents.Length; i++)
+		{
+			if (ModernLunchEvents[i].enabled && ModernLunchEvents[i].gameObject.activeInHierarchy)
+			{
+				if (ModernLunchEvents[i].Depressing)
+				{
+					StudentManager.SabotageProgress++;
+					Debug.Log("We're skipping past a modern rival lunchtime event, but it was was sabotaged, so we're incrementing the Sabotage count.");
+				}
+				ModernLunchEvents[i].EndEvent();
+			}
+		}
 		Debug.Log("Sabotage Progress is currently: " + StudentManager.SabotageProgress);
 	}
 
@@ -844,7 +862,10 @@ public class PortalScript : MonoBehaviour
 				FinalGenericEvents[i].EndEvent();
 			}
 		}
-		Debug.Log("End of day. Sabotage Progress is " + StudentManager.SabotageProgress + " out of 5.");
+		if (!StudentManager.RivalEliminated)
+		{
+			Debug.Log("End of day. Sabotage Progress is " + StudentManager.SabotageProgress + " out of 5.");
+		}
 	}
 
 	public void CheckForPoison()

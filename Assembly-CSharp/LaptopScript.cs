@@ -38,7 +38,7 @@ public class LaptopScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (SchoolGlobals.SCP || GameGlobals.AlphabetMode)
+		if (SchoolGlobals.SCP || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || DateGlobals.Week > 1)
 		{
 			LaptopScreen.localScale = Vector3.zero;
 			LaptopCamera.enabled = false;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ModernRivalEventScript : MonoBehaviour
@@ -5,4 +6,592 @@ public class ModernRivalEventScript : MonoBehaviour
 	public EventInstructions[] Instructions;
 
 	public bool Depressing;
+
+	public StudentManagerScript StudentManager;
+
+	public UILabel EventSubtitle;
+
+	public JukeboxScript Jukebox;
+
+	public YandereScript Yandere;
+
+	public AudioSource MyAudio;
+
+	public ClockScript Clock;
+
+	public GameObject[] EventObject;
+
+	public StudentScript[] Char;
+
+	public int[] CharIDs;
+
+	public StartCriteriaType StartCriteria;
+
+	public NextCriteriaType NextCriteria;
+
+	public DayOfWeek Day;
+
+	public ClubType Club;
+
+	public float SpecialCaseTimer;
+
+	public float StartTimer;
+
+	public float TimeLimit;
+
+	public float StartTime;
+
+	public float Timer;
+
+	public bool ClubCheck;
+
+	public bool Private;
+
+	public int SpecialCase;
+
+	public int Characters;
+
+	public int Loops;
+
+	public int Phase;
+
+	public int Week;
+
+	public string[] AlternateDialogue;
+
+	private void Start()
+	{
+		if (GameGlobals.Eighties || DateGlobals.Week != Week || DateGlobals.Weekday != Day)
+		{
+			base.gameObject.SetActive(value: false);
+		}
+		if (ClubCheck && ClubGlobals.GetClubClosed(Club))
+		{
+			Instructions[0].Destination[0].eulerAngles = Vector3.zero;
+			for (int i = 1; i < Instructions.Length; i++)
+			{
+				Instructions[i].Dialogue = AlternateDialogue[i];
+				Instructions[i].Anim[0] = "f02_bulliedIdle_00";
+			}
+		}
+	}
+
+	private void Update()
+	{
+		StartTimer += Time.deltaTime;
+		if (!(StartTimer > 1f))
+		{
+			return;
+		}
+		if (Phase == -1)
+		{
+			if (StartCriteria == StartCriteriaType.PositionZ)
+			{
+				if (Char[0] == null)
+				{
+					Char[0] = StudentManager.Students[CharIDs[0]];
+					if (Char[0] != null)
+					{
+						Characters++;
+					}
+				}
+				else if (!Char[0].InEvent && Char[0].transform.position.z > -48f && Clock.HourTime > 7.02f)
+				{
+					Debug.Log("A character's event has begun because they have walked past the school gate.");
+					if (Char[0].Slave || Char[0].Hunted)
+					{
+						Debug.Log("Never mind. Cancel event. Character is a mind-broken slave or is being targeted by one.");
+						base.gameObject.SetActive(value: false);
+						base.enabled = false;
+					}
+					else
+					{
+						Char[0].InEvent = true;
+						Char[0].Private = Private;
+						Char[0].Distracted = true;
+						Phase++;
+						TakeInstructions();
+					}
+				}
+			}
+			else if (StartCriteria == StartCriteriaType.BagSet)
+			{
+				if (Char[0] == null)
+				{
+					PopulateCharacterList();
+				}
+				else
+				{
+					if (Char[0].BookBag.activeInHierarchy)
+					{
+						return;
+					}
+					int num = 0;
+					for (int i = 0; i < Char.Length; i++)
+					{
+						if (Char[i] != null && !Char[i].InEvent && Char[i].Routine && !Char[i].Following)
+						{
+							num++;
+						}
+					}
+					if (num == Characters)
+					{
+						Debug.Log("A character's event has begun because they have set down their bookbag, and all characters involved are ready.");
+						if (Char[0].Slave || Char[0].Hunted)
+						{
+							Debug.Log("Never mind. Cancel event. Character is a mind-broken slave or is being targeted by one.");
+							base.gameObject.SetActive(value: false);
+							base.enabled = false;
+						}
+						else
+						{
+							Char[0].InEvent = true;
+							Char[0].Private = Private;
+							Char[0].Distracted = true;
+							Phase++;
+							TakeInstructions();
+						}
+					}
+				}
+			}
+			else if (StartCriteria == StartCriteriaType.Time && Clock.HourTime > StartTime)
+			{
+				if (Char[0] == null)
+				{
+					PopulateCharacterList();
+				}
+				else if (!Char[0].InEvent && Char[0].Routine)
+				{
+					Debug.Log("A character's event has begun because the clock has advanced to a specific time of day.");
+					for (int j = 0; j < Char.Length; j++)
+					{
+						Char[j].EmptyHands();
+						Char[j].InEvent = true;
+						Char[j].Private = Private;
+						Char[j].Distracted = true;
+					}
+					Phase++;
+					TakeInstructions();
+				}
+			}
+			else if (StartCriteria == StartCriteriaType.Indoors)
+			{
+				if (Char[0] == null)
+				{
+					PopulateCharacterList();
+				}
+				else if (Char[0].Indoors)
+				{
+					Debug.Log("A character's event has begun because they've changed into their indoor shoes.");
+					Char[0].InEvent = true;
+					Char[0].Private = Private;
+					Char[0].Distracted = true;
+					Phase++;
+					TakeInstructions();
+				}
+			}
+			return;
+		}
+		if (NextCriteria == NextCriteriaType.TimeLimit)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > TimeLimit)
+			{
+				Phase++;
+				TakeInstructions();
+			}
+		}
+		else if (NextCriteria == NextCriteriaType.DestinationReached)
+		{
+			int num2 = 0;
+			for (int k = 0; k < Char.Length; k++)
+			{
+				if (Char[k] != null)
+				{
+					if (Char[k].DistanceToDestination < 0.5f)
+					{
+						PlayDesignatedAnimation(k);
+						num2++;
+					}
+					else if (Instructions[Phase].Rush)
+					{
+						Char[k].CharacterAnimation.CrossFade(Char[k].SprintAnim);
+					}
+					else
+					{
+						Char[k].CharacterAnimation.CrossFade(Char[k].WalkAnim);
+					}
+				}
+			}
+			if (num2 == Characters)
+			{
+				Phase++;
+				TakeInstructions();
+			}
+		}
+		UpdateSubtitle();
+		for (int l = 0; l < Char.Length; l++)
+		{
+			if (Char[l] != null && (Char[l].Alarmed || Char[l].Splashed || Char[l].Dying || Char[l].GoAway))
+			{
+				Debug.Log("The event ended because a character was alarmed or splashed or stink bombed or killed.");
+				EndEvent();
+			}
+		}
+		if (Input.GetKeyDown("left ctrl"))
+		{
+			Debug.Log("The event ended through a debug command.");
+			EndEvent();
+		}
+		if (base.enabled && Phase < Instructions.Length)
+		{
+			SpecialCaseCheck();
+		}
+	}
+
+	private void TakeInstructions()
+	{
+		EventSubtitle.text = string.Empty;
+		Timer = 0f;
+		if (Phase == Instructions.Length)
+		{
+			if (Depressing)
+			{
+				StudentManager.SabotageProgress++;
+				Debug.Log("SabtoageProgress is now " + StudentManager.SabotageProgress + "/5");
+			}
+			EndEvent();
+			return;
+		}
+		for (int i = 0; i < Char.Length; i++)
+		{
+			if (Char[i] != null)
+			{
+				if (Instructions[Phase].Type == InstructionType.Stay)
+				{
+					Char[i].Pathfinding.canSearch = false;
+					Char[i].Pathfinding.canMove = false;
+					Char[i].Pathfinding.speed = 0f;
+				}
+				else
+				{
+					Char[i].Pathfinding.target = Instructions[Phase].Destination[i];
+					Char[i].CurrentDestination = Instructions[Phase].Destination[i];
+					Char[i].Pathfinding.canSearch = true;
+					Char[i].Pathfinding.canMove = true;
+					Char[i].DistanceToDestination = 100f;
+					if (Instructions[Phase].Rush)
+					{
+						Char[i].Pathfinding.speed = 4f;
+					}
+					else
+					{
+						Char[i].Pathfinding.speed = 1f;
+					}
+				}
+				PlayDesignatedAnimation(i);
+			}
+			if (Instructions[Phase].Audio != null)
+			{
+				Debug.Log("Should be playing some audio right now.");
+				MyAudio.clip = Instructions[Phase].Audio;
+				AudioSource.PlayClipAtPoint(MyAudio.clip, Char[0].transform.position);
+			}
+			EventSubtitle.text = Instructions[Phase].Dialogue;
+			NextCriteria = Instructions[Phase].NextCritera;
+			SpecialCase = Instructions[Phase].SpecialCase;
+			TimeLimit = Instructions[Phase].TimeLimit;
+			SpecialCaseTimer = 0f;
+		}
+	}
+
+	public void UpdateSubtitle()
+	{
+		if (Yandere.transform.position.y > Char[0].transform.position.y - 1f && Yandere.transform.position.y < Char[0].transform.position.y + 1f)
+		{
+			float num = Vector3.Distance(Yandere.transform.position, Char[0].transform.position);
+			float num2 = Mathf.Abs((num - 10f) * 0.2f);
+			if (num < 10f)
+			{
+				if (num2 < 0f)
+				{
+					num2 = 0f;
+				}
+				if (num2 > 1f)
+				{
+					num2 = 1f;
+				}
+				EventSubtitle.transform.localScale = new Vector3(num2, num2, num2);
+				Jukebox.Dip = 1f - 0.5f * num2;
+				if (Private && num < 5f)
+				{
+					Yandere.Eavesdropping = true;
+				}
+				else
+				{
+					Yandere.Eavesdropping = false;
+				}
+			}
+			else if (num < 11f)
+			{
+				EventSubtitle.transform.localScale = Vector3.zero;
+				EventSubtitle.text = string.Empty;
+				Yandere.Eavesdropping = false;
+				Jukebox.Dip = 1f;
+			}
+		}
+		else
+		{
+			MyAudio.volume = 0f;
+			Jukebox.Dip = 1f;
+		}
+	}
+
+	public void SpecialCaseCheck()
+	{
+		switch (Instructions[Phase].SpecialCase)
+		{
+		case 1:
+			SpecialCaseTimer += Time.deltaTime;
+			if (SpecialCaseTimer > 1.5f && !Char[0].SmartPhone.activeInHierarchy)
+			{
+				Char[0].CharacterAnimation["f02_AmaiPhoneLoop_00"].speed = 0.4f;
+				Char[0].SmartPhone.transform.localPosition = new Vector3(0.025f, 0.0075f, 0.05f);
+				Char[0].SmartPhone.transform.localEulerAngles = new Vector3(15f, -150f, 180f);
+				Char[0].SmartPhone.SetActive(value: true);
+			}
+			break;
+		case 2:
+			if (!Private)
+			{
+				Char[0].SmartPhone.transform.localPosition = new Vector3(-0.005f, -0.0075f, 0f);
+				Char[0].SmartPhone.transform.localEulerAngles = new Vector3(15f, -150f, 180f);
+				Char[0].CharacterAnimation["f02_OsanaPhoneCall_00"].speed = 0.6f;
+				Char[0].Distracted = false;
+				Char[0].Private = true;
+				Private = true;
+			}
+			break;
+		case 3:
+			if (Vector3.Distance(Yandere.transform.position, Char[0].transform.position) < 5f && !StudentManager.Police.EndOfDay.LearnedRivalDarkSecret)
+			{
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
+				StudentManager.Police.EndOfDay.LearnedRivalDarkSecret = true;
+			}
+			break;
+		case 4:
+			if (Char[0].CharacterAnimation["f02_OsanaPhoneCall_00"].time > 42.66666f)
+			{
+				Char[0].SmartPhone.SetActive(value: false);
+			}
+			break;
+		case 5:
+		{
+			for (int j = 1; j < Char.Length; j++)
+			{
+				if (Char[j] != null)
+				{
+					Char[j].InEvent = true;
+					Char[j].Routine = false;
+					Char[j].SpeechLines.Stop();
+					Char[j].FocusOnStudent = true;
+					Char[j].WeirdStudent = Char[0].transform;
+					Char[j].CharacterAnimation.CrossFade(Char[j].IdleAnim);
+				}
+			}
+			break;
+		}
+		case 6:
+		{
+			for (int i = 0; i < Char.Length; i++)
+			{
+				if (Char[i] != null)
+				{
+					Char[i].WeirdStudent = null;
+					Char[i].FocusOnStudent = false;
+					ScheduleBlock obj = Char[i].ScheduleBlocks[2];
+					obj.destination = "BakeSale";
+					obj.action = "BakeSale";
+					ScheduleBlock obj2 = Char[i].ScheduleBlocks[4];
+					obj2.destination = "BakeSale";
+					obj2.action = "BakeSale";
+					ScheduleBlock obj3 = Char[i].ScheduleBlocks[7];
+					obj3.destination = "BakeSale";
+					obj3.action = "BakeSale";
+					Char[i].GetDestinations();
+				}
+			}
+			break;
+		}
+		case 7:
+			EventObject[0].SetActive(value: true);
+			break;
+		case 8:
+			Loops++;
+			if (Loops < 5)
+			{
+				Phase = 0;
+			}
+			break;
+		case 9:
+			EventObject[0].SetActive(value: false);
+			break;
+		case 10:
+			EventObject[1].SetActive(value: true);
+			break;
+		case 11:
+		{
+			ScheduleBlock obj4 = Char[0].ScheduleBlocks[4];
+			obj4.destination = "Picnic";
+			obj4.action = "Picnic";
+			Char[0].GetDestinations();
+			Char[0].Pathfinding.target = Char[0].Destinations[4];
+			Char[0].CurrentDestination = Char[0].Destinations[4];
+			ScheduleBlock obj5 = Char[1].ScheduleBlocks[4];
+			obj5.destination = "Picnic";
+			obj5.action = "Picnic";
+			Char[1].GetDestinations();
+			Char[1].Pathfinding.target = Char[1].Destinations[4];
+			Char[1].CurrentDestination = Char[1].Destinations[4];
+			break;
+		}
+		case 12:
+			SpecialCaseTimer += Time.deltaTime;
+			if (SpecialCaseTimer > 6.66666f)
+			{
+				Char[0].CameraFlash.SetActive(value: false);
+				Char[0].SmartPhone.SetActive(value: false);
+			}
+			else if (SpecialCaseTimer > 5.33333f)
+			{
+				Char[0].CameraFlash.SetActive(value: true);
+			}
+			else if (SpecialCaseTimer > 1.25f)
+			{
+				Char[0].SmartPhone.transform.localPosition = new Vector3(-0.02f, -0.0025f, 0.025f);
+				Char[0].SmartPhone.transform.localEulerAngles = new Vector3(0f, 180f, 180f);
+				Char[0].SmartPhone.transform.localPosition = new Vector3(0f, 0.005f, -0.01f);
+				Char[0].SmartPhone.transform.localEulerAngles = new Vector3(7.33333f, -154f, 173.66666f);
+				Char[0].SmartPhone.SetActive(value: true);
+			}
+			break;
+		case 13:
+			Char[0].SmartPhone.SetActive(value: true);
+			break;
+		case 14:
+			EventObject[0].SetActive(value: true);
+			EventObject[1].SetActive(value: false);
+			break;
+		case 15:
+			SpecialCaseTimer += Time.deltaTime;
+			if (SpecialCaseTimer > 7f)
+			{
+				Char[0].SodaCan.SetActive(value: true);
+			}
+			break;
+		case 16:
+			SpecialCaseTimer += Time.deltaTime;
+			if (SpecialCaseTimer > 3.5f)
+			{
+				if (Char[0].CrushedCan.activeInHierarchy)
+				{
+					Char[0].CrushedCan.SetActive(value: false);
+					EventObject[0].SetActive(value: true);
+					EventObject[0].transform.position = Char[0].LeftHand.position;
+					Rigidbody component = EventObject[0].GetComponent<Rigidbody>();
+					component.AddRelativeForce(Char[0].transform.forward * -100f);
+					component.AddRelativeForce(Vector3.up * 100f);
+				}
+			}
+			else if (SpecialCaseTimer > 2.33333f)
+			{
+				Char[0].CrushedCan.SetActive(value: true);
+				Char[0].SodaCan.SetActive(value: false);
+			}
+			break;
+		}
+	}
+
+	public void EndEvent()
+	{
+		Debug.Log("A Modern Rival Event has ended.");
+		for (int i = 0; i < Char.Length; i++)
+		{
+			if (Char[i] != null && Char[i].Alive && !Char[i].Dying)
+			{
+				if (!Char[i].Alarmed && !Char[i].Splashed && !Char[i].GoAway)
+				{
+					Char[i].Pathfinding.canSearch = true;
+					Char[i].Pathfinding.canMove = true;
+					Char[i].Pathfinding.speed = 1f;
+					Char[i].Routine = true;
+				}
+				else
+				{
+					Debug.Log("Character was alarmed when event ended.");
+				}
+				Char[i].CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+				Char[i].CurrentDestination = Char[i].Destinations[Char[i].Phase];
+				Char[i].Pathfinding.target = Char[i].Destinations[Char[i].Phase];
+				Char[i].SmartPhone.SetActive(value: false);
+				Char[i].DistanceToDestination = 100f;
+				Char[i].Prompt.enabled = true;
+				Char[i].Distracted = false;
+				Char[i].InEvent = false;
+				Char[i].Private = false;
+				if (Depressing && Char[i].Rival)
+				{
+					Char[i].IdleAnim = "f02_bulliedIdle_00";
+					Char[i].WalkAnim = "f02_bulliedWalk_00";
+				}
+				if (!StudentManager.Stop)
+				{
+					StudentManager.UpdateStudents();
+				}
+				if (i == 0)
+				{
+					Debug.Log("Char[0]'s Phase is:" + Char[0].Phase);
+					Debug.Log("Char[0]'s CurrentAction is:" + Char[0].CurrentAction);
+					Debug.Log("Char[0]'s current ScheduleBlocks.action is:" + Char[0].ScheduleBlocks[Char[0].Phase].action);
+				}
+			}
+		}
+		EventSubtitle.text = string.Empty;
+		Yandere.Eavesdropping = false;
+		Jukebox.Dip = 1f;
+		MyAudio.Stop();
+		base.enabled = false;
+	}
+
+	public void PlayDesignatedAnimation(int ID)
+	{
+		if (Instructions[Phase].Anim[ID] == "Idle")
+		{
+			Char[ID].CharacterAnimation.CrossFade(Char[ID].IdleAnim);
+		}
+		else if (Instructions[Phase].Anim[ID] == "Talk")
+		{
+			Char[ID].CharacterAnimation.CrossFade(Char[ID].TalkAnim);
+		}
+		else if (Instructions[Phase].Anim[ID] == "Walk")
+		{
+			Char[ID].CharacterAnimation.CrossFade(Char[ID].WalkAnim);
+		}
+		else if (Instructions[Phase].Anim[ID] != "")
+		{
+			Char[ID].CharacterAnimation.CrossFade(Instructions[Phase].Anim[ID]);
+		}
+	}
+
+	public void PopulateCharacterList()
+	{
+		for (int i = 0; i < Char.Length; i++)
+		{
+			Char[i] = StudentManager.Students[CharIDs[i]];
+			if (Char[i] != null)
+			{
+				Characters++;
+			}
+		}
+	}
 }

@@ -51,9 +51,11 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 
 	public bool HintGiven;
 
-	public bool Transfer;
+	public bool Finished;
 
 	public bool NoFriend;
+
+	public bool Transfer;
 
 	public bool End;
 
@@ -96,11 +98,6 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			Spy.Prompt.enabled = false;
 			base.enabled = false;
 		}
-		if (Week > 1)
-		{
-			Spy.Prompt.enabled = false;
-			base.enabled = false;
-		}
 		if (Week == 1 && base.enabled && (float)StudentGlobals.GetStudentReputation(10) <= -33.33333f)
 		{
 			OsanaLoseFriendEvent.OtherEvent = this;
@@ -114,10 +111,6 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			{
 				SpeechTime[i + 1] = num + (float)SpeechText[i].Length * 0.1f;
 				num += (float)SpeechText[i].Length * 0.1f;
-			}
-			for (i = 0; i < SpeechText.Length - 1; i++)
-			{
-				SpeechText[i] = "";
 			}
 		}
 		if (base.enabled && !GameGlobals.Eighties && Week == 2 && (EventDay == DayOfWeek.Thursday || EventDay == DayOfWeek.Friday))
@@ -143,7 +136,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		{
 			if (Frame > 5 && StudentManager.Students[RivalID] != null)
 			{
-				if (Clock.Period > 1)
+				if (Clock.Period > 1 || StudentManager.MorningEventOver)
 				{
 					base.enabled = false;
 				}
@@ -473,6 +466,8 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			Jukebox.Dip = 1f;
 		}
 		base.enabled = false;
+		StudentManager.MorningEventOver = true;
+		Finished = true;
 	}
 
 	public void SaveAnimationTime()

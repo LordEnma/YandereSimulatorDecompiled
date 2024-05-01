@@ -315,6 +315,12 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 				PrologueLabel.text = "Osana is eager to report her stalker to the police.\n\nHowever, she knows that the process could take a long time, so she decides to visit Ayano's house and get her cat back before contacting the police.\n\nThe next morning, Osana arrives at Ayano's house...";
 				CatStuff.SetActive(value: true);
 			}
+			else if (DateGlobals.Week == 2)
+			{
+				Debug.Log("Wait, is this code EVER reached?");
+				PrologueLabel.text = "The next morning...";
+				CatStuff.SetActive(value: false);
+			}
 			WarningLabel.SetActive(value: true);
 			OsanaCutscene = true;
 			Lines = RivalData.OsanaIntroLines;

@@ -250,7 +250,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		GameGlobals.TransitionToPostCredits = false;
 		GameGlobals.DarkEnding = false;
 		GameGlobals.Debug = false;
-		if (DateGlobals.Week == 2 && !GameGlobals.PlayerHasBeatenDemo && !Eighties)
+		if (!Eighties && DateGlobals.Week == 3 && !GameGlobals.PlayerHasBeatenDemo)
 		{
 			CongratulationsWindow.SetActive(value: true);
 			GameGlobals.PlayerHasBeatenDemo = true;
@@ -373,7 +373,7 @@ public class NewTitleScreenScript : MonoBehaviour
 						if (!PromptBar.Show)
 						{
 							PromptBar.ClearButtons();
-							PromptBar.Label[0].text = "Cool, thanks bro!";
+							PromptBar.Label[0].text = "Awesome! Let's go!";
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
 						}

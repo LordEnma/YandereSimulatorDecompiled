@@ -497,10 +497,23 @@ public class DialogueWheelScript : MonoBehaviour
 							}
 							else if (Selected == 2)
 							{
-								Impatience.fillAmount = 0f;
-								Yandere.Interaction = YandereInteractionType.Court;
-								Yandere.TalkTimer = 5f;
-								Show = false;
+								bool flag = false;
+								if (Yandere.StudentManager.Week == 1 || Yandere.Inventory.Headset)
+								{
+									flag = true;
+								}
+								if (flag)
+								{
+									Impatience.fillAmount = 0f;
+									Yandere.Interaction = YandereInteractionType.Court;
+									Yandere.TalkTimer = 5f;
+									Show = false;
+								}
+								else
+								{
+									Yandere.NotificationManager.CustomText = "Obtain Headset from Info-chan";
+									Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+								}
 							}
 							else if (Selected == 4)
 							{
@@ -597,15 +610,15 @@ public class DialogueWheelScript : MonoBehaviour
 							Show = false;
 							if (Yandere.TargetStudent.TaskPhase == 0)
 							{
-								bool flag = true;
+								bool flag2 = true;
 								if (!Yandere.StudentManager.Eighties && Yandere.TargetStudent.StudentID == 36 && Clock.Period > 1)
 								{
 									Yandere.NotificationManager.CustomText = "Task only available in morning";
 									Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-									flag = false;
+									flag2 = false;
 									Show = true;
 								}
-								if (flag)
+								if (flag2)
 								{
 									Impatience.fillAmount = 0f;
 									Yandere.TargetStudent.Interaction = StudentInteractionType.GivingTask;
@@ -810,14 +823,9 @@ public class DialogueWheelScript : MonoBehaviour
 			}
 			else
 			{
-				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
+				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 6 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 				{
 					flag2 = true;
-				}
-				if (Yandere.TargetStudent.StudentID == 6)
-				{
-					Debug.Log("Speaking to Osana's suitor.");
-					flag2 = false;
 				}
 				if (Yandere.TargetStudent.StudentID == 1 || Yandere.TargetStudent.StudentID == 10)
 				{
@@ -1121,8 +1129,12 @@ public class DialogueWheelScript : MonoBehaviour
 				{
 					Yandere.TargetStudent.TaskPhase = 5;
 					Yandere.LoveManager.SuitorProgress = 1;
-					DatingGlobals.SuitorProgress = 1;
 				}
+			}
+			else if (Yandere.TargetStudent.StudentID == 21 && TaskManager.TaskStatus[21] == 1)
+			{
+				Yandere.TargetStudent.TaskPhase = 5;
+				Yandere.LoveManager.SuitorProgress = 1;
 			}
 			else if (Yandere.TargetStudent.StudentID == 36 && TaskManager.TaskStatus[36] == 1)
 			{
@@ -1184,7 +1196,7 @@ public class DialogueWheelScript : MonoBehaviour
 				Yandere.TargetStudent.TaskPhase = 5;
 				Yandere.Inventory.AnswerSheet = false;
 			}
-			if (Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 47 && Yandere.TargetStudent.StudentID != 48 && Yandere.TargetStudent.StudentID != 49 && Yandere.TargetStudent.StudentID != 50 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
+			if (Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 47 && Yandere.TargetStudent.StudentID != 48 && Yandere.TargetStudent.StudentID != 49 && Yandere.TargetStudent.StudentID != 50 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 			{
 				flag = true;
 			}
