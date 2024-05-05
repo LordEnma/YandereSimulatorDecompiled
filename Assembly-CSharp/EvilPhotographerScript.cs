@@ -134,7 +134,7 @@ public class EvilPhotographerScript : MonoBehaviour
 			{
 				flag = true;
 			}
-			if (Yandere.transform.position.y > base.transform.position.y - 1f && Yandere.transform.position.y < base.transform.position.y + 1f && !flag)
+			if (Yandere.transform.position.y > base.transform.position.y - 2.2f && Yandere.transform.position.y < base.transform.position.y + 2.2f && !flag)
 			{
 				if (Distracted)
 				{

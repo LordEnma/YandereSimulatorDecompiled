@@ -1,3 +1,4 @@
+using RetroAesthetics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,6 +44,14 @@ public class WeekSelectScript : MonoBehaviour
 
 	public int[] Specifics;
 
+	public Texture[] ModernSleeveTexture;
+
+	public Renderer[] SleeveRenderer;
+
+	public GameObject PinkGradient;
+
+	public RetroCameraEffect RetroEffect;
+
 	public int CurrentWeek;
 
 	public Vector3[] StartingPosition;
@@ -67,6 +76,15 @@ public class WeekSelectScript : MonoBehaviour
 		}
 		DetermineSelectedWeek();
 		StudentGlobals.Prisoners = 0;
+		if (!GameGlobals.Eighties)
+		{
+			for (int i = 1; i < 11; i++)
+			{
+				SleeveRenderer[i].material.mainTexture = ModernSleeveTexture[i];
+			}
+			PinkGradient.SetActive(value: true);
+			RetroEffect.enabled = false;
+		}
 	}
 
 	private void Update()
@@ -139,7 +157,16 @@ public class WeekSelectScript : MonoBehaviour
 					ClassGlobals.BonusStudyPoints = DateGlobals.Week * 50 - 50;
 					GameGlobals.EightiesCutsceneID = DateGlobals.Week;
 					DateGlobals.PassDays = 0;
-					SceneManager.LoadScene("EightiesCutsceneScene");
+					if (GameGlobals.Eighties)
+					{
+						SceneManager.LoadScene("EightiesCutsceneScene");
+					}
+					else
+					{
+						DateGlobals.PassDays++;
+						DateGlobals.ForceSkip = true;
+						SceneManager.LoadScene("CalendarScene");
+					}
 				}
 			}
 		}
@@ -402,7 +429,7 @@ public class WeekSelectScript : MonoBehaviour
 		if (SettingWeek)
 		{
 			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 2.31f, 0f), Time.deltaTime * 10f);
-			if (Input.GetButtonDown(InputNames.Xbox_A))
+			if (Input.GetButtonDown(InputNames.Xbox_A) && (GameGlobals.Eighties || (!GameGlobals.Eighties && CurrentWeek < 3)))
 			{
 				SettingWeek = false;
 				SettingRivals = true;

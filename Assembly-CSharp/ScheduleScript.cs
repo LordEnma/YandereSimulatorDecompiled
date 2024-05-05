@@ -263,7 +263,7 @@ public class ScheduleScript : MonoBehaviour
 			PauseScreen.Sideways = false;
 			base.gameObject.SetActive(value: false);
 		}
-		if (Input.GetButtonDown(InputNames.Xbox_X) && !ChallengeGlobals.NoInfo)
+		if (Input.GetButtonDown(InputNames.Xbox_X) && DateGlobals.Week == 1 && !ChallengeGlobals.NoInfo)
 		{
 			PauseScreen.PromptBar.ClearButtons();
 			PauseScreen.PromptBar.Label[0].text = "Accept";

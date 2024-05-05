@@ -4520,9 +4520,6 @@ public class StudentScript : MonoBehaviour
 					Cosmetic.MyRenderer.materials[Cosmetic.FaceID].SetFloat("_BlendAmount", 0f);
 					PinkSeifuku.SetActive(value: false);
 				}
-				BountyCollider.SetActive(value: false);
-				Cigarette.SetActive(value: false);
-				Lighter.SetActive(value: false);
 				if (!Paired)
 				{
 					Pathfinding.canSearch = true;
@@ -4547,12 +4544,16 @@ public class StudentScript : MonoBehaviour
 					}
 					SmartPhone.SetActive(value: true);
 				}
+				BountyCollider.SetActive(value: false);
+				OccultBook.SetActive(value: false);
 				Paintbrush.SetActive(value: false);
 				Sketchbook.SetActive(value: false);
+				Cigarette.SetActive(value: false);
+				Scrubber.SetActive(value: false);
+				Drawing.SetActive(value: false);
+				Lighter.SetActive(value: false);
 				Palette.SetActive(value: false);
 				Pencil.SetActive(value: false);
-				OccultBook.SetActive(value: false);
-				Scrubber.SetActive(value: false);
 				Eraser.SetActive(value: false);
 				Pen.SetActive(value: false);
 				GameObject[] scienceProps = ScienceProps;
@@ -4812,10 +4813,8 @@ public class StudentScript : MonoBehaviour
 					}
 					if (!StudentManager.Eighties)
 					{
-						if (StudentManager.ConvoManager.Week != 0 && (StudentID == 25 || StudentID == 30 || StudentID == 24 || StudentID == 27))
+						if (StudentManager.ConvoManager.Week == 0)
 						{
-							Hurry = true;
-							Pathfinding.speed = 4f;
 						}
 					}
 					else if (StudentID > 10 && StudentID < 21 && (Schoolwear != 1 || (BikiniAttacher != null && BikiniAttacher.newRenderer != null)))
@@ -7078,10 +7077,13 @@ public class StudentScript : MonoBehaviour
 										SmartPhone.SetActive(value: false);
 										Pathfinding.canSearch = false;
 										Pathfinding.canMove = false;
-										ShoeRemoval.enabled = true;
 										CanTalk = false;
 										Routine = false;
-										ShoeRemoval.LeavingSchool();
+										if (!Confessing)
+										{
+											ShoeRemoval.enabled = true;
+											ShoeRemoval.LeavingSchool();
+										}
 									}
 								}
 								else
@@ -10947,6 +10949,15 @@ public class StudentScript : MonoBehaviour
 					{
 						if (DistractionTarget.HelpOffered || DistractionTarget.InEvent || DistractionTarget.Talking || DistractionTarget.Following || DistractionTarget.TurnOffRadio || DistractionTarget.Splashed || DistractionTarget.Shoving || DistractionTarget.Spraying || DistractionTarget.FocusOnYandere || DistractionTarget.ShoeRemoval.enabled || DistractionTarget.Posing || DistractionTarget.ClubActivityPhase >= 16 || !DistractionTarget.enabled || DistractionTarget.Alarmed || DistractionTarget.Fleeing || DistractionTarget.Wet || DistractionTarget.EatingSnack || DistractionTarget.MyBento.Tampered || DistractionTarget.Meeting || DistractionTarget.Sedated || DistractionTarget.Sleepy || DistractionTarget.InvestigatingBloodPool || DistractionTarget.ReturningMisplacedWeapon || StudentManager.LockerRoomArea.bounds.Contains(DistractionTarget.transform.position) || StudentManager.MaleLockerRoomArea.bounds.Contains(DistractionTarget.transform.position) || StudentManager.WestBathroomArea.bounds.Contains(DistractionTarget.transform.position) || StudentManager.EastBathroomArea.bounds.Contains(DistractionTarget.transform.position) || StudentManager.HeadmasterArea.bounds.Contains(DistractionTarget.transform.position) || (DistractionTarget.Actions[DistractionTarget.Phase] == StudentActionType.Bully && DistractionTarget.DistanceToDestination < 1f) || DistractionTarget.Leaving || DistractionTarget.CameraReacting || DistractionTarget.SentToLocker || (MyPlate != null && MyPlate.parent == RightHand && DistractionTarget.AlreadyFed) || DistractionTarget.AwareOfCorpse)
 						{
+							if (DistractionTarget.InEvent)
+							{
+								Yandere.NotificationManager.CustomText = Name + " is backing off.";
+								Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+								Yandere.NotificationManager.CustomText = DistractionTarget.Name + " is busy.";
+								Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+								Yandere.NotificationManager.CustomText = Name + " can see that";
+								Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
 							CurrentDestination = Destinations[Phase];
 							Pathfinding.target = Destinations[Phase];
 							DistractionTarget.TargetedForDistraction = false;
@@ -11855,7 +11866,7 @@ public class StudentScript : MonoBehaviour
 						}
 						else
 						{
-							CharacterAnimation.CrossFade("f02_heardSuspiciousNoise_02");
+							CharacterAnimation.CrossFade("f02_heardSuspiciousNoise_03");
 						}
 						Pathfinding.canSearch = false;
 						Pathfinding.canMove = false;

@@ -951,7 +951,7 @@ public class PauseScreenScript : MonoBehaviour
 		Show = true;
 		PromptBar.ClearButtons();
 		PromptBar.Label[1].text = "Back";
-		if (!ChallengeGlobals.NoInfo)
+		if (!ChallengeGlobals.NoInfo && DateGlobals.Week == 1)
 		{
 			PromptBar.Label[2].text = "View Schemes";
 		}

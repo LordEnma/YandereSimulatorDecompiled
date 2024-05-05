@@ -65,12 +65,16 @@ public class EightiesStatsScript : MonoBehaviour
 			DetailIDs[DateGlobals.Week] = GameGlobals.RivalEliminationID;
 		}
 		string text = "Ryoba";
+		if (!GameGlobals.Eighties)
+		{
+			text = "Ayano";
+		}
 		if (GameGlobals.CustomMode && JSON != null)
 		{
 			text = JSON.Students[0].Name;
-			Details[4] = "Friends with " + text + ".";
-			Details[14] = text + "'s involvement not suspected.";
 		}
+		Details[4] = "Friends with " + text + ".";
+		Details[14] = text + "'s involvement not suspected.";
 		Label[0].text = "Rival #1: " + Eliminations[EliminationIDs[1]] + "\n" + Details[DetailIDs[1]] + "\n\nRival #2: " + Eliminations[EliminationIDs[2]] + "\n" + Details[DetailIDs[2]] + "\n\nRival #3: " + Eliminations[EliminationIDs[3]] + "\n" + Details[DetailIDs[3]] + "\n\nRival #4: " + Eliminations[EliminationIDs[4]] + "\n" + Details[DetailIDs[4]] + "\n\nRival #5: " + Eliminations[EliminationIDs[5]] + "\n" + Details[DetailIDs[5]];
 		Label[1].text = "Rival #6: " + Eliminations[EliminationIDs[6]] + "\n" + Details[DetailIDs[6]] + "\n\nRival #7: " + Eliminations[EliminationIDs[7]] + "\n" + Details[DetailIDs[7]] + "\n\nRival #8: " + Eliminations[EliminationIDs[8]] + "\n" + Details[DetailIDs[8]] + "\n\nRival #9: " + Eliminations[EliminationIDs[9]] + "\n" + Details[DetailIDs[9]] + "\n\nRival #10: " + Eliminations[EliminationIDs[10]] + "\n" + Details[DetailIDs[10]];
 		Label[2].text = "Police have...\n...visited Akademi " + PlayerGlobals.PoliceVisits + " times.\n...discovered " + PlayerGlobals.CorpsesDiscovered + " corpses at Akademi.\n" + text + "'s reputation is " + Mathf.RoundToInt(PlayerGlobals.Reputation) + ".\n" + Grudges + " students think " + text + " is a murderer.";

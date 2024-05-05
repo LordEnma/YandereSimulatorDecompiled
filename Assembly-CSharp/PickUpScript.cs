@@ -263,7 +263,7 @@ public class PickUpScript : MonoBehaviour
 		}
 		Yandere.StudentManager.AllPickUps[Yandere.StudentManager.PickUpID] = this;
 		Yandere.StudentManager.PickUpID++;
-		if (!Clothing && !Garbage && BodyPart == null)
+		if (!Clothing && !Garbage && BodyPart == null && !AmaiTask)
 		{
 			OriginalPosition = base.transform.position;
 			OriginalRotation = base.transform.eulerAngles;

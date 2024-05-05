@@ -286,13 +286,13 @@ public class ModernRivalSabotageScript : MonoBehaviour
 				{
 					Prompt.Yandere.StudentManager.Students[Prompt.Yandere.StudentManager.RivalID].EventToSabotage = SabotagedEvent;
 				}
+				Prompt.Yandere.Phone.GetComponent<Renderer>().material.mainTexture = Prompt.Yandere.YanderePhoneTexture;
 				NormalEvent.gameObject.SetActive(value: false);
 				Disable();
 			}
 			else if (Timer > 6.66666f)
 			{
 				Prompt.Yandere.Phone.SetActive(value: false);
-				Prompt.Yandere.Phone.GetComponent<Renderer>().material.mainTexture = OriginalTexture;
 			}
 			else if (Timer > 5.33333f)
 			{
@@ -305,7 +305,6 @@ public class ModernRivalSabotageScript : MonoBehaviour
 				Prompt.Yandere.Phone.transform.localPosition = new Vector3(0f, 0.005f, -0.01f);
 				Prompt.Yandere.Phone.transform.localEulerAngles = new Vector3(7.33333f, -154f, 173.66666f);
 				int rivalID = Prompt.Yandere.StudentManager.RivalID;
-				OriginalTexture = Prompt.Yandere.Phone.GetComponent<Renderer>().material.mainTexture;
 				Prompt.Yandere.Phone.GetComponent<Renderer>().material.mainTexture = Prompt.Yandere.StudentManager.Students[rivalID].SmartPhone.GetComponent<Renderer>().material.mainTexture;
 				Prompt.Yandere.Phone.SetActive(value: true);
 			}

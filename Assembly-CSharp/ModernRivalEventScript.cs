@@ -238,11 +238,6 @@ public class ModernRivalEventScript : MonoBehaviour
 				EndEvent();
 			}
 		}
-		if (Input.GetKeyDown("left ctrl"))
-		{
-			Debug.Log("The event ended through a debug command.");
-			EndEvent();
-		}
 		if (base.enabled && Phase < Instructions.Length)
 		{
 			SpecialCaseCheck();
@@ -332,10 +327,9 @@ public class ModernRivalEventScript : MonoBehaviour
 					Yandere.Eavesdropping = false;
 				}
 			}
-			else if (num < 11f)
+			else
 			{
 				EventSubtitle.transform.localScale = Vector3.zero;
-				EventSubtitle.text = string.Empty;
 				Yandere.Eavesdropping = false;
 				Jukebox.Dip = 1f;
 			}

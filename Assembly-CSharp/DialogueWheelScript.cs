@@ -107,6 +107,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public bool NoFriends;
 
+	public bool Eighties;
+
 	public bool NoGaming;
 
 	public bool Pestered;
@@ -134,6 +136,7 @@ public class DialogueWheelScript : MonoBehaviour
 		else
 		{
 			LoveText[4] = "Advice";
+			Eighties = true;
 		}
 		NoFriends = ChallengeGlobals.NoFriends;
 		NoGaming = ChallengeGlobals.NoGaming;
@@ -498,7 +501,7 @@ public class DialogueWheelScript : MonoBehaviour
 							else if (Selected == 2)
 							{
 								bool flag = false;
-								if (Yandere.StudentManager.Week == 1 || Yandere.Inventory.Headset)
+								if (Eighties || Yandere.StudentManager.Week == 1 || Yandere.Inventory.Headset)
 								{
 									flag = true;
 								}

@@ -72,6 +72,8 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 
 	public string HitReactAnim;
 
+	public string SideWalkAnim;
+
 	public string AttackAnim;
 
 	public string IdleAnim;
@@ -318,17 +320,15 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 				AttackTimer = 0f;
 			}
 		}
+		else if ((double)Vector3.Distance(base.transform.position, Player.transform.position) > 2.5)
+		{
+			MyController.Move(base.transform.forward * Time.deltaTime);
+			MyAnimation.CrossFade(WalkAnim);
+		}
 		else
 		{
-			MyAnimation.CrossFade(WalkAnim);
-			if ((double)Vector3.Distance(base.transform.position, Player.transform.position) > 2.5)
-			{
-				MyController.Move(base.transform.forward * Time.deltaTime);
-			}
-			else
-			{
-				MyController.Move(base.transform.right * -1f * Time.deltaTime);
-			}
+			MyController.Move(base.transform.right * -1f * Time.deltaTime);
+			MyAnimation.CrossFade(SideWalkAnim);
 		}
 	}
 

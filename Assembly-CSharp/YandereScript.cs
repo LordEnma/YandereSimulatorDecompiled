@@ -7656,15 +7656,15 @@ public class YandereScript : MonoBehaviour
 		}
 		for (ID = 1; ID < Hairstyles.Length; ID++)
 		{
-			Hairstyles[ID].SetActive(value: false);
+			if (Hairstyles[ID] != null)
+			{
+				Hairstyles[ID].SetActive(value: false);
+				Hairstyles[ID].layer = 13;
+			}
 		}
-		if (Hairstyle > 0)
+		if (Hairstyle > 0 && Hairstyles[Hairstyle] != null)
 		{
 			Hairstyles[Hairstyle].SetActive(value: true);
-		}
-		for (ID = 1; ID < Hairstyles.Length; ID++)
-		{
-			Hairstyles[ID].layer = 13;
 		}
 	}
 

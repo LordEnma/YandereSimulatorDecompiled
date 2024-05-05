@@ -1216,7 +1216,7 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				Debug.Log("We're not in 1980s Mode and Week is " + DateGlobals.Week + " so we're resetting the week to ''0'' and booting the player out.");
 				DateGlobals.Week = 0;
-				SceneManager.LoadScene("VeryFunScene");
+				SceneManager.LoadScene("FunScene");
 			}
 			else if (DateGlobals.Week > WeekLimit && DateGlobals.Weekday > DayOfWeek.Sunday)
 			{
@@ -1299,13 +1299,16 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				SuitorID = SuitorIDs[DateGlobals.Week];
 			}
-			if (RivalEvents.Length != 0)
+			if (!TakingPortraits && RivalEvents.Length != 0)
 			{
 				if (DateGlobals.Week == 1)
 				{
-					RivalEvents[2].SetActive(value: false);
+					if (RivalEvents.Length > 2)
+					{
+						RivalEvents[2].SetActive(value: false);
+					}
 				}
-				else
+				else if (RivalEvents.Length > 1)
 				{
 					RivalEvents[1].SetActive(value: false);
 				}
@@ -3289,6 +3292,7 @@ public class StudentManagerScript : MonoBehaviour
 			StudentScript studentScript = Students[ID];
 			if (studentScript != null)
 			{
+				studentScript.EmptyHands();
 				studentScript.VisitSenpaiDesk = false;
 				studentScript.AlreadyFed = false;
 				studentScript.Attempts = 0;

@@ -85,9 +85,11 @@ public class VisualNovelScript : MonoBehaviour
 
 	public Mesh CasualMesh;
 
-	public bool ShowPainting;
+	public bool CasualClothing;
 
 	public bool MeetingRival;
+
+	public bool ShowPainting;
 
 	private void Start()
 	{
@@ -107,10 +109,7 @@ public class VisualNovelScript : MonoBehaviour
 			Character[1].gameObject.SetActive(value: false);
 			Character[1] = MaleCharacter;
 			CharAnim[1] = Character[1].CharacterAnimation;
-			MaleRenderer.sharedMesh = CasualMesh;
-			MaleRenderer.materials[0].mainTexture = CasualClothes;
-			MaleRenderer.materials[1].mainTexture = Character[1].Cosmetic.FaceTextures[Character[1].Cosmetic.SkinColor];
-			MaleRenderer.materials[2].mainTexture = Character[1].Cosmetic.SkinTextures[Character[1].Cosmetic.SkinColor];
+			CasualClothing = true;
 			Character[2].Cosmetic.StudentID = 13;
 			Character[2].StudentID = 13;
 			Character[2].Cosmetic.Initialized = false;
@@ -153,6 +152,13 @@ public class VisualNovelScript : MonoBehaviour
 				if (!Jukebox.isPlaying)
 				{
 					Character[2].Cosmetic.Armband.SetActive(value: false);
+					if (CasualClothing)
+					{
+						MaleRenderer.sharedMesh = CasualMesh;
+						MaleRenderer.materials[0].mainTexture = CasualClothes;
+						MaleRenderer.materials[1].mainTexture = Character[1].Cosmetic.FaceTextures[Character[1].Cosmetic.SkinColor];
+						MaleRenderer.materials[2].mainTexture = Character[1].Cosmetic.SkinTextures[Character[1].Cosmetic.SkinColor];
+					}
 					Jukebox.Play();
 				}
 				Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);

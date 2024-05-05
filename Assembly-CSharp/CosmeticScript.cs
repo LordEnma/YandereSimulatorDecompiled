@@ -1590,10 +1590,8 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (!Eighties && ((Student.Rival && !Student.Male) || (StudentManager != null && !StudentManager.MissionMode && StudentID == StudentManager.RivalID)) && !TakingPortrait && !Cutscene && !Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene")
 		{
-			Debug.Log("The rival, at school, is now deciding what suitor gift accessories to enable.");
 			if (DateGlobals.Week == 1)
 			{
-				Debug.Log("It's Week 1.");
 				if (CatGifts.Length != 0)
 				{
 					CatGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
@@ -1602,16 +1600,12 @@ public class CosmeticScript : MonoBehaviour
 					CatGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
 				}
 			}
-			else
+			else if (CupcakeGifts.Length != 0)
 			{
-				Debug.Log("It's Week 2.");
-				if (CupcakeGifts.Length != 0)
-				{
-					CupcakeGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
-					CupcakeGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
-					CupcakeGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
-					CupcakeGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
-				}
+				CupcakeGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
+				CupcakeGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
+				CupcakeGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
+				CupcakeGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
 			}
 		}
 		if (!Male && base.gameObject.activeInHierarchy)

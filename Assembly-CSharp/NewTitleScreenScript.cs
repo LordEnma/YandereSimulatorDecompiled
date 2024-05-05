@@ -659,8 +659,11 @@ public class NewTitleScreenScript : MonoBehaviour
 						}
 						else if (WeekSelect)
 						{
-							SetEightiesVariables();
-							GameGlobals.EightiesTutorial = false;
+							if (GameGlobals.Eighties)
+							{
+								SetEightiesVariables();
+								GameGlobals.EightiesTutorial = false;
+							}
 							SceneManager.LoadScene("WeekSelectScene");
 						}
 						else if (QuickStart)

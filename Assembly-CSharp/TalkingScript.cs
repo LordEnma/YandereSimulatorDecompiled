@@ -1589,6 +1589,7 @@ public class TalkingScript : MonoBehaviour
 					S.Reputation.PendingRep += 1f + (float)S.RepBonus;
 					S.PendingRep += 1f + (float)S.RepBonus;
 				}
+				S.TalkTimer = 3f;
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{

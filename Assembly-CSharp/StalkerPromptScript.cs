@@ -337,7 +337,7 @@ public class StalkerPromptScript : MonoBehaviour
 									NotificationManager.DisplayNotification(NotificationType.Custom);
 								}
 							}
-							else
+							else if (Yandere.CanMove)
 							{
 								Yandere.transform.position = new Vector3(5f, 0.25f, 10.6f);
 								Yandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);

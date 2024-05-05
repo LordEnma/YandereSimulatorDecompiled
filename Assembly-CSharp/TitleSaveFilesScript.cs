@@ -184,14 +184,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 							}
 							if (Input.GetButtonDown(InputNames.Xbox_Y))
 							{
-								if (!NewTitleScreen.Eighties)
-								{
-									NewTitleScreen.QuickStart = true;
-								}
-								else
-								{
-									NewTitleScreen.WeekSelect = true;
-								}
+								NewTitleScreen.WeekSelect = true;
 							}
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -321,9 +314,9 @@ public class TitleSaveFilesScript : MonoBehaviour
 					ChallengeWindow.SetActive(value: false);
 					PromptBar.Label[0].text = "New Game";
 					PromptBar.Label[2].text = "Challenges";
+					PromptBar.Label[3].text = "Week Select";
 					if (NewTitleScreen.Eighties)
 					{
-						PromptBar.Label[3].text = "Week Select";
 						PromptBar.Label[6].text = "Custom Mode";
 					}
 					PromptBar.UpdateButtons();
@@ -427,9 +420,9 @@ public class TitleSaveFilesScript : MonoBehaviour
 		{
 			DifficultyWindow.SetActive(value: false);
 			PromptBar.Label[2].text = "Challenges";
+			PromptBar.Label[3].text = "Week Select";
 			if (NewTitleScreen.Eighties)
 			{
-				PromptBar.Label[3].text = "Week Select";
 				PromptBar.Label[6].text = "Custom Mode";
 			}
 			PromptBar.Label[5].text = "";
@@ -452,6 +445,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		{
 			PromptBar.Label[0].text = "New Game";
 			PromptBar.Label[2].text = "Challenges";
+			PromptBar.Label[3].text = "Week Select";
 			if (!NewTitleScreen.Eighties)
 			{
 				if (GameGlobals.Debug)
@@ -461,7 +455,6 @@ public class TitleSaveFilesScript : MonoBehaviour
 			}
 			else
 			{
-				PromptBar.Label[3].text = "Week Select";
 				PromptBar.Label[6].text = "Custom Mode";
 			}
 		}
