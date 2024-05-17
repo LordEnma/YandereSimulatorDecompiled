@@ -279,7 +279,7 @@ public class DatingMinigameScript : MonoBehaviour
 			GiftIcons[3].mainTexture = AmaiGifts[3];
 			GiftIcons[4].mainTexture = AmaiGifts[4];
 			ComplimentLabels[1].text = "You're very nice!";
-			Compliments[1] = "Aww! Why, thank you! I always try my best to bring a smiile to everyone around me!";
+			Compliments[1] = "Aww! Why, thank you! I always try my best to bring a smile to everyone around me!";
 			ComplimentLabels[2].text = "You're very sexy!";
 			Compliments[2] = "...uh...um...well...can we change the subject...?...";
 			ComplimentLabels[3].text = "Long hair would suit you!";

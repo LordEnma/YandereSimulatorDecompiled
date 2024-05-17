@@ -2232,7 +2232,7 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			Debug.Log("The game knows that the rival died from an explosion.");
 			GameGlobals.SpecificEliminationID = 20;
-			AchievementToGrant = "Attack";
+			AchievementToGrant = "Burn";
 		}
 		else
 		{

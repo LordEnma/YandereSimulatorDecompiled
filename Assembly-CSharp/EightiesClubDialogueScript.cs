@@ -85,9 +85,9 @@ public class EightiesClubDialogueScript : MonoBehaviour
 		if (ClubID == 1)
 		{
 			Subtitle.ClubGreetings[ClubID] = "Oh, hello there! Did you want to talk with me about the Cooking Club?";
-			Subtitle.Club2Info[1] = "Well, like our name suggests, everyone in this club loves to prepare food! And all of us share a common desire to make people smile by serving them delicious treats!";
-			Subtitle.Club2Info[2] = "You'll find a wide range of appetites here! Some of us are health nuts who prioritize nutrition, while others have a sweet tooth and want to eat dessert for every meal, haha!";
-			Subtitle.Club2Info[3] = "If you join our club, you'll have access to all of our tasty ingredients, and you'll be able to make meals for others! Serving someone a yummy snack is a great way to make friends fast, you know!";
+			Subtitle.Club1Info[1] = "Well, like our name suggests, everyone in this club loves to prepare food! And all of us share a common desire to make people smile by serving them delicious treats!";
+			Subtitle.Club1Info[2] = "You'll find a wide range of appetites here! Some of us are health nuts who prioritize nutrition, while others have a sweet tooth and want to eat dessert for every meal, haha!";
+			Subtitle.Club1Info[3] = "If you join our club, you'll have access to all of our tasty ingredients, and you'll be able to make meals for others! Serving someone a yummy snack is a great way to make friends fast, you know!";
 			Subtitle.ClubJoins[ClubID] = "Oh! Are you interested in joining our club?";
 			Subtitle.ClubAccepts[ClubID] = "How wonderful! You are now an official member of the Cooking Club! I hope you enjoy your time with us!";
 			Subtitle.ClubRefuses[ClubID] = "Aww, that's okay, I understand! Choosing a club is a big decision, after all. If you ever change your mind, we'll be right here!";

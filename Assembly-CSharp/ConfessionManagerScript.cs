@@ -133,7 +133,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			ContinueButton.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 			ContinueLabel.transform.localPosition = new Vector3(-30f, 2.5f, 0f);
 		}
-		if (DateGlobals.Week > 1)
+		else if (DateGlobals.Week > 1)
 		{
 			ConfessSubs = ConfessionData[DateGlobals.Week].ConfessSubs;
 			AcceptSubs = ConfessionData[DateGlobals.Week].AcceptSubs;
@@ -183,7 +183,7 @@ public class ConfessionManagerScript : MonoBehaviour
 				Senpai.transform.eulerAngles = new Vector3(0f, 180f, 0f);
 				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.FaceID].SetFloat("_BlendAmount", 1f);
 				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.SkinID].SetFloat("_BlendAmount", 0f);
-				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.UniformID].SetFloat("_BlendAmount", 0f);
+				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.UniformID].SetFloat("_BlendAmount", 1f);
 				Tears.materials[0].SetFloat("_TearReveal", 0f);
 				Tears.materials[1].SetFloat("_TearReveal", 0f);
 				Debug.Log("The characters were told to perform their confession animations.");

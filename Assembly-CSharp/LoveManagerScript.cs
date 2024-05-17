@@ -277,6 +277,10 @@ public class LoveManagerScript : MonoBehaviour
 		Time.timeScale = 1f;
 		Suitor.EmptyHands();
 		Rival.EmptyHands();
+		if (Yandere.TimeSkipping)
+		{
+			Clock.EndTimeSkip();
+		}
 		if (Yandere.Aiming)
 		{
 			Yandere.StopAiming();

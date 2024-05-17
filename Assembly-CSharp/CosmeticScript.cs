@@ -37,6 +37,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public GameObject[] LeftStockings;
 
+	public GameObject[] AmaiEyebrows;
+
 	public GameObject[] CouncilBrows;
 
 	public GameObject[] CupcakeGifts;
@@ -333,6 +335,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public GameObject RightShoe;
 
+	public GameObject AmaiBrows;
+
 	public GameObject LeftShoe;
 
 	public GameObject SadBrows;
@@ -378,6 +382,8 @@ public class CosmeticScript : MonoBehaviour
 	public bool CustomModeMenu;
 
 	public bool TakingPortrait;
+
+	public bool HideEyebrows;
 
 	public bool Initialized;
 
@@ -699,7 +705,16 @@ public class CosmeticScript : MonoBehaviour
 			{
 				FemaleUniformID = 1;
 			}
+			if (AmaiEyebrows.Length != 0)
+			{
+				AmaiEyebrows[1].SetActive(value: false);
+				AmaiEyebrows[2].SetActive(value: false);
+			}
 			ThickBrows.SetActive(value: false);
+			if (AmaiBrows != null)
+			{
+				AmaiBrows.SetActive(value: false);
+			}
 			if (!TakingPortrait)
 			{
 				Tongue.SetActive(value: false);
@@ -723,12 +738,21 @@ public class CosmeticScript : MonoBehaviour
 			LeftWristband.SetActive(value: false);
 			if (!Eighties)
 			{
-				if (StudentID == 51)
+				if (StudentID == 12)
+				{
+					if (AmaiBrows != null)
+					{
+						AmaiBrows.SetActive(value: true);
+					}
+					HideEyebrows = true;
+				}
+				else if (StudentID == 51)
 				{
 					if (!Kidnapped && !Student.Slave)
 					{
-						RightTemple.name = "RENAMED";
-						LeftTemple.name = "RENAMED";
+						RightTemple.name = "temple_Right_RENAMED";
+						LeftTemple.name = "temple_Left_RENAMED";
+						HideEyebrows = true;
 					}
 					RightTemple.localScale = new Vector3(0f, 1f, 1f);
 					LeftTemple.localScale = new Vector3(0f, 1f, 1f);

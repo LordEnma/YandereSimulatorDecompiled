@@ -93,6 +93,7 @@ public class VisualNovelScript : MonoBehaviour
 
 	private void Start()
 	{
+		Debug.Log("The visual novel scene believes that the current week is: " + DateGlobals.Week);
 		if (GameGlobals.SenpaiMeetsNewRival)
 		{
 			MeetingRival = true;
@@ -106,6 +107,7 @@ public class VisualNovelScript : MonoBehaviour
 			Names = KizanaMeetData.Names;
 			Colors = KizanaMeetData.Colors;
 			Backdrop.material.mainTexture = KizanaMeetData.Backdrop;
+			Jukebox.clip = KizanaMeetData.BGM;
 			Character[1].gameObject.SetActive(value: false);
 			Character[1] = MaleCharacter;
 			CharAnim[1] = Character[1].CharacterAnimation;

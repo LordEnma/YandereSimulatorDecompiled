@@ -32,6 +32,8 @@ public class HomeDarknessScript : MonoBehaviour
 
 	public bool FadeOut;
 
+	public int WaitFrame;
+
 	private void Start()
 	{
 		if (GameGlobals.LoveSick)
@@ -250,8 +252,9 @@ public class HomeDarknessScript : MonoBehaviour
 					}
 					SceneManager.LoadScene("CalendarScene");
 				}
+				return;
 			}
-			else if (HomeGlobals.Night)
+			if (HomeGlobals.Night)
 			{
 				if (DateGlobals.Weekday == DayOfWeek.Sunday)
 				{
@@ -270,24 +273,35 @@ public class HomeDarknessScript : MonoBehaviour
 					GameGlobals.Dream = 0;
 					SceneManager.LoadScene("OriginDreamScene");
 				}
+				return;
 			}
-			else
+			if (DateGlobals.Weekday != 0)
 			{
-				if (DateGlobals.Weekday != 0)
+				PlayerGlobals.Reputation -= 20f;
+				if (StudentGlobals.MemorialStudents > 0)
 				{
-					PlayerGlobals.Reputation -= 20f;
+					StudentGlobals.MemorialStudents = 0;
+					StudentGlobals.MemorialStudent1 = 0;
+					StudentGlobals.MemorialStudent2 = 0;
+					StudentGlobals.MemorialStudent3 = 0;
+					StudentGlobals.MemorialStudent4 = 0;
+					StudentGlobals.MemorialStudent5 = 0;
+					StudentGlobals.MemorialStudent6 = 0;
+					StudentGlobals.MemorialStudent7 = 0;
+					StudentGlobals.MemorialStudent8 = 0;
+					StudentGlobals.MemorialStudent9 = 0;
 				}
-				HomeGlobals.Night = true;
-				SceneManager.LoadScene("HomeScene");
 			}
+			HomeGlobals.Night = true;
+			SceneManager.LoadScene("HomeScene");
 		}
 		else
 		{
-			Sprite.color = new Color(Sprite.color.r, Sprite.color.g, Sprite.color.b, Sprite.color.a - Time.deltaTime);
-			if (Sprite.color.a < 0f)
+			if (WaitFrame > 0)
 			{
-				Sprite.color = new Color(Sprite.color.r, Sprite.color.g, Sprite.color.b, 0f);
+				Sprite.alpha = Mathf.MoveTowards(Sprite.alpha, 0f, Time.deltaTime);
 			}
+			WaitFrame++;
 		}
 	}
 

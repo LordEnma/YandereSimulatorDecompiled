@@ -4229,7 +4229,6 @@ public class YandereScript : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log(TargetStudent.Name + " is being instructed to perform their ''losing struggle'' animation.");
 					CharacterAnimation.CrossFade("f02_teacherStruggleWinA_00");
 					TargetStudent.CharacterAnimation.CrossFade(TargetStudent.StruggleWonAnim);
 					EquippedWeapon.transform.localEulerAngles = Vector3.Lerp(EquippedWeapon.transform.localEulerAngles, Vector3.zero, Time.deltaTime);
@@ -5388,7 +5387,7 @@ public class YandereScript : MonoBehaviour
 	{
 		if (!Attacking && !DelinquentFighting && !Lost && CanMove)
 		{
-			if (Vector3.Distance(base.transform.position, Senpai.position) < SenpaiThreshold)
+			if (Vector3.Distance(base.transform.position, Senpai.position) < SenpaiThreshold && StudentManager.Students[1].gameObject.activeInHierarchy)
 			{
 				if (!Talking)
 				{

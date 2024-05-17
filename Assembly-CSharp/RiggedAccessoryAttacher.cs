@@ -65,7 +65,11 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		}
 		if (CookingClub)
 		{
-			if (Student.Male)
+			if (Student.StudentID == 1)
+			{
+				accessory = GameObject.Find("TaroApron");
+			}
+			else if (Student.Male)
 			{
 				accessory = GameObject.Find("MaleCookingApron");
 			}

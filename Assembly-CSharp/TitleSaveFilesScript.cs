@@ -234,7 +234,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 				if (InputManager.TappedDown)
 				{
 					ChallengeRow++;
-					if (ChallengeRow > 3)
+					if (ChallengeRow > 2)
 					{
 						ChallengeRow = 1;
 					}
@@ -245,7 +245,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 					ChallengeRow--;
 					if (ChallengeRow < 1)
 					{
-						ChallengeRow = 3;
+						ChallengeRow = 2;
 					}
 					UpdateChallengeHighlight();
 				}
@@ -275,38 +275,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 						return;
 					}
 					StartNewGame();
-					if (ChallengeCheckmarks[1].enabled)
-					{
-						ChallengeGlobals.KnifeOnly = true;
-					}
-					if (ChallengeCheckmarks[2].enabled)
-					{
-						ChallengeGlobals.NoAlerts = true;
-					}
-					if (ChallengeCheckmarks[3].enabled)
-					{
-						ChallengeGlobals.NoBag = true;
-					}
-					if (ChallengeCheckmarks[4].enabled)
-					{
-						ChallengeGlobals.NoFriends = true;
-					}
-					if (ChallengeCheckmarks[5].enabled)
-					{
-						ChallengeGlobals.NoGaming = true;
-					}
-					if (ChallengeCheckmarks[6].enabled)
-					{
-						ChallengeGlobals.NoInfo = true;
-					}
-					if (ChallengeCheckmarks[7].enabled)
-					{
-						ChallengeGlobals.NoLaugh = true;
-					}
-					if (ChallengeCheckmarks[8].enabled)
-					{
-						ChallengeGlobals.RivalsOnly = true;
-					}
+					AcknowledgeChallenges();
 					NewTitleScreen.FadeOut = true;
 				}
 				else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -384,36 +353,10 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
+			Debug.Log("Starting a new game from the Difficulty window.");
 			DifficultyWindow.SetActive(value: false);
 			StartNewGame();
-			if (DifficultySettings[1])
-			{
-				DifficultyGlobals.InvincibleRaibaru = true;
-			}
-			if (DifficultySettings[2])
-			{
-				DifficultyGlobals.NoCase = true;
-			}
-			if (DifficultySettings[3])
-			{
-				DifficultyGlobals.TransparentFence = true;
-			}
-			if (DifficultySettings[4])
-			{
-				DifficultyGlobals.MustStrangle = true;
-			}
-			if (DifficultySettings[5])
-			{
-				DifficultyGlobals.MudRequired = true;
-			}
-			if (DifficultySettings[6])
-			{
-				DifficultyGlobals.CraftBodybags = true;
-			}
-			if (DifficultySettings[7])
-			{
-				DifficultyGlobals.WeaponsBreak = true;
-			}
+			AcknowledgeChallenges();
 			NewTitleScreen.FadeOut = true;
 		}
 		else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -544,5 +487,50 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 		DifficultyLabel.text = DifficultyNames[Difficulty];
 		DifficultyIcon.mainTexture = DifficultyIcons[Difficulty];
+	}
+
+	public void AcknowledgeChallenges()
+	{
+		Debug.Log("Acknowledging the challenges that the player selected.");
+		if (ChallengeCheckmarks[1].enabled)
+		{
+			ChallengeGlobals.KnifeOnly = true;
+			Debug.Log("KnifeOnly: True.");
+		}
+		if (ChallengeCheckmarks[2].enabled)
+		{
+			ChallengeGlobals.NoAlerts = true;
+			Debug.Log("NoAlerts: True.");
+		}
+		if (ChallengeCheckmarks[3].enabled)
+		{
+			ChallengeGlobals.NoBag = true;
+			Debug.Log("NoBag: True.");
+		}
+		if (ChallengeCheckmarks[4].enabled)
+		{
+			ChallengeGlobals.NoFriends = true;
+			Debug.Log("NoFriends: True.");
+		}
+		if (ChallengeCheckmarks[5].enabled)
+		{
+			ChallengeGlobals.NoGaming = true;
+			Debug.Log("NoGaming: True.");
+		}
+		if (ChallengeCheckmarks[6].enabled)
+		{
+			ChallengeGlobals.NoInfo = true;
+			Debug.Log("NoInfo: True.");
+		}
+		if (ChallengeCheckmarks[7].enabled)
+		{
+			ChallengeGlobals.NoLaugh = true;
+			Debug.Log("NoLaugh: True.");
+		}
+		if (ChallengeCheckmarks[8].enabled)
+		{
+			ChallengeGlobals.RivalsOnly = true;
+			Debug.Log("RivalsOnly: True.");
+		}
 	}
 }

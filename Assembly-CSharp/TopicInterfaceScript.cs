@@ -48,6 +48,8 @@ public class TopicInterfaceScript : MonoBehaviour
 
 	public bool Success;
 
+	public string[] EmbarassingSecrets;
+
 	public string[] OpinionSpriteNames;
 
 	public string[] TopicNames;
@@ -70,6 +72,10 @@ public class TopicInterfaceScript : MonoBehaviour
 		{
 			EmbarassingLabel.text = "(You will also mention the embarassing information you found in her diary.)";
 			TopicNames[14] = "jokes";
+		}
+		else
+		{
+			EmbarassingLabel.text = EmbarassingSecrets[DateGlobals.Week];
 		}
 		if (GameGlobals.KokonaTutorial)
 		{

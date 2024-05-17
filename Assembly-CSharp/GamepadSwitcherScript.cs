@@ -38,7 +38,6 @@ public class GamepadSwitcherScript : MonoBehaviour
 
 	private void UseSonyInputs()
 	{
-		Debug.Log("We just switched to Sony input.");
 		InputNames.Xbox_JoyX = "Sony Joystick X";
 		InputNames.Xbox_JoyY = "Sony Joystick Y";
 		InputNames.Xbox_A = "Sony A";

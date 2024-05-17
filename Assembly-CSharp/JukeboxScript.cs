@@ -326,6 +326,12 @@ public class JukeboxScript : MonoBehaviour
 		}
 		else if (BGM == 11)
 		{
+			FullSanities = EleventhFull;
+			HalfSanities = EleventhHalf;
+			NoSanities = EleventhNo;
+		}
+		else if (BGM == 12)
+		{
 			FullSanities = TwelfthFull;
 			HalfSanities = TwelfthHalf;
 			NoSanities = TwelfthNo;

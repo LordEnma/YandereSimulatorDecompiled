@@ -307,6 +307,10 @@ public class StudentInfoScript : MonoBehaviour
 		if (ID < 98)
 		{
 			int num4 = 11 + DateGlobals.Week;
+			if (StudentManager.MissionMode)
+			{
+				num4 = 13;
+			}
 			if (Eighties || (!Eighties && ID < num4) || (!Eighties && ID > 20))
 			{
 				WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text2 + "/Student_" + ID + ".png");
@@ -958,7 +962,7 @@ public class StudentInfoScript : MonoBehaviour
 
 	private void CensorUnknownRivalInfo()
 	{
-		if (CurrentStudent > 10 && CurrentStudent < 21 && DateGlobals.Week < CurrentStudent - 10)
+		if (!StudentManager.MissionMode && CurrentStudent > 10 && CurrentStudent < 21 && DateGlobals.Week < CurrentStudent - 10)
 		{
 			NameLabel.text = "?????";
 			PersonaLabel.text = "?????";

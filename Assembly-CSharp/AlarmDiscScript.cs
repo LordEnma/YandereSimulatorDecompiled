@@ -230,6 +230,7 @@ public class AlarmDiscScript : MonoBehaviour
 				}
 				else
 				{
+					Debug.Log(Student.Name + " has just collided with a radio's AlarmDisc.");
 					if (Student.Giggle != null)
 					{
 						Student.StopInvestigating();
@@ -243,8 +244,10 @@ public class AlarmDiscScript : MonoBehaviour
 							{
 								if (Student.StudentManager.LockerRoomArea.bounds.Contains(base.transform.position) || Student.StudentManager.WestBathroomArea.bounds.Contains(base.transform.position) || Student.StudentManager.EastBathroomArea.bounds.Contains(base.transform.position) || (Student.Club != ClubType.Delinquent && Student.StudentManager.IncineratorArea.bounds.Contains(base.transform.position)) || Student.StudentManager.HeadmasterArea.bounds.Contains(base.transform.position) || (Student.Rival && Student.Actions[Student.Phase] == StudentActionType.SitAndTakeNotes))
 								{
+									Debug.Log("The radio was in a bathroom or locker room or some other place where students won't go?");
 									if (Student.Yandere.NotificationManager.NotificationParent.childCount < 5)
 									{
+										Debug.Log("Ignoring here. 1");
 										Student.Yandere.NotificationManager.CustomText = Student.Name + " ignored a radio.";
 										if (Student.Yandere.NotificationManager.CustomText != Student.Yandere.NotificationManager.PreviousText)
 										{
@@ -323,17 +326,33 @@ public class AlarmDiscScript : MonoBehaviour
 							}
 						}
 					}
-					else if (Student.Yandere.NotificationManager.NotificationParent.childCount < 5)
+					else
 					{
-						if (Student.Routine)
+						if (Student.Nemesis)
 						{
-							Student.Yandere.NotificationManager.CustomText = Student.Name + " is in an event right now!";
-							Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							Debug.Log("Ignoring because Nemesis.");
 						}
-						Student.Yandere.NotificationManager.CustomText = Student.Name + " ignored a radio.";
-						if (Student.Yandere.NotificationManager.CustomText != Student.Yandere.NotificationManager.PreviousText)
+						if (Student.Alarmed)
 						{
-							Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							Debug.Log("Ignoring because alarmed.");
+						}
+						if (Student.Alarmed)
+						{
+							Debug.Log("Ignoring because Routine is false.");
+						}
+						if (Student.Yandere.NotificationManager.NotificationParent.childCount < 5)
+						{
+							if (Student.InEvent)
+							{
+								Student.Yandere.NotificationManager.CustomText = Student.Name + " is in an event right now!";
+								Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
+							if (Student.Yandere.NotificationManager.CustomText != Student.Yandere.NotificationManager.PreviousText)
+							{
+								Debug.Log("Ignoring here. 2");
+								Student.Yandere.NotificationManager.CustomText = Student.Name + " ignored a radio.";
+								Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+							}
 						}
 					}
 				}

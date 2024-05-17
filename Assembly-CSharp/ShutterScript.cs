@@ -283,7 +283,13 @@ public class ShutterScript : MonoBehaviour
 								ReactionDistance = FaceStudent.VisionDistance;
 							}
 							bool flag = FaceStudent.ShoeRemoval.enabled;
-							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker)
+							bool flag2 = false;
+							if (FaceStudent.MyPlate != null && FaceStudent.MyPlate.parent == FaceStudent.RightHand)
+							{
+								Debug.Log("This student is a Cooking Club member carrying a tray...");
+								flag2 = true;
+							}
+							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker && !flag2)
 							{
 								Debug.Log("The student should be able to react to the camera.");
 								if (Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance)
@@ -430,8 +436,8 @@ public class ShutterScript : MonoBehaviour
 					}
 					else if (!Yandere.RivalPhone)
 					{
-						bool flag2 = !BullyX.activeInHierarchy;
-						bool flag3 = !SenpaiX.activeInHierarchy;
+						bool flag3 = !BullyX.activeInHierarchy;
+						bool flag4 = !SenpaiX.activeInHierarchy;
 						PromptBar.transform.localPosition = new Vector3(PromptBar.transform.localPosition.x, -627f, PromptBar.transform.localPosition.z);
 						PromptBar.ClearButtons();
 						PromptBar.Show = false;
@@ -459,7 +465,7 @@ public class ShutterScript : MonoBehaviour
 							TookPhoto = true;
 							Debug.Log("Setting Photo " + Slot + " to ''true''.");
 							PauseScreen.PhotoGallery.PhotographTaken[Slot] = true;
-							if (flag2)
+							if (flag3)
 							{
 								Debug.Log("Saving a bully photo!");
 								int studentID = BullyPhotoCollider.transform.parent.gameObject.GetComponent<StudentScript>().StudentID;
@@ -472,7 +478,7 @@ public class ShutterScript : MonoBehaviour
 									Yandere.PauseScreen.PhotoGallery.BullyPhoto[Slot] = StudentManager.Students[studentID].DistractionTarget.StudentID;
 								}
 							}
-							if (flag3)
+							if (flag4)
 							{
 								Yandere.PauseScreen.PhotoGallery.SenpaiPhoto[Slot] = true;
 								Yandere.Inventory.SenpaiShots++;
@@ -516,12 +522,12 @@ public class ShutterScript : MonoBehaviour
 				}
 				if (!StudentManager.KokonaTutorial && !Yandere.RivalPhone && Input.GetButtonDown(InputNames.Xbox_X))
 				{
-					bool flag4 = false;
+					bool flag5 = false;
 					if (StudentManager.Eighties && InfoX.activeInHierarchy)
 					{
-						flag4 = true;
+						flag5 = true;
 					}
-					if (!flag4)
+					if (!flag5)
 					{
 						Panel.SetActive(value: true);
 						MainMenu.SetActive(value: false);
@@ -743,7 +749,7 @@ public class ShutterScript : MonoBehaviour
 				}
 				else if (StudentManager.Clock.GameplayDay == 5)
 				{
-					PhotoDescLabel.text = "Photo of: Toga Peeking";
+					PhotoDescLabel.text = "Photo of: Toga Framed as Pervert";
 				}
 				else if (StudentManager.Clock.GameplayDay == 6)
 				{
@@ -755,7 +761,7 @@ public class ShutterScript : MonoBehaviour
 				}
 				else if (StudentManager.Clock.GameplayDay == 8)
 				{
-					PhotoDescLabel.text = "Photo of: Horo's Pervy Holograms";
+					PhotoDescLabel.text = "Photo of: Horo Hologram Sabotaged";
 				}
 				else if (StudentManager.Clock.GameplayDay == 9)
 				{

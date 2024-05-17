@@ -70,8 +70,15 @@ public class GateScript : MonoBehaviour
 		{
 			if (StudentManager.Students[97].CurrentAction == StudentActionType.AtLocker && StudentManager.Students[97].Routine && StudentManager.Students[97].Alive)
 			{
-				if (Vector3.Distance(StudentManager.Students[97].transform.position, StudentManager.Podiums.List[0].position) < 0.1f)
+				if (ManuallyAdjusted)
 				{
+					StudentManager.Students[97].CurrentDestination = Prompt.transform;
+					StudentManager.Students[97].Pathfinding.target = Prompt.transform;
+				}
+				if (Vector3.Distance(StudentManager.Students[97].transform.position, Prompt.transform.position) < 1.4f)
+				{
+					StudentManager.Students[97].CurrentDestination = StudentManager.Students[97].Destinations[StudentManager.Students[97].Phase];
+					StudentManager.Students[97].Pathfinding.target = StudentManager.Students[97].Destinations[StudentManager.Students[97].Phase];
 					if (ManuallyAdjusted)
 					{
 						ManuallyAdjusted = false;
@@ -95,15 +102,13 @@ public class GateScript : MonoBehaviour
 		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
+			Prompt.Yandere.SuspiciousActionTimer = 1f;
+			Object.Instantiate(Prompt.Yandere.AlarmDisc, Prompt.Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
 			Prompt.Circle[0].fillAmount = 1f;
 			PlayAudio();
 			EmergencyDoor.enabled = !EmergencyDoor.enabled;
 			ManuallyAdjusted = true;
 			Closed = !Closed;
-			if (StudentManager.Students[97] != null && StudentManager.Students[97].Investigating)
-			{
-				StudentManager.Students[97].StopInvestigating();
-			}
 		}
 		if (!Closed)
 		{

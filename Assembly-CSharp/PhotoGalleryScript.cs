@@ -290,19 +290,24 @@ public class PhotoGalleryScript : MonoBehaviour
 			base.gameObject.SetActive(value: false);
 			UpdateButtonPrompts();
 		}
-		if (Input.GetButtonDown(InputNames.Xbox_X))
+		if (Input.GetButtonDown(InputNames.Xbox_X) && !Home)
 		{
-			ViewPhoto.mainTexture = null;
+			Debug.Log("Deleting a photo now.");
+			ViewPhoto.mainTexture = NoPhoto;
 			int currentIndex = CurrentIndex;
 			if (Photographs[currentIndex].mainTexture != NoPhoto)
 			{
+				Debug.Log("Attempting to change Photograph #" + currentIndex + "'s texture to the ''NoPhoto'' texture.");
 				Photographs[currentIndex].mainTexture = NoPhoto;
 				PhotographTaken[currentIndex] = false;
 				GuitarPhoto[currentIndex] = false;
 				SenpaiPhoto[currentIndex] = false;
 				KittenPhoto[currentIndex] = false;
 				BullyPhoto[currentIndex] = 0;
-				Hearts[currentIndex].gameObject.SetActive(value: false);
+				if (Hearts.Length != 0)
+				{
+					Hearts[currentIndex].gameObject.SetActive(value: false);
+				}
 				if (TaskManager != null)
 				{
 					TaskManager.UpdateTaskStatus();
@@ -552,6 +557,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 		if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
+			Debug.Log("Executing this code.");
 			if (HomeCursor.Photograph != null)
 			{
 				HomeCursor.Highlight.transform.position = new Vector3(HomeCursor.Highlight.transform.position.x, 100f, HomeCursor.Highlight.transform.position.z);
@@ -671,10 +677,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		{
 			PauseScreen.Sideways = true;
 		}
-		if (!Home)
-		{
-			UpdateButtonPrompts();
-		}
+		UpdateButtonPrompts();
 		base.enabled = true;
 		base.gameObject.SetActive(value: true);
 		GotPhotos = true;
@@ -748,7 +751,10 @@ public class PhotoGalleryScript : MonoBehaviour
 			if (Photographs[currentIndex].mainTexture != NoPhoto)
 			{
 				PromptBar.Label[0].text = "View";
-				PromptBar.Label[2].text = "Delete";
+				if (!Home)
+				{
+					PromptBar.Label[2].text = "Delete";
+				}
 			}
 			else
 			{

@@ -289,8 +289,9 @@ public class NoteLockerScript : MonoBehaviour
 			{
 				Student.CurrentDestination = Student.MeetSpot;
 				Student.Pathfinding.target = Student.MeetSpot;
-				Student.Meeting = true;
+				Student.BakeSale = false;
 				Student.MeetTime = 0f;
+				Student.Meeting = true;
 				if (Student.Rival)
 				{
 					StudentManager.UpdateInfatuatedTargetDistances();

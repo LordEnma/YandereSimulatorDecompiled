@@ -11,6 +11,8 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 
 	public PhoneScript Phone;
 
+	public GameObject NewSundayCutscene;
+
 	public GameObject SmartphoneScreen;
 
 	public GameObject InfoTextConvo;
@@ -23,15 +25,19 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 
 	public GameObject HomeClock;
 
-	public AudioClip YoureSafeNow;
-
-	public AudioSource Vibration;
+	public Transform YandereParent;
 
 	public Transform Smartphone;
 
 	public Transform RightHand;
 
+	public AudioClip YoureSafeNow;
+
+	public AudioSource Vibration;
+
 	public UISprite SkipCircle;
+
+	public UILabel ShrineLabel;
 
 	public UIPanel SkipPanel;
 
@@ -68,7 +74,9 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday && GameGlobals.CorkboardScene)
 		{
 			Debug.Log("The Sunday Rival Cutscene thinks that it's time to play.");
+			NewSundayCutscene.SetActive(value: true);
 			HomeSenpaiShrine.Start();
+			ShrineLabel.gameObject.SetActive(value: false);
 			HomeYandere.HomeDarkness.color = new Color(0f, 0f, 0f, 1f);
 			HomeDarkness.enabled = false;
 			Alpha = 1f;
@@ -93,8 +101,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 				RestoreDOF = true;
 			}
 			HomeYandere.HomeCamera.Profile.depthOfField.enabled = false;
-			HomeYandere.CharacterAnimation["f02_postOsana_00"].speed = 1.5f;
-			HomeYandere.CharacterAnimation.Play("f02_postOsana_00");
+			HomeYandere.CharacterAnimation.Play("f02_endOfWeek_00");
 			HomeYandere.HomeCamera.Profile.depthOfField.enabled = true;
 			HomeYandere.HomeCamera.UpdateDOF(1f);
 			SmartphoneScreen.SetActive(value: false);
@@ -156,7 +163,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		else if (Phase == 2)
 		{
 			Timer += Time.deltaTime;
-			if (Timer > 2.5f)
+			if (Timer > 3f)
 			{
 				HomeYandere.CharacterAnimation["f02_postOsana_00"].speed = 0.8f;
 				Vibration.PlayOneShot(YoureSafeNow);
@@ -167,14 +174,15 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		else if (Phase == 3)
 		{
 			Timer += Time.deltaTime;
-			if (Timer > 3f && !Vibration.isPlaying)
+			if (Timer > 7f)
 			{
-				HomeYandere.CharacterAnimation["f02_postOsana_00"].speed = 1.5f;
-				SmartphoneScreen.SetActive(value: true);
-				Vibration.Play();
-			}
-			if (Timer > 4f)
-			{
+				if (!Vibration.isPlaying)
+				{
+					HomeYandere.CharacterAnimation["f02_postOsana_00"].speed = 1.5f;
+					HomeYandere.Pajamas.newRenderer.enabled = false;
+					SmartphoneScreen.SetActive(value: true);
+					Vibration.Play();
+				}
 				Timer = 0f;
 				Phase++;
 			}
@@ -182,24 +190,13 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		else if (Phase == 4)
 		{
 			Timer += Time.deltaTime;
-			Speed += Time.deltaTime;
-			if (HomeYandere.CharacterAnimation["f02_postOsana_00"].time >= 20.65453f)
+			if (Timer > 3.5f)
 			{
-				if (Smartphone.parent != RightHand)
-				{
-					Smartphone.parent = RightHand;
-					RotX = -0.6626282f;
-					RotY = -179.8724f;
-					RotZ = -169.0661f;
-				}
-				Smartphone.transform.localPosition = Vector3.Lerp(Smartphone.transform.localPosition, new Vector3(0.025f, 0.0075f, 0.05f), Time.deltaTime * 10f);
-				RotX = Mathf.Lerp(RotX, 0f, Time.deltaTime);
-				RotY = Mathf.Lerp(RotY, -180f, Time.deltaTime);
-				RotZ = Mathf.Lerp(RotZ, -180f, Time.deltaTime);
+				HomeYandere.Pajamas.newRenderer.enabled = true;
 			}
-			if (HomeYandere.CharacterAnimation["f02_postOsana_00"].time >= HomeYandere.CharacterAnimation["f02_postOsana_00"].length)
+			if (HomeYandere.CharacterAnimation["f02_endOfWeek_00"].time >= HomeYandere.CharacterAnimation["f02_endOfWeek_00"].length)
 			{
-				HomeYandere.CharacterAnimation.CrossFade("f02_postOsanaLoop_00", 1f);
+				HomeYandere.CharacterAnimation.CrossFade("f02_endOfWeekIdle_00");
 				InfoTextConvo.SetActive(value: true);
 				Timer = 0f;
 				Phase++;

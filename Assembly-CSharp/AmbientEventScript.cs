@@ -316,14 +316,9 @@ public class AmbientEventScript : MonoBehaviour
 				}
 			}
 		}
-		else if (Vector3.Distance(Yandere.transform.position, EventLocation[1].parent.position) < 5f)
+		else if (Vector3.Distance(Yandere.transform.position, EventLocation[1].parent.position) < 5f && (EventStudent[1].CanSeeObject(Yandere.gameObject) || EventStudent[2].CanSeeObject(Yandere.gameObject)))
 		{
-			Debug.Log("Ayano is intrusively close to the place where a private convo is supposed to take place...");
-			if (EventStudent[1].CanSeeObject(Yandere.gameObject) || EventStudent[2].CanSeeObject(Yandere.gameObject))
-			{
-				Debug.Log("...AND is visible, too.");
-				EndEvent();
-			}
+			EndEvent();
 		}
 	}
 

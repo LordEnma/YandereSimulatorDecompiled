@@ -71,11 +71,6 @@ public class FavorMenuScript : MonoBehaviour
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
-				PromptBar.ClearButtons();
-				PromptBar.Label[0].text = "Accept";
-				PromptBar.Label[1].text = "Exit";
-				PromptBar.Label[4].text = "Choose";
-				PromptBar.UpdateButtons();
 				if (ID == 1)
 				{
 					if (SchemesLabel.alpha > 0.5f)
@@ -85,6 +80,7 @@ public class FavorMenuScript : MonoBehaviour
 						SchemesMenu.UpdateSchemeInfo();
 						SchemesMenu.gameObject.SetActive(value: true);
 						base.gameObject.SetActive(value: false);
+						UpdatePromptBarButtons();
 					}
 				}
 				else if (ID == 2)
@@ -94,6 +90,7 @@ public class FavorMenuScript : MonoBehaviour
 					ServicesMenu.UpdateDesc();
 					ServicesMenu.gameObject.SetActive(value: true);
 					base.gameObject.SetActive(value: false);
+					UpdatePromptBarButtons();
 				}
 				else if (ID == 3)
 				{
@@ -102,6 +99,7 @@ public class FavorMenuScript : MonoBehaviour
 					DropsMenu.UpdateDesc();
 					DropsMenu.gameObject.SetActive(value: true);
 					base.gameObject.SetActive(value: false);
+					UpdatePromptBarButtons();
 				}
 				else if (ID == 4)
 				{
@@ -110,6 +108,7 @@ public class FavorMenuScript : MonoBehaviour
 					PromptBar.UpdateButtons();
 					Panel.SetActive(value: false);
 					BountyMenu.SetActive(value: true);
+					UpdatePromptBarButtons();
 				}
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_X))
@@ -148,6 +147,15 @@ public class FavorMenuScript : MonoBehaviour
 			Panel.SetActive(value: true);
 			BountyMenu.SetActive(value: false);
 		}
+	}
+
+	private void UpdatePromptBarButtons()
+	{
+		PromptBar.ClearButtons();
+		PromptBar.Label[0].text = "Accept";
+		PromptBar.Label[1].text = "Exit";
+		PromptBar.Label[4].text = "Choose";
+		PromptBar.UpdateButtons();
 	}
 
 	private void UpdateHighlight()

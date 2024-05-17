@@ -737,14 +737,32 @@ public class RagdollScript : MonoBehaviour
 			for (int m = 0; m < 3; m++)
 			{
 				Material obj2 = MyRenderer.materials[m];
-				obj2.color = Vector4.MoveTowards(obj2.color, new Vector4(0.1f, 0.1f, 0.1f, 1f), Time.deltaTime * 0.1f);
+				obj2.color = Vector4.MoveTowards(obj2.color, new Vector4(0.1f, 0.1f, 0.1f, 1f), Time.deltaTime * 0.2f);
 			}
-			Student.Cosmetic.HairRenderer.material.color = Vector4.MoveTowards(Student.Cosmetic.HairRenderer.material.color, new Vector4(0.1f, 0.1f, 0.1f, 1f), Time.deltaTime * 0.1f);
+			Student.Cosmetic.HairRenderer.material.color = Vector4.MoveTowards(Student.Cosmetic.HairRenderer.material.color, new Vector4(0.1f, 0.1f, 0.1f, 1f), Time.deltaTime * 0.2f);
 			if (MyRenderer.materials[0].color == new Color(0.1f, 0.1f, 0.1f, 1f))
 			{
 				Burning = false;
 				Burned = true;
 			}
+			float @float = MyRenderer.materials[0].GetFloat("_BlendAmount");
+			@float -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[0].SetFloat("_BlendAmount", @float);
+			@float = MyRenderer.materials[1].GetFloat("_BlendAmount");
+			@float -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[1].SetFloat("_BlendAmount", @float);
+			@float = MyRenderer.materials[2].GetFloat("_BlendAmount");
+			@float -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[2].SetFloat("_BlendAmount", @float);
+			@float = MyRenderer.materials[0].GetFloat("_BlendAmount1");
+			@float -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[0].SetFloat("_BlendAmount1", @float);
+			@float = MyRenderer.materials[1].GetFloat("_BlendAmount1");
+			@float -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[1].SetFloat("_BlendAmount1", @float);
+			@float = MyRenderer.materials[2].GetFloat("_BlendAmount1");
+			@float -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[2].SetFloat("_BlendAmount1", @float);
 		}
 		if (Burned)
 		{

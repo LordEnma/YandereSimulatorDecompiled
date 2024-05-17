@@ -11,6 +11,10 @@ public class StreetCivilianScript : MonoBehaviour
 
 	public Transform[] Destinations;
 
+	public string IdleAnim = "f02_idle_00";
+
+	public string WalkAnim = "f02_newWalk_00";
+
 	public float Timer;
 
 	public int ID;
@@ -27,13 +31,13 @@ public class StreetCivilianScript : MonoBehaviour
 			return;
 		}
 		MoveTowardsTarget(Destinations[ID].position);
-		MyAnimation.CrossFade("f02_idle_00");
+		MyAnimation.CrossFade(IdleAnim);
 		Pathfinding.canSearch = false;
 		Pathfinding.canMove = false;
 		Timer += Time.deltaTime;
 		if (Timer > 13.5f)
 		{
-			MyAnimation.CrossFade("f02_newWalk_00");
+			MyAnimation.CrossFade(WalkAnim);
 			ID++;
 			if (ID == Destinations.Length)
 			{

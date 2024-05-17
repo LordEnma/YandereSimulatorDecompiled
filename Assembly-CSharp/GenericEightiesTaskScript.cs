@@ -136,6 +136,10 @@ public class GenericEightiesTaskScript : MonoBehaviour
 								FixedPainting.material.mainTexture = FixedArt[Paintings];
 								OriginalPainting.material.color = new Color(1f, 1f, 1f, 1f);
 							}
+							if (Type == 9)
+							{
+								Prompt.Yandere.MyController.radius = 0.1f;
+							}
 							if (TaskAnim == "f02_studentPickUp_00")
 							{
 								Prompt.Yandere.CharacterAnimation["f02_studentPickUp_00"].speed = 0.8f;
@@ -208,6 +212,10 @@ public class GenericEightiesTaskScript : MonoBehaviour
 
 	public void End()
 	{
+		if (Type == 9)
+		{
+			Prompt.Yandere.MyController.radius = 0.2f;
+		}
 		Prompt.Yandere.SuspiciousActionTimer = 0f;
 		Animate = false;
 		TaskTimer = 0f;

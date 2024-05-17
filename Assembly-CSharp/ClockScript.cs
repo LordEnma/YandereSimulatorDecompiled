@@ -665,6 +665,10 @@ public class ClockScript : MonoBehaviour
 			StudentManager.Students[7].Pathfinding.speed = 4f;
 			StudentManager.Students[7].Spawned = true;
 			StudentManager.Students[7].Hurry = true;
+			StudentManager.Students[7].Phase = 1;
+			StudentManager.Students[7].GetDestinations();
+			StudentManager.Students[7].Pathfinding.target = StudentManager.Students[7].Destinations[1];
+			StudentManager.Students[7].CurrentDestination = StudentManager.Students[7].Destinations[1];
 		}
 		LateStudent = false;
 	}

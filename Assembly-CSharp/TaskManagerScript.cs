@@ -238,7 +238,10 @@ public class TaskManagerScript : MonoBehaviour
 					{
 						StudentManager.Students[12].TaskPhase = 4;
 					}
-					TaskObjects[12].SetActive(value: true);
+					if (!AmaiPlate.gameObject.activeInHierarchy)
+					{
+						TaskObjects[12].SetActive(value: true);
+					}
 				}
 				if (AmaiPlate.Food == 0)
 				{

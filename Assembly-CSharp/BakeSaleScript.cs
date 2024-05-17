@@ -30,7 +30,7 @@ public class BakeSaleScript : MonoBehaviour
 			{
 				IncreaseID();
 			}
-			if (StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors && !StudentManager.Students[ID].Slave)
+			if (StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors && !StudentManager.Students[ID].Slave && !StudentManager.Students[ID].Bullied && !StudentManager.Students[ID].Meeting)
 			{
 				Timer = 0f;
 				StudentManager.Students[ID].Meeting = true;

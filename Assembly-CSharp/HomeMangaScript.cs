@@ -68,6 +68,8 @@ public class HomeMangaScript : MonoBehaviour
 
 	public AudioClip ChangeSelection;
 
+	public int OperationsPerformed;
+
 	private void Start()
 	{
 		UpdateCurrentLabel();
@@ -325,6 +327,10 @@ public class HomeMangaScript : MonoBehaviour
 			Title = EnlightenmentStrings[PlayerGlobals.Enlightenment];
 			CurrentLabel.text = "Current Enlightenment Level: " + PlayerGlobals.Enlightenment + " (" + Title + ")";
 		}
-		AudioSource.PlayClipAtPoint(ChangeSelection, base.transform.position);
+		if (OperationsPerformed > 0)
+		{
+			AudioSource.PlayClipAtPoint(ChangeSelection, base.transform.position);
+		}
+		OperationsPerformed++;
 	}
 }

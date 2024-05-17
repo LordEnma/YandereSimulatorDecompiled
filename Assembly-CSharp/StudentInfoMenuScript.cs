@@ -94,6 +94,8 @@ public class StudentInfoMenuScript : MonoBehaviour
 
 	public int[] SetSizes;
 
+	public int OpinionsLearned;
+
 	public int StudentID;
 
 	public int Column;
@@ -124,8 +126,11 @@ public class StudentInfoMenuScript : MonoBehaviour
 		{
 			return;
 		}
-		StudentGlobals.SetStudentPhotographed(StudentManager.RivalID, value: true);
-		StudentManager.StudentPhotographed[StudentManager.RivalID] = true;
+		if (!StudentManager.MissionMode)
+		{
+			StudentGlobals.SetStudentPhotographed(StudentManager.RivalID, value: true);
+			StudentManager.StudentPhotographed[StudentManager.RivalID] = true;
+		}
 		StudentGlobals.SetStudentPhotographed(0, value: true);
 		StudentGlobals.SetStudentPhotographed(1, value: true);
 		StudentManager.StudentPhotographed[0] = true;
@@ -178,6 +183,12 @@ public class StudentInfoMenuScript : MonoBehaviour
 		Row = 0;
 		Started = true;
 		UpdateHighlight();
+		if (GameGlobals.AlternateTimeline)
+		{
+			Debug.Log("Alternate Timeline; should disable Journalist portrait.");
+			StudentGlobals.SetStudentPhotographed(100, value: false);
+			StudentManager.StudentPhotographed[100] = false;
+		}
 	}
 
 	private void Update()
@@ -195,7 +206,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		{
 			if (PromptBar.Label[0].text != string.Empty)
 			{
-				if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || StudentID > 97)
+				if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID])
 				{
 					if (UsingLifeNote)
 					{
@@ -414,7 +425,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		Highlight.localPosition = new Vector3(-300f + (float)Column * 150f, 80f - (float)Row * 160f, Highlight.localPosition.z);
 		BusyBlocker.position = new Vector3(0f, 0f, 0f);
 		StudentID = 1 + (Column + Row * Columns);
-		if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || StudentID > 97)
+		if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID])
 		{
 			PromptBar.Label[0].text = "View Info";
 			PromptBar.UpdateButtons();
@@ -504,7 +515,9 @@ public class StudentInfoMenuScript : MonoBehaviour
 		{
 			if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID])
 			{
-				if (StudentID < 97)
+				OpinionsLearned = 0;
+				CheckForOpinions(StudentID);
+				if (StudentID < 97 && OpinionsLearned < 25)
 				{
 					PromptBar.Label[0].text = "Get Opinions";
 				}
@@ -567,7 +580,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 
 	private void UpdateNameLabel()
 	{
-		if (StudentID > 97 || StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || GettingInfo)
+		if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || GettingInfo)
 		{
 			NameLabel.text = JSON.Students[StudentID].Name;
 			if (StudentManager.Eighties && StudentID > 10 && StudentID < 21 && DateGlobals.Week < StudentID - 10)
@@ -583,6 +596,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 
 	public IEnumerator UpdatePortraits()
 	{
+		Debug.Log("StudentInfoMenuScript has been told to run the UpdatePortraits() function.");
 		if (Debugging)
 		{
 			Debug.Log("The Student Info Menu was instructed to get photos.");
@@ -607,6 +621,11 @@ public class StudentInfoMenuScript : MonoBehaviour
 				if (ID < 98)
 				{
 					int num = 11 + DateGlobals.Week;
+					if (StudentManager.MissionMode)
+					{
+						num = 13;
+						StudentManager.StudentPhotographed[PauseScreen.MissionMode.TargetID] = true;
+					}
 					if (PauseScreen.Eighties || (!PauseScreen.Eighties && ID < num) || (!PauseScreen.Eighties && ID > 20))
 					{
 						if (StudentManager.StudentBefriended[ID] || StudentManager.StudentPhotographed[ID])
@@ -640,7 +659,6 @@ public class StudentInfoMenuScript : MonoBehaviour
 						{
 							if (StudentManager.MissionMode)
 							{
-								Debug.Log("ID is: " + ID);
 								StudentPortraits[ID].Portrait.mainTexture = BlankPortrait;
 							}
 							else
@@ -675,7 +693,14 @@ public class StudentInfoMenuScript : MonoBehaviour
 						StudentPortraits[ID].Portrait.mainTexture = Headmaster;
 						break;
 					case 100:
-						StudentPortraits[ID].Portrait.mainTexture = InfoChan;
+						if (!GameGlobals.AlternateTimeline)
+						{
+							StudentPortraits[ID].Portrait.mainTexture = InfoChan;
+						}
+						else
+						{
+							StudentPortraits[ID].Portrait.mainTexture = UnknownPortrait;
+						}
 						break;
 					default:
 						StudentPortraits[ID].Portrait.mainTexture = RivalPortraits[ID];
@@ -792,5 +817,16 @@ public class StudentInfoMenuScript : MonoBehaviour
 		PromptBar.Label[3].text = "Interests";
 		PromptBar.Label[6].text = "Reputation";
 		PromptBar.UpdateButtons();
+	}
+
+	public void CheckForOpinions(int StudentID)
+	{
+		for (int i = 1; i < 26; i++)
+		{
+			if (StudentManager.OpinionsLearned.StudentOpinions[StudentID].Opinions[i])
+			{
+				OpinionsLearned++;
+			}
+		}
 	}
 }

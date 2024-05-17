@@ -233,16 +233,18 @@ public class PauseScreenScript : MonoBehaviour
 			uISprite3.color = new Color(uISprite3.color.r, uISprite3.color.g, uISprite3.color.b, 0.5f);
 			UISprite uISprite4 = PhoneIcons[9];
 			uISprite4.color = new Color(uISprite4.color.r, uISprite4.color.g, uISprite4.color.b, 0.5f);
-			UISprite uISprite5 = PhoneIcons[11];
+			UISprite uISprite5 = PhoneIcons[10];
 			uISprite5.color = new Color(uISprite5.color.r, uISprite5.color.g, uISprite5.color.b, 0.5f);
-			UISprite uISprite6 = PhoneIcons[13];
+			UISprite uISprite6 = PhoneIcons[11];
 			uISprite6.color = new Color(uISprite6.color.r, uISprite6.color.g, uISprite6.color.b, 0.5f);
-			UISprite uISprite7 = PhoneIcons[15];
+			UISprite uISprite7 = PhoneIcons[13];
 			uISprite7.color = new Color(uISprite7.color.r, uISprite7.color.g, uISprite7.color.b, 0.5f);
-			UISprite uISprite8 = PhoneIcons[17];
+			UISprite uISprite8 = PhoneIcons[15];
 			uISprite8.color = new Color(uISprite8.color.r, uISprite8.color.g, uISprite8.color.b, 0.5f);
-			UISprite uISprite9 = PhoneIcons[16];
+			UISprite uISprite9 = PhoneIcons[17];
 			uISprite9.color = new Color(uISprite9.color.r, uISprite9.color.g, uISprite9.color.b, 0.5f);
+			UISprite uISprite10 = PhoneIcons[16];
+			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.5f);
 			if (NewMissionModeWindow != null)
 			{
 				NewMissionModeWindow.SetActive(value: false);
@@ -250,20 +252,28 @@ public class PauseScreenScript : MonoBehaviour
 		}
 		if (MissionModeGlobals.MissionMode)
 		{
-			UISprite uISprite10 = PhoneIcons[7];
-			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.5f);
-			UISprite uISprite11 = PhoneIcons[9];
+			UISprite uISprite11 = PhoneIcons[7];
 			uISprite11.color = new Color(uISprite11.color.r, uISprite11.color.g, uISprite11.color.b, 0.5f);
-			UISprite uISprite12 = PhoneIcons[10];
-			uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 1f);
-			UISprite uISprite13 = PhoneIcons[17];
-			uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 0.5f);
+			UISprite uISprite12 = PhoneIcons[9];
+			uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 0.5f);
+			UISprite uISprite13 = PhoneIcons[10];
+			uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 1f);
+			UISprite uISprite14 = PhoneIcons[17];
+			uISprite14.color = new Color(uISprite14.color.r, uISprite14.color.g, uISprite14.color.b, 0.5f);
 		}
 		if (NoInfo)
 		{
-			UISprite uISprite14 = PhoneIcons[5];
-			uISprite14.color = new Color(uISprite14.color.r, uISprite14.color.g, uISprite14.color.b, 0.5f);
+			UISprite uISprite15 = PhoneIcons[5];
+			uISprite15.color = new Color(uISprite15.color.r, uISprite15.color.g, uISprite15.color.b, 0.5f);
 		}
+		for (int k = 1; k < PhoneIcons.Length; k++)
+		{
+			if (PhoneIcons[k].alpha == 0.5f)
+			{
+				PhoneShadows[k].enabled = false;
+			}
+		}
+		PhoneShadows[18].enabled = false;
 		UpdateSelection();
 		CorrectingTime = false;
 		QuitLabel.text = "Do you wish to return to the main menu?";
@@ -342,10 +352,12 @@ public class PauseScreenScript : MonoBehaviour
 					if (!Yandere.CanMove || Yandere.Dragging || Yandere.Carrying)
 					{
 						uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0.5f);
+						PhoneShadows[3].enabled = false;
 					}
 					else
 					{
 						uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 1f);
+						PhoneShadows[3].enabled = true;
 					}
 					CheckIfSavePossible();
 					UpdateSelection();
@@ -363,6 +375,7 @@ public class PauseScreenScript : MonoBehaviour
 				HomeYandere.CanMove = false;
 				UISprite uISprite2 = PhoneIcons[3];
 				uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 0.5f);
+				PhoneShadows[3].enabled = false;
 				Panel.enabled = true;
 				Sideways = false;
 				Show = true;
@@ -1044,6 +1057,7 @@ public class PauseScreenScript : MonoBehaviour
 	private void CheckIfSavePossible()
 	{
 		PhoneIcons[9].color = new Color(1f, 1f, 1f, 1f);
+		PhoneShadows[9].enabled = true;
 		if (AtSchool)
 		{
 			for (int i = 1; i < Yandere.StudentManager.Students.Length; i++)
@@ -1133,10 +1147,16 @@ public class PauseScreenScript : MonoBehaviour
 				Reason = "You cannot save the game while bloody clothing is present at school.";
 			}
 		}
+		if (PhoneIcons[9].alpha == 0.5f)
+		{
+			PhoneShadows[9].enabled = false;
+		}
 		PhoneIcons[3].alpha = 1f;
+		PhoneShadows[3].enabled = true;
 		if (Yandere.transform.position.y > 100f || Yandere.LunaAttacher.activeInHierarchy)
 		{
 			PhoneIcons[3].alpha = 0.5f;
+			PhoneShadows[3].enabled = false;
 		}
 	}
 

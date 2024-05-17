@@ -45,6 +45,8 @@ public class OfferHelpScript : MonoBehaviour
 
 	public bool Unable;
 
+	public bool Rival;
+
 	public int EventStudentID;
 
 	public int EventPhase = 1;
@@ -269,7 +271,7 @@ public class OfferHelpScript : MonoBehaviour
 				EventClip[j] = EventClip[0];
 			}
 		}
-		else if (DateGlobals.Week == 2)
+		else if (Rival && DateGlobals.Week == 2)
 		{
 			EventSpeech[1] = "Oh! So, it was you who left that note in my locker!";
 			EventSpeech[2] = "Uh...so...you wanted to talk to me about...that new bakery?";

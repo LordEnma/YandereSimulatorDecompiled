@@ -1568,11 +1568,18 @@ public class TalkingScript : MonoBehaviour
 					S.CharacterAnimation.CrossFade(S.IdleAnim);
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 1, 3f);
 				}
+				else if (!Eighties && S.StudentID == 12 && S.Yandere.PickUp.AmaiTask)
+				{
+					S.CharacterAnimation.CrossFade(S.IdleAnim);
+					S.Subtitle.CustomText = "Please share that food with others and collect their opinions!";
+					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+				}
 				else if (S.Fed || S.Club == ClubType.Council || S.StudentID == 22)
 				{
 					S.CharacterAnimation.CrossFade(S.GossipAnim);
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 0, 3f);
 					S.Fed = true;
+					NegativeResponse = true;
 				}
 				else
 				{

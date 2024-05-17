@@ -134,6 +134,12 @@ public class SceneLoader : MonoBehaviour
 		}
 		Debugging = false;
 		GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
+		if (!GameGlobals.Eighties && DateGlobals.Week > 2)
+		{
+			Debug.Log("We're not in 1980s Mode and Week is " + DateGlobals.Week + " so we're resetting the week to ''0'' and booting the player out.");
+			DateGlobals.Week = 0;
+			SceneManager.LoadScene("FunScene");
+		}
 	}
 
 	private void Update()

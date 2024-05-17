@@ -83,7 +83,7 @@ public class TaskMinigameScript : MonoBehaviour
 					return;
 				}
 				Circle.fillAmount = 1f - Timer / 1f;
-				if ((Input.GetButtonDown(InputNames.Xbox_A) && CurrentButton != "A") || (Input.GetButtonDown(InputNames.Xbox_B) && CurrentButton != "B") || (Input.GetButtonDown(InputNames.Xbox_X) && CurrentButton != "X") || (Input.GetButtonDown(InputNames.Xbox_Y) && CurrentButton != "Y"))
+				if ((Input.GetButtonDown(InputNames.Xbox_A) && CurrentButton != InputNames.Xbox_A) || (Input.GetButtonDown(InputNames.Xbox_B) && CurrentButton != InputNames.Xbox_B) || (Input.GetButtonDown(InputNames.Xbox_X) && CurrentButton != InputNames.Xbox_X) || (Input.GetButtonDown(InputNames.Xbox_Y) && CurrentButton != InputNames.Xbox_Y))
 				{
 					MyAudio.clip = FailSFX;
 					MyAudio.Play();
@@ -160,19 +160,19 @@ public class TaskMinigameScript : MonoBehaviour
 		}
 		if (ButtonID == 1)
 		{
-			CurrentButton = "A";
+			CurrentButton = InputNames.Xbox_A;
 		}
 		else if (ButtonID == 2)
 		{
-			CurrentButton = "B";
+			CurrentButton = InputNames.Xbox_B;
 		}
 		else if (ButtonID == 3)
 		{
-			CurrentButton = "X";
+			CurrentButton = InputNames.Xbox_X;
 		}
 		else if (ButtonID == 4)
 		{
-			CurrentButton = "Y";
+			CurrentButton = InputNames.Xbox_Y;
 		}
 		ButtonPrompts[ButtonID].enabled = true;
 		ButtonPrompts[ButtonID].alpha = 1f;

@@ -223,7 +223,6 @@ public class ServicesScript : MonoBehaviour
 						Yandere.PauseScreen.StudentInfoMenu.GrabPortraitsNextFrame = true;
 						StartCoroutine(Yandere.PauseScreen.StudentInfoMenu.UpdatePortraits());
 						Yandere.PromptBar.ClearButtons();
-						Yandere.PromptBar.Label[0].text = "Get Opinions";
 						Yandere.PromptBar.Label[1].text = "Cancel";
 						Yandere.PromptBar.UpdateButtons();
 						Yandere.PromptBar.Show = true;

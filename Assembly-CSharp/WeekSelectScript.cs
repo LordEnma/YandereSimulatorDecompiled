@@ -52,6 +52,8 @@ public class WeekSelectScript : MonoBehaviour
 
 	public RetroCameraEffect RetroEffect;
 
+	public Font ModernFont;
+
 	public int CurrentWeek;
 
 	public Vector3[] StartingPosition;
@@ -84,6 +86,8 @@ public class WeekSelectScript : MonoBehaviour
 			}
 			PinkGradient.SetActive(value: true);
 			RetroEffect.enabled = false;
+			ChangeFont(Stats.transform);
+			ChangeFont(base.transform);
 		}
 	}
 
@@ -163,6 +167,8 @@ public class WeekSelectScript : MonoBehaviour
 					}
 					else
 					{
+						StudentGlobals.MaleUniform = 1;
+						StudentGlobals.FemaleUniform = 1;
 						DateGlobals.PassDays++;
 						DateGlobals.ForceSkip = true;
 						SceneManager.LoadScene("CalendarScene");
@@ -600,6 +606,23 @@ public class WeekSelectScript : MonoBehaviour
 		else if (StudentGlobals.Prisoners == 10)
 		{
 			StudentGlobals.Prisoner10 = 10 + ID;
+		}
+	}
+
+	private void ChangeFont(Transform PanelToUpdate)
+	{
+		Debug.Log("Now attempting to change all font.");
+		int num = 0;
+		Transform[] componentsInChildren = PanelToUpdate.GetComponentsInChildren<Transform>();
+		foreach (Transform obj in componentsInChildren)
+		{
+			num++;
+			Debug.Log("Now on iteration #" + num);
+			UILabel component = obj.GetComponent<UILabel>();
+			if (component != null)
+			{
+				component.trueTypeFont = ModernFont;
+			}
 		}
 	}
 }

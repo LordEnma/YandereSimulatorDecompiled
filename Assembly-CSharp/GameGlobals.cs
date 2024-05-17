@@ -138,7 +138,7 @@ public static class GameGlobals
 
 	private const string Str_FemaleSenpai = "FemaleSenpai";
 
-	private const string Str_HiddenMoney = "HiddenMoney";
+	private const string Str_HiddenMoney = "HiddenMoney_";
 
 	private const string Str_SenpaiMeetsNewRival = "SenpaiMeetsNewRival";
 
@@ -1002,19 +1002,19 @@ public static class GameGlobals
 
 	public static int GetHiddenMoney(int animID)
 	{
-		return PlayerPrefs.GetInt("Profile_" + Profile + "_HiddenMoney" + animID);
+		return PlayerPrefs.GetInt("Profile_" + Profile + "_HiddenMoney_" + animID);
 	}
 
 	public static void SetHiddenMoney(int animID, int value)
 	{
 		string text = animID.ToString();
-		KeysHelper.AddIfMissing("Profile_" + Profile + "_HiddenMoney", text);
-		PlayerPrefs.SetInt("Profile_" + Profile + "_HiddenMoney" + text, value);
+		KeysHelper.AddIfMissing("Profile_" + Profile + "_HiddenMoney_", text);
+		PlayerPrefs.SetInt("Profile_" + Profile + "_HiddenMoney_" + text, value);
 	}
 
 	public static int[] KeysOfHiddenMoney()
 	{
-		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_HiddenMoney");
+		return KeysHelper.GetIntegerKeys("Profile_" + Profile + "_HiddenMoney_");
 	}
 
 	public static void DeleteAll()
@@ -1073,7 +1073,7 @@ public static class GameGlobals
 		Globals.DeleteCollection("Profile_" + Profile + "_CustomAnimSet", KeysOfAnimSet());
 		Globals.DeleteCollection("Profile_" + Profile + "_CustomSkinColor", KeysOfSkinColor());
 		Globals.DeleteCollection("Profile_" + Profile + "_CustomEyeWear", KeysOfEyeWear());
-		Globals.DeleteCollection("Profile_" + Profile + "_HiddenMoney", KeysOfHiddenMoney());
+		Globals.DeleteCollection("Profile_" + Profile + "_HiddenMoney_", KeysOfHiddenMoney());
 		Globals.Delete("Profile_" + Profile + "_CorkboardScene");
 		Globals.Delete("Profile_" + Profile + "_WatchedAnime");
 		Globals.Delete("Profile_" + Profile + "_LastInputType");

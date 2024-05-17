@@ -425,7 +425,13 @@ public class MissionModeScript : MonoBehaviour
 			SchoolGlobals.SchoolAtmosphere = 1f - (float)Difficulty * 0.1f;
 			PlayerGlobals.Money = 20f;
 			StudentManager.Atmosphere = 1f - (float)Difficulty * 0.1f;
+			StudentManager.StudentPhotographed[TargetID] = true;
 			StudentManager.SetAtmosphere();
+			if (ID == 12)
+			{
+				Debug.Log("Establishing Mission Mode variables!");
+				Debug.Log("StudentManager.StudentPhotographed[12] is: " + StudentManager.StudentPhotographed[12]);
+			}
 			for (ID = 1; ID < PoliceLabel.Length; ID++)
 			{
 				PoliceLabel[ID].fontStyle = FontStyle.Bold;
@@ -572,11 +578,6 @@ public class MissionModeScript : MonoBehaviour
 				NewMissionWindow.FillOutInfo();
 				NewMissionWindow.HideButtons();
 				MultiMission = true;
-				for (int i = 1; i < 11; i++)
-				{
-					Target[i] = PlayerPrefs.GetInt("MissionModeTarget" + i);
-					Method[i] = PlayerPrefs.GetInt("MissionModeMethod" + i);
-				}
 			}
 			PhoneBar.color = new Color(0f, 0f, 0f, 1f);
 			PhoneBG.color = new Color(0.5f, 0.5f, 0.5f, 1f);
@@ -626,7 +627,7 @@ public class MissionModeScript : MonoBehaviour
 				Yandere.Subtitle.MurderReactions[0] = "Who are you?! You shouldn't be here!";
 				Yandere.Subtitle.PetMurderReports[2] = "A dangerous-looking person is in the school!";
 				Yandere.Subtitle.PetMurderReports[3] = "What?! But she was right here! Where did she go...?";
-				Yandere.Subtitle.TeacherReportReactions[0] = "An intruder?! Lead me to them!";
+				Yandere.Subtitle.TeacherReportReactions[0] = "Lead me there!";
 				Yandere.Subtitle.TeacherReportClips[0] = Yandere.Subtitle.LongestSilence;
 				Yandere.Subtitle.TeacherMurderReactions[1] = "An intruder at school?!";
 				Yandere.Subtitle.TeacherMurderReactions[2] = "An intruder at school?!";
@@ -1292,6 +1293,7 @@ public class MissionModeScript : MonoBehaviour
 							for (int j = 1; j < 101; j++)
 							{
 								StudentGlobals.SetStudentPhotographed(j, value: true);
+								StudentManager.StudentPhotographed[j] = true;
 							}
 							if (Eighties)
 							{
@@ -1530,6 +1532,20 @@ public class MissionModeScript : MonoBehaviour
 		else
 		{
 			Title = "Student";
+		}
+	}
+
+	public void UpdateStudentsPhotographed()
+	{
+		for (int i = 1; i < 11; i++)
+		{
+			Target[i] = PlayerPrefs.GetInt("MissionModeTarget" + i);
+			Method[i] = PlayerPrefs.GetInt("MissionModeMethod" + i);
+			StudentManager.StudentPhotographed[Target[i]] = true;
+			if (Target[i] > 0)
+			{
+				Debug.Log("One of the targets is Student #" + Target[i] + ", so we are setting StudentManager.StudentPhotographed[" + Target[i] + "] to " + StudentManager.StudentPhotographed[Target[i]]);
+			}
 		}
 	}
 }

@@ -720,6 +720,13 @@ public class CalendarScript : MonoBehaviour
 					{
 						if (!Eighties)
 						{
+							Debug.Log("The game is now logging the way that Rival #" + DateGlobals.Week + " was eliminated.");
+							if (GameGlobals.RivalEliminationID == 0)
+							{
+								GameGlobals.RivalEliminationID = 1;
+							}
+							GameGlobals.SetRivalEliminations(DateGlobals.Week, GameGlobals.RivalEliminationID);
+							GameGlobals.SetSpecificEliminations(DateGlobals.Week, GameGlobals.SpecificEliminationID);
 							SceneManager.LoadScene("BusStopScene");
 						}
 						else
@@ -1283,6 +1290,9 @@ public class CalendarScript : MonoBehaviour
 
 	public void ResetRivalStatus()
 	{
+		Debug.Log("Transitioning to a new week. Reseting rival elimination progress variables.");
+		Debug.Log("The previous rival's elimination method was: " + GameGlobals.GetRivalEliminations(DateGlobals.Week - 1));
+		Debug.Log("The previous rival's specific elimination method was: " + GameGlobals.GetSpecificEliminations(DateGlobals.Week - 1));
 		GameGlobals.RivalEliminationID = 0;
 		GameGlobals.SpecificEliminationID = 0;
 		EventGlobals.LearnedAboutPhotographer = false;

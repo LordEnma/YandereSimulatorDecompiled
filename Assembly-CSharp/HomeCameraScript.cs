@@ -508,15 +508,18 @@ public class HomeCameraScript : MonoBehaviour
 			BasementJukebox.volume = Mathf.MoveTowards(BasementJukebox.volume, 0f, Time.deltaTime);
 			RoomJukebox.volume = Mathf.MoveTowards(RoomJukebox.volume, 0f, Time.deltaTime);
 		}
-		else if (HomeYandere.transform.position.y < -7.5f)
-		{
-			BasementJukebox.volume = Mathf.MoveTowards(BasementJukebox.volume, 0.5f, Time.deltaTime);
-			RoomJukebox.volume = Mathf.MoveTowards(RoomJukebox.volume, 0f, Time.deltaTime);
-		}
 		else if (!Torturing)
 		{
-			BasementJukebox.volume = Mathf.MoveTowards(BasementJukebox.volume, 0f, Time.deltaTime);
-			RoomJukebox.volume = Mathf.MoveTowards(RoomJukebox.volume, 0.5f, Time.deltaTime);
+			if (HomeYandere.transform.position.y < -7.5f)
+			{
+				BasementJukebox.volume = Mathf.MoveTowards(BasementJukebox.volume, 0.5f, Time.deltaTime);
+				RoomJukebox.volume = Mathf.MoveTowards(RoomJukebox.volume, 0f, Time.deltaTime);
+			}
+			else
+			{
+				BasementJukebox.volume = Mathf.MoveTowards(BasementJukebox.volume, 0f, Time.deltaTime);
+				RoomJukebox.volume = Mathf.MoveTowards(RoomJukebox.volume, 0.5f, Time.deltaTime);
+			}
 		}
 		if (Input.GetKeyDown(KeyCode.M))
 		{

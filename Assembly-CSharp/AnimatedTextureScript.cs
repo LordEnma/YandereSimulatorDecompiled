@@ -22,6 +22,8 @@ public class AnimatedTextureScript : MonoBehaviour
 
 	public Texture[] Image;
 
+	public bool PauseWhenPaused;
+
 	private float SecondsPerFrame => 1f / FramesPerSecond;
 
 	private void Awake()
@@ -30,7 +32,14 @@ public class AnimatedTextureScript : MonoBehaviour
 
 	private void Update()
 	{
-		CurrentSeconds += Time.unscaledDeltaTime;
+		if (!PauseWhenPaused)
+		{
+			CurrentSeconds += Time.unscaledDeltaTime;
+		}
+		else
+		{
+			CurrentSeconds += Time.deltaTime;
+		}
 		while (CurrentSeconds >= SecondsPerFrame)
 		{
 			CurrentSeconds -= SecondsPerFrame;

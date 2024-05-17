@@ -113,7 +113,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 				num += (float)SpeechText[i].Length * 0.1f;
 			}
 		}
-		if (base.enabled && !GameGlobals.Eighties && Week == 2 && (EventDay == DayOfWeek.Thursday || EventDay == DayOfWeek.Friday))
+		if (!GameGlobals.Eighties && Week == 2 && GameGlobals.RivalEliminationID == 0 && (EventDay == DayOfWeek.Thursday || EventDay == DayOfWeek.Friday))
 		{
 			ObjectToActivate.SetActive(value: true);
 		}

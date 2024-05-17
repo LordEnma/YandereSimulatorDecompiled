@@ -246,7 +246,11 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	private void TakeInstructions()
 	{
-		EventSubtitle.text = string.Empty;
+		float num = Vector3.Distance(Yandere.transform.position, Char[0].transform.position);
+		if (num < 10f)
+		{
+			EventSubtitle.text = string.Empty;
+		}
 		Timer = 0f;
 		if (Phase == Instructions.Length)
 		{
@@ -292,7 +296,10 @@ public class ModernRivalEventScript : MonoBehaviour
 				MyAudio.clip = Instructions[Phase].Audio;
 				AudioSource.PlayClipAtPoint(MyAudio.clip, Char[0].transform.position);
 			}
-			EventSubtitle.text = Instructions[Phase].Dialogue;
+			if (num < 10f)
+			{
+				EventSubtitle.text = Instructions[Phase].Dialogue;
+			}
 			NextCriteria = Instructions[Phase].NextCritera;
 			SpecialCase = Instructions[Phase].SpecialCase;
 			TimeLimit = Instructions[Phase].TimeLimit;
@@ -308,6 +315,10 @@ public class ModernRivalEventScript : MonoBehaviour
 			float num2 = Mathf.Abs((num - 10f) * 0.2f);
 			if (num < 10f)
 			{
+				if (Phase < Instructions.Length)
+				{
+					EventSubtitle.text = Instructions[Phase].Dialogue;
+				}
 				if (num2 < 0f)
 				{
 					num2 = 0f;
@@ -327,11 +338,13 @@ public class ModernRivalEventScript : MonoBehaviour
 					Yandere.Eavesdropping = false;
 				}
 			}
-			else
+			else if (num < 11f)
 			{
 				EventSubtitle.transform.localScale = Vector3.zero;
+				EventSubtitle.text = string.Empty;
 				Yandere.Eavesdropping = false;
 				Jukebox.Dip = 1f;
+				num2 = 0f;
 			}
 		}
 		else
@@ -503,6 +516,12 @@ public class ModernRivalEventScript : MonoBehaviour
 				Char[0].SodaCan.SetActive(value: false);
 			}
 			break;
+		case 17:
+			Char[0].TaroApron.enabled = true;
+			break;
+		case 18:
+			Char[0].TaroApron.newRenderer.enabled = false;
+			break;
 		}
 	}
 
@@ -541,12 +560,6 @@ public class ModernRivalEventScript : MonoBehaviour
 				if (!StudentManager.Stop)
 				{
 					StudentManager.UpdateStudents();
-				}
-				if (i == 0)
-				{
-					Debug.Log("Char[0]'s Phase is:" + Char[0].Phase);
-					Debug.Log("Char[0]'s CurrentAction is:" + Char[0].CurrentAction);
-					Debug.Log("Char[0]'s current ScheduleBlocks.action is:" + Char[0].ScheduleBlocks[Char[0].Phase].action);
 				}
 			}
 		}

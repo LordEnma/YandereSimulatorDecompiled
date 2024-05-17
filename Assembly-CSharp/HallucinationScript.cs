@@ -28,6 +28,8 @@ public class HallucinationScript : MonoBehaviour
 
 	public SkinnedMeshRenderer[] EightiesRivalHairRenderers;
 
+	public SkinnedMeshRenderer[] RivalHairRenderers;
+
 	public Renderer[] WeaponRenderers;
 
 	public Renderer RichGirlHairRenderer;
@@ -77,22 +79,27 @@ public class HallucinationScript : MonoBehaviour
 		{
 			EightiesRivalHair[j].SetActive(value: false);
 		}
-		if (GameGlobals.Eighties)
+		for (int j = 1; j < 11; j++)
 		{
-			if (week > 0 && week < 11)
+			RivalHair[j].SetActive(value: false);
+		}
+		if (week > 0 && week < 11)
+		{
+			if (GameGlobals.Eighties)
 			{
 				YandereHairRenderer.transform.parent.gameObject.SetActive(value: false);
-				RivalHair[1].SetActive(value: false);
 				EightiesRivalHair[week].SetActive(value: true);
 				YandereHairRenderer = RyobaHairRenderer;
 				RivalHairRenderer = EightiesRivalHairRenderers[week];
 				YandereRenderer.sharedMesh = LongSleeveUniform;
 				RivalRenderer.sharedMesh = LongSleeveUniform;
 			}
-		}
-		else
-		{
-			RyobaHair.SetActive(value: false);
+			else
+			{
+				RivalHair[week].SetActive(value: true);
+				RivalHairRenderer = RivalHairRenderers[week];
+				RyobaHair.SetActive(value: false);
+			}
 		}
 		HallucinatedYandere.SetActive(value: false);
 		HallucinatedRival.SetActive(value: false);

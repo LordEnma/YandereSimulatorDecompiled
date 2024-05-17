@@ -97,6 +97,8 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 
 	public string LongAnimB;
 
+	public bool AssignedAudio;
+
 	private void Start()
 	{
 		EventSubtitle.transform.localScale = Vector3.zero;
@@ -350,19 +352,16 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		{
 			if (VoiceClip != null)
 			{
-				if (AudioData.MyAudioSource == null)
+				if (!AssignedAudio)
 				{
 					AudioData.MyAudioSource = VoiceClip.GetComponent<AudioSource>();
+					AssignedAudio = true;
 				}
 			}
 			else
 			{
 				AudioData.MyAudioSource = null;
 			}
-		}
-		else
-		{
-			Debug.Log("Hey, AudioData is null. Is this a big deal?");
 		}
 		if (AudioData != null && AudioData.MyAudioSource != null && CurrentSpeaker != null)
 		{

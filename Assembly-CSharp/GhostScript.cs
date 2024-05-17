@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GhostScript : MonoBehaviour
 {
+	public YandereScript Yandere;
+
 	public Transform SmartphoneCamera;
 
 	public Transform Neck;

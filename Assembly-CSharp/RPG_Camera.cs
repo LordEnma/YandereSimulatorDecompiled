@@ -141,7 +141,7 @@ public class RPG_Camera : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (Time.deltaTime > 0.0001f)
+		if (Time.timeScale > 0.0001f)
 		{
 			if (cameraPivot == null)
 			{

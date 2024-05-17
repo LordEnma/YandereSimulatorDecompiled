@@ -205,6 +205,7 @@ public class FunScript : MonoBehaviour
 				}
 				else
 				{
+					Debug.Log("This is where the application would quit.");
 					Application.Quit();
 				}
 			}
