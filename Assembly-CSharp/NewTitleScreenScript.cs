@@ -134,6 +134,8 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public bool Fun;
 
+	public int Zs;
+
 	public AudioClip MakeSelection;
 
 	public AudioClip MoveCursor;
@@ -732,30 +734,37 @@ public class NewTitleScreenScript : MonoBehaviour
 			}
 		}
 		base.transform.LookAt(LookAtTarget);
-		if (!Fun)
+		if (Fun)
 		{
-			return;
-		}
-		if (FunPhase == 1)
-		{
-			FunTimer += Time.unscaledDeltaTime;
-			if (FunTimer >= 10f)
+			if (FunPhase == 1)
 			{
-				FunGirl.transform.position = new Vector3(UnityEngine.Random.Range(0f, 17.5f), 0f, UnityEngine.Random.Range(0f, 5f));
-				FunGirl.transform.position = new Vector3(FunGirl.transform.position.x, UnityEngine.Random.Range(0.6f, 0.6f + (FunGirl.transform.position.x + FunGirl.transform.position.z) * 0.4f), FunGirl.transform.position.z);
-				FunGirl.SetActive(value: true);
-				FunPhase = 2;
-				FunTimer = 0f;
+				FunTimer += Time.unscaledDeltaTime;
+				if (FunTimer >= 10f)
+				{
+					FunGirl.transform.position = new Vector3(UnityEngine.Random.Range(0f, 17.5f), 0f, UnityEngine.Random.Range(0f, 5f));
+					FunGirl.transform.position = new Vector3(FunGirl.transform.position.x, UnityEngine.Random.Range(0.6f, 0.6f + (FunGirl.transform.position.x + FunGirl.transform.position.z) * 0.4f), FunGirl.transform.position.z);
+					FunGirl.SetActive(value: true);
+					FunPhase = 2;
+					FunTimer = 0f;
+				}
+			}
+			else
+			{
+				FunTimer += Time.unscaledDeltaTime;
+				if (FunTimer >= 1f)
+				{
+					FunGirl.SetActive(value: false);
+					FunPhase = 1;
+					FunTimer = 0f;
+				}
 			}
 		}
-		else
+		if (Input.GetKeyDown("z"))
 		{
-			FunTimer += Time.unscaledDeltaTime;
-			if (FunTimer >= 1f)
+			Zs++;
+			if (Zs >= 10)
 			{
-				FunGirl.SetActive(value: false);
-				FunPhase = 1;
-				FunTimer = 0f;
+				SceneManager.LoadScene("ShadowTestScene");
 			}
 		}
 	}

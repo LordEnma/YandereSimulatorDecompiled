@@ -353,7 +353,6 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
-			Debug.Log("Starting a new game from the Difficulty window.");
 			DifficultyWindow.SetActive(value: false);
 			StartNewGame();
 			AcknowledgeChallenges();
@@ -491,7 +490,6 @@ public class TitleSaveFilesScript : MonoBehaviour
 
 	public void AcknowledgeChallenges()
 	{
-		Debug.Log("Acknowledging the challenges that the player selected.");
 		if (ChallengeCheckmarks[1].enabled)
 		{
 			ChallengeGlobals.KnifeOnly = true;

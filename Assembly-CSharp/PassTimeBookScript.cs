@@ -76,25 +76,34 @@ public class PassTimeBookScript : MonoBehaviour
 				return;
 			}
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
-			if (Darkness.color.a < 0.1f)
+			if (!(Darkness.color.a < 0.1f))
 			{
-				Darkness.alpha = 0f;
-				if (PlayerGlobals.PantiesEquipped == 7)
-				{
-					Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;
-					Yandere.NotificationManager.CustomText = "Gained 2 extra Study Points!";
-				}
-				else
-				{
-					Yandere.StudentManager.Reputation.Portal.Class.BonusPoints++;
-					Yandere.NotificationManager.CustomText = "Gained 1 extra Study Point!";
-				}
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-				Yandere.RPGCamera.enabled = true;
-				Darkness.enabled = false;
-				Yandere.CanMove = true;
-				TimeSkipping = false;
+				return;
 			}
+			Darkness.alpha = 0f;
+			if (PlayerGlobals.PantiesEquipped == 7)
+			{
+				Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;
+				Yandere.NotificationManager.CustomText = "Gained 2 extra Study Points!";
+			}
+			else
+			{
+				Yandere.StudentManager.Reputation.Portal.Class.BonusPoints++;
+				Yandere.NotificationManager.CustomText = "Gained 1 extra Study Point!";
+			}
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Yandere.RPGCamera.enabled = true;
+			Darkness.enabled = false;
+			Yandere.CanMove = true;
+			TimeSkipping = false;
+			for (int i = 1; i < 100; i++)
+			{
+				if (Yandere.StudentManager.Students[i] != null)
+				{
+					Yandere.StudentManager.Students[i].transform.position = Yandere.StudentManager.Students[i].CurrentDestination.position;
+				}
+			}
+			Physics.SyncTransforms();
 		}
 		else
 		{

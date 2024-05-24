@@ -167,6 +167,10 @@ public class BusStopScript : MonoBehaviour
 
 	public float LipValue = -0.08f;
 
+	public int Frames;
+
+	public Transform[] Breasts;
+
 	private void Start()
 	{
 		Debug.Log("The game believes that we are currently in Week #" + DateGlobals.Week);
@@ -213,7 +217,10 @@ public class BusStopScript : MonoBehaviour
 			{
 				Environment.transform.position = new Vector3(0f, -2.975f, 1f);
 				Environment.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-				BakeryAmai.GetComponent<Animation>()["f02_smugEyes_00"].layer = 2;
+				BakeryAmai.GetComponent<Animation>()["f02_smile_01"].layer = 2;
+				BakeryAmai.GetComponent<Animation>().Play("f02_smile_01");
+				BakeryAmai.GetComponent<Animation>()["f02_smile_01"].weight = 1f;
+				BakeryAmai.GetComponent<Animation>()["f02_smugEyes_00"].layer = 3;
 				BakeryAmai.GetComponent<Animation>().Play("f02_smugEyes_00");
 				BakeryAmai.GetComponent<Animation>()["f02_smugEyes_00"].weight = 1f;
 				BakeryKizanaClothing.SetActive(value: true);
@@ -839,6 +846,11 @@ public class BusStopScript : MonoBehaviour
 			SenpaiLip[0].localPosition = new Vector3(SenpaiLip[0].localPosition.x, LipValue, SenpaiLip[0].localPosition.z);
 			SenpaiLip[1].localPosition = new Vector3(SenpaiLip[1].localPosition.x, LipValue, SenpaiLip[1].localPosition.z);
 		}
+		if (Frames == 1)
+		{
+			ResetAllBreasts();
+		}
+		Frames++;
 	}
 
 	private void SenpaiRendererCheck()
@@ -903,6 +915,20 @@ public class BusStopScript : MonoBehaviour
 		{
 			GameGlobals.SenpaiMeetsNewRival = true;
 			SceneManager.LoadScene("VisualNovelScene");
+		}
+	}
+
+	private void ResetAllBreasts()
+	{
+		Debug.Log("Resetting all breasts.");
+		GameObject[] array = UnityEngine.Object.FindObjectsOfType<GameObject>();
+		foreach (GameObject gameObject in array)
+		{
+			if (gameObject.name.Contains("Breast"))
+			{
+				Debug.Log("Breast found!! Resetting it!!");
+				gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+			}
 		}
 	}
 }

@@ -2028,8 +2028,6 @@ public class YandereScript : MonoBehaviour
 		SetAnimationLayers();
 		if (!Class.Initialized)
 		{
-			Debug.Log("YandereScript is now calling UpdateNumbness() for the first time in the day.");
-			Debug.Log("Oops, wait. ClassScript was not initialized, so we're initializing it before YandereScript determines the correct numbness value.");
 			Class.GetStats();
 		}
 		UpdateNumbness();

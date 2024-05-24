@@ -40,11 +40,13 @@ public class ResolutionScript : MonoBehaviour
 
 	public int Enters;
 
-	public int As;
+	public int Qs;
 
 	public int Rs;
 
 	public int Ts;
+
+	public int Zs;
 
 	public int ID = 1;
 
@@ -164,33 +166,6 @@ public class ResolutionScript : MonoBehaviour
 			}
 		}
 		Highlight.localPosition = Vector3.Lerp(Highlight.localPosition, new Vector3(-307.5f, 250 - ID * 100, 0f), Time.deltaTime * 10f);
-		if (Input.GetKeyDown("r"))
-		{
-			Rs++;
-			if (Rs == 10)
-			{
-				Debug.Log("Wiping all PlayerPrefs.");
-				PlayerPrefs.DeleteAll();
-				Screen.SetResolution(1280, 720, fullscreen: false);
-				SceneManager.LoadScene("ResolutionScene");
-			}
-		}
-		if (Input.GetKeyDown("t"))
-		{
-			Ts++;
-			if (Ts == 10)
-			{
-				SceneManager.LoadScene("StreetScene");
-			}
-		}
-		if (Input.GetKeyDown(KeyCode.KeypadEnter))
-		{
-			Enters++;
-			if (Enters == 10)
-			{
-				SceneManager.LoadScene("CalendarScene");
-			}
-		}
 	}
 
 	private void UpdateRes()

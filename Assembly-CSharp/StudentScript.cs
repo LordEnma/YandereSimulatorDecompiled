@@ -2563,7 +2563,7 @@ public class StudentScript : MonoBehaviour
 					{
 						LovestruckTarget = 11;
 					}
-					if (StudentManager.Students[11] != null && DatingGlobals.SuitorProgress < 2 && (float)StudentGlobals.GetStudentReputation(10) > -33.33333f && StudentGlobals.StudentSlave != 11 && !GameGlobals.AlphabetMode && !StudentManager.MissionMode)
+					if (StudentManager.Students[11] != null && GameGlobals.GetRivalEliminations(1) != 6 && (float)StudentGlobals.GetStudentReputation(10) > -33.33333f && StudentGlobals.StudentSlave != 11 && !GameGlobals.AlphabetMode && !StudentManager.MissionMode)
 					{
 						StudentManager.Patrols.List[StudentID].parent = StudentManager.Students[11].transform;
 						StudentManager.Patrols.List[StudentID].localEulerAngles = new Vector3(0f, 0f, 0f);
@@ -2617,7 +2617,7 @@ public class StudentScript : MonoBehaviour
 							WalkAnim = BulliedWalkAnim;
 							OriginalIdleAnim = IdleAnim;
 						}
-						else if (DatingGlobals.SuitorProgress == 2)
+						else if (GameGlobals.GetRivalEliminations(1) == 6)
 						{
 							ScheduleBlock obj12 = ScheduleBlocks[2];
 							obj12.destination = "Peek";
@@ -17576,15 +17576,18 @@ public class StudentScript : MonoBehaviour
 				BloodPool = null;
 			}
 		}
-		if (!Male && Following)
+		if (!Male)
 		{
-			StudentManager.TranqDetector.TranqCheck();
+			if (Following)
+			{
+				StudentManager.TranqDetector.TranqCheck();
+			}
 			CharacterAnimation["f02_smile_00"].weight = 0f;
-			SmartPhone.SetActive(value: false);
 			if (CharacterAnimation[ShyAnim] != null)
 			{
 				CharacterAnimation[ShyAnim].weight = 0f;
 			}
+			SmartPhone.SetActive(value: false);
 			Shy = false;
 		}
 		if (WitnessCamera != null)
@@ -20360,6 +20363,7 @@ public class StudentScript : MonoBehaviour
 		{
 			Yandere.Pursuer = null;
 		}
+		InEvent = false;
 		Grudge = false;
 	}
 

@@ -59,6 +59,8 @@ public class NewSettingsScript : MonoBehaviour
 
 	public int[] Heights;
 
+	public float LightIntensity = 0.5f;
+
 	public Renderer Window;
 
 	public Renderer YandereRenderer;
@@ -1153,7 +1155,7 @@ public class NewSettingsScript : MonoBehaviour
 		Sun.shadows = (OptionGlobals.EnableShadows ? LightShadows.Soft : LightShadows.None);
 		if (OptionGlobals.EnableShadows)
 		{
-			Sun.intensity = 0.5f;
+			Sun.intensity = LightIntensity;
 		}
 		else
 		{

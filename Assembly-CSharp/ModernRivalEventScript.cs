@@ -47,6 +47,8 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	public bool Private;
 
+	public bool Done;
+
 	public int SpecialCase;
 
 	public int Characters;
@@ -567,6 +569,11 @@ public class ModernRivalEventScript : MonoBehaviour
 		Yandere.Eavesdropping = false;
 		Jukebox.Dip = 1f;
 		MyAudio.Stop();
+		Done = true;
+		if (Week == 2 && Day == DayOfWeek.Thursday && StartTime == 16f)
+		{
+			StudentManager.RestoreScorchMarks = true;
+		}
 		base.enabled = false;
 	}
 

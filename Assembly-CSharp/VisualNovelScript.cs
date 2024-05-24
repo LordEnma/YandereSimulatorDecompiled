@@ -67,6 +67,8 @@ public class VisualNovelScript : MonoBehaviour
 
 	public float FadeTimer;
 
+	public int Week;
+
 	public int ID;
 
 	public VisualNovelDataScript KizanaMeetData;
@@ -108,6 +110,7 @@ public class VisualNovelScript : MonoBehaviour
 			Colors = KizanaMeetData.Colors;
 			Backdrop.material.mainTexture = KizanaMeetData.Backdrop;
 			Jukebox.clip = KizanaMeetData.BGM;
+			Week = 2;
 			Character[1].gameObject.SetActive(value: false);
 			Character[1] = MaleCharacter;
 			CharAnim[1] = Character[1].CharacterAnimation;
@@ -126,6 +129,8 @@ public class VisualNovelScript : MonoBehaviour
 			Character[2].CharacterAnimation.Play("f02_smugEyes_00");
 			Character[2].CharacterAnimation["f02_smugEyes_00"].weight = 1f;
 			KizanaClothing.SetActive(value: true);
+			Character[2].RightBreast.transform.localScale = new Vector3(1f, 1f, 1f);
+			Character[2].LeftBreast.transform.localScale = new Vector3(1f, 1f, 1f);
 		}
 		else
 		{
@@ -160,6 +165,11 @@ public class VisualNovelScript : MonoBehaviour
 						MaleRenderer.materials[0].mainTexture = CasualClothes;
 						MaleRenderer.materials[1].mainTexture = Character[1].Cosmetic.FaceTextures[Character[1].Cosmetic.SkinColor];
 						MaleRenderer.materials[2].mainTexture = Character[1].Cosmetic.SkinTextures[Character[1].Cosmetic.SkinColor];
+					}
+					if (Week == 2)
+					{
+						Character[2].RightBreast.transform.localScale = new Vector3(1f, 1f, 1f);
+						Character[2].LeftBreast.transform.localScale = new Vector3(1f, 1f, 1f);
 					}
 					Jukebox.Play();
 				}

@@ -97,6 +97,10 @@ public class ServicesScript : MonoBehaviour
 			ServiceNames[9] = "?????";
 			NameLabels[9].text = ServiceNames[9];
 		}
+		ServiceCosts[4] = DateGlobals.Week * 10;
+		ServiceCosts[10] = DateGlobals.Week * 10;
+		CostLabels[4].text = ServiceCosts[4].ToString();
+		CostLabels[10].text = ServiceCosts[10].ToString();
 	}
 
 	private void Update()

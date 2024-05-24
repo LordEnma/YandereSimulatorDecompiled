@@ -12,6 +12,10 @@ public class StudentManagerScript : MonoBehaviour
 
 	public StudentScript[] Students;
 
+	public ModernRivalSabotageScript[] SabotageEvents;
+
+	public ModernRivalEventScript[] ModernRivalEvents;
+
 	public OsanaThursdayAfterClassEventScript OsanaThursdayAfterClassEvent;
 
 	public OsanaMondayBeforeClassEventScript OsanaMondayBeforeClassEvent;
@@ -1000,6 +1004,10 @@ public class StudentManagerScript : MonoBehaviour
 	public DoorScript[] Doors;
 
 	public int DoorID;
+
+	public bool RestoreScorchMarks;
+
+	public GameObject ScorchMarks;
 
 	public bool MorningEventOver;
 
@@ -5240,7 +5248,6 @@ public class StudentManagerScript : MonoBehaviour
 		PortalScript component = Portal.GetComponent<PortalScript>();
 		for (int l = 0; l < component.MorningEvents.Length; l++)
 		{
-			Debug.Log("Checking #" + l);
 			if (component.MorningEvents[l].Finished || MorningEventOver)
 			{
 				Debug.Log(component.MorningEvents[l].gameObject.name + " was finished when the save was created...");
@@ -5303,6 +5310,16 @@ public class StudentManagerScript : MonoBehaviour
 				maskScript.WearMask();
 			}
 		}
+		ModernRivalSabotageScript[] sabotageEvents = SabotageEvents;
+		foreach (ModernRivalSabotageScript modernRivalSabotageScript in sabotageEvents)
+		{
+			Debug.Log("Checking all SabotageEvents now.");
+			if (modernRivalSabotageScript != null && modernRivalSabotageScript.Sabotaged)
+			{
+				Debug.Log("Yeah, one was sabotaged!");
+				modernRivalSabotageScript.Sabotage();
+			}
+		}
 		if (WeaponBag.Worn)
 		{
 			Debug.Log("The player was wearing the WeaponBag at the time the save file was made.");
@@ -5337,6 +5354,12 @@ public class StudentManagerScript : MonoBehaviour
 		if (SecuritySystem.AlreadyShutDown)
 		{
 			SecuritySystem.ShutDown();
+		}
+		if (RestoreScorchMarks)
+		{
+			ScorchMarks.SetActive(value: true);
+			ScorchMarks.transform.parent.gameObject.SetActive(value: true);
+			ScorchMarks.transform.parent.GetChild(0).gameObject.SetActive(value: false);
 		}
 		CameFromLoad = true;
 		Debug.Log("The entire loading process has been completed.");

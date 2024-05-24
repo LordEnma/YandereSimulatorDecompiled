@@ -886,7 +886,6 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 12)
 					{
-						Debug.Log("Choosing Amai's animation and telling her to LookCamera.");
 						CharacterAnimation.Play("f02_idleGirly_00");
 						base.transform.position = new Vector3(-0.025f, 0f, 0f);
 						LookCamera = true;
@@ -1001,7 +1000,6 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (Club != ClubType.Council)
 					{
-						Debug.Log("Calling PickGenericAnim() from here. 1");
 						PickGenericAnim();
 					}
 				}
@@ -1079,7 +1077,6 @@ public class CosmeticScript : MonoBehaviour
 							if (StudentID == 62)
 							{
 								CharacterAnimation.Play("idleFrown_00");
-								Debug.Log("Giving male studentist his frown.");
 							}
 							else if (StudentID == 69)
 							{
@@ -1135,7 +1132,6 @@ public class CosmeticScript : MonoBehaviour
 						}
 						else
 						{
-							Debug.Log("Calling PickGenericAnim() from here. 3");
 							PickGenericAnim();
 						}
 					}
@@ -3367,7 +3363,6 @@ public class CosmeticScript : MonoBehaviour
 	{
 		if (LookCamera)
 		{
-			Debug.Log("LookCamera is true.");
 			Student.Head.LookAt(Camera.main.transform.position);
 			Student.Neck.LookAt(Camera.main.transform.position);
 		}

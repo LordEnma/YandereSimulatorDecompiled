@@ -34,6 +34,8 @@ public class ModernRivalSabotageScript : MonoBehaviour
 
 	public bool[] SabotageCriteria;
 
+	public bool Sabotaged;
+
 	public bool Animate;
 
 	public float TimeLimit;
@@ -339,7 +341,6 @@ public class ModernRivalSabotageScript : MonoBehaviour
 				SabotagedEvent.gameObject.SetActive(value: true);
 				NormalEvent.gameObject.SetActive(value: false);
 				ObjectToEnable.SetActive(value: true);
-				SabotageChecklist.alpha = 0f;
 				Disable();
 			}
 		}
@@ -353,6 +354,19 @@ public class ModernRivalSabotageScript : MonoBehaviour
 		}
 		Prompt.Hide();
 		Prompt.enabled = false;
+		Sabotaged = true;
 		base.enabled = false;
+	}
+
+	public void Sabotage()
+	{
+		Debug.Log("Re-sabotaging an event after returning from a save.");
+		SabotagedEvent.gameObject.SetActive(value: true);
+		NormalEvent.gameObject.SetActive(value: false);
+		if (ObjectToEnable != null)
+		{
+			ObjectToEnable.SetActive(value: true);
+		}
+		Disable();
 	}
 }
