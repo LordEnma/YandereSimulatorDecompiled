@@ -144,6 +144,11 @@ public class RadioScript : MonoBehaviour
 			MyAudio.Stop();
 			Jukebox.ClubDip = 0f;
 		}
+		if (Prompt.Yandere.Collapse)
+		{
+			MyAudio.Stop();
+			base.enabled = false;
+		}
 	}
 
 	public void TurnOn()

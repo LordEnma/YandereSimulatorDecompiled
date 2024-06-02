@@ -93,6 +93,8 @@ public class QualityManagerScript : MonoBehaviour
 
 	public bool Eighties;
 
+	public bool LoveSick;
+
 	public bool OriginalFog;
 
 	public void Start()
@@ -169,6 +171,7 @@ public class QualityManagerScript : MonoBehaviour
 				UpdateColorGrading();
 			}
 		}
+		LoveSick = GameGlobals.LoveSick;
 	}
 
 	public void UpdateParticles()
@@ -398,6 +401,11 @@ public class QualityManagerScript : MonoBehaviour
 						{
 							studentScript.Cosmetic.FemaleAccessories[studentScript.Cosmetic.Accessory].GetComponent<Renderer>().material.shader = NewHairShader;
 						}
+						studentScript.Cosmetic.FemaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.shader = NewHairShader;
+						if (LoveSick)
+						{
+							studentScript.Cosmetic.FemaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 0f);
+						}
 					}
 					else
 					{
@@ -417,7 +425,7 @@ public class QualityManagerScript : MonoBehaviour
 						if (studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials.Length == 1)
 						{
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.shader = NewHairShader;
-							if (studentScript.Cosmetic.UsingDefaultHairColor)
+							if (studentScript.Cosmetic.UsingDefaultHairColor && !LoveSick)
 							{
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 1f);
 							}
@@ -430,7 +438,7 @@ public class QualityManagerScript : MonoBehaviour
 						{
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].shader = NewHairShader;
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].shader = NewHairShader;
-							if (studentScript.Cosmetic.UsingDefaultHairColor)
+							if (studentScript.Cosmetic.UsingDefaultHairColor && !LoveSick)
 							{
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].SetFloat("_Saturation", 1f);
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].SetFloat("_Saturation", 1f);
@@ -833,6 +841,10 @@ public class QualityManagerScript : MonoBehaviour
 							studentScript.Cosmetic.TurtleEyewearRenderer.material.shader = NewHairShader;
 							studentScript.Cosmetic.ScarfRenderer.material.shader = NewHairShader;
 						}
+						if (LoveSick)
+						{
+							studentScript.Cosmetic.FemaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 0f);
+						}
 					}
 					else
 					{
@@ -844,6 +856,10 @@ public class QualityManagerScript : MonoBehaviour
 						AdjustRimLight(studentScript.Cosmetic.TeacherHairRenderers[studentScript.Cosmetic.Hairstyle].material);
 						studentScript.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
 						studentScript.MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
+						if (LoveSick)
+						{
+							studentScript.Cosmetic.TeacherHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 0f);
+						}
 					}
 				}
 				else
@@ -854,7 +870,7 @@ public class QualityManagerScript : MonoBehaviour
 						{
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.shader = NewBodyShader;
 							AdjustRimLight(studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material);
-							if (studentScript.Cosmetic.UsingDefaultHairColor)
+							if (studentScript.Cosmetic.UsingDefaultHairColor && !LoveSick)
 							{
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 1f);
 							}
@@ -869,7 +885,7 @@ public class QualityManagerScript : MonoBehaviour
 							studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].shader = NewBodyShader;
 							AdjustRimLight(studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0]);
 							AdjustRimLight(studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1]);
-							if (studentScript.Cosmetic.UsingDefaultHairColor)
+							if (studentScript.Cosmetic.UsingDefaultHairColor && !LoveSick)
 							{
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[0].SetFloat("_Saturation", 1f);
 								studentScript.Cosmetic.MaleHairRenderers[studentScript.Cosmetic.Hairstyle].materials[1].SetFloat("_Saturation", 1f);
@@ -931,6 +947,8 @@ public class QualityManagerScript : MonoBehaviour
 			AdjustRimLight(Nemesis.NemesisHair.GetComponent<Renderer>().material);
 		}
 		UpdateStockings();
+		Yandere.TheDebugMenuScript.UpdateCensor();
+		Yandere.TheDebugMenuScript.UpdateCensor();
 	}
 
 	public void UpdateYandereChan()

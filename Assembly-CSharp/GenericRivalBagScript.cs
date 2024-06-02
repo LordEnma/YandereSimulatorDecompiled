@@ -353,6 +353,7 @@ public class GenericRivalBagScript : MonoBehaviour
 						}
 						for (int j = 1; j < 26; j++)
 						{
+							Debug.Log("The player is now learning the rival's likes and dislikes.");
 							Prompt.Yandere.StudentManager.SetTopicLearnedByStudent(j, Prompt.Yandere.StudentManager.RivalID, boolean: true);
 						}
 					}
@@ -438,7 +439,14 @@ public class GenericRivalBagScript : MonoBehaviour
 					}
 					else if (Selected == 5)
 					{
-						Prompt.Yandere.Inventory.AnswerSheet = false;
+						if (Prompt.Yandere.Inventory.DuplicateSheet)
+						{
+							Prompt.Yandere.Inventory.DuplicateSheet = false;
+						}
+						else
+						{
+							Prompt.Yandere.Inventory.AnswerSheet = false;
+						}
 						AnswerSheet = true;
 						Menu = 1;
 						UpdateMenuLabels();
@@ -730,7 +738,7 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				Label[4].color = new Color(1f, 1f, 1f, 0.5f);
 			}
-			if (!Prompt.Yandere.Inventory.AnswerSheet)
+			if (!Prompt.Yandere.Inventory.AnswerSheet && !Prompt.Yandere.Inventory.DuplicateSheet)
 			{
 				Label[5].color = new Color(1f, 1f, 1f, 0.5f);
 			}
@@ -867,7 +875,7 @@ public class GenericRivalBagScript : MonoBehaviour
 					DiaryLabelLeft.text = "[c][800000]I hate school![-][/c] What's the point? I'll never use the knowledge! I'm so rich that I'll never need to work a day in my life!\n \n[c][008000]I love my family![-][/c] Well, I don't love any of them individually, but I'm glad I was born into wealth! [c][008000]I LOVE MONEY![-][/c]\n \nArgh! [c][008000]I want to socialize[-][/c] in peace, but I am constantly being approached by peasants who want me to join their stupid clubs!\n \nI won't join the art club just because [c][008000]I love art![-][/c] And, no, I won't join the Cooking Club, either! [c][800000]I hate cooking![-][/c]\n \nWhy does this school have an occult club? Creepy! Do they worship death? [c][800000]I hate the occult[-][/c] and [c][800000]I hate violence![-][/c]\n \n[c][008000]I love gossip,[-][/c] so I tried to start some juicy rumors, but some goody-two shoes foiled my plans! Argh! [c][800000]I hate justice![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
 					break;
 				case 6:
-					DiaryLabelLeft.text = "I've heard that the Occult Club uses blood in their rituals! Eek! Scary! [c][800000]I hate the occult![-][/c] and [c][800000]I hate violence![-][/c]\n \n Why don't they join a normal club? [c][008000]I love art[-][/c] and [c][008000]I love martial arts[-][/c] - they should try out those things instead!\n \n There are certain clubs I could never see myself joining, though. Like, for example, [c][800000]I hate sports[-][/c] and [c][800000]I hate gardening[-][/c].\n \n Why? Because, whenever I try to do outdoor activities, my allergies act up! Nature hates me, so [c][800000]I hate nature[-][/c] back!\n \n I predict that big idol trend will be performing while wearing elaborate costumes. Sounds fun! [c][008000]I love cosplay![-][/c]\n \n [c][008000]I love music[-][/c] more than anything else in the world! Well, except hanging out with my friends. [c][008000]I love socializing[-][/c], too!\n \n Last night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					DiaryLabelLeft.text = "I've heard that the Occult Club uses blood in their rituals! Eek! Scary! [c][800000]I hate the occult![-][/c] and [c][800000]I hate violence![-][/c]\n \nWhy don't they join a normal club? [c][008000]I love art[-][/c] and [c][008000]I love martial arts[-][/c] - they should try out those things instead!\n \nThere are certain clubs I could never see myself joining, though. Like, for example, [c][800000]I hate sports[-][/c] and [c][800000]I hate gardening[-][/c].\n \nWhy? Because, whenever I try to do outdoor activities, my allergies act up! Nature hates me, so [c][800000]I hate nature[-][/c] back!\n \nA new anime just started airing about a girl who wants to become an idol! That makes me so happy! [c][008000]I love anime![-][/c]\n \n[c][008000]I love music[-][/c] more than anything else in the world! Well, except hanging out with my friends. [c][008000]I love socializing[-][/c], too!\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
 					break;
 				case 7:
 					DiaryLabelLeft.text = "Why does the headmaster permit an Occult Club at this school? [c][800000]I hate the occult[-][/c] for the negative influence it has.\n \nThe upcoming school play sounds far too violent. [c][800000]I hate violence[-][/c] almost as much as [c][800000]I hate drama.[-][/c] I'll pass.\n \n[c][008000]I love school,[-][/c], but my classmates discuss rumors too much. [c][800000]I hate gossip[-][/c] and how much of a distraction it can be.\n \nI read a book outdoors and the most wonderful experience. [c][008000]I love reading [-][/c] and [c][008000]I love nature![-][/c] - they go well together!\n \nThere's a class clown in my science class. [c][800000]I hate jokes[-][/c] when they interrupt my favorite subject. [c][008000]I love science![-][/c]\n \nI haven't had any chances to practice photography recently. I hope I'll find an opportunity soon. [c][008000]I love photography![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";

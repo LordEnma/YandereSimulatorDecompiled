@@ -2006,7 +2006,7 @@ public class GenericRivalEventScript : MonoBehaviour
 			Senpai.InEvent = false;
 			Senpai.Private = false;
 			Senpai.Hurry = false;
-			if (!Rival.Sedated && Rival.Alive)
+			if (!Rival.Sedated && Rival.Alive && !Rival.Electrified && !Rival.Electrocuted)
 			{
 				if (!Rival.Alarmed)
 				{

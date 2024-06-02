@@ -153,6 +153,7 @@ public class ClockScript : MonoBehaviour
 		PresentTime = StartHour * 60f;
 		if (PlayerPrefs.GetInt("LoadingSave") == 1)
 		{
+			Debug.Log("The ClockScript is aware that we're loading in from a save...");
 			int profile = GameGlobals.Profile;
 			int @int = PlayerPrefs.GetInt("SaveSlot");
 			Weekday = PlayerPrefs.GetInt("Profile_" + profile + "_Slot_" + @int + "_Weekday");
@@ -275,6 +276,7 @@ public class ClockScript : MonoBehaviour
 			CameraTimer += Time.deltaTime;
 			if (CameraTimer > 1f && !StudentManager.MemorialScene.enabled)
 			{
+				Debug.Log("This is the exact moment that the player gains control of the character.");
 				if (BloomDisabled)
 				{
 					OptionGlobals.DisableBloom = true;

@@ -5,6 +5,8 @@ public class TrueEndingScript : MonoBehaviour
 {
 	public PostProcessingProfile Profile;
 
+	public RiggedAccessoryAttacher Ryoba;
+
 	public GameObject TrueEndingPanel;
 
 	public GameObject TimelinePanel;
@@ -263,7 +265,7 @@ public class TrueEndingScript : MonoBehaviour
 
 	public void End()
 	{
-		base.transform.position = new Vector3(0f, -3f, 0f);
+		base.transform.position = new Vector3(0f, -100f, 0f);
 		base.transform.eulerAngles = new Vector3(0f, 0f, 0f);
 		TrueEndingPanel.SetActive(value: false);
 		TimelinePanel.SetActive(value: true);

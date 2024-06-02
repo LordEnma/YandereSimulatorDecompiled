@@ -932,7 +932,6 @@ public class DebugMenuScript : MonoBehaviour
 			StudentManager.CensorStudents();
 			return;
 		}
-		Debug.Log("The panty censor is turning OFF.");
 		Yandere.MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
 		Yandere.MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		Yandere.MyRenderer.materials[2].SetFloat("_BlendAmount", 0f);

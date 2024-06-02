@@ -66,6 +66,8 @@ public static class PlayerGlobals
 
 	private const string Str_StudentPantyShot = "StudentPantyShot_";
 
+	private const string Str_StudentSentHome = "StudentSentHome_";
+
 	private const string Str_ShrineCollectible = "ShrineCollectible_";
 
 	private const string Str_UsingGamepad = "UsingGamepad";
@@ -710,6 +712,23 @@ public static class PlayerGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_CannotBringItem" + text, value);
 	}
 
+	public static bool GetStudentSentHome(int studentID)
+	{
+		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_StudentSentHome_" + studentID);
+	}
+
+	public static void SetStudentSentHome(int studentID, bool value)
+	{
+		string text = studentID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_StudentSentHome_", text);
+		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_StudentSentHome_" + text, value);
+	}
+
+	public static int[] KeysOfStudentSentHome()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_StudentSentHome_");
+	}
+
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_Money");
@@ -746,6 +765,7 @@ public static class PlayerGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_SenpaiPhoto_", KeysOfSenpaiPhoto());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentFriend_", KeysOfStudentFriend());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentPantyShot_", KeysOfStudentPantyShot());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentSentHome_", KeysOfStudentSentHome());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_ShrineCollectible_", KeysOfShrineCollectible());
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_BringingItem");
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_CannotBringItem", KeysOfCannotBringItem());

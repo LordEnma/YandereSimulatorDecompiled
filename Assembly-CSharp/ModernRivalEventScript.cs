@@ -428,6 +428,7 @@ public class ModernRivalEventScript : MonoBehaviour
 					obj3.destination = "BakeSale";
 					obj3.action = "BakeSale";
 					Char[i].GetDestinations();
+					Char[i].CurrentAction = StudentActionType.BakeSale;
 				}
 			}
 			break;

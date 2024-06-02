@@ -60,6 +60,9 @@ public class LaptopScript : MonoBehaviour
 		if (FirstFrame == 2)
 		{
 			LaptopCamera.enabled = false;
+			SCPRenderer.materials[0].mainTexture = Yandere.MyRenderer.materials[0].mainTexture;
+			SCPRenderer.materials[1].mainTexture = Yandere.MyRenderer.materials[1].mainTexture;
+			SCPRenderer.materials[2].mainTexture = Yandere.MyRenderer.materials[2].mainTexture;
 		}
 		FirstFrame++;
 		if (!Off)

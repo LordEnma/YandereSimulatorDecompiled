@@ -61,6 +61,8 @@ public class StreetShopScript : MonoBehaviour
 
 	public bool[] AdultProducts;
 
+	public bool[] Unavailable;
+
 	public string[] Descs;
 
 	public string[] Products;
@@ -338,6 +340,7 @@ public class StreetShopScript : MonoBehaviour
 		StreetShopInterface.ShopkeeperSpeeches = ShopkeeperSpeeches;
 		StreetShopInterface.ShopkeeperPosition = ShopkeeperPosition;
 		StreetShopInterface.AdultProducts = AdultProducts;
+		StreetShopInterface.Unavailable = Unavailable;
 		StreetShopInterface.SpeechPhase = 0;
 		StreetShopInterface.Costs = Costs;
 		StreetShopInterface.Descs = Descs;
@@ -375,6 +378,7 @@ public class StreetShopScript : MonoBehaviour
 		for (int i = 1; i < 11; i++)
 		{
 			StreetShopInterface.ProductsLabel[i].text = Products[i];
+			Unavailable[i] = false;
 		}
 	}
 }

@@ -1755,6 +1755,8 @@ public class YandereScript : MonoBehaviour
 
 	public MiniMapComponent MiniMapIcon;
 
+	public SkinnedMeshRenderer PajamaRenderer;
+
 	public string EyeType;
 
 	public Renderer RightEyeRenderer;
@@ -4350,6 +4352,10 @@ public class YandereScript : MonoBehaviour
 					Carrying = true;
 					Lifting = false;
 				}
+				else
+				{
+					CurrentRagdoll.CharacterAnimation.Play(CurrentRagdoll.LiftAnim);
+				}
 			}
 			else if (CharacterAnimation["f02_heavyWeightLift_00"].time >= CharacterAnimation["f02_heavyWeightLift_00"].length)
 			{
@@ -6049,13 +6055,13 @@ public class YandereScript : MonoBehaviour
 			if (TalkTimer == 5f)
 			{
 				CharacterAnimation.CrossFade("f02_greet_01");
-				if (TargetStudent.Rival)
+				if (TargetStudent.StudentID == LoveManager.SuitorID)
 				{
-					Subtitle.UpdateLabel(SubtitleType.PlayerLove, 3, 5f);
+					Subtitle.UpdateLabel(SubtitleType.PlayerLove, 4, 5f);
 				}
 				else
 				{
-					Subtitle.UpdateLabel(SubtitleType.PlayerLove, 4, 5f);
+					Subtitle.UpdateLabel(SubtitleType.PlayerLove, 3, 5f);
 				}
 			}
 			else
@@ -7704,7 +7710,6 @@ public class YandereScript : MonoBehaviour
 	{
 		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
-			Debug.Log("We're wearing pajamas in the daytime; don't call this function.");
 			return;
 		}
 		if (StudentGlobals.FemaleUniform == 0)
@@ -10055,7 +10060,7 @@ public class YandereScript : MonoBehaviour
 	{
 		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
-			Debug.Log("We're wearing pajamas in the daytime; don't call this function.");
+			Debug.Log("Clearing all blendshapes. We're wearing pajamas in the daytime; don't call this function.");
 			return;
 		}
 		for (int i = 0; i < 13; i++)
@@ -10066,10 +10071,18 @@ public class YandereScript : MonoBehaviour
 
 	public void UpdateEyeType()
 	{
-		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday)
+		Debug.Log("Yandere.UpdateEyeType has been called.");
+		SkinnedMeshRenderer myRenderer = null;
+		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday && PajamaRenderer == null)
 		{
-			Debug.Log("We're wearing pajamas in the daytime; don't call this function.");
+			Debug.Log("It's Sunday and PajamaRenderer is null. Skipping this.");
 			return;
+		}
+		if (PajamaRenderer != null)
+		{
+			Debug.Log("Setting EyeType. The game knows that we're wearing pajamas.");
+			myRenderer = MyRenderer;
+			MyRenderer = PajamaRenderer;
 		}
 		ClearBlendShapes();
 		if (EyeType == "Thin")
@@ -10079,6 +10092,7 @@ public class YandereScript : MonoBehaviour
 		}
 		else if (EyeType == "Serious")
 		{
+			Debug.Log("Attempting to give the player the ''Serious'' eyetype now.");
 			MyRenderer.SetBlendShapeWeight(5, 50f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 		}
@@ -10235,6 +10249,10 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(8, 0f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
+		if (PajamaRenderer != null)
+		{
+			MyRenderer = myRenderer;
+		}
 	}
 
 	public void UpdateEyeColor()
@@ -10350,203 +10368,201 @@ public class YandereScript : MonoBehaviour
 
 	public void UpdateStockings()
 	{
-		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday)
+		if (!Home || DateGlobals.Weekday != 0)
 		{
-			Debug.Log("We're wearing pajamas in the daytime; don't call this function.");
-			return;
+			LooseSocks[0].SetActive(value: false);
+			LooseSocks[1].SetActive(value: false);
+			MyStockings = TransparentPixel;
+			if (Casual)
+			{
+				TextureToUse = StandardUniformTextures[StudentGlobals.FemaleUniform];
+			}
+			else
+			{
+				TextureToUse = StandardCasualTextures[StudentGlobals.FemaleUniform];
+			}
+			MyRenderer.materials[0].mainTexture = TextureToUse;
+			MyRenderer.materials[1].mainTexture = TextureToUse;
+			MyRenderer.materials[2].mainTexture = FaceTexture;
+			if (Stockings == "Red")
+			{
+				MyStockings = StockingList[1];
+			}
+			else if (Stockings == "Yellow")
+			{
+				MyStockings = StockingList[2];
+			}
+			else if (Stockings == "Green")
+			{
+				MyStockings = StockingList[3];
+			}
+			else if (Stockings == "Cyan")
+			{
+				MyStockings = StockingList[4];
+			}
+			else if (Stockings == "Blue")
+			{
+				MyStockings = StockingList[5];
+			}
+			else if (Stockings == "Purple")
+			{
+				MyStockings = StockingList[6];
+			}
+			else if (Stockings == "ShortGreen")
+			{
+				MyStockings = StockingList[7];
+			}
+			else if (Stockings == "ShortRed")
+			{
+				MyStockings = StockingList[8];
+			}
+			else if (Stockings == "ShortBlue")
+			{
+				MyStockings = StockingList[9];
+			}
+			else if (Stockings == "ShortYellow")
+			{
+				MyStockings = StockingList[10];
+			}
+			else if (Stockings == "ShortBlack")
+			{
+				MyStockings = StockingList[11];
+			}
+			else if (Stockings == "ShortPurple")
+			{
+				MyStockings = StockingList[12];
+			}
+			else if (Stockings == "ShortCyan")
+			{
+				MyStockings = StockingList[13];
+			}
+			else if (Stockings == "ShortPink")
+			{
+				MyStockings = StockingList[14];
+			}
+			else if (Stockings == "Black")
+			{
+				MyStockings = StockingList[15];
+			}
+			else if (Stockings == "Dafuni")
+			{
+				MyStockings = (MyStockings = StockingList[16]);
+			}
+			else if (Stockings == "Council1")
+			{
+				MyStockings = (MyStockings = StockingList[17]);
+			}
+			else if (Stockings == "Council2")
+			{
+				MyStockings = (MyStockings = StockingList[18]);
+			}
+			else if (Stockings == "Council3")
+			{
+				MyStockings = (MyStockings = StockingList[19]);
+			}
+			else if (Stockings == "Council4")
+			{
+				MyStockings = (MyStockings = StockingList[20]);
+			}
+			else if (Stockings == "Music1")
+			{
+				MyStockings = StockingList[21];
+			}
+			else if (Stockings == "Music2")
+			{
+				MyStockings = StockingList[22];
+			}
+			else if (Stockings == "Music3")
+			{
+				MyStockings = StockingList[23];
+			}
+			else if (Stockings == "Music4")
+			{
+				MyStockings = StockingList[24];
+			}
+			else if (Stockings == "Music5")
+			{
+				MyStockings = StockingList[25];
+			}
+			else if (Stockings == "Music6")
+			{
+				MyStockings = StockingList[26];
+			}
+			else if (Stockings == "Sakyu")
+			{
+				MyStockings = StockingList[27];
+			}
+			else if (Stockings == "Inkyu")
+			{
+				MyStockings = StockingList[28];
+			}
+			else if (Stockings == "Socks")
+			{
+				MyStockings = StockingList[29];
+			}
+			else if (Stockings == "Rival1")
+			{
+				MyStockings = StockingList[30];
+			}
+			else if (Stockings == "Rival2")
+			{
+				MyStockings = StockingList[31];
+			}
+			else if (Stockings == "Rival3")
+			{
+				MyStockings = StockingList[32];
+			}
+			else if (Stockings == "Rival4")
+			{
+				MyStockings = StockingList[33];
+			}
+			else if (Stockings == "Rival5")
+			{
+				MyStockings = StockingList[34];
+			}
+			else if (Stockings == "Rival6")
+			{
+				MyStockings = StockingList[35];
+			}
+			else if (Stockings == "Rival7")
+			{
+				MyStockings = StockingList[36];
+			}
+			else if (Stockings == "Rival8")
+			{
+				MyStockings = StockingList[37];
+			}
+			else if (Stockings == "Rival9")
+			{
+				MyStockings = StockingList[38];
+			}
+			else if (Stockings == "Rival10")
+			{
+				MyStockings = StockingList[39];
+			}
+			else if (Stockings == "Loose")
+			{
+				Debug.Log("Attempting to activate loose socks.");
+				LooseSocks[0].SetActive(value: true);
+				LooseSocks[1].SetActive(value: true);
+			}
+			else if (Stockings == "Osana")
+			{
+				MyStockings = (MyStockings = StockingList[41]);
+			}
+			else if (Stockings == "Amai")
+			{
+				MyStockings = (MyStockings = StockingList[42]);
+			}
+			else if (Stockings == "Kizana")
+			{
+				MyStockings = (MyStockings = StockingList[43]);
+			}
+			MyRenderer.materials[0].SetTexture("_OverlayTex", MyStockings);
+			MyRenderer.materials[1].SetTexture("_OverlayTex", MyStockings);
+			MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
+			MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
 		}
-		LooseSocks[0].SetActive(value: false);
-		LooseSocks[1].SetActive(value: false);
-		MyStockings = TransparentPixel;
-		if (Casual)
-		{
-			TextureToUse = StandardUniformTextures[StudentGlobals.FemaleUniform];
-		}
-		else
-		{
-			TextureToUse = StandardCasualTextures[StudentGlobals.FemaleUniform];
-		}
-		MyRenderer.materials[0].mainTexture = TextureToUse;
-		MyRenderer.materials[1].mainTexture = TextureToUse;
-		MyRenderer.materials[2].mainTexture = FaceTexture;
-		if (Stockings == "Red")
-		{
-			MyStockings = StockingList[1];
-		}
-		else if (Stockings == "Yellow")
-		{
-			MyStockings = StockingList[2];
-		}
-		else if (Stockings == "Green")
-		{
-			MyStockings = StockingList[3];
-		}
-		else if (Stockings == "Cyan")
-		{
-			MyStockings = StockingList[4];
-		}
-		else if (Stockings == "Blue")
-		{
-			MyStockings = StockingList[5];
-		}
-		else if (Stockings == "Purple")
-		{
-			MyStockings = StockingList[6];
-		}
-		else if (Stockings == "ShortGreen")
-		{
-			MyStockings = StockingList[7];
-		}
-		else if (Stockings == "ShortRed")
-		{
-			MyStockings = StockingList[8];
-		}
-		else if (Stockings == "ShortBlue")
-		{
-			MyStockings = StockingList[9];
-		}
-		else if (Stockings == "ShortYellow")
-		{
-			MyStockings = StockingList[10];
-		}
-		else if (Stockings == "ShortBlack")
-		{
-			MyStockings = StockingList[11];
-		}
-		else if (Stockings == "ShortPurple")
-		{
-			MyStockings = StockingList[12];
-		}
-		else if (Stockings == "ShortCyan")
-		{
-			MyStockings = StockingList[13];
-		}
-		else if (Stockings == "ShortPink")
-		{
-			MyStockings = StockingList[14];
-		}
-		else if (Stockings == "Black")
-		{
-			MyStockings = StockingList[15];
-		}
-		else if (Stockings == "Dafuni")
-		{
-			MyStockings = (MyStockings = StockingList[16]);
-		}
-		else if (Stockings == "Council1")
-		{
-			MyStockings = (MyStockings = StockingList[17]);
-		}
-		else if (Stockings == "Council2")
-		{
-			MyStockings = (MyStockings = StockingList[18]);
-		}
-		else if (Stockings == "Council3")
-		{
-			MyStockings = (MyStockings = StockingList[19]);
-		}
-		else if (Stockings == "Council4")
-		{
-			MyStockings = (MyStockings = StockingList[20]);
-		}
-		else if (Stockings == "Music1")
-		{
-			MyStockings = StockingList[21];
-		}
-		else if (Stockings == "Music2")
-		{
-			MyStockings = StockingList[22];
-		}
-		else if (Stockings == "Music3")
-		{
-			MyStockings = StockingList[23];
-		}
-		else if (Stockings == "Music4")
-		{
-			MyStockings = StockingList[24];
-		}
-		else if (Stockings == "Music5")
-		{
-			MyStockings = StockingList[25];
-		}
-		else if (Stockings == "Music6")
-		{
-			MyStockings = StockingList[26];
-		}
-		else if (Stockings == "Sakyu")
-		{
-			MyStockings = StockingList[27];
-		}
-		else if (Stockings == "Inkyu")
-		{
-			MyStockings = StockingList[28];
-		}
-		else if (Stockings == "Socks")
-		{
-			MyStockings = StockingList[29];
-		}
-		else if (Stockings == "Rival1")
-		{
-			MyStockings = StockingList[30];
-		}
-		else if (Stockings == "Rival2")
-		{
-			MyStockings = StockingList[31];
-		}
-		else if (Stockings == "Rival3")
-		{
-			MyStockings = StockingList[32];
-		}
-		else if (Stockings == "Rival4")
-		{
-			MyStockings = StockingList[33];
-		}
-		else if (Stockings == "Rival5")
-		{
-			MyStockings = StockingList[34];
-		}
-		else if (Stockings == "Rival6")
-		{
-			MyStockings = StockingList[35];
-		}
-		else if (Stockings == "Rival7")
-		{
-			MyStockings = StockingList[36];
-		}
-		else if (Stockings == "Rival8")
-		{
-			MyStockings = StockingList[37];
-		}
-		else if (Stockings == "Rival9")
-		{
-			MyStockings = StockingList[38];
-		}
-		else if (Stockings == "Rival10")
-		{
-			MyStockings = StockingList[39];
-		}
-		else if (Stockings == "Loose")
-		{
-			Debug.Log("Attempting to activate loose socks.");
-			LooseSocks[0].SetActive(value: true);
-			LooseSocks[1].SetActive(value: true);
-		}
-		else if (Stockings == "Osana")
-		{
-			MyStockings = (MyStockings = StockingList[41]);
-		}
-		else if (Stockings == "Amai")
-		{
-			MyStockings = (MyStockings = StockingList[42]);
-		}
-		else if (Stockings == "Kizana")
-		{
-			MyStockings = (MyStockings = StockingList[43]);
-		}
-		MyRenderer.materials[0].SetTexture("_OverlayTex", MyStockings);
-		MyRenderer.materials[1].SetTexture("_OverlayTex", MyStockings);
-		MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
-		MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
 	}
 
 	public void Customize()

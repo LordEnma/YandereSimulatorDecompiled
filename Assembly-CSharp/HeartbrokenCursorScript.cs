@@ -124,6 +124,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 			}
 			StudentManager.Journalist.SetActive(value: false);
 		}
+		Debug.Log("Here, at the Heartbroken screen, GameGlobals.MostRecentSlot is: " + GameGlobals.MostRecentSlot);
 	}
 
 	private void Update()

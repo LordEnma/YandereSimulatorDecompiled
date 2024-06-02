@@ -21,7 +21,7 @@ public class InstantDeathColliderScript : MonoBehaviour
 		if (other.gameObject.layer == 9)
 		{
 			StudentScript component = other.gameObject.GetComponent<StudentScript>();
-			if (component != null && component.StudentID > 1)
+			if (component != null && !component.Struggling && !component.Attacked && component.StudentID > 1)
 			{
 				if (component.Rival)
 				{
@@ -42,7 +42,7 @@ public class InstantDeathColliderScript : MonoBehaviour
 		if (other.gameObject.layer == 13)
 		{
 			YandereScript component2 = other.gameObject.GetComponent<YandereScript>();
-			if (component2 != null)
+			if (component2 != null && !component2.Struggling && !component2.Attacking)
 			{
 				component2.StudentManager.Headmaster.Kill();
 			}

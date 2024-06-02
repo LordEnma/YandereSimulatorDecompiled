@@ -1108,13 +1108,9 @@ public class EndOfDayScript : MonoBehaviour
 				{
 					Label.text = "The police conclude that a murder-suicide took place, but are unable to take any further action. The police investigation ends, and students are free to leave.";
 				}
-				else if (KillerIsDead)
-				{
-					Label.text = "The police are not able to take any further action. The police investigation ends, and students are free to leave.";
-				}
 				else
 				{
-					Label.text = "The police believe that they know the identity of the killer, but they cannot locate the suspect at school. The police leave to search for the person that they believe is the killer. The police investigation ends, and students are free to leave.";
+					Label.text = "The police are not able to take any further action. The police investigation ends, and students are free to leave.";
 				}
 			}
 			else if (Arrests == 1)
@@ -1900,7 +1896,8 @@ public class EndOfDayScript : MonoBehaviour
 					}
 					for (ID = 0; ID < VictimArray.Length; ID++)
 					{
-						if (VictimArray[ID] == fingerprintID2 && !studentScript.MurderSuicide)
+						Debug.Log("this.VictimArray[this.ID] is: " + VictimArray[ID]);
+						if (StudentManager.Students[VictimArray[ID]] != null && StudentManager.Students[VictimArray[ID]].DeathType == DeathType.Weapon && VictimArray[ID] == fingerprintID2 && !studentScript.MurderSuicide)
 						{
 							flag3 = true;
 						}

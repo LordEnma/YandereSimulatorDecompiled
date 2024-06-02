@@ -136,7 +136,7 @@ public class DynamicBone : MonoBehaviour
 		else
 		{
 			StudentManagerScript studentManager = gameObject.GetComponent<YandereScript>().StudentManager;
-			if (!studentManager.TakingPortraits)
+			if (studentManager != null && !studentManager.TakingPortraits)
 			{
 				studentManager.AllDynamicBones[studentManager.Bones] = this;
 				studentManager.Bones++;

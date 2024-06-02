@@ -244,6 +244,10 @@ public class AlarmDiscScript : MonoBehaviour
 							{
 								if (Student.StudentManager.LockerRoomArea.bounds.Contains(base.transform.position) || Student.StudentManager.WestBathroomArea.bounds.Contains(base.transform.position) || Student.StudentManager.EastBathroomArea.bounds.Contains(base.transform.position) || (Student.Club != ClubType.Delinquent && Student.StudentManager.IncineratorArea.bounds.Contains(base.transform.position)) || Student.StudentManager.HeadmasterArea.bounds.Contains(base.transform.position) || (Student.Rival && Student.Actions[Student.Phase] == StudentActionType.SitAndTakeNotes))
 								{
+									if (Student.Rival && Student.Actions[Student.Phase] == StudentActionType.SitAndTakeNotes)
+									{
+										Debug.Log("Student ignoring radio is current rival?");
+									}
 									Debug.Log("The radio was in a bathroom or locker room or some other place where students won't go?");
 									if (Student.Yandere.NotificationManager.NotificationParent.childCount < 5)
 									{

@@ -95,7 +95,7 @@ public class EightiesClubDialogueScript : MonoBehaviour
 			Subtitle.ClubQuits[ClubID] = "Uh-oh...is something wrong? Do you need to...leave our club?";
 			Subtitle.ClubConfirms[ClubID] = "Oh, no...is that really how you feel? I'm so sorry to hear that...but...I understand. I'm sad to see you go, but I wish you the best of luck in the future!";
 			Subtitle.ClubDenies[ClubID] = "Phew! For a second there, I was afraid you were about to leave us! I'm so glad you're going to stay!";
-			Subtitle.ClubEarlies[ClubID] = "We're all going to get together between 5:00 and 5:30 to prepare a yummy meal! I really hope hope that we'll see you there!";
+			Subtitle.ClubEarlies[ClubID] = "We're all going to get together between 5:00 and 5:30 to prepare a yummy meal! I really hope that we'll see you there!";
 			Subtitle.ClubLates[ClubID] = "Oh, dear...I'm so sorry! We already finished the meal that we were preparing! Um, next time, please try to join us before 5:30, okay...?";
 			Subtitle.ClubActivities[ClubID] = "It's so good to see you! We're about to begin cooking a meal! Would you like to join us?";
 			Subtitle.ClubYeses[ClubID] = "Yay! Let's get started right away!";

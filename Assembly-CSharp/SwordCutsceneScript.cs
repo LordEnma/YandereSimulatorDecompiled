@@ -61,7 +61,6 @@ public class SwordCutsceneScript : MonoBehaviour
 		if (Phase > 0)
 		{
 			CutsceneTimer += Time.deltaTime;
-			Debug.Log(CutsceneTimer);
 		}
 		if (Phase == 3 || Phase == 4 || Phase == 5)
 		{

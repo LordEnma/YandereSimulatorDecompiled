@@ -1909,6 +1909,7 @@ public class StudentManagerScript : MonoBehaviour
 								{
 									EightiesWeek6RoutineAdjustments();
 									IdolStage.SetActive(value: true);
+									AstarPath.active.Scan();
 								}
 								else if (Week == 7)
 								{
@@ -3449,6 +3450,7 @@ public class StudentManagerScript : MonoBehaviour
 							studentScript.MyPlate.transform.rotation = studentScript.OriginalPlateRotation;
 							studentScript.IdleAnim = studentScript.OriginalIdleAnim;
 							studentScript.WalkAnim = studentScript.OriginalWalkAnim;
+							studentScript.LeanAnim = studentScript.OriginalLeanAnim;
 						}
 						if (studentScript.ReturningMisplacedWeapon)
 						{
@@ -3875,6 +3877,10 @@ public class StudentManagerScript : MonoBehaviour
 					studentScript.MyPlate.parent = studentScript.RightHand;
 					studentScript.MyPlate.localPosition = new Vector3(0.02f, -0.02f, -0.15f);
 					studentScript.MyPlate.localEulerAngles = new Vector3(-5f, -90f, 172.5f);
+				}
+				if (studentScript.Meeting)
+				{
+					studentScript.StopMeeting();
 				}
 			}
 		}
@@ -5905,7 +5911,6 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			if (Students[i] != null && !Students[i].Sleuthing)
 			{
-				Debug.Log("Sending Student #" + i + ", " + Students[i].Name + " to the confession tree.");
 				ScheduleBlock obj = Students[i].ScheduleBlocks[7];
 				obj.destination = "Paint";
 				obj.action = "Paint";
@@ -7763,22 +7768,15 @@ public class StudentManagerScript : MonoBehaviour
 					Debug.Log("My StudentID is " + i + " and I'm going to attend the club meeting.");
 					ClubLeaders[SpeakerID] = i;
 					SpeakerID++;
-					if (i < 86)
-					{
-						ScheduleBlock obj = Students[i].ScheduleBlocks[6];
-						obj.destination = "Meeting";
-						obj.action = "Meeting";
-					}
-					else
-					{
-						ScheduleBlock obj2 = Students[i].ScheduleBlocks[5];
-						obj2.destination = "Meeting";
-						obj2.action = "Meeting";
-					}
+					ScheduleBlock scheduleBlock = null;
+					scheduleBlock = ((i < 86) ? Students[i].ScheduleBlocks[6] : ((!Eighties) ? Students[i].ScheduleBlocks[6] : Students[i].ScheduleBlocks[6]));
+					scheduleBlock.destination = "Meeting";
+					scheduleBlock.action = "Meeting";
 					Students[i].GetDestinations();
 					Students[i].Pathfinding.target = Students[i].Destinations[Students[i].Phase];
 					Students[i].CurrentDestination = Students[i].Destinations[Students[i].Phase];
 					Students[i].EmptyHands();
+					Students[i].CurrentAction = StudentActionType.Meeting;
 				}
 			}
 		}

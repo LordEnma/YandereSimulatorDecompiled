@@ -16,11 +16,11 @@ public class PoolSignScript : MonoBehaviour
 		Timer = 0f;
 		for (int i = 1; i < 101; i++)
 		{
-			if (!(StudentManager.Students[i] != null) || StudentManager.Students[i].Schoolwear != 2 || !(Vector3.Distance(StudentManager.Students[i].transform.position, base.transform.position) < 5f))
+			if (!(StudentManager.Students[i] != null) || !StudentManager.Students[i].Alive || StudentManager.Students[i].Schoolwear != 2 || !(Vector3.Distance(StudentManager.Students[i].transform.position, base.transform.position) < 5f))
 			{
 				continue;
 			}
-			if (i == 15)
+			if (StudentManager.Eighties && i == 15)
 			{
 				StudentManager.Students[i].Subtitle.CustomText = "This sign can't stop me, because I don't care.";
 				StudentManager.Students[i].Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);

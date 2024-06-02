@@ -38,6 +38,8 @@ public class StreetShopInterfaceScript : MonoBehaviour
 
 	public bool[] AdultProducts;
 
+	public bool[] Unavailable;
+
 	public string[] Descs;
 
 	public float[] Costs;
@@ -580,6 +582,11 @@ public class StreetShopInterfaceScript : MonoBehaviour
 				{
 					ProductsLabel[i].color = new Color(1f, 1f, 1f, 0.5f);
 				}
+			}
+			if (Unavailable[i])
+			{
+				ProductsLabel[i].alpha = 0.5f;
+				PricesLabel[i].text = "Sold Out";
 			}
 		}
 		if (CurrentStore == ShopType.Salon && GameGlobals.Eighties && !GameGlobals.MetBarber)

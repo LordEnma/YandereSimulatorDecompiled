@@ -38,6 +38,8 @@ public class ModernRivalSabotageScript : MonoBehaviour
 
 	public bool Animate;
 
+	public bool Checked;
+
 	public float TimeLimit;
 
 	public float Timer;
@@ -268,7 +270,6 @@ public class ModernRivalSabotageScript : MonoBehaviour
 					{
 						Prompt.Yandere.NotificationManager.CustomText = "Swapped gas knob with ignition knob!";
 						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-						Prompt.HideButton[1] = true;
 						SabotageCriteria[1] = true;
 						CheckForSabotageSuccess();
 					}
@@ -325,6 +326,11 @@ public class ModernRivalSabotageScript : MonoBehaviour
 			{
 				Disable();
 			}
+			if (Prompt.Yandere.StudentManager.CameFromLoad && !Checked)
+			{
+				CheckForSabotageSuccess();
+				Checked = true;
+			}
 		}
 	}
 
@@ -335,6 +341,7 @@ public class ModernRivalSabotageScript : MonoBehaviour
 			for (int i = 0; i < SabotageCheckmark.Length; i++)
 			{
 				SabotageCheckmark[i].spriteName = (SabotageCriteria[i] ? "Yes" : "No");
+				Prompt.HideButton[i] = SabotageCriteria[i];
 			}
 			if (SabotageCriteria.All((bool x) => x))
 			{

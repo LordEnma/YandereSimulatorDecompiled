@@ -329,6 +329,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public GameObject Bookbag;
 
+	public GameObject RyutoBrows;
+
 	public GameObject ThickBrows;
 
 	public GameObject Character;
@@ -406,6 +408,8 @@ public class CosmeticScript : MonoBehaviour
 	public bool Modified;
 
 	public bool TurnedOn;
+
+	public bool LoveSick;
 
 	public bool Medibang;
 
@@ -495,6 +499,14 @@ public class CosmeticScript : MonoBehaviour
 			Debug.Log("FemaleHair[20] is null? Why?");
 			FemaleHair[20] = BackupOsanaHair;
 			FemaleHairRenderers[20] = BackupOsanaHairRenderer;
+		}
+		if (StudentManager != null)
+		{
+			LoveSick = StudentManager.LoveSick;
+		}
+		else
+		{
+			LoveSick = GameGlobals.LoveSick;
 		}
 		if (StudentManager != null)
 		{
@@ -1603,9 +1615,19 @@ public class CosmeticScript : MonoBehaviour
 					}
 				}
 			}
-			if (!Eighties && StudentID == 36 && StudentManager != null && StudentManager.TaskManager != null && StudentManager.TaskManager.TaskStatus[36] == 3)
+			if (!Eighties)
 			{
-				ClubAccessories[(int)Club].SetActive(value: false);
+				if (StudentID == 36)
+				{
+					if (StudentManager != null && StudentManager.TaskManager != null && StudentManager.TaskManager.TaskStatus[36] == 3)
+					{
+						ClubAccessories[(int)Club].SetActive(value: false);
+					}
+				}
+				else if (StudentID == 37)
+				{
+					RyutoBrows.SetActive(value: true);
+				}
 			}
 		}
 		if (!Eighties && ((Student.Rival && !Student.Male) || (StudentManager != null && !StudentManager.MissionMode && StudentID == StudentManager.RivalID)) && !TakingPortrait && !Cutscene && !Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene")
@@ -1634,6 +1656,10 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (!Randomize)
 		{
+			if (LoveSick)
+			{
+				EyeColor = "Black";
+			}
 			if (EyeColor != string.Empty)
 			{
 				if (EyeColor == "White")
@@ -1795,7 +1821,14 @@ public class CosmeticScript : MonoBehaviour
 				if (HairRenderer != null)
 				{
 					HairRenderer.material.color = Color.white;
-					HairRenderer.material.SetFloat("_Saturation", 1f);
+					if (LoveSick)
+					{
+						HairRenderer.material.SetFloat("_Saturation", 0f);
+					}
+					else
+					{
+						HairRenderer.material.SetFloat("_Saturation", 1f);
+					}
 					if (!CustomEyes)
 					{
 						RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
@@ -1838,12 +1871,14 @@ public class CosmeticScript : MonoBehaviour
 			{
 				if (Hairstyle > 0)
 				{
-					if (GameGlobals.LoveSick)
+					if (LoveSick)
 					{
-						HairRenderer.material.color = new Color(0.1f, 0.1f, 0.1f);
+						HairRenderer.material.SetFloat("_Saturation", 0f);
+						HairRenderer.material.color = new Color(0.5f, 0.5f, 0.5f);
 						if (HairRenderer.materials.Length > 1)
 						{
-							HairRenderer.materials[1].color = new Color(0.1f, 0.1f, 0.1f);
+							HairRenderer.materials[1].SetFloat("_Saturation", 0f);
+							HairRenderer.materials[1].color = new Color(0.5f, 0.5f, 0.5f);
 						}
 					}
 					else
@@ -1852,12 +1887,14 @@ public class CosmeticScript : MonoBehaviour
 					}
 				}
 			}
-			else if (GameGlobals.LoveSick)
+			else if (LoveSick)
 			{
-				HairRenderer.material.color = new Color(0.1f, 0.1f, 0.1f);
+				HairRenderer.material.SetFloat("_Saturation", 0f);
+				HairRenderer.material.color = new Color(0.5f, 0.5f, 0.5f);
 				if (HairRenderer.materials.Length > 1)
 				{
-					HairRenderer.materials[1].color = new Color(0.1f, 0.1f, 0.1f);
+					HairRenderer.materials[1].SetFloat("_Saturation", 0f);
+					HairRenderer.materials[1].color = new Color(0.5f, 0.5f, 0.5f);
 				}
 			}
 			if (!Male)
@@ -3415,7 +3452,14 @@ public class CosmeticScript : MonoBehaviour
 		ColorValue = new Color(1f, 1f, 1f);
 		if (HairRenderer != null)
 		{
-			HairRenderer.material.SetFloat("_Saturation", 1f);
+			if (LoveSick)
+			{
+				HairRenderer.material.SetFloat("_Saturation", 0f);
+			}
+			else
+			{
+				HairRenderer.material.SetFloat("_Saturation", 1f);
+			}
 			HairRenderer.material.SetFloat("_BlendAmount", 0f);
 		}
 		else

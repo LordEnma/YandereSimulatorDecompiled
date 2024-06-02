@@ -70,6 +70,8 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	public Transform Neck;
 
+	public GameObject DiscordCodeWindow;
+
 	public GameObject NowLoading;
 
 	public string[] ConditionDescs;
@@ -989,60 +991,52 @@ public class MissionModeMenuScript : MonoBehaviour
 					if (TargetNumber == 0)
 					{
 						ErrorLabel.text = "Invalid Mission ID (No target specified)";
-						return;
 					}
-					if (TargetNumber == 1)
+					else if (TargetNumber == 1)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Target cannot be Senpai)";
-						return;
 					}
-					if (TargetNumber > 89)
+					else if (TargetNumber > 89)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Target cannot be faculty)";
-						return;
 					}
-					if (flag2)
+					else if (flag2)
 					{
 						ErrorLabel.text = "Invalid Mission ID (That student has not been implemented yet)";
-						return;
 					}
-					if (WeaponNumber >= WeaponNames.Length)
+					else if (WeaponNumber >= WeaponNames.Length)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Weapon does not exist)";
-						return;
 					}
-					if (WeaponNumber > 0 && WeaponNames[WeaponNumber] == "")
+					else if (WeaponNumber > 0 && WeaponNames[WeaponNumber] == "")
 					{
 						ErrorLabel.text = "Invalid Mission ID (Weapon does not apply to Mission Mode)";
-						return;
 					}
-					if (ClothingNumber > 6)
+					else if (ClothingNumber > 6)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Clothing does not exist)";
-						return;
 					}
-					if (DisposalNumber >= DisposalNames.Length)
+					else if (DisposalNumber >= DisposalNames.Length)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Disposal method does not exist)";
-						return;
 					}
-					if (NemesisNumber > 4)
+					else if (NemesisNumber > 4)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Nemesis level too high)";
-						return;
 					}
-					if (PopulationNumber > 0)
+					else if (PopulationNumber > 0)
 					{
 						ErrorLabel.text = "Invalid Mission ID (Final digit must be '0')";
-						return;
 					}
-					if (Condition5Number > 1 || Condition6Number > 1 || Condition7Number > 1 || Condition8Number > 1 || Condition9Number > 1 || Condition10Number > 1 || Condition11Number > 1 || Condition12Number > 1 || Condition13Number > 1 || Condition14Number > 1 || Condition15Number > 1)
+					else if (Condition5Number > 1 || Condition6Number > 1 || Condition7Number > 1 || Condition8Number > 1 || Condition9Number > 1 || Condition10Number > 1 || Condition11Number > 1 || Condition12Number > 1 || Condition13Number > 1 || Condition14Number > 1 || Condition15Number > 1)
 					{
 						ErrorLabel.text = "Invalid Mission ID (One of those conditions should be 1 or 0)";
-						return;
 					}
-					ErrorLabel.text = "Valid Mission ID!";
-					Valid = true;
+					else
+					{
+						ErrorLabel.text = "Valid Mission ID!";
+						Valid = true;
+					}
 				}
 				else
 				{
@@ -1203,6 +1197,10 @@ public class MissionModeMenuScript : MonoBehaviour
 				PromptBar.Show = true;
 				TargetID = 0;
 				Phase = 2;
+			}
+			if (Input.GetKeyDown("z"))
+			{
+				DiscordCodeWindow.SetActive(value: true);
 			}
 		}
 	}

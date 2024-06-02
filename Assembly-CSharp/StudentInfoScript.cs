@@ -114,7 +114,6 @@ public class StudentInfoScript : MonoBehaviour
 		{
 			UpdateInfo(StudentInfoMenu.StudentID);
 		}
-		StudentManager.LoadTopicsLearnedForOneStudent(StudentInfoMenu.StudentID);
 	}
 
 	public void UpdateInfo(int ID)
@@ -480,7 +479,7 @@ public class StudentInfoScript : MonoBehaviour
 				}
 				else
 				{
-					if (StudentManager.Students[CurrentStudent].Routine && !StudentManager.Students[CurrentStudent].InEvent && !StudentManager.Students[CurrentStudent].TargetedForDistraction && StudentManager.Students[CurrentStudent].ClubActivityPhase < 16 && !StudentManager.Students[CurrentStudent].MyBento.Tampered)
+					if (StudentManager.Students[CurrentStudent].Routine && !StudentManager.Students[CurrentStudent].InEvent && !StudentManager.Students[CurrentStudent].TargetedForDistraction && StudentManager.Students[CurrentStudent].ClubActivityPhase < 16 && !StudentManager.Students[CurrentStudent].MyBento.Tampered && !PlayerGlobals.GetStudentSentHome(CurrentStudent))
 					{
 						StudentManager.Students[CurrentStudent].Routine = false;
 						StudentManager.Students[CurrentStudent].SentHome = true;
@@ -493,6 +492,11 @@ public class StudentInfoScript : MonoBehaviour
 						StudentInfoMenu.PauseScreen.ServiceMenu.UpdateDesc();
 						StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
 						StudentInfoMenu.SendingHome = false;
+						Yandere.PauseScreen.ServiceMenu.StudentSentHome = CurrentStudent;
+					}
+					else if (PlayerGlobals.GetStudentSentHome(CurrentStudent))
+					{
+						StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(12);
 					}
 					else
 					{
@@ -578,6 +582,7 @@ public class StudentInfoScript : MonoBehaviour
 			}
 			else if (StudentInfoMenu.GettingOpinions)
 			{
+				Debug.Log("Are we ''GettingOpinions'' now?");
 				for (int i = 1; i < 26; i++)
 				{
 					ConversationGlobals.SetTopicDiscovered(i, value: true);
@@ -812,6 +817,7 @@ public class StudentInfoScript : MonoBehaviour
 
 	private void UpdateTopics()
 	{
+		Debug.Log("Updating Topics Now.");
 		int num = 0;
 		int num2 = 0;
 		for (int i = 1; i < TopicIcons.Length; i++)
@@ -823,9 +829,11 @@ public class StudentInfoScript : MonoBehaviour
 			UISprite uISprite = TopicOpinionIcons[j];
 			if (!StudentManager.GetTopicLearnedByStudent(j, CurrentStudent))
 			{
+				Debug.Log("We don't know how Student #" + CurrentStudent + " feels about topic # " + j);
 				uISprite.spriteName = "Unknown";
 				continue;
 			}
+			Debug.Log("We know how Student #" + CurrentStudent + " feels about topic # " + j);
 			int[] topics = JSON.Topics[CurrentStudent].Topics;
 			uISprite.spriteName = OpinionSpriteNames[topics[j]];
 			if (topics[j] == 1)

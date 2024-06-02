@@ -361,6 +361,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			DifficultyWindow.SetActive(value: false);
+			NewTitleScreen.WeekSelect = false;
 			PromptBar.Label[2].text = "Challenges";
 			PromptBar.Label[3].text = "Week Select";
 			if (NewTitleScreen.Eighties)
@@ -530,5 +531,12 @@ public class TitleSaveFilesScript : MonoBehaviour
 			ChallengeGlobals.RivalsOnly = true;
 			Debug.Log("RivalsOnly: True.");
 		}
+		DifficultyGlobals.InvincibleRaibaru = DifficultySettings[1];
+		DifficultyGlobals.NoCase = DifficultySettings[2];
+		DifficultyGlobals.TransparentFence = DifficultySettings[3];
+		DifficultyGlobals.MustStrangle = DifficultySettings[4];
+		DifficultyGlobals.MudRequired = DifficultySettings[5];
+		DifficultyGlobals.CraftBodybags = DifficultySettings[6];
+		DifficultyGlobals.WeaponsBreak = DifficultySettings[7];
 	}
 }

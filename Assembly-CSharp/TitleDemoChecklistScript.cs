@@ -59,6 +59,8 @@ public class TitleDemoChecklistScript : MonoBehaviour
 
 	public Texture[] ItemTextures;
 
+	public int[] Checklist;
+
 	private void Start()
 	{
 		UpdateHighlight();
@@ -337,7 +339,9 @@ public class TitleDemoChecklistScript : MonoBehaviour
 			{
 				if (DeletingGlobals)
 				{
+					RememberChecklistProgress();
 					PlayerPrefs.DeleteAll();
+					RecallChecklistProgress();
 					OptionGlobals.DisableScanlines = true;
 				}
 				else
@@ -424,5 +428,95 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		ConfirmBlocks[8].color = new Color(1f, 1f, 1f, 0.5f);
 		ConfirmBlocks[9].color = new Color(1f, 1f, 1f, 0.5f);
 		ConfirmBlocks[10].color = new Color(1f, 1f, 1f, 0.5f);
+	}
+
+	private void RememberChecklistProgress()
+	{
+		Checklist[0] = PlayerPrefs.GetInt("Attack");
+		Checklist[1] = PlayerPrefs.GetInt("Befriend");
+		Checklist[2] = PlayerPrefs.GetInt("Betray");
+		Checklist[3] = PlayerPrefs.GetInt("Bully");
+		Checklist[4] = PlayerPrefs.GetInt("Burn");
+		Checklist[5] = PlayerPrefs.GetInt("Crush");
+		Checklist[6] = PlayerPrefs.GetInt("Drown");
+		Checklist[7] = PlayerPrefs.GetInt("Electrocute");
+		Checklist[8] = PlayerPrefs.GetInt("Expel");
+		Checklist[9] = PlayerPrefs.GetInt("Fan");
+		Checklist[10] = PlayerPrefs.GetInt("Frame");
+		Checklist[11] = PlayerPrefs.GetInt("Kidnap");
+		Checklist[12] = PlayerPrefs.GetInt("Matchmake");
+		Checklist[13] = PlayerPrefs.GetInt("MurderSuicide");
+		Checklist[14] = PlayerPrefs.GetInt("Poison");
+		Checklist[15] = PlayerPrefs.GetInt("Pool");
+		Checklist[16] = PlayerPrefs.GetInt("Push");
+		Checklist[17] = PlayerPrefs.GetInt("Reject");
+		Checklist[18] = PlayerPrefs.GetInt("Suicide");
+		Checklist[19] = PlayerPrefs.GetInt("DrivenToMurder");
+		Checklist[20] = PlayerPrefs.GetInt("HeadHunter");
+		Checklist[21] = PlayerPrefs.GetInt("PantyQueen");
+		Checklist[22] = PlayerPrefs.GetInt("RichGirl");
+		Checklist[23] = PlayerPrefs.GetInt("WeaponMaster");
+		Checklist[24] = PlayerPrefs.GetInt("HeadsHunted");
+		Checklist[25] = PlayerPrefs.GetInt("Alphabet");
+		Checklist[26] = PlayerPrefs.GetInt("Amai");
+		Checklist[27] = PlayerPrefs.GetInt("Dance");
+		Checklist[28] = PlayerPrefs.GetInt("Genocide");
+		Checklist[29] = PlayerPrefs.GetInt("Headmaster");
+		Checklist[30] = PlayerPrefs.GetInt("Journalist");
+		Checklist[31] = PlayerPrefs.GetInt("LifeNote");
+		Checklist[32] = PlayerPrefs.GetInt("Maid");
+		Checklist[33] = PlayerPrefs.GetInt("Mission");
+		Checklist[34] = PlayerPrefs.GetInt("Miyuki");
+		Checklist[35] = PlayerPrefs.GetInt("Basement");
+		Checklist[36] = PlayerPrefs.GetInt("Panther");
+		Checklist[37] = PlayerPrefs.GetInt("Selene");
+		Checklist[38] = PlayerPrefs.GetInt("SNAP");
+		Checklist[39] = PlayerPrefs.GetInt("Yakuza");
+		Checklist[40] = PlayerPrefs.GetInt("Yanvania");
+	}
+
+	private void RecallChecklistProgress()
+	{
+		PlayerPrefs.SetInt("Attack", Checklist[0]);
+		PlayerPrefs.SetInt("Befriend", Checklist[1]);
+		PlayerPrefs.SetInt("Betray", Checklist[2]);
+		PlayerPrefs.SetInt("Bully", Checklist[3]);
+		PlayerPrefs.SetInt("Burn", Checklist[4]);
+		PlayerPrefs.SetInt("Crush", Checklist[5]);
+		PlayerPrefs.SetInt("Drown", Checklist[6]);
+		PlayerPrefs.SetInt("Electrocute", Checklist[7]);
+		PlayerPrefs.SetInt("Expel", Checklist[8]);
+		PlayerPrefs.SetInt("Fan", Checklist[9]);
+		PlayerPrefs.SetInt("Frame", Checklist[10]);
+		PlayerPrefs.SetInt("Kidnap", Checklist[11]);
+		PlayerPrefs.SetInt("Matchmake", Checklist[12]);
+		PlayerPrefs.SetInt("MurderSuicide", Checklist[13]);
+		PlayerPrefs.SetInt("Poison", Checklist[14]);
+		PlayerPrefs.SetInt("Pool", Checklist[15]);
+		PlayerPrefs.SetInt("Push", Checklist[16]);
+		PlayerPrefs.SetInt("Reject", Checklist[17]);
+		PlayerPrefs.SetInt("Suicide", Checklist[18]);
+		PlayerPrefs.SetInt("DrivenToMurder", Checklist[19]);
+		PlayerPrefs.SetInt("HeadHunter", Checklist[20]);
+		PlayerPrefs.SetInt("PantyQueen", Checklist[21]);
+		PlayerPrefs.SetInt("RichGirl", Checklist[22]);
+		PlayerPrefs.SetInt("WeaponMaster", Checklist[23]);
+		PlayerPrefs.SetInt("HeadsHunted", Checklist[24]);
+		PlayerPrefs.SetInt("Alphabet", Checklist[25]);
+		PlayerPrefs.SetInt("Amai", Checklist[26]);
+		PlayerPrefs.SetInt("Dance", Checklist[27]);
+		PlayerPrefs.SetInt("Genocide", Checklist[28]);
+		PlayerPrefs.SetInt("Headmaster", Checklist[29]);
+		PlayerPrefs.SetInt("Journalist", Checklist[30]);
+		PlayerPrefs.SetInt("LifeNote", Checklist[31]);
+		PlayerPrefs.SetInt("Maid", Checklist[32]);
+		PlayerPrefs.SetInt("Mission", Checklist[33]);
+		PlayerPrefs.SetInt("Miyuki", Checklist[34]);
+		PlayerPrefs.SetInt("Basement", Checklist[35]);
+		PlayerPrefs.SetInt("Panther", Checklist[36]);
+		PlayerPrefs.SetInt("Selene", Checklist[37]);
+		PlayerPrefs.SetInt("SNAP", Checklist[38]);
+		PlayerPrefs.SetInt("Yakuza", Checklist[39]);
+		PlayerPrefs.SetInt("Yanvania", Checklist[40]);
 	}
 }

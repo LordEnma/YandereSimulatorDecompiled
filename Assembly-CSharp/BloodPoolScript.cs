@@ -51,6 +51,13 @@ public class BloodPoolScript : MonoBehaviour
 		{
 			Object.Destroy(base.gameObject);
 		}
+		if (position.z > 100f && position.y > 0f)
+		{
+			YandereScript component = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+			component.NotificationManager.CustomText = "The liquid rolled down the hill.";
+			component.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Object.Destroy(base.gameObject);
+		}
 		if (Application.loadedLevelName == "IntroScene" || Application.loadedLevelName == "NewIntroScene")
 		{
 			MyRenderer.material.SetColor("_TintColor", new Color(0.1f, 0.1f, 0.1f));

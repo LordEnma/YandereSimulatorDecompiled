@@ -570,6 +570,9 @@ public class RagdollScript : MonoBehaviour
 							}
 							Student.CharacterAnimation[LiftAnim].speed = Yandere.CharacterAnimation["f02_carryLiftA_00"].speed;
 							Yandere.CharacterAnimation.Play("f02_carryLiftA_00");
+							Debug.Log("On this frame, the corpse's Animation component is being enabled, and the LiftAnim is being told to play.");
+							Student.CharacterAnimation[Student.WalkAnim].layer = -1;
+							Student.CharacterAnimation[Student.WalkAnim].weight = 0f;
 							Student.CharacterAnimation.enabled = true;
 							Student.CharacterAnimation.Play(LiftAnim);
 							BloodSpawnerCollider.enabled = false;
@@ -832,7 +835,7 @@ public class RagdollScript : MonoBehaviour
 				base.transform.eulerAngles = Yandere.transform.eulerAngles;
 				float axis = Input.GetAxis("Vertical");
 				float axis2 = Input.GetAxis("Horizontal");
-				if (axis != 0f || axis2 != 0f)
+				if ((Yandere.CanMove && axis != 0f) || (Yandere.CanMove && axis2 != 0f))
 				{
 					Student.CharacterAnimation.CrossFade(Yandere.Running ? RunAnim : WalkAnim);
 				}

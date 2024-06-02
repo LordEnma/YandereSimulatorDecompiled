@@ -22,6 +22,7 @@ public class BookbagScript : MonoBehaviour
 
 	private void Start()
 	{
+		Physics.IgnoreCollision(Prompt.Yandere.GetComponent<Collider>(), base.gameObject.GetComponent<BoxCollider>());
 		MyRigidbody.useGravity = false;
 		MyRigidbody.isKinematic = true;
 		if (GameGlobals.Eighties)

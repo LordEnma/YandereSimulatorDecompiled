@@ -123,7 +123,10 @@ public class WorkbenchScript : MonoBehaviour
 					}
 					Prompt.Yandere.MyController.enabled = false;
 					Prompt.Yandere.RPGCamera.enabled = false;
+					Prompt.Yandere.Invisible = true;
 					Prompt.Yandere.CanMove = false;
+					Prompt.Yandere.HUD.alpha = 0f;
+					Time.timeScale = 0.0001f;
 					WorkbenchWindow.gameObject.SetActive(value: true);
 					PromptBar.Label[0].text = "Select";
 					PromptBar.Label[1].text = "Exit";
@@ -224,7 +227,10 @@ public class WorkbenchScript : MonoBehaviour
 					WorkbenchWindow.gameObject.SetActive(value: false);
 					Prompt.Yandere.MyController.enabled = true;
 					Prompt.Yandere.RPGCamera.enabled = true;
+					Prompt.Yandere.Invisible = false;
 					Prompt.Yandere.CanMove = true;
+					Prompt.Yandere.HUD.alpha = 1f;
+					Time.timeScale = 1f;
 					PromptBar.ClearButtons();
 					PromptBar.UpdateButtons();
 					PromptBar.Show = false;
@@ -290,10 +296,10 @@ public class WorkbenchScript : MonoBehaviour
 		}
 		else if (!Return)
 		{
-			Rotation = Mathf.Lerp(Rotation, 360f, Time.deltaTime * 10f);
-			OutcomeModel[OutcomeID].transform.localScale = Vector3.Lerp(OutcomeModel[OutcomeID].transform.localScale, Vector3.one, Time.deltaTime * 10f);
+			Rotation = Mathf.Lerp(Rotation, 360f, Time.unscaledDeltaTime * 10f);
+			OutcomeModel[OutcomeID].transform.localScale = Vector3.Lerp(OutcomeModel[OutcomeID].transform.localScale, Vector3.one, Time.unscaledDeltaTime * 10f);
 			OutcomeModel[OutcomeID].transform.localEulerAngles = new Vector3(0f, Rotation, 0f);
-			Darkness.alpha = Mathf.Lerp(Darkness.alpha, 0.5f, Time.deltaTime * 10f);
+			Darkness.alpha = Mathf.Lerp(Darkness.alpha, 0.5f, Time.unscaledDeltaTime * 10f);
 			if (!(Darkness.alpha > 0.49f) || !Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				return;
@@ -406,10 +412,10 @@ public class WorkbenchScript : MonoBehaviour
 		}
 		else
 		{
-			Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 10f);
-			OutcomeModel[OutcomeID].transform.localScale = Vector3.Lerp(OutcomeModel[OutcomeID].transform.localScale, Vector3.zero, Time.deltaTime * 10f);
+			Rotation = Mathf.Lerp(Rotation, 0f, Time.unscaledDeltaTime * 10f);
+			OutcomeModel[OutcomeID].transform.localScale = Vector3.Lerp(OutcomeModel[OutcomeID].transform.localScale, Vector3.zero, Time.unscaledDeltaTime * 10f);
 			OutcomeModel[OutcomeID].transform.localEulerAngles = new Vector3(0f, Rotation, 0f);
-			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
+			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.unscaledDeltaTime);
 			if (Darkness.alpha == 0f)
 			{
 				OutcomeModel[OutcomeID].transform.localScale = Vector3.zero;

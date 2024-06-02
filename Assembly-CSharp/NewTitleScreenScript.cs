@@ -648,6 +648,7 @@ public class NewTitleScreenScript : MonoBehaviour
 					if (PlayerPrefs.GetInt("ProfileCreated_" + GameGlobals.Profile) == 0)
 					{
 						PlayerPrefs.SetInt("ProfileCreated_" + GameGlobals.Profile, 1);
+						GameGlobals.MostRecentSlot = 0;
 						PlayerGlobals.Money = 10f;
 						DateGlobals.Weekday = DayOfWeek.Sunday;
 						DateGlobals.PassDays = 1;

@@ -181,6 +181,7 @@ public class HomeDarknessScript : MonoBehaviour
 						BasementLabel.text = "Upstairs";
 						HomeCamera.DayLight.SetActive(value: true);
 						HomeCamera.DayLight.GetComponent<Light>().intensity = 0.66666f;
+						HomeYandere.MyController.radius = 0.445f;
 						Physics.SyncTransforms();
 						return;
 					}
@@ -193,6 +194,7 @@ public class HomeDarknessScript : MonoBehaviour
 						HomeCamera.CameraTimer = 0f;
 						HomeYandere.transform.position = new Vector3(-3.306057f, -2.892705f, 0f);
 						HomeYandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+						HomeYandere.MyController.radius = 0.25f;
 					}
 					else
 					{

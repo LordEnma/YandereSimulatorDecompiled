@@ -50,7 +50,7 @@ public class DisplayCaseScript : MonoBehaviour
 		if (Prompt.Circle[1].fillAmount == 0f)
 		{
 			Prompt.Circle[1].fillAmount = 1f;
-			if (Prompt.Yandere.Class.PhysicalGrade + Prompt.Yandere.Class.PhysicalBonus > 0)
+			if (Prompt.Yandere.Class.PhysicalGrade + Prompt.Yandere.Class.PhysicalBonus > 0 && !Prompt.Yandere.Carrying)
 			{
 				Prompt.Yandere.SuspiciousActionTimer = Prompt.Yandere.CharacterAnimation[BreakAnimName].time;
 				Prompt.Yandere.CharacterAnimation.CrossFade(BreakAnimName);
@@ -69,9 +69,14 @@ public class DisplayCaseScript : MonoBehaviour
 					BreakTimer = 1.33333f;
 				}
 			}
+			else if (!Prompt.Yandere.Carrying)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "You lack the physical strength to break it!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
 			else
 			{
-				Prompt.Yandere.NotificationManager.CustomText = "You lack the physical strength to break it";
+				Prompt.Yandere.NotificationManager.CustomText = "Empty your hands first!";
 				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
 		}

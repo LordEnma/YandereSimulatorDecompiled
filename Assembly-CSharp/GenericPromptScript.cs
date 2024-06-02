@@ -10,6 +10,8 @@ public class GenericPromptScript : MonoBehaviour
 
 	public GameObject CrushCollider;
 
+	public GameObject AlarmDisc;
+
 	public GameObject Effect;
 
 	public BoxCollider Collider;
@@ -430,6 +432,9 @@ public class GenericPromptScript : MonoBehaviour
 			CrushCollider.SetActive(value: true);
 			if (Rotation == TargetRotation)
 			{
+				GameObject obj = UnityEngine.Object.Instantiate(AlarmDisc, Prompt.Yandere.transform.position + Vector3.up, Quaternion.identity);
+				obj.GetComponent<AlarmDiscScript>().NoScream = true;
+				obj.transform.localScale = new Vector3(1000f, 1f, 1000f);
 				MyAudio.Play();
 				CrushCollider.SetActive(value: false);
 				Prompt.Yandere.CanMove = true;
@@ -444,12 +449,12 @@ public class GenericPromptScript : MonoBehaviour
 				{
 					Debug.Log("Updating the bookish girl's routine.");
 					StudentScript studentScript2 = Prompt.Yandere.StudentManager.Students[13];
-					ScheduleBlock obj = studentScript2.ScheduleBlocks[2];
-					obj.destination = "Hangout";
-					obj.action = "Read";
-					ScheduleBlock obj2 = studentScript2.ScheduleBlocks[7];
+					ScheduleBlock obj2 = studentScript2.ScheduleBlocks[2];
 					obj2.destination = "Hangout";
 					obj2.action = "Read";
+					ScheduleBlock obj3 = studentScript2.ScheduleBlocks[7];
+					obj3.destination = "Hangout";
+					obj3.action = "Read";
 					studentScript2.GetDestinations();
 					studentScript2.Pathfinding.target = studentScript2.Destinations[studentScript2.Phase];
 					studentScript2.CurrentDestination = studentScript2.Destinations[studentScript2.Phase];
@@ -480,14 +485,14 @@ public class GenericPromptScript : MonoBehaviour
 			if (base.transform.parent.position.y < 0.6f)
 			{
 				Debug.Log("Pool chair is now lowered?");
-				StudentScript obj3 = Prompt.Yandere.StudentManager.Students[15];
-				obj3.Drowned = true;
-				obj3.BecomeRagdoll();
-				obj3.Ragdoll.Zs.SetActive(value: false);
-				obj3.Ragdoll.DestroyRigidbodies();
-				obj3.DeathType = DeathType.Drowning;
-				obj3.CharacterAnimation.enabled = true;
-				obj3.CharacterAnimation.Play("f02_sunbatheSleep_00");
+				StudentScript obj4 = Prompt.Yandere.StudentManager.Students[15];
+				obj4.Drowned = true;
+				obj4.BecomeRagdoll();
+				obj4.Ragdoll.Zs.SetActive(value: false);
+				obj4.Ragdoll.DestroyRigidbodies();
+				obj4.DeathType = DeathType.Drowning;
+				obj4.CharacterAnimation.enabled = true;
+				obj4.CharacterAnimation.Play("f02_sunbatheSleep_00");
 				PerformingAction = false;
 				Prompt.enabled = false;
 				Prompt.Hide();

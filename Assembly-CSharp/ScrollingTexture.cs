@@ -15,7 +15,11 @@ public class ScrollingTexture : MonoBehaviour
 	private void Start()
 	{
 		MyRenderer = GetComponent<Renderer>();
-		Player = GameObject.Find("YandereChan").transform;
+		GameObject gameObject = GameObject.Find("YandereChan");
+		if (gameObject != null)
+		{
+			Player = gameObject.transform;
+		}
 	}
 
 	private void Update()

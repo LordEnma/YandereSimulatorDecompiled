@@ -7,12 +7,16 @@ public class MemeManagerScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (GameGlobals.LoveSick)
+		if (!GameGlobals.LoveSick)
 		{
-			GameObject[] memes = Memes;
-			for (int i = 0; i < memes.Length; i++)
+			return;
+		}
+		GameObject[] memes = Memes;
+		foreach (GameObject gameObject in memes)
+		{
+			if (gameObject != null)
 			{
-				memes[i].SetActive(value: false);
+				gameObject.SetActive(value: false);
 			}
 		}
 	}

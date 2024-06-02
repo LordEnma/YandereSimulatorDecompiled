@@ -419,6 +419,7 @@ public class PoliceScript : MonoBehaviour
 			}
 			PauseScreen.Panel.alpha = Mathf.MoveTowards(PauseScreen.Panel.alpha, 0f, Time.deltaTime);
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+			StudentManager.LoveManager.ConfessionScene.MyAudio.volume -= Time.deltaTime;
 			if (Darkness.color.a > 0.999f)
 			{
 				Darkness.alpha = 1f;
@@ -440,6 +441,7 @@ public class PoliceScript : MonoBehaviour
 						ShowResults = true;
 						Time.timeScale = 2f;
 						Jukebox.Volume = 0f;
+						StudentManager.LoveManager.ConfessionScene.MyAudio.volume = 0f;
 					}
 					if (GenocideEnding)
 					{
@@ -1049,12 +1051,15 @@ public class PoliceScript : MonoBehaviour
 	{
 		for (int i = 1; i < 101; i++)
 		{
-			if (StudentGlobals.GetStudentDead(i) || StudentGlobals.GetStudentKidnapped(i) || !(StudentManager.StudentReps[i] < -150f))
+			if (StudentGlobals.GetStudentDead(i) || StudentGlobals.GetStudentKidnapped(i) || !(StudentManager.Students[i] != null) || !StudentManager.Students[i].Alive || !(StudentManager.StudentReps[i] < -150f))
 			{
 				continue;
 			}
 			Deaths++;
 			StudentGlobals.SetStudentDead(i, value: true);
+			StudentGlobals.SetStudentFriendship(i, 0);
+			PlayerGlobals.SetStudentFriend(i, value: false);
+			PlayerGlobals.Friends--;
 			Debug.Log("Student #" + i + " committed suicide due to low reputation. They will have a memorial at school tomorrow.");
 			if (StudentGlobals.MemorialStudents < 9)
 			{
@@ -1113,6 +1118,9 @@ public class PoliceScript : MonoBehaviour
 						SchoolGlobals.HighSecurity = true;
 					}
 					StudentGlobals.SetStudentDead(j, value: true);
+					StudentGlobals.SetStudentFriendship(j, 0);
+					PlayerGlobals.SetStudentFriend(j, value: false);
+					PlayerGlobals.Friends--;
 					if (j > 10 && j < DateGlobals.Week + 10 && StudentManager.Students[j] != null && StudentManager.Students[j].Ragdoll.Disposed)
 					{
 						Debug.Log("The player killed a previous rival and disposed of her corpse.");

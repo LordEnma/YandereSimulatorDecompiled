@@ -52,6 +52,8 @@ public class ServicesScript : MonoBehaviour
 
 	public int[] ServiceCosts;
 
+	public int StudentSentHome;
+
 	public int Selected = 1;
 
 	public int ID = 1;
@@ -416,9 +418,11 @@ public class ServicesScript : MonoBehaviour
 
 	public void SaveServicesPurchased()
 	{
+		ServicePurchased[5] = false;
 		for (int i = 1; i < ServiceNames.Length; i++)
 		{
 			SchemeGlobals.SetServicePurchased(i, ServicePurchased[i]);
 		}
+		PlayerGlobals.SetStudentSentHome(StudentSentHome, value: true);
 	}
 }

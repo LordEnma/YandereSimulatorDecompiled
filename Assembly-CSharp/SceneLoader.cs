@@ -47,6 +47,10 @@ public class SceneLoader : MonoBehaviour
 
 	public UITexture KeyboardGraphic;
 
+	public UITexture GamepadSonyGraphic;
+
+	public UITexture GamepadXboxGraphic;
+
 	public bool Debugging;
 
 	public float Timer;
@@ -89,6 +93,8 @@ public class SceneLoader : MonoBehaviour
 			loadingText.color = new Color(1f, 0f, 0f, 1f);
 			crashText.color = new Color(1f, 0f, 0f, 1f);
 			KeyboardGraphic.color = new Color(1f, 0f, 0f, 1f);
+			GamepadSonyGraphic.color = new Color(1f, 0f, 0f, 1f);
+			GamepadXboxGraphic.color = new Color(1f, 0f, 0f, 1f);
 			ControllerLinesSony.color = new Color(1f, 0f, 0f, 1f);
 			ControllerLinesXbox.color = new Color(1f, 0f, 0f, 1f);
 			if (GameGlobals.Eighties)

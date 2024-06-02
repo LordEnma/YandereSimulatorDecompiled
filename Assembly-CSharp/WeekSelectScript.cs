@@ -161,6 +161,11 @@ public class WeekSelectScript : MonoBehaviour
 					ClassGlobals.BonusStudyPoints = DateGlobals.Week * 50 - 50;
 					GameGlobals.EightiesCutsceneID = DateGlobals.Week;
 					DateGlobals.PassDays = 0;
+					for (int j = 1; j < DateGlobals.Week; j++)
+					{
+						Debug.Log("Making sure the game knows that Student #" + (10 + j) + "'s profile should be visible.");
+						StudentGlobals.SetStudentPhotographed(10 + j, value: true);
+					}
 					if (GameGlobals.Eighties)
 					{
 						SceneManager.LoadScene("EightiesCutsceneScene");
@@ -462,17 +467,17 @@ public class WeekSelectScript : MonoBehaviour
 				UpdateArrow();
 			}
 		}
-		for (int j = 1; j < 11; j++)
+		for (int k = 1; k < 11; k++)
 		{
-			if (j == CurrentWeek)
+			if (k == CurrentWeek)
 			{
-				Sleeve[j].transform.position = Vector3.Lerp(Sleeve[j].transform.position, StartingPosition[j] + base.transform.up * 0.05f + base.transform.right * -0.05f, Time.deltaTime * 10f);
-				Tape[j].transform.localPosition = Vector3.Lerp(Tape[j].transform.localPosition, new Vector3(0f, -0.0003f, 0f), Time.deltaTime * 10f);
+				Sleeve[k].transform.position = Vector3.Lerp(Sleeve[k].transform.position, StartingPosition[k] + base.transform.up * 0.05f + base.transform.right * -0.05f, Time.deltaTime * 10f);
+				Tape[k].transform.localPosition = Vector3.Lerp(Tape[k].transform.localPosition, new Vector3(0f, -0.0003f, 0f), Time.deltaTime * 10f);
 			}
 			else
 			{
-				Sleeve[j].transform.position = Vector3.Lerp(Sleeve[j].transform.position, StartingPosition[j], Time.deltaTime * 10f);
-				Tape[j].transform.localPosition = Vector3.Lerp(Tape[j].transform.localPosition, Vector3.zero, Time.deltaTime * 10f);
+				Sleeve[k].transform.position = Vector3.Lerp(Sleeve[k].transform.position, StartingPosition[k], Time.deltaTime * 10f);
+				Tape[k].transform.localPosition = Vector3.Lerp(Tape[k].transform.localPosition, Vector3.zero, Time.deltaTime * 10f);
 			}
 		}
 	}
@@ -535,7 +540,10 @@ public class WeekSelectScript : MonoBehaviour
 		{
 			if (i < 11 || i > 20)
 			{
+				StudentGlobals.SetStudentPhotographed(i, value: true);
+				StudentGlobals.SetStudentFriendship(i, 100);
 				PlayerGlobals.SetStudentFriend(i, Friend);
+				TaskGlobals.SetTaskStatus(i, 3);
 				PlayerGlobals.Friends++;
 			}
 		}

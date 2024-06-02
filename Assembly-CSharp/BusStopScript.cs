@@ -920,13 +920,11 @@ public class BusStopScript : MonoBehaviour
 
 	private void ResetAllBreasts()
 	{
-		Debug.Log("Resetting all breasts.");
 		GameObject[] array = UnityEngine.Object.FindObjectsOfType<GameObject>();
 		foreach (GameObject gameObject in array)
 		{
 			if (gameObject.name.Contains("Breast"))
 			{
-				Debug.Log("Breast found!! Resetting it!!");
 				gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
 			}
 		}

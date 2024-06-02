@@ -8,6 +8,8 @@ public class PassTimeBookScript : MonoBehaviour
 
 	public UISprite Darkness;
 
+	public bool IgnoringBlood;
+
 	public bool TimeSkipping;
 
 	public bool MissionMode;
@@ -19,6 +21,10 @@ public class PassTimeBookScript : MonoBehaviour
 	private void Start()
 	{
 		MissionMode = MissionModeGlobals.MissionMode;
+		if (MissionMode)
+		{
+			IgnoringBlood = true;
+		}
 	}
 
 	private void Update()
@@ -46,7 +52,7 @@ public class PassTimeBookScript : MonoBehaviour
 				Yandere.NotificationManager.CustomText = "Not available after 5:30 PM";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
-			else if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || (Yandere.StudentManager.Reporter != null && !Yandere.Police.Show) || Yandere.StudentManager.MurderTakingPlace)
+			else if (Yandere.Armed || (!IgnoringBlood && Yandere.Bloodiness > 0f) || Yandere.Sanity < 33.333f || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || (Yandere.StudentManager.Reporter != null && !Yandere.Police.Show) || Yandere.StudentManager.MurderTakingPlace)
 			{
 				DisplayErrorMessage();
 			}
@@ -98,7 +104,7 @@ public class PassTimeBookScript : MonoBehaviour
 			TimeSkipping = false;
 			for (int i = 1; i < 100; i++)
 			{
-				if (Yandere.StudentManager.Students[i] != null)
+				if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Alive && !Yandere.StudentManager.Students[i].Tranquil && !Yandere.StudentManager.Students[i].Sedated)
 				{
 					Yandere.StudentManager.Students[i].transform.position = Yandere.StudentManager.Students[i].CurrentDestination.position;
 				}

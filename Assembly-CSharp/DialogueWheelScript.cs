@@ -576,6 +576,10 @@ public class DialogueWheelScript : MonoBehaviour
 						base.transform.localScale = Vector3.zero;
 						Impatience.fillAmount = 0f;
 						Show = false;
+						if (!Eighties && Social.StudentID == 41)
+						{
+							Social.DialogueLabel.text = "Yes?";
+						}
 					}
 					else if (Selected == 3)
 					{

@@ -75,6 +75,7 @@ public class ContainerScript : MonoBehaviour
 					Weapon.transform.parent = WeaponSpot;
 					Weapon.transform.localPosition = Vector3.zero;
 					Weapon.transform.localEulerAngles = Vector3.zero;
+					Weapon.transform.localScale = new Vector3(1f, 0.425f, 1f);
 					Weapon.gameObject.GetComponent<Rigidbody>().useGravity = false;
 					Weapon.MyCollider.isTrigger = true;
 					Weapon.Prompt.Hide();

@@ -147,7 +147,6 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		{
 			PonytailRenderer.material.mainTexture = BlondePony;
 		}
-		Debug.Log("WalkToSchoolManagerScript is now firing the Start() function.");
 		Rival.Student.StudentID = 10 + DateGlobals.Week;
 		Rival.StudentID = 10 + DateGlobals.Week;
 		Rival.Initialized = false;

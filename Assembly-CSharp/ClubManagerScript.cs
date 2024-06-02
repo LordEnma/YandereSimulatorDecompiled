@@ -358,6 +358,7 @@ public class ClubManagerScript : MonoBehaviour
 
 	public void ClubActivity()
 	{
+		Debug.Log("Now firing the ClubActivity() function.");
 		Yandere.CameraEffects.UpdateDOF(2f);
 		StudentManager.StopMoving();
 		ShoulderCamera.enabled = false;
@@ -503,13 +504,31 @@ public class ClubManagerScript : MonoBehaviour
 		}
 		else if (Club == ClubType.LightMusic)
 		{
+			Debug.Log("Teleporting musicians to the Light Music club.");
 			for (ID = 0; ID < Club5Students.Length; ID++)
 			{
 				StudentScript studentScript5 = StudentManager.Students[Club5Students[ID]];
 				if (studentScript5 != null && !studentScript5.Tranquil && studentScript5.Alive)
 				{
-					studentScript5.transform.position = studentScript5.CurrentDestination.position;
-					studentScript5.transform.rotation = studentScript5.CurrentDestination.rotation;
+					if (studentScript5.StudentID == 52)
+					{
+						studentScript5.ClubAnim = "f02_guitarPlayA_00";
+					}
+					else if (studentScript5.StudentID == 53)
+					{
+						studentScript5.ClubAnim = "f02_guitarPlayB_00";
+					}
+					else if (studentScript5.StudentID == 54)
+					{
+						studentScript5.ClubAnim = "f02_drumsPlay_00";
+					}
+					else if (studentScript5.StudentID == 55)
+					{
+						studentScript5.ClubAnim = "f02_keysPlay_00";
+					}
+					studentScript5.transform.position = studentScript5.StudentManager.Clubs.List[studentScript5.StudentID].position;
+					studentScript5.transform.rotation = studentScript5.StudentManager.Clubs.List[studentScript5.StudentID].rotation;
+					studentScript5.PlayMusicalInstrument();
 					studentScript5.ClubActivity = false;
 					studentScript5.Talking = false;
 					studentScript5.Routine = true;
@@ -718,6 +737,7 @@ public class ClubManagerScript : MonoBehaviour
 		Heartrate.SetActive(value: false);
 		Watermark.SetActive(value: false);
 		Yandere.ClubActivity = true;
+		Physics.SyncTransforms();
 	}
 
 	public void CheckClub(ClubType Check)

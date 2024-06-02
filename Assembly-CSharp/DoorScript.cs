@@ -840,6 +840,9 @@ public class DoorScript : MonoBehaviour
 				ConversationGlobals.SetTopicDiscovered(2, value: true);
 				Yandere.NotificationManager.TopicName = "Drama";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+				ConversationGlobals.SetTopicDiscovered(25, value: true);
+				Yandere.NotificationManager.TopicName = "Money";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
 			}
 			break;
 		case 28:

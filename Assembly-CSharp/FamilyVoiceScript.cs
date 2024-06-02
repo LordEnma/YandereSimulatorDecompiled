@@ -291,7 +291,12 @@ public class FamilyVoiceScript : MonoBehaviour
 	private bool YandereIsInLOS()
 	{
 		Debug.DrawLine(Head.position, new Vector3(Yandere.transform.position.x, YandereHead.position.y, Yandere.transform.position.z), Color.red);
+		Debug.DrawLine(Head.position, new Vector3(Yandere.transform.position.x, Yandere.transform.position.y + 0.5f, Yandere.transform.position.z), Color.red);
 		if (Physics.Linecast(Head.position, new Vector3(Yandere.transform.position.x, YandereHead.position.y, Yandere.transform.position.z), out var hitInfo) && hitInfo.collider.gameObject.layer == 13)
+		{
+			return true;
+		}
+		if (Physics.Linecast(Head.position, new Vector3(Yandere.transform.position.x, Yandere.transform.position.y + 0.5f, Yandere.transform.position.z), out hitInfo) && hitInfo.collider.gameObject.layer == 13)
 		{
 			return true;
 		}

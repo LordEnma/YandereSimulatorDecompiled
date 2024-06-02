@@ -295,6 +295,7 @@ public class HomeYandereScript : MonoBehaviour
 		Yandere.Hairstyles = YandereHairHost.Hairstyles;
 		if (!HomeGlobals.Night)
 		{
+			Debug.Log("It's Custom Mode. It's not nighttime. Calling Customize().");
 			Customize();
 		}
 	}
@@ -309,8 +310,15 @@ public class HomeYandereScript : MonoBehaviour
 		if (UpdateFace && Pajamas.newRenderer != null)
 		{
 			Yandere.MyRenderer = Pajamas.newRenderer;
-			if (!Vtuber)
+			if (GameGlobals.CustomMode)
 			{
+				Debug.Log("We are in Custom Mode, and we need to make the YandereScript aware of our pajamas...");
+				Yandere.PajamaRenderer = Pajamas.newRenderer;
+				Customize();
+			}
+			else if (!Vtuber)
+			{
+				Debug.Log("Updating protagonist with Ryoba's face.");
 				Pajamas.newRenderer.SetBlendShapeWeight(0, 50f);
 				Pajamas.newRenderer.SetBlendShapeWeight(5, 25f);
 				Pajamas.newRenderer.SetBlendShapeWeight(9, 0f);
@@ -326,10 +334,6 @@ public class HomeYandereScript : MonoBehaviour
 				Pajamas.newRenderer.SetBlendShapeWeight(9, 100f);
 				Pajamas.newRenderer.materials[1].mainTexture = FaceTexture;
 				Debug.Log("Updating pajama mesh with Vtuber face.");
-			}
-			if (GameGlobals.CustomMode)
-			{
-				Customize();
 			}
 			UpdateFace = false;
 		}
@@ -602,6 +606,7 @@ public class HomeYandereScript : MonoBehaviour
 
 	private void Customize()
 	{
+		Debug.Log("HomeYandereScript is now going to fire Yandere.Customize()");
 		Yandere.Customize();
 		IdleAnim = FemaleIdles[JSON.Misc.AnimSet[0]];
 		WalkAnim = FemaleWalks[JSON.Misc.AnimSet[0]];

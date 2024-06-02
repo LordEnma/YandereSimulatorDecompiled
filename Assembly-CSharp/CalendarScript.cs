@@ -237,6 +237,7 @@ public class CalendarScript : MonoBehaviour
 		{
 			SchoolGlobals.SchoolAtmosphereSet = true;
 			SchoolGlobals.SchoolAtmosphere = 1f;
+			GameGlobals.MostRecentSlot = 0;
 			PlayerGlobals.Money = 10f;
 		}
 		if (!GameGlobals.ItemsInitialized)
@@ -1142,6 +1143,7 @@ public class CalendarScript : MonoBehaviour
 		int num = GameGlobals.Profile;
 		bool eighties = GameGlobals.Eighties;
 		bool debug = GameGlobals.Debug;
+		bool customMode = GameGlobals.CustomMode;
 		int femaleUniform = StudentGlobals.FemaleUniform;
 		int maleUniform = StudentGlobals.MaleUniform;
 		Globals.DeleteAll();
@@ -1153,6 +1155,7 @@ public class CalendarScript : MonoBehaviour
 		GameGlobals.Eighties = eighties;
 		GameGlobals.Profile = num;
 		GameGlobals.Debug = debug;
+		GameGlobals.CustomMode = customMode;
 		StudentGlobals.FemaleUniform = femaleUniform;
 		StudentGlobals.MaleUniform = maleUniform;
 		GameGlobals.LoveSick = LoveSick;

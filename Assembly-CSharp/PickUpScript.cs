@@ -112,6 +112,8 @@ public class PickUpScript : MonoBehaviour
 
 	public bool InsideBookbag;
 
+	public bool BunsenBurner;
+
 	public bool CannotPickUp;
 
 	public bool LockRotation;
@@ -520,7 +522,7 @@ public class PickUpScript : MonoBehaviour
 				Prompt.HideButton[0] = true;
 			}
 		}
-		else if (Flame != null)
+		else if (BunsenBurner)
 		{
 			if (Prompt.Circle[0].fillAmount == 0f)
 			{
@@ -543,7 +545,7 @@ public class PickUpScript : MonoBehaviour
 				Object.Destroy(base.gameObject);
 			}
 		}
-		if (Flame != null && Flame.activeInHierarchy && Time.timeScale > 0.1f)
+		if (BunsenBurner && Flame != null && Flame.activeInHierarchy && Time.timeScale > 0.1f)
 		{
 			Flame.transform.localScale = new Vector3(Random.Range(17.5f, 22.5f), Random.Range(17.5f, 22.5f), Random.Range(17.5f, 22.5f));
 		}
