@@ -86,6 +86,8 @@ public class KokonaTutorialScript : MonoBehaviour
 
 	public Transform[] StudentSpawnPoints;
 
+	public Transform[] NewStudentSpawnPoints;
+
 	public Transform[] TutorialIntroPoints;
 
 	public Transform CameraStartPoint;
@@ -121,6 +123,8 @@ public class KokonaTutorialScript : MonoBehaviour
 	public float UpTimer;
 
 	public float Timer;
+
+	public bool NewIntro;
 
 	public bool Show;
 
@@ -170,11 +174,20 @@ public class KokonaTutorialScript : MonoBehaviour
 			EightiesTutorialGraphics.SetActive(value: false);
 			GameGlobals.EightiesTutorial = false;
 			GameGlobals.Eighties = false;
+			if (!NewIntro)
+			{
+				Yandere.transform.eulerAngles = YandereSpawnPoints[0].eulerAngles;
+				Yandere.transform.position = YandereSpawnPoints[0].position;
+			}
+			else
+			{
+				Yandere.transform.position = new Vector3(27.25f, 0f, 73.15f);
+				Yandere.transform.eulerAngles = new Vector3(0f, -135f, 0f);
+				Yandere.CharacterAnimation.Play("f02_thinkLoop_00");
+			}
 			Yandere.NotificationManager.transform.localPosition = new Vector3(0f, 100f, 0f);
 			Yandere.YandereVisionPanel.transform.localPosition = new Vector3(0f, 0f, 0f);
-			Yandere.transform.eulerAngles = YandereSpawnPoints[0].eulerAngles;
 			Yandere.CameraEffects.UpdateDOF(2f - Yandere.Zoom.Zoom * 3.75f);
-			Yandere.transform.position = YandereSpawnPoints[0].position;
 			Yandere.NotificationManager.NotificationLimit = 0;
 			Yandere.PauseScreen.gameObject.SetActive(value: false);
 			Yandere.Jukebox.gameObject.SetActive(value: false);
@@ -365,6 +378,10 @@ public class KokonaTutorialScript : MonoBehaviour
 			StudentManager.Students[28].MyController.enabled = false;
 			StudentManager.Students[29].MyController.enabled = false;
 			StudentManager.Students[30].MyController.enabled = false;
+			if (NewIntro)
+			{
+				StudentManager.Students[30].CharacterAnimation.Play("f02_talking_02");
+			}
 		}
 		if (Gamepad.current is DualShockGamepad)
 		{
@@ -387,8 +404,16 @@ public class KokonaTutorialScript : MonoBehaviour
 		studentScript.Pathfinding.enabled = false;
 		studentScript.Prompt.enabled = false;
 		studentScript.Prompt.Hide();
-		studentScript.transform.position = StudentSpawnPoints[ID].position;
-		studentScript.transform.eulerAngles = StudentSpawnPoints[ID].eulerAngles;
+		if ((NewIntro && Phase == 1) || (NewIntro && Phase == 8))
+		{
+			studentScript.transform.position = NewStudentSpawnPoints[ID].position;
+			studentScript.transform.eulerAngles = NewStudentSpawnPoints[ID].eulerAngles;
+		}
+		else
+		{
+			studentScript.transform.position = StudentSpawnPoints[ID].position;
+			studentScript.transform.eulerAngles = StudentSpawnPoints[ID].eulerAngles;
+		}
 		studentScript.CharacterAnimation.Play(studentScript.IdleAnim);
 		studentScript.InEvent = true;
 		if (EnableAttacking)
@@ -499,13 +524,29 @@ public class KokonaTutorialScript : MonoBehaviour
 			{
 				Timer = 4f;
 				Darkness.alpha = 0f;
-				MainCamera.transform.position = CameraEndPoint.position;
-				MainCamera.transform.eulerAngles = CameraEndPoint.eulerAngles;
+				if (!NewIntro)
+				{
+					MainCamera.transform.position = CameraEndPoint.position;
+					MainCamera.transform.eulerAngles = CameraEndPoint.eulerAngles;
+				}
+				else
+				{
+					MainCamera.transform.position = new Vector3(25.59676f, 1.233333f, 72f);
+					MainCamera.transform.eulerAngles = new Vector3(15f, 90f, 0f);
+				}
 			}
 			Timer += Time.deltaTime;
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
-			MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, CameraEndPoint.position, Time.deltaTime * Timer);
-			MainCamera.transform.eulerAngles = Vector3.Lerp(MainCamera.transform.eulerAngles, CameraEndPoint.eulerAngles, Time.deltaTime * Timer);
+			if (!NewIntro)
+			{
+				MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, CameraEndPoint.position, Time.deltaTime * Timer);
+				MainCamera.transform.eulerAngles = Vector3.Lerp(MainCamera.transform.eulerAngles, CameraEndPoint.eulerAngles, Time.deltaTime * Timer);
+			}
+			else
+			{
+				MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, new Vector3(25.59676f, 1.233333f, 72f), Time.deltaTime * Timer);
+				MainCamera.transform.eulerAngles = Vector3.Lerp(MainCamera.transform.eulerAngles, new Vector3(15f, 90f, 0f), Time.deltaTime * Timer);
+			}
 			if (Timer > 4f)
 			{
 				Yandere.PromptBar.ClearButtons();
@@ -585,13 +626,16 @@ public class KokonaTutorialScript : MonoBehaviour
 				}
 				else
 				{
+					Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 					if (TutorialsPerformed == 0)
 					{
+						StudentManager.Students[30].CharacterAnimation.CrossFade("f02_embar_00");
 						KokonaAudioSource.clip = KokonaDialogue[16].Audio[0];
 						SubtitleLabel.text = KokonaDialogue[16].Text[0];
 					}
 					else
 					{
+						StudentManager.Students[30].CharacterAnimation.CrossFade("f02_friendWave_00");
 						KokonaAudioSource.clip = KokonaDialogue[16].Audio[1];
 						SubtitleLabel.text = KokonaDialogue[16].Text[1];
 					}
@@ -657,6 +701,7 @@ public class KokonaTutorialScript : MonoBehaviour
 		}
 		else if (Phase == 9)
 		{
+			Yandere.transform.position = Vector3.MoveTowards(Yandere.transform.position, new Vector3(27.25f, 0f, 73.35f), Time.deltaTime);
 			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				KokonaAudioSource.Stop();

@@ -35,6 +35,8 @@ public class DreamYandereScript : MonoBehaviour
 
 	private void Start()
 	{
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 		if (!GameGlobals.Eighties)
 		{
 			RyobaHair.SetActive(value: false);

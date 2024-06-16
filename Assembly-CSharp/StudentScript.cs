@@ -662,6 +662,8 @@ public class StudentScript : MonoBehaviour
 
 	public bool RepeatReaction;
 
+	public bool RivalBodyguard;
+
 	public bool SitInInfirmary;
 
 	public bool StalkerFleeing;
@@ -785,6 +787,8 @@ public class StudentScript : MonoBehaviour
 	public bool DyedBrown;
 
 	public bool EndSearch;
+
+	public bool NewFriend;
 
 	public bool GasWarned;
 
@@ -1713,6 +1717,8 @@ public class StudentScript : MonoBehaviour
 	public string[] WalkAnims;
 
 	public int ClubMemberID;
+
+	public int AnimSetID;
 
 	public int StudentID;
 
@@ -3373,7 +3379,10 @@ public class StudentScript : MonoBehaviour
 			else if (OriginalClub == ClubType.LightMusic)
 			{
 				ClubMemberID = StudentID - 50;
-				InstrumentBag[ClubMemberID].SetActive(value: true);
+				if (!Slave)
+				{
+					InstrumentBag[ClubMemberID].SetActive(value: true);
+				}
 				if (StudentID == 51)
 				{
 					if (!Male)
@@ -3940,6 +3949,7 @@ public class StudentScript : MonoBehaviour
 			{
 				IdleAnim = IdleAnims[StudentManager.JSON.Misc.AnimSet[StudentID]];
 				WalkAnim = WalkAnims[StudentManager.JSON.Misc.AnimSet[StudentID]];
+				AnimSetID = StudentManager.JSON.Misc.AnimSet[StudentID];
 			}
 			if (Slave)
 			{
@@ -4316,8 +4326,28 @@ public class StudentScript : MonoBehaviour
 			}
 			if (Phase > ScheduleBlocks.Length - 1)
 			{
-				Debug.Log("Shit. We just reached this code. It's still necessary.");
+				Debug.Log("For some reason, " + Name + "'s Phase was greater than their number of ScheduleBlocks.");
 				Phase = ScheduleBlocks.Length - 1;
+				if (Bullied || StudentID == StudentManager.VictimID)
+				{
+					Debug.Log("The student who reached this code is bullied.");
+					ScheduleBlock obj = ScheduleBlocks[Phase];
+					obj.destination = "Locker";
+					obj.action = "Shoes";
+					GetDestinations();
+					CurrentDestination = Destinations[Phase];
+					Pathfinding.target = Destinations[Phase];
+				}
+				if (Leaving)
+				{
+					Debug.Log("The student who reached this code is supposed to be leaving school.");
+					ScheduleBlock obj2 = ScheduleBlocks[Phase];
+					obj2.destination = "Exit";
+					obj2.action = "Stand";
+					GetDestinations();
+					CurrentDestination = Destinations[Phase];
+					Pathfinding.target = Destinations[Phase];
+				}
 			}
 			if (StalkerFleeing)
 			{
@@ -4454,6 +4484,11 @@ public class StudentScript : MonoBehaviour
 					SunbathePhase = 0;
 				}
 				Phase++;
+				RivalBodyguard = false;
+				if (ScheduleBlocks[Phase].destination == "Guard")
+				{
+					RivalBodyguard = true;
+				}
 				WitnessBonus = 0;
 				BountyCollider.SetActive(value: false);
 				if (Drownable)
@@ -4484,9 +4519,9 @@ public class StudentScript : MonoBehaviour
 				}
 				if (Actions[Phase] == StudentActionType.Graffiti && !StudentManager.Bully)
 				{
-					ScheduleBlock obj = ScheduleBlocks[2];
-					obj.destination = "Patrol";
-					obj.action = "Patrol";
+					ScheduleBlock obj3 = ScheduleBlocks[2];
+					obj3.destination = "Patrol";
+					obj3.action = "Patrol";
 					GetDestinations();
 				}
 				if (!StudentManager.Eighties && Actions[Phase] == StudentActionType.Bully && StudentManager.VictimID == 10)
@@ -4509,9 +4544,9 @@ public class StudentScript : MonoBehaviour
 				}
 				if (!StudentManager.ReactedToGameLeader && Actions[Phase] == StudentActionType.Bully && !StudentManager.Bully)
 				{
-					ScheduleBlock obj2 = ScheduleBlocks[4];
-					obj2.destination = "Sunbathe";
-					obj2.action = "Sunbathe";
+					ScheduleBlock obj4 = ScheduleBlocks[4];
+					obj4.destination = "Sunbathe";
+					obj4.action = "Sunbathe";
 					GetDestinations();
 				}
 				if (Sedated)
@@ -4827,9 +4862,9 @@ public class StudentScript : MonoBehaviour
 					}
 					else if (Clock.Period == 4 && CurrentAction == StudentActionType.Read && !StudentManager.RivalBookBag.BorrowedBook)
 					{
-						ScheduleBlock obj3 = ScheduleBlocks[Phase];
-						obj3.destination = "Search Patrol";
-						obj3.action = "Search Patrol";
+						ScheduleBlock obj5 = ScheduleBlocks[Phase];
+						obj5.destination = "Search Patrol";
+						obj5.action = "Search Patrol";
 						GetDestinations();
 						CurrentDestination = Destinations[Phase];
 						Pathfinding.target = Destinations[Phase];
@@ -4945,6 +4980,16 @@ public class StudentScript : MonoBehaviour
 					CurrentDestination = StudentManager.StrippingPositions[GirlID];
 					Pathfinding.target = StudentManager.StrippingPositions[GirlID];
 				}
+				if (Bullied && Clock.HourTime > 16f)
+				{
+					Debug.Log("A bullied student should be heading for his locker now.");
+					ScheduleBlock obj6 = ScheduleBlocks[Phase];
+					obj6.destination = "Locker";
+					obj6.action = "Shoes";
+					GetDestinations();
+					CurrentDestination = Destinations[Phase];
+					Pathfinding.target = Destinations[Phase];
+				}
 			}
 			if (MeetTime > 0f)
 			{
@@ -4957,9 +5002,9 @@ public class StudentScript : MonoBehaviour
 				{
 					if (Follower != null)
 					{
-						ScheduleBlock obj4 = Follower.ScheduleBlocks[Follower.Phase];
-						obj4.destination = "Follow";
-						obj4.action = "Follow";
+						ScheduleBlock obj7 = Follower.ScheduleBlocks[Follower.Phase];
+						obj7.destination = "Follow";
+						obj7.action = "Follow";
 						Follower.Actions[Follower.Phase] = StudentActionType.Follow;
 						CurrentAction = StudentActionType.Follow;
 						Follower.GetDestinations();
@@ -5320,6 +5365,27 @@ public class StudentScript : MonoBehaviour
 					if (StudentID < 6)
 					{
 						ScootAway();
+					}
+				}
+				if (RivalBodyguard)
+				{
+					if (StudentManager.LockerRoomArea.bounds.Contains(StudentManager.Students[StudentManager.RivalID].transform.position))
+					{
+						if (Male)
+						{
+							CharacterAnimation.CrossFade("impatientWait_00");
+						}
+						else
+						{
+							CharacterAnimation.CrossFade(WaitAnim);
+						}
+						Pathfinding.canSearch = false;
+						Pathfinding.canMove = false;
+					}
+					else
+					{
+						Pathfinding.canSearch = true;
+						Pathfinding.canMove = true;
 					}
 				}
 			}
@@ -5750,7 +5816,14 @@ public class StudentScript : MonoBehaviour
 									{
 										if (!Shy)
 										{
-											CharacterAnimation.CrossFade("f02_standTexting_00");
+											if (!Male)
+											{
+												CharacterAnimation.CrossFade("f02_standTexting_00");
+											}
+											else
+											{
+												CharacterAnimation.CrossFade("standTexting_00");
+											}
 											if (!SmartPhone.activeInHierarchy)
 											{
 												SmartPhone.SetActive(value: true);
@@ -6883,12 +6956,12 @@ public class StudentScript : MonoBehaviour
 												EmptyHands();
 												Pathfinding.canSearch = true;
 												Pathfinding.canMove = true;
-												ScheduleBlock obj5 = ScheduleBlocks[4];
-												obj5.destination = "Follow";
-												obj5.action = "Follow";
-												ScheduleBlock obj6 = ScheduleBlocks[5];
-												obj6.destination = "Follow";
-												obj6.action = "Follow";
+												ScheduleBlock obj8 = ScheduleBlocks[4];
+												obj8.destination = "Follow";
+												obj8.action = "Follow";
+												ScheduleBlock obj9 = ScheduleBlocks[5];
+												obj9.destination = "Follow";
+												obj9.action = "Follow";
 												GetDestinations();
 												Pathfinding.target = FollowTarget.transform;
 												CurrentDestination = FollowTarget.transform;
@@ -6938,9 +7011,7 @@ public class StudentScript : MonoBehaviour
 									{
 										if (!Private)
 										{
-											AudioSource component = GetComponent<AudioSource>();
-											component.clip = PoisonDeathClip;
-											component.Play();
+											SpawnTimeRespectingAudioSource(PoisonDeathClip);
 											if (Male)
 											{
 												CharacterAnimation.CrossFade("poisonDeath_00");
@@ -7038,9 +7109,9 @@ public class StudentScript : MonoBehaviour
 											MyBento.Tampered = false;
 											Private = true;
 											Sleepy = true;
-											ScheduleBlock obj7 = ScheduleBlocks[4];
-											obj7.destination = "InfirmaryBed";
-											obj7.action = "Relax";
+											ScheduleBlock obj10 = ScheduleBlocks[4];
+											obj10.destination = "InfirmaryBed";
+											obj10.action = "Relax";
 											Oversleep();
 											GetDestinations();
 											CurrentDestination = Destinations[Phase];
@@ -7166,12 +7237,12 @@ public class StudentScript : MonoBehaviour
 									else if (StudentManager.CustomMode)
 									{
 										Debug.Log("Attempting to update Senpai's routine to whatever his Custom Mode routine is supposed to be.");
-										ScheduleBlock obj8 = ScheduleBlocks[Phase];
+										ScheduleBlock obj11 = ScheduleBlocks[Phase];
 										ScheduleBlock scheduleBlock2 = OriginalScheduleBlocks[Phase];
-										obj8.destination = scheduleBlock2.destination;
-										obj8.action = scheduleBlock2.action;
-										obj8.destination = ReturnDestination;
-										obj8.action = ReturnAction;
+										obj11.destination = scheduleBlock2.destination;
+										obj11.action = scheduleBlock2.action;
+										obj11.destination = ReturnDestination;
+										obj11.action = ReturnAction;
 										GetDestinations();
 										CurrentDestination = Destinations[Phase];
 										Pathfinding.target = Destinations[Phase];
@@ -7238,9 +7309,9 @@ public class StudentScript : MonoBehaviour
 									if (SewTimer > 20f)
 									{
 										CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-										ScheduleBlock obj9 = ScheduleBlocks[Phase];
-										obj9.destination = "Sketch";
-										obj9.action = "Sketch";
+										ScheduleBlock obj12 = ScheduleBlocks[Phase];
+										obj12.destination = "Sketch";
+										obj12.action = "Sketch";
 										GetDestinations();
 										CurrentDestination = SketchPosition;
 										Pathfinding.target = SketchPosition;
@@ -7272,9 +7343,9 @@ public class StudentScript : MonoBehaviour
 									if (ReadTimer > 300f)
 									{
 										OccultBook.SetActive(value: false);
-										ScheduleBlock obj10 = ScheduleBlocks[Phase];
-										obj10.destination = "LunchSpot";
-										obj10.action = "SitAndEatBento";
+										ScheduleBlock obj13 = ScheduleBlocks[Phase];
+										obj13.destination = "LunchSpot";
+										obj13.action = "SitAndEatBento";
 										Actions[Phase] = StudentActionType.SitAndEatBento;
 										CurrentAction = StudentActionType.SitAndEatBento;
 										GetDestinations();
@@ -7533,9 +7604,9 @@ public class StudentScript : MonoBehaviour
 								else if (GraffitiPhase == 4)
 								{
 									DistanceToDestination = 100f;
-									ScheduleBlock obj11 = ScheduleBlocks[2];
-									obj11.destination = "Patrol";
-									obj11.action = "Patrol";
+									ScheduleBlock obj14 = ScheduleBlocks[2];
+									obj14.destination = "Patrol";
+									obj14.action = "Patrol";
 									GetDestinations();
 									if (!StudentManager.Eighties)
 									{
@@ -7572,9 +7643,9 @@ public class StudentScript : MonoBehaviour
 									}
 									if (StudentManager.Students[81] == null)
 									{
-										ScheduleBlock obj12 = ScheduleBlocks[4];
-										obj12.destination = "Patrol";
-										obj12.action = "Patrol";
+										ScheduleBlock obj15 = ScheduleBlocks[4];
+										obj15.destination = "Patrol";
+										obj15.action = "Patrol";
 										GetDestinations();
 										CurrentDestination = Destinations[Phase];
 										Pathfinding.target = Destinations[Phase];
@@ -7624,9 +7695,9 @@ public class StudentScript : MonoBehaviour
 											{
 												CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 												StudentManager.Students[StudentManager.VictimID].Routine = true;
-												ScheduleBlock obj13 = ScheduleBlocks[4];
-												obj13.destination = "Patrol";
-												obj13.action = "Patrol";
+												ScheduleBlock obj16 = ScheduleBlocks[4];
+												obj16.destination = "Patrol";
+												obj16.action = "Patrol";
 												GetDestinations();
 												if (!StudentManager.Eighties)
 												{
@@ -7673,9 +7744,9 @@ public class StudentScript : MonoBehaviour
 												Debug.Log("The bullying event has ended.");
 												CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 												DistanceToDestination = 100f;
-												ScheduleBlock obj14 = ScheduleBlocks[4];
-												obj14.destination = "Patrol";
-												obj14.action = "Patrol";
+												ScheduleBlock obj17 = ScheduleBlocks[4];
+												obj17.destination = "Patrol";
+												obj17.action = "Patrol";
 												GetDestinations();
 												CurrentDestination = Destinations[Phase];
 												Pathfinding.target = Destinations[Phase];
@@ -7689,9 +7760,9 @@ public class StudentScript : MonoBehaviour
 									Debug.Log("This code is called when the bullies' victim is missing or dead.");
 									CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 									DistanceToDestination = 100f;
-									ScheduleBlock obj15 = ScheduleBlocks[Phase];
-									obj15.destination = "Patrol";
-									obj15.action = "Patrol";
+									ScheduleBlock obj18 = ScheduleBlocks[Phase];
+									obj18.destination = "Patrol";
+									obj18.action = "Patrol";
 									GetDestinations();
 									CurrentDestination = Destinations[Phase];
 									Pathfinding.target = Destinations[Phase];
@@ -7746,9 +7817,9 @@ public class StudentScript : MonoBehaviour
 									else if (FollowTarget.Routine && !FollowTarget.InEvent && FollowTarget.CurrentAction == StudentActionType.SitAndEatBento && FollowTarget.DistanceToDestination < 1f && !FollowTarget.Meeting)
 									{
 										Debug.Log("Raibaru just changed her destination to lunch.");
-										ScheduleBlock obj16 = ScheduleBlocks[Phase];
-										obj16.destination = "LunchSpot";
-										obj16.action = "SitAndEatBento";
+										ScheduleBlock obj19 = ScheduleBlocks[Phase];
+										obj19.destination = "LunchSpot";
+										obj19.action = "SitAndEatBento";
 										Actions[Phase] = StudentActionType.SitAndEatBento;
 										CurrentAction = StudentActionType.SitAndEatBento;
 										GetDestinations();
@@ -7758,9 +7829,9 @@ public class StudentScript : MonoBehaviour
 									else if (FollowTarget.Routine && !FollowTarget.InEvent && FollowTarget.Phase == 8 && FollowTarget.DistanceToDestination < 1f)
 									{
 										Debug.Log("Raibaru just changed her destination to the lockers.");
-										ScheduleBlock obj17 = ScheduleBlocks[Phase];
-										obj17.destination = "Locker";
-										obj17.action = "Shoes";
+										ScheduleBlock obj20 = ScheduleBlocks[Phase];
+										obj20.destination = "Locker";
+										obj20.action = "Shoes";
 										Actions[Phase] = StudentActionType.ChangeShoes;
 										CurrentAction = StudentActionType.ChangeShoes;
 										GetDestinations();
@@ -7770,10 +7841,10 @@ public class StudentScript : MonoBehaviour
 									else if (FollowTarget.ConfessPhase == 5)
 									{
 										Debug.Log("Raibaru just changed her action to Sketch and her destination to Paint.");
-										ScheduleBlock obj18 = ScheduleBlocks[Phase];
-										obj18.destination = "Paint";
-										obj18.action = "Sketch";
-										obj18.time = 99f;
+										ScheduleBlock obj21 = ScheduleBlocks[Phase];
+										obj21.destination = "Paint";
+										obj21.action = "Sketch";
+										obj21.time = 99f;
 										GetDestinations();
 										CurrentDestination = Destinations[Phase];
 										Pathfinding.target = Destinations[Phase];
@@ -7924,9 +7995,9 @@ public class StudentScript : MonoBehaviour
 									if (SewTimer > 20f)
 									{
 										CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-										ScheduleBlock obj19 = ScheduleBlocks[Phase];
-										obj19.destination = "Patrol";
-										obj19.action = "Patrol";
+										ScheduleBlock obj22 = ScheduleBlocks[Phase];
+										obj22.destination = "Patrol";
+										obj22.action = "Patrol";
 										GetDestinations();
 										EmptyHands();
 										PatrolID = 1;
@@ -8481,9 +8552,9 @@ public class StudentScript : MonoBehaviour
 									MyBento.gameObject.SetActive(value: false);
 									MyBento.Prompt.enabled = false;
 									MyBento.Prompt.Hide();
-									ScheduleBlock obj20 = ScheduleBlocks[Phase];
-									obj20.destination = "LunchSpot";
-									obj20.action = "Eat";
+									ScheduleBlock obj23 = ScheduleBlocks[Phase];
+									obj23.destination = "LunchSpot";
+									obj23.action = "Eat";
 									GetDestinations();
 									Pathfinding.target = Destinations[Phase];
 									CurrentDestination = Destinations[Phase];
@@ -9134,6 +9205,7 @@ public class StudentScript : MonoBehaviour
 									}
 									if (Yandere.CanMove && !Yandere.Yakuza)
 									{
+										Debug.Log("At this place in the code, the player SHOULD be freezing in place and waiting for an attacker to approach.");
 										Yandere.PreparedForStruggle = false;
 										Yandere.CanMove = false;
 									}
@@ -10020,12 +10092,12 @@ public class StudentScript : MonoBehaviour
 														Subtitle.UpdateLabel(SubtitleType.TeacherCorpseInspection, 5, 5f);
 													}
 												}
-												PromptScript component2 = BloodPool.GetComponent<PromptScript>();
-												WeaponScript component3 = BloodPool.GetComponent<WeaponScript>();
+												PromptScript component = BloodPool.GetComponent<PromptScript>();
+												WeaponScript component2 = BloodPool.GetComponent<WeaponScript>();
 												bool flag7 = false;
-												if (component3 != null)
+												if (component2 != null)
 												{
-													if (component3.BroughtFromHome)
+													if (component2.BroughtFromHome)
 													{
 														Debug.Log("This weapon was brought from home!");
 														flag7 = true;
@@ -10035,11 +10107,11 @@ public class StudentScript : MonoBehaviour
 														Debug.Log("This weapon was not brought from home.");
 													}
 												}
-												if (component2 != null && !flag7)
+												if (component != null && !flag7)
 												{
 													Debug.Log("Disabling an object's prompt.");
-													component2.Hide();
-													component2.enabled = false;
+													component.Hide();
+													component.enabled = false;
 													TargetDistance = 1.5f;
 												}
 												ReportPhase++;
@@ -10897,9 +10969,9 @@ public class StudentScript : MonoBehaviour
 									if (!LightSwitch.Flicker)
 									{
 										CharacterAnimation["f02_electrocution_00"].speed = 0.85f;
-										GameObject obj21 = UnityEngine.Object.Instantiate(LightSwitch.Electricity, base.transform.position, Quaternion.identity);
-										obj21.transform.parent = Bones[1].transform;
-										obj21.transform.localPosition = Vector3.zero;
+										GameObject obj24 = UnityEngine.Object.Instantiate(LightSwitch.Electricity, base.transform.position, Quaternion.identity);
+										obj24.transform.parent = Bones[1].transform;
+										obj24.transform.localPosition = Vector3.zero;
 										Subtitle.UpdateLabel(SubtitleType.LightSwitchReaction, 3, 0f);
 										LightSwitch.GetComponent<AudioSource>().clip = LightSwitch.Flick[2];
 										LightSwitch.Flicker = true;
@@ -11194,12 +11266,12 @@ public class StudentScript : MonoBehaviour
 				HuntTimer += Time.deltaTime;
 				if (HuntTimer > 1f && base.transform.position.x < 22f && base.transform.position.x > -22f)
 				{
-					GameObject obj22 = UnityEngine.Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity);
-					obj22.GetComponent<AlarmDiscScript>().Originator = this;
-					obj22.GetComponent<AlarmDiscScript>().Shocking = true;
-					obj22.GetComponent<AlarmDiscScript>().NoScream = true;
-					obj22.GetComponent<AlarmDiscScript>().Silent = true;
-					obj22.GetComponent<AlarmDiscScript>().Slave = true;
+					GameObject obj25 = UnityEngine.Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity);
+					obj25.GetComponent<AlarmDiscScript>().Originator = this;
+					obj25.GetComponent<AlarmDiscScript>().Shocking = true;
+					obj25.GetComponent<AlarmDiscScript>().NoScream = true;
+					obj25.GetComponent<AlarmDiscScript>().Silent = true;
+					obj25.GetComponent<AlarmDiscScript>().Slave = true;
 					HuntTimer = 0f;
 				}
 				if (HuntTarget != null)
@@ -11410,8 +11482,7 @@ public class StudentScript : MonoBehaviour
 										}
 										HuntTarget.CharacterAnimation[HuntTarget.WetAnim].weight = 0f;
 										HuntTarget.Subtitle.UpdateLabel(SubtitleType.Dying, 0, 1f);
-										HuntTarget.GetComponent<AudioSource>().clip = HuntTarget.MurderSuicideVictim;
-										HuntTarget.GetComponent<AudioSource>().Play();
+										SpawnTimeRespectingAudioSource(HuntTarget.MurderSuicideVictim);
 										Police.CorpseList[Police.Corpses] = HuntTarget.Ragdoll;
 										Police.Corpses++;
 										GameObjectUtils.SetLayerRecursively(HuntTarget.gameObject, 11);
@@ -11522,9 +11593,9 @@ public class StudentScript : MonoBehaviour
 									{
 										if (CharacterAnimation[MurderSuicideAnim].time >= 3.3f)
 										{
-											GameObject obj23 = UnityEngine.Object.Instantiate(Ragdoll.BloodPoolSpawner.BloodPool, base.transform.position + base.transform.up * 0.021f + base.transform.forward, Quaternion.identity);
-											obj23.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
-											obj23.transform.parent = Police.BloodParent;
+											GameObject obj26 = UnityEngine.Object.Instantiate(Ragdoll.BloodPoolSpawner.BloodPool, base.transform.position + base.transform.up * 0.021f + base.transform.forward, Quaternion.identity);
+											obj26.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
+											obj26.transform.parent = Police.BloodParent;
 											MyWeapon.Victims[HuntTarget.StudentID] = true;
 											MyWeapon.Blood.enabled = true;
 											MyWeapon.StainWithBlood();
@@ -12069,12 +12140,12 @@ public class StudentScript : MonoBehaviour
 						scheduleBlock3.destination = "Practice";
 						scheduleBlock3.action = "Practice";
 					}
-					ScheduleBlock obj24 = ScheduleBlocks[4];
-					obj24.destination = "LunchSpot";
-					obj24.action = "Eat";
-					ScheduleBlock obj25 = ScheduleBlocks[7];
-					obj25.destination = "Hangout";
-					obj25.action = "Hangout";
+					ScheduleBlock obj27 = ScheduleBlocks[4];
+					obj27.destination = "LunchSpot";
+					obj27.action = "Eat";
+					ScheduleBlock obj28 = ScheduleBlocks[7];
+					obj28.destination = "Hangout";
+					obj28.action = "Hangout";
 					Debug.Log("ScheduleBlocks[2].destination is: " + ScheduleBlocks[2].destination);
 					RestoreOriginalScheduleBlocks();
 					RestoreOriginalActions();
@@ -13119,7 +13190,14 @@ public class StudentScript : MonoBehaviour
 								Subtitle.CustomText = "...hello...police ? ...I'm...a student at Akademi...my sister is...dead...I'm not sure what happened...please...send someone...anyone...";
 								Subtitle.UpdateLabel(SubtitleType.Custom, 3, 10f);
 							}
-							CharacterAnimation.CrossFade("f02_kneelPhone_00");
+							if (Male)
+							{
+								CharacterAnimation.CrossFade("kneelPhone_00");
+							}
+							else
+							{
+								CharacterAnimation.CrossFade("f02_kneelPhone_00");
+							}
 							SmartPhone.SetActive(value: true);
 						}
 						else
@@ -13169,7 +13247,14 @@ public class StudentScript : MonoBehaviour
 							Subtitle.CustomText = "(Sobbing)";
 							Subtitle.UpdateLabel(SubtitleType.Custom, 4, 10f);
 						}
-						CharacterAnimation.CrossFade("f02_friendCorpseCry_00");
+						if (Male)
+						{
+							CharacterAnimation.CrossFade("senpaiRivalCorpseCry_00");
+						}
+						else
+						{
+							CharacterAnimation.CrossFade("f02_friendCorpseCry_00");
+						}
 						SmartPhone.SetActive(value: false);
 						WitnessRivalDiePhase++;
 						if (!StudentManager.Jammed)
@@ -13319,7 +13404,6 @@ public class StudentScript : MonoBehaviour
 					}
 					if (component != null && !component.Concealed)
 					{
-						Debug.Log(Name + " can see the corpse of " + component.Student.Name);
 						VisibleCorpses.Add(component.StudentID);
 						Corpse = component;
 						if (Club == ClubType.Delinquent && Corpse.Student.Club == ClubType.Bully)
@@ -15113,33 +15197,43 @@ public class StudentScript : MonoBehaviour
 		}
 		if (!Yandere.Armed && Pushable)
 		{
-			CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-			if (!Male)
+			Debug.Log("The player is now pushing someone off of a rooftop.");
+			Prompt.Circle[0].fillAmount = 1f;
+			Prompt.Circle[2].fillAmount = 1f;
+			if (!FocusOnYandere)
 			{
-				Subtitle.UpdateLabel(SubtitleType.NoteReaction, 5, 3f);
+				CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+				if (!Male)
+				{
+					Subtitle.UpdateLabel(SubtitleType.NoteReaction, 5, 3f);
+				}
+				else
+				{
+					Subtitle.UpdateLabel(SubtitleType.NoteReactionMale, 5, 3f);
+				}
+				Prompt.Label[0].text = "     Talk";
+				Yandere.TargetStudent = this;
+				Yandere.FollowHips = true;
+				Yandere.Attacking = true;
+				Yandere.RoofPush = true;
+				Yandere.CanMove = false;
+				Yandere.EmptyHands();
+				EmptyHands();
+				Distracted = true;
+				Routine = false;
+				Pushed = true;
+				CharacterAnimation.CrossFade(PushedAnim);
+				RemoveOfferHelpPrompt();
+				Yandere.PromptBar.ClearButtons();
+				Yandere.PromptBar.Show = true;
+				Yandere.PromptBar.Label[1].text = "Death Cam";
+				Yandere.PromptBar.UpdateButtons();
 			}
 			else
 			{
-				Subtitle.UpdateLabel(SubtitleType.NoteReactionMale, 5, 3f);
+				Yandere.NotificationManager.CustomText = "Can't push someone who can see you!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
-			Prompt.Label[0].text = "     Talk";
-			Prompt.Circle[0].fillAmount = 1f;
-			Yandere.TargetStudent = this;
-			Yandere.FollowHips = true;
-			Yandere.Attacking = true;
-			Yandere.RoofPush = true;
-			Yandere.CanMove = false;
-			Yandere.EmptyHands();
-			EmptyHands();
-			Distracted = true;
-			Routine = false;
-			Pushed = true;
-			CharacterAnimation.CrossFade(PushedAnim);
-			RemoveOfferHelpPrompt();
-			Yandere.PromptBar.ClearButtons();
-			Yandere.PromptBar.Show = true;
-			Yandere.PromptBar.Label[1].text = "Death Cam";
-			Yandere.PromptBar.UpdateButtons();
 			return;
 		}
 		if (Yandere.EquippedWeapon != null && Yandere.EquippedWeapon.Broken)
@@ -15398,6 +15492,7 @@ public class StudentScript : MonoBehaviour
 
 	private void UpdatePushed()
 	{
+		base.transform.rotation = Quaternion.Slerp(base.transform.rotation, Pathfinding.target.rotation, Time.deltaTime * 10f);
 		Alarm -= Time.deltaTime * 100f * (1f / Paranoia);
 		EyeShrink = Mathf.Lerp(EyeShrink, 1f, Time.deltaTime * 10f);
 		if (CharacterAnimation[PushedAnim].time >= CharacterAnimation[PushedAnim].length)
@@ -16164,12 +16259,19 @@ public class StudentScript : MonoBehaviour
 							Subtitle.CustomText = "This can't be happening...";
 							Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 						}
+						else if (InCouple && Corpse.StudentID == PartnerID)
+						{
+							Subtitle.CustomText = "No...NO...!";
+							Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+						}
 						else if (!Corpse.Choking)
 						{
+							Debug.Log("Corpse Reaction Subtitle #1");
 							Subtitle.UpdateLabel(SubtitleType.CorpseReaction, 0, 5f);
 						}
 						else
 						{
+							Debug.Log("Corpse Reaction Subtitle #2");
 							Subtitle.UpdateLabel(SubtitleType.CorpseReaction, 1, 5f);
 						}
 					}
@@ -17091,6 +17193,10 @@ public class StudentScript : MonoBehaviour
 			{
 				if (DistanceToDestination < 0.5f)
 				{
+					if (StudentManager.Eighties && StudentID == 19)
+					{
+						StudentManager.FollowPrimaryLookSecondary.gameObject.SetActive(value: true);
+					}
 					CharacterAnimation.CrossFade(IdleAnim);
 					Pathfinding.canSearch = false;
 					Pathfinding.canMove = false;
@@ -17340,17 +17446,27 @@ public class StudentScript : MonoBehaviour
 			}
 			if (LongHair[0] != null && ((MyBento.gameObject.activeInHierarchy && MyBento.transform.parent != null) || OccultBook.activeInHierarchy))
 			{
-				float angle = 180f;
 				if (StudentID == 40)
 				{
-					angle = 195f;
+					if (Head.transform.localEulerAngles.x < 180f && Head.transform.localEulerAngles.x > 0f && DistanceToPlayer < 20f)
+					{
+						LongHair[0].eulerAngles = new Vector3(LongHair[0].eulerAngles.x + Head.transform.localEulerAngles.x * 2f, LongHair[0].eulerAngles.y, LongHair[0].eulerAngles.z);
+						foreach (Transform item in LongHair[0])
+						{
+							item.eulerAngles = new Vector3(item.eulerAngles.x + Head.transform.localEulerAngles.x * 2f, item.eulerAngles.y, item.eulerAngles.z);
+						}
+					}
 				}
-				LongHair[0].eulerAngles = new Vector3(Spine.eulerAngles.x, Spine.eulerAngles.y, Spine.eulerAngles.z);
-				LongHair[0].RotateAround(LongHair[0].position, base.transform.right, angle);
-				if (LongHair[1] != null)
+				else
 				{
-					LongHair[1].eulerAngles = new Vector3(Spine.eulerAngles.x, Spine.eulerAngles.y, Spine.eulerAngles.z);
-					LongHair[1].RotateAround(LongHair[1].position, base.transform.right, angle);
+					float angle = 180f;
+					LongHair[0].eulerAngles = new Vector3(Spine.eulerAngles.x, Spine.eulerAngles.y, Spine.eulerAngles.z);
+					LongHair[0].RotateAround(LongHair[0].position, base.transform.right, angle);
+					if (LongHair[1] != null)
+					{
+						LongHair[1].eulerAngles = new Vector3(Spine.eulerAngles.x, Spine.eulerAngles.y, Spine.eulerAngles.z);
+						LongHair[1].RotateAround(LongHair[1].position, base.transform.right, angle);
+					}
 				}
 			}
 		}
@@ -18428,6 +18544,17 @@ public class StudentScript : MonoBehaviour
 				Persona = PersonaType.Lovestruck;
 			}
 		}
+		if (Persona == PersonaType.Lovestruck && StudentManager.Students[LovestruckTarget].SenpaiWitnessingRivalDie)
+		{
+			Debug.Log(Name + " can't run and tell Senpai, because Senpai is busy mourning a rival's corpse.");
+			Persona = PersonaType.Loner;
+		}
+		if (InCouple && Corpse.Student.StudentID == PartnerID)
+		{
+			Debug.Log(Name + " is in a couple and just found the corpse of their partner.");
+			Persona = PersonaType.Lovestruck;
+			LovestruckTarget = PartnerID;
+		}
 		if (Persona == PersonaType.Loner || Persona == PersonaType.Spiteful)
 		{
 			Debug.Log(Name + " is looking in the Loner/Spiteful section of PersonaReaction() to decide what to do next.");
@@ -18799,7 +18926,7 @@ public class StudentScript : MonoBehaviour
 				Debug.Log(Name + " witnessed the corpse of: " + Corpse.Student.Name);
 			}
 			bool flag = false;
-			if (!WitnessedMurder && Corpse != null && ((StudentID == 1 && Corpse.Student.Rival) || (!StudentManager.Eighties && StudentID == 11 && Corpse.StudentID == StudentManager.ObstacleID) || (!StudentManager.Eighties && StudentID > 1 && StudentID < 4 && Corpse.StudentID > 1 && Corpse.StudentID < 4)))
+			if (!WitnessedMurder && Corpse != null && ((StudentID == 1 && Corpse.Student.Rival) || Corpse.Student == FollowTarget || (InCouple && Corpse.Student.StudentID == PartnerID) || (!StudentManager.Eighties && StudentID == 11 && Corpse.StudentID == StudentManager.ObstacleID) || (!StudentManager.Eighties && StudentID > 1 && StudentID < 4 && Corpse.StudentID > 1 && Corpse.StudentID < 4)))
 			{
 				flag = true;
 			}
@@ -19528,20 +19655,31 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.destination == "Guard")
 			{
+				Debug.Log("A student has been instructed to Guard!");
 				if (StudentID == 20 || Rival)
 				{
+					Debug.Log("The character who needs to Guard someone is a rival!");
 					Destinations[ID] = StudentManager.Students[1].transform;
 				}
-				else if (StudentManager.RivalGuardSpots[StudentID] != null)
+				else if (StudentManager.Students[StudentManager.RivalID] != null && StudentManager.RivalGuardSpots[StudentID] != null)
 				{
+					Debug.Log("A rival is present at school, and a ''RivalGuardSpot'' has been defined for this character!");
+					if (StudentManager.CustomMode)
+					{
+						StudentManager.RivalGuardSpots[0].parent = StudentManager.Students[StudentManager.RivalID].transform;
+						StudentManager.RivalGuardSpots[0].transform.localPosition = new Vector3(0f, 0f, 0f);
+						StudentManager.RivalGuardSpots[0].transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+					}
 					Destinations[ID] = StudentManager.RivalGuardSpots[StudentID].transform;
 				}
 				else if (StudentManager.Students[StudentManager.RivalID] != null)
 				{
+					Debug.Log("A ''RivalGuardSpot'' has NOT been defined for this character.");
 					Destinations[ID] = StudentManager.Students[StudentManager.RivalID].transform;
 				}
 				else
 				{
+					Debug.Log("...but the rival is gone! This student will just go to their seat instead.");
 					Destinations[ID] = Seat;
 				}
 			}
@@ -20153,6 +20291,10 @@ public class StudentScript : MonoBehaviour
 
 	public void BecomeRagdoll()
 	{
+		if (NewFriend)
+		{
+			Police.EndOfDay.NewFriends--;
+		}
 		if (HeadacheMedicinePrompt != null)
 		{
 			HeadacheMedicinePrompt.GetComponent<GenericEightiesTaskScript>().Disable();
@@ -20805,8 +20947,16 @@ public class StudentScript : MonoBehaviour
 				}
 				if (Club == ClubType.Bully)
 				{
-					Cosmetic.RightWristband.SetActive(value: true);
-					Cosmetic.LeftWristband.SetActive(value: true);
+					if (Cosmetic.FemaleUniformID < 2 || Cosmetic.FemaleUniformID == 3)
+					{
+						Cosmetic.RightWristband.SetActive(value: true);
+						Cosmetic.LeftWristband.SetActive(value: true);
+					}
+					else
+					{
+						Cosmetic.RightWristband.SetActive(value: false);
+						Cosmetic.LeftWristband.SetActive(value: false);
+					}
 					Cosmetic.Bookbag.SetActive(value: true);
 					Cosmetic.Hoodie.SetActive(value: true);
 				}
@@ -20913,6 +21063,10 @@ public class StudentScript : MonoBehaviour
 			{
 				ApronAttacher.newRenderer.gameObject.SetActive(value: false);
 			}
+		}
+		if (Slave)
+		{
+			Debug.Log("Huh? A mind-broken slave got to this code?");
 		}
 		if (Club == ClubType.LightMusic)
 		{
@@ -22283,7 +22437,7 @@ public class StudentScript : MonoBehaviour
 	{
 		ChameleonBonus = 0f;
 		Chameleon = false;
-		if (Yandere != null && ((Yandere.Persona == YanderePersonaType.Scholarly && Persona == PersonaType.TeachersPet) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Science) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Art) || (Yandere.Persona == YanderePersonaType.Chill && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Photography) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Gaming) || (Yandere.Persona == YanderePersonaType.Confident && Persona == PersonaType.Heroic) || (Yandere.Persona == YanderePersonaType.Confident && Club == ClubType.MartialArts) || (Yandere.Persona == YanderePersonaType.Elegant && Club == ClubType.Drama) || (Yandere.Persona == YanderePersonaType.Girly && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Girly && Club == ClubType.Cooking) || (Yandere.Persona == YanderePersonaType.Graceful && Club == ClubType.Gardening) || (Yandere.Persona == YanderePersonaType.Haughty && Club == ClubType.Bully) || (Yandere.Persona == YanderePersonaType.Lively && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.LightMusic) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.Sports) || (Yandere.Persona == YanderePersonaType.Shy && Persona == PersonaType.Loner) || (Yandere.Persona == YanderePersonaType.Shy && Club == ClubType.Occult) || (Yandere.Persona == YanderePersonaType.Tough && Persona == PersonaType.Spiteful) || (Yandere.Persona == YanderePersonaType.Tough && Club == ClubType.Delinquent)))
+		if (Yandere != null && ((Yandere.Persona == YanderePersonaType.Scholarly && Persona == PersonaType.TeachersPet) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Science) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Art) || (Yandere.Persona == YanderePersonaType.Chill && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Photography) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Gaming) || (Yandere.Persona == YanderePersonaType.Confident && Persona == PersonaType.Heroic) || (Yandere.Persona == YanderePersonaType.Confident && Club == ClubType.MartialArts) || (Yandere.Persona == YanderePersonaType.Elegant && Club == ClubType.Drama) || (Yandere.Persona == YanderePersonaType.Girly && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Girly && Club == ClubType.Cooking) || (Yandere.Persona == YanderePersonaType.Graceful && Club == ClubType.Gardening) || (Yandere.Persona == YanderePersonaType.Haughty && Club == ClubType.Bully) || (Yandere.Persona == YanderePersonaType.Lively && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.LightMusic) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.Sports) || (Yandere.Persona == YanderePersonaType.Shy && Persona == PersonaType.Loner) || (Yandere.Persona == YanderePersonaType.Shy && Club == ClubType.Occult) || (Yandere.Persona == YanderePersonaType.Shy && Shy) || (Yandere.Persona == YanderePersonaType.Tough && Persona == PersonaType.Spiteful) || (Yandere.Persona == YanderePersonaType.Tough && Club == ClubType.Delinquent) || Yandere.AnimSetID == AnimSetID))
 		{
 			ChameleonBonus = VisionDistance * 0.5f;
 			Chameleon = true;
@@ -22438,6 +22592,11 @@ public class StudentScript : MonoBehaviour
 				GetSleuthTarget();
 				return;
 			}
+			if (StudentManager.Students[SleuthID].Slave)
+			{
+				GetSleuthTarget();
+				return;
+			}
 			SleuthTarget = StudentManager.Students[SleuthID].transform;
 			Pathfinding.target = SleuthTarget;
 			CurrentDestination = SleuthTarget;
@@ -22467,7 +22626,6 @@ public class StudentScript : MonoBehaviour
 		Attempts++;
 		if (Attempts >= 100)
 		{
-			Debug.Log(Name + " is now giving up on attempting to select a person to give food to.");
 			Routine = true;
 			Phase++;
 			return;
@@ -22477,24 +22635,72 @@ public class StudentScript : MonoBehaviour
 			SleuthID = 1;
 		}
 		SleuthID++;
-		if (StudentID == 12)
-		{
-			Debug.Log(Name + " is now attempting to select a person to give food to. Current SleuthID is: " + SleuthID);
-		}
 		if (SleuthID < 90)
 		{
 			if (SleuthID == StudentID)
 			{
 				GetFoodTarget();
-				return;
 			}
-			if (StudentManager.Students[SleuthID] == null)
+			else if (StudentManager.Students[SleuthID] == null)
 			{
 				GetFoodTarget();
-				return;
 			}
-			_ = (bool)StudentManager.Students[SleuthID].FollowTarget;
-			GetFoodTarget();
+			else if (StudentManager.Students[SleuthID].FollowTarget != null)
+			{
+				GetFoodTarget();
+			}
+			else if (!StudentManager.Students[SleuthID].gameObject.activeInHierarchy)
+			{
+				GetFoodTarget();
+			}
+			else if (StudentManager.Students[SleuthID].CurrentAction == StudentActionType.SitAndEatBento || StudentManager.Students[SleuthID].CurrentAction == StudentActionType.AtLocker || StudentManager.Students[SleuthID].CurrentAction == StudentActionType.Admire || StudentManager.Students[SleuthID].CurrentDestination == StudentManager.Exit || StudentManager.Students[SleuthID].Club == ClubType.Cooking || StudentManager.Students[SleuthID].Club == ClubType.Delinquent || StudentManager.Students[SleuthID].Club == ClubType.Sports || StudentManager.Students[SleuthID].TargetedForDistraction || StudentManager.Students[SleuthID].ClubActivityPhase >= 16 || StudentManager.Students[SleuthID].InEvent || !StudentManager.Students[SleuthID].Routine || StudentManager.Students[SleuthID].Posing || StudentManager.Students[SleuthID].Slave || StudentManager.Students[SleuthID].Wet || StudentManager.Students[SleuthID].Sedated || StudentManager.Students[SleuthID].DoNotFeed || StudentManager.Students[SleuthID].AlreadyFed || (StudentManager.Students[SleuthID].Club == ClubType.LightMusic && StudentManager.PracticeMusic.isPlaying))
+			{
+				_ = StudentManager.Students[SleuthID].CurrentAction;
+				_ = 10;
+				_ = StudentManager.Students[SleuthID].CurrentAction;
+				_ = StudentManager.Students[SleuthID].CurrentDestination == StudentManager.Exit;
+				_ = StudentManager.Students[SleuthID].Club;
+				_ = 1;
+				_ = StudentManager.Students[SleuthID].Club;
+				_ = 14;
+				_ = StudentManager.Students[SleuthID].Club;
+				_ = 9;
+				_ = StudentManager.Students[SleuthID].TargetedForDistraction;
+				_ = StudentManager.Students[SleuthID].ClubActivityPhase;
+				_ = 16;
+				_ = StudentManager.Students[SleuthID].InEvent;
+				_ = StudentManager.Students[SleuthID].Routine;
+				_ = StudentManager.Students[SleuthID].Posing;
+				_ = StudentManager.Students[SleuthID].Slave;
+				_ = StudentManager.Students[SleuthID].Wet;
+				_ = StudentManager.Students[SleuthID].Sedated;
+				_ = StudentManager.Students[SleuthID].DoNotFeed;
+				_ = StudentManager.Students[SleuthID].AlreadyFed;
+				if (StudentManager.Students[SleuthID].Club == ClubType.LightMusic)
+				{
+					_ = StudentManager.PracticeMusic.isPlaying;
+				}
+				GetFoodTarget();
+			}
+			else if (StudentManager.LockerRoomArea.bounds.Contains(StudentManager.Students[SleuthID].transform.position) || StudentManager.MaleLockerRoomArea.bounds.Contains(StudentManager.Students[SleuthID].transform.position) || StudentManager.EastBathroomArea.bounds.Contains(StudentManager.Students[SleuthID].transform.position) || StudentManager.WestBathroomArea.bounds.Contains(StudentManager.Students[SleuthID].transform.position) || StudentManager.Students[SleuthID].transform.position.z < -100f)
+			{
+				GetFoodTarget();
+			}
+			else
+			{
+				CharacterAnimation.CrossFade(WalkAnim);
+				DistractionTarget = StudentManager.Students[SleuthID];
+				DistractionTarget.TargetedForDistraction = true;
+				SleuthTarget = StudentManager.Students[SleuthID].transform;
+				Pathfinding.target = SleuthTarget;
+				CurrentDestination = SleuthTarget;
+				TargetDistance = 0.75f;
+				DistractTimer = 8f;
+				Distracting = true;
+				CanTalk = false;
+				Routine = false;
+				Attempts = 0;
+			}
 		}
 		else
 		{
@@ -22816,10 +23022,16 @@ public class StudentScript : MonoBehaviour
 		else
 		{
 			CharacterAnimation[ConfusedSitAnim].speed *= -1f;
-			CharacterAnimation["f02_casualWave_04"].layer = 9;
+			CharacterAnimation["f02_casualWave_04"].layer = 10;
 			CharacterAnimation["f02_casualWave_04"].weight = 0f;
-			CharacterAnimation["friendWave_00"].layer = 8;
+			CharacterAnimation["friendWave_00"].layer = 9;
 			CharacterAnimation["friendWave_00"].weight = 0f;
+			if (!StudentManager.Eighties && StudentID == 37)
+			{
+				CharacterAnimation["lockEyebrows_00"].layer = 8;
+				CharacterAnimation.Play("lockEyebrows_00");
+				CharacterAnimation["lockEyebrows_00"].weight = 1f;
+			}
 			CharacterAnimation[ToughFaceAnim].layer = 7;
 			CharacterAnimation.Play(ToughFaceAnim);
 			CharacterAnimation[ToughFaceAnim].weight = 0f;
@@ -22890,20 +23102,32 @@ public class StudentScript : MonoBehaviour
 			CharacterAnimation.Play("f02_carryDisposeB_00");
 			CharacterAnimation["f02_carryDisposeB_00"].time = CharacterAnimation["f02_carryDisposeB_00"].length;
 		}
-		if (Ragdoll.Concealed && Ragdoll.InsideIncinerator)
+		if (!Ragdoll.enabled)
 		{
-			Debug.Log("This character was wrapped in a garbage bag and inside of an incinerator at the point in time when UpdateAnimLayers() was called.");
-			if (Male)
+			return;
+		}
+		Debug.Log("This character was dead at the point in time when UpdateAnimLayers() was called.");
+		if (Ragdoll.Concealed)
+		{
+			if (Ragdoll.InsideIncinerator)
 			{
-				CharacterAnimation.Play("carryDisposeB_00");
-				CharacterAnimation["carryDisposeB_00"].time = CharacterAnimation["carryDisposeB_00"].length;
+				Debug.Log("This character was wrapped in a garbage bag and inside of an incinerator at the point in time when UpdateAnimLayers() was called.");
+				if (Male)
+				{
+					CharacterAnimation.Play("carryDisposeB_00");
+					CharacterAnimation["carryDisposeB_00"].time = CharacterAnimation["carryDisposeB_00"].length;
+				}
+				else
+				{
+					CharacterAnimation.Play("f02_carryDisposeB_00");
+					CharacterAnimation["f02_carryDisposeB_00"].time = CharacterAnimation["f02_carryDisposeB_00"].length;
+				}
+				base.gameObject.SetActive(value: false);
 			}
-			else
-			{
-				CharacterAnimation.Play("f02_carryDisposeB_00");
-				CharacterAnimation["f02_carryDisposeB_00"].time = CharacterAnimation["f02_carryDisposeB_00"].length;
-			}
-			base.gameObject.SetActive(value: false);
+		}
+		else
+		{
+			Ragdoll.EnableRigidbodies();
 		}
 	}
 
@@ -23973,6 +24197,7 @@ public class StudentScript : MonoBehaviour
 		DelinquentSpeechLines.Stop();
 		PinkSeifuku.SetActive(value: false);
 		Earpiece.SetActive(value: false);
+		PickRandomGossipAnim();
 		ParticleSystem[] liquidEmitters = LiquidEmitters;
 		for (int i = 0; i < liquidEmitters.Length; i++)
 		{

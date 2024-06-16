@@ -129,6 +129,8 @@ public class ClubManagerScript : MonoBehaviour
 
 	public bool ClubEffect;
 
+	public bool Eighties;
+
 	public AudioClip OccultAmbience;
 
 	public int ActivitiesAttended;
@@ -196,6 +198,7 @@ public class ClubManagerScript : MonoBehaviour
 	private void Start()
 	{
 		NoBag = ChallengeGlobals.NoBag;
+		Eighties = GameGlobals.Eighties;
 		if (!NoBag)
 		{
 			NoBag = DifficultyGlobals.NoCase;
@@ -616,7 +619,7 @@ public class ClubManagerScript : MonoBehaviour
 			Yandere.Talking = false;
 			Yandere.CanMove = false;
 			Yandere.ClubActivity = true;
-			if (!Yandere.ClubAttire)
+			if (!Eighties && !Yandere.ClubAttire)
 			{
 				Yandere.ChangeClubwear();
 			}

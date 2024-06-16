@@ -1781,6 +1781,8 @@ public class YandereScript : MonoBehaviour
 
 	public string[] Walks;
 
+	public int AnimSetID;
+
 	public bool Home;
 
 	public bool DefaultHairColor;
@@ -2830,6 +2832,10 @@ public class YandereScript : MonoBehaviour
 							if (Club == ClubType.Newspaper)
 							{
 								ClubAccessories[(int)Club].transform.localScale = new Vector3(1f, 1f, 0.9f);
+							}
+							if (Vector3.Distance(base.transform.position, StudentManager.Journalist.transform.position) < 1f)
+							{
+								MoveAwayFromTarget(StudentManager.Journalist.transform.position);
 							}
 						}
 					}
@@ -7393,6 +7399,12 @@ public class YandereScript : MonoBehaviour
 		MyController.Move(vector * (Time.deltaTime * 10f));
 	}
 
+	public void MoveAwayFromTarget(Vector3 target)
+	{
+		Vector3 vector = target - base.transform.position;
+		MyController.Move(vector * -1f);
+	}
+
 	public void StopAiming()
 	{
 		UpdateAccessory();
@@ -10071,7 +10083,6 @@ public class YandereScript : MonoBehaviour
 
 	public void UpdateEyeType()
 	{
-		Debug.Log("Yandere.UpdateEyeType has been called.");
 		SkinnedMeshRenderer myRenderer = null;
 		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday && PajamaRenderer == null)
 		{
@@ -10615,6 +10626,7 @@ public class YandereScript : MonoBehaviour
 		}
 		IdleAnim = Idles[StudentManager.JSON.Misc.AnimSet[0]];
 		WalkAnim = Walks[StudentManager.JSON.Misc.AnimSet[0]];
+		AnimSetID = StudentManager.JSON.Misc.AnimSet[0];
 		if (StudentManager.JSON.Misc.AnimSet[0] != 1)
 		{
 			RunAnim = "f02_newSprint_00";

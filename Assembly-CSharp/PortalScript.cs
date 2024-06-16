@@ -194,24 +194,32 @@ public class PortalScript : MonoBehaviour
 			}
 			if ((!BypassWarning && Police.Corpses - Police.HiddenCorpses > 0) || (!BypassWarning && num > 0) || (!BypassWarning && Police.BloodParent.childCount > 0) || (!BypassWarning && Police.BloodyClothing > 0) || (!BypassWarning && num2 > 0))
 			{
-				string text = "";
-				if (WashingMachine.Washing)
+				if (StudentManager.MurderTakingPlace)
 				{
-					text = " (The washing machine is still running.)";
+					Yandere.NotificationManager.CustomText = "Can't leave while a murder is taking place!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				}
-				CorpsesLabel.text = "Corpses: " + (Police.Corpses - Police.HiddenCorpses);
-				BodyPartsLabel.text = "Body Parts: " + num;
-				BloodStainsLabel.text = "Blood Stains: " + Police.BloodParent.childCount;
-				BloodyClothingLabel.text = "Bloody Clothing: " + Police.BloodyClothing + text;
-				BloodyWeaponsLabel.text = "Bloody Weapons: " + num2;
-				if (Clock.HourTime > 13.5f)
+				else
 				{
-					BottomLabel.text = "If you try to leave school right now, the police will be called.";
-					AttendClassLabel.text = "Leave School";
+					string text = "";
+					if (WashingMachine.Washing)
+					{
+						text = " (The washing machine is still running.)";
+					}
+					CorpsesLabel.text = "Corpses: " + (Police.Corpses - Police.HiddenCorpses);
+					BodyPartsLabel.text = "Body Parts: " + num;
+					BloodStainsLabel.text = "Blood Stains: " + Police.BloodParent.childCount;
+					BloodyClothingLabel.text = "Bloody Clothing: " + Police.BloodyClothing + text;
+					BloodyWeaponsLabel.text = "Bloody Weapons: " + num2;
+					if (Clock.HourTime > 13.5f)
+					{
+						BottomLabel.text = "If you try to leave school right now, the police will be called.";
+						AttendClassLabel.text = "Leave School";
+					}
+					Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+					EvidenceWarning.SetActive(value: true);
+					Yandere.CanMove = false;
 				}
-				Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
-				EvidenceWarning.SetActive(value: true);
-				Yandere.CanMove = false;
 			}
 			else
 			{
@@ -272,6 +280,12 @@ public class PortalScript : MonoBehaviour
 					Yandere.NotificationManager.CustomText = "Put the stolen phone on the owner's desk!";
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					Yandere.NotificationManager.CustomText = "You are carrying a stolen phone!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					flag2 = true;
+				}
+				else if (StudentManager.MurderTakingPlace)
+				{
+					Yandere.NotificationManager.CustomText = "Can't leave while a murder is taking place!";
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					flag2 = true;
 				}

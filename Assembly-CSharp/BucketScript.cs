@@ -384,7 +384,10 @@ public class BucketScript : MonoBehaviour
 			SpillTimer = 0f;
 			Puddles = 0;
 			Timer = 0f;
-			Spill();
+			if (CheckForGround())
+			{
+				Spill();
+			}
 		}
 		if (UpdateAppearance)
 		{
@@ -414,9 +417,11 @@ public class BucketScript : MonoBehaviour
 				float num = 5f;
 				if (EmptySlowly)
 				{
+					Debug.Log("Spelling now.");
 					SpillTimer += Time.deltaTime;
-					if (SpillTimer > 0.5f || Vector3.Distance(Yandere.transform.position, LastSpillPosition) > 0.75f)
+					if (CheckForGround() && (SpillTimer > 0.5f || Vector3.Distance(Yandere.transform.position, LastSpillPosition) > 0.75f))
 					{
+						Debug.Log("Making one puddle!");
 						SpillTimer = 0f;
 						Puddles++;
 						Spill();
@@ -711,5 +716,17 @@ public class BucketScript : MonoBehaviour
 		Yandere.SuspiciousActionTimer = 1f;
 		LastSpillPosition = Yandere.transform.position;
 		NewestPuddle = gameObject2;
+	}
+
+	public bool CheckForGround()
+	{
+		Vector3 origin = Yandere.transform.position + Yandere.transform.forward + new Vector3(0f, 1f, 0f);
+		Vector3 down = Vector3.down;
+		float maxDistance = 2f;
+		if (Physics.Raycast(origin, down, out var hitInfo, maxDistance) && hitInfo.collider.gameObject.layer == 8)
+		{
+			return true;
+		}
+		return false;
 	}
 }

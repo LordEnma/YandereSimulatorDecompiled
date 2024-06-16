@@ -173,8 +173,16 @@ public class LowRepGameOverScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 2f || Input.GetButtonDown("A"))
 			{
-				Senpai.CharacterAnimation["refuse_01"].speed = 0.5f;
-				Senpai.CharacterAnimation.Play("refuse_01");
+				if (Senpai.Male)
+				{
+					Senpai.CharacterAnimation["refuse_01"].speed = 0.5f;
+					Senpai.CharacterAnimation.CrossFade("refuse_01");
+				}
+				else
+				{
+					Senpai.CharacterAnimation["f02_crossArmsShakeHead_00"].speed = 0.5f;
+					Senpai.CharacterAnimation.CrossFade("f02_crossArmsShakeHead_00");
+				}
 				Timer = 0f;
 				Phase++;
 			}

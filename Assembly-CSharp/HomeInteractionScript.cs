@@ -10,6 +10,8 @@ public class HomeInteractionScript : MonoBehaviour
 
 	public UILabel Label;
 
+	public Transform[] Door;
+
 	public float MinDistance;
 
 	public float Timer;
@@ -30,7 +32,7 @@ public class HomeInteractionScript : MonoBehaviour
 		}
 		if (Label.alpha == 1f && Yandere.CanMove && Input.GetButtonDown(InputNames.Xbox_A))
 		{
-			if (ID == 1)
+			if (ID == 1 || ID == 3)
 			{
 				Move = true;
 			}
@@ -44,16 +46,28 @@ public class HomeInteractionScript : MonoBehaviour
 				Yandere.CanMove = false;
 			}
 		}
-		if (Move)
+		if (!Move)
+		{
+			return;
+		}
+		if (ID == 1)
 		{
 			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(-3.163333f, -2.893059f, -1.386f), Time.deltaTime * 5f);
-			Timer += Time.deltaTime;
-			if (Timer > 1f)
+		}
+		else
+		{
+			Door[0].localPosition = Vector3.Lerp(Door[0].localPosition, new Vector3(-0.059f, -0.09082f, 0.00141f), Time.deltaTime * 5f);
+			Door[1].localPosition = Vector3.Lerp(Door[1].localPosition, new Vector3(-0.0345f, -0.09082f, 0.00141f), Time.deltaTime * 5f);
+		}
+		Timer += Time.deltaTime;
+		if (Timer > 1f)
+		{
+			if (ObjectToActivate != null)
 			{
 				ObjectToActivate.SetActive(value: true);
-				Label.alpha = 0f;
-				base.enabled = false;
 			}
+			Label.alpha = 0f;
+			base.enabled = false;
 		}
 	}
 }

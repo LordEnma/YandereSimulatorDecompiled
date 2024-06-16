@@ -513,10 +513,6 @@ public class HomeInternetScript : MonoBehaviour
 			{
 				return;
 			}
-			if (Input.GetKeyDown("m"))
-			{
-				PlayerGlobals.Money = 100f;
-			}
 			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				if (Height == 0 || Height > 1)

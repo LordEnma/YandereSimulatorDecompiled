@@ -136,24 +136,28 @@ public class ModernRivalEventScript : MonoBehaviour
 							num++;
 						}
 					}
-					if (num == Characters)
+					if (num != Characters)
 					{
-						Debug.Log("A character's event has begun because they have set down their bookbag, and all characters involved are ready.");
-						if (Char[0].Slave || Char[0].Hunted)
-						{
-							Debug.Log("Never mind. Cancel event. Character is a mind-broken slave or is being targeted by one.");
-							base.gameObject.SetActive(value: false);
-							base.enabled = false;
-						}
-						else
-						{
-							Char[0].InEvent = true;
-							Char[0].Private = Private;
-							Char[0].Distracted = true;
-							Phase++;
-							TakeInstructions();
-						}
+						return;
 					}
+					Debug.Log("A character's event has begun because they have set down their bookbag, and all characters involved are ready.");
+					if (Char[0].Slave || Char[0].Hunted)
+					{
+						Debug.Log("Never mind. Cancel event. Character is a mind-broken slave or is being targeted by one.");
+						base.gameObject.SetActive(value: false);
+						base.enabled = false;
+						return;
+					}
+					Char[0].InEvent = true;
+					Char[0].Private = Private;
+					Char[0].Distracted = true;
+					StudentScript[] @char = Char;
+					for (int j = 0; j < @char.Length; j++)
+					{
+						@char[j].InEvent = true;
+					}
+					Phase++;
+					TakeInstructions();
 				}
 			}
 			else if (StartCriteria == StartCriteriaType.Time && Clock.HourTime > StartTime)
@@ -165,12 +169,12 @@ public class ModernRivalEventScript : MonoBehaviour
 				else if (!Char[0].InEvent && Char[0].Routine)
 				{
 					Debug.Log("A character's event has begun because the clock has advanced to a specific time of day.");
-					for (int j = 0; j < Char.Length; j++)
+					for (int k = 0; k < Char.Length; k++)
 					{
-						Char[j].EmptyHands();
-						Char[j].InEvent = true;
-						Char[j].Private = Private;
-						Char[j].Distracted = true;
+						Char[k].EmptyHands();
+						Char[k].InEvent = true;
+						Char[k].Private = Private;
+						Char[k].Distracted = true;
 					}
 					Phase++;
 					TakeInstructions();
@@ -206,22 +210,22 @@ public class ModernRivalEventScript : MonoBehaviour
 		else if (NextCriteria == NextCriteriaType.DestinationReached)
 		{
 			int num2 = 0;
-			for (int k = 0; k < Char.Length; k++)
+			for (int l = 0; l < Char.Length; l++)
 			{
-				if (Char[k] != null)
+				if (Char[l] != null)
 				{
-					if (Char[k].DistanceToDestination < 0.5f)
+					if (Char[l].DistanceToDestination < 0.5f)
 					{
-						PlayDesignatedAnimation(k);
+						PlayDesignatedAnimation(l);
 						num2++;
 					}
 					else if (Instructions[Phase].Rush)
 					{
-						Char[k].CharacterAnimation.CrossFade(Char[k].SprintAnim);
+						Char[l].CharacterAnimation.CrossFade(Char[l].SprintAnim);
 					}
 					else
 					{
-						Char[k].CharacterAnimation.CrossFade(Char[k].WalkAnim);
+						Char[l].CharacterAnimation.CrossFade(Char[l].WalkAnim);
 					}
 				}
 			}
@@ -232,9 +236,9 @@ public class ModernRivalEventScript : MonoBehaviour
 			}
 		}
 		UpdateSubtitle();
-		for (int l = 0; l < Char.Length; l++)
+		for (int m = 0; m < Char.Length; m++)
 		{
-			if (Char[l] != null && (Char[l].Alarmed || Char[l].Splashed || Char[l].Dying || Char[l].GoAway))
+			if (Char[m] != null && (Char[m].Alarmed || Char[m].Splashed || Char[m].Dying || Char[m].GoAway))
 			{
 				Debug.Log("The event ended because a character was alarmed or splashed or stink bombed or killed.");
 				EndEvent();

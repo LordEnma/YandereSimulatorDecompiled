@@ -10,8 +10,6 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public SelectiveGrayscale Grayscale;
 
-	public TitleScreenOsanaScript Osana;
-
 	public TitleDemoChecklistScript TitleDemoChecklist;
 
 	public TitleSaveFilesScript TitleSaveFiles;
@@ -135,6 +133,8 @@ public class NewTitleScreenScript : MonoBehaviour
 	public bool Fun;
 
 	public int Zs;
+
+	public GameObject[] RivalEliminations;
 
 	public AudioClip MakeSelection;
 
@@ -835,8 +835,11 @@ public class NewTitleScreenScript : MonoBehaviour
 		CurrentJukebox = EightiesJukebox;
 		EightiesJukebox.volume = 0.5f;
 		Jukebox.volume = 0f;
+		if (DateGlobals.Week > 0 && DateGlobals.Week < RivalEliminations.Length)
+		{
+			RivalEliminations[DateGlobals.Week].SetActive(value: false);
+		}
 		EightiesLogo.gameObject.SetActive(value: true);
-		Osana.gameObject.SetActive(value: false);
 		NormalLogo.SetActive(value: false);
 		HeartPanel.SetActive(value: true);
 		DemoText.SetActive(value: false);
@@ -872,8 +875,11 @@ public class NewTitleScreenScript : MonoBehaviour
 		EightiesJukebox.volume = 0f;
 		Jukebox.volume = 0.5f;
 		MissionModeLabel.alpha = 1f;
+		if (DateGlobals.Week > 0 && DateGlobals.Week < RivalEliminations.Length)
+		{
+			RivalEliminations[DateGlobals.Week].SetActive(value: true);
+		}
 		EightiesLogo.gameObject.SetActive(value: false);
-		Osana.gameObject.SetActive(value: true);
 		HeartPanel.SetActive(value: false);
 		NormalLogo.SetActive(value: true);
 		DemoText.SetActive(value: true);

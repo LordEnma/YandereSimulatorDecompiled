@@ -19,6 +19,8 @@ public class AttackManagerScript : MonoBehaviour
 
 	public bool StainBluntWeapons;
 
+	public bool AlreadyDidSlowMo;
+
 	public bool BreakWeapon;
 
 	public bool PingPong;
@@ -223,7 +225,7 @@ public class AttackManagerScript : MonoBehaviour
 		WeaponScript equippedWeapon = Yandere.EquippedWeapon;
 		SanityType sanityType = Yandere.SanityType;
 		AttackTimer += Time.deltaTime;
-		if (Yandere.TargetStudent.StudentID == Yandere.StudentManager.RivalID && !Yandere.CanTranq && !Yandere.StudentManager.DisableRivalDeathSloMo && !Yandere.Noticed)
+		if (Yandere.TargetStudent.StudentID == Yandere.StudentManager.RivalID && !Yandere.CanTranq && !Yandere.StudentManager.DisableRivalDeathSloMo && !Yandere.Noticed && !AlreadyDidSlowMo)
 		{
 			if (AttackTimer < 1.5f)
 			{
@@ -232,6 +234,10 @@ public class AttackManagerScript : MonoBehaviour
 			else
 			{
 				Time.timeScale = Mathf.MoveTowards(Time.timeScale, 1f, Time.unscaledDeltaTime * 2f);
+				if (Time.timeScale == 1f)
+				{
+					AlreadyDidSlowMo = true;
+				}
 			}
 			equippedWeapon.MyAudio.pitch = Time.timeScale;
 		}

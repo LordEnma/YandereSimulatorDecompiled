@@ -1278,7 +1278,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 14)
 		{
-			if (!StudentGlobals.GetStudentDying(StudentManager.RivalID) && !StudentGlobals.GetStudentDead(StudentManager.RivalID) && !StudentGlobals.GetStudentArrested(StudentManager.RivalID))
+			if (StudentManager.Students[StudentManager.RivalID] != null && StudentManager.Students[StudentManager.RivalID].Alive && !RivalArrested)
 			{
 				if (Counselor.LectureID > 0)
 				{
@@ -2602,15 +2602,21 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			SchoolGlobals.ReactedToGameLeader = true;
 		}
-		if (TaskGlobals.GetTaskStatus(46) == 1)
+		if (!StudentManager.Eighties)
 		{
-			TaskGlobals.SetTaskStatus(46, 0);
-		}
-		if (StudentManager.Students[46] != null && StudentManager.Students[46].TaskPhase == 5)
-		{
-			TaskGlobals.SetTaskStatus(46, 3);
-			PlayerGlobals.SetStudentFriend(46, value: true);
-			NewFriends++;
+			if (TaskGlobals.GetTaskStatus(46) == 1)
+			{
+				TaskGlobals.SetTaskStatus(46, 0);
+			}
+			if (StudentManager.Students[46] != null && StudentManager.Students[46].TaskPhase == 5)
+			{
+				TaskGlobals.SetTaskStatus(46, 3);
+				PlayerGlobals.SetStudentFriend(46, value: true);
+				if (StudentManager.Students[46] != null && StudentManager.Students[46].Alive)
+				{
+					NewFriends++;
+				}
+			}
 		}
 		if (NewFriends > 0)
 		{
@@ -2860,6 +2866,7 @@ public class EndOfDayScript : MonoBehaviour
 		Plant.SavePlantProgress();
 		Yandere.CameraEffects.UpdateVignette(0f);
 		GrantAchievement();
+		StudentGlobals.StudentSlave = 0;
 	}
 
 	private void DisableThings(StudentScript TargetStudent)

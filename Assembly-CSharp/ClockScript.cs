@@ -276,7 +276,6 @@ public class ClockScript : MonoBehaviour
 			CameraTimer += Time.deltaTime;
 			if (CameraTimer > 1f && !StudentManager.MemorialScene.enabled)
 			{
-				Debug.Log("This is the exact moment that the player gains control of the character.");
 				if (BloomDisabled)
 				{
 					OptionGlobals.DisableBloom = true;
@@ -335,6 +334,11 @@ public class ClockScript : MonoBehaviour
 						if (BloomKnee == 0.75f)
 						{
 							UpdateBloom = false;
+							if (BloomDisabled)
+							{
+								OptionGlobals.DisableBloom = true;
+								Profile.bloom.enabled = false;
+							}
 						}
 					}
 				}

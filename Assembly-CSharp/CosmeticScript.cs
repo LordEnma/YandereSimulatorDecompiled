@@ -829,6 +829,11 @@ public class CosmeticScript : MonoBehaviour
 					RightWristband.SetActive(value: true);
 					LeftWristband.SetActive(value: true);
 				}
+				else
+				{
+					RightWristband.SetActive(value: false);
+					LeftWristband.SetActive(value: false);
+				}
 				if (!TakingPortrait)
 				{
 					Bookbag.SetActive(value: true);
@@ -1627,6 +1632,9 @@ public class CosmeticScript : MonoBehaviour
 				else if (StudentID == 37)
 				{
 					RyutoBrows.SetActive(value: true);
+					CharacterAnimation["lockEyebrows_00"].layer = 8;
+					CharacterAnimation.Play("lockEyebrows_00");
+					CharacterAnimation["lockEyebrows_00"].weight = 1f;
 				}
 			}
 		}
@@ -3060,11 +3068,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public void DeactivateBullyAccessories()
 	{
-		if (FemaleUniformID < 2 || FemaleUniformID == 3)
-		{
-			RightWristband.SetActive(value: false);
-			LeftWristband.SetActive(value: false);
-		}
+		RightWristband.SetActive(value: false);
+		LeftWristband.SetActive(value: false);
 		Bookbag.SetActive(value: false);
 		Hoodie.SetActive(value: false);
 	}

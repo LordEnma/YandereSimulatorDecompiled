@@ -253,6 +253,7 @@ public class BusStopScript : MonoBehaviour
 			Subtitle.text = "";
 			if (Alpha == 1f)
 			{
+				Debug.Log("Calling ExitCutscene() because EndEarly was true.");
 				ExitCutscene();
 			}
 		}
@@ -353,6 +354,10 @@ public class BusStopScript : MonoBehaviour
 					Renderer.material.color = new Color(0f, 0f, 0f, Alpha);
 					if (Alpha > 0.999f)
 					{
+						Debug.Log("Week is: " + Week);
+						Debug.Log("DateGlobals.Week is: " + DateGlobals.Week);
+						Debug.Log("Moving to the VisualNovelScene from here.");
+						Debug.Log("GameGlobals.SenpaiMeetsNewRival is getting set to ''true'' here.");
 						GameGlobals.SenpaiMeetsNewRival = true;
 						SceneManager.LoadScene("VisualNovelScene");
 					}
@@ -788,6 +793,7 @@ public class BusStopScript : MonoBehaviour
 				Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime);
 				if (Alpha > 0.999f)
 				{
+					Debug.Log("Calling ExitCutscene() because EndEarly was true while we're inside of Amai's bakery.");
 					ExitCutscene();
 				}
 			}
@@ -826,6 +832,7 @@ public class BusStopScript : MonoBehaviour
 			}
 			if (Timer > 35f)
 			{
+				Debug.Log("Calling ExitCutscene() because Info-chan just took a picture of Taro talking to Amai.");
 				ExitCutscene();
 			}
 		}
@@ -903,6 +910,8 @@ public class BusStopScript : MonoBehaviour
 
 	private void ExitCutscene()
 	{
+		Debug.Log("ExitCutscene has been called. GameGlobals.SenpaiMeetsNewRival is " + GameGlobals.SenpaiMeetsNewRival);
+		Debug.Log("Week is " + Week + " and DateGlobals.Week is " + DateGlobals.Week);
 		if (GameGlobals.SenpaiMeetsNewRival || DateGlobals.Week == 1)
 		{
 			DateGlobals.Week++;
@@ -913,6 +922,7 @@ public class BusStopScript : MonoBehaviour
 		}
 		else
 		{
+			Debug.Log("Moving to the VisualNovelScene from here, specifically.");
 			GameGlobals.SenpaiMeetsNewRival = true;
 			SceneManager.LoadScene("VisualNovelScene");
 		}

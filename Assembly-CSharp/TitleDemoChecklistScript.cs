@@ -325,7 +325,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 				}
 				else if (Input.GetKeyDown("r"))
 				{
-					ResetLabel.text = "This is a hidden debug command for completely removing all Yandere Simulator data from your computer's registry. This command will delete all of your save data, but may fix certain types of bugs that cannot be fixed in any other way.";
+					ResetLabel.text = "This is a hidden debug command for completely removing all Yandere Simulator data from your computer's registry. This command will delete all of your save data, but may fix certain types of bugs that cannot be fixed in any other way. (Your Content Checklist progress will NOT be deleted.)";
 					DeletingGlobals = true;
 					ResetWindow.SetActive(value: true);
 				}

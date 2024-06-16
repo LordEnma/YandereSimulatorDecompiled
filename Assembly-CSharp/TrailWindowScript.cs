@@ -87,13 +87,9 @@ public class TrailWindowScript : MonoBehaviour
 		{
 			Destinations[3] = StudentManager.Students[StudentManager.RivalID].transform;
 		}
-		if (Eighties)
+		if (StudentManager.Students[StudentManager.RivalID] != null)
 		{
-			Destinations[4] = StudentManager.GenericRivalBag.transform;
-		}
-		else
-		{
-			Destinations[4] = StudentManager.ModernRivalBookBag.transform;
+			Destinations[4] = StudentManager.Students[StudentManager.RivalID].Seat;
 		}
 		Highlight.localPosition = new Vector3(0f, 400 - 50 * Selected, 0f);
 	}

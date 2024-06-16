@@ -817,7 +817,6 @@ public class StudentInfoScript : MonoBehaviour
 
 	private void UpdateTopics()
 	{
-		Debug.Log("Updating Topics Now.");
 		int num = 0;
 		int num2 = 0;
 		for (int i = 1; i < TopicIcons.Length; i++)
@@ -829,11 +828,9 @@ public class StudentInfoScript : MonoBehaviour
 			UISprite uISprite = TopicOpinionIcons[j];
 			if (!StudentManager.GetTopicLearnedByStudent(j, CurrentStudent))
 			{
-				Debug.Log("We don't know how Student #" + CurrentStudent + " feels about topic # " + j);
 				uISprite.spriteName = "Unknown";
 				continue;
 			}
-			Debug.Log("We know how Student #" + CurrentStudent + " feels about topic # " + j);
 			int[] topics = JSON.Topics[CurrentStudent].Topics;
 			uISprite.spriteName = OpinionSpriteNames[topics[j]];
 			if (topics[j] == 1)

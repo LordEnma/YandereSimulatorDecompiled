@@ -396,7 +396,7 @@ public class VoidGoddessScript : MonoBehaviour
 			StudentManager.Students[Selected].transform.position = Prompt.Yandere.transform.position + Prompt.Yandere.transform.forward;
 			Physics.SyncTransforms();
 		}
-		if (Input.GetKeyDown(KeyCode.X))
+		if (Input.GetKeyDown(KeyCode.X) && Selected > 1)
 		{
 			StudentManager.Students[Selected].BecomeRagdoll();
 			StudentManager.Students[Selected].Ragdoll.NeckSnapped = true;

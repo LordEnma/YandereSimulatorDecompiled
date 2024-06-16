@@ -12,6 +12,8 @@ public class TitleScreenOsanaScript : MonoBehaviour
 
 	public GameObject[] DeadOsanas;
 
+	public int Week;
+
 	private void Start()
 	{
 		SuicideCorpseAnimation["SwingingOsana"].speed = 0.5f;
@@ -20,6 +22,10 @@ public class TitleScreenOsanaScript : MonoBehaviour
 		{
 			NewTitleScreen.ExtrasLabel.alpha = 1f;
 			DeadOsanas[GameGlobals.SpecificEliminationID].SetActive(value: true);
+		}
+		if (DateGlobals.Week != Week)
+		{
+			base.gameObject.SetActive(value: false);
 		}
 	}
 }

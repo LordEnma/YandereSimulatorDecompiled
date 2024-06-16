@@ -169,6 +169,8 @@ public class MissionModeScript : MonoBehaviour
 
 	public int GameOverID;
 
+	public int EndFrame;
+
 	public int TargetID;
 
 	public int MusicID = 1;
@@ -280,6 +282,14 @@ public class MissionModeScript : MonoBehaviour
 	public bool Valid;
 
 	public string Title;
+
+	public UILabel EightiesLoadingLabel;
+
+	public UILabel ModernLoadingLabel;
+
+	public Font EightiesFont;
+
+	public Font ModernFont;
 
 	private void Start()
 	{
@@ -1288,18 +1298,33 @@ public class MissionModeScript : MonoBehaviour
 					{
 						if (Destination == 1)
 						{
-							LoadingLabel.enabled = true;
-							ResetGlobals();
-							for (int j = 1; j < 101; j++)
-							{
-								StudentGlobals.SetStudentPhotographed(j, value: true);
-								StudentManager.StudentPhotographed[j] = true;
-							}
 							if (Eighties)
 							{
-								DateGlobals.Week = 10;
+								EightiesLoadingLabel.enabled = true;
 							}
-							SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+							else
+							{
+								ModernLoadingLabel.enabled = true;
+							}
+							if (EndFrame > 0)
+							{
+								ResetGlobals();
+								for (int j = 1; j < 101; j++)
+								{
+									StudentGlobals.SetStudentPhotographed(j, value: true);
+									StudentManager.StudentPhotographed[j] = true;
+								}
+								if (Eighties)
+								{
+									DateGlobals.Week = 10;
+								}
+								SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+							}
+							else
+							{
+								Debug.Log("Counting frames. Now on Frame #" + EndFrame);
+							}
+							EndFrame++;
 						}
 						else if (Destination == 2)
 						{

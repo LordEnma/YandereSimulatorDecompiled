@@ -41,6 +41,7 @@ public class CreepyCutsceneScript : MonoBehaviour
 					ShopInterface.Salon.EightiesBarber();
 					ShopInterface.TransitionTimer = 0f;
 					ShopInterface.Jukebox.Play();
+					ShopInterface.UpdateIcons();
 					ShopInterface.Shopkeeper.transform.localPosition = new Vector3(ShopInterface.ShopkeeperPosition, 0f, 0f);
 					ShopInterface.Shopkeeper.transform.localScale = new Vector3(1.128f, 1.128f, 1.128f);
 				}

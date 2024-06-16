@@ -57,10 +57,15 @@ public class StringTrapScript : MonoBehaviour
 		{
 			return;
 		}
-		if (component.Club == ClubType.Council || (component != null && component.Teacher) || component.WillRemoveTripwire || component.GasWarned)
+		if (component.Club == ClubType.Council || (component != null && component.Teacher) || component.WillRemoveTripwire || component.GasWarned || (component.Follower != null && Vector3.Distance(component.transform.position, component.Follower.transform.position) < 5f))
 		{
 			WaterCooler.Yandere.NotificationManager.CustomText = component.Name + " dismantled tripwire trap!";
 			WaterCooler.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			if (component.Follower != null)
+			{
+				WaterCooler.Yandere.Subtitle.CustomText = "Osana, watch out for that string!";
+				WaterCooler.Yandere.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+			}
 			if (component.WillRemoveTripwire)
 			{
 				WaterCooler.Yandere.Subtitle.CustomText = "Let's get rid of this real quick...";

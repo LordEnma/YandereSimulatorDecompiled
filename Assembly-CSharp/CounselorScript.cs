@@ -879,6 +879,10 @@ public class CounselorScript : MonoBehaviour
 								Yandere.gameObject.SetActive(value: true);
 								SpawnDelinquents();
 								Debug.Log("Now returning to gameplay from the counselor.");
+								if (!Eighties)
+								{
+									EndOfDay.StudentManager.RivalEvents[DateGlobals.Week].gameObject.SetActive(value: true);
+								}
 								StudentManager.ComeBack();
 								StudentManager.Students[StudentManager.RivalID].IdleAnim = StudentManager.Students[StudentManager.RivalID].BulliedIdleAnim;
 								StudentManager.Students[StudentManager.RivalID].WalkAnim = StudentManager.Students[StudentManager.RivalID].BulliedWalkAnim;

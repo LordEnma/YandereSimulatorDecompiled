@@ -50,7 +50,7 @@ public class HomeDarknessScript : MonoBehaviour
 		if (FadeOut)
 		{
 			Sprite.color = new Color(Sprite.color.r, Sprite.color.g, Sprite.color.b, Sprite.color.a + Time.deltaTime * (FadeSlow ? 0.2f : 1f));
-			if (!(Sprite.color.a >= 1f))
+			if (!(Sprite.color.a >= 0.999f))
 			{
 				return;
 			}

@@ -210,9 +210,13 @@ public class TitleSaveFilesScript : MonoBehaviour
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_LB) && NewTitleScreen.Eighties && PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
 						{
-							StartNewGame();
+							DifficultyWindow.SetActive(value: true);
+							PromptBar.Label[2].text = "";
+							PromptBar.Label[3].text = "";
+							PromptBar.Label[5].text = "Change Difficulty";
+							PromptBar.Label[6].text = "";
+							PromptBar.UpdateButtons();
 							NewTitleScreen.CustomMode = true;
-							NewTitleScreen.FadeOut = true;
 						}
 					}
 					else
@@ -361,6 +365,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			DifficultyWindow.SetActive(value: false);
+			NewTitleScreen.CustomMode = false;
 			NewTitleScreen.WeekSelect = false;
 			PromptBar.Label[2].text = "Challenges";
 			PromptBar.Label[3].text = "Week Select";

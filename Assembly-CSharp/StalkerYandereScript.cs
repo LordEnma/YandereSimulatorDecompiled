@@ -266,6 +266,8 @@ public class StalkerYandereScript : MonoBehaviour
 			{
 				Debug.Log("Daytime or weekend. Staying in school uniform.");
 				UniformSetter.enabled = true;
+				BreastL.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+				BreastR.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			}
 			MyRenderer.sharedMesh = HeadOnlyMesh;
 			PonytailRenderer.transform.parent.gameObject.SetActive(value: false);

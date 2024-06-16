@@ -184,19 +184,19 @@ public class ScheduleScript : MonoBehaviour
 			if (Weekday == DayOfWeek.Tuesday)
 			{
 				EventIcons[7].SetActive(value: true);
-				Descriptions[7] = "At lunchtime, Amai is going to give Senpai an apron.You can sew a lame apron inthe Sewing Room and replace Amai's apron with your apron. This will cause Senpai to think less of Amai.";
+				Descriptions[7] = "At lunchtime, Amai is going to give Senpai an apron. You can sew a lame apron in the Sewing Room and replace Amai's apron with your apron. This will cause Senpai to think less of Amai.";
 			}
 			if (Weekday == DayOfWeek.Wednesday)
 			{
 				EventIcons[7].SetActive(value: true);
-				Descriptions[7] = "At lunchtime, Amai is going to ask Senpai if he successfully prepared a meal.You can sabotage the recipe that Amai gave to Senpai while Senpai is preparing the meal. This will cause Senpai to think less of Amai.";
+				Descriptions[7] = "At lunchtime, Amai is going to ask Senpai if he successfully prepared a meal. You can sabotage the recipe that Amai gave to Senpai while Senpai is preparing the meal. This will cause Senpai to think less of Amai.";
 			}
 			if (Weekday == DayOfWeek.Thursday)
 			{
 				EventIcons[7].SetActive(value: true);
-				Descriptions[7] = "At lunchtime, Amai is going to have a picnic with Senpai.You can attract insects to the picnic by obtaining sugar from the Home Ec room and spreading it around the picnic area. This will cause Senpai to think less of Amai.";
+				Descriptions[7] = "At lunchtime, Amai is going to have a picnic with Senpai. You can attract insects to the picnic by obtaining sugar from the Home Ec room and spreading it around the picnic area. This will cause Senpai to think less of Amai.";
 				EventIcons[9].SetActive(value: true);
-				Descriptions[9] = "After Cleaning Time, Amai is going to make fudge in the Home Ec Room.You can sabotage the oven that Amai uses to prepare food. This will cause a gas explosion that will kill Amai.";
+				Descriptions[9] = "After Cleaning Time, Amai is going to make fudge in the Home Ec Room. You can sabotage the oven that Amai uses to prepare food. This will cause a gas explosion that will kill Amai.";
 			}
 			if (Weekday == DayOfWeek.Friday)
 			{

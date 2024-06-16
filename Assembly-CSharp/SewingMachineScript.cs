@@ -56,7 +56,7 @@ public class SewingMachineScript : MonoBehaviour
 				Prompt.enabled = true;
 				if (!Eighties)
 				{
-					if (Yandere.PickUp != null && Yandere.PickUp.FoldedUniform.Clean && Yandere.PickUp.FoldedUniform.Type == 1)
+					if (StudentManager.TaskManager.TaskStatus[30] > 0 && Yandere.PickUp != null && Yandere.PickUp.FoldedUniform.Clean && Yandere.PickUp.FoldedUniform.Type == 1)
 					{
 						Prompt.HideButton[0] = false;
 					}

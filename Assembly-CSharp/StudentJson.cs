@@ -340,7 +340,7 @@ public class StudentJson : JsonData
 			studentJson.stockings = TFUtils.LoadString(dictionary, "Stockings");
 			studentJson.accessory = TFUtils.LoadString(dictionary, "Accessory");
 			studentJson.info = TFUtils.LoadString(dictionary, "Info");
-			if (GameGlobals.LoveSick)
+			if (GameGlobals.LoveSick && studentJson.realname != "")
 			{
 				studentJson.name = studentJson.realname;
 				studentJson.realname = "";

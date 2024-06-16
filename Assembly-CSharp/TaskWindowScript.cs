@@ -36,6 +36,8 @@ public class TaskWindowScript : MonoBehaviour
 
 	public bool TaskComplete;
 
+	public bool CustomMode;
+
 	public bool Eighties;
 
 	public bool Generic;
@@ -70,7 +72,12 @@ public class TaskWindowScript : MonoBehaviour
 			UpdateTaskObjects(30);
 		}
 		Window.SetActive(value: false);
+		CustomMode = GameGlobals.CustomMode;
 		Eighties = GameGlobals.Eighties;
+		if (CustomMode)
+		{
+			Debug.Log("The Task Window recognizes that we are in Custom Mode!");
+		}
 	}
 
 	public void UpdateWindow(int ID)
@@ -86,6 +93,10 @@ public class TaskWindowScript : MonoBehaviour
 		TaskDescLabel.text = Descriptions[ID];
 		Icon.mainTexture = Icons[ID];
 		GenericCheck();
+		if (CustomMode)
+		{
+			Generic = true;
+		}
 		if (Generic)
 		{
 			if (Yandere.StudentManager.Eighties)
@@ -180,6 +191,10 @@ public class TaskWindowScript : MonoBehaviour
 	private void TaskCheck()
 	{
 		GenericCheck();
+		if (CustomMode)
+		{
+			Generic = true;
+		}
 		if (Generic)
 		{
 			if (!Yandere.StudentManager.Eighties)
@@ -272,6 +287,10 @@ public class TaskWindowScript : MonoBehaviour
 			if ((TempID > 10 && TempID < 21) || TempID == 79)
 			{
 				Generic = false;
+			}
+			if (CustomMode)
+			{
+				Generic = true;
 			}
 		}
 		else if (TempID != 4 && TempID != 6 && TempID != 8 && TempID != 11 && TempID != 21 && TempID != 12 && TempID != 25 && TempID != 28 && TempID != 30 && TempID != 36 && TempID != 37 && TempID != 38 && TempID != 41 && TempID != 46 && TempID != 47 && TempID != 48 && TempID != 49 && TempID != 50 && TempID != 52 && TempID != 76 && TempID != 77 && TempID != 78 && TempID != 79 && TempID != 80 && TempID != 81)

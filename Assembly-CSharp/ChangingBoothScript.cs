@@ -46,31 +46,38 @@ public class ChangingBoothScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (!Occupied && Prompt.Circle[0].fillAmount == 0f)
+		if (!Occupied)
 		{
-			Prompt.Circle[0].fillAmount = 1f;
-			if (Yandere.ClubAttire && Yandere.PreviousSchoolwear == 0)
+			if (Yandere.Club == ClubID && Yandere.Schoolwear == 1 && Yandere.Bloodiness == 0f)
 			{
-				Yandere.NotificationManager.CustomText = "Change clothing elsewhere.";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-				Yandere.NotificationManager.CustomText = "No outfit to change into.";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-				Yandere.NotificationManager.CustomText = "Cannot remove club attire now.";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Prompt.enabled = true;
 			}
-			else if (Yandere.Invisible)
+			if (Prompt.Circle[0].fillAmount == 0f)
 			{
-				Yandere.NotificationManager.CustomText = "Decloak first!";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			}
-			else
-			{
-				Yandere.EmptyHands();
-				Yandere.CanMove = false;
-				YandereChanging = true;
-				Occupied = true;
-				Prompt.Hide();
-				Prompt.enabled = false;
+				Prompt.Circle[0].fillAmount = 1f;
+				if (Yandere.ClubAttire && Yandere.PreviousSchoolwear == 0)
+				{
+					Yandere.NotificationManager.CustomText = "Change clothing elsewhere.";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Yandere.NotificationManager.CustomText = "No outfit to change into.";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Yandere.NotificationManager.CustomText = "Cannot remove club attire now.";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				else if (Yandere.Invisible)
+				{
+					Yandere.NotificationManager.CustomText = "Decloak first!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				else
+				{
+					Yandere.EmptyHands();
+					Yandere.CanMove = false;
+					YandereChanging = true;
+					Occupied = true;
+					Prompt.Hide();
+					Prompt.enabled = false;
+				}
 			}
 		}
 		if (!Occupied)

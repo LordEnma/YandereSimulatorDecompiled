@@ -47,6 +47,11 @@ public class PassTimeBookScript : MonoBehaviour
 				Yandere.NotificationManager.CustomText = "Only available after 3:30 PM";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
+			else if (Yandere.StudentManager.Clock.Weekday == 5 && Yandere.StudentManager.Clock.HourTime > 16.53f && !Yandere.StudentManager.RivalEliminated)
+			{
+				Yandere.NotificationManager.CustomText = "Can't! You're anxious about Senpai!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
 			else if (Yandere.StudentManager.Clock.HourTime > 17.5f)
 			{
 				Yandere.NotificationManager.CustomText = "Not available after 5:30 PM";

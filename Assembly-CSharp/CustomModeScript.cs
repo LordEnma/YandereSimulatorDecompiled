@@ -271,6 +271,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public Texture[] LocationScreenshots;
 
+	public Collider[] LabelColliders;
+
 	public string[] DestinationExplanations;
 
 	public string[] ActionExplanations;
@@ -381,6 +383,7 @@ public class CustomModeScript : MonoBehaviour
 
 	private void Start()
 	{
+		AcknowledgeChallenges();
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
 		StudentManager.Eighties = GameGlobals.Eighties;
@@ -441,6 +444,10 @@ public class CustomModeScript : MonoBehaviour
 			Patrol2Icons[i] = gameObject.transform;
 			Patrol2Arrows[i] = gameObject.GetComponent<MapIconScript>().ArrowParent;
 			gameObject.GetComponent<MapIconScript>().Label.text = "Student #" + i + " Patrol Spot #2";
+		}
+		for (int i = 0; i < LabelColliders.Length; i++)
+		{
+			LabelColliders[i].enabled = false;
 		}
 		Reset();
 		PromptBar.ClearButtons();
@@ -654,6 +661,7 @@ public class CustomModeScript : MonoBehaviour
 			{
 				GameGlobals.FemaleSenpai = true;
 			}
+			AcknowledgeChallenges();
 			Screen.SetResolution(512, 512, fullscreen: false);
 			SceneManager.LoadScene("PortraitScene");
 		}
@@ -856,6 +864,8 @@ public class CustomModeScript : MonoBehaviour
 					{
 						if (Selected < 98)
 						{
+							LabelColliders[0].enabled = true;
+							LabelColliders[1].enabled = true;
 							ViewingStudents = false;
 							EditingStudent = true;
 							EditingCosmetic = true;
@@ -877,6 +887,8 @@ public class CustomModeScript : MonoBehaviour
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_LB))
 					{
+						LabelColliders[0].enabled = false;
+						LabelColliders[1].enabled = false;
 						ViewingStudents = false;
 						EditingStudent = false;
 						Initializing = true;
@@ -893,6 +905,8 @@ public class CustomModeScript : MonoBehaviour
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_RB))
 					{
+						LabelColliders[0].enabled = false;
+						LabelColliders[1].enabled = false;
 						ViewingStudents = false;
 						EditingStudent = false;
 						ViewingRivals = true;
@@ -1238,6 +1252,11 @@ public class CustomModeScript : MonoBehaviour
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_LB))
 					{
+						LabelColliders[0].enabled = false;
+						LabelColliders[1].enabled = false;
+						ViewingStudents = true;
+						EditingStudent = false;
+						EditingCosmetic = false;
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Edit";
 						PromptBar.Label[2].text = "Zoom";
@@ -1246,9 +1265,6 @@ public class CustomModeScript : MonoBehaviour
 						PromptBar.Label[5].text = "Rotate";
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
-						ViewingStudents = true;
-						EditingStudent = false;
-						EditingCosmetic = false;
 						UpdateHeader();
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_RB) && Selected > 0)
@@ -2135,6 +2151,8 @@ public class CustomModeScript : MonoBehaviour
 		CharacterParent.position = new Vector3(0f, -0.85f, 2.25f);
 		InitialFemale.gameObject.SetActive(value: false);
 		InitialMale.gameObject.SetActive(value: false);
+		LabelColliders[0].enabled = false;
+		LabelColliders[1].enabled = false;
 		ViewingRivals = false;
 		ViewingStudents = true;
 		EditingStudent = false;
@@ -3353,6 +3371,43 @@ public class CustomModeScript : MonoBehaviour
 				UnityEngine.Object.Destroy(component3);
 			}
 			DestroyComponentsInChildren(item);
+		}
+	}
+
+	public void AcknowledgeChallenges()
+	{
+		Debug.Log("We are now in the Custom Mode scene, acknowledging the challenges that the player selected.");
+		if (ChallengeGlobals.KnifeOnly)
+		{
+			Debug.Log("KnifeOnly: True.");
+		}
+		if (ChallengeGlobals.NoAlerts)
+		{
+			Debug.Log("NoAlerts: True.");
+		}
+		if (ChallengeGlobals.NoBag)
+		{
+			Debug.Log("NoBag: True.");
+		}
+		if (ChallengeGlobals.NoFriends)
+		{
+			Debug.Log("NoFriends: True.");
+		}
+		if (ChallengeGlobals.NoGaming)
+		{
+			Debug.Log("NoGaming: True.");
+		}
+		if (ChallengeGlobals.NoInfo)
+		{
+			Debug.Log("NoInfo: True.");
+		}
+		if (ChallengeGlobals.NoLaugh)
+		{
+			Debug.Log("NoLaugh: True.");
+		}
+		if (ChallengeGlobals.RivalsOnly)
+		{
+			Debug.Log("RivalsOnly: True.");
 		}
 	}
 }

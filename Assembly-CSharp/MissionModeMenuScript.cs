@@ -1651,8 +1651,10 @@ public class MissionModeMenuScript : MonoBehaviour
 		MyAudio.clip = InfoLines[6];
 		MyAudio.Play();
 		Debug.Log("Switching GameGlobals.Profile to 4, since we are beginning a Mission Mode mission, and nothing we do in here should carry over to any of the player's other save files.");
+		bool disableBloom = OptionGlobals.DisableBloom;
 		GameGlobals.Profile = 4;
 		Globals.DeleteAll();
+		OptionGlobals.DisableBloom = disableBloom;
 		OptionGlobals.TutorialsOff = true;
 		SchoolGlobals.SchoolAtmosphere = 1f - (float)Difficulty * 0.1f;
 		MissionModeGlobals.NemesisDifficulty = NemesisDifficulty;
@@ -1698,6 +1700,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		PromptBar.Show = false;
 		Speed = 0f;
 		Phase = 4;
+		Debug.Log("This is the moment we leave the Mission Mode scene. OptionGlobals.DisableBloom is: " + OptionGlobals.DisableBloom);
 	}
 
 	private void ChangeFont()

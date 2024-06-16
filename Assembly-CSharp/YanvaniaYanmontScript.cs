@@ -499,30 +499,29 @@ public class YanvaniaYanmontScript : MonoBehaviour
 				moveDirection.y = 0f;
 			}
 		}
-		else
+		else if (Health == 0f)
 		{
-			if (Health != 0f)
-			{
-				return;
-			}
 			DeathTimer += Time.deltaTime;
-			if (!(DeathTimer > 5f))
+			if (DeathTimer > 5f)
 			{
-				return;
-			}
-			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Darkness.color.a + Time.deltaTime * 0.2f);
-			if (Darkness.color.a >= 1f)
-			{
-				if (Darkness.gameObject.activeInHierarchy)
+				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Darkness.color.a + Time.deltaTime * 0.2f);
+				if (Darkness.color.a >= 1f)
 				{
-					HealthBar.parent.gameObject.SetActive(value: false);
-					EXPBar.parent.gameObject.SetActive(value: false);
-					Darkness.gameObject.SetActive(value: false);
-					BossHealthBar.SetActive(value: false);
-					BlackBG.SetActive(value: true);
+					if (Darkness.gameObject.activeInHierarchy)
+					{
+						HealthBar.parent.gameObject.SetActive(value: false);
+						EXPBar.parent.gameObject.SetActive(value: false);
+						Darkness.gameObject.SetActive(value: false);
+						BossHealthBar.SetActive(value: false);
+						BlackBG.SetActive(value: true);
+					}
+					TryAgainWindow.transform.localScale = Vector3.Lerp(TryAgainWindow.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 				}
-				TryAgainWindow.transform.localScale = Vector3.Lerp(TryAgainWindow.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			}
+		}
+		if (base.transform.position.x < -30f && base.transform.position.y < 6.5f)
+		{
+			base.transform.position = new Vector3(base.transform.position.x, 6.5f, 0f);
 		}
 	}
 

@@ -145,6 +145,10 @@ public class MetalDetectorScript : MonoBehaviour
 				{
 					flag = true;
 				}
+				if (Yandere.PickUp.Weight)
+				{
+					flag = true;
+				}
 			}
 		}
 		if (!flag || Yandere.Inventory.IDCard)

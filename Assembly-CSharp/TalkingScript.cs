@@ -327,6 +327,7 @@ public class TalkingScript : MonoBehaviour
 					}
 					else
 					{
+						int num = S.Yandere.StudentManager.JSON.Topics[S.StudentID].Topics[19];
 						if (S.DialogueWheel.TopicInterface.Success)
 						{
 							S.CharacterAnimation.CrossFade(S.GossipAnim);
@@ -365,8 +366,21 @@ public class TalkingScript : MonoBehaviour
 							S.StudentManager.StudentReps[S.DialogueWheel.Victim] -= 1 + S.GossipBonus;
 							if (S.Club != ClubType.Bully)
 							{
-								S.Reputation.PendingRep -= 2f;
-								S.PendingRep -= 2f;
+								switch (num)
+								{
+								case 2:
+									Debug.Log("This student enjoys gossip, so they won't subtract from the player's reputation.");
+									break;
+								case 1:
+									Debug.Log("This student dislikes gossip, so they will subtract a lot from the player's reputation.");
+									S.Reputation.PendingRep -= 2f;
+									S.PendingRep -= 2f;
+									break;
+								default:
+									S.Reputation.PendingRep -= 1f;
+									S.PendingRep -= 1f;
+									break;
+								}
 							}
 							S.Gossiped = true;
 							S.Yandere.NotificationManager.TopicName = "Gossip";
@@ -379,8 +393,23 @@ public class TalkingScript : MonoBehaviour
 						else
 						{
 							S.Subtitle.PersonaSubtitle.UpdateLabel(PersonaType.None, S.Reputation.Reputation, 5f);
-							S.Reputation.PendingRep -= 1f;
-							S.PendingRep -= 1f;
+							switch (num)
+							{
+							case 2:
+								Debug.Log("This student enjoys gossip, so they won't subtract much from the player's reputation.");
+								S.Reputation.PendingRep -= 1f;
+								S.PendingRep -= 1f;
+								break;
+							case 1:
+								Debug.Log("This student dislikes gossip, so they will subtract a lot from the player's reputation.");
+								S.Reputation.PendingRep -= 3f;
+								S.PendingRep -= 3f;
+								break;
+							default:
+								S.Reputation.PendingRep -= 2f;
+								S.PendingRep -= 2f;
+								break;
+							}
 						}
 						int topicSelected2 = S.StudentManager.DialogueWheel.TopicInterface.TopicSelected;
 						if (!S.StudentManager.GetTopicLearnedByStudent(topicSelected2, S.StudentID))
@@ -719,16 +748,16 @@ public class TalkingScript : MonoBehaviour
 					}
 					else
 					{
-						Debug.Log("We got here? Huh? How? HOW?");
-						int num = 0;
+						Debug.Log("A student has agreed to follow the player.");
+						int num2 = 0;
 						if (S.Yandere.Club == ClubType.Delinquent)
 						{
 							S.Reputation.PendingRep -= 10f;
 							S.PendingRep -= 10f;
-							num++;
+							num2++;
 						}
 						S.CharacterAnimation.CrossFade(S.Nod1Anim);
-						S.Subtitle.UpdateLabel(SubtitleType.StudentFollow, num, 2f);
+						S.Subtitle.UpdateLabel(SubtitleType.StudentFollow, num2, 2f);
 						Follow = true;
 					}
 				}
@@ -859,15 +888,15 @@ public class TalkingScript : MonoBehaviour
 					}
 					else
 					{
-						int num2 = 0;
+						int num3 = 0;
 						if (S.Yandere.Club == ClubType.Delinquent)
 						{
 							S.Reputation.PendingRep -= 10f;
 							S.PendingRep -= 10f;
-							num2++;
+							num3++;
 						}
 						S.CharacterAnimation.CrossFade(S.Nod1Anim);
-						S.Subtitle.UpdateLabel(SubtitleType.StudentLeave, num2, 3f);
+						S.Subtitle.UpdateLabel(SubtitleType.StudentLeave, num3, 3f);
 						S.GoAway = true;
 					}
 				}
@@ -979,15 +1008,15 @@ public class TalkingScript : MonoBehaviour
 						}
 						if (studentScript.Routine && !studentScript.TargetedForDistraction && !studentScript.InEvent && !Grudge && studentScript.Indoors && studentScript.gameObject.activeInHierarchy && studentScript.ClubActivityPhase < 16 && studentScript.CurrentAction != StudentActionType.Sunbathe)
 						{
-							int num3 = 0;
+							int num4 = 0;
 							if (S.Yandere.Club == ClubType.Delinquent)
 							{
 								S.Reputation.PendingRep -= 10f;
 								S.PendingRep -= 10f;
-								num3++;
+								num4++;
 							}
 							S.CharacterAnimation.CrossFade(S.Nod1Anim);
-							S.Subtitle.UpdateLabel(SubtitleType.StudentDistract, num3, 3f);
+							S.Subtitle.UpdateLabel(SubtitleType.StudentDistract, num4, 3f);
 							Refuse = false;
 						}
 						else
@@ -1647,8 +1676,11 @@ public class TalkingScript : MonoBehaviour
 						S.Subtitle.UpdateLabel(SubtitleType.AcceptFood, 0, 3f);
 					}
 					CalculateRepBonus();
-					S.Reputation.PendingRep += 1f + (float)S.RepBonus;
-					S.PendingRep += 1f + (float)S.RepBonus;
+					if (!S.Yandere.PickUp.AmaiTask)
+					{
+						S.Reputation.PendingRep += 1f + (float)S.RepBonus;
+						S.PendingRep += 1f + (float)S.RepBonus;
+					}
 				}
 				S.TalkTimer = 3f;
 			}
@@ -2276,6 +2308,30 @@ public class TalkingScript : MonoBehaviour
 			S.RepBonus++;
 		}
 		S.RepBonus += S.Yandere.Class.PsychologyGrade + S.Yandere.Class.PsychologyBonus;
+		if (S.DialogueWheel.Social.Selected == 5)
+		{
+			switch (S.Yandere.StudentManager.JSON.Topics[S.StudentID].Topics[25])
+			{
+			case 1:
+				Debug.Log("This student dislikes money.");
+				S.DialogueWheel.Social.DialogueLabel.text = "...are you trying to buy my friendship...? ...that's...kinda weird...";
+				S.RepBonus--;
+				break;
+			case 2:
+				Debug.Log("This student likes money.");
+				S.DialogueWheel.Social.DialogueLabel.text = "Oh! Wow! That's really generous of you! Thank you very much!";
+				S.RepBonus++;
+				break;
+			default:
+				Debug.Log("This student is neutral towards money.");
+				S.DialogueWheel.Social.DialogueLabel.text = "Cool, thanks!";
+				break;
+			}
+			if (!S.StudentManager.Eighties && S.StudentID == 41)
+			{
+				S.DialogueWheel.Social.DialogueLabel.text = "Such generosity.";
+			}
+		}
 		Debug.Log("''RepBonus'' is: " + S.RepBonus);
 		Debug.Log("Reputation will go up by " + (S.RepBonus + 1) + " and Friendship will go up by " + (S.RepBonus + 1));
 		S.DialogueWheel.Social.Student = S;

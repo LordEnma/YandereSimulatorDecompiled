@@ -1485,7 +1485,10 @@ public class StudentManagerScript : MonoBehaviour
 					StudentGlobals.FemaleUniform = 5;
 					StudentGlobals.MaleUniform = 5;
 				}
+				Debug.Log("We believe that we're in Mission Mode, so we're disabling the red string of fate.");
 				RedString.gameObject.SetActive(value: false);
+				RedString.transform.GetChild(0).gameObject.SetActive(value: false);
+				RedString.transform.GetChild(1).gameObject.SetActive(value: false);
 			}
 			SetAtmosphere();
 			GameGlobals.Paranormal = false;
@@ -1497,7 +1500,17 @@ public class StudentManagerScript : MonoBehaviour
 				SpawnID = studentSlave;
 				StudentGlobals.SetStudentDead(studentSlave, value: false);
 				SpawnStudent(SpawnID);
-				Students[studentSlave].Slave = true;
+				if (Students[studentSlave] != null)
+				{
+					Students[studentSlave].Slave = true;
+				}
+				else
+				{
+					Debug.Log("Somehow, Student #" + StudentGlobals.StudentSlave + " is marked as ''dead'' and ''slave'' at the same time.");
+					Debug.Log("The game tried to spawn her, but failed.");
+					Debug.Log("Setting StudentGlobals.StudentSlave to 0.");
+					StudentGlobals.StudentSlave = 0;
+				}
 				SpawnID = 0;
 			}
 			if (StudentGlobals.FragileSlave > 0)
@@ -6772,7 +6785,6 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void TakeOutTheTrash()
 	{
-		Debug.Log("Firing the TakeOutTheTrash() function.");
 		int i = 2;
 		for (int j = 0; j < GarbageBags; j++)
 		{

@@ -412,35 +412,40 @@ public class ClassScript : MonoBehaviour
 			}
 			GradeUpWindow.localScale = Vector3.zero;
 			CheckForGradeUp();
-			if (!GradeUp)
+			if (GradeUp)
 			{
-				if (ChemistryGrade > 0 && Poison != null)
-				{
-					Poison.SetActive(value: true);
-				}
-				StudentManagerScript studentManager = Portal.Yandere.StudentManager;
-				if (CutsceneManager.Scheme > 0 && studentManager.Students[studentManager.RivalID] != null && studentManager.Students[studentManager.RivalID].Alive && !studentManager.Students[studentManager.RivalID].Tranquil)
-				{
-					SchemeGlobals.SetSchemeStage(CutsceneManager.Scheme, 100);
-					PromptBar.ClearButtons();
-					PromptBar.Label[0].text = "Continue";
-					PromptBar.UpdateButtons();
-					CutsceneManager.gameObject.SetActive(value: true);
-					Schemes.UpdateInstructions();
-					base.gameObject.SetActive(value: false);
-				}
-				else if (!Portal.FadeOut)
-				{
-					Portal.Yandere.PhysicalGrade = PhysicalGrade;
-					Portal.Yandere.CharacterAnimation["f02_wrapCorpse_00"].speed = 1f + (float)Portal.Yandere.PhysicalGrade * 0.2f;
-					Portal.Yandere.CameraEffects.UpdateDOF(Portal.OriginalDOF);
-					Portal.ClassDarkness.alpha = 1f;
-					Portal.Transition = true;
-					Portal.FadeOut = false;
-					Portal.Proceed = true;
-					PromptBar.Show = false;
-					base.gameObject.SetActive(value: false);
-				}
+				return;
+			}
+			if (ChemistryGrade > 0 && Poison != null)
+			{
+				Poison.SetActive(value: true);
+			}
+			StudentManagerScript studentManager = Portal.Yandere.StudentManager;
+			Debug.Log("The ClassScript is now going to check to see if the counselor needs to talk to a rival.");
+			if (CutsceneManager.Scheme > 0 && studentManager.Students[studentManager.RivalID] != null && studentManager.Students[studentManager.RivalID].Alive && !studentManager.Students[studentManager.RivalID].Tranquil)
+			{
+				Debug.Log("We need to go to the counselor's office.");
+				SchemeGlobals.SetSchemeStage(CutsceneManager.Scheme, 100);
+				PromptBar.ClearButtons();
+				PromptBar.Label[0].text = "Continue";
+				PromptBar.UpdateButtons();
+				CutsceneManager.gameObject.SetActive(value: true);
+				Schemes.UpdateInstructions();
+				base.gameObject.SetActive(value: false);
+				return;
+			}
+			Debug.Log("We don't need to go to the counselor's office.");
+			if (!Portal.FadeOut)
+			{
+				Portal.Yandere.PhysicalGrade = PhysicalGrade;
+				Portal.Yandere.CharacterAnimation["f02_wrapCorpse_00"].speed = 1f + (float)Portal.Yandere.PhysicalGrade * 0.2f;
+				Portal.Yandere.CameraEffects.UpdateDOF(Portal.OriginalDOF);
+				Portal.ClassDarkness.alpha = 1f;
+				Portal.Transition = true;
+				Portal.FadeOut = false;
+				Portal.Proceed = true;
+				PromptBar.Show = false;
+				base.gameObject.SetActive(value: false);
 			}
 			return;
 		}

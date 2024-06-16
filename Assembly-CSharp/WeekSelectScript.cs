@@ -486,7 +486,7 @@ public class WeekSelectScript : MonoBehaviour
 	{
 		if (SettingWeek)
 		{
-			Arrow.localPosition = new Vector3(0f, 610f, 0f);
+			Arrow.localPosition = new Vector3(0f, 1000f, 0f);
 		}
 		else if (SettingRivals)
 		{

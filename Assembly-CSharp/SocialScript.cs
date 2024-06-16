@@ -349,7 +349,11 @@ public class SocialScript : MonoBehaviour
 				}
 				else if (Selected == 5)
 				{
-					if (!Student.StudentManager.Eighties && Student.StudentID == 41)
+					if (Student.Club == ClubType.Delinquent)
+					{
+						DialogueLabel.text = "...hm. Sure, I'll take it. ...thanks.";
+					}
+					else if (!Student.StudentManager.Eighties && Student.StudentID == 41)
 					{
 						DialogueLabel.text = "Such generosity.";
 					}
@@ -362,6 +366,14 @@ public class SocialScript : MonoBehaviour
 					Student.Talk.CalculateRepBonus();
 					Student.Reputation.PendingRep += 1f + (float)Student.RepBonus;
 					Student.PendingRep += 1f + (float)Student.RepBonus;
+					Yandere.NotificationManager.TopicName = "Money";
+					if (!ConversationGlobals.GetTopicDiscovered(25))
+					{
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+						ConversationGlobals.SetTopicDiscovered(25, value: true);
+					}
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
+					Yandere.StudentManager.SetTopicLearnedByStudent(25, Student.StudentID, boolean: true);
 					Gifted[StudentID] = true;
 					UpdateButtons();
 					Socialized = true;
@@ -537,6 +549,7 @@ public class SocialScript : MonoBehaviour
 				Yandere.Police.EndOfDay.NewFriends++;
 				Yandere.Friends++;
 				Student.Friend = true;
+				Student.NewFriend = true;
 				Student.TurnOutlinesGreen();
 				DialogueWheel.HideShadows();
 			}

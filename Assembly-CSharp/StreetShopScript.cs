@@ -304,7 +304,7 @@ public class StreetShopScript : MonoBehaviour
 		}
 	}
 
-	private void UpdateShopInterface()
+	public void UpdateShopInterface()
 	{
 		if (Descs[1] != "")
 		{
@@ -378,6 +378,7 @@ public class StreetShopScript : MonoBehaviour
 		for (int i = 1; i < 11; i++)
 		{
 			StreetShopInterface.ProductsLabel[i].text = Products[i];
+			StreetShopInterface.PricesLabel[i].text = "$" + Costs[i];
 			Unavailable[i] = false;
 		}
 	}

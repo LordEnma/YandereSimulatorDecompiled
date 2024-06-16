@@ -267,12 +267,10 @@ public class ShutterScript : MonoBehaviour
 				{
 					if (hit.collider.gameObject.name == "Face")
 					{
-						Debug.Log("The camera's raycast is hitting a student's face.");
 						GameObject gameObject = hit.collider.gameObject.transform.root.gameObject;
 						FaceStudent = gameObject.GetComponent<StudentScript>();
 						if (FaceStudent != null)
 						{
-							Debug.Log("The student is not null.");
 							TargetStudent = FaceStudent.StudentID;
 							if (TargetStudent > 1)
 							{
@@ -286,88 +284,65 @@ public class ShutterScript : MonoBehaviour
 							bool flag2 = false;
 							if (FaceStudent.MyPlate != null && FaceStudent.MyPlate.parent == FaceStudent.RightHand)
 							{
-								Debug.Log("This student is a Cooking Club member carrying a tray...");
 								flag2 = true;
 							}
-							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker && !flag2)
+							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker && !flag2 && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
 							{
-								Debug.Log("The student should be able to react to the camera.");
-								if (Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance)
+								if (MissionMode)
 								{
-									Debug.Log("The student should be within reaction distance.");
-									if (FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
+									PenaltyTimer += Time.deltaTime;
+									if (PenaltyTimer > 1f)
 									{
-										Debug.Log("The student can see the player.");
+										FaceStudent.Reputation.PendingRep -= 10f;
+										PenaltyTimer = 0f;
+									}
+								}
+								if (!FaceStudent.CameraReacting)
+								{
+									if (FaceStudent.enabled && !FaceStudent.Stop)
+									{
+										if ((FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Graffiti) || (FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Bully))
+										{
+											FaceStudent.PhotoPatience = 0f;
+											FaceStudent.KilledMood = true;
+											FaceStudent.Ignoring = true;
+											PenaltyTimer = 1f;
+											Penalize();
+										}
+										else if (FaceStudent.PhotoPatience > 0f)
+										{
+											if (FaceStudent.StudentID > 1)
+											{
+												if ((Yandere.Bloodiness > 0f && !Yandere.Paint) || (double)Yandere.Sanity < 33.33333)
+												{
+													FaceStudent.Alarm += 200f;
+												}
+												else
+												{
+													FaceStudent.CameraReact();
+												}
+											}
+											else
+											{
+												FaceStudent.Alarm += Time.deltaTime * (100f / FaceStudent.DistanceToPlayer) * FaceStudent.Paranoia * FaceStudent.Perception * FaceStudent.DistanceToPlayer * 2f;
+												FaceStudent.YandereVisible = true;
+											}
+										}
+										else if (Student != null && !Student.Teacher)
+										{
+											Penalize();
+										}
+									}
+								}
+								else
+								{
+									FaceStudent.PhotoPatience = Mathf.MoveTowards(FaceStudent.PhotoPatience, 0f, Time.deltaTime);
+									if (FaceStudent.PhotoPatience > 0f)
+									{
+										FaceStudent.CameraPoseTimer = 1f;
 										if (MissionMode)
 										{
-											PenaltyTimer += Time.deltaTime;
-											if (PenaltyTimer > 1f)
-											{
-												Debug.Log("Awareness penalty!");
-												FaceStudent.Reputation.PendingRep -= 10f;
-												PenaltyTimer = 0f;
-											}
-										}
-										if (!FaceStudent.CameraReacting)
-										{
-											Debug.Log("The student is not reacting to the camera right now.");
-											if (FaceStudent.enabled)
-											{
-												Debug.Log("The student's script is enabled.");
-												if (!FaceStudent.Stop)
-												{
-													Debug.Log("The student has not been told to ''Stop''.");
-													if ((FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Graffiti) || (FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Bully))
-													{
-														Debug.Log("1");
-														FaceStudent.PhotoPatience = 0f;
-														FaceStudent.KilledMood = true;
-														FaceStudent.Ignoring = true;
-														PenaltyTimer = 1f;
-														Penalize();
-													}
-													else if (FaceStudent.PhotoPatience > 0f)
-													{
-														Debug.Log("2");
-														if (FaceStudent.StudentID > 1)
-														{
-															if ((Yandere.Bloodiness > 0f && !Yandere.Paint) || (double)Yandere.Sanity < 33.33333)
-															{
-																FaceStudent.Alarm += 200f;
-															}
-															else
-															{
-																FaceStudent.CameraReact();
-															}
-														}
-														else
-														{
-															FaceStudent.Alarm += Time.deltaTime * (100f / FaceStudent.DistanceToPlayer) * FaceStudent.Paranoia * FaceStudent.Perception * FaceStudent.DistanceToPlayer * 2f;
-															FaceStudent.YandereVisible = true;
-														}
-													}
-													else
-													{
-														Debug.Log("3");
-														if (Student != null && !Student.Teacher)
-														{
-															Penalize();
-														}
-													}
-												}
-											}
-										}
-										else
-										{
-											FaceStudent.PhotoPatience = Mathf.MoveTowards(FaceStudent.PhotoPatience, 0f, Time.deltaTime);
-											if (FaceStudent.PhotoPatience > 0f)
-											{
-												FaceStudent.CameraPoseTimer = 1f;
-												if (MissionMode)
-												{
-													FaceStudent.PhotoPatience = 0f;
-												}
-											}
+											FaceStudent.PhotoPatience = 0f;
 										}
 									}
 								}
@@ -1092,7 +1067,7 @@ public class ShutterScript : MonoBehaviour
 			return;
 		}
 		Subtitle.UpdateLabel(SubtitleType.PhotoAnnoyance, 0, 3f);
-		if (Yandere.Mask == null)
+		if (!FaceStudent.Teacher && Yandere.Mask == null)
 		{
 			if (MissionMode)
 			{

@@ -138,6 +138,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public bool TooClose;
 
+	public bool InHouse;
+
 	public CosmeticScript SenpaiCosmetic;
 
 	public Renderer ClockFace;
@@ -288,6 +290,7 @@ public class HomeCameraScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
+		OutOfRoomDestinations[4].transform.position = new Vector3(OutOfRoomDestinations[4].transform.position.x, OutOfRoomDestinations[4].transform.position.y, 1f - (0.8347812f - HomeYandere.Yandere.transform.position.z) * 0.5f);
 		if (CooldownTimer == 0f)
 		{
 			if (HomeYandere.CanMove)
@@ -310,12 +313,38 @@ public class HomeCameraScript : MonoBehaviour
 						base.transform.position = new Vector3(base.transform.position.x, 1.5f, 2.4185f);
 					}
 					base.transform.position = Vector3.Lerp(base.transform.position, Destination.position, Time.deltaTime * 10f);
+					InHouse = false;
 				}
 				else if (HomeYandere.transform.position.y < -5f)
 				{
 					Destinations[0].position = new Vector3(2.425f, -8.5f, 0f);
 					Destination = Destinations[0];
 					base.transform.position = Vector3.Lerp(base.transform.position, Destination.position, Time.deltaTime * 10f);
+					InHouse = false;
+				}
+				else if (HomeYandere.transform.position.x < -15f && HomeYandere.transform.position.z > 10.445f)
+				{
+					if (!TooClose && CameraTimer == 0f && Destination != OutOfRoomDestinations[5])
+					{
+						Destination = OutOfRoomDestinations[5];
+						LastChangePoint = HomeYandere.transform.position;
+						CameraTimer = 1f;
+						TooClose = true;
+						RecentlyMoved = true;
+					}
+					base.transform.position = Destination.position;
+				}
+				else if (HomeYandere.transform.position.x < -8.4f)
+				{
+					if (!TooClose && CameraTimer == 0f && Destination != OutOfRoomDestinations[4])
+					{
+						Destination = OutOfRoomDestinations[4];
+						LastChangePoint = HomeYandere.transform.position;
+						CameraTimer = 1f;
+						TooClose = true;
+						RecentlyMoved = true;
+					}
+					base.transform.position = Destination.position;
 				}
 				else if (HomeYandere.transform.position.y < -2.8f)
 				{
@@ -353,6 +382,7 @@ public class HomeCameraScript : MonoBehaviour
 						}
 						base.transform.position = Destination.position;
 					}
+					InHouse = true;
 				}
 				else if (HomeYandere.transform.position.y > 0f)
 				{

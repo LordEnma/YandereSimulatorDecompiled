@@ -394,9 +394,7 @@ public class SchemesScript : MonoBehaviour
 
 	public void UpdateInstructions()
 	{
-		Debug.Log("Before running UpdateInstructions(), SchemeGlobals.GetSchemeStage(2) was: " + SchemeGlobals.GetSchemeStage(2));
 		Steps = SchemeSteps[SchemeGlobals.CurrentScheme].Split('\n');
-		Debug.Log("At this moment, SchemeGlobals.CurrentScheme is: " + SchemeGlobals.CurrentScheme);
 		if (SchemeGlobals.CurrentScheme > 0)
 		{
 			if (SchemeGlobals.CurrentScheme == 4 && SchemeGlobals.GetSchemeStage(4) == 1 && ((StudentManager.Yandere.Weapon[1] != null && StudentManager.Yandere.Weapon[1].WeaponID == 6) || (StudentManager.Yandere.Weapon[2] != null && StudentManager.Yandere.Weapon[2].WeaponID == 6)))
@@ -440,12 +438,10 @@ public class SchemesScript : MonoBehaviour
 		{
 			NextStepInput.SetActive(value: true);
 		}
-		Debug.Log("After running UpdateInstructions(), SchemeGlobals.GetSchemeStage(2) is: " + SchemeGlobals.GetSchemeStage(2));
 	}
 
 	public void UpdateSchemeDestinations()
 	{
-		Debug.Log("Before running UpdateSchemeDestinations(), SchemeGlobals.GetSchemeStage(2) was: " + SchemeGlobals.GetSchemeStage(2));
 		if (StudentManager.Students[StudentManager.RivalID] != null)
 		{
 			Scheme1Destinations[3] = StudentManager.Students[StudentManager.RivalID].transform;

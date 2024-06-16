@@ -502,7 +502,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		}
 		if (GettingInfo)
 		{
-			if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || StudentID > 97)
+			if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || (StudentID > 10 && StudentID < 21) || StudentID > 97)
 			{
 				PromptBar.Label[0].text = string.Empty;
 			}
@@ -580,7 +580,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 
 	private void UpdateNameLabel()
 	{
-		if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || GettingInfo)
+		if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || (GettingInfo && StudentID < 11) || (GettingInfo && StudentID > 20))
 		{
 			NameLabel.text = JSON.Students[StudentID].Name;
 			if (StudentManager.Eighties && StudentID > 10 && StudentID < 21 && DateGlobals.Week < StudentID - 10)

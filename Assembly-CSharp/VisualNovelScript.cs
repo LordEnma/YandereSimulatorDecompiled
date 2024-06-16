@@ -29,6 +29,8 @@ public class VisualNovelScript : MonoBehaviour
 
 	public UISprite Darkness;
 
+	public Texture Blonde;
+
 	public string[] Dialogue;
 
 	public string[] AltDialogue;
@@ -96,6 +98,10 @@ public class VisualNovelScript : MonoBehaviour
 	private void Start()
 	{
 		Debug.Log("The visual novel scene believes that the current week is: " + DateGlobals.Week);
+		if (GameGlobals.BlondeHair)
+		{
+			Character[1].Cosmetic.FemaleHairRenderers[1].material.mainTexture = Blonde;
+		}
 		if (GameGlobals.SenpaiMeetsNewRival)
 		{
 			MeetingRival = true;

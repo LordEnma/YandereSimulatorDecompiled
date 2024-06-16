@@ -364,7 +364,7 @@ public class PauseScreenScript : MonoBehaviour
 					DisableEverything();
 				}
 			}
-			else if (HomeCamera.Destination == HomeCamera.Destinations[0])
+			else if (HomeYandere.CanMove)
 			{
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "Accept";
@@ -1153,7 +1153,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 		PhoneIcons[3].alpha = 1f;
 		PhoneShadows[3].enabled = true;
-		if (Yandere.transform.position.y > 100f || Yandere.LunaAttacher.activeInHierarchy)
+		if (Yandere.transform.position.y > 100f || Yandere.LunaAttacher.activeInHierarchy || Yandere.Carrying || Yandere.Dragging)
 		{
 			PhoneIcons[3].alpha = 0.5f;
 			PhoneShadows[3].enabled = false;
