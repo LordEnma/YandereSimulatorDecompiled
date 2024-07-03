@@ -13,7 +13,7 @@ public class BefriendBetrayPauseScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Yandere.CanMove && !Input.GetButton(InputNames.Xbox_RB) && Input.GetButtonDown(InputNames.Xbox_Start))
+		if (Yandere.enabled && Yandere.CanMove && !Input.GetButton(InputNames.Xbox_RB) && Input.GetButtonDown(InputNames.Xbox_Start))
 		{
 			if (!Panel.enabled)
 			{

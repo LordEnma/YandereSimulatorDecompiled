@@ -188,7 +188,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		if (!FadeOut)
 		{
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
-			if (Darkness.color.a == 0f)
+			if (Darkness.color.a < 0.0001f)
 			{
 				if (!ShowWindow)
 				{
@@ -305,7 +305,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		{
 			MyAudio.volume -= Time.deltaTime;
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
-			if (Darkness.color.a == 1f && !Debugging)
+			if (Darkness.color.a > 0.999f && !Debugging)
 			{
 				SceneManager.LoadScene("LoadingScene");
 			}

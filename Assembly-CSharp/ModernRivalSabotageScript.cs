@@ -54,7 +54,7 @@ public class ModernRivalSabotageScript : MonoBehaviour
 		{
 			ObjectToDisable.SetActive(value: false);
 		}
-		else if (ID == 6 && (DateGlobals.Week != 2 || DateGlobals.Weekday != DayOfWeek.Thursday))
+		else if (ID == 6 && DateGlobals.Week != 2)
 		{
 			Prompt.Hide();
 			base.gameObject.SetActive(value: false);
@@ -336,20 +336,24 @@ public class ModernRivalSabotageScript : MonoBehaviour
 
 	public void CheckForSabotageSuccess()
 	{
-		if (ID == 6)
+		if (ID != 6)
 		{
-			for (int i = 0; i < SabotageCheckmark.Length; i++)
-			{
-				SabotageCheckmark[i].spriteName = (SabotageCriteria[i] ? "Yes" : "No");
-				Prompt.HideButton[i] = SabotageCriteria[i];
-			}
-			if (SabotageCriteria.All((bool x) => x))
+			return;
+		}
+		for (int i = 0; i < SabotageCheckmark.Length; i++)
+		{
+			SabotageCheckmark[i].spriteName = (SabotageCriteria[i] ? "Yes" : "No");
+			Prompt.HideButton[i] = SabotageCriteria[i];
+		}
+		if (SabotageCriteria.All((bool x) => x))
+		{
+			if (DateGlobals.Weekday == DayOfWeek.Thursday)
 			{
 				SabotagedEvent.gameObject.SetActive(value: true);
 				NormalEvent.gameObject.SetActive(value: false);
-				ObjectToEnable.SetActive(value: true);
-				Disable();
 			}
+			ObjectToEnable.SetActive(value: true);
+			Disable();
 		}
 	}
 

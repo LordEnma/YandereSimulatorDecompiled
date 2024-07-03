@@ -118,23 +118,29 @@ public class AudioSoftwareScript : MonoBehaviour
 				ConversationRecorded = false;
 			}
 		}
-		if (PuttingLewdPhotosOnPhone)
+		if (!PuttingLewdPhotosOnPhone)
 		{
-			targetRotation = Quaternion.LookRotation(new Vector3(Screen.transform.position.x, Yandere.transform.position.y, Screen.transform.position.z) - Yandere.transform.position);
-			Yandere.transform.rotation = Quaternion.Slerp(Yandere.transform.rotation, targetRotation, Time.deltaTime * 10f);
-			Yandere.MoveTowardsTarget(SitSpot.position);
-			Timer += Time.deltaTime;
-			if (Timer > 5f)
+			return;
+		}
+		targetRotation = Quaternion.LookRotation(new Vector3(Screen.transform.position.x, Yandere.transform.position.y, Screen.transform.position.z) - Yandere.transform.position);
+		Yandere.transform.rotation = Quaternion.Slerp(Yandere.transform.rotation, targetRotation, Time.deltaTime * 10f);
+		Yandere.MoveTowardsTarget(SitSpot.position);
+		Timer += Time.deltaTime;
+		if (Timer > 5f)
+		{
+			if (SchemeGlobals.GetSchemeStage(1) == 5)
 			{
-				Yandere.MyController.radius = 0.2f;
-				Yandere.CanMove = true;
-				ChairCollider.enabled = true;
-				EventSubtitle.text = "";
-				YoogleScreen.SetActive(value: false);
-				PuttingLewdPhotosOnPhone = false;
-				Timer = 0f;
-				Yandere.StudentManager.CommunalLocker.RivalPhone.LewdPhotos = true;
+				SchemeGlobals.SetSchemeStage(1, 6);
+				Yandere.StudentManager.Schemes.UpdateInstructions();
 			}
+			Yandere.MyController.radius = 0.2f;
+			Yandere.CanMove = true;
+			ChairCollider.enabled = true;
+			EventSubtitle.text = "";
+			YoogleScreen.SetActive(value: false);
+			PuttingLewdPhotosOnPhone = false;
+			Timer = 0f;
+			Yandere.StudentManager.CommunalLocker.RivalPhone.LewdPhotos = true;
 		}
 	}
 }

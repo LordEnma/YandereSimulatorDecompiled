@@ -1629,7 +1629,6 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (PlayerGlobals.PersonaID > 0)
 		{
-			Debug.Log("Player's PersonaID is: " + PlayerGlobals.PersonaID);
 			Yandere.PersonaID = PlayerGlobals.PersonaID;
 			if (Mirror != null)
 			{
@@ -4928,9 +4927,9 @@ public class StudentManagerScript : MonoBehaviour
 				doorScript.Start();
 			}
 		}
-		Debug.Log("Now loading save data.");
 		int profile = GameGlobals.Profile;
 		int @int = PlayerPrefs.GetInt("SaveSlot");
+		Debug.Log("Now loading save data. Profile is " + profile + " and Slot is " + @int);
 		Yandere.Class.gameObject.SetActive(value: true);
 		DialogueWheel.NoteLocker.NoteWindow.gameObject.SetActive(value: true);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
@@ -4976,6 +4975,7 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			if (Students[ID] != null)
 			{
+				Students[ID].RiggedAccessoryOutlineID = 0;
 				if (Students[ID].Schoolwear != 1)
 				{
 					Debug.Log("At time of loading, " + Students[ID].Name + " needed to change clothing.");
@@ -6050,6 +6050,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void Week2RoutineAdjustments()
 	{
+		Debug.Log("Now making Week 2 Routine Adjustments.");
 		BakeSale.gameObject.SetActive(value: true);
 		Podiums.List[0].transform.position = Podiums.List[1].transform.position;
 		Podiums.List[0].transform.eulerAngles = Podiums.List[1].transform.eulerAngles;
@@ -6737,7 +6738,15 @@ public class StudentManagerScript : MonoBehaviour
 			scheduleBlock = Students[ID].ScheduleBlocks[7];
 			scheduleBlock.destination = "Sunbathe";
 			scheduleBlock.action = "Sunbathe";
-			scheduleBlock.time += 0.25f;
+			scheduleBlock.time += 999f;
+			if (Students[ID].ScheduleBlocks.Length > 8)
+			{
+				Debug.Log("Student #" + ID + " is adding an extra sunbathe to their schedule.");
+				scheduleBlock = Students[ID].ScheduleBlocks[8];
+				scheduleBlock.destination = "Sunbathe";
+				scheduleBlock.action = "Sunbathe";
+				scheduleBlock.time += 0.25f;
+			}
 			Students[ID].GetDestinations();
 		}
 		ID++;
@@ -7800,6 +7809,10 @@ public class StudentManagerScript : MonoBehaviour
 		if (StageColliders[0].bounds.Contains(Destination.position) || StageColliders[1].bounds.Contains(Destination.position))
 		{
 			Destination.position = new Vector3(Destination.position.x, 1.375f, Destination.position.z);
+		}
+		if (NEStairs.bounds.Contains(Destination.position) || NWStairs.bounds.Contains(Destination.position) || SEStairs.bounds.Contains(Destination.position) || SWStairs.bounds.Contains(Destination.position))
+		{
+			Destination.position += new Vector3(0f, 2f, 0f);
 		}
 	}
 

@@ -181,15 +181,6 @@ public class HomeInternetScript : MonoBehaviour
 			YancordLabel.color = new Color(1f, 1f, 1f, 0.2f);
 			YancordLogo.color = new Color(1f, 1f, 1f, 0.2f);
 		}
-		if (DateGlobals.Week == 2)
-		{
-			NewPostTextLabel.text = "Did you know that _______________ used to ____________________  in       ______________________________?";
-			ReplyLabels[1].text = "omg really??? i thought i just imagined it";
-			ReplyLabels[2].text = "YOU LITERALLY SAW IT WITH YOUR OWN EYES???";
-			ReplyLabels[3].text = "lol dis is gettin gud";
-			ReplyLabels[4].text = "who is ever going 2 eat at her bakery after this???";
-			ReplyLabels[5].text = "time to review bomb her fam's nasty-ass bakery";
-		}
 	}
 
 	private void Update()
@@ -408,6 +399,7 @@ public class HomeInternetScript : MonoBehaviour
 					else if (Student == 12 && Location == 9 && Action == 9)
 					{
 						Success = true;
+						ChangeReplies(2);
 					}
 				}
 			}
@@ -669,5 +661,18 @@ public class HomeInternetScript : MonoBehaviour
 	{
 		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + ID + ".png");
 		CurrentPortrait = wWW.texture;
+	}
+
+	private void ChangeReplies(int Rival)
+	{
+		if (Rival == 2)
+		{
+			NewPostTextLabel.text = "Did you know that _______________ used to ____________________  in       ______________________________?";
+			ReplyLabels[1].text = "omg really??? i thought i just imagined it";
+			ReplyLabels[2].text = "YOU LITERALLY SAW IT WITH YOUR OWN EYES???";
+			ReplyLabels[3].text = "lol dis is gettin gud";
+			ReplyLabels[4].text = "who is ever going 2 eat at her bakery after this???";
+			ReplyLabels[5].text = "time to review bomb her fam's nasty-ass bakery";
+		}
 	}
 }

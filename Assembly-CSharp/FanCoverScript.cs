@@ -22,6 +22,8 @@ public class FanCoverScript : MonoBehaviour
 
 	public Transform MurderSpot;
 
+	public Collider MyCollider;
+
 	public GameObject GiggleDisc;
 
 	public GameObject Explosion;
@@ -234,6 +236,10 @@ public class FanCoverScript : MonoBehaviour
 			Yandere.CanMove = true;
 			Yandere.Blur.Size = 0f;
 			base.enabled = false;
+			Rigidbody component2 = GetComponent<Rigidbody>();
+			component2.isKinematic = true;
+			component2.useGravity = false;
+			MyCollider.enabled = false;
 		}
 		else if (Yandere.CharacterAnimation["f02_fanMurderA_00"].time >= Yandere.CharacterAnimation["f02_fanMurderA_00"].length - 5f && Yandere.Blur.enabled)
 		{

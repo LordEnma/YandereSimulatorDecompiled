@@ -290,22 +290,8 @@ public class NewTitleScreenScript : MonoBehaviour
 		Frame++;
 		if (Input.GetKey(KeyCode.Escape))
 		{
-			if (Input.GetKeyDown("-"))
-			{
-				Time.timeScale -= 1f;
-			}
-			if (Input.GetKeyDown("="))
-			{
-				Time.timeScale += 1f;
-			}
-			DebugTimer += Time.deltaTime;
-			if (DebugTimer > 100f)
-			{
-				DateGlobals.Week = 2;
-				GameGlobals.RivalEliminationID = 1;
-				GameGlobals.NonlethalElimination = false;
-				SceneManager.LoadScene("NewTitleScene");
-			}
+			Selection = 8;
+			FadeOut = true;
 		}
 		if (Log == 0)
 		{
@@ -687,36 +673,37 @@ public class NewTitleScreenScript : MonoBehaviour
 							SceneManager.LoadScene("SenpaiScene");
 						}
 					}
-					else if (!GameGlobals.EightiesTutorial)
+					else if (GameGlobals.KokonaTutorial)
 					{
-						if (GameGlobals.Eighties && GameGlobals.InCutscene)
+						SceneManager.LoadScene("LoadingScene");
+					}
+					else if (GameGlobals.EightiesTutorial)
+					{
+						SceneManager.LoadScene("EightiesCutsceneScene");
+					}
+					else if (GameGlobals.Eighties && GameGlobals.InCutscene)
+					{
+						SceneManager.LoadScene("EightiesCutsceneScene");
+					}
+					else if (DateGlobals.Week < 11)
+					{
+						if (HomeGlobals.Night)
 						{
-							SceneManager.LoadScene("EightiesCutsceneScene");
-						}
-						else if (DateGlobals.Week < 11)
-						{
-							if (HomeGlobals.Night)
-							{
-								SceneManager.LoadScene("HomeScene");
-							}
-							else
-							{
-								GameGlobals.CameFromTitleScreen = true;
-								SceneManager.LoadScene("CalendarScene");
-							}
-						}
-						else if (GameGlobals.CustomMode || GameGlobals.AlternateTimeline)
-						{
-							SceneManager.LoadScene("ConfessionScene");
+							SceneManager.LoadScene("HomeScene");
 						}
 						else
 						{
-							SceneManager.LoadScene("LoadingScene");
+							GameGlobals.CameFromTitleScreen = true;
+							SceneManager.LoadScene("CalendarScene");
 						}
+					}
+					else if (GameGlobals.CustomMode || GameGlobals.AlternateTimeline)
+					{
+						SceneManager.LoadScene("ConfessionScene");
 					}
 					else
 					{
-						SceneManager.LoadScene("EightiesCutsceneScene");
+						SceneManager.LoadScene("LoadingScene");
 					}
 				}
 				else if (Selection == 3)
@@ -835,10 +822,8 @@ public class NewTitleScreenScript : MonoBehaviour
 		CurrentJukebox = EightiesJukebox;
 		EightiesJukebox.volume = 0.5f;
 		Jukebox.volume = 0f;
-		if (DateGlobals.Week > 0 && DateGlobals.Week < RivalEliminations.Length)
-		{
-			RivalEliminations[DateGlobals.Week].SetActive(value: false);
-		}
+		RivalEliminations[1].SetActive(value: false);
+		RivalEliminations[2].SetActive(value: false);
 		EightiesLogo.gameObject.SetActive(value: true);
 		NormalLogo.SetActive(value: false);
 		HeartPanel.SetActive(value: true);

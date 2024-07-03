@@ -346,6 +346,7 @@ public class EndOfDayScript : MonoBehaviour
 
 	private void Update()
 	{
+		Police.Siren.volume = Mathf.MoveTowards(Police.Siren.volume, 0f, Time.deltaTime);
 		Yandere.UpdateSlouch();
 		if (Input.GetKeyDown("space"))
 		{
@@ -2604,6 +2605,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		if (!StudentManager.Eighties)
 		{
+			Debug.Log("Checking for Budo special case.");
 			if (TaskGlobals.GetTaskStatus(46) == 1)
 			{
 				TaskGlobals.SetTaskStatus(46, 0);

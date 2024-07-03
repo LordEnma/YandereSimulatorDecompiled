@@ -161,6 +161,8 @@ public class InventoryScript : MonoBehaviour
 
 	public bool PinkApron;
 
+	public bool Utensils;
+
 	public float Money;
 
 	public bool[] ShrineCollectibles;

@@ -394,7 +394,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Clock.Period > 3 || Senpai.Alarmed || Rival.Attacked || Rival.Alarmed || Rival.Wet || Rival.GoAway || Senpai.GoAway || Clock.Police.ShowResults)
+		if (Clock.Period > 3 || Senpai.Alarmed || Senpai.Dodging || Rival.Attacked || Rival.Alarmed || Rival.Wet || Rival.GoAway || Senpai.GoAway || Clock.Police.ShowResults)
 		{
 			if (Senpai == null)
 			{
@@ -458,6 +458,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 
 	private void EndEvent()
 	{
+		Debug.Log("Osana's Monday Lunch Event just ended.");
 		if (VoiceClip != null)
 		{
 			UnityEngine.Object.Destroy(VoiceClip);
@@ -465,12 +466,15 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		if (Senpai.InEvent)
 		{
 			Senpai.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+			Senpai.TargetDistance = 1f;
 			Senpai.InEvent = false;
 			Senpai.Private = false;
-			Senpai.Pathfinding.canSearch = true;
-			Senpai.Pathfinding.canMove = true;
-			Senpai.TargetDistance = 1f;
-			Senpai.Routine = true;
+			if (!Senpai.Dodging)
+			{
+				Senpai.Pathfinding.canSearch = true;
+				Senpai.Pathfinding.canMove = true;
+				Senpai.Routine = true;
+			}
 		}
 		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 		Rival.DistanceToDestination = 100f;
@@ -490,6 +494,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		Rival.TargetDistance = 1f;
 		if (!Rival.Splashed && !Rival.Electrified && !Rival.Electrocuted)
 		{
+			Debug.Log("Osana's rooftop event ended because she was splashed or electrocuted.");
 			Rival.Routine = true;
 		}
 		if (Rival.Alarmed || Senpai.Alarmed)
@@ -501,7 +506,16 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 			Rival.Pathfinding.canSearch = false;
 			Rival.Pathfinding.canMove = false;
 			Rival.TargetDistance = 0.5f;
+			Debug.Log("When we got to this part of the code, Osana's Routine was: " + Rival.Routine);
+			Debug.Log("When we got to this part of the code, Osana's Alarmed was: " + Rival.Alarmed);
 			Rival.Routine = !Rival.Alarmed;
+			if (Rival.Electrified || Rival.Electrocuted)
+			{
+				Debug.Log("Osana's Routine should totally be false.");
+				Rival.Routine = false;
+			}
+			Debug.Log("And now, Osana's Routine is: " + Rival.Routine);
+			Debug.Log("And now, Osana's Alarmed is: " + Rival.Alarmed);
 		}
 		if (Friend != null)
 		{

@@ -1309,14 +1309,14 @@ public class MissionModeScript : MonoBehaviour
 							if (EndFrame > 0)
 							{
 								ResetGlobals();
-								for (int j = 1; j < 101; j++)
-								{
-									StudentGlobals.SetStudentPhotographed(j, value: true);
-									StudentManager.StudentPhotographed[j] = true;
-								}
 								if (Eighties)
 								{
 									DateGlobals.Week = 10;
+									for (int j = 1; j < 101; j++)
+									{
+										StudentGlobals.SetStudentPhotographed(j, value: true);
+										StudentManager.StudentPhotographed[j] = true;
+									}
 								}
 								SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 							}

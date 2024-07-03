@@ -115,6 +115,15 @@ public class NemesisScript : MonoBehaviour
 				gameObject8.SetActive(value: false);
 			}
 		}
+		if (Cosmetic.AmaiEyebrows.Length != 0)
+		{
+			Cosmetic.AmaiEyebrows[1].SetActive(value: false);
+			Cosmetic.AmaiEyebrows[2].SetActive(value: false);
+		}
+		if (Cosmetic.AmaiBrows != null)
+		{
+			Cosmetic.AmaiBrows.SetActive(value: false);
+		}
 		Difficulty = MissionModeGlobals.NemesisDifficulty;
 		if (Difficulty == 0)
 		{

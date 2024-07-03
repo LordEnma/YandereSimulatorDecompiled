@@ -84,14 +84,23 @@ public class ContainerScript : MonoBehaviour
 			}
 			else
 			{
-				BodyPart = Prompt.Yandere.PickUp;
-				Prompt.Yandere.EmptyHands();
-				BodyPart.transform.parent = BodyPartPositions[BodyPart.GetComponent<BodyPartScript>().Type];
-				BodyPart.transform.localPosition = Vector3.zero;
-				BodyPart.transform.localEulerAngles = Vector3.zero;
-				BodyPart.gameObject.GetComponent<Rigidbody>().useGravity = false;
-				BodyPart.MyCollider.isTrigger = true;
-				BodyParts[BodyPart.GetComponent<BodyPartScript>().Type] = BodyPart;
+				Debug.Log("This just fired.");
+				if (Prompt.Yandere.PickUp.ConcealedBodyPart)
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "That can't fit inside!";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				else
+				{
+					BodyPart = Prompt.Yandere.PickUp;
+					Prompt.Yandere.EmptyHands();
+					BodyPart.transform.parent = BodyPartPositions[BodyPart.GetComponent<BodyPartScript>().Type];
+					BodyPart.transform.localPosition = Vector3.zero;
+					BodyPart.transform.localEulerAngles = Vector3.zero;
+					BodyPart.gameObject.GetComponent<Rigidbody>().useGravity = false;
+					BodyPart.MyCollider.isTrigger = true;
+					BodyParts[BodyPart.GetComponent<BodyPartScript>().Type] = BodyPart;
+				}
 			}
 			Contents++;
 			UpdatePrompts();

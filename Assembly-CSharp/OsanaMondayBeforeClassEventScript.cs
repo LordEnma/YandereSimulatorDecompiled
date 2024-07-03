@@ -212,7 +212,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 			}
 			else if (Rival.CharacterAnimation["f02_pondering_00"].time > Rival.CharacterAnimation["f02_pondering_00"].length || Timer > 20f)
 			{
-				Debug.Log("Osana's ''put bentos on desk'' event has ended.");
+				Debug.Log("Osana's ''put bentos on desk'' event ended naturally.");
 				EndEvent();
 			}
 			if (Rival.Alarmed || Rival.Splashed || Rival.GoAway || (Rival.Follower != null && Rival.Follower.DramaticReaction))

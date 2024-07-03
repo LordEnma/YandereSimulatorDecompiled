@@ -458,7 +458,7 @@ public class ClubManagerScript : MonoBehaviour
 			component.loop = true;
 			component.volume = 0f;
 			component.Play();
-			Yandere.gameObject.SetActive(value: false);
+			Yandere.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
 			Ritual.SetActive(value: true);
 			CheckClub(ClubType.Occult);
 			GameObject[] cultists = Cultists;
@@ -694,7 +694,7 @@ public class ClubManagerScript : MonoBehaviour
 		else if (Club == ClubType.Delinquent)
 		{
 			Debug.Log("Calling the Delinquent 'club activity'.");
-			Yandere.gameObject.SetActive(value: false);
+			Yandere.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
 			for (ID = 0; ID < Club14Students.Length; ID++)
 			{
 				StudentScript studentScript12 = StudentManager.Students[Club14Students[ID]];

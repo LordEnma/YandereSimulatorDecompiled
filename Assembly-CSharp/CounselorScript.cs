@@ -7,15 +7,21 @@ public class CounselorScript : MonoBehaviour
 
 	public StudentManagerScript StudentManager;
 
+	public ModernRivalSabotageScript GasStove;
+
 	public CounselorDoorScript CounselorDoor;
 
 	public InputManagerScript InputManager;
+
+	public FrameScript CouncilLaptop;
 
 	public PromptBarScript PromptBar;
 
 	public EndOfDayScript EndOfDay;
 
 	public SubtitleScript Subtitle;
+
+	public FrameScript HomeEcRoom;
 
 	public SchemesScript Schemes;
 
@@ -30,6 +36,8 @@ public class CounselorScript : MonoBehaviour
 	public PromptScript Prompt;
 
 	public GameObject DelinquentRadio;
+
+	public GameObject ReportHeader;
 
 	public AudioClip[] EightiesCounselorLectureClips;
 
@@ -59,6 +67,8 @@ public class CounselorScript : MonoBehaviour
 
 	public string RivalName;
 
+	public int Week;
+
 	private string[] CounselorGreetingText = new string[3] { "", "What can I help you with?", "Can I help you?" };
 
 	private string[] CounselorLectureText = new string[9] { "", "May I see your phone for a moment? ...what is THIS?! Would you care to explain why something like this is on your phone?", "May I take a look inside your bag? ...this doesn't belong to you, does it?! What are you doing with someone else's property?", "I need to take a look in your bag. ...cigarettes?! You have absolutely no excuse to be carrying something like this around!", "It has come to my attention that you've been vandalizing the school's property. What, exactly, do you have to say for yourself?", "Obviously, we need to have a long talk about the kind of behavior that will not tolerated at this school!", "(This line of text doesn't show up outside of the Eighties.)", "That's it! I've given you enough second chances. You have repeatedly broken school rules and ignored every warning that I have given you. You have left me with no choice but to permanently expel you!", "(This line of text doesn't show up outside of the Eighties.)" };
@@ -74,6 +84,12 @@ public class CounselorScript : MonoBehaviour
 	private string[] RivalText = new string[9] { "", "What?! I've never taken any pictures like that! How did this get on my phone?!", "No! I'm not the one who did this! I would never steal from anyone!", "Huh? I don't smoke! I don't know why something like this was in my bag!", "W-wait, I can explain! It's not what you think!", "I'm telling the truth! I didn't steal the answer sheet! I don't know why it was in my desk!", "(This line of text doesn't show up outside of the Eighties.)", "No...! P-please! Don't do this!", "(This line of text doesn't show up outside of the Eighties.)" };
 
 	private string[] EightiesRivalText = new string[9] { "", "What?! I don't drink! How did something like this get in my bag?!", "No! I've never even seen these things before! I swear!", "Huh? I don't smoke! I don't know why something like this was in my bag!", "No! I'm not the one who did this! I would never steal from anyone!", "I'm telling the truth! I didn't steal the answer sheet! I don't know why it was in my bag!", "Wait! I'm being framed! You've got to believe me!", "No...! P-please! Don't do this!", "No! Please! Don't call the police! I'm begging you!" };
+
+	private string[] AmaiCounselorReportText = new string[7] { "", "She damaged one of the stoves in the Home Ec room and created a gas leak?! That's a disaster waiting to happen. I'll investigate at the earliest opportunity.", "You saw her putting cooking utensils from the Home Ec room into her bookbag? ...does she really think she can get away with stealing school property?! I'll need to speak to her about this.", "You're telling me that she created a huge mess in the Home Ec room and didn't bother to clean it up? How irresponsible...and disappointing, as well. I'll have a ''chat'' with her later today.", "The students who ate her food started vomiting immediately?! This is bad - someone could end up in the hospital! I'll have to confront her about this as soon as possible.", "You saw her doing something on the laptop in the student council room?! ...sadly, I think I know exactly what that means. Later today, I'll have a private discussion with her about it.", "...are you serious? Illegal narcotics?! If this is true, she'll be expelled immediately, and the police WILL be informed." };
+
+	private string[] AmaiCounselorLectureText = new string[9] { "", "Leaving the stove in that state was absolutely unacceptable! Do you realize that you could have caused a fire?! Or - even worse - an explosion?! We're lucky that nobody was killed!", "Just as I suspected - the missing cooking utensils are here, in your bookbag! You can't just go around stealing things from school! What do you have to say for yourself?", "I just got back from the Home Ec room. It was an absolute mess! The school is being VERY generous by allowing you to hold a bake sale here...and this is how you show your gratitude?", "I've spoken with a number of students who all confirmed that the food you served at your bake sale caused them to vomit. What kind of unsanitary conditions did you prepare that food in?!", "I checked the Student Council's records. Someone attempted to put extra money on the debit card meant for Cooking Club funds. You tried to steal money from the school and give it to your struggling family!", "I can't believe you actually brought illegal narcotics to school with you! How did you even get ahold of something like this?!", "That's it! I've given you enough second chances. You have repeatedly broken school rules and ignored every warning that I have given you. You have left me with no choice but to permanently expel you!", "Enough! I have no choice but to inform the police immediately. Explain yourself to them, not me." };
+
+	private string[] AmaiRivalText = new string[9] { "", "No! I'm not the one who damaged the stove! I don't know how this happened!", "Wait! I didn't steal anything! I don't know why these things were in my bag!", "What? But I made sure the room was clean before I left! It was immaculate - I swear!", "Huh?! That can't be right! There was nothing wrong with the food I made!", "That's not true! I never tried to put extra money on the card! I'm being honest!", "(This line of text doesn't show up outside of the Eighties.)", "No...! P-please! Don't do this!", "(This line of text doesn't show up outside of the Eighties.)" };
 
 	public UILabel[] Labels;
 
@@ -176,6 +192,12 @@ public class CounselorScript : MonoBehaviour
 	public int DelinquentPunishments;
 
 	public GameObject ModernAttacher;
+
+	public AudioClip[] AmaiCounselorReportClips;
+
+	public AudioClip[] AmaiCounselorLectureClips;
+
+	public AudioClip[] AmaiRivalClips;
 
 	public bool ReportedAlcohol;
 
@@ -473,8 +495,8 @@ public class CounselorScript : MonoBehaviour
 		CounselorBar.SetActive(value: false);
 		Reticle.SetActive(value: false);
 		RivalExpelProgress = StudentGlobals.ExpelProgress;
-		int week = DateGlobals.Week;
-		if (week > 10)
+		Week = DateGlobals.Week;
+		if (Week > 10)
 		{
 			base.gameObject.SetActive(value: false);
 			return;
@@ -495,7 +517,7 @@ public class CounselorScript : MonoBehaviour
 			EightiesMesh[1].SetActive(value: true);
 			Countdown = EightiesCountdown;
 			SwitchToEightiesExpulsionText();
-			ChibiTexture.mainTexture = EightiesRivalHeads[week];
+			ChibiTexture.mainTexture = EightiesRivalHeads[Week];
 			if (GameGlobals.CustomMode)
 			{
 				ChibiTexture.mainTexture = EightiesRivalHeads[0];
@@ -512,19 +534,20 @@ public class CounselorScript : MonoBehaviour
 			LewdLectures[0] = "You've been caught aiming a camera at a student's unmentionables. Start talking.";
 			LewdLectures[1] = "Once again, you're here because you stuck a camera up someone's skirt. Oh, I can't wait to hear your excuse this time.";
 			NewExpulsionSystem = true;
+			return;
 		}
-		else
+		ChibiTexture.mainTexture = RivalHeads[Week];
+		ModernAttacher.gameObject.SetActive(value: true);
+		OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().enabled = false;
+		OriginalMesh[2].SetActive(value: false);
+		OriginalMesh[3].SetActive(value: false);
+		if (Week > 1)
 		{
-			ChibiTexture.mainTexture = RivalHeads[week];
-			ModernAttacher.gameObject.SetActive(value: true);
-			OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().enabled = false;
-			OriginalMesh[2].SetActive(value: false);
-			OriginalMesh[3].SetActive(value: false);
-			if (week > 1)
+			if (Week == 2)
 			{
-				SwitchToEightiesExpulsionText();
-				NewExpulsionSystem = true;
+				SwitchToWeek2ExpulsionText();
 			}
+			NewExpulsionSystem = true;
 		}
 	}
 
@@ -547,6 +570,28 @@ public class CounselorScript : MonoBehaviour
 		ReportedCondoms = CounselorGlobals.ReportedCondoms;
 		ReportedTheft = CounselorGlobals.ReportedTheft;
 		ReportedCheating = CounselorGlobals.ReportedCheating;
+	}
+
+	private void SwitchToWeek2ExpulsionText()
+	{
+		Labels[1].text = "Creating Fire Hazard";
+		Labels[2].text = "Stealing School Property";
+		Labels[3].text = "Neglecting Cleaning Duties";
+		Labels[4].text = "Endangering Students' Health";
+		Labels[5].text = "Misappropriating Club Funding";
+		Labels[6].text = "Possession of Narcotics";
+		CounselorReportText = AmaiCounselorReportText;
+		CounselorReportClips = AmaiCounselorReportClips;
+		CounselorLectureText = AmaiCounselorLectureText;
+		CounselorLectureClips = AmaiCounselorLectureClips;
+		RivalText = AmaiRivalText;
+		RivalClips = AmaiRivalClips;
+		ReportedAlcohol = CounselorGlobals.ReportedAlcohol;
+		ReportedCigarettes = CounselorGlobals.ReportedCigarettes;
+		ReportedCondoms = CounselorGlobals.ReportedCondoms;
+		ReportedTheft = CounselorGlobals.ReportedTheft;
+		ReportedCheating = CounselorGlobals.ReportedCheating;
+		ReportHeader.SetActive(value: true);
 	}
 
 	private void Update()
@@ -704,6 +749,7 @@ public class CounselorScript : MonoBehaviour
 		}
 		if (Lecturing)
 		{
+			Debug.Log("The guidance counselor is lecturing!");
 			Chibi.localPosition = new Vector3(Chibi.localPosition.x, Mathf.Lerp(Chibi.localPosition.y, 250f + (float)RivalExpelProgress * -90f, Time.deltaTime * 3f), Chibi.localPosition.z);
 			if (LecturePhase == 1)
 			{
@@ -1055,51 +1101,105 @@ public class CounselorScript : MonoBehaviour
 				UILabel uILabel6 = Labels[5];
 				uILabel6.color = new Color(uILabel6.color.r, uILabel6.color.g, uILabel6.color.b, 1f);
 			}
-			return;
 		}
-		if (ReportedAlcohol)
+		else if (Eighties)
 		{
-			Labels[1].text = "Already Reported Alcohol";
+			if (ReportedAlcohol)
+			{
+				Labels[1].text = "Already Reported Alcohol";
+			}
+			if (ReportedCondoms)
+			{
+				Labels[2].text = "Already Reported Condoms";
+			}
+			if (ReportedCigarettes)
+			{
+				Labels[3].text = "Already Reported Cigarettes";
+			}
+			if (ReportedTheft)
+			{
+				Labels[4].text = "Already Reported Theft";
+			}
+			if (ReportedCheating)
+			{
+				Labels[5].text = "Already Reported Cheating";
+			}
+			if (StudentManager.RivalBookBag.Alcohol && !ReportedAlcohol)
+			{
+				Labels[1].alpha = 1f;
+			}
+			if (StudentManager.RivalBookBag.Condoms && !ReportedCondoms)
+			{
+				Labels[2].alpha = 1f;
+			}
+			if (StudentManager.RivalBookBag.Cigarettes && !ReportedCigarettes)
+			{
+				Labels[3].alpha = 1f;
+			}
+			if ((StudentManager.RivalBookBag.StolenRing && !ReportedTheft) || (StudentManager.RivalBookBag.StolenProperty && !ReportedTheft))
+			{
+				Labels[4].alpha = 1f;
+			}
+			if (StudentManager.RivalBookBag.AnswerSheet && !ReportedCheating)
+			{
+				Labels[5].alpha = 1f;
+			}
+			if (StudentManager.RivalBookBag.Narcotics)
+			{
+				Labels[6].alpha = 1f;
+			}
 		}
-		if (ReportedCondoms)
+		else if (Week == 2)
 		{
-			Labels[2].text = "Already Reported Condoms";
-		}
-		if (ReportedCigarettes)
-		{
-			Labels[3].text = "Already Reported Cigarettes";
-		}
-		if (ReportedTheft)
-		{
-			Labels[4].text = "Already Reported Theft";
-		}
-		if (ReportedCheating)
-		{
-			Labels[5].text = "Already Reported Cheating";
-		}
-		if (StudentManager.RivalBookBag.Alcohol && !ReportedAlcohol)
-		{
-			Labels[1].alpha = 1f;
-		}
-		if (StudentManager.RivalBookBag.Condoms && !ReportedCondoms)
-		{
-			Labels[2].alpha = 1f;
-		}
-		if (StudentManager.RivalBookBag.Cigarettes && !ReportedCigarettes)
-		{
-			Labels[3].alpha = 1f;
-		}
-		if ((StudentManager.RivalBookBag.StolenRing && !ReportedTheft) || (StudentManager.RivalBookBag.StolenProperty && !ReportedTheft))
-		{
-			Labels[4].alpha = 1f;
-		}
-		if (StudentManager.RivalBookBag.AnswerSheet && !ReportedCheating)
-		{
-			Labels[5].alpha = 1f;
-		}
-		if (StudentManager.RivalBookBag.Narcotics)
-		{
-			Labels[6].alpha = 1f;
+			if (ReportedAlcohol)
+			{
+				Labels[1].text = "(Already Reported Hazard)";
+				Labels[1].alpha = 0.25f;
+			}
+			if (ReportedCondoms)
+			{
+				Labels[2].text = "(Already Reported Theft)";
+				Labels[2].alpha = 0.25f;
+			}
+			if (ReportedCigarettes)
+			{
+				Labels[3].text = "(Already Reported Mess)";
+				Labels[3].alpha = 0.25f;
+			}
+			if (ReportedTheft)
+			{
+				Labels[4].text = "(Already Reported Endangerment)";
+				Labels[4].alpha = 0.25f;
+			}
+			if (ReportedCheating)
+			{
+				Labels[5].text = "(Already Reported Embezzlement)";
+				Labels[5].alpha = 0.25f;
+			}
+			if (GasStove.Sabotaged && !ReportedAlcohol)
+			{
+				Labels[1].alpha = 1f;
+			}
+			if (StudentManager.RivalBookBag.Utensils && !ReportedCondoms)
+			{
+				Labels[2].alpha = 1f;
+			}
+			if (HomeEcRoom.Framed && !ReportedCigarettes)
+			{
+				Labels[3].alpha = 1f;
+			}
+			if (StudentManager.BakeSale.Poisoned && !ReportedTheft)
+			{
+				Labels[4].alpha = 1f;
+			}
+			if (CouncilLaptop.Framed && !ReportedCheating)
+			{
+				Labels[5].alpha = 1f;
+			}
+			if (StudentManager.RivalBookBag.Narcotics)
+			{
+				Labels[6].alpha = 1f;
+			}
 		}
 	}
 

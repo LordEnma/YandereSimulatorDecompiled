@@ -22,11 +22,16 @@ public class EightiesStatsScript : MonoBehaviour
 
 	public int[] DetailIDs;
 
+	public Font ModernFont;
+
 	public void Start()
 	{
 		if (!GameGlobals.Eighties)
 		{
-			base.enabled = false;
+			ModernizeLabel(Label[0]);
+			ModernizeLabel(Label[1]);
+			ModernizeLabel(Label[2]);
+			ModernizeLabel(Label[3]);
 		}
 		if (GameGlobals.GetSpecificEliminations(DateGlobals.Week) == 0)
 		{
@@ -83,5 +88,16 @@ public class EightiesStatsScript : MonoBehaviour
 		{
 			Courtroom.UpdateFactLabels();
 		}
+	}
+
+	public void ModernizeLabel(UILabel Label)
+	{
+		Label.trueTypeFont = ModernFont;
+		Label.applyGradient = true;
+		Label.gradientBottom = new Color(1f, 0.75f, 1f, 1f);
+		Label.color = new Color(1f, 1f, 1f, 1f);
+		Label.effectStyle = UILabel.Effect.Outline8;
+		Label.effectDistance = new Vector2(2f, 2f);
+		Label.effectColor = new Color(0f, 0f, 0f, 1f);
 	}
 }

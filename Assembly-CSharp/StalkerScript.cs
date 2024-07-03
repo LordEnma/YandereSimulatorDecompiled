@@ -8,6 +8,16 @@ public class StalkerScript : MonoBehaviour
 
 	public StalkerPromptScript CatPrompt;
 
+	public CapsuleCollider MyController;
+
+	public AudioClip StalkerKnockout;
+
+	public AudioClip CrunchSound;
+
+	public AudioClip StalkerWon;
+
+	public AudioClip Crunch;
+
 	public GameObject KnockoutStars;
 
 	public GameObject Heartbroken;
@@ -16,19 +26,11 @@ public class StalkerScript : MonoBehaviour
 
 	public Transform StalkerDoor;
 
-	public AudioClip CrunchSound;
-
 	public Animation MyAnimation;
 
 	public AudioSource Jukebox;
 
 	public AudioSource MyAudio;
-
-	public AudioClip StalkerKnockout;
-
-	public AudioClip StalkerWon;
-
-	public AudioClip Crunch;
 
 	public UILabel Subtitle;
 
@@ -157,6 +159,7 @@ public class StalkerScript : MonoBehaviour
 			MyAnimation.CrossFade("newSprint_00");
 			if (Vector3.Distance(base.transform.position, Yandere.transform.position) < 1f)
 			{
+				MyController.enabled = false;
 				MyAnimation.CrossFade("struggleB_00");
 				Yandere.BeginStruggle();
 				Struggling = true;

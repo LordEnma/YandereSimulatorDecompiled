@@ -29,6 +29,8 @@ public class PoliceScript : MonoBehaviour
 
 	public ClockScript Clock;
 
+	public AudioSource Siren;
+
 	public JsonScript JSON;
 
 	public UIPanel Panel;
@@ -340,6 +342,14 @@ public class PoliceScript : MonoBehaviour
 			{
 				Timer = Mathf.MoveTowards(Timer, 0f, Time.deltaTime);
 			}
+			if (Timer < 60f)
+			{
+				Siren.volume = (1f - Timer / 60f) * 0.5f;
+			}
+			else
+			{
+				Siren.volume = Mathf.MoveTowards(Siren.volume, 0f, Time.deltaTime * 0.1f);
+			}
 			if (Timer <= 0f)
 			{
 				Timer = 0f;
@@ -388,6 +398,7 @@ public class PoliceScript : MonoBehaviour
 		}
 		if (FadeOut)
 		{
+			Siren.volume = Mathf.MoveTowards(Siren.volume, 0f, Time.deltaTime);
 			if (Yandere.Laughing)
 			{
 				Yandere.StopLaughing();
@@ -1049,8 +1060,13 @@ public class PoliceScript : MonoBehaviour
 
 	public void KillStudents()
 	{
+		Debug.Log("KillStudents() is being called.");
 		for (int i = 1; i < 101; i++)
 		{
+			if (StudentGlobals.GetStudentKidnapped(i))
+			{
+				Debug.Log("StudentGlobals.GetStudentKidnapped(ID) is: " + StudentGlobals.GetStudentKidnapped(i));
+			}
 			if (StudentGlobals.GetStudentDead(i) || StudentGlobals.GetStudentKidnapped(i) || !(StudentManager.Students[i] != null) || !StudentManager.Students[i].Alive || !(StudentManager.StudentReps[i] < -150f))
 			{
 				continue;
@@ -1105,12 +1121,19 @@ public class PoliceScript : MonoBehaviour
 				}
 			}
 		}
+		Debug.Log("Police.Deaths is " + Deaths + " and Police.Corpses is " + Corpses + ".");
 		if (Deaths > 0)
 		{
 			PlayerGlobals.Kills += Deaths;
 			Debug.Log("There were " + Deaths + " deaths at school today. As a result, PlayerGlobals.Kills is being incremented.");
 			for (int j = 2; j < StudentManager.NPCsTotal + 1; j++)
 			{
+				if (StudentManager.Students[j] != null && !StudentManager.Students[j].Alive)
+				{
+					Debug.Log("Student #" + j + " is dead, and...");
+					Debug.Log("StudentGlobals.GetStudentDying(ID) is: " + StudentGlobals.GetStudentDying(j));
+					Debug.Log("StudentGlobals.GetStudentDead(ID) is: " + StudentGlobals.GetStudentDead(j));
+				}
 				if ((StudentGlobals.GetStudentDying(j) && !StudentGlobals.GetStudentDead(j)) || (StudentManager.Students[j] != null && !StudentManager.Students[j].Alive))
 				{
 					Debug.Log("Subtracting 10% school atmosphere because someone died. Atmosphere will go down further if everyone *knows* they are dead.");

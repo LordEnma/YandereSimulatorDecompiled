@@ -169,7 +169,7 @@ public class PhoneEventScript : MonoBehaviour
 			EventStudent.Pathfinding.canSearch = false;
 			EventStudent.Pathfinding.canMove = false;
 		}
-		if (Clock.HourTime > EventTime + 0.5f || EventStudent.WitnessedMurder || EventStudent.Splashed || EventStudent.Alarmed || EventStudent.Dodging || EventStudent.Dying || EventStudent.GoAway || !EventStudent.Alive)
+		if (Clock.HourTime > EventTime + 0.5f || EventStudent.WitnessedMurder || EventStudent.Splashed || EventStudent.Alarmed || EventStudent.Dodging || EventStudent.Dying || EventStudent.GoAway || !EventStudent.Alive || (EventFriend != null && EventFriend.DramaticReaction))
 		{
 			EndedPrematurely = true;
 			EndEvent();
@@ -385,7 +385,7 @@ public class PhoneEventScript : MonoBehaviour
 			{
 				UnityEngine.Object.Destroy(VoiceClip);
 			}
-			if (EventFriend != null && EventFriend.Alive && !EventFriend.Electrified && !EventFriend.Electrocuted && EventFriend.CurrentAction == StudentActionType.Follow && EventFriend.InEvent)
+			if (EventFriend != null && EventFriend.Alive && !EventFriend.Electrified && !EventFriend.Electrocuted && !EventFriend.DramaticReaction && EventFriend.CurrentAction == StudentActionType.Follow && EventFriend.InEvent)
 			{
 				Debug.Log("Raibaru is exiting the phone event.");
 				EventFriend.CurrentDestination = EventFriend.Destinations[EventFriend.Phase];

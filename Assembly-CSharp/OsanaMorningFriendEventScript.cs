@@ -269,7 +269,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 				EndEvent();
 			}
 		}
-		if (Rival.Alarmed || Friend.Alarmed || Friend.DramaticReaction)
+		if (Rival.Alarmed || Friend.Alarmed || Friend.DramaticReaction || Rival.Splashed)
 		{
 			Debug.Log("The event ended naturally because a character was alarmed.");
 			GameObject obj = UnityEngine.Object.Instantiate(AlarmDisc, Yandere.transform.position + Vector3.up, Quaternion.identity);
@@ -378,7 +378,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 		if (Rival != null)
 		{
-			if (!Rival.Alarmed)
+			if (!Rival.Alarmed && !Rival.Splashed)
 			{
 				Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
 				Rival.DistanceToDestination = 100f;

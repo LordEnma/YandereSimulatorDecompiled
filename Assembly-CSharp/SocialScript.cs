@@ -294,6 +294,7 @@ public class SocialScript : MonoBehaviour
 				DialogueWheel.Panel.enabled = true;
 				DialogueWheel.Panel.alpha = 1f;
 				DialogueWheel.Show = true;
+				Yandere.TargetStudent.Blind = false;
 				Time.timeScale = 1f;
 				Show = false;
 			}

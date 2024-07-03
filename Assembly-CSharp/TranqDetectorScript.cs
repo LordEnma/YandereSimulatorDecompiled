@@ -10,6 +10,8 @@ public class TranqDetectorScript : MonoBehaviour
 
 	public UIPanel Checklist;
 
+	public Collider DoorBlocker;
+
 	public Collider MyCollider;
 
 	public UILabel KidnappingLabel;
@@ -146,6 +148,7 @@ public class TranqDetectorScript : MonoBehaviour
 			Door.enabled = false;
 			Door.DoorColliders[0].isTrigger = false;
 			Door.DoorColliders[1].isTrigger = false;
+			DoorBlocker.enabled = true;
 			Yandere.Inventory.SedativePoisons--;
 			if (!Yandere.Follower.Male)
 			{

@@ -481,6 +481,10 @@ public class PortalScript : MonoBehaviour
 					Yandere.RPGCamera.enabled = true;
 					Yandere.InClass = false;
 					Yandere.CanMove = true;
+					if (StudentManager.Gift.activeInHierarchy || StudentManager.Note.activeInHierarchy)
+					{
+						StudentManager.SenpaiLoveWindow.UpdateSenpaiLove();
+					}
 					Yandere.LifeNotePen.SetActive(value: false);
 					Paper.SetActive(value: false);
 					Clock.gameObject.SetActive(value: true);

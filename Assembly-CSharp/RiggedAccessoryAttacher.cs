@@ -203,9 +203,12 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		if (Student != null)
 		{
 			newRenderer.gameObject.AddComponent<OutlineScript>();
-			Student.RiggedAccessoryOutlines[Student.RiggedAccessoryOutlineID] = newRenderer.gameObject.GetComponent<OutlineScript>();
-			Student.RiggedAccessoryOutlines[Student.RiggedAccessoryOutlineID].color = Student.Outlines[0].color;
-			Student.RiggedAccessoryOutlines[Student.RiggedAccessoryOutlineID].enabled = Student.Outlines[0].enabled;
+			if (Student.RiggedAccessoryOutlines.Length != 0)
+			{
+				Student.RiggedAccessoryOutlines[Student.RiggedAccessoryOutlineID] = newRenderer.gameObject.GetComponent<OutlineScript>();
+				Student.RiggedAccessoryOutlines[Student.RiggedAccessoryOutlineID].color = Student.Outlines[0].color;
+				Student.RiggedAccessoryOutlines[Student.RiggedAccessoryOutlineID].enabled = Student.Outlines[0].enabled;
+			}
 			Student.RiggedAccessoryOutlineID++;
 			if (Student.Yandere != null && Student.Yandere.PauseScreen != null)
 			{

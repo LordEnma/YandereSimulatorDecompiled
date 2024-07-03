@@ -14,6 +14,26 @@ public class BodyPartScript : MonoBehaviour
 
 	public AudioClip WrapSFX;
 
+	public MeshRenderer MyRenderer;
+
+	public MeshFilter MyFilter;
+
+	public Texture[] Textures;
+
+	public Mesh[] Meshes;
+
+	public bool Female;
+
+	private void Start()
+	{
+		if (Female && Type == 2)
+		{
+			MyFilter.mesh = Meshes[StudentGlobals.FemaleUniform];
+			MyRenderer.materials[0].mainTexture = Textures[StudentGlobals.FemaleUniform];
+			MyRenderer.materials[1].mainTexture = Textures[StudentGlobals.FemaleUniform];
+		}
+	}
+
 	private void Update()
 	{
 		if (Prompt != null)

@@ -417,7 +417,7 @@ public class BucketScript : MonoBehaviour
 				float num = 5f;
 				if (EmptySlowly)
 				{
-					Debug.Log("Spelling now.");
+					Debug.Log("Spilling liquid out of bucket now.");
 					SpillTimer += Time.deltaTime;
 					if (CheckForGround() && (SpillTimer > 0.5f || Vector3.Distance(Yandere.transform.position, LastSpillPosition) > 0.75f))
 					{
@@ -723,9 +723,15 @@ public class BucketScript : MonoBehaviour
 		Vector3 origin = Yandere.transform.position + Yandere.transform.forward + new Vector3(0f, 1f, 0f);
 		Vector3 down = Vector3.down;
 		float maxDistance = 2f;
-		if (Physics.Raycast(origin, down, out var hitInfo, maxDistance) && hitInfo.collider.gameObject.layer == 8)
+		int num = 1;
+		int layerMask = ~(1 << num);
+		if (Physics.Raycast(origin, down, out var hitInfo, maxDistance, layerMask))
 		{
-			return true;
+			Debug.Log("The bucket's raycast collided with " + hitInfo.collider.gameObject.name + " which is on layer " + hitInfo.collider.gameObject.layer);
+			if (hitInfo.collider.gameObject.layer == 8)
+			{
+				return true;
+			}
 		}
 		return false;
 	}

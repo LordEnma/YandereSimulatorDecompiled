@@ -51,6 +51,8 @@ public class NewSettingsScript : MonoBehaviour
 
 	public bool UpdateOnNextFrame;
 
+	public bool HairPhysics;
+
 	public bool SchoolScene;
 
 	public bool Transition;
@@ -78,6 +80,7 @@ public class NewSettingsScript : MonoBehaviour
 	private void Start()
 	{
 		UpdateLabels();
+		HairPhysics = !OptionGlobals.HairPhysics;
 	}
 
 	private void Update()
@@ -417,6 +420,7 @@ public class NewSettingsScript : MonoBehaviour
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
 					OptionGlobals.HairPhysics = !OptionGlobals.HairPhysics;
+					HairPhysics = !OptionGlobals.HairPhysics;
 					QualityManager.UpdateHair();
 					if (!SchoolScene)
 					{
@@ -498,6 +502,7 @@ public class NewSettingsScript : MonoBehaviour
 				OptionGlobals.ToggleGrass = false;
 				OptionGlobals.Fog = false;
 				OptionGlobals.HairPhysics = true;
+				HairPhysics = !OptionGlobals.HairPhysics;
 				if (!SchoolScene)
 				{
 					UpdateGraphics();
@@ -524,6 +529,7 @@ public class NewSettingsScript : MonoBehaviour
 				OptionGlobals.ToggleGrass = false;
 				OptionGlobals.Fog = false;
 				OptionGlobals.HairPhysics = false;
+				HairPhysics = !OptionGlobals.HairPhysics;
 				if (!SchoolScene)
 				{
 					UpdateGraphics();

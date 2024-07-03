@@ -386,6 +386,7 @@ public class CustomModeScript : MonoBehaviour
 		AcknowledgeChallenges();
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+		GameGlobals.Eighties = true;
 		StudentManager.Eighties = GameGlobals.Eighties;
 		GameGlobals.CustomMode = false;
 		FemaleUniform = StudentGlobals.FemaleUniform;
@@ -667,6 +668,7 @@ public class CustomModeScript : MonoBehaviour
 		}
 		else if (!PlayerIsTyping)
 		{
+			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 1f, Time.deltaTime);
 			White.alpha = Mathf.MoveTowards(White.alpha, 0f, Time.deltaTime);
 			if (InputManager.DPadUp || InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
 			{
@@ -902,6 +904,7 @@ public class CustomModeScript : MonoBehaviour
 						PromptBar.UpdateButtons();
 						PromptBar.Show = true;
 						UpdateHeader();
+						UpdateDOF(2f);
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_RB))
 					{
@@ -923,6 +926,7 @@ public class CustomModeScript : MonoBehaviour
 						PromptBar.Show = true;
 						PopulateRivalList();
 						UpdateHeader();
+						UpdateDOF(2f);
 					}
 					Arrow.localPosition = new Vector3(-1000f, 400 - 100 * Selected, 0f);
 					if (Arrow.position.y < -0.4f)

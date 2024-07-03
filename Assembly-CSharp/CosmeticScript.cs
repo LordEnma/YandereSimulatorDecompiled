@@ -317,6 +317,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Texture TanCouncilUniform;
 
+	public Texture OriginalEyebrowTexture;
+
 	public GameObject RightIrisLight;
 
 	public GameObject LeftIrisLight;
@@ -723,6 +725,7 @@ public class CosmeticScript : MonoBehaviour
 				AmaiEyebrows[2].SetActive(value: false);
 			}
 			ThickBrows.SetActive(value: false);
+			SadBrows.SetActive(value: false);
 			if (AmaiBrows != null)
 			{
 				AmaiBrows.SetActive(value: false);
@@ -2220,12 +2223,17 @@ public class CosmeticScript : MonoBehaviour
 		_ = 1;
 		if (!Student.Indoors)
 		{
+			FaceID = 2;
+			_ = StudentID;
+			_ = 1;
 			MyRenderer.materials[FaceID].mainTexture = FaceTexture;
 			MyRenderer.materials[SkinID].mainTexture = SkinTextures[SkinColor];
 			MyRenderer.materials[UniformID].mainTexture = CasualTexture;
 		}
 		else
 		{
+			_ = StudentID;
+			_ = 1;
 			MyRenderer.materials[FaceID].mainTexture = FaceTexture;
 			MyRenderer.materials[SkinID].mainTexture = SkinTextures[SkinColor];
 			MyRenderer.materials[UniformID].mainTexture = UniformTexture;
@@ -3431,14 +3439,10 @@ public class CosmeticScript : MonoBehaviour
 					LookCamera = true;
 				}
 			}
-			else
+			else if (StudentID > 1)
 			{
-				Debug.Log("Assigning an animation to a male student.");
-				if (StudentID > 1)
-				{
-					CharacterAnimation.Play(GenericAnims[PortraitIDs[StudentID]]);
-					base.transform.position = new Vector3(0f, -0.1f, 0f);
-				}
+				CharacterAnimation.Play(GenericAnims[PortraitIDs[StudentID]]);
+				base.transform.position = new Vector3(0f, -0.1f, 0f);
 			}
 		}
 		PickedAnim = true;

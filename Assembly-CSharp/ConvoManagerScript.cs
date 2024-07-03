@@ -306,7 +306,7 @@ public class ConvoManagerScript : MonoBehaviour
 			}
 			return;
 		}
-		if (studentScript != null && studentScript.ClubAttire && studentScript.Actions[studentScript.Phase] == StudentActionType.ClubAction && Vector3.Distance(studentScript.transform.position, SM.Clubs.List[MartialArtist[1]].position) < 1.5f)
+		if (studentScript != null && studentScript.Alive && studentScript.Alarmed && studentScript.ClubAttire && studentScript.Actions[studentScript.Phase] == StudentActionType.ClubAction && Vector3.Distance(studentScript.transform.position, SM.Clubs.List[MartialArtist[1]].position) < 1.5f)
 		{
 			if (studentScript.Talking || studentScript.Distracted || studentScript.TurnOffRadio)
 			{
@@ -407,7 +407,7 @@ public class ConvoManagerScript : MonoBehaviour
 				}
 			}
 		}
-		if (!(studentScript2 != null) || !studentScript2.ClubAttire || studentScript2.Actions[studentScript2.Phase] != StudentActionType.ClubAction || !(Vector3.Distance(studentScript2.transform.position, SM.Clubs.List[MartialArtist[2]].position) < 1.5f))
+		if (!(studentScript2 != null) || !studentScript2.Alive || !studentScript2.Alarmed || !studentScript2.ClubAttire || studentScript2.Actions[studentScript2.Phase] != StudentActionType.ClubAction || !(Vector3.Distance(studentScript2.transform.position, SM.Clubs.List[MartialArtist[2]].position) < 1.5f))
 		{
 			return;
 		}

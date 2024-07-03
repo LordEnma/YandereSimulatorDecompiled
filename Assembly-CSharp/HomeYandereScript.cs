@@ -316,24 +316,31 @@ public class HomeYandereScript : MonoBehaviour
 				Yandere.PajamaRenderer = Pajamas.newRenderer;
 				Customize();
 			}
-			else if (!Vtuber)
+			else if (!GameGlobals.Eighties)
+			{
+				if (Vtuber)
+				{
+					for (int i = 0; i < 13; i++)
+					{
+						Pajamas.newRenderer.SetBlendShapeWeight(i, 0f);
+					}
+					Pajamas.newRenderer.SetBlendShapeWeight(0, 100f);
+					Pajamas.newRenderer.SetBlendShapeWeight(9, 100f);
+					Pajamas.newRenderer.materials[1].mainTexture = FaceTexture;
+					Debug.Log("Updating pajama mesh with Vtuber face.");
+				}
+				else
+				{
+					Pajamas.newRenderer.SetBlendShapeWeight(8, 50f);
+				}
+			}
+			else
 			{
 				Debug.Log("Updating protagonist with Ryoba's face.");
 				Pajamas.newRenderer.SetBlendShapeWeight(0, 50f);
 				Pajamas.newRenderer.SetBlendShapeWeight(5, 25f);
 				Pajamas.newRenderer.SetBlendShapeWeight(9, 0f);
 				Pajamas.newRenderer.SetBlendShapeWeight(12, 100f);
-			}
-			else
-			{
-				for (int i = 0; i < 13; i++)
-				{
-					Pajamas.newRenderer.SetBlendShapeWeight(i, 0f);
-				}
-				Pajamas.newRenderer.SetBlendShapeWeight(0, 100f);
-				Pajamas.newRenderer.SetBlendShapeWeight(9, 100f);
-				Pajamas.newRenderer.materials[1].mainTexture = FaceTexture;
-				Debug.Log("Updating pajama mesh with Vtuber face.");
 			}
 			UpdateFace = false;
 		}
@@ -500,10 +507,7 @@ public class HomeYandereScript : MonoBehaviour
 		MyRenderer.materials[1].mainTexture = PajamaTexture;
 		MyRenderer.materials[2].mainTexture = FaceTexture;
 		StartCoroutine(ApplyCustomFace());
-		if (GameGlobals.Eighties)
-		{
-			UpdateFace = true;
-		}
+		UpdateFace = true;
 	}
 
 	private void Nude()

@@ -2005,9 +2005,9 @@ public class TalkingScript : MonoBehaviour
 					{
 						flag18 = true;
 					}
-					if ((!flag18 && S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (flag18 && S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || S.Schoolwear == 2)
+					if ((!flag18 && S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (flag18 && S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || S.Schoolwear == 2 || S.WearingBikini)
 					{
-						if (S.Schoolwear == 2)
+						if (S.Schoolwear == 2 || S.WearingBikini)
 						{
 							S.CharacterAnimation.CrossFade(S.GossipAnim);
 							S.Subtitle.CustomText = "Thanks for letting me know, but...I'm in a swimsuit right now. Remind me later.";
@@ -2136,8 +2136,8 @@ public class TalkingScript : MonoBehaviour
 					else
 					{
 						Debug.Log("''BeatEmUpSuccess'' is true.");
-						S.StudentManager.UpdateAllAnimLayers();
 						S.Yandere.SetAnimationLayers();
+						S.StudentManager.UpdateAllAnimLayers();
 						AstarPath.active.Scan();
 						S.TaskPhase = 5;
 						S.Interaction = StudentInteractionType.GivingTask;

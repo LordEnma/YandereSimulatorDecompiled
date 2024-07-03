@@ -38,6 +38,10 @@ public static class Globals
 		AudioGlobals.DeleteAll();
 		GameGlobals.Profile = profile;
 		DateGlobals.Week = 1;
+		for (int i = 1; i < 101; i++)
+		{
+			StudentGlobals.SetStudentKidnapped(i, value: false);
+		}
 	}
 
 	public static void Delete(string key)

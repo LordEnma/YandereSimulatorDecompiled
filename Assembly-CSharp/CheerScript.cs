@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CheerScript : MonoBehaviour
 {
+	public StudentScript Student;
+
 	public AudioSource MyAudio;
 
 	public AudioClip[] Cheers;

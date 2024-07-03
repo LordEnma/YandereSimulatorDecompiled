@@ -8,6 +8,10 @@ public class FixHeightScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (!(base.transform.position.z > 100f))
+		{
+			return;
+		}
 		Timer += Time.deltaTime;
 		if (!(Timer > 10f))
 		{

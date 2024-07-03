@@ -62,6 +62,8 @@ public class GenericRivalBagScript : MonoBehaviour
 
 	public bool StolenProperty;
 
+	public bool Utensils;
+
 	public bool ShowMagazine;
 
 	public bool BentoStolen;
@@ -510,6 +512,11 @@ public class GenericRivalBagScript : MonoBehaviour
 					Prompt.Yandere.Inventory.IDCard = false;
 					StolenProperty = true;
 				}
+				else if (Selected == 6)
+				{
+					Prompt.Yandere.Inventory.Utensils = false;
+					Utensils = true;
+				}
 				Menu = 4;
 				UpdateMenuLabels();
 			}
@@ -734,7 +741,7 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				Label[3].color = new Color(1f, 1f, 1f, 0.5f);
 			}
-			if (!Prompt.Yandere.Inventory.Ring && !Prompt.Yandere.Inventory.CabinetKey && !Prompt.Yandere.Inventory.CaseKey && !Prompt.Yandere.Inventory.SafeKey && !Prompt.Yandere.Inventory.ShedKey && !Prompt.Yandere.Inventory.IDCard)
+			if (!Prompt.Yandere.Inventory.Ring && !Prompt.Yandere.Inventory.CabinetKey && !Prompt.Yandere.Inventory.CaseKey && !Prompt.Yandere.Inventory.SafeKey && !Prompt.Yandere.Inventory.ShedKey && !Prompt.Yandere.Inventory.IDCard && !Prompt.Yandere.Inventory.Utensils)
 			{
 				Label[4].color = new Color(1f, 1f, 1f, 0.5f);
 			}
@@ -765,7 +772,8 @@ public class GenericRivalBagScript : MonoBehaviour
 			Label[3].text = "PUT HEADMASTER SAFE KEY INTO BAG";
 			Label[4].text = "PUT GARDENING SHED KEY INTO BAG";
 			Label[5].text = "PUT FACULTY KEY CARD INTO BAG";
-			Label[6].text = "BACK";
+			Label[6].text = "PUT COOKING UTENSILS INTO BAG";
+			Label[7].text = "BACK";
 			if (!Prompt.Yandere.Inventory.Ring)
 			{
 				Label[1].color = new Color(1f, 1f, 1f, 0.5f);
@@ -786,7 +794,11 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				Label[5].color = new Color(1f, 1f, 1f, 0.5f);
 			}
-			Limit = 6;
+			if (!Prompt.Yandere.Inventory.Utensils)
+			{
+				Label[6].color = new Color(1f, 1f, 1f, 0.5f);
+			}
+			Limit = 7;
 		}
 	}
 
@@ -863,7 +875,7 @@ public class GenericRivalBagScript : MonoBehaviour
 					DiaryLabelLeft.text = "[c][008000]I love cooking[-][/c] for the special people in my life, so I made a bento for the boy I have a crush on!\n \nApparently, the upcoming school play is all about combat. Well, [c][800000]I hate drama[-][/c] and [c][800000]I hate violence,[-][/c] so I'll pass.\n \nSo many people have invited me to join their clubs! So far, [c][008000]I love music[-][/c] and [c][008000]I love gardening,[-][/c] but [c][800000]I hate the occult![-][/c]\n \nWhile I was walking around the school, I saw the most adorable kitty! (^•w•^) Oh, [c][008000]I love cats[-][/c] so much!\n \nThere's a group of girls I've been trying to make friends with. I hope they accept me! [c][800000]I hate being alone![-][/c]\n \nI just hope that they don't enjoy spreading rumors. [c][008000]I love socializing,[-][/c] but [c][800000]I hate gossip![-][/c]\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
 					break;
 				case 2:
-					DiaryLabelLeft.text = "I might audition for the school play. [c][008000]I love drama![-][/c] It has combat, which rocks, cuz [c][008000]I love violence![-][/c]\n \nMan, my parents just don't get me. I'm grateful to them for a lot of reasons, but sometimes, [c][800000]I just hate my family.[-][/c]\n \nI can't decide which club to join. [c][008000]I love martial arts[-][/c] and [c][008000]I love sports![-][/c] How can I choose just one?!\n \nMan, [c][800000]I hate school![-][/c] The teachers get mad when I crack jokes during class. I can't help it; [c][008000]I love jokes![-][/c]\n \nNormally [c][800000]I hate gossip[-][/c], but if anyone is talking smack about the gardening club or cooking club, I let it slide.\n \n[c][800000]I hate gardening[-][/c] and [c][800000]I hate cooking![-][/c] I hate all that girly stuff! It makes me wanna barf!\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
+					DiaryLabelLeft.text = "I've been addicted to a new beat-em-up video game lately! It absolutely rocks! [c][008000]I love video games[-][/c] and [c][008000]I love violence![-][/c]\n \nMan, my parents just don't get me. I'm grateful to them for a lot of reasons, but sometimes, [c][800000]I just hate my family.[-][/c]\n \nI can't decide which club to join. [c][008000]I love martial arts[-][/c] and [c][008000]I love sports![-][/c] How can I choose just one?!\n \nMan, [c][800000]I hate school![-][/c] The teachers get mad when I crack jokes during class. I can't help it; [c][008000]I love jokes![-][/c]\n \nNormally [c][800000]I hate gossip[-][/c], but if anyone is talking smack about the gardening club or cooking club, I let it slide.\n \n[c][800000]I hate gardening[-][/c] and [c][800000]I hate cooking![-][/c] I hate all that girly stuff! It makes me wanna barf!\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";
 					break;
 				case 3:
 					DiaryLabelLeft.text = "[c][008000]I love reading[-][/c] about things I knew nothing about. Thanks to a fascinating book, [c][008000]I love the occult[-][/c] now!\n \nI recently learned that reading a book outdoors feels way better than reading it indoors. I guess this means that [c][008000]I love nature[-][/c]!\n \nHonestly, I'm glad the library doesn't get many visitors. [c][800000]I don't like socializing,[-][/c] anyway. [c][008000]I prefer solitude.[-][/c]\n \nI can't stand the class clowns who goof off during class instead of paying attention to the lessons. [c][800000]I hate jokes.[-][/c]\n \n[c][008000]I love school,[-][/c] but I wish the people here would stop discussing rumors. [c][800000]I hate gossip.[-][/c]\n \nI won't attend the upcoming school play. [c][800000]I don't like drama,[-][/c] and [c][800000]I don't like violence,[-][/c] either.\n \nLast night, I had a nightmare that everyone at school learned my most embarrassing secret: ";

@@ -131,6 +131,8 @@ public class SenpaiLoveWindowScript : MonoBehaviour
 			PromptBar.Show = true;
 			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
+				GiftBox.SetActive(value: false);
+				RomanticNote.SetActive(value: false);
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
 				base.gameObject.SetActive(value: false);

@@ -276,7 +276,6 @@ public class CalendarScript : MonoBehaviour
 		else
 		{
 			AmaiButton.SetActive(value: false);
-			StatsButton.SetActive(value: false);
 			SkipButton.transform.localPosition = new Vector3(-120f, -500f, 0f);
 			if (DateGlobals.Week == 1)
 			{
@@ -641,7 +640,7 @@ public class CalendarScript : MonoBehaviour
 									ResetWeekWindow.SetActive(value: true);
 								}
 							}
-							else if (Input.GetButtonDown(InputNames.Xbox_X) && Eighties)
+							else if (Input.GetButtonDown(InputNames.Xbox_X))
 							{
 								Switch = true;
 							}
@@ -1347,8 +1346,8 @@ public class CalendarScript : MonoBehaviour
 	{
 		int profile = GameGlobals.Profile;
 		int num = 11;
-		Debug.Log("Current profile is: " + profile);
+		Debug.Log("Now saving game! Current profile is: " + profile);
 		YanSave.SaveData("Profile_" + profile + "_Slot_" + num);
-		Debug.Log("Saved current state of the game to Slot #" + num);
+		Debug.Log("The current state of the game has been saved to Slot #" + num);
 	}
 }

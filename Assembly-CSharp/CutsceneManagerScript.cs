@@ -26,15 +26,32 @@ public class CutsceneManagerScript : MonoBehaviour
 
 	public int Line = 1;
 
+	public float R;
+
+	public float G;
+
+	public float B;
+
+	public float A;
+
 	private void Update()
 	{
+		bool flag = false;
+		if (!GameGlobals.Eighties && DateGlobals.Week == 2)
+		{
+			Debug.Log("Amai's week. There should never be a scene where the counselor checks Amai's desk.");
+			flag = true;
+		}
 		AudioSource component = GetComponent<AudioSource>();
 		if (Phase == 1)
 		{
-			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
-			if (Darkness.color.a == 1f)
+			R = Mathf.MoveTowards(R, 0f, Time.deltaTime);
+			G = Mathf.MoveTowards(R, 0f, Time.deltaTime);
+			B = Mathf.MoveTowards(R, 0f, Time.deltaTime);
+			Darkness.color = new Color(R, G, B, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
+			if (Darkness.color.a > 0.999f)
 			{
-				if (Scheme == 5)
+				if (!flag && Scheme == 5)
 				{
 					Phase++;
 				}
@@ -72,7 +89,7 @@ public class CutsceneManagerScript : MonoBehaviour
 			Debug.Log("We're activating EndOfDay from CutsceneManager.");
 			EndOfDay.gameObject.SetActive(value: true);
 			EndOfDay.Phase = 14;
-			if (Scheme == 5)
+			if (!flag && Scheme == 5)
 			{
 				Counselor.LecturePhase = 5;
 			}

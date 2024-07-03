@@ -192,7 +192,7 @@ public class DebugMenuScript : MonoBehaviour
 				}
 				else if (Input.GetKeyDown(KeyCode.F12))
 				{
-					StudentGlobals.SetStudentReputation(11, -200);
+					StudentGlobals.SetStudentReputation(14, -99);
 					DatingGlobals.RivalSabotaged = 5;
 					DateGlobals.Weekday = DayOfWeek.Friday;
 					SceneManager.LoadScene("LoadingScene");
@@ -487,6 +487,10 @@ public class DebugMenuScript : MonoBehaviour
 							PlayerGlobals.SetStudentFriend(ID, value: true);
 							StudentManager.Students[ID].Friend = true;
 						}
+						for (int i = 1; i < 26; i++)
+						{
+							StudentManager.SetTopicLearnedByStudent(i, ID, boolean: true);
+						}
 					}
 					StudentManager.Students[46].Friend = false;
 					Window.SetActive(value: false);
@@ -556,11 +560,19 @@ public class DebugMenuScript : MonoBehaviour
 					Globals.DeleteAll();
 					GameGlobals.Debug = debug;
 					GameGlobals.Eighties = eighties;
-					StudentGlobals.FemaleUniform = 6;
-					StudentGlobals.MaleUniform = 6;
-					for (int i = 1; i < 101; i++)
+					if (eighties)
 					{
-						StudentGlobals.SetStudentPhotographed(i, value: true);
+						StudentGlobals.FemaleUniform = 6;
+						StudentGlobals.MaleUniform = 6;
+						for (int j = 1; j < 101; j++)
+						{
+							StudentGlobals.SetStudentPhotographed(j, value: true);
+						}
+					}
+					else
+					{
+						StudentGlobals.FemaleUniform = 1;
+						StudentGlobals.MaleUniform = 1;
 					}
 					SceneManager.LoadScene("LoadingScene");
 				}
@@ -571,20 +583,20 @@ public class DebugMenuScript : MonoBehaviour
 					{
 						Yandere.Follower.transform.position = Yandere.transform.position;
 					}
-					for (int j = 46; j < 51; j++)
+					for (int k = 46; k < 51; k++)
 					{
-						if (!(StudentManager.Students[j] != null))
+						if (!(StudentManager.Students[k] != null))
 						{
 							continue;
 						}
-						StudentManager.Students[j].transform.position = TeleportSpot[5].position;
-						if (!StudentManager.Students[j].Indoors)
+						StudentManager.Students[k].transform.position = TeleportSpot[5].position;
+						if (!StudentManager.Students[k].Indoors)
 						{
-							if (StudentManager.Students[j].ShoeRemoval.Locker == null)
+							if (StudentManager.Students[k].ShoeRemoval.Locker == null)
 							{
-								StudentManager.Students[j].ShoeRemoval.Start();
+								StudentManager.Students[k].ShoeRemoval.Start();
 							}
-							StudentManager.Students[j].ShoeRemoval.PutOnShoes();
+							StudentManager.Students[k].ShoeRemoval.PutOnShoes();
 						}
 					}
 					Clock.PresentTime = 1015f;
@@ -644,9 +656,9 @@ public class DebugMenuScript : MonoBehaviour
 						PlayerGlobals.SetStudentFriend(11, value: true);
 						StudentManager.Students[6].Friend = true;
 						StudentManager.Students[11].Friend = true;
-						for (int k = 0; k < 11; k++)
+						for (int l = 0; l < 11; l++)
 						{
-							DatingGlobals.SetComplimentGiven(k, value: false);
+							DatingGlobals.SetComplimentGiven(l, value: false);
 						}
 						for (ID = 1; ID < 26; ID++)
 						{

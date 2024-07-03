@@ -558,7 +558,7 @@ public class PickUpScript : MonoBehaviour
 
 	public void BePickedUp()
 	{
-		Debug.Log("BePickedUp() has just ben called.");
+		Debug.Log("BePickedUp() has just been called.");
 		if (TaskKitten != null)
 		{
 			TaskKitten.Anim.Play("E_held");

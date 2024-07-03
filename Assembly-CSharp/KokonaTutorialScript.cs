@@ -212,6 +212,10 @@ public class KokonaTutorialScript : MonoBehaviour
 			Yandere.Sanity = 100f;
 			Yandere.Alerts = 0;
 			Yandere.Kills = 0;
+			Yandere.RPGCamera.mouseX = 90f;
+			Yandere.RPGCamera.mouseX = 90f;
+			Yandere.RPGCamera.mouseY = 15f;
+			Yandere.RPGCamera.mouseY = 15f;
 			WaterCooler.gameObject.transform.position = new Vector3(0f, 0f, 0f);
 			CarBattery.gameObject.transform.position = new Vector3(0f, 0f, 0f);
 			Raincoat.gameObject.transform.position = new Vector3(0f, 0f, 0f);

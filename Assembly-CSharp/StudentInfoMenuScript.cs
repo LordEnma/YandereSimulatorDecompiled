@@ -440,7 +440,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.UpdateButtons();
 		}
-		if (CyberBullying && (JSON.Students[StudentID].Gender == 1 || StudentGlobals.GetStudentDead(StudentID) || StudentID > 97))
+		if (CyberBullying && (JSON.Students[StudentID].Gender == 1 || StudentGlobals.GetStudentDead(StudentID) || (DateGlobals.Week > 1 && StudentID == 11) || StudentID > 97))
 		{
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.UpdateButtons();

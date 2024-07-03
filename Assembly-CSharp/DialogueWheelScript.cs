@@ -105,6 +105,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public bool ClubLeader;
 
+	public bool CustomMode;
+
 	public bool NoFriends;
 
 	public bool Eighties;
@@ -140,6 +142,7 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		NoFriends = ChallengeGlobals.NoFriends;
 		NoGaming = ChallengeGlobals.NoGaming;
+		CustomMode = GameGlobals.CustomMode;
 		CanBefriendCouncil = GameGlobals.CanBefriendCouncil;
 	}
 
@@ -563,6 +566,7 @@ public class DialogueWheelScript : MonoBehaviour
 						Social.DialogueLabel.text = Social.Dialogue[0];
 						Social.Patience = Impatience.fillAmount;
 						Social.Student = Yandere.TargetStudent;
+						Social.Student.Blind = true;
 						Social.UpdateButtons();
 						Social.enabled = true;
 						Social.Show = true;
@@ -813,7 +817,7 @@ public class DialogueWheelScript : MonoBehaviour
 			if (Yandere.StudentManager.Eighties)
 			{
 				flag2 = true;
-				if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
+				if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || (!CustomMode && Yandere.TargetStudent.StudentID == 79))
 				{
 					flag2 = false;
 					if (Yandere.StudentManager.CustomMode && Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21)
@@ -1118,7 +1122,7 @@ public class DialogueWheelScript : MonoBehaviour
 		if (Yandere.StudentManager.Eighties)
 		{
 			flag = true;
-			if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
+			if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || (!CustomMode && Yandere.TargetStudent.StudentID == 79))
 			{
 				flag = false;
 				flag = false;

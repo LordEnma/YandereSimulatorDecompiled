@@ -21,6 +21,7 @@ public class TitleScreenOsanaScript : MonoBehaviour
 		if (GameGlobals.SpecificEliminationID > 0)
 		{
 			NewTitleScreen.ExtrasLabel.alpha = 1f;
+			Debug.Log("Current rival's SpecificEliminationID is: " + GameGlobals.SpecificEliminationID);
 			DeadOsanas[GameGlobals.SpecificEliminationID].SetActive(value: true);
 		}
 		if (DateGlobals.Week != Week)

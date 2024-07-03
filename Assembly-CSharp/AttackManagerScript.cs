@@ -37,6 +37,8 @@ public class AttackManagerScript : MonoBehaviour
 
 	public float AttackTimer;
 
+	public float AnimSpeed;
+
 	public float Distance;
 
 	public float Timer;
@@ -224,7 +226,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 		WeaponScript equippedWeapon = Yandere.EquippedWeapon;
 		SanityType sanityType = Yandere.SanityType;
-		AttackTimer += Time.deltaTime;
+		AttackTimer += Time.deltaTime * AnimSpeed;
 		if (Yandere.TargetStudent.StudentID == Yandere.StudentManager.RivalID && !Yandere.CanTranq && !Yandere.StudentManager.DisableRivalDeathSloMo && !Yandere.Noticed && !AlreadyDidSlowMo)
 		{
 			if (AttackTimer < 1.5f)
@@ -245,6 +247,12 @@ public class AttackManagerScript : MonoBehaviour
 		{
 			Time.timeScale = Mathf.MoveTowards(Time.timeScale, 1f, Time.unscaledDeltaTime * 2f);
 			equippedWeapon.MyAudio.pitch = Time.timeScale;
+			if (Yandere.Noticed && equippedWeapon.Type == WeaponType.Garrote)
+			{
+				VictimAnim[VictimAnimName].speed = 2f;
+				YandereAnim[AnimName].speed = 2f;
+				AnimSpeed = 2f;
+			}
 		}
 		SpecialEffect(equippedWeapon, sanityType);
 		if (sanityType == SanityType.Low)
@@ -259,6 +267,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 		if (AttackTimer > YandereAnim[AnimName].length)
 		{
+			Debug.Log("Attack animation is now over.");
 			if (Yandere.TargetStudent == Yandere.StudentManager.Reporter)
 			{
 				Yandere.StudentManager.Reporter = null;

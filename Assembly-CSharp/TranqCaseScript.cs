@@ -14,6 +14,8 @@ public class TranqCaseScript : MonoBehaviour
 
 	public DoorScript Door;
 
+	public Collider DoorBlocker;
+
 	public Transform Hinge;
 
 	public bool Occupied;
@@ -79,8 +81,6 @@ public class TranqCaseScript : MonoBehaviour
 				Ragdoll.TranqCase = this;
 				VictimClubType = Ragdoll.Student.Club;
 				VictimID = Ragdoll.StudentID;
-				Door.Prompt.enabled = true;
-				Door.enabled = true;
 				Occupied = true;
 				Animate = true;
 				Open = true;
@@ -111,6 +111,9 @@ public class TranqCaseScript : MonoBehaviour
 			Ragdoll.Student.OsanaHairR.transform.localScale = Vector3.MoveTowards(Ragdoll.Student.OsanaHairR.transform.localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
 			if (Rotation < 1f)
 			{
+				DoorBlocker.enabled = false;
+				Door.Prompt.enabled = true;
+				Door.enabled = true;
 				Animate = false;
 				Rotation = 0f;
 			}

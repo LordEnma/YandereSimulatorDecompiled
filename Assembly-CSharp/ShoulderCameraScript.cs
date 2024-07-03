@@ -253,11 +253,11 @@ public class ShoulderCameraScript : MonoBehaviour
 					}
 					else
 					{
+						Debug.Log("Camera angle is now switching to Yandere-chan whimpering.");
 						Yandere.CanMove = false;
 						Yandere.CharacterAnimation["f02_sadEyebrows_00"].weight = 1f;
 						Yandere.CharacterAnimation.CrossFade("f02_whimper_00");
 						Yandere.Subtitle.UpdateLabel(SubtitleType.YandereWhimper, 1, 3.5f);
-						Debug.Log("Yandere-chan should be whimpering now.");
 						if (Yandere.StudentManager.Eighties)
 						{
 							Yandere.LoseGentleEyes();
@@ -516,11 +516,6 @@ public class ShoulderCameraScript : MonoBehaviour
 			}
 			if (Timer < 8.5f)
 			{
-				Yandere.WallToRight = false;
-				Yandere.WallToLeft = false;
-				Yandere.WallAbove = false;
-				Yandere.Direction = 2;
-				Yandere.CheckForWall();
 				if (Yandere.WallToRight)
 				{
 					Yandere.MyController.Move(Yandere.transform.right * (Time.deltaTime * -1f));
@@ -529,31 +524,10 @@ public class ShoulderCameraScript : MonoBehaviour
 						Yandere.TargetStudent.MyController.Move(Yandere.TargetStudent.transform.right * (Time.deltaTime * 1f));
 					}
 				}
-				else if (Yandere.TargetStudent != null)
+				else if (Yandere.TargetStudent != null && Yandere.TargetStudent.TooCloseToWall)
 				{
-					Yandere.TargetStudent.TooCloseToWall = false;
-					Yandere.TargetStudent.CheckForWallToRight();
-					if (Yandere.TargetStudent.TooCloseToWall)
-					{
-						Yandere.MyController.Move(Yandere.transform.right * (Time.deltaTime * -1f));
-						Yandere.TargetStudent.MyController.Move(Yandere.TargetStudent.transform.right * (Time.deltaTime * 1f));
-					}
-				}
-			}
-			else
-			{
-				Head.MyCollider.enabled = true;
-				if (Head.Clipping)
-				{
-					Debug.Log("Head is clipping, we have to move the character...");
-					Yandere.MyController.Move(Yandere.transform.forward * (Time.deltaTime * -1f));
-					Yandere.MyController.Move(Yandere.transform.right * (Time.deltaTime * 1f));
-					if (Yandere.TargetStudent != null)
-					{
-						Yandere.TargetStudent.MyController.Move(Yandere.transform.forward * (Time.deltaTime * -1f));
-						Yandere.TargetStudent.MyController.Move(Yandere.transform.right * (Time.deltaTime * 1f));
-					}
-					Head.Clipping = false;
+					Yandere.MyController.Move(Yandere.transform.right * (Time.deltaTime * -1f));
+					Yandere.TargetStudent.MyController.Move(Yandere.TargetStudent.transform.right * (Time.deltaTime * 1f));
 				}
 			}
 			if (Timer < 6f)

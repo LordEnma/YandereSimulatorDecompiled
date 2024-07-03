@@ -74,10 +74,6 @@ public class TaskWindowScript : MonoBehaviour
 		Window.SetActive(value: false);
 		CustomMode = GameGlobals.CustomMode;
 		Eighties = GameGlobals.Eighties;
-		if (CustomMode)
-		{
-			Debug.Log("The Task Window recognizes that we are in Custom Mode!");
-		}
 	}
 
 	public void UpdateWindow(int ID)
@@ -267,7 +263,7 @@ public class TaskWindowScript : MonoBehaviour
 			{
 				Generic = false;
 			}
-			if (Yandere.StudentManager.CustomMode && Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21)
+			if (Yandere.StudentManager.CustomMode && ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79))
 			{
 				Generic = true;
 			}

@@ -198,6 +198,7 @@ public class IronMaidenScript : MonoBehaviour
 					Blood[0].SetActive(value: true);
 					Blood[1].SetActive(value: true);
 					Blood[2].SetActive(value: true);
+					Debug.Log("IronMaiden.Bloody is now true.");
 					Bloody = true;
 					TurnVictimIntoCorpse();
 					Prompt.Yandere.Zoom.ShakeStrength = 1f;
@@ -268,7 +269,9 @@ public class IronMaidenScript : MonoBehaviour
 				Prompt.Hide();
 				Prompt.Yandere.CanMove = true;
 				Prompt.HideButton[0] = true;
+				Debug.Log("IronMaiden.Bloody is now false.");
 				Bloody = false;
+				FadeIn = false;
 				if (Prompt.Yandere.Laughing)
 				{
 					Prompt.Yandere.StopLaughing();

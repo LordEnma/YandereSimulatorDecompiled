@@ -432,20 +432,26 @@ public class ClassScript : MonoBehaviour
 				CutsceneManager.gameObject.SetActive(value: true);
 				Schemes.UpdateInstructions();
 				base.gameObject.SetActive(value: false);
-				return;
+				CutsceneManager.GetComponent<CutsceneManagerScript>().Darkness.color = new Color(1f, 1f, 1f, 1f);
+				CutsceneManager.GetComponent<CutsceneManagerScript>().R = 1f;
+				CutsceneManager.GetComponent<CutsceneManagerScript>().G = 1f;
+				CutsceneManager.GetComponent<CutsceneManagerScript>().B = 1f;
 			}
-			Debug.Log("We don't need to go to the counselor's office.");
-			if (!Portal.FadeOut)
+			else
 			{
-				Portal.Yandere.PhysicalGrade = PhysicalGrade;
-				Portal.Yandere.CharacterAnimation["f02_wrapCorpse_00"].speed = 1f + (float)Portal.Yandere.PhysicalGrade * 0.2f;
-				Portal.Yandere.CameraEffects.UpdateDOF(Portal.OriginalDOF);
-				Portal.ClassDarkness.alpha = 1f;
-				Portal.Transition = true;
-				Portal.FadeOut = false;
-				Portal.Proceed = true;
-				PromptBar.Show = false;
-				base.gameObject.SetActive(value: false);
+				Debug.Log("We don't need to go to the counselor's office.");
+				if (!Portal.FadeOut)
+				{
+					Portal.Yandere.PhysicalGrade = PhysicalGrade;
+					Portal.Yandere.CharacterAnimation["f02_wrapCorpse_00"].speed = 1f + (float)Portal.Yandere.PhysicalGrade * 0.2f;
+					Portal.Yandere.CameraEffects.UpdateDOF(Portal.OriginalDOF);
+					Portal.ClassDarkness.alpha = 1f;
+					Portal.Transition = true;
+					Portal.FadeOut = false;
+					Portal.Proceed = true;
+					PromptBar.Show = false;
+					base.gameObject.SetActive(value: false);
+				}
 			}
 			return;
 		}

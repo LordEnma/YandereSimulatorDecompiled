@@ -24,14 +24,20 @@ public class BakeSaleScript : MonoBehaviour
 			return;
 		}
 		Timer += Time.deltaTime;
-		if (Timer > 30f && StudentManager.Students[ID] != null)
+		if (!(Timer > 30f))
 		{
+			return;
+		}
+		if (StudentManager.Students[ID] != null)
+		{
+			Debug.Log("Student #" + ID + " was not null.");
 			while ((ID > 9 && ID < 26) || ID > 86 || StudentManager.Students[ID] == null)
 			{
 				IncreaseID();
 			}
 			if (StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors && !StudentManager.Students[ID].Slave && !StudentManager.Students[ID].Bullied && !StudentManager.Students[ID].Meeting && !StudentManager.Students[ID].ClubAttire && !StudentManager.Students[ID].Distracted && !StudentManager.Students[ID].DressCode && !StudentManager.Students[ID].Investigating && StudentManager.Students[ID].Schoolwear == 1 && StudentManager.Students[ID].ClubActivityPhase < 16)
 			{
+				Debug.Log(StudentManager.Students[ID].Name + " has decided to go to the bake sale.");
 				Timer = 0f;
 				StudentManager.Students[ID].Meeting = true;
 				StudentManager.Students[ID].BakeSale = true;
@@ -41,8 +47,14 @@ public class BakeSaleScript : MonoBehaviour
 			}
 			else
 			{
+				Debug.Log("Student #" + ID + " couldn't attend the bake sale. Checking the next student.");
 				IncreaseID();
 			}
+		}
+		else
+		{
+			Debug.Log("Student #" + ID + " was null. Checking the next student.");
+			IncreaseID();
 		}
 	}
 

@@ -29,6 +29,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public StalkerScript Stalker;
 
+	public UIPanel PausePanel;
+
 	public JsonScript JSON;
 
 	public ArcScript Arc;
@@ -617,26 +619,40 @@ public class StalkerYandereScript : MonoBehaviour
 				Trespassing = false;
 			}
 		}
-		if (!Street || !CanMove || !(PauseScreen != null))
+		if (Street)
 		{
-			return;
-		}
-		if (!PauseScreen.activeInHierarchy)
-		{
-			if (Input.GetKeyDown(KeyCode.Escape))
+			if (!(PauseScreen != null) || !CanMove)
 			{
-				PauseScreen.SetActive(value: true);
-				Time.timeScale = 0.0001f;
+				return;
+			}
+			if (!PauseScreen.activeInHierarchy)
+			{
+				if (Input.GetKeyDown(KeyCode.Escape))
+				{
+					PauseScreen.SetActive(value: true);
+					Time.timeScale = 0.0001f;
+				}
+			}
+			else if (Input.GetKeyDown(KeyCode.Q))
+			{
+				SceneManager.LoadScene("NewTitleScene");
+			}
+			else if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				PauseScreen.SetActive(value: false);
+				Time.timeScale = 1f;
 			}
 		}
-		else if (Input.GetKeyDown(KeyCode.Q))
+		else if (PausePanel != null && PausePanel.enabled && CanMove)
 		{
-			SceneManager.LoadScene("NewTitleScene");
-		}
-		else if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			PauseScreen.SetActive(value: false);
-			Time.timeScale = 1f;
+			if (Input.GetButtonDown(InputNames.Xbox_Y))
+			{
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			}
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
+			{
+				SceneManager.LoadScene("HomeScene");
+			}
 		}
 	}
 

@@ -171,6 +171,7 @@ public class PauseScreenScript : MonoBehaviour
 
 	private void Start()
 	{
+		NewSettings.HairPhysics = !OptionGlobals.HairPhysics;
 		if (SceneManager.GetActiveScene().name != "SchoolScene")
 		{
 			MissionModeGlobals.MultiMission = false;
@@ -439,6 +440,7 @@ public class PauseScreenScript : MonoBehaviour
 		{
 			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Speed);
 			base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(0f, 1200f, 0f), Speed);
+			base.transform.localEulerAngles = Vector3.Lerp(base.transform.localEulerAngles, new Vector3(0f, 0f, 0f), Speed);
 		}
 		else if (Quitting)
 		{

@@ -175,7 +175,7 @@ public class AlarmDiscScript : MonoBehaviour
 								}
 								else
 								{
-									Debug.Log(Student.Name + " heard a scream from " + Originator?.ToString() + ", who witnessed a corpse. So, " + Student.Name + " really should be looking towards that corpse.");
+									Debug.Log(Student.Name + " heard a scream from " + Originator.Name + ", who witnessed a corpse. So, " + Student.Name + " really should be looking towards that corpse.");
 									Student.DistractionSpot = new Vector3(Originator.Corpse.transform.position.x, Student.transform.position.y, Originator.Corpse.transform.position.z);
 								}
 							}
