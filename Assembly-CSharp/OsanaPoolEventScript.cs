@@ -217,6 +217,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 				Rival.CharacterAnimation.CrossFade("f02_" + EventAnim[3]);
 				Rival.OsanaHair.GetComponent<Animation>().CrossFade("Hair_" + EventAnim[3]);
 				Rival.Ragdoll.Zs.SetActive(value: true);
+				Rival.Blind = true;
 				Timer = 0f;
 				Phase++;
 			}
@@ -235,6 +236,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 					Prompt.Hide();
 					Prompt.gameObject.SetActive(value: false);
 					Rival.Ragdoll.Zs.SetActive(value: false);
+					Rival.Blind = false;
 					Timer = 0f;
 					Phase++;
 				}
@@ -488,6 +490,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 		Rival.Prompt.enabled = true;
 		Rival.InEvent = false;
 		Rival.Private = false;
+		Rival.Blind = false;
 		if (!StudentManager.Stop)
 		{
 			StudentManager.UpdateStudents();

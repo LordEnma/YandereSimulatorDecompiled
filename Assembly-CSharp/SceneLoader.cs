@@ -75,6 +75,7 @@ public class SceneLoader : MonoBehaviour
 			SchoolGlobals.SchoolAtmosphereSet = true;
 			SchoolGlobals.PreviousSchoolAtmosphere = 1f;
 			SchoolGlobals.SchoolAtmosphere = 1f;
+			CollectibleGlobals.SetHardwarePurchased(1, value: true);
 			PlayerGlobals.SetCannotBringItem(4, value: true);
 			PlayerGlobals.SetCannotBringItem(5, value: true);
 			PlayerGlobals.SetCannotBringItem(6, value: true);

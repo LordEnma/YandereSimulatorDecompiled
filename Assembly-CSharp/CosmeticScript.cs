@@ -2117,30 +2117,7 @@ public class CosmeticScript : MonoBehaviour
 		UniformTexture = MaleUniformTextures[MaleUniformID];
 		CasualTexture = MaleCasualTextures[MaleUniformID];
 		SocksTexture = MaleSocksTextures[MaleUniformID];
-		if (Club == ClubType.Council)
-		{
-			FaceID = 0;
-			SkinID = 1;
-			UniformID = 2;
-		}
-		else if (MaleUniformID == 1)
-		{
-			SkinID = 0;
-			UniformID = 1;
-			FaceID = 2;
-		}
-		else if (MaleUniformID == 2 || MaleUniformID == 3)
-		{
-			UniformID = 0;
-			FaceID = 1;
-			SkinID = 2;
-		}
-		else if (MaleUniformID == 4 || MaleUniformID == 5 || MaleUniformID == 6)
-		{
-			FaceID = 0;
-			SkinID = 1;
-			UniformID = 2;
-		}
+		DetermineMaleFaceID();
 		if (Club == ClubType.Delinquent && MaleUniformID < 2)
 		{
 			MyRenderer.sharedMesh = DelinquentMesh;
@@ -2237,6 +2214,34 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.materials[FaceID].mainTexture = FaceTexture;
 			MyRenderer.materials[SkinID].mainTexture = SkinTextures[SkinColor];
 			MyRenderer.materials[UniformID].mainTexture = UniformTexture;
+		}
+	}
+
+	public void DetermineMaleFaceID()
+	{
+		if (Club == ClubType.Council)
+		{
+			FaceID = 0;
+			SkinID = 1;
+			UniformID = 2;
+		}
+		else if (MaleUniformID == 1)
+		{
+			SkinID = 0;
+			UniformID = 1;
+			FaceID = 2;
+		}
+		else if (MaleUniformID == 2 || MaleUniformID == 3)
+		{
+			UniformID = 0;
+			FaceID = 1;
+			SkinID = 2;
+		}
+		else if (MaleUniformID == 4 || MaleUniformID == 5 || MaleUniformID == 6)
+		{
+			FaceID = 0;
+			SkinID = 1;
+			UniformID = 2;
 		}
 	}
 

@@ -193,7 +193,8 @@ public class StudentInfoScript : MonoBehaviour
 			LeftCrushLabel.text = "Crush";
 			if (CurrentStudent > 10 && CurrentStudent < 21)
 			{
-				if (CurrentStudent == StudentManager.RivalID)
+				StudentManager.RivalID = DateGlobals.Week + 10;
+				if (CurrentStudent == StudentManager.RivalID && GameGlobals.RivalEliminationID == 0)
 				{
 					Debug.Log("This character is the current rival.");
 					CrushLabel.text = JSON.Students[studentJson.Crush].Name;

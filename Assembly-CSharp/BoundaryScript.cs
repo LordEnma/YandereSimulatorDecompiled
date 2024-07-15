@@ -23,19 +23,19 @@ public class BoundaryScript : MonoBehaviour
 	private void Update()
 	{
 		float z = Yandere.position.z;
-		if (z < -94f)
+		if (z < -96f)
 		{
-			Intensity = -95f + Mathf.Abs(z);
+			Intensity = -96f + Mathf.Abs(z);
 			TextureCycle.gameObject.SetActive(value: true);
 			TextureCycle.Sprite.enabled = true;
 			TextureCycle.enabled = true;
 			Color color = Static.color + new Color(0.0001f, 0.0001f, 0.0001f, 0.0001f);
 			Color color2 = Label.color;
-			color.a = Intensity / 5f;
-			color2.a = Intensity / 5f;
+			color.a = Intensity / 3.5f;
+			color2.a = Intensity / 3.5f;
 			Static.color = color;
 			Label.color = color2;
-			GetComponent<AudioSource>().volume = Intensity / 5f * 0.1f;
+			GetComponent<AudioSource>().volume = Intensity / 3.5f * 0.1f;
 			Vector3 localPosition = Label.transform.localPosition;
 			localPosition.x = Random.Range(-10f, 10f);
 			localPosition.y = Random.Range(-10f, 10f);

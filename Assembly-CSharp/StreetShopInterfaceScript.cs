@@ -395,13 +395,20 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			PurchaseEffect();
 			CollectibleGlobals.SetAdvicePurchased(Selected, value: true);
 			break;
+		case ShopType.Hardware:
+			PurchaseEffect();
+			CollectibleGlobals.SetHardwarePurchased(Selected, value: true);
+			if (Selected == 1)
+			{
+				PlayerGlobals.SetCannotBringItem(3, value: false);
+			}
+			break;
 		case ShopType.Ramen:
 			PurchaseEffect();
 			GameGlobals.Dream = Selected;
 			Eaten = true;
 			UpdateIcons();
 			break;
-		case ShopType.Hardware:
 		case ShopType.Maid:
 		case ShopType.Games:
 			break;
@@ -552,6 +559,18 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			for (int i = 1; i < 11; i++)
 			{
 				if (CollectibleGlobals.GetAdvicePurchased(i))
+				{
+					Icons[i].spriteName = "Yes";
+					PricesLabel[i].text = "Bought";
+				}
+			}
+			break;
+		}
+		case ShopType.Hardware:
+		{
+			for (int i = 1; i < 11; i++)
+			{
+				if (CollectibleGlobals.GetHardwarePurchased(i))
 				{
 					Icons[i].spriteName = "Yes";
 					PricesLabel[i].text = "Bought";

@@ -299,6 +299,8 @@ public class StreetShopScript : MonoBehaviour
 				StreetManager.CurrentlyActiveJukebox.volume = 0.5f;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
+				Yandere.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+				Yandere.RPGCamera.ResetStreetCamera();
 				Yandere.CanMove = true;
 			}
 		}

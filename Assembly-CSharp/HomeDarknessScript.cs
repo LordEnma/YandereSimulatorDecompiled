@@ -156,6 +156,11 @@ public class HomeDarknessScript : MonoBehaviour
 					Debug.Log("Exiting home via watching anime.");
 					SceneManager.LoadScene("LifeNoteScene");
 				}
+				else if (HomeYandere.transform.localScale.x < 0.5f)
+				{
+					Debug.Log("Going to school because of the Hardware Menu.");
+					CheckForOsanaThursday();
+				}
 				else if (HomeExit.ID == 1)
 				{
 					CheckForOsanaThursday();
@@ -293,6 +298,7 @@ public class HomeDarknessScript : MonoBehaviour
 					StudentGlobals.MemorialStudent8 = 0;
 					StudentGlobals.MemorialStudent9 = 0;
 				}
+				GameGlobals.SenpaiMourning = false;
 			}
 			HomeGlobals.Night = true;
 			SceneManager.LoadScene("HomeScene");

@@ -616,6 +616,7 @@ public class OfferHelpScript : MonoBehaviour
 			{
 				StudentManager.UpdateInfatuatedTargetDistances();
 			}
+			Prompt.Yandere.PauseScreen.StudentInfoMenu.Targeting = false;
 			Object.Destroy(base.gameObject);
 		}
 	}

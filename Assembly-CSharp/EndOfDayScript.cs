@@ -8,6 +8,8 @@ public class EndOfDayScript : MonoBehaviour
 {
 	public RemovableItemManagerScript RemovableItemManager;
 
+	public HardwareManagerScript HardwareManager;
+
 	public SecuritySystemScript SecuritySystem;
 
 	public StudentManagerScript StudentManager;
@@ -342,6 +344,10 @@ public class EndOfDayScript : MonoBehaviour
 			ClothingWithRedPaint++;
 		}
 		StudentManager.RemoveLowPolyEffect();
+		if (StudentManager.Students[1] != null && StudentManager.Students[1].TaroApron.newRenderer != null)
+		{
+			StudentManager.Students[1].TaroApron.newRenderer.enabled = false;
+		}
 	}
 
 	private void Update()
@@ -2803,6 +2809,22 @@ public class EndOfDayScript : MonoBehaviour
 			PlayerGlobals.BoughtSedative = true;
 			PlayerGlobals.SetCannotBringItem(9, value: false);
 		}
+		if (PlayerGlobals.BringingHardware > 0)
+		{
+			Debug.Log("The player arrived at school with hardware from the hardware store...");
+			for (int j = 1; j < HardwareManager.Hardware.Length; j++)
+			{
+				if (HardwareManager.Hardware[j] == null || HardwareManager.Hardware[j].Disposed)
+				{
+					CollectibleGlobals.SetHardwarePurchased(j, value: false);
+				}
+			}
+			if ((PlayerGlobals.BringingHardware == 1 && HardwareManager.Hardware[1] == null) || (PlayerGlobals.BringingHardware == 1 && HardwareManager.Hardware[1].Disposed))
+			{
+				PlayerGlobals.SetCannotBringItem(3, value: true);
+			}
+			PlayerGlobals.BringingHardware = 0;
+		}
 		if (ArticleID == 1)
 		{
 			PlayerGlobals.Reputation += 20f * (1f + (float)ClassGlobals.LanguageGrade * 0.2f);
@@ -3208,11 +3230,6 @@ public class EndOfDayScript : MonoBehaviour
 				Debug.Log("The player drove someone to suicide.");
 				FunGameOver = true;
 			}
-		}
-		if (Yandere.Kills > 0 || Police.Deaths > 0)
-		{
-			Debug.Log("The player drove someone to suicide.");
-			FunGameOver = true;
 		}
 		if (DateGlobals.Week == 9 && DateGlobals.Weekday == DayOfWeek.Friday)
 		{

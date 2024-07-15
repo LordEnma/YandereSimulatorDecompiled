@@ -53,6 +53,8 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	public int Characters;
 
+	public int EventID;
+
 	public int Loops;
 
 	public int Phase;
@@ -152,9 +154,12 @@ public class ModernRivalEventScript : MonoBehaviour
 					Char[0].Private = Private;
 					Char[0].Distracted = true;
 					StudentScript[] @char = Char;
-					for (int j = 0; j < @char.Length; j++)
+					foreach (StudentScript studentScript in @char)
 					{
-						@char[j].InEvent = true;
+						if (studentScript != null)
+						{
+							studentScript.InEvent = true;
+						}
 					}
 					Phase++;
 					TakeInstructions();
@@ -298,7 +303,6 @@ public class ModernRivalEventScript : MonoBehaviour
 			}
 			if (Instructions[Phase].Audio != null)
 			{
-				Debug.Log("Should be playing some audio right now.");
 				MyAudio.clip = Instructions[Phase].Audio;
 				AudioSource.PlayClipAtPoint(MyAudio.clip, Char[0].transform.position);
 			}
@@ -400,43 +404,23 @@ public class ModernRivalEventScript : MonoBehaviour
 			break;
 		case 5:
 		{
-			for (int j = 1; j < Char.Length; j++)
+			for (int i = 1; i < Char.Length; i++)
 			{
-				if (Char[j] != null)
+				if (Char[i] != null)
 				{
-					Char[j].InEvent = true;
-					Char[j].Routine = false;
-					Char[j].SpeechLines.Stop();
-					Char[j].FocusOnStudent = true;
-					Char[j].WeirdStudent = Char[0].transform;
-					Char[j].CharacterAnimation.CrossFade(Char[j].IdleAnim);
+					Char[i].InEvent = true;
+					Char[i].Routine = false;
+					Char[i].SpeechLines.Stop();
+					Char[i].FocusOnStudent = true;
+					Char[i].WeirdStudent = Char[0].transform;
+					Char[i].CharacterAnimation.CrossFade(Char[i].IdleAnim);
 				}
 			}
 			break;
 		}
 		case 6:
-		{
-			for (int i = 0; i < Char.Length; i++)
-			{
-				if (Char[i] != null)
-				{
-					Char[i].WeirdStudent = null;
-					Char[i].FocusOnStudent = false;
-					ScheduleBlock obj = Char[i].ScheduleBlocks[2];
-					obj.destination = "BakeSale";
-					obj.action = "BakeSale";
-					ScheduleBlock obj2 = Char[i].ScheduleBlocks[4];
-					obj2.destination = "BakeSale";
-					obj2.action = "BakeSale";
-					ScheduleBlock obj3 = Char[i].ScheduleBlocks[7];
-					obj3.destination = "BakeSale";
-					obj3.action = "BakeSale";
-					Char[i].GetDestinations();
-					Char[i].CurrentAction = StudentActionType.BakeSale;
-				}
-			}
+			SendClubToBakeSale();
 			break;
-		}
 		case 7:
 			EventObject[0].SetActive(value: true);
 			break;
@@ -455,15 +439,15 @@ public class ModernRivalEventScript : MonoBehaviour
 			break;
 		case 11:
 		{
-			ScheduleBlock obj4 = Char[0].ScheduleBlocks[4];
-			obj4.destination = "Picnic";
-			obj4.action = "Picnic";
+			ScheduleBlock obj = Char[0].ScheduleBlocks[4];
+			obj.destination = "Picnic";
+			obj.action = "Picnic";
 			Char[0].GetDestinations();
 			Char[0].Pathfinding.target = Char[0].Destinations[4];
 			Char[0].CurrentDestination = Char[0].Destinations[4];
-			ScheduleBlock obj5 = Char[1].ScheduleBlocks[4];
-			obj5.destination = "Picnic";
-			obj5.action = "Picnic";
+			ScheduleBlock obj2 = Char[1].ScheduleBlocks[4];
+			obj2.destination = "Picnic";
+			obj2.action = "Picnic";
 			Char[1].GetDestinations();
 			Char[1].Pathfinding.target = Char[1].Destinations[4];
 			Char[1].CurrentDestination = Char[1].Destinations[4];
@@ -535,6 +519,10 @@ public class ModernRivalEventScript : MonoBehaviour
 	public void EndEvent()
 	{
 		Debug.Log("A Modern Rival Event has ended.");
+		if (EventID == 3)
+		{
+			SendClubToBakeSale();
+		}
 		for (int i = 0; i < Char.Length; i++)
 		{
 			if (Char[i] != null && Char[i].Alive && !Char[i].Dying)
@@ -548,7 +536,7 @@ public class ModernRivalEventScript : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log("Character was alarmed when event ended.");
+					Debug.Log("Character # " + i + " was alarmed when event ended.");
 				}
 				Char[i].CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 				Char[i].CurrentDestination = Char[i].Destinations[Char[i].Phase];
@@ -610,6 +598,30 @@ public class ModernRivalEventScript : MonoBehaviour
 			if (Char[i] != null)
 			{
 				Characters++;
+			}
+		}
+	}
+
+	public void SendClubToBakeSale()
+	{
+		for (int i = 0; i < Char.Length; i++)
+		{
+			if (Char[i] != null)
+			{
+				Char[i].WeirdStudent = null;
+				Char[i].FocusOnStudent = false;
+				ScheduleBlock obj = Char[i].ScheduleBlocks[2];
+				obj.destination = "BakeSale";
+				obj.action = "BakeSale";
+				ScheduleBlock obj2 = Char[i].ScheduleBlocks[4];
+				obj2.destination = "BakeSale";
+				obj2.action = "BakeSale";
+				ScheduleBlock obj3 = Char[i].ScheduleBlocks[7];
+				obj3.destination = "BakeSale";
+				obj3.action = "BakeSale";
+				Char[i].GetDestinations();
+				Char[i].CurrentAction = StudentActionType.BakeSale;
+				Char[i].Pathfinding.speed = 1f;
 			}
 		}
 	}

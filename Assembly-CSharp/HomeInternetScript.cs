@@ -75,6 +75,8 @@ public class HomeInternetScript : MonoBehaviour
 
 	public UILabel[] PostLabels;
 
+	public UILabel[] NameLabels;
+
 	public UILabel[] ReplyLabels;
 
 	public UILabel[] MenuLabels;
@@ -99,6 +101,8 @@ public class HomeInternetScript : MonoBehaviour
 
 	public int Selected = 1;
 
+	public int Week = 1;
+
 	public int ID = 1;
 
 	public int Location;
@@ -114,6 +118,8 @@ public class HomeInternetScript : MonoBehaviour
 	public UITexture StudentPost2Portrait;
 
 	public UITexture LamePostPortrait;
+
+	public Texture AnonymousPortrait;
 
 	public Texture CurrentPortrait;
 
@@ -135,6 +141,11 @@ public class HomeInternetScript : MonoBehaviour
 
 	private void Awake()
 	{
+		Week = DateGlobals.Week;
+		if (Week == 2)
+		{
+			NewPostTextLabel.text = "Did you know that _______________ used to ____________________ into    ______________________________?";
+		}
 		StudentPost1.localPosition = new Vector3(StudentPost1.localPosition.x, -180f, StudentPost1.localPosition.z);
 		StudentPost2.localPosition = new Vector3(StudentPost2.localPosition.x, -365f, StudentPost2.localPosition.z);
 		YandereReply.localPosition = new Vector3(YandereReply.localPosition.x, -88f, YandereReply.localPosition.z);
@@ -381,7 +392,16 @@ public class HomeInternetScript : MonoBehaviour
 				}
 				if (Input.GetButtonDown(InputNames.Xbox_X) && PostIcon.activeInHierarchy)
 				{
-					YanderePostLabel.text = "Did you know that " + PostLabels[1].text + " used to " + PostLabels[2].text + " about " + PostLabels[3].text + "?";
+					if (Week == 1)
+					{
+						Debug.Log("Week is 1.");
+						YanderePostLabel.text = "Did you know that " + PostLabels[1].text + " used to " + PostLabels[2].text + " about " + PostLabels[3].text + "?";
+					}
+					else
+					{
+						Debug.Log("Week is 2.");
+						YanderePostLabel.text = "Did you know that " + PostLabels[1].text + " used to " + PostLabels[2].text + " into " + PostLabels[3].text + "?";
+					}
 					ExitPost();
 					InternetPrompts.SetActive(value: false);
 					ChangeLabel.SetActive(value: false);
@@ -659,6 +679,13 @@ public class HomeInternetScript : MonoBehaviour
 
 	private void GetPortrait(int ID)
 	{
+		if (StudentGlobals.GetStudentDead(ID) || StudentGlobals.GetStudentKidnapped(ID) || StudentGlobals.GetStudentArrested(ID) || StudentGlobals.GetStudentExpelled(ID))
+		{
+			Debug.Log("Student #" + ID + " cannot post on the Internet because they are Dead/Kidnapped/Arrested/Expelled.");
+			NameLabels[ID].text = "Anonymous";
+			CurrentPortrait = AnonymousPortrait;
+			return;
+		}
 		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + ID + ".png");
 		CurrentPortrait = wWW.texture;
 	}

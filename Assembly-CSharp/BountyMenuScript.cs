@@ -12,10 +12,17 @@ public class BountyMenuScript : MonoBehaviour
 
 	public int[] StudentIDs;
 
+	public Texture InfoChan;
+
 	private void Start()
 	{
 		DescLabel.text = Descriptions[Clock.GameplayDay];
 		GetPortrait(StudentIDs[Clock.GameplayDay]);
+		if ((Clock.GameplayDay == 2 && Clock.StudentManager.Students[11] == null) || Clock.StudentManager.Students[StudentIDs[Clock.GameplayDay]] == null)
+		{
+			DescLabel.text = "Sorry, I have no bounty available for you today.";
+			Portrait.mainTexture = InfoChan;
+		}
 	}
 
 	private void Update()

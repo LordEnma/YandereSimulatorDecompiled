@@ -112,9 +112,13 @@ public class DoorScript : MonoBehaviour
 
 	public int DoorID;
 
+	public bool CannotLockpick;
+
 	public bool Initialized;
 
 	public string LockPickAnim = "f02_lockPick_00";
+
+	public float DoorHeight = 2.25f;
 
 	private bool Double => Doors.Length == 2;
 
@@ -284,13 +288,14 @@ public class DoorScript : MonoBehaviour
 							Bucket.Prompt.Hide();
 							Bucket.Prompt.enabled = false;
 							CheckDirection();
+							float doorHeight = DoorHeight;
 							if (North)
 							{
-								Bucket.transform.localPosition = new Vector3(0f, 2.25f, 0.2975f);
+								Bucket.transform.localPosition = new Vector3(0f, doorHeight, 0.2975f);
 							}
 							else
 							{
-								Bucket.transform.localPosition = new Vector3(0f, 2.25f, -0.2975f);
+								Bucket.transform.localPosition = new Vector3(0f, doorHeight, -0.2975f);
 							}
 							Bucket.GetComponent<Rigidbody>().isKinematic = true;
 							Bucket.GetComponent<Rigidbody>().useGravity = false;
@@ -408,22 +413,31 @@ public class DoorScript : MonoBehaviour
 				Prompt.HideButton[2] = false;
 				if (Prompt.Circle[2] == null)
 				{
-					Debug.Log("An error occured when loading the same that caused one door to mistake itself for another door.");
+					Debug.Log("Perhaps an error occured when loading the game that caused this door to mistake itself for another door.");
 					Locked = false;
 				}
 				else if (Prompt.Circle[2].fillAmount == 0f)
 				{
-					Prompt.Yandere.EmptyHands();
-					Debug.Log("Commence lockpicking.");
-					Prompt.Yandere.Inventory.LockPick = false;
-					Prompt.Label[0].text = "     Open";
-					Prompt.HideButton[2] = true;
-					Locked = false;
-					Prompt.Yandere.LockPickAnim = LockPickAnim;
-					Prompt.Yandere.CharacterAnimation.CrossFade(LockPickAnim);
-					Prompt.Yandere.LockpickTarget = base.transform;
-					Prompt.Yandere.Lockpicking = true;
-					Prompt.Yandere.CanMove = false;
+					Prompt.Circle[2].fillAmount = 1f;
+					if (CannotLockpick)
+					{
+						Yandere.NotificationManager.CustomText = "Cannot lockpick this door";
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					}
+					else
+					{
+						Prompt.Yandere.EmptyHands();
+						Debug.Log("Commence lockpicking.");
+						Prompt.Yandere.Inventory.LockPick = false;
+						Prompt.Label[0].text = "     Open";
+						Prompt.HideButton[2] = true;
+						Locked = false;
+						Prompt.Yandere.LockPickAnim = LockPickAnim;
+						Prompt.Yandere.CharacterAnimation.CrossFade(LockPickAnim);
+						Prompt.Yandere.LockpickTarget = base.transform;
+						Prompt.Yandere.Lockpicking = true;
+						Prompt.Yandere.CanMove = false;
+					}
 				}
 			}
 			else if (!Prompt.HideButton[2])

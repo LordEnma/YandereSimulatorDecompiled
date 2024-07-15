@@ -241,7 +241,7 @@ public class ConvoManagerScript : MonoBehaviour
 			SM.Students[MartialArtist[1]].GetNewAnimation = false;
 			SM.Students[MartialArtist[2]].GetNewAnimation = false;
 			Cycles++;
-			if (Cycles == 10)
+			if (Cycles > 9 && SM.Yandere.CanMove)
 			{
 				SM.UpdateMartialArts();
 				KickTimer = 0f;
@@ -394,7 +394,7 @@ public class ConvoManagerScript : MonoBehaviour
 					{
 						studentScript2.ClubAnim = "f02_loopingKick";
 					}
-					if (studentScript.DistanceToDestination < 1f)
+					if (studentScript.DistanceToDestination < 1f && studentScript.Yandere.CanMove)
 					{
 						KickTimer += Time.deltaTime;
 						if (KickTimer >= 60f)
@@ -503,7 +503,7 @@ public class ConvoManagerScript : MonoBehaviour
 				studentScript.ClubAnim = "f02_loopingKick";
 			}
 		}
-		if (studentScript2.DistanceToDestination < 1f)
+		if (studentScript2.DistanceToDestination < 1f && studentScript2.Yandere.CanMove)
 		{
 			KickTimer += Time.deltaTime;
 			if (KickTimer >= 60f)

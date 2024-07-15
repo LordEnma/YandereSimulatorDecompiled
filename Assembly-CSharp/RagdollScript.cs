@@ -715,6 +715,7 @@ public class RagdollScript : MonoBehaviour
 		}
 		if (Falling)
 		{
+			Student.HipCollider.radius = Mathf.MoveTowards(Student.HipCollider.radius, 0.5f, Time.deltaTime * 0.5f);
 			FallTimer += Time.deltaTime;
 			if (FallTimer > 1.6f)
 			{
@@ -938,6 +939,7 @@ public class RagdollScript : MonoBehaviour
 	public void Fall()
 	{
 		Debug.Log("This corpse is now falling.");
+		Student.HipCollider.radius = 0f;
 		Student.Prompt.enabled = false;
 		Student.Prompt.Hide();
 		base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.0001f, base.transform.position.z);

@@ -391,4 +391,13 @@ public class RPG_Camera : MonoBehaviour
 		mouseY = 0f;
 		mouseYSmooth = 0f;
 	}
+
+	public void ResetStreetCamera()
+	{
+		Debug.Log("The ZeroEverything() function was just called.");
+		mouseX = 90f;
+		mouseXSmooth = 90f;
+		mouseY = 15f;
+		mouseYSmooth = 15f;
+	}
 }

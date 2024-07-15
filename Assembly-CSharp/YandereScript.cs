@@ -1021,6 +1021,8 @@ public class YandereScript : MonoBehaviour
 
 	public GameObject CreepyArms;
 
+	public int Zs;
+
 	public bool SetUpRaincoatOutline;
 
 	public bool BypassRequirement;
@@ -5445,9 +5447,16 @@ public class YandereScript : MonoBehaviour
 			SenpaiFade = Mathf.Lerp(SenpaiFade, 0f, Time.deltaTime * 10f);
 			SenpaiTint = 1f - SenpaiFade / 100f;
 			_ = Attacking;
-			SelectGrayscale.desaturation = Mathf.Lerp(SelectGrayscale.desaturation, 0f, Time.deltaTime * 10f);
-			HeartBeat.volume = SenpaiTint;
 			Sanity += Time.deltaTime * 10f;
+			if (SanitySmudges.color.a > GreyTarget)
+			{
+				SelectGrayscale.desaturation = Mathf.Lerp(SelectGrayscale.desaturation, SanitySmudges.color.a, Time.deltaTime * 10f);
+			}
+			else
+			{
+				SelectGrayscale.desaturation = Mathf.Lerp(SelectGrayscale.desaturation, GreyTarget, Time.deltaTime * 10f);
+			}
+			HeartBeat.volume = SenpaiTint;
 			SenpaiTimer += Time.deltaTime;
 			BeatTimer += Time.deltaTime;
 			if (BeatTimer > 60f / (float)HeartRate.BeatsPerMinute)
@@ -5468,7 +5477,14 @@ public class YandereScript : MonoBehaviour
 			SenpaiFilter.FadeFX = Mathf.Lerp(SenpaiFilter.FadeFX, 0f, Time.deltaTime * 10f);
 			SenpaiFade = Mathf.Lerp(SenpaiFade, 100f, Time.deltaTime * 10f);
 			SenpaiTint = SenpaiFade / 100f;
-			SelectGrayscale.desaturation = Mathf.Lerp(SelectGrayscale.desaturation, GreyTarget, Time.deltaTime * 10f);
+			if (SanitySmudges.color.a > GreyTarget)
+			{
+				SelectGrayscale.desaturation = Mathf.Lerp(SelectGrayscale.desaturation, SanitySmudges.color.a, Time.deltaTime * 10f);
+			}
+			else
+			{
+				SelectGrayscale.desaturation = Mathf.Lerp(SelectGrayscale.desaturation, GreyTarget, Time.deltaTime * 10f);
+			}
 			CharacterAnimation["f02_shy_00"].weight = 1f - SenpaiTint;
 			for (int i = 1; i < 6; i++)
 			{
@@ -7498,7 +7514,14 @@ public class YandereScript : MonoBehaviour
 		}
 		CharacterAnimation["f02_shy_00"].weight = 0f;
 		HeartBeat.volume = 0f;
-		SelectGrayscale.desaturation = GreyTarget;
+		if (SanitySmudges.color.a > GreyTarget)
+		{
+			SelectGrayscale.desaturation = SanitySmudges.color.a;
+		}
+		else
+		{
+			SelectGrayscale.desaturation = GreyTarget;
+		}
 		SenpaiFade = 100f;
 		SenpaiTint = 0f;
 	}

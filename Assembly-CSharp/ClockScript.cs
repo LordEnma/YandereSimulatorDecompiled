@@ -355,7 +355,7 @@ public class ClockScript : MonoBehaviour
 				LoveManager.BeginConfession();
 			}
 		}
-		else if (!Police.FadeOut && !Yandere.Attacking && !Yandere.Struggling && !Yandere.DelinquentFighting && !Yandere.Pickpocketing && !Yandere.Noticed)
+		else if (!Police.FadeOut && !Yandere.Attacking && !Yandere.Struggling && !Yandere.DelinquentFighting && !Yandere.Pickpocketing && !Yandere.Noticed && !Yandere.Talking)
 		{
 			Debug.Log("Ending the day because it's 6:00 PM.");
 			if (!StudentManager.Portal.GetComponent<PortalScript>().EndedFinalEvents)
@@ -447,6 +447,7 @@ public class ClockScript : MonoBehaviour
 			if (Period < 4)
 			{
 				PeriodLabel.text = "CLASS TIME";
+				StudentManager.WednesdayGiftBox.SetActive(value: false);
 				ActivateTrespassZones();
 				ChangePeriod();
 				Period++;
@@ -756,6 +757,11 @@ public class ClockScript : MonoBehaviour
 		{
 			Police.EndOfDay.WeaponManager.BroughtWeapons[bringingItem].Prompt.Circle[3].fillAmount = 0f;
 			Police.EndOfDay.WeaponManager.BroughtWeapons[bringingItem].UnequipImmediately = true;
+		}
+		if (PlayerGlobals.BringingHardware == 1)
+		{
+			Police.EndOfDay.WeaponManager.BroughtWeapons[3].Prompt.Circle[3].fillAmount = 0f;
+			Police.EndOfDay.WeaponManager.BroughtWeapons[3].UnequipImmediately = true;
 		}
 	}
 

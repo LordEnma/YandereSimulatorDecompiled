@@ -71,6 +71,10 @@ public class ChangingBoothScript : MonoBehaviour
 				}
 				else
 				{
+					if (Yandere.WearingRaincoat)
+					{
+						Yandere.RemoveGloves();
+					}
 					Yandere.EmptyHands();
 					Yandere.CanMove = false;
 					YandereChanging = true;

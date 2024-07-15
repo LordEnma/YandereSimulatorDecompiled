@@ -142,6 +142,16 @@ public class AsylumIntroScript : MonoBehaviour
 		settings.focusDistance = Value;
 		settings.aperture = 5.6f;
 		Profile.depthOfField.settings = settings;
+		UpdateAperture(5.6f);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
+		Profile.depthOfField.settings = settings;
 	}
 
 	public void SetVignetteBlack()

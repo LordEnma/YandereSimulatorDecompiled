@@ -41,6 +41,9 @@ public static class Globals
 		for (int i = 1; i < 101; i++)
 		{
 			StudentGlobals.SetStudentKidnapped(i, value: false);
+			StudentGlobals.SetStudentArrested(i, value: false);
+			StudentGlobals.SetStudentExpelled(i, value: false);
+			StudentGlobals.SetStudentDead(i, value: false);
 		}
 	}
 

@@ -2,9 +2,13 @@ using UnityEngine;
 
 public class HomeInteractionScript : MonoBehaviour
 {
+	public HardwareMenuScript HardwareMenu;
+
 	public GameObject ObjectToActivate;
 
 	public HomeYandereScript Yandere;
+
+	public PromptBarScript PromptBar;
 
 	public HomeExitScript Exit;
 
@@ -44,6 +48,18 @@ public class HomeInteractionScript : MonoBehaviour
 				Exit.enabled = false;
 				Exit.ID = 3;
 				Yandere.CanMove = false;
+			}
+			else if (ID == 4)
+			{
+				HardwareMenu.PlayerPosition = Yandere.transform.position;
+				Yandere.transform.position = new Vector3(-18.5685f, -3.112333f, 10.1977f);
+				Yandere.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
+				Yandere.MyController.enabled = false;
+				Yandere.CanMove = false;
+				HardwareMenu.Panel.enabled = true;
+				HardwareMenu.UpdateHighlight();
+				HardwareMenu.Show = true;
+				Yandere.HomeCamera.UpdateDOF(1f);
 			}
 		}
 		if (!Move)

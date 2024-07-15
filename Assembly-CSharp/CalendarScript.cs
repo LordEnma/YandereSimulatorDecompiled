@@ -242,6 +242,7 @@ public class CalendarScript : MonoBehaviour
 		}
 		if (!GameGlobals.ItemsInitialized)
 		{
+			CollectibleGlobals.SetHardwarePurchased(1, value: true);
 			PlayerGlobals.SetCannotBringItem(4, value: true);
 			PlayerGlobals.SetCannotBringItem(5, value: true);
 			PlayerGlobals.SetCannotBringItem(6, value: true);
@@ -276,6 +277,10 @@ public class CalendarScript : MonoBehaviour
 		else
 		{
 			AmaiButton.SetActive(value: false);
+			if (DateGlobals.Weekday == DayOfWeek.Sunday)
+			{
+				StatsButton.SetActive(value: false);
+			}
 			SkipButton.transform.localPosition = new Vector3(-120f, -500f, 0f);
 			if (DateGlobals.Week == 1)
 			{
@@ -444,6 +449,7 @@ public class CalendarScript : MonoBehaviour
 								DateGlobals.Weekday++;
 								ChangeDayColor();
 								flag = false;
+								StatsButton.SetActive(value: true);
 							}
 							Skipping = false;
 						}

@@ -54,7 +54,7 @@ public class ModernRivalSabotageScript : MonoBehaviour
 		{
 			ObjectToDisable.SetActive(value: false);
 		}
-		else if (ID == 6 && DateGlobals.Week != 2)
+		else if (ID == 6 && (DateGlobals.Week != 2 || GameGlobals.CustomMode))
 		{
 			Prompt.Hide();
 			base.gameObject.SetActive(value: false);

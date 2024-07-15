@@ -147,6 +147,7 @@ public class StreetManagerScript : MonoBehaviour
 		Profile.bloom.enabled = !OptionGlobals.DisableBloom;
 		Profile.depthOfField.enabled = OptionGlobals.DepthOfField;
 		Profile.ambientOcclusion.enabled = !OptionGlobals.DisableObscurance;
+		UpdateDOF(2f);
 	}
 
 	private void Update()
@@ -308,5 +309,22 @@ public class StreetManagerScript : MonoBehaviour
 		Label.color = new Color(1f, 1f, 1f, 1f);
 		Label.effectStyle = UILabel.Effect.Outline8;
 		Label.effectColor = new Color(0f, 0f, 0f, 1f);
+	}
+
+	public void UpdateDOF(float Focus)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		settings.focusDistance = Focus;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(5.6f);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
+		Profile.depthOfField.settings = settings;
 	}
 }

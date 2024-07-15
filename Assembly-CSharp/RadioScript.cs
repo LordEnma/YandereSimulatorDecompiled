@@ -1,3 +1,5 @@
+using System.Collections;
+using System.IO;
 using UnityEngine;
 
 public class RadioScript : MonoBehaviour
@@ -43,6 +45,22 @@ public class RadioScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			MyAudio.clip = EightiesMusic;
+		}
+		if (!Delinquent)
+		{
+			StartCoroutine(DownloadCoroutine());
+		}
+	}
+
+	private IEnumerator DownloadCoroutine()
+	{
+		if (File.Exists(Application.streamingAssetsPath + "/Music/radio.ogg"))
+		{
+			Debug.Log("radio.ogg exists.");
+			WWW CurrentDownload = new WWW("File:///" + Application.streamingAssetsPath + "/Music/radio.ogg");
+			yield return CurrentDownload;
+			AudioClip audioClipCompressed = CurrentDownload.GetAudioClipCompressed();
+			MyAudio.clip = audioClipCompressed;
 		}
 	}
 

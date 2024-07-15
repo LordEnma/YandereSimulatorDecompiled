@@ -75,6 +75,8 @@ public class DebugEnablerScript : MonoBehaviour
 		DebugMenu.NoDebug = false;
 		Yandere.NoDebug = false;
 		Turtle.enabled = true;
+		MemeClosetDoor.Prompt.enabled = true;
+		MemeClosetDoor.enabled = true;
 		MemeClosetDoor.Locked = false;
 		base.gameObject.SetActive(value: false);
 		Skull.Prompt.enabled = true;

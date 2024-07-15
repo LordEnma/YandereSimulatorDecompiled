@@ -268,13 +268,25 @@ public class NoteWindowScript : MonoBehaviour
 						{
 							Debug.Log("Note must fail because she wouldn't accept a note that close to confessing to Senpai.");
 						}
-						else if (NoteSubject == NoteSubjectType.DomesticAbuse)
+						else
 						{
-							NoteLocker.Success = true;
-							if (SchemeGlobals.GetSchemeStage(6) == 5)
+							if (Yandere.StudentManager.MissionMode)
 							{
-								SchemeGlobals.SetSchemeStage(6, 6);
-								Yandere.PauseScreen.Schemes.UpdateInstructions();
+								Debug.Log("Player is putting a note into a rival's locker in Mission Mode.");
+							}
+							if (NoteSubject == NoteSubjectType.DomesticAbuse)
+							{
+								Debug.Log("Note will succeed.");
+								NoteLocker.Success = true;
+								if (SchemeGlobals.GetSchemeStage(6) == 5)
+								{
+									SchemeGlobals.SetSchemeStage(6, 6);
+									Yandere.PauseScreen.Schemes.UpdateInstructions();
+								}
+							}
+							else
+							{
+								Debug.Log("Note will fail.");
 							}
 						}
 					}

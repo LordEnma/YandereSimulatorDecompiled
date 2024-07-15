@@ -204,6 +204,7 @@ public class SocialScript : MonoBehaviour
 				}
 				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
+					Debug.Log("The game is now determining the correct response to ''Showing Off''");
 					int num = 0;
 					if (Selected == 1)
 					{
@@ -350,6 +351,7 @@ public class SocialScript : MonoBehaviour
 				}
 				else if (Selected == 5)
 				{
+					Debug.Log("The game is now determining the correct response to ''Giving Money''");
 					if (Student.Club == ClubType.Delinquent)
 					{
 						DialogueLabel.text = "...hm. Sure, I'll take it. ...thanks.";

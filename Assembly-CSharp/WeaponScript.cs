@@ -8,6 +8,8 @@ public class WeaponScript : MonoBehaviour
 
 	public OutlineScript[] Outline;
 
+	public Transform[] ScytheParts;
+
 	public float[] SoundTime;
 
 	public IncineratorScript Incinerator;
@@ -106,6 +108,8 @@ public class WeaponScript : MonoBehaviour
 
 	public bool StartLow;
 
+	public bool Animate;
+
 	public bool Flaming;
 
 	public bool Unravel;
@@ -139,6 +143,8 @@ public class WeaponScript : MonoBehaviour
 	public float OriginalOffset;
 
 	public float KinematicTimer;
+
+	public float AnimTimer;
 
 	public float DumpTimer;
 
@@ -191,6 +197,10 @@ public class WeaponScript : MonoBehaviour
 	public GameObject EightiesObject;
 
 	public GameObject ModernObject;
+
+	public Vector3[] TargetRotation;
+
+	public Vector3[] Rotations;
 
 	public bool DoNotRelocate;
 
@@ -262,6 +272,10 @@ public class WeaponScript : MonoBehaviour
 		if (WeaponID == 7 || WeaponID == 10 || WeaponID == 13)
 		{
 			TargetWeaponDistance = 5f;
+		}
+		if (Rotations.Length != 0)
+		{
+			Rotations = TargetRotation;
 		}
 	}
 
@@ -452,6 +466,20 @@ public class WeaponScript : MonoBehaviour
 		{
 			base.transform.localEulerAngles = new Vector3(2f, -172f, -102.5f);
 		}
+		if (Animate)
+		{
+			Rotations[0] = Vector3.Lerp(Rotations[0], TargetRotation[0], Time.deltaTime * 10f);
+			Rotations[1] = Vector3.Lerp(Rotations[1], TargetRotation[1], Time.deltaTime * 10f);
+			Rotations[2] = Vector3.Lerp(Rotations[2], TargetRotation[2], Time.deltaTime * 10f);
+			ScytheParts[0].transform.localEulerAngles = Rotations[0];
+			ScytheParts[1].transform.localEulerAngles = Rotations[1];
+			ScytheParts[2].transform.localEulerAngles = Rotations[2];
+			AnimTimer = Mathf.MoveTowards(AnimTimer, 0f, Time.deltaTime);
+			if (AnimTimer == 0f)
+			{
+				Animate = false;
+			}
+		}
 	}
 
 	private void LateUpdate()
@@ -528,6 +556,14 @@ public class WeaponScript : MonoBehaviour
 	public void Equip()
 	{
 		Debug.Log("Yandere-chan just equipped a " + Name + ".");
+		if (ScytheParts.Length != 0)
+		{
+			AnimTimer = 5f;
+			Animate = true;
+			TargetRotation[0] = new Vector3(90f, -3.254547f, 0f);
+			TargetRotation[1] = new Vector3(0f, 0f, -7.877716f);
+			TargetRotation[2] = new Vector3(0f, 0f, 100.2056f);
+		}
 		InBag = false;
 		if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 1)
 		{
@@ -721,6 +757,14 @@ public class WeaponScript : MonoBehaviour
 		if (Undroppable)
 		{
 			return;
+		}
+		if (ScytheParts.Length != 0)
+		{
+			AnimTimer = 5f;
+			Animate = true;
+			TargetRotation[0] = new Vector3(90f, 15f, 0f);
+			TargetRotation[1] = new Vector3(0f, 0f, -172.6f);
+			TargetRotation[2] = new Vector3(0f, 0f, 179.2f);
 		}
 		if (Unravel)
 		{

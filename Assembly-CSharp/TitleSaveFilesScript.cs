@@ -307,7 +307,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 			}
 			return;
 		}
-		if (NewTitleScreen.Eighties)
+		if (NewTitleScreen.Eighties && !NewTitleScreen.CustomMode)
 		{
 			RaibaruLabel[0].enabled = false;
 			RaibaruLabel[1].enabled = false;
@@ -320,6 +320,16 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 		else
 		{
+			if (!NewTitleScreen.CustomMode)
+			{
+				RaibaruLabel[0].text = "It is possible to fight Raibaru after upgrading the Physical Education stat once.";
+				RaibaruLabel[1].text = "It is not possible to engage in a physical struggle with Raibaru.";
+			}
+			else
+			{
+				RaibaruLabel[0].text = "It is possible to fight ''Invincible'' students after upgrading the Physical Education stat once.";
+				RaibaruLabel[1].text = "It is not possible to engage in a physical struggle with ''Invincible'' students.";
+			}
 			RaibaruLabel[0].enabled = true;
 			RaibaruLabel[1].enabled = true;
 			TopLimit = 1;

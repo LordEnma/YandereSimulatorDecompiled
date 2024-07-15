@@ -7,6 +7,8 @@ public class BusStopScript : MonoBehaviour
 {
 	public PostProcessingProfile Profile;
 
+	public PedestrianManagerScript PedestrianManager;
+
 	public RiggedAccessoryAttacher BakerAttacher;
 
 	public RiggedAccessoryAttacher Attacher;
@@ -59,6 +61,8 @@ public class BusStopScript : MonoBehaviour
 
 	public Transform AmaiLeftHand;
 
+	public Transform CameraTarget;
+
 	public Transform CupcakeBox;
 
 	public Transform DonutLid;
@@ -88,6 +92,8 @@ public class BusStopScript : MonoBehaviour
 	public int Phase = 1;
 
 	public int Week;
+
+	public float IntroCameraSpeed;
 
 	public float BakeryFocus;
 
@@ -161,6 +167,12 @@ public class BusStopScript : MonoBehaviour
 
 	public GameObject Environment;
 
+	public GameObject Theater;
+
+	public GameObject Stores;
+
+	public GameObject Road;
+
 	public bool Smile;
 
 	public float Strength;
@@ -175,6 +187,7 @@ public class BusStopScript : MonoBehaviour
 	{
 		Debug.Log("The game believes that we are currently in Week #" + DateGlobals.Week);
 		Debug.Log("GameGlobals.SenpaiMeetsNewRival is: " + GameGlobals.SenpaiMeetsNewRival);
+		Theater.SetActive(value: false);
 		Renderer.material.color = new Color(0f, 0f, 0f, 1f);
 		base.transform.position = new Vector3(0.375f, 0.5f, 2.5f);
 		base.transform.eulerAngles = new Vector3(0f, 180f, 0f);
@@ -213,6 +226,7 @@ public class BusStopScript : MonoBehaviour
 			AmaiClothing.SetActive(value: false);
 			AmaiCupcakes.SetActive(value: false);
 			AmaiHair.SetActive(value: false);
+			UpdateDOF(2f);
 			if (GameGlobals.SenpaiMeetsNewRival)
 			{
 				Environment.transform.position = new Vector3(0f, -2.975f, 1f);
@@ -230,11 +244,23 @@ public class BusStopScript : MonoBehaviour
 				BakeryAmaiHair.SetActive(value: false);
 				Phase = 20;
 			}
+			else
+			{
+				PedestrianManager.gameObject.SetActive(value: true);
+				Environment.transform.position = new Vector3(12.28f, 0f, -4.1135f);
+				Amai.gameObject.SetActive(value: false);
+				Theater.SetActive(value: true);
+				Stores.SetActive(value: false);
+				Road.SetActive(value: false);
+				base.transform.position = new Vector3(12.28f, 5f, 20f);
+				base.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+				Phase = 0;
+			}
 		}
 		else
 		{
-			Attacher.gameObject.SetActive(value: true);
 			BakerAttacher.gameObject.SetActive(value: true);
+			Attacher.gameObject.SetActive(value: true);
 		}
 	}
 
@@ -283,7 +309,33 @@ public class BusStopScript : MonoBehaviour
 		{
 			base.transform.Translate(Vector3.back * Time.deltaTime * 0.01f);
 		}
-		if (Phase == 1)
+		if (Phase == 0)
+		{
+			base.transform.position += new Vector3(0f, 0f, Speed * Time.deltaTime);
+			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.2f);
+			Renderer.material.color = new Color(0f, 0f, 0f, Alpha);
+			MeetingJukebox.volume = (1f - Alpha) * 0.1f;
+			Amai.gameObject.SetActive(value: false);
+			SenpaiRendererCheck();
+			UpdateDOF(2f);
+			base.transform.LookAt(CameraTarget);
+			Timer += Time.deltaTime;
+			if (Timer > 6f)
+			{
+				IntroCameraSpeed += Time.deltaTime;
+				CameraTarget.position = Vector3.Lerp(CameraTarget.position, SenpaiAnim.transform.position, IntroCameraSpeed * 0.001f);
+				if (IntroCameraSpeed > 10f)
+				{
+					base.transform.position = new Vector3(0.375f, 0.5f, 2.5f);
+					base.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+					Amai.gameObject.SetActive(value: true);
+					FirstAmai.Play("f02_walkElegant_00");
+					PedestrianManager.MovePedestrians();
+					Phase++;
+				}
+			}
+		}
+		else if (Phase == 1)
 		{
 			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 0.2f);
 			Renderer.material.color = new Color(0f, 0f, 0f, Alpha);
@@ -905,6 +957,16 @@ public class BusStopScript : MonoBehaviour
 			settings.focusDistance = Focus;
 		}
 		settings.focusDistance = Focus;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(5.6f);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
 		Profile.depthOfField.settings = settings;
 	}
 

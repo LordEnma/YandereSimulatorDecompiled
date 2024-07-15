@@ -779,6 +779,15 @@ public class KokonaTutorialScript : MonoBehaviour
 		}
 	}
 
+	private void LateUpdate()
+	{
+		if (StudentManager.Students[30] != null)
+		{
+			StudentManager.Students[30].RightBreast.localScale = new Vector3(2f, 2f, 2f);
+			StudentManager.Students[30].LeftBreast.localScale = new Vector3(2f, 2f, 2f);
+		}
+	}
+
 	private void UpdateTutorial()
 	{
 		if (Yandere.CanMove && !Yandere.Aiming)

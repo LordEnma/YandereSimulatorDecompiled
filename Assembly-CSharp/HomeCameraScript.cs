@@ -326,7 +326,14 @@ public class HomeCameraScript : MonoBehaviour
 				{
 					if (!TooClose && CameraTimer == 0f && Destination != OutOfRoomDestinations[5])
 					{
-						Destination = OutOfRoomDestinations[5];
+						if (HomeYandere.CanMove)
+						{
+							Destination = OutOfRoomDestinations[5];
+						}
+						else
+						{
+							Destination = OutOfRoomDestinations[6];
+						}
 						LastChangePoint = HomeYandere.transform.position;
 						CameraTimer = 1f;
 						TooClose = true;
@@ -411,6 +418,10 @@ public class HomeCameraScript : MonoBehaviour
 			}
 			else
 			{
+				if (Destination == OutOfRoomDestinations[5])
+				{
+					Destination = OutOfRoomDestinations[6];
+				}
 				base.transform.position = Vector3.Lerp(base.transform.position, Destination.position, Time.deltaTime * 10f);
 			}
 		}

@@ -11,6 +11,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public StealthInventoryScript StealthInventory;
 
+	public RiggedAccessoryAttacher PantyAttacher;
+
 	public StalkerPromptScript StalkerDoorPrompt;
 
 	public GameObject StealthClothingAttacher;
@@ -79,6 +81,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public bool HidingInLocker;
 
+	public bool HidePanties;
+
 	public bool Trespassing;
 
 	public bool Invisible;
@@ -96,6 +100,8 @@ public class StalkerYandereScript : MonoBehaviour
 	public bool Hidden;
 
 	public bool Street;
+
+	public bool Night;
 
 	public Stance Stance = new Stance(StanceType.Standing);
 
@@ -193,6 +199,10 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public bool Throwing;
 
+	public Texture NoPan;
+
+	public Texture Shadow;
+
 	public CameraFilterPack_Colors_Adjust_PreFilters YandereFilter;
 
 	public HighlightingRenderer HighlightingR;
@@ -223,6 +233,8 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			HomeGlobals.Night = true;
 		}
+		Night = HomeGlobals.Night;
+		HidePanties = GameGlobals.CensorPanties;
 		if (!OptionGlobals.Vsync)
 		{
 			QualitySettings.vSyncCount = 0;
@@ -380,7 +392,7 @@ public class StalkerYandereScript : MonoBehaviour
 			{
 				if (!Asylum)
 				{
-					if (EightiesAttacher != null)
+					if (EightiesAttacher != null && EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
 					{
 						MyRenderer = EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
 					}
@@ -761,6 +773,23 @@ public class StalkerYandereScript : MonoBehaviour
 				RightArm.localEulerAngles = new Vector3(RightArm.localEulerAngles.x, RightArm.localEulerAngles.y + 15f, RightArm.localEulerAngles.z);
 			}
 			Object.LookAt(ObjectTarget);
+		}
+		if (Street && !Night && HidePanties)
+		{
+			PantyAttacher.newRenderer.enabled = false;
+			if (MyRenderer.materials[0].GetTexture("_OverlayTex") == NoPan)
+			{
+				MyRenderer.materials[0].SetTexture("_OverlayTex", Shadow);
+			}
+			if (MyRenderer.materials[1].GetTexture("_OverlayTex") == NoPan)
+			{
+				MyRenderer.materials[1].SetTexture("_OverlayTex", Shadow);
+			}
+			if (MyRenderer.materials[2].GetTexture("_OverlayTex") == NoPan)
+			{
+				MyRenderer.materials[2].SetTexture("_OverlayTex", Shadow);
+			}
+			HidePanties = false;
 		}
 	}
 

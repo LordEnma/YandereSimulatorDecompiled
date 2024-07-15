@@ -78,6 +78,8 @@ public static class PlayerGlobals
 
 	private const string Str_BringingItem = "BringingItem";
 
+	private const string Str_BringingHardware = "BringingHardware";
+
 	private const string Str_CannotBringItem = "CannotBringItem";
 
 	private const string Str_BoughtLockpick = "BoughtLockpick";
@@ -434,6 +436,18 @@ public static class PlayerGlobals
 		}
 	}
 
+	public static int BringingHardware
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_BringingHardware");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_BringingHardware", value);
+		}
+	}
+
 	public static bool BoughtLockpick
 	{
 		get
@@ -768,6 +782,7 @@ public static class PlayerGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentSentHome_", KeysOfStudentSentHome());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_ShrineCollectible_", KeysOfShrineCollectible());
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_BringingItem");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_BringingHardware");
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_CannotBringItem", KeysOfCannotBringItem());
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_BoughtLockpick");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_BoughtSedative");

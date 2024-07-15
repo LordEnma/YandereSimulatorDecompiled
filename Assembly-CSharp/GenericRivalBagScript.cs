@@ -688,7 +688,7 @@ public class GenericRivalBagScript : MonoBehaviour
 			Label[2].text = "READ MAGAZINE";
 			Label[3].text = "READ DIARY";
 			Label[4].text = "BACK";
-			if (!BorrowedBook || Prompt.Yandere.StudentManager.Clock.Period == 3)
+			if (!BorrowedBook || Prompt.Yandere.StudentManager.Clock.Period > 2)
 			{
 				Label[1].color = new Color(1f, 1f, 1f, 0.5f);
 			}

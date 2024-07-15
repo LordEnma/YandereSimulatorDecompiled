@@ -312,7 +312,8 @@ public class StatsScript : MonoBehaviour
 		{
 			string text = "";
 			text = ((PauseScreen.Yandere.StudentManager.Reputation.Reputation > 33.33333f) ? "High" : ((!(PauseScreen.Yandere.StudentManager.Reputation.Reputation < -33.33333f)) ? "Neutral" : "Low"));
-			RepLabel.text = "Reputation: " + PauseScreen.Yandere.StudentManager.Reputation.Reputation + " (" + text + ")";
+			string text2 = PauseScreen.Yandere.StudentManager.Reputation.Reputation.ToString("F1");
+			RepLabel.text = "Reputation: " + text2 + " (" + text + ")";
 		}
 		ClubLabels.TryGetValue(club, out var value);
 		ClubLabel.text = "Club: " + value;

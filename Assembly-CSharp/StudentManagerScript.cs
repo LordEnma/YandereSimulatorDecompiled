@@ -1515,7 +1515,7 @@ public class StudentManagerScript : MonoBehaviour
 			}
 			if (StudentGlobals.FragileSlave > 0)
 			{
-				if (!StudentGlobals.GetStudentDead(StudentGlobals.FragileSlave))
+				if (!StudentGlobals.GetStudentDead(StudentGlobals.FragileSlave) && !StudentGlobals.GetStudentKidnapped(StudentGlobals.FragileSlave) && !StudentGlobals.GetStudentArrested(StudentGlobals.FragileSlave) && !StudentGlobals.GetStudentExpelled(StudentGlobals.FragileSlave))
 				{
 					int fragileSlave = StudentGlobals.FragileSlave;
 					ForceSpawn = true;
@@ -1526,6 +1526,10 @@ public class StudentManagerScript : MonoBehaviour
 					Students[fragileSlave].FragileSlave = true;
 					Students[fragileSlave].Slave = true;
 					SpawnID = 0;
+				}
+				else
+				{
+					StudentGlobals.FragileSlave = 0;
 				}
 			}
 			else if (FragileWeapon != null)
@@ -3315,6 +3319,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void AttendClass()
 	{
+		Debug.Log("All students are now being told to attend class.");
 		ConvoManager.BothCharactersInPosition = false;
 		SleuthPhase = 3;
 		if (RingEvent.EventActive)
@@ -3333,8 +3338,12 @@ public class StudentManagerScript : MonoBehaviour
 		for (ID = 1; ID < Students.Length; ID++)
 		{
 			StudentScript studentScript = Students[ID];
-			if (studentScript != null)
+			if (studentScript != null && !studentScript.Posing)
 			{
+				if (studentScript.StudentID == 4)
+				{
+					Debug.Log("Kuu Dere is now attending class.");
+				}
 				studentScript.EmptyHands();
 				studentScript.VisitSenpaiDesk = false;
 				studentScript.AlreadyFed = false;
@@ -3511,6 +3520,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void SkipTo8()
 	{
+		Debug.Log("Firing SkipTo8()");
 		while (NPCsSpawned < NPCsTotal)
 		{
 			SpawnStudent(SpawnID);
@@ -3672,11 +3682,16 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void ResumeMovement()
 	{
+		Debug.Log("Firing ResumeMovement()");
 		for (ID = 1; ID < Students.Length; ID++)
 		{
 			StudentScript studentScript = Students[ID];
-			if (studentScript != null && !studentScript.Fleeing)
+			if (studentScript != null && !studentScript.Fleeing && !studentScript.Posing)
 			{
+				if (studentScript.StudentID == 4)
+				{
+					Debug.Log("Kuu Dere is resuming movement.");
+				}
 				studentScript.Pathfinding.canSearch = true;
 				studentScript.Pathfinding.canMove = true;
 				studentScript.Pathfinding.speed = 1f;
@@ -3806,10 +3821,11 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void TimeUnfreeze()
 	{
+		Debug.Log("Firing TimeUnfreeze()");
 		for (ID = 1; ID < Students.Length; ID++)
 		{
 			StudentScript studentScript = Students[ID];
-			if (studentScript != null && studentScript.Alive)
+			if (studentScript != null && studentScript.Alive && !studentScript.Posing)
 			{
 				studentScript.enabled = true;
 				studentScript.Prompt.enabled = true;
@@ -3821,7 +3837,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void ComeBack()
 	{
-		Debug.Log("Telling everyone to come back.");
+		Debug.Log("Firing ComeBack().");
 		Stop = false;
 		for (ID = 1; ID < Students.Length; ID++)
 		{
@@ -3834,7 +3850,7 @@ public class StudentManagerScript : MonoBehaviour
 				ID++;
 			}
 			StudentScript studentScript = Students[ID];
-			if (studentScript != null && (!Police.EndOfDay.Counselor.ExpelledDelinquents || ID <= 75 || ID >= 81))
+			if (studentScript != null && !studentScript.Posing && (!Police.EndOfDay.Counselor.ExpelledDelinquents || ID <= 75 || ID >= 81))
 			{
 				if (!studentScript.Ragdoll.Disposed && !studentScript.Ragdoll.Dismembered)
 				{
@@ -4636,6 +4652,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void UpdateMartialArts()
 	{
+		Debug.Log("UpdateMartialArts() has just been called.");
 		if (Yandere.DelinquentFighting)
 		{
 			return;
@@ -5379,6 +5396,18 @@ public class StudentManagerScript : MonoBehaviour
 			ScorchMarks.SetActive(value: true);
 			ScorchMarks.transform.parent.gameObject.SetActive(value: true);
 			ScorchMarks.transform.parent.GetChild(0).gameObject.SetActive(value: false);
+		}
+		if (Yandere.Health < 10)
+		{
+			Yandere.MyRenderer.materials[2].SetFloat("_BlendAmount1", 1f - (float)Yandere.Health * 1f / 10f);
+			if (Yandere.Health < 1)
+			{
+				Yandere.IdleAnim = "f02_idleInjured_00";
+				Yandere.WalkAnim = "f02_walkInjured_00";
+				Yandere.OriginalIdleAnim = Yandere.IdleAnim;
+				Yandere.OriginalWalkAnim = Yandere.WalkAnim;
+			}
+			Yandere.StudentManager.Rest.Prompt.enabled = true;
 		}
 		CameFromLoad = true;
 		Debug.Log("The entire loading process has been completed.");
@@ -6963,7 +6992,7 @@ public class StudentManagerScript : MonoBehaviour
 				gameObject.transform.eulerAngles = new Vector3(0f, JSON.Misc.HangoutRotZ[ID], 0f);
 			}
 			CustomHangouts.List[ID] = gameObject.transform;
-			AdjustStageDestination(CustomHangouts.List[ID]);
+			AdjustStageDestination(gameObject.transform);
 			gameObject = UnityEngine.Object.Instantiate(EmptyObject, base.transform.position, Quaternion.identity);
 			gameObject.name = "CustomPatrol1 #" + ID;
 			gameObject.transform.parent = CustomPatrols.List[ID];
@@ -6977,7 +7006,7 @@ public class StudentManagerScript : MonoBehaviour
 				gameObject.transform.position = new Vector3(JSON.Misc.Patrol1PosX[ID] * 0.01f, SnapHeight(JSON.Misc.Patrol1PosY[ID] * 0.01f), JSON.Misc.Patrol1PosZ[ID] * 0.01f);
 				gameObject.transform.eulerAngles = new Vector3(0f, JSON.Misc.Patrol1RotZ[ID], 0f);
 			}
-			AdjustStageDestination(CustomPatrols.List[ID]);
+			AdjustStageDestination(gameObject.transform);
 			gameObject = UnityEngine.Object.Instantiate(EmptyObject, base.transform.position, Quaternion.identity);
 			gameObject.name = "CustomPatrol2 #" + ID;
 			gameObject.transform.parent = CustomPatrols.List[ID];
@@ -6991,7 +7020,7 @@ public class StudentManagerScript : MonoBehaviour
 				gameObject.transform.position = new Vector3(JSON.Misc.Patrol2PosX[ID] * 0.01f, SnapHeight(JSON.Misc.Patrol2PosY[ID] * 0.01f), JSON.Misc.Patrol2PosZ[ID] * 0.01f);
 				gameObject.transform.eulerAngles = new Vector3(0f, JSON.Misc.Patrol2RotZ[ID], 0f);
 			}
-			AdjustStageDestination(CustomPatrols.List[ID]);
+			AdjustStageDestination(gameObject.transform);
 		}
 	}
 
@@ -7812,6 +7841,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (NEStairs.bounds.Contains(Destination.position) || NWStairs.bounds.Contains(Destination.position) || SEStairs.bounds.Contains(Destination.position) || SWStairs.bounds.Contains(Destination.position))
 		{
+			Debug.Log(Destination.gameObject.name + " was in a stairway. Adjusting height.");
 			Destination.position += new Vector3(0f, 2f, 0f);
 		}
 	}

@@ -123,6 +123,8 @@ public class CombatMinigameScript : MonoBehaviour
 		}
 		Difficulty -= (float)(Yandere.PhysicalGrade + Yandere.Class.PhysicalBonus) * 0.1f;
 		Debug.Log("Difficulty is: " + Difficulty);
+		Yandere.DelinquentFighting = true;
+		Yandere.CanMove = false;
 	}
 
 	private void Update()
@@ -153,6 +155,8 @@ public class CombatMinigameScript : MonoBehaviour
 				MyVocals.clip = Vocals[Phase];
 				MyVocals.Play();
 			}
+			Yandere.DelinquentFighting = true;
+			Yandere.CanMove = false;
 		}
 		if (Phase > 0)
 		{

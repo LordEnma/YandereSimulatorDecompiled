@@ -163,6 +163,13 @@ public class GenericPromptScript : MonoBehaviour
 				Prompt.Circle[2].fillAmount = 1f;
 				Prompt.Circle[3].fillAmount = 1f;
 			}
+			if (Prompt.Yandere.StudentManager.Clock.Period > 2)
+			{
+				Debug.Log("Disabling Senpai's Wednesday gift box. It shouldn't be active during - or after - lunchtime.");
+				base.gameObject.SetActive(value: false);
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
 		}
 		else if (ID == 4)
 		{

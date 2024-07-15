@@ -716,10 +716,18 @@ public class DebugMenuScript : MonoBehaviour
 					}
 					else if (Input.GetKeyDown(KeyCode.H))
 					{
-						StudentGlobals.FragileSlave = 5;
-						StudentGlobals.FragileTarget = 12;
-						StudentGlobals.Prisoner1 = KidnappedVictim;
-						StudentGlobals.StudentSlave = KidnappedVictim;
+						if (PlayerGlobals.BringingHardware == 9)
+						{
+							PlayerGlobals.BringingHardware = 0;
+						}
+						else if (PlayerGlobals.BringingHardware == 0)
+						{
+							PlayerGlobals.BringingHardware = 1;
+						}
+						else if (PlayerGlobals.BringingHardware > 0)
+						{
+							PlayerGlobals.BringingHardware++;
+						}
 						SceneManager.LoadScene("LoadingScene");
 					}
 					else if (Input.GetKeyDown(KeyCode.I))

@@ -2308,7 +2308,7 @@ public class TalkingScript : MonoBehaviour
 			S.RepBonus++;
 		}
 		S.RepBonus += S.Yandere.Class.PsychologyGrade + S.Yandere.Class.PsychologyBonus;
-		if (S.DialogueWheel.Social.Selected == 5)
+		if (!S.DialogueWheel.Social.ShowingOff && S.DialogueWheel.Social.Selected == 5)
 		{
 			switch (S.Yandere.StudentManager.JSON.Topics[S.StudentID].Topics[25])
 			{
