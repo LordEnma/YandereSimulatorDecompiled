@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -65,6 +66,8 @@ public class AlphabetScript : MonoBehaviour
 
 	public string[] DifficultyText;
 
+	public string[] Names;
+
 	public int[] EightiesIDs;
 
 	public int[] IDs;
@@ -86,8 +89,13 @@ public class AlphabetScript : MonoBehaviour
 			if (GameGlobals.Eighties)
 			{
 				StudentManager.EnableAllOutlines();
+				if (GameGlobals.CustomMode)
+				{
+					EightiesIDs = GetSortedStudentIDs(StudentManager.Students);
+				}
 				IDs = EightiesIDs;
-				Limit = 79;
+				Limit = IDs.Length - 1;
+				StudentManager.Police.DeathLimit = Limit - 1;
 			}
 			MissionMode.RemoveBoxes();
 			UpdateText();
@@ -181,8 +189,9 @@ public class AlphabetScript : MonoBehaviour
 		}
 		for (int i = CurrentTarget + 1; i < IDs.Length; i++)
 		{
-			if (!StudentManager.Students[IDs[i]].gameObject.activeInHierarchy || !StudentManager.Students[IDs[i]].Alive)
+			if ((StudentManager.Students[IDs[i]] != null && !StudentManager.Students[IDs[i]].gameObject.activeInHierarchy) || (StudentManager.Students[IDs[i]] != null && !StudentManager.Students[IDs[i]].Alive))
 			{
+				Debug.Log("Challenge Failed because " + StudentManager.Students[IDs[i]].Name + ", who was one the player's future targets, no longer exists or is already dead.");
 				ChallengeFailed.enabled = true;
 			}
 		}
@@ -245,5 +254,20 @@ public class AlphabetScript : MonoBehaviour
 		{
 			Debug.Log("Can't update Difficulty Label.");
 		}
+	}
+
+	public static int[] GetSortedStudentIDs(StudentScript[] students)
+	{
+		StudentScript[] array = (from student in students
+			where student != null && student.StudentID != 1
+			orderby student.Name
+			select student).ToArray();
+		int[] array2 = new int[array.Length + 1];
+		array2[0] = 0;
+		for (int i = 0; i < array.Length; i++)
+		{
+			array2[i + 1] = array[i].StudentID;
+		}
+		return array2;
 	}
 }

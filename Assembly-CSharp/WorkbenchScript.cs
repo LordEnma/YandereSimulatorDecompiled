@@ -361,6 +361,10 @@ public class WorkbenchScript : MonoBehaviour
 					Inventory.Salt = false;
 					Inventory.EmeticChemical = true;
 					Inventory.EmeticPoisons++;
+					if (Prompt.Yandere.StudentManager.Eighties && Prompt.Yandere.StudentManager.MissionMode)
+					{
+						Prompt.Yandere.Inventory.EmeticPoisons += 4;
+					}
 				}
 				else if (OutcomeID == 2)
 				{

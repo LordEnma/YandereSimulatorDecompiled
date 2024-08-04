@@ -20,6 +20,8 @@ public class HomeInteractionScript : MonoBehaviour
 
 	public float Timer;
 
+	public bool SlideInOut;
+
 	public bool Move;
 
 	public int ID;
@@ -56,34 +58,59 @@ public class HomeInteractionScript : MonoBehaviour
 				Yandere.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
 				Yandere.MyController.enabled = false;
 				Yandere.CanMove = false;
+				HardwareMenu.ZoomPos[9] = new Vector3(0f, -0.5f, -0.5f);
+				HardwareMenu.ZoomRot[9] = new Vector3(-45f, -45f, 90f);
 				HardwareMenu.Panel.enabled = true;
 				HardwareMenu.UpdateHighlight();
 				HardwareMenu.Show = true;
 				Yandere.HomeCamera.UpdateDOF(1f);
 			}
-		}
-		if (!Move)
-		{
-			return;
-		}
-		if (ID == 1)
-		{
-			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(-3.163333f, -2.893059f, -1.386f), Time.deltaTime * 5f);
-		}
-		else
-		{
-			Door[0].localPosition = Vector3.Lerp(Door[0].localPosition, new Vector3(-0.059f, -0.09082f, 0.00141f), Time.deltaTime * 5f);
-			Door[1].localPosition = Vector3.Lerp(Door[1].localPosition, new Vector3(-0.0345f, -0.09082f, 0.00141f), Time.deltaTime * 5f);
-		}
-		Timer += Time.deltaTime;
-		if (Timer > 1f)
-		{
-			if (ObjectToActivate != null)
+			else if (ID == 5 && !SlideInOut)
 			{
 				ObjectToActivate.SetActive(value: true);
+				SlideInOut = true;
+				Timer = 0f;
 			}
-			Label.alpha = 0f;
-			base.enabled = false;
+		}
+		if (Move)
+		{
+			if (ID == 1)
+			{
+				base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(-3.163333f, -2.893059f, -1.386f), Time.deltaTime * 5f);
+			}
+			else
+			{
+				Door[0].localPosition = Vector3.Lerp(Door[0].localPosition, new Vector3(-0.059f, -0.09082f, 0.00141f), Time.deltaTime * 5f);
+				Door[1].localPosition = Vector3.Lerp(Door[1].localPosition, new Vector3(-0.0345f, -0.09082f, 0.00141f), Time.deltaTime * 5f);
+			}
+			Timer += Time.deltaTime;
+			if (Timer > 1f)
+			{
+				if (ObjectToActivate != null)
+				{
+					ObjectToActivate.SetActive(value: true);
+				}
+				Label.alpha = 0f;
+				base.enabled = false;
+			}
+		}
+		if (SlideInOut)
+		{
+			Timer += Time.deltaTime;
+			if (ObjectToActivate.transform.localPosition.x < -1250f)
+			{
+				ObjectToActivate.transform.localPosition = new Vector3(1251f, 0f, 0f);
+				ObjectToActivate.SetActive(value: false);
+				SlideInOut = false;
+			}
+			if (Timer < 2f)
+			{
+				ObjectToActivate.transform.localPosition = Vector3.Lerp(ObjectToActivate.transform.localPosition, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
+			}
+			else
+			{
+				ObjectToActivate.transform.localPosition += new Vector3((2f - Timer) * 5f, 0f, 0f);
+			}
 		}
 	}
 }

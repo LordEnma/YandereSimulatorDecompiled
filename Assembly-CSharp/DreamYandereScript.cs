@@ -1,15 +1,20 @@
 using UnityEngine;
+using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class DreamYandereScript : MonoBehaviour
 {
 	public CharacterController MyController;
 
+	public PostProcessingProfile Profile;
+
 	public InputDeviceScript InputDevice;
 
 	public Transform Environment;
 
 	public Transform ShardParent;
+
+	public Transform MainCamera;
 
 	public GameObject AyanoHair;
 
@@ -33,6 +38,28 @@ public class DreamYandereScript : MonoBehaviour
 
 	public bool WakeUp;
 
+	public bool Skip;
+
+	public int DreamID;
+
+	public Animation[] AnimNPC;
+
+	public bool invertAxisY;
+
+	public float sensitivity;
+
+	public float mouseSpeed = 8f;
+
+	public float rotation;
+
+	public Transform OniHead;
+
+	public float X;
+
+	public float Y;
+
+	public float Z;
+
 	private void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
@@ -48,6 +75,32 @@ public class DreamYandereScript : MonoBehaviour
 		Darkness.alpha = 1f;
 		Time.timeScale = 1f;
 		BGM.volume = 0f;
+		if (Environment != null && !Environment.gameObject.activeInHierarchy)
+		{
+			Environment.gameObject.SetActive(value: true);
+		}
+		if (DreamID == 2)
+		{
+			AnimNPC[0]["BegForLife"].speed = 0.1f;
+			AnimNPC[1]["walkConfident_00"].speed = 0.95f;
+			AnimNPC[12]["walkConfident_00"].speed = 0.95f;
+			for (int i = 2; i < 12; i++)
+			{
+				AnimNPC[i]["f02_suspicious_00"].speed = Random.Range(0.9f, 1.1f);
+			}
+			for (int i = 13; i < 23; i++)
+			{
+				AnimNPC[i]["f02_walkCouncilGrace_00"].speed = Random.Range(0.9f, 1.1f);
+			}
+		}
+		if (Skip)
+		{
+			Timer = 1f;
+			Darkness.alpha = 0f;
+		}
+		invertAxisY = OptionGlobals.InvertAxisY;
+		sensitivity = OptionGlobals.Sensitivity;
+		UpdateDOF(2f, 5.6f);
 	}
 
 	private void Update()
@@ -75,6 +128,10 @@ public class DreamYandereScript : MonoBehaviour
 				if (Input.GetKeyDown("-"))
 				{
 					Time.timeScale -= 1f;
+					if (Time.timeScale == 0f)
+					{
+						Time.timeScale = 1f;
+					}
 				}
 				if (Input.GetKeyDown("="))
 				{
@@ -92,6 +149,32 @@ public class DreamYandereScript : MonoBehaviour
 			}
 		}
 		BGM.volume = 1f - Darkness.alpha;
+		string axisName = "Mouse Y";
+		if (InputDevice.Type == InputDeviceType.Gamepad)
+		{
+			axisName = InputNames.Xbox_JoyY;
+		}
+		float num = 0f;
+		num = ((Input.GetAxis(axisName) < 0f) ? (invertAxisY ? (num + Input.GetAxis(axisName) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f) : (num - Input.GetAxis(axisName) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f)) : (invertAxisY ? (num + Input.GetAxis(axisName) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f) : (num - Input.GetAxis(axisName) * mouseSpeed * (Time.deltaTime / Mathf.Clamp(Time.timeScale, 1E-10f, 1E+10f)) * sensitivity * 10f)));
+		rotation += num;
+		if (rotation > 30f)
+		{
+			rotation = 30f;
+		}
+		else if (rotation < -15f)
+		{
+			rotation = -15f;
+		}
+		MainCamera.localEulerAngles = new Vector3(rotation, 0f, 0f);
+	}
+
+	private void LateUpdate()
+	{
+		if (DreamID == 2)
+		{
+			OniHead.LookAt(AnimNPC[0].transform.position);
+			OniHead.eulerAngles += new Vector3(X, Y, Z);
+		}
 	}
 
 	private void UpdateMovement()
@@ -140,5 +223,22 @@ public class DreamYandereScript : MonoBehaviour
 		{
 			base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, base.transform.eulerAngles.y + num * 36f * Time.deltaTime, base.transform.eulerAngles.z);
 		}
+	}
+
+	private void UpdateDOF(float Value, float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		settings.focusDistance = Value;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(Aperture);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
+		Profile.depthOfField.settings = settings;
 	}
 }

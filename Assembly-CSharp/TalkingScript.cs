@@ -54,6 +54,7 @@ public class TalkingScript : MonoBehaviour
 		{
 			return;
 		}
+		S.Yandere.Jukebox.Dip = 0.2f;
 		S.BoobsResized = false;
 		if (S.Sleuthing && S.Club == ClubType.Photography)
 		{
@@ -1922,6 +1923,13 @@ public class TalkingScript : MonoBehaviour
 				{
 					S.CharacterAnimation.CrossFade(S.GossipAnim);
 					S.Subtitle.UpdateLabel(SubtitleType.RejectHelp, 0, 4f);
+				}
+				else if (S.StudentID > 10 && S.StudentID < 21 && !S.Friend)
+				{
+					S.Subtitle.CustomText = "...uh...it kinda feels like you're...trying to play a prank on me, or something...maybe if we were friends, I would be able to trust you...";
+					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 10f);
+					S.CharacterAnimation.CrossFade(S.GossipAnim);
+					S.TalkTimer = 10f;
 				}
 				else if (S.Yandere.Bloodiness > 0f)
 				{

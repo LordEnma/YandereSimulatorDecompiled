@@ -12,7 +12,7 @@ public class SciFiTerminalScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (Student.StudentID != 65)
+		if (Student.StudentID != 65 || GameGlobals.RobotComplete || GameGlobals.RobotDestroyed)
 		{
 			base.enabled = false;
 		}

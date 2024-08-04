@@ -99,6 +99,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 
 	public void Start()
 	{
+		Tripod.SetActive(value: false);
 		if (PrisonerID == 1)
 		{
 			StudentID = StudentGlobals.Prisoner1;

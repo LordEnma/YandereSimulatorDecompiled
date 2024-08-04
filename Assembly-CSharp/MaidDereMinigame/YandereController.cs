@@ -25,6 +25,8 @@ namespace MaidDereMinigame
 
 		public RuntimeAnimatorController EightiesAnimator;
 
+		public RuntimeAnimatorController BlondeAnimator;
+
 		private SpriteRenderer spriteRenderer;
 
 		private Animator animator;
@@ -63,6 +65,11 @@ namespace MaidDereMinigame
 			if (GameGlobals.Eighties)
 			{
 				animator.runtimeAnimatorController = EightiesAnimator;
+			}
+			else if (GameGlobals.BlondeHair)
+			{
+				Debug.Log("Should be turning hair blonde now.");
+				animator.runtimeAnimatorController = BlondeAnimator;
 			}
 		}
 

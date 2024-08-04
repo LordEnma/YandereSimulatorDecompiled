@@ -891,6 +891,8 @@ public class CounselorScript : MonoBehaviour
 							Debug.Log("Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
 							StudentManager.Students[StudentManager.SuitorID].Curious = false;
 						}
+						StudentManager.GenericRivalBag.gameObject.SetActive(value: false);
+						StudentManager.ModernRivalBookBag.SetActive(value: false);
 					}
 					else
 					{

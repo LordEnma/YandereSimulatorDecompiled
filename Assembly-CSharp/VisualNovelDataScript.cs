@@ -26,6 +26,10 @@ public class VisualNovelDataScript : MonoBehaviour
 
 	public string[] Names;
 
+	public Texture[] Graphics;
+
+	public int[] GraphicIDs;
+
 	public Color[] Colors;
 
 	public Texture Backdrop;

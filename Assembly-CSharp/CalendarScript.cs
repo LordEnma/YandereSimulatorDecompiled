@@ -734,6 +734,19 @@ public class CalendarScript : MonoBehaviour
 							GameGlobals.SetRivalEliminations(DateGlobals.Week, GameGlobals.RivalEliminationID);
 							GameGlobals.SetSpecificEliminations(DateGlobals.Week, GameGlobals.SpecificEliminationID);
 							SceneManager.LoadScene("BusStopScene");
+							if (StudentGlobals.MemorialStudents > 0)
+							{
+								StudentGlobals.MemorialStudents = 0;
+								StudentGlobals.MemorialStudent1 = 0;
+								StudentGlobals.MemorialStudent2 = 0;
+								StudentGlobals.MemorialStudent3 = 0;
+								StudentGlobals.MemorialStudent4 = 0;
+								StudentGlobals.MemorialStudent5 = 0;
+								StudentGlobals.MemorialStudent6 = 0;
+								StudentGlobals.MemorialStudent7 = 0;
+								StudentGlobals.MemorialStudent8 = 0;
+								StudentGlobals.MemorialStudent9 = 0;
+							}
 						}
 						else
 						{

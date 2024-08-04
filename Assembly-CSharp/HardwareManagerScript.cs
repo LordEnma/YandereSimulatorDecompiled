@@ -15,15 +15,16 @@ public class HardwareManagerScript : MonoBehaviour
 				Hardware[i].gameObject.SetActive(value: false);
 			}
 		}
-		if (PlayerGlobals.BringingHardware == 1)
+		if (PlayerGlobals.BringingHardware == 1 || PlayerGlobals.BringingItem == 3)
 		{
-			Hardware[PlayerGlobals.BringingHardware].gameObject.SetActive(value: true);
+			Hardware[1].gameObject.SetActive(value: true);
 			base.gameObject.SetActive(value: false);
 		}
-		else if (PlayerGlobals.BringingHardware > 1)
+		if (PlayerGlobals.BringingHardware > 1)
 		{
 			Yandere.transform.position = new Vector3(9f, 0f, -95f);
 			Hardware[PlayerGlobals.BringingHardware].gameObject.SetActive(value: true);
+			base.gameObject.SetActive(value: true);
 		}
 		else
 		{

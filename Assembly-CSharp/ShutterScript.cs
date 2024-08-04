@@ -286,20 +286,22 @@ public class ShutterScript : MonoBehaviour
 							{
 								flag2 = true;
 							}
-							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker && !flag2 && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
+							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker && !flag2 && FaceStudent.Club == ClubType.Council && FaceStudent.Club == ClubType.Delinquent && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
 							{
 								if (MissionMode)
 								{
 									PenaltyTimer += Time.deltaTime;
 									if (PenaltyTimer > 1f)
 									{
+										Debug.Log("Mission Mode Awareness Penalty!");
 										FaceStudent.Reputation.PendingRep -= 10f;
+										FaceStudent.PendingRep -= 10f;
 										PenaltyTimer = 0f;
 									}
 								}
 								if (!FaceStudent.CameraReacting)
 								{
-									if (FaceStudent.enabled && !FaceStudent.Stop)
+									if (FaceStudent.enabled && !FaceStudent.Stop && !FaceStudent.SpecialRivalDeathReaction && !FaceStudent.IgnoringPettyActions && !FaceStudent.WitnessedCorpse)
 									{
 										if ((FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Graffiti) || (FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Bully))
 										{
@@ -1079,9 +1081,15 @@ public class ShutterScript : MonoBehaviour
 				{
 					Debug.Log("Penalizing the player!");
 					FaceStudent.RepDeduction = 0f;
-					FaceStudent.RepLoss = 20f;
-					FaceStudent.Reputation.PendingRep += FaceStudent.RepLoss * FaceStudent.Paranoia;
-					FaceStudent.PendingRep += FaceStudent.RepLoss * FaceStudent.Paranoia;
+					FaceStudent.RepLoss = 10f;
+					FaceStudent.CalculateReputationPenalty();
+					if (FaceStudent.RepDeduction >= 0f)
+					{
+						FaceStudent.RepLoss -= FaceStudent.RepDeduction;
+					}
+					FaceStudent.Reputation.PendingRep -= FaceStudent.RepLoss * FaceStudent.Paranoia;
+					FaceStudent.PendingRep -= FaceStudent.RepLoss * FaceStudent.Paranoia;
+					FaceStudent.PersonalSpaceTimer = 0f;
 				}
 			}
 			else

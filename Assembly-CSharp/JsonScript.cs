@@ -65,7 +65,10 @@ public class JsonScript : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == "SchoolScene")
 		{
 			StudentManagerScript studentManagerScript = Object.FindObjectOfType<StudentManagerScript>();
-			ReplaceDeadTeachers(studentManagerScript.FirstNames, studentManagerScript.LastNames);
+			if (studentManagerScript != null)
+			{
+				ReplaceDeadTeachers(studentManagerScript.FirstNames, studentManagerScript.LastNames);
+			}
 		}
 		else if (SceneManager.GetActiveScene().name == "CreditsScene")
 		{

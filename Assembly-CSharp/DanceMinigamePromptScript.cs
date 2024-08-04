@@ -26,7 +26,7 @@ public class DanceMinigamePromptScript : MonoBehaviour
 		bool flag = false;
 		for (int i = 1; i < 100; i++)
 		{
-			if (StudentManager.Students[i] != null && StudentManager.Students[i].InEvent)
+			if (StudentManager.Students[i] != null && (StudentManager.Students[i].InEvent || StudentManager.Students[i].CameraReacting))
 			{
 				flag = true;
 			}

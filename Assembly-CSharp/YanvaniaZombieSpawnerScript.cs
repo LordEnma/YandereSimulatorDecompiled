@@ -26,7 +26,7 @@ public class YanvaniaZombieSpawnerScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (!(Yanmont.transform.position.y > 0f))
+		if (!(Yanmont.transform.position.x > 0f) || !(Yanmont.transform.position.x < 51.75f))
 		{
 			return;
 		}

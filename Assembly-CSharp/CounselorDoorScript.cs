@@ -16,6 +16,12 @@ public class CounselorDoorScript : MonoBehaviour
 
 	private void Start()
 	{
+		if (Prompt.Yandere.Yakuza)
+		{
+			Prompt.enabled = false;
+			Prompt.Hide();
+			base.enabled = false;
+		}
 	}
 
 	private void Update()
@@ -43,7 +49,7 @@ public class CounselorDoorScript : MonoBehaviour
 					}
 				}
 			}
-			if (!flag && !Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0 && !FadeIn && Prompt.Yandere.Bloodiness == 0f && Prompt.Yandere.Sanity > 66.66666f && !Prompt.Yandere.Carrying && !Prompt.Yandere.Dragging)
+			if (!flag && !Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0 && !FadeIn && Prompt.Yandere.Bloodiness == 0f && Prompt.Yandere.Sanity > 66.66666f && !Prompt.Yandere.Carrying && !Prompt.Yandere.Dragging && !Prompt.Yandere.Yakuza)
 			{
 				if (!Counselor.Busy)
 				{

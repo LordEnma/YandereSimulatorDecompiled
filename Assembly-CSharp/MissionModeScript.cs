@@ -625,6 +625,8 @@ public class MissionModeScript : MonoBehaviour
 				Yandere.Yakuza = true;
 				if (WeaponManager.Weapons[1].AnimID != 0)
 				{
+					WeaponManager.Weapons[1].StartingPosition = Vector3.zero;
+					WeaponManager.Weapons[1].StartingRotation = Vector3.zero;
 					WeaponManager.Weapons[1].AnimID = 0;
 					WeaponManager.Weapons[1].Equip();
 				}

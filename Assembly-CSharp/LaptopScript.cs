@@ -113,7 +113,7 @@ public class LaptopScript : MonoBehaviour
 					TurnOff();
 				}
 			}
-			if (Yandere.StudentManager.Clock.HourTime > 16f || Yandere.Police.FadeOut)
+			if (Yandere.StudentManager.Clock.HourTime > 16f || Yandere.Police.FadeOut || Yandere.Bloodiness > 0f || Yandere.Followers > 0 || Yandere.Carrying || Yandere.Dragging)
 			{
 				TurnOff();
 			}

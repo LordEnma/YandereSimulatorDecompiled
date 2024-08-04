@@ -104,9 +104,11 @@ public class EndOfDayScript : MonoBehaviour
 
 	public bool GoToSuicideScene;
 
+	public bool PoliceArrived;
+
 	public bool RivalArrested;
 
-	public bool PoliceArrived;
+	public bool RobotComplete;
 
 	public bool KillerIsDead;
 
@@ -358,6 +360,12 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			EndOfDayDarkness.color = new Color(0f, 0f, 0f, 1f);
 			Darken = true;
+		}
+		if (Input.GetKeyDown("x"))
+		{
+			EndOfDayDarkness.color = new Color(0f, 0f, 0f, 1f);
+			Darken = true;
+			Phase = 1;
 		}
 		if (EndOfDayDarkness.color.a < 0.001f && Input.GetButtonDown(InputNames.Xbox_A))
 		{
@@ -731,7 +739,18 @@ public class EndOfDayScript : MonoBehaviour
 				ShruggingCops.SetActive(value: true);
 				if (Weapons == 0)
 				{
-					if (Police.Corpses == 1 && Police.CorpseList[0] != null && Police.CorpseList[0].Student.CrushedByBucket)
+					Debug.Log("We are here.");
+					if (Police.CorpseList[0] != null)
+					{
+						Debug.Log("Police.CorpseList[0].Student.Corpse.RobotDeath is: " + Police.CorpseList[0].RobotDeath);
+					}
+					if (Police.Corpses == 1 && Police.CorpseList[0] != null && Police.CorpseList[0].RobotDeath)
+					{
+						Debug.Log("And we got here.");
+						Label.text = "The police learn that the victim was killed by a malfunctioning humanoid robot, but are unable to decisively assign blame to any specific individual. The death is ruled an accident.";
+						Phase += 2;
+					}
+					else if (Police.Corpses == 1 && Police.CorpseList[0] != null && Police.CorpseList[0].Student.CrushedByBucket)
 					{
 						Label.text = "The police can tell that the victim was killed by a bucket of heavy weights that was dropped from above, but they are unable to collect sufficient evidence to identify a culprit.";
 						Phase += 2;
@@ -743,6 +762,7 @@ public class EndOfDayScript : MonoBehaviour
 					}
 					else
 					{
+						Debug.Log("But we got here.");
 						Label.text = "The police are unable to locate any murder weapons.";
 						Phase += 2;
 					}
@@ -2891,6 +2911,14 @@ public class EndOfDayScript : MonoBehaviour
 		Yandere.CameraEffects.UpdateVignette(0f);
 		GrantAchievement();
 		StudentGlobals.StudentSlave = 0;
+		if (RobotComplete && !StudentGlobals.GetStudentDying(65) && !StudentGlobals.GetStudentDead(65) && !StudentGlobals.GetStudentArrested(65))
+		{
+			GameGlobals.RobotComplete = true;
+		}
+		if (StudentManager.RobotDestroyed)
+		{
+			GameGlobals.RobotDestroyed = true;
+		}
 	}
 
 	private void DisableThings(StudentScript TargetStudent)

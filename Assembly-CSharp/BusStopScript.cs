@@ -281,6 +281,7 @@ public class BusStopScript : MonoBehaviour
 			{
 				Debug.Log("Calling ExitCutscene() because EndEarly was true.");
 				ExitCutscene();
+				return;
 			}
 		}
 		else if (Input.GetButton(InputNames.Xbox_X))
@@ -847,6 +848,7 @@ public class BusStopScript : MonoBehaviour
 				{
 					Debug.Log("Calling ExitCutscene() because EndEarly was true while we're inside of Amai's bakery.");
 					ExitCutscene();
+					return;
 				}
 			}
 			Renderer.material.color = new Color(0f, 0f, 0f, Alpha);
@@ -886,6 +888,7 @@ public class BusStopScript : MonoBehaviour
 			{
 				Debug.Log("Calling ExitCutscene() because Info-chan just took a picture of Taro talking to Amai.");
 				ExitCutscene();
+				return;
 			}
 		}
 		MeetingJukebox.pitch = Time.timeScale;

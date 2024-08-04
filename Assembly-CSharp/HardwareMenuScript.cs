@@ -127,6 +127,10 @@ public class HardwareMenuScript : MonoBehaviour
 						Hardware[num].transform.eulerAngles = OriginalRot[num];
 						Hardware[num].transform.position = OriginalPos[num];
 					}
+					if (Yandere.transform.position.y > -1f)
+					{
+						Yandere.HomeCamera.Target = Yandere.HomeCamera.Targets[0];
+					}
 					Show = false;
 				}
 			}

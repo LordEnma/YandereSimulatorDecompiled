@@ -48,7 +48,7 @@ public class ReputationScript : MonoBehaviour
 		}
 		Reputation = PlayerGlobals.Reputation;
 		string text = Reputation.ToString("F1");
-		RepLabel.text = "REPUATION: " + text;
+		RepLabel.text = "REPUTATION: " + text;
 	}
 
 	private void Update()
@@ -148,7 +148,7 @@ public class ReputationScript : MonoBehaviour
 		}
 		StudentManager.WipePendingRep();
 		string text = Reputation.ToString("F1");
-		RepLabel.text = "REPUATION: " + text;
+		RepLabel.text = "REPUTATION: " + text;
 	}
 
 	public void BecomeEighties()
@@ -181,6 +181,6 @@ public class ReputationScript : MonoBehaviour
 			PendingRepLabel.text = string.Empty;
 		}
 		string text = Reputation.ToString("F1");
-		RepLabel.text = "REPUATION: " + text;
+		RepLabel.text = "REPUTATION: " + text;
 	}
 }

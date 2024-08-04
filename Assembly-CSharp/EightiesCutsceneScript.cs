@@ -361,6 +361,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 			{
 				StartCoroutine(DownloadCoroutine(eightiesCutsceneID, i));
 			}
+			StartCoroutine(BackgroundMusicCoroutine(eightiesCutsceneID));
 			Label.transform.localPosition = new Vector3(-666.666f, -100f, 0f);
 		}
 	}
@@ -370,6 +371,14 @@ public class EightiesCutsceneScript : MonoBehaviour
 		WWW CurrentDownload = new WWW("File:///" + Application.streamingAssetsPath + "/CustomMode/Cutscenes/" + CutsceneID + "/" + ClipID + ".wav");
 		yield return CurrentDownload;
 		Clips[ClipID] = CurrentDownload.GetAudioClipCompressed();
+	}
+
+	private IEnumerator BackgroundMusicCoroutine(int CutsceneID)
+	{
+		WWW CurrentDownload = new WWW("File:///" + Application.streamingAssetsPath + "/CustomMode/Cutscenes/" + CutsceneID + "/bgm.wav");
+		yield return CurrentDownload;
+		BGM.clip = CurrentDownload.GetAudioClipCompressed();
+		BGM.Play();
 	}
 
 	private void Update()

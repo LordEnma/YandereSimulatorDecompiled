@@ -478,6 +478,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] Task52Lines;
 
+	public string[] Task65Lines;
+
 	public string[] Task76Lines;
 
 	public string[] Task77Lines;
@@ -817,6 +819,8 @@ public class SubtitleScript : MonoBehaviour
 	public AudioClip[] Task50Clips;
 
 	public AudioClip[] Task52Clips;
+
+	public AudioClip[] Task65Clips;
 
 	public AudioClip[] Task76Clips;
 
@@ -1785,6 +1789,10 @@ public class SubtitleScript : MonoBehaviour
 			{
 				SubtitleType.Task52Line,
 				new AudioClipArrayWrapper(Task52Clips)
+			},
+			{
+				SubtitleType.Task65Line,
+				new AudioClipArrayWrapper(Task65Clips)
 			},
 			{
 				SubtitleType.Task76Line,
@@ -3219,6 +3227,10 @@ public class SubtitleScript : MonoBehaviour
 				Label.text = Task52Lines[ID];
 				PlayVoice(subtitleType, ID);
 				break;
+			case SubtitleType.Task65Line:
+				Label.text = Task65Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
 			case SubtitleType.Task76Line:
 				Label.text = Task76Lines[ID];
 				PlayVoice(subtitleType, ID);
@@ -3700,6 +3712,8 @@ public class SubtitleScript : MonoBehaviour
 				return Task50Clips[TaskPhase].length;
 			case 52:
 				return Task52Clips[TaskPhase].length;
+			case 65:
+				return Task65Clips[TaskPhase].length;
 			case 76:
 				return Task76Clips[TaskPhase].length;
 			case 77:

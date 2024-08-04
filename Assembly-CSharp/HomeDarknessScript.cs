@@ -274,12 +274,17 @@ public class HomeDarknessScript : MonoBehaviour
 				if (GameGlobals.Dream == 0)
 				{
 					SceneManager.LoadScene("CalendarScene");
+					return;
 				}
-				else if (GameGlobals.Dream == 1)
+				if (GameGlobals.Dream == 1)
 				{
-					GameGlobals.Dream = 0;
 					SceneManager.LoadScene("OriginDreamScene");
 				}
+				else if (GameGlobals.Dream == 2)
+				{
+					SceneManager.LoadScene("OutlanderDreamScene");
+				}
+				GameGlobals.Dream = 0;
 				return;
 			}
 			if (DateGlobals.Weekday != 0)

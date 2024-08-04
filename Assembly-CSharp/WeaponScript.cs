@@ -845,6 +845,7 @@ public class WeaponScript : MonoBehaviour
 		}
 		if (Blood.enabled)
 		{
+			Debug.Log("This weapon, " + base.gameObject.name + " is now incrementing Police.BloodyWeapons.");
 			Yandere.Police.BloodyWeapons++;
 		}
 		if (Vector3.Distance(StartingPosition, base.transform.position) > 2f && Vector3.Distance(base.transform.position, Yandere.StudentManager.WeaponBoxSpot.parent.position) > 2f)

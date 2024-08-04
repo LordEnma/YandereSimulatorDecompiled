@@ -10,6 +10,8 @@ public class GloveScript : MonoBehaviour
 
 	public Projector Blood;
 
+	public bool OccultRobe;
+
 	public bool Raincoat;
 
 	public int GloveID;

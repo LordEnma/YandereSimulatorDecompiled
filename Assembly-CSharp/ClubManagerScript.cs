@@ -31,6 +31,8 @@ public class ClubManagerScript : MonoBehaviour
 
 	public FeedListScript FeedList;
 
+	public GloveScript OccultRobe;
+
 	public YandereScript Yandere;
 
 	public RPG_Camera MainCamera;
@@ -748,6 +750,11 @@ public class ClubManagerScript : MonoBehaviour
 		{
 		case ClubType.Cooking:
 			ClubIDs = Club1IDs;
+			if (!Eighties && StudentManager.Week > 1 && StudentManager.Students[12] != null)
+			{
+				int[] clubIDs = new int[6] { 21, 22, 23, 24, 25, 12 };
+				ClubIDs = clubIDs;
+			}
 			break;
 		case ClubType.Drama:
 			ClubIDs = Club2IDs;
@@ -828,6 +835,10 @@ public class ClubManagerScript : MonoBehaviour
 		{
 		case ClubType.Cooking:
 			num = 21;
+			if (!Eighties && StudentManager.Week > 1 && StudentManager.Students[12] != null)
+			{
+				num = 12;
+			}
 			break;
 		case ClubType.Drama:
 			num = 26;
@@ -1037,6 +1048,8 @@ public class ClubManagerScript : MonoBehaviour
 			StudentManager.UpdatePerception();
 			Candle.Suspicious = false;
 			Yandere.UpdateNumbness();
+			OccultRobe.enabled = true;
+			OccultRobe.Prompt.enabled = true;
 		}
 		else if (Yandere.Club == ClubType.Art)
 		{
@@ -1139,6 +1152,9 @@ public class ClubManagerScript : MonoBehaviour
 			StudentManager.UpdatePerception();
 			Yandere.UpdateNumbness();
 			Candle.Suspicious = true;
+			OccultRobe.enabled = false;
+			OccultRobe.Prompt.Hide();
+			OccultRobe.Prompt.enabled = false;
 		}
 		else
 		{

@@ -46,6 +46,8 @@ public class WashingMachineScript : MonoBehaviour
 
 	public int ClothingInMachine;
 
+	public int GloveID;
+
 	private void Start()
 	{
 		Panel.SetActive(value: false);
@@ -86,7 +88,7 @@ public class WashingMachineScript : MonoBehaviour
 			Prompt.Circle[3].fillAmount = 1f;
 			ClothingList[ClothingInMachine] = Prompt.Yandere.PickUp;
 			Prompt.Yandere.EmptyHands();
-			if (ClothingList[ClothingInMachine].gameObject.name == "Raincoat")
+			if (ClothingList[ClothingInMachine].gameObject.name == "Raincoat" || ClothingList[ClothingInMachine].gameObject.name == "OccultRobe")
 			{
 				ClothingList[ClothingInMachine].transform.position = base.transform.position + new Vector3(0f, 0.475f, 0.11f);
 				ClothingList[ClothingInMachine].transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
@@ -158,15 +160,15 @@ public class WashingMachineScript : MonoBehaviour
 			{
 				continue;
 			}
-			if (ClothingList[i].gameObject.name == "Raincoat" || ClothingList[i].gameObject.name == "SilkGloves")
+			if (ClothingList[i].gameObject.name == "Raincoat" || ClothingList[i].gameObject.name == "OccultRobe" || ClothingList[i].gameObject.name == "SilkGloves")
 			{
 				ClothingList[i].transform.position = base.transform.position + new Vector3(0f, 0.6f, -0.66666f);
 				ClothingList[i].transform.localScale = new Vector3(1f, 1f, 1f);
 				ClothingList[i].Evidence = false;
 				ClothingList[i].gameObject.GetComponent<GloveScript>().Blood.enabled = false;
-				if (ClothingList[i].gameObject.name == "Raincoat")
+				if (ClothingList[i].gameObject.name == "Raincoat" || ClothingList[i].gameObject.name == "OccultRobe")
 				{
-					Prompt.Yandere.CoatBloodiness = 0f;
+					Prompt.Yandere.CoatBloodiness[ClothingList[i].gameObject.GetComponent<GloveScript>().GloveID] = 0f;
 				}
 				else
 				{

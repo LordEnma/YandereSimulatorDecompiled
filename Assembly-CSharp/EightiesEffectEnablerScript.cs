@@ -8,6 +8,8 @@ public class EightiesEffectEnablerScript : MonoBehaviour
 
 	public CameraFilterPack_Colors_Adjust_PreFilters EightiesFilter;
 
+	public bool ForceEnable;
+
 	public int Eights;
 
 	public void Start()
@@ -15,17 +17,25 @@ public class EightiesEffectEnablerScript : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == "PortraitScene")
 		{
 			base.enabled = false;
-			return;
 		}
-		if (EightiesEffects != null)
+		else
 		{
-			EightiesEffects.enabled = GameGlobals.Eighties;
-			if (EightiesFilter != null)
+			if (EightiesEffects != null)
 			{
-				EightiesFilter.enabled = GameGlobals.Eighties;
+				EightiesEffects.enabled = GameGlobals.Eighties;
+				if (EightiesFilter != null)
+				{
+					EightiesFilter.enabled = GameGlobals.Eighties;
+				}
 			}
+			UpdateEightiesEffects();
 		}
-		UpdateEightiesEffects();
+		if (ForceEnable)
+		{
+			EightiesEffects.enabled = true;
+			EightiesFilter.enabled = true;
+			UpdateEightiesEffects();
+		}
 	}
 
 	public void UpdateEightiesEffects()

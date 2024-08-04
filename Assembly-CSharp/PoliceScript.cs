@@ -125,6 +125,8 @@ public class PoliceScript : MonoBehaviour
 
 	public bool FadeResults;
 
+	public bool RobotMurder;
+
 	public bool ShowResults;
 
 	public bool SuicideNote;
@@ -198,6 +200,8 @@ public class PoliceScript : MonoBehaviour
 	public int[] IDsToIgnore;
 
 	public int IDsCounted;
+
+	public int DeathLimit = 86;
 
 	public int SuspensionLength;
 
@@ -342,13 +346,20 @@ public class PoliceScript : MonoBehaviour
 			{
 				Timer = Mathf.MoveTowards(Timer, 0f, Time.deltaTime);
 			}
-			if (Timer < 60f)
+			if (!StudentManager.Egg)
 			{
-				Siren.volume = (1f - Timer / 60f) * 0.5f;
+				if (Timer < 60f)
+				{
+					Siren.volume = (1f - Timer / 60f) * 0.5f;
+				}
+				else
+				{
+					Siren.volume = Mathf.MoveTowards(Siren.volume, 0f, Time.deltaTime * 0.1f);
+				}
 			}
 			else
 			{
-				Siren.volume = Mathf.MoveTowards(Siren.volume, 0f, Time.deltaTime * 0.1f);
+				Siren.volume = Mathf.MoveTowards(Siren.volume, 0f, Time.deltaTime);
 			}
 			if (Timer <= 0f)
 			{
@@ -372,7 +383,7 @@ public class PoliceScript : MonoBehaviour
 				Yandere.NotificationManager.NotificationParent.localPosition = new Vector3(0.15f, Yandere.NotificationManager.NotificationParent.localPosition.y, Yandere.NotificationManager.NotificationParent.localPosition.z);
 			}
 		}
-		else if (Deaths > 86)
+		else if (Deaths > DeathLimit)
 		{
 			if (Invalid)
 			{

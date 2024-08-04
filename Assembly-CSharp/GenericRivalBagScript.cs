@@ -761,7 +761,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 		else if (Menu == 6)
 		{
-			Label[8].text = "You find a diary in your rival's bookbag.\n\nBy reading your rival's diary, you will be able to learn her likes and dislikes,\n\nembarassing secrets that will allow you to spread gossip about her,\n\nand personal problems that you can discuss with her by leaving a note in her locker.\n\nTo look inside the diary, press:\n\n";
+			Label[8].text = "You find a diary in your rival's bookbag.\n\nBy reading your rival's diary, you will be able to learn her likes and dislikes,\n\nembarrassing secrets that will allow you to spread gossip about her,\n\nand personal problems that you can discuss with her by leaving a note in her locker.\n\nTo look inside the diary, press:\n\n";
 			Prompt.Yandere.Police.EndOfDay.LearnedAboutPhotographer = true;
 			Prompt.Yandere.StudentManager.EmbarassingSecret = true;
 		}
@@ -865,7 +865,7 @@ public class GenericRivalBagScript : MonoBehaviour
 			}
 			if (GameGlobals.CustomMode)
 			{
-				DiaryLabelLeft.text = "My best friend asked me to name the 5 things I love the most. It was difficult, but I narrowed it down to:\n\n" + RivalLikes[1] + ", " + RivalLikes[2] + ", " + RivalLikes[3] + ", " + RivalLikes[4] + ", and " + RivalLikes[5] + ".\n\nNext, she wanted me to name my 5 least favorite things. I decided on:\n\n" + RivalDislikes[1] + ", " + RivalDislikes[2] + ", " + RivalDislikes[3] + ", " + RivalDislikes[4] + ", and " + RivalDislikes[5] + ".\n\nLast night, I had a nightmare that everyone at Akademi learned my most embarassing secret:";
+				DiaryLabelLeft.text = "My best friend asked me to name the 5 things I love the most. It was difficult, but I narrowed it down to:\n\n" + RivalLikes[1] + ", " + RivalLikes[2] + ", " + RivalLikes[3] + ", " + RivalLikes[4] + ", and " + RivalLikes[5] + ".\n\nNext, she wanted me to name my 5 least favorite things. I decided on:\n\n" + RivalDislikes[1] + ", " + RivalDislikes[2] + ", " + RivalDislikes[3] + ", " + RivalDislikes[4] + ", and " + RivalDislikes[5] + ".\n\nLast night, I had a nightmare that everyone at Akademi learned my most embarrassing secret:";
 			}
 			else if (Eighties)
 			{

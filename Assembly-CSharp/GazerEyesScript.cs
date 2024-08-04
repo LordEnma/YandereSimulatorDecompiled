@@ -213,14 +213,14 @@ public class GazerEyesScript : MonoBehaviour
 		{
 			Target.StopInvestigating();
 		}
-		Target.Pathfinding.canSearch = false;
-		Target.Pathfinding.canMove = false;
-		Target.Routine = false;
-		Target.EmptyHands();
 		if (StudentManager.BloodReporter != null && StudentManager.BloodReporter.MyTeacher == Target)
 		{
 			StudentManager.BloodReporter.ReturnToNormal();
 		}
+		Target.Pathfinding.canSearch = false;
+		Target.Pathfinding.canMove = false;
+		Target.Routine = false;
+		Target.EmptyHands();
 		if (Target.StudentID == 1)
 		{
 			Debug.Log(Target.Name + " just ''dodged'' some electricity.");
@@ -238,6 +238,10 @@ public class GazerEyesScript : MonoBehaviour
 			{
 				Target.CharacterAnimation[Target.WetAnim].weight = 0f;
 				Target.CharacterAnimation[Target.ShyAnim].weight = 0f;
+			}
+			if (Target.Shoving)
+			{
+				Yandere.CannotRecover = false;
 			}
 			Target.SpecialRivalDeathReaction = false;
 			Target.InvestigatingBloodPool = false;

@@ -324,7 +324,7 @@ public class AttackManagerScript : MonoBehaviour
 				Yandere.EquippedWeapon.MurderWeapon = true;
 				Yandere.CanMove = true;
 				Yandere.Kills++;
-				if (BreakWeapon && (Yandere.EquippedWeapon.Type == WeaponType.Knife || Yandere.EquippedWeapon.Type == WeaponType.Syringe))
+				if (BreakWeapon && !Yandere.EquippedWeapon.Broken && (Yandere.EquippedWeapon.Type == WeaponType.Knife || Yandere.EquippedWeapon.Type == WeaponType.Syringe))
 				{
 					Yandere.EquippedWeapon.Broken = true;
 					Yandere.NotificationManager.CustomText = "The weapon broke!";

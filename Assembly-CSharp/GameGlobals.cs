@@ -142,6 +142,12 @@ public static class GameGlobals
 
 	private const string Str_SenpaiMeetsNewRival = "SenpaiMeetsNewRival";
 
+	private const string Str_RobotComplete = "RobotComplete";
+
+	private const string Str_RobotDestroyed = "RobotDestroyed";
+
+	private const string Str_BasementTape = "BasementTape";
+
 	public static int Profile
 	{
 		get
@@ -806,11 +812,11 @@ public static class GameGlobals
 	{
 		get
 		{
-			return PlayerPrefs.GetInt("Dream");
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_Dream");
 		}
 		set
 		{
-			PlayerPrefs.SetInt("Dream", value);
+			PlayerPrefs.SetInt("Profile_" + Profile + "_Dream", value);
 		}
 	}
 
@@ -895,6 +901,42 @@ public static class GameGlobals
 		set
 		{
 			GlobalsHelper.SetBool("Profile_" + Profile + "_SenpaiMeetsNewRival", value);
+		}
+	}
+
+	public static bool RobotComplete
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_RobotComplete");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_RobotComplete", value);
+		}
+	}
+
+	public static bool RobotDestroyed
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_RobotDestroyed");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_RobotDestroyed", value);
+		}
+	}
+
+	public static int BasementTape
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + Profile + "_BasementTape");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + Profile + "_BasementTape", value);
 		}
 	}
 
@@ -1092,5 +1134,8 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_InCutscene");
 		Globals.Delete("Profile_" + Profile + "_FemaleSenpai");
 		Globals.Delete("Profile_" + Profile + "_SenpaiMeetsNewRival");
+		Globals.Delete("Profile_" + Profile + "_RobotComplete");
+		Globals.Delete("Profile_" + Profile + "_RobotDestroyed");
+		Globals.Delete("Profile_" + Profile + "_BasementTape");
 	}
 }

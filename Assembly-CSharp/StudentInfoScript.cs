@@ -18,6 +18,8 @@ public class StudentInfoScript : MonoBehaviour
 
 	public PromptBarScript PromptBar;
 
+	public RobotChanScript RobotChan;
+
 	public ShutterScript Shutter;
 
 	public YandereScript Yandere;
@@ -581,6 +583,20 @@ public class StudentInfoScript : MonoBehaviour
 				PromptBar.Label[1].text = "Back";
 				PromptBar.UpdateButtons();
 			}
+			else if (StudentInfoMenu.RobotTargeting)
+			{
+				RobotChan.TargetStudent = StudentManager.Students[CurrentStudent];
+				RobotChan.TargetStudent.Hunted = true;
+				RobotChan.GoCommitMurder();
+				StudentInfoMenu.PauseScreen.MainMenu.SetActive(value: true);
+				StudentInfoMenu.PauseScreen.Show = false;
+				StudentInfoMenu.RobotTargeting = false;
+				base.gameObject.SetActive(value: false);
+				Yandere.RPGCamera.enabled = true;
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
+				Time.timeScale = 1f;
+			}
 			else if (StudentInfoMenu.GettingOpinions)
 			{
 				Debug.Log("Are we ''GettingOpinions'' now?");
@@ -680,7 +696,7 @@ public class StudentInfoScript : MonoBehaviour
 			}
 		}
 		StudentInfoMenuScript studentInfoMenu = StudentInfoMenu;
-		if (!studentInfoMenu.CyberBullying && !studentInfoMenu.CyberStalking && !studentInfoMenu.FindingLocker && !studentInfoMenu.UsingLifeNote && !studentInfoMenu.GettingInfo && !studentInfoMenu.MatchMaking && !studentInfoMenu.Distracting && !studentInfoMenu.SendingHome && !studentInfoMenu.Gossiping && !studentInfoMenu.Targeting && !studentInfoMenu.GettingOpinions && !studentInfoMenu.Dead)
+		if (!studentInfoMenu.CyberBullying && !studentInfoMenu.CyberStalking && !studentInfoMenu.FindingLocker && !studentInfoMenu.UsingLifeNote && !studentInfoMenu.GettingInfo && !studentInfoMenu.MatchMaking && !studentInfoMenu.Distracting && !studentInfoMenu.SendingHome && !studentInfoMenu.Gossiping && !studentInfoMenu.Targeting && !studentInfoMenu.GettingOpinions && !studentInfoMenu.Dead && !studentInfoMenu.RobotTargeting)
 		{
 			if (StudentInfoMenu.PauseScreen.InputManager.TappedRight)
 			{

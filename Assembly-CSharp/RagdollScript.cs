@@ -84,6 +84,8 @@ public class RagdollScript : MonoBehaviour
 
 	public bool ChokingAnimation;
 
+	public bool RobotDeath;
+
 	public bool RigidbodiesManuallyDisabled;
 
 	public bool DroppedFromRooftop;

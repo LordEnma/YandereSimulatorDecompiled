@@ -834,7 +834,7 @@ public class DialogueWheelScript : MonoBehaviour
 			}
 			else
 			{
-				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 6 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
+				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 6 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 65 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 				{
 					flag2 = true;
 				}
@@ -1118,6 +1118,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	private void CheckTaskCompletion()
 	{
+		Debug.Log("StudentManager is now firing CheckTaskCompletion()");
+		Debug.Log(Yandere.TargetStudent.Name + "'s Task Status is: " + TaskManager.TaskStatus[Yandere.TargetStudent.StudentID]);
 		bool flag = false;
 		if (Yandere.StudentManager.Eighties)
 		{
@@ -1160,6 +1162,17 @@ public class DialogueWheelScript : MonoBehaviour
 			{
 				Debug.Log("Setting Osana's phone charm active.");
 				Yandere.TargetStudent.Cosmetic.PhoneCharms[11].SetActive(value: true);
+			}
+			else if (Yandere.TargetStudent.StudentID == 65 && TaskManager.TaskStatus[65] == 1)
+			{
+				Debug.Log("Disabling the car battery, since Homu took it.");
+				if (Yandere.Bookbag != null && Yandere.Bookbag.ConcealedPickup != null && Yandere.Bookbag.ConcealedPickup.gameObject == TaskManager.CarBattery)
+				{
+					Yandere.Bookbag.RemoveContents();
+					Yandere.EmptyHands();
+				}
+				TaskManager.CarBattery.SetActive(value: false);
+				Yandere.StudentManager.Police.EndOfDay.RobotComplete = true;
 			}
 			else if (Yandere.TargetStudent.StudentID == 76 && TaskManager.TaskStatus[76] == 1)
 			{
@@ -1207,7 +1220,7 @@ public class DialogueWheelScript : MonoBehaviour
 				Yandere.TargetStudent.TaskPhase = 5;
 				Yandere.Inventory.AnswerSheet = false;
 			}
-			if (Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 47 && Yandere.TargetStudent.StudentID != 48 && Yandere.TargetStudent.StudentID != 49 && Yandere.TargetStudent.StudentID != 50 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
+			if (Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 47 && Yandere.TargetStudent.StudentID != 48 && Yandere.TargetStudent.StudentID != 49 && Yandere.TargetStudent.StudentID != 50 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 65 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 			{
 				flag = true;
 			}

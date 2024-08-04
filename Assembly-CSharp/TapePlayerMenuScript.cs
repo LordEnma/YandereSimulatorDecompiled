@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TapePlayerMenuScript : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class TapePlayerMenuScript : MonoBehaviour
 	public InputManagerScript InputManager;
 
 	public TapePlayerScript TapePlayer;
+
+	public UISprite TapePlayerDarkness;
 
 	public PromptBarScript PromptBar;
 
@@ -45,6 +48,10 @@ public class TapePlayerMenuScript : MonoBehaviour
 	public bool Listening;
 
 	public bool Show;
+
+	public bool FadeOut;
+
+	public bool FadeIn;
 
 	public UILabel HeaderLabel;
 
@@ -186,6 +193,37 @@ public class TapePlayerMenuScript : MonoBehaviour
 			{
 				TimeBar.gameObject.SetActive(value: false);
 				List.gameObject.SetActive(value: false);
+			}
+			return;
+		}
+		if (FadeOut)
+		{
+			if (!FadeIn)
+			{
+				TapePlayerDarkness.alpha += Time.unscaledDeltaTime;
+				if (TapePlayerDarkness.alpha >= 1f)
+				{
+					TapePlayerDarkness.alpha = 1f;
+					GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+					for (int i = 0; i < rootGameObjects.Length; i++)
+					{
+						rootGameObjects[i].SetActive(value: false);
+					}
+					SceneManager.LoadScene("VisualNovelScene", LoadSceneMode.Additive);
+					Time.timeScale = 1f;
+					FadeIn = true;
+				}
+			}
+			else
+			{
+				TapePlayerDarkness.alpha -= Time.unscaledDeltaTime;
+				if (TapePlayerDarkness.alpha <= 0f)
+				{
+					TapePlayerDarkness.alpha = 0f;
+					Jukebox.SetActive(value: true);
+					FadeOut = false;
+					FadeIn = false;
+				}
 			}
 			return;
 		}
@@ -373,91 +411,91 @@ public class TapePlayerMenuScript : MonoBehaviour
 				{
 					if (Selected == 1)
 					{
-						for (int i = 0; i < Cues1.Length; i++)
+						for (int j = 0; j < Cues1.Length; j++)
 						{
-							if (MyAudio.time > Cues1[i])
+							if (MyAudio.time > Cues1[j])
 							{
-								Subtitle.text = Subs1[i];
+								Subtitle.text = Subs1[j];
 							}
 						}
 					}
 					else if (Selected == 2)
 					{
-						for (int j = 0; j < Cues2.Length; j++)
+						for (int k = 0; k < Cues2.Length; k++)
 						{
-							if (MyAudio.time > Cues2[j])
+							if (MyAudio.time > Cues2[k])
 							{
-								Subtitle.text = Subs2[j];
+								Subtitle.text = Subs2[k];
 							}
 						}
 					}
 					else if (Selected == 3)
 					{
-						for (int k = 0; k < Cues3.Length; k++)
+						for (int l = 0; l < Cues3.Length; l++)
 						{
-							if (MyAudio.time > Cues3[k])
+							if (MyAudio.time > Cues3[l])
 							{
-								Subtitle.text = Subs3[k];
+								Subtitle.text = Subs3[l];
 							}
 						}
 					}
 					else if (Selected == 4)
 					{
-						for (int l = 0; l < Cues4.Length; l++)
+						for (int m = 0; m < Cues4.Length; m++)
 						{
-							if (MyAudio.time > Cues4[l])
+							if (MyAudio.time > Cues4[m])
 							{
-								Subtitle.text = Subs4[l];
+								Subtitle.text = Subs4[m];
 							}
 						}
 					}
 					else if (Selected == 5)
 					{
-						for (int m = 0; m < Cues5.Length; m++)
+						for (int n = 0; n < Cues5.Length; n++)
 						{
-							if (MyAudio.time > Cues5[m])
+							if (MyAudio.time > Cues5[n])
 							{
-								Subtitle.text = Subs5[m];
+								Subtitle.text = Subs5[n];
 							}
 						}
 					}
 					else if (Selected == 6)
 					{
-						for (int n = 0; n < Cues6.Length; n++)
+						for (int num3 = 0; num3 < Cues6.Length; num3++)
 						{
-							if (MyAudio.time > Cues6[n])
+							if (MyAudio.time > Cues6[num3])
 							{
-								Subtitle.text = Subs6[n];
+								Subtitle.text = Subs6[num3];
 							}
 						}
 					}
 					else if (Selected == 7)
 					{
-						for (int num3 = 0; num3 < Cues7.Length; num3++)
+						for (int num4 = 0; num4 < Cues7.Length; num4++)
 						{
-							if (MyAudio.time > Cues7[num3])
+							if (MyAudio.time > Cues7[num4])
 							{
-								Subtitle.text = Subs7[num3];
+								Subtitle.text = Subs7[num4];
 							}
 						}
 					}
 					else if (Selected == 8)
 					{
-						for (int num4 = 0; num4 < Cues8.Length; num4++)
+						for (int num5 = 0; num5 < Cues8.Length; num5++)
 						{
-							if (MyAudio.time > Cues8[num4])
+							if (MyAudio.time > Cues8[num5])
 							{
-								Subtitle.text = Subs8[num4];
+								Subtitle.text = Subs8[num5];
 							}
 						}
 					}
 					else if (Selected == 9)
 					{
-						for (int num5 = 0; num5 < Cues9.Length; num5++)
+						for (int num6 = 0; num6 < Cues9.Length; num6++)
 						{
-							if (MyAudio.time > Cues9[num5])
+							if (MyAudio.time > Cues9[num6])
 							{
-								Subtitle.text = Subs9[num5];
+								Subtitle.text = Subs9[num6];
 							}
 						}
 					}
@@ -467,11 +505,11 @@ public class TapePlayerMenuScript : MonoBehaviour
 						{
 							return;
 						}
-						for (int num6 = 0; num6 < Cues10.Length; num6++)
+						for (int num7 = 0; num7 < Cues10.Length; num7++)
 						{
-							if (MyAudio.time > Cues10[num6])
+							if (MyAudio.time > Cues10[num7])
 							{
-								Subtitle.text = Subs10[num6];
+								Subtitle.text = Subs10[num7];
 							}
 						}
 					}
@@ -480,23 +518,26 @@ public class TapePlayerMenuScript : MonoBehaviour
 				{
 					if (Selected == 1)
 					{
-						for (int num7 = 0; num7 < BasementCues1.Length; num7++)
+						for (int num8 = 0; num8 < BasementCues1.Length; num8++)
 						{
-							if (MyAudio.time > BasementCues1[num7])
+							if (MyAudio.time > BasementCues1[num8])
 							{
-								Subtitle.text = BasementSubs1[num7];
+								Subtitle.text = BasementSubs1[num8];
 							}
 						}
 					}
-					if (Selected != 10)
+					else
 					{
-						return;
-					}
-					for (int num8 = 0; num8 < BasementCues10.Length; num8++)
-					{
-						if (MyAudio.time > BasementCues10[num8])
+						if (Selected == 2 || Selected != 10)
 						{
-							Subtitle.text = BasementSubs10[num8];
+							return;
+						}
+						for (int num9 = 0; num9 < BasementCues10.Length; num9++)
+						{
+							if (MyAudio.time > BasementCues10[num9])
+							{
+								Subtitle.text = BasementSubs10[num9];
+							}
 						}
 					}
 				}
@@ -508,91 +549,91 @@ public class TapePlayerMenuScript : MonoBehaviour
 					}
 					if (Selected == 1)
 					{
-						for (int num9 = 0; num9 < HeadmasterCues1.Length; num9++)
+						for (int num10 = 0; num10 < HeadmasterCues1.Length; num10++)
 						{
-							if (MyAudio.time > HeadmasterCues1[num9])
+							if (MyAudio.time > HeadmasterCues1[num10])
 							{
-								Subtitle.text = HeadmasterSubs1[num9];
+								Subtitle.text = HeadmasterSubs1[num10];
 							}
 						}
 					}
 					else if (Selected == 2)
 					{
-						for (int num10 = 0; num10 < HeadmasterCues2.Length; num10++)
+						for (int num11 = 0; num11 < HeadmasterCues2.Length; num11++)
 						{
-							if (MyAudio.time > HeadmasterCues2[num10])
+							if (MyAudio.time > HeadmasterCues2[num11])
 							{
-								Subtitle.text = HeadmasterSubs2[num10];
+								Subtitle.text = HeadmasterSubs2[num11];
 							}
 						}
 					}
 					else if (Selected == 3)
 					{
-						for (int num11 = 0; num11 < HeadmasterCues3.Length; num11++)
+						for (int num12 = 0; num12 < HeadmasterCues3.Length; num12++)
 						{
-							if (MyAudio.time > HeadmasterCues3[num11])
+							if (MyAudio.time > HeadmasterCues3[num12])
 							{
-								Subtitle.text = HeadmasterSubs3[num11];
+								Subtitle.text = HeadmasterSubs3[num12];
 							}
 						}
 					}
 					else if (Selected == 4)
 					{
-						for (int num12 = 0; num12 < HeadmasterCues4.Length; num12++)
+						for (int num13 = 0; num13 < HeadmasterCues4.Length; num13++)
 						{
-							if (MyAudio.time > HeadmasterCues4[num12])
+							if (MyAudio.time > HeadmasterCues4[num13])
 							{
-								Subtitle.text = HeadmasterSubs4[num12];
+								Subtitle.text = HeadmasterSubs4[num13];
 							}
 						}
 					}
 					else if (Selected == 5)
 					{
-						for (int num13 = 0; num13 < HeadmasterCues5.Length; num13++)
+						for (int num14 = 0; num14 < HeadmasterCues5.Length; num14++)
 						{
-							if (MyAudio.time > HeadmasterCues5[num13])
+							if (MyAudio.time > HeadmasterCues5[num14])
 							{
-								Subtitle.text = HeadmasterSubs5[num13];
+								Subtitle.text = HeadmasterSubs5[num14];
 							}
 						}
 					}
 					else if (Selected == 6)
 					{
-						for (int num14 = 0; num14 < HeadmasterCues6.Length; num14++)
+						for (int num15 = 0; num15 < HeadmasterCues6.Length; num15++)
 						{
-							if (MyAudio.time > HeadmasterCues6[num14])
+							if (MyAudio.time > HeadmasterCues6[num15])
 							{
-								Subtitle.text = HeadmasterSubs6[num14];
+								Subtitle.text = HeadmasterSubs6[num15];
 							}
 						}
 					}
 					else if (Selected == 7)
 					{
-						for (int num15 = 0; num15 < HeadmasterCues7.Length; num15++)
+						for (int num16 = 0; num16 < HeadmasterCues7.Length; num16++)
 						{
-							if (MyAudio.time > HeadmasterCues7[num15])
+							if (MyAudio.time > HeadmasterCues7[num16])
 							{
-								Subtitle.text = HeadmasterSubs7[num15];
+								Subtitle.text = HeadmasterSubs7[num16];
 							}
 						}
 					}
 					else if (Selected == 8)
 					{
-						for (int num16 = 0; num16 < HeadmasterCues8.Length; num16++)
+						for (int num17 = 0; num17 < HeadmasterCues8.Length; num17++)
 						{
-							if (MyAudio.time > HeadmasterCues8[num16])
+							if (MyAudio.time > HeadmasterCues8[num17])
 							{
-								Subtitle.text = HeadmasterSubs8[num16];
+								Subtitle.text = HeadmasterSubs8[num17];
 							}
 						}
 					}
 					else if (Selected == 9)
 					{
-						for (int num17 = 0; num17 < HeadmasterCues9.Length; num17++)
+						for (int num18 = 0; num18 < HeadmasterCues9.Length; num18++)
 						{
-							if (MyAudio.time > HeadmasterCues9[num17])
+							if (MyAudio.time > HeadmasterCues9[num18])
 							{
-								Subtitle.text = HeadmasterSubs9[num17];
+								Subtitle.text = HeadmasterSubs9[num18];
 							}
 						}
 					}
@@ -602,11 +643,11 @@ public class TapePlayerMenuScript : MonoBehaviour
 						{
 							return;
 						}
-						for (int num18 = 0; num18 < HeadmasterCues10.Length; num18++)
+						for (int num19 = 0; num19 < HeadmasterCues10.Length; num19++)
 						{
-							if (MyAudio.time > HeadmasterCues10[num18])
+							if (MyAudio.time > HeadmasterCues10[num19])
 							{
-								Subtitle.text = HeadmasterSubs10[num18];
+								Subtitle.text = HeadmasterSubs10[num19];
 							}
 						}
 					}
@@ -679,6 +720,13 @@ public class TapePlayerMenuScript : MonoBehaviour
 					CollectibleGlobals.SetBasementTapeListened(Selected, value: true);
 					flag = true;
 				}
+				if (Selected == 2)
+				{
+					GameGlobals.BasementTape = 2;
+					Jukebox.SetActive(value: false);
+					flag = false;
+					FadeOut = true;
+				}
 			}
 			else if (Category == 3 && StudentManager.HeadmasterTapesCollected[Selected])
 			{
@@ -712,9 +760,9 @@ public class TapePlayerMenuScript : MonoBehaviour
 				}
 				MyAudio.time = 0f;
 				RoundedTime = Mathf.CeilToInt(MyAudio.clip.length);
-				int num19 = (int)(RoundedTime / 60f);
-				int num20 = (int)(RoundedTime % 60f);
-				ClipLength = $"{num19:00}:{num20:00}";
+				int num20 = (int)(RoundedTime / 60f);
+				int num21 = (int)(RoundedTime % 60f);
+				ClipLength = $"{num20:00}:{num21:00}";
 			}
 		}
 		else if (Input.GetButtonDown(InputNames.Xbox_B))

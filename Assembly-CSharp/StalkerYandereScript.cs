@@ -774,9 +774,13 @@ public class StalkerYandereScript : MonoBehaviour
 			}
 			Object.LookAt(ObjectTarget);
 		}
-		if (Street && !Night && HidePanties)
+		if (!Street || !HidePanties)
 		{
-			PantyAttacher.newRenderer.enabled = false;
+			return;
+		}
+		PantyAttacher.newRenderer.enabled = false;
+		if (!Night)
+		{
 			if (MyRenderer.materials[0].GetTexture("_OverlayTex") == NoPan)
 			{
 				MyRenderer.materials[0].SetTexture("_OverlayTex", Shadow);
@@ -791,6 +795,11 @@ public class StalkerYandereScript : MonoBehaviour
 			}
 			HidePanties = false;
 		}
+		else
+		{
+			MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
+		}
+		HidePanties = false;
 	}
 
 	private void UpdateMovement()

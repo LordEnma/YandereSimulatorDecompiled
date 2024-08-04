@@ -46,8 +46,25 @@ public class GiggleScript : MonoBehaviour
 		{
 			return;
 		}
+		Debug.Log(Student.Name + " should be able to hear this distracting noise...");
 		if (Student.Giggle == null)
 		{
+			if (Student.StudentManager.FacultyRoom.bounds.Contains(base.transform.position))
+			{
+				Debug.Log("This giggle is within the faculty room.");
+			}
+			if (!Student.Teacher && Student.Club != ClubType.Council && Student.StudentManager.FacultyRoom.bounds.Contains(base.transform.position))
+			{
+				Debug.Log("A student ignored a giggle coming from the faculty room.");
+				if (Student.Yandere.NotificationManager.NotificationParent.childCount == 0)
+				{
+					Student.Yandere.NotificationManager.CustomText = "Students will not investigate that room.";
+					Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Student.Yandere.NotificationManager.CustomText = Student.Name + " will ignore that sound.";
+					Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+				return;
+			}
 			if (Student.StudentManager.LockerRoomArea.bounds.Contains(base.transform.position) || Student.StudentManager.WestBathroomArea.bounds.Contains(base.transform.position) || Student.StudentManager.EastBathroomArea.bounds.Contains(base.transform.position) || (Student.Club != ClubType.Delinquent && Student.StudentManager.IncineratorArea.bounds.Contains(base.transform.position)) || Student.StudentManager.HeadmasterArea.bounds.Contains(base.transform.position))
 			{
 				Debug.Log("Ignored because the giggle came from a bathroom/locker room.");

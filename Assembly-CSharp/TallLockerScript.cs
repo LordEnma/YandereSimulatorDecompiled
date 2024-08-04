@@ -293,32 +293,32 @@ public class TallLockerScript : MonoBehaviour
 					Yandere.GloveAttacher.newRenderer.enabled = false;
 					Yandere.Gloves.gameObject.SetActive(value: true);
 					Yandere.Gloved = false;
-					Yandere.Gloves = null;
 					Yandere.GloveBlood = 0;
+					if (Yandere.WearingRaincoat)
+					{
+						Yandere.RaincoatAttacher.newRenderer.enabled = false;
+						Yandere.PantyAttacher.newRenderer.enabled = true;
+						Yandere.TheDebugMenuScript.UpdateCensor();
+						Yandere.CoatBloodiness[Yandere.Gloves.GloveID] = Yandere.Bloodiness;
+						Yandere.Bloodiness = Yandere.OriginalBloodiness;
+						Yandere.WearingRaincoat = false;
+						if (!StudentManager.Eighties)
+						{
+							Yandere.Hairstyle = 1;
+						}
+						else
+						{
+							Yandere.Hairstyle = 203;
+						}
+						Yandere.UpdateHair();
+					}
+					Yandere.Gloves = null;
 				}
 				if (Yandere.Mask != null)
 				{
 					Yandere.Mask.Drop();
 					Yandere.WeaponMenu.UpdateSprites();
 					StudentManager.UpdateStudents();
-				}
-				if (Yandere.WearingRaincoat)
-				{
-					Yandere.RaincoatAttacher.newRenderer.enabled = false;
-					Yandere.PantyAttacher.newRenderer.enabled = true;
-					Yandere.TheDebugMenuScript.UpdateCensor();
-					Yandere.CoatBloodiness = Yandere.Bloodiness;
-					Yandere.Bloodiness = Yandere.OriginalBloodiness;
-					Yandere.WearingRaincoat = false;
-					if (!StudentManager.Eighties)
-					{
-						Yandere.Hairstyle = 1;
-					}
-					else
-					{
-						Yandere.Hairstyle = 203;
-					}
-					Yandere.UpdateHair();
 				}
 				Debug.Log("The locker is now instructing the player to ChangeSchoolwear()");
 				Yandere.ChangeSchoolwear();

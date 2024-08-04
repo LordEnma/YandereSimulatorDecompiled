@@ -583,9 +583,10 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			if (Eaten)
 			{
 				PricesLabel[1].text = "Not Hungry";
-				Icons[1].spriteName = "Yes";
+				PricesLabel[2].text = "Not Hungry";
+				Icons[GameGlobals.Dream].spriteName = "Yes";
 			}
-			for (int i = 2; i < 6; i++)
+			for (int i = 3; i < 6; i++)
 			{
 				PricesLabel[i].text = "Sold Out";
 			}

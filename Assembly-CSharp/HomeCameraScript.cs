@@ -188,6 +188,7 @@ public class HomeCameraScript : MonoBehaviour
 
 	public void Start()
 	{
+		Tripod.SetActive(value: false);
 		ResetBloom();
 		ResetChroma();
 		HomeSleep.Start();

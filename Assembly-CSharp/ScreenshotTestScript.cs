@@ -29,6 +29,7 @@ public class ScreenshotTestScript : MonoBehaviour
 	{
 		if (GameGlobals.Eighties)
 		{
+			PortraitName = "EightiesSenpaiPortrait";
 			BG.mainTexture = EightiesBG;
 			Petals.SetActive(value: false);
 			Tree.SetActive(value: false);

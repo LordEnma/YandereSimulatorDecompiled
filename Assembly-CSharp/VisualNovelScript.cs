@@ -3,6 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class VisualNovelScript : MonoBehaviour
 {
+	public Camera BasementCamera;
+
+	public Camera MainCamera;
+
+	public Camera UiCamera;
+
 	public Transform[] CharacterParent;
 
 	public Transform[] CharacterTarget;
@@ -59,6 +65,10 @@ public class VisualNovelScript : MonoBehaviour
 
 	public Renderer Backdrop;
 
+	public float ScreenShake;
+
+	public float FadeTimer;
+
 	public bool DrunkEffect;
 
 	public bool ShowOption;
@@ -66,8 +76,6 @@ public class VisualNovelScript : MonoBehaviour
 	public bool Betrayed;
 
 	public bool FadeOut;
-
-	public float FadeTimer;
 
 	public int Week;
 
@@ -95,60 +103,96 @@ public class VisualNovelScript : MonoBehaviour
 
 	public bool ShowPainting;
 
+	public VisualNovelDataScript[] BasementTapeData;
+
+	public GameObject Basement;
+
+	public UITexture[] Graphics;
+
+	public int[] GraphicIDs;
+
 	private void Start()
 	{
-		Debug.Log("The visual novel scene believes that the current week is: " + DateGlobals.Week);
-		if (GameGlobals.BlondeHair)
+		if (GameGlobals.BasementTape > 0)
 		{
-			Character[1].Cosmetic.FemaleHairRenderers[1].material.mainTexture = Blonde;
-		}
-		if (GameGlobals.SenpaiMeetsNewRival)
-		{
-			MeetingRival = true;
-			Debug.Log("Now attempting to turn the characters into Taro and Kizana.");
-			Dialogue = KizanaMeetData.Dialogue;
-			Anims = KizanaMeetData.Anims;
-			IdleAnims = KizanaMeetData.IdleAnims;
-			SpecialCase = KizanaMeetData.SpecialCase;
-			Speaker = KizanaMeetData.Speaker;
-			CurrentIdleAnim = KizanaMeetData.CurrentIdleAnim;
-			Names = KizanaMeetData.Names;
-			Colors = KizanaMeetData.Colors;
-			Backdrop.material.mainTexture = KizanaMeetData.Backdrop;
-			Jukebox.clip = KizanaMeetData.BGM;
-			Week = 2;
+			Dialogue = BasementTapeData[GameGlobals.BasementTape].Dialogue;
+			Anims = BasementTapeData[GameGlobals.BasementTape].Anims;
+			IdleAnims = BasementTapeData[GameGlobals.BasementTape].IdleAnims;
+			SpecialCase = BasementTapeData[GameGlobals.BasementTape].SpecialCase;
+			Speaker = BasementTapeData[GameGlobals.BasementTape].Speaker;
+			CurrentIdleAnim = BasementTapeData[GameGlobals.BasementTape].CurrentIdleAnim;
+			Names = BasementTapeData[GameGlobals.BasementTape].Names;
+			Colors = BasementTapeData[GameGlobals.BasementTape].Colors;
+			GraphicIDs = BasementTapeData[GameGlobals.BasementTape].GraphicIDs;
+			Jukebox.clip = BasementTapeData[GameGlobals.BasementTape].BGM;
+			DialogueLabel.transform.localPosition = new Vector3(0f, -350f, 0f);
+			MaleCharacter.gameObject.SetActive(value: false);
 			Character[1].gameObject.SetActive(value: false);
-			Character[1] = MaleCharacter;
-			CharAnim[1] = Character[1].CharacterAnimation;
-			CasualClothing = true;
-			Character[2].Cosmetic.StudentID = 13;
-			Character[2].StudentID = 13;
-			Character[2].Cosmetic.Initialized = false;
-			Character[2].Cosmetic.Start();
-			Character[2].Cosmetic.RightEyeRenderer.gameObject.SetActive(value: false);
-			Character[2].Cosmetic.LeftEyeRenderer.gameObject.SetActive(value: false);
-			Character[2].MyRenderer.enabled = false;
-			Character[2].CharacterAnimation["f02_smile_01"].layer = 1;
-			Character[2].CharacterAnimation.Play("f02_smile_01");
-			Character[2].CharacterAnimation["f02_smile_01"].weight = 1f;
-			Character[2].CharacterAnimation["f02_smugEyes_00"].layer = 2;
-			Character[2].CharacterAnimation.Play("f02_smugEyes_00");
-			Character[2].CharacterAnimation["f02_smugEyes_00"].weight = 1f;
-			KizanaClothing.SetActive(value: true);
-			Character[2].RightBreast.transform.localScale = new Vector3(1f, 1f, 1f);
-			Character[2].LeftBreast.transform.localScale = new Vector3(1f, 1f, 1f);
+			Character[2].gameObject.SetActive(value: false);
+			Backdrop.gameObject.SetActive(value: false);
+			MainCamera.enabled = false;
+			UiCamera.enabled = false;
+			Basement.SetActive(value: true);
+			for (int i = 0; i < Graphics.Length; i++)
+			{
+				Graphics[i].mainTexture = BasementTapeData[GameGlobals.BasementTape].Graphics[i];
+			}
 		}
 		else
 		{
-			MaleCharacter.gameObject.SetActive(value: false);
+			Debug.Log("The visual novel scene believes that the current week is: " + DateGlobals.Week);
+			if (GameGlobals.BlondeHair)
+			{
+				Character[1].Cosmetic.FemaleHairRenderers[1].material.mainTexture = Blonde;
+			}
+			if (GameGlobals.SenpaiMeetsNewRival)
+			{
+				MeetingRival = true;
+				Debug.Log("Now attempting to turn the characters into Taro and Kizana.");
+				Dialogue = KizanaMeetData.Dialogue;
+				Anims = KizanaMeetData.Anims;
+				IdleAnims = KizanaMeetData.IdleAnims;
+				SpecialCase = KizanaMeetData.SpecialCase;
+				Speaker = KizanaMeetData.Speaker;
+				CurrentIdleAnim = KizanaMeetData.CurrentIdleAnim;
+				Names = KizanaMeetData.Names;
+				Colors = KizanaMeetData.Colors;
+				Backdrop.material.mainTexture = KizanaMeetData.Backdrop;
+				Jukebox.clip = KizanaMeetData.BGM;
+				Week = 2;
+				Character[1].gameObject.SetActive(value: false);
+				Character[1] = MaleCharacter;
+				CharAnim[1] = Character[1].CharacterAnimation;
+				CasualClothing = true;
+				Character[2].Cosmetic.StudentID = 13;
+				Character[2].StudentID = 13;
+				Character[2].Cosmetic.Initialized = false;
+				Character[2].Cosmetic.Start();
+				Character[2].Cosmetic.RightEyeRenderer.gameObject.SetActive(value: false);
+				Character[2].Cosmetic.LeftEyeRenderer.gameObject.SetActive(value: false);
+				Character[2].MyRenderer.enabled = false;
+				Character[2].CharacterAnimation["f02_smile_01"].layer = 1;
+				Character[2].CharacterAnimation.Play("f02_smile_01");
+				Character[2].CharacterAnimation["f02_smile_01"].weight = 1f;
+				Character[2].CharacterAnimation["f02_smugEyes_00"].layer = 2;
+				Character[2].CharacterAnimation.Play("f02_smugEyes_00");
+				Character[2].CharacterAnimation["f02_smugEyes_00"].weight = 1f;
+				KizanaClothing.SetActive(value: true);
+				Character[2].RightBreast.transform.localScale = new Vector3(1f, 1f, 1f);
+				Character[2].LeftBreast.transform.localScale = new Vector3(1f, 1f, 1f);
+			}
+			else
+			{
+				MaleCharacter.gameObject.SetActive(value: false);
+			}
+			DestroyComponentsInChildren(Character[1].transform);
+			DestroyComponentsInChildren(Character[2].transform);
+			CharAnim[1].CrossFade(CurrentIdleAnim[1]);
+			CharAnim[2].CrossFade(CurrentIdleAnim[2]);
+			Character[1].DisableProps();
+			Character[2].DisableProps();
 		}
 		DialogueLabel.gameObject.SetActive(value: false);
-		DestroyComponentsInChildren(Character[1].transform);
-		DestroyComponentsInChildren(Character[2].transform);
-		CharAnim[1].CrossFade(CurrentIdleAnim[1]);
-		CharAnim[2].CrossFade(CurrentIdleAnim[2]);
-		Character[1].DisableProps();
-		Character[2].DisableProps();
 		VisualNovelPanel.alpha = 0f;
 		OptionPanel.alpha = 0f;
 		Darkness.alpha = 1f;
@@ -159,6 +203,25 @@ public class VisualNovelScript : MonoBehaviour
 	{
 		if (!FadeOut)
 		{
+			if (ScreenShake > 0.0001f)
+			{
+				BasementCamera.transform.localPosition = new Vector3(1f + Random.RandomRange(ScreenShake * -1f, ScreenShake * 1f), 1f + Random.RandomRange(ScreenShake * -1f, ScreenShake * 1f), 0f + Random.RandomRange(ScreenShake * -1f, ScreenShake * 1f));
+				ScreenShake = Mathf.Lerp(ScreenShake, 0f, Time.deltaTime * 10f);
+			}
+			if (GraphicIDs.Length != 0)
+			{
+				for (int i = 0; i < Graphics.Length; i++)
+				{
+					if (GraphicIDs[ID] != i)
+					{
+						Graphics[i].alpha = Mathf.MoveTowards(Graphics[i].alpha, 0f, Time.deltaTime);
+					}
+					else
+					{
+						Graphics[i].alpha = Mathf.MoveTowards(Graphics[i].alpha, 0.5f, Time.deltaTime);
+					}
+				}
+			}
 			FadeTimer += Time.deltaTime;
 			if (FadeTimer > 1f)
 			{
@@ -208,13 +271,13 @@ public class VisualNovelScript : MonoBehaviour
 							OptionPanel.alpha = Mathf.MoveTowards(OptionPanel.alpha, 1f, Time.deltaTime * 10f);
 							if (OptionPanel.alpha > 0.999f && Input.GetButtonDown(InputNames.Xbox_B))
 							{
-								for (int i = 28; i < 33; i++)
+								for (int j = 28; j < 33; j++)
 								{
-									SpecialCase[i] = AltSpecialCase[i];
-									IdleAnims[i] = AltIdleAnims[i];
-									Dialogue[i] = AltDialogue[i];
-									Speaker[i] = AltSpeaker[i];
-									Anims[i] = AltAnims[i];
+									SpecialCase[j] = AltSpecialCase[j];
+									IdleAnims[j] = AltIdleAnims[j];
+									Dialogue[j] = AltDialogue[j];
+									Speaker[j] = AltSpeaker[j];
+									Anims[j] = AltAnims[j];
 								}
 								ShowOption = false;
 								Betrayed = true;
@@ -316,6 +379,15 @@ public class VisualNovelScript : MonoBehaviour
 											{
 												ShowPainting = false;
 											}
+											else if (SpecialCase[ID] == 8)
+											{
+												DialogueLabel.fontSize = 125;
+												ScreenShake = 1f;
+											}
+											else if (SpecialCase[ID] == 9)
+											{
+												DialogueLabel.fontSize = 50;
+											}
 										}
 										UpdateLabels();
 									}
@@ -343,17 +415,26 @@ public class VisualNovelScript : MonoBehaviour
 				Jukebox.volume = 1f - Darkness.alpha;
 				if (Darkness.alpha > 0.999f)
 				{
-					if (MeetingRival)
+					if (GameGlobals.BasementTape > 0)
 					{
-						SceneManager.LoadScene("BusStopScene");
-					}
-					else if (!Betrayed)
-					{
-						BefriendRival();
+						Debug.Log("We reached the part of the code reserved for exiting Basement Tapes.");
+						ExitBasementTape();
 					}
 					else
 					{
-						BetrayRival();
+						Debug.Log("We reached the part of the code reserved for exiting non-Basement Tape visual novel scenes.");
+						if (MeetingRival)
+						{
+							SceneManager.LoadScene("BusStopScene");
+						}
+						else if (!Betrayed)
+						{
+							BefriendRival();
+						}
+						else
+						{
+							BetrayRival();
+						}
 					}
 				}
 			}
@@ -487,5 +568,17 @@ public class VisualNovelScript : MonoBehaviour
 		}
 		EventGlobals.OsanaConversation = true;
 		SceneManager.LoadScene("GenocideScene");
+	}
+
+	public void ExitBasementTape()
+	{
+		GameGlobals.BasementTape = 0;
+		GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+		for (int i = 0; i < rootGameObjects.Length; i++)
+		{
+			rootGameObjects[i].SetActive(value: true);
+		}
+		SceneManager.UnloadSceneAsync(56);
+		Time.timeScale = 0.0001f;
 	}
 }

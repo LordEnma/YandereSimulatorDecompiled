@@ -235,7 +235,7 @@ public class AlarmDiscScript : MonoBehaviour
 					{
 						Student.StopInvestigating();
 					}
-					if (!Student.Nemesis && Student.Alive && !Student.Dying && !Student.Guarding && !Student.Alarmed && !Student.Wet && !Student.Slave && !Student.Headache && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Lethal && !Student.InEvent && !Student.Following && !Student.Distracting && !Student.GoAway && Student.Routine && !Student.CheckingNote && !Student.SentHome)
+					if (!Student.Nemesis && Student.Alive && !Student.Dying && !Student.Guarding && !Student.Alarmed && !Student.Wet && !Student.Slave && !Student.Headache && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Lethal && !Student.InEvent && !Student.Following && !Student.Distracting && !Student.GoAway && Student.Routine && !Student.CheckingNote && !Student.Meeting && !Student.SentHome)
 					{
 						if (Student.CharacterAnimation != null)
 						{

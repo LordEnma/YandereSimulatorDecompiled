@@ -92,9 +92,10 @@ public class DumpsterLidScript : MonoBehaviour
 			}
 			if (Slide)
 			{
-				base.transform.eulerAngles = Vector3.Lerp(base.transform.eulerAngles, SlideLocation.eulerAngles, Time.deltaTime * 10f);
-				base.transform.position = Vector3.Lerp(base.transform.position, SlideLocation.position, Time.deltaTime * 10f);
-				Corpse.GetComponent<RagdollScript>().Student.Hips.position = base.transform.position + new Vector3(0f, 1f, 0f);
+				base.transform.eulerAngles = Vector3.Lerp(base.transform.eulerAngles, SlideLocation.eulerAngles, Time.deltaTime);
+				base.transform.position = Vector3.Lerp(base.transform.position, SlideLocation.position, Time.deltaTime);
+				Corpse.GetComponent<RagdollScript>().Student.Hips.position = base.transform.position + new Vector3(0f, 0.5f, 0f);
+				Corpse.GetComponent<RagdollScript>().Student.Hips.localEulerAngles = new Vector3(-90f, -135f, 0f);
 				if (Vector3.Distance(base.transform.position, SlideLocation.position) < 0.01f)
 				{
 					DragPrompts[0].enabled = false;

@@ -68,6 +68,8 @@ public class StudentInfoMenuScript : MonoBehaviour
 
 	public bool GettingOpinions;
 
+	public bool RobotTargeting;
+
 	public bool CyberBullying;
 
 	public bool CyberStalking;
@@ -312,6 +314,18 @@ public class StudentInfoMenuScript : MonoBehaviour
 				NoteWindow.gameObject.SetActive(value: true);
 				UsingLifeNote = false;
 			}
+			else if (RobotTargeting)
+			{
+				PauseScreen.Yandere.RPGCamera.enabled = true;
+				PauseScreen.MainMenu.SetActive(value: true);
+				PauseScreen.Sideways = false;
+				PauseScreen.Show = false;
+				base.gameObject.SetActive(value: false);
+				PromptBar.ClearButtons();
+				PromptBar.Show = false;
+				RobotTargeting = false;
+				Time.timeScale = 1f;
+			}
 			else
 			{
 				PauseScreen.MainMenu.SetActive(value: true);
@@ -534,7 +548,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		PromptBar.UpdateButtons();
 		if (UsingLifeNote)
 		{
-			if (StudentID == 1 || StudentID > 97 || (StudentID > 11 && StudentID < 21) || StudentPortraits[StudentID].DeathShadow.activeInHierarchy || (StudentManager.Students[StudentID] != null && !StudentManager.Students[StudentID].enabled))
+			if (StudentID == 1 || StudentID > 97 || StudentManager.Students[StudentID] == null || StudentPortraits[StudentID].DeathShadow.activeInHierarchy || (StudentManager.Students[StudentID] != null && !StudentManager.Students[StudentID].enabled))
 			{
 				PromptBar.Label[0].text = "";
 			}
@@ -555,6 +569,21 @@ public class StudentInfoMenuScript : MonoBehaviour
 				else
 				{
 					PromptBar.Label[0].text = "Fire";
+				}
+			}
+			PromptBar.UpdateButtons();
+		}
+		if (RobotTargeting)
+		{
+			if (StudentManager.Students[StudentID] != null)
+			{
+				if ((!StudentManager.StudentPhotographed[StudentID] && !StudentManager.StudentBefriended[StudentID]) || !StudentManager.Students[StudentID].gameObject.activeInHierarchy || StudentManager.Students[StudentID].MyBento.Tampered || StudentGlobals.GetStudentKidnapped(StudentID) || StudentManager.Students[StudentID].Tranquil || StudentManager.Students[StudentID].InEvent || !StudentManager.Students[StudentID].Alive || StudentManager.Students[StudentID].Slave || StudentGlobals.GetStudentDead(StudentID) || StudentID == 1 || StudentID > 97)
+				{
+					PromptBar.Label[0].text = "";
+				}
+				else
+				{
+					PromptBar.Label[0].text = "View Info";
 				}
 			}
 			PromptBar.UpdateButtons();
@@ -790,6 +819,10 @@ public class StudentInfoMenuScript : MonoBehaviour
 		if (GettingOpinions)
 		{
 			PromptBar.Label[0].text = "Get Opinions";
+		}
+		if (RobotTargeting)
+		{
+			PromptBar.Label[0].text = "Kill";
 		}
 		if (StudentManager.Students[StudentID] != null)
 		{

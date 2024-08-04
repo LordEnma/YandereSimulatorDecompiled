@@ -38,7 +38,7 @@ public class GasterBeamScript : MonoBehaviour
 		if (other.gameObject.layer == 9)
 		{
 			StudentScript component = other.gameObject.GetComponent<StudentScript>();
-			if (component != null)
+			if (component != null && component.StudentID > 0)
 			{
 				component.DeathType = DeathType.Burning;
 				component.BecomeRagdoll();

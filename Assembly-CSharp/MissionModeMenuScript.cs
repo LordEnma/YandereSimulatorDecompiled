@@ -248,7 +248,6 @@ public class MissionModeMenuScript : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log("Starting.");
 		GameGlobals.CustomMode = false;
 		JSON.gameObject.SetActive(value: true);
 		base.transform.position = new Vector3(0f, 0.95f, -4.266667f);
@@ -728,6 +727,22 @@ public class MissionModeMenuScript : MonoBehaviour
 				if (Eighties)
 				{
 					DateGlobals.Week = 10;
+				}
+				if (RequiredWeaponID == 31)
+				{
+					PlayerGlobals.BringingHardware = 9;
+				}
+				else if (RequiredWeaponID == 45)
+				{
+					PlayerGlobals.BringingHardware = 2;
+				}
+				else if (RequiredWeaponID == 46)
+				{
+					PlayerGlobals.BringingHardware = 6;
+				}
+				else if (RequiredWeaponID == 47)
+				{
+					PlayerGlobals.BringingHardware = 8;
 				}
 				SceneManager.LoadScene("SchoolScene");
 			}
@@ -1279,7 +1294,8 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 		else
 		{
-			if (TargetNumber > 12 && TargetNumber < 21)
+			Debug.Log("This code is about to run.");
+			if (!Eighties && TargetNumber > 12 && TargetNumber < 21)
 			{
 				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
@@ -1304,7 +1320,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		string text = "";
 		text = ((!Eighties) ? ("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + TargetID + ".png") : ("file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + TargetID + ".png"));
 		WWW wWW = new WWW(text);
-		if (TargetNumber > 12 && TargetNumber < 21)
+		if (!Eighties && TargetNumber > 12 && TargetNumber < 21)
 		{
 			TargetPortrait.mainTexture = BlankPortrait;
 		}

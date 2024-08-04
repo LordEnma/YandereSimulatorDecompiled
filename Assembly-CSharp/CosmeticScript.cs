@@ -1845,6 +1845,10 @@ public class CosmeticScript : MonoBehaviour
 						RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
 						LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
 					}
+					if (!Male)
+					{
+						SkinColor = 0;
+					}
 					DoNotChangeFace = SkinColor > 0;
 					if (!DoNotChangeFace)
 					{
@@ -1875,6 +1879,10 @@ public class CosmeticScript : MonoBehaviour
 				DoNotChangeFace = SkinColor > 0;
 				if (!DoNotChangeFace)
 				{
+					if (StudentID == 2 || StudentID == 6)
+					{
+						Debug.Log("Setting face texture to default face texture.");
+					}
 					FaceTexture = DefaultFaceTexture;
 				}
 			}
@@ -2094,6 +2102,10 @@ public class CosmeticScript : MonoBehaviour
 			DoNotChangeFace = SkinColor > 0;
 			if (CustomHair || DoNotChangeFace)
 			{
+				if (StudentID == 2 || StudentID == 6)
+				{
+					Debug.Log("Setting face texture to a face texture defined by SkinColor.");
+				}
 				FaceTexture = FaceTextures[SkinColor];
 			}
 			else
@@ -2354,6 +2366,10 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else
 		{
+			if (StudentID == 2 || StudentID == 6)
+			{
+				Debug.Log("Setting face texture to the default face texture.");
+			}
 			UniformTexture = FemaleUniformTextures[FemaleUniformID];
 			FaceTexture = DefaultFaceTexture;
 			MyRenderer.materials[0].mainTexture = UniformTexture;

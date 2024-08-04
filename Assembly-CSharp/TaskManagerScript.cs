@@ -28,6 +28,8 @@ public class TaskManagerScript : MonoBehaviour
 
 	public bool[] GirlsQuestioned;
 
+	public GameObject CarBattery;
+
 	public GameObject FixedDummy;
 
 	public GameObject Flyers;
@@ -437,6 +439,22 @@ public class TaskManagerScript : MonoBehaviour
 					{
 						StudentManager.Students[52].TaskPhase = 5;
 					}
+				}
+			}
+			if (TaskStatus[65] == 1 && StudentManager.Students[65] != null)
+			{
+				if (StudentManager.Students[65].TaskPhase == 0)
+				{
+					StudentManager.Students[65].TaskPhase = 4;
+				}
+				if (Vector3.Distance(StudentManager.Students[65].transform.position, CarBattery.transform.position) < 2f || (Yandere.Bookbag != null && Yandere.Bookbag.ConcealedPickup != null && Yandere.Bookbag.ConcealedPickup.gameObject == CarBattery && Vector3.Distance(StudentManager.Students[65].transform.position, Yandere.Bookbag.transform.position) < 2f))
+				{
+					Debug.Log("Homu's Task can be turned in.");
+					StudentManager.Students[65].TaskPhase = 5;
+				}
+				else
+				{
+					StudentManager.Students[65].TaskPhase = 4;
 				}
 			}
 			if (TaskStatus[81] != 1 || !(StudentManager.Students[81] != null))

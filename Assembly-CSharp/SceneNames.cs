@@ -112,6 +112,8 @@ public static class SceneNames
 
 	public const string OriginDreamScene = "OriginDreamScene";
 
+	public const string OutlanderDreamScene = "OutlanderDreamScene";
+
 	public const string VisualNovelScene = "VisualNovelScene";
 
 	public const string ShadowScene = "ShadowTestScene";

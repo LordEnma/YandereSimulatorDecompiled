@@ -23,6 +23,10 @@ public class LowPolyStudentScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (Student.StudentID <= 1)
+		{
+			return;
+		}
 		if (Student.StudentManager != null && (float)Student.StudentManager.LowDetailThreshold > 0f)
 		{
 			float num = 0f;

@@ -422,6 +422,10 @@ public class ModernRivalEventScript : MonoBehaviour
 			SendClubToBakeSale();
 			break;
 		case 7:
+			if (Char[0].GiftBag != null)
+			{
+				Char[0].GiftBag.SetActive(value: false);
+			}
 			EventObject[0].SetActive(value: true);
 			break;
 		case 8:
@@ -513,6 +517,10 @@ public class ModernRivalEventScript : MonoBehaviour
 		case 18:
 			Char[0].TaroApron.newRenderer.enabled = false;
 			break;
+		case 19:
+			Char[0].WalkAnim = "f02_walkHoldingBag_00";
+			Char[0].GiftBag.SetActive(value: true);
+			break;
 		}
 	}
 
@@ -522,6 +530,10 @@ public class ModernRivalEventScript : MonoBehaviour
 		if (EventID == 3)
 		{
 			SendClubToBakeSale();
+		}
+		if (Char[0] != null)
+		{
+			Char[0].WalkAnim = Char[0].OriginalWalkAnim;
 		}
 		for (int i = 0; i < Char.Length; i++)
 		{

@@ -139,6 +139,7 @@ public class HomeExitScript : MonoBehaviour
 				HomeCamera.Triggers[1].Label.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
 				HomeCamera.Destinations[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -2.5f);
 				HomeCamera.Targets[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -4.56265f);
+				HomeBringItem.HardwareButton.SetActive(value: false);
 				HomeCamera.OutOfRoom = true;
 				HomeCamera.OpenDoor = true;
 				HomeCamera.ID = 0;

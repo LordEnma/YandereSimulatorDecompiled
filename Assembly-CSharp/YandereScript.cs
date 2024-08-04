@@ -99,6 +99,8 @@ public class YandereScript : MonoBehaviour
 
 	public RagdollScript CurrentRagdoll;
 
+	public DynamicGridObstacle Obstacle;
+
 	public StudentScript TargetStudent;
 
 	public WeaponMenuScript WeaponMenu;
@@ -763,6 +765,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool NearSenpai;
 
+	public bool OccultRobe;
+
 	public bool RivalPhone;
 
 	public bool SpiderGrow;
@@ -1033,7 +1037,7 @@ public class YandereScript : MonoBehaviour
 
 	public float OriginalBloodiness;
 
-	public float CoatBloodiness;
+	public float[] CoatBloodiness;
 
 	public bool WearingRaincoat;
 
@@ -1461,6 +1465,10 @@ public class YandereScript : MonoBehaviour
 
 	public int HairstyleBeforeRaincoat;
 
+	public Material RaincoatMaterial;
+
+	public Material OccultRobeMaterial;
+
 	public Texture KLKBody;
 
 	public Texture KLKFace;
@@ -1498,6 +1506,10 @@ public class YandereScript : MonoBehaviour
 	public int ShotsFired;
 
 	public bool Shipgirl;
+
+	public GameObject PpstarrsClothing;
+
+	public GameObject Hoodie;
 
 	public GameObject GarbageBag;
 
@@ -2443,6 +2455,17 @@ public class YandereScript : MonoBehaviour
 				base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y, -99.5f);
 			}
 			base.transform.eulerAngles = new Vector3(0f, base.transform.eulerAngles.y, 0f);
+			if (base.transform.position.x > 42f && base.transform.position.z > 58f)
+			{
+				if (base.transform.position.y > 4f)
+				{
+					Obstacle.enabled = false;
+				}
+				else
+				{
+					Obstacle.enabled = true;
+				}
+			}
 		}
 		else
 		{
@@ -7407,6 +7430,12 @@ public class YandereScript : MonoBehaviour
 				Police.BloodyClothing++;
 			}
 		}
+		if (AttackManager.BreakWeapon && !EquippedWeapon.Broken && (EquippedWeapon.Type == WeaponType.Knife || EquippedWeapon.Type == WeaponType.Syringe))
+		{
+			EquippedWeapon.Broken = true;
+			NotificationManager.CustomText = "The weapon broke!";
+			NotificationManager.DisplayNotification(NotificationType.Custom);
+		}
 	}
 
 	public void MoveTowardsTarget(Vector3 target)
@@ -7901,9 +7930,9 @@ public class YandereScript : MonoBehaviour
 		Gloved = true;
 		if (WearingRaincoat)
 		{
-			if (Bloodiness > CoatBloodiness)
+			if (Bloodiness > CoatBloodiness[Gloves.GloveID])
 			{
-				CoatBloodiness = Bloodiness;
+				CoatBloodiness[Gloves.GloveID] = Bloodiness;
 			}
 			WearRaincoat();
 			if (RaincoatAttacher.newRenderer != null)
@@ -7911,7 +7940,7 @@ public class YandereScript : MonoBehaviour
 				RaincoatAttacher.newRenderer.enabled = true;
 			}
 			OriginalBloodiness = Bloodiness;
-			Bloodiness = CoatBloodiness;
+			Bloodiness = CoatBloodiness[Gloves.GloveID];
 		}
 		else
 		{
@@ -8701,6 +8730,7 @@ public class YandereScript : MonoBehaviour
 	{
 		Debug.Log("Yandere-chan is now firing the WearRaincoat() function.");
 		HairstyleBeforeRaincoat = Hairstyle;
+		OccultRobe = Gloves.OccultRobe;
 		if (VtuberID == 0)
 		{
 			if (StudentManager.CustomMode)
@@ -8716,6 +8746,16 @@ public class YandereScript : MonoBehaviour
 				Hairstyle = 204;
 			}
 			UpdateHair();
+		}
+		Material material = null;
+		material = (OccultRobe ? OccultRobeMaterial : RaincoatMaterial);
+		if (RaincoatAttacher.newRenderer != null)
+		{
+			RaincoatAttacher.newRenderer.material = material;
+		}
+		else
+		{
+			RaincoatAttacher.accessoryMaterials[0] = material;
 		}
 		RaincoatAttacher.gameObject.SetActive(value: true);
 		MyRenderer.sharedMesh = HeadAndKnees;
@@ -8797,6 +8837,29 @@ public class YandereScript : MonoBehaviour
 		CanMove = true;
 		Egg = true;
 		Jukebox.Shipgirl();
+	}
+
+	public void PpStarrs()
+	{
+		PpstarrsClothing.SetActive(value: true);
+		PantyAttacher.newRenderer.enabled = false;
+		MyRenderer.sharedMesh = null;
+		MyRenderer.enabled = false;
+		OriginalIdleAnim = "f02_idleGirly_00";
+		IdleAnim = "f02_idleGirly_00";
+		OriginalWalkAnim = "f02_walkGirly_00";
+		WalkAnim = "f02_walkGirly_00";
+		LooseSocks[0].SetActive(value: true);
+		LooseSocks[1].SetActive(value: true);
+		Hoodie.SetActive(value: true);
+		PersonaID = 1;
+		UpdatePersona(PersonaID);
+		EyewearID = 0;
+		UpdateEyewear();
+		BreastSize = 1f;
+		UpdateBust();
+		Hairstyle = 213;
+		UpdateHair();
 	}
 
 	private void GarbageMode()
@@ -9940,6 +10003,7 @@ public class YandereScript : MonoBehaviour
 			if (Direction == 1)
 			{
 				Debug.Log("Wall in front!");
+				Debug.Log("The object is named: " + corpseHit.collider.gameObject.name);
 				WallInFront = true;
 			}
 			else if (Direction == 2)
@@ -10005,11 +10069,12 @@ public class YandereScript : MonoBehaviour
 		if (WearingRaincoat)
 		{
 			RaincoatAttacher.newRenderer.enabled = false;
-			CoatBloodiness = Bloodiness;
+			CoatBloodiness[Gloves.GloveID] = Bloodiness;
 			Bloodiness = OriginalBloodiness;
 			LeftFootprintSpawner.Bloodiness = 0;
 			RightFootprintSpawner.Bloodiness = 0;
 			WearingRaincoat = false;
+			OccultRobe = false;
 			if (Schoolwear == 1)
 			{
 				PantyAttacher.newRenderer.enabled = true;

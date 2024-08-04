@@ -70,7 +70,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		}
 		if (GameGlobals.Eighties)
 		{
-			EmbarassingLabel.text = "(You will also mention the embarassing information you found in her diary.)";
+			EmbarassingLabel.text = "(You will also mention the embarrassing information you found in her diary.)";
 			TopicNames[14] = "jokes";
 		}
 		else

@@ -2,27 +2,31 @@ using UnityEngine;
 
 public class BringItemScript : MonoBehaviour
 {
+	public HardwareMenuScript HardwareMenu;
+
 	public InputManagerScript InputManager;
 
 	public HomeWindowScript HomeWindow;
 
 	public HomeExitScript HomeExit;
 
-	public string[] Descriptions;
+	public GameObject HardwareButton;
 
 	public GameObject Checkmark;
+
+	public string[] Descriptions;
+
+	public UILabel[] Labels;
 
 	public Transform Highlight;
 
 	public UILabel DescLabel;
 
-	public UILabel[] Labels;
+	public bool Initialized;
 
 	public int Limit = 12;
 
 	public int ID = 1;
-
-	public bool Initialized;
 
 	private void Initialize()
 	{
@@ -97,30 +101,49 @@ public class BringItemScript : MonoBehaviour
 			Highlight.localPosition = new Vector3(Highlight.localPosition.x, 50f - (float)ID * 50f, Highlight.localPosition.z);
 			DescLabel.text = Descriptions[ID];
 		}
-		if (Input.GetButtonDown(InputNames.Xbox_A) && Labels[ID].color.a == 1f)
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
-			if (PlayerGlobals.BringingItem != ID)
+			if (Labels[ID].color.a == 1f)
 			{
-				Checkmark.transform.localPosition = new Vector3(300f, Highlight.localPosition.y, 0f);
-				Checkmark.SetActive(value: true);
-				PlayerGlobals.BringingItem = ID;
-			}
-			else
-			{
-				Checkmark.SetActive(value: false);
-				PlayerGlobals.BringingItem = 0;
+				if (PlayerGlobals.BringingItem != ID)
+				{
+					Checkmark.transform.localPosition = new Vector3(300f, Highlight.localPosition.y, 0f);
+					Checkmark.SetActive(value: true);
+					PlayerGlobals.BringingItem = ID;
+				}
+				else
+				{
+					Checkmark.SetActive(value: false);
+					PlayerGlobals.BringingItem = 0;
+				}
 			}
 		}
-		if (Input.GetButtonDown(InputNames.Xbox_B))
+		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			HomeExit.HomeWindow.Show = true;
 			HomeWindow.Show = false;
 		}
-		if (Input.GetButtonDown(InputNames.Xbox_X))
+		else if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			HomeExit.HomeWindow.Show = true;
 			HomeWindow.Show = false;
 			HomeExit.GoToSchool();
+		}
+		else if (HardwareButton.activeInHierarchy && Input.GetButtonDown(InputNames.Xbox_Y))
+		{
+			HardwareMenu.PlayerPosition = HomeExit.HomeYandere.transform.position;
+			HomeExit.HomeYandere.transform.position = new Vector3(-18.5685f, -3.112333f, 10.1977f);
+			HomeExit.HomeYandere.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
+			HomeExit.HomeYandere.MyController.enabled = false;
+			HomeExit.HomeYandere.CanMove = false;
+			HardwareMenu.ZoomPos[9] = new Vector3(-0.1f, -0.05f, -0.15f);
+			HardwareMenu.ZoomRot[9] = new Vector3(-30f, -45f, 90f);
+			HardwareMenu.Panel.enabled = true;
+			HardwareMenu.UpdateHighlight();
+			HardwareMenu.Show = true;
+			HomeExit.HomeYandere.HomeCamera.UpdateDOF(1f);
+			HomeExit.HomeWindow.Show = false;
+			HomeWindow.Show = false;
 		}
 	}
 }

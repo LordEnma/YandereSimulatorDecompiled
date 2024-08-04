@@ -241,10 +241,12 @@ public class WeaponManagerScript : MonoBehaviour
 
 	public void RestoreBlood()
 	{
+		Debug.Log("The ''restore blood'' command is being fired.");
 		for (int i = 0; i < Weapons.Length; i++)
 		{
 			if (Weapons[i] != null && !Weapons[i].Disposed && Weapons[i].Bloody)
 			{
+				Debug.Log("It looks like weapon #" + i + " is supposed to be stained with blood.");
 				Weapons[i].Blood.enabled = true;
 				Weapons[i].StainWithBlood();
 				Yandere.Police.BloodyWeapons++;

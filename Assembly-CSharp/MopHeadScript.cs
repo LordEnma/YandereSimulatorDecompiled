@@ -8,48 +8,41 @@ public class MopHeadScript : MonoBehaviour
 
 	private void OnTriggerStay(Collider other)
 	{
-		if (!(Mop.Bloodiness < 100f))
+		if (!(Mop.Bloodiness < 100f) || (!(other.tag == "Puddle") && !(other.tag == "E")))
 		{
 			return;
 		}
-		if (other.tag == "Puddle")
+		BloodPool = other.gameObject.GetComponent<BloodPoolScript>();
+		if (BloodPool != null)
 		{
-			BloodPool = other.gameObject.GetComponent<BloodPoolScript>();
-			if (BloodPool != null)
+			BloodPool.Grow = false;
+			other.transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
+			if (BloodPool.Blood)
 			{
-				BloodPool.Grow = false;
-				other.transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
-				if (BloodPool.Blood)
-				{
-					Mop.Bloodiness += Time.deltaTime * 10f;
-					Mop.UpdateBlood();
-				}
-				Mop.StudentBloodID = BloodPool.StudentBloodID;
-				if (other.transform.localScale.x < 0.1f)
-				{
-					Debug.Log("Destroying a puddle of liquid.");
-					if (BloodPool.NewElectricity != null)
-					{
-						Debug.Log("Destroying some electricity.");
-						Object.Destroy(BloodPool.NewElectricity);
-					}
-					other.gameObject.SetActive(value: false);
-					Object.Destroy(other.gameObject);
-				}
+				Mop.Bloodiness += Time.deltaTime * 10f;
+				Mop.UpdateBlood();
 			}
-			else
+			Mop.StudentBloodID = BloodPool.StudentBloodID;
+			if (other.transform.localScale.x < 0.1f)
 			{
-				FootprintScript component = other.transform.GetChild(0).GetComponent<FootprintScript>();
-				if (component != null)
+				Debug.Log("Destroying a puddle of liquid.");
+				if (BloodPool.NewElectricity != null)
 				{
-					Mop.StudentBloodID = component.StudentBloodID;
+					Debug.Log("Destroying some electricity.");
+					Object.Destroy(BloodPool.NewElectricity);
 				}
+				other.gameObject.SetActive(value: false);
 				Object.Destroy(other.gameObject);
 			}
 		}
-		else if (other.tag == "E")
+		else
 		{
-			Object.Destroy(other.gameObject);
+			FootprintScript component = other.transform.GetChild(0).GetComponent<FootprintScript>();
+			if (component != null)
+			{
+				Mop.StudentBloodID = component.StudentBloodID;
+				Object.Destroy(other.gameObject);
+			}
 		}
 	}
 }

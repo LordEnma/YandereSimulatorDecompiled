@@ -136,6 +136,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public RivalPoseScript RivalPose;
 
+	public RobotChanScript RobotChan;
+
 	public GazerEyesScript Shinigami;
 
 	public ParticleSystem PyroFlames;
@@ -203,6 +205,8 @@ public class StudentManagerScript : MonoBehaviour
 	public Collider IncineratorArea;
 
 	public Collider HeadmasterArea;
+
+	public Collider FacultyRoom;
 
 	public Collider EastGazebo;
 
@@ -630,6 +634,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public GameObject GardenBlockade;
 
+	public GameObject ModernCurtains;
+
 	public GameObject FPSDisplayBG;
 
 	public GameObject PortraitChan;
@@ -651,6 +657,8 @@ public class StudentManagerScript : MonoBehaviour
 	public GameObject FPSDisplay;
 
 	public GameObject StudentKun;
+
+	public GameObject BlackCube;
 
 	public GameObject RivalChan;
 
@@ -711,6 +719,8 @@ public class StudentManagerScript : MonoBehaviour
 	public int SleuthPhase = 1;
 
 	public int DramaPhase = 1;
+
+	public int RobotPhase;
 
 	public int NPCsTotal;
 
@@ -811,6 +821,8 @@ public class StudentManagerScript : MonoBehaviour
 	public bool MetalDetectors;
 
 	public bool RecordingVideo;
+
+	public bool RobotDestroyed;
 
 	public bool TutorialActive;
 
@@ -1249,6 +1261,14 @@ public class StudentManagerScript : MonoBehaviour
 		CustomMode = GameGlobals.CustomMode;
 		EmptyDemon = GameGlobals.EmptyDemon;
 		Week = DateGlobals.Week;
+		if (GameGlobals.RobotComplete)
+		{
+			RobotPhase = 1;
+		}
+		if (GameGlobals.RobotDestroyed)
+		{
+			RobotPhase = 2;
+		}
 		if (BakeSale != null)
 		{
 			BakeSale.gameObject.SetActive(value: false);
@@ -1506,7 +1526,7 @@ public class StudentManagerScript : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log("Somehow, Student #" + StudentGlobals.StudentSlave + " is marked as ''dead'' and ''slave'' at the same time.");
+					Debug.Log("Student #" + StudentGlobals.StudentSlave + " was supposed to appear at school as a mind-broken slave today.");
 					Debug.Log("The game tried to spawn her, but failed.");
 					Debug.Log("Setting StudentGlobals.StudentSlave to 0.");
 					StudentGlobals.StudentSlave = 0;
@@ -1872,7 +1892,7 @@ public class StudentManagerScript : MonoBehaviour
 						{
 							Week2RoutineAdjustments();
 						}
-						if (Week > 1 && !RivalEliminated)
+						if (Week > 1 && !RivalEliminated && Students[RivalID] != null)
 						{
 							CleaningManager.Floors[34 + Week] = CleaningManager.Floors[46];
 							CleaningManager.GetRole(RivalID);
@@ -1924,6 +1944,7 @@ public class StudentManagerScript : MonoBehaviour
 								else if (Week == 6)
 								{
 									EightiesWeek6RoutineAdjustments();
+									ModernCurtains.SetActive(value: false);
 									IdolStage.SetActive(value: true);
 									AstarPath.active.Scan();
 								}
@@ -2872,6 +2893,11 @@ public class StudentManagerScript : MonoBehaviour
 		if (JSON.Students[spawnID].Club != ClubType.Delinquent && StudentGlobals.GetStudentReputation(spawnID) <= -100)
 		{
 			flag = true;
+			if (StudentGlobals.StudentSlave == spawnID)
+			{
+				Debug.Log("A student's reputation is under 100, but they are a mind-broken slave, so we are permitting them to spawn at school.");
+				flag = false;
+			}
 		}
 		if (!flag && Students[spawnID] == null && !StudentGlobals.GetStudentDead(spawnID) && !StudentGlobals.GetStudentKidnapped(spawnID) && !StudentGlobals.GetStudentArrested(spawnID) && !StudentGlobals.GetStudentExpelled(spawnID))
 		{
@@ -4652,7 +4678,6 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void UpdateMartialArts()
 	{
-		Debug.Log("UpdateMartialArts() has just been called.");
 		if (Yandere.DelinquentFighting)
 		{
 			return;
@@ -5049,7 +5074,7 @@ public class StudentManagerScript : MonoBehaviour
 							Police.CorpseList[Police.Corpses] = Students[ID].Ragdoll;
 							Police.Corpses++;
 							Police.Deaths++;
-							if (Students[ID].Removed)
+							if (Students[ID].Removed || Students[ID].Ragdoll.Dismembered)
 							{
 								Debug.Log("Oh, wait! " + Students[ID].Name + " should be removed from the Police CorpseList. Removing her now.");
 								Students[ID].Ragdoll.Remove();

@@ -860,10 +860,6 @@ public class NewTitleScreenScript : MonoBehaviour
 		EightiesJukebox.volume = 0f;
 		Jukebox.volume = 0.5f;
 		MissionModeLabel.alpha = 1f;
-		if (DateGlobals.Week > 0 && DateGlobals.Week < RivalEliminations.Length)
-		{
-			RivalEliminations[DateGlobals.Week].SetActive(value: true);
-		}
 		EightiesLogo.gameObject.SetActive(value: false);
 		HeartPanel.SetActive(value: false);
 		NormalLogo.SetActive(value: true);
@@ -887,6 +883,10 @@ public class NewTitleScreenScript : MonoBehaviour
 		TitleSaveFiles.SaveDatas[3].Start();
 		YandereRenderer.sharedMesh = EightiesUniform;
 		UpdateBloodyStatus();
+		if (DateGlobals.Week > 0 && DateGlobals.Week < RivalEliminations.Length)
+		{
+			RivalEliminations[DateGlobals.Week].SetActive(value: true);
+		}
 	}
 
 	private void ChangeTextOutline()

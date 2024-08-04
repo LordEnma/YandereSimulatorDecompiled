@@ -550,10 +550,16 @@ public class WeekSelectScript : MonoBehaviour
 		if (Friend)
 		{
 			GameGlobals.YakuzaPhase = 1;
-			return;
 		}
-		PlayerGlobals.Friends = 0;
-		GameGlobals.YakuzaPhase = 0;
+		else
+		{
+			PlayerGlobals.Friends = 0;
+			GameGlobals.YakuzaPhase = 0;
+		}
+		if (!GameGlobals.Eighties)
+		{
+			GameGlobals.YakuzaPhase = 0;
+		}
 	}
 
 	private void DetermineSelectedWeek()

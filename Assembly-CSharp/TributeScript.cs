@@ -20,6 +20,8 @@ public class TributeScript : MonoBehaviour
 
 	public string[] MedibangLetters;
 
+	public string[] PpStarrsLetters;
+
 	public string[] FootageLetters;
 
 	public string[] MiyukiLetters;
@@ -37,6 +39,8 @@ public class TributeScript : MonoBehaviour
 	public int MinecraftID;
 
 	public int MedibangID;
+
+	public int PpStarrsID;
 
 	public int FootageID;
 
@@ -97,6 +101,15 @@ public class TributeScript : MonoBehaviour
 				if (AzurID == AzurLane.Length)
 				{
 					Yandere.AzurLane();
+					base.enabled = false;
+				}
+			}
+			if (Input.GetKeyDown(PpStarrsLetters[PpStarrsID]))
+			{
+				PpStarrsID++;
+				if (PpStarrsID == PpStarrsLetters.Length)
+				{
+					Yandere.PpStarrs();
 					base.enabled = false;
 				}
 			}
