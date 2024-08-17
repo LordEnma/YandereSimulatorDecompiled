@@ -8,6 +8,8 @@ public class EmergencyShowerScript : MonoBehaviour
 
 	public TallLockerScript TallLocker;
 
+	public GameObject VisionBlocker;
+
 	public GameObject CensorSteam;
 
 	public YandereScript Yandere;
@@ -38,7 +40,7 @@ public class EmergencyShowerScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (MissionModeGlobals.MissionMode && MissionModeGlobals.NemesisDifficulty > 0)
+		if (MissionModeGlobals.MissionMode && GameGlobals.Eighties && MissionModeGlobals.NemesisDifficulty > 0)
 		{
 			Prompt.Hide();
 			Prompt.enabled = false;
@@ -77,6 +79,7 @@ public class EmergencyShowerScript : MonoBehaviour
 						Yandere.Container.transform.position = base.transform.position + base.transform.forward * 2f + base.transform.up;
 						Yandere.Container.Drop();
 					}
+					Yandere.Invisible = true;
 					Bathing = true;
 					Phase = 1;
 					Timer = 0f;
@@ -133,6 +136,7 @@ public class EmergencyShowerScript : MonoBehaviour
 				}
 				Timer += 1f;
 			}
+			VisionBlocker.SetActive(value: true);
 			Phase++;
 		}
 		else if (Phase == 2)
@@ -172,6 +176,8 @@ public class EmergencyShowerScript : MonoBehaviour
 			if (Timer > 7.5f)
 			{
 				AudioSource.PlayClipAtPoint(CurtainOpen, base.transform.position);
+				VisionBlocker.SetActive(value: false);
+				Yandere.Invisible = false;
 				Phase++;
 			}
 		}

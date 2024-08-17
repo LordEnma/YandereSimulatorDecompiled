@@ -43,6 +43,7 @@ public static class Globals
 			StudentGlobals.SetStudentKidnapped(i, value: false);
 			StudentGlobals.SetStudentArrested(i, value: false);
 			StudentGlobals.SetStudentExpelled(i, value: false);
+			StudentGlobals.SetStudentDying(i, value: false);
 			StudentGlobals.SetStudentDead(i, value: false);
 		}
 	}

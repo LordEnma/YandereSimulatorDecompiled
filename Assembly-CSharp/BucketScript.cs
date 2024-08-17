@@ -188,6 +188,7 @@ public class BucketScript : MonoBehaviour
 					Prompt.Label[3].text = "     Carry";
 					Dippable = false;
 				}
+				Prompt.HideButton[0] = true;
 			}
 			else if (Yandere.PickUp.JerryCan)
 			{

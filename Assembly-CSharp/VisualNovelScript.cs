@@ -103,6 +103,8 @@ public class VisualNovelScript : MonoBehaviour
 
 	public bool ShowPainting;
 
+	public bool SkipToEnd;
+
 	public VisualNovelDataScript[] BasementTapeData;
 
 	public GameObject Basement;
@@ -137,6 +139,7 @@ public class VisualNovelScript : MonoBehaviour
 			{
 				Graphics[i].mainTexture = BasementTapeData[GameGlobals.BasementTape].Graphics[i];
 			}
+			SkipToEnd = true;
 		}
 		else
 		{
@@ -180,6 +183,7 @@ public class VisualNovelScript : MonoBehaviour
 				KizanaClothing.SetActive(value: true);
 				Character[2].RightBreast.transform.localScale = new Vector3(1f, 1f, 1f);
 				Character[2].LeftBreast.transform.localScale = new Vector3(1f, 1f, 1f);
+				SkipToEnd = true;
 			}
 			else
 			{
@@ -294,16 +298,24 @@ public class VisualNovelScript : MonoBehaviour
 						bool flag = false;
 						if (Input.GetButtonDown(InputNames.Xbox_X))
 						{
-							if (ID < 12)
+							if (SkipToEnd)
 							{
+								Debug.Log("The player just held down the Skip button, so we skipped to the end of the dialogue.");
+								ID = Dialogue.Length;
+							}
+							else if (ID < 12)
+							{
+								Debug.Log("The player just held down the Skip button, so we skipped to ID 12.");
 								ID = 12;
 							}
 							else if (ID < 22)
 							{
+								Debug.Log("The player just held down the Skip button, so we skipped to ID 22.");
 								ID = 22;
 							}
 							else
 							{
+								Debug.Log("The player just held down the Skip button, so we skipped to the end of the dialogue.");
 								ID = Dialogue.Length;
 							}
 							Typewriter.ResetToBeginning();

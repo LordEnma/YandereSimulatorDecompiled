@@ -16,6 +16,8 @@ public class AlphabetScript : MonoBehaviour
 
 	public GameObject AlphabetTools;
 
+	public GameObject Blocker;
+
 	public GameObject Jukebox;
 
 	public GameObject AmnesiaBomb;
@@ -81,6 +83,7 @@ public class AlphabetScript : MonoBehaviour
 			BodyHidingLockers.SetActive(value: true);
 			AlphabetTools.SetActive(value: true);
 			Jukebox.SetActive(value: false);
+			Blocker.SetActive(value: false);
 			MyRenderer.enabled = true;
 			StudentManager.Yandere.SpeedBonus = 5;
 			Class.PhysicalGrade = 5;

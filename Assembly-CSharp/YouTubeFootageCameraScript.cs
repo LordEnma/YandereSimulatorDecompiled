@@ -2,24 +2,18 @@ using UnityEngine;
 
 public class YouTubeFootageCameraScript : MonoBehaviour
 {
+	public Camera MyCamera;
+
 	public float Rotation;
 
 	public float Target;
 
 	private void Update()
 	{
-		if (Input.GetKeyDown("x"))
+		if (Input.GetButtonDown(InputNames.Xbox_RB))
 		{
-			if (Target == 0f)
-			{
-				Target = 180f;
-			}
-			else
-			{
-				Target = 0f;
-			}
+			MyCamera.enabled = true;
+			Time.timeScale = 0.1f;
 		}
-		Rotation = Mathf.MoveTowards(Rotation, Target, Time.deltaTime * 360f);
-		base.transform.eulerAngles = new Vector3(0f, Rotation, 0f);
 	}
 }

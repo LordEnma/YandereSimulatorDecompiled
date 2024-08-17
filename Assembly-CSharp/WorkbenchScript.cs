@@ -324,7 +324,7 @@ public class WorkbenchScript : MonoBehaviour
 				{
 					Inventory.Hairpins = false;
 					Inventory.PaperClips = false;
-					Inventory.LockPick = true;
+					Inventory.LockPicks++;
 				}
 				else if (OutcomeID == 3)
 				{

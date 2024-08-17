@@ -186,7 +186,7 @@ public class EventManagerScript : MonoBehaviour
 		if (Clock.HourTime > EndTime || EventStudent[1].WitnessedCorpse || EventStudent[2].WitnessedCorpse || EventStudent[1].Dying || EventStudent[2].Dying || EventStudent[1].Splashed || EventStudent[2].Splashed || EventStudent[1].Alarmed || EventStudent[2].Alarmed)
 		{
 			EndEvent();
-			if (EventStudent[1].Alarmed)
+			if (EventStudent[1].Alarmed && !EventStudent[2].Attacked && !EventStudent[2].Struggling)
 			{
 				EventStudent[2].FocusOnYandere = true;
 				EventStudent[2].Alarm = 200f;
@@ -391,11 +391,14 @@ public class EventManagerScript : MonoBehaviour
 		EventStudent[1].EventManager = null;
 		EventStudent[1].InEvent = false;
 		EventStudent[1].Private = false;
-		EventStudent[2].CurrentDestination = EventStudent[2].Destinations[EventStudent[2].Phase];
-		EventStudent[2].Pathfinding.target = EventStudent[2].Destinations[EventStudent[2].Phase];
-		EventStudent[2].EventManager = null;
-		EventStudent[2].InEvent = false;
-		EventStudent[2].Private = false;
+		if (!EventStudent[2].Attacked)
+		{
+			EventStudent[2].CurrentDestination = EventStudent[2].Destinations[EventStudent[2].Phase];
+			EventStudent[2].Pathfinding.target = EventStudent[2].Destinations[EventStudent[2].Phase];
+			EventStudent[2].EventManager = null;
+			EventStudent[2].InEvent = false;
+			EventStudent[2].Private = false;
+		}
 		_ = (double)StartTime;
 		_ = 15.5;
 		if (!StudentManager.Stop)

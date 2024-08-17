@@ -369,7 +369,7 @@ public class PracticeWindowScript : MonoBehaviour
 				FadeIn = false;
 				Timer = 0f;
 				DialogueWheel.RestoreMusic();
-				if (StudentManager.Clock.HourTime < 7.9f && StudentManager.Students[7] != null)
+				if (StudentManager.Eighties && StudentManager.Clock.HourTime < 7.9f && StudentManager.Students[7] != null)
 				{
 					StudentManager.Students[7].gameObject.SetActive(value: false);
 				}

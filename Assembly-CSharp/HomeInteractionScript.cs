@@ -4,6 +4,8 @@ public class HomeInteractionScript : MonoBehaviour
 {
 	public HardwareMenuScript HardwareMenu;
 
+	public CookingMenuScript CookingMenu;
+
 	public GameObject ObjectToActivate;
 
 	public HomeYandereScript Yandere;
@@ -65,11 +67,12 @@ public class HomeInteractionScript : MonoBehaviour
 				HardwareMenu.Show = true;
 				Yandere.HomeCamera.UpdateDOF(1f);
 			}
-			else if (ID == 5 && !SlideInOut)
+			else if (ID == 5)
 			{
-				ObjectToActivate.SetActive(value: true);
-				SlideInOut = true;
-				Timer = 0f;
+				Yandere.CanMove = false;
+				CookingMenu.HomeWindow.Show = true;
+				CookingMenu.UpdateLabels();
+				CookingMenu.Show = true;
 			}
 		}
 		if (Move)

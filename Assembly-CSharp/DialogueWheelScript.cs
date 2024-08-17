@@ -1171,7 +1171,7 @@ public class DialogueWheelScript : MonoBehaviour
 					Yandere.Bookbag.RemoveContents();
 					Yandere.EmptyHands();
 				}
-				TaskManager.CarBattery.SetActive(value: false);
+				TaskManager.CarBattery.gameObject.SetActive(value: false);
 				Yandere.StudentManager.Police.EndOfDay.RobotComplete = true;
 			}
 			else if (Yandere.TargetStudent.StudentID == 76 && TaskManager.TaskStatus[76] == 1)

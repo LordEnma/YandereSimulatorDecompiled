@@ -558,6 +558,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 		if (!GameGlobals.Eighties)
 		{
+			GameGlobals.RobotComplete = true;
 			GameGlobals.YakuzaPhase = 0;
 		}
 	}

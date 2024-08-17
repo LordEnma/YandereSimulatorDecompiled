@@ -100,7 +100,8 @@ public class InventoryMenuScript : MonoBehaviour
 		Labels[29].alpha = ((!Inventory.Ring) ? 0.5f : 1f);
 		Labels[30].alpha = ((!Inventory.Cigs) ? 0.5f : 1f);
 		Labels[31].alpha = ((!Inventory.Narcotics) ? 0.5f : 1f);
-		Labels[32].alpha = ((!Inventory.LockPick) ? 0.5f : 1f);
+		Labels[32].alpha = ((Inventory.LockPicks == 0) ? 0.5f : 1f);
+		Labels[32].text = "Lockpicks: " + Inventory.LockPicks;
 		Labels[33].alpha = ((!Inventory.Sake) ? 0.5f : 1f);
 		Labels[34].alpha = ((!Inventory.Condoms) ? 0.5f : 1f);
 		Labels[35].alpha = ((!Inventory.FakeID) ? 0.5f : 1f);

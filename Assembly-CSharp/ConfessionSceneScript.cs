@@ -292,7 +292,6 @@ public class ConfessionSceneScript : MonoBehaviour
 		}
 		if (Kissing)
 		{
-			Debug.Log("Checking the kiss.");
 			if ((Suitor.Male && Suitor.CharacterAnimation["kiss_00"].time >= Suitor.CharacterAnimation["kiss_00"].length * 0.66666f) || (!Suitor.Male && Suitor.CharacterAnimation["f02_suitorKiss_00"].time >= Suitor.CharacterAnimation["f02_suitorKiss_00"].length * 0.66666f))
 			{
 				Suitor.Character.transform.localScale = Vector3.Lerp(Suitor.Character.transform.localScale, new Vector3(0.94f, 0.94f, 0.94f), Time.deltaTime);

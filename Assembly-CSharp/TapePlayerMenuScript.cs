@@ -216,6 +216,11 @@ public class TapePlayerMenuScript : MonoBehaviour
 			}
 			else
 			{
+				if (TapePlayerDarkness.alpha == 1f)
+				{
+					StudentManager.Yandere.SetAnimationLayers();
+					StudentManager.UpdateAllAnimLayers();
+				}
 				TapePlayerDarkness.alpha -= Time.unscaledDeltaTime;
 				if (TapePlayerDarkness.alpha <= 0f)
 				{

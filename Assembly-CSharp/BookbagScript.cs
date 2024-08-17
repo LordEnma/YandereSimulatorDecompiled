@@ -62,12 +62,23 @@ public class BookbagScript : MonoBehaviour
 
 	public void TryToStashItem()
 	{
+		bool flag = false;
+		if (Prompt.Yandere.PickUp.BodyPart != null)
+		{
+			Debug.Log("Player is trying to put a body part into a bookbag.");
+			flag = true;
+			if (Prompt.Yandere.PickUp.BodyPart.Type == 7)
+			{
+				Debug.Log("It's a heart.");
+				flag = false;
+			}
+		}
 		if (Prompt.Yandere.PickUp.OpenFlame)
 		{
 			Prompt.Yandere.NotificationManager.CustomText = "That's too dangerous!";
 			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		}
-		else if (Prompt.Yandere.PickUp.TrashCan == null && !Prompt.Yandere.PickUp.JerryCan && !Prompt.Yandere.PickUp.Mop && !Prompt.Yandere.PickUp.Bucket && !Prompt.Yandere.PickUp.Bleach && !Prompt.Yandere.PickUp.TooBig && !Prompt.Yandere.PickUp.Weight && !Prompt.Yandere.PickUp.BodyPart && !Prompt.Yandere.PickUp.TooBigForBookBag)
+		else if (Prompt.Yandere.PickUp.TrashCan == null && !Prompt.Yandere.PickUp.JerryCan && !Prompt.Yandere.PickUp.Mop && !Prompt.Yandere.PickUp.Bucket && !Prompt.Yandere.PickUp.Bleach && !Prompt.Yandere.PickUp.TooBig && !Prompt.Yandere.PickUp.Weight && !Prompt.Yandere.PickUp.TooBigForBookBag && !flag)
 		{
 			Prompt.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
 			Prompt.Yandere.ReachWeight = 1f;

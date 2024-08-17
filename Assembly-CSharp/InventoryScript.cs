@@ -33,7 +33,7 @@ public class InventoryScript : MonoBehaviour
 
 	public bool PinkSocks;
 
-	public bool LockPick;
+	public int LockPicks;
 
 	public bool Condoms;
 
@@ -214,7 +214,7 @@ public class InventoryScript : MonoBehaviour
 			Condoms = true;
 			break;
 		case 8:
-			LockPick = true;
+			LockPicks = 1;
 			break;
 		case 9:
 			ArrivedWithSedative = true;

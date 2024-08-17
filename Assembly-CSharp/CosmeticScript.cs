@@ -906,8 +906,8 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 12)
 					{
-						CharacterAnimation.Play("f02_idleGirly_00");
-						base.transform.position = new Vector3(-0.025f, 0f, 0f);
+						CharacterAnimation.Play("f02_gentleIdle_00");
+						base.transform.position = new Vector3(0.0075f, 0f, 0f);
 						LookCamera = true;
 					}
 					else if (StudentID == 38)
@@ -923,6 +923,22 @@ public class CosmeticScript : MonoBehaviour
 					{
 						CharacterAnimation.Play("f02_musicPose_00");
 						Tongue.SetActive(value: true);
+					}
+					else if (StudentID == 52)
+					{
+						CharacterAnimation.Play("f02_rockerPortraitPose_02");
+					}
+					else if (StudentID == 53)
+					{
+						CharacterAnimation.Play("f02_rockerPortraitPose_03");
+					}
+					else if (StudentID == 54)
+					{
+						CharacterAnimation.Play("f02_rockerPortraitPose_04");
+					}
+					else if (StudentID == 55)
+					{
+						CharacterAnimation.Play("f02_rockerPortraitPose_05");
 					}
 					else if (StudentID == 59)
 					{
@@ -967,19 +983,19 @@ public class CosmeticScript : MonoBehaviour
 						CharacterAnimation.Play("f02_socialCameraPose_00");
 						base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.05f, base.transform.position.z);
 					}
-					else if (StudentID == 82 || StudentID == 52)
+					else if (StudentID == 82)
 					{
 						CharacterAnimation.Play("f02_galPose_01");
 					}
-					else if (StudentID == 83 || StudentID == 53)
+					else if (StudentID == 83)
 					{
 						CharacterAnimation.Play("f02_galPose_02");
 					}
-					else if (StudentID == 84 || StudentID == 54)
+					else if (StudentID == 84)
 					{
 						CharacterAnimation.Play("f02_galPose_03");
 					}
-					else if (StudentID == 85 || StudentID == 55)
+					else if (StudentID == 85)
 					{
 						CharacterAnimation.Play("f02_galPose_04");
 					}
@@ -1867,6 +1883,13 @@ public class CosmeticScript : MonoBehaviour
 				HairRenderer.material.SetFloat("_Saturation", 0f);
 				HairRenderer.material.SetFloat("_BlendAmount", 0f);
 				HairRenderer.material.color = ColorValue;
+				if (HairRenderer.materials.Length > 1)
+				{
+					HairRenderer.materials[1].shader = StartShader;
+					HairRenderer.materials[1].SetFloat("_Saturation", 0f);
+					HairRenderer.materials[1].SetFloat("_BlendAmount", 0f);
+					HairRenderer.materials[1].color = ColorValue;
+				}
 				RightEyeRenderer.gameObject.SetActive(value: true);
 				LeftEyeRenderer.gameObject.SetActive(value: true);
 				if (CustomEyes)
@@ -2095,7 +2118,14 @@ public class CosmeticScript : MonoBehaviour
 		if (StudentID == 1)
 		{
 			SkinColor = SenpaiGlobals.SenpaiSkinColor;
-			FaceTexture = FaceTextures[SkinColor];
+			if (SkinColor >= FaceTextures.Length)
+			{
+				Debug.Log("Yo! The value of SkinColor (" + SkinColor + ") is larger than FaceTextures.length!");
+			}
+			else
+			{
+				FaceTexture = FaceTextures[SkinColor];
+			}
 		}
 		else
 		{
@@ -2967,10 +2997,22 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
+		else if (EyeType == "ThinGentle")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
 		else if (EyeType == "MO")
 		{
 			MyRenderer.SetBlendShapeWeight(8, 50f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "Seductive")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(7, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
 		else if (EyeType == "Rival1")
@@ -2980,6 +3022,15 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(10, 50f);
 			MyRenderer.SetBlendShapeWeight(11, 50f);
 			MyRenderer.SetBlendShapeWeight(12, 10f);
+		}
+		else if (EyeType == "Rival2")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 100f);
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(6, 100f);
+			MyRenderer.SetBlendShapeWeight(8, 100f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
 		else if (EyeType == "Eighties1")
 		{

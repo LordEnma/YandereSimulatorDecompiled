@@ -496,7 +496,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.UpdateButtons();
 		}
-		if (Targeting && (StudentManager.Students[StudentID] == null || StudentID == 1 || StudentID > 97 || StudentGlobals.GetStudentDead(StudentID) || !StudentManager.Students[StudentID].gameObject.activeInHierarchy || StudentManager.Students[StudentID].InEvent || StudentManager.Students[StudentID].Tranquil))
+		if (Targeting && (StudentManager.Students[StudentID] == null || StudentID == 1 || StudentID > 97 || StudentGlobals.GetStudentDead(StudentID) || !StudentManager.Students[StudentID].gameObject.activeInHierarchy || StudentManager.Students[StudentID].InEvent || StudentManager.Students[StudentID].Tranquil || StudentManager.Students[StudentID].Hunted))
 		{
 			if (StudentID > 1 && StudentManager.Students[StudentID] != null && StudentManager.Students[StudentID].InEvent)
 			{
@@ -577,7 +577,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		{
 			if (StudentManager.Students[StudentID] != null)
 			{
-				if ((!StudentManager.StudentPhotographed[StudentID] && !StudentManager.StudentBefriended[StudentID]) || !StudentManager.Students[StudentID].gameObject.activeInHierarchy || StudentManager.Students[StudentID].MyBento.Tampered || StudentGlobals.GetStudentKidnapped(StudentID) || StudentManager.Students[StudentID].Tranquil || StudentManager.Students[StudentID].InEvent || !StudentManager.Students[StudentID].Alive || StudentManager.Students[StudentID].Slave || StudentGlobals.GetStudentDead(StudentID) || StudentID == 1 || StudentID > 97)
+				if ((!StudentManager.StudentPhotographed[StudentID] && !StudentManager.StudentBefriended[StudentID]) || !StudentManager.Students[StudentID].gameObject.activeInHierarchy || StudentManager.Students[StudentID].MyBento.Tampered || StudentGlobals.GetStudentKidnapped(StudentID) || StudentManager.Students[StudentID].Tranquil || StudentManager.Students[StudentID].InEvent || !StudentManager.Students[StudentID].Alive || StudentManager.Students[StudentID].Hunted || StudentManager.Students[StudentID].Slave || StudentGlobals.GetStudentDead(StudentID) || StudentID == 1 || StudentID > 97)
 				{
 					PromptBar.Label[0].text = "";
 				}

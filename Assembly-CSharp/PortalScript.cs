@@ -761,7 +761,7 @@ public class PortalScript : MonoBehaviour
 		}
 		for (int i = 0; i < ModernMorningEvents.Length; i++)
 		{
-			if (ModernMorningEvents[i].enabled)
+			if (ModernMorningEvents[i].isActiveAndEnabled)
 			{
 				ModernMorningEvents[i].EndEvent();
 			}
@@ -800,6 +800,13 @@ public class PortalScript : MonoBehaviour
 				MorningGenericEvents[i].NaturalEnd = true;
 				MorningGenericEvents[i].EndEvent();
 			}
+		}
+		if (StudentManager.Students[StudentManager.RivalID] != null && StudentManager.Students[StudentManager.RivalID].BookBag.activeInHierarchy)
+		{
+			StudentManager.Students[StudentManager.RivalID].BookBag.SetActive(value: false);
+			StudentManager.RivalBookBag.gameObject.SetActive(value: true);
+			StudentManager.RivalBookBag.Prompt.Hide();
+			StudentManager.RivalBookBag.Prompt.enabled = true;
 		}
 	}
 

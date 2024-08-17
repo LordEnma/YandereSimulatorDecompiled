@@ -25,6 +25,8 @@ public class StreetManagerScript : MonoBehaviour
 
 	public Transform Sun;
 
+	public Animation EightiesMaidAnimation;
+
 	public Animation MaidAnimation;
 
 	public Animation Gossip1;
@@ -94,6 +96,9 @@ public class StreetManagerScript : MonoBehaviour
 		MaidAnimation["f02_faceCouncilGrace_00"].layer = 1;
 		MaidAnimation.Play("f02_faceCouncilGrace_00");
 		MaidAnimation["f02_faceCouncilGrace_00"].weight = 1f;
+		EightiesMaidAnimation["f02_faceCouncilGrace_00"].layer = 1;
+		EightiesMaidAnimation.Play("f02_faceCouncilGrace_00");
+		EightiesMaidAnimation["f02_faceCouncilGrace_00"].weight = 1f;
 		Gossip1["f02_socialSit_00"].layer = 1;
 		Gossip1.Play("f02_socialSit_00");
 		Gossip1["f02_socialSit_00"].weight = 1f;

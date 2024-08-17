@@ -143,8 +143,14 @@ public class AlarmDiscScript : MonoBehaviour
 							_ = Student.CurrentAction;
 							_ = 10;
 						}
-						if ((!Student.TurnOffRadio && Student.Alive && !Student.Blind && !Student.Pushed && !Student.Dying && !Student.Alarmed && !Student.Guarding && !Student.Wet && !Student.Slave && !Student.CheckingNote && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Emetic && !Student.Confessing && !StudentIsBusy && !Student.FocusOnYandere && !Student.Fleeing && !Student.Shoving && !Student.SentHome && Student.ClubActivityPhase < 16 && !Student.Vomiting && !Student.Lethal && !Student.Headache && !Student.Sedated && !Student.SenpaiWitnessingRivalDie && !Student.Hunted && !Student.Drowned && !Student.DramaticReaction && !Student.Yandere.Chased && !Student.Hunting && !Student.ImmuneToLaughter && !Student.ListeningToReport && !Student.Distracted && !Student.RetreivingMedicine) || (!Student.StudentManager.Eighties && Student.Persona == PersonaType.Protective && Originator != null && Originator.StudentID == 11 && !Student.Hunted && !Student.Emetic && !Student.Headache && Student.Slave))
+						Debug.Log("An alarm disc has come into contact with: " + Student.Name);
+						if (Originator != null)
 						{
+							Debug.Log("The originator of this alarm disc is: " + Originator.Name);
+						}
+						if ((!Student.TurnOffRadio && Student.Alive && !Student.Blind && !Student.Pushed && !Student.Dying && !Student.Alarmed && !Student.Guarding && !Student.Wet && !Student.Slave && !Student.CheckingNote && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Emetic && !Student.Confessing && !StudentIsBusy && !Student.FocusOnYandere && !Student.Fleeing && !Student.Shoving && !Student.SentHome && Student.ClubActivityPhase < 16 && !Student.Vomiting && !Student.Lethal && !Student.Headache && !Student.Sedated && !Student.SenpaiWitnessingRivalDie && !Student.Hunted && !Student.Drowned && !Student.DramaticReaction && !Student.Yandere.Chased && !Student.Hunting && !Student.ImmuneToLaughter && !Student.ListeningToReport && !Student.Distracted && !Student.RetreivingMedicine && !Student.Struggling) || (!Student.StudentManager.Eighties && Student.Persona == PersonaType.Protective && Originator != null && Originator.StudentID == 11 && !Student.Hunted && !Student.Emetic && !Student.Headache && Student.Slave))
+						{
+							Debug.Log("Nothing stopped " + Student.Name + " from reacting to an alarm disc.");
 							_ = Student.Male;
 							if (!Student.Struggling)
 							{
@@ -170,7 +176,7 @@ public class AlarmDiscScript : MonoBehaviour
 								}
 								else if (Originator.Corpse == null)
 								{
-									Debug.Log("Originator didn't see a corpse.");
+									Debug.Log(Originator.Name + " didn't see a corpse.");
 									Student.DistractionSpot = new Vector3(base.transform.position.x, Student.transform.position.y, base.transform.position.z);
 								}
 								else
@@ -225,6 +231,10 @@ public class AlarmDiscScript : MonoBehaviour
 							{
 								Student.WitnessedSlave = true;
 							}
+						}
+						else if (Originator != null)
+						{
+							Debug.Log("For one reason or another, " + Student?.ToString() + " ignored this alarm disc from " + Originator.Name);
 						}
 					}
 				}

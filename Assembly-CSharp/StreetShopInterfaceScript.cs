@@ -385,6 +385,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 				CollectibleGlobals.MatchmakingGifts++;
 			}
 			CollectibleGlobals.SetGiftPurchased(Selected, value: true);
+			Debug.Log("CollectibleGlobals.GetGiftPurchased(" + Selected + ") is now true.");
 			break;
 		case ShopType.Lingerie:
 			PurchaseEffect();

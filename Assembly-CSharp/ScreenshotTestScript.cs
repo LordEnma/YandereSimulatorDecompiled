@@ -27,7 +27,7 @@ public class ScreenshotTestScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (GameGlobals.Eighties)
+		if (GameGlobals.Eighties && base.transform.position.y > 2f)
 		{
 			PortraitName = "EightiesSenpaiPortrait";
 			BG.mainTexture = EightiesBG;

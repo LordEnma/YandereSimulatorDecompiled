@@ -32,7 +32,7 @@ public class CabinetDoorScript : MonoBehaviour
 				Prompt.Label[0].text = "     Locked";
 				Prompt.Circle[0].fillAmount = 1f;
 			}
-			if (Prompt.Yandere.Inventory.LockPick)
+			if (Prompt.Yandere.Inventory.LockPicks > 0)
 			{
 				Prompt.HideButton[2] = false;
 				if (Prompt.Circle[2].fillAmount == 0f)
@@ -40,7 +40,7 @@ public class CabinetDoorScript : MonoBehaviour
 					Prompt.Circle[2].fillAmount = 1f;
 					if (Eighties)
 					{
-						Prompt.Yandere.Inventory.LockPick = false;
+						Prompt.Yandere.Inventory.LockPicks--;
 						Prompt.Label[0].text = "     Open";
 						Prompt.HideButton[2] = true;
 						Locked = false;

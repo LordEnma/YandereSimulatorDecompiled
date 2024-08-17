@@ -357,7 +357,7 @@ public class StalkerYandereScript : MonoBehaviour
 		Cursor.visible = false;
 		if (UpdateTextures)
 		{
-			if (UpdateFrame == 1)
+			if (UpdateFrame == 1 && !Vtuber)
 			{
 				Debug.Log("Attempting to update textures...");
 				if (ClothingAttacher != null && ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)

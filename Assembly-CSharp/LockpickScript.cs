@@ -8,7 +8,7 @@ public class LockpickScript : MonoBehaviour
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			Prompt.Yandere.Inventory.LockPick = true;
+			Prompt.Yandere.Inventory.LockPicks++;
 			Object.Destroy(base.gameObject);
 		}
 	}

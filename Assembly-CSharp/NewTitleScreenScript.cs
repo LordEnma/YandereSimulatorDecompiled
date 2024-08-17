@@ -136,6 +136,14 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public GameObject[] RivalEliminations;
 
+	public UITexture AyanoGraphic;
+
+	public UITexture RyobaGraphic;
+
+	public Texture BloodyAyano;
+
+	public Texture BloodyRyoba;
+
 	public AudioClip MakeSelection;
 
 	public AudioClip MoveCursor;
@@ -236,6 +244,8 @@ public class NewTitleScreenScript : MonoBehaviour
 		}
 		if (SchoolGlobals.SchoolAtmosphereSet && SchoolGlobals.SchoolAtmosphere < 0.5f)
 		{
+			AyanoGraphic.mainTexture = BloodyAyano;
+			RyobaGraphic.mainTexture = BloodyRyoba;
 			EightiesJukebox.clip = SpookyEightiesMusic;
 			Jukebox.clip = SpookyMusic;
 			EightiesJukebox.Play();

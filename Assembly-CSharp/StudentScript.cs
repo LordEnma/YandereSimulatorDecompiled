@@ -134,6 +134,8 @@ public class StudentScript : MonoBehaviour
 
 	public BrokenScript Broken;
 
+	public DynamicBone MaiHair;
+
 	public PoliceScript Police;
 
 	public PromptScript Prompt;
@@ -2357,7 +2359,7 @@ public class StudentScript : MonoBehaviour
 			{
 				CameraAnims = CowardAnims;
 			}
-			else if (Persona == PersonaType.TeachersPet || Persona == PersonaType.Heroic || Persona == PersonaType.Strict)
+			else if (Persona == PersonaType.TeachersPet || Persona == PersonaType.Heroic || Persona == PersonaType.Strict || Persona == PersonaType.LandlineUser || Persona == PersonaType.Dangerous)
 			{
 				CameraAnims = HeroAnims;
 			}
@@ -2722,10 +2724,10 @@ public class StudentScript : MonoBehaviour
 						Armband.SetActive(value: true);
 						ClubLeader = true;
 					}
-					OriginalIdleAnim = "f02_idleGirly_00";
-					OriginalWalkAnim = "f02_walkGirly_00";
-					IdleAnim = "f02_idleGirly_00";
-					WalkAnim = "f02_walkGirly_00";
+					OriginalIdleAnim = "f02_gentleIdle_00";
+					OriginalWalkAnim = "f02_gentleWalk_00";
+					IdleAnim = OriginalIdleAnim;
+					WalkAnim = OriginalWalkAnim;
 					Subtitle.EightiesClubDialogue.UpdateDialogue(1);
 					Subtitle.EightiesClubDialogue.UpdateDialogue(1);
 					if (StudentManager.MissionMode)
@@ -3771,7 +3773,7 @@ public class StudentScript : MonoBehaviour
 					base.gameObject.SetActive(value: false);
 				}
 			}
-			else if (StudentManager.StudentPhotographed[StudentID] && !Rival)
+			else if ((StudentManager.StudentPhotographed[StudentID] && !Rival) || (Friend && !Rival))
 			{
 				TurnOutlinesGreen();
 			}
@@ -4556,9 +4558,12 @@ public class StudentScript : MonoBehaviour
 					SunbathePhase = 0;
 				}
 				Phase++;
+				SciencePhase = 0;
 				if (WateringCan != null)
 				{
-					WateringCan.SetActive(value: false);
+					WateringCan.transform.parent = Hips;
+					WateringCan.transform.localPosition = new Vector3(0f, 0.0135f, -0.184f);
+					WateringCan.transform.localEulerAngles = new Vector3(0f, 90f, 30f);
 				}
 				RivalBodyguard = false;
 				if (ScheduleBlocks[Phase].destination == "Guard")
@@ -7141,6 +7146,7 @@ public class StudentScript : MonoBehaviour
 											StudentManager.Students[1].Pathfinding.target = StudentManager.LunchSpots.List[1];
 											StudentManager.Students[1].MyRenderer.updateWhenOffscreen = true;
 											StudentManager.Students[1].SenpaiWitnessingRivalDie = true;
+											StudentManager.Students[1].IgnoringPettyActions = true;
 											StudentManager.Students[1].Distracted = true;
 											StudentManager.Students[1].Routine = false;
 										}
@@ -7724,17 +7730,6 @@ public class StudentScript : MonoBehaviour
 									obj14.destination = "Patrol";
 									obj14.action = "Patrol";
 									GetDestinations();
-									if (!StudentManager.Eighties)
-									{
-										if (StudentID == 82)
-										{
-											StudentManager.UpdateWeek1Hangout(82);
-										}
-										else if (StudentID == 83)
-										{
-											StudentManager.UpdateWeek1Hangout(83);
-										}
-									}
 									CurrentDestination = Destinations[Phase];
 									Pathfinding.target = Destinations[Phase];
 									SmartPhone.SetActive(value: true);
@@ -13474,7 +13469,7 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (TrashPhase == 1)
 				{
-					if (DistanceToDestination < 1f)
+					if (Mathf.Abs(base.transform.position.y - TrashDestination.position.y) <= 2.5f && Vector3.Distance(base.transform.position, new Vector3(TrashDestination.position.x, base.transform.position.y, TrashDestination.position.z)) < 1f)
 					{
 						TrashDestination.parent = ItemParent;
 						TrashDestination.localEulerAngles = new Vector3(90f, 0f, 0f);
@@ -14006,7 +14001,7 @@ public class StudentScript : MonoBehaviour
 							{
 								flag4 = true;
 							}
-							if ((Yandere.Armed && Yandere.EquippedWeapon.Suspicious) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.Suspicious) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.CleaningProduct && Clock.Period != 5) || (Guarding && Yandere.Mopping && Yandere.Mop.Bloodiness > 0f) || (Yandere.Bloodiness + (float)Yandere.GloveBlood > 0f && !Yandere.Paint) || Yandere.Sanity < 33.333f || Yandere.Pickpocketing || Yandere.Lockpicking || Yandere.Attacking || Yandere.Cauterizing || Yandere.Struggling || Yandere.WrappingCorpse || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || (!IgnoringPettyActions && Yandere.Lewd) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Carrying && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || Yandere.Yakuza || Yandere.Medusa || Yandere.Poisoning || Yandere.WeaponTimer > 0f || (Yandere.WearingRaincoat && !flag4) || Yandere.MurderousActionTimer > 0f || (!IgnoringPettyActions && Yandere.Schoolwear == 2 && Yandere.transform.position.z < 30f) || (!IgnoringPettyActions && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (!IgnoringPettyActions && Yandere.SuspiciousActionTimer > 0f) || (!IgnoringPettyActions && Yandere.Laughing && Yandere.LaughIntensity > 15f) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crouching) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crawling) || (!IgnoringPettyActions && Yandere.Trespassing) || (Private && Yandere.Eavesdropping && !Yandere.Talking) || (Teacher && !WitnessedCorpse && Yandere.Trespassing) || (Teacher && !IgnoringPettyActions && Yandere.Rummaging) || (!IgnoringPettyActions && Yandere.TheftTimer > 0f) || (StudentID == 1 && Yandere.NearSenpai && !Yandere.Talking) || (!IgnoringPettyActions && !StudentManager.CombatMinigame.Practice && Yandere.DelinquentFighting && StudentID != 10 && StudentManager.CombatMinigame.Path < 4 && !StudentManager.CombatMinigame.Practice && !Yandere.SeenByAuthority) || (flag3 && Yandere.PickUp != null && Yandere.PickUp.Mop != null && Yandere.PickUp.Mop.Bloodiness > 50f) || (!IgnoringPettyActions && flag3 && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (Yandere.PickUp != null && Yandere.PickUp.Clothing && Yandere.PickUp.Evidence && !Yandere.PickUp.BloodMistakenForPaint) || (!IgnoringPettyActions && AnnoyedByRadio > 1 && Yandere.PotentiallyAnnoyingTimer > 0f) || (!IgnoringPettyActions && AnnoyedByGiggles > 4 && Yandere.AnnoyingGiggleTimer > 0f) || (!IgnoringPettyActions && Yandere.PreparingThrow && Yandere.Obvious))
+							if ((Yandere.Armed && Yandere.EquippedWeapon.Suspicious) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.Suspicious) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.CleaningProduct && Clock.Period != 5) || (Guarding && Yandere.Mopping && Yandere.Mop.Bloodiness > 0f) || (Yandere.Bloodiness + (float)Yandere.GloveBlood > 0f && !Yandere.Paint) || Yandere.Sanity < 33.333f || Yandere.Pickpocketing || Yandere.Lockpicking || Yandere.Attacking || Yandere.Cauterizing || Yandere.Struggling || Yandere.WrappingCorpse || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || (!IgnoringPettyActions && Yandere.Lewd) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Carrying && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || Yandere.Yakuza || Yandere.Medusa || Yandere.Poisoning || Yandere.WeaponTimer > 0f || (Yandere.WearingRaincoat && !flag4) || Yandere.MurderousActionTimer > 0f || (!IgnoringPettyActions && Yandere.Schoolwear == 2 && Yandere.transform.position.z < 30f) || (!IgnoringPettyActions && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (!IgnoringPettyActions && Yandere.SuspiciousActionTimer > 0f) || (!IgnoringPettyActions && Yandere.Laughing && Yandere.LaughIntensity > 15f) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crouching) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crawling) || (!IgnoringPettyActions && Yandere.Trespassing) || (Private && Yandere.Eavesdropping && !Yandere.Talking) || (Teacher && !WitnessedCorpse && Yandere.Trespassing) || (Teacher && !IgnoringPettyActions && Yandere.Rummaging) || (!IgnoringPettyActions && Yandere.TheftTimer > 0f) || (!IgnoringPettyActions && StudentID == 1 && Yandere.NearSenpai && !Yandere.Talking) || (!IgnoringPettyActions && !StudentManager.CombatMinigame.Practice && Yandere.DelinquentFighting && StudentID != 10 && StudentManager.CombatMinigame.Path < 4 && !StudentManager.CombatMinigame.Practice && !Yandere.SeenByAuthority) || (flag3 && Yandere.PickUp != null && Yandere.PickUp.Mop != null && Yandere.PickUp.Mop.Bloodiness > 50f) || (!IgnoringPettyActions && flag3 && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (Yandere.PickUp != null && Yandere.PickUp.Clothing && Yandere.PickUp.Evidence && !Yandere.PickUp.BloodMistakenForPaint) || (!IgnoringPettyActions && AnnoyedByRadio > 1 && Yandere.PotentiallyAnnoyingTimer > 0f) || (!IgnoringPettyActions && AnnoyedByGiggles > 4 && Yandere.AnnoyingGiggleTimer > 0f) || (!IgnoringPettyActions && Yandere.PreparingThrow && Yandere.Obvious))
 							{
 								bool flag5 = false;
 								if (Yandere.transform.position.y < base.transform.position.y + 4f)
@@ -15707,7 +15702,7 @@ public class StudentScript : MonoBehaviour
 				EyeShrink += Time.deltaTime * 0.2f;
 			}
 			Debug.Log(Name + " is now checking if Yandere-chan killed their loved one...");
-			if ((Yandere.Attacking && Yandere.TargetStudent != null && LovedOneIsTargeted(Yandere.TargetStudent.StudentID)) || (ElectrocutionVictim > 0 && LovedOneIsTargeted(ElectrocutionVictim)) || (Yandere.Carrying && LovedOneIsTargeted(Yandere.CurrentRagdoll.StudentID)) || (Yandere.Dragging && LovedOneIsTargeted(Yandere.CurrentRagdoll.StudentID)) || (PartnerID > 0 && Yandere.Bloodiness > 0f && Yandere.NearestCorpseID == PartnerID))
+			if ((Yandere.Attacking && Yandere.TargetStudent != null && LovedOneIsTargeted(Yandere.TargetStudent.StudentID)) || (Yandere.Struggling && Yandere.TargetStudent != null && LovedOneIsTargeted(Yandere.TargetStudent.StudentID)) || (ElectrocutionVictim > 0 && LovedOneIsTargeted(ElectrocutionVictim)) || (Yandere.Carrying && LovedOneIsTargeted(Yandere.CurrentRagdoll.StudentID)) || (Yandere.Dragging && LovedOneIsTargeted(Yandere.CurrentRagdoll.StudentID)) || (PartnerID > 0 && Yandere.Bloodiness > 0f && Yandere.NearestCorpseID == PartnerID))
 			{
 				Debug.Log(Name + " realized that the protagonist killed their loved one!");
 				Strength = 5;
@@ -17465,7 +17460,6 @@ public class StudentScript : MonoBehaviour
 			{
 				if (base.transform.position.y < -11f && StudentID > 1 && Phase > 1)
 				{
-					Debug.Log("Disabling a student who fell beneath a height of -11.");
 					base.gameObject.SetActive(value: false);
 				}
 				return;
@@ -18804,6 +18798,7 @@ public class StudentScript : MonoBehaviour
 			}
 			if (Corpse != null && StudentID == 1 && Corpse.Student.Rival)
 			{
+				Debug.Log("This is the moment that Senpai decides to run to the corpse of a rival.");
 				CurrentDestination = Corpse.Student.Hips;
 				Pathfinding.target = Corpse.Student.Hips;
 				SenpaiWitnessingRivalDie = true;
@@ -19200,6 +19195,11 @@ public class StudentScript : MonoBehaviour
 			Pathfinding.target = StudentManager.Exit;
 			if (!StudentManager.Eighties)
 			{
+				if (MaiHair != null)
+				{
+					Debug.Log("Freeing Mai's hair from gravity.");
+					MaiHair.m_Gravity = Vector3.zero;
+				}
 				Countdown.gameObject.SetActive(value: true);
 				if (StudentManager.ChaseCamera == null)
 				{
@@ -21643,6 +21643,7 @@ public class StudentScript : MonoBehaviour
 
 	public void CameraReact()
 	{
+		Debug.Log(Name + " just fired CameraReact()");
 		CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 		Pathfinding.canSearch = false;
 		Pathfinding.canMove = false;
@@ -21719,18 +21720,7 @@ public class StudentScript : MonoBehaviour
 				gameObject2.SetActive(value: false);
 			}
 		}
-		if (!Yandere.ClubAccessories[7].activeInHierarchy || Club == ClubType.Delinquent)
-		{
-			CharacterAnimation.CrossFade(CameraAnims[1]);
-		}
-		else
-		{
-			if (Club == ClubType.Bully)
-			{
-				SmartPhone.SetActive(value: true);
-			}
-			CharacterAnimation.CrossFade(IdleAnim);
-		}
+		CharacterAnimation.CrossFade(CameraAnims[1]);
 		EmptyHands();
 	}
 
@@ -21854,6 +21844,7 @@ public class StudentScript : MonoBehaviour
 
 	private bool LovedOneIsTargeted(int yandereTargetID)
 	{
+		Debug.Log("The player is allegedly attacking a student with an ID of: " + yandereTargetID);
 		bool flag = StudentID == StudentManager.SuitorID && yandereTargetID == StudentManager.RivalID;
 		if (StudentManager.KokonaTutorial)
 		{
@@ -21864,28 +21855,23 @@ public class StudentScript : MonoBehaviour
 			bool num = InCouple && PartnerID == yandereTargetID;
 			bool flag2 = StudentID == 3 && yandereTargetID == 2;
 			bool flag3 = StudentID == 2 && yandereTargetID == 3;
-			if (StudentID == 11)
-			{
-				_ = yandereTargetID == 10;
-			}
-			else
-				_ = 0;
-			bool flag4 = StudentID == 38 && yandereTargetID == 37;
-			bool flag5 = StudentID == 37 && yandereTargetID == 38;
-			bool flag6 = StudentID == 30 && yandereTargetID == 25;
-			bool flag7 = StudentID == 25 && yandereTargetID == 30;
-			bool flag8 = StudentID == 28 && yandereTargetID == 30;
-			bool flag9 = false;
-			bool flag10 = StudentID > 55 && StudentID < 61 && yandereTargetID > 55 && yandereTargetID < 61;
+			bool flag4 = StudentID == 11 && yandereTargetID == 10;
+			bool flag5 = StudentID == 38 && yandereTargetID == 37;
+			bool flag6 = StudentID == 37 && yandereTargetID == 38;
+			bool flag7 = StudentID == 30 && yandereTargetID == 25;
+			bool flag8 = StudentID == 25 && yandereTargetID == 30;
+			bool flag9 = StudentID == 28 && yandereTargetID == 30;
+			bool flag10 = false;
+			bool flag11 = StudentID > 55 && StudentID < 61 && yandereTargetID > 55 && yandereTargetID < 61;
 			if (Injured)
 			{
-				flag9 = Club == ClubType.Delinquent && StudentManager.Students[yandereTargetID].Club == ClubType.Delinquent;
+				flag10 = Club == ClubType.Delinquent && StudentManager.Students[yandereTargetID].Club == ClubType.Delinquent;
 			}
-			return num || flag2 || flag3 || flag4 || flag5 || flag6 || flag7 || flag8 || flag9 || flag10 || flag;
+			return num || flag2 || flag3 || flag4 || flag5 || flag6 || flag7 || flag8 || flag9 || flag10 || flag11 || flag;
 		}
-		bool flag11 = false;
-		flag11 = Male && yandereTargetID == 19;
-		return flag || flag11;
+		bool flag12 = false;
+		flag12 = Male && yandereTargetID == 19;
+		return flag || flag12;
 	}
 
 	private void Pose()

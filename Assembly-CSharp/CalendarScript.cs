@@ -1353,9 +1353,14 @@ public class CalendarScript : MonoBehaviour
 			DatingGlobals.SetTraitDemonstrated(l, 0);
 			DatingGlobals.SetSuitorTrait(l, 0);
 		}
-		for (int m = 1; m < 5; m++)
+		CollectibleGlobals.MatchmakingGifts = 0;
+		for (int m = 6; m < 10; m++)
 		{
-			CollectibleGlobals.SetGiftGiven(m, value: false);
+			CollectibleGlobals.SetGiftPurchased(m, value: false);
+		}
+		for (int n = 1; n < 5; n++)
+		{
+			CollectibleGlobals.SetGiftGiven(n, value: false);
 		}
 		ClubGlobals.ActivitiesAttended = 0;
 		GameGlobals.CorkboardScene = true;

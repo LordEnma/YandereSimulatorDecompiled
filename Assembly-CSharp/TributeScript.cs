@@ -24,7 +24,11 @@ public class TributeScript : MonoBehaviour
 
 	public string[] FootageLetters;
 
+	public string[] LacunaLetters;
+
 	public string[] MiyukiLetters;
+
+	public string[] LunarLetters;
 
 	public string[] NurseLetters;
 
@@ -44,7 +48,11 @@ public class TributeScript : MonoBehaviour
 
 	public int FootageID;
 
+	public int LacunaID;
+
 	public int MiyukiID;
+
+	public int LunarID;
 
 	public int NurseID;
 
@@ -110,6 +118,34 @@ public class TributeScript : MonoBehaviour
 				if (PpStarrsID == PpStarrsLetters.Length)
 				{
 					Yandere.PpStarrs();
+					base.enabled = false;
+				}
+			}
+			if (Input.GetKeyDown(LacunaLetters[LacunaID]))
+			{
+				LacunaID++;
+				if (LacunaID == LacunaLetters.Length)
+				{
+					Yandere.Lacuna();
+					base.enabled = false;
+				}
+			}
+			if (Yandere.LunaMode && Input.GetKeyDown(LunarLetters[LunarID]))
+			{
+				LunarID++;
+				if (LunarID == LunarLetters.Length)
+				{
+					Yandere.LunaAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer.enabled = false;
+					Yandere.PantyAttacher.newRenderer.enabled = false;
+					Yandere.OriginalLuna.SetActive(value: true);
+					Yandere.RightSleeve.SetActive(value: false);
+					Yandere.LeftSleeve.SetActive(value: false);
+					Yandere.BreastSize = 1.25f;
+					Yandere.UpdateBust();
+					Yandere.AccessoryID = 0;
+					Yandere.UpdateAccessory();
+					Yandere.Hairstyle = 212;
+					Yandere.UpdateHair();
 					base.enabled = false;
 				}
 			}

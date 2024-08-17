@@ -1,3 +1,4 @@
+using HighlightingSystem;
 using UnityEngine;
 
 public class BloodPoolScript : MonoBehaviour
@@ -34,6 +35,8 @@ public class BloodPoolScript : MonoBehaviour
 
 	public int StudentBloodID;
 
+	public Material StartMat;
+
 	private void Start()
 	{
 		if (PlayerGlobals.PantiesEquipped == 11 && Blood)
@@ -66,6 +69,10 @@ public class BloodPoolScript : MonoBehaviour
 		{
 			base.gameObject.layer = 2;
 		}
+		if (MyRenderer != null)
+		{
+			StartMat = MyRenderer.material;
+		}
 	}
 
 	private void Update()
@@ -90,6 +97,14 @@ public class BloodPoolScript : MonoBehaviour
 				Object.Destroy(NewElectricity);
 			}
 		}
+		if (MyRenderer != null && MyRenderer.material != StartMat)
+		{
+			base.gameObject.GetComponent<OutlineScript>().enabled = false;
+			base.gameObject.GetComponent<Highlighter>().enabled = false;
+			base.gameObject.GetComponent<OutlineScript>().enabled = true;
+			base.gameObject.GetComponent<Highlighter>().enabled = true;
+			StartMat = MyRenderer.material;
+		}
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -101,6 +116,7 @@ public class BloodPoolScript : MonoBehaviour
 			if (other.gameObject.name.Contains("CarBattery"))
 			{
 				Object.Instantiate(other.gameObject.GetComponent<PickUpScript>().PuddleSparks, base.transform.position, Quaternion.identity);
+				other.gameObject.GetComponent<PickUpScript>().Broken = true;
 				other.gameObject.GetComponent<PickUpScript>().Smoke.Play();
 				other.gameObject.tag = "Untagged";
 			}

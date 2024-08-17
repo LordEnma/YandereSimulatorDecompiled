@@ -56,6 +56,10 @@ public class StruggleBarScript : MonoBehaviour
 			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			Spikes.localEulerAngles = new Vector3(Spikes.localEulerAngles.x, Spikes.localEulerAngles.y, Spikes.localEulerAngles.z - Time.deltaTime * 360f);
 			Victory -= Time.deltaTime * 5f * Strength;
+			if (Yandere.TargetStudent == null && Student != null)
+			{
+				Yandere.TargetStudent = Student;
+			}
 			if (Yandere.Club == ClubType.MartialArts || (Yandere.TargetStudent != null && Yandere.TargetStudent.Strength == 0))
 			{
 				Debug.Log("Either player is in the martial arts club, or player's target has a Strength of 0.");

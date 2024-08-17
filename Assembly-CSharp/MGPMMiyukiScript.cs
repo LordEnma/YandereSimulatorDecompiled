@@ -322,7 +322,6 @@ public class MGPMMiyukiScript : MonoBehaviour
 		if (Invincibility > 0f)
 		{
 			Invincibility = Mathf.MoveTowards(Invincibility, 0f, Time.deltaTime);
-			Debug.Log("Invincibility is now " + Invincibility);
 			if (MyRenderer.material.GetColor("_EmissionColor").a == 1f)
 			{
 				MyRenderer.material.SetColor("_EmissionColor", new Color(0f, 0f, 0f, 0f));
@@ -411,6 +410,8 @@ public class MGPMMiyukiScript : MonoBehaviour
 		Hearts[1].SetActive(value: false);
 		Hearts[2].SetActive(value: false);
 		Hearts[3].SetActive(value: false);
+		Hearts[4].SetActive(value: false);
+		Hearts[5].SetActive(value: false);
 		for (int i = 1; i < Health + 1; i++)
 		{
 			Hearts[i].SetActive(value: true);

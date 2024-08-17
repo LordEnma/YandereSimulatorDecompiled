@@ -364,7 +364,7 @@ public class PoliceScript : MonoBehaviour
 			if (Timer <= 0f)
 			{
 				Timer = 0f;
-				if (!Yandere.Attacking && !Yandere.Struggling && !Yandere.Egg && !Yandere.Lifting && !FadeOut)
+				if (!Yandere.Attacking && !Yandere.Struggling && !Yandere.Egg && !Yandere.Lifting && Yandere.Pursuer == null && !FadeOut)
 				{
 					Reputation.UpdateRep();
 					if (Reputation.Reputation <= -100f)
@@ -383,28 +383,35 @@ public class PoliceScript : MonoBehaviour
 				Yandere.NotificationManager.NotificationParent.localPosition = new Vector3(0.15f, Yandere.NotificationManager.NotificationParent.localPosition.y, Yandere.NotificationManager.NotificationParent.localPosition.z);
 			}
 		}
-		else if (Deaths > DeathLimit)
+		else
 		{
-			if (Invalid)
+			if (Siren.volume > 0f)
 			{
-				Debug.Log("Invalid Genocide Run. Debug Commands or Easter Eggs were used.");
+				Siren.volume = Mathf.MoveTowards(Siren.volume, 0f, Time.deltaTime);
 			}
-			else if (Yandere.Egg)
+			if (Deaths > DeathLimit)
 			{
-				Debug.Log("Invalid Genocide Run. Easter Eggs were used.");
-			}
-			else if (Clock.Weekday != 1)
-			{
-				Debug.Log("Invalid Genocide Run. It's not Monday of Week 1.");
-			}
-			else if (!StudentManager.Students[1].gameObject.activeInHierarchy || StudentManager.Students[1].Fleeing)
-			{
-				Debug.Log("Invalid Genocide Run. Senpai was alarmed.");
-			}
-			else
-			{
-				GenocideEnding = true;
-				BeginFadingOut();
+				if (Invalid)
+				{
+					Debug.Log("Invalid Genocide Run. Debug Commands or Easter Eggs were used.");
+				}
+				else if (Yandere.Egg)
+				{
+					Debug.Log("Invalid Genocide Run. Easter Eggs were used.");
+				}
+				else if (Clock.Weekday != 1)
+				{
+					Debug.Log("Invalid Genocide Run. It's not Monday of Week 1.");
+				}
+				else if (!StudentManager.Students[1].gameObject.activeInHierarchy || StudentManager.Students[1].Fleeing)
+				{
+					Debug.Log("Invalid Genocide Run. Senpai was alarmed.");
+				}
+				else
+				{
+					GenocideEnding = true;
+					BeginFadingOut();
+				}
 			}
 		}
 		if (FadeOut)

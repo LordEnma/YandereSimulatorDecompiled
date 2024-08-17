@@ -2800,7 +2800,7 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			PlayerGlobals.BoughtSedative = true;
 		}
-		if (Yandere.Inventory.LockPick)
+		if (Yandere.Inventory.LockPicks > 0)
 		{
 			PlayerGlobals.BoughtLockpick = true;
 		}
@@ -2911,7 +2911,7 @@ public class EndOfDayScript : MonoBehaviour
 		Yandere.CameraEffects.UpdateVignette(0f);
 		GrantAchievement();
 		StudentGlobals.StudentSlave = 0;
-		if (RobotComplete && !StudentGlobals.GetStudentDying(65) && !StudentGlobals.GetStudentDead(65) && !StudentGlobals.GetStudentArrested(65))
+		if (RobotComplete && !(StudentManager.Students[56] == null) && (!(StudentManager.Students[56] != null) || StudentManager.Students[56].Alive) && !StudentGlobals.GetStudentDying(65) && !StudentGlobals.GetStudentDead(65) && !StudentGlobals.GetStudentArrested(65) && !StudentGlobals.GetStudentKidnapped(65))
 		{
 			GameGlobals.RobotComplete = true;
 		}

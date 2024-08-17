@@ -22,13 +22,13 @@ public class TaskManagerScript : MonoBehaviour
 
 	public TaskKittenScript Kitten;
 
+	public PickUpScript CarBattery;
+
 	public PickUpScript AmaiPlate;
 
 	public ClothScript Cloth;
 
 	public bool[] GirlsQuestioned;
-
-	public GameObject CarBattery;
 
 	public GameObject FixedDummy;
 
@@ -447,7 +447,7 @@ public class TaskManagerScript : MonoBehaviour
 				{
 					StudentManager.Students[65].TaskPhase = 4;
 				}
-				if (Vector3.Distance(StudentManager.Students[65].transform.position, CarBattery.transform.position) < 2f || (Yandere.Bookbag != null && Yandere.Bookbag.ConcealedPickup != null && Yandere.Bookbag.ConcealedPickup.gameObject == CarBattery && Vector3.Distance(StudentManager.Students[65].transform.position, Yandere.Bookbag.transform.position) < 2f))
+				if ((!CarBattery.Broken && Vector3.Distance(StudentManager.Students[65].transform.position, CarBattery.transform.position) < 2f) || (Yandere.Bookbag != null && Yandere.Bookbag.ConcealedPickup != null && Yandere.Bookbag.ConcealedPickup.gameObject == CarBattery.gameObject && Vector3.Distance(StudentManager.Students[65].transform.position, Yandere.Bookbag.transform.position) < 2f))
 				{
 					Debug.Log("Homu's Task can be turned in.");
 					StudentManager.Students[65].TaskPhase = 5;

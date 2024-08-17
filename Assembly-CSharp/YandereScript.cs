@@ -1511,6 +1511,10 @@ public class YandereScript : MonoBehaviour
 
 	public GameObject Hoodie;
 
+	public GameObject LacunaClothing;
+
+	public bool LacunaMode;
+
 	public GameObject GarbageBag;
 
 	public GameObject TallLadyAttacher;
@@ -1725,9 +1729,13 @@ public class YandereScript : MonoBehaviour
 
 	public GameObject LunaAttacher;
 
+	public GameObject OriginalLuna;
+
 	public GameObject RightSleeve;
 
 	public GameObject LeftSleeve;
+
+	public bool LunaMode;
 
 	public Texture[] VtuberFaces;
 
@@ -2835,6 +2843,7 @@ public class YandereScript : MonoBehaviour
 							Selfie = false;
 							Aiming = true;
 							MyController.radius = 0.45f;
+							StudentManager.CheckStudentProximity();
 							if (Inventory.RivalPhone)
 							{
 								if (!RivalPhone)
@@ -7378,6 +7387,16 @@ public class YandereScript : MonoBehaviour
 			gameObject.GetComponent<SkinnedMeshRenderer>().material.mainTexture = MaidBody;
 			gameObject2.GetComponent<SkinnedMeshRenderer>().material.mainTexture = MaidOutfit;
 		}
+		if (LacunaMode)
+		{
+			RiggedAccessoryAttacher component2 = LacunaClothing.GetComponent<RiggedAccessoryAttacher>();
+			if (component2 != null && component2.newRenderer != null)
+			{
+				component2.newRenderer.SetBlendShapeWeight(0, 50f);
+				component2.newRenderer.SetBlendShapeWeight(12, 100f);
+				LacunaMode = false;
+			}
+		}
 	}
 
 	public void StainWeapon()
@@ -8453,15 +8472,14 @@ public class YandereScript : MonoBehaviour
 		TornadoHair.SetActive(value: true);
 		TornadoDress.SetActive(value: true);
 		RiggedAccessory.SetActive(value: true);
-		MyRenderer.sharedMesh = NoTorsoMesh;
-		PantyAttacher.newRenderer.enabled = false;
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
+		MyRenderer.sharedMesh = NudeMesh;
+		MyRenderer.materials[0].mainTexture = NudeTexture;
+		MyRenderer.materials[1].mainTexture = FaceTexture;
+		MyRenderer.materials[2].mainTexture = NudeTexture;
+		PantyAttacher.newRenderer.enabled = true;
 		Sanity = 100f;
-		MyRenderer.materials[0].mainTexture = FaceTexture;
-		MyRenderer.materials[1].mainTexture = NudePanties;
-		MyRenderer.materials[2].mainTexture = NudePanties;
-		TheDebugMenuScript.UpdateCensor();
 		Stance.Current = StanceType.Standing;
 		Egg = true;
 	}
@@ -8583,7 +8601,7 @@ public class YandereScript : MonoBehaviour
 		RunSpeed = 10f;
 		Hairstyle = 15;
 		UpdateHair();
-		DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
+		TheDebugMenuScript.UpdateCensor();
 	}
 
 	private void Berserk()
@@ -8862,6 +8880,34 @@ public class YandereScript : MonoBehaviour
 		UpdateHair();
 	}
 
+	public void Lacuna()
+	{
+		LacunaClothing.SetActive(value: true);
+		PantyAttacher.newRenderer.enabled = false;
+		PantyAttacher.gameObject.SetActive(value: false);
+		PantyAttacher.enabled = false;
+		UnityEngine.Object.Destroy(PantyAttacher.newRenderer);
+		UnityEngine.Object.Destroy(PantyAttacher.gameObject);
+		MyRenderer.sharedMesh = null;
+		MyRenderer.enabled = false;
+		OriginalIdleAnim = "f02_idleCouncilGrace_00";
+		IdleAnim = "f02_idleCouncilGrace_00";
+		OriginalWalkAnim = "f02_walkCouncilGrace_00";
+		WalkAnim = "f02_walkCouncilGrace_00";
+		PersonaID = 16;
+		UpdatePersona(PersonaID);
+		Stance.Current = StanceType.Standing;
+		CrawlTimer = 0f;
+		Uncrouch();
+		EyewearID = 0;
+		UpdateEyewear();
+		BreastSize = 1.25f;
+		UpdateBust();
+		Hairstyle = 214;
+		UpdateHair();
+		LacunaMode = true;
+	}
+
 	private void GarbageMode()
 	{
 		PantyAttacher.newRenderer.enabled = false;
@@ -9121,7 +9167,10 @@ public class YandereScript : MonoBehaviour
 			RestoreGentleEyes();
 			GymTexture = EightiesGymTexture;
 		}
-		PantyAttacher.newRenderer.enabled = false;
+		if (PantyAttacher != null)
+		{
+			PantyAttacher.newRenderer.enabled = false;
+		}
 		RightFootprintSpawner.Bloodiness = 0;
 		LeftFootprintSpawner.Bloodiness = 0;
 		if (ClubAttire && Bloodiness == 0f)
@@ -9203,7 +9252,10 @@ public class YandereScript : MonoBehaviour
 		}
 		else if (Schoolwear == 1)
 		{
-			PantyAttacher.newRenderer.enabled = true;
+			if (PantyAttacher != null)
+			{
+				PantyAttacher.newRenderer.enabled = true;
+			}
 			MyRenderer.sharedMesh = Uniforms[num];
 			MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
 			MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
@@ -9767,6 +9819,7 @@ public class YandereScript : MonoBehaviour
 		Jukebox.LunarScytheMusic();
 		WeaponManager.Weapons[66].gameObject.SetActive(value: true);
 		WeaponManager.Weapons[66].Equip();
+		LunaMode = true;
 	}
 
 	public void LoseGentleEyes()
@@ -9895,6 +9948,10 @@ public class YandereScript : MonoBehaviour
 		{
 			Hairstyle = 1;
 		}
+		else if (StudentManager.CustomMode)
+		{
+			Hairstyle = 0;
+		}
 		else
 		{
 			Hairstyle = 203;
@@ -9947,6 +10004,10 @@ public class YandereScript : MonoBehaviour
 		if (!StudentManager.Eighties)
 		{
 			Hairstyle = 1;
+		}
+		else if (StudentManager.CustomMode)
+		{
+			Hairstyle = int.Parse(StudentManager.JSON.Students[0].Hairstyle);
 		}
 		else
 		{

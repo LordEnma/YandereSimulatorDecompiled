@@ -208,6 +208,13 @@ public class ScheduleScript : MonoBehaviour
 			EventIcons[41].SetActive(value: true);
 			Descriptions[41] = "Sakyu and Inkyu are going to sit down on a bench and have a conversation about the school.";
 		}
+		if (VoidGoddess.StudentManager.RivalEliminated)
+		{
+			for (int j = 1; j < 21; j++)
+			{
+				EventIcons[j].SetActive(value: false);
+			}
+		}
 	}
 
 	private void Update()

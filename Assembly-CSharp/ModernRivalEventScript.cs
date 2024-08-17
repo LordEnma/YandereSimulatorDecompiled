@@ -526,7 +526,7 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	public void EndEvent()
 	{
-		Debug.Log("A Modern Rival Event has ended.");
+		Debug.Log("A Modern Rival Event named " + base.gameObject.name + " has ended.");
 		if (EventID == 3)
 		{
 			SendClubToBakeSale();

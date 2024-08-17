@@ -181,9 +181,20 @@ public class ConfessionManagerScript : MonoBehaviour
 				Senpai.transform.position = new Vector3(0f, 6.6f, 119.5f);
 				Osana.transform.eulerAngles = new Vector3(0f, 180f, 0f);
 				Senpai.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+				Debug.Log("Now activating blush.");
 				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.FaceID].SetFloat("_BlendAmount", 1f);
 				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.SkinID].SetFloat("_BlendAmount", 0f);
 				OsanaCosmetic.MyRenderer.materials[OsanaCosmetic.UniformID].SetFloat("_BlendAmount", 1f);
+				if (OsanaCosmetic.Student.Schoolwear == 3)
+				{
+					Debug.Log("Now attempting to activate blush on the correct material.");
+					OsanaCosmetic.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
+					OsanaCosmetic.MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
+					OsanaCosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 1f);
+					OsanaCosmetic.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
+					OsanaCosmetic.MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
+					OsanaCosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount1", 0f);
+				}
 				Tears.materials[0].SetFloat("_TearReveal", 0f);
 				Tears.materials[1].SetFloat("_TearReveal", 0f);
 				Debug.Log("The characters were told to perform their confession animations.");

@@ -3,13 +3,19 @@ using UnityEngine;
 
 public class BountyPromptScript : MonoBehaviour
 {
+	public StudentManagerScript StudentManager;
+
 	public HologramScript Hologram;
 
 	public PromptScript Prompt;
 
+	public StudentScript Horo;
+
+	public Renderer MyRenderer;
+
 	private void Start()
 	{
-		if (DateGlobals.Week != 2 || DateGlobals.Weekday != DayOfWeek.Wednesday)
+		if (DateGlobals.Week != 2 || DateGlobals.Weekday != DayOfWeek.Wednesday || GameGlobals.Eighties)
 		{
 			Hide();
 		}
@@ -17,6 +23,26 @@ public class BountyPromptScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (StudentManager.Students[62] != null)
+		{
+			Horo = StudentManager.Students[62];
+			if (Horo.ScienceProps[0].activeInHierarchy)
+			{
+				MyRenderer.enabled = false;
+				Prompt.Hide();
+				Prompt.enabled = false;
+			}
+			else if (!MyRenderer.enabled)
+			{
+				MyRenderer.enabled = true;
+				Prompt.enabled = true;
+			}
+		}
+		else
+		{
+			Debug.Log("Horo's BountyPrompt thinks that Horo does not exist.");
+			Hide();
+		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
 			Prompt.Circle[0].fillAmount = 1f;

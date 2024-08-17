@@ -69,6 +69,12 @@ public class CreditsScript : MonoBehaviour
 	private void Start()
 	{
 		Debug.Log("Upon arriving at the credits scene, DarkEnding was: " + GameGlobals.DarkEnding);
+		if (GameGlobals.Eighties)
+		{
+			Camera.main.backgroundColor = new Color(0.05f, 0.05f, 0.05f, 1f);
+			Jukebox.clip = EightiesCreditsMusic;
+			Eighties = true;
+		}
 		if (GameGlobals.TransitionToPostCredits || GameGlobals.DarkEnding)
 		{
 			GameGlobals.DarkEnding = false;
@@ -77,12 +83,6 @@ public class CreditsScript : MonoBehaviour
 			Blossoms.startColor = new Color(0.5f, 0f, 0f, 1f);
 			SkipLabel.color = new Color(0.5f, 0f, 0f, 1f);
 			Dark = true;
-		}
-		if (GameGlobals.Eighties)
-		{
-			Camera.main.backgroundColor = new Color(0.05f, 0.05f, 0.05f, 1f);
-			Jukebox.clip = EightiesCreditsMusic;
-			Eighties = true;
 		}
 	}
 

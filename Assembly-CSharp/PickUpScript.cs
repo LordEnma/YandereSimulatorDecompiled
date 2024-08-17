@@ -174,6 +174,8 @@ public class PickUpScript : MonoBehaviour
 
 	public bool Bleach;
 
+	public bool Broken;
+
 	public bool Dumped;
 
 	public bool Remote;

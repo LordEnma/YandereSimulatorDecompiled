@@ -408,7 +408,7 @@ public class DoorScript : MonoBehaviour
 			{
 				Prompt.Label[0].text = "     Locked";
 			}
-			if (Yandere.Inventory.LockPick)
+			if (Yandere.Inventory.LockPicks > 0)
 			{
 				Prompt.HideButton[2] = false;
 				if (Prompt.Circle[2] == null)
@@ -428,7 +428,7 @@ public class DoorScript : MonoBehaviour
 					{
 						Prompt.Yandere.EmptyHands();
 						Debug.Log("Commence lockpicking.");
-						Prompt.Yandere.Inventory.LockPick = false;
+						Prompt.Yandere.Inventory.LockPicks--;
 						Prompt.Label[0].text = "     Open";
 						Prompt.HideButton[2] = true;
 						Locked = false;

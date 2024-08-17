@@ -314,7 +314,7 @@ public class ModernRivalSabotageScript : MonoBehaviour
 		}
 		if (SabotageChecklist != null)
 		{
-			if (Vector3.Distance(Prompt.Yandere.transform.position, base.transform.position) < 2f)
+			if (Vector3.Distance(Prompt.Yandere.transform.position, base.transform.position) < 2f && !Sabotaged)
 			{
 				SabotageChecklist.alpha = Mathf.MoveTowards(SabotageChecklist.alpha, 1f, Time.deltaTime);
 			}
@@ -359,6 +359,7 @@ public class ModernRivalSabotageScript : MonoBehaviour
 
 	public void Disable()
 	{
+		Debug.Log("My name is " + base.gameObject.name + " and I am disabling myself now.");
 		if (SabotageChecklist != null)
 		{
 			SabotageChecklist.alpha = 0f;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameoScript : MonoBehaviour
 {
-	public GameObject AdditionalCharacter;
+	public GameObject[] AdditionalCharacter;
 
 	public GameObject OriginalHair;
 
@@ -24,9 +24,8 @@ public class CameoScript : MonoBehaviour
 			if (ID == Letters.Length)
 			{
 				Renderer.material.mainTexture = CameoTexture;
-				AdditionalCharacter.SetActive(value: true);
-				OriginalHair.SetActive(value: false);
-				CameoHair.SetActive(value: true);
+				AdditionalCharacter[1].SetActive(value: true);
+				AdditionalCharacter[2].SetActive(value: true);
 				base.enabled = false;
 			}
 		}

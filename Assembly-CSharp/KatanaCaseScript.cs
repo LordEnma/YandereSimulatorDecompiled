@@ -34,7 +34,7 @@ public class KatanaCaseScript : MonoBehaviour
 			CasePrompt.Hide();
 			CasePrompt.enabled = false;
 		}
-		if (CasePrompt.Yandere.Inventory.LockPick)
+		if (CasePrompt.Yandere.Inventory.LockPicks > 0)
 		{
 			CasePrompt.HideButton[2] = false;
 			CasePrompt.enabled = true;
@@ -42,7 +42,7 @@ public class KatanaCaseScript : MonoBehaviour
 			{
 				KeyPrompt.Hide();
 				KeyPrompt.enabled = false;
-				CasePrompt.Yandere.Inventory.LockPick = false;
+				CasePrompt.Yandere.Inventory.LockPicks--;
 				CasePrompt.Label[0].text = "     Open";
 				CasePrompt.HideButton[2] = true;
 				CasePrompt.HideButton[0] = true;

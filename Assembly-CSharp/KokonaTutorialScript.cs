@@ -1851,7 +1851,10 @@ public class KokonaTutorialScript : MonoBehaviour
 			Incinerator.CannotIncinerate = true;
 			Raincoat.gameObject.transform.position = new Vector3(34f, 0.775f, 77.5f);
 			Raincoat.gameObject.transform.eulerAngles = new Vector3(0f, -90f, 0f);
-			Yandere.CoatBloodiness[Yandere.Gloves.GloveID] = 0f;
+			Yandere.CoatBloodiness[0] = 0f;
+			Yandere.CoatBloodiness[1] = 0f;
+			Yandere.CoatBloodiness[2] = 0f;
+			Yandere.CoatBloodiness[3] = 0f;
 			Raincoat.PickUp.CannotPickUp = true;
 			Raincoat.Prompt.enabled = true;
 			Raincoat.Blood.enabled = false;

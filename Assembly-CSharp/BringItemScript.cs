@@ -132,7 +132,14 @@ public class BringItemScript : MonoBehaviour
 		else if (HardwareButton.activeInHierarchy && Input.GetButtonDown(InputNames.Xbox_Y))
 		{
 			HardwareMenu.PlayerPosition = HomeExit.HomeYandere.transform.position;
-			HomeExit.HomeYandere.transform.position = new Vector3(-18.5685f, -3.112333f, 10.1977f);
+			if (HomeExit.HomeYandere.transform.position.y > -4f)
+			{
+				HomeExit.HomeYandere.transform.position = new Vector3(-18.5685f, -3.112333f, 10.1977f);
+			}
+			else
+			{
+				HomeExit.HomeYandere.transform.position = new Vector3(-18.5685f, -10f, 10.1977f);
+			}
 			HomeExit.HomeYandere.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
 			HomeExit.HomeYandere.MyController.enabled = false;
 			HomeExit.HomeYandere.CanMove = false;

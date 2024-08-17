@@ -1781,8 +1781,9 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						flag2 = true;
 					}
-					if (flag2 && !Rival.InEvent && Rival.CurrentAction != StudentActionType.Sleep)
+					if (flag2 && !Rival.InEvent && Rival.CurrentAction != StudentActionType.Sleep && Rival.Schoolwear != 2)
 					{
+						Debug.Log("The rival is being put into an event now.");
 						Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 						Rival.Pathfinding.target = Location[2];
 						Rival.CurrentDestination = Location[2];

@@ -3366,10 +3366,6 @@ public class StudentManagerScript : MonoBehaviour
 			StudentScript studentScript = Students[ID];
 			if (studentScript != null && !studentScript.Posing)
 			{
-				if (studentScript.StudentID == 4)
-				{
-					Debug.Log("Kuu Dere is now attending class.");
-				}
 				studentScript.EmptyHands();
 				studentScript.VisitSenpaiDesk = false;
 				studentScript.AlreadyFed = false;
@@ -3714,10 +3710,6 @@ public class StudentManagerScript : MonoBehaviour
 			StudentScript studentScript = Students[ID];
 			if (studentScript != null && !studentScript.Fleeing && !studentScript.Posing)
 			{
-				if (studentScript.StudentID == 4)
-				{
-					Debug.Log("Kuu Dere is resuming movement.");
-				}
 				studentScript.Pathfinding.canSearch = true;
 				studentScript.Pathfinding.canMove = true;
 				studentScript.Pathfinding.speed = 1f;
@@ -4415,26 +4407,45 @@ public class StudentManagerScript : MonoBehaviour
 		for (ID = 2; ID < Students.Length; ID++)
 		{
 			StudentScript studentScript = Students[ID];
-			if (studentScript != null && StudentReps[ID] < -33.33333f && (ID != 36 || TaskManager.TaskStatus[36] != 3) && !studentScript.Teacher && !studentScript.Slave && studentScript.Club != ClubType.Bully && studentScript.Club != ClubType.Council && studentScript.Club != ClubType.Photography && studentScript.Club != ClubType.Delinquent && StudentReps[ID] < LowestRep)
+			if (studentScript != null && StudentReps[ID] < -33.33333f && (ID != 36 || TaskManager.TaskStatus[36] != 3) && !studentScript.Teacher && !studentScript.Slave && studentScript.Club != ClubType.Bully && studentScript.Club != ClubType.Council && studentScript.Club != ClubType.Photography && studentScript.Club != ClubType.Delinquent)
 			{
-				bool flag = false;
-				if (!Eighties && ID == 11)
+				Debug.Log(Students[ID]?.ToString() + "'s reputation is less than -33.33333...");
+				if (StudentReps[ID] < LowestRep)
 				{
-					flag = true;
-					if (Students[10] == null)
+					bool flag = false;
+					if (!Eighties)
 					{
-						flag = false;
+						if (ID == 10)
+						{
+							Debug.Log("The bullies would not consider bullying Raibaru.");
+							flag = true;
+						}
+						else if (ID == 11)
+						{
+							Debug.Log("The bullies are now going to decide whether or not they should bully Osana.");
+							if (Students[10] == null)
+							{
+								Debug.Log("Raibaru is gone! The bullies can bully Osana!");
+								flag = false;
+							}
+							else if (Students[10].FollowTarget != null)
+							{
+								Debug.Log("The bullies would not be willing to bully Osana right now, because Raibaru is protecting Osana.");
+								flag = true;
+							}
+							else
+							{
+								Debug.Log("Raibaru is not friends with Osana anymore! The bullies can bully Osana!");
+								flag = false;
+							}
+						}
 					}
-					else if (Students[10].FollowTarget == null)
+					if (!flag)
 					{
-						flag = false;
+						LowestRep = StudentReps[ID];
+						VictimID = ID;
+						Bully = true;
 					}
-				}
-				if (!flag)
-				{
-					LowestRep = StudentReps[ID];
-					VictimID = ID;
-					Bully = true;
 				}
 			}
 		}
@@ -5092,6 +5103,7 @@ public class StudentManagerScript : MonoBehaviour
 							Police.Corpses--;
 						}
 					}
+					Students[ID].SetOutlineColor(new Color(1f, 0.5f, 0f, 1f));
 				}
 				else
 				{
@@ -5229,6 +5241,10 @@ public class StudentManagerScript : MonoBehaviour
 					if (Students[ID].SitInInfirmary)
 					{
 						Students[ID].GoSitInInfirmary();
+					}
+					if (Students[ID].NewFriend)
+					{
+						Students[ID].SetOutlineColor(new Color(0f, 1f, 0f, 1f));
 					}
 					Students[ID].CameraReacting = false;
 				}
@@ -7598,14 +7614,14 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void CheckStudentProximity()
 	{
-		Debug.Log("Checking to see if any students are currently less than 1 meter away from the player.");
 		StudentScript[] students = Students;
 		foreach (StudentScript studentScript in students)
 		{
 			if (studentScript != null && studentScript.gameObject.activeInHierarchy && studentScript.DistanceToPlayer < 1f)
 			{
 				Debug.Log(studentScript.Name + " is less than 1 meter away from the player!");
-				Yandere.MyController.Move((Yandere.transform.position - studentScript.transform.position) * 1f);
+				Vector3 normalized = (Yandere.transform.position - studentScript.transform.position).normalized;
+				Yandere.transform.position += normalized * 0.25f;
 			}
 		}
 		Physics.SyncTransforms();
@@ -7844,7 +7860,15 @@ public class StudentManagerScript : MonoBehaviour
 					ClubLeaders[SpeakerID] = i;
 					SpeakerID++;
 					ScheduleBlock scheduleBlock = null;
-					scheduleBlock = ((i < 86) ? Students[i].ScheduleBlocks[6] : ((!Eighties) ? Students[i].ScheduleBlocks[6] : Students[i].ScheduleBlocks[6]));
+					if (i < 86)
+					{
+						scheduleBlock = Students[i].ScheduleBlocks[6];
+					}
+					else
+					{
+						Debug.Log("Now deciding when a Student Council member will be attending the club meeting.");
+						scheduleBlock = ((!Eighties) ? Students[i].ScheduleBlocks[5] : Students[i].ScheduleBlocks[6]);
+					}
 					scheduleBlock.destination = "Meeting";
 					scheduleBlock.action = "Meeting";
 					Students[i].GetDestinations();

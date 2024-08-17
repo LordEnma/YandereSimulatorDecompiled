@@ -305,7 +305,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 			Rival.Prompt.enabled = true;
 			Rival.InEvent = false;
 			Rival.Private = false;
-			if (!Ganguro.Alarmed)
+			if (!Ganguro.Alarmed && !Ganguro.Electrified && !Ganguro.Electrocuted)
 			{
 				Ganguro.CharacterAnimation.CrossFade(Ganguro.WalkAnim);
 				Ganguro.DistanceToDestination = 100f;

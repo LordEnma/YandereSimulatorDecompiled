@@ -32,6 +32,16 @@ public class RobotArmScript : MonoBehaviour
 
 	public int ID;
 
+	private void Start()
+	{
+		if (GameGlobals.RobotComplete || GameGlobals.RobotDestroyed)
+		{
+			Prompt.enabled = false;
+			Prompt.Hide();
+			base.enabled = false;
+		}
+	}
+
 	private void Update()
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
