@@ -146,6 +146,8 @@ public static class GameGlobals
 
 	private const string Str_RobotDestroyed = "RobotDestroyed";
 
+	private const string Str_ExperiencedDream = "ExperiencedDream";
+
 	private const string Str_BasementTape = "BasementTape";
 
 	public static int Profile
@@ -928,6 +930,18 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool ExperiencedDream
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_ExperiencedDream");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_ExperiencedDream", value);
+		}
+	}
+
 	public static int BasementTape
 	{
 		get
@@ -1136,6 +1150,7 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_SenpaiMeetsNewRival");
 		Globals.Delete("Profile_" + Profile + "_RobotComplete");
 		Globals.Delete("Profile_" + Profile + "_RobotDestroyed");
+		Globals.Delete("Profile_" + Profile + "_ExperiencedDream");
 		Globals.Delete("Profile_" + Profile + "_BasementTape");
 	}
 }

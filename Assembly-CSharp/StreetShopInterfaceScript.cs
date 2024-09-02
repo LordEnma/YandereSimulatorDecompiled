@@ -579,6 +579,18 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			}
 			break;
 		}
+		case ShopType.Electronics:
+			if (PlayerGlobals.Headset)
+			{
+				Icons[4].spriteName = "Yes";
+				PricesLabel[4].text = "Bought";
+			}
+			if (PlayerGlobals.DirectionalMic)
+			{
+				Icons[5].spriteName = "Yes";
+				PricesLabel[5].text = "Bought";
+			}
+			break;
 		case ShopType.Ramen:
 		{
 			if (Eaten)

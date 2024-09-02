@@ -166,6 +166,17 @@ public class ResolutionScript : MonoBehaviour
 			}
 		}
 		Highlight.localPosition = Vector3.Lerp(Highlight.localPosition, new Vector3(-307.5f, 250 - ID * 100, 0f), Time.deltaTime * 10f);
+		if (Input.GetKeyDown("r"))
+		{
+			Rs++;
+			if (Rs == 10)
+			{
+				Debug.Log("Wiping all PlayerPrefs.");
+				PlayerPrefs.DeleteAll();
+				Screen.SetResolution(1280, 720, fullscreen: false);
+				SceneManager.LoadScene("ResolutionScene");
+			}
+		}
 	}
 
 	private void UpdateRes()

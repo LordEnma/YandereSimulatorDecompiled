@@ -25,7 +25,11 @@ public class PauseScreenScript : MonoBehaviour
 
 	public NewSettingsScript NewSettings;
 
+	public SocialMediaScript SocialMedia;
+
 	public HomeCameraScript HomeCamera;
+
+	public IronMaidenScript IronMaiden;
 
 	public ServicesScript ServiceMenu;
 
@@ -203,8 +207,11 @@ public class PauseScreenScript : MonoBehaviour
 				EightiesPhoneIcons[i].color = PhoneIcons[i].color;
 			}
 			SelectionNames[5] = "Ideas";
+			SelectionNames[18] = "Nothing";
 			UISprite uISprite = PhoneIcons[17];
 			uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0.5f);
+			UISprite uISprite2 = PhoneIcons[18];
+			uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 0.5f);
 			Notepad.SetActive(value: true);
 			Phone.SetActive(value: false);
 			Wifi.gameObject.SetActive(value: false);
@@ -223,25 +230,27 @@ public class PauseScreenScript : MonoBehaviour
 			MissionModeIcons.SetActive(value: false);
 			if (!Eighties)
 			{
-				UISprite uISprite2 = PhoneIcons[5];
-				uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 0.5f);
+				UISprite uISprite3 = PhoneIcons[5];
+				uISprite3.color = new Color(uISprite3.color.r, uISprite3.color.g, uISprite3.color.b, 0.5f);
 			}
-			UISprite uISprite3 = PhoneIcons[8];
-			uISprite3.color = new Color(uISprite3.color.r, uISprite3.color.g, uISprite3.color.b, 0.5f);
-			UISprite uISprite4 = PhoneIcons[9];
+			UISprite uISprite4 = PhoneIcons[8];
 			uISprite4.color = new Color(uISprite4.color.r, uISprite4.color.g, uISprite4.color.b, 0.5f);
-			UISprite uISprite5 = PhoneIcons[10];
+			UISprite uISprite5 = PhoneIcons[9];
 			uISprite5.color = new Color(uISprite5.color.r, uISprite5.color.g, uISprite5.color.b, 0.5f);
-			UISprite uISprite6 = PhoneIcons[11];
+			UISprite uISprite6 = PhoneIcons[10];
 			uISprite6.color = new Color(uISprite6.color.r, uISprite6.color.g, uISprite6.color.b, 0.5f);
-			UISprite uISprite7 = PhoneIcons[13];
+			UISprite uISprite7 = PhoneIcons[11];
 			uISprite7.color = new Color(uISprite7.color.r, uISprite7.color.g, uISprite7.color.b, 0.5f);
-			UISprite uISprite8 = PhoneIcons[15];
+			UISprite uISprite8 = PhoneIcons[13];
 			uISprite8.color = new Color(uISprite8.color.r, uISprite8.color.g, uISprite8.color.b, 0.5f);
-			UISprite uISprite9 = PhoneIcons[17];
+			UISprite uISprite9 = PhoneIcons[15];
 			uISprite9.color = new Color(uISprite9.color.r, uISprite9.color.g, uISprite9.color.b, 0.5f);
 			UISprite uISprite10 = PhoneIcons[16];
 			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.5f);
+			UISprite uISprite11 = PhoneIcons[17];
+			uISprite11.color = new Color(uISprite11.color.r, uISprite11.color.g, uISprite11.color.b, 0.5f);
+			UISprite uISprite12 = PhoneIcons[18];
+			uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 0.5f);
 			if (NewMissionModeWindow != null)
 			{
 				NewMissionModeWindow.SetActive(value: false);
@@ -249,19 +258,21 @@ public class PauseScreenScript : MonoBehaviour
 		}
 		if (MissionModeGlobals.MissionMode)
 		{
-			UISprite uISprite11 = PhoneIcons[7];
-			uISprite11.color = new Color(uISprite11.color.r, uISprite11.color.g, uISprite11.color.b, 0.5f);
-			UISprite uISprite12 = PhoneIcons[9];
-			uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 0.5f);
-			UISprite uISprite13 = PhoneIcons[10];
-			uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 1f);
-			UISprite uISprite14 = PhoneIcons[17];
+			UISprite uISprite13 = PhoneIcons[7];
+			uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 0.5f);
+			UISprite uISprite14 = PhoneIcons[9];
 			uISprite14.color = new Color(uISprite14.color.r, uISprite14.color.g, uISprite14.color.b, 0.5f);
+			UISprite uISprite15 = PhoneIcons[10];
+			uISprite15.color = new Color(uISprite15.color.r, uISprite15.color.g, uISprite15.color.b, 1f);
+			UISprite uISprite16 = PhoneIcons[17];
+			uISprite16.color = new Color(uISprite16.color.r, uISprite16.color.g, uISprite16.color.b, 0.5f);
+			UISprite uISprite17 = PhoneIcons[18];
+			uISprite17.color = new Color(uISprite17.color.r, uISprite17.color.g, uISprite17.color.b, 0.5f);
 		}
 		if (NoInfo)
 		{
-			UISprite uISprite15 = PhoneIcons[5];
-			uISprite15.color = new Color(uISprite15.color.r, uISprite15.color.g, uISprite15.color.b, 0.5f);
+			UISprite uISprite18 = PhoneIcons[5];
+			uISprite18.color = new Color(uISprite18.color.r, uISprite18.color.g, uISprite18.color.b, 0.5f);
 		}
 		for (int k = 1; k < PhoneIcons.Length; k++)
 		{
@@ -270,7 +281,6 @@ public class PauseScreenScript : MonoBehaviour
 				PhoneShadows[k].enabled = false;
 			}
 		}
-		PhoneShadows[18].enabled = false;
 		UpdateSelection();
 		CorrectingTime = false;
 		QuitLabel.text = "Do you wish to return to the main menu?";
@@ -783,6 +793,15 @@ public class PauseScreenScript : MonoBehaviour
 						{
 							ShowScheduleScreen();
 						}
+						else if (Selected == 18)
+						{
+							SocialMedia.gameObject.SetActive(value: true);
+							MainMenu.SetActive(value: false);
+							SocialMedia.Selected = 1;
+							SocialMedia.Column = 1;
+							SocialMedia.Row = 1;
+							SocialMedia.UpdateHighlight();
+						}
 					}
 				}
 				else if (!PressedB)
@@ -1136,6 +1155,11 @@ public class PauseScreenScript : MonoBehaviour
 				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 				Reason = "You cannot save the game while bloody clothing is present at school.";
 			}
+			if (IronMaiden.Corpse != null)
+			{
+				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+				Reason = "You cannot save the game while a corpse is inside the iron maiden.";
+			}
 		}
 		if (PhoneIcons[9].alpha == 0.5f)
 		{
@@ -1187,8 +1211,9 @@ public class PauseScreenScript : MonoBehaviour
 		InventoryMenu.gameObject.SetActive(value: false);
 		PhotoGallery.gameObject.SetActive(value: false);
 		SaveLoadMenu.gameObject.SetActive(value: false);
-		ServiceMenu.gameObject.SetActive(value: false);
 		NewSettings.gameObject.SetActive(value: false);
+		ServiceMenu.gameObject.SetActive(value: false);
+		SocialMedia.gameObject.SetActive(value: false);
 		AudioMenu.gameObject.SetActive(value: false);
 		FavorMenu.gameObject.SetActive(value: false);
 		IdeasMenu.gameObject.SetActive(value: false);

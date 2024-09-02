@@ -359,7 +359,6 @@ public class ModernRivalSabotageScript : MonoBehaviour
 
 	public void Disable()
 	{
-		Debug.Log("My name is " + base.gameObject.name + " and I am disabling myself now.");
 		if (SabotageChecklist != null)
 		{
 			SabotageChecklist.alpha = 0f;

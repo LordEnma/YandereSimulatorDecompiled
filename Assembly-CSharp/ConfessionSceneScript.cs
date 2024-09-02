@@ -104,6 +104,7 @@ public class ConfessionSceneScript : MonoBehaviour
 					Rival = StudentManager.Students[LoveManager.RivalID];
 					Rival.transform.position = RivalSpot.position;
 					Rival.transform.eulerAngles = RivalSpot.eulerAngles;
+					Debug.Log("Now activating blush on Suitor.");
 					Suitor.Cosmetic.MyRenderer.materials[Suitor.Cosmetic.FaceID].SetTexture("_OverlayTex", BlushTexture);
 					Suitor.Cosmetic.MyRenderer.materials[Suitor.Cosmetic.FaceID].SetFloat("_BlendAmount", 1f);
 					Suitor.transform.eulerAngles = StudentManager.SuitorConfessionSpot.eulerAngles;

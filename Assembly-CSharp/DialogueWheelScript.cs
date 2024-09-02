@@ -1166,8 +1166,12 @@ public class DialogueWheelScript : MonoBehaviour
 			else if (Yandere.TargetStudent.StudentID == 65 && TaskManager.TaskStatus[65] == 1)
 			{
 				Debug.Log("Disabling the car battery, since Homu took it.");
-				if (Yandere.Bookbag != null && Yandere.Bookbag.ConcealedPickup != null && Yandere.Bookbag.ConcealedPickup.gameObject == TaskManager.CarBattery)
+				Debug.Log(Yandere.Bookbag);
+				Debug.Log(Yandere.Bookbag.ConcealedPickup);
+				Debug.Log(TaskManager.CarBattery);
+				if (Yandere.Bookbag != null && Yandere.Bookbag.ConcealedPickup != null && Yandere.Bookbag.ConcealedPickup == TaskManager.CarBattery)
 				{
+					Debug.Log("Supposed to be removing car battery from bookbag now.");
 					Yandere.Bookbag.RemoveContents();
 					Yandere.EmptyHands();
 				}

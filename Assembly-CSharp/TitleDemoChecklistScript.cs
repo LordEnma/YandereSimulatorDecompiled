@@ -519,4 +519,49 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		PlayerPrefs.SetInt("Yakuza", Checklist[39]);
 		PlayerPrefs.SetInt("Yanvania", Checklist[40]);
 	}
+
+	private void ObtainAllChallenges()
+	{
+		PlayerPrefs.SetInt("Attack", 1);
+		PlayerPrefs.SetInt("Befriend", 1);
+		PlayerPrefs.SetInt("Betray", 1);
+		PlayerPrefs.SetInt("Bully", 1);
+		PlayerPrefs.SetInt("Burn", 1);
+		PlayerPrefs.SetInt("Crush", 1);
+		PlayerPrefs.SetInt("Drown", 1);
+		PlayerPrefs.SetInt("Electrocute", 1);
+		PlayerPrefs.SetInt("Expel", 1);
+		PlayerPrefs.SetInt("Fan", 1);
+		PlayerPrefs.SetInt("Frame", 1);
+		PlayerPrefs.SetInt("Kidnap", 1);
+		PlayerPrefs.SetInt("Matchmake", 1);
+		PlayerPrefs.SetInt("MurderSuicide", 1);
+		PlayerPrefs.SetInt("Poison", 1);
+		PlayerPrefs.SetInt("Pool", 1);
+		PlayerPrefs.SetInt("Push", 1);
+		PlayerPrefs.SetInt("Reject", 1);
+		PlayerPrefs.SetInt("Suicide", 1);
+		PlayerPrefs.SetInt("DrivenToMurder", 1);
+		PlayerPrefs.SetInt("HeadHunter", 1);
+		PlayerPrefs.SetInt("PantyQueen", 1);
+		PlayerPrefs.SetInt("RichGirl", 1);
+		PlayerPrefs.SetInt("WeaponMaster", 1);
+		PlayerPrefs.SetInt("HeadsHunted", 1);
+		PlayerPrefs.SetInt("Alphabet", 1);
+		PlayerPrefs.SetInt("Amai", 1);
+		PlayerPrefs.SetInt("Dance", 1);
+		PlayerPrefs.SetInt("Genocide", 1);
+		PlayerPrefs.SetInt("Headmaster", 1);
+		PlayerPrefs.SetInt("Journalist", 1);
+		PlayerPrefs.SetInt("LifeNote", 1);
+		PlayerPrefs.SetInt("Maid", 1);
+		PlayerPrefs.SetInt("Mission", 1);
+		PlayerPrefs.SetInt("Miyuki", 1);
+		PlayerPrefs.SetInt("Basement", 1);
+		PlayerPrefs.SetInt("Panther", 1);
+		PlayerPrefs.SetInt("Selene", 1);
+		PlayerPrefs.SetInt("SNAP", 1);
+		PlayerPrefs.SetInt("Yakuza", 1);
+		PlayerPrefs.SetInt("Yanvania", 1);
+	}
 }

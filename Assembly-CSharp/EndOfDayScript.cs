@@ -1300,6 +1300,20 @@ public class EndOfDayScript : MonoBehaviour
 				Yandere.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
 				Label.text = Protagonist + " returns home, thinking of Senpai every step of the way.";
 			}
+			Debug.Log("Time to disable all corpses!");
+			if (Police.Corpses > 0)
+			{
+				RagdollScript[] corpseList = Police.CorpseList;
+				foreach (RagdollScript ragdollScript2 in corpseList)
+				{
+					if (ragdollScript2 != null)
+					{
+						Debug.Log("Disabling the corpse of " + ragdollScript2.Student.Name + "!");
+						ragdollScript2.gameObject.SetActive(value: false);
+					}
+				}
+			}
+			StudentManager.BloodParent.gameObject.SetActive(value: false);
 			Physics.SyncTransforms();
 			Phase++;
 		}
@@ -1987,10 +2001,10 @@ public class EndOfDayScript : MonoBehaviour
 			Label.text = "The paramedics attempt to resuscitate the poisoned student, but they are unable to revive her. The police treat the incident as a murder case, and search the school for any other victims.";
 			for (ID = 0; ID < Police.CorpseList.Length; ID++)
 			{
-				RagdollScript ragdollScript2 = Police.CorpseList[ID];
-				if (ragdollScript2 != null && ragdollScript2.Poisoned)
+				RagdollScript ragdollScript3 = Police.CorpseList[ID];
+				if (ragdollScript3 != null && ragdollScript3.Poisoned)
 				{
-					ragdollScript2 = null;
+					ragdollScript3 = null;
 					if (Police.Corpses > 0)
 					{
 						Police.Corpses--;
@@ -2017,10 +2031,10 @@ public class EndOfDayScript : MonoBehaviour
 			Label.text = "The police determine that " + Police.DrownedStudentName + " died from drowning. The police treat the death as a possible murder, and search the school for any other victims.";
 			for (ID = 0; ID < Police.CorpseList.Length; ID++)
 			{
-				RagdollScript ragdollScript3 = Police.CorpseList[ID];
-				if (ragdollScript3 != null)
+				RagdollScript ragdollScript4 = Police.CorpseList[ID];
+				if (ragdollScript4 != null)
 				{
-					if (ragdollScript3.Student.StudentID == StudentManager.RivalID)
+					if (ragdollScript4.Student.StudentID == StudentManager.RivalID)
 					{
 						Debug.Log("The player drowned the rival.");
 						if (RivalEliminationMethod == RivalEliminationType.None)
@@ -2037,9 +2051,9 @@ public class EndOfDayScript : MonoBehaviour
 							PlayerPrefs.SetInt("a", 1);
 						}
 					}
-					if (ragdollScript3.Drowned)
+					if (ragdollScript4.Drowned)
 					{
-						ragdollScript3 = null;
+						ragdollScript4 = null;
 						if (Police.Corpses > 0)
 						{
 							Police.Corpses--;
@@ -2055,10 +2069,10 @@ public class EndOfDayScript : MonoBehaviour
 			Label.text = "The police determine that " + Police.ElectrocutedStudentName + " died from being electrocuted. The police treat the death as a possible murder, and search the school for any other victims.";
 			for (ID = 0; ID < Police.CorpseList.Length; ID++)
 			{
-				RagdollScript ragdollScript4 = Police.CorpseList[ID];
-				if (ragdollScript4 != null && ragdollScript4.Electrocuted)
+				RagdollScript ragdollScript5 = Police.CorpseList[ID];
+				if (ragdollScript5 != null && ragdollScript5.Electrocuted)
 				{
-					if (ragdollScript4.Student.StudentID == StudentManager.RivalID)
+					if (ragdollScript5.Student.StudentID == StudentManager.RivalID)
 					{
 						Debug.Log("The game should now be informing the Content Checklist that the player has performed an electrocution.");
 						if (!GameGlobals.Debug)
@@ -2919,6 +2933,8 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			GameGlobals.RobotDestroyed = true;
 		}
+		PlayerGlobals.BroughtCarrotsToSchool = false;
+		GameGlobals.CorkboardScene = true;
 	}
 
 	private void DisableThings(StudentScript TargetStudent)

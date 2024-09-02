@@ -110,10 +110,12 @@ public class StreetShopScript : MonoBehaviour
 				Costs[2] = 29.81f;
 				Products[3] = "Remote-Controlled Toy Car";
 				Costs[3] = 9.95f;
+				Unavailable[4] = true;
 				Products[4] = "Tape Player With Headphones";
-				Descs[4] = "No functionality in the demo.";
+				Descs[4] = "No functionality in 1980s Mode.";
 				Costs[4] = 34.97f;
-				Descs[5] = "No functionality in the demo.";
+				Unavailable[5] = true;
+				Descs[5] = "No functionality in 1980s Mode.";
 				Costs[5] = 66.28f;
 			}
 			else if (StoreType == ShopType.Manga)

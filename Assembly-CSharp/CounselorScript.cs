@@ -1138,7 +1138,7 @@ public class CounselorScript : MonoBehaviour
 			{
 				Labels[3].alpha = 1f;
 			}
-			if ((StudentManager.RivalBookBag.StolenRing && !ReportedTheft) || (StudentManager.RivalBookBag.StolenProperty && !ReportedTheft))
+			if ((StudentManager.RivalBookBag.Utensils && !ReportedTheft) || (StudentManager.RivalBookBag.StolenRing && !ReportedTheft) || (StudentManager.RivalBookBag.StolenProperty && !ReportedTheft))
 			{
 				Labels[4].alpha = 1f;
 			}

@@ -118,7 +118,7 @@ public class LoveManagerScript : MonoBehaviour
 					{
 						if (!Follower.Gush)
 						{
-							Follower.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 1f);
+							Follower.Cosmetic.MyRenderer.materials[Follower.Cosmetic.FaceID].SetFloat("_BlendAmount", 1f);
 							Follower.GushTarget = transform;
 							ParticleSystem.EmissionModule emission = Follower.Hearts.emission;
 							emission.enabled = true;
@@ -129,7 +129,7 @@ public class LoveManagerScript : MonoBehaviour
 					}
 					else
 					{
-						Follower.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 0f);
+						Follower.Cosmetic.MyRenderer.materials[Follower.Cosmetic.FaceID].SetFloat("_BlendAmount", 0f);
 						ParticleSystem.EmissionModule emission2 = Follower.Hearts.emission;
 						emission2.enabled = false;
 						Follower.Gush = false;
@@ -199,7 +199,7 @@ public class LoveManagerScript : MonoBehaviour
 				emission3.enabled = false;
 				Rival.MyController.radius = 0.12f;
 				Rival.enabled = true;
-				Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 0f);
+				Rival.Cosmetic.MyRenderer.materials[Rival.Cosmetic.FaceID].SetFloat("_BlendAmount", 0f);
 				ParticleSystem.EmissionModule emission4 = Rival.Hearts.emission;
 				emission4.enabled = false;
 				Suitor.HoldingHands = false;
@@ -257,7 +257,7 @@ public class LoveManagerScript : MonoBehaviour
 			emission.enabled = true;
 			emission.rateOverTime = 5f;
 			Suitor.Hearts.Play();
-			Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 1f);
+			Rival.Cosmetic.MyRenderer.materials[Rival.Cosmetic.FaceID].SetFloat("_BlendAmount", 1f);
 			ParticleSystem.EmissionModule emission2 = Rival.Hearts.emission;
 			emission2.enabled = true;
 			emission2.rateOverTime = 5f;

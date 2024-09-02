@@ -65,7 +65,12 @@ public class StruggleBarScript : MonoBehaviour
 				Debug.Log("Either player is in the martial arts club, or player's target has a Strength of 0.");
 				Victory = 100f;
 			}
-			if (Input.GetButtonDown(CurrentButton))
+			bool flag = false;
+			if ((Input.GetButtonDown(InputNames.Xbox_A) && CurrentButton != InputNames.Xbox_A) || (Input.GetButtonDown(InputNames.Xbox_B) && CurrentButton != InputNames.Xbox_B) || (Input.GetButtonDown(InputNames.Xbox_X) && CurrentButton != InputNames.Xbox_X) || (Input.GetButtonDown(InputNames.Xbox_Y) && CurrentButton != InputNames.Xbox_Y))
+			{
+				flag = true;
+			}
+			if (!flag && Input.GetButtonDown(CurrentButton))
 			{
 				Victory += Time.deltaTime * (500f + (float)(Yandere.Class.PhysicalGrade + Yandere.Class.PhysicalBonus) * 150f);
 			}

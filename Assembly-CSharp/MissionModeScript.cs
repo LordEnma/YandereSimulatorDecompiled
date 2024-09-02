@@ -1572,6 +1572,7 @@ public class MissionModeScript : MonoBehaviour
 			if (Target[i] > 0)
 			{
 				Debug.Log("One of the targets is Student #" + Target[i] + ", so we are setting StudentManager.StudentPhotographed[" + Target[i] + "] to " + StudentManager.StudentPhotographed[Target[i]]);
+				StudentManager.Students[Target[i]].MissionModeTarget = true;
 			}
 		}
 	}

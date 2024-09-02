@@ -19,6 +19,8 @@ public class InventoryScript : MonoBehaviour
 
 	public bool DuplicateSheet;
 
+	public bool AmericanFlag;
+
 	public bool AnswerSheet;
 
 	public bool MaskingTape;
@@ -183,8 +185,11 @@ public class InventoryScript : MonoBehaviour
 
 	public bool ArrivedWithPoison;
 
+	public bool BroughtCarrotsToSchool;
+
 	private void Start()
 	{
+		BroughtCarrotsToSchool = PlayerGlobals.BroughtCarrotsToSchool;
 		DirectionalMic = PlayerGlobals.DirectionalMic;
 		Headset = PlayerGlobals.Headset;
 		SenpaiShots = PlayerGlobals.SenpaiShots;

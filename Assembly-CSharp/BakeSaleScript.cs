@@ -34,7 +34,7 @@ public class BakeSaleScript : MonoBehaviour
 			{
 				IncreaseID();
 			}
-			if (StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors && !StudentManager.Students[ID].Slave && !StudentManager.Students[ID].Bullied && !StudentManager.Students[ID].Meeting && !StudentManager.Students[ID].ClubAttire && !StudentManager.Students[ID].Distracted && !StudentManager.Students[ID].DressCode && !StudentManager.Students[ID].Investigating && StudentManager.Students[ID].Schoolwear == 1 && StudentManager.Students[ID].ClubActivityPhase < 16)
+			if (StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors && !StudentManager.Students[ID].Slave && !StudentManager.Students[ID].Bullied && !StudentManager.Students[ID].Meeting && !StudentManager.Students[ID].ClubAttire && !StudentManager.Students[ID].Distracted && !StudentManager.Students[ID].DressCode && !StudentManager.Students[ID].Investigating && StudentManager.Students[ID].Schoolwear == 1 && StudentManager.Students[ID].ClubActivityPhase < 16 && StudentManager.Students[ID].Club != ClubType.Delinquent)
 			{
 				Timer = 0f;
 				StudentManager.Students[ID].Meeting = true;

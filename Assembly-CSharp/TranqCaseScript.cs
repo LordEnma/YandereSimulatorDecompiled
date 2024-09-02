@@ -111,6 +111,7 @@ public class TranqCaseScript : MonoBehaviour
 			Ragdoll.Student.OsanaHairR.transform.localScale = Vector3.MoveTowards(Ragdoll.Student.OsanaHairR.transform.localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
 			if (Rotation < 1f)
 			{
+				Ragdoll.Student.Cosmetic.FemaleHair[Ragdoll.Student.Cosmetic.Hairstyle].SetActive(value: false);
 				DoorBlocker.enabled = false;
 				Door.Prompt.enabled = true;
 				Door.enabled = true;

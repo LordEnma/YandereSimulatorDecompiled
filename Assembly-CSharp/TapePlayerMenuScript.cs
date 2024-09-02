@@ -213,22 +213,21 @@ public class TapePlayerMenuScript : MonoBehaviour
 					Time.timeScale = 1f;
 					FadeIn = true;
 				}
+				return;
 			}
-			else
+			if (TapePlayerDarkness.alpha == 1f)
 			{
-				if (TapePlayerDarkness.alpha == 1f)
-				{
-					StudentManager.Yandere.SetAnimationLayers();
-					StudentManager.UpdateAllAnimLayers();
-				}
-				TapePlayerDarkness.alpha -= Time.unscaledDeltaTime;
-				if (TapePlayerDarkness.alpha <= 0f)
-				{
-					TapePlayerDarkness.alpha = 0f;
-					Jukebox.SetActive(value: true);
-					FadeOut = false;
-					FadeIn = false;
-				}
+				StudentManager.Yandere.SetAnimationLayers();
+				StudentManager.UpdateAllAnimLayers();
+			}
+			TapePlayerDarkness.alpha -= Time.unscaledDeltaTime;
+			if (TapePlayerDarkness.alpha <= 0f)
+			{
+				CheckBasementCompletion();
+				TapePlayerDarkness.alpha = 0f;
+				Jukebox.SetActive(value: true);
+				FadeOut = false;
+				FadeIn = false;
 			}
 			return;
 		}

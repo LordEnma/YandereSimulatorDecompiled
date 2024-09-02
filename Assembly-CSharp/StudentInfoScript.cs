@@ -205,6 +205,10 @@ public class StudentInfoScript : MonoBehaviour
 				{
 					Debug.Log("This character was the rival.");
 					CrushLabel.text = "None Anymore";
+					if (Eighties && !StudentGlobals.GetStudentDead(CurrentStudent))
+					{
+						PersonaLabel.text = EliminatedEightiesRivalPersona(CurrentStudent);
+					}
 				}
 			}
 			else if (CurrentStudent == num2)
@@ -834,6 +838,11 @@ public class StudentInfoScript : MonoBehaviour
 
 	private void UpdateTopics()
 	{
+		Debug.Log("UpdateTopics() has just been called.");
+		if (!StudentManager.TopicsLoaded)
+		{
+			StudentManager.LoadTopicsLearned();
+		}
 		int num = 0;
 		int num2 = 0;
 		for (int i = 1; i < TopicIcons.Length; i++)
@@ -1008,5 +1017,44 @@ public class StudentInfoScript : MonoBehaviour
 			PromptBar.Label[2].text = "Tag";
 		}
 		PromptBar.UpdateButtons();
+	}
+
+	private string EliminatedEightiesRivalPersona(int StudentID)
+	{
+		string result = "";
+		switch (StudentID)
+		{
+		case 11:
+			result = "Snitch";
+			break;
+		case 12:
+			result = "Snitch";
+			break;
+		case 13:
+			result = "Coward";
+			break;
+		case 14:
+			result = "Heroic";
+			break;
+		case 15:
+			result = "Loner";
+			break;
+		case 16:
+			result = "Snitch";
+			break;
+		case 17:
+			result = "Teacher's Pet";
+			break;
+		case 18:
+			result = "Teacher's Pet";
+			break;
+		case 19:
+			result = "Snitch";
+			break;
+		case 20:
+			result = "Heroic";
+			break;
+		}
+		return result;
 	}
 }

@@ -446,6 +446,12 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] Task21Lines;
 
+	public string[] Task22Lines;
+
+	public string[] Task23Lines;
+
+	public string[] Task24Lines;
+
 	public string[] Task25Lines;
 
 	public string[] Task28Lines;
@@ -787,6 +793,12 @@ public class SubtitleScript : MonoBehaviour
 	public AudioClip[] Task20Clips;
 
 	public AudioClip[] Task21Clips;
+
+	public AudioClip[] Task22Clips;
+
+	public AudioClip[] Task23Clips;
+
+	public AudioClip[] Task24Clips;
 
 	public AudioClip[] Task25Clips;
 
@@ -1278,7 +1290,7 @@ public class SubtitleScript : MonoBehaviour
 			StrictReport[3] = "...no...impossible...";
 			CasualReport[1] = "Devo contar a uma professora!";
 			CasualReport[2] = "Emergency! Dead body! Follow me!";
-			CasualReport[3] = "O que está acontecendo aqui...";
+			CasualReport[3] = "O que diabos está acontecendo aqui...";
 			GraceReport[1] = "The teachers need to hear about this!";
 			GraceReport[2] = "Help! Help! Somebody's dead!";
 			GraceReport[3] = "No! Wait! I'm telling the truth! I swear!";
@@ -1733,6 +1745,18 @@ public class SubtitleScript : MonoBehaviour
 			{
 				SubtitleType.Task21Line,
 				new AudioClipArrayWrapper(Task21Clips)
+			},
+			{
+				SubtitleType.Task22Line,
+				new AudioClipArrayWrapper(Task22Clips)
+			},
+			{
+				SubtitleType.Task23Line,
+				new AudioClipArrayWrapper(Task23Clips)
+			},
+			{
+				SubtitleType.Task24Line,
+				new AudioClipArrayWrapper(Task24Clips)
 			},
 			{
 				SubtitleType.Task25Line,
@@ -3163,6 +3187,18 @@ public class SubtitleScript : MonoBehaviour
 				Label.text = Task21Lines[ID];
 				PlayVoice(subtitleType, ID);
 				break;
+			case SubtitleType.Task22Line:
+				Label.text = Task22Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.Task23Line:
+				Label.text = Task23Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.Task24Line:
+				Label.text = Task24Lines[ID];
+				PlayVoice(subtitleType, ID);
+				break;
 			case SubtitleType.Task25Line:
 				Label.text = Task25Lines[ID];
 				PlayVoice(subtitleType, ID);
@@ -3686,6 +3722,12 @@ public class SubtitleScript : MonoBehaviour
 				return Task20Clips[TaskPhase].length;
 			case 21:
 				return Task21Clips[TaskPhase].length;
+			case 22:
+				return Task22Clips[TaskPhase].length;
+			case 23:
+				return Task23Clips[TaskPhase].length;
+			case 24:
+				return Task24Clips[TaskPhase].length;
 			case 25:
 				return Task25Clips[TaskPhase].length;
 			case 28:

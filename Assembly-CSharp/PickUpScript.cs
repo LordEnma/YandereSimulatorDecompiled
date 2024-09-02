@@ -291,30 +291,18 @@ public class PickUpScript : MonoBehaviour
 		}
 		if (BodyBags > 0 && GameGlobals.EightiesTutorial)
 		{
-			Prompt.Text[3] = "Makeshift Body Bag";
 			Prompt.Label[3].text = "     " + Prompt.Text[3];
 			BodyBags = 1;
+		}
+		if (Mop != null)
+		{
+			Suspicious = false;
 		}
 		KeepActive = true;
 	}
 
 	private void LateUpdate()
 	{
-		if (CleaningProduct)
-		{
-			if (Clock == null)
-			{
-				Clock = Yandere.StudentManager.Clock;
-			}
-			if (Clock.Period == 5)
-			{
-				Suspicious = false;
-			}
-			else
-			{
-				Suspicious = true;
-			}
-		}
 		if (Weight)
 		{
 			Strength = Prompt.Yandere.Class.PhysicalGrade + Prompt.Yandere.Class.PhysicalBonus;

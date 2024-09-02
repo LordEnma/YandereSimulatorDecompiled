@@ -969,7 +969,7 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	private void UpdateModeDescLabels()
 	{
-		ModeDescLabel[1].text = "Play as " + VtuberNames[GameGlobals.VtuberID] + " in the year 2023.\n\nThis mode is still in development, and currently only features one rival girl.";
+		ModeDescLabel[1].text = "Play as " + VtuberNames[GameGlobals.VtuberID] + " in the year 2026.\n\nThis mode is still in development, and currently only features one rival girl.";
 		ModeDescLabel[2].text = "Play as " + VtuberNames[GameGlobals.VtuberID] + " in the year 1989.\n\nThis mode is complete, and features ten rival girls.";
 		VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
 		RyobaHair.transform.position = new Vector3(0f, 100f, 0f);

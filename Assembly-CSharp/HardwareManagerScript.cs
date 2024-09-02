@@ -6,6 +6,8 @@ public class HardwareManagerScript : MonoBehaviour
 
 	public WeaponScript[] Hardware;
 
+	public GameObject Carrots;
+
 	private void Start()
 	{
 		for (int i = 1; i < 11; i++)
@@ -22,6 +24,7 @@ public class HardwareManagerScript : MonoBehaviour
 		}
 		if (PlayerGlobals.BringingHardware > 1)
 		{
+			Debug.Log("PlayerGlobals.BringingHardware is: " + PlayerGlobals.BringingHardware);
 			Yandere.transform.position = new Vector3(9f, 0f, -95f);
 			Hardware[PlayerGlobals.BringingHardware].gameObject.SetActive(value: true);
 			base.gameObject.SetActive(value: true);
@@ -29,6 +32,17 @@ public class HardwareManagerScript : MonoBehaviour
 		else
 		{
 			base.gameObject.SetActive(value: false);
+		}
+		if (PlayerGlobals.BroughtCarrotsToSchool || PlayerGlobals.BringingItem == 12)
+		{
+			Debug.Log("PlayerGlobals.BroughtCarrotsToSchool is: " + PlayerGlobals.BroughtCarrotsToSchool);
+			Debug.Log("PlayerGlobals.BringingItem is: " + PlayerGlobals.BringingItem);
+			Yandere.transform.position = new Vector3(9f, 0f, -95f);
+			base.gameObject.SetActive(value: true);
+			if (PlayerGlobals.BroughtCarrotsToSchool)
+			{
+				Carrots.SetActive(value: true);
+			}
 		}
 	}
 }

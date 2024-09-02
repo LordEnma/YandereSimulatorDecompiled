@@ -100,6 +100,7 @@ public class DreamYandereScript : MonoBehaviour
 		}
 		invertAxisY = OptionGlobals.InvertAxisY;
 		sensitivity = OptionGlobals.Sensitivity;
+		GameGlobals.ExperiencedDream = true;
 		UpdateDOF(2f, 5.6f);
 	}
 

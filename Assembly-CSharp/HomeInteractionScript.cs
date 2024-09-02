@@ -6,6 +6,8 @@ public class HomeInteractionScript : MonoBehaviour
 
 	public CookingMenuScript CookingMenu;
 
+	public CarrotMenuScript CarrotMenu;
+
 	public GameObject ObjectToActivate;
 
 	public HomeYandereScript Yandere;
@@ -27,6 +29,19 @@ public class HomeInteractionScript : MonoBehaviour
 	public bool Move;
 
 	public int ID;
+
+	private void Start()
+	{
+		if (ID == 6 && TaskGlobals.GetTaskStatus(22) != 1)
+		{
+			Label.enabled = false;
+			base.enabled = false;
+			if (TaskGlobals.GetTaskStatus(22) == 3)
+			{
+				ObjectToActivate.SetActive(value: false);
+			}
+		}
+	}
 
 	private void Update()
 	{
@@ -73,6 +88,11 @@ public class HomeInteractionScript : MonoBehaviour
 				CookingMenu.HomeWindow.Show = true;
 				CookingMenu.UpdateLabels();
 				CookingMenu.Show = true;
+			}
+			else if (ID == 6)
+			{
+				Yandere.CanMove = false;
+				CarrotMenu.Show = true;
 			}
 		}
 		if (Move)

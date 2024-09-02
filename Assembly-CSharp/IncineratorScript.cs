@@ -88,11 +88,19 @@ public class IncineratorScript : MonoBehaviour
 
 	public int[] ConfirmedDead;
 
+	public Texture EightiesTexture;
+
+	public Renderer MyRenderer;
+
 	private void Start()
 	{
 		Panel.SetActive(value: false);
 		Prompt.enabled = true;
 		MyAudio = GetComponent<AudioSource>();
+		if (GameGlobals.Eighties)
+		{
+			MyRenderer.material.mainTexture = EightiesTexture;
+		}
 	}
 
 	public void ReturnFromSave()

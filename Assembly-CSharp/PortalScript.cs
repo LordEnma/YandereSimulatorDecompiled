@@ -298,6 +298,7 @@ public class PortalScript : MonoBehaviour
 				{
 					if (Clock.HourTime < 15.5f)
 					{
+						Debug.Log("Checking if we need to activate the plates for the bake sale yet.");
 						Yandere.CharacterAnimation.CrossFade("f02_takingNotes_00");
 						Yandere.LifeNotePen.SetActive(value: true);
 						Yandere.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
@@ -510,7 +511,7 @@ public class PortalScript : MonoBehaviour
 			}
 			else
 			{
-				Yandere.transform.position = new Vector3(-9.62f, 4f, -26f);
+				Yandere.transform.position = new Vector3(-9.62f, 4f, -25.999f);
 				Yandere.CharacterAnimation.CrossFade("f02_takingNotes_00");
 				ClassDarkness.alpha = Mathf.MoveTowards(ClassDarkness.alpha, 0f, Time.deltaTime);
 			}
@@ -766,32 +767,35 @@ public class PortalScript : MonoBehaviour
 				ModernMorningEvents[i].EndEvent();
 			}
 		}
-		for (int i = 0; i < FriendEvents.Length; i++)
+		if (StudentManager.Week == 1)
 		{
-			if (FriendEvents[i].enabled)
+			for (int i = 0; i < FriendEvents.Length; i++)
 			{
-				FriendEvents[i].EndEvent();
+				if (FriendEvents[i].enabled)
+				{
+					FriendEvents[i].EndEvent();
+				}
 			}
-		}
-		if (OsanaEvent.enabled)
-		{
-			OsanaEvent.EndEvent();
-		}
-		if (OsanaClubEvent.enabled)
-		{
-			OsanaClubEvent.EndEvent();
-		}
-		if (!OsanaClubEvent.enabled && !OsanaClubEvent.ReachedTheEnd && !StudentManager.Eighties)
-		{
-			OsanaClubEvent.CheckForRooftopConvo();
-		}
-		if (OsanaFridayEvent1.enabled)
-		{
-			OsanaFridayEvent1.EndEvent();
-		}
-		if (OsanaFridayEvent2.enabled)
-		{
-			OsanaFridayEvent2.EndEvent();
+			if (OsanaEvent.enabled)
+			{
+				OsanaEvent.EndEvent();
+			}
+			if (OsanaClubEvent.enabled)
+			{
+				OsanaClubEvent.EndEvent();
+			}
+			if (!OsanaClubEvent.enabled && !OsanaClubEvent.ReachedTheEnd && !StudentManager.Eighties)
+			{
+				OsanaClubEvent.CheckForRooftopConvo();
+			}
+			if (OsanaFridayEvent1.enabled)
+			{
+				OsanaFridayEvent1.EndEvent();
+			}
+			if (OsanaFridayEvent2.enabled)
+			{
+				OsanaFridayEvent2.EndEvent();
+			}
 		}
 		for (int i = 1; i < MorningGenericEvents.Length; i++)
 		{
@@ -801,12 +805,15 @@ public class PortalScript : MonoBehaviour
 				MorningGenericEvents[i].EndEvent();
 			}
 		}
-		if (StudentManager.Students[StudentManager.RivalID] != null && StudentManager.Students[StudentManager.RivalID].BookBag.activeInHierarchy)
+		if (StudentManager.Students[StudentManager.RivalID] != null)
 		{
-			StudentManager.Students[StudentManager.RivalID].BookBag.SetActive(value: false);
-			StudentManager.RivalBookBag.gameObject.SetActive(value: true);
-			StudentManager.RivalBookBag.Prompt.Hide();
-			StudentManager.RivalBookBag.Prompt.enabled = true;
+			Debug.Log("The current rival is not null, so the game is about to check if it has to do something bookbag-related.");
+			if (StudentManager.Students[StudentManager.RivalID].BookBag.activeInHierarchy)
+			{
+				Debug.Log("The current rival's bookbag was present on their body.");
+				StudentManager.Students[StudentManager.RivalID].PlaceBag();
+				Debug.Log("The bookbag on the rival's body has been de-activated, and the generic ''Rival Bookbag'' gameObject at the rival's desk has been activated.");
+			}
 		}
 	}
 

@@ -11,7 +11,10 @@ public class InstantDeathColliderScript : MonoBehaviour
 		Frame++;
 		if (Frame > 1)
 		{
-			ScorchMarks.SetActive(value: true);
+			if (ScorchMarks != null)
+			{
+				ScorchMarks.SetActive(value: true);
+			}
 			Object.Destroy(base.gameObject);
 		}
 	}

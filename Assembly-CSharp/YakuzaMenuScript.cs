@@ -1238,7 +1238,7 @@ public class YakuzaMenuScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (Dialogue.isPlaying)
+		if (Dialogue.isPlaying && !Show && !Yandere.CanMove)
 		{
 			if (Dialogue.clip != null)
 			{

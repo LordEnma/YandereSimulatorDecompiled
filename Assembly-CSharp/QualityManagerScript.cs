@@ -921,7 +921,7 @@ public class QualityManagerScript : MonoBehaviour
 						AdjustRimLight(component2.material);
 					}
 				}
-				if (studentScript.Cosmetic.EyewearID > 0 && studentScript.Cosmetic.Eyewear.Length != 0)
+				if (studentScript.Cosmetic.EyewearID > 0 && studentScript.Cosmetic.Eyewear.Length != 0 && studentScript.Cosmetic.Eyewear[studentScript.Cosmetic.EyewearID] != null)
 				{
 					studentScript.Cosmetic.Eyewear[studentScript.Cosmetic.EyewearID].GetComponent<Renderer>().material.shader = NewHairShader;
 				}

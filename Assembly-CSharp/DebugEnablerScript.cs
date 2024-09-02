@@ -81,9 +81,16 @@ public class DebugEnablerScript : MonoBehaviour
 		base.gameObject.SetActive(value: false);
 		Skull.Prompt.enabled = true;
 		Skull.enabled = true;
-		if (!GameGlobals.Eighties && Yandere.StudentManager.Students[37] != null)
+		if (!GameGlobals.Eighties)
 		{
-			Yandere.StudentManager.Students[37].Cosmetic.HairRenderer.gameObject.GetComponent<BandanaScript>().enabled = true;
+			if (Yandere.StudentManager.Students[37] != null)
+			{
+				Yandere.StudentManager.Students[37].Cosmetic.HairRenderer.gameObject.GetComponent<BandanaScript>().enabled = true;
+			}
+			if (Yandere.StudentManager.Students[61] != null)
+			{
+				Yandere.StudentManager.Students[61].Cosmetic.HairRenderer.gameObject.GetComponent<BandanaScript>().enabled = true;
+			}
 		}
 	}
 }

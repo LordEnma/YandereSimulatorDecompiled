@@ -302,15 +302,24 @@ public class TallLockerScript : MonoBehaviour
 						Yandere.CoatBloodiness[Yandere.Gloves.GloveID] = Yandere.Bloodiness;
 						Yandere.Bloodiness = Yandere.OriginalBloodiness;
 						Yandere.WearingRaincoat = false;
-						if (!StudentManager.Eighties)
+						if (!StudentManager.CustomMode)
 						{
-							Yandere.Hairstyle = 1;
+							Debug.Log("The game believes that we are NOT in Custom Mode.");
+							if (!StudentManager.Eighties)
+							{
+								Yandere.Hairstyle = 1;
+							}
+							else
+							{
+								Yandere.Hairstyle = 203;
+							}
+							Yandere.UpdateHair();
 						}
 						else
 						{
-							Yandere.Hairstyle = 203;
+							Yandere.Hairstyle = Yandere.HairstyleBeforeRaincoat;
+							Yandere.UpdateHair();
 						}
-						Yandere.UpdateHair();
 					}
 					Yandere.Gloves = null;
 				}

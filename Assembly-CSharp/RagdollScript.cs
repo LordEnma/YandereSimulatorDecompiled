@@ -666,7 +666,6 @@ public class RagdollScript : MonoBehaviour
 				DumpTimer += Time.deltaTime;
 				if (Student.CharacterAnimation[DumpedAnim].time >= Student.CharacterAnimation[DumpedAnim].length)
 				{
-					Student.Cosmetic.FemaleHair[Student.Cosmetic.Hairstyle].SetActive(value: false);
 					TranqCase.Open = false;
 					if (AddingToCount)
 					{

@@ -227,7 +227,7 @@ public class AttackManagerScript : MonoBehaviour
 		WeaponScript equippedWeapon = Yandere.EquippedWeapon;
 		SanityType sanityType = Yandere.SanityType;
 		AttackTimer += Time.deltaTime * AnimSpeed;
-		if (Yandere.TargetStudent.StudentID == Yandere.StudentManager.RivalID && !Yandere.CanTranq && !Yandere.StudentManager.DisableRivalDeathSloMo && !Yandere.Noticed && !AlreadyDidSlowMo)
+		if ((!Yandere.StudentManager.MissionMode && Yandere.TargetStudent.StudentID == Yandere.StudentManager.RivalID && !Yandere.CanTranq && !Yandere.StudentManager.DisableRivalDeathSloMo && !Yandere.Noticed && !AlreadyDidSlowMo) || (Yandere.StudentManager.MissionMode && Yandere.TargetStudent.MissionModeTarget && !Yandere.CanTranq && !Yandere.StudentManager.DisableRivalDeathSloMo && !Yandere.Noticed && !AlreadyDidSlowMo))
 		{
 			if (AttackTimer < 1.5f)
 			{

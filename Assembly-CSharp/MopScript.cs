@@ -36,17 +36,6 @@ public class MopScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (PickUp.Clock != null)
-		{
-			if (PickUp.Clock.Period == 5)
-			{
-				PickUp.Suspicious = false;
-			}
-			else
-			{
-				PickUp.Suspicious = true;
-			}
-		}
 		if (Prompt.PauseScreen.Show)
 		{
 			return;

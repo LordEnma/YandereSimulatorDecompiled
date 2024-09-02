@@ -514,7 +514,7 @@ public class DatingMinigameScript : MonoBehaviour
 				Affection = Mathf.MoveTowards(Affection, 100f, Time.deltaTime * 10f);
 				CalculateAffection();
 			}
-			Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", Affection * 0.01f);
+			Rival.Cosmetic.MyRenderer.materials[Rival.Cosmetic.FaceID].SetFloat("_BlendAmount", Affection * 0.01f);
 			Rival.CharacterAnimation["f02_smile_00"].weight = Affection * 0.01f;
 			Highlight.localPosition = new Vector3(Highlight.localPosition.x, Mathf.Lerp(Highlight.localPosition.y, HighlightTarget, Time.deltaTime * 10f), Highlight.localPosition.z);
 			for (int i = 1; i < Options.Length; i++)
@@ -912,7 +912,7 @@ public class DatingMinigameScript : MonoBehaviour
 				Suitor.Routine = true;
 				Suitor.Hurry = false;
 				Suitor.MeetTimer = 0f;
-				Rival.Cosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount", 0f);
+				Rival.Cosmetic.MyRenderer.materials[Rival.Cosmetic.FaceID].SetFloat("_BlendAmount", 0f);
 				Rival.CurrentDestination = Rival.Destinations[Rival.Phase];
 				Rival.Pathfinding.target = Rival.Destinations[Rival.Phase];
 				Rival.CharacterAnimation["f02_smile_00"].weight = 0f;

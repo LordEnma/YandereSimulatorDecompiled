@@ -12,10 +12,13 @@ public class ElectrifiedPuddleScript : MonoBehaviour
 			if (component != null)
 			{
 				Debug.Log(component.Name + " came into contact with an electrified puddle!");
+				if (component.Yandere.Pursuer == component)
+				{
+					Debug.Log(component.Name + " is currently chasing the player, so the electricity won't affect them.");
+				}
 				if (!component.Electrified && component.Yandere.Pursuer != component)
 				{
 					component.Yandere.GazerEyes.ElectrocuteStudent(component);
-					base.gameObject.SetActive(value: false);
 					if (PowerSwitch != null)
 					{
 						PowerSwitch.On = false;

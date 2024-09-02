@@ -135,6 +135,7 @@ public class TaskManagerScript : MonoBehaviour
 
 	public void CheckTaskPickups()
 	{
+		Debug.Log("Checking Tasks that are completed by picking something up!");
 		if (StudentManager.Eighties)
 		{
 			return;
@@ -273,6 +274,30 @@ public class TaskManagerScript : MonoBehaviour
 					Debug.Log("Shoko's task should be ready to turn in!");
 					StudentManager.Students[21].TaskPhase = 5;
 				}
+			}
+			if (TaskStatus[22] == 1 && Yandere.Inventory.BroughtCarrotsToSchool)
+			{
+				Debug.Log("Kenko's task should be ready to turn in!");
+				StudentManager.Students[22].TaskPhase = 5;
+			}
+			if (TaskStatus[23] == 1)
+			{
+				Debug.Log("Kenko's Task has been accepted.");
+				if (Yandere.Inventory.AmericanFlag)
+				{
+					Debug.Log("Seiyo's task should be ready to turn in!");
+					StudentManager.Students[23].TaskPhase = 5;
+					Prompts[23].enabled = false;
+				}
+				else
+				{
+					Prompts[23].enabled = true;
+				}
+			}
+			if (TaskStatus[24] == 1 && GameGlobals.ExperiencedDream)
+			{
+				Debug.Log("Ajia's task should be ready to turn in!");
+				StudentManager.Students[24].TaskPhase = 5;
 			}
 			if (TaskStatus[25] == 1)
 			{
@@ -447,7 +472,7 @@ public class TaskManagerScript : MonoBehaviour
 				{
 					StudentManager.Students[65].TaskPhase = 4;
 				}
-				if ((!CarBattery.Broken && Vector3.Distance(StudentManager.Students[65].transform.position, CarBattery.transform.position) < 2f) || (Yandere.Bookbag != null && Yandere.Bookbag.ConcealedPickup != null && Yandere.Bookbag.ConcealedPickup.gameObject == CarBattery.gameObject && Vector3.Distance(StudentManager.Students[65].transform.position, Yandere.Bookbag.transform.position) < 2f))
+				if ((!CarBattery.Broken && Vector3.Distance(StudentManager.Students[65].transform.position, CarBattery.transform.position) < 2f) || (!CarBattery.Broken && Yandere.Bookbag != null && Yandere.Bookbag.ConcealedPickup != null && Yandere.Bookbag.ConcealedPickup.gameObject == CarBattery.gameObject && Vector3.Distance(StudentManager.Students[65].transform.position, Yandere.Bookbag.transform.position) < 2f))
 				{
 					Debug.Log("Homu's Task can be turned in.");
 					StudentManager.Students[65].TaskPhase = 5;

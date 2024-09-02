@@ -606,8 +606,18 @@ public class ClubManagerScript : MonoBehaviour
 				StudentScript studentScript8 = StudentManager.Students[Club8Students[ID]];
 				if (studentScript8 != null && !studentScript8.Tranquil && studentScript8.Alive)
 				{
-					studentScript8.transform.position = Club8ActivitySpots[ID].position;
-					studentScript8.transform.rotation = Club8ActivitySpots[ID].rotation;
+					if (!Eighties)
+					{
+						studentScript8.transform.position = Club8ActivitySpots[ID].position;
+						studentScript8.transform.rotation = Club8ActivitySpots[ID].rotation;
+					}
+					else
+					{
+						studentScript8.transform.position = StudentManager.Clubs.List[studentScript8.StudentID].position;
+						studentScript8.transform.rotation = StudentManager.Clubs.List[studentScript8.StudentID].rotation;
+						studentScript8.CharacterAnimation[studentScript8.ClubAnim].time = UnityEngine.Random.Range(0f, studentScript8.CharacterAnimation[studentScript8.ClubAnim].length);
+						studentScript8.CharacterAnimation[studentScript8.ClubAnim].speed = UnityEngine.Random.Range(0.9f, 1.1f);
+					}
 					studentScript8.ClubActivity = true;
 					studentScript8.Talking = false;
 					studentScript8.Routine = true;

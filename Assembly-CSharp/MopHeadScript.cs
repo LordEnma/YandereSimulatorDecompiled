@@ -23,6 +23,11 @@ public class MopHeadScript : MonoBehaviour
 				Mop.UpdateBlood();
 			}
 			Mop.StudentBloodID = BloodPool.StudentBloodID;
+			if (BloodPool.Water)
+			{
+				Debug.Log("The act of using the mop should not be considered suspicious for the next 5 seconds.");
+				Mop.Yandere.CleaningNotSuspicious = 5f;
+			}
 			if (other.transform.localScale.x < 0.1f)
 			{
 				Debug.Log("Destroying a puddle of liquid.");

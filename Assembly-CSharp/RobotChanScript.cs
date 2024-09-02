@@ -205,7 +205,7 @@ public class RobotChanScript : MonoBehaviour
 				Pathfinding.canMove = true;
 				MyAudio.Play();
 			}
-			if (TargetStudent.Dying || TargetStudent.Struggling || TargetStudent.Ragdoll.enabled || TargetStudent.Tranquil || TargetStudent.PinningDown || (TargetStudent.Hunter != null && TargetStudent.Hunter != this))
+			if (TargetStudent.Dying || TargetStudent.Struggling || TargetStudent.Ragdoll.enabled || TargetStudent.Tranquil || TargetStudent.PinningDown || TargetStudent.Drowned || (TargetStudent.Hunter != null && TargetStudent.Hunter != this))
 			{
 				Hunting = false;
 				SelfDestruct();
@@ -314,7 +314,7 @@ public class RobotChanScript : MonoBehaviour
 			TargetStudent.Hunted = false;
 			TargetStudent.BecomeRagdoll();
 			Prompt.Yandere.Police.RobotMurder = true;
-			Heart.transform.parent = TargetStudent.StudentManager.BloodParent.transform;
+			Heart.transform.parent = TargetStudent.StudentManager.Police.LimbParent;
 			Heart.isKinematic = false;
 			Heart.useGravity = true;
 			BodyPart.Prompt.enabled = true;

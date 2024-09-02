@@ -22,6 +22,8 @@ public class BodyPartScript : MonoBehaviour
 
 	public Mesh[] Meshes;
 
+	public bool Tutorial;
+
 	public bool Female;
 
 	private void Start()
@@ -32,6 +34,7 @@ public class BodyPartScript : MonoBehaviour
 			MyRenderer.materials[0].mainTexture = Textures[StudentGlobals.FemaleUniform];
 			MyRenderer.materials[1].mainTexture = Textures[StudentGlobals.FemaleUniform];
 		}
+		Tutorial = GameGlobals.KokonaTutorial;
 	}
 
 	private void Update()
@@ -64,6 +67,11 @@ public class BodyPartScript : MonoBehaviour
 		if (Prompt.Yandere.StudentManager.KokonaTutorialObject.Phase == 2)
 		{
 			Prompt.Hide();
+			Object.Destroy(base.gameObject);
+		}
+		if (base.transform.position.y < 0f && !Tutorial)
+		{
+			Debug.Log("Destroying a body part or trash bag that fell through the floor.");
 			Object.Destroy(base.gameObject);
 		}
 	}

@@ -732,15 +732,15 @@ public class MissionModeMenuScript : MonoBehaviour
 				{
 					PlayerGlobals.BringingHardware = 9;
 				}
-				else if (RequiredWeaponID == 45)
+				else if (RequiredWeaponID == 44)
 				{
 					PlayerGlobals.BringingHardware = 2;
 				}
-				else if (RequiredWeaponID == 46)
+				else if (RequiredWeaponID == 45)
 				{
 					PlayerGlobals.BringingHardware = 6;
 				}
-				else if (RequiredWeaponID == 47)
+				else if (RequiredWeaponID == 46)
 				{
 					PlayerGlobals.BringingHardware = 8;
 				}
@@ -1294,7 +1294,6 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("This code is about to run.");
 			if (!Eighties && TargetNumber > 12 && TargetNumber < 21)
 			{
 				if (Input.GetButtonDown(InputNames.Xbox_A))

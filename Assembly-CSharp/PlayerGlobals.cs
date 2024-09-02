@@ -100,6 +100,8 @@ public static class PlayerGlobals
 
 	private const string Str_Meals = "Meals";
 
+	private const string Str_BroughtCarrotsToSchool = "BroughtCarrotsToSchool";
+
 	public static float Money
 	{
 		get
@@ -556,6 +558,18 @@ public static class PlayerGlobals
 		}
 	}
 
+	public static bool BroughtCarrotsToSchool
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_BroughtCarrotsToSchool");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_BroughtCarrotsToSchool", value);
+		}
+	}
+
 	public static bool GetPhoto(int photoID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_Photo_" + photoID);
@@ -793,5 +807,6 @@ public static class PlayerGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_BloodWitnessed");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_WeaponWitnessed");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_Meals");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_BroughtCarrotsToSchool");
 	}
 }

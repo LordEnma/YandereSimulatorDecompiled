@@ -330,6 +330,8 @@ public class StudentScript : MonoBehaviour
 
 	public GameObject[] Instruments;
 
+	public GameObject[] PicnicProps;
+
 	public GameObject[] Chopsticks;
 
 	public GameObject[] Drumsticks;
@@ -988,6 +990,8 @@ public class StudentScript : MonoBehaviour
 
 	public bool ListeningToReport;
 
+	public bool MissionModeTarget;
+
 	public bool ResumeDistracting;
 
 	public bool UpdateAppearance;
@@ -1345,6 +1349,8 @@ public class StudentScript : MonoBehaviour
 	public int MurderReaction;
 
 	public int PhaseFromSave;
+
+	public int TimesFollowed;
 
 	public int WarningsGiven;
 
@@ -2119,6 +2125,18 @@ public class StudentScript : MonoBehaviour
 			if (StudentID == 21)
 			{
 				return SubtitleType.Task21Line;
+			}
+			if (StudentID == 22)
+			{
+				return SubtitleType.Task22Line;
+			}
+			if (StudentID == 23)
+			{
+				return SubtitleType.Task23Line;
+			}
+			if (StudentID == 24)
+			{
+				return SubtitleType.Task24Line;
 			}
 			if (StudentID == 25)
 			{
@@ -2969,11 +2987,11 @@ public class StudentScript : MonoBehaviour
 					obj28.action = "Cuddle";
 					ScheduleBlock obj29 = ScheduleBlocks[4];
 					obj29.destination = "Cuddle";
-					obj29.action = "Cuddle";
-					ScheduleBlock obj30 = ScheduleBlocks[6];
+					obj29.action = "Eat";
+					ScheduleBlock obj30 = ScheduleBlocks[7];
 					obj30.destination = "Locker";
 					obj30.action = "Shoes";
-					ScheduleBlock obj31 = ScheduleBlocks[7];
+					ScheduleBlock obj31 = ScheduleBlocks[8];
 					obj31.destination = "Exit";
 					obj31.action = "Exit";
 				}
@@ -4744,6 +4762,7 @@ public class StudentScript : MonoBehaviour
 				}
 				if (Actions[Phase] == StudentActionType.Clean)
 				{
+					TargetDistance = 0.61f;
 					if (!StudentManager.CustomMode && StudentID == 11)
 					{
 						FollowTargetDestination.localPosition = new Vector3(0f, 0f, -1f);
@@ -5057,7 +5076,7 @@ public class StudentScript : MonoBehaviour
 				CharacterAnimation[SocialSitAnim].weight = 0f;
 				if (MustChangeClothing && Schoolwear == 2)
 				{
-					Debug.Log("This character really ought to change their clothing before they proceed with their routine.");
+					Debug.Log(Name + " really ought to change their clothing before they proceed with their routine.");
 					CurrentDestination = StudentManager.StrippingPositions[GirlID];
 					Pathfinding.target = StudentManager.StrippingPositions[GirlID];
 				}
@@ -5476,6 +5495,10 @@ public class StudentScript : MonoBehaviour
 						Pathfinding.canMove = true;
 					}
 				}
+				if (Actions[Phase] == StudentActionType.Clean)
+				{
+					TargetDistance = 0.61f;
+				}
 			}
 			else
 			{
@@ -5707,7 +5730,7 @@ public class StudentScript : MonoBehaviour
 								bool flag3 = false;
 								if (FollowTarget != null)
 								{
-									if (!FollowTarget.Alive && FollowTarget.Ragdoll.Concealed)
+									if ((!FollowTarget.Alive && FollowTarget.Ragdoll.Concealed) || (!FollowTarget.Alive && !FollowTarget.gameObject.activeInHierarchy))
 									{
 										if (base.transform.position.y > -1f)
 										{
@@ -7240,30 +7263,7 @@ public class StudentScript : MonoBehaviour
 										}
 										if (CharacterAnimation[HeadacheAnim].time >= CharacterAnimation[HeadacheAnim].length)
 										{
-											CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-											if (Male)
-											{
-												SprintAnim = "headacheWalk_00";
-												IdleAnim = "headacheIdle_00";
-											}
-											else
-											{
-												SprintAnim = "f02_headacheWalk_00";
-												IdleAnim = "f02_headacheIdle_00";
-											}
-											CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-											CharacterAnimation.CrossFade(SprintAnim);
-											DistanceToDestination = 100f;
-											Pathfinding.canSearch = true;
-											Pathfinding.canMove = true;
-											Pathfinding.speed = 2f;
-											MyBento.Tampered = false;
-											SeekingMedicine = true;
-											Routine = false;
-											Private = true;
-											Chopsticks[0].SetActive(value: false);
-											Chopsticks[1].SetActive(value: false);
-											Bento.SetActive(value: false);
+											GetHeadache();
 										}
 									}
 								}
@@ -7896,6 +7896,7 @@ public class StudentScript : MonoBehaviour
 							}
 							else if (Actions[Phase] == StudentActionType.Follow)
 							{
+								Debug.Log("Raibaru is currently following Osana, and believes that she has reached her destination.");
 								if (FollowTarget != null)
 								{
 									if (StudentManager.LoveManager.RivalWaiting && FollowTarget.transform.position.x > 40f && FollowTarget.DistanceToDestination < 1f)
@@ -9519,7 +9520,6 @@ public class StudentScript : MonoBehaviour
 											ReportTimer += Time.deltaTime;
 											if (ReportTimer >= 3f)
 											{
-												base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.1f, base.transform.position.z);
 												StudentManager.Teachers[Class].ListeningToReport = false;
 												StudentManager.Teachers[Class].MyReporter = this;
 												StudentManager.Teachers[Class].Routine = false;
@@ -10114,7 +10114,6 @@ public class StudentScript : MonoBehaviour
 											ReportTimer += Time.deltaTime;
 											if (ReportTimer >= 3f)
 											{
-												base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.1f, base.transform.position.z);
 												StudentScript studentScript3 = null;
 												if (MyReporter != null)
 												{
@@ -13548,7 +13547,7 @@ public class StudentScript : MonoBehaviour
 					{
 						VisibleCorpses.Add(component.StudentID);
 						Corpse = component;
-						if (Club == ClubType.Delinquent && Corpse.Student.Club == ClubType.Bully)
+						if ((Club == ClubType.Delinquent && Corpse.Student.Club == ClubType.Bully) || (Persona == PersonaType.Fragile && Corpse.Student.Club == ClubType.Bully))
 						{
 							Debug.Log("At this moment, a delinquent is reacting to the corpse of a bully. 1");
 							ScaredAnim = EvilWitnessAnim;
@@ -13734,7 +13733,7 @@ public class StudentScript : MonoBehaviour
 							Fleeing = false;
 							Police.StudentFoundCorpse = true;
 							SawCorpseThisFrame = true;
-							if (Club == ClubType.Delinquent && Corpse.Student.Club == ClubType.Bully)
+							if ((Club == ClubType.Delinquent || Persona == PersonaType.Fragile) && Corpse.Student.Club == ClubType.Bully)
 							{
 								Debug.Log(Name + " witnessed the corpse of a bully, specifically.");
 								FoundEnemyCorpse = true;
@@ -14001,7 +14000,7 @@ public class StudentScript : MonoBehaviour
 							{
 								flag4 = true;
 							}
-							if ((Yandere.Armed && Yandere.EquippedWeapon.Suspicious) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.Suspicious) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.CleaningProduct && Clock.Period != 5) || (Guarding && Yandere.Mopping && Yandere.Mop.Bloodiness > 0f) || (Yandere.Bloodiness + (float)Yandere.GloveBlood > 0f && !Yandere.Paint) || Yandere.Sanity < 33.333f || Yandere.Pickpocketing || Yandere.Lockpicking || Yandere.Attacking || Yandere.Cauterizing || Yandere.Struggling || Yandere.WrappingCorpse || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || (!IgnoringPettyActions && Yandere.Lewd) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Carrying && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || Yandere.Yakuza || Yandere.Medusa || Yandere.Poisoning || Yandere.WeaponTimer > 0f || (Yandere.WearingRaincoat && !flag4) || Yandere.MurderousActionTimer > 0f || (!IgnoringPettyActions && Yandere.Schoolwear == 2 && Yandere.transform.position.z < 30f) || (!IgnoringPettyActions && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (!IgnoringPettyActions && Yandere.SuspiciousActionTimer > 0f) || (!IgnoringPettyActions && Yandere.Laughing && Yandere.LaughIntensity > 15f) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crouching) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crawling) || (!IgnoringPettyActions && Yandere.Trespassing) || (Private && Yandere.Eavesdropping && !Yandere.Talking) || (Teacher && !WitnessedCorpse && Yandere.Trespassing) || (Teacher && !IgnoringPettyActions && Yandere.Rummaging) || (!IgnoringPettyActions && Yandere.TheftTimer > 0f) || (!IgnoringPettyActions && StudentID == 1 && Yandere.NearSenpai && !Yandere.Talking) || (!IgnoringPettyActions && !StudentManager.CombatMinigame.Practice && Yandere.DelinquentFighting && StudentID != 10 && StudentManager.CombatMinigame.Path < 4 && !StudentManager.CombatMinigame.Practice && !Yandere.SeenByAuthority) || (flag3 && Yandere.PickUp != null && Yandere.PickUp.Mop != null && Yandere.PickUp.Mop.Bloodiness > 50f) || (!IgnoringPettyActions && flag3 && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (Yandere.PickUp != null && Yandere.PickUp.Clothing && Yandere.PickUp.Evidence && !Yandere.PickUp.BloodMistakenForPaint) || (!IgnoringPettyActions && AnnoyedByRadio > 1 && Yandere.PotentiallyAnnoyingTimer > 0f) || (!IgnoringPettyActions && AnnoyedByGiggles > 4 && Yandere.AnnoyingGiggleTimer > 0f) || (!IgnoringPettyActions && Yandere.PreparingThrow && Yandere.Obvious))
+							if ((Yandere.Armed && Yandere.EquippedWeapon.Suspicious) || (Yandere.Armed && Yandere.EquippedWeapon.Bloody) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.Suspicious) || (!IgnoringPettyActions && StudentID > 1 && Yandere.PickUp != null && Yandere.PickUp.CleaningProduct && Clock.Period != 5 && Yandere.CleaningNotSuspicious == 0f) || (Guarding && Yandere.Mopping && Yandere.Mop.Bloodiness > 0f) || (Yandere.Bloodiness + (float)Yandere.GloveBlood > 0f && !Yandere.Paint) || Yandere.Sanity < 33.333f || Yandere.Pickpocketing || Yandere.Lockpicking || Yandere.Attacking || Yandere.Cauterizing || Yandere.Struggling || Yandere.WrappingCorpse || (Yandere.Dragging && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Dragging && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || (!IgnoringPettyActions && Yandere.Lewd) || (Yandere.Carrying && !Yandere.CurrentRagdoll.Concealed) || (Yandere.Carrying && Yandere.CurrentRagdoll.Concealed && Clock.Period != 5) || Yandere.Yakuza || Yandere.Medusa || Yandere.Poisoning || Yandere.WeaponTimer > 0f || (Yandere.WearingRaincoat && !flag4) || Yandere.MurderousActionTimer > 0f || (!IgnoringPettyActions && Yandere.Schoolwear == 2 && Yandere.transform.position.z < 30f) || (!IgnoringPettyActions && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (!IgnoringPettyActions && Yandere.SuspiciousActionTimer > 0f) || (!IgnoringPettyActions && Yandere.Laughing && Yandere.LaughIntensity > 15f) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crouching) || (!IgnoringPettyActions && Yandere.Stance.Current == StanceType.Crawling) || (!IgnoringPettyActions && Yandere.Trespassing) || (Private && Yandere.Eavesdropping && !Yandere.Talking) || (Teacher && !WitnessedCorpse && Yandere.Trespassing) || (Teacher && !IgnoringPettyActions && Yandere.Rummaging) || (!IgnoringPettyActions && Yandere.TheftTimer > 0f) || (!IgnoringPettyActions && StudentID == 1 && Yandere.NearSenpai && !Yandere.Talking) || (!IgnoringPettyActions && !StudentManager.CombatMinigame.Practice && Yandere.DelinquentFighting && StudentID != 10 && StudentManager.CombatMinigame.Path < 4 && !StudentManager.CombatMinigame.Practice && !Yandere.SeenByAuthority) || (flag3 && Yandere.PickUp != null && Yandere.PickUp.Mop != null && Yandere.PickUp.Mop.Bloodiness > 50f) || (!IgnoringPettyActions && flag3 && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && !Yandere.PickUp.Garbage) || (Yandere.PickUp != null && Yandere.PickUp.Clothing && Yandere.PickUp.Evidence && !Yandere.PickUp.BloodMistakenForPaint) || (!IgnoringPettyActions && AnnoyedByRadio > 1 && Yandere.PotentiallyAnnoyingTimer > 0f) || (!IgnoringPettyActions && AnnoyedByGiggles > 4 && Yandere.AnnoyingGiggleTimer > 0f) || (!IgnoringPettyActions && Yandere.PreparingThrow && Yandere.Obvious))
 							{
 								bool flag5 = false;
 								if (Yandere.transform.position.y < base.transform.position.y + 4f)
@@ -17072,6 +17071,7 @@ public class StudentScript : MonoBehaviour
 					}
 					if (Persona == PersonaType.Protective || Hurry)
 					{
+						Debug.Log("Sprinting because Protective.");
 						CharacterAnimation.CrossFade(RunAnim);
 						Pathfinding.speed = 4f;
 					}
@@ -17098,6 +17098,12 @@ public class StudentScript : MonoBehaviour
 					SmartPhone.SetActive(value: false);
 					RadioTimer = 0f;
 					RadioPhase++;
+				}
+				else if (Persona == PersonaType.Protective || Hurry)
+				{
+					Debug.Log("Sprinting because Protective.");
+					CharacterAnimation.CrossFade(RunAnim);
+					Pathfinding.speed = 4f;
 				}
 				else
 				{
@@ -17515,7 +17521,7 @@ public class StudentScript : MonoBehaviour
 					}
 				}
 			}
-			if (((Club == ClubType.Council && !Spraying && !DoNotShove) || (Club == ClubType.Delinquent && !Injured && !RespectEarned && !Vomiting && !Emetic && !Headache && !Sedated && !Lethal) || (Shovey && !Spraying && !Following && !Meeting && !EatingSnack)) && (double)DistanceToPlayer < 0.5 && Yandere.CanMove && !Yandere.Invisible && (Yandere.h != 0f || Yandere.v != 0f) && !Yandere.Chased && Yandere.Chasers == 0)
+			if (((Club == ClubType.Council && !Spraying && !DoNotShove) || (Club == ClubType.Delinquent && !Injured && !RespectEarned && !Vomiting && !Emetic && !Headache && !Sedated && !Lethal) || (Shovey && !Spraying && !Following && !Meeting && !EatingSnack)) && (double)DistanceToPlayer < 0.5 && Yandere.CanMove && !Yandere.Invisible && (Yandere.h != 0f || Yandere.v != 0f) && !Yandere.Chased && Yandere.Chasers == 0 && Yandere.NoShoveTimer == 0f)
 			{
 				if (Club == ClubType.Delinquent)
 				{
@@ -18382,7 +18388,7 @@ public class StudentScript : MonoBehaviour
 				Persona = PersonaType.Evil;
 			}
 		}
-		if (Club == ClubType.Delinquent)
+		if (Club == ClubType.Delinquent || Persona == PersonaType.Fragile)
 		{
 			Debug.Log("A Delinquent witnessed murderous behavior, and now has to determine if he saw a bully's murder.");
 			if (Yandere.Attacking && Yandere.TargetStudent != null && Yandere.TargetStudent.Club == ClubType.Bully)
@@ -18995,7 +19001,15 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (WitnessedCorpse)
 				{
-					Subtitle.UpdateLabel(SubtitleType.PetCorpseReaction, 1, 3f);
+					if (Club == ClubType.Council)
+					{
+						Subtitle.CustomText = "How did this happen?!";
+						Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+					}
+					else
+					{
+						Subtitle.UpdateLabel(SubtitleType.PetCorpseReaction, 1, 3f);
+					}
 				}
 				else if (WitnessedLimb)
 				{
@@ -19285,7 +19299,6 @@ public class StudentScript : MonoBehaviour
 					Yandere.Chased = true;
 					TargetDistance = 1f;
 					StudentManager.UpdateStudents();
-					base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.1f, base.transform.position.z);
 					Routine = false;
 					Fleeing = true;
 				}
@@ -19334,7 +19347,6 @@ public class StudentScript : MonoBehaviour
 				Pathfinding.target.position = Vector3.MoveTowards(Pathfinding.target.position, new Vector3(base.transform.position.x, num, base.transform.position.z), 1.5f);
 				TargetDistance = 1f;
 				ReportPhase = 2;
-				base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.1f, base.transform.position.z);
 				IgnoringPettyActions = true;
 				Routine = false;
 				Fleeing = true;
@@ -23092,7 +23104,11 @@ public class StudentScript : MonoBehaviour
 		}
 		if (!Male)
 		{
+			PicnicProps[0].SetActive(value: false);
+			PicnicProps[1].SetActive(value: false);
+			PicnicProps[2].SetActive(value: false);
 			Handkerchief.SetActive(value: false);
+			GiftBag.SetActive(value: false);
 		}
 		else
 		{
@@ -24366,6 +24382,9 @@ public class StudentScript : MonoBehaviour
 				gameObject.SetActive(value: false);
 			}
 		}
+		PicnicProps[0].SetActive(value: false);
+		PicnicProps[1].SetActive(value: false);
+		PicnicProps[2].SetActive(value: false);
 		Drumsticks[0].SetActive(value: false);
 		Drumsticks[1].SetActive(value: false);
 		if (Club >= ClubType.Teacher)
@@ -24407,7 +24426,7 @@ public class StudentScript : MonoBehaviour
 
 	public void PlaceBag()
 	{
-		Debug.Log("Current rival - " + Name + " - just put her bookbag on her desk.");
+		Debug.Log("Current rival - " + Name + " - just fired PlaceBag() and put her bookbag on her desk.");
 		if (!StudentManager.Eighties)
 		{
 			StudentManager.RivalBookBag.GetComponent<MeshFilter>().mesh = Cosmetic.ModernBookBagMesh;
@@ -25305,6 +25324,34 @@ public class StudentScript : MonoBehaviour
 			Drumsticks[0].SetActive(value: true);
 			Drumsticks[1].SetActive(value: true);
 		}
+	}
+
+	public void GetHeadache()
+	{
+		CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+		if (Male)
+		{
+			SprintAnim = "headacheWalk_00";
+			IdleAnim = "headacheIdle_00";
+		}
+		else
+		{
+			SprintAnim = "f02_headacheWalk_00";
+			IdleAnim = "f02_headacheIdle_00";
+		}
+		CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+		CharacterAnimation.CrossFade(SprintAnim);
+		DistanceToDestination = 100f;
+		Pathfinding.canSearch = true;
+		Pathfinding.canMove = true;
+		Pathfinding.speed = 2f;
+		MyBento.Tampered = false;
+		SeekingMedicine = true;
+		Routine = false;
+		Private = true;
+		Chopsticks[0].SetActive(value: false);
+		Chopsticks[1].SetActive(value: false);
+		Bento.SetActive(value: false);
 	}
 
 	public void SpawnTimeRespectingAudioSource(AudioClip Clip)

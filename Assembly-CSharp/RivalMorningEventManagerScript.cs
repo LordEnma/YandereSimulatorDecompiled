@@ -37,6 +37,8 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 
 	public AudioSource VoiceClipSource;
 
+	public GameObject[] ObjectsToActivate;
+
 	public GameObject ObjectToActivate;
 
 	public GameObject AlarmDisc;
@@ -113,9 +115,17 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 				num += (float)SpeechText[i].Length * 0.1f;
 			}
 		}
-		if (!GameGlobals.Eighties && Week == 2 && GameGlobals.RivalEliminationID == 0 && base.enabled && (EventDay == DayOfWeek.Thursday || EventDay == DayOfWeek.Friday))
+		if (!GameGlobals.Eighties && Week == 2 && GameGlobals.RivalEliminationID == 0 && base.enabled)
 		{
-			ObjectToActivate.SetActive(value: true);
+			if (EventDay == DayOfWeek.Thursday)
+			{
+				ObjectsToActivate[0].SetActive(value: true);
+				ObjectToActivate.SetActive(value: true);
+			}
+			else if (EventDay == DayOfWeek.Friday)
+			{
+				ObjectToActivate.SetActive(value: true);
+			}
 		}
 	}
 
@@ -388,7 +398,14 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 
 	public void EndEvent()
 	{
-		Debug.Log("A rival's morning ''Talk with Senpai'' event has ended.");
+		if (Rival != null)
+		{
+			Debug.Log(Rival.Name + "'s morning ''Talk with Senpai'' event has ended.");
+		}
+		else
+		{
+			Debug.Log("A rival's morning ''Talk with Senpai'' event has ended.");
+		}
 		if (Phase > 0 && Rival.Alive)
 		{
 			if (EventDay == DayOfWeek.Tuesday)

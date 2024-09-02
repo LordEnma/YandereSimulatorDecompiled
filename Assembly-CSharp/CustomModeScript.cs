@@ -1918,7 +1918,12 @@ public class CustomModeScript : MonoBehaviour
 				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
 					ArrayToEdit[EventID]++;
-					if (ArrayToEdit[EventID] > 3)
+					int num13 = 3;
+					if (EventID % 2 != 0)
+					{
+						num13 = 2;
+					}
+					if (ArrayToEdit[EventID] > num13)
 					{
 						ArrayToEdit[EventID] = 1;
 					}

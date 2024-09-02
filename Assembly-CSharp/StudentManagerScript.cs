@@ -640,6 +640,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public GameObject PortraitChan;
 
+	public GameObject PlazaPreview;
+
 	public GameObject RaibaruChair;
 
 	public GameObject RandomPatrol;
@@ -1129,6 +1131,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public PantyListScript PantyList;
 
+	public bool TopicsLoaded;
+
 	public bool AttackPromptActive;
 
 	public int MeetStudentID;
@@ -1276,6 +1280,11 @@ public class StudentManagerScript : MonoBehaviour
 		if (GameGlobals.Eighties)
 		{
 			Become1989();
+			if (RivalEvents.Length != 0 && RivalEvents[1] != null)
+			{
+				RivalEvents[1].SetActive(value: false);
+				RivalEvents[2].SetActive(value: false);
+			}
 		}
 		else
 		{
@@ -2662,10 +2671,12 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			if (Yandere.transform.position.z < -50f)
 			{
+				PlazaPreview.SetActive(value: true);
 				PlazaOccluder.open = false;
 			}
 			else
 			{
+				PlazaPreview.SetActive(value: false);
 				PlazaOccluder.open = true;
 			}
 		}
@@ -3369,6 +3380,7 @@ public class StudentManagerScript : MonoBehaviour
 				studentScript.EmptyHands();
 				studentScript.VisitSenpaiDesk = false;
 				studentScript.AlreadyFed = false;
+				studentScript.TimesFollowed = 0;
 				studentScript.Attempts = 0;
 				if (studentScript.Meeting)
 				{
@@ -3719,6 +3731,15 @@ public class StudentManagerScript : MonoBehaviour
 				}
 			}
 		}
+		if (BakeSale.gameObject.activeInHierarchy)
+		{
+			Transform[] bakeSalePlates = BakeSalePlates;
+			for (int i = 0; i < bakeSalePlates.Length; i++)
+			{
+				bakeSalePlates[i].gameObject.SetActive(value: true);
+			}
+		}
+		Yandere.NoShoveTimer = 5f;
 	}
 
 	public void UpdateAllSleuthClothing()
@@ -4594,8 +4615,9 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void UpdateSleuths()
 	{
+		Debug.Log("StudentManager fired the 4:45 PM UpdateSleuths() function.");
 		SleuthPhase++;
-		for (ID = 56; ID < 61; ID++)
+		for (ID = 1; ID < 101; ID++)
 		{
 			if (Students[ID] != null && Students[ID].Actions[Students[ID].Phase] == StudentActionType.Sleuth && Students[ID].Routine && !Students[ID].Slave && !Students[ID].Following && !Students[ID].Meeting && !Students[ID].SentToLocker)
 			{
@@ -4996,7 +5018,15 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			Workbench.BodyBags[2].SetActive(value: true);
 		}
+		bool censorBlood = GameGlobals.CensorBlood;
+		bool censorPanties = GameGlobals.CensorPanties;
+		bool censorKillingAnims = GameGlobals.CensorKillingAnims;
+		Debug.Log("Before loading, GameGlobals.CensorBlood is: " + GameGlobals.CensorBlood);
 		YanSave.LoadData("Profile_" + profile + "_Slot_" + @int);
+		GameGlobals.CensorBlood = censorBlood;
+		GameGlobals.CensorPanties = censorPanties;
+		GameGlobals.CensorKillingAnims = censorKillingAnims;
+		Debug.Log("And now, after loading, GameGlobals.CensorBlood is: " + GameGlobals.CensorBlood);
 		DialogueWheel.NoteLocker.NoteWindow.gameObject.SetActive(value: false);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
 		DialogueWheel.NoteLocker.gameObject.SetActive(value: false);
@@ -5224,12 +5254,24 @@ public class StudentManagerScript : MonoBehaviour
 						Students[ID].Chopsticks[1].SetActive(value: false);
 						Students[ID].Bento.SetActive(value: false);
 					}
-					if (Students[ID].Routine && Students[ID].StudentID == 10)
+					if (!Eighties && Students[ID].Routine && Students[ID].StudentID == 10)
 					{
+						Debug.Log("Raibaru's routine was ''true'' at the time the save was made, so we're putting her back into her routine.");
 						Students[ID].GetDestinations();
 						Students[ID].CurrentAction = Students[ID].Actions[Students[ID].Phase];
 						Students[ID].CurrentDestination = Students[ID].Destinations[Students[ID].Phase];
 						Students[ID].Pathfinding.target = Students[ID].Destinations[Students[ID].Phase];
+					}
+					if (Students[ID].SeekingMedicine)
+					{
+						Debug.Log(Students[ID].Name + " was ''Seeking Medicine'' at the time the save file was made, so we're trying to put them back into that state now.");
+						Debug.Log(Students[ID].Name + "'s ''SeekMedicinePhase'' was " + Students[ID].SeekMedicinePhase);
+						Students[ID].GetHeadache();
+						if (Students[90] != null && Students[ID].SeekMedicinePhase == 1)
+						{
+							Students[ID].CurrentDestination = Students[ID].StudentManager.Students[90].transform;
+							Students[ID].Pathfinding.target = Students[ID].StudentManager.Students[90].transform;
+						}
 					}
 					if (Students[ID].SearchingForPhone)
 					{
@@ -6181,9 +6223,12 @@ public class StudentManagerScript : MonoBehaviour
 			scheduleBlock = Students[StudentID].ScheduleBlocks[2];
 			scheduleBlock.destination = "Week2Hangout";
 			scheduleBlock.action = "Socialize";
-			scheduleBlock = Students[StudentID].ScheduleBlocks[4];
-			scheduleBlock.destination = "Week2Hangout";
-			scheduleBlock.action = "Socialize";
+			if (Students[StudentID].Club != ClubType.Delinquent)
+			{
+				scheduleBlock = Students[StudentID].ScheduleBlocks[4];
+				scheduleBlock.destination = "Week2Hangout";
+				scheduleBlock.action = "Socialize";
+			}
 			scheduleBlock = Students[StudentID].ScheduleBlocks[7];
 			scheduleBlock.destination = "Week2Hangout";
 			scheduleBlock.action = "Socialize";
@@ -7448,11 +7493,11 @@ public class StudentManagerScript : MonoBehaviour
 		obj.action = "Cuddle";
 		ScheduleBlock obj2 = Student.ScheduleBlocks[4];
 		obj2.destination = "Cuddle";
-		obj2.action = "Cuddle";
-		ScheduleBlock obj3 = Student.ScheduleBlocks[6];
+		obj2.action = "Eat";
+		ScheduleBlock obj3 = Student.ScheduleBlocks[7];
 		obj3.destination = "Locker";
 		obj3.action = "Shoes";
-		ScheduleBlock obj4 = Student.ScheduleBlocks[7];
+		ScheduleBlock obj4 = Student.ScheduleBlocks[8];
 		obj4.destination = "Exit";
 		obj4.action = "Exit";
 		Student.GetDestinations();
@@ -7480,6 +7525,7 @@ public class StudentManagerScript : MonoBehaviour
 				SetTopicLearnedByStudent(j, i, ConversationGlobals.GetTopicLearnedByStudent(j, i));
 			}
 		}
+		TopicsLoaded = true;
 	}
 
 	public void LoadTopicsLearnedForOneStudent(int StudentID)
@@ -7617,7 +7663,7 @@ public class StudentManagerScript : MonoBehaviour
 		StudentScript[] students = Students;
 		foreach (StudentScript studentScript in students)
 		{
-			if (studentScript != null && studentScript.gameObject.activeInHierarchy && studentScript.DistanceToPlayer < 1f)
+			if (studentScript != null && studentScript.gameObject.activeInHierarchy && studentScript.enabled && studentScript.DistanceToPlayer < 1f)
 			{
 				Debug.Log(studentScript.Name + " is less than 1 meter away from the player!");
 				Vector3 normalized = (Yandere.transform.position - studentScript.transform.position).normalized;
@@ -7897,6 +7943,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void AdvanceBakeSale()
 	{
+		Debug.Log("Now firing ''AdvanceBakeSale()''");
 		BakeSale.enabled = true;
 		BakeSalePlates[0].position = BakeSalePlateParents[12].position;
 		BakeSalePlates[1].position = BakeSalePlateParents[21].position;

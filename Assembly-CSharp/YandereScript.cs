@@ -399,6 +399,8 @@ public class YandereScript : MonoBehaviour
 
 	public float CanMoveTimer;
 
+	public float NoShoveTimer;
+
 	public float RummageTimer;
 
 	public float YandereTimer;
@@ -448,6 +450,8 @@ public class YandereScript : MonoBehaviour
 	public float TwitchTimer;
 
 	public float NextTwitch;
+
+	public float CleaningNotSuspicious;
 
 	public float SenpaiThreshold;
 
@@ -7397,6 +7401,15 @@ public class YandereScript : MonoBehaviour
 				LacunaMode = false;
 			}
 		}
+		if (NoShoveTimer > 0f)
+		{
+			NoShoveTimer = Mathf.MoveTowards(NoShoveTimer, 0f, Time.deltaTime);
+		}
+		if (CleaningNotSuspicious > 0f)
+		{
+			Debug.Log("The act of using the mop should not be considered suspicious right now.");
+			CleaningNotSuspicious = Mathf.MoveTowards(CleaningNotSuspicious, 0f, Time.deltaTime);
+		}
 	}
 
 	public void StainWeapon()
@@ -9233,7 +9246,7 @@ public class YandereScript : MonoBehaviour
 			LooseSocks[1].SetActive(value: false);
 			ClubAttire = false;
 			Schoolwear = 0;
-			if (!Egg)
+			if (!Egg && !StudentManager.CustomMode)
 			{
 				if (!StudentManager.Eighties)
 				{
@@ -10129,6 +10142,9 @@ public class YandereScript : MonoBehaviour
 		Gloves.transform.parent = null;
 		if (WearingRaincoat)
 		{
+			UnityEngine.Object.Destroy(RaincoatAttacher.newRenderer.gameObject.GetComponent<OutlineScript>());
+			UnityEngine.Object.Destroy(RaincoatAttacher.newRenderer.gameObject.GetComponent<Highlighter>());
+			SetUpRaincoatOutline = false;
 			RaincoatAttacher.newRenderer.enabled = false;
 			CoatBloodiness[Gloves.GloveID] = Bloodiness;
 			Bloodiness = OriginalBloodiness;

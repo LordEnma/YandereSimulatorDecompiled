@@ -505,17 +505,16 @@ public class CosmeticScript : MonoBehaviour
 		if (StudentManager != null)
 		{
 			LoveSick = StudentManager.LoveSick;
+			Eighties = StudentManager.Eighties;
+			if (Kidnapped)
+			{
+				LoveSick = GameGlobals.LoveSick;
+				Eighties = GameGlobals.Eighties;
+			}
 		}
 		else
 		{
 			LoveSick = GameGlobals.LoveSick;
-		}
-		if (StudentManager != null)
-		{
-			Eighties = StudentManager.Eighties;
-		}
-		else
-		{
 			Eighties = GameGlobals.Eighties;
 		}
 		if (Eighties)
@@ -759,6 +758,10 @@ public class CosmeticScript : MonoBehaviour
 					{
 						AmaiBrows.SetActive(value: true);
 					}
+					if (PhoneCharms.Length != 0)
+					{
+						PhoneCharms[StudentID].SetActive(value: true);
+					}
 					HideEyebrows = true;
 				}
 				else if (StudentID == 51)
@@ -906,8 +909,8 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 12)
 					{
-						CharacterAnimation.Play("f02_gentleIdle_00");
-						base.transform.position = new Vector3(0.0075f, 0f, 0f);
+						CharacterAnimation.Play("f02_rivalPortraitPose_02");
+						base.transform.position = new Vector3(0.05f, -0.025f, 0f);
 						LookCamera = true;
 					}
 					else if (StudentID == 38)
@@ -1562,6 +1565,10 @@ public class CosmeticScript : MonoBehaviour
 					if (StudentID != 12)
 					{
 						ClubAccessories[(int)Club] = Kerchiefs[StudentID];
+						if (!Eighties && StudentID == 23 && TaskGlobals.GetTaskStatus(23) == 3)
+						{
+							ClubAccessories[(int)Club] = Kerchiefs[0];
+						}
 						if (!ClubGlobals.GetClubClosed(Club))
 						{
 							ClubAccessories[(int)Club].SetActive(value: true);
@@ -2242,7 +2249,6 @@ public class CosmeticScript : MonoBehaviour
 		_ = 1;
 		if (!Student.Indoors)
 		{
-			FaceID = 2;
 			_ = StudentID;
 			_ = 1;
 			MyRenderer.materials[FaceID].mainTexture = FaceTexture;
@@ -3454,7 +3460,7 @@ public class CosmeticScript : MonoBehaviour
 			DisableAccessories();
 			FemaleHair[Hairstyle].SetActive(value: true);
 			HairRenderer.enabled = true;
-			if (Club == ClubType.Bully)
+			if (!Eighties && Club == ClubType.Bully)
 			{
 				RightStockings[0].SetActive(value: false);
 				LeftStockings[0].SetActive(value: false);
