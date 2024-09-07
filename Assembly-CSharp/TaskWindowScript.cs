@@ -139,9 +139,10 @@ public class TaskWindowScript : MonoBehaviour
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
-				Yandere.TargetStudent.TalkTimer = 100f;
 				Yandere.TargetStudent.Interaction = StudentInteractionType.GivingTask;
+				Yandere.TargetStudent.TalkTimer = 100f;
 				Yandere.TargetStudent.TaskPhase = 0;
+				Yandere.TargetStudent.Pestered += 5;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
 				Window.SetActive(value: false);

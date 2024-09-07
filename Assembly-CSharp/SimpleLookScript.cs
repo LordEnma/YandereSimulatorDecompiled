@@ -100,8 +100,17 @@ public class SimpleLookScript : MonoBehaviour
 				if (Mathf.Abs(Vector3.Angle(-base.transform.forward, Yandere.transform.position - base.transform.position)) >= 90f && num < 2f && !Ignore)
 				{
 					LookTimer += Time.deltaTime;
-					if (!ReactedToFriend && Student.Friend && Student.Yandere.Mask == null && !Student.Emetic && !Student.Lethal && !Student.Sedated && !Student.Headache && !Student.Grudge && !Student.Dying && !Student.Meeting && !Student.Depressed && Student.CurrentAction != StudentActionType.Sunbathe && Student.CurrentAction != StudentActionType.Gaming && Student.CurrentAction != StudentActionType.Mourn && Student.StudentID > 1 && LookTimer > 1f)
+					bool flag = false;
+					if (!Student.Male && Student.PicnicProps[0].activeInHierarchy)
 					{
+						flag = true;
+					}
+					if (!ReactedToFriend && Student.Friend && Student.Yandere.Mask == null && !Student.Emetic && !Student.Lethal && !Student.Sedated && !Student.Headache && !Student.Grudge && !Student.Dying && !Student.Meeting && !Student.Depressed && Student.CurrentAction != StudentActionType.Sunbathe && Student.CurrentAction != StudentActionType.Gaming && Student.CurrentAction != StudentActionType.Mourn && Student.StudentID > 1 && !flag && LookTimer > 1f)
+					{
+						if (Student.StudentID == 42)
+						{
+							Debug.Log("Borupen is now waving.");
+						}
 						Student.CharacterAnimation[Student.WaveAnim].weight = 0f;
 						Student.CharacterAnimation[Student.WaveAnim].time = 0f;
 						Student.CharacterAnimation.CrossFade(Student.WaveAnim);
@@ -239,6 +248,10 @@ public class SimpleLookScript : MonoBehaviour
 				Student.CharacterAnimation[Student.WaveAnim].weight = 0f;
 				Waving = false;
 			}
+		}
+		else if (ReactedToFriend && Student.CharacterAnimation[Student.WaveAnim].weight > 0f)
+		{
+			Student.CharacterAnimation[Student.WaveAnim].weight = Mathf.MoveTowards(Student.CharacterAnimation[Student.WaveAnim].weight, 0f, Time.deltaTime);
 		}
 	}
 }

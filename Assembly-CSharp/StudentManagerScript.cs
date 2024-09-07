@@ -2398,7 +2398,7 @@ public class StudentManagerScript : MonoBehaviour
 				base.gameObject.SetActive(value: false);
 				if (GameGlobals.CustomMode)
 				{
-					GameGlobals.EightiesCutsceneID = 1;
+					GameGlobals.EightiesCutsceneID = DateGlobals.Week;
 					Screen.SetResolution(Widths[OptionGlobals.ResolutionID], Heights[OptionGlobals.ResolutionID], OptionGlobals.WindowedMode);
 					SceneManager.LoadScene("EightiesCutsceneScene");
 				}

@@ -127,7 +127,7 @@ public class GenericEightiesTaskScript : MonoBehaviour
 							{
 								Model.SetActive(value: true);
 							}
-							if (Type == 8)
+							else if (Type == 8)
 							{
 								Prompt.Yandere.Paintbrush.SetActive(value: true);
 								Prompt.Yandere.Palette.SetActive(value: true);
@@ -136,7 +136,7 @@ public class GenericEightiesTaskScript : MonoBehaviour
 								FixedPainting.material.mainTexture = FixedArt[Paintings];
 								OriginalPainting.material.color = new Color(1f, 1f, 1f, 1f);
 							}
-							if (Type == 9)
+							else if (Type == 9)
 							{
 								Prompt.Yandere.MyController.radius = 0.1f;
 							}
@@ -149,6 +149,10 @@ public class GenericEightiesTaskScript : MonoBehaviour
 							if (Suspicious)
 							{
 								Prompt.Yandere.SuspiciousActionTimer = 5f;
+								if (Type == 7)
+								{
+									Prompt.Yandere.TheftTimer = 5f;
+								}
 							}
 							if (MyAudio != null)
 							{

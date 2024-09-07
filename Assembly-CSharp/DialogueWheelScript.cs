@@ -807,7 +807,7 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite10 = Shadow[3];
 			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.75f);
 		}
-		if (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council)
+		if ((!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council) || Yandere.TargetStudent.TaskRejected > 1)
 		{
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}

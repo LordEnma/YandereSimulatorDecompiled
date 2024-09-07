@@ -1358,6 +1358,8 @@ public class StudentScript : MonoBehaviour
 
 	public int StruggleWait;
 
+	public int TaskRejected;
+
 	public int WitnessBonus;
 
 	public int GossipBonus;
@@ -15013,7 +15015,14 @@ public class StudentScript : MonoBehaviour
 				else if (Warned)
 				{
 					Debug.Log("This character refuses to speak to Yandere-chan because of a grudge.");
-					Subtitle.UpdateLabel(SubtitleType.GrudgeRefusal, 0, 3f);
+					if (Persona == PersonaType.Coward)
+					{
+						Subtitle.UpdateLabel(SubtitleType.CowardRefusal, 0, 3f);
+					}
+					else
+					{
+						Subtitle.UpdateLabel(SubtitleType.GrudgeRefusal, 0, 3f);
+					}
 					Prompt.Circle[0].fillAmount = 1f;
 					if (!Male)
 					{

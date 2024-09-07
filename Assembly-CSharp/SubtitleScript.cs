@@ -266,6 +266,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] GrudgeWarnings;
 
+	public string[] CowardRefusals;
+
 	public string[] GrudgeRefusals;
 
 	public string[] CowardGrudges;
@@ -2955,6 +2957,11 @@ public class SubtitleScript : MonoBehaviour
 			{
 				Label.text = GetRandomString(GrudgeWarnings);
 				PlayVoice(subtitleType, ID);
+				break;
+			}
+			if (subtitleType == SubtitleType.CowardRefusal)
+			{
+				Label.text = GetRandomString(CowardRefusals);
 				break;
 			}
 			if (subtitleType == SubtitleType.GrudgeRefusal)

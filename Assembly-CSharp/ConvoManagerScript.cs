@@ -261,7 +261,7 @@ public class ConvoManagerScript : MonoBehaviour
 			{
 				if (SM.Students[MartialArtist[1]].DistanceToPlayer < 1.5f || SM.Students[MartialArtist[2]].DistanceToPlayer < 1.5f || SM.Students[MartialArtist[1]].Talking || SM.Students[MartialArtist[2]].Talking || SM.Students[MartialArtist[1]].Distracted || SM.Students[MartialArtist[2]].Distracted || SM.Students[MartialArtist[1]].TurnOffRadio || SM.Students[MartialArtist[2]].TurnOffRadio)
 				{
-					if (SM.Students[MartialArtist[1]].DistanceToPlayer < 1.5f || SM.Students[MartialArtist[2]].DistanceToPlayer < 1.5f)
+					if ((SM.Students[MartialArtist[1]].DistanceToPlayer < 1.5f || SM.Students[MartialArtist[2]].DistanceToPlayer < 1.5f) && !SM.Yandere.Talking)
 					{
 						SM.Students[MartialArtist[1]].Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
 					}
@@ -333,7 +333,10 @@ public class ConvoManagerScript : MonoBehaviour
 			}
 			else if (studentScript.DistanceToPlayer < 1.5f)
 			{
-				studentScript.Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
+				if (!SM.Yandere.Talking)
+				{
+					studentScript.Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
+				}
 				if (studentScript.Male)
 				{
 					studentScript.ClubAnim = "idle_20";
@@ -437,7 +440,10 @@ public class ConvoManagerScript : MonoBehaviour
 		}
 		if (studentScript2.DistanceToPlayer < 1.5f)
 		{
-			studentScript2.Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
+			if (!SM.Yandere.Talking)
+			{
+				studentScript2.Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
+			}
 			if (studentScript2.Male)
 			{
 				studentScript2.ClubAnim = "idle_20";

@@ -222,6 +222,7 @@ public class AlternateConfessionScript : MonoBehaviour
 				num9++;
 				LovePoints -= 10;
 			}
+			Debug.Log("Rival " + i + "'s Elimination ID is: " + GameGlobals.GetRivalEliminations(i));
 		}
 		TimesEliminationMethodsUsed[1] = num;
 		TimesEliminationMethodsUsed[2] = num2;

@@ -70,8 +70,6 @@ public class ClockScript : MonoBehaviour
 
 	public float TimeSkipSpeed = 1f;
 
-	public float BathroomDim;
-
 	public float CameraTimer;
 
 	public float DayProgress;
@@ -106,6 +104,8 @@ public class ClockScript : MonoBehaviour
 
 	public bool BloomDisabled;
 
+	public bool BathroomDim;
+
 	public bool LateStudent;
 
 	public bool UpdateBloom;
@@ -134,7 +134,7 @@ public class ClockScript : MonoBehaviour
 
 	public float BloomKnee = 1f;
 
-	public UISprite BathroomDimSprite;
+	public UIPanel BathroomDimPanel;
 
 	public Light[] BathroomLight;
 
@@ -507,22 +507,22 @@ public class ClockScript : MonoBehaviour
 					{
 						if (!BathroomLight[i].enabled)
 						{
-							BathroomDim = 0.5f;
+							BathroomDim = true;
 						}
 						else
 						{
-							BathroomDim = 0f;
+							BathroomDim = false;
 						}
 					}
 				}
 			}
 			else
 			{
-				BathroomDim = 0f;
+				BathroomDim = false;
 			}
-			if (BathroomDimSprite.alpha != BathroomDim)
+			if (BathroomDimPanel.enabled != BathroomDim)
 			{
-				BathroomDimSprite.alpha = Mathf.MoveTowards(BathroomDimSprite.alpha, BathroomDim, Time.deltaTime * 10f);
+				BathroomDimPanel.enabled = BathroomDim;
 			}
 		}
 		if (!TimeSkip)

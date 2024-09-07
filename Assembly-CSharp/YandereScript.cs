@@ -2846,7 +2846,6 @@ public class YandereScript : MonoBehaviour
 							Mopping = false;
 							Selfie = false;
 							Aiming = true;
-							MyController.radius = 0.45f;
 							StudentManager.CheckStudentProximity();
 							if (Inventory.RivalPhone)
 							{

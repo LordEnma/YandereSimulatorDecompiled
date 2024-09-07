@@ -107,12 +107,20 @@ public class NemesisScript : MonoBehaviour
 				gameObject7.SetActive(value: false);
 			}
 		}
-		femaleHair = Cosmetic.Rings;
+		femaleHair = Cosmetic.Flowers;
 		foreach (GameObject gameObject8 in femaleHair)
 		{
 			if (gameObject8 != null)
 			{
 				gameObject8.SetActive(value: false);
+			}
+		}
+		femaleHair = Cosmetic.Rings;
+		foreach (GameObject gameObject9 in femaleHair)
+		{
+			if (gameObject9 != null)
+			{
+				gameObject9.SetActive(value: false);
 			}
 		}
 		if (Cosmetic.AmaiEyebrows.Length != 0)
@@ -124,6 +132,7 @@ public class NemesisScript : MonoBehaviour
 		{
 			Cosmetic.AmaiBrows.SetActive(value: false);
 		}
+		Student.EmptyHands();
 		Difficulty = MissionModeGlobals.NemesisDifficulty;
 		if (Difficulty == 0)
 		{

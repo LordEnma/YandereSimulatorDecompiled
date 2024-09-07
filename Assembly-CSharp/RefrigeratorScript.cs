@@ -83,6 +83,8 @@ public class RefrigeratorScript : MonoBehaviour
 			Sausage.transform.parent = Yandere.RightHand;
 			Sausage.transform.localPosition = new Vector3(0.013f, -0.038f, 0.015f);
 			Sausage.transform.localEulerAngles = Vector3.zero;
+			Octodog.SetActive(value: false);
+			Sausage.SetActive(value: false);
 			EventPhase++;
 		}
 		else if (EventPhase == 1)

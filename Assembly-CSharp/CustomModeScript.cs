@@ -149,6 +149,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public bool CanGenderSwap;
 
+	public bool WeekSelect;
+
 	public bool UsingMenu;
 
 	public bool FadeOut;
@@ -663,6 +665,11 @@ public class CustomModeScript : MonoBehaviour
 				GameGlobals.FemaleSenpai = true;
 			}
 			AcknowledgeChallenges();
+			if (WeekSelect)
+			{
+				SceneManager.LoadScene("WeekSelectScene");
+				return;
+			}
 			Screen.SetResolution(512, 512, fullscreen: false);
 			SceneManager.LoadScene("PortraitScene");
 		}
@@ -2056,6 +2063,7 @@ public class CustomModeScript : MonoBehaviour
 					Miscellaneous = false;
 					Finalizing = true;
 					PromptBar.ClearButtons();
+					PromptBar.Label[3].text = "Week Select";
 					PromptBar.UpdateButtons();
 					PromptBar.Show = true;
 					UpdateHeader();
@@ -2073,6 +2081,11 @@ public class CustomModeScript : MonoBehaviour
 				{
 					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
+						FadeOut = true;
+					}
+					else if (Input.GetButtonDown(InputNames.Xbox_Y))
+					{
+						WeekSelect = true;
 						FadeOut = true;
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_LB))

@@ -46,6 +46,10 @@ public static class Globals
 			StudentGlobals.SetStudentDying(i, value: false);
 			StudentGlobals.SetStudentDead(i, value: false);
 		}
+		for (int j = 1; j < 20; j++)
+		{
+			ClubGlobals.SetClubClosed((ClubType)j, value: false);
+		}
 	}
 
 	public static void Delete(string key)
