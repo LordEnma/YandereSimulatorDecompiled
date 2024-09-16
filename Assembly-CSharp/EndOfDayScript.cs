@@ -84,6 +84,10 @@ public class EndOfDayScript : MonoBehaviour
 
 	public bool RivalBuried;
 
+	public bool[] LearnedRival1Info;
+
+	public bool[] LearnedRival2Info;
+
 	public bool CurrentMurderWeaponKilledRival;
 
 	public bool GrudgeConversationHappened;
@@ -92,15 +96,9 @@ public class EndOfDayScript : MonoBehaviour
 
 	public bool InvolvementNotSuspected;
 
-	public bool LearnedRivalDarkSecret;
-
 	public bool ExplosiveDeviceUsed;
 
 	public bool PreviouslyActivated;
-
-	public bool LearnedOsanaInfo1;
-
-	public bool LearnedOsanaInfo2;
 
 	public bool GoToSuicideScene;
 
@@ -2700,9 +2698,10 @@ public class EndOfDayScript : MonoBehaviour
 			SchemeGlobals.EmbarassingSecret = true;
 		}
 		EventGlobals.LearnedAboutPhotographer = LearnedAboutPhotographer;
-		EventGlobals.OsanaEvent1 = LearnedOsanaInfo1;
-		EventGlobals.OsanaEvent2 = LearnedOsanaInfo2;
-		EventGlobals.LearnedRivalDarkSecret = LearnedRivalDarkSecret;
+		EventGlobals.OsanaEvent1 = LearnedRival1Info[1];
+		EventGlobals.OsanaEvent2 = LearnedRival1Info[1];
+		EventGlobals.LearnedAmaiSecret1 = LearnedRival2Info[1];
+		EventGlobals.LearnedAmaiSecret2 = LearnedRival2Info[2];
 		CollectibleGlobals.MatchmakingGifts = MatchmakingGifts;
 		CollectibleGlobals.SenpaiGifts = SenpaiGifts;
 		PlayerGlobals.PantyShots = Yandere.Inventory.PantyShots;
@@ -2935,6 +2934,10 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		PlayerGlobals.BroughtCarrotsToSchool = false;
 		GameGlobals.CorkboardScene = true;
+		StudentGlobals.SetBlogKnown(1, Yandere.PauseScreen.SocialMedia.BlogKnown[1]);
+		StudentGlobals.SetBlogKnown(2, Yandere.PauseScreen.SocialMedia.BlogKnown[2]);
+		StudentGlobals.SetBlogKnown(3, Yandere.PauseScreen.SocialMedia.BlogKnown[3]);
+		StudentGlobals.SetBlogKnown(4, Yandere.PauseScreen.SocialMedia.BlogKnown[4]);
 	}
 
 	private void DisableThings(StudentScript TargetStudent)

@@ -17,6 +17,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public GameObject StealthClothingAttacher;
 
+	public StreetManagerScript StreetManager;
+
 	public UniformSetterScript UniformSetter;
 
 	public CharacterController MyController;
@@ -180,6 +182,8 @@ public class StalkerYandereScript : MonoBehaviour
 	public GameObject Shades;
 
 	public GameObject Mask;
+
+	public GameObject[] YandereVisionEye;
 
 	private int UpdateFrame;
 
@@ -639,20 +643,31 @@ public class StalkerYandereScript : MonoBehaviour
 			}
 			if (!PauseScreen.activeInHierarchy)
 			{
-				if (Input.GetKeyDown(KeyCode.Escape))
+				if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown(InputNames.Xbox_Start))
 				{
 					PauseScreen.SetActive(value: true);
 					Time.timeScale = 0.0001f;
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.Q))
-			{
-				SceneManager.LoadScene("NewTitleScene");
-			}
-			else if (Input.GetKeyDown(KeyCode.Escape))
+			else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown(InputNames.Xbox_Start))
 			{
 				PauseScreen.SetActive(value: false);
 				Time.timeScale = 1f;
+			}
+			else if (Input.GetButtonDown(InputNames.Xbox_X))
+			{
+				SceneManager.LoadScene("NewTitleScene");
+			}
+			else if (Input.GetButtonDown(InputNames.Xbox_Y))
+			{
+				if (StreetManager.Sunlight.shadows != 0)
+				{
+					StreetManager.Sunlight.shadows = LightShadows.None;
+				}
+				else
+				{
+					StreetManager.Sunlight.shadows = LightShadows.Soft;
+				}
 			}
 		}
 		else if (PausePanel != null && PausePanel.enabled && CanMove)
@@ -976,6 +991,8 @@ public class StalkerYandereScript : MonoBehaviour
 			{
 				if (!HighlightingR.enabled)
 				{
+					YandereVisionEye[0].SetActive(value: true);
+					YandereVisionEye[1].SetActive(value: true);
 					YandereFilter.enabled = true;
 					HighlightingR.enabled = true;
 					HighlightingB.enabled = true;
@@ -992,6 +1009,8 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			if (HighlightingR.enabled)
 			{
+				YandereVisionEye[0].SetActive(value: false);
+				YandereVisionEye[1].SetActive(value: false);
 				HighlightingR.enabled = false;
 				HighlightingB.enabled = false;
 			}

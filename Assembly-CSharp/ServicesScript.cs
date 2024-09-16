@@ -255,12 +255,13 @@ public class ServicesScript : MonoBehaviour
 						ServicePurchased[Selected] = true;
 						if (DateGlobals.Week == 1)
 						{
-							Yandere.Police.EndOfDay.LearnedOsanaInfo1 = true;
-							Yandere.Police.EndOfDay.LearnedOsanaInfo2 = true;
+							Yandere.Police.EndOfDay.LearnedRival1Info[1] = true;
+							Yandere.Police.EndOfDay.LearnedRival1Info[2] = true;
 						}
-						else
+						else if (DateGlobals.Week == 2)
 						{
-							Yandere.Police.EndOfDay.LearnedRivalDarkSecret = true;
+							Yandere.Police.EndOfDay.LearnedRival2Info[1] = true;
+							Yandere.Police.EndOfDay.LearnedRival2Info[2] = true;
 						}
 						if (SchemeGlobals.GetSchemeStage(6) == 1 || SchemeGlobals.GetSchemeStage(6) == 2)
 						{
@@ -356,12 +357,12 @@ public class ServicesScript : MonoBehaviour
 			{
 				if (DateGlobals.Week == 1)
 				{
-					if (!Yandere.Police.EndOfDay.LearnedOsanaInfo1 || !Yandere.Police.EndOfDay.LearnedOsanaInfo2)
+					if (!Yandere.Police.EndOfDay.LearnedRival1Info[1] || !Yandere.Police.EndOfDay.LearnedRival1Info[2])
 					{
 						ServiceAvailable[ID] = true;
 					}
 				}
-				else if (!Yandere.Police.EndOfDay.LearnedRivalDarkSecret)
+				else if (DateGlobals.Week == 2 && (!Yandere.Police.EndOfDay.LearnedRival2Info[1] || !Yandere.Police.EndOfDay.LearnedRival2Info[2]))
 				{
 					ServiceAvailable[ID] = true;
 				}

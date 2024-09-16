@@ -404,6 +404,14 @@ public class ClubManagerScript : MonoBehaviour
 			Yandere.CharacterAnimation.Play("f02_sit_00");
 			Yandere.transform.position = Club1ActivitySpots[6].position;
 			Yandere.transform.rotation = Club1ActivitySpots[6].rotation;
+			if (Eighties)
+			{
+				Debug.Log("We're in the 80s.");
+				if (StudentManager.Students[12] != null)
+				{
+					StudentManager.Students[12].transform.position = new Vector3(72f, 0f, 141.5f);
+				}
+			}
 		}
 		else if (Club == ClubType.Drama)
 		{
@@ -760,7 +768,7 @@ public class ClubManagerScript : MonoBehaviour
 		{
 		case ClubType.Cooking:
 			ClubIDs = Club1IDs;
-			if (!Eighties && StudentManager.Week > 1 && StudentManager.Students[12] != null)
+			if (!GameGlobals.Eighties && StudentManager.Week > 1 && StudentManager.Students[12] != null)
 			{
 				int[] clubIDs = new int[6] { 21, 22, 23, 24, 25, 12 };
 				ClubIDs = clubIDs;
@@ -845,7 +853,7 @@ public class ClubManagerScript : MonoBehaviour
 		{
 		case ClubType.Cooking:
 			num = 21;
-			if (!Eighties && StudentManager.Week > 1 && StudentManager.Students[12] != null)
+			if (!GameGlobals.Eighties && StudentManager.Week > 1 && StudentManager.Students[12] != null)
 			{
 				num = 12;
 			}

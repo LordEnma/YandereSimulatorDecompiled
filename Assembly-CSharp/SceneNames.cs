@@ -2,6 +2,8 @@ public static class SceneNames
 {
 	public const string ResolutionScene = "ResolutionScene";
 
+	public const string DisclaimerScene = "DisclaimerScene";
+
 	public const string WelcomeScene = "WelcomeScene";
 
 	public const string CalendarScene = "CalendarScene";

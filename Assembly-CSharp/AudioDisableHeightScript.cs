@@ -18,17 +18,20 @@ public class AudioDisableHeightScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Player.position.y > base.transform.position.y + 1f)
+		if (MyAudio.isPlaying)
 		{
-			MyAudio.volume = 0f;
-		}
-		else if (Player.position.y < base.transform.position.y - 1f)
-		{
-			MyAudio.volume = 0f;
-		}
-		else
-		{
-			MyAudio.volume = 1f;
+			if (Player.position.y > base.transform.position.y + 2f)
+			{
+				MyAudio.volume = 0f;
+			}
+			else if (Player.position.y < base.transform.position.y - 2f)
+			{
+				MyAudio.volume = 0f;
+			}
+			else
+			{
+				MyAudio.volume = 1f;
+			}
 		}
 	}
 }

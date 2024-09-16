@@ -548,7 +548,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		PromptBar.UpdateButtons();
 		if (UsingLifeNote)
 		{
-			if (StudentID == 1 || StudentID > 97 || StudentManager.Students[StudentID] == null || StudentPortraits[StudentID].DeathShadow.activeInHierarchy || (StudentManager.Students[StudentID] != null && !StudentManager.Students[StudentID].enabled))
+			if (StudentID == 1 || StudentID > 97 || StudentManager.Students[StudentID] == null || StudentPortraits[StudentID].FuneralFrame.activeInHierarchy || (StudentManager.Students[StudentID] != null && !StudentManager.Students[StudentID].enabled))
 			{
 				PromptBar.Label[0].text = "";
 			}
@@ -755,20 +755,24 @@ public class StudentInfoMenuScript : MonoBehaviour
 			}
 			if (StudentGlobals.GetStudentDying(ID) || StudentGlobals.GetStudentDead(ID) || (StudentManager.Students[ID] != null && !StudentManager.Students[ID].Alive))
 			{
-				StudentPortraits[ID].DeathShadow.SetActive(value: true);
+				StudentPortraits[ID].FuneralFrame.SetActive(value: true);
 			}
 			if (MissionModeGlobals.MissionMode && ID == 1)
 			{
-				StudentPortraits[ID].DeathShadow.SetActive(value: true);
+				StudentPortraits[ID].FuneralFrame.SetActive(value: true);
 			}
 			if (SceneManager.GetActiveScene().name == "SchoolScene" && StudentManager.Students[ID] != null && StudentManager.Students[ID].Tranquil)
 			{
-				StudentPortraits[ID].DeathShadow.SetActive(value: true);
+				StudentPortraits[ID].Darkness.SetActive(value: true);
 			}
 			if (StudentGlobals.GetStudentArrested(ID))
 			{
 				StudentPortraits[ID].PrisonBars.SetActive(value: true);
-				StudentPortraits[ID].DeathShadow.SetActive(value: true);
+				StudentPortraits[ID].Darkness.SetActive(value: true);
+			}
+			if (StudentGlobals.GetStudentKidnapped(ID))
+			{
+				StudentPortraits[ID].Darkness.SetActive(value: true);
 			}
 			if (StudentManager.Eighties && ID > 11 && ID < 21 && DateGlobals.Week < ID - 10 && StudentPortraits[ID] != null)
 			{

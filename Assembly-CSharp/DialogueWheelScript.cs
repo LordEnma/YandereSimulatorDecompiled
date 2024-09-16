@@ -63,6 +63,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public UILabel CenterLabel;
 
+	public UILabel TaskLabel;
+
 	public UISprite Impatience;
 
 	public UISprite TaskIcon;
@@ -736,9 +738,22 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			LockerWindow.SetActive(value: true);
 		}
-		if (Yandere.TargetStudent.Club == ClubType.Bully && TaskManager.TaskStatus[36] == 1)
+		Debug.Log("Week is: " + Yandere.StudentManager.Week);
+		Debug.Log("RivalFriendID is: " + Yandere.TargetStudent.RivalFriendID);
+		Debug.Log("Friend is: " + Yandere.TargetStudent.Friend);
+		Debug.Log("Yandere.PauseScreen.SocialMedia.BlogKnown is: " + Yandere.PauseScreen.SocialMedia.BlogKnown[Yandere.TargetStudent.RivalFriendID]);
+		if (!Eighties)
 		{
-			TaskDialogueWindow.SetActive(value: true);
+			if (Yandere.TargetStudent.Club == ClubType.Bully && TaskManager.TaskStatus[36] == 1 && !TaskManager.GirlsQuestioned[Yandere.TargetStudent.BullyID])
+			{
+				TaskLabel.text = "Ask a Task-Related Question:";
+				TaskDialogueWindow.SetActive(value: true);
+			}
+			else if (Yandere.StudentManager.Week == 2 && Yandere.TargetStudent.RivalFriendID > 0 && Yandere.TargetStudent.Friend && !Yandere.PauseScreen.SocialMedia.BlogKnown[Yandere.TargetStudent.RivalFriendID])
+			{
+				TaskLabel.text = "Ask for Amai's Social Media:";
+				TaskDialogueWindow.SetActive(value: true);
+			}
 		}
 		if (!Yandere.StudentManager.Eighties && Yandere.TargetStudent.StudentID == 10 && TaskManager.TaskStatus[46] == 1 && Clock.Period != 3)
 		{
@@ -1166,9 +1181,6 @@ public class DialogueWheelScript : MonoBehaviour
 			else if (Yandere.TargetStudent.StudentID == 65 && TaskManager.TaskStatus[65] == 1)
 			{
 				Debug.Log("Disabling the car battery, since Homu took it.");
-				Debug.Log(Yandere.Bookbag);
-				Debug.Log(Yandere.Bookbag.ConcealedPickup);
-				Debug.Log(TaskManager.CarBattery);
 				if (Yandere.Bookbag != null && Yandere.Bookbag.ConcealedPickup != null && Yandere.Bookbag.ConcealedPickup == TaskManager.CarBattery)
 				{
 					Debug.Log("Supposed to be removing car battery from bookbag now.");

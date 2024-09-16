@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class StudentPortraitScript : MonoBehaviour
 {
-	public GameObject DeathShadow;
+	public GameObject FuneralFrame;
 
 	public GameObject PrisonBars;
+
+	public GameObject Darkness;
 
 	public GameObject Panties;
 
@@ -14,8 +16,9 @@ public class StudentPortraitScript : MonoBehaviour
 
 	private void Start()
 	{
-		DeathShadow.SetActive(value: false);
+		FuneralFrame.SetActive(value: false);
 		PrisonBars.SetActive(value: false);
+		Darkness.SetActive(value: false);
 		Panties.SetActive(value: false);
 		Friend.SetActive(value: false);
 	}

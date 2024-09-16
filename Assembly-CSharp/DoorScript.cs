@@ -524,7 +524,7 @@ public class DoorScript : MonoBehaviour
 		CheckDirection();
 		if (BucketSet)
 		{
-			if (Student.WillRemoveBucket)
+			if ((Student.StudentID == 1 && Student.InEvent) || Student.WillRemoveBucket)
 			{
 				Yandere.NotificationManager.CustomText = Student.Name + " removed bucket trap.";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

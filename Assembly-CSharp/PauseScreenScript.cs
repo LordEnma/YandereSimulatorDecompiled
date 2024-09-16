@@ -129,6 +129,8 @@ public class PauseScreenScript : MonoBehaviour
 
 	public int Secret;
 
+	public int Focus;
+
 	public bool ShowMissionModeDetails;
 
 	public bool ViewingControlMenu;
@@ -162,6 +164,8 @@ public class PauseScreenScript : MonoBehaviour
 	public bool Home;
 
 	public bool Show;
+
+	public bool Zoom;
 
 	public int Row = 1;
 
@@ -280,6 +284,12 @@ public class PauseScreenScript : MonoBehaviour
 			{
 				PhoneShadows[k].enabled = false;
 			}
+		}
+		if (DateGlobals.Week < 2)
+		{
+			UISprite uISprite19 = PhoneIcons[18];
+			uISprite19.color = new Color(uISprite19.color.r, uISprite19.color.g, uISprite19.color.b, 0.5f);
+			PhoneShadows[18].enabled = false;
 		}
 		UpdateSelection();
 		CorrectingTime = false;
@@ -447,15 +457,40 @@ public class PauseScreenScript : MonoBehaviour
 		}
 		else if (!Sideways)
 		{
-			if (!NewSettings.gameObject.activeInHierarchy)
+			if (!Zoom)
 			{
-				base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(0f, 50f, 0f), Speed);
+				if (!NewSettings.gameObject.activeInHierarchy)
+				{
+					base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(0f, 49f, 0f), Speed);
+				}
+				else
+				{
+					base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(1320f, 49f, 0f), Speed);
+				}
+				base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(0.915f, 0.915f, 0.915f), Speed);
 			}
 			else
 			{
-				base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(1320f, 0f, 0f), Speed);
+				float y = 0f;
+				if (Focus == 0)
+				{
+					y = -576.6667f;
+				}
+				else if (Focus == 1)
+				{
+					y = 0f;
+				}
+				else if (Focus == 2)
+				{
+					y = 675f;
+				}
+				else if (Focus == 3)
+				{
+					y = 0f;
+				}
+				base.transform.localPosition = Vector3.Lerp(base.transform.localPosition, new Vector3(0f, y, 0f), Speed);
+				base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(2f, 2f, 2f), Speed);
 			}
-			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(0.9133334f, 0.9133334f, 0.9133334f), Speed);
 			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, base.transform.localEulerAngles.y, Mathf.Lerp(base.transform.localEulerAngles.z, 0f, Speed));
 		}
 		else

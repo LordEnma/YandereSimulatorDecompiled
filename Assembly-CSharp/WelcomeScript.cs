@@ -66,6 +66,7 @@ public class WelcomeScript : MonoBehaviour
 				SceneManager.LoadScene("FunScene");
 			}
 		}
+		Darkness.color = Color.white;
 	}
 
 	private void Update()

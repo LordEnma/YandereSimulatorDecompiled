@@ -477,7 +477,7 @@ public class TalkingScript : MonoBehaviour
 			S.TalkTimer -= Time.deltaTime;
 			if (S.TalkTimer <= 0f)
 			{
-				if (!S.DialogueWheel.Social.Socialized)
+				if (!S.DialogueWheel.Social.Socialized && !S.StudentManager.KokonaTutorial)
 				{
 					S.Pestered += 2;
 				}
@@ -1728,7 +1728,6 @@ public class TalkingScript : MonoBehaviour
 		}
 		else if (S.Interaction == StudentInteractionType.TaskInquiry)
 		{
-			Debug.Log(S.Name + " is currently being told to respond to a Task Inquiry.");
 			if (S.TalkTimer == 10f)
 			{
 				if (S.Club == ClubType.Bully)
@@ -1748,18 +1747,35 @@ public class TalkingScript : MonoBehaviour
 						S.Subtitle.UpdateLabel(SubtitleType.TaskInquiry, 8, 8f);
 					}
 				}
+				else
+				{
+					S.CharacterAnimation.CrossFade(S.ThinkAnim);
+					S.Subtitle.UpdateLabel(SubtitleType.TaskInquiry, S.StudentID, 10f);
+					if (S.RivalFriendID > 0)
+					{
+						S.Yandere.PauseScreen.SocialMedia.BlogKnown[S.RivalFriendID] = true;
+					}
+				}
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
+				Debug.Log("Dialogue skipped.");
+				if (S.Subtitle.CurrentClip != null)
+				{
+					Object.Destroy(S.Subtitle.CurrentClip);
+				}
 				S.TalkTimer = 0f;
 			}
-			if (S.CharacterAnimation["f02_embar_00"].time >= S.CharacterAnimation["f02_embar_00"].length)
+			if (!S.Male)
 			{
-				S.CharacterAnimation.CrossFade(IdleAnim);
-			}
-			if (S.CharacterAnimation["f02_nod_00"].time >= S.CharacterAnimation["f02_nod_00"].length)
-			{
-				S.CharacterAnimation.CrossFade(IdleAnim);
+				if (S.CharacterAnimation["f02_embar_00"].time >= S.CharacterAnimation["f02_embar_00"].length)
+				{
+					S.CharacterAnimation.CrossFade(IdleAnim);
+				}
+				if (S.CharacterAnimation["f02_nod_00"].time >= S.CharacterAnimation["f02_nod_00"].length)
+				{
+					S.CharacterAnimation.CrossFade(IdleAnim);
+				}
 			}
 			S.TalkTimer -= Time.deltaTime;
 			if (S.TalkTimer <= 0f)

@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class WeekSelectScript : MonoBehaviour
 {
+	public JsonScript JSON;
+
 	public StudentManagerScript StudentManager;
 
 	public InputManagerScript InputManager;
@@ -43,6 +45,10 @@ public class WeekSelectScript : MonoBehaviour
 	public int Column = 1;
 
 	public int[] Specifics;
+
+	public Texture[] CustomFemaleSleeveTexture;
+
+	public Texture[] CustomMaleSleeveTexture;
 
 	public Texture[] ModernSleeveTexture;
 
@@ -88,6 +94,24 @@ public class WeekSelectScript : MonoBehaviour
 			RetroEffect.enabled = false;
 			ChangeFont(Stats.transform);
 			ChangeFont(base.transform);
+		}
+		else
+		{
+			if (!GameGlobals.CustomMode)
+			{
+				return;
+			}
+			for (int i = 1; i < 11; i++)
+			{
+				if (JSON.Students[i + 10].Gender == 0)
+				{
+					SleeveRenderer[i].material.mainTexture = CustomFemaleSleeveTexture[i];
+				}
+				else
+				{
+					SleeveRenderer[i].material.mainTexture = CustomMaleSleeveTexture[i];
+				}
+			}
 		}
 	}
 
@@ -168,7 +192,15 @@ public class WeekSelectScript : MonoBehaviour
 					}
 					if (GameGlobals.Eighties)
 					{
-						SceneManager.LoadScene("EightiesCutsceneScene");
+						if (GameGlobals.CustomMode)
+						{
+							Screen.SetResolution(512, 512, fullscreen: false);
+							SceneManager.LoadScene("PortraitScene");
+						}
+						else
+						{
+							SceneManager.LoadScene("EightiesCutsceneScene");
+						}
 					}
 					else
 					{

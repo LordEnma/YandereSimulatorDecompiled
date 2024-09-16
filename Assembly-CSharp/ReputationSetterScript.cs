@@ -6,7 +6,7 @@ public class ReputationSetterScript : MonoBehaviour
 
 	public void InitializeReputations()
 	{
-		if (!StudentManager.Eighties)
+		if (!GameGlobals.Eighties)
 		{
 			StudentGlobals.SetReputationTriangle(1, new Vector3(0f, 0f, 0f));
 			StudentGlobals.SetReputationTriangle(2, new Vector3(70f, -10f, 10f));

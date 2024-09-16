@@ -48,6 +48,8 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 
 	public bool CheckForAlt;
 
+	public bool Chesster;
+
 	public bool ArtClub;
 
 	public bool Gentle;
@@ -95,6 +97,10 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		{
 			accessory = GameObject.Find("GentleEyes");
 			accessoryMaterials = defaultMaterials;
+		}
+		else if (Chesster)
+		{
+			accessory = GameObject.Find("Chesster");
 		}
 		else if (ID == 1)
 		{

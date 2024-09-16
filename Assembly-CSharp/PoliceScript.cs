@@ -399,7 +399,7 @@ public class PoliceScript : MonoBehaviour
 				{
 					Debug.Log("Invalid Genocide Run. Easter Eggs were used.");
 				}
-				else if (Clock.Weekday != 1)
+				else if (Clock.Weekday != 1 || StudentManager.Week > 1)
 				{
 					Debug.Log("Invalid Genocide Run. It's not Monday of Week 1.");
 				}

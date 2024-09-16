@@ -11,6 +11,8 @@ public class CorkboardSchemeScript : MonoBehaviour
 
 	public UISprite Darkness;
 
+	public UISprite Reticle;
+
 	public VideoPlayer Video;
 
 	public UIPanel ExplanationPanel;
@@ -80,6 +82,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 			ExplanationPanel.alpha = 0f;
 			Darkness.enabled = true;
 			Darkness.alpha = 1f;
+			Reticle.enabled = false;
 			UpdateHighlight();
 		}
 		else

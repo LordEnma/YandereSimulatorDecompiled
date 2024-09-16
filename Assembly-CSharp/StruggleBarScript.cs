@@ -179,6 +179,8 @@ public class StruggleBarScript : MonoBehaviour
 		Yandere.Lost = true;
 		if (Student != null)
 		{
+			Yandere.CharacterAnimation.CrossFade(Student.Teacher ? "f02_teacherStruggleLoseA_00" : "f02_struggleLoseA_00");
+			Student.CharacterAnimation.CrossFade(Student.StruggleLostAnim);
 			Student.Won = true;
 		}
 		Struggling = false;

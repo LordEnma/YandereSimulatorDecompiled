@@ -754,6 +754,10 @@ public class CounselorScript : MonoBehaviour
 			if (LecturePhase == 1)
 			{
 				LectureLabel.text = LectureIntro[LectureID];
+				if (StudentManager.Clock.Period > 4)
+				{
+					LectureLabel.text = "The guidance counselor tracks down your rival and confronts her about the accusations you made...";
+				}
 				EndOfDayDarkness.color = new Color(EndOfDayDarkness.color.r, EndOfDayDarkness.color.g, EndOfDayDarkness.color.b, Mathf.MoveTowards(EndOfDayDarkness.color.a, 0f, Time.deltaTime));
 				if (EndOfDayDarkness.color.a < 0.001f)
 				{
@@ -903,6 +907,7 @@ public class CounselorScript : MonoBehaviour
 							Lecturing = false;
 							if (Yandere.StudentManager.Clock.Period > 4 || SentHome)
 							{
+								bool flag = false;
 								if (SentHome)
 								{
 									Debug.Log("We got here after being sent home.");
@@ -910,9 +915,20 @@ public class CounselorScript : MonoBehaviour
 								else
 								{
 									Debug.Log("We got here during Period 5 or 6. We must be at the end of the school day.");
+									flag = true;
+									Lecturing = true;
 								}
-								EndOfDay.Phase++;
-								EndOfDay.UpdateScene();
+								if (flag && EndOfDayDarkness.alpha < 0.999f)
+								{
+									EndOfDayDarkness.alpha = Mathf.MoveTowards(EndOfDayDarkness.alpha, 1f, Time.deltaTime);
+								}
+								else
+								{
+									Debug.Log("Now attempting to leave Counselor scene and enter End-of-Day scene.");
+									EndOfDay.Phase++;
+									EndOfDay.UpdateScene();
+									EndOfDay.enabled = true;
+								}
 							}
 							else
 							{
@@ -1310,10 +1326,15 @@ public class CounselorScript : MonoBehaviour
 				WeaponToReturn.transform.position = StudentManager.WeaponBoxSpot.parent.position + new Vector3(0f, 1f, 0f);
 				WeaponToReturn.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 			}
-			else
+			else if (WeaponToReturn.Origin != null)
 			{
 				WeaponToReturn.transform.position = WeaponToReturn.Origin.position;
 				WeaponToReturn.transform.eulerAngles = WeaponToReturn.Origin.eulerAngles;
+			}
+			else
+			{
+				WeaponToReturn.transform.position = StudentManager.WeaponBoxSpot.parent.position + new Vector3(0f, 1f, 0f);
+				WeaponToReturn.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 			}
 			WeaponToReturn.MyRigidbody.useGravity = true;
 			WeaponToReturn.MyRigidbody.isKinematic = false;

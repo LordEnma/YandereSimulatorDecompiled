@@ -68,6 +68,7 @@ public class GenericEightiesTaskScript : MonoBehaviour
 				Prompt.Circle[0].fillAmount = 1f;
 				if (!Prompt.Yandere.Chased && Prompt.Yandere.Chasers == 0)
 				{
+					Prompt.Yandere.EmptyHands();
 					if (Prompt.Yandere.YandereVision)
 					{
 						Prompt.Yandere.YandereVision = false;

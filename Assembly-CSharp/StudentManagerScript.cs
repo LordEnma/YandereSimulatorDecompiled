@@ -58,6 +58,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public OpinionsLearnedScript TopicsDiscussed;
 
+	public ClothingParentScript ClothingParent;
+
 	public CombatMinigameScript CombatMinigame;
 
 	public DatingMinigameScript DatingMinigame;
@@ -1155,6 +1157,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public GameObject MiniMap;
 
+	public float ErrorTimer;
+
 	public int FemaleGenerics;
 
 	public int MaleGenerics;
@@ -1265,6 +1269,13 @@ public class StudentManagerScript : MonoBehaviour
 		CustomMode = GameGlobals.CustomMode;
 		EmptyDemon = GameGlobals.EmptyDemon;
 		Week = DateGlobals.Week;
+		if (Yandere != null && Yandere.PauseScreen != null)
+		{
+			Yandere.PauseScreen.SocialMedia.BlogKnown[1] = StudentGlobals.GetBlogKnown(1);
+			Yandere.PauseScreen.SocialMedia.BlogKnown[2] = StudentGlobals.GetBlogKnown(2);
+			Yandere.PauseScreen.SocialMedia.BlogKnown[3] = StudentGlobals.GetBlogKnown(3);
+			Yandere.PauseScreen.SocialMedia.BlogKnown[4] = StudentGlobals.GetBlogKnown(4);
+		}
 		if (GameGlobals.RobotComplete)
 		{
 			RobotPhase = 1;
@@ -1409,9 +1420,10 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (Police != null)
 		{
-			Police.EndOfDay.LearnedOsanaInfo1 = EventGlobals.OsanaEvent1;
-			Police.EndOfDay.LearnedOsanaInfo2 = EventGlobals.OsanaEvent2;
-			Police.EndOfDay.LearnedRivalDarkSecret = EventGlobals.LearnedRivalDarkSecret;
+			Police.EndOfDay.LearnedRival1Info[1] = EventGlobals.OsanaEvent1;
+			Police.EndOfDay.LearnedRival1Info[2] = EventGlobals.OsanaEvent2;
+			Police.EndOfDay.LearnedRival2Info[1] = EventGlobals.LearnedAmaiSecret1;
+			Police.EndOfDay.LearnedRival2Info[2] = EventGlobals.LearnedAmaiSecret2;
 			Police.EndOfDay.LearnedAboutPhotographer = EventGlobals.LearnedAboutPhotographer;
 		}
 		LoveSick = GameGlobals.LoveSick;
@@ -3554,6 +3566,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void SkipTo8()
 	{
+		Stop = false;
 		Debug.Log("Firing SkipTo8()");
 		while (NPCsSpawned < NPCsTotal)
 		{
@@ -4971,6 +4984,7 @@ public class StudentManagerScript : MonoBehaviour
 		int @int = PlayerPrefs.GetInt("SaveSlot");
 		BloodParent.RecordAllBlood();
 		PuddleParent.RecordAllPuddles();
+		ClothingParent.RecordAllClothing();
 		GenericRivalBag.RememberBentoStatus();
 		SpawnedObjectManager.RememberObjects();
 		RivalMorningEventManagerScript[] morningEvents = Yandere.Class.Portal.MorningEvents;
@@ -5355,6 +5369,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		BloodParent.RestoreAllBlood();
 		PuddleParent.RestoreAllPuddles();
+		ClothingParent.RestoreAllClothing();
 		if (OsanaMondayBeforeClassEvent.Finished)
 		{
 			OsanaMondayBeforeClassEvent.EnableBentos();
@@ -5816,6 +5831,10 @@ public class StudentManagerScript : MonoBehaviour
 			AlphabetTimer += Time.deltaTime;
 			_ = AlphabetTimer;
 			_ = 10f;
+		}
+		if (ErrorTimer > 0f)
+		{
+			ErrorTimer = Mathf.MoveTowards(ErrorTimer, 0f, Time.deltaTime);
 		}
 	}
 
@@ -7663,9 +7682,28 @@ public class StudentManagerScript : MonoBehaviour
 		StudentScript[] students = Students;
 		foreach (StudentScript studentScript in students)
 		{
-			if (studentScript != null && studentScript.gameObject.activeInHierarchy && studentScript.enabled && studentScript.DistanceToPlayer < 1f)
+			if (!(studentScript != null) || !studentScript.gameObject.activeInHierarchy || !studentScript.enabled || !(studentScript.DistanceToPlayer < 1f))
 			{
-				Debug.Log(studentScript.Name + " is less than 1 meter away from the player!");
+				continue;
+			}
+			Debug.Log(studentScript.Name + " is less than 1 meter away from the player!");
+			Yandere.WallBehind = false;
+			Yandere.Direction = 5;
+			Yandere.CheckForWall();
+			if (Yandere.WallBehind)
+			{
+				Debug.Log("There is a wall behind the player. They shouldn't scoot back.");
+				if (ErrorTimer == 0f)
+				{
+					Yandere.NotificationManager.CustomText = "Too cramped!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Yandere.NotificationManager.CustomText = "Can't take out your camera!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					ErrorTimer = 1f;
+				}
+			}
+			else
+			{
 				Vector3 normalized = (Yandere.transform.position - studentScript.transform.position).normalized;
 				Yandere.transform.position += normalized * 0.25f;
 			}

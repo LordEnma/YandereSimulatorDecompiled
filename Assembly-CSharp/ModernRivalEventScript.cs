@@ -401,10 +401,10 @@ public class ModernRivalEventScript : MonoBehaviour
 			}
 			break;
 		case 3:
-			if (Vector3.Distance(Yandere.transform.position, Char[0].transform.position) < 5f && !StudentManager.Police.EndOfDay.LearnedRivalDarkSecret)
+			if (Vector3.Distance(Yandere.transform.position, Char[0].transform.position) < 5f && !StudentManager.Police.EndOfDay.LearnedRival2Info[1])
 			{
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
-				StudentManager.Police.EndOfDay.LearnedRivalDarkSecret = true;
+				StudentManager.Police.EndOfDay.StudentManager.Police.EndOfDay.LearnedRival2Info[1] = true;
 			}
 			break;
 		case 4:

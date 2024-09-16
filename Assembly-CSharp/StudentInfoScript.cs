@@ -771,8 +771,8 @@ public class StudentInfoScript : MonoBehaviour
 			case 11:
 				if (Yandere != null)
 				{
-					Strings[1] = (Yandere.Police.EndOfDay.LearnedOsanaInfo1 ? "May be a victim of blackmail." : "?????");
-					Strings[2] = (Yandere.Police.EndOfDay.LearnedOsanaInfo2 ? "Has a stalker." : "?????");
+					Strings[1] = (Yandere.Police.EndOfDay.LearnedRival1Info[1] ? "May be a victim of blackmail." : "?????");
+					Strings[2] = (Yandere.Police.EndOfDay.LearnedRival1Info[2] ? "Has a stalker." : "?????");
 				}
 				else
 				{
@@ -782,15 +782,17 @@ public class StudentInfoScript : MonoBehaviour
 				InfoLabel.text = "Senpai's childhood friend.\n\n" + Strings[1] + "\n\n" + Strings[2];
 				return;
 			case 12:
-				if (Yandere == null)
+				if (Yandere != null)
 				{
-					Strings[1] = (EventGlobals.LearnedRivalDarkSecret ? "Suspicious of a ''new bakery'' in town." : "You may be able to learn additional information by stalking her or buying it from Info-chan.");
+					Strings[1] = (Yandere.Police.EndOfDay.LearnedRival2Info[1] ? "Someone has been sabotaging her family's bakery." : "?????");
+					Strings[2] = (Yandere.Police.EndOfDay.LearnedRival2Info[2] ? "Suspicious of the owner of a new bakery in town." : "?????");
 				}
 				else
 				{
-					Strings[1] = (Yandere.Police.EndOfDay.LearnedRivalDarkSecret ? "Suspicious of a ''new bakery'' in town." : "You may be able to learn additional information by stalking her or buying it from Info-chan.");
+					Strings[1] = "?????";
+					Strings[2] = "?????";
 				}
-				InfoLabel.text = "The president of the Cooking Club.\n\n[c][800000]" + Strings[1] + "[-][/c]";
+				InfoLabel.text = "The president of the Cooking Club.\n\n[c][800000]" + Strings[1] + "\n\n" + Strings[2] + "[-][/c]";
 				return;
 			case 51:
 				if (ClubGlobals.GetClubClosed(ClubType.LightMusic))

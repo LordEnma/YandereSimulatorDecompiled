@@ -1164,6 +1164,11 @@ public class CalendarScript : MonoBehaviour
 		bool customMode = GameGlobals.CustomMode;
 		int femaleUniform = StudentGlobals.FemaleUniform;
 		int maleUniform = StudentGlobals.MaleUniform;
+		bool noCouncilShove = GameGlobals.NoCouncilShove;
+		bool noJournalist = GameGlobals.NoJournalist;
+		int yakuzaPhase = GameGlobals.YakuzaPhase;
+		bool forceCanonEliminations = GameGlobals.ForceCanonEliminations;
+		bool canBefriendCouncil = GameGlobals.CanBefriendCouncil;
 		Globals.DeleteAll();
 		if (eighties && num < 11)
 		{
@@ -1176,6 +1181,19 @@ public class CalendarScript : MonoBehaviour
 		GameGlobals.CustomMode = customMode;
 		StudentGlobals.FemaleUniform = femaleUniform;
 		StudentGlobals.MaleUniform = maleUniform;
+		if (GameGlobals.CustomMode)
+		{
+			GameGlobals.NoCouncilShove = noCouncilShove;
+			GameGlobals.NoJournalist = noJournalist;
+			if (yakuzaPhase > 0)
+			{
+				GameGlobals.IntroducedAbduction = true;
+				GameGlobals.IntroducedRansom = true;
+				GameGlobals.YakuzaPhase = 100;
+			}
+			GameGlobals.ForceCanonEliminations = forceCanonEliminations;
+			GameGlobals.CanBefriendCouncil = canBefriendCouncil;
+		}
 		GameGlobals.LoveSick = LoveSick;
 		DateGlobals.PassDays = 1;
 		if (GameGlobals.Eighties)
@@ -1317,7 +1335,11 @@ public class CalendarScript : MonoBehaviour
 		GameGlobals.RivalEliminationID = 0;
 		GameGlobals.SpecificEliminationID = 0;
 		EventGlobals.LearnedAboutPhotographer = false;
-		EventGlobals.LearnedRivalDarkSecret = false;
+		if (DateGlobals.Week == 2)
+		{
+			EventGlobals.LearnedAmaiSecret1 = false;
+			EventGlobals.LearnedAmaiSecret2 = false;
+		}
 		SchemeGlobals.EmbarassingSecret = false;
 		CounselorGlobals.ReportedAlcohol = false;
 		CounselorGlobals.ReportedCheating = false;

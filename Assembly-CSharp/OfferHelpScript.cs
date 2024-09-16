@@ -274,14 +274,14 @@ public class OfferHelpScript : MonoBehaviour
 		else if (Rival && DateGlobals.Week == 2)
 		{
 			EventSpeech[1] = "Oh! So, it was you who left that note in my locker!";
-			EventSpeech[2] = "Uh...so...you wanted to talk to me about...that new bakery?";
-			EventSpeech[3] = "I overheard your phone call. What do you suspect the new bakery is doing?";
+			EventSpeech[2] = "Do you have proof that someone is trying to sabotage my family's bakery?";
+			EventSpeech[3] = "No; I don't have any proof. But, I want to help you. Tell me more about the situation.";
 			EventSpeech[4] = "...gosh...it's a long story...I wouldn't even know where to begin...";
 			EventSpeech[5] = "Start at the beginning.";
 			EventSpeech[6] = "...(sigh)...recently, a new bakery opened up in town. Shortly afterwards...a bunch of terrible things started happening to my family's bakery.";
 			EventSpeech[7] = "Like what?";
-			EventSpeech[8] = "Well, earlier today, a bunch of rats suddenly appeared in our kitchen, right before a health inspection was supposed to take place!";
-			EventSpeech[9] = "There's no way I can just write that off as a coincidence. I'm certain that the new bakery is behind this...and everything else that's been happening lately, too.";
+			EventSpeech[8] = "Well, earlier today, a bunch of rats suddenly appeared in our kitchen, right before a health inspection was supposed to take place.";
+			EventSpeech[9] = "There's no way I can just write that off as a coincidence! I'm certain that the new bakery is behind this...and everything else that's been happening lately, too.";
 			EventSpeech[10] = "But...I don't have any proof! And, between my studies and bakery responsibilities, I don't have any time to gather evidence...";
 			EventSpeech[11] = "Do you know their address?";
 			EventSpeech[12] = "Yes, I...wait, why are you asking?";

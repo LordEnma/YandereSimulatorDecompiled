@@ -419,6 +419,7 @@ public class PickUpScript : MonoBehaviour
 			{
 				if (Yandere.StudentManager.Stop)
 				{
+					Debug.Log("Drop() is being called from here, specifically.");
 					Drop();
 				}
 			}

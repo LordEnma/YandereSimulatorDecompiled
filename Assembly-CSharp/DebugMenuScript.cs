@@ -711,8 +711,11 @@ public class DebugMenuScript : MonoBehaviour
 					}
 					else if (Input.GetKeyDown(KeyCode.W))
 					{
-						DateGlobals.Week++;
-						SceneManager.LoadScene("LoadingScene");
+						if (DateGlobals.Week < 2)
+						{
+							DateGlobals.Week++;
+							SceneManager.LoadScene("LoadingScene");
+						}
 					}
 					else if (Input.GetKeyDown(KeyCode.H))
 					{

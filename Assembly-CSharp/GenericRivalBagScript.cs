@@ -692,6 +692,11 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				Label[1].color = new Color(1f, 1f, 1f, 0.5f);
 			}
+			if (!Eighties)
+			{
+				Label[2].color = new Color(1f, 1f, 1f, 0.5f);
+				Label[3].color = new Color(1f, 1f, 1f, 0.5f);
+			}
 			Limit = 4;
 		}
 		else if (Menu == 3)

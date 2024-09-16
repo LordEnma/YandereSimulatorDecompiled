@@ -290,7 +290,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		{
 			UnityEngine.Object.Destroy(VoiceClip);
 		}
-		if (!Rival.Alarmed && !Rival.Attacked && !Rival.Hunted)
+		if (!Rival.Alarmed && !Rival.Attacked && !Rival.Hunted && !Rival.Electrified && !Rival.Electrocuted)
 		{
 			Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
 			Rival.DistanceToDestination = 100f;

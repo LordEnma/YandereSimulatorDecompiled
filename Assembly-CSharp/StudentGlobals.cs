@@ -128,6 +128,8 @@ public static class StudentGlobals
 
 	private const string Str_UpdateRivalReputation = "UpdateRivalReputation";
 
+	private const string Str_BlogKnown = "BlogKnown";
+
 	public static bool CustomSuitor
 	{
 		get
@@ -997,6 +999,23 @@ public static class StudentGlobals
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_StudentRansomed_");
 	}
 
+	public static bool GetBlogKnown(int blogID)
+	{
+		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_BlogKnown" + blogID);
+	}
+
+	public static void SetBlogKnown(int blogID, bool value)
+	{
+		string text = blogID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_BlogKnown", text);
+		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_BlogKnown" + text, value);
+	}
+
+	public static int[] KeysOfBlogKnown()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_BlogKnown");
+	}
+
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_CustomSuitor");
@@ -1037,6 +1056,7 @@ public static class StudentGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentRansomed_", KeysOfStudentRansomed());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentHealth_", KeysOfStudentHealth());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_StudentFriendship_", KeysOfStudentFriendship());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_BlogKnown", KeysOfBlogKnown());
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_MemorialStudents");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_MemorialStudent1");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_MemorialStudent2");

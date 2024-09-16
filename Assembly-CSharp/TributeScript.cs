@@ -18,6 +18,8 @@ public class TributeScript : MonoBehaviour
 
 	public string[] MinecraftLetters;
 
+	public string[] ChessterLetters;
+
 	public string[] MedibangLetters;
 
 	public string[] PpStarrsLetters;
@@ -41,6 +43,8 @@ public class TributeScript : MonoBehaviour
 	public string[] Letter;
 
 	public int MinecraftID;
+
+	public int ChessterID;
 
 	public int MedibangID;
 

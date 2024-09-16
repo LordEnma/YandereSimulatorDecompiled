@@ -12,15 +12,17 @@ public static class EventGlobals
 
 	private const string Str_Event2 = "Event2";
 
-	private const string Str_OsanaEvent1 = "OsanaEvent1";
-
-	private const string Str_OsanaEvent2 = "OsanaEvent2";
-
 	private const string Str_LivingRoom = "LivingRoom";
 
 	private const string Str_LearnedAboutPhotographer = "LearnedAboutPhotographer";
 
-	private const string Str_LearnedRivalDarkSecret = "LearnedRivalDarkSecret";
+	private const string Str_OsanaEvent1 = "OsanaEvent1";
+
+	private const string Str_OsanaEvent2 = "OsanaEvent2";
+
+	private const string Str_LearnedAmaiSecret1 = "LearnedAmaiSecret1";
+
+	private const string Str_LearnedAmaiSecret2 = "LearnedAmaiSecret2";
 
 	public static bool BefriendConversation
 	{
@@ -142,15 +144,27 @@ public static class EventGlobals
 		}
 	}
 
-	public static bool LearnedRivalDarkSecret
+	public static bool LearnedAmaiSecret1
 	{
 		get
 		{
-			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_LearnedRivalDarkSecret");
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_LearnedAmaiSecret1");
 		}
 		set
 		{
-			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_LearnedRivalDarkSecret", value);
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_LearnedAmaiSecret1", value);
+		}
+	}
+
+	public static bool LearnedAmaiSecret2
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_LearnedAmaiSecret2");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_LearnedAmaiSecret2", value);
 		}
 	}
 
@@ -166,6 +180,7 @@ public static class EventGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_Event2");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_LivingRoom");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_LearnedAboutPhotographer");
-		Globals.Delete("Profile_" + GameGlobals.Profile + "_LearnedRivalDarkSecret");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_LearnedAmaiSecret1");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_LearnedAmaiSecret2");
 	}
 }

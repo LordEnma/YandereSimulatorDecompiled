@@ -333,11 +333,11 @@ public class EventManagerScript : MonoBehaviour
 						EventGlobals.Event1 = true;
 					}
 				}
-				else if (OsanaID < 2 && !Yandere.Police.EndOfDay.LearnedOsanaInfo2)
+				else if (OsanaID < 2 && !Yandere.Police.EndOfDay.LearnedRival1Info[2])
 				{
 					Debug.Log("We just eavesdropped on Osana. Her profile should update.");
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
-					Yandere.Police.EndOfDay.LearnedOsanaInfo2 = true;
+					Yandere.Police.EndOfDay.LearnedRival1Info[2] = true;
 					StudentManager.OsanaOfferHelp.Eavesdropped = true;
 					if (SchemeGlobals.GetSchemeStage(6) == 2)
 					{

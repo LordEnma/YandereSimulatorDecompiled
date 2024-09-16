@@ -82,14 +82,14 @@ public class ResolutionScript : MonoBehaviour
 			if (Alpha == 1f)
 			{
 				GameGlobals.LastInputType = (int)InputDevice.Type;
-				SceneManager.LoadScene("WelcomeScene");
+				SceneManager.LoadScene("DisclaimerScene");
 			}
 		}
 		else
 		{
 			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime);
 		}
-		Darkness.color = new Color(1f, 1f, 1f, Alpha);
+		Darkness.alpha = Alpha;
 		if (Alpha == 0f)
 		{
 			if (InputManager.TappedDown)
@@ -162,6 +162,7 @@ public class ResolutionScript : MonoBehaviour
 			}
 			else if (ID == 4 && Input.GetButtonUp(InputNames.Xbox_A))
 			{
+				Darkness.color = new Color(0f, 0f, 0f, 0f);
 				FadeOut = true;
 			}
 		}

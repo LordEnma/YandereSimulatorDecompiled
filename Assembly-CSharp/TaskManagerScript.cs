@@ -258,22 +258,10 @@ public class TaskManagerScript : MonoBehaviour
 			{
 				TaskObjects[12].SetActive(value: false);
 			}
-			if (TaskStatus[21] == 1)
+			if (TaskStatus[21] == 1 && Yandere.PauseScreen.SocialMedia.BlogKnown[1] && Yandere.PauseScreen.SocialMedia.BlogKnown[2] && Yandere.PauseScreen.SocialMedia.BlogKnown[3] && Yandere.PauseScreen.SocialMedia.BlogKnown[4])
 			{
-				int num = 0;
-				for (int i = 1; i < 26; i++)
-				{
-					if (StudentManager.OpinionsLearned.StudentOpinions[12].Opinions[i])
-					{
-						num++;
-					}
-				}
-				Debug.Log("Current number of opinions learned is: " + num);
-				if (num == 25)
-				{
-					Debug.Log("Shoko's task should be ready to turn in!");
-					StudentManager.Students[21].TaskPhase = 5;
-				}
+				Debug.Log("Shoko's task should be ready to turn in!");
+				StudentManager.Students[21].TaskPhase = 5;
 			}
 			if (TaskStatus[22] == 1 && Yandere.Inventory.BroughtCarrotsToSchool)
 			{
@@ -320,9 +308,9 @@ public class TaskManagerScript : MonoBehaviour
 				{
 					StudentManager.Students[28].TaskPhase = 4;
 				}
-				for (int j = 1; j < 26; j++)
+				for (int i = 1; i < 26; i++)
 				{
-					if (Yandere.PauseScreen.PhotoGallery.KittenPhoto[j])
+					if (Yandere.PauseScreen.PhotoGallery.KittenPhoto[i])
 					{
 						Debug.Log("Riku's Task can be turned in.");
 						StudentManager.Students[28].TaskPhase = 5;
@@ -458,9 +446,9 @@ public class TaskManagerScript : MonoBehaviour
 			else if (TaskStatus[52] == 1 && StudentManager.Students[52] != null)
 			{
 				StudentManager.Students[52].TaskPhase = 4;
-				for (int k = 1; k < 26; k++)
+				for (int j = 1; j < 26; j++)
 				{
-					if (Yandere.PauseScreen.PhotoGallery.GuitarPhoto[k])
+					if (Yandere.PauseScreen.PhotoGallery.GuitarPhoto[j])
 					{
 						StudentManager.Students[52].TaskPhase = 5;
 					}
@@ -490,9 +478,9 @@ public class TaskManagerScript : MonoBehaviour
 			{
 				StudentManager.Students[81].TaskPhase = 4;
 			}
-			for (int l = 1; l < 26; l++)
+			for (int k = 1; k < 26; k++)
 			{
-				if (Yandere.PauseScreen.PhotoGallery.HorudaPhoto[l])
+				if (Yandere.PauseScreen.PhotoGallery.HorudaPhoto[k])
 				{
 					Debug.Log("Musume's Task can be turned in.");
 					StudentManager.Students[81].TaskPhase = 5;
@@ -519,19 +507,19 @@ public class TaskManagerScript : MonoBehaviour
 			}
 			if (TaskStatus[12] == 1 && StudentManager.Students[12] != null)
 			{
-				int num2 = 0;
-				for (int m = 6; m < 11; m++)
+				int num = 0;
+				for (int l = 6; l < 11; l++)
 				{
-					for (int n = 1; n < 26; n++)
+					for (int m = 1; m < 26; m++)
 					{
-						if (StudentManager.OpinionsLearned.StudentOpinions[m].Opinions[n])
+						if (StudentManager.OpinionsLearned.StudentOpinions[l].Opinions[m])
 						{
-							num2++;
+							num++;
 						}
 					}
 				}
-				Debug.Log("Current number of opinions learned is: " + num2);
-				if (num2 > 9)
+				Debug.Log("Current number of opinions learned is: " + num);
+				if (num > 9)
 				{
 					Debug.Log("Fiery's task should be ready to turn in!");
 					StudentManager.Students[12].TaskPhase = 5;

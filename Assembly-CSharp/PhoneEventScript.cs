@@ -315,9 +315,9 @@ public class PhoneEventScript : MonoBehaviour
 							StudentManager.SetTopicLearnedByStudent(25, EventStudentID, boolean: true);
 						}
 					}
-					else if (!Yandere.Police.EndOfDay.LearnedOsanaInfo1)
+					else if (!Yandere.Police.EndOfDay.LearnedRival1Info[1])
 					{
-						Yandere.Police.EndOfDay.LearnedOsanaInfo1 = true;
+						Yandere.Police.EndOfDay.LearnedRival1Info[1] = true;
 						Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
 						if (SchemeGlobals.GetSchemeStage(6) == 1)
 						{

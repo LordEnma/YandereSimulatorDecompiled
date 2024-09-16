@@ -2804,75 +2804,78 @@ public class YandereScript : MonoBehaviour
 						}
 						if (!Aiming)
 						{
-							PauseScreen.NewSettings.Profile.depthOfField.enabled = false;
-							if (CameraEffects.OneCamera)
-							{
-								MainCamera.clearFlags = CameraClearFlags.Color;
-								MainCamera.farClipPlane = 0.02f;
-								HandCamera.clearFlags = CameraClearFlags.Color;
-							}
-							else
-							{
-								MainCamera.clearFlags = CameraClearFlags.Skybox;
-								MainCamera.farClipPlane = OptionGlobals.DrawDistance;
-								HandCamera.clearFlags = CameraClearFlags.Depth;
-							}
-							base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
-							CharacterAnimation.Play(IdleAnim);
-							if (!StudentManager.Eighties)
-							{
-								Smartphone.transform.parent.gameObject.SetActive(value: true);
-								Blur.enabled = true;
-								if (!CinematicCamera.activeInHierarchy)
-								{
-									DisableHairAndAccessories();
-								}
-								HandCamera.gameObject.SetActive(value: true);
-								EmptyHands();
-								if (!StudentManager.KokonaTutorial)
-								{
-									PhonePromptBar.Panel.enabled = true;
-									PhonePromptBar.Show = true;
-								}
-							}
-							else
-							{
-								MainCamera.nearClipPlane = 0.266666f;
-								HandCamera.nearClipPlane = 0.35f;
-								Smartphone.nearClipPlane = 0.266666f;
-							}
-							ShoulderCamera.AimingCamera = true;
-							YandereVision = false;
-							Mopping = false;
-							Selfie = false;
-							Aiming = true;
 							StudentManager.CheckStudentProximity();
-							if (Inventory.RivalPhone)
+							if (StudentManager.ErrorTimer == 0f)
 							{
-								if (!RivalPhone)
+								PauseScreen.NewSettings.Profile.depthOfField.enabled = false;
+								if (CameraEffects.OneCamera)
 								{
-									PhonePromptBar.Label.text = "SWITCH TO STOLEN PHONE";
+									MainCamera.clearFlags = CameraClearFlags.Color;
+									MainCamera.farClipPlane = 0.02f;
+									HandCamera.clearFlags = CameraClearFlags.Color;
 								}
 								else
 								{
-									PhonePromptBar.Label.text = "SWITCH TO YOUR PHONE";
+									MainCamera.clearFlags = CameraClearFlags.Skybox;
+									MainCamera.farClipPlane = OptionGlobals.DrawDistance;
+									HandCamera.clearFlags = CameraClearFlags.Depth;
 								}
-							}
-							else
-							{
-								PhonePromptBar.Label.text = "AR GAME ON/OFF";
-							}
-							Time.timeScale = 1f;
-							UpdateSelfieStatus();
-							StudentManager.UpdatePanties(Status: true);
-							CameraEffects.SmartphoneCamera.depthTextureMode = DepthTextureMode.DepthNormals;
-							if (Club == ClubType.Newspaper)
-							{
-								ClubAccessories[(int)Club].transform.localScale = new Vector3(1f, 1f, 0.9f);
-							}
-							if (Vector3.Distance(base.transform.position, StudentManager.Journalist.transform.position) < 1f)
-							{
-								MoveAwayFromTarget(StudentManager.Journalist.transform.position);
+								base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
+								CharacterAnimation.Play(IdleAnim);
+								if (!StudentManager.Eighties)
+								{
+									Smartphone.transform.parent.gameObject.SetActive(value: true);
+									Blur.enabled = true;
+									if (!CinematicCamera.activeInHierarchy)
+									{
+										DisableHairAndAccessories();
+									}
+									HandCamera.gameObject.SetActive(value: true);
+									EmptyHands();
+									if (!StudentManager.KokonaTutorial)
+									{
+										PhonePromptBar.Panel.enabled = true;
+										PhonePromptBar.Show = true;
+									}
+								}
+								else
+								{
+									MainCamera.nearClipPlane = 0.266666f;
+									HandCamera.nearClipPlane = 0.35f;
+									Smartphone.nearClipPlane = 0.266666f;
+								}
+								ShoulderCamera.AimingCamera = true;
+								YandereVision = false;
+								Mopping = false;
+								Selfie = false;
+								Aiming = true;
+								if (Inventory.RivalPhone)
+								{
+									if (!RivalPhone)
+									{
+										PhonePromptBar.Label.text = "SWITCH TO STOLEN PHONE";
+									}
+									else
+									{
+										PhonePromptBar.Label.text = "SWITCH TO YOUR PHONE";
+									}
+								}
+								else
+								{
+									PhonePromptBar.Label.text = "AR GAME ON/OFF";
+								}
+								Time.timeScale = 1f;
+								UpdateSelfieStatus();
+								StudentManager.UpdatePanties(Status: true);
+								CameraEffects.SmartphoneCamera.depthTextureMode = DepthTextureMode.DepthNormals;
+								if (Club == ClubType.Newspaper)
+								{
+									ClubAccessories[(int)Club].transform.localScale = new Vector3(1f, 1f, 0.9f);
+								}
+								if (Vector3.Distance(base.transform.position, StudentManager.Journalist.transform.position) < 1f)
+								{
+									MoveAwayFromTarget(StudentManager.Journalist.transform.position);
+								}
 							}
 						}
 					}
@@ -6179,6 +6182,11 @@ public class YandereScript : MonoBehaviour
 				{
 					Subtitle.UpdateLabel(SubtitleType.TaskInquiry, 6, 5f);
 				}
+				else if (StudentManager.Week == 2 && TargetStudent.RivalFriendID > 0)
+				{
+					Subtitle.CustomText = "I want to talk to you about Amai...";
+					Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+				}
 			}
 			else
 			{
@@ -9456,6 +9464,14 @@ public class YandereScript : MonoBehaviour
 					Ragdoll.transform.Translate(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.right * 0.5f));
 				}
 				Physics.SyncTransforms();
+			}
+			ChangingBoothScript[] changingBooths = StudentManager.ChangingBooths;
+			foreach (ChangingBoothScript changingBoothScript in changingBooths)
+			{
+				if (changingBoothScript != null && Vector3.Distance(base.transform.position, changingBoothScript.transform.position) <= 1f)
+				{
+					Ragdoll.transform.position = changingBoothScript.transform.position + changingBoothScript.transform.forward;
+				}
 			}
 			Ragdoll.GetComponent<RagdollScript>().Fall();
 		}

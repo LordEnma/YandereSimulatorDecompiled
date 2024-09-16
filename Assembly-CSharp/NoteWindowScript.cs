@@ -98,12 +98,12 @@ public class NoteWindowScript : MonoBehaviour
 		UpdateSubLabels();
 		if (GameGlobals.Eighties)
 		{
-			Subjects[10] = "''Evil Photographer''";
+			Subjects[10] = "Evil Photographer";
 			Subjects[6] = "technology";
 		}
 		else if (DateGlobals.Week == 2)
 		{
-			Subjects[10] = "''New Bakery''";
+			Subjects[10] = "Bakery Owner Sabotage";
 		}
 	}
 
@@ -469,12 +469,12 @@ public class NoteWindowScript : MonoBehaviour
 			{
 				if (DateGlobals.Week == 1)
 				{
-					if (!Yandere.Police.EndOfDay.LearnedOsanaInfo1 || !Yandere.Police.EndOfDay.LearnedOsanaInfo2)
+					if (!Yandere.Police.EndOfDay.LearnedRival1Info[1] || !Yandere.Police.EndOfDay.LearnedRival1Info[2])
 					{
 						SubLabels[10].text = "??????????";
 					}
 				}
-				else if (!Yandere.Police.EndOfDay.LearnedRivalDarkSecret)
+				else if (DateGlobals.Week == 2 && (!Yandere.Police.EndOfDay.LearnedRival2Info[1] || !Yandere.Police.EndOfDay.LearnedRival2Info[2]))
 				{
 					SubLabels[10].text = "??????????";
 				}
