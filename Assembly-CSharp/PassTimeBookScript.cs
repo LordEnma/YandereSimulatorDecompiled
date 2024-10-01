@@ -18,6 +18,8 @@ public class PassTimeBookScript : MonoBehaviour
 
 	public float CooldownTimer;
 
+	public int Phase;
+
 	private void Start()
 	{
 		MissionMode = MissionModeGlobals.MissionMode;
@@ -76,45 +78,57 @@ public class PassTimeBookScript : MonoBehaviour
 			if (FadeOut)
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
-				if (Darkness.color.a > 0.99999f)
+				if (!(Darkness.color.a > 0.99999f))
+				{
+					return;
+				}
+				if (Phase == 0)
 				{
 					Yandere.StudentManager.PutStudentsToSleep();
 					Yandere.StudentManager.Clock.PresentTime += 30f;
 					Yandere.StudentManager.Clock.UpdateClock();
 					CooldownTimer = 4f;
+					Phase++;
+				}
+				else if (Phase == 1)
+				{
+					for (int i = 1; i < 100; i++)
+					{
+						if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Alive && !Yandere.StudentManager.Students[i].Tranquil && !Yandere.StudentManager.Students[i].Sedated)
+						{
+							Yandere.StudentManager.Students[i].transform.position = Yandere.StudentManager.Students[i].CurrentDestination.position;
+						}
+					}
+					Physics.SyncTransforms();
+					Phase++;
+				}
+				else if (Phase == 2)
+				{
 					FadeOut = false;
 				}
 				return;
 			}
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
-			if (!(Darkness.color.a < 0.1f))
+			if (Darkness.color.a < 0.1f)
 			{
-				return;
-			}
-			Darkness.alpha = 0f;
-			if (PlayerGlobals.PantiesEquipped == 7)
-			{
-				Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;
-				Yandere.NotificationManager.CustomText = "Gained 2 extra Study Points!";
-			}
-			else
-			{
-				Yandere.StudentManager.Reputation.Portal.Class.BonusPoints++;
-				Yandere.NotificationManager.CustomText = "Gained 1 extra Study Point!";
-			}
-			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			Yandere.RPGCamera.enabled = true;
-			Darkness.enabled = false;
-			Yandere.CanMove = true;
-			TimeSkipping = false;
-			for (int i = 1; i < 100; i++)
-			{
-				if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Alive && !Yandere.StudentManager.Students[i].Tranquil && !Yandere.StudentManager.Students[i].Sedated)
+				Darkness.alpha = 0f;
+				if (PlayerGlobals.PantiesEquipped == 7)
 				{
-					Yandere.StudentManager.Students[i].transform.position = Yandere.StudentManager.Students[i].CurrentDestination.position;
+					Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;
+					Yandere.NotificationManager.CustomText = "Gained 2 extra Study Points!";
 				}
+				else
+				{
+					Yandere.StudentManager.Reputation.Portal.Class.BonusPoints++;
+					Yandere.NotificationManager.CustomText = "Gained 1 extra Study Point!";
+				}
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Yandere.RPGCamera.enabled = true;
+				Darkness.enabled = false;
+				Yandere.CanMove = true;
+				TimeSkipping = false;
+				Phase = 0;
 			}
-			Physics.SyncTransforms();
 		}
 		else
 		{

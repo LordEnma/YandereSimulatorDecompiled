@@ -75,7 +75,10 @@ public class ModernRivalSabotageScript : MonoBehaviour
 				}
 				else
 				{
-					Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+					if (Prompt.Yandere.Club != ClubType.Cooking)
+					{
+						Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+					}
 					if (Prompt.Yandere.StudentManager.YandereVisible)
 					{
 						Prompt.Yandere.NotificationManager.CustomText = "Can't do that! Someone can see you!";

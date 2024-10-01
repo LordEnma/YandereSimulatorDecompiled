@@ -79,7 +79,7 @@ public class ResolutionScript : MonoBehaviour
 		if (FadeOut)
 		{
 			Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime);
-			if (Alpha == 1f)
+			if (Alpha > 0.999f)
 			{
 				GameGlobals.LastInputType = (int)InputDevice.Type;
 				SceneManager.LoadScene("DisclaimerScene");

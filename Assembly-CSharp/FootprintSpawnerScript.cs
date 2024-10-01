@@ -88,13 +88,16 @@ public class FootprintSpawnerScript : MonoBehaviour
 		{
 			MyAudio = GetComponent<AudioSource>();
 		}
-		GardenArea = Yandere.StudentManager.GardenArea;
-		PoolStairs = Yandere.StudentManager.PoolStairs;
-		TreeArea = Yandere.StudentManager.TreeArea;
-		NEStairs = Yandere.StudentManager.NEStairs;
-		NWStairs = Yandere.StudentManager.NWStairs;
-		SEStairs = Yandere.StudentManager.SEStairs;
-		SWStairs = Yandere.StudentManager.SWStairs;
+		if (Yandere.StudentManager != null)
+		{
+			GardenArea = Yandere.StudentManager.GardenArea;
+			PoolStairs = Yandere.StudentManager.PoolStairs;
+			TreeArea = Yandere.StudentManager.TreeArea;
+			NEStairs = Yandere.StudentManager.NEStairs;
+			NWStairs = Yandere.StudentManager.NWStairs;
+			SEStairs = Yandere.StudentManager.SEStairs;
+			SWStairs = Yandere.StudentManager.SWStairs;
+		}
 		GroundMask = 256;
 	}
 

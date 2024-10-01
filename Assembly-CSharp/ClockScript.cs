@@ -634,6 +634,7 @@ public class ClockScript : MonoBehaviour
 	{
 		if (!SchoolBell.isPlaying || SchoolBell.time > 1f)
 		{
+			Debug.Log("ActivateTrespassZones() is now commanding the SchoolBell to play.");
 			SchoolBell.Play();
 		}
 		Collider[] trespassZones = TrespassZones;
@@ -648,6 +649,7 @@ public class ClockScript : MonoBehaviour
 		Yandere.Trespassing = false;
 		if ((!SchoolBell.isPlaying || SchoolBell.time > 1f) && !StudentManager.SpawnNobody)
 		{
+			Debug.Log("DeactivateTrespassZones() is now commanding the SchoolBell to play.");
 			SchoolBell.Play();
 		}
 		Collider[] trespassZones = TrespassZones;
@@ -666,6 +668,7 @@ public class ClockScript : MonoBehaviour
 
 	public void ActivateLateStudent()
 	{
+		Debug.Log("The ClockScript is now activating the late student, Otohiko.");
 		if (!StudentManager.MissionMode && StudentManager.Students[7] != null && StudentManager.Students[7].Alive)
 		{
 			StudentManager.Students[7].gameObject.SetActive(value: true);

@@ -2254,7 +2254,17 @@ public class SubtitleScript : MonoBehaviour
 				}
 				break;
 			case 9:
-				Label.text = GetRandomString(BatReactions);
+				Debug.Log("StudentManager.Workbench.MadeSpikedBat is: " + !StudentManager.Workbench.MadeSpikedBat);
+				if (!StudentManager.Workbench.MadeSpikedBat)
+				{
+					Debug.Log("Subtitle should be displaying BatReactions[0]");
+					Label.text = BatReactions[0];
+				}
+				else
+				{
+					Debug.Log("Subtitle should be displaying BatReactions[1]");
+					Label.text = BatReactions[1];
+				}
 				break;
 			case 10:
 				Label.text = GetRandomString(ShovelReactions);

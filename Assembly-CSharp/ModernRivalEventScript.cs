@@ -91,7 +91,13 @@ public class ModernRivalEventScript : MonoBehaviour
 		{
 			if (StartCriteria == StartCriteriaType.PositionZ)
 			{
-				if (Char[0] == null)
+				if (Clock.HourTime > 8f)
+				{
+					Debug.Log("It's too late in the day for one of a rival's events to happen. It won't be happening.");
+					base.gameObject.SetActive(value: false);
+					base.enabled = false;
+				}
+				else if (Char[0] == null)
 				{
 					Char[0] = StudentManager.Students[CharIDs[0]];
 					if (Char[0] != null)

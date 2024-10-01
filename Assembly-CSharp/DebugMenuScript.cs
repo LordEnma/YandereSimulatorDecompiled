@@ -486,6 +486,10 @@ public class DebugMenuScript : MonoBehaviour
 						{
 							PlayerGlobals.SetStudentFriend(ID, value: true);
 							StudentManager.Students[ID].Friend = true;
+							StudentManager.Students[ID].PhotoPatience = 99999f;
+							StudentManager.Students[ID].Patience = 99999;
+							StudentManager.Students[ID].Pestered = 0;
+							StudentManager.Students[ID].Ignoring = false;
 						}
 						for (int i = 1; i < 26; i++)
 						{

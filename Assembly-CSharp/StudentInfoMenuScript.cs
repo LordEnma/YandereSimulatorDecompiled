@@ -118,6 +118,8 @@ public class StudentInfoMenuScript : MonoBehaviour
 
 	public float HeldUp;
 
+	public Shader GreyscaleShader;
+
 	public bool GrabbedPortraits;
 
 	public bool Debugging;

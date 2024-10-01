@@ -134,6 +134,22 @@ public class TributeScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
+			if (Input.GetKeyDown(ChessterLetters[ChessterID]))
+			{
+				ChessterID++;
+				if (ChessterID == ChessterLetters.Length)
+				{
+					StudentManager.Students[1].Cosmetic.MaleHair[StudentManager.Students[1].Cosmetic.Hairstyle].SetActive(value: false);
+					StudentManager.Students[1].ChessterAttacher.enabled = true;
+					StudentManager.Students[1].ChessterMask.SetActive(value: true);
+					StudentManager.Students[1].MyRenderer.enabled = false;
+					StudentManager.Students[1].Chesster = true;
+					Yandere.Stance.Current = StanceType.Standing;
+					Yandere.CrawlTimer = 0f;
+					Yandere.Uncrouch();
+					base.enabled = false;
+				}
+			}
 			if (Yandere.LunaMode && Input.GetKeyDown(LunarLetters[LunarID]))
 			{
 				LunarID++;

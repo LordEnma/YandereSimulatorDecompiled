@@ -986,14 +986,20 @@ public class WeaponScript : MonoBehaviour
 		if (Bloody)
 		{
 			Suspicious = true;
-			return;
 		}
-		for (ID = 0; ID < Outline.Length; ID++)
+		else
 		{
-			if (Outline[ID] != null)
+			for (ID = 0; ID < Outline.Length; ID++)
 			{
-				Outline[ID].color = new Color(0f, 1f, 1f, 1f);
+				if (Outline[ID] != null)
+				{
+					Outline[ID].color = new Color(0f, 1f, 1f, 1f);
+				}
 			}
+		}
+		if (Nails != null && Nails.activeInHierarchy)
+		{
+			Suspicious = true;
 		}
 	}
 

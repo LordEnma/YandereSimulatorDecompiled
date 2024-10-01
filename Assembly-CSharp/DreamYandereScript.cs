@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class DreamYandereScript : MonoBehaviour
 {
+	public PostProcessingBehaviour PostProcessing;
+
 	public CharacterController MyController;
 
 	public PostProcessingProfile Profile;
@@ -167,6 +169,10 @@ public class DreamYandereScript : MonoBehaviour
 			rotation = -15f;
 		}
 		MainCamera.localEulerAngles = new Vector3(rotation, 0f, 0f);
+		if (Input.GetKeyDown("p"))
+		{
+			PostProcessing.enabled = !PostProcessing.enabled;
+		}
 	}
 
 	private void LateUpdate()

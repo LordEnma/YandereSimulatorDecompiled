@@ -1972,7 +1972,10 @@ public class GenericRivalEventScript : MonoBehaviour
 			}
 			Jukebox.Dip = 1f - 0.5f * Scale;
 			EventSubtitle.transform.localScale = new Vector3(Scale, Scale, Scale);
-			Yandere.Eavesdropping = Distance < 3f;
+			if (base.enabled)
+			{
+				Yandere.Eavesdropping = Distance < 3f;
+			}
 		}
 		else if (Distance - 4f < 16f)
 		{
@@ -2040,7 +2043,6 @@ public class GenericRivalEventScript : MonoBehaviour
 				Spy.End();
 			}
 			EventSubtitle.text = string.Empty;
-			Yandere.Eavesdropping = false;
 			Jukebox.Dip = 1f;
 			base.enabled = false;
 			if (Sabotaged)
@@ -2104,6 +2106,7 @@ public class GenericRivalEventScript : MonoBehaviour
 		{
 			StudentManager.RevertEightiesWeek9RoutineAdjustments();
 		}
+		Yandere.Eavesdropping = false;
 	}
 
 	public void Sabotage()

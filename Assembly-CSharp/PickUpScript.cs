@@ -144,6 +144,8 @@ public class PickUpScript : MonoBehaviour
 
 	public bool Suspicious;
 
+	public bool ThisIsAMop;
+
 	public bool BangSnaps;
 
 	public bool Blowtorch;
@@ -297,12 +299,28 @@ public class PickUpScript : MonoBehaviour
 		if (Mop != null)
 		{
 			Suspicious = false;
+			ThisIsAMop = true;
 		}
 		KeepActive = true;
 	}
 
 	private void LateUpdate()
 	{
+		if (CleaningProduct && !ThisIsAMop)
+		{
+			if (Clock == null)
+			{
+				Clock = Yandere.StudentManager.Clock;
+			}
+			if (Clock.Period == 5)
+			{
+				Suspicious = false;
+			}
+			else
+			{
+				Suspicious = true;
+			}
+		}
 		if (Weight)
 		{
 			Strength = Prompt.Yandere.Class.PhysicalGrade + Prompt.Yandere.Class.PhysicalBonus;
@@ -618,6 +636,12 @@ public class PickUpScript : MonoBehaviour
 		if (Bucket != null)
 		{
 			Debug.Log("It was a bucket.");
+			if (Yandere.Stance.Current == StanceType.Crouching)
+			{
+				Yandere.Stance.Current = StanceType.Standing;
+				Yandere.CrawlTimer = 0f;
+				Yandere.Uncrouch();
+			}
 			if (Bucket.Full)
 			{
 				Debug.Log("The bucket was full.");

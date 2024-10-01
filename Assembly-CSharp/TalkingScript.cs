@@ -494,6 +494,7 @@ public class TalkingScript : MonoBehaviour
 				{
 					Debug.Log("This character has a requirement to offer a Task.");
 					S.StudentManager.TaskManager.CheckTaskRequirement(S.StudentID);
+					S.TaskRejected++;
 					flag2 = S.StudentManager.TaskManager.Proceed;
 					flag = S.StudentManager.TaskManager.Impossible;
 				}
@@ -1975,9 +1976,9 @@ public class TalkingScript : MonoBehaviour
 					S.Subtitle.UpdateLabel(SubtitleType.GiveHelp, 0, 4f);
 				}
 			}
-			else
+			else if (Input.GetButtonDown(InputNames.Xbox_A) && S.StudentID > 10 && S.StudentID < 21 && !S.Friend)
 			{
-				Input.GetButtonDown(InputNames.Xbox_A);
+				S.TalkTimer = 0f;
 			}
 			if (S.CharacterAnimation[S.GossipAnim].time >= S.CharacterAnimation[S.GossipAnim].length)
 			{

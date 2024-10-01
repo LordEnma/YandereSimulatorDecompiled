@@ -232,6 +232,7 @@ public class RobotChanScript : MonoBehaviour
 		if (ImpalePhase == 0)
 		{
 			Debug.Log("ImpalePhase 0 fired.");
+			TargetStudent.MyRenderer.SetBlendShapeWeight(0, 0f);
 			TargetStudent.MurderSuicidePhase = 100;
 			TargetStudent.SpawnAlarmDisc();
 			TargetStudent.MurderSuicidePhase = 0;
@@ -276,6 +277,7 @@ public class RobotChanScript : MonoBehaviour
 				TargetStudent.Ragdoll.RobotDeath = true;
 				TargetStudent.Ragdoll.Disturbing = true;
 				TargetStudent.Dying = true;
+				TargetStudent.EyeShrink = 1f;
 				Object.Instantiate(Blood, MyHand.position, Quaternion.identity);
 				BodyPart.StudentID = TargetStudent.StudentID;
 				Heart.gameObject.SetActive(value: true);

@@ -1128,15 +1128,15 @@ public class PauseScreenScript : MonoBehaviour
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is being electrocuted.";
 					}
+					if (Yandere.StudentManager.Students[i].Hunting || Yandere.StudentManager.RobotChan.Hunting)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game when a student is about to be murdered.";
+					}
 					if (Yandere.StudentManager.Students[i].Confessing)
 					{
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is confessing their love.";
-					}
-					if (Yandere.StudentManager.Students[i].Hunting)
-					{
-						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-						Reason = "You cannot save the game while a student is about to commit murder.";
 					}
 					if (Yandere.StudentManager.Students[i].Investigating)
 					{

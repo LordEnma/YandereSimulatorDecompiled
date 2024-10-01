@@ -114,21 +114,29 @@ public class ShoulderCameraScript : MonoBehaviour
 		}
 		if (OverShoulder)
 		{
-			bool flag = false;
 			Vector3 b = Vector3.zero;
+			bool flag = false;
+			bool flag2 = false;
 			if (RPGCamera.enabled)
 			{
 				ShoulderFocus.position = RPGCamera.cameraPivot.position;
 				LastPosition = base.transform.position;
 				RPGCamera.enabled = false;
 			}
-			Vector3.Distance(ShoulderFocus.position, ShoulderPOV.position);
+			float num = Vector3.Distance(ShoulderFocus.position, ShoulderPOV.position);
 			ShoulderFocus.LookAt(ShoulderPOV);
 			Debug.DrawRay(ShoulderFocus.position, ShoulderFocus.forward, Color.green);
 			if (Physics.Raycast(ShoulderFocus.position, ShoulderFocus.forward, out var hitInfo, 1f, Yandere.OnlyDefault))
 			{
+				Debug.Log("Collided with an object named " + hitInfo.collider.gameObject.name + ", " + num + " meters of the camera and the place it's supposed to be looking at.");
 				b = hitInfo.point;
 				flag = true;
+			}
+			Debug.DrawRay(Yandere.Head.position, Yandere.Head.right, Color.green);
+			if (Physics.Raycast(Yandere.Head.position, Yandere.Head.right, out hitInfo, 0.5f, Yandere.OnlyDefault))
+			{
+				Debug.Log("Collided with an object named " + hitInfo.collider.gameObject.name + ", " + num + " meters to the right of Yan-chan's head.");
+				flag2 = true;
 			}
 			if (Yandere.TargetStudent != null)
 			{
@@ -136,13 +144,18 @@ public class ShoulderCameraScript : MonoBehaviour
 				{
 					base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position + new Vector3(0f, -0.49f, 0f), Time.deltaTime * 10f);
 				}
-				else if (!flag)
+				else if (flag)
 				{
-					base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position, Time.deltaTime * 10f);
+					base.transform.position = Vector3.Lerp(base.transform.position, b, Time.deltaTime * 10f);
+				}
+				else if (flag2)
+				{
+					Vector3 vector = -base.transform.right;
+					Yandere.transform.Translate(vector * Time.deltaTime, Space.World);
 				}
 				else
 				{
-					base.transform.position = Vector3.Lerp(base.transform.position, b, Time.deltaTime * 10f);
+					base.transform.position = Vector3.Lerp(base.transform.position, ShoulderPOV.position, Time.deltaTime * 10f);
 				}
 				ShoulderFocus.position = Vector3.Lerp(ShoulderFocus.position, Yandere.TargetStudent.transform.position + Vector3.up * Height, Time.deltaTime * 10f);
 			}
@@ -593,14 +606,14 @@ public class ShoulderCameraScript : MonoBehaviour
 		else if (LookDown)
 		{
 			Timer += Time.deltaTime;
-			float num = 3f;
+			float num2 = 3f;
 			if (Yandere.StudentManager.NEStairs.bounds.Contains(Yandere.transform.position) || Yandere.StudentManager.NWStairs.bounds.Contains(Yandere.transform.position) || Yandere.StudentManager.SEStairs.bounds.Contains(Yandere.transform.position) || Yandere.StudentManager.SWStairs.bounds.Contains(Yandere.transform.position))
 			{
-				num = 2f;
+				num2 = 2f;
 			}
 			if (Timer < 5f)
 			{
-				base.transform.position = Vector3.Lerp(base.transform.position, Yandere.Hips.position + Vector3.up * num + Vector3.right * 0.1f, Time.deltaTime * Timer);
+				base.transform.position = Vector3.Lerp(base.transform.position, Yandere.Hips.position + Vector3.up * num2 + Vector3.right * 0.1f, Time.deltaTime * Timer);
 				Focus.transform.parent = null;
 				Focus.transform.position = Vector3.Lerp(Focus.transform.position, Yandere.Hips.position, Time.deltaTime * Timer);
 				base.transform.LookAt(Focus);

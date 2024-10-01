@@ -1876,6 +1876,7 @@ public class StudentManagerScript : MonoBehaviour
 						Debug.Log("Because Yandere-chan is late for school, we're teleporting students where they would be at 8 AM.");
 						if (!LoadedSave)
 						{
+							Clock.LateStudent = false;
 							Clock.PresentTime = 480f;
 							Clock.HourTime = 8f;
 							Clock.Hour = Mathf.Floor(Clock.PresentTime / 60f);
@@ -3592,6 +3593,7 @@ public class StudentManagerScript : MonoBehaviour
 				}
 				if (!Eighties && ID == 7 && Clock.HourTime < 8f)
 				{
+					Debug.Log("Huh? How did this code run? This code only runs if it's simultaneously before 8 and after 8...");
 					studentScript.MustTrip = true;
 				}
 				if (!studentScript.Teacher)
@@ -3659,10 +3661,6 @@ public class StudentManagerScript : MonoBehaviour
 						num++;
 						num2 = 0;
 					}
-				}
-				if (ID == 7 && !Eighties)
-				{
-					studentScript.transform.position = SpawnPositions[7].position;
 				}
 			}
 		}

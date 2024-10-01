@@ -373,6 +373,8 @@ public class PracticeWindowScript : MonoBehaviour
 				{
 					StudentManager.Students[7].gameObject.SetActive(value: false);
 				}
+				Debug.Log("Regenerating pathfinding grid.");
+				AstarPath.active.Scan();
 			}
 		}
 	}

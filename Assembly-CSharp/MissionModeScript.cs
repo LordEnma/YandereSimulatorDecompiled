@@ -183,6 +183,8 @@ public class MissionModeScript : MonoBehaviour
 
 	public int[] Method;
 
+	public bool BroughtHardware;
+
 	public bool SecurityCameras;
 
 	public bool MetalDetectors;
@@ -553,8 +555,10 @@ public class MissionModeScript : MonoBehaviour
 			{
 				Jukebox.MissionMode.clip = StealthMusic[0];
 			}
+			Yandere.FixCamera();
 			if (!YakuzaMode)
 			{
+				Debug.Log("Jukebox.MissionMode.Play() was just fired.");
 				Jukebox.MissionMode.enabled = true;
 				Jukebox.MissionMode.volume = 0f;
 				Jukebox.MissionMode.Play();
@@ -563,8 +567,8 @@ public class MissionModeScript : MonoBehaviour
 			{
 				Jukebox.YakuzaMusic.SetActive(value: true);
 			}
-			Yandere.FixCamera();
-			MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, 6.51505f, -76.9222f);
+			BroughtHardware = PlayerGlobals.BringingHardware > 0;
+			MainCamera.transform.position = new Vector3(0f, 6.51505f, -76.9222f);
 			MainCamera.transform.eulerAngles = new Vector3(15f, MainCamera.transform.eulerAngles.y, MainCamera.transform.eulerAngles.z);
 			Yandere.RPGCamera.enabled = false;
 			Yandere.SanityBased = true;
@@ -666,8 +670,19 @@ public class MissionModeScript : MonoBehaviour
 			{
 				return;
 			}
+			if (!Jukebox.MissionMode.isPlaying)
+			{
+				Jukebox.MissionMode.Play();
+			}
 			Speed += Time.deltaTime / 3f;
-			MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, Mathf.Lerp(MainCamera.transform.position.y, TargetHeight, Time.deltaTime * Speed), MainCamera.transform.position.z);
+			if (!BroughtHardware)
+			{
+				MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, Mathf.Lerp(MainCamera.transform.position.y, TargetHeight, Time.deltaTime * Speed), MainCamera.transform.position.z);
+			}
+			else
+			{
+				MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, new Vector3(9f, 1.491756f, -96.83526f), Time.deltaTime * Speed);
+			}
 			if (MainCamera.transform.position.y < TargetHeight + 0.1f)
 			{
 				Yandere.HUD.alpha = Mathf.MoveTowards(Yandere.HUD.alpha, 1f, Time.deltaTime / 3f);
@@ -1503,6 +1518,22 @@ public class MissionModeScript : MonoBehaviour
 		OptionGlobals.DrawDistanceLimit = drawDistanceLimit;
 		OptionGlobals.DisableBloom = disableBloom;
 		OptionGlobals.Fog = fog;
+		if (RequiredWeaponID == 31)
+		{
+			PlayerGlobals.BringingHardware = 9;
+		}
+		else if (RequiredWeaponID == 44)
+		{
+			PlayerGlobals.BringingHardware = 2;
+		}
+		else if (RequiredWeaponID == 45)
+		{
+			PlayerGlobals.BringingHardware = 6;
+		}
+		else if (RequiredWeaponID == 46)
+		{
+			PlayerGlobals.BringingHardware = 8;
+		}
 		Debug.Log("Mission Difficulty is now: " + MissionModeGlobals.MissionDifficulty);
 	}
 

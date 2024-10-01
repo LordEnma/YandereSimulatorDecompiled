@@ -529,14 +529,21 @@ public class HeadmasterScript : MonoBehaviour
 		Object.Instantiate(LightningEffect, Yandere.Spine[3].position, Quaternion.identity);
 		MyAudio.clip = HeadmasterShockClip;
 		MyAudio.Play();
-		Yandere.CharacterAnimation.CrossFade("f02_swingB_00");
-		Yandere.CharacterAnimation["f02_swingB_00"].time = 0.5f;
-		Yandere.RPGCamera.enabled = false;
-		Yandere.FakingReaction = false;
-		Yandere.TargetStudent = null;
-		Yandere.Degloving = false;
-		Yandere.Attacked = true;
-		Yandere.GloveTimer = 0f;
+		if (Yandere.Struggling)
+		{
+			Yandere.StruggleBar.HeroWins();
+		}
+		else
+		{
+			Yandere.CharacterAnimation.CrossFade("f02_swingB_00");
+			Yandere.CharacterAnimation["f02_swingB_00"].time = 0.5f;
+			Yandere.RPGCamera.enabled = false;
+			Yandere.FakingReaction = false;
+			Yandere.TargetStudent = null;
+			Yandere.Degloving = false;
+			Yandere.Attacked = true;
+			Yandere.GloveTimer = 0f;
+		}
 		Heartbroken.Headmaster = true;
 		Jukebox.Volume = 0f;
 		Shooting = false;

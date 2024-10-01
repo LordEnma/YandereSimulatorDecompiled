@@ -89,6 +89,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public UIPanel ConfirmRandomPanel;
 
+	public UIPanel ConfirmResetPanel;
+
 	public UIPanel MiscellaneousPanel;
 
 	public UIPanel StudentInfoPanel;
@@ -461,6 +463,7 @@ public class CustomModeScript : MonoBehaviour
 		ConfirmGenderPanel.alpha = 0f;
 		ConfirmRandomPanel.alpha = 0f;
 		MiscellaneousPanel.alpha = 0f;
+		ConfirmResetPanel.alpha = 0f;
 		StudentListPanel.alpha = 0f;
 		StudentInfoPanel.alpha = 0f;
 		LocationsPanel.alpha = 0f;
@@ -722,110 +725,124 @@ public class CustomModeScript : MonoBehaviour
 			}
 			if (Initializing)
 			{
-				if (ConfirmGenderPanel.alpha == 0f)
+				if (ConfirmGenderPanel.alpha == 1f)
 				{
-					StudentListPanel.alpha = Mathf.MoveTowards(StudentListPanel.alpha, 0f, Time.deltaTime * 10f);
-					StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 0f, Time.deltaTime * 10f);
-					CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 0f, Time.deltaTime * 10f);
-					OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
-					InitialPanel.alpha = Mathf.MoveTowards(InitialPanel.alpha, 1f, Time.deltaTime * 10f);
-					if (InputManager.TappedDown || HeldDown > 0.5f)
-					{
-						if (HeldDown > 0.5f)
-						{
-							HeldDown = 0.45f;
-						}
-						InitialSelected++;
-						if (InitialSelected > 7)
-						{
-							InitialSelected = 1;
-						}
-					}
-					if (InputManager.TappedUp || HeldUp > 0.5f)
-					{
-						if (HeldUp > 0.5f)
-						{
-							HeldUp = 0.45f;
-						}
-						InitialSelected--;
-						if (InitialSelected < 1)
-						{
-							InitialSelected = 7;
-						}
-					}
 					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						if (InitialSelected == 1)
-						{
-							FemaleUniform++;
-							if (FemaleUniform > 6)
-							{
-								FemaleUniform = 1;
-							}
-							FemaleUniformLabel.text = FemaleUniform.ToString() ?? "";
-							JSON.Misc.FemaleUniform = FemaleUniform;
-							StudentGlobals.FemaleUniform = FemaleUniform;
-							InitialFemale.Start();
-						}
-						else if (InitialSelected == 2)
-						{
-							MaleUniform++;
-							if (MaleUniform > 6)
-							{
-								MaleUniform = 1;
-							}
-							MaleUniformLabel.text = MaleUniform.ToString() ?? "";
-							JSON.Misc.MaleUniform = MaleUniform;
-							StudentGlobals.MaleUniform = MaleUniform;
-							InitialMale.Start();
-						}
-						else if (InitialSelected == 3)
-						{
-							if (!CanGenderSwap)
-							{
-								ConfirmGenderPanel.alpha = 1f;
-							}
-							else
-							{
-								GenderSwapLabel.text = "No";
-								CanGenderSwap = false;
-							}
-						}
-						else if (InitialSelected == 4)
-						{
-							Reset();
-							NotificationManager.CustomText = "Data has been reset.";
-							NotificationManager.DisplayNotification(NotificationType.Custom);
-						}
-						else if (InitialSelected == 5)
-						{
-							Load();
-						}
-						else if (InitialSelected == 6)
-						{
-							Save();
-						}
-						else if (InitialSelected == 7)
-						{
-							FadeOut = true;
-						}
+						ConfirmGenderPanel.alpha = 0f;
+						GenderSwapLabel.text = "Yes";
+						CanGenderSwap = true;
 					}
-					else if (Input.GetButtonDown(InputNames.Xbox_RB))
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
 					{
-						EnterStudentList();
+						ConfirmGenderPanel.alpha = 0f;
 					}
-					InitialArrow.localPosition = new Vector3(-200f, 300 - 100 * InitialSelected, 0f);
+					return;
 				}
-				else if (Input.GetButtonDown(InputNames.Xbox_A))
+				if (ConfirmResetPanel.alpha == 1f)
 				{
-					ConfirmGenderPanel.alpha = 0f;
-					GenderSwapLabel.text = "Yes";
-					CanGenderSwap = true;
+					if (Input.GetButtonDown(InputNames.Xbox_A))
+					{
+						Reset();
+						NotificationManager.CustomText = "Data has been reset.";
+						NotificationManager.DisplayNotification(NotificationType.Custom);
+						ConfirmResetPanel.alpha = 0f;
+					}
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
+					{
+						ConfirmResetPanel.alpha = 0f;
+					}
+					return;
 				}
-				else if (Input.GetButtonDown(InputNames.Xbox_B))
+				StudentListPanel.alpha = Mathf.MoveTowards(StudentListPanel.alpha, 0f, Time.deltaTime * 10f);
+				StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 0f, Time.deltaTime * 10f);
+				CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 0f, Time.deltaTime * 10f);
+				OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
+				InitialPanel.alpha = Mathf.MoveTowards(InitialPanel.alpha, 1f, Time.deltaTime * 10f);
+				if (InputManager.TappedDown || HeldDown > 0.5f)
 				{
-					ConfirmGenderPanel.alpha = 0f;
+					if (HeldDown > 0.5f)
+					{
+						HeldDown = 0.45f;
+					}
+					InitialSelected++;
+					if (InitialSelected > 7)
+					{
+						InitialSelected = 1;
+					}
 				}
+				if (InputManager.TappedUp || HeldUp > 0.5f)
+				{
+					if (HeldUp > 0.5f)
+					{
+						HeldUp = 0.45f;
+					}
+					InitialSelected--;
+					if (InitialSelected < 1)
+					{
+						InitialSelected = 7;
+					}
+				}
+				if (Input.GetButtonDown(InputNames.Xbox_A))
+				{
+					if (InitialSelected == 1)
+					{
+						FemaleUniform++;
+						if (FemaleUniform > 6)
+						{
+							FemaleUniform = 1;
+						}
+						FemaleUniformLabel.text = FemaleUniform.ToString() ?? "";
+						JSON.Misc.FemaleUniform = FemaleUniform;
+						StudentGlobals.FemaleUniform = FemaleUniform;
+						InitialFemale.Start();
+					}
+					else if (InitialSelected == 2)
+					{
+						MaleUniform++;
+						if (MaleUniform > 6)
+						{
+							MaleUniform = 1;
+						}
+						MaleUniformLabel.text = MaleUniform.ToString() ?? "";
+						JSON.Misc.MaleUniform = MaleUniform;
+						StudentGlobals.MaleUniform = MaleUniform;
+						InitialMale.Start();
+					}
+					else if (InitialSelected == 3)
+					{
+						if (!CanGenderSwap)
+						{
+							ConfirmGenderPanel.alpha = 1f;
+						}
+						else
+						{
+							GenderSwapLabel.text = "No";
+							CanGenderSwap = false;
+						}
+					}
+					else if (InitialSelected == 4)
+					{
+						ConfirmResetPanel.alpha = 1f;
+					}
+					else if (InitialSelected == 5)
+					{
+						Load();
+					}
+					else if (InitialSelected == 6)
+					{
+						Save();
+					}
+					else if (InitialSelected == 7)
+					{
+						FadeOut = true;
+					}
+				}
+				else if (Input.GetButtonDown(InputNames.Xbox_RB))
+				{
+					EnterStudentList();
+				}
+				InitialArrow.localPosition = new Vector3(-200f, 300 - 100 * InitialSelected, 0f);
 			}
 			else if (ViewingStudents)
 			{
@@ -1315,6 +1332,10 @@ public class CustomModeScript : MonoBehaviour
 						if (DetailSelected == 1)
 						{
 							JSON.Students[Selected].Persona++;
+							if (JSON.Students[Selected].Persona == PersonaType.PhoneAddict)
+							{
+								JSON.Students[Selected].Persona++;
+							}
 							if (JSON.Students[Selected].Persona > PersonaType.LandlineUser)
 							{
 								JSON.Students[Selected].Persona = PersonaType.Loner;
@@ -1335,6 +1356,10 @@ public class CustomModeScript : MonoBehaviour
 						if (DetailSelected == 1)
 						{
 							JSON.Students[Selected].Persona--;
+							if (JSON.Students[Selected].Persona == PersonaType.PhoneAddict)
+							{
+								JSON.Students[Selected].Persona--;
+							}
 							if (JSON.Students[Selected].Persona < PersonaType.Loner)
 							{
 								JSON.Students[Selected].Persona = PersonaType.LandlineUser;

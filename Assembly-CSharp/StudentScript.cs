@@ -2575,13 +2575,16 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (StudentID == 7)
 				{
-					MustTrip = true;
+					if (!StudentManager.YandereLate)
+					{
+						MustTrip = true;
+					}
 					RunAnim = "runFeminine_00";
 					SprintAnim = "runFeminine_00";
 					RelaxAnim = "infirmaryRest_00";
 					OriginalSprintAnim = SprintAnim;
 					Cosmetic.Start();
-					if (!GameGlobals.AlphabetMode && !StudentManager.MissionMode)
+					if (!GameGlobals.AlphabetMode && !StudentManager.MissionMode && !StudentManager.YandereLate)
 					{
 						base.gameObject.SetActive(value: false);
 					}
@@ -4862,6 +4865,10 @@ public class StudentScript : MonoBehaviour
 						{
 							FollowTarget.FollowTargetDestination.localPosition = new Vector3(-1f, 0f, 0f);
 						}
+						else if (FollowTarget.CameraReacting)
+						{
+							FollowTarget.FollowTargetDestination.localPosition = new Vector3(0f, 0f, -1f);
+						}
 						else
 						{
 							FollowTarget.FollowTargetDestination.localPosition = new Vector3(0f, 0f, 0f);
@@ -5789,11 +5796,17 @@ public class StudentScript : MonoBehaviour
 								{
 									if ((!FollowTarget.Alive && FollowTarget.Ragdoll.Concealed) || (!FollowTarget.Alive && !FollowTarget.gameObject.activeInHierarchy))
 									{
+										Debug.Log("1");
 										if (base.transform.position.y > -1f)
 										{
 											RaibaruCannotFindOsana();
 											flag3 = true;
 										}
+									}
+									else if (FollowTarget.CameraReacting)
+									{
+										Debug.Log("2");
+										FollowTarget.FollowTargetDestination.localPosition = new Vector3(0f, 0f, -1f);
 									}
 									else if (FollowTarget.Indoors && FollowTarget.CurrentAction != StudentActionType.SearchPatrol)
 									{
@@ -5804,10 +5817,12 @@ public class StudentScript : MonoBehaviour
 									}
 									else if (FollowTarget.CurrentAction == StudentActionType.Clean)
 									{
+										Debug.Log("4");
 										FollowTarget.FollowTargetDestination.localPosition = new Vector3(-1f, 0f, -1f);
 									}
 									else
 									{
+										Debug.Log("5");
 										FollowTarget.FollowTargetDestination.localPosition = new Vector3(0f, 0f, 0f);
 									}
 								}
@@ -5883,8 +5898,15 @@ public class StudentScript : MonoBehaviour
 											{
 												if (!flag3)
 												{
-													CharacterAnimation.CrossFade("f02_standTexting_00");
-													SmartPhone.SetActive(value: true);
+													if (FollowTarget != null && FollowTarget.CameraReacting)
+													{
+														CharacterAnimation.CrossFade("f02_socialCameraPose_00");
+													}
+													else
+													{
+														CharacterAnimation.CrossFade("f02_standTexting_00");
+														SmartPhone.SetActive(value: true);
+													}
 													SpeechLines.Stop();
 												}
 											}
@@ -11365,7 +11387,7 @@ public class StudentScript : MonoBehaviour
 							DistractTimer -= Time.deltaTime;
 							if (DistractTimer <= 0f)
 							{
-								if (DistractionTarget.SunbathePhase == 0)
+								if (DistractionTarget.SunbathePhase == 0 || CurrentAction != StudentActionType.GravurePose)
 								{
 									DistractionTarget.CurrentDestination = DistractionTarget.Destinations[DistractionTarget.Phase];
 									DistractionTarget.Pathfinding.target = DistractionTarget.Destinations[DistractionTarget.Phase];
@@ -11518,7 +11540,7 @@ public class StudentScript : MonoBehaviour
 								Suicide = true;
 							}
 						}
-						else if (HuntTarget.ClubActivityPhase >= 16 || HuntTarget.Shoving || HuntTarget.ChangingShoes || HuntTarget.Chasing || Yandere.Pursuer == HuntTarget || HuntTarget.SeekingMedicine || HuntTarget.EndSearch || (StudentManager.CombatMinigame.Delinquent == HuntTarget && StudentManager.CombatMinigame.Path == 5) || !HuntTarget.enabled || HuntTarget.BreakingUpFight || (HuntTarget.Cheer != null && HuntTarget.Cheer.enabled))
+						else if (HuntTarget.ClubActivityPhase >= 16 || HuntTarget.Shoving || HuntTarget.ChangingShoes || HuntTarget.Chasing || Yandere.Pursuer == HuntTarget || HuntTarget.SeekingMedicine || HuntTarget.EndSearch || (StudentManager.CombatMinigame.Delinquent == HuntTarget && StudentManager.CombatMinigame.Path == 5) || !HuntTarget.enabled || HuntTarget.BreakingUpFight || (HuntTarget.Cheer != null && HuntTarget.Cheer.enabled) || HuntTarget.PinDownWitness)
 						{
 							Debug.Log("The mind-broken slave has to wait for something...");
 							CharacterAnimation.CrossFade(IdleAnim);
@@ -11541,7 +11563,7 @@ public class StudentScript : MonoBehaviour
 									{
 										HuntTarget.ForgetAboutBloodPool();
 									}
-									if (HuntTarget.Strength == 9)
+									if (HuntTarget.Strength == 9 && !HuntTarget.Emetic && !HuntTarget.Lethal && !HuntTarget.Sedated && !HuntTarget.Headache)
 									{
 										Debug.Log("Target is Invincible! Attack should fail!");
 										AttackWillFail = true;
@@ -11582,6 +11604,8 @@ public class StudentScript : MonoBehaviour
 									Pathfinding.canMove = false;
 									if (!Male)
 									{
+										Debug.Log("Broken is: " + Broken);
+										Debug.Log("Broken.Subtitle is: " + Broken.Subtitle);
 										Broken.Subtitle.text = string.Empty;
 										Broken.Done = true;
 									}
@@ -14226,6 +14250,7 @@ public class StudentScript : MonoBehaviour
 				}
 				if (Alarm > 100f)
 				{
+					Debug.Log(Name + " is about to call the BecomeAlarmed() function from here, specifically.");
 					if (Yandere.Yakuza && YandereVisible)
 					{
 						SpottedYakuza = true;
@@ -14427,6 +14452,7 @@ public class StudentScript : MonoBehaviour
 					ForgetGiggle();
 				}
 				Debug.Log(Name + " saw Yandere-chan doing something bad.");
+				HeardScream = false;
 				if (Yandere.CreatingBucketTrap)
 				{
 					Debug.Log(Name + " just witnessed the player creating a bucket trap.");

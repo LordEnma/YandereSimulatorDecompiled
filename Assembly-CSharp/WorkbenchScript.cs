@@ -62,6 +62,8 @@ public class WorkbenchScript : MonoBehaviour
 
 	public bool EightiesTutorial;
 
+	public bool MadeSpikedBat;
+
 	public bool Chemistry;
 
 	public bool Triple;
@@ -337,6 +339,7 @@ public class WorkbenchScript : MonoBehaviour
 				}
 				else if (OutcomeID == 4)
 				{
+					MadeSpikedBat = true;
 					Inventory.Nails = false;
 					Prompt.Yandere.EquippedWeapon.Nails.SetActive(value: true);
 				}

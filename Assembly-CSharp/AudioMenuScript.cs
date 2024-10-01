@@ -33,6 +33,7 @@ public class AudioMenuScript : MonoBehaviour
 
 	private void Update()
 	{
+		Debug.Log("This script is running...");
 		if (Input.GetKeyDown(KeyCode.C))
 		{
 			CustomMusicMenu.SetActive(value: true);
