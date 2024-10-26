@@ -105,15 +105,17 @@ public class ShutterScript : MonoBehaviour
 
 	public bool Snapping;
 
-	public bool Blocked;
-
-	public bool Close;
-
 	public bool Disguise;
+
+	public bool Eighties;
+
+	public bool Blocked;
 
 	public bool Nemesis;
 
 	public bool NotFace;
+
+	public bool Close;
 
 	public bool Skirt;
 
@@ -157,6 +159,7 @@ public class ShutterScript : MonoBehaviour
 		{
 			MissionMode = true;
 		}
+		Eighties = GameGlobals.Eighties;
 		ErrorWindow.transform.localScale = Vector3.zero;
 		CameraButtons.SetActive(value: false);
 		PhotoIcons.SetActive(value: false);
@@ -256,119 +259,135 @@ public class ShutterScript : MonoBehaviour
 				}
 			}
 		}
-		else if (Yandere.Aiming)
+		else
 		{
-			TargetStudent = 0;
-			Timer += Time.deltaTime;
-			if (Timer > 0.5f)
+			bool flag = true;
+			if (Eighties && Yandere.Club != ClubType.Photography)
 			{
-				Vector3 direction = (Yandere.Selfie ? SelfieRayParent.TransformDirection(Vector3.forward) : SmartphoneCamera.transform.TransformDirection(Vector3.forward));
-				if (Physics.Raycast(SmartphoneCamera.transform.position, direction, out hit, float.PositiveInfinity, OnlyPhotography))
+				flag = false;
+			}
+			if (flag)
+			{
+				if (Yandere.Aiming)
 				{
-					if (hit.collider.gameObject.name == "Face")
+					TargetStudent = 0;
+					Timer += Time.deltaTime;
+					if (Timer > 0.5f)
 					{
-						GameObject gameObject = hit.collider.gameObject.transform.root.gameObject;
-						FaceStudent = gameObject.GetComponent<StudentScript>();
-						if (FaceStudent != null)
+						Vector3 vector = (Yandere.Selfie ? SelfieRayParent.TransformDirection(Vector3.forward) : SmartphoneCamera.transform.TransformDirection(Vector3.forward));
+						Debug.DrawRay(SmartphoneCamera.transform.position, vector, Color.green);
+						if (Physics.Raycast(SmartphoneCamera.transform.position, vector, out hit, float.PositiveInfinity, OnlyPhotography))
 						{
-							TargetStudent = FaceStudent.StudentID;
-							if (TargetStudent > 1)
+							if (hit.collider.gameObject.name == "Face")
 							{
-								ReactionDistance = 1.66666f;
-							}
-							else
-							{
-								ReactionDistance = FaceStudent.VisionDistance;
-							}
-							bool flag = FaceStudent.ShoeRemoval.enabled;
-							bool flag2 = false;
-							if (FaceStudent.MyPlate != null && FaceStudent.MyPlate.parent == FaceStudent.RightHand)
-							{
-								flag2 = true;
-							}
-							if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker && !flag2 && FaceStudent.Club != ClubType.Council && FaceStudent.Club != ClubType.Delinquent && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
-							{
-								if (MissionMode)
+								GameObject gameObject = hit.collider.gameObject.transform.root.gameObject;
+								FaceStudent = gameObject.GetComponent<StudentScript>();
+								if (FaceStudent != null)
 								{
-									PenaltyTimer += Time.deltaTime;
-									if (PenaltyTimer > 1f)
+									TargetStudent = FaceStudent.StudentID;
+									if (TargetStudent > 1)
 									{
-										Debug.Log("Mission Mode Awareness Penalty!");
-										FaceStudent.Reputation.PendingRep -= 10f;
-										FaceStudent.PendingRep -= 10f;
-										PenaltyTimer = 0f;
+										ReactionDistance = 1.66666f;
 									}
-								}
-								if (!FaceStudent.CameraReacting)
-								{
-									if (FaceStudent.enabled && !FaceStudent.Stop && !FaceStudent.SpecialRivalDeathReaction && !FaceStudent.IgnoringPettyActions && !FaceStudent.WitnessedCorpse)
+									else
 									{
-										if ((FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Graffiti) || (FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Bully))
+										ReactionDistance = FaceStudent.VisionDistance;
+									}
+									bool flag2 = FaceStudent.ShoeRemoval.enabled;
+									bool flag3 = false;
+									if (FaceStudent.MyPlate != null && FaceStudent.MyPlate.parent == FaceStudent.RightHand)
+									{
+										flag3 = true;
+									}
+									if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag2 && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker && !flag3 && FaceStudent.Club != ClubType.Council && FaceStudent.Club != ClubType.Delinquent && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
+									{
+										if (MissionMode && !FaceStudent.Nemesis)
 										{
-											FaceStudent.PhotoPatience = 0f;
-											FaceStudent.KilledMood = true;
-											FaceStudent.Ignoring = true;
-											PenaltyTimer = 1f;
-											Penalize();
-										}
-										else if (FaceStudent.PhotoPatience > 0f)
-										{
-											if (FaceStudent.StudentID > 1)
+											PenaltyTimer += Time.deltaTime;
+											if (PenaltyTimer > 1f)
 											{
-												if ((Yandere.Bloodiness > 0f && !Yandere.Paint) || (double)Yandere.Sanity < 33.33333)
-												{
-													FaceStudent.Alarm += 200f;
-												}
-												else
-												{
-													FaceStudent.CameraReact();
-												}
-											}
-											else
-											{
-												FaceStudent.Alarm += Time.deltaTime * (100f / FaceStudent.DistanceToPlayer) * FaceStudent.Paranoia * FaceStudent.Perception * FaceStudent.DistanceToPlayer * 2f;
-												FaceStudent.YandereVisible = true;
+												Debug.Log("Mission Mode Awareness Penalty!");
+												FaceStudent.Reputation.PendingRep -= 10f;
+												FaceStudent.PendingRep -= 10f;
+												PenaltyTimer = 0f;
 											}
 										}
-										else if (Student != null && !Student.Teacher)
+										if (!FaceStudent.CameraReacting)
 										{
-											Penalize();
+											if (FaceStudent.enabled && !FaceStudent.Stop && !FaceStudent.SpecialRivalDeathReaction && !FaceStudent.IgnoringPettyActions && !FaceStudent.WitnessedCorpse)
+											{
+												if ((FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Graffiti) || (FaceStudent.DistanceToDestination < 5f && FaceStudent.Actions[FaceStudent.Phase] == StudentActionType.Bully))
+												{
+													FaceStudent.PhotoPatience = 0f;
+													FaceStudent.KilledMood = true;
+													FaceStudent.Ignoring = true;
+													PenaltyTimer = 1f;
+													Penalize();
+												}
+												else if (FaceStudent.PhotoPatience > 0f)
+												{
+													if (FaceStudent.StudentID > 1)
+													{
+														if ((Yandere.Bloodiness > 0f && !Yandere.Paint) || (double)Yandere.Sanity < 33.33333)
+														{
+															FaceStudent.Alarm += 200f;
+														}
+														else
+														{
+															FaceStudent.CameraReact();
+														}
+													}
+													else
+													{
+														FaceStudent.Alarm += Time.deltaTime * (100f / FaceStudent.DistanceToPlayer) * FaceStudent.Paranoia * FaceStudent.Perception * FaceStudent.DistanceToPlayer * 2f;
+														FaceStudent.YandereVisible = true;
+													}
+												}
+												else if (Student != null && !Student.Teacher)
+												{
+													Penalize();
+												}
+											}
 										}
-									}
-								}
-								else
-								{
-									FaceStudent.PhotoPatience = Mathf.MoveTowards(FaceStudent.PhotoPatience, 0f, Time.deltaTime);
-									if (FaceStudent.PhotoPatience > 0f)
-									{
-										FaceStudent.CameraPoseTimer = 1f;
-										if (MissionMode)
+										else
 										{
-											FaceStudent.PhotoPatience = 0f;
+											FaceStudent.PhotoPatience = Mathf.MoveTowards(FaceStudent.PhotoPatience, 0f, Time.deltaTime);
+											if (FaceStudent.PhotoPatience > 0f)
+											{
+												FaceStudent.CameraPoseTimer = 1f;
+												if (MissionMode)
+												{
+													FaceStudent.PhotoPatience = 0f;
+												}
+											}
 										}
 									}
 								}
 							}
-						}
-					}
-					else if (hit.collider.gameObject.name == "Panties" || hit.collider.gameObject.name == "Skirt")
-					{
-						GameObject gameObject2 = hit.collider.gameObject.transform.root.gameObject;
-						if (Physics.Raycast(SmartphoneCamera.transform.position, direction, out hit, float.PositiveInfinity, OnlyCharacters))
-						{
-							if (Vector3.Distance(Yandere.transform.position, gameObject2.transform.position) < 5f)
+							else if (hit.collider.gameObject.name == "Panties" || hit.collider.gameObject.name == "Skirt")
 							{
-								if (hit.collider.gameObject == gameObject2)
+								GameObject gameObject2 = hit.collider.gameObject.transform.root.gameObject;
+								if (Physics.Raycast(SmartphoneCamera.transform.position, vector, out hit, float.PositiveInfinity, OnlyCharacters))
 								{
-									if (!Yandere.Lewd)
+									if (Vector3.Distance(Yandere.transform.position, gameObject2.transform.position) < 5f)
 									{
-										Yandere.NotificationManager.DisplayNotification(NotificationType.Lewd);
+										if (hit.collider.gameObject == gameObject2)
+										{
+											if (!Yandere.Lewd)
+											{
+												Yandere.NotificationManager.DisplayNotification(NotificationType.Lewd);
+											}
+											Yandere.Lewd = true;
+										}
+										else
+										{
+											Yandere.Lewd = false;
+										}
 									}
-									Yandere.Lewd = true;
-								}
-								else
-								{
-									Yandere.Lewd = false;
+									else
+									{
+										Yandere.Lewd = false;
+									}
 								}
 							}
 							else
@@ -376,21 +395,17 @@ public class ShutterScript : MonoBehaviour
 								Yandere.Lewd = false;
 							}
 						}
-					}
-					else
-					{
-						Yandere.Lewd = false;
+						else
+						{
+							Yandere.Lewd = false;
+						}
 					}
 				}
 				else
 				{
-					Yandere.Lewd = false;
+					Timer = 0f;
 				}
 			}
-		}
-		else
-		{
-			Timer = 0f;
 		}
 		if (TookPhoto)
 		{
@@ -413,8 +428,8 @@ public class ShutterScript : MonoBehaviour
 					}
 					else if (!Yandere.RivalPhone)
 					{
-						bool flag3 = !BullyX.activeInHierarchy;
-						bool flag4 = !SenpaiX.activeInHierarchy;
+						bool flag4 = !BullyX.activeInHierarchy;
+						bool flag5 = !SenpaiX.activeInHierarchy;
 						PromptBar.transform.localPosition = new Vector3(PromptBar.transform.localPosition.x, -627f, PromptBar.transform.localPosition.z);
 						PromptBar.ClearButtons();
 						PromptBar.Show = false;
@@ -442,7 +457,7 @@ public class ShutterScript : MonoBehaviour
 							TookPhoto = true;
 							Debug.Log("Setting Photo " + Slot + " to ''true''.");
 							PauseScreen.PhotoGallery.PhotographTaken[Slot] = true;
-							if (flag3)
+							if (flag4)
 							{
 								Debug.Log("Saving a bully photo!");
 								int studentID = BullyPhotoCollider.transform.parent.gameObject.GetComponent<StudentScript>().StudentID;
@@ -455,7 +470,7 @@ public class ShutterScript : MonoBehaviour
 									Yandere.PauseScreen.PhotoGallery.BullyPhoto[Slot] = StudentManager.Students[studentID].DistractionTarget.StudentID;
 								}
 							}
-							if (flag4)
+							if (flag5)
 							{
 								Yandere.PauseScreen.PhotoGallery.SenpaiPhoto[Slot] = true;
 								Yandere.Inventory.SenpaiShots++;
@@ -499,12 +514,12 @@ public class ShutterScript : MonoBehaviour
 				}
 				if (!StudentManager.KokonaTutorial && !Yandere.RivalPhone && Input.GetButtonDown(InputNames.Xbox_X))
 				{
-					bool flag5 = false;
+					bool flag6 = false;
 					if (StudentManager.Eighties && InfoX.activeInHierarchy)
 					{
-						flag5 = true;
+						flag6 = true;
 					}
-					if (!flag5)
+					if (!flag6)
 					{
 						Panel.SetActive(value: true);
 						MainMenu.SetActive(value: false);

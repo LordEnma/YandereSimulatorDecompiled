@@ -16,6 +16,8 @@ public class AudioMenuScript : MonoBehaviour
 
 	public UILabel SubtitlesOnOffLabel;
 
+	public UILabel VolumeMessage;
+
 	public UIPanel SubtitlePanel;
 
 	public int SelectionLimit = 5;
@@ -26,14 +28,23 @@ public class AudioMenuScript : MonoBehaviour
 
 	public GameObject CustomMusicMenu;
 
+	public float ABCVolume;
+
+	public bool ABC;
+
 	private void Start()
 	{
 		UpdateText();
+		ABC = GameGlobals.AlphabetMode;
+		if (ABC)
+		{
+			VolumeMessage.enabled = true;
+			ABCVolume = PauseScreen.Yandere.StudentManager.Alphabet.MusicPlayer.volume;
+		}
 	}
 
 	private void Update()
 	{
-		Debug.Log("This script is running...");
 		if (Input.GetKeyDown(KeyCode.C))
 		{
 			CustomMusicMenu.SetActive(value: true);
@@ -67,25 +78,52 @@ public class AudioMenuScript : MonoBehaviour
 		}
 		else if (Selected == 2)
 		{
-			if (InputManager.TappedRight)
+			if (!ABC)
 			{
-				if (Jukebox.Volume < 1f)
+				if (InputManager.TappedRight)
 				{
-					Jukebox.Volume += 0.05f;
+					if (Jukebox.Volume < 1f)
+					{
+						Jukebox.Volume += 0.05f;
+					}
+					UpdateText();
 				}
-				UpdateText();
+				else if (InputManager.TappedLeft)
+				{
+					if (Jukebox.Volume > 0f)
+					{
+						Jukebox.Volume -= 0.05f;
+					}
+					if (Jukebox.Volume < 0.05f)
+					{
+						Jukebox.Volume = 0f;
+					}
+					UpdateText();
+				}
 			}
-			else if (InputManager.TappedLeft)
+			else
 			{
-				if (Jukebox.Volume > 0f)
+				if (InputManager.TappedRight)
 				{
-					Jukebox.Volume -= 0.05f;
+					if (ABCVolume < 1f)
+					{
+						ABCVolume += 0.05f;
+					}
+					UpdateText();
 				}
-				if (Jukebox.Volume < 0.05f)
+				else if (InputManager.TappedLeft)
 				{
-					Jukebox.Volume = 0f;
+					if (ABCVolume > 0f)
+					{
+						ABCVolume -= 0.05f;
+					}
+					if (ABCVolume < 0.05f)
+					{
+						ABCVolume = 0f;
+					}
+					UpdateText();
 				}
-				UpdateText();
+				PauseScreen.Yandere.StudentManager.Alphabet.MusicPlayer.volume = ABCVolume;
 			}
 		}
 		else
@@ -113,7 +151,14 @@ public class AudioMenuScript : MonoBehaviour
 		if (Jukebox != null)
 		{
 			CurrentTrackLabel.text = Jukebox.BGM.ToString() ?? "";
-			MusicVolumeLabel.text = (Jukebox.Volume * 10f).ToString("F1") ?? "";
+			if (!ABC)
+			{
+				MusicVolumeLabel.text = (Jukebox.Volume * 10f).ToString("F1") ?? "";
+			}
+			else
+			{
+				MusicVolumeLabel.text = (ABCVolume * 10f).ToString("F1") ?? "";
+			}
 			if (SubtitlePanel.alpha == 1f)
 			{
 				SubtitlesOnOffLabel.text = "On";

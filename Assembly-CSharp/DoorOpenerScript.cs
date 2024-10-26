@@ -27,7 +27,7 @@ public class DoorOpenerScript : MonoBehaviour
 		if (other.gameObject.layer == 9)
 		{
 			Student = other.gameObject.GetComponent<StudentScript>();
-			if (Student != null && !Student.Dying && !Door.Open && (!Door.Locked || Student.transform.position.z > Door.transform.position.z))
+			if (Student != null && !Student.Dying && !Door.Open && !Door.Locked)
 			{
 				Door.Student = Student;
 				Door.OpenDoor();

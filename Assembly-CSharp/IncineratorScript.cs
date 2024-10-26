@@ -8,11 +8,21 @@ public class IncineratorScript : MonoBehaviour
 
 	public ClockScript Clock;
 
+	public Transform DumpPointForStudents;
+
+	public Transform DumpPoint;
+
+	public Transform RightDoor;
+
+	public Transform LeftDoor;
+
 	public AudioClip IncineratorActivate;
 
 	public AudioClip IncineratorClose;
 
 	public AudioClip IncineratorOpen;
+
+	public GameObject OutOfOrderSign;
 
 	public AudioSource FlameSound;
 
@@ -21,14 +31,6 @@ public class IncineratorScript : MonoBehaviour
 	public ParticleSystem Flames;
 
 	public ParticleSystem Smoke;
-
-	public Transform DumpPoint;
-
-	public Transform RightDoor;
-
-	public Transform LeftDoor;
-
-	public GameObject OutOfOrderSign;
 
 	public GameObject Panel;
 

@@ -149,10 +149,10 @@ public class GenericEightiesTaskScript : MonoBehaviour
 							Animate = true;
 							if (Suspicious)
 							{
-								Prompt.Yandere.SuspiciousActionTimer = 5f;
+								Prompt.Yandere.SuspiciousActionTimer = 1f;
 								if (Type == 7)
 								{
-									Prompt.Yandere.TheftTimer = 5f;
+									Prompt.Yandere.TheftTimer = 1f;
 								}
 							}
 							if (MyAudio != null)

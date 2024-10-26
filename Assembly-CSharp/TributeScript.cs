@@ -164,7 +164,7 @@ public class TributeScript : MonoBehaviour
 					Yandere.UpdateBust();
 					Yandere.AccessoryID = 0;
 					Yandere.UpdateAccessory();
-					Yandere.Hairstyle = 212;
+					Yandere.Hairstyle = 215;
 					Yandere.UpdateHair();
 					base.enabled = false;
 				}

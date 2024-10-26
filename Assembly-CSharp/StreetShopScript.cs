@@ -193,7 +193,7 @@ public class StreetShopScript : MonoBehaviour
 			Alpha = Mathf.MoveTowards(Alpha, 0f, Time.deltaTime * 10f);
 		}
 		MyLabel.color = new Color(1f, 0.75f, 1f, Alpha);
-		if (Alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A))
+		if (Alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A) && !Yandere.PauseScreen.activeInHierarchy)
 		{
 			if (Exit)
 			{

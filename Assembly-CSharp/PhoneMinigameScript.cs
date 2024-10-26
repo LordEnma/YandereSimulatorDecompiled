@@ -27,7 +27,6 @@ public class PhoneMinigameScript : MonoBehaviour
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
 			Prompt.Yandere.CameraEffects.UpdateDOF(0.23f);
-			Prompt.Yandere.MainCamera.GetComponent<AudioListener>().enabled = true;
 			Prompt.Yandere.Pickpocketing = true;
 			Prompt.Yandere.CanMove = false;
 			Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(45f, 180f, 0f);
@@ -97,7 +96,6 @@ public class PhoneMinigameScript : MonoBehaviour
 	private void End()
 	{
 		Prompt.Yandere.CameraEffects.UpdateDOF(2f);
-		Prompt.Yandere.MainCamera.GetComponent<AudioListener>().enabled = false;
 		Prompt.Yandere.RPGCamera.enabled = true;
 		Prompt.Yandere.gameObject.SetActive(value: true);
 		Prompt.Yandere.Pickpocketing = false;

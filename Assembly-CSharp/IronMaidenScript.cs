@@ -26,6 +26,8 @@ public class IronMaidenScript : MonoBehaviour
 
 	public AudioClip DoorSlam;
 
+	public Transform BloodParent;
+
 	public Transform YandereSpot;
 
 	public Transform VictimSpot;
@@ -225,6 +227,9 @@ public class IronMaidenScript : MonoBehaviour
 			if (Rotation[0] < -44f)
 			{
 				Prompt.Label[2].text = "     Push Victim Inside";
+				Blood[0].transform.parent = BloodParent;
+				Blood[1].transform.parent = BloodParent;
+				Blood[2].transform.parent = BloodParent;
 				InteriorColliders.SetActive(value: false);
 				Rotation[0] = -45f;
 				Open = false;
@@ -255,6 +260,9 @@ public class IronMaidenScript : MonoBehaviour
 					Blood[0].SetActive(value: false);
 					Blood[1].SetActive(value: false);
 					Blood[2].SetActive(value: false);
+					Blood[0].transform.parent = base.transform;
+					Blood[1].transform.parent = Door[0];
+					Blood[2].transform.parent = Door[1];
 					FadeOut = false;
 					FadeIn = true;
 				}

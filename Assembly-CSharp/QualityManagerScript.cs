@@ -154,6 +154,7 @@ public class QualityManagerScript : MonoBehaviour
 			UpdateAnims();
 			UpdateVsync();
 			UpdateGrass();
+			UpdateMirrors();
 			UpdateShadows();
 			UpdateFPSIndex();
 			UpdateDrawDistance();
@@ -559,6 +560,18 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
+	public void UpdateMirrors()
+	{
+		if (!DoNothing)
+		{
+			CameraDistanceDisableScript[] mirrorsAndMonitors = StudentManager.MirrorsAndMonitors;
+			for (int i = 0; i < mirrorsAndMonitors.Length; i++)
+			{
+				mirrorsAndMonitors[i].CheckIfShouldDisable();
+			}
+		}
+	}
+
 	public void UpdateHair()
 	{
 		if (!DoNothing)
@@ -947,8 +960,11 @@ public class QualityManagerScript : MonoBehaviour
 			AdjustRimLight(Nemesis.NemesisHair.GetComponent<Renderer>().material);
 		}
 		UpdateStockings();
-		Yandere.TheDebugMenuScript.UpdateCensor();
-		Yandere.TheDebugMenuScript.UpdateCensor();
+		if (Yandere != null)
+		{
+			Yandere.TheDebugMenuScript.UpdateCensor();
+			Yandere.TheDebugMenuScript.UpdateCensor();
+		}
 	}
 
 	public void UpdateYandereChan()

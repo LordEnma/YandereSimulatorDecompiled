@@ -649,7 +649,6 @@ public class ClockScript : MonoBehaviour
 		Yandere.Trespassing = false;
 		if ((!SchoolBell.isPlaying || SchoolBell.time > 1f) && !StudentManager.SpawnNobody)
 		{
-			Debug.Log("DeactivateTrespassZones() is now commanding the SchoolBell to play.");
 			SchoolBell.Play();
 		}
 		Collider[] trespassZones = TrespassZones;

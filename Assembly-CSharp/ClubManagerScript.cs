@@ -822,6 +822,11 @@ public class ClubManagerScript : MonoBehaviour
 				ClubMembers++;
 			}
 		}
+		if (!Eighties && Check == ClubType.Cooking && StudentManager.Students[12] != null)
+		{
+			Debug.Log("Amai is at school, so the Cooking Club gains one extra member...");
+			ClubMembers++;
+		}
 		if (TranqCase.VictimClubType == Check)
 		{
 			ClubMembers--;

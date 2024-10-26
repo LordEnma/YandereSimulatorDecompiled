@@ -65,6 +65,10 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public GameObject PauseScreen;
 
+	public GameObject AreYouSure;
+
+	public GameObject PauseMenu;
+
 	public Animation MyAnimation;
 
 	public RPG_Camera RPGCamera;
@@ -649,25 +653,38 @@ public class StalkerYandereScript : MonoBehaviour
 					Time.timeScale = 0.0001f;
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown(InputNames.Xbox_Start))
+			else if (PauseMenu.activeInHierarchy)
 			{
-				PauseScreen.SetActive(value: false);
-				Time.timeScale = 1f;
+				if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown(InputNames.Xbox_Start))
+				{
+					PauseScreen.SetActive(value: false);
+					Time.timeScale = 1f;
+				}
+				else if (Input.GetButtonDown(InputNames.Xbox_X))
+				{
+					PauseMenu.SetActive(value: false);
+					AreYouSure.SetActive(value: true);
+				}
+				else if (Input.GetButtonDown(InputNames.Xbox_Y))
+				{
+					if (StreetManager.Sunlight.shadows != 0)
+					{
+						StreetManager.Sunlight.shadows = LightShadows.None;
+					}
+					else
+					{
+						StreetManager.Sunlight.shadows = LightShadows.Soft;
+					}
+				}
 			}
-			else if (Input.GetButtonDown(InputNames.Xbox_X))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				SceneManager.LoadScene("NewTitleScene");
 			}
-			else if (Input.GetButtonDown(InputNames.Xbox_Y))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
-				if (StreetManager.Sunlight.shadows != 0)
-				{
-					StreetManager.Sunlight.shadows = LightShadows.None;
-				}
-				else
-				{
-					StreetManager.Sunlight.shadows = LightShadows.Soft;
-				}
+				PauseMenu.SetActive(value: true);
+				AreYouSure.SetActive(value: false);
 			}
 		}
 		else if (PausePanel != null && PausePanel.enabled && CanMove)

@@ -104,7 +104,7 @@ public class DemonScript : MonoBehaviour
 		if (Phase == 1)
 		{
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 1f, Time.deltaTime));
-			if (Darkness.color.a == 1f)
+			if (Darkness.color.a > 0.999f)
 			{
 				DemonSubtitle.transform.localPosition = Vector3.zero;
 				DemonSubtitle.text = Lines[ID];
@@ -171,7 +171,7 @@ public class DemonScript : MonoBehaviour
 		{
 			Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
 			Button.color = new Color(Button.color.r, Button.color.g, Button.color.b, Mathf.MoveTowards(Button.color.a, 0f, Time.deltaTime));
-			if (Darkness.color.a == 0f)
+			if (Darkness.color.a < 0.0001f)
 			{
 				Yandere.CanMove = true;
 				Communing = false;

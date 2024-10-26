@@ -734,6 +734,16 @@ public class KokonaTutorialScript : MonoBehaviour
 					Timer += Time.deltaTime;
 					if (Timer > 0f)
 					{
+						int j = 1;
+						int num = 0;
+						for (; j < Checkmarks.Length; j++)
+						{
+							if (Checkmarks[j].enabled)
+							{
+								num += 7;
+							}
+						}
+						StudentGlobals.SetStudentFriendship(30, num);
 						DateGlobals.Weekday = DayOfWeek.Sunday;
 						GameGlobals.KokonaTutorial = false;
 						GameGlobals.LastInputType = (int)InputDevice.Type;

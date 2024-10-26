@@ -123,6 +123,7 @@ public class TaskWindowScript : MonoBehaviour
 				TaskManager.TaskStatus[StudentID] = 1;
 				Yandere.TargetStudent.TalkTimer = 100f;
 				Yandere.TargetStudent.Interaction = StudentInteractionType.GivingTask;
+				Yandere.TargetStudent.TaskRejected = 0;
 				Yandere.TargetStudent.TaskPhase = 4;
 				PromptBar.ClearButtons();
 				PromptBar.Show = false;
@@ -201,14 +202,9 @@ public class TaskWindowScript : MonoBehaviour
 			}
 			else if (Yandere.TargetStudent.GenericTaskID == 3)
 			{
-				if (Yandere.TargetStudent.Male)
-				{
-					DialogueWheel.Yandere.TargetStudent.Cosmetic.MaleAccessories[13].SetActive(value: true);
-				}
-				else
-				{
-					DialogueWheel.Yandere.TargetStudent.Cosmetic.FemaleAccessories[16].SetActive(value: true);
-				}
+				Debug.Log("Enabling the task-related scarf.");
+				DialogueWheel.Yandere.TargetStudent.Cosmetic.TaskScarf.SetActive(value: true);
+				DialogueWheel.Yandere.TargetStudent.Cosmetic.TaskScarf.transform.GetChild(0).GetComponent<Renderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
 			}
 			Generic = false;
 		}

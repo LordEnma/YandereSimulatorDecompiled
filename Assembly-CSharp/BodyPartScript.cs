@@ -69,7 +69,7 @@ public class BodyPartScript : MonoBehaviour
 			Prompt.Hide();
 			Object.Destroy(base.gameObject);
 		}
-		if (base.transform.position.y < 0f && !Tutorial)
+		if ((double)base.transform.position.x > -32.16667 && base.transform.position.x < -31f && base.transform.position.z > 23.5f && base.transform.position.z < 24.5f && base.transform.position.y < 0f && !Tutorial)
 		{
 			Debug.Log("Destroying a body part or trash bag that fell through the floor.");
 			Object.Destroy(base.gameObject);

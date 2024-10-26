@@ -88,7 +88,7 @@ public class JukeboxScript : MonoBehaviour
 
 	public float Dip = 1f;
 
-	public int BGMLimit = 12;
+	public int BGMLimit = 13;
 
 	public int Track;
 
@@ -177,6 +177,12 @@ public class JukeboxScript : MonoBehaviour
 	public AudioClip[] TwelfthHalf;
 
 	public AudioClip[] TwelfthNo;
+
+	public AudioClip[] ThirteenthFull;
+
+	public AudioClip[] ThirteenthHalf;
+
+	public AudioClip[] ThirteenthNo;
 
 	public AudioClip[] EightiesOneFull;
 
@@ -336,6 +342,12 @@ public class JukeboxScript : MonoBehaviour
 			HalfSanities = TwelfthHalf;
 			NoSanities = TwelfthNo;
 		}
+		else if (BGM == 13)
+		{
+			FullSanities = ThirteenthFull;
+			HalfSanities = ThirteenthHalf;
+			NoSanities = ThirteenthNo;
+		}
 		if (!SchoolGlobals.SchoolAtmosphereSet)
 		{
 			SchoolGlobals.SchoolAtmosphereSet = true;
@@ -369,7 +381,6 @@ public class JukeboxScript : MonoBehaviour
 			{
 				if (!StartMusic)
 				{
-					Debug.Log("We haven't started the music yet, so we're starting it now.");
 					FullSanity.Play();
 					HalfSanity.Play();
 					NoSanity.Play();

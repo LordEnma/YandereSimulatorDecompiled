@@ -84,6 +84,8 @@ public class RagdollScript : MonoBehaviour
 
 	public bool ChokingAnimation;
 
+	public bool InDumpster;
+
 	public bool RobotDeath;
 
 	public bool RigidbodiesManuallyDisabled;
@@ -269,6 +271,10 @@ public class RagdollScript : MonoBehaviour
 		if (Concealed)
 		{
 			ConcealInTrashBag();
+		}
+		if (InDumpster)
+		{
+			BloodPoolSpawner.enabled = false;
 		}
 		Student.ResetEyes();
 	}
@@ -710,6 +716,10 @@ public class RagdollScript : MonoBehaviour
 			if (!Concealed)
 			{
 				Debug.Log("This is the exact moment a corpse was subtracted from the HiddenCorpses count. 2");
+				if (Police == null)
+				{
+					Police = Student.Police;
+				}
 				Police.HiddenCorpses--;
 			}
 			Hidden = false;
@@ -731,7 +741,7 @@ public class RagdollScript : MonoBehaviour
 				Falling = false;
 			}
 		}
-		if (Pushed && !StruckGround && !Hidden && SettleTimer > 1.5f)
+		if (Pushed && !StruckGround && !Hidden && !InDumpster && SettleTimer > 1.5f)
 		{
 			Debug.Log("A student who was shoved from the school rooftop just hit the ground.");
 			SpawnAlarmDisc();
@@ -1098,7 +1108,11 @@ public class RagdollScript : MonoBehaviour
 							}
 						}
 					}
-					gameObject.GetComponent<Renderer>().materials[0].mainTexture = Student.Cosmetic.FaceTexture;
+					if (Student.Club == ClubType.Drama)
+					{
+						Student.Cosmetic.RemoveRoses();
+					}
+					gameObject.GetComponent<Renderer>().materials[0].mainTexture = Student.Cosmetic.HairRenderer.material.mainTexture;
 					gameObject.transform.position += new Vector3(0f, 1f, 0f);
 					if (!Student.StudentManager.NEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.NWStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SEStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.SWStairs.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.GardenArea.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.TreeArea.bounds.Contains(BloodPoolSpawner.transform.position) && !Student.StudentManager.PoolStairs.bounds.Contains(BloodPoolSpawner.transform.position))
 					{

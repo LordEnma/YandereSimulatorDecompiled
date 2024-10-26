@@ -96,6 +96,8 @@ public class DumpsterLidScript : MonoBehaviour
 				base.transform.position = Vector3.Lerp(base.transform.position, SlideLocation.position, Time.deltaTime);
 				Corpse.GetComponent<RagdollScript>().Student.Hips.position = base.transform.position + new Vector3(0f, 0.5f, 0f);
 				Corpse.GetComponent<RagdollScript>().Student.Hips.localEulerAngles = new Vector3(-90f, -135f, 0f);
+				Corpse.GetComponent<RagdollScript>().BloodPoolSpawner.enabled = false;
+				Corpse.GetComponent<RagdollScript>().InDumpster = true;
 				if (Vector3.Distance(base.transform.position, SlideLocation.position) < 0.01f)
 				{
 					DragPrompts[0].enabled = false;

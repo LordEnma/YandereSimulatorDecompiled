@@ -6,21 +6,43 @@ public class CameraDistanceDisableScript : MonoBehaviour
 
 	public Transform Yandere;
 
+	public Renderer MirrorBlocker;
+
 	public Renderer MyRenderer;
 
 	public Camera MyCamera;
 
+	public bool Disable;
+
+	private void Start()
+	{
+		CheckIfShouldDisable();
+	}
+
 	private void Update()
 	{
-		if (Vector3.Distance(Yandere.position, RenderTarget.position) > 15f)
+		if (!Disable)
 		{
-			MyRenderer.enabled = false;
-			MyCamera.enabled = false;
+			if (Vector3.Distance(Yandere.position, RenderTarget.position) > 15f)
+			{
+				MyRenderer.enabled = false;
+				MyCamera.enabled = false;
+			}
+			else
+			{
+				MyRenderer.enabled = true;
+				MyCamera.enabled = true;
+			}
 		}
-		else
+	}
+
+	public void CheckIfShouldDisable()
+	{
+		if (MirrorBlocker != null)
 		{
-			MyRenderer.enabled = true;
-			MyCamera.enabled = true;
+			Disable = OptionGlobals.DisableMirrors;
+			MirrorBlocker.enabled = Disable;
+			MyRenderer.enabled = !Disable;
 		}
 	}
 }

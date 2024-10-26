@@ -281,6 +281,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		{
 			Fun = true;
 		}
+		NewSettings.Start();
 	}
 
 	private void Update()

@@ -451,7 +451,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.UpdateButtons();
 		}
-		if (Gossiping && (StudentID == 1 || StudentID == PauseScreen.Yandere.TargetStudent.StudentID || JSON.Students[StudentID].Club == ClubType.Sports || StudentManager.Students[StudentID] == null || StudentGlobals.GetStudentDead(StudentID) || StudentGlobals.GetStudentKidnapped(StudentID) || (StudentID == StudentManager.RivalID && StudentManager.Police.EndOfDay.RivalEliminationMethod == RivalEliminationType.Expelled) || StudentID > 89))
+		if (Gossiping && (StudentID == 1 || StudentID == PauseScreen.Yandere.TargetStudent.StudentID || StudentManager.Students[StudentID] == null || StudentGlobals.GetStudentDead(StudentID) || StudentGlobals.GetStudentArrested(StudentID) || StudentGlobals.GetStudentKidnapped(StudentID) || (StudentID == StudentManager.RivalID && StudentManager.Police.EndOfDay.RivalEliminationMethod == RivalEliminationType.Expelled) || StudentID > 89))
 		{
 			PromptBar.Label[0].text = string.Empty;
 			PromptBar.UpdateButtons();

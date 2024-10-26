@@ -115,12 +115,28 @@ public class NemesisScript : MonoBehaviour
 				gameObject8.SetActive(value: false);
 			}
 		}
-		femaleHair = Cosmetic.Rings;
+		femaleHair = Cosmetic.EightiesClubAccessories;
 		foreach (GameObject gameObject9 in femaleHair)
 		{
 			if (gameObject9 != null)
 			{
 				gameObject9.SetActive(value: false);
+			}
+		}
+		femaleHair = Cosmetic.Masks;
+		foreach (GameObject gameObject10 in femaleHair)
+		{
+			if (gameObject10 != null)
+			{
+				gameObject10.SetActive(value: false);
+			}
+		}
+		femaleHair = Cosmetic.Rings;
+		foreach (GameObject gameObject11 in femaleHair)
+		{
+			if (gameObject11 != null)
+			{
+				gameObject11.SetActive(value: false);
 			}
 		}
 		if (Cosmetic.AmaiEyebrows.Length != 0)
@@ -149,6 +165,8 @@ public class NemesisScript : MonoBehaviour
 		Student.WalkAnim = "f02_newWalk_00";
 		Student.ShoeRemoval.RightCasualShoe.gameObject.SetActive(value: false);
 		Student.ShoeRemoval.LeftCasualShoe.gameObject.SetActive(value: false);
+		Student.Cosmetic.RightStockings[1].SetActive(value: false);
+		Student.Cosmetic.LeftStockings[1].SetActive(value: false);
 		if (Difficulty < 3)
 		{
 			Student.CharacterAnimation["f02_nemesisEyes_00"].layer = 2;

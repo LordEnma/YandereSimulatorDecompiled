@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CosmeticScript : MonoBehaviour
 {
+	public RiggedAccessoryAttacher WristWrappings;
+
 	public StudentManagerScript StudentManager;
 
 	public TextureManagerScript TextureManager;
@@ -21,6 +23,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public JsonScript JSON;
 
+	public GameObject[] EightiesClubAccessories;
+
 	public GameObject[] AdditionalAccessory;
 
 	public GameObject[] TeacherAccessories;
@@ -32,6 +36,10 @@ public class CosmeticScript : MonoBehaviour
 	public GameObject[] ClubAccessories;
 
 	public GameObject[] PunkAccessories;
+
+	public GameObject[] SlickSuitorHair;
+
+	public GameObject[] PonySuitorHair;
 
 	public GameObject[] RightStockings;
 
@@ -74,6 +82,10 @@ public class CosmeticScript : MonoBehaviour
 	public GameObject[] Rings;
 
 	public GameObject[] Roses;
+
+	public Renderer[] SlickSuitorHairRenderers;
+
+	public Renderer[] PonySuitorHairRenderers;
 
 	public Renderer[] TeacherHairRenderers;
 
@@ -327,10 +339,6 @@ public class CosmeticScript : MonoBehaviour
 
 	public GameObject LeftWristband;
 
-	public GameObject Cardigan;
-
-	public GameObject Bookbag;
-
 	public GameObject RyutoBrows;
 
 	public GameObject ThickBrows;
@@ -341,11 +349,17 @@ public class CosmeticScript : MonoBehaviour
 
 	public GameObject AmaiBrows;
 
+	public GameObject TaskScarf;
+
+	public GameObject Cardigan;
+
 	public GameObject LeftShoe;
 
 	public GameObject SadBrows;
 
 	public GameObject Armband;
+
+	public GameObject Bookbag;
 
 	public GameObject Hoodie;
 
@@ -534,6 +548,13 @@ public class CosmeticScript : MonoBehaviour
 						num++;
 					}
 				}
+			}
+			if (StudentManager != null && Male && StudentID == StudentManager.SuitorID)
+			{
+				MaleHair[55] = PonySuitorHair[StudentManager.Week];
+				MaleHair[56] = SlickSuitorHair[StudentManager.Week];
+				MaleHairRenderers[55] = PonySuitorHairRenderers[StudentManager.Week];
+				MaleHairRenderers[56] = SlickSuitorHairRenderers[StudentManager.Week];
 			}
 		}
 		if (Cutscene && EventGlobals.OsanaConversation)
@@ -1045,7 +1066,7 @@ public class CosmeticScript : MonoBehaviour
 				else
 				{
 					base.transform.position = new Vector3(0.015f, 0f, 0f);
-					if (StudentID > 2 && StudentID < 7)
+					if ((StudentID > 2 && StudentID < 7) || StudentID == 36 || StudentID == 50)
 					{
 						CharacterAnimation["f02_smile_00"].layer = 1;
 						CharacterAnimation.Play("f02_smile_00");
@@ -1186,7 +1207,7 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else
 					{
-						base.transform.position = new Vector3(0.005f, 0f, 0f);
+						base.transform.position = new Vector3(0.005f, 0.02f, 0f);
 					}
 				}
 				if (Eighties)
@@ -1218,7 +1239,11 @@ public class CosmeticScript : MonoBehaviour
 					{
 						if (Club == ClubType.Council)
 						{
-							CouncilBrows[StudentID - 85].SetActive(value: true);
+							CouncilBrows[StudentID].SetActive(value: true);
+						}
+						if (StudentID == 28)
+						{
+							CouncilBrows[StudentID].SetActive(value: true);
 						}
 						if (StudentID == 86)
 						{
@@ -1262,7 +1287,7 @@ public class CosmeticScript : MonoBehaviour
 			}
 			if (StudentGlobals.CustomSuitorBlack)
 			{
-				HairColor = "SolidBlack";
+				HairColor = "Black";
 			}
 			if (StudentGlobals.CustomSuitorJewelry > 0)
 			{
@@ -1359,9 +1384,23 @@ public class CosmeticScript : MonoBehaviour
 		if (!ClubGlobals.GetClubClosed(Club))
 		{
 			bool flag3 = false;
-			if (!Eighties && ((StudentID > 11 && StudentID < 16) || StudentID == 20))
+			if (!Eighties)
 			{
-				flag3 = true;
+				if ((StudentID > 11 && StudentID < 16) || StudentID == 20)
+				{
+					flag3 = true;
+				}
+			}
+			else
+			{
+				if (EightiesClubAccessories.Length != 0 && EightiesClubAccessories[StudentID] != null)
+				{
+					EightiesClubAccessories[StudentID].SetActive(value: true);
+				}
+				if (Club == ClubType.MartialArts)
+				{
+					WristWrappings.enabled = true;
+				}
 			}
 			if (StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71 || flag3)
 			{
@@ -1459,6 +1498,7 @@ public class CosmeticScript : MonoBehaviour
 				{
 					FemaleHair[Hairstyle].SetActive(value: true);
 					HairRenderer = FemaleHairRenderers[Hairstyle];
+					FaceTexture = HairRenderer.material.mainTexture;
 				}
 				SetFemaleUniform();
 			}
@@ -1466,6 +1506,7 @@ public class CosmeticScript : MonoBehaviour
 			{
 				TeacherHair[Hairstyle].SetActive(value: true);
 				HairRenderer = TeacherHairRenderers[Hairstyle];
+				HairRenderer.material.color = new Color(1f, 1f, 1f, 1f);
 				if (Club == ClubType.Teacher)
 				{
 					MyRenderer.materials[0].mainTexture = DefaultFaceTexture;
@@ -1513,6 +1554,9 @@ public class CosmeticScript : MonoBehaviour
 			{
 				MaleHair[Hairstyle].SetActive(value: true);
 				HairRenderer = MaleHairRenderers[Hairstyle];
+				_ = StudentID;
+				_ = 37;
+				FaceTexture = HairRenderer.material.mainTexture;
 				if (StudentID == 1 && StartShader != null)
 				{
 					HairRenderer.material.shader = StartShader;
@@ -1840,16 +1884,6 @@ public class CosmeticScript : MonoBehaviour
 			}
 			RightIrisLight.SetActive(CustomEyes);
 			LeftIrisLight.SetActive(CustomEyes);
-			if (StudentID > 90 && StudentID < 97)
-			{
-				ColorValue.r *= 0.5f;
-				ColorValue.g *= 0.5f;
-				ColorValue.b *= 0.5f;
-			}
-			if (ColorValue != new Color(0f, 0f, 0f, 0f))
-			{
-				CustomHair = true;
-			}
 			if (UsingDefaultHairColor)
 			{
 				if (HairRenderer != null)
@@ -1875,6 +1909,8 @@ public class CosmeticScript : MonoBehaviour
 					DoNotChangeFace = SkinColor > 0;
 					if (!DoNotChangeFace)
 					{
+						_ = StudentID;
+						_ = 37;
 						FaceTexture = HairRenderer.material.mainTexture;
 					}
 				}
@@ -1882,10 +1918,14 @@ public class CosmeticScript : MonoBehaviour
 				{
 					FaceTexture = GrayFace;
 				}
-				CustomHair = true;
 			}
 			else
 			{
+				if (StudentID == 37)
+				{
+					Debug.Log("Student #37 is now setting ''CustomHair'' to ''true''.");
+				}
+				CustomHair = true;
 				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.SetFloat("_Saturation", 0f);
 				HairRenderer.material.SetFloat("_BlendAmount", 0f);
@@ -1909,7 +1949,7 @@ public class CosmeticScript : MonoBehaviour
 				DoNotChangeFace = SkinColor > 0;
 				if (!DoNotChangeFace)
 				{
-					if (StudentID == 2 || StudentID == 6)
+					if (StudentID == 37)
 					{
 						Debug.Log("Setting face texture to default face texture.");
 					}
@@ -2139,14 +2179,17 @@ public class CosmeticScript : MonoBehaviour
 			DoNotChangeFace = SkinColor > 0;
 			if (CustomHair || DoNotChangeFace)
 			{
-				if (StudentID == 2 || StudentID == 6)
+				if (StudentID == 37)
 				{
-					Debug.Log("Setting face texture to a face texture defined by SkinColor.");
+					Debug.Log("Student #37 is now setting his FaceTexture to a texture defined by SkinColor.");
+					Debug.Log("CustomHair is: " + CustomHair + " and SkinColor is: " + SkinColor);
 				}
 				FaceTexture = FaceTextures[SkinColor];
 			}
 			else
 			{
+				_ = StudentID;
+				_ = 37;
 				FaceTexture = HairRenderer.material.mainTexture;
 			}
 			bool flag = false;
@@ -2402,9 +2445,9 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else
 		{
-			if (StudentID == 2 || StudentID == 6)
+			if (StudentID == 37)
 			{
-				Debug.Log("Setting face texture to the default face texture.");
+				Debug.Log("Student #37 is now setting his FaceTexture to the default face texture.");
 			}
 			UniformTexture = FemaleUniformTextures[FemaleUniformID];
 			FaceTexture = DefaultFaceTexture;
@@ -2619,6 +2662,8 @@ public class CosmeticScript : MonoBehaviour
 		}
 		RightStockings[0].SetActive(value: false);
 		LeftStockings[0].SetActive(value: false);
+		RightStockings[1].SetActive(value: false);
+		LeftStockings[1].SetActive(value: false);
 		if (StudentManager != null && StudentManager.TutorialActive)
 		{
 			Stockings = "";
@@ -2911,6 +2956,12 @@ public class CosmeticScript : MonoBehaviour
 			RightStockings[0].SetActive(value: true);
 			LeftStockings[0].SetActive(value: true);
 		}
+		else if (Stockings == "RolledUp")
+		{
+			MyStockings = ShortWhiteSocks;
+			RightStockings[1].SetActive(value: true);
+			LeftStockings[1].SetActive(value: true);
+		}
 		else if (!Kidnapped && !Teacher && StudentManager != null && StudentManager.PantyList != null)
 		{
 			if (Eighties)
@@ -3032,9 +3083,8 @@ public class CosmeticScript : MonoBehaviour
 		else if (EyeType == "Rival2")
 		{
 			MyRenderer.SetBlendShapeWeight(0, 100f);
-			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
 			MyRenderer.SetBlendShapeWeight(6, 100f);
-			MyRenderer.SetBlendShapeWeight(8, 100f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
@@ -3149,6 +3199,88 @@ public class CosmeticScript : MonoBehaviour
 		else if (EyeType == "Ayano")
 		{
 			MyRenderer.SetBlendShapeWeight(8, 50f);
+		}
+		else if (EyeType == "Chill")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 70f);
+			MyRenderer.SetBlendShapeWeight(5, 40f);
+			MyRenderer.SetBlendShapeWeight(6, 40f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+		}
+		else if (EyeType == "Sweet")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 60f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(6, 45f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 60f);
+		}
+		else if (EyeType == "Reserved")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 40f);
+			MyRenderer.SetBlendShapeWeight(5, 30f);
+			MyRenderer.SetBlendShapeWeight(6, 80f);
+			MyRenderer.SetBlendShapeWeight(9, 90f);
+			MyRenderer.SetBlendShapeWeight(10, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 15f);
+		}
+		else if (EyeType == "Mature")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 45f);
+			MyRenderer.SetBlendShapeWeight(5, 30f);
+			MyRenderer.SetBlendShapeWeight(6, 20f);
+			MyRenderer.SetBlendShapeWeight(8, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 55f);
+		}
+		else if (EyeType == "Sharp")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 40f);
+			MyRenderer.SetBlendShapeWeight(5, 20f);
+			MyRenderer.SetBlendShapeWeight(6, 15f);
+			MyRenderer.SetBlendShapeWeight(9, 50f);
+			MyRenderer.SetBlendShapeWeight(11, 40f);
+		}
+		else if (EyeType == "Relaxed")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 45f);
+			MyRenderer.SetBlendShapeWeight(6, 35f);
+			MyRenderer.SetBlendShapeWeight(9, 65f);
+			MyRenderer.SetBlendShapeWeight(12, 65f);
+		}
+		else if (EyeType == "Friendly")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 75f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(6, 45f);
+			MyRenderer.SetBlendShapeWeight(8, 20f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+		}
+		else if (EyeType == "Timid")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 10f);
+			MyRenderer.SetBlendShapeWeight(5, 45f);
+			MyRenderer.SetBlendShapeWeight(6, 45f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 75f);
+		}
+		else if (EyeType == "Sneer")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 30f);
+			MyRenderer.SetBlendShapeWeight(6, 30f);
+			MyRenderer.SetBlendShapeWeight(8, 30f);
+			MyRenderer.SetBlendShapeWeight(9, 50f);
+			MyRenderer.SetBlendShapeWeight(11, 35f);
+		}
+		else if (EyeType == "Innocent")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 60f);
+			MyRenderer.SetBlendShapeWeight(5, 15f);
+			MyRenderer.SetBlendShapeWeight(6, 35f);
+			MyRenderer.SetBlendShapeWeight(9, 90f);
+			MyRenderer.SetBlendShapeWeight(12, 35f);
 		}
 	}
 
@@ -3416,6 +3548,14 @@ public class CosmeticScript : MonoBehaviour
 		{
 			femaleAccessories[i].SetActive(value: false);
 		}
+		femaleAccessories = EightiesClubAccessories;
+		foreach (GameObject gameObject23 in femaleAccessories)
+		{
+			if (gameObject23 != null)
+			{
+				gameObject23.SetActive(value: false);
+			}
+		}
 	}
 
 	public void WearBurlapSack()
@@ -3423,6 +3563,18 @@ public class CosmeticScript : MonoBehaviour
 		MyRenderer.enabled = false;
 		BurlapSack.enabled = true;
 		UpdateSack = true;
+	}
+
+	public void RemoveRoses()
+	{
+		GameObject[] roses = Roses;
+		foreach (GameObject gameObject in roses)
+		{
+			if (gameObject != null)
+			{
+				gameObject.SetActive(value: false);
+			}
+		}
 	}
 
 	public void RemoveRings()
@@ -3464,6 +3616,8 @@ public class CosmeticScript : MonoBehaviour
 			{
 				RightStockings[0].SetActive(value: false);
 				LeftStockings[0].SetActive(value: false);
+				RightStockings[1].SetActive(value: false);
+				LeftStockings[1].SetActive(value: false);
 				Hoodie.SetActive(value: false);
 				DeactivateBullyAccessories();
 				SkinColor = 1;

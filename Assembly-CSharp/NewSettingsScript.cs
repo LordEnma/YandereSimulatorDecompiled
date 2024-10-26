@@ -63,6 +63,12 @@ public class NewSettingsScript : MonoBehaviour
 
 	public float LightIntensity = 0.5f;
 
+	public Projector TitleScreenProjector;
+
+	public Material FlowerMaterial;
+
+	public Material BloodMaterial;
+
 	public Renderer Window;
 
 	public Renderer YandereRenderer;
@@ -77,10 +83,21 @@ public class NewSettingsScript : MonoBehaviour
 
 	public Shader Toon;
 
-	private void Start()
+	public void Start()
 	{
 		UpdateLabels();
 		HairPhysics = !OptionGlobals.HairPhysics;
+		if (!SchoolScene)
+		{
+			if (GameGlobals.CensorBlood)
+			{
+				TitleScreenProjector.material = FlowerMaterial;
+			}
+			else
+			{
+				TitleScreenProjector.material = BloodMaterial;
+			}
+		}
 	}
 
 	private void Update()
@@ -92,7 +109,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 		Cursor.transform.parent.Rotate(new Vector3(Time.unscaledDeltaTime * 100f, 0f, 0f), Space.Self);
 		Cursor.transform.parent.localPosition = Vector3.Lerp(Cursor.transform.parent.localPosition, new Vector3(700f, -100f - 100f * (float)Selection, Cursor.transform.parent.localPosition.z), Time.unscaledDeltaTime * 10f);
-		Labels[13].text = (Screen.fullScreen ? "No" : "Yes");
+		Labels[45].text = (Screen.fullScreen ? "No" : "Yes");
 		if (Cursor.alpha == 1f)
 		{
 			if (NewTitleScreen.InputManager.TappedDown)
@@ -295,6 +312,15 @@ public class NewSettingsScript : MonoBehaviour
 			{
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
+					OptionGlobals.DisableMirrors = !OptionGlobals.DisableMirrors;
+					QualityManager.UpdateMirrors();
+					UpdateLabels();
+				}
+			}
+			else if (Selection == 4)
+			{
+				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
+				{
 					OptionGlobals.RimLight = !OptionGlobals.RimLight;
 					if (OptionGlobals.RimLight)
 					{
@@ -311,7 +337,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 4)
+			else if (Selection == 5)
 			{
 				if (NewTitleScreen.InputManager.TappedRight)
 				{
@@ -326,7 +352,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 5)
+			else if (Selection == 6)
 			{
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
@@ -343,7 +369,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 6)
+			else if (Selection == 7)
 			{
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
@@ -351,7 +377,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 7)
+			else if (Selection == 8)
 			{
 				if (NewTitleScreen.InputManager.TappedRight)
 				{
@@ -370,7 +396,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateGraphics();
 				}
 			}
-			else if (Selection == 8)
+			else if (Selection == 9)
 			{
 				if (NewTitleScreen.InputManager.TappedRight)
 				{
@@ -389,7 +415,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateGraphics();
 				}
 			}
-			else if (Selection == 9)
+			else if (Selection == 10)
 			{
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
@@ -402,7 +428,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 10)
+			else if (Selection == 11)
 			{
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
@@ -415,7 +441,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 11)
+			else if (Selection == 12)
 			{
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
@@ -429,7 +455,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 12)
+			else if (Selection == 13)
 			{
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
@@ -442,7 +468,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 13)
+			else if (Selection == 14)
 			{
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
@@ -455,7 +481,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 14)
+			else if (Selection == 15)
 			{
 				if (NewTitleScreen.InputManager.TappedRight)
 				{
@@ -469,7 +495,7 @@ public class NewSettingsScript : MonoBehaviour
 				}
 				UpdateLabels();
 			}
-			else if (Selection == 15)
+			else if (Selection == 16)
 			{
 				if (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft)
 				{
@@ -478,7 +504,7 @@ public class NewSettingsScript : MonoBehaviour
 					UpdateLabels();
 				}
 			}
-			else if (Selection == 16 && (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft))
+			else if (Selection == 17 && (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft))
 			{
 				OptionGlobals.Fog = !OptionGlobals.Fog;
 				QualityManager.UpdateFog();
@@ -492,6 +518,7 @@ public class NewSettingsScript : MonoBehaviour
 			{
 				OptionGlobals.OpaqueWindows = true;
 				OptionGlobals.DisableFarAnimations = 1;
+				OptionGlobals.DisableMirrors = true;
 				OptionGlobals.RimLight = false;
 				OptionGlobals.LowDetailStudents = 1;
 				OptionGlobals.DisableOutlines = true;
@@ -518,6 +545,7 @@ public class NewSettingsScript : MonoBehaviour
 			{
 				OptionGlobals.OpaqueWindows = true;
 				OptionGlobals.DisableFarAnimations = 10;
+				OptionGlobals.DisableMirrors = false;
 				OptionGlobals.RimLight = true;
 				OptionGlobals.LowDetailStudents = 0;
 				OptionGlobals.DisableOutlines = false;
@@ -747,6 +775,14 @@ public class NewSettingsScript : MonoBehaviour
 					StudentManager.Yandere.WeaponManager.ChangeBloodTexture();
 					StudentManager.BloodParent.ChangeBloodTexture();
 					StudentManager.Yandere.Bloodiness += 0f;
+				}
+				else if (GameGlobals.CensorBlood)
+				{
+					TitleScreenProjector.material = FlowerMaterial;
+				}
+				else
+				{
+					TitleScreenProjector.material = BloodMaterial;
 				}
 				UpdateLabels();
 			}
@@ -988,75 +1024,76 @@ public class NewSettingsScript : MonoBehaviour
 		Labels[7].text = (Profile.vignette.enabled ? "On" : "Off");
 		Labels[8].text = (OptionGlobals.OpaqueWindows ? "No" : "Yes");
 		Labels[9].text = ((OptionGlobals.DisableFarAnimations == 0) ? "Off" : (OptionGlobals.DisableFarAnimations * 5 + "m"));
-		Labels[10].text = (OptionGlobals.RimLight ? "On" : "Off");
-		Labels[11].text = ((OptionGlobals.LowDetailStudents == 0) ? "Off" : (OptionGlobals.LowDetailStudents * 10 + "m"));
-		Labels[12].text = (OptionGlobals.DisableOutlines ? "Off" : "On");
-		Labels[13].text = (Screen.fullScreen ? "No" : "Yes");
-		Labels[14].text = OptionGlobals.DrawDistance + "m";
+		Labels[10].text = (OptionGlobals.DisableMirrors ? "Yes" : "No");
+		Labels[11].text = (OptionGlobals.RimLight ? "On" : "Off");
+		Labels[12].text = ((OptionGlobals.LowDetailStudents == 0) ? "Off" : (OptionGlobals.LowDetailStudents * 10 + "m"));
+		Labels[13].text = (OptionGlobals.DisableOutlines ? "Off" : "On");
+		Labels[14].text = (Screen.fullScreen ? "No" : "Yes");
+		Labels[15].text = OptionGlobals.DrawDistance + "m";
 		if (OptionGlobals.ParticleCount == 3)
 		{
-			Labels[15].text = "High";
+			Labels[16].text = "High";
 		}
 		else if (OptionGlobals.ParticleCount == 2)
 		{
-			Labels[15].text = "Low";
+			Labels[16].text = "Low";
 		}
 		else if (OptionGlobals.ParticleCount == 1)
 		{
-			Labels[15].text = "None";
+			Labels[16].text = "None";
 		}
-		Labels[16].text = (OptionGlobals.ColorGrading ? "Yes" : "No");
-		Labels[17].text = (OptionGlobals.ToggleGrass ? "On" : "Off");
-		Labels[18].text = (OptionGlobals.HairPhysics ? "Disabled" : "Enabled");
-		Labels[19].text = (OptionGlobals.DisplayFPS ? "Yes" : "No");
-		Labels[20].text = (OptionGlobals.EnableShadows ? "Yes" : "No");
-		Labels[21].text = QualityManagerScript.FPSStrings[OptionGlobals.FPSIndex];
-		Labels[22].text = (OptionGlobals.Vsync ? "On" : "Off");
-		Labels[23].text = (OptionGlobals.Fog ? "On" : "Off");
-		Labels[24].text = (OptionGlobals.ToggleRun ? "Toggle" : "Hold");
-		Labels[25].text = OptionGlobals.Sensitivity.ToString() ?? "";
-		Labels[26].text = (OptionGlobals.TutorialsOff ? "Yes" : "No");
+		Labels[17].text = (OptionGlobals.ColorGrading ? "Yes" : "No");
+		Labels[18].text = (OptionGlobals.ToggleGrass ? "On" : "Off");
+		Labels[19].text = (OptionGlobals.HairPhysics ? "Disabled" : "Enabled");
+		Labels[20].text = (OptionGlobals.DisplayFPS ? "Yes" : "No");
+		Labels[21].text = (OptionGlobals.EnableShadows ? "Yes" : "No");
+		Labels[22].text = QualityManagerScript.FPSStrings[OptionGlobals.FPSIndex];
+		Labels[23].text = (OptionGlobals.Vsync ? "On" : "Off");
+		Labels[24].text = (OptionGlobals.Fog ? "On" : "Off");
+		Labels[25].text = (OptionGlobals.ToggleRun ? "Toggle" : "Hold");
+		Labels[26].text = OptionGlobals.Sensitivity.ToString() ?? "";
+		Labels[27].text = (OptionGlobals.TutorialsOff ? "Yes" : "No");
 		if (OptionGlobals.CameraPosition == 0)
 		{
-			Labels[27].text = "Behind";
+			Labels[28].text = "Behind";
 		}
 		else if (OptionGlobals.CameraPosition == 1)
 		{
-			Labels[27].text = "Right";
+			Labels[28].text = "Right";
 		}
 		else if (OptionGlobals.CameraPosition == 2)
 		{
-			Labels[27].text = "Left";
+			Labels[28].text = "Left";
 		}
-		Labels[28].text = (OptionGlobals.InvertAxisX ? "Yes" : "No");
-		Labels[29].text = (OptionGlobals.InvertAxisY ? "Yes" : "No");
+		Labels[29].text = (OptionGlobals.InvertAxisX ? "Yes" : "No");
+		Labels[30].text = (OptionGlobals.InvertAxisY ? "Yes" : "No");
 		if (OptionGlobals.SubtitleSize == 1)
 		{
-			Labels[30].text = "None";
+			Labels[31].text = "None";
 		}
 		else if (OptionGlobals.SubtitleSize == 2)
 		{
-			Labels[30].text = "Medium";
+			Labels[31].text = "Medium";
 		}
 		else if (OptionGlobals.SubtitleSize == 3)
 		{
-			Labels[30].text = "Large";
+			Labels[31].text = "Large";
 		}
-		Labels[42].text = (OptionGlobals.RivalDeathSlowMo ? "Disabled" : "Enabled");
-		Labels[31].text = (GameGlobals.CensorKillingAnims ? "Yes" : "No");
-		Labels[32].text = (GameGlobals.CensorPanties ? "Yes" : "No");
-		Labels[33].text = (GameGlobals.CensorBlood ? "Yes" : "No");
-		Labels[34].text = (OptionGlobals.DisableStatic ? "Yes" : "No");
-		Labels[35].text = (OptionGlobals.DisableDisplacement ? "Yes" : "No");
-		Labels[36].text = (OptionGlobals.DisableAbberation ? "Yes" : "No");
-		Labels[37].text = (OptionGlobals.DisableVignette ? "Yes" : "No");
-		Labels[38].text = (OptionGlobals.DisableDistortion ? "Yes" : "No");
-		Labels[39].text = (OptionGlobals.DisableScanlines ? "Yes" : "No");
-		Labels[40].text = (OptionGlobals.DisableNoise ? "Yes" : "No");
-		Labels[41].text = (OptionGlobals.DisableTint ? "Yes" : "No");
-		Labels[43].text = Screen.width + " x " + Screen.height;
-		Labels[44].text = ((!Screen.fullScreen) ? "Yes" : "No");
-		Labels[45].text = (OptionGlobals.MinimalistHUD ? "Yes" : "No");
+		Labels[32].text = (OptionGlobals.RivalDeathSlowMo ? "Disabled" : "Enabled");
+		Labels[33].text = (GameGlobals.CensorKillingAnims ? "Yes" : "No");
+		Labels[34].text = (GameGlobals.CensorPanties ? "Yes" : "No");
+		Labels[35].text = (GameGlobals.CensorBlood ? "Yes" : "No");
+		Labels[36].text = (OptionGlobals.DisableStatic ? "Yes" : "No");
+		Labels[37].text = (OptionGlobals.DisableDisplacement ? "Yes" : "No");
+		Labels[38].text = (OptionGlobals.DisableAbberation ? "Yes" : "No");
+		Labels[39].text = (OptionGlobals.DisableVignette ? "Yes" : "No");
+		Labels[40].text = (OptionGlobals.DisableDistortion ? "Yes" : "No");
+		Labels[41].text = (OptionGlobals.DisableScanlines ? "Yes" : "No");
+		Labels[42].text = (OptionGlobals.DisableNoise ? "Yes" : "No");
+		Labels[43].text = (OptionGlobals.DisableTint ? "Yes" : "No");
+		Labels[44].text = Screen.width + " x " + Screen.height;
+		Labels[45].text = ((!Screen.fullScreen) ? "Yes" : "No");
+		Labels[46].text = (OptionGlobals.MinimalistHUD ? "Yes" : "No");
 		if (GameGlobals.Eighties)
 		{
 			UILabel[] componentsInChildren = base.gameObject.GetComponentsInChildren<UILabel>();
@@ -1187,6 +1224,7 @@ public class NewSettingsScript : MonoBehaviour
 	{
 		QualityManager.UpdateOpaqueWindows();
 		QualityManager.UpdateAnims();
+		QualityManager.UpdateMirrors();
 		QualityManager.UpdateLowDetailStudents();
 		QualityManager.UpdateOutlinesAndRimlight();
 		QualityManager.UpdateDrawDistance();

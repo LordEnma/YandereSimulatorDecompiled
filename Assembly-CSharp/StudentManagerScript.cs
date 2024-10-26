@@ -114,6 +114,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public StudentScript MindBrokenSlave;
 
+	public IronMaidenScript IronMaiden;
+
 	public Collider MaleLockerRoomArea;
 
 	public StudentScript BloodReporter;
@@ -234,7 +236,11 @@ public class StudentManagerScript : MonoBehaviour
 
 	public DoorScript FemaleVomitDoor;
 
+	public CameraDistanceDisableScript[] MirrorsAndMonitors;
+
 	public CounselorDoorScript[] CounselorDoor;
+
+	public PickUpScript[] BloodyClothing;
 
 	public MaskScript[] Masks;
 
@@ -3394,6 +3400,7 @@ public class StudentManagerScript : MonoBehaviour
 				studentScript.VisitSenpaiDesk = false;
 				studentScript.AlreadyFed = false;
 				studentScript.TimesFollowed = 0;
+				studentScript.TaskRejected = 0;
 				studentScript.Attempts = 0;
 				if (studentScript.Meeting)
 				{
@@ -5506,6 +5513,7 @@ public class StudentManagerScript : MonoBehaviour
 			Yandere.StudentManager.Rest.Prompt.enabled = true;
 		}
 		CameFromLoad = true;
+		SetAtmosphere();
 		Debug.Log("The entire loading process has been completed.");
 		Debug.Log("End of StudentManager Load() believes that GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID);
 		Debug.Log("End of StudentManager Load() believes that RivalEliminated is: " + RivalEliminated);
@@ -6939,11 +6947,15 @@ public class StudentManagerScript : MonoBehaviour
 				{
 					i++;
 				}
-				while (Students[i] == null || !Students[i].gameObject.activeInHierarchy || Students[i].Slave || (!Students[i].Male && WestMaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (!Students[i].Male && EastMaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && WestFemaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && EastFemaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && LockerRoomArea.bounds.Contains(GarbageBagList[j].transform.position)))
+				while (Students[i] == null || !Students[i].gameObject.activeInHierarchy || Students[i].Slave || (!Students[i].Male && WestMaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (!Students[i].Male && EastMaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && WestFemaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && EastFemaleBathroomCollider.bounds.Contains(GarbageBagList[j].transform.position)) || (Students[i].Male && LockerRoomArea.bounds.Contains(GarbageBagList[j].transform.position)) || Students[i].Club == ClubType.Delinquent)
 				{
 					Debug.Log("Skipping Student #" + i);
 					for (i++; i > 9 && i < 21; i++)
 					{
+					}
+					if (i > 100)
+					{
+						break;
 					}
 				}
 				GarbageBagList[j].GetComponent<PickUpScript>().DisableGarbageBag();
@@ -7673,6 +7685,21 @@ public class StudentManagerScript : MonoBehaviour
 				studentScript.ShoeRemoval.PutOnShoes();
 			}
 		}
+	}
+
+	public bool IsAnyoneNearYandere()
+	{
+		Debug.Log("Checking to see if any students are currently less than 1 meter away from the player.");
+		StudentScript[] students = Students;
+		foreach (StudentScript studentScript in students)
+		{
+			if (studentScript != null && studentScript.gameObject.activeInHierarchy && studentScript.enabled && studentScript.DistanceToPlayer < 1f)
+			{
+				Debug.Log(studentScript.Name + " is less than 1 meter away from the player!");
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void CheckStudentProximity()

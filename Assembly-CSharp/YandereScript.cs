@@ -39,6 +39,8 @@ public class YandereScript : MonoBehaviour
 
 	public NotificationManagerScript NotificationManager;
 
+	public RiggedAccessoryAttacher WrappingsAttacher;
+
 	public ObstacleDetectorScript ObstacleDetector;
 
 	public RiggedAccessoryAttacher ApronAttacher;
@@ -1519,6 +1521,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool LacunaMode;
 
+	public Texture LacunaFace;
+
 	public GameObject GarbageBag;
 
 	public GameObject TallLadyAttacher;
@@ -1645,6 +1649,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool Casual = true;
 
+	public Renderer RendererToReEnable;
+
 	public Mesh JudoGiMesh;
 
 	public Texture JudoGiTexture;
@@ -1662,6 +1668,8 @@ public class YandereScript : MonoBehaviour
 	public RiggedAccessoryAttacher LabcoatAttacher;
 
 	public bool Paint;
+
+	public GameObject[] EightiesClubAccessories;
 
 	public GameObject[] ClubAccessories;
 
@@ -2187,7 +2195,6 @@ public class YandereScript : MonoBehaviour
 			Inventory.Headset = true;
 		}
 		UpdateHair();
-		ClubAccessory();
 		NoDebug = true;
 		if (GameGlobals.Debug)
 		{
@@ -2205,6 +2212,18 @@ public class YandereScript : MonoBehaviour
 		{
 			BecomeRyoba();
 		}
+		else
+		{
+			for (ID = 0; ID < EightiesClubAccessories.Length; ID++)
+			{
+				GameObject gameObject = EightiesClubAccessories[ID];
+				if (gameObject != null)
+				{
+					gameObject.SetActive(value: false);
+				}
+			}
+		}
+		ClubAccessory();
 		SetUniform();
 		HandCamera.gameObject.SetActive(value: false);
 		if (GameGlobals.CustomMode)
@@ -2868,10 +2887,6 @@ public class YandereScript : MonoBehaviour
 								UpdateSelfieStatus();
 								StudentManager.UpdatePanties(Status: true);
 								CameraEffects.SmartphoneCamera.depthTextureMode = DepthTextureMode.DepthNormals;
-								if (Club == ClubType.Newspaper)
-								{
-									ClubAccessories[(int)Club].transform.localScale = new Vector3(1f, 1f, 0.9f);
-								}
 								if (Vector3.Distance(base.transform.position, StudentManager.Journalist.transform.position) < 1f)
 								{
 									MoveAwayFromTarget(StudentManager.Journalist.transform.position);
@@ -5842,7 +5857,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_greet_00"].time >= CharacterAnimation["f02_greet_00"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -5869,7 +5884,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_greet_01"].time >= CharacterAnimation["f02_greet_01"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -5896,7 +5911,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_lookdown_00"].time >= CharacterAnimation["f02_lookdown_00"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -5929,7 +5944,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_greet_00"].time >= CharacterAnimation["f02_greet_00"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -5968,7 +5983,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation[TalkAnim].time >= CharacterAnimation[TalkAnim].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -6007,7 +6022,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation[TalkAnim].time >= CharacterAnimation[TalkAnim].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -6046,7 +6061,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation[TalkAnim].time >= CharacterAnimation[TalkAnim].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -6072,7 +6087,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_greet_01"].time >= CharacterAnimation["f02_greet_01"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -6098,7 +6113,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_greet_01"].time >= CharacterAnimation["f02_greet_01"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -6132,7 +6147,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_greet_01"].time >= CharacterAnimation["f02_greet_01"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -6158,7 +6173,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_greet_01"].time >= CharacterAnimation["f02_greet_01"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -6196,7 +6211,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_greet_01"].time >= CharacterAnimation["f02_greet_01"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -6223,7 +6238,7 @@ public class YandereScript : MonoBehaviour
 				}
 				if (CharacterAnimation["f02_greet_01"].time >= CharacterAnimation["f02_greet_01"].length)
 				{
-					CharacterAnimation.CrossFade(IdleAnim);
+					CharacterAnimation.CrossFade("f02_idleShort_00");
 				}
 				if (TalkTimer <= 0f)
 				{
@@ -6238,8 +6253,8 @@ public class YandereScript : MonoBehaviour
 		{
 			if (TalkTimer == 5f)
 			{
-				CharacterAnimation.CrossFade(IdleAnim);
 				Subtitle.UpdateLabel(SubtitleType.AskForHelp, 0, 5f);
+				CharacterAnimation.CrossFade("f02_idleShort_00");
 			}
 			else
 			{
@@ -7405,6 +7420,7 @@ public class YandereScript : MonoBehaviour
 			{
 				component2.newRenderer.SetBlendShapeWeight(0, 50f);
 				component2.newRenderer.SetBlendShapeWeight(12, 100f);
+				RendererToReEnable = component2.newRenderer;
 				LacunaMode = false;
 			}
 		}
@@ -7534,10 +7550,6 @@ public class YandereScript : MonoBehaviour
 		if (OptionGlobals.DepthOfField)
 		{
 			PauseScreen.NewSettings.Profile.depthOfField.enabled = true;
-		}
-		if (Club == ClubType.Newspaper)
-		{
-			ClubAccessories[(int)Club].transform.localScale = new Vector3(1f, 1f, 1f);
 		}
 		MyController.radius = 0.2f;
 		if (PreparingThrow)
@@ -8797,7 +8809,10 @@ public class YandereScript : MonoBehaviour
 		}
 		RaincoatAttacher.gameObject.SetActive(value: true);
 		MyRenderer.sharedMesh = HeadAndKnees;
-		PantyAttacher.newRenderer.enabled = false;
+		if (PantyAttacher != null && PantyAttacher.newRenderer != null)
+		{
+			PantyAttacher.newRenderer.enabled = false;
+		}
 		MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 		MyRenderer.materials[0].mainTexture = FaceTexture;
@@ -8908,6 +8923,9 @@ public class YandereScript : MonoBehaviour
 		PantyAttacher.enabled = false;
 		UnityEngine.Object.Destroy(PantyAttacher.newRenderer);
 		UnityEngine.Object.Destroy(PantyAttacher.gameObject);
+		ClearBlendShapes();
+		MyRenderer.SetBlendShapeWeight(0, 50f);
+		MyRenderer.SetBlendShapeWeight(12, 100f);
 		MyRenderer.sharedMesh = null;
 		MyRenderer.enabled = false;
 		OriginalIdleAnim = "f02_idleCouncilGrace_00";
@@ -8925,6 +8943,8 @@ public class YandereScript : MonoBehaviour
 		UpdateBust();
 		Hairstyle = 214;
 		UpdateHair();
+		FaceTexture = LacunaFace;
+		Inventory.Bikini = true;
 		LacunaMode = true;
 	}
 
@@ -9269,6 +9289,11 @@ public class YandereScript : MonoBehaviour
 					UpdateHair();
 				}
 			}
+			if (RendererToReEnable != null)
+			{
+				RendererToReEnable.enabled = false;
+				MyRenderer.enabled = true;
+			}
 		}
 		else if (Schoolwear == 1)
 		{
@@ -9289,6 +9314,11 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.materials[1].mainTexture = TextureToUse;
 			MyRenderer.materials[2].mainTexture = FaceTexture;
 			StartCoroutine(ApplyCustomCostume());
+			if (RendererToReEnable != null)
+			{
+				RendererToReEnable.enabled = true;
+				MyRenderer.enabled = false;
+			}
 		}
 		else if (Schoolwear == 2)
 		{
@@ -9313,6 +9343,11 @@ public class YandereScript : MonoBehaviour
 				MyRenderer.materials[1].mainTexture = SwimsuitTexture;
 				MyRenderer.materials[2].mainTexture = FaceTexture;
 			}
+			if (RendererToReEnable != null)
+			{
+				RendererToReEnable.enabled = false;
+				MyRenderer.enabled = true;
+			}
 		}
 		else if (Schoolwear == 3)
 		{
@@ -9324,6 +9359,11 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.materials[0].mainTexture = GymTexture;
 			MyRenderer.materials[1].mainTexture = GymTexture;
 			MyRenderer.materials[2].mainTexture = FaceTexture;
+			if (RendererToReEnable != null)
+			{
+				RendererToReEnable.enabled = false;
+				MyRenderer.enabled = true;
+			}
 		}
 		CanMove = false;
 		Outline.h.ReinitMaterials();
@@ -9413,6 +9453,10 @@ public class YandereScript : MonoBehaviour
 		{
 			ApronAttacher.newRenderer.enabled = false;
 		}
+		if (WrappingsAttacher.newRenderer != null)
+		{
+			WrappingsAttacher.newRenderer.enabled = false;
+		}
 		if (!(MyRenderer.sharedMesh != Towel) || WearingRaincoat || Schoolwear == 2 || Club <= ClubType.None)
 		{
 			return;
@@ -9430,6 +9474,17 @@ public class YandereScript : MonoBehaviour
 			else
 			{
 				ApronAttacher.newRenderer.enabled = true;
+			}
+		}
+		if (StudentManager.Eighties && Club == ClubType.MartialArts)
+		{
+			if (WrappingsAttacher.newRenderer == null)
+			{
+				WrappingsAttacher.enabled = true;
+			}
+			else
+			{
+				WrappingsAttacher.newRenderer.enabled = true;
 			}
 		}
 	}
@@ -9775,11 +9830,7 @@ public class YandereScript : MonoBehaviour
 		CasualTextures[6] = EightiesCasual;
 		ModernCamera.localScale = new Vector3(0f, 0f, 0f);
 		EightiesCamera.SetActive(value: true);
-		if (EightiesKerchief != null)
-		{
-			ClubAccessories[1].SetActive(value: false);
-			ClubAccessories[1] = EightiesKerchief;
-		}
+		ClubAccessories = EightiesClubAccessories;
 	}
 
 	public void Maid()
@@ -10169,7 +10220,10 @@ public class YandereScript : MonoBehaviour
 			OccultRobe = false;
 			if (Schoolwear == 1)
 			{
-				PantyAttacher.newRenderer.enabled = true;
+				if (PantyAttacher != null && PantyAttacher.newRenderer != null)
+				{
+					PantyAttacher.newRenderer.enabled = true;
+				}
 				TheDebugMenuScript.UpdateCensor();
 			}
 			Hairstyle = HairstyleBeforeRaincoat;

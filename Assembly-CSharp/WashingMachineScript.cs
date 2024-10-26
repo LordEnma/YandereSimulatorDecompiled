@@ -179,6 +179,7 @@ public class WashingMachineScript : MonoBehaviour
 				{
 					component.color = new Color(0f, 1f, 1f, 1f);
 				}
+				ClothingList[i].RemoveSelfFromBloodyClothingArray();
 			}
 			else if (ClothingList[i].gameObject.name == "Mask")
 			{

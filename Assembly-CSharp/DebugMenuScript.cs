@@ -715,7 +715,7 @@ public class DebugMenuScript : MonoBehaviour
 					}
 					else if (Input.GetKeyDown(KeyCode.W))
 					{
-						if (DateGlobals.Week < 2)
+						if (GameGlobals.Eighties || DateGlobals.Week < 2)
 						{
 							DateGlobals.Week++;
 							SceneManager.LoadScene("LoadingScene");
@@ -966,13 +966,16 @@ public class DebugMenuScript : MonoBehaviour
 		{
 			Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
 			Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
-			if (Yandere.Schoolwear == 1)
+			if (Yandere.PantyAttacher != null && Yandere.PantyAttacher.newRenderer != null)
 			{
-				Yandere.PantyAttacher.newRenderer.enabled = true;
-			}
-			else
-			{
-				Yandere.PantyAttacher.newRenderer.enabled = false;
+				if (Yandere.Schoolwear == 1)
+				{
+					Yandere.PantyAttacher.newRenderer.enabled = true;
+				}
+				else
+				{
+					Yandere.PantyAttacher.newRenderer.enabled = false;
+				}
 			}
 			if (Yandere.MyRenderer.sharedMesh == Yandere.Uniforms[2])
 			{
@@ -1004,7 +1007,10 @@ public class DebugMenuScript : MonoBehaviour
 			Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
 			Yandere.MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
 			Yandere.MyRenderer.materials[2].SetFloat("_BlendAmount1", 0f);
-			Yandere.PantyAttacher.newRenderer.enabled = false;
+			if (Yandere.PantyAttacher != null && Yandere.PantyAttacher.newRenderer != null)
+			{
+				Yandere.PantyAttacher.newRenderer.enabled = false;
+			}
 		}
 		if (Yandere.FlameDemonic || Yandere.TornadoHair.activeInHierarchy)
 		{

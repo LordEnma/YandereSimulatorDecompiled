@@ -86,6 +86,8 @@ public static class OptionGlobals
 
 	private const string Str_WindowedMode = "WindowedMode";
 
+	private const string Str_DisableMirrors = "DisableMirrors";
+
 	public static bool DisableBloom
 	{
 		get
@@ -590,6 +592,18 @@ public static class OptionGlobals
 		}
 	}
 
+	public static bool DisableMirrors
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + 0 + "_DisableMirrors");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + 0 + "_DisableMirrors", value);
+		}
+	}
+
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_DisableBloom");
@@ -634,5 +648,6 @@ public static class OptionGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_ResolutionID");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_MinimalistHUD");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_WindowedMode");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_DisableMirrors");
 	}
 }

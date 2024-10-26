@@ -173,6 +173,14 @@ public class DreamYandereScript : MonoBehaviour
 		{
 			PostProcessing.enabled = !PostProcessing.enabled;
 		}
+		if (Input.GetKeyDown("l"))
+		{
+			MainCamera.GetComponent<Camera>().farClipPlane -= 10f;
+			if (MainCamera.GetComponent<Camera>().farClipPlane < 10f)
+			{
+				MainCamera.GetComponent<Camera>().farClipPlane = 100f;
+			}
+		}
 	}
 
 	private void LateUpdate()

@@ -38,6 +38,8 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 
 	public Material[] EightiesMaterials;
 
+	public bool MartialArtsClub;
+
 	public bool UpdateBounds;
 
 	public bool Initialized;
@@ -61,6 +63,7 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 	public void Start()
 	{
 		Initialized = true;
+		bool flag = false;
 		if (PantyID == 99)
 		{
 			PantyID = PlayerGlobals.PantiesEquipped;
@@ -91,6 +94,24 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 			{
 				accessory = GameObject.Find("PainterApronFemale");
 				accessoryMaterials = painterMaterials;
+			}
+		}
+		else if (MartialArtsClub)
+		{
+			if (!Student.Cosmetic.TakingPortrait)
+			{
+				if (Student.Male)
+				{
+					accessory = GameObject.Find("MaleWristWrappings");
+				}
+				else
+				{
+					accessory = GameObject.Find("FemaleWristWrappings");
+				}
+			}
+			else
+			{
+				flag = true;
 			}
 		}
 		else if (Gentle)
@@ -145,7 +166,10 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		{
 			accessoryMaterials = EightiesMaterials;
 		}
-		AttachAccessory();
+		if (!flag)
+		{
+			AttachAccessory();
+		}
 	}
 
 	public void AttachAccessory()

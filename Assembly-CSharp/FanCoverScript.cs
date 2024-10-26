@@ -8,6 +8,8 @@ public class FanCoverScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public Transform BloodParent;
+
 	public PromptScript Prompt;
 
 	public StudentScript Rival;
@@ -180,6 +182,7 @@ public class FanCoverScript : MonoBehaviour
 					}
 				}
 				BloodProjector.gameObject.SetActive(value: true);
+				BloodProjector.transform.parent = BloodParent;
 				BloodProjector.material.mainTexture = BloodTexture[1];
 				BloodEffects.transform.parent = Rival.Head;
 				BloodEffects.transform.localPosition = new Vector3(0f, 0.1f, 0f);

@@ -1083,6 +1083,8 @@ public class EndOfDayScript : MonoBehaviour
 			KidnappedVictim.CharacterAnimation.Play("f02_sit_06");
 			KidnappedVictim.WhiteQuestionMark.SetActive(value: true);
 			KidnappedVictim.Cosmetic.FemaleHair[KidnappedVictim.Cosmetic.Hairstyle].SetActive(value: true);
+			KidnappedVictim.OsanaHairL.transform.localScale = new Vector3(1f, 1f, 1f);
+			KidnappedVictim.OsanaHairR.transform.localScale = new Vector3(1f, 1f, 1f);
 			OpenTranqCase.SetActive(value: true);
 			Label.text = "The police discover " + JSON.Students[TranqCase.VictimID].Name + " inside of a musical instrument case. However, she is unable to recall how she got inside of the case. The police are unable to determine what happened.";
 			StudentGlobals.SetStudentKidnapped(TranqCase.VictimID, value: false);

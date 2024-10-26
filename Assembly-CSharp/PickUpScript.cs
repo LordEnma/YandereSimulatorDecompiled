@@ -96,6 +96,8 @@ public class PickUpScript : MonoBehaviour
 
 	public bool InstantiatedObject;
 
+	public bool UnderInvestigation;
+
 	public bool ConcealedBodyPart;
 
 	public bool TooBigForBookBag;
@@ -695,6 +697,17 @@ public class PickUpScript : MonoBehaviour
 	public void Drop()
 	{
 		Debug.Log("Drop() has just been called.");
+		if (Clothing)
+		{
+			if ((FoldedUniform != null && !FoldedUniform.Clean) || (Gloves != null && Gloves.Blood.enabled))
+			{
+				AddSelfToBloodyClothingArray();
+			}
+			else
+			{
+				RemoveSelfFromBloodyClothingArray();
+			}
+		}
 		if (!DoNotRelocate && Yandere.PersonaID == 4)
 		{
 			base.transform.position = Yandere.transform.position + new Vector3(0f, 1f, 0f);
@@ -877,6 +890,48 @@ public class PickUpScript : MonoBehaviour
 			TaskKitten.Anim.Play("B_idle");
 			MyRigidbody.isKinematic = true;
 			MyRigidbody.useGravity = false;
+		}
+	}
+
+	public void AddSelfToBloodyClothingArray()
+	{
+		bool flag = false;
+		PickUpScript[] bloodyClothing = Yandere.StudentManager.BloodyClothing;
+		for (int i = 0; i < bloodyClothing.Length; i++)
+		{
+			if (bloodyClothing[i] == this)
+			{
+				flag = true;
+				break;
+			}
+		}
+		if (!flag)
+		{
+			for (int j = 0; j < Yandere.StudentManager.BloodyClothing.Length; j++)
+			{
+				if (Yandere.StudentManager.BloodyClothing[j] == null)
+				{
+					Yandere.StudentManager.BloodyClothing[j] = this;
+					Debug.Log(base.gameObject.name + " was added to BloodyClothing array.");
+					return;
+				}
+			}
+			Debug.Log("No space in the array to add " + base.gameObject.name);
+		}
+		else
+		{
+			Debug.Log(base.gameObject.name + " is already in the BloodyClothing array.");
+		}
+	}
+
+	public void RemoveSelfFromBloodyClothingArray()
+	{
+		for (int i = 0; i < Yandere.StudentManager.BloodyClothing.Length; i++)
+		{
+			if (Yandere.StudentManager.BloodyClothing[i] == this)
+			{
+				Yandere.StudentManager.BloodyClothing[i] = null;
+			}
 		}
 	}
 

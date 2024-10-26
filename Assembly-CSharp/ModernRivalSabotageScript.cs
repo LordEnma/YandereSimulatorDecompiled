@@ -172,7 +172,7 @@ public class ModernRivalSabotageScript : MonoBehaviour
 			else if (ID == 5)
 			{
 				Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
-				if (Prompt.Yandere.StudentManager.YandereVisible)
+				if (Prompt.Yandere.StudentManager.YandereVisible || Prompt.Yandere.StudentManager.IsAnyoneNearYandere())
 				{
 					Prompt.Yandere.NotificationManager.CustomText = "Can't do that! Someone can see you!";
 					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

@@ -813,6 +813,7 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			UISprite uISprite8 = Shadow[3];
 			uISprite8.color = new Color(uISprite8.color.r, uISprite8.color.g, uISprite8.color.b, 0.75f);
+			Debug.Log("Task button is getting disabled here.");
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 			UISprite uISprite9 = Shadow[6];
 			uISprite9.color = new Color(uISprite9.color.r, uISprite9.color.g, uISprite9.color.b, 0.75f);
@@ -822,8 +823,14 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite10 = Shadow[3];
 			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.75f);
 		}
+		if (Yandere.TargetStudent.Friend)
+		{
+			Yandere.TargetStudent.TaskRejected = 0;
+		}
 		if ((!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council) || Yandere.TargetStudent.TaskRejected > 1)
 		{
+			Debug.Log("This student's TaskRejected is: " + Yandere.TargetStudent.TaskRejected);
+			Debug.Log("Task button is getting disabled here.");
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
 		else if (TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] != 3)
@@ -846,6 +853,13 @@ public class DialogueWheelScript : MonoBehaviour
 					Debug.Log("The player can turn in a task right now.");
 					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
 				}
+				if (!CustomMode && Yandere.TargetStudent.StudentID == 19 && Yandere.StudentManager.Students[57] == null && Yandere.StudentManager.Students[58] == null && Yandere.StudentManager.Students[59] == null && Yandere.StudentManager.Students[60] == null)
+				{
+					Debug.Log("Disabling Task button because all of the people who would have photographed her are dead");
+					Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
+					Yandere.NotificationManager.CustomText = "She has no Task to offer.";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
 			}
 			else
 			{
@@ -855,6 +869,7 @@ public class DialogueWheelScript : MonoBehaviour
 				}
 				if (Yandere.TargetStudent.StudentID == 1 || Yandere.TargetStudent.StudentID == 10)
 				{
+					Debug.Log("Task button is getting disabled here.");
 					Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 				}
 				else
@@ -881,6 +896,7 @@ public class DialogueWheelScript : MonoBehaviour
 					{
 						if (TaskManager.TaskStatus[36] == 0 && (StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentDead(82) || StudentGlobals.GetStudentDead(83) || StudentGlobals.GetStudentDead(84) || StudentGlobals.GetStudentDead(85)))
 						{
+							Debug.Log("Task button is getting disabled here.");
 							Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 						}
 					}
@@ -893,6 +909,7 @@ public class DialogueWheelScript : MonoBehaviour
 					{
 						if (TaskManager.TaskStatus[81] == 0 && StudentGlobals.GetStudentDead(5))
 						{
+							Debug.Log("Task button is getting disabled here.");
 							Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 						}
 					}
@@ -943,10 +960,12 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		else if (Yandere.TargetStudent.StudentID != LoveManager.RivalID && Yandere.TargetStudent.StudentID != LoveManager.SuitorID)
 		{
+			Debug.Log("Task button is getting disabled here.");
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
 		else if (Yandere.TargetStudent.StudentID == LoveManager.RivalID && LoveManager.SuitorProgress == 0)
 		{
+			Debug.Log("Task button is getting disabled here.");
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 		}
 		if (!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council)
@@ -980,16 +999,21 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		if (NoFriends)
 		{
+			Debug.Log("Task button is getting disabled here.");
 			Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 			Shadow[6].color = new Color(0f, 0f, 0f, 0.75f);
 		}
-		if (Yandere.Club == Yandere.TargetStudent.Club)
+		if (ClubLeader)
 		{
-			Debug.Log("Disabling Join option.");
-			UISprite uISprite12 = ClubShadow[1];
-			uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 0.75f);
-			UISprite uISprite13 = ClubShadow[2];
-			uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 0.75f);
+			_ = Yandere.Club;
+			if (Yandere.Club == Yandere.TargetStudent.Club)
+			{
+				Debug.Log("Disabling Join option.");
+				UISprite uISprite12 = ClubShadow[1];
+				uISprite12.color = new Color(uISprite12.color.r, uISprite12.color.g, uISprite12.color.b, 0.75f);
+				UISprite uISprite13 = ClubShadow[2];
+				uISprite13.color = new Color(uISprite13.color.r, uISprite13.color.g, uISprite13.color.b, 0.75f);
+			}
 		}
 		if (Yandere.ClubAttire || Yandere.Mask != null || Yandere.Gloves != null || (Yandere.Container != null && Yandere.Container.CelloCase))
 		{
@@ -1069,6 +1093,7 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		if (DatingMinigame == null || (Yandere.TargetStudent.StudentID == LoveManager.SuitorID && !LoveManager.RivalWaiting) || LoveManager.Courted)
 		{
+			Debug.Log("The Court button is being hidden here for some reason.");
 			UISprite uISprite22 = LoveShadow[2];
 			uISprite22.color = new Color(uISprite22.color.r, uISprite22.color.g, uISprite22.color.b, 0.75f);
 		}

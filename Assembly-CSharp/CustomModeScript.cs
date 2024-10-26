@@ -309,6 +309,10 @@ public class CustomModeScript : MonoBehaviour
 
 	public int CurrentBGM;
 
+	public GameObject YakuzaWindow;
+
+	public bool ForceYakuza;
+
 	public string[] Surnames;
 
 	public string[] MaleNames;
@@ -1899,8 +1903,12 @@ public class CustomModeScript : MonoBehaviour
 				{
 					EnterStudentList();
 				}
-				else if (Input.GetButtonDown(InputNames.Xbox_RB))
+				else
 				{
+					if (!Input.GetButtonDown(InputNames.Xbox_RB))
+					{
+						return;
+					}
 					CharacterParent.position = new Vector3(3f, -0.85f, 2.25f);
 					ViewingRivals = false;
 					Miscellaneous = true;
@@ -1909,6 +1917,19 @@ public class CustomModeScript : MonoBehaviour
 					PromptBar.Label[4].text = "Change Selection";
 					PromptBar.UpdateButtons();
 					PromptBar.Show = true;
+					YakuzaWindow.SetActive(value: false);
+					ForceYakuza = false;
+					for (int k = 0; k < JSON.Misc.CanonEliminations.Length; k++)
+					{
+						if (JSON.Misc.CanonEliminations[k] == 20)
+						{
+							MiscellaneousLabels[3].text = "Yes";
+							MiscellaneousOptions[3] = true;
+							YakuzaWindow.SetActive(value: true);
+							JSON.Misc.Misc[3] = true;
+							ForceYakuza = true;
+						}
+					}
 					UpdateHeader();
 				}
 			}
@@ -2055,6 +2076,11 @@ public class CustomModeScript : MonoBehaviour
 				MiscellaneousArrow.localPosition = new Vector3(-275f, 300 - 100 * OptionSelected, 0f);
 				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
+					if (OptionSelected == 3 && ForceYakuza)
+					{
+						Debug.Log("Do Nothing.");
+						return;
+					}
 					MiscellaneousOptions[OptionSelected] = !MiscellaneousOptions[OptionSelected];
 					JSON.Misc.Misc[OptionSelected] = MiscellaneousOptions[OptionSelected];
 					if (MiscellaneousOptions[OptionSelected])
