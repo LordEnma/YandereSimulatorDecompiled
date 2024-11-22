@@ -25,6 +25,10 @@ public class CosmeticScript : MonoBehaviour
 
 	public GameObject[] EightiesClubAccessories;
 
+	public GameObject[] ModernSlickSuitorHair;
+
+	public GameObject[] ModernPonySuitorHair;
+
 	public GameObject[] AdditionalAccessory;
 
 	public GameObject[] TeacherAccessories;
@@ -82,6 +86,10 @@ public class CosmeticScript : MonoBehaviour
 	public GameObject[] Rings;
 
 	public GameObject[] Roses;
+
+	public Renderer[] ModernSlickSuitorHairRenderers;
+
+	public Renderer[] ModernPonySuitorHairRenderers;
 
 	public Renderer[] SlickSuitorHairRenderers;
 
@@ -409,6 +417,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public bool CustomHair;
 
+	public bool CustomMode;
+
 	public bool LookCamera;
 
 	public bool HomeScene;
@@ -518,6 +528,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (StudentManager != null)
 		{
+			CustomMode = StudentManager.CustomMode;
 			LoveSick = StudentManager.LoveSick;
 			Eighties = StudentManager.Eighties;
 			if (Kidnapped)
@@ -528,6 +539,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else
 		{
+			CustomMode = GameGlobals.CustomMode;
 			LoveSick = GameGlobals.LoveSick;
 			Eighties = GameGlobals.Eighties;
 		}
@@ -556,6 +568,13 @@ public class CosmeticScript : MonoBehaviour
 				MaleHairRenderers[55] = PonySuitorHairRenderers[StudentManager.Week];
 				MaleHairRenderers[56] = SlickSuitorHairRenderers[StudentManager.Week];
 			}
+		}
+		else if (StudentManager != null && Male && StudentID == StudentManager.SuitorID && ModernPonySuitorHair[StudentManager.Week] != null)
+		{
+			MaleHair[55] = ModernPonySuitorHair[StudentManager.Week];
+			MaleHair[56] = ModernSlickSuitorHair[StudentManager.Week];
+			MaleHairRenderers[55] = ModernPonySuitorHairRenderers[StudentManager.Week];
+			MaleHairRenderers[56] = ModernSlickSuitorHairRenderers[StudentManager.Week];
 		}
 		if (Cutscene && EventGlobals.OsanaConversation)
 		{
@@ -590,7 +609,7 @@ public class CosmeticScript : MonoBehaviour
 			EyeColor = JSON.Students[StudentID].Eyes;
 			Club = JSON.Students[StudentID].Club;
 			Name = JSON.Students[StudentID].Name;
-			if (GameGlobals.CustomMode)
+			if (CustomMode)
 			{
 				EyewearID = JSON.Misc.EyeWear[StudentID];
 				SkinColor = JSON.Misc.SkinColor[StudentID];
@@ -893,21 +912,17 @@ public class CosmeticScript : MonoBehaviour
 				{
 					if (StudentID == 2)
 					{
-						CharacterAnimation.Play("succubus_a_idle_twins_01");
-						base.transform.position = new Vector3(0.094f, 0f, 0f);
+						CharacterAnimation.Play("f02_succubusPose_00");
 						LookCamera = true;
-						CharacterAnimation["f02_smile_00"].layer = 1;
-						CharacterAnimation.Play("f02_smile_00");
-						CharacterAnimation["f02_smile_00"].weight = 1f;
+						base.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+						MyRenderer.updateWhenOffscreen = true;
 					}
 					else if (StudentID == 3)
 					{
-						CharacterAnimation.Play("succubus_b_idle_twins_02");
-						base.transform.position = new Vector3(-0.322f, 0.04f, 0f);
+						CharacterAnimation.Play("f02_vampirePose_00");
 						LookCamera = true;
-						CharacterAnimation["f02_smile_00"].layer = 1;
-						CharacterAnimation.Play("f02_smile_00");
-						CharacterAnimation["f02_smile_00"].weight = 1f;
+						base.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+						MyRenderer.updateWhenOffscreen = true;
 					}
 					else if (StudentID == 4)
 					{
@@ -1066,7 +1081,87 @@ public class CosmeticScript : MonoBehaviour
 				else
 				{
 					base.transform.position = new Vector3(0.015f, 0f, 0f);
-					if ((StudentID > 2 && StudentID < 7) || StudentID == 36 || StudentID == 50)
+					if (StudentID == 2)
+					{
+						CharacterAnimation.Play("f02_eightiesRainbowPose_01");
+					}
+					else if (StudentID == 3)
+					{
+						CharacterAnimation.Play("f02_eightiesRainbowPose_02");
+					}
+					else if (StudentID == 4)
+					{
+						CharacterAnimation.Play("f02_eightiesRainbowPose_03");
+					}
+					else if (StudentID == 5)
+					{
+						CharacterAnimation.Play("f02_eightiesRainbowPose_04");
+					}
+					else if (StudentID == 24)
+					{
+						CharacterAnimation.Play("f02_cookingPose_01");
+					}
+					else if (StudentID == 25)
+					{
+						CharacterAnimation.Play("f02_cookingPose_02");
+					}
+					else if (StudentID == 29)
+					{
+						CharacterAnimation.Play("f02_dramaPose_01");
+					}
+					else if (StudentID == 30)
+					{
+						CharacterAnimation.Play("f02_dramaPose_02");
+					}
+					else if (StudentID == 51)
+					{
+						CharacterAnimation.Play("f02_eightiesMusicPose_01");
+					}
+					else if (StudentID == 52)
+					{
+						CharacterAnimation.Play("f02_eightiesMusicPose_02");
+					}
+					else if (StudentID == 53)
+					{
+						CharacterAnimation.Play("f02_eightiesMusicPose_03");
+					}
+					else if (StudentID == 54)
+					{
+						CharacterAnimation.Play("f02_eightiesMusicPose_04");
+					}
+					else if (StudentID == 55)
+					{
+						CharacterAnimation.Play("f02_eightiesMusicPose_05");
+					}
+					else if (StudentID == 74)
+					{
+						CharacterAnimation.Play("f02_eightiesGardenPose_01");
+					}
+					else if (StudentID == 75)
+					{
+						CharacterAnimation.Play("f02_eightiesGardenPose_02");
+					}
+					else if (StudentID == 81)
+					{
+						CharacterAnimation.Play("f02_delinquentFemalePose_01");
+					}
+					else if (StudentID == 82)
+					{
+						CharacterAnimation.Play("f02_delinquentFemalePose_02");
+					}
+					else if (StudentID == 83)
+					{
+						CharacterAnimation.Play("f02_delinquentFemalePose_03");
+					}
+					else if (StudentID == 84)
+					{
+						CharacterAnimation.Play("f02_delinquentFemalePose_04");
+					}
+					else if (StudentID == 85)
+					{
+						CharacterAnimation.Play("f02_delinquentFemalePose_05");
+					}
+					if (StudentID == 36 || StudentID == 50)
 					{
 						CharacterAnimation["f02_smile_00"].layer = 1;
 						CharacterAnimation.Play("f02_smile_00");
@@ -1088,7 +1183,7 @@ public class CosmeticScript : MonoBehaviour
 						CharacterAnimation.Play("f02_smile_00");
 						CharacterAnimation["f02_smile_00"].weight = 1f;
 					}
-					if (!GameGlobals.CustomMode && StudentID != 86)
+					if (!CustomMode && StudentID != 86)
 					{
 						if (StudentID == 87)
 						{
@@ -1214,7 +1309,82 @@ public class CosmeticScript : MonoBehaviour
 				{
 					if (TakingPortrait)
 					{
-						if (StudentID == 76)
+						if (StudentID == 1)
+						{
+							CharacterAnimation.Play("jokichiPose_00");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 6)
+						{
+							CharacterAnimation.Play("eightiesRainbowPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 7)
+						{
+							CharacterAnimation.Play("eightiesRainbowPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 8)
+						{
+							CharacterAnimation.Play("eightiesRainbowPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 9)
+						{
+							CharacterAnimation.Play("eightiesRainbowPose_04");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 10)
+						{
+							CharacterAnimation.Play("eightiesRainbowPose_05");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 21)
+						{
+							CharacterAnimation.Play("cookingPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 22)
+						{
+							CharacterAnimation.Play("cookingPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 23)
+						{
+							CharacterAnimation.Play("cookingPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 26)
+						{
+							CharacterAnimation.Play("dramaPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 27)
+						{
+							CharacterAnimation.Play("dramaPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 28)
+						{
+							CharacterAnimation.Play("dramaPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 71)
+						{
+							CharacterAnimation.Play("eightiesGardenPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 72)
+						{
+							CharacterAnimation.Play("eightiesGardenPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 73)
+						{
+							CharacterAnimation.Play("eightiesGardenPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 76)
 						{
 							CharacterAnimation.Play("delinquentPoseB");
 						}
@@ -1235,7 +1405,7 @@ public class CosmeticScript : MonoBehaviour
 							CharacterAnimation.Play("delinquentPoseE");
 						}
 					}
-					if (!GameGlobals.CustomMode && !CustomModeMenu)
+					if (!CustomMode && !CustomModeMenu)
 					{
 						if (Club == ClubType.Council)
 						{
@@ -1265,15 +1435,32 @@ public class CosmeticScript : MonoBehaviour
 			if (StudentGlobals.CustomSuitorHair > 0)
 			{
 				Hairstyle = StudentGlobals.CustomSuitorHair;
-			}
-			if (StudentGlobals.CustomSuitorAccessory > 0)
-			{
 				GameObject[] phoneCharms = ClubAccessories;
 				foreach (GameObject gameObject2 in phoneCharms)
 				{
 					if (gameObject2 != null)
 					{
 						gameObject2.SetActive(value: false);
+					}
+				}
+				phoneCharms = Kerchiefs;
+				foreach (GameObject gameObject3 in phoneCharms)
+				{
+					if (gameObject3 != null)
+					{
+						gameObject3.SetActive(value: false);
+					}
+				}
+				NoClubAccessory = true;
+			}
+			if (StudentGlobals.CustomSuitorAccessory > 0)
+			{
+				GameObject[] phoneCharms = ClubAccessories;
+				foreach (GameObject gameObject4 in phoneCharms)
+				{
+					if (gameObject4 != null)
+					{
+						gameObject4.SetActive(value: false);
 					}
 				}
 				Accessory = StudentGlobals.CustomSuitorAccessory;
@@ -1391,7 +1578,7 @@ public class CosmeticScript : MonoBehaviour
 					flag3 = true;
 				}
 			}
-			else
+			else if (!CustomMode && !CustomModeMenu)
 			{
 				if (EightiesClubAccessories.Length != 0 && EightiesClubAccessories[StudentID] != null)
 				{
@@ -2124,7 +2311,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else
 		{
-			if (!GameGlobals.CustomMode && !CustomModeMenu && StudentID == 86)
+			if (!CustomMode && !CustomModeMenu && StudentID == 86)
 			{
 				CharacterAnimation["moodyEyes_00"].layer = 1;
 				CharacterAnimation.Play("moodyEyes_00");
@@ -2662,8 +2849,11 @@ public class CosmeticScript : MonoBehaviour
 		}
 		RightStockings[0].SetActive(value: false);
 		LeftStockings[0].SetActive(value: false);
-		RightStockings[1].SetActive(value: false);
-		LeftStockings[1].SetActive(value: false);
+		if (RightStockings.Length > 1)
+		{
+			RightStockings[1].SetActive(value: false);
+			LeftStockings[1].SetActive(value: false);
+		}
 		if (StudentManager != null && StudentManager.TutorialActive)
 		{
 			Stockings = "";
@@ -3282,6 +3472,23 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(9, 90f);
 			MyRenderer.SetBlendShapeWeight(12, 35f);
 		}
+		else if (EyeType == "Succubus")
+		{
+			MyRenderer.SetBlendShapeWeight(1, 35f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(8, 2f);
+			MyRenderer.SetBlendShapeWeight(9, 45f);
+			MyRenderer.SetBlendShapeWeight(10, 2f);
+			MyRenderer.SetBlendShapeWeight(12, 25f);
+		}
+		else if (EyeType == "Vampire")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(8, 15f);
+			MyRenderer.SetBlendShapeWeight(9, 75f);
+			MyRenderer.SetBlendShapeWeight(11, 20f);
+			MyRenderer.SetBlendShapeWeight(12, 60f);
+		}
 	}
 
 	public void DeactivateBullyAccessories()
@@ -3627,7 +3834,7 @@ public class CosmeticScript : MonoBehaviour
 				BurlapSack.newRenderer.materials[0].mainTexture = SkinTextures[SkinColor];
 				BurlapSack.newRenderer.materials[1].mainTexture = HairRenderer.material.mainTexture;
 				BurlapSack.newRenderer.materials[2].mainTexture = BurlapSack.accessoryMaterials[0].mainTexture;
-				if (GameGlobals.CustomMode && CustomHair)
+				if (CustomMode && CustomHair)
 				{
 					BurlapSack.newRenderer.materials[1].mainTexture = DefaultFaceTexture;
 				}

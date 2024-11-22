@@ -684,6 +684,14 @@ public class AlternateConfessionScript : MonoBehaviour
 					OutcomeLabels[3].text = "She reached her ''Happy Ending.''";
 					OutcomeLabels[4].text = "In this one timeline, at least...";
 					OutcomeLabels[5].text = "...she can truly be happy.";
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("Happy", 1);
+					}
+					if (!GameGlobals.Debug)
+					{
+						PlayerPrefs.SetInt("a", 1);
+					}
 				}
 				else
 				{
@@ -849,6 +857,14 @@ public class AlternateConfessionScript : MonoBehaviour
 			DateGlobals.Week = 11;
 			if (GameGlobals.CustomMode)
 			{
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Custom", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
 				if (!Reject)
 				{
 					GameGlobals.EightiesCutsceneID = 12;

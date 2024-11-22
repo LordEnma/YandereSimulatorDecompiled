@@ -224,6 +224,38 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		{
 			Items[40].mainTexture = ItemTextures[40];
 		}
+		if (PlayerPrefs.GetInt("Custom") == 1)
+		{
+			Items[41].mainTexture = ItemTextures[41];
+		}
+		if (PlayerPrefs.GetInt("Delinquent") == 1)
+		{
+			Items[42].mainTexture = ItemTextures[42];
+		}
+		if (PlayerPrefs.GetInt("Dream") == 1)
+		{
+			Items[43].mainTexture = ItemTextures[43];
+		}
+		if (PlayerPrefs.GetInt("Explode") == 1)
+		{
+			Items[44].mainTexture = ItemTextures[44];
+		}
+		if (PlayerPrefs.GetInt("Happy") == 1)
+		{
+			Items[45].mainTexture = ItemTextures[45];
+		}
+		if (PlayerPrefs.GetInt("Maiden") == 1)
+		{
+			Items[46].mainTexture = ItemTextures[46];
+		}
+		if (PlayerPrefs.GetInt("Robot") == 1)
+		{
+			Items[47].mainTexture = ItemTextures[47];
+		}
+		if (PlayerPrefs.GetInt("S+") == 1)
+		{
+			Items[48].mainTexture = ItemTextures[48];
+		}
 	}
 
 	private void Update()
@@ -387,6 +419,14 @@ public class TitleDemoChecklistScript : MonoBehaviour
 					PlayerPrefs.SetInt("SNAP", 0);
 					PlayerPrefs.SetInt("Yakuza", 0);
 					PlayerPrefs.SetInt("Yanvania", 0);
+					PlayerPrefs.SetInt("Custom", 0);
+					PlayerPrefs.SetInt("Delinquent", 0);
+					PlayerPrefs.SetInt("Dream", 0);
+					PlayerPrefs.SetInt("Explode", 0);
+					PlayerPrefs.SetInt("Happy", 0);
+					PlayerPrefs.SetInt("Maiden", 0);
+					PlayerPrefs.SetInt("Robot", 0);
+					PlayerPrefs.SetInt("S+", 0);
 				}
 				SceneManager.LoadScene("ResolutionScene");
 			}
@@ -473,6 +513,14 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		Checklist[38] = PlayerPrefs.GetInt("SNAP");
 		Checklist[39] = PlayerPrefs.GetInt("Yakuza");
 		Checklist[40] = PlayerPrefs.GetInt("Yanvania");
+		Checklist[41] = PlayerPrefs.GetInt("Custom");
+		Checklist[42] = PlayerPrefs.GetInt("Delinquent");
+		Checklist[43] = PlayerPrefs.GetInt("Dream");
+		Checklist[44] = PlayerPrefs.GetInt("Explode");
+		Checklist[45] = PlayerPrefs.GetInt("Happy");
+		Checklist[46] = PlayerPrefs.GetInt("Maiden");
+		Checklist[47] = PlayerPrefs.GetInt("Robot");
+		Checklist[48] = PlayerPrefs.GetInt("S+");
 	}
 
 	private void RecallChecklistProgress()
@@ -518,6 +566,14 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		PlayerPrefs.SetInt("SNAP", Checklist[38]);
 		PlayerPrefs.SetInt("Yakuza", Checklist[39]);
 		PlayerPrefs.SetInt("Yanvania", Checklist[40]);
+		PlayerPrefs.SetInt("Custom", Checklist[41]);
+		PlayerPrefs.SetInt("Delinquent", Checklist[42]);
+		PlayerPrefs.SetInt("Dream", Checklist[43]);
+		PlayerPrefs.SetInt("Explode", Checklist[44]);
+		PlayerPrefs.SetInt("Happy", Checklist[45]);
+		PlayerPrefs.SetInt("Maiden", Checklist[46]);
+		PlayerPrefs.SetInt("Robot", Checklist[47]);
+		PlayerPrefs.SetInt("S+", Checklist[48]);
 	}
 
 	private void ObtainAllChallenges()
@@ -563,5 +619,13 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		PlayerPrefs.SetInt("SNAP", 1);
 		PlayerPrefs.SetInt("Yakuza", 1);
 		PlayerPrefs.SetInt("Yanvania", 1);
+		PlayerPrefs.SetInt("Custom", 1);
+		PlayerPrefs.SetInt("Delinquent", 1);
+		PlayerPrefs.SetInt("Dream", 1);
+		PlayerPrefs.SetInt("Explode", 1);
+		PlayerPrefs.SetInt("Happy", 1);
+		PlayerPrefs.SetInt("Maiden", 1);
+		PlayerPrefs.SetInt("Robot", 1);
+		PlayerPrefs.SetInt("S+", 1);
 	}
 }

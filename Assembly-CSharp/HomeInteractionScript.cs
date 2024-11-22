@@ -10,6 +10,8 @@ public class HomeInteractionScript : MonoBehaviour
 
 	public GameObject ObjectToActivate;
 
+	public GameObject[] ObjectsToActivate;
+
 	public HomeYandereScript Yandere;
 
 	public PromptBarScript PromptBar;
@@ -19,6 +21,10 @@ public class HomeInteractionScript : MonoBehaviour
 	public UILabel Label;
 
 	public Transform[] Door;
+
+	public Vector3 OriginalPos;
+
+	public Vector3 OriginalRot;
 
 	public float MinDistance;
 
@@ -93,6 +99,26 @@ public class HomeInteractionScript : MonoBehaviour
 			{
 				Yandere.CanMove = false;
 				CarrotMenu.Show = true;
+			}
+			else if (ID == 7)
+			{
+				ObjectToActivate.SetActive(value: true);
+				Yandere.HomeCamera.PromptBar.ClearButtons();
+				Yandere.HomeCamera.PromptBar.Label[1].text = "Back";
+				Yandere.HomeCamera.PromptBar.Label[4].text = "Change Selection";
+				Yandere.HomeCamera.PromptBar.Label[5].text = "Change Hair";
+				Yandere.HomeCamera.PromptBar.UpdateButtons();
+				Yandere.HomeCamera.PromptBar.Show = true;
+				Yandere.CanMove = false;
+				Yandere.HomeCamera.enabled = false;
+				Yandere.MyController.enabled = false;
+				Yandere.HomeCamera.RoomJukebox.volume = 0f;
+				Yandere.HomeCamera.DayLight.SetActive(value: false);
+				Yandere.CharacterAnimation.Play(Yandere.IdleAnim);
+				OriginalPos = Yandere.transform.position;
+				OriginalRot = Yandere.transform.eulerAngles;
+				Yandere.transform.position = new Vector3(0f, 200f, 0f);
+				Yandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
 			}
 		}
 		if (Move)

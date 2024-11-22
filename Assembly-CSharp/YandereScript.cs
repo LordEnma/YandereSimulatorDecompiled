@@ -41,6 +41,8 @@ public class YandereScript : MonoBehaviour
 
 	public RiggedAccessoryAttacher WrappingsAttacher;
 
+	public CharacterCustomizationScript CustomHair;
+
 	public ObstacleDetectorScript ObstacleDetector;
 
 	public RiggedAccessoryAttacher ApronAttacher;
@@ -2110,8 +2112,6 @@ public class YandereScript : MonoBehaviour
 		FalconKneepad1.SetActive(value: false);
 		FalconKneepad2.SetActive(value: false);
 		FloatingShovel.SetActive(value: false);
-		LooseSocks[0].SetActive(value: false);
-		LooseSocks[1].SetActive(value: false);
 		BlackEyePatch.SetActive(value: false);
 		EasterEggMenu.SetActive(value: false);
 		PunishedScarf.SetActive(value: false);
@@ -2157,6 +2157,10 @@ public class YandereScript : MonoBehaviour
 		for (ID = 1; ID < Accessories.Length; ID++)
 		{
 			Accessories[ID].SetActive(value: false);
+		}
+		for (ID = 0; ID < LooseSocks.Length; ID++)
+		{
+			LooseSocks[ID].SetActive(value: false);
 		}
 		armor = PunishedArm;
 		for (int i = 0; i < armor.Length; i++)
@@ -2229,6 +2233,14 @@ public class YandereScript : MonoBehaviour
 		if (GameGlobals.CustomMode)
 		{
 			Customize();
+		}
+		if (PlayerGlobals.CustomHair > 0)
+		{
+			CustomHair.gameObject.SetActive(value: true);
+			CustomHair.Start();
+			CustomHair.UpdateHair();
+			Hairstyle = 0;
+			UpdateHair();
 		}
 		CharacterAnimation.Sample();
 	}
@@ -4777,11 +4789,26 @@ public class YandereScript : MonoBehaviour
 			else if (TargetStudent.Strength > 0)
 			{
 				TargetStudent.Strength = 0;
+				TargetStudent.Hunter.Offset = 1.5f;
 				TargetStudent.Hunter.MurderSuicidePhase = 0;
 				TargetStudent.Hunter.AttackWillFail = false;
 				TargetStudent.Hunter.Pathfinding.canMove = true;
-				TargetStudent.CharacterAnimation["f02_murderSuicide_01"].time = 1.5f;
-				TargetStudent.Hunter.CharacterAnimation["f02_murderSuicide_00"].time = 1.5f;
+				if (!TargetStudent.Male)
+				{
+					TargetStudent.CharacterAnimation["f02_murderSuicide_01"].time = 1.5f;
+				}
+				else
+				{
+					TargetStudent.CharacterAnimation["murderSuicide_01"].time = 1.5f;
+				}
+				if (!TargetStudent.Hunter.Male)
+				{
+					TargetStudent.Hunter.CharacterAnimation["f02_murderSuicide_00"].time = 1.5f;
+				}
+				else
+				{
+					TargetStudent.Hunter.CharacterAnimation["murderSuicide_00"].time = 1.5f;
+				}
 				Debug.Log("Making the hunter's attack a success!");
 			}
 			if (CharacterAnimation["f02_subtleStab_00"].time >= CharacterAnimation["f02_subtleStab_00"].length)
@@ -5668,7 +5695,7 @@ public class YandereScript : MonoBehaviour
 					}
 					else if (Armed)
 					{
-						if (EquippedWeapon.Type == WeaponType.Scythe)
+						if (EquippedWeapon.Type == WeaponType.Scythe || EquippedWeapon.WeaponID == 46)
 						{
 							NotificationManager.CustomText = "That's too big to fit inside!";
 							NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -9271,6 +9298,8 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.materials[2].mainTexture = FaceTexture;
 			LooseSocks[0].SetActive(value: false);
 			LooseSocks[1].SetActive(value: false);
+			LooseSocks[2].SetActive(value: false);
+			LooseSocks[3].SetActive(value: false);
 			ClubAttire = false;
 			Schoolwear = 0;
 			if (!Egg && !StudentManager.CustomMode)
@@ -9308,7 +9337,10 @@ public class YandereScript : MonoBehaviour
 			{
 				MyRenderer.materials[0].SetFloat("_BlendAmount1", 1f);
 				MyRenderer.materials[1].SetFloat("_BlendAmount1", 1f);
-				PantyAttacher.newRenderer.enabled = false;
+				if (PantyAttacher != null)
+				{
+					PantyAttacher.newRenderer.enabled = false;
+				}
 			}
 			MyRenderer.materials[0].mainTexture = TextureToUse;
 			MyRenderer.materials[1].mainTexture = TextureToUse;
@@ -9928,11 +9960,13 @@ public class YandereScript : MonoBehaviour
 			if (StudentManager.CustomMode)
 			{
 				UpdateEyeType();
-				return;
 			}
-			MyRenderer.SetBlendShapeWeight(0, 50f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
+			else if (RendererToReEnable == null)
+			{
+				MyRenderer.SetBlendShapeWeight(0, 50f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
+			}
 		}
 	}
 
@@ -10246,12 +10280,13 @@ public class YandereScript : MonoBehaviour
 		}
 		Gloves.PickUp.MyRigidbody.isKinematic = false;
 		Gloves.PickUp.MyRigidbody.useGravity = true;
+		Gloves.UpdateBlood();
 		StudentManager.GloveID = 0;
 		Degloving = false;
-		CanMove = true;
 		Gloved = false;
 		Gloves = null;
-		SetUniform();
+		ChangeSchoolwear();
+		CanMove = true;
 		GloveBlood = 0;
 		ClubAccessory();
 		MyRenderer.materials[2].SetFloat("_BlendAmount1", 1f - (float)Health * 1f / 10f);
@@ -10617,6 +10652,8 @@ public class YandereScript : MonoBehaviour
 		{
 			LooseSocks[0].SetActive(value: false);
 			LooseSocks[1].SetActive(value: false);
+			LooseSocks[2].SetActive(value: false);
+			LooseSocks[3].SetActive(value: false);
 			MyStockings = TransparentPixel;
 			if (Casual)
 			{
@@ -10790,6 +10827,13 @@ public class YandereScript : MonoBehaviour
 				Debug.Log("Attempting to activate loose socks.");
 				LooseSocks[0].SetActive(value: true);
 				LooseSocks[1].SetActive(value: true);
+			}
+			else if (Stockings == "RolledUp")
+			{
+				Debug.Log("Attempting to activate rolled up socks.");
+				MyStockings = StockingList[29];
+				LooseSocks[2].SetActive(value: true);
+				LooseSocks[3].SetActive(value: true);
 			}
 			else if (Stockings == "Osana")
 			{

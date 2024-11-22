@@ -8,6 +8,8 @@ public class AudioSourceScript : MonoBehaviour
 
 	public AudioClip MyClip;
 
+	public float Offset;
+
 	public float Pitch = 1f;
 
 	private void Start()
@@ -27,6 +29,8 @@ public class AudioSourceScript : MonoBehaviour
 		MyAudioSource.pitch = Pitch;
 		MyAudioSource.clip = MyClip;
 		MyAudioSource.Play();
+		MyAudioSource.time = Offset;
+		Debug.Log("MyAudioSource has been told to play! MyAudioSource.time is: " + MyAudioSource.time);
 	}
 
 	private void Update()

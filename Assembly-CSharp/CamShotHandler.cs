@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class CamShotHandler : MonoBehaviour
 {
@@ -29,11 +30,27 @@ public class CamShotHandler : MonoBehaviour
 
 	public PostProcessingProfile Profile;
 
-	public Animation YandereAnim;
+	public UISprite SecondDarkness;
 
-	public AudioSource Jukebox;
+	public UISprite SkipCircle;
+
+	public UILabel[] Subtitle;
 
 	public UISprite Darkness;
+
+	public UIPanel SkipPanel;
+
+	public Animation[] YandereAnim;
+
+	public Animation SwordAnim;
+
+	public Transform SparksTarget;
+
+	public Transform SakyuLines;
+
+	public Transform InkyuLines;
+
+	public Transform Sword;
 
 	public Transform[] BlackBar;
 
@@ -41,15 +58,29 @@ public class CamShotHandler : MonoBehaviour
 
 	public Transform[] Head;
 
-	public Transform Sword;
+	public GameObject Sparks;
 
-	public bool FadeOut;
+	public GameObject Dust;
+
+	public AudioSource BGM;
+
+	public AudioSource SFX;
+
+	public float FinalLineTimer;
 
 	public float BlackBarTimer;
+
+	public float SkipTimer;
 
 	public float Timer;
 
 	public float Shot;
+
+	public string[] Dialogue;
+
+	public bool EndEarly;
+
+	public bool FadeOut;
 
 	public GameObject SisterVc1;
 
@@ -120,10 +151,70 @@ public class CamShotHandler : MonoBehaviour
 
 	private void Update()
 	{
-		Timer += Time.deltaTime;
-		if (Mathf.Abs(Timer - Jukebox.time) > 1f)
+		SkipTimer += Time.deltaTime;
+		if (SkipTimer > 5f || EndEarly)
 		{
-			Jukebox.time = Timer;
+			SkipPanel.alpha -= Time.deltaTime;
+		}
+		if (!EndEarly && Input.GetButton(InputNames.Xbox_X))
+		{
+			SkipPanel.alpha = 1f;
+			SkipTimer = 0f;
+			SkipCircle.fillAmount -= Time.deltaTime;
+			if (SkipCircle.fillAmount == 0f)
+			{
+				EndEarly = true;
+			}
+		}
+		else
+		{
+			SkipCircle.fillAmount = 1f;
+		}
+		if (YandereAnim[0].gameObject.activeInHierarchy)
+		{
+			Timer = YandereAnim[0]["f02_SwordCutscene_AyanoPart_01"].time;
+		}
+		else
+		{
+			Timer += Time.deltaTime;
+		}
+		if (BGM.isPlaying)
+		{
+			BGM.pitch = Time.timeScale;
+			SFX.pitch = Time.timeScale;
+			if (Mathf.Abs(Timer - BGM.time) > 0.1f)
+			{
+				BGM.time = Timer;
+				SFX.time = Timer;
+			}
+			int num = CountActiveChildren(SakyuLines) + CountActiveChildren(InkyuLines);
+			Subtitle[1].text = Dialogue[num];
+			Subtitle[2].text = Subtitle[1].text;
+			if (num == 8)
+			{
+				FinalLineTimer += Time.deltaTime;
+				if (FinalLineTimer >= 10f)
+				{
+					Subtitle[1].enabled = false;
+					Subtitle[2].enabled = false;
+				}
+			}
+		}
+		if ((Darkness.alpha >= 0.999f && Timer > 155f) || EndEarly)
+		{
+			if (Darkness.alpha < 0.999f)
+			{
+				SecondDarkness.alpha += Time.deltaTime;
+				Darkness.alpha += Time.deltaTime;
+				BGM.volume -= Time.deltaTime * 0.25f;
+				SFX.volume -= Time.deltaTime;
+			}
+			else
+			{
+				Debug.Log("Transitioning to visual novel cutscene now!");
+				GameGlobals.SisterCutscene = true;
+				SceneManager.LoadScene("VisualNovelScene");
+			}
 		}
 		if (Shot == 1f)
 		{
@@ -148,6 +239,16 @@ public class CamShotHandler : MonoBehaviour
 		else
 		{
 			UpdateDOF(Vector3.Distance(Camera[(int)CurentCamera].position, Head[1].position), 5.6f);
+			if ((double)Timer > 76.25 && !Dust.activeInHierarchy)
+			{
+				Dust.SetActive(value: true);
+			}
+			if ((double)Timer > 96.45 && !Sparks.activeInHierarchy)
+			{
+				Sparks.transform.position = SparksTarget.position;
+				Sparks.transform.rotation = SparksTarget.rotation;
+				Sparks.SetActive(value: true);
+			}
 		}
 		if (CurentCamera == 0f)
 		{
@@ -170,10 +271,10 @@ public class CamShotHandler : MonoBehaviour
 				BlackBar[1].localPosition = Vector3.Lerp(BlackBar[1].localPosition, new Vector3(0f, -5200f, 0f), Time.deltaTime * 10f);
 			}
 		}
-		else if (Shot == 11f && YandereAnim["f02_SwordCutscene_AyanoPart_02"].time > YandereAnim["f02_SwordCutscene_AyanoPart_02"].length - 4f)
+		else if (Shot == 11f && YandereAnim[1]["f02_SwordCutscene_AyanoPart_02"].time > YandereAnim[1]["f02_SwordCutscene_AyanoPart_02"].length - 4f)
 		{
-			Debug.Log("We are now in the final 4 seconds of the animation.");
-			YandereAnim["f02_SwordCutscene_AyanoPart_02"].speed -= Time.deltaTime * 0.25f;
+			YandereAnim[1]["f02_SwordCutscene_AyanoPart_02"].speed -= Time.deltaTime * 0.25f;
+			SwordAnim["Sword_AyanoInteraction"].speed -= Time.deltaTime * 0.25f;
 			FadeOut = true;
 		}
 		if (!FadeOut)
@@ -257,5 +358,18 @@ public class CamShotHandler : MonoBehaviour
 		settings.aperture = Aperture * num;
 		settings.focalLength = 50f;
 		Profile.depthOfField.settings = settings;
+	}
+
+	private int CountActiveChildren(Transform parent)
+	{
+		int num = 0;
+		foreach (Transform item in parent)
+		{
+			if (item.gameObject.activeSelf)
+			{
+				num++;
+			}
+		}
+		return num;
 	}
 }

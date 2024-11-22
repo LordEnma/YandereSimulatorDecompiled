@@ -163,33 +163,42 @@ public class WeaponManagerScript : MonoBehaviour
 		WeaponScript[] weapons = Weapons;
 		foreach (WeaponScript weaponScript in weapons)
 		{
-			if (!(weaponScript != null) || !(weaponScript != Weapons[2]))
+			if (!(weaponScript != null))
 			{
 				continue;
 			}
-			if (!GameGlobals.CensorBlood)
+			if (weaponScript != Weapons[2])
 			{
-				weaponScript.Blood.material.mainTexture = null;
-				weaponScript.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
-				if (weaponScript.MyRenderer != null)
+				if (!GameGlobals.CensorBlood)
 				{
-					Material[] materials = weaponScript.MyRenderer.materials;
-					for (int j = 0; j < materials.Length; j++)
+					weaponScript.Blood.material.mainTexture = null;
+					weaponScript.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
+					if (weaponScript.MyRenderer != null)
 					{
-						materials[j].SetTexture("_OverlayTex", Blood);
+						Material[] materials = weaponScript.MyRenderer.materials;
+						for (int j = 0; j < materials.Length; j++)
+						{
+							materials[j].SetTexture("_OverlayTex", Blood);
+						}
 					}
 				}
-				continue;
-			}
-			weaponScript.Blood.material.mainTexture = null;
-			weaponScript.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
-			if (weaponScript.MyRenderer != null)
-			{
-				Material[] materials = weaponScript.MyRenderer.materials;
-				for (int j = 0; j < materials.Length; j++)
+				else
 				{
-					materials[j].SetTexture("_OverlayTex", Flower);
+					weaponScript.Blood.material.mainTexture = null;
+					weaponScript.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
+					if (weaponScript.MyRenderer != null)
+					{
+						Material[] materials = weaponScript.MyRenderer.materials;
+						for (int j = 0; j < materials.Length; j++)
+						{
+							materials[j].SetTexture("_OverlayTex", Flower);
+						}
+					}
 				}
+			}
+			if (weaponScript.BloodSpray.Length != 0)
+			{
+				weaponScript.UpdateBloodSpray();
 			}
 		}
 	}

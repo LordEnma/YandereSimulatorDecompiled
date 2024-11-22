@@ -63,11 +63,17 @@ public class VisualNovelScript : MonoBehaviour
 
 	public Color[] Colors;
 
+	public int[] SkipDestinations;
+
 	public Renderer Backdrop;
+
+	public float ChangeTimer;
 
 	public float ScreenShake;
 
 	public float FadeTimer;
+
+	public bool ChangeAppearance;
 
 	public bool DrunkEffect;
 
@@ -76,6 +82,8 @@ public class VisualNovelScript : MonoBehaviour
 	public bool Betrayed;
 
 	public bool FadeOut;
+
+	public int SkipID;
 
 	public int Week;
 
@@ -113,9 +121,100 @@ public class VisualNovelScript : MonoBehaviour
 
 	public int[] GraphicIDs;
 
+	public VisualNovelDataScript SisterData;
+
+	public GameObject[] SuccubusAttachers;
+
+	public GameObject[] DramaticEnding;
+
+	public GameObject[] TeleportEffect;
+
+	public GameObject[] MagicFlame;
+
+	public GameObject[] Wings;
+
+	public Texture SecondBackground;
+
+	public UISprite SecondDarkness;
+
+	public GameObject HeartRender;
+
+	public Transform[] RightArm;
+
+	public Transform Eyebrows;
+
+	public int EndingPhase;
+
+	public float EndingTimer;
+
+	public bool FadeToBlack;
+
+	public bool FixEyebrows;
+
+	public bool SisterScene;
+
+	public bool LockArm;
+
 	private void Start()
 	{
-		if (GameGlobals.BasementTape > 0)
+		Time.timeScale = 1f;
+		HeartRender.SetActive(value: false);
+		MagicFlame[0].SetActive(value: false);
+		MagicFlame[1].SetActive(value: false);
+		MagicFlame[2].SetActive(value: false);
+		if (GameGlobals.SisterCutscene)
+		{
+			Dialogue = SisterData.Dialogue;
+			Anims = SisterData.Anims;
+			IdleAnims = SisterData.IdleAnims;
+			SpecialCase = SisterData.SpecialCase;
+			Speaker = SisterData.Speaker;
+			CurrentIdleAnim = SisterData.CurrentIdleAnim;
+			Names = SisterData.Names;
+			Colors = SisterData.Colors;
+			GraphicIDs = SisterData.GraphicIDs;
+			Backdrop.material.mainTexture = SisterData.Backdrop;
+			Jukebox.clip = SisterData.BGM;
+			DialogueLabel.transform.localPosition = new Vector3(0f, -350f, 0f);
+			MaleCharacter.gameObject.SetActive(value: false);
+			Character[3].gameObject.SetActive(value: true);
+			for (int i = 0; i < Graphics.Length; i++)
+			{
+				Graphics[i].mainTexture = SisterData.Graphics[i];
+			}
+			HeartRender.SetActive(value: true);
+			LockArm = true;
+			Character[2].Cosmetic.StudentID = 2;
+			Character[2].StudentID = 2;
+			Character[2].Cosmetic.Initialized = false;
+			Character[2].Cosmetic.Start();
+			Character[2].Cosmetic.ResetBlendshapes();
+			Character[2].Cosmetic.EyeType = "Smug";
+			Character[2].Cosmetic.EyeTypeCheck();
+			Character[2].Cosmetic.CharacterAnimation["f02_magic_00"].speed = 0.1f;
+			ReplaceIdleElegant(ref IdleAnims);
+			Character[3].Cosmetic.StudentID = 3;
+			Character[3].StudentID = 3;
+			Character[3].Cosmetic.Initialized = false;
+			Character[3].Cosmetic.Start();
+			Character[3].Cosmetic.ResetBlendshapes();
+			Character[3].Cosmetic.EyeType = "Default";
+			Character[3].Cosmetic.EyeTypeCheck();
+			DestroyComponentsInChildren(Character[1].transform);
+			DestroyComponentsInChildren(Character[2].transform);
+			DestroyComponentsInChildren(Character[3].transform);
+			CharAnim[1].CrossFade(CurrentIdleAnim[1]);
+			CharAnim[2].CrossFade(CurrentIdleAnim[2]);
+			CharAnim[3].CrossFade(CurrentIdleAnim[3]);
+			Character[1].DisableProps();
+			Character[2].DisableProps();
+			Character[3].DisableProps();
+			SisterScene = true;
+			SkipDestinations[0] = 13;
+			SkipDestinations[1] = 56;
+			SkipToEnd = true;
+		}
+		else if (GameGlobals.BasementTape > 0)
 		{
 			Dialogue = BasementTapeData[GameGlobals.BasementTape].Dialogue;
 			Anims = BasementTapeData[GameGlobals.BasementTape].Anims;
@@ -135,9 +234,9 @@ public class VisualNovelScript : MonoBehaviour
 			MainCamera.enabled = false;
 			UiCamera.enabled = false;
 			Basement.SetActive(value: true);
-			for (int i = 0; i < Graphics.Length; i++)
+			for (int j = 0; j < Graphics.Length; j++)
 			{
-				Graphics[i].mainTexture = BasementTapeData[GameGlobals.BasementTape].Graphics[i];
+				Graphics[j].mainTexture = BasementTapeData[GameGlobals.BasementTape].Graphics[j];
 			}
 			SkipToEnd = true;
 		}
@@ -205,8 +304,46 @@ public class VisualNovelScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (ChangeAppearance)
+		{
+			ChangeTimer += Time.deltaTime;
+			if (ChangeTimer > 1.2f)
+			{
+				if (Character[2].MyRenderer.enabled)
+				{
+					Character[2].MyRenderer.enabled = false;
+					Character[3].MyRenderer.enabled = false;
+					Character[2].RightBreast.localScale = new Vector3(1f, 1f, 1f);
+					Character[2].LeftBreast.localScale = new Vector3(1f, 1f, 1f);
+					SuccubusAttachers[0].SetActive(value: true);
+					SuccubusAttachers[1].SetActive(value: true);
+					Wings[0].SetActive(value: true);
+					Wings[1].SetActive(value: true);
+				}
+				else
+				{
+					SkinnedMeshRenderer newRenderer = SuccubusAttachers[0].GetComponent<RiggedAccessoryAttacher>().newRenderer;
+					if (newRenderer != null)
+					{
+						newRenderer.SetBlendShapeWeight(0, 100f);
+						newRenderer.SetBlendShapeWeight(5, 25f);
+						ChangeAppearance = false;
+					}
+					newRenderer = SuccubusAttachers[1].GetComponent<RiggedAccessoryAttacher>().newRenderer;
+					_ = newRenderer != null;
+				}
+			}
+		}
 		if (!FadeOut)
 		{
+			if (FadeToBlack)
+			{
+				SecondDarkness.alpha = Mathf.MoveTowards(SecondDarkness.alpha, 1f, Time.deltaTime);
+			}
+			else
+			{
+				SecondDarkness.alpha = Mathf.MoveTowards(SecondDarkness.alpha, 0f, Time.deltaTime);
+			}
 			if (ScreenShake > 0.0001f)
 			{
 				BasementCamera.transform.localPosition = new Vector3(1f + Random.RandomRange(ScreenShake * -1f, ScreenShake * 1f), 1f + Random.RandomRange(ScreenShake * -1f, ScreenShake * 1f), 0f + Random.RandomRange(ScreenShake * -1f, ScreenShake * 1f));
@@ -259,6 +396,10 @@ public class VisualNovelScript : MonoBehaviour
 							DialogueLabel.alpha = 0f;
 							CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
 							CharAnim[2].CrossFade(CurrentIdleAnim[2], 1f);
+							if (CurrentIdleAnim.Length > 3)
+							{
+								CharAnim[3].CrossFade(CurrentIdleAnim[3], 1f);
+							}
 							CharAnim[Speaker[ID]].CrossFade(Anims[ID], 1f);
 						}
 						else
@@ -300,8 +441,21 @@ public class VisualNovelScript : MonoBehaviour
 						{
 							if (SkipToEnd)
 							{
-								Debug.Log("The player just held down the Skip button, so we skipped to the end of the dialogue.");
-								ID = Dialogue.Length;
+								Debug.Log("The player just tapped the Skip button, so we skipped to the end of the dialogue.");
+								if (SkipDestinations[SkipID] == 0)
+								{
+									ID = Dialogue.Length;
+								}
+								else if (ID < SkipDestinations[SkipID])
+								{
+									ID = SkipDestinations[SkipID];
+									SkipID++;
+								}
+								else
+								{
+									ID = SkipDestinations[SkipID + 1];
+									SkipID += 2;
+								}
 							}
 							else if (ID < 12)
 							{
@@ -343,10 +497,23 @@ public class VisualNovelScript : MonoBehaviour
 											if (Speaker[ID] == 1)
 											{
 												CharAnim[2].CrossFade(CurrentIdleAnim[2], 1f);
+												if (CurrentIdleAnim.Length > 3)
+												{
+													CharAnim[3].CrossFade(CurrentIdleAnim[3], 1f);
+												}
 											}
-											else
+											else if (Speaker[ID] == 2)
 											{
 												CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
+												if (CurrentIdleAnim.Length > 3)
+												{
+													CharAnim[3].CrossFade(CurrentIdleAnim[3], 1f);
+												}
+											}
+											else if (Speaker[ID] == 3)
+											{
+												CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
+												CharAnim[2].CrossFade(CurrentIdleAnim[2], 1f);
 											}
 											CharAnim[Speaker[ID]].CrossFade(Anims[ID]);
 											CurrentIdleAnim[Speaker[ID]] = IdleAnims[ID];
@@ -355,6 +522,10 @@ public class VisualNovelScript : MonoBehaviour
 										{
 											CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
 											CharAnim[2].CrossFade(CurrentIdleAnim[2], 1f);
+											if (CurrentIdleAnim.Length > 3)
+											{
+												CharAnim[3].CrossFade(CurrentIdleAnim[3], 1f);
+											}
 										}
 										if (SpecialCase[ID] > 0)
 										{
@@ -400,11 +571,61 @@ public class VisualNovelScript : MonoBehaviour
 											{
 												DialogueLabel.fontSize = 50;
 											}
+											else if (SpecialCase[ID] == 10)
+											{
+												TeleportEffect[0].SetActive(value: true);
+												TeleportEffect[1].SetActive(value: true);
+												ChangeAppearance = true;
+												FixEyebrows = true;
+											}
+											else if (SpecialCase[ID] == 11)
+											{
+												CurrentIdleAnim[1] = "f02_heroicIdle_00";
+												CharAnim[1].CrossFade(CurrentIdleAnim[1], 1f);
+												FixEyebrows = false;
+											}
+											else if (SpecialCase[ID] == 12)
+											{
+												CurrentIdleAnim[2] = "f02_magic_00";
+												CharAnim[2].CrossFade(CurrentIdleAnim[2], 0.5f);
+												FixEyebrows = false;
+											}
+											else if (SpecialCase[ID] == 13)
+											{
+												FadeToBlack = true;
+											}
+											else if (SpecialCase[ID] == 14)
+											{
+												CharacterParent[3].transform.position = new Vector3(0.9f, -1.25f, 1.2f);
+												Character[3].CharacterAnimation["f02_smile_01"].layer = 1;
+												Character[3].CharacterAnimation.Play("f02_smile_01");
+												Character[3].CharacterAnimation["f02_smile_01"].weight = 1f;
+												Backdrop.material.mainTexture = SecondBackground;
+												CurrentIdleAnim[3] = "succubus_b_idle_01";
+												CharAnim[3].CrossFade(CurrentIdleAnim[3], 1f);
+												FixEyebrows = false;
+												FadeToBlack = false;
+											}
+											else if (SpecialCase[ID] == 15)
+											{
+												MagicFlame[0].SetActive(value: true);
+											}
+											else if (SpecialCase[ID] == 16)
+											{
+												SecondDarkness.alpha = 1f;
+												Jukebox.enabled = false;
+												FadeToBlack = true;
+											}
 										}
 										UpdateLabels();
 									}
 									else
 									{
+										if (SisterScene)
+										{
+											VisualNovelPanel.alpha = 0f;
+											Darkness.alpha = 1f;
+										}
 										FadeOut = true;
 									}
 								}
@@ -427,7 +648,44 @@ public class VisualNovelScript : MonoBehaviour
 				Jukebox.volume = 1f - Darkness.alpha;
 				if (Darkness.alpha > 0.999f)
 				{
-					if (GameGlobals.BasementTape > 0)
+					if (SisterScene)
+					{
+						if (EndingPhase == 0)
+						{
+							DramaticEnding[0].SetActive(value: true);
+							EndingPhase++;
+						}
+						else if (EndingPhase == 1)
+						{
+							if (EndingTimer > 1.5f)
+							{
+								DramaticEnding[1].SetActive(value: true);
+								DramaticEnding[1].transform.localScale += new Vector3(Time.deltaTime * 0.01f, Time.deltaTime * 0.01f, Time.deltaTime * 0.01f);
+							}
+							if (EndingTimer > 8.5f)
+							{
+								DramaticEnding[1].SetActive(value: false);
+								DramaticEnding[2].SetActive(value: true);
+								EndingPhase++;
+							}
+						}
+						else if (EndingPhase < 9)
+						{
+							EndingPhase++;
+						}
+						else if (EndingPhase == 9)
+						{
+							DramaticEnding[2].SetActive(value: false);
+							EndingPhase++;
+						}
+						else if (EndingTimer > 10f)
+						{
+							GameGlobals.DarkEnding = true;
+							SceneManager.LoadScene("CreditsScene");
+						}
+						EndingTimer += Time.deltaTime;
+					}
+					else if (GameGlobals.BasementTape > 0)
 					{
 						Debug.Log("We reached the part of the code reserved for exiting Basement Tapes.");
 						ExitBasementTape();
@@ -462,6 +720,23 @@ public class VisualNovelScript : MonoBehaviour
 			float a2 = Painting.material.color.a;
 			a2 = Mathf.MoveTowards(a2, 0f, Time.deltaTime);
 			Painting.material.color = new Color(1f, 1f, 1f, a2);
+		}
+	}
+
+	private void LateUpdate()
+	{
+		if (LockArm)
+		{
+			RightArm[0].localEulerAngles = new Vector3(0f, 0f, 0f);
+			RightArm[1].localEulerAngles = new Vector3(0f, 0f, -75f);
+			RightArm[2].localEulerAngles = new Vector3(0f, 0f, 0f);
+			RightArm[3].localEulerAngles = new Vector3(0f, -24f, 0f);
+			RightArm[4].localEulerAngles = new Vector3(0f, 0f, 0f);
+			RightArm[5].localEulerAngles = new Vector3(0f, -24f, 0f);
+		}
+		if (FixEyebrows)
+		{
+			Eyebrows.localPosition = new Vector3(-0.1092865f, 0.015f, 0f);
 		}
 	}
 
@@ -592,5 +867,16 @@ public class VisualNovelScript : MonoBehaviour
 		}
 		SceneManager.UnloadSceneAsync(56);
 		Time.timeScale = 0.0001f;
+	}
+
+	private void ReplaceIdleElegant(ref string[] array)
+	{
+		for (int i = 0; i < array.Length; i++)
+		{
+			if (array[i] == "f02_idleElegant_00")
+			{
+				array[i] = "f02_snobIdle_00";
+			}
+		}
 	}
 }

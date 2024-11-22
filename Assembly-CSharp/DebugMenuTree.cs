@@ -15,15 +15,15 @@ public class DebugMenuTree : MonoBehaviour
 	{
 		if (DebugOn)
 		{
-			if (Input.GetKeyDown("p"))
+			if (Input.GetKeyDown("="))
 			{
 				CurentTimeSpeed += 1f;
 			}
-			else if (Input.GetKeyDown("o"))
+			else if (Input.GetKeyDown("-"))
 			{
 				CurentTimeSpeed -= 1f;
 			}
-			else if (Input.GetKeyDown("l"))
+			else if (Input.GetKeyDown("backspace"))
 			{
 				CurentTimeSpeed = 1f;
 			}

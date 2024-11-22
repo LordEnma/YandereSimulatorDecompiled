@@ -1819,10 +1819,10 @@ public class TalkingScript : MonoBehaviour
 						{
 							flag15 = true;
 						}
-						else if (S.Clock.Period > 2 && S.StudentManager.RivalBookBag.BentoStolen)
+						else if (S.Clock.Period > 2 && S.StudentManager.RivalBookBag.BentoStolen && !S.Fed)
 						{
+							Debug.Log("Rival is hungry because her bento was stolen.");
 							S.Hungry = true;
-							S.Fed = false;
 						}
 						else
 						{
@@ -1872,9 +1872,13 @@ public class TalkingScript : MonoBehaviour
 							{
 								S.Subtitle.CustomText = "I can't eat that - it would ruin my figure! Sorry!";
 							}
-							else
+							else if (S.Clock.Period == 3)
 							{
 								S.Subtitle.CustomText = "No thanks, I brought my own lunch to school today!";
+							}
+							else
+							{
+								S.Subtitle.CustomText = "No thanks, I'm not hungry right now.";
 							}
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 						}
@@ -2263,11 +2267,11 @@ public class TalkingScript : MonoBehaviour
 		RejectGossip = false;
 		if (!Eighties)
 		{
-			if ((S.StudentID == 2 && S.DialogueWheel.Victim == 3) || (S.StudentID == 3 && S.DialogueWheel.Victim == 2) || (S.StudentID == 10 && S.DialogueWheel.Victim == 11) || (S.StudentID == 11 && S.DialogueWheel.Victim == 10) || (S.StudentID == 25 && S.DialogueWheel.Victim == 30) || (S.StudentID == 30 && S.DialogueWheel.Victim == 25) || (S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10))
+			if (S.DialogueWheel.Victim == S.Crush || (S.StudentID == 2 && S.DialogueWheel.Victim == 3) || (S.StudentID == 3 && S.DialogueWheel.Victim == 2) || (S.StudentID == 10 && S.DialogueWheel.Victim == 11) || (S.StudentID == 11 && S.DialogueWheel.Victim == 10) || (S.StudentID == 25 && S.DialogueWheel.Victim == 30) || (S.StudentID == 30 && S.DialogueWheel.Victim == 25) || (S.StudentID == 70 && S.DialogueWheel.Victim == 46) || (S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10))
 			{
-				if (S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10)
+				if ((S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10) || (S.StudentID == 70 && S.DialogueWheel.Victim == 46) || S.DialogueWheel.Victim == S.Crush)
 				{
-					RejectGossipLine = "Hey! I have a lot of respect for her! Don't say anything weird about her!";
+					RejectGossipLine = "Hey! I have a lot of respect for that person! Don't say anything weird about them!";
 				}
 				else if (S.DialogueWheel.Victim < 4)
 				{

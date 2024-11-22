@@ -1485,7 +1485,10 @@ public class StudentManagerScript : MonoBehaviour
 		if (ClubGlobals.GetClubClosed(ClubType.Gardening))
 		{
 			Debug.Log("Blocking entrance to Gardening Club, adjusting Gardening Club patrols.");
-			GardenBlockade.SetActive(value: true);
+			if (GardenBlockade != null)
+			{
+				GardenBlockade.SetActive(value: true);
+			}
 			Patrols.List[71].localPosition = new Vector3(51.5f, 0f, 24f);
 			Patrols.List[71].localEulerAngles = new Vector3(0f, 90f, 0f);
 			Patrols.List[71].localScale = new Vector3(1.15f, 1.15f, 1.15f);
@@ -3794,6 +3797,7 @@ public class StudentManagerScript : MonoBehaviour
 			StudentScript studentScript = Students[ID];
 			if (studentScript != null)
 			{
+				studentScript.Shoving = false;
 				if (!studentScript.Dying && !studentScript.PinningDown && !studentScript.Spraying && !studentScript.Struggling && !studentScript.Drowned)
 				{
 					if (studentScript.CheckingNote)
@@ -8032,6 +8036,20 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				BakeSaleSabotageScripts[i].Disable();
 			}
+		}
+	}
+
+	public void ChangeAllBloodTextures()
+	{
+		FoldedUniformScript[] array = UnityEngine.Object.FindObjectsOfType<FoldedUniformScript>();
+		for (int i = 0; i < array.Length; i++)
+		{
+			array[i].UpdateBlood();
+		}
+		GloveScript[] array2 = UnityEngine.Object.FindObjectsOfType<GloveScript>();
+		for (int i = 0; i < array2.Length; i++)
+		{
+			array2[i].UpdateBlood();
 		}
 	}
 }

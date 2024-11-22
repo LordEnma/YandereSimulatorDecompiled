@@ -498,6 +498,8 @@ public class DebugMenuScript : MonoBehaviour
 					}
 					StudentManager.Students[46].Friend = false;
 					Window.SetActive(value: false);
+					WeaponManager.BroughtWeapons[8].transform.parent = null;
+					WeaponManager.BroughtWeapons[8].gameObject.SetActive(value: true);
 					Debug.Log("Yandere.Class.PhysicalGrade is now: " + Yandere.Class.PhysicalGrade);
 				}
 				else if (Input.GetKeyDown(KeyCode.T))
@@ -546,8 +548,13 @@ public class DebugMenuScript : MonoBehaviour
 				}
 				else if (Input.GetKeyDown(KeyCode.X))
 				{
-					TaskGlobals.SetTaskStatus(36, 3);
-					SchoolGlobals.ReactedToGameLeader = false;
+					for (ID = 2; ID < 51; ID++)
+					{
+						if (ID < 11 || ID > 20)
+						{
+							StudentGlobals.SetStudentMissing(ID, value: true);
+						}
+					}
 					SceneManager.LoadScene("LoadingScene");
 				}
 				else if (Input.GetKeyDown(KeyCode.Backspace))
@@ -924,7 +931,7 @@ public class DebugMenuScript : MonoBehaviour
 						Yandere.MyRenderer.materials[1].SetFloat("_BlendAmount1", 1f);
 						Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
 						Yandere.MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
-						if (Yandere.PantyAttacher.newRenderer != null)
+						if (Yandere.PantyAttacher != null && Yandere.PantyAttacher.newRenderer != null)
 						{
 							Yandere.PantyAttacher.newRenderer.enabled = false;
 						}

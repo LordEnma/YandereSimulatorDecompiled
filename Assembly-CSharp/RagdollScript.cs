@@ -1299,6 +1299,10 @@ public class RagdollScript : MonoBehaviour
 		{
 			Student.ApronAttacher.newRenderer.enabled = false;
 		}
+		if (Student.WrappingAttacher.enabled)
+		{
+			Student.WrappingAttacher.newRenderer.enabled = false;
+		}
 		if (Student.Attacher.enabled && Student.Attacher.newRenderer != null)
 		{
 			Student.Attacher.newRenderer.enabled = false;

@@ -46,7 +46,8 @@ public class DemonScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (DemonID == 2 && (PlayerGlobals.Enlightenment + Yandere.Class.EnlightenmentBonus >= 5 || YancordGlobals.CurrentConversation == 6))
+		Debug.Log("Demon # " + DemonID + " is now checking whether or not the player meets the criteria to gain demonic powers.");
+		if (DemonID == 2 && (Yandere.Class.Enlightenment + Yandere.Class.EnlightenmentBonus >= 5 || YancordGlobals.CurrentConversation == 6))
 		{
 			Ready = true;
 			Clips = AltClips;
@@ -136,6 +137,7 @@ public class DemonScript : MonoBehaviour
 			{
 				return;
 			}
+			Start();
 			ID++;
 			if (ID < Lines.Length)
 			{

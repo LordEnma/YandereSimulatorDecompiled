@@ -147,6 +147,7 @@ public class ShoeRemovalScript : MonoBehaviour
 			Student.CharacterAnimation.CrossFade(RemovalAnim);
 			if (Phase == 1)
 			{
+				Debug.Log(Student.Name + " is now changing shoes.");
 				Student.CharacterAnimation.CrossFade(RemovalAnim);
 				if (!(Student.CharacterAnimation[RemovalAnim].time >= 0.833333f))
 				{
@@ -336,6 +337,7 @@ public class ShoeRemovalScript : MonoBehaviour
 
 	public void PutOnShoes()
 	{
+		Debug.Log(Student.Name + "'s ShoeRemovalScript is now calling PutOnShoes()");
 		CloseLocker();
 		if (ShoeParent == null)
 		{
@@ -407,6 +409,7 @@ public class ShoeRemovalScript : MonoBehaviour
 
 	public void UpdateShoes()
 	{
+		Debug.Log(Student.Name + "'s ShoeRemovalScript is now calling UpdateShoes()");
 		OutdoorShoes = Student.Cosmetic.CasualTexture;
 		IndoorShoes = Student.Cosmetic.UniformTexture;
 		Socks = Student.Cosmetic.SocksTexture;
@@ -427,6 +430,7 @@ public class ShoeRemovalScript : MonoBehaviour
 
 	public void LeavingSchool()
 	{
+		Debug.Log(Student.Name + "'s ShoeRemovalScript is now calling LeavingSchool()");
 		if (Locker == null)
 		{
 			Start();
@@ -445,6 +449,7 @@ public class ShoeRemovalScript : MonoBehaviour
 			}
 			else
 			{
+				Debug.Log("A male student just ran this code.");
 				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
 			}
 		}

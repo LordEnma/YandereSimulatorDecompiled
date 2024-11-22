@@ -60,6 +60,12 @@ public class WeekSelectScript : MonoBehaviour
 
 	public Font ModernFont;
 
+	public int[] ModernSuitors;
+
+	public int[] EightiesSuitors;
+
+	public int[] SuitorIDs;
+
 	public int CurrentWeek;
 
 	public Vector3[] StartingPosition;
@@ -94,13 +100,11 @@ public class WeekSelectScript : MonoBehaviour
 			RetroEffect.enabled = false;
 			ChangeFont(Stats.transform);
 			ChangeFont(base.transform);
+			SuitorIDs = ModernSuitors;
+			return;
 		}
-		else
+		if (GameGlobals.CustomMode)
 		{
-			if (!GameGlobals.CustomMode)
-			{
-				return;
-			}
 			for (int i = 1; i < 11; i++)
 			{
 				if (JSON.Students[i + 10].Gender == 0)
@@ -113,6 +117,7 @@ public class WeekSelectScript : MonoBehaviour
 				}
 			}
 		}
+		SuitorIDs = EightiesSuitors;
 	}
 
 	private void Update()
@@ -178,6 +183,12 @@ public class WeekSelectScript : MonoBehaviour
 							StudentGlobals.SetStudentHealth(i + 10, 100);
 							StudentGlobals.Prisoners++;
 							AssignPrisoner(i);
+						}
+						else if (GameGlobals.GetSpecificEliminations(i) == 13)
+						{
+							Debug.Log("Rival #" + i + " was matchmade, so the game will start with the rival and her suitor already befriended.");
+							MakeFriend(i + 10);
+							MakeFriend(SuitorIDs[i]);
 						}
 					}
 					GameGlobals.SetSpecificEliminations(DateGlobals.Week, 0);
@@ -564,6 +575,15 @@ public class WeekSelectScript : MonoBehaviour
 		{
 			StudentGlobals.SetStudentGrudge(i, Grudge);
 		}
+	}
+
+	private void MakeFriend(int ID)
+	{
+		StudentGlobals.SetStudentPhotographed(ID, value: true);
+		StudentGlobals.SetStudentFriendship(ID, 100);
+		PlayerGlobals.SetStudentFriend(ID, value: true);
+		TaskGlobals.SetTaskStatus(ID, 3);
+		PlayerGlobals.Friends++;
 	}
 
 	private void MakeFriends(bool Friend)

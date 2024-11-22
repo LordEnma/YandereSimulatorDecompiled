@@ -155,6 +155,11 @@ public class ContainerScript : MonoBehaviour
 		{
 			Weapon.transform.localPosition = Vector3.zero;
 			Weapon.transform.localEulerAngles = Vector3.zero;
+			if (Weapon.WeaponID == 46)
+			{
+				Weapon.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+				Weapon.transform.localScale = new Vector3(1f, 1f, 1f);
+			}
 		}
 		for (ID = 1; ID < BodyParts.Length; ID++)
 		{

@@ -9,6 +9,8 @@ public class GamepadSwitcherScript : MonoBehaviour
 
 	public Type LastGamepadType;
 
+	private string[] lastControllers = new string[0];
+
 	private void Start()
 	{
 		if (instance != null)
@@ -18,6 +20,19 @@ public class GamepadSwitcherScript : MonoBehaviour
 		}
 		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 		instance = this;
+		string[] joystickNames = Input.GetJoystickNames();
+		CheckForSonyController(joystickNames);
+		if (Gamepad.current != null)
+		{
+			if (Gamepad.current is DualShockGamepad)
+			{
+				UseSonyInputs();
+			}
+			else
+			{
+				UseXboxInputs();
+			}
+		}
 	}
 
 	private void Update()
@@ -33,6 +48,31 @@ public class GamepadSwitcherScript : MonoBehaviour
 				UseXboxInputs();
 			}
 			LastGamepadType = Gamepad.current.GetType();
+		}
+		string[] joystickNames = Input.GetJoystickNames();
+		if (joystickNames.Length != lastControllers.Length || (joystickNames.Length != 0 && lastControllers.Length != 0 && joystickNames[0] != lastControllers[0]) || (joystickNames.Length > 1 && lastControllers.Length > 1 && joystickNames[1] != lastControllers[1]))
+		{
+			CheckForSonyController(joystickNames);
+		}
+		lastControllers = joystickNames;
+	}
+
+	private void CheckForSonyController(string[] currentControllers)
+	{
+		if (currentControllers.Length == 0)
+		{
+			return;
+		}
+		for (int i = 0; i < currentControllers.Length; i++)
+		{
+			if (currentControllers[i].ToLower().Contains("xbox"))
+			{
+				UseXboxInputs();
+			}
+			else if (currentControllers[i].ToLower().Contains("dual"))
+			{
+				UseSonyInputs();
+			}
 		}
 	}
 

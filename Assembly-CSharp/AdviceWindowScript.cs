@@ -471,7 +471,7 @@ public class AdviceWindowScript : MonoBehaviour
 		}
 		if (rivalBookBag.DesiredHairColor != "")
 		{
-			if (Suitor.Cosmetic.HairColor == "SolidBlack")
+			if (Suitor.Cosmetic.HairColor == "Black")
 			{
 				AttractionText[5] = "Your rival likes her suitor's hair color!";
 				Multiplier++;
@@ -591,7 +591,7 @@ public class AdviceWindowScript : MonoBehaviour
 			if (!CollectibleGlobals.GetGiftGiven(GiftID))
 			{
 				Affection += Multiplier;
-				Outcomes[4] = "Your rival appreciated recieving a " + Gifts[GiftID] + ".";
+				Outcomes[4] = "Your rival appreciated receiving a " + Gifts[GiftID] + ".";
 			}
 			else
 			{

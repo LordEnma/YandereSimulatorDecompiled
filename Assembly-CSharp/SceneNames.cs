@@ -52,6 +52,8 @@ public static class SceneNames
 
 	public const string YancordScene = "YancordScene";
 
+	public const string RhythmMinigameScene = "RhythmMinigameScene";
+
 	public const string MiyukiTitleScene = "MiyukiTitleScene";
 
 	public const string MiyukiGameplayScene = "MiyukiGameplayScene";
@@ -119,4 +121,6 @@ public static class SceneNames
 	public const string VisualNovelScene = "VisualNovelScene";
 
 	public const string ShadowScene = "ShadowTestScene";
+
+	public const string SwordScene = "SwordScene";
 }

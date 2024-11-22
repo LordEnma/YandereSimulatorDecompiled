@@ -559,6 +559,8 @@ public class MissionModeScript : MonoBehaviour
 			if (!YakuzaMode)
 			{
 				Debug.Log("Jukebox.MissionMode.Play() was just fired.");
+				MusicID = Random.Range(1, 10);
+				ChangeMusic();
 				Jukebox.MissionMode.enabled = true;
 				Jukebox.MissionMode.volume = 0f;
 				Jukebox.MissionMode.Play();
@@ -1208,7 +1210,7 @@ public class MissionModeScript : MonoBehaviour
 								Jukebox.MissionMode.enabled = true;
 								Jukebox.MissionMode.volume = 1f;
 							}
-							Jukebox.MissionMode.clip = StealthMusic[10];
+							Jukebox.MissionMode.clip = StealthMusic[11];
 							Jukebox.MissionMode.loop = false;
 							Jukebox.MissionMode.Play();
 							MyAudio.PlayOneShot(InfoAccomplished);
@@ -1448,7 +1450,7 @@ public class MissionModeScript : MonoBehaviour
 	public void ChangeMusic()
 	{
 		MusicID++;
-		if (MusicID > 9)
+		if (MusicID > 10)
 		{
 			if (Eighties)
 			{

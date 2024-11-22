@@ -62,9 +62,9 @@ public class TrashCanScript : MonoBehaviour
 				if (Prompt.Circle[0].fillAmount == 0f)
 				{
 					Prompt.Circle[0].fillAmount = 1f;
-					if ((Yandere.PickUp != null && Yandere.PickUp.TrashCan != null) || (Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Scythe))
+					if ((Yandere.PickUp != null && Yandere.PickUp.TrashCan != null) || (Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Scythe) || (Yandere.Armed && Yandere.EquippedWeapon.WeaponID == 46))
 					{
-						Yandere.NotificationManager.CustomText = "You can't fit that in there.";
+						Yandere.NotificationManager.CustomText = "That's too big to fit inside!";
 						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					}
 					else

@@ -215,7 +215,7 @@ public class ConfessionManagerScript : MonoBehaviour
 		}
 		else if (Phase == 0)
 		{
-			if (Darkness.color.a == 0f)
+			if (Darkness.color.a < 0.0001f)
 			{
 				ContinueButton.alpha = Mathf.MoveTowards(ContinueButton.alpha, 1f, Time.deltaTime);
 				if (ContinueButton.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A))
@@ -281,7 +281,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			RotateSpeed += Time.deltaTime * 0.2f;
 			ConfessionCamera.eulerAngles = Vector3.Lerp(ConfessionCamera.eulerAngles, new Vector3(0f, 0f, 0f), Time.deltaTime * RotateSpeed);
 			ConfessionCamera.position = Vector3.Lerp(ConfessionCamera.position, new Vector3(0f, 7.85f, 118f), Time.deltaTime * RotateSpeed);
-			if (Darkness.color.a == 0f)
+			if (Darkness.color.a < 0.0001f)
 			{
 				ContinueButton.alpha = Mathf.MoveTowards(ContinueButton.alpha, 1f, Time.deltaTime);
 				if (ContinueButton.alpha == 1f && Input.GetButtonDown(InputNames.Xbox_A))
@@ -399,7 +399,7 @@ public class ConfessionManagerScript : MonoBehaviour
 					}
 					Tears.materials[1].SetFloat("_TearReveal", TearTimer);
 				}
-				if (Darkness.color.a == 0f)
+				if (Darkness.color.a < 0.0001f)
 				{
 					if (SubID > 0)
 					{
@@ -455,7 +455,7 @@ public class ConfessionManagerScript : MonoBehaviour
 					ConfessionCamera.eulerAngles = new Vector3(ConfessionCamera.eulerAngles.x, ConfessionCamera.eulerAngles.y - RotateSpeed * 2f, ConfessionCamera.eulerAngles.z);
 					ConfessionCamera.position = new Vector3(ConfessionCamera.position.x, ConfessionCamera.position.y, ConfessionCamera.position.z - RotateSpeed * 0.05f);
 				}
-				if (Darkness.color.a == 0f)
+				if (Darkness.color.a < 0.0001f)
 				{
 					if (SubID > 0)
 					{
@@ -548,6 +548,7 @@ public class ConfessionManagerScript : MonoBehaviour
 				ConfessionCamera.position = Vector3.Lerp(ConfessionCamera.position, new Vector3(7f, 7f, 118.5f), Time.deltaTime * RotateSpeed);
 				if (Timer > 10f)
 				{
+					Debug.Log("ConfessionManager has reached this part of the code.");
 					if (Reject)
 					{
 						AudioSource.PlayClipAtPoint(ConfessionGiggle, Yandere.transform.position);
@@ -567,12 +568,15 @@ public class ConfessionManagerScript : MonoBehaviour
 			{
 				if (!Heartbroken.Confessed)
 				{
+					Debug.Log("Now re-positioning the camera to see Yandere-chan's reaction to the confession.");
+					StudentManager.ClubManager.enabled = false;
 					MainCamera.transform.eulerAngles = ConfessionCamera.eulerAngles;
 					MainCamera.transform.position = ConfessionCamera.position;
 					Heartbroken.Confessed = true;
 					MainCamera.SetActive(value: true);
 					Camera.main.enabled = true;
 					StudentManager.Yandere.RPGCamera.enabled = false;
+					ShoulderCamera.OverShoulder = false;
 					ShoulderCamera.enabled = true;
 					ShoulderCamera.Noticed = true;
 					ShoulderCamera.Skip = true;

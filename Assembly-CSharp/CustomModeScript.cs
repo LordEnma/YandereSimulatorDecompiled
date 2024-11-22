@@ -2493,9 +2493,11 @@ public class CustomModeScript : MonoBehaviour
 			if (ID > 0)
 			{
 				num = 0;
+				Debug.Log("RandomHair is: " + num4);
 				while (UsedFemaleHairs[num4] && num < 100)
 				{
 					num4 = UnityEngine.Random.Range(1, StudentChanCosmetic.FemaleHair.Length);
+					Debug.Log("Oh, that number was taken. RandomHair is now: " + num4);
 					num++;
 				}
 				UsedFemaleHairs[num4] = true;

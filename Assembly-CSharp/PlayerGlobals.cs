@@ -102,6 +102,16 @@ public static class PlayerGlobals
 
 	private const string Str_BroughtCarrotsToSchool = "BroughtCarrotsToSchool";
 
+	private const string Str_CustomHair = "CustomHair";
+
+	private const string Str_CustomBangs = "CustomBangs";
+
+	private const string Str_CustomLocks = "CustomLocks";
+
+	private const string Str_CustomBack = "CustomBack";
+
+	private const string Str_CustomMisc = "CustomMisc";
+
 	public static float Money
 	{
 		get
@@ -570,6 +580,66 @@ public static class PlayerGlobals
 		}
 	}
 
+	public static int CustomHair
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CustomHair");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CustomHair", value);
+		}
+	}
+
+	public static int CustomBangs
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CustomBangs");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CustomBangs", value);
+		}
+	}
+
+	public static int CustomLocks
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CustomLocks");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CustomLocks", value);
+		}
+	}
+
+	public static int CustomBack
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CustomBack");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CustomBack", value);
+		}
+	}
+
+	public static int CustomMisc
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_CustomMisc");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_CustomMisc", value);
+		}
+	}
+
 	public static bool GetPhoto(int photoID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_Photo_" + photoID);
@@ -808,5 +878,10 @@ public static class PlayerGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_WeaponWitnessed");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_Meals");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_BroughtCarrotsToSchool");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CustomHair");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CustomBangs");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CustomLocks");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CustomBack");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CustomMisc");
 	}
 }

@@ -625,6 +625,14 @@ public class CourtroomScript : MonoBehaviour
 				Debug.Log("True ending unlocked!");
 				Rank = 6;
 				GameGlobals.TrueEnding = true;
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("S+", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
 			}
 		}
 		else if (Score >= 75)

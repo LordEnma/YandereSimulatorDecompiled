@@ -49,6 +49,18 @@ public class PromptSwapScript : MonoBehaviour
 
 	public void UpdateSpriteType(InputDeviceType deviceType)
 	{
+		bool flag = false;
+		string[] joystickNames = Input.GetJoystickNames();
+		if (joystickNames.Length != 0)
+		{
+			for (int i = 0; i < joystickNames.Length; i++)
+			{
+				if (!joystickNames[i].ToLower().Contains("xbox") && joystickNames[i].ToLower().Contains("dual"))
+				{
+					flag = true;
+				}
+			}
+		}
 		if (DisableButton)
 		{
 			MySprite.spriteName = "BlackCircle";
@@ -64,7 +76,7 @@ public class PromptSwapScript : MonoBehaviour
 		}
 		if (deviceType == InputDeviceType.Gamepad)
 		{
-			if (Gamepad.current is DualShockGamepad && SonyName != "")
+			if ((Gamepad.current is DualShockGamepad && SonyName != "") || (flag && SonyName != ""))
 			{
 				MySprite.spriteName = SonyName;
 			}

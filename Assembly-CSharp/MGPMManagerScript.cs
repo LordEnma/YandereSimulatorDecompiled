@@ -60,6 +60,8 @@ public class MGPMManagerScript : MonoBehaviour
 
 	public Text ScoreLabel;
 
+	public UIPanel PauseScreen;
+
 	public Renderer Black;
 
 	public float GameOverTimer;
@@ -113,6 +115,12 @@ public class MGPMManagerScript : MonoBehaviour
 			Miyuki.Hearts[3].transform.localPosition = new Vector3(145f, -230f, -4f);
 			Miyuki.Hearts[3].transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 			Miyuki.Hearts[3].transform.localScale = new Vector3(16f, 16f, 1f);
+			Miyuki.Hearts[4].transform.localPosition = new Vector3(145f, -215f, -4f);
+			Miyuki.Hearts[4].transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+			Miyuki.Hearts[4].transform.localScale = new Vector3(16f, 16f, 1f);
+			Miyuki.Hearts[5].transform.localPosition = new Vector3(145f, -200f, -4f);
+			Miyuki.Hearts[5].transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+			Miyuki.Hearts[5].transform.localScale = new Vector3(16f, 16f, 1f);
 			Miyuki.MagicBar.transform.parent.localPosition = new Vector3(145f, 0f, -1.1f);
 			Miyuki.MagicBar.transform.parent.localEulerAngles = new Vector3(0f, 0f, 90f);
 			Miyuki.MagicBar.transform.parent.localScale = new Vector3(132f, 10f, 1f);
@@ -126,6 +134,8 @@ public class MGPMManagerScript : MonoBehaviour
 			Jukebox.clip = EightiesIntroJingle;
 			FinalBoss = EightiesFinalBoss;
 			BGM = EightiesGameplayLoop;
+			WaterRenderer[0].material.mainTexture = Stars[0];
+			WaterRenderer[1].material.mainTexture = Stars[0];
 			Water[1].Sprite = Stars;
 			Water[2].Sprite = Stars;
 			Eighties = true;
@@ -190,46 +200,58 @@ public class MGPMManagerScript : MonoBehaviour
 		}
 		if (!GameOver)
 		{
-			if (!Intro)
+			if (Intro)
 			{
-				return;
-			}
-			if (FadeIn)
-			{
-				Black.material.color = new Color(0f, 0f, 0f, Mathf.MoveTowards(Black.material.color.a, 0f, Time.deltaTime));
-				if (Black.material.color.a == 0f)
+				if (FadeIn)
 				{
+					Black.material.color = new Color(0f, 0f, 0f, Mathf.MoveTowards(Black.material.color.a, 0f, Time.deltaTime));
+					if (Black.material.color.a == 0f)
+					{
+						Jukebox.Play();
+						FadeIn = false;
+					}
+					return;
+				}
+				Miyuki.transform.localPosition = new Vector3(0f, Mathf.MoveTowards(Miyuki.transform.localPosition.y, -120f, Time.deltaTime * 60f), 0f);
+				if (Miyuki.transform.localPosition.y != -120f)
+				{
+					return;
+				}
+				if (!Jukebox.isPlaying)
+				{
+					Jukebox.loop = true;
+					Jukebox.clip = BGM;
 					Jukebox.Play();
-					FadeIn = false;
+					if (GameGlobals.HardMode)
+					{
+						Jukebox.pitch = 0.2f;
+					}
 				}
-				return;
-			}
-			Miyuki.transform.localPosition = new Vector3(0f, Mathf.MoveTowards(Miyuki.transform.localPosition.y, -120f, Time.deltaTime * 60f), 0f);
-			if (Miyuki.transform.localPosition.y != -120f)
-			{
-				return;
-			}
-			if (!Jukebox.isPlaying)
-			{
-				Jukebox.loop = true;
-				Jukebox.clip = BGM;
-				Jukebox.Play();
-				if (GameGlobals.HardMode)
+				StartGraphic.SetActive(value: true);
+				Timer += Time.deltaTime;
+				if ((double)Timer > 3.5)
 				{
-					Jukebox.pitch = 0.2f;
+					StartGraphic.SetActive(value: false);
+					for (ID = 1; ID < EnemySpawner.Length; ID++)
+					{
+						EnemySpawner[ID].enabled = true;
+					}
+					Miyuki.Gameplay = true;
+					Intro = false;
 				}
 			}
-			StartGraphic.SetActive(value: true);
-			Timer += Time.deltaTime;
-			if ((double)Timer > 3.5)
+			else if (Input.GetButtonDown(InputNames.Xbox_Start) || Input.GetKeyDown(KeyCode.Escape))
 			{
-				StartGraphic.SetActive(value: false);
-				for (ID = 1; ID < EnemySpawner.Length; ID++)
+				if (Time.timeScale == 1f)
 				{
-					EnemySpawner[ID].enabled = true;
+					PauseScreen.alpha = 1f;
+					Time.timeScale = 0.0001f;
 				}
-				Miyuki.Gameplay = true;
-				Intro = false;
+				else
+				{
+					PauseScreen.alpha = 0f;
+					Time.timeScale = 1f;
+				}
 			}
 			return;
 		}

@@ -54,6 +54,8 @@ public class IronMaidenScript : MonoBehaviour
 
 	public UISprite CleanUpDarkness;
 
+	public bool KilledRival;
+
 	public bool FadeOut;
 
 	public bool FadeIn;
@@ -80,31 +82,36 @@ public class IronMaidenScript : MonoBehaviour
 							{
 								break;
 							}
-							if (StudentManager.Students[i] != null && StudentManager.Students[i].Alive && Vector3.Distance(StudentManager.Students[i].transform.position, Prompt.Yandere.transform.position) < 1f)
+							if (!(StudentManager.Students[i] != null) || !StudentManager.Students[i].Alive || !(Vector3.Distance(StudentManager.Students[i].transform.position, Prompt.Yandere.transform.position) < 1f))
 							{
-								if (i == 1)
-								{
-									Prompt.Yandere.NotificationManager.CustomText = "You would never do that!";
-									Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-									continue;
-								}
-								if (StudentManager.Students[i].Strength == 9 || StudentManager.Students[i].Teacher)
-								{
-									StudentManager.Students[i].AttackReaction();
-									continue;
-								}
-								Prompt.Yandere.Sanity -= (float)((Prompt.Yandere.Panties == 10) ? 10 : 20) * Prompt.Yandere.Numbness;
-								Prompt.Yandere.CanMove = false;
-								Victim = StudentManager.Students[i];
-								Victim.CharacterAnimation.CrossFade(Victim.IdleAnim);
-								Victim.Pathfinding.canSearch = false;
-								Victim.Pathfinding.canMove = false;
-								Victim.enabled = false;
-								ExteriorColliders.SetActive(value: false);
-								InteriorColliders.SetActive(value: false);
-								ShovePhase = 1;
-								ShoveTimer = 0f;
+								continue;
 							}
+							if (i == 1)
+							{
+								Prompt.Yandere.NotificationManager.CustomText = "You would never do that!";
+								Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+								continue;
+							}
+							if (StudentManager.Students[i].Strength == 9 || StudentManager.Students[i].Teacher)
+							{
+								StudentManager.Students[i].AttackReaction();
+								continue;
+							}
+							Prompt.Yandere.Sanity -= (float)((Prompt.Yandere.Panties == 10) ? 10 : 20) * Prompt.Yandere.Numbness;
+							Prompt.Yandere.CanMove = false;
+							Victim = StudentManager.Students[i];
+							if (i == StudentManager.RivalID)
+							{
+								KilledRival = true;
+							}
+							Victim.CharacterAnimation.CrossFade(Victim.IdleAnim);
+							Victim.Pathfinding.canSearch = false;
+							Victim.Pathfinding.canMove = false;
+							Victim.enabled = false;
+							ExteriorColliders.SetActive(value: false);
+							InteriorColliders.SetActive(value: false);
+							ShovePhase = 1;
+							ShoveTimer = 0f;
 						}
 						if (Victim == null)
 						{

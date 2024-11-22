@@ -2,11 +2,17 @@ using UnityEngine;
 
 public class PassTimeBookScript : MonoBehaviour
 {
+	public PickaxePromptScript PickaxePrompt;
+
 	public YandereScript Yandere;
 
 	public PromptScript Prompt;
 
 	public UISprite Darkness;
+
+	public bool IncreaseRockProgress;
+
+	public bool DisplayProgress;
 
 	public bool IgnoringBlood;
 
@@ -17,6 +23,8 @@ public class PassTimeBookScript : MonoBehaviour
 	public bool FadeOut;
 
 	public float CooldownTimer;
+
+	public float PickaxeTimer;
 
 	public int Phase;
 
@@ -34,44 +42,7 @@ public class PassTimeBookScript : MonoBehaviour
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
 			Prompt.Circle[0].fillAmount = 1f;
-			if (CooldownTimer > 0f)
-			{
-				Yandere.NotificationManager.CustomText = "Try again in a few seconds...";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			}
-			else if (Yandere.Police.Show)
-			{
-				Yandere.NotificationManager.CustomText = "Not when police are coming!";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			}
-			else if (!MissionMode && Yandere.StudentManager.Clock.HourTime < 15.5f)
-			{
-				Yandere.NotificationManager.CustomText = "Only available after 3:30 PM";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			}
-			else if (Yandere.StudentManager.Clock.Weekday == 5 && Yandere.StudentManager.Clock.HourTime > 16.53f && !Yandere.StudentManager.RivalEliminated)
-			{
-				Yandere.NotificationManager.CustomText = "Can't! You're anxious about Senpai!";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			}
-			else if (Yandere.StudentManager.Clock.HourTime > 17.5f)
-			{
-				Yandere.NotificationManager.CustomText = "Not available after 5:30 PM";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			}
-			else if (Yandere.Armed || (!IgnoringBlood && Yandere.Bloodiness > 0f) || Yandere.Sanity < 33.333f || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || (Yandere.StudentManager.Reporter != null && !Yandere.Police.Show) || Yandere.StudentManager.MurderTakingPlace)
-			{
-				DisplayErrorMessage();
-			}
-			else
-			{
-				Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
-				Yandere.RPGCamera.enabled = false;
-				Darkness.enabled = true;
-				Yandere.CanMove = false;
-				TimeSkipping = true;
-				FadeOut = true;
-			}
+			TryToPassTime();
 		}
 		if (TimeSkipping)
 		{
@@ -102,16 +73,43 @@ public class PassTimeBookScript : MonoBehaviour
 					Physics.SyncTransforms();
 					Phase++;
 				}
-				else if (Phase == 2)
+				else
 				{
-					FadeOut = false;
+					if (Phase != 2)
+					{
+						return;
+					}
+					if (IncreaseRockProgress)
+					{
+						if (PickaxeTimer == 0f)
+						{
+							PickaxePrompt.MyAudio.Play();
+						}
+						PickaxeTimer += Time.deltaTime;
+						if (PickaxeTimer > 5f)
+						{
+							PickaxeTimer = 0f;
+							PickaxePrompt.Progress += 6f;
+							PickaxePrompt.UpdateRocks();
+							IncreaseRockProgress = false;
+							DisplayProgress = true;
+						}
+					}
+					else
+					{
+						FadeOut = false;
+					}
 				}
 				return;
 			}
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
-			if (Darkness.color.a < 0.1f)
+			if (!(Darkness.color.a < 0.1f))
 			{
-				Darkness.alpha = 0f;
+				return;
+			}
+			Darkness.alpha = 0f;
+			if (!DisplayProgress)
+			{
 				if (PlayerGlobals.PantiesEquipped == 7)
 				{
 					Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;
@@ -122,13 +120,19 @@ public class PassTimeBookScript : MonoBehaviour
 					Yandere.StudentManager.Reputation.Portal.Class.BonusPoints++;
 					Yandere.NotificationManager.CustomText = "Gained 1 extra Study Point!";
 				}
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-				Yandere.RPGCamera.enabled = true;
-				Darkness.enabled = false;
-				Yandere.CanMove = true;
-				TimeSkipping = false;
-				Phase = 0;
 			}
+			else
+			{
+				Debug.Log("This code fired.");
+				PickaxePrompt.DisplayProgress();
+				DisplayProgress = false;
+			}
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			Yandere.RPGCamera.enabled = true;
+			Darkness.enabled = false;
+			Yandere.CanMove = true;
+			TimeSkipping = false;
+			Phase = 0;
 		}
 		else
 		{
@@ -138,6 +142,51 @@ public class PassTimeBookScript : MonoBehaviour
 				CooldownTimer = 0f;
 			}
 		}
+	}
+
+	public void TryToPassTime()
+	{
+		if (CooldownTimer > 0f)
+		{
+			Yandere.NotificationManager.CustomText = "Try again in a few seconds...";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			return;
+		}
+		if (Yandere.Police.Show)
+		{
+			Yandere.NotificationManager.CustomText = "Not when police are coming!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			return;
+		}
+		if (!MissionMode && Yandere.StudentManager.Clock.HourTime < 15.5f)
+		{
+			Yandere.NotificationManager.CustomText = "Only available after 3:30 PM";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			return;
+		}
+		if (Yandere.StudentManager.Clock.Weekday == 5 && Yandere.StudentManager.Clock.HourTime > 16.53f && !Yandere.StudentManager.RivalEliminated)
+		{
+			Yandere.NotificationManager.CustomText = "Can't! You're anxious about Senpai!";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			return;
+		}
+		if (Yandere.StudentManager.Clock.HourTime > 17.5f)
+		{
+			Yandere.NotificationManager.CustomText = "Not available after 5:30 PM";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			return;
+		}
+		if ((!IncreaseRockProgress && Yandere.Armed) || (!IgnoringBlood && Yandere.Bloodiness > 0f) || Yandere.Sanity < 33.333f || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || (Yandere.StudentManager.Reporter != null && !Yandere.Police.Show) || Yandere.StudentManager.MurderTakingPlace)
+		{
+			DisplayErrorMessage();
+			return;
+		}
+		Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
+		Yandere.RPGCamera.enabled = false;
+		Darkness.enabled = true;
+		Yandere.CanMove = false;
+		TimeSkipping = true;
+		FadeOut = true;
 	}
 
 	public void DisplayErrorMessage()
@@ -181,5 +230,6 @@ public class PassTimeBookScript : MonoBehaviour
 		Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		Yandere.NotificationManager.CustomText = "Cannot pass time. Reason:";
 		Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+		IncreaseRockProgress = false;
 	}
 }

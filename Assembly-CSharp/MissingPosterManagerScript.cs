@@ -2,36 +2,55 @@ using UnityEngine;
 
 public class MissingPosterManagerScript : MonoBehaviour
 {
+	public StudentManagerScript StudentManager;
+
 	public GameObject MissingPoster;
-
-	public int RandomID;
-
-	public int ID;
 
 	private void Start()
 	{
-		while (ID < 101)
+		bool eighties = GameGlobals.Eighties;
+		bool customMode = GameGlobals.CustomMode;
+		string text = "";
+		int num = 0;
+		for (int i = 2; i < 101; i++)
 		{
-			if (StudentGlobals.GetStudentMissing(ID))
+			if (!StudentGlobals.GetStudentMissing(i))
 			{
-				GameObject gameObject = Object.Instantiate(MissingPoster, base.transform.position, Quaternion.identity);
-				gameObject.transform.parent = base.transform;
-				gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-				gameObject.transform.eulerAngles = new Vector3(0f, 0f, Random.Range(-15f, 15f));
-				WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + ID + ".png");
-				gameObject.GetComponent<MissingPosterScript>().MyRenderer.material.mainTexture = wWW.texture;
-				RandomID = Random.Range(1, 3);
-				gameObject.transform.localPosition = new Vector3(-16300f + (float)(ID * 500), Random.Range(1300f, 2000f), 0f);
-				if (gameObject.transform.localPosition.x > -3700f)
+				continue;
+			}
+			GameObject gameObject = Object.Instantiate(MissingPoster, base.transform.position, Quaternion.identity);
+			gameObject.transform.parent = base.transform;
+			gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+			gameObject.transform.localEulerAngles = new Vector3(0f, 0f, Random.Range(-5f, 5f));
+			if (eighties)
+			{
+				text = "file:///" + Application.streamingAssetsPath + "/Portraits1989/Student_" + i + ".png";
+				if (customMode)
 				{
-					gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x + 7300f, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z);
-				}
-				if (gameObject.transform.localPosition.x > 15800f)
-				{
-					Object.Destroy(gameObject);
+					text = "file:///" + Application.streamingAssetsPath + "/PortraitsCustom/Student_" + i + ".png";
 				}
 			}
-			ID++;
+			else
+			{
+				text = "file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + i + ".png";
+			}
+			WWW wWW = new WWW(text);
+			MissingPosterScript component = gameObject.GetComponent<MissingPosterScript>();
+			component.MyRenderer.material.mainTexture = wWW.texture;
+			if (StudentManager.JSON.Students[i].RealName == "")
+			{
+				component.NameLabel.text = StudentManager.JSON.Students[i].Name;
+			}
+			else
+			{
+				component.NameLabel.text = StudentManager.JSON.Students[i].RealName;
+			}
+			gameObject.transform.localPosition = new Vector3(5460f - (float)(num * 430), Random.Range(-200f, 200f), 0f);
+			num++;
+			if (gameObject.transform.localPosition.x < -5460f)
+			{
+				Object.Destroy(gameObject);
+			}
 		}
 	}
 }

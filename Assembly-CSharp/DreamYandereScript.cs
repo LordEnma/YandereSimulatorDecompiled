@@ -148,6 +148,14 @@ public class DreamYandereScript : MonoBehaviour
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime * 0.5f);
 			if (Darkness.alpha > 0.999f)
 			{
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Dream", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
 				SceneManager.LoadScene("CalendarScene");
 			}
 		}

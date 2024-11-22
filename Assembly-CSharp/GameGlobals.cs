@@ -150,6 +150,10 @@ public static class GameGlobals
 
 	private const string Str_BasementTape = "BasementTape";
 
+	private const string Str_RockProgress = "RockProgress";
+
+	private const string Str_SisterCutscene = "SisterCutscene";
+
 	public static int Profile
 	{
 		get
@@ -954,6 +958,30 @@ public static class GameGlobals
 		}
 	}
 
+	public static float RockProgress
+	{
+		get
+		{
+			return PlayerPrefs.GetFloat("Profile_" + Profile + "_RockProgress");
+		}
+		set
+		{
+			PlayerPrefs.SetFloat("Profile_" + Profile + "_RockProgress", value);
+		}
+	}
+
+	public static bool SisterCutscene
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_SisterCutscene");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_SisterCutscene", value);
+		}
+	}
+
 	public static int GetRivalEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminations" + elimID);
@@ -1152,5 +1180,7 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_RobotDestroyed");
 		Globals.Delete("Profile_" + Profile + "_ExperiencedDream");
 		Globals.Delete("Profile_" + Profile + "_BasementTape");
+		Globals.Delete("Profile_" + Profile + "_RockProgress");
+		Globals.Delete("Profile_" + Profile + "_SisterCutscene");
 	}
 }

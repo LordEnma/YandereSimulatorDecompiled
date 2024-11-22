@@ -626,6 +626,10 @@ public class PickUpScript : MonoBehaviour
 		{
 			base.transform.parent = Yandere.LeftItemParent;
 		}
+		if (Bucket != null)
+		{
+			base.transform.localScale = new Vector3(0.98f, 0.98f, 0.98f);
+		}
 		if (GetComponent<RadioScript>() != null && GetComponent<RadioScript>().On)
 		{
 			GetComponent<RadioScript>().TurnOff();
@@ -890,6 +894,10 @@ public class PickUpScript : MonoBehaviour
 			TaskKitten.Anim.Play("B_idle");
 			MyRigidbody.isKinematic = true;
 			MyRigidbody.useGravity = false;
+		}
+		if (CarBattery && Yandere.Noticed)
+		{
+			base.transform.position = Yandere.StudentManager.WeaponBoxSpot.parent.position + new Vector3(0f, 1f, 0f);
 		}
 	}
 

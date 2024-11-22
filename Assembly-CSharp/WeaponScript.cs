@@ -202,6 +202,10 @@ public class WeaponScript : MonoBehaviour
 
 	public Vector3[] Rotations;
 
+	public Texture BloodTexture;
+
+	public Texture CensorTexture;
+
 	public bool DoNotRelocate;
 
 	public GameObject HeartBurst;
@@ -276,6 +280,10 @@ public class WeaponScript : MonoBehaviour
 		if (Rotations.Length != 0)
 		{
 			Rotations = TargetRotation;
+		}
+		if (BloodSpray.Length != 0 && BloodSpray[0] != null)
+		{
+			UpdateBloodSpray();
 		}
 	}
 
@@ -419,12 +427,17 @@ public class WeaponScript : MonoBehaviour
 				base.transform.position = new Vector3(-63f, 1f, -26.5f);
 				KinematicTimer = 0f;
 			}
-			if (base.transform.position.x > -21f && base.transform.position.x < 21f && base.transform.position.z > 100f && base.transform.position.z < 135f)
+			if (base.transform.position.x > -21f && base.transform.position.x < 21f && base.transform.position.z > 100f && base.transform.position.z < 133f)
 			{
 				Yandere.NotificationManager.CustomText = "It rolled to the bottom of the hill.";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				base.transform.position = new Vector3(0f, 0.5f, 99.5f);
 				KinematicTimer = 0f;
+			}
+			if (base.transform.position.z >= 133f && base.transform.position.y < Yandere.transform.position.y)
+			{
+				Debug.Log("Popping an object up above the ground.");
+				base.transform.position += Vector3.up;
 			}
 			if (base.transform.position.x > -46f && base.transform.position.x < -18f && base.transform.position.z > 66f && base.transform.position.z < 78f)
 			{
@@ -1049,5 +1062,23 @@ public class WeaponScript : MonoBehaviour
 		base.gameObject.SetActive(value: true);
 		Box.PickUp.StuckBoxCutter = this;
 		InBox = true;
+	}
+
+	public void UpdateBloodSpray()
+	{
+		if (GameGlobals.CensorBlood)
+		{
+			BloodSpray[0].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = CensorTexture;
+			BloodSpray[1].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = CensorTexture;
+			ShortBloodSpray[0].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = CensorTexture;
+			ShortBloodSpray[1].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = CensorTexture;
+		}
+		else
+		{
+			BloodSpray[0].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = BloodTexture;
+			BloodSpray[1].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = BloodTexture;
+			ShortBloodSpray[0].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = BloodTexture;
+			ShortBloodSpray[1].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = BloodTexture;
+		}
 	}
 }

@@ -404,7 +404,7 @@ public class HomeCameraScript : MonoBehaviour
 					}
 					base.transform.position = Destination.position;
 				}
-				else
+				else if (HomeYandere.transform.position.y > -2.8f)
 				{
 					if (!TooClose && CameraTimer == 0f && Destination != OutOfRoomDestinations[1])
 					{

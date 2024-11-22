@@ -30,6 +30,8 @@ public class TributeScript : MonoBehaviour
 
 	public string[] MiyukiLetters;
 
+	public string[] SpookyLetters;
+
 	public string[] LunarLetters;
 
 	public string[] NurseLetters;
@@ -55,6 +57,8 @@ public class TributeScript : MonoBehaviour
 	public int LacunaID;
 
 	public int MiyukiID;
+
+	public int SpookyID;
 
 	public int LunarID;
 
@@ -227,6 +231,24 @@ public class TributeScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
+			if (!Input.GetKeyDown(SpookyLetters[SpookyID]))
+			{
+				return;
+			}
+			SpookyID++;
+			if (SpookyID != SpookyLetters.Length)
+			{
+				return;
+			}
+			for (int i = 1; i < 100; i++)
+			{
+				if (StudentManager.Students[i] != null)
+				{
+					StudentManager.Students[i].PumpkinHeads[Random.Range(0, StudentManager.Students[i].PumpkinHeads.Length)].SetActive(value: true);
+					StudentManager.Students[i].Cosmetic.HairRenderer.enabled = false;
+				}
+			}
+			base.enabled = false;
 		}
 	}
 }

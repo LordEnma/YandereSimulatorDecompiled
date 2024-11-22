@@ -16,6 +16,10 @@ public class GloveScript : MonoBehaviour
 
 	public int GloveID;
 
+	public Texture BloodTexture;
+
+	public Texture CensorTexture;
+
 	private void Start()
 	{
 		Physics.IgnoreCollision(GameObject.Find("YandereChan").GetComponent<YandereScript>().GetComponent<Collider>(), MyCollider);
@@ -23,6 +27,7 @@ public class GloveScript : MonoBehaviour
 		{
 			base.transform.position = new Vector3(12f, 0f, 28f);
 		}
+		UpdateBlood();
 	}
 
 	private void Update()
@@ -55,6 +60,16 @@ public class GloveScript : MonoBehaviour
 				base.gameObject.SetActive(value: false);
 			}
 		}
-		Prompt.HideButton[0] = Prompt.Yandere.Schoolwear != 1 || Prompt.Yandere.ClubAttire;
+		Prompt.HideButton[0] = Prompt.Yandere.ClubAttire;
+	}
+
+	public void UpdateBlood()
+	{
+		Texture texture = null;
+		texture = ((!GameGlobals.CensorBlood) ? BloodTexture : CensorTexture);
+		Blood.material.mainTexture = texture;
+		Blood.material.SetTexture("_MainText", texture);
+		Blood.material.color = new Color(0.25f, 0.25f, 0.25f, 0.5f);
+		Blood.material.SetColor("_TintColor", new Color(0.25f, 0.25f, 0.25f, 0.5f));
 	}
 }

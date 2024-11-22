@@ -21,8 +21,4 @@ public class YanvaniaTeleportEffectScript : MonoBehaviour
 		FirstBeam.transform.localScale = new Vector3(0f, FirstBeam.transform.localScale.y, 0f);
 		SecondBeamParent.transform.localScale = new Vector3(SecondBeamParent.transform.localScale.x, 0f, SecondBeamParent.transform.localScale.z);
 	}
-
-	private void Update()
-	{
-	}
 }

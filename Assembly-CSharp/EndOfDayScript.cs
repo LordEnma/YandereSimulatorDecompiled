@@ -14,6 +14,8 @@ public class EndOfDayScript : MonoBehaviour
 
 	public StudentManagerScript StudentManager;
 
+	public PickaxePromptScript PickaxePrompt;
+
 	public WeaponManagerScript WeaponManager;
 
 	public ClubManagerScript ClubManager;
@@ -870,6 +872,13 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 5)
 		{
+			for (int m = 0; m < StudentManager.Students.Length; m++)
+			{
+				if (StudentManager.Students[m] != null && StudentManager.Students[m].PhotoEvidence)
+				{
+					Police.PhotoEvidence++;
+				}
+			}
 			if (Police.PhotoEvidence > 0)
 			{
 				TeleportYandere();
@@ -1324,9 +1333,9 @@ public class EndOfDayScript : MonoBehaviour
 				if (Counselor.LectureID > 0)
 				{
 					Yandere.gameObject.SetActive(value: false);
-					for (int m = 1; m < 100; m++)
+					for (int n = 1; n < 100; n++)
 					{
-						StudentManager.DisableStudent(m);
+						StudentManager.DisableStudent(n);
 					}
 					EODCamera.position = new Vector3(-18.5f, 1f, 6.5f);
 					EODCamera.eulerAngles = new Vector3(0f, -45f, 0f);
@@ -1826,9 +1835,9 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 25)
 		{
-			for (int n = 1; n < 100; n++)
+			for (int num = 1; num < 100; num++)
 			{
-				StudentManager.DisableStudent(n);
+				StudentManager.DisableStudent(num);
 			}
 			LoveManager.Suitor = Senpai;
 			LoveManager.Rival = Rival;
@@ -2154,13 +2163,27 @@ public class EndOfDayScript : MonoBehaviour
 		else if (corpse.Student.DeathType == DeathType.Weight)
 		{
 			GameGlobals.SpecificEliminationID = 6;
-			if (!GameGlobals.Debug)
+			if (StudentManager.IronMaiden.KilledRival)
 			{
-				PlayerPrefs.SetInt("Crush", 1);
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Maiden", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
 			}
-			if (!GameGlobals.Debug)
+			else
 			{
-				PlayerPrefs.SetInt("a", 1);
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Crush", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
 			}
 		}
 		else if (corpse.Student.DeathType == DeathType.Drowning)
@@ -2265,12 +2288,17 @@ public class EndOfDayScript : MonoBehaviour
 			Debug.Log("The game believes that the rival died from a ''Weapon''.");
 			GameGlobals.SpecificEliminationID = 1;
 			AchievementToGrant = "Attack";
+			if (corpse.RobotDeath)
+			{
+				AchievementToGrant = "Robot";
+				Debug.Log("...PSYCHE! The rival was killed BY A ROBOT!");
+			}
 		}
 		else if (corpse.Student.DeathType == DeathType.Explosion)
 		{
 			Debug.Log("The game knows that the rival died from an explosion.");
 			GameGlobals.SpecificEliminationID = 20;
-			AchievementToGrant = "Burn";
+			AchievementToGrant = "Explode";
 		}
 		else
 		{
@@ -2443,7 +2471,6 @@ public class EndOfDayScript : MonoBehaviour
 		ClubGlobals.Club = Yandere.Club;
 		StudentGlobals.MemorialStudents = 0;
 		HomeGlobals.Night = true;
-		Police.KillStudents();
 		if (Police.Suspended)
 		{
 			DateGlobals.PassDays = Police.SuspensionLength;
@@ -2617,6 +2644,7 @@ public class EndOfDayScript : MonoBehaviour
 				SceneManager.LoadScene("CalendarScene");
 			}
 		}
+		Police.KillStudents();
 		if (Dumpster.StudentToGoMissing > 0)
 		{
 			Dumpster.SetVictimMissing();
@@ -2934,6 +2962,7 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			GameGlobals.RobotDestroyed = true;
 		}
+		GameGlobals.RockProgress = PickaxePrompt.Progress;
 		PlayerGlobals.BroughtCarrotsToSchool = false;
 		GameGlobals.CorkboardScene = true;
 		StudentGlobals.SetBlogKnown(1, Yandere.PauseScreen.SocialMedia.BlogKnown[1]);
@@ -3112,11 +3141,16 @@ public class EndOfDayScript : MonoBehaviour
 			GameGlobals.SpecificEliminationID = 1;
 			AchievementToGrant = "Attack";
 			Debug.Log("The game knows that she was attacked, though.");
+			if (ragdoll.RobotDeath)
+			{
+				AchievementToGrant = "Robot";
+				Debug.Log("...BY A ROBOT!");
+			}
 		}
 		else if (ragdoll.Student.DeathType == DeathType.Explosion)
 		{
 			GameGlobals.SpecificEliminationID = 20;
-			AchievementToGrant = "Attack";
+			AchievementToGrant = "Explode";
 			Debug.Log("The game knows that she was blown up, though.");
 		}
 	}
@@ -3244,11 +3278,12 @@ public class EndOfDayScript : MonoBehaviour
 
 	public void GrantAchievement()
 	{
-		if (AchievementToGrant == "Attack")
+		if (AchievementToGrant != "")
 		{
+			Debug.Log("Now firing ''GrantAchievement()''. AchievementToGrant is: " + AchievementToGrant);
 			if (!GameGlobals.Debug)
 			{
-				PlayerPrefs.SetInt("Attack", 1);
+				PlayerPrefs.SetInt(AchievementToGrant, 1);
 			}
 			if (!GameGlobals.Debug)
 			{

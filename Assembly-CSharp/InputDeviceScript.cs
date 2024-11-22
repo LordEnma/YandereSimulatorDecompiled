@@ -22,6 +22,8 @@ public class InputDeviceScript : MonoBehaviour
 
 	public Type LastGamepadType;
 
+	private string[] lastControllers = new string[0];
+
 	private void Start()
 	{
 		joystickNames = new string[20];
@@ -100,6 +102,12 @@ public class InputDeviceScript : MonoBehaviour
 			flag5 = true;
 			LastGamepadType = Gamepad.current.GetType();
 		}
+		string[] array = Input.GetJoystickNames();
+		if (array.Length != lastControllers.Length || (array.Length != 0 && lastControllers.Length != 0 && array[0] != lastControllers[0]) || (array.Length > 1 && lastControllers.Length > 1 && array[1] != lastControllers[1]))
+		{
+			flag5 = true;
+		}
+		lastControllers = array;
 		if (Type != type || flag5)
 		{
 			UpdateAllButtons();

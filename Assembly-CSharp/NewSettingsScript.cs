@@ -774,6 +774,7 @@ public class NewSettingsScript : MonoBehaviour
 				{
 					StudentManager.Yandere.WeaponManager.ChangeBloodTexture();
 					StudentManager.BloodParent.ChangeBloodTexture();
+					StudentManager.ChangeAllBloodTextures();
 					StudentManager.Yandere.Bloodiness += 0f;
 				}
 				else if (GameGlobals.CensorBlood)

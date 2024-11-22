@@ -75,6 +75,17 @@ public class ClubWindowScript : MonoBehaviour
 				{
 					if (!Quitting && !Activity)
 					{
+						if (Club == ClubType.Delinquent)
+						{
+							if (!GameGlobals.Debug)
+							{
+								PlayerPrefs.SetInt("Delinquent", 1);
+							}
+							if (!GameGlobals.Debug)
+							{
+								PlayerPrefs.SetInt("a", 1);
+							}
+						}
 						Yandere.Club = Club;
 						Yandere.ClubAccessory();
 						Yandere.TargetStudent.Interaction = StudentInteractionType.ClubJoin;

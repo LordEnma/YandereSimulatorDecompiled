@@ -24,6 +24,10 @@ public class FoldedUniformScript : MonoBehaviour
 
 	public GameObject[] Uniforms;
 
+	public Texture BloodTexture;
+
+	public Texture CensorTexture;
+
 	public Renderer[] MyRenderer;
 
 	public Texture CleanTexture;
@@ -110,6 +114,7 @@ public class FoldedUniformScript : MonoBehaviour
 				StainWithBlood();
 			}
 		}
+		UpdateBlood();
 	}
 
 	private void Update()
@@ -228,6 +233,27 @@ public class FoldedUniformScript : MonoBehaviour
 				else
 				{
 					renderer.material.SetFloat("_BlendAmount", 0f);
+				}
+			}
+		}
+	}
+
+	public void UpdateBlood()
+	{
+		Texture texture = null;
+		texture = ((!GameGlobals.CensorBlood) ? BloodTexture : CensorTexture);
+		Renderer[] myRenderer = MyRenderer;
+		foreach (Renderer renderer in myRenderer)
+		{
+			if (renderer != null)
+			{
+				if (renderer.materials.Length > 1)
+				{
+					renderer.materials[1].SetTexture("_OverlayTex", texture);
+				}
+				else
+				{
+					renderer.material.SetTexture("_OverlayTex", texture);
 				}
 			}
 		}
