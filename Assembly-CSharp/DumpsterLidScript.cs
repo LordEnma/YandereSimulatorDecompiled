@@ -54,12 +54,20 @@ public class DumpsterLidScript : MonoBehaviour
 		}
 		if (!Open)
 		{
-			Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 10f);
+			if (Rotation < -0.001f)
+			{
+				Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 10f);
+				Hinge.localEulerAngles = new Vector3(Rotation, 0f, 0f);
+			}
 			Prompt.HideButton[3] = true;
 		}
 		else
 		{
-			Rotation = Mathf.Lerp(Rotation, -115f, Time.deltaTime * 10f);
+			if (Rotation > -114.999f)
+			{
+				Rotation = Mathf.Lerp(Rotation, -115f, Time.deltaTime * 10f);
+				Hinge.localEulerAngles = new Vector3(Rotation, 0f, 0f);
+			}
 			if (Corpse != null)
 			{
 				if (Prompt.Yandere.PickUp != null)
@@ -107,7 +115,6 @@ public class DumpsterLidScript : MonoBehaviour
 				}
 			}
 		}
-		Hinge.localEulerAngles = new Vector3(Rotation, 0f, 0f);
 		if (!Fill)
 		{
 			return;

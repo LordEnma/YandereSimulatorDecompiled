@@ -1170,11 +1170,16 @@ public class IntroScript : MonoBehaviour
 	private void BrightenEnvironment()
 	{
 		TreeRenderer[0].materials[0].color = new Color(Brightness, Brightness, Brightness, 1f);
-		TreeRenderer[0].materials[1].color = new Color(Brightness, Brightness, Brightness, 1f);
 		TreeRenderer[1].materials[0].color = new Color(Brightness, Brightness, Brightness, 1f);
-		TreeRenderer[1].materials[1].color = new Color(Brightness, Brightness, Brightness, 1f);
 		TreeRenderer[2].materials[0].color = new Color(Brightness, Brightness, Brightness, 1f);
-		TreeRenderer[2].materials[1].color = new Color(Brightness, Brightness, Brightness, 1f);
+		TreeRenderer[3].materials[0].color = new Color(Brightness, Brightness, Brightness, 1f);
+		TreeRenderer[4].materials[0].color = new Color(Brightness, Brightness, Brightness, 1f);
+		TreeRenderer[5].materials[0].color = new Color(Brightness, Brightness, Brightness, 1f);
+		TreeRenderer[6].materials[0].color = new Color(Brightness, Brightness, Brightness, 1f);
+		TreeRenderer[7].materials[0].color = new Color(Brightness, Brightness, Brightness, 1f);
+		TreeRenderer[7].materials[1].color = new Color(Brightness, Brightness, Brightness, 1f);
+		TreeRenderer[8].materials[0].color = new Color(Brightness, Brightness, Brightness, 1f);
+		TreeRenderer[8].materials[1].color = new Color(Brightness, Brightness, Brightness, 1f);
 		GrassBlades.material.SetColor("_BladeTopColor", new Color(0f, Brightness * 0.5f, 0f, 1f));
 		Petals.material.color = new Color(Brightness, Brightness, Brightness, 1f);
 		Mound.material.color = new Color(Brightness, Brightness, Brightness, 1f);

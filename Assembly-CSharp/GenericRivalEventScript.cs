@@ -213,53 +213,77 @@ public class GenericRivalEventScript : MonoBehaviour
 			{
 				text = "Friday";
 			}
+			for (int i = 0; i < SpeechText.Length; i++)
+			{
+				SpeechText[i] = "";
+			}
+			for (int j = 0; j < SabobtagedSpeechText.Length; j++)
+			{
+				SabobtagedSpeechText[j] = "";
+			}
 			if (StartTime == 0f)
 			{
 				string[] array = File.ReadAllLines(Application.streamingAssetsPath + "/CustomMode/Events/Week" + week + "/" + text + "/1.txt");
-				for (int i = 0; i < array.Length; i++)
+				for (int k = 0; k < array.Length; k++)
 				{
-					SpeechText[i + 1] = array[i];
-					if (SpeechText[i + 1].Contains("S: "))
+					SpeechText[k + 1] = array[k];
+					if (SpeechText[k + 1].Contains("S: "))
 					{
-						SpeechText[i + 1] = SpeechText[i + 1].Replace("S: ", "");
-						SpeakerID[i + 1] = 1;
+						SpeechText[k + 1] = SpeechText[k + 1].Replace("S: ", "");
+						SpeakerID[k + 1] = 1;
 					}
-					else if (SpeechText[i + 1].Contains("R: "))
+					else if (SpeechText[k + 1].Contains("R: "))
 					{
-						SpeechText[i + 1] = SpeechText[i + 1].Replace("R: ", "");
-						SpeakerID[i + 1] = 2;
+						SpeechText[k + 1] = SpeechText[k + 1].Replace("R: ", "");
+						SpeakerID[k + 1] = 2;
 					}
-				}
-				return;
-			}
-			string[] array2 = File.ReadAllLines(Application.streamingAssetsPath + "/CustomMode/Events/Week" + week + "/" + text + "/2.txt");
-			for (int j = 0; j < array2.Length; j++)
-			{
-				SpeechText[j + 1] = array2[j];
-				if (SpeechText[j + 1].Contains("S: "))
-				{
-					SpeechText[j + 1] = SpeechText[j + 1].Replace("S: ", "");
-					SpeakerID[j + 1] = 1;
-				}
-				else if (SpeechText[j + 1].Contains("R: "))
-				{
-					SpeechText[j + 1] = SpeechText[j + 1].Replace("R: ", "");
-					SpeakerID[j + 1] = 2;
 				}
 			}
-			array2 = File.ReadAllLines(Application.streamingAssetsPath + "/CustomMode/Events/Week" + week + "/" + text + "/3.txt");
-			for (int j = 0; j < array2.Length; j++)
+			else
 			{
-				SabobtagedSpeechText[j + 1] = array2[j];
-				if (SabobtagedSpeechText[j + 1].Contains("S: "))
+				string[] array2 = File.ReadAllLines(Application.streamingAssetsPath + "/CustomMode/Events/Week" + week + "/" + text + "/2.txt");
+				for (int l = 0; l < array2.Length; l++)
 				{
-					SabobtagedSpeechText[j + 1] = SabobtagedSpeechText[j + 1].Replace("S: ", "");
-					SabotagedSpeakerID[j + 1] = 1;
+					SpeechText[l + 1] = array2[l];
+					if (SpeechText[l + 1].Contains("S: "))
+					{
+						SpeechText[l + 1] = SpeechText[l + 1].Replace("S: ", "");
+						SpeakerID[l + 1] = 1;
+					}
+					else if (SpeechText[l + 1].Contains("R: "))
+					{
+						SpeechText[l + 1] = SpeechText[l + 1].Replace("R: ", "");
+						SpeakerID[l + 1] = 2;
+					}
 				}
-				else if (SabobtagedSpeechText[j + 1].Contains("R: "))
+				array2 = File.ReadAllLines(Application.streamingAssetsPath + "/CustomMode/Events/Week" + week + "/" + text + "/3.txt");
+				for (int l = 0; l < array2.Length; l++)
 				{
-					SabobtagedSpeechText[j + 1] = SabobtagedSpeechText[j + 1].Replace("R: ", "");
-					SabotagedSpeakerID[j + 1] = 2;
+					SabobtagedSpeechText[l + 1] = array2[l];
+					if (SabobtagedSpeechText[l + 1].Contains("S: "))
+					{
+						SabobtagedSpeechText[l + 1] = SabobtagedSpeechText[l + 1].Replace("S: ", "");
+						SabotagedSpeakerID[l + 1] = 1;
+					}
+					else if (SabobtagedSpeechText[l + 1].Contains("R: "))
+					{
+						SabobtagedSpeechText[l + 1] = SabobtagedSpeechText[l + 1].Replace("R: ", "");
+						SabotagedSpeakerID[l + 1] = 2;
+					}
+				}
+			}
+			for (int m = 0; m < SpeechText.Length; m++)
+			{
+				if (SpeechText[m] == "" && m < SpeechText.Length - 1)
+				{
+					SpeechTime[m + 1] = SpeechTime[m];
+				}
+			}
+			for (int n = 0; n < SabobtagedSpeechText.Length; n++)
+			{
+				if (SabobtagedSpeechText[n] == "" && n < SabobtagedSpeechText.Length - 1)
+				{
+					SabobtagedSpeechTime[n + 1] = SabobtagedSpeechTime[n];
 				}
 			}
 		}

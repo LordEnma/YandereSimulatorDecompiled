@@ -64,6 +64,24 @@ public class StudentJson : JsonData
 	[SerializeField]
 	private bool success;
 
+	[SerializeField]
+	private int hairR;
+
+	[SerializeField]
+	private int hairG;
+
+	[SerializeField]
+	private int hairB;
+
+	[SerializeField]
+	private int eyeR;
+
+	[SerializeField]
+	private int eyeG;
+
+	[SerializeField]
+	private int eyeB;
+
 	public static string FilePath
 	{
 		get
@@ -293,6 +311,78 @@ public class StudentJson : JsonData
 	}
 
 	public bool Success => success;
+
+	public int HairR
+	{
+		get
+		{
+			return hairR;
+		}
+		set
+		{
+			hairR = value;
+		}
+	}
+
+	public int HairG
+	{
+		get
+		{
+			return hairG;
+		}
+		set
+		{
+			hairG = value;
+		}
+	}
+
+	public int HairB
+	{
+		get
+		{
+			return hairB;
+		}
+		set
+		{
+			hairB = value;
+		}
+	}
+
+	public int EyeR
+	{
+		get
+		{
+			return eyeR;
+		}
+		set
+		{
+			eyeR = value;
+		}
+	}
+
+	public int EyeG
+	{
+		get
+		{
+			return eyeG;
+		}
+		set
+		{
+			eyeG = value;
+		}
+	}
+
+	public int EyeB
+	{
+		get
+		{
+			return eyeB;
+		}
+		set
+		{
+			eyeB = value;
+		}
+	}
 
 	public static StudentJson[] LoadFromJson(string path)
 	{

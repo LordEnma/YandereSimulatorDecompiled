@@ -93,6 +93,15 @@ public class DumpsterHandleScript : MonoBehaviour
 
 	private void StopGrabbing()
 	{
+		if (!Panel.activeInHierarchy)
+		{
+			DumpsterLid.Prompt.HideButton[0] = true;
+			DumpsterLid.Open = false;
+		}
+		else
+		{
+			DumpsterLid.Prompt.HideButton[0] = false;
+		}
 		Prompt.Yandere.DumpsterGrabbing = false;
 		Prompt.Yandere.CanMove = true;
 		PromptBar.ClearButtons();

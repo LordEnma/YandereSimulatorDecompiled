@@ -147,8 +147,21 @@ public class MusicMinigameScript : MonoBehaviour
 	{
 		if (GameGlobals.Eighties)
 		{
-			Phase1Times = EightiesNotesAndTimes[0].Times;
-			Phase1Notes = EightiesNotesAndTimes[0].Notes;
+			Debug.Log("We're in the 80s.");
+			if (GameGlobals.BeatEmUpDifficulty == 1)
+			{
+				Debug.Log("Difficulty is 1.");
+				Phase1Times = EightiesNotesAndTimes[0].Times;
+				Phase1Notes = EightiesNotesAndTimes[0].Notes;
+				MyAudio.clip = EightiesTracks[0];
+			}
+			else
+			{
+				Debug.Log("Difficulty is 2.");
+				Phase1Times = EightiesNotesAndTimes[1].Times;
+				Phase1Notes = EightiesNotesAndTimes[1].Notes;
+				MyAudio.clip = EightiesTracks[1];
+			}
 			ChibiCelebrate = EightiesChibiCelebrate;
 			ChibiPerform = EightiesChibiPerform;
 			ChibiPerformB = EightiesChibiPerformB;
@@ -164,7 +177,6 @@ public class MusicMinigameScript : MonoBehaviour
 			SadAyano.GetComponent<Renderer>().material.mainTexture = SadRyoba;
 			Background.material.mainTexture = EightiesBG;
 			GameOverAudioSource.clip = EightiesFail;
-			MyAudio.clip = EightiesTracks[0];
 		}
 		StartRep = PlayerPrefs.GetFloat("TempReputation");
 		Application.targetFrameRate = 60;
@@ -175,18 +187,23 @@ public class MusicMinigameScript : MonoBehaviour
 		Scales[1].localPosition = new Vector3(0f, 0f, 0f);
 		Scales[2].localPosition = new Vector3(1f, 0f, 0f);
 		Scales[3].localPosition = new Vector3(2f, 0f, 0f);
-		for (ID = 0; ID < Phase1Times.Length; ID++)
-		{
-			Times[ID] = Phase1Times[ID];
-			Notes[ID] = Phase1Notes[ID];
-		}
 		if (!GameGlobals.Eighties)
 		{
+			for (ID = 0; ID < Phase1Times.Length; ID++)
+			{
+				Times[ID] = Phase1Times[ID];
+				Notes[ID] = Phase1Notes[ID];
+			}
 			for (ID = 0; ID < Phase2Times.Length; ID++)
 			{
 				Times[ID + 216] = Phase2Times[ID];
 				Notes[ID + 216] = Phase2Notes[ID];
 			}
+		}
+		else
+		{
+			Times = Phase1Times;
+			Notes = Phase1Notes;
 		}
 		if (!GameGlobals.Eighties)
 		{
@@ -524,10 +541,8 @@ public class MusicMinigameScript : MonoBehaviour
 			}
 			if (SettingNotes)
 			{
-				Debug.Log("SettingNotes is true.");
 				if (Input.GetKeyDown("up"))
 				{
-					Debug.Log("Setting note.");
 					if (Phase == 1)
 					{
 						Phase1Times[Note] = MyAudio.time;
@@ -542,7 +557,6 @@ public class MusicMinigameScript : MonoBehaviour
 				}
 				else if (Input.GetKeyDown("right"))
 				{
-					Debug.Log("Setting note.");
 					if (Phase == 1)
 					{
 						Phase1Times[Note] = MyAudio.time;
@@ -557,7 +571,6 @@ public class MusicMinigameScript : MonoBehaviour
 				}
 				else if (Input.GetKeyDown("left"))
 				{
-					Debug.Log("Setting note.");
 					if (Phase == 1)
 					{
 						Phase1Times[Note] = MyAudio.time;
@@ -572,7 +585,6 @@ public class MusicMinigameScript : MonoBehaviour
 				}
 				else if (Input.GetKeyDown("down"))
 				{
-					Debug.Log("Setting note.");
 					if (Phase == 1)
 					{
 						Phase1Times[Note] = MyAudio.time;

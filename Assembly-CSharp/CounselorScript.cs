@@ -1401,7 +1401,7 @@ public class CounselorScript : MonoBehaviour
 		{
 			StudentManager.ComeBack();
 		}
-		StudentManager.GracePeriod(10f);
+		StudentManager.GracePeriod(5f);
 		if (noticed)
 		{
 			StudentManager.Reputation.UpdateRep();

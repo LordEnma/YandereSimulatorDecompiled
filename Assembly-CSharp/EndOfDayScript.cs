@@ -1242,7 +1242,14 @@ public class EndOfDayScript : MonoBehaviour
 						Senpai.CharacterAnimation["f02_refuse_00"].speed = 0.5f;
 						Senpai.CharacterAnimation.Play("f02_refuse_00");
 					}
-					Label.text = "Senpai is disgusted to learn that " + RivalName + " would actually commit murder. He is deeply disappointed in her.";
+					if (Counselor.ReportedNarcotics)
+					{
+						Label.text = "Senpai is disgusted to learn that " + RivalName + " would actually bring narcotics to school. He is deeply disappointed in her.";
+					}
+					else
+					{
+						Label.text = "Senpai is disgusted to learn that " + RivalName + " would actually commit murder. He is deeply disappointed in her.";
+					}
 				}
 				else if (RivalEliminationMethod == RivalEliminationType.Befriended || RivalEliminationMethod == RivalEliminationType.Matchmade)
 				{

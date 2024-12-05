@@ -755,6 +755,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool NoStainGloves;
 
+	public bool UseCustomHair;
+
 	public bool YandereVision;
 
 	public bool ClubActivity;
@@ -2239,8 +2241,13 @@ public class YandereScript : MonoBehaviour
 			CustomHair.gameObject.SetActive(value: true);
 			CustomHair.Start();
 			CustomHair.UpdateHair();
+			UseCustomHair = true;
 			Hairstyle = 0;
 			UpdateHair();
+		}
+		else
+		{
+			CustomHair.gameObject.SetActive(value: false);
 		}
 		CharacterAnimation.Sample();
 	}
@@ -4140,7 +4147,10 @@ public class YandereScript : MonoBehaviour
 				}
 				else if (LaughIntensity <= 20f)
 				{
-					UnityEngine.Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
+					if (!StudentManager.KokonaTutorial)
+					{
+						UnityEngine.Object.Instantiate(AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
+					}
 					if (StudentManager.Eighties)
 					{
 						LaughAnim = "f02_evilLaugh_00";
@@ -7811,6 +7821,11 @@ public class YandereScript : MonoBehaviour
 		{
 			Hairstyles[Hairstyle].SetActive(value: true);
 		}
+		if (Egg || LacunaMode)
+		{
+			CustomHair.gameObject.SetActive(value: false);
+			UseCustomHair = false;
+		}
 	}
 
 	public void StopLaughing()
@@ -8810,8 +8825,9 @@ public class YandereScript : MonoBehaviour
 		OccultRobe = Gloves.OccultRobe;
 		if (VtuberID == 0)
 		{
-			if (StudentManager.CustomMode)
+			if (StudentManager.CustomMode || UseCustomHair)
 			{
+				CustomHair.gameObject.SetActive(value: false);
 				Hairstyle = 0;
 			}
 			else if (!StudentManager.Eighties)
@@ -8968,11 +8984,11 @@ public class YandereScript : MonoBehaviour
 		UpdateEyewear();
 		BreastSize = 1.25f;
 		UpdateBust();
-		Hairstyle = 214;
-		UpdateHair();
 		FaceTexture = LacunaFace;
 		Inventory.Bikini = true;
 		LacunaMode = true;
+		Hairstyle = 214;
+		UpdateHair();
 	}
 
 	private void GarbageMode()
@@ -10260,8 +10276,15 @@ public class YandereScript : MonoBehaviour
 				}
 				TheDebugMenuScript.UpdateCensor();
 			}
-			Hairstyle = HairstyleBeforeRaincoat;
-			UpdateHair();
+			if (UseCustomHair)
+			{
+				CustomHair.gameObject.SetActive(value: true);
+			}
+			else
+			{
+				Hairstyle = HairstyleBeforeRaincoat;
+				UpdateHair();
+			}
 		}
 		else
 		{
@@ -10586,6 +10609,11 @@ public class YandereScript : MonoBehaviour
 		{
 			color = new Color(0.5f, 0.25f, 0f);
 		}
+		else if (EyeColor == "Custom")
+		{
+			Debug.Log("Protagonist's EyeColor is ''Custom''.");
+			color = new Color((float)StudentManager.JSON.Students[0].EyeR * 1f / 255f, (float)StudentManager.JSON.Students[0].EyeG * 1f / 255f, (float)StudentManager.JSON.Students[0].EyeB * 1f / 255f);
+		}
 		if (!DefaultEyeColor)
 		{
 			RightEyeRenderer.gameObject.SetActive(value: true);
@@ -10856,6 +10884,7 @@ public class YandereScript : MonoBehaviour
 
 	public void Customize()
 	{
+		Debug.Log("YandereScript is now calling Customize().");
 		if (Home && !HomeGlobals.Night)
 		{
 			SetUniform();
@@ -10880,28 +10909,7 @@ public class YandereScript : MonoBehaviour
 			Stockings = StudentManager.JSON.Students[0].Stockings;
 			UpdateStockings();
 		}
-		GetColorValue(StudentManager.JSON.Students[0].Color);
-		if (Hairstyles[Hairstyle] != null)
-		{
-			Renderer renderer = Hairstyles[Hairstyle].GetComponent<Renderer>();
-			if (renderer == null)
-			{
-				renderer = Hairstyles[Hairstyle].GetComponentInChildren<Renderer>();
-			}
-			if (renderer != null)
-			{
-				renderer.material.shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
-				if (DefaultHairColor)
-				{
-					renderer.material.SetFloat("_Saturation", 1f);
-				}
-				else
-				{
-					renderer.material.SetFloat("_Saturation", 0f);
-				}
-				renderer.material.color = ColorValue;
-			}
-		}
+		UpdateHairColor();
 		IdleAnim = Idles[StudentManager.JSON.Misc.AnimSet[0]];
 		WalkAnim = Walks[StudentManager.JSON.Misc.AnimSet[0]];
 		AnimSetID = StudentManager.JSON.Misc.AnimSet[0];
@@ -10918,8 +10926,37 @@ public class YandereScript : MonoBehaviour
 		OriginalRunAnim = RunAnim;
 	}
 
+	public void UpdateHairColor()
+	{
+		GetColorValue(StudentManager.JSON.Students[0].Color);
+		if (!(Hairstyles[Hairstyle] != null))
+		{
+			return;
+		}
+		Renderer renderer = Hairstyles[Hairstyle].GetComponent<Renderer>();
+		if (renderer == null)
+		{
+			renderer = Hairstyles[Hairstyle].GetComponentInChildren<Renderer>();
+		}
+		if (renderer != null)
+		{
+			renderer.material.shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
+			if (DefaultHairColor)
+			{
+				renderer.material.SetFloat("_Saturation", 1f);
+			}
+			else
+			{
+				renderer.material.SetFloat("_Saturation", 0f);
+			}
+			Debug.Log("The protagonist should now be setting their hair color to ''ColorValue''.");
+			renderer.material.color = ColorValue;
+		}
+	}
+
 	private void GetColorValue(string HairColor)
 	{
+		Debug.Log("Protagonist is firing GetColorValue.");
 		DefaultHairColor = false;
 		switch (HairColor)
 		{
@@ -10959,6 +10996,10 @@ public class YandereScript : MonoBehaviour
 			break;
 		case "Brown":
 			ColorValue = new Color(0.5f, 0.25f, 0f);
+			break;
+		case "Custom":
+			Debug.Log("Protagonist's HairColor is ''Custom''.");
+			ColorValue = new Color((float)StudentManager.JSON.Students[0].HairR * 1f / 255f, (float)StudentManager.JSON.Students[0].HairG * 1f / 255f, (float)StudentManager.JSON.Students[0].HairB * 1f / 255f);
 			break;
 		}
 	}

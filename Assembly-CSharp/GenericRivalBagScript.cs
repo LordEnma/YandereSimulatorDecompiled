@@ -813,7 +813,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		int week = DateGlobals.Week;
 		if (week < 11)
 		{
-			if (week == 4)
+			if (Eighties && !GameGlobals.CustomMode && week == 4)
 			{
 				NoBento = true;
 			}

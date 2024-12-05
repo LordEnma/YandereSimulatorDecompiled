@@ -1844,6 +1844,8 @@ public class StudentScript : MonoBehaviour
 
 	public GameObject EightiesPhone;
 
+	public Material CensorMaterial;
+
 	public Material BloodMaterial;
 
 	public Material BrownMaterial;
@@ -4161,7 +4163,6 @@ public class StudentScript : MonoBehaviour
 				VisionDistance *= 2f;
 				if (StudentManager.MissionMode)
 				{
-					Debug.Log("Changing Student Council routine for Mission Mode.");
 					ScheduleBlock obj36 = ScheduleBlocks[4];
 					obj36.destination = "LunchSpot";
 					obj36.action = "Eat";
@@ -12008,6 +12009,11 @@ public class StudentScript : MonoBehaviour
 											}
 											UnityEngine.Object.Instantiate(BloodEffect, MyWeapon.transform.position, Quaternion.identity);
 											KnifeDown = true;
+											if (GameGlobals.CensorBlood)
+											{
+												BloodMaterial = CensorMaterial;
+												HuntTarget.BloodMaterial = CensorMaterial;
+											}
 											LiquidProjector.material = BloodMaterial;
 											LiquidProjector.gameObject.SetActive(value: true);
 											LiquidProjector.enabled = true;
@@ -12070,6 +12076,13 @@ public class StudentScript : MonoBehaviour
 											{
 												BloodSprayCollider.SetActive(value: true);
 												BloodSprayCollider.layer = 2;
+											}
+											if (GameGlobals.CensorBlood)
+											{
+												ParticleSystemRenderer component3 = BloodFountain.GetComponent<ParticleSystemRenderer>();
+												component3.material = CensorMaterial;
+												component3.material.color = Color.white;
+												BloodFountain.startColor = Color.white;
 											}
 											BloodFountain.Play();
 											MurderSuicidePhase++;
@@ -18784,6 +18797,12 @@ public class StudentScript : MonoBehaviour
 				{
 					Debug.Log("Ain't a bully.");
 				}
+			}
+			if (Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && Yandere.PickUp.BodyPart.StudentID > 80 && Yandere.PickUp.BodyPart.StudentID < 86)
+			{
+				Debug.Log("At this moment, a delinquent is reacting to the murder of a bully. 4");
+				ScaredAnim = EvilWitnessAnim;
+				Persona = PersonaType.Evil;
 			}
 		}
 		if (Persona == PersonaType.Sleuth)

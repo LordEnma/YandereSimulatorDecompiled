@@ -1535,7 +1535,6 @@ public class StudentManagerScript : MonoBehaviour
 					StudentGlobals.FemaleUniform = 5;
 					StudentGlobals.MaleUniform = 5;
 				}
-				Debug.Log("We believe that we're in Mission Mode, so we're disabling the red string of fate.");
 				RedString.gameObject.SetActive(value: false);
 				RedString.transform.GetChild(0).gameObject.SetActive(value: false);
 				RedString.transform.GetChild(1).gameObject.SetActive(value: false);

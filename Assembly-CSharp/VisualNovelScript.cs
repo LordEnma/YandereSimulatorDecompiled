@@ -155,6 +155,10 @@ public class VisualNovelScript : MonoBehaviour
 
 	public bool LockArm;
 
+	public GameObject FailSafeWindow;
+
+	public float FailSafeTimer;
+
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -304,6 +308,23 @@ public class VisualNovelScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (DialogueLabel.text == "")
+		{
+			FailSafeTimer += Time.deltaTime;
+			if (FailSafeTimer > 10f)
+			{
+				FailSafeWindow.SetActive(value: true);
+				if (Input.GetKeyDown("z"))
+				{
+					Debug.Log("Failsafe triggered. Exiting scene.");
+					FadeOut = true;
+				}
+			}
+		}
+		else
+		{
+			FailSafeTimer = 0f;
+		}
 		if (ChangeAppearance)
 		{
 			ChangeTimer += Time.deltaTime;

@@ -34,6 +34,8 @@ public class ConfessionSceneScript : MonoBehaviour
 
 	public Transform KissSpot;
 
+	public Transform NewTree;
+
 	public string[] Text;
 
 	public GameObject[] Letters;
@@ -119,6 +121,10 @@ public class ConfessionSceneScript : MonoBehaviour
 					MainCamera.eulerAngles = CameraDestinations[1].eulerAngles;
 					Timer = 0f;
 					Phase++;
+					Rival.transform.position = new Vector3(0f, 6.54f, 120f);
+					Suitor.transform.position = new Vector3(0f, 6.533333f, 119f);
+					NewTree.localPosition = new Vector3(0f, -0.1082915f, 0f);
+					NewTree.localScale = new Vector3(50f, 50f, 100f);
 				}
 			}
 		}
@@ -326,7 +332,7 @@ public class ConfessionSceneScript : MonoBehaviour
 			if (MoveSuitor)
 			{
 				Speed += Time.deltaTime;
-				Suitor.Character.transform.position = Vector3.Lerp(Suitor.Character.transform.position, new Vector3(0f, 6.6f, 119.2f), Time.deltaTime * Speed);
+				Suitor.Character.transform.position = Vector3.Lerp(Suitor.Character.transform.position, new Vector3(0f, 6.54f, 119.2f), Time.deltaTime * Speed);
 			}
 		}
 	}

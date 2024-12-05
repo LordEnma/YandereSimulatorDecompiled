@@ -38,10 +38,12 @@ public class AudioManager : MonoBehaviour
 		Debug.Log("[X-TEMP] This is a test");
 	}
 
-	public static void PlayAudio(AudioType DesiredAudioType, AudioClip DesiredClip, float DesiredPitch)
+	public static void PlayAudio(AudioType DesiredAudioType, AudioClip DesiredClip, float DesiredPitch, Vector3 Location)
 	{
 		Debug.Log("Spawning a sound effect using the AudioManager!");
-		AudioSourceScript component = Object.Instantiate(Self.AudioSourceObject).GetComponent<AudioSourceScript>();
+		GameObject obj = Object.Instantiate(Self.AudioSourceObject);
+		obj.transform.position = Location;
+		AudioSourceScript component = obj.GetComponent<AudioSourceScript>();
 		component.MyAudioType = DesiredAudioType;
 		component.MyClip = DesiredClip;
 		component.Pitch = DesiredPitch;

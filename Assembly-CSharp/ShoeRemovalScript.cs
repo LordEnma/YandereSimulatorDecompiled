@@ -147,7 +147,6 @@ public class ShoeRemovalScript : MonoBehaviour
 			Student.CharacterAnimation.CrossFade(RemovalAnim);
 			if (Phase == 1)
 			{
-				Debug.Log(Student.Name + " is now changing shoes.");
 				Student.CharacterAnimation.CrossFade(RemovalAnim);
 				if (!(Student.CharacterAnimation[RemovalAnim].time >= 0.833333f))
 				{
@@ -337,7 +336,6 @@ public class ShoeRemovalScript : MonoBehaviour
 
 	public void PutOnShoes()
 	{
-		Debug.Log(Student.Name + "'s ShoeRemovalScript is now calling PutOnShoes()");
 		CloseLocker();
 		if (ShoeParent == null)
 		{

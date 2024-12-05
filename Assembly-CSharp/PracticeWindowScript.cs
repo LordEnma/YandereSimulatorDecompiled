@@ -21,6 +21,8 @@ public class PracticeWindowScript : MonoBehaviour
 
 	public Texture[] GardeningIcons;
 
+	public Texture[] EightiesAlbumCovers;
+
 	public Texture[] AlbumCovers;
 
 	public Transform[] KneelSpot;
@@ -66,6 +68,10 @@ public class PracticeWindowScript : MonoBehaviour
 	private void Start()
 	{
 		Window.SetActive(value: false);
+		if (GameGlobals.Eighties)
+		{
+			AlbumCovers = EightiesAlbumCovers;
+		}
 	}
 
 	private void Update()
@@ -158,6 +164,8 @@ public class PracticeWindowScript : MonoBehaviour
 				{
 					if (!PlayedRhythmMinigame)
 					{
+						GameGlobals.BeatEmUpDifficulty = Selected;
+						Debug.Log("Difficulty is: " + GameGlobals.BeatEmUpDifficulty);
 						for (int i = 52; i < 56; i++)
 						{
 							StudentManager.Students[i].transform.position = StudentManager.Clubs.List[i].position;
@@ -416,19 +424,36 @@ public class PracticeWindowScript : MonoBehaviour
 			Texture[3].mainTexture = AlbumCovers[3];
 			Texture[4].mainTexture = AlbumCovers[4];
 			Texture[5].mainTexture = AlbumCovers[5];
-			Label[1].text = "Panther\n" + Difficulties[1];
-			Label[2].text = "?????\n" + Difficulties[2];
-			Label[3].text = "?????\n" + Difficulties[3];
-			Label[4].text = "?????\n" + Difficulties[4];
-			Label[5].text = "?????\n" + Difficulties[5];
-			Texture[2].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-			Texture[3].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-			Texture[4].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-			Texture[5].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-			Label[2].color = new Color(0f, 0f, 0f, 0.5f);
-			Label[3].color = new Color(0f, 0f, 0f, 0.5f);
-			Label[4].color = new Color(0f, 0f, 0f, 0.5f);
-			Label[5].color = new Color(0f, 0f, 0f, 0.5f);
+			if (!GameGlobals.Eighties)
+			{
+				Label[1].text = "Panther\n" + Difficulties[1];
+				Label[2].text = "?????\n" + Difficulties[2];
+				Label[3].text = "?????\n" + Difficulties[3];
+				Label[4].text = "?????\n" + Difficulties[4];
+				Label[5].text = "?????\n" + Difficulties[5];
+				Texture[2].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				Texture[3].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				Texture[4].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				Texture[5].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				Label[2].color = new Color(0f, 0f, 0f, 0.5f);
+				Label[3].color = new Color(0f, 0f, 0f, 0.5f);
+				Label[4].color = new Color(0f, 0f, 0f, 0.5f);
+				Label[5].color = new Color(0f, 0f, 0f, 0.5f);
+			}
+			else
+			{
+				Label[1].text = "Practice\n" + Difficulties[1];
+				Label[2].text = "Basic\n" + Difficulties[2];
+				Label[3].text = "?????\n" + Difficulties[3];
+				Label[4].text = "?????\n" + Difficulties[4];
+				Label[5].text = "?????\n" + Difficulties[5];
+				Texture[3].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				Texture[4].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				Texture[5].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				Label[3].color = new Color(0f, 0f, 0f, 0.5f);
+				Label[4].color = new Color(0f, 0f, 0f, 0.5f);
+				Label[5].color = new Color(0f, 0f, 0f, 0.5f);
+			}
 		}
 		else if (Club == ClubType.MartialArts)
 		{

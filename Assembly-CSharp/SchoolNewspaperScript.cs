@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using UnityEngine;
 
 public class SchoolNewspaperScript : MonoBehaviour
@@ -60,6 +62,10 @@ public class SchoolNewspaperScript : MonoBehaviour
 			PromptBar.Show = true;
 			Newspaper.SetActive(value: true);
 			GameplayDay = (int)((DateGlobals.Week - 1) * 5 + DateGlobals.Weekday);
+			if (GameGlobals.CustomMode)
+			{
+				LoadArticles(50);
+			}
 			NewspaperLabel.text = Article[GameplayDay];
 			NewspaperLabel.text = NewspaperLabel.text.Replace('@', '\n');
 			if (NewspaperLabel.text == "")
@@ -75,6 +81,32 @@ public class SchoolNewspaperScript : MonoBehaviour
 			PromptBar.Show = false;
 			Newspaper.SetActive(value: false);
 			Time.timeScale = 1f;
+		}
+	}
+
+	public void LoadArticles(int maxFiles)
+	{
+		Article = new string[maxFiles + 1];
+		string path = Path.Combine(Application.streamingAssetsPath, "CustomMode/Newspaper");
+		for (int i = 1; i <= maxFiles; i++)
+		{
+			string text = Path.Combine(path, $"{i}.txt");
+			if (File.Exists(text))
+			{
+				try
+				{
+					Article[i] = File.ReadAllText(text);
+					Debug.Log($"Loaded article {i}: {text}");
+				}
+				catch (Exception ex)
+				{
+					Debug.LogError("Error reading file " + text + ": " + ex.Message);
+				}
+			}
+			else
+			{
+				Debug.LogWarning("File does not exist: " + text);
+			}
 		}
 	}
 }

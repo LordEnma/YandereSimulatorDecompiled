@@ -1,4 +1,6 @@
+using System;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.PostProcessing;
@@ -50,20 +52,34 @@ public class ResolutionScript : MonoBehaviour
 
 	public int ID = 1;
 
+	private const string FileName = "Settings.txt";
+
+	private const string String1 = "FullScreen=1";
+
+	private const string String2 = "CensorBlood=1";
+
 	private void Start()
 	{
+		CheckForSettingsFile();
 		if (Screen.width < 1280 || Screen.height < 720)
 		{
-			Screen.SetResolution(1280, 720, fullscreen: false);
+			Screen.SetResolution(1280, 720, FullScreen);
 			ResID = 0;
 		}
 		Darkness.color = new Color(1f, 1f, 1f, 1f);
 		Cursor.visible = false;
 		Screen.fullScreen = false;
-		Screen.SetResolution(Screen.width, Screen.height, fullscreen: false);
+		Screen.SetResolution(Screen.width, Screen.height, FullScreen);
 		ResolutionLabel.text = Screen.width + " x " + Screen.height;
 		QualityLabel.text = Qualities[QualitySettings.GetQualityLevel()] ?? "";
-		FullScreenLabel.text = "No";
+		if (!FullScreen)
+		{
+			FullScreenLabel.text = "No";
+		}
+		else
+		{
+			FullScreenLabel.text = "Yes";
+		}
 		Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
 		ResetGraphicsToDefault();
 	}
@@ -230,5 +246,29 @@ public class ResolutionScript : MonoBehaviour
 			OptionGlobals.DrawDistanceLimit = 350;
 		}
 		GameGlobals.VtuberID = 0;
+	}
+
+	private void CheckForSettingsFile()
+	{
+		string path = Path.Combine(Application.streamingAssetsPath, "Settings.txt");
+		if (!File.Exists(path))
+		{
+			return;
+		}
+		try
+		{
+			string text = File.ReadAllText(path);
+			if (text.Contains("FullScreen=1"))
+			{
+				FullScreen = true;
+			}
+			if (text.Contains("CensorBlood=1"))
+			{
+				GameGlobals.CensorBlood = true;
+			}
+		}
+		catch (Exception)
+		{
+		}
 	}
 }

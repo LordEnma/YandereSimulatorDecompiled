@@ -311,6 +311,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public GameObject YakuzaWindow;
 
+	public ColorPicker ColorWheel;
+
 	public bool ForceYakuza;
 
 	public string[] Surnames;
@@ -352,6 +354,10 @@ public class CustomModeScript : MonoBehaviour
 	public UILabel[] CosmeticLabels;
 
 	public Color ColorValue;
+
+	public Color[] CustomHairColor;
+
+	public Color[] CustomEyeColor;
 
 	public Transform TopicHighlight;
 
@@ -1048,6 +1054,36 @@ public class CustomModeScript : MonoBehaviour
 							{
 								ColorID = 0;
 							}
+							if (Selected == 0)
+							{
+								Debug.Log("Informing the ColorWheel of the player's hair renderer. Yandere.Hairstyle is " + Yandere.Hairstyle);
+								Renderer renderer = Yandere.Hairstyles[Yandere.Hairstyle].GetComponent<Renderer>();
+								if (renderer == null)
+								{
+									renderer = Yandere.Hairstyles[Yandere.Hairstyle].GetComponentInChildren<Renderer>();
+								}
+								if (renderer != null)
+								{
+									Debug.Log("YandereRenderer was not null.");
+									ColorWheel.r[0] = renderer;
+									ColorWheel.r[1] = renderer;
+								}
+								else
+								{
+									Debug.Log("YandereRenderer was null?!");
+								}
+							}
+							else if (StudentGenders[Selected])
+							{
+								ColorWheel.r[0] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+								ColorWheel.r[1] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+							}
+							else
+							{
+								ColorWheel.r[0] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+								ColorWheel.r[1] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+							}
+							ColorWheel.gameObject.SetActive(ColorID == Colors.Length - 1);
 							JSON.Students[Selected].Color = Colors[ColorID] ?? "";
 						}
 						else if (CosmeticSelected == 2)
@@ -1079,6 +1115,17 @@ public class CustomModeScript : MonoBehaviour
 							{
 								EyeColorID = 0;
 							}
+							if (StudentGenders[Selected])
+							{
+								ColorWheel.r[0] = StudentKunCosmetic.LeftEyeRenderer;
+								ColorWheel.r[1] = StudentKunCosmetic.RightEyeRenderer;
+							}
+							else
+							{
+								ColorWheel.r[0] = StudentChanCosmetic.LeftEyeRenderer;
+								ColorWheel.r[1] = StudentChanCosmetic.RightEyeRenderer;
+							}
+							ColorWheel.gameObject.SetActive(EyeColorID == Colors.Length - 1);
 							JSON.Students[Selected].Eyes = Colors[EyeColorID] ?? "";
 						}
 						else if (CosmeticSelected == 5)
@@ -1160,6 +1207,30 @@ public class CustomModeScript : MonoBehaviour
 							{
 								ColorID = Colors.Length - 1;
 							}
+							if (Selected == 0)
+							{
+								Renderer renderer2 = Yandere.Hairstyles[Yandere.Hairstyle].GetComponent<Renderer>();
+								if (renderer2 == null)
+								{
+									renderer2 = Yandere.Hairstyles[Yandere.Hairstyle].GetComponentInChildren<Renderer>();
+								}
+								if (renderer2 != null)
+								{
+									ColorWheel.r[0] = renderer2;
+									ColorWheel.r[1] = renderer2;
+								}
+							}
+							else if (StudentGenders[Selected])
+							{
+								ColorWheel.r[0] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+								ColorWheel.r[1] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+							}
+							else
+							{
+								ColorWheel.r[0] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+								ColorWheel.r[1] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+							}
+							ColorWheel.gameObject.SetActive(ColorID == Colors.Length - 1);
 							JSON.Students[Selected].Color = Colors[ColorID] ?? "";
 						}
 						else if (CosmeticSelected == 2)
@@ -1191,6 +1262,17 @@ public class CustomModeScript : MonoBehaviour
 							{
 								EyeColorID = Colors.Length - 1;
 							}
+							if (StudentGenders[Selected])
+							{
+								ColorWheel.r[0] = StudentKunCosmetic.LeftEyeRenderer;
+								ColorWheel.r[1] = StudentKunCosmetic.RightEyeRenderer;
+							}
+							else
+							{
+								ColorWheel.r[0] = StudentChanCosmetic.LeftEyeRenderer;
+								ColorWheel.r[1] = StudentChanCosmetic.RightEyeRenderer;
+							}
+							ColorWheel.gameObject.SetActive(EyeColorID == Colors.Length - 1);
 							JSON.Students[Selected].Eyes = Colors[EyeColorID] ?? "";
 						}
 						else if (CosmeticSelected == 5)
@@ -1284,22 +1366,26 @@ public class CustomModeScript : MonoBehaviour
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_LB))
 					{
-						LabelColliders[0].enabled = false;
-						LabelColliders[1].enabled = false;
-						ViewingStudents = true;
-						EditingStudent = false;
-						EditingCosmetic = false;
-						PromptBar.ClearButtons();
-						PromptBar.Label[0].text = "Edit";
-						PromptBar.Label[2].text = "Zoom";
-						PromptBar.Label[3].text = "Randomize All";
-						PromptBar.Label[4].text = "Change Selection";
-						PromptBar.Label[5].text = "Rotate";
-						PromptBar.UpdateButtons();
-						PromptBar.Show = true;
-						UpdateHeader();
+						if (!ColorWheel.gameObject.activeInHierarchy)
+						{
+							ColorWheel.gameObject.SetActive(value: false);
+							LabelColliders[0].enabled = false;
+							LabelColliders[1].enabled = false;
+							ViewingStudents = true;
+							EditingStudent = false;
+							EditingCosmetic = false;
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Edit";
+							PromptBar.Label[2].text = "Zoom";
+							PromptBar.Label[3].text = "Randomize All";
+							PromptBar.Label[4].text = "Change Selection";
+							PromptBar.Label[5].text = "Rotate";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+							UpdateHeader();
+						}
 					}
-					else if (Input.GetButtonDown(InputNames.Xbox_RB) && Selected > 0)
+					else if (Input.GetButtonDown(InputNames.Xbox_RB) && Selected > 0 && !ColorWheel.gameObject.activeInHierarchy)
 					{
 						DetailSelected = 1;
 						CosmeticPanel.transform.localPosition = new Vector3(0f, -100f, 0f);
@@ -2262,6 +2348,7 @@ public class CustomModeScript : MonoBehaviour
 			Yandere.CharacterAnimation.CrossFade(FemaleIdles[AnimSet[0]]);
 			Yandere.Hairstyle = int.Parse(JSON.Students[0].Hairstyle);
 			Yandere.UpdateHair();
+			Yandere.UpdateHairColor();
 			Yandere.EyeType = JSON.Students[0].EyeType;
 			Yandere.UpdateEyeType();
 			Yandere.EyeColor = JSON.Students[0].Eyes;
@@ -2493,11 +2580,9 @@ public class CustomModeScript : MonoBehaviour
 			if (ID > 0)
 			{
 				num = 0;
-				Debug.Log("RandomHair is: " + num4);
 				while (UsedFemaleHairs[num4] && num < 100)
 				{
 					num4 = UnityEngine.Random.Range(1, StudentChanCosmetic.FemaleHair.Length);
-					Debug.Log("Oh, that number was taken. RandomHair is now: " + num4);
 					num++;
 				}
 				UsedFemaleHairs[num4] = true;
@@ -2568,9 +2653,15 @@ public class CustomModeScript : MonoBehaviour
 	{
 		JSON.Students[ID].Persona = (PersonaType)UnityEngine.Random.Range(1, 18);
 		JSON.Students[ID].Strength = UnityEngine.Random.Range(0, 10);
-		JSON.Students[ID].Color = Colors[UnityEngine.Random.Range(0, Colors.Length)];
-		JSON.Students[ID].Eyes = Colors[UnityEngine.Random.Range(0, Colors.Length)];
+		JSON.Students[ID].Color = "Custom";
+		JSON.Students[ID].Eyes = "Custom";
 		JSON.Students[ID].EyeType = EyeTypes[UnityEngine.Random.Range(0, EyeTypes.Length)];
+		JSON.Students[ID].HairR = UnityEngine.Random.Range(0, 256);
+		JSON.Students[ID].HairG = UnityEngine.Random.Range(0, 256);
+		JSON.Students[ID].HairB = UnityEngine.Random.Range(0, 256);
+		JSON.Students[ID].EyeR = UnityEngine.Random.Range(0, 256);
+		JSON.Students[ID].EyeG = UnityEngine.Random.Range(0, 256);
+		JSON.Students[ID].EyeB = UnityEngine.Random.Range(0, 256);
 		EyeWear[ID] = 0;
 	}
 
@@ -2796,6 +2887,10 @@ public class CustomModeScript : MonoBehaviour
 		case "Brown":
 			ColorValue = new Color(0.5f, 0.25f, 0f);
 			break;
+		case "Custom":
+			Debug.Log("Protagonist's HairColor is ''Custom''.");
+			ColorValue = new Color((float)StudentManager.JSON.Students[0].HairR * 1f / 255f, (float)StudentManager.JSON.Students[0].HairG * 1f / 255f, (float)StudentManager.JSON.Students[0].HairB * 1f / 255f);
+			break;
 		}
 	}
 
@@ -2814,13 +2909,14 @@ public class CustomModeScript : MonoBehaviour
 			"Purple" => 8, 
 			"Orange" => 9, 
 			"Brown" => 10, 
+			"Custom" => 11, 
 			_ => 0, 
 		};
 	}
 
-	public int DetermineEyeTypeID(string HairColor)
+	public int DetermineEyeTypeID(string EyeType)
 	{
-		return HairColor switch
+		return EyeType switch
 		{
 			"Default" => 0, 
 			"Thin" => 1, 
@@ -2845,6 +2941,21 @@ public class CustomModeScript : MonoBehaviour
 			"Rival1" => 20, 
 			"Ayano" => 21, 
 			"Ryoba" => 22, 
+			"Chill" => 23, 
+			"Sweet" => 24, 
+			"Reserved" => 25, 
+			"Mature" => 26, 
+			"Sharp" => 27, 
+			"Relaxed" => 28, 
+			"Friendly" => 29, 
+			"Timid" => 30, 
+			"Sneer" => 31, 
+			"Innocent" => 32, 
+			"ThinGentle" => 33, 
+			"Seductive" => 34, 
+			"Rival2" => 35, 
+			"Succubus" => 36, 
+			"Vampire" => 37, 
 			_ => 0, 
 		};
 	}

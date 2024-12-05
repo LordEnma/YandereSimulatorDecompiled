@@ -107,10 +107,6 @@ public class SimpleLookScript : MonoBehaviour
 					}
 					if (!ReactedToFriend && Student.Friend && Student.Yandere.Mask == null && !Student.Emetic && !Student.Lethal && !Student.Sedated && !Student.Headache && !Student.Grudge && !Student.Dying && !Student.Meeting && !Student.Depressed && Student.CurrentAction != StudentActionType.Sunbathe && Student.CurrentAction != StudentActionType.Gaming && Student.CurrentAction != StudentActionType.Mourn && Student.StudentID > 1 && !flag && LookTimer > 1f)
 					{
-						if (Student.StudentID == 42)
-						{
-							Debug.Log("Borupen is now waving.");
-						}
 						Student.CharacterAnimation[Student.WaveAnim].weight = 0f;
 						Student.CharacterAnimation[Student.WaveAnim].time = 0f;
 						Student.CharacterAnimation.CrossFade(Student.WaveAnim);

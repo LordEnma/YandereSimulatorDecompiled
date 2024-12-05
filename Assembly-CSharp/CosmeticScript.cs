@@ -373,6 +373,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public GameObject Tongue;
 
+	public GameObject Teeth;
+
 	public Transform RightBreast;
 
 	public Transform LeftBreast;
@@ -503,6 +505,10 @@ public class CosmeticScript : MonoBehaviour
 
 	public string[] GenericAnims;
 
+	public Color CustomHairColor;
+
+	public Color CustomEyeColor;
+
 	public int FaceID;
 
 	public int SkinID;
@@ -609,6 +615,8 @@ public class CosmeticScript : MonoBehaviour
 			EyeColor = JSON.Students[StudentID].Eyes;
 			Club = JSON.Students[StudentID].Club;
 			Name = JSON.Students[StudentID].Name;
+			CustomHairColor = new Color((float)JSON.Students[StudentID].HairR * 1f / 255f, (float)JSON.Students[StudentID].HairG * 1f / 255f, (float)JSON.Students[StudentID].HairB * 1f / 255f);
+			CustomEyeColor = new Color((float)JSON.Students[StudentID].EyeR * 1f / 255f, (float)JSON.Students[StudentID].EyeG * 1f / 255f, (float)JSON.Students[StudentID].EyeB * 1f / 255f);
 			if (CustomMode)
 			{
 				EyewearID = JSON.Misc.EyeWear[StudentID];
@@ -912,17 +920,16 @@ public class CosmeticScript : MonoBehaviour
 				{
 					if (StudentID == 2)
 					{
-						CharacterAnimation.Play("f02_succubusPose_00");
+						CharacterAnimation.Play("f02_succubusPose_01");
 						LookCamera = true;
-						base.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 						MyRenderer.updateWhenOffscreen = true;
 					}
 					else if (StudentID == 3)
 					{
-						CharacterAnimation.Play("f02_vampirePose_00");
+						CharacterAnimation.Play("f02_vampirePose_01");
 						LookCamera = true;
-						base.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 						MyRenderer.updateWhenOffscreen = true;
+						Teeth.SetActive(value: true);
 					}
 					else if (StudentID == 4)
 					{
@@ -946,8 +953,12 @@ public class CosmeticScript : MonoBehaviour
 					else if (StudentID == 12)
 					{
 						CharacterAnimation.Play("f02_rivalPortraitPose_02");
-						base.transform.position = new Vector3(0.05f, -0.025f, 0f);
 						LookCamera = true;
+						AmaiBrows.transform.GetChild(0).localPosition = new Vector3(0.03333334f, 0.02f, 0f);
+						AmaiBrows.transform.GetChild(0).localEulerAngles = new Vector3(0f, -9f, 45f);
+						AmaiBrows.transform.GetChild(1).localPosition = new Vector3(-0.03333334f, 0.02f, 0f);
+						AmaiBrows.transform.GetChild(1).localEulerAngles = new Vector3(0f, 8.5f, -45f);
+						ResetBlendshapes();
 					}
 					else if (StudentID == 38)
 					{
@@ -1112,6 +1123,30 @@ public class CosmeticScript : MonoBehaviour
 					else if (StudentID == 30)
 					{
 						CharacterAnimation.Play("f02_dramaPose_02");
+					}
+					else if (StudentID == 34)
+					{
+						CharacterAnimation.Play("f02_eightiesOccultPose_01");
+					}
+					else if (StudentID == 35)
+					{
+						CharacterAnimation.Play("f02_eightiesOccultPose_02");
+					}
+					else if (StudentID == 44)
+					{
+						CharacterAnimation.Play("f02_eightiesArtPose_01");
+					}
+					else if (StudentID == 45)
+					{
+						CharacterAnimation.Play("f02_eightiesArtPose_02");
+					}
+					else if (StudentID == 49)
+					{
+						CharacterAnimation.Play("f02_eightiesMartialArtsPose_01");
+					}
+					else if (StudentID == 50)
+					{
+						CharacterAnimation.Play("f02_eightiesMartialArtsPose_02");
 					}
 					else if (StudentID == 51)
 					{
@@ -1367,6 +1402,41 @@ public class CosmeticScript : MonoBehaviour
 						else if (StudentID == 28)
 						{
 							CharacterAnimation.Play("dramaPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 31)
+						{
+							CharacterAnimation.Play("eightiesOccultPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 32)
+						{
+							CharacterAnimation.Play("eightiesOccultPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 33)
+						{
+							CharacterAnimation.Play("eightiesOccultPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 43)
+						{
+							CharacterAnimation.Play("eightiesArtPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 46)
+						{
+							CharacterAnimation.Play("eightiesMartialArtsPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 47)
+						{
+							CharacterAnimation.Play("eightiesMartialArtsPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 48)
+						{
+							CharacterAnimation.Play("eightiesMartialArtsPose_03");
 							base.transform.position = new Vector3(0f, -0.1f, 0f);
 						}
 						else if (StudentID == 71)
@@ -1971,6 +2041,16 @@ public class CosmeticScript : MonoBehaviour
 				{
 					CorrectColor = new Color(0.5f, 0.25f, 0f);
 				}
+				else if (EyeColor == "Custom")
+				{
+					LeftEyeRenderer.material.shader = StartShader;
+					RightEyeRenderer.material.shader = StartShader;
+					LeftEyeRenderer.material.SetFloat("_Saturation", 0f);
+					LeftEyeRenderer.material.SetFloat("_BlendAmount", 0f);
+					RightEyeRenderer.material.SetFloat("_Saturation", 0f);
+					RightEyeRenderer.material.SetFloat("_BlendAmount", 0f);
+					CorrectColor = CustomEyeColor;
+				}
 				else
 				{
 					CorrectColor = new Color(0f, 0f, 0f);
@@ -2064,6 +2144,10 @@ public class CosmeticScript : MonoBehaviour
 			else if (HairColor == "Brown")
 			{
 				ColorValue = new Color(0.5f, 0.25f, 0f);
+			}
+			else if (HairColor == "Custom")
+			{
+				ColorValue = CustomHairColor;
 			}
 			else
 			{
@@ -3207,6 +3291,10 @@ public class CosmeticScript : MonoBehaviour
 
 	public void EyeTypeCheck()
 	{
+		if (TakingPortrait && StudentID == 12 && !Eighties && !CustomMode)
+		{
+			EyeType = "";
+		}
 		if (EyeType == "Thin")
 		{
 			MyRenderer.SetBlendShapeWeight(8, 100f);
@@ -3244,37 +3332,9 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
-		else if (EyeType == "ThinGentle")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
 		else if (EyeType == "MO")
 		{
 			MyRenderer.SetBlendShapeWeight(8, 50f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		else if (EyeType == "Seductive")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(7, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		else if (EyeType == "Rival1")
-		{
-			MyRenderer.SetBlendShapeWeight(8, 5f);
-			MyRenderer.SetBlendShapeWeight(9, 20f);
-			MyRenderer.SetBlendShapeWeight(10, 50f);
-			MyRenderer.SetBlendShapeWeight(11, 50f);
-			MyRenderer.SetBlendShapeWeight(12, 10f);
-		}
-		else if (EyeType == "Rival2")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 100f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(6, 100f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
@@ -3379,6 +3439,18 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(10, 5f);
 			MyRenderer.SetBlendShapeWeight(12, 50f);
 		}
+		else if (EyeType == "Rival1")
+		{
+			MyRenderer.SetBlendShapeWeight(8, 5f);
+			MyRenderer.SetBlendShapeWeight(9, 20f);
+			MyRenderer.SetBlendShapeWeight(10, 50f);
+			MyRenderer.SetBlendShapeWeight(11, 50f);
+			MyRenderer.SetBlendShapeWeight(12, 10f);
+		}
+		else if (EyeType == "Ayano")
+		{
+			MyRenderer.SetBlendShapeWeight(8, 50f);
+		}
 		else if (EyeType == "Ryoba")
 		{
 			MyRenderer.SetBlendShapeWeight(0, 50f);
@@ -3386,9 +3458,25 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(8, 0f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
-		else if (EyeType == "Ayano")
+		else if (EyeType == "ThinGentle")
 		{
-			MyRenderer.SetBlendShapeWeight(8, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "Seductive")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(7, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "Rival2")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 100f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(6, 100f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
 		else if (EyeType == "Chill")
 		{

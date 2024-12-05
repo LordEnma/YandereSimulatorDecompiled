@@ -38,6 +38,8 @@ public class ConfessionManagerScript : MonoBehaviour
 
 	public Transform SenpaiPOV;
 
+	public Transform NewTree;
+
 	public string[] ConfessSubs;
 
 	public string[] AcceptSubs;
@@ -211,6 +213,8 @@ public class ConfessionManagerScript : MonoBehaviour
 				Phase++;
 				Yandere.transform.parent.position = new Vector3(5f, 5.73f, 119f);
 				Yandere.transform.parent.eulerAngles = new Vector3(0f, -90f, 0f);
+				NewTree.localPosition = new Vector3(0f, -0.1082915f, -0.5f);
+				NewTree.localScale = new Vector3(50f, 50f, 100f);
 			}
 		}
 		else if (Phase == 0)

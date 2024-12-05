@@ -558,7 +558,6 @@ public class MissionModeScript : MonoBehaviour
 			Yandere.FixCamera();
 			if (!YakuzaMode)
 			{
-				Debug.Log("Jukebox.MissionMode.Play() was just fired.");
 				MusicID = Random.Range(1, 10);
 				ChangeMusic();
 				Jukebox.MissionMode.enabled = true;
@@ -698,7 +697,6 @@ public class MissionModeScript : MonoBehaviour
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
-				Debug.Log("The player skipped the Misson Mode intro sequence.");
 				MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, TargetHeight, MainCamera.transform.position.z);
 				Yandere.RPGCamera.enabled = true;
 				HeartbeatCamera.SetActive(value: true);

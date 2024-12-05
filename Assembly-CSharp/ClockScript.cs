@@ -678,6 +678,10 @@ public class ClockScript : MonoBehaviour
 			StudentManager.Students[7].GetDestinations();
 			StudentManager.Students[7].Pathfinding.target = StudentManager.Students[7].Destinations[1];
 			StudentManager.Students[7].CurrentDestination = StudentManager.Students[7].Destinations[1];
+			if (HourTime < 8f)
+			{
+				StudentManager.Students[7].transform.position = StudentManager.SpawnPositions[7].position;
+			}
 		}
 		LateStudent = false;
 	}

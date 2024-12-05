@@ -433,7 +433,7 @@ public class RagdollScript : MonoBehaviour
 								Yandere.PickUp.transform.localPosition = Vector3.zero;
 								Yandere.PickUp.transform.localEulerAngles = Vector3.zero;
 								Debug.Log("this.Yandere.CharacterAnimation[''Yandere.ConcealAnim''].speed is now: " + Yandere.CharacterAnimation[Yandere.ConcealAnim].speed);
-								AudioManager.PlayAudio(AudioType.Effect, Yandere.PickUp.WrappingCorpse, Yandere.CharacterAnimation[Yandere.ConcealAnim].speed);
+								AudioManager.PlayAudio(AudioType.Effect, Yandere.PickUp.WrappingCorpse, Yandere.CharacterAnimation[Yandere.ConcealAnim].speed, base.transform.position);
 							}
 							else
 							{

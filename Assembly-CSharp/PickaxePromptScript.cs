@@ -73,7 +73,7 @@ public class PickaxePromptScript : MonoBehaviour
 		}
 		if (!Prompt.Yandere.NoDebug && Vector3.Distance(base.transform.position, Prompt.Yandere.transform.position) < 2f && Input.GetKeyDown("z"))
 		{
-			Progress += 4f;
+			Progress += 4 * (Prompt.Yandere.Class.PhysicalGrade + Prompt.Yandere.Class.PhysicalBonus);
 			UpdateRocks();
 			DisplayProgress();
 			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

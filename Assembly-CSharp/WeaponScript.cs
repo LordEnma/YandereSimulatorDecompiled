@@ -784,7 +784,7 @@ public class WeaponScript : MonoBehaviour
 			SkinnedMesh.SetBlendShapeWeight(0, 0f);
 			Unravel = false;
 		}
-		if (!DoNotRelocate && Yandere.PersonaID == 4)
+		if (!DoNotRelocate && (Yandere.PersonaID == 4 || Yandere.h != 0f || Yandere.v != 0f))
 		{
 			base.transform.position = Yandere.transform.position + new Vector3(0f, 1f, 0f);
 		}

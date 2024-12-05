@@ -38,6 +38,7 @@ public class AudioSourceScript : MonoBehaviour
 		MyAudioSource.pitch = Pitch * Time.timeScale;
 		if (!MyAudioSource.isPlaying)
 		{
+			Debug.Log("This audio source has finished playing, and now this object will self-destruct.");
 			Object.Destroy(base.gameObject);
 		}
 	}
