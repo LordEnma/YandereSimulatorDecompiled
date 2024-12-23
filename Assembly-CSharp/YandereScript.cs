@@ -1043,6 +1043,12 @@ public class YandereScript : MonoBehaviour
 
 	public bool DropSpecifically;
 
+	public bool CustomMode;
+
+	public int SkinColor;
+
+	public Texture[] SkinTextures;
+
 	public Texture[] GloveTextures;
 
 	public float OriginalBloodiness;
@@ -1823,6 +1829,24 @@ public class YandereScript : MonoBehaviour
 
 	public bool Home;
 
+	public Texture OriginalFemaleUniformTextures1;
+
+	public Texture OriginalFemaleCasualTextures1;
+
+	public Texture OriginalFemaleUniformTextures2;
+
+	public Texture OriginalFemaleCasualTextures2;
+
+	public Texture OriginalFemaleUniformTextures3;
+
+	public Texture OriginalFemaleCasualTextures3;
+
+	public Texture OriginalFemaleUniformTextures4;
+
+	public Texture OriginalFemaleCasualTextures4;
+
+	public CustomUniformScript CustomUniform;
+
 	public bool DefaultHairColor;
 
 	public Color ColorValue;
@@ -2234,6 +2258,10 @@ public class YandereScript : MonoBehaviour
 		HandCamera.gameObject.SetActive(value: false);
 		if (GameGlobals.CustomMode)
 		{
+			if (StudentGlobals.CustomFemaleUniform)
+			{
+				CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
+			}
 			Customize();
 		}
 		if (PlayerGlobals.CustomHair > 0)
@@ -7867,6 +7895,7 @@ public class YandereScript : MonoBehaviour
 	{
 		if (Home && DateGlobals.Weekday == DayOfWeek.Sunday)
 		{
+			Debug.Log("Home is true and Sunday is true.");
 			return;
 		}
 		if (StudentGlobals.FemaleUniform == 0)
@@ -7874,7 +7903,7 @@ public class YandereScript : MonoBehaviour
 			StudentGlobals.FemaleUniform = 1;
 		}
 		MyRenderer.sharedMesh = Uniforms[StudentGlobals.FemaleUniform];
-		if (GameGlobals.CustomMode)
+		if (GameGlobals.CustomMode || CustomMode)
 		{
 			if (Casual)
 			{
@@ -10395,7 +10424,6 @@ public class YandereScript : MonoBehaviour
 		}
 		else if (EyeType == "Serious")
 		{
-			Debug.Log("Attempting to give the player the ''Serious'' eyetype now.");
 			MyRenderer.SetBlendShapeWeight(5, 50f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 		}
@@ -10431,14 +10459,6 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(8, 50f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		else if (EyeType == "Rival1")
-		{
-			MyRenderer.SetBlendShapeWeight(8, 5f);
-			MyRenderer.SetBlendShapeWeight(9, 20f);
-			MyRenderer.SetBlendShapeWeight(10, 50f);
-			MyRenderer.SetBlendShapeWeight(11, 50f);
-			MyRenderer.SetBlendShapeWeight(12, 10f);
 		}
 		else if (EyeType == "Eighties1")
 		{
@@ -10541,6 +10561,14 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(10, 5f);
 			MyRenderer.SetBlendShapeWeight(12, 50f);
 		}
+		else if (EyeType == "Rival1")
+		{
+			MyRenderer.SetBlendShapeWeight(8, 5f);
+			MyRenderer.SetBlendShapeWeight(9, 20f);
+			MyRenderer.SetBlendShapeWeight(10, 50f);
+			MyRenderer.SetBlendShapeWeight(11, 50f);
+			MyRenderer.SetBlendShapeWeight(12, 10f);
+		}
 		else if (EyeType == "Ayano")
 		{
 			MyRenderer.SetBlendShapeWeight(8, 50f);
@@ -10551,6 +10579,124 @@ public class YandereScript : MonoBehaviour
 			MyRenderer.SetBlendShapeWeight(5, 25f);
 			MyRenderer.SetBlendShapeWeight(8, 0f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "ThinGentle")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "Seductive")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "Rival2")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 100f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(6, 100f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 100f);
+		}
+		else if (EyeType == "Chill")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 70f);
+			MyRenderer.SetBlendShapeWeight(5, 40f);
+			MyRenderer.SetBlendShapeWeight(6, 40f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+		}
+		else if (EyeType == "Sweet")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 60f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(6, 45f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 60f);
+		}
+		else if (EyeType == "Reserved")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 40f);
+			MyRenderer.SetBlendShapeWeight(5, 30f);
+			MyRenderer.SetBlendShapeWeight(6, 80f);
+			MyRenderer.SetBlendShapeWeight(9, 90f);
+			MyRenderer.SetBlendShapeWeight(10, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 15f);
+		}
+		else if (EyeType == "Mature")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 45f);
+			MyRenderer.SetBlendShapeWeight(5, 30f);
+			MyRenderer.SetBlendShapeWeight(6, 20f);
+			MyRenderer.SetBlendShapeWeight(8, 25f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 55f);
+		}
+		else if (EyeType == "Sharp")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 40f);
+			MyRenderer.SetBlendShapeWeight(5, 20f);
+			MyRenderer.SetBlendShapeWeight(6, 15f);
+			MyRenderer.SetBlendShapeWeight(9, 50f);
+			MyRenderer.SetBlendShapeWeight(11, 40f);
+		}
+		else if (EyeType == "Relaxed")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 45f);
+			MyRenderer.SetBlendShapeWeight(6, 35f);
+			MyRenderer.SetBlendShapeWeight(9, 65f);
+			MyRenderer.SetBlendShapeWeight(12, 65f);
+		}
+		else if (EyeType == "Friendly")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 75f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(6, 45f);
+			MyRenderer.SetBlendShapeWeight(8, 20f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+		}
+		else if (EyeType == "Timid")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 10f);
+			MyRenderer.SetBlendShapeWeight(5, 45f);
+			MyRenderer.SetBlendShapeWeight(6, 45f);
+			MyRenderer.SetBlendShapeWeight(9, 100f);
+			MyRenderer.SetBlendShapeWeight(12, 75f);
+		}
+		else if (EyeType == "Sneer")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 50f);
+			MyRenderer.SetBlendShapeWeight(5, 30f);
+			MyRenderer.SetBlendShapeWeight(6, 30f);
+			MyRenderer.SetBlendShapeWeight(8, 30f);
+			MyRenderer.SetBlendShapeWeight(9, 50f);
+			MyRenderer.SetBlendShapeWeight(11, 35f);
+		}
+		else if (EyeType == "Innocent")
+		{
+			MyRenderer.SetBlendShapeWeight(0, 60f);
+			MyRenderer.SetBlendShapeWeight(5, 15f);
+			MyRenderer.SetBlendShapeWeight(6, 35f);
+			MyRenderer.SetBlendShapeWeight(9, 90f);
+			MyRenderer.SetBlendShapeWeight(12, 35f);
+		}
+		else if (EyeType == "Succubus")
+		{
+			MyRenderer.SetBlendShapeWeight(1, 35f);
+			MyRenderer.SetBlendShapeWeight(5, 25f);
+			MyRenderer.SetBlendShapeWeight(8, 2f);
+			MyRenderer.SetBlendShapeWeight(9, 45f);
+			MyRenderer.SetBlendShapeWeight(10, 2f);
+			MyRenderer.SetBlendShapeWeight(12, 25f);
+		}
+		else if (EyeType == "Vampire")
+		{
+			MyRenderer.SetBlendShapeWeight(5, 10f);
+			MyRenderer.SetBlendShapeWeight(8, 15f);
+			MyRenderer.SetBlendShapeWeight(9, 75f);
+			MyRenderer.SetBlendShapeWeight(11, 20f);
+			MyRenderer.SetBlendShapeWeight(12, 60f);
 		}
 		if (PajamaRenderer != null)
 		{
@@ -10611,7 +10757,6 @@ public class YandereScript : MonoBehaviour
 		}
 		else if (EyeColor == "Custom")
 		{
-			Debug.Log("Protagonist's EyeColor is ''Custom''.");
 			color = new Color((float)StudentManager.JSON.Students[0].EyeR * 1f / 255f, (float)StudentManager.JSON.Students[0].EyeG * 1f / 255f, (float)StudentManager.JSON.Students[0].EyeB * 1f / 255f);
 		}
 		if (!DefaultEyeColor)
@@ -10676,6 +10821,10 @@ public class YandereScript : MonoBehaviour
 
 	public void UpdateStockings()
 	{
+		if ((CustomMode && CustomUniform == null) || (GameGlobals.CustomMode && CustomUniform == null))
+		{
+			CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
+		}
 		if (!Home || DateGlobals.Weekday != 0)
 		{
 			LooseSocks[0].SetActive(value: false);
@@ -10852,13 +11001,11 @@ public class YandereScript : MonoBehaviour
 			}
 			else if (Stockings == "Loose")
 			{
-				Debug.Log("Attempting to activate loose socks.");
 				LooseSocks[0].SetActive(value: true);
 				LooseSocks[1].SetActive(value: true);
 			}
 			else if (Stockings == "RolledUp")
 			{
-				Debug.Log("Attempting to activate rolled up socks.");
 				MyStockings = StockingList[29];
 				LooseSocks[2].SetActive(value: true);
 				LooseSocks[3].SetActive(value: true);
@@ -10874,6 +11021,46 @@ public class YandereScript : MonoBehaviour
 			else if (Stockings == "Kizana")
 			{
 				MyStockings = (MyStockings = StockingList[43]);
+			}
+			else if (Stockings == "Custom1")
+			{
+				MyStockings = CustomUniform.CustomStockings[1];
+			}
+			else if (Stockings == "Custom2")
+			{
+				MyStockings = CustomUniform.CustomStockings[2];
+			}
+			else if (Stockings == "Custom3")
+			{
+				MyStockings = CustomUniform.CustomStockings[3];
+			}
+			else if (Stockings == "Custom4")
+			{
+				MyStockings = CustomUniform.CustomStockings[4];
+			}
+			else if (Stockings == "Custom5")
+			{
+				MyStockings = CustomUniform.CustomStockings[5];
+			}
+			else if (Stockings == "Custom6")
+			{
+				MyStockings = CustomUniform.CustomStockings[6];
+			}
+			else if (Stockings == "Custom7")
+			{
+				MyStockings = CustomUniform.CustomStockings[7];
+			}
+			else if (Stockings == "Custom8")
+			{
+				MyStockings = CustomUniform.CustomStockings[8];
+			}
+			else if (Stockings == "Custom9")
+			{
+				MyStockings = CustomUniform.CustomStockings[9];
+			}
+			else if (Stockings == "Custom10")
+			{
+				MyStockings = CustomUniform.CustomStockings[10];
 			}
 			MyRenderer.materials[0].SetTexture("_OverlayTex", MyStockings);
 			MyRenderer.materials[1].SetTexture("_OverlayTex", MyStockings);
@@ -10924,6 +11111,110 @@ public class YandereScript : MonoBehaviour
 		OriginalIdleAnim = IdleAnim;
 		OriginalWalkAnim = WalkAnim;
 		OriginalRunAnim = RunAnim;
+		LoadOriginalTextures();
+		if (StudentGlobals.CustomFemaleUniform && !HomeGlobals.Night)
+		{
+			Debug.Log("YandereScript acknowledges that StudentGlobals.CustomFemaleUniform is true.");
+			SaveOriginalTextures();
+			GrabCustomTextures();
+		}
+	}
+
+	public void SaveOriginalTextures()
+	{
+		if (OriginalFemaleUniformTextures1 == null)
+		{
+			OriginalFemaleUniformTextures1 = StandardUniformTextures[1];
+			OriginalFemaleUniformTextures2 = StandardUniformTextures[2];
+			OriginalFemaleUniformTextures3 = StandardUniformTextures[3];
+			OriginalFemaleUniformTextures4 = StandardUniformTextures[4];
+			OriginalFemaleCasualTextures1 = StandardCasualTextures[1];
+			OriginalFemaleCasualTextures2 = StandardCasualTextures[2];
+			OriginalFemaleCasualTextures3 = StandardCasualTextures[3];
+			OriginalFemaleCasualTextures4 = StandardCasualTextures[4];
+		}
+	}
+
+	public void LoadOriginalTextures()
+	{
+		if (OriginalFemaleUniformTextures1 != null)
+		{
+			StandardUniformTextures[1] = OriginalFemaleUniformTextures1;
+			StandardUniformTextures[2] = OriginalFemaleUniformTextures2;
+			StandardUniformTextures[3] = OriginalFemaleUniformTextures3;
+			StandardUniformTextures[4] = OriginalFemaleUniformTextures4;
+			StandardCasualTextures[1] = OriginalFemaleCasualTextures1;
+			StandardCasualTextures[2] = OriginalFemaleCasualTextures2;
+			StandardCasualTextures[3] = OriginalFemaleCasualTextures3;
+			StandardCasualTextures[4] = OriginalFemaleCasualTextures4;
+		}
+	}
+
+	public IEnumerator GrabCustomTexturesAsync()
+	{
+		Debug.Log("YandereChan is now running GrabCustomTextures()");
+		WWW NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortIndoors.png");
+		yield return NewTexture8;
+		if (NewTexture8.error == null)
+		{
+			StandardCasualTextures[1] = NewTexture8.texture;
+		}
+		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortOutdoors.png");
+		yield return NewTexture8;
+		if (NewTexture8.error == null)
+		{
+			StandardUniformTextures[1] = NewTexture8.texture;
+		}
+		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongIndoors.png");
+		yield return NewTexture8;
+		if (NewTexture8.error == null)
+		{
+			StandardCasualTextures[2] = NewTexture8.texture;
+		}
+		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongOutdoors.png");
+		yield return NewTexture8;
+		if (NewTexture8.error == null)
+		{
+			StandardUniformTextures[2] = NewTexture8.texture;
+		}
+		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterIndoors.png");
+		yield return NewTexture8;
+		if (NewTexture8.error == null)
+		{
+			StandardCasualTextures[3] = NewTexture8.texture;
+		}
+		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterOutdoors.png");
+		yield return NewTexture8;
+		if (NewTexture8.error == null)
+		{
+			StandardUniformTextures[3] = NewTexture8.texture;
+		}
+		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerIndoors.png");
+		yield return NewTexture8;
+		if (NewTexture8.error == null)
+		{
+			StandardCasualTextures[4] = NewTexture8.texture;
+		}
+		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerOutdoors.png");
+		yield return NewTexture8;
+		if (NewTexture8.error == null)
+		{
+			StandardUniformTextures[4] = NewTexture8.texture;
+		}
+		SetUniform();
+	}
+
+	public void GrabCustomTextures()
+	{
+		StandardCasualTextures[1] = CustomUniform.FemaleUniformTextures[1];
+		StandardCasualTextures[2] = CustomUniform.FemaleUniformTextures[2];
+		StandardCasualTextures[3] = CustomUniform.FemaleUniformTextures[3];
+		StandardCasualTextures[4] = CustomUniform.FemaleUniformTextures[4];
+		StandardUniformTextures[1] = CustomUniform.FemaleCasualTextures[1];
+		StandardUniformTextures[2] = CustomUniform.FemaleCasualTextures[2];
+		StandardUniformTextures[3] = CustomUniform.FemaleCasualTextures[3];
+		StandardUniformTextures[4] = CustomUniform.FemaleCasualTextures[4];
+		SetUniform();
 	}
 
 	public void UpdateHairColor()
@@ -10938,25 +11229,69 @@ public class YandereScript : MonoBehaviour
 		{
 			renderer = Hairstyles[Hairstyle].GetComponentInChildren<Renderer>();
 		}
-		if (renderer != null)
+		if (!(renderer != null))
 		{
-			renderer.material.shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
-			if (DefaultHairColor)
+			return;
+		}
+		renderer.material.shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
+		if (DefaultHairColor)
+		{
+			renderer.material.SetFloat("_Saturation", 1f);
+		}
+		else
+		{
+			renderer.material.SetFloat("_Saturation", 0f);
+		}
+		renderer.material.color = ColorValue;
+		if (renderer.materials.Length > 1)
+		{
+			renderer.materials[1].shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
+			if (StudentManager.JSON.Students[0].Color == "Default")
 			{
-				renderer.material.SetFloat("_Saturation", 1f);
+				renderer.materials[1].SetFloat("_Saturation", 1f);
 			}
 			else
 			{
-				renderer.material.SetFloat("_Saturation", 0f);
+				renderer.materials[1].SetFloat("_Saturation", 0f);
 			}
-			Debug.Log("The protagonist should now be setting their hair color to ''ColorValue''.");
-			renderer.material.color = ColorValue;
+			renderer.materials[1].color = ColorValue;
 		}
+		if (renderer.materials.Length > 2)
+		{
+			renderer.materials[2].shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
+			if (StudentManager.JSON.Students[0].Color == "Default")
+			{
+				renderer.materials[2].SetFloat("_Saturation", 1f);
+			}
+			else
+			{
+				renderer.materials[2].SetFloat("_Saturation", 0f);
+			}
+			renderer.materials[2].color = ColorValue;
+		}
+		Renderer[] componentsInChildren = Hairstyles[Hairstyle].GetComponentsInChildren<Renderer>();
+		foreach (Renderer yandereRenderer in componentsInChildren)
+		{
+			UpdateShaderAndColor(yandereRenderer);
+		}
+	}
+
+	private void UpdateShaderAndColor(Renderer YandereRenderer)
+	{
+		YandereRenderer.material.shader = StudentManager.StudentChan.GetComponent<CosmeticScript>().StartShader;
+		if (StudentManager.JSON.Students[0].Color == "Default")
+		{
+			YandereRenderer.material.SetFloat("_Saturation", 1f);
+		}
+		else
+		{
+			YandereRenderer.material.SetFloat("_Saturation", 0f);
+		}
+		YandereRenderer.material.color = ColorValue;
 	}
 
 	private void GetColorValue(string HairColor)
 	{
-		Debug.Log("Protagonist is firing GetColorValue.");
 		DefaultHairColor = false;
 		switch (HairColor)
 		{
@@ -10998,7 +11333,6 @@ public class YandereScript : MonoBehaviour
 			ColorValue = new Color(0.5f, 0.25f, 0f);
 			break;
 		case "Custom":
-			Debug.Log("Protagonist's HairColor is ''Custom''.");
 			ColorValue = new Color((float)StudentManager.JSON.Students[0].HairR * 1f / 255f, (float)StudentManager.JSON.Students[0].HairG * 1f / 255f, (float)StudentManager.JSON.Students[0].HairB * 1f / 255f);
 			break;
 		}

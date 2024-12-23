@@ -631,7 +631,6 @@ public class StudentInfoMenuScript : MonoBehaviour
 
 	public IEnumerator UpdatePortraits()
 	{
-		Debug.Log("StudentInfoMenuScript has been told to run the UpdatePortraits() function.");
 		if (Debugging)
 		{
 			Debug.Log("The Student Info Menu was instructed to get photos.");

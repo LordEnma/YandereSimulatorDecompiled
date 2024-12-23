@@ -54,10 +54,10 @@ public class BloodPoolScript : MonoBehaviour
 		{
 			Object.Destroy(base.gameObject);
 		}
-		if (position.z > 100f && position.y > 0f)
+		if (position.z > 100f && position.x < 20.5f && position.x > -20.5f)
 		{
 			YandereScript component = GameObject.Find("YandereChan").GetComponent<YandereScript>();
-			component.NotificationManager.CustomText = "The liquid rolled down the hill.";
+			component.NotificationManager.CustomText = "The liquid evaporated.";
 			component.NotificationManager.DisplayNotification(NotificationType.Custom);
 			Object.Destroy(base.gameObject);
 		}
@@ -109,22 +109,35 @@ public class BloodPoolScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (Water && ElectroTimer == 0f && other.gameObject.tag == "E")
+		if (!Water || ElectroTimer != 0f || !(other.gameObject.tag == "E"))
 		{
-			NewElectricity = Object.Instantiate(Electricity, base.transform.position, Quaternion.identity);
-			ElectroTimer = 1f;
-			if (other.gameObject.name.Contains("CarBattery"))
+			return;
+		}
+		NewElectricity = Object.Instantiate(Electricity, base.transform.position, Quaternion.identity);
+		ElectroTimer = 1f;
+		if (other.gameObject.name.Contains("CarBattery"))
+		{
+			PickUpScript component = other.gameObject.GetComponent<PickUpScript>();
+			bool flag = false;
+			Debug.Log("A car battery collided with this puddle.");
+			if (component.Yandere.Police.Show && component.Yandere.Police.Timer < 1f)
 			{
-				Object.Instantiate(other.gameObject.GetComponent<PickUpScript>().PuddleSparks, base.transform.position, Quaternion.identity);
-				other.gameObject.GetComponent<PickUpScript>().Broken = true;
-				other.gameObject.GetComponent<PickUpScript>().Smoke.Play();
+				flag = true;
+				Debug.Log("The police are almost here, so we shouldn't do anything.");
+			}
+			if (!flag)
+			{
+				Debug.Log("Spawning electricity.");
+				Object.Instantiate(component.PuddleSparks, base.transform.position, Quaternion.identity);
 				other.gameObject.tag = "Untagged";
+				component.Broken = true;
+				component.Smoke.Play();
 			}
-			if (other.gameObject.GetComponent<ElectrifiedPuddleScript>() != null && other.gameObject.GetComponent<ElectrifiedPuddleScript>().PowerSwitch != null)
-			{
-				PowerSwitch = other.gameObject.GetComponent<ElectrifiedPuddleScript>().PowerSwitch;
-				NewElectricity.GetComponent<SM_destroyThisTimed>().enabled = false;
-			}
+		}
+		if (other.gameObject.GetComponent<ElectrifiedPuddleScript>() != null && other.gameObject.GetComponent<ElectrifiedPuddleScript>().PowerSwitch != null)
+		{
+			PowerSwitch = other.gameObject.GetComponent<ElectrifiedPuddleScript>().PowerSwitch;
+			NewElectricity.GetComponent<SM_destroyThisTimed>().enabled = false;
 		}
 	}
 

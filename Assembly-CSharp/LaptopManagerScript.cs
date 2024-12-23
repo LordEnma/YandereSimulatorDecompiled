@@ -27,5 +27,10 @@ public class LaptopManagerScript : MonoBehaviour
 				}
 			}
 		}
+		if (MissionModeGlobals.MissionMode)
+		{
+			Laptops[1].SetActive(value: false);
+			Laptops[2].SetActive(value: false);
+		}
 	}
 }

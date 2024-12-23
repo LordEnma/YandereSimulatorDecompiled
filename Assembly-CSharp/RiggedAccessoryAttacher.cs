@@ -145,7 +145,14 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		}
 		else if (ID == 6)
 		{
-			accessory = GameObject.Find("SlaveAttire");
+			if (!Student.Male)
+			{
+				accessory = GameObject.Find("SlaveAttire");
+			}
+			else
+			{
+				accessory = GameObject.Find("SlaveAttireMale");
+			}
 		}
 		else if (ID == 26)
 		{

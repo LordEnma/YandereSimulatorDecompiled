@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -190,16 +191,25 @@ public class FunCutsceneScript : MonoBehaviour
 			else
 			{
 				FunChan.SetActive(value: false);
-				Debug.Log("Deleting save data and closing program.");
-				int num = GameGlobals.Profile;
-				Globals.DeleteAll();
-				if (GameGlobals.Eighties && num < 11)
+				int profile = GameGlobals.Profile;
+				int num = 11;
+				int femaleUniform = StudentGlobals.FemaleUniform;
+				int maleUniform = StudentGlobals.MaleUniform;
+				if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + profile + "_Slot_" + num + ".yansave"))
 				{
-					Debug.Log("Profile is " + num + ", but we're in the 80s! That number should be larger!");
-					num += 10;
+					YanSave.LoadData("Profile_" + profile + "_Slot_" + num);
+					YanSave.LoadPrefs("Profile_" + profile + "_Slot_" + num);
+					Debug.Log("Successfully loaded the save in Slot #" + num);
 				}
-				PlayerPrefs.SetInt("ProfileCreated_" + num, 0);
-				Application.Quit();
+				else
+				{
+					Debug.Log("Attempted to load a save from Slot #" + num + ", but apparently it didn't exist.");
+				}
+				StudentGlobals.SetStudentDead(10 + DateGlobals.Week, value: false);
+				StudentGlobals.SetStudentDying(10 + DateGlobals.Week, value: false);
+				StudentGlobals.FemaleUniform = femaleUniform;
+				StudentGlobals.MaleUniform = maleUniform;
+				SceneManager.LoadScene("CalendarScene");
 			}
 			Phase++;
 		}

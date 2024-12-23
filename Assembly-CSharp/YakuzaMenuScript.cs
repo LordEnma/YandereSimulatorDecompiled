@@ -256,15 +256,15 @@ public class YakuzaMenuScript : MonoBehaviour
 		CountPrisoners();
 		if (Prisoners == 0)
 		{
-			PrisonerLabel.text = "Come back after kidnapping one of these girls.";
+			PrisonerLabel.text = "Come back after kidnapping one of these students.";
 		}
 		else if (Prisoners == 1)
 		{
-			PrisonerLabel.text = "One of these girls is currently in your basement.";
+			PrisonerLabel.text = "One of these students is currently in your basement.";
 		}
 		else
 		{
-			PrisonerLabel.text = "Some of these girls are currently in your basement.";
+			PrisonerLabel.text = "Some of these students are currently in your basement.";
 		}
 		OriginalItemPrice[3] += DateGlobals.Week * 100;
 		OriginalItemPrice[5] += DateGlobals.Week * 100;
@@ -434,7 +434,7 @@ public class YakuzaMenuScript : MonoBehaviour
 									GameGlobals.RivalEliminationID = 11;
 									GameGlobals.SpecificEliminationID = 12;
 								}
-								ResultLabel.text = "This girl will be abducted before school tomorrow.";
+								ResultLabel.text = "This student will be abducted before school tomorrow.";
 								RivalPortraits[TargetSelected].color = new Color(0.5f, 0.5f, 0.5f, 1f);
 								PlayerGlobals.Money -= Costs[TargetSelected];
 								UpdateMoneyLabel();
@@ -443,7 +443,7 @@ public class YakuzaMenuScript : MonoBehaviour
 							}
 							else
 							{
-								ResultLabel.text = "You don't have enough money to pay for her abduction!";
+								ResultLabel.text = "You don't have enough money to pay for this student's abduction!";
 								Fail = true;
 							}
 							ConfirmationWindow.SetActive(value: false);
@@ -672,7 +672,7 @@ public class YakuzaMenuScript : MonoBehaviour
 						CountPrisoners();
 						UpdateRansomPortraits();
 						RansomConfirmationWindow.SetActive(value: false);
-						PrisonerLabel.text = "Come back after kidnapping one of these girls.";
+						PrisonerLabel.text = "Come back after kidnapping one of these students.";
 						PromptBar.ClearButtons();
 						PromptBar.Label[1].text = "Back";
 						PromptBar.UpdateButtons();
@@ -1176,7 +1176,7 @@ public class YakuzaMenuScript : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log("One of the Yakuza's desired girls is a prisoner in our basement, but she's dead.");
+					Debug.Log("One of the Yakuza's desired students is a prisoner in our basement, but she's dead.");
 				}
 			}
 		}

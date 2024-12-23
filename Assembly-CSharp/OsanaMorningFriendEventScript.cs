@@ -129,7 +129,11 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 				{
 					Rival = StudentManager.Students[RivalID];
 				}
-				if (Clock.Period == 1)
+				if (Rival.Indoors)
+				{
+					base.enabled = false;
+				}
+				else if (Clock.Period == 1)
 				{
 					if (Friend.FightingSlave)
 					{

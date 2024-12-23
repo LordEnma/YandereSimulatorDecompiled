@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class ScreenshotTestScript : MonoBehaviour
 {
+	public CosmeticScript SenpaiCosmetic;
+
+	public Animation MaleSenpaiAnim;
+
 	public Camera SenpaiCamera;
 
 	public Texture EightiesBG;
@@ -14,6 +18,8 @@ public class ScreenshotTestScript : MonoBehaviour
 	public Renderer Target;
 
 	public UITexture BG;
+
+	public JsonScript JSON;
 
 	public int StartFrame;
 
@@ -42,6 +48,15 @@ public class ScreenshotTestScript : MonoBehaviour
 			{
 				FemaleSenpai.SetActive(value: false);
 				MaleSenpai.SetActive(value: true);
+			}
+			MaleSenpai.transform.position += new Vector3(0f, 0.05f, 0f);
+			if (!GameGlobals.CustomMode)
+			{
+				MaleSenpaiAnim.Play("jokichiPose_00");
+			}
+			else
+			{
+				MaleSenpaiAnim.Play(SenpaiCosmetic.PortraitPoses[JSON.Misc.PortraitPoses[1]]);
 			}
 		}
 	}

@@ -83,7 +83,21 @@ public class EightiesStatsScript : MonoBehaviour
 		Label[0].text = "Rival #1: " + Eliminations[EliminationIDs[1]] + "\n" + Details[DetailIDs[1]] + "\n\nRival #2: " + Eliminations[EliminationIDs[2]] + "\n" + Details[DetailIDs[2]] + "\n\nRival #3: " + Eliminations[EliminationIDs[3]] + "\n" + Details[DetailIDs[3]] + "\n\nRival #4: " + Eliminations[EliminationIDs[4]] + "\n" + Details[DetailIDs[4]] + "\n\nRival #5: " + Eliminations[EliminationIDs[5]] + "\n" + Details[DetailIDs[5]];
 		Label[1].text = "Rival #6: " + Eliminations[EliminationIDs[6]] + "\n" + Details[DetailIDs[6]] + "\n\nRival #7: " + Eliminations[EliminationIDs[7]] + "\n" + Details[DetailIDs[7]] + "\n\nRival #8: " + Eliminations[EliminationIDs[8]] + "\n" + Details[DetailIDs[8]] + "\n\nRival #9: " + Eliminations[EliminationIDs[9]] + "\n" + Details[DetailIDs[9]] + "\n\nRival #10: " + Eliminations[EliminationIDs[10]] + "\n" + Details[DetailIDs[10]];
 		Label[2].text = "Police have...\n...visited Akademi " + PlayerGlobals.PoliceVisits + " times.\n...discovered " + PlayerGlobals.CorpsesDiscovered + " corpses at Akademi.\n" + text + "'s reputation is " + Mathf.RoundToInt(PlayerGlobals.Reputation) + ".\n" + Grudges + " students think " + text + " is a murderer.";
-		Label[3].text = text + " has...\n...made " + PlayerGlobals.Friends + " friends.\n...alarmed her classmates " + PlayerGlobals.Alarms + " times.\n...been seen with a weapon " + PlayerGlobals.WeaponWitnessed + " times.\n...been seen stained with blood " + PlayerGlobals.BloodWitnessed + " times.";
+		int num = 0;
+		for (int j = 0; j < 100; j++)
+		{
+			if (PlayerGlobals.GetStudentFriend(j) && !StudentGlobals.GetStudentArrested(j) && !StudentGlobals.GetStudentBroken(j) && !StudentGlobals.GetStudentDead(j) && !StudentGlobals.GetStudentDying(j) && !StudentGlobals.GetStudentExpelled(j) && !StudentGlobals.GetStudentGrudge(j) && !StudentGlobals.GetStudentKidnapped(j) && !StudentGlobals.GetStudentMissing(j))
+			{
+				num++;
+			}
+		}
+		PlayerGlobals.Friends = num;
+		string text2 = "s";
+		if (PlayerGlobals.Friends == 1)
+		{
+			text2 = "";
+		}
+		Label[3].text = text + " has...\n...made " + PlayerGlobals.Friends + " friend" + text2 + ".\n...alarmed her classmates " + PlayerGlobals.Alarms + " times.\n...been seen with a weapon " + PlayerGlobals.WeaponWitnessed + " times.\n...been seen stained with blood " + PlayerGlobals.BloodWitnessed + " times.";
 		if (Courtroom != null)
 		{
 			Courtroom.UpdateFactLabels();

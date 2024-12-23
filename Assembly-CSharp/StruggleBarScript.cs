@@ -36,6 +36,8 @@ public class StruggleBarScript : MonoBehaviour
 
 	public float Victory;
 
+	public int OriginalTargetFramerate;
+
 	public int ButtonID;
 
 	private void Start()
@@ -52,6 +54,11 @@ public class StruggleBarScript : MonoBehaviour
 	{
 		if (Struggling)
 		{
+			if (Application.targetFrameRate != 60)
+			{
+				OriginalTargetFramerate = Application.targetFrameRate;
+				Application.targetFrameRate = 60;
+			}
 			Intensity = Mathf.MoveTowards(Intensity, 1f, Time.deltaTime);
 			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			Spikes.localEulerAngles = new Vector3(Spikes.localEulerAngles.x, Spikes.localEulerAngles.y, Spikes.localEulerAngles.z - Time.deltaTime * 360f);
@@ -101,12 +108,20 @@ public class StruggleBarScript : MonoBehaviour
 				{
 					Yandere.Chasers--;
 				}
+				if (OriginalTargetFramerate > 0)
+				{
+					Application.targetFrameRate = OriginalTargetFramerate;
+				}
 			}
 			else if (Victory == -100f)
 			{
 				if (!Invincible)
 				{
 					HeroWins();
+				}
+				if (OriginalTargetFramerate > 0)
+				{
+					Application.targetFrameRate = OriginalTargetFramerate;
 				}
 			}
 			else

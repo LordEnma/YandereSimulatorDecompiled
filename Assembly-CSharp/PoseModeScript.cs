@@ -496,7 +496,7 @@ public class PoseModeScript : MonoBehaviour
 								StockingID = 0;
 							}
 							Student.Cosmetic.Stockings = StockingNames[StockingID];
-							StartCoroutine(Student.Cosmetic.PutOnStockings());
+							Student.Cosmetic.PutOnStockings();
 							UpdateLabels();
 						}
 						else if (InputManager.TappedLeft)
@@ -507,7 +507,7 @@ public class PoseModeScript : MonoBehaviour
 								StockingID = StockingNames.Length - 1;
 							}
 							Student.Cosmetic.Stockings = StockingNames[StockingID];
-							StartCoroutine(Student.Cosmetic.PutOnStockings());
+							Student.Cosmetic.PutOnStockings();
 							UpdateLabels();
 						}
 					}

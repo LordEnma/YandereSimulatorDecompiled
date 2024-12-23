@@ -485,6 +485,8 @@ public class DebugMenuScript : MonoBehaviour
 						if (StudentManager.Students[ID] != null)
 						{
 							PlayerGlobals.SetStudentFriend(ID, value: true);
+							PlayerGlobals.Friends = 100;
+							Yandere.Friends = 100;
 							StudentManager.Students[ID].Friend = true;
 							StudentManager.Students[ID].PhotoPatience = 99999f;
 							StudentManager.Students[ID].Patience = 99999;
@@ -500,7 +502,6 @@ public class DebugMenuScript : MonoBehaviour
 					Window.SetActive(value: false);
 					WeaponManager.BroughtWeapons[8].transform.parent = null;
 					WeaponManager.BroughtWeapons[8].gameObject.SetActive(value: true);
-					Yandere.Inventory.Ring = true;
 					Debug.Log("Yandere.Class.PhysicalGrade is now: " + Yandere.Class.PhysicalGrade);
 				}
 				else if (Input.GetKeyDown(KeyCode.T))
@@ -549,13 +550,8 @@ public class DebugMenuScript : MonoBehaviour
 				}
 				else if (Input.GetKeyDown(KeyCode.X))
 				{
-					for (ID = 2; ID < 51; ID++)
-					{
-						if (ID < 11 || ID > 20)
-						{
-							StudentGlobals.SetStudentMissing(ID, value: true);
-						}
-					}
+					TaskGlobals.SetTaskStatus(36, 3);
+					SchoolGlobals.ReactedToGameLeader = false;
 					SceneManager.LoadScene("LoadingScene");
 				}
 				else if (Input.GetKeyDown(KeyCode.Backspace))

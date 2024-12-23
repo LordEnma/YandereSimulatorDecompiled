@@ -40,6 +40,16 @@ public class GenericPromptScript : MonoBehaviour
 
 	public int ID;
 
+	private void Start()
+	{
+		if ((ID == 7 && !GameGlobals.Eighties) || (ID == 7 && DateGlobals.Week != 5))
+		{
+			Prompt.Hide();
+			Prompt.enabled = false;
+			base.gameObject.SetActive(value: false);
+		}
+	}
+
 	private void Update()
 	{
 		if (ID == 1)

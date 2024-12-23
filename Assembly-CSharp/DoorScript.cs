@@ -426,17 +426,26 @@ public class DoorScript : MonoBehaviour
 					}
 					else
 					{
-						Prompt.Yandere.EmptyHands();
-						Debug.Log("Commence lockpicking.");
-						Prompt.Yandere.Inventory.LockPicks--;
-						Prompt.Label[0].text = "     Open";
-						Prompt.HideButton[2] = true;
-						Locked = false;
-						Prompt.Yandere.LockPickAnim = LockPickAnim;
-						Prompt.Yandere.CharacterAnimation.CrossFade(LockPickAnim);
-						Prompt.Yandere.LockpickTarget = base.transform;
-						Prompt.Yandere.Lockpicking = true;
-						Prompt.Yandere.CanMove = false;
+						Debug.Log("This code is now firing.");
+						if (Prompt.Yandere.Chased || Prompt.Yandere.Chasers > 0 || Prompt.Yandere.Pursuer != null)
+						{
+							Yandere.NotificationManager.CustomText = "You're being chased!";
+							Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
+						else
+						{
+							Prompt.Yandere.EmptyHands();
+							Debug.Log("Commence lockpicking.");
+							Prompt.Yandere.Inventory.LockPicks--;
+							Prompt.Label[0].text = "     Open";
+							Prompt.HideButton[2] = true;
+							Locked = false;
+							Prompt.Yandere.LockPickAnim = LockPickAnim;
+							Prompt.Yandere.CharacterAnimation.CrossFade(LockPickAnim);
+							Prompt.Yandere.LockpickTarget = base.transform;
+							Prompt.Yandere.Lockpicking = true;
+							Prompt.Yandere.CanMove = false;
+						}
 					}
 				}
 			}

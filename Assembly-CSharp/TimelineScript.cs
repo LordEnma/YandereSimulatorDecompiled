@@ -36,7 +36,7 @@ public class TimelineScript : MonoBehaviour
 		base.transform.localPosition = new Vector3(0f, -0.6f, 1f);
 		MaxHeight = base.transform.localPosition.y;
 		Darkness.alpha = 0f;
-		SpawnYear(1778);
+		SpawnYear(1779);
 		SpawnAishiData("The Aishi Precursor is born.");
 		Height -= 100;
 		SpawnYear(1797);

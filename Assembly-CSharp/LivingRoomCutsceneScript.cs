@@ -689,6 +689,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 					TeaTimer += Time.deltaTime;
 					if (TeaTimer > 16f)
 					{
+						DrunkEffect.enabled = true;
 						DrunkEffect.Fade += Time.deltaTime * 0.05f;
 						Vignette.enabled = true;
 						BlurVision = true;

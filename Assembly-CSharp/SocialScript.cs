@@ -561,5 +561,9 @@ public class SocialScript : MonoBehaviour
 				Debug.Log("The criteria for befriending this student has not been met yet.");
 			}
 		}
+		else
+		{
+			Debug.Log("Yes, this student is now a friend.");
+		}
 	}
 }

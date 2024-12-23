@@ -69,7 +69,7 @@ public class GamepadSwitcherScript : MonoBehaviour
 			{
 				UseXboxInputs();
 			}
-			else if (currentControllers[i].ToLower().Contains("dual"))
+			else if (currentControllers[i].ToLower().Contains("dual") || currentControllers[i].ToLower().Contains("less"))
 			{
 				UseSonyInputs();
 			}

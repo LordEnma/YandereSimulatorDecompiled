@@ -1,7 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class UniformSetterScript : MonoBehaviour
 {
+	public CustomUniformScript CustomUniform;
+
 	public Texture[] FemaleUniformTextures;
 
 	public Texture[] MaleUniformTextures;
@@ -50,12 +53,66 @@ public class UniformSetterScript : MonoBehaviour
 
 	public Texture RyobaTexture;
 
+	public Texture OriginalFemaleUniformTexture1;
+
+	public Texture OriginalFemaleUniformTexture2;
+
+	public Texture OriginalFemaleUniformTexture3;
+
+	public Texture OriginalFemaleUniformTexture4;
+
+	public Texture OriginalMaleUniformTexture1;
+
+	public Texture OriginalMaleUniformTexture2;
+
+	public Texture OriginalMaleUniformTexture3;
+
+	public Texture OriginalMaleUniformTexture4;
+
 	public void Start()
 	{
 		if (MyRenderer == null)
 		{
 			MyRenderer = base.transform.GetChild(0).GetChild(0).GetChild(0)
 				.GetComponent<SkinnedMeshRenderer>();
+		}
+		if (!Male)
+		{
+			if (OriginalFemaleUniformTexture1 == null)
+			{
+				OriginalFemaleUniformTexture1 = FemaleUniformTextures[1];
+				OriginalFemaleUniformTexture2 = FemaleUniformTextures[2];
+				OriginalFemaleUniformTexture3 = FemaleUniformTextures[3];
+				OriginalFemaleUniformTexture4 = FemaleUniformTextures[4];
+			}
+			else
+			{
+				FemaleUniformTextures[1] = OriginalFemaleUniformTexture1;
+				FemaleUniformTextures[2] = OriginalFemaleUniformTexture2;
+				FemaleUniformTextures[3] = OriginalFemaleUniformTexture3;
+				FemaleUniformTextures[4] = OriginalFemaleUniformTexture4;
+			}
+		}
+		if (Male)
+		{
+			if (OriginalMaleUniformTexture1 == null)
+			{
+				OriginalMaleUniformTexture1 = MaleUniformTextures[1];
+				OriginalMaleUniformTexture2 = MaleUniformTextures[2];
+				OriginalMaleUniformTexture3 = MaleUniformTextures[3];
+				OriginalMaleUniformTexture4 = MaleUniformTextures[4];
+			}
+			else
+			{
+				MaleUniformTextures[1] = OriginalMaleUniformTexture1;
+				MaleUniformTextures[2] = OriginalMaleUniformTexture2;
+				MaleUniformTextures[3] = OriginalMaleUniformTexture3;
+				MaleUniformTextures[4] = OriginalMaleUniformTexture4;
+			}
+		}
+		if ((!Male && StudentGlobals.CustomFemaleUniform) || (Male && StudentGlobals.CustomMaleUniform))
+		{
+			GrabCustomTextures();
 		}
 		if (Male)
 		{
@@ -133,14 +190,71 @@ public class UniformSetterScript : MonoBehaviour
 		else if (StudentID == 1)
 		{
 			MyRenderer.materials[2].mainTexture = AyanoFace;
-			if (Ryoba && !GameGlobals.CustomMode)
+			if (Ryoba)
 			{
-				MyRenderer.materials[0].mainTexture = Nude;
+				_ = GameGlobals.CustomMode;
 			}
 		}
 		else
 		{
 			MyRenderer.materials[2].mainTexture = OsanaFace;
+		}
+	}
+
+	public IEnumerator GrabCustomTexturesAsync()
+	{
+		WWW NewTexture4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortOutdoors.png");
+		yield return NewTexture4;
+		if (NewTexture4.error == null)
+		{
+			FemaleUniformTextures[1] = NewTexture4.texture;
+		}
+		NewTexture4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongOutdoors.png");
+		yield return NewTexture4;
+		if (NewTexture4.error == null)
+		{
+			FemaleUniformTextures[2] = NewTexture4.texture;
+		}
+		NewTexture4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterOutdoors.png");
+		yield return NewTexture4;
+		if (NewTexture4.error == null)
+		{
+			FemaleUniformTextures[3] = NewTexture4.texture;
+		}
+		NewTexture4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerOutdoors.png");
+		yield return NewTexture4;
+		if (NewTexture4.error == null)
+		{
+			FemaleUniformTextures[4] = NewTexture4.texture;
+		}
+		if (Male)
+		{
+			SetMaleUniform();
+		}
+		else
+		{
+			SetFemaleUniform();
+		}
+	}
+
+	public void GrabCustomTextures()
+	{
+		CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
+		if (!Male)
+		{
+			FemaleUniformTextures[1] = CustomUniform.FemaleUniformTextures[1];
+			FemaleUniformTextures[2] = CustomUniform.FemaleUniformTextures[2];
+			FemaleUniformTextures[3] = CustomUniform.FemaleUniformTextures[3];
+			FemaleUniformTextures[4] = CustomUniform.FemaleUniformTextures[4];
+			SetFemaleUniform();
+		}
+		else
+		{
+			MaleUniformTextures[1] = CustomUniform.MaleUniformTextures[1];
+			MaleUniformTextures[2] = CustomUniform.MaleUniformTextures[2];
+			MaleUniformTextures[3] = CustomUniform.MaleUniformTextures[3];
+			MaleUniformTextures[4] = CustomUniform.MaleUniformTextures[4];
+			SetMaleUniform();
 		}
 	}
 }

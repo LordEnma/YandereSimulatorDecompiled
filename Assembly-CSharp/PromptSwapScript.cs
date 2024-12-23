@@ -55,7 +55,7 @@ public class PromptSwapScript : MonoBehaviour
 		{
 			for (int i = 0; i < joystickNames.Length; i++)
 			{
-				if (!joystickNames[i].ToLower().Contains("xbox") && joystickNames[i].ToLower().Contains("dual"))
+				if (!joystickNames[i].ToLower().Contains("xbox") && (joystickNames[i].ToLower().Contains("dual") || joystickNames[i].ToLower().Contains("less")))
 				{
 					flag = true;
 				}

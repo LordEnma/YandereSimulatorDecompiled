@@ -1091,10 +1091,6 @@ public class PoliceScript : MonoBehaviour
 			}
 			Deaths++;
 			StudentGlobals.SetStudentDead(i, value: true);
-			if (PlayerGlobals.GetStudentFriend(i))
-			{
-				PlayerGlobals.Friends--;
-			}
 			StudentGlobals.SetStudentFriendship(i, 0);
 			PlayerGlobals.SetStudentFriend(i, value: false);
 			Debug.Log("Student #" + i + " committed suicide due to low reputation. They will have a memorial at school tomorrow.");
@@ -1162,10 +1158,6 @@ public class PoliceScript : MonoBehaviour
 						SchoolGlobals.HighSecurity = true;
 					}
 					StudentGlobals.SetStudentDead(j, value: true);
-					if (PlayerGlobals.GetStudentFriend(j))
-					{
-						PlayerGlobals.Friends--;
-					}
 					StudentGlobals.SetStudentFriendship(j, 0);
 					PlayerGlobals.SetStudentFriend(j, value: false);
 					if (j > 10 && j < DateGlobals.Week + 10 && StudentManager.Students[j] != null && StudentManager.Students[j].Ragdoll.Disposed)

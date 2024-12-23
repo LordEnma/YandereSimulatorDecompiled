@@ -256,6 +256,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public OfferHelpScript OfferHelp;
 
+	public Transform FemaleLockerRoomChangingSpot;
+
 	public Transform MaleLockerRoomChangingSpot;
 
 	public Transform CurrentRivalCleaningSpots;
@@ -1242,6 +1244,10 @@ public class StudentManagerScript : MonoBehaviour
 	public int AfterRivalWitnesses;
 
 	public int[] RivalWitnessIDs;
+
+	public bool CensorBlood;
+
+	public Texture PinkBlood;
 
 	private void Awake()
 	{
@@ -2338,6 +2344,10 @@ public class StudentManagerScript : MonoBehaviour
 								Students[num].SpeechLines.Stop();
 							}
 						}
+					}
+					if (GameGlobals.CensorBlood)
+					{
+						ChangeAllBloodTextures();
 					}
 				}
 			}
@@ -3910,7 +3920,7 @@ public class StudentManagerScript : MonoBehaviour
 				ID++;
 			}
 			StudentScript studentScript = Students[ID];
-			if (studentScript != null && !studentScript.Posing && (!Police.EndOfDay.Counselor.ExpelledDelinquents || ID <= 75 || ID >= 81))
+			if (studentScript != null && !studentScript.Posing && (!Police.EndOfDay.Counselor.ExpelledDelinquents || ID <= 75 || ID >= 81) && !studentScript.Replaced)
 			{
 				if (!studentScript.Ragdoll.Disposed && !studentScript.Ragdoll.Dismembered)
 				{
@@ -8002,7 +8012,6 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (NEStairs.bounds.Contains(Destination.position) || NWStairs.bounds.Contains(Destination.position) || SEStairs.bounds.Contains(Destination.position) || SWStairs.bounds.Contains(Destination.position))
 		{
-			Debug.Log(Destination.gameObject.name + " was in a stairway. Adjusting height.");
 			Destination.position += new Vector3(0f, 2f, 0f);
 		}
 	}
@@ -8040,6 +8049,11 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void ChangeAllBloodTextures()
 	{
+		CensorBlood = GameGlobals.CensorBlood;
+		if (Yandere != null && Yandere.WeaponManager != null)
+		{
+			Yandere.WeaponManager.UpdateWeaponMaterials();
+		}
 		FoldedUniformScript[] array = UnityEngine.Object.FindObjectsOfType<FoldedUniformScript>();
 		for (int i = 0; i < array.Length; i++)
 		{
@@ -8049,6 +8063,26 @@ public class StudentManagerScript : MonoBehaviour
 		for (int i = 0; i < array2.Length; i++)
 		{
 			array2[i].UpdateBlood();
+		}
+		StudentScript[] students = Students;
+		foreach (StudentScript studentScript in students)
+		{
+			if (studentScript != null)
+			{
+				studentScript.UpdateBlood();
+			}
+		}
+		BucketScript[] allBuckets = AllBuckets;
+		foreach (BucketScript bucketScript in allBuckets)
+		{
+			if (bucketScript != null)
+			{
+				bucketScript.UpdateBlood();
+			}
+		}
+		if (IronMaiden != null)
+		{
+			IronMaiden.UpdateBlood();
 		}
 	}
 }

@@ -159,65 +159,76 @@ public class IncineratorScript : MonoBehaviour
 				Prompt.enabled = true;
 			}
 		}
-		else if (!Smoke.isPlaying)
+		else
 		{
-			YandereHoldingEvidence = Yandere.Ragdoll != null;
-			if (!YandereHoldingEvidence)
+			if (Timer > 0f && !Smoke.isPlaying)
 			{
-				if (Yandere.PickUp != null)
-				{
-					YandereHoldingEvidence = Yandere.PickUp.Evidence || Yandere.PickUp.Garbage;
-				}
-				else
-				{
-					YandereHoldingEvidence = false;
-				}
+				Panel.SetActive(value: true);
+				Flames.Play();
+				Smoke.Play();
+				Prompt.Hide();
+				Prompt.enabled = false;
 			}
-			if (!YandereHoldingEvidence)
+			if (!Smoke.isPlaying)
 			{
-				if (Yandere.EquippedWeapon != null)
+				YandereHoldingEvidence = Yandere.Ragdoll != null;
+				if (!YandereHoldingEvidence)
 				{
-					if (Yandere.EquippedWeapon.Bloody || Yandere.EquippedWeapon.MurderWeapon)
+					if (Yandere.PickUp != null)
 					{
-						YandereHoldingEvidence = true;
+						YandereHoldingEvidence = Yandere.PickUp.Evidence || Yandere.PickUp.Garbage;
+					}
+					else
+					{
+						YandereHoldingEvidence = false;
 					}
 				}
-				else
+				if (!YandereHoldingEvidence)
 				{
-					YandereHoldingEvidence = false;
+					if (Yandere.EquippedWeapon != null)
+					{
+						if (Yandere.EquippedWeapon.Bloody || Yandere.EquippedWeapon.MurderWeapon)
+						{
+							YandereHoldingEvidence = true;
+						}
+					}
+					else
+					{
+						YandereHoldingEvidence = false;
+					}
 				}
-			}
-			if (!YandereHoldingEvidence)
-			{
-				if (!Prompt.HideButton[3])
+				if (!YandereHoldingEvidence)
+				{
+					if (!Prompt.HideButton[3])
+					{
+						Prompt.HideButton[3] = true;
+					}
+				}
+				else if (Prompt.HideButton[3])
+				{
+					Prompt.HideButton[3] = false;
+				}
+				if ((Yandere.Chased || Yandere.Chasers > 0 || !YandereHoldingEvidence) && !Prompt.HideButton[3])
 				{
 					Prompt.HideButton[3] = true;
 				}
-			}
-			else if (Prompt.HideButton[3])
-			{
-				Prompt.HideButton[3] = false;
-			}
-			if ((Yandere.Chased || Yandere.Chasers > 0 || !YandereHoldingEvidence) && !Prompt.HideButton[3])
-			{
-				Prompt.HideButton[3] = true;
-			}
-			if (Ready)
-			{
-				if (!Smoke.isPlaying)
+				if (Ready)
 				{
-					if (CannotIncinerate)
+					if (!Smoke.isPlaying)
+					{
+						if (CannotIncinerate)
+						{
+							Prompt.HideButton[0] = true;
+						}
+						if (!CannotIncinerate && Prompt.HideButton[0])
+						{
+							Prompt.HideButton[0] = false;
+						}
+					}
+					else if (!Prompt.HideButton[0])
 					{
 						Prompt.HideButton[0] = true;
 					}
-					if (!CannotIncinerate && Prompt.HideButton[0])
-					{
-						Prompt.HideButton[0] = false;
-					}
-				}
-				else if (!Prompt.HideButton[0])
-				{
-					Prompt.HideButton[0] = true;
 				}
 			}
 		}

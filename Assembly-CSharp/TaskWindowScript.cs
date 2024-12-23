@@ -218,7 +218,7 @@ public class TaskWindowScript : MonoBehaviour
 		else if (Yandere.TargetStudent.StudentID == 11)
 		{
 			DialogueWheel.Yandere.TargetStudent.Cosmetic.Stockings = "ShortPink";
-			DialogueWheel.Yandere.TargetStudent.Cosmetic.StartCoroutine(DialogueWheel.Yandere.TargetStudent.Cosmetic.PutOnStockings());
+			DialogueWheel.Yandere.TargetStudent.Cosmetic.PutOnStockings();
 		}
 		else if (Yandere.TargetStudent.StudentID == 15)
 		{

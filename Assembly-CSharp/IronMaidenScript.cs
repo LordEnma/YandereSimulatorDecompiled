@@ -60,6 +60,10 @@ public class IronMaidenScript : MonoBehaviour
 
 	public bool FadeIn;
 
+	public Material BloodMaterial;
+
+	public Material CensorMaterial;
+
 	private void Start()
 	{
 		ABC = GameGlobals.AlphabetMode;
@@ -367,6 +371,22 @@ public class IronMaidenScript : MonoBehaviour
 		{
 			Prompt.Yandere.NotificationManager.CustomText = "The doors aren't open yet.";
 			Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+		}
+	}
+
+	public void UpdateBlood()
+	{
+		if (GameGlobals.CensorBlood)
+		{
+			Blood[0].gameObject.GetComponent<Renderer>().material = CensorMaterial;
+			Blood[1].gameObject.GetComponent<Renderer>().material = CensorMaterial;
+			Blood[2].gameObject.GetComponent<Renderer>().material = CensorMaterial;
+		}
+		else
+		{
+			Blood[0].gameObject.GetComponent<Renderer>().material = BloodMaterial;
+			Blood[1].gameObject.GetComponent<Renderer>().material = BloodMaterial;
+			Blood[2].gameObject.GetComponent<Renderer>().material = BloodMaterial;
 		}
 	}
 }

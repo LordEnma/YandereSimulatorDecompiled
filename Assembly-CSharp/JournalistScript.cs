@@ -251,7 +251,6 @@ public class JournalistScript : MonoBehaviour
 			}
 			if (Yandere.StudentManager.MurderTakingPlace)
 			{
-				Debug.Log("Journalist acknowledges that a mind-broken slave murder is walking around.");
 				if (Yandere.StudentManager.MindBrokenSlave.MurderSuicidePhase > 1 && Vector3.Distance(base.transform.position, Yandere.StudentManager.MindBrokenSlave.transform.position) < 10f)
 				{
 					Debug.Log("A mind-broken murder is taking place within 10 meters of the Journalist!");

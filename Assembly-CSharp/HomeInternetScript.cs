@@ -681,7 +681,6 @@ public class HomeInternetScript : MonoBehaviour
 	{
 		if (StudentGlobals.GetStudentDead(ID) || StudentGlobals.GetStudentKidnapped(ID) || StudentGlobals.GetStudentArrested(ID) || StudentGlobals.GetStudentExpelled(ID))
 		{
-			Debug.Log("Student #" + ID + " cannot post on the Internet because they are Dead/Kidnapped/Arrested/Expelled.");
 			NameLabels[ID].text = "Anonymous";
 			CurrentPortrait = AnonymousPortrait;
 			return;

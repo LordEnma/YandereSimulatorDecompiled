@@ -595,7 +595,7 @@ public class AdviceWindowScript : MonoBehaviour
 			}
 			else
 			{
-				Outcomes[4] = "Your rival did not appreciate appreciated recieving a " + Gifts[GiftID] + ", because the suitor already gave her one on a previous day.";
+				Outcomes[4] = "Your rival did not appreciate appreciated receiving a " + Gifts[GiftID] + ", because the suitor already gave her one on a previous day.";
 			}
 			GiftsInPossession[GiftID] = false;
 			GiftsGiven[GiftID] = true;

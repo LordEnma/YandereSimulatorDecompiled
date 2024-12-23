@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -45,6 +46,12 @@ public class GenericRivalBagScript : MonoBehaviour
 	public Texture[] DiaryTextures;
 
 	public UILabel[] Label;
+
+	public Renderer MyRenderer;
+
+	public MeshFilter MyMesh;
+
+	public Mesh ModernMesh;
 
 	public bool BorrowedBook;
 
@@ -148,6 +155,8 @@ public class GenericRivalBagScript : MonoBehaviour
 
 	public int Page = 1;
 
+	public int Week = 1;
+
 	public Vector3 CorrectPosition;
 
 	public Vector3 CorrectRotation;
@@ -163,6 +172,8 @@ public class GenericRivalBagScript : MonoBehaviour
 	public bool TamperedStatus;
 
 	public Font ModernFont;
+
+	public bool LoadTexture;
 
 	public GameObject TanHearts;
 
@@ -196,6 +207,12 @@ public class GenericRivalBagScript : MonoBehaviour
 
 	public TopicJson[] TopicData;
 
+	public string CustomDiary;
+
+	public string CustomSecret;
+
+	public string CustomPhotographer;
+
 	protected static string FolderPath => Path.Combine(Application.streamingAssetsPath, "JSON");
 
 	public void Start()
@@ -203,6 +220,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		if (!Initialized)
 		{
 			Eighties = GameGlobals.Eighties;
+			Week = DateGlobals.Week;
 			GrabRivalInfo();
 			Magazine.gameObject.SetActive(value: false);
 			MagazineButton.SetActive(value: false);
@@ -220,12 +238,32 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				DesiredTraits = ModernDesiredTraits;
 			}
+			else if (GameGlobals.CustomMode)
+			{
+				MyMesh.mesh = ModernMesh;
+				LoadTexture = true;
+			}
 			Initialized = true;
+		}
+	}
+
+	private IEnumerator LoadCustomTexture()
+	{
+		WWW NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Bookbags/RivalBag" + DateGlobals.Week + ".png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
+		{
+			MyRenderer.material.mainTexture = NewTexture.texture;
 		}
 	}
 
 	private void Update()
 	{
+		if (LoadTexture)
+		{
+			StartCoroutine(LoadCustomTexture());
+			LoadTexture = false;
+		}
 		if (!Window.activeInHierarchy)
 		{
 			if (Prompt.Circle[0].fillAmount != 0f)
@@ -810,21 +848,22 @@ public class GenericRivalBagScript : MonoBehaviour
 	public void GrabRivalInfo()
 	{
 		Rival = Prompt.Yandere.StudentManager.Students[Prompt.Yandere.StudentManager.RivalID];
-		int week = DateGlobals.Week;
-		if (week < 11)
+		Week = DateGlobals.Week;
+		if (Week < 11)
 		{
-			if (Eighties && !GameGlobals.CustomMode && week == 4)
+			if (Eighties && !GameGlobals.CustomMode && Week == 4)
 			{
 				NoBento = true;
 			}
-			int num = 10 + week;
+			int num = 10 + Week;
 			if (GameGlobals.CustomMode)
 			{
+				LoadDiary();
 				string value = File.ReadAllText(Path.Combine(FolderPath, "CustomTopics.json"));
 				TopicData = JsonConvert.DeserializeObject<TopicJson[]>(value);
 				JSON.Topics = TopicJson.LoadFromJson(Path.Combine(FolderPath, "CustomTopics.json"));
 			}
-			if (JSON.Topics[1].Topics == null)
+			if (JSON == null || JSON.Topics == null || JSON.Topics.Length == 0 || JSON.Topics[1] == null || JSON.Topics[1].Topics == null || JSON.Topics[1].Topics.Length == 0)
 			{
 				Debug.Log("Something went catastrophically wrong, and JSON.Topics is empty. Filling it up with default likes and dislikes.");
 				string contents = JsonConvert.SerializeObject(JsonScript.TopicAdapter(JSON.Topics));
@@ -870,7 +909,14 @@ public class GenericRivalBagScript : MonoBehaviour
 			}
 			if (GameGlobals.CustomMode)
 			{
-				DiaryLabelLeft.text = "My best friend asked me to name the 5 things I love the most. It was difficult, but I narrowed it down to:\n\n" + RivalLikes[1] + ", " + RivalLikes[2] + ", " + RivalLikes[3] + ", " + RivalLikes[4] + ", and " + RivalLikes[5] + ".\n\nNext, she wanted me to name my 5 least favorite things. I decided on:\n\n" + RivalDislikes[1] + ", " + RivalDislikes[2] + ", " + RivalDislikes[3] + ", " + RivalDislikes[4] + ", and " + RivalDislikes[5] + ".\n\nLast night, I had a nightmare that everyone at Akademi learned my most embarrassing secret:";
+				if (CustomDiary == "")
+				{
+					DiaryLabelLeft.text = "My best friend asked me to name the 5 things I love the most. It was difficult, but I narrowed it down to:\n\n[c][008000]" + RivalLikes[1] + ", " + RivalLikes[2] + ", " + RivalLikes[3] + ", " + RivalLikes[4] + ", and " + RivalLikes[5] + "[-][/c].\n\nNext, she wanted me to name my 5 least favorite things. I decided on:\n\n[c][800000]" + RivalDislikes[1] + ", " + RivalDislikes[2] + ", " + RivalDislikes[3] + ", " + RivalDislikes[4] + ", and " + RivalDislikes[5] + "[-][/c].\n\nLast night, I had a nightmare that everyone at Akademi learned my most embarrassing secret:";
+				}
+				else
+				{
+					DiaryLabelLeft.text = CustomDiary;
+				}
 			}
 			else if (Eighties)
 			{
@@ -916,6 +962,17 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				DiaryLabelBottom.text = DiaryEntryLeft[num];
 				DiaryLabelRight.text = DiaryEntryRight[num];
+				if (GameGlobals.CustomMode)
+				{
+					if (CustomSecret != "")
+					{
+						DiaryLabelBottom.text = CustomSecret;
+					}
+					if (CustomPhotographer != "")
+					{
+						DiaryLabelRight.text = CustomPhotographer;
+					}
+				}
 			}
 			else
 			{
@@ -1053,6 +1110,46 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				component.trueTypeFont = ModernFont;
 				component.fontSize = 75;
+			}
+		}
+	}
+
+	public void LoadDiary()
+	{
+		string path = Path.Combine(Application.streamingAssetsPath, "CustomMode/Diaries/Diary" + Week + ".txt");
+		if (File.Exists(path))
+		{
+			try
+			{
+				CustomDiary = File.ReadAllText(path);
+			}
+			catch
+			{
+				Debug.Log("Diary text not found.");
+			}
+		}
+		path = Path.Combine(Application.streamingAssetsPath, "CustomMode/Diaries/Secret" + Week + ".txt");
+		if (File.Exists(path))
+		{
+			try
+			{
+				CustomSecret = File.ReadAllText(path);
+			}
+			catch
+			{
+				Debug.Log("Secret text not found.");
+			}
+		}
+		path = Path.Combine(Application.streamingAssetsPath, "CustomMode/Diaries/Photographer" + Week + ".txt");
+		if (File.Exists(path))
+		{
+			try
+			{
+				CustomPhotographer = File.ReadAllText(path);
+			}
+			catch
+			{
+				Debug.Log("Photographer text not found.");
 			}
 		}
 	}

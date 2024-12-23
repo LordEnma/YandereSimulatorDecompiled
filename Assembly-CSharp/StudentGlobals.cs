@@ -130,6 +130,10 @@ public static class StudentGlobals
 
 	private const string Str_BlogKnown = "BlogKnown";
 
+	private const string Str_CustomFemaleUniform = "CustomFemaleUniform";
+
+	private const string Str_CustomMaleUniform = "CustomMaleUniform";
+
 	public static bool CustomSuitor
 	{
 		get
@@ -595,6 +599,30 @@ public static class StudentGlobals
 		set
 		{
 			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_UpdateRivalReputation", value);
+		}
+	}
+
+	public static bool CustomFemaleUniform
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_CustomFemaleUniform");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_CustomFemaleUniform", value);
+		}
+	}
+
+	public static bool CustomMaleUniform
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_CustomMaleUniform");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_CustomMaleUniform", value);
 		}
 	}
 
@@ -1081,5 +1109,7 @@ public static class StudentGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_PrisonerChosen");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_PreviousSanity");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_PreviousPrisoner");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CustomFemaleUniform");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_CustomMaleUniform");
 	}
 }

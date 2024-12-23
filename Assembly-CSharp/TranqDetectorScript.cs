@@ -73,12 +73,6 @@ public class TranqDetectorScript : MonoBehaviour
 					{
 						FollowerIcon.spriteName = "No";
 					}
-					else if (Yandere.Follower.Male)
-					{
-						KidnappingLabel.text = "You cannot kidnap male students at this point in time.";
-						FollowerIcon.spriteName = "No";
-						CannotKidnap = true;
-					}
 					else
 					{
 						KidnappingLabel.text = "Kidnapping Checklist";
@@ -132,37 +126,33 @@ public class TranqDetectorScript : MonoBehaviour
 			return;
 		}
 		Debug.Log("StopChecking is false.");
-		if (CannotKidnap)
+		if (!CannotKidnap)
 		{
-			return;
-		}
-		Debug.Log("CannotKidnap is false.");
-		if (TranquilizerIcon.spriteName == "Yes" && FollowerIcon.spriteName == "Yes" && BiologyIcon.spriteName == "Yes" && SyringeIcon.spriteName == "Yes" && DoorIcon.spriteName == "Yes")
-		{
-			Debug.Log("All of the icons said ''Yes''.");
-			AudioSource component = GetComponent<AudioSource>();
-			component.clip = TranqClips[Random.Range(0, TranqClips.Length)];
-			component.Play();
-			Door.Prompt.Hide();
-			Door.Prompt.enabled = false;
-			Door.enabled = false;
-			Door.DoorColliders[0].isTrigger = false;
-			Door.DoorColliders[1].isTrigger = false;
-			DoorBlocker.enabled = true;
-			Yandere.Inventory.SedativePoisons--;
-			if (!Yandere.Follower.Male)
+			Debug.Log("CannotKidnap is false.");
+			if (TranquilizerIcon.spriteName == "Yes" && FollowerIcon.spriteName == "Yes" && BiologyIcon.spriteName == "Yes" && SyringeIcon.spriteName == "Yes" && DoorIcon.spriteName == "Yes")
 			{
+				Debug.Log("All of the icons said ''Yes''.");
+				AudioSource component = GetComponent<AudioSource>();
+				component.clip = TranqClips[Random.Range(0, TranqClips.Length)];
+				component.Play();
+				Door.Prompt.Hide();
+				Door.Prompt.enabled = false;
+				Door.enabled = false;
+				Door.DoorColliders[0].isTrigger = false;
+				Door.DoorColliders[1].isTrigger = false;
+				DoorBlocker.enabled = true;
+				Yandere.Inventory.SedativePoisons--;
 				Yandere.CanTranq = true;
+				Yandere.EquippedWeapon.Type = WeaponType.Syringe;
+				Yandere.AttackManager.Stealth = true;
+				StopChecking = true;
+				TranquilizerIcon.spriteName = "No";
+				FollowerIcon.spriteName = "No";
+				BiologyIcon.spriteName = "No";
+				SyringeIcon.spriteName = "No";
+				DoorIcon.spriteName = "No";
+				TranqCase.StudentToCheckFor = Yandere.Follower;
 			}
-			Yandere.EquippedWeapon.Type = WeaponType.Syringe;
-			Yandere.AttackManager.Stealth = true;
-			StopChecking = true;
-			TranquilizerIcon.spriteName = "No";
-			FollowerIcon.spriteName = "No";
-			BiologyIcon.spriteName = "No";
-			SyringeIcon.spriteName = "No";
-			DoorIcon.spriteName = "No";
-			TranqCase.StudentToCheckFor = Yandere.Follower;
 		}
 	}
 

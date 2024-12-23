@@ -114,4 +114,7 @@ public class MiscJson : JsonData
 
 	[SerializeField]
 	public int[] RivalTasks;
+
+	[SerializeField]
+	public int[] PortraitPoses;
 }

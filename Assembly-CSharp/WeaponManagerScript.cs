@@ -446,18 +446,28 @@ public class WeaponManagerScript : MonoBehaviour
 
 	public void UpdateWeaponMaterials()
 	{
+		Texture value = ((!GameGlobals.CensorBlood) ? Blood : Flower);
 		for (int i = 0; i < Weapons.Length; i++)
 		{
-			if (i != 2 && Weapons[i].MyRenderer != null)
+			if (!(Weapons[i] != null))
+			{
+				continue;
+			}
+			if (Weapons[i].MyRenderer != null)
 			{
 				Material[] materials = Weapons[i].MyRenderer.materials;
 				foreach (Material obj in materials)
 				{
 					obj.shader = OverlayShader;
-					obj.SetTexture("_OverlayTex", Blood);
+					obj.SetTexture("_OverlayTex", value);
 					obj.SetFloat("_BlendAmount", 0f);
 					obj.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
 				}
+			}
+			if (i == 2)
+			{
+				Shader shader = Shader.Find("Legacy Shaders/Transparent/Diffuse");
+				Weapons[i].MyRenderer.materials[0].shader = shader;
 			}
 		}
 	}

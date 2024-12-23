@@ -160,10 +160,10 @@ public class StreetShopScript : MonoBehaviour
 				{
 					EightiesBarber();
 				}
-			}
-			if (GameGlobals.CustomMode)
-			{
-				EightiesSpeeches[4] = "Sorry, I can't give credit. Come back when you're a little, mmm... richer.";
+				if (GameGlobals.CustomMode)
+				{
+					EightiesSpeeches[4] = "Sorry, I can't give credit. Come back when you're a little, mmm... richer.";
+				}
 			}
 		}
 		else

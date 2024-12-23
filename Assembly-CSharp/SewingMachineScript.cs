@@ -111,6 +111,10 @@ public class SewingMachineScript : MonoBehaviour
 			Prompt.Circle[2].fillAmount = 1f;
 			if (!Yandere.Chased && Yandere.Chasers == 0)
 			{
+				if (Yandere.PickUp != null && Yandere.PickUp.FoldedUniform == null)
+				{
+					Yandere.EmptyHands();
+				}
 				Yandere.CharacterAnimation.CrossFade("f02_sewing_00");
 				Yandere.MyController.radius = 0.1f;
 				Yandere.CanMove = false;

@@ -865,4 +865,32 @@ public class CombatMinigameScript : MonoBehaviour
 		Yandere.Chased = false;
 		CombatPanel.alpha = 0f;
 	}
+
+	public void CheckForWalls()
+	{
+		Yandere.TooCloseToWall = false;
+		Yandere.WallToRight = false;
+		Yandere.WallBehind = false;
+		Yandere.CustomThreshold = 2f;
+		Yandere.Direction = 0;
+		while (Yandere.Direction < 3)
+		{
+			Yandere.Direction++;
+			Yandere.CheckForWall();
+		}
+		if (Yandere.WallToRight || Yandere.WallBehind)
+		{
+			Debug.Log("Too close to a wall; gotta move her.");
+			Yandere.MyController.Move(Yandere.transform.right * Time.deltaTime * -1f);
+		}
+		Vector3 vector = Delinquent.transform.position + Delinquent.transform.forward;
+		if (Vector3.Distance(Yandere.transform.position, vector) > 0.1f)
+		{
+			Vector3 normalized = (vector - Yandere.transform.position).normalized;
+			Yandere.MyController.Move(normalized * Time.deltaTime);
+			Yandere.transform.LookAt(Delinquent.transform);
+			Physics.SyncTransforms();
+		}
+		Yandere.CustomThreshold = 0f;
+	}
 }

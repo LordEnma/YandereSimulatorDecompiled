@@ -107,11 +107,21 @@ public class TranqCaseScript : MonoBehaviour
 		else
 		{
 			Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 10f);
-			Ragdoll.Student.OsanaHairL.transform.localScale = Vector3.MoveTowards(Ragdoll.Student.OsanaHairL.transform.localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
-			Ragdoll.Student.OsanaHairR.transform.localScale = Vector3.MoveTowards(Ragdoll.Student.OsanaHairR.transform.localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
+			if (!Ragdoll.Male)
+			{
+				Ragdoll.Student.OsanaHairL.transform.localScale = Vector3.MoveTowards(Ragdoll.Student.OsanaHairL.transform.localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
+				Ragdoll.Student.OsanaHairR.transform.localScale = Vector3.MoveTowards(Ragdoll.Student.OsanaHairR.transform.localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
+			}
+			else
+			{
+				Ragdoll.Student.transform.position = Vector3.Lerp(Ragdoll.Student.transform.position, new Vector3(12.3f, 0f, 81.33334f), Time.deltaTime * 10f);
+			}
 			if (Rotation < 1f)
 			{
-				Ragdoll.Student.Cosmetic.FemaleHair[Ragdoll.Student.Cosmetic.Hairstyle].SetActive(value: false);
+				if (!Ragdoll.Male)
+				{
+					Ragdoll.Student.Cosmetic.FemaleHair[Ragdoll.Student.Cosmetic.Hairstyle].SetActive(value: false);
+				}
 				DoorBlocker.enabled = false;
 				Door.Prompt.enabled = true;
 				Door.enabled = true;

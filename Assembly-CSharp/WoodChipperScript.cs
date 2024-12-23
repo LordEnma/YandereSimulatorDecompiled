@@ -70,6 +70,8 @@ public class WoodChipperScript : MonoBehaviour
 
 	public AudioSource MyAudio;
 
+	public Material CensorMaterial;
+
 	private void Start()
 	{
 		MyAudio = GetComponent<AudioSource>();
@@ -391,6 +393,10 @@ public class WoodChipperScript : MonoBehaviour
 		{
 			Bucket.Bucket.UpdateAppearance = true;
 		}
+		if (Kiln)
+		{
+			Panel.SetActive(value: true);
+		}
 		Timer += Time.deltaTime;
 		if (Timer >= 10f)
 		{
@@ -412,6 +418,13 @@ public class WoodChipperScript : MonoBehaviour
 		}
 		else if (Timer >= 0.33333f && Bucket != null && !Bucket.Bucket.Full)
 		{
+			if (GameGlobals.CensorBlood)
+			{
+				ParticleSystemRenderer component = BloodSpray.GetComponent<ParticleSystemRenderer>();
+				component.material = CensorMaterial;
+				component.material.color = Color.white;
+				BloodSpray.startColor = Color.white;
+			}
 			BloodSpray.GetComponent<AudioSource>().Play();
 			BloodSpray.Play();
 			Bucket.Bucket.Bloodiness = 100f;

@@ -1972,6 +1972,8 @@ public class StudentScript : MonoBehaviour
 
 	public string ReturnAction;
 
+	public Material OriginalBloodMaterial;
+
 	public bool Alive => DeathType == DeathType.None;
 
 	private SubtitleType LostPhoneSubtitleType
@@ -4898,8 +4900,8 @@ public class StudentScript : MonoBehaviour
 				if (Male)
 				{
 					Cosmetic.MyRenderer.materials[Cosmetic.FaceID].SetFloat("_BlendAmount", 0f);
-					PinkSeifuku.SetActive(value: false);
 				}
+				PinkSeifuku.SetActive(value: false);
 				if (!Paired)
 				{
 					Pathfinding.canSearch = true;
@@ -8617,7 +8619,14 @@ public class StudentScript : MonoBehaviour
 							}
 							else if (Actions[Phase] == StudentActionType.Sew)
 							{
-								CharacterAnimation.CrossFade("sewing_00");
+								if (Male)
+								{
+									CharacterAnimation.CrossFade("sewing_00");
+								}
+								else
+								{
+									CharacterAnimation.CrossFade("f02_sewing_00");
+								}
 								PinkSeifuku.SetActive(value: true);
 								if (SewTimer < 10f && StudentManager.TaskManager.TaskStatus[8] == 3)
 								{
@@ -9358,6 +9367,10 @@ public class StudentScript : MonoBehaviour
 		}
 		else
 		{
+			if (SentToLocker)
+			{
+				Pathfinding.speed = 4f;
+			}
 			if (CurrentDestination != null)
 			{
 				DistanceToDestination = Vector3.Distance(base.transform.position, CurrentDestination.position);
@@ -9436,6 +9449,7 @@ public class StudentScript : MonoBehaviour
 							if (AlarmTimer == 0f)
 							{
 								Debug.Log("Alarmed is being set to false from here.");
+								FocusOnYandere = false;
 								WalkBack = false;
 								Alarmed = false;
 							}
@@ -10812,7 +10826,6 @@ public class StudentScript : MonoBehaviour
 											Yandere.CharacterAnimation["f02_teacherCounterA_00"].time = 5f;
 											Yandere.ShoulderCamera.Timer = 5f;
 											Yandere.ShoulderCamera.Phase = 3;
-											Police.Show = false;
 											CheckForKnifeInInventory();
 											if ((Yandere.Armed && Yandere.Class.PhysicalGrade + Yandere.Class.PhysicalBonus > 0 && Yandere.EquippedWeapon.Type == WeaponType.Knife) || (Yandere.Club == ClubType.MartialArts && Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Knife))
 											{
@@ -10823,6 +10836,7 @@ public class StudentScript : MonoBehaviour
 												Debug.Log("A game over will now occur.");
 												Yandere.CameraEffects.MurderWitnessed();
 												Yandere.Jukebox.GameOver();
+												Police.Show = false;
 											}
 										}
 									}
@@ -11565,6 +11579,10 @@ public class StudentScript : MonoBehaviour
 								}
 							}
 							DistractTimer -= Time.deltaTime;
+							if (StudentID == StudentManager.SuitorID && StudentManager.DatingMinigame.SuitorAndRivalTalking && !Yandere.CanMove && DistractTimer <= 0f)
+							{
+								DistractTimer = 1f;
+							}
 							if (DistractTimer <= 0f)
 							{
 								if (DistractionTarget.SunbathePhase == 0 || CurrentAction != StudentActionType.GravurePose)
@@ -11687,7 +11705,9 @@ public class StudentScript : MonoBehaviour
 						{
 							if (MurderSuicidePhase == 0)
 							{
-								if (CharacterAnimation["f02_brokenStandUp_00"].time >= CharacterAnimation["f02_brokenStandUp_00"].length)
+								string text9 = "";
+								text9 = (Male ? "brokenStandUp_00" : "f02_brokenStandUp_00");
+								if (CharacterAnimation[text9].time >= CharacterAnimation[text9].length)
 								{
 									MurderSuicidePhase++;
 									Pathfinding.canSearch = true;
@@ -11702,9 +11722,13 @@ public class StudentScript : MonoBehaviour
 								{
 									CharacterAnimation.CrossFade(WalkAnim);
 								}
-								else
+								else if (Yandere.Succubus)
 								{
 									CharacterAnimation.CrossFade(RunAnim);
+								}
+								else
+								{
+									CharacterAnimation.CrossFade(WalkAnim);
 								}
 								Pathfinding.canSearch = true;
 								Pathfinding.canMove = true;
@@ -12203,15 +12227,25 @@ public class StudentScript : MonoBehaviour
 			}
 			if (Suicide)
 			{
+				string animation = "f02_suicide_00";
+				if (Male)
+				{
+					animation = "suicide_00";
+				}
 				if (MurderSuicidePhase == 0)
 				{
-					if (CharacterAnimation["f02_brokenStandUp_00"].time >= CharacterAnimation["f02_brokenStandUp_00"].length)
+					string text10 = "f02_brokenStandUp_00";
+					if (Male)
+					{
+						text10 = "brokenStandUp_00";
+					}
+					if (CharacterAnimation[text10].time >= CharacterAnimation[text10].length)
 					{
 						MurderSuicidePhase++;
 						Pathfinding.canSearch = false;
 						Pathfinding.canMove = false;
 						Pathfinding.speed = 0f;
-						CharacterAnimation.CrossFade("f02_suicide_00");
+						CharacterAnimation.CrossFade(animation);
 					}
 				}
 				else if (MurderSuicidePhase == 1)
@@ -12221,22 +12255,25 @@ public class StudentScript : MonoBehaviour
 						Pathfinding.canSearch = false;
 						Pathfinding.canMove = false;
 						Pathfinding.speed = 0f;
-						CharacterAnimation.CrossFade("f02_suicide_00");
+						CharacterAnimation.CrossFade(animation);
 					}
-					if (CharacterAnimation["f02_suicide_00"].time >= 11f / 15f)
+					if (CharacterAnimation[animation].time >= 11f / 15f)
 					{
 						MyWeapon.transform.parent = ItemParent;
 						MyWeapon.transform.localScale = new Vector3(1f, 1f, 1f);
 						MyWeapon.transform.localPosition = Vector3.zero;
 						MyWeapon.transform.localEulerAngles = Vector3.zero;
-						Broken.Subtitle.text = string.Empty;
-						Broken.Done = true;
+						if (Broken != null)
+						{
+							Broken.Subtitle.text = string.Empty;
+							Broken.Done = true;
+						}
 						MurderSuicidePhase++;
 					}
 				}
 				else if (MurderSuicidePhase == 2)
 				{
-					if (CharacterAnimation["f02_suicide_00"].time >= 4.1666665f)
+					if (CharacterAnimation[animation].time >= 4.1666665f)
 					{
 						Debug.Log("Stabbed neck!");
 						UnityEngine.Object.Instantiate(StabBloodEffect, MyWeapon.transform.position, Quaternion.identity);
@@ -12253,7 +12290,7 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (MurderSuicidePhase == 3)
 				{
-					if (CharacterAnimation["f02_suicide_00"].time >= 6.1666665f)
+					if (CharacterAnimation[animation].time >= 6.1666665f)
 					{
 						Debug.Log("BLOOD FOUNTAIN! (After losing struggle.)");
 						if (!Male)
@@ -12268,13 +12305,13 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (MurderSuicidePhase == 4)
 				{
-					if (CharacterAnimation["f02_suicide_00"].time >= 7f)
+					if (CharacterAnimation[animation].time >= 7f)
 					{
 						Ragdoll.BloodPoolSpawner.SpawnPool(base.transform);
 						MurderSuicidePhase++;
 					}
 				}
-				else if (MurderSuicidePhase == 5 && CharacterAnimation["f02_suicide_00"].time >= CharacterAnimation["f02_suicide_00"].length)
+				else if (MurderSuicidePhase == 5 && CharacterAnimation[animation].time >= CharacterAnimation[animation].length)
 				{
 					MyWeapon.transform.parent = null;
 					MyWeapon.DoNotRelocate = true;
@@ -12287,9 +12324,12 @@ public class StudentScript : MonoBehaviour
 					}
 					BecomeRagdoll();
 					DeathType = DeathType.Weapon;
-					Broken.HairPhysics[0].enabled = true;
-					Broken.HairPhysics[1].enabled = true;
-					Broken.enabled = false;
+					if (Broken != null)
+					{
+						Broken.HairPhysics[0].enabled = true;
+						Broken.HairPhysics[1].enabled = true;
+						Broken.enabled = false;
+					}
 					StudentManager.MurderTakingPlace = false;
 					if (StudentID > 10 && StudentID < 21)
 					{
@@ -14980,7 +15020,7 @@ public class StudentScript : MonoBehaviour
 						EndAlarm();
 					}
 				}
-				if (Alarm > 0f || AlarmTimer > 0f || Yandere.Armed || Yandere.Shoved || Stripping || Waiting || InEvent || SentHome || Threatened || Guarding || VisitSenpaiDesk || (Distracted && !Drownable) || (StudentID == 1 && !flag2) || Yandere.YandereVision || TakingOutTrash)
+				if (Alarm > 0f || AlarmTimer > 0f || Yandere.Armed || Yandere.Shoved || Stripping || Waiting || InEvent || SentHome || Threatened || Guarding || VisitSenpaiDesk || (Distracted && !Drownable) || (StudentID == 1 && !flag2) || Yandere.YandereVision || TakingOutTrash || Yandere.transform.position.z < -96f)
 				{
 					if (Alarm > 0f)
 					{
@@ -16079,7 +16119,10 @@ public class StudentScript : MonoBehaviour
 				SprintAnim = OriginalSprintAnim;
 				DoNotMourn = true;
 				StudentToMourn = Yandere.TargetStudent;
-				Corpse = Yandere.TargetStudent.Ragdoll;
+				if (Yandere.TargetStudent != null)
+				{
+					Corpse = Yandere.TargetStudent.Ragdoll;
+				}
 			}
 			if ((Club != ClubType.Delinquent || (Club == ClubType.Delinquent && Injured)) && Yandere.TargetStudent == null && LovedOneIsTargeted(Yandere.NearestCorpseID))
 			{
@@ -18283,20 +18326,20 @@ public class StudentScript : MonoBehaviour
 				BloodPool = null;
 			}
 		}
+		if (Following)
+		{
+			StudentManager.TranqDetector.TranqCheck();
+		}
 		if (!Male)
 		{
-			if (Following)
-			{
-				StudentManager.TranqDetector.TranqCheck();
-			}
 			CharacterAnimation["f02_smile_00"].weight = 0f;
 			if (CharacterAnimation[ShyAnim] != null)
 			{
 				CharacterAnimation[ShyAnim].weight = 0f;
 			}
-			SmartPhone.SetActive(value: false);
-			Shy = false;
 		}
+		SmartPhone.SetActive(value: false);
+		Shy = false;
 		if (WitnessCamera != null)
 		{
 			WitnessCamera.Show = false;
@@ -18798,7 +18841,7 @@ public class StudentScript : MonoBehaviour
 					Debug.Log("Ain't a bully.");
 				}
 			}
-			if (Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && Yandere.PickUp.BodyPart.StudentID > 80 && Yandere.PickUp.BodyPart.StudentID < 86)
+			if (!StudentManager.Eighties && Yandere.PickUp != null && Yandere.PickUp.BodyPart != null && Yandere.PickUp.BodyPart.StudentID > 80 && Yandere.PickUp.BodyPart.StudentID < 86)
 			{
 				Debug.Log("At this moment, a delinquent is reacting to the murder of a bully. 4");
 				ScaredAnim = EvilWitnessAnim;
@@ -19204,6 +19247,7 @@ public class StudentScript : MonoBehaviour
 				IgnoringPettyActions = true;
 				DistanceToDestination = 1f;
 				WitnessRivalDiePhase = 3;
+				Confessing = false;
 				Routine = false;
 				TargetDistance = 0.5f;
 			}
@@ -20203,7 +20247,14 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (scheduleBlock.destination == "LockerRoom")
 			{
-				Destinations[ID] = StudentManager.MaleLockerRoomChangingSpot;
+				if (Male)
+				{
+					Destinations[ID] = StudentManager.MaleLockerRoomChangingSpot;
+				}
+				else
+				{
+					Destinations[ID] = StudentManager.FemaleLockerRoomChangingSpot;
+				}
 			}
 			else if (scheduleBlock.destination == "LunchWitnessPosition")
 			{
@@ -20368,7 +20419,7 @@ public class StudentScript : MonoBehaviour
 			{
 				if (StudentID == 26)
 				{
-					Debug.Log("Somehow, this guy's shit is being set to ''Socializing''?");
+					Debug.Log("One of this character's Actions was set to ''Socializing.'' This may produce a problem.");
 				}
 				Actions[ID] = StudentActionType.Socializing;
 			}
@@ -21582,8 +21633,12 @@ public class StudentScript : MonoBehaviour
 				MyRenderer.SetBlendShapeWeight(0, 20 * (6 - ClubMemberID));
 				MyRenderer.SetBlendShapeWeight(1, 20 * (6 - ClubMemberID));
 				MyRenderer.materials[0].mainTexture = Cosmetic.Trunks[StudentID];
-				MyRenderer.materials[1].mainTexture = Cosmetic.FaceTexture;
-				MyRenderer.materials[2].mainTexture = Cosmetic.Trunks[StudentID];
+				MyRenderer.materials[1].mainTexture = Cosmetic.Trunks[StudentID];
+				MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
+				if (Cosmetic.SkinColor > 0)
+				{
+					MyRenderer.materials[0].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+				}
 			}
 			else
 			{
@@ -21594,6 +21649,7 @@ public class StudentScript : MonoBehaviour
 					{
 						MyRenderer.materials[0].mainTexture = Cosmetic.GanguroSwimsuitTextures[BullyID];
 						MyRenderer.materials[1].mainTexture = Cosmetic.GanguroSwimsuitTextures[BullyID];
+						MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
 						Cosmetic.RightWristband.SetActive(value: false);
 						Cosmetic.LeftWristband.SetActive(value: false);
 						Cosmetic.Bookbag.SetActive(value: false);
@@ -21603,8 +21659,12 @@ public class StudentScript : MonoBehaviour
 					{
 						MyRenderer.materials[0].mainTexture = SwimsuitTexture;
 						MyRenderer.materials[1].mainTexture = SwimsuitTexture;
+						MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
+						if (Cosmetic.SkinColor > 0)
+						{
+							MyRenderer.materials[0].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+						}
 					}
-					MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
 					MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 					MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 					MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
@@ -21620,6 +21680,7 @@ public class StudentScript : MonoBehaviour
 		}
 		else if (Schoolwear == 3)
 		{
+			Debug.Log("A student is now changing into a Gym Uniform.");
 			MyRenderer.sharedMesh = GymUniform;
 			if (StudentManager.Eighties)
 			{
@@ -21627,7 +21688,7 @@ public class StudentScript : MonoBehaviour
 			}
 			if (!Male)
 			{
-				MyRenderer.materials[0].mainTexture = GymTexture;
+				MyRenderer.materials[0].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
 				MyRenderer.materials[1].mainTexture = GymTexture;
 				MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
 				if (Club == ClubType.Bully)
@@ -21646,7 +21707,7 @@ public class StudentScript : MonoBehaviour
 		if (!Male)
 		{
 			Cosmetic.Stockings = ((Schoolwear == 1) ? Cosmetic.OriginalStockings : string.Empty);
-			StartCoroutine(Cosmetic.PutOnStockings());
+			Cosmetic.PutOnStockings();
 			if (GameGlobals.CensorPanties)
 			{
 				Cosmetic.CensorPanties();
@@ -21822,6 +21883,7 @@ public class StudentScript : MonoBehaviour
 
 	public void ChangeClubwear()
 	{
+		Debug.Log("Student #" + StudentID + ", " + Name + ", is now firing ChangeClubwear().");
 		if (!ClubAttire)
 		{
 			Cosmetic.RemoveCensor();
@@ -21851,6 +21913,10 @@ public class StudentScript : MonoBehaviour
 					MyRenderer.materials[0].mainTexture = Cosmetic.FaceTexture;
 					MyRenderer.materials[1].mainTexture = JudoGiTexture;
 					MyRenderer.materials[2].mainTexture = JudoGiTexture;
+					if (Cosmetic.SkinColor > 0)
+					{
+						MyRenderer.materials[1].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+					}
 					SkirtCollider.gameObject.SetActive(value: false);
 					PantyCollider.enabled = false;
 					MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -21860,6 +21926,10 @@ public class StudentScript : MonoBehaviour
 					MyRenderer.materials[0].mainTexture = JudoGiTexture;
 					MyRenderer.materials[1].mainTexture = Cosmetic.FaceTexture;
 					MyRenderer.materials[2].mainTexture = JudoGiTexture;
+					if (Cosmetic.SkinColor > 0)
+					{
+						MyRenderer.materials[0].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+					}
 				}
 				if (Armband != null)
 				{
@@ -21879,22 +21949,25 @@ public class StudentScript : MonoBehaviour
 				}
 				if (Clock.Period < 3 || StudentManager.PoolClosed)
 				{
-					if (StudentManager.Eighties)
-					{
-						GymTexture = EightiesGymTexture;
-					}
+					Debug.Log("A Sports Club student is now changing clothing...");
+					GymTexture = EightiesGymTexture;
 					MyRenderer.sharedMesh = GymUniform;
 					if (Male)
 					{
 						MyRenderer.materials[0].mainTexture = GymTexture;
-						MyRenderer.materials[2].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinID];
+						MyRenderer.materials[2].mainTexture = GymTexture;
 						MyRenderer.materials[1].mainTexture = Cosmetic.FaceTexture;
+						MyRenderer.materials[2].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
 					}
 					else
 					{
 						MyRenderer.materials[0].mainTexture = GymTexture;
 						MyRenderer.materials[1].mainTexture = GymTexture;
 						MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
+						if (Cosmetic.SkinColor > 0)
+						{
+							MyRenderer.materials[0].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+						}
 					}
 					if (Armband != null)
 					{
@@ -21918,8 +21991,12 @@ public class StudentScript : MonoBehaviour
 					MyRenderer.sharedMesh = SwimmingTrunks;
 					MyRenderer.SetBlendShapeWeight(0, 20 * (6 - ClubMemberID));
 					MyRenderer.materials[0].mainTexture = Cosmetic.Trunks[StudentID];
-					MyRenderer.materials[1].mainTexture = Cosmetic.FaceTexture;
-					MyRenderer.materials[2].mainTexture = Cosmetic.Trunks[StudentID];
+					MyRenderer.materials[1].mainTexture = Cosmetic.Trunks[StudentID];
+					MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
+					if (Cosmetic.SkinColor > 0)
+					{
+						MyRenderer.materials[0].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+					}
 				}
 				else
 				{
@@ -21928,6 +22005,10 @@ public class StudentScript : MonoBehaviour
 					MyRenderer.materials[0].mainTexture = SwimsuitTexture;
 					MyRenderer.materials[1].mainTexture = SwimsuitTexture;
 					MyRenderer.materials[2].mainTexture = Cosmetic.FaceTexture;
+					if (Cosmetic.SkinColor > 0)
+					{
+						MyRenderer.materials[0].mainTexture = Cosmetic.SkinTextures[Cosmetic.SkinColor];
+					}
 					MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
 					MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 					MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
@@ -22569,6 +22650,7 @@ public class StudentScript : MonoBehaviour
 		}
 		else
 		{
+			CharacterAnimation.CrossFade("brokenStandUp_00");
 			MurderSuicideAnim = "murderSuicide_00";
 		}
 		if (HuntTarget != this)
@@ -22655,6 +22737,7 @@ public class StudentScript : MonoBehaviour
 			Routine = false;
 			Shoving = true;
 			NoTalk = false;
+			ReadPhase = 0;
 			Patience--;
 			if (StudentManager.BloodReporter == this)
 			{
@@ -22768,6 +22851,10 @@ public class StudentScript : MonoBehaviour
 			return;
 		}
 		bool flag = false;
+		if (Teacher)
+		{
+			NoBreakUp = true;
+		}
 		if (Yandere.DelinquentFighting && !NoBreakUp && !StudentManager.CombatMinigame.Delinquent.WitnessedMurder)
 		{
 			flag = true;
@@ -23038,12 +23125,21 @@ public class StudentScript : MonoBehaviour
 	{
 		ChameleonBonus = 0f;
 		Chameleon = false;
-		if (Yandere != null && ((Yandere.Persona == YanderePersonaType.Scholarly && Persona == PersonaType.TeachersPet) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Science) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Art) || (Yandere.Persona == YanderePersonaType.Chill && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Photography) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Gaming) || (Yandere.Persona == YanderePersonaType.Confident && Persona == PersonaType.Heroic) || (Yandere.Persona == YanderePersonaType.Confident && Club == ClubType.MartialArts) || (Yandere.Persona == YanderePersonaType.Elegant && Club == ClubType.Drama) || (Yandere.Persona == YanderePersonaType.Girly && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Girly && Club == ClubType.Cooking) || (Yandere.Persona == YanderePersonaType.Graceful && Club == ClubType.Gardening) || (Yandere.Persona == YanderePersonaType.Haughty && Club == ClubType.Bully) || (Yandere.Persona == YanderePersonaType.Lively && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.LightMusic) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.Sports) || (Yandere.Persona == YanderePersonaType.Shy && Persona == PersonaType.Loner) || (Yandere.Persona == YanderePersonaType.Shy && Club == ClubType.Occult) || (Yandere.Persona == YanderePersonaType.Shy && Shy) || (Yandere.Persona == YanderePersonaType.Tough && Persona == PersonaType.Spiteful) || (Yandere.Persona == YanderePersonaType.Tough && Club == ClubType.Delinquent) || (StudentManager.CustomMode && Yandere.AnimSetID == AnimSetID)))
+		bool flag = false;
+		if (Yandere != null)
 		{
-			Debug.Log("Chameleon is true!");
 			Debug.Log("Yandere.AnimSetID is " + Yandere.AnimSetID + " and Student's AnimSetID is " + AnimSetID);
-			ChameleonBonus = VisionDistance * 0.5f;
-			Chameleon = true;
+			Debug.Log("Yandere.Persona is: " + Yandere.Persona);
+			if (StudentManager.Eighties && !StudentManager.CustomMode && StudentID == 20)
+			{
+				flag = true;
+			}
+			if ((Yandere.Persona == YanderePersonaType.Scholarly && Persona == PersonaType.TeachersPet) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Science) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Art) || (Yandere.Persona == YanderePersonaType.Chill && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Photography) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Gaming) || (Yandere.Persona == YanderePersonaType.Confident && Persona == PersonaType.Heroic) || (Yandere.Persona == YanderePersonaType.Confident && Club == ClubType.MartialArts) || (Yandere.Persona == YanderePersonaType.Elegant && Club == ClubType.Drama) || (Yandere.Persona == YanderePersonaType.Girly && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Girly && Club == ClubType.Cooking) || (Yandere.Persona == YanderePersonaType.Graceful && Club == ClubType.Gardening) || (Yandere.Persona == YanderePersonaType.Haughty && Club == ClubType.Bully) || (Yandere.Persona == YanderePersonaType.Lively && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.LightMusic) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.Sports) || (Yandere.Persona == YanderePersonaType.Shy && Persona == PersonaType.Loner) || (Yandere.Persona == YanderePersonaType.Shy && Club == ClubType.Occult) || (Yandere.Persona == YanderePersonaType.Shy && Shy) || (Yandere.Persona == YanderePersonaType.Tough && Persona == PersonaType.Spiteful) || (Yandere.Persona == YanderePersonaType.Tough && Club == ClubType.Delinquent) || (Yandere.Persona == YanderePersonaType.Strict && flag) || (StudentManager.CustomMode && Yandere.AnimSetID == AnimSetID))
+			{
+				Debug.Log("Chameleon is true!");
+				ChameleonBonus = VisionDistance * 0.5f;
+				Chameleon = true;
+			}
 		}
 	}
 
@@ -23566,10 +23662,6 @@ public class StudentScript : MonoBehaviour
 			Handkerchief.SetActive(value: false);
 			GiftBag.SetActive(value: false);
 		}
-		else
-		{
-			PinkSeifuku.SetActive(value: false);
-		}
 		if (!flag)
 		{
 			SmartPhone.SetActive(value: false);
@@ -23580,6 +23672,7 @@ public class StudentScript : MonoBehaviour
 		}
 		Chopsticks[0].SetActive(value: false);
 		Chopsticks[1].SetActive(value: false);
+		PinkSeifuku.SetActive(value: false);
 		Sketchbook.SetActive(value: false);
 		OccultBook.SetActive(value: false);
 		Paintbrush.SetActive(value: false);
@@ -24769,6 +24862,7 @@ public class StudentScript : MonoBehaviour
 		Chopsticks[1].SetActive(value: false);
 		Handkerchief.SetActive(value: false);
 		PepperSpray.SetActive(value: false);
+		PinkSeifuku.SetActive(value: false);
 		RetroCamera.SetActive(value: false);
 		WateringCan.SetActive(value: false);
 		Sketchbook.SetActive(value: false);
@@ -24868,7 +24962,6 @@ public class StudentScript : MonoBehaviour
 	{
 		MapMarker.gameObject.SetActive(value: false);
 		DelinquentSpeechLines.Stop();
-		PinkSeifuku.SetActive(value: false);
 		Earpiece.SetActive(value: false);
 		PickRandomGossipAnim();
 		ParticleSystem[] liquidEmitters = LiquidEmitters;
@@ -25842,6 +25935,30 @@ public class StudentScript : MonoBehaviour
 			Yandere.MainCamera.transform.position = new Vector3(0.5f, 101.5f, -1f);
 			Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, 0f, 0f);
 			Physics.SyncTransforms();
+		}
+	}
+
+	public void UpdateBlood()
+	{
+		if (OriginalBloodMaterial == null)
+		{
+			OriginalBloodMaterial = BloodMaterial;
+		}
+		if (StudentManager.CensorBlood)
+		{
+			BloodMaterial = CensorMaterial;
+			if (LiquidProjector.material == OriginalBloodMaterial)
+			{
+				LiquidProjector.material = BloodMaterial;
+			}
+		}
+		else
+		{
+			BloodMaterial = OriginalBloodMaterial;
+			if (LiquidProjector.material == CensorMaterial)
+			{
+				LiquidProjector.material = BloodMaterial;
+			}
 		}
 	}
 }

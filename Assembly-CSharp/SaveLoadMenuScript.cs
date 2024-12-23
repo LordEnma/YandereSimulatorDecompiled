@@ -170,7 +170,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 					ConfirmWindow.SetActive(value: false);
 					PlayerPrefs.SetInt("SaveSlot", Selected);
 					GameGlobals.MostRecentSlot = Selected;
-					PlayerPrefs.SetString("Profile_" + Profile + "_Slot_" + Selected + "_DateTime", DateTime.Now.ToString());
+					PlayerPrefs.SetString("Profile_" + Profile + "_Slot_" + Selected + "_DateTime", DateGlobals.Weekday.ToString() + ", Week " + DateGlobals.Week + " " + DateTime.Now.ToString());
 					ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/SaveData/Profile_" + Profile + "/Slot_" + Selected + "_Thumbnail.png");
 					PauseScreen.Yandere.Blur.enabled = false;
 					UICamera.enabled = false;

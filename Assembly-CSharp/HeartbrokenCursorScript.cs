@@ -368,25 +368,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 					}
 					else
 					{
-						int profile = GameGlobals.Profile;
-						int num2 = 11;
-						int femaleUniform = StudentGlobals.FemaleUniform;
-						int maleUniform = StudentGlobals.MaleUniform;
-						if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + profile + "_Slot_" + num2 + ".yansave"))
-						{
-							YanSave.LoadData("Profile_" + profile + "_Slot_" + num2);
-							YanSave.LoadPrefs("Profile_" + profile + "_Slot_" + num2);
-							Debug.Log("Successfully loaded the save in Slot #" + num2);
-						}
-						else
-						{
-							Debug.Log("Attempted to load a save from Slot #" + num2 + ", but apparently it didn't exist.");
-						}
-						StudentGlobals.SetStudentDead(10 + DateGlobals.Week, value: false);
-						StudentGlobals.SetStudentDying(10 + DateGlobals.Week, value: false);
-						StudentGlobals.FemaleUniform = femaleUniform;
-						StudentGlobals.MaleUniform = maleUniform;
-						SceneManager.LoadScene("CalendarScene");
+						ResetWeek();
 					}
 				}
 				else if (Selected == 3)
@@ -432,5 +414,28 @@ public class HeartbrokenCursorScript : MonoBehaviour
 				base.transform.localPosition = new Vector3(-250f, base.transform.localPosition.y, base.transform.localPosition.z);
 			}
 		}
+	}
+
+	public void ResetWeek()
+	{
+		int profile = GameGlobals.Profile;
+		int num = 11;
+		int femaleUniform = StudentGlobals.FemaleUniform;
+		int maleUniform = StudentGlobals.MaleUniform;
+		if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + profile + "_Slot_" + num + ".yansave"))
+		{
+			YanSave.LoadData("Profile_" + profile + "_Slot_" + num);
+			YanSave.LoadPrefs("Profile_" + profile + "_Slot_" + num);
+			Debug.Log("Successfully loaded the save in Slot #" + num);
+		}
+		else
+		{
+			Debug.Log("Attempted to load a save from Slot #" + num + ", but apparently it didn't exist.");
+		}
+		StudentGlobals.SetStudentDead(10 + DateGlobals.Week, value: false);
+		StudentGlobals.SetStudentDying(10 + DateGlobals.Week, value: false);
+		StudentGlobals.FemaleUniform = femaleUniform;
+		StudentGlobals.MaleUniform = maleUniform;
+		SceneManager.LoadScene("CalendarScene");
 	}
 }

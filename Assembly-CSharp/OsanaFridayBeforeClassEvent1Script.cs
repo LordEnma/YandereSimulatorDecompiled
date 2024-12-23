@@ -69,7 +69,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 				{
 					Rival = StudentManager.Students[RivalID];
 				}
-				if (Rival.enabled && !Rival.InEvent && !Rival.Phoneless && Rival.Indoors && !OtherEvent.enabled && !Rival.GoAway && !Rival.Meeting)
+				if (Rival.enabled && !Rival.InEvent && !Rival.Phoneless && Rival.Indoors && !OtherEvent.enabled && !Rival.GoAway && !Rival.Meeting && !Rival.Alarmed)
 				{
 					Debug.Log("Osana's ''make playlist'' event has begun.");
 					Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
@@ -165,7 +165,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
 
 	public void EndEvent()
 	{
-		Debug.Log("Osana's Friday before class event has ended.");
+		Debug.Log("Osana's Friday ''create a mixtape in the Computer Lab'' event has ended.");
 		if (VoiceClip != null)
 		{
 			UnityEngine.Object.Destroy(VoiceClip);

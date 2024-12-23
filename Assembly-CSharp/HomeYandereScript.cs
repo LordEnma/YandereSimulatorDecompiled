@@ -232,7 +232,7 @@ public class HomeYandereScript : MonoBehaviour
 				{
 					MyRenderer.SetBlendShapeWeight(0, 50f);
 					MyRenderer.SetBlendShapeWeight(5, 25f);
-					MyRenderer.SetBlendShapeWeight(9, 0f);
+					MyRenderer.SetBlendShapeWeight(8, 0f);
 					MyRenderer.SetBlendShapeWeight(12, 100f);
 					if (!Pajamas.gameObject.activeInHierarchy)
 					{
@@ -345,7 +345,6 @@ public class HomeYandereScript : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("Updating protagonist with Ryoba's face.");
 				Pajamas.newRenderer.SetBlendShapeWeight(0, 50f);
 				Pajamas.newRenderer.SetBlendShapeWeight(5, 25f);
 				Pajamas.newRenderer.SetBlendShapeWeight(9, 0f);

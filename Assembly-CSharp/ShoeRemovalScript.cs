@@ -111,21 +111,30 @@ public class ShoeRemovalScript : MonoBehaviour
 
 	public void StartChangingShoes()
 	{
-		if (!Student.AoT)
+		if (Student.AoT)
 		{
-			RightCasualShoe.gameObject.SetActive(value: true);
-			LeftCasualShoe.gameObject.SetActive(value: true);
-			if (!Male)
+			return;
+		}
+		RightCasualShoe.gameObject.SetActive(value: true);
+		LeftCasualShoe.gameObject.SetActive(value: true);
+		if (!Male)
+		{
+			if (Student.Cosmetic.SkinColor > 0)
+			{
+				MyRenderer.materials[Student.Cosmetic.SkinID].mainTexture = Student.Cosmetic.SkinTextures[Student.Cosmetic.SkinColor];
+				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
+			}
+			else
 			{
 				MyRenderer.materials[0].mainTexture = Socks;
 				MyRenderer.materials[1].mainTexture = Socks;
 			}
-			else
-			{
-				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
-			}
-			_ = Student.Follower != null;
 		}
+		else
+		{
+			MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
+		}
+		_ = Student.Follower != null;
 	}
 
 	private void Update()
@@ -232,8 +241,16 @@ public class ShoeRemovalScript : MonoBehaviour
 				{
 					if (!Male)
 					{
-						MyRenderer.materials[0].mainTexture = TargetShoes;
-						MyRenderer.materials[1].mainTexture = TargetShoes;
+						if (Student.Cosmetic.SkinColor > 0)
+						{
+							MyRenderer.materials[Student.Cosmetic.SkinID].mainTexture = Student.Cosmetic.SkinTextures[Student.Cosmetic.SkinColor];
+							MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = TargetShoes;
+						}
+						else
+						{
+							MyRenderer.materials[0].mainTexture = TargetShoes;
+							MyRenderer.materials[1].mainTexture = TargetShoes;
+						}
 					}
 					else
 					{
@@ -442,8 +459,16 @@ public class ShoeRemovalScript : MonoBehaviour
 		{
 			if (!Male)
 			{
-				MyRenderer.materials[0].mainTexture = Socks;
-				MyRenderer.materials[1].mainTexture = Socks;
+				if (Student.Cosmetic.SkinColor > 0)
+				{
+					MyRenderer.materials[Student.Cosmetic.SkinID].mainTexture = Student.Cosmetic.SkinTextures[Student.Cosmetic.SkinColor];
+					MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
+				}
+				else
+				{
+					MyRenderer.materials[0].mainTexture = Socks;
+					MyRenderer.materials[1].mainTexture = Socks;
+				}
 			}
 			else
 			{

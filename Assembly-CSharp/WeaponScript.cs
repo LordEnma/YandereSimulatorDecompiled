@@ -216,6 +216,8 @@ public class WeaponScript : MonoBehaviour
 
 	public bool InBox;
 
+	public Material CensorMaterial;
+
 	public void Start()
 	{
 		Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
@@ -429,7 +431,7 @@ public class WeaponScript : MonoBehaviour
 			}
 			if (base.transform.position.x > -21f && base.transform.position.x < 21f && base.transform.position.z > 100f && base.transform.position.z < 133f)
 			{
-				Yandere.NotificationManager.CustomText = "It rolled to the bottom of the hill.";
+				Yandere.NotificationManager.CustomText = "A weapon rolled to the bottom of the hill.";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				base.transform.position = new Vector3(0f, 0.5f, 99.5f);
 				KinematicTimer = 0f;
@@ -1068,10 +1070,10 @@ public class WeaponScript : MonoBehaviour
 	{
 		if (GameGlobals.CensorBlood)
 		{
-			BloodSpray[0].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = CensorTexture;
-			BloodSpray[1].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = CensorTexture;
-			ShortBloodSpray[0].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = CensorTexture;
-			ShortBloodSpray[1].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = CensorTexture;
+			ReplaceBloodWithFlowers(BloodSpray[0]);
+			ReplaceBloodWithFlowers(BloodSpray[1]);
+			ReplaceBloodWithFlowers(ShortBloodSpray[0]);
+			ReplaceBloodWithFlowers(ShortBloodSpray[1]);
 		}
 		else
 		{
@@ -1080,5 +1082,15 @@ public class WeaponScript : MonoBehaviour
 			ShortBloodSpray[0].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = BloodTexture;
 			ShortBloodSpray[1].gameObject.GetComponent<ParticleSystemRenderer>().material.mainTexture = BloodTexture;
 		}
+	}
+
+	public void ReplaceBloodWithFlowers(ParticleSystem ps)
+	{
+		ParticleSystemRenderer component = ps.GetComponent<ParticleSystemRenderer>();
+		component.material = CensorMaterial;
+		component.material.color = Color.white;
+		ParticleSystem.ColorOverLifetimeModule colorOverLifetime = ps.colorOverLifetime;
+		colorOverLifetime.enabled = false;
+		ps.startColor = Color.white;
 	}
 }

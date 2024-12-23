@@ -126,7 +126,6 @@ public class HomePrisonerScript : MonoBehaviour
 		{
 			Sanity = StudentGlobals.GetStudentSanity(PrisonerManager.StudentID);
 			Health = StudentGlobals.GetStudentHealth(PrisonerManager.StudentID);
-			Debug.Log("Prisoner #" + PrisonerManager.StudentID + "'s Sanity is " + Sanity + " and Health is " + Health);
 			if (!Initialized && Health > 0f && (float)Sanity < 100f)
 			{
 				Debug.Log("Prisoner # " + PrisonerManager.ChosenPrisoner + " is now having their animation updated.");
@@ -385,15 +384,37 @@ public class HomePrisonerScript : MonoBehaviour
 				{
 					if ((float)Sanity == 100f)
 					{
-						Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapTorture_01");
+						Debug.Log("This code is running.");
+						if (Prisoner.Male)
+						{
+							Prisoner.Character.GetComponent<Animation>().CrossFade("kidnapTorture_01");
+						}
+						else
+						{
+							Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapTorture_01");
+						}
 					}
 					else if ((float)Sanity >= 50f)
 					{
-						Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapTorture_02");
+						if (Prisoner.Male)
+						{
+							Prisoner.Character.GetComponent<Animation>().CrossFade("kidnapTorture_02");
+						}
+						else
+						{
+							Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapTorture_02");
+						}
 					}
 					else
 					{
-						Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapSurrender_00");
+						if (Prisoner.Male)
+						{
+							Prisoner.Character.GetComponent<Animation>().CrossFade("kidnapSurrender_00");
+						}
+						else
+						{
+							Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapSurrender_00");
+						}
 						TortureDestination.localPosition = new Vector3(TortureDestination.localPosition.x, 0f, 1f);
 						TortureTarget.localPosition = new Vector3(TortureTarget.localPosition.x, 1.1f, TortureTarget.localPosition.z);
 					}

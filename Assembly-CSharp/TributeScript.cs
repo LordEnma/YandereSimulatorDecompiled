@@ -12,6 +12,8 @@ public class TributeScript : MonoBehaviour
 
 	public YandereScript Yandere;
 
+	public GameObject TitleBelt;
+
 	public GameObject FunGirl;
 
 	public GameObject Rainey;
@@ -39,6 +41,8 @@ public class TributeScript : MonoBehaviour
 	public string[] MaidLetters;
 
 	public string[] FunLetters;
+
+	public string[] WWELetters;
 
 	public string[] AzurLane;
 
@@ -69,6 +73,8 @@ public class TributeScript : MonoBehaviour
 	public int MaidID;
 
 	public int FunID;
+
+	public int WWEID;
 
 	public int ID;
 
@@ -228,6 +234,15 @@ public class TributeScript : MonoBehaviour
 				{
 					StudentManager.DespawnAllStudents();
 					FunGirl.SetActive(value: true);
+					base.enabled = false;
+				}
+			}
+			if (Input.GetKeyDown(WWELetters[WWEID]))
+			{
+				WWEID++;
+				if (WWEID == WWELetters.Length)
+				{
+					TitleBelt.SetActive(value: true);
 					base.enabled = false;
 				}
 			}

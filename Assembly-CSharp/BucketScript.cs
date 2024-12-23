@@ -105,6 +105,8 @@ public class BucketScript : MonoBehaviour
 
 	public Vector3 LastSpillPosition;
 
+	public Texture OriginalBloodTexture;
+
 	private void Start()
 	{
 		Water.transform.localPosition = new Vector3(Water.transform.localPosition.x, 0f, Water.transform.localPosition.z);
@@ -723,5 +725,21 @@ public class BucketScript : MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	public void UpdateBlood()
+	{
+		if (OriginalBloodTexture == null)
+		{
+			OriginalBloodTexture = Blood.material.mainTexture;
+		}
+		if (Yandere.StudentManager.CensorBlood)
+		{
+			Blood.material.mainTexture = Yandere.StudentManager.PinkBlood;
+		}
+		else
+		{
+			Blood.material.mainTexture = OriginalBloodTexture;
+		}
 	}
 }

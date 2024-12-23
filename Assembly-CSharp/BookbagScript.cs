@@ -25,7 +25,7 @@ public class BookbagScript : MonoBehaviour
 		Physics.IgnoreCollision(Prompt.Yandere.GetComponent<Collider>(), base.gameObject.GetComponent<BoxCollider>());
 		MyRigidbody.useGravity = false;
 		MyRigidbody.isKinematic = true;
-		if (GameGlobals.Eighties)
+		if (GameGlobals.Eighties && !GameGlobals.CustomMode)
 		{
 			MyRenderer.material.mainTexture = EightiesBookBagTexture;
 			MyMesh.mesh = EightiesBookBag;

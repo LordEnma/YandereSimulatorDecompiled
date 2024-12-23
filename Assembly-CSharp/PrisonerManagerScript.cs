@@ -4,6 +4,8 @@ public class PrisonerManagerScript : MonoBehaviour
 {
 	public HomePrisonerChanScript[] Prisoners;
 
+	public JsonScript JSON;
+
 	public Collider[] PrisonerTrigger;
 
 	public Transform[] SpawnPoints;
@@ -28,6 +30,8 @@ public class PrisonerManagerScript : MonoBehaviour
 
 	public GameObject Student;
 
+	public GameObject MaleStudent;
+
 	public int PrisonersToSpawn;
 
 	public int PrisonersSpawned;
@@ -35,6 +39,8 @@ public class PrisonerManagerScript : MonoBehaviour
 	public int ChosenPrisoner;
 
 	public int StudentID;
+
+	public bool[] Genders;
 
 	public int TotalShuffles;
 
@@ -92,17 +98,66 @@ public class PrisonerManagerScript : MonoBehaviour
 			PrisonersToSpawn++;
 		}
 		PrisonersToSpawn = StudentGlobals.Prisoners;
+		if (StudentGlobals.Prisoner1 > 0 && JSON.Students[StudentGlobals.Prisoner1].Gender == 1)
+		{
+			Genders[1] = true;
+		}
+		if (StudentGlobals.Prisoner2 > 0 && JSON.Students[StudentGlobals.Prisoner2].Gender == 1)
+		{
+			Genders[2] = true;
+		}
+		if (StudentGlobals.Prisoner3 > 0 && JSON.Students[StudentGlobals.Prisoner3].Gender == 1)
+		{
+			Genders[3] = true;
+		}
+		if (StudentGlobals.Prisoner4 > 0 && JSON.Students[StudentGlobals.Prisoner4].Gender == 1)
+		{
+			Genders[4] = true;
+		}
+		if (StudentGlobals.Prisoner5 > 0 && JSON.Students[StudentGlobals.Prisoner5].Gender == 1)
+		{
+			Genders[5] = true;
+		}
+		if (StudentGlobals.Prisoner6 > 0 && JSON.Students[StudentGlobals.Prisoner6].Gender == 1)
+		{
+			Genders[6] = true;
+		}
+		if (StudentGlobals.Prisoner7 > 0 && JSON.Students[StudentGlobals.Prisoner7].Gender == 1)
+		{
+			Genders[7] = true;
+		}
+		if (StudentGlobals.Prisoner8 > 0 && JSON.Students[StudentGlobals.Prisoner8].Gender == 1)
+		{
+			Genders[8] = true;
+		}
+		if (StudentGlobals.Prisoner9 > 0 && JSON.Students[StudentGlobals.Prisoner9].Gender == 1)
+		{
+			Genders[9] = true;
+		}
+		if (StudentGlobals.Prisoner10 > 0 && JSON.Students[StudentGlobals.Prisoner10].Gender == 1)
+		{
+			Genders[10] = true;
+		}
 		while (PrisonersToSpawn > PrisonersSpawned)
 		{
 			if (PrisonersSpawned > 0)
 			{
-				Debug.Log("Spawning a prisoner!");
-				GameObject obj = Object.Instantiate(Student, SpawnPoints[PrisonersSpawned + 1].position, SpawnPoints[PrisonersSpawned + 1].rotation);
-				HomePrisonerChanScript component = obj.GetComponent<HomePrisonerChanScript>();
+				GameObject gameObject = null;
+				string text = "";
+				if (Genders[PrisonersSpawned + 1])
+				{
+					gameObject = Object.Instantiate(MaleStudent, SpawnPoints[PrisonersSpawned + 1].position, SpawnPoints[PrisonersSpawned + 1].rotation);
+					text = "_male";
+				}
+				else
+				{
+					gameObject = Object.Instantiate(Student, SpawnPoints[PrisonersSpawned + 1].position, SpawnPoints[PrisonersSpawned + 1].rotation);
+				}
+				HomePrisonerChanScript component = gameObject.GetComponent<HomePrisonerChanScript>();
 				component.PrisonerID = PrisonersSpawned + 1;
-				component.IdleAnim = IdleAnims[component.PrisonerID];
+				component.IdleAnim = IdleAnims[component.PrisonerID] + text;
 				Prisoners[PrisonersSpawned + 1] = component;
-				StudentScript component2 = obj.GetComponent<StudentScript>();
+				StudentScript component2 = gameObject.GetComponent<StudentScript>();
 				component2.enabled = false;
 				if (PrisonersSpawned == 0)
 				{
@@ -309,7 +364,6 @@ public class PrisonerManagerScript : MonoBehaviour
 		{
 			return;
 		}
-		Debug.Log("We're supposed to have " + StudentGlobals.Prisoners + " prisoners in our basement. Checking if we need to shuffle 'em...");
 		int num = 0;
 		if (StudentGlobals.Prisoner1 == 0 && StudentGlobals.Prisoners > 0)
 		{

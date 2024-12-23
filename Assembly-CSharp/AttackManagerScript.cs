@@ -339,13 +339,9 @@ public class AttackManagerScript : MonoBehaviour
 			Time.timeScale = 1f;
 			Yandere.StudentManager.RestoreStudentVisionDistance();
 		}
-		else if (Yandere.CanTranq)
+		else if (Yandere.CanTranq && Yandere.transform.position.x > 13.25f)
 		{
-			Debug.Log("Currently tranqing someone.");
-			if (Yandere.transform.position.x > 13.25f)
-			{
-				Yandere.transform.position -= new Vector3(Time.deltaTime, 0f, 0f);
-			}
+			Yandere.transform.position -= new Vector3(Time.deltaTime, 0f, 0f);
 		}
 		if (!Yandere.TargetStudent.Electrified && !Yandere.TargetStudent.Electrocuted)
 		{

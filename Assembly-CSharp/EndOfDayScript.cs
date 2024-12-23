@@ -483,6 +483,10 @@ public class EndOfDayScript : MonoBehaviour
 					if (StudentManager.Eighties)
 					{
 						Protagonist = "Ryoba";
+						if (StudentManager.CustomMode)
+						{
+							Protagonist = JSON.Students[0].Name;
+						}
 						RivalName = EightiesRivalNames[DateGlobals.Week];
 						if (StudentManager.CustomMode)
 						{
@@ -1089,13 +1093,20 @@ public class EndOfDayScript : MonoBehaviour
 			KidnappedVictim.transform.parent = base.transform;
 			KidnappedVictim.transform.localPosition = new Vector3(0f, 0.145f, 0f);
 			KidnappedVictim.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
-			KidnappedVictim.CharacterAnimation.Play("f02_sit_06");
 			KidnappedVictim.WhiteQuestionMark.SetActive(value: true);
-			KidnappedVictim.Cosmetic.FemaleHair[KidnappedVictim.Cosmetic.Hairstyle].SetActive(value: true);
-			KidnappedVictim.OsanaHairL.transform.localScale = new Vector3(1f, 1f, 1f);
-			KidnappedVictim.OsanaHairR.transform.localScale = new Vector3(1f, 1f, 1f);
+			if (!KidnappedVictim.Male)
+			{
+				KidnappedVictim.CharacterAnimation.Play("f02_sit_06");
+				KidnappedVictim.Cosmetic.FemaleHair[KidnappedVictim.Cosmetic.Hairstyle].SetActive(value: true);
+				KidnappedVictim.OsanaHairL.transform.localScale = new Vector3(1f, 1f, 1f);
+				KidnappedVictim.OsanaHairR.transform.localScale = new Vector3(1f, 1f, 1f);
+			}
+			else
+			{
+				KidnappedVictim.CharacterAnimation.Play("sitLookLeftRight_00");
+			}
 			OpenTranqCase.SetActive(value: true);
-			Label.text = "The police discover " + JSON.Students[TranqCase.VictimID].Name + " inside of a musical instrument case. However, she is unable to recall how she got inside of the case. The police are unable to determine what happened.";
+			Label.text = "The police discover " + JSON.Students[TranqCase.VictimID].Name + " inside of a musical instrument case. However, the student is unable to recall how they got inside of the case. The police are unable to determine what happened.";
 			StudentGlobals.SetStudentKidnapped(TranqCase.VictimID, value: false);
 			StudentGlobals.SetStudentMissing(TranqCase.VictimID, value: false);
 			if (TranqCase.VictimID == StudentManager.RivalID)
@@ -1584,14 +1595,17 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			if (TranqCase.Occupied)
 			{
+				Debug.Log("We are now at the part of the EoD sequence where we check if the TranqCase is occupied.");
 				ClosedTranqCase.SetActive(value: true);
 				Label.color = new Color(Label.color.r, Label.color.g, Label.color.b, 1f);
 				if (StudentManager.Eighties)
 				{
 					Protagonist = "Ryoba";
 				}
+				Debug.Log("StudentManager.CustomMode is: " + StudentManager.CustomMode);
 				if (StudentManager.CustomMode)
 				{
+					Debug.Log("We SHOULD be using the Custom Protagonist's name...");
 					Protagonist = JSON.Students[0].Name;
 				}
 				Label.text = Protagonist + " waits until midnight, sneaks into school, and returns to the musical instrument case that contains her unconscious victim. She pushes the case back to her house and ties the victim to a chair in her basement.";
@@ -2695,10 +2709,6 @@ public class EndOfDayScript : MonoBehaviour
 				}
 			}
 		}
-		if (NewFriends > 0)
-		{
-			PlayerGlobals.Friends += NewFriends;
-		}
 		if (Yandere.Alerts > 0)
 		{
 			Debug.Log("PlayerGlobals.Alerts is being incremented!");
@@ -2929,6 +2939,10 @@ public class EndOfDayScript : MonoBehaviour
 					num++;
 				}
 			}
+			if (StudentManager.StudentBefriended[k])
+			{
+				PlayerGlobals.SetStudentFriend(k, value: true);
+			}
 		}
 		PlayerGlobals.WeaponWitnessed += WeaponWitnessed;
 		PlayerGlobals.BloodWitnessed += BloodWitnessed;
@@ -3035,15 +3049,30 @@ public class EndOfDayScript : MonoBehaviour
 		else if (ragdoll.Student.DeathType == DeathType.Weight)
 		{
 			GameGlobals.SpecificEliminationID = 6;
-			if (!GameGlobals.Debug)
+			if (StudentManager.IronMaiden.KilledRival)
 			{
-				PlayerPrefs.SetInt("Crush", 1);
+				Debug.Log("The game knows that she was killed by an Iron Maiden, though.");
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Maiden", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
 			}
-			if (!GameGlobals.Debug)
+			else
 			{
-				PlayerPrefs.SetInt("a", 1);
+				Debug.Log("The game knows that she was crushed, though.");
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("Crush", 1);
+				}
+				if (!GameGlobals.Debug)
+				{
+					PlayerPrefs.SetInt("a", 1);
+				}
 			}
-			Debug.Log("The game knows that she was crushed, though.");
 		}
 		else if (ragdoll.Student.DeathType == DeathType.Drowning)
 		{

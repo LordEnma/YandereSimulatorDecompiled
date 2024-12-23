@@ -84,15 +84,6 @@ public class TaskManagerScript : MonoBehaviour
 					TaskObjects[j].SetActive(value: false);
 				}
 			}
-			if (TaskStatus[46] == 1)
-			{
-				TaskGlobals.SetTaskStatus(46, 0);
-				TaskStatus[46] = 0;
-			}
-			if (StudentManager != null)
-			{
-				UpdateTaskStatus();
-			}
 			if (GameGlobals.Eighties)
 			{
 				if (MuddyFootprintParent != null)
@@ -100,6 +91,15 @@ public class TaskManagerScript : MonoBehaviour
 					MuddyFootprintParent.gameObject.SetActive(value: false);
 				}
 				Eighties = true;
+			}
+			if (!Eighties && TaskStatus[46] == 1)
+			{
+				TaskGlobals.SetTaskStatus(46, 0);
+				TaskStatus[46] = 0;
+			}
+			if (StudentManager != null)
+			{
+				UpdateTaskStatus();
 			}
 			if (Eighties)
 			{
@@ -741,6 +741,8 @@ public class TaskManagerScript : MonoBehaviour
 
 	public void SaveTaskStatuses()
 	{
+		Debug.Log("Now saving the status of all student tasks.");
+		Debug.Log("At the same time, also saving the status of students as friends.");
 		for (int i = 1; i < 101; i++)
 		{
 			TaskGlobals.SetTaskStatus(i, TaskStatus[i]);

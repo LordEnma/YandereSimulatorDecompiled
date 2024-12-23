@@ -645,6 +645,7 @@ public class PauseScreenScript : MonoBehaviour
 							PromptBar.Label[1].text = "Back";
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
+							StudentInfoMenu.UpdateHighlight();
 						}
 						else if (Selected == 7)
 						{
@@ -1120,6 +1121,7 @@ public class PauseScreenScript : MonoBehaviour
 					}
 					if (Yandere.StudentManager.Students[i].Guarding)
 					{
+						Debug.Log("The student who is Guarding is: Student #" + Yandere.StudentManager.Students[i].StudentID + ", " + Yandere.StudentManager.Students[i].Name);
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is guarding a corpse.";
 					}

@@ -283,7 +283,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 
 	public void EndEvent()
 	{
-		Debug.Log("Osana's second Friday before class event has ended.");
+		Debug.Log("Osana's Friday ''Talk with Musume'' event has ended.");
 		if (VoiceClip != null)
 		{
 			UnityEngine.Object.Destroy(VoiceClip);

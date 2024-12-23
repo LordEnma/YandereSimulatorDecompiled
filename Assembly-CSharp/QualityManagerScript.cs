@@ -374,6 +374,10 @@ public class QualityManagerScript : MonoBehaviour
 							studentScript.MyRenderer.materials[3].shader = NewBodyShader;
 						}
 					}
+					if (studentScript.Cosmetic.HairbandRenderer != null)
+					{
+						studentScript.Cosmetic.HairbandRenderer.material.shader = NewHairShader;
+					}
 				}
 				else
 				{
@@ -857,6 +861,10 @@ public class QualityManagerScript : MonoBehaviour
 						if (LoveSick)
 						{
 							studentScript.Cosmetic.FemaleHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 0f);
+						}
+						if (studentScript.Cosmetic.HairbandRenderer != null)
+						{
+							studentScript.Cosmetic.HairbandRenderer.material.shader = NewHairShader;
 						}
 					}
 					else

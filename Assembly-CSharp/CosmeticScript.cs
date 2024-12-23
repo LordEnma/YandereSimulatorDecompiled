@@ -147,6 +147,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Texture[] SkinTextures;
 
+	public Texture[] GymTextures;
+
 	public Texture[] WristwearTextures;
 
 	public Texture[] CardiganTextures;
@@ -192,6 +194,8 @@ public class CosmeticScript : MonoBehaviour
 	public Renderer TurtleEyewearRenderer;
 
 	public Renderer FacialHairRenderer;
+
+	public Renderer HairbandRenderer;
 
 	public Renderer RightEyeRenderer;
 
@@ -383,6 +387,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Transform LeftTemple;
 
+	public Transform PelvisRoot;
+
 	public Transform Head;
 
 	public Transform Neck;
@@ -523,8 +529,90 @@ public class CosmeticScript : MonoBehaviour
 
 	public int[] PortraitIDs;
 
+	public Texture OriginalFemaleUniformTextures1;
+
+	public Texture OriginalFemaleCasualTextures1;
+
+	public Texture OriginalFemaleSocksTextures1;
+
+	public Texture OriginalFemaleUniformTextures2;
+
+	public Texture OriginalFemaleCasualTextures2;
+
+	public Texture OriginalFemaleSocksTextures2;
+
+	public Texture OriginalFemaleUniformTextures3;
+
+	public Texture OriginalFemaleCasualTextures3;
+
+	public Texture OriginalFemaleSocksTextures3;
+
+	public Texture OriginalFemaleUniformTextures4;
+
+	public Texture OriginalFemaleCasualTextures4;
+
+	public Texture OriginalFemaleSocksTextures4;
+
+	public Texture OriginalMaleUniformTextures1;
+
+	public Texture OriginalMaleCasualTextures1;
+
+	public Texture OriginalMaleSocksTextures1;
+
+	public Texture OriginalMaleUniformTextures2;
+
+	public Texture OriginalMaleCasualTextures2;
+
+	public Texture OriginalMaleSocksTextures2;
+
+	public Texture OriginalMaleUniformTextures3;
+
+	public Texture OriginalMaleCasualTextures3;
+
+	public Texture OriginalMaleSocksTextures3;
+
+	public Texture OriginalMaleUniformTextures4;
+
+	public Texture OriginalMaleCasualTextures4;
+
+	public Texture OriginalMaleSocksTextures4;
+
+	public CustomUniformScript CustomUniform;
+
+	public string[] PortraitPoses;
+
+	public Texture[] RivalSkin;
+
 	public void Start()
 	{
+		if (StudentID < 90)
+		{
+			if (GameGlobals.CustomMode || CustomMode)
+			{
+				if (StudentGlobals.CustomFemaleUniform)
+				{
+					CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
+					LoadOriginalTextures();
+					if ((!Male && StudentGlobals.CustomFemaleUniform) || (Male && StudentGlobals.CustomMaleUniform))
+					{
+						SaveOriginalTextures();
+						GrabCustomTextures();
+					}
+				}
+				if (Student.Rival)
+				{
+					CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
+					BookbagTextures = CustomUniform.CustomBookbags;
+				}
+			}
+			else if (StudentID > 10 && StudentID < 21 && Eighties)
+			{
+				for (int i = 0; i < SkinTextures.Length; i++)
+				{
+					SkinTextures[i] = RivalSkin[StudentID - 10];
+				}
+			}
+		}
 		DefaultMaterials = MyRenderer.materials;
 		if (!Male && FemaleHair[20] == null)
 		{
@@ -554,9 +642,12 @@ public class CosmeticScript : MonoBehaviour
 			CanTextures = EightiesCanTextures;
 			if (Male)
 			{
-				MaleUniformTextures[1] = EightiesMaleCasualTexture;
-				MaleCasualTextures[1] = EightiesMaleUniformTexture;
-				MaleSocksTextures[1] = EightiesMaleSocksTexture;
+				if (!StudentGlobals.CustomMaleUniform)
+				{
+					MaleUniformTextures[1] = EightiesMaleCasualTexture;
+					MaleCasualTextures[1] = EightiesMaleUniformTexture;
+					MaleSocksTextures[1] = EightiesMaleSocksTexture;
+				}
 				int num = 66;
 				while (num < Trunks.Length)
 				{
@@ -603,7 +694,6 @@ public class CosmeticScript : MonoBehaviour
 		{
 			if (JSON == null)
 			{
-				Debug.Log("Whoa! JSON was null?!");
 				JSON = StudentManager.JSON;
 			}
 			Accessory = int.Parse(JSON.Students[StudentID].Accessory);
@@ -621,6 +711,18 @@ public class CosmeticScript : MonoBehaviour
 			{
 				EyewearID = JSON.Misc.EyeWear[StudentID];
 				SkinColor = JSON.Misc.SkinColor[StudentID];
+			}
+			else if (!Male && Eighties && Stockings != "" && Stockings != "None" && SkinColor == 0)
+			{
+				SkinColor = 2;
+				if (StudentID == 13 || StudentID == 15 || StudentID == 16 || StudentID == 18 || StudentID == 19)
+				{
+					SkinColor = 1;
+				}
+				else if (StudentID == 14 || StudentID == 20)
+				{
+					SkinColor = 3;
+				}
 			}
 			if (Yandere)
 			{
@@ -679,13 +781,27 @@ public class CosmeticScript : MonoBehaviour
 				AdditionalAccessory[1].SetActive(value: true);
 				FacialHairstyle = 12;
 				EyewearID = 8;
-				if (StudentManager.TaskManager != null && StudentManager.TaskManager.TaskStatus[36] == 3)
+				if (StudentManager.TaskManager != null)
+				{
+					if (StudentManager.TaskManager.TaskStatus[36] == 3)
+					{
+						AdditionalAccessory[1].SetActive(value: false);
+						FacialHairstyle = 0;
+						EyewearID = 9;
+						Hairstyle = 49;
+						Accessory = 0;
+					}
+				}
+				else
 				{
 					AdditionalAccessory[1].SetActive(value: false);
-					FacialHairstyle = 0;
-					EyewearID = 9;
-					Hairstyle = 49;
 					Accessory = 0;
+					EyewearID = 0;
+					if (TaskGlobals.GetTaskStatus(36) == 3)
+					{
+						FacialHairstyle = 0;
+						Hairstyle = 49;
+					}
 				}
 			}
 			else if (StudentID == 51 && ClubGlobals.GetClubClosed(ClubType.LightMusic))
@@ -893,10 +1009,10 @@ public class CosmeticScript : MonoBehaviour
 					Bookbag.SetActive(value: true);
 				}
 				Hoodie.SetActive(value: true);
-				for (int j = 0; j < 10; j++)
+				for (int k = 0; k < 10; k++)
 				{
-					Fingernails[j].material.mainTexture = GanguroNailTextures[StudentID];
-					Fingernails[j].gameObject.SetActive(value: true);
+					Fingernails[k].material.mainTexture = GanguroNailTextures[StudentID];
+					Fingernails[k].gameObject.SetActive(value: true);
 				}
 				Student.GymTexture = TanGymTexture;
 				Student.TowelTexture = TanTowelTexture;
@@ -904,19 +1020,23 @@ public class CosmeticScript : MonoBehaviour
 			else
 			{
 				DisableFingernails();
-				if (Eighties && StudentID == 15)
+				if (Eighties && !CustomMode && StudentID == 15)
 				{
-					for (int k = 0; k < 10; k++)
+					for (int l = 0; l < 10; l++)
 					{
-						Fingernails[k].material.mainTexture = GanguroNailTextures[StudentID];
-						Fingernails[k].gameObject.SetActive(value: true);
+						Fingernails[l].material.mainTexture = GanguroNailTextures[StudentID];
+						Fingernails[l].gameObject.SetActive(value: true);
 					}
 				}
 			}
 			if (!Kidnapped && SceneManager.GetActiveScene().name == "PortraitScene")
 			{
 				Eighties = GameGlobals.Eighties;
-				if (!Eighties)
+				if (TakingPortrait && CustomMode)
+				{
+					CharacterAnimation.Play(PortraitPoses[JSON.Misc.PortraitPoses[StudentID]]);
+				}
+				else if (!Eighties)
 				{
 					if (StudentID == 2)
 					{
@@ -952,13 +1072,12 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 12)
 					{
+						Debug.Log("Adjusting the position/rotation of Amai's eyebrows.");
 						CharacterAnimation.Play("f02_rivalPortraitPose_02");
 						LookCamera = true;
-						AmaiBrows.transform.GetChild(0).localPosition = new Vector3(0.03333334f, 0.02f, 0f);
-						AmaiBrows.transform.GetChild(0).localEulerAngles = new Vector3(0f, -9f, 45f);
-						AmaiBrows.transform.GetChild(1).localPosition = new Vector3(-0.03333334f, 0.02f, 0f);
-						AmaiBrows.transform.GetChild(1).localEulerAngles = new Vector3(0f, 8.5f, -45f);
-						ResetBlendshapes();
+						AmaiBrows.transform.localPosition = new Vector3(0f, 0.003f, 0f);
+						EyeType = "Rival2";
+						EyeTypeCheck();
 					}
 					else if (StudentID == 38)
 					{
@@ -1132,6 +1251,18 @@ public class CosmeticScript : MonoBehaviour
 					{
 						CharacterAnimation.Play("f02_eightiesOccultPose_02");
 					}
+					else if (StudentID == 36)
+					{
+						CharacterAnimation.Play("f02_newspaperLeaderPose_00");
+					}
+					else if (StudentID == 39)
+					{
+						CharacterAnimation.Play("f02_newspaperPose_01");
+					}
+					else if (StudentID == 40)
+					{
+						CharacterAnimation.Play("f02_newspaperPose_02");
+					}
 					else if (StudentID == 44)
 					{
 						CharacterAnimation.Play("f02_eightiesArtPose_01");
@@ -1217,21 +1348,6 @@ public class CosmeticScript : MonoBehaviour
 						CharacterAnimation["f02_smile_00"].layer = 1;
 						CharacterAnimation.Play("f02_smile_00");
 						CharacterAnimation["f02_smile_00"].weight = 1f;
-					}
-					if (!CustomMode && StudentID != 86)
-					{
-						if (StudentID == 87)
-						{
-							CharacterAnimation.Play("m01_eightiesForeignPortrait_00");
-						}
-						else if (StudentID == 88)
-						{
-							CharacterAnimation.Play("m01_eightiesHumblePortrait_00");
-						}
-						else if (StudentID == 89)
-						{
-							CharacterAnimation.Play("m01_eightiesEnforcerPortrait_00");
-						}
 					}
 				}
 			}
@@ -1327,6 +1443,13 @@ public class CosmeticScript : MonoBehaviour
 					}
 				}
 			}
+			else if (TakingPortrait && CustomMode)
+			{
+				CharacterAnimation.Play(PortraitPoses[JSON.Misc.PortraitPoses[StudentID]]);
+				CharacterAnimation.transform.localScale = new Vector3(1f, 1f, 1f);
+				PelvisRoot.localScale = new Vector3(1f, 1f, 1f);
+				base.transform.position = new Vector3(0f, -0.1f, 0f);
+			}
 			else if (!Student.Posing)
 			{
 				if (TakingPortrait)
@@ -1347,7 +1470,7 @@ public class CosmeticScript : MonoBehaviour
 						if (StudentID == 1)
 						{
 							CharacterAnimation.Play("jokichiPose_00");
-							base.transform.position = new Vector3(0f, -0.1f, 0f);
+							base.transform.position = new Vector3(0f, 0f, 0f);
 						}
 						else if (StudentID == 6)
 						{
@@ -1419,6 +1542,26 @@ public class CosmeticScript : MonoBehaviour
 							CharacterAnimation.Play("eightiesOccultPose_03");
 							base.transform.position = new Vector3(0f, -0.1f, 0f);
 						}
+						else if (StudentID == 37)
+						{
+							CharacterAnimation.Play("newspaperPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 38)
+						{
+							CharacterAnimation.Play("newspaperPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 41)
+						{
+							CharacterAnimation.Play("eightiesArtPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 42)
+						{
+							CharacterAnimation.Play("eightiesArtPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
 						else if (StudentID == 43)
 						{
 							CharacterAnimation.Play("eightiesArtPose_03");
@@ -1473,6 +1616,41 @@ public class CosmeticScript : MonoBehaviour
 						else if (StudentID == 80)
 						{
 							CharacterAnimation.Play("delinquentPoseE");
+						}
+						else if (StudentID == 86)
+						{
+							CharacterAnimation.Play("eightiesCouncilPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 87)
+						{
+							CharacterAnimation.Play("eightiesCouncilPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 88)
+						{
+							CharacterAnimation.Play("eightiesCouncilPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 89)
+						{
+							CharacterAnimation.Play("eightiesCouncilPose_04");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						if (!CustomMode && StudentID != 86)
+						{
+							if (StudentID == 87)
+							{
+								CharacterAnimation.Play("m01_eightiesForeignPortrait_00");
+							}
+							else if (StudentID == 88)
+							{
+								CharacterAnimation.Play("m01_eightiesHumblePortrait_00");
+							}
+							else if (StudentID == 89)
+							{
+								CharacterAnimation.Play("m01_eightiesEnforcerPortrait_00");
+							}
 						}
 					}
 					if (!CustomMode && !CustomModeMenu)
@@ -1549,9 +1727,9 @@ public class CosmeticScript : MonoBehaviour
 			if (StudentGlobals.CustomSuitorJewelry > 0)
 			{
 				GameObject[] phoneCharms = GaloAccessories;
-				for (int i = 0; i < phoneCharms.Length; i++)
+				for (int j = 0; j < phoneCharms.Length; j++)
 				{
-					phoneCharms[i].SetActive(value: true);
+					phoneCharms[j].SetActive(value: true);
 				}
 			}
 		}
@@ -1582,7 +1760,7 @@ public class CosmeticScript : MonoBehaviour
 		{
 			if (!StudentGlobals.GetStudentReplaced(StudentID))
 			{
-				if (!TakingPortrait)
+				if (!CustomMode && !TakingPortrait)
 				{
 					CharacterAnimation["f02_smile_00"].layer = 1;
 					CharacterAnimation.Play("f02_smile_00");
@@ -1987,7 +2165,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (!Male && base.gameObject.activeInHierarchy)
 		{
-			StartCoroutine(PutOnStockings());
+			PutOnStockings();
 		}
 		if (!Randomize)
 		{
@@ -1997,6 +2175,20 @@ public class CosmeticScript : MonoBehaviour
 			}
 			if (EyeColor != string.Empty)
 			{
+				LeftEyeRenderer.material.shader = StartShader;
+				RightEyeRenderer.material.shader = StartShader;
+				LeftEyeRenderer.material.SetFloat("_BlendAmount", 0f);
+				RightEyeRenderer.material.SetFloat("_BlendAmount", 0f);
+				if (EyeColor == "Default")
+				{
+					LeftEyeRenderer.material.SetFloat("_Saturation", 1f);
+					RightEyeRenderer.material.SetFloat("_Saturation", 1f);
+				}
+				else
+				{
+					LeftEyeRenderer.material.SetFloat("_Saturation", 0f);
+					RightEyeRenderer.material.SetFloat("_Saturation", 0f);
+				}
 				if (EyeColor == "White")
 				{
 					CorrectColor = new Color(1f, 1f, 1f);
@@ -2043,13 +2235,11 @@ public class CosmeticScript : MonoBehaviour
 				}
 				else if (EyeColor == "Custom")
 				{
-					LeftEyeRenderer.material.shader = StartShader;
-					RightEyeRenderer.material.shader = StartShader;
-					LeftEyeRenderer.material.SetFloat("_Saturation", 0f);
-					LeftEyeRenderer.material.SetFloat("_BlendAmount", 0f);
-					RightEyeRenderer.material.SetFloat("_Saturation", 0f);
-					RightEyeRenderer.material.SetFloat("_BlendAmount", 0f);
 					CorrectColor = CustomEyeColor;
+					if (CustomEyeColor == new Color(0f, 0f, 0f))
+					{
+						CorrectColor = new Color(0.0001f, 0.0001f, 0.0001f);
+					}
 				}
 				else
 				{
@@ -2173,10 +2363,6 @@ public class CosmeticScript : MonoBehaviour
 						RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
 						LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
 					}
-					if (!Male)
-					{
-						SkinColor = 0;
-					}
 					DoNotChangeFace = SkinColor > 0;
 					if (!DoNotChangeFace)
 					{
@@ -2192,10 +2378,6 @@ public class CosmeticScript : MonoBehaviour
 			}
 			else
 			{
-				if (StudentID == 37)
-				{
-					Debug.Log("Student #37 is now setting ''CustomHair'' to ''true''.");
-				}
 				CustomHair = true;
 				HairRenderer.material.shader = StartShader;
 				HairRenderer.material.SetFloat("_Saturation", 0f);
@@ -2279,6 +2461,10 @@ public class CosmeticScript : MonoBehaviour
 			{
 				if (!Male)
 				{
+					if (SkinColor > 0)
+					{
+						FaceTexture = FaceTextures[SkinColor];
+					}
 					MyRenderer.materials[2].mainTexture = FaceTexture;
 				}
 				else if (Club == ClubType.Council)
@@ -2320,7 +2506,7 @@ public class CosmeticScript : MonoBehaviour
 				RightIrisLight.SetActive(value: false);
 				LeftIrisLight.SetActive(value: false);
 			}
-			if (SceneManager.GetActiveScene().name == "PortraitScene")
+			if (SceneManager.GetActiveScene().name == "PortraitScene" && !CustomMode)
 			{
 				Character.transform.localScale = new Vector3(0.93f, 0.93f, 0.93f);
 			}
@@ -2421,11 +2607,11 @@ public class CosmeticScript : MonoBehaviour
 		{
 			TurnOnCheck();
 		}
-		if (!Male && StudentID != 90)
+		if (StudentID != 90)
 		{
 			EyeTypeCheck();
 		}
-		if (Kidnapped || (Student.Slave && !Student.FragileSlave))
+		if ((Kidnapped || (Student.Slave && !Student.FragileSlave)) && SceneManager.GetActiveScene().name != "GenocideScene")
 		{
 			WearBurlapSack();
 		}
@@ -2450,18 +2636,16 @@ public class CosmeticScript : MonoBehaviour
 			DoNotChangeFace = SkinColor > 0;
 			if (CustomHair || DoNotChangeFace)
 			{
-				if (StudentID == 37)
-				{
-					Debug.Log("Student #37 is now setting his FaceTexture to a texture defined by SkinColor.");
-					Debug.Log("CustomHair is: " + CustomHair + " and SkinColor is: " + SkinColor);
-				}
 				FaceTexture = FaceTextures[SkinColor];
 			}
 			else
 			{
 				_ = StudentID;
 				_ = 37;
-				FaceTexture = HairRenderer.material.mainTexture;
+				if (HairRenderer != null)
+				{
+					FaceTexture = HairRenderer.material.mainTexture;
+				}
 			}
 			bool flag = false;
 			if (StudentManager != null && StudentID == StudentManager.SuitorID)
@@ -2577,6 +2761,16 @@ public class CosmeticScript : MonoBehaviour
 			MyRenderer.materials[SkinID].mainTexture = SkinTextures[SkinColor];
 			MyRenderer.materials[UniformID].mainTexture = UniformTexture;
 		}
+		if (Student.Rival && Eighties && CustomMode)
+		{
+			Debug.Log("A male rival in custom mode is deciding what to do with his bookbag.");
+			if (Bookbag != null && Bookbag.GetComponent<MeshFilter>() != null)
+			{
+				Debug.Log("1");
+				Bookbag.GetComponent<MeshFilter>().mesh = ModernBookBagMesh;
+				Bookbag.GetComponent<Renderer>().material.mainTexture = BookbagTextures[DateGlobals.Week];
+			}
+		}
 	}
 
 	public void DetermineMaleFaceID()
@@ -2604,6 +2798,22 @@ public class CosmeticScript : MonoBehaviour
 			FaceID = 0;
 			SkinID = 1;
 			UniformID = 2;
+		}
+	}
+
+	public void DetermineFemaleFaceID()
+	{
+		if (Club == ClubType.Council || FemaleUniformID > 1)
+		{
+			UniformID = 1;
+			SkinID = 0;
+			FaceID = 2;
+		}
+		else
+		{
+			UniformID = 0;
+			SkinID = 1;
+			FaceID = 2;
 		}
 	}
 
@@ -2676,6 +2886,11 @@ public class CosmeticScript : MonoBehaviour
 					Bookbag.GetComponent<Renderer>().material.mainTexture = BookbagTextures[StudentID];
 				}
 			}
+			else if (CustomMode && Bookbag != null && Bookbag.GetComponent<MeshFilter>() != null)
+			{
+				Bookbag.GetComponent<MeshFilter>().mesh = ModernBookBagMesh;
+				Bookbag.GetComponent<Renderer>().material.mainTexture = BookbagTextures[DateGlobals.Week];
+			}
 		}
 		else
 		{
@@ -2716,10 +2931,6 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else
 		{
-			if (StudentID == 37)
-			{
-				Debug.Log("Student #37 is now setting his FaceTexture to the default face texture.");
-			}
 			UniformTexture = FemaleUniformTextures[FemaleUniformID];
 			FaceTexture = DefaultFaceTexture;
 			MyRenderer.materials[0].mainTexture = UniformTexture;
@@ -2733,6 +2944,10 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (MyRenderer.materials.Length > 2)
 		{
+			if (SkinColor > 0)
+			{
+				FaceTexture = FaceTextures[SkinColor];
+			}
 			MyRenderer.materials[2].mainTexture = FaceTexture;
 		}
 		if (!TakingPortrait && Student != null && Student.StudentManager != null && GameGlobals.CensorPanties)
@@ -2741,7 +2956,14 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (MyStockings != null && base.gameObject.activeInHierarchy)
 		{
-			StartCoroutine(PutOnStockings());
+			PutOnStockings();
+		}
+		if (SkinColor > 0)
+		{
+			DetermineFemaleFaceID();
+			MyRenderer.materials[SkinID].mainTexture = SkinTextures[SkinColor];
+			MyRenderer.materials[FaceID].mainTexture = FaceTextures[SkinColor];
+			FaceTexture = FaceTextures[SkinColor];
 		}
 	}
 
@@ -2925,8 +3147,12 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	public IEnumerator PutOnStockings()
+	public void PutOnStockings()
 	{
+		if (CustomMode && Stockings.Contains("Custom") && CustomUniform == null)
+		{
+			CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
+		}
 		if (Male)
 		{
 			Debug.Log("A male character ran this code?");
@@ -2942,7 +3168,7 @@ public class CosmeticScript : MonoBehaviour
 		{
 			Stockings = "";
 		}
-		if (Stockings == string.Empty)
+		if (Stockings == string.Empty || Stockings == "None")
 		{
 			MyStockings = null;
 		}
@@ -3079,103 +3305,43 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else if (Stockings == "Custom1")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings1.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[1] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[1];
+			MyStockings = CustomUniform.CustomStockings[1];
 		}
 		else if (Stockings == "Custom2")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings2.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[2] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[2];
+			MyStockings = CustomUniform.CustomStockings[2];
 		}
 		else if (Stockings == "Custom3")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings3.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[3] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[3];
+			MyStockings = CustomUniform.CustomStockings[3];
 		}
 		else if (Stockings == "Custom4")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings4.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[4] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[4];
+			MyStockings = CustomUniform.CustomStockings[4];
 		}
 		else if (Stockings == "Custom5")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings5.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[5] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[5];
+			MyStockings = CustomUniform.CustomStockings[5];
 		}
 		else if (Stockings == "Custom6")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings6.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[6] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[6];
+			MyStockings = CustomUniform.CustomStockings[6];
 		}
 		else if (Stockings == "Custom7")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings7.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[7] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[7];
+			MyStockings = CustomUniform.CustomStockings[7];
 		}
 		else if (Stockings == "Custom8")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings8.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[8] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[8];
+			MyStockings = CustomUniform.CustomStockings[8];
 		}
 		else if (Stockings == "Custom9")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings9.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[9] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[9];
+			MyStockings = CustomUniform.CustomStockings[9];
 		}
 		else if (Stockings == "Custom10")
 		{
-			WWW NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings10.png");
-			yield return NewCustomStockings;
-			if (NewCustomStockings.error == null)
-			{
-				CustomStockings[10] = NewCustomStockings.texture;
-			}
-			MyStockings = CustomStockings[10];
+			MyStockings = CustomUniform.CustomStockings[10];
 		}
 		else if (Stockings == "Rival")
 		{
@@ -3226,7 +3392,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 		else if (Stockings == "Loose")
 		{
-			MyStockings = null;
+			MyStockings = ShortWhiteSocks;
 			RightStockings[0].SetActive(value: true);
 			LeftStockings[0].SetActive(value: true);
 		}
@@ -3236,13 +3402,13 @@ public class CosmeticScript : MonoBehaviour
 			RightStockings[1].SetActive(value: true);
 			LeftStockings[1].SetActive(value: true);
 		}
-		else if (!Kidnapped && !Teacher && StudentManager != null && StudentManager.PantyList != null)
+		if (((MyStockings == null && Stockings == string.Empty) || (MyStockings == null && Stockings == "None")) && !CustomMode && !Kidnapped && StudentID < 90 && Student.Schoolwear == 1 && StudentManager != null && StudentManager.PantyList != null)
 		{
 			if (Eighties)
 			{
 				MyStockings = StudentManager.PantyList.ModernPanties[Random.Range(1, StudentManager.PantyList.ModernPanties.Length)];
 			}
-			else
+			else if (StudentID < 81)
 			{
 				MyStockings = StudentManager.PantyList.EightiesPanties[Random.Range(1, StudentManager.PantyList.EightiesPanties.Length)];
 			}
@@ -3291,11 +3457,43 @@ public class CosmeticScript : MonoBehaviour
 
 	public void EyeTypeCheck()
 	{
-		if (TakingPortrait && StudentID == 12 && !Eighties && !CustomMode)
+		if (Male)
 		{
-			EyeType = "";
+			if (!Kidnapped && !(EyeType == "") && !(EyeType == "Default"))
+			{
+				if (EyeType == "Angry")
+				{
+					CharacterAnimation["angryFace_00"].layer = 1;
+					CharacterAnimation.Play("angryFace_00");
+					CharacterAnimation["angryFace_00"].weight = 1f;
+				}
+				else if (EyeType == "Calm")
+				{
+					CharacterAnimation["moodyEyes_00"].layer = 1;
+					CharacterAnimation.Play("moodyEyes_00");
+					CharacterAnimation["moodyEyes_00"].weight = 1f;
+				}
+				else if (EyeType == "Depressed")
+				{
+					CharacterAnimation["sadFace_00"].layer = 1;
+					CharacterAnimation.Play("sadFace_00");
+					CharacterAnimation["sadFace_00"].weight = 1f;
+				}
+				else if (EyeType == "Tough")
+				{
+					CharacterAnimation["toughFace_00"].layer = 1;
+					CharacterAnimation.Play("toughFace_00");
+					CharacterAnimation["toughFace_00"].weight = 1f;
+				}
+				else if (EyeType == "Worried")
+				{
+					CharacterAnimation["scaredFace_01"].layer = 1;
+					CharacterAnimation.Play("scaredFace_01");
+					CharacterAnimation["scaredFace_01"].weight = 1f;
+				}
+			}
 		}
-		if (EyeType == "Thin")
+		else if (EyeType == "Thin")
 		{
 			MyRenderer.SetBlendShapeWeight(8, 100f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
@@ -3467,16 +3665,22 @@ public class CosmeticScript : MonoBehaviour
 		else if (EyeType == "Seductive")
 		{
 			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(7, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
 		}
 		else if (EyeType == "Rival2")
 		{
+			Debug.Log("Amai.");
 			MyRenderer.SetBlendShapeWeight(0, 100f);
 			MyRenderer.SetBlendShapeWeight(5, 25f);
 			MyRenderer.SetBlendShapeWeight(6, 100f);
 			MyRenderer.SetBlendShapeWeight(9, 100f);
 			MyRenderer.SetBlendShapeWeight(12, 100f);
+			if (TakingPortrait && StudentID == 12 && !Eighties && !CustomMode)
+			{
+				MyRenderer.SetBlendShapeWeight(0, 0f);
+				Teeth.transform.localPosition = new Vector3(-0.067f, 0.03f, 0f);
+				Teeth.SetActive(value: true);
+			}
 		}
 		else if (EyeType == "Chill")
 		{
@@ -3905,20 +4109,35 @@ public class CosmeticScript : MonoBehaviour
 		if (UpdateSack)
 		{
 			DisableAccessories();
-			FemaleHair[Hairstyle].SetActive(value: true);
-			HairRenderer.enabled = true;
-			if (!Eighties && Club == ClubType.Bully)
+			if (!Male)
 			{
-				RightStockings[0].SetActive(value: false);
-				LeftStockings[0].SetActive(value: false);
-				RightStockings[1].SetActive(value: false);
-				LeftStockings[1].SetActive(value: false);
-				Hoodie.SetActive(value: false);
-				DeactivateBullyAccessories();
-				SkinColor = 1;
+				FemaleHair[Hairstyle].SetActive(value: true);
+				if (!Eighties && Club == ClubType.Bully)
+				{
+					RightStockings[0].SetActive(value: false);
+					LeftStockings[0].SetActive(value: false);
+					RightStockings[1].SetActive(value: false);
+					LeftStockings[1].SetActive(value: false);
+					Hoodie.SetActive(value: false);
+					DeactivateBullyAccessories();
+					SkinColor = 1;
+				}
 			}
-			if (BurlapSack.newRenderer != null)
+			else
 			{
+				MaleHair[Hairstyle].SetActive(value: true);
+			}
+			HairRenderer.enabled = true;
+			if (!(BurlapSack.newRenderer != null))
+			{
+				return;
+			}
+			if (!Male)
+			{
+				if (!Eighties && StudentID > 80 && StudentID < 86)
+				{
+					SkinColor = 6;
+				}
 				BurlapSack.newRenderer.materials[0].mainTexture = SkinTextures[SkinColor];
 				BurlapSack.newRenderer.materials[1].mainTexture = HairRenderer.material.mainTexture;
 				BurlapSack.newRenderer.materials[2].mainTexture = BurlapSack.accessoryMaterials[0].mainTexture;
@@ -3926,9 +4145,21 @@ public class CosmeticScript : MonoBehaviour
 				{
 					BurlapSack.newRenderer.materials[1].mainTexture = DefaultFaceTexture;
 				}
-				BurlapSack.newRenderer.updateWhenOffscreen = true;
-				UpdateSack = false;
 			}
+			else
+			{
+				Debug.Log("A male wearing a burlap sack is now updating their materials.");
+				BurlapSack.newRenderer.materials[2].mainTexture = HairRenderer.material.mainTexture;
+				BurlapSack.newRenderer.materials[1].mainTexture = SkinTextures[SkinColor];
+				BurlapSack.newRenderer.materials[0].mainTexture = BurlapSack.accessoryMaterials[0].mainTexture;
+				if (CustomMode && CustomHair)
+				{
+					Debug.Log("Derp.");
+					BurlapSack.newRenderer.materials[0].mainTexture = DefaultFaceTexture;
+				}
+			}
+			BurlapSack.newRenderer.updateWhenOffscreen = true;
+			UpdateSack = false;
 		}
 		else
 		{
@@ -3942,6 +4173,10 @@ public class CosmeticScript : MonoBehaviour
 		{
 			Student.Head.LookAt(Camera.main.transform.position);
 			Student.Neck.LookAt(Camera.main.transform.position);
+		}
+		if (Male)
+		{
+			_ = CustomMode;
 		}
 	}
 
@@ -3977,6 +4212,10 @@ public class CosmeticScript : MonoBehaviour
 
 	public void ResetBlendshapes()
 	{
+		if (StudentID == 12)
+		{
+			Debug.Log("Amai is now resetting blendshapes.");
+		}
 		for (int i = 0; i < MyRenderer.sharedMesh.blendShapeCount; i++)
 		{
 			MyRenderer.SetBlendShapeWeight(i, 0f);
@@ -4003,5 +4242,196 @@ public class CosmeticScript : MonoBehaviour
 			Debug.Log("Psst...for some reason, HairRenderer is null here. Not sure if that's a bug.");
 		}
 		UsingDefaultHairColor = true;
+	}
+
+	public void SaveOriginalTextures()
+	{
+		if (!Male && OriginalFemaleUniformTextures1 == null)
+		{
+			OriginalFemaleUniformTextures1 = FemaleUniformTextures[1];
+			OriginalFemaleUniformTextures2 = FemaleUniformTextures[2];
+			OriginalFemaleUniformTextures3 = FemaleUniformTextures[3];
+			OriginalFemaleUniformTextures4 = FemaleUniformTextures[4];
+			OriginalFemaleCasualTextures1 = FemaleCasualTextures[1];
+			OriginalFemaleCasualTextures2 = FemaleCasualTextures[2];
+			OriginalFemaleCasualTextures3 = FemaleCasualTextures[3];
+			OriginalFemaleCasualTextures4 = FemaleCasualTextures[4];
+			OriginalFemaleSocksTextures1 = FemaleSocksTextures[1];
+			OriginalFemaleSocksTextures2 = FemaleSocksTextures[2];
+			OriginalFemaleSocksTextures3 = FemaleSocksTextures[3];
+			OriginalFemaleSocksTextures4 = FemaleSocksTextures[4];
+		}
+		else if (Male && OriginalMaleUniformTextures1 == null)
+		{
+			OriginalMaleUniformTextures1 = MaleUniformTextures[1];
+			OriginalMaleUniformTextures2 = MaleUniformTextures[2];
+			OriginalMaleUniformTextures3 = MaleUniformTextures[3];
+			OriginalMaleUniformTextures4 = MaleUniformTextures[4];
+			OriginalMaleCasualTextures1 = MaleCasualTextures[1];
+			OriginalMaleCasualTextures2 = MaleCasualTextures[2];
+			OriginalMaleCasualTextures3 = MaleCasualTextures[3];
+			OriginalMaleCasualTextures4 = MaleCasualTextures[4];
+			OriginalMaleSocksTextures1 = MaleSocksTextures[1];
+			OriginalMaleSocksTextures2 = MaleSocksTextures[2];
+			OriginalMaleSocksTextures3 = MaleSocksTextures[3];
+			OriginalMaleSocksTextures4 = MaleSocksTextures[4];
+		}
+	}
+
+	public void LoadOriginalTextures()
+	{
+		if (!Male && OriginalFemaleUniformTextures1 != null)
+		{
+			FemaleUniformTextures[1] = OriginalFemaleUniformTextures1;
+			FemaleUniformTextures[2] = OriginalFemaleUniformTextures2;
+			FemaleUniformTextures[3] = OriginalFemaleUniformTextures3;
+			FemaleUniformTextures[4] = OriginalFemaleUniformTextures4;
+			FemaleCasualTextures[1] = OriginalFemaleCasualTextures1;
+			FemaleCasualTextures[2] = OriginalFemaleCasualTextures2;
+			FemaleCasualTextures[3] = OriginalFemaleCasualTextures3;
+			FemaleCasualTextures[4] = OriginalFemaleCasualTextures4;
+			FemaleSocksTextures[1] = OriginalFemaleSocksTextures1;
+			FemaleSocksTextures[2] = OriginalFemaleSocksTextures2;
+			FemaleSocksTextures[3] = OriginalFemaleSocksTextures3;
+			FemaleSocksTextures[4] = OriginalFemaleSocksTextures4;
+		}
+		else if (Male && OriginalMaleUniformTextures1 != null)
+		{
+			MaleUniformTextures[1] = OriginalMaleUniformTextures1;
+			MaleUniformTextures[2] = OriginalMaleUniformTextures2;
+			MaleUniformTextures[3] = OriginalMaleUniformTextures3;
+			MaleUniformTextures[4] = OriginalMaleUniformTextures4;
+			MaleCasualTextures[1] = OriginalMaleCasualTextures1;
+			MaleCasualTextures[2] = OriginalMaleCasualTextures2;
+			MaleCasualTextures[3] = OriginalMaleCasualTextures3;
+			MaleCasualTextures[4] = OriginalMaleCasualTextures4;
+			MaleSocksTextures[1] = OriginalMaleSocksTextures1;
+			MaleSocksTextures[2] = OriginalMaleSocksTextures2;
+			MaleSocksTextures[3] = OriginalMaleSocksTextures3;
+			MaleSocksTextures[4] = OriginalMaleSocksTextures4;
+		}
+	}
+
+	public IEnumerator GrabCustomTexturesAsync()
+	{
+		WWW NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortIndoors.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleUniformTextures[1] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortOutdoors.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleCasualTextures[1] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortSocks.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleSocksTextures[1] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongIndoors.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleUniformTextures[2] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongOutdoors.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleCasualTextures[2] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongSocks.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleSocksTextures[2] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterIndoors.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleUniformTextures[3] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterOutdoors.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleCasualTextures[3] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterSocks.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleSocksTextures[3] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerIndoors.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleUniformTextures[4] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerOutdoors.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleCasualTextures[4] = NewTexture12.texture;
+		}
+		NewTexture12 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerSocks.png");
+		yield return NewTexture12;
+		if (NewTexture12.error == null)
+		{
+			FemaleSocksTextures[4] = NewTexture12.texture;
+		}
+		SetFemaleUniform();
+		Student.ShoeRemoval.OutdoorShoes = CasualTexture;
+		Student.ShoeRemoval.IndoorShoes = UniformTexture;
+		Student.ShoeRemoval.TargetShoes = UniformTexture;
+		Student.ShoeRemoval.Socks = SocksTexture;
+		Student.UniformTexture = CasualTexture;
+	}
+
+	public void GrabCustomTextures()
+	{
+		if (!Male)
+		{
+			FemaleUniformTextures[1] = CustomUniform.FemaleUniformTextures[1];
+			FemaleUniformTextures[2] = CustomUniform.FemaleUniformTextures[2];
+			FemaleUniformTextures[3] = CustomUniform.FemaleUniformTextures[3];
+			FemaleUniformTextures[4] = CustomUniform.FemaleUniformTextures[4];
+			FemaleCasualTextures[1] = CustomUniform.FemaleCasualTextures[1];
+			FemaleCasualTextures[2] = CustomUniform.FemaleCasualTextures[2];
+			FemaleCasualTextures[3] = CustomUniform.FemaleCasualTextures[3];
+			FemaleCasualTextures[4] = CustomUniform.FemaleCasualTextures[4];
+			FemaleSocksTextures[1] = CustomUniform.FemaleSocksTextures[1];
+			FemaleSocksTextures[2] = CustomUniform.FemaleSocksTextures[2];
+			FemaleSocksTextures[3] = CustomUniform.FemaleSocksTextures[3];
+			FemaleSocksTextures[4] = CustomUniform.FemaleSocksTextures[4];
+			SetFemaleUniform();
+		}
+		else
+		{
+			MaleUniformTextures[1] = CustomUniform.MaleUniformTextures[1];
+			MaleUniformTextures[2] = CustomUniform.MaleUniformTextures[2];
+			MaleUniformTextures[3] = CustomUniform.MaleUniformTextures[3];
+			MaleUniformTextures[4] = CustomUniform.MaleUniformTextures[4];
+			MaleCasualTextures[1] = CustomUniform.MaleCasualTextures[1];
+			MaleCasualTextures[2] = CustomUniform.MaleCasualTextures[2];
+			MaleCasualTextures[3] = CustomUniform.MaleCasualTextures[3];
+			MaleCasualTextures[4] = CustomUniform.MaleCasualTextures[4];
+			MaleSocksTextures[1] = CustomUniform.MaleSocksTextures[1];
+			MaleSocksTextures[2] = CustomUniform.MaleSocksTextures[2];
+			MaleSocksTextures[3] = CustomUniform.MaleSocksTextures[3];
+			MaleSocksTextures[4] = CustomUniform.MaleSocksTextures[4];
+			SetMaleUniform();
+		}
+		Student.ShoeRemoval.OutdoorShoes = CasualTexture;
+		Student.ShoeRemoval.IndoorShoes = UniformTexture;
+		Student.ShoeRemoval.TargetShoes = UniformTexture;
+		Student.ShoeRemoval.Socks = SocksTexture;
+		Student.UniformTexture = CasualTexture;
 	}
 }

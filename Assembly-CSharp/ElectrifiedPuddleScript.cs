@@ -31,7 +31,7 @@ public class ElectrifiedPuddleScript : MonoBehaviour
 			return;
 		}
 		YandereScript component2 = other.gameObject.GetComponent<YandereScript>();
-		if (component2 != null && !component2.WearingRaincoat)
+		if (component2.Police.Timer > 1f && component2 != null && !component2.WearingRaincoat && component2.CanMove)
 		{
 			if (component2.TimeSkipping)
 			{

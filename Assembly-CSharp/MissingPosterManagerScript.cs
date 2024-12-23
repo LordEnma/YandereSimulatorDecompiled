@@ -12,7 +12,7 @@ public class MissingPosterManagerScript : MonoBehaviour
 		bool customMode = GameGlobals.CustomMode;
 		string text = "";
 		int num = 0;
-		for (int i = 2; i < 101; i++)
+		for (int i = 2; i < 90; i++)
 		{
 			if (!StudentGlobals.GetStudentMissing(i))
 			{

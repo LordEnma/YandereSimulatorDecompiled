@@ -5,6 +5,10 @@ public class HomePrisonerChanScript : MonoBehaviour
 {
 	public HomeYandereDetectorScript YandereDetector;
 
+	public PrisonerManagerScript PrisonerManager;
+
+	public HomePrisonerScript PrisonerWindow;
+
 	public HomeCameraScript HomeCamera;
 
 	public CosmeticScript Cosmetic;
@@ -81,6 +85,8 @@ public class HomePrisonerChanScript : MonoBehaviour
 
 	public float HairRot5;
 
+	public bool DoNotMoveNeck;
+
 	public bool LookAhead;
 
 	public bool Tortured;
@@ -99,6 +105,18 @@ public class HomePrisonerChanScript : MonoBehaviour
 
 	public void Start()
 	{
+		if (PrisonerID == 1 && StudentGlobals.Prisoner1 > 0)
+		{
+			if ((JSON.Students[StudentGlobals.Prisoner1].Gender == 1 && !Male) || (JSON.Students[StudentGlobals.Prisoner1].Gender == 0 && Male))
+			{
+				base.gameObject.SetActive(value: false);
+			}
+			else
+			{
+				PrisonerWindow.EightiesPrisoner = this;
+				PrisonerManager.Prisoners[1] = this;
+			}
+		}
 		Tripod.SetActive(value: false);
 		if (PrisonerID == 1)
 		{
@@ -180,8 +198,16 @@ public class HomePrisonerChanScript : MonoBehaviour
 			{
 				if (PrisonerID == 1)
 				{
-					Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
-					Character.GetComponent<Animation>()["f02_kidnapIdle_02"].speed = 0f;
+					if (!Male)
+					{
+						Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
+						Character.GetComponent<Animation>()["f02_kidnapIdle_02"].speed = 0f;
+					}
+					else
+					{
+						Character.GetComponent<Animation>().CrossFade("kidnapIdle_02");
+						Character.GetComponent<Animation>()["kidnapIdle_02"].speed = 0f;
+					}
 				}
 				else
 				{
@@ -195,7 +221,15 @@ public class HomePrisonerChanScript : MonoBehaviour
 			}
 			else if (PrisonerID == 1 && Sanity == 0f)
 			{
-				Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
+				if (!Male)
+				{
+					Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
+				}
+				else
+				{
+					Character.GetComponent<Animation>().CrossFade("kidnapIdle_02");
+					DoNotMoveNeck = true;
+				}
 			}
 		}
 		else
@@ -210,9 +244,8 @@ public class HomePrisonerChanScript : MonoBehaviour
 				Cosmetic.Student.Ragdoll.AllRigidbodies[num].isKinematic = true;
 				Cosmetic.Student.Ragdoll.AllColliders[num].enabled = false;
 			}
-			Cosmetic.Student.DisableFemaleProps();
-			Cosmetic.Student.SetSplashes(Bool: false);
 			Cosmetic.Student.DisableProps();
+			Cosmetic.Student.SetSplashes(Bool: false);
 			Blindfold.SetActive(value: true);
 		}
 		if (GameGlobals.Eighties)
@@ -240,7 +273,10 @@ public class HomePrisonerChanScript : MonoBehaviour
 				{
 					if (LookAhead)
 					{
-						Neck.localEulerAngles = new Vector3(Neck.localEulerAngles.x - 45f, Neck.localEulerAngles.y, Neck.localEulerAngles.z);
+						if (!DoNotMoveNeck)
+						{
+							Neck.localEulerAngles = new Vector3(Neck.localEulerAngles.x - 45f, Neck.localEulerAngles.y, Neck.localEulerAngles.z);
+						}
 					}
 					else if (YandereDetector.YandereDetected && Vector3.Distance(base.transform.position, HomeYandere.position) < 2f)
 					{
@@ -255,7 +291,10 @@ public class HomePrisonerChanScript : MonoBehaviour
 							b = Quaternion.LookRotation(HomeYandere.position + Vector3.up * 1.5f - Neck.position);
 							HairRotation = Mathf.Lerp(HairRotation, HairRot2, Time.deltaTime * 2f);
 						}
-						Neck.rotation = Quaternion.Slerp(LastRotation, b, Time.deltaTime * 2f);
+						if (!DoNotMoveNeck)
+						{
+							Neck.rotation = Quaternion.Slerp(LastRotation, b, Time.deltaTime * 2f);
+						}
 						TwintailR.transform.localEulerAngles = new Vector3(HairRotation, 180f, -90f);
 						TwintailL.transform.localEulerAngles = new Vector3(0f - HairRotation, 0f, -90f);
 					}
@@ -276,7 +315,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 						TwintailL.transform.localEulerAngles = new Vector3(0f - HairRotation, 0f, -90f);
 					}
 				}
-				else
+				else if (!DoNotMoveNeck)
 				{
 					Neck.localEulerAngles = new Vector3(Neck.localEulerAngles.x - 45f, Neck.localEulerAngles.y, Neck.localEulerAngles.z);
 				}

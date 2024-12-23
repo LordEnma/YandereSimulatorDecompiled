@@ -98,7 +98,7 @@ public class GenericEightiesTaskScript : MonoBehaviour
 						while (num < 100)
 						{
 							num++;
-							if (MyStudent.StudentManager.Students[num] != null && MyStudent.StudentManager.Students[num].SeekingMedicine)
+							if ((MyStudent.StudentManager.Students[num] != null && MyStudent.StudentManager.Students[num].SeekingMedicine) || (MyStudent.StudentManager.Students[num] != null && MyStudent.StudentManager.Students[num].Alarmed) || (MyStudent.StudentManager.Students[num] != null && MyStudent.StudentManager.Students[num].Investigating) || (MyStudent.StudentManager.Students[num] != null && MyStudent.StudentManager.Students[num].InvestigatingBloodPool) || (MyStudent.StudentManager.Students[num] != null && MyStudent.StudentManager.Students[num].ReturningMisplacedWeapon))
 							{
 								Prompt.Yandere.NotificationManager.CustomText = "She's busy! Wait a moment!";
 								Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
