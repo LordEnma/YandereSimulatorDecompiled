@@ -5,6 +5,12 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 {
 	public WalkToSchoolDataScript AmaiDialogueData;
 
+	public SelectiveGrayscale LoveSickEffect1;
+
+	public CameraFilterPack_Film_Grain LoveSickEffect2;
+
+	public CameraFilterPack_TV_Vignetting LoveSickEffect3;
+
 	public PromptBarScript PromptBar;
 
 	public CosmeticScript Yandere;
@@ -125,11 +131,23 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 
 	public Texture BlondePony;
 
+	public AudioSource Jukebox;
+
+	public AudioClip LoveSickBGM;
+
 	public string RivalName = "Osana";
 
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
+		if (GameGlobals.LoveSick)
+		{
+			LoveSickEffect1.enabled = true;
+			LoveSickEffect2.enabled = true;
+			LoveSickEffect3.enabled = true;
+			Jukebox.clip = LoveSickBGM;
+			Jukebox.Play();
+		}
 		if (SchoolGlobals.SchoolAtmosphere < 0.5f || GameGlobals.LoveSick)
 		{
 			Darkness.color = new Color(0f, 0f, 0f, 1f);

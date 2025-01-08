@@ -338,11 +338,11 @@ public class UISprite : UIBasicSprite
 				float num13 = 1f;
 				if (num10 > 0 && num11 > 0 && (mType == Type.Simple || mType == Type.Filled))
 				{
-					if (((uint)num10 & (true ? 1u : 0u)) != 0)
+					if ((num10 & 1) != 0)
 					{
 						num7++;
 					}
-					if (((uint)num11 & (true ? 1u : 0u)) != 0)
+					if ((num11 & 1) != 0)
 					{
 						num8++;
 					}

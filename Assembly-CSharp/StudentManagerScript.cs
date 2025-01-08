@@ -3051,6 +3051,10 @@ public class StudentManagerScript : MonoBehaviour
 			}
 			if (Eighties)
 			{
+				if (CustomMode)
+				{
+					GenericTaskIDs = JSON.Misc.StudentTasks;
+				}
 				studentScript.GenericTaskID = GenericTaskIDs[spawnID];
 			}
 			OccupySeat();
@@ -3444,8 +3448,17 @@ public class StudentManagerScript : MonoBehaviour
 						{
 							if (studentScript.ShoeRemoval.Locker == null)
 							{
+								if (studentScript.Rival)
+								{
+									Debug.Log("A rival's ShoeRemoval.Locker was null.");
+								}
 								studentScript.ShoeRemoval.Start();
 							}
+							if (studentScript.Rival)
+							{
+								Debug.Log("A rival's ''Indoors'' was false, so she is now running ShowRemoval.PutOnShoes().");
+							}
+							studentScript.ShoeRemoval.Start();
 							studentScript.ShoeRemoval.PutOnShoes();
 						}
 						studentScript.ChangingShoes = false;

@@ -203,29 +203,29 @@ public class UniformSetterScript : MonoBehaviour
 
 	public IEnumerator GrabCustomTexturesAsync()
 	{
-		WWW NewTexture4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortOutdoors.png");
-		yield return NewTexture4;
-		if (NewTexture4.error == null)
+		WWW NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleUniformTextures[1] = NewTexture4.texture;
+			FemaleUniformTextures[1] = NewTexture.texture;
 		}
-		NewTexture4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongOutdoors.png");
-		yield return NewTexture4;
-		if (NewTexture4.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleUniformTextures[2] = NewTexture4.texture;
+			FemaleUniformTextures[2] = NewTexture.texture;
 		}
-		NewTexture4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterOutdoors.png");
-		yield return NewTexture4;
-		if (NewTexture4.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleUniformTextures[3] = NewTexture4.texture;
+			FemaleUniformTextures[3] = NewTexture.texture;
 		}
-		NewTexture4 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerOutdoors.png");
-		yield return NewTexture4;
-		if (NewTexture4.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleUniformTextures[4] = NewTexture4.texture;
+			FemaleUniformTextures[4] = NewTexture.texture;
 		}
 		if (Male)
 		{

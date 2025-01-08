@@ -7522,6 +7522,7 @@ public class YandereScript : MonoBehaviour
 			}
 		}
 		EquippedWeapon.Blood.enabled = true;
+		EquippedWeapon.Blood.material.mainTexture = TransparentPixel;
 		EquippedWeapon.StainWithBlood();
 		if (!Dismembering)
 		{
@@ -7853,6 +7854,21 @@ public class YandereScript : MonoBehaviour
 		{
 			CustomHair.gameObject.SetActive(value: false);
 			UseCustomHair = false;
+		}
+		if (!CustomMode || StudentManager.JSON.Misc.InvertHairs == null)
+		{
+			return;
+		}
+		if (StudentManager.JSON.Misc.InvertHairs[0] == 1)
+		{
+			if (Hairstyles[Hairstyle].transform.localScale.x > 0f)
+			{
+				Hairstyles[Hairstyle].transform.localScale = new Vector3(Hairstyles[Hairstyle].transform.localScale.x * -1f, Hairstyles[Hairstyle].transform.localScale.y, Hairstyles[Hairstyle].transform.localScale.z);
+			}
+		}
+		else if (Hairstyles[Hairstyle].transform.localScale.x < 0f)
+		{
+			Hairstyles[Hairstyle].transform.localScale = new Vector3(Hairstyles[Hairstyle].transform.localScale.x * -1f, Hairstyles[Hairstyle].transform.localScale.y, Hairstyles[Hairstyle].transform.localScale.z);
 		}
 	}
 
@@ -11153,53 +11169,53 @@ public class YandereScript : MonoBehaviour
 	public IEnumerator GrabCustomTexturesAsync()
 	{
 		Debug.Log("YandereChan is now running GrabCustomTextures()");
-		WWW NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortIndoors.png");
-		yield return NewTexture8;
-		if (NewTexture8.error == null)
+		WWW NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			StandardCasualTextures[1] = NewTexture8.texture;
+			StandardCasualTextures[1] = NewTexture.texture;
 		}
-		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortOutdoors.png");
-		yield return NewTexture8;
-		if (NewTexture8.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			StandardUniformTextures[1] = NewTexture8.texture;
+			StandardUniformTextures[1] = NewTexture.texture;
 		}
-		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongIndoors.png");
-		yield return NewTexture8;
-		if (NewTexture8.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			StandardCasualTextures[2] = NewTexture8.texture;
+			StandardCasualTextures[2] = NewTexture.texture;
 		}
-		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongOutdoors.png");
-		yield return NewTexture8;
-		if (NewTexture8.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			StandardUniformTextures[2] = NewTexture8.texture;
+			StandardUniformTextures[2] = NewTexture.texture;
 		}
-		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterIndoors.png");
-		yield return NewTexture8;
-		if (NewTexture8.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			StandardCasualTextures[3] = NewTexture8.texture;
+			StandardCasualTextures[3] = NewTexture.texture;
 		}
-		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterOutdoors.png");
-		yield return NewTexture8;
-		if (NewTexture8.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			StandardUniformTextures[3] = NewTexture8.texture;
+			StandardUniformTextures[3] = NewTexture.texture;
 		}
-		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerIndoors.png");
-		yield return NewTexture8;
-		if (NewTexture8.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			StandardCasualTextures[4] = NewTexture8.texture;
+			StandardCasualTextures[4] = NewTexture.texture;
 		}
-		NewTexture8 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerOutdoors.png");
-		yield return NewTexture8;
-		if (NewTexture8.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			StandardUniformTextures[4] = NewTexture8.texture;
+			StandardUniformTextures[4] = NewTexture.texture;
 		}
 		SetUniform();
 	}

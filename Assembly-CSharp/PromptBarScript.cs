@@ -75,4 +75,13 @@ public class PromptBarScript : MonoBehaviour
 			Button[ID].enabled = false;
 		}
 	}
+
+	public void SwapShiftForSpace()
+	{
+		PromptSwapScript component = Button[6].gameObject.GetComponent<PromptSwapScript>();
+		component.KeyboardLetter = "Space";
+		component.KeyboardName = "Space_Key";
+		component.GamepadName = "Select";
+		component.GamepadName = "SelectSony";
+	}
 }

@@ -44,166 +44,166 @@ public class CustomUniformScript : MonoBehaviour
 
 	public IEnumerator GrabCustomTextures()
 	{
-		WWW NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortIndoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		WWW NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleUniformTextures[1] = NewTexture26.texture;
+			FemaleUniformTextures[1] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortOutdoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleCasualTextures[1] = NewTexture26.texture;
+			FemaleCasualTextures[1] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortSocks.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleShortSocks.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleSocksTextures[1] = NewTexture26.texture;
+			FemaleSocksTextures[1] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongIndoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleUniformTextures[2] = NewTexture26.texture;
+			FemaleUniformTextures[2] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongOutdoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleCasualTextures[2] = NewTexture26.texture;
+			FemaleCasualTextures[2] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongSocks.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleLongSocks.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleSocksTextures[2] = NewTexture26.texture;
+			FemaleSocksTextures[2] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterIndoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleUniformTextures[3] = NewTexture26.texture;
+			FemaleUniformTextures[3] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterOutdoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleCasualTextures[3] = NewTexture26.texture;
+			FemaleCasualTextures[3] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterSocks.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleSweaterSocks.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleSocksTextures[3] = NewTexture26.texture;
+			FemaleSocksTextures[3] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerIndoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleUniformTextures[4] = NewTexture26.texture;
+			FemaleUniformTextures[4] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerOutdoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleCasualTextures[4] = NewTexture26.texture;
+			FemaleCasualTextures[4] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerSocks.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleBlazerSocks.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			FemaleSocksTextures[4] = NewTexture26.texture;
+			FemaleSocksTextures[4] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleDefaultIndoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleDefaultIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleUniformTextures[1] = NewTexture26.texture;
+			MaleUniformTextures[1] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleDefaultOutdoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleDefaultOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleCasualTextures[1] = NewTexture26.texture;
+			MaleCasualTextures[1] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleDefaultSocks.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleDefaultSocks.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleSocksTextures[1] = NewTexture26.texture;
+			MaleSocksTextures[1] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleCoatIndoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleCoatIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleUniformTextures[2] = NewTexture26.texture;
+			MaleUniformTextures[2] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleCoatOutdoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleCoatOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleCasualTextures[2] = NewTexture26.texture;
+			MaleCasualTextures[2] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleCoatSocks.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleCoatSocks.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleSocksTextures[2] = NewTexture26.texture;
+			MaleSocksTextures[2] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleButtonIndoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleButtonIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleUniformTextures[3] = NewTexture26.texture;
+			MaleUniformTextures[3] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleButtonOutdoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleButtonOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleCasualTextures[3] = NewTexture26.texture;
+			MaleCasualTextures[3] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleButtonSocks.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleButtonSocks.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleSocksTextures[3] = NewTexture26.texture;
+			MaleSocksTextures[3] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleBlazerIndoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleBlazerIndoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleUniformTextures[4] = NewTexture26.texture;
+			MaleUniformTextures[4] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleBlazerOutdoors.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleBlazerOutdoors.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleCasualTextures[4] = NewTexture26.texture;
+			MaleCasualTextures[4] = NewTexture.texture;
 		}
-		NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleBlazerSocks.png");
-		yield return NewTexture26;
-		if (NewTexture26.error == null)
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleBlazerSocks.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
 		{
-			MaleSocksTextures[4] = NewTexture26.texture;
+			MaleSocksTextures[4] = NewTexture.texture;
 		}
-		for (int ID2 = 1; ID2 < 11; ID2++)
+		for (int ID = 1; ID < 11; ID++)
 		{
-			NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Stockings/CustomStockings" + ID2 + ".png");
-			yield return NewTexture26;
-			if (NewTexture26.error == null)
+			NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Stockings/CustomStockings" + ID + ".png");
+			yield return NewTexture;
+			if (NewTexture.error == null)
 			{
-				CustomStockings[ID2] = NewTexture26.texture;
+				CustomStockings[ID] = NewTexture.texture;
 			}
 		}
-		for (int ID2 = 1; ID2 < 11; ID2++)
+		for (int ID = 1; ID < 11; ID++)
 		{
-			NewTexture26 = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Bookbags/RivalBag" + ID2 + ".png");
-			yield return NewTexture26;
-			if (NewTexture26.error == null)
+			NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Bookbags/RivalBag" + ID + ".png");
+			yield return NewTexture;
+			if (NewTexture.error == null)
 			{
-				CustomBookbags[ID2] = NewTexture26.texture;
+				CustomBookbags[ID] = NewTexture.texture;
 			}
 		}
 	}

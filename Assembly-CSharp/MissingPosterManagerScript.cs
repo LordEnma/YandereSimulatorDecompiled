@@ -14,7 +14,7 @@ public class MissingPosterManagerScript : MonoBehaviour
 		int num = 0;
 		for (int i = 2; i < 90; i++)
 		{
-			if (!StudentGlobals.GetStudentMissing(i))
+			if (!StudentGlobals.GetStudentMissing(i) && !StudentGlobals.GetStudentKidnapped(i))
 			{
 				continue;
 			}

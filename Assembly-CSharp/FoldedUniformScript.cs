@@ -198,6 +198,21 @@ public class FoldedUniformScript : MonoBehaviour
 		{
 			MyRenderer[i].material.mainTexture = CleanTexture;
 		}
+		Renderer[] myRenderer = MyRenderer;
+		foreach (Renderer renderer in myRenderer)
+		{
+			if (renderer != null)
+			{
+				if (renderer.materials.Length > 1)
+				{
+					renderer.materials[1].SetFloat("_BlendAmount", 0f);
+				}
+				else
+				{
+					renderer.material.SetFloat("_BlendAmount", 0f);
+				}
+			}
+		}
 	}
 
 	public void StainWithBlood()

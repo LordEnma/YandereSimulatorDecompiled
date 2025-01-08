@@ -187,6 +187,7 @@ public class StruggleBarScript : MonoBehaviour
 	public void HeroWins()
 	{
 		Debug.Log("StruggleBar fired HeroWins()");
+		Student.Persona = PersonaType.Heroic;
 		if (Yandere.enabled && Yandere.Armed)
 		{
 			Yandere.EquippedWeapon.Drop();

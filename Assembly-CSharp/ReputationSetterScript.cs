@@ -4,6 +4,12 @@ public class ReputationSetterScript : MonoBehaviour
 {
 	public StudentManagerScript StudentManager;
 
+	public float[] Likes;
+
+	public float[] Respects;
+
+	public float[] Fears;
+
 	public void InitializeReputations()
 	{
 		if (!GameGlobals.Eighties)
@@ -108,6 +114,13 @@ public class ReputationSetterScript : MonoBehaviour
 			StudentGlobals.SetReputationTriangle(98, new Vector3(0f, 100f, 100f));
 			StudentGlobals.SetReputationTriangle(99, new Vector3(-50f, 50f, 100f));
 			StudentGlobals.SetReputationTriangle(99, new Vector3(-100f, -100f, 100f));
+		}
+		else if (GameGlobals.CustomMode)
+		{
+			for (int i = 1; i < 101; i++)
+			{
+				StudentGlobals.SetReputationTriangle(i, new Vector3(StudentManager.JSON.Misc.Likes[i], StudentManager.JSON.Misc.Respects[i], StudentManager.JSON.Misc.Fears[i]));
+			}
 		}
 		else
 		{

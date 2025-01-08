@@ -53,11 +53,11 @@ public class UISpriteCollection : UIBasicSprite
 				float num12 = 1f;
 				if (num9 > 0 && num10 > 0 && (type == Type.Simple || type == Type.Filled))
 				{
-					if (((uint)num9 & (true ? 1u : 0u)) != 0)
+					if ((num9 & 1) != 0)
 					{
 						num7++;
 					}
-					if (((uint)num10 & (true ? 1u : 0u)) != 0)
+					if ((num10 & 1) != 0)
 					{
 						num8++;
 					}

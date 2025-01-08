@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class AlternateConfessionScript : MonoBehaviour
 {
+	public StudentScript FemaleSenpaiScript;
+
 	public YandereScript TheYandereScript;
 
 	public StudentScript TheSenpaiScript;
@@ -83,6 +85,14 @@ public class AlternateConfessionScript : MonoBehaviour
 
 	public int[] TimesEliminationMethodsUsed;
 
+	public Animation FemaleSenpaiAnimation;
+
+	public GameObject FemaleSenpai;
+
+	public GameObject MaleSenpai;
+
+	public bool Female;
+
 	public Transform RightHair;
 
 	public Transform LeftHair;
@@ -107,7 +117,25 @@ public class AlternateConfessionScript : MonoBehaviour
 
 	private void Start()
 	{
-		TheSenpaiScript.DisableMaleProps();
+		if (GameGlobals.CustomMode && GameGlobals.FemaleSenpai)
+		{
+			FemaleSenpaiScript.Ragdoll.DestroyRigidbodies();
+			TheSenpaiScript = FemaleSenpaiScript;
+			Senpai = FemaleSenpaiAnimation;
+			Senpai.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
+			ConfessLabels[3].text = "...and confesses her feelings to her.";
+			ConfessLabels[4].text = "She describes how she makes her feel...";
+			ConfessLabels[5].text = "...and how she can't live without her.";
+			ConfessLabels[7].text = "...she waits eagerly for her response.";
+			FemaleSenpai.SetActive(value: true);
+			MaleSenpai.SetActive(value: false);
+			Female = true;
+		}
+		else
+		{
+			FemaleSenpai.SetActive(value: false);
+			MaleSenpai.SetActive(value: true);
+		}
 		TheSenpaiScript.DisableProps();
 		TheYandereScript.SetUniform();
 		if (GameGlobals.CustomMode)
@@ -248,72 +276,123 @@ public class AlternateConfessionScript : MonoBehaviour
 		SenpaiLabels[2].text = text + "\n\n" + text2 + "\n\n" + text3 + "\n\n" + text4 + "\n\n" + text5 + "\n\n" + text6 + "\n\n" + text7 + "\n\n" + text8 + "\n\n" + text9 + "\n\n" + text10 + "\n\n" + text11;
 		if (GameGlobals.SenpaiLove == 100)
 		{
-			text = "He has been fantasizing about the day when he would finally meet his anonymous secret admirer.";
+			text = (Female ? "She has been fantasizing about the day when she would finally meet her anonymous secret admirer." : "He has been fantasizing about the day when he would finally meet his anonymous secret admirer.");
 		}
 		else if (GameGlobals.SenpaiLove > 75)
 		{
-			text = "The anonymous love letters and gifts that she left on his desk made a very strong impression on him.";
+			text = (Female ? "The anonymous love letters and gifts that she left on her desk made a very strong impression on her." : "The anonymous love letters and gifts that she left on his desk made a very strong impression on him.");
 		}
 		else if (GameGlobals.SenpaiLove > 50)
 		{
-			text = "He felt very flattered by the anonymous love letters and gifts that she left on his desk.";
+			text = (Female ? "She felt very flattered by the anonymous love letters and gifts that she left on her desk." : "He felt very flattered by the anonymous love letters and gifts that she left on his desk.");
 		}
 		else if (GameGlobals.SenpaiLove > 25)
 		{
-			text = "He was pleasantly surprised by the anonymous love letters and gifts that she left on his desk.";
+			text = (Female ? "She was pleasantly surprised by the anonymous love letters and gifts that she left on her desk." : "He was pleasantly surprised by the anonymous love letters and gifts that she left on his desk.");
 		}
 		else if (GameGlobals.SenpaiLove > 0)
 		{
-			text = "He vaguely remembers finding anonymous love letters and gifts on his desk, or something like that.";
+			text = (Female ? "She vaguely remembers finding anonymous love letters and gifts on her desk, or something like that." : "He vaguely remembers finding anonymous love letters and gifts on his desk, or something like that.");
 		}
 		else if (GameGlobals.SenpaiLove == 0)
 		{
-			text = "She never attempted to build a relationship with him by leaving notes or gifts on his desk.";
+			text = (Female ? "She never attempted to build a relationship with her by leaving notes or gifts on her desk." : "She never attempted to build a relationship with him by leaving notes or gifts on his desk.");
 		}
-		if (PlayerGlobals.Reputation == 100f)
+		if (!Female)
 		{
-			text2 = "He knows that she is loved by everyone at school.";
+			if (PlayerGlobals.Reputation == 100f)
+			{
+				text2 = "He knows that she is loved by everyone at school.";
+			}
+			else if (PlayerGlobals.Reputation > 50f)
+			{
+				text2 = "He knows that she has a very good reputation at school.";
+			}
+			else if (PlayerGlobals.Reputation > 0f)
+			{
+				text2 = "He knows that she has a positive reputation at school.";
+			}
+			else if (PlayerGlobals.Reputation == 0f)
+			{
+				text2 = "He doesn't know anything about her. At school, she is a complete ghost.";
+			}
+			else if (PlayerGlobals.Reputation < -50f)
+			{
+				text2 = "He has heard a lot of very nasty rumors about her around school.";
+			}
+			else if (PlayerGlobals.Reputation < 0f)
+			{
+				text2 = "He has heard some negative things about her around school.";
+			}
+		}
+		else if (PlayerGlobals.Reputation == 100f)
+		{
+			text2 = "She knows that she is loved by everyone at school.";
 		}
 		else if (PlayerGlobals.Reputation > 50f)
 		{
-			text2 = "He knows that she has a very good reputation at school.";
+			text2 = "She knows that she has a very good reputation at school.";
 		}
 		else if (PlayerGlobals.Reputation > 0f)
 		{
-			text2 = "He knows that she has a positive reputation at school.";
+			text2 = "She knows that she has a positive reputation at school.";
 		}
 		else if (PlayerGlobals.Reputation == 0f)
 		{
-			text2 = "He doesn't know anything about her. At school, she is a complete ghost.";
+			text2 = "She doesn't know anything about her. At school, she is a complete ghost.";
 		}
 		else if (PlayerGlobals.Reputation < -50f)
 		{
-			text2 = "He has heard a lot of very nasty rumors about her around school.";
+			text2 = "She has heard a lot of very nasty rumors about her around school.";
 		}
 		else if (PlayerGlobals.Reputation < 0f)
 		{
-			text2 = "He has heard some negative things about her around school.";
+			text2 = "She has heard some negative things about her around school.";
 		}
-		if (GameGlobals.SenpaiSanity <= -100)
+		if (!Female)
 		{
-			text3 = "He has experienced severe emotional trauma that has turned him into a mind-broken empty husk; a shell of the man that he once was.";
+			if (GameGlobals.SenpaiSanity <= -100)
+			{
+				text3 = "He has experienced severe emotional trauma that has turned him into a mind-broken empty husk; a shell of the man that he once was.";
+				MindBroken = true;
+			}
+			else if (GameGlobals.SenpaiSanity < -75)
+			{
+				text3 = "He has experienced significant emotional trauma that almost prevents him from being able to focus on having a romantic relationship.";
+			}
+			else if (GameGlobals.SenpaiSanity < -50)
+			{
+				text3 = "He has experienced emotional trauma that may interfere with his ability to focus on having a romantic relationship.";
+			}
+			else if (GameGlobals.SenpaiSanity < -25)
+			{
+				text3 = "He has experienced slight emotional trauma, but nothing that would prevent him from able to focus on having a romantic relationship.";
+			}
+			else if (GameGlobals.SenpaiSanity == 0)
+			{
+				text3 = "He has not experienced any emotional trauma that would prevent him from being able to focus on having a romantic relationship.";
+			}
+		}
+		else if (GameGlobals.SenpaiSanity <= -100)
+		{
+			text3 = "She has experienced severe emotional trauma that has turned her into a mind-broken empty husk; a shell of the woman that she once was.";
 			MindBroken = true;
 		}
 		else if (GameGlobals.SenpaiSanity < -75)
 		{
-			text3 = "He has experienced significant emotional trauma that almost prevents him from being able to focus on having a romantic relationship.";
+			text3 = "She has experienced significant emotional trauma that almost prevents her from being able to focus on having a romantic relationship.";
 		}
 		else if (GameGlobals.SenpaiSanity < -50)
 		{
-			text3 = "He has experienced emotional trauma that may interfere with his ability to focus on having a romantic relationship.";
+			text3 = "She has experienced emotional trauma that may interfere with her ability to focus on having a romantic relationship.";
 		}
 		else if (GameGlobals.SenpaiSanity < -25)
 		{
-			text3 = "He has experienced slight emotional trauma, but nothing that would prevent him from able to focus on having a romantic relationship.";
+			text3 = "She has experienced slight emotional trauma, but nothing that would prevent her from able to focus on having a romantic relationship.";
 		}
 		else if (GameGlobals.SenpaiSanity == 0)
 		{
-			text3 = "He has not experienced any emotional trauma that would prevent him from being able to focus on having a romantic relationship.";
+			text3 = "She has not experienced any emotional trauma that would prevent her from being able to focus on having a romantic relationship.";
 		}
 		SenpaiLabels[3].text = text + "\n\n" + text2 + "\n\n" + text3;
 		LovePoints += (int)PlayerGlobals.Reputation;
@@ -321,11 +400,22 @@ public class AlternateConfessionScript : MonoBehaviour
 		LovePoints -= GameGlobals.SenpaiSanity;
 		if (MindBroken)
 		{
-			text = "He neither accepts, nor declines.";
-			text = "He is empty inside. Broken.";
-			text2 = "This presents a unique opportunity.";
-			text4 = "She decides to ''adopt'' him...";
-			text5 = "...and keep him as a pet.";
+			if (!GameGlobals.FemaleSenpai)
+			{
+				text = "He neither accepts, nor declines.";
+				text = "He is empty inside. Broken.";
+				text2 = "This presents a unique opportunity.";
+				text4 = "She decides to ''adopt'' him...";
+				text5 = "...and keep him as a pet.";
+			}
+			else
+			{
+				text = "She neither accepts, nor declines.";
+				text = "She is empty inside. Broken.";
+				text2 = "This presents a unique opportunity.";
+				text4 = "She decides to ''adopt'' her...";
+				text5 = "...and keep her as a pet.";
+			}
 		}
 		else
 		{
@@ -342,44 +432,93 @@ public class AlternateConfessionScript : MonoBehaviour
 			if (LovePoints == 0)
 			{
 				text = "With indifference...";
-				text2 = "...he shrugs his shoulders...";
-				text3 = "...and says he is not interested.";
+				if (!GameGlobals.FemaleSenpai)
+				{
+					text2 = "...he shrugs his shoulders...";
+					text3 = "...and says he is not interested.";
+				}
+				else
+				{
+					text2 = "...she shrugs her shoulders...";
+					text3 = "...and says she is not interested.";
+				}
 			}
 			else if (LovePoints >= 200)
 			{
 				text = "With great enthusiasm...";
-				text2 = "...he smiles warmly...";
-				text3 = "...and says he loves her, too!";
+				if (!GameGlobals.FemaleSenpai)
+				{
+					text2 = "...he smiles warmly...";
+					text3 = "...and says he loves her, too!";
+				}
+				else
+				{
+					text2 = "...she smiles warmly...";
+					text3 = "...and says she loves her, too!";
+				}
 			}
 			else if (LovePoints >= 100)
 			{
-				text = "With hope in his heart...";
-				text2 = "...he smiles bashfully...";
-				text3 = "...and says he will date her!";
+				if (!GameGlobals.FemaleSenpai)
+				{
+					text = "With hope in his heart...";
+					text2 = "...he smiles bashfully...";
+					text3 = "...and says he will date her!";
+				}
+				else
+				{
+					text = "With hope in her heart...";
+					text2 = "...she smiles bashfully...";
+					text3 = "...and says she will date her!";
+				}
 			}
 			else if (LovePoints > 0)
 			{
 				text = "With an expression that says...";
 				text2 = "''Eh, sure, why not?''";
-				text3 = "...he says he will give her a chance!";
+				text3 = (GameGlobals.FemaleSenpai ? "...she says he will give her a chance!" : "...he says he will give her a chance!");
 			}
 			else if (LovePoints <= 200)
 			{
 				text = "With a look of irritation...";
-				text2 = "...he shakes his head...";
-				text3 = "...and says he would never date her.";
+				if (!GameGlobals.FemaleSenpai)
+				{
+					text2 = "...he shakes his head...";
+					text3 = "...and says he would never date her.";
+				}
+				else
+				{
+					text2 = "...she shakes her head...";
+					text3 = "...and says she would never date her.";
+				}
 			}
 			else if (LovePoints <= 100)
 			{
 				text = "With a pained expression...";
-				text2 = "...he shakes his head...";
-				text3 = "...and says she's not his type.";
+				if (!GameGlobals.FemaleSenpai)
+				{
+					text2 = "...he shakes his head...";
+					text3 = "...and says she's not his type.";
+				}
+				else
+				{
+					text2 = "...she shakes her head...";
+					text3 = "...and says she's not her type.";
+				}
 			}
 			else if (LovePoints <= 0)
 			{
 				text = "With a sad expression...";
-				text2 = "...he shakes his head...";
-				text3 = "...and says he prefers to be single.";
+				if (!GameGlobals.FemaleSenpai)
+				{
+					text2 = "...he shakes his head...";
+					text3 = "...and says he prefers to be single.";
+				}
+				else
+				{
+					text2 = "...she shakes her head...";
+					text3 = "...and says she prefers to be single.";
+				}
 			}
 		}
 		OutcomeLabels[1].text = text;
@@ -502,7 +641,14 @@ public class AlternateConfessionScript : MonoBehaviour
 				Sun.transform.eulerAngles = new Vector3(0f, -90f, 0f);
 				Yandere.gameObject.SetActive(value: false);
 				Senpai.gameObject.SetActive(value: true);
-				Senpai.Play("thinking_00");
+				if (!Female)
+				{
+					Senpai.Play("thinking_00");
+				}
+				else
+				{
+					Senpai.Play("f02_thinking_00");
+				}
 				FadeOut = false;
 				Timer = 0f;
 				Phase++;
@@ -669,11 +815,26 @@ public class AlternateConfessionScript : MonoBehaviour
 				Yandere.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 				Senpai.transform.position = new Vector3(-0.8f, 6f, 98.5f);
 				Senpai.transform.eulerAngles = new Vector3(0f, 90f, 0f);
-				Yandere["OsanaConfessionAccepted"].time = Yandere["OsanaConfessionAccepted"].length;
+				Yandere["OsanaConfessionAccepted"].time = 44f;
 				Senpai.gameObject.SetActive(value: true);
-				Senpai.Play("SenpaiConfessionAccepted");
-				Senpai["SenpaiConfessionAccepted"].time = Yandere["OsanaConfessionAccepted"].time;
-				Senpai.Play("SenpaiConfessionAccepted");
+				if (!Female)
+				{
+					Senpai.Play("SenpaiConfessionAccepted");
+					Senpai["SenpaiConfessionAccepted"].time = Yandere["OsanaConfessionAccepted"].time;
+					Senpai.Play("SenpaiConfessionAccepted");
+				}
+				else
+				{
+					Senpai.Play("f02_idle_00");
+					Senpai.CrossFade("FemaleSenpaiConfessionAccepted");
+					Senpai["FemaleSenpaiConfessionAccepted"].time = Yandere["OsanaConfessionAccepted"].time;
+					Senpai.CrossFade("FemaleSenpaiConfessionAccepted");
+					Senpai["f02_smile_00"].layer = 1;
+					Senpai.Play("f02_smile_00");
+					Senpai["f02_smile_00"].weight = 1f;
+					Senpai.transform.localPosition = new Vector3(0.85f, -0.02f, 0.033333f);
+					Senpai.transform.localScale = new Vector3(1f, 1f, 1f);
+				}
 				FadeOut = false;
 				Timer = 0f;
 				Phase++;
@@ -695,11 +856,11 @@ public class AlternateConfessionScript : MonoBehaviour
 				}
 				else
 				{
-					OutcomeLabels[1].text = "";
-					OutcomeLabels[2].text = "";
-					OutcomeLabels[3].text = "";
-					OutcomeLabels[4].text = "";
-					OutcomeLabels[5].text = "";
+					OutcomeLabels[1].text = "She did it.";
+					OutcomeLabels[2].text = "She finally did it.";
+					OutcomeLabels[3].text = "She won her Senpai's heart.";
+					OutcomeLabels[4].text = "This story...";
+					OutcomeLabels[5].text = "...has a happy ending";
 				}
 			}
 		}
@@ -839,7 +1000,14 @@ public class AlternateConfessionScript : MonoBehaviour
 				{
 					OutcomeLabels[1].text = "She failed.";
 					OutcomeLabels[2].text = "She was not able...";
-					OutcomeLabels[3].text = "...to win his heart.";
+					if (!Female)
+					{
+						OutcomeLabels[3].text = "...to win his heart.";
+					}
+					else
+					{
+						OutcomeLabels[3].text = "...to win her heart.";
+					}
 					OutcomeLabels[4].text = "This story does not have...";
 					OutcomeLabels[5].text = "...a happy ending.";
 				}

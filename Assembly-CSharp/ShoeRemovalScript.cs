@@ -375,8 +375,16 @@ public class ShoeRemovalScript : MonoBehaviour
 		{
 			if (!Male)
 			{
-				MyRenderer.materials[0].mainTexture = TargetShoes;
-				MyRenderer.materials[1].mainTexture = TargetShoes;
+				if (Student.Cosmetic.SkinColor > 0)
+				{
+					MyRenderer.materials[Student.Cosmetic.SkinID].mainTexture = Student.Cosmetic.SkinTextures[Student.Cosmetic.SkinColor];
+					MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = TargetShoes;
+				}
+				else
+				{
+					MyRenderer.materials[0].mainTexture = TargetShoes;
+					MyRenderer.materials[1].mainTexture = TargetShoes;
+				}
 			}
 			else
 			{
@@ -445,7 +453,7 @@ public class ShoeRemovalScript : MonoBehaviour
 
 	public void LeavingSchool()
 	{
-		Debug.Log(Student.Name + "'s ShoeRemovalScript is now calling LeavingSchool()");
+		Debug.Log("The ShowRemovalScript of Student #" + Student.StudentID + ", " + Student.Name + ", is now calling LeavingSchool()");
 		if (Locker == null)
 		{
 			Start();
@@ -472,7 +480,7 @@ public class ShoeRemovalScript : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("A male student just ran this code.");
+				Debug.Log("A male student just ran some ShoeRemoval code related to changing their shoes/socks.");
 				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
 			}
 		}

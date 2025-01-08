@@ -7,6 +7,12 @@ public class StreetManagerScript : MonoBehaviour
 {
 	public StreetShopInterfaceScript StreetShopInterface;
 
+	public SelectiveGrayscale LoveSickEffect1;
+
+	public CameraFilterPack_Film_Grain LoveSickEffect2;
+
+	public CameraFilterPack_TV_Vignetting LoveSickEffect3;
+
 	public PostProcessingProfile Profile;
 
 	public AudioSource CurrentlyActiveJukebox;
@@ -73,6 +79,8 @@ public class StreetManagerScript : MonoBehaviour
 
 	public GameObject[] RamenShop;
 
+	public AudioClip LoveSickBGM;
+
 	public UILabel[] HUDLabels;
 
 	public AudioClip DayStreet80s;
@@ -93,6 +101,16 @@ public class StreetManagerScript : MonoBehaviour
 
 	private void Start()
 	{
+		if (GameGlobals.LoveSick)
+		{
+			LoveSickEffect1.enabled = true;
+			LoveSickEffect2.enabled = true;
+			LoveSickEffect3.enabled = true;
+			JukeboxNight.clip = LoveSickBGM;
+			JukeboxNight.Play();
+			JukeboxDay.clip = LoveSickBGM;
+			JukeboxDay.Play();
+		}
 		MaidAnimation["f02_faceCouncilGrace_00"].layer = 1;
 		MaidAnimation.Play("f02_faceCouncilGrace_00");
 		MaidAnimation["f02_faceCouncilGrace_00"].weight = 1f;

@@ -1910,6 +1910,8 @@ public class StudentScript : MonoBehaviour
 
 	public int PartnerID;
 
+	public int StrongReactionID;
+
 	public bool SearchingForPhone;
 
 	public float ChameleonBonus;
@@ -4273,6 +4275,7 @@ public class StudentScript : MonoBehaviour
 			{
 				RelaxAnim = ThinkAnim;
 			}
+			StrongReactionID = JSON.Misc.StrongReactions[StudentID];
 		}
 		for (int j = 1; j < 11; j++)
 		{
@@ -6062,14 +6065,19 @@ public class StudentScript : MonoBehaviour
 											{
 												if (!flag3)
 												{
+													Debug.Log(Name + " is running this code.");
 													if (FollowTarget != null && FollowTarget.CameraReacting)
 													{
 														CharacterAnimation.CrossFade("f02_socialCameraPose_00");
 													}
-													else
+													else if (FollowTarget.Alive)
 													{
 														CharacterAnimation.CrossFade("f02_standTexting_00");
 														SmartPhone.SetActive(value: true);
+													}
+													else
+													{
+														RaibaruCannotFindOsana();
 													}
 													SpeechLines.Stop();
 												}
@@ -8146,7 +8154,6 @@ public class StudentScript : MonoBehaviour
 							}
 							else if (Actions[Phase] == StudentActionType.Follow)
 							{
-								Debug.Log("Raibaru is currently following Osana, and believes that she has reached her destination.");
 								if (FollowTarget != null)
 								{
 									if (StudentManager.LoveManager.RivalWaiting && FollowTarget.transform.position.x > 40f && FollowTarget.DistanceToDestination < 1f)
@@ -9282,7 +9289,6 @@ public class StudentScript : MonoBehaviour
 						MeetTimer += Time.deltaTime;
 						if (Follower != null)
 						{
-							Debug.Log("Osana is now repositioning her own FollowTargetDestination.");
 							if (Meeting)
 							{
 								FollowTargetDestination.localPosition = new Vector3(-1f, 0f, 0f);
@@ -12297,6 +12303,13 @@ public class StudentScript : MonoBehaviour
 						{
 							BloodSprayCollider.SetActive(value: true);
 							BloodSprayCollider.layer = 2;
+						}
+						if (GameGlobals.CensorBlood)
+						{
+							ParticleSystemRenderer component4 = BloodFountain.GetComponent<ParticleSystemRenderer>();
+							component4.material = CensorMaterial;
+							component4.material.color = Color.white;
+							BloodFountain.startColor = Color.white;
 						}
 						BloodFountain.gameObject.GetComponent<AudioSource>().Play();
 						BloodFountain.Play();
@@ -15947,6 +15960,7 @@ public class StudentScript : MonoBehaviour
 		{
 			if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache)
 			{
+				Yandere.CharacterAnimation.CrossFade("f02_moCounterA_00");
 				if (!StudentManager.Stop)
 				{
 					StudentManager.StopMoving();
@@ -17720,7 +17734,6 @@ public class StudentScript : MonoBehaviour
 			{
 				if (DistanceToDestination < 0.5f)
 				{
-					StudentManager.ChangeSuitorRoutineOnFriday();
 					CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
 					if (Male)
 					{
@@ -17777,6 +17790,7 @@ public class StudentScript : MonoBehaviour
 					StudentManager.LoveManager.LeftNote = true;
 					CharacterAnimation.CrossFade(SprintAnim);
 					ConfessPhase++;
+					StudentManager.ChangeSuitorRoutineOnFriday();
 				}
 			}
 			else if (ConfessPhase == 4)
@@ -18150,7 +18164,7 @@ public class StudentScript : MonoBehaviour
 	{
 		if (Phase > 0)
 		{
-			Debug.Log(Name + "'s CurrentDestination became ''null'' for some reason.");
+			Debug.Log("The CurrentDestination of Student #" + StudentID + ", " + Name + ", became ''null'' for some reason.");
 			Debug.Log(Name + "'s current Phase is:" + Phase);
 		}
 		if (Destinations[Phase] == null)
@@ -19144,9 +19158,21 @@ public class StudentScript : MonoBehaviour
 				Debug.Log("Raibaru witnessed the corpse of " + Corpse.Student.Name + ", and is now switching to the Lovestruck Persona.");
 				Persona = PersonaType.Lovestruck;
 			}
-			if (!StudentManager.Eighties && (StudentID == 2 || StudentID == 3) && Corpse != null && (Corpse.StudentID == 2 || Corpse.StudentID == 3))
+			if (Corpse != null)
 			{
-				Persona = PersonaType.Lovestruck;
+				if (!StudentManager.Eighties)
+				{
+					if ((StudentID == 2 || StudentID == 3) && (Corpse.StudentID == 2 || Corpse.StudentID == 3))
+					{
+						Persona = PersonaType.Lovestruck;
+					}
+				}
+				else if (StudentManager.CustomMode && Corpse.StudentID == StrongReactionID)
+				{
+					Persona = PersonaType.Lovestruck;
+					LovestruckTarget = StrongReactionID;
+					StudentToMourn = Corpse.Student;
+				}
 			}
 		}
 		if (Persona == PersonaType.Lovestruck)
@@ -19600,7 +19626,7 @@ public class StudentScript : MonoBehaviour
 				{
 					Subtitle.UpdateLabel(SubtitleType.LovestruckDeathReaction, 0, 5f);
 				}
-				else if (WitnessedMindBrokenMurder)
+				else if (WitnessedMindBrokenMurder || StudentManager.CustomMode)
 				{
 					Subtitle.CustomText = "This can't be happening...";
 					Subtitle.UpdateLabel(SubtitleType.Custom, 1, 5f);
@@ -20259,6 +20285,10 @@ public class StudentScript : MonoBehaviour
 			else if (scheduleBlock.destination == "LunchWitnessPosition")
 			{
 				Destinations[ID] = StudentManager.LunchWitnessPositions.List[StudentID];
+				if (Destinations[ID] == null)
+				{
+					Destinations[ID] = StudentManager.LunchWitnessPositions.List[24];
+				}
 			}
 			else if (scheduleBlock.destination == "Wait")
 			{
@@ -20288,10 +20318,18 @@ public class StudentScript : MonoBehaviour
 			else if (scheduleBlock.destination == "EightiesStretchSpot")
 			{
 				Destinations[ID] = StudentManager.EightiesStretchSpots.List[StudentID];
+				if (Destinations[ID] == null)
+				{
+					Destinations[ID] = StudentManager.EightiesStretchSpots.List[14];
+				}
 			}
 			else if (scheduleBlock.destination == "Perform")
 			{
 				Destinations[ID] = StudentManager.PerformSpots[StudentID];
+				if (Destinations[ID] == null)
+				{
+					Destinations[ID] = StudentManager.PerformSpots[16];
+				}
 			}
 			else if (scheduleBlock.destination == "PhotoShoot")
 			{
@@ -20347,6 +20385,10 @@ public class StudentScript : MonoBehaviour
 			else if (scheduleBlock.destination == "LunchWitnessSpot")
 			{
 				Destinations[ID] = StudentManager.LunchWitnessSpots[WitnessID];
+				if (Destinations[ID] == null)
+				{
+					Destinations[ID] = StudentManager.LunchWitnessSpots[1];
+				}
 			}
 			else if (scheduleBlock.destination == "CleanWitnessSpot")
 			{
@@ -20939,7 +20981,6 @@ public class StudentScript : MonoBehaviour
 
 	public void BecomeRagdoll()
 	{
-		Debug.Log(Name + " is now becoming a ragdoll.");
 		if (NewFriend)
 		{
 			Police.EndOfDay.NewFriends--;
@@ -21062,25 +21103,21 @@ public class StudentScript : MonoBehaviour
 				Ragdoll.Suicide = true;
 				Police.Suicide = true;
 			}
-			if (!Tranquil)
+			if (!Tranquil && !Ragdoll.Burning && !Ragdoll.Disturbing)
 			{
-				Debug.Log("This part of " + Name + "'s code is now updating police numbers.");
-				if (!Ragdoll.Burning && !Ragdoll.Disturbing)
+				if (Police == null)
 				{
-					if (Police == null)
-					{
-						Police = StudentManager.Police;
-					}
-					if (Police.Corpses < 0)
-					{
-						Police.Corpses = 0;
-					}
-					if (Police.Corpses < Police.CorpseList.Length)
-					{
-						Police.CorpseList[Police.Corpses] = Ragdoll;
-					}
-					Police.Corpses++;
+					Police = StudentManager.Police;
 				}
+				if (Police.Corpses < 0)
+				{
+					Police.Corpses = 0;
+				}
+				if (Police.Corpses < Police.CorpseList.Length)
+				{
+					Police.CorpseList[Police.Corpses] = Ragdoll;
+				}
+				Police.Corpses++;
 			}
 			if (!Male)
 			{
@@ -21747,7 +21784,6 @@ public class StudentScript : MonoBehaviour
 				InstrumentBag[ClubMemberID].gameObject.SetActive(value: false);
 			}
 		}
-		WalkAnim = OriginalWalkAnim;
 	}
 
 	public void AttackOnTitan()
@@ -22360,10 +22396,13 @@ public class StudentScript : MonoBehaviour
 			if (!StudentManager.CustomMode)
 			{
 				bool flag2 = false;
-				flag2 = Male && yandereTargetID == 19;
+				if (Club != ClubType.Council)
+				{
+					flag2 = Male && yandereTargetID == 19;
+				}
 				return flag || flag2;
 			}
-			return false;
+			return yandereTargetID == StrongReactionID;
 		}
 		bool num = InCouple && PartnerID == yandereTargetID;
 		bool flag3 = StudentID == 3 && yandereTargetID == 2;
@@ -23134,7 +23173,7 @@ public class StudentScript : MonoBehaviour
 			{
 				flag = true;
 			}
-			if ((Yandere.Persona == YanderePersonaType.Scholarly && Persona == PersonaType.TeachersPet) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Science) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Art) || (Yandere.Persona == YanderePersonaType.Chill && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Photography) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Gaming) || (Yandere.Persona == YanderePersonaType.Confident && Persona == PersonaType.Heroic) || (Yandere.Persona == YanderePersonaType.Confident && Club == ClubType.MartialArts) || (Yandere.Persona == YanderePersonaType.Elegant && Club == ClubType.Drama) || (Yandere.Persona == YanderePersonaType.Girly && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Girly && Club == ClubType.Cooking) || (Yandere.Persona == YanderePersonaType.Graceful && Club == ClubType.Gardening) || (Yandere.Persona == YanderePersonaType.Haughty && Club == ClubType.Bully) || (Yandere.Persona == YanderePersonaType.Lively && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.LightMusic) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.Sports) || (Yandere.Persona == YanderePersonaType.Shy && Persona == PersonaType.Loner) || (Yandere.Persona == YanderePersonaType.Shy && Club == ClubType.Occult) || (Yandere.Persona == YanderePersonaType.Shy && Shy) || (Yandere.Persona == YanderePersonaType.Tough && Persona == PersonaType.Spiteful) || (Yandere.Persona == YanderePersonaType.Tough && Club == ClubType.Delinquent) || (Yandere.Persona == YanderePersonaType.Strict && flag) || (StudentManager.CustomMode && Yandere.AnimSetID == AnimSetID))
+			if ((Yandere.Persona == YanderePersonaType.Scholarly && Persona == PersonaType.TeachersPet) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Science) || (Yandere.Persona == YanderePersonaType.Scholarly && Club == ClubType.Art) || (Yandere.Persona == YanderePersonaType.Chill && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Photography) || (Yandere.Persona == YanderePersonaType.Chill && Club == ClubType.Gaming) || (Yandere.Persona == YanderePersonaType.Confident && Persona == PersonaType.Heroic) || (Yandere.Persona == YanderePersonaType.Confident && Club == ClubType.MartialArts) || (Yandere.Persona == YanderePersonaType.Elegant && Club == ClubType.Drama) || (Yandere.Persona == YanderePersonaType.Girly && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Girly && Club == ClubType.Cooking) || (Yandere.Persona == YanderePersonaType.Graceful && Club == ClubType.Gardening) || (Yandere.Persona == YanderePersonaType.Haughty && Club == ClubType.Bully) || (Yandere.Persona == YanderePersonaType.Lively && Persona == PersonaType.SocialButterfly) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.LightMusic) || (Yandere.Persona == YanderePersonaType.Lively && Club == ClubType.Sports) || (Yandere.Persona == YanderePersonaType.Shy && Persona == PersonaType.Loner) || (Yandere.Persona == YanderePersonaType.Shy && Club == ClubType.Occult) || (Yandere.Persona == YanderePersonaType.Shy && Shy) || (Yandere.Persona == YanderePersonaType.Tough && Persona == PersonaType.Spiteful) || (Yandere.Persona == YanderePersonaType.Tough && Club == ClubType.Delinquent) || (Yandere.Persona == YanderePersonaType.Strict && flag) || Yandere.IdleAnim == IdleAnim || (StudentManager.CustomMode && Yandere.AnimSetID == AnimSetID))
 			{
 				Debug.Log("Chameleon is true!");
 				ChameleonBonus = VisionDistance * 0.5f;
@@ -23661,6 +23700,8 @@ public class StudentScript : MonoBehaviour
 			PicnicProps[2].SetActive(value: false);
 			Handkerchief.SetActive(value: false);
 			GiftBag.SetActive(value: false);
+			PaperFire.SetActive(value: false);
+			Note.SetActive(value: false);
 		}
 		if (!flag)
 		{
@@ -25929,6 +25970,7 @@ public class StudentScript : MonoBehaviour
 		CheckForWallToLeft();
 		if (TooCloseToWall)
 		{
+			Debug.Log("Teleporting the protagonist and opponent to the black cube in the sky.");
 			Yandere.transform.position = new Vector3(0f, 100f, 0f);
 			base.transform.position = new Vector3(0f, 100f, 0.5f);
 			StudentManager.BlackCube.SetActive(value: true);

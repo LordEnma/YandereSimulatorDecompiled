@@ -9,9 +9,7 @@ public class ParticleSoundtest : MonoBehaviour
 	{
 		public IList<ParticleSystem.Particle> Added { get; set; } = new List<ParticleSystem.Particle>();
 
-
 		public IList<ParticleSystem.Particle> Removed { get; set; } = new List<ParticleSystem.Particle>();
-
 	}
 
 	private ParticleSystem _parentParticleSystem;

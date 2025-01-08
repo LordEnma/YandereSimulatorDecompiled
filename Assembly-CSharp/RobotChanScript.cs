@@ -249,6 +249,7 @@ public class RobotChanScript : MonoBehaviour
 			TargetStudent.FocusOnYandere = false;
 			TargetStudent.Investigating = false;
 			TargetStudent.Distracting = false;
+			TargetStudent.Pushable = false;
 			TargetStudent.SentHome = false;
 			TargetStudent.Splashed = false;
 			TargetStudent.Alarmed = false;

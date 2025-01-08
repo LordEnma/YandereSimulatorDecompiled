@@ -420,7 +420,7 @@ public class UIScrollView : MonoBehaviour
 			{
 				Vector4 finalClipRegion = mPanel.finalClipRegion;
 				int num = Mathf.RoundToInt(finalClipRegion.z);
-				if (((uint)num & (true ? 1u : 0u)) != 0)
+				if ((num & 1) != 0)
 				{
 					num--;
 				}
@@ -444,7 +444,7 @@ public class UIScrollView : MonoBehaviour
 			{
 				Vector4 finalClipRegion2 = mPanel.finalClipRegion;
 				int num4 = Mathf.RoundToInt(finalClipRegion2.w);
-				if (((uint)num4 & (true ? 1u : 0u)) != 0)
+				if ((num4 & 1) != 0)
 				{
 					num4--;
 				}

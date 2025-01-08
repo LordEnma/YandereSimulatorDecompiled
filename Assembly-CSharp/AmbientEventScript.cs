@@ -143,30 +143,41 @@ public class AmbientEventScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
-			if (Clock.HourTime > StartTime && EventStudent[1] != null && EventStudent[2] != null && EventStudent[1].Indoors && EventStudent[2].Indoors && EventStudent[1].Pathfinding.canMove && EventStudent[2].Pathfinding.canMove)
+			if (!(Clock.HourTime > StartTime) || !(EventStudent[1] != null) || !(EventStudent[2] != null))
 			{
-				if (Sitting && Yandere.Hiding && Yandere.HidingSpot == HidingSpot.Spot)
+				return;
+			}
+			if (EventStudent[1].Alive && EventStudent[2].Alive)
+			{
+				if (EventStudent[1].Indoors && EventStudent[2].Indoors && EventStudent[1].Pathfinding.canMove && EventStudent[2].Pathfinding.canMove)
 				{
-					Yandere.PromptBar.ClearButtons();
-					Yandere.PromptBar.Show = false;
-					Yandere.Exiting = true;
-					HidingSpot.Prompt.enabled = false;
-					HidingSpot.Prompt.Hide();
+					if (Sitting && Yandere.Hiding && Yandere.HidingSpot == HidingSpot.Spot)
+					{
+						Yandere.PromptBar.ClearButtons();
+						Yandere.PromptBar.Show = false;
+						Yandere.Exiting = true;
+						HidingSpot.Prompt.enabled = false;
+						HidingSpot.Prompt.Hide();
+					}
+					EventStudent[1].CharacterAnimation.CrossFade(EventStudent[1].WalkAnim);
+					EventStudent[1].CurrentDestination = EventLocation[1];
+					EventStudent[1].Pathfinding.target = EventLocation[1];
+					EventStudent[1].InEvent = true;
+					EventStudent[2].CharacterAnimation.CrossFade(EventStudent[2].WalkAnim);
+					EventStudent[2].CurrentDestination = EventLocation[2];
+					EventStudent[2].Pathfinding.target = EventLocation[2];
+					EventStudent[2].InEvent = true;
+					if (StartTime > 16f)
+					{
+						Yandere.PauseScreen.Hint.QuickID = 49;
+						Yandere.PauseScreen.Hint.Show = true;
+					}
+					EventOn = true;
 				}
-				EventStudent[1].CharacterAnimation.CrossFade(EventStudent[1].WalkAnim);
-				EventStudent[1].CurrentDestination = EventLocation[1];
-				EventStudent[1].Pathfinding.target = EventLocation[1];
-				EventStudent[1].InEvent = true;
-				EventStudent[2].CharacterAnimation.CrossFade(EventStudent[2].WalkAnim);
-				EventStudent[2].CurrentDestination = EventLocation[2];
-				EventStudent[2].Pathfinding.target = EventLocation[2];
-				EventStudent[2].InEvent = true;
-				if (StartTime > 16f)
-				{
-					Yandere.PauseScreen.Hint.QuickID = 49;
-					Yandere.PauseScreen.Hint.Show = true;
-				}
-				EventOn = true;
+			}
+			else
+			{
+				base.enabled = false;
 			}
 			return;
 		}

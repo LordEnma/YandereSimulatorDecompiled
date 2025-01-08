@@ -226,6 +226,36 @@ public class JukeboxScript : MonoBehaviour
 
 	public AudioClip[] EightiesSevenNo;
 
+	public AudioClip[] EightiesEightFull;
+
+	public AudioClip[] EightiesEightHalf;
+
+	public AudioClip[] EightiesEightNo;
+
+	public AudioClip[] EightiesNineFull;
+
+	public AudioClip[] EightiesNineHalf;
+
+	public AudioClip[] EightiesNineNo;
+
+	public AudioClip[] EightiesTenFull;
+
+	public AudioClip[] EightiesTenHalf;
+
+	public AudioClip[] EightiesTenNo;
+
+	public AudioClip[] EightiesElevenFull;
+
+	public AudioClip[] EightiesElevenHalf;
+
+	public AudioClip[] EightiesElevenNo;
+
+	public AudioClip[] EightiesTwelveFull;
+
+	public AudioClip[] EightiesTwelveHalf;
+
+	public AudioClip[] EightiesTwelveNo;
+
 	public AudioClip[] ClubThemes;
 
 	public AudioClip LowPhotographyClubTheme;
@@ -238,7 +268,7 @@ public class JukeboxScript : MonoBehaviour
 	{
 		if (GameGlobals.Eighties)
 		{
-			BGMLimit = 7;
+			BGMLimit = 12;
 			OriginalFull = EightiesOneFull;
 			OriginalHalf = EightiesOneHalf;
 			OriginalNo = EightiesOneNo;
@@ -260,6 +290,21 @@ public class JukeboxScript : MonoBehaviour
 			SeventhFull = EightiesSevenFull;
 			SeventhHalf = EightiesSevenHalf;
 			SeventhNo = EightiesSevenNo;
+			EighthFull = EightiesEightFull;
+			EighthHalf = EightiesEightHalf;
+			EighthNo = EightiesEightNo;
+			NinthFull = EightiesNineFull;
+			NinthHalf = EightiesNineHalf;
+			NinthNo = EightiesNineNo;
+			TenthFull = EightiesTenFull;
+			TenthHalf = EightiesTenHalf;
+			TenthNo = EightiesTenNo;
+			EleventhFull = EightiesElevenFull;
+			EleventhHalf = EightiesElevenHalf;
+			EleventhNo = EightiesElevenNo;
+			TwelfthFull = EightiesTwelveFull;
+			TwelfthHalf = EightiesTwelveHalf;
+			TwelfthNo = EightiesTwelveNo;
 			ClubThemes[5] = EightiesMusicClubTheme;
 		}
 		if (!Initialized)

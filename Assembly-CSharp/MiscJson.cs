@@ -113,8 +113,29 @@ public class MiscJson : JsonData
 	public int[] CanonEliminations;
 
 	[SerializeField]
-	public int[] RivalTasks;
+	public int[] ClubAccessories;
+
+	[SerializeField]
+	public int[] StrongReactions;
 
 	[SerializeField]
 	public int[] PortraitPoses;
+
+	[SerializeField]
+	public int[] StudentTasks;
+
+	[SerializeField]
+	public int[] InvertHairs;
+
+	[SerializeField]
+	public int[] RivalTasks;
+
+	[SerializeField]
+	public float[] Likes;
+
+	[SerializeField]
+	public float[] Respects;
+
+	[SerializeField]
+	public float[] Fears;
 }

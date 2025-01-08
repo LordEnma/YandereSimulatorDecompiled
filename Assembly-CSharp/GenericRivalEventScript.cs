@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 
@@ -32,11 +33,15 @@ public class GenericRivalEventScript : MonoBehaviour
 
 	public GameObject AlarmDisc;
 
+	public AudioClip[] SabotagedSpeechClip = new AudioClip[12];
+
 	public string[] SabobtagedSpeechText;
 
 	public float[] SabobtagedSpeechTime;
 
 	public int[] SabotagedSpeakerID;
+
+	public AudioClip[] SpeechClip = new AudioClip[11];
 
 	public string[] SpeechText;
 
@@ -87,6 +92,8 @@ public class GenericRivalEventScript : MonoBehaviour
 	public int[] LocationIDs;
 
 	public int EventID;
+
+	public bool MustInitializeSpeechTimes;
 
 	private void Start()
 	{
@@ -237,6 +244,7 @@ public class GenericRivalEventScript : MonoBehaviour
 						SpeechText[k + 1] = SpeechText[k + 1].Replace("R: ", "");
 						SpeakerID[k + 1] = 2;
 					}
+					StartCoroutine(DownloadCoroutine(week, k + 1));
 				}
 			}
 			else
@@ -255,6 +263,7 @@ public class GenericRivalEventScript : MonoBehaviour
 						SpeechText[l + 1] = SpeechText[l + 1].Replace("R: ", "");
 						SpeakerID[l + 1] = 2;
 					}
+					StartCoroutine(DownloadCoroutine(week, l + 1));
 				}
 				array2 = File.ReadAllLines(Application.streamingAssetsPath + "/CustomMode/Events/Week" + week + "/" + text + "/3.txt");
 				for (int l = 0; l < array2.Length; l++)
@@ -1910,6 +1919,16 @@ public class GenericRivalEventScript : MonoBehaviour
 			}
 			return;
 		}
+		if (MustInitializeSpeechTimes)
+		{
+			PopulateSpeechTimes(SpeechClip, SpeechTime);
+			if (Sabotaged)
+			{
+				SpeechClip = SabotagedSpeechClip;
+				PopulateSpeechTimes(SabotagedSpeechClip, SabobtagedSpeechTime);
+			}
+			MustInitializeSpeechTimes = false;
+		}
 		Timer += Time.deltaTime;
 		if (SpeechPhase < EndPhase)
 		{
@@ -1929,6 +1948,10 @@ public class GenericRivalEventScript : MonoBehaviour
 				}
 				Senpai.CharacterAnimation.CrossFade(Senpai.IdleAnim);
 				Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
+				if (SpeechPhase < SpeechClip.Length && SpeechClip[SpeechPhase] != null)
+				{
+					SpawnTimeRespectingAudioSource(SpeechClip[SpeechPhase]);
+				}
 				if (Vector3.Distance(Yandere.transform.position, Epicenter.position) < 11f)
 				{
 					EventSubtitle.text = SpeechText[SpeechPhase];
@@ -2145,5 +2168,45 @@ public class GenericRivalEventScript : MonoBehaviour
 		{
 			SabotagedSpeakerID[10] = 2;
 		}
+	}
+
+	public void SpawnTimeRespectingAudioSource(AudioClip Clip, float AudioOffset = 0f)
+	{
+		GameObject obj = UnityEngine.Object.Instantiate(Senpai.AudioSourceObject, Speaker[SpeakerID[SpeechPhase]].transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+		obj.GetComponent<AudioSourceScript>().MyClip = Clip;
+		obj.GetComponent<AudioSourceScript>().Offset = AudioOffset;
+	}
+
+	private IEnumerator DownloadCoroutine(int Week, int ClipID)
+	{
+		_ = "File:///" + Application.streamingAssetsPath + "/CustomMode/Events/Week" + Week + "/Voice/" + EventID + "-" + ClipID + ".wav";
+		WWW CurrentDownload = new WWW("File:///" + Application.streamingAssetsPath + "/CustomMode/Events/Week" + Week + "/Voice/" + EventID + "-" + ClipID + ".wav");
+		yield return CurrentDownload;
+		SpeechClip[ClipID] = CurrentDownload.GetAudioClipCompressed();
+		if (SpeechClip[ClipID].length > 0f)
+		{
+			MustInitializeSpeechTimes = true;
+		}
+		if (SabotagedSpeakerID.Length != 0)
+		{
+			WWW SabotagedDownload = new WWW("File:///" + Application.streamingAssetsPath + "/CustomMode/Events/Week" + Week + "/Voice/" + EventID + "S-" + ClipID + ".wav");
+			yield return SabotagedDownload;
+			SabotagedSpeechClip[ClipID] = SabotagedDownload.GetAudioClipCompressed();
+		}
+	}
+
+	private void PopulateSpeechTimes(AudioClip[] clips, float[] times)
+	{
+		times[0] = 0f;
+		times[2] = clips[1].length;
+		times[3] = clips[2].length + clips[1].length;
+		times[4] = clips[3].length + clips[2].length + clips[1].length;
+		times[5] = clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+		times[6] = clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+		times[7] = clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+		times[8] = clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+		times[9] = clips[8].length + clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+		times[10] = clips[9].length + clips[8].length + clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+		times[11] = clips[10].length + clips[9].length + clips[8].length + clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
 	}
 }

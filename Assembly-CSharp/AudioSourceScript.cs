@@ -30,7 +30,8 @@ public class AudioSourceScript : MonoBehaviour
 		MyAudioSource.clip = MyClip;
 		MyAudioSource.Play();
 		MyAudioSource.time = Offset;
-		Debug.Log("MyAudioSource has been told to play! MyAudioSource.time is: " + MyAudioSource.time);
+		_ = MyClip.length;
+		_ = 0f;
 	}
 
 	private void Update()
@@ -38,7 +39,6 @@ public class AudioSourceScript : MonoBehaviour
 		MyAudioSource.pitch = Pitch * Time.timeScale;
 		if (!MyAudioSource.isPlaying)
 		{
-			Debug.Log("This audio source has finished playing, and now this object will self-destruct.");
 			Object.Destroy(base.gameObject);
 		}
 	}

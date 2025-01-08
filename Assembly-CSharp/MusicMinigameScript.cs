@@ -167,12 +167,17 @@ public class MusicMinigameScript : MonoBehaviour
 			ChibiPerformB = EightiesChibiPerformB;
 			ChibiCringe = EightiesChibiCringe;
 			ChibiIdle = EightiesChibiIdle;
-			ChibiRenderer[1].material.mainTexture = ChibiIdle[1];
-			ChibiRenderer[2].material.mainTexture = ChibiIdle[2];
-			ChibiRenderer[3].material.mainTexture = ChibiIdle[3];
-			ChibiRenderer[4].material.mainTexture = ChibiIdle[4];
-			ChibiRenderer[5].material.mainTexture = ChibiIdle[5];
-			ChibiRenderer[6].material.mainTexture = ChibiIdle[6];
+			for (int i = 1; i <= 6; i++)
+			{
+				ChibiRenderer[i].material.mainTexture = ChibiIdle[i];
+			}
+			if (GameGlobals.CustomMode)
+			{
+				for (int j = 1; j <= 6; j++)
+				{
+					ChibiRenderer[j].material.color = Color.black;
+				}
+			}
 			SadMiyuji.GetComponent<Renderer>().material.mainTexture = SadLeader;
 			SadAyano.GetComponent<Renderer>().material.mainTexture = SadRyoba;
 			Background.material.mainTexture = EightiesBG;

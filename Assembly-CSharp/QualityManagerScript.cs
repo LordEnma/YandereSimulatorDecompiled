@@ -983,6 +983,14 @@ public class QualityManagerScript : MonoBehaviour
 		AdjustRimLight(Yandere.MyRenderer.materials[0]);
 		AdjustRimLight(Yandere.MyRenderer.materials[1]);
 		AdjustRimLight(Yandere.MyRenderer.materials[2]);
+		AdjustRimLight(Yandere.LooseSocks[0].GetComponent<Renderer>().material);
+		AdjustRimLight(Yandere.LooseSocks[1].GetComponent<Renderer>().material);
+		AdjustRimLight(Yandere.LooseSocks[2].GetComponent<Renderer>().material);
+		AdjustRimLight(Yandere.LooseSocks[3].GetComponent<Renderer>().material);
+		Yandere.LooseSocks[0].GetComponent<Renderer>().material.shader = NewBodyShader;
+		Yandere.LooseSocks[1].GetComponent<Renderer>().material.shader = NewBodyShader;
+		Yandere.LooseSocks[2].GetComponent<Renderer>().material.shader = NewBodyShader;
+		Yandere.LooseSocks[3].GetComponent<Renderer>().material.shader = NewBodyShader;
 		for (int i = 1; i < Yandere.Hairstyles.Length; i++)
 		{
 			Renderer component = Yandere.Hairstyles[i].GetComponent<Renderer>();

@@ -1034,7 +1034,7 @@ public class PoliceScript : MonoBehaviour
 				{
 					ResultsLabels[0].text = Protagonist + " attempts to attend class without cleaning up some blood.";
 				}
-				ResultsLabels[1].text = "While walking around the school, a faculty member discovers a corpse.";
+				ResultsLabels[1].text = "While walking around the school, a faculty member discovers a suicide note.";
 				if (SuicideNote)
 				{
 					ResultsLabels[2].text = "It appears as though a student has committed suicide.";

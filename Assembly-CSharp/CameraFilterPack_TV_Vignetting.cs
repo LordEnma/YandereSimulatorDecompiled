@@ -37,7 +37,7 @@ public class CameraFilterPack_TV_Vignetting : MonoBehaviour
 	private void Start()
 	{
 		SCShader = Shader.Find("CameraFilterPack/TV_Vignetting");
-		Vignette = Resources.Load("CameraFilterPack_TV_Vignetting1") as Texture2D;
+		Vignette = Resources.Load("CameraFilterPack_TV_Vignetting2") as Texture2D;
 		if (!SystemInfo.supportsImageEffects)
 		{
 			base.enabled = false;

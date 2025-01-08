@@ -170,12 +170,12 @@ public class UICamera : MonoBehaviour
 		{
 			return GetMouse(-id - 1);
 		}
-		int j = 0;
-		for (int count2 = mTouchIDs.Count; j < count2; j++)
+		int i = 0;
+		for (int count = mTouchIDs.Count; i < count; i++)
 		{
-			if (mTouchIDs[j] == id)
+			if (mTouchIDs[i] == id)
 			{
-				return activeTouches[j];
+				return activeTouches[i];
 			}
 		}
 		if (createIfMissing)
@@ -194,13 +194,13 @@ public class UICamera : MonoBehaviour
 
 	public static RemoveTouchDelegate RemoveTouch = delegate(int id)
 	{
-		int i = 0;
-		for (int count = mTouchIDs.Count; i < count; i++)
+		int j = 0;
+		for (int count2 = mTouchIDs.Count; j < count2; j++)
 		{
-			if (mTouchIDs[i] == id)
+			if (mTouchIDs[j] == id)
 			{
-				mTouchIDs.RemoveAt(i);
-				activeTouches.RemoveAt(i);
+				mTouchIDs.RemoveAt(j);
+				activeTouches.RemoveAt(j);
 				break;
 			}
 		}

@@ -165,11 +165,11 @@ public class UI2DSprite : UIBasicSprite
 				float num12 = 1f;
 				if (num5 > 0 && num6 > 0 && (mType == Type.Simple || mType == Type.Filled))
 				{
-					if (((uint)num5 & (true ? 1u : 0u)) != 0)
+					if ((num5 & 1) != 0)
 					{
 						num9++;
 					}
-					if (((uint)num6 & (true ? 1u : 0u)) != 0)
+					if ((num6 & 1) != 0)
 					{
 						num10++;
 					}

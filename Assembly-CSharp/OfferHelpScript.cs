@@ -330,6 +330,15 @@ public class OfferHelpScript : MonoBehaviour
 						}
 					}
 				}
+				if (StudentManager.Students[EventStudentID].Hunted)
+				{
+					Debug.Log("Character is targeted by a mind-broken slave or killer robot.");
+					base.gameObject.SetActive(value: false);
+					base.enabled = false;
+					Prompt.Hide();
+					Prompt.enabled = false;
+					flag = false;
+				}
 				if (!Yandere.Chased && Yandere.Chasers == 0 && flag)
 				{
 					Jukebox.Dip = 0.1f;
@@ -369,8 +378,16 @@ public class OfferHelpScript : MonoBehaviour
 				}
 				else if (!flag)
 				{
-					Yandere.NotificationManager.CustomText = "You lack a valid photo.";
-					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					if (StudentManager.Students[EventStudentID].Hunted)
+					{
+						Yandere.NotificationManager.CustomText = "This student is about to be attacked.";
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					}
+					else
+					{
+						Yandere.NotificationManager.CustomText = "You lack a valid photo.";
+						Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					}
 				}
 			}
 			if (Offering)

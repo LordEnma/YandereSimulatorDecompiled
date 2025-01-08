@@ -108,8 +108,9 @@ public class GenocideEndingScript : MonoBehaviour
 			Osana.SetActive(value: false);
 			EightiesEnding = true;
 			FadeSpeed = 0.1f;
+			return;
 		}
-		else if (EventGlobals.OsanaConversation)
+		if (EventGlobals.OsanaConversation)
 		{
 			Debug.Log("We're here for a Betray cutscene.");
 			Osana.GetComponent<StudentScript>().CharacterAnimation["f02_kidnapTorture_01"].speed = 0.8f;
@@ -147,20 +148,31 @@ public class GenocideEndingScript : MonoBehaviour
 				MyAudio.volume = 0f;
 			}
 			Subtitle.text = SpeechText[10];
+			return;
 		}
-		else
+		Debug.Log("We're here for the Genocide Ending.");
+		Senpai["kidnapTorture_01"].speed = 0.9f;
+		SenpaiRopes.SetActive(value: true);
+		OsanaRopes.SetActive(value: false);
+		Senpai.transform.parent.gameObject.SetActive(value: true);
+		Osana.SetActive(value: false);
+		GameGlobals.DarkEnding = true;
+		if (GameGlobals.Eighties)
 		{
-			Debug.Log("We're here for the Genocide Ending.");
-			Senpai["kidnapTorture_01"].speed = 0.9f;
-			SenpaiRopes.SetActive(value: true);
-			OsanaRopes.SetActive(value: false);
-			Senpai.transform.parent.gameObject.SetActive(value: true);
-			Osana.SetActive(value: false);
-			GameGlobals.DarkEnding = true;
-			if (GameGlobals.Eighties)
+			if (GameGlobals.CustomMode && GameGlobals.FemaleSenpai)
 			{
-				YellowifyLabel(Subtitle);
+				Osana.GetComponent<StudentScript>().CharacterAnimation["f02_kidnapTorture_01"].speed = 0.7f;
+				Osana.GetComponent<CosmeticScript>().SetFemaleUniform();
+				SenpaiRopes.SetActive(value: false);
+				OsanaRopes.SetActive(value: true);
+				Senpai.transform.parent.gameObject.SetActive(value: false);
+				Osana.SetActive(value: true);
+				RivalHair[0].SetActive(value: false);
+				Blindfold.SetActive(value: false);
+				Hood.SetActive(value: true);
+				LockJaw = true;
 			}
+			YellowifyLabel(Subtitle);
 		}
 	}
 

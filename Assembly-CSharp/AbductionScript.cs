@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class AbductionScript : MonoBehaviour
 {
+	public CustomUniformScript CustomUniform;
+
 	public SkinnedMeshRenderer Renderer;
 
 	public Texture[] RivalStockings;
@@ -34,7 +36,7 @@ public class AbductionScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (JSON.Students[DateGlobals.Week + 10].Gender == 1)
+		if (GameGlobals.CustomMode)
 		{
 			MaleDarkness.SetActive(value: true);
 		}
@@ -47,6 +49,18 @@ public class AbductionScript : MonoBehaviour
 			Darkness.color = new Color(0f, 0f, 0f, 1f);
 		}
 		UpdateDOF(1f);
+		if (!GameGlobals.Eighties)
+		{
+			Debug.Log("GameGlobals.Eighties was false. How did we get here if it was false?");
+			GameGlobals.Eighties = true;
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
+		if (GameGlobals.AbductionTarget < 11)
+		{
+			Debug.Log("GameGlobals.AbductionTarget was less than 11. How did we get here if it was less than 11?");
+			GameGlobals.AbductionTarget = 11;
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 		if (GameGlobals.AbductionTarget > 0)
 		{
 			Renderer.material.SetTexture("_OverlayTex", RivalStockings[GameGlobals.AbductionTarget - 10]);

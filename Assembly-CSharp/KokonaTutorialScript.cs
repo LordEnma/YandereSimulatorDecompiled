@@ -548,7 +548,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			}
 			else
 			{
-				MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, new Vector3(25.59676f, 1.233333f, 72f), Time.deltaTime * Timer);
+				MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, new Vector3(25.11067f, 1.365645f, 72f), Time.deltaTime * Timer);
 				MainCamera.transform.eulerAngles = Vector3.Lerp(MainCamera.transform.eulerAngles, new Vector3(15f, 90f, 0f), Time.deltaTime * Timer);
 			}
 			if (Timer > 4f)

@@ -97,7 +97,7 @@ public class EightiesStatsScript : MonoBehaviour
 		{
 			text2 = "";
 		}
-		Label[3].text = text + " has...\n...made " + PlayerGlobals.Friends + " friend" + text2 + ".\n...alarmed her classmates " + PlayerGlobals.Alarms + " times.\n...been seen with a weapon " + PlayerGlobals.WeaponWitnessed + " times.\n...been seen stained with blood " + PlayerGlobals.BloodWitnessed + " times.";
+		Label[3].text = text + " has...\n...made " + PlayerGlobals.Friends + " friend" + text2 + ".\n...alarmed her classmates " + PlayerGlobals.Alerts + " times.\n...been seen with a weapon " + PlayerGlobals.WeaponWitnessed + " times.\n...been seen stained with blood " + PlayerGlobals.BloodWitnessed + " times.";
 		if (Courtroom != null)
 		{
 			Courtroom.UpdateFactLabels();

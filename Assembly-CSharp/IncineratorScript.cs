@@ -429,6 +429,7 @@ public class IncineratorScript : MonoBehaviour
 		Prompt.enabled = true;
 		Panel.SetActive(value: false);
 		Ready = false;
+		Timer = 0f;
 		Flames.Stop();
 		Smoke.Stop();
 	}

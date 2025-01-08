@@ -109,6 +109,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 		Cursor.transform.parent.Rotate(new Vector3(Time.unscaledDeltaTime * 100f, 0f, 0f), Space.Self);
 		Cursor.transform.parent.localPosition = Vector3.Lerp(Cursor.transform.parent.localPosition, new Vector3(700f, -100f - 100f * (float)Selection, Cursor.transform.parent.localPosition.z), Time.unscaledDeltaTime * 10f);
+		Labels[14].text = (Screen.fullScreen ? "No" : "Yes");
 		Labels[45].text = (Screen.fullScreen ? "No" : "Yes");
 		if (Cursor.alpha == 1f)
 		{
@@ -1093,7 +1094,7 @@ public class NewSettingsScript : MonoBehaviour
 		Labels[42].text = (OptionGlobals.DisableNoise ? "Yes" : "No");
 		Labels[43].text = (OptionGlobals.DisableTint ? "Yes" : "No");
 		Labels[44].text = Screen.width + " x " + Screen.height;
-		Labels[45].text = ((!Screen.fullScreen) ? "Yes" : "No");
+		Labels[45].text = (Screen.fullScreen ? "No" : "Yes");
 		Labels[46].text = (OptionGlobals.MinimalistHUD ? "Yes" : "No");
 		if (GameGlobals.Eighties)
 		{
