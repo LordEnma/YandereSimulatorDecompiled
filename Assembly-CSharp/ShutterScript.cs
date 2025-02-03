@@ -301,7 +301,7 @@ public class ShutterScript : MonoBehaviour
 									}
 									if (!FaceStudent.Alarmed && !FaceStudent.Dying && !FaceStudent.Distracted && !FaceStudent.InEvent && !FaceStudent.Wet && FaceStudent.Schoolwear > 0 && !FaceStudent.Fleeing && !FaceStudent.Following && !flag2 && !FaceStudent.HoldingHands && FaceStudent.Actions[FaceStudent.Phase] != StudentActionType.Mourn && !FaceStudent.Guarding && !FaceStudent.Confessing && !FaceStudent.DiscCheck && !FaceStudent.TurnOffRadio && !FaceStudent.Investigating && !FaceStudent.Distracting && !FaceStudent.WitnessedLimb && !FaceStudent.WitnessedWeapon && !FaceStudent.WitnessedBloodPool && !FaceStudent.WitnessedBloodyWeapon && !FaceStudent.SentHome && !FaceStudent.EatingSnack && !FaceStudent.Slave && !FaceStudent.FragileSlave && !FaceStudent.TakingOutTrash && !FaceStudent.Pushable && !FaceStudent.SentToLocker && !flag3 && FaceStudent.Club != ClubType.Council && FaceStudent.Club != ClubType.Delinquent && Vector3.Distance(Yandere.transform.position, gameObject.transform.position) < ReactionDistance && FaceStudent.CanSeeObject(Yandere.gameObject, Yandere.transform.position + Vector3.up))
 									{
-										if (MissionMode && !FaceStudent.Nemesis)
+										if (MissionMode && !FaceStudent.Nemesis && Yandere.Club != ClubType.Photography)
 										{
 											PenaltyTimer += Time.deltaTime;
 											if (PenaltyTimer > 1f)
@@ -776,7 +776,7 @@ public class ShutterScript : MonoBehaviour
 				PhotoDescription.SetActive(value: true);
 				PhotoDescLabel.text = "Photo of: Osana Vandalizing School Property";
 			}
-			if (hit.collider.gameObject.transform.parent != null && hit.collider.gameObject.transform.parent.name == "Plushies")
+			if (hit.collider.gameObject.transform.parent != null && hit.collider.gameObject.transform.parent.name.Contains("Plushies"))
 			{
 				PlushieShot = true;
 				PlushieName = hit.collider.gameObject.name;

@@ -117,6 +117,8 @@ public class HomeYandereScript : MonoBehaviour
 
 	public GameObject[] VtuberHairs;
 
+	public GameObject[] VtuberAccs;
+
 	public Texture[] VtuberFaces;
 
 	public Renderer[] Eyes;
@@ -306,6 +308,12 @@ public class HomeYandereScript : MonoBehaviour
 			CustomHair.Start();
 			Hairstyle = 0;
 			UpdateHair();
+		}
+		if (GameGlobals.VtuberID == 2)
+		{
+			IdleAnim = "f02_ryobaIdle_00";
+			WalkAnim = "f02_ryobaWalk_00";
+			RunAnim = "f02_ryobaRun_00";
 		}
 	}
 
@@ -594,29 +602,40 @@ public class HomeYandereScript : MonoBehaviour
 
 	private void VtuberCheck()
 	{
+		for (int i = 1; i < VtuberHairs.Length; i++)
+		{
+			VtuberHairs[i].SetActive(value: false);
+			VtuberAccs[i].SetActive(value: false);
+		}
 		if (GameGlobals.VtuberID > 0)
 		{
-			for (int i = 1; i < OriginalHairs.Length; i++)
+			for (int j = 1; j < OriginalHairs.Length; j++)
 			{
-				OriginalHairs[i].transform.localPosition = new Vector3(0f, 1f, 0f);
+				OriginalHairs[j].transform.localPosition = new Vector3(0f, 10f, 0f);
 			}
 			VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
-			for (int i = 0; i < 13; i++)
+			VtuberAccs[GameGlobals.VtuberID].SetActive(value: true);
+			for (int j = 0; j < 13; j++)
 			{
-				MyRenderer.SetBlendShapeWeight(i, 0f);
+				MyRenderer.SetBlendShapeWeight(j, 0f);
 			}
 			MyRenderer.SetBlendShapeWeight(0, 100f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
+			if (GameGlobals.VtuberID == 1)
+			{
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+			}
+			else if (GameGlobals.VtuberID == 2)
+			{
+				IdleAnim = "f02_ryobaIdle_00";
+				WalkAnim = "f02_ryobaWalk_00";
+				RunAnim = "f02_ryobaRun_00";
+			}
 			FaceTexture = VtuberFaces[GameGlobals.VtuberID];
 			Debug.Log("FaceTexture changed to Vtuber's face texture.");
 			Eyes[1].material.mainTexture = VtuberFaces[GameGlobals.VtuberID];
 			Eyes[2].material.mainTexture = VtuberFaces[GameGlobals.VtuberID];
 			UpdateFace = true;
 			Vtuber = true;
-		}
-		else
-		{
-			VtuberHairs[1].SetActive(value: false);
 		}
 	}
 

@@ -30,8 +30,15 @@ public class AudioSourceScript : MonoBehaviour
 		MyAudioSource.clip = MyClip;
 		MyAudioSource.Play();
 		MyAudioSource.time = Offset;
-		_ = MyClip.length;
-		_ = 0f;
+		if (MyClip != null)
+		{
+			_ = MyClip.length;
+			_ = 0f;
+		}
+		else
+		{
+			Debug.Log("Uh, something went wrong. This AudioSource's clip was null?");
+		}
 	}
 
 	private void Update()

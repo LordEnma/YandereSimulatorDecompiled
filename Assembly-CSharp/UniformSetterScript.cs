@@ -53,6 +53,8 @@ public class UniformSetterScript : MonoBehaviour
 
 	public Texture RyobaTexture;
 
+	public Texture[] VTuberFaces;
+
 	public Texture OriginalFemaleUniformTexture1;
 
 	public Texture OriginalFemaleUniformTexture2;
@@ -71,6 +73,10 @@ public class UniformSetterScript : MonoBehaviour
 
 	public void Start()
 	{
+		if (VTuberFaces != null && VTuberFaces.Length != 0 && GameGlobals.VtuberID > 0)
+		{
+			AyanoFace = VTuberFaces[GameGlobals.VtuberID];
+		}
 		if (MyRenderer == null)
 		{
 			MyRenderer = base.transform.GetChild(0).GetChild(0).GetChild(0)

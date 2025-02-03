@@ -212,6 +212,8 @@ public class CustomizationScript : MonoBehaviour
 
 	public GameObject[] VtuberHair;
 
+	public GameObject[] VtuberAcc;
+
 	public Texture[] VtuberFace;
 
 	public Shader NewShader;
@@ -336,28 +338,30 @@ public class CustomizationScript : MonoBehaviour
 		Yandere.GetComponent<Animation>().Play("f02_newWalk_00");
 		CensorCloud.SetActive(value: false);
 		Hearts.SetActive(value: false);
+		for (int i = 1; i < VtuberHair.Length; i++)
+		{
+			VtuberHair[i].SetActive(value: false);
+			VtuberAcc[i].SetActive(value: false);
+		}
 		if (GameGlobals.VtuberID > 0)
 		{
 			YandereHair.SetActive(value: false);
 			VtuberHair[GameGlobals.VtuberID].SetActive(value: true);
+			VtuberAcc[GameGlobals.VtuberID].SetActive(value: true);
 			FemaleFace = VtuberFace[GameGlobals.VtuberID];
 			UpdateFemaleUniform(1);
-			for (int i = 0; i < 13; i++)
+			for (int j = 0; j < 13; j++)
 			{
-				YandereRenderer.SetBlendShapeWeight(i, 0f);
+				YandereRenderer.SetBlendShapeWeight(j, 0f);
 			}
 			YandereRenderer.SetBlendShapeWeight(0, 100f);
 			YandereRenderer.SetBlendShapeWeight(9, 100f);
 		}
-		else
+		for (int k = 0; k < Hairstyles.Length; k++)
 		{
-			VtuberHair[1].SetActive(value: false);
-		}
-		for (int j = 0; j < Hairstyles.Length; j++)
-		{
-			if (Hairstyles[j] != null)
+			if (Hairstyles[k] != null)
 			{
-				HairRenderer = Hairstyles[j].GetComponent<Renderer>();
+				HairRenderer = Hairstyles[k].GetComponent<Renderer>();
 				HairRenderer.material.shader = NewShader;
 				HairRenderer.material.SetFloat("_Saturation", 0f);
 			}

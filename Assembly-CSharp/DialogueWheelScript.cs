@@ -101,6 +101,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public bool CanBefriendCouncil;
 
+	public bool Intimidating;
+
 	public bool AskingFavor;
 
 	public bool Matchmaking;
@@ -252,8 +254,19 @@ public class DialogueWheelScript : MonoBehaviour
 				{
 					Selected = 6;
 				}
+				if (Yandere.Club == ClubType.Delinquent && !Yandere.TargetStudent.Friend)
+				{
+					Text[6] = "Intimidate";
+					Intimidating = true;
+				}
+				else
+				{
+					Text[6] = "Ask Favor";
+					Intimidating = false;
+				}
 				CenterLabel.text = Text[Selected];
 				CenterLabel.color = OriginalColor;
+				Intimidating = false;
 				if (!ClubLeader)
 				{
 					if (Selected == 5)
@@ -263,10 +276,11 @@ public class DialogueWheelScript : MonoBehaviour
 							CenterLabel.text = "Love";
 						}
 					}
-					else if (Selected == 6 && Yandere.Club == ClubType.Delinquent)
+					else if (Selected == 6 && Yandere.Club == ClubType.Delinquent && !Yandere.TargetStudent.Friend)
 					{
 						CenterLabel.text = "Intimidate";
 						CenterLabel.color = new Color(1f, 0f, 0f, 1f);
+						Intimidating = true;
 					}
 				}
 				else
@@ -1270,13 +1284,15 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			Yandere.TargetStudent.TaskPhase = 5;
 		}
-		if (Yandere.Club == ClubType.Delinquent)
+		if (Yandere.Club == ClubType.Delinquent && !Yandere.TargetStudent.Friend)
 		{
 			Text[6] = "Intimidate";
+			Intimidating = true;
 		}
 		else
 		{
 			Text[6] = "Ask Favor";
+			Intimidating = false;
 		}
 	}
 

@@ -60,6 +60,8 @@ public class ShoulderCameraScript : MonoBehaviour
 
 	public bool ObstacleCounter;
 
+	public bool OnlyDoThisOnce;
+
 	public bool AimingCamera;
 
 	public bool OverShoulder;
@@ -310,7 +312,7 @@ public class ShoulderCameraScript : MonoBehaviour
 						NoticedPOV.Translate(Vector3.back * 2f);
 						NoticedPOV.transform.position = new Vector3(NoticedPOV.transform.position.x, Yandere.transform.position.y + 1f, NoticedPOV.transform.position.z);
 						NoticedSpeed = 1f;
-						Yandere.Character.GetComponent<Animation>().CrossFade("f02_down_22");
+						Yandere.CharacterAnimation.CrossFade("f02_heartBrokenFall_00");
 						HeartbrokenCamera.SetActive(value: true);
 						Yandere.Police.Invalid = true;
 						Yandere.Collapse = true;
@@ -569,6 +571,35 @@ public class ShoulderCameraScript : MonoBehaviour
 			{
 				Yandere.CameraEffects.UpdateDOF(StruggleDOF);
 			}
+			if (OnlyDoThisOnce || !(Yandere.CharacterAnimation["f02_moCounterA_00"].time < Timer))
+			{
+				return;
+			}
+			Debug.Log("Animation was not synchronized...");
+			if (Yandere.TargetStudent != null)
+			{
+				Yandere.TargetStudent.TeleportToBlackCube();
+				Yandere.CharacterAnimation["f02_moCounterA_00"].time = Timer;
+				if (!Yandere.TargetStudent.Male)
+				{
+					Yandere.TargetStudent.CharacterAnimation["f02_moCounterB_00"].time = Timer;
+					Yandere.CharacterAnimation.Play("f02_moCounterA_00");
+				}
+				else
+				{
+					Yandere.TargetStudent.CharacterAnimation["moCounterB_00"].time = Timer;
+					Yandere.TargetStudent.CharacterAnimation.Play("moCounterB_00");
+				}
+				Yandere.TargetStudent.transform.position = new Vector3(0f, 100f, 0.5f);
+				Yandere.TargetStudent.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+				Yandere.transform.position = new Vector3(0f, 100f, -0.5f);
+				Yandere.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+				Physics.SyncTransforms();
+				Yandere.TargetStudent.enabled = false;
+				Yandere.ZeroAnimationLayers();
+				Yandere.enabled = false;
+				OnlyDoThisOnce = true;
+			}
 		}
 		else if (Struggle)
 		{
@@ -726,7 +757,7 @@ public class ShoulderCameraScript : MonoBehaviour
 		NoticedFocus.localPosition = new Vector3(0f, 1f, 0f);
 		NoticedPOV.localPosition = new Vector3(0f, 1f, 2f);
 		NoticedPOV.LookAt(NoticedFocus.position);
-		Yandere.CharacterAnimation.CrossFade("f02_down_22");
+		Yandere.CharacterAnimation.CrossFade("f02_heartBrokenFall_00");
 		Yandere.HeartCamera.gameObject.SetActive(value: false);
 		HeartbrokenCamera.SetActive(value: true);
 		Yandere.RPGCamera.enabled = false;

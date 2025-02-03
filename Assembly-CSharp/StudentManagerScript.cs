@@ -2358,7 +2358,16 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		else
 		{
-			if (NPCsSpawned < StudentsTotal + TeachersTotal)
+			if (!FirstUpdate)
+			{
+				Frame++;
+				if (Frame > 10)
+				{
+					FirstUpdate = true;
+					Frame = 0;
+				}
+			}
+			else if (NPCsSpawned < StudentsTotal + TeachersTotal)
 			{
 				Frame++;
 				if (Frame == 1)
@@ -3417,6 +3426,7 @@ public class StudentManagerScript : MonoBehaviour
 				studentScript.AlreadyFed = false;
 				studentScript.TimesFollowed = 0;
 				studentScript.TaskRejected = 0;
+				studentScript.MustTrip = false;
 				studentScript.Attempts = 0;
 				if (studentScript.Meeting)
 				{
@@ -3577,6 +3587,12 @@ public class StudentManagerScript : MonoBehaviour
 							studentScript.transform.position = studentScript.Seat.position + Vector3.up * 0.01f;
 							studentScript.transform.rotation = studentScript.Seat.rotation;
 						}
+					}
+					if (studentScript.WalkAnim == "f02_trackJog_00")
+					{
+						studentScript.IdleAnim = studentScript.OriginalIdleAnim;
+						studentScript.WalkAnim = studentScript.OriginalWalkAnim;
+						studentScript.SprintAnim = studentScript.OriginalSprintAnim;
 					}
 				}
 			}
@@ -6265,6 +6281,7 @@ public class StudentManagerScript : MonoBehaviour
 				Plates[i].gameObject.SetActive(value: false);
 			}
 		}
+		BakeSale.UpdatePosters();
 	}
 
 	public void UpdateWeek2Hangout(int StudentID)
@@ -8019,7 +8036,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void AdjustStageDestination(Transform Destination)
 	{
-		if (StageColliders[0].bounds.Contains(Destination.position) || StageColliders[1].bounds.Contains(Destination.position))
+		if (StageColliders[2].bounds.Contains(Destination.position))
 		{
 			Destination.position = new Vector3(Destination.position.x, 1.375f, Destination.position.z);
 		}

@@ -102,6 +102,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] InterruptReactions;
 
+	public string[] RivalInterruptReactions;
+
 	public string[] IntrusionReactions;
 
 	public string[] NoteReactions;
@@ -2356,6 +2358,9 @@ public class SubtitleScript : MonoBehaviour
 			break;
 		case SubtitleType.InterruptionReaction:
 			Label.text = InterruptReactions[ID];
+			break;
+		case SubtitleType.RivalInterruptionReaction:
+			Label.text = RivalInterruptReactions[ID];
 			break;
 		case SubtitleType.IntrusionReaction:
 			Label.text = GetRandomString(IntrusionReactions);

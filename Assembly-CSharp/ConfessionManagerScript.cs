@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class ConfessionManagerScript : MonoBehaviour
@@ -94,6 +97,8 @@ public class ConfessionManagerScript : MonoBehaviour
 
 	public bool FadeOut;
 
+	public bool Custom;
+
 	public bool Reject;
 
 	public int TearPhase;
@@ -106,23 +111,26 @@ public class ConfessionManagerScript : MonoBehaviour
 
 	public string MalePrefix;
 
+	public AudioClip EmptyClip;
+
 	private void Start()
 	{
+		Debug.Log("ConfessionManager is now firing Start()");
 		ConfessionCamera.gameObject.SetActive(value: false);
 		if (GameGlobals.FemaleSenpai)
 		{
 			Senpai.transform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
 		}
+		Custom = GameGlobals.CustomMode;
 		StudentManager.Yandere.Class.Portal.EndEvents();
 		StudentManager.Students[StudentManager.RivalID].BookBag.SetActive(value: false);
 		Senpai["SenpaiConfession"].speed = 0.9f;
-		Debug.Log("At this moment, Darkness.color.alpha is being set to 0.");
 		TimelessDarkness.color = new Color(0f, 0f, 0f, 0f);
 		Darkness.color = new Color(0f, 0f, 0f, 0f);
 		SubtitleLabel.text = "";
 		Eighties = StudentManager.Eighties;
 		ContinueButton.alpha = 0f;
-		if (Eighties)
+		if (Eighties && !Custom)
 		{
 			ConfessionMusic[1] = ConfessionMusic[5];
 			ConfessionMusic[2] = ConfessionMusic[5];
@@ -134,6 +142,14 @@ public class ConfessionManagerScript : MonoBehaviour
 			ContinueButton.transform.localPosition = new Vector3(680f, 370f, 0f);
 			ContinueButton.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 			ContinueLabel.transform.localPosition = new Vector3(-30f, 2.5f, 0f);
+		}
+		else if (Custom)
+		{
+			Debug.Log("ConfessionManager is now firing PopulateArrays()");
+			PopulateArrays(DateGlobals.Week);
+			MyAudio.clip = EmptyClip;
+			ConfessionAccepted = EmptyClip;
+			ConfessionRejected = EmptyClip;
 		}
 		else if (DateGlobals.Week > 1)
 		{
@@ -268,7 +284,7 @@ public class ConfessionManagerScript : MonoBehaviour
 		{
 			if (SubID < ConfessTimes.Length && Osana[MalePrefix + "OsanaConfession"].time > ConfessTimes[SubID] + 3f)
 			{
-				if (!Eighties)
+				if (!Eighties || Custom)
 				{
 					SubtitleLabel.text = ConfessSubs[SubID] ?? "";
 				}
@@ -333,7 +349,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			{
 				if (SubID < AcceptTimes.Length && Osana[MalePrefix + "OsanaConfessionAccepted"].time > AcceptTimes[SubID])
 				{
-					if (!Eighties)
+					if (!Eighties || Custom)
 					{
 						SubtitleLabel.text = AcceptSubs[SubID] ?? "";
 					}
@@ -432,7 +448,7 @@ public class ConfessionManagerScript : MonoBehaviour
 			{
 				if (SubID < RejectTimes.Length && Osana[MalePrefix + "OsanaConfessionRejected"].time > RejectTimes[SubID])
 				{
-					if (!Eighties)
+					if (!Eighties || Custom)
 					{
 						SubtitleLabel.text = RejectSubs[SubID] ?? "";
 					}
@@ -442,7 +458,7 @@ public class ConfessionManagerScript : MonoBehaviour
 					}
 					SubID++;
 				}
-				if (Eighties && Timer < 41f)
+				if (Eighties && !Custom && Timer < 41f)
 				{
 					Osana[MalePrefix + "OsanaConfessionRejected"].time = 41f;
 					Timer = 41f;
@@ -634,6 +650,54 @@ public class ConfessionManagerScript : MonoBehaviour
 		if (Phase > 4 && Reject)
 		{
 			SenpaiNeck.eulerAngles = new Vector3(SenpaiNeck.eulerAngles.x + 15f, SenpaiNeck.eulerAngles.y, SenpaiNeck.eulerAngles.z);
+		}
+	}
+
+	public void PopulateArrays(int week)
+	{
+		string text = Application.streamingAssetsPath + "/CustomMode/Confessions";
+		string text2 = text + "/Confess" + week + ".txt";
+		string text3 = text + "/Accept" + week + ".txt";
+		string text4 = text + "/Reject" + week + ".txt";
+		Debug.Log("Attempting to read file at " + text2);
+		if (!File.Exists(text2) || !File.Exists(text3) || !File.Exists(text4))
+		{
+			Debug.Log("One or more required files are missing.");
+		}
+		else
+		{
+			Debug.Log("Confess1.txt, Accept1.txt, and Reject1.txt are all confirmed to exist.");
+		}
+		ConfessSubs = ReadAndCleanFile(text2);
+		AcceptSubs = ReadAndCleanFile(text3);
+		RejectSubs = ReadAndCleanFile(text4);
+	}
+
+	private string[] ReadAndCleanFile(string filePath)
+	{
+		Debug.Log("Now attempting to ''ReadAndCleanFile''.");
+		try
+		{
+			string[] array = File.ReadAllLines(filePath);
+			Debug.Log("lines is: " + array);
+			List<string> list = new List<string>();
+			string[] array2 = array;
+			foreach (string text in array2)
+			{
+				if (string.IsNullOrWhiteSpace(text))
+				{
+					Debug.Log("''IsNullOrWhiteSpace'' was true.");
+					continue;
+				}
+				string item = text.Replace("Senpai:", string.Empty).Replace("Rival:", string.Empty).Trim();
+				list.Add(item);
+			}
+			return list.ToArray();
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine("Error reading file " + filePath + ": " + ex.Message);
+			return new string[0];
 		}
 	}
 }

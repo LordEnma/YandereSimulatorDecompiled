@@ -133,6 +133,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public float Intensity = 0.45f;
 
+	public float Height;
+
 	public int InstructionPhase = 1;
 
 	public int LockerPhase;
@@ -228,6 +230,8 @@ public class StalkerYandereScript : MonoBehaviour
 	public GameObject[] OriginalHairs;
 
 	public GameObject[] VtuberHairs;
+
+	public GameObject[] VtuberAccs;
 
 	public Texture[] VtuberFaces;
 
@@ -1067,34 +1071,46 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public void VtuberCheck()
 	{
-		if (GameGlobals.VtuberID > 0)
+		for (int i = 1; i < VtuberHairs.Length; i++)
 		{
-			for (int i = 1; i < OriginalHairs.Length; i++)
-			{
-				OriginalHairs[i].transform.localPosition = new Vector3(0f, 100f, 0f);
-			}
-			VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
-			if (ClothingAttacher != null && ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
-			{
-				MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
-				MyRenderer.materials[1].mainTexture = VtuberFaces[GameGlobals.VtuberID];
-			}
-			else
-			{
-				MyRenderer.materials[2].mainTexture = VtuberFaces[GameGlobals.VtuberID];
-				for (int i = 0; i < 13; i++)
-				{
-					MyRenderer.SetBlendShapeWeight(i, 0f);
-				}
-				MyRenderer.SetBlendShapeWeight(0, 100f);
-				MyRenderer.SetBlendShapeWeight(9, 100f);
-			}
-			UpdateTextures = true;
-			Vtuber = true;
+			VtuberHairs[i].SetActive(value: false);
+			VtuberAccs[i].SetActive(value: false);
+		}
+		if (GameGlobals.VtuberID <= 0)
+		{
+			return;
+		}
+		for (int j = 1; j < OriginalHairs.Length; j++)
+		{
+			OriginalHairs[j].transform.localPosition = new Vector3(0f, 100f, 0f);
+		}
+		VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
+		VtuberAccs[GameGlobals.VtuberID].SetActive(value: true);
+		if (ClothingAttacher != null && ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
+		{
+			MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+			MyRenderer.materials[1].mainTexture = VtuberFaces[GameGlobals.VtuberID];
 		}
 		else
 		{
-			VtuberHairs[1].SetActive(value: false);
+			MyRenderer.materials[2].mainTexture = VtuberFaces[GameGlobals.VtuberID];
+			for (int j = 0; j < 13; j++)
+			{
+				MyRenderer.SetBlendShapeWeight(j, 0f);
+			}
+			MyRenderer.SetBlendShapeWeight(0, 100f);
+			if (GameGlobals.VtuberID == 1)
+			{
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+			}
 		}
+		if (GameGlobals.VtuberID == 2)
+		{
+			IdleAnim = "f02_ryobaIdle_00";
+			WalkAnim = "f02_ryobaWalk_00";
+			RunAnim = "f02_ryobaRun_00";
+		}
+		UpdateTextures = true;
+		Vtuber = true;
 	}
 }

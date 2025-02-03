@@ -133,6 +133,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public UISprite OpinionShadow;
 
+	public UISprite ClubAccShadow;
+
 	public UISprite DetailShadow;
 
 	public UIPanel HangoutPanel;
@@ -239,6 +241,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public UILabel FemaleUniformLabel;
 
+	public UILabel ConfirmResetLabel;
+
 	public UILabel MaleUniformLabel;
 
 	public UILabel GenderSwapLabel;
@@ -282,6 +286,8 @@ public class CustomModeScript : MonoBehaviour
 	public UILabel RespectedLabel;
 
 	public UILabel FearedLabel;
+
+	public UILabel TotalRepLabel;
 
 	public UILabel ScheduleHelpLabel;
 
@@ -733,6 +739,7 @@ public class CustomModeScript : MonoBehaviour
 			}
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
+			PreventIndexOutOfRange();
 			if (Initializing)
 			{
 				GameGlobals.CustomMode = false;
@@ -835,9 +842,20 @@ public class CustomModeScript : MonoBehaviour
 				{
 					if (Input.GetButtonDown(InputNames.Xbox_A))
 					{
-						Reset();
-						NotificationManager.CustomText = "Data has been reset.";
-						NotificationManager.DisplayNotification(NotificationType.Custom);
+						if (InitialSelected == 4)
+						{
+							Reset();
+							NotificationManager.CustomText = "Data has been reset.";
+							NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
+						else if (InitialSelected == 5)
+						{
+							Load();
+						}
+						else if (InitialSelected == 6)
+						{
+							Save();
+						}
 						ConfirmResetPanel.alpha = 0f;
 					}
 					else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -942,15 +960,18 @@ public class CustomModeScript : MonoBehaviour
 					}
 					else if (InitialSelected == 4)
 					{
+						ConfirmResetLabel.text = "Are you sure you want to RESET all of your Custom Mode data?";
 						ConfirmResetPanel.alpha = 1f;
 					}
 					else if (InitialSelected == 5)
 					{
-						Load();
+						ConfirmResetLabel.text = "Are you sure you want to LOAD the Custom Mode data currently in your JSON folder?";
+						ConfirmResetPanel.alpha = 1f;
 					}
 					else if (InitialSelected == 6)
 					{
-						Save();
+						ConfirmResetLabel.text = "Are you sure you want to SAVE the Custom Mode menu's current data into your JSON folder?";
+						ConfirmResetPanel.alpha = 1f;
 					}
 					else if (InitialSelected == 7)
 					{
@@ -1804,6 +1825,15 @@ public class CustomModeScript : MonoBehaviour
 							PromptBar.Show = true;
 							PortraitShadow.alpha = 0.5f;
 							DetailShadow.alpha = 0f;
+							Debug.Log("Now checking if this student is in a club.");
+							if (JSON.Students[Selected].Club == ClubType.None)
+							{
+								ClubAccShadow.gameObject.SetActive(value: true);
+							}
+							else
+							{
+								ClubAccShadow.gameObject.SetActive(value: false);
+							}
 							EditingPortrait = false;
 							EditingMisc = true;
 							Row = 1;
@@ -1842,17 +1872,20 @@ public class CustomModeScript : MonoBehaviour
 							}
 							else if (Row == 2)
 							{
-								if (JSON.Misc.ClubAccessories[Selected] == 0)
+								if (!ClubAccShadow.gameObject.activeInHierarchy)
 								{
-									JSON.Misc.ClubAccessories[Selected] = 1;
-									ClubAccLabel.text = "On";
+									if (JSON.Misc.ClubAccessories[Selected] == 0)
+									{
+										JSON.Misc.ClubAccessories[Selected] = 1;
+										ClubAccLabel.text = "On";
+									}
+									else
+									{
+										JSON.Misc.ClubAccessories[Selected] = 0;
+										ClubAccLabel.text = "Off";
+									}
+									UpdateStudent();
 								}
-								else
-								{
-									JSON.Misc.ClubAccessories[Selected] = 0;
-									ClubAccLabel.text = "Off";
-								}
-								UpdateStudent();
 							}
 							else if (Row == 3)
 							{
@@ -1878,17 +1911,20 @@ public class CustomModeScript : MonoBehaviour
 							}
 							else if (Row == 2)
 							{
-								if (JSON.Misc.ClubAccessories[Selected] == 0)
+								if (!ClubAccShadow.gameObject.activeInHierarchy)
 								{
-									JSON.Misc.ClubAccessories[Selected] = 1;
-									ClubAccLabel.text = "On";
+									if (JSON.Misc.ClubAccessories[Selected] == 0)
+									{
+										JSON.Misc.ClubAccessories[Selected] = 1;
+										ClubAccLabel.text = "On";
+									}
+									else
+									{
+										JSON.Misc.ClubAccessories[Selected] = 0;
+										ClubAccLabel.text = "Off";
+									}
+									UpdateStudent();
 								}
-								else
-								{
-									JSON.Misc.ClubAccessories[Selected] = 0;
-									ClubAccLabel.text = "Off";
-								}
-								UpdateStudent();
 							}
 							else if (Row == 3)
 							{
@@ -1968,6 +2004,7 @@ public class CustomModeScript : MonoBehaviour
 							ReputationChart.fields[0].Value = JSON.Misc.Likes[Selected];
 							ReputationChart.fields[1].Value = JSON.Misc.Respects[Selected];
 							ReputationChart.fields[2].Value = JSON.Misc.Fears[Selected];
+							UpdateReputationLabel();
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_B) || HeldDownB > 0.5f)
 						{
@@ -2001,6 +2038,7 @@ public class CustomModeScript : MonoBehaviour
 							ReputationChart.fields[0].Value = JSON.Misc.Likes[Selected];
 							ReputationChart.fields[1].Value = JSON.Misc.Respects[Selected];
 							ReputationChart.fields[2].Value = JSON.Misc.Fears[Selected];
+							UpdateReputationLabel();
 						}
 						else if (InputManager.TappedLeft)
 						{
@@ -3062,6 +3100,7 @@ public class CustomModeScript : MonoBehaviour
 		ReputationChart.fields[0].Value = JSON.Misc.Likes[Selected];
 		ReputationChart.fields[1].Value = JSON.Misc.Respects[Selected];
 		ReputationChart.fields[2].Value = JSON.Misc.Fears[Selected];
+		UpdateReputationLabel();
 	}
 
 	public void RandomizeAll()
@@ -3937,6 +3976,7 @@ public class CustomModeScript : MonoBehaviour
 		UpdateCanonMethodLabels();
 		EnsureNoEmptyArrays();
 		UpdateStudent();
+		PreventIndexOutOfRange();
 	}
 
 	private void EnsureNoEmptyArrays()
@@ -4301,6 +4341,40 @@ public class CustomModeScript : MonoBehaviour
 		else
 		{
 			ReputationBubbles[Row].color = Color.white;
+		}
+	}
+
+	public void UpdateReputationLabel()
+	{
+		float num = JSON.Misc.Likes[Selected];
+		float num2 = JSON.Misc.Respects[Selected];
+		float num3 = JSON.Misc.Fears[Selected];
+		float num4 = (num + num2 + num3) * (1f / 3f);
+		if (num4 > -33f)
+		{
+			TotalRepLabel.text = "Total Reputation: " + (int)num4;
+		}
+		else
+		{
+			TotalRepLabel.text = "[c][FF0000]Total Reputation: " + (int)num4 + "\n\n (Student will be targeted for bullying.)[-][/c]";
+		}
+	}
+
+	public void PreventIndexOutOfRange()
+	{
+		for (int i = 1; i < 90; i++)
+		{
+			if (JSON.Students[i].Gender == 1)
+			{
+				if (JSON.Misc.PortraitPoses[i] >= StudentKunCosmetic.PortraitPoses.Length)
+				{
+					JSON.Misc.PortraitPoses[i] = 0;
+				}
+			}
+			else if (JSON.Misc.PortraitPoses[i] >= StudentChanCosmetic.PortraitPoses.Length)
+			{
+				JSON.Misc.PortraitPoses[i] = 0;
+			}
 		}
 	}
 }

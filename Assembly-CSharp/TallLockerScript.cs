@@ -46,6 +46,8 @@ public class TallLockerScript : MonoBehaviour
 
 	public bool Open;
 
+	public float CooldownTimer;
+
 	public float Rotation;
 
 	public float Timer;
@@ -271,147 +273,151 @@ public class TallLockerScript : MonoBehaviour
 		{
 			Hinge.localEulerAngles = new Vector3(0f, Rotation, 0f);
 		}
-		if (!SteamCountdown)
+		if (SteamCountdown)
 		{
-			return;
-		}
-		Timer += Time.deltaTime;
-		if (Phase == 1)
-		{
-			if (!(Timer > 1.5f))
+			Timer += Time.deltaTime;
+			if (Phase == 1)
 			{
-				return;
-			}
-			if (YandereLocker)
-			{
-				if (Yandere.Gloved)
+				if (Timer > 1.5f)
 				{
-					Yandere.Gloves.GetComponent<PickUpScript>().MyRigidbody.isKinematic = false;
-					Yandere.Gloves.transform.parent = Yandere.transform;
-					Yandere.Gloves.transform.localPosition = new Vector3(0f, 1f, -1f);
-					Yandere.Gloves.transform.parent = null;
-					Yandere.GloveAttacher.newRenderer.enabled = false;
-					Yandere.Gloves.gameObject.SetActive(value: true);
-					Yandere.Gloved = false;
-					Yandere.GloveBlood = 0;
-					if (Yandere.WearingRaincoat)
+					if (YandereLocker)
 					{
-						Yandere.RaincoatAttacher.newRenderer.enabled = false;
-						Yandere.PantyAttacher.newRenderer.enabled = true;
-						Yandere.TheDebugMenuScript.UpdateCensor();
-						Yandere.CoatBloodiness[Yandere.Gloves.GloveID] = Yandere.Bloodiness;
-						Yandere.Bloodiness = Yandere.OriginalBloodiness;
-						Yandere.WearingRaincoat = false;
-						if (!StudentManager.CustomMode)
+						if (Yandere.Gloved)
 						{
-							Debug.Log("The game believes that we are NOT in Custom Mode.");
-							if (!StudentManager.Eighties)
+							Yandere.Gloves.GetComponent<PickUpScript>().MyRigidbody.isKinematic = false;
+							Yandere.Gloves.transform.parent = Yandere.transform;
+							Yandere.Gloves.transform.localPosition = new Vector3(0f, 1f, -1f);
+							Yandere.Gloves.transform.parent = null;
+							Yandere.GloveAttacher.newRenderer.enabled = false;
+							Yandere.Gloves.gameObject.SetActive(value: true);
+							Yandere.Gloved = false;
+							Yandere.GloveBlood = 0;
+							if (Yandere.WearingRaincoat)
 							{
-								Yandere.Hairstyle = 1;
+								Yandere.RaincoatAttacher.newRenderer.enabled = false;
+								Yandere.PantyAttacher.newRenderer.enabled = true;
+								Yandere.TheDebugMenuScript.UpdateCensor();
+								Yandere.CoatBloodiness[Yandere.Gloves.GloveID] = Yandere.Bloodiness;
+								Yandere.Bloodiness = Yandere.OriginalBloodiness;
+								Yandere.WearingRaincoat = false;
+								if (!StudentManager.CustomMode)
+								{
+									Debug.Log("The game believes that we are NOT in Custom Mode.");
+									if (!StudentManager.Eighties)
+									{
+										Yandere.Hairstyle = 1;
+									}
+									else
+									{
+										Yandere.Hairstyle = 203;
+									}
+									Yandere.UpdateHair();
+								}
+								else
+								{
+									Yandere.Hairstyle = Yandere.HairstyleBeforeRaincoat;
+									Yandere.UpdateHair();
+								}
+							}
+							Yandere.Gloves = null;
+						}
+						if (Yandere.Mask != null)
+						{
+							Yandere.Mask.Drop();
+							Yandere.WeaponMenu.UpdateSprites();
+							StudentManager.UpdateStudents();
+						}
+						Debug.Log("The locker is now instructing the player to ChangeSchoolwear()");
+						Yandere.ChangeSchoolwear();
+						if (Yandere.Bloodiness > 0f)
+						{
+							PickUpScript pickUpScript = null;
+							if (RemovingClubAttire)
+							{
+								pickUpScript = Object.Instantiate(BloodyClubUniform[(int)Yandere.Club], Yandere.transform.position + Vector3.forward * 0.5f + Vector3.up, Quaternion.identity).GetComponent<PickUpScript>();
+								StudentManager.ChangingBooths[(int)Yandere.Club].CannotChange = true;
+								StudentManager.ChangingBooths[(int)Yandere.Club].CheckYandereClub();
+								Prompt.HideButton[1] = true;
+								Prompt.HideButton[2] = true;
+								Prompt.HideButton[3] = true;
+								RemovingClubAttire = false;
 							}
 							else
 							{
-								Yandere.Hairstyle = 203;
+								pickUpScript = (NewestUniform = Object.Instantiate(BloodyUniform[Yandere.PreviousSchoolwear], Yandere.transform.position + Vector3.forward * 0.5f + Vector3.up, Quaternion.identity)).GetComponent<PickUpScript>();
+								Prompt.HideButton[Yandere.PreviousSchoolwear] = true;
+								Bloody[Yandere.PreviousSchoolwear] = true;
 							}
-							Yandere.UpdateHair();
+							if (Yandere.RedPaint)
+							{
+								pickUpScript.RedPaint = true;
+							}
 						}
-						else
+					}
+					else if (Student != null)
+					{
+						if (Student.Schoolwear == 0 && !Student.Male)
 						{
-							Yandere.Hairstyle = Yandere.HairstyleBeforeRaincoat;
-							Yandere.UpdateHair();
+							Debug.Log("Checking if something needs to appear at this student's locker...");
+							if (!StudentManager.Eighties)
+							{
+								if (!RivalPhone.gameObject.activeInHierarchy && !Yandere.Inventory.RivalPhone && !DoorGap.Papers[1].gameObject.activeInHierarchy)
+								{
+									Debug.Log(Student?.ToString() + " just left her smartphone in the locker room!");
+									RivalPhone.transform.parent = StudentManager.StrippingPositions[Student.GirlID];
+									RivalPhone.transform.localPosition = new Vector3(0.1f, 0.92f, 0.2375f);
+									RivalPhone.transform.localEulerAngles = new Vector3(-80f, 0f, 0f);
+									Physics.SyncTransforms();
+									RivalPhone.gameObject.SetActive(value: true);
+									RivalPhone.StudentID = Student.StudentID;
+									RivalPhone.MyRenderer.material.mainTexture = Student.SmartPhone.GetComponent<Renderer>().material.mainTexture;
+								}
+								else
+								{
+									Debug.Log(Student?.ToString() + " did NOT leave her smartphone in the locker room, since it would have caused a bug.");
+								}
+								if (Student.StudentID == 2 && Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory].activeInHierarchy)
+								{
+									Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory].SetActive(value: false);
+									Debug.Log("Sakyu Basu just left her ring in the locker room!");
+									Rings.gameObject.SetActive(value: true);
+								}
+							}
+							else if (Student.StudentID == 30)
+							{
+								Debug.Log("Himedere just left her ring in the locker room!");
+								Transform parent = Rings.transform.parent;
+								Rings.transform.parent = Student.transform;
+								Rings.transform.localPosition = new Vector3(0f, 0.8306667f, 0.2217484f);
+								Rings.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
+								Rings.transform.parent = parent;
+								Rings.gameObject.SetActive(value: true);
+							}
 						}
+						Student.ChangeSchoolwear();
 					}
-					Yandere.Gloves = null;
-				}
-				if (Yandere.Mask != null)
-				{
-					Yandere.Mask.Drop();
-					Yandere.WeaponMenu.UpdateSprites();
-					StudentManager.UpdateStudents();
-				}
-				Debug.Log("The locker is now instructing the player to ChangeSchoolwear()");
-				Yandere.ChangeSchoolwear();
-				if (Yandere.Bloodiness > 0f)
-				{
-					PickUpScript pickUpScript = null;
-					if (RemovingClubAttire)
-					{
-						pickUpScript = Object.Instantiate(BloodyClubUniform[(int)Yandere.Club], Yandere.transform.position + Vector3.forward * 0.5f + Vector3.up, Quaternion.identity).GetComponent<PickUpScript>();
-						StudentManager.ChangingBooths[(int)Yandere.Club].CannotChange = true;
-						StudentManager.ChangingBooths[(int)Yandere.Club].CheckYandereClub();
-						Prompt.HideButton[1] = true;
-						Prompt.HideButton[2] = true;
-						Prompt.HideButton[3] = true;
-						RemovingClubAttire = false;
-					}
-					else
-					{
-						pickUpScript = (NewestUniform = Object.Instantiate(BloodyUniform[Yandere.PreviousSchoolwear], Yandere.transform.position + Vector3.forward * 0.5f + Vector3.up, Quaternion.identity)).GetComponent<PickUpScript>();
-						Prompt.HideButton[Yandere.PreviousSchoolwear] = true;
-						Bloody[Yandere.PreviousSchoolwear] = true;
-					}
-					if (Yandere.RedPaint)
-					{
-						pickUpScript.RedPaint = true;
-					}
+					UpdateSchoolwear();
+					Phase++;
 				}
 			}
-			else if (Student != null)
+			else if (Timer > 2.5f)
 			{
-				if (Student.Schoolwear == 0 && !Student.Male)
+				Debug.Log("Steam cloud displayed for 2.5 seconds.");
+				if (!YandereLocker && Student != null)
 				{
-					Debug.Log("Checking if something needs to appear at this student's locker...");
-					if (!StudentManager.Eighties)
-					{
-						if (!RivalPhone.gameObject.activeInHierarchy && !Yandere.Inventory.RivalPhone && !DoorGap.Papers[1].gameObject.activeInHierarchy)
-						{
-							Debug.Log(Student?.ToString() + " just left her smartphone in the locker room!");
-							RivalPhone.transform.parent = StudentManager.StrippingPositions[Student.GirlID];
-							RivalPhone.transform.localPosition = new Vector3(0.1f, 0.92f, 0.2375f);
-							RivalPhone.transform.localEulerAngles = new Vector3(-80f, 0f, 0f);
-							Physics.SyncTransforms();
-							RivalPhone.gameObject.SetActive(value: true);
-							RivalPhone.StudentID = Student.StudentID;
-							RivalPhone.MyRenderer.material.mainTexture = Student.SmartPhone.GetComponent<Renderer>().material.mainTexture;
-						}
-						else
-						{
-							Debug.Log(Student?.ToString() + " did NOT leave her smartphone in the locker room, since it would have caused a bug.");
-						}
-						if (Student.StudentID == 2 && Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory].activeInHierarchy)
-						{
-							Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory].SetActive(value: false);
-							Debug.Log("Sakyu Basu just left her ring in the locker room!");
-							Rings.gameObject.SetActive(value: true);
-						}
-					}
-					else if (Student.StudentID == 30)
-					{
-						Debug.Log("Himedere just left her ring in the locker room!");
-						Transform parent = Rings.transform.parent;
-						Rings.transform.parent = Student.transform;
-						Rings.transform.localPosition = new Vector3(0f, 0.8306667f, 0.2217484f);
-						Rings.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
-						Rings.transform.parent = parent;
-						Rings.gameObject.SetActive(value: true);
-					}
+					Debug.Log(base.gameObject.name + " is now releasing this student from the change-clothing routine.");
+					Student.BathePhase++;
+					Student = null;
 				}
-				Student.ChangeSchoolwear();
+				SteamCountdown = false;
+				Phase = 1;
+				Timer = 0f;
+				CooldownTimer = 1f;
 			}
-			UpdateSchoolwear();
-			Phase++;
 		}
-		else if (Timer > 2.5f)
+		if (CooldownTimer > 0f)
 		{
-			if (!YandereLocker && Student != null)
-			{
-				Debug.Log(base.gameObject.name + " is now releasing this student from the change-clothing routine.");
-				Student.BathePhase++;
-				Student = null;
-			}
-			SteamCountdown = false;
-			Phase = 1;
-			Timer = 0f;
+			CooldownTimer = Mathf.MoveTowards(CooldownTimer, 0f, Time.deltaTime);
 		}
 	}
 
@@ -442,6 +448,7 @@ public class TallLockerScript : MonoBehaviour
 		{
 			Object.Instantiate(SteamCloud, Student.transform.position + Vector3.up * 0.81f, Quaternion.identity).transform.parent = Student.transform;
 			Student.CharacterAnimation.CrossFade(Student.StripAnim);
+			Debug.Log("canSearch and canMove are being set to false here.");
 			Student.Pathfinding.canSearch = false;
 			Student.Pathfinding.canMove = false;
 			Student.Cosmetic.RemoveRings();
@@ -452,6 +459,7 @@ public class TallLockerScript : MonoBehaviour
 	{
 		Object.Instantiate(SteamCloud, SteamStudent.transform.position + Vector3.up * 0.81f, Quaternion.identity).transform.parent = SteamStudent.transform;
 		SteamStudent.CharacterAnimation.CrossFade(SteamStudent.StripAnim);
+		Debug.Log("canSearch and canMove are being set to false here.");
 		SteamStudent.Pathfinding.canSearch = false;
 		SteamStudent.Pathfinding.canMove = false;
 		SteamStudent.MustChangeClothing = false;

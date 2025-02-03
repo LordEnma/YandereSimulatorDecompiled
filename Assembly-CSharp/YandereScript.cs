@@ -2073,6 +2073,10 @@ public class YandereScript : MonoBehaviour
 		PreviousIdleAnim = IdleAnim;
 		PreviousWalkAnim = WalkAnim;
 		Application.runInBackground = false;
+		for (ID = 1; ID < Accessories.Length; ID++)
+		{
+			Accessories[ID].SetActive(value: false);
+		}
 		VtuberCheck();
 		if (!GameGlobals.EightiesTutorial && !GameGlobals.KokonaTutorial)
 		{
@@ -2179,10 +2183,6 @@ public class YandereScript : MonoBehaviour
 		for (int i = 0; i < armor.Length; i++)
 		{
 			armor[i].SetActive(value: false);
-		}
-		for (ID = 1; ID < Accessories.Length; ID++)
-		{
-			Accessories[ID].SetActive(value: false);
 		}
 		for (ID = 0; ID < LooseSocks.Length; ID++)
 		{
@@ -2436,6 +2436,72 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation["CyborgNinja_Run_Armed"].speed = 2f;
 		CharacterAnimation["CyborgNinja_Run_Unarmed"].speed = 2f;
 		CharacterAnimation["f02_laugh_04"].speed = 2f;
+	}
+
+	public void ZeroAnimationLayers()
+	{
+		Debug.Log("Zeroing out all animation layers.");
+		string[] carryAnims = CarryAnims;
+		foreach (string text in carryAnims)
+		{
+			CharacterAnimation[text].weight = 0f;
+		}
+		carryAnims = ArmedAnims;
+		foreach (string text2 in carryAnims)
+		{
+			CharacterAnimation[text2].weight = 0f;
+		}
+		CharacterAnimation["f02_yanderePose_00"].weight = 0f;
+		CharacterAnimation["f02_shy_00"].weight = 0f;
+		CharacterAnimation["f02_singleSaw_00"].weight = 0f;
+		CharacterAnimation["f02_fist_00"].weight = 0f;
+		CharacterAnimation["f02_mopping_00"].weight = 0f;
+		CharacterAnimation["f02_carry_00"].weight = 0f;
+		CharacterAnimation["f02_mopCarry_00"].weight = 0f;
+		CharacterAnimation["f02_bucketCarry_00"].weight = 0f;
+		CharacterAnimation["f02_cameraPose_00"].weight = 0f;
+		CharacterAnimation["f02_grip_00"].weight = 0f;
+		CharacterAnimation["f02_holdHead_00"].weight = 0f;
+		CharacterAnimation["f02_holdTorso_00"].weight = 0f;
+		CharacterAnimation["f02_carryCan_00"].weight = 0f;
+		CharacterAnimation["f02_leftGrip_00"].weight = 0f;
+		CharacterAnimation["f02_carryShoulder_00"].weight = 0f;
+		CharacterAnimation["f02_holdScythe_00"].weight = 0f;
+		CharacterAnimation["f02_carryFlashlight_00"].weight = 0f;
+		CharacterAnimation["f02_carryBox_00"].weight = 0f;
+		CharacterAnimation["f02_holdBook_00"].weight = 0f;
+		CharacterAnimation["f02_holdingKitten_00"].weight = 0f;
+		CharacterAnimation[CreepyIdles[1]].weight = 0f;
+		CharacterAnimation[CreepyIdles[2]].weight = 0f;
+		CharacterAnimation[CreepyIdles[3]].weight = 0f;
+		CharacterAnimation[CreepyIdles[4]].weight = 0f;
+		CharacterAnimation[CreepyIdles[5]].weight = 0f;
+		CharacterAnimation[CreepyWalks[1]].weight = 0f;
+		CharacterAnimation[CreepyWalks[2]].weight = 0f;
+		CharacterAnimation[CreepyWalks[3]].weight = 0f;
+		CharacterAnimation[CreepyWalks[4]].weight = 0f;
+		CharacterAnimation[CreepyWalks[5]].weight = 0f;
+		CharacterAnimation["f02_carryDramatic_00"].weight = 0f;
+		CharacterAnimation["f02_selfie_00"].weight = 0f;
+		CharacterAnimation["f02_selfie_01"].weight = 0f;
+		CharacterAnimation["f02_dramaticWriting_00"].weight = 0f;
+		CharacterAnimation["f02_reachForWeapon_00"].weight = 0f;
+		CharacterAnimation["f02_reachIntoWeaponBag_00"].weight = 0f;
+		CharacterAnimation["f02_genericInteraction_00"].weight = 0f;
+		CharacterAnimation["f02_gutsEye_00"].weight = 0f;
+		CharacterAnimation["f02_fingerSnap_00"].weight = 0f;
+		CharacterAnimation["f02_sadEyebrows_00"].weight = 0f;
+		CharacterAnimation["f02_phonePose_00"].weight = 0f;
+		CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
+		CharacterAnimation["f02_subtleThrowIdle_00"].weight = 0f;
+		CharacterAnimation["f02_obviousThrowIdle_00"].weight = 0f;
+		CharacterAnimation["f02_dipping_00"].weight = 2f;
+		CharacterAnimation["f02_stripping_00"].weight = 1.5f;
+		CharacterAnimation["f02_falconIdle_00"].weight = 2f;
+		CharacterAnimation["f02_carryIdleA_00"].weight = 1.75f;
+		CharacterAnimation["CyborgNinja_Run_Armed"].weight = 2f;
+		CharacterAnimation["CyborgNinja_Run_Unarmed"].weight = 2f;
+		CharacterAnimation["f02_laugh_04"].weight = 0f;
 	}
 
 	private void Update()
@@ -5825,6 +5891,7 @@ public class YandereScript : MonoBehaviour
 		}
 		if (TargetStudent != null)
 		{
+			TargetStudent.BlendOutOfSittingAnim();
 			targetRotation = Quaternion.LookRotation(new Vector3(TargetStudent.transform.position.x, base.transform.position.y, TargetStudent.transform.position.z) - base.transform.position);
 			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
 			if (Vector3.Distance(base.transform.position, TargetStudent.transform.position) < 0.75f)
@@ -6023,13 +6090,13 @@ public class YandereScript : MonoBehaviour
 		else if (Interaction == YandereInteractionType.FollowMe)
 		{
 			int num = 0;
-			if (Club == ClubType.Delinquent)
+			if (StudentManager.DialogueWheel.Intimidating)
 			{
 				num++;
 			}
 			if (TalkTimer == 3f)
 			{
-				if (Club == ClubType.Delinquent)
+				if (StudentManager.DialogueWheel.Intimidating)
 				{
 					TalkAnim = "f02_delinquentGesture_01";
 				}
@@ -7091,43 +7158,42 @@ public class YandereScript : MonoBehaviour
 				VibrationCheck = false;
 			}
 		}
-		LeftEye.localPosition = new Vector3(LeftEye.localPosition.x, LeftEye.localPosition.y, LeftEyeOrigin.z - EyeShrink * 0.02f);
-		RightEye.localPosition = new Vector3(RightEye.localPosition.x, RightEye.localPosition.y, RightEyeOrigin.z + EyeShrink * 0.02f);
-		LeftEye.localScale = new Vector3(1f - EyeShrink, 1f - EyeShrink, LeftEye.localScale.z);
-		RightEye.localScale = new Vector3(1f - EyeShrink, 1f - EyeShrink, RightEye.localScale.z);
-		for (ID = 0; ID < Spine.Length; ID++)
+		if (EyeShrink > 0f)
 		{
-			Transform transform = Spine[ID].transform;
-			transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + Slouch, transform.localEulerAngles.y, transform.localEulerAngles.z);
+			LeftEye.localPosition = new Vector3(LeftEye.localPosition.x, LeftEye.localPosition.y, LeftEyeOrigin.z - EyeShrink * 0.02f);
+			RightEye.localPosition = new Vector3(RightEye.localPosition.x, RightEye.localPosition.y, RightEyeOrigin.z + EyeShrink * 0.02f);
+			LeftEye.localScale = new Vector3(1f - EyeShrink, 1f - EyeShrink, LeftEye.localScale.z);
+			RightEye.localScale = new Vector3(1f - EyeShrink, 1f - EyeShrink, RightEye.localScale.z);
+		}
+		if (Slouch > 0f)
+		{
+			for (ID = 0; ID < Spine.Length; ID++)
+			{
+				Transform transform = Spine[ID].transform;
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + Slouch, transform.localEulerAngles.y, transform.localEulerAngles.z);
+			}
+			float num = 1f;
+			if (Stance.Current == StanceType.Crouching)
+			{
+				num = 3.66666f;
+			}
+			if (!Armed || (Armed && EquippedWeapon.Type != WeaponType.Scythe))
+			{
+				Transform transform2 = Arm[0].transform;
+				transform2.localEulerAngles = new Vector3(transform2.localEulerAngles.x, transform2.localEulerAngles.y, transform2.localEulerAngles.z - Slouch * (3f + num));
+				Transform transform3 = Arm[1].transform;
+				transform3.localEulerAngles = new Vector3(transform3.localEulerAngles.x, transform3.localEulerAngles.y, transform3.localEulerAngles.z + Slouch * (3f + num));
+			}
 		}
 		if (Aiming)
 		{
-			float num = 1f;
+			float num2 = 1f;
 			if (Selfie)
 			{
-				num = -1f;
+				num2 = -1f;
 			}
-			Transform transform2 = Spine[3].transform;
-			transform2.localEulerAngles = new Vector3(transform2.localEulerAngles.x - Bend * num, transform2.localEulerAngles.y, transform2.localEulerAngles.z);
-		}
-		float num2 = 1f;
-		if (Stance.Current == StanceType.Crouching)
-		{
-			num2 = 3.66666f;
-		}
-		if (!Armed || (Armed && EquippedWeapon.Type != WeaponType.Scythe))
-		{
-			Transform transform3 = Arm[0].transform;
-			transform3.localEulerAngles = new Vector3(transform3.localEulerAngles.x, transform3.localEulerAngles.y, transform3.localEulerAngles.z - Slouch * (3f + num2));
-			Transform transform4 = Arm[1].transform;
-			transform4.localEulerAngles = new Vector3(transform4.localEulerAngles.x, transform4.localEulerAngles.y, transform4.localEulerAngles.z + Slouch * (3f + num2));
-		}
-		if (!Aiming)
-		{
-			Head.localEulerAngles += Twitch;
-		}
-		if (Aiming)
-		{
+			Transform transform4 = Spine[3].transform;
+			transform4.localEulerAngles = new Vector3(transform4.localEulerAngles.x - Bend * num2, transform4.localEulerAngles.y, transform4.localEulerAngles.z);
 			if (Stance.Current == StanceType.Crawling)
 			{
 				if (!StudentManager.Eighties)
@@ -7156,6 +7222,10 @@ public class YandereScript : MonoBehaviour
 			}
 			Height = Mathf.Lerp(Height, TargetHeight, Time.deltaTime * 10f);
 			PelvisRoot.transform.localPosition = new Vector3(PelvisRoot.transform.localPosition.x, Height, PelvisRoot.transform.localPosition.z);
+		}
+		else if (Twitch != Vector3.zero)
+		{
+			Head.localEulerAngles += Twitch;
 		}
 		if (PreparingThrow)
 		{
@@ -10067,28 +10137,43 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
+	public void VtuberCheck()
+	{
+		VtuberID = GameGlobals.VtuberID;
+		if (VtuberID > 0)
+		{
+			FaceTexture = VtuberFaces[VtuberID];
+			if (VtuberID == 1)
+			{
+				Hairstyle = 207;
+			}
+			else if (VtuberID == 2)
+			{
+				Hairstyle = 216;
+				AccessoryID = 54;
+				IdleAnim = "f02_ryobaIdle_00";
+				WalkAnim = "f02_ryobaWalk_00";
+				RunAnim = "f02_ryobaRun_00";
+			}
+			UpdateAccessory();
+			UpdateHair();
+			VtuberFace();
+		}
+	}
+
 	public void VtuberFace()
 	{
 		if (!Egg)
 		{
 			LoseGentleEyes();
 			MyRenderer.SetBlendShapeWeight(0, 100f);
-			MyRenderer.SetBlendShapeWeight(5, 0f);
-			MyRenderer.SetBlendShapeWeight(8, 0f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 0f);
-		}
-	}
-
-	public void VtuberCheck()
-	{
-		VtuberID = GameGlobals.VtuberID;
-		if (VtuberID == 1)
-		{
-			FaceTexture = VtuberFaces[VtuberID];
-			Hairstyle = 207;
-			UpdateHair();
-			VtuberFace();
+			if (VtuberID == 1)
+			{
+				MyRenderer.SetBlendShapeWeight(5, 0f);
+				MyRenderer.SetBlendShapeWeight(8, 0f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(12, 0f);
+			}
 		}
 	}
 

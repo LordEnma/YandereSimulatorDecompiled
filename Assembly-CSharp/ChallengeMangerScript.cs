@@ -180,7 +180,7 @@ public class ChallengeMangerScript : MonoBehaviour
 
 	public void GameOver()
 	{
-		Yandere.CharacterAnimation.CrossFade("f02_down_22");
+		Yandere.CharacterAnimation.CrossFade("f02_heartBrokenFall_00");
 		Yandere.Collapse = true;
 		Yandere.CanMove = false;
 		Heartbroken.transform.parent.gameObject.SetActive(value: true);

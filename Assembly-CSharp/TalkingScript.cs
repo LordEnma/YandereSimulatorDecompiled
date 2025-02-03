@@ -630,14 +630,15 @@ public class TalkingScript : MonoBehaviour
 						Debug.Log("This character is currently busy at a bake sale.");
 						flag4 = true;
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag5) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.CurrentDestination == S.Seat || S.TimesFollowed > 1 || S.Schoolwear == 2 || !S.Indoors || flag4)
+					Debug.Log("DialogueWheel.CenterLabel.text is: " + S.DialogueWheel.CenterLabel.text);
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag5) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.CurrentDestination == S.Seat || S.TimesFollowed > 1 || S.Schoolwear == 2 || !S.Indoors || (!Eighties && S.StudentID == 10 && S.DialogueWheel.Intimidating) || flag4)
 					{
 						Debug.Log("Current Clock.HourTime is: " + S.Clock.HourTime);
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						NegativeResponse = true;
 						if (S.StudentID == S.StudentManager.RivalID)
 						{
-							if (S.Yandere.Club == ClubType.Delinquent)
+							if (S.DialogueWheel.Intimidating)
 							{
 								S.Subtitle.CustomText = "Are you trying to intimidate me? Well, it won't work! Go away!";
 								S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
@@ -745,6 +746,13 @@ public class TalkingScript : MonoBehaviour
 						else if (S.TimesFollowed > 1)
 						{
 							S.Subtitle.CustomText = "No offense, but I already followed you a couple of times today, and it was just a waste of time...";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							S.TalkTimer = 5f;
+							Refuse = true;
+						}
+						else if (!Eighties && S.StudentID == 10 && S.DialogueWheel.Intimidating)
+						{
+							S.Subtitle.CustomText = "Are you trying to intimidate me? Well, it won't work! Go away!";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 							S.TalkTimer = 5f;
 							Refuse = true;

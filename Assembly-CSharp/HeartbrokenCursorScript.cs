@@ -210,8 +210,16 @@ public class HeartbrokenCursorScript : MonoBehaviour
 							{
 								TwitchID = 0;
 							}
-							StudentManager.Yandere.CharacterAnimation["f02_snapTwitch_0" + TwitchID].time = 0.1f;
-							StudentManager.Yandere.CharacterAnimation.Play("f02_snapTwitch_0" + TwitchID);
+							if (CracksSpawned == 0)
+							{
+								StudentManager.Yandere.CharacterAnimation["f02_snapTwitch_0" + TwitchID].time = 0f;
+								StudentManager.Yandere.CharacterAnimation.CrossFade("f02_snapTwitch_0" + TwitchID);
+							}
+							else
+							{
+								StudentManager.Yandere.CharacterAnimation["f02_snapTwitch_0" + TwitchID].time = 0.1f;
+								StudentManager.Yandere.CharacterAnimation.Play("f02_snapTwitch_0" + TwitchID);
+							}
 							StudentManager.MainCamera.Translate(StudentManager.MainCamera.forward * 0.1f, Space.World);
 							StudentManager.MainCamera.position = new Vector3(StudentManager.MainCamera.position.x, StudentManager.MainCamera.position.y - 0.01f, StudentManager.MainCamera.position.z);
 							int cracksSpawned = CracksSpawned;

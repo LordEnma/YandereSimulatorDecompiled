@@ -74,6 +74,12 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 
 	public PostProcessingProfile Profile;
 
+	public GameObject[] VtuberHairs;
+
+	public GameObject[] VtuberAccs;
+
+	public GameObject YandereHair;
+
 	private void Start()
 	{
 		MainCamera.transform.position = new Vector3(0.1f, 1f, 18.1f);
@@ -84,6 +90,7 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		SkipPanel.alpha = 0f;
 		Darkness.alpha = 1f;
 		Subtitle.text = "";
+		VtuberCheck();
 	}
 
 	private void Update()
@@ -347,5 +354,20 @@ public class KokonaTutorialIntroScript : MonoBehaviour
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 		settings.focusDistance = DOF;
 		Profile.depthOfField.settings = settings;
+	}
+
+	private void VtuberCheck()
+	{
+		for (int i = 1; i < VtuberHairs.Length; i++)
+		{
+			VtuberHairs[i].SetActive(value: false);
+			VtuberAccs[i].SetActive(value: false);
+		}
+		if (GameGlobals.VtuberID > 0)
+		{
+			VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
+			VtuberAccs[GameGlobals.VtuberID].SetActive(value: true);
+			YandereHair.SetActive(value: false);
+		}
 	}
 }

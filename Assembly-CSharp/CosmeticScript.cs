@@ -35,6 +35,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public GameObject[] FemaleAccessories;
 
+	public GameObject[] EightiesGoggles;
+
 	public GameObject[] MaleAccessories;
 
 	public GameObject[] ClubAccessories;
@@ -397,6 +399,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Color ColorValue;
 
+	public Mesh EightiesCoachMesh;
+
 	public Mesh EightiesNurseMesh;
 
 	public Mesh TeacherMesh;
@@ -496,6 +500,8 @@ public class CosmeticScript : MonoBehaviour
 	public int ID;
 
 	public GameObject[] GaloAccessories;
+
+	public Material[] EightiesCoachMaterials;
 
 	public Material[] EightiesNurseMaterials;
 
@@ -730,6 +736,13 @@ public class CosmeticScript : MonoBehaviour
 						SkinTextures[i] = RivalSkin[StudentID - 10];
 					}
 				}
+				else
+				{
+					for (int j = 0; j < FaceTextures.Length; j++)
+					{
+						FaceTextures[j] = FemaleHairRenderers[Hairstyle].material.mainTexture;
+					}
+				}
 			}
 			if (Yandere)
 			{
@@ -924,6 +937,14 @@ public class CosmeticScript : MonoBehaviour
 					gameObject.SetActive(value: false);
 				}
 			}
+			phoneCharms = Eyewear;
+			foreach (GameObject gameObject2 in phoneCharms)
+			{
+				if (gameObject2 != null)
+				{
+					gameObject2.SetActive(value: false);
+				}
+			}
 			if (QualitySettings.GetQualityLevel() > 1)
 			{
 				Student.BreastSize = 1f;
@@ -1028,10 +1049,10 @@ public class CosmeticScript : MonoBehaviour
 					Bookbag.SetActive(value: true);
 				}
 				Hoodie.SetActive(value: true);
-				for (int k = 0; k < 10; k++)
+				for (int l = 0; l < 10; l++)
 				{
-					Fingernails[k].material.mainTexture = GanguroNailTextures[StudentID];
-					Fingernails[k].gameObject.SetActive(value: true);
+					Fingernails[l].material.mainTexture = GanguroNailTextures[StudentID];
+					Fingernails[l].gameObject.SetActive(value: true);
 				}
 				Student.GymTexture = TanGymTexture;
 				Student.TowelTexture = TanTowelTexture;
@@ -1041,10 +1062,10 @@ public class CosmeticScript : MonoBehaviour
 				DisableFingernails();
 				if (Eighties && !CustomMode && StudentID == 15)
 				{
-					for (int l = 0; l < 10; l++)
+					for (int m = 0; m < 10; m++)
 					{
-						Fingernails[l].material.mainTexture = GanguroNailTextures[StudentID];
-						Fingernails[l].gameObject.SetActive(value: true);
+						Fingernails[m].material.mainTexture = GanguroNailTextures[StudentID];
+						Fingernails[m].gameObject.SetActive(value: true);
 					}
 				}
 			}
@@ -1248,19 +1269,19 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 24)
 					{
-						CharacterAnimation.Play("f02_cookingPose_01");
+						CharacterAnimation.Play("f02_eightiesCookingPose_01");
 					}
 					else if (StudentID == 25)
 					{
-						CharacterAnimation.Play("f02_cookingPose_02");
+						CharacterAnimation.Play("f02_eightiesCookingPose_02");
 					}
 					else if (StudentID == 29)
 					{
-						CharacterAnimation.Play("f02_dramaPose_01");
+						CharacterAnimation.Play("f02_eightiesDramaPose_01");
 					}
 					else if (StudentID == 30)
 					{
-						CharacterAnimation.Play("f02_dramaPose_02");
+						CharacterAnimation.Play("f02_eightiesDramaPose_02");
 					}
 					else if (StudentID == 34)
 					{
@@ -1317,6 +1338,30 @@ public class CosmeticScript : MonoBehaviour
 					else if (StudentID == 55)
 					{
 						CharacterAnimation.Play("f02_eightiesMusicPose_05");
+					}
+					else if (StudentID == 59)
+					{
+						CharacterAnimation.Play("f02_eightiesPhotoPose_01");
+					}
+					else if (StudentID == 60)
+					{
+						CharacterAnimation.Play("f02_eightiesPhotoPose_02");
+					}
+					else if (StudentID == 64)
+					{
+						CharacterAnimation.Play("f02_eightiesSciencePose_01");
+					}
+					else if (StudentID == 65)
+					{
+						CharacterAnimation.Play("f02_eightiesSciencePose_02");
+					}
+					else if (StudentID == 69)
+					{
+						CharacterAnimation.Play("f02_eightiesSportsPose_01");
+					}
+					else if (StudentID == 70)
+					{
+						CharacterAnimation.Play("f02_eightiesSportsPose_02");
 					}
 					else if (StudentID == 74)
 					{
@@ -1518,32 +1563,32 @@ public class CosmeticScript : MonoBehaviour
 						}
 						else if (StudentID == 21)
 						{
-							CharacterAnimation.Play("cookingPose_01");
+							CharacterAnimation.Play("eightiesCookingPose_01");
 							base.transform.position = new Vector3(0f, -0.1f, 0f);
 						}
 						else if (StudentID == 22)
 						{
-							CharacterAnimation.Play("cookingPose_02");
+							CharacterAnimation.Play("eightiesCookingPose_02");
 							base.transform.position = new Vector3(0f, -0.1f, 0f);
 						}
 						else if (StudentID == 23)
 						{
-							CharacterAnimation.Play("cookingPose_03");
+							CharacterAnimation.Play("eightiesCookingPose_03");
 							base.transform.position = new Vector3(0f, -0.1f, 0f);
 						}
 						else if (StudentID == 26)
 						{
-							CharacterAnimation.Play("dramaPose_01");
+							CharacterAnimation.Play("eightiesDramaPose_01");
 							base.transform.position = new Vector3(0f, -0.1f, 0f);
 						}
 						else if (StudentID == 27)
 						{
-							CharacterAnimation.Play("dramaPose_02");
+							CharacterAnimation.Play("eightiesDramaPose_02");
 							base.transform.position = new Vector3(0f, -0.1f, 0f);
 						}
 						else if (StudentID == 28)
 						{
-							CharacterAnimation.Play("dramaPose_03");
+							CharacterAnimation.Play("eightiesDramaPose_03");
 							base.transform.position = new Vector3(0f, -0.1f, 0f);
 						}
 						else if (StudentID == 31)
@@ -1599,6 +1644,51 @@ public class CosmeticScript : MonoBehaviour
 						else if (StudentID == 48)
 						{
 							CharacterAnimation.Play("eightiesMartialArtsPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 56)
+						{
+							CharacterAnimation.Play("eightiesPhotoPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 57)
+						{
+							CharacterAnimation.Play("eightiesPhotoPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 58)
+						{
+							CharacterAnimation.Play("eightiesPhotoPose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 61)
+						{
+							CharacterAnimation.Play("eightiesSciencePose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 62)
+						{
+							CharacterAnimation.Play("eightiesSciencePose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 63)
+						{
+							CharacterAnimation.Play("eightiesSciencePose_03");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 66)
+						{
+							CharacterAnimation.Play("eightiesSportsPose_01");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 67)
+						{
+							CharacterAnimation.Play("eightiesSportsPose_02");
+							base.transform.position = new Vector3(0f, -0.1f, 0f);
+						}
+						else if (StudentID == 68)
+						{
+							CharacterAnimation.Play("eightiesSportsPose_03");
 							base.transform.position = new Vector3(0f, -0.1f, 0f);
 						}
 						else if (StudentID == 71)
@@ -1703,14 +1793,6 @@ public class CosmeticScript : MonoBehaviour
 			{
 				Hairstyle = StudentGlobals.CustomSuitorHair;
 				GameObject[] phoneCharms = ClubAccessories;
-				foreach (GameObject gameObject2 in phoneCharms)
-				{
-					if (gameObject2 != null)
-					{
-						gameObject2.SetActive(value: false);
-					}
-				}
-				phoneCharms = Kerchiefs;
 				foreach (GameObject gameObject3 in phoneCharms)
 				{
 					if (gameObject3 != null)
@@ -1718,16 +1800,24 @@ public class CosmeticScript : MonoBehaviour
 						gameObject3.SetActive(value: false);
 					}
 				}
-				NoClubAccessory = true;
-			}
-			if (StudentGlobals.CustomSuitorAccessory > 0)
-			{
-				GameObject[] phoneCharms = ClubAccessories;
+				phoneCharms = Kerchiefs;
 				foreach (GameObject gameObject4 in phoneCharms)
 				{
 					if (gameObject4 != null)
 					{
 						gameObject4.SetActive(value: false);
+					}
+				}
+				NoClubAccessory = true;
+			}
+			if (StudentGlobals.CustomSuitorAccessory > 0)
+			{
+				GameObject[] phoneCharms = ClubAccessories;
+				foreach (GameObject gameObject5 in phoneCharms)
+				{
+					if (gameObject5 != null)
+					{
+						gameObject5.SetActive(value: false);
 					}
 				}
 				Accessory = StudentGlobals.CustomSuitorAccessory;
@@ -1746,9 +1836,9 @@ public class CosmeticScript : MonoBehaviour
 			if (StudentGlobals.CustomSuitorJewelry > 0)
 			{
 				GameObject[] phoneCharms = GaloAccessories;
-				for (int j = 0; j < phoneCharms.Length; j++)
+				for (int k = 0; k < phoneCharms.Length; k++)
 				{
-					phoneCharms[j].SetActive(value: true);
+					phoneCharms[k].SetActive(value: true);
 				}
 			}
 		}
@@ -1788,7 +1878,14 @@ public class CosmeticScript : MonoBehaviour
 				RightEyeRenderer.gameObject.SetActive(value: false);
 				LeftEyeRenderer.gameObject.SetActive(value: false);
 			}
-			MyRenderer.sharedMesh = CoachMesh;
+			if (!Eighties)
+			{
+				MyRenderer.sharedMesh = CoachMesh;
+			}
+			else
+			{
+				MyRenderer.sharedMesh = EightiesCoachMesh;
+			}
 			Teacher = true;
 		}
 		else if (Club == ClubType.Nurse)
@@ -1989,18 +2086,15 @@ public class CosmeticScript : MonoBehaviour
 						MyRenderer.materials[0].mainTexture = CoachPaleBodyTexture;
 						MyRenderer.materials[1].mainTexture = CoachPaleBodyTexture;
 					}
-					else
+					else if (!Eighties)
 					{
-						if (!Eighties)
-						{
-							MyRenderer.materials[2].mainTexture = CoachFaceTexture;
-						}
-						else
-						{
-							MyRenderer.materials[2].mainTexture = EightiesCoachFaceTexture;
-						}
+						MyRenderer.materials[2].mainTexture = CoachFaceTexture;
 						MyRenderer.materials[0].mainTexture = CoachBodyTexture;
 						MyRenderer.materials[1].mainTexture = CoachBodyTexture;
+					}
+					else
+					{
+						MyRenderer.materials = EightiesCoachMaterials;
 					}
 				}
 				else if (Club == ClubType.Nurse)
@@ -2020,6 +2114,10 @@ public class CosmeticScript : MonoBehaviour
 		{
 			if (Hairstyle > 0)
 			{
+				if (Hairstyle >= MaleHair.Length)
+				{
+					Hairstyle = MaleHair.Length - 1;
+				}
 				MaleHair[Hairstyle].SetActive(value: true);
 				HairRenderer = MaleHairRenderers[Hairstyle];
 				_ = StudentID;
@@ -2055,9 +2153,16 @@ public class CosmeticScript : MonoBehaviour
 				TeacherAccessories[Accessory].SetActive(value: true);
 			}
 		}
-		else if (MaleAccessories[Accessory] != null)
+		else
 		{
-			MaleAccessories[Accessory].SetActive(value: true);
+			if (Accessory >= MaleAccessories.Length)
+			{
+				Accessory = MaleAccessories.Length - 1;
+			}
+			if (MaleAccessories[Accessory] != null)
+			{
+				MaleAccessories[Accessory].SetActive(value: true);
+			}
 		}
 		if ((StudentManager == null || (!Empty && !StudentManager.TutorialActive)) && !Kidnapped && !NoClubAccessory)
 		{
@@ -3222,6 +3327,10 @@ public class CosmeticScript : MonoBehaviour
 		if (CustomMode && Stockings.Contains("Custom") && CustomUniform == null)
 		{
 			CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
+			if (CustomUniform == null)
+			{
+				return;
+			}
 		}
 		if (Male)
 		{
@@ -3234,7 +3343,7 @@ public class CosmeticScript : MonoBehaviour
 			RightStockings[1].SetActive(value: false);
 			LeftStockings[1].SetActive(value: false);
 		}
-		if (StudentManager != null && StudentManager.TutorialActive)
+		if ((StudentManager != null && StudentManager.TutorialActive) || Kidnapped)
 		{
 			Stockings = "";
 		}

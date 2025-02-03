@@ -196,15 +196,21 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public GameObject PikaLoliMode;
 
-	public string[] Letter;
+	public GameObject LiLMeowMode;
 
 	public int ID;
+
+	public string[] PikaLoliLetters;
+
+	public string[] LiLMeowLetters;
 
 	public string[] VtuberNames;
 
 	public UILabel[] ModeDescLabel;
 
 	public GameObject[] VtuberHairs;
+
+	public GameObject[] VtuberAccs;
 
 	public int Spaces;
 
@@ -276,7 +282,11 @@ public class NewTitleScreenScript : MonoBehaviour
 		{
 			QualitySettings.vSyncCount = 1;
 		}
-		VtuberHairs[1].SetActive(value: false);
+		for (int i = 1; i < VtuberHairs.Length; i++)
+		{
+			VtuberHairs[i].SetActive(value: false);
+			VtuberAccs[i].SetActive(value: false);
+		}
 		if (PlayerPrefs.GetInt("FunTimeline") == 1)
 		{
 			Fun = true;
@@ -946,13 +956,23 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (ID < Letter.Length && Input.GetKeyDown(Letter[ID]))
+		if (ID < PikaLoliLetters.Length && Input.GetKeyDown(PikaLoliLetters[ID]))
 		{
 			ID++;
-			if (ID == Letter.Length)
+			if (ID == PikaLoliLetters.Length)
 			{
 				PikaLoliMode.SetActive(value: true);
 				GameGlobals.VtuberID = 1;
+				UpdateModeDescLabels();
+			}
+		}
+		if (ID < LiLMeowLetters.Length && Input.GetKeyDown(LiLMeowLetters[ID]))
+		{
+			ID++;
+			if (ID == LiLMeowLetters.Length)
+			{
+				LiLMeowMode.SetActive(value: true);
+				GameGlobals.VtuberID = 2;
 				UpdateModeDescLabels();
 			}
 		}
@@ -973,6 +993,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		ModeDescLabel[1].text = "Play as " + VtuberNames[GameGlobals.VtuberID] + " in the year 2026.\n\nThis mode is still in development, and currently only features one rival girl.";
 		ModeDescLabel[2].text = "Play as " + VtuberNames[GameGlobals.VtuberID] + " in the year 1989.\n\nThis mode is complete, and features ten rival girls.";
 		VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
+		VtuberAccs[GameGlobals.VtuberID].SetActive(value: true);
 		RyobaHair.transform.position = new Vector3(0f, 100f, 0f);
 		AyanoHair.transform.position = new Vector3(0f, 100f, 0f);
 	}

@@ -318,7 +318,7 @@ public class WoodChipperScript : MonoBehaviour
 			MyAudio.clip = ShredAudio;
 			MyAudio.Play();
 		}
-		if (Occupied && !Acid && Bucket == null && Prompt.Circle[0].fillAmount == 0f)
+		if (Occupied && !Acid && Bucket == null && !Kiln && Prompt.Circle[0].fillAmount == 0f)
 		{
 			Prompt.Circle[0].fillAmount = 1f;
 			Yandere.NotificationManager.CustomText = "Place bucket first.";
@@ -354,6 +354,10 @@ public class WoodChipperScript : MonoBehaviour
 			if (Yandere.StudentManager.Students[VictimID] == null)
 			{
 				Debug.Log("Student #" + VictimID + " is null?!");
+				if (Yandere.StudentManager.MissionMode)
+				{
+					Debug.Log("...well, we're in Mission Mode, so maybe it was Nemesis...");
+				}
 			}
 			if (!Acid)
 			{

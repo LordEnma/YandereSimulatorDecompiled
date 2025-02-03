@@ -10,11 +10,52 @@ public class BakeSaleScript : MonoBehaviour
 
 	public Transform MeetSpot;
 
+	public Texture AmaiPoster;
+
+	public Texture Apology;
+
+	public Renderer[] Poster;
+
 	public float Timer;
 
 	public bool Poisoned;
 
 	public int ID = 2;
+
+	public void UpdatePosters()
+	{
+		if (ClubGlobals.Club == ClubType.None)
+		{
+			Poster[0].materials[1].mainTexture = AmaiPoster;
+		}
+		if (StudentManager.Students[21] == null)
+		{
+			Poster[1].materials[1].mainTexture = AmaiPoster;
+		}
+		if (StudentManager.Students[22] == null)
+		{
+			Poster[2].materials[1].mainTexture = AmaiPoster;
+		}
+		if (StudentManager.Students[23] == null)
+		{
+			Poster[3].materials[1].mainTexture = AmaiPoster;
+		}
+		if (StudentManager.Students[24] == null)
+		{
+			Poster[4].materials[1].mainTexture = AmaiPoster;
+		}
+		if (StudentManager.Students[25] == null)
+		{
+			Poster[5].materials[1].mainTexture = AmaiPoster;
+		}
+		if (GameGlobals.BakeSalePoisoned)
+		{
+			for (int i = 0; i < Poster.Length; i++)
+			{
+				Poster[i].materials[1].mainTexture = Apology;
+			}
+		}
+	}
 
 	private void Update()
 	{

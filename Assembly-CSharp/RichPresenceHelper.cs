@@ -88,6 +88,7 @@ public class RichPresenceHelper : MonoBehaviour
 		_sceneDescriptions.Add("PostCreditsScene", "Eavesdropping on the headmaster!");
 		_sceneDescriptions.Add("DiscordScene", "Awaiting Verification");
 		_sceneDescriptions.Add("OsanaJoke", "Killing Osana at long last!");
+		_sceneDescriptions.Add("CustomMode", "Setting up a Custom Mode playthrough!");
 	}
 
 	private string GetSceneDescription()

@@ -140,6 +140,12 @@ public class ClockScript : MonoBehaviour
 
 	public Collider[] Bathroom;
 
+	public Renderer[] LaptopScreens;
+
+	public Texture[] RivalScreens;
+
+	public Texture SaiMeet;
+
 	private void Start()
 	{
 		if (!MissionMode)
@@ -414,6 +420,7 @@ public class ClockScript : MonoBehaviour
 				ActivateTrespassZones();
 				ChangePeriod();
 				Period++;
+				UpdateLaptopScreens();
 			}
 		}
 		else if (HourTime < 13.5f)
@@ -774,5 +781,27 @@ public class ClockScript : MonoBehaviour
 	public void ChangePeriod()
 	{
 		StudentManager.UpdateInfatuatedTargetDistances();
+	}
+
+	public void UpdateLaptopScreens()
+	{
+		if (Period == 2 || Period == 4)
+		{
+			for (int i = 0; i < LaptopScreens.Length; i++)
+			{
+				if (i < RivalScreens.Length && LaptopScreens[i] != null)
+				{
+					LaptopScreens[i].material.mainTexture = RivalScreens[i];
+				}
+			}
+			return;
+		}
+		for (int j = 0; j < LaptopScreens.Length; j++)
+		{
+			if (j < RivalScreens.Length && LaptopScreens[j] != null)
+			{
+				LaptopScreens[j].material.mainTexture = SaiMeet;
+			}
+		}
 	}
 }

@@ -1122,6 +1122,17 @@ public class RagdollScript : MonoBehaviour
 							BloodPoolSpawner.Start();
 						}
 					}
+					if (!Male)
+					{
+						if (Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory] != null)
+						{
+							Student.Cosmetic.FemaleAccessories[Student.Cosmetic.Accessory].SetActive(value: false);
+						}
+					}
+					else if (Student.Cosmetic.MaleAccessories[Student.Cosmetic.Accessory] != null)
+					{
+						Student.Cosmetic.MaleAccessories[Student.Cosmetic.Accessory].SetActive(value: false);
+					}
 					break;
 				case 1:
 					if (Student.Club == ClubType.Photography && Student.Cosmetic.ClubAccessories[(int)Student.Club] != null)

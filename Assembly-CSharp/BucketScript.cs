@@ -486,6 +486,18 @@ public class BucketScript : MonoBehaviour
 					Debug.Log("Just attempted to update bucket.");
 					Fill();
 					UpdateAppearance = true;
+					if (Bloodiness == 0f)
+					{
+						Debug.Log("Turning the liquid into blood.");
+						Bloodiness = 100f;
+						Gasoline = false;
+					}
+					else
+					{
+						Debug.Log("Turning the liquid into gasoline.");
+						Bloodiness = 0f;
+						Gasoline = true;
+					}
 				}
 			}
 			else if (!Trap)

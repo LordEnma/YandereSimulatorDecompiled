@@ -91,7 +91,7 @@ public class FanCoverScript : MonoBehaviour
 			Debug.Log("Uh?");
 			Yandere.CharacterAnimation.CrossFade("f02_fanMurderA_00");
 			Rival.CharacterAnimation.CrossFade("f02_fanMurderB_00");
-			Rival.OsanaHair.GetComponent<Animation>().CrossFade("fanMurderHair");
+			Rival.OsanaHairAnim.CrossFade("fanMurderHair");
 			Rival.enabled = false;
 			Yandere.EmptyHands();
 			Rival.OsanaHair.transform.parent = Rival.transform;

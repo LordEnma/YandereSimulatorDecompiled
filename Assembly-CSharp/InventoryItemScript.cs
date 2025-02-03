@@ -20,7 +20,7 @@ public class InventoryItemScript : MonoBehaviour
 		{
 			if (ID == 1)
 			{
-				Prompt.Yandere.NotificationManager.CustomText = "You stole the cooking utensils";
+				Prompt.Yandere.NotificationManager.CustomText = "You stole the cooking utensils!";
 				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				Prompt.Yandere.Inventory.Utensils = true;
 			}

@@ -20,9 +20,15 @@ public class ResolutionScript : MonoBehaviour
 
 	public UILabel QualityLabel;
 
+	public AudioClip ConfirmSFX;
+
+	public AudioSource MyAudio;
+
 	public Transform Highlight;
 
 	public UISprite Darkness;
+
+	public GameObject BGM;
 
 	public float Alpha = 1f;
 
@@ -153,6 +159,7 @@ public class ResolutionScript : MonoBehaviour
 						FullScreenLabel.text = "No";
 					}
 					Screen.SetResolution(Screen.width, Screen.height, FullScreen);
+					MyAudio.Play();
 				}
 			}
 			else if (ID == 3)
@@ -180,6 +187,8 @@ public class ResolutionScript : MonoBehaviour
 			{
 				Darkness.color = new Color(0f, 0f, 0f, 0f);
 				FadeOut = true;
+				MyAudio.clip = ConfirmSFX;
+				MyAudio.Play();
 			}
 		}
 		Highlight.localPosition = Vector3.Lerp(Highlight.localPosition, new Vector3(-307.5f, 250 - ID * 100, 0f), Time.deltaTime * 10f);
@@ -201,13 +210,14 @@ public class ResolutionScript : MonoBehaviour
 		Screen.SetResolution(Widths[ResID], Heights[ResID], Screen.fullScreen);
 		ResolutionLabel.text = Widths[ResID] + " x " + Heights[ResID];
 		OptionGlobals.ResolutionID = ResID;
+		MyAudio.Play();
 	}
 
 	private void UpdateQuality()
 	{
 		QualitySettings.SetQualityLevel(QualityID, applyExpensiveChanges: true);
 		QualityLabel.text = Qualities[QualityID] ?? "";
-		Debug.Log("The quality level is set to: " + QualitySettings.GetQualityLevel());
+		MyAudio.Play();
 	}
 
 	private void UpdateHighlight()
@@ -220,6 +230,7 @@ public class ResolutionScript : MonoBehaviour
 		{
 			ID = 1;
 		}
+		MyAudio.Play();
 	}
 
 	private void ResetGraphicsToDefault()

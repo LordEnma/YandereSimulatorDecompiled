@@ -65,7 +65,7 @@ public class GamepadSwitcherScript : MonoBehaviour
 		}
 		for (int i = 0; i < currentControllers.Length; i++)
 		{
-			if (currentControllers[i].ToLower().Contains("xbox") || currentControllers[i].ToLower().Contains("8"))
+			if (currentControllers[i].ToLower().Contains("xbox") || currentControllers[i].ToLower().Contains("8") || currentControllers[i].ToLower().Contains("ult"))
 			{
 				UseXboxInputs();
 			}

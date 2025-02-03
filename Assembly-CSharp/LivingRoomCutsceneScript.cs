@@ -182,6 +182,8 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	public GameObject[] VtuberHairs;
 
+	public GameObject[] VtuberAccs;
+
 	public Texture[] VtuberFaces;
 
 	public Texture[] VtuberEyes;
@@ -360,7 +362,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		if (GameGlobals.CustomMode)
 		{
 			ProtagonistName = JSON.Students[0].Name;
-			EightiesLabel.text = "Before " + ProtagonistName + " burned the pictures, she grabbed one photograph to keep with her as proof that she was in the asylum.\n\n" + ProtagonistName + " returns home, calls her rival, and informs her that the pictures have been destroyed. She also invites the girl over to her house to see the proof.\n\n" + ProtagonistName + "'s rival arrives at her home. When she sees the photograph, she knows that " + ProtagonistName + " is telling the truth. " + ProtagonistName + " lets the girl burn the photo so that she can put this dark chapter of her life behind her.\n\nThen, " + ProtagonistName + " offers her rival some tea...";
+			EightiesLabel.text = "Before " + ProtagonistName + " burned the pictures, she grabbed one photograph to keep with her as proof that she was in the asylum.\n\n" + ProtagonistName + " returns home, calls her rival, and informs the rival that the pictures have been destroyed. She also invites the rival over to her house to see the proof.\n\n" + ProtagonistName + "'s rival arrives at her home. When the rival sees the photograph, the rival knows that " + ProtagonistName + " has told the truth. " + ProtagonistName + " lets the rival burn the photo so that the rival can have closure.\n\nThen, " + ProtagonistName + " offers her rival some tea...";
 		}
 		Rival.transform.parent.gameObject.GetComponent<CosmeticScript>().Start();
 	}
@@ -888,7 +890,15 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown(KeyCode.Minus))
 		{
+			if (Time.timeScale <= 1f)
+			{
+				Time.timeScale = 1f;
+			}
 			Time.timeScale -= 1f;
+			if (Time.timeScale <= 0f)
+			{
+				Time.timeScale = 0.0001f;
+			}
 		}
 		if (Input.GetKeyDown(KeyCode.Equals))
 		{
@@ -1097,6 +1107,11 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 
 	private void VtuberCheck()
 	{
+		for (int i = 1; i < VtuberHairs.Length; i++)
+		{
+			VtuberHairs[i].SetActive(value: false);
+			VtuberAccs[i].SetActive(value: false);
+		}
 		if (GameGlobals.VtuberID > 0)
 		{
 			OriginalHair.transform.position = new Vector3(0f, 100f, 0f);
@@ -1107,18 +1122,16 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			LeftEyeRenderer.material.mainTexture = VtuberFaces[GameGlobals.VtuberID];
 			RightEyeRenderer.material.color = Color.white;
 			LeftEyeRenderer.material.color = Color.white;
-			for (ID = 0; ID < 13; ID++)
+			for (int i = 0; i < 13; i++)
 			{
-				YandereRenderer.SetBlendShapeWeight(ID, 0f);
+				YandereRenderer.SetBlendShapeWeight(i, 0f);
 			}
-			YandereRenderer.SetBlendShapeWeight(9, 100f);
-		}
-		else
-		{
-			for (int i = 1; i < VtuberHairs.Length; i++)
+			if (GameGlobals.VtuberID == 1)
 			{
-				VtuberHairs[i].SetActive(value: false);
+				YandereRenderer.SetBlendShapeWeight(9, 100f);
 			}
+			VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
+			VtuberAccs[GameGlobals.VtuberID].SetActive(value: true);
 		}
 	}
 

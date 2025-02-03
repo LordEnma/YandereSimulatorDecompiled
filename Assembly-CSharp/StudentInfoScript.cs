@@ -275,7 +275,7 @@ public class StudentInfoScript : MonoBehaviour
 				}
 			}
 		}
-		if (studentJson.Club < ClubType.Teacher)
+		if (CurrentStudent < 90)
 		{
 			OccupationLabel.text = "Club";
 		}

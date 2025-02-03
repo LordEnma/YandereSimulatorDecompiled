@@ -231,6 +231,10 @@ public class IntroScript : MonoBehaviour
 
 	public GameObject[] VtuberHairs;
 
+	public GameObject[] VtuberHairs2;
+
+	public GameObject[] VtuberAccs;
+
 	public Texture[] VtuberFaces;
 
 	public Texture[] VtuberEyes;
@@ -1234,32 +1238,44 @@ public class IntroScript : MonoBehaviour
 
 	private void VtuberCheck()
 	{
-		if (GameGlobals.VtuberID > 0)
+		for (int i = 1; i < VtuberHairs.Length; i++)
 		{
-			for (int i = 1; i < OriginalHairs.Length; i++)
+			VtuberHairs[i].SetActive(value: false);
+		}
+		for (int i = 1; i < VtuberHairs2.Length; i++)
+		{
+			VtuberHairs2[i].SetActive(value: false);
+		}
+		for (int i = 1; i < VtuberAccs.Length; i++)
+		{
+			VtuberAccs[i].SetActive(value: false);
+		}
+		if (GameGlobals.VtuberID <= 0)
+		{
+			return;
+		}
+		for (int i = 1; i < OriginalHairs.Length; i++)
+		{
+			OriginalHairs[i].SetActive(value: false);
+			if (GameGlobals.VtuberID == 1)
 			{
-				OriginalHairs[i].SetActive(value: false);
 				VtuberHairs[i].SetActive(value: true);
+				continue;
 			}
-			for (int i = 1; i < UniformSetters.Length; i++)
-			{
-				UniformSetters[i].AyanoFace = VtuberFaces[GameGlobals.VtuberID];
-				UniformSetters[i].SetFemaleUniform();
-			}
-			for (int i = 0; i < 13; i++)
-			{
-				YandereRenderer.SetBlendShapeWeight(i, 0f);
-			}
-			YandereRenderer.SetBlendShapeWeight(9, 100f);
-			ChildRenderer.materials[0].mainTexture = VtuberFaces[GameGlobals.VtuberID];
-			ChildRenderer.materials[2].mainTexture = VtuberEyes[GameGlobals.VtuberID];
+			VtuberHairs2[i].SetActive(value: true);
+			VtuberAccs[i].SetActive(value: true);
 		}
-		else
+		for (int i = 1; i < UniformSetters.Length; i++)
 		{
-			for (int j = 1; j < VtuberHairs.Length; j++)
-			{
-				VtuberHairs[j].SetActive(value: false);
-			}
+			UniformSetters[i].AyanoFace = VtuberFaces[GameGlobals.VtuberID];
+			UniformSetters[i].SetFemaleUniform();
 		}
+		for (int i = 0; i < 13; i++)
+		{
+			YandereRenderer.SetBlendShapeWeight(i, 0f);
+		}
+		YandereRenderer.SetBlendShapeWeight(9, 100f);
+		ChildRenderer.materials[0].mainTexture = VtuberFaces[GameGlobals.VtuberID];
+		ChildRenderer.materials[2].mainTexture = VtuberEyes[GameGlobals.VtuberID];
 	}
 }

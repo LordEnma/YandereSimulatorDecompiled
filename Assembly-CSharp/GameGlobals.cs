@@ -154,6 +154,8 @@ public static class GameGlobals
 
 	private const string Str_SisterCutscene = "SisterCutscene";
 
+	private const string Str_BakeSalePoisoned = "BakeSalePoisoned";
+
 	public static int Profile
 	{
 		get
@@ -982,6 +984,18 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool BakeSalePoisoned
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_BakeSalePoisoned");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_BakeSalePoisoned", value);
+		}
+	}
+
 	public static int GetRivalEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminations" + elimID);
@@ -1182,5 +1196,6 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_BasementTape");
 		Globals.Delete("Profile_" + Profile + "_RockProgress");
 		Globals.Delete("Profile_" + Profile + "_SisterCutscene");
+		Globals.Delete("Profile_" + Profile + "_BakeSalePoisoned");
 	}
 }

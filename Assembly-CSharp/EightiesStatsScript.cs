@@ -74,9 +74,13 @@ public class EightiesStatsScript : MonoBehaviour
 		{
 			text = "Ayano";
 		}
-		if (GameGlobals.CustomMode && JSON != null)
+		if (GameGlobals.CustomMode)
 		{
-			text = JSON.Students[0].Name;
+			Debug.Log("We are in Custom Mode.");
+			if (JSON != null)
+			{
+				text = JSON.Students[0].Name;
+			}
 		}
 		Details[4] = "Friends with " + text + ".";
 		Details[14] = text + "'s involvement not suspected.";

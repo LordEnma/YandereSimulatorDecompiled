@@ -29,6 +29,8 @@ public class HomeInternetScript : MonoBehaviour
 
 	public UITexture YancordLogo;
 
+	public GameObject GossipExplanation;
+
 	public GameObject InternetPrompts;
 
 	public GameObject NavigationMenu;
@@ -173,8 +175,13 @@ public class HomeInternetScript : MonoBehaviour
 		BG.SetActive(value: false);
 		if (!SchemeGlobals.EmbarassingSecret || StudentGlobals.GetStudentExposed(11))
 		{
+			GossipExplanation.SetActive(value: true);
 			WriteLabel.SetActive(value: false);
 			WriteIcon.SetActive(value: false);
+		}
+		else
+		{
+			GossipExplanation.SetActive(value: false);
 		}
 		GetPortrait(2);
 		StudentPost1Portrait.mainTexture = CurrentPortrait;

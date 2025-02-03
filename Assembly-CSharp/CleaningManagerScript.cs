@@ -349,6 +349,10 @@ public class CleaningManagerScript : MonoBehaviour
 			Role = 3;
 			Spot = Floors[34];
 			break;
+		default:
+			Role = 3;
+			Spot = Floors[35];
+			break;
 		}
 	}
 }

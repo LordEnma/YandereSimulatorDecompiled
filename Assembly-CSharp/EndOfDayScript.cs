@@ -2990,6 +2990,7 @@ public class EndOfDayScript : MonoBehaviour
 		StudentGlobals.SetBlogKnown(2, Yandere.PauseScreen.SocialMedia.BlogKnown[2]);
 		StudentGlobals.SetBlogKnown(3, Yandere.PauseScreen.SocialMedia.BlogKnown[3]);
 		StudentGlobals.SetBlogKnown(4, Yandere.PauseScreen.SocialMedia.BlogKnown[4]);
+		GameGlobals.BakeSalePoisoned = StudentManager.BakeSale.Poisoned;
 	}
 
 	private void DisableThings(StudentScript TargetStudent)

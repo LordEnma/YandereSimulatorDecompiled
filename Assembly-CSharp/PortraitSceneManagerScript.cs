@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PortraitSceneManagerScript : MonoBehaviour
 {
 	public CameraFilterPack_Colors_Adjust_PreFilters BlueFilter;
+
+	public UITexture Background;
 
 	public GameObject Petals;
 
@@ -26,6 +29,10 @@ public class PortraitSceneManagerScript : MonoBehaviour
 			BlueFilter.enabled = true;
 			Petals.SetActive(value: false);
 			Tree.SetActive(value: false);
+			if (GameGlobals.CustomMode)
+			{
+				StartCoroutine(GrabCustomTexturesAsync());
+			}
 		}
 		else
 		{
@@ -41,6 +48,20 @@ public class PortraitSceneManagerScript : MonoBehaviour
 		{
 			Screen.SetResolution(Widths[OptionGlobals.ResolutionID], Heights[OptionGlobals.ResolutionID], OptionGlobals.WindowedMode);
 			SceneManager.LoadScene("NewTitleScene");
+		}
+	}
+
+	public IEnumerator GrabCustomTexturesAsync()
+	{
+		WWW NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/PortraitBG.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
+		{
+			Background.mainTexture = NewTexture.texture;
+		}
+		if (NewTexture.error != null)
+		{
+			Debug.Log("Well, the texture wasn't null!");
 		}
 	}
 }
