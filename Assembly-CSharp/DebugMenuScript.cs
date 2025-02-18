@@ -20,6 +20,8 @@ public class DebugMenuScript : MonoBehaviour
 
 	public DebugConsole DebugConsole;
 
+	public TributeScript Tribute;
+
 	public YandereScript Yandere;
 
 	public BentoScript Bento;
@@ -470,6 +472,8 @@ public class DebugMenuScript : MonoBehaviour
 				}
 				else if (Input.GetKeyDown(KeyCode.S))
 				{
+					ClassGlobals.BiologyGrade = 1;
+					Yandere.Class.BiologyGrade = 1;
 					PlayerGlobals.Numbness = 5;
 					Yandere.Class.Numbness = 5;
 					PlayerGlobals.Seduction = 5;
@@ -477,6 +481,7 @@ public class DebugMenuScript : MonoBehaviour
 					ClassGlobals.PhysicalGrade = 5;
 					Yandere.Class.PhysicalGrade = 5;
 					Yandere.PhysicalGrade = 5;
+					Yandere.Inventory.SedativePoisons = 1;
 					StudentManager.Police.UpdateCorpses();
 					for (ID = 1; ID < 101; ID++)
 					{
@@ -499,10 +504,16 @@ public class DebugMenuScript : MonoBehaviour
 						}
 					}
 					StudentManager.Students[46].Friend = false;
+					int num = 0;
 					Window.SetActive(value: false);
 					WeaponManager.BroughtWeapons[8].transform.parent = null;
 					WeaponManager.BroughtWeapons[8].gameObject.SetActive(value: true);
 					Debug.Log("Yandere.Class.PhysicalGrade is now: " + Yandere.Class.PhysicalGrade);
+					for (num = 2; num < 8; num++)
+					{
+						StudentManager.Students[num].MyBento.Tampered = true;
+						StudentManager.Students[num].MyBento.Tranquil = true;
+					}
 				}
 				else if (Input.GetKeyDown(KeyCode.T))
 				{
@@ -743,7 +754,15 @@ public class DebugMenuScript : MonoBehaviour
 					}
 					else if (Input.GetKeyDown(KeyCode.I))
 					{
-						Yandere.CanCloak = true;
+						Yandere.Invisible = !Yandere.Invisible;
+						if (Yandere.Invisible)
+						{
+							Yandere.Cloak();
+						}
+						else
+						{
+							Yandere.Decloak();
+						}
 						Window.SetActive(value: false);
 					}
 					else if (!Input.GetKeyDown(KeyCode.J))

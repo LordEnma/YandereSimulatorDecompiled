@@ -4465,6 +4465,8 @@ public class YandereScript : MonoBehaviour
 					MyController.radius = 0.2f;
 					CharacterAnimation.CrossFade(IdleAnim);
 					ShoulderCamera.Struggle = false;
+					ShoulderCamera.Phase = 0;
+					PreparedForStruggle = false;
 					Struggling = false;
 					StrugglePhase = 0;
 					if (TargetStudent == Pursuer)
@@ -6129,13 +6131,13 @@ public class YandereScript : MonoBehaviour
 		else if (Interaction == YandereInteractionType.GoAway)
 		{
 			int num2 = 0;
-			if (Club == ClubType.Delinquent)
+			if (StudentManager.DialogueWheel.Intimidating)
 			{
 				num2++;
 			}
 			if (TalkTimer == 3f)
 			{
-				if (Club == ClubType.Delinquent)
+				if (StudentManager.DialogueWheel.Intimidating)
 				{
 					TalkAnim = "f02_delinquentGesture_01";
 				}
@@ -6168,13 +6170,13 @@ public class YandereScript : MonoBehaviour
 		else if (Interaction == YandereInteractionType.DistractThem)
 		{
 			int num3 = 0;
-			if (Club == ClubType.Delinquent || StudentManager.Eighties)
+			if (StudentManager.DialogueWheel.Intimidating || StudentManager.Eighties)
 			{
 				num3++;
 			}
 			if (TalkTimer == 3f)
 			{
-				if (Club == ClubType.Delinquent)
+				if (StudentManager.DialogueWheel.Intimidating)
 				{
 					TalkAnim = "f02_delinquentGesture_01";
 				}
@@ -6518,6 +6520,8 @@ public class YandereScript : MonoBehaviour
 		}
 		if (TargetStudent.Teacher)
 		{
+			Debug.Log("Yandere-chan thinks she should play the ''got countered by teacher'' animation now.");
+			CharacterAnimation["f02_teacherCounterA_00"].time = TargetStudent.CharacterAnimation["f02_teacherCounterB_00"].time;
 			CharacterAnimation.CrossFade("f02_teacherCounterA_00");
 			if (EquippedWeapon != null)
 			{
@@ -10155,6 +10159,12 @@ public class YandereScript : MonoBehaviour
 				WalkAnim = "f02_ryobaWalk_00";
 				RunAnim = "f02_ryobaRun_00";
 			}
+			else if (VtuberID == 3)
+			{
+				Hairstyle = 217;
+				IdleAnim = "f02_idleGraceful_00";
+				WalkAnim = "f02_walkGraceful_00";
+			}
 			UpdateAccessory();
 			UpdateHair();
 			VtuberFace();
@@ -10279,7 +10289,6 @@ public class YandereScript : MonoBehaviour
 
 	public void CheckForWall()
 	{
-		Debug.Log("Checking for a wall.");
 		Vector3 vector = Vector3.zero;
 		corpseOrigin = Hips;
 		float maxDistance = 1f;
@@ -10289,7 +10298,6 @@ public class YandereScript : MonoBehaviour
 		}
 		if (Direction == 1)
 		{
-			Debug.Log("Checkin' front.");
 			vector = base.transform.forward;
 			maxDistance = 0.66666f;
 			if (Dipping)
@@ -10299,22 +10307,18 @@ public class YandereScript : MonoBehaviour
 		}
 		else if (Direction == 2)
 		{
-			Debug.Log("Checkin' right.");
 			vector = base.transform.right;
 		}
 		else if (Direction == 3)
 		{
-			Debug.Log("Checkin' left.");
 			vector = base.transform.right * -1f;
 		}
 		else if (Direction == 4)
 		{
-			Debug.Log("Checkin' up.");
 			vector = base.transform.up;
 		}
 		else if (Direction == 5)
 		{
-			Debug.Log("Checkin' back.");
 			vector = base.transform.forward * -1f;
 		}
 		Debug.DrawRay(corpseOrigin.position, vector, Color.yellow);
@@ -10347,10 +10351,6 @@ public class YandereScript : MonoBehaviour
 				WallBehind = true;
 			}
 			TooCloseToWall = true;
-		}
-		else
-		{
-			Debug.Log("Nope, didn't hit a wall...");
 		}
 	}
 

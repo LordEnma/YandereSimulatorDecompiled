@@ -1391,6 +1391,38 @@ public class CosmeticScript : MonoBehaviour
 					{
 						CharacterAnimation.Play("f02_delinquentFemalePose_05");
 					}
+					else if (StudentID == 90)
+					{
+						CharacterAnimation.Play("f02_facultyFashionPose_00");
+					}
+					else if (StudentID == 91)
+					{
+						CharacterAnimation.Play("f02_facultyMotherlyPose_00");
+					}
+					else if (StudentID == 92)
+					{
+						CharacterAnimation.Play("f02_facultyCasualPose_00");
+					}
+					else if (StudentID == 93)
+					{
+						CharacterAnimation.Play("f02_facultyPunctualPose_00");
+					}
+					else if (StudentID == 94)
+					{
+						CharacterAnimation.Play("f02_facultyAnxiousPose_00");
+					}
+					else if (StudentID == 95)
+					{
+						CharacterAnimation.Play("f02_facultyAbrasivePose_00");
+					}
+					else if (StudentID == 96)
+					{
+						CharacterAnimation.Play("f02_facultySeriousPose_00");
+					}
+					else if (StudentID == 97)
+					{
+						CharacterAnimation.Play("f02_facultyDeterminedPose_00");
+					}
 					if (StudentID == 36 || StudentID == 50)
 					{
 						CharacterAnimation["f02_smile_00"].layer = 1;
@@ -2082,9 +2114,18 @@ public class CosmeticScript : MonoBehaviour
 				{
 					if (StudentGlobals.GetStudentReplaced(StudentID))
 					{
-						MyRenderer.materials[2].mainTexture = DefaultFaceTexture;
-						MyRenderer.materials[0].mainTexture = CoachPaleBodyTexture;
-						MyRenderer.materials[1].mainTexture = CoachPaleBodyTexture;
+						if (!Eighties)
+						{
+							MyRenderer.materials[2].mainTexture = DefaultFaceTexture;
+							MyRenderer.materials[0].mainTexture = CoachPaleBodyTexture;
+							MyRenderer.materials[1].mainTexture = CoachPaleBodyTexture;
+						}
+						else
+						{
+							EightiesCoachMaterials[1].mainTexture = SkinTextures[0];
+							EightiesCoachMaterials[2].mainTexture = DefaultFaceTexture;
+							MyRenderer.materials = EightiesCoachMaterials;
+						}
 					}
 					else if (!Eighties)
 					{
@@ -3031,7 +3072,7 @@ public class CosmeticScript : MonoBehaviour
 				CasualTexture = GanguroCasualTextures[FemaleUniformID];
 				SocksTexture = GanguroSocksTextures[FemaleUniformID];
 			}
-			else if (StudentID == 10)
+			else if (StudentID == 10 && !CustomMode)
 			{
 				UniformTexture = ObstacleUniformTextures[FemaleUniformID];
 				CasualTexture = ObstacleCasualTextures[FemaleUniformID];
@@ -3346,6 +3387,10 @@ public class CosmeticScript : MonoBehaviour
 		if ((StudentManager != null && StudentManager.TutorialActive) || Kidnapped)
 		{
 			Stockings = "";
+		}
+		if (Stockings.Contains("Custom") && CustomUniform == null)
+		{
+			CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
 		}
 		if (Stockings == string.Empty || Stockings == "None")
 		{

@@ -432,6 +432,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 0.5f && Phase < 2)
 			{
+				Debug.Log("Calling CameraEffects.MurderWitnessed() from here, specifically.");
 				Yandere.CameraEffects.MurderWitnessed();
 				Yandere.Jukebox.GameOver();
 				Phase++;
@@ -505,6 +506,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 0.5f && Phase < 2)
 			{
+				Debug.Log("Calling CameraEffects.MurderWitnessed() from here, specifically.");
 				Yandere.CameraEffects.MurderWitnessed();
 				Yandere.Jukebox.GameOver();
 				Phase++;

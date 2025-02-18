@@ -198,11 +198,15 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public GameObject LiLMeowMode;
 
+	public GameObject ANODIXOMode;
+
 	public int ID;
 
 	public string[] PikaLoliLetters;
 
 	public string[] LiLMeowLetters;
+
+	public string[] ANODIXOLetters;
 
 	public string[] VtuberNames;
 
@@ -976,13 +980,13 @@ public class NewTitleScreenScript : MonoBehaviour
 				UpdateModeDescLabels();
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (ID < ANODIXOLetters.Length && Input.GetKeyDown(ANODIXOLetters[ID]))
 		{
-			Spaces++;
-			if (Spaces > 19)
+			ID++;
+			if (ID == ANODIXOLetters.Length)
 			{
-				PikaLoliMode.SetActive(value: true);
-				GameGlobals.VtuberID = 1;
+				ANODIXOMode.SetActive(value: true);
+				GameGlobals.VtuberID = 3;
 				UpdateModeDescLabels();
 			}
 		}

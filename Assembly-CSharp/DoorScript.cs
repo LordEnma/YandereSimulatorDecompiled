@@ -378,12 +378,21 @@ public class DoorScript : MonoBehaviour
 					Transform transform2 = Doors[j];
 					if (!Swinging)
 					{
-						transform2.localPosition = new Vector3(Mathf.Lerp(transform2.localPosition.x, ClosedPositions[j], Time.deltaTime * 3.6f), transform2.localPosition.y, transform2.localPosition.z);
-						continue;
+						if (Timer < TimeLimit)
+						{
+							transform2.localPosition = new Vector3(Mathf.Lerp(transform2.localPosition.x, ClosedPositions[j], Time.deltaTime * 3.6f), transform2.localPosition.y, transform2.localPosition.z);
+						}
+						else
+						{
+							transform2.localPosition = new Vector3(ClosedPositions[j], transform2.localPosition.y, transform2.localPosition.z);
+						}
 					}
-					Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 3.6f);
-					transform2.localPosition = new Vector3(transform2.localPosition.x, transform2.localPosition.y, Mathf.Lerp(transform2.localPosition.z, OriginX[j], Time.deltaTime * 3.6f));
-					transform2.localEulerAngles = new Vector3(transform2.localEulerAngles.x, (j == 0) ? Rotation : (0f - Rotation), transform2.localEulerAngles.z);
+					else
+					{
+						Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 3.6f);
+						transform2.localPosition = new Vector3(transform2.localPosition.x, transform2.localPosition.y, Mathf.Lerp(transform2.localPosition.z, OriginX[j], Time.deltaTime * 3.6f));
+						transform2.localEulerAngles = new Vector3(transform2.localEulerAngles.x, (j == 0) ? Rotation : (0f - Rotation), transform2.localEulerAngles.z);
+					}
 				}
 			}
 			else
@@ -492,10 +501,10 @@ public class DoorScript : MonoBehaviour
 			return;
 		}
 		StudentScript follower = StudentManager.Students[StudentManager.RivalID].Follower;
-		if (follower != null && follower.Alive && follower.CurrentAction == StudentActionType.Follow && !follower.ReturningMisplacedWeapon && Vector3.Distance(StudentManager.Students[StudentManager.RivalID].transform.position, follower.transform.position) < 10f)
+		if (follower != null && follower.Alive && follower.CurrentAction == StudentActionType.Follow && !follower.ReturningMisplacedWeapon && Vector3.Distance(StudentManager.Students[StudentManager.RivalID].transform.position, follower.transform.position) < 5f)
 		{
 			Debug.Log("The rival has a follower who is currently following her and is not busy doing anything else.");
-			if (Vector3.Distance(base.transform.position, StudentManager.Students[StudentManager.RivalID].transform.position) < 10f)
+			if (Vector3.Distance(base.transform.position, StudentManager.Students[StudentManager.RivalID].transform.position) < 5f)
 			{
 				Debug.Log("The follower has warned the rival.");
 				Yandere.Subtitle.UpdateLabel(SubtitleType.GasWarning, 1, 5f);

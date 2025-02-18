@@ -320,6 +320,7 @@ public class RobotChanScript : MonoBehaviour
 			Heart.transform.parent = TargetStudent.StudentManager.Police.LimbParent;
 			Heart.isKinematic = false;
 			Heart.useGravity = true;
+			Prompt.Yandere.Police.BodyParts++;
 			BodyPart.Prompt.enabled = true;
 			ImpalePhase++;
 		}

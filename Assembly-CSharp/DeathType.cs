@@ -11,5 +11,7 @@ public enum DeathType
 	Weapon = 8,
 	Mystery = 9,
 	Weight = 10,
-	Explosion = 11
+	Explosion = 11,
+	Frozen = 12,
+	Smothered = 13
 }

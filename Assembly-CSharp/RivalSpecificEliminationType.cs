@@ -20,5 +20,7 @@ public enum RivalSpecificEliminationType
 	Pushed = 17,
 	Rejected = 18,
 	Suicide = 19,
-	Exploded = 20
+	Exploded = 20,
+	Frozen = 21,
+	Smothered = 22
 }

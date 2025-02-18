@@ -233,6 +233,8 @@ public class IntroScript : MonoBehaviour
 
 	public GameObject[] VtuberHairs2;
 
+	public GameObject[] VtuberHairs3;
+
 	public GameObject[] VtuberAccs;
 
 	public Texture[] VtuberFaces;
@@ -1246,6 +1248,10 @@ public class IntroScript : MonoBehaviour
 		{
 			VtuberHairs2[i].SetActive(value: false);
 		}
+		for (int i = 1; i < VtuberHairs3.Length; i++)
+		{
+			VtuberHairs3[i].SetActive(value: false);
+		}
 		for (int i = 1; i < VtuberAccs.Length; i++)
 		{
 			VtuberAccs[i].SetActive(value: false);
@@ -1260,10 +1266,16 @@ public class IntroScript : MonoBehaviour
 			if (GameGlobals.VtuberID == 1)
 			{
 				VtuberHairs[i].SetActive(value: true);
-				continue;
 			}
-			VtuberHairs2[i].SetActive(value: true);
-			VtuberAccs[i].SetActive(value: true);
+			else if (GameGlobals.VtuberID == 2)
+			{
+				VtuberHairs2[i].SetActive(value: true);
+				VtuberAccs[i].SetActive(value: true);
+			}
+			else if (GameGlobals.VtuberID == 3)
+			{
+				VtuberHairs3[i].SetActive(value: true);
+			}
 		}
 		for (int i = 1; i < UniformSetters.Length; i++)
 		{

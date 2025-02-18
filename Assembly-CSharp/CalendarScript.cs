@@ -281,7 +281,6 @@ public class CalendarScript : MonoBehaviour
 			{
 				StatsButton.SetActive(value: false);
 			}
-			SkipButton.transform.localPosition = new Vector3(-120f, -500f, 0f);
 			if (DateGlobals.Week == 1)
 			{
 				DayNumber[1].text = "5";
@@ -1090,6 +1089,9 @@ public class CalendarScript : MonoBehaviour
 		{
 			AtmosphereLabel.color = new Color(1f, 1f, 1f);
 		}
+		StatsButton.transform.localPosition = new Vector3(-333.33334f, -500f, 0f);
+		SkipButton.transform.localPosition = new Vector3(17.5f, -500f, 0f);
+		Continue.localPosition = new Vector3(625f, -500f, 0f);
 	}
 
 	public void UpdateMonthLabel()

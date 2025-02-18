@@ -12,6 +12,8 @@ public class TitleSaveFilesScript : MonoBehaviour
 
 	public UILabel NewSaveLabel;
 
+	public GameObject WouldYouLikeToWindow;
+
 	public GameObject ConfirmationWindow;
 
 	public GameObject DifficultyWindow;
@@ -118,7 +120,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 			}
 			Started = false;
 		}
-		if (!DifficultyWindow.activeInHierarchy && !ConfirmationWindow.activeInHierarchy && !ChallengeWindow.activeInHierarchy && !ErrorWindow.activeInHierarchy)
+		if (!DifficultyWindow.activeInHierarchy && !ConfirmationWindow.activeInHierarchy && !ChallengeWindow.activeInHierarchy && !ErrorWindow.activeInHierarchy && !WouldYouLikeToWindow.activeInHierarchy)
 		{
 			if (InputManager.TappedDown)
 			{
@@ -139,251 +141,261 @@ public class TitleSaveFilesScript : MonoBehaviour
 				UpdateHighlight();
 			}
 		}
-		if (!DifficultyWindow.activeInHierarchy)
+		if (!WouldYouLikeToWindow.activeInHierarchy)
 		{
-			if (!ErrorWindow.activeInHierarchy)
+			if (!DifficultyWindow.activeInHierarchy)
 			{
-				if (!ChallengeWindow.activeInHierarchy)
+				if (!ErrorWindow.activeInHierarchy)
 				{
-					if (!ConfirmationWindow.activeInHierarchy)
+					if (!ChallengeWindow.activeInHierarchy)
 					{
-						if (!PromptBar.Show)
+						if (!ConfirmationWindow.activeInHierarchy)
 						{
-							PromptBar.ClearButtons();
-							if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
+							if (!PromptBar.Show)
 							{
-								PromptBar.Label[0].text = "New Game";
+								PromptBar.ClearButtons();
+								if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
+								{
+									PromptBar.Label[0].text = "New Game";
+								}
+								else
+								{
+									PromptBar.Label[0].text = "Load Game";
+								}
+								PromptBar.Label[1].text = "Go Back";
+								PromptBar.Label[4].text = "Change Selection";
+								UpdateHighlight();
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
 							}
-							else
+							if (Input.GetButtonDown(InputNames.Xbox_A) || (PromptBar.Label[3].text != "" && Input.GetButtonDown(InputNames.Xbox_Y)))
 							{
-								PromptBar.Label[0].text = "Load Game";
+								if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
+								{
+									WouldYouLikeToWindow.SetActive(value: true);
+								}
+								else
+								{
+									Debug.Log("The game believed that Profile " + (EightiesPrefix + ID) + " already existed, so that profile is now being loaded.");
+									GameGlobals.Profile = EightiesPrefix + ID;
+									GameGlobals.Eighties = NewTitleScreen.Eighties;
+									NewTitleScreen.FadeOut = true;
+								}
+								if (Input.GetButtonDown(InputNames.Xbox_Y))
+								{
+									NewTitleScreen.WeekSelect = true;
+								}
 							}
-							PromptBar.Label[1].text = "Go Back";
-							PromptBar.Label[4].text = "Change Selection";
-							UpdateHighlight();
-							PromptBar.UpdateButtons();
-							PromptBar.Show = true;
-						}
-						if (Input.GetButtonDown(InputNames.Xbox_A) || (PromptBar.Label[3].text != "" && Input.GetButtonDown(InputNames.Xbox_Y)))
-						{
-							if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
+							else if (Input.GetButtonDown(InputNames.Xbox_B))
 							{
-								DifficultyWindow.SetActive(value: true);
+								NewTitleScreen.WeekSelect = false;
+								NewTitleScreen.Speed = 0f;
+								NewTitleScreen.Phase = 2;
+								PromptBar.Show = false;
+								base.enabled = false;
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_X))
+							{
+								if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 1)
+								{
+									ConfirmationWindow.SetActive(value: true);
+									return;
+								}
+								PromptBar.Label[0].text = "Enable/Disable";
 								PromptBar.Label[2].text = "";
 								PromptBar.Label[3].text = "";
-								PromptBar.Label[5].text = "Change Difficulty";
-								PromptBar.Label[6].text = "";
 								PromptBar.UpdateButtons();
+								ChallengeWindow.SetActive(value: true);
 							}
-							else
+							else if (Input.GetButtonDown(InputNames.Xbox_LB) && NewTitleScreen.Eighties && PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
 							{
-								Debug.Log("The game believed that Profile " + (EightiesPrefix + ID) + " already existed, so that profile is now being loaded.");
-								GameGlobals.Profile = EightiesPrefix + ID;
-								GameGlobals.Eighties = NewTitleScreen.Eighties;
-								NewTitleScreen.FadeOut = true;
-							}
-							if (Input.GetButtonDown(InputNames.Xbox_Y))
-							{
-								NewTitleScreen.WeekSelect = true;
+								WouldYouLikeToWindow.SetActive(value: true);
+								NewTitleScreen.CustomMode = true;
 							}
 						}
-						else if (Input.GetButtonDown(InputNames.Xbox_B))
+						else
 						{
-							NewTitleScreen.WeekSelect = false;
-							NewTitleScreen.Speed = 0f;
-							NewTitleScreen.Phase = 2;
 							PromptBar.Show = false;
-							base.enabled = false;
-						}
-						else if (Input.GetButtonDown(InputNames.Xbox_X))
-						{
-							if (PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 1)
+							if (Input.GetButtonDown(InputNames.Xbox_A))
 							{
-								ConfirmationWindow.SetActive(value: true);
-								return;
+								PlayerPrefs.SetInt("ProfileCreated_" + (EightiesPrefix + ID), 0);
+								ConfirmationWindow.SetActive(value: false);
+								SaveDatas[ID].Start();
 							}
-							PromptBar.Label[0].text = "Enable/Disable";
-							PromptBar.Label[2].text = "";
-							PromptBar.Label[3].text = "";
-							PromptBar.UpdateButtons();
-							ChallengeWindow.SetActive(value: true);
+							else if (Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								ConfirmationWindow.SetActive(value: false);
+							}
 						}
-						else if (Input.GetButtonDown(InputNames.Xbox_LB) && NewTitleScreen.Eighties && PlayerPrefs.GetInt("ProfileCreated_" + (EightiesPrefix + ID)) == 0)
-						{
-							DifficultyWindow.SetActive(value: true);
-							PromptBar.Label[2].text = "";
-							PromptBar.Label[3].text = "";
-							PromptBar.Label[5].text = "Change Difficulty";
-							PromptBar.Label[6].text = "";
-							PromptBar.UpdateButtons();
-							NewTitleScreen.CustomMode = true;
-						}
-					}
-					else
-					{
-						PromptBar.Show = false;
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							PlayerPrefs.SetInt("ProfileCreated_" + (EightiesPrefix + ID), 0);
-							ConfirmationWindow.SetActive(value: false);
-							SaveDatas[ID].Start();
-						}
-						else if (Input.GetButtonDown(InputNames.Xbox_B))
-						{
-							ConfirmationWindow.SetActive(value: false);
-						}
-					}
-					return;
-				}
-				if (InputManager.TappedDown)
-				{
-					ChallengeRow++;
-					if (ChallengeRow > 2)
-					{
-						ChallengeRow = 1;
-					}
-					UpdateChallengeHighlight();
-				}
-				if (InputManager.TappedUp)
-				{
-					ChallengeRow--;
-					if (ChallengeRow < 1)
-					{
-						ChallengeRow = 2;
-					}
-					UpdateChallengeHighlight();
-				}
-				if (InputManager.TappedRight)
-				{
-					ChallengeColumn++;
-					if (ChallengeColumn > 4)
-					{
-						ChallengeColumn = 1;
-					}
-					UpdateChallengeHighlight();
-				}
-				if (InputManager.TappedLeft)
-				{
-					ChallengeColumn--;
-					if (ChallengeColumn < 1)
-					{
-						ChallengeColumn = 4;
-					}
-					UpdateChallengeHighlight();
-				}
-				if (Input.GetButtonDown(InputNames.Xbox_A))
-				{
-					if (ChallengeID < 9)
-					{
-						ChallengeCheckmarks[ChallengeID].enabled = !ChallengeCheckmarks[ChallengeID].enabled;
 						return;
 					}
-					StartNewGame();
-					AcknowledgeChallenges();
-					NewTitleScreen.FadeOut = true;
-				}
-				else if (Input.GetButtonDown(InputNames.Xbox_B))
-				{
-					ChallengeWindow.SetActive(value: false);
-					PromptBar.Label[0].text = "New Game";
-					PromptBar.Label[2].text = "Challenges";
-					PromptBar.Label[3].text = "Week Select";
-					if (NewTitleScreen.Eighties)
+					if (InputManager.TappedDown)
 					{
-						PromptBar.Label[6].text = "Custom Mode";
+						ChallengeRow++;
+						if (ChallengeRow > 2)
+						{
+							ChallengeRow = 1;
+						}
+						UpdateChallengeHighlight();
 					}
-					PromptBar.UpdateButtons();
+					if (InputManager.TappedUp)
+					{
+						ChallengeRow--;
+						if (ChallengeRow < 1)
+						{
+							ChallengeRow = 2;
+						}
+						UpdateChallengeHighlight();
+					}
+					if (InputManager.TappedRight)
+					{
+						ChallengeColumn++;
+						if (ChallengeColumn > 4)
+						{
+							ChallengeColumn = 1;
+						}
+						UpdateChallengeHighlight();
+					}
+					if (InputManager.TappedLeft)
+					{
+						ChallengeColumn--;
+						if (ChallengeColumn < 1)
+						{
+							ChallengeColumn = 4;
+						}
+						UpdateChallengeHighlight();
+					}
+					if (Input.GetButtonDown(InputNames.Xbox_A))
+					{
+						if (ChallengeID < 9)
+						{
+							ChallengeCheckmarks[ChallengeID].enabled = !ChallengeCheckmarks[ChallengeID].enabled;
+							return;
+						}
+						StartNewGame();
+						AcknowledgeChallenges();
+						NewTitleScreen.FadeOut = true;
+					}
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
+					{
+						ChallengeWindow.SetActive(value: false);
+						PromptBar.Label[0].text = "New Game";
+						PromptBar.Label[2].text = "Challenges";
+						PromptBar.Label[3].text = "Week Select";
+						if (NewTitleScreen.Eighties)
+						{
+							PromptBar.Label[6].text = "Custom Mode";
+						}
+						PromptBar.UpdateButtons();
+					}
+				}
+				else if (Input.GetKeyDown("e"))
+				{
+					PlayerPrefs.DeleteAll();
+					Debug.Log("All player prefs deleted...");
+					Application.Quit();
+				}
+				else if (Input.GetKeyDown("q"))
+				{
+					Application.Quit();
+				}
+				return;
+			}
+			if (NewTitleScreen.Eighties && !NewTitleScreen.CustomMode)
+			{
+				RaibaruLabel[0].enabled = false;
+				RaibaruLabel[1].enabled = false;
+				TopLimit = 2;
+				if (DifficultyID < TopLimit)
+				{
+					DifficultyID = TopLimit;
+					DifficultArrow.localPosition = new Vector3(-700f, 500 - 150 * DifficultyID, 0f);
 				}
 			}
-			else if (Input.GetKeyDown("e"))
+			else
 			{
-				PlayerPrefs.DeleteAll();
-				Debug.Log("All player prefs deleted...");
-				Application.Quit();
+				if (!NewTitleScreen.CustomMode)
+				{
+					RaibaruLabel[0].text = "It is possible to fight Raibaru after upgrading the Physical Education stat once.";
+					RaibaruLabel[1].text = "It is not possible to engage in a physical struggle with Raibaru.";
+				}
+				else
+				{
+					RaibaruLabel[0].text = "It is possible to fight ''Invincible'' students after upgrading the Physical Education stat once.";
+					RaibaruLabel[1].text = "It is not possible to engage in a physical struggle with ''Invincible'' students.";
+				}
+				RaibaruLabel[0].enabled = true;
+				RaibaruLabel[1].enabled = true;
+				TopLimit = 1;
 			}
-			else if (Input.GetKeyDown("q"))
+			if (InputManager.TappedDown)
 			{
-				Application.Quit();
-			}
-			return;
-		}
-		if (NewTitleScreen.Eighties && !NewTitleScreen.CustomMode)
-		{
-			RaibaruLabel[0].enabled = false;
-			RaibaruLabel[1].enabled = false;
-			TopLimit = 2;
-			if (DifficultyID < TopLimit)
-			{
-				DifficultyID = TopLimit;
+				DifficultyID++;
+				if (DifficultyID > 7)
+				{
+					DifficultyID = TopLimit;
+				}
 				DifficultArrow.localPosition = new Vector3(-700f, 500 - 150 * DifficultyID, 0f);
 			}
+			if (InputManager.TappedUp)
+			{
+				DifficultyID--;
+				if (DifficultyID < TopLimit)
+				{
+					DifficultyID = 7;
+				}
+				DifficultArrow.localPosition = new Vector3(-700f, 500 - 150 * DifficultyID, 0f);
+			}
+			if (InputManager.TappedRight || InputManager.TappedLeft)
+			{
+				DifficultySettings[DifficultyID] = !DifficultySettings[DifficultyID];
+				if (!DifficultySettings[DifficultyID])
+				{
+					DifficultyHighlight[DifficultyID].localPosition = new Vector3(-300f, DifficultyHighlight[DifficultyID].localPosition.y, DifficultyHighlight[DifficultyID].localPosition.z);
+				}
+				else
+				{
+					DifficultyHighlight[DifficultyID].localPosition = new Vector3(400f, DifficultyHighlight[DifficultyID].localPosition.y, DifficultyHighlight[DifficultyID].localPosition.z);
+				}
+				DetermineDifficulty();
+			}
+			if (Input.GetButtonDown(InputNames.Xbox_A))
+			{
+				DifficultyWindow.SetActive(value: false);
+				StartNewGame();
+				AcknowledgeChallenges();
+				NewTitleScreen.FadeOut = true;
+			}
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
+			{
+				DifficultyWindow.SetActive(value: false);
+				NewTitleScreen.CustomMode = false;
+				NewTitleScreen.WeekSelect = false;
+				PromptBar.Label[2].text = "Challenges";
+				PromptBar.Label[3].text = "Week Select";
+				if (NewTitleScreen.Eighties)
+				{
+					PromptBar.Label[6].text = "Custom Mode";
+				}
+				PromptBar.Label[5].text = "";
+				PromptBar.UpdateButtons();
+			}
 		}
-		else
+		else if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
-			if (!NewTitleScreen.CustomMode)
-			{
-				RaibaruLabel[0].text = "It is possible to fight Raibaru after upgrading the Physical Education stat once.";
-				RaibaruLabel[1].text = "It is not possible to engage in a physical struggle with Raibaru.";
-			}
-			else
-			{
-				RaibaruLabel[0].text = "It is possible to fight ''Invincible'' students after upgrading the Physical Education stat once.";
-				RaibaruLabel[1].text = "It is not possible to engage in a physical struggle with ''Invincible'' students.";
-			}
-			RaibaruLabel[0].enabled = true;
-			RaibaruLabel[1].enabled = true;
-			TopLimit = 1;
-		}
-		if (InputManager.TappedDown)
-		{
-			DifficultyID++;
-			if (DifficultyID > 7)
-			{
-				DifficultyID = TopLimit;
-			}
-			DifficultArrow.localPosition = new Vector3(-700f, 500 - 150 * DifficultyID, 0f);
-		}
-		if (InputManager.TappedUp)
-		{
-			DifficultyID--;
-			if (DifficultyID < TopLimit)
-			{
-				DifficultyID = 7;
-			}
-			DifficultArrow.localPosition = new Vector3(-700f, 500 - 150 * DifficultyID, 0f);
-		}
-		if (InputManager.TappedRight || InputManager.TappedLeft)
-		{
-			DifficultySettings[DifficultyID] = !DifficultySettings[DifficultyID];
-			if (!DifficultySettings[DifficultyID])
-			{
-				DifficultyHighlight[DifficultyID].localPosition = new Vector3(-300f, DifficultyHighlight[DifficultyID].localPosition.y, DifficultyHighlight[DifficultyID].localPosition.z);
-			}
-			else
-			{
-				DifficultyHighlight[DifficultyID].localPosition = new Vector3(400f, DifficultyHighlight[DifficultyID].localPosition.y, DifficultyHighlight[DifficultyID].localPosition.z);
-			}
-			DetermineDifficulty();
-		}
-		if (Input.GetButtonDown(InputNames.Xbox_A))
-		{
-			DifficultyWindow.SetActive(value: false);
+			WouldYouLikeToWindow.SetActive(value: false);
 			StartNewGame();
 			AcknowledgeChallenges();
 			NewTitleScreen.FadeOut = true;
 		}
 		else if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
-			DifficultyWindow.SetActive(value: false);
-			NewTitleScreen.CustomMode = false;
-			NewTitleScreen.WeekSelect = false;
-			PromptBar.Label[2].text = "Challenges";
-			PromptBar.Label[3].text = "Week Select";
-			if (NewTitleScreen.Eighties)
-			{
-				PromptBar.Label[6].text = "Custom Mode";
-			}
-			PromptBar.Label[5].text = "";
+			WouldYouLikeToWindow.SetActive(value: false);
+			DifficultyWindow.SetActive(value: true);
+			PromptBar.Label[2].text = "";
+			PromptBar.Label[3].text = "";
+			PromptBar.Label[5].text = "Change Difficulty";
+			PromptBar.Label[6].text = "";
 			PromptBar.UpdateButtons();
 		}
 	}

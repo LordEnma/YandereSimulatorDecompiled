@@ -4,6 +4,8 @@ public class FreezerKillScript : MonoBehaviour
 {
 	public StudentManagerScript StudentManager;
 
+	public Collider FreezerRoomCollider;
+
 	public Animation ControlPanelAnim;
 
 	public Renderer[] FrostOverlay;
@@ -142,6 +144,7 @@ public class FreezerKillScript : MonoBehaviour
 			ShoveTimer += Time.deltaTime;
 			if (ShoveTimer >= 1f)
 			{
+				TeleportStudentsOutOfRoom();
 				if (Victim.Male)
 				{
 					MyAudio.clip = MaleVoice;
@@ -152,7 +155,7 @@ public class FreezerKillScript : MonoBehaviour
 				}
 				MyAudio.Play();
 				Prompt.Yandere.CharacterAnimation.CrossFade("f02_freezerMurder_A");
-				Prompt.Yandere.MurderousActionTimer = 1f;
+				Prompt.Yandere.MurderousActionTimer = 10f;
 				if (!Victim.Male)
 				{
 					Victim.CharacterAnimation.CrossFade("f02_freezerMurder_B");
@@ -164,6 +167,7 @@ public class FreezerKillScript : MonoBehaviour
 				ControlPanelAnim["freezerMurderPanel"].speed = 1f;
 				ControlPanelAnim["freezerMurderPanel"].time = 0f;
 				ControlPanelAnim.Play("freezerMurderPanel");
+				RoomBlocker.SetActive(value: true);
 				ShoveTimer = 0f;
 				ShovePhase++;
 			}
@@ -181,8 +185,8 @@ public class FreezerKillScript : MonoBehaviour
 			}
 			if (ShoveTimer >= 10f)
 			{
+				Prompt.Yandere.MurderousActionTimer = 0f;
 				Victim.MyController.enabled = false;
-				RoomBlocker.SetActive(value: true);
 				Victim.Prompt.enabled = false;
 				Victim.Prompt.Hide();
 				Prompt.Yandere.CanMove = true;
@@ -197,10 +201,13 @@ public class FreezerKillScript : MonoBehaviour
 			{
 				Victim.BecomeRagdoll();
 				Victim.Ragdoll.BloodPoolSpawner.enabled = false;
-				Victim.DeathCause = 9;
-				Victim.DeathType = DeathType.Mystery;
+				Victim.DeathCause = 12;
+				Victim.DeathType = DeathType.Frozen;
+				Debug.Log("Just froze the current rival to death. Setting EndOfDay.RivalEliminationMethod to ''Accident''.");
+				Prompt.Yandere.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Accident;
 				Fog.Stop();
 				base.enabled = false;
+				ShovePhase = 0;
 			}
 		}
 	}
@@ -212,12 +219,24 @@ public class FreezerKillScript : MonoBehaviour
 		FrostOverlay[1].materials[1].color = new Color(1f, 1f, 1f, Alpha);
 		FrostOverlay[2].materials[0].color = new Color(1f, 1f, 1f, Alpha);
 		FrostOverlay[2].materials[1].color = new Color(1f, 1f, 1f, Alpha);
-		FrostOverlay[3].material.color = new Color(1f, 1f, 1f, Alpha * 0.5f);
 		Victim.FrostProjector.enabled = true;
 		Victim.FrostProjector.material.color = new Color(1f, 1f, 1f, Alpha);
 		if (!Fog.isPlaying)
 		{
 			Fog.Play();
 		}
+	}
+
+	private void TeleportStudentsOutOfRoom()
+	{
+		StudentScript[] students = StudentManager.Students;
+		foreach (StudentScript studentScript in students)
+		{
+			if (studentScript != null && studentScript != Victim && FreezerRoomCollider.bounds.Contains(studentScript.transform.position))
+			{
+				studentScript.transform.position = new Vector3(24f, 8f, -3f);
+			}
+		}
+		Physics.SyncTransforms();
 	}
 }

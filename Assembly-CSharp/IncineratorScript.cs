@@ -268,6 +268,10 @@ public class IncineratorScript : MonoBehaviour
 				{
 					Limbs++;
 					LimbList[Limbs] = Yandere.PickUp.GetComponent<BodyPartScript>().StudentID;
+					if (Yandere.PickUp.GetComponent<BodyPartScript>().Type == 7)
+					{
+						BodyParts++;
+					}
 				}
 				Yandere.PickUp.Incinerator = this;
 				Yandere.PickUp.Dumped = true;

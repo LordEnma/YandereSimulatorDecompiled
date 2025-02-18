@@ -432,7 +432,7 @@ public class HeartbrokenScript : MonoBehaviour
 				Yandere.MyController.Move(Yandere.transform.forward * (Time.deltaTime * -1f));
 			}
 		}
-		if (Yandere.CharacterAnimation["f02_heartBrokenFall_00"].time >= Yandere.CharacterAnimation["f02_heartBrokenFall_00"].length)
+		if (Yandere != null && Yandere.CharacterAnimation["f02_heartBrokenFall_00"].time >= Yandere.CharacterAnimation["f02_heartBrokenFall_00"].length)
 		{
 			Debug.Log("Supposed to be switching to the heartbroken loop now.");
 			Yandere.CharacterAnimation["f02_heartBrokenLoop_00"].speed = 0.1f;

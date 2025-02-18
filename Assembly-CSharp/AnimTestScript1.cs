@@ -165,5 +165,9 @@ public class AnimTestScript1 : MonoBehaviour
 		{
 			MyHead.localScale = new Vector3(0f, 0f, 0f);
 		}
+		if (MyAnim["LoveLoveBEAM"].time >= MyAnim["LoveLoveBEAM"].length - 1f)
+		{
+			MyAnim.CrossFade("f02_idle_00");
+		}
 	}
 }

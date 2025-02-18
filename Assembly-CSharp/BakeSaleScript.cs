@@ -24,7 +24,7 @@ public class BakeSaleScript : MonoBehaviour
 
 	public void UpdatePosters()
 	{
-		if (ClubGlobals.Club == ClubType.None)
+		if (ClubGlobals.Club != ClubType.Cooking)
 		{
 			Poster[0].materials[1].mainTexture = AmaiPoster;
 		}

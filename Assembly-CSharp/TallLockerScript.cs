@@ -34,6 +34,8 @@ public class TallLockerScript : MonoBehaviour
 
 	public Transform Hinge;
 
+	public bool UsedEmergencyShower;
+
 	public bool RemovingClubAttire;
 
 	public bool DropCleanUniform;
@@ -121,11 +123,7 @@ public class TallLockerScript : MonoBehaviour
 			}
 			else
 			{
-				Open = false;
-				Prompt.HideButton[1] = true;
-				Prompt.HideButton[2] = true;
-				Prompt.HideButton[3] = true;
-				Prompt.Label[0].text = "     Open";
+				Shut();
 			}
 		}
 		if (!Open)
@@ -494,6 +492,7 @@ public class TallLockerScript : MonoBehaviour
 		{
 			Prompt.Label[2].text = "     Bikini";
 		}
+		UpdateAvailableClothing();
 		if (YandereLocker)
 		{
 			if (!Yandere.ClubAttire)
@@ -501,6 +500,7 @@ public class TallLockerScript : MonoBehaviour
 				if (Yandere.Schoolwear > 0)
 				{
 					Prompt.Label[Yandere.Schoolwear].text = "     Towel";
+					Prompt.HideButton[Yandere.Schoolwear] = false;
 					if (Removed[Yandere.Schoolwear])
 					{
 						Schoolwear[Yandere.Schoolwear].SetActive(value: false);
@@ -510,6 +510,7 @@ public class TallLockerScript : MonoBehaviour
 			else
 			{
 				Prompt.Label[1].text = "     Towel";
+				Prompt.HideButton[1] = false;
 			}
 		}
 		else if (Student != null && Student.Schoolwear > 0)
@@ -594,5 +595,30 @@ public class TallLockerScript : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public void UpdateAvailableClothing()
+	{
+		if (!UsedEmergencyShower)
+		{
+			return;
+		}
+		for (int i = 1; i <= 3; i++)
+		{
+			if (Removed[i])
+			{
+				Prompt.HideButton[i] = true;
+				Schoolwear[i].SetActive(value: false);
+			}
+		}
+	}
+
+	public void Shut()
+	{
+		Open = false;
+		Prompt.HideButton[1] = true;
+		Prompt.HideButton[2] = true;
+		Prompt.HideButton[3] = true;
+		Prompt.Label[0].text = "     Open";
 	}
 }

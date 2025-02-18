@@ -315,6 +315,11 @@ public class HomeYandereScript : MonoBehaviour
 			WalkAnim = "f02_ryobaWalk_00";
 			RunAnim = "f02_ryobaRun_00";
 		}
+		else if (GameGlobals.VtuberID == 3)
+		{
+			IdleAnim = "f02_idleGraceful_00";
+			WalkAnim = "f02_walkGraceful_00";
+		}
 	}
 
 	private void Update()
@@ -630,8 +635,12 @@ public class HomeYandereScript : MonoBehaviour
 				WalkAnim = "f02_ryobaWalk_00";
 				RunAnim = "f02_ryobaRun_00";
 			}
+			else if (GameGlobals.VtuberID == 3)
+			{
+				IdleAnim = "f02_idleGraceful_00";
+				WalkAnim = "f02_walkGraceful_00";
+			}
 			FaceTexture = VtuberFaces[GameGlobals.VtuberID];
-			Debug.Log("FaceTexture changed to Vtuber's face texture.");
 			Eyes[1].material.mainTexture = VtuberFaces[GameGlobals.VtuberID];
 			Eyes[2].material.mainTexture = VtuberFaces[GameGlobals.VtuberID];
 			UpdateFace = true;

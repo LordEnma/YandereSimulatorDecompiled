@@ -140,7 +140,7 @@ public class ComputerGamesScript : MonoBehaviour
 							PromptBar.Label[4].text = "Select";
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
-							Yandere.Character.GetComponent<Animation>().Play(Yandere.IdleAnim);
+							Yandere.CharacterAnimation.Play(Yandere.IdleAnim);
 							Yandere.CanMove = false;
 							GameWindow.gameObject.SetActive(value: true);
 							ShowWindow = true;
@@ -189,6 +189,7 @@ public class ComputerGamesScript : MonoBehaviour
 		Yandere.Character.GetComponent<Animation>().CrossFade("f02_playingGames_00");
 		Yandere.MyController.radius = 0.1f;
 		Yandere.CanMove = false;
+		Yandere.EmptyHands();
 		Gaming = true;
 		DisableGames();
 		UpdateImage();

@@ -213,6 +213,11 @@ public class FoldedUniformScript : MonoBehaviour
 				}
 			}
 		}
+		PickUpScript component = base.gameObject.GetComponent<PickUpScript>();
+		if (component != null)
+		{
+			component.RemoveSelfFromBloodyClothingArray();
+		}
 	}
 
 	public void StainWithBlood()

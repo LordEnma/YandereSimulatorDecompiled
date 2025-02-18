@@ -1089,7 +1089,7 @@ public class StalkerYandereScript : MonoBehaviour
 		if (ClothingAttacher != null && ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
 		{
 			MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
-			MyRenderer.materials[1].mainTexture = VtuberFaces[GameGlobals.VtuberID];
+			MyRenderer.materials[2].mainTexture = VtuberFaces[GameGlobals.VtuberID];
 		}
 		else
 		{
@@ -1109,6 +1109,11 @@ public class StalkerYandereScript : MonoBehaviour
 			IdleAnim = "f02_ryobaIdle_00";
 			WalkAnim = "f02_ryobaWalk_00";
 			RunAnim = "f02_ryobaRun_00";
+		}
+		else if (GameGlobals.VtuberID == 3 && Street)
+		{
+			IdleAnim = "f02_idleGraceful_00";
+			WalkAnim = "f02_walkGraceful_00";
 		}
 		UpdateTextures = true;
 		Vtuber = true;

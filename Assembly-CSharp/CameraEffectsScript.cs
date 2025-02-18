@@ -85,6 +85,7 @@ public class CameraEffectsScript : MonoBehaviour
 
 	public void MurderWitnessed()
 	{
+		Debug.Log("The MurderWitnessed() function is now being called.");
 		GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
 		VibrationCheck = true;
 		VibrationTimer = 0.1f;

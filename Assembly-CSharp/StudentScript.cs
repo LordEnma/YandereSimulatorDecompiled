@@ -2606,7 +2606,7 @@ public class StudentScript : MonoBehaviour
 					RelaxAnim = "infirmaryRest_00";
 					OriginalSprintAnim = SprintAnim;
 					Cosmetic.Start();
-					if (!GameGlobals.AlphabetMode && !StudentManager.MissionMode && !StudentManager.YandereLate)
+					if (!GameGlobals.AlphabetMode && !StudentManager.MissionMode && !StudentManager.YandereLate && StudentGlobals.StudentSlave != 7)
 					{
 						base.gameObject.SetActive(value: false);
 					}
@@ -3892,6 +3892,12 @@ public class StudentScript : MonoBehaviour
 						WateringCan.SetActive(value: true);
 					}
 				}
+				else if (StudentID == 71)
+				{
+					PatrolAnim = "thinking_00";
+					ClubAnim = "thinking_00";
+					CharacterAnimation[PatrolAnim].speed = 0.9f;
+				}
 				else
 				{
 					if (Male)
@@ -4795,6 +4801,10 @@ public class StudentScript : MonoBehaviour
 					SunbathePhase = 0;
 				}
 				Phase++;
+				if (!StudentManager.Eighties && Club == ClubType.Gardening && Clock.Period > 5)
+				{
+					ClubAnim = ThinkAnim;
+				}
 				SciencePhase = 0;
 				if (WateringCan != null)
 				{
@@ -5047,6 +5057,10 @@ public class StudentScript : MonoBehaviour
 						else if (FollowTarget.CameraReacting)
 						{
 							FollowTarget.FollowTargetDestination.localPosition = new Vector3(0f, 0f, -1f);
+						}
+						else if (FollowTarget.ChangingShoes)
+						{
+							FollowTarget.FollowTargetDestination.localPosition = new Vector3(-1f, 0f, -1f);
 						}
 						else
 						{
@@ -5450,6 +5464,7 @@ public class StudentScript : MonoBehaviour
 				}
 				if (StudentID == 10)
 				{
+					Debug.Log("Raibaru is checking to see if she should run any special case code now.");
 					if (Actions[Phase] == StudentActionType.Follow && !Alarmed)
 					{
 						Obstacle.enabled = false;
@@ -6031,6 +6046,10 @@ public class StudentScript : MonoBehaviour
 									{
 										FollowTarget.FollowTargetDestination.localPosition = new Vector3(-1f, 0f, -1f);
 									}
+									else if (FollowTarget.ChangingShoes)
+									{
+										CharacterAnimation.CrossFade(IdleAnim);
+									}
 									else
 									{
 										FollowTarget.FollowTargetDestination.localPosition = new Vector3(0f, 0f, 0f);
@@ -6297,6 +6316,10 @@ public class StudentScript : MonoBehaviour
 							{
 								if (CuriosityPhase == 0)
 								{
+									if (Sedated && TakingUpAHeadacheSpot)
+									{
+										RelaxAnim = HeadacheSitAnim;
+									}
 									CharacterAnimation.CrossFade(RelaxAnim);
 									if (Curious)
 									{
@@ -7603,6 +7626,10 @@ public class StudentScript : MonoBehaviour
 											{
 												SprintAnim = "f02_headacheWalk_00";
 												RelaxAnim = "f02_infirmaryRest_00";
+											}
+											if (StudentManager.SedatedStudents > 4)
+											{
+												RelaxAnim = HeadacheSitAnim;
 											}
 											CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
 											CharacterAnimation.CrossFade(SprintAnim);
@@ -9475,6 +9502,11 @@ public class StudentScript : MonoBehaviour
 						else
 						{
 							CharacterAnimation.CrossFade("f02_impatientWait_00");
+							if (!StudentManager.Eighties && StudentID == 10)
+							{
+								MoveTowardsTarget(MeetSpot.position);
+								base.transform.rotation = Quaternion.Slerp(base.transform.rotation, Pathfinding.target.rotation, 10f * Time.deltaTime);
+							}
 						}
 						if (MeetTimer > 60f)
 						{
@@ -10974,6 +11006,7 @@ public class StudentScript : MonoBehaviour
 											{
 												Yandere.StopAiming();
 											}
+											Debug.Log("A teacher is instructing Yandere-chan to play the ''got countered by teacher'' animation now.");
 											Yandere.Mopping = false;
 											Yandere.EmptyHands();
 											AttackReaction();
@@ -16029,7 +16062,11 @@ public class StudentScript : MonoBehaviour
 			{
 				Yandere.SanityBased = false;
 			}
-			if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache)
+			if (Following)
+			{
+				StudentManager.TranqDetector.TranqCheck();
+			}
+			if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache && !Yandere.CanTranq)
 			{
 				Debug.Log("Opponent has a Strength of 9 - ''Invincible.''");
 				if (Following)
@@ -16112,7 +16149,7 @@ public class StudentScript : MonoBehaviour
 		}
 		if (!Teacher)
 		{
-			if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache)
+			if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache && !Yandere.CanTranq)
 			{
 				Debug.Log("A student with a strength of 9 is counter-attacking!");
 				Yandere.CharacterAnimation.CrossFade("f02_moCounterA_00");
@@ -16220,6 +16257,7 @@ public class StudentScript : MonoBehaviour
 				SmartPhone.SetActive(value: false);
 				Police.Show = false;
 			}
+			Debug.Log("A teacher thinks she should play the ''teacher counters player's attack'' animation now.");
 			CharacterAnimation.CrossFade(CounterAnim);
 			targetRotation = Quaternion.LookRotation(new Vector3(Yandere.transform.position.x, base.transform.position.y, Yandere.transform.position.z) - base.transform.position);
 			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
@@ -18506,6 +18544,7 @@ public class StudentScript : MonoBehaviour
 		BountyCollider.SetActive(value: false);
 		if (PhotoEvidence)
 		{
+			Debug.Log("PhotoEvidence was true.");
 			SmartPhone.GetComponent<SmartphoneScript>().enabled = true;
 			SmartPhone.GetComponent<PromptScript>().enabled = true;
 			SmartPhone.GetComponent<Rigidbody>().useGravity = true;
@@ -18515,6 +18554,7 @@ public class StudentScript : MonoBehaviour
 		}
 		else
 		{
+			Debug.Log("PhotoEvidence was false.");
 			SmartPhone.SetActive(value: false);
 		}
 		if (!WitnessedMurder)
@@ -18630,6 +18670,7 @@ public class StudentScript : MonoBehaviour
 			{
 				flag = false;
 			}
+			Debug.Log("The character who the player just attacked is a teacher. We are now going to check whether or not we should enter a struggle or enter the 'counter' animation.");
 			if ((flag && Yandere.Armed && Yandere.Class.PhysicalGrade + Yandere.Class.PhysicalBonus > 0 && Yandere.EquippedWeapon.Type == WeaponType.Knife) || (flag && Yandere.Club == ClubType.MartialArts && Yandere.Armed && Yandere.EquippedWeapon.Type == WeaponType.Knife))
 			{
 				Debug.Log(Name + " has called the ''BeginStruggle'' function.");
@@ -18658,7 +18699,7 @@ public class StudentScript : MonoBehaviour
 				Yandere.TargetStudent = this;
 			}
 		}
-		else if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache)
+		else if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache && !Yandere.CanTranq)
 		{
 			Debug.Log("Time to decide how Raibaru should react.");
 			if (!StudentManager.ChallengeManager.InvincibleRaibaru && Yandere.PhysicalGrade + Yandere.Class.PhysicalBonus > 0)
@@ -18742,8 +18783,10 @@ public class StudentScript : MonoBehaviour
 		}
 		if (PhotoEvidence)
 		{
+			Debug.Log("PhotoEvidence was true.");
 			CameraFlash.SetActive(value: false);
 			SmartPhone.SetActive(value: true);
+			PhotoEvidence = false;
 		}
 		if (BloodPool != null)
 		{
@@ -19118,6 +19161,7 @@ public class StudentScript : MonoBehaviour
 		}
 		else
 		{
+			Debug.Log("CameraEffects.MurderWitnessed() is being called from here, specifically.");
 			SetOutlineColor(Color.red);
 			SummonWitnessCamera();
 			CameraEffects.MurderWitnessed();
@@ -23157,13 +23201,15 @@ public class StudentScript : MonoBehaviour
 					Debug.Log("This is the exact moment that the character is being told to perform a spraying animation.");
 					if (SprayAnim == "")
 					{
+						Debug.Log("SprayAnim was null.");
 						if (Male)
 						{
-							SprayAnim = "spray_00";
+							Debug.Log("SprayAnim should now be sprayCouncilGeneric_00");
+							SprayAnim = "sprayCouncilGeneric_00";
 						}
 						else
 						{
-							SprayAnim = "f02_sprayCouncilEdgy_00";
+							SprayAnim = "f02_sprayCouncilGeneric_00";
 						}
 					}
 					CharacterAnimation.CrossFade(SprayAnim);
@@ -23853,7 +23899,7 @@ public class StudentScript : MonoBehaviour
 	public void EmptyHands()
 	{
 		bool flag = false;
-		if ((SentHome && SmartPhone.activeInHierarchy) || PhotoEvidence || (Persona == PersonaType.PhoneAddict && !Dying && !Wet))
+		if ((SentHome && SmartPhone.activeInHierarchy) || SmartPhone.transform.parent == null || PhotoEvidence || (Persona == PersonaType.PhoneAddict && !Dying && !Wet))
 		{
 			flag = true;
 		}
@@ -25839,6 +25885,11 @@ public class StudentScript : MonoBehaviour
 			if (CharacterAnimation[StripAnim].time >= 1.5f)
 			{
 				Debug.Log("Schoolwear is currently: " + Schoolwear);
+				if (Schoolwear == 2)
+				{
+					Debug.Log("The student is currently wearing a swimsuit, so they must be attempting to change back into normal clothing.");
+					Schoolwear = 1;
+				}
 				if (SchoolwearUnavailable)
 				{
 					Debug.Log("School uniform was unavailable. MUST change into gym uniform.");
@@ -26056,6 +26107,10 @@ public class StudentScript : MonoBehaviour
 			Yandere.Container.TrashCan.RemoveContents();
 			concealedWeapon.Equip();
 			concealedWeapon.gameObject.SetActive(value: true);
+		}
+		else
+		{
+			Debug.Log("No knife.");
 		}
 	}
 

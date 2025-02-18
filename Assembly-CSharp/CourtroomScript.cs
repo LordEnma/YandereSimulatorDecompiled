@@ -128,6 +128,8 @@ public class CourtroomScript : MonoBehaviour
 
 	public GameObject[] VtuberHairs;
 
+	public GameObject[] VtuberAccs;
+
 	public Texture[] VtuberFaces;
 
 	public SkinnedMeshRenderer MyRenderer;
@@ -678,22 +680,27 @@ public class CourtroomScript : MonoBehaviour
 
 	public void VtuberCheck()
 	{
+		for (int i = 1; i < VtuberHairs.Length; i++)
+		{
+			VtuberHairs[i].SetActive(value: false);
+			VtuberAccs[i].SetActive(value: false);
+		}
 		if (GameGlobals.VtuberID > 0)
 		{
 			OriginalHair.SetActive(value: false);
 			VtuberHairs[GameGlobals.VtuberID].SetActive(value: true);
+			VtuberAccs[GameGlobals.VtuberID].SetActive(value: true);
 			MyRenderer.materials[2].mainTexture = VtuberFaces[GameGlobals.VtuberID];
-			for (int i = 0; i < 13; i++)
+			for (int j = 0; j < 13; j++)
 			{
-				MyRenderer.SetBlendShapeWeight(i, 0f);
+				MyRenderer.SetBlendShapeWeight(j, 0f);
 			}
 			MyRenderer.SetBlendShapeWeight(0, 100f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
+			if (GameGlobals.VtuberID == 1)
+			{
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+			}
 			Vtuber = true;
-		}
-		else
-		{
-			VtuberHairs[1].SetActive(value: false);
 		}
 	}
 

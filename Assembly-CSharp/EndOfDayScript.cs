@@ -2147,7 +2147,8 @@ public class EndOfDayScript : MonoBehaviour
 	{
 		Debug.Log("The rival died, and now the game is determining exactly how she died.");
 		RivalEliminationMethod = RivalEliminationType.Murdered;
-		if (corpse.Student.Electrified || corpse.Student.Electrocuted || corpse.Student.Ragdoll.Decapitated || corpse.Student.DeathType == DeathType.Burning || corpse.Student.DeathType == DeathType.Weight || corpse.Student.DeathType == DeathType.Drowning || corpse.Student.DeathType == DeathType.Poison || corpse.Student.DeathType == DeathType.Explosion)
+		Debug.Log("corpse.Student.DeathType is: " + corpse.Student.DeathType);
+		if (corpse.Student.Electrified || corpse.Student.Electrocuted || corpse.Student.Ragdoll.Decapitated || corpse.Student.DeathType == DeathType.Burning || corpse.Student.DeathType == DeathType.Weight || corpse.Student.DeathType == DeathType.Drowning || corpse.Student.DeathType == DeathType.Poison || corpse.Student.DeathType == DeathType.Explosion || corpse.Student.DeathType == DeathType.Frozen || corpse.Student.DeathType == DeathType.Smothered)
 		{
 			RivalEliminationMethod = RivalEliminationType.Accident;
 		}
@@ -2321,9 +2322,21 @@ public class EndOfDayScript : MonoBehaviour
 			GameGlobals.SpecificEliminationID = 20;
 			AchievementToGrant = "Explode";
 		}
+		else if (corpse.Student.DeathType == DeathType.Frozen)
+		{
+			Debug.Log("The game knows that the rival died from being frozen to death.");
+			GameGlobals.SpecificEliminationID = 21;
+			AchievementToGrant = "Frozen";
+		}
+		else if (corpse.Student.DeathType == DeathType.Smothered)
+		{
+			Debug.Log("The game knows that the rival died from being smothered to death.");
+			GameGlobals.SpecificEliminationID = 22;
+			AchievementToGrant = "Smother";
+		}
 		else
 		{
-			Debug.Log("We know that the rival died, but we didn't get any noteworthy information about her death...");
+			Debug.Log("The games knows that the rival died, but doesn't know how to classify her death!");
 		}
 	}
 

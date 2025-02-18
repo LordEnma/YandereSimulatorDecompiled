@@ -134,7 +134,10 @@ public class ShoeRemovalScript : MonoBehaviour
 		{
 			MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
 		}
-		_ = Student.Follower != null;
+		if (Student.Follower != null)
+		{
+			Student.FollowTargetDestination.localPosition = new Vector3(-1f, 0f, -1f);
+		}
 	}
 
 	private void Update()
@@ -312,6 +315,10 @@ public class ShoeRemovalScript : MonoBehaviour
 					}
 					Student.Indoors = true;
 					Student.CanTalk = true;
+					if (Student.Follower != null)
+					{
+						Student.FollowTargetDestination.localPosition = new Vector3(0f, 0f, -1f);
+					}
 					return;
 				}
 				if (Student.Destinations[Student.Phase + 1] != null)
@@ -329,6 +336,10 @@ public class ShoeRemovalScript : MonoBehaviour
 				Student.Phase++;
 				base.enabled = false;
 				Phase = 0;
+				if (Student.Follower != null)
+				{
+					Student.FollowTargetDestination.localPosition = new Vector3(0f, 0f, -1f);
+				}
 			}
 		}
 		else if (!Student.InEvent)

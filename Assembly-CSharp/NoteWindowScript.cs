@@ -298,7 +298,7 @@ public class NoteWindowScript : MonoBehaviour
 					{
 						NoteLocker.Success = true;
 					}
-					else if (NoteLocker.Student.Persona == PersonaType.Heroic && NoteSubject == NoteSubjectType.FightingEvil)
+					else if ((NoteLocker.Student.Persona == PersonaType.Heroic && NoteSubject == NoteSubjectType.FightingEvil) || (NoteLocker.Student.Persona == PersonaType.Protective && NoteSubject == NoteSubjectType.FightingEvil))
 					{
 						NoteLocker.Success = true;
 					}

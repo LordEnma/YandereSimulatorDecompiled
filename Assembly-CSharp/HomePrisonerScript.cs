@@ -144,7 +144,7 @@ public class HomePrisonerScript : MonoBehaviour
 		HealthTop.transform.localPosition = new Vector3(0f, -200f + Health / 100f * 400f, 0f);
 		for (int i = 1; i < Descriptions.Length - 1; i++)
 		{
-			Descriptions[i] = "If you torture your prisoner for " + Hours[i] + ", you will reduce her sanity by " + (SanityNumbers[i] + ClassGlobals.PsychologyGrade * 10) + "%, and " + Notes[i];
+			Descriptions[i] = "If you torture your prisoner for " + Hours[i] + ", you will reduce their sanity by " + (SanityNumbers[i] + ClassGlobals.PsychologyGrade * 10) + "%, and " + Notes[i];
 		}
 		if (Initialized)
 		{

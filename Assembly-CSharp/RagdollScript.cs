@@ -275,6 +275,7 @@ public class RagdollScript : MonoBehaviour
 		if (InDumpster)
 		{
 			BloodPoolSpawner.enabled = false;
+			Student.StudentManager.Dumpster.Corpse = base.gameObject;
 		}
 		Student.ResetEyes();
 	}

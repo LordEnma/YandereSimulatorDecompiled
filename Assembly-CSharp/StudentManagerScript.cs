@@ -126,6 +126,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public ReputationScript Reputation;
 
+	public DumpsterLidScript Dumpster;
+
 	public WeaponScript FragileWeapon;
 
 	public AudioSource PracticeVocals;
@@ -519,6 +521,8 @@ public class StudentManagerScript : MonoBehaviour
 	public Quaternion[] OriginalClubRotations;
 
 	public Vector3[] OriginalClubPositions;
+
+	public Vector3 YandereSavePosition;
 
 	public Collider RivalDeskCollider;
 
@@ -5029,6 +5033,7 @@ public class StudentManagerScript : MonoBehaviour
 		SaveAllStudentPositions();
 		int profile = GameGlobals.Profile;
 		int @int = PlayerPrefs.GetInt("SaveSlot");
+		Debug.Log("At the moment of saving, Yandere.Health was: " + Yandere.Health);
 		BloodParent.RecordAllBlood();
 		PuddleParent.RecordAllPuddles();
 		ClothingParent.RecordAllClothing();
@@ -5042,6 +5047,7 @@ public class StudentManagerScript : MonoBehaviour
 		Yandere.Class.gameObject.SetActive(value: true);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
 		ServicesPurchased = Yandere.PauseScreen.ServiceMenu.ServicePurchased;
+		YandereSavePosition = Yandere.transform.position;
 		YanSave.SaveData("Profile_" + profile + "_Slot_" + @int);
 		PlayerPrefs.SetInt("Profile_" + profile + "_Slot_" + @int + "_MemorialStudents", StudentGlobals.MemorialStudents);
 		Yandere.Class.gameObject.SetActive(value: false);
@@ -5542,6 +5548,7 @@ public class StudentManagerScript : MonoBehaviour
 			ScorchMarks.transform.parent.gameObject.SetActive(value: true);
 			ScorchMarks.transform.parent.GetChild(0).gameObject.SetActive(value: false);
 		}
+		Debug.Log("Upon loading the save, Yandere.Health was: " + Yandere.Health);
 		if (Yandere.Health < 10)
 		{
 			Yandere.MyRenderer.materials[2].SetFloat("_BlendAmount1", 1f - (float)Yandere.Health * 1f / 10f);
@@ -5555,6 +5562,15 @@ public class StudentManagerScript : MonoBehaviour
 			Yandere.StudentManager.Rest.Prompt.enabled = true;
 		}
 		CameFromLoad = true;
+		if (YandereSavePosition == Vector3.zero)
+		{
+			Debug.Log("YadereSavePosition was zero. Huh?");
+		}
+		else
+		{
+			Yandere.transform.position = YandereSavePosition;
+			Physics.SyncTransforms();
+		}
 		SetAtmosphere();
 		Debug.Log("The entire loading process has been completed.");
 		Debug.Log("End of StudentManager Load() believes that GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID);

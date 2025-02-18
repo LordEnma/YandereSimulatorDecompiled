@@ -17,6 +17,8 @@ public class PauseScreenScript : MonoBehaviour
 
 	public SaveLoadMenuScript SaveLoadMenu;
 
+	public FreezerKillScript FreezerKill;
+
 	public HomeYandereScript HomeYandere;
 
 	public InputDeviceScript InputDevice;
@@ -283,6 +285,14 @@ public class PauseScreenScript : MonoBehaviour
 			if (PhoneIcons[k].alpha == 0.5f)
 			{
 				PhoneShadows[k].enabled = false;
+				EightiesPhoneShadows[k].enabled = false;
+			}
+		}
+		for (int k = 1; k < EightiesPhoneIcons.Length; k++)
+		{
+			if (EightiesPhoneIcons[k].alpha == 0.5f)
+			{
+				EightiesPhoneShadows[k].enabled = false;
 			}
 		}
 		if (DateGlobals.Week < 2)
@@ -370,11 +380,13 @@ public class PauseScreenScript : MonoBehaviour
 					{
 						uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 0.5f);
 						PhoneShadows[3].enabled = false;
+						EightiesPhoneShadows[3].enabled = false;
 					}
 					else
 					{
 						uISprite.color = new Color(uISprite.color.r, uISprite.color.g, uISprite.color.b, 1f);
 						PhoneShadows[3].enabled = true;
+						EightiesPhoneShadows[3].enabled = true;
 					}
 					CheckIfSavePossible();
 					UpdateSelection();
@@ -393,6 +405,7 @@ public class PauseScreenScript : MonoBehaviour
 				UISprite uISprite2 = PhoneIcons[3];
 				uISprite2.color = new Color(uISprite2.color.r, uISprite2.color.g, uISprite2.color.b, 0.5f);
 				PhoneShadows[3].enabled = false;
+				EightiesPhoneShadows[3].enabled = false;
 				Panel.enabled = true;
 				Sideways = false;
 				Show = true;
@@ -1102,7 +1115,16 @@ public class PauseScreenScript : MonoBehaviour
 	private void CheckIfSavePossible()
 	{
 		PhoneIcons[9].color = new Color(1f, 1f, 1f, 1f);
-		PhoneShadows[9].enabled = true;
+		if (!Eighties)
+		{
+			PhoneShadows[9].enabled = true;
+			EightiesPhoneShadows[9].enabled = false;
+		}
+		else
+		{
+			PhoneShadows[9].enabled = false;
+			EightiesPhoneShadows[9].enabled = true;
+		}
 		if (AtSchool)
 		{
 			for (int i = 1; i < Yandere.StudentManager.Students.Length; i++)
@@ -1119,7 +1141,12 @@ public class PauseScreenScript : MonoBehaviour
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is fleeing in fear.";
 					}
-					if (Yandere.StudentManager.Students[i].Guarding)
+					if (FreezerKill.ShovePhase > 0)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is freezing to death.";
+					}
+					if (Yandere.StudentManager.Students[i].Guarding && Yandere.StudentManager.Students[i].Alive)
 					{
 						Debug.Log("The student who is Guarding is: Student #" + Yandere.StudentManager.Students[i].StudentID + ", " + Yandere.StudentManager.Students[i].Name);
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
@@ -1170,6 +1197,11 @@ public class PauseScreenScript : MonoBehaviour
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is tranquilized and sleeping on the ground.";
 					}
+					if (Police.PhotoEvidence > 0)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a smartphone containing incriminating evidence is present at school.";
+					}
 				}
 			}
 			if (Yandere.Dragging)
@@ -1201,13 +1233,24 @@ public class PauseScreenScript : MonoBehaviour
 		if (PhoneIcons[9].alpha == 0.5f)
 		{
 			PhoneShadows[9].enabled = false;
+			EightiesPhoneShadows[9].enabled = false;
 		}
 		PhoneIcons[3].alpha = 1f;
-		PhoneShadows[3].enabled = true;
+		if (!Eighties)
+		{
+			PhoneShadows[3].enabled = true;
+			EightiesPhoneShadows[3].enabled = false;
+		}
+		else
+		{
+			PhoneShadows[3].enabled = false;
+			EightiesPhoneShadows[3].enabled = true;
+		}
 		if (Yandere.transform.position.y > 100f || Yandere.LunaAttacher.activeInHierarchy || Yandere.Carrying || Yandere.Dragging)
 		{
 			PhoneIcons[3].alpha = 0.5f;
 			PhoneShadows[3].enabled = false;
+			EightiesPhoneShadows[3].enabled = false;
 		}
 	}
 

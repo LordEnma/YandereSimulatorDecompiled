@@ -11,6 +11,10 @@ public class UniformSetterScript : MonoBehaviour
 
 	public SkinnedMeshRenderer MyRenderer;
 
+	public Renderer RightEye;
+
+	public Renderer LeftEye;
+
 	public Mesh[] FemaleUniforms;
 
 	public Mesh[] MaleUniforms;
@@ -76,6 +80,11 @@ public class UniformSetterScript : MonoBehaviour
 		if (VTuberFaces != null && VTuberFaces.Length != 0 && GameGlobals.VtuberID > 0)
 		{
 			AyanoFace = VTuberFaces[GameGlobals.VtuberID];
+			if (RightEye != null)
+			{
+				RightEye.material.mainTexture = AyanoFace;
+				LeftEye.material.mainTexture = AyanoFace;
+			}
 		}
 		if (MyRenderer == null)
 		{

@@ -58,7 +58,10 @@ public class EmergencyShowerScript : MonoBehaviour
 				Prompt.Circle[0].fillAmount = 1f;
 				if (!Yandere.Chased && Yandere.Chasers == 0)
 				{
-					Type = Yandere.PickUp.GetComponent<FoldedUniformScript>().Type;
+					if (Yandere.PickUp != null)
+					{
+						Type = Yandere.PickUp.GetComponent<FoldedUniformScript>().Type;
+					}
 					Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 					Yandere.CannotBeSprayed = true;
 					Yandere.CanMove = false;
@@ -188,6 +191,10 @@ public class EmergencyShowerScript : MonoBehaviour
 			if (Timer > 8.5f)
 			{
 				Debug.Log("As of now, # of OriginalUniforms is: " + Yandere.StudentManager.OriginalUniforms + " and # of NewUniforms is: " + Yandere.StudentManager.NewUniforms);
+				Yandere.MyLocker.UsedEmergencyShower = true;
+				Yandere.MyLocker.UpdateAvailableClothing();
+				Yandere.MyLocker.Shut();
+				Prompt.Label[0].text = "     Open";
 				CensorSteam.SetActive(value: false);
 				Yandere.CannotBeSprayed = false;
 				Yandere.CanMove = true;

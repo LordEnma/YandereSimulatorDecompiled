@@ -315,7 +315,7 @@ public class WeekSelectScript : MonoBehaviour
 			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
 				GameGlobals.SetSpecificEliminations(RivalID, GameGlobals.GetSpecificEliminations(RivalID) + 1);
-				if (GameGlobals.GetSpecificEliminations(RivalID) > 20)
+				if (GameGlobals.GetSpecificEliminations(RivalID) > 21)
 				{
 					GameGlobals.SetSpecificEliminations(RivalID, 1);
 				}
@@ -329,7 +329,7 @@ public class WeekSelectScript : MonoBehaviour
 				GameGlobals.SetSpecificEliminations(RivalID, GameGlobals.GetSpecificEliminations(RivalID) - 1);
 				if (GameGlobals.GetSpecificEliminations(RivalID) < 1)
 				{
-					GameGlobals.SetSpecificEliminations(RivalID, 20);
+					GameGlobals.SetSpecificEliminations(RivalID, 21);
 				}
 				GameGlobals.SetRivalEliminations(RivalID, Specifics[GameGlobals.GetSpecificEliminations(RivalID)]);
 				UpdateText();

@@ -399,18 +399,17 @@ public class PoliceScript : MonoBehaviour
 				{
 					Debug.Log("Invalid Genocide Run. Easter Eggs were used.");
 				}
-				else if (Clock.Weekday != 1 || StudentManager.Week > 1)
+				else if (Clock.Weekday == 1 && StudentManager.Week <= 1)
 				{
-					Debug.Log("Invalid Genocide Run. It's not Monday of Week 1.");
-				}
-				else if (!StudentManager.Students[1].gameObject.activeInHierarchy || StudentManager.Students[1].Fleeing)
-				{
-					Debug.Log("Invalid Genocide Run. Senpai was alarmed.");
-				}
-				else
-				{
-					GenocideEnding = true;
-					BeginFadingOut();
+					if (!StudentManager.Students[1].gameObject.activeInHierarchy || StudentManager.Students[1].Fleeing)
+					{
+						Debug.Log("Invalid Genocide Run. Senpai was alarmed.");
+					}
+					else
+					{
+						GenocideEnding = true;
+						BeginFadingOut();
+					}
 				}
 			}
 		}
@@ -1147,6 +1146,10 @@ public class PoliceScript : MonoBehaviour
 					Debug.Log("Student #" + j + " is dead, and...");
 					Debug.Log("StudentGlobals.GetStudentDying(ID) is: " + StudentGlobals.GetStudentDying(j));
 					Debug.Log("StudentGlobals.GetStudentDead(ID) is: " + StudentGlobals.GetStudentDead(j));
+					if (StudentGlobals.GetStudentDying(j) && !StudentGlobals.GetStudentDead(j))
+					{
+						Debug.Log("What, they were both false? Huh? How? Investigate that.");
+					}
 				}
 				if ((StudentGlobals.GetStudentDying(j) && !StudentGlobals.GetStudentDead(j)) || (StudentManager.Students[j] != null && !StudentManager.Students[j].Alive))
 				{
