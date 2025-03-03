@@ -90,9 +90,9 @@ namespace UnityStandardAssets.Vehicles.Car
 				return;
 			}
 			Vector3 to = base.transform.forward;
-			if (m_Rigidbody.velocity.magnitude > m_CarController.MaxSpeed * 0.1f)
+			if (m_Rigidbody.linearVelocity.magnitude > m_CarController.MaxSpeed * 0.1f)
 			{
-				to = m_Rigidbody.velocity;
+				to = m_Rigidbody.linearVelocity;
 			}
 			float num = m_CarController.MaxSpeed;
 			switch (m_BrakeCondition)

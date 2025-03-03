@@ -273,7 +273,7 @@ public abstract class UITweener : MonoBehaviour
 		float num = Mathf.Clamp01(factor);
 		if (method == Method.EaseIn)
 		{
-			num = 1f - Mathf.Sin((float)Math.PI / 2f * (1f - num));
+			num = 1f - Mathf.Sin(MathF.PI / 2f * (1f - num));
 			if (steeperCurves)
 			{
 				num *= num;
@@ -281,7 +281,7 @@ public abstract class UITweener : MonoBehaviour
 		}
 		else if (method == Method.EaseOut)
 		{
-			num = Mathf.Sin((float)Math.PI / 2f * num);
+			num = Mathf.Sin(MathF.PI / 2f * num);
 			if (steeperCurves)
 			{
 				num = 1f - num;
@@ -290,7 +290,7 @@ public abstract class UITweener : MonoBehaviour
 		}
 		else if (method == Method.EaseInOut)
 		{
-			num -= Mathf.Sin(num * ((float)Math.PI * 2f)) / ((float)Math.PI * 2f);
+			num -= Mathf.Sin(num * (MathF.PI * 2f)) / (MathF.PI * 2f);
 			if (steeperCurves)
 			{
 				num = num * 2f - 1f;

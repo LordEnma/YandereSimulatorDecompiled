@@ -455,6 +455,7 @@ public class TallLockerScript : MonoBehaviour
 
 	public void SpawnSteamNoSideEffects(StudentScript SteamStudent)
 	{
+		Debug.Log("Student #" + SteamStudent.StudentID + ", " + SteamStudent.Name + ", is changing clothes, no strings attached.");
 		Object.Instantiate(SteamCloud, SteamStudent.transform.position + Vector3.up * 0.81f, Quaternion.identity).transform.parent = SteamStudent.transform;
 		SteamStudent.CharacterAnimation.CrossFade(SteamStudent.StripAnim);
 		Debug.Log("canSearch and canMove are being set to false here.");
@@ -463,7 +464,8 @@ public class TallLockerScript : MonoBehaviour
 		SteamStudent.MustChangeClothing = false;
 		SteamStudent.Stripping = true;
 		SteamStudent.Routine = false;
-		SteamStudent.WalkAnim = SteamStudent.OriginalOriginalWalkAnim;
+		Debug.Log("Student #" + SteamStudent.StudentID + ", " + SteamStudent.Name + ", is changing to their ''original'' walk animation, " + SteamStudent.OriginalWalkAnim);
+		SteamStudent.WalkAnim = SteamStudent.OriginalWalkAnim;
 	}
 
 	public void UpdateSchoolwear()

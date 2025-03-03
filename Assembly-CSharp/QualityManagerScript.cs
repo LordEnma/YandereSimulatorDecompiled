@@ -608,7 +608,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 		StudentManager.LowDetailThreshold = OptionGlobals.LowDetailStudents * 10;
 		bool flag = false;
-		flag = (((float)StudentManager.LowDetailThreshold > 0f) ? true : false);
+		flag = (float)StudentManager.LowDetailThreshold > 0f;
 		if (StudentManager.Students[1] != null)
 		{
 			StudentManager.Students[1].LowPoly.MyMesh.enabled = false;

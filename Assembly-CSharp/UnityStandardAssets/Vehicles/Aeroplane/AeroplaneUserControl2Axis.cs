@@ -29,8 +29,8 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 
 		private void AdjustInputForMobileControls(ref float roll, ref float pitch, ref float throttle)
 		{
-			float num = roll * maxRollAngle * ((float)Math.PI / 180f);
-			float num2 = pitch * maxPitchAngle * ((float)Math.PI / 180f);
+			float num = roll * maxRollAngle * (MathF.PI / 180f);
+			float num2 = pitch * maxPitchAngle * (MathF.PI / 180f);
 			roll = Mathf.Clamp(num - m_Aeroplane.RollAngle, -1f, 1f);
 			pitch = Mathf.Clamp(num2 - m_Aeroplane.PitchAngle, -1f, 1f);
 			float num3 = throttle * 0.5f + 0.5f;

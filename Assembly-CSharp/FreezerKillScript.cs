@@ -83,7 +83,9 @@ public class FreezerKillScript : MonoBehaviour
 								continue;
 							}
 							Prompt.Yandere.Sanity -= (float)((Prompt.Yandere.Panties == 10) ? 10 : 20) * Prompt.Yandere.Numbness;
+							Prompt.Yandere.Attacking = true;
 							Prompt.Yandere.CanMove = false;
+							Prompt.Yandere.enabled = false;
 							Victim = StudentManager.Students[i];
 							if (i == StudentManager.RivalID)
 							{
@@ -101,6 +103,7 @@ public class FreezerKillScript : MonoBehaviour
 							Victim.SmartPhone.SetActive(value: false);
 							Victim.enabled = false;
 							Victim.Hearts.Stop();
+							Victim.Dying = true;
 							ShovePhase = 1;
 							ShoveTimer = 0f;
 							Prompt.enabled = false;
@@ -155,7 +158,7 @@ public class FreezerKillScript : MonoBehaviour
 				}
 				MyAudio.Play();
 				Prompt.Yandere.CharacterAnimation.CrossFade("f02_freezerMurder_A");
-				Prompt.Yandere.MurderousActionTimer = 10f;
+				Prompt.Yandere.MurderousActionTimer = 1f;
 				if (!Victim.Male)
 				{
 					Victim.CharacterAnimation.CrossFade("f02_freezerMurder_B");
@@ -174,6 +177,7 @@ public class FreezerKillScript : MonoBehaviour
 		}
 		else if (ShovePhase == 2)
 		{
+			Prompt.Yandere.transform.rotation = YandereSpot.rotation;
 			ShoveTimer += Time.deltaTime;
 			if (ShoveTimer >= 3f)
 			{
@@ -189,6 +193,8 @@ public class FreezerKillScript : MonoBehaviour
 				Victim.MyController.enabled = false;
 				Victim.Prompt.enabled = false;
 				Victim.Prompt.Hide();
+				Prompt.Yandere.Attacking = false;
+				Prompt.Yandere.enabled = true;
 				Prompt.Yandere.CanMove = true;
 				ShovePhase++;
 			}

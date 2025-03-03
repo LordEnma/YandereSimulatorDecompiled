@@ -94,7 +94,7 @@ public class RichPresenceHelper : MonoBehaviour
 	private string GetSceneDescription()
 	{
 		string text = SceneManager.GetActiveScene().name;
-		if (text != null && text == "SchoolScene")
+		if (text == "SchoolScene")
 		{
 			string text2 = (MissionModeGlobals.MissionMode ? ", Mission Mode" : string.Empty);
 			return string.Format("{0}, {1}, {2}, {3}{4}", _sceneDescriptions["SchoolScene"], _clockScript.TimeLabel.text, _periods[_clockScript.Period], _weekdays[_clockScript.Weekday], text2);

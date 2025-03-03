@@ -97,8 +97,7 @@ public class DiscordRPC : MonoBehaviour
 	private string GetSceneDescription()
 	{
 		UpdateSceneDescription();
-		string currentScene = _currentScene;
-		if (currentScene != null && currentScene == "SchoolScene")
+		if (_currentScene == "SchoolScene")
 		{
 			string text = (MissionModeGlobals.MissionMode ? ", Mission Mode" : string.Empty);
 			return string.Format("{0}, {1}, {2}, {3}{4}", _sceneDescription["SchoolScene"], _clockScript.TimeLabel.text, _gamePeriod[_clockScript.Period], _gameWeekday[_clockScript.Weekday], text);

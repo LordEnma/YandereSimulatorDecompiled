@@ -15,7 +15,7 @@ public class PerspectivePixelPerfect : MonoBehaviour
 		float farClipPlane = main.farClipPlane;
 		float num = Mathf.Lerp(nearClipPlane, farClipPlane, bias);
 		float fieldOfView = main.fieldOfView;
-		float num2 = Mathf.Tan((float)Math.PI / 180f * fieldOfView * 0.5f) * num;
+		float num2 = Mathf.Tan(MathF.PI / 180f * fieldOfView * 0.5f) * num;
 		obj.localPosition = new Vector3(0f, 0f, num);
 		obj.localScale = new Vector3(num2, num2, 1f);
 	}

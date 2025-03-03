@@ -31,11 +31,11 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 
 		private void Update()
 		{
-			if (m_State == GearState.Lowered && m_Plane.Altitude > raiseAtAltitude && m_Rigidbody.velocity.y > 0f)
+			if (m_State == GearState.Lowered && m_Plane.Altitude > raiseAtAltitude && m_Rigidbody.linearVelocity.y > 0f)
 			{
 				m_State = GearState.Raised;
 			}
-			if (m_State == GearState.Raised && m_Plane.Altitude < lowerAtAltitude && m_Rigidbody.velocity.y < 0f)
+			if (m_State == GearState.Raised && m_Plane.Altitude < lowerAtAltitude && m_Rigidbody.linearVelocity.y < 0f)
 			{
 				m_State = GearState.Lowered;
 			}

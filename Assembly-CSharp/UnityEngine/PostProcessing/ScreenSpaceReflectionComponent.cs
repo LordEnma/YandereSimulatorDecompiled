@@ -159,7 +159,7 @@ namespace UnityEngine.PostProcessing
 			material.SetInt(Uniforms._FullResolutionFiltering, 0);
 			material.SetInt(Uniforms._HalfResolution, (settings.reflection.reflectionQuality != 0) ? 1 : 0);
 			material.SetInt(Uniforms._HighlightSuppression, k_HighlightSuppression ? 1 : 0);
-			float value = num4 / (-2f * Mathf.Tan(camera.fieldOfView / 180f * (float)Math.PI * 0.5f));
+			float value = num4 / (-2f * Mathf.Tan(camera.fieldOfView / 180f * MathF.PI * 0.5f));
 			material.SetFloat(Uniforms._PixelsPerMeterAtOneMeter, value);
 			material.SetFloat(Uniforms._ScreenEdgeFading, settings.screenEdgeMask.intensity);
 			material.SetFloat(Uniforms._ReflectionBlur, settings.reflection.reflectionBlur);

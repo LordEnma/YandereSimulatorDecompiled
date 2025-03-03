@@ -30,7 +30,7 @@ public class FallingObjectScript : MonoBehaviour
 		Frame++;
 		if (Frame > 1)
 		{
-			Velocity = Mathf.Abs(MyRigidbody.velocity.x) + Mathf.Abs(MyRigidbody.velocity.y) + Mathf.Abs(MyRigidbody.velocity.z);
+			Velocity = Mathf.Abs(MyRigidbody.linearVelocity.x) + Mathf.Abs(MyRigidbody.linearVelocity.y) + Mathf.Abs(MyRigidbody.linearVelocity.z);
 			if (Velocity < PreviousVelocity - 10f)
 			{
 				Debug.Log("Struck the ground or a person on this frame.");
@@ -41,7 +41,7 @@ public class FallingObjectScript : MonoBehaviour
 			{
 				Timer += Time.deltaTime;
 			}
-			if (MyRigidbody.velocity == Vector3.zero || (Nonlethal && Timer > 5f))
+			if (MyRigidbody.linearVelocity == Vector3.zero || (Nonlethal && Timer > 5f))
 			{
 				MyRigidbody.useGravity = false;
 				MyRigidbody.isKinematic = true;

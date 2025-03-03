@@ -341,7 +341,7 @@ public class MissionModeMenuScript : MonoBehaviour
 			NemesisObjectiveWindow.SetActive(value: false);
 			CustomYakuzaWindow.SetActive(value: false);
 			CustomNemesisWindow.SetActive(value: true);
-			RenderSettings.ambientSkyColor = new Color(0.2f, 0.2f, 0.2f, 1f);
+			RenderSettings.ambientSkyColor = new Color(1f, 1f, 1f, 1f);
 		}
 		NowLoading.SetActive(value: false);
 	}

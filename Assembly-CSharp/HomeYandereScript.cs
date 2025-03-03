@@ -455,7 +455,7 @@ public class HomeYandereScript : MonoBehaviour
 		Rigidbody component = GetComponent<Rigidbody>();
 		if (component != null)
 		{
-			component.velocity = Vector3.zero;
+			component.linearVelocity = Vector3.zero;
 		}
 		if (base.transform.position.y < -10f)
 		{

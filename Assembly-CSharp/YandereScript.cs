@@ -159,6 +159,8 @@ public class YandereScript : MonoBehaviour
 
 	public ShutterScript Shutter;
 
+	public TributeScript Tribute;
+
 	public Collider HipCollider;
 
 	public UISprite ProgressBar;
@@ -3353,7 +3355,7 @@ public class YandereScript : MonoBehaviour
 					}
 				}
 				bool flag = false;
-				if (PreparingThrow || StudentManager.TutorialActive)
+				if (PreparingThrow || StudentManager.TutorialActive || Tribute.MiyukiID == 12 || Tribute.MiyukiID == 13)
 				{
 					flag = true;
 				}
@@ -3884,42 +3886,43 @@ public class YandereScript : MonoBehaviour
 		{
 			UpdateODM();
 		}
-		if (Chased && !Sprayed && !Attacking && !Dumping && !Dropping && !StudentManager.PinningDown && !DelinquentFighting && !Struggling && !ShoulderCamera.HeartbrokenCamera.activeInHierarchy)
+		if (Chased && !Sprayed && !Attacking && !Dumping && !Dropping && !StudentManager.PinningDown && !DelinquentFighting && !Struggling)
 		{
-			if (Pursuer != null)
+			Debug.Log("Yandere is turning to face Pursuer.");
+			if (!ShoulderCamera.HeartbrokenCamera.activeInHierarchy)
 			{
-				targetRotation = Quaternion.LookRotation(Pursuer.transform.position - base.transform.position);
-				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
-				CharacterAnimation.CrossFade("f02_readyToFight_00");
-				if (Dragging || Carrying)
+				if (Pursuer != null)
 				{
-					EmptyHands();
+					targetRotation = Quaternion.LookRotation(Pursuer.transform.position - base.transform.position);
+					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
+					CharacterAnimation.CrossFade("f02_readyToFight_00");
+					if (Dragging || Carrying)
+					{
+						EmptyHands();
+					}
 				}
-			}
-			else
-			{
-				if (Hiding)
+				else
 				{
-					PromptBar.ClearButtons();
-					PromptBar.Show = false;
-					Hiding = false;
-				}
-				Debug.Log("If the code got here, it means that Yandere-chan is being chased, but Pursuer is null.");
-				Debug.Log("This COULD mean that there was a Pursuer, who is now dead. Or, it could mean something else.");
-				if (StudentManager.Alphabet.enabled)
-				{
-					PreparedForStruggle = false;
-					CanMove = true;
-					Chased = false;
+					if (Hiding)
+					{
+						PromptBar.ClearButtons();
+						PromptBar.Show = false;
+						Hiding = false;
+					}
+					Debug.Log("If the code got here, it means that Yandere-chan is being chased, but Pursuer is null.");
+					Debug.Log("This COULD mean that there was a Pursuer, who is now dead. Or, it could mean something else.");
+					if (StudentManager.Alphabet.enabled)
+					{
+						PreparedForStruggle = false;
+						CanMove = true;
+						Chased = false;
+					}
 				}
 			}
 		}
 		StopArmedAnim();
 		if (Dumping)
 		{
-			targetRotation = Quaternion.LookRotation(Incinerator.transform.position - base.transform.position);
-			base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
-			MoveTowardsTarget(Incinerator.transform.position + Vector3.right * -2f);
 			if (DumpTimer == 0f && Carrying)
 			{
 				CharacterAnimation["f02_carryDisposeA_00"].time = 2.5f;
@@ -3927,6 +3930,8 @@ public class YandereScript : MonoBehaviour
 			DumpTimer += Time.deltaTime;
 			if (DumpTimer > 1f)
 			{
+				base.transform.position = Incinerator.transform.position + Vector3.right * -2f;
+				base.transform.rotation = Quaternion.LookRotation(Incinerator.transform.position - base.transform.position);
 				if (Ragdoll != null && !Ragdoll.GetComponent<RagdollScript>().Dumped)
 				{
 					DumpRagdoll(RagdollDumpType.Incinerator);
@@ -3944,6 +3949,12 @@ public class YandereScript : MonoBehaviour
 					StopCarrying();
 					DumpTimer = 0f;
 				}
+			}
+			else
+			{
+				targetRotation = Quaternion.LookRotation(Incinerator.transform.position - base.transform.position);
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
+				MoveTowardsTarget(Incinerator.transform.position + Vector3.right * -2f);
 			}
 		}
 		if (Chipping)
@@ -4465,7 +4476,7 @@ public class YandereScript : MonoBehaviour
 					MyController.radius = 0.2f;
 					CharacterAnimation.CrossFade(IdleAnim);
 					ShoulderCamera.Struggle = false;
-					ShoulderCamera.Phase = 0;
+					ShoulderCamera.Phase = 1;
 					PreparedForStruggle = false;
 					Struggling = false;
 					StrugglePhase = 0;
@@ -9673,17 +9684,20 @@ public class YandereScript : MonoBehaviour
 			if (TooCloseToWall)
 			{
 				Ragdoll.transform.position = new Vector3(base.transform.position.x, base.transform.position.y, base.transform.position.z);
-				if (WallToRight && WallToLeft)
+				if (WallInFront && WallBehind)
 				{
-					Ragdoll.transform.Translate(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.forward * -0.5f));
+					Debug.Log("We're in such a tight spot that we really shouldn't proceed forward to the following code.");
 				}
-				else if (WallToRight)
+				else if (!WallToRight || !WallToLeft)
 				{
-					Ragdoll.transform.Translate(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.right * -0.5f));
-				}
-				else if (WallToLeft)
-				{
-					Ragdoll.transform.Translate(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.right * 0.5f));
+					if (WallToRight)
+					{
+						Ragdoll.transform.Translate(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.right * -0.5f));
+					}
+					else if (WallToLeft)
+					{
+						Ragdoll.transform.Translate(base.transform.worldToLocalMatrix.MultiplyVector(base.transform.right * 0.5f));
+					}
 				}
 				Physics.SyncTransforms();
 			}

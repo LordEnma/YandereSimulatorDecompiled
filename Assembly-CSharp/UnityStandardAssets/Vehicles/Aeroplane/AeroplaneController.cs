@@ -88,8 +88,8 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 		private void Start()
 		{
 			m_Rigidbody = GetComponent<Rigidbody>();
-			m_OriginalDrag = m_Rigidbody.drag;
-			m_OriginalAngularDrag = m_Rigidbody.angularDrag;
+			m_OriginalDrag = m_Rigidbody.linearDamping;
+			m_OriginalAngularDrag = m_Rigidbody.angularDamping;
 			for (int i = 0; i < base.transform.childCount; i++)
 			{
 				WheelCollider[] componentsInChildren = base.transform.GetChild(i).GetComponentsInChildren<WheelCollider>();
@@ -158,7 +158,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 
 		private void CalculateForwardSpeed()
 		{
-			ForwardSpeed = Mathf.Max(0f, base.transform.InverseTransformDirection(m_Rigidbody.velocity).z);
+			ForwardSpeed = Mathf.Max(0f, base.transform.InverseTransformDirection(m_Rigidbody.linearVelocity).z);
 		}
 
 		private void ControlThrottle()
@@ -173,20 +173,20 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 
 		private void CalculateDrag()
 		{
-			float num = m_Rigidbody.velocity.magnitude * m_DragIncreaseFactor;
-			m_Rigidbody.drag = (AirBrakes ? ((m_OriginalDrag + num) * m_AirBrakesEffect) : (m_OriginalDrag + num));
-			m_Rigidbody.angularDrag = m_OriginalAngularDrag * ForwardSpeed;
+			float num = m_Rigidbody.linearVelocity.magnitude * m_DragIncreaseFactor;
+			m_Rigidbody.linearDamping = (AirBrakes ? ((m_OriginalDrag + num) * m_AirBrakesEffect) : (m_OriginalDrag + num));
+			m_Rigidbody.angularDamping = m_OriginalAngularDrag * ForwardSpeed;
 		}
 
 		private void CaluclateAerodynamicEffect()
 		{
-			if (m_Rigidbody.velocity.magnitude > 0f)
+			if (m_Rigidbody.linearVelocity.magnitude > 0f)
 			{
-				m_AeroFactor = Vector3.Dot(base.transform.forward, m_Rigidbody.velocity.normalized);
+				m_AeroFactor = Vector3.Dot(base.transform.forward, m_Rigidbody.linearVelocity.normalized);
 				m_AeroFactor *= m_AeroFactor;
-				Vector3 velocity = Vector3.Lerp(m_Rigidbody.velocity, base.transform.forward * ForwardSpeed, m_AeroFactor * ForwardSpeed * m_AerodynamicEffect * Time.deltaTime);
-				m_Rigidbody.velocity = velocity;
-				m_Rigidbody.rotation = Quaternion.Slerp(m_Rigidbody.rotation, Quaternion.LookRotation(m_Rigidbody.velocity, base.transform.up), m_AerodynamicEffect * Time.deltaTime);
+				Vector3 linearVelocity = Vector3.Lerp(m_Rigidbody.linearVelocity, base.transform.forward * ForwardSpeed, m_AeroFactor * ForwardSpeed * m_AerodynamicEffect * Time.deltaTime);
+				m_Rigidbody.linearVelocity = linearVelocity;
+				m_Rigidbody.rotation = Quaternion.Slerp(m_Rigidbody.rotation, Quaternion.LookRotation(m_Rigidbody.linearVelocity, base.transform.up), m_AerodynamicEffect * Time.deltaTime);
 			}
 		}
 
@@ -194,7 +194,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 		{
 			Vector3 zero = Vector3.zero;
 			zero += EnginePower * base.transform.forward;
-			Vector3 normalized = Vector3.Cross(m_Rigidbody.velocity, base.transform.right).normalized;
+			Vector3 normalized = Vector3.Cross(m_Rigidbody.linearVelocity, base.transform.right).normalized;
 			float num = Mathf.InverseLerp(m_ZeroLiftSpeed, 0f, ForwardSpeed);
 			float num2 = ForwardSpeed * ForwardSpeed * m_Lift * num * m_AeroFactor;
 			zero += num2 * normalized;

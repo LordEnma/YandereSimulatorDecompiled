@@ -378,7 +378,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 			{
 				if (Yandere.CharacterAnimation["f02_" + EventAnim[5]].time > 10f)
 				{
-					Yandere.MurderousActionTimer = 999f;
+					Yandere.MurderousActionTimer = 1f;
 					Rival.SpawnAlarmDisc();
 					AudioClipPlayer.Play(SpeechClip[5], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
 					EventSubtitle.text = SpeechText[5];

@@ -2357,6 +2357,10 @@ public class SubtitleScript : MonoBehaviour
 			Label.text = ProximityWarnings[ID];
 			break;
 		case SubtitleType.InterruptionReaction:
+			if (ID >= InterruptReactions.Length)
+			{
+				ID = 0;
+			}
 			Label.text = InterruptReactions[ID];
 			break;
 		case SubtitleType.RivalInterruptionReaction:

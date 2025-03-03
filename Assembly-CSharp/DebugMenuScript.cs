@@ -504,16 +504,10 @@ public class DebugMenuScript : MonoBehaviour
 						}
 					}
 					StudentManager.Students[46].Friend = false;
-					int num = 0;
 					Window.SetActive(value: false);
 					WeaponManager.BroughtWeapons[8].transform.parent = null;
 					WeaponManager.BroughtWeapons[8].gameObject.SetActive(value: true);
 					Debug.Log("Yandere.Class.PhysicalGrade is now: " + Yandere.Class.PhysicalGrade);
-					for (num = 2; num < 8; num++)
-					{
-						StudentManager.Students[num].MyBento.Tampered = true;
-						StudentManager.Students[num].MyBento.Tranquil = true;
-					}
 				}
 				else if (Input.GetKeyDown(KeyCode.T))
 				{

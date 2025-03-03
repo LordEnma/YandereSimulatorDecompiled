@@ -86,7 +86,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		public float CurrentSteerAngle => m_SteerAngle;
 
-		public float CurrentSpeed => m_Rigidbody.velocity.magnitude * 2.2369363f;
+		public float CurrentSpeed => m_Rigidbody.linearVelocity.magnitude * 2.2369363f;
 
 		public float MaxSpeed => m_Topspeed;
 
@@ -181,21 +181,21 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		private void CapSpeed()
 		{
-			float magnitude = m_Rigidbody.velocity.magnitude;
+			float magnitude = m_Rigidbody.linearVelocity.magnitude;
 			switch (m_SpeedType)
 			{
 			case SpeedType.MPH:
 				magnitude *= 2.2369363f;
 				if (magnitude > m_Topspeed)
 				{
-					m_Rigidbody.velocity = m_Topspeed / 2.2369363f * m_Rigidbody.velocity.normalized;
+					m_Rigidbody.linearVelocity = m_Topspeed / 2.2369363f * m_Rigidbody.linearVelocity.normalized;
 				}
 				break;
 			case SpeedType.KPH:
 				magnitude *= 3.6f;
 				if (magnitude > m_Topspeed)
 				{
-					m_Rigidbody.velocity = m_Topspeed / 3.6f * m_Rigidbody.velocity.normalized;
+					m_Rigidbody.linearVelocity = m_Topspeed / 3.6f * m_Rigidbody.linearVelocity.normalized;
 				}
 				break;
 			}
@@ -233,7 +233,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 			for (int j = 0; j < 4; j++)
 			{
-				if (CurrentSpeed > 5f && Vector3.Angle(base.transform.forward, m_Rigidbody.velocity) < 50f)
+				if (CurrentSpeed > 5f && Vector3.Angle(base.transform.forward, m_Rigidbody.linearVelocity) < 50f)
 				{
 					m_WheelColliders[j].brakeTorque = m_BrakeTorque * footbrake;
 				}
@@ -258,14 +258,14 @@ namespace UnityStandardAssets.Vehicles.Car
 			if (Mathf.Abs(m_OldRotation - base.transform.eulerAngles.y) < 10f)
 			{
 				Quaternion quaternion = Quaternion.AngleAxis((base.transform.eulerAngles.y - m_OldRotation) * m_SteerHelper, Vector3.up);
-				m_Rigidbody.velocity = quaternion * m_Rigidbody.velocity;
+				m_Rigidbody.linearVelocity = quaternion * m_Rigidbody.linearVelocity;
 			}
 			m_OldRotation = base.transform.eulerAngles.y;
 		}
 
 		private void AddDownForce()
 		{
-			m_WheelColliders[0].attachedRigidbody.AddForce(-base.transform.up * m_Downforce * m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
+			m_WheelColliders[0].attachedRigidbody.AddForce(-base.transform.up * m_Downforce * m_WheelColliders[0].attachedRigidbody.linearVelocity.magnitude);
 		}
 
 		private void CheckForWheelSpin()

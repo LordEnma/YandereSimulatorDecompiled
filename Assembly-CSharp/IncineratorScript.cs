@@ -235,7 +235,6 @@ public class IncineratorScript : MonoBehaviour
 		if (Prompt.Circle[3].fillAmount == 0f)
 		{
 			Prompt.Circle[3].fillAmount = 1f;
-			Time.timeScale = 1f;
 			if (Yandere.Ragdoll != null)
 			{
 				if (Yandere.Dragging)

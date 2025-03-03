@@ -129,7 +129,7 @@ namespace UnityEngine.PostProcessing
 
 		private Matrix4x4 GetPerspectiveProjectionMatrix(Vector2 offset)
 		{
-			float num = Mathf.Tan((float)Math.PI / 360f * context.camera.fieldOfView);
+			float num = Mathf.Tan(MathF.PI / 360f * context.camera.fieldOfView);
 			float num2 = num * context.camera.aspect;
 			offset.x *= num2 / (0.5f * (float)context.width);
 			offset.y *= num / (0.5f * (float)context.height);

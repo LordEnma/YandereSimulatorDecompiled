@@ -151,7 +151,7 @@ public class FanCoverScript : MonoBehaviour
 			if (Yandere.CharacterAnimation["f02_fanMurderA_00"].time > 3.5f && !Reacted)
 			{
 				AudioSource.PlayClipAtPoint(RivalReaction, Rival.transform.position + new Vector3(0f, 1f, 0f));
-				Yandere.MurderousActionTimer = 999f;
+				Yandere.MurderousActionTimer = 1f;
 				Reacted = true;
 			}
 			if (Yandere.CharacterAnimation["f02_fanMurderA_00"].time > 5f)

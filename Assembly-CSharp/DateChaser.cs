@@ -44,7 +44,8 @@ public class DateChaser : MonoBehaviour
 
 	private static DateTime fromUnix(long unix)
 	{
-		return epoch.AddSeconds(unix);
+		DateTime dateTime = epoch;
+		return dateTime.AddSeconds(unix);
 	}
 
 	private void Start()

@@ -589,7 +589,11 @@ public class CosmeticScript : MonoBehaviour
 
 	public string[] PortraitPoses;
 
+	public Texture NudeTexture;
+
 	public Texture[] RivalSkin;
+
+	public Texture[] RivalNude;
 
 	public void Start()
 	{
@@ -735,6 +739,7 @@ public class CosmeticScript : MonoBehaviour
 						FaceTextures[i] = FemaleHairRenderers[Hairstyle].material.mainTexture;
 						SkinTextures[i] = RivalSkin[StudentID - 10];
 					}
+					NudeTexture = RivalNude[StudentID - 10];
 				}
 				else
 				{

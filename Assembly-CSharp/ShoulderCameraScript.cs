@@ -207,6 +207,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			}
 			if (NoticedTimer == 0f)
 			{
+				Debug.Log("This chunk of code in ShoulderCameraScript is now executing.");
 				Yandere.CameraEffects.UpdateDOF(1f);
 				GetComponent<Camera>().cullingMask &= -8193;
 				StudentScript component = Yandere.Senpai.GetComponent<StudentScript>();
@@ -236,6 +237,7 @@ public class ShoulderCameraScript : MonoBehaviour
 				NoticedPOV.LookAt(Yandere.Senpai.position + Vector3.up * NoticedHeight);
 				NoticedFocus.position = base.transform.position + base.transform.forward;
 				NoticedSpeed = 10f;
+				Phase = 1;
 			}
 			NoticedTimer += Time.deltaTime;
 			if (Phase == 1)
@@ -580,6 +582,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			Debug.Log("Animation was not synchronized...");
 			if (Yandere.TargetStudent != null)
 			{
+				Debug.Log("At this moment, Yandere.TargetStudent is: " + Yandere.TargetStudent.Name);
 				Yandere.TargetStudent.TeleportToBlackCube();
 				Yandere.CharacterAnimation["f02_moCounterA_00"].time = Timer;
 				if (!Yandere.TargetStudent.Male)
@@ -729,6 +732,7 @@ public class ShoulderCameraScript : MonoBehaviour
 				}
 				return;
 			}
+			Yandere.TargetStudent = null;
 			Yandere.Subtitle.Speaker = null;
 			RPGCamera.enabled = true;
 			Yandere.MyController.enabled = true;

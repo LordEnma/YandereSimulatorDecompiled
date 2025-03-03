@@ -1408,6 +1408,14 @@ public class CounselorScript : MonoBehaviour
 		}
 		Yandere.CameraEffects.UpdateDOF(2f);
 		Physics.SyncTransforms();
+		for (int i = 86; i < 90; i++)
+		{
+			if (StudentManager.Students[i] != null)
+			{
+				StudentManager.Students[i].WitnessCooldownTimer = 10f;
+				Debug.Log("Student #" + i + " should be blind for the next 10 seconds.");
+			}
+		}
 	}
 
 	private void UpdateInterrogation()

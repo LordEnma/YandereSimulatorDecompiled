@@ -91,7 +91,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			m_EngineSoundSource.pitch = Mathf.Lerp(m_EngineMinThrottlePitch, m_EngineMaxThrottlePitch, t);
 			m_EngineSoundSource.pitch += m_Plane.ForwardSpeed * m_EngineFwdSpeedMultiplier;
 			m_EngineSoundSource.volume = Mathf.InverseLerp(0f, m_Plane.MaxEnginePower * m_AdvancedSetttings.engineMasterVolume, m_Plane.EnginePower);
-			float magnitude = m_Rigidbody.velocity.magnitude;
+			float magnitude = m_Rigidbody.linearVelocity.magnitude;
 			m_WindSoundSource.pitch = m_WindBasePitch + magnitude * m_WindSpeedPitchFactor;
 			m_WindSoundSource.volume = Mathf.InverseLerp(0f, m_WindMaxSpeedVolume, magnitude) * m_AdvancedSetttings.windMasterVolume;
 		}

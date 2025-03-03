@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
 		private void Update()
 		{
-			if (base.transform.up.y > 0f || m_Rigidbody.velocity.magnitude > m_VelocityThreshold)
+			if (base.transform.up.y > 0f || m_Rigidbody.linearVelocity.magnitude > m_VelocityThreshold)
 			{
 				m_LastOkTime = Time.time;
 			}

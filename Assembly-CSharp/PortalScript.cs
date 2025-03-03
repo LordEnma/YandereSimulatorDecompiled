@@ -632,7 +632,14 @@ public class PortalScript : MonoBehaviour
 		}
 		if (SlideIntoSeat)
 		{
-			Yandere.MoveTowardsTarget(new Vector3(-9.62f, 4f, -26f));
+			if (Yandere.MyController.enabled)
+			{
+				Yandere.MoveTowardsTarget(new Vector3(-9.62f, 4f, -26f));
+			}
+			else
+			{
+				Yandere.transform.position = Vector3.Lerp(Yandere.transform.position, new Vector3(-9.62f, 4f, -26f), Time.deltaTime * 10f);
+			}
 		}
 		if (ResizeChairCollider)
 		{

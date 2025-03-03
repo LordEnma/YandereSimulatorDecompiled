@@ -200,7 +200,13 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public GameObject ANODIXOMode;
 
-	public int ID;
+	public bool VtuberChosen;
+
+	public int PikaID;
+
+	public int LilID;
+
+	public int AnoID;
 
 	public string[] PikaLoliLetters;
 
@@ -794,9 +800,19 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	private void UpdateDOF(float Focus)
 	{
-		Focus *= ((float)Screen.width / 1280f + (float)Screen.height / 720f) * 0.5f;
+		Focus = Focus;
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 		settings.focusDistance = Focus;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(5.6f);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
 		Profile.depthOfField.settings = settings;
 	}
 
@@ -960,33 +976,40 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (ID < PikaLoliLetters.Length && Input.GetKeyDown(PikaLoliLetters[ID]))
+		if (VtuberChosen)
 		{
-			ID++;
-			if (ID == PikaLoliLetters.Length)
+			return;
+		}
+		if (PikaID < PikaLoliLetters.Length && Input.GetKeyDown(PikaLoliLetters[PikaID]))
+		{
+			PikaID++;
+			if (PikaID == PikaLoliLetters.Length)
 			{
 				PikaLoliMode.SetActive(value: true);
 				GameGlobals.VtuberID = 1;
+				VtuberChosen = true;
 				UpdateModeDescLabels();
 			}
 		}
-		if (ID < LiLMeowLetters.Length && Input.GetKeyDown(LiLMeowLetters[ID]))
+		if (LilID < LiLMeowLetters.Length && Input.GetKeyDown(LiLMeowLetters[LilID]))
 		{
-			ID++;
-			if (ID == LiLMeowLetters.Length)
+			LilID++;
+			if (LilID == LiLMeowLetters.Length)
 			{
 				LiLMeowMode.SetActive(value: true);
 				GameGlobals.VtuberID = 2;
+				VtuberChosen = true;
 				UpdateModeDescLabels();
 			}
 		}
-		if (ID < ANODIXOLetters.Length && Input.GetKeyDown(ANODIXOLetters[ID]))
+		if (AnoID < ANODIXOLetters.Length && Input.GetKeyDown(ANODIXOLetters[AnoID]))
 		{
-			ID++;
-			if (ID == ANODIXOLetters.Length)
+			AnoID++;
+			if (AnoID == ANODIXOLetters.Length)
 			{
 				ANODIXOMode.SetActive(value: true);
 				GameGlobals.VtuberID = 3;
+				VtuberChosen = true;
 				UpdateModeDescLabels();
 			}
 		}

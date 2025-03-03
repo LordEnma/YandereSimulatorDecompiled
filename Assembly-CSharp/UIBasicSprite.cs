@@ -885,7 +885,7 @@ public abstract class UIBasicSprite : UIWidget
 		{
 			num = 1f - num;
 		}
-		num *= (float)Math.PI / 2f;
+		num *= MathF.PI / 2f;
 		float cos = Mathf.Cos(num);
 		float sin = Mathf.Sin(num);
 		RadialCut(xy, cos, sin, invert, corner);

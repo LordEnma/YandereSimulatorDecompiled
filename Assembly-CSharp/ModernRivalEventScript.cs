@@ -185,7 +185,7 @@ public class ModernRivalEventScript : MonoBehaviour
 				}
 				else if (!Char[0].InEvent && Char[0].Routine)
 				{
-					Debug.Log("A character's event has begun because the clock has advanced to a specific time of day.");
+					Debug.Log("A ModernRivalEvent has begun because the clock has advanced to a specific time of day.");
 					for (int k = 0; k < Char.Length; k++)
 					{
 						Char[k].EmptyHands();

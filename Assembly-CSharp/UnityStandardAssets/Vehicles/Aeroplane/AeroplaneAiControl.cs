@@ -57,8 +57,8 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 				Vector3 position = m_Target.position + base.transform.right * (Mathf.PerlinNoise(Time.time * m_LateralWanderSpeed, m_RandomPerlin) * 2f - 1f) * m_LateralWanderDistance;
 				Vector3 vector = base.transform.InverseTransformPoint(position);
 				float num = Mathf.Atan2(vector.x, vector.z);
-				float num2 = (Mathf.Clamp(0f - Mathf.Atan2(vector.y, vector.z), (0f - m_MaxClimbAngle) * ((float)Math.PI / 180f), m_MaxClimbAngle * ((float)Math.PI / 180f)) - m_AeroplaneController.PitchAngle) * m_PitchSensitivity;
-				float num3 = Mathf.Clamp(num, (0f - m_MaxRollAngle) * ((float)Math.PI / 180f), m_MaxRollAngle * ((float)Math.PI / 180f));
+				float num2 = (Mathf.Clamp(0f - Mathf.Atan2(vector.y, vector.z), (0f - m_MaxClimbAngle) * (MathF.PI / 180f), m_MaxClimbAngle * (MathF.PI / 180f)) - m_AeroplaneController.PitchAngle) * m_PitchSensitivity;
+				float num3 = Mathf.Clamp(num, (0f - m_MaxRollAngle) * (MathF.PI / 180f), m_MaxRollAngle * (MathF.PI / 180f));
 				float num4 = 0f;
 				float num5 = 0f;
 				if (!m_TakenOff)

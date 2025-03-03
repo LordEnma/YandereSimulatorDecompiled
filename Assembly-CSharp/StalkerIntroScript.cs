@@ -15,6 +15,8 @@ public class StalkerIntroScript : MonoBehaviour
 
 	public Renderer Darkness;
 
+	public bool BurazaTown;
+
 	public float RotationX;
 
 	public float RotationY;
@@ -88,7 +90,17 @@ public class StalkerIntroScript : MonoBehaviour
 		{
 			UpdateSkipPanel();
 		}
-		if (Week == 1)
+		if (BurazaTown)
+		{
+			DOF = 2f;
+			UpdateDOF(DOF, 5.6f);
+			Darkness.material.color = new Color(0f, 0f, 0f, 0f);
+			SkipPanel.enabled = false;
+			RPGCamera.enabled = true;
+			Yandere.enabled = true;
+			base.enabled = false;
+		}
+		else if (Week == 1)
 		{
 			Moon.LookAt(base.transform);
 			if (Phase == 0)

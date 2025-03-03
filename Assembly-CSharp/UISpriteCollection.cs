@@ -276,7 +276,7 @@ public class UISpriteCollection : UIBasicSprite
 			}
 			if (value.rot != 0f)
 			{
-				float f = value.rot * ((float)Math.PI / 180f) * 0.5f;
+				float f = value.rot * (MathF.PI / 180f) * 0.5f;
 				float num = Mathf.Sin(f);
 				float num2 = Mathf.Cos(f);
 				float num3 = num * 2f;
@@ -452,7 +452,7 @@ public class UISpriteCollection : UIBasicSprite
 
 	private static Vector2 Rotate(Vector2 pos, float rot)
 	{
-		float f = rot * ((float)Math.PI / 180f) * 0.5f;
+		float f = rot * (MathF.PI / 180f) * 0.5f;
 		float num = Mathf.Sin(f);
 		float num2 = Mathf.Cos(f);
 		float num3 = num * 2f;

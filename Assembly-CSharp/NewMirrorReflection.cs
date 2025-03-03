@@ -54,13 +54,13 @@ public class NewMirrorReflection : MonoBehaviour
 		reflectionCamera.projectionMatrix = projectionMatrix;
 		reflectionCamera.cullingMask = -17 & m_ReflectLayers.value;
 		reflectionCamera.targetTexture = m_ReflectionTexture;
-		GL.SetRevertBackfacing(revertBackFaces: true);
+		GL.invertCulling = true;
 		reflectionCamera.transform.position = position3;
 		Vector3 eulerAngles = current.transform.eulerAngles;
 		reflectionCamera.transform.eulerAngles = new Vector3(0f, eulerAngles.y, eulerAngles.z);
 		reflectionCamera.Render();
 		reflectionCamera.transform.position = position2;
-		GL.SetRevertBackfacing(revertBackFaces: false);
+		GL.invertCulling = false;
 		Material[] sharedMaterials = component.sharedMaterials;
 		foreach (Material material in sharedMaterials)
 		{

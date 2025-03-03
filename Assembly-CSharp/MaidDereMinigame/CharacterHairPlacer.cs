@@ -27,7 +27,7 @@ namespace MaidDereMinigame
 
 		public void HairPose(string point)
 		{
-			string[] array = point.Split(',');
+			string[] array = point.Split(new char[1] { ',' });
 			float result;
 			bool flag = float.TryParse(array[0], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out result);
 			float result2;

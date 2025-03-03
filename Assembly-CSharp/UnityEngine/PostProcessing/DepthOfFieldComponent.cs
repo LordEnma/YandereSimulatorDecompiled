@@ -59,7 +59,7 @@ namespace UnityEngine.PostProcessing
 			{
 				return settings.focalLength / 1000f;
 			}
-			float num = context.camera.fieldOfView * ((float)Math.PI / 180f);
+			float num = context.camera.fieldOfView * (MathF.PI / 180f);
 			return 0.012f / Mathf.Tan(0.5f * num);
 		}
 

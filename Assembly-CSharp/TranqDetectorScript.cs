@@ -16,6 +16,8 @@ public class TranqDetectorScript : MonoBehaviour
 
 	public UILabel KidnappingLabel;
 
+	public UILabel[] KidnappingLabels;
+
 	public UISprite TranquilizerIcon;
 
 	public UISprite FollowerIcon;
@@ -64,41 +66,64 @@ public class TranqDetectorScript : MonoBehaviour
 					if (Yandere.Inventory.SedativePoisons > 0)
 					{
 						TranquilizerIcon.spriteName = "Yes";
+						KidnappingLabels[1].color = Color.white;
 					}
 					else
 					{
 						TranquilizerIcon.spriteName = "No";
+						KidnappingLabels[1].color = Color.red;
+					}
+					if (Yandere.Class.BiologyGrade + Yandere.Class.BiologyBonus != 0)
+					{
+						BiologyIcon.spriteName = "Yes";
+						KidnappingLabels[2].color = Color.white;
+					}
+					else
+					{
+						BiologyIcon.spriteName = "No";
+						KidnappingLabels[2].color = Color.red;
 					}
 					if (Yandere.Followers != 1)
 					{
 						FollowerIcon.spriteName = "No";
+						KidnappingLabels[3].color = Color.red;
 					}
-					else
+					else if (Mathf.Abs(Vector3.Angle(-Yandere.Follower.transform.forward, Yandere.transform.position - Yandere.Follower.transform.position)) <= 45f)
 					{
 						KidnappingLabel.text = "Kidnapping Checklist";
 						FollowerIcon.spriteName = "Yes";
 						CannotKidnap = false;
+						KidnappingLabels[3].color = Color.white;
 					}
-					BiologyIcon.spriteName = ((Yandere.Class.BiologyGrade + Yandere.Class.BiologyBonus != 0) ? "Yes" : "No");
+					else
+					{
+						FollowerIcon.spriteName = "No";
+						KidnappingLabels[3].color = Color.red;
+					}
 					if (!Yandere.Armed)
 					{
 						SyringeIcon.spriteName = "No";
+						KidnappingLabels[4].color = Color.red;
 					}
 					else if (Yandere.EquippedWeapon.WeaponID != 3)
 					{
 						SyringeIcon.spriteName = "No";
+						KidnappingLabels[4].color = Color.red;
 					}
 					else
 					{
 						SyringeIcon.spriteName = "Yes";
+						KidnappingLabels[4].color = Color.white;
 					}
 					if (Door.Open || Door.Timer < 1f)
 					{
 						DoorIcon.spriteName = "No";
+						KidnappingLabels[5].color = Color.red;
 					}
 					else
 					{
 						DoorIcon.spriteName = "Yes";
+						KidnappingLabels[5].color = Color.white;
 					}
 				}
 				Checklist.alpha = Mathf.MoveTowards(Checklist.alpha, 1f, Time.deltaTime);
@@ -129,7 +154,17 @@ public class TranqDetectorScript : MonoBehaviour
 		if (!CannotKidnap)
 		{
 			Debug.Log("CannotKidnap is false.");
-			if (TranquilizerIcon.spriteName == "Yes" && FollowerIcon.spriteName == "Yes" && BiologyIcon.spriteName == "Yes" && SyringeIcon.spriteName == "Yes" && DoorIcon.spriteName == "Yes")
+			bool flag = false;
+			if (Mathf.Abs(Vector3.Angle(-Yandere.Follower.transform.forward, Yandere.transform.position - Yandere.Follower.transform.position)) > 45f)
+			{
+				Debug.Log("Not a stealth attack.");
+			}
+			else
+			{
+				Debug.Log("Performing a stealth attack.");
+				flag = true;
+			}
+			if (flag && TranquilizerIcon.spriteName == "Yes" && FollowerIcon.spriteName == "Yes" && BiologyIcon.spriteName == "Yes" && SyringeIcon.spriteName == "Yes" && DoorIcon.spriteName == "Yes")
 			{
 				Debug.Log("All of the icons said ''Yes''.");
 				AudioSource component = GetComponent<AudioSource>();

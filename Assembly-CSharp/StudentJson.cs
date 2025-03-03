@@ -454,7 +454,7 @@ public class StudentJson : JsonData
 
 	private static float[] ConstructTempFloatArray(string str)
 	{
-		string[] array = str.Split('_');
+		string[] array = str.Split(new char[1] { '_' });
 		float[] array2 = new float[array.Length];
 		for (int i = 0; i < array.Length; i++)
 		{

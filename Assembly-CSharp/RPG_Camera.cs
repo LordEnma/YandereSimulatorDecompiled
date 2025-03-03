@@ -101,7 +101,7 @@ public class RPG_Camera : MonoBehaviour
 		MainCamera = GetComponent<Camera>();
 		distance = Mathf.Clamp(distance, 0.05f, distanceMax);
 		desiredDistance = distance;
-		halfFieldOfView = MainCamera.fieldOfView / 2f * ((float)Math.PI / 180f);
+		halfFieldOfView = MainCamera.fieldOfView / 2f * (MathF.PI / 180f);
 		planeAspect = MainCamera.aspect;
 		halfPlaneHeight = MainCamera.nearClipPlane * Mathf.Tan(halfFieldOfView);
 		halfPlaneWidth = halfPlaneHeight * planeAspect;

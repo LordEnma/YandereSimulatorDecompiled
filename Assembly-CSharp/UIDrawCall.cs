@@ -704,7 +704,7 @@ public class UIDrawCall : MonoBehaviour
 
 	private void SetClipping(int index, Vector4 cr, Vector2 soft, float angle)
 	{
-		angle *= -(float)Math.PI / 180f;
+		angle *= -MathF.PI / 180f;
 		Vector2 vector = new Vector2(1000f, 1000f);
 		if (soft.x > 0f)
 		{

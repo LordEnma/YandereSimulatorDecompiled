@@ -34,6 +34,7 @@ public class LowRepGameOverScript : MonoBehaviour
 
 	private void Start()
 	{
+		StudentManager.Portal.GetComponent<PortalScript>().SlideIntoSeat = false;
 		GossipGroup[1].SetActive(value: false);
 		GossipGroup[2].SetActive(value: false);
 		GossipGroup[3].SetActive(value: false);

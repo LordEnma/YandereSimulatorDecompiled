@@ -25,7 +25,7 @@ public class Figure8Movement : MonoBehaviour
 
 	private float phase;
 
-	private float m_2PI = (float)Math.PI * 2f;
+	private float m_2PI = MathF.PI * 2f;
 
 	private Vector3 originalPosition;
 

@@ -517,7 +517,7 @@ public class RagdollScript : MonoBehaviour
 							}
 							for (int j = 0; j < Student.Ragdoll.AllRigidbodies.Length; j++)
 							{
-								Student.Ragdoll.AllRigidbodies[j].drag = 2f;
+								Student.Ragdoll.AllRigidbodies[j].linearDamping = 2f;
 							}
 							for (int k = 0; k < AllRigidbodies.Length; k++)
 							{
@@ -882,7 +882,7 @@ public class RagdollScript : MonoBehaviour
 		Rigidbody[] allRigidbodies = Student.Ragdoll.AllRigidbodies;
 		for (int i = 0; i < allRigidbodies.Length; i++)
 		{
-			allRigidbodies[i].drag = 0f;
+			allRigidbodies[i].linearDamping = 0f;
 		}
 		if (!Tranquil)
 		{

@@ -47,9 +47,9 @@ namespace UnityStandardAssets.Cameras
 			Vector3 up = m_Target.up;
 			if (m_FollowVelocity && Application.isPlaying)
 			{
-				if (targetRigidbody.velocity.magnitude > m_TargetVelocityLowerLimit)
+				if (targetRigidbody.linearVelocity.magnitude > m_TargetVelocityLowerLimit)
 				{
-					forward = targetRigidbody.velocity.normalized;
+					forward = targetRigidbody.linearVelocity.normalized;
 					up = Vector3.up;
 				}
 				else

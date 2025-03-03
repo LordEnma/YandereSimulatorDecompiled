@@ -213,6 +213,7 @@ public class TributeScript : MonoBehaviour
 				MiyukiID++;
 				if (MiyukiID == MiyukiLetters.Length)
 				{
+					StudentManager.BlindEveryone();
 					Henshin.TransformYandere();
 					Yandere.CanMove = false;
 					base.enabled = false;

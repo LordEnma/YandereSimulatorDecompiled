@@ -78,6 +78,11 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 		Subtitle.text = "";
 		for (int i = 1; i < 11; i++)
 		{
+			if (i == 1)
+			{
+				Debug.Log("GameGlobals.GetRivalEliminations(1) is: " + GameGlobals.GetRivalEliminations(i));
+				Debug.Log("GameGlobals.GetSpecificEliminations(1) is: " + GameGlobals.GetSpecificEliminations(i));
+			}
 			if (GameGlobals.GetRivalEliminations(i) == 1 || GameGlobals.GetRivalEliminations(i) == 2)
 			{
 				Debug.Log("Rival #" + i + " was killed.");
@@ -229,9 +234,9 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 		if (!WarmUp)
 		{
 			SkipTimer += Time.deltaTime;
-			if (SkipTimer > 2f)
+			if (SkipTimer > 0f)
 			{
-				SkipPanel.alpha = Mathf.MoveTowards(SkipPanel.alpha, 1f, Time.deltaTime * 0.33333f);
+				SkipPanel.alpha = Mathf.MoveTowards(SkipPanel.alpha, 1f, Time.deltaTime);
 			}
 		}
 		if (SkipPanel.alpha != 1f)

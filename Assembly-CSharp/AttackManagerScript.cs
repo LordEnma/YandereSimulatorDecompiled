@@ -7,15 +7,15 @@ public class AttackManagerScript : MonoBehaviour
 
 	public GameObject LargeBloodEffect;
 
-	private GameObject OriginalBloodEffect;
+	public GameObject OriginalBloodEffect;
 
-	private GameObject Victim;
+	public GameObject Victim;
 
-	private YandereScript Yandere;
+	public YandereScript Yandere;
 
-	private string VictimAnimName = string.Empty;
+	public string VictimAnimName = string.Empty;
 
-	private string AnimName = string.Empty;
+	public string AnimName = string.Empty;
 
 	public bool StainBluntWeapons;
 
@@ -150,6 +150,7 @@ public class AttackManagerScript : MonoBehaviour
 
 	public void Attack(GameObject victim, WeaponScript weapon)
 	{
+		Debug.Log("AttackManager.Attack() has just been called.");
 		Victim = victim;
 		Yandere.TargetStudent.FocusOnYandere = false;
 		Yandere.FollowHips = true;
@@ -178,6 +179,7 @@ public class AttackManagerScript : MonoBehaviour
 			}
 			AnimName = "f02_" + text + "StealthA_00";
 		}
+		Debug.Log("AnimName is: " + AnimName + " and VictimAnimName is: " + VictimAnimName);
 		YandereAnim = Yandere.CharacterAnimation;
 		YandereAnim[AnimName].time = 0f;
 		YandereAnim.CrossFade(AnimName);
@@ -712,7 +714,7 @@ public class AttackManagerScript : MonoBehaviour
 					}
 					else if (EffectPhase == 3)
 					{
-						if (YandereAnim[AnimName].time > (float)Math.PI * 113f / 150f)
+						if (YandereAnim[AnimName].time > MathF.PI * 113f / 150f)
 						{
 							weapon.BloodSpray[0].Play();
 							weapon.BloodSpray[1].Play();

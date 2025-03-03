@@ -409,7 +409,7 @@ public class PickUpScript : MonoBehaviour
 				base.transform.eulerAngles = OriginalRotation;
 				base.transform.position = new Vector3(base.transform.position.x, 0.025f, base.transform.position.z);
 				MyRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
-				MyRigidbody.velocity = Vector3.zero;
+				MyRigidbody.linearVelocity = Vector3.zero;
 			}
 			if (!KeepGravity)
 			{

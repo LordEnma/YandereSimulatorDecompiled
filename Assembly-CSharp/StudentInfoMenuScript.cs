@@ -518,7 +518,12 @@ public class StudentInfoMenuScript : MonoBehaviour
 		}
 		if (GettingInfo)
 		{
-			if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || (StudentID > 10 && StudentID < 21) || StudentID > 97)
+			int num = 10 + DateGlobals.Week;
+			if (StudentManager.MissionMode)
+			{
+				num = 11 + DateGlobals.Week;
+			}
+			if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || (StudentID > num && StudentID < 21) || StudentID > 97)
 			{
 				PromptBar.Label[0].text = string.Empty;
 			}
