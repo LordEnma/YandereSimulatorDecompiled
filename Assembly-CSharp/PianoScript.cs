@@ -17,7 +17,7 @@ public class PianoScript : MonoBehaviour
 			Prompt.Circle[0].fillAmount = 0f;
 			Notes[ID].Play();
 			ID++;
-			if (TapePlayer.gameObject.activeInHierarchy)
+			if (TapePlayer != null && TapePlayer.gameObject.activeInHierarchy)
 			{
 				TapePlayer.NotesRecorded++;
 				TapePlayer.MelodyCheck();

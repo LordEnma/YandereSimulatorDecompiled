@@ -95,6 +95,7 @@ public class FreezerKillScript : MonoBehaviour
 							{
 								VictimSpot.transform.localPosition = new Vector3(0f, 0f, 0.6f);
 							}
+							Prompt.Yandere.CharacterAnimation.CrossFade(Prompt.Yandere.IdleAnim);
 							Victim.CharacterAnimation.CrossFade(Victim.IdleAnim);
 							Victim.FollowCountdown.gameObject.SetActive(value: false);
 							Victim.MyRenderer.updateWhenOffscreen = true;
@@ -187,6 +188,16 @@ public class FreezerKillScript : MonoBehaviour
 			{
 				AddFrost();
 			}
+			if (PlayerGlobals.PantiesEquipped == 10)
+			{
+				Prompt.Yandere.Sanity -= Time.deltaTime * 5f * Prompt.Yandere.Numbness;
+			}
+			else
+			{
+				Prompt.Yandere.Sanity -= Time.deltaTime * 10f * Prompt.Yandere.Numbness;
+			}
+			Debug.Log("Now Sanity is: " + Prompt.Yandere.Sanity);
+			Prompt.Yandere.LateUpdate();
 			if (ShoveTimer >= 10f)
 			{
 				Prompt.Yandere.MurderousActionTimer = 0f;

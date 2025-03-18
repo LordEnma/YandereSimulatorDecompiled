@@ -966,6 +966,8 @@ public class QualityManagerScript : MonoBehaviour
 			AdjustRimLight(Nemesis.Cosmetic.MyRenderer.materials[1]);
 			AdjustRimLight(Nemesis.Cosmetic.MyRenderer.materials[2]);
 			AdjustRimLight(Nemesis.NemesisHair.GetComponent<Renderer>().material);
+			StudentManager.Journalist.GetComponent<JournalistScript>().Renderer.materials[0].shader = NewBodyShader;
+			StudentManager.Journalist.GetComponent<JournalistScript>().Renderer.materials[1].shader = NewBodyShader;
 		}
 		UpdateStockings();
 		if (Yandere != null)

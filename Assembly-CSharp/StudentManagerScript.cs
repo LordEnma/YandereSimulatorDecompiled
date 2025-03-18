@@ -1253,6 +1253,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public Texture PinkBlood;
 
+	public AudioClip Silence;
+
 	private void Awake()
 	{
 		WeekLimit = 3;
@@ -3941,6 +3943,7 @@ public class StudentManagerScript : MonoBehaviour
 	public void ComeBack()
 	{
 		Debug.Log("Firing ComeBack().");
+		Portal.GetComponent<PortalScript>().enabled = true;
 		Stop = false;
 		for (ID = 1; ID < Students.Length; ID++)
 		{
@@ -5033,7 +5036,7 @@ public class StudentManagerScript : MonoBehaviour
 		SaveAllStudentPositions();
 		int profile = GameGlobals.Profile;
 		int @int = PlayerPrefs.GetInt("SaveSlot");
-		Debug.Log("At the moment of saving, Yandere.Health was: " + Yandere.Health);
+		Debug.Log("At the moment of saving, Yandere.Sanity was: " + Yandere.Sanity);
 		BloodParent.RecordAllBlood();
 		PuddleParent.RecordAllPuddles();
 		ClothingParent.RecordAllClothing();
@@ -5052,8 +5055,8 @@ public class StudentManagerScript : MonoBehaviour
 		PlayerPrefs.SetInt("Profile_" + profile + "_Slot_" + @int + "_MemorialStudents", StudentGlobals.MemorialStudents);
 		Yandere.Class.gameObject.SetActive(value: false);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
-		Debug.Log("At the time of saving, StudentManager's GloveID was: " + GloveID);
-		Debug.Log("At the time that the save was made, SchemeGlobals.GetSchemeStage(6) was: " + SchemeGlobals.GetSchemeStage(6));
+		Vector3 yandereSavePosition = YandereSavePosition;
+		Debug.Log("At the time of saving, YandereSavePosition was: " + yandereSavePosition.ToString());
 	}
 
 	public void Load()
@@ -5123,6 +5126,18 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		for (ID = 1; ID < 101; ID++)
 		{
+			if (Students[ID] != null && !Students[ID].Alive && Students[ID].Sleepy)
+			{
+				Debug.Log("This dead student should be marking a bed in the infirmary as taken.");
+				ScheduleBlock obj = Students[ID].ScheduleBlocks[4];
+				obj.destination = "InfirmaryBed";
+				obj.action = "Relax";
+				Students[ID].Oversleep();
+				Students[ID].GetDestinations();
+			}
+		}
+		for (ID = 1; ID < 101; ID++)
+		{
 			if (Students[ID] != null)
 			{
 				Students[ID].RiggedAccessoryOutlineID = 0;
@@ -5147,6 +5162,8 @@ public class StudentManagerScript : MonoBehaviour
 					Quaternion localRotation = Students[ID].Hips.localRotation;
 					Students[ID].Ragdoll.Yandere = Yandere;
 					Students[ID].BecomeRagdoll();
+					Students[ID].Pathfinding.canMove = false;
+					Students[ID].Pathfinding.canSearch = false;
 					if (Students[ID].Ragdoll.Burned)
 					{
 						for (int j = 0; j < 3; j++)
@@ -5154,6 +5171,16 @@ public class StudentManagerScript : MonoBehaviour
 							Students[ID].Ragdoll.MyRenderer.materials[j].color = new Vector4(0.1f, 0.1f, 0.1f, 1f);
 						}
 						Students[ID].Cosmetic.HairRenderer.material.color = new Vector4(0.1f, 0.1f, 0.1f, 1f);
+					}
+					if (Students[ID].DeathType == DeathType.Frozen)
+					{
+						Students[ID].FrostProjector.enabled = true;
+						Students[ID].Ragdoll.BloodPoolSpawner.enabled = false;
+						Students[ID].FrostProjector.material.color = new Color(1f, 1f, 1f, 1f);
+					}
+					if (Students[ID].DeathType == DeathType.Smothered)
+					{
+						Students[ID].Ragdoll.BloodPoolSpawner.enabled = false;
 					}
 					GameObjectUtils.SetLayerRecursively(Students[ID].gameObject, 0);
 					Students[ID].Ragdoll.UpdateNextFrame = true;
@@ -5255,18 +5282,18 @@ public class StudentManagerScript : MonoBehaviour
 						Students[ID].CharacterAnimation.CrossFade(Students[ID].IdleAnim);
 						Students[ID].Injured = true;
 						Students[ID].Strength = 0;
-						ScheduleBlock obj = Students[ID].ScheduleBlocks[2];
-						obj.destination = "Sulk";
-						obj.action = "Sulk";
-						ScheduleBlock obj2 = Students[ID].ScheduleBlocks[4];
+						ScheduleBlock obj2 = Students[ID].ScheduleBlocks[2];
 						obj2.destination = "Sulk";
 						obj2.action = "Sulk";
-						ScheduleBlock obj3 = Students[ID].ScheduleBlocks[6];
+						ScheduleBlock obj3 = Students[ID].ScheduleBlocks[4];
 						obj3.destination = "Sulk";
 						obj3.action = "Sulk";
-						ScheduleBlock obj4 = Students[ID].ScheduleBlocks[7];
+						ScheduleBlock obj4 = Students[ID].ScheduleBlocks[6];
 						obj4.destination = "Sulk";
 						obj4.action = "Sulk";
+						ScheduleBlock obj5 = Students[ID].ScheduleBlocks[7];
+						obj5.destination = "Sulk";
+						obj5.action = "Sulk";
 						Students[ID].GetDestinations();
 					}
 					if (Students[ID].Actions[Students[ID].Phase] == StudentActionType.ClubAction && Students[ID].Club == ClubType.Cooking && Students[ID].ClubActivityPhase > 0)
@@ -5346,6 +5373,17 @@ public class StudentManagerScript : MonoBehaviour
 						Students[ID].CurrentDestination = Students[ID].Destinations[Students[ID].Phase];
 						Students[ID].Pathfinding.target = Students[ID].Destinations[Students[ID].Phase];
 						Students[ID].Hurry = true;
+					}
+					if (Students[ID].Sleepy)
+					{
+						Debug.Log("Student #" + ID + " was sleepy at the time of the save, and should be going to sleep in the infirmary now.");
+						Students[ID].TakingUpAHeadacheSpot = false;
+						Students[ID].GoSleepInInfirmary();
+						Students[ID].DistanceToDestination = Vector3.Distance(Students[ID].transform.position, Students[ID].CurrentDestination.position);
+						if (Students[ID].DistanceToDestination < 4f)
+						{
+							Students[ID].Distracted = true;
+						}
 					}
 					if (Students[ID].SitInInfirmary)
 					{
@@ -5548,7 +5586,7 @@ public class StudentManagerScript : MonoBehaviour
 			ScorchMarks.transform.parent.gameObject.SetActive(value: true);
 			ScorchMarks.transform.parent.GetChild(0).gameObject.SetActive(value: false);
 		}
-		Debug.Log("Upon loading the save, Yandere.Health was: " + Yandere.Health);
+		Debug.Log("Upon loading the save, Yandere.Sanity was: " + Yandere.Sanity);
 		if (Yandere.Health < 10)
 		{
 			Yandere.MyRenderer.materials[2].SetFloat("_BlendAmount1", 1f - (float)Yandere.Health * 1f / 10f);
@@ -5572,6 +5610,13 @@ public class StudentManagerScript : MonoBehaviour
 			Physics.SyncTransforms();
 		}
 		SetAtmosphere();
+		for (int m = 0; m < 9; m++)
+		{
+			if (Police.EndOfDay.GardenHoles[m].VictimID > 0)
+			{
+				Police.EndOfDay.GardenHoles[m].Carrots.SetActive(value: false);
+			}
+		}
 		Debug.Log("The entire loading process has been completed.");
 		Debug.Log("End of StudentManager Load() believes that GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID);
 		Debug.Log("End of StudentManager Load() believes that RivalEliminated is: " + RivalEliminated);

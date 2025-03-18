@@ -45,6 +45,8 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	public float Timer;
 
+	public bool AlreadyPopulated;
+
 	public bool ClubCheck;
 
 	public bool Private;
@@ -102,7 +104,7 @@ public class ModernRivalEventScript : MonoBehaviour
 					Char[0] = StudentManager.Students[CharIDs[0]];
 					if (Char[0] != null)
 					{
-						Characters++;
+						PopulateCharacterList();
 					}
 				}
 				else if (!Char[0].InEvent && Char[0].transform.position.z > -48f && Clock.HourTime > 7.02f)
@@ -643,6 +645,15 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	public void PopulateCharacterList()
 	{
+		if (EventID == RivalEventType.AmaiPhoneEvent)
+		{
+			Debug.Log("PopulateCharactersList is now being called.");
+			Debug.Log("AlreadyPopulated is: " + AlreadyPopulated);
+		}
+		if (AlreadyPopulated)
+		{
+			return;
+		}
 		for (int i = 0; i < Char.Length; i++)
 		{
 			Char[i] = StudentManager.Students[CharIDs[i]];
@@ -651,6 +662,7 @@ public class ModernRivalEventScript : MonoBehaviour
 				Characters++;
 			}
 		}
+		AlreadyPopulated = true;
 	}
 
 	public void SendClubToBakeSale()

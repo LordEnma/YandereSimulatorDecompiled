@@ -123,4 +123,6 @@ public static class SceneNames
 	public const string ShadowScene = "ShadowTestScene";
 
 	public const string SwordScene = "SwordScene";
+
+	public const string PostAmaiScene = "PostAmaiScene";
 }

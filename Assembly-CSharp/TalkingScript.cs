@@ -495,6 +495,7 @@ public class TalkingScript : MonoBehaviour
 					Debug.Log("This character has a requirement to offer a Task.");
 					S.StudentManager.TaskManager.CheckTaskRequirement(S.StudentID);
 					S.TaskRejected++;
+					Debug.Log("TaskRejected is getting incremented ONCE right here!");
 					flag2 = S.StudentManager.TaskManager.Proceed;
 					flag = S.StudentManager.TaskManager.Impossible;
 				}

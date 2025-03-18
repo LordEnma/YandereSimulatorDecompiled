@@ -255,6 +255,7 @@ public class EndOfDayScript : MonoBehaviour
 	public void Start()
 	{
 		Debug.Log("The End-of-Day GameObject has just fired its Start() function.");
+		StudentManager.Portal.GetComponent<PortalScript>().enabled = false;
 		StudentManager.RivalEvents[1].SetActive(value: false);
 		StudentManager.RivalEvents[2].SetActive(value: false);
 		if (Yandere.Schoolwear == 0)
@@ -346,7 +347,7 @@ public class EndOfDayScript : MonoBehaviour
 			ClothingWithRedPaint++;
 		}
 		StudentManager.RemoveLowPolyEffect();
-		if (StudentManager.Students[1] != null && StudentManager.Students[1].TaroApron.newRenderer != null)
+		if (StudentManager.Students[1] != null && StudentManager.Students[1].Male && StudentManager.Students[1].TaroApron != null && StudentManager.Students[1].TaroApron.newRenderer != null)
 		{
 			StudentManager.Students[1].TaroApron.newRenderer.enabled = false;
 		}
@@ -743,14 +744,13 @@ public class EndOfDayScript : MonoBehaviour
 				ShruggingCops.SetActive(value: true);
 				if (Weapons == 0)
 				{
-					Debug.Log("We are here.");
+					Debug.Log("End of Day sequence did not detect any murder weapons on school grounds.");
 					if (Police.CorpseList[0] != null)
 					{
 						Debug.Log("Police.CorpseList[0].Student.Corpse.RobotDeath is: " + Police.CorpseList[0].RobotDeath);
 					}
 					if (Police.Corpses == 1 && Police.CorpseList[0] != null && Police.CorpseList[0].RobotDeath)
 					{
-						Debug.Log("And we got here.");
 						Label.text = "The police learn that the victim was killed by a malfunctioning humanoid robot, but are unable to decisively assign blame to any specific individual. The death is ruled an accident.";
 						Phase += 2;
 					}
@@ -766,7 +766,6 @@ public class EndOfDayScript : MonoBehaviour
 					}
 					else
 					{
-						Debug.Log("But we got here.");
 						Label.text = "The police are unable to locate any murder weapons.";
 						Phase += 2;
 					}

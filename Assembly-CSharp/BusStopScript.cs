@@ -173,6 +173,8 @@ public class BusStopScript : MonoBehaviour
 
 	public GameObject Road;
 
+	public Transform[] Eyebrow;
+
 	public bool Smile;
 
 	public float Strength;
@@ -912,6 +914,8 @@ public class BusStopScript : MonoBehaviour
 		{
 			ResetAllBreasts();
 		}
+		Eyebrow[0].localScale = new Vector3(0f, 0f, 1f);
+		Eyebrow[1].localScale = new Vector3(0f, 0f, 1f);
 		Frames++;
 	}
 

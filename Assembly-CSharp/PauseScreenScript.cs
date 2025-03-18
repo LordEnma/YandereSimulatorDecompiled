@@ -1141,6 +1141,11 @@ public class PauseScreenScript : MonoBehaviour
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is fleeing in fear.";
 					}
+					if (Yandere.StudentManager.Students[i].Burning)
+					{
+						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+						Reason = "You cannot save the game while a student is burning to death.";
+					}
 					if (FreezerKill.ShovePhase > 0)
 					{
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
@@ -1159,6 +1164,7 @@ public class PauseScreenScript : MonoBehaviour
 					}
 					if (Yandere.StudentManager.Students[i].Hunting || Yandere.StudentManager.RobotChan.Hunting)
 					{
+						Debug.Log("RobotChan.Hunting is: " + Yandere.StudentManager.RobotChan.Hunting);
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game when a student is about to be murdered.";
 					}

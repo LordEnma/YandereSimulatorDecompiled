@@ -9,7 +9,15 @@ public class JournalistScript : MonoBehaviour
 
 	public CharacterController MyController;
 
+	public SubtitleScript Subtitle;
+
+	public YandereScript Yandere;
+
 	public RagdollScript Corpse;
+
+	public AIPath Pathfinding;
+
+	public SkinnedMeshRenderer Renderer;
 
 	public float DistanceToDestination;
 
@@ -35,14 +43,6 @@ public class JournalistScript : MonoBehaviour
 
 	public AudioClip[] ThreatClips;
 
-	public string[] SpeechLines;
-
-	public string[] ThreatLines;
-
-	public SubtitleScript Subtitle;
-
-	public YandereScript Yandere;
-
 	public GameObject PepperSpray;
 
 	public GameObject Face;
@@ -51,7 +51,9 @@ public class JournalistScript : MonoBehaviour
 
 	public Transform LookTarget;
 
-	public AIPath Pathfinding;
+	public string[] SpeechLines;
+
+	public string[] ThreatLines;
 
 	public float FreezeTimer;
 

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TaskManagerScript : MonoBehaviour
 {
+	public ModernTaskPromptScript ModernTaskPrompt;
+
 	public GravurePhotoShootScript GravureShoot;
 
 	public StudentManagerScript StudentManager;
@@ -62,6 +64,7 @@ public class TaskManagerScript : MonoBehaviour
 				}
 			}
 		}
+		Eighties = GameGlobals.Eighties;
 		Custom = GameGlobals.CustomMode;
 	}
 
@@ -84,25 +87,16 @@ public class TaskManagerScript : MonoBehaviour
 					TaskObjects[j].SetActive(value: false);
 				}
 			}
-			if (GameGlobals.Eighties)
-			{
-				if (MuddyFootprintParent != null)
-				{
-					MuddyFootprintParent.gameObject.SetActive(value: false);
-				}
-				Eighties = true;
-			}
-			if (!Eighties && TaskStatus[46] == 1)
-			{
-				TaskGlobals.SetTaskStatus(46, 0);
-				TaskStatus[46] = 0;
-			}
 			if (StudentManager != null)
 			{
 				UpdateTaskStatus();
 			}
 			if (Eighties)
 			{
+				if (MuddyFootprintParent != null)
+				{
+					MuddyFootprintParent.gameObject.SetActive(value: false);
+				}
 				for (int k = 1; k < 101; k++)
 				{
 					if (TaskStatus[k] != 1)
@@ -128,6 +122,11 @@ public class TaskManagerScript : MonoBehaviour
 						Debug.Log("However, Student #" + k + " is null.");
 					}
 				}
+			}
+			else if (TaskStatus[46] == 1)
+			{
+				TaskGlobals.SetTaskStatus(46, 0);
+				TaskStatus[46] = 0;
 			}
 		}
 		Initialized = true;
@@ -194,6 +193,10 @@ public class TaskManagerScript : MonoBehaviour
 	{
 		if (!StudentManager.Eighties)
 		{
+			if (ModernTaskPrompt.Removed)
+			{
+				ModernTaskPrompt.ChangeFlag();
+			}
 			if (TaskStatus[4] == 1)
 			{
 				if (StudentManager.Students[4] != null)

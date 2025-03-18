@@ -1921,6 +1921,13 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 		if (MustInitializeSpeechTimes)
 		{
+			for (int i = 0; i < SpeechClip.Length; i++)
+			{
+				if (SpeechClip[i] == null)
+				{
+					SpeechClip[i] = StudentManager.Silence;
+				}
+			}
 			PopulateSpeechTimes(SpeechClip, SpeechTime);
 			if (Sabotaged)
 			{
@@ -2201,12 +2208,15 @@ public class GenericRivalEventScript : MonoBehaviour
 		times[2] = clips[1].length;
 		times[3] = clips[2].length + clips[1].length;
 		times[4] = clips[3].length + clips[2].length + clips[1].length;
-		times[5] = clips[4].length + clips[3].length + clips[2].length + clips[1].length;
-		times[6] = clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
-		times[7] = clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
-		times[8] = clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
-		times[9] = clips[8].length + clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
-		times[10] = clips[9].length + clips[8].length + clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
-		times[11] = clips[10].length + clips[9].length + clips[8].length + clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+		if (SpeechTime.Length > 5)
+		{
+			times[5] = clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+			times[6] = clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+			times[7] = clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+			times[8] = clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+			times[9] = clips[8].length + clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+			times[10] = clips[9].length + clips[8].length + clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+			times[11] = clips[10].length + clips[9].length + clips[8].length + clips[7].length + clips[6].length + clips[5].length + clips[4].length + clips[3].length + clips[2].length + clips[1].length;
+		}
 	}
 }

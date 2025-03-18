@@ -113,7 +113,7 @@ public class PhoneScript : MonoBehaviour
 				NonlethalHeight = AmaiMessages.AltHeights;
 			}
 		}
-		if (EventGlobals.KidnapConversation)
+		else if (EventGlobals.KidnapConversation)
 		{
 			VoiceClips = KidnapClip;
 			Speaker = KidnapSpeaker;
@@ -183,7 +183,8 @@ public class PhoneScript : MonoBehaviour
 			if (Timer > 0f && Buttons.gameObject.activeInHierarchy)
 			{
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.MoveTowards(Darkness.color.a, 0f, Time.deltaTime));
-				if (Darkness.color.a == 0f)
+				Panel.transform.localPosition = Vector3.Lerp(Panel.transform.localPosition, new Vector3(0f, 0f, 1f), Time.deltaTime * 10f);
+				if (Darkness.color.a == 0f && Panel.transform.localPosition.y > -0.0001f)
 				{
 					if (!Jukebox.isPlaying)
 					{

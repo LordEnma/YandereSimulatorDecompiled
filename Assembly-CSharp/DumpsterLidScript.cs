@@ -12,6 +12,8 @@ public class DumpsterLidScript : MonoBehaviour
 
 	public GameObject FallChecker;
 
+	public GameObject GarbageBag;
+
 	public GameObject Corpse;
 
 	public PromptScript[] DragPrompts;
@@ -21,6 +23,8 @@ public class DumpsterLidScript : MonoBehaviour
 	public float DisposalSpot;
 
 	public float Rotation;
+
+	public bool FillAgainOnLoad;
 
 	public bool Slide;
 
@@ -115,29 +119,34 @@ public class DumpsterLidScript : MonoBehaviour
 				}
 			}
 		}
-		if (!Fill)
+		if (Fill)
 		{
-			return;
+			GarbageDebris.localPosition = new Vector3(GarbageDebris.localPosition.x, Mathf.Lerp(GarbageDebris.localPosition.y, 1f, Time.deltaTime * 10f), GarbageDebris.localPosition.z);
+			if (GarbageDebris.localPosition.y > 0.99f)
+			{
+				Prompt.Yandere.Police.SuicideScene = false;
+				Prompt.Yandere.Police.Suicide = false;
+				if (!Corpse.GetComponent<RagdollScript>().Concealed)
+				{
+					Prompt.Yandere.Police.HiddenCorpses--;
+				}
+				Prompt.Yandere.Police.Corpses--;
+				if (Corpse.GetComponent<RagdollScript>().AddingToCount)
+				{
+					Prompt.Yandere.NearBodies--;
+				}
+				GarbageDebris.localPosition = new Vector3(GarbageDebris.localPosition.x, 1f, GarbageDebris.localPosition.z);
+				StudentToGoMissing = Corpse.GetComponent<StudentScript>().StudentID;
+				Corpse.gameObject.SetActive(value: false);
+				FillAgainOnLoad = true;
+				Fill = false;
+				Prompt.Yandere.StudentManager.UpdateStudents();
+			}
 		}
-		GarbageDebris.localPosition = new Vector3(GarbageDebris.localPosition.x, Mathf.Lerp(GarbageDebris.localPosition.y, 1f, Time.deltaTime * 10f), GarbageDebris.localPosition.z);
-		if (GarbageDebris.localPosition.y > 0.99f)
+		if (FillAgainOnLoad && GarbageDebris.localPosition.y < 0.99f)
 		{
-			Prompt.Yandere.Police.SuicideScene = false;
-			Prompt.Yandere.Police.Suicide = false;
-			if (!Corpse.GetComponent<RagdollScript>().Concealed)
-			{
-				Prompt.Yandere.Police.HiddenCorpses--;
-			}
-			Prompt.Yandere.Police.Corpses--;
-			if (Corpse.GetComponent<RagdollScript>().AddingToCount)
-			{
-				Prompt.Yandere.NearBodies--;
-			}
 			GarbageDebris.localPosition = new Vector3(GarbageDebris.localPosition.x, 1f, GarbageDebris.localPosition.z);
-			StudentToGoMissing = Corpse.GetComponent<StudentScript>().StudentID;
-			Corpse.gameObject.SetActive(value: false);
-			Fill = false;
-			Prompt.Yandere.StudentManager.UpdateStudents();
+			GarbageBag.SetActive(value: false);
 		}
 	}
 

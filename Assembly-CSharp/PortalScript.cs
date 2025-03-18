@@ -194,7 +194,7 @@ public class PortalScript : MonoBehaviour
 			}
 			if ((!BypassWarning && Police.Corpses - Police.HiddenCorpses > 0) || (!BypassWarning && num > 0) || (!BypassWarning && Police.BloodParent.childCount > 0) || (!BypassWarning && Police.BloodyClothing > 0) || (!BypassWarning && num2 > 0))
 			{
-				if (StudentManager.MurderTakingPlace)
+				if (StudentManager.MurderTakingPlace || StudentManager.RobotChan.Hunting)
 				{
 					Yandere.NotificationManager.CustomText = "Can't leave while a murder is taking place!";
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -283,7 +283,7 @@ public class PortalScript : MonoBehaviour
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					flag2 = true;
 				}
-				else if (StudentManager.MurderTakingPlace)
+				else if (StudentManager.MurderTakingPlace || StudentManager.RobotChan.Hunting)
 				{
 					Yandere.NotificationManager.CustomText = "Can't leave while a murder is taking place!";
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -498,13 +498,13 @@ public class PortalScript : MonoBehaviour
 					}
 					if (!MissionModeGlobals.MissionMode)
 					{
-						if (Headmaster.activeInHierarchy)
+						if (Clock.HourTime > 15f)
 						{
-							Headmaster.SetActive(value: false);
+							Headmaster.SetActive(value: true);
 						}
 						else
 						{
-							Headmaster.SetActive(value: true);
+							Headmaster.SetActive(value: false);
 						}
 					}
 				}
@@ -605,7 +605,7 @@ public class PortalScript : MonoBehaviour
 					{
 						Yandere.NotificationManager.CustomText = "Someone is reacting to a death";
 					}
-					else if (StudentManager.MurderTakingPlace)
+					else if (StudentManager.MurderTakingPlace || StudentManager.RobotChan.Hunting)
 					{
 						Yandere.NotificationManager.CustomText = "Murder taking place";
 					}
@@ -662,7 +662,7 @@ public class PortalScript : MonoBehaviour
 				CanAttendClass = false;
 			}
 		}
-		if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Schoolwear == 2 || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || Yandere.Mask != null || Yandere.WearingRaincoat || (StudentManager.Reporter != null && !Police.Show) || StudentManager.MurderTakingPlace || Yandere.PauseScreen.MissionMode.YakuzaMode || StudentManager.WitnessCamera.Show || (studentScript != null && studentScript.Fleeing && studentScript.CurrentDestination == StudentManager.Students[studentScript.LovestruckTarget].transform))
+		if (Yandere.Armed || Yandere.Bloodiness > 0f || Yandere.Sanity < 33.333f || Yandere.Schoolwear == 2 || Yandere.Attacking || Yandere.Dragging || Yandere.Carrying || Yandere.PickUp != null || Yandere.Chased || Yandere.Chasers > 0 || Yandere.Mask != null || Yandere.WearingRaincoat || (StudentManager.Reporter != null && !Police.Show) || StudentManager.MurderTakingPlace || StudentManager.RobotChan.Hunting || Yandere.PauseScreen.MissionMode.YakuzaMode || StudentManager.WitnessCamera.Show || (studentScript != null && studentScript.Fleeing && studentScript.CurrentDestination == StudentManager.Students[studentScript.LovestruckTarget].transform))
 		{
 			CanAttendClass = false;
 		}

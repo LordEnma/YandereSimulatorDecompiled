@@ -109,6 +109,10 @@ public class ManholeScript : MonoBehaviour
 				Prompt.Yandere.StudentManager.UpdateStudents();
 				ForceDown = false;
 				Prompt.Yandere.CanMove = true;
+				if (Corpse.Drowned)
+				{
+					Prompt.Yandere.Police.DrownVictims--;
+				}
 			}
 		}
 		if (Prompt.Yandere.Ragdoll != null)

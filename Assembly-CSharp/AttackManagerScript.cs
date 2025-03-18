@@ -340,12 +340,13 @@ public class AttackManagerScript : MonoBehaviour
 			equippedWeapon.MyAudio.pitch = 1f;
 			Time.timeScale = 1f;
 			Yandere.StudentManager.RestoreStudentVisionDistance();
+			Yandere.TargetStudent = null;
 		}
 		else if (Yandere.CanTranq && Yandere.transform.position.x > 13.25f)
 		{
 			Yandere.transform.position -= new Vector3(Time.deltaTime, 0f, 0f);
 		}
-		if (!Yandere.TargetStudent.Electrified && !Yandere.TargetStudent.Electrocuted)
+		if (!(Yandere.TargetStudent != null) || (!Yandere.TargetStudent.Electrified && !Yandere.TargetStudent.Electrocuted))
 		{
 			return;
 		}

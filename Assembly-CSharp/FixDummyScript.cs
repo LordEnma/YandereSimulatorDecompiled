@@ -9,7 +9,7 @@ public class FixDummyScript : MonoBehaviour
 	private void Start()
 	{
 		FixedDummy.SetActive(value: false);
-		if (GameGlobals.Eighties)
+		if (GameGlobals.Eighties || TaskGlobals.GetTaskStatus(50) == 3)
 		{
 			Fix();
 		}

@@ -299,6 +299,10 @@ public class ConfessionSceneScript : MonoBehaviour
 		}
 		if (Kissing)
 		{
+			if (!Suitor.Male && !Rival.Male)
+			{
+				Suitor.transform.position = new Vector3(0f, 6.566667f, 119.59f);
+			}
 			if ((Suitor.Male && Suitor.CharacterAnimation["kiss_00"].time >= Suitor.CharacterAnimation["kiss_00"].length * 0.66666f) || (!Suitor.Male && Suitor.CharacterAnimation["f02_suitorKiss_00"].time >= Suitor.CharacterAnimation["f02_suitorKiss_00"].length * 0.66666f))
 			{
 				Suitor.Character.transform.localScale = Vector3.Lerp(Suitor.Character.transform.localScale, new Vector3(0.94f, 0.94f, 0.94f), Time.deltaTime);

@@ -127,7 +127,7 @@ public class ScheduleScript : MonoBehaviour
 				EventIcons[14].SetActive(value: true);
 				Descriptions[14] = "Raibaru is going to ask Osana to talk about what kind of boys she likes. By eavesdropping on this conversation, you can learn the information you'd need in order to make another boy become appealing to Osana.";
 				EventIcons[15].SetActive(value: true);
-				Descriptions[15] = "Osana is going to recieve a distressing phone call. By eavesdropping on this call, you can learn some of the information you'd need in order to put Osana into your debt.";
+				Descriptions[15] = "Osana is going to receive a distressing phone call. By eavesdropping on this call, you can learn some of the information you'd need in order to put Osana into your debt.";
 				EventIcons[16].SetActive(value: true);
 				Descriptions[16] = "Osana and Raibaru are going to tour the school and visit each of the clubrooms. By eavesdropping on their conversations, you can learn about Osana's likes and dislikes.";
 				EventIcons[18].SetActive(value: true);

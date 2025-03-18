@@ -413,6 +413,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public bool MysteriousObstacle;
 
+	public bool RememberInvertHair;
+
 	public bool DoNotChangeFace;
 
 	public bool NoClubAccessory;
@@ -2799,13 +2801,17 @@ public class CosmeticScript : MonoBehaviour
 		{
 			WearBurlapSack();
 		}
-		if (InvertHair)
+		if (InvertHair || RememberInvertHair)
 		{
 			if (Male)
 			{
 				if (MaleHair[Hairstyle].transform.localScale.x > 0f)
 				{
 					MaleHair[Hairstyle].transform.localScale = new Vector3(MaleHair[Hairstyle].transform.localScale.x * -1f, MaleHair[Hairstyle].transform.localScale.y, MaleHair[Hairstyle].transform.localScale.z);
+					if (TakingPortrait)
+					{
+						RememberInvertHair = true;
+					}
 				}
 			}
 			else if (!Teacher)
@@ -4362,6 +4368,10 @@ public class CosmeticScript : MonoBehaviour
 			}
 			if (!Male)
 			{
+				if (CustomMode)
+				{
+					SkinColor = JSON.Misc.SkinColor[StudentID];
+				}
 				if (!Eighties && StudentID > 80 && StudentID < 86)
 				{
 					SkinColor = 6;
@@ -4377,13 +4387,18 @@ public class CosmeticScript : MonoBehaviour
 			else
 			{
 				Debug.Log("A male wearing a burlap sack is now updating their materials.");
+				Debug.Log("His skin color is: " + SkinColor);
 				BurlapSack.newRenderer.materials[2].mainTexture = HairRenderer.material.mainTexture;
 				BurlapSack.newRenderer.materials[1].mainTexture = SkinTextures[SkinColor];
 				BurlapSack.newRenderer.materials[0].mainTexture = BurlapSack.accessoryMaterials[0].mainTexture;
 				if (CustomMode && CustomHair)
 				{
 					Debug.Log("Derp.");
-					BurlapSack.newRenderer.materials[0].mainTexture = DefaultFaceTexture;
+					BurlapSack.newRenderer.materials[2].mainTexture = DefaultFaceTexture;
+				}
+				if (SkinColor > 0)
+				{
+					BurlapSack.newRenderer.materials[2].mainTexture = FaceTextures[SkinColor];
 				}
 			}
 			BurlapSack.newRenderer.updateWhenOffscreen = true;

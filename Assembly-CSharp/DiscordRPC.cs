@@ -45,17 +45,20 @@ public class DiscordRPC : MonoBehaviour
 
 	private void Start()
 	{
-		Object.DontDestroyOnLoad(base.gameObject);
-		if (_applicationID != string.Empty)
+		if (base.enabled)
 		{
-			_discord = new global::Discord.Discord(long.Parse(_applicationID), 1uL);
-			UpdateActivity();
+			Object.DontDestroyOnLoad(base.gameObject);
+			if (_applicationID != string.Empty)
+			{
+				_discord = new global::Discord.Discord(long.Parse(_applicationID), 1uL);
+				UpdateActivity();
+			}
+			else
+			{
+				Debug.Log("An error has occurred. You probably didn't set the Application ID.");
+			}
+			StartCoroutine(RichPresenceUpdate());
 		}
-		else
-		{
-			Debug.Log("An error has occurred. You probably didn't set the Application ID.");
-		}
-		StartCoroutine(RichPresenceUpdate());
 	}
 
 	private void Update()

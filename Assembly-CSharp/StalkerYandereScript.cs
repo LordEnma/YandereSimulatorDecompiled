@@ -286,7 +286,10 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			if (HomeGlobals.Night || DateGlobals.Weekday == DayOfWeek.Sunday || DateGlobals.Weekday == DayOfWeek.Saturday)
 			{
+				BreastL.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+				BreastR.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 				EightiesAttacher.SetActive(value: true);
+				UpdateBlendshapes = true;
 			}
 			else
 			{
@@ -295,14 +298,17 @@ public class StalkerYandereScript : MonoBehaviour
 				BreastL.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 				BreastR.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			}
-			MyRenderer.sharedMesh = HeadOnlyMesh;
+			MyRenderer.sharedMesh = null;
 			PonytailRenderer.transform.parent.gameObject.SetActive(value: false);
 			RyobaHair.SetActive(value: true);
 			Debug.Log("Setting Ryoba blendshapes.");
-			MyRenderer.SetBlendShapeWeight(0, 50f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(8, 0f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
+			if (!Street)
+			{
+				MyRenderer.SetBlendShapeWeight(0, 50f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(8, 0f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
+			}
 			IdleAnim = "f02_ryobaIdle_00";
 			WalkAnim = "f02_ryobaWalk_00";
 			RunAnim = "f02_ryobaRun_00";
@@ -329,7 +335,6 @@ public class StalkerYandereScript : MonoBehaviour
 				}
 				else if (!Asylum)
 				{
-					Debug.Log("Daytime or weekend. Staying in school uniform.");
 					if (UniformSetter != null)
 					{
 						UniformSetter.Ryoba = false;
@@ -402,6 +407,7 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			if (Eighties)
 			{
+				Debug.Log("Setting Ryoba's Blendshapes again.");
 				if (!Asylum)
 				{
 					if (EightiesAttacher != null && EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
@@ -413,13 +419,10 @@ public class StalkerYandereScript : MonoBehaviour
 				{
 					MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
 				}
-				if (!Street)
-				{
-					MyRenderer.SetBlendShapeWeight(0, 50f);
-					MyRenderer.SetBlendShapeWeight(5, 25f);
-					MyRenderer.SetBlendShapeWeight(8, 0f);
-					MyRenderer.SetBlendShapeWeight(12, 100f);
-				}
+				MyRenderer.SetBlendShapeWeight(0, 50f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(8, 0f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
 				UpdateBlendshapes = false;
 			}
 			else if (HomeGlobals.Night && !ThanksForPlaying && ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)

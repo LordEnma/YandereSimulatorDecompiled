@@ -73,7 +73,7 @@ public class ReputationSetterScript : MonoBehaviour
 			StudentGlobals.SetReputationTriangle(57, new Vector3(70f, -30f, 0f));
 			StudentGlobals.SetReputationTriangle(58, new Vector3(70f, -30f, 0f));
 			StudentGlobals.SetReputationTriangle(59, new Vector3(50f, -10f, 0f));
-			StudentGlobals.SetReputationTriangle(60, new Vector3(-10f, -50f, 0f));
+			StudentGlobals.SetReputationTriangle(60, new Vector3(-10f, 50f, 0f));
 			StudentGlobals.SetReputationTriangle(61, new Vector3(-50f, 100f, 100f));
 			StudentGlobals.SetReputationTriangle(62, new Vector3(0f, 70f, 10f));
 			StudentGlobals.SetReputationTriangle(63, new Vector3(0f, 30f, 50f));
@@ -81,7 +81,7 @@ public class ReputationSetterScript : MonoBehaviour
 			StudentGlobals.SetReputationTriangle(65, new Vector3(-10f, 30f, 50f));
 			StudentGlobals.SetReputationTriangle(66, new Vector3(-50f, 100f, 50f));
 			StudentGlobals.SetReputationTriangle(67, new Vector3(30f, 70f, 0f));
-			StudentGlobals.SetReputationTriangle(68, new Vector3(0f, 0f, 50f));
+			StudentGlobals.SetReputationTriangle(68, new Vector3(-50f, -50f, 50f));
 			StudentGlobals.SetReputationTriangle(69, new Vector3(30f, 50f, 0f));
 			StudentGlobals.SetReputationTriangle(70, new Vector3(50f, 30f, 0f));
 			StudentGlobals.SetReputationTriangle(71, new Vector3(100f, 100f, -100f));

@@ -8,7 +8,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
 
 		[SerializeField]
-		private WheelCollider[] m_WheelColliders = new WheelCollider[4];
+		public WheelCollider[] m_WheelColliders = new WheelCollider[4];
 
 		[SerializeField]
 		private GameObject[] m_WheelMeshes = new GameObject[4];
@@ -58,7 +58,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		private float m_SlipLimit;
 
 		[SerializeField]
-		private float m_BrakeTorque;
+		public float m_BrakeTorque;
 
 		private Quaternion[] m_WheelMeshLocalRotations;
 

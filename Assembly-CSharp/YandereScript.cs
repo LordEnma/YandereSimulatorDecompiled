@@ -3889,6 +3889,7 @@ public class YandereScript : MonoBehaviour
 		if (Chased && !Sprayed && !Attacking && !Dumping && !Dropping && !StudentManager.PinningDown && !DelinquentFighting && !Struggling)
 		{
 			Debug.Log("Yandere is turning to face Pursuer.");
+			Shoved = false;
 			if (!ShoulderCamera.HeartbrokenCamera.activeInHierarchy)
 			{
 				if (Pursuer != null)
@@ -6523,11 +6524,7 @@ public class YandereScript : MonoBehaviour
 		}
 		if (TargetStudent == null)
 		{
-			Debug.Log("We got to this line of code because Raibaru is countering an attack, but TargetStudent is null for some reason.");
-			if (StudentManager.Students[10] != null)
-			{
-				TargetStudent = StudentManager.Students[10];
-			}
+			Debug.Log("An Invincible student (maybe Raibaru, maybe someone else) is countering an attack, but TargetStudent is null for some reason. Prevent this from being able to occur.");
 		}
 		if (TargetStudent.Teacher)
 		{
@@ -7162,7 +7159,7 @@ public class YandereScript : MonoBehaviour
 		DebugTimer = Mathf.MoveTowards(DebugTimer, 0f, Time.deltaTime);
 	}
 
-	private void LateUpdate()
+	public void LateUpdate()
 	{
 		if (VibrationCheck)
 		{
@@ -7497,6 +7494,7 @@ public class YandereScript : MonoBehaviour
 		}
 		if (SanitySmudges.color.a > 1f - sanity / 100f + 0.0001f || SanitySmudges.color.a < 1f - sanity / 100f - 0.0001f)
 		{
+			Debug.Log("Sanity is: " + sanity);
 			float a = SanitySmudges.color.a;
 			a = Mathf.MoveTowards(a, 1f - sanity / 100f, Time.deltaTime);
 			SanitySmudges.color = new Color(1f, 1f, 1f, a);

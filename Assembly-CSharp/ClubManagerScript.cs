@@ -1076,6 +1076,7 @@ public class ClubManagerScript : MonoBehaviour
 		}
 		else if (Yandere.Club == ClubType.Art)
 		{
+			Yandere.CleaningNotSuspicious = 2.1474836E+09f;
 			StudentManager.UpdateBooths();
 		}
 		else if (Yandere.Club == ClubType.LightMusic)
@@ -1179,89 +1180,86 @@ public class ClubManagerScript : MonoBehaviour
 			OccultRobe.Prompt.Hide();
 			OccultRobe.Prompt.enabled = false;
 		}
+		else if (Yandere.Club == ClubType.Art)
+		{
+			Yandere.CleaningNotSuspicious = 0f;
+		}
+		else if (Yandere.Club == ClubType.LightMusic)
+		{
+			Container.enabled = false;
+			Container.Prompt.Hide();
+			Container.Prompt.enabled = false;
+			if (NoBag && Yandere.Container != null)
+			{
+				Yandere.Container.Drop();
+				WeaponBag.gameObject.SetActive(value: false);
+			}
+		}
 		else
 		{
-			if (Yandere.Club == ClubType.Art)
+			if (Yandere.Club == ClubType.MartialArts)
 			{
 				return;
 			}
-			if (Yandere.Club == ClubType.LightMusic)
+			if (Yandere.Club == ClubType.Photography)
 			{
-				Container.enabled = false;
-				Container.Prompt.Hide();
-				Container.Prompt.enabled = false;
-				if (NoBag && Yandere.Container != null)
+				if (StudentManager.Eighties)
 				{
-					Yandere.Container.Drop();
-					WeaponBag.gameObject.SetActive(value: false);
+					Viewfinder.SetActive(value: false);
+				}
+				else
+				{
+					SchoolManga.Disable();
 				}
 			}
-			else
+			else if (Yandere.Club == ClubType.Science)
 			{
-				if (Yandere.Club == ClubType.MartialArts)
+				EmergencyShower.Prompt.enabled = false;
+				AcidVats[1].Prompt.enabled = false;
+				AcidVats[2].Prompt.enabled = false;
+				BloodCleaner.enabled = false;
+				BloodCleaner.Prompt.Hide();
+				BloodCleaner.Prompt.enabled = false;
+			}
+			else if (Yandere.Club == ClubType.Sports)
+			{
+				Yandere.ClubSpeedBonus = 0f;
+				if (Yandere.Armed)
 				{
-					return;
+					Yandere.Club = ClubType.None;
+					Yandere.EquippedWeapon.SuspicionCheck();
 				}
-				if (Yandere.Club == ClubType.Photography)
+			}
+			else if (Yandere.Club == ClubType.Gardening)
+			{
+				if (!Yandere.Inventory.ShedKey)
 				{
-					if (StudentManager.Eighties)
-					{
-						Viewfinder.SetActive(value: false);
-					}
-					else
-					{
-						SchoolManga.Disable();
-					}
+					ShedDoor.Prompt.Label[0].text = "     Locked";
+					Padlock.SetActive(value: true);
+					ShedDoor.Locked = true;
+					ShedDoor.CloseDoor();
 				}
-				else if (Yandere.Club == ClubType.Science)
+				if (Yandere.Armed)
 				{
-					EmergencyShower.Prompt.enabled = false;
-					AcidVats[1].Prompt.enabled = false;
-					AcidVats[2].Prompt.enabled = false;
-					BloodCleaner.enabled = false;
-					BloodCleaner.Prompt.Hide();
-					BloodCleaner.Prompt.enabled = false;
+					Yandere.Club = ClubType.None;
+					Yandere.EquippedWeapon.SuspicionCheck();
 				}
-				else if (Yandere.Club == ClubType.Sports)
-				{
-					Yandere.ClubSpeedBonus = 0f;
-					if (Yandere.Armed)
-					{
-						Yandere.Club = ClubType.None;
-						Yandere.EquippedWeapon.SuspicionCheck();
-					}
-				}
-				else if (Yandere.Club == ClubType.Gardening)
-				{
-					if (!Yandere.Inventory.ShedKey)
-					{
-						ShedDoor.Prompt.Label[0].text = "     Locked";
-						Padlock.SetActive(value: true);
-						ShedDoor.Locked = true;
-						ShedDoor.CloseDoor();
-					}
-					if (Yandere.Armed)
-					{
-						Yandere.Club = ClubType.None;
-						Yandere.EquippedWeapon.SuspicionCheck();
-					}
-				}
-				else if (Yandere.Club == ClubType.Gaming)
-				{
-					ComputerGames.DeactivateAllBenefits();
-					ComputerGames.DisableGames();
-				}
-				else if (Yandere.Club == ClubType.Newspaper)
-				{
-					Typewriter.Prompt.enabled = false;
-					Typewriter.enabled = false;
-					Typewriter.Prompt.Hide();
-				}
-				else if (Yandere.Club == ClubType.Delinquent && NoBag && Yandere.Container != null)
-				{
-					Yandere.Container.Drop();
-					WeaponBag.gameObject.SetActive(value: false);
-				}
+			}
+			else if (Yandere.Club == ClubType.Gaming)
+			{
+				ComputerGames.DeactivateAllBenefits();
+				ComputerGames.DisableGames();
+			}
+			else if (Yandere.Club == ClubType.Newspaper)
+			{
+				Typewriter.Prompt.enabled = false;
+				Typewriter.enabled = false;
+				Typewriter.Prompt.Hide();
+			}
+			else if (Yandere.Club == ClubType.Delinquent && NoBag && Yandere.Container != null)
+			{
+				Yandere.Container.Drop();
+				WeaponBag.gameObject.SetActive(value: false);
 			}
 		}
 	}

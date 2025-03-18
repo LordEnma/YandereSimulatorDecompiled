@@ -759,7 +759,14 @@ public class CalendarScript : MonoBehaviour
 						{
 							HomeGlobals.Night = true;
 						}
-						SceneManager.LoadScene("HomeScene");
+						if (!Eighties && DateGlobals.Week == 3)
+						{
+							SceneManager.LoadScene("PostAmaiScene");
+						}
+						else
+						{
+							SceneManager.LoadScene("HomeScene");
+						}
 					}
 				}
 			}

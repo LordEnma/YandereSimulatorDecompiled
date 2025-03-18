@@ -12,6 +12,10 @@ public class WeekSelectScript : MonoBehaviour
 
 	public EightiesStatsScript Stats;
 
+	public Transform WeekPreviews;
+
+	public Transform Arrow;
+
 	public GameObject[] Shadow;
 
 	public UISprite Darkness;
@@ -21,8 +25,6 @@ public class WeekSelectScript : MonoBehaviour
 	public UILabel EditLabel;
 
 	public UILabel WeekLabel;
-
-	public Transform Arrow;
 
 	public bool SettingDetails;
 
@@ -122,6 +124,7 @@ public class WeekSelectScript : MonoBehaviour
 
 	private void Update()
 	{
+		WeekPreviews.transform.localPosition = Vector3.Lerp(WeekPreviews.transform.localPosition, new Vector3((Column - 1) * -1800, 0f, 0f), Time.deltaTime * 10f);
 		if (Fading)
 		{
 			if (FadeID == 1)
@@ -555,9 +558,11 @@ public class WeekSelectScript : MonoBehaviour
 	private void UpdateText()
 	{
 		WeekLabel.text = "STARTING WEEK: " + CurrentWeek;
-		for (int i = 1; i < 11; i++)
+		int i = 1;
+		int week = DateGlobals.Week;
+		for (; i < 11; i++)
 		{
-			if (i < DateGlobals.Week)
+			if (i < week)
 			{
 				Shadow[i].SetActive(value: false);
 				continue;

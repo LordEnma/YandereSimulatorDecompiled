@@ -205,9 +205,9 @@ public class UniformSetterScript : MonoBehaviour
 		else if (StudentID == 1)
 		{
 			MyRenderer.materials[2].mainTexture = AyanoFace;
-			if (Ryoba)
+			if (Ryoba && !GameGlobals.CustomMode)
 			{
-				_ = GameGlobals.CustomMode;
+				MyRenderer.materials[2].mainTexture = RyobaFace;
 			}
 		}
 		else

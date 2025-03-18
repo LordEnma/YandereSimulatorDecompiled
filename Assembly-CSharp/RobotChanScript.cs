@@ -172,6 +172,7 @@ public class RobotChanScript : MonoBehaviour
 
 	public void GoCommitMurder()
 	{
+		Debug.Log("Robot-chan's GoCommitMurder() has been called.");
 		if (TargetStudent.Male)
 		{
 			ImpaleAnim = "robotKillB_00";
@@ -207,7 +208,6 @@ public class RobotChanScript : MonoBehaviour
 			}
 			if (TargetStudent.Dying || TargetStudent.Struggling || TargetStudent.Ragdoll.enabled || TargetStudent.Tranquil || TargetStudent.PinningDown || TargetStudent.Drowned || (TargetStudent.Hunter != null && TargetStudent.Hunter != this))
 			{
-				Hunting = false;
 				SelfDestruct();
 			}
 			return;
@@ -322,6 +322,7 @@ public class RobotChanScript : MonoBehaviour
 			Heart.useGravity = true;
 			Prompt.Yandere.Police.BodyParts++;
 			BodyPart.Prompt.enabled = true;
+			Hunting = false;
 			ImpalePhase++;
 		}
 	}
@@ -351,5 +352,6 @@ public class RobotChanScript : MonoBehaviour
 		MyAudio.loop = false;
 		MyAudio.Play();
 		Hunting = false;
+		Debug.Log("Robot-chan's Hunting should now be false.");
 	}
 }

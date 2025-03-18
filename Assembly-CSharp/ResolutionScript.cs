@@ -20,6 +20,10 @@ public class ResolutionScript : MonoBehaviour
 
 	public UILabel QualityLabel;
 
+	public GameObject DebugMenu;
+
+	public GameObject BGM;
+
 	public AudioClip ConfirmSFX;
 
 	public AudioSource MyAudio;
@@ -27,8 +31,6 @@ public class ResolutionScript : MonoBehaviour
 	public Transform Highlight;
 
 	public UISprite Darkness;
-
-	public GameObject BGM;
 
 	public float Alpha = 1f;
 
@@ -202,6 +204,30 @@ public class ResolutionScript : MonoBehaviour
 				Screen.SetResolution(1280, 720, fullscreen: false);
 				SceneManager.LoadScene("ResolutionScene");
 			}
+		}
+		if (Input.GetButton(InputNames.Xbox_LB) && Input.GetButton(InputNames.Xbox_RB))
+		{
+			DebugMenu.SetActive(value: true);
+			if (Input.GetButton(InputNames.Xbox_A))
+			{
+				SceneManager.LoadScene("NewTitleScene");
+			}
+			else if (Input.GetButton(InputNames.Xbox_B))
+			{
+				SceneManager.LoadScene("StreetScene");
+			}
+			else if (Input.GetButton(InputNames.Xbox_X))
+			{
+				SceneManager.LoadScene("PostAmaiScene");
+			}
+			else if (Input.GetButton(InputNames.Xbox_Y))
+			{
+				SceneManager.LoadScene("controllerTest");
+			}
+		}
+		else
+		{
+			DebugMenu.SetActive(value: false);
 		}
 	}
 

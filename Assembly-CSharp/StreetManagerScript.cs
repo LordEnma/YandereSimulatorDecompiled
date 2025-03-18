@@ -210,7 +210,6 @@ public class StreetManagerScript : MonoBehaviour
 					Darkness.color = new Color(0f, 0f, 0f, Alpha);
 					if (Alpha == 1f)
 					{
-						Debug.Log("Going home, supposedly.");
 						SceneManager.LoadScene("HomeScene");
 					}
 				}

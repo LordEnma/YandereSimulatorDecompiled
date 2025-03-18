@@ -65,6 +65,8 @@ public class NewSettingsScript : MonoBehaviour
 
 	public Projector TitleScreenProjector;
 
+	public Renderer[] OsanaRenderer;
+
 	public Material FlowerMaterial;
 
 	public Material BloodMaterial;
@@ -544,7 +546,7 @@ public class NewSettingsScript : MonoBehaviour
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_Y))
 			{
-				OptionGlobals.OpaqueWindows = true;
+				OptionGlobals.OpaqueWindows = false;
 				OptionGlobals.DisableFarAnimations = 10;
 				OptionGlobals.DisableMirrors = false;
 				OptionGlobals.RimLight = true;
@@ -780,10 +782,14 @@ public class NewSettingsScript : MonoBehaviour
 				}
 				else if (GameGlobals.CensorBlood)
 				{
+					Debug.Log("Now censoring blood at the title screen.");
+					OsanaRenderer[0].materials[5].mainTexture = FlowerMaterial.mainTexture;
 					TitleScreenProjector.material = FlowerMaterial;
 				}
 				else
 				{
+					Debug.Log("Now uncensoring blood at the title screen.");
+					OsanaRenderer[0].materials[5].mainTexture = BloodMaterial.mainTexture;
 					TitleScreenProjector.material = BloodMaterial;
 				}
 				UpdateLabels();

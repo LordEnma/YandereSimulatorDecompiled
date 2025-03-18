@@ -837,7 +837,7 @@ public class DialogueWheelScript : MonoBehaviour
 			UISprite uISprite10 = Shadow[3];
 			uISprite10.color = new Color(uISprite10.color.r, uISprite10.color.g, uISprite10.color.b, 0.75f);
 		}
-		if (Yandere.TargetStudent.Friend)
+		if (Yandere.TargetStudent.Friend || (Yandere.TargetStudent.WearingBikini && Yandere.Inventory.Bikini))
 		{
 			Yandere.TargetStudent.TaskRejected = 0;
 		}

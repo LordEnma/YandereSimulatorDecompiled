@@ -78,6 +78,7 @@ public class GamepadSwitcherScript : MonoBehaviour
 
 	private void UseSonyInputs()
 	{
+		Debug.Log("We just switched to Sony input.");
 		InputNames.Xbox_JoyX = "Sony Joystick X";
 		InputNames.Xbox_JoyY = "Sony Joystick Y";
 		InputNames.Xbox_A = "Sony A";
@@ -114,5 +115,26 @@ public class GamepadSwitcherScript : MonoBehaviour
 		InputNames.Xbox_RT = "RT";
 		InputNames.Xbox_DpadX = "DpadX";
 		InputNames.Xbox_DpadY = "DpadY";
+	}
+
+	private void UseAndroidInputs()
+	{
+		Debug.Log("We just switched to Android input.");
+		InputNames.Xbox_JoyX = "Android RStickX";
+		InputNames.Xbox_JoyY = "Android RStickY";
+		InputNames.Xbox_A = "A";
+		InputNames.Xbox_B = "B";
+		InputNames.Xbox_X = "X";
+		InputNames.Xbox_Y = "Y";
+		InputNames.Xbox_LB = "LB";
+		InputNames.Xbox_RB = "RB";
+		InputNames.Xbox_Start = "Button 10";
+		InputNames.Xbox_Back = "Button 11";
+		InputNames.Xbox_LS = "LS";
+		InputNames.Xbox_RS = "RS";
+		InputNames.Xbox_LT = "Axis 13";
+		InputNames.Xbox_RT = "Axis 12";
+		InputNames.Xbox_DpadX = "Android DpadX";
+		InputNames.Xbox_DpadY = "Android DpadY";
 	}
 }

@@ -474,8 +474,6 @@ public class DebugMenuScript : MonoBehaviour
 				{
 					ClassGlobals.BiologyGrade = 1;
 					Yandere.Class.BiologyGrade = 1;
-					PlayerGlobals.Numbness = 5;
-					Yandere.Class.Numbness = 5;
 					PlayerGlobals.Seduction = 5;
 					Yandere.Class.Seduction = 5;
 					ClassGlobals.PhysicalGrade = 5;
