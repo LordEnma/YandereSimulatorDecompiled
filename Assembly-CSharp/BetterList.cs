@@ -120,7 +120,9 @@ public class BetterList<T>
 		}
 		for (int i = 0; i < size; i++)
 		{
-			if (buffer[i].Equals(item))
+			ref readonly T reference = ref buffer[i];
+			object obj = item;
+			if (reference.Equals(obj))
 			{
 				return true;
 			}
@@ -136,7 +138,9 @@ public class BetterList<T>
 		}
 		for (int i = 0; i < size; i++)
 		{
-			if (buffer[i].Equals(item))
+			ref readonly T reference = ref buffer[i];
+			object obj = item;
+			if (reference.Equals(obj))
 			{
 				return i;
 			}
@@ -148,10 +152,10 @@ public class BetterList<T>
 	{
 		if (buffer != null)
 		{
-			EqualityComparer<T> @default = EqualityComparer<T>.Default;
+			EqualityComparer<T> equalityComparer = EqualityComparer<T>.Default;
 			for (int i = 0; i < size; i++)
 			{
-				if (@default.Equals(buffer[i], item))
+				if (equalityComparer.Equals(buffer[i], item))
 				{
 					size--;
 					buffer[i] = default(T);

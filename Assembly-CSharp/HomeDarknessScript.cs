@@ -285,7 +285,7 @@ public class HomeDarknessScript : MonoBehaviour
 				GameGlobals.Dream = 0;
 				return;
 			}
-			if (DateGlobals.Weekday != 0)
+			if (DateGlobals.Weekday != DayOfWeek.Sunday)
 			{
 				PlayerGlobals.Reputation -= 20f;
 				if (StudentGlobals.MemorialStudents > 0)

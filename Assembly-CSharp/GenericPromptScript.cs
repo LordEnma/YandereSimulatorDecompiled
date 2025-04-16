@@ -32,11 +32,17 @@ public class GenericPromptScript : MonoBehaviour
 
 	public bool SpawnedEffect;
 
+	public bool Rotate;
+
 	public float TargetRotation = 90f;
 
 	public float Rotation;
 
 	public float Speed;
+
+	public float Timer;
+
+	public int Phase;
 
 	public int ID;
 
@@ -278,12 +284,22 @@ public class GenericPromptScript : MonoBehaviour
 				{
 					if (studentScript.Blind)
 					{
-						Prompt.Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Prompt.Yandere.Numbness;
-						studentScript.transform.parent = base.transform.parent;
-						studentScript.transform.localPosition = new Vector3(1.374146f, 0.0175f, 0.05f);
-						Prompt.Yandere.MurderousActionTimer = 1f;
-						PerformingAction = true;
-						studentScript.enabled = false;
+						Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+						if (!Prompt.Yandere.StudentManager.YandereVisible)
+						{
+							Prompt.Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Prompt.Yandere.Numbness;
+							studentScript.transform.parent = base.transform.parent;
+							studentScript.transform.localPosition = new Vector3(1.374146f, 0.0175f, 0.05f);
+							studentScript.MyCollider.enabled = false;
+							Prompt.Yandere.CanMove = false;
+							PerformingAction = true;
+							studentScript.enabled = false;
+						}
+						else
+						{
+							Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
+							Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						}
 					}
 					else
 					{
@@ -484,9 +500,35 @@ public class GenericPromptScript : MonoBehaviour
 			{
 				return;
 			}
+			if (Phase == 0)
+			{
+				Timer += Time.deltaTime;
+				if (Timer < 1f)
+				{
+					Prompt.Yandere.MoveTowardsTarget(PlayerSpot.position);
+					Prompt.Yandere.transform.rotation = Quaternion.Lerp(Prompt.Yandere.transform.rotation, PlayerSpot.rotation, Time.deltaTime * 10f);
+				}
+				else
+				{
+					Prompt.Yandere.CharacterAnimation.CrossFade("f02_flipChair_00");
+					if (Prompt.Yandere.CharacterAnimation["f02_flipChair_00"].time >= 1.5f)
+					{
+						Rotate = true;
+					}
+					if (Prompt.Yandere.CharacterAnimation["f02_flipChair_00"].time >= Prompt.Yandere.CharacterAnimation["f02_flipChair_00"].length)
+					{
+						Prompt.Yandere.CanMove = true;
+						Phase++;
+					}
+				}
+			}
+			if (!Rotate)
+			{
+				return;
+			}
 			if (Rotation != TargetRotation)
 			{
-				Rotation = Mathf.MoveTowards(Rotation, TargetRotation, Time.deltaTime * 360f);
+				Rotation = Mathf.MoveTowards(Rotation, TargetRotation, Time.deltaTime * 90f);
 				base.transform.parent.localEulerAngles = new Vector3(0f, 0f, Rotation);
 				base.transform.parent.localPosition = Vector3.MoveTowards(base.transform.parent.localPosition, new Vector3(6f, 3.75f, 3f), Time.deltaTime);
 				return;

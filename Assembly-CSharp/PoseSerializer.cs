@@ -24,12 +24,13 @@ public static class PoseSerializer
 		Transform[] componentsInChildren = root.GetComponentsInChildren<Transform>();
 		foreach (Transform transform in componentsInChildren)
 		{
-			BoneData item = default(BoneData);
-			item.BoneName = ((transform == root) ? "StudentRoot" : transform.name);
-			item.LocalPosition = transform.localPosition;
-			item.LocalRotation = transform.localRotation;
-			item.LocalScale = transform.localScale;
-			list.Add(item);
+			list.Add(new BoneData
+			{
+				BoneName = ((transform == root) ? "StudentRoot" : transform.name),
+				LocalPosition = transform.localPosition,
+				LocalRotation = transform.localRotation,
+				LocalScale = transform.localScale
+			});
 		}
 		return list.ToArray();
 	}

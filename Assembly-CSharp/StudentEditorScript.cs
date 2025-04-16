@@ -151,13 +151,13 @@ public class StudentEditorScript : MonoBehaviour
 			students[i] = StudentData.Deserialize(array[i]);
 		}
 		Array.Sort(students, (StudentData a, StudentData b) => a.id - b.id);
-		for (int j = 0; j < students.Length; j++)
+		for (int num = 0; num < students.Length; num++)
 		{
-			StudentData studentData = students[j];
+			StudentData studentData = students[num];
 			UILabel uILabel = UnityEngine.Object.Instantiate(studentLabelTemplate, listLabelsOrigin);
 			uILabel.text = "(" + studentData.id + ") " + studentData.name;
 			Transform transform = uILabel.transform;
-			transform.localPosition = new Vector3(transform.localPosition.x + (float)(uILabel.width / 2), transform.localPosition.y - (float)(j * uILabel.height), transform.localPosition.z);
+			transform.localPosition = new Vector3(transform.localPosition.x + (float)(uILabel.width / 2), transform.localPosition.y - (float)(num * uILabel.height), transform.localPosition.z);
 			uILabel.gameObject.SetActive(value: true);
 		}
 		studentIndex = 0;

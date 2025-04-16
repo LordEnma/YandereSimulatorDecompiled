@@ -12,14 +12,6 @@ public class NextRivalCutsceneScript : MonoBehaviour
 
 	public Renderer SenpaiRenderer;
 
-	public UISprite SkipCircle;
-
-	public UISprite Darkness;
-
-	public UIPanel SkipPanel;
-
-	public Transform Camera;
-
 	public float LastInputTimer;
 
 	public float LowestPoint;
@@ -28,9 +20,21 @@ public class NextRivalCutsceneScript : MonoBehaviour
 
 	public float Timer;
 
+	public Transform RightHand;
+
+	public Transform Camera;
+
+	public Transform Book;
+
+	public UISprite SkipCircle;
+
+	public UISprite Darkness;
+
 	public AudioSource[] Audio;
 
 	public Texture TestTexture;
+
+	public UIPanel SkipPanel;
 
 	public UILabel Subtitle;
 
@@ -90,6 +94,11 @@ public class NextRivalCutsceneScript : MonoBehaviour
 				Audio[4].volume = 0.05f;
 				Audio[5].volume = 0f;
 			}
+		}
+		if (Timer > 26.66666f)
+		{
+			Book.GetComponent<Animation>().Stop();
+			Book.parent = RightHand;
 		}
 		LastInputTimer += Time.deltaTime;
 		if (Input.anyKeyDown)

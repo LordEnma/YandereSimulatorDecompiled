@@ -12,7 +12,7 @@ public class InvEquipment : MonoBehaviour
 	public InvGameItem Replace(InvBaseItem.Slot slot, InvGameItem item)
 	{
 		InvBaseItem invBaseItem = item?.baseItem;
-		if (slot != 0)
+		if (slot != InvBaseItem.Slot.None)
 		{
 			if (invBaseItem != null && invBaseItem.slot != slot)
 			{
@@ -123,7 +123,7 @@ public class InvEquipment : MonoBehaviour
 
 	public InvGameItem GetItem(InvBaseItem.Slot slot)
 	{
-		if (slot != 0)
+		if (slot != InvBaseItem.Slot.None)
 		{
 			int num = (int)(slot - 1);
 			if (mItems != null && num < mItems.Length)

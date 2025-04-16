@@ -197,7 +197,7 @@ public class UIDragDropItem : MonoBehaviour
 		{
 			return;
 		}
-		if (restriction != 0)
+		if (restriction != Restriction.None)
 		{
 			if (restriction == Restriction.Horizontal)
 			{

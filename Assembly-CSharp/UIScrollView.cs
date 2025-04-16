@@ -148,7 +148,7 @@ public class UIScrollView : MonoBehaviour
 	{
 		get
 		{
-			if (movement != 0 && movement != Movement.Unrestricted)
+			if (movement != Movement.Horizontal && movement != Movement.Unrestricted)
 			{
 				if (movement == Movement.Custom)
 				{
@@ -686,7 +686,7 @@ public class UIScrollView : MonoBehaviour
 		}
 		else
 		{
-			if (mDragStarted && restrictWithinPanel && mPanel.clipping != 0)
+			if (mDragStarted && restrictWithinPanel && mPanel.clipping != UIDrawCall.Clipping.None)
 			{
 				RestrictWithinBounds(dragEffect == DragEffect.None, canMoveHorizontally, canMoveVertically);
 			}
@@ -791,7 +791,7 @@ public class UIScrollView : MonoBehaviour
 				MoveAbsolute(vector);
 			}
 		}
-		if (constrainOnDrag && restrictWithinPanel && mPanel.clipping != 0 && dragEffect != DragEffect.MomentumAndSpring)
+		if (constrainOnDrag && restrictWithinPanel && mPanel.clipping != UIDrawCall.Clipping.None && dragEffect != DragEffect.MomentumAndSpring)
 		{
 			RestrictWithinBounds(instant: true, canMoveHorizontally, canMoveVertically);
 		}
@@ -818,7 +818,7 @@ public class UIScrollView : MonoBehaviour
 			return;
 		}
 		float deltaTime = RealTime.deltaTime;
-		if (showScrollBars != 0 && ((bool)verticalScrollBar || (bool)horizontalScrollBar))
+		if (showScrollBars != ShowCondition.Always && ((bool)verticalScrollBar || (bool)horizontalScrollBar))
 		{
 			bool flag = false;
 			bool flag2 = false;
@@ -875,7 +875,7 @@ public class UIScrollView : MonoBehaviour
 				mScroll = NGUIMath.SpringLerp(mScroll, 0f, 20f, deltaTime);
 				Vector3 absolute = NGUIMath.SpringDampen(ref mMomentum, dampenStrength, deltaTime);
 				MoveAbsolute(absolute);
-				if (restrictWithinPanel && mPanel.clipping != 0)
+				if (restrictWithinPanel && mPanel.clipping != UIDrawCall.Clipping.None)
 				{
 					if (NGUITools.GetActive(centerOnChild))
 					{

@@ -146,6 +146,8 @@ public class BeatEmUpScript : MonoBehaviour
 
 	public float MaxSuper;
 
+	public float WarmUp;
+
 	public string HitReactAnim;
 
 	public string DefeatAnim;
@@ -186,6 +188,14 @@ public class BeatEmUpScript : MonoBehaviour
 
 	public GameObject Mask;
 
+	public Transform YakuzaBrotherRightHand;
+
+	public Transform YakuzaBrotherWeapon;
+
+	public Animation YakuzaBrotherAnim;
+
+	public GameObject YakuzaBrother;
+
 	public SkinnedMeshRenderer MyRenderer;
 
 	public Texture[] UniformTextures;
@@ -224,15 +234,16 @@ public class BeatEmUpScript : MonoBehaviour
 		{
 			PonytailRenderer.material.mainTexture = BlondeTexture;
 		}
+		UpdateDOF(2f, 5.6f);
 		if (GameGlobals.Eighties)
 		{
+			MainCamera.transform.position = new Vector3(-0.33333f, 1.33333f, -4.33333f);
+			MainCamera.transform.eulerAngles = new Vector3(0f, 150f, 0f);
+			UpdateDOF(0.5f, 16.8f);
 			FaceTexture = RyobaHair.GetComponent<Renderer>().material.mainTexture;
 			RyobaHair.transform.parent.gameObject.SetActive(value: true);
 			PonytailRenderer.gameObject.SetActive(value: false);
 			Music.Stop();
-			Dialogue.clip = DialogueClips[CutsceneID];
-			Dialogue.Play();
-			Subtitle.text = DialogueText[CutsceneID];
 			Cutscene = true;
 			IncineratorScene.SetActive(value: false);
 			StreetScene.SetActive(value: true);
@@ -253,7 +264,6 @@ public class BeatEmUpScript : MonoBehaviour
 		}
 		ChangeSchoolwear();
 		Profile.motionBlur.enabled = false;
-		UpdateDOF(2f);
 		if (!OptionGlobals.EnableShadows)
 		{
 			LightSource.shadows = LightShadows.None;
@@ -533,20 +543,44 @@ public class BeatEmUpScript : MonoBehaviour
 			{
 				if (Cutscene)
 				{
-					if (!Dialogue.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
+					WarmUp += Time.deltaTime;
+					Debug.Log("WarmUp is: " + WarmUp);
+					if (WarmUp > 1f)
 					{
-						CutsceneID++;
-						if (CutsceneID < 3)
+						MyAnimation.Play("f02_preYakuzaFight_00");
+						YakuzaBrother.SetActive(value: true);
+						Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
+						if (YakuzaBrotherAnim["preYakuzaFight_00"].time > 15f)
 						{
-							Dialogue.clip = DialogueClips[CutsceneID];
-							Dialogue.Play();
-							Subtitle.text = DialogueText[CutsceneID];
+							YakuzaBrotherWeapon.parent = YakuzaBrotherRightHand;
+							YakuzaBrotherWeapon.transform.localPosition = Vector3.zero;
+							YakuzaBrotherWeapon.transform.localEulerAngles = Vector3.zero;
 						}
-						else
+						if (!Dialogue.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
 						{
-							Music.clip = EightiesTrack;
-							Cutscene = false;
-							Subtitle.text = "";
+							CutsceneID++;
+							if (Input.GetButtonDown(InputNames.Xbox_A))
+							{
+								SetAnimationTime(CutsceneID);
+							}
+							if (CutsceneID < 6)
+							{
+								Dialogue.clip = DialogueClips[CutsceneID];
+								Dialogue.Play();
+								Subtitle.text = DialogueText[CutsceneID];
+							}
+							else
+							{
+								MainCamera.transform.position = new Vector3(-1f, 0.742f, 3f);
+								MainCamera.transform.eulerAngles = new Vector3(0f, 15f, 0f);
+								MyAnimation.Play("f02_idle_20_p");
+								YakuzaBrother.SetActive(value: false);
+								UpdateDOF(2f, 5.6f);
+								Music.clip = EightiesTrack;
+								Music.Play();
+								Cutscene = false;
+								Subtitle.text = "";
+							}
 						}
 					}
 				}
@@ -790,10 +824,32 @@ public class BeatEmUpScript : MonoBehaviour
 		SceneManager.UnloadSceneAsync(41);
 	}
 
-	private void UpdateDOF(float Focus)
+	private void UpdateDOF(float Value, float Aperture)
 	{
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
-		settings.focusDistance = Focus;
+		settings.focusDistance = Value;
+		settings.aperture = Aperture;
 		Profile.depthOfField.settings = settings;
+		UpdateAperture(Aperture);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
+		Profile.depthOfField.settings = settings;
+	}
+
+	private void SetAnimationTime(int CutsceneID)
+	{
+		float num = 0f;
+		for (int i = 0; i < CutsceneID; i++)
+		{
+			num += DialogueClips[i].length;
+		}
+		MyAnimation["f02_preYakuzaFight_00"].time = num;
+		YakuzaBrotherAnim["preYakuzaFight_00"].time = num;
 	}
 }

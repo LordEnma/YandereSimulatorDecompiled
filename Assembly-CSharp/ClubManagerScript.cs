@@ -266,7 +266,7 @@ public class ClubManagerScript : MonoBehaviour
 			AcidVats[2].Prompt.enabled = false;
 			AcidVats[2].Prompt.Hide();
 		}
-		if (ClubGlobals.Club != 0 && DateGlobals.Weekday == DayOfWeek.Friday && ClubGlobals.ActivitiesAttended == 0)
+		if (ClubGlobals.Club != ClubType.None && DateGlobals.Weekday == DayOfWeek.Friday && ClubGlobals.ActivitiesAttended == 0)
 		{
 			ClubActivityReminder = true;
 		}
@@ -275,7 +275,7 @@ public class ClubManagerScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Club != 0)
+		if (Club != ClubType.None)
 		{
 			if (Phase == 1)
 			{

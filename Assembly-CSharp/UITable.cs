@@ -74,7 +74,7 @@ public class UITable : UIWidgetContainer
 				list.Add(child);
 			}
 		}
-		if (sorting != 0)
+		if (sorting != Sorting.None)
 		{
 			if (sorting == Sorting.Alphabetic)
 			{

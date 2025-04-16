@@ -505,6 +505,8 @@ public class DebugMenuScript : MonoBehaviour
 					Window.SetActive(value: false);
 					WeaponManager.BroughtWeapons[8].transform.parent = null;
 					WeaponManager.BroughtWeapons[8].gameObject.SetActive(value: true);
+					WeaponManager.BroughtWeapons[12].transform.parent = null;
+					WeaponManager.BroughtWeapons[12].gameObject.SetActive(value: true);
 					Debug.Log("Yandere.Class.PhysicalGrade is now: " + Yandere.Class.PhysicalGrade);
 				}
 				else if (Input.GetKeyDown(KeyCode.T))

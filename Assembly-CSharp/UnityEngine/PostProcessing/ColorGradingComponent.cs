@@ -101,12 +101,13 @@ namespace UnityEngine.PostProcessing
 			{
 				return new Color(1f, 1f, 1f, c.a);
 			}
-			Color result = default(Color);
-			result.r = c.r / num;
-			result.g = c.g / num;
-			result.b = c.b / num;
-			result.a = c.a;
-			return result;
+			return new Color
+			{
+				r = c.r / num,
+				g = c.g / num,
+				b = c.b / num,
+				a = c.a
+			};
 		}
 
 		private static Vector3 ClampVector(Vector3 v, float min, float max)

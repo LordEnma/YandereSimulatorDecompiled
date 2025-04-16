@@ -81,7 +81,7 @@ public class UIGrid : UIWidgetContainer
 				list.Add(child);
 			}
 		}
-		if (sorting != 0 && arrangement != Arrangement.CellSnap)
+		if (sorting != Sorting.None && arrangement != Arrangement.CellSnap)
 		{
 			if (sorting == Sorting.Alphabetic)
 			{
@@ -274,7 +274,7 @@ public class UIGrid : UIWidgetContainer
 			{
 				vector = ((arrangement == Arrangement.Horizontal) ? new Vector3(cellWidth * (float)num, (0f - cellHeight) * (float)num2, z) : new Vector3(cellWidth * (float)num2, (0f - cellHeight) * (float)num, z));
 			}
-			if (animateSmoothly && Application.isPlaying && (pivot != 0 || Vector3.SqrMagnitude(transform.localPosition - vector) >= 0.0001f))
+			if (animateSmoothly && Application.isPlaying && (pivot != UIWidget.Pivot.TopLeft || Vector3.SqrMagnitude(transform.localPosition - vector) >= 0.0001f))
 			{
 				SpringPosition springPosition = SpringPosition.Begin(transform.gameObject, vector, 15f);
 				springPosition.updateScrollView = true;

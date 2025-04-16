@@ -260,7 +260,7 @@ namespace AmplifyMotion
 			int num = (flag ? m_owner.Instance.GenerateObjectId(m_obj.gameObject) : 255);
 			renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float)num * 0.003921569f);
 			renderCB.SetGlobalFloat("_AM_MOTION_SCALE", flag ? scale : 0f);
-			int num2 = ((quality != 0) ? 2 : 0);
+			int num2 = ((quality != Quality.Mobile) ? 2 : 0);
 			for (int i = 0; i < m_sharedMaterials.Length; i++)
 			{
 				MaterialDesc materialDesc = m_sharedMaterials[i];

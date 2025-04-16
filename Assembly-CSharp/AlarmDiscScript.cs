@@ -315,7 +315,7 @@ public class AlarmDiscScript : MonoBehaviour
 											}
 											else
 											{
-												Debug.Log("This female student was distracted by a giggle, so her bento has teleported.");
+												Debug.Log("This female student was distracted by an alarm disc, so her bento has teleported.");
 												Student.Bento.transform.localPosition = new Vector3(0f, 0.461f, -0.075f);
 											}
 											Student.Bento.transform.localEulerAngles = new Vector3(0f, 0f, 0f);

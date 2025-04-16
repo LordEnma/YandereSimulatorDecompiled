@@ -228,7 +228,7 @@ public class HomeYandereScript : MonoBehaviour
 			IdleAnim = "f02_ryobaIdle_00";
 			WalkAnim = "f02_ryobaWalk_00";
 			RunAnim = "f02_ryobaRun_00";
-			if (DateGlobals.Weekday != 0)
+			if (DateGlobals.Weekday != DayOfWeek.Sunday)
 			{
 				if (!Pajamas.gameObject.activeInHierarchy && !Vtuber)
 				{

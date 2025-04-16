@@ -37,7 +37,7 @@ public class PickaxePromptScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.WeaponID == 46 && Progress < 100f)
+		if (Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.WeaponID == 45 && Progress < 100f)
 		{
 			Prompt.HideButton[0] = false;
 			if (Prompt.Circle[0].fillAmount == 0f)

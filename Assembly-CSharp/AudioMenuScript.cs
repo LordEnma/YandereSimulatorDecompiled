@@ -39,6 +39,11 @@ public class AudioMenuScript : MonoBehaviour
 		if (ABC)
 		{
 			VolumeMessage.enabled = true;
+			Debug.Log(PauseScreen);
+			Debug.Log(PauseScreen.Yandere);
+			Debug.Log(PauseScreen.Yandere.StudentManager);
+			Debug.Log(PauseScreen.Yandere.StudentManager.Alphabet);
+			Debug.Log(PauseScreen.Yandere.StudentManager.Alphabet.MusicPlayer);
 			ABCVolume = PauseScreen.Yandere.StudentManager.Alphabet.MusicPlayer.volume;
 		}
 	}

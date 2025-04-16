@@ -2294,23 +2294,27 @@ public class TalkingScript : MonoBehaviour
 
 	private void CheckForGossipSpecialCase()
 	{
-		Debug.Log("Checking for gossip speacial case.");
+		Debug.Log("Checking for gossip special case.");
 		RejectGossip = false;
 		if (!Eighties)
 		{
-			if (S.DialogueWheel.Victim == S.Crush || (S.StudentID == 2 && S.DialogueWheel.Victim == 3) || (S.StudentID == 3 && S.DialogueWheel.Victim == 2) || (S.StudentID == 10 && S.DialogueWheel.Victim == 11) || (S.StudentID == 11 && S.DialogueWheel.Victim == 10) || (S.StudentID == 25 && S.DialogueWheel.Victim == 30) || (S.StudentID == 30 && S.DialogueWheel.Victim == 25) || (S.StudentID == 70 && S.DialogueWheel.Victim == 46) || (S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10))
+			if (S.DialogueWheel.Victim == S.Crush || (S.StudentID == 2 && S.DialogueWheel.Victim == 3) || (S.StudentID == 3 && S.DialogueWheel.Victim == 2) || (S.StudentID == 10 && S.DialogueWheel.Victim == 11) || (S.StudentID == 11 && S.DialogueWheel.Victim == 10) || (S.StudentID == 25 && S.DialogueWheel.Victim == 30) || (S.StudentID == 30 && S.DialogueWheel.Victim == 25) || (S.StudentID == 70 && S.DialogueWheel.Victim == 46) || (S.StudentID > 55 && S.StudentID < 61 && S.DialogueWheel.Victim < 55 && S.DialogueWheel.Victim < 61) || (S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10))
 			{
+				Debug.Log("1");
 				if ((S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10) || (S.StudentID == 70 && S.DialogueWheel.Victim == 46) || S.DialogueWheel.Victim == S.Crush)
 				{
+					Debug.Log("2");
 					RejectGossipLine = "Hey! I have a lot of respect for that person! Don't say anything weird about them!";
 				}
 				else if (S.DialogueWheel.Victim < 4)
 				{
+					Debug.Log("3");
 					RejectGossipLine = "Hey! She's my sister! Don't say anything weird about her!";
 				}
 				else
 				{
-					RejectGossipLine = "Hey! She's my friend! Don't say anything weird about her!";
+					Debug.Log("4");
+					RejectGossipLine = "Hey! That's my friend! Don't say anything weird about them!";
 				}
 				RejectGossip = true;
 			}
@@ -2325,7 +2329,7 @@ public class TalkingScript : MonoBehaviour
 			RejectGossipLine = "Hey! He's my friend! Don't say anything weird about him!";
 			RejectGossip = true;
 		}
-		if (S.Club != 0 && S.Club == S.StudentManager.Students[S.DialogueWheel.Victim].Club)
+		if (S.Club != ClubType.None && S.Club == S.StudentManager.Students[S.DialogueWheel.Victim].Club)
 		{
 			if (S.StudentManager.Students[S.DialogueWheel.Victim].Male)
 			{

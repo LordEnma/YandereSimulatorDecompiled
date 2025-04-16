@@ -47,15 +47,15 @@ public class MemorialSceneScript : MonoBehaviour
 		if (PlayerPrefs.GetInt("LoadingSave") == 1)
 		{
 			int profile = GameGlobals.Profile;
-			int @int = PlayerPrefs.GetInt("SaveSlot");
-			StudentGlobals.MemorialStudents = PlayerPrefs.GetInt("Profile_" + profile + "_Slot_" + @int + "_MemorialStudents");
+			int num = PlayerPrefs.GetInt("SaveSlot");
+			StudentGlobals.MemorialStudents = PlayerPrefs.GetInt("Profile_" + profile + "_Slot_" + num + "_MemorialStudents");
 		}
 		MemorialStudents = StudentGlobals.MemorialStudents;
 		if (MemorialStudents % 2 == 0)
 		{
 			CanvasGroup.transform.localPosition = new Vector3(-0.5f, 0f, -2f);
 		}
-		int num = 0;
+		int num2 = 0;
 		int i;
 		for (i = 1; i < 10; i++)
 		{
@@ -83,45 +83,45 @@ public class MemorialSceneScript : MonoBehaviour
 			Canvases[i].SetActive(value: true);
 			if (MemorialStudents == 1)
 			{
-				num = StudentGlobals.MemorialStudent1;
+				num2 = StudentGlobals.MemorialStudent1;
 			}
 			else if (MemorialStudents == 2)
 			{
-				num = StudentGlobals.MemorialStudent2;
+				num2 = StudentGlobals.MemorialStudent2;
 			}
 			else if (MemorialStudents == 3)
 			{
-				num = StudentGlobals.MemorialStudent3;
+				num2 = StudentGlobals.MemorialStudent3;
 			}
 			else if (MemorialStudents == 4)
 			{
-				num = StudentGlobals.MemorialStudent4;
+				num2 = StudentGlobals.MemorialStudent4;
 			}
 			else if (MemorialStudents == 5)
 			{
-				num = StudentGlobals.MemorialStudent5;
+				num2 = StudentGlobals.MemorialStudent5;
 			}
 			else if (MemorialStudents == 6)
 			{
-				num = StudentGlobals.MemorialStudent6;
+				num2 = StudentGlobals.MemorialStudent6;
 			}
 			else if (MemorialStudents == 7)
 			{
-				num = StudentGlobals.MemorialStudent7;
+				num2 = StudentGlobals.MemorialStudent7;
 			}
 			else if (MemorialStudents == 8)
 			{
-				num = StudentGlobals.MemorialStudent8;
+				num2 = StudentGlobals.MemorialStudent8;
 			}
 			else if (MemorialStudents == 9)
 			{
-				num = StudentGlobals.MemorialStudent9;
+				num2 = StudentGlobals.MemorialStudent9;
 			}
-			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_" + num + ".png");
+			WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + text + "/Student_" + num2 + ".png");
 			Portraits[i].mainTexture = wWW.texture;
-			if (num < 90)
+			if (num2 < 90)
 			{
-				StudentJson studentJson = StudentManager.JSON.Students[num];
+				StudentJson studentJson = StudentManager.JSON.Students[num2];
 				GameObject gameObject = Object.Instantiate(FlowerVase, base.transform.position, Quaternion.identity);
 				Transform transform = StudentManager.Seats[studentJson.Class].List[studentJson.Seat];
 				if (transform.position.x > 0f)

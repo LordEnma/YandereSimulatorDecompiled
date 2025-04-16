@@ -71,12 +71,12 @@ public class GrassPlaneGenerator : MonoBehaviour
 			camera.clearFlags = CameraClearFlags.Color;
 			camera.backgroundColor = new Color(0f, 0f, 0f, 0f);
 			camera.cullingMask = IntersectLayers;
-			RenderTexture renderTexture2 = (camera.targetTexture = new RenderTexture((int)Width * 100, (int)Height * 100, 1));
+			RenderTexture renderTexture = (camera.targetTexture = new RenderTexture((int)Width * 100, (int)Height * 100, 1));
 			camera.forceIntoRenderTexture = true;
-			RenderTexture.active = renderTexture2;
+			RenderTexture.active = renderTexture;
 			camera.Render();
-			texture2D = new Texture2D(renderTexture2.width, renderTexture2.height, TextureFormat.RGBA32, mipChain: false);
-			texture2D.ReadPixels(new Rect(0f, 0f, renderTexture2.width, renderTexture2.height), 0, 0);
+			texture2D = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGBA32, mipChain: false);
+			texture2D.ReadPixels(new Rect(0f, 0f, renderTexture.width, renderTexture.height), 0, 0);
 			texture2D.filterMode = FilterMode.Trilinear;
 			texture2D.Apply();
 			RenderTexture.active = active;

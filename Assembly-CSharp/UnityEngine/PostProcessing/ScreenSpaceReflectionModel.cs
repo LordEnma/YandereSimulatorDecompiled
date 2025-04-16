@@ -87,36 +87,31 @@ namespace UnityEngine.PostProcessing
 
 			public ScreenEdgeMask screenEdgeMask;
 
-			public static Settings defaultSettings
+			public static Settings defaultSettings => new Settings
 			{
-				get
+				reflection = new ReflectionSettings
 				{
-					Settings result = default(Settings);
-					result.reflection = new ReflectionSettings
-					{
-						blendType = SSRReflectionBlendType.PhysicallyBased,
-						reflectionQuality = SSRResolution.Low,
-						maxDistance = 100f,
-						iterationCount = 256,
-						stepSize = 3,
-						widthModifier = 0.5f,
-						reflectionBlur = 1f,
-						reflectBackfaces = false
-					};
-					result.intensity = new IntensitySettings
-					{
-						reflectionMultiplier = 1f,
-						fadeDistance = 100f,
-						fresnelFade = 1f,
-						fresnelFadePower = 1f
-					};
-					result.screenEdgeMask = new ScreenEdgeMask
-					{
-						intensity = 0.03f
-					};
-					return result;
+					blendType = SSRReflectionBlendType.PhysicallyBased,
+					reflectionQuality = SSRResolution.Low,
+					maxDistance = 100f,
+					iterationCount = 256,
+					stepSize = 3,
+					widthModifier = 0.5f,
+					reflectionBlur = 1f,
+					reflectBackfaces = false
+				},
+				intensity = new IntensitySettings
+				{
+					reflectionMultiplier = 1f,
+					fadeDistance = 100f,
+					fresnelFade = 1f,
+					fresnelFadePower = 1f
+				},
+				screenEdgeMask = new ScreenEdgeMask
+				{
+					intensity = 0.03f
 				}
-			}
+			};
 		}
 
 		[SerializeField]

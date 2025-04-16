@@ -188,6 +188,8 @@ public class VisualNovelScript : MonoBehaviour
 			}
 			HeartRender.SetActive(value: true);
 			LockArm = true;
+			Character[2].Cosmetic.RightTemple.name = "temple_Right";
+			Character[2].Cosmetic.LeftTemple.name = "temple_Left";
 			Character[2].Cosmetic.StudentID = 2;
 			Character[2].StudentID = 2;
 			Character[2].Cosmetic.Initialized = false;
@@ -272,6 +274,8 @@ public class VisualNovelScript : MonoBehaviour
 				CasualClothing = true;
 				Character[2].Cosmetic.StudentID = 13;
 				Character[2].StudentID = 13;
+				Character[2].Cosmetic.RightTemple.name = "temple_Right";
+				Character[2].Cosmetic.LeftTemple.name = "temple_Left";
 				Character[2].Cosmetic.Initialized = false;
 				Character[2].Cosmetic.Start();
 				Character[2].Cosmetic.RightEyeRenderer.gameObject.SetActive(value: false);

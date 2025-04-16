@@ -7,5 +7,6 @@ public enum WeaponType
 	Syringe = 5,
 	Weight = 6,
 	Scythe = 7,
-	Garrote = 8
+	Garrote = 8,
+	Chainsaw = 9
 }

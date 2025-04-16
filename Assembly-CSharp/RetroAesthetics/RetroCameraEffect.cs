@@ -175,9 +175,9 @@ namespace RetroAesthetics
 				Awake();
 			}
 			_material.SetFloat("_OffsetNoiseX", UnityEngine.Random.Range(0f, 1f));
-			float @float = _material.GetFloat("_OffsetNoiseY");
-			_material.SetFloat("_OffsetNoiseY", @float + UnityEngine.Random.Range(-0.05f, 0.05f));
-			if (randomGlitches != 0)
+			float num = _material.GetFloat("_OffsetNoiseY");
+			_material.SetFloat("_OffsetNoiseY", num + UnityEngine.Random.Range(-0.05f, 0.05f));
+			if (randomGlitches != GlitchDirections.None)
 			{
 				if (UnityEngine.Random.Range(0, 15) == 0)
 				{
@@ -206,12 +206,12 @@ namespace RetroAesthetics
 				vector.x += UnityEngine.Random.Range(0f, 0f - vector.x);
 			}
 			_material.SetVector("_OffsetPos", vector);
-			float float2 = _material.GetFloat("_ChromaticAberration");
-			if (float2 > chromaticAberration)
+			float num2 = _material.GetFloat("_ChromaticAberration");
+			if (num2 > chromaticAberration)
 			{
-				_material.SetFloat("_ChromaticAberration", float2 - 15f * Time.deltaTime);
+				_material.SetFloat("_ChromaticAberration", num2 - 15f * Time.deltaTime);
 			}
-			else if (randomGlitches != 0 && UnityEngine.Random.Range(0, 100 - glitchFrequency) == 0)
+			else if (randomGlitches != GlitchDirections.None && UnityEngine.Random.Range(0, 100 - glitchFrequency) == 0)
 			{
 				Glitch(glitchIntensity);
 			}

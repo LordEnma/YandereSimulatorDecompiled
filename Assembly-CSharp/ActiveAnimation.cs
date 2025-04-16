@@ -210,7 +210,7 @@ public class ActiveAnimation : MonoBehaviour
 			}
 			current = null;
 		}
-		if (mDisableDirection != 0 && mLastDirection == mDisableDirection)
+		if (mDisableDirection != AnimationOrTween.Direction.Toggle && mLastDirection == mDisableDirection)
 		{
 			NGUITools.SetActive(base.gameObject, state: false);
 		}

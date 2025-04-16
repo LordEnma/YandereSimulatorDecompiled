@@ -25,6 +25,8 @@ public class HomeExitScript : MonoBehaviour
 
 	public int ID = 1;
 
+	public int Zs;
+
 	public void Start()
 	{
 		UILabel uILabel = Labels[1];
@@ -115,53 +117,52 @@ public class HomeExitScript : MonoBehaviour
 		}
 		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
-			if (Labels[ID].color.a != 1f)
+			if (Labels[ID].color.a == 1f)
 			{
-				return;
-			}
-			if (ID == 1)
-			{
-				HomeBringItem.HomeWindow.Show = true;
-				HomeWindow.Show = false;
-			}
-			else if (ID == 5)
-			{
-				PartTimeJobWindow.Show = true;
-				HomeWindow.Show = false;
-			}
-			else if (ID == 6)
-			{
-				HomeYandere.MyController.radius = 0.25f;
-				HomeCamera.Triggers[1].gameObject.transform.position = new Vector3(-4.063334f, -2.5165f, -4.0875f);
-				HomeCamera.Triggers[1].gameObject.GetComponent<BoxCollider>().size = new Vector3(2.16f, 1f, 1f);
-				HomeCamera.Triggers[1].FadeIn = false;
-				HomeCamera.Triggers[1].Label.transform.localPosition = new Vector3(-4067.5f, -1450f, -4541f);
-				HomeCamera.Triggers[1].Label.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
-				HomeCamera.Destinations[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -2.5f);
-				HomeCamera.Targets[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -4.56265f);
-				HomeBringItem.HardwareButton.SetActive(value: false);
-				HomeCamera.OutOfRoom = true;
-				HomeCamera.OpenDoor = true;
-				HomeCamera.ID = 0;
-				Exit();
-			}
-			else
-			{
-				if (ID == 2)
+				if (ID == 1)
 				{
-					HomeDarkness.Sprite.color = new Color(1f, 1f, 1f, 0f);
+					HomeBringItem.HomeWindow.Show = true;
+					HomeWindow.Show = false;
 				}
-				else if (ID == 3)
+				else if (ID == 5)
 				{
-					HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+					PartTimeJobWindow.Show = true;
+					HomeWindow.Show = false;
 				}
-				else if (ID == 4)
+				else if (ID == 6)
 				{
-					HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+					HomeYandere.MyController.radius = 0.25f;
+					HomeCamera.Triggers[1].gameObject.transform.position = new Vector3(-4.063334f, -2.5165f, -4.0875f);
+					HomeCamera.Triggers[1].gameObject.GetComponent<BoxCollider>().size = new Vector3(2.16f, 1f, 1f);
+					HomeCamera.Triggers[1].FadeIn = false;
+					HomeCamera.Triggers[1].Label.transform.localPosition = new Vector3(-4067.5f, -1450f, -4541f);
+					HomeCamera.Triggers[1].Label.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+					HomeCamera.Destinations[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -2.5f);
+					HomeCamera.Targets[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -4.56265f);
+					HomeBringItem.HardwareButton.SetActive(value: false);
+					HomeCamera.OutOfRoom = true;
+					HomeCamera.OpenDoor = true;
+					HomeCamera.ID = 0;
+					Exit();
 				}
-				HomeDarkness.FadeOut = true;
-				HomeWindow.Show = false;
-				base.enabled = false;
+				else
+				{
+					if (ID == 2)
+					{
+						HomeDarkness.Sprite.color = new Color(1f, 1f, 1f, 0f);
+					}
+					else if (ID == 3)
+					{
+						HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+					}
+					else if (ID == 4)
+					{
+						HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+					}
+					HomeDarkness.FadeOut = true;
+					HomeWindow.Show = false;
+					base.enabled = false;
+				}
 			}
 		}
 		else if (Input.GetButtonDown(InputNames.Xbox_B))
@@ -175,6 +176,14 @@ public class HomeExitScript : MonoBehaviour
 				HomeCamera.CameraTimer = 0f;
 				HomeYandere.transform.position = new Vector3(-4.111486f, -2.994555f, -3.33333f);
 				HomeYandere.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+			}
+		}
+		if (Input.GetKeyDown("z"))
+		{
+			Zs++;
+			if (Zs > 9)
+			{
+				SchemeGlobals.SetSchemeStage(6, 9);
 			}
 		}
 	}

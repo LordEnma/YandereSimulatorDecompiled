@@ -38,6 +38,10 @@ public class MopHeadScript : MonoBehaviour
 				}
 				other.gameObject.SetActive(value: false);
 				Object.Destroy(other.gameObject);
+				if (BloodPool.Blood)
+				{
+					QuestTracker.IncrementBloodCount();
+				}
 			}
 		}
 		else

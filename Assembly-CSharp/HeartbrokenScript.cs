@@ -381,6 +381,10 @@ public class HeartbrokenScript : MonoBehaviour
 				Subtitle.fontStyle = FontStyle.Bold;
 			}
 		}
+		if (Yandere != null)
+		{
+			Yandere.CharacterAnimation["f02_mopping_00"].weight = 0f;
+		}
 	}
 
 	private void Update()

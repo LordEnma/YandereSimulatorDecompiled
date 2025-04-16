@@ -3,13 +3,21 @@ using UnityEngine.PostProcessing;
 
 public class DetectReloadScript : MonoBehaviour
 {
+	private static DetectReloadScript instance;
+
 	public PostProcessingProfile Profile;
 
 	public bool ResetSettings;
 
 	private void Start()
 	{
+		if (instance != null)
+		{
+			Object.Destroy(base.gameObject);
+			return;
+		}
 		Object.DontDestroyOnLoad(base.gameObject);
+		instance = this;
 		ResetPostProcessingSettings();
 	}
 

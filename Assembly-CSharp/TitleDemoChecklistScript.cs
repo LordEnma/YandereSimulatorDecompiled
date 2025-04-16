@@ -427,6 +427,16 @@ public class TitleDemoChecklistScript : MonoBehaviour
 					PlayerPrefs.SetInt("Maiden", 0);
 					PlayerPrefs.SetInt("Robot", 0);
 					PlayerPrefs.SetInt("S+", 0);
+					GameObject gameObject = GameObject.Find("AchievementPopUp");
+					if (gameObject != null)
+					{
+						Debug.Log("Found it.");
+						gameObject.GetComponent<AchievementPopUpScript>().Reset();
+					}
+					else
+					{
+						Debug.Log("Didn't find it.");
+					}
 				}
 				SceneManager.LoadScene("ResolutionScene");
 			}

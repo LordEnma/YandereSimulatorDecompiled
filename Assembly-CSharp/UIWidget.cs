@@ -1002,7 +1002,7 @@ public class UIWidget : UIRect
 		vector2.y = Mathf.Round(vector2.y);
 		int num5 = Mathf.FloorToInt(num2 - num + 0.5f);
 		int num6 = Mathf.FloorToInt(num4 - num3 + 0.5f);
-		if (keepAspectRatio != 0 && aspectRatio != 0f)
+		if (keepAspectRatio != AspectRatioSource.Free && aspectRatio != 0f)
 		{
 			if (keepAspectRatio == AspectRatioSource.BasedOnHeight)
 			{

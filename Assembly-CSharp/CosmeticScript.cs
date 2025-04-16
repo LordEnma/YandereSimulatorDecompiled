@@ -822,20 +822,13 @@ public class CosmeticScript : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log("Gema is currently spawning into a location with no TaskManager. Is he kidnapped? If so, accessories should be disabled.");
-					Debug.Log("Gema's TaskStatus is: " + TaskGlobals.GetTaskStatus(36));
 					if (TaskGlobals.GetTaskStatus(36) == 3)
 					{
-						Debug.Log("Gema's Task was completed, and so Gema is updating his appearance.");
 						AdditionalAccessory[1].SetActive(value: false);
 						FacialHairstyle = 0;
 						EyewearID = 9;
 						Hairstyle = 49;
 						Accessory = 0;
-					}
-					else
-					{
-						Debug.Log("Gema's Task was not completed.");
 					}
 					if (Kidnapped)
 					{
@@ -968,6 +961,13 @@ public class CosmeticScript : MonoBehaviour
 					if (AmaiBrows != null)
 					{
 						AmaiBrows.SetActive(value: true);
+						if (!Student.Slave)
+						{
+							RightTemple.name = "temple_Right_RENAMED";
+							LeftTemple.name = "temple_Left_RENAMED";
+							RightTemple.localScale = new Vector3(0f, 0f, 1f);
+							LeftTemple.localScale = new Vector3(0f, 0f, 1f);
+						}
 					}
 					if (PhoneCharms.Length != 0)
 					{
@@ -1119,7 +1119,6 @@ public class CosmeticScript : MonoBehaviour
 					}
 					else if (StudentID == 12)
 					{
-						Debug.Log("Adjusting the position/rotation of Amai's eyebrows.");
 						CharacterAnimation.Play("f02_rivalPortraitPose_02");
 						LookCamera = true;
 						AmaiBrows.transform.localPosition = new Vector3(0f, 0.003f, 0f);
@@ -2813,12 +2812,21 @@ public class CosmeticScript : MonoBehaviour
 						RememberInvertHair = true;
 					}
 				}
+				return;
 			}
-			else if (!Teacher)
+			Debug.Log("This is a female student.");
+			if (!Teacher)
 			{
+				Debug.Log("This character is not a teacher.");
+				Debug.Log("This character's hair model's scale.x is: " + FemaleHair[Hairstyle].transform.localScale.x);
 				if (FemaleHair[Hairstyle].transform.localScale.x > 0f)
 				{
+					Debug.Log("It was greater than 0, so it is now flipping.");
 					FemaleHair[Hairstyle].transform.localScale = new Vector3(FemaleHair[Hairstyle].transform.localScale.x * -1f, FemaleHair[Hairstyle].transform.localScale.y, FemaleHair[Hairstyle].transform.localScale.z);
+					if (TakingPortrait)
+					{
+						RememberInvertHair = true;
+					}
 				}
 			}
 			else if (TeacherHair[Hairstyle].transform.localScale.x > 0f)
@@ -4155,7 +4163,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject7.SetActive(value: false);
 			}
 		}
-		femaleAccessories = FacialHair;
+		femaleAccessories = ModernSlickSuitorHair;
 		foreach (GameObject gameObject8 in femaleAccessories)
 		{
 			if (gameObject8 != null)
@@ -4163,7 +4171,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject8.SetActive(value: false);
 			}
 		}
-		femaleAccessories = Eyewear;
+		femaleAccessories = ModernPonySuitorHair;
 		foreach (GameObject gameObject9 in femaleAccessories)
 		{
 			if (gameObject9 != null)
@@ -4171,7 +4179,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject9.SetActive(value: false);
 			}
 		}
-		femaleAccessories = RightStockings;
+		femaleAccessories = FacialHair;
 		foreach (GameObject gameObject10 in femaleAccessories)
 		{
 			if (gameObject10 != null)
@@ -4179,7 +4187,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject10.SetActive(value: false);
 			}
 		}
-		femaleAccessories = LeftStockings;
+		femaleAccessories = Eyewear;
 		foreach (GameObject gameObject11 in femaleAccessories)
 		{
 			if (gameObject11 != null)
@@ -4187,7 +4195,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject11.SetActive(value: false);
 			}
 		}
-		femaleAccessories = Scanners;
+		femaleAccessories = RightStockings;
 		foreach (GameObject gameObject12 in femaleAccessories)
 		{
 			if (gameObject12 != null)
@@ -4195,7 +4203,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject12.SetActive(value: false);
 			}
 		}
-		femaleAccessories = Flowers;
+		femaleAccessories = LeftStockings;
 		foreach (GameObject gameObject13 in femaleAccessories)
 		{
 			if (gameObject13 != null)
@@ -4203,7 +4211,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject13.SetActive(value: false);
 			}
 		}
-		femaleAccessories = Roses;
+		femaleAccessories = Scanners;
 		foreach (GameObject gameObject14 in femaleAccessories)
 		{
 			if (gameObject14 != null)
@@ -4211,8 +4219,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject14.SetActive(value: false);
 			}
 		}
-		RemoveRings();
-		femaleAccessories = Goggles;
+		femaleAccessories = Flowers;
 		foreach (GameObject gameObject15 in femaleAccessories)
 		{
 			if (gameObject15 != null)
@@ -4220,7 +4227,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject15.SetActive(value: false);
 			}
 		}
-		femaleAccessories = RedCloth;
+		femaleAccessories = Roses;
 		foreach (GameObject gameObject16 in femaleAccessories)
 		{
 			if (gameObject16 != null)
@@ -4228,7 +4235,8 @@ public class CosmeticScript : MonoBehaviour
 				gameObject16.SetActive(value: false);
 			}
 		}
-		femaleAccessories = Kerchiefs;
+		RemoveRings();
+		femaleAccessories = Goggles;
 		foreach (GameObject gameObject17 in femaleAccessories)
 		{
 			if (gameObject17 != null)
@@ -4236,7 +4244,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject17.SetActive(value: false);
 			}
 		}
-		femaleAccessories = CatGifts;
+		femaleAccessories = RedCloth;
 		foreach (GameObject gameObject18 in femaleAccessories)
 		{
 			if (gameObject18 != null)
@@ -4244,7 +4252,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject18.SetActive(value: false);
 			}
 		}
-		femaleAccessories = PunkAccessories;
+		femaleAccessories = Kerchiefs;
 		foreach (GameObject gameObject19 in femaleAccessories)
 		{
 			if (gameObject19 != null)
@@ -4252,7 +4260,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject19.SetActive(value: false);
 			}
 		}
-		femaleAccessories = MusicNotes;
+		femaleAccessories = CatGifts;
 		foreach (GameObject gameObject20 in femaleAccessories)
 		{
 			if (gameObject20 != null)
@@ -4260,7 +4268,7 @@ public class CosmeticScript : MonoBehaviour
 				gameObject20.SetActive(value: false);
 			}
 		}
-		femaleAccessories = Masks;
+		femaleAccessories = PunkAccessories;
 		foreach (GameObject gameObject21 in femaleAccessories)
 		{
 			if (gameObject21 != null)
@@ -4268,12 +4276,28 @@ public class CosmeticScript : MonoBehaviour
 				gameObject21.SetActive(value: false);
 			}
 		}
-		femaleAccessories = CouncilBrows;
+		femaleAccessories = MusicNotes;
 		foreach (GameObject gameObject22 in femaleAccessories)
 		{
 			if (gameObject22 != null)
 			{
 				gameObject22.SetActive(value: false);
+			}
+		}
+		femaleAccessories = Masks;
+		foreach (GameObject gameObject23 in femaleAccessories)
+		{
+			if (gameObject23 != null)
+			{
+				gameObject23.SetActive(value: false);
+			}
+		}
+		femaleAccessories = CouncilBrows;
+		foreach (GameObject gameObject24 in femaleAccessories)
+		{
+			if (gameObject24 != null)
+			{
+				gameObject24.SetActive(value: false);
 			}
 		}
 		femaleAccessories = GaloAccessories;
@@ -4282,11 +4306,11 @@ public class CosmeticScript : MonoBehaviour
 			femaleAccessories[i].SetActive(value: false);
 		}
 		femaleAccessories = EightiesClubAccessories;
-		foreach (GameObject gameObject23 in femaleAccessories)
+		foreach (GameObject gameObject25 in femaleAccessories)
 		{
-			if (gameObject23 != null)
+			if (gameObject25 != null)
 			{
-				gameObject23.SetActive(value: false);
+				gameObject25.SetActive(value: false);
 			}
 		}
 	}

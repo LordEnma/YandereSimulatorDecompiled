@@ -687,7 +687,7 @@ namespace AmplifyMotion
 				renderCB.SetGlobalTexture("_AM_CURR_VERTEX_TEX", m_gpuCurrVertices);
 			}
 			int num2 = (m_useGPU ? 4 : 0);
-			int num3 = ((quality != 0) ? 2 : 0);
+			int num3 = ((quality != Quality.Mobile) ? 2 : 0);
 			int num4 = num2 + num3;
 			for (int i = 0; i < m_sharedMaterials.Length; i++)
 			{

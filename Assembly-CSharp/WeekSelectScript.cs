@@ -85,7 +85,6 @@ public class WeekSelectScript : MonoBehaviour
 		StartLabel.text = "NEXT";
 		Darkness.alpha = 1f;
 		UpdateArrow();
-		UpdateText();
 		for (int i = 1; i < 11; i++)
 		{
 			StartingPosition[i] = Sleeve[i].position;
@@ -143,7 +142,7 @@ public class WeekSelectScript : MonoBehaviour
 				{
 					for (int i = 1; i < 11; i++)
 					{
-						if (GameGlobals.GetSpecificEliminations(i) == 1 || GameGlobals.GetSpecificEliminations(i) == 5 || GameGlobals.GetSpecificEliminations(i) == 6 || GameGlobals.GetSpecificEliminations(i) == 7 || GameGlobals.GetSpecificEliminations(i) == 8 || GameGlobals.GetSpecificEliminations(i) == 10 || GameGlobals.GetSpecificEliminations(i) == 14 || GameGlobals.GetSpecificEliminations(i) == 15 || GameGlobals.GetSpecificEliminations(i) == 16 || GameGlobals.GetSpecificEliminations(i) == 17 || GameGlobals.GetSpecificEliminations(i) == 19 || GameGlobals.GetSpecificEliminations(i) == 20)
+						if (GameGlobals.GetSpecificEliminations(i) == 1 || GameGlobals.GetSpecificEliminations(i) == 5 || GameGlobals.GetSpecificEliminations(i) == 6 || GameGlobals.GetSpecificEliminations(i) == 7 || GameGlobals.GetSpecificEliminations(i) == 8 || GameGlobals.GetSpecificEliminations(i) == 10 || GameGlobals.GetSpecificEliminations(i) == 14 || GameGlobals.GetSpecificEliminations(i) == 15 || GameGlobals.GetSpecificEliminations(i) == 16 || GameGlobals.GetSpecificEliminations(i) == 17 || GameGlobals.GetSpecificEliminations(i) == 19 || GameGlobals.GetSpecificEliminations(i) == 20 || GameGlobals.GetSpecificEliminations(i) == 21)
 						{
 							Debug.Log("Rival #" + i + " is dead.");
 							StudentGlobals.SetStudentDead(i + 10, value: true);
@@ -488,6 +487,19 @@ public class WeekSelectScript : MonoBehaviour
 			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 2.31f, 0f), Time.deltaTime * 10f);
 			if (Input.GetButtonDown(InputNames.Xbox_A) && (GameGlobals.Eighties || (!GameGlobals.Eighties && CurrentWeek < 3)))
 			{
+				for (int k = 1; k < 10; k++)
+				{
+					GameGlobals.SetRivalEliminations(k, 0);
+					GameGlobals.SetSpecificEliminations(k, 0);
+				}
+				for (int k = 1; k < CurrentWeek; k++)
+				{
+					GameGlobals.SetRivalEliminations(k, 1);
+					GameGlobals.SetSpecificEliminations(k, 1);
+				}
+				DateGlobals.Week = CurrentWeek;
+				UpdateText();
+				Stats.Start();
 				SettingWeek = false;
 				SettingRivals = true;
 				EditLabel.gameObject.SetActive(value: true);
@@ -513,17 +525,17 @@ public class WeekSelectScript : MonoBehaviour
 				UpdateArrow();
 			}
 		}
-		for (int k = 1; k < 11; k++)
+		for (int l = 1; l < 11; l++)
 		{
-			if (k == CurrentWeek)
+			if (l == CurrentWeek)
 			{
-				Sleeve[k].transform.position = Vector3.Lerp(Sleeve[k].transform.position, StartingPosition[k] + base.transform.up * 0.05f + base.transform.right * -0.05f, Time.deltaTime * 10f);
-				Tape[k].transform.localPosition = Vector3.Lerp(Tape[k].transform.localPosition, new Vector3(0f, -0.0003f, 0f), Time.deltaTime * 10f);
+				Sleeve[l].transform.position = Vector3.Lerp(Sleeve[l].transform.position, StartingPosition[l] + base.transform.up * 0.05f + base.transform.right * -0.05f, Time.deltaTime * 10f);
+				Tape[l].transform.localPosition = Vector3.Lerp(Tape[l].transform.localPosition, new Vector3(0f, -0.0003f, 0f), Time.deltaTime * 10f);
 			}
 			else
 			{
-				Sleeve[k].transform.position = Vector3.Lerp(Sleeve[k].transform.position, StartingPosition[k], Time.deltaTime * 10f);
-				Tape[k].transform.localPosition = Vector3.Lerp(Tape[k].transform.localPosition, Vector3.zero, Time.deltaTime * 10f);
+				Sleeve[l].transform.position = Vector3.Lerp(Sleeve[l].transform.position, StartingPosition[l], Time.deltaTime * 10f);
+				Tape[l].transform.localPosition = Vector3.Lerp(Tape[l].transform.localPosition, Vector3.zero, Time.deltaTime * 10f);
 			}
 		}
 	}
@@ -557,7 +569,6 @@ public class WeekSelectScript : MonoBehaviour
 
 	private void UpdateText()
 	{
-		WeekLabel.text = "STARTING WEEK: " + CurrentWeek;
 		int i = 1;
 		int week = DateGlobals.Week;
 		for (; i < 11; i++)
@@ -623,18 +634,7 @@ public class WeekSelectScript : MonoBehaviour
 	private void DetermineSelectedWeek()
 	{
 		CurrentWeek = Column + (Row - 1) * 5;
-		for (int i = 1; i < 10; i++)
-		{
-			GameGlobals.SetRivalEliminations(i, 0);
-			GameGlobals.SetSpecificEliminations(i, 0);
-		}
-		for (int i = 1; i < CurrentWeek; i++)
-		{
-			GameGlobals.SetRivalEliminations(i, 1);
-			GameGlobals.SetSpecificEliminations(i, 1);
-		}
-		DateGlobals.Week = CurrentWeek;
-		UpdateText();
+		WeekLabel.text = "STARTING WEEK: " + CurrentWeek;
 	}
 
 	private void AssignPrisoner(int ID)
@@ -689,7 +689,6 @@ public class WeekSelectScript : MonoBehaviour
 		foreach (Transform obj in componentsInChildren)
 		{
 			num++;
-			Debug.Log("Now on iteration #" + num);
 			UILabel component = obj.GetComponent<UILabel>();
 			if (component != null)
 			{

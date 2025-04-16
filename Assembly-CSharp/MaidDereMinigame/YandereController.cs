@@ -168,8 +168,10 @@ namespace MaidDereMinigame
 			{
 				horizontal = -1f;
 			}
-			ControlInput result = default(ControlInput);
-			result.horizontal = horizontal;
+			ControlInput result = new ControlInput
+			{
+				horizontal = horizontal
+			};
 			if (result.horizontal != 0f)
 			{
 				if (result.horizontal < 0f)

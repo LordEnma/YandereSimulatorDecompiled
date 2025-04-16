@@ -166,7 +166,7 @@ public class DoorScript : MonoBehaviour
 			Labels[1].text = RoomName;
 			UpdatePlate();
 		}
-		if (Club != 0 && ClubGlobals.GetClubClosed(Club))
+		if (Club != ClubType.None && ClubGlobals.GetClubClosed(Club))
 		{
 			Locked = true;
 			Prompt.Label[0].text = "     Locked";

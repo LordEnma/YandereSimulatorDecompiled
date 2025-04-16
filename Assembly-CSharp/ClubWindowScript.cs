@@ -173,6 +173,7 @@ public class ClubWindowScript : MonoBehaviour
 		if (!Quitting && !Activity)
 		{
 			ClubDesc.text = ClubDescs[(int)Club];
+			ClubDesc.text = ClubDesc.text.Replace('@', '\n');
 			PromptBar.ClearButtons();
 			PromptBar.Label[0].text = "Accept";
 			PromptBar.Label[1].text = "Refuse";

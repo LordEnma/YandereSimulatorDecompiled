@@ -213,7 +213,7 @@ public class UIProgressBar : UIWidgetContainer
 	{
 		get
 		{
-			if (mFill != 0)
+			if (mFill != FillDirection.LeftToRight)
 			{
 				return mFill == FillDirection.RightToLeft;
 			}
@@ -476,26 +476,26 @@ public class UIProgressBar : UIWidgetContainer
 			{
 			case FillDirection.LeftToRight:
 			{
-				float num8 = (value = Mathf.Clamp01(mValue + delta.x));
-				mValue = num8;
+				float num7 = (value = Mathf.Clamp01(mValue + delta.x));
+				mValue = num7;
 				break;
 			}
 			case FillDirection.RightToLeft:
 			{
-				float num6 = (value = Mathf.Clamp01(mValue - delta.x));
-				mValue = num6;
+				float num5 = (value = Mathf.Clamp01(mValue - delta.x));
+				mValue = num5;
 				break;
 			}
 			case FillDirection.BottomToTop:
 			{
-				float num4 = (value = Mathf.Clamp01(mValue + delta.y));
-				mValue = num4;
+				float num3 = (value = Mathf.Clamp01(mValue + delta.y));
+				mValue = num3;
 				break;
 			}
 			case FillDirection.TopToBottom:
 			{
-				float num2 = (value = Mathf.Clamp01(mValue - delta.y));
-				mValue = num2;
+				float num = (value = Mathf.Clamp01(mValue - delta.y));
+				mValue = num;
 				break;
 			}
 			}

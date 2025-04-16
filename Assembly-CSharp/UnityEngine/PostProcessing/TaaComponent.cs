@@ -137,24 +137,25 @@ namespace UnityEngine.PostProcessing
 			float num4 = (offset.x + num2) * context.camera.nearClipPlane;
 			float num5 = (offset.y + num) * context.camera.nearClipPlane;
 			float num6 = (offset.y - num) * context.camera.nearClipPlane;
-			Matrix4x4 result = default(Matrix4x4);
-			result[0, 0] = 2f * context.camera.nearClipPlane / (num4 - num3);
-			result[0, 1] = 0f;
-			result[0, 2] = (num4 + num3) / (num4 - num3);
-			result[0, 3] = 0f;
-			result[1, 0] = 0f;
-			result[1, 1] = 2f * context.camera.nearClipPlane / (num5 - num6);
-			result[1, 2] = (num5 + num6) / (num5 - num6);
-			result[1, 3] = 0f;
-			result[2, 0] = 0f;
-			result[2, 1] = 0f;
-			result[2, 2] = (0f - (context.camera.farClipPlane + context.camera.nearClipPlane)) / (context.camera.farClipPlane - context.camera.nearClipPlane);
-			result[2, 3] = (0f - 2f * context.camera.farClipPlane * context.camera.nearClipPlane) / (context.camera.farClipPlane - context.camera.nearClipPlane);
-			result[3, 0] = 0f;
-			result[3, 1] = 0f;
-			result[3, 2] = -1f;
-			result[3, 3] = 0f;
-			return result;
+			return new Matrix4x4
+			{
+				[0, 0] = 2f * context.camera.nearClipPlane / (num4 - num3),
+				[0, 1] = 0f,
+				[0, 2] = (num4 + num3) / (num4 - num3),
+				[0, 3] = 0f,
+				[1, 0] = 0f,
+				[1, 1] = 2f * context.camera.nearClipPlane / (num5 - num6),
+				[1, 2] = (num5 + num6) / (num5 - num6),
+				[1, 3] = 0f,
+				[2, 0] = 0f,
+				[2, 1] = 0f,
+				[2, 2] = (0f - (context.camera.farClipPlane + context.camera.nearClipPlane)) / (context.camera.farClipPlane - context.camera.nearClipPlane),
+				[2, 3] = (0f - 2f * context.camera.farClipPlane * context.camera.nearClipPlane) / (context.camera.farClipPlane - context.camera.nearClipPlane),
+				[3, 0] = 0f,
+				[3, 1] = 0f,
+				[3, 2] = -1f,
+				[3, 3] = 0f
+			};
 		}
 
 		private Matrix4x4 GetOrthographicProjectionMatrix(Vector2 offset)

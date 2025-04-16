@@ -339,6 +339,14 @@ public class IronMaidenScript : MonoBehaviour
 		{
 			Corpse.Head.transform.localScale = Vector3.zero;
 		}
+		if (Victim.Male)
+		{
+			Victim.Cosmetic.MaleHair[Victim.Cosmetic.Hairstyle].SetActive(value: false);
+		}
+		else
+		{
+			Victim.Cosmetic.FemaleHair[Victim.Cosmetic.Hairstyle].SetActive(value: false);
+		}
 	}
 
 	public void SpitCorpseOut()
@@ -364,6 +372,14 @@ public class IronMaidenScript : MonoBehaviour
 			for (int i = 0; i < Corpse.Student.FireEmitters.Length; i++)
 			{
 				Corpse.Student.FireEmitters[i].gameObject.SetActive(value: false);
+			}
+			if (Corpse.Male)
+			{
+				Corpse.Student.Cosmetic.MaleHair[Corpse.Student.Cosmetic.Hairstyle].SetActive(value: true);
+			}
+			else
+			{
+				Corpse.Student.Cosmetic.FemaleHair[Corpse.Student.Cosmetic.Hairstyle].SetActive(value: true);
 			}
 			Corpse = null;
 		}

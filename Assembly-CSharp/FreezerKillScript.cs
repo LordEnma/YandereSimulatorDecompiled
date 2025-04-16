@@ -210,8 +210,12 @@ public class FreezerKillScript : MonoBehaviour
 				ShovePhase++;
 			}
 		}
-		else if (ShovePhase == 3)
+		else
 		{
+			if (ShovePhase != 3)
+			{
+				return;
+			}
 			ShoveTimer += Time.deltaTime;
 			AddFrost();
 			if (ShoveTimer >= 28.86667f)
@@ -220,8 +224,11 @@ public class FreezerKillScript : MonoBehaviour
 				Victim.Ragdoll.BloodPoolSpawner.enabled = false;
 				Victim.DeathCause = 12;
 				Victim.DeathType = DeathType.Frozen;
-				Debug.Log("Just froze the current rival to death. Setting EndOfDay.RivalEliminationMethod to ''Accident''.");
-				Prompt.Yandere.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Accident;
+				if (KilledRival)
+				{
+					Debug.Log("Just froze the current rival to death. Setting EndOfDay.RivalEliminationMethod to ''Accident''.");
+					Prompt.Yandere.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Accident;
+				}
 				Fog.Stop();
 				base.enabled = false;
 				ShovePhase = 0;

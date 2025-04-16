@@ -166,10 +166,12 @@ public class TypewriterEffect : MonoBehaviour
 			}
 			if (fadeInTime != 0f)
 			{
-				FadeEntry item = default(FadeEntry);
-				item.index = num;
-				item.alpha = 0f;
-				item.text = mFullText.Substring(num, mCurrentOffset - num);
+				FadeEntry item = new FadeEntry
+				{
+					index = num,
+					alpha = 0f,
+					text = mFullText.Substring(num, mCurrentOffset - num)
+				};
 				mFade.Add(item);
 			}
 			else

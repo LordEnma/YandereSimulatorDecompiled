@@ -15,16 +15,11 @@ namespace UnityEngine.PostProcessing
 			[Tooltip("Amount of tangential distortion.")]
 			public float intensity;
 
-			public static Settings defaultSettings
+			public static Settings defaultSettings => new Settings
 			{
-				get
-				{
-					Settings result = default(Settings);
-					result.spectralTexture = null;
-					result.intensity = 0.1f;
-					return result;
-				}
-			}
+				spectralTexture = null,
+				intensity = 0.1f
+			};
 		}
 
 		[SerializeField]

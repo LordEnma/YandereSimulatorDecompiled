@@ -18,8 +18,8 @@ public class GameController : MonoBehaviour
 		DynamicBone[] components = m_Player.GetComponents<DynamicBone>();
 		GUI.Label(new Rect(50f, 100f, 200f, 20f), "Choose dynamic bone:");
 		DynamicBone obj = components[0];
-		bool flag2 = (components[1].enabled = GUI.Toggle(new Rect(50f, 120f, 100f, 20f), components[0].enabled, "Breasts"));
-		obj.enabled = flag2;
+		bool flag = (components[1].enabled = GUI.Toggle(new Rect(50f, 120f, 100f, 20f), components[0].enabled, "Breasts"));
+		obj.enabled = flag;
 		components[2].enabled = GUI.Toggle(new Rect(50f, 140f, 100f, 20f), components[2].enabled, "Tail");
 	}
 }

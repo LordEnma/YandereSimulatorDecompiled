@@ -182,12 +182,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 		private Vector2 GetInput()
 		{
-			Vector2 vector = default(Vector2);
-			vector.x = CrossPlatformInputManager.GetAxis("Horizontal");
-			vector.y = CrossPlatformInputManager.GetAxis("Vertical");
-			Vector2 vector2 = vector;
-			movementSettings.UpdateDesiredTargetSpeed(vector2);
-			return vector2;
+			Vector2 vector = new Vector2
+			{
+				x = CrossPlatformInputManager.GetAxis("Horizontal"),
+				y = CrossPlatformInputManager.GetAxis("Vertical")
+			};
+			movementSettings.UpdateDesiredTargetSpeed(vector);
+			return vector;
 		}
 
 		private void RotateView()

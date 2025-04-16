@@ -39,21 +39,16 @@ namespace UnityEngine.PostProcessing
 			[Tooltip("Toggles the use of a higher precision depth texture with the forward rendering path (may impact performances). Has no effect with the deferred rendering path.")]
 			public bool highPrecision;
 
-			public static Settings defaultSettings
+			public static Settings defaultSettings => new Settings
 			{
-				get
-				{
-					Settings result = default(Settings);
-					result.intensity = 1f;
-					result.radius = 0.3f;
-					result.sampleCount = SampleCount.Medium;
-					result.downsampling = true;
-					result.forceForwardCompatibility = false;
-					result.ambientOnly = false;
-					result.highPrecision = false;
-					return result;
-				}
-			}
+				intensity = 1f,
+				radius = 0.3f,
+				sampleCount = SampleCount.Medium,
+				downsampling = true,
+				forceForwardCompatibility = false,
+				ambientOnly = false,
+				highPrecision = false
+			};
 		}
 
 		[SerializeField]

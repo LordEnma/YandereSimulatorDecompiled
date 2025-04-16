@@ -6,7 +6,7 @@ public class DepthTextureTest : MonoBehaviour
 
 	public void Update()
 	{
-		if (mainCamera.depthTextureMode != 0)
+		if (mainCamera.depthTextureMode != DepthTextureMode.None)
 		{
 			mainCamera.depthTextureMode = DepthTextureMode.None;
 		}

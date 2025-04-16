@@ -716,7 +716,7 @@ public class HomeCameraScript : MonoBehaviour
 		{
 			Triggers[7].Disable();
 		}
-		else if (DateGlobals.Weekday != 0)
+		else if (DateGlobals.Weekday != DayOfWeek.Sunday)
 		{
 			Triggers[5].Disable();
 			Triggers[9].Disable();

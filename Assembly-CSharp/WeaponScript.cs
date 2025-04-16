@@ -34,6 +34,8 @@ public class WeaponScript : MonoBehaviour
 
 	public AudioClip EquipClip;
 
+	public SkinnedMeshRenderer ChainsawTeeth;
+
 	public StudentScript InteractingStudent;
 
 	public SkinnedMeshRenderer SkinnedMesh;
@@ -309,6 +311,8 @@ public class WeaponScript : MonoBehaviour
 			return "scythe";
 		case WeaponType.Garrote:
 			return "strangle";
+		case WeaponType.Chainsaw:
+			return "chainsaw";
 		default:
 			Debug.LogError("Weapon type \"" + Type.ToString() + "\" not implemented.");
 			return string.Empty;
@@ -341,6 +345,7 @@ public class WeaponScript : MonoBehaviour
 		}
 		if (Dismembering)
 		{
+			_ = Chainsaw;
 			if (DismemberPhase < 4)
 			{
 				if (MyAudio.time > 0.75f)
@@ -349,8 +354,15 @@ public class WeaponScript : MonoBehaviour
 					{
 						Speed += Time.deltaTime + 10f;
 					}
-					Rotation += Speed;
-					Blade.localEulerAngles = new Vector3(Rotation, Blade.localEulerAngles.y, Blade.localEulerAngles.z);
+					if (!Chainsaw)
+					{
+						Rotation += Speed;
+						Blade.localEulerAngles = new Vector3(Rotation, Blade.localEulerAngles.y, Blade.localEulerAngles.z);
+					}
+					else
+					{
+						ChainsawTeeth.SetBlendShapeWeight(0, Random.Range(0, 101));
+					}
 				}
 				if (MyAudio.time > SoundTime[DismemberPhase])
 				{
@@ -376,8 +388,11 @@ public class WeaponScript : MonoBehaviour
 			}
 			else
 			{
-				Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 2f);
-				Blade.localEulerAngles = new Vector3(Rotation, Blade.localEulerAngles.y, Blade.localEulerAngles.z);
+				if (!Chainsaw)
+				{
+					Rotation = Mathf.Lerp(Rotation, 0f, Time.deltaTime * 2f);
+					Blade.localEulerAngles = new Vector3(Rotation, Blade.localEulerAngles.y, Blade.localEulerAngles.z);
+				}
 				if (!MyAudio.isPlaying)
 				{
 					MyAudio.clip = OriginalClip;
@@ -403,9 +418,13 @@ public class WeaponScript : MonoBehaviour
 						Blade.transform.localEulerAngles = new Vector3(Blade.transform.localEulerAngles.x + Time.deltaTime * 360f, Blade.transform.localEulerAngles.y, Blade.transform.localEulerAngles.z);
 					}
 				}
-				else if (Type == WeaponType.Scythe && !Chainsaw)
+				else if (Type == WeaponType.Scythe)
 				{
 					MyRenderer.transform.localEulerAngles = new Vector3(12.5f, 7.5f, 90f);
+				}
+				else if (Type == WeaponType.Chainsaw && Spin)
+				{
+					ChainsawTeeth.SetBlendShapeWeight(0, Random.Range(0, 101));
 				}
 			}
 		}

@@ -351,7 +351,7 @@ public abstract class UIBasicSprite : UIWidget
 			int num = i + 1;
 			for (int j = 0; j < 3; j++)
 			{
-				if (centerType != 0 || i != 1 || j != 1)
+				if (centerType != AdvancedType.Invisible || i != 1 || j != 1)
 				{
 					int num2 = j + 1;
 					verts.Add(new Vector3(mTempPos[i].x, mTempPos[j].y));
@@ -816,7 +816,7 @@ public abstract class UIBasicSprite : UIWidget
 							Fill(verts, uvs, cols, num9, num10, y4, y5, x6, num11, y6, y7, c);
 						}
 					}
-					else if ((j == 0 && bottomType != 0) || (j == 2 && topType != 0))
+					else if ((j == 0 && bottomType != AdvancedType.Invisible) || (j == 2 && topType != AdvancedType.Invisible))
 					{
 						Fill(verts, uvs, cols, mTempPos[i].x, mTempPos[num].x, mTempPos[j].y, mTempPos[num2].y, mTempUVs[i].x, mTempUVs[num].x, mTempUVs[j].y, mTempUVs[num2].y, c);
 					}
@@ -846,7 +846,7 @@ public abstract class UIBasicSprite : UIWidget
 							Fill(verts, uvs, cols, x7, x8, num12, num14, x9, x10, y10, num13, c);
 						}
 					}
-					else if ((i == 0 && leftType != 0) || (i == 2 && rightType != 0))
+					else if ((i == 0 && leftType != AdvancedType.Invisible) || (i == 2 && rightType != AdvancedType.Invisible))
 					{
 						Fill(verts, uvs, cols, mTempPos[i].x, mTempPos[num].x, mTempPos[j].y, mTempPos[num2].y, mTempUVs[i].x, mTempUVs[num].x, mTempUVs[j].y, mTempUVs[num2].y, c);
 					}
@@ -858,7 +858,7 @@ public abstract class UIBasicSprite : UIWidget
 					}
 					break;
 				}
-				if ((j != 2 || topType != 0) && (i != 0 || leftType != 0) && (i != 2 || rightType != 0))
+				if ((j != 2 || topType != AdvancedType.Invisible) && (i != 0 || leftType != AdvancedType.Invisible) && (i != 2 || rightType != AdvancedType.Invisible))
 				{
 					Fill(verts, uvs, cols, mTempPos[i].x, mTempPos[num].x, mTempPos[j].y, mTempPos[num2].y, mTempUVs[i].x, mTempUVs[num].x, mTempUVs[j].y, mTempUVs[num2].y, c);
 				}

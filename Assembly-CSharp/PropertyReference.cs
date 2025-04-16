@@ -273,20 +273,20 @@ public class PropertyReference
 			return false;
 		}
 		Type propertyType = GetPropertyType();
-		Type from;
+		Type type;
 		if (value == null)
 		{
 			if (!propertyType.IsClass)
 			{
 				return false;
 			}
-			from = propertyType;
+			type = propertyType;
 		}
 		else
 		{
-			from = value.GetType();
+			type = value.GetType();
 		}
-		return Convert(ref value, from, propertyType);
+		return Convert(ref value, type, propertyType);
 	}
 
 	public static bool Convert(Type from, Type to)

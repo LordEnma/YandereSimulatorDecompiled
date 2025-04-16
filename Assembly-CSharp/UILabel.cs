@@ -736,7 +736,7 @@ public class UILabel : UIWidget
 	{
 		get
 		{
-			if (trueTypeFont != null && keepCrispWhenShrunk != 0)
+			if (trueTypeFont != null && keepCrispWhenShrunk != Crispness.Never)
 			{
 				return true;
 			}
@@ -917,7 +917,7 @@ public class UILabel : UIWidget
 			if (mEffectColor != value)
 			{
 				mEffectColor = value;
-				if (mEffectStyle != 0)
+				if (mEffectStyle != Effect.None)
 				{
 					shouldBeProcessed = true;
 				}
@@ -1776,7 +1776,7 @@ public class UILabel : UIWidget
 		{
 			return;
 		}
-		if (effectStyle != 0)
+		if (effectStyle != Effect.None)
 		{
 			int count2 = verts.Count;
 			vector.x = mEffectDistance.x;

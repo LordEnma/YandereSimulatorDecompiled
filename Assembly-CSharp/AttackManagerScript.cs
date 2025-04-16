@@ -142,6 +142,13 @@ public class AttackManagerScript : MonoBehaviour
 				SanityType.Medium => 0.95f, 
 				_ => 1f, 
 			};
+		case WeaponType.Chainsaw:
+			Debug.Log("Chainsaw is now deciding how far away it should be from a victim!");
+			if (Stealth)
+			{
+				return 0.75f;
+			}
+			return 1f;
 		default:
 			Debug.LogError("Weapon type \"" + weaponType.ToString() + "\" not implemented.");
 			return 0f;
@@ -210,6 +217,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 		CheckForWalls();
 		VictimAnim.CrossFade(VictimAnimName);
+		Yandere.TargetStudent.FocusOnYandere = false;
 		if (Censor)
 		{
 			if (AttackTimer == 0f)
@@ -277,6 +285,7 @@ public class AttackManagerScript : MonoBehaviour
 			if (!Yandere.CanTranq)
 			{
 				Yandere.TargetStudent.DeathType = DeathType.Weapon;
+				QuestTracker.IncrementMurderCount();
 			}
 			else
 			{
@@ -926,6 +935,149 @@ public class AttackManagerScript : MonoBehaviour
 			Yandere.TargetStudent.Ragdoll.NeckSnapped = true;
 			Yandere.TargetStudent.NeckSnapped = true;
 		}
+		else
+		{
+			if (weapon.Type != WeaponType.Chainsaw)
+			{
+				return;
+			}
+			if (!Stealth)
+			{
+				switch (sanityType)
+				{
+				case SanityType.High:
+					if (EffectPhase == 0)
+					{
+						if (YandereAnim[AnimName].time > 0f)
+						{
+							weapon.Spin = true;
+							EffectPhase++;
+						}
+					}
+					else if (EffectPhase == 1)
+					{
+						if (YandereAnim[AnimName].time > 11f / 12f)
+						{
+							Yandere.Bloodiness += 20f;
+							Yandere.StainWeapon();
+							weapon.BloodSpray[0].Play();
+							weapon.BloodSpray[1].Play();
+							EffectPhase++;
+						}
+					}
+					else if (EffectPhase == 2 && YandereAnim[AnimName].time > 1.5f)
+					{
+						weapon.Spin = false;
+						weapon.BloodSpray[0].Stop();
+						weapon.BloodSpray[1].Stop();
+						EffectPhase++;
+					}
+					return;
+				case SanityType.Medium:
+					if (EffectPhase == 0)
+					{
+						if (YandereAnim[AnimName].time > 0f)
+						{
+							weapon.Spin = true;
+							EffectPhase++;
+						}
+					}
+					else if (EffectPhase == 1)
+					{
+						if (YandereAnim[AnimName].time > 0.77776664f)
+						{
+							Yandere.Bloodiness += 20f;
+							Yandere.StainWeapon();
+							weapon.BloodSpray[0].Play();
+							weapon.BloodSpray[1].Play();
+							EffectPhase++;
+						}
+					}
+					else if (EffectPhase == 2)
+					{
+						if (YandereAnim[AnimName].time > 0.94443333f)
+						{
+							weapon.BloodSpray[0].Stop();
+							weapon.BloodSpray[1].Stop();
+							EffectPhase++;
+						}
+					}
+					else if (EffectPhase == 3)
+					{
+						if (YandereAnim[AnimName].time > 2.75f)
+						{
+							weapon.BloodSpray[0].Play();
+							weapon.BloodSpray[1].Play();
+							EffectPhase++;
+						}
+					}
+					else if (EffectPhase == 4 && YandereAnim[AnimName].time > 2.9166667f)
+					{
+						weapon.Spin = true;
+						weapon.BloodSpray[0].Stop();
+						weapon.BloodSpray[1].Stop();
+						EffectPhase++;
+					}
+					return;
+				}
+				if (EffectPhase == 0)
+				{
+					if (YandereAnim[AnimName].time > 0f)
+					{
+						weapon.Spin = true;
+						EffectPhase++;
+					}
+				}
+				else if (EffectPhase == 1)
+				{
+					if (YandereAnim[AnimName].time > 71f / 120f)
+					{
+						Yandere.Bloodiness += 20f;
+						Yandere.StainWeapon();
+						weapon.BloodSpray[0].Play();
+						weapon.BloodSpray[1].Play();
+						EffectPhase++;
+					}
+				}
+				else if (EffectPhase == 2)
+				{
+					if (YandereAnim[AnimName].time > 0.75f)
+					{
+						weapon.BloodSpray[0].Stop();
+						weapon.BloodSpray[1].Stop();
+						EffectPhase++;
+					}
+				}
+				else if (EffectPhase == 3)
+				{
+					if (YandereAnim[AnimName].time > 2.75f)
+					{
+						weapon.BloodSpray[0].Play();
+						weapon.BloodSpray[1].Play();
+						EffectPhase++;
+					}
+				}
+				else if (EffectPhase == 4 && YandereAnim[AnimName].time > 4.5f)
+				{
+					weapon.Spin = false;
+					weapon.BloodSpray[0].Stop();
+					weapon.BloodSpray[1].Stop();
+					EffectPhase++;
+				}
+			}
+			else if (EffectPhase == 0)
+			{
+				if (StainBluntWeapons && YandereAnim[AnimName].time > 1.1666666f)
+				{
+					Yandere.Bloodiness += 20f;
+					Yandere.StainWeapon();
+					UnityEngine.Object.Instantiate(BloodEffect, weapon.transform.position, Quaternion.identity);
+					EffectPhase++;
+				}
+				Yandere.TargetStudent.Ragdoll.NeckSnapped = true;
+				Yandere.TargetStudent.NeckSnapped = true;
+			}
+		}
 	}
 
 	private void LoopCheck(WeaponScript weapon)
@@ -982,12 +1134,22 @@ public class AttackManagerScript : MonoBehaviour
 					Loop = true;
 				}
 			}
-			else if (weapon.Type == WeaponType.Scythe && YandereAnim[AnimName].time > 3f && YandereAnim[AnimName].time < 4f)
+			else if (weapon.Type == WeaponType.Scythe)
 			{
-				LoopStart = 90f;
-				LoopEnd = 120f;
-				LoopPhase = 1;
-				Loop = true;
+				if (YandereAnim[AnimName].time > 3f && YandereAnim[AnimName].time < 4f)
+				{
+					LoopStart = 90f;
+					LoopEnd = 120f;
+					LoopPhase = 1;
+					Loop = true;
+				}
+			}
+			else if (weapon.Type == WeaponType.Chainsaw && YandereAnim[AnimName].time > 2.9166667f && YandereAnim[AnimName].time < 4.3333335f)
+			{
+				LoopStart = 87.5f;
+				LoopEnd = 130f;
+				LoopPhase = 3;
+				PingPong = true;
 			}
 		}
 		if (PingPong)

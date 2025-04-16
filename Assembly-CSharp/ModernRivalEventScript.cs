@@ -167,8 +167,8 @@ public class ModernRivalEventScript : MonoBehaviour
 					Char[0].InEvent = true;
 					Char[0].Private = Private;
 					Char[0].IgnoringPettyActions = true;
-					StudentScript[] @char = Char;
-					foreach (StudentScript studentScript in @char)
+					StudentScript[] array = Char;
+					foreach (StudentScript studentScript in array)
 					{
 						if (studentScript != null)
 						{

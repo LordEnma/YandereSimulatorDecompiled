@@ -128,9 +128,9 @@ public class WeaponTrail : MonoBehaviour
 				}
 				else
 				{
-					Vector3 from = _points[_points.Count - 2].tipPosition - _points[_points.Count - 3].tipPosition;
+					Vector3 vector = _points[_points.Count - 2].tipPosition - _points[_points.Count - 3].tipPosition;
 					Vector3 to = _points[_points.Count - 1].tipPosition - _points[_points.Count - 2].tipPosition;
-					if (Vector3.Angle(from, to) > _maxAngle || magnitude > _maxVertexDistance)
+					if (Vector3.Angle(vector, to) > _maxAngle || magnitude > _maxVertexDistance)
 					{
 						flag = true;
 					}
@@ -234,9 +234,9 @@ public class WeaponTrail : MonoBehaviour
 					}
 					num5 = Mathf.Lerp(_sizes[(int)num7], _sizes[(int)num8], t2);
 				}
-				Vector3 vector = point2.tipPosition - point2.basePosition;
-				array[i * 2] = point2.basePosition - vector * (num5 * 0.5f);
-				array[i * 2 + 1] = point2.tipPosition + vector * (num5 * 0.5f);
+				Vector3 vector2 = point2.tipPosition - point2.basePosition;
+				array[i * 2] = point2.basePosition - vector2 * (num5 * 0.5f);
+				array[i * 2 + 1] = point2.tipPosition + vector2 * (num5 * 0.5f);
 				array4[i * 2] = (array4[i * 2 + 1] = color);
 				float x = (float)i / (float)points.Count;
 				array2[i * 2] = new Vector2(x, 0f);

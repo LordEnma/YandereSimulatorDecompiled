@@ -40,7 +40,7 @@ public class UISpriteCollection : UIBasicSprite
 				int num6 = sprite.paddingBottom;
 				int num7 = sprite.paddingRight;
 				int num8 = sprite.paddingTop;
-				if (type != 0 && pixelSize != 1f)
+				if (type != Type.Simple && pixelSize != 1f)
 				{
 					num5 = Mathf.RoundToInt(pixelSize * (float)num5);
 					num6 = Mathf.RoundToInt(pixelSize * (float)num6);

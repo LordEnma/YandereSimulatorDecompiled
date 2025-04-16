@@ -101,7 +101,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		{
 			m_Dragging = true;
 			m_Id = data.pointerId;
-			if (controlStyle != 0)
+			if (controlStyle != ControlStyle.Absolute)
 			{
 				m_Center = data.position;
 			}

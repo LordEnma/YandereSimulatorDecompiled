@@ -12,15 +12,10 @@ namespace UnityEngine.PostProcessing
 			[Tooltip("Scales the camera far plane before displaying the depth map.")]
 			public float scale;
 
-			public static DepthSettings defaultSettings
+			public static DepthSettings defaultSettings => new DepthSettings
 			{
-				get
-				{
-					DepthSettings result = default(DepthSettings);
-					result.scale = 1f;
-					return result;
-				}
-			}
+				scale = 1f
+			};
 		}
 
 		[Serializable]
@@ -50,20 +45,15 @@ namespace UnityEngine.PostProcessing
 			[Tooltip("Tweaks the arrows length.")]
 			public float motionVectorsAmplitude;
 
-			public static MotionVectorsSettings defaultSettings
+			public static MotionVectorsSettings defaultSettings => new MotionVectorsSettings
 			{
-				get
-				{
-					MotionVectorsSettings result = default(MotionVectorsSettings);
-					result.sourceOpacity = 1f;
-					result.motionImageOpacity = 0f;
-					result.motionImageAmplitude = 16f;
-					result.motionVectorsOpacity = 1f;
-					result.motionVectorsResolution = 24;
-					result.motionVectorsAmplitude = 64f;
-					return result;
-				}
-			}
+				sourceOpacity = 1f,
+				motionImageOpacity = 0f,
+				motionImageAmplitude = 16f,
+				motionVectorsOpacity = 1f,
+				motionVectorsResolution = 24,
+				motionVectorsAmplitude = 64f
+			};
 		}
 
 		public enum Mode
@@ -89,17 +79,12 @@ namespace UnityEngine.PostProcessing
 
 			public MotionVectorsSettings motionVectors;
 
-			public static Settings defaultSettings
+			public static Settings defaultSettings => new Settings
 			{
-				get
-				{
-					Settings result = default(Settings);
-					result.mode = Mode.None;
-					result.depth = DepthSettings.defaultSettings;
-					result.motionVectors = MotionVectorsSettings.defaultSettings;
-					return result;
-				}
-			}
+				mode = Mode.None,
+				depth = DepthSettings.defaultSettings,
+				motionVectors = MotionVectorsSettings.defaultSettings
+			};
 		}
 
 		[SerializeField]

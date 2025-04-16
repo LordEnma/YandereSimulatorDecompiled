@@ -30,9 +30,9 @@ namespace MaidDereMinigame
 			else
 			{
 				Rect rect2 = cam.rect;
-				float num4 = (rect2.width = 1f / num2);
+				float num3 = (rect2.width = 1f / num2);
 				rect2.height = 1f;
-				rect2.x = (1f - num4) / 2f;
+				rect2.x = (1f - num3) / 2f;
 				rect2.y = 0f;
 				cam.rect = rect2;
 			}

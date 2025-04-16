@@ -129,17 +129,6 @@ public class BucketScript : MonoBehaviour
 		bool flag2 = false;
 		bool flag3 = false;
 		bool flag4 = false;
-		if (PickUp.Clock != null)
-		{
-			if (PickUp.Clock.Period == 5)
-			{
-				PickUp.Suspicious = false;
-			}
-			else
-			{
-				PickUp.Suspicious = true;
-			}
-		}
 		if (Yandere.CanMove)
 		{
 			Distance = Vector3.Distance(base.transform.position, Yandere.transform.position);

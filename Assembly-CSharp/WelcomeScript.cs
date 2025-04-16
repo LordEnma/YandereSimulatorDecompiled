@@ -16,11 +16,15 @@ public class WelcomeScript : MonoBehaviour
 
 	public UILabel[] Labels;
 
+	public string[] Jokes;
+
 	public UISprite Darkness;
 
 	public bool Continue;
 
 	public bool FlashRed;
+
+	public bool AprilFools;
 
 	public float VersionNumber;
 
@@ -36,6 +40,16 @@ public class WelcomeScript : MonoBehaviour
 
 	private void Start()
 	{
+		if (AprilFools)
+		{
+			Labels[1].text = Jokes[1];
+			Labels[2].text = Jokes[2];
+			Labels[3].text = Jokes[3];
+			Labels[4].text = Jokes[4];
+			Labels[5].text = Jokes[5];
+			Labels[6].text = Jokes[6];
+			Labels[7].text = Jokes[7];
+		}
 		Time.timeScale = 1f;
 		for (ID = 0; ID < Labels.Length; ID++)
 		{

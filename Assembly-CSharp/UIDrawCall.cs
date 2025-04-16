@@ -500,7 +500,7 @@ public class UIDrawCall : MonoBehaviour
 					flag = true;
 				}
 				bool flag2 = uvs.Count != count || cols.Count != count || uv2.Count != count || norms.Count != count || tans.Count != count;
-				if (!flag2 && panel != null && panel.renderQueue != 0)
+				if (!flag2 && panel != null && panel.renderQueue != UIPanel.RenderQueue.Automatic)
 				{
 					flag2 = mMesh == null || mMesh.vertexCount != verts.Count;
 				}

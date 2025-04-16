@@ -194,13 +194,13 @@ public class UICamera : MonoBehaviour
 
 	public static RemoveTouchDelegate RemoveTouch = delegate(int id)
 	{
-		int j = 0;
-		for (int count2 = mTouchIDs.Count; j < count2; j++)
+		int i = 0;
+		for (int count = mTouchIDs.Count; i < count; i++)
 		{
-			if (mTouchIDs[j] == id)
+			if (mTouchIDs[i] == id)
 			{
-				mTouchIDs.RemoveAt(j);
-				activeTouches.RemoveAt(j);
+				mTouchIDs.RemoveAt(i);
+				activeTouches.RemoveAt(i);
 				break;
 			}
 		}
@@ -792,7 +792,7 @@ public class UICamera : MonoBehaviour
 	{
 		get
 		{
-			if (currentTouch != null && (currentScheme != 0 || currentTouch.dragStarted))
+			if (currentTouch != null && (currentScheme != ControlScheme.Mouse || currentTouch.dragStarted))
 			{
 				return currentTouch.current;
 			}
@@ -1244,14 +1244,14 @@ public class UICamera : MonoBehaviour
 						}
 					}
 					mHits.Sort((DepthEntry r1, DepthEntry r2) => r2.depth.CompareTo(r1.depth));
-					for (int k = 0; k < mHits.size; k++)
+					for (int num2 = 0; num2 < mHits.size; num2++)
 					{
-						if (IsVisible(ref mHits.buffer[k]))
+						if (IsVisible(ref mHits.buffer[num2]))
 						{
-							lastHit = mHits.buffer[k].hit;
-							mRayHitObject = mHits.buffer[k].go;
+							lastHit = mHits.buffer[num2].hit;
+							mRayHitObject = mHits.buffer[num2].go;
 							lastWorldRay = ray;
-							lastWorldPosition = mHits.buffer[k].point;
+							lastWorldPosition = mHits.buffer[num2].point;
 							mHits.Clear();
 							return true;
 						}
@@ -1326,12 +1326,12 @@ public class UICamera : MonoBehaviour
 				{
 					mOverlap = new Collider2D[50];
 				}
-				int num2 = Physics2D.OverlapPointNonAlloc(lastWorldPosition, mOverlap, layerMask);
-				if (num2 > 1)
+				int num3 = Physics2D.OverlapPointNonAlloc(lastWorldPosition, mOverlap, layerMask);
+				if (num3 > 1)
 				{
-					for (int l = 0; l < num2; l++)
+					for (int num4 = 0; num4 < num3; num4++)
 					{
-						GameObject gameObject3 = mOverlap[l].gameObject;
+						GameObject gameObject3 = mOverlap[num4].gameObject;
 						UIWidget component3 = gameObject3.GetComponent<UIWidget>();
 						if (component3 != null)
 						{
@@ -1357,11 +1357,11 @@ public class UICamera : MonoBehaviour
 						}
 					}
 					mHits.Sort((DepthEntry r1, DepthEntry r2) => r2.depth.CompareTo(r1.depth));
-					for (int m = 0; m < mHits.size; m++)
+					for (int num5 = 0; num5 < mHits.size; num5++)
 					{
-						if (IsVisible(ref mHits.buffer[m]))
+						if (IsVisible(ref mHits.buffer[num5]))
 						{
-							mRayHitObject = mHits.buffer[m].go;
+							mRayHitObject = mHits.buffer[num5].go;
 							mHits.Clear();
 							return true;
 						}
@@ -1370,7 +1370,7 @@ public class UICamera : MonoBehaviour
 				}
 				else
 				{
-					if (num2 != 1)
+					if (num3 != 1)
 					{
 						continue;
 					}
@@ -1602,7 +1602,7 @@ public class UICamera : MonoBehaviour
 	private void Start()
 	{
 		list.Sort(CompareFunc);
-		if (eventType != 0 && cachedCamera.transparencySortMode != TransparencySortMode.Orthographic)
+		if (eventType != EventType.World_3D && cachedCamera.transparencySortMode != TransparencySortMode.Orthographic)
 		{
 			cachedCamera.transparencySortMode = TransparencySortMode.Orthographic;
 		}
@@ -1766,7 +1766,7 @@ public class UICamera : MonoBehaviour
 		currentTouch.pos = vector;
 		mLastPos = vector;
 		bool flag3 = false;
-		if (currentScheme != 0)
+		if (currentScheme != ControlScheme.Mouse)
 		{
 			if (sqrMagnitude < 0.001f)
 			{
@@ -1994,12 +1994,12 @@ public class UICamera : MonoBehaviour
 		currentTouch = controller;
 		bool flag = false;
 		bool flag2 = false;
-		if (submitKey0 != 0 && GetKeyDown(submitKey0))
+		if (submitKey0 != KeyCode.None && GetKeyDown(submitKey0))
 		{
 			currentKey = submitKey0;
 			flag = true;
 		}
-		else if (submitKey1 != 0 && GetKeyDown(submitKey1))
+		else if (submitKey1 != KeyCode.None && GetKeyDown(submitKey1))
 		{
 			currentKey = submitKey1;
 			flag = true;
@@ -2009,12 +2009,12 @@ public class UICamera : MonoBehaviour
 			currentKey = submitKey0;
 			flag = true;
 		}
-		if (submitKey0 != 0 && GetKeyUp(submitKey0))
+		if (submitKey0 != KeyCode.None && GetKeyUp(submitKey0))
 		{
 			currentKey = submitKey0;
 			flag2 = true;
 		}
-		else if (submitKey1 != 0 && GetKeyUp(submitKey1))
+		else if (submitKey1 != KeyCode.None && GetKeyUp(submitKey1))
 		{
 			currentKey = submitKey1;
 			flag2 = true;
@@ -2304,9 +2304,9 @@ public class UICamera : MonoBehaviour
 					hoveredObject = currentTouch.current;
 				}
 			}
-			if (currentTouch.dragged == currentTouch.current || (currentScheme != ControlScheme.Controller && currentTouch.clickNotification != 0 && currentTouch.totalDelta.sqrMagnitude < drag))
+			if (currentTouch.dragged == currentTouch.current || (currentScheme != ControlScheme.Controller && currentTouch.clickNotification != ClickNotification.None && currentTouch.totalDelta.sqrMagnitude < drag))
 			{
-				if (currentTouch.clickNotification != 0 && currentTouch.pressed == currentTouch.current)
+				if (currentTouch.clickNotification != ClickNotification.None && currentTouch.pressed == currentTouch.current)
 				{
 					ShowTooltip(null);
 					float time = RealTime.time;

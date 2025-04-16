@@ -321,7 +321,7 @@ public class UISprite : UIBasicSprite
 				int num6 = mSprite.paddingBottom;
 				int num7 = mSprite.paddingRight;
 				int num8 = mSprite.paddingTop;
-				if (mType != 0)
+				if (mType != Type.Simple)
 				{
 					float num9 = pixelSize;
 					if (num9 != 1f)

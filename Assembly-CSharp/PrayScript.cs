@@ -110,6 +110,15 @@ public class PrayScript : MonoBehaviour
 		{
 			StudentManager.UpdateMe(StudentID);
 			JustSummoned = false;
+			StudentScript obj = StudentManager.Students[39];
+			obj.ShoeRemoval.Start();
+			obj.ShoeRemoval.PutOnShoes();
+			obj.Phase = 2;
+			obj.ScheduleBlocks[2].action = "Stand";
+			obj.GetDestinations();
+			obj.CurrentDestination = SummonSpot;
+			obj.Pathfinding.target = SummonSpot;
+			Physics.SyncTransforms();
 		}
 		if (GenderPrompt.Circle[0].fillAmount == 0f)
 		{
@@ -200,7 +209,7 @@ public class PrayScript : MonoBehaviour
 			}
 			else if (Selected == 2)
 			{
-				Yandere.Sanity -= 50f;
+				Yandere.Sanity -= 33.3334f;
 				Exit();
 			}
 			else if (Selected == 3)
@@ -259,6 +268,10 @@ public class PrayScript : MonoBehaviour
 				Police.BloodyClothing = 0;
 				Yandere.Bloodiness = 0f;
 				Yandere.Sanity = 100f;
+				foreach (Transform item in Police.BloodParent)
+				{
+					Object.Destroy(item.gameObject);
+				}
 				Exit();
 			}
 			else if (Selected == 6)
@@ -274,9 +287,9 @@ public class PrayScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown("b"))
 		{
-			foreach (Transform item in Police.BloodParent.transform)
+			foreach (Transform item2 in Police.BloodParent.transform)
 			{
-				Object.Destroy(item.gameObject);
+				Object.Destroy(item2.gameObject);
 			}
 		}
 		if (Input.GetKeyDown("o"))
@@ -318,11 +331,14 @@ public class PrayScript : MonoBehaviour
 
 	public void SpawnWeapons()
 	{
-		for (int i = 1; i < 6; i++)
+		for (int i = 1; i < 7; i++)
 		{
 			if (Weapon[i] != null)
 			{
 				Weapon[i].transform.position = WeaponSpot[i].position;
+				Weapon[i].transform.eulerAngles = new Vector3(0f, 90f, 180f);
+				Weapon[i].transform.parent = null;
+				Weapon[i].SetActive(value: true);
 			}
 		}
 	}

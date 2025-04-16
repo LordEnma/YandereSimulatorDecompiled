@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class HomeVideoGamesScript : MonoBehaviour
 {
@@ -59,7 +58,6 @@ public class HomeVideoGamesScript : MonoBehaviour
 			if (Input.GetKeyDown("y"))
 			{
 				TaskGlobals.SetTaskStatus(38, 1);
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			}
 			TV.localScale = Vector3.Lerp(TV.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			if (HomeYandere.CanMove)

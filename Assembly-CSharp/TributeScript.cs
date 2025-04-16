@@ -40,6 +40,8 @@ public class TributeScript : MonoBehaviour
 
 	public string[] MaidLetters;
 
+	public string[] CazLetters;
+
 	public string[] FunLetters;
 
 	public string[] WWELetters;
@@ -71,6 +73,8 @@ public class TributeScript : MonoBehaviour
 	public int AzurID;
 
 	public int MaidID;
+
+	public int CazID;
 
 	public int FunID;
 

@@ -63,24 +63,16 @@ public class ContainerScript : MonoBehaviour
 			Prompt.Circle[1].fillAmount = 1f;
 			if (Prompt.Yandere.Armed)
 			{
-				if (Prompt.Yandere.EquippedWeapon.Type == WeaponType.Scythe)
-				{
-					Prompt.Yandere.NotificationManager.CustomText = "That's too big to fit inside!";
-					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-				}
-				else
-				{
-					Weapon = Prompt.Yandere.EquippedWeapon;
-					Prompt.Yandere.EmptyHands();
-					Weapon.transform.parent = WeaponSpot;
-					Weapon.transform.localPosition = Vector3.zero;
-					Weapon.transform.localEulerAngles = Vector3.zero;
-					Weapon.transform.localScale = new Vector3(1f, 0.425f, 1f);
-					Weapon.gameObject.GetComponent<Rigidbody>().useGravity = false;
-					Weapon.MyCollider.isTrigger = true;
-					Weapon.Prompt.Hide();
-					Weapon.Prompt.enabled = false;
-				}
+				Weapon = Prompt.Yandere.EquippedWeapon;
+				Prompt.Yandere.EmptyHands();
+				Weapon.transform.parent = WeaponSpot;
+				Weapon.transform.localPosition = Vector3.zero;
+				Weapon.transform.localEulerAngles = Vector3.zero;
+				Weapon.transform.localScale = new Vector3(1f, 0.425f, 1f);
+				Weapon.gameObject.GetComponent<Rigidbody>().useGravity = false;
+				Weapon.MyCollider.isTrigger = true;
+				Weapon.Prompt.Hide();
+				Weapon.Prompt.enabled = false;
 			}
 			else
 			{
@@ -155,10 +147,20 @@ public class ContainerScript : MonoBehaviour
 		{
 			Weapon.transform.localPosition = Vector3.zero;
 			Weapon.transform.localEulerAngles = Vector3.zero;
-			if (Weapon.WeaponID == 46)
+			if (Weapon.WeaponID == 31)
+			{
+				Weapon.transform.localPosition = new Vector3(0f, -0.185f, 1f);
+				Weapon.transform.localEulerAngles = new Vector3(0f, -7.5f, 0f);
+			}
+			else if (Weapon.WeaponID == 46)
 			{
 				Weapon.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
 				Weapon.transform.localScale = new Vector3(1f, 1f, 1f);
+			}
+			else if (Weapon.Chainsaw)
+			{
+				Weapon.transform.localPosition = new Vector3(0f, -0.09f, 0.3f);
+				Weapon.transform.localEulerAngles = new Vector3(5f, 0f, 0f);
 			}
 		}
 		for (ID = 1; ID < BodyParts.Length; ID++)

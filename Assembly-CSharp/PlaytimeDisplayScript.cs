@@ -28,10 +28,10 @@ public class PlaytimeDisplayScript : MonoBehaviour
 
 	private void UpdatePlaytimeDisplay()
 	{
-		float @float = PlayerPrefs.GetFloat("TotalPlaytime", 0f);
-		int num = Mathf.FloorToInt(@float / 3600f);
-		int num2 = Mathf.FloorToInt(@float % 3600f / 60f);
-		string text = $"Total Playtime: {num} hours, {num2} minutes";
+		float num = PlayerPrefs.GetFloat("TotalPlaytime", 0f);
+		int num2 = Mathf.FloorToInt(num / 3600f);
+		int num3 = Mathf.FloorToInt(num % 3600f / 60f);
+		string text = $"Total Playtime: {num2} hours, {num3} minutes";
 		if (playtimeLabel != null)
 		{
 			playtimeLabel.text = text;

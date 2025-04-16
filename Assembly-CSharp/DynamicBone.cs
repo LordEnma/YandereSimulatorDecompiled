@@ -545,7 +545,7 @@ public class DynamicBone : MonoBehaviour
 					}
 				}
 			}
-			if (m_FreezeAxis != 0)
+			if (m_FreezeAxis != FreezeAxis.None)
 			{
 				switch (m_FreezeAxis)
 				{

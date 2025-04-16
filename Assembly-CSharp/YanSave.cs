@@ -39,14 +39,16 @@ public static class YanSave
 				{
 					continue;
 				}
-				SerializedComponent item = default(SerializedComponent);
-				item.TypePath = component.GetType().AssemblyQualifiedName;
-				item.PropertyReferences = new ReferenceDict();
-				item.PropertyValues = new ValueDict();
-				item.FieldReferences = new ReferenceDict();
-				item.FieldValues = new ValueDict();
-				item.FieldReferenceArrays = new ReferenceArrayDict();
-				item.PropertyReferenceArrays = new ReferenceArrayDict();
+				SerializedComponent item = new SerializedComponent
+				{
+					TypePath = component.GetType().AssemblyQualifiedName,
+					PropertyReferences = new ReferenceDict(),
+					PropertyValues = new ValueDict(),
+					FieldReferences = new ReferenceDict(),
+					FieldValues = new ValueDict(),
+					FieldReferenceArrays = new ReferenceArrayDict(),
+					PropertyReferenceArrays = new ReferenceArrayDict()
+				};
 				if (typeof(MonoBehaviour).IsAssignableFrom(component.GetType()))
 				{
 					item.IsMonoBehaviour = true;
@@ -184,16 +186,17 @@ public static class YanSave
 				item.OwnerID = yanSaveIdentifier.ObjectID;
 				list2.Add(item);
 			}
-			SerializedGameObject serializedGameObject = default(SerializedGameObject);
-			serializedGameObject.ActiveInHierarchy = yanSaveIdentifier.gameObject.activeInHierarchy;
-			serializedGameObject.ActiveSelf = yanSaveIdentifier.gameObject.activeSelf;
-			serializedGameObject.IsStatic = yanSaveIdentifier.gameObject.isStatic;
-			serializedGameObject.Layer = yanSaveIdentifier.gameObject.layer;
-			serializedGameObject.Tag = yanSaveIdentifier.gameObject.tag;
-			serializedGameObject.Name = yanSaveIdentifier.gameObject.name;
-			serializedGameObject.SerializedComponents = list2.ToArray();
-			serializedGameObject.ObjectID = yanSaveIdentifier.ObjectID;
-			SerializedGameObject item2 = serializedGameObject;
+			SerializedGameObject item2 = new SerializedGameObject
+			{
+				ActiveInHierarchy = yanSaveIdentifier.gameObject.activeInHierarchy,
+				ActiveSelf = yanSaveIdentifier.gameObject.activeSelf,
+				IsStatic = yanSaveIdentifier.gameObject.isStatic,
+				Layer = yanSaveIdentifier.gameObject.layer,
+				Tag = yanSaveIdentifier.gameObject.tag,
+				Name = yanSaveIdentifier.gameObject.name,
+				SerializedComponents = list2.ToArray(),
+				ObjectID = yanSaveIdentifier.ObjectID
+			};
 			list.Add(item2);
 		}
 		YanSaveStaticIdentifier yanSaveStaticIdentifier = UnityEngine.Object.FindObjectOfType<YanSaveStaticIdentifier>();
@@ -208,14 +211,16 @@ public static class YanSave
 				{
 					continue;
 				}
-				SerializedStaticClass item3 = default(SerializedStaticClass);
-				item3.TypePath = type2.AssemblyQualifiedName;
-				item3.PropertyReferences = new ReferenceDict();
-				item3.PropertyValues = new ValueDict();
-				item3.FieldReferences = new ReferenceDict();
-				item3.FieldValues = new ValueDict();
-				item3.FieldReferenceArrays = new ReferenceArrayDict();
-				item3.PropertyReferenceArrays = new ReferenceArrayDict();
+				SerializedStaticClass item3 = new SerializedStaticClass
+				{
+					TypePath = type2.AssemblyQualifiedName,
+					PropertyReferences = new ReferenceDict(),
+					PropertyValues = new ValueDict(),
+					FieldReferences = new ReferenceDict(),
+					FieldValues = new ValueDict(),
+					FieldReferenceArrays = new ReferenceArrayDict(),
+					PropertyReferenceArrays = new ReferenceArrayDict()
+				};
 				PropertyInfo[] cachedProperties = GetCachedProperties(type2);
 				foreach (PropertyInfo propertyInfo2 in cachedProperties)
 				{
@@ -350,18 +355,18 @@ public static class YanSave
 			{
 				string text = prefTracker.PrefFormat;
 				YanSavePlayerPrefsType prefType = prefTracker.PrefType;
-				for (int l = 0; l < prefTracker.RangeMax + 1; l++)
+				for (int num = 0; num < prefTracker.RangeMax + 1; num++)
 				{
-					for (int m = 0; m < prefTracker.SecondRangeMax + 1; m++)
+					for (int num2 = 0; num2 < prefTracker.SecondRangeMax + 1; num2++)
 					{
-						for (int n = 0; n < prefTracker.PrefFormatValues.Count; n++)
+						for (int num3 = 0; num3 < prefTracker.PrefFormatValues.Count; num3++)
 						{
-							string text2 = prefTracker.PrefFormatValues[n];
-							int num = text2.LastIndexOf('.');
-							Type type3 = YanSaveHelpers.GrabType(text2.Substring(0, num));
+							string text2 = prefTracker.PrefFormatValues[num3];
+							int num4 = text2.LastIndexOf('.');
+							Type type3 = YanSaveHelpers.GrabType(text2.Substring(0, num4));
 							string newValue = string.Empty;
-							FieldInfo field = type3.GetField(text2.Substring(num + 1));
-							PropertyInfo property = type3.GetProperty(text2.Substring(num + 1));
+							FieldInfo field = type3.GetField(text2.Substring(num4 + 1));
+							PropertyInfo property = type3.GetProperty(text2.Substring(num4 + 1));
 							if (property != null)
 							{
 								newValue = property.GetValue(null, null).ToString();
@@ -374,9 +379,9 @@ public static class YanSave
 							{
 								Debug.Log("Couldn't grab replacement value of '" + text2 + "'");
 							}
-							text = text.Replace($"{{{n}}}", newValue);
+							text = text.Replace($"{{{num3}}}", newValue);
 						}
-						string key = text.Replace("{i}", l.ToString()).Replace("{x}", m.ToString());
+						string key = text.Replace("{i}", num.ToString()).Replace("{x}", num2.ToString());
 						switch (prefType)
 						{
 						case YanSavePlayerPrefsType.Float:
@@ -393,12 +398,13 @@ public static class YanSave
 				}
 			}
 		}
-		YanSaveData yanSaveData = default(YanSaveData);
-		yanSaveData.LoadedLevelName = SceneManager.GetActiveScene().name;
-		yanSaveData.SerializedGameObjects = list.ToArray();
-		yanSaveData.SerializedStaticClasses = list5.ToArray();
-		yanSaveData.SerializedPlayerPrefs = valueDict;
-		string contents = JsonConvert.SerializeObject(yanSaveData, new JsonSerializerSettings
+		string contents = JsonConvert.SerializeObject(new YanSaveData
+		{
+			LoadedLevelName = SceneManager.GetActiveScene().name,
+			SerializedGameObjects = list.ToArray(),
+			SerializedStaticClasses = list5.ToArray(),
+			SerializedPlayerPrefs = valueDict
+		}, new JsonSerializerSettings
 		{
 			ContractResolver = new YanSaveResolver(),
 			Error = delegate(object s, Newtonsoft.Json.Serialization.ErrorEventArgs e)
@@ -490,8 +496,8 @@ public static class YanSave
 		for (int i = 0; i < serializedGameObjects.Length; i++)
 		{
 			SerializedGameObject serializedGameObject2 = serializedGameObjects[i];
-			GameObject @object = YanSaveIdentifier.GetObject(serializedGameObject2);
-			if (@object == null)
+			GameObject gameObject2 = YanSaveIdentifier.GetObject(serializedGameObject2);
+			if (gameObject2 == null)
 			{
 				continue;
 			}
@@ -500,8 +506,8 @@ public static class YanSave
 			{
 				SerializedComponent serializedComponent2 = serializedComponents[j];
 				Type type2 = GetType(serializedComponent2.TypePath);
-				Component component = @object.GetComponent(type2);
-				@object.GetComponent<YanSaveIdentifier>();
+				Component component = gameObject2.GetComponent(type2);
+				gameObject2.GetComponent<YanSaveIdentifier>();
 				if (component == null)
 				{
 					continue;
@@ -559,16 +565,16 @@ public static class YanSave
 					else if (serializedComponent2.PropertyReferences.ContainsKey(propertyInfo.Name))
 					{
 						bool flag3 = propertyInfo.PropertyType == typeof(GameObject);
-						GameObject object2 = YanSaveIdentifier.GetObject(serializedComponent2.FieldReferences[propertyInfo.Name]);
-						if (!(object2 == null))
+						GameObject gameObject3 = YanSaveIdentifier.GetObject(serializedComponent2.FieldReferences[propertyInfo.Name]);
+						if (!(gameObject3 == null))
 						{
 							if (flag)
 							{
-								propertyInfo.SetValue(component, object2.GetComponent(propertyInfo.PropertyType));
+								propertyInfo.SetValue(component, gameObject3.GetComponent(propertyInfo.PropertyType));
 							}
 							else if (flag3)
 							{
-								propertyInfo.SetValue(component, object2);
+								propertyInfo.SetValue(component, gameObject3);
 							}
 						}
 					}
@@ -587,8 +593,8 @@ public static class YanSave
 							IList list2 = Array.CreateInstance(elementType, list.Count);
 							for (int l = 0; l < list.Count; l++)
 							{
-								GameObject object3 = YanSaveIdentifier.GetObject(list[l]);
-								Component value = ((object3 != null) ? object3.GetComponent(elementType) : null);
+								GameObject gameObject4 = YanSaveIdentifier.GetObject(list[l]);
+								Component value = ((gameObject4 != null) ? gameObject4.GetComponent(elementType) : null);
 								list2[l] = value;
 							}
 							propertyInfo.SetValue(component, list2);
@@ -598,8 +604,8 @@ public static class YanSave
 							IList list3 = Array.CreateInstance(elementType, list.Count);
 							for (int m = 0; m < list.Count; m++)
 							{
-								GameObject object4 = YanSaveIdentifier.GetObject(list[m]);
-								list3[m] = object4;
+								GameObject value2 = YanSaveIdentifier.GetObject(list[m]);
+								list3[m] = value2;
 							}
 							propertyInfo.SetValue(component, list3);
 						}
@@ -652,16 +658,16 @@ public static class YanSave
 					else if (serializedComponent2.FieldReferences.ContainsKey(fieldInfo.Name))
 					{
 						bool flag9 = fieldInfo.FieldType == typeof(GameObject);
-						GameObject object5 = YanSaveIdentifier.GetObject(serializedComponent2.FieldReferences[fieldInfo.Name]);
-						if (!(object5 == null))
+						GameObject gameObject5 = YanSaveIdentifier.GetObject(serializedComponent2.FieldReferences[fieldInfo.Name]);
+						if (!(gameObject5 == null))
 						{
 							if (flag5)
 							{
-								fieldInfo.SetValue(component, object5.GetComponent(fieldInfo.FieldType));
+								fieldInfo.SetValue(component, gameObject5.GetComponent(fieldInfo.FieldType));
 							}
 							else if (flag9)
 							{
-								fieldInfo.SetValue(component, object5);
+								fieldInfo.SetValue(component, gameObject5);
 							}
 						}
 					}
@@ -678,9 +684,9 @@ public static class YanSave
 							IList list5 = Array.CreateInstance(elementType2, list4.Count);
 							for (int n = 0; n < list4.Count; n++)
 							{
-								GameObject object6 = YanSaveIdentifier.GetObject(list4[n]);
-								Component value2 = ((object6 != null) ? object6.GetComponent(elementType2) : null);
-								list5[n] = value2;
+								GameObject gameObject6 = YanSaveIdentifier.GetObject(list4[n]);
+								Component value3 = ((gameObject6 != null) ? gameObject6.GetComponent(elementType2) : null);
+								list5[n] = value3;
 							}
 							fieldInfo.SetValue(component, list5);
 						}
@@ -689,8 +695,8 @@ public static class YanSave
 							IList list6 = Array.CreateInstance(elementType2, list4.Count);
 							for (int num2 = 0; num2 < list4.Count; num2++)
 							{
-								GameObject object7 = YanSaveIdentifier.GetObject(list4[num2]);
-								list6[num2] = object7;
+								GameObject value4 = YanSaveIdentifier.GetObject(list4[num2]);
+								list6[num2] = value4;
 							}
 							fieldInfo.SetValue(component, list6);
 						}
@@ -756,16 +762,16 @@ public static class YanSave
 				else if (serializedStaticClass.PropertyReferences.ContainsKey(propertyInfo2.Name))
 				{
 					bool flag12 = propertyInfo2.PropertyType == typeof(GameObject);
-					GameObject object8 = YanSaveIdentifier.GetObject(serializedStaticClass.FieldReferences[propertyInfo2.Name]);
-					if (!(object8 == null))
+					GameObject gameObject7 = YanSaveIdentifier.GetObject(serializedStaticClass.FieldReferences[propertyInfo2.Name]);
+					if (!(gameObject7 == null))
 					{
 						if (flag10)
 						{
-							propertyInfo2.SetValue(null, object8.GetComponent(propertyInfo2.PropertyType));
+							propertyInfo2.SetValue(null, gameObject7.GetComponent(propertyInfo2.PropertyType));
 						}
 						else if (flag12)
 						{
-							propertyInfo2.SetValue(null, object8);
+							propertyInfo2.SetValue(null, gameObject7);
 						}
 					}
 				}
@@ -784,9 +790,9 @@ public static class YanSave
 						IList list8 = Array.CreateInstance(elementType3, list7.Count);
 						for (int num4 = 0; num4 < list7.Count; num4++)
 						{
-							GameObject object9 = YanSaveIdentifier.GetObject(list7[num4]);
-							Component value3 = ((object9 != null) ? object9.GetComponent(elementType3) : null);
-							list8[num4] = value3;
+							GameObject gameObject8 = YanSaveIdentifier.GetObject(list7[num4]);
+							Component value5 = ((gameObject8 != null) ? gameObject8.GetComponent(elementType3) : null);
+							list8[num4] = value5;
 						}
 						propertyInfo2.SetValue(null, list8);
 					}
@@ -795,8 +801,8 @@ public static class YanSave
 						IList list9 = Array.CreateInstance(elementType3, list7.Count);
 						for (int num5 = 0; num5 < list7.Count; num5++)
 						{
-							GameObject object10 = YanSaveIdentifier.GetObject(list7[num5]);
-							list9[num5] = object10;
+							GameObject value6 = YanSaveIdentifier.GetObject(list7[num5]);
+							list9[num5] = value6;
 						}
 						propertyInfo2.SetValue(null, list9);
 					}
@@ -849,16 +855,16 @@ public static class YanSave
 				else if (serializedStaticClass.FieldReferences.ContainsKey(fieldInfo2.Name))
 				{
 					bool flag18 = fieldInfo2.FieldType == typeof(GameObject);
-					GameObject object11 = YanSaveIdentifier.GetObject(serializedStaticClass.FieldReferences[fieldInfo2.Name]);
-					if (!(object11 == null))
+					GameObject gameObject9 = YanSaveIdentifier.GetObject(serializedStaticClass.FieldReferences[fieldInfo2.Name]);
+					if (!(gameObject9 == null))
 					{
 						if (flag14)
 						{
-							fieldInfo2.SetValue(null, object11.GetComponent(fieldInfo2.FieldType));
+							fieldInfo2.SetValue(null, gameObject9.GetComponent(fieldInfo2.FieldType));
 						}
 						else if (flag18)
 						{
-							fieldInfo2.SetValue(null, object11);
+							fieldInfo2.SetValue(null, gameObject9);
 						}
 					}
 				}
@@ -875,9 +881,9 @@ public static class YanSave
 						IList list11 = Array.CreateInstance(elementType4, list10.Count);
 						for (int num6 = 0; num6 < list10.Count; num6++)
 						{
-							GameObject object12 = YanSaveIdentifier.GetObject(list10[num6]);
-							Component value4 = ((object12 != null) ? object12.GetComponent(elementType4) : null);
-							list11[num6] = value4;
+							GameObject gameObject10 = YanSaveIdentifier.GetObject(list10[num6]);
+							Component value7 = ((gameObject10 != null) ? gameObject10.GetComponent(elementType4) : null);
+							list11[num6] = value7;
 						}
 						fieldInfo2.SetValue(null, list11);
 					}
@@ -886,8 +892,8 @@ public static class YanSave
 						IList list12 = Array.CreateInstance(elementType4, list10.Count);
 						for (int num7 = 0; num7 < list10.Count; num7++)
 						{
-							GameObject object13 = YanSaveIdentifier.GetObject(list10[num7]);
-							list12[num7] = object13;
+							GameObject value8 = YanSaveIdentifier.GetObject(list10[num7]);
+							list12[num7] = value8;
 						}
 						fieldInfo2.SetValue(null, list12);
 					}

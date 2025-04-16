@@ -54,6 +54,7 @@ public class PantyDetectorScript : MonoBehaviour
 					Yandere.PauseScreen.Sideways = false;
 					Yandere.Shutter.TextMessages.gameObject.SetActive(value: true);
 					Yandere.Shutter.SpawnMessage();
+					QuestTracker.IncrementPantyShots();
 				}
 				else
 				{

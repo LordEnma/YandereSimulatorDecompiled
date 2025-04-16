@@ -940,6 +940,7 @@ public class EndOfDayScript : MonoBehaviour
 			}
 			if (EyeWitnesses > 0)
 			{
+				ShruggingCops.SetActive(value: false);
 				DisableThings(WitnessList[1]);
 				DisableThings(WitnessList[2]);
 				DisableThings(WitnessList[3]);
@@ -1167,7 +1168,7 @@ public class EndOfDayScript : MonoBehaviour
 			{
 				Label.text = "The police believe that they have arrested the perpetrators of the crimes. The police investigation ends, and students are free to leave.";
 			}
-			if (StudentManager.RivalEliminated || RivalEliminationMethod != 0)
+			if (StudentManager.RivalEliminated || RivalEliminationMethod != RivalEliminationType.None)
 			{
 				Phase++;
 			}
@@ -1742,7 +1743,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 22)
 		{
-			if (Yandere.Club != 0 && DateGlobals.Weekday == DayOfWeek.Friday && ClubManager.ActivitiesAttended == 0)
+			if (Yandere.Club != ClubType.None && DateGlobals.Weekday == DayOfWeek.Friday && ClubManager.ActivitiesAttended == 0)
 			{
 				TeleportYandere();
 				Yandere.CharacterAnimation.Play("f02_disappointed_00");
@@ -2906,9 +2907,10 @@ public class EndOfDayScript : MonoBehaviour
 			Debug.Log("The player arrived at school with hardware from the hardware store...");
 			for (int j = 1; j < HardwareManager.Hardware.Length; j++)
 			{
-				if (HardwareManager.Hardware[j] == null || HardwareManager.Hardware[j].Disposed)
+				if (HardwareManager.Hardware[j] == null || HardwareManager.Hardware[j].Disposed || HardwareManager.Hardware[j].InsideIncinerator)
 				{
 					CollectibleGlobals.SetHardwarePurchased(j, value: false);
+					Debug.Log("It was destroyed! Updating the game to know that Hardware #" + j + " should no longer be available.");
 				}
 			}
 			if ((PlayerGlobals.BringingHardware == 1 && HardwareManager.Hardware[1] == null) || (PlayerGlobals.BringingHardware == 1 && HardwareManager.Hardware[1].Disposed))
@@ -3201,6 +3203,12 @@ public class EndOfDayScript : MonoBehaviour
 			GameGlobals.SpecificEliminationID = 20;
 			AchievementToGrant = "Explode";
 			Debug.Log("The game knows that she was blown up, though.");
+		}
+		else if (ragdoll.Student.DeathType == DeathType.Smothered)
+		{
+			Debug.Log("The game knows that the rival died from being smothered to death.");
+			GameGlobals.SpecificEliminationID = 22;
+			AchievementToGrant = "Smother";
 		}
 	}
 

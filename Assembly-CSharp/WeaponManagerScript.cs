@@ -156,6 +156,16 @@ public class WeaponManagerScript : MonoBehaviour
 				weaponScript.RemoveBlood();
 			}
 		}
+		weapons = BroughtWeapons;
+		foreach (WeaponScript weaponScript2 in weapons)
+		{
+			if (weaponScript2 != null)
+			{
+				weaponScript2.Blood.enabled = false;
+				weaponScript2.FingerprintID = 0;
+				weaponScript2.RemoveBlood();
+			}
+		}
 	}
 
 	public void ChangeBloodTexture()
@@ -199,6 +209,47 @@ public class WeaponManagerScript : MonoBehaviour
 			if (weaponScript.BloodSpray.Length != 0)
 			{
 				weaponScript.UpdateBloodSpray();
+			}
+		}
+		weapons = BroughtWeapons;
+		foreach (WeaponScript weaponScript2 in weapons)
+		{
+			if (!(weaponScript2 != null))
+			{
+				continue;
+			}
+			if (weaponScript2 != Weapons[2])
+			{
+				if (!GameGlobals.CensorBlood)
+				{
+					weaponScript2.Blood.material.mainTexture = null;
+					weaponScript2.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
+					if (weaponScript2.MyRenderer != null)
+					{
+						Material[] materials = weaponScript2.MyRenderer.materials;
+						for (int j = 0; j < materials.Length; j++)
+						{
+							materials[j].SetTexture("_OverlayTex", Blood);
+						}
+					}
+				}
+				else
+				{
+					weaponScript2.Blood.material.mainTexture = null;
+					weaponScript2.Blood.material.SetColor("_TintColor", new Color(1f, 1f, 1f, 0f));
+					if (weaponScript2.MyRenderer != null)
+					{
+						Material[] materials = weaponScript2.MyRenderer.materials;
+						for (int j = 0; j < materials.Length; j++)
+						{
+							materials[j].SetTexture("_OverlayTex", Flower);
+						}
+					}
+				}
+			}
+			if (weaponScript2.BloodSpray.Length != 0)
+			{
+				weaponScript2.UpdateBloodSpray();
 			}
 		}
 	}

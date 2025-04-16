@@ -161,8 +161,8 @@ public class ClockScript : MonoBehaviour
 		{
 			Debug.Log("The ClockScript is aware that we're loading in from a save...");
 			int profile = GameGlobals.Profile;
-			int @int = PlayerPrefs.GetInt("SaveSlot");
-			Weekday = PlayerPrefs.GetInt("Profile_" + profile + "_Slot_" + @int + "_Weekday");
+			int num = PlayerPrefs.GetInt("SaveSlot");
+			Weekday = PlayerPrefs.GetInt("Profile_" + profile + "_Slot_" + num + "_Weekday");
 			if (Weekday == 1)
 			{
 				DateGlobals.Weekday = DayOfWeek.Monday;

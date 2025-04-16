@@ -173,6 +173,11 @@ public class GiggleScript : MonoBehaviour
 						else
 						{
 							Student.Bento.transform.localPosition = new Vector3(0f, 0.461f, -0.075f);
+							if (!Student.StudentManager.Eighties && Student.StudentID == 12)
+							{
+								Debug.Log("Moving Amai's bento back a bit more.");
+								Student.Bento.transform.localPosition = new Vector3(0f, 0.5f, -0.2f);
+							}
 						}
 						Student.Bento.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
 						Student.Bento.transform.parent = null;

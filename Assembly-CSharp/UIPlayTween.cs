@@ -242,7 +242,7 @@ public class UIPlayTween : MonoBehaviour
 		mTweens = (includeChildren ? gameObject.GetComponentsInChildren<UITweener>() : gameObject.GetComponents<UITweener>());
 		if (mTweens.Length == 0)
 		{
-			if (disableWhenFinished != 0)
+			if (disableWhenFinished != DisableCondition.DoNotDisable)
 			{
 				NGUITools.SetActive(tweenTarget, state: false);
 			}

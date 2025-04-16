@@ -252,6 +252,7 @@ public class GazerEyesScript : MonoBehaviour
 			Target.Confessing = false;
 			Target.Electrified = true;
 			Target.EndSearch = false;
+			Target.Stripping = false;
 			Target.Attacked = false;
 			Target.Vomiting = false;
 			Target.Fleeing = false;

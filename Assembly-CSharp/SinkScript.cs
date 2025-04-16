@@ -92,21 +92,24 @@ public class SinkScript : MonoBehaviour
 		{
 			if (Yandere.PickUp.Bucket != null)
 			{
-				if (!Yandere.PickUp.Bucket.Full)
+				if (!Yandere.PickUp.Bucket.Spilling)
 				{
-					Yandere.PickUp.Bucket.Fill();
-				}
-				else
-				{
-					Yandere.PickUp.Bucket.Empty();
-				}
-				if (!Yandere.PickUp.Bucket.Full)
-				{
-					Prompt.Label[0].text = "     Fill Bucket";
-				}
-				else
-				{
-					Prompt.Label[0].text = "     Empty Bucket";
+					if (!Yandere.PickUp.Bucket.Full)
+					{
+						Yandere.PickUp.Bucket.Fill();
+					}
+					else
+					{
+						Yandere.PickUp.Bucket.Empty();
+					}
+					if (!Yandere.PickUp.Bucket.Full)
+					{
+						Prompt.Label[0].text = "     Fill Bucket";
+					}
+					else
+					{
+						Prompt.Label[0].text = "     Empty Bucket";
+					}
 				}
 			}
 			else if (Yandere.PickUp.BloodCleaner != null)

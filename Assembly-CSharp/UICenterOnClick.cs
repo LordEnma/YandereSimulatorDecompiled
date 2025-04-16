@@ -14,7 +14,7 @@ public class UICenterOnClick : MonoBehaviour
 				uICenterOnChild.CenterOn(base.transform);
 			}
 		}
-		else if (uIPanel != null && uIPanel.clipping != 0)
+		else if (uIPanel != null && uIPanel.clipping != UIDrawCall.Clipping.None)
 		{
 			UIScrollView component = uIPanel.GetComponent<UIScrollView>();
 			Vector3 pos = -uIPanel.cachedTransform.InverseTransformPoint(base.transform.position);

@@ -2104,7 +2104,7 @@ public class GenericRivalEventScript : MonoBehaviour
 				Rival.WalkAnim = Rival.BulliedWalkAnim;
 			}
 		}
-		if (Teleport && NaturalEnd)
+		if (StartTime == 0f && NaturalEnd)
 		{
 			ScheduleBlock scheduleBlock = Senpai.ScheduleBlocks[2];
 			Senpai.ReturnDestination = scheduleBlock.destination;
@@ -2112,6 +2112,7 @@ public class GenericRivalEventScript : MonoBehaviour
 			Senpai.OriginalScheduleBlocks = Senpai.ScheduleBlocks;
 			if (DateGlobals.Weekday == DayOfWeek.Monday)
 			{
+				Debug.Log("A Monday Morning ''Generic Rival Event'' has just ended. Senpai.ExtraBento should be true now.");
 				Senpai.ExtraBento = true;
 				scheduleBlock = Senpai.ScheduleBlocks[2];
 				scheduleBlock.destination = "Patrol";

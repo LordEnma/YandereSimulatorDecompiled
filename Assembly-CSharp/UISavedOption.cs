@@ -35,10 +35,10 @@ public class UISavedOption : MonoBehaviour
 		if (mList != null)
 		{
 			EventDelegate.Add(mList.onChange, SaveSelection);
-			string @string = PlayerPrefs.GetString(key);
-			if (!string.IsNullOrEmpty(@string))
+			string value = PlayerPrefs.GetString(key);
+			if (!string.IsNullOrEmpty(value))
 			{
-				mList.value = @string;
+				mList.value = value;
 			}
 			return;
 		}
@@ -54,13 +54,13 @@ public class UISavedOption : MonoBehaviour
 			mSlider.value = PlayerPrefs.GetFloat(key, mSlider.value);
 			return;
 		}
-		string string2 = PlayerPrefs.GetString(key);
+		string text = PlayerPrefs.GetString(key);
 		UIToggle[] componentsInChildren = GetComponentsInChildren<UIToggle>(includeInactive: true);
 		int i = 0;
 		for (int num = componentsInChildren.Length; i < num; i++)
 		{
 			UIToggle obj = componentsInChildren[i];
-			obj.value = obj.name == string2;
+			obj.value = obj.name == text;
 		}
 	}
 

@@ -390,7 +390,7 @@ public static class NGUIMath
 		{
 			return;
 		}
-		if (uIPanel != null && uIPanel.clipping != 0)
+		if (uIPanel != null && uIPanel.clipping != UIDrawCall.Clipping.None)
 		{
 			Vector3[] worldCorners = uIPanel.worldCorners;
 			for (int i = 0; i < 4; i++)
@@ -919,13 +919,13 @@ public static class NGUIMath
 		{
 			num6 = num6 >> 1 << 1;
 		}
-		Vector3 vector10 = (cachedTransform.localPosition = cachedTransform.localPosition + zero + localRotation * zero2);
+		Vector3 vector9 = (cachedTransform.localPosition = cachedTransform.localPosition + zero + localRotation * zero2);
 		w.SetDimensions(num5, num6);
 		if (w.isAnchored)
 		{
 			cachedTransform = cachedTransform.parent;
-			float num9 = vector10.x - pivotOffset.x * (float)num5;
-			float num10 = vector10.y - pivotOffset.y * (float)num6;
+			float num9 = vector9.x - pivotOffset.x * (float)num5;
+			float num10 = vector9.y - pivotOffset.y * (float)num6;
 			if ((bool)w.leftAnchor.target)
 			{
 				w.leftAnchor.SetHorizontal(cachedTransform, num9);

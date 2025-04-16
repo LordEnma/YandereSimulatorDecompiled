@@ -20,7 +20,7 @@ public class AreaScript : MonoBehaviour
 		if (other.CompareTag("Student"))
 		{
 			StudentScript component = other.GetComponent<StudentScript>();
-			if (!component.Teacher)
+			if (!component.Teacher && component.Alive)
 			{
 				Students.Add(component);
 				Population++;
@@ -33,7 +33,7 @@ public class AreaScript : MonoBehaviour
 		if (other.CompareTag("Student"))
 		{
 			StudentScript component = other.GetComponent<StudentScript>();
-			if (!component.Teacher)
+			if (!component.Teacher && component.Alive)
 			{
 				Students.Remove(component);
 				Population--;

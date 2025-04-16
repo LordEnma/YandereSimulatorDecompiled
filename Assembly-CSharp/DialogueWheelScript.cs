@@ -393,7 +393,7 @@ public class DialogueWheelScript : MonoBehaviour
 							{
 								Yandere.TargetStudent.ClubPhase = 4;
 							}
-							else if (Yandere.Club != 0)
+							else if (Yandere.Club != ClubType.None)
 							{
 								Yandere.TargetStudent.ClubPhase = 5;
 							}
@@ -877,10 +877,13 @@ public class DialogueWheelScript : MonoBehaviour
 			}
 			else
 			{
-				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 6 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 65 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
+				Debug.Log("TargetStudent.StudentID is: " + Yandere.TargetStudent.StudentID);
+				Debug.Log("As of now, Generic is: " + flag2);
+				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 6 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 22 && Yandere.TargetStudent.StudentID != 23 && Yandere.TargetStudent.StudentID != 24 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 65 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 				{
 					flag2 = true;
 				}
+				Debug.Log("And now, Generic is: " + flag2);
 				if (Yandere.TargetStudent.StudentID == 1 || Yandere.TargetStudent.StudentID == 10)
 				{
 					Debug.Log("Task button is getting disabled here.");
@@ -1275,8 +1278,10 @@ public class DialogueWheelScript : MonoBehaviour
 				Yandere.TargetStudent.TaskPhase = 5;
 				Yandere.Inventory.AnswerSheet = false;
 			}
+			Debug.Log("The player is talking to student #" + Yandere.TargetStudent.StudentID + ".");
 			if (Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 47 && Yandere.TargetStudent.StudentID != 48 && Yandere.TargetStudent.StudentID != 49 && Yandere.TargetStudent.StudentID != 50 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 65 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 			{
+				Debug.Log("The game believes that the player is talking to a student with a ''Generic'' Task.");
 				flag = true;
 			}
 		}

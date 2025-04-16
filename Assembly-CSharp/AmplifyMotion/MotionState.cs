@@ -58,20 +58,21 @@ namespace AmplifyMotion
 
 			public static implicit operator Matrix3x4(Matrix4x4 from)
 			{
-				Matrix3x4 result = default(Matrix3x4);
-				result.m00 = from.m00;
-				result.m01 = from.m01;
-				result.m02 = from.m02;
-				result.m03 = from.m03;
-				result.m10 = from.m10;
-				result.m11 = from.m11;
-				result.m12 = from.m12;
-				result.m13 = from.m13;
-				result.m20 = from.m20;
-				result.m21 = from.m21;
-				result.m22 = from.m22;
-				result.m23 = from.m23;
-				return result;
+				return new Matrix3x4
+				{
+					m00 = from.m00,
+					m01 = from.m01,
+					m02 = from.m02,
+					m03 = from.m03,
+					m10 = from.m10,
+					m11 = from.m11,
+					m12 = from.m12,
+					m13 = from.m13,
+					m20 = from.m20,
+					m21 = from.m21,
+					m22 = from.m22,
+					m23 = from.m23
+				};
 			}
 
 			public static implicit operator Matrix4x4(Matrix3x4 from)
@@ -96,20 +97,21 @@ namespace AmplifyMotion
 
 			public static Matrix3x4 operator *(Matrix3x4 a, Matrix3x4 b)
 			{
-				Matrix3x4 result = default(Matrix3x4);
-				result.m00 = a.m00 * b.m00 + a.m01 * b.m10 + a.m02 * b.m20;
-				result.m01 = a.m00 * b.m01 + a.m01 * b.m11 + a.m02 * b.m21;
-				result.m02 = a.m00 * b.m02 + a.m01 * b.m12 + a.m02 * b.m22;
-				result.m03 = a.m00 * b.m03 + a.m01 * b.m13 + a.m02 * b.m23 + a.m03;
-				result.m10 = a.m10 * b.m00 + a.m11 * b.m10 + a.m12 * b.m20;
-				result.m11 = a.m10 * b.m01 + a.m11 * b.m11 + a.m12 * b.m21;
-				result.m12 = a.m10 * b.m02 + a.m11 * b.m12 + a.m12 * b.m22;
-				result.m13 = a.m10 * b.m03 + a.m11 * b.m13 + a.m12 * b.m23 + a.m13;
-				result.m20 = a.m20 * b.m00 + a.m21 * b.m10 + a.m22 * b.m20;
-				result.m21 = a.m20 * b.m01 + a.m21 * b.m11 + a.m22 * b.m21;
-				result.m22 = a.m20 * b.m02 + a.m21 * b.m12 + a.m22 * b.m22;
-				result.m23 = a.m20 * b.m03 + a.m21 * b.m13 + a.m22 * b.m23 + a.m23;
-				return result;
+				return new Matrix3x4
+				{
+					m00 = a.m00 * b.m00 + a.m01 * b.m10 + a.m02 * b.m20,
+					m01 = a.m00 * b.m01 + a.m01 * b.m11 + a.m02 * b.m21,
+					m02 = a.m00 * b.m02 + a.m01 * b.m12 + a.m02 * b.m22,
+					m03 = a.m00 * b.m03 + a.m01 * b.m13 + a.m02 * b.m23 + a.m03,
+					m10 = a.m10 * b.m00 + a.m11 * b.m10 + a.m12 * b.m20,
+					m11 = a.m10 * b.m01 + a.m11 * b.m11 + a.m12 * b.m21,
+					m12 = a.m10 * b.m02 + a.m11 * b.m12 + a.m12 * b.m22,
+					m13 = a.m10 * b.m03 + a.m11 * b.m13 + a.m12 * b.m23 + a.m13,
+					m20 = a.m20 * b.m00 + a.m21 * b.m10 + a.m22 * b.m20,
+					m21 = a.m20 * b.m01 + a.m21 * b.m11 + a.m22 * b.m21,
+					m22 = a.m20 * b.m02 + a.m21 * b.m12 + a.m22 * b.m22,
+					m23 = a.m20 * b.m03 + a.m21 * b.m13 + a.m22 * b.m23 + a.m23
+				};
 			}
 		}
 

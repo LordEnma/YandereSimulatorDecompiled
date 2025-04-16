@@ -24,13 +24,19 @@ public class AchievementPopUpScript : MonoBehaviour
 
 	public int DebugID;
 
-	private void Awake()
-	{
-		Object.DontDestroyOnLoad(base.transform.parent.parent.gameObject);
-	}
+	private static AchievementPopUpScript instance;
 
 	private void Start()
 	{
+		if (instance != null)
+		{
+			Object.Destroy(base.gameObject);
+			Object.Destroy(base.transform.parent.parent.gameObject);
+			return;
+		}
+		Object.DontDestroyOnLoad(base.gameObject);
+		Object.DontDestroyOnLoad(base.transform.parent.parent.gameObject);
+		instance = this;
 		base.transform.localPosition = new Vector3(637f, -613f, 0f);
 		for (int i = 1; i < AchievementNames.Length; i++)
 		{
@@ -80,6 +86,14 @@ public class AchievementPopUpScript : MonoBehaviour
 				Show = true;
 				i = 99;
 			}
+		}
+	}
+
+	public void Reset()
+	{
+		for (int i = 1; i < AchievementNames.Length; i++)
+		{
+			PreviousNumber[i] = 0;
 		}
 	}
 }

@@ -1103,6 +1103,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		{
 			PlayerPrefs.SetInt("a", 1);
 		}
+		Debug.Log("PlayerPrefs ''Befriend'' was just set to ''1''.");
 	}
 
 	private void VtuberCheck()

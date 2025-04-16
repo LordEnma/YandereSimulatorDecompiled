@@ -43,22 +43,31 @@ public class DiscordRPC : MonoBehaviour
 	[SerializeField]
 	private Dictionary<int, string> _gameWeekday = new Dictionary<int, string>();
 
+	private static DiscordRPC instance;
+
 	private void Start()
 	{
-		if (base.enabled)
+		if (!base.enabled)
 		{
-			Object.DontDestroyOnLoad(base.gameObject);
-			if (_applicationID != string.Empty)
-			{
-				_discord = new global::Discord.Discord(long.Parse(_applicationID), 1uL);
-				UpdateActivity();
-			}
-			else
-			{
-				Debug.Log("An error has occurred. You probably didn't set the Application ID.");
-			}
-			StartCoroutine(RichPresenceUpdate());
+			return;
 		}
+		if (instance != null)
+		{
+			Object.Destroy(base.gameObject);
+			return;
+		}
+		Object.DontDestroyOnLoad(base.gameObject);
+		instance = this;
+		if (_applicationID != string.Empty)
+		{
+			_discord = new global::Discord.Discord(long.Parse(_applicationID), 1uL);
+			UpdateActivity();
+		}
+		else
+		{
+			Debug.Log("An error has occurred. You probably didn't set the Application ID.");
+		}
+		StartCoroutine(RichPresenceUpdate());
 	}
 
 	private void Update()
@@ -82,15 +91,19 @@ public class DiscordRPC : MonoBehaviour
 	{
 		_currentScene = SceneManager.GetActiveScene().name;
 		_activity = _discord.GetActivityManager();
-		Activity activity = default(Activity);
-		activity.Assets.LargeImage = _boxArtImage;
-		activity.Assets.LargeText = _boxArtText;
-		activity.Details = _details;
-		activity.State = GetSceneDescription();
-		Activity activity2 = activity;
-		_activity.UpdateActivity(activity2, delegate(Result RichPresenceResult)
+		Activity activity = new Activity
 		{
-			if (RichPresenceResult != 0)
+			Assets = 
+			{
+				LargeImage = _boxArtImage,
+				LargeText = _boxArtText
+			},
+			Details = _details,
+			State = GetSceneDescription()
+		};
+		_activity.UpdateActivity(activity, delegate(Result RichPresenceResult)
+		{
+			if (RichPresenceResult != Result.Ok)
 			{
 				Debug.Log("Error! Connection Error (" + RichPresenceResult.ToString() + ")");
 			}

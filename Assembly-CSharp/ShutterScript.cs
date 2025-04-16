@@ -656,6 +656,7 @@ public class ShutterScript : MonoBehaviour
 					TextMessages.gameObject.SetActive(value: true);
 					SpawnMessage();
 				}
+				QuestTracker.IncrementPantyShots();
 			}
 			else if (hit.collider.gameObject.name == "Face")
 			{
@@ -1006,6 +1007,8 @@ public class ShutterScript : MonoBehaviour
 
 	public void ResumeGameplay()
 	{
+		Yandere.Shutter.PantiesX.SetActive(value: true);
+		PhotoDescLabel.text = "";
 		if (RestoreFPS)
 		{
 			StudentManager.FPSDisplayBG.SetActive(value: true);

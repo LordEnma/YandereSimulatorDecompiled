@@ -65,7 +65,7 @@ public class PassTimeBookScript : MonoBehaviour
 				{
 					for (int i = 1; i < 100; i++)
 					{
-						if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Alive && !Yandere.StudentManager.Students[i].Tranquil && !Yandere.StudentManager.Students[i].Sedated)
+						if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Alive && !Yandere.StudentManager.Students[i].Tranquil && !Yandere.StudentManager.Students[i].Sedated && Yandere.StudentManager.Students[i].CurrentDestination != null)
 						{
 							Yandere.StudentManager.Students[i].transform.position = Yandere.StudentManager.Students[i].CurrentDestination.position;
 						}

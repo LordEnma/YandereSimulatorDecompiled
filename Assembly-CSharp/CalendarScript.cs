@@ -440,7 +440,7 @@ public class CalendarScript : MonoBehaviour
 								SundayLabel.SetActive(value: false);
 								flag = true;
 							}
-							while (flag || (DateGlobals.PassDays > 0 && DateGlobals.Weekday != DayOfWeek.Saturday && DateGlobals.Weekday != 0))
+							while (flag || (DateGlobals.PassDays > 0 && DateGlobals.Weekday != DayOfWeek.Saturday && DateGlobals.Weekday != DayOfWeek.Sunday))
 							{
 								UpdateSeeds();
 								DateGlobals.GameplayDay++;
@@ -468,7 +468,7 @@ public class CalendarScript : MonoBehaviour
 							DateGlobals.Weekday = DayOfWeek.Sunday;
 							Target = Adjustment;
 						}
-						if (!GameOverWindow.activeInHierarchy && DateGlobals.Weekday != 0 && DateGlobals.Weekday < DayOfWeek.Saturday && GameGlobals.RivalEliminationID > 0 && !GameGlobals.InformedAboutSkipping && DateGlobals.Week < 2)
+						if (!GameOverWindow.activeInHierarchy && DateGlobals.Weekday != DayOfWeek.Sunday && DateGlobals.Weekday < DayOfWeek.Saturday && GameGlobals.RivalEliminationID > 0 && !GameGlobals.InformedAboutSkipping && DateGlobals.Week < 2)
 						{
 							GameGlobals.InformedAboutSkipping = true;
 							CongratulationsWindow.SetActive(value: true);
@@ -564,7 +564,7 @@ public class CalendarScript : MonoBehaviour
 									StudentGlobals.MemorialStudent9 = 0;
 								}
 								SkipConfirmationWindow.SetActive(value: false);
-								if (DateGlobals.Weekday != 0 && DateGlobals.Weekday != DayOfWeek.Saturday)
+								if (DateGlobals.Weekday != DayOfWeek.Sunday && DateGlobals.Weekday != DayOfWeek.Saturday)
 								{
 									Debug.Log("Skipping day. Not Saturday or Sunday. Awarding 10 bonus study points.");
 									ClassGlobals.BonusStudyPoints += 10;
@@ -654,7 +654,7 @@ public class CalendarScript : MonoBehaviour
 								if (Input.GetButtonDown(InputNames.Xbox_Y))
 								{
 									SkipConfirmationWindow.SetActive(value: true);
-									if (DateGlobals.Weekday > DayOfWeek.Sunday && ClubGlobals.Club != 0 && ClubGlobals.ActivitiesAttended == 0)
+									if (DateGlobals.Weekday > DayOfWeek.Sunday && ClubGlobals.Club != ClubType.None && ClubGlobals.ActivitiesAttended == 0)
 									{
 										ClubKickWindow.SetActive(value: true);
 									}
@@ -711,7 +711,7 @@ public class CalendarScript : MonoBehaviour
 				}
 				else
 				{
-					if (DateGlobals.Weekday == DayOfWeek.Saturday && ClubGlobals.Club != 0 && ClubGlobals.ActivitiesAttended == 0)
+					if (DateGlobals.Weekday == DayOfWeek.Saturday && ClubGlobals.Club != ClubType.None && ClubGlobals.ActivitiesAttended == 0)
 					{
 						Debug.Log("Kicking player out of club.");
 						ClubGlobals.SetClubKicked(ClubGlobals.Club, value: true);

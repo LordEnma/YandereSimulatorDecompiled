@@ -1479,8 +1479,8 @@ public class StudentManagerScript : MonoBehaviour
 		if (PlayerPrefs.GetInt("LoadingSave") == 1)
 		{
 			int profile = GameGlobals.Profile;
-			int @int = PlayerPrefs.GetInt("SaveSlot");
-			StudentGlobals.MemorialStudents = PlayerPrefs.GetInt("Profile_" + profile + "_Slot_" + @int + "_MemorialStudents");
+			int num = PlayerPrefs.GetInt("SaveSlot");
+			StudentGlobals.MemorialStudents = PlayerPrefs.GetInt("Profile_" + profile + "_Slot_" + num + "_MemorialStudents");
 		}
 		if (!GameGlobals.ReputationsInitialized)
 		{
@@ -4259,9 +4259,9 @@ public class StudentManagerScript : MonoBehaviour
 
 	private void OccupySeat()
 	{
-		int @class = JSON.Students[SpawnID].Class;
+		int num = JSON.Students[SpawnID].Class;
 		int seat = JSON.Students[SpawnID].Seat;
-		switch (@class)
+		switch (num)
 		{
 		case 11:
 			SeatsTaken11[seat] = true;
@@ -5035,7 +5035,7 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		SaveAllStudentPositions();
 		int profile = GameGlobals.Profile;
-		int @int = PlayerPrefs.GetInt("SaveSlot");
+		int num = PlayerPrefs.GetInt("SaveSlot");
 		Debug.Log("At the moment of saving, Yandere.Sanity was: " + Yandere.Sanity);
 		BloodParent.RecordAllBlood();
 		PuddleParent.RecordAllPuddles();
@@ -5051,8 +5051,8 @@ public class StudentManagerScript : MonoBehaviour
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
 		ServicesPurchased = Yandere.PauseScreen.ServiceMenu.ServicePurchased;
 		YandereSavePosition = Yandere.transform.position;
-		YanSave.SaveData("Profile_" + profile + "_Slot_" + @int);
-		PlayerPrefs.SetInt("Profile_" + profile + "_Slot_" + @int + "_MemorialStudents", StudentGlobals.MemorialStudents);
+		YanSave.SaveData("Profile_" + profile + "_Slot_" + num);
+		PlayerPrefs.SetInt("Profile_" + profile + "_Slot_" + num + "_MemorialStudents", StudentGlobals.MemorialStudents);
 		Yandere.Class.gameObject.SetActive(value: false);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
 		Vector3 yandereSavePosition = YandereSavePosition;
@@ -5073,8 +5073,8 @@ public class StudentManagerScript : MonoBehaviour
 			}
 		}
 		int profile = GameGlobals.Profile;
-		int @int = PlayerPrefs.GetInt("SaveSlot");
-		Debug.Log("Now loading save data. Profile is " + profile + " and Slot is " + @int);
+		int num = PlayerPrefs.GetInt("SaveSlot");
+		Debug.Log("Now loading save data. Profile is " + profile + " and Slot is " + num);
 		Yandere.Class.gameObject.SetActive(value: true);
 		DialogueWheel.NoteLocker.NoteWindow.gameObject.SetActive(value: true);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: true);
@@ -5092,7 +5092,7 @@ public class StudentManagerScript : MonoBehaviour
 		bool censorPanties = GameGlobals.CensorPanties;
 		bool censorKillingAnims = GameGlobals.CensorKillingAnims;
 		Debug.Log("Before loading, GameGlobals.CensorBlood is: " + GameGlobals.CensorBlood);
-		YanSave.LoadData("Profile_" + profile + "_Slot_" + @int);
+		YanSave.LoadData("Profile_" + profile + "_Slot_" + num);
 		GameGlobals.CensorBlood = censorBlood;
 		GameGlobals.CensorPanties = censorPanties;
 		GameGlobals.CensorKillingAnims = censorKillingAnims;
@@ -7811,7 +7811,7 @@ public class StudentManagerScript : MonoBehaviour
 		StudentScript[] students = Students;
 		foreach (StudentScript studentScript in students)
 		{
-			if (!(studentScript != null) || !studentScript.gameObject.activeInHierarchy || !studentScript.enabled || !(studentScript.DistanceToPlayer < 1f))
+			if (!(studentScript != null) || !studentScript.gameObject.activeInHierarchy || !studentScript.enabled || !(studentScript.DistanceToPlayer < 1f) || !(studentScript.Hunter == null))
 			{
 				continue;
 			}

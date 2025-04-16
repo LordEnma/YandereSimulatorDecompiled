@@ -959,6 +959,7 @@ public class PauseScreenScript : MonoBehaviour
 					{
 						Debug.Log("We're returning home. StudentGlobals.StudentSlave is: " + StudentGlobals.StudentSlave);
 						Debug.Log("and StudentGlobals.PreviousPrisoner is: " + StudentGlobals.PreviousPrisoner);
+						GameGlobals.AlphabetMode = false;
 						if (StudentGlobals.StudentSlave > 0)
 						{
 							StudentGlobals.SetStudentKidnapped(StudentGlobals.StudentSlave, value: true);

@@ -156,7 +156,7 @@ namespace AmplifyMotion
 			renderCB.SetGlobalMatrix("_AM_MATRIX_PREV_MVP", value);
 			renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float)num * 0.003921569f);
 			renderCB.SetGlobalFloat("_AM_MOTION_SCALE", flag ? scale : 0f);
-			int num2 = ((quality != 0) ? 2 : 0);
+			int num2 = ((quality != Quality.Mobile) ? 2 : 0);
 			for (int j = 0; j < m_sharedMaterials.Length; j++)
 			{
 				MaterialDesc materialDesc = m_sharedMaterials[j];

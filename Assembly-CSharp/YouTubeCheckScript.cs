@@ -5,9 +5,17 @@ using UnityEngine.Networking;
 
 public class YouTubeCheckScript : MonoBehaviour
 {
+	private static YouTubeCheckScript instance;
+
 	private void Awake()
 	{
+		if (instance != null)
+		{
+			UnityEngine.Object.Destroy(base.gameObject);
+			return;
+		}
 		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
+		instance = this;
 	}
 
 	private void Start()

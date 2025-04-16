@@ -267,9 +267,9 @@ public class AlphabetScript : MonoBehaviour
 			select student).ToArray();
 		int[] array2 = new int[array.Length + 1];
 		array2[0] = 0;
-		for (int i = 0; i < array.Length; i++)
+		for (int num = 0; num < array.Length; num++)
 		{
-			array2[i + 1] = array[i].StudentID;
+			array2[num + 1] = array[num].StudentID;
 		}
 		return array2;
 	}

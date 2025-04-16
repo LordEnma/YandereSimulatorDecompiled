@@ -137,7 +137,7 @@ public class ChallengeMangerScript : MonoBehaviour
 			GameOverTimer = 5f;
 			for (int i = 1; i < 101; i++)
 			{
-				if (StudentManager.Students[i] != null && StudentManager.Students[i].Alarmed && StudentManager.Students[i].Witnessed != 0)
+				if (StudentManager.Students[i] != null && StudentManager.Students[i].Alarmed && StudentManager.Students[i].Witnessed != StudentWitnessType.None)
 				{
 					Debug.Log("A student was alarmed by something.");
 					StudentToZoomInOn = StudentManager.Students[i];

@@ -466,10 +466,19 @@ public class RagdollScript : MonoBehaviour
 								Yandere.ResetYandereEffects();
 								Yandere.YandereVision = false;
 							}
-							Yandere.CharacterAnimation.CrossFade("f02_dismember_00");
+							if (Yandere.EquippedWeapon.Chainsaw)
+							{
+								Yandere.CharacterAnimation.CrossFade("f02_chainsawDismember_00");
+								Yandere.RPGCamera.transform.position = Yandere.ChainsawDismemberSpot.position;
+								Yandere.RPGCamera.transform.eulerAngles = Yandere.ChainsawDismemberSpot.eulerAngles;
+							}
+							else
+							{
+								Yandere.CharacterAnimation.CrossFade("f02_dismember_00");
+								Yandere.RPGCamera.transform.position = Yandere.DismemberSpot.position;
+								Yandere.RPGCamera.transform.eulerAngles = Yandere.DismemberSpot.eulerAngles;
+							}
 							Yandere.transform.LookAt(new Vector3(Student.Hips.transform.position.x, Yandere.transform.position.y, Student.Hips.transform.position.z));
-							Yandere.RPGCamera.transform.position = Yandere.DismemberSpot.position;
-							Yandere.RPGCamera.transform.eulerAngles = Yandere.DismemberSpot.eulerAngles;
 							Yandere.EquippedWeapon.Dismember();
 							Yandere.RPGCamera.enabled = false;
 							Yandere.TargetStudent = Student;
@@ -629,7 +638,7 @@ public class RagdollScript : MonoBehaviour
 					Prompt.AcceptingInput[1] = true;
 				}
 				bool flag = false;
-				if (Yandere.Armed && Yandere.EquippedWeapon.WeaponID == 7 && !Student.Nemesis)
+				if (Yandere.Armed && ((Yandere.EquippedWeapon.WeaponID == 7 && !Student.Nemesis) || (Yandere.EquippedWeapon.Chainsaw && !Student.Nemesis)))
 				{
 					Prompt.Label[0].text = "     Dismember";
 					Cauterizable = false;
@@ -761,24 +770,24 @@ public class RagdollScript : MonoBehaviour
 				Burning = false;
 				Burned = true;
 			}
-			float @float = MyRenderer.materials[0].GetFloat("_BlendAmount");
-			@float -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[0].SetFloat("_BlendAmount", @float);
-			@float = MyRenderer.materials[1].GetFloat("_BlendAmount");
-			@float -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[1].SetFloat("_BlendAmount", @float);
-			@float = MyRenderer.materials[2].GetFloat("_BlendAmount");
-			@float -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[2].SetFloat("_BlendAmount", @float);
-			@float = MyRenderer.materials[0].GetFloat("_BlendAmount1");
-			@float -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[0].SetFloat("_BlendAmount1", @float);
-			@float = MyRenderer.materials[1].GetFloat("_BlendAmount1");
-			@float -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[1].SetFloat("_BlendAmount1", @float);
-			@float = MyRenderer.materials[2].GetFloat("_BlendAmount1");
-			@float -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[2].SetFloat("_BlendAmount1", @float);
+			float num = MyRenderer.materials[0].GetFloat("_BlendAmount");
+			num -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[0].SetFloat("_BlendAmount", num);
+			num = MyRenderer.materials[1].GetFloat("_BlendAmount");
+			num -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[1].SetFloat("_BlendAmount", num);
+			num = MyRenderer.materials[2].GetFloat("_BlendAmount");
+			num -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[2].SetFloat("_BlendAmount", num);
+			num = MyRenderer.materials[0].GetFloat("_BlendAmount1");
+			num -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[0].SetFloat("_BlendAmount1", num);
+			num = MyRenderer.materials[1].GetFloat("_BlendAmount1");
+			num -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[1].SetFloat("_BlendAmount1", num);
+			num = MyRenderer.materials[2].GetFloat("_BlendAmount1");
+			num -= Time.deltaTime * 0.2f;
+			MyRenderer.materials[2].SetFloat("_BlendAmount1", num);
 		}
 		if (Burned)
 		{

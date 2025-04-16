@@ -31,6 +31,7 @@ public class SabotageAirUnitScript : MonoBehaviour
 				Prompt.Yandere.CanMove = false;
 				Timer = 5.8667f;
 				Prompt.Yandere.EquippedWeapon.Flip = true;
+				Prompt.Yandere.SuspiciousActionTimer = 10f;
 				Prompt.Yandere.PromptBar.ClearButtons();
 				Prompt.Yandere.PromptBar.Show = true;
 				Prompt.Yandere.PromptBar.Label[1].text = "Death Cam";
@@ -55,6 +56,7 @@ public class SabotageAirUnitScript : MonoBehaviour
 				AirUnit.gameObject.transform.parent = null;
 				Rotation.enabled = false;
 				AirUnit.enabled = true;
+				Prompt.Yandere.SuspiciousActionTimer = 0f;
 				BucketPourObject.SetActive(value: true);
 				MyCollider.enabled = false;
 				Prompt.enabled = false;

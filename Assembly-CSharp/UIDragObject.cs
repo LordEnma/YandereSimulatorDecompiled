@@ -186,7 +186,7 @@ public class UIDragObject : MonoBehaviour
 			vector.Scale(scale);
 			vector = target.TransformDirection(vector);
 		}
-		if (dragEffect != 0)
+		if (dragEffect != DragEffect.None)
 		{
 			mMomentum = Vector3.Lerp(mMomentum, mMomentum + vector * (0.01f * momentumAmount), 0.67f);
 		}

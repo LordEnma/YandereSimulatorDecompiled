@@ -3,6 +3,8 @@ using XInputDotNetPure;
 
 public class VibrationScript : MonoBehaviour
 {
+	public ParticleSystem Particles;
+
 	public float Strength1;
 
 	public float Strength2;
@@ -13,16 +15,32 @@ public class VibrationScript : MonoBehaviour
 
 	private void Start()
 	{
-		GamePad.SetVibration(PlayerIndex.One, Strength1, Strength2);
+		if (Particles == null)
+		{
+			GamePad.SetVibration(PlayerIndex.One, Strength1, Strength2);
+		}
 	}
 
 	private void Update()
 	{
-		Timer += Time.deltaTime;
-		if (Timer > TimeLimit)
+		if (Particles == null)
+		{
+			Timer += Time.deltaTime;
+			if (Timer > TimeLimit)
+			{
+				GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
+				base.enabled = false;
+			}
+			return;
+		}
+		if (Particles.isPlaying)
+		{
+			Timer = 0f;
+		}
+		if (Timer < TimeLimit)
 		{
 			GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
-			base.enabled = false;
+			Timer += Time.deltaTime;
 		}
 	}
 }

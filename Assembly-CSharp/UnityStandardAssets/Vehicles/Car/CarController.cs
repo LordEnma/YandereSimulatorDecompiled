@@ -143,9 +143,9 @@ namespace UnityStandardAssets.Vehicles.Car
 		{
 			CalculateGearFactor();
 			float num = (float)m_GearNum / (float)NoOfGears;
-			float from = ULerp(0f, m_RevRangeBoundary, CurveFactor(num));
+			float num2 = ULerp(0f, m_RevRangeBoundary, CurveFactor(num));
 			float to = ULerp(m_RevRangeBoundary, 1f, num);
-			Revs = ULerp(from, to, m_GearFactor);
+			Revs = ULerp(num2, to, m_GearFactor);
 		}
 
 		public void Move(float steering, float accel, float footbrake, float handbrake)

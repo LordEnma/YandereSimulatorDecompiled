@@ -25,9 +25,9 @@ public static class GlobalsHelper
 
 	public static Vector2 GetVector2(string key)
 	{
-		float @float = PlayerPrefs.GetFloat(key + "_X");
-		float float2 = PlayerPrefs.GetFloat(key + "_Y");
-		return new Vector2(@float, float2);
+		float x = PlayerPrefs.GetFloat(key + "_X");
+		float y = PlayerPrefs.GetFloat(key + "_Y");
+		return new Vector2(x, y);
 	}
 
 	public static void SetVector2(string key, Vector2 value)
@@ -53,10 +53,10 @@ public static class GlobalsHelper
 
 	public static Vector3 GetVector3(string key)
 	{
-		float @float = PlayerPrefs.GetFloat(key + "_X");
-		float float2 = PlayerPrefs.GetFloat(key + "_Y");
-		float float3 = PlayerPrefs.GetFloat(key + "_Z");
-		return new Vector3(@float, float2, float3);
+		float x = PlayerPrefs.GetFloat(key + "_X");
+		float y = PlayerPrefs.GetFloat(key + "_Y");
+		float z = PlayerPrefs.GetFloat(key + "_Z");
+		return new Vector3(x, y, z);
 	}
 
 	public static void SetVector3(string key, Vector3 value)
@@ -84,11 +84,11 @@ public static class GlobalsHelper
 
 	public static Vector4 GetVector4(string key)
 	{
-		float @float = PlayerPrefs.GetFloat(key + "_W");
-		float float2 = PlayerPrefs.GetFloat(key + "_X");
-		float float3 = PlayerPrefs.GetFloat(key + "_Y");
-		float float4 = PlayerPrefs.GetFloat(key + "_Z");
-		return new Vector4(@float, float2, float3, float4);
+		float x = PlayerPrefs.GetFloat(key + "_W");
+		float y = PlayerPrefs.GetFloat(key + "_X");
+		float z = PlayerPrefs.GetFloat(key + "_Y");
+		float w = PlayerPrefs.GetFloat(key + "_Z");
+		return new Vector4(x, y, z, w);
 	}
 
 	public static void SetVector4(string key, Vector4 value)
@@ -109,11 +109,11 @@ public static class GlobalsHelper
 
 	public static Color GetColor(string key)
 	{
-		float @float = PlayerPrefs.GetFloat(key + "_R");
-		float float2 = PlayerPrefs.GetFloat(key + "_G");
-		float float3 = PlayerPrefs.GetFloat(key + "_B");
-		float float4 = PlayerPrefs.GetFloat(key + "_A");
-		return new Color(@float, float2, float3, float4);
+		float r = PlayerPrefs.GetFloat(key + "_R");
+		float g = PlayerPrefs.GetFloat(key + "_G");
+		float b = PlayerPrefs.GetFloat(key + "_B");
+		float a = PlayerPrefs.GetFloat(key + "_A");
+		return new Color(r, g, b, a);
 	}
 
 	public static void SetColor(string key, Color value)

@@ -402,7 +402,7 @@ public class UIPanel : UIRect
 		get
 		{
 			Vector2 viewSize = GetViewSize();
-			if (mClipping != 0)
+			if (mClipping != UIDrawCall.Clipping.None)
 			{
 				return new Vector4(mClipRange.x + mClipOffset.x, mClipRange.y + mClipOffset.y, viewSize.x, viewSize.y);
 			}
@@ -461,7 +461,7 @@ public class UIPanel : UIRect
 	{
 		get
 		{
-			if (mClipping != 0)
+			if (mClipping != UIDrawCall.Clipping.None)
 			{
 				float num = mClipOffset.x + mClipRange.x - 0.5f * mClipRange.z;
 				float num2 = mClipOffset.y + mClipRange.y - 0.5f * mClipRange.w;
@@ -539,7 +539,7 @@ public class UIPanel : UIRect
 
 	public override Vector3[] GetSides(Transform relativeTo)
 	{
-		if (mClipping != 0)
+		if (mClipping != UIDrawCall.Clipping.None)
 		{
 			float num = mClipOffset.x + mClipRange.x - 0.5f * mClipRange.z;
 			float num2 = mClipOffset.y + mClipRange.y - 0.5f * mClipRange.w;
@@ -1237,7 +1237,7 @@ public class UIPanel : UIRect
 	{
 		Transform transform = base.cachedTransform;
 		bool num = usedForUI;
-		if (clipping != 0)
+		if (clipping != UIDrawCall.Clipping.None)
 		{
 			drawCallClipRange = finalClipRegion;
 			drawCallClipRange.z *= 0.5f;
@@ -1267,7 +1267,7 @@ public class UIPanel : UIRect
 		{
 			Transform transform2 = base.cachedTransform.parent;
 			position = base.cachedTransform.localPosition;
-			if (clipping != 0)
+			if (clipping != UIDrawCall.Clipping.None)
 			{
 				position.x = Mathf.RoundToInt(position.x);
 				position.y = Mathf.RoundToInt(position.y);
@@ -1582,7 +1582,7 @@ public class UIPanel : UIRect
 
 	public Vector2 GetViewSize()
 	{
-		if (mClipping != 0)
+		if (mClipping != UIDrawCall.Clipping.None)
 		{
 			return new Vector2(mClipRange.z, mClipRange.w);
 		}

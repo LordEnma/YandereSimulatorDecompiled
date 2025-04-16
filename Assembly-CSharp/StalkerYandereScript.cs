@@ -147,6 +147,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public SkinnedMeshRenderer MyRenderer;
 
+	public GameObject RyobaHairWithRibbon;
+
 	public GameObject ClothingAttacher;
 
 	public GameObject EightiesAttacher;
@@ -290,6 +292,8 @@ public class StalkerYandereScript : MonoBehaviour
 				BreastR.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 				EightiesAttacher.SetActive(value: true);
 				UpdateBlendshapes = true;
+				RyobaHairWithRibbon.SetActive(value: true);
+				RyobaHair.SetActive(value: false);
 			}
 			else
 			{
@@ -674,7 +678,7 @@ public class StalkerYandereScript : MonoBehaviour
 				}
 				else if (Input.GetButtonDown(InputNames.Xbox_Y))
 				{
-					if (StreetManager.Sunlight.shadows != 0)
+					if (StreetManager.Sunlight.shadows != LightShadows.None)
 					{
 						StreetManager.Sunlight.shadows = LightShadows.None;
 					}

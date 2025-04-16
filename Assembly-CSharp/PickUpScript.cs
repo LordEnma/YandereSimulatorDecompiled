@@ -303,26 +303,15 @@ public class PickUpScript : MonoBehaviour
 			Suspicious = false;
 			ThisIsAMop = true;
 		}
+		if (CleaningProduct)
+		{
+			Suspicious = false;
+		}
 		KeepActive = true;
 	}
 
 	private void LateUpdate()
 	{
-		if (CleaningProduct && !ThisIsAMop)
-		{
-			if (Clock == null)
-			{
-				Clock = Yandere.StudentManager.Clock;
-			}
-			if (Clock.Period == 5)
-			{
-				Suspicious = false;
-			}
-			else
-			{
-				Suspicious = true;
-			}
-		}
 		if (Weight)
 		{
 			Strength = Prompt.Yandere.Class.PhysicalGrade + Prompt.Yandere.Class.PhysicalBonus;

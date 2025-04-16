@@ -494,7 +494,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 				YanvaniaCamera.Cutscene = true;
 				Cutscene = true;
 			}
-			if ((controller.collisionFlags & CollisionFlags.Above) != 0 && moveDirection.y > 0f)
+			if ((controller.collisionFlags & CollisionFlags.Above) != CollisionFlags.None && moveDirection.y > 0f)
 			{
 				moveDirection.y = 0f;
 			}

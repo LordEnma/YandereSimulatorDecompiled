@@ -594,15 +594,36 @@ public class CustomizationScript : MonoBehaviour
 			FinishPanel.alpha = Mathf.MoveTowards(FinishPanel.alpha, 1f, Time.deltaTime * 2f);
 			if (FinishPanel.alpha == 1f)
 			{
-				if (Input.GetButtonDown(InputNames.Xbox_A))
+				if (!AreYouSurePanel.activeInHierarchy)
 				{
-					Phase++;
+					if (Input.GetButtonDown(InputNames.Xbox_A))
+					{
+						Phase++;
+					}
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
+					{
+						Selected = 1;
+						Highlight.localPosition = new Vector3(Highlight.localPosition.x, 650f - (float)Selected * 150f, Highlight.localPosition.z);
+						Phase = 100;
+					}
+					else if (Input.GetButtonDown(InputNames.Xbox_Y))
+					{
+						QuickStartWindow.SetActive(value: true);
+						AreYouSurePanel.SetActive(value: true);
+					}
 				}
-				if (Input.GetButtonDown(InputNames.Xbox_B))
+				else if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
-					Selected = 1;
-					Highlight.localPosition = new Vector3(Highlight.localPosition.x, 650f - (float)Selected * 150f, Highlight.localPosition.z);
-					Phase = 100;
+					AreYouSurePanel.SetActive(value: false);
+					White.color = new Color(0f, 0f, 0f, 1f);
+					SkipToCalendar = true;
+					FadeOut = true;
+					Phase = 0;
+				}
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
+				{
+					QuickStartWindow.SetActive(value: false);
+					AreYouSurePanel.SetActive(value: false);
 				}
 			}
 		}
@@ -676,15 +697,36 @@ public class CustomizationScript : MonoBehaviour
 			FinishPanel.alpha = Mathf.MoveTowards(FinishPanel.alpha, 1f, Time.deltaTime * 2f);
 			if (FinishPanel.alpha == 1f)
 			{
-				if (Input.GetButtonDown(InputNames.Xbox_A))
+				if (!AreYouSurePanel.activeInHierarchy)
 				{
-					Phase++;
+					if (Input.GetButtonDown(InputNames.Xbox_A))
+					{
+						Phase++;
+					}
+					else if (Input.GetButtonDown(InputNames.Xbox_B))
+					{
+						Selected = 1;
+						UniformHighlight.localPosition = new Vector3(UniformHighlight.localPosition.x, 650f - (float)Selected * 150f, UniformHighlight.localPosition.z);
+						Phase = 99;
+					}
+					else if (Input.GetButtonDown(InputNames.Xbox_Y))
+					{
+						QuickStartWindow.SetActive(value: true);
+						AreYouSurePanel.SetActive(value: true);
+					}
 				}
-				if (Input.GetButtonDown(InputNames.Xbox_B))
+				else if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
-					Selected = 1;
-					UniformHighlight.localPosition = new Vector3(UniformHighlight.localPosition.x, 650f - (float)Selected * 150f, UniformHighlight.localPosition.z);
-					Phase = 99;
+					AreYouSurePanel.SetActive(value: false);
+					White.color = new Color(0f, 0f, 0f, 1f);
+					SkipToCalendar = true;
+					FadeOut = true;
+					Phase = 0;
+				}
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
+				{
+					QuickStartWindow.SetActive(value: false);
+					AreYouSurePanel.SetActive(value: false);
 				}
 			}
 		}

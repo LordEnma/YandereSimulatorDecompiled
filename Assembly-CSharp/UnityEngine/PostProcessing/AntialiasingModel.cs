@@ -134,15 +134,10 @@ namespace UnityEngine.PostProcessing
 		{
 			public FxaaPreset preset;
 
-			public static FxaaSettings defaultSettings
+			public static FxaaSettings defaultSettings => new FxaaSettings
 			{
-				get
-				{
-					FxaaSettings result = default(FxaaSettings);
-					result.preset = FxaaPreset.Default;
-					return result;
-				}
-			}
+				preset = FxaaPreset.Default
+			};
 		}
 
 		[Serializable]
@@ -164,18 +159,13 @@ namespace UnityEngine.PostProcessing
 			[Range(0f, 0.99f)]
 			public float motionBlending;
 
-			public static TaaSettings defaultSettings
+			public static TaaSettings defaultSettings => new TaaSettings
 			{
-				get
-				{
-					TaaSettings result = default(TaaSettings);
-					result.jitterSpread = 0.75f;
-					result.sharpen = 0.3f;
-					result.stationaryBlending = 0.95f;
-					result.motionBlending = 0.85f;
-					return result;
-				}
-			}
+				jitterSpread = 0.75f,
+				sharpen = 0.3f,
+				stationaryBlending = 0.95f,
+				motionBlending = 0.85f
+			};
 		}
 
 		[Serializable]
@@ -187,17 +177,12 @@ namespace UnityEngine.PostProcessing
 
 			public TaaSettings taaSettings;
 
-			public static Settings defaultSettings
+			public static Settings defaultSettings => new Settings
 			{
-				get
-				{
-					Settings result = default(Settings);
-					result.method = Method.Fxaa;
-					result.fxaaSettings = FxaaSettings.defaultSettings;
-					result.taaSettings = TaaSettings.defaultSettings;
-					return result;
-				}
-			}
+				method = Method.Fxaa,
+				fxaaSettings = FxaaSettings.defaultSettings,
+				taaSettings = TaaSettings.defaultSettings
+			};
 		}
 
 		[SerializeField]

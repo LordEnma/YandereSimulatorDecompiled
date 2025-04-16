@@ -107,7 +107,6 @@ public class IncineratorScript : MonoBehaviour
 
 	public void ReturnFromSave()
 	{
-		Yandere.Police.Corpses += Corpses;
 	}
 
 	private void Update()

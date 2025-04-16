@@ -547,7 +547,7 @@ public class HomePrisonerScript : MonoBehaviour
 			HomeGlobals.Night = true;
 			SceneManager.LoadScene("HomeScene");
 			StudentGlobals.SetStudentSanity(PrisonerManager.StudentID, Sanity - 24 - ClassGlobals.PsychologyGrade * 10);
-			if (DateGlobals.Weekday != 0)
+			if (DateGlobals.Weekday != DayOfWeek.Sunday)
 			{
 				PlayerGlobals.Reputation -= 20f;
 			}

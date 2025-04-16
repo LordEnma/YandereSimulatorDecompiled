@@ -311,6 +311,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public UILabel[] TimeLabels;
 
+	public UILabel MiscDescLabel;
+
 	public UISprite[] EditingCircles;
 
 	public UISprite[] LocationBGs;
@@ -340,6 +342,8 @@ public class CustomModeScript : MonoBehaviour
 	public string[] ActionExplanations;
 
 	public string[] TimeExplanations;
+
+	public string[] MiscDescText;
 
 	public string[] DescText;
 
@@ -707,6 +711,14 @@ public class CustomModeScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (ColorWheel.gameObject.activeInHierarchy)
+		{
+			if (Input.GetButtonDown(InputNames.Xbox_A) || Input.GetButtonDown(InputNames.Xbox_B))
+			{
+				ColorWheel.gameObject.SetActive(value: false);
+			}
+			return;
+		}
 		if (EditingStudent)
 		{
 			for (int i = 0; i < EditableLabels.Length; i++)
@@ -2580,6 +2592,7 @@ public class CustomModeScript : MonoBehaviour
 							ForceYakuza = true;
 						}
 					}
+					MiscDescLabel.text = MiscDescText[OptionSelected];
 					UpdateHeader();
 				}
 			}
@@ -2710,6 +2723,7 @@ public class CustomModeScript : MonoBehaviour
 					{
 						OptionSelected = 1;
 					}
+					MiscDescLabel.text = MiscDescText[OptionSelected];
 				}
 				if (InputManager.TappedUp || HeldUp > 0.5f)
 				{
@@ -2722,6 +2736,7 @@ public class CustomModeScript : MonoBehaviour
 					{
 						OptionSelected = 5;
 					}
+					MiscDescLabel.text = MiscDescText[OptionSelected];
 				}
 				MiscellaneousArrow.localPosition = new Vector3(-275f, 300 - 100 * OptionSelected, 0f);
 				if (Input.GetButtonDown(InputNames.Xbox_A))

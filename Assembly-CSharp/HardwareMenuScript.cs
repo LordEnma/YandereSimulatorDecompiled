@@ -103,7 +103,7 @@ public class HardwareMenuScript : MonoBehaviour
 				}
 				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
-					if (Panel.alpha > 0.999f && Hardware[Selected].activeInHierarchy && Selected < 10)
+					if (Panel.alpha > 0.999f && Hardware[Selected].activeInHierarchy)
 					{
 						PromptBar.ClearButtons();
 						PromptBar.Label[0].text = "Confirm";
@@ -207,7 +207,7 @@ public class HardwareMenuScript : MonoBehaviour
 		if (!ConfirmationWindow.activeInHierarchy)
 		{
 			PromptBar.ClearButtons();
-			if (Hardware[Selected].activeInHierarchy && Selected < 10)
+			if (Hardware[Selected].activeInHierarchy)
 			{
 				PromptBar.Label[0].text = "Select";
 			}

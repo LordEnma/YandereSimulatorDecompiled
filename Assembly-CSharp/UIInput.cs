@@ -401,7 +401,7 @@ public class UIInput : MonoBehaviour
 			{
 				c = onValidate(stringBuilder.ToString(), stringBuilder.Length, c);
 			}
-			else if (validation != 0)
+			else if (validation != Validation.None)
 			{
 				c = Validate(stringBuilder.ToString(), stringBuilder.Length, c);
 			}
@@ -711,7 +711,7 @@ public class UIInput : MonoBehaviour
 		}
 		RuntimePlatform platform = Application.platform;
 		bool flag = ((platform == RuntimePlatform.OSXEditor || platform == RuntimePlatform.OSXPlayer) ? ((ev.modifiers & EventModifiers.Command) != 0) : ((ev.modifiers & EventModifiers.Control) != 0));
-		if ((ev.modifiers & EventModifiers.Alt) != 0)
+		if ((ev.modifiers & EventModifiers.Alt) != EventModifiers.None)
 		{
 			flag = false;
 		}
@@ -927,7 +927,7 @@ public class UIInput : MonoBehaviour
 			{
 				c = onValidate(stringBuilder.ToString(), stringBuilder.Length, c);
 			}
-			else if (validation != 0)
+			else if (validation != Validation.None)
 			{
 				c = Validate(stringBuilder.ToString(), stringBuilder.Length, c);
 			}
@@ -946,7 +946,7 @@ public class UIInput : MonoBehaviour
 			{
 				c2 = onValidate(stringBuilder.ToString(), stringBuilder.Length, c2);
 			}
-			else if (validation != 0)
+			else if (validation != Validation.None)
 			{
 				c2 = Validate(stringBuilder.ToString(), stringBuilder.Length, c2);
 			}
