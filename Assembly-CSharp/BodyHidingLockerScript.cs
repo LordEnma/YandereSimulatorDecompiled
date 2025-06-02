@@ -256,9 +256,15 @@ public class BodyHidingLockerScript : MonoBehaviour
 			Corpse.BloodPoolSpawner.NearbyBlood = 0;
 			Corpse.AddingToCount = false;
 			Corpse.EnableRigidbodies();
-			if (!Corpse.Cauterized && !Corpse.Concealed)
+			if (!Corpse.Cauterized && !Corpse.Concealed && Corpse.Student.DeathType != DeathType.Smothered)
 			{
+				Debug.Log("Now re-activating the corpse's BloodSpawner.");
 				Corpse.BloodPoolSpawner.enabled = true;
+				Corpse.BloodSpawnerCollider.enabled = false;
+			}
+			else
+			{
+				Debug.Log("Keeping the BloodPoolSpawner OFF.");
 			}
 			for (int i = 0; i < Corpse.Student.FireEmitters.Length; i++)
 			{

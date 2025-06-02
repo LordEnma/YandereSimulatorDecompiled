@@ -8,6 +8,8 @@ public class AudioDisableHeightScript : MonoBehaviour
 
 	public AudioSource MyAudio;
 
+	public float Timer;
+
 	private void Start()
 	{
 		if (Student != null && Student.Yandere != null)
@@ -18,20 +20,26 @@ public class AudioDisableHeightScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (MyAudio.isPlaying)
+		Timer += Time.deltaTime;
+		if (!(Timer >= 1f))
 		{
-			if (Player.position.y > base.transform.position.y + 2f)
+			return;
+		}
+		Timer = 0f;
+		if (!MyAudio.isPlaying)
+		{
+			return;
+		}
+		if (Mathf.Abs(Player.position.y - base.transform.position.y) > 2f)
+		{
+			if (MyAudio.volume != 0f)
 			{
 				MyAudio.volume = 0f;
 			}
-			else if (Player.position.y < base.transform.position.y - 2f)
-			{
-				MyAudio.volume = 0f;
-			}
-			else
-			{
-				MyAudio.volume = 1f;
-			}
+		}
+		else if (MyAudio.volume != 1f)
+		{
+			MyAudio.volume = 1f;
 		}
 	}
 }

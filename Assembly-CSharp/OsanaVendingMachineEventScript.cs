@@ -80,6 +80,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 					AudioClipPlayer.Play(SpeechClip[0], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
 					EventSubtitle.text = SpeechText[0];
 					Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+					Rival.FollowTargetDestination.localPosition = new Vector3(0f, 0f, -1f);
 					Rival.CharacterAnimation.Play(Rival.WalkAnim);
 					Rival.Pathfinding.target = Location;
 					Rival.CurrentDestination = Location;
@@ -128,6 +129,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 			{
 				AudioClipPlayer.Play(SpeechClip[1], Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
 				EventSubtitle.text = SpeechText[1];
+				Rival.FollowTargetDestination.localPosition = new Vector3(1f, 0f, 0f);
 				Rival.CharacterAnimation.CrossFade(EventAnim[1]);
 				Rival.Pathfinding.canSearch = false;
 				Rival.Pathfinding.canMove = false;
@@ -180,7 +182,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 			}
 			else
 			{
-				Location.position = Vector3.MoveTowards(Location.position, new Vector3(-2f, 4f, -31.7f), Time.deltaTime * 5f);
+				Location.position = Vector3.MoveTowards(Location.position, new Vector3(-2f, 4f, -32f), Time.deltaTime * 5f);
 			}
 			if (Rival.CharacterAnimation[EventAnim[4]].time > Rival.CharacterAnimation[EventAnim[4]].length)
 			{
@@ -264,6 +266,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 			Rival.Routine = true;
 		}
 		Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+		Rival.FollowTargetDestination.localPosition = new Vector3(0f, 0f, -1f);
 		Rival.Obstacle.enabled = false;
 		Rival.Prompt.enabled = true;
 		Rival.InEvent = false;

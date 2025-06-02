@@ -633,6 +633,7 @@ public class ShutterScript : MonoBehaviour
 		StudentManager.UpdateSkirts(Status: true);
 		if (Physics.Raycast(transform.position, direction, out hit, float.PositiveInfinity, OnlyPhotography))
 		{
+			Debug.Log("The camera's raycast collided with something named ''" + hit.collider.gameObject.name + "''");
 			if (hit.collider.gameObject.name == "Panties")
 			{
 				Student = hit.collider.gameObject.transform.root.gameObject.GetComponent<StudentScript>();
@@ -702,7 +703,7 @@ public class ShutterScript : MonoBehaviour
 				PhotoDescription.SetActive(value: true);
 				PhotoDescLabel.text = "Photo of: Miyuji's True Nature?";
 			}
-			if (hit.collider.gameObject.name == "Kitten")
+			if (hit.collider.gameObject.name == "Kitten" || hit.collider.gameObject.name == "StrayKitten")
 			{
 				KittenShot = true;
 				PhotoDescription.SetActive(value: true);
@@ -837,7 +838,7 @@ public class ShutterScript : MonoBehaviour
 		NewMessage.transform.localEulerAngles = Vector3.zero;
 		NewMessage.transform.localScale = new Vector3(1f, 1f, 1f);
 		bool flag = false;
-		if (Yandere.Aiming && hit.collider != null && hit.collider.gameObject.name == "Kitten")
+		if (Yandere.Aiming && hit.collider != null && (hit.collider.gameObject.name == "Kitten" || hit.collider.gameObject.name == "StrayKitten"))
 		{
 			flag = true;
 		}

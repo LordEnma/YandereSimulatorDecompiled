@@ -200,7 +200,11 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public GameObject ANODIXOMode;
 
+	public GameObject MeowlyMode;
+
 	public bool VtuberChosen;
+
+	public int MeowlyID;
 
 	public int PikaID;
 
@@ -213,6 +217,8 @@ public class NewTitleScreenScript : MonoBehaviour
 	public string[] LiLMeowLetters;
 
 	public string[] ANODIXOLetters;
+
+	public string[] MeowlyLetters;
 
 	public string[] VtuberNames;
 
@@ -1009,6 +1015,17 @@ public class NewTitleScreenScript : MonoBehaviour
 			{
 				ANODIXOMode.SetActive(value: true);
 				GameGlobals.VtuberID = 3;
+				VtuberChosen = true;
+				UpdateModeDescLabels();
+			}
+		}
+		if (MeowlyID < MeowlyLetters.Length && Input.GetKeyDown(MeowlyLetters[MeowlyID]))
+		{
+			MeowlyID++;
+			if (MeowlyID == MeowlyLetters.Length)
+			{
+				MeowlyMode.SetActive(value: true);
+				GameGlobals.VtuberID = 4;
 				VtuberChosen = true;
 				UpdateModeDescLabels();
 			}

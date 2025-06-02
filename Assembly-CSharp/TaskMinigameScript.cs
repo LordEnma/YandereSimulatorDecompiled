@@ -4,6 +4,8 @@ public class TaskMinigameScript : MonoBehaviour
 {
 	public GravurePhotoShootScript GravurePhotoShoot;
 
+	public GameObject CameraFlashes;
+
 	public UISprite[] ButtonPrompts;
 
 	public UISprite Circle;
@@ -17,6 +19,8 @@ public class TaskMinigameScript : MonoBehaviour
 	public AudioClip FailSFX;
 
 	public AudioSource MyAudio;
+
+	public AudioSource MyMusic;
 
 	public string CurrentButton = string.Empty;
 
@@ -198,7 +202,15 @@ public class TaskMinigameScript : MonoBehaviour
 		Show = false;
 		Timer = 0f;
 		Limit = 5;
+		Yandere.SenpaiFilter.enabled = false;
+		Yandere.SenpaiFilter.FadeFX = 0f;
+		Yandere.Jukebox.gameObject.SetActive(value: true);
 		Yandere.RPGCamera.enabled = true;
 		Yandere.CanMove = true;
+		CameraFlashes.SetActive(value: false);
+		if (MyMusic != null)
+		{
+			MyMusic.Stop();
+		}
 	}
 }

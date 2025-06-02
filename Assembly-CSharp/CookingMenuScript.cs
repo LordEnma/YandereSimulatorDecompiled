@@ -7,11 +7,15 @@ public class CookingMenuScript : MonoBehaviour
 
 	public InputManagerScript InputManager;
 
+	public HomeCameraScript HomeCamera;
+
 	public HomeWindowScript HomeWindow;
 
 	public HomeYandereScript Yandere;
 
 	public GameObject[] Chopsticks;
+
+	public GameObject[] Food;
 
 	public UILabel[] MealLabels;
 
@@ -94,6 +98,8 @@ public class CookingMenuScript : MonoBehaviour
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
+				HomeCamera.Target = HomeCamera.Targets[0];
+				HomeCamera.Destination = HomeCamera.OutOfRoomDestinations[3];
 				HomeWindow.Show = false;
 				Yandere.CanMove = true;
 				Show = false;
@@ -115,10 +121,10 @@ public class CookingMenuScript : MonoBehaviour
 				Yandere.HomeCamera.transform.position = new Vector3(-5.5f, -1.933333f, 8.75f);
 				Yandere.HomeCamera.transform.eulerAngles = new Vector3(15f, 45f, 0f);
 				Yandere.CharacterAnimation.Play("f02_eatAtHome_00");
+				Food[Selected].SetActive(value: true);
 				Yandere.HomeCamera.UpdateDOF(1f);
 				Chopsticks[0].SetActive(value: true);
 				Chopsticks[1].SetActive(value: true);
-				Plate.SetActive(value: true);
 				EatingPhase++;
 			}
 		}
@@ -135,6 +141,8 @@ public class CookingMenuScript : MonoBehaviour
 			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
 			if (Darkness.alpha > 0.999f)
 			{
+				HomeCamera.Target = HomeCamera.Targets[0];
+				HomeCamera.Destination = HomeCamera.OutOfRoomDestinations[3];
 				EatingDesc.alpha = 0f;
 				Darkness.alpha = 1f;
 				Yandere.CharacterAnimation.Play(Yandere.IdleAnim);
@@ -142,12 +150,12 @@ public class CookingMenuScript : MonoBehaviour
 				Yandere.HomeCamera.enabled = true;
 				Yandere.enabled = true;
 				Yandere.CanMove = true;
+				Food[Selected].SetActive(value: false);
 				Interaction.Label.enabled = false;
 				Interaction.enabled = false;
 				Yandere.HomeCamera.UpdateDOF(2f);
 				Chopsticks[0].SetActive(value: false);
 				Chopsticks[1].SetActive(value: false);
-				Plate.SetActive(value: false);
 				EatingPhase++;
 			}
 		}
@@ -159,6 +167,7 @@ public class CookingMenuScript : MonoBehaviour
 				HomeWindow.Sprite.alpha = 0f;
 				HomeWindow.Show = false;
 				Darkness.alpha = 0f;
+				Show = false;
 				base.enabled = false;
 			}
 		}

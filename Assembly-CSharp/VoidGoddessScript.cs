@@ -8,6 +8,10 @@ public class VoidGoddessScript : MonoBehaviour
 
 	public PromptScript Prompt;
 
+	public Renderer SenpaiPortraitRenderer;
+
+	public GameObject SenpaiPortrait;
+
 	public GameObject BloodyUniform;
 
 	public GameObject NewPortrait;
@@ -37,6 +41,8 @@ public class VoidGoddessScript : MonoBehaviour
 	public bool PassingJudgement;
 
 	public bool Initialized;
+
+	public bool CustomMode;
 
 	public bool Disabled;
 
@@ -87,11 +93,16 @@ public class VoidGoddessScript : MonoBehaviour
 			if (GameGlobals.CustomMode)
 			{
 				text = "Custom";
+				CustomMode = true;
 			}
 		}
 		for (ID = 1; ID < 101; ID++)
 		{
 			NewPortrait = Object.Instantiate(Portrait, base.transform.position, Quaternion.identity);
+			if (ID == 1)
+			{
+				SenpaiPortrait = NewPortrait;
+			}
 			NewPortrait.transform.parent = Window;
 			NewPortrait.transform.localScale = new Vector3(1f, 1f, 1f);
 			NewPortrait.transform.localPosition = new Vector3(-450 + Column * 100, 450 - Row * 100, 0f);
@@ -123,6 +134,10 @@ public class VoidGoddessScript : MonoBehaviour
 				Column = 0;
 				Row++;
 			}
+		}
+		if (CustomMode)
+		{
+			SenpaiPortraitRenderer.material.mainTexture = SenpaiPortrait.GetComponent<UITexture>().mainTexture;
 		}
 		Selected = 1;
 		Column = 0;

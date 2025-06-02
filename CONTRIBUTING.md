@@ -1,1 +1,0 @@
-Due to privacy and security concerns, I will not merge any pull request that are created. I will only merge pull request that are mine. If you see a new build out and this respository hasn't updated, you can make a fork and update that instead

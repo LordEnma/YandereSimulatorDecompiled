@@ -82,6 +82,16 @@ public class CamShotHandler : MonoBehaviour
 
 	public bool FadeOut;
 
+	public AudioSource AyanoMouth;
+
+	public AudioClip[] AyanoSounds;
+
+	public float[] AyanoVolumes;
+
+	public float[] AyanoTimes;
+
+	public int AyanoPhase;
+
 	public GameObject SisterVc1;
 
 	public GameObject SisterVc2;
@@ -177,6 +187,15 @@ public class CamShotHandler : MonoBehaviour
 		else
 		{
 			Timer += Time.deltaTime;
+		}
+		AyanoMouth.pitch = Time.timeScale;
+		if (Timer >= AyanoTimes[AyanoPhase])
+		{
+			Debug.Log("Should be playing a sound now.");
+			AyanoMouth.volume = AyanoVolumes[AyanoPhase] * 0.75f;
+			AyanoMouth.clip = AyanoSounds[AyanoPhase];
+			AyanoMouth.Play();
+			AyanoPhase++;
 		}
 		if (BGM.isPlaying)
 		{

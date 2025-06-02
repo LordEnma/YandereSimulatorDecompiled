@@ -195,6 +195,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Renderer TurtleEyewearRenderer;
 
+	public Renderer OccultChokerRenderer;
+
 	public Renderer FacialHairRenderer;
 
 	public Renderer HairbandRenderer;
@@ -212,6 +214,8 @@ public class CosmeticScript : MonoBehaviour
 	public Renderer CanRenderer;
 
 	public Mesh EightiesDelinquentMesh;
+
+	public Mesh EightiesBookBagMesh;
 
 	public Mesh ModernBookBagMesh;
 
@@ -517,6 +521,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public Renderer BackupOsanaHairRenderer;
 
+	public Renderer SkullCapRenderer;
+
 	public Shader StartShader;
 
 	public string[] GenericAnims;
@@ -589,6 +595,12 @@ public class CosmeticScript : MonoBehaviour
 
 	public CustomUniformScript CustomUniform;
 
+	public GameObject[] NoGlassesHair;
+
+	public Renderer[] NoGlassesRenderer;
+
+	public GameObject NewspaperLeaderGlasses;
+
 	public string[] PortraitPoses;
 
 	public Texture NudeTexture;
@@ -609,6 +621,7 @@ public class CosmeticScript : MonoBehaviour
 			{
 				LoveSick = GameGlobals.LoveSick;
 				Eighties = GameGlobals.Eighties;
+				KidnappedAdjustments();
 			}
 		}
 		else
@@ -789,6 +802,29 @@ public class CosmeticScript : MonoBehaviour
 		{
 			CanRenderer.material.mainTexture = CanTextures[StudentID];
 		}
+		if (Club == ClubType.Occult && OccultChokerRenderer != null)
+		{
+			if (StudentID == 31)
+			{
+				OccultChokerRenderer.materials[1].SetTextureOffset("_MainTex", new Vector2(0.4f, 0f));
+			}
+			else if (StudentID == 32)
+			{
+				OccultChokerRenderer.materials[1].SetTextureOffset("_MainTex", new Vector2(0.2f, 0f));
+			}
+			else if (StudentID == 33)
+			{
+				OccultChokerRenderer.materials[1].SetTextureOffset("_MainTex", new Vector2(0f, 0f));
+			}
+			else if (StudentID == 34)
+			{
+				OccultChokerRenderer.materials[1].SetTextureOffset("_MainTex", new Vector2(-0.2f, 0f));
+			}
+			else if (StudentID == 35)
+			{
+				OccultChokerRenderer.materials[1].SetTextureOffset("_MainTex", new Vector2(-0.4f, 0f));
+			}
+		}
 		if (!Eighties)
 		{
 			if (StudentID == 11)
@@ -965,8 +1001,8 @@ public class CosmeticScript : MonoBehaviour
 						{
 							RightTemple.name = "temple_Right_RENAMED";
 							LeftTemple.name = "temple_Left_RENAMED";
-							RightTemple.localScale = new Vector3(0f, 0f, 1f);
-							LeftTemple.localScale = new Vector3(0f, 0f, 1f);
+							RightTemple.localScale = new Vector3(0f, 1f, 1f);
+							LeftTemple.localScale = new Vector3(0f, 1f, 1f);
 						}
 					}
 					if (PhoneCharms.Length != 0)
@@ -2812,26 +2848,28 @@ public class CosmeticScript : MonoBehaviour
 						RememberInvertHair = true;
 					}
 				}
-				return;
 			}
-			Debug.Log("This is a female student.");
-			if (!Teacher)
+			else
 			{
-				Debug.Log("This character is not a teacher.");
-				Debug.Log("This character's hair model's scale.x is: " + FemaleHair[Hairstyle].transform.localScale.x);
-				if (FemaleHair[Hairstyle].transform.localScale.x > 0f)
+				Debug.Log("This is a female student.");
+				if (!Teacher)
 				{
-					Debug.Log("It was greater than 0, so it is now flipping.");
-					FemaleHair[Hairstyle].transform.localScale = new Vector3(FemaleHair[Hairstyle].transform.localScale.x * -1f, FemaleHair[Hairstyle].transform.localScale.y, FemaleHair[Hairstyle].transform.localScale.z);
-					if (TakingPortrait)
+					Debug.Log("This character is not a teacher.");
+					Debug.Log("This character's hair model's scale.x is: " + FemaleHair[Hairstyle].transform.localScale.x);
+					if (FemaleHair[Hairstyle].transform.localScale.x > 0f)
 					{
-						RememberInvertHair = true;
+						Debug.Log("It was greater than 0, so it is now flipping.");
+						FemaleHair[Hairstyle].transform.localScale = new Vector3(FemaleHair[Hairstyle].transform.localScale.x * -1f, FemaleHair[Hairstyle].transform.localScale.y, FemaleHair[Hairstyle].transform.localScale.z);
+						if (TakingPortrait)
+						{
+							RememberInvertHair = true;
+						}
 					}
 				}
-			}
-			else if (TeacherHair[Hairstyle].transform.localScale.x > 0f)
-			{
-				TeacherHair[Hairstyle].transform.localScale = new Vector3(TeacherHair[Hairstyle].transform.localScale.x * -1f, TeacherHair[Hairstyle].transform.localScale.y, TeacherHair[Hairstyle].transform.localScale.z);
+				else if (TeacherHair[Hairstyle].transform.localScale.x > 0f)
+				{
+					TeacherHair[Hairstyle].transform.localScale = new Vector3(TeacherHair[Hairstyle].transform.localScale.x * -1f, TeacherHair[Hairstyle].transform.localScale.y, TeacherHair[Hairstyle].transform.localScale.z);
+				}
 			}
 		}
 		else if (Male)
@@ -2851,6 +2889,10 @@ public class CosmeticScript : MonoBehaviour
 		else if (TeacherHair[Hairstyle].transform.localScale.x < 0f)
 		{
 			TeacherHair[Hairstyle].transform.localScale = new Vector3(TeacherHair[Hairstyle].transform.localScale.x * -1f, TeacherHair[Hairstyle].transform.localScale.y, TeacherHair[Hairstyle].transform.localScale.z);
+		}
+		if (SkullCapRenderer != null)
+		{
+			SkullCapRenderer.material.mainTexture = FaceTexture;
 		}
 	}
 
@@ -3121,7 +3163,15 @@ public class CosmeticScript : MonoBehaviour
 					Bookbag.GetComponent<Renderer>().material.mainTexture = BookbagTextures[StudentID];
 				}
 			}
-			else if (CustomMode && Bookbag != null && Bookbag.GetComponent<MeshFilter>() != null)
+			else if (!CustomMode)
+			{
+				if (Bookbag != null && Bookbag.GetComponent<MeshFilter>() != null)
+				{
+					Bookbag.GetComponent<MeshFilter>().mesh = EightiesBookBagMesh;
+					Bookbag.GetComponent<Renderer>().material.mainTexture = BookbagTextures[0];
+				}
+			}
+			else if (Bookbag != null && Bookbag.GetComponent<MeshFilter>() != null)
 			{
 				Bookbag.GetComponent<MeshFilter>().mesh = ModernBookBagMesh;
 				Bookbag.GetComponent<Renderer>().material.mainTexture = BookbagTextures[DateGlobals.Week];
@@ -3644,6 +3694,12 @@ public class CosmeticScript : MonoBehaviour
 			MyStockings = ShortWhiteSocks;
 			RightStockings[1].SetActive(value: true);
 			LeftStockings[1].SetActive(value: true);
+		}
+		else if (Stockings == "Raibaru")
+		{
+			MyStockings = ShortWhiteSocks;
+			RightStockings[2].SetActive(value: true);
+			LeftStockings[2].SetActive(value: true);
 		}
 		if (((MyStockings == null && Stockings == string.Empty) || (MyStockings == null && Stockings == "None")) && !CustomMode && !Kidnapped && StudentID < 90 && Student.Schoolwear == 1 && StudentManager != null && StudentManager.PantyList != null)
 		{
@@ -4700,5 +4756,18 @@ public class CosmeticScript : MonoBehaviour
 		Student.ShoeRemoval.TargetShoes = UniformTexture;
 		Student.ShoeRemoval.Socks = SocksTexture;
 		Student.UniformTexture = CasualTexture;
+	}
+
+	public void KidnappedAdjustments()
+	{
+		if (!Male)
+		{
+			Debug.Log("A female kidnapped student is now checking if she needs to make any adjustments to her appearance.");
+			if (int.Parse(JSON.Students[StudentID].Hairstyle) == 100)
+			{
+				Debug.Log("Disabling the glasses.");
+				NewspaperLeaderGlasses.SetActive(value: false);
+			}
+		}
 	}
 }

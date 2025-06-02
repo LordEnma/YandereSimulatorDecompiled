@@ -236,6 +236,7 @@ public class DoorScript : MonoBehaviour
 					Yandere.Location.Show = true;
 					Near = true;
 				}
+				Input.GetButtonDown(InputNames.Xbox_A);
 				if (Prompt.Circle[0].fillAmount < 1f && Prompt.Circle[0].fillAmount > 0f)
 				{
 					Prompt.Circle[0].fillAmount = 0f;
@@ -260,6 +261,7 @@ public class DoorScript : MonoBehaviour
 						Prompt.Yandere.NotificationManager.CustomText = "It's locked!";
 						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					}
+					Prompt.Circle[0].fillAmount = 0f;
 				}
 				if (Double && Swinging && Prompt.Circle[1].fillAmount == 0f)
 				{

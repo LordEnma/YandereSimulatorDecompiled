@@ -578,6 +578,9 @@ public class EndOfDayScript : MonoBehaviour
 			CopAnimation[1]["newWalk_00"].speed = 1f;
 			CopAnimation[2]["newWalk_00"].speed = 0.95f;
 			CopAnimation[3]["newWalk_00"].speed = 0.9f;
+			CopAnimation[8]["shruggingCop_00"].speed = 1f;
+			CopAnimation[9]["shruggingCop_00"].speed = 0.9f;
+			CopAnimation[10]["shruggingCop_00"].speed = 0.8f;
 			Counselor.LectureID = 0;
 			Cops.SetActive(value: true);
 			bool flag = false;

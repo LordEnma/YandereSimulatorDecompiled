@@ -11,7 +11,10 @@ public class CigsScript : MonoBehaviour
 			SchemeGlobals.SetSchemeStage(3, 3);
 			Prompt.Yandere.Inventory.Schemes.UpdateInstructions();
 			Prompt.Yandere.Inventory.Cigs = true;
-			Prompt.Yandere.TheftTimer = 0.1f;
+			if (Prompt.Suspicious)
+			{
+				Prompt.Yandere.TheftTimer = 0.1f;
+			}
 			Object.Destroy(base.gameObject);
 			Prompt.Yandere.StudentManager.TaskManager.CheckTaskPickups();
 			Prompt.Yandere.StolenObjectID = 1;

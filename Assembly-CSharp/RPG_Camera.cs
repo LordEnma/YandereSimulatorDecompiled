@@ -20,6 +20,8 @@ public class RPG_Camera : MonoBehaviour
 
 	public static Camera MainCamera;
 
+	public Collider MyCollider;
+
 	public Transform cameraPivot;
 
 	public float distance = 5f;
@@ -85,6 +87,8 @@ public class RPG_Camera : MonoBehaviour
 	private static float halfPlaneWidth;
 
 	public float Timer;
+
+	public bool Talking;
 
 	private void Awake()
 	{
@@ -305,7 +309,7 @@ public class RPG_Camera : MonoBehaviour
 		return cameraPivot.position + quaternion * vector;
 	}
 
-	private float CheckCameraClipPlane(Vector3 from, Vector3 to)
+	public float CheckCameraClipPlane(Vector3 from, Vector3 to)
 	{
 		float num = -1f;
 		ClipPlaneVertexes clipPlaneAt = GetClipPlaneAt(to);

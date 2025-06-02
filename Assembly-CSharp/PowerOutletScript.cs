@@ -16,6 +16,10 @@ public class PowerOutletScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (!Prompt.InView)
+		{
+			return;
+		}
 		if (PowerStrip == null)
 		{
 			if (Prompt.Yandere.PickUp != null)
@@ -40,7 +44,7 @@ public class PowerOutletScript : MonoBehaviour
 					Prompt.Label[0].text = "     Unplug";
 				}
 			}
-			else
+			else if (!Prompt.HideButton[0])
 			{
 				Prompt.HideButton[0] = true;
 			}

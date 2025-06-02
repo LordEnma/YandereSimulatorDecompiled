@@ -9,6 +9,8 @@ public class StalkerYandereScript : MonoBehaviour
 {
 	public NotificationManagerScript NotificationManager;
 
+	public CharacterCustomizationScript CustomHair;
+
 	public StealthInventoryScript StealthInventory;
 
 	public RiggedAccessoryAttacher PantyAttacher;
@@ -193,6 +195,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public GameObject[] YandereVisionEye;
 
+	private int UpdateBlendshapeFrame;
+
 	private int UpdateFrame;
 
 	public UILabel KeyboardControls;
@@ -370,6 +374,22 @@ public class StalkerYandereScript : MonoBehaviour
 			MyAnimation["f02_prepareThrow_00"].weight = 0f;
 		}
 		UpdateBlendshapes = true;
+		if (Street)
+		{
+			if (PlayerGlobals.CustomHair > 0)
+			{
+				CustomHair.gameObject.SetActive(value: true);
+				CustomHair.Start();
+				CustomHair.UpdateHair();
+				PonytailRenderer.transform.parent.gameObject.SetActive(value: false);
+				RyobaHairWithRibbon.SetActive(value: false);
+				RyobaHair.SetActive(value: false);
+			}
+			else
+			{
+				CustomHair.gameObject.SetActive(value: false);
+			}
+		}
 	}
 
 	private void Update()
@@ -409,30 +429,35 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 		if (UpdateBlendshapes)
 		{
-			if (Eighties)
+			if (UpdateBlendshapeFrame == 0 || UpdateBlendshapeFrame == 60)
 			{
-				Debug.Log("Setting Ryoba's Blendshapes again.");
-				if (!Asylum)
+				if (Eighties)
 				{
-					if (EightiesAttacher != null && EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
+					if (!Asylum)
 					{
-						MyRenderer = EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+						if (EightiesAttacher != null && EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
+						{
+							MyRenderer = EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+						}
 					}
+					else
+					{
+						MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+					}
+					MyRenderer.SetBlendShapeWeight(0, 50f);
+					MyRenderer.SetBlendShapeWeight(5, 25f);
+					MyRenderer.SetBlendShapeWeight(8, 0f);
+					MyRenderer.SetBlendShapeWeight(12, 100f);
 				}
-				else
+				else if (HomeGlobals.Night && !ThanksForPlaying && ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
 				{
 					MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
+					MyRenderer.SetBlendShapeWeight(8, 50f);
 				}
-				MyRenderer.SetBlendShapeWeight(0, 50f);
-				MyRenderer.SetBlendShapeWeight(5, 25f);
-				MyRenderer.SetBlendShapeWeight(8, 0f);
-				MyRenderer.SetBlendShapeWeight(12, 100f);
-				UpdateBlendshapes = false;
 			}
-			else if (HomeGlobals.Night && !ThanksForPlaying && ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer != null)
+			UpdateBlendshapeFrame++;
+			if (UpdateBlendshapeFrame > 60)
 			{
-				MyRenderer = ClothingAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
-				MyRenderer.SetBlendShapeWeight(8, 50f);
 				UpdateBlendshapes = false;
 			}
 		}

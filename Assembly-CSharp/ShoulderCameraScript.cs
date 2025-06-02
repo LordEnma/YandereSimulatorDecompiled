@@ -108,6 +108,8 @@ public class ShoulderCameraScript : MonoBehaviour
 
 	public int Phase;
 
+	public bool Repositioning;
+
 	private void LateUpdate()
 	{
 		if (PauseScreen.Show)
@@ -708,7 +710,12 @@ public class ShoulderCameraScript : MonoBehaviour
 		}
 		else
 		{
-			if ((!Yandere.Talking && !Yandere.Won) || RPGCamera.enabled)
+			if (!Yandere.Talking && !Yandere.Won)
+			{
+				return;
+			}
+			Repositioning = true;
+			if (RPGCamera.enabled)
 			{
 				return;
 			}
@@ -735,6 +742,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			Yandere.TargetStudent = null;
 			Yandere.Subtitle.Speaker = null;
 			RPGCamera.enabled = true;
+			RPGCamera.Talking = false;
 			Yandere.MyController.enabled = true;
 			Yandere.Talking = false;
 			if (!Yandere.Sprayed)
@@ -746,6 +754,7 @@ public class ShoulderCameraScript : MonoBehaviour
 			Yandere.Chased = false;
 			Yandere.Won = false;
 			Timer = 0f;
+			Repositioning = false;
 		}
 	}
 

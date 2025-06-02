@@ -505,7 +505,7 @@ public class ModernRivalEventScript : MonoBehaviour
 			break;
 		case 15:
 			SpecialCaseTimer += Time.deltaTime;
-			if (SpecialCaseTimer > 7f)
+			if (SpecialCaseTimer > 3.75f)
 			{
 				Char[0].SodaCan.SetActive(value: true);
 			}
@@ -565,6 +565,13 @@ public class ModernRivalEventScript : MonoBehaviour
 		if (EventID == RivalEventType.AmaiClubEvent)
 		{
 			SendClubToBakeSale();
+		}
+		else if (EventID == RivalEventType.AmaiMondayLunchEvent)
+		{
+			ScheduleBlock obj = Char[0].ScheduleBlocks[4];
+			obj.destination = "LunchSpot";
+			obj.action = "Eat";
+			Char[0].GetDestinations();
 		}
 		else
 		{
@@ -645,11 +652,8 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	public void PopulateCharacterList()
 	{
-		if (EventID == RivalEventType.AmaiPhoneEvent)
-		{
-			Debug.Log("PopulateCharactersList is now being called.");
-			Debug.Log("AlreadyPopulated is: " + AlreadyPopulated);
-		}
+		_ = EventID;
+		_ = 3;
 		if (AlreadyPopulated)
 		{
 			return;

@@ -80,13 +80,23 @@ public class SinkScript : MonoBehaviour
 		}
 		else
 		{
-			Prompt.HideButton[0] = true;
-			Prompt.HideButton[1] = true;
+			if (!Prompt.HideButton[0])
+			{
+				Prompt.HideButton[0] = true;
+			}
+			if (!Prompt.HideButton[1])
+			{
+				Prompt.HideButton[1] = true;
+			}
 			if (Prompt.enabled)
 			{
 				Prompt.Hide();
 				Prompt.enabled = false;
 			}
+		}
+		if (!Prompt.InView)
+		{
+			return;
 		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{

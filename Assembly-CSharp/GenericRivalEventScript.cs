@@ -279,6 +279,7 @@ public class GenericRivalEventScript : MonoBehaviour
 						SabobtagedSpeechText[l + 1] = SabobtagedSpeechText[l + 1].Replace("R: ", "");
 						SabotagedSpeakerID[l + 1] = 2;
 					}
+					StartCoroutine(DownloadCoroutine(week, l + 1));
 				}
 			}
 			for (int m = 0; m < SpeechText.Length; m++)
@@ -1857,7 +1858,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						if (!Impatient)
 						{
-							if (Male)
+							if (Senpai.Male)
 							{
 								Senpai.CharacterAnimation.CrossFade("impatientWait_00");
 							}
@@ -1882,7 +1883,7 @@ public class GenericRivalEventScript : MonoBehaviour
 							EndEvent();
 						}
 					}
-					else if (!Senpai.ShoeRemoval.enabled && !Senpai.Alarmed)
+					else if (!Senpai.ShoeRemoval.enabled && !Senpai.Alarmed && !Senpai.Investigating && !Senpai.DiscCheck)
 					{
 						Senpai.CharacterAnimation.CrossFade(Senpai.WalkAnim);
 					}

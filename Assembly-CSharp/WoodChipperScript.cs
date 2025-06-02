@@ -253,37 +253,40 @@ public class WoodChipperScript : MonoBehaviour
 		if (Prompt.Circle[3].fillAmount == 0f)
 		{
 			Prompt.Circle[3].fillAmount = 1f;
-			if (BurnTimer <= 0f)
+			if (!Yandere.Chased && Yandere.Chasers == 0 && Yandere.Pursuer == null)
 			{
-				Debug.Log("As of now, Yandere-chan's ''Woodchipper'' is being set to: " + base.gameObject.name);
-				Yandere.WoodChipper = this;
-				Time.timeScale = 1f;
-				if (Yandere.Ragdoll != null)
+				if (BurnTimer <= 0f)
 				{
-					if (!Yandere.Carrying)
+					Debug.Log("As of now, Yandere-chan's ''Woodchipper'' is being set to: " + base.gameObject.name);
+					Yandere.WoodChipper = this;
+					Time.timeScale = 1f;
+					if (Yandere.Ragdoll != null)
 					{
-						Yandere.CharacterAnimation.CrossFade("f02_dragIdle_00");
-					}
-					else
-					{
-						Yandere.CharacterAnimation.CrossFade("f02_carryIdleA_00");
-					}
-					Yandere.YandereVision = false;
-					Yandere.Chipping = true;
-					Yandere.CanMove = false;
-					Victims++;
-					VictimList[Victims] = Yandere.Ragdoll.GetComponent<RagdollScript>().StudentID;
-					Animate = true;
-					Open = true;
-					if (!Acid)
-					{
+						if (!Yandere.Carrying)
+						{
+							Yandere.CharacterAnimation.CrossFade("f02_dragIdle_00");
+						}
+						else
+						{
+							Yandere.CharacterAnimation.CrossFade("f02_carryIdleA_00");
+						}
+						Yandere.YandereVision = false;
+						Yandere.Chipping = true;
+						Yandere.CanMove = false;
+						Victims++;
+						VictimList[Victims] = Yandere.Ragdoll.GetComponent<RagdollScript>().StudentID;
+						Animate = true;
+						Open = true;
+						if (!Acid)
+						{
+						}
 					}
 				}
-			}
-			else
-			{
-				Yandere.NotificationManager.CustomText = "It's not done burning yet!";
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				else
+				{
+					Yandere.NotificationManager.CustomText = "It's not done burning yet!";
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
 			}
 		}
 		if (Acid && Prompt.Circle[1].fillAmount == 0f)

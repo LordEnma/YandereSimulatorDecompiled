@@ -4,6 +4,8 @@ public class GravurePhotoShootScript : MonoBehaviour
 {
 	public TaskMinigameScript TaskMinigame;
 
+	public GameObject CameraFlashes;
+
 	public PromptScript Prompt;
 
 	public bool Complete;
@@ -43,6 +45,11 @@ public class GravurePhotoShootScript : MonoBehaviour
 			Prompt.Yandere.CanMove = false;
 			Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(0f, -90f, 0f);
 			Prompt.Yandere.MainCamera.transform.position = new Vector3(-15f, 4.8f, 71.5f);
+			Prompt.Yandere.Jukebox.gameObject.SetActive(value: false);
+			Prompt.Yandere.SenpaiFilter.enabled = true;
+			Prompt.Yandere.SenpaiFilter.FadeFX = 1f;
+			CameraFlashes.SetActive(value: true);
+			TaskMinigame.MyMusic.Play();
 			TaskMinigame.Show = true;
 			TaskMinigame.Limit = 10;
 		}

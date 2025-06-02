@@ -8,6 +8,8 @@ public class PhoneScript : MonoBehaviour
 
 	public OsanaTextMessageScript AmaiMessages;
 
+	public NextRivalCutsceneScript Cutscene;
+
 	public InputDeviceScript InputDevice;
 
 	public GameObject[] RightMessage;
@@ -96,6 +98,7 @@ public class PhoneScript : MonoBehaviour
 
 	private void Start()
 	{
+		GameGlobals.SisterCutscene = false;
 		Time.timeScale = 1f;
 		Buttons.localPosition = new Vector3(Buttons.localPosition.x, -135f, Buttons.localPosition.z);
 		Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 1f);
@@ -369,6 +372,10 @@ public class PhoneScript : MonoBehaviour
 			Darkness.enabled = true;
 			Jukebox.Stop();
 			Timer = -99999f;
+			if ((bool)Cutscene)
+			{
+				Cutscene.ShutUp();
+			}
 		}
 		AutoLimit = Height[ID] + 1;
 		NewMessage.GetComponent<TextMessageScript>().Label.text = Text[ID];

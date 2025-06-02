@@ -30,7 +30,18 @@ public class GenericBentoScript : MonoBehaviour
 		FoodVariant[1].SetActive(value: false);
 		FoodVariant[2].SetActive(value: false);
 		FoodVariant[3].SetActive(value: false);
-		FoodVariant[Random.Range(0, 4)].SetActive(value: true);
+		if (FoodVariant.Length > 4)
+		{
+			FoodVariant[4].SetActive(value: false);
+		}
+		if (StudentID == 22)
+		{
+			FoodVariant[4].SetActive(value: true);
+		}
+		else
+		{
+			FoodVariant[Random.Range(0, 4)].SetActive(value: true);
+		}
 	}
 
 	private void Update()

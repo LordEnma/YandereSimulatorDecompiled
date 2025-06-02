@@ -165,8 +165,6 @@ public class NemesisScript : MonoBehaviour
 		Student.WalkAnim = "f02_newWalk_00";
 		Student.ShoeRemoval.RightCasualShoe.gameObject.SetActive(value: false);
 		Student.ShoeRemoval.LeftCasualShoe.gameObject.SetActive(value: false);
-		Student.Cosmetic.RightStockings[1].SetActive(value: false);
-		Student.Cosmetic.LeftStockings[1].SetActive(value: false);
 		if (Difficulty < 3)
 		{
 			Student.CharacterAnimation["f02_nemesisEyes_00"].layer = 2;
@@ -504,8 +502,11 @@ public class NemesisScript : MonoBehaviour
 
 	private void HideObjects()
 	{
-		Student.Cosmetic.RightStockings[0].SetActive(value: false);
-		Student.Cosmetic.LeftStockings[0].SetActive(value: false);
+		for (int i = 0; i < Student.Cosmetic.RightStockings.Length; i++)
+		{
+			Student.Cosmetic.RightStockings[i].SetActive(value: false);
+			Student.Cosmetic.LeftStockings[i].SetActive(value: false);
+		}
 		Student.Cosmetic.RightWristband.SetActive(value: false);
 		Student.Cosmetic.LeftWristband.SetActive(value: false);
 		Student.FollowCountdown.gameObject.SetActive(value: false);

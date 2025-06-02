@@ -196,8 +196,6 @@ public class BusStopScript : MonoBehaviour
 		SecondKizana.gameObject.SetActive(value: false);
 		SecondAmai.gameObject.SetActive(value: false);
 		ThirdAmai.gameObject.SetActive(value: false);
-		SenpaiAnim["sadFace_00"].layer = 1;
-		SenpaiAnim.Play("sadFace_00");
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 		settings.focusDistance = 1.2f;
 		settings.aperture = 5.6f;
@@ -261,6 +259,14 @@ public class BusStopScript : MonoBehaviour
 		}
 		else
 		{
+			NewAmaiAnim["f02_amaiLipSync_01"].layer = 1;
+			NewAmaiAnim["f02_amaiLipSync_02"].layer = 1;
+			NewAmaiAnim["f02_amaiLipSync_03"].layer = 1;
+			NewAmaiAnim["f02_amaiLipSync_04"].layer = 1;
+			NewAmaiAnim["f02_amaiLipSync_05"].layer = 1;
+			NewAmaiAnim["f02_amaiLipSync_06"].layer = 1;
+			NewAmaiAnim["f02_amaiLipSync_07"].layer = 1;
+			NewAmaiAnim["f02_amaiLipSync_08"].layer = 1;
 			BakerAttacher.gameObject.SetActive(value: true);
 			Attacher.gameObject.SetActive(value: true);
 		}
@@ -428,6 +434,8 @@ public class BusStopScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 0f && SpeechID == 0)
 			{
+				Debug.Log("Now playing Amai's lip sync animation, supposedly.");
+				NewAmaiAnim.Play("f02_amaiLipSync_01");
 				Subtitle.text = Subtitles[1];
 				Audio.clip = Speech[1];
 				Audio.Play();
@@ -504,6 +512,7 @@ public class BusStopScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 0f && SpeechID == 0)
 			{
+				NewAmaiAnim.Play("f02_amaiLipSync_02");
 				Subtitle.text = Subtitles[4];
 				Audio.clip = Speech[3];
 				Audio.Play();
@@ -600,6 +609,7 @@ public class BusStopScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 1.5f && SpeechID == 0)
 			{
+				NewAmaiAnim.Play("f02_amaiLipSync_03");
 				Subtitle.text = Subtitles[8];
 				Audio.clip = Speech[4];
 				Audio.Play();
@@ -624,6 +634,7 @@ public class BusStopScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 0.5f && SpeechID == 0)
 			{
+				NewAmaiAnim.Play("f02_amaiLipSync_04");
 				Subtitle.text = Subtitles[9];
 				Audio.clip = Speech[5];
 				Audio.Play();
@@ -655,6 +666,7 @@ public class BusStopScript : MonoBehaviour
 			}
 			if (Timer > 5f && SpeechID == 1)
 			{
+				NewAmaiAnim.Play("f02_amaiLipSync_05");
 				Subtitle.text = Subtitles[11];
 				Audio.clip = Speech[7];
 				Audio.Play();
@@ -689,6 +701,7 @@ public class BusStopScript : MonoBehaviour
 			}
 			if (Timer > 4.5f && SpeechID == 1)
 			{
+				NewAmaiAnim.Play("f02_amaiLipSync_06");
 				Subtitle.text = Subtitles[13];
 				Audio.clip = Speech[9];
 				Audio.Play();
@@ -753,6 +766,7 @@ public class BusStopScript : MonoBehaviour
 			Timer += Time.deltaTime;
 			if (Timer > 0.5f && SpeechID == 0)
 			{
+				NewAmaiAnim.Play("f02_amaiLipSync_07");
 				Subtitle.text = Subtitles[16];
 				Audio.clip = Speech[11];
 				Audio.Play();
@@ -797,6 +811,7 @@ public class BusStopScript : MonoBehaviour
 		{
 			if (SpeechID == 0)
 			{
+				NewAmaiAnim.Play("f02_amaiLipSync_08");
 				Subtitle.text = Subtitles[18];
 				Audio.clip = Speech[13];
 				Audio.Play();
@@ -914,8 +929,8 @@ public class BusStopScript : MonoBehaviour
 		{
 			ResetAllBreasts();
 		}
-		Eyebrow[0].localScale = new Vector3(0f, 0f, 1f);
-		Eyebrow[1].localScale = new Vector3(0f, 0f, 1f);
+		Eyebrow[0].localScale = new Vector3(0f, 1f, 1f);
+		Eyebrow[1].localScale = new Vector3(0f, 1f, 1f);
 		Frames++;
 	}
 

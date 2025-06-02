@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class BeatEmUpScript : MonoBehaviour
 {
+	public CameraFilterPack_Atmosphere_Fog Fog;
+
 	public CharacterController MyController;
 
 	public BeatEmUpEnemyScript[] AllEnemies;
@@ -257,6 +259,7 @@ public class BeatEmUpScript : MonoBehaviour
 				Shades.SetActive(value: true);
 				Mask.SetActive(value: true);
 			}
+			Fog.enabled = false;
 		}
 		else
 		{
@@ -544,7 +547,6 @@ public class BeatEmUpScript : MonoBehaviour
 				if (Cutscene)
 				{
 					WarmUp += Time.deltaTime;
-					Debug.Log("WarmUp is: " + WarmUp);
 					if (WarmUp > 1f)
 					{
 						MyAnimation.Play("f02_preYakuzaFight_00");
@@ -559,7 +561,7 @@ public class BeatEmUpScript : MonoBehaviour
 						if (!Dialogue.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
 						{
 							CutsceneID++;
-							if (Input.GetButtonDown(InputNames.Xbox_A))
+							if (Input.GetButtonDown(InputNames.Xbox_A) && CutsceneID < DialogueClips.Length)
 							{
 								SetAnimationTime(CutsceneID);
 							}
@@ -665,8 +667,9 @@ public class BeatEmUpScript : MonoBehaviour
 					Time.timeScale = 1f;
 				}
 			}
+			return;
 		}
-		else if (!Cutscene)
+		if (!Cutscene)
 		{
 			White.alpha = Mathf.MoveTowards(White.alpha, 0f, Time.unscaledDeltaTime * 0.5f);
 			if (White.alpha == 0f)
@@ -688,7 +691,17 @@ public class BeatEmUpScript : MonoBehaviour
 					{
 						if (GameGlobals.Eighties && !Defeated)
 						{
+							base.transform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
+							MainCamera.transform.position = new Vector3(0f, 1.2f, -4f);
+							MainCamera.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+							RPGCamera.enabled = false;
+							GameplayPanel.alpha = 0f;
+							VictoryLabel.text = "";
+							UpdateDOF(1f, 5.6f);
 							Cutscene = true;
+							YakuzaBrother.SetActive(value: true);
+							YakuzaBrotherAnim.Play("postYakuzaFight_00");
+							YakuzaBrotherWeapon.gameObject.SetActive(value: false);
 							Dialogue.clip = DialogueClips[CutsceneID];
 							Dialogue.Play();
 							Subtitle.text = DialogueText[CutsceneID];
@@ -704,21 +717,33 @@ public class BeatEmUpScript : MonoBehaviour
 			{
 				MyAnimation.CrossFade(IdleAnim);
 			}
+			return;
 		}
-		else if (!Dialogue.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
+		if (CutsceneID < DialogueClips.Length)
 		{
-			CutsceneID++;
-			if (CutsceneID < DialogueClips.Length)
-			{
-				Dialogue.clip = DialogueClips[CutsceneID];
-				Dialogue.Play();
-				Subtitle.text = DialogueText[CutsceneID];
-			}
-			else
-			{
-				GameGlobals.YakuzaPhase = 1;
-				Quit();
-			}
+			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 0f, Time.deltaTime);
+		}
+		if (Dialogue.isPlaying && !Input.GetButtonDown(InputNames.Xbox_A))
+		{
+			return;
+		}
+		CutsceneID++;
+		if (Input.GetButtonDown(InputNames.Xbox_A))
+		{
+			SetAnimationTime(CutsceneID);
+		}
+		if (CutsceneID < DialogueClips.Length)
+		{
+			Dialogue.clip = DialogueClips[CutsceneID];
+			Dialogue.Play();
+			Subtitle.text = DialogueText[CutsceneID];
+			return;
+		}
+		Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
+		if (Darkness.alpha == 1f)
+		{
+			GameGlobals.YakuzaPhase = 1;
+			Quit();
 		}
 	}
 
@@ -845,11 +870,23 @@ public class BeatEmUpScript : MonoBehaviour
 	private void SetAnimationTime(int CutsceneID)
 	{
 		float num = 0f;
-		for (int i = 0; i < CutsceneID; i++)
+		if (!Victory)
 		{
-			num += DialogueClips[i].length;
+			for (int i = 0; i < CutsceneID; i++)
+			{
+				num += DialogueClips[i].length;
+			}
+			MyAnimation["f02_preYakuzaFight_00"].time = num;
+			YakuzaBrotherAnim["preYakuzaFight_00"].time = num;
+			return;
 		}
-		MyAnimation["f02_preYakuzaFight_00"].time = num;
-		YakuzaBrotherAnim["preYakuzaFight_00"].time = num;
+		for (int j = 6; j < CutsceneID; j++)
+		{
+			if (j < DialogueClips.Length)
+			{
+				num += DialogueClips[j].length;
+			}
+		}
+		YakuzaBrotherAnim["postYakuzaFight_00"].time = num;
 	}
 }

@@ -111,7 +111,7 @@ public class SewingMachineScript : MonoBehaviour
 			Prompt.Circle[2].fillAmount = 1f;
 			if (!Yandere.Chased && Yandere.Chasers == 0)
 			{
-				if (Yandere.PickUp != null && Yandere.PickUp.FoldedUniform == null)
+				if (Bikini || (Yandere.PickUp != null && Yandere.PickUp.FoldedUniform == null))
 				{
 					Yandere.EmptyHands();
 				}

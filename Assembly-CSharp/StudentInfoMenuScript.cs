@@ -342,6 +342,18 @@ public class StudentInfoMenuScript : MonoBehaviour
 				PromptBar.Show = true;
 			}
 		}
+		else if (Input.GetButtonDown(InputNames.Xbox_X))
+		{
+			if (PromptBar.Label[2].text != "")
+			{
+				StudentManager.Students[StudentID].TurnOutlinesGreen();
+				StudentManager.StudentPhotographed[StudentID] = true;
+				StudentManager.Yandere.Inventory.PantyShots--;
+				StartCoroutine(UpdatePortraits());
+				PromptBar.Label[0].text = "View Info";
+				UpdateNameLabel();
+			}
+		}
 		else
 		{
 			float t = Time.unscaledDeltaTime * 10f;
@@ -620,6 +632,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 
 	private void UpdateNameLabel()
 	{
+		PromptBar.Label[2].text = "";
 		if (StudentManager.StudentPhotographed[StudentID] || StudentManager.StudentBefriended[StudentID] || (GettingInfo && StudentID < 11) || (GettingInfo && StudentID > 20))
 		{
 			NameLabel.text = JSON.Students[StudentID].Name;
@@ -631,7 +644,12 @@ public class StudentInfoMenuScript : MonoBehaviour
 		else
 		{
 			NameLabel.text = "Unknown";
+			if (StudentManager != null && StudentManager.Yandere != null && StudentManager.Yandere.Inventory != null && StudentManager.Yandere.Inventory.PantyShots > 0)
+			{
+				PromptBar.Label[2].text = "Unlock for 1 Info Point";
+			}
 		}
+		PromptBar.UpdateButtons();
 	}
 
 	public IEnumerator UpdatePortraits()

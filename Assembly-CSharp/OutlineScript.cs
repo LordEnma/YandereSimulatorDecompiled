@@ -16,10 +16,6 @@ public class OutlineScript : MonoBehaviour
 		{
 			h = base.gameObject.AddComponent<Highlighter>();
 		}
-	}
-
-	private void Update()
-	{
 		h.ConstantOnImmediate(color);
 	}
 }

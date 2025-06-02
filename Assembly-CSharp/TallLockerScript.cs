@@ -74,56 +74,65 @@ public class TallLockerScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Prompt.Circle[0].fillAmount == 0f && !Yandere.Chased && Yandere.Chasers == 0)
+		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			Prompt.Circle[0].fillAmount = 1f;
-			if (!Open)
+			if (Yandere.ClubAttire && Yandere.Bloodiness == 0f)
 			{
-				Open = true;
-				if (YandereLocker)
-				{
-					if (!Yandere.ClubAttire || (Yandere.ClubAttire && Yandere.Bloodiness > 0f))
-					{
-						if (Yandere.Bloodiness == 0f)
-						{
-							if (!Bloody[1])
-							{
-								Prompt.HideButton[1] = false;
-							}
-							if (!Bloody[2])
-							{
-								Prompt.HideButton[2] = false;
-							}
-							if (!Bloody[3])
-							{
-								Prompt.HideButton[3] = false;
-							}
-						}
-						else if (Yandere.Schoolwear > 0)
-						{
-							if (!Yandere.ClubAttire)
-							{
-								Prompt.HideButton[Yandere.Schoolwear] = false;
-							}
-							else
-							{
-								Prompt.HideButton[1] = false;
-							}
-						}
-					}
-					else
-					{
-						Prompt.HideButton[1] = true;
-						Prompt.HideButton[2] = true;
-						Prompt.HideButton[3] = true;
-					}
-				}
-				UpdateSchoolwear();
-				Prompt.Label[0].text = "     Close";
+				Prompt.Circle[0].fillAmount = 1f;
+				Yandere.NotificationManager.CustomText = "Club Attire Can Only Be Removed In A Club";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
-			else
+			else if (!Yandere.Chased && Yandere.Chasers == 0)
 			{
-				Shut();
+				Prompt.Circle[0].fillAmount = 1f;
+				if (!Open)
+				{
+					Open = true;
+					if (YandereLocker)
+					{
+						if (!Yandere.ClubAttire || (Yandere.ClubAttire && Yandere.Bloodiness > 0f))
+						{
+							if (Yandere.Bloodiness == 0f)
+							{
+								if (!Bloody[1])
+								{
+									Prompt.HideButton[1] = false;
+								}
+								if (!Bloody[2])
+								{
+									Prompt.HideButton[2] = false;
+								}
+								if (!Bloody[3])
+								{
+									Prompt.HideButton[3] = false;
+								}
+							}
+							else if (Yandere.Schoolwear > 0)
+							{
+								if (!Yandere.ClubAttire)
+								{
+									Prompt.HideButton[Yandere.Schoolwear] = false;
+								}
+								else
+								{
+									Prompt.HideButton[1] = false;
+								}
+							}
+						}
+						else
+						{
+							Prompt.HideButton[1] = true;
+							Prompt.HideButton[2] = true;
+							Prompt.HideButton[3] = true;
+						}
+					}
+					UpdateSchoolwear();
+					Prompt.Label[0].text = "     Close";
+				}
+				else
+				{
+					Shut();
+				}
 			}
 		}
 		if (!Open)

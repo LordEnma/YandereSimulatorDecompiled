@@ -632,7 +632,7 @@ public class TalkingScript : MonoBehaviour
 						flag4 = true;
 					}
 					Debug.Log("DialogueWheel.CenterLabel.text is: " + S.DialogueWheel.CenterLabel.text);
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag5) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.CurrentDestination == S.Seat || S.TimesFollowed > 1 || S.Schoolwear == 2 || !S.Indoors || (!Eighties && S.StudentID == 10 && S.DialogueWheel.Intimidating) || flag4)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag5) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.CurrentDestination == S.Seat || S.TimesFollowed > 1 || S.Schoolwear == 2 || !S.Indoors || (!Eighties && S.StudentID == 10 && S.DialogueWheel.Intimidating) || (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating) || flag4)
 					{
 						Debug.Log("Current Clock.HourTime is: " + S.Clock.HourTime);
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
@@ -758,6 +758,13 @@ public class TalkingScript : MonoBehaviour
 							S.TalkTimer = 5f;
 							Refuse = true;
 						}
+						else if (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating)
+						{
+							S.Subtitle.CustomText = "...I'm not scared of you. You can't bully me into doing what you want.";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							S.TalkTimer = 5f;
+							Refuse = true;
+						}
 						else
 						{
 							Debug.Log("We got to THIS part of the code?!");
@@ -855,7 +862,7 @@ public class TalkingScript : MonoBehaviour
 						Debug.Log("This character is currently busy at a bake sale.");
 						flag7 = true;
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag8) || (S.StudentID == S.StudentManager.RivalID && flag9) || S.CurrentDestination == S.Seat || !S.Indoors || (S.StudentID == 10 && S.DialogueWheel.Intimidating) || flag7)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag8) || (S.StudentID == S.StudentManager.RivalID && flag9) || S.CurrentDestination == S.Seat || !S.Indoors || (S.StudentID == 10 && S.DialogueWheel.Intimidating) || (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating) || flag7)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						Refuse = true;
@@ -910,6 +917,13 @@ public class TalkingScript : MonoBehaviour
 						else if (!Eighties && S.StudentID == 10 && S.DialogueWheel.Intimidating)
 						{
 							S.Subtitle.CustomText = "Are you trying to intimidate me? Well, it won't work! Go away!";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							S.TalkTimer = 5f;
+							Refuse = true;
+						}
+						else if (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating)
+						{
+							S.Subtitle.CustomText = "...I'm not scared of you. You can't bully me into doing what you want.";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 							S.TalkTimer = 5f;
 							Refuse = true;
@@ -974,7 +988,7 @@ public class TalkingScript : MonoBehaviour
 						Debug.Log("This character is currently busy at a bake sale.");
 						flag10 = true;
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag11) || (S.StudentID == S.StudentManager.RivalID && flag12) || S.CurrentDestination == S.Seat || !S.Indoors || (S.StudentID == 10 && S.DialogueWheel.Intimidating) || flag10)
+					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag11) || (S.StudentID == S.StudentManager.RivalID && flag12) || S.CurrentDestination == S.Seat || !S.Indoors || (S.StudentID == 10 && S.DialogueWheel.Intimidating) || (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating) || flag10)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						Refuse = true;
@@ -1029,6 +1043,13 @@ public class TalkingScript : MonoBehaviour
 						else if (!Eighties && S.StudentID == 10 && S.DialogueWheel.Intimidating)
 						{
 							S.Subtitle.CustomText = "Are you trying to intimidate me? Well, it won't work! Go away!";
+							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+							S.TalkTimer = 5f;
+							Refuse = true;
+						}
+						else if (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating)
+						{
+							S.Subtitle.CustomText = "...I'm not scared of you. You can't bully me into doing what you want.";
 							S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 							S.TalkTimer = 5f;
 							Refuse = true;
@@ -1695,7 +1716,7 @@ public class TalkingScript : MonoBehaviour
 				else if (!Eighties && S.StudentID == 12 && S.Yandere.PickUp.AmaiTask)
 				{
 					S.CharacterAnimation.CrossFade(S.IdleAnim);
-					S.Subtitle.CustomText = "Please share that food with others and collect their opinions!";
+					S.Subtitle.CustomText = "Please share those macarons with a few people and collect their opinions!";
 					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 				}
 				else if (S.Fed || S.Club == ClubType.Council || S.StudentID == 22)
@@ -1710,7 +1731,7 @@ public class TalkingScript : MonoBehaviour
 					S.CharacterAnimation.CrossFade(S.Nod2Anim);
 					if (S.Yandere.PickUp.AmaiTask)
 					{
-						S.Subtitle.UpdateLabel(SubtitleType.AcceptFood, 1, 3f);
+						S.Subtitle.UpdateLabel(SubtitleType.AcceptFood, S.Yandere.PickUp.Food, 5f);
 					}
 					else
 					{
@@ -2298,7 +2319,7 @@ public class TalkingScript : MonoBehaviour
 		RejectGossip = false;
 		if (!Eighties)
 		{
-			if (S.DialogueWheel.Victim == S.Crush || (S.StudentID == 2 && S.DialogueWheel.Victim == 3) || (S.StudentID == 3 && S.DialogueWheel.Victim == 2) || (S.StudentID == 10 && S.DialogueWheel.Victim == 11) || (S.StudentID == 11 && S.DialogueWheel.Victim == 10) || (S.StudentID == 25 && S.DialogueWheel.Victim == 30) || (S.StudentID == 30 && S.DialogueWheel.Victim == 25) || (S.StudentID == 70 && S.DialogueWheel.Victim == 46) || (S.StudentID > 55 && S.StudentID < 61 && S.DialogueWheel.Victim < 55 && S.DialogueWheel.Victim < 61) || (S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10))
+			if (S.DialogueWheel.Victim == S.Crush || (S.StudentID == 2 && S.DialogueWheel.Victim == 3) || (S.StudentID == 3 && S.DialogueWheel.Victim == 2) || (S.StudentID == 10 && S.DialogueWheel.Victim == 11) || (S.StudentID == 11 && S.DialogueWheel.Victim == 10) || (S.StudentID == 25 && S.DialogueWheel.Victim == 30) || (S.StudentID == 30 && S.DialogueWheel.Victim == 25) || (S.StudentID == 70 && S.DialogueWheel.Victim == 46) || (S.StudentID > 55 && S.StudentID < 61 && S.DialogueWheel.Victim > 55 && S.DialogueWheel.Victim < 61) || (S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10))
 			{
 				Debug.Log("1");
 				if ((S.OriginalClub == ClubType.MartialArts && S.DialogueWheel.Victim == 10) || (S.StudentID == 70 && S.DialogueWheel.Victim == 46) || S.DialogueWheel.Victim == S.Crush)

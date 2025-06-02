@@ -72,41 +72,49 @@ public class MapScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (((!CustomMode && Input.GetButtonDown(InputNames.Xbox_Back)) || (!CustomMode && Input.GetKeyDown(KeyCode.Space))) && Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial)
+		if ((!CustomMode && Input.GetButtonDown(InputNames.Xbox_Back)) || (!CustomMode && Input.GetKeyDown(KeyCode.Space)))
 		{
-			if (!Show)
+			bool flag = false;
+			if (StudentManager.MurderTakingPlace)
 			{
-				if (!PauseScreen.Show)
-				{
-					PauseScreen.Show = true;
-					Yandere.RPGCamera.enabled = false;
-					ElevationLabel.enabled = true;
-					Yandere.Blur.enabled = true;
-					MyCamera.enabled = true;
-					Compass.SetActive(value: true);
-					MapParent.SetActive(value: true);
-					Time.timeScale = 0.001f;
-					PromptBar.ClearButtons();
-					PromptBar.Label[1].text = "Exit";
-					PromptBar.Label[2].text = "Lower Floor";
-					PromptBar.Label[3].text = "Higher Floor";
-					PromptBar.UpdateButtons();
-					PromptBar.Show = true;
-					Show = true;
-				}
+				flag = CheckForMurderSuicide();
 			}
-			else
+			if (Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial && !flag)
 			{
-				Yandere.RPGCamera.enabled = true;
-				ElevationLabel.enabled = false;
-				Yandere.Blur.enabled = false;
-				PauseScreen.Show = false;
-				Compass.SetActive(value: false);
-				MapParent.SetActive(value: false);
-				Time.timeScale = 1f;
-				PromptBar.ClearButtons();
-				PromptBar.Show = false;
-				Show = false;
+				if (!Show)
+				{
+					if (!PauseScreen.Show)
+					{
+						PauseScreen.Show = true;
+						Yandere.RPGCamera.enabled = false;
+						ElevationLabel.enabled = true;
+						Yandere.Blur.enabled = true;
+						MyCamera.enabled = true;
+						Compass.SetActive(value: true);
+						MapParent.SetActive(value: true);
+						Time.timeScale = 0.001f;
+						PromptBar.ClearButtons();
+						PromptBar.Label[1].text = "Exit";
+						PromptBar.Label[2].text = "Lower Floor";
+						PromptBar.Label[3].text = "Higher Floor";
+						PromptBar.UpdateButtons();
+						PromptBar.Show = true;
+						Show = true;
+					}
+				}
+				else
+				{
+					Yandere.RPGCamera.enabled = true;
+					ElevationLabel.enabled = false;
+					Yandere.Blur.enabled = false;
+					PauseScreen.Show = false;
+					Compass.SetActive(value: false);
+					MapParent.SetActive(value: false);
+					Time.timeScale = 1f;
+					PromptBar.ClearButtons();
+					PromptBar.Show = false;
+					Show = false;
+				}
 			}
 		}
 		if (Show)
@@ -297,5 +305,18 @@ public class MapScript : MonoBehaviour
 		ElevationLabel.enabled = true;
 		MapParent.SetActive(value: false);
 		Show = false;
+	}
+
+	private bool CheckForMurderSuicide()
+	{
+		for (int i = 0; i < StudentManager.Students.Length; i++)
+		{
+			if (StudentManager.Students[i] != null && StudentManager.Students[i].MurderSuicidePhase == 1)
+			{
+				Debug.Log("A murder suicide is allegedly taking place.");
+				return true;
+			}
+		}
+		return false;
 	}
 }

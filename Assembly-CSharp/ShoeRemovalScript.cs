@@ -443,7 +443,6 @@ public class ShoeRemovalScript : MonoBehaviour
 
 	public void UpdateShoes()
 	{
-		Debug.Log(Student.Name + "'s ShoeRemovalScript is now calling UpdateShoes()");
 		OutdoorShoes = Student.Cosmetic.CasualTexture;
 		IndoorShoes = Student.Cosmetic.UniformTexture;
 		Socks = Student.Cosmetic.SocksTexture;

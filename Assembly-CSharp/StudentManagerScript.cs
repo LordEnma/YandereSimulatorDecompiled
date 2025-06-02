@@ -1255,6 +1255,24 @@ public class StudentManagerScript : MonoBehaviour
 
 	public AudioClip Silence;
 
+	public int InvestigatingStudents
+	{
+		get
+		{
+			Debug.Log("Now counting the number of students who are Investigating something.");
+			int num = 0;
+			StudentScript[] students = Students;
+			foreach (StudentScript studentScript in students)
+			{
+				if (studentScript != null && studentScript.InvestigatingBloodPool)
+				{
+					num++;
+				}
+			}
+			return num;
+		}
+	}
+
 	private void Awake()
 	{
 		WeekLimit = 3;
@@ -2474,7 +2492,7 @@ public class StudentManagerScript : MonoBehaviour
 			if (PinningDown && Witnesses < 4)
 			{
 				Debug.Log("Students were going to pin Yandere-chan down, but now there are less than 4 witnesses, so it's not going to happen.");
-				if (!Yandere.Chased && Yandere.Chasers == 0)
+				if (!Yandere.Chased && Yandere.Chasers == 0 && !Yandere.Attacking)
 				{
 					Yandere.CanMove = true;
 				}
@@ -3574,7 +3592,16 @@ public class StudentManagerScript : MonoBehaviour
 						}
 						if (studentScript.UpdateAppearance)
 						{
+							Debug.Log("StudentManager is firing Gema's UpdateAppearance().");
 							studentScript.UpdateGemaAppearance();
+							for (int i = 1; i < 6; i++)
+							{
+								ScheduleBlock obj = Students[80 + i].ScheduleBlocks[4];
+								obj.destination = "Shock";
+								obj.action = "Shock";
+								Students[80 + i].AdmireAnim = Students[80 + i].AdmireAnims[UnityEngine.Random.Range(0, 3)];
+								Students[80 + i].GetDestinations();
+							}
 						}
 					}
 					else
@@ -3610,11 +3637,11 @@ public class StudentManagerScript : MonoBehaviour
 			Students[1].transform.position = new Vector3(0f, 100f, 0f);
 		}
 		Physics.SyncTransforms();
-		for (int i = 1; i < 10; i++)
+		for (int j = 1; j < 10; j++)
 		{
-			if (ShrineCollectibles[i] != null)
+			if (ShrineCollectibles[j] != null)
 			{
-				ShrineCollectibles[i].SetActive(value: true);
+				ShrineCollectibles[j].SetActive(value: true);
 			}
 		}
 	}
@@ -4413,17 +4440,26 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			return;
 		}
+		Debug.Log("At least 4 people simultaneously witnessed murder!");
 		for (ID = 1; ID < WitnessList.Length; ID++)
 		{
 			StudentScript studentScript = WitnessList[ID];
-			if (studentScript != null && (!studentScript.Alive || studentScript.Attacked || studentScript.Fleeing || studentScript.Dying || studentScript.Routine || studentScript.Persona == PersonaType.Coward))
+			if (studentScript != null)
 			{
-				studentScript = null;
-				if (ID != WitnessList.Length - 1)
+				if (!studentScript.Alive || studentScript.Attacked || studentScript.Fleeing || studentScript.Dying || studentScript.Routine || studentScript.Persona == PersonaType.Coward)
 				{
-					Shuffle(ID);
+					studentScript = null;
+					if (ID != WitnessList.Length - 1)
+					{
+						Shuffle(ID);
+					}
+					Witnesses--;
 				}
-				Witnesses--;
+				else
+				{
+					Debug.Log("Transforming " + studentScript.Name + " into a Hero!");
+					studentScript.Persona = PersonaType.Heroic;
+				}
 			}
 		}
 		if (Witnesses > 3)
@@ -4940,26 +4976,27 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		MaleVomitSpot = MaleVomitSpots[1];
 		VomitStudent.VomitDoor = MaleToiletDoors[1];
-		for (ID = 2; ID < 7; ID++)
+		for (int i = 2; i < 7; i++)
 		{
-			if (Vector3.Distance(VomitStudent.transform.position, MaleVomitSpots[ID].position) < Vector3.Distance(VomitStudent.transform.position, MaleVomitSpot.position))
+			if (Vector3.Distance(VomitStudent.transform.position, MaleVomitSpots[i].position) < Vector3.Distance(VomitStudent.transform.position, MaleVomitSpot.position))
 			{
-				MaleVomitSpot = MaleVomitSpots[ID];
-				VomitStudent.VomitDoor = MaleToiletDoors[ID];
+				MaleVomitSpot = MaleVomitSpots[i];
+				VomitStudent.VomitDoor = MaleToiletDoors[i];
 			}
 		}
 	}
 
 	public void GetFemaleVomitSpot(StudentScript VomitStudent)
 	{
+		Debug.Log("Now firing GetFemaleVomitSpot()");
 		FemaleVomitSpot = FemaleVomitSpots[1];
 		VomitStudent.VomitDoor = FemaleToiletDoors[1];
-		for (ID = 2; ID < 7; ID++)
+		for (int i = 2; i < 7; i++)
 		{
-			if (Vector3.Distance(VomitStudent.transform.position, FemaleVomitSpots[ID].position) < Vector3.Distance(VomitStudent.transform.position, FemaleVomitSpot.position))
+			if (Vector3.Distance(VomitStudent.transform.position, FemaleVomitSpots[i].position) < Vector3.Distance(VomitStudent.transform.position, FemaleVomitSpot.position))
 			{
-				FemaleVomitSpot = FemaleVomitSpots[ID];
-				VomitStudent.VomitDoor = FemaleToiletDoors[ID];
+				FemaleVomitSpot = FemaleVomitSpots[i];
+				VomitStudent.VomitDoor = FemaleToiletDoors[i];
 			}
 		}
 		if (KokonaTutorial)
@@ -5322,12 +5359,14 @@ public class StudentManagerScript : MonoBehaviour
 						if (Students[ID].Male)
 						{
 							Students[ID].WalkAnim = "stomachPainWalk_00";
+							GetMaleVomitSpot(Students[ID]);
 							Students[ID].Pathfinding.target = MaleVomitSpot;
 							Students[ID].CurrentDestination = MaleVomitSpot;
 						}
 						else
 						{
 							Students[ID].WalkAnim = "f02_stomachPainWalk_00";
+							GetFemaleVomitSpot(Students[ID]);
 							Students[ID].Pathfinding.target = FemaleVomitSpot;
 							Students[ID].CurrentDestination = FemaleVomitSpot;
 						}
@@ -6960,7 +6999,10 @@ public class StudentManagerScript : MonoBehaviour
 			Students[ID].InfatuationID = 19;
 			Students[ID].Obstacle.enabled = false;
 			Students[ID].AdmireAnim = Students[ID].AdmireAnims[UnityEngine.Random.Range(0, 3)];
-			Physics.IgnoreCollision(Students[ID].MyController, Students[19].MyController);
+			if (Students[19] != null)
+			{
+				Physics.IgnoreCollision(Students[ID].MyController, Students[19].MyController);
+			}
 			if (Students[SuitorID] != null)
 			{
 				Physics.IgnoreCollision(Students[ID].MyController, Students[SuitorID].MyController);
@@ -6970,7 +7012,7 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void SunbatheAllDay(int ID)
 	{
-		if (Students[ID] != null)
+		if (Students[ID] != null && !Students[ID].Sleuthing)
 		{
 			Students[ID].DressCode = false;
 			scheduleBlock = Students[ID].ScheduleBlocks[2];
@@ -7806,38 +7848,44 @@ public class StudentManagerScript : MonoBehaviour
 		return false;
 	}
 
-	public void CheckStudentProximity()
+	public void CheckAllStudentProximities()
 	{
 		StudentScript[] students = Students;
-		foreach (StudentScript studentScript in students)
+		foreach (StudentScript student in students)
 		{
-			if (!(studentScript != null) || !studentScript.gameObject.activeInHierarchy || !studentScript.enabled || !(studentScript.DistanceToPlayer < 1f) || !(studentScript.Hunter == null))
+			CheckStudentProximity(student);
+		}
+		CheckStudentProximity(Students[1]);
+		Physics.SyncTransforms();
+	}
+
+	public void CheckStudentProximity(StudentScript Student)
+	{
+		if (!(Student != null) || !Student.gameObject.activeInHierarchy || !Student.enabled || !(Student.DistanceToPlayer < 1f) || !(Student.Hunter == null))
+		{
+			return;
+		}
+		Debug.Log(Student.Name + " is less than 1 meter away from the player!");
+		Yandere.WallBehind = false;
+		Yandere.Direction = 5;
+		Yandere.CheckForWall();
+		if (Yandere.WallBehind)
+		{
+			Debug.Log("There is a wall behind the player. They shouldn't scoot back.");
+			if (ErrorTimer == 0f)
 			{
-				continue;
-			}
-			Debug.Log(studentScript.Name + " is less than 1 meter away from the player!");
-			Yandere.WallBehind = false;
-			Yandere.Direction = 5;
-			Yandere.CheckForWall();
-			if (Yandere.WallBehind)
-			{
-				Debug.Log("There is a wall behind the player. They shouldn't scoot back.");
-				if (ErrorTimer == 0f)
-				{
-					Yandere.NotificationManager.CustomText = "Too cramped!";
-					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					Yandere.NotificationManager.CustomText = "Can't take out your camera!";
-					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					ErrorTimer = 1f;
-				}
-			}
-			else
-			{
-				Vector3 normalized = (Yandere.transform.position - studentScript.transform.position).normalized;
-				Yandere.transform.position += normalized * 0.25f;
+				Yandere.NotificationManager.CustomText = "Too cramped!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Yandere.NotificationManager.CustomText = "Can't take out your camera!";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				ErrorTimer = 1f;
 			}
 		}
-		Physics.SyncTransforms();
+		else
+		{
+			Vector3 normalized = (Yandere.transform.position - Student.transform.position).normalized;
+			Yandere.transform.position += normalized * 0.25f;
+		}
 	}
 
 	public void IdentifyAvailableWitnesses()

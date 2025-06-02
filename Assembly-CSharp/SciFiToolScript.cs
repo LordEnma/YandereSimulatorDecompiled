@@ -17,13 +17,16 @@ public class SciFiToolScript : MonoBehaviour
 
 	private void Update()
 	{
-		if ((double)Vector3.Distance(Tip.position, Target.position) < 0.1)
+		if (Student.MyRenderer.isVisible)
 		{
-			Sparks.Play();
-		}
-		else
-		{
-			Sparks.Stop();
+			if ((double)Vector3.Distance(Tip.position, Target.position) < 0.1)
+			{
+				Sparks.Play();
+			}
+			else
+			{
+				Sparks.Stop();
+			}
 		}
 	}
 }

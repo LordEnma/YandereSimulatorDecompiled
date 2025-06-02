@@ -147,6 +147,8 @@ public class PauseScreenScript : MonoBehaviour
 
 	public bool EggsChecked;
 
+	public bool FirstTime;
+
 	public bool AtSchool;
 
 	public bool PressedA;
@@ -648,7 +650,11 @@ public class PauseScreenScript : MonoBehaviour
 						else if (Selected == 6)
 						{
 							StudentInfoMenu.gameObject.SetActive(value: true);
-							StudentInfoMenu.Start();
+							if (FirstTime)
+							{
+								StudentInfoMenu.Start();
+								FirstTime = true;
+							}
 							StartCoroutine(StudentInfoMenu.UpdatePortraits());
 							StudentInfoMenu.GrabbedPortraits = true;
 							MainMenu.SetActive(value: false);
@@ -1115,6 +1121,7 @@ public class PauseScreenScript : MonoBehaviour
 
 	private void CheckIfSavePossible()
 	{
+		Debug.Log("Checking to see if it's possible to save the game.");
 		PhoneIcons[9].color = new Color(1f, 1f, 1f, 1f);
 		if (!Eighties)
 		{
@@ -1146,11 +1153,6 @@ public class PauseScreenScript : MonoBehaviour
 					{
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is burning to death.";
-					}
-					if (FreezerKill.ShovePhase > 0)
-					{
-						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-						Reason = "You cannot save the game while a student is freezing to death.";
 					}
 					if (Yandere.StudentManager.Students[i].Guarding && Yandere.StudentManager.Students[i].Alive)
 					{
@@ -1189,11 +1191,6 @@ public class PauseScreenScript : MonoBehaviour
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is searching for a lost phone.";
 					}
-					if (Yandere.StudentManager.Police.LimbParent.childCount > 0)
-					{
-						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-						Reason = "You cannot save the game while dismembered limbs are present at school.";
-					}
 					if (Yandere.StudentManager.Students[i].Wet)
 					{
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
@@ -1204,11 +1201,16 @@ public class PauseScreenScript : MonoBehaviour
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is tranquilized and sleeping on the ground.";
 					}
-					if (Police.PhotoEvidence > 0)
-					{
-						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-						Reason = "You cannot save the game while a smartphone containing incriminating evidence is present at school.";
-					}
+				}
+			}
+			GameObject[] rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+			foreach (GameObject gameObject in rootGameObjects)
+			{
+				if (gameObject.name == "Prompt" && gameObject.activeInHierarchy)
+				{
+					Debug.Log("An object named Prompt is on the ground at school...");
+					PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+					Reason = "You cannot save the game while a key is on the ground.";
 				}
 			}
 			if (Yandere.Dragging)
@@ -1226,15 +1228,30 @@ public class PauseScreenScript : MonoBehaviour
 				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 				Reason = "You cannot save the game while you are holding that object.";
 			}
-			if (Police.BloodyClothing > 0)
+			if (FreezerKill.ShovePhase > 0)
 			{
 				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-				Reason = "You cannot save the game while bloody clothing is present at school.";
+				Reason = "You cannot save the game while a student is freezing to death.";
 			}
 			if (IronMaiden.Corpse != null)
 			{
 				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 				Reason = "You cannot save the game while a corpse is inside the iron maiden.";
+			}
+			if (Police.BloodyClothing > 0)
+			{
+				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+				Reason = "You cannot save the game while bloody clothing is present at school.";
+			}
+			if (Yandere.StudentManager.Police.LimbParent.childCount > 0)
+			{
+				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+				Reason = "You cannot save the game while dismembered limbs are present at school.";
+			}
+			if (Police.PhotoEvidence > 0)
+			{
+				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+				Reason = "You cannot save the game while a smartphone containing incriminating evidence is present at school.";
 			}
 		}
 		if (PhoneIcons[9].alpha == 0.5f)

@@ -27,14 +27,14 @@ public class PillowScript : MonoBehaviour
 		if (!Display)
 		{
 			Timer += Time.deltaTime;
-			if (!(Timer > 1f))
+			if (!(Timer > 1f) || !(Vector3.Distance(base.transform.position, StudentManager.Yandere.transform.position) < 1f))
 			{
 				return;
 			}
 			StudentScript[] students = StudentManager.Students;
 			foreach (StudentScript studentScript in students)
 			{
-				if (studentScript != null && studentScript.Alive && !studentScript.Hunted && (studentScript.CurrentAction == StudentActionType.Relax || studentScript.Sedated || studentScript.Sleepy) && Vector3.Distance(base.transform.position, studentScript.transform.position) < 1f)
+				if (studentScript != null && studentScript.Alive && !studentScript.Hunted && (studentScript.CurrentAction == StudentActionType.Relax || studentScript.CurrentAction == StudentActionType.Sleep || studentScript.Sedated || studentScript.Sleepy) && Vector3.Distance(base.transform.position, studentScript.transform.position) < 1f)
 				{
 					Prompt.gameObject.SetActive(value: true);
 					Student = studentScript;
@@ -51,7 +51,7 @@ public class PillowScript : MonoBehaviour
 			}
 			if (Phase == 0)
 			{
-				if (Vector3.Distance(base.transform.position, Student.transform.position) > 1f || Student.Hunted || (Student.CurrentAction != StudentActionType.Relax && !Student.Hunted && !Student.Sedated && !Student.Sleepy))
+				if (Vector3.Distance(base.transform.position, Student.transform.position) > 1f || Student.Hunted || (Student.CurrentAction != StudentActionType.Relax && Student.CurrentAction != StudentActionType.Sleep && !Student.Hunted && !Student.Sedated && !Student.Sleepy))
 				{
 					Prompt.gameObject.SetActive(value: false);
 					Prompt.Hide();

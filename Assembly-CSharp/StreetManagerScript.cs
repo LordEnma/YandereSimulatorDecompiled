@@ -39,6 +39,10 @@ public class StreetManagerScript : MonoBehaviour
 
 	public Animation Gossip2;
 
+	public GameObject[] EightiesObjects;
+
+	public GameObject[] ModernObjects;
+
 	public GameObject InvertedSphere;
 
 	public GameObject MaidPrompt;
@@ -156,12 +160,44 @@ public class StreetManagerScript : MonoBehaviour
 				RamenShop[0].SetActive(value: false);
 				RamenShop[1].SetActive(value: false);
 			}
+			GameObject[] modernObjects = ModernObjects;
+			foreach (GameObject gameObject in modernObjects)
+			{
+				if (gameObject != null)
+				{
+					gameObject.SetActive(value: false);
+				}
+			}
+			modernObjects = EightiesObjects;
+			foreach (GameObject gameObject2 in modernObjects)
+			{
+				if (gameObject2 != null)
+				{
+					gameObject2.SetActive(value: true);
+				}
+			}
 		}
 		else
 		{
 			Yakuza.transform.parent.gameObject.SetActive(value: false);
 			EightiesCivilians.SetActive(value: false);
 			ModernCivilians.SetActive(value: true);
+			GameObject[] modernObjects = ModernObjects;
+			foreach (GameObject gameObject3 in modernObjects)
+			{
+				if (gameObject3 != null)
+				{
+					gameObject3.SetActive(value: true);
+				}
+			}
+			modernObjects = EightiesObjects;
+			foreach (GameObject gameObject4 in modernObjects)
+			{
+				if (gameObject4 != null)
+				{
+					gameObject4.SetActive(value: false);
+				}
+			}
 		}
 		if (GameGlobals.YakuzaPhase > 0)
 		{

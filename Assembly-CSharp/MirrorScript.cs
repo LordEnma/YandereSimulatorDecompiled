@@ -34,6 +34,14 @@ public class MirrorScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (!Prompt.InView)
+		{
+			return;
+		}
+		if (!Prompt.Yandere.StudentManager.TutorialWindow.ShowPersonaMessage)
+		{
+			Prompt.Yandere.StudentManager.TutorialWindow.ShowPersonaMessage = true;
+		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
 			if (Prompt.Yandere.Health > 0)
@@ -56,10 +64,6 @@ public class MirrorScript : MonoBehaviour
 				Prompt.Yandere.PersonaID = Limit - 1;
 			}
 			UpdatePersona();
-		}
-		if (Prompt.InSight)
-		{
-			Prompt.Yandere.StudentManager.TutorialWindow.ShowPersonaMessage = true;
 		}
 	}
 

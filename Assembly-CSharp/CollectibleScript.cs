@@ -64,39 +64,9 @@ public class CollectibleScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Prompt.Circle[0].fillAmount == 0f)
+		if (Prompt.InView && Prompt.Circle[0].fillAmount == 0f)
 		{
-			if (CollectibleType == CollectibleType.HeadmasterTape)
-			{
-				Prompt.Yandere.StudentManager.HeadmasterTapesCollected[ID] = true;
-			}
-			else if (CollectibleType == CollectibleType.BasementTape)
-			{
-				CollectibleGlobals.SetBasementTapeCollected(ID, value: true);
-			}
-			else if (CollectibleType == CollectibleType.Manga)
-			{
-				Prompt.Yandere.StudentManager.MangaCollected[ID] = true;
-			}
-			else if (CollectibleType == CollectibleType.Tape)
-			{
-				Prompt.Yandere.StudentManager.TapesCollected[ID] = true;
-			}
-			else if (CollectibleType == CollectibleType.Key)
-			{
-				Prompt.Yandere.Inventory.MysteriousKeys++;
-			}
-			else if (CollectibleType == CollectibleType.Panty)
-			{
-				Debug.Log("Informing the StudentManager that the player picked up the fundoshi.");
-				Prompt.Yandere.StudentManager.PantiesCollected[11] = true;
-				CountPanties();
-			}
-			else
-			{
-				Debug.LogError("Collectible \"" + Name + "\" not implemented.", base.gameObject);
-			}
-			Object.Destroy(base.gameObject);
+			PickUp();
 		}
 	}
 
@@ -121,5 +91,40 @@ public class CollectibleScript : MonoBehaviour
 				PlayerPrefs.SetInt("a", 1);
 			}
 		}
+	}
+
+	public void PickUp()
+	{
+		if (CollectibleType == CollectibleType.HeadmasterTape)
+		{
+			Prompt.Yandere.StudentManager.HeadmasterTapesCollected[ID] = true;
+		}
+		else if (CollectibleType == CollectibleType.BasementTape)
+		{
+			CollectibleGlobals.SetBasementTapeCollected(ID, value: true);
+		}
+		else if (CollectibleType == CollectibleType.Manga)
+		{
+			Prompt.Yandere.StudentManager.MangaCollected[ID] = true;
+		}
+		else if (CollectibleType == CollectibleType.Tape)
+		{
+			Prompt.Yandere.StudentManager.TapesCollected[ID] = true;
+		}
+		else if (CollectibleType == CollectibleType.Key)
+		{
+			Prompt.Yandere.Inventory.MysteriousKeys++;
+		}
+		else if (CollectibleType == CollectibleType.Panty)
+		{
+			Debug.Log("Informing the StudentManager that the player picked up the fundoshi.");
+			Prompt.Yandere.StudentManager.PantiesCollected[11] = true;
+			CountPanties();
+		}
+		else
+		{
+			Debug.LogError("Collectible \"" + Name + "\" not implemented.", base.gameObject);
+		}
+		Object.Destroy(base.gameObject);
 	}
 }

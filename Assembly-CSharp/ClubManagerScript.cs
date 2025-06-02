@@ -51,6 +51,8 @@ public class ClubManagerScript : MonoBehaviour
 
 	public AudioSource MyAudio;
 
+	public GameObject GamingClubPaper;
+
 	public GameObject Viewfinder;
 
 	public GameObject Reputation;
@@ -269,6 +271,10 @@ public class ClubManagerScript : MonoBehaviour
 		if (ClubGlobals.Club != ClubType.None && DateGlobals.Weekday == DayOfWeek.Friday && ClubGlobals.ActivitiesAttended == 0)
 		{
 			ClubActivityReminder = true;
+		}
+		if (ClubGlobals.GetClubClosed(ClubArray[11]))
+		{
+			GamingClubPaper.SetActive(value: false);
 		}
 		Physics.IgnoreCollision(Container.gameObject.GetComponent<Collider>(), Yandere.MyController);
 	}
@@ -547,6 +553,8 @@ public class ClubManagerScript : MonoBehaviour
 					studentScript5.Stop = false;
 				}
 			}
+			Yandere.Talking = false;
+			Yandere.CanMove = false;
 		}
 		else if (Club == ClubType.MartialArts)
 		{
@@ -748,7 +756,6 @@ public class ClubManagerScript : MonoBehaviour
 			}
 			Yandere.Talking = false;
 			Yandere.CanMove = false;
-			Yandere.ClubActivity = true;
 			if (!Yandere.ClubAttire)
 			{
 				Yandere.ChangeClubwear();

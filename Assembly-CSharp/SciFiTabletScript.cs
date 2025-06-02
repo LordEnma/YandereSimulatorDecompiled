@@ -17,6 +17,10 @@ public class SciFiTabletScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (!Student.MyRenderer.isVisible)
+		{
+			return;
+		}
 		if ((double)Vector3.Distance(Finger.position, base.transform.position) < 0.1)
 		{
 			if (!Updated)

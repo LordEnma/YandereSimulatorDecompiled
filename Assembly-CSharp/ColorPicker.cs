@@ -361,5 +361,9 @@ public class ColorPicker : MonoBehaviour
 			CustomMode.JSON.Students[CustomMode.Selected].EyeG = Mathf.RoundToInt(newColor.g * 255f);
 			CustomMode.JSON.Students[CustomMode.Selected].EyeB = Mathf.RoundToInt(newColor.b * 255f);
 		}
+		if (CustomMode.Selected == 0)
+		{
+			CustomMode.Yandere.UpdateEyeColor();
+		}
 	}
 }

@@ -16,6 +16,8 @@ public class DebugEnablerScript : MonoBehaviour
 
 	public DebugMenuScript DebugMenu;
 
+	public TributeScript Tribute;
+
 	public YandereScript Yandere;
 
 	public SkullScript Skull;
@@ -29,6 +31,8 @@ public class DebugEnablerScript : MonoBehaviour
 	public bool Editor;
 
 	public int Spaces;
+
+	public CollectibleScript[] collectibleScripts;
 
 	private void Start()
 	{
@@ -78,9 +82,9 @@ public class DebugEnablerScript : MonoBehaviour
 		MemeClosetDoor.Prompt.enabled = true;
 		MemeClosetDoor.enabled = true;
 		MemeClosetDoor.Locked = false;
-		base.gameObject.SetActive(value: false);
 		Skull.Prompt.enabled = true;
 		Skull.enabled = true;
+		Tribute.enabled = true;
 		if (!GameGlobals.Eighties)
 		{
 			if (Yandere.StudentManager.Students[37] != null)
@@ -92,5 +96,6 @@ public class DebugEnablerScript : MonoBehaviour
 				Yandere.StudentManager.Students[61].Cosmetic.HairRenderer.gameObject.GetComponent<BandanaScript>().enabled = true;
 			}
 		}
+		collectibleScripts = Object.FindObjectsOfType<CollectibleScript>();
 	}
 }

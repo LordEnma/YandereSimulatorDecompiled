@@ -244,11 +244,16 @@ public class YakuzaMenuScript : MonoBehaviour
 			Scales[k].material.color = new Color(1f, 0f, 0f, Alpha);
 		}
 		Background.material.color = new Color(1f, 0f, 0f, 0f);
-		if (GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night || StudentGlobals.GetStudentDead(79) || ChallengeGlobals.NoInfo)
+		bool flag = false;
+		if (!GameGlobals.CustomMode && StudentGlobals.GetStudentDead(79))
+		{
+			flag = true;
+		}
+		if (GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night || flag || ChallengeGlobals.NoInfo)
 		{
 			base.gameObject.SetActive(value: false);
 			ButtonPrompt.alpha = 0f;
-			if (StudentGlobals.GetStudentDead(79))
+			if (flag)
 			{
 				Yakuza.gameObject.SetActive(value: false);
 			}

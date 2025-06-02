@@ -152,6 +152,15 @@ public class PassTimeBookScript : MonoBehaviour
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			return;
 		}
+		bool flag = false;
+		for (int i = 0; i < 101; i++)
+		{
+			if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Wet)
+			{
+				flag = true;
+				i = 100;
+			}
+		}
 		if (Yandere.Police.Show)
 		{
 			Yandere.NotificationManager.CustomText = "Not when police are coming!";
@@ -173,6 +182,12 @@ public class PassTimeBookScript : MonoBehaviour
 		if (Yandere.StudentManager.Clock.HourTime > 17.5f)
 		{
 			Yandere.NotificationManager.CustomText = "Not available after 5:30 PM";
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			return;
+		}
+		if (flag)
+		{
+			Yandere.NotificationManager.CustomText = "Unavailable if a student is wet";
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			return;
 		}

@@ -116,17 +116,31 @@ public class NextRivalCutsceneScript : MonoBehaviour
 			SkipCircle.fillAmount -= Time.deltaTime;
 			if (SkipCircle.fillAmount == 0f)
 			{
+				Debug.Log("Skipping, now, from here.");
 				ObjectsToDisable[0].SetActive(value: false);
 				Cutscene.animationComponent.Stop();
 				Cutscene.isPlaying = false;
 				Cutscene.enabled = false;
 				AudioHandler.ShutUp();
+				Audio[1].Stop();
+				Audio[1].enabled = false;
+				Audio[1].volume = 0f;
+				Audio[1].pitch = 0f;
+				Audio[1].gameObject.SetActive(value: false);
 				Subtitle.text = "";
 			}
 		}
 		else
 		{
 			SkipCircle.fillAmount = 1f;
+		}
+	}
+
+	public void ShutUp()
+	{
+		for (int i = 1; i < Audio.Length; i++)
+		{
+			Audio[i].Stop();
 		}
 	}
 }

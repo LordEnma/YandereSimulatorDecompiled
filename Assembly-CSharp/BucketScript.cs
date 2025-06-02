@@ -695,7 +695,7 @@ public class BucketScript : MonoBehaviour
 		GameObject gameObject = null;
 		GameObject gameObject2 = null;
 		gameObject = (DyedBrown ? Yandere.StudentManager.WaterCooler.Tripwire.BrownPaintPuddle : ((Bloodiness > 50f) ? Yandere.StudentManager.WaterCooler.Tripwire.BloodPuddle : ((!Gasoline) ? Yandere.StudentManager.WaterCooler.Tripwire.WaterPuddle : Yandere.StudentManager.WaterCooler.Tripwire.GasolinePuddle)));
-		gameObject2 = Object.Instantiate(gameObject, Yandere.transform.position + Yandere.transform.forward * 0.66666f + new Vector3(0f, 0.001f, 0f), Quaternion.identity);
+		gameObject2 = Object.Instantiate(gameObject, Yandere.transform.position + Yandere.transform.forward * 0.66666f + new Vector3(0f, 0.0012f, 0f), Quaternion.identity);
 		gameObject2.transform.eulerAngles = new Vector3(90f, Random.Range(0f, 360f), 0f);
 		if (Bloodiness > 50f)
 		{

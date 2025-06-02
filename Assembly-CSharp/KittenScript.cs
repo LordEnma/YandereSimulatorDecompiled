@@ -26,6 +26,14 @@ public class KittenScript : MonoBehaviour
 
 	public float Timer;
 
+	public AudioClip[] MyLines;
+
+	public AudioClip[] MemeLines;
+
+	public AudioClip[] NormalLines;
+
+	public AudioSource MyAudio;
+
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -40,16 +48,33 @@ public class KittenScript : MonoBehaviour
 		{
 			return;
 		}
-		if (Yandere.StudentManager.Students[11] != null)
+		if (Vector3.Distance(base.transform.position, Yandere.transform.position) < 1f)
 		{
-			if (Vector3.Distance(base.transform.position, Yandere.StudentManager.Students[11].transform.position) < 1f && Yandere.StudentManager.Students[11].Routine)
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
 			{
-				MyAnimator.CrossFade("beingPet");
+				int num = Random.Range(1, 101);
+				if (num == 1)
+				{
+					int num2 = Random.Range(0, MyLines.Length);
+					MyAudio.clip = MyLines[num2];
+				}
+				else if (num <= 10)
+				{
+					int num3 = Random.Range(0, MemeLines.Length);
+					MyAudio.clip = MemeLines[num3];
+				}
+				else
+				{
+					int num4 = Random.Range(0, NormalLines.Length);
+					MyAudio.clip = NormalLines[num4];
+				}
+				Timer = 0f;
 			}
-			else
-			{
-				MyAnimator.CrossFade("B_idle");
-			}
+		}
+		if (Yandere.StudentManager.Eighties && Yandere.StudentManager.Week > 2 && Yandere.StudentManager.Students[11] != null && Yandere.StudentManager.Students[11].Routine && Vector3.Distance(base.transform.position, Yandere.StudentManager.Students[11].transform.position) < 1f)
+		{
+			MyAnimator.CrossFade("beingPet");
 			return;
 		}
 		MyAnimator.CrossFade("B_idle");

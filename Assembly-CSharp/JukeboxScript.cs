@@ -256,6 +256,12 @@ public class JukeboxScript : MonoBehaviour
 
 	public AudioClip[] EightiesTwelveNo;
 
+	public AudioClip[] EightiesThirteenthFull;
+
+	public AudioClip[] EightiesThirteenthHalf;
+
+	public AudioClip[] EightiesThirteenthNo;
+
 	public AudioClip[] ClubThemes;
 
 	public AudioClip LowPhotographyClubTheme;
@@ -268,7 +274,7 @@ public class JukeboxScript : MonoBehaviour
 	{
 		if (GameGlobals.Eighties)
 		{
-			BGMLimit = 12;
+			BGMLimit = 13;
 			OriginalFull = EightiesOneFull;
 			OriginalHalf = EightiesOneHalf;
 			OriginalNo = EightiesOneNo;
@@ -305,6 +311,9 @@ public class JukeboxScript : MonoBehaviour
 			TwelfthFull = EightiesTwelveFull;
 			TwelfthHalf = EightiesTwelveHalf;
 			TwelfthNo = EightiesTwelveNo;
+			ThirteenthFull = EightiesThirteenthFull;
+			ThirteenthHalf = EightiesThirteenthHalf;
+			ThirteenthNo = EightiesThirteenthNo;
 			ClubThemes[5] = EightiesMusicClubTheme;
 		}
 		if (!Initialized)

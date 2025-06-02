@@ -84,6 +84,7 @@ public class AudioHandler_AmaiEndOfTheWeek : MonoBehaviour
 
 	public void ShutUp()
 	{
+		Debug.Log("Just told everything to shut up...");
 		voiceline01.SetActive(value: false);
 		voiceline02.SetActive(value: false);
 		SenpaiShrinePic.SetActive(value: false);

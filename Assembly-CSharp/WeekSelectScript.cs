@@ -56,6 +56,8 @@ public class WeekSelectScript : MonoBehaviour
 
 	public Renderer[] SleeveRenderer;
 
+	public GameObject AreYouSureWindow;
+
 	public GameObject PinkGradient;
 
 	public RetroCameraEffect RetroEffect;
@@ -75,6 +77,10 @@ public class WeekSelectScript : MonoBehaviour
 	public Transform[] Sleeve;
 
 	public Transform[] Tape;
+
+	public UISprite BG;
+
+	public Font LegacyRuntime;
 
 	private void Start()
 	{
@@ -499,7 +505,6 @@ public class WeekSelectScript : MonoBehaviour
 				}
 				DateGlobals.Week = CurrentWeek;
 				UpdateText();
-				Stats.Start();
 				SettingWeek = false;
 				SettingRivals = true;
 				EditLabel.gameObject.SetActive(value: true);
@@ -511,11 +516,22 @@ public class WeekSelectScript : MonoBehaviour
 		else
 		{
 			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
-			if (Input.GetButtonDown(InputNames.Xbox_A))
+			if (AreYouSureWindow.activeInHierarchy)
 			{
-				Fading = true;
+				if (Input.GetButtonDown(InputNames.Xbox_A))
+				{
+					Fading = true;
+				}
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
+				{
+					AreYouSureWindow.SetActive(value: false);
+				}
 			}
-			if (Input.GetButtonDown(InputNames.Xbox_B))
+			else if (Input.GetButtonDown(InputNames.Xbox_A))
+			{
+				AreYouSureWindow.SetActive(value: true);
+			}
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				SettingWeek = true;
 				SettingRivals = false;
@@ -684,16 +700,18 @@ public class WeekSelectScript : MonoBehaviour
 	private void ChangeFont(Transform PanelToUpdate)
 	{
 		Debug.Log("Now attempting to change all font.");
+		BG.color = new Color(1f, 0.75f, 1f, 1f);
 		int num = 0;
 		Transform[] componentsInChildren = PanelToUpdate.GetComponentsInChildren<Transform>();
 		foreach (Transform obj in componentsInChildren)
 		{
 			num++;
 			UILabel component = obj.GetComponent<UILabel>();
-			if (component != null)
+			if (component != null && component.trueTypeFont.name != "LegacyRuntime")
 			{
 				component.trueTypeFont = ModernFont;
 			}
 		}
+		AreYouSureWindow.SetActive(value: false);
 	}
 }

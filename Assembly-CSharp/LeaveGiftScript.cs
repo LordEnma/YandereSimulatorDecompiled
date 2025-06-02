@@ -23,7 +23,7 @@ public class LeaveGiftScript : MonoBehaviour
 		{
 			Debug.Log("CollectibleGlobals.SenpaiGifts is: " + CollectibleGlobals.SenpaiGifts);
 		}
-		if (MissionModeGlobals.MissionMode)
+		if (MissionModeGlobals.MissionMode || GameGlobals.SenpaiMourning)
 		{
 			Prompt.Hide();
 			Prompt.enabled = false;

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TreeBranchAnimationScript : MonoBehaviour
 {
+	public Renderer MyRenderer;
+
 	public float Max;
 
 	public float Min;
@@ -21,6 +23,10 @@ public class TreeBranchAnimationScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (!MyRenderer.isVisible)
+		{
+			return;
+		}
 		for (int i = 1; i < 3; i++)
 		{
 			Speed[i] += Time.deltaTime;

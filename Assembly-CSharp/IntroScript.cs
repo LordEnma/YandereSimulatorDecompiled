@@ -235,7 +235,11 @@ public class IntroScript : MonoBehaviour
 
 	public GameObject[] VtuberHairs3;
 
+	public GameObject[] VtuberHairs4;
+
 	public GameObject[] VtuberAccs;
+
+	public GameObject[] VtuberAccs4;
 
 	public Texture[] VtuberFaces;
 
@@ -1275,6 +1279,11 @@ public class IntroScript : MonoBehaviour
 			else if (GameGlobals.VtuberID == 3)
 			{
 				VtuberHairs3[i].SetActive(value: true);
+			}
+			else if (GameGlobals.VtuberID == 4)
+			{
+				VtuberHairs4[i].SetActive(value: true);
+				VtuberAccs4[i].SetActive(value: true);
 			}
 		}
 		for (int i = 1; i < UniformSetters.Length; i++)

@@ -702,6 +702,7 @@ public class StudentInfoScript : MonoBehaviour
 		StudentInfoMenuScript studentInfoMenu = StudentInfoMenu;
 		if (!studentInfoMenu.CyberBullying && !studentInfoMenu.CyberStalking && !studentInfoMenu.FindingLocker && !studentInfoMenu.UsingLifeNote && !studentInfoMenu.GettingInfo && !studentInfoMenu.MatchMaking && !studentInfoMenu.Distracting && !studentInfoMenu.SendingHome && !studentInfoMenu.Gossiping && !studentInfoMenu.Targeting && !studentInfoMenu.GettingOpinions && !studentInfoMenu.Dead && !studentInfoMenu.RobotTargeting)
 		{
+			int j = 0;
 			if (StudentInfoMenu.PauseScreen.InputManager.TappedRight)
 			{
 				CurrentStudent++;
@@ -709,7 +710,7 @@ public class StudentInfoScript : MonoBehaviour
 				{
 					CurrentStudent = 1;
 				}
-				while (!StudentManager.StudentPhotographed[CurrentStudent])
+				for (; !StudentManager.StudentPhotographed[CurrentStudent] || j > 100; j++)
 				{
 					CurrentStudent++;
 					if (CurrentStudent > 100)
@@ -727,7 +728,7 @@ public class StudentInfoScript : MonoBehaviour
 				{
 					CurrentStudent = 100;
 				}
-				while (!StudentManager.StudentPhotographed[CurrentStudent])
+				for (; !StudentManager.StudentPhotographed[CurrentStudent] || j > 100; j++)
 				{
 					CurrentStudent--;
 					if (CurrentStudent < 1)

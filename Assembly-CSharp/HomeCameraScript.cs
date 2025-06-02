@@ -34,6 +34,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public HomeExitScript HomeExit;
 
+	public CookingMenuScript CookingMenu;
+
 	public PostProcessingProfile Profile;
 
 	public PromptBarScript PromptBar;
@@ -90,6 +92,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public Transform[] OutOfRoomDestinations;
 
+	public Transform[] OutOfRoomTargets;
+
 	public Transform[] EightiesDestinations;
 
 	public Transform[] EightiesTargets;
@@ -139,6 +143,8 @@ public class HomeCameraScript : MonoBehaviour
 	public bool TooClose;
 
 	public bool InHouse;
+
+	public bool Mute;
 
 	public CosmeticScript SenpaiCosmetic;
 
@@ -419,7 +425,12 @@ public class HomeCameraScript : MonoBehaviour
 			}
 			else
 			{
-				if (Destination == OutOfRoomDestinations[5])
+				if (CookingMenu.Show)
+				{
+					Destination = OutOfRoomDestinations[7];
+					Target = OutOfRoomTargets[7];
+				}
+				else if (Destination == OutOfRoomDestinations[5])
 				{
 					Destination = OutOfRoomDestinations[6];
 				}
@@ -565,8 +576,19 @@ public class HomeCameraScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown(KeyCode.M))
 		{
-			BasementJukebox.gameObject.SetActive(value: false);
-			RoomJukebox.gameObject.SetActive(value: false);
+			Mute = !Mute;
+			if (Mute)
+			{
+				BasementJukebox.gameObject.SetActive(value: false);
+				RoomJukebox.gameObject.SetActive(value: false);
+			}
+			else
+			{
+				BasementJukebox.gameObject.SetActive(value: true);
+				RoomJukebox.gameObject.SetActive(value: true);
+				BasementJukebox.Play();
+				RoomJukebox.Play();
+			}
 		}
 		if (OpenDoor)
 		{

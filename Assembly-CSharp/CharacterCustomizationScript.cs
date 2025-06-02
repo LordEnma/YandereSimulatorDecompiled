@@ -14,6 +14,8 @@ public class CharacterCustomizationScript : MonoBehaviour
 
 	public GameObject CustomHair;
 
+	public AudioSource MyAudio;
+
 	public Transform Highlight;
 
 	public Transform[] Windows;
@@ -134,6 +136,14 @@ public class CharacterCustomizationScript : MonoBehaviour
 
 	private void Update()
 	{
+		if (Yandere.HomeCamera.Mute)
+		{
+			MyAudio.volume = 0f;
+		}
+		else
+		{
+			MyAudio.volume = 1f;
+		}
 		string axisName = "Mouse X";
 		if (InputDevice.Type == InputDeviceType.Gamepad)
 		{

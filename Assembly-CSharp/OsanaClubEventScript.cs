@@ -138,7 +138,7 @@ public class OsanaClubEventScript : MonoBehaviour
 				EventStudent[EventSpeaker[EventPhase]].CharacterAnimation.CrossFade(EventStudent[EventSpeaker[EventPhase]].RandomAnim);
 				AudioClipPlayer.Play(EventClip[EventPhase], EventStudent[EventSpeaker[EventPhase]].transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
 				Spoken = true;
-				if (EventSpeaker[EventPhase] == 1 && EventPhase > 7 && EventPhase < 33 && EventPhase != 24 && num < 10f)
+				if (EventSpeaker[EventPhase] == 1 && EventPhase > 7 && EventPhase < 33 && EventPhase != 24 && num < 10f && Yandere.transform.position.y > EventStudent[1].transform.position.y - 1f && Yandere.transform.position.y < EventStudent[1].transform.position.y + 1f)
 				{
 					if (EventPhase == 30)
 					{

@@ -105,6 +105,7 @@ public class FeedListScript : MonoBehaviour
 		if (Show)
 		{
 			FeedList.localPosition = Vector3.Lerp(FeedList.localPosition, new Vector3(0f, 0f, 0f), Time.unscaledDeltaTime * 10f);
+			Time.timeScale = 0.0001f;
 			if (InputManager.TappedDown)
 			{
 				Row++;

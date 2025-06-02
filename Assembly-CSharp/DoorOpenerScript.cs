@@ -42,6 +42,7 @@ public class DoorOpenerScript : MonoBehaviour
 			Student = other.gameObject.GetComponent<StudentScript>();
 			if (Student != null && !Student.Dying && !Door.Open && !Door.Locked)
 			{
+				Debug.Log("A DoorOpener is opening a door from here!");
 				Door.Student = Student;
 				Door.OpenDoor();
 			}

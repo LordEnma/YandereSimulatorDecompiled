@@ -181,11 +181,12 @@ public class MemorialSceneScript : MonoBehaviour
 				OptionGlobals.DisableBloom = true;
 				StudentManager.Clock.Profile.bloom.enabled = false;
 			}
-			if (StudentManager.Eighties && DateGlobals.Week == 6)
+			if (StudentManager.Eighties && DateGlobals.Week == 6 && StudentManager.Students[StudentManager.RivalID] != null)
 			{
 				StudentManager.IdolStage.SetActive(value: true);
 				base.gameObject.SetActive(value: false);
 			}
+			AstarPath.active.Scan();
 			StudentManager.Yandere.Casual = !StudentManager.Yandere.Casual;
 			StudentManager.Yandere.ChangeSchoolwear();
 			StudentManager.Yandere.transform.position = new Vector3(12f, 0f, 72f);

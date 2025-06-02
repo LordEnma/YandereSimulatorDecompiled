@@ -76,7 +76,7 @@ public class RadioScript : MonoBehaviour
 					Prompt.enabled = true;
 				}
 			}
-			else
+			else if (Prompt.InView)
 			{
 				UISprite uISprite = Prompt.Circle[0];
 				if (uISprite.fillAmount == 0f)
@@ -107,7 +107,7 @@ public class RadioScript : MonoBehaviour
 			Prompt.enabled = false;
 			Prompt.Hide();
 		}
-		if (!Delinquent)
+		if (!Delinquent || !((Prompt.Yandere.transform.position - base.transform.position).sqrMagnitude < 121f))
 		{
 			return;
 		}

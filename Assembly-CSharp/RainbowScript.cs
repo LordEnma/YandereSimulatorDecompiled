@@ -19,7 +19,10 @@ public class RainbowScript : MonoBehaviour
 
 	private void Update()
 	{
-		percent = (percent + Time.deltaTime * cyclesPerSecond) % 1f;
-		MyRenderer.material.color = Color.HSVToRGB(percent, 1f, 1f);
+		if (MyRenderer.isVisible)
+		{
+			percent = (percent + Time.deltaTime * cyclesPerSecond) % 1f;
+			MyRenderer.material.color = Color.HSVToRGB(percent, 1f, 1f);
+		}
 	}
 }

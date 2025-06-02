@@ -14,7 +14,7 @@ public class CraftableItemScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Prompt.Circle[0].fillAmount == 0f)
+		if (Prompt.InView && Prompt.Circle[0].fillAmount == 0f)
 		{
 			if (!Input.GetKeyDown("z"))
 			{

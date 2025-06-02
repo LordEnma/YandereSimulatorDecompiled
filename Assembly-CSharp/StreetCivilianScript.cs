@@ -7,6 +7,8 @@ public class StreetCivilianScript : MonoBehaviour
 
 	public Animation MyAnimation;
 
+	public Animation Anim2;
+
 	public AIPath Pathfinding;
 
 	public Transform[] Destinations;
@@ -32,12 +34,20 @@ public class StreetCivilianScript : MonoBehaviour
 		}
 		MoveTowardsTarget(Destinations[ID].position);
 		MyAnimation.CrossFade(IdleAnim);
+		if (Anim2 != null)
+		{
+			Anim2.CrossFade(IdleAnim);
+		}
 		Pathfinding.canSearch = false;
 		Pathfinding.canMove = false;
 		Timer += Time.deltaTime;
 		if (Timer > 13.5f)
 		{
 			MyAnimation.CrossFade(WalkAnim);
+			if (Anim2 != null)
+			{
+				Anim2.CrossFade(WalkAnim);
+			}
 			ID++;
 			if (ID == Destinations.Length)
 			{

@@ -2425,9 +2425,9 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation["f02_sadEyebrows_00"].layer = 40;
 		CharacterAnimation.Play("f02_sadEyebrows_00");
 		CharacterAnimation["f02_sadEyebrows_00"].weight = 0f;
-		CharacterAnimation["f02_phonePose_00"].layer = 41;
-		CharacterAnimation.Play("f02_phonePose_00");
-		CharacterAnimation["f02_phonePose_00"].weight = 0f;
+		CharacterAnimation["f02_phonePose_01"].layer = 41;
+		CharacterAnimation.Play("f02_phonePose_01");
+		CharacterAnimation["f02_phonePose_01"].weight = 0f;
 		CharacterAnimation["f02_prepareThrow_00"].layer = 42;
 		CharacterAnimation.Play("f02_prepareThrow_00");
 		CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
@@ -2499,7 +2499,7 @@ public class YandereScript : MonoBehaviour
 		CharacterAnimation["f02_gutsEye_00"].weight = 0f;
 		CharacterAnimation["f02_fingerSnap_00"].weight = 0f;
 		CharacterAnimation["f02_sadEyebrows_00"].weight = 0f;
-		CharacterAnimation["f02_phonePose_00"].weight = 0f;
+		CharacterAnimation["f02_phonePose_01"].weight = 0f;
 		CharacterAnimation["f02_prepareThrow_00"].weight = 0f;
 		CharacterAnimation["f02_subtleThrowIdle_00"].weight = 0f;
 		CharacterAnimation["f02_obviousThrowIdle_00"].weight = 0f;
@@ -2944,7 +2944,7 @@ public class YandereScript : MonoBehaviour
 						}
 						if (!Aiming)
 						{
-							StudentManager.CheckStudentProximity();
+							StudentManager.CheckAllStudentProximities();
 							if (StudentManager.ErrorTimer == 0f)
 							{
 								PauseScreen.NewSettings.Profile.depthOfField.enabled = false;
@@ -5775,13 +5775,13 @@ public class YandereScript : MonoBehaviour
 			if (SenpaiGazing)
 			{
 				Phone.SetActive(value: true);
-				CharacterAnimation["f02_phonePose_00"].weight = Mathf.Lerp(CharacterAnimation["f02_phonePose_00"].weight, 1f, Time.unscaledDeltaTime * 10f);
+				CharacterAnimation["f02_phonePose_01"].weight = Mathf.Lerp(CharacterAnimation["f02_phonePose_01"].weight, 1f, Time.unscaledDeltaTime * 10f);
 				Time.timeScale = Mathf.Lerp(Time.timeScale, 2f, Time.unscaledDeltaTime * 10f);
 			}
 			else
 			{
 				Phone.SetActive(value: false);
-				CharacterAnimation["f02_phonePose_00"].weight = Mathf.Lerp(CharacterAnimation["f02_phonePose_00"].weight, 0f, Time.unscaledDeltaTime * 10f);
+				CharacterAnimation["f02_phonePose_01"].weight = Mathf.Lerp(CharacterAnimation["f02_phonePose_01"].weight, 0f, Time.unscaledDeltaTime * 10f);
 				Time.timeScale = Mathf.Lerp(Time.timeScale, 0.5f, Time.unscaledDeltaTime * 10f);
 			}
 			YandereFilter.FadeFX = Mathf.Lerp(YandereFilter.FadeFX, 1f, Time.unscaledDeltaTime * 10f);
@@ -5884,7 +5884,7 @@ public class YandereScript : MonoBehaviour
 				Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, Time.unscaledDeltaTime * 10f);
 			}
 			Phone.SetActive(value: false);
-			CharacterAnimation["f02_phonePose_00"].weight = Mathf.Lerp(CharacterAnimation["f02_phonePose_00"].weight, 0f, Time.unscaledDeltaTime * 10f);
+			CharacterAnimation["f02_phonePose_01"].weight = Mathf.Lerp(CharacterAnimation["f02_phonePose_01"].weight, 0f, Time.unscaledDeltaTime * 10f);
 			YandereVisionPanel.alpha = Mathf.Lerp(YandereVisionPanel.alpha, 0f, Time.unscaledDeltaTime * 10f);
 			YandereFilter.FadeFX = Mathf.Lerp(YandereFilter.FadeFX, 0f, Time.unscaledDeltaTime * 10f);
 			YandereFade = Mathf.Lerp(YandereFade, 100f, Time.unscaledDeltaTime * 10f);
@@ -6433,12 +6433,8 @@ public class YandereScript : MonoBehaviour
 			}
 			TalkTimer -= Time.deltaTime;
 		}
-		else
+		else if (Interaction == YandereInteractionType.SendingToLocker)
 		{
-			if (Interaction != YandereInteractionType.SendingToLocker)
-			{
-				return;
-			}
 			if (TalkTimer == 5f)
 			{
 				CharacterAnimation.CrossFade("f02_greet_01");
@@ -6458,6 +6454,18 @@ public class YandereScript : MonoBehaviour
 				}
 			}
 			TalkTimer -= Time.deltaTime;
+		}
+		bool flag = false;
+		if (!ShoulderCamera.Repositioning)
+		{
+			RPGCamera.MyCollider.enabled = true;
+			flag = Physics.CheckSphere(RPGCamera.gameObject.transform.position, RPGCamera.gameObject.GetComponent<Collider>().bounds.extents.magnitude / 1f, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore);
+			RPGCamera.MyCollider.enabled = false;
+		}
+		if (flag)
+		{
+			Debug.Log("Camera was clippin' into wall!");
+			MyController.Move(base.transform.right * Time.deltaTime * -1f);
 		}
 	}
 
@@ -7775,7 +7783,7 @@ public class YandereScript : MonoBehaviour
 	{
 		YandereTimer = 0f;
 		Phone.SetActive(value: false);
-		CharacterAnimation["f02_phonePose_00"].weight = 0f;
+		CharacterAnimation["f02_phonePose_01"].weight = 0f;
 		YandereVisionPanel.alpha = 0f;
 		SenpaiGazing = false;
 		CameraEffects.UpdateVignette(1f - Sanity * 0.01f);
@@ -7943,6 +7951,11 @@ public class YandereScript : MonoBehaviour
 			{
 				Hairstyles[ID].SetActive(value: false);
 				Hairstyles[ID].layer = 13;
+				Transform[] componentsInChildren = Hairstyles[ID].GetComponentsInChildren<Transform>();
+				for (int i = 0; i < componentsInChildren.Length; i++)
+				{
+					componentsInChildren[i].gameObject.layer = 13;
+				}
 			}
 		}
 		if (Hairstyle > 0 && Hairstyles[Hairstyle] != null)
@@ -9801,6 +9814,11 @@ public class YandereScript : MonoBehaviour
 		for (ID = 1; ID < Hairstyles.Length; ID++)
 		{
 			Hairstyles[ID].layer = 4;
+			Transform[] componentsInChildren = Hairstyles[ID].GetComponentsInChildren<Transform>();
+			for (int i = 0; i < componentsInChildren.Length; i++)
+			{
+				componentsInChildren[i].gameObject.layer = 4;
+			}
 		}
 	}
 
@@ -10193,6 +10211,11 @@ public class YandereScript : MonoBehaviour
 				IdleAnim = "f02_idleGraceful_00";
 				WalkAnim = "f02_walkGraceful_00";
 			}
+			else if (VtuberID == 4)
+			{
+				Hairstyle = 218;
+				AccessoryID = 56;
+			}
 			UpdateAccessory();
 			UpdateHair();
 			VtuberFace();
@@ -10211,6 +10234,10 @@ public class YandereScript : MonoBehaviour
 				MyRenderer.SetBlendShapeWeight(8, 0f);
 				MyRenderer.SetBlendShapeWeight(9, 100f);
 				MyRenderer.SetBlendShapeWeight(12, 0f);
+			}
+			else if (VtuberID == 4)
+			{
+				MyRenderer.SetBlendShapeWeight(0, 50f);
 			}
 		}
 	}
@@ -10960,6 +10987,8 @@ public class YandereScript : MonoBehaviour
 			LooseSocks[1].SetActive(value: false);
 			LooseSocks[2].SetActive(value: false);
 			LooseSocks[3].SetActive(value: false);
+			LooseSocks[4].SetActive(value: false);
+			LooseSocks[5].SetActive(value: false);
 			MyStockings = TransparentPixel;
 			if (Casual)
 			{
@@ -11138,6 +11167,12 @@ public class YandereScript : MonoBehaviour
 				MyStockings = StockingList[29];
 				LooseSocks[2].SetActive(value: true);
 				LooseSocks[3].SetActive(value: true);
+			}
+			else if (Stockings == "Raibaru")
+			{
+				MyStockings = StockingList[29];
+				LooseSocks[4].SetActive(value: true);
+				LooseSocks[5].SetActive(value: true);
 			}
 			else if (Stockings == "Osana")
 			{
