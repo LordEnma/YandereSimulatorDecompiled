@@ -89,11 +89,6 @@ public class OsanaWednesdayLunchEventScript : MonoBehaviour
 		}
 		if (Phase == 1)
 		{
-			if (Input.GetKeyDown(KeyCode.Space))
-			{
-				Yandere.transform.position = Location.position + new Vector3(2f, 0f, 2f);
-				Rival.transform.position = Location.position + new Vector3(1f, 0f, 1f);
-			}
 			if (Rival.DistanceToDestination < 0.5f)
 			{
 				AudioClipPlayer.Play(SpeechClip, Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);

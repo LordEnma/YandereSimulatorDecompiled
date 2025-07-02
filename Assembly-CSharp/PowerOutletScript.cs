@@ -6,11 +6,15 @@ public class PowerOutletScript : MonoBehaviour
 
 	public PowerSwitchScript PowerSwitch;
 
+	public GameObject PowerStripGameObject;
+
 	public GameObject PowerStrip;
 
 	public GameObject PluggedOutlet;
 
 	public GameObject SabotagedOutlet;
+
+	public bool PluggedIn;
 
 	public bool Sabotaged;
 
@@ -34,14 +38,7 @@ public class PowerOutletScript : MonoBehaviour
 				}
 				if (Prompt.Circle[0].fillAmount == 0f)
 				{
-					Prompt.Circle[0].fillAmount = 1f;
-					PowerStrip = Prompt.Yandere.PickUp.gameObject;
-					Prompt.Yandere.EmptyHands();
-					PowerStrip.transform.parent = base.transform;
-					PowerStrip.transform.localPosition = new Vector3(0f, 0f, 0f);
-					PowerStrip.SetActive(value: false);
-					PluggedOutlet.SetActive(value: true);
-					Prompt.Label[0].text = "     Unplug";
+					PlugIn();
 				}
 			}
 			else if (!Prompt.HideButton[0])
@@ -67,14 +64,7 @@ public class PowerOutletScript : MonoBehaviour
 		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			Prompt.Circle[0].fillAmount = 1f;
-			PluggedOutlet.SetActive(value: false);
-			PowerStrip.transform.localPosition = new Vector3(0.074f, -0.01385f, 0.0295f);
-			PowerStrip.transform.localEulerAngles = new Vector3(0f, -99f, 0f);
-			PowerStrip.SetActive(value: true);
-			PowerStrip = null;
-			Prompt.HideButton[1] = true;
-			Prompt.Label[0].text = "     Plug In";
+			Unplug();
 		}
 		if (Prompt.Circle[1].fillAmount != 0f)
 		{
@@ -89,11 +79,7 @@ public class PowerOutletScript : MonoBehaviour
 		}
 		if (!Sabotaged)
 		{
-			Prompt.Yandere.SuspiciousActionTimer = 1f;
-			SabotagedOutlet.SetActive(value: true);
-			PluggedOutlet.SetActive(value: false);
-			Prompt.Label[1].text = "     Repair";
-			Prompt.HideButton[0] = true;
+			Sabotage();
 		}
 		else
 		{
@@ -104,5 +90,52 @@ public class PowerOutletScript : MonoBehaviour
 		}
 		Sabotaged = !Sabotaged;
 		Debug.Log("''Sabotaged'' is now: " + Sabotaged);
+	}
+
+	public void PlugIn()
+	{
+		Prompt.Circle[0].fillAmount = 1f;
+		PowerStrip = PowerStripGameObject;
+		Prompt.Yandere.EmptyHands();
+		PowerStrip.transform.parent = base.transform;
+		PowerStrip.transform.localPosition = new Vector3(0f, 0f, 0f);
+		PowerStrip.SetActive(value: false);
+		PluggedOutlet.SetActive(value: true);
+		Prompt.Label[0].text = "     Unplug";
+		PluggedIn = true;
+	}
+
+	public void Unplug()
+	{
+		Prompt.Circle[0].fillAmount = 1f;
+		PluggedOutlet.SetActive(value: false);
+		PowerStrip.transform.localPosition = new Vector3(0.074f, -0.01385f, 0.0295f);
+		PowerStrip.transform.localEulerAngles = new Vector3(0f, -99f, 0f);
+		PowerStrip.SetActive(value: true);
+		PowerStrip = null;
+		Prompt.HideButton[1] = true;
+		Prompt.Label[0].text = "     Plug In";
+		PluggedIn = false;
+	}
+
+	public void Sabotage()
+	{
+		Prompt.Yandere.SuspiciousActionTimer = 1f;
+		SabotagedOutlet.SetActive(value: true);
+		PluggedOutlet.SetActive(value: false);
+		Prompt.Label[1].text = "     Repair";
+		Prompt.HideButton[0] = true;
+	}
+
+	public void RestoreState()
+	{
+		if (PluggedIn)
+		{
+			PlugIn();
+			if (Sabotaged)
+			{
+				Sabotage();
+			}
+		}
 	}
 }

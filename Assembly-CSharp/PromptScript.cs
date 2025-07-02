@@ -248,6 +248,10 @@ public class PromptScript : MonoBehaviour
 			base.enabled = false;
 			Hide();
 		}
+		else
+		{
+			WaitTimer = 5f;
+		}
 	}
 
 	private void Start()

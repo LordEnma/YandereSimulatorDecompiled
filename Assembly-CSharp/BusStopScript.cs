@@ -197,7 +197,7 @@ public class BusStopScript : MonoBehaviour
 		SecondAmai.gameObject.SetActive(value: false);
 		ThirdAmai.gameObject.SetActive(value: false);
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
-		settings.focusDistance = 1.2f;
+		settings.focusDistance = 1.66666f;
 		settings.aperture = 5.6f;
 		Profile.depthOfField.settings = settings;
 		Week = DateGlobals.Week;

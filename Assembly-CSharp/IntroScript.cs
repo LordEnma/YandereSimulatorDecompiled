@@ -369,7 +369,8 @@ public class IntroScript : MonoBehaviour
 		{
 			FadeOutDarkness.color = new Color(FadeOutDarkness.color.r, FadeOutDarkness.color.g, FadeOutDarkness.color.b, Mathf.MoveTowards(FadeOutDarkness.color.a, 1f, Time.deltaTime));
 			Circle.fillAmount = 1f;
-			Narration.volume = FadeOutDarkness.color.a;
+			Narration.volume = 1f - FadeOutDarkness.color.a;
+			BGM.volume = 1f - FadeOutDarkness.color.a;
 			if (FadeOutDarkness.color.a == 1f)
 			{
 				GameGlobals.LastInputType = (int)InputDevice.Type;
@@ -1256,9 +1257,17 @@ public class IntroScript : MonoBehaviour
 		{
 			VtuberHairs3[i].SetActive(value: false);
 		}
+		for (int i = 1; i < VtuberHairs4.Length; i++)
+		{
+			VtuberHairs4[i].SetActive(value: false);
+		}
 		for (int i = 1; i < VtuberAccs.Length; i++)
 		{
 			VtuberAccs[i].SetActive(value: false);
+		}
+		for (int i = 1; i < VtuberAccs4.Length; i++)
+		{
+			VtuberAccs4[i].SetActive(value: false);
 		}
 		if (GameGlobals.VtuberID <= 0)
 		{

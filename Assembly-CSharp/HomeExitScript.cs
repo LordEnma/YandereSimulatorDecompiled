@@ -27,6 +27,10 @@ public class HomeExitScript : MonoBehaviour
 
 	public int Zs;
 
+	public AudioSource MyAudio;
+
+	public AudioClip Confirm;
+
 	public void Start()
 	{
 		UILabel uILabel = Labels[1];
@@ -83,7 +87,7 @@ public class HomeExitScript : MonoBehaviour
 			{
 				Labels[6].alpha = 1f;
 			}
-			if (GameGlobals.Eighties)
+			if (GameGlobals.CustomMode)
 			{
 				Labels[6].alpha = 0.5f;
 			}
@@ -131,6 +135,7 @@ public class HomeExitScript : MonoBehaviour
 				}
 				else if (ID == 6)
 				{
+					Debug.Log("Leaving bedroom, allegedly.");
 					HomeYandere.MyController.radius = 0.25f;
 					HomeCamera.Triggers[1].gameObject.transform.position = new Vector3(-4.063334f, -2.5165f, -4.0875f);
 					HomeCamera.Triggers[1].gameObject.GetComponent<BoxCollider>().size = new Vector3(2.16f, 1f, 1f);
@@ -141,23 +146,39 @@ public class HomeExitScript : MonoBehaviour
 					HomeCamera.Targets[1].transform.localPosition = new Vector3(-4.02f, -2.1f, -4.56265f);
 					HomeBringItem.HardwareButton.SetActive(value: false);
 					HomeCamera.OutOfRoom = true;
-					HomeCamera.OpenDoor = true;
 					HomeCamera.ID = 0;
-					Exit();
+					if (!GameGlobals.Eighties)
+					{
+						HomeCamera.OpenDoor = true;
+						Exit();
+					}
+					else
+					{
+						HomeDarkness.FadeOut = true;
+						HomeCamera.enabled = false;
+						HomeWindow.Show = false;
+						base.enabled = false;
+					}
 				}
 				else
 				{
 					if (ID == 2)
 					{
 						HomeDarkness.Sprite.color = new Color(1f, 1f, 1f, 0f);
+						MyAudio.clip = Confirm;
+						MyAudio.Play();
 					}
 					else if (ID == 3)
 					{
 						HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+						MyAudio.clip = Confirm;
+						MyAudio.Play();
 					}
 					else if (ID == 4)
 					{
 						HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
+						MyAudio.clip = Confirm;
+						MyAudio.Play();
 					}
 					HomeDarkness.FadeOut = true;
 					HomeWindow.Show = false;
@@ -198,6 +219,8 @@ public class HomeExitScript : MonoBehaviour
 		{
 			HomeDarkness.Sprite.color = new Color(1f, 1f, 1f, 0f);
 		}
+		MyAudio.clip = Confirm;
+		MyAudio.Play();
 		HomeDarkness.FadeOut = true;
 		HomeWindow.Show = false;
 		base.enabled = false;

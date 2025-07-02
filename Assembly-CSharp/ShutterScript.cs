@@ -550,6 +550,14 @@ public class ShutterScript : MonoBehaviour
 								if (Student.Outlines[ID] != null)
 								{
 									Student.Outlines[ID].enabled = true;
+									if (Student.Outlines[ID].h != null)
+									{
+										Student.Outlines[ID].h.ConstantOnImmediate(Student.Outlines[ID].color);
+									}
+									else if (Student.Outlines[ID].h == null)
+									{
+										Student.Outlines[ID].Awake();
+									}
 								}
 							}
 							StudentInfo.UpdateInfo(Student.StudentID);
@@ -697,7 +705,7 @@ public class ShutterScript : MonoBehaviour
 				PhotoDescLabel.text = "Photo of: Skirt";
 				Skirt = true;
 			}
-			if (hit.collider.transform.root.gameObject.name == "Student_51 (Miyuji Shan)" && StudentManager.Students[51].AirGuitar.isPlaying)
+			if (hit.collider.transform.root.gameObject.name.Contains("Miyuji") && StudentManager.Students[51].AirGuitar.isPlaying)
 			{
 				AirGuitarShot = true;
 				PhotoDescription.SetActive(value: true);
@@ -1087,7 +1095,16 @@ public class ShutterScript : MonoBehaviour
 		{
 			return;
 		}
-		Subtitle.UpdateLabel(SubtitleType.PhotoAnnoyance, 0, 3f);
+		if (!StudentManager.Eighties && FaceStudent.StudentID == 41)
+		{
+			string[] array = new string[5] { "Ahem.", "Back up.", "Too close.", "Please don't.", "Rude..." };
+			Subtitle.CustomText = array[UnityEngine.Random.Range(0, array.Length)];
+			Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+		}
+		else
+		{
+			Subtitle.UpdateLabel(SubtitleType.PhotoAnnoyance, 0, 3f);
+		}
 		if (!FaceStudent.Teacher && Yandere.Mask == null)
 		{
 			if (MissionMode)

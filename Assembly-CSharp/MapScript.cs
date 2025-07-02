@@ -79,7 +79,7 @@ public class MapScript : MonoBehaviour
 			{
 				flag = CheckForMurderSuicide();
 			}
-			if (Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial && !flag)
+			if (Yandere.CanMove && !Yandere.StudentManager.TutorialWindow.Show && Yandere.Police.Darkness.color.a <= 0f && !Yandere.StudentManager.KokonaTutorial && !Yandere.YandereVision && !flag)
 			{
 				if (!Show)
 				{
@@ -115,6 +115,11 @@ public class MapScript : MonoBehaviour
 					PromptBar.Show = false;
 					Show = false;
 				}
+			}
+			else if (Yandere.YandereVision)
+			{
+				Yandere.NotificationManager.CustomText = "Can't open map now.";
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
 		}
 		if (Show)

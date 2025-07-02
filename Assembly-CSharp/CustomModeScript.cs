@@ -267,6 +267,8 @@ public class CustomModeScript : MonoBehaviour
 
 	public UILabel InfoLabel;
 
+	public UILabel RandomLabel;
+
 	public UILabel EditedLabel;
 
 	public UILabel PortraitPoseNameLabel;
@@ -588,6 +590,7 @@ public class CustomModeScript : MonoBehaviour
 		EditingCircles[1].transform.parent.gameObject.SetActive(value: false);
 		PreviousButton.SetActive(value: false);
 		NextButton.SetActive(value: false);
+		RandomLabel.text = "Are you sure you want to randomize all students?";
 		SecondHeaderLabel.text = "";
 		Circles[1].enabled = false;
 		Circles[2].enabled = false;
@@ -610,6 +613,7 @@ public class CustomModeScript : MonoBehaviour
 		}
 		else if (EditingStudent)
 		{
+			RandomLabel.text = "Are you sure you want to randomize this student?";
 			HeaderLabel.text = "Editing Student";
 			Circles[1].enabled = true;
 			Circles[2].enabled = true;
@@ -1132,683 +1136,546 @@ public class CustomModeScript : MonoBehaviour
 			}
 			else if (EditingStudent)
 			{
-				StudentListPanel.alpha = Mathf.MoveTowards(StudentListPanel.alpha, 0f, Time.deltaTime * 10f);
-				if (!(StudentListPanel.alpha < 0.0001f))
+				if (ConfirmRandomPanel.alpha == 0f)
 				{
-					return;
-				}
-				if (EditingCosmetic)
-				{
-					StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 1f, Time.deltaTime * 10f);
-					ReputationPanel.alpha = Mathf.MoveTowards(ReputationPanel.alpha, 0f, Time.deltaTime * 10f);
-					CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 1f, Time.deltaTime * 10f);
-					OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
-					PortraitPanel.alpha = Mathf.MoveTowards(PortraitPanel.alpha, 0f, Time.deltaTime * 10f);
-					DetailPanel.alpha = Mathf.MoveTowards(DetailPanel.alpha, 0f, Time.deltaTime * 10f);
-					if (InputManager.TappedDown || HeldDown > 0.5f)
-					{
-						if (HeldDown > 0.5f)
-						{
-							HeldDown = 0.45f;
-						}
-						CosmeticSelected++;
-						if (CosmeticSelected > 9)
-						{
-							StudentList.localPosition = new Vector3(0f, 0f, 0f);
-							CosmeticSelected = 0;
-						}
-					}
-					if (InputManager.TappedUp || HeldUp > 0.5f)
-					{
-						if (HeldUp > 0.5f)
-						{
-							HeldUp = 0.45f;
-						}
-						CosmeticSelected--;
-						if (CosmeticSelected < 0)
-						{
-							CosmeticSelected = 9;
-						}
-					}
-					CosmeticArrow.localPosition = new Vector3(-1000f, 500 - 100 * CosmeticSelected, 0f);
-					if (CosmeticArrow.position.y < -0.4f)
-					{
-						CosmeticPanel.transform.position += new Vector3(0f, 0.1f, 0f);
-					}
-					if (CosmeticArrow.position.y > 0.4f)
-					{
-						CosmeticPanel.transform.position -= new Vector3(0f, 0.1f, 0f);
-					}
-					CosmeticPanel.transform.localPosition = new Vector3(0f, Mathf.RoundToInt(CosmeticPanel.transform.localPosition.y), 0f);
-					if (Input.GetButtonDown(InputNames.Xbox_A) && CosmeticWindows[CosmeticSelected].alpha == 1f)
-					{
-						if (CosmeticSelected == 0)
-						{
-							int num = int.Parse(JSON.Students[Selected].Hairstyle);
-							num++;
-							if (JSON.Students[Selected].Gender == 0 && num == 214)
-							{
-								num++;
-							}
-							if (num >= HairstyleLimit)
-							{
-								num = 1;
-							}
-							JSON.Students[Selected].Hairstyle = num.ToString() ?? "";
-						}
-						else if (CosmeticSelected == 1)
-						{
-							ColorID++;
-							if (ColorID >= Colors.Length)
-							{
-								ColorID = 0;
-							}
-							if (Selected == 0)
-							{
-								Debug.Log("Informing the ColorWheel of the player's hair renderer. Yandere.Hairstyle is " + Yandere.Hairstyle);
-								Renderer renderer = Yandere.Hairstyles[Yandere.Hairstyle].GetComponent<Renderer>();
-								if (renderer == null)
-								{
-									renderer = Yandere.Hairstyles[Yandere.Hairstyle].GetComponentInChildren<Renderer>();
-								}
-								if (renderer != null)
-								{
-									Debug.Log("YandereRenderer was not null.");
-									ColorWheel.r[0] = renderer;
-									ColorWheel.r[1] = renderer;
-								}
-								else
-								{
-									Debug.Log("YandereRenderer was null?!");
-								}
-							}
-							else if (StudentGenders[Selected])
-							{
-								ColorWheel.r[0] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
-								ColorWheel.r[1] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
-							}
-							else
-							{
-								ColorWheel.r[0] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
-								ColorWheel.r[1] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
-							}
-							ColorWheel.gameObject.SetActive(ColorID == Colors.Length - 1);
-							JSON.Students[Selected].Color = Colors[ColorID] ?? "";
-						}
-						else if (CosmeticSelected == 2)
-						{
-							SkinColor[Selected]++;
-							if (SkinColor[Selected] >= StudentKunCosmetic.SkinTextures.Length - 1)
-							{
-								SkinColor[Selected] = 0;
-							}
-							JSON.Misc.SkinColor[Selected] = SkinColor[Selected];
-							if (Selected == 1)
-							{
-								SenpaiGlobals.SenpaiSkinColor = SkinColor[1];
-							}
-						}
-						else if (CosmeticSelected == 3)
-						{
-							Debug.Log("EyeTypeID is currently: " + EyeTypeID);
-							EyeTypeID++;
-							Debug.Log("EyeTypeID has incremented to: " + EyeTypeID);
-							if (StudentGenders[Selected])
-							{
-								if (EyeTypeID >= MaleEyeTypes.Length)
-								{
-									EyeTypeID = 0;
-								}
-								Debug.Log("EyeTypeID should now be: " + EyeTypeID);
-								JSON.Students[Selected].EyeType = MaleEyeTypes[EyeTypeID] ?? "";
-								Debug.Log("Current Character's EyeType should now be: " + JSON.Students[Selected].EyeType);
-							}
-							else
-							{
-								if (EyeTypeID >= EyeTypes.Length)
-								{
-									EyeTypeID = 0;
-								}
-								JSON.Students[Selected].EyeType = EyeTypes[EyeTypeID] ?? "";
-							}
-						}
-						else if (CosmeticSelected == 4)
-						{
-							EyeColorID++;
-							if (EyeColorID >= Colors.Length)
-							{
-								EyeColorID = 0;
-							}
-							if (StudentGenders[Selected])
-							{
-								ColorWheel.r[0] = StudentKunCosmetic.LeftEyeRenderer;
-								ColorWheel.r[1] = StudentKunCosmetic.RightEyeRenderer;
-							}
-							else
-							{
-								ColorWheel.r[0] = StudentChanCosmetic.LeftEyeRenderer;
-								ColorWheel.r[1] = StudentChanCosmetic.RightEyeRenderer;
-							}
-							ColorWheel.gameObject.SetActive(EyeColorID == Colors.Length - 1);
-							JSON.Students[Selected].Eyes = Colors[EyeColorID] ?? "";
-						}
-						else if (CosmeticSelected == 5)
-						{
-							EyeWear[Selected]++;
-							if (EyeWear[Selected] >= EyewearLimit)
-							{
-								EyeWear[Selected] = 0;
-							}
-							JSON.Misc.EyeWear[Selected] = EyeWear[Selected];
-						}
-						else if (CosmeticSelected == 6)
-						{
-							int num2 = int.Parse(JSON.Students[Selected].Accessory);
-							num2++;
-							if (num2 >= AccessoryLimit)
-							{
-								num2 = 0;
-							}
-							JSON.Students[Selected].Accessory = num2.ToString() ?? "";
-						}
-						else if (CosmeticSelected == 7)
-						{
-							float breastSize = JSON.Students[Selected].BreastSize;
-							breastSize += 0.1f;
-							if (breastSize > 2f)
-							{
-								breastSize = 0.5f;
-							}
-							breastSize = Mathf.Floor(breastSize * 10f) / 10f;
-							JSON.Students[Selected].BreastSize = breastSize;
-						}
-						else if (CosmeticSelected == 8)
-						{
-							StockingID++;
-							if (StockingID >= StockingColors.Length)
-							{
-								StockingID = 0;
-							}
-							JSON.Students[Selected].Stockings = StockingColors[StockingID];
-						}
-						else if (CosmeticSelected == 9)
-						{
-							int num3 = AnimSet[Selected];
-							num3++;
-							if (Selected == 0 || JSON.Students[Selected].Gender == 0)
-							{
-								if (num3 >= FemaleIdles.Length)
-								{
-									num3 = 0;
-								}
-							}
-							else if (num3 >= MaleIdles.Length)
-							{
-								num3 = 0;
-							}
-							AnimSet[Selected] = num3;
-							JSON.Misc.AnimSet[Selected] = AnimSet[Selected];
-						}
-						UpdateStudent();
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_B) && CosmeticWindows[CosmeticSelected].alpha == 1f)
-					{
-						if (CosmeticSelected == 0)
-						{
-							int num4 = int.Parse(JSON.Students[Selected].Hairstyle);
-							num4--;
-							if (JSON.Students[Selected].Gender == 0 && num4 == 214)
-							{
-								num4--;
-							}
-							if (num4 < 1)
-							{
-								num4 = HairstyleLimit - 1;
-							}
-							JSON.Students[Selected].Hairstyle = num4.ToString() ?? "";
-						}
-						else if (CosmeticSelected == 1)
-						{
-							ColorID--;
-							if (ColorID <= -1)
-							{
-								ColorID = Colors.Length - 1;
-							}
-							if (Selected == 0)
-							{
-								Renderer renderer2 = Yandere.Hairstyles[Yandere.Hairstyle].GetComponent<Renderer>();
-								if (renderer2 == null)
-								{
-									renderer2 = Yandere.Hairstyles[Yandere.Hairstyle].GetComponentInChildren<Renderer>();
-								}
-								if (renderer2 != null)
-								{
-									ColorWheel.r[0] = renderer2;
-									ColorWheel.r[1] = renderer2;
-								}
-							}
-							else if (StudentGenders[Selected])
-							{
-								ColorWheel.r[0] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
-								ColorWheel.r[1] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
-							}
-							else
-							{
-								ColorWheel.r[0] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
-								ColorWheel.r[1] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
-							}
-							ColorWheel.gameObject.SetActive(ColorID == Colors.Length - 1);
-							JSON.Students[Selected].Color = Colors[ColorID] ?? "";
-						}
-						else if (CosmeticSelected == 2)
-						{
-							SkinColor[Selected]--;
-							if (SkinColor[Selected] <= -1)
-							{
-								SkinColor[Selected] = StudentKunCosmetic.SkinTextures.Length - 2;
-							}
-							JSON.Misc.SkinColor[Selected] = SkinColor[Selected];
-							if (Selected == 1)
-							{
-								SenpaiGlobals.SenpaiSkinColor = SkinColor[1];
-							}
-						}
-						else if (CosmeticSelected == 3)
-						{
-							EyeTypeID--;
-							if (StudentGenders[Selected])
-							{
-								if (EyeTypeID <= -1)
-								{
-									EyeTypeID = MaleEyeTypes.Length - 1;
-								}
-								JSON.Students[Selected].EyeType = MaleEyeTypes[EyeTypeID] ?? "";
-							}
-							else
-							{
-								if (EyeTypeID <= -1)
-								{
-									EyeTypeID = EyeTypes.Length - 1;
-								}
-								JSON.Students[Selected].EyeType = EyeTypes[EyeTypeID] ?? "";
-							}
-						}
-						else if (CosmeticSelected == 4)
-						{
-							EyeColorID--;
-							if (EyeColorID <= -1)
-							{
-								EyeColorID = Colors.Length - 1;
-							}
-							if (StudentGenders[Selected])
-							{
-								ColorWheel.r[0] = StudentKunCosmetic.LeftEyeRenderer;
-								ColorWheel.r[1] = StudentKunCosmetic.RightEyeRenderer;
-							}
-							else
-							{
-								ColorWheel.r[0] = StudentChanCosmetic.LeftEyeRenderer;
-								ColorWheel.r[1] = StudentChanCosmetic.RightEyeRenderer;
-							}
-							ColorWheel.gameObject.SetActive(EyeColorID == Colors.Length - 1);
-							JSON.Students[Selected].Eyes = Colors[EyeColorID] ?? "";
-						}
-						else if (CosmeticSelected == 5)
-						{
-							EyeWear[Selected]--;
-							if (EyeWear[Selected] <= -1)
-							{
-								EyeWear[Selected] = EyewearLimit - 1;
-							}
-							JSON.Misc.EyeWear[Selected] = EyeWear[Selected];
-						}
-						else if (CosmeticSelected == 6)
-						{
-							int num5 = int.Parse(JSON.Students[Selected].Accessory);
-							num5--;
-							if (num5 < 0)
-							{
-								num5 = AccessoryLimit - 1;
-							}
-							JSON.Students[Selected].Accessory = num5.ToString() ?? "";
-						}
-						else if (CosmeticSelected == 7)
-						{
-							float breastSize2 = JSON.Students[Selected].BreastSize;
-							breastSize2 -= 0.1f;
-							if (breastSize2 < 0.5f)
-							{
-								breastSize2 = 2f;
-							}
-							breastSize2 = Mathf.Floor(breastSize2 * 10f) / 10f;
-							JSON.Students[Selected].BreastSize = breastSize2;
-						}
-						else if (CosmeticSelected == 8)
-						{
-							StockingID--;
-							if (StockingID <= -1)
-							{
-								StockingID = StockingColors.Length - 1;
-							}
-							JSON.Students[Selected].Stockings = StockingColors[StockingID];
-						}
-						else if (CosmeticSelected == 9)
-						{
-							int num6 = AnimSet[Selected];
-							num6--;
-							if (Selected == 0 || JSON.Students[Selected].Gender == 0)
-							{
-								if (num6 < 0)
-								{
-									num6 = FemaleIdles.Length - 1;
-								}
-							}
-							else if (num6 < 0)
-							{
-								num6 = MaleIdles.Length - 1;
-							}
-							AnimSet[Selected] = num6;
-							JSON.Misc.AnimSet[Selected] = AnimSet[Selected];
-						}
-						UpdateStudent();
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_Y))
-					{
-						if (Selected == 0 || StudentChan.activeInHierarchy)
-						{
-							RandomizeGirl(Selected);
-						}
-						else
-						{
-							RandomizeBoy(Selected);
-						}
-						UpdateStudent();
-					}
-					else if (CanGenderSwap && !PlayerIsTyping && Selected > 0 && Input.GetKeyDown("g"))
-					{
-						Debug.Log("Attempting to change gender now.");
-						if (Selected < 90)
-						{
-							if (StudentGenders[Selected])
-							{
-								JSON.Students[Selected].Gender = 0;
-								StudentGenders[Selected] = false;
-							}
-							else
-							{
-								JSON.Students[Selected].Gender = 1;
-								StudentGenders[Selected] = true;
-							}
-							ResetPortraitPose(Selected);
-							UpdateStudent();
-						}
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_Back) || Input.GetKeyDown("space"))
-					{
-						if (JSON.Misc.InvertHairs[Selected] == 0)
-						{
-							JSON.Misc.InvertHairs[Selected] = 1;
-						}
-						else
-						{
-							JSON.Misc.InvertHairs[Selected] = 0;
-						}
-						UpdateStudent();
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_LB))
-					{
-						if (!ColorWheel.gameObject.activeInHierarchy)
-						{
-							ColorWheel.gameObject.SetActive(value: false);
-							LabelColliders[0].enabled = false;
-							LabelColliders[1].enabled = false;
-							ViewingStudents = true;
-							EditingStudent = false;
-							EditingCosmetic = false;
-							PromptBar.ClearButtons();
-							PromptBar.Label[0].text = "Edit";
-							PromptBar.Label[2].text = "Zoom";
-							PromptBar.Label[3].text = "Randomize All";
-							PromptBar.Label[4].text = "Change Selection";
-							PromptBar.Label[5].text = "Rotate";
-							PromptBar.UpdateButtons();
-							PromptBar.Show = true;
-							UpdateHeader();
-						}
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_RB) && Selected > 0 && Selected < 98 && !ColorWheel.gameObject.activeInHierarchy)
-					{
-						DetailSelected = 1;
-						CosmeticPanel.transform.localPosition = new Vector3(0f, -100f, 0f);
-						CosmeticArrow.localPosition = new Vector3(525f, 200f, 0f);
-						EditingCosmetic = false;
-						EditingDetails = true;
-						UpdateHeader();
-					}
-				}
-				else if (EditingDetails)
-				{
-					StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 1f, Time.deltaTime * 10f);
-					ReputationPanel.alpha = Mathf.MoveTowards(ReputationPanel.alpha, 0f, Time.deltaTime * 10f);
-					CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 1f, Time.deltaTime * 10f);
-					OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
-					PortraitPanel.alpha = Mathf.MoveTowards(PortraitPanel.alpha, 0f, Time.deltaTime * 10f);
-					DetailPanel.alpha = Mathf.MoveTowards(DetailPanel.alpha, 0f, Time.deltaTime * 10f);
-					if (InputManager.TappedDown || HeldDown > 0.5f || InputManager.TappedUp || HeldUp > 0.5f)
-					{
-						if (HeldDown > 0.5f)
-						{
-							HeldDown = 0.45f;
-						}
-						if (DetailSelected == 1)
-						{
-							CosmeticArrow.localPosition = new Vector3(525f, 0f, 0f);
-							DetailSelected = 2;
-						}
-						else
-						{
-							CosmeticArrow.localPosition = new Vector3(525f, 200f, 0f);
-							DetailSelected = 1;
-						}
-					}
-					if (Input.GetButtonDown(InputNames.Xbox_A))
-					{
-						if (DetailSelected == 1)
-						{
-							JSON.Students[Selected].Persona++;
-							if (JSON.Students[Selected].Persona == PersonaType.PhoneAddict)
-							{
-								JSON.Students[Selected].Persona++;
-							}
-							if (JSON.Students[Selected].Persona > PersonaType.LandlineUser)
-							{
-								JSON.Students[Selected].Persona = PersonaType.Loner;
-							}
-						}
-						else if (DetailSelected == 2)
-						{
-							JSON.Students[Selected].Strength++;
-							if (JSON.Students[Selected].Strength > 9)
-							{
-								JSON.Students[Selected].Strength = 0;
-							}
-						}
-						UpdateStudent();
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_B))
-					{
-						if (DetailSelected == 1)
-						{
-							JSON.Students[Selected].Persona--;
-							if (JSON.Students[Selected].Persona == PersonaType.PhoneAddict)
-							{
-								JSON.Students[Selected].Persona--;
-							}
-							if (JSON.Students[Selected].Persona < PersonaType.Loner)
-							{
-								JSON.Students[Selected].Persona = PersonaType.LandlineUser;
-							}
-						}
-						else if (DetailSelected == 2)
-						{
-							JSON.Students[Selected].Strength--;
-							if (JSON.Students[Selected].Strength < 0)
-							{
-								JSON.Students[Selected].Strength = 9;
-							}
-						}
-						UpdateStudent();
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_Y))
-					{
-						if (StudentChan.activeInHierarchy)
-						{
-							RandomizeGirl(Selected);
-						}
-						else
-						{
-							RandomizeBoy(Selected);
-						}
-						UpdateStudent();
-					}
-					if (Input.GetButtonDown(InputNames.Xbox_LB))
-					{
-						EditingDetails = false;
-						EditingCosmetic = true;
-						UpdateHeader();
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_RB))
-					{
-						PromptBar.ClearButtons();
-						PromptBar.Label[0].text = "Like";
-						PromptBar.Label[1].text = "Dislike";
-						PromptBar.Label[2].text = "Neutral";
-						PromptBar.Label[3].text = "Randomize";
-						PromptBar.Label[4].text = "Change Row";
-						PromptBar.Label[5].text = "Change Column";
-						PromptBar.UpdateButtons();
-						PromptBar.Show = true;
-						CharacterParent.localEulerAngles = new Vector3(15f, 180f, 0f);
-						if (StudentGenders[Selected])
-						{
-							StudentKunCosmetic.PelvisRoot.localEulerAngles = Vector3.zero;
-							StudentKunCosmetic.CharacterAnimation.Play(StudentKunCosmetic.PortraitPoses[JSON.Misc.PortraitPoses[Selected]]);
-							PortraitPoseNameLabel.text = StudentKunCosmetic.PortraitPoses[JSON.Misc.PortraitPoses[Selected]];
-							StudentKunCosmetic.CharacterAnimation.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
-						}
-						else
-						{
-							StudentChanCosmetic.PelvisRoot.localEulerAngles = Vector3.zero;
-							StudentChanCosmetic.CharacterAnimation.Play(StudentChanCosmetic.PortraitPoses[JSON.Misc.PortraitPoses[Selected]]);
-							PortraitPoseNameLabel.text = StudentChanCosmetic.PortraitPoses[JSON.Misc.PortraitPoses[Selected]];
-						}
-						ReputationChart.gameObject.SetActive(value: true);
-						PortraitPreview.SetActive(value: true);
-						EditingPortrait = false;
-						EditingDetails = false;
-						EditingOpinions = true;
-						PortraitShadow.alpha = 0.5f;
-						OpinionShadow.alpha = 0f;
-						Column = 1;
-						Row = 1;
-						UpdateOpinions();
-						UpdateTopicHighlight();
-						UpdateHeader();
-					}
-				}
-				else if (EditingOpinions)
-				{
-					StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 0f, Time.deltaTime * 10f);
-					ReputationPanel.alpha = Mathf.MoveTowards(ReputationPanel.alpha, 1f, Time.deltaTime * 10f);
-					SchedulePanel.alpha = Mathf.MoveTowards(SchedulePanel.alpha, 0f, Time.deltaTime * 10f);
-					CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 0f, Time.deltaTime * 10f);
-					OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 1f, Time.deltaTime * 10f);
-					PortraitPanel.alpha = Mathf.MoveTowards(PortraitPanel.alpha, 1f, Time.deltaTime * 10f);
-					DetailPanel.alpha = Mathf.MoveTowards(DetailPanel.alpha, 1f, Time.deltaTime * 10f);
-					if (!(OpinionsPanel.alpha > 0.999f))
+					StudentListPanel.alpha = Mathf.MoveTowards(StudentListPanel.alpha, 0f, Time.deltaTime * 10f);
+					if (!(StudentListPanel.alpha < 0.0001f))
 					{
 						return;
 					}
-					if (!EditingPortrait && !EditingMisc && !EditingReputation)
+					if (EditingCosmetic)
 					{
-						UpdateTopicInterface();
-						if (Input.GetButtonDown(InputNames.Xbox_Y))
+						StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 1f, Time.deltaTime * 10f);
+						ReputationPanel.alpha = Mathf.MoveTowards(ReputationPanel.alpha, 0f, Time.deltaTime * 10f);
+						CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 1f, Time.deltaTime * 10f);
+						OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
+						PortraitPanel.alpha = Mathf.MoveTowards(PortraitPanel.alpha, 0f, Time.deltaTime * 10f);
+						DetailPanel.alpha = Mathf.MoveTowards(DetailPanel.alpha, 0f, Time.deltaTime * 10f);
+						if (InputManager.TappedDown || HeldDown > 0.5f)
 						{
-							RandomizeOpinions(Selected);
-							UpdateOpinions();
-						}
-					}
-					else if (EditingPortrait)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							if (StudentGenders[Selected])
+							if (HeldDown > 0.5f)
 							{
-								JSON.Misc.PortraitPoses[Selected]++;
-								if (JSON.Misc.PortraitPoses[Selected] == StudentKunCosmetic.PortraitPoses.Length)
-								{
-									JSON.Misc.PortraitPoses[Selected] = 0;
-								}
-								PlayMaleAnimation();
+								HeldDown = 0.45f;
 							}
-							else
+							CosmeticSelected++;
+							if (CosmeticSelected > 9)
 							{
-								JSON.Misc.PortraitPoses[Selected]++;
-								if (JSON.Misc.PortraitPoses[Selected] == StudentChanCosmetic.PortraitPoses.Length)
-								{
-									JSON.Misc.PortraitPoses[Selected] = 0;
-								}
-								PlayFemaleAnimation();
+								StudentList.localPosition = new Vector3(0f, 0f, 0f);
+								CosmeticSelected = 0;
 							}
 						}
-						else if (Input.GetButtonDown(InputNames.Xbox_B))
+						if (InputManager.TappedUp || HeldUp > 0.5f)
 						{
-							if (StudentGenders[Selected])
+							if (HeldUp > 0.5f)
 							{
-								JSON.Misc.PortraitPoses[Selected]--;
-								if (JSON.Misc.PortraitPoses[Selected] < 0)
-								{
-									JSON.Misc.PortraitPoses[Selected] = StudentKunCosmetic.PortraitPoses.Length - 1;
-								}
-								PlayMaleAnimation();
+								HeldUp = 0.45f;
 							}
-							else
+							CosmeticSelected--;
+							if (CosmeticSelected < 0)
 							{
-								JSON.Misc.PortraitPoses[Selected]--;
-								if (JSON.Misc.PortraitPoses[Selected] < 0)
-								{
-									JSON.Misc.PortraitPoses[Selected] = StudentChanCosmetic.PortraitPoses.Length - 1;
-								}
-								PlayFemaleAnimation();
+								CosmeticSelected = 9;
 							}
 						}
-						else if (Input.GetButtonDown(InputNames.Xbox_X))
+						CosmeticArrow.localPosition = new Vector3(-1000f, 500 - 100 * CosmeticSelected, 0f);
+						if (CosmeticArrow.position.y < -0.4f)
 						{
-							if (StudentGenders[Selected])
+							CosmeticPanel.transform.position += new Vector3(0f, 0.1f, 0f);
+						}
+						if (CosmeticArrow.position.y > 0.4f)
+						{
+							CosmeticPanel.transform.position -= new Vector3(0f, 0.1f, 0f);
+						}
+						CosmeticPanel.transform.localPosition = new Vector3(0f, Mathf.RoundToInt(CosmeticPanel.transform.localPosition.y), 0f);
+						if (Input.GetButtonDown(InputNames.Xbox_A) && CosmeticWindows[CosmeticSelected].alpha == 1f)
+						{
+							if (CosmeticSelected == 0)
 							{
-								JSON.Misc.PortraitPoses[Selected] = 0;
-								PlayMaleAnimation();
+								int num = int.Parse(JSON.Students[Selected].Hairstyle);
+								num++;
+								if (JSON.Students[Selected].Gender == 0 && num == 214)
+								{
+									num++;
+								}
+								if (num >= HairstyleLimit)
+								{
+									num = 1;
+								}
+								JSON.Students[Selected].Hairstyle = num.ToString() ?? "";
 							}
-							else
+							else if (CosmeticSelected == 1)
 							{
-								JSON.Misc.PortraitPoses[Selected] = 0;
-								PlayFemaleAnimation();
+								ColorID++;
+								if (ColorID >= Colors.Length)
+								{
+									ColorID = 0;
+								}
+								if (Selected == 0)
+								{
+									Debug.Log("Informing the ColorWheel of the player's hair renderer. Yandere.Hairstyle is " + Yandere.Hairstyle);
+									Renderer renderer = Yandere.Hairstyles[Yandere.Hairstyle].GetComponent<Renderer>();
+									if (renderer == null)
+									{
+										renderer = Yandere.Hairstyles[Yandere.Hairstyle].GetComponentInChildren<Renderer>();
+									}
+									if (renderer != null)
+									{
+										Debug.Log("YandereRenderer was not null.");
+										ColorWheel.r[0] = renderer;
+										ColorWheel.r[1] = renderer;
+									}
+									else
+									{
+										Debug.Log("YandereRenderer was null?!");
+									}
+								}
+								else if (StudentGenders[Selected])
+								{
+									ColorWheel.r[0] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+									ColorWheel.r[1] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+								}
+								else
+								{
+									ColorWheel.r[0] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+									ColorWheel.r[1] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+								}
+								ColorWheel.gameObject.SetActive(ColorID == Colors.Length - 1);
+								JSON.Students[Selected].Color = Colors[ColorID] ?? "";
 							}
+							else if (CosmeticSelected == 2)
+							{
+								SkinColor[Selected]++;
+								if (SkinColor[Selected] >= StudentKunCosmetic.SkinTextures.Length - 1)
+								{
+									SkinColor[Selected] = 0;
+								}
+								JSON.Misc.SkinColor[Selected] = SkinColor[Selected];
+								if (Selected == 1)
+								{
+									SenpaiGlobals.SenpaiSkinColor = SkinColor[1];
+								}
+							}
+							else if (CosmeticSelected == 3)
+							{
+								Debug.Log("EyeTypeID is currently: " + EyeTypeID);
+								EyeTypeID++;
+								Debug.Log("EyeTypeID has incremented to: " + EyeTypeID);
+								if (StudentGenders[Selected])
+								{
+									if (EyeTypeID >= MaleEyeTypes.Length)
+									{
+										EyeTypeID = 0;
+									}
+									Debug.Log("EyeTypeID should now be: " + EyeTypeID);
+									JSON.Students[Selected].EyeType = MaleEyeTypes[EyeTypeID] ?? "";
+									Debug.Log("Current Character's EyeType should now be: " + JSON.Students[Selected].EyeType);
+								}
+								else
+								{
+									if (EyeTypeID >= EyeTypes.Length)
+									{
+										EyeTypeID = 0;
+									}
+									JSON.Students[Selected].EyeType = EyeTypes[EyeTypeID] ?? "";
+								}
+							}
+							else if (CosmeticSelected == 4)
+							{
+								EyeColorID++;
+								if (EyeColorID >= Colors.Length)
+								{
+									EyeColorID = 0;
+								}
+								if (StudentGenders[Selected])
+								{
+									ColorWheel.r[0] = StudentKunCosmetic.LeftEyeRenderer;
+									ColorWheel.r[1] = StudentKunCosmetic.RightEyeRenderer;
+								}
+								else
+								{
+									ColorWheel.r[0] = StudentChanCosmetic.LeftEyeRenderer;
+									ColorWheel.r[1] = StudentChanCosmetic.RightEyeRenderer;
+								}
+								ColorWheel.gameObject.SetActive(EyeColorID == Colors.Length - 1);
+								JSON.Students[Selected].Eyes = Colors[EyeColorID] ?? "";
+							}
+							else if (CosmeticSelected == 5)
+							{
+								EyeWear[Selected]++;
+								if (EyeWear[Selected] >= EyewearLimit)
+								{
+									EyeWear[Selected] = 0;
+								}
+								JSON.Misc.EyeWear[Selected] = EyeWear[Selected];
+							}
+							else if (CosmeticSelected == 6)
+							{
+								int num2 = int.Parse(JSON.Students[Selected].Accessory);
+								num2++;
+								if (num2 >= AccessoryLimit)
+								{
+									num2 = 0;
+								}
+								JSON.Students[Selected].Accessory = num2.ToString() ?? "";
+							}
+							else if (CosmeticSelected == 7)
+							{
+								float breastSize = JSON.Students[Selected].BreastSize;
+								breastSize += 0.1f;
+								if (breastSize > 2f)
+								{
+									breastSize = 0.5f;
+								}
+								breastSize = Mathf.Floor(breastSize * 10f) / 10f;
+								JSON.Students[Selected].BreastSize = breastSize;
+							}
+							else if (CosmeticSelected == 8)
+							{
+								StockingID++;
+								if (StockingID >= StockingColors.Length)
+								{
+									StockingID = 0;
+								}
+								JSON.Students[Selected].Stockings = StockingColors[StockingID];
+							}
+							else if (CosmeticSelected == 9)
+							{
+								int num3 = AnimSet[Selected];
+								num3++;
+								if (Selected == 0 || JSON.Students[Selected].Gender == 0)
+								{
+									if (num3 >= FemaleIdles.Length)
+									{
+										num3 = 0;
+									}
+								}
+								else if (num3 >= MaleIdles.Length)
+								{
+									num3 = 0;
+								}
+								AnimSet[Selected] = num3;
+								JSON.Misc.AnimSet[Selected] = AnimSet[Selected];
+							}
+							UpdateStudent();
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_B) && CosmeticWindows[CosmeticSelected].alpha == 1f)
+						{
+							if (CosmeticSelected == 0)
+							{
+								int num4 = int.Parse(JSON.Students[Selected].Hairstyle);
+								num4--;
+								if (JSON.Students[Selected].Gender == 0 && num4 == 214)
+								{
+									num4--;
+								}
+								if (num4 < 1)
+								{
+									num4 = HairstyleLimit - 1;
+								}
+								JSON.Students[Selected].Hairstyle = num4.ToString() ?? "";
+							}
+							else if (CosmeticSelected == 1)
+							{
+								ColorID--;
+								if (ColorID <= -1)
+								{
+									ColorID = Colors.Length - 1;
+								}
+								if (Selected == 0)
+								{
+									Renderer renderer2 = Yandere.Hairstyles[Yandere.Hairstyle].GetComponent<Renderer>();
+									if (renderer2 == null)
+									{
+										renderer2 = Yandere.Hairstyles[Yandere.Hairstyle].GetComponentInChildren<Renderer>();
+									}
+									if (renderer2 != null)
+									{
+										ColorWheel.r[0] = renderer2;
+										ColorWheel.r[1] = renderer2;
+									}
+								}
+								else if (StudentGenders[Selected])
+								{
+									ColorWheel.r[0] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+									ColorWheel.r[1] = StudentKunCosmetic.MaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+								}
+								else
+								{
+									ColorWheel.r[0] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+									ColorWheel.r[1] = StudentChanCosmetic.FemaleHairRenderers[int.Parse(JSON.Students[Selected].Hairstyle)];
+								}
+								ColorWheel.gameObject.SetActive(ColorID == Colors.Length - 1);
+								JSON.Students[Selected].Color = Colors[ColorID] ?? "";
+							}
+							else if (CosmeticSelected == 2)
+							{
+								SkinColor[Selected]--;
+								if (SkinColor[Selected] <= -1)
+								{
+									SkinColor[Selected] = StudentKunCosmetic.SkinTextures.Length - 2;
+								}
+								JSON.Misc.SkinColor[Selected] = SkinColor[Selected];
+								if (Selected == 1)
+								{
+									SenpaiGlobals.SenpaiSkinColor = SkinColor[1];
+								}
+							}
+							else if (CosmeticSelected == 3)
+							{
+								EyeTypeID--;
+								if (StudentGenders[Selected])
+								{
+									if (EyeTypeID <= -1)
+									{
+										EyeTypeID = MaleEyeTypes.Length - 1;
+									}
+									JSON.Students[Selected].EyeType = MaleEyeTypes[EyeTypeID] ?? "";
+								}
+								else
+								{
+									if (EyeTypeID <= -1)
+									{
+										EyeTypeID = EyeTypes.Length - 1;
+									}
+									JSON.Students[Selected].EyeType = EyeTypes[EyeTypeID] ?? "";
+								}
+							}
+							else if (CosmeticSelected == 4)
+							{
+								EyeColorID--;
+								if (EyeColorID <= -1)
+								{
+									EyeColorID = Colors.Length - 1;
+								}
+								if (StudentGenders[Selected])
+								{
+									ColorWheel.r[0] = StudentKunCosmetic.LeftEyeRenderer;
+									ColorWheel.r[1] = StudentKunCosmetic.RightEyeRenderer;
+								}
+								else
+								{
+									ColorWheel.r[0] = StudentChanCosmetic.LeftEyeRenderer;
+									ColorWheel.r[1] = StudentChanCosmetic.RightEyeRenderer;
+								}
+								ColorWheel.gameObject.SetActive(EyeColorID == Colors.Length - 1);
+								JSON.Students[Selected].Eyes = Colors[EyeColorID] ?? "";
+							}
+							else if (CosmeticSelected == 5)
+							{
+								EyeWear[Selected]--;
+								if (EyeWear[Selected] <= -1)
+								{
+									EyeWear[Selected] = EyewearLimit - 1;
+								}
+								JSON.Misc.EyeWear[Selected] = EyeWear[Selected];
+							}
+							else if (CosmeticSelected == 6)
+							{
+								int num5 = int.Parse(JSON.Students[Selected].Accessory);
+								num5--;
+								if (num5 < 0)
+								{
+									num5 = AccessoryLimit - 1;
+								}
+								JSON.Students[Selected].Accessory = num5.ToString() ?? "";
+							}
+							else if (CosmeticSelected == 7)
+							{
+								float breastSize2 = JSON.Students[Selected].BreastSize;
+								breastSize2 -= 0.1f;
+								if (breastSize2 < 0.5f)
+								{
+									breastSize2 = 2f;
+								}
+								breastSize2 = Mathf.Floor(breastSize2 * 10f) / 10f;
+								JSON.Students[Selected].BreastSize = breastSize2;
+							}
+							else if (CosmeticSelected == 8)
+							{
+								StockingID--;
+								if (StockingID <= -1)
+								{
+									StockingID = StockingColors.Length - 1;
+								}
+								JSON.Students[Selected].Stockings = StockingColors[StockingID];
+							}
+							else if (CosmeticSelected == 9)
+							{
+								int num6 = AnimSet[Selected];
+								num6--;
+								if (Selected == 0 || JSON.Students[Selected].Gender == 0)
+								{
+									if (num6 < 0)
+									{
+										num6 = FemaleIdles.Length - 1;
+									}
+								}
+								else if (num6 < 0)
+								{
+									num6 = MaleIdles.Length - 1;
+								}
+								AnimSet[Selected] = num6;
+								JSON.Misc.AnimSet[Selected] = AnimSet[Selected];
+							}
+							UpdateStudent();
 						}
 						else if (Input.GetButtonDown(InputNames.Xbox_Y))
 						{
-							if (StudentGenders[Selected])
+							ConfirmRandomPanel.alpha = 1f;
+						}
+						else if (CanGenderSwap && !PlayerIsTyping && Selected > 0 && Input.GetKeyDown("g"))
+						{
+							Debug.Log("Attempting to change gender now.");
+							if (Selected < 90)
 							{
-								JSON.Misc.PortraitPoses[Selected] = UnityEngine.Random.Range(0, StudentKunCosmetic.PortraitPoses.Length - 1);
-								PlayMaleAnimation();
+								if (StudentGenders[Selected])
+								{
+									JSON.Students[Selected].Gender = 0;
+									StudentGenders[Selected] = false;
+								}
+								else
+								{
+									JSON.Students[Selected].Gender = 1;
+									StudentGenders[Selected] = true;
+								}
+								ResetPortraitPose(Selected);
+								UpdateStudent();
+							}
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_Back) || Input.GetKeyDown("space"))
+						{
+							if (JSON.Misc.InvertHairs[Selected] == 0)
+							{
+								JSON.Misc.InvertHairs[Selected] = 1;
 							}
 							else
 							{
-								JSON.Misc.PortraitPoses[Selected] = UnityEngine.Random.Range(0, StudentChanCosmetic.PortraitPoses.Length - 1);
-								PlayFemaleAnimation();
+								JSON.Misc.InvertHairs[Selected] = 0;
+							}
+							UpdateStudent();
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_LB))
+						{
+							if (!ColorWheel.gameObject.activeInHierarchy)
+							{
+								ColorWheel.gameObject.SetActive(value: false);
+								LabelColliders[0].enabled = false;
+								LabelColliders[1].enabled = false;
+								ViewingStudents = true;
+								EditingStudent = false;
+								EditingCosmetic = false;
+								PromptBar.ClearButtons();
+								PromptBar.Label[0].text = "Edit";
+								PromptBar.Label[2].text = "Zoom";
+								PromptBar.Label[3].text = "Randomize All";
+								PromptBar.Label[4].text = "Change Selection";
+								PromptBar.Label[5].text = "Rotate";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+								UpdateHeader();
 							}
 						}
-						else if (InputManager.TappedLeft)
+						else if (Input.GetButtonDown(InputNames.Xbox_RB) && Selected > 0 && Selected < 98 && !ColorWheel.gameObject.activeInHierarchy)
+						{
+							DetailSelected = 1;
+							CosmeticPanel.transform.localPosition = new Vector3(0f, -100f, 0f);
+							CosmeticArrow.localPosition = new Vector3(525f, 200f, 0f);
+							EditingCosmetic = false;
+							EditingDetails = true;
+							UpdateHeader();
+						}
+					}
+					else if (EditingDetails)
+					{
+						StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 1f, Time.deltaTime * 10f);
+						ReputationPanel.alpha = Mathf.MoveTowards(ReputationPanel.alpha, 0f, Time.deltaTime * 10f);
+						CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 1f, Time.deltaTime * 10f);
+						OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
+						PortraitPanel.alpha = Mathf.MoveTowards(PortraitPanel.alpha, 0f, Time.deltaTime * 10f);
+						DetailPanel.alpha = Mathf.MoveTowards(DetailPanel.alpha, 0f, Time.deltaTime * 10f);
+						if (InputManager.TappedDown || HeldDown > 0.5f || InputManager.TappedUp || HeldUp > 0.5f)
+						{
+							if (HeldDown > 0.5f)
+							{
+								HeldDown = 0.45f;
+							}
+							if (DetailSelected == 1)
+							{
+								CosmeticArrow.localPosition = new Vector3(525f, 0f, 0f);
+								DetailSelected = 2;
+							}
+							else
+							{
+								CosmeticArrow.localPosition = new Vector3(525f, 200f, 0f);
+								DetailSelected = 1;
+							}
+						}
+						if (Input.GetButtonDown(InputNames.Xbox_A))
+						{
+							if (DetailSelected == 1)
+							{
+								JSON.Students[Selected].Persona++;
+								if (JSON.Students[Selected].Persona == PersonaType.PhoneAddict)
+								{
+									JSON.Students[Selected].Persona++;
+								}
+								if (JSON.Students[Selected].Persona > PersonaType.LandlineUser)
+								{
+									JSON.Students[Selected].Persona = PersonaType.Loner;
+								}
+							}
+							else if (DetailSelected == 2)
+							{
+								JSON.Students[Selected].Strength++;
+								if (JSON.Students[Selected].Strength > 9)
+								{
+									JSON.Students[Selected].Strength = 0;
+								}
+							}
+							UpdateStudent();
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_B))
+						{
+							if (DetailSelected == 1)
+							{
+								JSON.Students[Selected].Persona--;
+								if (JSON.Students[Selected].Persona == PersonaType.PhoneAddict)
+								{
+									JSON.Students[Selected].Persona--;
+								}
+								if (JSON.Students[Selected].Persona < PersonaType.Loner)
+								{
+									JSON.Students[Selected].Persona = PersonaType.LandlineUser;
+								}
+							}
+							else if (DetailSelected == 2)
+							{
+								JSON.Students[Selected].Strength--;
+								if (JSON.Students[Selected].Strength < 0)
+								{
+									JSON.Students[Selected].Strength = 9;
+								}
+							}
+							UpdateStudent();
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_Y))
+						{
+							if (StudentChan.activeInHierarchy)
+							{
+								RandomizeGirl(Selected);
+							}
+							else
+							{
+								RandomizeBoy(Selected);
+							}
+							UpdateStudent();
+						}
+						if (Input.GetButtonDown(InputNames.Xbox_LB))
+						{
+							EditingDetails = false;
+							EditingCosmetic = true;
+							UpdateHeader();
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_RB))
 						{
 							PromptBar.ClearButtons();
 							PromptBar.Label[0].text = "Like";
@@ -1819,553 +1686,414 @@ public class CustomModeScript : MonoBehaviour
 							PromptBar.Label[5].text = "Change Column";
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
+							CharacterParent.localEulerAngles = new Vector3(15f, 180f, 0f);
+							if (StudentGenders[Selected])
+							{
+								StudentKunCosmetic.PelvisRoot.localEulerAngles = Vector3.zero;
+								StudentKunCosmetic.CharacterAnimation.Play(StudentKunCosmetic.PortraitPoses[JSON.Misc.PortraitPoses[Selected]]);
+								PortraitPoseNameLabel.text = StudentKunCosmetic.PortraitPoses[JSON.Misc.PortraitPoses[Selected]];
+								StudentKunCosmetic.CharacterAnimation.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
+							}
+							else
+							{
+								StudentChanCosmetic.PelvisRoot.localEulerAngles = Vector3.zero;
+								StudentChanCosmetic.CharacterAnimation.Play(StudentChanCosmetic.PortraitPoses[JSON.Misc.PortraitPoses[Selected]]);
+								PortraitPoseNameLabel.text = StudentChanCosmetic.PortraitPoses[JSON.Misc.PortraitPoses[Selected]];
+							}
+							ReputationChart.gameObject.SetActive(value: true);
+							PortraitPreview.SetActive(value: true);
+							EditingPortrait = false;
+							EditingDetails = false;
+							EditingOpinions = true;
 							PortraitShadow.alpha = 0.5f;
 							OpinionShadow.alpha = 0f;
-							EditingPortrait = false;
-							Column = 5;
+							Column = 1;
 							Row = 1;
 							UpdateOpinions();
 							UpdateTopicHighlight();
+							UpdateHeader();
 						}
-						else if (InputManager.TappedDown)
+					}
+					else if (EditingOpinions)
+					{
+						StudentInfoPanel.alpha = Mathf.MoveTowards(StudentInfoPanel.alpha, 0f, Time.deltaTime * 10f);
+						ReputationPanel.alpha = Mathf.MoveTowards(ReputationPanel.alpha, 1f, Time.deltaTime * 10f);
+						SchedulePanel.alpha = Mathf.MoveTowards(SchedulePanel.alpha, 0f, Time.deltaTime * 10f);
+						CosmeticPanel.alpha = Mathf.MoveTowards(CosmeticPanel.alpha, 0f, Time.deltaTime * 10f);
+						OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 1f, Time.deltaTime * 10f);
+						PortraitPanel.alpha = Mathf.MoveTowards(PortraitPanel.alpha, 1f, Time.deltaTime * 10f);
+						DetailPanel.alpha = Mathf.MoveTowards(DetailPanel.alpha, 1f, Time.deltaTime * 10f);
+						if (!(OpinionsPanel.alpha > 0.999f))
 						{
-							PromptBar.ClearButtons();
-							PromptBar.Label[0].text = "Forward";
-							PromptBar.Label[1].text = "Back";
-							PromptBar.Label[4].text = "Up/Down";
-							PromptBar.UpdateButtons();
-							PromptBar.Show = true;
-							PortraitShadow.alpha = 0.5f;
-							DetailShadow.alpha = 0f;
-							Debug.Log("Now checking if this student is in a club.");
-							if (JSON.Students[Selected].Club == ClubType.None)
+							return;
+						}
+						if (!EditingPortrait && !EditingMisc && !EditingReputation)
+						{
+							UpdateTopicInterface();
+							if (Input.GetButtonDown(InputNames.Xbox_Y))
 							{
-								ClubAccShadow.gameObject.SetActive(value: true);
+								RandomizeOpinions(Selected);
+								UpdateOpinions();
+							}
+						}
+						else if (EditingPortrait)
+						{
+							if (Input.GetButtonDown(InputNames.Xbox_A))
+							{
+								if (StudentGenders[Selected])
+								{
+									JSON.Misc.PortraitPoses[Selected]++;
+									if (JSON.Misc.PortraitPoses[Selected] == StudentKunCosmetic.PortraitPoses.Length)
+									{
+										JSON.Misc.PortraitPoses[Selected] = 0;
+									}
+									PlayMaleAnimation();
+								}
+								else
+								{
+									JSON.Misc.PortraitPoses[Selected]++;
+									if (JSON.Misc.PortraitPoses[Selected] == StudentChanCosmetic.PortraitPoses.Length)
+									{
+										JSON.Misc.PortraitPoses[Selected] = 0;
+									}
+									PlayFemaleAnimation();
+								}
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								if (StudentGenders[Selected])
+								{
+									JSON.Misc.PortraitPoses[Selected]--;
+									if (JSON.Misc.PortraitPoses[Selected] < 0)
+									{
+										JSON.Misc.PortraitPoses[Selected] = StudentKunCosmetic.PortraitPoses.Length - 1;
+									}
+									PlayMaleAnimation();
+								}
+								else
+								{
+									JSON.Misc.PortraitPoses[Selected]--;
+									if (JSON.Misc.PortraitPoses[Selected] < 0)
+									{
+										JSON.Misc.PortraitPoses[Selected] = StudentChanCosmetic.PortraitPoses.Length - 1;
+									}
+									PlayFemaleAnimation();
+								}
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_X))
+							{
+								if (StudentGenders[Selected])
+								{
+									JSON.Misc.PortraitPoses[Selected] = 0;
+									PlayMaleAnimation();
+								}
+								else
+								{
+									JSON.Misc.PortraitPoses[Selected] = 0;
+									PlayFemaleAnimation();
+								}
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_Y))
+							{
+								if (StudentGenders[Selected])
+								{
+									JSON.Misc.PortraitPoses[Selected] = UnityEngine.Random.Range(0, StudentKunCosmetic.PortraitPoses.Length - 1);
+									PlayMaleAnimation();
+								}
+								else
+								{
+									JSON.Misc.PortraitPoses[Selected] = UnityEngine.Random.Range(0, StudentChanCosmetic.PortraitPoses.Length - 1);
+									PlayFemaleAnimation();
+								}
+							}
+							else if (InputManager.TappedLeft)
+							{
+								PromptBar.ClearButtons();
+								PromptBar.Label[0].text = "Like";
+								PromptBar.Label[1].text = "Dislike";
+								PromptBar.Label[2].text = "Neutral";
+								PromptBar.Label[3].text = "Randomize";
+								PromptBar.Label[4].text = "Change Row";
+								PromptBar.Label[5].text = "Change Column";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+								PortraitShadow.alpha = 0.5f;
+								OpinionShadow.alpha = 0f;
+								EditingPortrait = false;
+								Column = 5;
+								Row = 1;
+								UpdateOpinions();
+								UpdateTopicHighlight();
+							}
+							else if (InputManager.TappedDown)
+							{
+								PromptBar.ClearButtons();
+								PromptBar.Label[0].text = "Forward";
+								PromptBar.Label[1].text = "Back";
+								PromptBar.Label[4].text = "Up/Down";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+								PortraitShadow.alpha = 0.5f;
+								DetailShadow.alpha = 0f;
+								Debug.Log("Now checking if this student is in a club.");
+								if (JSON.Students[Selected].Club == ClubType.None)
+								{
+									ClubAccShadow.gameObject.SetActive(value: true);
+								}
+								else
+								{
+									ClubAccShadow.gameObject.SetActive(value: false);
+								}
+								EditingPortrait = false;
+								EditingMisc = true;
+								Row = 1;
+								UpdateRowHighlight();
+							}
+							else if (InputManager.TappedRight)
+							{
+								PromptBar.ClearButtons();
+								PromptBar.Label[0].text = "Forward";
+								PromptBar.Label[1].text = "Back";
+								PromptBar.Label[4].text = "Up/Down";
+								PromptBar.Label[5].text = "Change Category";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+								PortraitShadow.alpha = 0.5f;
+								ReputationShadow.alpha = 0f;
+								EditingReputation = true;
+								EditingPortrait = false;
+								Row = 1;
+								UpdateRowHighlight();
+							}
+						}
+						else if (EditingMisc)
+						{
+							if (Input.GetButtonDown(InputNames.Xbox_A))
+							{
+								if (Row == 1)
+								{
+									JSON.Misc.StudentTasks[Selected]++;
+									if (JSON.Misc.StudentTasks[Selected] > 10)
+									{
+										JSON.Misc.StudentTasks[Selected] = 1;
+									}
+									TaskNameLabel.text = "Task: " + TaskNames[JSON.Misc.StudentTasks[Selected]];
+									TaskIDLabel.text = JSON.Misc.StudentTasks[Selected].ToString() ?? "";
+								}
+								else if (Row == 2)
+								{
+									if (!ClubAccShadow.gameObject.activeInHierarchy)
+									{
+										if (JSON.Misc.ClubAccessories[Selected] == 0)
+										{
+											JSON.Misc.ClubAccessories[Selected] = 1;
+											ClubAccLabel.text = "On";
+										}
+										else
+										{
+											JSON.Misc.ClubAccessories[Selected] = 0;
+											ClubAccLabel.text = "Off";
+										}
+										UpdateStudent();
+									}
+								}
+								else if (Row == 3)
+								{
+									JSON.Misc.StrongReactions[Selected]++;
+									if (JSON.Misc.StrongReactions[Selected] > 97)
+									{
+										JSON.Misc.StrongReactions[Selected] = 0;
+									}
+									StrongReactionLabel.text = JSON.Misc.StrongReactions[Selected].ToString() ?? "";
+								}
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								if (Row == 1)
+								{
+									JSON.Misc.StudentTasks[Selected]--;
+									if (JSON.Misc.StudentTasks[Selected] < 1)
+									{
+										JSON.Misc.StudentTasks[Selected] = 10;
+									}
+									TaskNameLabel.text = "Task: " + TaskNames[JSON.Misc.StudentTasks[Selected]];
+									TaskIDLabel.text = JSON.Misc.StudentTasks[Selected].ToString() ?? "";
+								}
+								else if (Row == 2)
+								{
+									if (!ClubAccShadow.gameObject.activeInHierarchy)
+									{
+										if (JSON.Misc.ClubAccessories[Selected] == 0)
+										{
+											JSON.Misc.ClubAccessories[Selected] = 1;
+											ClubAccLabel.text = "On";
+										}
+										else
+										{
+											JSON.Misc.ClubAccessories[Selected] = 0;
+											ClubAccLabel.text = "Off";
+										}
+										UpdateStudent();
+									}
+								}
+								else if (Row == 3)
+								{
+									JSON.Misc.StrongReactions[Selected]--;
+									if (JSON.Misc.StrongReactions[Selected] < 0)
+									{
+										JSON.Misc.StrongReactions[Selected] = 97;
+									}
+									StrongReactionLabel.text = JSON.Misc.StrongReactions[Selected].ToString() ?? "";
+								}
+							}
+							else if (InputManager.TappedUp)
+							{
+								if (Row == 1)
+								{
+									StartEditingPortrait();
+								}
+								else
+								{
+									Row--;
+									UpdateRowHighlight();
+								}
+							}
+							else if (InputManager.TappedDown && Row < 3)
+							{
+								Row++;
+								UpdateRowHighlight();
+							}
+						}
+						else if (EditingReputation)
+						{
+							if (Input.GetButton(InputNames.Xbox_A))
+							{
+								HeldDownA += Time.unscaledDeltaTime;
 							}
 							else
 							{
-								ClubAccShadow.gameObject.SetActive(value: false);
+								HeldDownA = 0f;
 							}
-							EditingPortrait = false;
-							EditingMisc = true;
-							Row = 1;
-							UpdateRowHighlight();
-						}
-						else if (InputManager.TappedRight)
-						{
-							PromptBar.ClearButtons();
-							PromptBar.Label[0].text = "Forward";
-							PromptBar.Label[1].text = "Back";
-							PromptBar.Label[4].text = "Up/Down";
-							PromptBar.Label[5].text = "Change Category";
-							PromptBar.UpdateButtons();
-							PromptBar.Show = true;
-							PortraitShadow.alpha = 0.5f;
-							ReputationShadow.alpha = 0f;
-							EditingReputation = true;
-							EditingPortrait = false;
-							Row = 1;
-							UpdateRowHighlight();
-						}
-					}
-					else if (EditingMisc)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							if (Row == 1)
+							if (Input.GetButton(InputNames.Xbox_B))
 							{
-								JSON.Misc.StudentTasks[Selected]++;
-								if (JSON.Misc.StudentTasks[Selected] > 10)
-								{
-									JSON.Misc.StudentTasks[Selected] = 1;
-								}
-								TaskNameLabel.text = "Task: " + TaskNames[JSON.Misc.StudentTasks[Selected]];
-								TaskIDLabel.text = JSON.Misc.StudentTasks[Selected].ToString() ?? "";
+								HeldDownB += Time.unscaledDeltaTime;
 							}
-							else if (Row == 2)
+							else
 							{
-								if (!ClubAccShadow.gameObject.activeInHierarchy)
+								HeldDownB = 0f;
+							}
+							if (Input.GetButtonDown(InputNames.Xbox_A) || HeldDownA > 0.5f)
+							{
+								if (Row == 1)
 								{
-									if (JSON.Misc.ClubAccessories[Selected] == 0)
+									JSON.Misc.Likes[Selected] += 1f;
+									if (JSON.Misc.Likes[Selected] > 100f)
 									{
-										JSON.Misc.ClubAccessories[Selected] = 1;
-										ClubAccLabel.text = "On";
+										JSON.Misc.Likes[Selected] = 100f;
 									}
-									else
+									LikedLabel.text = JSON.Misc.Likes[Selected].ToString() ?? "";
+								}
+								else if (Row == 2)
+								{
+									JSON.Misc.Respects[Selected] += 1f;
+									if (JSON.Misc.Respects[Selected] > 100f)
 									{
-										JSON.Misc.ClubAccessories[Selected] = 0;
-										ClubAccLabel.text = "Off";
+										JSON.Misc.Respects[Selected] = 100f;
 									}
-									UpdateStudent();
+									RespectedLabel.text = JSON.Misc.Respects[Selected].ToString() ?? "";
 								}
-							}
-							else if (Row == 3)
-							{
-								JSON.Misc.StrongReactions[Selected]++;
-								if (JSON.Misc.StrongReactions[Selected] > 97)
+								else if (Row == 3)
 								{
-									JSON.Misc.StrongReactions[Selected] = 0;
-								}
-								StrongReactionLabel.text = JSON.Misc.StrongReactions[Selected].ToString() ?? "";
-							}
-						}
-						else if (Input.GetButtonDown(InputNames.Xbox_B))
-						{
-							if (Row == 1)
-							{
-								JSON.Misc.StudentTasks[Selected]--;
-								if (JSON.Misc.StudentTasks[Selected] < 1)
-								{
-									JSON.Misc.StudentTasks[Selected] = 10;
-								}
-								TaskNameLabel.text = "Task: " + TaskNames[JSON.Misc.StudentTasks[Selected]];
-								TaskIDLabel.text = JSON.Misc.StudentTasks[Selected].ToString() ?? "";
-							}
-							else if (Row == 2)
-							{
-								if (!ClubAccShadow.gameObject.activeInHierarchy)
-								{
-									if (JSON.Misc.ClubAccessories[Selected] == 0)
+									JSON.Misc.Fears[Selected] += 1f;
+									if (JSON.Misc.Fears[Selected] > 100f)
 									{
-										JSON.Misc.ClubAccessories[Selected] = 1;
-										ClubAccLabel.text = "On";
+										JSON.Misc.Fears[Selected] = 100f;
 									}
-									else
-									{
-										JSON.Misc.ClubAccessories[Selected] = 0;
-										ClubAccLabel.text = "Off";
-									}
-									UpdateStudent();
+									FearedLabel.text = JSON.Misc.Fears[Selected].ToString() ?? "";
 								}
+								ReputationChart.fields[0].Value = JSON.Misc.Likes[Selected];
+								ReputationChart.fields[1].Value = JSON.Misc.Respects[Selected];
+								ReputationChart.fields[2].Value = JSON.Misc.Fears[Selected];
+								UpdateReputationLabel();
 							}
-							else if (Row == 3)
+							else if (Input.GetButtonDown(InputNames.Xbox_B) || HeldDownB > 0.5f)
 							{
-								JSON.Misc.StrongReactions[Selected]--;
-								if (JSON.Misc.StrongReactions[Selected] < 0)
+								if (Row == 1)
 								{
-									JSON.Misc.StrongReactions[Selected] = 97;
+									JSON.Misc.Likes[Selected] -= 1f;
+									if (JSON.Misc.Likes[Selected] < -100f)
+									{
+										JSON.Misc.Likes[Selected] = -100f;
+									}
+									LikedLabel.text = JSON.Misc.Likes[Selected].ToString() ?? "";
 								}
-								StrongReactionLabel.text = JSON.Misc.StrongReactions[Selected].ToString() ?? "";
+								else if (Row == 2)
+								{
+									JSON.Misc.Respects[Selected] -= 1f;
+									if (JSON.Misc.Respects[Selected] < -100f)
+									{
+										JSON.Misc.Respects[Selected] = -100f;
+									}
+									RespectedLabel.text = JSON.Misc.Respects[Selected].ToString() ?? "";
+								}
+								else if (Row == 3)
+								{
+									JSON.Misc.Fears[Selected] -= 1f;
+									if (JSON.Misc.Fears[Selected] < -100f)
+									{
+										JSON.Misc.Fears[Selected] = -100f;
+									}
+									FearedLabel.text = JSON.Misc.Fears[Selected].ToString() ?? "";
+								}
+								ReputationChart.fields[0].Value = JSON.Misc.Likes[Selected];
+								ReputationChart.fields[1].Value = JSON.Misc.Respects[Selected];
+								ReputationChart.fields[2].Value = JSON.Misc.Fears[Selected];
+								UpdateReputationLabel();
 							}
-						}
-						else if (InputManager.TappedUp)
-						{
-							if (Row == 1)
+							else if (InputManager.TappedLeft)
 							{
 								StartEditingPortrait();
 							}
-							else
+							else if (InputManager.TappedUp)
 							{
-								Row--;
+								if (Row > 1)
+								{
+									Row--;
+									UpdateRowHighlight();
+								}
+							}
+							else if (InputManager.TappedDown && Row < 3)
+							{
+								Row++;
 								UpdateRowHighlight();
 							}
 						}
-						else if (InputManager.TappedDown && Row < 3)
+						if (Input.GetButtonDown(InputNames.Xbox_LB))
 						{
-							Row++;
-							UpdateRowHighlight();
-						}
-					}
-					else if (EditingReputation)
-					{
-						if (Input.GetButton(InputNames.Xbox_A))
-						{
-							HeldDownA += Time.unscaledDeltaTime;
-						}
-						else
-						{
-							HeldDownA = 0f;
-						}
-						if (Input.GetButton(InputNames.Xbox_B))
-						{
-							HeldDownB += Time.unscaledDeltaTime;
-						}
-						else
-						{
-							HeldDownB = 0f;
-						}
-						if (Input.GetButtonDown(InputNames.Xbox_A) || HeldDownA > 0.5f)
-						{
-							if (Row == 1)
-							{
-								JSON.Misc.Likes[Selected] += 1f;
-								if (JSON.Misc.Likes[Selected] > 100f)
-								{
-									JSON.Misc.Likes[Selected] = 100f;
-								}
-								LikedLabel.text = JSON.Misc.Likes[Selected].ToString() ?? "";
-							}
-							else if (Row == 2)
-							{
-								JSON.Misc.Respects[Selected] += 1f;
-								if (JSON.Misc.Respects[Selected] > 100f)
-								{
-									JSON.Misc.Respects[Selected] = 100f;
-								}
-								RespectedLabel.text = JSON.Misc.Respects[Selected].ToString() ?? "";
-							}
-							else if (Row == 3)
-							{
-								JSON.Misc.Fears[Selected] += 1f;
-								if (JSON.Misc.Fears[Selected] > 100f)
-								{
-									JSON.Misc.Fears[Selected] = 100f;
-								}
-								FearedLabel.text = JSON.Misc.Fears[Selected].ToString() ?? "";
-							}
-							ReputationChart.fields[0].Value = JSON.Misc.Likes[Selected];
-							ReputationChart.fields[1].Value = JSON.Misc.Respects[Selected];
-							ReputationChart.fields[2].Value = JSON.Misc.Fears[Selected];
-							UpdateReputationLabel();
-						}
-						else if (Input.GetButtonDown(InputNames.Xbox_B) || HeldDownB > 0.5f)
-						{
-							if (Row == 1)
-							{
-								JSON.Misc.Likes[Selected] -= 1f;
-								if (JSON.Misc.Likes[Selected] < -100f)
-								{
-									JSON.Misc.Likes[Selected] = -100f;
-								}
-								LikedLabel.text = JSON.Misc.Likes[Selected].ToString() ?? "";
-							}
-							else if (Row == 2)
-							{
-								JSON.Misc.Respects[Selected] -= 1f;
-								if (JSON.Misc.Respects[Selected] < -100f)
-								{
-									JSON.Misc.Respects[Selected] = -100f;
-								}
-								RespectedLabel.text = JSON.Misc.Respects[Selected].ToString() ?? "";
-							}
-							else if (Row == 3)
-							{
-								JSON.Misc.Fears[Selected] -= 1f;
-								if (JSON.Misc.Fears[Selected] < -100f)
-								{
-									JSON.Misc.Fears[Selected] = -100f;
-								}
-								FearedLabel.text = JSON.Misc.Fears[Selected].ToString() ?? "";
-							}
-							ReputationChart.fields[0].Value = JSON.Misc.Likes[Selected];
-							ReputationChart.fields[1].Value = JSON.Misc.Respects[Selected];
-							ReputationChart.fields[2].Value = JSON.Misc.Fears[Selected];
-							UpdateReputationLabel();
-						}
-						else if (InputManager.TappedLeft)
-						{
-							StartEditingPortrait();
-						}
-						else if (InputManager.TappedUp)
-						{
-							if (Row > 1)
-							{
-								Row--;
-								UpdateRowHighlight();
-							}
-						}
-						else if (InputManager.TappedDown && Row < 3)
-						{
-							Row++;
-							UpdateRowHighlight();
-						}
-					}
-					if (Input.GetButtonDown(InputNames.Xbox_LB))
-					{
-						PromptBar.ClearButtons();
-						PromptBar.Label[0].text = "Next";
-						PromptBar.Label[1].text = "Previous";
-						PromptBar.Label[2].text = "Zoom";
-						PromptBar.Label[3].text = "Randomize";
-						PromptBar.Label[4].text = "Change Selection";
-						PromptBar.Label[5].text = "Rotate";
-						PromptBar.UpdateButtons();
-						PromptBar.Show = true;
-						StudentKunCosmetic.PelvisRoot.localEulerAngles = Vector3.zero;
-						ReputationChart.gameObject.SetActive(value: false);
-						PortraitPreview.SetActive(value: false);
-						EditingReputation = false;
-						EditingOpinions = false;
-						EditingPortrait = false;
-						EditingDetails = true;
-						EditingMisc = false;
-						ReputationShadow.alpha = 0.5f;
-						PortraitShadow.alpha = 0.5f;
-						OpinionShadow.alpha = 0f;
-						DetailShadow.alpha = 0.5f;
-						UpdateHeader();
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_RB))
-					{
-						PromptBar.ClearButtons();
-						PromptBar.Label[0].text = "Next";
-						PromptBar.Label[1].text = "Previous";
-						PromptBar.Label[3].text = "Randomize";
-						PromptBar.Label[4].text = "Change Row";
-						PromptBar.Label[5].text = "Change Column";
-						PromptBar.UpdateButtons();
-						PromptBar.Show = true;
-						ReputationChart.gameObject.SetActive(value: false);
-						PortraitPreview.SetActive(value: false);
-						EditingReputation = false;
-						EditingOpinions = false;
-						EditingPortrait = false;
-						EditingSchedule = true;
-						EditingMisc = false;
-						ReputationShadow.alpha = 0.5f;
-						PortraitShadow.alpha = 0.5f;
-						OpinionShadow.alpha = 0f;
-						DetailShadow.alpha = 0.5f;
-						Column = 1;
-						Row = 1;
-						UpdateHeader();
-					}
-				}
-				else if (EditingSchedule)
-				{
-					LocationsPanel.alpha = Mathf.MoveTowards(LocationsPanel.alpha, 0f, Time.deltaTime * 10f);
-					ReputationPanel.alpha = Mathf.MoveTowards(ReputationPanel.alpha, 0f, Time.deltaTime * 10f);
-					OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
-					PortraitPanel.alpha = Mathf.MoveTowards(PortraitPanel.alpha, 0f, Time.deltaTime * 10f);
-					SchedulePanel.alpha = Mathf.MoveTowards(SchedulePanel.alpha, 1f, Time.deltaTime * 10f);
-					DetailPanel.alpha = Mathf.MoveTowards(DetailPanel.alpha, 0f, Time.deltaTime * 10f);
-					if (!(SchedulePanel.alpha > 0.999f))
-					{
-						return;
-					}
-					if (InputManager.TappedUp)
-					{
-						Row--;
-						if (Row < 1)
-						{
-							Row = JSON.Students[Selected].ScheduleBlocks.Length - 1;
-						}
-					}
-					else if (InputManager.TappedDown)
-					{
-						Row++;
-						if (Row > JSON.Students[Selected].ScheduleBlocks.Length - 1)
-						{
-							Row = 1;
-						}
-					}
-					if (InputManager.TappedLeft)
-					{
-						Column--;
-						if (Column < 1)
-						{
-							Column = 3;
-						}
-					}
-					else if (InputManager.TappedRight)
-					{
-						Column++;
-						if (Column > 3)
-						{
-							Column = 1;
-						}
-					}
-					int num7 = 0;
-					int num8 = 0;
-					if (Column == 1)
-					{
-						num7 = -500;
-					}
-					else if (Column == 2)
-					{
-						num7 = -200;
-					}
-					else if (Column == 3)
-					{
-						num7 = 200;
-					}
-					num8 = 500 - Row * 100;
-					ScheduleArrow.localPosition = new Vector3(num7, num8, 0f);
-					if (Column == 1)
-					{
-						ScheduleHelpLabel.text = TimeExplanations[Row];
-					}
-					else if (Column == 2)
-					{
-						ScheduleHelpLabel.text = "This action will cause the character to perform...\n\n" + ActionExplanations[Array.IndexOf(Actions, JSON.Students[Selected].ScheduleBlocks[Row].action)];
-					}
-					else if (Column == 3)
-					{
-						ScheduleHelpLabel.text = "This destination will cause the character to go to...\n\n" + DestinationExplanations[Array.IndexOf(Destinations, JSON.Students[Selected].ScheduleBlocks[Row].destination)];
-					}
-					if (Column == 2)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							int num9 = Array.IndexOf(Actions, JSON.Students[Selected].ScheduleBlocks[Row].action);
-							num9++;
-							if (num9 > Actions.Length - 1)
-							{
-								num9 = 1;
-							}
-							JSON.Students[Selected].ScheduleBlocks[Row].action = Actions[num9];
-							ScheduleHelpLabel.text = ActionExplanations[num9];
-							UpdateStudent();
-						}
-						else if (Input.GetButtonDown(InputNames.Xbox_B))
-						{
-							int num10 = Array.IndexOf(Actions, JSON.Students[Selected].ScheduleBlocks[Row].action);
-							num10--;
-							if (num10 < 1)
-							{
-								num10 = Actions.Length - 1;
-							}
-							JSON.Students[Selected].ScheduleBlocks[Row].action = Actions[num10];
-							ScheduleHelpLabel.text = ActionExplanations[num10];
-							UpdateStudent();
-						}
-					}
-					else if (Column == 3)
-					{
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							int num11 = Array.IndexOf(Destinations, JSON.Students[Selected].ScheduleBlocks[Row].destination);
-							num11++;
-							if (num11 > Destinations.Length - 1)
-							{
-								num11 = 1;
-							}
-							JSON.Students[Selected].ScheduleBlocks[Row].destination = Destinations[num11];
-							ScheduleHelpLabel.text = DestinationExplanations[Row];
-							UpdateStudent();
-						}
-						else if (Input.GetButtonDown(InputNames.Xbox_B))
-						{
-							int num12 = Array.IndexOf(Destinations, JSON.Students[Selected].ScheduleBlocks[Row].destination);
-							num12--;
-							if (num12 < 1)
-							{
-								num12 = Destinations.Length - 1;
-							}
-							JSON.Students[Selected].ScheduleBlocks[Row].destination = Destinations[num12];
-							ScheduleHelpLabel.text = DestinationExplanations[Row];
-							UpdateStudent();
-						}
-					}
-					if (Input.GetButtonDown(InputNames.Xbox_Y))
-					{
-						RandomizeSchedule(Selected);
-						UpdateStudent();
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_LB))
-					{
-						PromptBar.ClearButtons();
-						PromptBar.Label[0].text = "Like";
-						PromptBar.Label[1].text = "Dislike";
-						PromptBar.Label[2].text = "Neutral";
-						PromptBar.Label[3].text = "Randomize";
-						PromptBar.Label[4].text = "Change Row";
-						PromptBar.Label[5].text = "Change Column";
-						PromptBar.UpdateButtons();
-						PromptBar.Show = true;
-						ReputationChart.gameObject.SetActive(value: true);
-						PortraitPreview.SetActive(value: true);
-						EditingSchedule = false;
-						EditingOpinions = true;
-						Column = 1;
-						Row = 1;
-						UpdateOpinions();
-						UpdateTopicHighlight();
-						UpdateHeader();
-					}
-					else if (Input.GetButtonDown(InputNames.Xbox_RB))
-					{
-						PromptBar.ClearButtons();
-						PromptBar.Label[0].text = "Edit";
-						PromptBar.Label[1].text = "Randomize";
-						PromptBar.Label[2].text = "Floor Down";
-						PromptBar.Label[3].text = "Floor Up";
-						PromptBar.Label[4].text = "Change Selection";
-						PromptBar.UpdateButtons();
-						PromptBar.Show = true;
-						EditingSchedule = false;
-						EditingLocations = true;
-						UpdateHeader();
-						Map.ShowMap();
-					}
-				}
-				else
-				{
-					if (!EditingLocations)
-					{
-						return;
-					}
-					LocationsPanel.alpha = Mathf.MoveTowards(LocationsPanel.alpha, 1f, Time.deltaTime * 10f);
-					SchedulePanel.alpha = Mathf.MoveTowards(SchedulePanel.alpha, 0f, Time.deltaTime * 10f);
-					if (InputDevice.Type == InputDeviceType.MouseAndKeyboard)
-					{
-						LocationInstructionLabel.text = "Use the mouse to move the map. Use the scroll wheel to zoom in and out.";
-					}
-					else
-					{
-						LocationInstructionLabel.text = "Use the left stick to move the map. Use the right stick to zoom in and out.";
-					}
-					if (!(LocationsPanel.alpha > 0.999f))
-					{
-						return;
-					}
-					if (UsingMenu)
-					{
-						if (InputManager.TappedDown || HeldDown > 0.5f)
-						{
-							if (HeldDown > 0.5f)
-							{
-								HeldDown = 0.45f;
-							}
-							LocationSelected++;
-							if (LocationSelected > 3)
-							{
-								LocationSelected = 1;
-							}
-						}
-						if (InputManager.TappedUp || HeldUp > 0.5f)
-						{
-							if (HeldUp > 0.5f)
-							{
-								HeldUp = 0.45f;
-							}
-							LocationSelected--;
-							if (LocationSelected < 1)
-							{
-								LocationSelected = 3;
-							}
-						}
-						LocationArrow.localPosition = new Vector3(-980f, 275 - 100 * LocationSelected, 0f);
-						if (Input.GetButtonDown(InputNames.Xbox_A))
-						{
-							LocationInstructionLabel.transform.parent.gameObject.SetActive(value: true);
-							LocationBGs[LocationSelected].color = Color.white;
-							MapShadow.material.color = new Color(0f, 0f, 0f, 0f);
-							if (LocationSelected == 1)
-							{
-								CurrentMapIcon = HangoutIcons[Selected].GetComponent<MapIconScript>();
-							}
-							else if (LocationSelected == 2)
-							{
-								CurrentMapIcon = Patrol1Icons[Selected].GetComponent<MapIconScript>();
-							}
-							else if (LocationSelected == 3)
-							{
-								CurrentMapIcon = Patrol2Icons[Selected].GetComponent<MapIconScript>();
-							}
-							CurrentMapIcon.transform.parent = MapPanel.transform;
-							CurrentMapIcon.transform.localPosition = new Vector3(0f, 0f, 299f);
-							Map.AcceptingInput = true;
-							UsingMenu = false;
 							PromptBar.ClearButtons();
-							PromptBar.Label[1].text = "Back";
-							PromptBar.Label[2].text = "Floor Down";
-							PromptBar.Label[3].text = "Floor Up";
-							PromptBar.Label[5].text = "Change Direction";
+							PromptBar.Label[0].text = "Next";
+							PromptBar.Label[1].text = "Previous";
+							PromptBar.Label[2].text = "Zoom";
+							PromptBar.Label[3].text = "Randomize";
+							PromptBar.Label[4].text = "Change Selection";
+							PromptBar.Label[5].text = "Rotate";
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
+							StudentKunCosmetic.PelvisRoot.localEulerAngles = Vector3.zero;
+							ReputationChart.gameObject.SetActive(value: false);
+							PortraitPreview.SetActive(value: false);
+							EditingReputation = false;
+							EditingOpinions = false;
+							EditingPortrait = false;
+							EditingDetails = true;
+							EditingMisc = false;
+							ReputationShadow.alpha = 0.5f;
+							PortraitShadow.alpha = 0.5f;
+							OpinionShadow.alpha = 0f;
+							DetailShadow.alpha = 0.5f;
+							UpdateHeader();
 						}
-						else if (!Input.GetButtonDown(InputNames.Xbox_B) && Input.GetButtonDown(InputNames.Xbox_LB))
+						else if (Input.GetButtonDown(InputNames.Xbox_RB))
 						{
 							PromptBar.ClearButtons();
 							PromptBar.Label[0].text = "Next";
@@ -2375,59 +2103,347 @@ public class CustomModeScript : MonoBehaviour
 							PromptBar.Label[5].text = "Change Column";
 							PromptBar.UpdateButtons();
 							PromptBar.Show = true;
-							EditingLocations = false;
+							ReputationChart.gameObject.SetActive(value: false);
+							PortraitPreview.SetActive(value: false);
+							EditingReputation = false;
+							EditingOpinions = false;
+							EditingPortrait = false;
 							EditingSchedule = true;
+							EditingMisc = false;
+							ReputationShadow.alpha = 0.5f;
+							PortraitShadow.alpha = 0.5f;
+							OpinionShadow.alpha = 0f;
+							DetailShadow.alpha = 0.5f;
 							Column = 1;
 							Row = 1;
 							UpdateHeader();
-							Map.HideMap();
 						}
-						return;
 					}
-					HangoutPanel.transform.position += new Vector3(1f, 0f, 0f);
-					HangoutPanel.transform.position -= new Vector3(1f, 0f, 0f);
-					Patrol1Panel.transform.position += new Vector3(1f, 0f, 0f);
-					Patrol1Panel.transform.position -= new Vector3(1f, 0f, 0f);
-					Patrol2Panel.transform.position += new Vector3(1f, 0f, 0f);
-					Patrol2Panel.transform.position -= new Vector3(1f, 0f, 0f);
-					if (Input.GetKey("right") || Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f)
+					else if (EditingSchedule)
 					{
-						CurrentMapIcon.Rotation += 360f * Time.deltaTime;
-						CurrentMapIcon.ArrowParent.localEulerAngles = new Vector3(0f, 0f, CurrentMapIcon.Rotation * -1f);
+						LocationsPanel.alpha = Mathf.MoveTowards(LocationsPanel.alpha, 0f, Time.deltaTime * 10f);
+						ReputationPanel.alpha = Mathf.MoveTowards(ReputationPanel.alpha, 0f, Time.deltaTime * 10f);
+						OpinionsPanel.alpha = Mathf.MoveTowards(OpinionsPanel.alpha, 0f, Time.deltaTime * 10f);
+						PortraitPanel.alpha = Mathf.MoveTowards(PortraitPanel.alpha, 0f, Time.deltaTime * 10f);
+						SchedulePanel.alpha = Mathf.MoveTowards(SchedulePanel.alpha, 1f, Time.deltaTime * 10f);
+						DetailPanel.alpha = Mathf.MoveTowards(DetailPanel.alpha, 0f, Time.deltaTime * 10f);
+						if (!(SchedulePanel.alpha > 0.999f))
+						{
+							return;
+						}
+						if (InputManager.TappedUp)
+						{
+							Row--;
+							if (Row < 1)
+							{
+								Row = JSON.Students[Selected].ScheduleBlocks.Length - 1;
+							}
+						}
+						else if (InputManager.TappedDown)
+						{
+							Row++;
+							if (Row > JSON.Students[Selected].ScheduleBlocks.Length - 1)
+							{
+								Row = 1;
+							}
+						}
+						if (InputManager.TappedLeft)
+						{
+							Column--;
+							if (Column < 1)
+							{
+								Column = 3;
+							}
+						}
+						else if (InputManager.TappedRight)
+						{
+							Column++;
+							if (Column > 3)
+							{
+								Column = 1;
+							}
+						}
+						int num7 = 0;
+						int num8 = 0;
+						if (Column == 1)
+						{
+							num7 = -500;
+						}
+						else if (Column == 2)
+						{
+							num7 = -200;
+						}
+						else if (Column == 3)
+						{
+							num7 = 200;
+						}
+						num8 = 500 - Row * 100;
+						ScheduleArrow.localPosition = new Vector3(num7, num8, 0f);
+						if (Column == 1)
+						{
+							ScheduleHelpLabel.text = TimeExplanations[Row];
+						}
+						else if (Column == 2)
+						{
+							ScheduleHelpLabel.text = "This action will cause the character to perform...\n\n" + ActionExplanations[Array.IndexOf(Actions, JSON.Students[Selected].ScheduleBlocks[Row].action)];
+						}
+						else if (Column == 3)
+						{
+							ScheduleHelpLabel.text = "This destination will cause the character to go to...\n\n" + DestinationExplanations[Array.IndexOf(Destinations, JSON.Students[Selected].ScheduleBlocks[Row].destination)];
+						}
+						if (Column == 2)
+						{
+							if (Input.GetButtonDown(InputNames.Xbox_A))
+							{
+								int num9 = Array.IndexOf(Actions, JSON.Students[Selected].ScheduleBlocks[Row].action);
+								num9++;
+								if (num9 > Actions.Length - 1)
+								{
+									num9 = 1;
+								}
+								JSON.Students[Selected].ScheduleBlocks[Row].action = Actions[num9];
+								ScheduleHelpLabel.text = ActionExplanations[num9];
+								UpdateStudent();
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								int num10 = Array.IndexOf(Actions, JSON.Students[Selected].ScheduleBlocks[Row].action);
+								num10--;
+								if (num10 < 1)
+								{
+									num10 = Actions.Length - 1;
+								}
+								JSON.Students[Selected].ScheduleBlocks[Row].action = Actions[num10];
+								ScheduleHelpLabel.text = ActionExplanations[num10];
+								UpdateStudent();
+							}
+						}
+						else if (Column == 3)
+						{
+							if (Input.GetButtonDown(InputNames.Xbox_A))
+							{
+								int num11 = Array.IndexOf(Destinations, JSON.Students[Selected].ScheduleBlocks[Row].destination);
+								num11++;
+								if (num11 > Destinations.Length - 1)
+								{
+									num11 = 1;
+								}
+								JSON.Students[Selected].ScheduleBlocks[Row].destination = Destinations[num11];
+								ScheduleHelpLabel.text = DestinationExplanations[Row];
+								UpdateStudent();
+							}
+							else if (Input.GetButtonDown(InputNames.Xbox_B))
+							{
+								int num12 = Array.IndexOf(Destinations, JSON.Students[Selected].ScheduleBlocks[Row].destination);
+								num12--;
+								if (num12 < 1)
+								{
+									num12 = Destinations.Length - 1;
+								}
+								JSON.Students[Selected].ScheduleBlocks[Row].destination = Destinations[num12];
+								ScheduleHelpLabel.text = DestinationExplanations[Row];
+								UpdateStudent();
+							}
+						}
+						if (Input.GetButtonDown(InputNames.Xbox_Y))
+						{
+							RandomizeSchedule(Selected);
+							UpdateStudent();
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_LB))
+						{
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Like";
+							PromptBar.Label[1].text = "Dislike";
+							PromptBar.Label[2].text = "Neutral";
+							PromptBar.Label[3].text = "Randomize";
+							PromptBar.Label[4].text = "Change Row";
+							PromptBar.Label[5].text = "Change Column";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+							ReputationChart.gameObject.SetActive(value: true);
+							PortraitPreview.SetActive(value: true);
+							EditingSchedule = false;
+							EditingOpinions = true;
+							Column = 1;
+							Row = 1;
+							UpdateOpinions();
+							UpdateTopicHighlight();
+							UpdateHeader();
+						}
+						else if (Input.GetButtonDown(InputNames.Xbox_RB))
+						{
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Edit";
+							PromptBar.Label[1].text = "Randomize";
+							PromptBar.Label[2].text = "Floor Down";
+							PromptBar.Label[3].text = "Floor Up";
+							PromptBar.Label[4].text = "Change Selection";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+							EditingSchedule = false;
+							EditingLocations = true;
+							UpdateHeader();
+							Map.ShowMap();
+						}
 					}
-					else if (Input.GetKey("left") || Input.GetAxis(InputNames.Xbox_DpadX) < -0.5f)
+					else
 					{
-						CurrentMapIcon.Rotation -= 360f * Time.deltaTime;
-						CurrentMapIcon.ArrowParent.localEulerAngles = new Vector3(0f, 0f, CurrentMapIcon.Rotation * -1f);
+						if (!EditingLocations)
+						{
+							return;
+						}
+						LocationsPanel.alpha = Mathf.MoveTowards(LocationsPanel.alpha, 1f, Time.deltaTime * 10f);
+						SchedulePanel.alpha = Mathf.MoveTowards(SchedulePanel.alpha, 0f, Time.deltaTime * 10f);
+						if (InputDevice.Type == InputDeviceType.MouseAndKeyboard)
+						{
+							LocationInstructionLabel.text = "Use the mouse to move the map. Use the scroll wheel to zoom in and out.";
+						}
+						else
+						{
+							LocationInstructionLabel.text = "Use the left stick to move the map. Use the right stick to zoom in and out.";
+						}
+						if (!(LocationsPanel.alpha > 0.999f))
+						{
+							return;
+						}
+						if (UsingMenu)
+						{
+							if (InputManager.TappedDown || HeldDown > 0.5f)
+							{
+								if (HeldDown > 0.5f)
+								{
+									HeldDown = 0.45f;
+								}
+								LocationSelected++;
+								if (LocationSelected > 3)
+								{
+									LocationSelected = 1;
+								}
+							}
+							if (InputManager.TappedUp || HeldUp > 0.5f)
+							{
+								if (HeldUp > 0.5f)
+								{
+									HeldUp = 0.45f;
+								}
+								LocationSelected--;
+								if (LocationSelected < 1)
+								{
+									LocationSelected = 3;
+								}
+							}
+							LocationArrow.localPosition = new Vector3(-980f, 275 - 100 * LocationSelected, 0f);
+							if (Input.GetButtonDown(InputNames.Xbox_A))
+							{
+								LocationInstructionLabel.transform.parent.gameObject.SetActive(value: true);
+								LocationBGs[LocationSelected].color = Color.white;
+								MapShadow.material.color = new Color(0f, 0f, 0f, 0f);
+								if (LocationSelected == 1)
+								{
+									CurrentMapIcon = HangoutIcons[Selected].GetComponent<MapIconScript>();
+								}
+								else if (LocationSelected == 2)
+								{
+									CurrentMapIcon = Patrol1Icons[Selected].GetComponent<MapIconScript>();
+								}
+								else if (LocationSelected == 3)
+								{
+									CurrentMapIcon = Patrol2Icons[Selected].GetComponent<MapIconScript>();
+								}
+								CurrentMapIcon.transform.parent = MapPanel.transform;
+								CurrentMapIcon.transform.localPosition = new Vector3(0f, 0f, 299f);
+								Map.AcceptingInput = true;
+								UsingMenu = false;
+								PromptBar.ClearButtons();
+								PromptBar.Label[1].text = "Back";
+								PromptBar.Label[2].text = "Floor Down";
+								PromptBar.Label[3].text = "Floor Up";
+								PromptBar.Label[5].text = "Change Direction";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+							}
+							else if (!Input.GetButtonDown(InputNames.Xbox_B) && Input.GetButtonDown(InputNames.Xbox_LB))
+							{
+								PromptBar.ClearButtons();
+								PromptBar.Label[0].text = "Next";
+								PromptBar.Label[1].text = "Previous";
+								PromptBar.Label[3].text = "Randomize";
+								PromptBar.Label[4].text = "Change Row";
+								PromptBar.Label[5].text = "Change Column";
+								PromptBar.UpdateButtons();
+								PromptBar.Show = true;
+								EditingLocations = false;
+								EditingSchedule = true;
+								Column = 1;
+								Row = 1;
+								UpdateHeader();
+								Map.HideMap();
+							}
+							return;
+						}
+						HangoutPanel.transform.position += new Vector3(1f, 0f, 0f);
+						HangoutPanel.transform.position -= new Vector3(1f, 0f, 0f);
+						Patrol1Panel.transform.position += new Vector3(1f, 0f, 0f);
+						Patrol1Panel.transform.position -= new Vector3(1f, 0f, 0f);
+						Patrol2Panel.transform.position += new Vector3(1f, 0f, 0f);
+						Patrol2Panel.transform.position -= new Vector3(1f, 0f, 0f);
+						if (Input.GetKey("right") || Input.GetAxis(InputNames.Xbox_DpadX) > 0.5f)
+						{
+							CurrentMapIcon.Rotation += 360f * Time.deltaTime;
+							CurrentMapIcon.ArrowParent.localEulerAngles = new Vector3(0f, 0f, CurrentMapIcon.Rotation * -1f);
+						}
+						else if (Input.GetKey("left") || Input.GetAxis(InputNames.Xbox_DpadX) < -0.5f)
+						{
+							CurrentMapIcon.Rotation -= 360f * Time.deltaTime;
+							CurrentMapIcon.ArrowParent.localEulerAngles = new Vector3(0f, 0f, CurrentMapIcon.Rotation * -1f);
+						}
+						if (Input.GetButtonDown(InputNames.Xbox_B))
+						{
+							LocationInstructionLabel.transform.parent.gameObject.SetActive(value: false);
+							LocationBGs[LocationSelected].color = new Color(1f, 0.75f, 1f);
+							MapShadow.material.color = new Color(0f, 0f, 0f, 0.5f);
+							if (LocationSelected == 1)
+							{
+								HangoutIcons[Selected].transform.parent = HangoutPanel.transform;
+							}
+							else if (LocationSelected == 2)
+							{
+								Patrol1Icons[Selected].transform.parent = Patrol1Panel.transform;
+							}
+							else if (LocationSelected == 3)
+							{
+								Patrol2Icons[Selected].transform.parent = Patrol2Panel.transform;
+							}
+							Map.AcceptingInput = false;
+							UsingMenu = true;
+							PromptBar.ClearButtons();
+							PromptBar.Label[0].text = "Edit";
+							PromptBar.Label[1].text = "Randomize";
+							PromptBar.Label[2].text = "Floor Down";
+							PromptBar.Label[3].text = "Floor Up";
+							PromptBar.Label[4].text = "Change Selection";
+							PromptBar.UpdateButtons();
+							PromptBar.Show = true;
+						}
 					}
-					if (Input.GetButtonDown(InputNames.Xbox_B))
+				}
+				else if (Input.GetButtonDown(InputNames.Xbox_A))
+				{
+					if (Selected == 0 || StudentChan.activeInHierarchy)
 					{
-						LocationInstructionLabel.transform.parent.gameObject.SetActive(value: false);
-						LocationBGs[LocationSelected].color = new Color(1f, 0.75f, 1f);
-						MapShadow.material.color = new Color(0f, 0f, 0f, 0.5f);
-						if (LocationSelected == 1)
-						{
-							HangoutIcons[Selected].transform.parent = HangoutPanel.transform;
-						}
-						else if (LocationSelected == 2)
-						{
-							Patrol1Icons[Selected].transform.parent = Patrol1Panel.transform;
-						}
-						else if (LocationSelected == 3)
-						{
-							Patrol2Icons[Selected].transform.parent = Patrol2Panel.transform;
-						}
-						Map.AcceptingInput = false;
-						UsingMenu = true;
-						PromptBar.ClearButtons();
-						PromptBar.Label[0].text = "Edit";
-						PromptBar.Label[1].text = "Randomize";
-						PromptBar.Label[2].text = "Floor Down";
-						PromptBar.Label[3].text = "Floor Up";
-						PromptBar.Label[4].text = "Change Selection";
-						PromptBar.UpdateButtons();
-						PromptBar.Show = true;
+						RandomizeGirl(Selected);
 					}
+					else
+					{
+						RandomizeBoy(Selected);
+					}
+					UpdateStudent();
+					ConfirmRandomPanel.alpha = 0f;
+				}
+				else if (Input.GetButtonDown(InputNames.Xbox_B))
+				{
+					ConfirmRandomPanel.alpha = 0f;
 				}
 			}
 			else if (ViewingRivals)

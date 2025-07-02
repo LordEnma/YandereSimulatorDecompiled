@@ -237,12 +237,8 @@ public class HomeDarknessScript : MonoBehaviour
 						SceneManager.LoadScene("AsylumScene");
 					}
 				}
-				else
+				else if (HomeExit.ID == 5)
 				{
-					if (HomeExit.ID != 5)
-					{
-						return;
-					}
 					Debug.Log("Exiting HomeScene via Part Time Job menu.");
 					if (!HomeGlobals.Night)
 					{
@@ -256,6 +252,27 @@ public class HomeDarknessScript : MonoBehaviour
 						DateGlobals.ForceSkip = true;
 					}
 					SceneManager.LoadScene("CalendarScene");
+				}
+				else if (HomeExit.ID == 6)
+				{
+					Debug.Log("HomeDarknessScript is now trying to teleport Ryoba out of her bedroom.");
+					HomeCamera.Destination = HomeCamera.OutOfRoomDestinations[2];
+					HomeCamera.LastChangePoint = Vector3.zero;
+					HomeCamera.TooClose = false;
+					HomeCamera.CameraTimer = 0f;
+					HomeYandere.transform.position = new Vector3(-5.5f, 0f, -1.675f);
+					HomeYandere.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+					HomeYandere.MyController.radius = 0.25f;
+					HomeYandere.CanMove = true;
+					FadeOut = false;
+					HomeCamera.enabled = true;
+					HomeCamera.Target = HomeCamera.Targets[0];
+					HomeCamera.Focus.position = HomeCamera.Target.position;
+					HomeCamera.EightiesLabelPanel.SetActive(value: false);
+					HomeCamera.LabelPanel.SetActive(value: true);
+					HomeCamera.ModernDayRoom.SetActive(value: true);
+					HomeCamera.EightiesRoom.SetActive(value: false);
+					Physics.SyncTransforms();
 				}
 				return;
 			}

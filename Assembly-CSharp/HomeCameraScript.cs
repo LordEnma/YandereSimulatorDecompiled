@@ -80,6 +80,12 @@ public class HomeCameraScript : MonoBehaviour
 
 	public GameObject ModernCarpet;
 
+	public GameObject[] EightiesObjectsToDisable;
+
+	public GameObject[] EightiesObjectsToEnable;
+
+	public GameObject[] ModernObjectsToDisable;
+
 	public Transform BedroomDoor;
 
 	public Transform Destination;
@@ -284,6 +290,14 @@ public class HomeCameraScript : MonoBehaviour
 			LabelPanel.SetActive(value: true);
 			EightiesTriggers[1].transform.parent.gameObject.SetActive(value: false);
 			Triggers[1].transform.parent.gameObject.SetActive(value: true);
+			GameObject[] eightiesObjectsToDisable = EightiesObjectsToDisable;
+			foreach (GameObject gameObject in eightiesObjectsToDisable)
+			{
+				if (gameObject != null)
+				{
+					gameObject.SetActive(value: false);
+				}
+			}
 		}
 		if (!OptionGlobals.Vsync)
 		{
@@ -745,6 +759,22 @@ public class HomeCameraScript : MonoBehaviour
 		}
 		CeilingLight.transform.localPosition = new Vector3(-0.049f, 0.2666f, 0.007f);
 		CeilingLight.GetComponent<Light>().intensity = 3f;
+		GameObject[] eightiesObjectsToEnable = EightiesObjectsToEnable;
+		foreach (GameObject gameObject in eightiesObjectsToEnable)
+		{
+			if (gameObject != null)
+			{
+				gameObject.SetActive(value: true);
+			}
+		}
+		eightiesObjectsToEnable = ModernObjectsToDisable;
+		foreach (GameObject gameObject2 in eightiesObjectsToEnable)
+		{
+			if (gameObject2 != null)
+			{
+				gameObject2.SetActive(value: false);
+			}
+		}
 	}
 
 	public void EightiesifyLabel(UILabel Label)

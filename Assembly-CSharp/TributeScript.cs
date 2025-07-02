@@ -164,6 +164,15 @@ public class TributeScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
+			if (Input.GetKeyDown(CazLetters[CazID]))
+			{
+				CazID++;
+				if (CazID == CazLetters.Length)
+				{
+					Yandere.CazTrap();
+					base.enabled = false;
+				}
+			}
 			if (Yandere.LunaMode && Input.GetKeyDown(LunarLetters[LunarID]))
 			{
 				LunarID++;

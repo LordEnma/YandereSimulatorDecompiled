@@ -130,75 +130,83 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
-			if (Frame > 1 && Clock.HourTime > 13f && Senpai.gameObject.activeInHierarchy && Rival != null)
+			if (Frame > 1 && Clock.HourTime > 13f)
 			{
-				if (Rival.Bullied)
+				if (Senpai.gameObject.activeInHierarchy && Rival != null && Rival.gameObject.activeInHierarchy)
 				{
-					base.enabled = false;
+					if (Rival.Bullied)
+					{
+						base.enabled = false;
+					}
+					else
+					{
+						if (!Senpai.InEvent)
+						{
+							Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+							Senpai.CharacterAnimation.CrossFade(Senpai.WalkAnim);
+							Senpai.Pathfinding.target = Location[1];
+							Senpai.CurrentDestination = Location[1];
+							Senpai.Pathfinding.canSearch = true;
+							Senpai.Pathfinding.canMove = true;
+							Senpai.SmartPhone.SetActive(value: false);
+							Senpai.InEvent = true;
+							Senpai.DistanceToDestination = 100f;
+							Spy.Prompt.enabled = true;
+						}
+						if (Rival.enabled && !Rival.InEvent && !Rival.Phoneless && !Rival.EndSearch)
+						{
+							Debug.Log("Osana's Friday lunch event has begun.");
+							Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+							Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
+							Rival.Pathfinding.target = Location[2];
+							Rival.CurrentDestination = Location[2];
+							Rival.Pathfinding.canSearch = true;
+							Rival.Pathfinding.canMove = true;
+							Rival.SmartPhone.SetActive(value: false);
+							Rival.Routine = false;
+							Rival.InEvent = true;
+							Rival.DistanceToDestination = 100f;
+							Spy.Prompt.enabled = true;
+						}
+						if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner)
+						{
+							Friend = StudentManager.Students[FriendID];
+						}
+						if (Senpai.CurrentDestination == Location[1] && Senpai.DistanceToDestination < 0.5f)
+						{
+							if (!Impatient)
+							{
+								Senpai.CharacterAnimation.CrossFade("impatientWait_00");
+								Senpai.Pathfinding.canSearch = false;
+								Senpai.Pathfinding.canMove = false;
+							}
+							else if (Senpai.CharacterAnimation["impatience_00"].time >= Senpai.CharacterAnimation["impatience_00"].length)
+							{
+								EndEvent();
+							}
+						}
+						if (Rival.CurrentDestination == Location[2] && Rival.DistanceToDestination < 0.5f)
+						{
+							Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
+							Rival.Pathfinding.canSearch = false;
+							Rival.Pathfinding.canMove = false;
+						}
+						if (!HintGiven)
+						{
+							Yandere.PauseScreen.Hint.Show = true;
+							Yandere.PauseScreen.Hint.QuickID = 7;
+							HintGiven = true;
+						}
+						if (Rival.CurrentDestination == Location[2] && Senpai.CurrentDestination == Location[1] && Senpai.DistanceToDestination < 0.5f && Rival.DistanceToDestination < 0.5f && !Impatient)
+						{
+							Phase++;
+						}
+					}
 				}
 				else
 				{
-					if (!Senpai.InEvent)
-					{
-						Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-						Senpai.CharacterAnimation.CrossFade(Senpai.WalkAnim);
-						Senpai.Pathfinding.target = Location[1];
-						Senpai.CurrentDestination = Location[1];
-						Senpai.Pathfinding.canSearch = true;
-						Senpai.Pathfinding.canMove = true;
-						Senpai.SmartPhone.SetActive(value: false);
-						Senpai.InEvent = true;
-						Senpai.DistanceToDestination = 100f;
-						Spy.Prompt.enabled = true;
-					}
-					if (Rival.enabled && !Rival.InEvent && !Rival.Phoneless && !Rival.EndSearch)
-					{
-						Debug.Log("Osana's Friday lunch event has begun.");
-						Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-						Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
-						Rival.Pathfinding.target = Location[2];
-						Rival.CurrentDestination = Location[2];
-						Rival.Pathfinding.canSearch = true;
-						Rival.Pathfinding.canMove = true;
-						Rival.SmartPhone.SetActive(value: false);
-						Rival.Routine = false;
-						Rival.InEvent = true;
-						Rival.DistanceToDestination = 100f;
-						Spy.Prompt.enabled = true;
-					}
-					if (StudentManager.Students[FriendID] != null && !PlayerGlobals.RaibaruLoner)
-					{
-						Friend = StudentManager.Students[FriendID];
-					}
-					if (Senpai.CurrentDestination == Location[1] && Senpai.DistanceToDestination < 0.5f)
-					{
-						if (!Impatient)
-						{
-							Senpai.CharacterAnimation.CrossFade("impatientWait_00");
-							Senpai.Pathfinding.canSearch = false;
-							Senpai.Pathfinding.canMove = false;
-						}
-						else if (Senpai.CharacterAnimation["impatience_00"].time >= Senpai.CharacterAnimation["impatience_00"].length)
-						{
-							EndEvent();
-						}
-					}
-					if (Rival.CurrentDestination == Location[2] && Rival.DistanceToDestination < 0.5f)
-					{
-						Rival.CharacterAnimation.CrossFade(Rival.IdleAnim);
-						Rival.Pathfinding.canSearch = false;
-						Rival.Pathfinding.canMove = false;
-					}
-					if (!HintGiven)
-					{
-						Yandere.PauseScreen.Hint.Show = true;
-						Yandere.PauseScreen.Hint.QuickID = 7;
-						HintGiven = true;
-					}
-					if (Rival.CurrentDestination == Location[2] && Senpai.CurrentDestination == Location[1] && Senpai.DistanceToDestination < 0.5f && Rival.DistanceToDestination < 0.5f && !Impatient)
-					{
-						Phase++;
-					}
+					Debug.Log("Disabling event because Senpai or Osana don't exist.");
+					base.enabled = false;
 				}
 			}
 			Frame++;

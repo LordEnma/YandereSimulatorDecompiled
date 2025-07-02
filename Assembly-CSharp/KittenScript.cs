@@ -69,6 +69,7 @@ public class KittenScript : MonoBehaviour
 					int num4 = Random.Range(0, NormalLines.Length);
 					MyAudio.clip = NormalLines[num4];
 				}
+				MyAudio.Play();
 				Timer = 0f;
 			}
 		}

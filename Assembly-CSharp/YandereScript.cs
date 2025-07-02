@@ -3104,6 +3104,11 @@ public class YandereScript : MonoBehaviour
 							if (!Sans && !BlackRobe.activeInHierarchy)
 							{
 								YandereVision = true;
+								ActivateOutline(Hairstyles[Hairstyle]);
+								if (StudentManager.Students[1] != null)
+								{
+									StudentManager.Students[1].TurnOutlinesPink();
+								}
 								if (!AudioPlayed)
 								{
 									YandereVisionAudio.clip = YandereVisionOn;
@@ -4948,6 +4953,7 @@ public class YandereScript : MonoBehaviour
 			if (CharacterAnimation["f02_subtleStab_00"].time >= CharacterAnimation["f02_subtleStab_00"].length)
 			{
 				StainWeapon();
+				TargetStudent = null;
 				SubtleStabbing = false;
 				CanMove = true;
 			}
@@ -6487,6 +6493,7 @@ public class YandereScript : MonoBehaviour
 			if (CharacterAnimation[DrownAnim].time > CharacterAnimation[DrownAnim].length)
 			{
 				TargetStudent.DeathType = DeathType.Drowning;
+				TargetStudent = null;
 				Attacking = false;
 				if (!Noticed)
 				{
@@ -6531,6 +6538,7 @@ public class YandereScript : MonoBehaviour
 			{
 				CameraTarget.localPosition = new Vector3(0f, 1f, 0f);
 				TargetStudent.DeathType = DeathType.Falling;
+				TargetStudent = null;
 				SplashCamera.transform.parent = null;
 				FollowHips = false;
 				Attacking = false;
@@ -6550,7 +6558,7 @@ public class YandereScript : MonoBehaviour
 		{
 			Debug.Log("An Invincible student (maybe Raibaru, maybe someone else) is countering an attack, but TargetStudent is null for some reason. Prevent this from being able to occur.");
 		}
-		if (TargetStudent.Teacher)
+		if (TargetStudent.Teacher && !TargetStudent.Blind)
 		{
 			Debug.Log("Yandere-chan thinks she should play the ''got countered by teacher'' animation now.");
 			CharacterAnimation["f02_teacherCounterA_00"].time = TargetStudent.CharacterAnimation["f02_teacherCounterB_00"].time;
@@ -6848,7 +6856,7 @@ public class YandereScript : MonoBehaviour
 	{
 		if (!EasterEggMenu.activeInHierarchy && !DebugMenu.activeInHierarchy)
 		{
-			if (Input.GetKeyDown(KeyCode.P))
+			if (Input.GetKeyDown(KeyCode.P) && !Egg)
 			{
 				EyewearID++;
 				UpdateEyewear();
@@ -9146,6 +9154,34 @@ public class YandereScript : MonoBehaviour
 		LacunaMode = true;
 		Hairstyle = 214;
 		UpdateHair();
+	}
+
+	public void CazTrap()
+	{
+		CazTrapAttacher.SetActive(value: true);
+		PantyAttacher.newRenderer.enabled = false;
+		PantyAttacher.gameObject.SetActive(value: false);
+		PantyAttacher.enabled = false;
+		UnityEngine.Object.Destroy(PantyAttacher.newRenderer);
+		UnityEngine.Object.Destroy(PantyAttacher.gameObject);
+		ClearBlendShapes();
+		MyRenderer.sharedMesh = null;
+		MyRenderer.enabled = false;
+		Stance.Current = StanceType.Standing;
+		CrawlTimer = 0f;
+		Uncrouch();
+		EyewearID = 0;
+		UpdateEyewear();
+		BreastSize = 0.5f;
+		UpdateBust();
+		FaceTexture = Black;
+		EyewearID = 0;
+		UpdateEyewear();
+		AccessoryID = 55;
+		UpdateAccessory();
+		Hairstyle = 0;
+		UpdateHair();
+		Egg = true;
 	}
 
 	private void GarbageMode()
@@ -11499,6 +11535,23 @@ public class YandereScript : MonoBehaviour
 		case "Custom":
 			ColorValue = new Color((float)StudentManager.JSON.Students[0].HairR * 1f / 255f, (float)StudentManager.JSON.Students[0].HairG * 1f / 255f, (float)StudentManager.JSON.Students[0].HairB * 1f / 255f);
 			break;
+		}
+	}
+
+	public static void ActivateOutline(GameObject target)
+	{
+		OutlineScript outlineScript = target.GetComponent<OutlineScript>();
+		if (outlineScript == null)
+		{
+			outlineScript = target.GetComponentInChildren<OutlineScript>(includeInactive: true);
+		}
+		if (outlineScript != null && outlineScript.h != null)
+		{
+			outlineScript.h.ConstantOnImmediate(outlineScript.color);
+		}
+		else
+		{
+			Debug.LogWarning("OutlineScript not found on target or any of its children.");
 		}
 	}
 }

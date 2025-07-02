@@ -788,7 +788,7 @@ public class GenericRivalEventScript : MonoBehaviour
 						SpeechText[5] = "Once you finish it, let me know what you think of the ending!";
 						SpeechText[6] = "Oh, for sure! Totally! I will!";
 						SpeechText[7] = "Oh, um, hey! I was actually wondering, um...";
-						SpeechText[8] = "Would you, ah...me willing to...walk home with me?";
+						SpeechText[8] = "Would you, ah...be willing to...walk home with me?";
 						SpeechText[9] = "Of course! I'd love to!";
 						SpeechText[10] = "Oh, yaaaaay! Let's get going!";
 						SabobtagedSpeechText[1] = "Uuuuu...Senpai...Senpai...!";
@@ -1779,43 +1779,18 @@ public class GenericRivalEventScript : MonoBehaviour
 				{
 					return;
 				}
-				if (Senpai.gameObject.activeInHierarchy && Rival != null && Rival.enabled)
+				if (Senpai.gameObject.activeInHierarchy && Rival != null && Rival.gameObject.activeInHierarchy && Rival.enabled)
 				{
 					bool flag = false;
-					if (Custom || Teleport || LunchTime || Senpai.Leaving || Senpai.CurrentDestination == StudentManager.Exit)
+					if ((Custom || Teleport || LunchTime || Rival.Leaving || Rival.CurrentDestination == StudentManager.Exit) && !Rival.Ragdoll.Zs.activeInHierarchy)
 					{
 						flag = true;
 					}
-					if (flag && !Senpai.InEvent)
+					if (StartTime > 17f && !Rival.Leaving)
 					{
-						Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-						Senpai.CharacterAnimation.CrossFade(Senpai.WalkAnim);
-						Senpai.Pathfinding.target = Location[1];
-						Senpai.CurrentDestination = Location[1];
-						Senpai.Pathfinding.canSearch = true;
-						Senpai.Pathfinding.canMove = true;
-						Senpai.InEvent = true;
-						Senpai.DistanceToDestination = 100f;
-						Spy.gameObject.SetActive(value: true);
-						Spy.Prompt.enabled = true;
-						if (Teleport)
-						{
-							Senpai.transform.eulerAngles = Location[1].eulerAngles;
-							Senpai.transform.position = Location[1].position;
-							Senpai.CharacterAnimation.Play(Senpai.IdleAnim);
-							Senpai.Pathfinding.canSearch = false;
-							Senpai.Pathfinding.canMove = false;
-							Senpai.Routine = false;
-							Senpai.Spawned = true;
-						}
-						Speaker[1] = Senpai;
+						flag = false;
 					}
-					bool flag2 = false;
-					if ((Custom || Teleport || LunchTime || Rival.Leaving || Rival.CurrentDestination == StudentManager.Exit) && !Rival.Ragdoll.Zs.activeInHierarchy)
-					{
-						flag2 = true;
-					}
-					if (flag2 && !Rival.InEvent && Rival.CurrentAction != StudentActionType.Sleep && Rival.Schoolwear != 2)
+					if (flag && !Rival.InEvent && Rival.CurrentAction != StudentActionType.Sleep && Rival.Schoolwear != 2)
 					{
 						Debug.Log("The rival is being put into an event now.");
 						Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
@@ -1853,6 +1828,35 @@ public class GenericRivalEventScript : MonoBehaviour
 							}
 						}
 						Speaker[2] = Rival;
+					}
+					bool flag2 = false;
+					if (Custom || Teleport || LunchTime || Senpai.Leaving || Senpai.CurrentDestination == StudentManager.Exit)
+					{
+						flag2 = true;
+					}
+					if (flag2 && flag && !Senpai.InEvent)
+					{
+						Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+						Senpai.CharacterAnimation.CrossFade(Senpai.WalkAnim);
+						Senpai.Pathfinding.target = Location[1];
+						Senpai.CurrentDestination = Location[1];
+						Senpai.Pathfinding.canSearch = true;
+						Senpai.Pathfinding.canMove = true;
+						Senpai.InEvent = true;
+						Senpai.DistanceToDestination = 100f;
+						Spy.gameObject.SetActive(value: true);
+						Spy.Prompt.enabled = true;
+						if (Teleport)
+						{
+							Senpai.transform.eulerAngles = Location[1].eulerAngles;
+							Senpai.transform.position = Location[1].position;
+							Senpai.CharacterAnimation.Play(Senpai.IdleAnim);
+							Senpai.Pathfinding.canSearch = false;
+							Senpai.Pathfinding.canMove = false;
+							Senpai.Routine = false;
+							Senpai.Spawned = true;
+						}
+						Speaker[1] = Senpai;
 					}
 					if (Senpai.CurrentDestination == Location[1] && Senpai.DistanceToDestination < 0.5f)
 					{
@@ -1901,6 +1905,7 @@ public class GenericRivalEventScript : MonoBehaviour
 				}
 				else
 				{
+					Debug.Log("An event had to be canceled because one of the characters involved was null, inactive, or disabled.");
 					base.enabled = false;
 				}
 			}

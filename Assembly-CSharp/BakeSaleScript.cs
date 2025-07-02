@@ -4,11 +4,19 @@ public class BakeSaleScript : MonoBehaviour
 {
 	public StudentManagerScript StudentManager;
 
+	public StudentScript CurrentCustomer;
+
+	public SkinnedMeshRenderer MoneyRenderer;
+
 	public GameObject AmaiSuccess;
 
 	public GameObject AmaiFail;
 
+	public UILabel ProfitLabel;
+
 	public Transform MeetSpot;
+
+	public Transform WaitSpot;
 
 	public Texture AmaiPoster;
 
@@ -16,9 +24,13 @@ public class BakeSaleScript : MonoBehaviour
 
 	public Renderer[] Poster;
 
+	public bool[] TrayPlaced;
+
 	public float Timer;
 
 	public bool Poisoned;
+
+	public int Money;
 
 	public int ID = 2;
 
@@ -77,6 +89,7 @@ public class BakeSaleScript : MonoBehaviour
 			}
 			if (StudentManager.Students[ID].Routine && StudentManager.Students[ID].Indoors && !StudentManager.Students[ID].Slave && !StudentManager.Students[ID].Bullied && !StudentManager.Students[ID].Meeting && !StudentManager.Students[ID].ClubAttire && !StudentManager.Students[ID].Distracted && !StudentManager.Students[ID].DressCode && !StudentManager.Students[ID].Investigating && StudentManager.Students[ID].Schoolwear == 1 && StudentManager.Students[ID].ClubActivityPhase < 16 && StudentManager.Students[ID].Club != ClubType.Delinquent)
 			{
+				Debug.Log(StudentManager.Students[ID].Name + " has decided to go to the bake sale.");
 				Timer = 0f;
 				StudentManager.Students[ID].Meeting = true;
 				StudentManager.Students[ID].BakeSale = true;
@@ -102,5 +115,12 @@ public class BakeSaleScript : MonoBehaviour
 		{
 			ID = 2;
 		}
+	}
+
+	public void MakeSale()
+	{
+		Money++;
+		MoneyRenderer.SetBlendShapeWeight(0, 94.7f - (float)Money);
+		ProfitLabel.text = "$" + Money + ".00";
 	}
 }

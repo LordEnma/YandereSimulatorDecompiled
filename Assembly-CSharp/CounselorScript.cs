@@ -749,7 +749,6 @@ public class CounselorScript : MonoBehaviour
 		}
 		if (Lecturing)
 		{
-			Debug.Log("The guidance counselor is lecturing!");
 			Chibi.localPosition = new Vector3(Chibi.localPosition.x, Mathf.Lerp(Chibi.localPosition.y, 250f + (float)RivalExpelProgress * -90f, Time.deltaTime * 3f), Chibi.localPosition.z);
 			if (LecturePhase == 1)
 			{

@@ -111,6 +111,18 @@ public class PauseScreenScript : MonoBehaviour
 
 	public Transform PromptParent;
 
+	public AudioSource MyAudio;
+
+	public AudioClip TakeOutPhone;
+
+	public AudioClip PutAwayPhone;
+
+	public AudioClip MenuForward;
+
+	public AudioClip MenuSelect;
+
+	public AudioClip MenuBack;
+
 	public UISprite[] PhoneIcons;
 
 	public UISprite[] PhoneShadows;
@@ -137,6 +149,8 @@ public class PauseScreenScript : MonoBehaviour
 
 	public bool ViewingControlMenu;
 
+	public bool PlayedSoundEffect;
+
 	public bool CorrectingTime;
 
 	public bool MultiMission;
@@ -146,6 +160,8 @@ public class PauseScreenScript : MonoBehaviour
 	public bool BypassPhone;
 
 	public bool EggsChecked;
+
+	public bool InMainMenu;
 
 	public bool FirstTime;
 
@@ -163,6 +179,8 @@ public class PauseScreenScript : MonoBehaviour
 
 	public bool Eighties;
 
+	public bool Showing;
+
 	public bool NoInfo;
 
 	public bool Home;
@@ -174,6 +192,8 @@ public class PauseScreenScript : MonoBehaviour
 	public int Row = 1;
 
 	public int Column = 2;
+
+	public int SelectionsMade;
 
 	public string Reason;
 
@@ -319,6 +339,12 @@ public class PauseScreenScript : MonoBehaviour
 		}
 		if (!Show)
 		{
+			if (Showing && PlayedSoundEffect)
+			{
+				MyAudio.clip = PutAwayPhone;
+				MyAudio.Play();
+				PlayedSoundEffect = false;
+			}
 			if (base.transform.localPosition.x > 1350f)
 			{
 				if (Panel.enabled)
@@ -413,6 +439,13 @@ public class PauseScreenScript : MonoBehaviour
 				Show = true;
 			}
 			return;
+		}
+		if (!PlayedSoundEffect)
+		{
+			MyAudio.clip = TakeOutPhone;
+			MyAudio.Play();
+			PlayedSoundEffect = true;
+			Showing = true;
 		}
 		if (!EggsChecked)
 		{
@@ -516,6 +549,12 @@ public class PauseScreenScript : MonoBehaviour
 		}
 		if (MainMenu.activeInHierarchy && !Quitting)
 		{
+			if (!InMainMenu)
+			{
+				MyAudio.clip = MenuBack;
+				MyAudio.Play();
+				InMainMenu = true;
+			}
 			if (InputManager.TappedUp)
 			{
 				Row--;
@@ -656,7 +695,10 @@ public class PauseScreenScript : MonoBehaviour
 								FirstTime = true;
 							}
 							StartCoroutine(StudentInfoMenu.UpdatePortraits());
-							StudentInfoMenu.GrabbedPortraits = true;
+							if (!Home)
+							{
+								StudentInfoMenu.GrabbedPortraits = true;
+							}
 							MainMenu.SetActive(value: false);
 							Sideways = true;
 							PromptBar.ClearButtons();
@@ -1017,6 +1059,12 @@ public class PauseScreenScript : MonoBehaviour
 		{
 			PressedA = false;
 		}
+		if (!MainMenu.activeInHierarchy && InMainMenu)
+		{
+			MyAudio.clip = MenuForward;
+			MyAudio.Play();
+			InMainMenu = false;
+		}
 	}
 
 	public void ShowScheduleScreen()
@@ -1095,6 +1143,12 @@ public class PauseScreenScript : MonoBehaviour
 
 	private void UpdateSelection()
 	{
+		if (SelectionsMade > 0)
+		{
+			MyAudio.clip = MenuSelect;
+			MyAudio.Play();
+		}
+		SelectionsMade++;
 		if (Row < 0)
 		{
 			Row = 5;
@@ -1178,6 +1232,7 @@ public class PauseScreenScript : MonoBehaviour
 					}
 					if (Yandere.StudentManager.Students[i].Investigating)
 					{
+						Debug.Log(Yandere.StudentManager.Students[i].Name + " is investigating.");
 						PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 						Reason = "You cannot save the game while a student is investigating something.";
 					}

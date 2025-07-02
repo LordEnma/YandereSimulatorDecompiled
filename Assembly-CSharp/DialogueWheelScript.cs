@@ -917,7 +917,7 @@ public class DialogueWheelScript : MonoBehaviour
 							Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 						}
 					}
-					else if ((Yandere.TargetStudent.StudentID == 46 && Clock.Period == 3) || (Yandere.TargetStudent.StudentID == 46 && Clock.Period == 5))
+					else if ((Yandere.TargetStudent.StudentID == 46 && Clock.Period == 3) || (Yandere.TargetStudent.StudentID == 46 && Clock.Period == 5) || Yandere.StudentManager.Students[10] == null)
 					{
 						Debug.Log("Hiding Budo's Task button.");
 						Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
@@ -1406,6 +1406,19 @@ public class DialogueWheelScript : MonoBehaviour
 			if (Yandere.TargetStudent.FollowTargetDestination != null)
 			{
 				Yandere.TargetStudent.FollowTargetDestination.localPosition = new Vector3(0f, 0f, 0f);
+			}
+			if (Yandere.TargetStudent.CurrentDestination == Yandere.StudentManager.Exit && Yandere.TargetStudent.MustChangeClothing && Yandere.TargetStudent.Schoolwear == 2)
+			{
+				Debug.Log(Yandere.TargetStudent.Name + " really ought to change their clothing before they proceed with their routine.");
+				if (Yandere.TargetStudent.CurrentAction == StudentActionType.Sunbathe)
+				{
+					Debug.Log("Wait, " + Yandere.TargetStudent.Name + " is already wearing the clothing she needs to be wearing. All is fine.");
+				}
+				else
+				{
+					Yandere.TargetStudent.CurrentDestination = Yandere.TargetStudent.StudentManager.StrippingPositions[Yandere.TargetStudent.GirlID];
+					Yandere.TargetStudent.Pathfinding.target = Yandere.TargetStudent.StudentManager.StrippingPositions[Yandere.TargetStudent.GirlID];
+				}
 			}
 			if (Yandere.TargetStudent != null && Yandere.TargetStudent.Talk != null)
 			{

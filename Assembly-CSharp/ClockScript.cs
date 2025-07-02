@@ -569,13 +569,20 @@ public class ClockScript : MonoBehaviour
 		}
 		if (Yandere.PauseScreen.transform.localPosition.x == 1351f && Input.GetButtonDown(InputNames.Xbox_A))
 		{
-			if (!StudentManager.Eighties)
+			if (!RetroMinigame.Show)
 			{
-				RetroMinigame.MyRenderer.mainTexture = RetroMinigame.ModernTexture;
+				if (!StudentManager.Eighties)
+				{
+					RetroMinigame.MyRenderer.mainTexture = RetroMinigame.ModernTexture;
+				}
+				Yandere.PauseScreen.PromptBar.Label[0].text = "Jump / Retry";
+				RetroMinigame.gameObject.SetActive(value: true);
+				RetroMinigame.PlayMusic();
+				RetroMinigame.Show = true;
+				RetroMinigame.Start();
+				Yandere.Jukebox.LastVolume = Yandere.Jukebox.Volume;
+				Yandere.Jukebox.Volume = 0f;
 			}
-			Yandere.PauseScreen.PromptBar.Label[0].text = "Jump / Retry";
-			RetroMinigame.gameObject.SetActive(value: true);
-			RetroMinigame.Show = true;
 		}
 		else if (Yandere.CameraEffects.Streaks.color.a > 0f || Yandere.CameraEffects.MurderStreaks.color.a > 0f || Yandere.NearSenpai || Input.GetButtonDown(InputNames.Xbox_B))
 		{
@@ -606,7 +613,10 @@ public class ClockScript : MonoBehaviour
 			Yandere.CanMoveTimer = 0.5f;
 		}
 		RetroMinigame.MinigameCamera.SetActive(value: false);
+		RetroMinigame.MyBGM.volume = 0f;
+		RetroMinigame.MySFX.volume = 0f;
 		RetroMinigame.Show = false;
+		Yandere.Jukebox.Volume = Yandere.Jukebox.LastVolume;
 	}
 
 	public string GetWeekdayText(DayOfWeek weekday)

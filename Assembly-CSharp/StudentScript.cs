@@ -688,9 +688,11 @@ public class StudentScript : MonoBehaviour
 
 	public bool StalkerFleeing;
 
-	public bool YandereVisible;
+	public bool UpdateOutlines;
 
 	public bool WitnessedSlave;
+
+	public bool YandereVisible;
 
 	public bool AwareOfCorpse;
 
@@ -1369,6 +1371,8 @@ public class StudentScript : MonoBehaviour
 	public int TimesFollowed;
 
 	public int WarningsGiven;
+
+	public int BakeSaleAnim;
 
 	public int CleaningRole;
 
@@ -3075,8 +3079,9 @@ public class StudentScript : MonoBehaviour
 				}
 				if (Rival && !Slave && !StudentManager.MissionMode)
 				{
-					if (StudentID > 11 && StudentID < 21)
+					if (StudentID > 11 && StudentID < 21 && !StudentManager.BagPlaced)
 					{
+						Debug.Log("A rival is adding ''PlaceBag'' to their routine.");
 						ScheduleBlock scheduleBlock = ScheduleBlocks[2];
 						OriginalDestination = scheduleBlock.destination;
 						OriginalAction = scheduleBlock.action;
@@ -3454,8 +3459,19 @@ public class StudentScript : MonoBehaviour
 					{
 						if (Outlines[ID] != null)
 						{
+							if (StudentID == 2)
+							{
+								Debug.Log("Setting Yui's outlines yellow.");
+							}
 							Outlines[ID].color = new Color(1f, 1f, 0f, 1f);
-							Outlines[ID].h.ConstantOnImmediate(Outlines[ID].color);
+							if (Outlines[ID].h != null)
+							{
+								Outlines[ID].h.ConstantOnImmediate(Outlines[ID].color);
+							}
+							else if (Outlines[ID].h == null)
+							{
+								Outlines[ID].Awake();
+							}
 						}
 					}
 				}
@@ -4027,19 +4043,7 @@ public class StudentScript : MonoBehaviour
 			{
 				Yandere.Senpai = base.transform;
 				Yandere.LookAt.target = Head;
-				for (ID = 0; ID < Outlines.Length; ID++)
-				{
-					if (Outlines[ID] != null)
-					{
-						Outlines[ID].enabled = true;
-						Outlines[ID].color = new Color(1f, 0f, 1f);
-						if (Outlines[ID].h != null)
-						{
-							Outlines[ID].h.enabled = true;
-							Outlines[ID].h.ConstantOnImmediate(Outlines[ID].color);
-						}
-					}
-				}
+				TurnOutlinesPink();
 				Prompt.ButtonActive[0] = false;
 				Prompt.ButtonActive[1] = false;
 				Prompt.ButtonActive[2] = false;
@@ -4050,8 +4054,12 @@ public class StudentScript : MonoBehaviour
 					base.gameObject.SetActive(value: false);
 				}
 			}
-			else if ((StudentManager.StudentPhotographed[StudentID] && !Rival) || (Friend && !Rival))
+			else if ((StudentManager.StudentPhotographed[StudentID] && !Rival && !Grudge) || (Friend && !Grudge && !Rival))
 			{
+				if (StudentID == 2)
+				{
+					Debug.Log("Setting Yui's outlines green.");
+				}
 				TurnOutlinesGreen();
 			}
 			else
@@ -4890,9 +4898,9 @@ public class StudentScript : MonoBehaviour
 					Drownable = false;
 					StudentManager.UpdateMe(StudentID);
 				}
-				if (Schoolwear > 1 && Destinations[Phase] == MyLocker)
+				if (Schoolwear == 3 && Destinations[Phase] == MyLocker)
 				{
-					Debug.Log(Name + " is unable to change their shoes at their locker because they were splashed with water earlier, and are currently in their gym uniform.");
+					Debug.Log(Name + " is unable to change their shoes at their locker because are currently in their gym uniform and can't change back into their school uniform.");
 					Phase++;
 					Leaving = true;
 					if (Rival && DateGlobals.Weekday == DayOfWeek.Friday)
@@ -9482,7 +9490,61 @@ public class StudentScript : MonoBehaviour
 								}
 								else if (BakeSalePhase == 2)
 								{
-									CharacterAnimation.CrossFade(IdleAnim);
+									if (!StudentManager.BakeSale.TrayPlaced[StudentID])
+									{
+										MyPlate.parent = null;
+										MyPlate.position = StudentManager.BakeSalePlateParents[StudentID].position;
+										MyPlate.rotation = StudentManager.BakeSalePlateParents[StudentID].rotation;
+									}
+									if (StudentID == 12)
+									{
+										if (StudentManager.BakeSale.CurrentCustomer != null)
+										{
+											BakeSaleAnim = StudentManager.BakeSale.CurrentCustomer.BakeSaleAnim;
+											if (StudentManager.BakeSale.CurrentCustomer.BakeSalePhase == 0)
+											{
+												CharacterAnimation.CrossFade(IdleAnim);
+											}
+											if (StudentManager.BakeSale.CurrentCustomer.BakeSalePhase == 1)
+											{
+												CharacterAnimation.CrossFade("f02_bakeSaleAmaiGreet_0" + BakeSaleAnim);
+											}
+											else if (StudentManager.BakeSale.CurrentCustomer.BakeSalePhase == 2)
+											{
+												CharacterAnimation.CrossFade("f02_bakeSaleAmaiExplain_0" + BakeSaleAnim);
+											}
+											else if (StudentManager.BakeSale.CurrentCustomer.BakeSalePhase > 2 && StudentManager.BakeSale.CurrentCustomer.BakeSalePhase < 6)
+											{
+												CharacterAnimation.CrossFade("f02_bakeSaleAmaiSale_0" + BakeSaleAnim);
+											}
+											else if (!StudentManager.BakeSale.Poisoned)
+											{
+												CharacterAnimation.CrossFade(IdleAnim);
+											}
+											else
+											{
+												CharacterAnimation.CrossFade("f02_standTexting_00");
+												if (!SmartPhone.activeInHierarchy)
+												{
+													SmartPhone.SetActive(value: true);
+													SmartPhone.transform.localPosition = new Vector3(0.025f, 0.02f, 0.04f);
+													SmartPhone.transform.localEulerAngles = new Vector3(22.5f, -157.5f, 180f);
+												}
+											}
+										}
+										else
+										{
+											CharacterAnimation.CrossFade(IdleAnim);
+											if (SmartPhone.activeInHierarchy)
+											{
+												SmartPhone.SetActive(value: false);
+											}
+										}
+									}
+									else
+									{
+										CharacterAnimation.CrossFade(IdleAnim);
+									}
 								}
 							}
 							else if (Actions[Phase] == StudentActionType.Picnic)
@@ -9596,16 +9658,123 @@ public class StudentScript : MonoBehaviour
 						}
 						if (BakeSale)
 						{
-							CharacterAnimation.CrossFade(PlateEatAnim);
-							if ((double)CharacterAnimation[PlateEatAnim].time > 6.83333)
+							if (MyController.radius < 0.2f)
 							{
-								Fingerfood[12].SetActive(value: false);
+								MyController.radius = Mathf.MoveTowards(MyController.radius, 0.2f, Time.deltaTime);
 							}
-							else if ((double)CharacterAnimation[PlateEatAnim].time > 2.66666)
+							if (StudentManager.BakeSale.CurrentCustomer == null)
 							{
-								Fingerfood[12].SetActive(value: true);
+								CurrentDestination = StudentManager.BakeSale.MeetSpot;
+								Pathfinding.target = StudentManager.BakeSale.MeetSpot;
+								MeetSpot = StudentManager.BakeSale.MeetSpot;
+								StudentManager.BakeSale.CurrentCustomer = this;
+								Debug.Log(Name + " is now the current customer at the bake sale.");
 							}
-							MeetTimer += Time.deltaTime * 6.5f;
+							else if (StudentManager.BakeSale.CurrentCustomer == this)
+							{
+								if (BakeSalePhase == 0)
+								{
+									if (StudentManager.Students[21] != null && Vector3.Distance(base.transform.position, StudentManager.Students[12].transform.position) < 5f)
+									{
+										Debug.Log("Amai was present when the customer arrived.");
+										BakeSaleAnim = UnityEngine.Random.Range(1, 4);
+										BakeSalePhase = 1;
+									}
+									else
+									{
+										Debug.Log("Amai was not present when the customer arrived.");
+										BakeSaleAnim = UnityEngine.Random.Range(1, 4);
+										BakeSalePhase = 3;
+									}
+									Debug.Log("BakeSaleAnim is: " + BakeSaleAnim);
+								}
+								else if (BakeSalePhase == 1)
+								{
+									CharacterAnimation.CrossFade(GenderPrefix + "bakeSaleStudentGreet_0" + BakeSaleAnim);
+									if (CharacterAnimation[GenderPrefix + "bakeSaleStudentGreet_0" + BakeSaleAnim].time >= CharacterAnimation[GenderPrefix + "bakeSaleStudentGreet_0" + BakeSaleAnim].length)
+									{
+										BakeSalePhase++;
+									}
+								}
+								else if (BakeSalePhase == 2)
+								{
+									CharacterAnimation.CrossFade(GenderPrefix + "bakeSaleStudentExplain_0" + BakeSaleAnim);
+									if (CharacterAnimation[GenderPrefix + "bakeSaleStudentExplain_0" + BakeSaleAnim].time >= CharacterAnimation[GenderPrefix + "bakeSaleStudentExplain_0" + BakeSaleAnim].length)
+									{
+										BakeSalePhase++;
+									}
+								}
+								else if (BakeSalePhase == 3)
+								{
+									CharacterAnimation.CrossFade(GenderPrefix + "bakeSaleStudentSale_0" + BakeSaleAnim);
+									if (CharacterAnimation[GenderPrefix + "bakeSaleStudentSale_0" + BakeSaleAnim].time >= 1.5f)
+									{
+										StudentManager.BakeSale.MakeSale();
+										BakeSalePhase++;
+									}
+								}
+								else if (BakeSalePhase == 4)
+								{
+									CharacterAnimation.CrossFade(GenderPrefix + "bakeSaleStudentSale_0" + BakeSaleAnim);
+									if (CharacterAnimation[GenderPrefix + "bakeSaleStudentSale_0" + BakeSaleAnim].time >= 2.5f)
+									{
+										Fingerfood[12].SetActive(value: true);
+										BakeSalePhase++;
+									}
+								}
+								else if (BakeSalePhase == 5)
+								{
+									CharacterAnimation.CrossFade(GenderPrefix + "bakeSaleStudentSale_0" + BakeSaleAnim);
+									if (CharacterAnimation[GenderPrefix + "bakeSaleStudentSale_0" + BakeSaleAnim].time >= CharacterAnimation[GenderPrefix + "bakeSaleStudentSale_0" + BakeSaleAnim].length)
+									{
+										BakeSalePhase++;
+									}
+								}
+								else if (BakeSalePhase == 6)
+								{
+									if (StudentManager.BakeSale.Poisoned)
+									{
+										CharacterAnimation.CrossFade(GenderPrefix + "bakeSaleStudentEatSick_00");
+										if (CharacterAnimation[GenderPrefix + "bakeSaleStudentEatSick_00"].time >= 5.5f)
+										{
+											Fingerfood[12].SetActive(value: false);
+										}
+										if (CharacterAnimation[GenderPrefix + "bakeSaleStudentEatSick_00"].time >= CharacterAnimation[GenderPrefix + "bakeSaleStudentEatSick_00"].length)
+										{
+											BakeSalePhase++;
+										}
+									}
+									else
+									{
+										CharacterAnimation.CrossFade(GenderPrefix + "bakeSaleStudentEatEnjoy_00");
+										if (CharacterAnimation[GenderPrefix + "bakeSaleStudentEatEnjoy_00"].time >= 7.33333f)
+										{
+											Fingerfood[12].SetActive(value: false);
+										}
+										if (CharacterAnimation[GenderPrefix + "bakeSaleStudentEatEnjoy_00"].time >= CharacterAnimation[GenderPrefix + "bakeSaleStudentEatEnjoy_00"].length)
+										{
+											BakeSalePhase++;
+										}
+									}
+								}
+								else
+								{
+									Debug.Log(Name + " is now leaving the bake sale.");
+									StudentManager.BakeSale.CurrentCustomer = null;
+									Fingerfood[12].SetActive(value: false);
+									MyController.radius = 0.1f;
+									BakeSalePhase = 0;
+									MeetTimer = 99999f;
+								}
+							}
+							else
+							{
+								CharacterAnimation.CrossFade(GenderPrefix + "impatientWait_00");
+								CurrentDestination = StudentManager.BakeSale.WaitSpot;
+								Pathfinding.target = StudentManager.BakeSale.WaitSpot;
+								MeetSpot = StudentManager.BakeSale.WaitSpot;
+								MeetTimer = 0f;
+							}
 						}
 						else if (Male)
 						{
@@ -13077,6 +13246,8 @@ public class StudentScript : MonoBehaviour
 				}
 				else if (SentHomePhase == 3)
 				{
+					CurrentDestination = StudentManager.Exit;
+					Pathfinding.target = StudentManager.Exit;
 					CharacterAnimation.CrossFade(SprintAnim);
 					Pathfinding.speed = 4f;
 				}
@@ -13203,6 +13374,8 @@ public class StudentScript : MonoBehaviour
 				{
 					ReturnToRoutine();
 				}
+				Witnessed = StudentWitnessType.None;
+				Concern = 0;
 			}
 			if (Tripping)
 			{
@@ -15133,7 +15306,7 @@ public class StudentScript : MonoBehaviour
 				{
 					TimesAlarmed++;
 				}
-				if ((!Injured && Persona == PersonaType.Violent && Yandere.Armed && !WitnessedCorpse && !RespectEarned) || (Persona == PersonaType.Violent && Yandere.DelinquentFighting))
+				if (Club == ClubType.Delinquent && ((!Injured && Persona == PersonaType.Violent && Yandere.Armed && !WitnessedCorpse && !RespectEarned) || (Persona == PersonaType.Violent && Yandere.DelinquentFighting)))
 				{
 					Subtitle.Speaker = this;
 					Subtitle.UpdateLabel(SubtitleType.DelinquentWeaponReaction, 0, 3f);
@@ -15246,6 +15419,7 @@ public class StudentScript : MonoBehaviour
 					}
 					else
 					{
+						Debug.Log("This code is now running.");
 						PersonaReaction();
 						AlarmTimer = 0f;
 						if (Concern < 5)
@@ -16364,7 +16538,7 @@ public class StudentScript : MonoBehaviour
 		}
 		if (!Teacher)
 		{
-			if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache && !Yandere.CanTranq)
+			if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache && !Yandere.CanTranq && !Blind)
 			{
 				Debug.Log("A student with a strength of 9 is counter-attacking!");
 				Yandere.CharacterAnimation.CrossFade("f02_moCounterA_00");
@@ -16461,7 +16635,7 @@ public class StudentScript : MonoBehaviour
 				}
 			}
 		}
-		else
+		else if (!Blind)
 		{
 			if (!StudentManager.Stop)
 			{
@@ -18582,7 +18756,16 @@ public class StudentScript : MonoBehaviour
 				else
 				{
 					Subtitle.UpdateLabel(SubtitleType.HmmReaction, 0, 0f);
-					Subtitle.UpdateLabel(SubtitleType.ProximityWarning, WarningsGiven, 5f);
+					if (!StudentManager.Eighties && StudentID == 41)
+					{
+						string[] array = new string[5] { "Ahem.", "Back up.", "Too close.", "Please don't.", "Rude..." };
+						Subtitle.CustomText = array[UnityEngine.Random.Range(0, array.Length)];
+						Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+					}
+					else
+					{
+						Subtitle.UpdateLabel(SubtitleType.ProximityWarning, WarningsGiven, 5f);
+					}
 					PersonalSpaceTimer = 0f;
 				}
 				WarningsGiven++;
@@ -18608,6 +18791,21 @@ public class StudentScript : MonoBehaviour
 			else
 			{
 				Obstacle.enabled = true;
+			}
+		}
+		if (UpdateOutlines && Outlines[0].h != null)
+		{
+			Debug.Log("1");
+			if (BikiniAttacher.newRenderer != null)
+			{
+				Debug.Log("2");
+				OutlineScript component = BikiniAttacher.newRenderer.gameObject.GetComponent<OutlineScript>();
+				if (component != null)
+				{
+					Debug.Log("3");
+					component.h.ConstantOnImmediate(Outlines[0].color);
+					UpdateOutlines = false;
+				}
 			}
 		}
 		if (Chesster)
@@ -18894,7 +19092,7 @@ public class StudentScript : MonoBehaviour
 		{
 			CheckForKnifeInInventory();
 			bool flag = true;
-			if (Strength == 9 && StudentManager.ChallengeManager.InvincibleRaibaru)
+			if ((Strength == 9 && StudentManager.ChallengeManager.InvincibleRaibaru) || Blind)
 			{
 				flag = false;
 			}
@@ -18911,7 +19109,7 @@ public class StudentScript : MonoBehaviour
 				Persona = PersonaType.Heroic;
 				BeginStruggle();
 			}
-			else
+			else if (flag)
 			{
 				Debug.Log(Name + " just countered Yandere-chan.");
 				Yandere.HeartRate.gameObject.SetActive(value: false);
@@ -18925,6 +19123,27 @@ public class StudentScript : MonoBehaviour
 				Yandere.Noticed = true;
 				Yandere.HUD.alpha = 0f;
 				Yandere.TargetStudent = this;
+			}
+			else
+			{
+				Yandere.TargetStudent = this;
+				if (Yandere.Armed)
+				{
+					if (Yandere.EquippedWeapon.Type == WeaponType.Garrote)
+					{
+						StudentManager.TranqDetector.GarroteAttack();
+					}
+					if (Yandere.SanityBased)
+					{
+						Debug.Log("This part of the code is about to call AttackManager.Attack()");
+						Yandere.AttackManager.Attack(Character, Yandere.EquippedWeapon);
+					}
+					if (!Yandere.AttackManager.Stealth)
+					{
+						Subtitle.UpdateLabel(SubtitleType.Dying, 0, 1f);
+						SpawnAlarmDisc();
+					}
+				}
 			}
 		}
 		else if (Strength == 9 && !Emetic && !Lethal && !Sedated && !Headache && !Yandere.CanTranq)
@@ -21286,6 +21505,11 @@ public class StudentScript : MonoBehaviour
 
 	public void SetOutlineColor(Color NewColor)
 	{
+		if (StudentID == 2)
+		{
+			Color color = NewColor;
+			Debug.Log("Setting Yui's outlines to " + color.ToString());
+		}
 		for (ID = 0; ID < Outlines.Length; ID++)
 		{
 			if (Outlines[ID] != null)
@@ -21365,6 +21589,10 @@ public class StudentScript : MonoBehaviour
 						}
 					}
 				}
+			}
+			else if (Grudge)
+			{
+				SetOutlineColor(new Color(1f, 1f, 0f, 1f));
 			}
 			else
 			{
@@ -22674,6 +22902,14 @@ public class StudentScript : MonoBehaviour
 				MyRenderer.materials[1].mainTexture = NudeTexture;
 				MyRenderer.materials[2].mainTexture = NudeTexture;
 			}
+			if (Outlines[0].h != null && LabcoatAttacher.newRenderer != null)
+			{
+				OutlineScript component = LabcoatAttacher.newRenderer.gameObject.GetComponent<OutlineScript>();
+				if (component != null)
+				{
+					component.h.ConstantOnImmediate(Outlines[0].color);
+				}
+			}
 		}
 		else
 		{
@@ -22715,6 +22951,7 @@ public class StudentScript : MonoBehaviour
 			Cosmetic.MyRenderer.materials[1].SetFloat("_BlendAmount", 0f);
 			SkirtCollider.gameObject.SetActive(value: false);
 			PantyCollider.enabled = false;
+			UpdateOutlines = true;
 		}
 		else
 		{
@@ -22987,7 +23224,7 @@ public class StudentScript : MonoBehaviour
 		bool flag13 = StudentID == 28 && yandereTargetID == 30;
 		bool flag14 = false;
 		bool flag15 = StudentID > 55 && StudentID < 61 && yandereTargetID > 55 && yandereTargetID < 61;
-		if (Injured)
+		if (Injured && StudentManager.Students[yandereTargetID] != null)
 		{
 			flag14 = Club == ClubType.Delinquent && StudentManager.Students[yandereTargetID].Club == ClubType.Delinquent;
 		}
@@ -24467,7 +24704,7 @@ public class StudentScript : MonoBehaviour
 		}
 		if (Ragdoll.enabled)
 		{
-			Debug.Log("This character was dead at the point in time when UpdateAnimLayers() was called.");
+			Debug.Log(Ragdoll.Student.Name + " was dead at the point in time when UpdateAnimLayers() was called.");
 			if (Ragdoll.Concealed)
 			{
 				if (Ragdoll.InsideIncinerator)
@@ -24490,6 +24727,8 @@ public class StudentScript : MonoBehaviour
 			{
 				Ragdoll.EnableRigidbodies();
 			}
+			Ragdoll.Student.Prompt.enabled = false;
+			Ragdoll.Student.Prompt.Hide();
 		}
 		if (Ragdoll.InsideIncinerator)
 		{
@@ -26439,6 +26678,23 @@ public class StudentScript : MonoBehaviour
 			{
 				Outlines[ID].enabled = true;
 				Outlines[ID].color = new Color(0f, 1f, 0f);
+				if (Outlines[ID].h != null)
+				{
+					Outlines[ID].h.enabled = true;
+					Outlines[ID].h.ConstantOnImmediate(Outlines[ID].color);
+				}
+			}
+		}
+	}
+
+	public void TurnOutlinesPink()
+	{
+		for (ID = 0; ID < Outlines.Length; ID++)
+		{
+			if (Outlines[ID] != null)
+			{
+				Outlines[ID].enabled = true;
+				Outlines[ID].color = new Color(1f, 0f, 1f);
 				if (Outlines[ID].h != null)
 				{
 					Outlines[ID].h.enabled = true;

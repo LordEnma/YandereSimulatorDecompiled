@@ -225,6 +225,11 @@ public class TrashCanScript : MonoBehaviour
 
 	public void RemoveContents()
 	{
+		if (Container != null)
+		{
+			Container.MyAudio.clip = Container.RemoveItem;
+			Container.MyAudio.Play();
+		}
 		Prompt.Circle[0].fillAmount = 1f;
 		Item.GetComponent<PromptScript>().Circle[3].fillAmount = -1f;
 		Item.GetComponent<PromptScript>().enabled = true;
@@ -282,6 +287,11 @@ public class TrashCanScript : MonoBehaviour
 	public void AttachToBack()
 	{
 		Debug.Log("The weapon bag is now being attached to the player's back.");
+		if (Container != null)
+		{
+			Container.MyAudio.clip = Container.EquipBag;
+			Container.MyAudio.Play();
+		}
 		base.transform.parent = Prompt.Yandere.Backpack;
 		base.transform.localPosition = Vector3.zero;
 		base.transform.localEulerAngles = new Vector3(90f, -154f, 0f);
@@ -301,6 +311,11 @@ public class TrashCanScript : MonoBehaviour
 
 	public void PutWeaponInBag()
 	{
+		if (Container != null)
+		{
+			Container.MyAudio.clip = Container.StashItem;
+			Container.MyAudio.Play();
+		}
 		Item = ConcealedWeapon.gameObject;
 		ConcealedWeapon.MyRigidbody.isKinematic = true;
 		ConcealedWeapon.InBag = true;

@@ -30,6 +30,8 @@ public class HomeInteractionScript : MonoBehaviour
 
 	public float Timer;
 
+	public bool DisableInEighties;
+
 	public bool SlideInOut;
 
 	public bool Move;
@@ -46,6 +48,13 @@ public class HomeInteractionScript : MonoBehaviour
 			{
 				ObjectToActivate.SetActive(value: false);
 			}
+		}
+		if (DisableInEighties && GameGlobals.Eighties)
+		{
+			base.gameObject.SetActive(value: false);
+			Label.alpha = 0f;
+			Label.enabled = false;
+			base.enabled = false;
 		}
 	}
 

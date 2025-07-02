@@ -978,9 +978,23 @@ public class MissionModeScript : MonoBehaviour
 						DisposalMethod = 6;
 					}
 				}
+				Debug.Log("Checking plant.");
 				if (Plant.VictimID == TargetID)
 				{
 					DisposalMethod = 7;
+				}
+				int num4 = 0;
+				for (ID = 0; ID < Plant.Limbs + 1; ID++)
+				{
+					if (Plant.LimbList[ID] == TargetID)
+					{
+						num4++;
+					}
+					Debug.Log(num4 + " PlantTargetLimbs counted.");
+					if (num4 == 6)
+					{
+						DisposalMethod = 7;
+					}
 				}
 				if (DisposalMethod > 0)
 				{
@@ -1095,10 +1109,10 @@ public class MissionModeScript : MonoBehaviour
 				{
 					TimeRemaining = Mathf.MoveTowards(TimeRemaining, 0f, Time.unscaledDeltaTime);
 				}
-				int num4 = Mathf.CeilToInt(TimeRemaining);
-				int num5 = num4 / 60;
-				int num6 = num4 % 60;
-				TimeLabel.text = $"{num5:00}:{num6:00}";
+				int num5 = Mathf.CeilToInt(TimeRemaining);
+				int num6 = num5 / 60;
+				int num7 = num5 % 60;
+				TimeLabel.text = $"{num6:00}:{num7:00}";
 				if (TimeRemaining == 0f)
 				{
 					Chastise = true;

@@ -127,6 +127,8 @@ public class MusicMinigameScript : MonoBehaviour
 
 	public bool[] ChibiSway;
 
+	public bool[] CanJump;
+
 	public bool[] FrameB;
 
 	public bool[] Ping;
@@ -170,6 +172,7 @@ public class MusicMinigameScript : MonoBehaviour
 			for (int i = 1; i <= 6; i++)
 			{
 				ChibiRenderer[i].material.mainTexture = ChibiIdle[i];
+				ChibiRenderer[i].transform.parent.transform.localScale = new Vector3(1.15f, 1.15f, 1.15f);
 			}
 			if (GameGlobals.CustomMode)
 			{
@@ -182,6 +185,7 @@ public class MusicMinigameScript : MonoBehaviour
 			SadAyano.GetComponent<Renderer>().material.mainTexture = SadRyoba;
 			Background.material.mainTexture = EightiesBG;
 			GameOverAudioSource.clip = EightiesFail;
+			CanJump[5] = false;
 		}
 		StartRep = PlayerPrefs.GetFloat("TempReputation");
 		Application.targetFrameRate = 60;
@@ -643,7 +647,7 @@ public class MusicMinigameScript : MonoBehaviour
 		}
 		for (ID = 1; ID < Instruments.Length; ID++)
 		{
-			if (ID != 2 && ID != 6)
+			if (CanJump[ID])
 			{
 				ChibiRenderer[ID].transform.localPosition += new Vector3(0f, Jump[ID], 0f);
 				Jump[ID] -= Time.deltaTime * 0.01f;

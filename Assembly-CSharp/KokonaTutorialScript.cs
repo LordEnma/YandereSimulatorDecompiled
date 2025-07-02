@@ -497,6 +497,14 @@ public class KokonaTutorialScript : MonoBehaviour
 			{
 				studentScript.Outlines[j].color = new Color(0f, 1f, 0f, 1f);
 				studentScript.Outlines[j].enabled = true;
+				if (studentScript.Outlines[j].h != null)
+				{
+					studentScript.Outlines[j].h.ConstantOnImmediate(studentScript.Outlines[j].color);
+				}
+				else if (studentScript.Outlines[j].h == null)
+				{
+					studentScript.Outlines[j].Awake();
+				}
 			}
 		}
 	}
@@ -1267,6 +1275,14 @@ public class KokonaTutorialScript : MonoBehaviour
 						if (StudentManager.Students[30].Outlines[i] != null)
 						{
 							StudentManager.Students[30].Outlines[i].enabled = true;
+							if (StudentManager.Students[30].Outlines[i].h != null)
+							{
+								StudentManager.Students[30].Outlines[i].h.ConstantOnImmediate(StudentManager.Students[30].Outlines[i].color);
+							}
+							else if (StudentManager.Students[30].Outlines[i].h == null)
+							{
+								StudentManager.Students[30].Outlines[i].Awake();
+							}
 						}
 					}
 					Yandere.CannotAim = true;

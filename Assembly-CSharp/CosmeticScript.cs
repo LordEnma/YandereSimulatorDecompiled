@@ -756,7 +756,7 @@ public class CosmeticScript : MonoBehaviour
 					}
 					NudeTexture = RivalNude[StudentID - 10];
 				}
-				else
+				else if (CustomHair)
 				{
 					for (int j = 0; j < FaceTextures.Length; j++)
 					{
@@ -3453,6 +3453,11 @@ public class CosmeticScript : MonoBehaviour
 			RightStockings[1].SetActive(value: false);
 			LeftStockings[1].SetActive(value: false);
 		}
+		if (RightStockings.Length > 2)
+		{
+			RightStockings[2].SetActive(value: false);
+			LeftStockings[2].SetActive(value: false);
+		}
 		if ((StudentManager != null && StudentManager.TutorialActive) || Kidnapped)
 		{
 			Stockings = "";
@@ -4446,16 +4451,21 @@ public class CosmeticScript : MonoBehaviour
 			{
 				return;
 			}
+			Debug.Log("BurlapSack.newRenderer is not null...");
 			if (!Male)
 			{
+				CustomMode = GameGlobals.CustomMode;
 				if (CustomMode)
 				{
+					Debug.Log("Now attempting to grab a slave's skin color.");
 					SkinColor = JSON.Misc.SkinColor[StudentID];
+					Debug.Log("The slave's skin color is, supposedly, " + SkinColor);
 				}
 				if (!Eighties && StudentID > 80 && StudentID < 86)
 				{
 					SkinColor = 6;
 				}
+				Debug.Log("A female wearing a burlap sack is now updating her materials. Supposedly.");
 				BurlapSack.newRenderer.materials[0].mainTexture = SkinTextures[SkinColor];
 				BurlapSack.newRenderer.materials[1].mainTexture = HairRenderer.material.mainTexture;
 				BurlapSack.newRenderer.materials[2].mainTexture = BurlapSack.accessoryMaterials[0].mainTexture;
@@ -4463,10 +4473,14 @@ public class CosmeticScript : MonoBehaviour
 				{
 					BurlapSack.newRenderer.materials[1].mainTexture = DefaultFaceTexture;
 				}
+				if (SkinColor > 0)
+				{
+					BurlapSack.newRenderer.materials[1].mainTexture = FaceTextures[SkinColor];
+				}
 			}
 			else
 			{
-				Debug.Log("A male wearing a burlap sack is now updating their materials.");
+				Debug.Log("A male wearing a burlap sack is now updating his materials.");
 				Debug.Log("His skin color is: " + SkinColor);
 				BurlapSack.newRenderer.materials[2].mainTexture = HairRenderer.material.mainTexture;
 				BurlapSack.newRenderer.materials[1].mainTexture = SkinTextures[SkinColor];

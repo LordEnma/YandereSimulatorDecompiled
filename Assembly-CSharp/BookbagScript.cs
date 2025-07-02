@@ -18,6 +18,16 @@ public class BookbagScript : MonoBehaviour
 
 	public MeshFilter MyMesh;
 
+	public AudioSource MyAudio;
+
+	public AudioClip UnequipBag;
+
+	public AudioClip EquipBag;
+
+	public AudioClip RemoveItem;
+
+	public AudioClip StashItem;
+
 	public bool Worn;
 
 	private void Start()
@@ -80,6 +90,8 @@ public class BookbagScript : MonoBehaviour
 		}
 		else if (Prompt.Yandere.PickUp.TrashCan == null && !Prompt.Yandere.PickUp.JerryCan && !Prompt.Yandere.PickUp.Mop && !Prompt.Yandere.PickUp.Bucket && !Prompt.Yandere.PickUp.Bleach && !Prompt.Yandere.PickUp.TooBig && !Prompt.Yandere.PickUp.Weight && !Prompt.Yandere.PickUp.TooBigForBookBag && !flag)
 		{
+			MyAudio.clip = StashItem;
+			MyAudio.Play();
 			Prompt.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
 			Prompt.Yandere.ReachWeight = 1f;
 			ConcealedPickup = Prompt.Yandere.PickUp;
@@ -108,6 +120,8 @@ public class BookbagScript : MonoBehaviour
 
 	public void RemoveContents()
 	{
+		MyAudio.clip = RemoveItem;
+		MyAudio.Play();
 		Prompt.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
 		Prompt.Yandere.ReachWeight = 1f;
 		ConcealedPickup.transform.position = base.transform.position;
@@ -121,6 +135,8 @@ public class BookbagScript : MonoBehaviour
 
 	public void Drop()
 	{
+		MyAudio.clip = UnequipBag;
+		MyAudio.Play();
 		Worn = false;
 		Prompt.Yandere.Bookbag = null;
 		base.transform.parent = null;
@@ -133,6 +149,8 @@ public class BookbagScript : MonoBehaviour
 
 	public void Wear()
 	{
+		MyAudio.clip = EquipBag;
+		MyAudio.Play();
 		Worn = true;
 		Prompt.Yandere.Bookbag = this;
 		base.transform.parent = Prompt.Yandere.BookBagParent;

@@ -22,10 +22,16 @@ public class SpyScript : MonoBehaviour
 
 	public bool Recording;
 
+	public bool OsanaSpecific;
+
 	public int Phase;
 
 	private void Start()
 	{
+		if (OsanaSpecific && DateGlobals.Week > 1)
+		{
+			base.gameObject.SetActive(value: false);
+		}
 	}
 
 	private void Update()

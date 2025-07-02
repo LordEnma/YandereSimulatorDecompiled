@@ -577,6 +577,7 @@ public class ClubManagerScript : MonoBehaviour
 					}
 				}
 			}
+			Yandere.Talking = false;
 			Yandere.CanMove = false;
 			Yandere.ClubActivity = true;
 			Yandere.transform.position = Club6ActivitySpots[5].position;
@@ -911,6 +912,16 @@ public class ClubManagerScript : MonoBehaviour
 		{
 			Debug.Log("A club leader is missing!");
 			LeaderMissing = true;
+		}
+		if (Check == ClubType.Cooking && num == 12 && (LeaderDead || LeaderMissing))
+		{
+			Debug.Log("Amai is dead or missing - but what about Shoku?");
+			if (StudentManager.Students[21] != null && StudentManager.Students[21].Alive)
+			{
+				Debug.Log("Shoku will return to being the club leader!");
+				LeaderDead = false;
+				LeaderMissing = false;
+			}
 		}
 		if (!LeaderDead && !LeaderMissing && Check == ClubType.LightMusic && (double)StudentGlobals.GetStudentReputation(51) < -33.33333)
 		{

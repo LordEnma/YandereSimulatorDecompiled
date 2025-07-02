@@ -214,7 +214,7 @@ public class StruggleBarScript : MonoBehaviour
 		int buttonID = ButtonID;
 		for (int i = 1; i < 5; i++)
 		{
-			ButtonPrompts[i].enabled = false;
+			ButtonPrompts[i].gameObject.SetActive(value: false);
 			ButtonPrompts[i].transform.localPosition = ButtonPrompts[buttonID].transform.localPosition;
 		}
 		while (ButtonID == buttonID)
@@ -237,6 +237,6 @@ public class StruggleBarScript : MonoBehaviour
 		{
 			CurrentButton = InputNames.Xbox_Y;
 		}
-		ButtonPrompts[ButtonID].enabled = true;
+		ButtonPrompts[ButtonID].gameObject.SetActive(value: true);
 	}
 }

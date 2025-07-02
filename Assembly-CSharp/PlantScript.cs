@@ -20,6 +20,10 @@ public class PlantScript : MonoBehaviour
 
 	public int VictimID;
 
+	public int Limbs;
+
+	public int[] LimbList;
+
 	private void Start()
 	{
 		Plant.localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -89,6 +93,11 @@ public class PlantScript : MonoBehaviour
 				Prompt.Yandere.Police.Darkness.enabled = true;
 				Prompt.Yandere.CanMove = false;
 				FadeOut = true;
+				if ((bool)Prompt.Yandere.PickUp.BodyPart)
+				{
+					LimbList[Limbs] = Prompt.Yandere.PickUp.BodyPart.StudentID;
+					Limbs++;
+				}
 			}
 			else
 			{

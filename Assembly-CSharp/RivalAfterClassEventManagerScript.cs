@@ -363,7 +363,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 				Senpai.SmartPhone.SetActive(value: false);
 				Return = false;
 			}
-			if (Senpai.Alarmed || Rival.Alarmed || Rival.Splashed || Rival.GoAway)
+			if (Senpai.Alarmed || Rival.Alarmed || Rival.Splashed || Rival.GoAway || Senpai.Dodging)
 			{
 				UnityEngine.Object.Instantiate(AlarmDisc, Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
 				EndEvent();

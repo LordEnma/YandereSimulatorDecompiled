@@ -358,6 +358,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public GradingPaperScript[] FacultyDesks;
 
+	public PowerOutletScript[] PowerOutlets;
+
 	public DynamicBone[] AllDynamicBones;
 
 	public AudioSource[] PyroFlameSounds;
@@ -821,6 +823,8 @@ public class StudentManagerScript : MonoBehaviour
 	public bool GasInWateringCan;
 
 	public bool ReturnedFromSave;
+
+	public bool BakeSaleHasBegun;
 
 	public bool DisableFarAnims;
 
@@ -1505,11 +1509,14 @@ public class StudentManagerScript : MonoBehaviour
 			GameGlobals.ReputationsInitialized = true;
 			InitializeReputations();
 		}
-		for (ID = 76; ID < 81; ID++)
+		if (!CustomMode)
 		{
-			if (StudentReps[ID] > -67f)
+			for (ID = 76; ID < 81; ID++)
 			{
-				StudentReps[ID] = -67f;
+				if (StudentReps[ID] > -67f)
+				{
+					StudentReps[ID] = -67f;
+				}
 			}
 		}
 		if (ClubGlobals.GetClubClosed(ClubType.Gardening))
@@ -1948,26 +1955,7 @@ public class StudentManagerScript : MonoBehaviour
 					Eighties = GameGlobals.Eighties;
 					if (!Eighties)
 					{
-						if (!MissionMode && !GameGlobals.AlphabetMode && Students[RivalID] != null && !Students[RivalID].Slave && Week != 1 && Week == 2)
-						{
-							Week2RoutineAdjustments();
-						}
-						if (Week > 1 && !RivalEliminated && Students[RivalID] != null)
-						{
-							CleaningManager.Floors[34 + Week] = CleaningManager.Floors[46];
-							CleaningManager.GetRole(RivalID);
-							Students[RivalID].CleaningSpot = CleaningManager.Spot;
-							Students[RivalID].CleaningRole = CleaningManager.Role;
-							Students[RivalID].GetDestinations();
-						}
-						if (Clock.Weekday == 5)
-						{
-							SendArtClubToTree();
-						}
-						if (Week > 1)
-						{
-							CoupleCheck();
-						}
+						MakeRoutineAdjustments();
 					}
 					else
 					{
@@ -3475,6 +3463,10 @@ public class StudentManagerScript : MonoBehaviour
 					if (!studentScript.Started)
 					{
 						studentScript.Start();
+					}
+					if (studentScript.Investigating)
+					{
+						studentScript.StopInvestigating();
 					}
 					if (!studentScript.Teacher)
 					{
@@ -5099,6 +5091,10 @@ public class StudentManagerScript : MonoBehaviour
 	public void Load()
 	{
 		Eighties = GameGlobals.Eighties;
+		if (!Eighties)
+		{
+			MakeRoutineAdjustments();
+		}
 		DoorID = 0;
 		DoorScript[] doors = Doors;
 		foreach (DoorScript doorScript in doors)
@@ -5128,12 +5124,12 @@ public class StudentManagerScript : MonoBehaviour
 		bool censorBlood = GameGlobals.CensorBlood;
 		bool censorPanties = GameGlobals.CensorPanties;
 		bool censorKillingAnims = GameGlobals.CensorKillingAnims;
-		Debug.Log("Before loading, GameGlobals.CensorBlood is: " + GameGlobals.CensorBlood);
+		Debug.Log("Before loading, BagPlaced is: " + BagPlaced);
 		YanSave.LoadData("Profile_" + profile + "_Slot_" + num);
 		GameGlobals.CensorBlood = censorBlood;
 		GameGlobals.CensorPanties = censorPanties;
 		GameGlobals.CensorKillingAnims = censorKillingAnims;
-		Debug.Log("And now, after loading, GameGlobals.CensorBlood is: " + GameGlobals.CensorBlood);
+		Debug.Log("And now, after loading, BagPlaced is: " + BagPlaced);
 		DialogueWheel.NoteLocker.NoteWindow.gameObject.SetActive(value: false);
 		Yandere.PauseScreen.PhotoGallery.gameObject.SetActive(value: false);
 		DialogueWheel.NoteLocker.gameObject.SetActive(value: false);
@@ -5574,6 +5570,14 @@ public class StudentManagerScript : MonoBehaviour
 				maskScript.WearMask();
 			}
 		}
+		PowerOutletScript[] powerOutlets = PowerOutlets;
+		foreach (PowerOutletScript powerOutletScript in powerOutlets)
+		{
+			if (powerOutletScript != null)
+			{
+				powerOutletScript.RestoreState();
+			}
+		}
 		ModernRivalSabotageScript[] sabotageEvents = SabotageEvents;
 		foreach (ModernRivalSabotageScript modernRivalSabotageScript in sabotageEvents)
 		{
@@ -5656,10 +5660,11 @@ public class StudentManagerScript : MonoBehaviour
 				Police.EndOfDay.GardenHoles[m].Carrots.SetActive(value: false);
 			}
 		}
-		Debug.Log("The entire loading process has been completed.");
-		Debug.Log("End of StudentManager Load() believes that GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID);
-		Debug.Log("End of StudentManager Load() believes that RivalEliminated is: " + RivalEliminated);
-		Debug.Log("End of StudentManager Load() believes that SchemeGlobals.GetSchemeStage(6) is: " + SchemeGlobals.GetSchemeStage(6));
+		if (BakeSaleHasBegun)
+		{
+			BakeSale.enabled = true;
+		}
+		Debug.Log("We have now reached the end of StudentManager.Load()");
 	}
 
 	public void UpdateBlood()
@@ -6327,6 +6332,30 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
+	public void MakeRoutineAdjustments()
+	{
+		if (!MissionMode && !GameGlobals.AlphabetMode && Students[RivalID] != null && !Students[RivalID].Slave && Week != 1 && Week == 2)
+		{
+			Week2RoutineAdjustments();
+		}
+		if (Week > 1 && !RivalEliminated && Students[RivalID] != null)
+		{
+			CleaningManager.Floors[34 + Week] = CleaningManager.Floors[46];
+			CleaningManager.GetRole(RivalID);
+			Students[RivalID].CleaningSpot = CleaningManager.Spot;
+			Students[RivalID].CleaningRole = CleaningManager.Role;
+			Students[RivalID].GetDestinations();
+		}
+		if (Clock.Weekday == 5)
+		{
+			SendArtClubToTree();
+		}
+		if (Week > 1)
+		{
+			CoupleCheck();
+		}
+	}
+
 	public void Week2RoutineAdjustments()
 	{
 		Debug.Log("Now making Week 2 Routine Adjustments.");
@@ -6408,7 +6437,7 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		if (Students[StudentID] != null)
 		{
-			if (DateGlobals.Weekday == DayOfWeek.Monday)
+			if (DateGlobals.Weekday == DayOfWeek.Monday && !BakeSaleHasBegun)
 			{
 				scheduleBlock = Students[StudentID].ScheduleBlocks[2];
 				scheduleBlock.destination = "Week2Hangout";
@@ -6441,7 +6470,7 @@ public class StudentManagerScript : MonoBehaviour
 				scheduleBlock.destination = "Club";
 				scheduleBlock.action = "Socialize";
 			}
-			if (StudentID == RivalID)
+			if (StudentID == RivalID && !BagPlaced)
 			{
 				scheduleBlock = Students[StudentID].ScheduleBlocks[2];
 				scheduleBlock.destination = "Seat";

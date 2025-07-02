@@ -4,19 +4,31 @@ public class RetroMinigameScript : MonoBehaviour
 {
 	public YandereScript Yandere;
 
+	public JukeboxScript Jukebox;
+
 	public GameObject GameOverGraphic;
 
 	public GameObject MinigameCamera;
 
 	public GameObject Heart;
 
+	public AudioSource MyBGM;
+
+	public AudioSource MySFX;
+
 	public Texture ModernTexture;
 
 	public UITexture MyRenderer;
 
-	public GameObject[] PipeSet;
-
 	public UILabel ScoreLabel;
+
+	public AudioClip Jump;
+
+	public AudioClip Die;
+
+	public AudioClip[] Chiptunes;
+
+	public GameObject[] PipeSet;
 
 	public float GameOverTimer;
 
@@ -32,7 +44,7 @@ public class RetroMinigameScript : MonoBehaviour
 
 	public int Score;
 
-	private void Start()
+	public void Start()
 	{
 		Heart.transform.localPosition = new Vector3(-3.125f, 0f, 1f);
 		PipeSet[1].transform.localPosition = new Vector3(8f, Random.RandomRange(-1.52f, 1.52f), 1f);
@@ -86,6 +98,9 @@ public class RetroMinigameScript : MonoBehaviour
 				Momentum -= Time.unscaledDeltaTime * 5f;
 				if (Input.GetButtonDown(InputNames.Xbox_A))
 				{
+					MySFX.volume = 0.5f;
+					MySFX.clip = Jump;
+					MySFX.Play();
 					Momentum = 1f;
 				}
 				if (Heart.transform.localPosition.y > 4.6f)
@@ -110,6 +125,9 @@ public class RetroMinigameScript : MonoBehaviour
 			if (Yandere.CanMove)
 			{
 				MinigameCamera.SetActive(value: false);
+				Jukebox.Volume = Jukebox.LastVolume;
+				MySFX.Stop();
+				MyBGM.Stop();
 				Show = false;
 			}
 		}
@@ -126,7 +144,16 @@ public class RetroMinigameScript : MonoBehaviour
 
 	private void GetGameOver()
 	{
+		Debug.Log("Firing GetGameOver()");
 		GameOverGraphic.SetActive(value: true);
 		GameOver = true;
+	}
+
+	public void PlayMusic()
+	{
+		MyBGM.volume = 0.5f;
+		MyBGM.clip = Chiptunes[Jukebox.BGM];
+		MyBGM.Play();
+		MyBGM.time = Jukebox.FullSanity.time;
 	}
 }

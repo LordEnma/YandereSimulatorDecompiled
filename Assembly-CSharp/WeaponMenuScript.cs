@@ -22,6 +22,8 @@ public class WeaponMenuScript : MonoBehaviour
 
 	public bool Released = true;
 
+	public bool Showing;
+
 	public bool Show;
 
 	public UISprite[] BG;
@@ -47,6 +49,14 @@ public class WeaponMenuScript : MonoBehaviour
 	public Transform Button;
 
 	public float Timer;
+
+	public AudioSource MyAudio;
+
+	public AudioClip ChangeSFX;
+
+	public AudioClip CloseSFX;
+
+	public AudioClip OpenSFX;
 
 	private void Start()
 	{
@@ -110,6 +120,17 @@ public class WeaponMenuScript : MonoBehaviour
 						KeyboardShow = false;
 						Panel.enabled = true;
 						Show = true;
+						if (!Showing)
+						{
+							MyAudio.clip = OpenSFX;
+							MyAudio.Play();
+							Showing = true;
+						}
+						else
+						{
+							MyAudio.clip = ChangeSFX;
+							MyAudio.Play();
+						}
 					}
 					UpdateSprites();
 				}
@@ -119,6 +140,17 @@ public class WeaponMenuScript : MonoBehaviour
 					KeyboardPanel.enabled = true;
 					KeyboardShow = true;
 					Show = false;
+					if (!Showing)
+					{
+						MyAudio.clip = OpenSFX;
+						MyAudio.Play();
+						Showing = true;
+					}
+					else
+					{
+						MyAudio.clip = ChangeSFX;
+						MyAudio.Play();
+					}
 					Timer = 0f;
 					if (Input.GetKeyDown(KeyCode.Alpha1))
 					{
@@ -275,26 +307,34 @@ public class WeaponMenuScript : MonoBehaviour
 				KeyboardMenu.localScale = Vector3.zero;
 				KeyboardPanel.enabled = false;
 			}
-			return;
 		}
-		KeyboardMenu.localScale = Vector3.Lerp(KeyboardMenu.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-		Timer += Time.deltaTime;
-		if (Timer > 5f)
+		else
 		{
-			KeyboardShow = false;
-		}
-		if (EquipCaseWeaponKey.enabled && Input.GetButtonDown(InputNames.Xbox_Y))
-		{
-			if (Yandere.Container.TrashCan.ConcealedWeapon != null)
+			KeyboardMenu.localScale = Vector3.Lerp(KeyboardMenu.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			Timer += Time.deltaTime;
+			if (Timer > 5f)
 			{
-				_ = Yandere.Container.TrashCan.ConcealedWeapon;
+				KeyboardShow = false;
 			}
-			Yandere.Container.TrashCan.RemoveContents();
-			UpdateSprites();
+			if (EquipCaseWeaponKey.enabled && Input.GetButtonDown(InputNames.Xbox_Y))
+			{
+				if (Yandere.Container.TrashCan.ConcealedWeapon != null)
+				{
+					_ = Yandere.Container.TrashCan.ConcealedWeapon;
+				}
+				Yandere.Container.TrashCan.RemoveContents();
+				UpdateSprites();
+			}
+			if (!Yandere.CanMove || Yandere.Aiming || PauseScreen.Show || InputDevice.Type == InputDeviceType.Gamepad || Input.GetButton(InputNames.Xbox_Y))
+			{
+				KeyboardShow = false;
+			}
 		}
-		if (!Yandere.CanMove || Yandere.Aiming || PauseScreen.Show || InputDevice.Type == InputDeviceType.Gamepad || Input.GetButton(InputNames.Xbox_Y))
+		if (!Show && !KeyboardShow && Showing)
 		{
-			KeyboardShow = false;
+			MyAudio.clip = CloseSFX;
+			MyAudio.Play();
+			Showing = false;
 		}
 	}
 

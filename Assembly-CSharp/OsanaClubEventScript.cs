@@ -164,7 +164,7 @@ public class OsanaClubEventScript : MonoBehaviour
 			}
 			else
 			{
-				EventStudent[1].CharacterAnimation.CrossFade(EventStudent[2].IdleAnim);
+				EventStudent[1].CharacterAnimation.CrossFade(EventStudent[1].IdleAnim);
 			}
 			if (EventStudent[num2].CharacterAnimation[EventStudent[num2].RandomAnim].time >= EventStudent[num2].CharacterAnimation[EventStudent[num2].RandomAnim].length)
 			{

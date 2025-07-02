@@ -516,8 +516,10 @@ public class PhotoGalleryScript : MonoBehaviour
 
 	private void UpdateCorkboardCursor()
 	{
+		Debug.Log("Now updating cursor position.");
 		Vector2 vector = new Vector2(HomeCursor.transform.localPosition.x, HomeCursor.transform.localPosition.y);
-		Vector2 vector2 = new Vector2(MouseDelta.x * 8.66666f + Input.GetAxis("Horizontal") * 8.66666f * SpeedLimit, MouseDelta.y * 8.66666f + Input.GetAxis("Vertical") * 8.66666f * SpeedLimit) * 5f;
+		Vector2 vector2 = new Vector2(Input.GetAxis("Mouse X") * 86.66666f * SpeedLimit * 2.5f, Input.GetAxis("Mouse Y") * 86.66666f * SpeedLimit * 2.5f);
+		vector2 += new Vector2(Input.GetAxis("Horizontal") * 86.66666f * SpeedLimit, Input.GetAxis("Vertical") * 86.66666f * SpeedLimit);
 		HomeCursor.transform.localPosition = new Vector3(Mathf.Clamp(vector.x + vector2.x, -4788f, 4788f), Mathf.Clamp(vector.y + vector2.y, -3122f, 3122f), HomeCursor.transform.localPosition.z);
 		if (Input.GetButtonDown(InputNames.Xbox_A) && HomeCursor.Photograph != null)
 		{
@@ -617,7 +619,7 @@ public class PhotoGalleryScript : MonoBehaviour
 			MouseDelta = new Vector2(Input.mousePosition.x - PreviousPosition.x, Input.mousePosition.y - PreviousPosition.y);
 			if (InputDevice.Type == InputDeviceType.MouseAndKeyboard)
 			{
-				SpeedLimit = 0.1f;
+				SpeedLimit = 1f;
 			}
 			else
 			{

@@ -275,13 +275,17 @@ public class StudentInfoScript : MonoBehaviour
 				}
 			}
 		}
-		if (CurrentStudent < 90)
+		if (CurrentStudent > 89)
 		{
-			OccupationLabel.text = "Club";
+			OccupationLabel.text = "Occupation";
+		}
+		else if (CurrentStudent > 75)
+		{
+			OccupationLabel.text = "Group";
 		}
 		else
 		{
-			OccupationLabel.text = "Occupation";
+			OccupationLabel.text = "Club";
 		}
 		if (studentJson.Club < ClubType.Teacher)
 		{

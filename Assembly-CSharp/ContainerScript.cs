@@ -28,6 +28,16 @@ public class ContainerScript : MonoBehaviour
 
 	public PickUpScript BodyPart;
 
+	public AudioSource MyAudio;
+
+	public AudioClip UnequipBag;
+
+	public AudioClip EquipBag;
+
+	public AudioClip RemoveItem;
+
+	public AudioClip StashItem;
+
 	public string SpriteName = string.Empty;
 
 	public bool CelloCase;
@@ -63,6 +73,8 @@ public class ContainerScript : MonoBehaviour
 			Prompt.Circle[1].fillAmount = 1f;
 			if (Prompt.Yandere.Armed)
 			{
+				MyAudio.clip = StashItem;
+				MyAudio.Play();
 				Weapon = Prompt.Yandere.EquippedWeapon;
 				Prompt.Yandere.EmptyHands();
 				Weapon.transform.parent = WeaponSpot;
@@ -74,25 +86,23 @@ public class ContainerScript : MonoBehaviour
 				Weapon.Prompt.Hide();
 				Weapon.Prompt.enabled = false;
 			}
+			else if (Prompt.Yandere.PickUp.ConcealedBodyPart)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "That can't fit inside!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
 			else
 			{
-				Debug.Log("This just fired.");
-				if (Prompt.Yandere.PickUp.ConcealedBodyPart)
-				{
-					Prompt.Yandere.NotificationManager.CustomText = "That can't fit inside!";
-					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-				}
-				else
-				{
-					BodyPart = Prompt.Yandere.PickUp;
-					Prompt.Yandere.EmptyHands();
-					BodyPart.transform.parent = BodyPartPositions[BodyPart.GetComponent<BodyPartScript>().Type];
-					BodyPart.transform.localPosition = Vector3.zero;
-					BodyPart.transform.localEulerAngles = Vector3.zero;
-					BodyPart.gameObject.GetComponent<Rigidbody>().useGravity = false;
-					BodyPart.MyCollider.isTrigger = true;
-					BodyParts[BodyPart.GetComponent<BodyPartScript>().Type] = BodyPart;
-				}
+				MyAudio.clip = StashItem;
+				MyAudio.Play();
+				BodyPart = Prompt.Yandere.PickUp;
+				Prompt.Yandere.EmptyHands();
+				BodyPart.transform.parent = BodyPartPositions[BodyPart.GetComponent<BodyPartScript>().Type];
+				BodyPart.transform.localPosition = Vector3.zero;
+				BodyPart.transform.localEulerAngles = Vector3.zero;
+				BodyPart.gameObject.GetComponent<Rigidbody>().useGravity = false;
+				BodyPart.MyCollider.isTrigger = true;
+				BodyParts[BodyPart.GetComponent<BodyPartScript>().Type] = BodyPart;
 			}
 			Contents++;
 			UpdatePrompts();
@@ -102,6 +112,8 @@ public class ContainerScript : MonoBehaviour
 			Prompt.Circle[3].fillAmount = 1f;
 			if (!Open)
 			{
+				MyAudio.clip = EquipBag;
+				MyAudio.Play();
 				base.transform.parent = Prompt.Yandere.Backpack;
 				base.transform.localPosition = Vector3.zero;
 				base.transform.localEulerAngles = Vector3.zero;
@@ -122,12 +134,16 @@ public class ContainerScript : MonoBehaviour
 			{
 				if (Weapon != null)
 				{
+					MyAudio.clip = RemoveItem;
+					MyAudio.Play();
 					Weapon.Prompt.Circle[3].fillAmount = -1f;
 					Weapon.Prompt.enabled = true;
 					Weapon = null;
 				}
 				else
 				{
+					MyAudio.clip = RemoveItem;
+					MyAudio.Play();
 					BodyPart = null;
 					ID = 1;
 					while (BodyPart == null)
@@ -176,6 +192,8 @@ public class ContainerScript : MonoBehaviour
 	public void Drop()
 	{
 		Debug.Log("A container was just dropped.");
+		MyAudio.clip = UnequipBag;
+		MyAudio.Play();
 		base.transform.parent = null;
 		if (base.enabled)
 		{

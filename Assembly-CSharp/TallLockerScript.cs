@@ -374,6 +374,7 @@ public class TallLockerScript : MonoBehaviour
 									RivalPhone.transform.parent = StudentManager.StrippingPositions[Student.GirlID];
 									RivalPhone.transform.localPosition = new Vector3(0.1f, 0.92f, 0.2375f);
 									RivalPhone.transform.localEulerAngles = new Vector3(-80f, 0f, 0f);
+									RivalPhone.transform.localScale = new Vector3(0.1f, 0.01f, 0.2f);
 									Physics.SyncTransforms();
 									RivalPhone.gameObject.SetActive(value: true);
 									RivalPhone.StudentID = Student.StudentID;

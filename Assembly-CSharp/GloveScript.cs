@@ -45,6 +45,11 @@ public class GloveScript : MonoBehaviour
 				Prompt.Yandere.NotificationManager.CustomText = "Can't combine clothing!";
 				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
+			else if (Prompt.Yandere.Schoolwear == 2)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Can't combine this with a swimsuit!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
 			else
 			{
 				base.transform.parent = Prompt.Yandere.transform;

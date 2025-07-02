@@ -691,5 +691,6 @@ public class ModernRivalEventScript : MonoBehaviour
 				Char[i].Pathfinding.speed = 1f;
 			}
 		}
+		StudentManager.BakeSaleHasBegun = true;
 	}
 }
