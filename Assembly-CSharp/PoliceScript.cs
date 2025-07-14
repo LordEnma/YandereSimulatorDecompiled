@@ -1148,7 +1148,7 @@ public class PoliceScript : MonoBehaviour
 					Debug.Log("StudentGlobals.GetStudentDead(ID) is: " + StudentGlobals.GetStudentDead(j));
 					if (StudentGlobals.GetStudentDying(j) && !StudentGlobals.GetStudentDead(j))
 					{
-						Debug.Log("What, they were both false? Huh? How? Investigate that.");
+						Debug.Log("What, dying was true but dead was false? Huh? How? Investigate that.");
 					}
 				}
 				if ((StudentGlobals.GetStudentDying(j) && !StudentGlobals.GetStudentDead(j)) || (StudentManager.Students[j] != null && !StudentManager.Students[j].Alive))

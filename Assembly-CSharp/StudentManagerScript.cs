@@ -3414,6 +3414,7 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		Debug.Log("All students are now being told to attend class.");
 		ConvoManager.BothCharactersInPosition = false;
+		BakeSale.CurrentCustomer = null;
 		SleuthPhase = 3;
 		if (RingEvent.EventActive)
 		{

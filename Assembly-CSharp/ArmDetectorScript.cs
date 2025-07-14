@@ -365,6 +365,8 @@ public class ArmDetectorScript : MonoBehaviour
 				if (Darkness.color.a == 1f)
 				{
 					GameGlobals.EmptyDemon = true;
+					StudentGlobals.MaleUniform = 1;
+					StudentGlobals.FemaleUniform = 1;
 					SceneManager.LoadScene("LoadingScene");
 				}
 			}

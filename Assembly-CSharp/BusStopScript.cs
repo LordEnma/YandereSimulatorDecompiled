@@ -335,6 +335,8 @@ public class BusStopScript : MonoBehaviour
 				CameraTarget.position = Vector3.Lerp(CameraTarget.position, SenpaiAnim.transform.position, IntroCameraSpeed * 0.001f);
 				if (IntroCameraSpeed > 10f)
 				{
+					SenpaiAnim["senpaiSigh_00"].time = 0f;
+					SenpaiAnim.Play("senpaiSigh_00");
 					base.transform.position = new Vector3(0.375f, 0.5f, 2.5f);
 					base.transform.eulerAngles = new Vector3(0f, 180f, 0f);
 					Amai.gameObject.SetActive(value: true);

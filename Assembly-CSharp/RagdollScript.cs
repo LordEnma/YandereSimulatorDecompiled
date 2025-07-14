@@ -800,6 +800,7 @@ public class RagdollScript : MonoBehaviour
 			{
 				component.newRenderer.gameObject.GetComponent<OutlineScript>().color = new Color(1f, 0.5f, 0f);
 				component.newRenderer.gameObject.GetComponent<OutlineScript>().enabled = true;
+				component.newRenderer.gameObject.GetComponent<OutlineScript>().h.ConstantOnImmediate(new Color(1f, 0.5f, 0f));
 				AddedOutline = true;
 				ColoredOutline = true;
 			}

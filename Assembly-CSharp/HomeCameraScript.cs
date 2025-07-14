@@ -456,7 +456,14 @@ public class HomeCameraScript : MonoBehaviour
 		if (HomeYandere.CanMove)
 		{
 			ResetChroma();
-			UpdateDOF(1.66666f);
+			if (!OutOfRoom)
+			{
+				UpdateDOF(1.66666f);
+			}
+			else
+			{
+				UpdateDOF(2f);
+			}
 			if (RestoreBloom)
 			{
 				Profile.bloom.enabled = true;

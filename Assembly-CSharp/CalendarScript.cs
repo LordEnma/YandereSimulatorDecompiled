@@ -337,6 +337,8 @@ public class CalendarScript : MonoBehaviour
 		CollectibleGlobals.SetGiftPurchased(5, value: false);
 		if (GameGlobals.ForceCanonEliminations)
 		{
+			Debug.Log("At Calendar Screen, SpecificEliminationID is currently: " + GameGlobals.SpecificEliminationID);
+			Debug.Log("At Calendar Screen, RivalEliminationID is currently: " + GameGlobals.RivalEliminationID);
 			EliminationNameLabel.transform.parent.gameObject.SetActive(value: true);
 			EliminationNameLabel.text = EliminationNames[JSON.Misc.CanonEliminations[DateGlobals.Week]];
 			if (GameGlobals.RivalEliminationID > 0)

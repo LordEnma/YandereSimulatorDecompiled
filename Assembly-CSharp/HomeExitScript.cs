@@ -31,6 +31,10 @@ public class HomeExitScript : MonoBehaviour
 
 	public AudioClip Confirm;
 
+	public HomeTriggerScript BasementTrigger;
+
+	public UILabel BasementLabel;
+
 	public void Start()
 	{
 		UILabel uILabel = Labels[1];
@@ -154,6 +158,7 @@ public class HomeExitScript : MonoBehaviour
 					}
 					else
 					{
+						BasementTrigger.Label = BasementLabel;
 						HomeDarkness.FadeOut = true;
 						HomeCamera.enabled = false;
 						HomeWindow.Show = false;

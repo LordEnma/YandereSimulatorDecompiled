@@ -723,6 +723,7 @@ public class CosmeticScript : MonoBehaviour
 				}
 				if (Student.Rival)
 				{
+					StartCoroutine(LoadCustomBookbagTexture());
 					CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
 					BookbagTextures = CustomUniform.CustomBookbags;
 				}
@@ -884,6 +885,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 		if (((StudentManager != null && StudentManager.EmptyDemon) || Empty) && (StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71 || Empty))
 		{
+			Debug.Log("Now instructing a Club Leader to become ''Empty''.");
 			if (!Male)
 			{
 				Hairstyle = 52;
@@ -895,9 +897,15 @@ public class CosmeticScript : MonoBehaviour
 			FacialHairstyle = 0;
 			EyewearID = 0;
 			Accessory = 0;
-			Stockings = "";
+			Stockings = "Empty";
 			BreastSize = 1f;
+			SkinColor = 0;
 			Empty = true;
+			DefaultFaceTexture = FaceTextures[0];
+			for (int k = 1; k < SkinTextures.Length; k++)
+			{
+				SkinTextures[k] = SkinTextures[0];
+			}
 			Student.Name = "A student";
 		}
 		if (Name == "Random")
@@ -997,12 +1005,18 @@ public class CosmeticScript : MonoBehaviour
 					if (AmaiBrows != null)
 					{
 						AmaiBrows.SetActive(value: true);
-						if (!Student.Slave)
+						Debug.Log("Checking if we need to do anything with Amai's eyebrows...");
+						if (!Student.Slave && !Kidnapped)
 						{
+							Debug.Log("Re-naming Amai's eyebrows.");
 							RightTemple.name = "temple_Right_RENAMED";
 							LeftTemple.name = "temple_Left_RENAMED";
 							RightTemple.localScale = new Vector3(0f, 1f, 1f);
 							LeftTemple.localScale = new Vector3(0f, 1f, 1f);
+						}
+						else
+						{
+							Debug.Log("Decided to not re-name Amai's eyebrows.");
 						}
 					}
 					if (PhoneCharms.Length != 0)
@@ -1092,10 +1106,10 @@ public class CosmeticScript : MonoBehaviour
 					Bookbag.SetActive(value: true);
 				}
 				Hoodie.SetActive(value: true);
-				for (int l = 0; l < 10; l++)
+				for (int m = 0; m < 10; m++)
 				{
-					Fingernails[l].material.mainTexture = GanguroNailTextures[StudentID];
-					Fingernails[l].gameObject.SetActive(value: true);
+					Fingernails[m].material.mainTexture = GanguroNailTextures[StudentID];
+					Fingernails[m].gameObject.SetActive(value: true);
 				}
 				Student.GymTexture = TanGymTexture;
 				Student.TowelTexture = TanTowelTexture;
@@ -1105,10 +1119,10 @@ public class CosmeticScript : MonoBehaviour
 				DisableFingernails();
 				if (Eighties && !CustomMode && StudentID == 15)
 				{
-					for (int m = 0; m < 10; m++)
+					for (int n = 0; n < 10; n++)
 					{
-						Fingernails[m].material.mainTexture = GanguroNailTextures[StudentID];
-						Fingernails[m].gameObject.SetActive(value: true);
+						Fingernails[n].material.mainTexture = GanguroNailTextures[StudentID];
+						Fingernails[n].gameObject.SetActive(value: true);
 					}
 				}
 			}
@@ -1910,9 +1924,9 @@ public class CosmeticScript : MonoBehaviour
 			if (StudentGlobals.CustomSuitorJewelry > 0)
 			{
 				GameObject[] phoneCharms = GaloAccessories;
-				for (int k = 0; k < phoneCharms.Length; k++)
+				for (int l = 0; l < phoneCharms.Length; l++)
 				{
-					phoneCharms[k].SetActive(value: true);
+					phoneCharms[l].SetActive(value: true);
 				}
 			}
 		}
@@ -4782,6 +4796,16 @@ public class CosmeticScript : MonoBehaviour
 				Debug.Log("Disabling the glasses.");
 				NewspaperLeaderGlasses.SetActive(value: false);
 			}
+		}
+	}
+
+	private IEnumerator LoadCustomBookbagTexture()
+	{
+		WWW NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Bookbags/RivalBag" + DateGlobals.Week + ".png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
+		{
+			Bookbag.GetComponent<Renderer>().material.mainTexture = NewTexture.texture;
 		}
 	}
 }

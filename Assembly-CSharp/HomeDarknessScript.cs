@@ -260,8 +260,8 @@ public class HomeDarknessScript : MonoBehaviour
 					HomeCamera.LastChangePoint = Vector3.zero;
 					HomeCamera.TooClose = false;
 					HomeCamera.CameraTimer = 0f;
-					HomeYandere.transform.position = new Vector3(-5.5f, 0f, -1.675f);
-					HomeYandere.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+					HomeYandere.transform.position = new Vector3(-5.5f, 0f, 5.975f);
+					HomeYandere.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 					HomeYandere.MyController.radius = 0.25f;
 					HomeYandere.CanMove = true;
 					FadeOut = false;

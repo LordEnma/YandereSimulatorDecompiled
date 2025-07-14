@@ -1,6 +1,6 @@
 # YandereSimulatorDecompiled
 
-Decompiled Code from the game Yandere Simulator. The version of the game is from 06/30/25
+Decompiled Code from the game Yandere Simulator. The version of the game is from 07/13/25
 
 This is being provided as is, and I will try to update whenever a new build is released
 
@@ -17,3 +17,4 @@ The Copyright Laws of the United States recognizes “fair use” of copyrighted
 This repository is covered by fair use and any DMCA takedown notice will be countered
 
 If the copyright holder wants me to make changes or take down this repository, please file an issue report before submitting a DMCA
+

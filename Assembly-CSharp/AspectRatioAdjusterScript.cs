@@ -23,6 +23,7 @@ public class AspectRatioAdjusterScript : MonoBehaviour
 		Vector3 localScale = base.transform.localScale;
 		if (Mathf.Abs(num - 1.6f) < tolerance)
 		{
+			Debug.Log("We are 16:10 instead of 16:9");
 			localScale.x = 0.9f;
 		}
 		else

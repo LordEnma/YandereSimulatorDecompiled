@@ -340,54 +340,59 @@ public class WeaponMenuScript : MonoBehaviour
 
 	public void Equip()
 	{
-		if (!(Yandere.Weapon[Selected] != null))
+		Debug.Log("WeaponMenu.Selected is " + Selected + ". Now attempting to fire the Equip() function.");
+		if (Yandere.Weapon[Selected] != null)
 		{
-			return;
-		}
-		Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
-		Yandere.ReachWeight = 1f;
-		if (Yandere.PickUp != null)
-		{
-			Yandere.PickUp.Drop();
-		}
-		if (Yandere.Equipped == 3)
-		{
-			Yandere.Weapon[3].Drop();
-		}
-		if (Yandere.Weapon[1] != null)
-		{
-			Yandere.Weapon[1].gameObject.SetActive(value: false);
-		}
-		if (Yandere.Weapon[2] != null)
-		{
-			Yandere.Weapon[2].gameObject.SetActive(value: false);
-		}
-		Yandere.Equipped = Selected;
-		Yandere.EquippedWeapon.gameObject.SetActive(value: true);
-		if (Yandere.EquippedWeapon.Flaming)
-		{
-			Yandere.EquippedWeapon.FireEffect.Play();
-		}
-		if (!Yandere.Gloved)
-		{
-			Yandere.EquippedWeapon.FingerprintID = 100;
-		}
-		Yandere.StudentManager.UpdateStudents();
-		Yandere.WeaponManager.UpdateLabels();
-		if (Yandere.EquippedWeapon.Suspicious)
-		{
-			if (!Yandere.WeaponWarning)
+			Debug.Log("Selected weapon was not null.");
+			Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
+			Yandere.ReachWeight = 1f;
+			if (Yandere.PickUp != null)
 			{
-				Yandere.NotificationManager.DisplayNotification(NotificationType.Armed);
-				Yandere.WeaponWarning = true;
+				Yandere.PickUp.Drop();
 			}
+			if (Yandere.Equipped == 3)
+			{
+				Yandere.Weapon[3].Drop();
+			}
+			if (Yandere.Weapon[1] != null)
+			{
+				Yandere.Weapon[1].gameObject.SetActive(value: false);
+			}
+			if (Yandere.Weapon[2] != null)
+			{
+				Yandere.Weapon[2].gameObject.SetActive(value: false);
+			}
+			Yandere.Equipped = Selected;
+			Yandere.EquippedWeapon.gameObject.SetActive(value: true);
+			if (Yandere.EquippedWeapon.Flaming)
+			{
+				Yandere.EquippedWeapon.FireEffect.Play();
+			}
+			if (!Yandere.Gloved)
+			{
+				Yandere.EquippedWeapon.FingerprintID = 100;
+			}
+			Yandere.StudentManager.UpdateStudents();
+			Yandere.WeaponManager.UpdateLabels();
+			if (Yandere.EquippedWeapon.Suspicious)
+			{
+				if (!Yandere.WeaponWarning)
+				{
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Armed);
+					Yandere.WeaponWarning = true;
+				}
+			}
+			else
+			{
+				Yandere.WeaponWarning = false;
+			}
+			AudioSource.PlayClipAtPoint(Yandere.EquippedWeapon.EquipClip, Camera.main.transform.position);
+			Show = false;
 		}
 		else
 		{
-			Yandere.WeaponWarning = false;
+			Debug.Log("Uh...selected weapon was null?");
 		}
-		AudioSource.PlayClipAtPoint(Yandere.EquippedWeapon.EquipClip, Camera.main.transform.position);
-		Show = false;
 	}
 
 	public void UpdateSprites()

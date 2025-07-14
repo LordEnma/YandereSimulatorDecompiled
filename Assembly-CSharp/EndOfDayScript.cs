@@ -2360,6 +2360,7 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			RivalEliminationMethod = RivalEliminationType.Arrested;
 		}
+		Debug.Log("RivalEliminationMethod is: " + RivalEliminationMethod);
 		if (RivalEliminationMethod == RivalEliminationType.Murdered)
 		{
 			GameGlobals.RivalEliminationID = 1;
@@ -3032,6 +3033,7 @@ public class EndOfDayScript : MonoBehaviour
 
 	private void CheckForNatureOfDeath()
 	{
+		Debug.Log("The game knows that the rival died, and is now cehcking for the nature of her death...");
 		if (!(StudentManager.Students[StudentManager.RivalID] != null))
 		{
 			return;
@@ -3212,6 +3214,16 @@ public class EndOfDayScript : MonoBehaviour
 			Debug.Log("The game knows that the rival died from being smothered to death.");
 			GameGlobals.SpecificEliminationID = 22;
 			AchievementToGrant = "Smother";
+		}
+		else if (ragdoll.Student.DeathType == DeathType.Frozen)
+		{
+			Debug.Log("The game knows that the rival died from being frozen to death.");
+			GameGlobals.SpecificEliminationID = 21;
+			AchievementToGrant = "Frozen";
+		}
+		else
+		{
+			Debug.Log("NOTHING?! WHAT?!");
 		}
 	}
 

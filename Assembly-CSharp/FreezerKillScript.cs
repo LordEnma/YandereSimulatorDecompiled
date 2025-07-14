@@ -107,6 +107,7 @@ public class FreezerKillScript : MonoBehaviour
 							Victim.Dying = true;
 							ShovePhase = 1;
 							ShoveTimer = 0f;
+							Shut = true;
 							Prompt.enabled = false;
 							Prompt.Hide();
 						}
@@ -130,9 +131,26 @@ public class FreezerKillScript : MonoBehaviour
 			}
 			else if (!Open)
 			{
+				if (Victim != null)
+				{
+					Victim.Prompt.enabled = true;
+				}
+				RoomBlocker.SetActive(value: false);
 				MyAudio.clip = DoorOpen;
 				MyAudio.Play();
+				Prompt.enabled = false;
+				Prompt.Hide();
+				Shut = false;
 				Open = true;
+			}
+		}
+		if (Open)
+		{
+			Door.transform.localPosition = Vector3.Lerp(Door.transform.localPosition, new Vector3(-0.7915f, 0f, 0f), Time.deltaTime * 3f);
+			if (Door.transform.localPosition.x < -0.791f)
+			{
+				base.enabled = false;
+				Open = false;
 			}
 		}
 		if (ShovePhase <= 0)
@@ -196,7 +214,6 @@ public class FreezerKillScript : MonoBehaviour
 			{
 				Prompt.Yandere.Sanity -= Time.deltaTime * 10f * Prompt.Yandere.Numbness;
 			}
-			Debug.Log("Now Sanity is: " + Prompt.Yandere.Sanity);
 			Prompt.Yandere.LateUpdate();
 			if (ShoveTimer >= 10f)
 			{
@@ -230,7 +247,9 @@ public class FreezerKillScript : MonoBehaviour
 					Prompt.Yandere.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Accident;
 				}
 				Fog.Stop();
-				base.enabled = false;
+				Prompt.Label[2].text = "     Open Door";
+				Prompt.Suspicious = false;
+				Prompt.enabled = true;
 				ShovePhase = 0;
 			}
 		}

@@ -3104,7 +3104,14 @@ public class YandereScript : MonoBehaviour
 							if (!Sans && !BlackRobe.activeInHierarchy)
 							{
 								YandereVision = true;
-								ActivateOutline(Hairstyles[Hairstyle]);
+								if (UseCustomHair)
+								{
+									ActivateOutline(CustomHair.gameObject);
+								}
+								else
+								{
+									ActivateOutline(Hairstyles[Hairstyle]);
+								}
 								if (StudentManager.Students[1] != null)
 								{
 									StudentManager.Students[1].TurnOutlinesPink();
