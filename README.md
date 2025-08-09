@@ -14,7 +14,5 @@ The Copyright Laws of the United States recognizes “fair use” of copyrighted
 
 "Notwithstanding the provisions of sections 106 and 106A, the fair use of a copyrighted work, including such use by reproduction in copies or phonorecords or by any other means specified by that section, for purposes such as criticism, comment, news reporting, teaching (including multiple copies for classroom use), scholarship, or research, is not an infringement of copyright"
 
-This repository is covered by fair use and any DMCA takedown notice will be countered
-
-If the copyright holder wants me to make changes or take down this repository, please file an issue report before submitting a DMCA
+This repository is covered by fair use and any DMCA takedown notice is invalid.
 
