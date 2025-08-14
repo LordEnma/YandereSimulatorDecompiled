@@ -350,8 +350,11 @@ public class QualityManagerScript : MonoBehaviour
 							studentScript.MyRenderer.materials[3].shader = NewBodyShader;
 						}
 					}
-					studentScript.Cosmetic.RightStockings[0].GetComponent<Renderer>().material.shader = NewBodyShader;
-					studentScript.Cosmetic.LeftStockings[0].GetComponent<Renderer>().material.shader = NewBodyShader;
+					for (int j = 0; j < 3; j++)
+					{
+						studentScript.Cosmetic.RightStockings[j].GetComponent<Renderer>().material.shader = NewBodyShader;
+						studentScript.Cosmetic.LeftStockings[j].GetComponent<Renderer>().material.shader = NewBodyShader;
+					}
 					if (studentScript.Club == ClubType.Bully)
 					{
 						studentScript.Cosmetic.LeftWristband.GetComponent<Renderer>().material.shader = NewHairShader;
@@ -495,18 +498,18 @@ public class QualityManagerScript : MonoBehaviour
 			Yandere.MyRenderer.materials[2].shader = NewBodyShader;
 			Yandere.EightiesPonytailRenderer.material.shader = NewHairShader;
 			YandereHairRenderer.material.shader = NewHairShader;
-			for (int j = 1; j < Yandere.Hairstyles.Length; j++)
+			for (int k = 1; k < Yandere.Hairstyles.Length; k++)
 			{
-				Renderer component4 = Yandere.Hairstyles[j].GetComponent<Renderer>();
+				Renderer component4 = Yandere.Hairstyles[k].GetComponent<Renderer>();
 				if (component4 != null)
 				{
 					component4.material.shader = NewHairShader;
 				}
-				if (Yandere.Hairstyles[j].transform.childCount <= 0)
+				if (Yandere.Hairstyles[k].transform.childCount <= 0)
 				{
 					continue;
 				}
-				foreach (Transform item in Yandere.Hairstyles[j].transform)
+				foreach (Transform item in Yandere.Hairstyles[k].transform)
 				{
 					Renderer component5 = item.GetComponent<Renderer>();
 					if (component5 != null)
@@ -880,8 +883,11 @@ public class QualityManagerScript : MonoBehaviour
 							studentScript.Cosmetic.RightWristband.GetComponent<Renderer>().material.shader = NewHairShader;
 							studentScript.Cosmetic.HoodieRenderer.material.shader = NewHairShader;
 						}
-						studentScript.Cosmetic.RightStockings[0].GetComponent<Renderer>().material.shader = NewHairShader;
-						studentScript.Cosmetic.LeftStockings[0].GetComponent<Renderer>().material.shader = NewHairShader;
+						for (int j = 0; j < 3; j++)
+						{
+							studentScript.Cosmetic.RightStockings[j].GetComponent<Renderer>().material.shader = NewBodyShader;
+							studentScript.Cosmetic.LeftStockings[j].GetComponent<Renderer>().material.shader = NewBodyShader;
+						}
 						if (studentScript.Club == ClubType.Council)
 						{
 							studentScript.Cosmetic.TurtleEyewearRenderer.material.shader = NewHairShader;

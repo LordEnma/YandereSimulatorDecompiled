@@ -3374,16 +3374,17 @@ public class EndOfDayScript : MonoBehaviour
 
 	public void FunCheck()
 	{
+		Debug.Log("Now checking for Happy Ending Timeline failure criteria.");
 		if (Yandere.Kills > 0 || Police.Deaths > 0)
 		{
-			Debug.Log("The player killed someone.");
+			Debug.Log("Met the criteria for a FunGameOver: The player killed someone.");
 			FunGameOver = true;
 		}
 		for (int i = 1; i < 101; i++)
 		{
 			if (StudentManager.StudentReps[i] <= -150f || StudentGlobals.GetStudentReputation(i) <= -150)
 			{
-				Debug.Log("The player drove someone to suicide.");
+				Debug.Log("Met the criteria for a FunGameOver: The player drove someone to suicide.");
 				FunGameOver = true;
 			}
 		}
@@ -3393,6 +3394,7 @@ public class EndOfDayScript : MonoBehaviour
 			Debug.Log("Reputation.Reputation + Reputation.PendingRep is: " + (Reputation.Reputation + Reputation.PendingRep));
 			if (GameGlobals.SenpaiLove < 100 || Reputation.Reputation + Reputation.PendingRep < 100f)
 			{
+				Debug.Log("Met the criteria for a FunGameOver...");
 				FunGameOver = true;
 			}
 		}

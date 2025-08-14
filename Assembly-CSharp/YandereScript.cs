@@ -3104,14 +3104,19 @@ public class YandereScript : MonoBehaviour
 							if (!Sans && !BlackRobe.activeInHierarchy)
 							{
 								YandereVision = true;
+								Debug.Log("Attempting to activate Yandere Vision.");
 								if (UseCustomHair)
 								{
-									ActivateOutline(CustomHair.gameObject);
+									if (CustomHair.gameObject != null)
+									{
+										ActivateOutline(CustomHair.gameObject);
+									}
 								}
-								else
+								else if (Hairstyle >= 0 && Hairstyle < Hairstyles.Length && Hairstyles[Hairstyle] != null)
 								{
 									ActivateOutline(Hairstyles[Hairstyle]);
 								}
+								Debug.Log("Successfully activated Yandere Vision.");
 								if (StudentManager.Students[1] != null)
 								{
 									StudentManager.Students[1].TurnOutlinesPink();
@@ -6863,10 +6868,20 @@ public class YandereScript : MonoBehaviour
 	{
 		if (!EasterEggMenu.activeInHierarchy && !DebugMenu.activeInHierarchy)
 		{
-			if (Input.GetKeyDown(KeyCode.P) && !Egg)
+			if (Input.GetKeyDown(KeyCode.P))
 			{
-				EyewearID++;
-				UpdateEyewear();
+				if (Egg)
+				{
+					if (CyborgParts[2].activeInHierarchy)
+					{
+						CyborgParts[1].SetActive(!CyborgParts[1].activeInHierarchy);
+					}
+				}
+				else
+				{
+					EyewearID++;
+					UpdateEyewear();
+				}
 			}
 			if (Input.GetKeyDown(KeyCode.H))
 			{
@@ -7583,13 +7598,19 @@ public class YandereScript : MonoBehaviour
 				RaincoatAttacher.newRenderer.gameObject.AddComponent<OutlineScript>();
 			}
 			OutlineScript component = RaincoatAttacher.newRenderer.gameObject.GetComponent<OutlineScript>();
-			if (component.h == null)
+			component.color = Outline.color;
+			if (component.h != null)
 			{
-				component.Awake();
+				component.h.ConstantOnImmediate(component.color);
 				SetUpRaincoatOutline = true;
 			}
-			component.color = Outline.color;
+			else
+			{
+				component.Awake();
+			}
 			component.enabled = Outline.enabled;
+			Color color = component.color;
+			Debug.Log("RaincoatOutline.color is: " + color.ToString());
 		}
 		if (MaidCheck)
 		{
@@ -10513,21 +10534,31 @@ public class YandereScript : MonoBehaviour
 				Hairstyle = HairstyleBeforeRaincoat;
 				UpdateHair();
 			}
+			Outline.enabled = true;
+			Outline.h.ReinitMaterials();
 		}
 		else
 		{
 			GloveAttacher.newRenderer.enabled = false;
 		}
 		Gloves.gameObject.SetActive(value: true);
+		OutlineScript component = Gloves.GetComponent<OutlineScript>();
 		if (Gloves.Blood.enabled)
 		{
 			Gloves.Blood.material.SetColor("_TintColor", new Color(0.25f, 0.25f, 0.25f, 1f));
 			Gloves.Blood.material.mainTexture = BloodTextures[5];
-			OutlineScript component = Gloves.GetComponent<OutlineScript>();
 			if (component != null)
 			{
 				component.color = new Color(1f, 0.5f, 0f, 1f);
 			}
+		}
+		if (component.h != null)
+		{
+			component.h.ConstantOnImmediate(component.color);
+		}
+		else
+		{
+			component.Awake();
 		}
 		Gloves.PickUp.MyRigidbody.isKinematic = false;
 		Gloves.PickUp.MyRigidbody.useGravity = true;

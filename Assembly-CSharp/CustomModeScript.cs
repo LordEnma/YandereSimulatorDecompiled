@@ -3951,6 +3951,8 @@ public class CustomModeScript : MonoBehaviour
 		JSON.Misc.SkinColor = SkinColor;
 		JSON.Misc.AnimSet = AnimSet;
 		JSON.Misc.EyeWear = EyeWear;
+		JSON.Misc.CustomFemaleUniform = StudentGlobals.CustomFemaleUniform;
+		JSON.Misc.CustomMaleUniform = StudentGlobals.CustomMaleUniform;
 		SaveAllCustomLocations();
 		string contents4 = JsonConvert.SerializeObject(JSON.Misc);
 		File.WriteAllText(Path.Combine(FolderPath, "Misc.json"), contents4);
@@ -3970,6 +3972,8 @@ public class CustomModeScript : MonoBehaviour
 		JSON.Misc = misc;
 		StudentGlobals.FemaleUniform = JSON.Misc.FemaleUniform;
 		StudentGlobals.MaleUniform = JSON.Misc.MaleUniform;
+		StudentGlobals.CustomFemaleUniform = JSON.Misc.CustomFemaleUniform;
+		StudentGlobals.CustomMaleUniform = JSON.Misc.CustomMaleUniform;
 		FemaleUniform = JSON.Misc.FemaleUniform;
 		MaleUniform = JSON.Misc.MaleUniform;
 		FemaleUniformLabel.text = FemaleUniform.ToString() ?? "";
@@ -4003,6 +4007,8 @@ public class CustomModeScript : MonoBehaviour
 				StudentGenders[j] = false;
 			}
 		}
+		FemaleCustomTextureBubble.SetActive(StudentGlobals.CustomFemaleUniform);
+		MaleCustomTextureBubble.SetActive(StudentGlobals.CustomMaleUniform);
 		LoadAllCustomLocations();
 		UpdateCanonMethodLabels();
 		EnsureNoEmptyArrays();

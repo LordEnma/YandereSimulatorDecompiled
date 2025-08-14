@@ -476,8 +476,6 @@ public class GenericPromptScript : MonoBehaviour
 				base.enabled = false;
 				PerformingAction = false;
 				Object[0].SetActive(value: true);
-				Collider.center = new Vector3(0f, 1f, 0.33333f);
-				Collider.size = new Vector3(1.9f, 2f, 1f);
 				if (Prompt.Yandere.StudentManager.Students[13] != null && Prompt.Yandere.StudentManager.Students[13].Alive)
 				{
 					Debug.Log("Updating the bookish girl's routine.");

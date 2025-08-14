@@ -124,6 +124,7 @@ public class RetroMinigameScript : MonoBehaviour
 			}
 			if (Yandere.CanMove)
 			{
+				Debug.Log("From the RetroMinigameScript, attempting to restore Jukebox volume to previous levels.");
 				MinigameCamera.SetActive(value: false);
 				Jukebox.Volume = Jukebox.LastVolume;
 				MySFX.Stop();

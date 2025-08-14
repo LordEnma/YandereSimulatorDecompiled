@@ -554,6 +554,11 @@ public class PickUpScript : MonoBehaviour
 			Prompt.Yandere.StudentManager.BookBag.ConcealedPickup = this;
 			base.gameObject.SetActive(value: false);
 		}
+		if (CarBattery && Broken && !Smoke.isPlaying)
+		{
+			base.gameObject.tag = "Untagged";
+			Smoke.Play();
+		}
 	}
 
 	public void BePickedUp()

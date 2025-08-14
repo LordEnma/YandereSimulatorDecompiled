@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -66,18 +67,13 @@ public class ResolutionScript : MonoBehaviour
 
 	private const string String2 = "CensorBlood=1";
 
-	private void Start()
+	private IEnumerator Start()
 	{
+		yield return null;
 		CheckForSettingsFile();
-		if (Screen.width < 1280 || Screen.height < 720)
-		{
-			Screen.SetResolution(1280, 720, FullScreen);
-			ResID = 0;
-		}
-		Darkness.color = new Color(1f, 1f, 1f, 1f);
+		FullScreen = false;
 		Cursor.visible = false;
-		Screen.fullScreen = false;
-		Screen.SetResolution(Screen.width, Screen.height, FullScreen);
+		Darkness.color = new Color(1f, 1f, 1f, 1f);
 		ResolutionLabel.text = Screen.width + " x " + Screen.height;
 		QualityLabel.text = Qualities[QualitySettings.GetQualityLevel()] ?? "";
 		if (!FullScreen)
@@ -94,12 +90,6 @@ public class ResolutionScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Screen.width < 1280 || Screen.height < 720)
-		{
-			Screen.SetResolution(1280, 720, fullscreen: false);
-			ResolutionLabel.text = Screen.width + " x " + Screen.height;
-			ResID = 0;
-		}
 		if (FadeOut)
 		{
 			Alpha = Mathf.MoveTowards(Alpha, 1f, Time.deltaTime);
@@ -223,6 +213,10 @@ public class ResolutionScript : MonoBehaviour
 			else if (Input.GetButton(InputNames.Xbox_Y))
 			{
 				SceneManager.LoadScene("controllerTest");
+			}
+			else if (Input.GetButton(InputNames.Xbox_Start))
+			{
+				SceneManager.LoadScene("LoadingScene");
 			}
 		}
 		else

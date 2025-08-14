@@ -49,6 +49,8 @@ public class SnappedYandereScript : MonoBehaviour
 
 	public GameObject NewDoIt;
 
+	public WeaponScript BackUpKnife;
+
 	public WeaponScript Knife;
 
 	public AudioListener MyListener;
@@ -183,6 +185,7 @@ public class SnappedYandereScript : MonoBehaviour
 		{
 			Weapons[6] = null;
 		}
+		BackUpKnife.gameObject.SetActive(value: true);
 	}
 
 	private void Update()
@@ -724,7 +727,22 @@ public class SnappedYandereScript : MonoBehaviour
 			bool flag = false;
 			while (!flag)
 			{
+				int num = 0;
 				WeaponScript[] weapons = Weapons;
+				for (int i = 0; i < weapons.Length; i++)
+				{
+					if (weapons[i] != null)
+					{
+						num++;
+					}
+				}
+				if (num == 0)
+				{
+					EquipBackUpKnife();
+					flag = true;
+					continue;
+				}
+				weapons = Weapons;
 				foreach (WeaponScript weaponScript in weapons)
 				{
 					if (weaponScript != null)
@@ -754,5 +772,23 @@ public class SnappedYandereScript : MonoBehaviour
 			}
 		}
 		Physics.SyncTransforms();
+	}
+
+	public void EquipBackUpKnife()
+	{
+		BackUpKnife.Prompt.Circle[3].fillAmount = 0f;
+		if (!GameGlobals.FemaleSenpai)
+		{
+			SNAPLabel.text = "Kill him.";
+		}
+		else
+		{
+			SNAPLabel.text = "Kill her.";
+		}
+		StaticNoise.volume = 0f;
+		Static.Fade = 0f;
+		HurryTimer = 0f;
+		Knife = BackUpKnife;
+		Armed = true;
 	}
 }

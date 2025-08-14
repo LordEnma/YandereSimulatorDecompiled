@@ -100,6 +100,7 @@ public class NoteWindowScript : MonoBehaviour
 		{
 			Subjects[10] = "Evil Photographer";
 			Subjects[6] = "technology";
+			Stationery.color = Color.white;
 		}
 		else if (DateGlobals.Week == 2)
 		{

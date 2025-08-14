@@ -179,6 +179,14 @@ public class WashingMachineScript : MonoBehaviour
 				{
 					component.color = new Color(0f, 1f, 1f, 1f);
 				}
+				if (component.h != null)
+				{
+					component.h.ConstantOnImmediate(component.color);
+				}
+				else if (component.h == null)
+				{
+					component.Awake();
+				}
 				ClothingList[i].RemoveSelfFromBloodyClothingArray();
 			}
 			else if (ClothingList[i].gameObject.name == "Mask")
@@ -212,9 +220,17 @@ public class WashingMachineScript : MonoBehaviour
 				}
 				component2.gameObject.GetComponent<PickUpScript>().OriginalColor = new Color(0f, 1f, 1f, 1f);
 				OutlineScript[] outline = component2.gameObject.GetComponent<PickUpScript>().Outline;
-				for (int j = 0; j < outline.Length; j++)
+				foreach (OutlineScript outlineScript in outline)
 				{
-					outline[j].color = new Color(0f, 1f, 1f, 1f);
+					outlineScript.color = new Color(0f, 1f, 1f, 1f);
+					if (outlineScript.h != null)
+					{
+						outlineScript.h.ConstantOnImmediate(outlineScript.color);
+					}
+					else if (outlineScript.h == null)
+					{
+						outlineScript.Awake();
+					}
 				}
 			}
 			Prompt.Yandere.Police.BloodyClothing--;

@@ -15,6 +15,8 @@ public class SuicideCutsceneScript : MonoBehaviour
 
 	public Animation Mom;
 
+	public Animation AmaiMom;
+
 	public float Timer;
 
 	public float Rotation;
@@ -22,6 +24,8 @@ public class SuicideCutsceneScript : MonoBehaviour
 	public float Speed;
 
 	public int ID;
+
+	public GameObject[] Scenes;
 
 	public GameObject[] RivalHair;
 
@@ -47,6 +51,9 @@ public class SuicideCutsceneScript : MonoBehaviour
 			RivalHair[1].SetActive(value: false);
 			RivalHair[DateGlobals.Week].SetActive(value: true);
 			Pajamas.material.mainTexture = RivalPajamas[DateGlobals.Week];
+			Mom = AmaiMom;
+			Scenes[1].SetActive(value: false);
+			Scenes[2].SetActive(value: true);
 		}
 	}
 
@@ -61,12 +68,8 @@ public class SuicideCutsceneScript : MonoBehaviour
 				ID++;
 			}
 		}
-		else
+		else if (ID == 1)
 		{
-			if (ID != 1)
-			{
-				return;
-			}
 			if (Timer > 6f)
 			{
 				Speed += Time.deltaTime * 0.66666f;
@@ -85,19 +88,24 @@ public class SuicideCutsceneScript : MonoBehaviour
 			}
 			if (Timer > 11f)
 			{
-				GameGlobals.SpecificEliminationID = 19;
-				if (!GameGlobals.Debug)
-				{
-					PlayerPrefs.SetInt("Suicide", 1);
-				}
-				if (!GameGlobals.Debug)
-				{
-					PlayerPrefs.SetInt("a", 1);
-				}
-				SchoolGlobals.SchoolAtmosphere -= 0.1f;
-				GameGlobals.SenpaiMourning = true;
-				SceneManager.LoadScene("HomeScene");
+				Exit();
 			}
 		}
+	}
+
+	public void Exit()
+	{
+		GameGlobals.SpecificEliminationID = 19;
+		if (!GameGlobals.Debug)
+		{
+			PlayerPrefs.SetInt("Suicide", 1);
+		}
+		if (!GameGlobals.Debug)
+		{
+			PlayerPrefs.SetInt("a", 1);
+		}
+		SchoolGlobals.SchoolAtmosphere -= 0.1f;
+		GameGlobals.SenpaiMourning = true;
+		SceneManager.LoadScene("HomeScene");
 	}
 }

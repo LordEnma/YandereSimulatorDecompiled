@@ -724,7 +724,12 @@ public class NewTitleScreenScript : MonoBehaviour
 					}
 					else if (DateGlobals.Week < 11)
 					{
-						if (HomeGlobals.Night)
+						Debug.Log("Time to load a save file.");
+						if (!GameGlobals.Eighties && DateGlobals.Week == 3)
+						{
+							SceneManager.LoadScene("PostAmaiScene");
+						}
+						else if (HomeGlobals.Night)
 						{
 							SceneManager.LoadScene("HomeScene");
 						}

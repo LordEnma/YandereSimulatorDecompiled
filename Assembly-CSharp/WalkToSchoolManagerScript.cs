@@ -135,7 +135,24 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 
 	public AudioClip LoveSickBGM;
 
+	public Animation RivalAnim;
+
+	public string[] WalkAnims;
+
+	public GameObject Apron;
+
 	public string RivalName = "Osana";
+
+	public Transform headBone;
+
+	public Transform lookAtTarget;
+
+	[Range(0f, 1f)]
+	public float lookAtWeight;
+
+	public bool Initialized;
+
+	private Quaternion initialLocalRotation;
 
 	private void Start()
 	{
@@ -178,7 +195,9 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 			Speech = AmaiDialogueData.Speech;
 			Speakers = AmaiDialogueData.Speakers;
 			RivalName = AmaiDialogueData.RivalName;
+			Apron.SetActive(value: true);
 		}
+		RivalAnim.Play(WalkAnims[DateGlobals.Week]);
 		Rival.Start();
 	}
 
@@ -378,8 +397,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		SenpaiHead.localEulerAngles = new Vector3(SenpaiHead.localEulerAngles.x, SenpaiHeadTarget, SenpaiHead.localEulerAngles.z);
 		SenpaiEyeR.localEulerAngles = new Vector3(SenpaiEyeR.localEulerAngles.x, SenpaiEyeRTarget, SenpaiEyeR.localEulerAngles.z);
 		SenpaiEyeL.localEulerAngles = new Vector3(SenpaiEyeL.localEulerAngles.x, SenpaiEyeLTarget, SenpaiEyeL.localEulerAngles.z);
-		YandereNeck.localEulerAngles = new Vector3(YandereNeck.localEulerAngles.x, YandereNeckTarget, YandereNeck.localEulerAngles.z);
-		YandereHead.localEulerAngles = new Vector3(YandereHead.localEulerAngles.x, YandereHeadTarget, YandereHead.localEulerAngles.z);
+		YandereHeadLookAt();
 		if (MyAudio.isPlaying)
 		{
 			MouthTimer += Time.deltaTime;
@@ -421,5 +439,25 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		ShowWindow = false;
 		Ending = true;
 		Timer = 0f;
+	}
+
+	public void YandereHeadLookAt()
+	{
+		if (!Initialized)
+		{
+			if (headBone != null)
+			{
+				initialLocalRotation = headBone.localRotation;
+			}
+			Initialized = true;
+		}
+		if (!(headBone == null) && !(lookAtTarget == null))
+		{
+			lookAtWeight = Mathf.Lerp(lookAtWeight, 1f, Time.deltaTime);
+			_ = initialLocalRotation * base.transform.rotation;
+			Quaternion b = Quaternion.LookRotation(lookAtTarget.position - headBone.position, base.transform.up);
+			Quaternion rotation = Quaternion.Slerp(headBone.rotation, b, lookAtWeight);
+			headBone.rotation = rotation;
+		}
 	}
 }

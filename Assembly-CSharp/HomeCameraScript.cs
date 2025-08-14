@@ -164,6 +164,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public Vector3 LastChangePoint;
 
+	public GameObject PinkBackground;
+
 	private int Is;
 
 	private int Ts;
@@ -631,6 +633,11 @@ public class HomeCameraScript : MonoBehaviour
 		if (TooClose && Vector3.Distance(HomeYandere.transform.position, LastChangePoint) > 1f)
 		{
 			TooClose = false;
+		}
+		Frame++;
+		if (Frame == 5)
+		{
+			PinkBackground.SetActive(value: false);
 		}
 	}
 

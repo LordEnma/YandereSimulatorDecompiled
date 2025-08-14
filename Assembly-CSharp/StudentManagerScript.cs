@@ -1065,6 +1065,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public float AlphabetTimer;
 
+	public float OOBTimer;
+
 	private ScheduleBlock scheduleBlock;
 
 	public OsanaPoolEventScript OsanaPoolEvent;
@@ -1846,7 +1848,7 @@ public class StudentManagerScript : MonoBehaviour
 	{
 		if (!TakingPortraits)
 		{
-			if (!Yandere.ShoulderCamera.Counselor.Interrogating && !Yandere.PauseScreen.YouTubeChatMenu.isActiveAndEnabled)
+			if (!Yandere.ShoulderCamera.Counselor.Interrogating && !Yandere.PauseScreen.YouTubeChatMenu.isActiveAndEnabled && !PoseMode.Animating)
 			{
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;
@@ -5980,15 +5982,15 @@ public class StudentManagerScript : MonoBehaviour
 				SenpaiLoveTimer = 0f;
 			}
 		}
-		if (AlphabetKillerChallenge)
-		{
-			AlphabetTimer += Time.deltaTime;
-			_ = AlphabetTimer;
-			_ = 10f;
-		}
 		if (ErrorTimer > 0f)
 		{
 			ErrorTimer = Mathf.MoveTowards(ErrorTimer, 0f, Time.deltaTime);
+		}
+		OOBTimer += Time.deltaTime;
+		if (OOBTimer > 60f)
+		{
+			PreventOOB();
+			OOBTimer = 0f;
 		}
 	}
 
@@ -5997,7 +5999,7 @@ public class StudentManagerScript : MonoBehaviour
 		StudentScript[] students = Students;
 		foreach (StudentScript studentScript in students)
 		{
-			if (studentScript != null && (studentScript.transform.position.x < -72.5f || studentScript.transform.position.x > 72.5f || studentScript.transform.position.z > 142f))
+			if (studentScript != null && (studentScript.transform.position.x < -72.5f || studentScript.transform.position.x > 72.5f || studentScript.transform.position.z > 142f || (studentScript.transform.position.z > 35f && (double)studentScript.transform.position.x < -54.5) || (studentScript.transform.position.z > 35f && (double)studentScript.transform.position.x > 54.5)))
 			{
 				studentScript.transform.position = new Vector3(0f, 0f, -2.5f);
 				Physics.SyncTransforms();
@@ -7522,21 +7524,24 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void ChangeSuitorRoutine(int StudentID)
 	{
-		StudentScript obj = Students[StudentID];
-		obj.RelaxAnim = obj.PatrolAnim;
-		obj.Curious = true;
-		obj.Crush = RivalID;
+		StudentScript studentScript = Students[StudentID];
+		studentScript.RelaxAnim = studentScript.PatrolAnim;
+		studentScript.Curious = true;
+		studentScript.Crush = RivalID;
 		Hangouts.List[StudentID].transform.position = new Vector3(6f, 0f, -5f);
 		Hangouts.List[StudentID].transform.eulerAngles = new Vector3(0f, 90f, 0f);
-		ScheduleBlock obj2 = obj.ScheduleBlocks[2];
-		obj2.destination = "Hangout";
-		obj2.action = "Relax";
-		ScheduleBlock obj3 = obj.ScheduleBlocks[4];
+		ScheduleBlock obj = studentScript.ScheduleBlocks[2];
+		obj.destination = "Hangout";
+		obj.action = "Relax";
+		if (!MissionMode)
+		{
+			ScheduleBlock obj2 = studentScript.ScheduleBlocks[4];
+			obj2.destination = "Hangout";
+			obj2.action = "Relax";
+		}
+		ScheduleBlock obj3 = studentScript.ScheduleBlocks[7];
 		obj3.destination = "Hangout";
 		obj3.action = "Relax";
-		ScheduleBlock obj4 = obj.ScheduleBlocks[7];
-		obj4.destination = "Hangout";
-		obj4.action = "Relax";
 		Students[StudentID].GetDestinations();
 		Students[StudentID].Pathfinding.target = Students[StudentID].Destinations[Students[StudentID].Phase];
 		Students[StudentID].CurrentDestination = Students[StudentID].Destinations[Students[StudentID].Phase];

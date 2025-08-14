@@ -3081,7 +3081,6 @@ public class StudentScript : MonoBehaviour
 				{
 					if (StudentID > 11 && StudentID < 21 && !StudentManager.BagPlaced)
 					{
-						Debug.Log("A rival is adding ''PlaceBag'' to their routine.");
 						ScheduleBlock scheduleBlock = ScheduleBlocks[2];
 						OriginalDestination = scheduleBlock.destination;
 						OriginalAction = scheduleBlock.action;
@@ -10436,17 +10435,20 @@ public class StudentScript : MonoBehaviour
 													{
 														Debug.Log("The game thinks that the player is not armed.");
 													}
-													if (!Yandere.EquippedWeapon.Concealable)
+													if (Yandere.EquippedWeapon != null)
 													{
-														Debug.Log("The game thinks that the player's equipped weapon is not concealable, meaning that it's not valid for a struggle.");
-													}
-													if (Yandere.EquippedWeapon.Broken)
-													{
-														Debug.Log("The game thinks that the player's equipped weapon is broken.");
-													}
-													if (Yandere.EquippedWeapon.Type == WeaponType.Garrote)
-													{
-														Debug.Log("The game thinks that the player's equipped weapon is a garrote.");
+														if (!Yandere.EquippedWeapon.Concealable)
+														{
+															Debug.Log("The game thinks that the player's equipped weapon is not concealable, meaning that it's not valid for a struggle.");
+														}
+														if (Yandere.EquippedWeapon.Broken)
+														{
+															Debug.Log("The game thinks that the player's equipped weapon is broken.");
+														}
+														if (Yandere.EquippedWeapon.Type == WeaponType.Garrote)
+														{
+															Debug.Log("The game thinks that the player's equipped weapon is a garrote.");
+														}
 													}
 													Debug.Log("Automatically forcing the player to lose the struggle.");
 													if (!Yandere.Lost)
@@ -13745,7 +13747,7 @@ public class StudentScript : MonoBehaviour
 					if (Vector3.Distance(base.transform.position, new Vector3(BloodPool.position.x, base.transform.position.y, BloodPool.position.z)) < 1f)
 					{
 						bool flag11 = false;
-						if (BloodPool == null || (WitnessedWeapon && BloodPool.parent != null) || (WitnessedBloodPool && BloodPool.parent == Yandere.RightHand) || BloodPool.transform.position != OriginalBloodPoolLocation || (WitnessedWeapon && (bool)BloodPool.GetComponent<WeaponScript>().Returner))
+						if (BloodPool == null || (WitnessedWeapon && BloodPool.parent != null) || (WitnessedBloodPool && BloodPool.parent == Yandere.RightHand) || (WitnessedWeapon && (bool)BloodPool.GetComponent<WeaponScript>().Returner))
 						{
 							Debug.Log("ForgetAboutBloodPool() was called from this place in the code. 0");
 							ForgetAboutBloodPool();
@@ -13903,8 +13905,9 @@ public class StudentScript : MonoBehaviour
 					{
 						if (Persona == PersonaType.Strict)
 						{
-							if (WitnessedWeapon && (bool)BloodPool.GetComponent<WeaponScript>().Returner)
+							if (WitnessedWeapon && BloodPool.GetComponent<WeaponScript>().Returner != null && BloodPool.GetComponent<WeaponScript>().Returner != this)
 							{
+								Debug.Log(Name + " witnessed a weapon, but now someone else has become the ''Returner'' of that weapon.");
 								Subtitle.UpdateLabel(SubtitleType.StudentFarewell, 0, 3f);
 								CurrentDestination = Destinations[Phase];
 								Pathfinding.target = Destinations[Phase];
@@ -13937,8 +13940,24 @@ public class StudentScript : MonoBehaviour
 								BloodPool = null;
 							}
 						}
-						if (BloodPool == null || (WitnessedWeapon && BloodPool.parent != null) || (WitnessedBloodPool && BloodPool.parent == Yandere.RightHand) || BloodPool.transform.position != OriginalBloodPoolLocation || (WitnessedWeapon && (bool)BloodPool.GetComponent<WeaponScript>().Returner))
+						if (BloodPool == null || (WitnessedWeapon && BloodPool.parent != null) || (WitnessedBloodPool && BloodPool.parent == Yandere.RightHand) || (WitnessedWeapon && BloodPool.GetComponent<WeaponScript>().Returner != null && BloodPool.GetComponent<WeaponScript>().Returner != this))
 						{
+							if (BloodPool == null)
+							{
+								Debug.Log("BloodPool became null.");
+							}
+							if (WitnessedWeapon && BloodPool.parent != null)
+							{
+								Debug.Log("WitnessedWeapon is true but BloodPool.parent is not null.");
+							}
+							if (WitnessedBloodPool && BloodPool.parent == Yandere.RightHand)
+							{
+								Debug.Log("WitnessedBloodPool is true but BloodPool.parent is Yandere.RightHand.");
+							}
+							if (WitnessedWeapon && BloodPool.GetComponent<WeaponScript>().Returner != null && BloodPool.GetComponent<WeaponScript>().Returner != this)
+							{
+								Debug.Log(Name + " witnessed a weapon, but now someone else has become the ''Returner'' of that weapon.");
+							}
 							Debug.Log("ForgetAboutBloodPool() was called from this place in the code. 1");
 							ForgetAboutBloodPool();
 						}
@@ -21668,6 +21687,7 @@ public class StudentScript : MonoBehaviour
 		RandomGossipAnim = GossipAnims[UnityEngine.Random.Range(0, GossipAnims.Length)];
 		if (Actions[Phase] == StudentActionType.Gossip && DistanceToPlayer < 3f)
 		{
+			Debug.Log("The player is nearby a gossipping student, so the player will now learn how that player feels about gossip.");
 			if (!ConversationGlobals.GetTopicDiscovered(19))
 			{
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
@@ -21675,6 +21695,7 @@ public class StudentScript : MonoBehaviour
 			}
 			if (!StudentManager.GetTopicLearnedByStudent(19, StudentID))
 			{
+				Yandere.NotificationManager.TopicName = "Gossip";
 				Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
 				StudentManager.SetTopicLearnedByStudent(19, StudentID, boolean: true);
 			}
@@ -22002,6 +22023,8 @@ public class StudentScript : MonoBehaviour
 		{
 			Ragdoll.BloodPoolSpawner.enabled = false;
 		}
+		CheckingNote = false;
+		SentToLocker = false;
 		InEvent = false;
 		Grudge = false;
 	}

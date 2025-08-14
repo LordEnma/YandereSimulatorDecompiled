@@ -187,7 +187,7 @@ public class ModernRivalEventScript : MonoBehaviour
 				}
 				else if (!Char[0].InEvent && Char[0].Routine)
 				{
-					Debug.Log("A ModernRivalEvent has begun because the clock has advanced to a specific time of day.");
+					Debug.Log("A ModernRivalEvent named " + base.gameObject.name + " has begun because the clock has advanced to a specific time of day.");
 					for (int k = 0; k < Char.Length; k++)
 					{
 						Char[k].EmptyHands();
@@ -556,6 +556,9 @@ public class ModernRivalEventScript : MonoBehaviour
 			Char[0].PicnicProps[2].SetActive(value: false);
 			EventObject[1].SetActive(value: true);
 			break;
+		case 22:
+			EventObject[0].SetActive(value: true);
+			break;
 		}
 	}
 
@@ -568,9 +571,18 @@ public class ModernRivalEventScript : MonoBehaviour
 		}
 		else if (EventID == RivalEventType.AmaiMondayLunchEvent)
 		{
-			ScheduleBlock obj = Char[0].ScheduleBlocks[4];
-			obj.destination = "LunchSpot";
-			obj.action = "Eat";
+			ScheduleBlock scheduleBlock = null;
+			scheduleBlock = Char[0].ScheduleBlocks[4];
+			if (StudentManager.RivalBookBag.BentoStolen)
+			{
+				scheduleBlock.destination = "BakeSale";
+				scheduleBlock.action = "BakeSale";
+			}
+			else
+			{
+				scheduleBlock.destination = "LunchSpot";
+				scheduleBlock.action = "Eat";
+			}
 			Char[0].GetDestinations();
 		}
 		else

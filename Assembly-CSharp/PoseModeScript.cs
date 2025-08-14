@@ -68,6 +68,10 @@ public class PoseModeScript : MonoBehaviour
 
 	public string[] AnimationArray;
 
+	public UILabel SearchLabel;
+
+	public string PreviousSearchText;
+
 	private void Start()
 	{
 		PoseModeCamera.gameObject.SetActive(value: false);
@@ -128,6 +132,9 @@ public class PoseModeScript : MonoBehaviour
 						PromptBar.Label[2].text = "Page Down";
 						PromptBar.Label[3].text = "Page Up";
 						PromptBar.UpdateButtons();
+						SearchLabel.transform.parent.gameObject.SetActive(value: true);
+						Cursor.visible = true;
+						Cursor.lockState = CursorLockMode.None;
 						CreateAnimationArray();
 						Animating = true;
 						UpdateLabels();
@@ -565,6 +572,13 @@ public class PoseModeScript : MonoBehaviour
 			}
 			else if (Animating)
 			{
+				if (SearchLabel.text != PreviousSearchText)
+				{
+					CreateAnimationArray();
+					Selected = 1;
+					Offset = 0;
+					UpdateHighlight();
+				}
 				if (Input.GetButtonDown(InputNames.Xbox_X))
 				{
 					Offset += 16;
@@ -585,12 +599,18 @@ public class PoseModeScript : MonoBehaviour
 					PromptBar.Label[2].text = string.Empty;
 					PromptBar.Label[3].text = string.Empty;
 					PromptBar.UpdateButtons();
+					SearchLabel.transform.parent.gameObject.SetActive(value: false);
+					SearchLabel.text = string.Empty;
+					PreviousSearchText = "";
+					Cursor.visible = false;
+					Cursor.lockState = CursorLockMode.Locked;
 					ChoosingAction = true;
 					Animating = false;
 					UpdateLabels();
 					Selected = 1;
 					UpdateHighlight();
 				}
+				PreviousSearchText = SearchLabel.text;
 			}
 			else if (EditingFace)
 			{
@@ -733,6 +753,7 @@ public class PoseModeScript : MonoBehaviour
 
 	private void UpdateHighlight()
 	{
+		Debug.Log("We were just told to ''UpdateHighlight.''");
 		if (!Animating)
 		{
 			if (Selected > Limit)
@@ -746,25 +767,41 @@ public class PoseModeScript : MonoBehaviour
 		}
 		else
 		{
-			if (Selected > Limit)
+			Debug.Log("Attempting to update the highlight on the Choose Animation screen.");
+			if (AnimID > 18)
 			{
-				Selected = Limit;
-				Offset++;
+				if (Selected > Limit)
+				{
+					Debug.Log("Firing this code. 1");
+					Selected = Limit;
+					Offset++;
+				}
+				else if (Selected < 1)
+				{
+					Debug.Log("Firing this code. 2");
+					Selected = 1;
+					Offset--;
+				}
+				if (Offset < 0)
+				{
+					Debug.Log("Firing this code. 3");
+					Offset = AnimID - Limit;
+					Selected = Limit;
+				}
+				else if (Offset > AnimID - Limit)
+				{
+					Debug.Log("Firing that code. 4");
+					Offset = 0;
+					Selected = 1;
+				}
+			}
+			else if (Selected > AnimID)
+			{
+				Selected = 1;
 			}
 			else if (Selected < 1)
 			{
-				Selected = 1;
-				Offset--;
-			}
-			if (Offset < 0)
-			{
-				Offset = AnimID - Limit;
-				Selected = Limit;
-			}
-			else if (Offset > AnimID - Limit)
-			{
-				Offset = 0;
-				Selected = 1;
+				Selected = AnimID;
 			}
 			UpdateLabels();
 		}
@@ -979,7 +1016,18 @@ public class PoseModeScript : MonoBehaviour
 			HeaderLabel.text = "Choose Animation";
 			for (int j = 1; j < 19; j++)
 			{
-				OptionLabels[j].text = "(" + (j + Offset) + "/" + AnimID + ") " + AnimationArray[j + Offset];
+				if (AnimationArray[j + Offset] != "")
+				{
+					OptionLabels[j].text = "(" + (j + Offset) + "/" + AnimID + ") " + AnimationArray[j + Offset];
+				}
+				else
+				{
+					OptionLabels[j].text = "";
+				}
+				if (AnimationArray[1] == "")
+				{
+					OptionLabels[1].text = "No Results Found!";
+				}
 			}
 			Limit = 18;
 		}
@@ -1087,11 +1135,30 @@ public class PoseModeScript : MonoBehaviour
 
 	private void CreateAnimationArray()
 	{
+		for (int i = 0; i < AnimationArray.Length; i++)
+		{
+			AnimationArray[i] = string.Empty;
+		}
 		AnimID = 1;
+		string text = SearchLabel.text.ToLower();
+		Debug.Log("SearchLabel's text is: " + text);
 		foreach (AnimationState item in Student.CharacterAnimation)
 		{
-			AnimationArray[AnimID] = item.name;
-			AnimID++;
+			if (text != "")
+			{
+				if (item.name.ToLower().Contains(text))
+				{
+					Debug.Log("This animation state contains the word " + text);
+					AnimationArray[AnimID] = item.name;
+					AnimID++;
+				}
+			}
+			else
+			{
+				Debug.Log("We don't need to check for any search bar text.");
+				AnimationArray[AnimID] = item.name;
+				AnimID++;
+			}
 		}
 		AnimID--;
 	}

@@ -616,7 +616,11 @@ public class ClockScript : MonoBehaviour
 		RetroMinigame.MyBGM.volume = 0f;
 		RetroMinigame.MySFX.volume = 0f;
 		RetroMinigame.Show = false;
-		Yandere.Jukebox.Volume = Yandere.Jukebox.LastVolume;
+		Debug.Log("From the ClockScript, attempting to restore Jukebox volume to previous levels.");
+		if (Yandere.Jukebox.Volume == 0f && Yandere.Jukebox.LastVolume != 0f)
+		{
+			Yandere.Jukebox.Volume = Yandere.Jukebox.LastVolume;
+		}
 	}
 
 	public string GetWeekdayText(DayOfWeek weekday)

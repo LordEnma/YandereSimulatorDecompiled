@@ -139,15 +139,6 @@ public class TributeScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
-			if (Input.GetKeyDown(LacunaLetters[LacunaID]))
-			{
-				LacunaID++;
-				if (LacunaID == LacunaLetters.Length)
-				{
-					Yandere.Lacuna();
-					base.enabled = false;
-				}
-			}
 			if (Input.GetKeyDown(ChessterLetters[ChessterID]))
 			{
 				ChessterID++;

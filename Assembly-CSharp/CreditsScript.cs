@@ -122,6 +122,7 @@ public class CreditsScript : MonoBehaviour
 			Jukebox.volume -= Time.deltaTime;
 			if (Darkness.color.a == 1f)
 			{
+				Time.timeScale = 1f;
 				if (!Eighties && DateGlobals.Week == 3)
 				{
 					SceneManager.LoadScene("NewTitleScene");

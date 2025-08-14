@@ -161,7 +161,7 @@ public class NoteLockerScript : MonoBehaviour
 				DetermineSchedule();
 				Finish();
 			}
-			if (Student.Attacked)
+			if (Student.Attacked || Student.Electrified || Student.Electrocuted)
 			{
 				ReleaseStudent();
 			}

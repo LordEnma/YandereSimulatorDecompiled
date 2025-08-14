@@ -192,6 +192,7 @@ public class AlternateConfessionScript : MonoBehaviour
 		string text10 = RivalNames[10] + " " + RivalEliminations[GameGlobals.GetRivalEliminations(10)];
 		if (GameGlobals.AlternateTimeline)
 		{
+			Debug.Log("We are in the Alternate Timeline / Fun Girl Timeline / Happy Ending Timeline.");
 			text10 = "";
 		}
 		int num = 0;
@@ -575,6 +576,7 @@ public class AlternateConfessionScript : MonoBehaviour
 			ConfessionCamera.position = Vector3.Lerp(ConfessionCamera.position, IntroPOV.position, Time.deltaTime * RotateSpeed);
 			if (Timer > 2f)
 			{
+				Debug.Log("Entering phase 3.");
 				ConfessionCamera.eulerAngles = SenpaiPOV.eulerAngles;
 				ConfessionCamera.position = SenpaiPOV.position;
 				Sun.transform.eulerAngles = Vector3.zero;
@@ -589,6 +591,7 @@ public class AlternateConfessionScript : MonoBehaviour
 		}
 		else if (Phase == 3)
 		{
+			Debug.Log("Now in phase 3.");
 			RotateSpeed += Time.deltaTime * 0.2f;
 			ConfessionCamera.eulerAngles = Vector3.Lerp(ConfessionCamera.eulerAngles, new Vector3(0f, 0f, 0f), Time.deltaTime * RotateSpeed);
 			ConfessionCamera.position = Vector3.Lerp(ConfessionCamera.position, new Vector3(0f, 7.2f, 97f), Time.deltaTime * RotateSpeed);

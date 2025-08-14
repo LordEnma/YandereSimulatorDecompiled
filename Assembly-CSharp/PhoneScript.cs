@@ -165,17 +165,23 @@ public class PhoneScript : MonoBehaviour
 			Camera.main.backgroundColor = Color.black;
 			LoveSickColorSwap();
 		}
-		if (PostElimination && ((GameGlobals.RivalEliminationID != 3 && GameGlobals.NonlethalElimination) || GameGlobals.RivalEliminationID == 9))
+		if (PostElimination)
 		{
-			VoiceClips[1] = NonlethalClip[1];
-			VoiceClips[2] = NonlethalClip[2];
-			VoiceClips[3] = NonlethalClip[3];
-			Text[1] = NonlethalText[1];
-			Text[2] = NonlethalText[2];
-			Text[3] = NonlethalText[3];
-			Height[1] = NonlethalHeight[1];
-			Height[2] = NonlethalHeight[2];
-			Height[3] = NonlethalHeight[3];
+			Debug.Log("Now determining whether to use lethal speech or nonlethal speech.");
+			Debug.Log("GameGlobals.NonlethalElimination is: " + GameGlobals.NonlethalElimination);
+			if ((GameGlobals.RivalEliminationID != 3 && GameGlobals.NonlethalElimination) || GameGlobals.RivalEliminationID == 9)
+			{
+				Debug.Log("Using nonlethal voice clips.");
+				VoiceClips[1] = NonlethalClip[1];
+				VoiceClips[2] = NonlethalClip[2];
+				VoiceClips[3] = NonlethalClip[3];
+				Text[1] = NonlethalText[1];
+				Text[2] = NonlethalText[2];
+				Text[3] = NonlethalText[3];
+				Height[1] = NonlethalHeight[1];
+				Height[2] = NonlethalHeight[2];
+				Height[3] = NonlethalHeight[3];
+			}
 		}
 	}
 

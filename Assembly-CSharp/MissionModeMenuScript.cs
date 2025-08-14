@@ -744,6 +744,10 @@ public class MissionModeMenuScript : MonoBehaviour
 				{
 					PlayerGlobals.BringingHardware = 8;
 				}
+				else if (RequiredWeaponID == 47)
+				{
+					PlayerGlobals.BringingHardware = 10;
+				}
 				SceneManager.LoadScene("SchoolScene");
 			}
 		}

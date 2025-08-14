@@ -264,7 +264,7 @@ public class IntroScript : MonoBehaviour
 		{
 			SetToDefault();
 			RenderSettings.ambientLight = new Color(1f, 1f, 1f);
-			BloodyHandsAnim["f02_clenchFists_00"].speed = 0.166666f;
+			BloodyHandsAnim["RaiseHands"].speed = 0.89f;
 			HoleInChestAnim["f02_holeInChest_00"].speed = 0f;
 			YoungRyobaAnim["f02_introHoldHands_00"].speed = 0f;
 			YoungFatherAnim["introHoldHands_00"].speed = 0f;
@@ -1067,23 +1067,11 @@ public class IntroScript : MonoBehaviour
 				Darkness.color = new Color(0f, 0f, 0f, Alpha);
 			}
 		}
-		else if (ID > 0)
+		else if (ID > 0 && ID > 3)
 		{
-			if (Timer < 2f)
-			{
-				BloodyHandsAnim["f02_clenchFists_00"].time = 0.6f;
-				BloodyHandsAnim["f02_clenchFists_00"].speed = 0f;
-			}
-			else
-			{
-				BloodyHandsAnim["f02_clenchFists_00"].speed = 0.07f;
-			}
-			if (ID > 3)
-			{
-				Alpha = 1f;
-				Darkness.color = new Color(0f, 0f, 0f, Alpha);
-				BGM.volume = Mathf.MoveTowards(BGM.volume, 0.5f, Time.deltaTime * 0.266666f);
-			}
+			Alpha = 1f;
+			Darkness.color = new Color(0f, 0f, 0f, Alpha);
+			BGM.volume = Mathf.MoveTowards(BGM.volume, 0.5f, Time.deltaTime * 0.266666f);
 		}
 	}
 

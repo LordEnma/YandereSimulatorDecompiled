@@ -123,6 +123,8 @@ public class PauseScreenScript : MonoBehaviour
 
 	public AudioClip MenuBack;
 
+	public AudioClip[] EightiesSFX;
+
 	public UISprite[] PhoneIcons;
 
 	public UISprite[] PhoneShadows;
@@ -136,6 +138,8 @@ public class PauseScreenScript : MonoBehaviour
 	public Transform[] Eggs;
 
 	public float Speed;
+
+	public int LastSelected = 1;
 
 	public int Selected = 1;
 
@@ -243,6 +247,9 @@ public class PauseScreenScript : MonoBehaviour
 			Notepad.SetActive(value: true);
 			Phone.SetActive(value: false);
 			Wifi.gameObject.SetActive(value: false);
+			MenuSelect = EightiesSFX[1];
+			MenuForward = EightiesSFX[2];
+			MenuBack = EightiesSFX[3];
 		}
 		else
 		{
@@ -1143,11 +1150,7 @@ public class PauseScreenScript : MonoBehaviour
 
 	private void UpdateSelection()
 	{
-		if (SelectionsMade > 0)
-		{
-			MyAudio.clip = MenuSelect;
-			MyAudio.Play();
-		}
+		LastSelected = Selected;
 		SelectionsMade++;
 		if (Row < 0)
 		{
@@ -1170,6 +1173,12 @@ public class PauseScreenScript : MonoBehaviour
 		if (AtSchool && Selected == 9 && PhoneIcons[9].color.a == 0.5f)
 		{
 			SelectionLabel.text = Reason;
+		}
+		if (Selected != LastSelected && SelectionsMade > 0)
+		{
+			MyAudio.pitch = Random.Range(0.9f, 1.1f);
+			MyAudio.clip = MenuSelect;
+			MyAudio.Play();
 		}
 	}
 

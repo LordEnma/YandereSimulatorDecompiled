@@ -14,6 +14,12 @@ public class MiscJson : JsonData
 	public int MaleUniform;
 
 	[SerializeField]
+	public bool CustomFemaleUniform;
+
+	[SerializeField]
+	public bool CustomMaleUniform;
+
+	[SerializeField]
 	public int[] SkinColor;
 
 	[SerializeField]

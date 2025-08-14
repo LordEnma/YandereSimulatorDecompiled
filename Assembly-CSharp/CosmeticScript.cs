@@ -901,10 +901,10 @@ public class CosmeticScript : MonoBehaviour
 			BreastSize = 1f;
 			SkinColor = 0;
 			Empty = true;
-			DefaultFaceTexture = FaceTextures[0];
+			DefaultFaceTexture = FaceTextures[8];
 			for (int k = 1; k < SkinTextures.Length; k++)
 			{
-				SkinTextures[k] = SkinTextures[0];
+				SkinTextures[k] = SkinTextures[8];
 			}
 			Student.Name = "A student";
 		}
@@ -1005,18 +1005,12 @@ public class CosmeticScript : MonoBehaviour
 					if (AmaiBrows != null)
 					{
 						AmaiBrows.SetActive(value: true);
-						Debug.Log("Checking if we need to do anything with Amai's eyebrows...");
 						if (!Student.Slave && !Kidnapped)
 						{
-							Debug.Log("Re-naming Amai's eyebrows.");
 							RightTemple.name = "temple_Right_RENAMED";
 							LeftTemple.name = "temple_Left_RENAMED";
 							RightTemple.localScale = new Vector3(0f, 1f, 1f);
 							LeftTemple.localScale = new Vector3(0f, 1f, 1f);
-						}
-						else
-						{
-							Debug.Log("Decided to not re-name Amai's eyebrows.");
 						}
 					}
 					if (PhoneCharms.Length != 0)

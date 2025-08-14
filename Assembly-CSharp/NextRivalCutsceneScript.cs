@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NextRivalCutsceneScript : MonoBehaviour
 {
@@ -53,7 +55,13 @@ public class NextRivalCutsceneScript : MonoBehaviour
 		WWW wWW = new WWW("file:///" + Application.streamingAssetsPath + "/SenpaiPortrait.png");
 		TestTexture = wWW.texture;
 		SenpaiRenderer.materials[0].mainTexture = wWW.texture;
-		DateGlobals.Week = 3;
+		if (DateGlobals.Week < 3 || DateGlobals.Weekday != DayOfWeek.Sunday)
+		{
+			DateGlobals.Weekday = DayOfWeek.Sunday;
+			DateGlobals.Week = 3;
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
+		Debug.Log("It's Week 3.");
 		Darkness.alpha = 1f;
 	}
 
@@ -80,7 +88,7 @@ public class NextRivalCutsceneScript : MonoBehaviour
 			Intensity += Time.deltaTime * 0.0001f;
 			if (Camera.localEulerAngles.y < 334f || Camera.localEulerAngles.y > 335f)
 			{
-				Camera.position += new Vector3(Random.Range(Intensity * -1f, Intensity * 1f), Random.Range(Intensity * -1f, Intensity * 1f), Random.Range(Intensity * -1f, Intensity * 1f));
+				Camera.position += new Vector3(UnityEngine.Random.Range(Intensity * -1f, Intensity * 1f), UnityEngine.Random.Range(Intensity * -1f, Intensity * 1f), UnityEngine.Random.Range(Intensity * -1f, Intensity * 1f));
 				Audio[1].volume -= Time.deltaTime * 0.05f;
 				Audio[2].volume -= Time.deltaTime * 0.05f;
 				Audio[3].volume -= Time.deltaTime * 0.005f;

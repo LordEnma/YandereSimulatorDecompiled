@@ -331,7 +331,7 @@ public class StreetManagerScript : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		Hips.LookAt(BinocularCamera.position);
+		Hips.LookAt(BinocularCamera.position + new Vector3(0f, -10f, 0f));
 	}
 
 	private void BecomeEighties()
