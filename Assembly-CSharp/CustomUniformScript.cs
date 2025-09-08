@@ -21,6 +21,10 @@ public class CustomUniformScript : MonoBehaviour
 
 	public Texture[] CustomBookbags;
 
+	public Texture FemaleGymUniform;
+
+	public Texture MaleGymUniform;
+
 	private void Start()
 	{
 		GameObject[] array = GameObject.FindGameObjectsWithTag("CustomTexture");
@@ -205,6 +209,18 @@ public class CustomUniformScript : MonoBehaviour
 			{
 				CustomBookbags[ID] = NewTexture.texture;
 			}
+		}
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Male/MaleGymUniform.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
+		{
+			MaleGymUniform = NewTexture.texture;
+		}
+		NewTexture = new WWW("file:///" + Application.streamingAssetsPath + "/CustomMode/Textures/Uniforms/Female/FemaleGymUniform.png");
+		yield return NewTexture;
+		if (NewTexture.error == null)
+		{
+			FemaleGymUniform = NewTexture.texture;
 		}
 	}
 }

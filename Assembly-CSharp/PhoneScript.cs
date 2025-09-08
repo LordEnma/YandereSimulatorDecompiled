@@ -82,6 +82,8 @@ public class PhoneScript : MonoBehaviour
 
 	public bool FadeOut;
 
+	public bool SlideIn;
+
 	public bool Auto;
 
 	public float PauseMenuTimer;
@@ -95,6 +97,10 @@ public class PhoneScript : MonoBehaviour
 	public int PauseMenuPhase;
 
 	public int ID;
+
+	public UITexture InfoChanPortrait;
+
+	public Texture[] InfoChanPortraits;
 
 	private void Start()
 	{
@@ -183,6 +189,10 @@ public class PhoneScript : MonoBehaviour
 				Height[3] = NonlethalHeight[3];
 			}
 		}
+		if (InfoChanPortrait != null)
+		{
+			InfoChanPortrait.transform.localPosition = new Vector3(-627f, -65.5f, 0f);
+		}
 	}
 
 	private void Update()
@@ -202,16 +212,21 @@ public class PhoneScript : MonoBehaviour
 					if (NewMessage == null)
 					{
 						SpawnMessage();
+						SlideIn = true;
 					}
 				}
+			}
+			if (MeetingInfoChan && SlideIn && InfoChanPortrait != null)
+			{
+				InfoChanPortrait.transform.localPosition = Vector3.Lerp(InfoChanPortrait.transform.localPosition, new Vector3(0f, -65.5f, 0f), Time.deltaTime * 10f);
 			}
 			if (ShowPauseMenu)
 			{
 				PauseMenuTimer += Time.deltaTime;
 				if (PauseMenuPhase == 0)
 				{
-					PauseMenu.localPosition = Vector3.Lerp(PauseMenu.localPosition, new Vector3(0f, -15f, 0f), Time.deltaTime * 10f);
-					if (PauseMenuTimer > 1f)
+					PauseMenu.localPosition = Vector3.Lerp(PauseMenu.localPosition, new Vector3(0f, -15f, 0f), Time.deltaTime * 20f);
+					if (PauseMenuTimer > 0.5f)
 					{
 						GetComponent<AudioSource>().clip = AppInstall;
 						GetComponent<AudioSource>().Play();
@@ -220,8 +235,8 @@ public class PhoneScript : MonoBehaviour
 				}
 				else if (PauseMenuPhase == 1)
 				{
-					InfoIcon.localScale = Vector3.Lerp(InfoIcon.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-					if (PauseMenuTimer > 2f)
+					InfoIcon.localScale = Vector3.Lerp(InfoIcon.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 20f);
+					if (PauseMenuTimer > 1f)
 					{
 						GetComponent<AudioSource>().clip = SubtleWhoosh;
 						GetComponent<AudioSource>().Play();
@@ -230,8 +245,8 @@ public class PhoneScript : MonoBehaviour
 				}
 				else if (PauseMenuPhase == 2)
 				{
-					PauseMenu.localPosition = Vector3.Lerp(PauseMenu.localPosition, new Vector3(-485f, -15f, 0f), Time.deltaTime * 10f);
-					if (PauseMenuTimer > 3f)
+					PauseMenu.localPosition = Vector3.Lerp(PauseMenu.localPosition, new Vector3(-485f, -15f, 0f), Time.deltaTime * 20f);
+					if (PauseMenuTimer > 1.5f)
 					{
 						GetComponent<AudioSource>().volume = 1f;
 						ShowPauseMenu = false;
@@ -385,6 +400,10 @@ public class PhoneScript : MonoBehaviour
 		}
 		AutoLimit = Height[ID] + 1;
 		NewMessage.GetComponent<TextMessageScript>().Label.text = Text[ID];
+		if (MeetingInfoChan && InfoChanPortrait != null)
+		{
+			InfoChanPortrait.mainTexture = InfoChanPortraits[ID];
+		}
 	}
 
 	private void LoveSickColorSwap()

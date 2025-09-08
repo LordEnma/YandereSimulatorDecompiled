@@ -259,7 +259,6 @@ public class GenericPromptScript : MonoBehaviour
 					}
 					else
 					{
-						Prompt.Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * Prompt.Yandere.Numbness;
 						Prompt.Yandere.CharacterAnimation.CrossFade("f02_bookcasePush_00");
 						Prompt.Yandere.transform.position = PlayerSpot.position;
 						Prompt.Yandere.transform.rotation = PlayerSpot.rotation;

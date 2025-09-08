@@ -35,10 +35,16 @@ public class DeathColliderScript : MonoBehaviour
 			component.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
 			component.MapMarker.gameObject.SetActive(value: false);
 			GenericPrompt.CrushedStudent = component;
-			component.gameObject.GetComponent<NemesisScript>().enabled = false;
+			NemesisScript component2 = component.gameObject.GetComponent<NemesisScript>();
+			if (component2 != null)
+			{
+				component2.enabled = false;
+			}
+			component.Yandere.Sanity -= ((PlayerGlobals.PantiesEquipped == 10) ? 10f : 20f) * component.Yandere.Numbness;
 		}
 		else if (other.gameObject.layer == 15 && other.gameObject.name == "Radio")
 		{
+			Debug.Log("Shutting off that god damn noisy radio.");
 			other.gameObject.GetComponent<RadioScript>().TurnOff();
 		}
 	}

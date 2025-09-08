@@ -8,11 +8,15 @@ public class RoseSpawnerScript : MonoBehaviour
 
 	public GameObject Rose;
 
+	public float RoseFrequency = 0.1f;
+
 	public float Timer;
 
 	public float ForwardForce;
 
 	public float UpwardForce;
+
+	public float forceAmount;
 
 	private void Start()
 	{
@@ -22,7 +26,7 @@ public class RoseSpawnerScript : MonoBehaviour
 	private void Update()
 	{
 		Timer += Time.deltaTime;
-		if (Timer > 0.1f)
+		if (Timer > RoseFrequency)
 		{
 			SpawnRose();
 		}
@@ -37,5 +41,19 @@ public class RoseSpawnerScript : MonoBehaviour
 		base.transform.localPosition = new Vector3(Random.Range(-5f, 5f), base.transform.localPosition.y, base.transform.localPosition.z);
 		base.transform.LookAt(DramaGirl);
 		Timer = 0f;
+	}
+
+	public void Shoot()
+	{
+		base.transform.localPosition = new Vector3(Random.Range(-5f, 5f), base.transform.localPosition.y, base.transform.localPosition.z);
+		base.transform.LookAt(Target);
+		GameObject gameObject = Object.Instantiate(Rose, base.transform.position, Quaternion.identity);
+		Rigidbody component = gameObject.GetComponent<Rigidbody>();
+		if (component != null && Target != null)
+		{
+			Vector3 normalized = (Target.position - gameObject.transform.position).normalized;
+			gameObject.transform.rotation = Quaternion.LookRotation(normalized);
+			component.AddForce(normalized * forceAmount);
+		}
 	}
 }

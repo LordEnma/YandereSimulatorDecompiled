@@ -199,6 +199,12 @@ public class StalkerYandereScript : MonoBehaviour
 
 	private int UpdateFrame;
 
+	public string[] Letter;
+
+	public int LetterID;
+
+	public bool DebugEnabled;
+
 	public UILabel KeyboardControls;
 
 	public UILabel GamepadControls;
@@ -710,6 +716,42 @@ public class StalkerYandereScript : MonoBehaviour
 					else
 					{
 						StreetManager.Sunlight.shadows = LightShadows.Soft;
+					}
+				}
+				if (DebugEnabled)
+				{
+					if (Input.GetKeyDown(KeyCode.M))
+					{
+						PlayerGlobals.Money = 10000f;
+						StreetManager.Clock.UpdateMoneyLabel();
+					}
+					if (Input.GetKeyDown(KeyCode.N))
+					{
+						HomeGlobals.Night = !HomeGlobals.Night;
+						Application.LoadLevel(Application.loadedLevel);
+					}
+					if (Input.GetKeyDown(KeyCode.Y))
+					{
+						GameGlobals.IntroducedAbduction = false;
+						GameGlobals.IntroducedRansom = false;
+						GameGlobals.MetBarber = false;
+						GameGlobals.YakuzaPhase = 1;
+						PlayerGlobals.FakeID = false;
+						for (int j = 11; j < 21; j++)
+						{
+							StudentGlobals.SetStudentKidnapped(j, value: false);
+							StudentGlobals.SetStudentMissing(j, value: false);
+							StudentGlobals.SetStudentDead(j, value: false);
+						}
+						Application.LoadLevel(Application.loadedLevel);
+					}
+				}
+				else if (Input.GetKeyDown(Letter[LetterID]))
+				{
+					LetterID++;
+					if (LetterID == Letter.Length)
+					{
+						DebugEnabled = true;
 					}
 				}
 			}

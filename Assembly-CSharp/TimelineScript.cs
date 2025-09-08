@@ -112,11 +112,10 @@ public class TimelineScript : MonoBehaviour
 		SpawnYear(1979);
 		SpawnSaikouData("Saikou Corp releases the world's first portable cassette tape player.");
 		Height -= 150;
+		SpawnSaikouData("Saisho Saikou's son is born. He is named Ichirou.");
+		Height -= 150;
 		SpawnYear(1981);
 		SpawnSaikouData("Saikou Corp releases the world's first compact disc player.");
-		Height -= 150;
-		SpawnYear(1983);
-		SpawnSaikouData("Saisho Saikou's son is born. He is named Ichirou.");
 		Height -= 150;
 		SpawnYear(1984);
 		SpawnSaikouData("Saisho Saikou orders the construction of a post-highschool academy near Buraza Town.");
@@ -170,11 +169,13 @@ public class TimelineScript : MonoBehaviour
 		Height -= 200;
 		SpawnAishiData("Ryoba's sister marries her Senpai.");
 		Height -= 100;
+		SpawnYear(1997);
+		SpawnSaikouData("Ichirou Saikou enrolls in Akademi.");
+		Height -= 100;
 		SpawnYear(1999);
 		SpawnMiscData("Kocho Shuyona observes Ryoba entering the office of Saisho Saikou.");
-		SpawnSaikouData("Ichirou Saikou enrolls in Akademi.");
 		Height -= 150;
-		SpawnYear(2001);
+		SpawnYear(2000);
 		SpawnSaikouData("Ichirou Saikou graduates from Akademi.");
 		Height -= 150;
 		SpawnYear(2007);
@@ -212,7 +213,7 @@ public class TimelineScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (base.transform.localPosition.y > 10f)
+		if (base.transform.localPosition.y > 10.1f)
 		{
 			Speed = Mathf.MoveTowards(Speed, 0f, Time.deltaTime * 0.01f);
 			Ambience.volume = Mathf.MoveTowards(Ambience.volume, 0f, Time.deltaTime * 0.1f);
@@ -241,7 +242,7 @@ public class TimelineScript : MonoBehaviour
 		}
 		else
 		{
-			if (base.transform.localPosition.y > 9.5f && base.transform.localPosition.y < 10f)
+			if (base.transform.localPosition.y > 9.6f && base.transform.localPosition.y < 10.6f)
 			{
 				Speed = Mathf.Lerp(Speed, 0.05f, Time.deltaTime * 10f);
 			}

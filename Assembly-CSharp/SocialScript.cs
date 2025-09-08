@@ -162,7 +162,8 @@ public class SocialScript : MonoBehaviour
 						}
 						else
 						{
-							DialogueLabel.text = "Thanks, I appreciate that!";
+							Student.Subtitle.PersonaSubtitle.UpdateLabel(Student.Persona, Student.Reputation.Reputation, 5f);
+							DialogueLabel.text = Student.Subtitle.Label.text;
 						}
 					}
 					else

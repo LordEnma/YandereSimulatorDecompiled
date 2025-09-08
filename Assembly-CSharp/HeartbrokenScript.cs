@@ -574,7 +574,7 @@ public class HeartbrokenScript : MonoBehaviour
 			{
 				Letters[i].color = new Color(1f, 0f, 0f, 1f);
 			}
-			Letters[i].color = new Color(1f, 0f, 0f, Letters[i].color.a - 1f / 18f);
+			Letters[i].color = new Color(1f, 0f, 0f, Letters[i].color.a - 1f / 17f);
 		}
 		for (int i = 0; i < 4; i++)
 		{

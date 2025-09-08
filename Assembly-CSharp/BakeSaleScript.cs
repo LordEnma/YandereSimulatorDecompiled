@@ -30,6 +30,8 @@ public class BakeSaleScript : MonoBehaviour
 
 	public bool Poisoned;
 
+	public int RepToSubtract;
+
 	public int Money;
 
 	public int ID = 2;

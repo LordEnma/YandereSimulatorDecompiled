@@ -178,6 +178,10 @@ public class OsanaPoolEventScript : MonoBehaviour
 				Rival.OsanaHair.transform.localScale = new Vector3(1f, 1f, 1f);
 				Rival.OsanaHairL.enabled = false;
 				Rival.OsanaHairR.enabled = false;
+				Rival.OsanaHairPhysics[2].enabled = false;
+				Rival.OsanaHairPhysics[3].enabled = false;
+				Rival.OsanaHairPhysics[2].transform.parent = Rival.OsanaHairPhysics[0].transform.parent;
+				Rival.OsanaHairPhysics[3].transform.parent = Rival.OsanaHairPhysics[0].transform.parent;
 				Rival.Pathfinding.canSearch = false;
 				Rival.Pathfinding.canMove = false;
 				Rival.Pathfinding.speed = 0f;

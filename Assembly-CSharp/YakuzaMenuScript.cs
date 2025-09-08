@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class YakuzaMenuScript : MonoBehaviour
 {
@@ -175,6 +176,8 @@ public class YakuzaMenuScript : MonoBehaviour
 	public Transform YakuzaEyeL;
 
 	public Transform YakuzaEyeR;
+
+	public PostProcessingProfile Profile;
 
 	private void Start()
 	{
@@ -1040,6 +1043,7 @@ public class YakuzaMenuScript : MonoBehaviour
 
 	private void Quit()
 	{
+		Debug.Log("Leaving Yakuza now.");
 		Yandere.RPGCamera.enabled = true;
 		Yandere.CanMove = true;
 		TimeDayPanel.alpha = 1f;
@@ -1050,10 +1054,12 @@ public class YakuzaMenuScript : MonoBehaviour
 		PromptBar.ClearButtons();
 		PromptBar.Show = false;
 		HomeClock.UpdateMoneyLabel();
+		UpdateDOF(2f, 5.6f);
 	}
 
 	private void StartCutscene()
 	{
+		Debug.Log("Starting Yakuza cutscene now.");
 		Yandere.MyAnimation.CrossFade(Yandere.IdleAnim);
 		Yandere.RPGCamera.enabled = false;
 		Yandere.CanMove = false;
@@ -1075,6 +1081,7 @@ public class YakuzaMenuScript : MonoBehaviour
 			PlayerPrefs.SetInt("Yakuza", 1);
 			PlayerPrefs.SetInt("a", 1);
 		}
+		UpdateDOF(1f, 5.6f);
 	}
 
 	private void SummonContrabandMenu()
@@ -1278,5 +1285,23 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 		YakuzaEyeL.transform.localEulerAngles = new Vector3(12f, Mathf.SmoothStep(-95f, -85f, Mathf.PingPong(Time.time / 10f, 1f)), 0f);
 		YakuzaEyeR.transform.localEulerAngles = new Vector3(-12f, Mathf.SmoothStep(85f, 95f, Mathf.PingPong(Time.time / 10f, 1f)), 180f);
+	}
+
+	private void UpdateDOF(float Value, float Aperture)
+	{
+		Debug.Log("Updating depth of field from Yakuza script.");
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		settings.focusDistance = Value;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(Aperture);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
+		Profile.depthOfField.settings = settings;
 	}
 }

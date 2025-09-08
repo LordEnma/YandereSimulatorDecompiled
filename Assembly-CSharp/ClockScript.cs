@@ -18,6 +18,8 @@ public class ClockScript : MonoBehaviour
 
 	public CameraEffectsScript CameraEffects;
 
+	public ModernRivalEventScript PicnicEvent;
+
 	public PostProcessingProfile Profile;
 
 	public GrandfatherScript Grandfather;

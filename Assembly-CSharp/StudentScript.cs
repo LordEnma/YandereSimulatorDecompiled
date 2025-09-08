@@ -328,6 +328,8 @@ public class StudentScript : MonoBehaviour
 
 	public Transform[] Arm;
 
+	public DynamicBone[] OsanaHairPhysics;
+
 	public DynamicBone[] BlackHoleEffect;
 
 	public OutlineScript[] Outlines;
@@ -4055,10 +4057,6 @@ public class StudentScript : MonoBehaviour
 			}
 			else if ((StudentManager.StudentPhotographed[StudentID] && !Rival && !Grudge) || (Friend && !Grudge && !Rival))
 			{
-				if (StudentID == 2)
-				{
-					Debug.Log("Setting Yui's outlines green.");
-				}
 				TurnOutlinesGreen();
 			}
 			else
@@ -5207,6 +5205,7 @@ public class StudentScript : MonoBehaviour
 				}
 				if (MyPlate != null && MyPlate.parent == RightHand)
 				{
+					Debug.Log(Name + " acknowledges that he needs to put a plate of food away before proceeding to his next destination.");
 					CurrentDestination = StudentManager.Clubs.List[StudentID];
 					Pathfinding.target = StudentManager.Clubs.List[StudentID];
 				}
@@ -5440,6 +5439,10 @@ public class StudentScript : MonoBehaviour
 						SmartPhone.SetActive(value: true);
 						Countdown.Speed = 0.075f;
 					}
+				}
+				if (StudentID == 12 && !StudentManager.Eighties && Clock.Weekday == 4 && Phase == 5)
+				{
+					Clock.PicnicEvent.EventObject[1].SetActive(value: false);
 				}
 			}
 			if (MeetTime > 0f)
@@ -7753,7 +7756,24 @@ public class StudentScript : MonoBehaviour
 							{
 								if (Vector3.Distance(base.transform.position, MyLocker.position) > 1f && !MustChangeClothing)
 								{
-									Debug.Log("A student is trying to access their locker while being way too far away...");
+									Debug.Log(Name + " is trying to access their locker while being way too far away...");
+									if (MyPlate != null && MyPlate.parent == RightHand && CurrentDestination == StudentManager.Clubs.List[StudentID])
+									{
+										Debug.Log(Name + " just put a plate of food down.");
+										ClubActivityPhase = 0;
+										MyPlate.parent = null;
+										MyPlate.position = OriginalPlatePosition;
+										MyPlate.rotation = OriginalPlateRotation;
+										CurrentDestination = Destinations[Phase];
+										Pathfinding.target = Destinations[Phase];
+										IdleAnim = OriginalIdleAnim;
+										WalkAnim = OriginalWalkAnim;
+										LeanAnim = OriginalLeanAnim;
+										ResumeDistracting = false;
+										Distracting = false;
+										Distracted = false;
+										CanTalk = true;
+									}
 								}
 								else if (MustChangeClothing)
 								{
@@ -9767,11 +9787,7 @@ public class StudentScript : MonoBehaviour
 								else
 								{
 									Debug.Log(Name + " is now leaving the bake sale.");
-									StudentManager.BakeSale.CurrentCustomer = null;
-									Fingerfood[12].SetActive(value: false);
-									MyController.radius = 0.1f;
-									BakeSalePhase = 0;
-									MeetTimer = 99999f;
+									LeaveBakeSale();
 								}
 							}
 							else
@@ -9829,12 +9845,6 @@ public class StudentScript : MonoBehaviour
 								FollowTargetDestination.localPosition = new Vector3(0f, 0f, 0f);
 							}
 							StopMeeting();
-							if (BakeSale && StudentManager.BakeSale.Poisoned)
-							{
-								Fingerfood[12].SetActive(value: false);
-								GoPuke();
-							}
-							BakeSale = false;
 						}
 					}
 				}
@@ -13004,21 +13014,21 @@ public class StudentScript : MonoBehaviour
 						}
 						Pathfinding.canSearch = true;
 						Pathfinding.canMove = true;
-						if ((Persona == PersonaType.Heroic && HeardScream) || Persona == PersonaType.Protective || Hurry || WalkSpeed == 4f || Pathfinding.speed == 4f)
-						{
-							CharacterAnimation.CrossFade(SprintAnim);
-							Pathfinding.speed = 4f;
-						}
-						else
-						{
-							CharacterAnimation.CrossFade(WalkAnim);
-							Pathfinding.speed = WalkSpeed;
-						}
 						InvestigationPhase++;
 					}
 				}
 				else if (InvestigationPhase == 1)
 				{
+					if ((Persona == PersonaType.Heroic && HeardScream) || Persona == PersonaType.Protective || Hurry || WalkSpeed == 4f || Pathfinding.speed == 4f)
+					{
+						CharacterAnimation.CrossFade(SprintAnim);
+						Pathfinding.speed = 4f;
+					}
+					else
+					{
+						CharacterAnimation.CrossFade(WalkAnim);
+						Pathfinding.speed = WalkSpeed;
+					}
 					Pathfinding.canSearch = true;
 					Pathfinding.canMove = true;
 					if (InvestigationDistance == 0f)
@@ -13357,7 +13367,9 @@ public class StudentScript : MonoBehaviour
 			}
 			if (Electrified)
 			{
+				Debug.Log(Name + " is now being electrocuted.");
 				CharacterAnimation.CrossFade(ElectroAnim);
+				FocusOnYandere = false;
 				if (CharacterAnimation[ElectroAnim].time >= CharacterAnimation[ElectroAnim].length || TooCloseToWall)
 				{
 					Debug.Log(Name + "'s TooCloseToWall is " + TooCloseToWall);
@@ -13376,10 +13388,17 @@ public class StudentScript : MonoBehaviour
 				{
 					CheckForWallBehind();
 				}
-				else if (CharacterAnimation[ElectroAnim].time < 6f && OsanaHairL != null)
+				else if (CharacterAnimation[ElectroAnim].time < 6f)
 				{
-					OsanaHairL.transform.eulerAngles = new Vector3(UnityEngine.Random.Range(-360f, 360f), UnityEngine.Random.Range(-360f, 360f), UnityEngine.Random.Range(-360f, 360f));
-					OsanaHairR.transform.eulerAngles = new Vector3(UnityEngine.Random.Range(-360f, 360f), UnityEngine.Random.Range(-360f, 360f), UnityEngine.Random.Range(-360f, 360f));
+					if (OsanaHairL != null)
+					{
+						OsanaHairL.transform.eulerAngles = new Vector3(UnityEngine.Random.Range(-360f, 360f), UnityEngine.Random.Range(-360f, 360f), UnityEngine.Random.Range(-360f, 360f));
+						OsanaHairR.transform.eulerAngles = new Vector3(UnityEngine.Random.Range(-360f, 360f), UnityEngine.Random.Range(-360f, 360f), UnityEngine.Random.Range(-360f, 360f));
+					}
+				}
+				else if (CharacterAnimation[ElectroAnim].time < 2f)
+				{
+					CharacterAnimation[ElectroAnim].time = 2f;
 				}
 			}
 			if (BreakingUpFight)
@@ -17806,7 +17825,7 @@ public class StudentScript : MonoBehaviour
 				ThreatPhase = 3;
 				ThreatTimer = 0f;
 			}
-			if (Yandere.Dumping || Yandere.SneakingShot)
+			if (Yandere.Dumping || Yandere.SneakingShot || Yandere.CleaningWeapon)
 			{
 				return;
 			}
@@ -19011,7 +19030,8 @@ public class StudentScript : MonoBehaviour
 		BountyCollider.SetActive(value: false);
 		if (PhotoEvidence)
 		{
-			Debug.Log("PhotoEvidence was true.");
+			Debug.Log("When " + Name + " was attacked, PhotoEvidence was true. They should be dropping a phone now.");
+			SmartPhone.SetActive(value: true);
 			SmartPhone.GetComponent<SmartphoneScript>().enabled = true;
 			SmartPhone.GetComponent<PromptScript>().enabled = true;
 			SmartPhone.GetComponent<Rigidbody>().useGravity = true;
@@ -19273,7 +19293,7 @@ public class StudentScript : MonoBehaviour
 		}
 		if (PhotoEvidence)
 		{
-			Debug.Log("PhotoEvidence was true.");
+			Debug.Log("When " + Name + " was attacked, PhotoEvidence was true. Their phone's gameObject should be getting activated now.");
 			CameraFlash.SetActive(value: false);
 			SmartPhone.SetActive(value: true);
 			PhotoEvidence = false;
@@ -22027,6 +22047,18 @@ public class StudentScript : MonoBehaviour
 		SentToLocker = false;
 		InEvent = false;
 		Grudge = false;
+		if (PhotoEvidence && SmartPhone.transform.parent != null)
+		{
+			Debug.Log("When " + Name + " became a ragdoll, PhotoEvidence was true. They should be dropping a phone now.");
+			SmartPhone.SetActive(value: true);
+			SmartPhone.GetComponent<SmartphoneScript>().enabled = true;
+			SmartPhone.GetComponent<PromptScript>().enabled = true;
+			SmartPhone.GetComponent<Rigidbody>().useGravity = true;
+			SmartPhone.GetComponent<Collider>().enabled = true;
+			SmartPhone.transform.parent = null;
+			SmartPhone.layer = 15;
+			Miyuki.MagicalGirl.gameObject.layer = 24;
+		}
 	}
 
 	public void GetWet()
@@ -22218,6 +22250,7 @@ public class StudentScript : MonoBehaviour
 
 	public void StopMeeting()
 	{
+		Debug.Log(Name + " has called the StopMeeting() function.");
 		Prompt.Label[0].text = "     Talk";
 		Pathfinding.canSearch = true;
 		Pathfinding.canMove = true;
@@ -22233,6 +22266,12 @@ public class StudentScript : MonoBehaviour
 		{
 			StudentManager.UpdateInfatuatedTargetDistances();
 		}
+		if (BakeSale && StudentManager.BakeSale.Poisoned)
+		{
+			Fingerfood[12].SetActive(value: false);
+			GoPuke();
+		}
+		BakeSale = false;
 	}
 
 	public void RemoveOfferHelpPrompt()
@@ -22544,7 +22583,24 @@ public class StudentScript : MonoBehaviour
 		{
 			Debug.Log("A student is now changing into a Gym Uniform.");
 			MyRenderer.sharedMesh = GymUniform;
-			if (StudentManager.Eighties)
+			if (StudentManager.CustomMode)
+			{
+				if (Cosmetic.CustomUniform == null)
+				{
+					Cosmetic.CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
+				}
+				if (!Male)
+				{
+					EightiesGymTexture = Cosmetic.CustomUniform.FemaleGymUniform;
+					GymTexture = Cosmetic.CustomUniform.FemaleGymUniform;
+				}
+				else
+				{
+					EightiesGymTexture = Cosmetic.CustomUniform.MaleGymUniform;
+					GymTexture = Cosmetic.CustomUniform.MaleGymUniform;
+				}
+			}
+			else if (StudentManager.Eighties)
 			{
 				GymTexture = EightiesGymTexture;
 			}
@@ -24478,7 +24534,6 @@ public class StudentScript : MonoBehaviour
 			}
 			else if (Grudge)
 			{
-				Police.PhotoEvidence++;
 				PhotoEvidence = true;
 			}
 		}
@@ -24581,9 +24636,9 @@ public class StudentScript : MonoBehaviour
 			Drumsticks[1].SetActive(value: false);
 			AirGuitar.Stop();
 		}
+		PicnicProps[0].SetActive(value: false);
 		if (!Male)
 		{
-			PicnicProps[0].SetActive(value: false);
 			PicnicProps[1].SetActive(value: false);
 			PicnicProps[2].SetActive(value: false);
 			Handkerchief.SetActive(value: false);
@@ -25846,6 +25901,7 @@ public class StudentScript : MonoBehaviour
 				gameObject3.SetActive(value: false);
 			}
 		}
+		PicnicProps[0].SetActive(value: false);
 		if (Male)
 		{
 			DisableMaleProps();
@@ -25878,7 +25934,6 @@ public class StudentScript : MonoBehaviour
 				gameObject.SetActive(value: false);
 			}
 		}
-		PicnicProps[0].SetActive(value: false);
 		PicnicProps[1].SetActive(value: false);
 		PicnicProps[2].SetActive(value: false);
 		Drumsticks[0].SetActive(value: false);
@@ -27032,5 +27087,25 @@ public class StudentScript : MonoBehaviour
 		Chopsticks[0].SetActive(value: false);
 		Chopsticks[1].SetActive(value: false);
 		Bento.SetActive(value: false);
+	}
+
+	public void LeaveBakeSale()
+	{
+		Debug.Log(Name + " is now firing LeaveBakeSale()");
+		StudentManager.BakeSale.CurrentCustomer = null;
+		Fingerfood[12].SetActive(value: false);
+		MyController.radius = 0.1f;
+		BakeSalePhase = 0;
+		MeetTimer = 99999f;
+		if (StudentManager.BakeSale.Poisoned)
+		{
+			if (StudentManager.BakeSale.RepToSubtract > 0)
+			{
+				StudentManager.StudentReps[12] -= 1f;
+				StudentManager.BakeSale.RepToSubtract--;
+			}
+			Yandere.NotificationManager.CustomText = StudentManager.Students[12].Name + "'s rep is now " + StudentManager.StudentReps[12];
+			Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+		}
 	}
 }

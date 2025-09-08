@@ -449,6 +449,7 @@ public class StudentJson : JsonData
 			}
 			studentJson.success = true;
 		}
+		Debug.Log("Finished loading student data.");
 		return array;
 	}
 

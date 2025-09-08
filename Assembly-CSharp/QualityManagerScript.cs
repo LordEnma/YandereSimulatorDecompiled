@@ -102,14 +102,13 @@ public class QualityManagerScript : MonoBehaviour
 		Eighties = GameGlobals.Eighties;
 		if (OptionGlobals.DisableOutlines)
 		{
+			Debug.Log("The player wants outlines to be disabled.");
 			DisableOutlinesLater = true;
 		}
 		if (!OptionGlobals.RimLight)
 		{
 			DisableRimLightLater = true;
 		}
-		OptionGlobals.DisableOutlines = false;
-		OptionGlobals.RimLight = true;
 		if (OptionGlobals.DrawDistance == 0)
 		{
 			OptionGlobals.DrawDistanceLimit = 350;
@@ -794,8 +793,10 @@ public class QualityManagerScript : MonoBehaviour
 
 	public void UpdateOutlinesAndRimlight()
 	{
+		Debug.Log("Now updating Outlines and Rimlights.");
 		if (OptionGlobals.DisableOutlines)
 		{
+			Debug.Log("''Disable Outlines'' is true.");
 			if (OptionGlobals.RimLight)
 			{
 				NewHairShader = ToonRimLight;

@@ -880,7 +880,7 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			for (int m = 0; m < StudentManager.Students.Length; m++)
 			{
-				if (StudentManager.Students[m] != null && StudentManager.Students[m].PhotoEvidence)
+				if (StudentManager.Students[m] != null && StudentManager.Students[m].PhotoEvidence && !StudentManager.Students[m].SmartPhone.GetComponent<SmartphoneScript>().Smashed)
 				{
 					Police.PhotoEvidence++;
 				}
@@ -894,7 +894,14 @@ public class EndOfDayScript : MonoBehaviour
 					Yandere.LoseGentleEyes();
 				}
 				ShruggingCops.SetActive(value: false);
-				Label.text = "The police find a smartphone with photographic evidence of " + Protagonist + " committing a crime.";
+				if (Police.PhotoEvidence == 1)
+				{
+					Label.text = "The police find a smartphone with photographic evidence of " + Protagonist + " committing a crime.";
+				}
+				else
+				{
+					Label.text = "The police find multiple smartphones with photographic evidence of " + Protagonist + " committing a crime.";
+				}
 				Phase = 100;
 			}
 			else

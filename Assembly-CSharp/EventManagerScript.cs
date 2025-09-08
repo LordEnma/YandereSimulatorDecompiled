@@ -128,7 +128,7 @@ public class EventManagerScript : MonoBehaviour
 					EventCheck = false;
 					base.enabled = false;
 				}
-				if (EventStudent[1] != null && EventStudent[2] != null && EventStudent[1].enabled && !EventStudent[1].Slave && !EventStudent[2].Slave && EventStudent[1].Indoors && !EventStudent[1].Wet && !EventStudent[1].Meeting && !EventStudent[1].Talking && (OsanaID < 2 || (OsanaID > 1 && Vector3.Distance(EventStudent[1].transform.position, EventLocation[1].position) < 1f)))
+				if (EventStudent[1] != null && EventStudent[2] != null && EventStudent[1].enabled && !EventStudent[1].Slave && !EventStudent[2].Slave && EventStudent[1].Indoors && !EventStudent[1].Wet && !EventStudent[1].Meeting && !EventStudent[1].Talking && !EventStudent[2].Meeting && (OsanaID < 2 || (OsanaID > 1 && Vector3.Distance(EventStudent[1].transform.position, EventLocation[1].position) < 1f)))
 				{
 					StartTimer += Time.deltaTime;
 					if (StartTimer > 1f && EventStudent[1].Routine && EventStudent[2].Routine && !EventStudent[1].InEvent && !EventStudent[2].InEvent)

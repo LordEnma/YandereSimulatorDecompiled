@@ -89,6 +89,7 @@ public class ModernRivalSabotageScript : MonoBehaviour
 						Prompt.Yandere.NotificationManager.CustomText = "Ingredients poisoned!";
 						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 						Prompt.Yandere.Inventory.EmeticPoisons--;
+						BakeSale.RepToSubtract = 17;
 						BakeSale.Poisoned = true;
 						SabotagedEvent.gameObject.SetActive(value: true);
 						NormalEvent.gameObject.SetActive(value: false);

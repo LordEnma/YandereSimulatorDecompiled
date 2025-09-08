@@ -70,8 +70,14 @@ public class ResolutionScript : MonoBehaviour
 	private IEnumerator Start()
 	{
 		yield return null;
+		Debug.Log("This should be the first line of code executed by the game.");
 		CheckForSettingsFile();
 		FullScreen = false;
+		int systemWidth = Display.main.systemWidth;
+		int systemHeight = Display.main.systemHeight;
+		Debug.Log("Desktop resolution: " + systemWidth + "x" + systemHeight);
+		Screen.SetResolution(1280, 720, fullscreen: false);
+		ResID = 0;
 		Cursor.visible = false;
 		Darkness.color = new Color(1f, 1f, 1f, 1f);
 		ResolutionLabel.text = Screen.width + " x " + Screen.height;

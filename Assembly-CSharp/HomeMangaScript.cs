@@ -177,13 +177,6 @@ public class HomeMangaScript : MonoBehaviour
 					HomeYandere.CanMove = true;
 					HomeWindow.Show = false;
 				}
-				if (Input.GetKeyDown(KeyCode.Space))
-				{
-					for (int i = 0; i < TotalManga; i++)
-					{
-						CollectibleGlobals.SetMangaCollected(i + 1, value: true);
-					}
-				}
 				return;
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_A))

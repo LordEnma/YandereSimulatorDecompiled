@@ -226,6 +226,7 @@ public class KokonaTutorialScript : MonoBehaviour
 			RatPoison.gameObject.SetActive(value: false);
 			Sedative.gameObject.SetActive(value: false);
 			Incinerator.Contents = 0;
+			CarBattery.Broken = false;
 			CarBattery.Smoke.Clear();
 			CarBattery.Smoke.Stop();
 			WaterCooler.Timer = 1f;

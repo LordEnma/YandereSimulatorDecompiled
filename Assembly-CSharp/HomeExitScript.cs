@@ -31,6 +31,8 @@ public class HomeExitScript : MonoBehaviour
 
 	public AudioClip Confirm;
 
+	public AudioClip OpenDoor;
+
 	public HomeTriggerScript BasementTrigger;
 
 	public UILabel BasementLabel;
@@ -164,6 +166,8 @@ public class HomeExitScript : MonoBehaviour
 						HomeWindow.Show = false;
 						base.enabled = false;
 					}
+					MyAudio.clip = OpenDoor;
+					MyAudio.Play();
 				}
 				else
 				{

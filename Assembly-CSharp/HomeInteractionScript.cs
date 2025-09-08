@@ -38,6 +38,8 @@ public class HomeInteractionScript : MonoBehaviour
 
 	public int ID;
 
+	public AudioSource MyAudio;
+
 	private void Start()
 	{
 		if (ID == 6 && TaskGlobals.GetTaskStatus(22) != 1)
@@ -72,6 +74,10 @@ public class HomeInteractionScript : MonoBehaviour
 		{
 			if (ID == 1 || ID == 3)
 			{
+				if (ID == 3)
+				{
+					MyAudio.Play();
+				}
 				Move = true;
 			}
 			else if (ID == 2)

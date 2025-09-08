@@ -546,14 +546,20 @@ public class ModernRivalEventScript : MonoBehaviour
 			Char[0].PicnicProps[0].SetActive(value: true);
 			Char[0].PicnicProps[1].SetActive(value: true);
 			Char[0].PicnicProps[2].SetActive(value: true);
+			Char[1].WalkAnim = Char[1].PlateWalkAnim;
+			Char[1].IdleAnim = Char[1].PlateIdleAnim;
+			Char[1].PicnicProps[0].SetActive(value: true);
 			EventObject[2].SetActive(value: false);
 			break;
 		case 21:
 			Char[0].WalkAnim = Char[0].OriginalWalkAnim;
 			Char[0].IdleAnim = Char[0].OriginalIdleAnim;
+			Char[1].WalkAnim = Char[1].OriginalWalkAnim;
+			Char[1].IdleAnim = Char[1].OriginalIdleAnim;
 			Char[0].PicnicProps[0].SetActive(value: false);
 			Char[0].PicnicProps[1].SetActive(value: false);
 			Char[0].PicnicProps[2].SetActive(value: false);
+			Char[1].PicnicProps[0].SetActive(value: false);
 			EventObject[1].SetActive(value: true);
 			break;
 		case 22:
@@ -571,19 +577,22 @@ public class ModernRivalEventScript : MonoBehaviour
 		}
 		else if (EventID == RivalEventType.AmaiMondayLunchEvent)
 		{
-			ScheduleBlock scheduleBlock = null;
-			scheduleBlock = Char[0].ScheduleBlocks[4];
-			if (StudentManager.RivalBookBag.BentoStolen)
+			if (Char[0] != null)
 			{
-				scheduleBlock.destination = "BakeSale";
-				scheduleBlock.action = "BakeSale";
+				ScheduleBlock scheduleBlock = null;
+				scheduleBlock = Char[0].ScheduleBlocks[4];
+				if (StudentManager.RivalBookBag.BentoStolen)
+				{
+					scheduleBlock.destination = "BakeSale";
+					scheduleBlock.action = "BakeSale";
+				}
+				else
+				{
+					scheduleBlock.destination = "LunchSpot";
+					scheduleBlock.action = "Eat";
+				}
+				Char[0].GetDestinations();
 			}
-			else
-			{
-				scheduleBlock.destination = "LunchSpot";
-				scheduleBlock.action = "Eat";
-			}
-			Char[0].GetDestinations();
 		}
 		else
 		{

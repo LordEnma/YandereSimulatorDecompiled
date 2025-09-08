@@ -490,7 +490,7 @@ public class ShoeRemovalScript : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("A male student just ran some ShoeRemoval code related to changing their shoes/socks.");
+				Debug.Log("A male student named " + Student.Name + " just ran some ShoeRemoval code related to changing their shoes/socks.");
 				MyRenderer.materials[Student.Cosmetic.UniformID].mainTexture = Socks;
 			}
 		}

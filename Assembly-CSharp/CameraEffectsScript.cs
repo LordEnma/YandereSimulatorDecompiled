@@ -36,6 +36,8 @@ public class CameraEffectsScript : MonoBehaviour
 	{
 		MurderStreaks.color = new Color(MurderStreaks.color.r, MurderStreaks.color.g, MurderStreaks.color.b, 0f);
 		Streaks.color = new Color(Streaks.color.r, Streaks.color.g, Streaks.color.b, 0f);
+		ColorGradingModel.Settings settings = Profile.colorGrading.settings;
+		settings.basic.saturation = 1f;
 		Profile.colorGrading.enabled = false;
 		SmartphoneCamera.depthTextureMode = DepthTextureMode.DepthNormals;
 	}

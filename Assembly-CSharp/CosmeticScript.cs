@@ -710,9 +710,19 @@ public class CosmeticScript : MonoBehaviour
 			CustomEyeColor = new Color((float)JSON.Students[StudentID].EyeR * 1f / 255f, (float)JSON.Students[StudentID].EyeG * 1f / 255f, (float)JSON.Students[StudentID].EyeB * 1f / 255f);
 			if (StudentID < 90 && (GameGlobals.CustomMode || CustomMode))
 			{
+				CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
+				if (!Male)
+				{
+					Student.EightiesGymTexture = CustomUniform.FemaleGymUniform;
+					Student.GymTexture = CustomUniform.FemaleGymUniform;
+				}
+				else
+				{
+					Student.EightiesGymTexture = CustomUniform.MaleGymUniform;
+					Student.GymTexture = CustomUniform.MaleGymUniform;
+				}
 				if (StudentGlobals.CustomFemaleUniform)
 				{
-					CustomUniform = GameObject.Find("CustomUniform").GetComponent<CustomUniformScript>();
 					LoadOriginalTextures();
 					if ((!Male && StudentGlobals.CustomFemaleUniform) || (Male && StudentGlobals.CustomMaleUniform))
 					{
@@ -737,32 +747,42 @@ public class CosmeticScript : MonoBehaviour
 					InvertHair = true;
 				}
 			}
-			else if (!Male && Eighties && Stockings != "" && Stockings != "None" && SkinColor == 0)
+			else if (!Male)
 			{
-				SkinColor = 2;
-				if (StudentID > 10 && StudentID < 21)
+				if (Eighties)
 				{
-					if (StudentID == 13 || StudentID == 15 || StudentID == 16 || StudentID == 18 || StudentID == 19)
+					if (Stockings != "" && Stockings != "None" && SkinColor == 0)
 					{
-						SkinColor = 1;
+						SkinColor = 2;
+						if (StudentID > 10 && StudentID < 21)
+						{
+							if (StudentID == 13 || StudentID == 15 || StudentID == 16 || StudentID == 18 || StudentID == 19)
+							{
+								SkinColor = 1;
+							}
+							else if (StudentID == 14 || StudentID == 20)
+							{
+								SkinColor = 3;
+							}
+							for (int i = 0; i < FaceTextures.Length; i++)
+							{
+								FaceTextures[i] = FemaleHairRenderers[Hairstyle].material.mainTexture;
+								SkinTextures[i] = RivalSkin[StudentID - 10];
+							}
+							NudeTexture = RivalNude[StudentID - 10];
+						}
+						else if (CustomHair)
+						{
+							for (int j = 0; j < FaceTextures.Length; j++)
+							{
+								FaceTextures[j] = FemaleHairRenderers[Hairstyle].material.mainTexture;
+							}
+						}
 					}
-					else if (StudentID == 14 || StudentID == 20)
-					{
-						SkinColor = 3;
-					}
-					for (int i = 0; i < FaceTextures.Length; i++)
-					{
-						FaceTextures[i] = FemaleHairRenderers[Hairstyle].material.mainTexture;
-						SkinTextures[i] = RivalSkin[StudentID - 10];
-					}
-					NudeTexture = RivalNude[StudentID - 10];
 				}
-				else if (CustomHair)
+				else if (Stockings != "" && Stockings != "None" && SkinColor == 0 && Stockings == "Socks")
 				{
-					for (int j = 0; j < FaceTextures.Length; j++)
-					{
-						FaceTextures[j] = FemaleHairRenderers[Hairstyle].material.mainTexture;
-					}
+					SkinColor = 2;
 				}
 			}
 			if (Yandere)

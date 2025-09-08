@@ -319,6 +319,7 @@ public class PortalScript : MonoBehaviour
 							{
 								StudentManager.AdvanceBakeSale();
 							}
+							StudentManager.StudentReps[12] -= StudentManager.BakeSale.RepToSubtract;
 							EndEvents();
 						}
 						else

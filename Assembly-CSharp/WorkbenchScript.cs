@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class WorkbenchScript : MonoBehaviour
 {
+	public ChallengeMangerScript ChallengeManager;
+
 	public InputManagerScript InputManager;
 
 	public WeaponScript MakeshiftKnife;
@@ -65,6 +67,8 @@ public class WorkbenchScript : MonoBehaviour
 	public bool MadeSpikedBat;
 
 	public bool Chemistry;
+
+	public bool Warned;
 
 	public bool Triple;
 
@@ -161,11 +165,22 @@ public class WorkbenchScript : MonoBehaviour
 				}
 				if ((Prompt.Yandere.Inventory.MaskingTape && Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox && Prompt.Yandere.PickUp.BodyBags == 0) || EightiesTutorial)
 				{
-					Prompt.HideButton[1] = false;
+					if (Prompt.HideButton[1])
+					{
+						Prompt.HideButton[1] = false;
+					}
 				}
-				else
+				else if (!Prompt.HideButton[1])
 				{
 					Prompt.HideButton[1] = true;
+				}
+				if (!Warned && !EightiesTutorial && !ChallengeManager.CraftBodybags && Prompt.Yandere.PickUp != null && Prompt.Yandere.PickUp.GarbageBagBox && Prompt.Yandere.NearestPrompt == Prompt)
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "You can conceal a body inside of garbage bags.";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Prompt.Yandere.NotificationManager.CustomText = "You don't need to craft bodybags.";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Warned = true;
 				}
 				if (Prompt.Circle[1].fillAmount == 0f)
 				{
@@ -242,6 +257,13 @@ public class WorkbenchScript : MonoBehaviour
 					Material[3] = 0;
 					Triple = false;
 					Show = false;
+					if (Prompt.Yandere.StudentManager.Tutorial.AlternateTimeline)
+					{
+						Debug.Log("We're in the alternate timeline!");
+						Prompt.Hide();
+						Prompt.enabled = false;
+						base.enabled = false;
+					}
 				}
 				else if (Input.GetButtonDown(InputNames.Xbox_X) && PromptBar.Label[2].text != "")
 				{

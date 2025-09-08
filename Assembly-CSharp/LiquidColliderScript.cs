@@ -76,14 +76,19 @@ public class LiquidColliderScript : MonoBehaviour
 			component.Club = ClubType.None;
 			flag = true;
 		}
-		if (component.Wet || component.Fleeing || component.SenpaiWitnessingRivalDie || component.SpecialRivalDeathReaction || (component.Schoolwear == 2 && !Brown && !Blood && !Gas) || component.Confessing || component.Guarding || (component.Club == ClubType.Sports && component.ClubAttire && component.Clock.Period > 5 && !Brown && !Blood && !Gas))
+		if (component.Wet || component.Fleeing || component.SenpaiWitnessingRivalDie || component.SpecialRivalDeathReaction || (component.Schoolwear == 2 && !Brown && !Blood && !Gas) || component.Confessing || component.Guarding || component.SentHome || (component.Club == ClubType.Sports && component.ClubAttire && component.Clock.Period > 5 && !Brown && !Blood && !Gas))
 		{
 			component.Yandere.NotificationManager.CustomText = "Didn't care.";
 			component.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			if (component.Schoolwear == 2 || component.ClubAttire)
 			{
 				component.Subtitle.CustomText = "What a stupid prank! Oh, well. I was in my swimsuit, anyway...";
-				component.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 4f);
+				component.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+			}
+			if (component.SentHome)
+			{
+				component.Subtitle.CustomText = "What a stupid prank! I still have to hurry and leave school, though!";
+				component.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 			}
 		}
 		else if (!component.BeenSplashed && component.StudentID > 1 && !component.Reflexes && !component.Teacher && component.Club != ClubType.Council && !component.GasWarned && component.CurrentAction != StudentActionType.Sunbathe && !component.ClubAttire)

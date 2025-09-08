@@ -18,6 +18,8 @@ public class SmartphoneScript : MonoBehaviour
 
 	public Mesh SmashedMesh;
 
+	public bool Smashed;
+
 	private void Update()
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
@@ -34,6 +36,7 @@ public class SmartphoneScript : MonoBehaviour
 			PhoneCrushingSpot.position = new Vector3(PhoneCrushingSpot.position.x, Prompt.Yandere.transform.position.y, PhoneCrushingSpot.position.z);
 			PhoneCrushingSpot.LookAt(Prompt.Yandere.transform.position);
 			PhoneCrushingSpot.Translate(Vector3.forward * 0.5f);
+			Smashed = true;
 		}
 	}
 }

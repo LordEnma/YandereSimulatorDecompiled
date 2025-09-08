@@ -18,6 +18,8 @@ public class FootstepScript : MonoBehaviour
 
 	public float UpThreshold = 0.025f;
 
+	public float Multiplier = 1f;
+
 	public bool Debugging;
 
 	public bool FootUp;
@@ -82,12 +84,12 @@ public class FootstepScript : MonoBehaviour
 		if ((!(HomeYandere != null)) ? StalkerYandere.Running : HomeYandere.Running)
 		{
 			MyAudio.clip = sound.Run[Random.Range(0, sound.Run.Length)];
-			MyAudio.volume = sound.RunVolume;
+			MyAudio.volume = sound.RunVolume * Multiplier;
 		}
 		else
 		{
 			MyAudio.clip = sound.Walk[Random.Range(0, sound.Walk.Length)];
-			MyAudio.volume = sound.WalkVolume;
+			MyAudio.volume = sound.WalkVolume * Multiplier;
 		}
 		MyAudio.Play();
 	}

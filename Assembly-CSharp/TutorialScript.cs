@@ -570,6 +570,7 @@ public class TutorialScript : MonoBehaviour
 							{
 								Yandere.CharacterAnimation.CrossFade(Yandere.IdleAnim);
 								Workbench.Prompt.enabled = true;
+								Workbench.enabled = true;
 								FadeInstructions = true;
 								Yandere.Frozen = true;
 							}

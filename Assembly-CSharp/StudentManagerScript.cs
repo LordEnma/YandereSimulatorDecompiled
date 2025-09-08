@@ -1521,6 +1521,10 @@ public class StudentManagerScript : MonoBehaviour
 				}
 			}
 		}
+		else if (EightiesProps.Length > 26)
+		{
+			EightiesProps[26].SetActive(value: false);
+		}
 		if (ClubGlobals.GetClubClosed(ClubType.Gardening))
 		{
 			Debug.Log("Blocking entrance to Gardening Club, adjusting Gardening Club patrols.");
@@ -1874,6 +1878,7 @@ public class StudentManagerScript : MonoBehaviour
 					QualityManager.UpdateOutlinesAndRimlight();
 					if (QualityManager.DisableOutlinesLater)
 					{
+						Debug.Log("Disable outlines now.");
 						OptionGlobals.DisableOutlines = true;
 					}
 					if (QualityManager.DisableRimLightLater)
@@ -4034,7 +4039,7 @@ public class StudentManagerScript : MonoBehaviour
 					studentScript.MyPlate.localPosition = new Vector3(0.02f, -0.02f, -0.15f);
 					studentScript.MyPlate.localEulerAngles = new Vector3(-5f, -90f, 172.5f);
 				}
-				if (studentScript.Meeting)
+				if (studentScript.Meeting && !studentScript.BakeSale)
 				{
 					studentScript.StopMeeting();
 				}
@@ -5893,7 +5898,7 @@ public class StudentManagerScript : MonoBehaviour
 		StudentScript[] students = Students;
 		foreach (StudentScript studentScript in students)
 		{
-			if (!(studentScript != null) || studentScript.StudentID <= 1)
+			if (!(studentScript != null) || studentScript.StudentID <= 1 || studentScript.Ragdoll.Concealed)
 			{
 				continue;
 			}
@@ -8140,6 +8145,10 @@ public class StudentManagerScript : MonoBehaviour
 			if (Students[i] != null)
 			{
 				Students[i].LowPoly.Deactivate();
+				if (Students[i].Ragdoll.Concealed)
+				{
+					Students[i].MyRenderer.enabled = false;
+				}
 			}
 		}
 	}

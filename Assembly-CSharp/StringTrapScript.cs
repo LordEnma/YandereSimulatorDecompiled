@@ -96,6 +96,7 @@ public class StringTrapScript : MonoBehaviour
 			}
 			else
 			{
+				Debug.Log("Student triggered tripwire trap.");
 				if (WaterCooler.BrownPaint)
 				{
 					Object.Instantiate(BrownPaint, Spawn.position, WaterCooler.transform.rotation);

@@ -917,7 +917,7 @@ public class DialogueWheelScript : MonoBehaviour
 							Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);
 						}
 					}
-					else if ((Yandere.TargetStudent.StudentID == 46 && Clock.Period == 3) || (Yandere.TargetStudent.StudentID == 46 && Clock.Period == 5) || Yandere.StudentManager.Students[10] == null)
+					else if ((Yandere.TargetStudent.StudentID == 46 && Clock.Period == 3) || (Yandere.TargetStudent.StudentID == 46 && Clock.Period == 5) || (Yandere.TargetStudent.StudentID == 46 && Yandere.StudentManager.Students[10] == null))
 					{
 						Debug.Log("Hiding Budo's Task button.");
 						Shadow[5].color = new Color(0f, 0f, 0f, 0.75f);

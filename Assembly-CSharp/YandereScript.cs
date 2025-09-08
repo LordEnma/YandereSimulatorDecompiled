@@ -4915,7 +4915,6 @@ public class YandereScript : MonoBehaviour
 			{
 				PhoneToCrush.transform.localEulerAngles = new Vector3(PhoneToCrush.transform.localEulerAngles.x, PhoneToCrush.transform.localEulerAngles.y, 0f);
 				UnityEngine.Object.Instantiate(PhoneToCrush.PhoneSmash, PhoneToCrush.transform.position, Quaternion.identity);
-				Police.PhotoEvidence--;
 				PhoneToCrush.MyRenderer.material.mainTexture = PhoneToCrush.SmashedTexture;
 				PhoneToCrush.MyMesh.mesh = PhoneToCrush.SmashedMesh;
 				PhoneToCrush.Prompt.Hide();
@@ -8179,6 +8178,10 @@ public class YandereScript : MonoBehaviour
 		if (CustomGym.error == null)
 		{
 			GymTexture = CustomGym.texture;
+			if (StudentManager.Eighties)
+			{
+				EightiesGymTexture = CustomGym.texture;
+			}
 		}
 		WWW CustomNude = new WWW("file:///" + Application.streamingAssetsPath + "/CustomNude.png");
 		yield return CustomNude;

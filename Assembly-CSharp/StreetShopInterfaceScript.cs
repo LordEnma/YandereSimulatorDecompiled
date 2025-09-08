@@ -128,6 +128,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 			}
 			Interface.localPosition = Vector3.Lerp(Interface.localPosition, new Vector3(100f, 0f, 0f), Time.deltaTime * 10f);
 			BlurAmount = Mathf.Lerp(BlurAmount, 0f, Time.deltaTime * 10f);
+			AdjustBlur();
 			if (TransitionToCreepyCutscene)
 			{
 				TransitionTimer += Time.deltaTime;
@@ -146,100 +147,103 @@ public class StreetShopInterfaceScript : MonoBehaviour
 					Shopkeeper.mainTexture = SalonSurprise;
 					Jukebox.pitch -= Time.deltaTime * 0.1f;
 				}
+				return;
 			}
-			else
+			if (Input.GetButtonUp(InputNames.Xbox_B))
 			{
-				if (Input.GetButtonUp(InputNames.Xbox_B))
+				Yandere.RPGCamera.enabled = true;
+				PromptBar.Show = false;
+				Yandere.CanMove = true;
+				Patronized = false;
+				Show = false;
+			}
+			if (Timer > 0.5f && Input.GetButtonUp(InputNames.Xbox_A) && Icons[Selected].spriteName != "Yes" && PricesLabel[Selected].text != "Not Hungry" && PricesLabel[Selected].text != "Sold Out")
+			{
+				CheckStore();
+				UpdateIcons();
+			}
+			if (InputManager.TappedDown)
+			{
+				Selected++;
+				if (Selected > Limit)
 				{
-					Yandere.RPGCamera.enabled = true;
-					PromptBar.Show = false;
-					Yandere.CanMove = true;
-					Patronized = false;
-					Show = false;
+					Selected = 1;
 				}
-				if (Timer > 0.5f && Input.GetButtonUp(InputNames.Xbox_A) && Icons[Selected].spriteName != "Yes" && PricesLabel[Selected].text != "Not Hungry" && PricesLabel[Selected].text != "Sold Out")
+				UpdateHighlight();
+			}
+			else if (InputManager.TappedUp)
+			{
+				Selected--;
+				if (Selected < 1)
 				{
-					CheckStore();
-					UpdateIcons();
+					Selected = Limit;
 				}
-				if (InputManager.TappedDown)
+				UpdateHighlight();
+			}
+			Timer += Time.deltaTime;
+			if (Timer > 0.5f)
+			{
+				SpeechBubbleParent.localScale = Vector3.Lerp(SpeechBubbleParent.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			}
+			if (SpeechPhase == 0)
+			{
+				SpeechPhase++;
+			}
+			else if (!Patronized && Timer > 10f)
+			{
+				if (SpeechPhase == 1)
 				{
-					Selected++;
-					if (Selected > Limit)
-					{
-						Selected = 1;
-					}
-					UpdateHighlight();
-				}
-				else if (InputManager.TappedUp)
-				{
-					Selected--;
-					if (Selected < 1)
-					{
-						Selected = Limit;
-					}
-					UpdateHighlight();
-				}
-				Timer += Time.deltaTime;
-				if (Timer > 0.5f)
-				{
-					SpeechBubbleParent.localScale = Vector3.Lerp(SpeechBubbleParent.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				}
-				if (SpeechPhase == 0)
-				{
+					SpeechBubbleLabel.text = ShopkeeperSpeeches[2];
+					Shopkeeper.mainTexture = IdlePortrait[0];
+					SpeechBubbleParent.localScale = new Vector3(0f, 0f, 0f);
 					SpeechPhase++;
 				}
-				else if (!Patronized && Timer > 10f)
+				else if (SpeechPhase == 2 && Timer > 10.1f)
 				{
-					if (SpeechPhase == 1)
-					{
-						SpeechBubbleLabel.text = ShopkeeperSpeeches[2];
-						Shopkeeper.mainTexture = IdlePortrait[0];
-						SpeechBubbleParent.localScale = new Vector3(0f, 0f, 0f);
-						SpeechPhase++;
-					}
-					else if (SpeechPhase == 2 && Timer > 10.1f)
-					{
-						int num = Random.Range(0, IdlePortrait.Length);
-						Shopkeeper.mainTexture = IdlePortrait[num];
-						Timer = 10f;
-					}
+					int num = Random.Range(0, IdlePortrait.Length);
+					Shopkeeper.mainTexture = IdlePortrait[num];
+					Timer = 10f;
 				}
 			}
+			return;
 		}
-		else
+		Jukebox.volume = Mathf.Lerp(Jukebox.volume, 0f, Time.deltaTime);
+		SpeechBubbleParent.localScale = new Vector3(0f, 0f, 0f);
+		Shopkeeper.transform.localPosition = Vector3.Lerp(Shopkeeper.transform.localPosition, new Vector3(1604f, 0f, 0f), Time.deltaTime * 10f);
+		Interface.localPosition = Vector3.Lerp(Interface.localPosition, new Vector3(-815.5f, 0f, 0f), Time.deltaTime * 10f);
+		if (ShowMaid)
 		{
-			Jukebox.volume = Mathf.Lerp(Jukebox.volume, 0f, Time.deltaTime);
-			SpeechBubbleParent.localScale = new Vector3(0f, 0f, 0f);
-			Shopkeeper.transform.localPosition = Vector3.Lerp(Shopkeeper.transform.localPosition, new Vector3(1604f, 0f, 0f), Time.deltaTime * 10f);
-			Interface.localPosition = Vector3.Lerp(Interface.localPosition, new Vector3(-815.5f, 0f, 0f), Time.deltaTime * 10f);
-			if (ShowMaid)
+			BlurAmount = Mathf.Lerp(BlurAmount, 0f, Time.deltaTime * 10f);
+			AdjustBlur();
+			MaidWindow.localScale = Vector3.Lerp(MaidWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
-				BlurAmount = Mathf.Lerp(BlurAmount, 0f, Time.deltaTime * 10f);
-				MaidWindow.localScale = Vector3.Lerp(MaidWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				if (Input.GetButtonDown(InputNames.Xbox_A))
-				{
-					StreetManager.FadeOut = true;
-					StreetManager.GoToCafe = true;
-				}
-				else if (Input.GetButtonDown(InputNames.Xbox_B))
-				{
-					Yandere.RPGCamera.enabled = true;
-					Yandere.CanMove = true;
-					ShowMaid = false;
-				}
+				StreetManager.FadeOut = true;
+				StreetManager.GoToCafe = true;
 			}
-			else
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
-				BlurAmount = Mathf.Lerp(BlurAmount, 2f, Time.deltaTime * 10f);
-				MaidWindow.localScale = Vector3.Lerp(MaidWindow.localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
+				Yandere.RPGCamera.enabled = true;
+				Yandere.CanMove = true;
+				ShowMaid = false;
+			}
+			return;
+		}
+		if (BlurAmount < 1.9f)
+		{
+			BlurAmount = Mathf.Lerp(BlurAmount, 2f, Time.deltaTime * 10f);
+			if (BlurAmount > 1.9f)
+			{
+				BlurAmount = 2f;
+				AdjustBlur();
 			}
 		}
-		AdjustBlur();
+		MaidWindow.localScale = Vector3.Lerp(MaidWindow.localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
 	}
 
 	private void AdjustBlur()
 	{
+		Debug.Log("Adjusting blur from StreetShopInterface script.");
 		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
 		settings.focusDistance = BlurAmount;
 		Profile.depthOfField.settings = settings;

@@ -88,7 +88,7 @@ public class FanCoverScript : MonoBehaviour
 		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			Debug.Log("Uh?");
+			Debug.Log("Fan Murder Starts Here.?");
 			Yandere.CharacterAnimation.CrossFade("f02_fanMurderA_00");
 			Rival.CharacterAnimation.CrossFade("f02_fanMurderB_00");
 			Rival.OsanaHairAnim.CrossFade("fanMurderHair");
@@ -98,8 +98,12 @@ public class FanCoverScript : MonoBehaviour
 			Rival.OsanaHair.transform.localEulerAngles = Vector3.zero;
 			Rival.OsanaHair.transform.localPosition = Vector3.zero;
 			Rival.OsanaHair.transform.localScale = new Vector3(1f, 1f, 1f);
-			Rival.OsanaHairL.enabled = false;
-			Rival.OsanaHairR.enabled = false;
+			Rival.OsanaHairPhysics[0].enabled = false;
+			Rival.OsanaHairPhysics[1].enabled = false;
+			Rival.OsanaHairPhysics[2].enabled = false;
+			Rival.OsanaHairPhysics[3].enabled = false;
+			Rival.OsanaHairPhysics[2].transform.parent = Rival.OsanaHairPhysics[0].transform.parent;
+			Rival.OsanaHairPhysics[3].transform.parent = Rival.OsanaHairPhysics[0].transform.parent;
 			Rival.Distracted = true;
 			Yandere.CanMove = false;
 			Rival.Meeting = false;
