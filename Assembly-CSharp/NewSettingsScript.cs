@@ -847,6 +847,7 @@ public class NewSettingsScript : MonoBehaviour
 						QualityManager.UpdateOutlinesAndRimlight();
 					}
 					UpdateLabels();
+					Debug.Log("GameGlobals.CensorCorpses is: " + GameGlobals.CensorCorpses);
 				}
 			}
 			else if (Selection == 7 && (NewTitleScreen.InputManager.TappedRight || NewTitleScreen.InputManager.TappedLeft))

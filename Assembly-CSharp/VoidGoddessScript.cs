@@ -419,6 +419,24 @@ public class VoidGoddessScript : MonoBehaviour
 			StudentManager.Students[Selected].BecomeRagdoll();
 			StudentManager.Students[Selected].Ragdoll.NeckSnapped = true;
 		}
+		if (!Input.GetKeyDown("l"))
+		{
+			return;
+		}
+		Debug.Log("Pressed the 'L' key.");
+		for (int i = 1; i < 101; i++)
+		{
+			if (StudentManager.Students[i] != null)
+			{
+				Debug.Log("Updating the schedule for Student # " + i);
+				for (int j = 1; j < StudentManager.Students[i].ScheduleBlocks.Length; j++)
+				{
+					Debug.Log("Updating ScheduleBlock # " + j + " for Student # " + i);
+					StudentManager.Students[i].ScheduleBlocks[j].action = "LivingSecurityCamera";
+				}
+				StudentManager.Students[i].GetDestinations();
+			}
+		}
 	}
 
 	private void UpdateHighlight()

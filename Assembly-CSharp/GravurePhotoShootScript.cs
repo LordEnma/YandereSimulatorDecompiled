@@ -32,6 +32,14 @@ public class GravurePhotoShootScript : MonoBehaviour
 				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				return;
 			}
+			if (Prompt.Yandere.StudentManager.Students[19] != null && Prompt.Yandere.StudentManager.Students[19].CurrentAction != StudentActionType.GravurePose)
+			{
+				Prompt.Yandere.NotificationManager.CustomText = "Chigusa's photoshoot!";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				Prompt.Yandere.NotificationManager.CustomText = "Only available during";
+				Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				return;
+			}
 			if ((Prompt.Yandere.StudentManager.Students[19] != null && Prompt.Yandere.StudentManager.Students[19].Electrified) || (Prompt.Yandere.StudentManager.Students[19] != null && Prompt.Yandere.StudentManager.Students[19].Electrocuted) || (Prompt.Yandere.StudentManager.Students[19] != null && !Prompt.Yandere.StudentManager.Students[19].Alive))
 			{
 				Prompt.Yandere.NotificationManager.CustomText = "Chigusa is dead!";

@@ -1586,8 +1586,7 @@ public class TalkingScript : MonoBehaviour
 				}
 				else
 				{
-					S.Subtitle.CustomText = "You joined our club, and then you just...never showed up. I don't see a reason to let you join the club again...";
-					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 99f);
+					S.Subtitle.UpdateLabel(SubtitleType.ClubExplainKick, (int)(S.Club + ClubBonus), 10f);
 				}
 				S.TalkTimer = 10f;
 			}

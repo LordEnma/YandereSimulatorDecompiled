@@ -144,9 +144,11 @@ public class ModernRivalSabotageScript : MonoBehaviour
 			}
 			else if (ID == 4)
 			{
-				if (!Prompt.Yandere.Inventory.Sugar)
+				if (!Prompt.Yandere.Inventory.FakeRat)
 				{
-					Prompt.Yandere.NotificationManager.CustomText = "Grab some sugar from the Home Ec Room.";
+					Prompt.Yandere.NotificationManager.CustomText = "the workshop and bring it here.";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Prompt.Yandere.NotificationManager.CustomText = "Craft a fake dead animal in";
 					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				}
 				else
@@ -159,9 +161,10 @@ public class ModernRivalSabotageScript : MonoBehaviour
 					}
 					else
 					{
-						Prompt.Yandere.NotificationManager.CustomText = "Sugar Spread!";
+						Prompt.Yandere.NotificationManager.CustomText = "Fake dead animal placed!";
 						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-						Prompt.Yandere.Inventory.Sugar = false;
+						Prompt.Yandere.Inventory.FakeRat = false;
+						ObjectToEnable.SetActive(value: true);
 						SabotagedEvent.gameObject.SetActive(value: true);
 						NormalEvent.gameObject.SetActive(value: false);
 						Disable();
@@ -283,6 +286,39 @@ public class ModernRivalSabotageScript : MonoBehaviour
 					base.enabled = false;
 				}
 			}
+			else if (ID == 9)
+			{
+				bool flag2 = true;
+				for (int j = 0; j < SabotageCriteria.Length; j++)
+				{
+					if (!SabotageCriteria[j])
+					{
+						flag2 = false;
+						break;
+					}
+				}
+				if (flag2)
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "as the corpse of a dead animal!";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Prompt.Yandere.NotificationManager.CustomText = "You disguised the rotten meat";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					Prompt.Yandere.Inventory.FakeRat = true;
+					Prompt.Yandere.Inventory.FakeRatMaterials = false;
+					Prompt.Yandere.Inventory.RottenMeat = false;
+					Prompt.Yandere.Inventory.String = false;
+					Prompt.Yandere.Inventory.Sugar = false;
+					SabotageChecklist.alpha = 0f;
+					Prompt.Hide();
+					Prompt.enabled = false;
+					base.enabled = false;
+				}
+				else
+				{
+					Prompt.Yandere.NotificationManager.CustomText = "Obtain the required materials first.";
+					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				}
+			}
 		}
 		if (Prompt.ButtonActive[1] && Prompt.Circle[1].fillAmount == 0f)
 		{
@@ -297,12 +333,12 @@ public class ModernRivalSabotageScript : MonoBehaviour
 				}
 				else
 				{
-					bool flag2 = false;
+					bool flag3 = false;
 					if (Prompt.Yandere.Armed && Prompt.Yandere.EquippedWeapon.WeaponID == 24)
 					{
-						flag2 = true;
+						flag3 = true;
 					}
-					if (!flag2)
+					if (!flag3)
 					{
 						Prompt.Yandere.NotificationManager.CustomText = "Acquire a pipe wrench first!";
 						Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -353,24 +389,56 @@ public class ModernRivalSabotageScript : MonoBehaviour
 				Prompt.Yandere.Phone.SetActive(value: true);
 			}
 		}
-		if (SabotageChecklist != null)
+		if (!(SabotageChecklist != null))
 		{
-			if (Vector3.Distance(Prompt.Yandere.transform.position, base.transform.position) < 2f && !Sabotaged)
+			return;
+		}
+		if (Vector3.Distance(Prompt.Yandere.transform.position, base.transform.position) < 2f && !Sabotaged)
+		{
+			SabotageChecklist.alpha = Mathf.MoveTowards(SabotageChecklist.alpha, 1f, Time.deltaTime);
+		}
+		else
+		{
+			SabotageChecklist.alpha = Mathf.MoveTowards(SabotageChecklist.alpha, 0f, Time.deltaTime);
+		}
+		if (Prompt.Yandere.StudentManager.Clock.HourTime > TimeLimit)
+		{
+			Disable();
+		}
+		if (Prompt.Yandere.StudentManager.CameFromLoad && !Checked)
+		{
+			CheckForSabotageSuccess();
+			Checked = true;
+		}
+		if (ID == 9)
+		{
+			if (Prompt.Yandere.Inventory.FakeRatMaterials)
 			{
-				SabotageChecklist.alpha = Mathf.MoveTowards(SabotageChecklist.alpha, 1f, Time.deltaTime);
+				SabotageCriteria[0] = true;
+			}
+			if (Prompt.Yandere.Inventory.RottenMeat)
+			{
+				SabotageCriteria[1] = true;
+			}
+			if ((Prompt.Yandere.Weapon[1] != null && Prompt.Yandere.Weapon[1].Scissors) || (Prompt.Yandere.Weapon[2] != null && Prompt.Yandere.Weapon[2].Scissors) || (Prompt.Yandere.EquippedWeapon != null && Prompt.Yandere.EquippedWeapon.Scissors))
+			{
+				SabotageCriteria[2] = true;
 			}
 			else
 			{
-				SabotageChecklist.alpha = Mathf.MoveTowards(SabotageChecklist.alpha, 0f, Time.deltaTime);
+				SabotageCriteria[2] = false;
 			}
-			if (Prompt.Yandere.StudentManager.Clock.HourTime > TimeLimit)
+			if (Prompt.Yandere.Inventory.String)
 			{
-				Disable();
+				SabotageCriteria[3] = true;
 			}
-			if (Prompt.Yandere.StudentManager.CameFromLoad && !Checked)
+			if (Prompt.Yandere.Inventory.Sugar)
 			{
-				CheckForSabotageSuccess();
-				Checked = true;
+				SabotageCriteria[4] = true;
+			}
+			for (int k = 0; k < SabotageCheckmark.Length; k++)
+			{
+				SabotageCheckmark[k].spriteName = (SabotageCriteria[k] ? "Yes" : "No");
 			}
 		}
 	}

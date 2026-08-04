@@ -119,11 +119,11 @@ public class SaveLoadMenuScript : MonoBehaviour
 		}
 		if (WarningWindow.activeInHierarchy)
 		{
-			if (Input.GetButtonDown("A"))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				WarningWindow.SetActive(value: false);
 			}
-			else if (Input.GetButtonDown("B"))
+			else if (Input.GetButtonDown(InputNames.Xbox_B))
 			{
 				PauseScreen.MainMenu.SetActive(value: true);
 				PauseScreen.Sideways = false;
@@ -138,7 +138,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 			}
 			return;
 		}
-		if (Input.GetButtonDown("A"))
+		if (Input.GetButtonDown(InputNames.Xbox_A))
 		{
 			if (Loading)
 			{
@@ -188,7 +188,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 				}
 			}
 		}
-		if (Input.GetButtonDown("X"))
+		if (Input.GetButtonDown(InputNames.Xbox_X))
 		{
 			Debug.Log("Now attempting to delete a save file.");
 			Debug.Log("Current Profile is " + Profile + ", current Slot is " + Selected + ".");
@@ -205,7 +205,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 				}
 			}
 		}
-		if (Input.GetButtonDown("B"))
+		if (Input.GetButtonDown(InputNames.Xbox_B))
 		{
 			if (ConfirmWindow.activeInHierarchy)
 			{

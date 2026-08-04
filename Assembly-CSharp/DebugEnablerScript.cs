@@ -38,6 +38,7 @@ public class DebugEnablerScript : MonoBehaviour
 	{
 		_ = Editor;
 		StandWeapons.SetActive(value: false);
+		MurderKit.SetActive(value: false);
 		Memes.SetActive(value: false);
 		Keys.SetActive(value: false);
 		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || GameGlobals.KokonaTutorial || GameGlobals.EightiesTutorial || ChallengeGlobals.KnifeOnly || ChallengeGlobals.NoAlerts || ChallengeGlobals.NoBag || ChallengeGlobals.NoFriends || ChallengeGlobals.NoGaming || ChallengeGlobals.NoInfo || ChallengeGlobals.NoLaugh || ChallengeGlobals.RivalsOnly)

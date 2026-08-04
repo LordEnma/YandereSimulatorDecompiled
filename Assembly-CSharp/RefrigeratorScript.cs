@@ -26,6 +26,10 @@ public class RefrigeratorScript : MonoBehaviour
 
 	public GameObject Sausage;
 
+	public Animation CookingCameraAnim;
+
+	public Animation CookingPropsAnim;
+
 	public Transform CameraParent;
 
 	public Transform CookingSpot;
@@ -43,6 +47,8 @@ public class RefrigeratorScript : MonoBehaviour
 	public AudioSource SFX;
 
 	public UISprite Darkness;
+
+	public UIPanel SkipPanel;
 
 	public bool Cooking;
 
@@ -129,15 +135,25 @@ public class RefrigeratorScript : MonoBehaviour
 				{
 					EventPhase = 3;
 				}
+				SkipPanel.alpha = 0f;
+			}
+			else
+			{
+				SkipPanel.alpha = Mathf.MoveTowards(SkipPanel.alpha, 1f, Time.deltaTime * 2f);
 			}
 			if (Yandere.CharacterAnimation["f02_cookingMontage_00"].time >= Yandere.CharacterAnimation["f02_cookingMontage_00"].length)
 			{
 				Yandere.CharacterAnimation.Play("f02_cookingMontageLoop_00");
+				SkipPanel.alpha = 0f;
 				EventPhase++;
 			}
-			if (Yandere.CharacterAnimation["f02_cookingMontage_00"].time >= Yandere.CharacterAnimation["f02_cookingMontage_00"].length)
+			if (SkipPanel.alpha > 0.999f && Input.GetButtonDown(InputNames.Xbox_X))
 			{
-				Yandere.CharacterAnimation.Play("f02_cookingMontageLoop_00");
+				Yandere.CharacterAnimation["f02_cookingMontage_00"].time = 8f;
+				CookingCameraAnim["obj_CameraCookingMontage"].time = 8f;
+				CookingPropsAnim["obj_PropsCookingMontage"].time = 8f;
+				ChoppingBlock.SetActive(value: false);
+				SkipPanel.alpha = 0f;
 				EventPhase++;
 			}
 		}

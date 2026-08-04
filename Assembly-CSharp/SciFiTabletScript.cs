@@ -12,7 +12,18 @@ public class SciFiTabletScript : MonoBehaviour
 
 	private void Start()
 	{
-		Holograms = Student.StudentManager.Holograms;
+		if (Student == null)
+		{
+			base.enabled = false;
+		}
+		else if (Student.StudentID == 62)
+		{
+			Holograms = Student.StudentManager.Holograms;
+		}
+		else
+		{
+			base.enabled = false;
+		}
 	}
 
 	private void Update()

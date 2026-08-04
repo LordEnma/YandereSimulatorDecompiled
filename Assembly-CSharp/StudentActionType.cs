@@ -60,5 +60,6 @@ public enum StudentActionType
 	BakeSale = 57,
 	Picnic = 58,
 	DeskDraw = 59,
-	PrepareFoodForever = 60
+	PrepareFoodForever = 60,
+	LivingSecurityCamera = 61
 }

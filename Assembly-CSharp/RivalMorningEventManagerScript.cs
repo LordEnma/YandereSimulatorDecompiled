@@ -37,6 +37,8 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 
 	public AudioSource VoiceClipSource;
 
+	public GameObject[] ObjectsToDeactivate;
+
 	public GameObject[] ObjectsToActivate;
 
 	public GameObject ObjectToActivate;
@@ -127,7 +129,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 			if (EventDay == DayOfWeek.Thursday)
 			{
 				ObjectsToActivate[0].SetActive(value: true);
-				ObjectToActivate.SetActive(value: true);
+				ObjectsToDeactivate[0].SetActive(value: false);
 			}
 			else if (EventDay == DayOfWeek.Friday)
 			{

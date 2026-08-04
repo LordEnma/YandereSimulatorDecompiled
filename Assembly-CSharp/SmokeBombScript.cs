@@ -216,6 +216,7 @@ public class SmokeBombScript : MonoBehaviour
 				Student.DistanceToDestination = 100f;
 				Student.Pathfinding.speed = 4f;
 				Student.AmnesiaTimer = 10f;
+				Student.HadAmnesia = true;
 				Student.GoAway = true;
 			}
 			Student.FocusOnStudent = false;

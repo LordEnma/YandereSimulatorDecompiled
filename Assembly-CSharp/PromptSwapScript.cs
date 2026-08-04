@@ -22,6 +22,14 @@ public class PromptSwapScript : MonoBehaviour
 
 	private void Awake()
 	{
+		if (MyLetter != null && MyLetter.name != "ButtonTextLabel")
+		{
+			Transform transform = MyLetter.transform.parent.Find("ButtonTextLabel");
+			if (transform != null)
+			{
+				Object.Destroy(transform.gameObject);
+			}
+		}
 		if (SonyName == string.Empty)
 		{
 			if (GamepadName == "A")

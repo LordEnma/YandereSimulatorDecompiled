@@ -5,11 +5,12 @@ public class TownJukeboxScript : MonoBehaviour
 	public enum Region
 	{
 		Residential = 0,
-		Graveyard = 1,
-		Industry = 2,
-		Asylum = 3,
-		Shrine = 4,
-		Beach = 5
+		Commercial = 1,
+		Graveyard = 2,
+		Industry = 3,
+		Asylum = 4,
+		Shrine = 5,
+		Beach = 6
 	}
 
 	public StalkerYandereScript Yandere;
@@ -32,13 +33,17 @@ public class TownJukeboxScript : MonoBehaviour
 				Track[i].Play();
 			}
 		}
-		if (Yandere.transform.position.x < -393f && Yandere.transform.position.z > -14f)
-		{
-			CurrentRegion = Region.Industry;
-		}
-		else if (Yandere.transform.position.x > -393f && Yandere.transform.position.z > 183f)
+		if (Yandere.transform.position.x > -393f && Yandere.transform.position.z > 183f)
 		{
 			CurrentRegion = Region.Beach;
+		}
+		else if (Yandere.transform.position.x > -393f && Yandere.transform.position.z > -6f)
+		{
+			CurrentRegion = Region.Commercial;
+		}
+		else if (Yandere.transform.position.x < -393f && Yandere.transform.position.z > -14f)
+		{
+			CurrentRegion = Region.Industry;
 		}
 		else if (Yandere.transform.position.x < -705f && Yandere.transform.position.z < -245.66666f)
 		{

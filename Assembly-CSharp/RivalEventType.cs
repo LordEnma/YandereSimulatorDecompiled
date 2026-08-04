@@ -1,11 +1,14 @@
 public enum RivalEventType
 {
 	None = 0,
-	AmaiClubEvent = 1,
-	AmaiPicnicEvent = 2,
-	AmaiPhoneEvent = 3,
-	AmaiMondayLunchEvent = 4,
-	AmaiTuesdayLunchEvent = 5,
-	AmaiCookingEvent = 6,
-	AmaiCakeEvent = 7
+	AmaiPhoneEvent = 1,
+	AmaiAkaneEvent = 2,
+	AmaiUekiyaEvent = 3,
+	AmaiClubEvent = 4,
+	AmaiMondayLunchEvent = 5,
+	AmaiSewingEvent = 6,
+	AmaiTuesdayLunchEvent = 7,
+	AmaiCookingEvent = 8,
+	AmaiPicnicEvent = 9,
+	AmaiCakeEvent = 10
 }

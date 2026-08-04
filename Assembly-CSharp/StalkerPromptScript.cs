@@ -383,8 +383,8 @@ public class StalkerPromptScript : MonoBehaviour
 						}
 						else if (ID == 13)
 						{
-							Label.text = "Exit the house and leave at the crosswalk you arrived from.";
-							Yandere.InstructionPhase++;
+							Yandere.PhysicalEvidence++;
+							Yandere.UpdateInstructions();
 							ObjectToActivate.SetActive(value: true);
 							ObjectToDeactivate.SetActive(value: false);
 							NotificationManager.CustomText = "Incriminating Evidence Obtained!";

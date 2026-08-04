@@ -239,6 +239,8 @@ public class GenericAnimationSequenceController : MonoBehaviour
 
 	private float originalFixedDeltaTime = 0.02f;
 
+	public CosmeticScript SenpaiCosmetic;
+
 	public YandereScript YandereHair;
 
 	public CosmeticScript Yandere;
@@ -407,6 +409,7 @@ public class GenericAnimationSequenceController : MonoBehaviour
 					AyanoHair.gameObject.SetActive(value: true);
 					RyobaHair.gameObject.SetActive(value: false);
 				}
+				SenpaiCosmetic.GrabCustomTextures();
 			}
 		}
 		else

@@ -1435,6 +1435,10 @@ public class CalendarScript : MonoBehaviour
 		}
 		ClubGlobals.ActivitiesAttended = 0;
 		GameGlobals.CorkboardScene = true;
+		for (int num = 1; num < 10; num++)
+		{
+			CollectibleGlobals.SetBugPlaced(num, value: false);
+		}
 	}
 
 	private void Save()

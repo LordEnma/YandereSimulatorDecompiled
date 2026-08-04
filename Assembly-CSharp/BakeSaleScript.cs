@@ -12,6 +12,8 @@ public class BakeSaleScript : MonoBehaviour
 
 	public GameObject AmaiFail;
 
+	public GameObject Flowers;
+
 	public UILabel ProfitLabel;
 
 	public Transform MeetSpot;
@@ -43,6 +45,14 @@ public class BakeSaleScript : MonoBehaviour
 	public float Timer;
 
 	public bool[] TrayPlaced;
+
+	public void Start()
+	{
+		if (StudentManager.Students[71] == null || ClubGlobals.GetClubClosed(ClubType.Gardening))
+		{
+			Flowers.SetActive(value: false);
+		}
+	}
 
 	public void UpdatePosters()
 	{

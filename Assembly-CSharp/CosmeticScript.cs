@@ -193,6 +193,8 @@ public class CosmeticScript : MonoBehaviour
 
 	public SkinnedMeshRenderer MyRenderer;
 
+	public Renderer TeacherAccessoryRenderer;
+
 	public Renderer TurtleEyewearRenderer;
 
 	public Renderer OccultChokerRenderer;
@@ -613,7 +615,12 @@ public class CosmeticScript : MonoBehaviour
 
 	public void Start()
 	{
+		RememberInvertHair = false;
 		InvertHair = false;
+		if (JSON.Misc.InvertHairs.Length != 0 && JSON.Misc.InvertHairs[StudentID] == 1)
+		{
+			InvertHair = true;
+		}
 		if (StudentManager != null)
 		{
 			CustomMode = StudentManager.CustomMode;
@@ -2281,6 +2288,7 @@ public class CosmeticScript : MonoBehaviour
 			}
 			else if (TeacherAccessories[Accessory] != null && (!TakingPortrait || Eighties || (TakingPortrait && StudentID < 97)))
 			{
+				TeacherAccessoryRenderer = TeacherAccessories[Accessory].GetComponent<Renderer>();
 				TeacherAccessories[Accessory].SetActive(value: true);
 			}
 		}
@@ -2538,6 +2546,8 @@ public class CosmeticScript : MonoBehaviour
 					LeftEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
 					RightEyeRenderer.material.color = CorrectColor;
 					LeftEyeRenderer.material.color = CorrectColor;
+					RightEyeRenderer.gameObject.SetActive(value: true);
+					LeftEyeRenderer.gameObject.SetActive(value: true);
 					RightIrisLight.SetActive(value: true);
 					LeftIrisLight.SetActive(value: true);
 				}
@@ -2641,6 +2651,15 @@ public class CosmeticScript : MonoBehaviour
 					{
 						RightEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
 						LeftEyeRenderer.material.mainTexture = HairRenderer.material.mainTexture;
+						RightEyeRenderer.material.color = Color.white;
+						LeftEyeRenderer.material.color = Color.white;
+					}
+					else
+					{
+						RightEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
+						LeftEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
+						RightEyeRenderer.material.color = CorrectColor;
+						LeftEyeRenderer.material.color = CorrectColor;
 					}
 					DoNotChangeFace = SkinColor > 0;
 					if (!DoNotChangeFace)
@@ -2675,6 +2694,8 @@ public class CosmeticScript : MonoBehaviour
 				{
 					RightEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
 					LeftEyeRenderer.material.mainTexture = GrayscaleEyeTexture;
+					RightEyeRenderer.material.color = CorrectColor;
+					LeftEyeRenderer.material.color = CorrectColor;
 					RightIrisLight.SetActive(value: true);
 					LeftIrisLight.SetActive(value: true);
 				}
@@ -2905,9 +2926,8 @@ public class CosmeticScript : MonoBehaviour
 				if (MaleHair[Hairstyle].transform.localScale.x > 0f)
 				{
 					MaleHair[Hairstyle].transform.localScale = new Vector3(MaleHair[Hairstyle].transform.localScale.x * -1f, MaleHair[Hairstyle].transform.localScale.y, MaleHair[Hairstyle].transform.localScale.z);
-					if (TakingPortrait || Club == ClubType.Council)
+					if (!TakingPortrait && Club != ClubType.Council)
 					{
-						RememberInvertHair = true;
 					}
 				}
 			}
@@ -2922,9 +2942,8 @@ public class CosmeticScript : MonoBehaviour
 					{
 						Debug.Log("It was greater than 0, so it is now flipping.");
 						FemaleHair[Hairstyle].transform.localScale = new Vector3(FemaleHair[Hairstyle].transform.localScale.x * -1f, FemaleHair[Hairstyle].transform.localScale.y, FemaleHair[Hairstyle].transform.localScale.z);
-						if (TakingPortrait || Club == ClubType.Council)
+						if (!TakingPortrait && Club != ClubType.Council)
 						{
-							RememberInvertHair = true;
 						}
 					}
 				}
@@ -4859,10 +4878,13 @@ public class CosmeticScript : MonoBehaviour
 			Debug.Log("GrabCustomTextures() is now firing SetMaleUniform()");
 			SetMaleUniform();
 		}
-		Student.ShoeRemoval.OutdoorShoes = CasualTexture;
-		Student.ShoeRemoval.IndoorShoes = UniformTexture;
-		Student.ShoeRemoval.TargetShoes = UniformTexture;
-		Student.ShoeRemoval.Socks = SocksTexture;
+		if (Student.ShoeRemoval != null)
+		{
+			Student.ShoeRemoval.OutdoorShoes = CasualTexture;
+			Student.ShoeRemoval.IndoorShoes = UniformTexture;
+			Student.ShoeRemoval.TargetShoes = UniformTexture;
+			Student.ShoeRemoval.Socks = SocksTexture;
+		}
 		Student.UniformTexture = CasualTexture;
 	}
 

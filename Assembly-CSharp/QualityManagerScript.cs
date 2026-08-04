@@ -418,6 +418,8 @@ public class QualityManagerScript : MonoBehaviour
 					{
 						studentScript.Cosmetic.HairbandRenderer.material.shader = NewHairShader;
 					}
+					studentScript.Cosmetic.AmaiBrows.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.shader = NewHairShader;
+					studentScript.Cosmetic.AmaiBrows.transform.GetChild(1).gameObject.GetComponent<Renderer>().material.shader = NewHairShader;
 				}
 				else
 				{
@@ -977,6 +979,12 @@ public class QualityManagerScript : MonoBehaviour
 							studentScript.Cosmetic.TeacherHairRenderers[studentScript.Cosmetic.Hairstyle].material.SetFloat("_Saturation", 0f);
 						}
 					}
+					studentScript.Cosmetic.AmaiBrows.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.shader = NewHairShader;
+					studentScript.Cosmetic.AmaiBrows.transform.GetChild(1).gameObject.GetComponent<Renderer>().material.shader = NewHairShader;
+					if (studentScript.StudentID < 90 && studentScript.Cosmetic.PhoneCharms[studentScript.StudentID] != null)
+					{
+						studentScript.Cosmetic.PhoneCharms[studentScript.StudentID].GetComponent<Renderer>().material.shader = NewHairShader;
+					}
 				}
 				else
 				{
@@ -1020,7 +1028,7 @@ public class QualityManagerScript : MonoBehaviour
 						{
 							component3.material.shader = NewBodyShader;
 							AdjustRimLight(component3.material);
-							if (!Eighties && studentScript.StudentID == 33)
+							if (!Eighties && !StudentManager.CustomMode && studentScript.StudentID == 33)
 							{
 								component3.materials[2].color = new Color(1f, 1f, 1f, 0.5f);
 								component3.materials[2].shader = Shader.Find("Transparent/Diffuse");
@@ -1092,6 +1100,14 @@ public class QualityManagerScript : MonoBehaviour
 		{
 			Yandere.TheDebugMenuScript.UpdateCensor();
 			Yandere.TheDebugMenuScript.UpdateCensor();
+		}
+		foreach (Transform item in StudentManager.Police.LimbParent)
+		{
+			BodyPartScript component5 = item.GetComponent<BodyPartScript>();
+			if (component5 != null)
+			{
+				component5.Start();
+			}
 		}
 	}
 
@@ -1213,6 +1229,7 @@ public class QualityManagerScript : MonoBehaviour
 
 	public void ApplyMatrixSettings(Material mat, Texture matrixTexture)
 	{
+		Debug.Log("This function is firing.");
 		if (!(mat == null))
 		{
 			mat.SetFloat("_Alpha", 1f);

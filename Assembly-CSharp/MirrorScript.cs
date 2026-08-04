@@ -17,10 +17,24 @@ public class MirrorScript : MonoBehaviour
 	private void Start()
 	{
 		Started = true;
-		Limit = Idles.Length - 1;
 		if (GameGlobals.Eighties)
 		{
 			Prompt.Yandere.PersonaID = 1;
+			Limit = Idles.Length - 1;
+		}
+		else
+		{
+			Limit = 18;
+			int week = DateGlobals.Week;
+			int rivalEliminationID = GameGlobals.RivalEliminationID;
+			if ((week == 1 && rivalEliminationID > 0) || week == 2)
+			{
+				Limit = 19;
+			}
+			if ((week == 2 && rivalEliminationID > 0) || week == 3)
+			{
+				Limit = 20;
+			}
 		}
 		if (Prompt.Yandere.Club == ClubType.Delinquent)
 		{
@@ -48,7 +62,7 @@ public class MirrorScript : MonoBehaviour
 			{
 				Prompt.Circle[0].fillAmount = 1f;
 				Prompt.Yandere.PersonaID++;
-				if (Prompt.Yandere.PersonaID == Limit)
+				if (Prompt.Yandere.PersonaID > Limit)
 				{
 					Prompt.Yandere.PersonaID = 0;
 				}
@@ -61,7 +75,7 @@ public class MirrorScript : MonoBehaviour
 			Prompt.Yandere.PersonaID--;
 			if (Prompt.Yandere.PersonaID < 0)
 			{
-				Prompt.Yandere.PersonaID = Limit - 1;
+				Prompt.Yandere.PersonaID = Limit;
 			}
 			UpdatePersona();
 		}

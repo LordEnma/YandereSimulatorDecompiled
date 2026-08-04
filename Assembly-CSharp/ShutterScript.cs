@@ -78,6 +78,8 @@ public class ShutterScript : MonoBehaviour
 
 	public GameObject InfoX;
 
+	public bool RestoreWitnessCamera;
+
 	public bool PhotographedKokona;
 
 	public bool BountyComplete;
@@ -247,6 +249,11 @@ public class ShutterScript : MonoBehaviour
 					PromptBar.Show = true;
 					MiyukiTV.playbackSpeed = 0f;
 					Time.timeScale = 0.0001f;
+					if (StudentManager.WitnessCamera.enabled)
+					{
+						RestoreWitnessCamera = true;
+						StudentManager.WitnessCamera.gameObject.SetActive(value: false);
+					}
 				}
 			}
 			else
@@ -1106,6 +1113,10 @@ public class ShutterScript : MonoBehaviour
 		Yandere.RPGCamera.mouseX = Yandere.RPGCamera.mouseXSmooth;
 		Yandere.RPGCamera.mouseY = Yandere.RPGCamera.mouseYSmooth;
 		Yandere.RPGCamera.mouseSmoothingFactor = 0.08f;
+		if (RestoreWitnessCamera)
+		{
+			StudentManager.WitnessCamera.gameObject.SetActive(value: true);
+		}
 	}
 
 	public void Penalize()

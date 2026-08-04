@@ -621,6 +621,8 @@ public class YandereScript : MonoBehaviour
 
 	public bool SabotagingWithWrench;
 
+	public bool TransitioningToIdle;
+
 	public bool CreatingBucketTrap;
 
 	public bool DelinquentFighting;
@@ -1026,6 +1028,8 @@ public class YandereScript : MonoBehaviour
 	public string OriginalWalkAnim = string.Empty;
 
 	public string OriginalRunAnim = string.Empty;
+
+	public Texture FirstPersonBloodTexture;
 
 	public Texture YanderePhoneTexture;
 
@@ -2789,7 +2793,20 @@ public class YandereScript : MonoBehaviour
 					}
 					else
 					{
-						CharacterAnimation.CrossFade(IdleAnim);
+						if (TransitioningToIdle)
+						{
+							CharacterAnimation["f02_ayanoStopRunRight_00"].speed = 2f;
+							CharacterAnimation.CrossFade("f02_ayanoStopRunRight_00");
+							if (CharacterAnimation["f02_ayanoStopRunRight_00"].time >= CharacterAnimation["f02_ayanoStopRunRight_00"].length)
+							{
+								TransitioningToIdle = false;
+								CharacterAnimation.CrossFade(IdleAnim);
+							}
+						}
+						else
+						{
+							CharacterAnimation.CrossFade(IdleAnim);
+						}
 						if (NearSenpai)
 						{
 							for (int j = 1; j < 6; j++)
@@ -3008,6 +3025,10 @@ public class YandereScript : MonoBehaviour
 								Mopping = false;
 								Selfie = false;
 								Aiming = true;
+								if (Bloodiness > 0f || RedPaint)
+								{
+									MyProjector.material.mainTexture = FirstPersonBloodTexture;
+								}
 								if (Inventory.RivalPhone)
 								{
 									if (!RivalPhone)
@@ -4090,34 +4111,6 @@ public class YandereScript : MonoBehaviour
 				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, targetRotation, Time.deltaTime * 10f);
 			}
 			CharacterAnimation.CrossFade("f02_dipping_00");
-			if (CharacterAnimation["f02_dipping_00"].time >= CharacterAnimation["f02_dipping_00"].length * 0.5f)
-			{
-				if (Mop == null)
-				{
-					Mop = PickUp.Mop;
-				}
-				Mop.Bleached = true;
-				Mop.Sparkles.Play();
-				if (Mop.StudentBloodID > 0)
-				{
-					Bucket.StudentBloodID = Mop.StudentBloodID;
-					Mop.StudentBloodID = 0;
-				}
-				if (Mop.Bloodiness > 0f)
-				{
-					if (Bucket != null)
-					{
-						Bucket.Bloodiness += Mop.Bloodiness / 2f;
-						Bucket.UpdateAppearance = true;
-						if (Bucket.Bloodiness >= 50f)
-						{
-							Bucket.PickUp.Outline[0].color = new Color(1f, 0.5f, 0f, 1f);
-						}
-					}
-					Mop.Bloodiness = 0f;
-					Mop.UpdateBlood();
-				}
-			}
 			if (CharacterAnimation["f02_dipping_00"].time >= CharacterAnimation["f02_dipping_00"].length)
 			{
 				CharacterAnimation["f02_dipping_00"].time = 0f;
@@ -4125,6 +4118,44 @@ public class YandereScript : MonoBehaviour
 				TooCloseToWall = false;
 				Dipping = false;
 				CanMove = true;
+				Mop.Phase = 0;
+			}
+			else if (CharacterAnimation["f02_dipping_00"].time >= CharacterAnimation["f02_dipping_00"].length * 0.5f)
+			{
+				if (Mop == null)
+				{
+					Mop = PickUp.Mop;
+				}
+				if (Mop.Phase == 1)
+				{
+					Mop.Phase++;
+					Mop.Bleached = true;
+					Mop.Sparkles.Play();
+					if (Mop.StudentBloodID > 0)
+					{
+						Bucket.StudentBloodID = Mop.StudentBloodID;
+						Mop.StudentBloodID = 0;
+					}
+					if (Mop.Bloodiness > 0f)
+					{
+						if (Bucket != null)
+						{
+							Bucket.Bloodiness += Mop.Bloodiness / 2f;
+							Bucket.UpdateAppearance = true;
+							if (Bucket.Bloodiness >= 50f)
+							{
+								Bucket.PickUp.Outline[0].color = new Color(1f, 0.5f, 0f, 1f);
+							}
+						}
+						Mop.Bloodiness = 0f;
+						Mop.UpdateBlood();
+					}
+				}
+			}
+			else if (CharacterAnimation["f02_dipping_00"].time >= CharacterAnimation["f02_dipping_00"].length * 0.3f && Mop.Phase == 0)
+			{
+				UnityEngine.Object.Instantiate(Mop.Splash, Bucket.transform.position + new Vector3(0f, 0.2f, 0f), Quaternion.identity).transform.eulerAngles = base.transform.eulerAngles + new Vector3(-90f, 0f, 0f);
+				Mop.Phase++;
 			}
 			TooCloseToWall = false;
 			Direction = 1;
@@ -5983,67 +6014,67 @@ public class YandereScript : MonoBehaviour
 				CharacterAnimation.CrossFade("f02_greet_00");
 				if (TargetStudent.Witnessed == StudentWitnessType.Insanity || TargetStudent.Witnessed == StudentWitnessType.WeaponAndBloodAndInsanity || TargetStudent.Witnessed == StudentWitnessType.WeaponAndInsanity || TargetStudent.Witnessed == StudentWitnessType.BloodAndInsanity)
 				{
-					Subtitle.UpdateLabel(SubtitleType.InsanityApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.InsanityApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.WeaponAndBlood)
 				{
-					Subtitle.UpdateLabel(SubtitleType.WeaponAndBloodApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.WeaponAndBloodApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Weapon)
 				{
-					Subtitle.UpdateLabel(SubtitleType.WeaponApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.WeaponApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Blood)
 				{
-					Subtitle.UpdateLabel(SubtitleType.BloodApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.BloodApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Lewd)
 				{
-					Subtitle.UpdateLabel(SubtitleType.LewdApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.LewdApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Accident)
 				{
-					Subtitle.UpdateLabel(SubtitleType.AccidentApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.AccidentApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Suspicious)
 				{
-					Subtitle.UpdateLabel(SubtitleType.SuspiciousApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.SuspiciousApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Eavesdropping)
 				{
-					Subtitle.UpdateLabel(SubtitleType.EavesdropApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.EavesdropApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Theft)
 				{
-					Subtitle.UpdateLabel(SubtitleType.TheftApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.TheftApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Violence)
 				{
-					Subtitle.UpdateLabel(SubtitleType.ViolenceApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.ViolenceApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Pickpocketing)
 				{
-					Subtitle.UpdateLabel(SubtitleType.PickpocketApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.PickpocketApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.CleaningItem)
 				{
-					Subtitle.UpdateLabel(SubtitleType.CleaningApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.CleaningApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Poisoning)
 				{
-					Subtitle.UpdateLabel(SubtitleType.PoisonApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.PoisonApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.HoldingBloodyClothing)
 				{
-					Subtitle.UpdateLabel(SubtitleType.HoldingBloodyClothingApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.HoldingBloodyClothingApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Trespassing)
 				{
-					Subtitle.UpdateLabel(SubtitleType.TrespassApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.TrespassApology, 0, 5f);
 				}
 				else if (TargetStudent.Witnessed == StudentWitnessType.Tutorial)
 				{
-					Subtitle.UpdateLabel(SubtitleType.TutorialApology, 0, 10f);
+					Subtitle.UpdateLabel(SubtitleType.TutorialApology, 0, 5f);
 				}
 			}
 			else
@@ -7807,6 +7838,11 @@ public class YandereScript : MonoBehaviour
 		OutOfAmmo = false;
 		PromptBar.ClearButtons();
 		PromptBar.Show = false;
+		if (Bloodiness > 0f)
+		{
+			Bloodiness--;
+			Bloodiness++;
+		}
 	}
 
 	public void FixCamera()
@@ -9147,6 +9183,7 @@ public class YandereScript : MonoBehaviour
 		OriginalRunAnim = RunAnim;
 		TheDebugMenuScript.UpdateCensor();
 		Jukebox.MiyukiMusic();
+		CustomHair.gameObject.SetActive(value: false);
 		Hairstyle = 171;
 		UpdateHair();
 		MagicalGirl = true;

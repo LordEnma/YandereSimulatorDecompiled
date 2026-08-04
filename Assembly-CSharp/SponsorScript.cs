@@ -19,6 +19,8 @@ public class SponsorScript : MonoBehaviour
 
 	public int ID;
 
+	public bool TwoScreens;
+
 	public UITexture[] LogoTextures;
 
 	public UILabel[] NameLabels;
@@ -54,13 +56,21 @@ public class SponsorScript : MonoBehaviour
 			{
 				Timer = 5f;
 			}
-			if (Timer >= 5f)
+			if (!(Timer >= 5f))
 			{
-				Set[1].alpha = Mathf.MoveTowards(Set[1].alpha, 0f, Time.deltaTime * Speed);
-				if (Set[1].alpha < 0.0001f)
+				return;
+			}
+			Set[1].alpha = Mathf.MoveTowards(Set[1].alpha, 0f, Time.deltaTime * Speed);
+			if (Set[1].alpha < 0.0001f)
+			{
+				Timer = 0f;
+				if (TwoScreens)
 				{
-					Timer = 0f;
 					ID++;
+				}
+				else
+				{
+					ID = 4;
 				}
 			}
 		}

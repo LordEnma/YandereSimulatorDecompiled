@@ -3134,7 +3134,6 @@ public class CustomModeScript : MonoBehaviour
 					skinnedMeshRenderer = StudentChanCosmetic.Student.EightiesTeacherAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
 					skinnedMeshRenderer.enabled = true;
 				}
-				Debug.Log("This character is a teacher, so we're going to do something extra...");
 				int blendShapeCount = StudentChanCosmetic.MyRenderer.sharedMesh.blendShapeCount;
 				if (skinnedMeshRenderer != null)
 				{

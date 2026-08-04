@@ -183,8 +183,7 @@ public class StalkerIntroScript : MonoBehaviour
 					Timer += Time.deltaTime;
 					if (Timer > 2f)
 					{
-						Yandere.MyAnimation.Play("f02_girlWalk_LookLeft_00");
-						Yandere.MyAnimation.transform.localScale = new Vector3(-1f, 1f, 1f);
+						Yandere.MyAnimation.Play("f02_girlWalk_LookRight_00");
 						Yandere.VtuberCheck();
 						Phase++;
 					}
@@ -200,7 +199,7 @@ public class StalkerIntroScript : MonoBehaviour
 				DOF = Mathf.MoveTowards(DOF, 2f, Time.deltaTime * Speed);
 				UpdateDOF(DOF, 5.6f);
 				base.transform.LookAt(CameraFocus);
-				if (Yandere.MyAnimation["f02_girlWalk_LookLeft_00"].time > 5f)
+				if (Yandere.MyAnimation["f02_girlWalk_LookRight_00"].time > 5f)
 				{
 					Yandere.transform.position = new Vector3(-19f, 0f, -35f);
 					base.transform.position = new Vector3(-18.5f, 1.3f, -34.5f);

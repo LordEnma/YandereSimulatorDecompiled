@@ -10,6 +10,8 @@ public class MopScript : MonoBehaviour
 
 	public PickUpScript PickUp;
 
+	public GameObject Splash;
+
 	public Collider HeadCollider;
 
 	public AudioSource MyAudio;
@@ -20,11 +22,15 @@ public class MopScript : MonoBehaviour
 
 	public Transform Head;
 
+	public AudioClip DipSFX;
+
 	public float Bloodiness;
 
 	public int StudentBloodID;
 
 	public bool Bleached;
+
+	public int Phase;
 
 	private void Start()
 	{

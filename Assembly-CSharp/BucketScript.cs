@@ -363,6 +363,8 @@ public class BucketScript : MonoBehaviour
 			}
 			else
 			{
+				Debug.Log("Now running this code.");
+				PlaySound(Yandere.PickUp.UseSound);
 				Sparkles.Play();
 				Bleached = true;
 			}
@@ -742,5 +744,16 @@ public class BucketScript : MonoBehaviour
 		{
 			Blood.material.mainTexture = OriginalBloodTexture;
 		}
+	}
+
+	public void PlaySound(AudioClip soundEffect)
+	{
+		GameObject obj = new GameObject("Sound Effect");
+		AudioSource audioSource = obj.AddComponent<AudioSource>();
+		audioSource.clip = soundEffect;
+		audioSource.volume = 1f;
+		audioSource.spatialBlend = 0f;
+		audioSource.Play();
+		Object.Destroy(obj, soundEffect.length);
 	}
 }

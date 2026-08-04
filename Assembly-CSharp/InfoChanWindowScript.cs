@@ -30,7 +30,7 @@ public class InfoChanWindowScript : MonoBehaviour
 	{
 		if (Drop)
 		{
-			Rotation = Mathf.Lerp(Rotation, Drop ? (-90f) : 0f, Time.deltaTime * 10f);
+			Rotation = Mathf.Lerp(Rotation, Open ? (-90f) : 0f, Time.deltaTime * 10f);
 			base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, Rotation, base.transform.localEulerAngles.z);
 			Timer += Time.deltaTime;
 			if (Timer > 1f)

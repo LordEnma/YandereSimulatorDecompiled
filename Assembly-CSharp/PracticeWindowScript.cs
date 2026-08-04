@@ -325,12 +325,13 @@ public class PracticeWindowScript : MonoBehaviour
 				{
 					StudentManager.Students[StudentManager.TranqDetector.TranqCase.VictimID].gameObject.SetActive(value: false);
 				}
-				if (GameGlobals.SenpaiMourning)
+				if (GameGlobals.SenpaiMourning || StudentManager.MissionMode)
 				{
 					StudentManager.Students[1].gameObject.SetActive(value: false);
 					StudentManager.Students[1].transform.position = new Vector3(0f, 100f, 0f);
 					StudentManager.Students[1].transform.parent = base.transform;
 				}
+				StudentManager.EnableAllOutlines();
 			}
 		}
 		else if (Club == ClubType.MartialArts)
@@ -393,6 +394,7 @@ public class PracticeWindowScript : MonoBehaviour
 				}
 				Debug.Log("Regenerating pathfinding grid.");
 				AstarPath.active.Scan();
+				StudentManager.EnableAllOutlines();
 			}
 		}
 	}

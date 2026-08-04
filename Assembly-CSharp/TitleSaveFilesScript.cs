@@ -469,10 +469,21 @@ public class TitleSaveFilesScript : MonoBehaviour
 
 	public void StartNewGame()
 	{
+		Debug.Log("Before creating a new save file, GameGlobals.CensorCorpses was: " + GameGlobals.CensorCorpses);
 		Started = true;
 		bool debug = GameGlobals.Debug;
 		GameGlobals.Profile = EightiesPrefix + ID;
+		bool censorPanties = GameGlobals.CensorPanties;
+		bool censorBlood = GameGlobals.CensorBlood;
+		bool hideKillingAnims = GameGlobals.HideKillingAnims;
+		bool censorCorpses = GameGlobals.CensorCorpses;
+		bool censorWeapons = GameGlobals.CensorWeapons;
 		Globals.DeleteAll();
+		GameGlobals.CensorPanties = censorPanties;
+		GameGlobals.CensorBlood = censorBlood;
+		GameGlobals.HideKillingAnims = hideKillingAnims;
+		GameGlobals.CensorCorpses = censorCorpses;
+		GameGlobals.CensorWeapons = censorWeapons;
 		if (GameGlobals.Eighties)
 		{
 			for (int i = 1; i < 101; i++)
@@ -488,6 +499,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		GameGlobals.Debug = debug;
 		NewTitleScreen.Darkness.color = new Color(1f, 1f, 1f, 0f);
 		Started = false;
+		Debug.Log("After creating a new save file, GameGlobals.CensorCorpses was: " + GameGlobals.CensorCorpses);
 	}
 
 	public void BecomeEighties()

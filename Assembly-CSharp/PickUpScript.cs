@@ -52,6 +52,8 @@ public class PickUpScript : MonoBehaviour
 
 	public GloveScript Gloves;
 
+	public AudioClip UseSound;
+
 	public ClockScript Clock;
 
 	public MopScript Mop;
@@ -905,6 +907,10 @@ public class PickUpScript : MonoBehaviour
 			Debug.Log("A student was carrying a trash bag containing a body part to the incinerator, and dropped it. Re-enabling the trash bag's PickUpScript.");
 			base.enabled = true;
 		}
+		if (CheckForClipping())
+		{
+			base.transform.position = Yandere.transform.position + new Vector3(0f, 1f, 0f);
+		}
 	}
 
 	public void AddSelfToBloodyClothingArray()
@@ -967,5 +973,24 @@ public class PickUpScript : MonoBehaviour
 			num++;
 			FoodPieces[num].SetActive(value: true);
 		}
+	}
+
+	private bool CheckForClipping()
+	{
+		if (MyCollider == null)
+		{
+			Debug.Log("Warning! This object has a null MyCollider.");
+			return false;
+		}
+		int layerMask = 67108865;
+		Collider[] array = Physics.OverlapSphere(MyCollider.bounds.center, MyCollider.bounds.extents.magnitude, layerMask, QueryTriggerInteraction.Ignore);
+		foreach (Collider collider in array)
+		{
+			if (!(collider == MyCollider) && !(collider.transform.root == Yandere.transform) && Physics.ComputePenetration(MyCollider, base.transform.position, base.transform.rotation, collider, collider.transform.position, collider.transform.rotation, out var _, out var _))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

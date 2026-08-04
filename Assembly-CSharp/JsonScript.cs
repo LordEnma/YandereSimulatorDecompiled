@@ -152,5 +152,14 @@ public class JsonScript : MonoBehaviour
 	public void ReloadStudents()
 	{
 		students = StudentJson.LoadFromJson(StudentJson.FilePath);
+		if (GameGlobals.CustomMode)
+		{
+			StudentJson[] array = JsonConvert.DeserializeObject<StudentJson[]>(File.ReadAllText(Path.Combine(FolderPath, "Custom.json")));
+			Students = array;
+			TopicJson[] array2 = JsonConvert.DeserializeObject<TopicJson[]>(File.ReadAllText(Path.Combine(FolderPath, "CustomTopics.json")));
+			Topics = array2;
+			MiscJson miscJson = JsonConvert.DeserializeObject<MiscJson>(File.ReadAllText(Path.Combine(FolderPath, "Misc.json")));
+			Misc = miscJson;
+		}
 	}
 }

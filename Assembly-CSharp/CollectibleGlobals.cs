@@ -36,6 +36,8 @@ public static class CollectibleGlobals
 
 	private const string Str_TapeListened = "TapeListened_";
 
+	private const string Str_BugPlaced = "BugPlaced_";
+
 	public static int MatchmakingGifts
 	{
 		get
@@ -300,6 +302,23 @@ public static class CollectibleGlobals
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_TapeListened_");
 	}
 
+	public static bool GetBugPlaced(int tapeID)
+	{
+		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile + "_BugPlaced_" + tapeID);
+	}
+
+	public static void SetBugPlaced(int tapeID, bool value)
+	{
+		string text = tapeID.ToString();
+		KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile + "_BugPlaced_", text);
+		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_BugPlaced_" + text, value);
+	}
+
+	public static int[] KeysOfBugPlaced()
+	{
+		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile + "_BugPlaced_");
+	}
+
 	public static void DeleteAll()
 	{
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_HeadmasterTapeCollected_", KeysOfHeadmasterTapeCollected());
@@ -314,6 +333,7 @@ public static class CollectibleGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_GiftGiven_", KeysOfGiftGiven());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_TapeCollected_", KeysOfTapeCollected());
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_TapeListened_", KeysOfTapeListened());
+		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_BugPlaced_", KeysOfBugPlaced());
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_MatchmakingGifts");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_SenpaiGifts");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_HorrorMangaProgress");

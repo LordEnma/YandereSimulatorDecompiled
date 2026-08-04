@@ -376,6 +376,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public TrashCanScript[] TrashCans;
 
+	public BugListScript[] BugLists;
+
 	public StudentScript[] Teachers;
 
 	public GloveScript[] GloveList;
@@ -1909,6 +1911,11 @@ public class StudentManagerScript : MonoBehaviour
 			RivalGuardSpots[0].localEulerAngles = new Vector3(0f, 0f, 0f);
 			GenerateRandomLocations();
 			GenerateCustomLocations();
+		}
+		if (BugLists.Length != 0 && Week > 0 && Week < 3 && !MissionMode && !Eighties && BugLists[Week] != null)
+		{
+			BugLists[Week].gameObject.SetActive(value: true);
+			Bugs = BugLists[Week].Bugs;
 		}
 	}
 
@@ -6683,6 +6690,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void AssignRivalWitnesses()
 	{
+		string text = "";
+		text = ((!Eighties) ? "LivingSecurityCamera" : "Read");
 		for (int i = 0; i < RivalWitnessIDs.Length; i++)
 		{
 			if (Students[RivalWitnessIDs[i]] != null && !Students[RivalWitnessIDs[i]].Bullied && !Students[RivalWitnessIDs[i]].Sleuthing)
@@ -6692,7 +6701,7 @@ public class StudentManagerScript : MonoBehaviour
 				{
 					scheduleBlock = studentScript.ScheduleBlocks[2];
 					scheduleBlock.destination = "MorningRivalWitnessSpot";
-					scheduleBlock.action = "Read";
+					scheduleBlock.action = text;
 					scheduleBlock.time += 0.25f;
 				}
 				if (LunchRivalWitnesses < LunchRivalWitnessSpots.Length)
@@ -6707,7 +6716,7 @@ public class StudentManagerScript : MonoBehaviour
 					scheduleBlock.time -= 0.25f;
 					scheduleBlock = studentScript.ScheduleBlocks[7];
 					scheduleBlock.destination = "AfterRivalWitnessSpot";
-					scheduleBlock.action = "Read";
+					scheduleBlock.action = text;
 					scheduleBlock.time += 0.25f;
 				}
 				studentScript.GetDestinations();

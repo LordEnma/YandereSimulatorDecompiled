@@ -26,17 +26,21 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public PromptBarScript PromptBar;
 
-	public PostProcessingProfile Profile;
-
-	public Animation YandereAnimation;
-
 	public GameObject CongratulationsWindow;
-
-	public GameObject BloodProjector;
 
 	public GameObject LoveLetter;
 
 	public GameObject Knife;
+
+	public PostProcessingProfile Profile;
+
+	public Animation YandereAnimation;
+
+	public Projector BloodProjector;
+
+	public UIPanel TitleScreenPanel;
+
+	public Transform LookAtTarget;
 
 	public AudioSource[] FountainSFX;
 
@@ -47,10 +51,6 @@ public class NewTitleScreenScript : MonoBehaviour
 	public AudioClip SpookyEightiesMusic;
 
 	public AudioClip SpookyMusic;
-
-	public Transform LookAtTarget;
-
-	public UIPanel TitleScreenPanel;
 
 	public UISprite EightiesWindow;
 
@@ -190,6 +190,8 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public Font VCR;
 
+	public Texture[] BloodTextures;
+
 	public string[] EightiesRivalNames;
 
 	public string[] RivalNames;
@@ -253,7 +255,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		Sponsors.alpha = 0f;
 		Cursor.alpha = 0f;
 		Profile.colorGrading.enabled = false;
-		BloodProjector.SetActive(value: false);
+		BloodProjector.gameObject.SetActive(value: false);
 		LoveLetter.SetActive(value: true);
 		Knife.SetActive(value: false);
 		if (Eighties)
@@ -264,6 +266,8 @@ public class NewTitleScreenScript : MonoBehaviour
 		{
 			DisableEightiesEffects();
 		}
+		Grayscale.desaturation = 1f - SchoolGlobals.SchoolAtmosphere;
+		Vignette.VignettingColor = new Color(0f, 0f, 0f, 1f - SchoolGlobals.SchoolAtmosphere);
 		if (SchoolGlobals.SchoolAtmosphereSet && SchoolGlobals.SchoolAtmosphere < 0.5f)
 		{
 			AyanoGraphic.mainTexture = BloodyAyano;
@@ -272,8 +276,6 @@ public class NewTitleScreenScript : MonoBehaviour
 			Jukebox.clip = SpookyMusic;
 			EightiesJukebox.Play();
 			Jukebox.Play();
-			Grayscale.enabled = true;
-			Vignette.enabled = true;
 		}
 		if (OptionGlobals.DrawDistance == 0 || OptionGlobals.DrawDistanceLimit == 0)
 		{
@@ -765,37 +767,30 @@ public class NewTitleScreenScript : MonoBehaviour
 			}
 		}
 		base.transform.LookAt(LookAtTarget);
-		if (Fun)
+		if (!Fun)
 		{
-			if (FunPhase == 1)
+			return;
+		}
+		if (FunPhase == 1)
+		{
+			FunTimer += Time.unscaledDeltaTime;
+			if (FunTimer >= 10f)
 			{
-				FunTimer += Time.unscaledDeltaTime;
-				if (FunTimer >= 10f)
-				{
-					FunGirl.transform.position = new Vector3(UnityEngine.Random.Range(0f, 17.5f), 0f, UnityEngine.Random.Range(0f, 5f));
-					FunGirl.transform.position = new Vector3(FunGirl.transform.position.x, UnityEngine.Random.Range(0.6f, 0.6f + (FunGirl.transform.position.x + FunGirl.transform.position.z) * 0.4f), FunGirl.transform.position.z);
-					FunGirl.SetActive(value: true);
-					FunPhase = 2;
-					FunTimer = 0f;
-				}
-			}
-			else
-			{
-				FunTimer += Time.unscaledDeltaTime;
-				if (FunTimer >= 1f)
-				{
-					FunGirl.SetActive(value: false);
-					FunPhase = 1;
-					FunTimer = 0f;
-				}
+				FunGirl.transform.position = new Vector3(UnityEngine.Random.Range(0f, 17.5f), 0f, UnityEngine.Random.Range(0f, 5f));
+				FunGirl.transform.position = new Vector3(FunGirl.transform.position.x, UnityEngine.Random.Range(0.6f, 0.6f + (FunGirl.transform.position.x + FunGirl.transform.position.z) * 0.4f), FunGirl.transform.position.z);
+				FunGirl.SetActive(value: true);
+				FunPhase = 2;
+				FunTimer = 0f;
 			}
 		}
-		if (Input.GetKeyDown("z"))
+		else
 		{
-			Zs++;
-			if (Zs >= 10)
+			FunTimer += Time.unscaledDeltaTime;
+			if (FunTimer >= 1f)
 			{
-				SceneManager.LoadScene("ShadowTestScene");
+				FunGirl.SetActive(value: false);
+				FunPhase = 1;
+				FunTimer = 0f;
 			}
 		}
 	}
@@ -974,13 +969,16 @@ public class NewTitleScreenScript : MonoBehaviour
 	{
 		if (PlayerGlobals.Kills > 0 || (GameGlobals.RivalEliminationID > 0 && !GameGlobals.NonlethalElimination))
 		{
-			BloodProjector.SetActive(value: true);
+			BloodProjector.gameObject.SetActive(value: true);
 			LoveLetter.SetActive(value: false);
 			Knife.SetActive(value: true);
+			int kills = PlayerGlobals.Kills;
+			kills = Mathf.Clamp(kills, 0, 10);
+			BloodProjector.material.mainTexture = BloodTextures[kills];
 		}
 		else
 		{
-			BloodProjector.SetActive(value: false);
+			BloodProjector.gameObject.SetActive(value: false);
 			LoveLetter.SetActive(value: true);
 			Knife.SetActive(value: false);
 		}

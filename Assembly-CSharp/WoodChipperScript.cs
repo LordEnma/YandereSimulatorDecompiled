@@ -273,8 +273,6 @@ public class WoodChipperScript : MonoBehaviour
 						Yandere.YandereVision = false;
 						Yandere.Chipping = true;
 						Yandere.CanMove = false;
-						Victims++;
-						VictimList[Victims] = Yandere.Ragdoll.GetComponent<RagdollScript>().StudentID;
 						Animate = true;
 						Open = true;
 						if (!Acid)
@@ -384,6 +382,8 @@ public class WoodChipperScript : MonoBehaviour
 				Yandere.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Vanished;
 			}
 			Yandere.StudentManager.UpdateStudents();
+			Victims++;
+			VictimList[Victims] = VictimID;
 			HiddenCorpses = 0;
 			VictimID = 0;
 			if (Kiln)

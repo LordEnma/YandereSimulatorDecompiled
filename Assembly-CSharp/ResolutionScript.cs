@@ -53,6 +53,8 @@ public class ResolutionScript : MonoBehaviour
 
 	public int Enters;
 
+	public int Ks;
+
 	public int Qs;
 
 	public int Rs;
@@ -191,6 +193,14 @@ public class ResolutionScript : MonoBehaviour
 			}
 		}
 		Highlight.localPosition = Vector3.Lerp(Highlight.localPosition, new Vector3(-307.5f, 250 - ID * 100, 0f), Time.deltaTime * 10f);
+		if (Input.GetKeyDown("k"))
+		{
+			Ks++;
+			if (Ks == 10)
+			{
+				SceneManager.LoadScene("KokonaTutorialScene");
+			}
+		}
 		if (Input.GetKeyDown("r"))
 		{
 			Rs++;

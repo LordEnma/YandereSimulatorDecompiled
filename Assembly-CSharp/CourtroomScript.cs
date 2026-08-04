@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class CourtroomScript : MonoBehaviour
 {
+	public RiggedAccessoryAttacher RyobaClothing;
+
 	public PostProcessingProfile Profile;
 
 	public EightiesStatsScript Stats;
@@ -407,6 +409,7 @@ public class CourtroomScript : MonoBehaviour
 				}
 				else
 				{
+					RyobaClothing.newRenderer.SetBlendShapeWeight(0, 0f);
 					MyRenderer.SetBlendShapeWeight(0, 0f);
 					Subtitle.text = "...that Ryoba Aishi is innocent of all charges.";
 					MyAudio.clip = InnocentClip;

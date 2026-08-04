@@ -66,7 +66,25 @@ public class ConsoleLogScript : MonoBehaviour
 
 	public void Log(string logString, string stackTrace, LogType type)
 	{
+		switch (type)
+		{
+		case LogType.Warning:
+			return;
+		case LogType.Error:
+		case LogType.Assert:
+		case LogType.Exception:
+			myLog += "\n";
+			break;
+		}
 		myLog = myLog + "\n" + logString;
+		if (type == LogType.Error || type == LogType.Exception || type == LogType.Assert)
+		{
+			if (!string.IsNullOrEmpty(stackTrace))
+			{
+				myLog = myLog + "\n" + stackTrace;
+			}
+			myLog += "\n";
+		}
 		if (myLog.Length > kChars)
 		{
 			myLog = myLog.Substring(myLog.Length - kChars);
@@ -80,12 +98,12 @@ public class ConsoleLogScript : MonoBehaviour
 			if (Long)
 			{
 				GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3((float)Screen.width / 1280f, (float)Screen.height / 720f, 1f));
-				GUI.TextArea(new Rect(0f, 0f, 426.6624f, Screen.height), myLog);
+				GUI.TextArea(new Rect(0f, 0f, 469.33246f, Screen.height), myLog);
 			}
 			else
 			{
 				GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3((float)Screen.width / 1280f, (float)Screen.height / 720f, 1f));
-				GUI.TextArea(new Rect(0f, 479.9952f, 426.6624f, 239.9976f), myLog);
+				GUI.TextArea(new Rect(0f, 479.9952f, 469.33246f, 239.9976f), myLog);
 			}
 		}
 	}

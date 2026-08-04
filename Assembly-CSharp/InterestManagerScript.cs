@@ -10,6 +10,8 @@ public class InterestManagerScript : MonoBehaviour
 
 	public Transform DelinquentZone;
 
+	public Transform FacultyRoom;
+
 	public Transform Library;
 
 	public Transform HomeEc;
@@ -138,6 +140,23 @@ public class InterestManagerScript : MonoBehaviour
 			Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
 			StudentManager.SetTopicLearnedByStudent(18, FollowerID, boolean: true);
 			Ignore[18] = true;
+		}
+		Debug.Log("Follower's distance to Faculty Room is: " + Vector3.Distance(Yandere.Follower.transform.position, FacultyRoom.position));
+		if (!Ignore[22] && Vector3.Distance(Yandere.Follower.transform.position, FacultyRoom.position) < 6f && Yandere.Follower.transform.position.y < FacultyRoom.position.y + 0.1f && Yandere.Follower.transform.position.y > FacultyRoom.position.y - 0.1f)
+		{
+			Debug.Log("We are now in this block of code.");
+			if (!StudentManager.GetTopicLearnedByStudent(22, FollowerID))
+			{
+				Yandere.NotificationManager.TopicName = "School";
+				if (!ConversationGlobals.GetTopicDiscovered(22))
+				{
+					Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+					ConversationGlobals.SetTopicDiscovered(22, value: true);
+				}
+				Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
+				StudentManager.SetTopicLearnedByStudent(22, FollowerID, boolean: true);
+				Ignore[22] = true;
+			}
 		}
 		if (!Ignore[23] && Vector3.Distance(Yandere.Follower.transform.position, HomeEc.position) < 6f && Yandere.Follower.transform.position.y < HomeEc.position.y + 0.1f && Yandere.Follower.transform.position.y > HomeEc.position.y - 0.1f && !StudentManager.GetTopicLearnedByStudent(23, FollowerID))
 		{

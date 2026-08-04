@@ -4,12 +4,20 @@ public class ListScript : MonoBehaviour
 {
 	public Transform[] List;
 
+	public Transform[] Week2List;
+
 	public bool PrintDebug;
 
 	public bool AutoFill;
 
+	public bool Patrols;
+
 	public void Start()
 	{
+		if (Patrols && DateGlobals.Week == 2)
+		{
+			List[88] = Week2List[88];
+		}
 		if (!AutoFill)
 		{
 			return;

@@ -3031,6 +3031,7 @@ public class EndOfDayScript : MonoBehaviour
 		ArrestStudents();
 		SaveTopicsLearned();
 		SaveTopicsDiscussed();
+		StudentManager.BugLists[StudentManager.Week].SaveBugsPlaced();
 		StudentManager.DialogueWheel.Social.SaveFriendships();
 		RemovableItemManager.RemoveItems();
 		if (PoliceArrived)
@@ -3413,6 +3414,19 @@ public class EndOfDayScript : MonoBehaviour
 			{
 				ConversationGlobals.SetTopicDiscussedWithStudent(j, i, StudentManager.GetTopicDiscussedWithStudent(j, i));
 			}
+		}
+	}
+
+	public void SaveBugsPlaced(Transform parent)
+	{
+		BugScript component = parent.GetComponent<BugScript>();
+		if (component != null)
+		{
+			component.RememberIfPlaced();
+		}
+		foreach (Transform item in parent)
+		{
+			SaveBugsPlaced(item);
 		}
 	}
 

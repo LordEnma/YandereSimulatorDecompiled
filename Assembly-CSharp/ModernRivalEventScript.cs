@@ -9,6 +9,8 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	public StudentManagerScript StudentManager;
 
+	public ModernRivalEventScript OtherEvent;
+
 	public UILabel EventSubtitle;
 
 	public JukeboxScript Jukebox;
@@ -16,6 +18,8 @@ public class ModernRivalEventScript : MonoBehaviour
 	public YandereScript Yandere;
 
 	public AudioSource MyAudio;
+
+	public SpyScript SpyPrompt;
 
 	public ClockScript Clock;
 
@@ -60,6 +64,8 @@ public class ModernRivalEventScript : MonoBehaviour
 	public bool AlreadyPopulated;
 
 	public bool SyncAnimToAudio;
+
+	public bool CancelOnDeath;
 
 	public bool ClubClosed;
 
@@ -168,6 +174,11 @@ public class ModernRivalEventScript : MonoBehaviour
 					{
 						return;
 					}
+					if (CancelOnDeath && Char[1] == null)
+					{
+						EndEvent();
+						return;
+					}
 					int num = 0;
 					int num2 = 0;
 					for (int i = 0; i < Char.Length; i++)
@@ -239,12 +250,49 @@ public class ModernRivalEventScript : MonoBehaviour
 				{
 					PopulateCharacterList();
 				}
-				else if (Char[0].Indoors)
+				else
 				{
+					if (!Char[0].Indoors)
+					{
+						return;
+					}
 					Debug.Log("A character's event has begun because they've changed into their indoor shoes.");
-					Char[0].InEvent = true;
-					Char[0].Private = Private;
-					Char[0].IgnoringPettyActions = true;
+					if (CancelOnDeath && Char[1] == null)
+					{
+						EndEvent();
+						return;
+					}
+					for (int l = 0; l < Char.Length; l++)
+					{
+						Char[l].EmptyHands();
+						Char[l].InEvent = true;
+						Char[l].Private = Private;
+						Char[l].IgnoringPettyActions = true;
+					}
+					Phase++;
+					TakeInstructions();
+				}
+			}
+			else
+			{
+				if (StartCriteria != StartCriteriaType.OtherEventFinished)
+				{
+					return;
+				}
+				if (Char[0] == null)
+				{
+					PopulateCharacterList();
+				}
+				else if (OtherEvent.Done)
+				{
+					Debug.Log("A character's event has begun because another event finished.");
+					for (int m = 0; m < Char.Length; m++)
+					{
+						Char[m].EmptyHands();
+						Char[m].InEvent = true;
+						Char[m].Private = Private;
+						Char[m].IgnoringPettyActions = true;
+					}
 					Phase++;
 					TakeInstructions();
 				}
@@ -266,17 +314,17 @@ public class ModernRivalEventScript : MonoBehaviour
 			}
 			if (Frame > 0)
 			{
-				for (int l = 0; l < Char.Length; l++)
+				for (int n = 0; n < Char.Length; n++)
 				{
-					if (Char[l] != null)
+					if (Char[n] != null)
 					{
-						if (!Char[l].FocusOnStudent)
+						if (!Char[n].FocusOnStudent)
 						{
-							Char[l].transform.rotation = Quaternion.Slerp(Char[l].transform.rotation, Char[l].CurrentDestination.rotation, 10f * Time.deltaTime);
+							Char[n].transform.rotation = Quaternion.Slerp(Char[n].transform.rotation, Char[n].CurrentDestination.rotation, 10f * Time.deltaTime);
 						}
-						if (Instructions[Phase].Type != InstructionType.Stay && Instructions[Phase].Destination[l] != null)
+						if (Instructions[Phase].Type != InstructionType.Stay && Instructions[Phase].Destination[n] != null)
 						{
-							Char[l].MoveTowardsTarget(Char[l].CurrentDestination.position);
+							Char[n].MoveTowardsTarget(Char[n].CurrentDestination.position);
 						}
 					}
 				}
@@ -285,34 +333,34 @@ public class ModernRivalEventScript : MonoBehaviour
 		else if (NextCriteria == NextCriteriaType.DestinationReached)
 		{
 			int num3 = 0;
-			for (int m = 0; m < Char.Length; m++)
+			for (int num4 = 0; num4 < Char.Length; num4++)
 			{
-				if (!(Char[m] != null))
+				if (!(Char[num4] != null))
 				{
 					continue;
 				}
-				if (Char[m].DistanceToDestination < 0.5f)
+				if (Char[num4].DistanceToDestination < 0.5f)
 				{
-					PlayDesignatedAnimation(m);
+					PlayDesignatedAnimation(num4);
 					num3++;
-					Char[m].Pathfinding.canSearch = false;
-					Char[m].Pathfinding.canMove = false;
+					Char[num4].Pathfinding.canSearch = false;
+					Char[num4].Pathfinding.canMove = false;
 					if (Frame > 0)
 					{
-						if (!Char[m].FocusOnStudent)
+						if (!Char[num4].FocusOnStudent)
 						{
-							Char[m].transform.rotation = Quaternion.Slerp(Char[m].transform.rotation, Char[m].CurrentDestination.rotation, 10f * Time.deltaTime);
+							Char[num4].transform.rotation = Quaternion.Slerp(Char[num4].transform.rotation, Char[num4].CurrentDestination.rotation, 10f * Time.deltaTime);
 						}
-						Char[m].MoveTowardsTarget(Char[m].CurrentDestination.position);
+						Char[num4].MoveTowardsTarget(Char[num4].CurrentDestination.position);
 					}
 				}
 				else if (Instructions[Phase].Rush)
 				{
-					Char[m].CharacterAnimation.CrossFade(Char[m].SprintAnim);
+					Char[num4].CharacterAnimation.CrossFade(Char[num4].SprintAnim);
 				}
 				else
 				{
-					Char[m].CharacterAnimation.CrossFade(Char[m].WalkAnim);
+					Char[num4].CharacterAnimation.CrossFade(Char[num4].WalkAnim);
 				}
 			}
 			if (num3 == Characters)
@@ -337,15 +385,15 @@ public class ModernRivalEventScript : MonoBehaviour
 			}
 		}
 		UpdateSubtitle();
-		for (int n = 0; n < Char.Length; n++)
+		for (int num5 = 0; num5 < Char.Length; num5++)
 		{
-			if (Char[n] != null && (Char[n].Alarmed || Char[n].Splashed || Char[n].Dying || Char[n].GoAway))
+			if (Char[num5] != null && (Char[num5].Alarmed || Char[num5].Splashed || Char[num5].Dying || Char[num5].GoAway))
 			{
 				Debug.Log("The event ended because a character was alarmed or splashed or stink bombed or killed.");
-				if (Char[n].GoAway)
+				if (Char[num5].GoAway)
 				{
-					Char[n].Subtitle.CustomText = "What's that smell?! I can't take it! I'm getting out of here!";
-					Char[n].Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+					Char[num5].Subtitle.CustomText = "What's that smell?! I can't take it! I'm getting out of here!";
+					Char[num5].Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 				}
 				EndEvent();
 			}
@@ -359,6 +407,10 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	private void TakeInstructions()
 	{
+		if (SpyPrompt != null)
+		{
+			SpyPrompt.gameObject.SetActive(value: true);
+		}
 		float num = Vector3.Distance(Yandere.transform.position, Char[0].transform.position);
 		if (num < 10f)
 		{
@@ -367,6 +419,10 @@ public class ModernRivalEventScript : MonoBehaviour
 		if (Phase == 0 && DisableBlendshapes)
 		{
 			Char[0].Cosmetic.ResetBlendshapes();
+		}
+		if (Phase == 1 && Char.Length > 1 && Char[1] != null && Char[1].Club == ClubType.Council)
+		{
+			Char[1].CharacterAnimation.Stop("f02_faceCouncil" + Char[1].Suffix + "_00");
 		}
 		Timer = 0f;
 		if (Phase == Instructions.Length)
@@ -434,23 +490,16 @@ public class ModernRivalEventScript : MonoBehaviour
 		if (Yandere.transform.position.y > Char[0].transform.position.y - 1f && Yandere.transform.position.y < Char[0].transform.position.y + 1f)
 		{
 			float num = Vector3.Distance(Yandere.transform.position, Char[0].transform.position);
-			float num2 = Mathf.Abs((num - 10f) * 0.2f);
-			if (num < 10f)
+			float value = Mathf.Abs((num - 11f) * 0.2f);
+			if (num < 11f)
 			{
 				if (Phase < Instructions.Length)
 				{
 					EventSubtitle.text = Instructions[Phase].Dialogue;
 				}
-				if (num2 < 0f)
-				{
-					num2 = 0f;
-				}
-				if (num2 > 1f)
-				{
-					num2 = 1f;
-				}
-				EventSubtitle.transform.localScale = new Vector3(num2, num2, num2);
-				Jukebox.Dip = 1f - 0.5f * num2;
+				value = Mathf.Clamp(value, 0f, 1f);
+				EventSubtitle.transform.localScale = new Vector3(value, value, value);
+				Jukebox.Dip = 1f - 0.5f * value;
 				if (Private && num < 5f)
 				{
 					Yandere.Eavesdropping = true;
@@ -460,13 +509,17 @@ public class ModernRivalEventScript : MonoBehaviour
 					Yandere.Eavesdropping = false;
 				}
 			}
-			else if (num < 11f)
+			else if (num < 12f)
 			{
 				EventSubtitle.transform.localScale = Vector3.zero;
 				EventSubtitle.text = string.Empty;
 				Yandere.Eavesdropping = false;
 				Jukebox.Dip = 1f;
-				num2 = 0f;
+				value = 0f;
+			}
+			if (SpyPrompt != null && SpyPrompt.SpyCamera.gameObject.activeInHierarchy)
+			{
+				EventSubtitle.transform.localScale = Vector3.one;
 			}
 		}
 		else
@@ -667,6 +720,7 @@ public class ModernRivalEventScript : MonoBehaviour
 			Char[0].PicnicProps[1].SetActive(value: false);
 			Char[0].PicnicProps[2].SetActive(value: false);
 			Char[1].PicnicProps[0].SetActive(value: false);
+			EventObject[0].SetActive(value: false);
 			EventObject[1].SetActive(value: true);
 			break;
 		case 22:
@@ -731,6 +785,30 @@ public class ModernRivalEventScript : MonoBehaviour
 			Phase = 22;
 			TakeInstructions();
 			break;
+		case 32:
+			Char[0].PicnicBlanket.SetActive(value: true);
+			break;
+		case 33:
+			Char[0].PicnicBlanket.transform.parent = null;
+			EventObject[0].SetActive(value: true);
+			break;
+		case 34:
+			Debug.Log("The event calling this case is " + base.gameObject.name);
+			EventObject[0].SetActive(value: false);
+			EventObject[3].SetActive(value: true);
+			break;
+		case 35:
+			if (Timer > 1f)
+			{
+				Char[0].SmartPhone.SetActive(value: true);
+			}
+			break;
+		case 36:
+			if (Char[0].CharacterAnimation["amaiFridayLunch_00"].time > 24f || Char[0].CharacterAnimation["amaiFridayLunchSabo_00"].time > 28f)
+			{
+				Char[0].SmartPhone.SetActive(value: false);
+			}
+			break;
 		}
 	}
 
@@ -740,6 +818,28 @@ public class ModernRivalEventScript : MonoBehaviour
 		if (EventID == RivalEventType.AmaiPhoneEvent)
 		{
 			Char[0].PhoneCallScreen.SetActive(value: false);
+		}
+		else if (EventID == RivalEventType.AmaiAkaneEvent)
+		{
+			ScheduleBlock obj = Char[1].ScheduleBlocks[1];
+			obj.destination = "Patrol";
+			obj.action = "Patrol";
+			Char[1].GetDestinations();
+			Char[1].Pathfinding.target = Char[1].Destinations[1];
+			Char[1].CurrentDestination = Char[1].Destinations[1];
+		}
+		else if (EventID == RivalEventType.AmaiUekiyaEvent)
+		{
+			Debug.Log("Now attempting to adjust Uekiya's routine.");
+			for (int i = 0; i < 3; i++)
+			{
+				ScheduleBlock obj2 = Char[1].ScheduleBlocks[i];
+				obj2.destination = "Patrol";
+				obj2.action = "Club";
+			}
+			Char[1].GetDestinations();
+			Char[1].Pathfinding.target = Char[1].Destinations[1];
+			Char[1].CurrentDestination = Char[1].Destinations[1];
 		}
 		else if (EventID == RivalEventType.AmaiClubEvent)
 		{
@@ -772,68 +872,71 @@ public class ModernRivalEventScript : MonoBehaviour
 		{
 			MakeStudentsPrepareFoodForever();
 		}
-		else
+		else if (EventID == RivalEventType.AmaiPicnicEvent && Depressing)
 		{
-			_ = EventID;
-			_ = 2;
+			Char[1].WalkAnim = Char[1].OriginalWalkAnim;
 		}
 		if (Char[0] != null)
 		{
 			Char[0].WalkAnim = Char[0].OriginalWalkAnim;
 			Char[0].Cosmetic.EyeTypeCheck();
 		}
-		for (int i = 0; i < Char.Length; i++)
+		if (Char.Length > 1 && Char[1] != null && Char[1].Club == ClubType.Council)
 		{
-			if (!(Char[i] != null) || !Char[i].Alive || Char[i].Dying)
+			Char[1].CharacterAnimation.Play("f02_faceCouncil" + Char[1].Suffix + "_00");
+		}
+		for (int j = 0; j < Char.Length; j++)
+		{
+			if (!(Char[j] != null) || !Char[j].Alive || Char[j].Dying)
 			{
 				continue;
 			}
-			Char[i].EmptyHands();
-			if (!Char[i].Alarmed && !Char[i].Splashed && !Char[i].GoAway)
+			Char[j].EmptyHands();
+			if (!Char[j].Alarmed && !Char[j].Splashed && !Char[j].GoAway)
 			{
-				Char[i].Pathfinding.canSearch = true;
-				Char[i].Pathfinding.canMove = true;
-				Char[i].Pathfinding.speed = 1f;
-				Char[i].Routine = true;
+				Char[j].Pathfinding.canSearch = true;
+				Char[j].Pathfinding.canMove = true;
+				Char[j].Pathfinding.speed = 1f;
+				Char[j].Routine = true;
 			}
 			else
 			{
-				Debug.Log("Character # " + i + " was alarmed when event ended.");
+				Debug.Log("Character # " + j + " was alarmed when event ended.");
 			}
-			if (Char[i].TimeRespectingAudioSource != null)
+			if (Char[j].TimeRespectingAudioSource != null)
 			{
-				UnityEngine.Object.Destroy(Char[i].TimeRespectingAudioSource);
+				UnityEngine.Object.Destroy(Char[j].TimeRespectingAudioSource);
 			}
-			Char[i].CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-			Char[i].CurrentDestination = Char[i].Destinations[Char[i].Phase];
-			Char[i].Pathfinding.target = Char[i].Destinations[Char[i].Phase];
-			Char[i].IgnoringPettyActions = false;
-			Char[i].SmartPhone.SetActive(value: false);
-			Char[i].DistanceToDestination = 100f;
-			Char[i].Prompt.enabled = true;
-			Char[i].InEvent = false;
-			Char[i].Private = false;
-			if (Char[i].Rival)
+			Char[j].CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+			Char[j].CurrentDestination = Char[j].Destinations[Char[j].Phase];
+			Char[j].Pathfinding.target = Char[j].Destinations[Char[j].Phase];
+			Char[j].IgnoringPettyActions = false;
+			Char[j].SmartPhone.SetActive(value: false);
+			Char[j].DistanceToDestination = 100f;
+			Char[j].Prompt.enabled = true;
+			Char[j].InEvent = false;
+			Char[j].Private = false;
+			if (Char[j].Rival)
 			{
 				if (Depressing)
 				{
-					Char[i].IdleAnim = "f02_bulliedIdle_00";
-					Char[i].WalkAnim = "f02_bulliedWalk_00";
+					Char[j].IdleAnim = "f02_bulliedIdle_00";
+					Char[j].WalkAnim = "f02_bulliedWalk_00";
 				}
 				else
 				{
-					Char[i].IdleAnim = Char[i].OriginalIdleAnim;
-					Char[i].WalkAnim = Char[i].OriginalWalkAnim;
+					Char[j].IdleAnim = Char[j].OriginalIdleAnim;
+					Char[j].WalkAnim = Char[j].OriginalWalkAnim;
 				}
 			}
 			if (!StudentManager.Stop)
 			{
 				StudentManager.UpdateStudents();
 			}
-			if (Char[i].Rival)
+			if (Char[j].Rival)
 			{
-				Debug.Log(Char[i]?.ToString() + " is a rival, so, as she is exiting this event, we're going to check to see if she needs to add ''Place Bag'' to her routine.");
-				Char[i].CheckIfWeNeedToPlaceBag();
+				Debug.Log(Char[j]?.ToString() + " is a rival, so, as she is exiting this event, we're going to check to see if she needs to add ''Place Bag'' to her routine.");
+				Char[j].CheckIfWeNeedToPlaceBag();
 			}
 		}
 		EventSubtitle.text = string.Empty;
@@ -848,6 +951,15 @@ public class ModernRivalEventScript : MonoBehaviour
 		if (TimeRespectingAudioSource != null)
 		{
 			UnityEngine.Object.Destroy(TimeRespectingAudioSource.gameObject);
+		}
+		if (SpyPrompt != null)
+		{
+			if (SpyPrompt.SpyCamera.activeInHierarchy)
+			{
+				SpyPrompt.End();
+			}
+			SpyPrompt.Prompt.Hide();
+			SpyPrompt.gameObject.SetActive(value: false);
 		}
 		base.enabled = false;
 	}
@@ -884,7 +996,6 @@ public class ModernRivalEventScript : MonoBehaviour
 	{
 		if (Char[0] == null)
 		{
-			Debug.Log("Char[0] is null. Either variables have not been initialized yet, or the player just reloaded a save. Initializing variables now.");
 			AlreadyPopulated = false;
 			Characters = 0;
 			if (DynamicPopulation)
@@ -894,7 +1005,7 @@ public class ModernRivalEventScript : MonoBehaviour
 			}
 		}
 		_ = EventID;
-		_ = 3;
+		_ = 1;
 		if (EventID == RivalEventType.AmaiCakeEvent)
 		{
 			Debug.Log("AmaiCakeEvent's PopulateCharactersList is now being called.");

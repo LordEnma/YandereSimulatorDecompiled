@@ -145,6 +145,7 @@ public class EightiesClubDialogueScript : MonoBehaviour
 			Subtitle.ClubUnwelcomes[ClubID] = "Y...you...killed someone! Are you just...trying to pretend that it didn't happen?! I...I saw it! I...saw...it! I can't just...forget that! Look...I don't want to make a scene, so please...leave. Just...leave.";
 			Subtitle.ClubGrudges[ClubID] = "Oh, gosh...this is...really awkward...um...okay, so...one of my clubmates...well...I'm sorry, but, they have a big problem with you, so...I...just can't let you join the club. I'm sorry...I'm very sorry!";
 			Subtitle.ClubFarewells[ClubID] = "Bye bye for now! Hope to see you later!";
+			Subtitle.ClubExplainKicks[ClubID] = "Oh, I'm sorry...You never showed up for club activities, so...I assumed you didn't want to be part of the club anymore. I...already took you off the club's member list. You're...not a member of the club anymore. Please don't take it personally...";
 			Subtitle.ClubGreetingClips[ClubID] = AmaiLines[0];
 			Subtitle.Club1Clips[1] = AmaiLines[1];
 			Subtitle.Club1Clips[2] = AmaiLines[2];
@@ -166,6 +167,7 @@ public class EightiesClubDialogueScript : MonoBehaviour
 			Subtitle.ClubUnwelcomeClips[ClubID] = AmaiLines[18];
 			Subtitle.ClubGrudgeClips[ClubID] = AmaiLines[19];
 			Subtitle.ClubFarewellClips[ClubID] = AmaiLines[20];
+			Subtitle.ClubExplainKickClips[ClubID] = AmaiLines[21];
 		}
 	}
 

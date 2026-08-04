@@ -241,7 +241,7 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		{
 			newRenderer.updateWhenOffscreen = true;
 		}
-		if (Student != null)
+		if (Student != null && newRenderer != null && newRenderer.gameObject != null)
 		{
 			newRenderer.gameObject.AddComponent<OutlineScript>();
 			if (Student.RiggedAccessoryOutlines.Length != 0)

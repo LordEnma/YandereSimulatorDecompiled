@@ -626,6 +626,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public string[] ClubNoes;
 
+	public string[] ClubExplainKicks;
+
 	public string[] ClubPractices;
 
 	public string[] ClubPracticeYeses;
@@ -1008,6 +1010,8 @@ public class SubtitleScript : MonoBehaviour
 
 	public AudioClip[] ClubNoClips;
 
+	public AudioClip[] ClubExplainKickClips;
+
 	public AudioClip[] ClubPracticeClips;
 
 	public AudioClip[] ClubPracticeYesClips;
@@ -1253,6 +1257,7 @@ public class SubtitleScript : MonoBehaviour
 				ClubLates[i] = "I'm sorry, we're already done with club activities. To participate, you'd have to be here earlier than 5:30.";
 				ClubYeses[i] = "Great! Let's get started!";
 				ClubNoes[i] = "Okay. We can wait for you, but no longer than 5:30.";
+				ClubExplainKicks[i] = "You joined our club, and then you just...never showed up. We don't need someone in the club who doesn't take it seriously...";
 				ClubGreetingClips[i] = LongestSilence;
 				ClubUnwelcomeClips[i] = LongestSilence;
 				ClubKickClips[i] = LongestSilence;
@@ -1271,6 +1276,7 @@ public class SubtitleScript : MonoBehaviour
 				ClubLateClips[i] = LongestSilence;
 				ClubYesClips[i] = LongestSilence;
 				ClubNoClips[i] = LongestSilence;
+				ClubExplainKickClips[i] = LongestSilence;
 			}
 			EightiesClubDialogue.UpdateEightiesDialogue(2);
 			EightiesClubDialogue.UpdateEightiesDialogue(3);
@@ -1291,11 +1297,11 @@ public class SubtitleScript : MonoBehaviour
 			Chasing[2] = "Ai meu Deus!";
 			Chasing[3] = "How could you do that?!";
 			Chasing[4] = "I'm taking you down!";
-			Spraying[1] = "Take this!";
+			Spraying[1] = "Take THIS!";
 			Spraying[2] = "Spray de pimenta!";
 			Spraying[3] = "You brought this on yourself!";
 			Spraying[4] = "Get on the ground now!";
-			BreakingUp[1] = "Cease this nonsense immediately.";
+			BreakingUp[1] = "Now, see here! We'll have none of that.";
 			BreakingUp[2] = "No! Do not fight!";
 			BreakingUp[3] = "Um, please, don't do this!";
 			BreakingUp[4] = "Knock it off, or I'll kick BOTH your asses.";
@@ -1303,7 +1309,7 @@ public class SubtitleScript : MonoBehaviour
 			CouncilToCounselors[2] = "I'm sorry! You must go to the conselheira.";
 			CouncilToCounselors[3] = "Um, I'm really sorry, but the counselor will need to hear about this...";
 			CouncilToCounselors[4] = "What the hell do you think you're doing? Get your ass to the counselor's office.";
-			CouncilCorpseReactions[1] = "A dead body?!";
+			CouncilCorpseReactions[1] = "A...a-a dead body?!";
 			CouncilCorpseReactions[2] = "Você morreu?!";
 			CouncilCorpseReactions[3] = "Oh, no! This is horrible!";
 			CouncilCorpseReactions[4] = "Damn! This is serious!";
@@ -1313,7 +1319,7 @@ public class SubtitleScript : MonoBehaviour
 			CouncilNotices[4] = "...the heck are you...doin'?";
 			StrictReport[1] = "The faculty must be informed!";
 			StrictReport[2] = "I've discovered a dead body! Come with me!";
-			StrictReport[3] = "...no...impossible...";
+			StrictReport[3] = "...n-no...i-impossible...";
 			CasualReport[1] = "Devo contar a uma professora!";
 			CasualReport[2] = "Emergency! Dead body! Follow me!";
 			CasualReport[3] = "O que diabos está acontecendo aqui...";
@@ -1425,6 +1431,7 @@ public class SubtitleScript : MonoBehaviour
 			ClubLates[3] = ClubLates[13];
 			ClubYeses[3] = ClubYeses[13];
 			ClubNoes[3] = ClubNoes[13];
+			ClubExplainKicks[3] = ClubExplainKicks[13];
 			Club3Clips = SubClub3Clips;
 			ClubGreetingClips[3] = ClubGreetingClips[13];
 			ClubUnwelcomeClips[3] = ClubUnwelcomeClips[13];
@@ -1444,6 +1451,7 @@ public class SubtitleScript : MonoBehaviour
 			ClubLateClips[3] = ClubLateClips[13];
 			ClubYesClips[3] = ClubYesClips[13];
 			ClubNoClips[3] = ClubNoClips[13];
+			ClubExplainKickClips[3] = ClubExplainKickClips[13];
 			if (DateGlobals.Week > 1)
 			{
 				SenpaiRivalDeathReactions[0] = "...huh? ...are you okay?! What's wrong?! Hey!! Do you need any help?!";
@@ -1589,6 +1597,10 @@ public class SubtitleScript : MonoBehaviour
 			{
 				SubtitleType.ClubYes,
 				new AudioClipArrayWrapper(ClubYesClips)
+			},
+			{
+				SubtitleType.ClubExplainKick,
+				new AudioClipArrayWrapper(ClubExplainKickClips)
 			},
 			{
 				SubtitleType.ClubPractice,
@@ -3527,6 +3539,10 @@ public class SubtitleScript : MonoBehaviour
 				break;
 			case SubtitleType.ClubKick:
 				Label.text = ClubKicks[ID];
+				PlayVoice(subtitleType, ID);
+				break;
+			case SubtitleType.ClubExplainKick:
+				Label.text = ClubExplainKicks[ID];
 				PlayVoice(subtitleType, ID);
 				break;
 			case SubtitleType.ClubPractice:

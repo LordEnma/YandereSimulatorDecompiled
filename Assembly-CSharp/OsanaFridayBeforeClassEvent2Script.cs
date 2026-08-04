@@ -98,7 +98,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 				{
 					base.enabled = false;
 				}
-				else if ((double)Clock.HourTime > 7.25 && Rival.enabled && !Rival.InEvent && !Rival.Meeting && Rival.Indoors && !Rival.Wet && !Rival.Following && !Rival.Meeting && !Rival.Hunted && !Rival.CheckingNote && !Rival.Talking && Rival.DistanceToDestination < 1f && !Rival.Phoneless && !Rival.EndSearch)
+				else if ((double)Clock.HourTime > 7.25 && Rival.enabled && !Rival.InEvent && !Rival.Meeting && Rival.Indoors && !Rival.Wet && !Rival.Following && !Rival.Meeting && !Rival.Hunted && !Rival.CheckingNote && !Rival.Talking && !Rival.GoAway && Rival.DistanceToDestination < 1f && !Rival.Phoneless && !Rival.EndSearch)
 				{
 					Debug.Log("Osana's ''Talk with Musume'' event has begun.");
 					Ganguro.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
@@ -130,6 +130,10 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		if (Phase == 1)
 		{
 			Input.GetKeyDown(KeyCode.Space);
+			if (Rival.DistanceToDestination > 1f)
+			{
+				Rival.CharacterAnimation.CrossFade(Rival.WalkAnim);
+			}
 			if (Ganguro.DistanceToDestination < 1f)
 			{
 				AudioClipPlayer.Play(SpeechClip[1], Ganguro.transform.position + Vector3.up * 1.5f, 5f, 10f, out VoiceClip, Yandere.transform.position.y);
@@ -244,7 +248,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 				EndEvent();
 			}
 		}
-		if (Rival.Alarmed || Clock.HourTime > 8f || Rival.Splashed || Rival.GoAway)
+		if (Rival.Alarmed || Clock.HourTime > 8f || Rival.Splashed)
 		{
 			EndEvent();
 		}

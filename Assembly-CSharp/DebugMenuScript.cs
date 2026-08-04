@@ -354,6 +354,7 @@ public class DebugMenuScript : MonoBehaviour
 				}
 				else if (Input.GetKeyDown(KeyCode.G))
 				{
+					RooftopStudent = StudentManager.Week + 10;
 					StudentScript studentScript3 = StudentManager.Students[RooftopStudent];
 					StudentManager.MeetStudentID = RooftopStudent;
 					StudentManager.MeetTime = 7f;

@@ -323,6 +323,17 @@ public class PortalScript : MonoBehaviour
 								StudentManager.AdvanceBakeSale();
 							}
 							StudentManager.StudentReps[12] -= StudentManager.BakeSale.RepToSubtract;
+							if (StudentManager.Week == 2 && Clock.Weekday == 4)
+							{
+								Debug.Log("It's picnic day.");
+								if (StudentManager.Students[12] != null && StudentManager.Students[12].Alive)
+								{
+									StudentManager.Students[12].PicnicBlanket.SetActive(value: true);
+									StudentManager.Students[12].PicnicBlanket.transform.parent = null;
+									StudentManager.Students[12].PicnicBlanket.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+									StudentManager.Students[12].PicnicBlanket.transform.position = new Vector3(38f, 0f, 48.77715f);
+								}
+							}
 							EndEvents();
 						}
 						else

@@ -694,6 +694,7 @@ public class MissionModeScript : MonoBehaviour
 					Yandere.CanMove = true;
 					Phase++;
 				}
+				StudentManager.Tutorial.PhantomGirlOutline.gameObject.SetActive(value: false);
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
@@ -703,6 +704,7 @@ public class MissionModeScript : MonoBehaviour
 				Yandere.CanMove = true;
 				Yandere.HUD.alpha = 1f;
 				Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 0f);
+				StudentManager.Tutorial.PhantomGirlOutline.gameObject.SetActive(value: false);
 			}
 		}
 		else if (Phase == 2)

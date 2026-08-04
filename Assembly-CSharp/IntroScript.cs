@@ -317,6 +317,7 @@ public class IntroScript : MonoBehaviour
 			}
 			CorpseCamera.SetActive(value: false);
 		}
+		Debug.Log("GameGlobals.CensorCorpses is: " + GameGlobals.CensorCorpses);
 		bool censorCorpses = GameGlobals.CensorCorpses;
 		GameObject[] censorCubes = CensorCubes;
 		for (int j = 0; j < censorCubes.Length; j++)

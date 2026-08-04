@@ -12,6 +12,8 @@ public class BugScript : MonoBehaviour
 
 	public bool Placed;
 
+	public int ID;
+
 	private void Start()
 	{
 		if (GameGlobals.Eighties || GameGlobals.KokonaTutorial || ChallengeGlobals.NoInfo)
@@ -21,6 +23,8 @@ public class BugScript : MonoBehaviour
 			base.gameObject.SetActive(value: false);
 		}
 		MyRenderer.enabled = false;
+		Placed = CollectibleGlobals.GetBugPlaced(ID);
+		CheckStatus();
 	}
 
 	private void Update()
@@ -49,5 +53,10 @@ public class BugScript : MonoBehaviour
 			Prompt.enabled = false;
 			Prompt.Hide();
 		}
+	}
+
+	public void RememberIfPlaced()
+	{
+		CollectibleGlobals.SetBugPlaced(ID, Placed);
 	}
 }

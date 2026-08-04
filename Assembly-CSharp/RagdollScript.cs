@@ -785,7 +785,7 @@ public class RagdollScript : MonoBehaviour
 		}
 		if (Burning)
 		{
-			for (int m = 0; m < 3; m++)
+			for (int m = 0; m < MyRenderer.materials.Length; m++)
 			{
 				Material obj2 = MyRenderer.materials[m];
 				obj2.color = Vector4.MoveTowards(obj2.color, new Vector4(0.1f, 0.1f, 0.1f, 1f), Time.deltaTime * 0.2f);
@@ -796,24 +796,29 @@ public class RagdollScript : MonoBehaviour
 				Burning = false;
 				Burned = true;
 			}
-			float num = MyRenderer.materials[0].GetFloat("_BlendAmount");
-			num -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[0].SetFloat("_BlendAmount", num);
-			num = MyRenderer.materials[1].GetFloat("_BlendAmount");
-			num -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[1].SetFloat("_BlendAmount", num);
-			num = MyRenderer.materials[2].GetFloat("_BlendAmount");
-			num -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[2].SetFloat("_BlendAmount", num);
-			num = MyRenderer.materials[0].GetFloat("_BlendAmount1");
-			num -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[0].SetFloat("_BlendAmount1", num);
-			num = MyRenderer.materials[1].GetFloat("_BlendAmount1");
-			num -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[1].SetFloat("_BlendAmount1", num);
-			num = MyRenderer.materials[2].GetFloat("_BlendAmount1");
-			num -= Time.deltaTime * 0.2f;
-			MyRenderer.materials[2].SetFloat("_BlendAmount1", num);
+			for (int n = 0; n < MyRenderer.materials.Length; n++)
+			{
+				float num = MyRenderer.materials[n].GetFloat("_BlendAmount");
+				num -= Time.deltaTime * 0.2f;
+				MyRenderer.materials[n].SetFloat("_BlendAmount", num);
+				num = MyRenderer.materials[n].GetFloat("_BlendAmount1");
+				num -= Time.deltaTime * 0.2f;
+				MyRenderer.materials[n].SetFloat("_BlendAmount1", num);
+			}
+			if (Student.EightiesTeacherRenderer != null)
+			{
+				for (int num2 = 0; num2 < Student.EightiesTeacherRenderer.materials.Length; num2++)
+				{
+					Student.EightiesTeacherRenderer.materials[num2].color = MyRenderer.materials[0].color;
+				}
+			}
+			if (Student.Cosmetic.TeacherAccessoryRenderer != null)
+			{
+				for (int num3 = 0; num3 < Student.Cosmetic.TeacherAccessoryRenderer.materials.Length; num3++)
+				{
+					Student.Cosmetic.TeacherAccessoryRenderer.materials[num3].color = MyRenderer.materials[0].color;
+				}
+			}
 		}
 		if (Burned)
 		{

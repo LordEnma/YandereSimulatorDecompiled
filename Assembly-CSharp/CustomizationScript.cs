@@ -292,6 +292,7 @@ public class CustomizationScript : MonoBehaviour
 
 	private void Start()
 	{
+		Debug.Log("GameGlobals.CensorCorpses is: " + GameGlobals.CensorCorpses);
 		OriginalDOFStatus = Profile.depthOfField.enabled;
 		Profile.depthOfField.enabled = false;
 		Cursor.visible = false;

@@ -45,7 +45,17 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public ArcScript Arc;
 
-	public Transform[] TeleportPoint;
+	public GameObject FirstPersonCamera;
+
+	public GameObject GroundImpact;
+
+	public GameObject PauseScreen;
+
+	public GameObject AreYouSure;
+
+	public GameObject Smartphone;
+
+	public GameObject PauseMenu;
 
 	public Transform TrellisClimbSpot;
 
@@ -67,13 +77,7 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public Renderer PonytailRenderer;
 
-	public GameObject GroundImpact;
-
-	public GameObject PauseScreen;
-
-	public GameObject AreYouSure;
-
-	public GameObject PauseMenu;
+	public AudioClip CameraShutter;
 
 	public Animation MyAnimation;
 
@@ -83,11 +87,7 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public Camera MainCamera;
 
-	public bool Struggling;
-
-	public bool Climbing;
-
-	public bool Running;
+	public Transform[] TeleportPoint;
 
 	public bool NoChangeClothing;
 
@@ -105,6 +105,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public bool CanMove;
 
+	public bool Aiming;
+
 	public bool Bakery;
 
 	public bool Chased;
@@ -116,6 +118,12 @@ public class StalkerYandereScript : MonoBehaviour
 	public bool Night;
 
 	public bool Town;
+
+	public bool Struggling;
+
+	public bool Climbing;
+
+	public bool Running;
 
 	public Stance Stance = new Stance(StanceType.Standing);
 
@@ -144,6 +152,10 @@ public class StalkerYandereScript : MonoBehaviour
 	public float Height;
 
 	public int InstructionPhase = 1;
+
+	public int PhysicalEvidence;
+
+	public int PhotoEvidence;
 
 	public int LockerPhase;
 
@@ -390,6 +402,12 @@ public class StalkerYandereScript : MonoBehaviour
 			MyAnimation["f02_prepareThrow_00"].layer = 1;
 			MyAnimation.Play("f02_prepareThrow_00");
 			MyAnimation["f02_prepareThrow_00"].weight = 0f;
+		}
+		if (Bakery)
+		{
+			MyAnimation["f02_cameraPose_00"].layer = 1;
+			MyAnimation.Play("f02_cameraPose_00");
+			MyAnimation["f02_cameraPose_00"].weight = 0f;
 		}
 		UpdateBlendshapes = true;
 		if (Street || Night)
@@ -677,7 +695,7 @@ public class StalkerYandereScript : MonoBehaviour
 			}
 			else if (InstructionPhase == 1 && base.transform.position.z < 10f && base.transform.position.z > -10f && base.transform.position.x > -10f && base.transform.position.x < 10f)
 			{
-				InstructionLabel.text = "Search the bakery for evidence of criminal activity.";
+				UpdateInstructions();
 				InstructionPhase++;
 			}
 		}
@@ -867,45 +885,85 @@ public class StalkerYandereScript : MonoBehaviour
 
 	private void UpdateAim()
 	{
-		if ((Input.GetAxis(InputNames.Xbox_LT) > 0.5f || Input.GetMouseButton(InputNames.Mouse_RMB)) && Pebbles > 0 && !PreparingThrow && !Throwing)
+		if (Input.GetAxis(InputNames.Xbox_LT) > 0.5f || Input.GetMouseButton(InputNames.Mouse_RMB))
 		{
-			base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
-			PreparingThrow = true;
-			PrepareThrowTimer = 0f;
-			RPGCamera.enabled = false;
-			ShoulderCamera.SetActive(value: true);
-			MainCamera.transform.position = Vector3.zero;
-			MainCamera.transform.eulerAngles = Vector3.zero;
-			if (Input.GetAxis(InputNames.Xbox_LT) > 0.5f)
+			if (Eighties)
 			{
-				UsingController = true;
+				if (Pebbles > 0 && !PreparingThrow && !Throwing)
+				{
+					base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
+					PreparingThrow = true;
+					PrepareThrowTimer = 0f;
+					RPGCamera.enabled = false;
+					ShoulderCamera.SetActive(value: true);
+					MainCamera.transform.position = Vector3.zero;
+					MainCamera.transform.eulerAngles = Vector3.zero;
+					if (Input.GetAxis(InputNames.Xbox_LT) > 0.5f)
+					{
+						UsingController = true;
+					}
+					NewArc.gameObject.SetActive(value: true);
+				}
 			}
-			NewArc.gameObject.SetActive(value: true);
+			else if (Smartphone != null && !Aiming)
+			{
+				base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, base.transform.eulerAngles.z);
+				Aiming = true;
+				RPGCamera.enabled = false;
+				Smartphone.SetActive(value: true);
+				FirstPersonCamera.SetActive(value: true);
+				MainCamera.transform.position = Vector3.zero;
+				MainCamera.transform.eulerAngles = Vector3.zero;
+				if (Input.GetAxis(InputNames.Xbox_LT) > 0.5f)
+				{
+					UsingController = true;
+				}
+			}
 		}
-		if (!PreparingThrow || !(Time.timeScale > 0.0001f))
+		if (PreparingThrow && Time.timeScale > 0.0001f)
+		{
+			if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB) || Input.GetButtonDown(InputNames.Xbox_A))
+			{
+				MyAnimation["f02_prepareThrow_00"].weight = 0f;
+				MyAnimation["f02_throw_00"].speed = 2f;
+				MyAnimation["f02_throw_00"].time = 0f;
+				MyAnimation.Play("f02_throw_00");
+				PreparingThrow = false;
+				Throwing = true;
+				CanMove = false;
+				NewArc.gameObject.SetActive(value: false);
+				MyAudio.Play();
+				Rigidbody component = UnityEngine.Object.Instantiate(Pebble, Arc.transform.position, base.transform.rotation).GetComponent<Rigidbody>();
+				component.isKinematic = false;
+				component.useGravity = true;
+				component.AddRelativeForce(Vector3.forward * NewArc.ForwardMomentum, ForceMode.VelocityChange);
+				Pebbles--;
+				UpdatePebbles();
+				if (Pebbles < 1)
+				{
+					Arc.gameObject.SetActive(value: false);
+				}
+			}
+			else if ((UsingController && Input.GetAxis(InputNames.Xbox_LT) < 0.5f) || (!UsingController && !Input.GetMouseButton(InputNames.Mouse_RMB)))
+			{
+				StopAiming();
+			}
+		}
+		if (!Aiming || !(Time.timeScale > 0.0001f))
 		{
 			return;
 		}
+		Debug.DrawRay(Smartphone.transform.position, Smartphone.transform.forward * 10f, Color.red);
 		if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB) || Input.GetButtonDown(InputNames.Xbox_A))
 		{
-			MyAnimation["f02_prepareThrow_00"].weight = 0f;
-			MyAnimation["f02_throw_00"].speed = 2f;
-			MyAnimation["f02_throw_00"].time = 0f;
-			MyAnimation.Play("f02_throw_00");
-			PreparingThrow = false;
-			Throwing = true;
-			CanMove = false;
-			NewArc.gameObject.SetActive(value: false);
-			MyAudio.Play();
-			Rigidbody component = UnityEngine.Object.Instantiate(Pebble, Arc.transform.position, base.transform.rotation).GetComponent<Rigidbody>();
-			component.isKinematic = false;
-			component.useGravity = true;
-			component.AddRelativeForce(Vector3.forward * NewArc.ForwardMomentum, ForceMode.VelocityChange);
-			Pebbles--;
-			UpdatePebbles();
-			if (Pebbles < 1)
+			AudioSource.PlayClipAtPoint(CameraShutter, MainCamera.transform.position);
+			if (Physics.Raycast(new Ray(Smartphone.transform.position, Smartphone.transform.forward), out var hitInfo, 10f) && hitInfo.collider.CompareTag("RivalEvidence"))
 			{
-				Arc.gameObject.SetActive(value: false);
+				NotificationManager.CustomText = "Incriminating Evidence Obtained!";
+				NotificationManager.DisplayNotification(NotificationType.Custom);
+				hitInfo.collider.enabled = false;
+				PhotoEvidence++;
+				UpdateInstructions();
 			}
 		}
 		else if ((UsingController && Input.GetAxis(InputNames.Xbox_LT) < 0.5f) || (!UsingController && !Input.GetMouseButton(InputNames.Mouse_RMB)))
@@ -936,13 +994,22 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public void StopAiming()
 	{
-		ShoulderCamera.SetActive(value: false);
+		if (ShoulderCamera != null)
+		{
+			ShoulderCamera.SetActive(value: false);
+			NewArc.gameObject.SetActive(value: false);
+		}
+		if (FirstPersonCamera != null)
+		{
+			FirstPersonCamera.SetActive(value: false);
+			Smartphone.gameObject.SetActive(value: false);
+		}
 		RPGCamera.enabled = true;
 		UsingController = false;
 		PreparingThrow = false;
 		PrepareThrowTimer = 0f;
 		Throwing = false;
-		NewArc.gameObject.SetActive(value: false);
+		Aiming = false;
 	}
 
 	private void LateUpdate()
@@ -961,6 +1028,17 @@ public class StalkerYandereScript : MonoBehaviour
 			{
 				PrepareThrowTimer += Time.deltaTime;
 				MyAnimation["f02_prepareThrow_00"].weight = Mathf.MoveTowards(MyAnimation["f02_prepareThrow_00"].weight, 0f, Time.deltaTime * 10f);
+			}
+		}
+		if (Bakery)
+		{
+			if (Aiming)
+			{
+				MyAnimation["f02_cameraPose_00"].weight = Mathf.MoveTowards(MyAnimation["f02_cameraPose_00"].weight, 1f, Time.deltaTime * 10f);
+			}
+			else
+			{
+				MyAnimation["f02_cameraPose_00"].weight = Mathf.MoveTowards(MyAnimation["f02_cameraPose_00"].weight, 0f, Time.deltaTime * 10f);
 			}
 		}
 		if (Object != null)
@@ -1016,7 +1094,7 @@ public class StalkerYandereScript : MonoBehaviour
 		MyController.Move(Physics.gravity * Time.deltaTime);
 		float axis = Input.GetAxis("Vertical");
 		float axis2 = Input.GetAxis("Horizontal");
-		if (!PreparingThrow)
+		if (!PreparingThrow && !Aiming)
 		{
 			Vector3 vector = MainCamera.transform.TransformDirection(Vector3.forward);
 			vector.y = 0f;
@@ -1092,17 +1170,22 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 		if (axis != 0f || axis2 != 0f)
 		{
+			float num = 1f;
+			if (Running)
+			{
+				num = 5f;
+			}
 			if (Stance.Current == StanceType.Crouching)
 			{
 				MyAnimation.CrossFade(CrouchWalkAnim);
-				MyController.Move(base.transform.forward * (CrouchWalkSpeed * Time.deltaTime * axis));
-				MyController.Move(base.transform.right * (CrouchWalkSpeed * Time.deltaTime * axis2));
+				MyController.Move(base.transform.forward * (CrouchWalkSpeed * num * Time.deltaTime * axis));
+				MyController.Move(base.transform.right * (CrouchWalkSpeed * num * Time.deltaTime * axis2));
 			}
 			else
 			{
 				MyAnimation.CrossFade(WalkAnim);
-				MyController.Move(base.transform.forward * (WalkSpeed * Time.deltaTime * axis));
-				MyController.Move(base.transform.right * (WalkSpeed * Time.deltaTime * axis2));
+				MyController.Move(base.transform.forward * (WalkSpeed * num * Time.deltaTime * axis));
+				MyController.Move(base.transform.right * (WalkSpeed * num * Time.deltaTime * axis2));
 			}
 		}
 		else if (Stance.Current == StanceType.Crouching)
@@ -1279,5 +1362,14 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 		UpdateTextures = true;
 		Vtuber = true;
+	}
+
+	public void UpdateInstructions()
+	{
+		InstructionLabel.text = "Obtain Photographic Evidence: " + PhotoEvidence + "/3\nObtain Receipts: " + PhysicalEvidence + "/1";
+		if (PhotoEvidence == 3 && PhysicalEvidence == 1)
+		{
+			InstructionLabel.text = "Exit the bakery and leave from the crosswalk you arrived at.";
+		}
 	}
 }

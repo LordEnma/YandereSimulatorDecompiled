@@ -163,6 +163,12 @@ public class InventoryScript : MonoBehaviour
 
 	public bool PinkApron;
 
+	public bool FakeRatMaterials;
+
+	public bool RottenMeat;
+
+	public bool FakeRat;
+
 	public bool Utensils;
 
 	public float Money;

@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 [AddComponentMenu("Camera-Control/Mouse Orbit")]
 public class MouseOrbitAndZoom : MonoBehaviour
 {
+	public PostProcessingProfile Profile;
+
 	public InputDeviceScript InputDevice;
 
 	public Transform target;
@@ -67,6 +70,7 @@ public class MouseOrbitAndZoom : MonoBehaviour
 			Vector3 position = quaternion * new Vector3(0f, 0f, 0f - distance) + target.position;
 			base.transform.rotation = quaternion;
 			base.transform.position = position;
+			UpdateDOF(distance, 5.6f);
 		}
 	}
 
@@ -81,5 +85,25 @@ public class MouseOrbitAndZoom : MonoBehaviour
 			angle -= 360f;
 		}
 		return Mathf.Clamp(angle, min, max);
+	}
+
+	public void UpdateDOF(float Value, float Aperture)
+	{
+		if (Profile != null)
+		{
+			DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+			settings.focusDistance = Value;
+			Profile.depthOfField.settings = settings;
+			UpdateAperture(Aperture);
+		}
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
+		Profile.depthOfField.settings = settings;
 	}
 }

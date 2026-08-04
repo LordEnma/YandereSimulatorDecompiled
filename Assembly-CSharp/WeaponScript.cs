@@ -106,6 +106,8 @@ public class WeaponScript : MonoBehaviour
 
 	public bool LeftHand;
 
+	public bool Scissors;
+
 	public bool StartLow;
 
 	public bool Animate;

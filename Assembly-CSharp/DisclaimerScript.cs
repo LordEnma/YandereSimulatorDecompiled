@@ -7,6 +7,8 @@ public class DisclaimerScript : MonoBehaviour
 
 	public UISprite Darkness;
 
+	public bool AnyButton;
+
 	public bool Fade;
 
 	public int SceneID = 1;
@@ -29,7 +31,7 @@ public class DisclaimerScript : MonoBehaviour
 			{
 				Application.Quit();
 			}
-			else if (Input.anyKeyDown)
+			else if ((AnyButton && Input.anyKeyDown) || (!AnyButton && Input.GetButtonDown(InputNames.Xbox_A)))
 			{
 				if (SceneID == 2)
 				{
