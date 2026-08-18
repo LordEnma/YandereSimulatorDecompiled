@@ -203,6 +203,8 @@ public class StalkerYandereScript : MonoBehaviour
 
 	public bool Initialized;
 
+	public bool TriggerHeld;
+
 	public bool Sedative;
 
 	public bool Asylum;
@@ -949,26 +951,33 @@ public class StalkerYandereScript : MonoBehaviour
 				StopAiming();
 			}
 		}
-		if (!Aiming || !(Time.timeScale > 0.0001f))
+		if (Aiming && Time.timeScale > 0.0001f)
 		{
-			return;
-		}
-		Debug.DrawRay(Smartphone.transform.position, Smartphone.transform.forward * 10f, Color.red);
-		if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f || Input.GetMouseButtonDown(InputNames.Mouse_LMB) || Input.GetButtonDown(InputNames.Xbox_A))
-		{
-			AudioSource.PlayClipAtPoint(CameraShutter, MainCamera.transform.position);
-			if (Physics.Raycast(new Ray(Smartphone.transform.position, Smartphone.transform.forward), out var hitInfo, 10f) && hitInfo.collider.CompareTag("RivalEvidence"))
+			Debug.DrawRay(Smartphone.transform.position, Smartphone.transform.forward * 10f, Color.red);
+			if ((Input.GetAxis(InputNames.Xbox_RT) > 0.5f && !TriggerHeld) || Input.GetMouseButtonDown(InputNames.Mouse_LMB) || Input.GetButtonDown(InputNames.Xbox_A))
 			{
-				NotificationManager.CustomText = "Incriminating Evidence Obtained!";
-				NotificationManager.DisplayNotification(NotificationType.Custom);
-				hitInfo.collider.enabled = false;
-				PhotoEvidence++;
-				UpdateInstructions();
+				if (Input.GetAxis(InputNames.Xbox_RT) > 0.5f)
+				{
+					TriggerHeld = true;
+				}
+				AudioSource.PlayClipAtPoint(CameraShutter, MainCamera.transform.position);
+				if (Physics.Raycast(new Ray(Smartphone.transform.position, Smartphone.transform.forward), out var hitInfo, 10f) && hitInfo.collider.CompareTag("RivalEvidence"))
+				{
+					NotificationManager.CustomText = "Incriminating Evidence Obtained!";
+					NotificationManager.DisplayNotification(NotificationType.Custom);
+					hitInfo.collider.enabled = false;
+					PhotoEvidence++;
+					UpdateInstructions();
+				}
+			}
+			else if ((UsingController && Input.GetAxis(InputNames.Xbox_LT) < 0.5f) || (!UsingController && !Input.GetMouseButton(InputNames.Mouse_RMB)))
+			{
+				StopAiming();
 			}
 		}
-		else if ((UsingController && Input.GetAxis(InputNames.Xbox_LT) < 0.5f) || (!UsingController && !Input.GetMouseButton(InputNames.Mouse_RMB)))
+		if (TriggerHeld && Input.GetAxis(InputNames.Xbox_RT) <= 0.5f)
 		{
-			StopAiming();
+			TriggerHeld = false;
 		}
 	}
 

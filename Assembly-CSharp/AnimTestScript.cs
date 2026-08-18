@@ -8,6 +8,12 @@ public class AnimTestScript : MonoBehaviour
 
 	public Animation CharacterB;
 
+	public string[] AnimListA;
+
+	public string[] AnimListB;
+
+	public float[] Distance;
+
 	public int ID;
 
 	private void Start()
@@ -21,34 +27,31 @@ public class AnimTestScript : MonoBehaviour
 		if (Input.GetKeyDown("space"))
 		{
 			ID++;
-			if (ID > 4)
+			if (ID == AnimListA.Length)
 			{
-				ID = 1;
+				ID = 0;
 			}
 		}
-		if (ID == 1)
+		if (ID == 0)
 		{
-			CharacterB.transform.position = new Vector3(0.5f, 0f, 0f);
-			CharacterB.transform.eulerAngles = new Vector3(0f, -90f, 0f);
-			CharacterA.Play("f02_chainsawHighSanityA_00");
-			CharacterB.Play("f02_chainsawHighSanityB_00");
+			CharacterA.Play(AnimListA[ID]);
+			CharacterB.Play(AnimListB[ID]);
+		}
+		else if (ID == 1)
+		{
+			CharacterA.Play(AnimListA[ID]);
+			CharacterB.Play(AnimListB[ID]);
 		}
 		else if (ID == 2)
 		{
-			CharacterA.Play("f02_chainsawMedSanityA_00");
-			CharacterB.Play("f02_chainsawMedSanityB_00");
+			CharacterA.Play(AnimListA[ID]);
+			CharacterB.Play(AnimListB[ID]);
 		}
 		else if (ID == 3)
 		{
-			CharacterA.Play("f02_chainsawLowSanityA_00");
-			CharacterB.Play("f02_chainsawLowSanityB_00");
+			CharacterA.Play(AnimListA[ID]);
+			CharacterB.Play(AnimListB[ID]);
 		}
-		else if (ID == 4)
-		{
-			CharacterB.transform.position = new Vector3(0.25f, 0f, 0f);
-			CharacterB.transform.eulerAngles = new Vector3(0f, 90f, 0f);
-			CharacterA.Play("f02_chainsawStealthA_00");
-			CharacterB.Play("f02_chainsawStealthB_00");
-		}
+		CharacterB.transform.position = new Vector3(Distance[ID], 0f, 0f);
 	}
 }

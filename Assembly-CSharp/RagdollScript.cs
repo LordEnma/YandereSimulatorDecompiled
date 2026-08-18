@@ -1337,6 +1337,14 @@ public class RagdollScript : MonoBehaviour
 	public void ConcealInTrashBag()
 	{
 		Student.LowPoly.enabled = false;
+		if (Student.LowPoly.TeacherMesh != null)
+		{
+			Student.LowPoly.TeacherMesh.enabled = false;
+		}
+		if (Student.LowPoly.MyMesh != null)
+		{
+			Student.LowPoly.MyMesh.enabled = false;
+		}
 		Prompt.Label[0].text = "     Dismember";
 		Student.StudentManager.Police.HiddenCorpses++;
 		Concealed = true;

@@ -122,7 +122,7 @@ public class ModernRivalEventScript : MonoBehaviour
 	private void Update()
 	{
 		StartTimer += Time.deltaTime;
-		if (!(StartTimer > 1f))
+		if (!(StartTimer > 1f) || !(Clock.HourTime < 18f))
 		{
 			return;
 		}

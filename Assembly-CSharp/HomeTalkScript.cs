@@ -1,7 +1,17 @@
+using System;
 using UnityEngine;
 
 public class HomeTalkScript : MonoBehaviour
 {
+	public enum FamilyMemberType
+	{
+		Sister = 0,
+		Father = 1,
+		Mother = 2,
+		Grandpa = 3,
+		Grandma = 4
+	}
+
 	public HomeYandereScript HomeYandere;
 
 	public UIPanel DialoguePanel;
@@ -14,19 +24,33 @@ public class HomeTalkScript : MonoBehaviour
 
 	public UITexture BG;
 
-	public bool Talking;
-
-	public bool Out;
-
 	public Color[] SpeakerColor;
 
 	public string[] Dialogue;
 
 	public string[] Speaker;
 
+	public FamilyMemberType FamilyMember;
+
 	public float MinimumDistance = 1f;
 
+	public bool Talking;
+
+	public bool Out;
+
 	public int ID;
+
+	private void Start()
+	{
+		if (FamilyMember == FamilyMemberType.Sister && DateGlobals.Weekday == DayOfWeek.Sunday)
+		{
+			Dialogue[3] = "Rise and shine, dear sister!";
+			Dialogue[4] = "I don't feel like it...";
+			Dialogue[5] = "Why not? is something wrong?";
+			Dialogue[6] = "I don't wanna talk about it...";
+			Dialogue[7] = "If anything is bothering you, you know I'm more than happy to help in any way I can, right?";
+		}
+	}
 
 	private void Update()
 	{

@@ -4165,6 +4165,18 @@ public class CustomModeScript : MonoBehaviour
 		StudentGlobals.CustomMaleUniform = JSON.Misc.CustomMaleUniform;
 		FemaleUniform = JSON.Misc.FemaleUniform;
 		MaleUniform = JSON.Misc.MaleUniform;
+		if (StudentGlobals.CustomFemaleUniform)
+		{
+			FemaleUniformID = FemaleUniform + 6;
+		}
+		if (StudentGlobals.CustomMaleUniform)
+		{
+			MaleUniformID = MaleUniform + 6;
+		}
+		Debug.Log("FemaleUniform is: " + FemaleUniform);
+		Debug.Log("FemaleUniformID is: " + FemaleUniformID);
+		Debug.Log("JSON.Misc.CustomFemaleUniform is: " + JSON.Misc.CustomFemaleUniform);
+		Debug.Log("StudentGlobals.CustomFemaleUniform is: " + StudentGlobals.CustomFemaleUniform);
 		FemaleUniformLabel.text = FemaleUniform.ToString() ?? "";
 		MaleUniformLabel.text = MaleUniform.ToString() ?? "";
 		InitialFemale.Start();

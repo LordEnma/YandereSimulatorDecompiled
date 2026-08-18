@@ -8,6 +8,12 @@ public class ConfessionDataScript : MonoBehaviour
 
 	public string[] RejectSubs;
 
+	public float[] ConfessTimes;
+
+	public float[] AcceptTimes;
+
+	public float[] RejectTimes;
+
 	public AudioClip ConfessionSpeech;
 
 	public AudioClip ConfessionAccepted;

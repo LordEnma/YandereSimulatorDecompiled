@@ -201,7 +201,10 @@ public class ShutterScript : MonoBehaviour
 				Sprite.spriteName = "Shutter" + Frame;
 				if (Frame == 8)
 				{
-					StudentManager.GhostChan.gameObject.SetActive(value: true);
+					if (!Eighties || !MissionMode)
+					{
+						StudentManager.GhostChan.gameObject.SetActive(value: true);
+					}
 					PhotoDescription.SetActive(value: false);
 					PhotoDescLabel.text = "";
 					StudentManager.GhostChan.Look();

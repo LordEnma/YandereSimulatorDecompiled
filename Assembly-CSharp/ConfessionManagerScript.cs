@@ -77,7 +77,17 @@ public class ConfessionManagerScript : MonoBehaviour
 
 	public Animation Osana;
 
+	public Renderer[] NewTears;
+
 	public Renderer Tears;
+
+	public float RightTearSpeed;
+
+	public float RightTearTimer;
+
+	public float LeftTearSpeed;
+
+	public float LeftTearTimer;
 
 	public float RotateSpeed;
 
@@ -86,6 +96,10 @@ public class ConfessionManagerScript : MonoBehaviour
 	public float TearTimer;
 
 	public float Timer;
+
+	public bool ReverseRightTears;
+
+	public bool ReverseLeftTears;
 
 	public bool CheatRejection;
 
@@ -103,7 +117,11 @@ public class ConfessionManagerScript : MonoBehaviour
 
 	public int TearPhase;
 
+	public int Offset;
+
 	public int Phase;
+
+	public int Week;
 
 	public int MusicID;
 
@@ -113,22 +131,33 @@ public class ConfessionManagerScript : MonoBehaviour
 
 	public AudioClip EmptyClip;
 
+	public string[] RivalNames;
+
 	private void Start()
 	{
+		Eighties = StudentManager.Eighties;
+		Custom = GameGlobals.CustomMode;
+		Week = DateGlobals.Week;
+		if (Eighties || Custom)
+		{
+			Week = 1;
+		}
+		if (Week == 1)
+		{
+			Offset = 3;
+		}
 		Debug.Log("ConfessionManager is now firing Start()");
 		ConfessionCamera.gameObject.SetActive(value: false);
 		if (GameGlobals.FemaleSenpai)
 		{
 			Senpai.transform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
 		}
-		Custom = GameGlobals.CustomMode;
 		StudentManager.Yandere.Class.Portal.EndEvents();
 		StudentManager.Students[StudentManager.RivalID].BookBag.SetActive(value: false);
 		Senpai["SenpaiConfession"].speed = 0.9f;
 		TimelessDarkness.color = new Color(0f, 0f, 0f, 0f);
 		Darkness.color = new Color(0f, 0f, 0f, 0f);
 		SubtitleLabel.text = "";
-		Eighties = StudentManager.Eighties;
 		ContinueButton.alpha = 0f;
 		if (Eighties && !Custom)
 		{
@@ -153,12 +182,15 @@ public class ConfessionManagerScript : MonoBehaviour
 		}
 		else if (DateGlobals.Week > 1)
 		{
-			ConfessSubs = ConfessionData[DateGlobals.Week].ConfessSubs;
-			AcceptSubs = ConfessionData[DateGlobals.Week].AcceptSubs;
-			RejectSubs = ConfessionData[DateGlobals.Week].RejectSubs;
-			MyAudio.clip = ConfessionData[DateGlobals.Week].ConfessionSpeech;
-			ConfessionAccepted = ConfessionData[DateGlobals.Week].ConfessionAccepted;
-			ConfessionRejected = ConfessionData[DateGlobals.Week].ConfessionRejected;
+			ConfessSubs = ConfessionData[Week].ConfessSubs;
+			AcceptSubs = ConfessionData[Week].AcceptSubs;
+			RejectSubs = ConfessionData[Week].RejectSubs;
+			ConfessTimes = ConfessionData[Week].ConfessTimes;
+			AcceptTimes = ConfessionData[Week].AcceptTimes;
+			RejectTimes = ConfessionData[Week].RejectTimes;
+			MyAudio.clip = ConfessionData[Week].ConfessionSpeech;
+			ConfessionAccepted = ConfessionData[Week].ConfessionAccepted;
+			ConfessionRejected = ConfessionData[Week].ConfessionRejected;
 		}
 		Time.timeScale = 1f;
 	}
@@ -195,6 +227,8 @@ public class ConfessionManagerScript : MonoBehaviour
 				Senpai["SenpaiConfession"].speed = 0.9f;
 				OriginalBlossoms.SetActive(value: false);
 				Tears.gameObject.SetActive(value: true);
+				Tears.materials[0].SetFloat("_TearReveal", 0f);
+				Tears.materials[1].SetFloat("_TearReveal", 0f);
 				Osana.transform.position = new Vector3(0f, 6.6f, 119.5f);
 				Senpai.transform.position = new Vector3(0f, 6.6f, 119.5f);
 				Osana.transform.eulerAngles = new Vector3(0f, 180f, 0f);
@@ -213,8 +247,6 @@ public class ConfessionManagerScript : MonoBehaviour
 					OsanaCosmetic.MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
 					OsanaCosmetic.MyRenderer.materials[2].SetFloat("_BlendAmount1", 0f);
 				}
-				Tears.materials[0].SetFloat("_TearReveal", 0f);
-				Tears.materials[1].SetFloat("_TearReveal", 0f);
 				Debug.Log("The characters were told to perform their confession animations.");
 				Senpai.Play("SenpaiConfession");
 				Osana.Play(MalePrefix + "OsanaConfession");
@@ -222,6 +254,7 @@ public class ConfessionManagerScript : MonoBehaviour
 				HeartBeatCamera.SetActive(value: false);
 				if (!Eighties)
 				{
+					Debug.Log("MyAudio is being commanded to Play() on this frame.");
 					MyAudio.Play();
 				}
 				Jukebox.Play();
@@ -252,11 +285,11 @@ public class ConfessionManagerScript : MonoBehaviour
 					Timer = 0f;
 					Phase++;
 				}
-				else if (Osana[MalePrefix + "OsanaConfessionRejected"].time < 45f)
+				else if (Osana[MalePrefix + RivalNames[Week] + "ConfessionRejected"].time < 45f)
 				{
 					Senpai.CrossFade("SenpaiConfessionRejected", 1f);
-					Osana[MalePrefix + "OsanaConfessionRejected"].time = 45f;
-					Osana.CrossFade(MalePrefix + "OsanaConfessionRejected", 1f);
+					Osana[MalePrefix + RivalNames[Week] + "ConfessionRejected"].time = 45f;
+					Osana.CrossFade(MalePrefix + RivalNames[Week] + "ConfessionRejected", 1f);
 				}
 			}
 			else
@@ -272,9 +305,27 @@ public class ConfessionManagerScript : MonoBehaviour
 				ConfessionCamera.eulerAngles = SenpaiPOV.eulerAngles;
 				ConfessionCamera.position = SenpaiPOV.position;
 				Senpai.gameObject.SetActive(value: false);
-				Osana[MalePrefix + "OsanaConfession"].time = 11f;
-				MyAudio.volume = 1f;
+				Osana[MalePrefix + RivalNames[Week] + "Confession"].time = 11f;
 				MyAudio.time = 8f;
+				if (!Eighties && !Custom && Week > 1)
+				{
+					StudentManager.Students[StudentManager.RivalID].Cosmetic.ResetBlendshapes();
+					Debug.Log("Animation begins now. Audio begins playing now.");
+					Osana[MalePrefix + RivalNames[Week] + "Confession"].time = 0f;
+					Osana.Play(MalePrefix + RivalNames[Week] + "Confession");
+					Tears.gameObject.SetActive(value: false);
+					NewTears = StudentManager.Students[StudentManager.RivalID].NewTears;
+					NewTears[1].gameObject.SetActive(value: true);
+					NewTears[2].gameObject.SetActive(value: true);
+					NewTears[1].materials[0].SetFloat("_TearReveal", 0f);
+					NewTears[1].materials[1].SetFloat("_TearReveal", 0f);
+					NewTears[2].materials[0].SetFloat("_TearReveal", 0f);
+					NewTears[2].materials[1].SetFloat("_TearReveal", 0f);
+					Jukebox.loop = true;
+					MyAudio.time = 0f;
+					MyAudio.Play();
+				}
+				MyAudio.volume = 1f;
 				FadeOut = false;
 				Timer = 0f;
 				Phase++;
@@ -282,7 +333,7 @@ public class ConfessionManagerScript : MonoBehaviour
 		}
 		else if (Phase == 2)
 		{
-			if (SubID < ConfessTimes.Length && Osana[MalePrefix + "OsanaConfession"].time > ConfessTimes[SubID] + 3f)
+			if (SubID < ConfessTimes.Length && Osana[MalePrefix + RivalNames[Week] + "Confession"].time > ConfessTimes[SubID] + (float)Offset)
 			{
 				if (!Eighties || Custom)
 				{
@@ -308,11 +359,27 @@ public class ConfessionManagerScript : MonoBehaviour
 				{
 					ConfessionCamera.eulerAngles = new Vector3(0f, 0f, 0f);
 					ConfessionCamera.position = new Vector3(0f, 7.85f, 118f);
-					Osana[MalePrefix + "OsanaConfession"].time = Osana[MalePrefix + "OsanaConfession"].length;
+					Osana[MalePrefix + RivalNames[Week] + "Confession"].time = Osana[MalePrefix + RivalNames[Week] + "Confession"].length;
 					ContinueButton.alpha = 0f;
 				}
 			}
-			if (Osana[MalePrefix + "OsanaConfession"].time >= Osana[MalePrefix + "OsanaConfession"].length)
+			if (!Eighties && !Custom && Week > 1 && Week == 2)
+			{
+				if (MyAudio.time > 125f)
+				{
+					Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 0f, Time.deltaTime * 0.05f);
+				}
+				if (MyAudio.time > 133f && !StudentManager.Students[StudentManager.RivalID].AnimatedEyes[1].gameObject.activeInHierarchy)
+				{
+					OsanaCosmetic.Student.AnimatedEyes[1].gameObject.SetActive(value: true);
+					OsanaCosmetic.Student.AnimatedEyes[2].gameObject.SetActive(value: true);
+					OsanaCosmetic.RightEyeRenderer.gameObject.SetActive(value: false);
+					OsanaCosmetic.LeftEyeRenderer.gameObject.SetActive(value: false);
+					OsanaCosmetic.RightIrisLight.gameObject.SetActive(value: false);
+					OsanaCosmetic.LeftIrisLight.gameObject.SetActive(value: false);
+				}
+			}
+			if (Osana[MalePrefix + RivalNames[Week] + "Confession"].time >= Osana[MalePrefix + RivalNames[Week] + "Confession"].length)
 			{
 				ContinueButton.alpha = 0f;
 				if (StudentManager.SabotageProgress > 4 || StudentManager.StudentReps[StudentManager.RivalID] < -100f)
@@ -321,13 +388,22 @@ public class ConfessionManagerScript : MonoBehaviour
 				}
 				if (!Reject)
 				{
-					Osana.CrossFade(MalePrefix + "OsanaConfessionAccepted");
+					Osana.CrossFade(MalePrefix + RivalNames[Week] + "ConfessionAccepted");
 					MyAudio.clip = ConfessionAccepted;
 				}
 				else
 				{
-					Osana.CrossFade(MalePrefix + "OsanaConfessionRejected");
+					Osana.CrossFade(MalePrefix + RivalNames[Week] + "ConfessionRejected");
 					MyAudio.clip = ConfessionRejected;
+				}
+				if (!Eighties && !Custom && Week > 1 && Week == 2)
+				{
+					OsanaCosmetic.Student.AnimatedEyes[1].gameObject.SetActive(value: true);
+					OsanaCosmetic.Student.AnimatedEyes[2].gameObject.SetActive(value: true);
+					OsanaCosmetic.RightEyeRenderer.gameObject.SetActive(value: false);
+					OsanaCosmetic.LeftEyeRenderer.gameObject.SetActive(value: false);
+					OsanaCosmetic.RightIrisLight.gameObject.SetActive(value: false);
+					OsanaCosmetic.LeftIrisLight.gameObject.SetActive(value: false);
 				}
 				MyAudio.time = 0f;
 				MyAudio.Play();
@@ -347,7 +423,19 @@ public class ConfessionManagerScript : MonoBehaviour
 		{
 			if (!Reject)
 			{
-				if (SubID < AcceptTimes.Length && Osana[MalePrefix + "OsanaConfessionAccepted"].time > AcceptTimes[SubID])
+				float num = 0f;
+				float num2 = 0f;
+				if (Eighties || Custom || Week == 1)
+				{
+					num = 10f;
+					num2 = 43f;
+				}
+				else if (Week == 2)
+				{
+					num = 7f;
+					num2 = 48f;
+				}
+				if (SubID < AcceptTimes.Length && Osana[MalePrefix + RivalNames[Week] + "ConfessionAccepted"].time > AcceptTimes[SubID])
 				{
 					if (!Eighties || Custom)
 					{
@@ -359,38 +447,75 @@ public class ConfessionManagerScript : MonoBehaviour
 					}
 					SubID++;
 				}
-				if (TearPhase == 0)
+				if (Eighties || Custom || Week == 1)
 				{
-					if (Timer > 26f)
+					if (TearPhase == 0)
 					{
-						ReverseTears = true;
-						TearSpeed = 5f;
+						if (Timer > 26f)
+						{
+							ReverseTears = true;
+							TearSpeed = 5f;
+							TearPhase++;
+						}
+					}
+					else if (TearPhase == 1)
+					{
+						if ((double)Timer > 33.33333)
+						{
+							ReverseTears = true;
+							TearSpeed = 5f;
+							TearPhase++;
+						}
+					}
+					else if (TearPhase == 2)
+					{
+						if (Timer > 39f)
+						{
+							ReverseTears = true;
+							TearSpeed = 5f;
+							TearPhase++;
+						}
+					}
+					else if (TearPhase == 3 && Timer > 40f)
+					{
 						TearPhase++;
 					}
 				}
-				else if (TearPhase == 1)
+				else if (Week == 2)
 				{
-					if ((double)Timer > 33.33333)
+					if (TearPhase == 0)
 					{
-						ReverseTears = true;
-						TearSpeed = 5f;
+						if (Timer > 19.5f)
+						{
+							ReverseLeftTears = true;
+							LeftTearSpeed = 5f;
+							TearPhase++;
+						}
+					}
+					else if (TearPhase == 1)
+					{
+						if (Timer > 31.15f)
+						{
+							ReverseRightTears = true;
+							ReverseLeftTears = true;
+							RightTearSpeed = 5f;
+							LeftTearSpeed = 5f;
+							TearPhase++;
+						}
+					}
+					else if (TearPhase == 2)
+					{
+						if (Timer > 40f)
+						{
+							TearPhase++;
+						}
+					}
+					else if (TearPhase == 3 && Timer > 45f)
+					{
 						TearPhase++;
 					}
 				}
-				else if (TearPhase == 2)
-				{
-					if (Timer > 39f)
-					{
-						ReverseTears = true;
-						TearSpeed = 5f;
-						TearPhase++;
-					}
-				}
-				else if (TearPhase == 3 && Timer > 40f)
-				{
-					TearPhase++;
-				}
-				if (Timer > 10f)
+				if (Timer > num)
 				{
 					if (!Jukebox.isPlaying)
 					{
@@ -418,6 +543,42 @@ public class ConfessionManagerScript : MonoBehaviour
 						Tears.materials[0].SetFloat("_TearReveal", TearTimer);
 					}
 					Tears.materials[1].SetFloat("_TearReveal", TearTimer);
+					if (NewTears.Length != 0 && NewTears[1] != null)
+					{
+						if (!ReverseLeftTears)
+						{
+							LeftTearTimer = Mathf.MoveTowards(LeftTearTimer, 1f, Time.deltaTime * LeftTearSpeed);
+						}
+						else
+						{
+							LeftTearTimer = Mathf.MoveTowards(LeftTearTimer, 0f, Time.deltaTime * LeftTearSpeed);
+							if (LeftTearTimer == 0f)
+							{
+								ReverseLeftTears = false;
+								LeftTearSpeed = 0.2f;
+							}
+						}
+						if (!ReverseRightTears)
+						{
+							RightTearTimer = Mathf.MoveTowards(RightTearTimer, 1f, Time.deltaTime * RightTearSpeed);
+						}
+						else
+						{
+							RightTearTimer = Mathf.MoveTowards(RightTearTimer, 0f, Time.deltaTime * RightTearSpeed);
+							if (RightTearTimer == 0f)
+							{
+								ReverseRightTears = false;
+								RightTearSpeed = 0.2f;
+							}
+						}
+						if (TearPhase < 4)
+						{
+							NewTears[1].materials[0].SetFloat("_TearReveal", LeftTearTimer);
+							NewTears[2].materials[0].SetFloat("_TearReveal", RightTearTimer);
+						}
+						NewTears[1].materials[1].SetFloat("_TearReveal", LeftTearTimer);
+						NewTears[2].materials[1].SetFloat("_TearReveal", RightTearTimer);
+					}
 				}
 				if (Darkness.color.a < 0.0001f)
 				{
@@ -432,11 +593,20 @@ public class ConfessionManagerScript : MonoBehaviour
 						MyAudio.volume = 0f;
 						MyAudio.Stop();
 						Skipping = true;
-						Timer = 43f;
+						Timer = num2;
 					}
 				}
-				if (Timer >= 43f)
+				if (Timer >= num2)
 				{
+					if (!Tears.gameObject.activeInHierarchy)
+					{
+						Tears.gameObject.SetActive(value: true);
+						if (NewTears.Length != 0 && NewTears[1] != null)
+						{
+							NewTears[1].gameObject.SetActive(value: false);
+							NewTears[2].gameObject.SetActive(value: false);
+						}
+					}
 					ContinueButton.alpha = 0f;
 					TearSpeed = 0.1f;
 					FadeOut = true;
@@ -446,7 +616,22 @@ public class ConfessionManagerScript : MonoBehaviour
 			}
 			else
 			{
-				if (SubID < RejectTimes.Length && Osana[MalePrefix + "OsanaConfessionRejected"].time > RejectTimes[SubID])
+				float num3 = 0f;
+				float num4 = 0f;
+				float num5 = 0f;
+				if (Eighties || Custom || Week == 1)
+				{
+					num3 = 47f;
+					num4 = 41f;
+					num5 = 51f;
+				}
+				else if (Week == 2)
+				{
+					num3 = 53.436f;
+					num4 = 50f;
+					num5 = 60f;
+				}
+				if (SubID < RejectTimes.Length && Osana[MalePrefix + RivalNames[Week] + "ConfessionRejected"].time > RejectTimes[SubID])
 				{
 					if (!Eighties || Custom)
 					{
@@ -460,16 +645,17 @@ public class ConfessionManagerScript : MonoBehaviour
 				}
 				if (Eighties && !Custom && Timer < 41f)
 				{
-					Osana[MalePrefix + "OsanaConfessionRejected"].time = 41f;
+					Osana[MalePrefix + RivalNames[Week] + "ConfessionRejected"].time = 41f;
 					Timer = 41f;
 				}
-				if (Timer > 41f)
+				if (Timer > num4)
 				{
+					Tears.gameObject.SetActive(value: true);
 					TearTimer = Mathf.MoveTowards(TearTimer, 1f, Time.deltaTime * TearSpeed);
 					Tears.materials[0].SetFloat("_TearReveal", TearTimer);
 					Tears.materials[1].SetFloat("_TearReveal", TearTimer);
 				}
-				if (Timer > 47f)
+				if (Timer > num3)
 				{
 					RotateSpeed += Time.deltaTime * 0.01f;
 					ConfessionCamera.eulerAngles = new Vector3(ConfessionCamera.eulerAngles.x, ConfessionCamera.eulerAngles.y - RotateSpeed * 2f, ConfessionCamera.eulerAngles.z);
@@ -488,10 +674,10 @@ public class ConfessionManagerScript : MonoBehaviour
 						MyAudio.volume = 0f;
 						MyAudio.Stop();
 						Skipping = true;
-						Timer = 51f;
+						Timer = num5;
 					}
 				}
-				if (Timer > 51f)
+				if (Timer > num5)
 				{
 					ContinueButton.alpha = 0f;
 					FadeOut = true;
@@ -519,32 +705,36 @@ public class ConfessionManagerScript : MonoBehaviour
 				}
 				if (!Reject)
 				{
+					Osana.Play(MalePrefix + "OsanaConfessionAccepted");
+					Osana[MalePrefix + "OsanaConfessionAccepted"].time = 47f;
 					Senpai.Play("SenpaiConfessionAccepted");
-					Senpai["SenpaiConfessionAccepted"].time = Osana[MalePrefix + "OsanaConfessionAccepted"].time;
-					Senpai.Play("SenpaiConfessionAccepted");
+					Senpai["SenpaiConfessionAccepted"].time = 47f;
 					Yandere.Play("YandereConfessionAccepted");
 					StudentManager.Yandere.LoseGentleEyes();
 				}
 				else
 				{
+					Osana.Play(MalePrefix + "OsanaConfessionRejected");
+					Osana[MalePrefix + "OsanaConfessionRejected"].time = 47f;
 					Senpai.Play("SenpaiConfessionRejected");
 					Senpai["SenpaiConfessionRejected"].time += 2f;
 				}
 				if (Skipping)
 				{
-					if (Reject)
-					{
-						Osana.Play(MalePrefix + "OsanaConfessionRejected");
-						Osana[MalePrefix + "OsanaConfessionRejected"].time = 47f;
-						Senpai.Play("SenpaiConfessionRejected");
-						Senpai["SenpaiConfessionRejected"].time = 47f;
-					}
-					else
+					if (!Reject)
 					{
 						Osana.Play(MalePrefix + "OsanaConfessionAccepted");
 						Osana[MalePrefix + "OsanaConfessionAccepted"].time = 47f;
 						Senpai.Play("SenpaiConfessionAccepted");
 						Senpai["SenpaiConfessionAccepted"].time = 47f;
+						StudentManager.Yandere.LoseGentleEyes();
+					}
+					else
+					{
+						Osana.Play(MalePrefix + "OsanaConfessionRejected");
+						Osana[MalePrefix + "OsanaConfessionRejected"].time = 47f;
+						Senpai.Play("SenpaiConfessionRejected");
+						Senpai["SenpaiConfessionRejected"].time = 47f;
 					}
 				}
 				SubtitleLabel.text = "";

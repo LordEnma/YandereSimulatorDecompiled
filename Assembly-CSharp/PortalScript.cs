@@ -782,6 +782,10 @@ public class PortalScript : MonoBehaviour
 
 	public void EndEvents()
 	{
+		if (!(Clock.HourTime < 18f))
+		{
+			return;
+		}
 		Debug.Log("The portal script is now calling EndEvent() on all rival morning events.");
 		for (int i = 0; i < MorningEvents.Length; i++)
 		{

@@ -132,6 +132,10 @@ public class TaskWindowScript : MonoBehaviour
 				{
 					UpdateTaskObjects(StudentID);
 				}
+				else if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
+				{
+					Debug.Log("This 1980s character has a unique task, so we are not updating Yandere.Inventory.ItemsRequested.");
+				}
 				else
 				{
 					Yandere.Inventory.ItemsRequested[Yandere.TargetStudent.GenericTaskID]++;
@@ -166,24 +170,32 @@ public class TaskWindowScript : MonoBehaviour
 			Timer = 0f;
 			ID++;
 		}
-		if (TaskCompleteLetters[12].transform.localPosition.y < -725f)
+		if (!(TaskCompleteLetters[12].transform.localPosition.y < -725f))
 		{
-			for (ID = 0; ID < TaskCompleteLetters.Length; ID++)
+			return;
+		}
+		for (ID = 0; ID < TaskCompleteLetters.Length; ID++)
+		{
+			TaskCompleteLetters[ID].GetComponent<GrowShrinkScript>().Return();
+		}
+		if (Yandere.StudentManager.Eighties)
+		{
+			if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
 			{
-				TaskCompleteLetters[ID].GetComponent<GrowShrinkScript>().Return();
+				Debug.Log("This 1980s character has a unique task, so we are not updating Yandere.Inventory.ItemsRequested.");
 			}
-			if (Yandere.StudentManager.Eighties)
+			else
 			{
 				Yandere.Inventory.ItemsRequested[Yandere.TargetStudent.GenericTaskID]--;
 				Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID]--;
 			}
-			TaskCheck();
-			DialogueWheel.End();
-			TaskComplete = false;
-			TrueTimer = 0f;
-			Timer = 0f;
-			ID = 0;
 		}
+		TaskCheck();
+		DialogueWheel.End();
+		TaskComplete = false;
+		TrueTimer = 0f;
+		Timer = 0f;
+		ID = 0;
 	}
 
 	private void TaskCheck()

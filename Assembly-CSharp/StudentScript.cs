@@ -354,6 +354,10 @@ public class StudentScript : MonoBehaviour
 
 	public GameObject[] Bones;
 
+	public Renderer[] AnimatedEyes;
+
+	public Renderer[] NewTears;
+
 	public string[] DelinquentAnims;
 
 	public string[] AnimationNames;
@@ -9841,7 +9845,7 @@ public class StudentScript : MonoBehaviour
 									CharacterAnimation.CrossFade(EatChipsAnim);
 									GenericBagOfChips.SetActive(value: true);
 									break;
-								default:
+								case ClubType.Drama:
 									CharacterAnimation.CrossFade(GenderPrefix + "rehearsingScript_00");
 									Script.SetActive(value: true);
 									break;
@@ -9907,6 +9911,10 @@ public class StudentScript : MonoBehaviour
 								case ClubType.Delinquent:
 									CharacterAnimation.CrossFade(GenderPrefix + "delinquentTexting_00");
 									SmartPhone.SetActive(value: true);
+									break;
+								default:
+									CharacterAnimation.CrossFade(GenderPrefix + "readingBook_00");
+									OccultBook.SetActive(value: true);
 									break;
 								}
 							}
@@ -16027,7 +16035,6 @@ public class StudentScript : MonoBehaviour
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			Debug.Log("The player is attempting to speak to a student.");
 			if (!Alarmed)
 			{
 				AlarmTimer = 0f;
@@ -16079,7 +16086,6 @@ public class StudentScript : MonoBehaviour
 					}
 					if ((!Slave && !BadTime && !Yandere.Gazing && !FightingSlave) || Yandere.YandereVision || Stripping)
 					{
-						Debug.Log("Met criteria for not being allowed to talk to a student.");
 						if (InEvent || VisitSenpaiDesk)
 						{
 							string text = "She";
@@ -16120,7 +16126,6 @@ public class StudentScript : MonoBehaviour
 			}
 			if (Prompt.Circle[0].fillAmount == 0f)
 			{
-				Debug.Log("The player is allowed to speak to a student right now.");
 				bool flag3 = false;
 				if (StudentID < 86 && Armband.activeInHierarchy)
 				{
@@ -16132,8 +16137,8 @@ public class StudentScript : MonoBehaviour
 					}
 					if (Actions[Phase] == StudentActionType.ClubAction || Actions[Phase] == StudentActionType.SitAndSocialize || Actions[Phase] == StudentActionType.Socializing || Actions[Phase] == StudentActionType.Sleuth || Actions[Phase] == StudentActionType.Lyrics || Actions[Phase] == StudentActionType.Patrol || Actions[Phase] == StudentActionType.Rehearse || Actions[Phase] == StudentActionType.SitAndEatBento || Actions[Phase] == StudentActionType.BakeSale || Actions[Phase] == StudentActionType.Clean || Actions[Phase] == StudentActionType.Paint)
 					{
-						Debug.Log("This Club Leader is " + Vector3.Distance(base.transform.position, StudentManager.ClubZones[(int)Club].position) + " meters from the center of his Club Zone.");
-						Debug.Log("This Club Leader's DistanceToDestination is " + DistanceToDestination + " but he is actually " + Vector3.Distance(base.transform.position, CurrentDestination.position) + " meters from his destination.");
+						Debug.Log("This Club Leader is " + Vector3.Distance(base.transform.position, StudentManager.ClubZones[(int)Club].position) + " meters from the center of their Club Zone.");
+						Debug.Log("This Club Leader's DistanceToDestination is " + DistanceToDestination + " but they are actually " + Vector3.Distance(base.transform.position, CurrentDestination.position) + " meters from their destination.");
 						if (DistanceToDestination < 10f || (base.transform.position.y > StudentManager.ClubZones[(int)Club].position.y - 2.5f && base.transform.position.y < StudentManager.ClubZones[(int)Club].position.y + 2.5f && Vector3.Distance(base.transform.position, StudentManager.ClubZones[(int)Club].position) < ClubThreshold) || (Club == ClubType.Drama && Vector3.Distance(base.transform.position, StudentManager.DramaSpots[1].position) < 12f) || (Club == ClubType.MartialArts && base.transform.position.y < 1f && Vector3.Distance(base.transform.position, StudentManager.Clubs.List[StudentID].position) < 12f))
 						{
 							Debug.Log("Criteria for talking to this Club Leader was met.");
@@ -16183,7 +16188,7 @@ public class StudentScript : MonoBehaviour
 				{
 					flag11 = true;
 				}
-				if (ClubGlobals.GetClubKicked(Club) && ExplainedKick)
+				if (ClubGlobals.GetClubKicked(Club) && !ExplainedKick)
 				{
 					flag3 = false;
 				}
@@ -16941,6 +16946,14 @@ public class StudentScript : MonoBehaviour
 				if (Following)
 				{
 					StopFollowing();
+				}
+				if (TurnOffRadio)
+				{
+					ForgetRadio();
+				}
+				if (SolvingPuzzle)
+				{
+					DropPuzzle();
 				}
 				if (ReturningMisplacedWeapon)
 				{

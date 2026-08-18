@@ -189,6 +189,9 @@ public class IronMaidenScript : MonoBehaviour
 				ShoveTimer += Time.deltaTime;
 				if (ShoveTimer >= 2f)
 				{
+					Blood[0].transform.parent = base.transform;
+					Blood[1].transform.parent = Door[0];
+					Blood[2].transform.parent = Door[1];
 					MyAudio.clip = DoorSlam;
 					MyAudio.Play();
 					Victim.CharacterAnimation.CrossFade(Victim.IdleAnim);

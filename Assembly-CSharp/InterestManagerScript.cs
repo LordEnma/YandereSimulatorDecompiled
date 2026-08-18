@@ -141,7 +141,6 @@ public class InterestManagerScript : MonoBehaviour
 			StudentManager.SetTopicLearnedByStudent(18, FollowerID, boolean: true);
 			Ignore[18] = true;
 		}
-		Debug.Log("Follower's distance to Faculty Room is: " + Vector3.Distance(Yandere.Follower.transform.position, FacultyRoom.position));
 		if (!Ignore[22] && Vector3.Distance(Yandere.Follower.transform.position, FacultyRoom.position) < 6f && Yandere.Follower.transform.position.y < FacultyRoom.position.y + 0.1f && Yandere.Follower.transform.position.y > FacultyRoom.position.y - 0.1f)
 		{
 			Debug.Log("We are now in this block of code.");

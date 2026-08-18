@@ -389,7 +389,7 @@ public class DialogueWheelScript : MonoBehaviour
 							Yandere.TargetStudent.TalkTimer = 100f;
 							Show = false;
 							ClubManager.CheckGrudge(Yandere.TargetStudent.Club);
-							if (ClubManager.QuitClub[(int)Yandere.TargetStudent.Club])
+							if (ClubManager.QuitClub[(int)Yandere.TargetStudent.Club] || ClubManager.ClubsKickedFrom[(int)Yandere.TargetStudent.Club])
 							{
 								Yandere.TargetStudent.ClubPhase = 4;
 							}

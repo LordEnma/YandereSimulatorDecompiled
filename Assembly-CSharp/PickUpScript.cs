@@ -881,14 +881,6 @@ public class PickUpScript : MonoBehaviour
 				Bucket.Empty();
 			}
 		}
-		if (!DoNotTeleport && (Vector3.Distance(base.transform.position, OriginalPosition) < 1f || Vector3.Distance(Yandere.transform.position, OriginalPosition) < 1f))
-		{
-			base.transform.position = OriginalPosition;
-			base.transform.eulerAngles = OriginalRotation;
-			MyRigidbody.isKinematic = true;
-			MyRigidbody.useGravity = false;
-			MyCollider.isTrigger = true;
-		}
 		DoNotTeleport = false;
 		if (TaskKitten != null)
 		{
@@ -910,6 +902,14 @@ public class PickUpScript : MonoBehaviour
 		if (CheckForClipping())
 		{
 			base.transform.position = Yandere.transform.position + new Vector3(0f, 1f, 0f);
+		}
+		if (!DoNotTeleport && (Vector3.Distance(base.transform.position, OriginalPosition) < 1f || Vector3.Distance(Yandere.transform.position, OriginalPosition) < 1f))
+		{
+			base.transform.position = OriginalPosition;
+			base.transform.eulerAngles = OriginalRotation;
+			MyRigidbody.isKinematic = true;
+			MyRigidbody.useGravity = false;
+			MyCollider.isTrigger = true;
 		}
 	}
 
