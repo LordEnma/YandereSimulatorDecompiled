@@ -389,7 +389,7 @@ public class MGPMMiyukiScript : MonoBehaviour
 			}
 			AudioSource.PlayClipAtPoint(PickUpSound, base.transform.position);
 			GameplayManager.Score += 10;
-			Magic += 1f;
+			Magic++;
 			if (Magic == 20f)
 			{
 				MagicLevel++;

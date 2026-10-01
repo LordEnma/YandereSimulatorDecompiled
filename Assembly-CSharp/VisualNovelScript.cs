@@ -529,7 +529,7 @@ public class VisualNovelScript : MonoBehaviour
 							Typewriter.Finish();
 							flag = true;
 						}
-						if (Input.GetButtonDown(InputNames.Xbox_A) || flag)
+						if (Input.GetButtonDown(InputNames.Xbox_A) | flag)
 						{
 							if (ID < Dialogue.Length)
 							{

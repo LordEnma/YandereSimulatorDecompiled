@@ -46,7 +46,7 @@ public class HomeTalkScript : MonoBehaviour
 		{
 			Dialogue[3] = "Rise and shine, dear sister!";
 			Dialogue[4] = "I don't feel like it...";
-			Dialogue[5] = "Why not? is something wrong?";
+			Dialogue[5] = "Why not? Is something wrong?";
 			Dialogue[6] = "I don't wanna talk about it...";
 			Dialogue[7] = "If anything is bothering you, you know I'm more than happy to help in any way I can, right?";
 		}

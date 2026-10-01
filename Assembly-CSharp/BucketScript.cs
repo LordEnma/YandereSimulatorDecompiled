@@ -570,9 +570,9 @@ public class BucketScript : MonoBehaviour
 
 	public void Empty()
 	{
-		if (SchemeGlobals.GetSchemeStage(1) == 2)
+		if (Yandere.SchemeManager.GetSchemeStage(406) == 2)
 		{
-			SchemeGlobals.SetSchemeStage(1, 1);
+			Yandere.SchemeManager.SetSchemeStage(406, 1);
 			Yandere.PauseScreen.Schemes.UpdateInstructions();
 		}
 		if (!Yandere.StudentManager.KokonaTutorial && !Spilling)

@@ -75,9 +75,9 @@ namespace HNS
 
 		private void HandlePauseToggle()
 		{
-			bool num = InputQuery.ButtonDown(ButtonInput.Start);
-			bool flag = isPaused && InputQuery.ButtonDown(ButtonInput.B);
-			if (num || flag)
+			bool num = Input.GetButtonDown(InputNames.Xbox_Start) || Input.GetKeyDown(KeyCode.Escape);
+			bool buttonDown = Input.GetButtonDown(InputNames.Xbox_B);
+			if (num | buttonDown)
 			{
 				TogglePause();
 			}
@@ -120,7 +120,7 @@ namespace HNS
 		private void HandleMenuInput()
 		{
 			Controls.text = (InputQuery.IsUsingKeyboardMouse ? "E: Confirm             Q: Cancel" : "A: Confirm             B: Cancel");
-			if (InputQuery.ButtonDown(ButtonInput.A))
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				StartCoroutine(TransitionToTitle());
 			}

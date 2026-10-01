@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class WalkToSchoolManagerScript : MonoBehaviour
@@ -160,6 +161,8 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 
 	private Quaternion initialLocalRotation;
 
+	public PostProcessingProfile Profile;
+
 	private void Start()
 	{
 		if (GameGlobals.BlondeHair)
@@ -221,6 +224,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 			GameGlobals.Eighties = false;
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
+		UpdateDOF(1.5f);
 	}
 
 	private void Update()
@@ -495,5 +499,23 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 			Quaternion rotation = Quaternion.Slerp(headBone.rotation, b, lookAtWeight);
 			headBone.rotation = rotation;
 		}
+	}
+
+	private void UpdateDOF(float Focus)
+	{
+		Focus = Focus;
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		settings.focusDistance = Focus;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(5.6f);
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
+		Profile.depthOfField.settings = settings;
 	}
 }

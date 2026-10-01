@@ -618,7 +618,7 @@ public class DatingMinigameScript : MonoBehaviour
 							DialogueLabel.text = "Hey! Just so you know, I take offense to that...";
 							Rival.CharacterAnimation.CrossFade("f02_refuse_00");
 							CurrentAnim = "f02_refuse_00";
-							Affection -= 1f;
+							Affection--;
 							CalculateAffection();
 						}
 						else if (Opinion == 1)
@@ -651,7 +651,7 @@ public class DatingMinigameScript : MonoBehaviour
 							DialogueLabel.text = "To be honest with you, I strongly disagree...";
 							Rival.CharacterAnimation.CrossFade("f02_refuse_00");
 							CurrentAnim = "f02_refuse_00";
-							Affection -= 1f;
+							Affection--;
 							CalculateAffection();
 						}
 						else if (Opinion == 0)
@@ -714,7 +714,7 @@ public class DatingMinigameScript : MonoBehaviour
 					{
 						Rival.CharacterAnimation.CrossFade("f02_refuse_00");
 						CurrentAnim = "f02_refuse_00";
-						Affection -= 1f;
+						Affection--;
 						CalculateAffection();
 					}
 					if (Affection > 100f)
@@ -995,7 +995,7 @@ public class DatingMinigameScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown("="))
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 		if (Input.GetKeyDown(KeyCode.LeftControl))
 		{

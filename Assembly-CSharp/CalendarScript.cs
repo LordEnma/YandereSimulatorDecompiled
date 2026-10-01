@@ -1389,13 +1389,13 @@ public class CalendarScript : MonoBehaviour
 			EventGlobals.LearnedAmaiSecret1 = false;
 			EventGlobals.LearnedAmaiSecret2 = false;
 		}
+		GameGlobals.StealthMissionUnlocked = false;
 		SchemeGlobals.EmbarassingSecret = false;
 		CounselorGlobals.ReportedAlcohol = false;
 		CounselorGlobals.ReportedCheating = false;
 		CounselorGlobals.ReportedCigarettes = false;
 		CounselorGlobals.ReportedCondoms = false;
 		CounselorGlobals.ReportedTheft = false;
-		SchemeGlobals.SetSchemeStage(6, 0);
 		StudentGlobals.ExpelProgress = 0;
 		DatingGlobals.RivalSabotaged = 0;
 		DatingGlobals.SuitorProgress = 0;

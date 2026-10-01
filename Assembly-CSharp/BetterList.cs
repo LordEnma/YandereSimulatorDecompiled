@@ -154,12 +154,12 @@ public class BetterList<T>
 				if (equalityComparer.Equals(buffer[i], item))
 				{
 					size--;
-					buffer[i] = default(T);
+					buffer[i] = default;
 					for (int j = i; j < size; j++)
 					{
 						buffer[j] = buffer[j + 1];
 					}
-					buffer[size] = default(T);
+					buffer[size] = default;
 					return true;
 				}
 			}
@@ -172,12 +172,12 @@ public class BetterList<T>
 		if (buffer != null && index > -1 && index < size)
 		{
 			size--;
-			buffer[index] = default(T);
+			buffer[index] = default;
 			for (int i = index; i < size; i++)
 			{
 				buffer[i] = buffer[i + 1];
 			}
-			buffer[size] = default(T);
+			buffer[size] = default;
 		}
 	}
 
@@ -186,10 +186,10 @@ public class BetterList<T>
 		if (buffer != null && size != 0)
 		{
 			T result = buffer[--size];
-			buffer[size] = default(T);
+			buffer[size] = default;
 			return result;
 		}
-		return default(T);
+		return default;
 	}
 
 	public T[] ToArray()

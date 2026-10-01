@@ -136,9 +136,13 @@ public class NewTitleScreenScript : MonoBehaviour
 
 	public GameObject[] RivalEliminations;
 
+	public Material CensorMaterial;
+
 	public UITexture AyanoGraphic;
 
 	public UITexture RyobaGraphic;
+
+	public Texture CensorFlowers;
 
 	public Texture BloodyAyano;
 
@@ -309,6 +313,12 @@ public class NewTitleScreenScript : MonoBehaviour
 		{
 			Fun = true;
 		}
+		GameGlobals.TikTok = false;
+		if (GameGlobals.CensorBlood)
+		{
+			Debug.Log("GameGlobals.CensorBlood is " + GameGlobals.CensorBlood + ", so we're assigning the CensorFlowers texture now.");
+			BloodProjector.material = CensorMaterial;
+		}
 		NewSettings.Start();
 	}
 
@@ -391,7 +401,7 @@ public class NewTitleScreenScript : MonoBehaviour
 			{
 				if (Input.anyKeyDown)
 				{
-					Speed += 1f;
+					Speed++;
 				}
 				if (BloomIntensity < 1.1f)
 				{
@@ -965,7 +975,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		DateGlobals.Weekday = DayOfWeek.Saturday;
 	}
 
-	private void UpdateBloodyStatus()
+	public void UpdateBloodyStatus()
 	{
 		if (PlayerGlobals.Kills > 0 || (GameGlobals.RivalEliminationID > 0 && !GameGlobals.NonlethalElimination))
 		{
@@ -974,7 +984,14 @@ public class NewTitleScreenScript : MonoBehaviour
 			Knife.SetActive(value: true);
 			int kills = PlayerGlobals.Kills;
 			kills = Mathf.Clamp(kills, 0, 10);
-			BloodProjector.material.mainTexture = BloodTextures[kills];
+			if (!GameGlobals.CensorBlood)
+			{
+				BloodProjector.material.mainTexture = BloodTextures[kills];
+			}
+			else
+			{
+				BloodProjector.material.mainTexture = CensorFlowers;
+			}
 		}
 		else
 		{

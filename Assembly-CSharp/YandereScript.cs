@@ -67,6 +67,8 @@ public class YandereScript : MonoBehaviour
 
 	public CameraEffectsScript CameraEffects;
 
+	public SchemeManagerScript SchemeManager;
+
 	public WeaponManagerScript WeaponManager;
 
 	public YandereShowerScript YandereShower;
@@ -1051,6 +1053,8 @@ public class YandereScript : MonoBehaviour
 
 	public AudioReverbZone SanityReverb;
 
+	public float PreviousBloodiness;
+
 	public float v;
 
 	public float h;
@@ -1968,8 +1972,9 @@ public class YandereScript : MonoBehaviour
 			{
 				flag = true;
 			}
-			if (!BloodyWarning && Bloodiness > 0f)
+			if (PreviousBloodiness == 0f && Bloodiness > 0f)
 			{
+				Debug.Log("We just went from ''no blood'' to ''bloody''.");
 				if (flag)
 				{
 					NotificationManager.CustomText = "...but not suspicious.";
@@ -1979,7 +1984,9 @@ public class YandereScript : MonoBehaviour
 				BloodyWarning = true;
 				if (Schoolwear > 0 && !WearingRaincoat)
 				{
+					Debug.Log("From YandereScript, incrementing Police.BloodyClothing.");
 					Police.BloodyClothing++;
+					Debug.Log("Police.BloodyClothing is now: " + Police.BloodyClothing);
 					if (!ClubAttire)
 					{
 						if (CurrentUniformOrigin == 1)
@@ -2059,6 +2066,7 @@ public class YandereScript : MonoBehaviour
 			StudentManager.UpdateBooths();
 			MyLocker.UpdateButtons();
 			Outline.h.ReinitMaterials();
+			PreviousBloodiness = Bloodiness;
 		}
 	}
 
@@ -3327,7 +3335,7 @@ public class YandereScript : MonoBehaviour
 													{
 														LaughAnim = "f02_giggle_02";
 														LaughClip = Laugh1;
-														LaughIntensity += 1f;
+														LaughIntensity++;
 														MyAudio.clip = LaughClip;
 														MyAudio.time = 0f;
 														MyAudio.Play();
@@ -3569,7 +3577,7 @@ public class YandereScript : MonoBehaviour
 								UpdateHair();
 								StopAiming();
 							}
-							CinematicTimer += 1f;
+							CinematicTimer++;
 						}
 					}
 					else
@@ -3718,7 +3726,7 @@ public class YandereScript : MonoBehaviour
 					UnityEngine.Object.Destroy(NewTrail);
 				}
 				NewTrail = UnityEngine.Object.Instantiate(Trail, base.transform.position + base.transform.forward * 0.5f + Vector3.up * 0.1f, Quaternion.identity);
-				if (SchemeGlobals.CurrentScheme == 0)
+				if (SchemeManager.CurrentScheme == 0)
 				{
 					if (StudentManager.Tutorial != null && StudentManager.Tutorial.isActiveAndEnabled)
 					{
@@ -3733,12 +3741,14 @@ public class YandereScript : MonoBehaviour
 						NewTrail.GetComponent<AIPath>().target = TrailWindow.Destinations[TrailWindow.Selected];
 					}
 				}
-				else if (PauseScreen.Schemes.SchemeDestinations[SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme)] != null)
+				else if (SchemeManager.CurrentDestinations[SchemeManager.GetSchemeStage(SchemeManager.SchemeID)] != null)
 				{
-					NewTrail.GetComponent<AIPath>().target = PauseScreen.Schemes.SchemeDestinations[SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme)];
+					NewTrail.GetComponent<AIPath>().target = SchemeManager.CurrentDestinations[SchemeManager.GetSchemeStage(SchemeManager.SchemeID)];
 				}
 				else
 				{
+					NotificationManager.CustomText = "Trails Only Valid For Expel Schemes";
+					NotificationManager.DisplayNotification(NotificationType.Custom);
 					UnityEngine.Object.Destroy(NewTrail);
 				}
 			}
@@ -4303,7 +4313,7 @@ public class YandereScript : MonoBehaviour
 			CharacterAnimation.CrossFade(LaughAnim);
 			if (Input.GetButtonDown(InputNames.Xbox_RB))
 			{
-				LaughIntensity += 1f;
+				LaughIntensity++;
 				if (LaughIntensity <= 5f)
 				{
 					LaughAnim = "f02_giggle_02";
@@ -5398,7 +5408,7 @@ public class YandereScript : MonoBehaviour
 				if (!Kagune[0].activeInHierarchy && Hunger < 5)
 				{
 					CharacterAnimation["f02_sixRun_00"].speed += 0.1f;
-					RunSpeed += 1f;
+					RunSpeed++;
 					Hunger++;
 					if (Hunger == 5)
 					{
@@ -5822,7 +5832,7 @@ public class YandereScript : MonoBehaviour
 				SenpaiGazing = false;
 			}
 			bool flag = Inventory.SenpaiShots > 0 || StudentManager.MissionMode || StudentManager.Eighties;
-			if (YandereVisionPanel.alpha == 1f && flag && PickUp == null && !Armed && !Carrying && !Dragging)
+			if (((YandereVisionPanel.alpha == 1f) & flag) && PickUp == null && !Armed && !Carrying && !Dragging)
 			{
 				SenpaiShotLabel.text = "Speed Up Time";
 				if (Input.GetButtonDown(InputNames.Xbox_A))

@@ -179,7 +179,7 @@ namespace MaidDereMinigame
 
 		public override ControlInput GetInput()
 		{
-			ControlInput result = default(ControlInput);
+			ControlInput result = default;
 			if (isPaused)
 			{
 				return result;

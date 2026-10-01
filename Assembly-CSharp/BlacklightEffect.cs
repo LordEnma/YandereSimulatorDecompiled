@@ -20,11 +20,11 @@ public class BlacklightEffect : MonoBehaviour
 	[Header("Glow")]
 	[SerializeField]
 	[ColorUsage(true, true, 0f, 3f, 0f, 3f)]
-	private Color glowColor = new Color(0f, 41f / 85f, 0.7490196f) * 9f;
+	private Color glowColor = new Color(0f, 123f / 255f, 191f / 255f) * 9f;
 
 	[SerializeField]
 	[ColorUsage(true, true, 0f, 3f, 0f, 3f)]
-	private Color glowColorSecondary = new Color(0.7490196f, 0f, 0.6784314f) * 9f;
+	private Color glowColorSecondary = new Color(191f / 255f, 0f, 173f / 255f) * 9f;
 
 	[SerializeField]
 	private float glowBias = 13f;

@@ -509,7 +509,7 @@ public class DynamicBone : MonoBehaviour
 
 	private void UpdateParticles2()
 	{
-		Plane plane = default(Plane);
+		Plane plane = default;
 		for (int i = 1; i < m_Particles.Count; i++)
 		{
 			Particle particle = m_Particles[i];

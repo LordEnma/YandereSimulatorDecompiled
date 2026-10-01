@@ -157,7 +157,7 @@ public class SceneLoader : MonoBehaviour
 			{
 				StartCoroutine(LoadNewScene());
 			}
-			Timer += 1f;
+			Timer++;
 		}
 	}
 

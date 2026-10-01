@@ -83,6 +83,8 @@ public class PauseScreenScript : MonoBehaviour
 
 	public GameObject MissionModeIcons;
 
+	public GameObject SchemesSubMenu;
+
 	public GameObject LoadingScreen;
 
 	public GameObject ControlMenu;
@@ -1320,13 +1322,11 @@ public class PauseScreenScript : MonoBehaviour
 			}
 			if (Yandere.StudentManager.Students[1] != null && Yandere.StudentManager.Students[1].InEvent)
 			{
-				Debug.Log("Senpai is currently ''InEvent.''");
 				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 				Reason = "You cannot save the game while Senpai is in an event.";
 			}
 			if (Yandere.StudentManager.Students[Yandere.StudentManager.RivalID] != null && Yandere.StudentManager.Students[Yandere.StudentManager.RivalID].InEvent)
 			{
-				Debug.Log("The rival is currently ''InEvent.''");
 				PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
 				Reason = "You cannot save the game while a Rival Event is occuring.";
 			}
@@ -1438,6 +1438,7 @@ public class PauseScreenScript : MonoBehaviour
 		Schedule.gameObject.SetActive(value: false);
 		TaskList.gameObject.SetActive(value: false);
 		Stats.gameObject.SetActive(value: false);
+		SchemesSubMenu.SetActive(value: false);
 		LoadingScreen.SetActive(value: false);
 		ControlMenu.SetActive(value: false);
 		SchemesMenu.SetActive(value: false);

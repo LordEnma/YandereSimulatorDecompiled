@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class IncineratorScript : MonoBehaviour
@@ -308,10 +309,11 @@ public class IncineratorScript : MonoBehaviour
 					if (num == 6)
 					{
 						Yandere.StudentManager.Police.EndOfDay.RivalDismemberedAndIncinerated = true;
-						Debug.Log("The player dismembered and incinerated Osana.");
+						Debug.Log("The player dismembered and incinerated the current rival.");
 					}
 				}
 			}
+			TurnLimbsIntoVictims();
 			Prompt.Circle[0].fillAmount = 1f;
 			Panel.SetActive(value: true);
 			Timer = 60f;
@@ -349,7 +351,9 @@ public class IncineratorScript : MonoBehaviour
 			HiddenCorpses = 0;
 			MurderWeapons = 0;
 			BodyParts = 0;
+			Contents = 0;
 			Corpses = 0;
+			Limbs = 0;
 			for (ID = 0; ID < 101; ID++)
 			{
 				if (Yandere.StudentManager.Students[CorpseList[ID]] != null)
@@ -434,5 +438,27 @@ public class IncineratorScript : MonoBehaviour
 		Timer = 0f;
 		Flames.Stop();
 		Smoke.Stop();
+	}
+
+	public void TurnLimbsIntoVictims()
+	{
+		Debug.Log("Now turning limbs into victims.");
+		Dictionary<int, int> dictionary = new Dictionary<int, int>();
+		int[] limbList = LimbList;
+		foreach (int num in limbList)
+		{
+			if (!dictionary.ContainsKey(num))
+			{
+				dictionary[num] = 0;
+			}
+			dictionary[num]++;
+			if (dictionary[num] == 6)
+			{
+				Victims++;
+				VictimList[Victims] = num;
+				CorpseList[num] = num;
+				ConfirmedDead[num] = num;
+			}
+		}
 	}
 }

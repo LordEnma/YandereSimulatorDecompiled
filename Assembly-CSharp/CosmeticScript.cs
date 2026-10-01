@@ -2086,7 +2086,7 @@ public class CosmeticScript : MonoBehaviour
 					WristWrappings.enabled = true;
 				}
 			}
-			if (StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71 || flag3)
+			if ((StudentID == 21 || StudentID == 26 || StudentID == 31 || StudentID == 36 || StudentID == 41 || StudentID == 46 || StudentID == 51 || StudentID == 56 || StudentID == 61 || StudentID == 66 || StudentID == 71) | flag3)
 			{
 				if (!Kidnapped && !Student.Slave)
 				{
@@ -3209,7 +3209,7 @@ public class CosmeticScript : MonoBehaviour
 				FaceTexture = FaceTextures[6];
 				flag2 = true;
 			}
-			if (Club == ClubType.Bully || flag2)
+			if ((Club == ClubType.Bully) | flag2)
 			{
 				UniformTexture = GanguroUniformTextures[FemaleUniformID];
 				CasualTexture = GanguroCasualTextures[FemaleUniformID];
@@ -3879,292 +3879,299 @@ public class CosmeticScript : MonoBehaviour
 				}
 			}
 		}
-		else if (EyeType == "Thin")
+		else
 		{
-			MyRenderer.SetBlendShapeWeight(8, 100f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-		}
-		else if (EyeType == "Serious")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 50f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-		}
-		else if (EyeType == "Round")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 15f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-		}
-		else if (EyeType == "Sad")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 50f);
-			MyRenderer.SetBlendShapeWeight(5, 15f);
-			MyRenderer.SetBlendShapeWeight(6, 50f);
-			MyRenderer.SetBlendShapeWeight(8, 50f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-		}
-		else if (EyeType == "Mean")
-		{
-			MyRenderer.SetBlendShapeWeight(10, 100f);
-		}
-		else if (EyeType == "Smug")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 50f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-		}
-		else if (EyeType == "Gentle")
-		{
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		else if (EyeType == "MO")
-		{
-			MyRenderer.SetBlendShapeWeight(8, 50f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		else if (EyeType == "Eighties1")
-		{
-			MyRenderer.SetBlendShapeWeight(6, 15f);
-			MyRenderer.SetBlendShapeWeight(8, 5f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(10, 15f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		else if (EyeType == "Eighties2")
-		{
-			MyRenderer.SetBlendShapeWeight(1, 15f);
-			MyRenderer.SetBlendShapeWeight(5, 10f);
-			MyRenderer.SetBlendShapeWeight(8, 25f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(11, 25f);
-			MyRenderer.SetBlendShapeWeight(12, 15f);
-		}
-		else if (EyeType == "Eighties3")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 10f);
-			MyRenderer.SetBlendShapeWeight(6, 75f);
-			MyRenderer.SetBlendShapeWeight(8, 25f);
-			MyRenderer.SetBlendShapeWeight(9, 75f);
-			MyRenderer.SetBlendShapeWeight(11, 15f);
-			MyRenderer.SetBlendShapeWeight(12, 15f);
-		}
-		else if (EyeType == "Eighties4")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 10f);
-			MyRenderer.SetBlendShapeWeight(9, 10f);
-			MyRenderer.SetBlendShapeWeight(10, 25f);
-			MyRenderer.SetBlendShapeWeight(11, 25f);
-			MyRenderer.SetBlendShapeWeight(12, 50f);
-		}
-		else if (EyeType == "Eighties5")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 10f);
-			MyRenderer.SetBlendShapeWeight(6, 20f);
-			MyRenderer.SetBlendShapeWeight(8, 25f);
-			MyRenderer.SetBlendShapeWeight(9, 25f);
-			MyRenderer.SetBlendShapeWeight(10, 15f);
-			MyRenderer.SetBlendShapeWeight(11, 50f);
-			MyRenderer.SetBlendShapeWeight(12, 10f);
-		}
-		else if (EyeType == "Eighties6")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 10f);
-			MyRenderer.SetBlendShapeWeight(8, 15f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(10, 10f);
-			MyRenderer.SetBlendShapeWeight(12, 25f);
-		}
-		else if (EyeType == "Eighties7")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 20f);
-			MyRenderer.SetBlendShapeWeight(5, 20f);
-			MyRenderer.SetBlendShapeWeight(6, 25f);
-			MyRenderer.SetBlendShapeWeight(8, 35f);
-			MyRenderer.SetBlendShapeWeight(9, 50f);
-			MyRenderer.SetBlendShapeWeight(11, 15f);
-			MyRenderer.SetBlendShapeWeight(12, 25f);
-		}
-		else if (EyeType == "Eighties8")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 10f);
-			MyRenderer.SetBlendShapeWeight(6, 20f);
-			MyRenderer.SetBlendShapeWeight(8, 50f);
-			MyRenderer.SetBlendShapeWeight(9, 40f);
-			MyRenderer.SetBlendShapeWeight(10, 20f);
-			MyRenderer.SetBlendShapeWeight(11, 15f);
-			MyRenderer.SetBlendShapeWeight(12, 10f);
-		}
-		else if (EyeType == "Eighties9")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 10f);
-			MyRenderer.SetBlendShapeWeight(6, 20f);
-			MyRenderer.SetBlendShapeWeight(8, 50f);
-			MyRenderer.SetBlendShapeWeight(9, 40f);
-			MyRenderer.SetBlendShapeWeight(10, 20f);
-			MyRenderer.SetBlendShapeWeight(11, 15f);
-			MyRenderer.SetBlendShapeWeight(12, 10f);
-		}
-		else if (EyeType == "Eighties10")
-		{
-			MyRenderer.SetBlendShapeWeight(1, 10f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(8, 25f);
-			MyRenderer.SetBlendShapeWeight(9, 75f);
-			MyRenderer.SetBlendShapeWeight(10, 30f);
-			MyRenderer.SetBlendShapeWeight(11, 15f);
-			MyRenderer.SetBlendShapeWeight(12, 25f);
-		}
-		else if (EyeType == "Witness")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 15f);
-			MyRenderer.SetBlendShapeWeight(6, 25f);
-			MyRenderer.SetBlendShapeWeight(8, 25f);
-			MyRenderer.SetBlendShapeWeight(9, 50f);
-			MyRenderer.SetBlendShapeWeight(10, 5f);
-			MyRenderer.SetBlendShapeWeight(12, 50f);
-		}
-		else if (EyeType == "Rival1")
-		{
-			MyRenderer.SetBlendShapeWeight(8, 5f);
-			MyRenderer.SetBlendShapeWeight(9, 20f);
-			MyRenderer.SetBlendShapeWeight(10, 50f);
-			MyRenderer.SetBlendShapeWeight(11, 50f);
-			MyRenderer.SetBlendShapeWeight(12, 10f);
-		}
-		else if (EyeType == "Ayano")
-		{
-			MyRenderer.SetBlendShapeWeight(8, 50f);
-		}
-		else if (EyeType == "Ryoba")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 50f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(8, 0f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		else if (EyeType == "ThinGentle")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		else if (EyeType == "Seductive")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-		}
-		else if (EyeType == "Rival2")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 100f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(6, 100f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 100f);
-			if (TakingPortrait && StudentID == 12 && !Eighties && !CustomMode)
+			if (MyRenderer.sharedMesh.blendShapeCount <= 0)
 			{
-				MyRenderer.SetBlendShapeWeight(0, 0f);
-				Teeth.transform.localPosition = new Vector3(-0.067f, 0.03f, 0f);
-				Teeth.SetActive(value: true);
+				return;
 			}
-		}
-		else if (EyeType == "Chill")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 70f);
-			MyRenderer.SetBlendShapeWeight(5, 40f);
-			MyRenderer.SetBlendShapeWeight(6, 40f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-		}
-		else if (EyeType == "Sweet")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 60f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(6, 45f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 60f);
-		}
-		else if (EyeType == "Reserved")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 40f);
-			MyRenderer.SetBlendShapeWeight(5, 30f);
-			MyRenderer.SetBlendShapeWeight(6, 80f);
-			MyRenderer.SetBlendShapeWeight(9, 90f);
-			MyRenderer.SetBlendShapeWeight(10, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 15f);
-		}
-		else if (EyeType == "Mature")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 45f);
-			MyRenderer.SetBlendShapeWeight(5, 30f);
-			MyRenderer.SetBlendShapeWeight(6, 20f);
-			MyRenderer.SetBlendShapeWeight(8, 25f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 55f);
-		}
-		else if (EyeType == "Sharp")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 40f);
-			MyRenderer.SetBlendShapeWeight(5, 20f);
-			MyRenderer.SetBlendShapeWeight(6, 15f);
-			MyRenderer.SetBlendShapeWeight(9, 50f);
-			MyRenderer.SetBlendShapeWeight(11, 40f);
-		}
-		else if (EyeType == "Relaxed")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 50f);
-			MyRenderer.SetBlendShapeWeight(5, 45f);
-			MyRenderer.SetBlendShapeWeight(6, 35f);
-			MyRenderer.SetBlendShapeWeight(9, 65f);
-			MyRenderer.SetBlendShapeWeight(12, 65f);
-		}
-		else if (EyeType == "Friendly")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 75f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(6, 45f);
-			MyRenderer.SetBlendShapeWeight(8, 20f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-		}
-		else if (EyeType == "Timid")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 10f);
-			MyRenderer.SetBlendShapeWeight(5, 45f);
-			MyRenderer.SetBlendShapeWeight(6, 45f);
-			MyRenderer.SetBlendShapeWeight(9, 100f);
-			MyRenderer.SetBlendShapeWeight(12, 75f);
-		}
-		else if (EyeType == "Sneer")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 50f);
-			MyRenderer.SetBlendShapeWeight(5, 30f);
-			MyRenderer.SetBlendShapeWeight(6, 30f);
-			MyRenderer.SetBlendShapeWeight(8, 30f);
-			MyRenderer.SetBlendShapeWeight(9, 50f);
-			MyRenderer.SetBlendShapeWeight(11, 35f);
-		}
-		else if (EyeType == "Innocent")
-		{
-			MyRenderer.SetBlendShapeWeight(0, 60f);
-			MyRenderer.SetBlendShapeWeight(5, 15f);
-			MyRenderer.SetBlendShapeWeight(6, 35f);
-			MyRenderer.SetBlendShapeWeight(9, 90f);
-			MyRenderer.SetBlendShapeWeight(12, 35f);
-		}
-		else if (EyeType == "Succubus")
-		{
-			MyRenderer.SetBlendShapeWeight(1, 35f);
-			MyRenderer.SetBlendShapeWeight(5, 25f);
-			MyRenderer.SetBlendShapeWeight(8, 2f);
-			MyRenderer.SetBlendShapeWeight(9, 45f);
-			MyRenderer.SetBlendShapeWeight(10, 2f);
-			MyRenderer.SetBlendShapeWeight(12, 25f);
-		}
-		else if (EyeType == "Vampire")
-		{
-			MyRenderer.SetBlendShapeWeight(5, 10f);
-			MyRenderer.SetBlendShapeWeight(8, 15f);
-			MyRenderer.SetBlendShapeWeight(9, 75f);
-			MyRenderer.SetBlendShapeWeight(11, 20f);
-			MyRenderer.SetBlendShapeWeight(12, 60f);
+			if (EyeType == "Thin")
+			{
+				MyRenderer.SetBlendShapeWeight(8, 100f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+			}
+			else if (EyeType == "Serious")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 50f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+			}
+			else if (EyeType == "Round")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 15f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+			}
+			else if (EyeType == "Sad")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 50f);
+				MyRenderer.SetBlendShapeWeight(5, 15f);
+				MyRenderer.SetBlendShapeWeight(6, 50f);
+				MyRenderer.SetBlendShapeWeight(8, 50f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+			}
+			else if (EyeType == "Mean")
+			{
+				MyRenderer.SetBlendShapeWeight(10, 100f);
+			}
+			else if (EyeType == "Smug")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 50f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+			}
+			else if (EyeType == "Gentle")
+			{
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
+			}
+			else if (EyeType == "MO")
+			{
+				MyRenderer.SetBlendShapeWeight(8, 50f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
+			}
+			else if (EyeType == "Eighties1")
+			{
+				MyRenderer.SetBlendShapeWeight(6, 15f);
+				MyRenderer.SetBlendShapeWeight(8, 5f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(10, 15f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
+			}
+			else if (EyeType == "Eighties2")
+			{
+				MyRenderer.SetBlendShapeWeight(1, 15f);
+				MyRenderer.SetBlendShapeWeight(5, 10f);
+				MyRenderer.SetBlendShapeWeight(8, 25f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(11, 25f);
+				MyRenderer.SetBlendShapeWeight(12, 15f);
+			}
+			else if (EyeType == "Eighties3")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 10f);
+				MyRenderer.SetBlendShapeWeight(6, 75f);
+				MyRenderer.SetBlendShapeWeight(8, 25f);
+				MyRenderer.SetBlendShapeWeight(9, 75f);
+				MyRenderer.SetBlendShapeWeight(11, 15f);
+				MyRenderer.SetBlendShapeWeight(12, 15f);
+			}
+			else if (EyeType == "Eighties4")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 10f);
+				MyRenderer.SetBlendShapeWeight(9, 10f);
+				MyRenderer.SetBlendShapeWeight(10, 25f);
+				MyRenderer.SetBlendShapeWeight(11, 25f);
+				MyRenderer.SetBlendShapeWeight(12, 50f);
+			}
+			else if (EyeType == "Eighties5")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 10f);
+				MyRenderer.SetBlendShapeWeight(6, 20f);
+				MyRenderer.SetBlendShapeWeight(8, 25f);
+				MyRenderer.SetBlendShapeWeight(9, 25f);
+				MyRenderer.SetBlendShapeWeight(10, 15f);
+				MyRenderer.SetBlendShapeWeight(11, 50f);
+				MyRenderer.SetBlendShapeWeight(12, 10f);
+			}
+			else if (EyeType == "Eighties6")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 10f);
+				MyRenderer.SetBlendShapeWeight(8, 15f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(10, 10f);
+				MyRenderer.SetBlendShapeWeight(12, 25f);
+			}
+			else if (EyeType == "Eighties7")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 20f);
+				MyRenderer.SetBlendShapeWeight(5, 20f);
+				MyRenderer.SetBlendShapeWeight(6, 25f);
+				MyRenderer.SetBlendShapeWeight(8, 35f);
+				MyRenderer.SetBlendShapeWeight(9, 50f);
+				MyRenderer.SetBlendShapeWeight(11, 15f);
+				MyRenderer.SetBlendShapeWeight(12, 25f);
+			}
+			else if (EyeType == "Eighties8")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 10f);
+				MyRenderer.SetBlendShapeWeight(6, 20f);
+				MyRenderer.SetBlendShapeWeight(8, 50f);
+				MyRenderer.SetBlendShapeWeight(9, 40f);
+				MyRenderer.SetBlendShapeWeight(10, 20f);
+				MyRenderer.SetBlendShapeWeight(11, 15f);
+				MyRenderer.SetBlendShapeWeight(12, 10f);
+			}
+			else if (EyeType == "Eighties9")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 10f);
+				MyRenderer.SetBlendShapeWeight(6, 20f);
+				MyRenderer.SetBlendShapeWeight(8, 50f);
+				MyRenderer.SetBlendShapeWeight(9, 40f);
+				MyRenderer.SetBlendShapeWeight(10, 20f);
+				MyRenderer.SetBlendShapeWeight(11, 15f);
+				MyRenderer.SetBlendShapeWeight(12, 10f);
+			}
+			else if (EyeType == "Eighties10")
+			{
+				MyRenderer.SetBlendShapeWeight(1, 10f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(8, 25f);
+				MyRenderer.SetBlendShapeWeight(9, 75f);
+				MyRenderer.SetBlendShapeWeight(10, 30f);
+				MyRenderer.SetBlendShapeWeight(11, 15f);
+				MyRenderer.SetBlendShapeWeight(12, 25f);
+			}
+			else if (EyeType == "Witness")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 15f);
+				MyRenderer.SetBlendShapeWeight(6, 25f);
+				MyRenderer.SetBlendShapeWeight(8, 25f);
+				MyRenderer.SetBlendShapeWeight(9, 50f);
+				MyRenderer.SetBlendShapeWeight(10, 5f);
+				MyRenderer.SetBlendShapeWeight(12, 50f);
+			}
+			else if (EyeType == "Rival1")
+			{
+				MyRenderer.SetBlendShapeWeight(8, 5f);
+				MyRenderer.SetBlendShapeWeight(9, 20f);
+				MyRenderer.SetBlendShapeWeight(10, 50f);
+				MyRenderer.SetBlendShapeWeight(11, 50f);
+				MyRenderer.SetBlendShapeWeight(12, 10f);
+			}
+			else if (EyeType == "Ayano")
+			{
+				MyRenderer.SetBlendShapeWeight(8, 50f);
+			}
+			else if (EyeType == "Ryoba")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 50f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(8, 0f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
+			}
+			else if (EyeType == "ThinGentle")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
+			}
+			else if (EyeType == "Seductive")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
+			}
+			else if (EyeType == "Rival2")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 100f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(6, 100f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(12, 100f);
+				if (TakingPortrait && StudentID == 12 && !Eighties && !CustomMode)
+				{
+					MyRenderer.SetBlendShapeWeight(0, 0f);
+					Teeth.transform.localPosition = new Vector3(-0.067f, 0.03f, 0f);
+					Teeth.SetActive(value: true);
+				}
+			}
+			else if (EyeType == "Chill")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 70f);
+				MyRenderer.SetBlendShapeWeight(5, 40f);
+				MyRenderer.SetBlendShapeWeight(6, 40f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+			}
+			else if (EyeType == "Sweet")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 60f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(6, 45f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(12, 60f);
+			}
+			else if (EyeType == "Reserved")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 40f);
+				MyRenderer.SetBlendShapeWeight(5, 30f);
+				MyRenderer.SetBlendShapeWeight(6, 80f);
+				MyRenderer.SetBlendShapeWeight(9, 90f);
+				MyRenderer.SetBlendShapeWeight(10, 100f);
+				MyRenderer.SetBlendShapeWeight(12, 15f);
+			}
+			else if (EyeType == "Mature")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 45f);
+				MyRenderer.SetBlendShapeWeight(5, 30f);
+				MyRenderer.SetBlendShapeWeight(6, 20f);
+				MyRenderer.SetBlendShapeWeight(8, 25f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(12, 55f);
+			}
+			else if (EyeType == "Sharp")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 40f);
+				MyRenderer.SetBlendShapeWeight(5, 20f);
+				MyRenderer.SetBlendShapeWeight(6, 15f);
+				MyRenderer.SetBlendShapeWeight(9, 50f);
+				MyRenderer.SetBlendShapeWeight(11, 40f);
+			}
+			else if (EyeType == "Relaxed")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 50f);
+				MyRenderer.SetBlendShapeWeight(5, 45f);
+				MyRenderer.SetBlendShapeWeight(6, 35f);
+				MyRenderer.SetBlendShapeWeight(9, 65f);
+				MyRenderer.SetBlendShapeWeight(12, 65f);
+			}
+			else if (EyeType == "Friendly")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 75f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(6, 45f);
+				MyRenderer.SetBlendShapeWeight(8, 20f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+			}
+			else if (EyeType == "Timid")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 10f);
+				MyRenderer.SetBlendShapeWeight(5, 45f);
+				MyRenderer.SetBlendShapeWeight(6, 45f);
+				MyRenderer.SetBlendShapeWeight(9, 100f);
+				MyRenderer.SetBlendShapeWeight(12, 75f);
+			}
+			else if (EyeType == "Sneer")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 50f);
+				MyRenderer.SetBlendShapeWeight(5, 30f);
+				MyRenderer.SetBlendShapeWeight(6, 30f);
+				MyRenderer.SetBlendShapeWeight(8, 30f);
+				MyRenderer.SetBlendShapeWeight(9, 50f);
+				MyRenderer.SetBlendShapeWeight(11, 35f);
+			}
+			else if (EyeType == "Innocent")
+			{
+				MyRenderer.SetBlendShapeWeight(0, 60f);
+				MyRenderer.SetBlendShapeWeight(5, 15f);
+				MyRenderer.SetBlendShapeWeight(6, 35f);
+				MyRenderer.SetBlendShapeWeight(9, 90f);
+				MyRenderer.SetBlendShapeWeight(12, 35f);
+			}
+			else if (EyeType == "Succubus")
+			{
+				MyRenderer.SetBlendShapeWeight(1, 35f);
+				MyRenderer.SetBlendShapeWeight(5, 25f);
+				MyRenderer.SetBlendShapeWeight(8, 2f);
+				MyRenderer.SetBlendShapeWeight(9, 45f);
+				MyRenderer.SetBlendShapeWeight(10, 2f);
+				MyRenderer.SetBlendShapeWeight(12, 25f);
+			}
+			else if (EyeType == "Vampire")
+			{
+				MyRenderer.SetBlendShapeWeight(5, 10f);
+				MyRenderer.SetBlendShapeWeight(8, 15f);
+				MyRenderer.SetBlendShapeWeight(9, 75f);
+				MyRenderer.SetBlendShapeWeight(11, 20f);
+				MyRenderer.SetBlendShapeWeight(12, 60f);
+			}
 		}
 	}
 
@@ -4224,7 +4231,7 @@ public class CosmeticScript : MonoBehaviour
 
 	public StudentCosmeticSheet CosmeticSheet()
 	{
-		StudentCosmeticSheet result = default(StudentCosmeticSheet);
+		StudentCosmeticSheet result = default;
 		result.Blendshapes = new List<float>();
 		result.Male = Male;
 		result.Teacher = Teacher;

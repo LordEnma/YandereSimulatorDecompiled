@@ -140,11 +140,11 @@ public class DDRMinigame : MonoBehaviour
 	{
 		if (inputManager.TappedLeft)
 		{
-			levelSelectScroll -= 1f;
+			levelSelectScroll--;
 		}
 		else if (inputManager.TappedRight)
 		{
-			levelSelectScroll += 1f;
+			levelSelectScroll++;
 		}
 		levelSelectScroll = Mathf.Clamp(levelSelectScroll, 0f, levels.Length - 1);
 		selectedLevel = (int)Mathf.Round(levelSelectScroll);

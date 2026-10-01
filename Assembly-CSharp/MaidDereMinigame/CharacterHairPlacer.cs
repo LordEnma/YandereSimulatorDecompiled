@@ -28,11 +28,9 @@ namespace MaidDereMinigame
 		public void HairPose(string point)
 		{
 			string[] array = point.Split(new char[1] { ',' });
-			float result;
-			bool flag = float.TryParse(array[0], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out result);
-			float result2;
-			bool flag2 = float.TryParse(array[1], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out result2);
-			if (flag && flag2)
+			bool flag = float.TryParse(array[0], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out var result);
+			bool flag2 = float.TryParse(array[1], NumberStyles.Float, NumberFormatInfo.InvariantInfo, out var result2);
+			if (flag & flag2)
 			{
 				hairInstance.transform.localPosition = new Vector3(hairInstance.flipX ? (0f - result) : result, result2, hairInstance.transform.localPosition.z);
 			}

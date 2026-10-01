@@ -1259,7 +1259,7 @@ public class StalkerYandereScript : MonoBehaviour
 		{
 			flag = false;
 		}
-		if (CanMove && flag)
+		if (CanMove & flag)
 		{
 			if (YandereFilter.FadeFX < 1f)
 			{

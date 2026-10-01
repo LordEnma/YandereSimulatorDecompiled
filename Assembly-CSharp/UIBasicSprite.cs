@@ -435,8 +435,8 @@ public abstract class UIBasicSprite : UIWidget
 			return;
 		}
 		Vector4 vector2 = padding;
-		Vector4 vector3 = default(Vector4);
-		Vector4 vector4 = default(Vector4);
+		Vector4 vector3 = default;
+		Vector4 vector4 = default;
 		if (mFlip == Flip.Horizontally || mFlip == Flip.Both)
 		{
 			vector3.x = mInnerUV.xMax;

@@ -74,17 +74,20 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		}
 		if (CookingClub)
 		{
-			if (Student.StudentID == 1)
+			if (Student != null)
 			{
-				accessory = GameObject.Find("TaroApron");
-			}
-			else if (Student.Male)
-			{
-				accessory = GameObject.Find("MaleCookingApron");
-			}
-			else
-			{
-				accessory = GameObject.Find("FemaleCookingApron");
+				if (Student.StudentID == 1)
+				{
+					accessory = GameObject.Find("TaroApron");
+				}
+				else if (Student.Male)
+				{
+					accessory = GameObject.Find("MaleCookingApron");
+				}
+				else
+				{
+					accessory = GameObject.Find("FemaleCookingApron");
+				}
 			}
 		}
 		else if (ArtClub)
@@ -256,12 +259,24 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 				newRenderer.material.shader = Student.Yandere.PauseScreen.NewSettings.QualityManager.NewHairShader;
 			}
 		}
-		if (CopyBlendshapes)
+		if (!CopyBlendshapes)
+		{
+			return;
+		}
+		if (originalRenderer == null && Student != null)
+		{
+			originalRenderer = Student.MyRenderer;
+		}
+		if (originalRenderer != null)
 		{
 			for (int j = 0; j < originalRenderer.sharedMesh.blendShapeCount - 1; j++)
 			{
 				newRenderer.SetBlendShapeWeight(j, originalRenderer.GetBlendShapeWeight(j));
 			}
+		}
+		else
+		{
+			Debug.Log("Couldn't copy blendshapes. Some important thing was null.");
 		}
 	}
 

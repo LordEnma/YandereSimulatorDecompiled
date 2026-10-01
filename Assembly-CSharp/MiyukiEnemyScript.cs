@@ -83,7 +83,7 @@ public class MiyukiEnemyScript : MonoBehaviour
 		}
 		Object.Instantiate(HitEffect, other.transform.position, Quaternion.identity);
 		Object.Destroy(other.gameObject);
-		Health -= 1f;
+		Health--;
 		if (Health == 0f)
 		{
 			Object.Instantiate(DeathEffect, other.transform.position, Quaternion.identity);

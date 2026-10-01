@@ -33,7 +33,7 @@ public class AnswerSheetScript : MonoBehaviour
 		{
 			if (Phase == 1)
 			{
-				SchemeGlobals.SetSchemeStage(5, 5);
+				Schemes.SchemeManager.SetSchemeStage(410, 5);
 				Schemes.UpdateInstructions();
 				Prompt.Yandere.Inventory.AnswerSheet = true;
 				Prompt.Hide();
@@ -44,7 +44,7 @@ public class AnswerSheetScript : MonoBehaviour
 			}
 			else
 			{
-				SchemeGlobals.SetSchemeStage(5, 8);
+				Schemes.SchemeManager.SetSchemeStage(410, 8);
 				Schemes.UpdateInstructions();
 				Prompt.Yandere.Inventory.AnswerSheet = false;
 				Prompt.Hide();

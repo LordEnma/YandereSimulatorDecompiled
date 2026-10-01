@@ -10,7 +10,7 @@ public class SceneSpeedDebugger : MonoBehaviour
 	{
 		if (Input.GetKeyDown("="))
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 			if (audioSource != null)
 			{
 				audioSource.pitch = Time.timeScale;
@@ -19,7 +19,7 @@ public class SceneSpeedDebugger : MonoBehaviour
 		}
 		if (Input.GetKeyDown("-"))
 		{
-			Time.timeScale -= 1f;
+			Time.timeScale--;
 			if (audioSource != null)
 			{
 				audioSource.pitch = Time.timeScale;

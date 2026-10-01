@@ -18,11 +18,11 @@ public class SlowMoScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown("-"))
 		{
-			Time.timeScale -= 1f;
+			Time.timeScale--;
 		}
 		if (Input.GetKeyDown("="))
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 		if (Input.GetKeyDown("z"))
 		{

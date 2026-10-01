@@ -20,10 +20,10 @@ public class DragWindowCntrl : MonoBehaviour
 	{
 		Vector2 vector = (Vector2)Input.mousePosition - delta;
 		Vector2 vector2 = new Vector2(window.rect.width * base.transform.root.lossyScale.x, window.rect.height * base.transform.root.lossyScale.y);
-		Vector2 vector3 = default(Vector2);
+		Vector2 vector3 = default;
 		vector3.x = vector.x - window.pivot.x * vector2.x;
 		vector3.y = vector.y - window.pivot.y * vector2.y;
-		Vector2 vector4 = default(Vector2);
+		Vector2 vector4 = default;
 		vector4.x = vector.x + (1f - window.pivot.x) * vector2.x;
 		vector4.y = vector.y + (1f - window.pivot.y) * vector2.y;
 		if (vector3.x < 0f)

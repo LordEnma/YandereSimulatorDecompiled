@@ -328,7 +328,7 @@ public class UISpriteCollection : UIBasicSprite
 			Debug.LogError("Atlas must be assigned first");
 			return;
 		}
-		Sprite value = default(Sprite);
+		Sprite value = default;
 		INGUIAtlas iNGUIAtlas = atlas;
 		if (iNGUIAtlas != null)
 		{

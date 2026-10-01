@@ -19,7 +19,7 @@ public class PopulationManagerScript : MonoBehaviour
 		foreach (StudentScript student in crowdedArea.Students)
 		{
 			vector += new Vector3(student.transform.position.x, 0f, student.transform.position.z);
-			num += 1f;
+			num++;
 		}
 		vector /= num;
 		return new Vector3(y: (!(position.y >= 0f) || !(position.y < 4f)) ? ((position.y >= 4f && position.y < 8f) ? 4 : ((!(position.y >= 8f) || !(position.y < 12f)) ? 12 : 8)) : 0, x: vector.x, z: vector.z);

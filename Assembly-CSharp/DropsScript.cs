@@ -138,9 +138,9 @@ public class DropsScript : MonoBehaviour
 						UpdateDesc();
 						component.clip = InfoPurchase;
 						component.Play();
-						if (Selected == 2 && SchemeGlobals.GetSchemeStage(3) < 2)
+						if (Selected == 2 && Schemes.SchemeManager.GetSchemeStage(408) < 2)
 						{
-							SchemeGlobals.SetSchemeStage(3, 2);
+							Schemes.SchemeManager.SetSchemeStage(408, 2);
 							Schemes.UpdateInstructions();
 						}
 					}

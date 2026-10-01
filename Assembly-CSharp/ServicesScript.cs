@@ -263,9 +263,9 @@ public class ServicesScript : MonoBehaviour
 							Yandere.Police.EndOfDay.LearnedRival2Info[1] = true;
 							Yandere.Police.EndOfDay.LearnedRival2Info[2] = true;
 						}
-						if (SchemeGlobals.GetSchemeStage(6) == 1 || SchemeGlobals.GetSchemeStage(6) == 2)
+						if (Yandere.SchemeManager.GetSchemeStage(411) == 1 || Yandere.SchemeManager.GetSchemeStage(411) == 2)
 						{
-							SchemeGlobals.SetSchemeStage(6, 3);
+							Yandere.SchemeManager.SetSchemeStage(411, 3);
 							Yandere.PauseScreen.Schemes.UpdateInstructions();
 						}
 						Purchase();

@@ -31,7 +31,7 @@ public class RivalDeskScript : MonoBehaviour
 			Prompt.HideButton[0] = false;
 			if (Clock.HourTime > 13.5f)
 			{
-				SchemeGlobals.SetSchemeStage(5, 100);
+				Prompt.Yandere.SchemeManager.SetSchemeStage(410, 100);
 				Schemes.UpdateInstructions();
 				Prompt.HideButton[0] = true;
 			}
@@ -40,7 +40,7 @@ public class RivalDeskScript : MonoBehaviour
 		{
 			if (DateGlobals.Weekday == DayOfWeek.Friday)
 			{
-				SchemeGlobals.SetSchemeStage(5, 9);
+				Prompt.Yandere.SchemeManager.SetSchemeStage(410, 9);
 			}
 			Schemes.UpdateInstructions();
 			Prompt.Yandere.Inventory.DuplicateSheet = false;

@@ -264,7 +264,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 		float nearClipPlane = m_camera.nearClipPlane;
 		float farClipPlane = m_camera.farClipPlane;
-		Vector4 value = default(Vector4);
+		Vector4 value = default;
 		if (AmplifyMotionEffectBase.IsD3D)
 		{
 			value.x = 1f - farClipPlane / nearClipPlane;

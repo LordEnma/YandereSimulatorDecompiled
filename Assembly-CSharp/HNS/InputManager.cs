@@ -81,7 +81,7 @@ namespace HNS
 
 		private void HandleDeviceChanged(InputDevice newDevice)
 		{
-			InputManager.OnDeviceChanged?.Invoke(newDevice);
+			OnDeviceChanged?.Invoke(newDevice);
 		}
 
 		private void ProcessButtonEvents()
@@ -90,15 +90,15 @@ namespace HNS
 			{
 				if (_state.GetButtonDown(value))
 				{
-					InputManager.OnButtonPressed?.Invoke(value);
+					OnButtonPressed?.Invoke(value);
 				}
 				if (_state.GetButton(value))
 				{
-					InputManager.OnButtonHeld?.Invoke(value);
+					OnButtonHeld?.Invoke(value);
 				}
 				if (_state.GetButtonUp(value))
 				{
-					InputManager.OnButtonReleased?.Invoke(value);
+					OnButtonReleased?.Invoke(value);
 				}
 			}
 		}
@@ -108,12 +108,12 @@ namespace HNS
 			Vector2 movement = _state.Movement;
 			if (movement.sqrMagnitude > 0.01f)
 			{
-				InputManager.OnMovementChanged?.Invoke(movement);
+				OnMovementChanged?.Invoke(movement);
 			}
 			Vector2 look = _state.Look;
 			if (look.sqrMagnitude > 0.01f)
 			{
-				InputManager.OnLookChanged?.Invoke(look);
+				OnLookChanged?.Invoke(look);
 			}
 		}
 	}

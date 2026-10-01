@@ -49,7 +49,7 @@ public class TriviaManagerScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown("="))
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 		if (Phase == 0)
 		{

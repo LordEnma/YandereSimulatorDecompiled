@@ -92,6 +92,8 @@ public class StudentManagerScript : MonoBehaviour
 
 	public ModernRivalEventScript CakeEvent;
 
+	public YouTubeCommandTestScript YouTube;
+
 	public ConvoManagerScript ConvoManager;
 
 	public TallLockerScript CommunalLocker;
@@ -1517,12 +1519,18 @@ public class StudentManagerScript : MonoBehaviour
 		RoofFenceUp = SchoolGlobals.RoofFence;
 		if (Schemes != null)
 		{
+			Schemes.Start();
 			Schemes.SchemeManager.Start();
-			Schemes.HUDIcon.gameObject.SetActive(value: false);
-			Schemes.HUDInstructions.text = string.Empty;
-			Schemes.SchemeManager.CurrentScheme = 0;
-			Schemes.NextStepInput.SetActive(value: false);
-			SchemeGlobals.CurrentScheme = 0;
+			if (Schemes.SchemeManager.CurrentScheme == 0)
+			{
+				Schemes.HUDIcon.gameObject.SetActive(value: false);
+				Schemes.HUDInstructions.text = string.Empty;
+				Schemes.NextStepInput.SetActive(value: false);
+			}
+			else
+			{
+				Schemes.SchemeManager.enabled = true;
+			}
 		}
 		if (ClubGlobals.GetClubClosed(ClubType.LightMusic))
 		{
@@ -1855,6 +1863,15 @@ public class StudentManagerScript : MonoBehaviour
 		if (GameGlobals.TVHeads)
 		{
 			TVHeads();
+		}
+		if (GameGlobals.TikTok)
+		{
+			YouTube.gameObject.SetActive(value: true);
+			YouTube.TikTok = true;
+			for (int k = 0; k < YouTube.Check.Length; k++)
+			{
+				YouTube.Check[k] = true;
+			}
 		}
 	}
 
@@ -2468,13 +2485,39 @@ public class StudentManagerScript : MonoBehaviour
 						Students[39].gameObject.SetActive(value: false);
 					}
 				}
-				else if (Frame == 30 && CookingEvent.Done)
+				else if (Frame == 30)
 				{
-					Debug.Log("This save file was made after Amai's Cooking Class event ended.");
-					CookingEvent.Offset = 1;
-					CookingEvent.DynamicPopulation = true;
-					CookingEvent.PopulateCharacterList();
-					CookingEvent.MakeStudentsPrepareFoodForever();
+					if (Students[88] != null && Portal.GetComponent<PortalScript>().ModernMorningEvents[1].Done)
+					{
+						Debug.Log("This save file was made after Amai's Akane event ended.");
+						ScheduleBlock obj = Students[88].ScheduleBlocks[1];
+						obj.destination = "Patrol";
+						obj.action = "Patrol";
+						Students[88].GetDestinations();
+						Students[88].Pathfinding.target = Students[88].Destinations[1];
+						Students[88].CurrentDestination = Students[88].Destinations[1];
+					}
+					if (Students[71] != null && Portal.GetComponent<PortalScript>().ModernMorningEvents[2].Done)
+					{
+						Debug.Log("This save file was made after Amai's Uekiya event ended.");
+						for (int num2 = 0; num2 < 3; num2++)
+						{
+							ScheduleBlock obj2 = Students[71].ScheduleBlocks[num2];
+							obj2.destination = "Patrol";
+							obj2.action = "Club";
+						}
+						Students[71].GetDestinations();
+						Students[71].Pathfinding.target = Students[71].Destinations[1];
+						Students[71].CurrentDestination = Students[71].Destinations[1];
+					}
+					if (CookingEvent.Done)
+					{
+						Debug.Log("This save file was made after Amai's Cooking Class event ended.");
+						CookingEvent.Offset = 1;
+						CookingEvent.DynamicPopulation = true;
+						CookingEvent.PopulateCharacterList();
+						CookingEvent.MakeStudentsPrepareFoodForever();
+					}
 				}
 			}
 			if ((double)Clock.HourTime > 16.9)
@@ -2506,8 +2549,8 @@ public class StudentManagerScript : MonoBehaviour
 					{
 						if (Randomize)
 						{
-							int num2 = UnityEngine.Random.Range(0, 2);
-							NewStudent = UnityEngine.Object.Instantiate((num2 == 0) ? PortraitChan : PortraitKun, Vector3.zero, Quaternion.identity);
+							int num3 = UnityEngine.Random.Range(0, 2);
+							NewStudent = UnityEngine.Object.Instantiate((num3 == 0) ? PortraitChan : PortraitKun, Vector3.zero, Quaternion.identity);
 						}
 						else
 						{
@@ -2881,11 +2924,11 @@ public class StudentManagerScript : MonoBehaviour
 				if (Students[RivalID] != null && Students[RivalID].transform.position.y > 0.1f)
 				{
 					Debug.Log("Repositioning all students who were on Floor 1.");
-					for (int num3 = 1; num3 < 7; num3++)
+					for (int num4 = 1; num4 < 7; num4++)
 					{
-						if (Week != 4 || DateGlobals.Weekday != DayOfWeek.Friday || Clock.Period != 1 || num3 >= 6)
+						if (Week != 4 || DateGlobals.Weekday != DayOfWeek.Friday || Clock.Period != 1 || num4 >= 6)
 						{
-							StudentScript studentScript12 = AvailableWitnessList[num3];
+							StudentScript studentScript12 = AvailableWitnessList[num4];
 							if (studentScript12 != null)
 							{
 								studentScript12.WitnessBonus = 24;
@@ -2905,9 +2948,9 @@ public class StudentManagerScript : MonoBehaviour
 				if (Students[RivalID] != null && Students[RivalID].transform.position.y > 4.1f)
 				{
 					Debug.Log("Repositioning all students who were on Floor 2.");
-					for (int num4 = 7; num4 < 12; num4++)
+					for (int num5 = 7; num5 < 12; num5++)
 					{
-						StudentScript studentScript13 = AvailableWitnessList[num4];
+						StudentScript studentScript13 = AvailableWitnessList[num5];
 						if (studentScript13 != null)
 						{
 							studentScript13.WitnessBonus = 24;
@@ -2934,9 +2977,9 @@ public class StudentManagerScript : MonoBehaviour
 		if (SwitchSpotsAfter430 && Clock.HourTime > 16.5f)
 		{
 			AfterClassWitnessSpots = Week5ConfessionWitnessSpots;
-			for (int num5 = 1; num5 < AfterClassWitnessSpots.Length; num5++)
+			for (int num6 = 1; num6 < AfterClassWitnessSpots.Length; num6++)
 			{
-				StudentScript studentScript14 = AvailableWitnessList[num5];
+				StudentScript studentScript14 = AvailableWitnessList[num6];
 				if (studentScript14 != null)
 				{
 					studentScript14.GetDestinations();
@@ -2951,9 +2994,9 @@ public class StudentManagerScript : MonoBehaviour
 		if (RepositionSomeStudentsAfterRivalRises && Students[RivalID] != null && Students[RivalID].transform.position.y > 0.1f)
 		{
 			StudentScript studentScript15 = null;
-			for (int num6 = 1; num6 < StudentsToReposition + 1; num6++)
+			for (int num7 = 1; num7 < StudentsToReposition + 1; num7++)
 			{
-				studentScript15 = AvailableWitnessList[num6];
+				studentScript15 = AvailableWitnessList[num7];
 				if (studentScript15 != null)
 				{
 					studentScript15.WitnessBonus = WitnessBonus;
@@ -2979,10 +3022,10 @@ public class StudentManagerScript : MonoBehaviour
 			{
 				Debug.Log("We're supposed to reposition now!");
 				StudentScript studentScript16 = null;
-				int num7 = 28;
-				for (int num8 = 28; num8 < num7 + StudentsToReposition + 1; num8++)
+				int num8 = 28;
+				for (int num9 = 28; num9 < num8 + StudentsToReposition + 1; num9++)
 				{
-					studentScript16 = AvailableWitnessList[num8];
+					studentScript16 = AvailableWitnessList[num9];
 					if (studentScript16 != null)
 					{
 						studentScript16.AfterWitnessBonus = WitnessBonus;
@@ -3000,9 +3043,9 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			WitnessSpots = Week9WitnessSpots;
 			StudentScript studentScript17 = null;
-			for (int num9 = 1; num9 < AvailableWitnessList.Length; num9++)
+			for (int num10 = 1; num10 < AvailableWitnessList.Length; num10++)
 			{
-				studentScript17 = AvailableWitnessList[num9];
+				studentScript17 = AvailableWitnessList[num10];
 				if (studentScript17 != null)
 				{
 					studentScript17.WitnessBonus = 0;
@@ -3023,10 +3066,10 @@ public class StudentManagerScript : MonoBehaviour
 			Weeks[9].StudentAvailability[88] = true;
 			Weeks[9].StudentAvailability[89] = true;
 			IdentifyAvailableWitnesses();
-			for (int num10 = 86; num10 < 90; num10++)
+			for (int num11 = 86; num11 < 90; num11++)
 			{
-				Students[num10].CurrentDestination = Students[num10].Destinations[Students[num10].Phase];
-				Students[num10].Pathfinding.target = Students[num10].Destinations[Students[num10].Phase];
+				Students[num11].CurrentDestination = Students[num11].Destinations[Students[num11].Phase];
+				Students[num11].Pathfinding.target = Students[num11].Destinations[Students[num11].Phase];
 			}
 			RepositionAfterPhotoshootLater = false;
 		}
@@ -4689,6 +4732,7 @@ public class StudentManagerScript : MonoBehaviour
 					}
 					if (!flag)
 					{
+						Debug.Log("Student #" + Students[ID]?.ToString() + " is acknowledged as a candidate for bullying.");
 						LowestRep = StudentReps[ID];
 						VictimID = ID;
 						Bully = true;
@@ -4698,6 +4742,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 		if (Bully)
 		{
+			Debug.Log(Students[VictimID].Name + " has been selected for bullying. Changing bully routines.");
 			if (Students[VictimID].Seat.position.x > 0f)
 			{
 				BullyGroup.position = Students[VictimID].Seat.position + new Vector3(0.33333f, 0f, 0f);
@@ -5862,6 +5907,21 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			CakeEvent.EventObject[0].SetActive(value: true);
 		}
+		Debug.Log("Time to check to see if a Scheme should be active.");
+		Schemes.Start();
+		Schemes.SchemeManager.Start();
+		if (Schemes.SchemeManager.CurrentScheme == 0)
+		{
+			Debug.Log("No Scheme is active.");
+			Schemes.HUDIcon.gameObject.SetActive(value: false);
+			Schemes.HUDInstructions.text = string.Empty;
+			Schemes.NextStepInput.SetActive(value: false);
+		}
+		else
+		{
+			Debug.Log("A Scheme is active!");
+			Schemes.SchemeManager.enabled = true;
+		}
 		Debug.Log("We have now reached the end of StudentManager.Load()");
 	}
 
@@ -5927,11 +5987,13 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void PutStudentsToSleep()
 	{
+		Debug.Log("Firing the PutStudentsToSleep() function.");
 		StudentScript[] students = Students;
 		foreach (StudentScript studentScript in students)
 		{
-			if (studentScript != null && studentScript.Sleepy)
+			if (studentScript != null && studentScript.Alive && studentScript.Sleepy)
 			{
+				Debug.Log("This function ran for Student #" + studentScript.StudentID);
 				studentScript.transform.position = studentScript.Pathfinding.target.position;
 				Physics.SyncTransforms();
 			}
@@ -6557,7 +6619,6 @@ public class StudentManagerScript : MonoBehaviour
 
 	public void Week2RoutineAdjustments()
 	{
-		Debug.Log("Now making Week 2 Routine Adjustments.");
 		BakeSale.gameObject.SetActive(value: true);
 		Podiums.List[0].transform.position = Podiums.List[1].transform.position;
 		Podiums.List[0].transform.eulerAngles = Podiums.List[1].transform.eulerAngles;
@@ -8330,6 +8391,17 @@ public class StudentManagerScript : MonoBehaviour
 			if (Students[i] != null)
 			{
 				Students[i].Blind = true;
+			}
+		}
+	}
+
+	public void UnblindEveryone()
+	{
+		for (int i = 1; i < 101; i++)
+		{
+			if (Students[i] != null)
+			{
+				Students[i].Blind = false;
 			}
 		}
 	}

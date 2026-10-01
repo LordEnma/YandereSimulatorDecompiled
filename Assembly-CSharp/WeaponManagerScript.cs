@@ -69,7 +69,7 @@ public class WeaponManagerScript : MonoBehaviour
 			Weapons[i].GlobalID = i;
 			if (WeaponGlobals.GetWeaponStatus(i) == 1)
 			{
-				if (Weapons[i].ClubProperty && flag)
+				if (Weapons[i].ClubProperty & flag)
 				{
 					Debug.Log("Weapon #" + i + " was destroyed by the player, but it has been replaced.");
 					GameGlobals.SetItemRemoved(i, 0);

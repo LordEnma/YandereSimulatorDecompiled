@@ -82,7 +82,7 @@ public class UIInput : MonoBehaviour
 
 	public Color caretColor = new Color(1f, 1f, 1f, 0.8f);
 
-	public Color selectionColor = new Color(1f, 0.8745098f, 47f / 85f, 0.5f);
+	public Color selectionColor = new Color(1f, 223f / 255f, 141f / 255f, 0.5f);
 
 	public List<EventDelegate> onSubmit = new List<EventDelegate>();
 

@@ -171,6 +171,8 @@ public class PoliceScript : MonoBehaviour
 
 	public int DrownVictims;
 
+	public int GracePeriod;
+
 	public int BodyParts;
 
 	public int SuicideID;
@@ -601,7 +603,7 @@ public class PoliceScript : MonoBehaviour
 		}
 		else if (!TeacherReport)
 		{
-			if (EndOfDay.Phase == 1)
+			if (GracePeriod > 0 && EndOfDay.Phase == 1)
 			{
 				Yandere.MyListener.enabled = false;
 				EndOfDay.gameObject.SetActive(value: true);
@@ -617,6 +619,7 @@ public class PoliceScript : MonoBehaviour
 				}
 				base.enabled = false;
 			}
+			GracePeriod++;
 		}
 		else
 		{
@@ -788,7 +791,7 @@ public class PoliceScript : MonoBehaviour
 				{
 					ResultsLabels[0].text = "The school day has ended. Faculty members must walk through the school and tell any lingering students to leave.";
 				}
-				if (Suspended || flag)
+				if (Suspended | flag)
 				{
 					Yandere.Class.Portal.EndFinalEvents();
 					if (Clock.Weekday == 1)
@@ -1176,7 +1179,7 @@ public class PoliceScript : MonoBehaviour
 					SchoolGlobals.SchoolAtmosphere -= 0.1f;
 					if (JSON.Students[j].Club == ClubType.Council)
 					{
-						SchoolGlobals.SchoolAtmosphere -= 1f;
+						SchoolGlobals.SchoolAtmosphere--;
 						SchoolGlobals.HighSecurity = true;
 					}
 					StudentGlobals.SetStudentDead(j, value: true);

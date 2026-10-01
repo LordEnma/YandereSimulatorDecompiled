@@ -84,58 +84,71 @@ public class CharacterCustomizationScript : MonoBehaviour
 	[Header("Optional")]
 	public Renderer Braid;
 
+	public bool Menu;
+
 	public void Start()
 	{
-		if (Heart[1] != null)
+		if (PlayerGlobals.CustomHair > 0)
 		{
-			Heart[1].material.color = new Color(1f, 1f, 1f, 0.05f);
-			Heart[2].material.color = new Color(1f, 1f, 1f, 0.075f);
-			Heart[3].material.color = new Color(1f, 1f, 1f, 0.1f);
+			if (Heart[1] != null)
+			{
+				Heart[1].material.color = new Color(1f, 1f, 1f, 0.05f);
+				Heart[2].material.color = new Color(1f, 1f, 1f, 0.075f);
+				Heart[3].material.color = new Color(1f, 1f, 1f, 0.1f);
+			}
+			if (PlayerGlobals.CustomHair == 0)
+			{
+				PlayerGlobals.CustomBangs = 1;
+				PlayerGlobals.CustomLocks = 1;
+				PlayerGlobals.CustomBack = 1;
+				PlayerGlobals.CustomMisc = 1;
+			}
+			else
+			{
+				Category[1] = PlayerGlobals.CustomHair;
+				Category[2] = PlayerGlobals.CustomBangs;
+				Category[3] = PlayerGlobals.CustomLocks;
+				Category[4] = PlayerGlobals.CustomBack;
+				Category[5] = PlayerGlobals.CustomMisc;
+			}
+			if (GameGlobals.BlondeHair)
+			{
+				DefaultBangs.material.mainTexture = BlondeHair;
+				StraightBangs.material.mainTexture = BlondeHair;
+				CenterBangs.material.mainTexture = BlondeHair;
+				NoBangs.material.mainTexture = BlondeHair;
+				KjechBangs.material.mainTexture = BlondeHair;
+				DefaultFront.material.mainTexture = BlondeHair;
+				KjechFront.material.mainTexture = BlondeHair;
+				ShortFront.material.mainTexture = BlondeHair;
+				KjechPonytail.material.mainTexture = BlondeHair;
+				DefaultPonytail.material.mainTexture = BlondeHair;
+				DefaultBack.material.mainTexture = BlondeHair;
+				GyaruPonytail.material.mainTexture = BlondeHair;
+				RightPigtail.material.mainTexture = BlondeHair;
+				LeftPigtail.material.mainTexture = BlondeHair;
+				HairTie.material.mainTexture = BlondeHair;
+				Loose.material.mainTexture = BlondeLoose;
+				Bun.material.mainTexture = BlondeHair;
+				Pigtails.materials[0].mainTexture = BlondeHair;
+				Pigtails.materials[1].mainTexture = BlondeHair;
+				Pigtails.materials[2].mainTexture = BlondeHair;
+				Braid.material.mainTexture = BlondeHair;
+			}
+			UpdateHair();
 		}
-		if (PlayerGlobals.CustomHair == 0)
+		else if (!Menu)
 		{
-			PlayerGlobals.CustomBangs = 1;
-			PlayerGlobals.CustomLocks = 1;
-			PlayerGlobals.CustomBack = 1;
-			PlayerGlobals.CustomMisc = 1;
+			base.gameObject.SetActive(value: false);
 		}
-		else
-		{
-			Category[1] = PlayerGlobals.CustomHair;
-			Category[2] = PlayerGlobals.CustomBangs;
-			Category[3] = PlayerGlobals.CustomLocks;
-			Category[4] = PlayerGlobals.CustomBack;
-			Category[5] = PlayerGlobals.CustomMisc;
-		}
-		if (GameGlobals.BlondeHair)
-		{
-			DefaultBangs.material.mainTexture = BlondeHair;
-			StraightBangs.material.mainTexture = BlondeHair;
-			CenterBangs.material.mainTexture = BlondeHair;
-			NoBangs.material.mainTexture = BlondeHair;
-			KjechBangs.material.mainTexture = BlondeHair;
-			DefaultFront.material.mainTexture = BlondeHair;
-			KjechFront.material.mainTexture = BlondeHair;
-			ShortFront.material.mainTexture = BlondeHair;
-			KjechPonytail.material.mainTexture = BlondeHair;
-			DefaultPonytail.material.mainTexture = BlondeHair;
-			DefaultBack.material.mainTexture = BlondeHair;
-			GyaruPonytail.material.mainTexture = BlondeHair;
-			RightPigtail.material.mainTexture = BlondeHair;
-			LeftPigtail.material.mainTexture = BlondeHair;
-			HairTie.material.mainTexture = BlondeHair;
-			Loose.material.mainTexture = BlondeLoose;
-			Bun.material.mainTexture = BlondeHair;
-			Pigtails.materials[0].mainTexture = BlondeHair;
-			Pigtails.materials[1].mainTexture = BlondeHair;
-			Pigtails.materials[2].mainTexture = BlondeHair;
-			Braid.material.mainTexture = BlondeHair;
-		}
-		UpdateHair();
 	}
 
 	private void Update()
 	{
+		if (!(Yandere != null))
+		{
+			return;
+		}
 		if (Yandere.HomeCamera.Mute)
 		{
 			MyAudio.volume = 0f;

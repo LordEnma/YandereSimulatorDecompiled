@@ -36,6 +36,7 @@ public class StudentFootageCameraScript : MonoBehaviour
 				studentScript.ShoeRemoval.PutOnShoes();
 			}
 		}
+		StudentManager.FPSDisplay.SetActive(value: false);
 		StudentManager.Yandere.CameraEffects.UpdateDOF(0.6f);
 		StudentManager.Yandere.CameraEffects.UpdateAperture(10f);
 		StudentManager.Yandere.MainCamera.gameObject.SetActive(value: false);

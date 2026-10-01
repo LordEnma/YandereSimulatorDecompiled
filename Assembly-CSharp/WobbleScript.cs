@@ -26,7 +26,7 @@ public class WobbleScript : MonoBehaviour
 	private void Update()
 	{
 		tr.Rotate(Time.deltaTime * RotateSpeed);
-		Vector3 vector = default(Vector3);
+		Vector3 vector = default;
 		vector.x = Mathf.PerlinNoise(NoiseIndex.x, 0f) - 0.5f;
 		vector.y = Mathf.PerlinNoise(NoiseIndex.y, 0f) - 0.5f;
 		vector.z = Mathf.PerlinNoise(NoiseIndex.z, 0f) - 0.5f;

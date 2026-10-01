@@ -334,7 +334,7 @@ public class ClassScript : MonoBehaviour
 						{
 							flag = false;
 						}
-						if (StudyPoints == StartingPoints && flag)
+						if ((StudyPoints == StartingPoints) & flag)
 						{
 							ShowWarning = true;
 							PromptBar.ClearButtons();
@@ -425,7 +425,6 @@ public class ClassScript : MonoBehaviour
 			if (CutsceneManager.Scheme > 0 && studentManager.Students[studentManager.RivalID] != null && studentManager.Students[studentManager.RivalID].Alive && !studentManager.Students[studentManager.RivalID].Tranquil)
 			{
 				Debug.Log("We need to go to the counselor's office.");
-				SchemeGlobals.SetSchemeStage(CutsceneManager.Scheme, 100);
 				PromptBar.ClearButtons();
 				PromptBar.Label[0].text = "Continue";
 				PromptBar.UpdateButtons();
@@ -436,22 +435,20 @@ public class ClassScript : MonoBehaviour
 				CutsceneManager.GetComponent<CutsceneManagerScript>().R = 1f;
 				CutsceneManager.GetComponent<CutsceneManagerScript>().G = 1f;
 				CutsceneManager.GetComponent<CutsceneManagerScript>().B = 1f;
+				return;
 			}
-			else
+			Debug.Log("We don't need to go to the counselor's office.");
+			if (!Portal.FadeOut)
 			{
-				Debug.Log("We don't need to go to the counselor's office.");
-				if (!Portal.FadeOut)
-				{
-					Portal.Yandere.PhysicalGrade = PhysicalGrade;
-					Portal.Yandere.CharacterAnimation["f02_wrapCorpse_00"].speed = 1f + (float)Portal.Yandere.PhysicalGrade * 0.2f;
-					Portal.Yandere.CameraEffects.UpdateDOF(Portal.OriginalDOF);
-					Portal.ClassDarkness.alpha = 1f;
-					Portal.Transition = true;
-					Portal.FadeOut = false;
-					Portal.Proceed = true;
-					PromptBar.Show = false;
-					base.gameObject.SetActive(value: false);
-				}
+				Portal.Yandere.PhysicalGrade = PhysicalGrade;
+				Portal.Yandere.CharacterAnimation["f02_wrapCorpse_00"].speed = 1f + (float)Portal.Yandere.PhysicalGrade * 0.2f;
+				Portal.Yandere.CameraEffects.UpdateDOF(Portal.OriginalDOF);
+				Portal.ClassDarkness.alpha = 1f;
+				Portal.Transition = true;
+				Portal.FadeOut = false;
+				Portal.Proceed = true;
+				PromptBar.Show = false;
+				base.gameObject.SetActive(value: false);
 			}
 			return;
 		}

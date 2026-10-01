@@ -46,7 +46,7 @@ public class HomeExitScript : MonoBehaviour
 		if (HomeGlobals.Night)
 		{
 			uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
-			if (SchemeGlobals.GetSchemeStage(6) == 9 && !StudentGlobals.GetStudentDead(10 + DateGlobals.Week) && !StudentGlobals.GetStudentKidnapped(10 + DateGlobals.Week) && GameGlobals.RivalEliminationID == 0 && !ChallengeGlobals.KnifeOnly)
+			if (GameGlobals.StealthMissionUnlocked && !StudentGlobals.GetStudentDead(10 + DateGlobals.Week) && !StudentGlobals.GetStudentKidnapped(10 + DateGlobals.Week) && GameGlobals.RivalEliminationID == 0 && !ChallengeGlobals.KnifeOnly)
 			{
 				UILabel uILabel2 = Labels[4];
 				uILabel2.color = new Color(uILabel2.color.r, uILabel2.color.g, uILabel2.color.b, 1f);
@@ -228,7 +228,7 @@ public class HomeExitScript : MonoBehaviour
 			Zs++;
 			if (Zs > 9)
 			{
-				SchemeGlobals.SetSchemeStage(6, 9);
+				SchemeGlobals.SetSchemeStage(411, 10);
 			}
 		}
 	}

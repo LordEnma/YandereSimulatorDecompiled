@@ -164,7 +164,7 @@ public static class NGUIMath
 	[DebuggerStepThrough]
 	public static Color IntToColor(int val)
 	{
-		float num = 0.003921569f;
+		float num = 1f / 255f;
 		Color black = Color.black;
 		black.r = num * (float)((val >> 24) & 0xFF);
 		black.g = num * (float)((val >> 16) & 0xFF);

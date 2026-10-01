@@ -196,7 +196,7 @@ public class ShutterScript : MonoBehaviour
 				while (currentPercent >= 1f)
 				{
 					Frame = Mathf.Min(Frame + 1, 8);
-					currentPercent -= 1f;
+					currentPercent--;
 				}
 				Sprite.spriteName = "Shutter" + Frame;
 				if (Frame == 8)
@@ -265,7 +265,7 @@ public class ShutterScript : MonoBehaviour
 				while (currentPercent >= 1f)
 				{
 					Frame = Mathf.Max(Frame - 1, 1);
-					currentPercent -= 1f;
+					currentPercent--;
 				}
 				Sprite.spriteName = "Shutter" + Frame;
 				if (Frame == 1)
@@ -510,7 +510,7 @@ public class ShutterScript : MonoBehaviour
 							}
 							if (OsanaShot && DateGlobals.Weekday == DayOfWeek.Thursday)
 							{
-								SchemeGlobals.SetSchemeStage(4, 7);
+								Yandere.SchemeManager.SetSchemeStage(409, 7);
 								Yandere.PauseScreen.Schemes.UpdateInstructions();
 							}
 						}
@@ -521,9 +521,9 @@ public class ShutterScript : MonoBehaviour
 					}
 					else if (!PantiesX.activeInHierarchy)
 					{
-						if (SchemeGlobals.GetSchemeStage(1) == 5)
+						if (Yandere.SchemeManager.GetSchemeStage(406) == 5)
 						{
-							SchemeGlobals.SetSchemeStage(1, 6);
+							Yandere.SchemeManager.SetSchemeStage(406, 6);
 							Schemes.UpdateInstructions();
 						}
 						StudentManager.CommunalLocker.RivalPhone.LewdPhotos = true;

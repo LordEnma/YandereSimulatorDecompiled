@@ -151,13 +151,13 @@ public class CreditsScript : MonoBehaviour
 		bool keyDown2 = Input.GetKeyDown(KeyCode.Equals);
 		if (keyDown)
 		{
-			Time.timeScale -= 1f;
+			Time.timeScale--;
 		}
 		else if (keyDown2)
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
-		if (keyDown || keyDown2)
+		if (keyDown | keyDown2)
 		{
 			Jukebox.pitch = Time.timeScale;
 		}

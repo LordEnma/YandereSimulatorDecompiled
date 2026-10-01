@@ -55,6 +55,7 @@ public class PassTimeBookScript : MonoBehaviour
 				}
 				if (Phase == 0)
 				{
+					Debug.Log("Phase 0.");
 					Yandere.StudentManager.PutStudentsToSleep();
 					Yandere.StudentManager.Clock.PresentTime += 30f;
 					Yandere.StudentManager.Clock.UpdateClock();
@@ -63,6 +64,7 @@ public class PassTimeBookScript : MonoBehaviour
 				}
 				else if (Phase == 1)
 				{
+					Debug.Log("Phase 1.");
 					for (int i = 1; i < 100; i++)
 					{
 						if (Yandere.StudentManager.Students[i] != null && Yandere.StudentManager.Students[i].Alive && !Yandere.StudentManager.Students[i].Tranquil && !Yandere.StudentManager.Students[i].Sedated && Yandere.StudentManager.Students[i].CurrentDestination != null)
@@ -70,6 +72,7 @@ public class PassTimeBookScript : MonoBehaviour
 							Yandere.StudentManager.Students[i].transform.position = Yandere.StudentManager.Students[i].CurrentDestination.position;
 							if (Yandere.StudentManager.Students[i].CurrentAction == StudentActionType.Sunbathe && Yandere.StudentManager.Students[i].Schoolwear == 2 && Yandere.StudentManager.PoolClosed)
 							{
+								Debug.Log("Teleporting a sunbathing student: Student #" + i);
 								Yandere.StudentManager.Students[i].transform.position = new Vector3(-11f, 4f, 72f);
 							}
 						}
@@ -83,6 +86,7 @@ public class PassTimeBookScript : MonoBehaviour
 					{
 						return;
 					}
+					Debug.Log("Phase 2.");
 					if (IncreaseRockProgress)
 					{
 						if (PickaxeTimer == 0f)

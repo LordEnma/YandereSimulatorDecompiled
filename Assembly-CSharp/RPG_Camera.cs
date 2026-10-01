@@ -152,7 +152,7 @@ public class RPG_Camera : MonoBehaviour
 				cameraPivot = GameObject.Find("CameraPivot").transform;
 				return;
 			}
-			Timer += 1f;
+			Timer++;
 			GetInput();
 			GetDesiredPosition();
 			PositionUpdate();
@@ -358,7 +358,7 @@ public class RPG_Camera : MonoBehaviour
 
 	public static ClipPlaneVertexes GetClipPlaneAt(Vector3 pos)
 	{
-		ClipPlaneVertexes result = default(ClipPlaneVertexes);
+		ClipPlaneVertexes result = default;
 		if (MainCamera == null)
 		{
 			return result;

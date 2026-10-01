@@ -60,7 +60,7 @@ namespace MaidDereMinigame
 
 		public static void GoToExitScene(bool fadeOut = true)
 		{
-			Instance.StartCoroutine(Instance.FadeWithAction(delegate
+			Instance.StartCoroutine(Instance.FadeWithAction(() =>
 			{
 				Debug.Log("Exiting the Maid Minigame.");
 				if (Instance.totalPayout > 0f && !GameGlobals.Debug)
@@ -132,7 +132,7 @@ namespace MaidDereMinigame
 
 		public void LoadScene(SceneObject scene)
 		{
-			StartCoroutine(FadeWithAction(delegate
+			StartCoroutine(FadeWithAction(() =>
 			{
 				SceneManager.LoadScene("MaidGameScene");
 			}));
@@ -158,7 +158,7 @@ namespace MaidDereMinigame
 			PostFadeAction();
 			if (destroyGameController)
 			{
-				if (Instance.whiteFadeOutPost != null && doFadeOut)
+				if ((Instance.whiteFadeOutPost != null) & doFadeOut)
 				{
 					Instance.whiteFadeOutPost.color = Color.white;
 				}

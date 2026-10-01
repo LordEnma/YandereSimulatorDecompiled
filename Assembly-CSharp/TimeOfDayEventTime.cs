@@ -27,7 +27,7 @@ public class TimeOfDayEventTime : IScheduledEventTime
 		bool num = currentTime.Week == week;
 		bool flag = currentTime.Weekday == weekday;
 		bool flag2 = currentTime.Clock.TimeOfDay == timeOfDay;
-		return num && flag && flag2;
+		return num & flag & flag2;
 	}
 
 	public bool OccursInTheFuture(DateAndTime currentTime)

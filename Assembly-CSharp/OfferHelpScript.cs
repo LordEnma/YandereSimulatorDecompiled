@@ -339,7 +339,7 @@ public class OfferHelpScript : MonoBehaviour
 					Prompt.enabled = false;
 					flag = false;
 				}
-				if (!Yandere.Chased && Yandere.Chasers == 0 && flag)
+				if ((!Yandere.Chased && Yandere.Chasers == 0) & flag)
 				{
 					Jukebox.Dip = 0.1f;
 					Yandere.EmptyHands();
@@ -600,8 +600,9 @@ public class OfferHelpScript : MonoBehaviour
 			if (EventStudentID == StudentManager.RivalID || (Eighties && EventStudentID > 10 && EventStudentID < 21))
 			{
 				StudentManager.RaibaruKnowsAboutStalker = true;
-				SchemeGlobals.SetSchemeStage(6, 8);
+				Yandere.SchemeManager.SetSchemeStage(411, 9);
 				Yandere.PauseScreen.Schemes.UpdateInstructions();
+				Yandere.Police.EndOfDay.StealthMissionUnlocked = true;
 			}
 			else if (EventStudentID == 30)
 			{

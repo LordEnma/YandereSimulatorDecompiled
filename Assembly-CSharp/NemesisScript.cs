@@ -216,7 +216,7 @@ public class NemesisScript : MonoBehaviour
 				Debug.Log("Nemesis is supposed to be choosing a disguise right now.");
 				bool flag = false;
 				int num = 1;
-				while ((Student.StudentManager.Students[num] != null && Student.StudentManager.Students[num].Male) || (num > 5 && num < 21) || num == 21 || num == 26 || num == 31 || num == 36 || num == 41 || num == 46 || num == 51 || num == 56 || num == 61 || num == 66 || num == 71 || num == MissionMode.TargetID || flag)
+				while (((Student.StudentManager.Students[num] != null && Student.StudentManager.Students[num].Male) || (num > 5 && num < 21) || num == 21 || num == 26 || num == 31 || num == 36 || num == 41 || num == 46 || num == 51 || num == 56 || num == 61 || num == 66 || num == 71 || num == MissionMode.TargetID) | flag)
 				{
 					num = Random.Range(2, 90);
 					if (!MissionMode.MultiMission)

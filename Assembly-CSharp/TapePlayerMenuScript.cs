@@ -724,8 +724,9 @@ public class TapePlayerMenuScript : MonoBehaviour
 					CollectibleGlobals.SetBasementTapeListened(Selected, value: true);
 					flag = true;
 				}
-				if (Selected == 2)
+				if (Selected == 2 && TapeLabels[Selected].text != "?????")
 				{
+					GameGlobals.SisterCutscene = false;
 					GameGlobals.BasementTape = 2;
 					Jukebox.SetActive(value: false);
 					flag = false;

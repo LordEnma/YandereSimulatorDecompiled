@@ -12,7 +12,7 @@ public class CalisthenicsRadioScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (!GameGlobals.Eighties)
+		if (!GameGlobals.Eighties || GameGlobals.CustomMode)
 		{
 			base.transform.parent.gameObject.SetActive(value: false);
 		}

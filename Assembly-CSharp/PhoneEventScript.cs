@@ -325,9 +325,9 @@ public class PhoneEventScript : MonoBehaviour
 					{
 						Yandere.Police.EndOfDay.LearnedRival1Info[1] = true;
 						Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
-						if (SchemeGlobals.GetSchemeStage(6) == 1)
+						if (Yandere.SchemeManager.GetSchemeStage(411) == 2)
 						{
-							SchemeGlobals.SetSchemeStage(6, 2);
+							Yandere.SchemeManager.SetSchemeStage(411, 3);
 							Yandere.PauseScreen.Schemes.UpdateInstructions();
 						}
 					}

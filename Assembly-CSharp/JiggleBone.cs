@@ -38,7 +38,7 @@ public class JiggleBone : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		base.transform.rotation = default(Quaternion);
+		base.transform.rotation = default;
 		Vector3 dir = base.transform.TransformDirection(boneAxis * targetDistance);
 		Vector3 vector = base.transform.TransformDirection(new Vector3(0f, 1f, 0f));
 		Vector3 vector2 = base.transform.position + base.transform.TransformDirection(boneAxis * targetDistance);

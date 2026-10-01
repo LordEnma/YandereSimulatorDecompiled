@@ -17,7 +17,7 @@ public class RemovableItemManagerScript : MonoBehaviour
 		{
 			if (GameGlobals.GetItemRemoved(i) == 1)
 			{
-				if (RemovableItems[i].ClubItem && flag)
+				if (RemovableItems[i].ClubItem & flag)
 				{
 					Debug.Log("Item #" + i + " (" + RemovableItems[i].gameObject.name + ") was used up by the player, but it has been replaced.");
 					GameGlobals.SetItemRemoved(i, 0);

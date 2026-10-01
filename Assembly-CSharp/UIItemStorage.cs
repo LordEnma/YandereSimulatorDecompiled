@@ -59,7 +59,7 @@ public class UIItemStorage : MonoBehaviour
 			return;
 		}
 		int num = 0;
-		Bounds bounds = default(Bounds);
+		Bounds bounds = default;
 		for (int i = 0; i < maxRows; i++)
 		{
 			for (int j = 0; j < maxColumns; j++)

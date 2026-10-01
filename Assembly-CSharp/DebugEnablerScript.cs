@@ -64,10 +64,20 @@ public class DebugEnablerScript : MonoBehaviour
 		Yandere.NotificationManager.CustomText = "Debug Commands Enabled!";
 		Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		Debug.Log("Enabling the use of debug commands.");
+		MemeClosetDoor.Prompt.enabled = true;
+		MemeClosetDoor.enabled = true;
+		MemeClosetDoor.Locked = false;
 		Yandere.Inventory.PantyShots = 100;
+		Yandere.Police.Invalid = true;
 		Yandere.NoDebug = false;
 		Yandere.EggBypass = 10;
 		Yandere.Egg = false;
+		DebugMenu.MissionMode = false;
+		DebugMenu.NoDebug = false;
+		Skull.Prompt.enabled = true;
+		Skull.enabled = true;
+		Tribute.enabled = true;
+		Turtle.enabled = true;
 		StandWeapons.SetActive(value: true);
 		VoidGoddess.SetActive(value: true);
 		MurderKit.SetActive(value: true);
@@ -76,19 +86,6 @@ public class DebugEnablerScript : MonoBehaviour
 		if (!GameGlobals.Eighties)
 		{
 			Keys.SetActive(value: true);
-		}
-		DebugMenu.MissionMode = false;
-		DebugMenu.NoDebug = false;
-		Yandere.NoDebug = false;
-		Turtle.enabled = true;
-		MemeClosetDoor.Prompt.enabled = true;
-		MemeClosetDoor.enabled = true;
-		MemeClosetDoor.Locked = false;
-		Skull.Prompt.enabled = true;
-		Skull.enabled = true;
-		Tribute.enabled = true;
-		if (!GameGlobals.Eighties)
-		{
 			if (Yandere.StudentManager.Students[37] != null)
 			{
 				Yandere.StudentManager.Students[37].Cosmetic.HairRenderer.gameObject.GetComponent<BandanaScript>().enabled = true;
@@ -99,5 +96,9 @@ public class DebugEnablerScript : MonoBehaviour
 			}
 		}
 		collectibleScripts = Object.FindObjectsOfType<CollectibleScript>();
+		if (Editor)
+		{
+			Yandere.Police.Invalid = false;
+		}
 	}
 }

@@ -317,7 +317,6 @@ public class IntroScript : MonoBehaviour
 			}
 			CorpseCamera.SetActive(value: false);
 		}
-		Debug.Log("GameGlobals.CensorCorpses is: " + GameGlobals.CensorCorpses);
 		bool censorCorpses = GameGlobals.CensorCorpses;
 		GameObject[] censorCubes = CensorCubes;
 		for (int j = 0; j < censorCubes.Length; j++)
@@ -518,7 +517,7 @@ public class IntroScript : MonoBehaviour
 				SanitySmudges.alpha = 0f;
 				Noise.enabled = false;
 			}
-			Speed += 1f;
+			Speed++;
 			if (Speed > 2f)
 			{
 				Speed = 0f;

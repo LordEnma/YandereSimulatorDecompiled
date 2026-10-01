@@ -128,7 +128,7 @@ public class UIPlayAnimation : MonoBehaviour
 
 	private void OnHover(bool isOver)
 	{
-		if (base.enabled && (trigger == Trigger.OnHover || (trigger == Trigger.OnHoverTrue && isOver) || (trigger == Trigger.OnHoverFalse && !isOver)))
+		if (base.enabled && (trigger == Trigger.OnHover || ((trigger == Trigger.OnHoverTrue) & isOver) || (trigger == Trigger.OnHoverFalse && !isOver)))
 		{
 			Play(isOver, dualState);
 		}
@@ -136,7 +136,7 @@ public class UIPlayAnimation : MonoBehaviour
 
 	private void OnPress(bool isPressed)
 	{
-		if (base.enabled && UICamera.currentTouchID != -2 && UICamera.currentTouchID != -3 && (trigger == Trigger.OnPress || (trigger == Trigger.OnPressTrue && isPressed) || (trigger == Trigger.OnPressFalse && !isPressed)))
+		if (base.enabled && UICamera.currentTouchID != -2 && UICamera.currentTouchID != -3 && (trigger == Trigger.OnPress || ((trigger == Trigger.OnPressTrue) & isPressed) || (trigger == Trigger.OnPressFalse && !isPressed)))
 		{
 			Play(isPressed, dualState);
 		}
@@ -160,7 +160,7 @@ public class UIPlayAnimation : MonoBehaviour
 
 	private void OnSelect(bool isSelected)
 	{
-		if (base.enabled && (trigger == Trigger.OnSelect || (trigger == Trigger.OnSelectTrue && isSelected) || (trigger == Trigger.OnSelectFalse && !isSelected)))
+		if (base.enabled && (trigger == Trigger.OnSelect || ((trigger == Trigger.OnSelectTrue) & isSelected) || (trigger == Trigger.OnSelectFalse && !isSelected)))
 		{
 			Play(isSelected, dualState);
 		}

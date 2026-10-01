@@ -799,16 +799,19 @@ public class NewSettingsScript : MonoBehaviour
 					else if (GameGlobals.CensorBlood)
 					{
 						Debug.Log("Now censoring blood at the title screen.");
-						OsanaRenderer[0].materials[5].mainTexture = FlowerMaterial.mainTexture;
 						TitleScreenProjector.material = FlowerMaterial;
 						KnifeProjector.material = FlowerMaterial;
+						OsanaRenderer[0].materials[5].mainTexture = NewTitleScreen.CensorFlowers;
+						TitleScreenProjector.material.mainTexture = NewTitleScreen.CensorFlowers;
+						KnifeProjector.material.mainTexture = NewTitleScreen.CensorFlowers;
 					}
 					else
 					{
 						Debug.Log("Now uncensoring blood at the title screen.");
-						OsanaRenderer[0].materials[5].mainTexture = BloodMaterial.mainTexture;
 						TitleScreenProjector.material = BloodMaterial;
 						KnifeProjector.material = BloodMaterial;
+						OsanaRenderer[0].materials[5].mainTexture = NewTitleScreen.BloodTextures[5];
+						NewTitleScreen.UpdateBloodyStatus();
 					}
 					UpdateLabels();
 				}

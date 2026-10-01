@@ -1279,7 +1279,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						SpeechText[5] = "Phew, I'm glad I remembered the time correctly - (Yawn)";
 						SpeechText[6] = "Oh, sorry about that...I guess I didn't get much sleep last night, haha...";
-						SpeechText[7] = "Maybe you should take a nap after cleaning time is over.";
+						SpeechText[7] = "Maybe you should take a nap during cleaning time.";
 						SpeechText[8] = "Hmm...that might be a good idea. Yeah, I should do that!";
 						SpeechText[9] = "Sometimes a big meal puts me right to sleep...";
 						SpeechText[10] = "I guess I should be careful what I eat at lunchtime!";
@@ -1300,7 +1300,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						SpeechText[5] = "...great...I'm...(yawn)...oh...oops...uh...";
 						SpeechText[6] = "...sorry...just...sleepy...(yawn)...sorry again...";
-						SpeechText[7] = "Maybe you should take a nap after cleaning time is over.";
+						SpeechText[7] = "Maybe you should take a nap during cleaning time.";
 						SpeechText[8] = "...oh...!...that might be smart...!";
 						SpeechText[9] = "...just gotta make sure not to oversleep...";
 						SpeechText[10] = "...better watch what I eat...at lunchtime...";
@@ -1321,7 +1321,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						SpeechText[5] = "Nice! I'm glad that you're a dependable guy, Senpai. Some guys are just...(yawn)";
 						SpeechText[6] = "Whoa, sorry, that yawn was rude of me. I guess I'm tired after jogging to school...";
-						SpeechText[7] = "Maybe you should take a nap after cleaning time is over.";
+						SpeechText[7] = "Maybe you should take a nap during cleaning time.";
 						SpeechText[8] = "Hey, smart idea, Senpai! Good thinking!";
 						SpeechText[9] = "Depending on the ingredients I put into my food, I can get really sleepy...";
 						SpeechText[10] = "...so I'll just be extra careful what I eat today!";
@@ -1342,7 +1342,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						SpeechText[5] = "Good. I will take my leave now. Be sure not to...(Yawn)";
 						SpeechText[6] = "...ugh...how...uncouth of me...you did NOT see that, understood?";
-						SpeechText[7] = "Sleepy? Maybe you should take a nap after cleaning time is over.";
+						SpeechText[7] = "Sleepy? Maybe you should take a nap during cleaning time.";
 						SpeechText[8] = "Nap?! Like a lazy servant who is slacking on the job?! Are you serious?!";
 						SpeechText[9] = "Although...a nap at cleaning time may be beneficial...";
 						SpeechText[10] = "Perhaps I shall. After all, it's not like I'll oversleep or anything like that!";
@@ -1363,7 +1363,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						SpeechText[5] = "Whoohoo! I'm gonna look forward to it alllll day! Now I just...(Yawn)";
 						SpeechText[6] = "Whoop, sorry! Kinda sleepy, hehe...kinda difficult to stay energetic right now...";
-						SpeechText[7] = "Maybe you should take a nap after cleaning time is over.";
+						SpeechText[7] = "Maybe you should take a nap during cleaning time.";
 						SpeechText[8] = "Ohh!! You're smart as always, Senpai!! I'll do that!!";
 						SpeechText[9] = "Sometimes if I eat too much, I sleep for hours and hours...";
 						SpeechText[10] = "I'll just be extra careful what I eat at lunchtime!";
@@ -1384,7 +1384,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						SpeechText[5] = "Phew, I'm glad I remembered the time correctly - (Yawn)";
 						SpeechText[6] = "Oh, sorry about that...I guess I didn't get much sleep last night, haha...";
-						SpeechText[7] = "Maybe you should take a nap after cleaning time is over.";
+						SpeechText[7] = "Maybe you should take a nap during cleaning time.";
 						SpeechText[8] = "Hmm...that might be a good idea. Yeah, I should do that!";
 						SpeechText[9] = "Sometimes a big meal puts me right to sleep...";
 						SpeechText[10] = "I guess I should be careful what I eat at lunchtime!";
@@ -1405,7 +1405,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						SpeechText[5] = "I'm very glad that I...I...";
 						SpeechText[6] = "...oh, my. I'm very sorry. I nearly yawned a moment ago...";
-						SpeechText[7] = "Sleepy? Maybe you should take a nap after cleaning time is over.";
+						SpeechText[7] = "Sleepy? Maybe you should take a nap during cleaning time.";
 						SpeechText[8] = "That is a good suggestion, Senpai! I believe that I'll do so!";
 						SpeechText[9] = "I admit that I am sometimes guilty of oversleeping, but...";
 						SpeechText[10] = "...it won't be a problem if I'm careful what I eat at lunchtime!";
@@ -1426,7 +1426,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						SpeechText[5] = "Hehehe...mmmmm, you're so cute, Senpai...";
 						SpeechText[6] = "...ah...I'm so sleepy...hope I don't doze off in class today...";
-						SpeechText[7] = "Maybe you should take a nap after cleaning time is over.";
+						SpeechText[7] = "Maybe you should take a nap during cleaning time.";
 						SpeechText[8] = "Hehe~ Hey~ Goood idea, Senpai~ I think I'll do that~";
 						SpeechText[9] = "Gotta watch what I eat today. Oh, not just to keep my figure, though~";
 						SpeechText[10] = "Sometimes I oversleep depending on what I eat, haha~";
@@ -1447,7 +1447,7 @@ public class GenericRivalEventScript : MonoBehaviour
 					{
 						SpeechText[5] = "That is correct. Meet me here at 5:15 PM so that we can leave school together.";
 						SpeechText[6] = "...ugh...I couldn't sleep last night...it'll be hard to concentrate today...";
-						SpeechText[7] = "Maybe you should take a nap after cleaning time is over.";
+						SpeechText[7] = "Maybe you should take a nap during cleaning time.";
 						SpeechText[8] = "Sleep? Here? Never. It would make me too vulnerable. I'd be defenseless.";
 						SpeechText[9] = "...but...if I don't get some rest soon...the whole operation could fail...";
 						SpeechText[10] = "...as long as I'm careful what I eat at lunchtime, I shouldn't oversleep...";
@@ -2160,9 +2160,9 @@ public class GenericRivalEventScript : MonoBehaviour
 				Rival.GetDestinations();
 			}
 		}
-		if (DateGlobals.Weekday == DayOfWeek.Friday)
+		if (DateGlobals.Weekday == DayOfWeek.Friday && StartTime < 12f)
 		{
-			Debug.Log("Rival.VisitSenpaiDesk is supposed to be true.");
+			Debug.Log("ONLY if this event takes place at the very start of Monday Morning...Rival.VisitSenpaiDesk is supposed to be true.");
 			Rival.VisitSenpaiDesk = true;
 		}
 		if (StartTime > 17f && Rival.StudentID == 19)

@@ -94,7 +94,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		private void ScaleCapsuleForCrouching(bool crouch)
 		{
-			if (m_IsGrounded && crouch)
+			if (m_IsGrounded & crouch)
 			{
 				if (!m_Crouching)
 				{

@@ -156,6 +156,8 @@ public class HomeCameraScript : MonoBehaviour
 
 	public int AnniversaryID;
 
+	public int TikTokID;
+
 	public CosmeticScript SenpaiCosmetic;
 
 	public Renderer ClockFace;
@@ -171,6 +173,8 @@ public class HomeCameraScript : MonoBehaviour
 	public GameObject PinkBackground;
 
 	public string[] Anniversary;
+
+	public string[] TikTok;
 
 	private int Is;
 
@@ -327,6 +331,16 @@ public class HomeCameraScript : MonoBehaviour
 				GameGlobals.Anniversary = true;
 				Firework.SetActive(value: true);
 				Debug.Log("Anniversary is now true.");
+			}
+		}
+		if (TikTokID < TikTok.Length && Input.GetKeyDown(TikTok[TikTokID]))
+		{
+			TikTokID++;
+			if (TikTokID >= TikTok.Length)
+			{
+				GameGlobals.TikTok = true;
+				Firework.SetActive(value: true);
+				Debug.Log("TikTok is now true.");
 			}
 		}
 	}

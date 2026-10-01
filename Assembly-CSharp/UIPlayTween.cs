@@ -106,7 +106,7 @@ public class UIPlayTween : MonoBehaviour
 
 	private void OnHover(bool isOver)
 	{
-		if (!base.enabled || (trigger != Trigger.OnHover && !(trigger == Trigger.OnHoverTrue && isOver) && (trigger != Trigger.OnHoverFalse || isOver)) || isOver == mActivated)
+		if (!base.enabled || (trigger != Trigger.OnHover && !((trigger == Trigger.OnHoverTrue) & isOver) && (trigger != Trigger.OnHoverFalse || isOver)) || isOver == mActivated)
 		{
 			return;
 		}
@@ -147,7 +147,7 @@ public class UIPlayTween : MonoBehaviour
 
 	private void OnPress(bool isPressed)
 	{
-		if (base.enabled && (trigger == Trigger.OnPress || (trigger == Trigger.OnPressTrue && isPressed) || (trigger == Trigger.OnPressFalse && !isPressed)))
+		if (base.enabled && (trigger == Trigger.OnPress || ((trigger == Trigger.OnPressTrue) & isPressed) || (trigger == Trigger.OnPressFalse && !isPressed)))
 		{
 			mActivated = isPressed && trigger == Trigger.OnPress;
 			Play(isPressed);
@@ -172,7 +172,7 @@ public class UIPlayTween : MonoBehaviour
 
 	private void OnSelect(bool isSelected)
 	{
-		if (base.enabled && (trigger == Trigger.OnSelect || (trigger == Trigger.OnSelectTrue && isSelected) || (trigger == Trigger.OnSelectFalse && !isSelected)))
+		if (base.enabled && (trigger == Trigger.OnSelect || ((trigger == Trigger.OnSelectTrue) & isSelected) || (trigger == Trigger.OnSelectFalse && !isSelected)))
 		{
 			mActivated = isSelected && trigger == Trigger.OnSelect;
 			Play(isSelected);

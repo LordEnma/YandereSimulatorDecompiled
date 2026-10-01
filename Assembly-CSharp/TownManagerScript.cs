@@ -59,7 +59,7 @@ public class TownManagerScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown("="))
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 		if ((Yandere.CanMove && !Yandere.PausePanel.enabled && MapTimer < 1 && Input.GetButtonDown(InputNames.Xbox_Back)) || (Yandere.CanMove && !Yandere.PausePanel.enabled && MapTimer < 1 && Input.GetKeyDown("space")))
 		{

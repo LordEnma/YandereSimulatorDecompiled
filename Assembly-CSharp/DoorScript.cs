@@ -276,9 +276,9 @@ public class DoorScript : MonoBehaviour
 						}
 						if (!flag)
 						{
-							if (SchemeGlobals.GetSchemeStage(1) == 2)
+							if (Yandere.SchemeManager.GetSchemeStage(406) == 2)
 							{
-								SchemeGlobals.SetSchemeStage(1, 3);
+								Yandere.SchemeManager.SetSchemeStage(406, 3);
 								Yandere.PauseScreen.Schemes.UpdateInstructions();
 							}
 							Bucket = Yandere.PickUp.Bucket;

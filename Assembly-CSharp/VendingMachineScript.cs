@@ -59,9 +59,9 @@ public class VendingMachineScript : MonoBehaviour
 				MyAudio.Play();
 				MyAudio.pitch = Random.Range(0.9f, 1.1f);
 			}
-			if (SnackMachine && SchemeGlobals.GetSchemeStage(4) == 3)
+			if (SnackMachine && Prompt.Yandere.SchemeManager.GetSchemeStage(409) == 3)
 			{
-				SchemeGlobals.SetSchemeStage(4, 4);
+				Prompt.Yandere.SchemeManager.SetSchemeStage(409, 4);
 				Prompt.Yandere.PauseScreen.Schemes.UpdateInstructions();
 			}
 			Prompt.Yandere.Inventory.Money -= Price;

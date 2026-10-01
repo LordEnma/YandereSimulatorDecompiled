@@ -164,7 +164,7 @@ public class UICamera : MonoBehaviour
 
 	public static GetMouseDelegate GetMouse = (int button) => mMouse[button];
 
-	public static GetTouchDelegate GetTouch = delegate(int id, bool createIfMissing)
+	public static GetTouchDelegate GetTouch = (int id, bool createIfMissing) =>
 	{
 		if (id < 0)
 		{
@@ -192,7 +192,7 @@ public class UICamera : MonoBehaviour
 		return (MouseOrTouch)null;
 	};
 
-	public static RemoveTouchDelegate RemoveTouch = delegate(int id)
+	public static RemoveTouchDelegate RemoveTouch = (int id) =>
 	{
 		int i = 0;
 		for (int count = mTouchIDs.Count; i < count; i++)
@@ -281,7 +281,7 @@ public class UICamera : MonoBehaviour
 
 	public static Vector3 lastWorldPosition = Vector3.zero;
 
-	public static Ray lastWorldRay = default(Ray);
+	public static Ray lastWorldRay = default;
 
 	public static RaycastHit lastHit;
 
@@ -415,7 +415,7 @@ public class UICamera : MonoBehaviour
 
 	private static GameObject mSelected;
 
-	private static DepthEntry mHit = default(DepthEntry);
+	private static DepthEntry mHit = default;
 
 	private static BetterList<DepthEntry> mHits = new BetterList<DepthEntry>();
 
@@ -599,7 +599,7 @@ public class UICamera : MonoBehaviour
 		{
 			if (!(currentCamera != null) || currentTouch == null)
 			{
-				return default(Ray);
+				return default;
 			}
 			return currentCamera.ScreenPointToRay(currentTouch.pos);
 		}
@@ -963,7 +963,7 @@ public class UICamera : MonoBehaviour
 			{
 				controller.current = value;
 			}
-			if ((bool)mSelected && flag)
+			if ((bool)mSelected & flag)
 			{
 				UICamera uICamera2 = ((mSelected != null) ? FindCameraForLayer(mSelected.layer) : list.buffer[0]);
 				if (uICamera2 != null)
@@ -1784,7 +1784,7 @@ public class UICamera : MonoBehaviour
 			mMouse[j].pos = currentTouch.pos;
 			mMouse[j].delta = currentTouch.delta;
 		}
-		if (flag || flag3 || mNextRaycast < RealTime.time)
+		if ((flag | flag3) || mNextRaycast < RealTime.time)
 		{
 			mNextRaycast = RealTime.time + 0.02f;
 			Raycast(currentTouch);
@@ -1808,7 +1808,7 @@ public class UICamera : MonoBehaviour
 		}
 		bool flag4 = currentTouch.last != currentTouch.current;
 		bool flag5 = currentTouch.pressed != null;
-		if (!flag5 && flag3)
+		if (!flag5 & flag3)
 		{
 			hoveredObject = currentTouch.current;
 		}
@@ -1817,13 +1817,13 @@ public class UICamera : MonoBehaviour
 		{
 			currentKey = KeyCode.Mouse0;
 		}
-		if (!flag && flag3)
+		if (!flag & flag3)
 		{
 			if (mTooltipTime != 0f)
 			{
 				mTooltipTime = Time.unscaledTime + tooltipDelay;
 			}
-			else if (mTooltip != null && (!stickyTooltip || flag4))
+			else if (mTooltip != null && (!stickyTooltip | flag4))
 			{
 				ShowTooltip(null);
 			}
@@ -1841,7 +1841,7 @@ public class UICamera : MonoBehaviour
 		{
 			bool mouseButtonDown = Input.GetMouseButtonDown(m);
 			bool mouseButtonUp = Input.GetMouseButtonUp(m);
-			if (mouseButtonDown || mouseButtonUp)
+			if (mouseButtonDown | mouseButtonUp)
 			{
 				currentKey = (KeyCode)(323 + m);
 			}
@@ -1859,7 +1859,7 @@ public class UICamera : MonoBehaviour
 			}
 			ProcessTouch(mouseButtonDown, mouseButtonUp);
 		}
-		if (!flag && flag4)
+		if (!flag & flag4)
 		{
 			currentTouch = mMouse[0];
 			mTooltipTime = Time.unscaledTime + tooltipDelay;
@@ -1955,7 +1955,7 @@ public class UICamera : MonoBehaviour
 		bool mouseButtonDown = Input.GetMouseButtonDown(0);
 		bool mouseButtonUp = Input.GetMouseButtonUp(0);
 		bool mouseButton = Input.GetMouseButton(0);
-		if (mouseButtonDown || mouseButtonUp || mouseButton)
+		if (mouseButtonDown | mouseButtonUp | mouseButton)
 		{
 			currentTouchID = 1;
 			currentTouch = mMouse[0];
@@ -2028,7 +2028,7 @@ public class UICamera : MonoBehaviour
 		{
 			currentTouch.pressTime = RealTime.time;
 		}
-		if ((flag || flag2) && currentScheme == ControlScheme.Controller)
+		if ((flag | flag2) && currentScheme == ControlScheme.Controller)
 		{
 			currentTouch.current = controllerNavigationObject;
 			ProcessTouch(flag, flag2);
@@ -2389,7 +2389,7 @@ public class UICamera : MonoBehaviour
 				Notify(currentTouch.current, "OnLongPress", null);
 			}
 		}
-		else if (flag || pressed || released)
+		else if (flag | pressed | released)
 		{
 			ProcessPress(pressed, num2, num);
 			if (released)

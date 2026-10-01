@@ -67,7 +67,7 @@ public class EditorManagerScript : MonoBehaviour
 		{
 			buttonIndex = ((buttonIndex < 2) ? (buttonIndex + 1) : 0);
 		}
-		if (tappedUp || tappedDown)
+		if (tappedUp | tappedDown)
 		{
 			Transform transform = cursorLabel.transform;
 			transform.localPosition = new Vector3(transform.localPosition.x, 100f - (float)buttonIndex * 100f, transform.localPosition.z);

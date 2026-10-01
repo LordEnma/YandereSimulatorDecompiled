@@ -339,15 +339,15 @@ public class EventManagerScript : MonoBehaviour
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
 					Yandere.Police.EndOfDay.LearnedRival1Info[2] = true;
 					StudentManager.OsanaOfferHelp.Eavesdropped = true;
-					if (SchemeGlobals.GetSchemeStage(6) == 2)
+					if (Yandere.SchemeManager.GetSchemeStage(411) == 3)
 					{
 						if (EventStudent[1].Friend)
 						{
-							SchemeGlobals.SetSchemeStage(6, 4);
+							Yandere.SchemeManager.SetSchemeStage(411, 5);
 						}
 						else
 						{
-							SchemeGlobals.SetSchemeStage(6, 3);
+							Yandere.SchemeManager.SetSchemeStage(411, 4);
 						}
 						Yandere.PauseScreen.Schemes.UpdateInstructions();
 					}

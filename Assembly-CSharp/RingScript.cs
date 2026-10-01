@@ -14,7 +14,7 @@ public class RingScript : MonoBehaviour
 			Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
 			if (!Prompt.Yandere.StudentManager.YandereVisible)
 			{
-				SchemeGlobals.SetSchemeStage(2, 5);
+				Prompt.Yandere.SchemeManager.SetSchemeStage(407, 5);
 				Prompt.Yandere.Inventory.Schemes.UpdateInstructions();
 				Prompt.Yandere.Inventory.Ring = true;
 				Prompt.Yandere.TheftTimer = 0.1f;

@@ -138,7 +138,7 @@ public class HenshinScript : MonoBehaviour
 		if (TransformingYandere && Input.GetKeyDown("="))
 		{
 			MyAudio.pitch++;
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 		if (TransformingYandere || Vector3.Distance(Yandere.transform.position, TV.position) < 15f)
 		{

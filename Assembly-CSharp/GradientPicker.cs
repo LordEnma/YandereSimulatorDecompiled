@@ -103,7 +103,7 @@ public class GradientPicker : MonoBehaviour
 	{
 		if (colorKeys.Count < 8)
 		{
-			Slider component = Object.Instantiate(key, base.transform.position, default(Quaternion), base.transform).GetComponent<Slider>();
+			Slider component = Object.Instantiate(key, base.transform.position, default, base.transform).GetComponent<Slider>();
 			((RectTransform)component.transform).anchoredPosition = new Vector2(0f, -29f);
 			component.name = "ColorKey";
 			component.gameObject.SetActive(value: true);
@@ -131,9 +131,9 @@ public class GradientPicker : MonoBehaviour
 	{
 		if (alphaKeys.Count < 8)
 		{
-			Slider component = Object.Instantiate(key, base.transform.position, default(Quaternion), base.transform).GetComponent<Slider>();
+			Slider component = Object.Instantiate(key, base.transform.position, default, base.transform).GetComponent<Slider>();
 			((RectTransform)component.transform).anchoredPosition = new Vector2(0f, 25f);
-			component.transform.GetChild(0).GetChild(0).rotation = default(Quaternion);
+			component.transform.GetChild(0).GetChild(0).rotation = default;
 			component.name = "AlphaKey";
 			component.gameObject.SetActive(value: true);
 			component.value = k.time;
@@ -338,7 +338,7 @@ public class GradientPicker : MonoBehaviour
 
 	public void ChooseColor()
 	{
-		ColorPicker.Create(colorKeys[selectedColorKey].color, "Gradient Color Key", delegate(Color c)
+		ColorPicker.Create(colorKeys[selectedColorKey].color, "Gradient Color Key", (Color c) =>
 		{
 			UpdateColor(selectedColorKey, c);
 		}, null);

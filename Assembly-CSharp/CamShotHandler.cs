@@ -92,6 +92,10 @@ public class CamShotHandler : MonoBehaviour
 
 	public int AyanoPhase;
 
+	public Renderer[] HairRenderers;
+
+	public Texture BlondeHair;
+
 	public GameObject SisterVc1;
 
 	public GameObject SisterVc2;
@@ -121,6 +125,11 @@ public class CamShotHandler : MonoBehaviour
 		BasuBGnoise.SetActive(value: false);
 		TargetScript = GameObject.Find("1LGT_SFX-heartbeat").GetComponent<HeartBeatEffects>();
 		Darkness.alpha = 1f;
+		if (GameGlobals.BlondeHair)
+		{
+			HairRenderers[1].material.mainTexture = BlondeHair;
+			HairRenderers[2].material.mainTexture = BlondeHair;
+		}
 	}
 
 	public void ChangeCamera()
@@ -133,7 +142,7 @@ public class CamShotHandler : MonoBehaviour
 		{
 			CurentCamera = 0f;
 		}
-		Shot += 1f;
+		Shot++;
 		Debug.Log("We just advanced to Shot #" + Shot);
 		if (Shot == 1f)
 		{

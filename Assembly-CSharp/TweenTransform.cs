@@ -40,7 +40,7 @@ public class TweenTransform : UITweener
 				mTrans.localScale = mScale * (1f - factor) + to.localScale * factor;
 				mTrans.rotation = Quaternion.Slerp(mRot, to.rotation, factor);
 			}
-			if (parentWhenFinished && isFinished)
+			if (parentWhenFinished & isFinished)
 			{
 				mTrans.parent = to;
 			}

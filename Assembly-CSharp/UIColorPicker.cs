@@ -75,7 +75,7 @@ public class UIColorPicker : MonoBehaviour
 
 	private void OnPress(bool pressed)
 	{
-		if (base.enabled && pressed && UICamera.currentScheme != UICamera.ControlScheme.Controller)
+		if ((base.enabled & pressed) && UICamera.currentScheme != UICamera.ControlScheme.Controller)
 		{
 			Sample();
 		}
@@ -167,7 +167,7 @@ public class UIColorPicker : MonoBehaviour
 		if (selectionWidget != null)
 		{
 			Vector3[] localCorners = mUITex.localCorners;
-			Vector3 position = default(Vector3);
+			Vector3 position = default;
 			position.x = Mathf.Lerp(localCorners[0].x, localCorners[2].x, mPos.x);
 			position.y = Mathf.Lerp(localCorners[0].y, localCorners[2].y, mPos.y);
 			position.z = 0f;
@@ -185,9 +185,9 @@ public class UIColorPicker : MonoBehaviour
 	{
 		if (mRed == null)
 		{
-			mRed = new AnimationCurve(new Keyframe(0f, 1f), new Keyframe(1f / 7f, 1f), new Keyframe(0.2857143f, 0f), new Keyframe(0.42857143f, 0f), new Keyframe(0.5714286f, 0f), new Keyframe(0.71428573f, 1f), new Keyframe(0.85714287f, 1f), new Keyframe(1f, 0.5f));
-			mGreen = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f / 7f, 1f), new Keyframe(0.2857143f, 1f), new Keyframe(0.42857143f, 1f), new Keyframe(0.5714286f, 0f), new Keyframe(0.71428573f, 0f), new Keyframe(0.85714287f, 0f), new Keyframe(1f, 0.5f));
-			mBlue = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f / 7f, 0f), new Keyframe(0.2857143f, 0f), new Keyframe(0.42857143f, 1f), new Keyframe(0.5714286f, 1f), new Keyframe(0.71428573f, 1f), new Keyframe(0.85714287f, 0f), new Keyframe(1f, 0.5f));
+			mRed = new AnimationCurve(new Keyframe(0f, 1f), new Keyframe(1f / 7f, 1f), new Keyframe(0.2857143f, 0f), new Keyframe(1755f / 4095f, 0f), new Keyframe(0.5714286f, 0f), new Keyframe(2925f / 4095f, 1f), new Keyframe(3510f / 4095f, 1f), new Keyframe(1f, 0.5f));
+			mGreen = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f / 7f, 1f), new Keyframe(0.2857143f, 1f), new Keyframe(1755f / 4095f, 1f), new Keyframe(0.5714286f, 0f), new Keyframe(2925f / 4095f, 0f), new Keyframe(3510f / 4095f, 0f), new Keyframe(1f, 0.5f));
+			mBlue = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(1f / 7f, 0f), new Keyframe(0.2857143f, 0f), new Keyframe(1755f / 4095f, 1f), new Keyframe(0.5714286f, 1f), new Keyframe(2925f / 4095f, 1f), new Keyframe(3510f / 4095f, 0f), new Keyframe(1f, 0.5f));
 		}
 		Vector3 a = new Vector3(mRed.Evaluate(x), mGreen.Evaluate(x), mBlue.Evaluate(x));
 		if (y < 0.5f)

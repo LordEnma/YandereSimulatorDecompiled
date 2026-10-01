@@ -402,6 +402,11 @@ public class GenericAnimationSequenceController : MonoBehaviour
 						{
 							NoFemaleSenpai.SetActive(value: true);
 						}
+						Yandere.DetermineFemaleFaceID();
+						Yandere.SkinColor = Yandere.JSON.Misc.SkinColor[Yandere.StudentID];
+						Yandere.MyRenderer.materials[Yandere.SkinID].mainTexture = Yandere.SkinTextures[Yandere.SkinColor];
+						Yandere.Stockings = Yandere.JSON.Students[Yandere.StudentID].Stockings;
+						Yandere.PutOnStockings();
 					}
 				}
 				else

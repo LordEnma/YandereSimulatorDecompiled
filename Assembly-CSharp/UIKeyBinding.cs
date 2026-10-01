@@ -167,7 +167,7 @@ public class UIKeyBinding : MonoBehaviour
 				UICamera.currentKey = keyCode;
 				OnBindingPress(pressed: true);
 			}
-			if (mPress && flag2)
+			if (mPress & flag2)
 			{
 				UICamera.currentTouchID = -1;
 				UICamera.currentKey = keyCode;

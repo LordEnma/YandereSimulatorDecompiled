@@ -158,11 +158,11 @@ public class TitleMenuScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown(KeyCode.Minus))
 		{
-			Time.timeScale -= 1f;
+			Time.timeScale--;
 		}
 		if (Input.GetKeyDown(KeyCode.Equals))
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 	}
 }

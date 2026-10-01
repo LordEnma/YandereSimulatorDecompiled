@@ -55,6 +55,8 @@ public class ModernRivalEventScript : MonoBehaviour
 
 	public float WaitTimer;
 
+	public float EndTime;
+
 	public float Timer;
 
 	public bool DisableBlendshapes;
@@ -90,6 +92,8 @@ public class ModernRivalEventScript : MonoBehaviour
 	public int Phase;
 
 	public int Week;
+
+	public string[] AlternateAnim;
 
 	public string[] AlternateDialogue;
 
@@ -128,7 +132,11 @@ public class ModernRivalEventScript : MonoBehaviour
 		}
 		if (Phase == -1)
 		{
-			if (StartCriteria == StartCriteriaType.PositionZ)
+			if (Clock.HourTime > EndTime)
+			{
+				base.enabled = false;
+			}
+			else if (StartCriteria == StartCriteriaType.PositionZ)
 			{
 				if (Clock.HourTime > 8f)
 				{
@@ -608,18 +616,21 @@ public class ModernRivalEventScript : MonoBehaviour
 			break;
 		case 11:
 		{
+			Debug.Log("Now updating characters' routines to have a picnic.");
 			ScheduleBlock obj2 = Char[0].ScheduleBlocks[4];
 			obj2.destination = "Picnic";
 			obj2.action = "Picnic";
 			Char[0].GetDestinations();
 			Char[0].Pathfinding.target = Char[0].Destinations[4];
 			Char[0].CurrentDestination = Char[0].Destinations[4];
+			Char[0].MyRenderer.updateWhenOffscreen = true;
 			ScheduleBlock obj3 = Char[1].ScheduleBlocks[4];
 			obj3.destination = "Picnic";
 			obj3.action = "Picnic";
 			Char[1].GetDestinations();
 			Char[1].Pathfinding.target = Char[1].Destinations[4];
 			Char[1].CurrentDestination = Char[1].Destinations[4];
+			Char[1].MyRenderer.updateWhenOffscreen = true;
 			break;
 		}
 		case 12:
@@ -712,6 +723,8 @@ public class ModernRivalEventScript : MonoBehaviour
 			EventObject[2].SetActive(value: false);
 			break;
 		case 21:
+			Char[0].MyRenderer.updateWhenOffscreen = true;
+			Char[1].MyRenderer.updateWhenOffscreen = true;
 			Char[0].WalkAnim = Char[0].OriginalWalkAnim;
 			Char[0].IdleAnim = Char[0].OriginalIdleAnim;
 			Char[1].WalkAnim = Char[1].OriginalWalkAnim;

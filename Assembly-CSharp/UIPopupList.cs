@@ -77,7 +77,7 @@ public class UIPopupList : UIWidgetContainer
 
 	public Color backgroundColor = Color.white;
 
-	public Color highlightColor = new Color(0.88235295f, 40f / 51f, 0.5882353f, 1f);
+	public Color highlightColor = new Color(225f / 255f, 200f / 255f, 150f / 255f, 1f);
 
 	public bool isAnimated = true;
 

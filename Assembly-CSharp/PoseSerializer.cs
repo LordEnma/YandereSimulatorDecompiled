@@ -9,7 +9,7 @@ public static class PoseSerializer
 	public static void SerializePose(CosmeticScript cosmeticScript, Transform root, string poseName)
 	{
 		StudentCosmeticSheet studentCosmeticSheet = cosmeticScript.CosmeticSheet();
-		SerializedPose serializedPose = default(SerializedPose);
+		SerializedPose serializedPose = default;
 		serializedPose.CosmeticData = JsonUtility.ToJson(studentCosmeticSheet);
 		serializedPose.BoneData = getBoneData(root);
 		string contents = JsonUtility.ToJson(serializedPose);

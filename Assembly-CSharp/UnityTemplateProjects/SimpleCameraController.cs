@@ -84,7 +84,7 @@ namespace UnityTemplateProjects
 
 		private Vector3 GetInputTranslationDirection()
 		{
-			Vector3 result = default(Vector3);
+			Vector3 result = default;
 			if (Input.GetKey(KeyCode.W))
 			{
 				result += Vector3.forward;

@@ -602,10 +602,10 @@ namespace AmplifyMotion
 				m_prevLocalToWorld = m_currLocalToWorld;
 			}
 			bool isVisible = m_renderer.isVisible;
-			if (!m_error && (isVisible || starting))
+			if (!m_error && (isVisible | starting))
 			{
 				UpdateBones();
-				m_starting = !m_wasVisible || starting;
+				m_starting = !m_wasVisible | starting;
 				if (!m_useFallback)
 				{
 					if (!m_useGPU)
@@ -676,7 +676,7 @@ namespace AmplifyMotion
 			int num = (flag ? m_owner.Instance.GenerateObjectId(m_obj.gameObject) : 255);
 			Matrix4x4 value = ((!m_obj.FixedStep) ? (m_owner.PrevViewProjMatrixRT * (Matrix4x4)m_prevLocalToWorld) : (m_owner.PrevViewProjMatrixRT * (Matrix4x4)m_currLocalToWorld));
 			renderCB.SetGlobalMatrix("_AM_MATRIX_PREV_MVP", value);
-			renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float)num * 0.003921569f);
+			renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float)num * (1f / 255f));
 			renderCB.SetGlobalFloat("_AM_MOTION_SCALE", flag ? scale : 0f);
 			if (m_useGPU)
 			{

@@ -52,7 +52,7 @@ public class RingTheftScript : MonoBehaviour
 				}
 				else
 				{
-					SchemeGlobals.SetSchemeStage(2, 5);
+					Prompt.Yandere.SchemeManager.SetSchemeStage(407, 5);
 					Prompt.Yandere.StudentManager.Schemes.UpdateInstructions();
 					BasuRing.SetActive(value: false);
 				}

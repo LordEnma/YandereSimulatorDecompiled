@@ -36,7 +36,7 @@ namespace UnityStandardAssets.Vehicles.Ball
 			{
 				m_Rigidbody.AddForce(moveDirection * m_MovePower);
 			}
-			if (Physics.Raycast(base.transform.position, -Vector3.up, 1f) && jump)
+			if (Physics.Raycast(base.transform.position, -Vector3.up, 1f) & jump)
 			{
 				m_Rigidbody.AddForce(Vector3.up * m_JumpPower, ForceMode.Impulse);
 			}

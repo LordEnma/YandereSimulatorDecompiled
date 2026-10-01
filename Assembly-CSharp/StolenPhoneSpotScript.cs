@@ -31,9 +31,9 @@ public class StolenPhoneSpotScript : MonoBehaviour
 				Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
 				if (!Prompt.Yandere.StudentManager.YandereVisible)
 				{
-					if (RivalPhone.StudentID == Prompt.Yandere.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(1) == 6)
+					if (RivalPhone.StudentID == Prompt.Yandere.StudentManager.RivalID && Prompt.Yandere.SchemeManager.GetSchemeStage(406) == 6)
 					{
-						SchemeGlobals.SetSchemeStage(1, 7);
+						Prompt.Yandere.SchemeManager.SetSchemeStage(406, 7);
 						Prompt.Yandere.PauseScreen.Schemes.UpdateInstructions();
 					}
 					Prompt.Yandere.SmartphoneRenderer.material.mainTexture = Prompt.Yandere.YanderePhoneTexture;

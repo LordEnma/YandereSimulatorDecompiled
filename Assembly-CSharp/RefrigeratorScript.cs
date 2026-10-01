@@ -154,6 +154,8 @@ public class RefrigeratorScript : MonoBehaviour
 				CookingPropsAnim["obj_PropsCookingMontage"].time = 8f;
 				ChoppingBlock.SetActive(value: false);
 				SkipPanel.alpha = 0f;
+				BGM.time = 9.2f;
+				SFX.Stop();
 				EventPhase++;
 			}
 		}

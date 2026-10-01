@@ -94,11 +94,11 @@ public class ThanksForPlayingScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown("=") && Time.timeScale < 10f)
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 		if (Input.GetKeyDown("-") && Time.timeScale > 1f)
 		{
-			Time.timeScale -= 1f;
+			Time.timeScale--;
 		}
 		if (Yandere.position.z > 1f && Yandere.position.z < 10f)
 		{

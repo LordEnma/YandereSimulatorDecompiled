@@ -188,7 +188,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		bool flag3 = SystemInfo.SupportsTextureFormat(TextureFormat.RGHalf);
 		bool flag4 = SystemInfo.SupportsTextureFormat(TextureFormat.RGBAHalf);
 		bool flag5 = SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBFloat);
-		m_canUseGPU = flag && flag2 && flag3 && flag4 && flag5;
+		m_canUseGPU = flag & flag2 & flag3 & flag4 & flag5;
 	}
 
 	internal void ResetObjectId()

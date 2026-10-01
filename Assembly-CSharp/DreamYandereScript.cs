@@ -130,7 +130,7 @@ public class DreamYandereScript : MonoBehaviour
 				}
 				if (Input.GetKeyDown("-"))
 				{
-					Time.timeScale -= 1f;
+					Time.timeScale--;
 					if (Time.timeScale == 0f)
 					{
 						Time.timeScale = 1f;
@@ -138,7 +138,7 @@ public class DreamYandereScript : MonoBehaviour
 				}
 				if (Input.GetKeyDown("="))
 				{
-					Time.timeScale += 1f;
+					Time.timeScale++;
 				}
 			}
 		}

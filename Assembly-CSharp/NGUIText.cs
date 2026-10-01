@@ -133,7 +133,7 @@ public static class NGUIText
 		finalLineHeight = ((float)fontSize + spacingY) * fontScale;
 		useSymbols = (dynamicFont != null || bitmapFont != null) && encoding && symbolStyle != SymbolStyle.None;
 		Font font = dynamicFont;
-		if (!(font != null && request))
+		if (!((font != null) & request))
 		{
 			return;
 		}
@@ -297,7 +297,7 @@ public static class NGUIText
 		int num = (NGUIMath.HexToDecimal(text[offset]) << 4) | NGUIMath.HexToDecimal(text[offset + 1]);
 		int num2 = (NGUIMath.HexToDecimal(text[offset + 2]) << 4) | NGUIMath.HexToDecimal(text[offset + 3]);
 		int num3 = (NGUIMath.HexToDecimal(text[offset + 4]) << 4) | NGUIMath.HexToDecimal(text[offset + 5]);
-		float num4 = 0.003921569f;
+		float num4 = 1f / 255f;
 		return new Color(num4 * (float)num, num4 * (float)num2, num4 * (float)num3);
 	}
 
@@ -309,7 +309,7 @@ public static class NGUIText
 		int num2 = (NGUIMath.HexToDecimal(text[offset + 2]) << 4) | NGUIMath.HexToDecimal(text[offset + 3]);
 		int num3 = (NGUIMath.HexToDecimal(text[offset + 4]) << 4) | NGUIMath.HexToDecimal(text[offset + 5]);
 		int num4 = (NGUIMath.HexToDecimal(text[offset + 6]) << 4) | NGUIMath.HexToDecimal(text[offset + 7]);
-		float num5 = 0.003921569f;
+		float num5 = 1f / 255f;
 		return new Color(num5 * (float)num, num5 * (float)num2, num5 * (float)num3, num5 * (float)num4);
 	}
 
@@ -625,7 +625,7 @@ public static class NGUIText
 				int num11 = Mathf.RoundToInt(rectWidth);
 				bool flag = (num10 & 1) == 1;
 				bool flag2 = (num11 & 1) == 1;
-				if ((flag && !flag2) || (!flag && flag2))
+				if ((flag && !flag2) || (!flag & flag2))
 				{
 					num9 += 0.5f * fontScale;
 				}
@@ -1118,7 +1118,7 @@ public static class NGUIText
 			int num8 = sub;
 			if (encoding && ParseSymbol(text, ref j, mColors, premultiply, ref sub, ref bold, ref italic, ref underline, ref strike, ref ignoreColor))
 			{
-				if (num5 == num2 && useEllipsis && i < num7)
+				if (((num5 == num2) & useEllipsis) && i < num7)
 				{
 					flag = false;
 					if (num7 > i)
@@ -1191,7 +1191,7 @@ public static class NGUIText
 			}
 			num4 += num11;
 			prev = c;
-			float num12 = ((useEllipsis && flag5) ? (num3 - num6) : num3);
+			float num12 = ((useEllipsis & flag5) ? (num3 - num6) : num3);
 			if (flag4 && !flag3 && i < j)
 			{
 				int num13 = j - i;
@@ -1203,7 +1203,7 @@ public static class NGUIText
 						num13--;
 					}
 				}
-				if (flag5 && useEllipsis && i < num7 && num4 < num3 && num4 > num12)
+				if ((flag5 & useEllipsis) && i < num7 && num4 < num3 && num4 > num12)
 				{
 					if (num7 > i)
 					{
@@ -1377,7 +1377,7 @@ public static class NGUIText
 		Color b = tint * gradientTop;
 		Color color = tint;
 		int length = text.Length;
-		Rect rect = default(Rect);
+		Rect rect = default;
 		float num6 = 0f;
 		float num7 = 0f;
 		float num8 = num5 * pixelDensity;
@@ -1703,7 +1703,7 @@ public static class NGUIText
 					verts.Add(new Vector3(num14 + num30 - num32, num16 + num31));
 				}
 			}
-			if (!(underline || strike))
+			if (!(underline | strike))
 			{
 				continue;
 			}
@@ -2058,7 +2058,7 @@ public static class NGUIText
 			num6 = text[i];
 			if (num6 == 10)
 			{
-				if (caret != null && flag2)
+				if ((caret != null) & flag2)
 				{
 					if (alignment != Alignment.Left)
 					{
@@ -2118,7 +2118,7 @@ public static class NGUIText
 				{
 					return;
 				}
-				if (caret != null && flag2)
+				if ((caret != null) & flag2)
 				{
 					if (alignment != Alignment.Left)
 					{

@@ -22,6 +22,8 @@ public static class SchemeGlobals
 
 	private const string Str_UnlockRejectionDaily = "UnlockRejectionDaily";
 
+	private const string Str_SchemeCategory = "SchemeCategory";
+
 	public static int CurrentScheme
 	{
 		get
@@ -79,6 +81,18 @@ public static class SchemeGlobals
 		set
 		{
 			GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile + "_UnlockRejectionDaily", value);
+		}
+	}
+
+	public static int SchemeCategory
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile + "_SchemeCategory");
+		}
+		set
+		{
+			PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile + "_SchemeCategory", value);
 		}
 	}
 
@@ -179,5 +193,6 @@ public static class SchemeGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile + "_ServicePurchased_", KeysOfServicePurchased());
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_UnlockExpulsionDaily");
 		Globals.Delete("Profile_" + GameGlobals.Profile + "_UnlockRejectionDaily");
+		Globals.Delete("Profile_" + GameGlobals.Profile + "_SchemeCategory");
 	}
 }

@@ -786,9 +786,9 @@ public class ClockScript : MonoBehaviour
 		if (PresentTime > 930f)
 		{
 			DayProgress = (PresentTime - 930f) / 150f;
-			MainLight.color = new Color(1f - 0.1490196f * DayProgress, 1f - 0.40392154f * DayProgress, 1f - 0.70980394f * DayProgress);
-			RenderSettings.ambientLight = new Color(1f - 0.1490196f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 0.40392154f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 0.70980394f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress));
-			SkyboxColor = new Color(1f - 0.1490196f * DayProgress - 0.5f * (1f - DayProgress), 1f - 0.40392154f * DayProgress - 0.5f * (1f - DayProgress), 1f - 0.70980394f * DayProgress - 0.5f * (1f - DayProgress));
+			MainLight.color = new Color(1f - 0.1490196f * DayProgress, 1f - 0.40392154f * DayProgress, 1f - 181f / 255f * DayProgress);
+			RenderSettings.ambientLight = new Color(1f - 0.1490196f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 0.40392154f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress), 1f - 181f / 255f * DayProgress - (1f - AmbientLightDim) * (1f - DayProgress));
+			SkyboxColor = new Color(1f - 0.1490196f * DayProgress - 0.5f * (1f - DayProgress), 1f - 0.40392154f * DayProgress - 0.5f * (1f - DayProgress), 1f - 181f / 255f * DayProgress - 0.5f * (1f - DayProgress));
 			RenderSettings.skybox.SetColor("_Tint", new Color(SkyboxColor.r, SkyboxColor.g, SkyboxColor.b));
 		}
 		else

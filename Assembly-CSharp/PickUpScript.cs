@@ -577,14 +577,14 @@ public class PickUpScript : MonoBehaviour
 			TaskKitten.Caught = true;
 			TaskKitten.Stop();
 		}
-		if (Radio && SchemeGlobals.GetSchemeStage(5) == 2)
+		if (Radio && Yandere.SchemeManager.GetSchemeStage(410) == 2)
 		{
-			SchemeGlobals.SetSchemeStage(5, 3);
+			Yandere.SchemeManager.SetSchemeStage(410, 3);
 			Yandere.PauseScreen.Schemes.UpdateInstructions();
 		}
-		if (Salty && SchemeGlobals.GetSchemeStage(4) == 4)
+		if (Salty && Yandere.SchemeManager.GetSchemeStage(409) == 4)
 		{
-			SchemeGlobals.SetSchemeStage(4, 5);
+			Yandere.SchemeManager.SetSchemeStage(409, 5);
 			Yandere.PauseScreen.Schemes.UpdateInstructions();
 		}
 		if (CarryAnimID == 10)
@@ -742,9 +742,9 @@ public class PickUpScript : MonoBehaviour
 			}
 			Yandere.WallInFront = false;
 		}
-		if (Salty && SchemeGlobals.GetSchemeStage(4) == 5)
+		if (Salty && Yandere.SchemeManager.GetSchemeStage(409) == 5)
 		{
-			SchemeGlobals.SetSchemeStage(4, 4);
+			Yandere.SchemeManager.SetSchemeStage(409, 4);
 			Yandere.PauseScreen.Schemes.UpdateInstructions();
 		}
 		if ((bool)TrashCan)

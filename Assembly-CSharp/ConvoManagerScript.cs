@@ -385,17 +385,27 @@ public class ConvoManagerScript : MonoBehaviour
 				}
 				else
 				{
-					if (studentScript.Male)
+					if (studentScript != null)
 					{
-						studentScript.ClubAnim = "loopingKick";
-					}
-					else
-					{
-						studentScript.ClubAnim = "f02_loopingKick";
+						if (studentScript.Male)
+						{
+							studentScript.ClubAnim = "loopingKick";
+						}
+						else
+						{
+							studentScript.ClubAnim = "f02_loopingKick";
+						}
 					}
 					if (studentScript2 != null)
 					{
-						studentScript2.ClubAnim = "f02_loopingKick";
+						if (studentScript2.Male)
+						{
+							studentScript2.ClubAnim = "loopingKick";
+						}
+						else
+						{
+							studentScript2.ClubAnim = "f02_loopingKick";
+						}
 					}
 					if (studentScript.DistanceToDestination < 1f && studentScript.Yandere.CanMove)
 					{

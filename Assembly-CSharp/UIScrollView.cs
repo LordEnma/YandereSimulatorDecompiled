@@ -631,7 +631,7 @@ public class UIScrollView : MonoBehaviour
 		{
 			return;
 		}
-		if (smoothDragStart && pressed)
+		if (smoothDragStart & pressed)
 		{
 			mDragStarted = false;
 			mDragStartOffset = Vector2.zero;

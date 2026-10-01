@@ -63,7 +63,7 @@ public class ColorPicker : MonoBehaviour
 				3 => new Color32(b2, b3, b, A), 
 				4 => new Color32(b4, b2, b, A), 
 				5 => new Color32(b, b2, b3, A), 
-				_ => default(Color32), 
+				_ => default, 
 			};
 		}
 	}

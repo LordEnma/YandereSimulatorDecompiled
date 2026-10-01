@@ -206,7 +206,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		{
 			CheckTeleportReset(inst);
 			bool flag = m_resetAtFrame > 0 && Time.frameCount >= m_resetAtFrame;
-			value.UpdateTransform(updateCB, starting || flag);
+			value.UpdateTransform(updateCB, starting | flag);
 		}
 		m_lastPosition = base.transform.position;
 	}

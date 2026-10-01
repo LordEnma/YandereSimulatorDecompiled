@@ -582,9 +582,9 @@ public class StudentInfoScript : MonoBehaviour
 				PromptBar.Show = false;
 				Yandere.RPGCamera.enabled = true;
 				Time.timeScale = 1f;
-				if (StudentInfoMenu.StudentID == 11 && SchemeGlobals.GetSchemeStage(6) == 4)
+				if (StudentInfoMenu.StudentID == 11 && Yandere.SchemeManager.GetSchemeStage(411) == 5)
 				{
-					SchemeGlobals.SetSchemeStage(6, 5);
+					Yandere.SchemeManager.SetSchemeStage(411, 6);
 					Yandere.PauseScreen.Schemes.UpdateInstructions();
 				}
 			}

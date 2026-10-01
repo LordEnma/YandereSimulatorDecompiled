@@ -136,7 +136,7 @@ namespace HNS
 			{
 				selection = (selection - 1 + Options.Length) % Options.Length;
 			}
-			if (num || flag)
+			if (num | flag)
 			{
 				Audio.Play(Move, AudioType.UI, 0.5f);
 			}

@@ -830,7 +830,7 @@ public static class NGUITools
 
 	public static int CalculateNextDepth(GameObject go, bool ignoreChildrenWithColliders)
 	{
-		if ((bool)go && ignoreChildrenWithColliders)
+		if ((bool)go & ignoreChildrenWithColliders)
 		{
 			int num = -1;
 			UIWidget[] componentsInChildren = go.GetComponentsInChildren<UIWidget>();

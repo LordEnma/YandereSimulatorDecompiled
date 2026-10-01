@@ -28,9 +28,9 @@ public class SabotageVendingMachineScript : MonoBehaviour
 			Prompt.enabled = true;
 			if (Prompt.Circle[0].fillAmount == 0f)
 			{
-				if (SchemeGlobals.GetSchemeStage(4) == 2)
+				if (Yandere.SchemeManager.GetSchemeStage(409) == 2)
 				{
-					SchemeGlobals.SetSchemeStage(4, 3);
+					Yandere.SchemeManager.SetSchemeStage(409, 3);
 					Yandere.PauseScreen.Schemes.UpdateInstructions();
 				}
 				if (Yandere.StudentManager.Students[11] != null && DateGlobals.Weekday == DayOfWeek.Thursday)

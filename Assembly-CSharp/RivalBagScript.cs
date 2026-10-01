@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class RivalBagScript : MonoBehaviour
@@ -44,19 +43,13 @@ public class RivalBagScript : MonoBehaviour
 		}
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			if (DateGlobals.Weekday == DayOfWeek.Wednesday)
-			{
-				SchemeGlobals.SetSchemeStage(3, 4);
-			}
+			Prompt.Yandere.SchemeManager.SetSchemeStage(408, 4);
 			Prompt.Yandere.Inventory.Cigs = false;
 			Exit();
 		}
 		if (Prompt.Circle[1].fillAmount == 0f || Prompt.Circle[2].fillAmount == 0f || Prompt.Circle[3].fillAmount == 0f)
 		{
-			if (DateGlobals.Weekday == DayOfWeek.Tuesday)
-			{
-				SchemeGlobals.SetSchemeStage(2, 6);
-			}
+			Prompt.Yandere.SchemeManager.SetSchemeStage(407, 6);
 			if (Prompt.Circle[1].fillAmount == 0f)
 			{
 				Prompt.Yandere.Inventory.Ring = false;

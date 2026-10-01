@@ -68,7 +68,7 @@ public class MusicNoteScript : MonoBehaviour
 					{
 						Rating = Object.Instantiate(Perfect, base.transform.position, Quaternion.identity);
 						Proceed = true;
-						MusicMinigame.Health += 1f;
+						MusicMinigame.Health++;
 						MusicMinigame.CringeTimer = 0f;
 						MusicMinigame.UpdateHealthBar();
 					}

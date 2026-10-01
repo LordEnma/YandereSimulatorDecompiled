@@ -120,7 +120,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 	{
 		if (Input.GetKeyDown("="))
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 		if (SkipCircle.transform.parent.gameObject.activeInHierarchy)
 		{

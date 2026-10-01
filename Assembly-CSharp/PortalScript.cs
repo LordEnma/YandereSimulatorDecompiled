@@ -37,6 +37,8 @@ public class PortalScript : MonoBehaviour
 
 	public DelinquentManagerScript DelinquentManager;
 
+	public DoorScript DoorVisibleFromLectureCamera;
+
 	public StudentManagerScript StudentManager;
 
 	public WeaponManagerScript WeaponManager;
@@ -162,7 +164,7 @@ public class PortalScript : MonoBehaviour
 				Yandere.CanMove = true;
 			}
 		}
-		if (Prompt.Circle[0].fillAmount == 0f || flag)
+		if ((Prompt.Circle[0].fillAmount == 0f) | flag)
 		{
 			Prompt.Circle[0].fillAmount = 1f;
 			int num = 0;
@@ -175,8 +177,6 @@ public class PortalScript : MonoBehaviour
 			}
 			WeaponManager.CountBloodyWeapons();
 			int num2 = WeaponManager.BloodyWeapons;
-			Debug.Log("Counting bloody weapons.");
-			Debug.Log("WeaponManager.BloodyWeapons is " + WeaponManager.BloodyWeapons + ".");
 			TrashCanScript[] trashCans = StudentManager.TrashCans;
 			foreach (TrashCanScript trashCanScript in trashCans)
 			{
@@ -255,7 +255,7 @@ public class PortalScript : MonoBehaviour
 						{
 							StudentManager.Students[StudentManager.RivalID].PlaceBag();
 						}
-						if (Late > 0 && flag3)
+						if ((Late > 0) & flag3)
 						{
 							Yandere.Subtitle.UpdateLabel(SubtitleType.TeacherLateReaction, Late, 5.5f);
 							Yandere.RPGCamera.enabled = false;
@@ -267,9 +267,30 @@ public class PortalScript : MonoBehaviour
 						}
 						else
 						{
+							DoorVisibleFromLectureCamera.CloseDoor();
 							ClassDarkness.enabled = true;
 							Transition = true;
 							FadeOut = true;
+							Debug.Log("The PortalScript is now telling all students to stop investigating whatever they were previously investigating.");
+							StudentScript[] students = StudentManager.Students;
+							foreach (StudentScript studentScript in students)
+							{
+								if (studentScript != null)
+								{
+									if (studentScript.Investigating)
+									{
+										studentScript.StopInvestigating();
+									}
+									if (studentScript.BloodPool != null)
+									{
+										studentScript.ForgetAboutBloodPool();
+									}
+									studentScript.Alarmed = false;
+									studentScript.AlarmTimer = 0f;
+									studentScript.Blind = true;
+									studentScript.Alarm = 0f;
+								}
+							}
 						}
 						Clock.StopTime = true;
 					}
@@ -440,6 +461,7 @@ public class PortalScript : MonoBehaviour
 						{
 							Police.Timer = 1E-06f;
 						}
+						StudentManager.UpdateAllBentos();
 					}
 				}
 			}
@@ -454,6 +476,7 @@ public class PortalScript : MonoBehaviour
 						Yandere.CameraEffects.UpdateDOF(OriginalDOF);
 						OriginalDOF = 0f;
 					}
+					Yandere.SchemeManager.Schemes.NextStepInput.SetActive(value: false);
 				}
 				if (ClassDarkness.color.a >= 0.999f)
 				{
@@ -522,6 +545,18 @@ public class PortalScript : MonoBehaviour
 							Headmaster.SetActive(value: false);
 						}
 					}
+					StudentScript[] students = StudentManager.Students;
+					foreach (StudentScript studentScript2 in students)
+					{
+						if (studentScript2 != null)
+						{
+							studentScript2.Blind = false;
+						}
+					}
+					if (Yandere.SchemeManager.CurrentScheme == 0)
+					{
+						Yandere.SchemeManager.Schemes.NextStepInput.SetActive(value: false);
+					}
 				}
 			}
 			else
@@ -560,14 +595,14 @@ public class PortalScript : MonoBehaviour
 				if (Timer == 0f)
 				{
 					StudentScript[] students = StudentManager.Students;
-					foreach (StudentScript studentScript in students)
+					foreach (StudentScript studentScript3 in students)
 					{
-						if (studentScript != null && studentScript.Fleeing && studentScript.PhotoEvidence)
+						if (studentScript3 != null && studentScript3.Fleeing && studentScript3.PhotoEvidence)
 						{
 							Yandere.NotificationManager.CustomText = "Murder being reported";
 						}
 					}
-					StudentScript studentScript2 = StudentManager.Students[StudentManager.RivalID];
+					StudentScript studentScript4 = StudentManager.Students[StudentManager.RivalID];
 					if (Yandere.Armed)
 					{
 						Yandere.NotificationManager.CustomText = "Carrying Weapon";
@@ -612,7 +647,7 @@ public class PortalScript : MonoBehaviour
 					{
 						Yandere.NotificationManager.CustomText = "Murder being reported";
 					}
-					else if (studentScript2 != null && studentScript2.Fleeing && studentScript2.CurrentDestination == StudentManager.Students[studentScript2.LovestruckTarget].transform)
+					else if (studentScript4 != null && studentScript4.Fleeing && studentScript4.CurrentDestination == StudentManager.Students[studentScript4.LovestruckTarget].transform)
 					{
 						Yandere.NotificationManager.CustomText = "Murder being reported";
 					}
@@ -709,9 +744,9 @@ public class PortalScript : MonoBehaviour
 		Police.Darkness.enabled = true;
 		Police.FadeOut = true;
 		Police.DayOver = true;
-		if (SchemeGlobals.GetSchemeStage(6) == 8)
+		if (Yandere.SchemeManager.GetSchemeStage(411) == 9)
 		{
-			SchemeGlobals.SetSchemeStage(6, 9);
+			Yandere.SchemeManager.SetSchemeStage(411, 10);
 			Yandere.PauseScreen.Schemes.UpdateInstructions();
 		}
 		if (Police.SelfReported)
@@ -848,6 +883,8 @@ public class PortalScript : MonoBehaviour
 				StudentManager.Students[StudentManager.RivalID].PlaceBag();
 				Debug.Log("The bookbag on the rival's body has been de-activated, and the generic ''Rival Bookbag'' gameObject at the rival's desk has been activated.");
 			}
+			Debug.Log("Setting ''VisitSenpaiDesk'' to ''false''.");
+			StudentManager.Students[StudentManager.RivalID].VisitSenpaiDesk = false;
 		}
 	}
 

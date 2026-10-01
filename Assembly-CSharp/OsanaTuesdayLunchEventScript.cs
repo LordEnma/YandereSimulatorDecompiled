@@ -112,7 +112,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 					{
 						flag = false;
 					}
-					if (StudentManager.Students[FriendID] != null && flag)
+					if ((StudentManager.Students[FriendID] != null) & flag)
 					{
 						Friend = StudentManager.Students[FriendID];
 						StudentManager.Patrols.List[10].GetChild(0).localEulerAngles = new Vector3(0f, 180f, 0f);

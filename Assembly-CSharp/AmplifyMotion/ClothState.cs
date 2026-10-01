@@ -120,7 +120,7 @@ namespace AmplifyMotion
 				m_prevLocalToWorld = m_currLocalToWorld;
 			}
 			bool isVisible = m_renderer.isVisible;
-			if (!m_error && (isVisible || starting) && !starting && m_wasVisible)
+			if (!m_error && (isVisible | starting) && !starting && m_wasVisible)
 			{
 				Array.Copy(m_currVertices, m_prevVertices, m_targetVertexCount);
 			}
@@ -154,7 +154,7 @@ namespace AmplifyMotion
 			m_clonedMesh.normals = m_prevVertices;
 			Matrix4x4 value = ((!m_obj.FixedStep) ? (m_owner.PrevViewProjMatrixRT * (Matrix4x4)m_prevLocalToWorld) : (m_owner.PrevViewProjMatrixRT * (Matrix4x4)m_currLocalToWorld));
 			renderCB.SetGlobalMatrix("_AM_MATRIX_PREV_MVP", value);
-			renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float)num * 0.003921569f);
+			renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float)num * (1f / 255f));
 			renderCB.SetGlobalFloat("_AM_MOTION_SCALE", flag ? scale : 0f);
 			int num2 = ((quality != Quality.Mobile) ? 2 : 0);
 			for (int j = 0; j < m_sharedMaterials.Length; j++)

@@ -76,9 +76,17 @@ public class EndOfDayScript : MonoBehaviour
 
 	public Animation[] CopAnimation;
 
+	public GameObject NowLoadingCamera;
+
+	public GameObject GreyCircle;
+
 	public GameObject MainCamera;
 
+	public GameObject UICamera;
+
 	public UISprite EndOfDayDarkness;
+
+	public UILabel NowLoading;
 
 	public UILabel Label;
 
@@ -97,6 +105,8 @@ public class EndOfDayScript : MonoBehaviour
 	public bool LearnedAboutPhotographer;
 
 	public bool InvolvementNotSuspected;
+
+	public bool StealthMissionUnlocked;
 
 	public bool ExplosiveDeviceUsed;
 
@@ -252,6 +262,8 @@ public class EndOfDayScript : MonoBehaviour
 
 	public bool WeaponsChecked;
 
+	public int Frame;
+
 	public string AchievementToGrant;
 
 	public void Start()
@@ -274,7 +286,7 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			StopMourning = true;
 		}
-		Yandere.MainCamera.gameObject.SetActive(value: false);
+		Yandere.MainCamera.enabled = false;
 		EndOfDayDarkness.color = new Color(EndOfDayDarkness.color.r, EndOfDayDarkness.color.g, EndOfDayDarkness.color.b, 1f);
 		PreviouslyActivated = true;
 		GetComponent<AudioSource>().volume = 0f;
@@ -563,6 +575,15 @@ public class EndOfDayScript : MonoBehaviour
 			EODCamera.position = ClubManager.ClubVantages[ClubID].position;
 			EODCamera.eulerAngles = ClubManager.ClubVantages[ClubID].eulerAngles;
 			EODCamera.Translate(Vector3.forward * 0f, Space.Self);
+		}
+		if (Phase == 24)
+		{
+			if (Frame > 0)
+			{
+				Phase++;
+				UpdateScene();
+			}
+			Frame++;
 		}
 	}
 
@@ -1217,7 +1238,7 @@ public class EndOfDayScript : MonoBehaviour
 			}
 			else if (DateGlobals.Weekday == DayOfWeek.Friday)
 			{
-				Phase = 24;
+				Phase = 26;
 			}
 			else
 			{
@@ -1468,7 +1489,7 @@ public class EndOfDayScript : MonoBehaviour
 				}
 				Counselor.MustReturnStolenRing = false;
 			}
-			else if (SchemeGlobals.GetSchemeStage(2) == 3)
+			else if (Yandere.SchemeManager.GetSchemeStage(407) == 3)
 			{
 				GaudyRing.SetActive(value: true);
 				if (!StudentGlobals.GetStudentDying(StudentManager.RivalID) && !StudentGlobals.GetStudentDead(StudentManager.RivalID) && !StudentGlobals.GetStudentArrested(StudentManager.RivalID))
@@ -1479,7 +1500,7 @@ public class EndOfDayScript : MonoBehaviour
 				{
 					Label.text = "Sakyu Basu will never recover her stolen ring.";
 				}
-				SchemeGlobals.SetSchemeStage(2, 100);
+				Yandere.SchemeManager.SetSchemeStage(407, 100);
 				GameGlobals.RingStolen = true;
 			}
 			else
@@ -1722,6 +1743,10 @@ public class EndOfDayScript : MonoBehaviour
 			if (Rival != null && Rival.Alive && !Rival.Tranquil && StudentManager.StudentReps[StudentManager.RivalID] <= -100f)
 			{
 				Debug.Log("The rival is not null, the rival is alive, and the rival's reputation is below -100.");
+				if (Rival.BikiniAttacher != null && Rival.BikiniAttacher.newRenderer != null)
+				{
+					Rival.BikiniAttacher.newRenderer.enabled = false;
+				}
 				Rival.gameObject.SetActive(value: true);
 				Rival.transform.parent = base.transform;
 				Rival.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -1818,9 +1843,16 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (Phase == 23)
 		{
+			NowLoadingCamera.gameObject.SetActive(value: true);
+			GreyCircle.gameObject.SetActive(value: false);
+			UICamera.gameObject.SetActive(value: false);
+			Phase++;
+		}
+		else if (Phase == 25)
+		{
 			Finish();
 		}
-		else if (Phase == 24)
+		else if (Phase == 26)
 		{
 			if (LoveManager.ConfessToSuitor && StudentManager.Students[StudentManager.SuitorID].Alive)
 			{
@@ -1899,7 +1931,7 @@ public class EndOfDayScript : MonoBehaviour
 				Phase++;
 			}
 		}
-		else if (Phase == 25)
+		else if (Phase == 27)
 		{
 			for (int num = 1; num < 100; num++)
 			{
@@ -2406,6 +2438,7 @@ public class EndOfDayScript : MonoBehaviour
 
 	private void Finish()
 	{
+		DateTime now = DateTime.Now;
 		Debug.Log("We have reached the end of the End-of-Day sequence.");
 		if (RivalArrested)
 		{
@@ -2867,10 +2900,9 @@ public class EndOfDayScript : MonoBehaviour
 		{
 			StudentManager.DialogueWheel.AdviceWindow.SaveGiftStatus();
 		}
-		if (SchemeGlobals.GetSchemeStage(6) == 8)
+		if (StealthMissionUnlocked)
 		{
-			SchemeGlobals.SetSchemeStage(6, 9);
-			Yandere.PauseScreen.Schemes.UpdateInstructions();
+			GameGlobals.StealthMissionUnlocked = true;
 		}
 		Yandere.CameraEffects.UpdateBloom(1f);
 		Yandere.CameraEffects.UpdateBloomKnee(0.5f);
@@ -2986,7 +3018,8 @@ public class EndOfDayScript : MonoBehaviour
 		}
 		else if (ArticleID == 3)
 		{
-			SchoolGlobals.SchoolAtmosphere += 20f * (1f + (float)ClassGlobals.LanguageGrade * 0.2f);
+			Debug.Log("The School Atmosphere should increase by: " + 20f * (1f + (float)ClassGlobals.LanguageGrade * 0.2f));
+			SchoolGlobals.SchoolAtmosphere += 0.2f * (1f + (float)ClassGlobals.LanguageGrade * 0.2f);
 		}
 		if (PlayerGlobals.Reputation > 100f)
 		{
@@ -3072,6 +3105,15 @@ public class EndOfDayScript : MonoBehaviour
 			GameGlobals.WhipGameUnlocked = true;
 		}
 		GameGlobals.Anniversary = false;
+		Debug.Log("SchemeManager.GetSchemeStage((int)Scheme.ExpelOsanaPanties) is " + Yandere.SchemeManager.GetSchemeStage(406));
+		Debug.Log("SchemeManager.GetSchemeStage((int)Scheme.ExpelOsanaTheft) is " + Yandere.SchemeManager.GetSchemeStage(407));
+		Debug.Log("SchemeManager.GetSchemeStage((int)Scheme.ExpelOsanaContraband) is " + Yandere.SchemeManager.GetSchemeStage(408));
+		Debug.Log("SchemeManager.GetSchemeStage((int)Scheme.ExpelOsanaVandalism) is " + Yandere.SchemeManager.GetSchemeStage(409));
+		Debug.Log("SchemeManager.GetSchemeStage((int)Scheme.ExpelOsanaCheating) is " + Yandere.SchemeManager.GetSchemeStage(410));
+		Yandere.SchemeManager.SaveSchemeData();
+		SchemeGlobals.CurrentScheme = 0;
+		DateTime now2 = DateTime.Now;
+		Debug.Log($"The entire operation took {(now2 - now).TotalSeconds} seconds.");
 	}
 
 	private void DisableThings(StudentScript TargetStudent)

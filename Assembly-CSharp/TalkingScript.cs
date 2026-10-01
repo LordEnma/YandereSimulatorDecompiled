@@ -271,8 +271,8 @@ public class TalkingScript : MonoBehaviour
 					else
 					{
 						S.Subtitle.PersonaSubtitle.UpdateLabel(PersonaType.None, S.Reputation.Reputation, 5f);
-						S.Reputation.PendingRep -= 1f;
-						S.PendingRep -= 1f;
+						S.Reputation.PendingRep--;
+						S.PendingRep--;
 					}
 					Debug.Log("Attempting to log the fact that the player has discussed topic #" + topicSelected + " with Student #" + S.StudentID);
 					S.StudentManager.SetTopicDiscussedWithStudent(topicSelected, S.StudentID, boolean: true);
@@ -327,8 +327,8 @@ public class TalkingScript : MonoBehaviour
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						S.Subtitle.CustomText = RejectGossipLine;
 						S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-						S.Reputation.PendingRep -= 1f;
-						S.PendingRep -= 1f;
+						S.Reputation.PendingRep--;
+						S.PendingRep--;
 					}
 					else
 					{
@@ -382,8 +382,8 @@ public class TalkingScript : MonoBehaviour
 									S.PendingRep -= 2f;
 									break;
 								default:
-									S.Reputation.PendingRep -= 1f;
-									S.PendingRep -= 1f;
+									S.Reputation.PendingRep--;
+									S.PendingRep--;
 									break;
 								}
 							}
@@ -402,8 +402,8 @@ public class TalkingScript : MonoBehaviour
 							{
 							case 2:
 								Debug.Log("This student enjoys gossip, so they won't subtract much from the player's reputation.");
-								S.Reputation.PendingRep -= 1f;
-								S.PendingRep -= 1f;
+								S.Reputation.PendingRep--;
+								S.PendingRep--;
 								break;
 							case 1:
 								Debug.Log("This student dislikes gossip, so they will subtract a lot from the player's reputation.");
@@ -580,9 +580,9 @@ public class TalkingScript : MonoBehaviour
 						S.StudentManager.DelinquentVoices.SetActive(value: false);
 						S.RespectEarned = true;
 					}
-					if (SchemeGlobals.GetSchemeStage(6) == 3)
+					if (S.Yandere.SchemeManager.GetSchemeStage(411) == 4)
 					{
-						SchemeGlobals.SetSchemeStage(6, 4);
+						S.Yandere.SchemeManager.SetSchemeStage(411, 5);
 						S.Yandere.PauseScreen.Schemes.UpdateInstructions();
 					}
 				}
@@ -660,7 +660,7 @@ public class TalkingScript : MonoBehaviour
 						flag4 = true;
 					}
 					Debug.Log("DialogueWheel.CenterLabel.text is: " + S.DialogueWheel.CenterLabel.text);
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || (S.StudentID == S.StudentManager.RivalID && flag3) || (S.StudentID == S.StudentManager.RivalID && flag6) || (S.StudentID == S.StudentManager.RivalID && flag5) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.CurrentDestination == S.Seat || S.TimesFollowed > 1 || S.Schoolwear == 2 || !S.Indoors || (!Eighties && S.StudentID == 10 && S.DialogueWheel.Intimidating) || (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating) || S.CurrentAction == StudentActionType.PhotoShoot || flag4)
+					if (((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || ((S.StudentID == S.StudentManager.RivalID) & flag3) || ((S.StudentID == S.StudentManager.RivalID) & flag6) || ((S.StudentID == S.StudentManager.RivalID) & flag5) || (!S.StudentManager.MissionMode && SchoolGlobals.SchoolAtmosphere <= 0.5f) || S.CurrentDestination == S.Seat || S.TimesFollowed > 1 || S.Schoolwear == 2 || !S.Indoors || (!Eighties && S.StudentID == 10 && S.DialogueWheel.Intimidating) || (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating) || S.CurrentAction == StudentActionType.PhotoShoot) | flag4)
 					{
 						Debug.Log("Current Clock.HourTime is: " + S.Clock.HourTime);
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
@@ -928,7 +928,7 @@ public class TalkingScript : MonoBehaviour
 						Debug.Log("This character is currently busy at a bake sale.");
 						flag7 = true;
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag8) || (S.StudentID == S.StudentManager.RivalID && flag9) || S.CurrentDestination == S.Seat || !S.Indoors || (S.StudentID == 10 && S.DialogueWheel.Intimidating) || (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating) || S.CurrentAction == StudentActionType.PhotoShoot || flag7)
+					if (((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || ((S.StudentID == S.StudentManager.RivalID) & flag8) || ((S.StudentID == S.StudentManager.RivalID) & flag9) || S.CurrentDestination == S.Seat || !S.Indoors || (S.StudentID == 10 && S.DialogueWheel.Intimidating) || (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating) || S.CurrentAction == StudentActionType.PhotoShoot) | flag7)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						Refuse = true;
@@ -1099,7 +1099,7 @@ public class TalkingScript : MonoBehaviour
 						Debug.Log("That character is currently inside of the shower building.");
 						flag10 = true;
 					}
-					if ((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || (S.StudentID == S.StudentManager.RivalID && flag12) || (S.StudentID == S.StudentManager.RivalID && flag13) || S.CurrentDestination == S.Seat || !S.Indoors || (S.StudentID == 10 && S.DialogueWheel.Intimidating) || (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating) || S.CurrentAction == StudentActionType.PhotoShoot || flag11 || flag10)
+					if (((S.Clock.HourTime > 8f && S.Clock.HourTime < 13f) || (S.Clock.HourTime > 13.375f && S.Clock.HourTime < 15.5f) || SchoolGlobals.SchoolAtmosphere <= 0.5f || S.Schoolwear == 2 || ((S.StudentID == S.StudentManager.RivalID) & flag12) || ((S.StudentID == S.StudentManager.RivalID) & flag13) || S.CurrentDestination == S.Seat || !S.Indoors || (S.StudentID == 10 && S.DialogueWheel.Intimidating) || (S.Persona == PersonaType.Spiteful && S.DialogueWheel.Intimidating) || S.CurrentAction == StudentActionType.PhotoShoot) | flag11 | flag10)
 					{
 						S.CharacterAnimation.CrossFade(S.GossipAnim);
 						Refuse = true;
@@ -1866,7 +1866,7 @@ public class TalkingScript : MonoBehaviour
 					S.Subtitle.CustomText = "Please share those macarons with a few people and collect their opinions!";
 					S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
 				}
-				else if (S.Fed || S.Club == ClubType.Council || S.StudentID == 22)
+				else if (S.Fed || (S.Club == ClubType.Council && !S.StudentManager.AlternateTimeline) || S.StudentID == 22)
 				{
 					S.CharacterAnimation.CrossFade(S.GossipAnim);
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 0, 3f);
@@ -2051,7 +2051,7 @@ public class TalkingScript : MonoBehaviour
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 1, 3f);
 					S.IgnoreFoodTimer = 10f;
 				}
-				else if (S.Fed || S.Club == ClubType.Council || flag17 || S.StudentID == 22)
+				else if (((S.Fed || S.Club == ClubType.Council) | flag17) || S.StudentID == 22)
 				{
 					S.CharacterAnimation.CrossFade(S.GossipAnim);
 					S.Subtitle.UpdateLabel(SubtitleType.RejectFood, 0, 3f);
@@ -2126,9 +2126,9 @@ public class TalkingScript : MonoBehaviour
 				}
 				if (!S.Fed && !flag18)
 				{
-					if (S.StudentID == S.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(4) == 5)
+					if (S.StudentID == S.StudentManager.RivalID && S.Yandere.SchemeManager.GetSchemeStage(409) == 5)
 					{
-						SchemeGlobals.SetSchemeStage(4, 6);
+						S.Yandere.SchemeManager.SetSchemeStage(409, 6);
 						S.Yandere.PauseScreen.Schemes.UpdateInstructions();
 					}
 					PickUpScript pickUp = S.Yandere.PickUp;

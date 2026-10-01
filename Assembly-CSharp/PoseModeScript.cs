@@ -536,27 +536,27 @@ public class PoseModeScript : MonoBehaviour
 					Material material2 = Student.Cosmetic.RightEyeRenderer.material;
 					if (Selected == 4)
 					{
-						material.color = new Color(material.color.r + (float)Degree * 0.003921569f * (float)Value, material.color.g, material.color.b, material.color.a);
+						material.color = new Color(material.color.r + (float)Degree * (1f / 255f) * (float)Value, material.color.g, material.color.b, material.color.a);
 					}
 					else if (Selected == 5)
 					{
-						material.color = new Color(material.color.r, material.color.g + (float)Degree * 0.003921569f * (float)Value, material.color.b, material.color.a);
+						material.color = new Color(material.color.r, material.color.g + (float)Degree * (1f / 255f) * (float)Value, material.color.b, material.color.a);
 					}
 					else if (Selected == 6)
 					{
-						material.color = new Color(material.color.r, material.color.g, material.color.b + (float)Degree * 0.003921569f * (float)Value, material.color.a);
+						material.color = new Color(material.color.r, material.color.g, material.color.b + (float)Degree * (1f / 255f) * (float)Value, material.color.a);
 					}
 					else if (Selected == 7)
 					{
-						material2.color = new Color(material2.color.r + (float)Degree * 0.003921569f * (float)Value, material2.color.g, material2.color.b, material2.color.a);
+						material2.color = new Color(material2.color.r + (float)Degree * (1f / 255f) * (float)Value, material2.color.g, material2.color.b, material2.color.a);
 					}
 					else if (Selected == 8)
 					{
-						material2.color = new Color(material2.color.r, material2.color.g + (float)Degree * 0.003921569f * (float)Value, material2.color.b, material2.color.a);
+						material2.color = new Color(material2.color.r, material2.color.g + (float)Degree * (1f / 255f) * (float)Value, material2.color.b, material2.color.a);
 					}
 					else if (Selected == 9)
 					{
-						material2.color = new Color(material2.color.r, material2.color.g, material2.color.b + (float)Degree * 0.003921569f * (float)Value, material2.color.a);
+						material2.color = new Color(material2.color.r, material2.color.g, material2.color.b + (float)Degree * (1f / 255f) * (float)Value, material2.color.a);
 					}
 					CapColors();
 					UpdateLabels();

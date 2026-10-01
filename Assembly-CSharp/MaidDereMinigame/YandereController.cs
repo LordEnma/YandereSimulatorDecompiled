@@ -157,7 +157,7 @@ namespace MaidDereMinigame
 			if (isPaused)
 			{
 				animator.SetBool("Moving", value: false);
-				return default(ControlInput);
+				return default;
 			}
 			float horizontal = 0f;
 			if (rightButtonPast)

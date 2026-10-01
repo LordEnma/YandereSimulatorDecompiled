@@ -277,7 +277,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		{
 			flag = true;
 		}
-		if (GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night || flag || ChallengeGlobals.NoInfo)
+		if (((GameGlobals.YakuzaPhase == 0 || !HomeGlobals.Night) | flag) || ChallengeGlobals.NoInfo)
 		{
 			base.gameObject.SetActive(value: false);
 			ButtonPrompt.alpha = 0f;

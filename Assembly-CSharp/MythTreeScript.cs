@@ -16,7 +16,7 @@ public class MythTreeScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (SchemeGlobals.GetSchemeStage(2) > 2 || GameGlobals.Eighties)
+		if (SchemeGlobals.GetSchemeStage(407) > 2 || GameGlobals.Eighties)
 		{
 			Object.Destroy(this);
 		}

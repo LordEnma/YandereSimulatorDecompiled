@@ -17,11 +17,11 @@ public class DebugMenuTree : MonoBehaviour
 		{
 			if (Input.GetKeyDown("="))
 			{
-				CurentTimeSpeed += 1f;
+				CurentTimeSpeed++;
 			}
 			else if (Input.GetKeyDown("-"))
 			{
-				CurentTimeSpeed -= 1f;
+				CurentTimeSpeed--;
 			}
 			else if (Input.GetKeyDown("backspace"))
 			{

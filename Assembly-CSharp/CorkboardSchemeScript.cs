@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
@@ -17,11 +18,15 @@ public class CorkboardSchemeScript : MonoBehaviour
 
 	public UIPanel ExplanationPanel;
 
+	public UIPanel SkipPanel;
+
 	public PromptBarScript PromptBar;
 
 	public GameObject CorkboardPhotos;
 
 	public GameObject CorkboardLight;
+
+	public GameObject OsanaPhotos;
 
 	public AudioSource Jukebox;
 
@@ -33,13 +38,41 @@ public class CorkboardSchemeScript : MonoBehaviour
 
 	public int Phase;
 
+	public GameObject RaibaruSchemeIcons;
+
+	public GameObject SchemeIcons;
+
+	public string[] RaibaruMethodNames;
+
+	public string[] RaibaruMethodDescs;
+
 	public string[] MethodNames;
 
 	public string[] MethodDescs;
 
+	public int[] RaibaruMethodDifficulties;
+
 	public int[] MethodDifficulties;
 
-	public int[] SchemeIDs;
+	public Scheme[] RaibaruSchemeIDs;
+
+	public Scheme[] SchemeIDs;
+
+	public Transform[] MonologueDestination;
+
+	public AudioClip[] MonologueVoice;
+
+	public AudioSource MyAudioSource;
+
+	public string[] MonologueText;
+
+	public int MonologuePhase;
+
+	public UILabel Subtitle;
+
+	public AudioClip[] FinalVoice;
+
+	public UILabel Header;
 
 	public UILabel MethodName;
 
@@ -49,6 +82,8 @@ public class CorkboardSchemeScript : MonoBehaviour
 
 	public Transform IconPanel;
 
+	public Transform RaibaruHighlight;
+
 	public Transform Highlight;
 
 	public Transform Reference;
@@ -56,6 +91,10 @@ public class CorkboardSchemeScript : MonoBehaviour
 	public GameObject[] Hearts;
 
 	public bool NoChangeHeight;
+
+	public bool Raibaru;
+
+	public int RaibaruMethodID;
 
 	public int TargetHeight;
 
@@ -65,8 +104,18 @@ public class CorkboardSchemeScript : MonoBehaviour
 
 	public int Row;
 
+	public PostProcessingProfile Profile;
+
 	private void Start()
 	{
+		Header.text = "How would you like to eliminate Raibaru?";
+		ScrollBar.gameObject.SetActive(value: false);
+		RaibaruSchemeIcons.SetActive(value: true);
+		SchemeIcons.SetActive(value: false);
+		CorkboardPhotos.SetActive(value: false);
+		CorkboardLight.SetActive(value: false);
+		OsanaPhotos.SetActive(value: false);
+		Subtitle.text = "";
 		if (!HomeGlobals.Night || GameGlobals.Eighties)
 		{
 			GameGlobals.CorkboardScene = true;
@@ -78,6 +127,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 			base.transform.GetChild(0).gameObject.SetActive(value: true);
 			CorkboardPhotos.SetActive(value: true);
 			CorkboardLight.SetActive(value: true);
+			OsanaPhotos.SetActive(value: true);
 			SchemeSelectWindow.alpha = 0f;
 			ExplanationPanel.alpha = 0f;
 			Darkness.enabled = true;
@@ -87,12 +137,24 @@ public class CorkboardSchemeScript : MonoBehaviour
 		}
 		else
 		{
+			Debug.Log("Disabling the Corkboard cutscene because we've already seen it.");
 			base.gameObject.SetActive(value: false);
 		}
 	}
 
 	private void Update()
 	{
+		if (Phase < 3 && Input.GetButtonDown(InputNames.Xbox_X))
+		{
+			MonologuePhase = MonologueVoice.Length;
+			base.transform.position = MonologueDestination[MonologuePhase - 1].position;
+			base.transform.eulerAngles = new Vector3(0f, -180f, 0f);
+			SkipPanel.alpha = 0f;
+			Darkness.alpha = 0f;
+			Jukebox.volume = 1f;
+			Subtitle.text = "";
+			Phase = 3;
+		}
 		if (Phase == 0)
 		{
 			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 1f, Time.deltaTime);
@@ -114,19 +176,52 @@ public class CorkboardSchemeScript : MonoBehaviour
 			{
 				base.transform.position = new Vector3(-0.9f, 1.5f, -1.5f);
 				base.transform.eulerAngles = new Vector3(0f, -165f, 0f);
+				Subtitle.text = MonologueText[MonologuePhase];
+				MyAudioSource.clip = MonologueVoice[1];
+				MyAudioSource.Play();
+				Jukebox.volume = 0.5f;
+				Rotation = -165f;
+				Speed = 0f;
 				Phase++;
 			}
 		}
 		else if (Phase == 2)
 		{
-			SchemeSelectWindow.alpha = Mathf.MoveTowards(SchemeSelectWindow.alpha, 1f, Time.deltaTime);
-			if (SchemeSelectWindow.alpha == 1f || Input.GetButtonDown(InputNames.Xbox_A))
+			Speed += Time.deltaTime * 2f;
+			base.transform.position = Vector3.Lerp(base.transform.position, MonologueDestination[MonologuePhase].position, Time.deltaTime * Speed);
+			Rotation = Mathf.Lerp(Rotation, -180f, Time.deltaTime * Speed);
+			base.transform.eulerAngles = new Vector3(0f, Rotation, 0f);
+			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
-				SchemeSelectWindow.alpha = 1f;
-				Phase++;
+				MonologuePhase++;
+				if (MonologuePhase < MonologueVoice.Length)
+				{
+					MyAudioSource.clip = MonologueVoice[MonologuePhase];
+					MyAudioSource.Play();
+					Subtitle.text = MonologueText[MonologuePhase];
+					Jukebox.volume = 0.5f;
+					Speed = 0f;
+				}
+				else
+				{
+					SkipPanel.alpha = 0f;
+					Subtitle.text = "";
+					Phase++;
+				}
 			}
 		}
 		else if (Phase == 3)
+		{
+			SchemeSelectWindow.alpha = Mathf.MoveTowards(SchemeSelectWindow.alpha, 1f, Time.deltaTime);
+			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 1f, Time.deltaTime);
+			if (SchemeSelectWindow.alpha == 1f || Input.GetButtonDown(InputNames.Xbox_A))
+			{
+				SchemeSelectWindow.alpha = 1f;
+				Jukebox.volume = 1f;
+				Phase++;
+			}
+		}
+		else if (Phase == 4)
 		{
 			ExplanationPanel.alpha = Mathf.MoveTowards(ExplanationPanel.alpha, 1f, Time.deltaTime);
 			if (ExplanationPanel.alpha == 1f || Input.GetButtonDown(InputNames.Xbox_A))
@@ -140,7 +235,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 				Phase++;
 			}
 		}
-		else if (Phase == 4)
+		else if (Phase == 5)
 		{
 			Video.transform.parent.localScale = Vector3.Lerp(Video.transform.parent.localScale, new Vector3(0.00075f, 0.00075f, 0f), Time.deltaTime * 10f);
 			if (Input.GetButtonDown(InputNames.Xbox_A))
@@ -150,7 +245,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 				Phase++;
 			}
 		}
-		else if (Phase == 5)
+		else if (Phase == 6)
 		{
 			Video.transform.parent.localScale = Vector3.Lerp(Video.transform.parent.localScale, Vector3.zero, Time.deltaTime * 10f);
 			ExplanationPanel.alpha = Mathf.MoveTowards(ExplanationPanel.alpha, 0f, Time.deltaTime);
@@ -168,7 +263,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 				Phase++;
 			}
 		}
-		else if (Phase == 6)
+		else if (Phase == 7)
 		{
 			if (InputManager.TappedRight)
 			{
@@ -188,10 +283,15 @@ public class CorkboardSchemeScript : MonoBehaviour
 				}
 				UpdateHighlight();
 			}
+			int num = 2;
+			if (!Raibaru)
+			{
+				num = 7;
+			}
 			if (InputManager.TappedDown)
 			{
 				Row++;
-				if (Row > 7)
+				if (Row > num)
 				{
 					NoChangeHeight = true;
 					TargetHeight = 0;
@@ -205,59 +305,102 @@ public class CorkboardSchemeScript : MonoBehaviour
 				if (Row < 1)
 				{
 					NoChangeHeight = true;
-					TargetHeight = 4;
-					Row = 7;
+					if (!Raibaru)
+					{
+						TargetHeight = 4;
+					}
+					Row = num;
 				}
 				UpdateHighlight();
 			}
 			if (Input.GetButtonDown(InputNames.Xbox_A))
 			{
-				PromptBar.Show = false;
-				Phase++;
+				if (Raibaru)
+				{
+					ScrollBar.gameObject.SetActive(value: true);
+					RaibaruSchemeIcons.SetActive(value: false);
+					SchemeIcons.SetActive(value: true);
+					Header.text = "How would you like to eliminate Osana?";
+					RaibaruMethodID = MethodID;
+					Raibaru = false;
+					Column = 1;
+					Row = 1;
+					UpdateHighlight();
+				}
+				else
+				{
+					PromptBar.Show = false;
+					Phase++;
+				}
 			}
 		}
-		else if (Phase == 7)
+		else if (Phase == 8)
 		{
 			SchemeSelectWindow.alpha = Mathf.MoveTowards(SchemeSelectWindow.alpha, 0f, Time.deltaTime);
 			if (SchemeSelectWindow.alpha == 0f || Input.GetButtonDown(InputNames.Xbox_A))
 			{
 				SchemeSelectWindow.alpha = 0f;
-				Phase++;
-			}
-		}
-		else if (Phase == 8)
-		{
-			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 0f, Time.deltaTime);
-			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
-			if (Darkness.alpha == 1f || Input.GetButtonDown(InputNames.Xbox_A))
-			{
-				if (MethodID == 10)
+				if (RaibaruMethodID > 1 || MethodID > 1)
 				{
-					SchemeGlobals.SetSchemeUnlocked(1, value: true);
-					SchemeGlobals.SetSchemeUnlocked(2, value: true);
-					SchemeGlobals.SetSchemeUnlocked(3, value: true);
-					SchemeGlobals.SetSchemeUnlocked(4, value: true);
-					SchemeGlobals.SetSchemeUnlocked(5, value: true);
-					SchemeGlobals.SetSchemeStage(1, 1);
-					SchemeGlobals.CurrentScheme = 1;
-					SchemeGlobals.UnlockExpulsionDaily = true;
-				}
-				else if (MethodID == 19)
-				{
-					SchemeGlobals.SetSchemeUnlocked(21, value: true);
-					SchemeGlobals.SetSchemeUnlocked(22, value: true);
-					SchemeGlobals.SetSchemeUnlocked(23, value: true);
-					SchemeGlobals.SetSchemeUnlocked(24, value: true);
-					SchemeGlobals.SetSchemeUnlocked(25, value: true);
-					SchemeGlobals.SetSchemeStage(21, 1);
-					SchemeGlobals.CurrentScheme = 21;
-					SchemeGlobals.UnlockRejectionDaily = true;
+					Subtitle.text = "The plan is set. Now all that remains is to execute it.";
+					MyAudioSource.clip = FinalVoice[1];
 				}
 				else
 				{
-					SchemeGlobals.SetSchemeUnlocked(SchemeIDs[MethodID], value: true);
-					SchemeGlobals.SetSchemeStage(SchemeIDs[MethodID], 1);
-					SchemeGlobals.CurrentScheme = SchemeIDs[MethodID];
+					Subtitle.text = "Eh...I'll just wing it.";
+					MyAudioSource.clip = FinalVoice[2];
+				}
+				Jukebox.volume = 0.5f;
+				MyAudioSource.Play();
+				Phase++;
+			}
+		}
+		else if (Phase == 9)
+		{
+			if (!MyAudioSource.isPlaying || Input.GetButtonDown(InputNames.Xbox_A))
+			{
+				Subtitle.text = "";
+				Phase++;
+			}
+		}
+		else if (Phase == 10)
+		{
+			Jukebox.volume = Mathf.MoveTowards(Jukebox.volume, 0f, Time.deltaTime * 0.5f);
+			Darkness.alpha = Mathf.MoveTowards(Darkness.alpha, 1f, Time.deltaTime);
+			if (Darkness.alpha == 1f || Input.GetButtonDown(InputNames.Xbox_A))
+			{
+				SchemeGlobals.SetSchemeUnlocked((int)RaibaruSchemeIDs[RaibaruMethodID], value: true);
+				SchemeGlobals.SetSchemeStage((int)RaibaruSchemeIDs[RaibaruMethodID], 1);
+				if (MethodID == 10)
+				{
+					SchemeGlobals.SetSchemeUnlocked(410, value: true);
+					SchemeGlobals.SetSchemeUnlocked(408, value: true);
+					SchemeGlobals.SetSchemeUnlocked(406, value: true);
+					SchemeGlobals.SetSchemeUnlocked(407, value: true);
+					SchemeGlobals.SetSchemeUnlocked(409, value: true);
+					SchemeGlobals.SetSchemeStage(410, 1);
+					SchemeGlobals.SetSchemeStage(408, 1);
+					SchemeGlobals.SetSchemeStage(406, 1);
+					SchemeGlobals.SetSchemeStage(407, 1);
+					SchemeGlobals.SetSchemeStage(409, 1);
+				}
+				else if (MethodID == 19)
+				{
+					SchemeGlobals.SetSchemeUnlocked(401, value: true);
+					SchemeGlobals.SetSchemeUnlocked(402, value: true);
+					SchemeGlobals.SetSchemeUnlocked(403, value: true);
+					SchemeGlobals.SetSchemeUnlocked(404, value: true);
+					SchemeGlobals.SetSchemeUnlocked(405, value: true);
+					SchemeGlobals.SetSchemeStage(401, 1);
+					SchemeGlobals.SetSchemeStage(402, 1);
+					SchemeGlobals.SetSchemeStage(403, 1);
+					SchemeGlobals.SetSchemeStage(404, 1);
+					SchemeGlobals.SetSchemeStage(405, 1);
+				}
+				else
+				{
+					SchemeGlobals.SetSchemeUnlocked((int)SchemeIDs[MethodID], value: true);
+					SchemeGlobals.SetSchemeStage((int)SchemeIDs[MethodID], 1);
 				}
 				GameGlobals.CorkboardScene = true;
 				Darkness.alpha = 1f;
@@ -273,6 +416,7 @@ public class CorkboardSchemeScript : MonoBehaviour
 		}
 		IconPanel.localPosition = Vector3.Lerp(IconPanel.localPosition, new Vector3(0f, 300 * TargetHeight, 0f), Time.deltaTime * 10f);
 		ScrollBar.localPosition = Vector3.Lerp(ScrollBar.localPosition, new Vector3(-477.5f, 410f - (float)(Row - 1) * 136.66666f), Time.deltaTime * 10f);
+		UpdateDOF(base.transform.position.z - CorkboardPhotos.transform.position.z);
 	}
 
 	public void UpdateHighlight()
@@ -286,13 +430,23 @@ public class CorkboardSchemeScript : MonoBehaviour
 			}
 		}
 		MethodID = Column + (Row - 1) * 3;
-		Highlight.localPosition = new Vector3(-600 + 300 * Column, 600 - 300 * Row, 0f);
-		MethodName.text = MethodNames[MethodID];
-		MethodDesc.text = MethodDescs[MethodID];
+		if (Raibaru)
+		{
+			RaibaruHighlight.localPosition = new Vector3(-600 + 300 * Column, 600 - 300 * Row, 0f);
+			MethodName.text = RaibaruMethodNames[MethodID];
+			MethodDesc.text = RaibaruMethodDescs[MethodID];
+		}
+		else
+		{
+			Highlight.localPosition = new Vector3(-600 + 300 * Column, 600 - 300 * Row, 0f);
+			MethodName.text = MethodNames[MethodID];
+			MethodDesc.text = MethodDescs[MethodID];
+		}
 		MethodDesc.text = MethodDesc.text.Replace("`", "\n\n");
 		if (MethodID > 1)
 		{
-			for (int num = MethodDifficulties[MethodID]; num > 0; num--)
+			int num = 0;
+			for (num = ((!Raibaru) ? MethodDifficulties[MethodID] : RaibaruMethodDifficulties[MethodID]); num > 0; num--)
 			{
 				Hearts[num].GetComponent<UISprite>().alpha = 1f;
 			}
@@ -310,5 +464,27 @@ public class CorkboardSchemeScript : MonoBehaviour
 			TargetHeight--;
 		}
 		TargetHeight = Mathf.Clamp(TargetHeight, 0, 4);
+	}
+
+	public void UpdateDOF(float Focus)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		settings.focusDistance = Focus;
+		Profile.depthOfField.settings = settings;
+		UpdateAperture(5.6f);
+	}
+
+	public float GetDOF()
+	{
+		return Profile.depthOfField.settings.focusDistance;
+	}
+
+	public void UpdateAperture(float Aperture)
+	{
+		DepthOfFieldModel.Settings settings = Profile.depthOfField.settings;
+		float num = (float)Screen.width / 1280f;
+		settings.aperture = Aperture * num;
+		settings.focalLength = 50f;
+		Profile.depthOfField.settings = settings;
 	}
 }

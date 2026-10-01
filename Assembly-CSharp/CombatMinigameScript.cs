@@ -139,7 +139,7 @@ public class CombatMinigameScript : MonoBehaviour
 			}
 			Timer += Time.deltaTime;
 			AdjustMidpoint();
-			if (Timer > 1.5f)
+			if (Timer > 1.5f && !Yandere.FightHasBrokenUp)
 			{
 				Debug.Log(base.name + " is being instructed to perform the first combat animation of the combat minigame.");
 				Delinquent.CharacterAnimation.CrossFade(Prefix + "Delinquent_CombatA");

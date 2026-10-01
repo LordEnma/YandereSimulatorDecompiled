@@ -278,7 +278,7 @@ namespace UnityEngine.PostProcessing
 				};
 			}
 			Material material = context.materialFactory.Get("Hidden/Post FX/Lut Generator");
-			material.SetVector(Uniforms._LutParams, new Vector4(32f, 0.00048828125f, 1f / 64f, 1.032258f));
+			material.SetVector(Uniforms._LutParams, new Vector4(32f, 2f / 4096f, 1f / 64f, 1.032258f));
 			material.shaderKeywords = null;
 			ColorGradingModel.TonemappingSettings tonemapping = settings.tonemapping;
 			switch (tonemapping.tonemapper)

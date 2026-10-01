@@ -283,9 +283,9 @@ public class NoteWindowScript : MonoBehaviour
 							{
 								Debug.Log("Note will succeed.");
 								NoteLocker.Success = true;
-								if (SchemeGlobals.GetSchemeStage(6) == 5)
+								if (Yandere.SchemeManager.GetSchemeStage(411) == 6)
 								{
-									SchemeGlobals.SetSchemeStage(6, 6);
+									Yandere.SchemeManager.SetSchemeStage(411, 7);
 									Yandere.PauseScreen.Schemes.UpdateInstructions();
 								}
 							}

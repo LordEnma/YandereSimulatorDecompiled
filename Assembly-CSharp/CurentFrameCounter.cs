@@ -36,7 +36,7 @@ public class CurentFrameCounter : MonoBehaviour
 		IsRunning = 0;
 		yield return new WaitForSeconds(SecondsWaited);
 		Debug.Log("Increased");
-		Frame += 1f;
+		Frame++;
 		IsRunning = 1;
 	}
 }

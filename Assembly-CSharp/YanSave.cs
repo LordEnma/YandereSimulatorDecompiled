@@ -407,7 +407,7 @@ public static class YanSave
 		}, new JsonSerializerSettings
 		{
 			ContractResolver = new YanSaveResolver(),
-			Error = delegate(object s, Newtonsoft.Json.Serialization.ErrorEventArgs e)
+			Error = (object s, Newtonsoft.Json.Serialization.ErrorEventArgs e) =>
 			{
 				e.ErrorContext.Handled = true;
 			}

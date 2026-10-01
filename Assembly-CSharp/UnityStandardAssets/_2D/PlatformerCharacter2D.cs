@@ -80,7 +80,7 @@ namespace UnityStandardAssets._2D
 					Flip();
 				}
 			}
-			if (m_Grounded && jump && m_Anim.GetBool("Ground"))
+			if ((m_Grounded & jump) && m_Anim.GetBool("Ground"))
 			{
 				m_Grounded = false;
 				m_Anim.SetBool("Ground", value: false);

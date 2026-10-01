@@ -174,6 +174,10 @@ public static class GameGlobals
 
 	private const string Str_Anniversary = "Anniversary";
 
+	private const string Str_TikTok = "TikTok";
+
+	private const string Str_StealthMissionUnlocked = "StealthMissionUnlocked";
+
 	public static int Profile
 	{
 		get
@@ -1122,6 +1126,30 @@ public static class GameGlobals
 		}
 	}
 
+	public static bool TikTok
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_TikTok");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_TikTok", value);
+		}
+	}
+
+	public static bool StealthMissionUnlocked
+	{
+		get
+		{
+			return GlobalsHelper.GetBool("Profile_" + Profile + "_StealthMissionUnlocked");
+		}
+		set
+		{
+			GlobalsHelper.SetBool("Profile_" + Profile + "_StealthMissionUnlocked", value);
+		}
+	}
+
 	public static int GetRivalEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + Profile + "_RivalEliminations" + elimID);
@@ -1332,5 +1360,7 @@ public static class GameGlobals
 		Globals.Delete("Profile_" + Profile + "_CensorCorpses");
 		Globals.Delete("Profile_" + Profile + "_CensorWeapons");
 		Globals.Delete("Profile_" + Profile + "_Anniversary");
+		Globals.Delete("Profile_" + Profile + "_TikTok");
+		Globals.Delete("Profile_" + Profile + "_StealthMissionUnlocked");
 	}
 }

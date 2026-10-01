@@ -132,9 +132,16 @@ public class TaskWindowScript : MonoBehaviour
 				{
 					UpdateTaskObjects(StudentID);
 				}
-				else if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
+				else if (!Yandere.StudentManager.CustomMode)
 				{
-					Debug.Log("This 1980s character has a unique task, so we are not updating Yandere.Inventory.ItemsRequested.");
+					if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || Yandere.TargetStudent.StudentID == 79)
+					{
+						Debug.Log("This 1980s character has a unique task, so we are not updating Yandere.Inventory.ItemsRequested.");
+					}
+					else
+					{
+						Yandere.Inventory.ItemsRequested[Yandere.TargetStudent.GenericTaskID]++;
+					}
 				}
 				else
 				{

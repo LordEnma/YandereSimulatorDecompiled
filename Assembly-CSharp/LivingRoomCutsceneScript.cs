@@ -329,9 +329,9 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			Times = RivalData.OsanaIntroTimes;
 			MyAudio.clip = RivalData.OsanaIntro;
 			BGM.volume = 0.1f;
-			if (SchemeGlobals.GetSchemeStage(6) == 9)
+			if (SchemeGlobals.GetSchemeStage(411) == 9)
 			{
-				SchemeGlobals.SetSchemeStage(6, 100);
+				SchemeGlobals.SetSchemeStage(411, 100);
 			}
 		}
 		if (GameGlobals.Eighties)
@@ -894,7 +894,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 			{
 				Time.timeScale = 1f;
 			}
-			Time.timeScale -= 1f;
+			Time.timeScale--;
 			if (Time.timeScale <= 0f)
 			{
 				Time.timeScale = 0.0001f;
@@ -902,7 +902,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 		if (Input.GetKeyDown(KeyCode.Equals))
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 		MyAudio.pitch = Time.timeScale;
 		if (!BlurVision)

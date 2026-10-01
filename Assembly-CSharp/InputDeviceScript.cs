@@ -91,7 +91,7 @@ public class InputDeviceScript : MonoBehaviour
 				flag3 = true;
 			}
 			bool flag4 = Math.Abs(Input.GetAxis("LT")) > 0.5f || Math.Abs(Input.GetAxis("RT")) > 0.5f;
-			if (flag || flag2 || flag3 || flag4)
+			if (flag | flag2 | flag3 | flag4)
 			{
 				Type = InputDeviceType.Gamepad;
 			}
@@ -108,7 +108,7 @@ public class InputDeviceScript : MonoBehaviour
 			flag5 = true;
 		}
 		lastControllers = array;
-		if (Type != type || flag5)
+		if ((Type != type) | flag5)
 		{
 			UpdateAllButtons();
 		}

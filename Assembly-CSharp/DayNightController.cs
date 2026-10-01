@@ -69,11 +69,11 @@ public class DayNightController : MonoBehaviour
 		dayCycleLength = 120f;
 		hoursPerDay = 24f;
 		dawnTimeOffset = 3f;
-		fullDark = new Color(0.1254902f, 0.10980392f, 0.18039216f);
-		fullLight = new Color(0.99215686f, 0.972549f, 0.8745098f);
-		dawnDuskFog = new Color(0.52156866f, 0.4862745f, 0.4f);
-		dayFog = new Color(0.7058824f, 0.8156863f, 0.81960785f);
-		nightFog = new Color(4f / 85f, 1f / 17f, 0.35686275f);
+		fullDark = new Color(32f / 255f, 28f / 255f, 46f / 255f);
+		fullLight = new Color(253f / 255f, 248f / 255f, 223f / 255f);
+		dawnDuskFog = new Color(133f / 255f, 124f / 255f, 0.4f);
+		dayFog = new Color(180f / 255f, 208f / 255f, 209f / 255f);
+		nightFog = new Color(12f / 255f, 1f / 17f, 91f / 255f);
 		Skybox[] array = Resources.FindObjectsOfTypeAll<Skybox>();
 		foreach (Skybox skybox in array)
 		{

@@ -37,7 +37,7 @@ public class CameoScript : MonoBehaviour
 			}
 		}
 		bool flag = false;
-		if (Input.GetKeyDown(LacunaLetters[LacunaID]) || flag)
+		if (Input.GetKeyDown(LacunaLetters[LacunaID]) | flag)
 		{
 			LacunaID++;
 			if (LacunaID == LacunaLetters.Length)

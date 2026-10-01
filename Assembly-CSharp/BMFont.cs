@@ -119,7 +119,7 @@ public class BMFont
 				mDict.Add(bMGlyph.index, bMGlyph);
 			}
 		}
-		if (!mDict.TryGetValue(index, out value) && createIfMissing)
+		if (!mDict.TryGetValue(index, out value) & createIfMissing)
 		{
 			value = new BMGlyph();
 			value.index = index;

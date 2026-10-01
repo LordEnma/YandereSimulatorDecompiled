@@ -16,9 +16,9 @@ public class UIButtonColor : UIWidgetContainer
 
 	public GameObject tweenTarget;
 
-	public Color hover = new Color(0.88235295f, 40f / 51f, 0.5882353f, 1f);
+	public Color hover = new Color(225f / 255f, 200f / 255f, 150f / 255f, 1f);
 
-	public Color pressed = new Color(61f / 85f, 0.6392157f, 41f / 85f, 1f);
+	public Color pressed = new Color(183f / 255f, 163f / 255f, 123f / 255f, 1f);
 
 	public Color disabledColor = Color.grey;
 

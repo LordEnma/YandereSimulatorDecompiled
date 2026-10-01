@@ -132,7 +132,7 @@ public class HS_CameraHolder : MonoBehaviour
 		for (int i = 0; i < array.Length; i++)
 		{
 			Color color = array[i].main.startColor.color;
-			SVA item = default(SVA);
+			SVA item = default;
 			Color.RGBToHSV(color, out H, out item.S, out item.V);
 			item.A = color.a;
 			svList.Add(item);

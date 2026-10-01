@@ -232,7 +232,7 @@ public class StudentEditorScript : MonoBehaviour
 		{
 			studentIndex = ((studentIndex < num2) ? (studentIndex + 1) : num);
 		}
-		if (tappedUp || tappedDown)
+		if (tappedUp | tappedDown)
 		{
 			bodyLabel.text = GetStudentText(students[studentIndex]);
 		}

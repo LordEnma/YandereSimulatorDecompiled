@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class SchemesScript : MonoBehaviour
@@ -13,6 +12,8 @@ public class SchemesScript : MonoBehaviour
 
 	public PromptBarScript PromptBar;
 
+	public GameObject SchemesSubMenu;
+
 	public GameObject NextStepInput;
 
 	public GameObject FavorMenu;
@@ -23,11 +24,13 @@ public class SchemesScript : MonoBehaviour
 
 	public UILabel SchemeInstructions;
 
-	public UITexture SchemeIcon;
+	public UILabel HeaderLabel;
 
 	public UILabel PantyCount;
 
 	public UILabel SchemeDesc;
+
+	public UITexture SchemeIcon;
 
 	public UILabel[] SchemeDeadlineLabels;
 
@@ -50,6 +53,10 @@ public class SchemesScript : MonoBehaviour
 	public string[] SchemeDescs;
 
 	public string[] SchemeNames;
+
+	public Scheme[] SchemeTypes;
+
+	public bool[] SchemeUnlocked;
 
 	[Multiline]
 	[SerializeField]
@@ -79,6 +86,16 @@ public class SchemesScript : MonoBehaviour
 
 	public bool[] DisableScheme;
 
+	public bool Initialized;
+
+	public int SchemeCategory;
+
+	public string Title;
+
+	[Multiline]
+	[SerializeField]
+	public string AlternatePoisonSteps;
+
 	public float HeldDown;
 
 	public float HeldUp;
@@ -87,59 +104,34 @@ public class SchemesScript : MonoBehaviour
 
 	public UILabel HUDInstructions;
 
-	private void Start()
+	public void Start()
 	{
-		for (int i = 1; i < SchemeNameLabels.Length; i++)
+		if (!(SchemeManager != null))
 		{
-			if (!SchemeGlobals.GetSchemeStatus(i))
+			return;
+		}
+		if (!Initialized)
+		{
+			SchemeManager.CurrentScheme = SchemeGlobals.CurrentScheme;
+			SchemeManager.CurrentCategory = SchemeGlobals.SchemeCategory;
+			for (int i = 1; i < 1001; i++)
 			{
-				SchemeDeadlineLabels[i].text = SchemeDeadlines[i];
-				SchemeNameLabels[i].text = SchemeNames[i];
+				SchemeManager.SchemePreviousStage[i] = SchemeGlobals.GetSchemePreviousStage(i);
+				SchemeManager.SchemeStage[i] = SchemeGlobals.GetSchemeStage(i);
 			}
+			for (int j = 1; j < SchemeNameLabels.Length; j++)
+			{
+				if (!SchemeGlobals.GetSchemeStatus(j))
+				{
+					SchemeDeadlineLabels[j].text = SchemeDeadlines[j];
+					SchemeNameLabels[j].text = SchemeNames[j];
+				}
+			}
+			Initialized = true;
 		}
-		DisableScheme[1] = true;
-		DisableScheme[2] = true;
-		DisableScheme[3] = true;
-		DisableScheme[4] = true;
-		DisableScheme[5] = true;
-		DisableScheme[21] = true;
-		DisableScheme[22] = true;
-		DisableScheme[23] = true;
-		DisableScheme[24] = true;
-		DisableScheme[25] = true;
-		if (DateGlobals.Weekday == DayOfWeek.Monday)
+		else
 		{
-			DisableScheme[1] = false;
-			DisableScheme[21] = false;
-		}
-		if (DateGlobals.Weekday == DayOfWeek.Tuesday)
-		{
-			DisableScheme[2] = false;
-			DisableScheme[22] = false;
-			DisableScheme[27] = true;
-		}
-		if (DateGlobals.Weekday == DayOfWeek.Wednesday)
-		{
-			DisableScheme[3] = false;
-			DisableScheme[23] = false;
-		}
-		if (DateGlobals.Weekday == DayOfWeek.Thursday)
-		{
-			DisableScheme[4] = false;
-			DisableScheme[24] = false;
-		}
-		if (DateGlobals.Weekday == DayOfWeek.Friday)
-		{
-			DisableScheme[5] = false;
-			DisableScheme[25] = false;
-		}
-		if (DateGlobals.Weekday != DayOfWeek.Monday)
-		{
-			DisableScheme[6] = true;
-		}
-		if (DateGlobals.Weekday != DayOfWeek.Thursday)
-		{
-			DisableScheme[20] = true;
+			Debug.Log(base.gameObject.name + " is now firing the Start() function again...");
 		}
 		if (NextStepInput != null)
 		{
@@ -151,6 +143,12 @@ public class SchemesScript : MonoBehaviour
 			SchemeInstructions.color = Color.white;
 			SchemeDesc.color = Color.white;
 		}
+		if (SchemeManager.CurrentScheme > 0)
+		{
+			UpdateSchemeDestinations();
+			UpdateInstructions();
+		}
+		ConfirmWhatSchemesAreUnlocked();
 	}
 
 	private void Update()
@@ -179,12 +177,7 @@ public class SchemesScript : MonoBehaviour
 			}
 			if (ID == 1)
 			{
-				ListPosition--;
-				if (ListPosition < 0)
-				{
-					ListPosition = Limit - 15;
-					ID = 15;
-				}
+				ID = Limit;
 			}
 			else
 			{
@@ -198,14 +191,9 @@ public class SchemesScript : MonoBehaviour
 			{
 				HeldDown = 0.45f;
 			}
-			if (ID == 15)
+			if (ID == Limit)
 			{
-				ListPosition++;
-				if (ID + ListPosition > Limit)
-				{
-					ListPosition = 0;
-					ID = 1;
-				}
+				ID = 1;
 			}
 			else
 			{
@@ -221,24 +209,22 @@ public class SchemesScript : MonoBehaviour
 				if (SchemeNameLabels[ID].color.a == 1f)
 				{
 					SchemeManager.enabled = true;
-					SchemeManager.CurrentScheme = ID + ListPosition;
-					if (ID == 5)
-					{
-						SchemeManager.ClockCheck = true;
-					}
-					Debug.Log("Before pressing the button, SchemeGlobals.GetSchemeStage(2) was " + SchemeGlobals.GetSchemeStage(2));
 					Debug.Log("Selecting a scheme. Checking to see if we had already unlocked that scheme or not.");
-					if (!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition))
+					if (!SchemeUnlocked[ID + ListPosition])
 					{
-						Debug.Log("Scheme hadn't been unlocked.");
+						Debug.Log("We are unlocking this Scheme now.");
 						if (Inventory.PantyShots >= SchemeCosts[ID + ListPosition])
 						{
 							Inventory.PantyShots -= SchemeCosts[ID + ListPosition];
-							SchemeGlobals.SetSchemeUnlocked(ID + ListPosition, value: true);
-							SchemeGlobals.CurrentScheme = ID + ListPosition;
-							if (SchemeGlobals.GetSchemeStage(ID + ListPosition) == 0)
+							SchemeUnlocked[ID + ListPosition] = true;
+							SchemeManager.SchemeUnlocked[(int)SchemeTypes[ID + ListPosition]] = true;
+							SchemeManager.SchemeID = (int)SchemeTypes[ID + ListPosition];
+							SchemeManager.CurrentSteps = SchemeSteps[ID + ListPosition];
+							SchemeManager.CurrentCategory = SchemeCategory;
+							SchemeManager.CurrentScheme = ID + ListPosition;
+							if (SchemeManager.SchemeStage[(int)SchemeTypes[ID + ListPosition]] == 0)
 							{
-								SchemeGlobals.SetSchemeStage(ID + ListPosition, 1);
+								SchemeManager.SchemeStage[(int)SchemeTypes[ID + ListPosition]] = 1;
 							}
 							UpdateSchemeDestinations();
 							UpdateInstructions();
@@ -250,24 +236,35 @@ public class SchemesScript : MonoBehaviour
 					}
 					else
 					{
-						Debug.Log("Scheme had already been unlocked.");
-						if (SchemeGlobals.CurrentScheme == ID + ListPosition)
+						Debug.Log("We're activating/deactivating a Scheme that had already been unlocked.");
+						if (SchemeManager.CurrentCategory == SchemeCategory && SchemeManager.CurrentScheme == ID + ListPosition)
 						{
-							SchemeGlobals.CurrentScheme = 0;
+							Debug.Log("Setting CurrentScheme to 0.");
+							Arrow.gameObject.SetActive(value: false);
+							HUDIcon.gameObject.SetActive(value: false);
+							HUDInstructions.text = string.Empty;
 							SchemeManager.CurrentScheme = 0;
 							SchemeManager.enabled = false;
 						}
 						else
 						{
-							SchemeGlobals.CurrentScheme = ID + ListPosition;
+							Debug.Log("Setting CurrentScheme to " + (ID + ListPosition) + ".");
+							SchemeManager.SchemeID = (int)SchemeTypes[ID + ListPosition];
+							SchemeManager.CurrentSteps = SchemeSteps[ID + ListPosition];
+							SchemeManager.CurrentScheme = ID + ListPosition;
+							SchemeManager.CurrentCategory = SchemeCategory;
 						}
 						UpdateSchemeDestinations();
 						UpdateInstructions();
 						UpdateSchemeInfo();
 					}
+					if (SchemeManager.SchemeID == 410)
+					{
+						SchemeManager.ClockCheck = true;
+					}
 				}
 			}
-			else if (SchemeGlobals.GetSchemeStage(ID + ListPosition) != 100 && Inventory.PantyShots < SchemeCosts[ID + ListPosition])
+			else if (SchemeManager.SchemeStage[(int)SchemeTypes[ID + ListPosition]] != 100 && Inventory.PantyShots < SchemeCosts[ID + ListPosition])
 			{
 				StudentManager.Yandere.PauseScreen.FavorMenu.Flicker = true;
 				component.clip = InfoAfford;
@@ -281,24 +278,28 @@ public class SchemesScript : MonoBehaviour
 			PromptBar.Label[1].text = "Exit";
 			PromptBar.Label[5].text = "Choose";
 			PromptBar.UpdateButtons();
-			FavorMenu.SetActive(value: true);
+			SchemesSubMenu.SetActive(value: true);
 			base.gameObject.SetActive(value: false);
 		}
 	}
 
 	public void UpdateSchemeList()
 	{
-		Debug.Log("Running this code now.");
-		for (int i = 1; i < SchemeNameLabels.Length; i++)
+		Debug.Log(base.gameObject.name + " is now firing UpdateSchemeList().");
+		if (Limit < 16)
 		{
-			if (SchemeGlobals.GetSchemeStage(i + ListPosition) == 100)
+			_ = Limit;
+		}
+		for (int i = 1; i < Limit; i++)
+		{
+			if (SchemeManager.SchemeStage[(int)SchemeTypes[ID + ListPosition]] == 100)
 			{
 				UILabel uILabel = SchemeNameLabels[i];
 				uILabel.color = new Color(uILabel.color.r, uILabel.color.g, uILabel.color.b, 0.5f);
 				SchemeCostLabels[i].text = string.Empty;
 				continue;
 			}
-			if (SchemeGlobals.GetSchemeUnlocked(i))
+			if (SchemeUnlocked[i])
 			{
 				SchemeCostLabels[i].text = SchemeCosts[i].ToString();
 			}
@@ -306,18 +307,18 @@ public class SchemesScript : MonoBehaviour
 			{
 				SchemeCostLabels[i].text = string.Empty;
 			}
-			if (SchemeGlobals.GetSchemeStage(i) > SchemeGlobals.GetSchemePreviousStage(i))
+			if (SchemeManager.SchemeStage[i] > SchemeManager.SchemePreviousStage[i])
 			{
-				SchemeGlobals.SetSchemePreviousStage(i, SchemeGlobals.GetSchemeStage(i));
+				SchemeManager.SchemePreviousStage[i] = SchemeManager.SchemeStage[i];
 			}
 		}
 	}
 
 	public void UpdateSchemeInfo()
 	{
-		if (SchemeGlobals.GetSchemeStage(ID + ListPosition) != 100)
+		if (SchemeManager.SchemeStage[(int)SchemeTypes[ID + ListPosition]] != 100)
 		{
-			if (!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition))
+			if (!SchemeUnlocked[ID + ListPosition])
 			{
 				Arrow.gameObject.SetActive(value: false);
 				if (Inventory != null)
@@ -326,10 +327,10 @@ public class SchemesScript : MonoBehaviour
 				}
 				PromptBar.UpdateButtons();
 			}
-			else if (SchemeGlobals.CurrentScheme == ID + ListPosition)
+			else if (SchemeManager.CurrentCategory == SchemeCategory && SchemeManager.CurrentScheme == ID + ListPosition)
 			{
 				Arrow.gameObject.SetActive(value: true);
-				Arrow.localPosition = new Vector3(Arrow.localPosition.x, -10f - 21f * (float)SchemeGlobals.GetSchemeStage(ID + ListPosition), Arrow.localPosition.z);
+				Arrow.localPosition = new Vector3(Arrow.localPosition.x, -10f - 21f * (float)SchemeManager.SchemeStage[(int)SchemeTypes[ID + ListPosition]], Arrow.localPosition.z);
 				PromptBar.Label[0].text = "Stop Tracking";
 				PromptBar.UpdateButtons();
 			}
@@ -346,40 +347,52 @@ public class SchemesScript : MonoBehaviour
 			PromptBar.UpdateButtons();
 		}
 		Highlight.localPosition = new Vector3(Highlight.localPosition.x, 200f - 25f * (float)ID, Highlight.localPosition.z);
-		for (int i = 1; i < SchemeNameLabels.Length; i++)
+		int num = 16;
+		if (Limit < 16)
 		{
-			SchemeNameLabels[i].text = SchemeNames[i + ListPosition];
-			SchemeCostLabels[i].text = SchemeCosts[i + ListPosition].ToString() ?? "";
-			SchemeDeadlineLabels[i].text = SchemeDeadlines[i + ListPosition];
-			if (DisableScheme[i + ListPosition])
+			num = Limit + 1;
+		}
+		for (int i = 1; i < 16; i++)
+		{
+			SchemeNameLabels[i].text = "";
+			SchemeCostLabels[i].text = "";
+			SchemeDeadlineLabels[i].text = "";
+			Exclamations[i].enabled = false;
+		}
+		for (int j = 1; j < num; j++)
+		{
+			SchemeNameLabels[j].text = SchemeNames[j + ListPosition];
+			SchemeDeadlineLabels[j].text = SchemeDeadlines[j + ListPosition];
+			if (SchemeUnlocked[j + ListPosition])
 			{
-				SchemeNameLabels[i].color = new Color(0f, 0f, 0f, 0.5f);
+				SchemeCostLabels[j].text = "✔";
 			}
 			else
 			{
-				SchemeNameLabels[i].color = new Color(0f, 0f, 0f, 1f);
+				SchemeCostLabels[j].text = SchemeCosts[j + ListPosition].ToString() ?? "";
 			}
-			if (SchemeManager != null)
+			if (DisableScheme[j + ListPosition])
 			{
-				if (SchemeManager.CurrentScheme == i + ListPosition)
-				{
-					Exclamations[i].enabled = true;
-				}
-				else
-				{
-					Exclamations[i].enabled = false;
-				}
+				SchemeNameLabels[j].color = new Color(0f, 0f, 0f, 0.5f);
+			}
+			else
+			{
+				SchemeNameLabels[j].color = new Color(0f, 0f, 0f, 1f);
+			}
+			if (SchemeManager != null && SchemeManager.CurrentCategory == SchemeCategory && SchemeManager.CurrentScheme == j + ListPosition)
+			{
+				Exclamations[j].enabled = true;
 			}
 		}
 		SchemeIcon.mainTexture = SchemeIcons[ID + ListPosition];
 		SchemeDesc.text = SchemeDescs[ID + ListPosition];
-		if (SchemeGlobals.GetSchemeStage(ID + ListPosition) == 100)
+		if (SchemeManager.SchemeStage[(int)SchemeTypes[ID + ListPosition]] == 100)
 		{
 			SchemeInstructions.text = "This scheme is no longer available.";
 		}
 		else
 		{
-			SchemeInstructions.text = ((!SchemeGlobals.GetSchemeUnlocked(ID + ListPosition)) ? ("Skills Required:\n" + SchemeSkills[ID + ListPosition]) : SchemeSteps[ID + ListPosition]);
+			SchemeInstructions.text = ((!SchemeUnlocked[ID + ListPosition]) ? ("Skills Required:\n" + SchemeSkills[ID + ListPosition]) : SchemeSteps[ID + ListPosition]);
 		}
 		UpdatePantyCount();
 	}
@@ -394,28 +407,32 @@ public class SchemesScript : MonoBehaviour
 
 	public void UpdateInstructions()
 	{
-		Steps = SchemeSteps[SchemeGlobals.CurrentScheme].Split('\n');
-		if (SchemeGlobals.CurrentScheme > 0)
+		Debug.Log("Now running Schemes.UpdateInstructions().");
+		Steps = SchemeManager.CurrentSteps.Split('\n');
+		Debug.Log("SchemeManager.CurrentCategory is: " + SchemeManager.CurrentCategory);
+		Debug.Log("SchemeManager.CurrentScheme is: " + SchemeManager.CurrentScheme);
+		Debug.Log("SchemeManager.SchemeID is: " + SchemeManager.SchemeID);
+		if (SchemeManager.CurrentScheme > 0)
 		{
-			if (SchemeGlobals.CurrentScheme == 4 && SchemeGlobals.GetSchemeStage(4) == 1 && ((StudentManager.Yandere.Weapon[1] != null && StudentManager.Yandere.Weapon[1].WeaponID == 6) || (StudentManager.Yandere.Weapon[2] != null && StudentManager.Yandere.Weapon[2].WeaponID == 6)))
+			if (SchemeManager.SchemeID == 409 && SchemeManager.SchemeStage[409] == 1 && ((StudentManager.Yandere.Weapon[1] != null && StudentManager.Yandere.Weapon[1].WeaponID == 6) || (StudentManager.Yandere.Weapon[2] != null && StudentManager.Yandere.Weapon[2].WeaponID == 6)))
 			{
-				SchemeGlobals.SetSchemeStage(4, 2);
+				SchemeManager.SchemeStage[409] = 2;
 			}
-			if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 100)
+			if (SchemeManager.SchemeStage[SchemeManager.SchemeID] < 100)
 			{
-				Debug.Log("SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) is less than 100...");
-				if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 1)
+				Debug.Log("SchemeManager.GetSchemeStage(SchemeManager.SchemeID) is less than 100...");
+				if (SchemeManager.SchemeStage[SchemeManager.SchemeID] < 1)
 				{
-					Debug.Log("SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) is less than 1...");
-					SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, Steps.Length);
+					Debug.Log("SchemeManager.GetSchemeStage(SchemeManager.SchemeID) is less than 1...");
+					SchemeManager.SchemeStage[SchemeManager.SchemeID] = Steps.Length;
 				}
-				else if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) > Steps.Length)
+				else if (SchemeManager.SchemeStage[SchemeManager.SchemeID] > Steps.Length)
 				{
-					Debug.Log("SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) is greater than the number of stea");
-					SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, 1);
+					Debug.Log("SchemeManager.GetSchemeStage(SchemeManager.SchemeID) is greater than the number of steps in the scheme.");
+					SchemeManager.SchemeStage[SchemeManager.SchemeID] = 1;
 				}
 				HUDIcon.SetActive(value: true);
-				HUDInstructions.text = Steps[SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) - 1].ToString();
+				HUDInstructions.text = Steps[SchemeManager.SchemeStage[SchemeManager.SchemeID] - 1].ToString();
 			}
 			else
 			{
@@ -428,13 +445,14 @@ public class SchemesScript : MonoBehaviour
 		else
 		{
 			HUDIcon.SetActive(value: false);
+			NextStepInput.SetActive(value: false);
 			HUDInstructions.text = string.Empty;
 		}
-		if (SchemeGlobals.CurrentScheme < 7)
+		if (StudentManager.Week == 1 && SchemeManager.CurrentCategory > 3 && SchemeManager.CurrentScheme > 5 && SchemeManager.CurrentScheme < 12)
 		{
 			NextStepInput.SetActive(value: false);
 		}
-		else
+		else if (SchemeManager.CurrentScheme > 0)
 		{
 			NextStepInput.SetActive(value: true);
 		}
@@ -442,6 +460,10 @@ public class SchemesScript : MonoBehaviour
 
 	public void UpdateSchemeDestinations()
 	{
+		for (int i = 0; i < SchemeManager.CurrentDestinations.Length; i++)
+		{
+			SchemeManager.CurrentDestinations[i] = null;
+		}
 		if (StudentManager.Students[StudentManager.RivalID] != null)
 		{
 			Scheme1Destinations[3] = StudentManager.Students[StudentManager.RivalID].transform;
@@ -457,26 +479,74 @@ public class SchemesScript : MonoBehaviour
 		{
 			Scheme5Destinations[3] = StudentManager.Students[97].transform;
 		}
-		if (SchemeGlobals.CurrentScheme == 1)
+		if (SchemeManager.CurrentCategory == 4)
 		{
-			SchemeDestinations = Scheme1Destinations;
+			if (SchemeManager.CurrentScheme == 6)
+			{
+				SchemeDestinations = Scheme1Destinations;
+			}
+			else if (SchemeManager.CurrentScheme == 7)
+			{
+				SchemeDestinations = Scheme2Destinations;
+			}
+			else if (SchemeManager.CurrentScheme == 8)
+			{
+				SchemeDestinations = Scheme3Destinations;
+			}
+			else if (SchemeManager.CurrentScheme == 9)
+			{
+				SchemeDestinations = Scheme4Destinations;
+			}
+			else if (SchemeManager.CurrentScheme == 10)
+			{
+				SchemeDestinations = Scheme5Destinations;
+			}
+			SchemeManager.CurrentDestinations = SchemeDestinations;
 		}
-		else if (SchemeGlobals.CurrentScheme == 2)
+	}
+
+	public void ConfirmWhatSchemesAreUnlocked()
+	{
+		int num = SchemeCategory * 100;
+		if (SchemeCategory > 0)
 		{
-			SchemeDestinations = Scheme2Destinations;
+			for (int i = 1; i < SchemeUnlocked.Length; i++)
+			{
+				SchemeUnlocked[i] = SchemeManager.SchemeUnlocked[num + i];
+			}
 		}
-		else if (SchemeGlobals.CurrentScheme == 3)
+	}
+
+	public void CheckForSpecialCase()
+	{
+		Debug.Log(base.gameObject.name + " is now checking for special cases.");
+		int week = DateGlobals.Week;
+		if (SchemeCategory != 2)
 		{
-			SchemeDestinations = Scheme3Destinations;
+			return;
 		}
-		else if (SchemeGlobals.CurrentScheme == 4)
+		for (int i = 0; i < SchemeSteps.Length; i++)
 		{
-			SchemeDestinations = Scheme4Destinations;
+			if (SchemeSteps[i].Contains("(X)"))
+			{
+				SchemeSteps[i] = SchemeSteps[i].Replace("(X)", (week * 10).ToString() ?? "");
+			}
+			if (week > 1 && SchemeSteps[i].Contains("Raibaru"))
+			{
+				int num = SchemeSteps[i].IndexOf('\n');
+				if (num >= 0)
+				{
+					SchemeSteps[i] = SchemeSteps[i].Substring(num + 1);
+				}
+			}
 		}
-		else if (SchemeGlobals.CurrentScheme == 5)
+		if (week > 1)
 		{
-			SchemeDestinations = Scheme5Destinations;
+			SchemeSteps[5] = SchemeSteps[5].Replace("Go to your rival's desk and put emetic poison into her bento.", "Go to your rival's desk, open her bookbag, and put emetic poison into her bento.");
+			SchemeDeadlines[5] = "None";
+			SchemeSteps[8] = SchemeSteps[8].Replace("Eavesdrop on your rival's Monday morning conversations, or pay Info-chan using the Services Menu.", "Befriend your rival's clubmates to learn her social media, or Pay Info-chan for her social media.");
+			SchemeSteps[8] = SchemeSteps[8].Replace("Step 4: Ask the suitor to follow you. Go to the library. Help the suitor study.", "Step 4: Ask the suitor to follow you. Go to the Art Room. Help the suitor raise his courage.");
+			SchemeSteps[9] = AlternatePoisonSteps;
 		}
-		Debug.Log("After running UpdateSchemeDestinations(), SchemeGlobals.GetSchemeStage(2) is: " + SchemeGlobals.GetSchemeStage(2));
 	}
 }

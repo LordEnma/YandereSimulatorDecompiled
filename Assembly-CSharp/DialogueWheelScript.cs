@@ -101,6 +101,8 @@ public class DialogueWheelScript : MonoBehaviour
 
 	public bool CanBefriendCouncil;
 
+	public bool JustThisOnce;
+
 	public bool Intimidating;
 
 	public bool AskingFavor;
@@ -722,9 +724,9 @@ public class DialogueWheelScript : MonoBehaviour
 				Yandere.Interaction = YandereInteractionType.SendingToLocker;
 				Yandere.TalkTimer = 5f;
 				Show = false;
-				if (Yandere.TargetStudent.StudentID == 11 && SchemeGlobals.GetSchemeStage(6) == 6)
+				if (Yandere.TargetStudent.StudentID == 11 && Yandere.SchemeManager.GetSchemeStage(411) == 7)
 				{
-					SchemeGlobals.SetSchemeStage(6, 7);
+					Yandere.SchemeManager.SetSchemeStage(411, 8);
 					Yandere.PauseScreen.Schemes.UpdateInstructions();
 				}
 			}
@@ -844,6 +846,21 @@ public class DialogueWheelScript : MonoBehaviour
 		{
 			Yandere.TargetStudent.TaskRejected = 0;
 		}
+		if (Yandere.TargetStudent.StudentID == 46 && Yandere.TargetStudent.TaskRejected > 1 && !JustThisOnce)
+		{
+			bool flag2 = false;
+			bool flag3 = false;
+			bool flag4 = false;
+			bool num = Yandere.StudentManager.Students[47] != null && Yandere.StudentManager.Students[47].Friend;
+			flag2 = Yandere.StudentManager.Students[48] != null && Yandere.StudentManager.Students[48].Friend;
+			flag3 = Yandere.StudentManager.Students[49] != null && Yandere.StudentManager.Students[49].Friend;
+			flag4 = Yandere.StudentManager.Students[50] != null && Yandere.StudentManager.Students[50].Friend;
+			if (num & flag2 & flag3 & flag4)
+			{
+				Yandere.TargetStudent.TaskRejected = 0;
+				JustThisOnce = true;
+			}
+		}
 		if ((!CanBefriendCouncil && !Yandere.StudentManager.MissionMode && Yandere.TargetStudent.Club == ClubType.Council) || Yandere.TargetStudent.TaskRejected > 1)
 		{
 			Debug.Log("This student's TaskRejected is: " + Yandere.TargetStudent.TaskRejected);
@@ -852,20 +869,20 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		else if (TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] != 3)
 		{
-			bool flag2 = false;
+			bool flag5 = false;
 			if (Yandere.StudentManager.Eighties)
 			{
-				flag2 = true;
+				flag5 = true;
 				if ((Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21) || (!CustomMode && Yandere.TargetStudent.StudentID == 79))
 				{
-					flag2 = false;
+					flag5 = false;
 					if (Yandere.StudentManager.CustomMode && Yandere.TargetStudent.StudentID > 10 && Yandere.TargetStudent.StudentID < 21)
 					{
-						flag2 = true;
+						flag5 = true;
 					}
 				}
 				HideTaskButtonIfNecessary();
-				if (flag2 && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID] > 0)
+				if (flag5 && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.ItemsCollected[Yandere.TargetStudent.GenericTaskID] > 0)
 				{
 					Debug.Log("The player can turn in a task right now.");
 					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
@@ -881,12 +898,12 @@ public class DialogueWheelScript : MonoBehaviour
 			else
 			{
 				Debug.Log("TargetStudent.StudentID is: " + Yandere.TargetStudent.StudentID);
-				Debug.Log("As of now, Generic is: " + flag2);
+				Debug.Log("As of now, Generic is: " + flag5);
 				if (Yandere.TargetStudent.StudentID != 4 && Yandere.TargetStudent.StudentID != 6 && Yandere.TargetStudent.StudentID != 8 && Yandere.TargetStudent.StudentID != 11 && Yandere.TargetStudent.StudentID != 21 && Yandere.TargetStudent.StudentID != 22 && Yandere.TargetStudent.StudentID != 23 && Yandere.TargetStudent.StudentID != 24 && Yandere.TargetStudent.StudentID != 25 && Yandere.TargetStudent.StudentID != 28 && Yandere.TargetStudent.StudentID != 30 && Yandere.TargetStudent.StudentID != 36 && Yandere.TargetStudent.StudentID != 37 && Yandere.TargetStudent.StudentID != 38 && Yandere.TargetStudent.StudentID != 41 && Yandere.TargetStudent.StudentID != 52 && Yandere.TargetStudent.StudentID != 65 && Yandere.TargetStudent.StudentID != 76 && Yandere.TargetStudent.StudentID != 77 && Yandere.TargetStudent.StudentID != 78 && Yandere.TargetStudent.StudentID != 79 && Yandere.TargetStudent.StudentID != 80 && Yandere.TargetStudent.StudentID != 81)
 				{
-					flag2 = true;
+					flag5 = true;
 				}
-				Debug.Log("And now, Generic is: " + flag2);
+				Debug.Log("And now, Generic is: " + flag5);
 				if (Yandere.TargetStudent.StudentID == 1 || Yandere.TargetStudent.StudentID == 10)
 				{
 					Debug.Log("Task button is getting disabled here.");
@@ -971,7 +988,7 @@ public class DialogueWheelScript : MonoBehaviour
 						Debug.Log("Player has the answer sheet.");
 					}
 				}
-				if (flag2 && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.Book)
+				if (flag5 && TaskManager.TaskStatus[Yandere.TargetStudent.StudentID] == 1 && Yandere.Inventory.Book)
 				{
 					Shadow[5].color = new Color(0f, 0f, 0f, 0f);
 					Debug.Log("The player has a library book.");
@@ -1073,23 +1090,23 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		if (Yandere.TargetStudent.StudentID == 51 || Yandere.TargetStudent.StudentID == 76)
 		{
-			int num = 4;
+			int num2 = 4;
 			if (Yandere.TargetStudent.StudentID == 51 && (Yandere.Club != ClubType.LightMusic || PracticeWindow.PlayedRhythmMinigame))
 			{
-				num = 0;
+				num2 = 0;
 			}
 			for (int m = Yandere.TargetStudent.StudentID + 1; m < Yandere.TargetStudent.StudentID + 5; m++)
 			{
 				if (Yandere.StudentManager.Students[m] == null)
 				{
-					num--;
+					num2--;
 				}
 				else if (!Yandere.StudentManager.Students[m].gameObject.activeInHierarchy || Yandere.StudentManager.Students[m].Investigating || Yandere.StudentManager.Students[m].Distracting || Yandere.StudentManager.Students[m].Distracted || Yandere.StudentManager.Students[m].SentHome || Yandere.StudentManager.Students[m].Tranquil || Yandere.StudentManager.Students[m].GoAway || !Yandere.StudentManager.Students[m].Routine || !Yandere.StudentManager.Students[m].Alive)
 				{
-					num--;
+					num2--;
 				}
 			}
-			if (num < 4)
+			if (num2 < 4)
 			{
 				UISprite uISprite18 = ClubShadow[6];
 				uISprite18.color = new Color(uISprite18.color.r, uISprite18.color.g, uISprite18.color.b, 0.75f);
@@ -1132,19 +1149,19 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		if (KokonaTutorialPhase == 1)
 		{
-			for (int num2 = 2; num2 < 7; num2++)
+			for (int num3 = 2; num3 < 7; num3++)
 			{
-				UISprite uISprite25 = Shadow[num2];
+				UISprite uISprite25 = Shadow[num3];
 				uISprite25.color = new Color(uISprite25.color.r, uISprite25.color.g, uISprite25.color.b, 0.75f);
 			}
 		}
 		else if (KokonaTutorialPhase == 2)
 		{
-			for (int num3 = 1; num3 < 7; num3++)
+			for (int num4 = 1; num4 < 7; num4++)
 			{
-				if (num3 != 2 && num3 != 4)
+				if (num4 != 2 && num4 != 4)
 				{
-					UISprite uISprite26 = Shadow[num3];
+					UISprite uISprite26 = Shadow[num4];
 					uISprite26.color = new Color(uISprite26.color.r, uISprite26.color.g, uISprite26.color.b, 0.75f);
 				}
 			}
@@ -1155,22 +1172,22 @@ public class DialogueWheelScript : MonoBehaviour
 			{
 				return;
 			}
-			for (int num4 = 1; num4 < 7; num4++)
+			for (int num5 = 1; num5 < 7; num5++)
 			{
-				if (num4 != 6)
+				if (num5 != 6)
 				{
-					UISprite uISprite27 = Shadow[num4];
+					UISprite uISprite27 = Shadow[num5];
 					uISprite27.color = new Color(uISprite27.color.r, uISprite27.color.g, uISprite27.color.b, 0.75f);
 				}
 				else
 				{
-					UISprite uISprite28 = Shadow[num4];
+					UISprite uISprite28 = Shadow[num5];
 					uISprite28.color = new Color(uISprite28.color.r, uISprite28.color.g, uISprite28.color.b, 0f);
 				}
 			}
-			for (int num5 = 2; num5 < 5; num5++)
+			for (int num6 = 2; num6 < 5; num6++)
 			{
-				UISprite uISprite29 = FavorShadow[num5];
+				UISprite uISprite29 = FavorShadow[num6];
 				uISprite29.color = new Color(uISprite29.color.r, uISprite29.color.g, uISprite29.color.b, 0.75f);
 			}
 		}
@@ -1196,13 +1213,14 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 		else
 		{
-			if (Yandere.TargetStudent.StudentID == 6 && TaskManager.TaskStatus[6] == 1)
+			if (Yandere.TargetStudent.StudentID == 6 && TaskManager.TaskStatus[6] == 1 && Yandere.Inventory.Headset)
 			{
-				if (Yandere.Inventory.Headset)
-				{
-					Yandere.TargetStudent.TaskPhase = 5;
-					Yandere.LoveManager.SuitorProgress = 1;
-				}
+				Yandere.TargetStudent.TaskPhase = 5;
+				Yandere.LoveManager.SuitorProgress = 1;
+			}
+			if (Yandere.TargetStudent.StudentID == 8 && TaskManager.TaskStatus[8] == 1)
+			{
+				Yandere.Inventory.ItemsCollected[5]--;
 			}
 			else if (Yandere.TargetStudent.StudentID == 21 && TaskManager.TaskStatus[21] == 1)
 			{

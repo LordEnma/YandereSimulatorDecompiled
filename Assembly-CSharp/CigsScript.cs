@@ -8,7 +8,7 @@ public class CigsScript : MonoBehaviour
 	{
 		if (Prompt.Circle[0].fillAmount == 0f)
 		{
-			SchemeGlobals.SetSchemeStage(3, 3);
+			Prompt.Yandere.SchemeManager.SetSchemeStage(408, 3);
 			Prompt.Yandere.Inventory.Schemes.UpdateInstructions();
 			Prompt.Yandere.Inventory.Cigs = true;
 			if (Prompt.Suspicious)

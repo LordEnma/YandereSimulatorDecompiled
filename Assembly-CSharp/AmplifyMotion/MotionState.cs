@@ -77,7 +77,7 @@ namespace AmplifyMotion
 
 			public static implicit operator Matrix4x4(Matrix3x4 from)
 			{
-				Matrix4x4 result = default(Matrix4x4);
+				Matrix4x4 result = default;
 				result.m00 = from.m00;
 				result.m01 = from.m01;
 				result.m02 = from.m02;
@@ -175,7 +175,7 @@ namespace AmplifyMotion
 				array[i].material = mats[i];
 				bool flag = mats[i].GetTag("RenderType", searchFallbacks: false) == "TransparentCutout" || mats[i].IsKeywordEnabled("_ALPHATEST_ON");
 				array[i].propertyBlock = new MaterialPropertyBlock();
-				array[i].coverage = mats[i].HasProperty("_MainTex") && flag;
+				array[i].coverage = mats[i].HasProperty("_MainTex") & flag;
 				array[i].cutoff = mats[i].HasProperty("_Cutoff");
 				if (flag && !array[i].coverage && !m_materialWarnings.Contains(array[i].material))
 				{

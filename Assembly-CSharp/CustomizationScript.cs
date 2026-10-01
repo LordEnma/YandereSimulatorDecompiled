@@ -230,7 +230,7 @@ public class CustomizationScript : MonoBehaviour
 
 	private static readonly KeyValuePair<Color, string>[] ColorPairs = new KeyValuePair<Color, string>[11]
 	{
-		new KeyValuePair<Color, string>(default(Color), string.Empty),
+		new KeyValuePair<Color, string>(default, string.Empty),
 		new KeyValuePair<Color, string>(new Color(0.5f, 0.5f, 0.5f), "Black"),
 		new KeyValuePair<Color, string>(new Color(1f, 0f, 0f), "Red"),
 		new KeyValuePair<Color, string>(new Color(1f, 1f, 0f), "Yellow"),
@@ -292,7 +292,6 @@ public class CustomizationScript : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log("GameGlobals.CensorCorpses is: " + GameGlobals.CensorCorpses);
 		OriginalDOFStatus = Profile.depthOfField.enabled;
 		Profile.depthOfField.enabled = false;
 		Cursor.visible = false;
@@ -482,7 +481,7 @@ public class CustomizationScript : MonoBehaviour
 				}
 				bool tappedDown = InputManager.TappedDown;
 				bool tappedUp = InputManager.TappedUp;
-				if (tappedDown || tappedUp)
+				if (tappedDown | tappedUp)
 				{
 					if (tappedDown)
 					{

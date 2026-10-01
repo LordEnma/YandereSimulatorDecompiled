@@ -75,7 +75,7 @@ public class UIToggle : UIWidgetContainer
 			{
 				startsActive = value;
 			}
-			else if (group == 0 || value || optionCanBeNone || !mStarted)
+			else if (((group == 0) | value) || optionCanBeNone || !mStarted)
 			{
 				Set(value);
 			}
@@ -209,7 +209,7 @@ public class UIToggle : UIWidgetContainer
 			{
 				return;
 			}
-			if (group != 0 && state)
+			if ((group != 0) & state)
 			{
 				int num = 0;
 				int size = list.size;

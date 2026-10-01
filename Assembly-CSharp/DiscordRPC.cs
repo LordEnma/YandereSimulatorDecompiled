@@ -101,7 +101,7 @@ public class DiscordRPC : MonoBehaviour
 			Details = _details,
 			State = GetSceneDescription()
 		};
-		_activity.UpdateActivity(activity, delegate(Result RichPresenceResult)
+		_activity.UpdateActivity(activity, (Result RichPresenceResult) =>
 		{
 			if (RichPresenceResult != Result.Ok)
 			{

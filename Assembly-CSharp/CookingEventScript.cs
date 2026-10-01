@@ -151,7 +151,7 @@ public class CookingEventScript : MonoBehaviour
 				Timer += Time.deltaTime;
 				if (Timer > 5f)
 				{
-					SchemeGlobals.SetSchemeStage(4, 5);
+					Schemes.SchemeManager.SetSchemeStage(409, 5);
 					Schemes.UpdateInstructions();
 					RivalPhone.SetActive(value: false);
 					EventSubtitle.text = string.Empty;

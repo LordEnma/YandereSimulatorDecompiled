@@ -145,7 +145,7 @@ public class EmergencyShowerScript : MonoBehaviour
 					Yandere.NotificationManager.CustomText = "Are you using an easter egg right now?";
 					Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				}
-				Timer += 1f;
+				Timer++;
 			}
 			VisionBlocker.SetActive(value: true);
 			Phase++;
@@ -176,7 +176,7 @@ public class EmergencyShowerScript : MonoBehaviour
 				else
 				{
 					Yandere.Police.BloodyClothing--;
-					Timer += 1f;
+					Timer++;
 				}
 				Yandere.Bloodiness = 0f;
 				Phase++;

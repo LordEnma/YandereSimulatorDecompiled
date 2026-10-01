@@ -79,7 +79,7 @@ public class AlarmDiscScript : MonoBehaviour
 				}
 				if (!Male)
 				{
-					if (Originator != null && Originator.Rival && Originator.StudentID == 12)
+					if (Originator != null && Originator.StudentManager.Eighties && Originator.Rival && Originator.StudentID == 12)
 					{
 						PlayClip(RivalScreams[Originator.StudentID], base.transform.position);
 					}
@@ -131,7 +131,7 @@ public class AlarmDiscScript : MonoBehaviour
 				Student.InvestigationPhase = 0;
 				Student.Investigating = false;
 				Student.DiscCheck = false;
-				Student.VisionDistance += 1f;
+				Student.VisionDistance++;
 				if (Loud)
 				{
 					Student.VisionDistance += 4f;
@@ -344,9 +344,9 @@ public class AlarmDiscScript : MonoBehaviour
 									Student.RadioTimer = 0f;
 									Student.ReadPhase = 0;
 									SourceRadio.Victim = Student;
-									if (Student.StudentID == 97 && SchemeGlobals.GetSchemeStage(5) == 3)
+									if (Student.StudentID == 97 && Student.Yandere.SchemeManager.GetSchemeStage(410) == 3)
 									{
-										SchemeGlobals.SetSchemeStage(5, 4);
+										Student.Yandere.SchemeManager.SetSchemeStage(410, 4);
 										Student.Yandere.PauseScreen.Schemes.UpdateInstructions();
 										base.enabled = false;
 									}

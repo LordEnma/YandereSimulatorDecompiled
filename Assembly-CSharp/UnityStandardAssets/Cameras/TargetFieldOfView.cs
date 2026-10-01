@@ -44,7 +44,7 @@ namespace UnityStandardAssets.Cameras
 		public static float MaxBoundsExtent(Transform obj, bool includeEffects)
 		{
 			Renderer[] componentsInChildren = obj.GetComponentsInChildren<Renderer>();
-			Bounds bounds = default(Bounds);
+			Bounds bounds = default;
 			bool flag = false;
 			Renderer[] array = componentsInChildren;
 			foreach (Renderer renderer in array)

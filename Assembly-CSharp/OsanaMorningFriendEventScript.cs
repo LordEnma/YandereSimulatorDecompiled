@@ -180,7 +180,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 								Debug.Log("Musume's unavailable.");
 								flag = true;
 							}
-							if (DateGlobals.Weekday == DayOfWeek.Friday && flag && OtherEvent.NaturalEnd)
+							if (((DateGlobals.Weekday == DayOfWeek.Friday) & flag) && OtherEvent.NaturalEnd)
 							{
 								SpeechClip = AltSpeechClip;
 								SpeechText = AltSpeechText;

@@ -137,14 +137,19 @@ public class WaterCoolerScript : MonoBehaviour
 				{
 					flag2 = true;
 				}
-				if (Yandere.Inventory.String && Yandere.Inventory.MaskingTape && flag2)
+				if ((Yandere.Inventory.String && Yandere.Inventory.MaskingTape) & flag2)
 				{
 					Prompt.HideButton[1] = false;
 					Prompt.Label[1].applyGradient = false;
 					Prompt.Label[1].color = Color.red;
-					if (SchemeGlobals.GetSchemeStage(1) == 2 || SchemeGlobals.GetSchemeStage(2) == 2)
+					if (Yandere.SchemeManager.GetSchemeStage(406) == 2)
 					{
-						SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) + 1);
+						Yandere.SchemeManager.SetSchemeStage(406, 3);
+						Yandere.PauseScreen.Schemes.UpdateInstructions();
+					}
+					else if (Yandere.SchemeManager.GetSchemeStage(407) == 2)
+					{
+						Yandere.SchemeManager.SetSchemeStage(407, 3);
 						Yandere.PauseScreen.Schemes.UpdateInstructions();
 					}
 					if (Prompt.Circle[1].fillAmount == 0f)
@@ -210,9 +215,14 @@ public class WaterCoolerScript : MonoBehaviour
 			if (WaterCoolerChecklist.alpha < 1f)
 			{
 				WaterCoolerChecklist.alpha = Mathf.MoveTowards(WaterCoolerChecklist.alpha, 1f, Time.deltaTime * 10f);
-				if (SchemeGlobals.GetSchemeStage(1) == 1 || SchemeGlobals.GetSchemeStage(2) == 1)
+				if (Yandere.SchemeManager.GetSchemeStage(406) == 1)
 				{
-					SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) + 1);
+					Yandere.SchemeManager.SetSchemeStage(406, 2);
+					Yandere.PauseScreen.Schemes.UpdateInstructions();
+				}
+				else if (Yandere.SchemeManager.GetSchemeStage(407) == 1)
+				{
+					Yandere.SchemeManager.SetSchemeStage(407, 2);
 					Yandere.PauseScreen.Schemes.UpdateInstructions();
 				}
 			}

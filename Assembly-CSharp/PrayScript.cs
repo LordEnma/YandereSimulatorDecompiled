@@ -195,15 +195,15 @@ public class PrayScript : MonoBehaviour
 		{
 			if (Selected == 1)
 			{
-				if (!Yandere.SanityBased)
+				if (!StudentManager.Students[1].Blind)
 				{
-					SanityLabel.text = "Disable Sanity Anims";
-					Yandere.SanityBased = true;
+					StudentManager.BlindEveryone();
+					SanityLabel.text = "Restore Students' Sight";
 				}
 				else
 				{
-					SanityLabel.text = "Enable Sanity Anims";
-					Yandere.SanityBased = false;
+					StudentManager.UnblindEveryone();
+					SanityLabel.text = "Blind All Students";
 				}
 				Exit();
 			}

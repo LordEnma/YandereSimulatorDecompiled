@@ -128,9 +128,9 @@ public class AudioSoftwareScript : MonoBehaviour
 		Timer += Time.deltaTime;
 		if (Timer > 5f)
 		{
-			if (SchemeGlobals.GetSchemeStage(1) == 5)
+			if (Yandere.SchemeManager.GetSchemeStage(406) == 5)
 			{
-				SchemeGlobals.SetSchemeStage(1, 6);
+				Yandere.SchemeManager.SetSchemeStage(406, 6);
 				Yandere.StudentManager.Schemes.UpdateInstructions();
 			}
 			Yandere.MyController.radius = 0.2f;

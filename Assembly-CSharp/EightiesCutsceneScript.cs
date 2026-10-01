@@ -532,7 +532,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 			CounselorGlobals.ReportedCigarettes = false;
 			CounselorGlobals.ReportedCondoms = false;
 			CounselorGlobals.ReportedTheft = false;
-			SchemeGlobals.SetSchemeStage(6, 0);
+			SchemeGlobals.SetSchemeStage(411, 0);
 			StudentGlobals.ExpelProgress = 0;
 			DatingGlobals.RivalSabotaged = 0;
 			DatingGlobals.SuitorProgress = 0;

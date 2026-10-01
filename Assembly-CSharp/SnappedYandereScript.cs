@@ -194,11 +194,11 @@ public class SnappedYandereScript : MonoBehaviour
 		Cursor.visible = false;
 		if (Input.GetKeyDown("=") && Time.timeScale < 10f)
 		{
-			Time.timeScale += 1f;
+			Time.timeScale++;
 		}
 		if (Input.GetKeyDown("-") && Time.timeScale > 1f)
 		{
-			Time.timeScale -= 1f;
+			Time.timeScale--;
 		}
 		if (Glitch1.enabled)
 		{

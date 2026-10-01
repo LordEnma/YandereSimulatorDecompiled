@@ -56,16 +56,16 @@ public class ScheduleScript : MonoBehaviour
 					Portraits[9].mainTexture = VoidGoddess.Portraits[62].mainTexture;
 					Portraits[10].mainTexture = VoidGoddess.Portraits[63].mainTexture;
 				}
-				else
+				else if (DateGlobals.Week == 2)
 				{
 					Portraits[1].mainTexture = VoidGoddess.Portraits[12].mainTexture;
 					Portraits[2].mainTexture = VoidGoddess.Portraits[1].mainTexture;
-					Portraits[3].mainTexture = VoidGoddess.BlankPortrait;
+					Portraits[3].mainTexture = VoidGoddess.Portraits[12].mainTexture;
 					Portraits[4].mainTexture = VoidGoddess.BlankPortrait;
-					Portraits[5].mainTexture = VoidGoddess.BlankPortrait;
-					Portraits[6].mainTexture = VoidGoddess.BlankPortrait;
-					Portraits[7].mainTexture = VoidGoddess.BlankPortrait;
-					Portraits[8].mainTexture = VoidGoddess.BlankPortrait;
+					Portraits[5].mainTexture = VoidGoddess.Portraits[12].mainTexture;
+					Portraits[6].mainTexture = VoidGoddess.Portraits[88].mainTexture;
+					Portraits[7].mainTexture = VoidGoddess.Portraits[12].mainTexture;
+					Portraits[8].mainTexture = VoidGoddess.Portraits[71].mainTexture;
 					Portraits[9].mainTexture = VoidGoddess.Portraits[2].mainTexture;
 					Portraits[10].mainTexture = VoidGoddess.Portraits[3].mainTexture;
 				}
@@ -179,29 +179,35 @@ public class ScheduleScript : MonoBehaviour
 			if (Weekday == DayOfWeek.Monday)
 			{
 				EventIcons[7].SetActive(value: true);
-				Descriptions[7] = "At lunchtime, Senpai will visit Amai's bake sale. You can put emetic poison into the ingredients that Amai uses to make food for her bake sale. This will make people vomit from Amai's food, which will cause Senpai to think less of Amai.";
+				Descriptions[7] = "At lunchtime, Senpai will visit Amai's bake sale. You can put emetic poison into the ingredients that Amai uses to make food for her bake sale. This will make people vomit from Amai's food. This will damage Senpai's relationship with Amai.";
+				EventIcons[12].SetActive(value: true);
+				Descriptions[12] = "Amai will receive an alarming phone call. Important information will be revealed.";
+				EventIcons[23].SetActive(value: true);
+				Descriptions[23] = "Amai will have a conversation with Akane.";
+				EventIcons[34].SetActive(value: true);
+				Descriptions[34] = "Amai will have a conversation with Uekiya.";
 			}
 			if (Weekday == DayOfWeek.Tuesday)
 			{
 				EventIcons[7].SetActive(value: true);
-				Descriptions[7] = "At lunchtime, Amai is going to give Senpai an apron. You can sew a lame apron in the Sewing Room and replace Amai's apron with your apron. This will cause Senpai to think less of Amai.";
+				Descriptions[7] = "At lunchtime, Amai is going to give Senpai an apron. You can sabotage Amai's notes to trick her into sewing an Senpai that will disappoint Senpai. This will damage Senpai's relationship with Amai.";
 			}
 			if (Weekday == DayOfWeek.Wednesday)
 			{
 				EventIcons[7].SetActive(value: true);
-				Descriptions[7] = "At lunchtime, Amai is going to ask Senpai if he successfully prepared a meal. You can sabotage the recipe that Amai gave to Senpai while Senpai is preparing the meal. This will cause Senpai to think less of Amai.";
+				Descriptions[7] = "At lunchtime, Amai is going to teach a cooking class. You can sabotage the recipe that Amai gave to Senpai while Senpai is preparing the meal. This will damage Senpai's relationship with Amai.";
 			}
 			if (Weekday == DayOfWeek.Thursday)
 			{
 				EventIcons[7].SetActive(value: true);
-				Descriptions[7] = "At lunchtime, Amai is going to have a picnic with Senpai. You can attract insects to the picnic by obtaining sugar from the Home Ec room and spreading it around the picnic area. This will cause Senpai to think less of Amai.";
+				Descriptions[7] = "At lunchtime, Amai is going to have a picnic with Senpai. You can craft a fake animal corpse in the Workshop and put it in the picnic area to attract insects and ruin the picnic. This will damage Senpai's relationship with Amai.";
 				EventIcons[9].SetActive(value: true);
 				Descriptions[9] = "After Cleaning Time, Amai is going to make fudge in the Home Ec Room. You can sabotage the oven that Amai uses to prepare food. This will cause a gas explosion that will kill Amai.";
 			}
 			if (Weekday == DayOfWeek.Friday)
 			{
 				EventIcons[7].SetActive(value: true);
-				Descriptions[7] = "At lunchtime, Senpai will look at the food art that Amai has posted to social media. You can sabotage the cake that Amai decorates in the Home Ec room, steal her phone, and post a picture of the sabotaged cake to her social media page. This will cause Senpai to think less of Amai.";
+				Descriptions[7] = "At lunchtime, Senpai will look at the food art that Amai has posted to social media. You can sabotage the cake that Amai decorates in the Home Ec room, steal her phone, and post a picture of the sabotaged cake to her social media page. This will damage Senpai's relationship with Amai.";
 				EventIcons[10].SetActive(value: true);
 				Descriptions[10] = "Amai is going to put a note in Senpai's locker and tell him to meet her under the cherry tree behind the school. Under the cherry tree, Amai is going to confess her love to Senpai.";
 			}

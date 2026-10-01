@@ -26,7 +26,7 @@ namespace UnityStandardAssets.Utility
 				return;
 			}
 			Camera camera = FindCamera();
-			RaycastHit hitInfo = default(RaycastHit);
+			RaycastHit hitInfo = default;
 			if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition).origin, camera.ScreenPointToRay(Input.mousePosition).direction, out hitInfo, 100f, -5) && (bool)hitInfo.rigidbody && !hitInfo.rigidbody.isKinematic)
 			{
 				if (!m_SpringJoint)

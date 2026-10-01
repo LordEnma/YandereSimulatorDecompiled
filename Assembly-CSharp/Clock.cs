@@ -181,7 +181,7 @@ public class Clock
 		while (currentSecond >= 1f)
 		{
 			IncrementSecond();
-			currentSecond -= 1f;
+			currentSecond--;
 		}
 	}
 }

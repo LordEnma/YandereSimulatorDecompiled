@@ -134,7 +134,9 @@ public class ModernRivalSabotageScript : MonoBehaviour
 				{
 					Prompt.Yandere.NotificationManager.CustomText = "Recipe Sabotaged!";
 					Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					OngoingEvent.Instructions[9].Dialogue = OngoingEvent.AlternateDialogue[0];
+					OngoingEvent.Instructions[10].Dialogue = OngoingEvent.AlternateDialogue[0];
+					OngoingEvent.Instructions[10].Anim[0] = OngoingEvent.AlternateAnim[0];
+					OngoingEvent.Instructions[9].Anim[0] = OngoingEvent.AlternateAnim[0];
 					OngoingEvent.Instructions[9].Audio = OngoingEvent.AlternateAudio[0];
 					OngoingEvent.Instructions[9].SpecialCase = 9;
 					SabotagedEvent.gameObject.SetActive(value: true);

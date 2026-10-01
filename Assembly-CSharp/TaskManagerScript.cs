@@ -218,7 +218,7 @@ public class TaskManagerScript : MonoBehaviour
 				{
 					StudentManager.Students[8].TaskPhase = 4;
 				}
-				if (Yandere.Inventory.Soda)
+				if (Yandere.Inventory.ItemsCollected[5] > 0)
 				{
 					StudentManager.Students[8].TaskPhase = 5;
 				}
@@ -669,7 +669,7 @@ public class TaskManagerScript : MonoBehaviour
 				flag5 = StudentManager.Students[8] != null && StudentManager.Students[8].Friend;
 				flag6 = StudentManager.Students[9] != null && StudentManager.Students[9].Friend;
 				flag7 = StudentManager.Students[10] != null && StudentManager.Students[10].Friend;
-				if (num2 || flag4 || flag5 || flag6 || flag7)
+				if (num2 | flag4 | flag5 | flag6 | flag7)
 				{
 					Proceed = true;
 				}

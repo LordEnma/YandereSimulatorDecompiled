@@ -46,7 +46,7 @@ public class NextRivalCutsceneScript : MonoBehaviour
 
 	public int SubtitleID;
 
-	public Renderer HairRenderer;
+	public Renderer[] HairRenderers;
 
 	public Texture BlondeHair;
 
@@ -54,7 +54,8 @@ public class NextRivalCutsceneScript : MonoBehaviour
 	{
 		if (GameGlobals.BlondeHair)
 		{
-			HairRenderer.material.mainTexture = BlondeHair;
+			HairRenderers[1].material.mainTexture = BlondeHair;
+			HairRenderers[2].material.mainTexture = BlondeHair;
 		}
 		if (GameGlobals.Eighties)
 		{

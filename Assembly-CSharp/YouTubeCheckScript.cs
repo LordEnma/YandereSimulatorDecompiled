@@ -54,7 +54,7 @@ public class YouTubeCheckScript : MonoBehaviour
 	public void GetPosts()
 	{
 		string url = Environment.GetCommandLineArgs()[2].ToString() ?? "";
-		StartCoroutine(GetRequest(url, delegate(UnityWebRequest req)
+		StartCoroutine(GetRequest(url, (UnityWebRequest req) =>
 		{
 			Debug.Log("Test. Does this work?");
 			Debug.Log(req.downloadHandler.text);

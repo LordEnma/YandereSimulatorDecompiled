@@ -358,7 +358,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 		bool num = InputManager.TappedRight || InputManager.TappedLeft;
 		bool flag = InputManager.TappedUp || InputManager.TappedDown;
-		if (num || flag)
+		if (num | flag)
 		{
 			Highlight.transform.localPosition = new Vector3(HighlightX, HighlightY, Highlight.transform.localPosition.z);
 			UpdateButtonPrompts();

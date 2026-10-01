@@ -22,7 +22,7 @@ internal class YanSaveResolver : DefaultContractResolver
 		}
 		foreach (JsonProperty item in list)
 		{
-			item.ShouldSerialize = delegate(object instance)
+			item.ShouldSerialize = (object instance) =>
 			{
 				if (type == typeof(Material))
 				{

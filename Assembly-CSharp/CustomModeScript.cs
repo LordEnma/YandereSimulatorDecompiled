@@ -2019,7 +2019,7 @@ public class CustomModeScript : MonoBehaviour
 							{
 								if (Row == 1)
 								{
-									JSON.Misc.Likes[Selected] += 1f;
+									JSON.Misc.Likes[Selected]++;
 									if (JSON.Misc.Likes[Selected] > 100f)
 									{
 										JSON.Misc.Likes[Selected] = 100f;
@@ -2028,7 +2028,7 @@ public class CustomModeScript : MonoBehaviour
 								}
 								else if (Row == 2)
 								{
-									JSON.Misc.Respects[Selected] += 1f;
+									JSON.Misc.Respects[Selected]++;
 									if (JSON.Misc.Respects[Selected] > 100f)
 									{
 										JSON.Misc.Respects[Selected] = 100f;
@@ -2037,7 +2037,7 @@ public class CustomModeScript : MonoBehaviour
 								}
 								else if (Row == 3)
 								{
-									JSON.Misc.Fears[Selected] += 1f;
+									JSON.Misc.Fears[Selected]++;
 									if (JSON.Misc.Fears[Selected] > 100f)
 									{
 										JSON.Misc.Fears[Selected] = 100f;
@@ -2053,7 +2053,7 @@ public class CustomModeScript : MonoBehaviour
 							{
 								if (Row == 1)
 								{
-									JSON.Misc.Likes[Selected] -= 1f;
+									JSON.Misc.Likes[Selected]--;
 									if (JSON.Misc.Likes[Selected] < -99f)
 									{
 										JSON.Misc.Likes[Selected] = -99f;
@@ -2062,7 +2062,7 @@ public class CustomModeScript : MonoBehaviour
 								}
 								else if (Row == 2)
 								{
-									JSON.Misc.Respects[Selected] -= 1f;
+									JSON.Misc.Respects[Selected]--;
 									if (JSON.Misc.Respects[Selected] < -99f)
 									{
 										JSON.Misc.Respects[Selected] = -99f;
@@ -2071,7 +2071,7 @@ public class CustomModeScript : MonoBehaviour
 								}
 								else if (Row == 3)
 								{
-									JSON.Misc.Fears[Selected] -= 1f;
+									JSON.Misc.Fears[Selected]--;
 									if (JSON.Misc.Fears[Selected] < -99f)
 									{
 										JSON.Misc.Fears[Selected] = -99f;
@@ -2148,6 +2148,8 @@ public class CustomModeScript : MonoBehaviour
 							PortraitShadow.alpha = 0.5f;
 							OpinionShadow.alpha = 0f;
 							DetailShadow.alpha = 0.5f;
+							ChangeDestinationID = 1;
+							ChangeActionID = 1;
 							Column = 1;
 							Row = 1;
 							UpdateHeader();

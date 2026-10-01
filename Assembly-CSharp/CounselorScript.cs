@@ -493,6 +493,11 @@ public class CounselorScript : MonoBehaviour
 		ApologiesUsed = CounselorGlobals.ApologiesUsed;
 		WeaponsBanned = CounselorGlobals.WeaponsBanned;
 		DelinquentPunishments = CounselorGlobals.DelinquentPunishments;
+		ReportedAlcohol = CounselorGlobals.ReportedAlcohol;
+		ReportedCigarettes = CounselorGlobals.ReportedCigarettes;
+		ReportedCondoms = CounselorGlobals.ReportedCondoms;
+		ReportedTheft = CounselorGlobals.ReportedTheft;
+		ReportedCheating = CounselorGlobals.ReportedCheating;
 		CounselorWindow.localScale = Vector3.zero;
 		CounselorWindow.gameObject.SetActive(value: false);
 		CounselorOptions.SetActive(value: false);
@@ -656,54 +661,63 @@ public class CounselorScript : MonoBehaviour
 							{
 								if (Selected == 1)
 								{
-									SchemeGlobals.SetSchemeStage(1, 9);
+									Schemes.SchemeManager.SetSchemeStage(406, 9);
 									Schemes.UpdateInstructions();
+									ReportedAlcohol = true;
 								}
 								else if (Selected == 2)
 								{
 									Debug.Log("This code is only supposed to fire if the player was speaking to the Counselor...");
-									SchemeGlobals.SetSchemeStage(2, 7);
+									Schemes.SchemeManager.SetSchemeStage(407, 7);
 									Schemes.UpdateInstructions();
+									ReportedCondoms = true;
 								}
 								else if (Selected == 3)
 								{
-									SchemeGlobals.SetSchemeStage(3, 5);
+									Schemes.SchemeManager.SetSchemeStage(408, 5);
 									Schemes.UpdateInstructions();
+									ReportedCigarettes = true;
 								}
 								else if (Selected == 4)
 								{
-									SchemeGlobals.SetSchemeStage(4, 8);
+									Schemes.SchemeManager.SetSchemeStage(409, 8);
 									Schemes.UpdateInstructions();
+									ReportedTheft = true;
 								}
 								else if (Selected == 5)
 								{
-									SchemeGlobals.SetSchemeStage(5, 10);
+									Schemes.SchemeManager.SetSchemeStage(410, 10);
 									Schemes.UpdateInstructions();
+									ReportedCheating = true;
 								}
 							}
-							else if (Selected == 1)
+							else
 							{
-								ReportedAlcohol = true;
-							}
-							else if (Selected == 2)
-							{
-								ReportedCondoms = true;
-							}
-							else if (Selected == 3)
-							{
-								ReportedCigarettes = true;
-							}
-							else if (Selected == 4)
-							{
-								ReportedTheft = true;
-							}
-							else if (Selected == 5)
-							{
-								ReportedCheating = true;
-							}
-							else if (Selected == 6)
-							{
-								ReportedNarcotics = true;
+								Debug.Log("We just hit this part of the code, boiiiii.");
+								if (Selected == 1)
+								{
+									ReportedAlcohol = true;
+								}
+								else if (Selected == 2)
+								{
+									ReportedCondoms = true;
+								}
+								else if (Selected == 3)
+								{
+									ReportedCigarettes = true;
+								}
+								else if (Selected == 4)
+								{
+									ReportedTheft = true;
+								}
+								else if (Selected == 5)
+								{
+									ReportedCheating = true;
+								}
+								else if (Selected == 6)
+								{
+									ReportedNarcotics = true;
+								}
 							}
 							CounselorSubtitle.text = CounselorReportText[Selected];
 							MyAudio.clip = CounselorReportClips[Selected];
@@ -941,9 +955,16 @@ public class CounselorScript : MonoBehaviour
 								EndOfDay.gameObject.SetActive(value: false);
 								EndOfDay.Phase = 1;
 								CutsceneManager.Phase++;
-								Yandere.PauseScreen.Schemes.SchemeManager.enabled = false;
-								Yandere.MainCamera.gameObject.SetActive(value: true);
+								SchemesScript schemes = Yandere.PauseScreen.Schemes;
+								schemes.NextStepInput.SetActive(value: false);
+								schemes.Arrow.gameObject.SetActive(value: false);
+								schemes.HUDIcon.gameObject.SetActive(value: false);
+								schemes.HUDInstructions.text = string.Empty;
+								schemes.SchemeManager.SchemeStage[schemes.SchemeManager.SchemeID] = 100;
+								schemes.SchemeManager.CurrentScheme = 0;
+								schemes.SchemeManager.enabled = false;
 								Yandere.gameObject.SetActive(value: true);
+								Yandere.MainCamera.enabled = true;
 								SpawnDelinquents();
 								Debug.Log("Now returning to gameplay from the counselor.");
 								if (!Eighties)
@@ -1103,30 +1124,55 @@ public class CounselorScript : MonoBehaviour
 		}
 		if (!NewExpulsionSystem)
 		{
-			if (SchemeGlobals.GetSchemeStage(1) == 8)
+			if (Schemes.SchemeManager.GetSchemeStage(406) == 8)
 			{
 				UILabel uILabel2 = Labels[1];
 				uILabel2.color = new Color(uILabel2.color.r, uILabel2.color.g, uILabel2.color.b, 1f);
 			}
-			if (SchemeGlobals.GetSchemeStage(2) == 6)
+			if (Schemes.SchemeManager.GetSchemeStage(407) == 6)
 			{
 				UILabel uILabel3 = Labels[2];
 				uILabel3.color = new Color(uILabel3.color.r, uILabel3.color.g, uILabel3.color.b, 1f);
 			}
-			if (SchemeGlobals.GetSchemeStage(3) == 4)
+			if (Schemes.SchemeManager.GetSchemeStage(408) == 4)
 			{
 				UILabel uILabel4 = Labels[3];
 				uILabel4.color = new Color(uILabel4.color.r, uILabel4.color.g, uILabel4.color.b, 1f);
 			}
-			if (SchemeGlobals.GetSchemeStage(4) == 7)
+			if (Schemes.SchemeManager.GetSchemeStage(409) == 7)
 			{
 				UILabel uILabel5 = Labels[4];
 				uILabel5.color = new Color(uILabel5.color.r, uILabel5.color.g, uILabel5.color.b, 1f);
 			}
-			if (SchemeGlobals.GetSchemeStage(5) == 9)
+			if (Schemes.SchemeManager.GetSchemeStage(410) == 9)
 			{
 				UILabel uILabel6 = Labels[5];
 				uILabel6.color = new Color(uILabel6.color.r, uILabel6.color.g, uILabel6.color.b, 1f);
+			}
+			if (ReportedAlcohol)
+			{
+				Labels[1].text = "(Already Reported Innapropriate Material)";
+				Labels[1].alpha = 0.25f;
+			}
+			if (ReportedCondoms)
+			{
+				Labels[2].text = "(Already Reported Theft)";
+				Labels[2].alpha = 0.25f;
+			}
+			if (ReportedCigarettes)
+			{
+				Labels[3].text = "(Already Reported Contraband)";
+				Labels[3].alpha = 0.25f;
+			}
+			if (ReportedTheft)
+			{
+				Labels[4].text = "(Already Reported Vandalism)";
+				Labels[4].alpha = 0.25f;
+			}
+			if (ReportedCheating)
+			{
+				Labels[5].text = "(Already Reported Cheating)";
+				Labels[5].alpha = 0.25f;
 			}
 		}
 		else if (Eighties)

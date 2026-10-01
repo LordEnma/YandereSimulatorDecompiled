@@ -233,7 +233,9 @@ public class WashingMachineScript : MonoBehaviour
 					}
 				}
 			}
+			Debug.Log("Police.BloodyClothing is currently: " + Prompt.Yandere.Police.BloodyClothing);
 			Prompt.Yandere.Police.BloodyClothing--;
+			Debug.Log("And now, Police.BloodyClothing is: " + Prompt.Yandere.Police.BloodyClothing);
 			ClothingList[i] = null;
 		}
 		Prompt.Yandere.StudentManager.OriginalUniforms += ClothingInMachine;

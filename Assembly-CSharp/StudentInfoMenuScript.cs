@@ -753,7 +753,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 					}
 					if (PauseScreen.Eighties || (!PauseScreen.Eighties && ID < num) || (!PauseScreen.Eighties && ID > 20))
 					{
-						if (StudentManager.StudentBefriended[ID] || StudentManager.StudentPhotographed[ID])
+						if (StudentManager.StudentBefriended[ID] || StudentManager.StudentPhotographed[ID] || PauseScreen.Eighties)
 						{
 							Texture Portrait = null;
 							if (VoidGoddess != null)

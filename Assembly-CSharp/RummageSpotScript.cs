@@ -76,7 +76,7 @@ public class RummageSpotScript : MonoBehaviour
 		{
 			if (Phase == 1)
 			{
-				SchemeGlobals.SetSchemeStage(5, 5);
+				Prompt.Yandere.SchemeManager.SetSchemeStage(410, 5);
 				Schemes.UpdateInstructions();
 				Yandere.Inventory.AnswerSheet = true;
 				Prompt.Hide();
@@ -86,7 +86,7 @@ public class RummageSpotScript : MonoBehaviour
 			}
 			else if (Phase == 2)
 			{
-				SchemeGlobals.SetSchemeStage(5, 8);
+				Prompt.Yandere.SchemeManager.SetSchemeStage(410, 8);
 				Schemes.UpdateInstructions();
 				Prompt.Yandere.Inventory.AnswerSheet = false;
 				Prompt.Hide();

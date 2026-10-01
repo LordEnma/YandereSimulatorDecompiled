@@ -32,7 +32,7 @@ public class SpecificEventTime : IScheduledEventTime
 		bool flag = currentTime.Weekday == weekday;
 		Clock clock = currentTime.Clock;
 		bool flag2 = clock.TotalSeconds >= startClock.TotalSeconds && clock.TotalSeconds < endClock.TotalSeconds;
-		return num && flag && flag2;
+		return num & flag & flag2;
 	}
 
 	public bool OccursInTheFuture(DateAndTime currentTime)

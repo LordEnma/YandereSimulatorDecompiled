@@ -182,7 +182,6 @@ public class HomeDarknessScript : MonoBehaviour
 				{
 					if (HomeYandere.transform.position.y > -5f)
 					{
-						Debug.Log("Teleporting to basement.");
 						HomeYandere.transform.position = new Vector3(-2f, -10f, -2.75f);
 						HomeYandere.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 						HomeYandere.CanMove = true;

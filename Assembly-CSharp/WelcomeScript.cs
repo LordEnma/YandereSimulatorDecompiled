@@ -97,7 +97,7 @@ public class WelcomeScript : MonoBehaviour
 			Input.GetKeyDown(KeyCode.W);
 			if (Input.anyKeyDown)
 			{
-				Speed += 1f;
+				Speed++;
 			}
 			if (CurrentLabel < Labels.Length)
 			{

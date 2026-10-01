@@ -83,6 +83,7 @@ public class GiggleScript : MonoBehaviour
 			}
 			if (Student.Clock.Period == 3 && Student.BusyAtLunch)
 			{
+				Debug.Log("BusyAtLunch was true.");
 				StudentIsBusy = true;
 			}
 			if ((Student.StudentID == 47 || Student.StudentID == 49) && Student.StudentManager.ConvoManager.BothCharactersInPosition)
@@ -208,6 +209,98 @@ public class GiggleScript : MonoBehaviour
 			}
 			else
 			{
+				if (Student.YandereVisible)
+				{
+					Debug.Log("YandereVisible was true.");
+				}
+				if (Student.Alarmed)
+				{
+					Debug.Log("Alarmed was true.");
+				}
+				if (Student.Distracted)
+				{
+					Debug.Log("Distracted was true.");
+				}
+				if (Student.Wet)
+				{
+					Debug.Log("Wet was true.");
+				}
+				if (Student.Slave)
+				{
+					Debug.Log("Slave was true.");
+				}
+				if (Student.WitnessedMurder)
+				{
+					Debug.Log("WitnessedMurder was true.");
+				}
+				if (Student.WitnessedCorpse)
+				{
+					Debug.Log("WitnessedCorpse was true.");
+				}
+				if (Student.Investigating)
+				{
+					Debug.Log("Investigating was true.");
+				}
+				if (Student.InEvent)
+				{
+					Debug.Log("InEvent was true.");
+				}
+				if (Student.Following)
+				{
+					Debug.Log("Following was true.");
+				}
+				if (Student.Confessing)
+				{
+					Debug.Log("Confessing was true.");
+				}
+				if (Student.Meeting)
+				{
+					Debug.Log("Meeting was true.");
+				}
+				if (Student.TurnOffRadio)
+				{
+					Debug.Log("TurnOffRadio was true.");
+				}
+				if (Student.Fleeing)
+				{
+					Debug.Log("Fleeing was true.");
+				}
+				if (Student.Distracting)
+				{
+					Debug.Log("Distracting was true.");
+				}
+				if (Student.GoAway)
+				{
+					Debug.Log("GoAway was true.");
+				}
+				if (Student.FocusOnYandere)
+				{
+					Debug.Log("FocusOnYandere was true.");
+				}
+				if (StudentIsBusy)
+				{
+					Debug.Log("StudentIsBusy was true.");
+				}
+				if (Student.MyBento.Tampered)
+				{
+					Debug.Log("MyBento.Tampered was true.");
+				}
+				if (Student.Headache)
+				{
+					Debug.Log("Headache was true.");
+				}
+				if (Student.Routine)
+				{
+					Debug.Log("Routine was true.");
+				}
+				if (Student.Indoors)
+				{
+					Debug.Log("Indoors was true.");
+				}
+				if (Student.VisitSenpaiDesk)
+				{
+					Debug.Log("VisitSenpaiDesk was true.");
+				}
 				if (Student.InEvent || Student.Restless)
 				{
 					Student.Yandere.NotificationManager.CustomText = Student.Name + " is in an event right now.";

@@ -597,9 +597,9 @@ public class WeaponScript : MonoBehaviour
 			TargetRotation[2] = new Vector3(0f, 0f, 100.2056f);
 		}
 		InBag = false;
-		if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 1)
+		if (WeaponID == 6 && Yandere.SchemeManager.GetSchemeStage(409) == 1)
 		{
-			SchemeGlobals.SetSchemeStage(4, 2);
+			Yandere.SchemeManager.SetSchemeStage(409, 2);
 			Yandere.PauseScreen.Schemes.UpdateInstructions();
 		}
 		Prompt.Circle[3].fillAmount = 1f;
@@ -820,9 +820,9 @@ public class WeaponScript : MonoBehaviour
 			base.transform.position = Yandere.transform.position + new Vector3(0f, 1f, 0f);
 		}
 		DoNotRelocate = false;
-		if (WeaponID == 6 && SchemeGlobals.GetSchemeStage(4) == 2)
+		if (WeaponID == 6 && Yandere.SchemeManager.GetSchemeStage(409) == 2)
 		{
-			SchemeGlobals.SetSchemeStage(4, 1);
+			Yandere.SchemeManager.SetSchemeStage(409, 1);
 			Yandere.PauseScreen.Schemes.UpdateInstructions();
 		}
 		if (WeaponID == 11)

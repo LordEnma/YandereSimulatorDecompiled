@@ -90,7 +90,7 @@ namespace AmplifyMotion
 			int num = (flag ? m_owner.Instance.GenerateObjectId(m_obj.gameObject) : 255);
 			Matrix4x4 value = ((!m_obj.FixedStep) ? (m_owner.PrevViewProjMatrixRT * (Matrix4x4)m_prevLocalToWorld) : (m_owner.PrevViewProjMatrixRT * (Matrix4x4)m_currLocalToWorld));
 			renderCB.SetGlobalMatrix("_AM_MATRIX_PREV_MVP", value);
-			renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float)num * 0.003921569f);
+			renderCB.SetGlobalFloat("_AM_OBJECT_ID", (float)num * (1f / 255f));
 			renderCB.SetGlobalFloat("_AM_MOTION_SCALE", flag ? scale : 0f);
 			int num2 = ((quality != Quality.Mobile) ? 2 : 0);
 			for (int i = 0; i < m_sharedMaterials.Length; i++)

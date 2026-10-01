@@ -16,6 +16,8 @@ public class FavorMenuScript : MonoBehaviour
 
 	public PromptBarScript PromptBar;
 
+	public GameObject SchemesSubMenu;
+
 	public GameObject IdiotArrows;
 
 	public GameObject BountyMenu;
@@ -36,10 +38,6 @@ public class FavorMenuScript : MonoBehaviour
 
 	private void Start()
 	{
-		if (DateGlobals.Week > 1)
-		{
-			SchemesLabel.alpha = 0.5f;
-		}
 	}
 
 	private void Update()
@@ -75,12 +73,13 @@ public class FavorMenuScript : MonoBehaviour
 				{
 					if (SchemesLabel.alpha > 0.5f)
 					{
-						SchemesMenu.UpdatePantyCount();
-						SchemesMenu.UpdateSchemeList();
-						SchemesMenu.UpdateSchemeInfo();
-						SchemesMenu.gameObject.SetActive(value: true);
+						SchemesSubMenu.gameObject.SetActive(value: true);
 						base.gameObject.SetActive(value: false);
-						UpdatePromptBarButtons();
+						PromptBar.ClearButtons();
+						PromptBar.Label[0].text = "Confirm";
+						PromptBar.Label[1].text = "Back";
+						PromptBar.Label[5].text = "Change";
+						PromptBar.UpdateButtons();
 					}
 				}
 				else if (ID == 2)
@@ -108,7 +107,6 @@ public class FavorMenuScript : MonoBehaviour
 					PromptBar.UpdateButtons();
 					Panel.SetActive(value: false);
 					BountyMenu.SetActive(value: true);
-					UpdatePromptBarButtons();
 				}
 			}
 			else if (Input.GetButtonDown(InputNames.Xbox_X))

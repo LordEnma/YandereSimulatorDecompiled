@@ -99,39 +99,39 @@ public class NGUIDebug : MonoBehaviour
 			string text = "Scheme: " + UICamera.currentScheme;
 			GUI.color = Color.black;
 			GUI.Label(position, text);
-			position.y -= 1f;
-			position.x -= 1f;
+			position.y--;
+			position.x--;
 			GUI.color = Color.white;
 			GUI.Label(position, text);
 			position.y += 18f;
-			position.x += 1f;
+			position.x++;
 			text = "Hover: " + NGUITools.GetHierarchy(UICamera.hoveredObject).Replace("\"", "");
 			GUI.color = Color.black;
 			GUI.Label(position, text);
-			position.y -= 1f;
-			position.x -= 1f;
+			position.y--;
+			position.x--;
 			GUI.color = Color.white;
 			GUI.Label(position, text);
 			position.y += 18f;
-			position.x += 1f;
+			position.x++;
 			text = "Selection: " + NGUITools.GetHierarchy(UICamera.selectedObject).Replace("\"", "");
 			GUI.color = Color.black;
 			GUI.Label(position, text);
-			position.y -= 1f;
-			position.x -= 1f;
+			position.y--;
+			position.x--;
 			GUI.color = Color.white;
 			GUI.Label(position, text);
 			position.y += 18f;
-			position.x += 1f;
+			position.x++;
 			text = "Controller: " + NGUITools.GetHierarchy(UICamera.controllerNavigationObject).Replace("\"", "");
 			GUI.color = Color.black;
 			GUI.Label(position, text);
-			position.y -= 1f;
-			position.x -= 1f;
+			position.y--;
+			position.x--;
 			GUI.color = Color.white;
 			GUI.Label(position, text);
 			position.y += 18f;
-			position.x += 1f;
+			position.x++;
 			text = "Active events: " + UICamera.CountInputSources();
 			if (UICamera.disableController)
 			{
@@ -147,24 +147,24 @@ public class NGUIDebug : MonoBehaviour
 			}
 			GUI.color = Color.black;
 			GUI.Label(position, text);
-			position.y -= 1f;
-			position.x -= 1f;
+			position.y--;
+			position.x--;
 			GUI.color = Color.white;
 			GUI.Label(position, text);
 			position.y += 18f;
-			position.x += 1f;
+			position.x++;
 		}
 		int i = 0;
 		for (int count = mLines.Count; i < count; i++)
 		{
 			GUI.color = Color.black;
 			GUI.Label(position, mLines[i]);
-			position.y -= 1f;
-			position.x -= 1f;
+			position.y--;
+			position.x--;
 			GUI.color = Color.white;
 			GUI.Label(position, mLines[i]);
 			position.y += 18f;
-			position.x += 1f;
+			position.x++;
 		}
 	}
 }

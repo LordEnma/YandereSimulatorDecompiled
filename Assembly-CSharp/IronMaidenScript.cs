@@ -16,6 +16,8 @@ public class IronMaidenScript : MonoBehaviour
 
 	public GameObject InteriorColliders;
 
+	public GameObject AlarmDisc;
+
 	public GameObject[] Blood;
 
 	public AudioClip FemaleVoice;
@@ -189,6 +191,9 @@ public class IronMaidenScript : MonoBehaviour
 				ShoveTimer += Time.deltaTime;
 				if (ShoveTimer >= 2f)
 				{
+					GameObject obj = Object.Instantiate(AlarmDisc, base.transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+					obj.GetComponent<AlarmDiscScript>().NoScream = true;
+					obj.GetComponent<AlarmDiscScript>().Loud = true;
 					Blood[0].transform.parent = base.transform;
 					Blood[1].transform.parent = Door[0];
 					Blood[2].transform.parent = Door[1];

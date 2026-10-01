@@ -482,7 +482,7 @@ public class ShoulderCameraScript : MonoBehaviour
 				}
 				else
 				{
-					PullBackTimer = Mathf.MoveTowards(PullBackTimer, 0f, Time.deltaTime * 0.42857143f);
+					PullBackTimer = Mathf.MoveTowards(PullBackTimer, 0f, Time.deltaTime * (1755f / 4095f));
 				}
 				base.transform.Translate(Vector3.back * Time.deltaTime * 10f * PullBackTimer);
 				StruggleFocus.localPosition = Vector3.Lerp(StruggleFocus.localPosition, new Vector3(0f, 0.3f, -0.766666f), Time.deltaTime);

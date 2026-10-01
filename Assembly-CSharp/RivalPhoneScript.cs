@@ -39,9 +39,9 @@ public class RivalPhoneScript : MonoBehaviour
 		Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
 		if (!Prompt.Yandere.StudentManager.YandereVisible)
 		{
-			if (StudentID == Prompt.Yandere.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(1) == 4)
+			if (StudentID == Prompt.Yandere.StudentManager.RivalID && Prompt.Yandere.SchemeManager.GetSchemeStage(406) == 4)
 			{
-				SchemeGlobals.SetSchemeStage(1, 5);
+				Prompt.Yandere.SchemeManager.SetSchemeStage(406, 5);
 				Prompt.Yandere.PauseScreen.Schemes.UpdateInstructions();
 			}
 			Prompt.Yandere.RivalPhoneTexture = MyRenderer.material.mainTexture;
